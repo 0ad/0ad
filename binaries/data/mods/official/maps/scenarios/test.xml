@@ -4,1276 +4,283 @@
 	<Environment>
 		<SkySet>default</SkySet>
 		<SunColour r="1" g="1" b="1"/>
-		<SunElevation angle="0.75"/>
-		<SunRotation angle="5.5"/>
-		<TerrainAmbientColour r="0.5" g="0.5" b="0.5"/>
-		<UnitsAmbientColour r="0.5" g="0.5" b="0.5"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.47451" g="0.47451" b="0.52549"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
 				<Height>5</Height>
-				<Shininess>200</Shininess>
+				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="41.5687" y="87.3906" z="40.2233"/>
-		<Rotation angle="0.0121822"/>
-		<Declination angle="0.706651"/>
+		<Position x="111.489" y="77.9095" z="6.6717"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
 		<Entity>
-			<Template>hele_barracks</Template>
+			<Template>hele_cavalry_swordsman_b</Template>
 			<Player>1</Player>
-			<Position x="89.9238" y="5.56035" z="227.56"/>
+			<Position x="86.1025" y="22.4" z="115.043"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_cavalry_swordsman_a</Template>
 			<Player>1</Player>
-			<Position x="119.118" y="5.56035" z="230.369"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_cavalry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="118.636" y="5.56035" z="218.402"/>
+			<Position x="88.6042" y="22.4" z="119.654"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_cavalry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="117.69" y="5.56035" z="206.42"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="45.4479" y="5.56035" z="199.516"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_dock</Template>
-			<Player>1</Player>
-			<Position x="114.383" y="4.97424" z="134.411"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_farmstead</Template>
-			<Player>1</Player>
-			<Position x="40.0236" y="5.56035" z="138.622"/>
-			<Orientation angle="-2.3468"/>
-		</Entity>
-		<Entity>
-			<Template>hele_fortress</Template>
-			<Player>1</Player>
-			<Position x="91.5824" y="5.56035" z="194.619"/>
+			<Position x="92.424" y="22.4" z="122.927"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_hero_alexander</Template>
 			<Player>1</Player>
-			<Position x="117.346" y="5.56035" z="193.119"/>
+			<Position x="90.8967" y="22.4" z="108.273"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_hero_demetrius</Template>
 			<Player>1</Player>
-			<Position x="116.972" y="5.56036" z="186.67"/>
+			<Position x="94.7165" y="22.4" z="111.294"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_hero_leonidas</Template>
 			<Player>1</Player>
-			<Position x="116.085" y="5.56035" z="180.777"/>
+			<Position x="96.8125" y="22.4" z="114.032"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_hero_philip</Template>
 			<Player>1</Player>
-			<Position x="124.733" y="5.56035" z="194.228"/>
+			<Position x="98.7732" y="22.4" z="117.676"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_hero_themistocles</Template>
 			<Player>1</Player>
-			<Position x="123.977" y="5.56035" z="187.401"/>
+			<Position x="102.651" y="22.4" z="120.929"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_hero_xenophon</Template>
 			<Player>1</Player>
-			<Position x="123.251" y="5.56035" z="180.843"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_house</Template>
-			<Player>1</Player>
-			<Position x="12.4572" y="5.56035" z="169.256"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_house</Template>
-			<Player>1</Player>
-			<Position x="25.3806" y="5.56035" z="168.476"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_house</Template>
-			<Player>1</Player>
-			<Position x="18.0719" y="5.56036" z="179.551"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_a</Template>
-			<Player>1</Player>
-			<Position x="114.943" y="5.56035" z="171.107"/>
+			<Position x="105.806" y="22.4" z="124.233"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_infantry_archer_b</Template>
 			<Player>1</Player>
-			<Position x="120.067" y="5.56035" z="171.154"/>
+			<Position x="95.5771" y="22.4" z="101.035"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_archer_a</Template>
+			<Player>1</Player>
+			<Position x="97.288" y="22.4" z="102.771"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="125.375" y="5.56035" z="169.998"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_javelinist_a</Template>
-			<Player>1</Player>
-			<Position x="112.932" y="5.56035" z="163.129"/>
+			<Position x="99.7898" y="22.4" z="105.503"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_infantry_javelinist_b</Template>
 			<Player>1</Player>
-			<Position x="118.501" y="5.56035" z="163.468"/>
+			<Position x="102.512" y="22.4" z="109.091"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="104.184" y="22.4" z="111.552"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_infantry_javelinist_e</Template>
 			<Player>1</Player>
-			<Position x="123.993" y="5.56035" z="163.231"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="112.649" y="5.56035" z="156.105"/>
+			<Position x="106.643" y="22.4" z="115.017"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="118.091" y="5.56035" z="156.43"/>
+			<Position x="100.33" y="22.4" z="95.9808"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="102.682" y="22.4" z="98.9622"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="124.072" y="5.56035" z="155.663"/>
+			<Position x="105.172" y="22.4" z="101.554"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
-			<Template>hele_market</Template>
+			<Template>hele_super_cavalry_m</Template>
 			<Player>1</Player>
-			<Position x="65.1339" y="5.56035" z="173.631"/>
+			<Position x="104.326" y="22.4" z="91.5033"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
-			<Template>hele_mill</Template>
+			<Template>hele_super_cavalry_p</Template>
 			<Player>1</Player>
-			<Position x="24.2972" y="5.56035" z="103.01"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_sb1</Template>
-			<Player>1</Player>
-			<Position x="78.5007" y="5.56035" z="127.074"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_sb2</Template>
-			<Player>1</Player>
-			<Position x="64.0771" y="5.56035" z="98.9733"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_scout_tower</Template>
-			<Player>1</Player>
-			<Position x="101.043" y="5.56036" z="155.612"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_ship</Template>
-			<Player>1</Player>
-			<Position x="113.15" y="0.348633" z="108.643"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_ship_bireme</Template>
-			<Player>1</Player>
-			<Position x="132.36" y="0.348633" z="114.766"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="147.469" y="0.348633" z="129.794"/>
+			<Position x="107.21" y="22.4" z="94.678"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_super_infantry_m</Template>
 			<Player>1</Player>
-			<Position x="86.9939" y="5.56035" z="174.66"/>
+			<Position x="110.321" y="22.4" z="98.0729"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_super_infantry_p</Template>
 			<Player>1</Player>
-			<Position x="92.2891" y="5.56035" z="173.934"/>
+			<Position x="112.821" y="22.4" z="100.961"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="36.2868" y="5.56035" z="181.319"/>
+			<Position x="110.786" y="22.4" z="88.6331"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_support_trader</Template>
 			<Player>1</Player>
-			<Position x="73.4296" y="5.56034" z="162.912"/>
+			<Position x="113.21" y="22.4" z="91.2849"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_barracks</Template>
+			<Player>1</Player>
+			<Position x="104.073" y="22.4" z="157.141"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="120.628" y="22.4" z="138.251"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_dock</Template>
+			<Player>1</Player>
+			<Position x="135.633" y="22.4" z="118.202"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_farmstead</Template>
+			<Player>1</Player>
+			<Position x="147.34" y="22.4" z="105.039"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_fortress</Template>
+			<Player>1</Player>
+			<Position x="80.4766" y="22.4" z="135.512"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_house</Template>
+			<Player>1</Player>
+			<Position x="67.637" y="22.4" z="120.373"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_market</Template>
+			<Player>1</Player>
+			<Position x="55.9414" y="22.4" z="112.639"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_mill</Template>
+			<Player>1</Player>
+			<Position x="70.4001" y="22.4" z="96.6711"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_sb1</Template>
+			<Player>1</Player>
+			<Position x="83.1958" y="22.4" z="81.1175"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_sb2</Template>
+			<Player>1</Player>
+			<Position x="104.469" y="22.4" z="61.6215"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="165.001" y="22.4" z="120.109"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_bireme</Template>
+			<Player>1</Player>
+			<Position x="163.812" y="22.4" z="83.786"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_merchant</Template>
+			<Player>1</Player>
+			<Position x="150.237" y="22.4" z="66.467"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_ship_trireme</Template>
+			<Player>1</Player>
+			<Position x="133.955" y="22.4" z="53.2541"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_temple</Template>
 			<Player>1</Player>
-			<Position x="62.8047" y="5.56036" z="229.732"/>
+			<Position x="122.366" y="22.4" z="174.783"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_wall</Template>
 			<Player>1</Player>
-			<Position x="132.859" y="5.56035" z="233.256"/>
-			<Orientation angle="1.56157"/>
+			<Position x="129.332" y="22.4" z="151.399"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity>
+			<Template>hele_wall_gate</Template>
+			<Player>1</Player>
+			<Position x="143.082" y="22.4" z="140.16"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity>
 			<Template>hele_wall_tower</Template>
 			<Player>1</Player>
-			<Position x="131.943" y="5.56035" z="229.549"/>
-			<Orientation angle="1.5099"/>
-		</Entity>
-		<Entity>
-			<Template>hele_wall</Template>
-			<Player>1</Player>
-			<Position x="131.942" y="5.56035" z="206.763"/>
-			<Orientation angle="1.57855"/>
-		</Entity>
-		<Entity>
-			<Template>hele_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="131.127" y="5.56035" z="203.931"/>
-			<Orientation angle="1.56156"/>
-		</Entity>
-		<Entity>
-			<Template>celt_barracks</Template>
-			<Player>1</Player>
-			<Position x="233.935" y="5.56036" z="116.068"/>
-			<Orientation angle="-2.31202"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_javelinist_a</Template>
-			<Player>1</Player>
-			<Position x="187.391" y="5.56035" z="122.484"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="187.909" y="5.56036" z="112.715"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_javelinist_e</Template>
-			<Player>1</Player>
-			<Position x="188.194" y="5.56035" z="102.837"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="196.211" y="5.56035" z="123.259"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="196.731" y="5.56033" z="114.444"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="197.167" y="5.56035" z="104.476"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_swordsman_a</Template>
-			<Player>1</Player>
-			<Position x="204.563" y="5.56035" z="123.545"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="204.83" y="5.56035" z="113.583"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_cavalry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="205.235" y="5.56035" z="104.288"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_civil_centre</Template>
-			<Player>1</Player>
-			<Position x="221.132" y="5.56035" z="76.7763"/>
-			<Orientation angle="-2.41671"/>
-		</Entity>
-		<Entity>
-			<Template>celt_dock</Template>
-			<Player>1</Player>
-			<Position x="174.047" y="5.55969" z="83.022"/>
-			<Orientation angle="-0.988024"/>
-		</Entity>
-		<Entity>
-			<Template>celt_farmstead</Template>
-			<Player>1</Player>
-			<Position x="191.506" y="5.56035" z="60.7216"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_fortress</Template>
-			<Player>1</Player>
-			<Position x="133.297" y="5.56035" z="40.3536"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_fortress_g</Template>
-			<Player>1</Player>
-			<Position x="164.501" y="5.56035" z="47.7851"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_hero_vercingetorix</Template>
-			<Player>1</Player>
-			<Position x="215.491" y="8.34396" z="137.399"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_house</Template>
-			<Player>1</Player>
-			<Position x="240.738" y="5.56036" z="56.4322"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_house</Template>
-			<Player>1</Player>
-			<Position x="249.015" y="5.56035" z="43.3541"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_house</Template>
-			<Player>1</Player>
-			<Position x="249.978" y="5.56035" z="67.431"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_a</Template>
-			<Player>1</Player>
-			<Position x="213.124" y="5.56036" z="123.835"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="213.508" y="5.56035" z="114.786"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_e</Template>
-			<Player>1</Player>
-			<Position x="214.268" y="5.56035" z="105.114"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="165.972" y="5.56034" z="143.323"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="171.277" y="5.56034" z="137.341"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="177.161" y="5.56035" z="132.891"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_market</Template>
-			<Player>1</Player>
-			<Position x="212.577" y="5.56035" z="39.9975"/>
-			<Orientation angle="-2.34977"/>
-		</Entity>
-		<Entity>
-			<Template>celt_mill</Template>
-			<Player>1</Player>
-			<Position x="28.6296" y="5.56035" z="63.0953"/>
-			<Orientation angle="-2.51802"/>
-		</Entity>
-		<Entity>
-			<Template>celt_sb1</Template>
-			<Player>1</Player>
-			<Position x="103.11" y="5.56035" z="48.9101"/>
-			<Orientation angle="1.43563"/>
-		</Entity>
-		<Entity>
-			<Template>celt_scout_tower</Template>
-			<Player>1</Player>
-			<Position x="247.31" y="8.34395" z="143.033"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_ship_merchant</Template>
-			<Player>1</Player>
-			<Position x="141.339" y="0.348633" z="79.1509"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_ship_trireme</Template>
-			<Player>1</Player>
-			<Position x="151.627" y="0.348633" z="85.6538"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_super_cavalry</Template>
-			<Player>1</Player>
-			<Position x="189.893" y="5.56035" z="90.353"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_super_infantry</Template>
-			<Player>1</Player>
-			<Position x="195.93" y="5.56036" z="91.1795"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="190.53" y="5.56035" z="48.0106"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_support_trader</Template>
-			<Player>1</Player>
-			<Position x="215.86" y="5.56034" z="24.8445"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_temple</Template>
-			<Player>1</Player>
-			<Position x="246.945" y="5.56034" z="92.8161"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_wall</Template>
-			<Player>1</Player>
-			<Position x="230.642" y="8.34393" z="161.147"/>
-			<Orientation angle="-0.0100567"/>
-		</Entity>
-		<Entity>
-			<Template>celt_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="209.281" y="8.34395" z="159.323"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_wall_tower</Template>
-			<Player>1</Player>
-			<Position x="232.443" y="8.34395" z="159.537"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>fauna_sheep</Template>
-			<Player>0</Player>
-			<Position x="171.024" y="8.34395" z="171.01"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>fauna_sheep</Template>
-			<Player>0</Player>
-			<Position x="167.828" y="8.34395" z="179.771"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>fauna_sheep</Template>
-			<Player>0</Player>
-			<Position x="176.363" y="8.34395" z="183.866"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="177.752" y="8.34395" z="164.36"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="170.354" y="8.34395" z="162.006"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="178.389" y="8.34395" z="155.412"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="6.8248" y="5.56035" z="87.769"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="14.5868" y="5.56035" z="89.0627"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="10.3253" y="5.56035" z="76.4396"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="6.128" y="5.56034" z="65.6472"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="19.0702" y="5.56034" z="77.8544"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="15.6998" y="5.56035" z="63.9402"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="8.83595" y="5.56035" z="54.0472"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_oak</Template>
-			<Player>0</Player>
-			<Position x="8.67404" y="5.56035" z="104.411"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="4.04518" y="5.56036" z="247.592"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="16.4843" y="5.56036" z="248.602"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="9.29335" y="5.56033" z="235.519"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="11.5771" y="5.56033" z="247.662"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="17.4206" y="5.56035" z="234.34"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="20.3909" y="5.56035" z="250.441"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="23.8023" y="5.56035" z="242.487"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="33.4122" y="5.56035" z="248.759"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="28.7865" y="5.56035" z="239.942"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="23.8881" y="5.56035" z="224.255"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="17.7103" y="5.56035" z="222.233"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="10.057" y="5.56033" z="223.339"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="6.6871" y="5.56035" z="215.228"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="17.3106" y="5.56035" z="211.232"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="31.8851" y="5.56035" z="219.263"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="33.1137" y="5.56035" z="234.068"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="42.0733" y="5.56035" z="245.723"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="46.8649" y="5.56036" z="254.341"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="24.7682" y="5.56035" z="211.301"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="15.6281" y="5.56035" z="200.163"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="7.36034" y="5.56035" z="201.475"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="2.66088" y="5.56035" z="194.267"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="2.89544" y="5.56035" z="212.948"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="2.66629" y="5.56036" z="236.721"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="43.4999" y="5.56033" z="236.56"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="252.55" y="5.56035" z="2.86245"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="252.318" y="5.56035" z="9.54577"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="246.486" y="5.56034" z="16.4716"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="243.225" y="5.56035" z="6.14737"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="235.584" y="5.56035" z="6.42046"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="239.256" y="5.56035" z="12.3051"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="248.932" y="5.56034" z="1.84039"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="239.364" y="5.56035" z="1.58826"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="230.906" y="5.56035" z="1.67394"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="221.815" y="5.56035" z="2.91049"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="225.424" y="5.56035" z="9.83114"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="230.67" y="5.56035" z="22.5967"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="239.337" y="5.56034" z="27.0051"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="252.339" y="5.56035" z="30.544"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="245.787" y="5.56035" z="28.7606"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="232.73" y="5.56036" z="32.777"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_tree_pine</Template>
-			<Player>0</Player>
-			<Position x="225.832" y="5.56035" z="52.9977"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="205.849" y="5.56035" z="64.8268"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="202.475" y="5.56036" z="68.9493"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="26.0029" y="5.56035" z="87.6509"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="30.6787" y="5.56035" z="86.3594"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="29.4846" y="5.56034" z="81.7195"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="35.3835" y="5.56035" z="86.0751"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="34.6687" y="5.56035" z="80.2305"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="38.8342" y="5.56034" z="85.4553"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="35.3527" y="5.56035" z="92.5325"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="37.4153" y="5.56035" z="98.2055"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="41.7059" y="5.56035" z="91.364"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="42.5117" y="5.56035" z="80.9142"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="34.7513" y="5.56035" z="73.944"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="39.875" y="5.56035" z="75.5521"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="40.7094" y="5.56035" z="67.7994"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="43.9922" y="5.56035" z="70.731"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="46.7331" y="5.56035" z="79.8866"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="45.6028" y="5.56035" z="85.843"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="23.5528" y="5.56034" z="197.25"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="28.9368" y="5.56035" z="195.184"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="23.248" y="5.56035" z="190.142"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>geology_stone_light</Template>
-			<Player>0</Player>
-			<Position x="201.9" y="5.56035" z="78.1619"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="184.18" y="5.56035" z="41.6362"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="188.54" y="5.56035" z="42.1172"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="185.78" y="5.56035" z="35.6543"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="205.663" y="5.56034" z="88.081"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="209.69" y="5.56036" z="92.6239"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="213.592" y="5.56035" z="94.3882"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="60.4926" y="5.56035" z="148.825"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="57.1169" y="5.56035" z="152.675"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="63.8752" y="5.56034" z="145.349"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="63.7753" y="5.56035" z="194.037"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="64.5957" y="5.56035" z="203.489"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>flora_bush_berry</Template>
-			<Player>0</Player>
-			<Position x="68.6602" y="5.56035" z="198.984"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_a</Template>
-			<Player>2</Player>
-			<Position x="192.972" y="8.34395" z="230.716"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_a</Template>
-			<Player>2</Player>
-			<Position x="185.769" y="8.34395" z="225.572"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_a</Template>
-			<Player>2</Player>
-			<Position x="179.946" y="8.34396" z="235.843"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_a</Template>
-			<Player>2</Player>
-			<Position x="191.986" y="8.34394" z="244.565"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_b</Template>
-			<Player>2</Player>
-			<Position x="191.681" y="8.34395" z="219.677"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_b</Template>
-			<Player>2</Player>
-			<Position x="186.073" y="8.34395" z="240.148"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_b</Template>
-			<Player>2</Player>
-			<Position x="198.156" y="8.34396" z="237.159"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_e</Template>
-			<Player>2</Player>
-			<Position x="199.274" y="8.34396" z="222.518"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_e</Template>
-			<Player>2</Player>
-			<Position x="187.547" y="8.34395" z="232.893"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_archer_e</Template>
-			<Player>2</Player>
-			<Position x="194.952" y="8.34396" z="238.285"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="201.002" y="8.34396" z="247.077"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="204.264" y="8.34395" z="237.215"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_javelinist_e</Template>
-			<Player>2</Player>
-			<Position x="212.006" y="8.34396" z="227.608"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="207.294" y="8.34396" z="216.763"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="213.15" y="8.34394" z="212.182"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="202.133" y="8.34395" z="209.815"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="207.97" y="8.34394" z="208.986"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="213.093" y="8.34394" z="205.445"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="206.007" y="8.34394" z="203.833"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_cavalry_swordsman_a</Template>
-			<Player>2</Player>
-			<Position x="224.268" y="8.34395" z="204.5"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_cavalry_swordsman_b</Template>
-			<Player>2</Player>
-			<Position x="217.654" y="8.34395" z="199.628"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_cavalry_swordsman_e</Template>
-			<Player>2</Player>
-			<Position x="210.129" y="8.34395" z="193.14"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="237.643" y="8.34394" z="199.545"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="242.306" y="8.34394" z="199.986"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_javelinist_e</Template>
-			<Player>2</Player>
-			<Position x="247.417" y="8.34394" z="199.503"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="231.335" y="8.34394" z="190.708"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="236.094" y="8.34394" z="191.099"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="241.694" y="8.34394" z="191.851"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_super_cavalry</Template>
-			<Player>2</Player>
-			<Position x="227.946" y="8.34395" z="219.63"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>celt_super_infantry</Template>
-			<Player>2</Player>
-			<Position x="233.774" y="8.34394" z="217.426"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="237.405" y="8.34396" z="237.562"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity>
-			<Template>hele_house</Template>
-			<Player>2</Player>
-			<Position x="212.285" y="8.34396" z="243.937"/>
+			<Position x="154.511" y="22.4" z="130.911"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
-	<Nonentities>
-		<Nonentity>
-			<Actor>structures/hellenes/house.xml</Actor>
-			<Position x="183.088" y="8.34395" z="220.768"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>structures/plot_corral.xml</Actor>
-			<Position x="52.8492" y="5.56035" z="143.189"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>structures/plot_field.xml</Actor>
-			<Position x="26.8867" y="5.56035" z="133.87"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>structures/plot_orchard.xml</Actor>
-			<Position x="35.6317" y="5.56035" z="151.23"/>
-			<Orientation angle="0.823882"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>structures/plot.xml</Actor>
-			<Position x="44.014" y="5.56036" z="125.595"/>
-			<Orientation angle="0.785888"/>
-		</Nonentity>
-	</Nonentities>
+	<Nonentities/>
+	<Tracks/>
 </Scenario>
