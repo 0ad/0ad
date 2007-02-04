@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="272.021" y="82.9576" z="102.648"/>
+		<Position x="282.52" y="67.0055" z="130.962"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -286,12 +286,6 @@
 			<Position x="304.37" y="22.2298" z="194.239"/>
 			<Orientation angle="-0.332577"/>
 		</Entity>
-		<Entity uid="48">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="274.075" y="22.4" z="193.923"/>
-			<Orientation angle="0.328892"/>
-		</Entity>
 		<Entity uid="49">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
@@ -303,12 +297,6 @@
 			<Player>1</Player>
 			<Position x="281.441" y="20.6745" z="203.005"/>
 			<Orientation angle="0.207766"/>
-		</Entity>
-		<Entity uid="52">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="272.107" y="22.4" z="191.476"/>
-			<Orientation angle="0.19631"/>
 		</Entity>
 		<Entity uid="53">
 			<Template>rome_infantry_spearman_e</Template>
@@ -1528,23 +1516,11 @@
 			<Position x="261.884" y="22.4" z="174.515"/>
 			<Orientation angle="0.585578"/>
 		</Entity>
-		<Entity uid="1441">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="266.804" y="22.4" z="178.539"/>
-			<Orientation angle="0.378052"/>
-		</Entity>
 		<Entity uid="1443">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="268.689" y="22.4" z="181.213"/>
 			<Orientation angle="0.469457"/>
-		</Entity>
-		<Entity uid="1444">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="266.293" y="22.4" z="183.595"/>
-			<Orientation angle="0.557572"/>
 		</Entity>
 		<Entity uid="1445">
 			<Template>rome_infantry_spearman_e</Template>
@@ -1557,12 +1533,6 @@
 			<Player>1</Player>
 			<Position x="261.511" y="22.4" z="177.131"/>
 			<Orientation angle="0.673352"/>
-		</Entity>
-		<Entity uid="1447">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="264.131" y="22.4" z="176.1"/>
-			<Orientation angle="0.694224"/>
 		</Entity>
 		<Entity uid="1455">
 			<Template>rome_infantry_spearman_a</Template>
@@ -1636,34 +1606,16 @@
 			<Position x="272.465" y="22.4" z="179.306"/>
 			<Orientation angle="0.0183866"/>
 		</Entity>
-		<Entity uid="1470">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="284.428" y="22.4" z="174.663"/>
-			<Orientation angle="0.180745"/>
-		</Entity>
 		<Entity uid="1471">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
 			<Position x="281.553" y="22.4" z="189.142"/>
 			<Orientation angle="0.0462786"/>
 		</Entity>
-		<Entity uid="1472">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="287.462" y="22.4" z="179.535"/>
-			<Orientation angle="-0.0299166"/>
-		</Entity>
-		<Entity uid="1473">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="291.115" y="22.4" z="179.998"/>
-			<Orientation angle="-0.308934"/>
-		</Entity>
 		<Entity uid="1474">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="293.178" y="22.4" z="185.773"/>
+			<Position x="291.841" y="22.4" z="185.755"/>
 			<Orientation angle="-0.134724"/>
 		</Entity>
 		<Entity uid="1478">
@@ -2223,6 +2175,72 @@
 			<Player>2</Player>
 			<Position x="286.128" y="20.7105" z="232.192"/>
 			<Orientation angle="2.92459"/>
+		</Entity>
+		<Entity uid="11333">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="273.389" y="22.4" z="190.403"/>
+			<Orientation angle="-0.199253"/>
+		</Entity>
+		<Entity uid="11334">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="272.178" y="22.3942" z="196.477"/>
+			<Orientation angle="-0.589543"/>
+		</Entity>
+		<Entity uid="11335">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="267.44" y="22.4" z="188.377"/>
+			<Orientation angle="-0.489902"/>
+		</Entity>
+		<Entity uid="11336">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="272.976" y="22.4" z="184.46"/>
+			<Orientation angle="-0.409871"/>
+		</Entity>
+		<Entity uid="11337">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="275.486" y="22.4" z="194.064"/>
+			<Orientation angle="-0.249657"/>
+		</Entity>
+		<Entity uid="11338">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="262.575" y="22.4" z="179.644"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="11339">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="259.96" y="22.4" z="175.787"/>
+			<Orientation angle="-0.438085"/>
+		</Entity>
+		<Entity uid="11340">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="265.544" y="22.4" z="184.854"/>
+			<Orientation angle="-0.503692"/>
+		</Entity>
+		<Entity uid="11342">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="289.873" y="22.4" z="182.764"/>
+			<Orientation angle="-0.115833"/>
+		</Entity>
+		<Entity uid="11343">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="283.373" y="22.4" z="184.499"/>
+			<Orientation angle="0.00536821"/>
+		</Entity>
+		<Entity uid="11344">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="286.806" y="22.4" z="189.938"/>
+			<Orientation angle="-0.0355863"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -3795,11 +3813,6 @@
 			<Actor>props/flora/grass_soft_tuft_a.xml</Actor>
 			<Position x="265.078" y="22.3941" z="202.6"/>
 			<Orientation angle="-2.49872"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_soft_tuft_a.xml</Actor>
-			<Position x="291.128" y="22.4" z="183.281"/>
-			<Orientation angle="1.01763"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_tuft_a.xml</Actor>
@@ -8370,6 +8383,11 @@
 			<Actor>structures/celts/market.xml</Actor>
 			<Position x="218.793" y="22.4" z="112.416"/>
 			<Orientation angle="0.910544"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/romans/infantry_spearman_a.xml</Actor>
+			<Position x="244.354" y="17.4759" z="244.468"/>
+			<Orientation angle="2.35619"/>
 		</Nonentity>
 	</Nonentities>
 	<Tracks>
