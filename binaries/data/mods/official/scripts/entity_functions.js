@@ -363,44 +363,9 @@ function entityInitQuasi()
 	}
 	*/
 	
+	this.damage = damage;
+	
 	stopXTimer(7);
-	
-	/*
-	
-	// Profiling code for comparing performance of pure JavaScript objects vs. CJSComplex.
-	// This should be removed when we're done optimizing entity init.
-	
-	var ob = new Object();
-	ob.traits = new Object();
-	
-	for(var i=0; i<50; i++) {
-		ob["temp"+i] = "blah";
-	}
-	for(var i=0; i<50; i++) {
-		ob.traits["temp"+i] = "blah";
-	}
-	
-	ob.traits.id = new Object();
-	ob.traits.id.civ = "hellenes";
-	
-	startXTimer(9);
-	
-	// ~100 MS with ob = new Object() as above, ~400 MS with ob = this
-	if( ob.traits.id && ob.traits.id.civ )
-	{
-	    var id = ob.traits.id; 
-		id.civ_code = id.civ.toString().substring (0, 4);
-		id.civ_code = id.civ_code.toString().toLowerCase();
-
-		// Exception to make the Romans into rome.
-		if (id.civ_code == "roma") id.civ_code = "rome";
-		// Exception to make the Hellenes into hele.
-		if (id.civ_code == "hell") id.civ_code = "hele";
-	}
-	
-	stopXTimer(9);
-	
-	*/
 }
 
 // ====================================================================
