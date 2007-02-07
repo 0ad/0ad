@@ -20,10 +20,10 @@
 		</Creation>
 		
 		<Armour>
-			<Hack>3.0</Hack>
-			<Pierce>3.0</Pierce>
-			<Crush>1000.0</Crush>
-		</Armour>	
+			<Hack>250.0</Hack>
+			<Pierce>180.0</Pierce>
+			<Crush>100.0</Crush>
+		</Armour>>	
 
 		<Health>
 			<RegenRate>0.2</RegenRate>
@@ -40,11 +40,7 @@
 		<MiniMap>
 			<Type>Hero</Type>
 		</MiniMap>
-		<Armour>
-			<Hack>200.0</Hack>
-			<Pierce>130.0</Pierce>
-			<Crush>100.0</Crush>
-		</Armour>
+
 	</Traits>
 	
 
@@ -53,9 +49,9 @@
 	<Actions>
 		<Attack>
 			<Melee>
-				<Hack>250.0</Hack>
-				<Pierce>180.0</Pierce>	
-				<Crush>90.0</Crush>	
+				<Hack>175.0</Hack>
+				<Pierce>150.0</Pierce>	
+				<Crush>115.0</Crush>	
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Melee>
