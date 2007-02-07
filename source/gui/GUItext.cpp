@@ -356,7 +356,7 @@ void CGUIString::SetValue(const CStrW& str)
 				// Okay we've found a TagStart and TagEnd, positioned
 				//  at pos and pos_right. Now let's extract the
 				//  interior and try parsing.
-				CStr tagstr = str.substr(curpos+1, pos_right-curpos-1);
+				CStr tagstr (str.substr(curpos+1, pos_right-curpos-1));
 
 				CParserLine Line;
 				Line.ParseString(Parser, (const char*)tagstr);
@@ -368,7 +368,7 @@ void CGUIString::SetValue(const CStrW& str)
 				{
 					if (Line.m_TaskTypeName == "start")
 					{
-                        // The tag
+ 						// The tag
 						TextChunk::Tag tag;
 						std::string Str_TagType;
 

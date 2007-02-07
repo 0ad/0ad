@@ -12,6 +12,7 @@ that of Atlas depending on commandline parameters.
 // not for any PCH effort, but instead for the (common) definitions
 // included there.
 #include "lib/precompiled.h"
+#include <boost/utility.hpp>
 
 #include "lib/input.h"
 #include "lib/sdl.h"
