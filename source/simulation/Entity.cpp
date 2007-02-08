@@ -256,6 +256,9 @@ void CEntity::kill(bool keepActor)
 
 	g_Selection.removeAll( me );
 
+	entf_set(ENTF_DESTROYED);
+	g_EntityManager.SetDeath(true);		// remember that a unit died this frame
+
 	// If we have a death animation and want to keep the actor, play that animation
 	if( keepActor && m_actor && 
 		m_actor->GetRandomAnimation( "death" ) != m_actor->GetRandomAnimation( "idle" ) )
@@ -265,7 +268,9 @@ void CEntity::kill(bool keepActor)
 		m_position_previous = m_position;
 		m_graphics_orientation = m_orientation;
 		m_orientation_previous = m_orientation;
+		snapToGround();
 		updateActorTransforms();
+		m_actor_transform_valid = true;
 
 		// Play death animation and keep the actor in the game in a dead state 
 		// (TODO: remove the actor after some time through some kind of fading mechanism)
@@ -277,15 +282,10 @@ void CEntity::kill(bool keepActor)
 		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
 		delete( m_actor );
 		m_actor = NULL;
+
+		g_EntityManager.m_refd[me.m_handle] = false;
+		me = HEntity(); // Will deallocate the entity, assuming nobody else has a reference to it
 	}
-
-	entf_set(ENTF_DESTROYED);
-
-	g_EntityManager.m_refd[me.m_handle] = false;
-
-	g_EntityManager.SetDeath(true);		// remember that a unit died this frame
-
-	me = HEntity(); // Will deallocate the entity, assuming nobody else has a reference to it
 }
 
 void CEntity::SetPlayer(CPlayer *pPlayer)
