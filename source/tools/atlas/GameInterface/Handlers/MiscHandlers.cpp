@@ -34,7 +34,7 @@ QUERYHANDLER(CinemaRecord)
 	CCinemaManager* manager = g_Game->GetView()->GetCinema();
 	manager->SetCurrentTrack(*msg->track, false, false, false);
 
-	const int w = 640, h = 480;
+	const int w = msg->width, h = msg->height;
 
 	{
 		g_Renderer.Resize(w, h);
@@ -44,6 +44,7 @@ QUERYHANDLER(CinemaRecord)
 	}
 
 	unsigned char* img = new unsigned char [w*h*3];
+	unsigned char* temp = new unsigned char[w*3];
 
 	int num_frames = msg->framerate * msg->duration;
 
@@ -63,13 +64,14 @@ QUERYHANDLER(CinemaRecord)
 		glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, img);
 
 		// Swap the rows around, else the image will be upside down
-		char temp[w*3];
+//* // TODO: BGR24 output doesn't need flipping, YUV420 and RGBA32 do
 		for (int y = 0; y < h/2; ++y)
 		{
 			memcpy2(temp, &img[y*w*3], w*3);
 			memcpy2(&img[y*w*3], &img[(h-1-y)*w*3], w*3);
 			memcpy2(&img[(h-1-y)*w*3], temp, w*3);
 		}
+//*/
 
 		// Call the user-supplied function with this data, so they can
 		// store it as a video
@@ -84,6 +86,7 @@ QUERYHANDLER(CinemaRecord)
 	// TODO: delete the saved state now that we don't need it any more
 
 	delete[] img;
+	delete[] temp;
 
 	// Restore viewport
 	{

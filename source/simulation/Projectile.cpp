@@ -243,10 +243,15 @@ CProjectileManager::CProjectileManager()
 
 CProjectileManager::~CProjectileManager()
 {
-	while( m_Projectiles.size() )
-		delete( m_Projectiles[0] );
+	DeleteAll();
 }
 	
+void CProjectileManager::DeleteAll()
+{
+	while( !( m_Projectiles.empty() ) )
+		delete( m_Projectiles[0] ); // removes itself from m_Projectiles
+}
+
 CProjectile* CProjectileManager::AddProjectile( const CModel* Actor, const CVector3D& Position, const CVector3D& Target, float Speed, CEntity* Originator, const CScriptObject& ImpactScript, const CScriptObject& MissScript )
 {
 	CProjectile* p = new CProjectile( Actor, Position, Target, Speed, Originator, ImpactScript, MissScript );
@@ -261,13 +266,12 @@ void CProjectileManager::DeleteProjectile( CProjectile* p )
 
 void CProjectileManager::UpdateAll( size_t timestep )
 {
-	uint i;
-	for( i = 0; i < m_Projectiles.size(); i++ )
+	m_LastTurnLength = timestep;
+	for( size_t i = 0; i < m_Projectiles.size(); )
 		if( !( m_Projectiles[i]->Update( timestep ) ) )
-		{
-			delete( m_Projectiles[i] );
-			i--;
-		}
+			delete( m_Projectiles[i] ); // removes itself from m_Projectiles
+		else
+			i++;
 }
 
 void CProjectileManager::InterpolateAll( double relativeOffset )

@@ -86,6 +86,8 @@ public:
 	CProjectileManager();
 	~CProjectileManager();
 
+	void DeleteAll();
+
 	void UpdateAll( size_t timestep );
 	void InterpolateAll( double frametime );
 

@@ -24,6 +24,7 @@
 #include "simulation/EntityManager.h"
 #include "simulation/EntityTemplate.h"
 #include "simulation/EntityTemplateCollection.h"
+#include "simulation/Projectile.h"
 #include "simulation/Simulation.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
@@ -306,6 +307,7 @@ void ViewGame::RestoreState(const std::wstring& label)
 	CUnitManager& unitMan = g_Game->GetWorld()->GetUnitManager();
 
 	// delete all existing entities
+	g_Game->GetWorld()->GetProjectileManager().DeleteAll();
 	g_EntityManager.deleteAll();
 
 	if (! simState->onlyEntities)

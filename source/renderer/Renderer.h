@@ -456,6 +456,15 @@ public:
 	float m_ShadowZBias;
 
 	/**
+	 * m_ShadowMapSize: Size of shadow map, or 0 for default. Typically slow but useful
+	 * for high-quality rendering. Changes don't take effect until the shadow map
+	 * is regenerated.
+	 *
+	 * Can be accessed via JS as renderer.shadowMapSize
+	 */
+	int m_ShadowMapSize;
+
+	/**
 	 * m_SkipSubmit: Disable the actual submission of rendering commands to OpenGL.
 	 * All state setup is still performed as usual.
 	 *

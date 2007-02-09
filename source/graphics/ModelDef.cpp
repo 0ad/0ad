@@ -38,7 +38,7 @@ CVector3D CModelDef::SkinNormal(const SModelVertex& vtx,
 	// inverse of the transpose. Unfortunately inverses are slow.
 	// If a matrix is orthogonal, M * M^T = I and so the inverse of the transpose
 	// is the original matrix. But that's not entirely relevant here, because
-	// the cone matrices include translation components and so they're not
+	// the bone matrices include translation components and so they're not
 	// orthogonal.
 	// But that's okay because we have
 	//   M = T * R

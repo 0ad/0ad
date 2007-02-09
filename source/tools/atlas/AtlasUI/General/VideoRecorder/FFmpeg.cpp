@@ -21,6 +21,15 @@ Please complain if I forget to do those things.
 
 #ifdef _MSC_VER
 # pragma warning(disable: 4100 4505 4510 4610)
+// Doesn't have inttypes.h, so cheat before including the ffmpeg headers
+typedef unsigned __int8 uint8_t;
+typedef unsigned __int16 uint16_t;
+typedef unsigned __int32 uint32_t;
+typedef unsigned __int64 uint64_t;
+typedef __int8 int8_t;
+typedef __int16 int16_t;
+typedef __int32 int32_t;
+typedef __int64 int64_t;
 #endif
 
 #include "ffmpeg/avformat.h"
@@ -32,6 +41,7 @@ struct VideoEncoderImpl
 	int framerate;
 	int bitrate;
 	float duration;
+	int width, height;
 
 	AVStream *video_st;
 	AVFormatContext *oc;
@@ -69,31 +79,19 @@ struct VideoEncoderImpl
 		c->codec_id = (CodecID)codec_id;
 		c->codec_type = CODEC_TYPE_VIDEO;
 
-		c->bit_rate = bitrate*1000;
-		c->width = 640;
-		c->height = 480;
+// 		c->bit_rate = bitrate*1000;
+		// TODO: support compressed formats, using qscale
+
+		c->width = width;
+		c->height = height;
 
 		c->time_base.den = framerate;
 		c->time_base.num = 1;
 
-		c->pix_fmt = PIX_FMT_YUV420P;
+// 		c->pix_fmt = PIX_FMT_YUV420P;
+		c->pix_fmt = PIX_FMT_RGBA32;
 
-		// TODO: these compression parameters aren't necessarily any good
-
-		c->mb_decision = FF_MB_DECISION_RD;
-		c->gop_size = 12;
-		c->max_b_frames = 2;
-		c->b_frame_strategy = 1;
-		c->dia_size = 4;
-
-		c->me_cmp = c->me_sub_cmp = FF_CMP_SAD;
-		c->mb_cmp = FF_CMP_SSE;
-
-		c->last_predictor_count = 3;
-
-		c->flags |= CODEC_FLAG_4MV | CODEC_FLAG_QP_RD;
-
-		if(!strcmp(oc->oformat->name, "mp4") || !strcmp(oc->oformat->name, "mov") || !strcmp(oc->oformat->name, "3gp"))
+		if (oc->oformat->flags & AVFMT_GLOBALHEADER)
 			c->flags |= CODEC_FLAG_GLOBAL_HEADER;
 
 		return st;
@@ -147,7 +145,7 @@ struct VideoEncoderImpl
 			   as long as they're aligned enough for the architecture, and
 			   they're freed appropriately (such as using av_free for buffers
 			   allocated with av_malloc) */
-			video_outbuf_size = bitrate*1000/framerate * 8;
+			video_outbuf_size = c->width * c->height * 4;
 			video_outbuf = (uint8_t*)av_malloc(video_outbuf_size);
 		}
 
@@ -215,7 +213,7 @@ struct VideoEncoderImpl
 
 		if (oc->oformat->flags & AVFMT_RAWPICTURE) {
 			/* raw video case. The API will change slightly in the near
-			   futur for that */
+			   future for that */
 			AVPacket pkt;
 			av_init_packet(&pkt);
 
@@ -233,7 +231,10 @@ struct VideoEncoderImpl
 				AVPacket pkt;
 				av_init_packet(&pkt);
 
-				pkt.pts= av_rescale_q(c->coded_frame->pts, c->time_base, st->time_base);
+				if (c->coded_frame->pts == AV_NOPTS_VALUE)
+					pkt.pts = AV_NOPTS_VALUE;
+				else
+					pkt.pts = av_rescale_q(c->coded_frame->pts, c->time_base, st->time_base);
 				if(c->coded_frame->key_frame)
 					pkt.flags |= PKT_FLAG_KEY;
 				pkt.stream_index= st->index;
@@ -276,13 +277,15 @@ void log(void* v, int i, const char* format, va_list ap)
 	wxLogDebug(L"[%d] %hs", i, buf);
 }
 
-VideoEncoder::VideoEncoder(const wxString& filenameStr, int framerate, int bitrate, float duration)
+VideoEncoder::VideoEncoder(const wxString& filenameStr, int framerate, int bitrate, float duration, int width, int height)
 : m(new VideoEncoderImpl)
 {
 	wxCharBuffer filename = filenameStr.ToAscii();
 	m->framerate = framerate;
 	m->bitrate = bitrate;
 	m->duration = duration;
+	m->width = width;
+	m->height = height;
 
 	/* initialize libavcodec, and register all codecs and formats */
 	av_register_all();
@@ -292,7 +295,7 @@ VideoEncoder::VideoEncoder(const wxString& filenameStr, int framerate, int bitra
 	/* auto detect the output format from the name. default is mpeg. */
 	m->fmt = guess_format(NULL, filename, NULL);
 	if (!m->fmt) {
-		printf("Could not deduce output format from file extension: using MPEG.\n");
+		fprintf(stderr, "Could not deduce output format from file extension: using MPEG.\n");
 		m->fmt = guess_format("mpeg", NULL, NULL);
 	}
 	if (!m->fmt) {
@@ -312,10 +315,11 @@ VideoEncoder::VideoEncoder(const wxString& filenameStr, int framerate, int bitra
 
 	/* add the audio and video streams using the default format codecs
 	and initialize the codecs */
-	m->video_st = NULL;
-	if (m->fmt->video_codec != CODEC_ID_NONE) {
-		m->video_st = m->add_video_stream(m->oc, m->fmt->video_codec);
-	}
+// 	m->video_st = NULL;
+// 	if (m->fmt->video_codec != CODEC_ID_NONE) {
+// 		m->video_st = m->add_video_stream(m->oc, m->fmt->video_codec);
+// 	}
+	m->video_st = m->add_video_stream(m->oc, CODEC_ID_FFV1);
 
 	/* set the output parameters (must be done even if no
 	parameters). */
@@ -373,7 +377,7 @@ VideoEncoder::~VideoEncoder()
 	av_write_trailer(m->oc);
 
 	/* free the streams */
-	for(int i = 0; i < m->oc->nb_streams; i++) {
+	for(unsigned int i = 0; i < m->oc->nb_streams; i++) {
 		av_freep(&m->oc->streams[i]->codec);
 		av_freep(&m->oc->streams[i]);
 	}

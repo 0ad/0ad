@@ -2,6 +2,7 @@
 #define SCENARIOEDITOR_H__
 
 #include "General/AtlasWindowCommandProc.h"
+#include "CustomControls/FileHistory/FileHistory.h"
 #include "SectionLayout.h"
 
 class ScenarioEditor : public wxFrame
@@ -16,6 +17,7 @@ public:
 	void OnOpen(wxCommandEvent& event);
 	void OnSave(wxCommandEvent& event);
 	void OnSaveAs(wxCommandEvent& event);
+	void OnMRUFile(wxCommandEvent& event);
 
 	void OnQuit(wxCommandEvent& event);
 	void OnUndo(wxCommandEvent& event);
@@ -26,6 +28,8 @@ public:
 	void OnScreenshot(wxCommandEvent& event);
 	void OnMediaPlayer(wxCommandEvent& event);
 	void OnJavaScript(wxCommandEvent& event);
+
+	void OpenFile(const wxString& name);
 
 	static AtlasWindowCommandProc& GetCommandProc();
 
@@ -38,6 +42,7 @@ private:
 
 	void SetOpenFilename(const wxString& filename);
 	wxString m_OpenFilename;
+	FileHistory m_FileHistory;
 
 	DECLARE_EVENT_TABLE();
 };

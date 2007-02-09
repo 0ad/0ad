@@ -43,9 +43,9 @@ struct ShadowMapInternals
 	// handle of shadow map
 	GLuint Texture;
 	// width, height of shadow map
-	u32 Width, Height;
+	int Width, Height;
 	// used width, height of shadow map
-	u32 EffectiveWidth, EffectiveHeight;
+	int EffectiveWidth, EffectiveHeight;
 	// transform light space into projected light space
 	// in projected light space, the shadowbound box occupies the [-1..1] cube
 	// calculated on BeginRender, after the final shadow bounds are known
@@ -82,7 +82,7 @@ ShadowMap::ShadowMap()
 	m->EffectiveWidth = 0;
 	m->EffectiveHeight = 0;
 	m->UseDepthTexture = false;
-	m->DepthTextureBits = 16;
+	m->DepthTextureBits = 24;
 }
 
 
@@ -274,12 +274,23 @@ void ShadowMapInternals::CreateTexture()
 		pglGenFramebuffersEXT(1, &Framebuffer);
 	}
 
-	// get shadow map size as next power of two up from view width and height
-	Width = g_Renderer.GetWidth();
-	Width = std::min(RoundUpToPowerOf2(Width), (int)ogl_max_tex_size);
-	Height = g_Renderer.GetHeight();
-	Height = std::min(RoundUpToPowerOf2(Height), (int)ogl_max_tex_size);
+	if (g_Renderer.m_ShadowMapSize != 0)
+	{
+		// non-default option to override the size
+		Width = Height = g_Renderer.m_ShadowMapSize;
+	}
+	else
+	{
+		// get shadow map size as next power of two up from view width and height
+		Width = RoundUpToPowerOf2(g_Renderer.GetWidth());
+		Height = RoundUpToPowerOf2(g_Renderer.GetHeight());
+	}
+	// Clamp to the maximum texture size
+	Width = std::min(Width, (int)ogl_max_tex_size);
+	Height = std::min(Height, (int)ogl_max_tex_size);
 
+	// If we're using a framebuffer object, the whole texture is available; otherwise
+	// we're limited to the part of the screen buffer that is actually visible
 	if (Framebuffer)
 	{
 		EffectiveWidth = Width;
@@ -287,15 +298,16 @@ void ShadowMapInternals::CreateTexture()
 	}
 	else
 	{
-		EffectiveWidth = std::min(Width, (u32)g_Renderer.GetWidth());
-		EffectiveHeight = std::min(Height, (u32)g_Renderer.GetHeight());
+		EffectiveWidth = std::min(Width, g_Renderer.GetWidth());
+		EffectiveHeight = std::min(Height, g_Renderer.GetHeight());
 	}
 
 	const char* formatname = "LUMINANCE";
 
 	if (UseDepthTexture)
 	{
-		switch(DepthTextureBits) {
+		switch(DepthTextureBits)
+		{
 		case 16: formatname = "DEPTH_COMPONENT16"; break;
 		case 24: formatname = "DEPTH_COMPONENT24"; break;
 		case 32: formatname = "DEPTH_COMPONENT32"; break;
@@ -303,20 +315,21 @@ void ShadowMapInternals::CreateTexture()
 		}
 	}
 
-	LOG(NORMAL, LOG_CATEGORY, "Creating shadow texture (size %ix%i) (format = %s)%s",
+	LOG(NORMAL, LOG_CATEGORY, "Creating shadow texture (size %dx%d) (format = %s)%s",
 		Width, Height, formatname, Framebuffer ? " (using EXT_framebuffer_object)" : "");
 
 	// create texture object
 	glGenTextures(1, &Texture);
 	g_Renderer.BindTexture(0, Texture);
 
-	u32 size = Width*Height;
+	int size = Width*Height;
 
 	if (UseDepthTexture)
 	{
 		GLenum format;
 
-		switch(DepthTextureBits) {
+		switch(DepthTextureBits)
+		{
 		case 16: format = GL_DEPTH_COMPONENT16; break;
 		case 24: format = GL_DEPTH_COMPONENT24; break;
 		case 32: format = GL_DEPTH_COMPONENT32; break;
@@ -324,9 +337,9 @@ void ShadowMapInternals::CreateTexture()
 		}
 
 		float* buf = new float[size];
-		for(uint i = 0; i < size; i++) buf[i] = 1.0;
-		glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0,
-			     GL_DEPTH_COMPONENT, GL_FLOAT, buf);
+		for (int i = 0; i < size; i++)
+			buf[i] = 1.0;
+		glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, buf);
 		delete[] buf;
 
 		glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE);
@@ -335,9 +348,10 @@ void ShadowMapInternals::CreateTexture()
 	}
 	else
 	{
-		u32* buf=new u32[size];
-		for (uint i=0;i<size;i++) buf[i]=0x00ffffff;
-		glTexImage2D(GL_TEXTURE_2D,0,GL_LUMINANCE8,Width,Height,0,GL_RGBA,GL_UNSIGNED_BYTE,buf);
+		u32* buf = new u32[size];
+		for (int i = 0; i < size; i++)
+			buf[i] = 0x00ffffff;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE8, Width, Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buf);
 		delete[] buf;
 	}
 
@@ -367,12 +381,12 @@ void ShadowMapInternals::CreateTexture()
 
 		if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 		{
-			LOG(WARNING, LOG_CATEGORY, "Framebuffer object incomplete: %04f", status);
+			LOG(WARNING, LOG_CATEGORY, "Framebuffer object incomplete: %04d", status);
 
 			pglDeleteFramebuffersEXT(1, &Framebuffer);
 			Framebuffer = 0;
-			EffectiveWidth = std::min(Width, (u32)g_Renderer.GetWidth());
-			EffectiveHeight = std::min(Height, (u32)g_Renderer.GetHeight());
+			EffectiveWidth = std::min(Width, g_Renderer.GetWidth());
+			EffectiveHeight = std::min(Height, g_Renderer.GetHeight());
 		}
 	}
 }
@@ -437,7 +451,7 @@ void ShadowMap::EndRender()
 		if (!g_Renderer.GetDisableCopyShadow())
 		{
 			g_Renderer.BindTexture(0, m->Texture);
-			glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight());
+			glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, m->EffectiveWidth, m->EffectiveHeight);
 		}
 	}
 

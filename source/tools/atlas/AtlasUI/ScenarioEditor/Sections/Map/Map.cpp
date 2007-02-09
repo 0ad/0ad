@@ -15,6 +15,7 @@ enum
 	ID_GenerateRMS,
 	ID_SimPlay,
 	ID_SimFast,
+	ID_SimSlow,
 	ID_SimPause,
 	ID_SimReset
 };
@@ -24,8 +25,10 @@ enum
 	SimInactive,
 	SimPlaying,
 	SimPlayingFast,
+	SimPlayingSlow,
 	SimPaused
 };
+bool IsPlaying(int s) { return (s == SimPlaying || s == SimPlayingFast || s == SimPlayingSlow); }
 
 MapSidebar::MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
 	: Sidebar(sidebarContainer, bottomBarContainer), m_SimState(SimInactive)
@@ -47,6 +50,7 @@ MapSidebar::MapSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
 		wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Simulation test"));
 		sizer->Add(new wxButton(this, ID_SimPlay, _("Play")), wxSizerFlags().Proportion(1));
 		sizer->Add(new wxButton(this, ID_SimFast, _("Fast")), wxSizerFlags().Proportion(1));
+		sizer->Add(new wxButton(this, ID_SimSlow, _("Slow")), wxSizerFlags().Proportion(1));
 		sizer->Add(new wxButton(this, ID_SimPause, _("Pause")), wxSizerFlags().Proportion(1));
 		sizer->Add(new wxButton(this, ID_SimReset, _("Reset")), wxSizerFlags().Proportion(1));
 		UpdateSimButtons();
@@ -85,9 +89,13 @@ void MapSidebar::UpdateSimButtons()
 	wxCHECK(button, );
 	button->Enable(m_SimState != SimPlayingFast);
 
+	button = wxDynamicCast(FindWindow(ID_SimSlow), wxButton);
+	wxCHECK(button, );
+	button->Enable(m_SimState != SimPlayingSlow);
+
 	button = wxDynamicCast(FindWindow(ID_SimPause), wxButton);
 	wxCHECK(button, );
-	button->Enable(m_SimState == SimPlaying || m_SimState == SimPlayingFast);
+	button->Enable(IsPlaying(m_SimState));
 
 	button = wxDynamicCast(FindWindow(ID_SimReset), wxButton);
 	wxCHECK(button, );
@@ -102,6 +110,11 @@ void MapSidebar::OnSimPlay(wxCommandEvent& event)
 	{
 		speed = 8.f;
 		newState = SimPlayingFast;
+	}
+	else if (event.GetId() == ID_SimSlow)
+	{
+		speed = 0.125f;
+		newState = SimPlayingSlow;
 	}
 
 	if (m_SimState == SimInactive)
@@ -120,7 +133,7 @@ void MapSidebar::OnSimPlay(wxCommandEvent& event)
 
 void MapSidebar::OnSimPause(wxCommandEvent& WXUNUSED(event))
 {
-	if (m_SimState == SimPlaying || m_SimState == SimPlayingFast)
+	if (IsPlaying(m_SimState))
 	{
 		POST_MESSAGE(SimPlay, (0.f));
 		m_SimState = SimPaused;
@@ -130,7 +143,7 @@ void MapSidebar::OnSimPause(wxCommandEvent& WXUNUSED(event))
 
 void MapSidebar::OnSimReset(wxCommandEvent& WXUNUSED(event))
 {
-	if (m_SimState == SimPlaying || m_SimState == SimPlayingFast)
+	if (IsPlaying(m_SimState))
 	{
 		POST_MESSAGE(SimPlay, (0.f));
 		POST_MESSAGE(SimStateRestore, (L"default"));
@@ -149,6 +162,7 @@ BEGIN_EVENT_TABLE(MapSidebar, Sidebar)
 	EVT_BUTTON(ID_GenerateRMS, MapSidebar::GenerateRMS)
 	EVT_BUTTON(ID_SimPlay, MapSidebar::OnSimPlay)
 	EVT_BUTTON(ID_SimFast, MapSidebar::OnSimPlay)
+	EVT_BUTTON(ID_SimSlow, MapSidebar::OnSimPlay)
 	EVT_BUTTON(ID_SimPause, MapSidebar::OnSimPause)
 	EVT_BUTTON(ID_SimReset, MapSidebar::OnSimReset)
 END_EVENT_TABLE();

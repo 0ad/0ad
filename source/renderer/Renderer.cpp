@@ -366,6 +366,7 @@ CRenderer::CRenderer()
 	m_Options.m_FancyWater = false;
 
 	m_ShadowZBias = 0.02f;
+	m_ShadowMapSize = 0;
 
 	for (uint i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
@@ -1746,6 +1747,7 @@ void CRenderer::ScriptingInit()
 	AddProperty(L"sortAllTransparent", &CRenderer::m_SortAllTransparent);
 	AddProperty(L"displayFrustum", &CRenderer::m_DisplayFrustum);
 	AddProperty(L"shadowZBias", &CRenderer::m_ShadowZBias);
+	AddProperty(L"shadowMapSize", &CRenderer::m_ShadowMapSize);
 	AddProperty(L"disableCopyShadow", &CRenderer::m_DisableCopyShadow);
 	AddProperty(L"depthTextureBits", &CRenderer::JSI_GetDepthTextureBits, &CRenderer::JSI_SetDepthTextureBits);
 	AddProperty(L"skipSubmit", &CRenderer::m_SkipSubmit);

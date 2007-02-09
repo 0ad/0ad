@@ -6,7 +6,7 @@ struct VideoEncoderImpl;
 class VideoEncoder
 {
 public:
-	VideoEncoder(const wxString& filename, int framerate, int bitrate, float duration);
+	VideoEncoder(const wxString& filename, int framerate, int bitrate, float duration, int width, int height);
 	void Frame(const unsigned char* buffer);
 	~VideoEncoder();
 

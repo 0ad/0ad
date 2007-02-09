@@ -276,6 +276,7 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_Open, ScenarioEditor::OnOpen)
 	EVT_MENU(ID_Save, ScenarioEditor::OnSave)
 	EVT_MENU(ID_SaveAs, ScenarioEditor::OnSaveAs)
+	EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, ScenarioEditor::OnMRUFile)
 
 	EVT_MENU(ID_Quit, ScenarioEditor::OnQuit)
 	EVT_MENU(wxID_UNDO, ScenarioEditor::OnUndo)
@@ -296,6 +297,7 @@ AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc;
 
 ScenarioEditor::ScenarioEditor(wxWindow* parent)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
+, m_FileHistory(_T("Scenario Editor"))
 {
 	// Global application initialisation:
 
@@ -324,8 +326,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		menuFile->Append(ID_SaveAs, _("Save &As..."));
 		menuFile->AppendSeparator();//-----------
 		menuFile->Append(ID_Quit,   _("E&xit"));
-// 		m_FileHistory.UseMenu(menuFile);//-------
-// 		m_FileHistory.AddFilesToMenu();
+		m_FileHistory.UseMenu(menuFile);//-------
+		m_FileHistory.AddFilesToMenu();
 	}
 
 // 	m_menuItem_Save = menuFile->FindItem(ID_Save); // remember this item, to let it be greyed out
@@ -352,6 +354,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 		menuMisc->Append(ID_JavaScript, _("&JS console"));
 	}
 
+	m_FileHistory.Load(*wxConfigBase::Get());
+
 
 	m_SectionLayout.SetWindow(this);
 
@@ -362,10 +366,10 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	// (button label; tooltip text; image; internal tool name; section to switch to)
 	toolbar->AddToolButton(_("Default"),       _("Default"),                   _T("default.png"),          _T(""),                 _T(""));
-	toolbar->AddToolButton(_("Move"),          _("Move/rotate object"),        _T("moveobject.png"),       _T("TransformObject"),  _T("ObjectSidebar"));
-	toolbar->AddToolButton(_("Elevation"),     _("Alter terrain elevation"),   _T("alterelevation.png"),   _T("AlterElevation"),   _T("TerrainSidebar"));
-	toolbar->AddToolButton(_("Flatten"),       _("Flatten terrain elevation"), _T("flattenelevation.png"), _T("FlattenElevation"), _T("TerrainSidebar"));
-	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"),     _T("paintterrain.png"),     _T("PaintTerrain"),     _T("TerrainSidebar"));
+	toolbar->AddToolButton(_("Move"),          _("Move/rotate object"),        _T("moveobject.png"),       _T("TransformObject"),  _T("")/*_T("ObjectSidebar")*/);
+	toolbar->AddToolButton(_("Elevation"),     _("Alter terrain elevation"),   _T("alterelevation.png"),   _T("AlterElevation"),   _T("")/*_T("TerrainSidebar")*/);
+	toolbar->AddToolButton(_("Flatten"),       _("Flatten terrain elevation"), _T("flattenelevation.png"), _T("FlattenElevation"), _T("")/*_T("TerrainSidebar")*/);
+	toolbar->AddToolButton(_("Paint Terrain"), _("Paint terrain texture"),     _T("paintterrain.png"),     _T("PaintTerrain"),     _T("")/*_T("TerrainSidebar")*/);
 
 	toolbar->Realize();
 	SetToolBar(toolbar);
@@ -442,6 +446,8 @@ void ScenarioEditor::OnClose(wxCloseEvent&)
 {
 	SetCurrentTool(_T(""));
 
+	m_FileHistory.Save(*wxConfigBase::Get());
+
 	POST_MESSAGE(Shutdown, ());
 
 	qExit().Post();
@@ -491,6 +497,30 @@ void ScenarioEditor::OnRedo(wxCommandEvent&)
 
 //////////////////////////////////////////////////////////////////////////
 
+void ScenarioEditor::OpenFile(const wxString& name)
+{
+	wxBusyInfo busy(_("Loading map"));
+	wxBusyCursor busyc;
+
+	// TODO: Work when the map is not in .../maps/scenarios/
+	std::wstring map = name.c_str();
+
+	// Deactivate tools, so they don't carry forwards into the new CWorld
+	// and crash.
+	SetCurrentTool(_T(""));
+	// TODO: clear the undo buffer, etc
+
+	POST_MESSAGE(LoadMap, (map));
+
+	SetOpenFilename(name);
+
+	// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
+	qPing qry;
+	qry.Post();
+
+	// TODO: Make this a non-undoable command
+}
+
 // TODO (eventually): replace all this file-handling stuff with the Workspace Editor
 
 void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
@@ -503,32 +533,20 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 	wxString cwd = wxFileName::GetCwd();
 	
 	if (dlg.ShowModal() == wxID_OK)
-	{
-		wxBusyInfo busy(_("Loading map"));
-		wxBusyCursor busyc;
-
-		// TODO: Work when the map is not in .../maps/scenarios/
-		std::wstring map = dlg.GetFilename().c_str();
-
-		// Deactivate tools, so they don't carry forwards into the new CWorld
-		// and crash.
-		SetCurrentTool(_T(""));
-		// TODO: clear the undo buffer, etc
-
-		POST_MESSAGE(LoadMap, (map));
-
-		SetOpenFilename(dlg.GetFilename());
-
-		// Wait for it to load, while the wxBusyInfo is telling the user that we're doing that
-		qPing qry;
-		qry.Post();
-	}
+		OpenFile(dlg.GetFilename());
 	
 	wxCHECK_RET(cwd == wxFileName::GetCwd(), _T("cwd changed"));
 		// paranoia - MSDN says OFN_NOCHANGEDIR (used when we don't give wxCHANGE_DIR)
 		// "is ineffective for GetOpenFileName", but it seems to work anyway
 
 	// TODO: Make this a non-undoable command
+}
+
+void ScenarioEditor::OnMRUFile(wxCommandEvent& event)
+{
+	wxString file (m_FileHistory.GetHistoryFile(event.GetId() - wxID_FILE1));
+	if (file.Len())
+		OpenFile(file);
 }
 
 void ScenarioEditor::OnSave(wxCommandEvent& event)
@@ -584,6 +602,9 @@ void ScenarioEditor::SetOpenFilename(const wxString& filename)
 		(filename.IsEmpty() ? wxString(_("(untitled)")) : filename).c_str()));
 
 	m_OpenFilename = filename;
+
+	if (! filename.IsEmpty())
+		m_FileHistory.AddFileToHistory(filename);
 }
 
 //////////////////////////////////////////////////////////////////////////

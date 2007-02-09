@@ -25,7 +25,7 @@ for my $f (@xml) {
 	$parent = $1 if $data =~ /Parent="(.*?)"/;
 	
 	my ($upgrade, $rank);
-	$upgrade = $1 if $data =~ /Up.*newentity="(.*?)"/s;
+	$upgrade = $1 if $data =~ /<Entity>\s*(.*?)\s*</s;
 	$rank = $1 if $data =~ /Up.*rank="(.*?)"/s;
 
 	my $actor;

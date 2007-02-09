@@ -268,14 +268,28 @@ void PolygonSortModelRenderer::DestroyModelData(CModel* UNUSED(model), void* dat
 
 
 // Prepare for one rendering pass
-void PolygonSortModelRenderer::BeginPass(uint streamflags, const CMatrix3D* UNUSED(texturematrix))
+void PolygonSortModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
 {
-	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_COLOR|STREAM_UV0)));
+	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_COLOR|STREAM_UV0|STREAM_TEXGENTOUV1)));
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 
 	if (streamflags & STREAM_UV0) glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR) glEnableClientState(GL_COLOR_ARRAY);
+	if (streamflags & STREAM_TEXGENTOUV1)
+	{
+		pglActiveTextureARB(GL_TEXTURE1);
+		pglClientActiveTextureARB(GL_TEXTURE1);
+
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glMatrixMode(GL_TEXTURE);
+		glLoadMatrixf(&texturematrix->_11);
+		glMatrixMode(GL_MODELVIEW);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+	}
 }
 
 
@@ -284,6 +298,20 @@ void PolygonSortModelRenderer::EndPass(uint streamflags)
 {
 	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
+	if (streamflags & STREAM_TEXGENTOUV1)
+	{
+		pglActiveTextureARB(GL_TEXTURE1);
+		pglClientActiveTextureARB(GL_TEXTURE1);
+
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		glMatrixMode(GL_TEXTURE);
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+
+		pglActiveTextureARB(GL_TEXTURE0);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
@@ -319,6 +347,14 @@ void PolygonSortModelRenderer::RenderModel(uint streamflags, CModel* model, void
 	glVertexPointer(3, GL_FLOAT, stride, base + psmdl->m_Position.offset);
 	if (streamflags & STREAM_COLOR)
 		glColorPointer(3, psmdl->m_Color.type, stride, base + psmdl->m_Color.offset);
+	if (streamflags & STREAM_TEXGENTOUV1)
+	{
+		pglClientActiveTextureARB(GL_TEXTURE1);
+		pglActiveTextureARB(GL_TEXTURE1);
+		glTexCoordPointer(3, GL_FLOAT, stride, base + psmdl->m_Position.offset);
+		pglClientActiveTextureARB(GL_TEXTURE0);
+		pglActiveTextureARB(GL_TEXTURE0);
+	}
 
 	// render the lot
 	size_t numFaces = mdef->GetNumFaces();

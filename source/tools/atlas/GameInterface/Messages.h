@@ -109,6 +109,8 @@ QUERY(CinemaRecord,
 	  ((std::wstring, track))
 	  ((int, framerate))
 	  ((float, duration))
+	  ((int, width))
+	  ((int, height))
 	  ((Callback<sCinemaRecordCB>, cb))
 	  ,
 	  );
