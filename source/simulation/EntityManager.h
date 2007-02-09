@@ -42,7 +42,7 @@ friend class CEntity;
 friend class HEntity;
 friend class CHandle;
 	CHandle m_entities[MAX_HANDLES];
-	std::vector<bool> m_refd;
+	std::bitset<MAX_HANDLES> m_refd;
 	std::vector<CEntity*> m_reaper;
 	std::vector<CEntity*>* m_collisionPatches;
 	int m_nextalloc;

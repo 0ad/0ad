@@ -27,7 +27,6 @@ CEntityManager::CEntityManager()
 	m_nextalloc = 0;
 	m_extant = true;
 	m_death = false;
-	m_refd.resize( MAX_HANDLES );
 
 	// Also load a couple of global entity settings
 	CConfigValue* cfg = g_ConfigDB.GetValue( CFG_USER, "selection.outline.quality" );
@@ -316,7 +315,9 @@ void CEntityManager::updateAll( size_t timestep )
 void CEntityManager::interpolateAll( float relativeoffset )
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( isEntityRefd(i) )
+		// This needs to handle all entities, including destroyed/non-extant ones
+		// (mainly dead bodies), so it can't use isEntityRefd
+		if( m_entities[i].m_refcount )
 			m_entities[i].m_entity->interpolate( relativeoffset );
 }
 
@@ -326,6 +327,7 @@ void CEntityManager::renderAll()
 		if( isEntityRefd(i) )
 			m_entities[i].m_entity->render();
 }
+
 void CEntityManager::conformAll()
 {
 	PROFILE_START("conform all");
