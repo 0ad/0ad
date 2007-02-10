@@ -269,7 +269,16 @@ void CEntity::kill(bool keepActor)
 		m_position_previous = m_position;
 		m_graphics_orientation = m_orientation;
 		m_orientation_previous = m_orientation;
+
 		snapToGround();
+		
+		// Conform to the ground
+		CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace(this);
+		m_orientation.X = clamp( targetXZ.x, -1.0f, 1.0f );
+		m_orientation.Z = clamp( targetXZ.y, -1.0f, 1.0f );
+		m_orientation_unclamped.x = targetXZ.x;
+		m_orientation_unclamped.y = targetXZ.y;
+
 		updateActorTransforms();
 		m_actor_transform_valid = true;
 
