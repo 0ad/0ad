@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="171.808" y="97.4374" z="28.2877"/>
-		<Rotation angle="0.20065"/>
-		<Declination angle="0.524251"/>
+		<Position x="95.4065" y="143.156" z="110.553"/>
+		<Rotation angle="0.0547989"/>
+		<Declination angle="0.863301"/>
 	</Camera>
 	<Entities>
 		<Entity uid="0">
@@ -121,56 +121,56 @@
 		<Entity uid="20">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="297.471" y="18.1756" z="206.397"/>
-			<Orientation angle="0.916805"/>
+			<Position x="281.782" y="18.1756" z="220.98"/>
+			<Orientation angle="2.97141"/>
 		</Entity>
 		<Entity uid="21">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="296.988" y="18.2886" z="211.006"/>
-			<Orientation angle="1.87055"/>
+			<Position x="294.684" y="18.2886" z="221.905"/>
+			<Orientation angle="3.10475"/>
 		</Entity>
 		<Entity uid="22">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="279.189" y="18.694" z="186.113"/>
-			<Orientation angle="-0.104407"/>
+			<Position x="291.423" y="18.694" z="221.738"/>
+			<Orientation angle="-3.119"/>
 		</Entity>
 		<Entity uid="23">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="295.239" y="20.5936" z="204.467"/>
-			<Orientation angle="-3.0194"/>
+			<Position x="292.823" y="20.5936" z="223.905"/>
+			<Orientation angle="-2.97821"/>
 		</Entity>
 		<Entity uid="24">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="275.89" y="18.6307" z="187.468"/>
-			<Orientation angle="-0.989663"/>
+			<Position x="287.313" y="18.6307" z="221.417"/>
+			<Orientation angle="3.10654"/>
 		</Entity>
 		<Entity uid="25">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="299.227" y="18.9015" z="203.27"/>
-			<Orientation angle="0.51172"/>
+			<Position x="285.619" y="18.9015" z="223.908"/>
+			<Orientation angle="-3.1209"/>
 		</Entity>
 		<Entity uid="26">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="297.148" y="18.147" z="207.399"/>
-			<Orientation angle="1.23963"/>
+			<Position x="279.856" y="18.147" z="224.084"/>
+			<Orientation angle="2.89037"/>
 		</Entity>
 		<Entity uid="27">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="296.438" y="19.0146" z="205.741"/>
-			<Orientation angle="1.05028"/>
+			<Position x="288.041" y="19.0146" z="224.856"/>
+			<Orientation angle="3.13592"/>
 		</Entity>
 		<Entity uid="28">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="295.795" y="20.6829" z="210.786"/>
-			<Orientation angle="1.73905"/>
+			<Position x="296.263" y="20.6829" z="226.421"/>
+			<Orientation angle="-3.07876"/>
 		</Entity>
 		<Entity uid="29">
 			<Template>hele_hero_leonidas</Template>
@@ -181,98 +181,158 @@
 		<Entity uid="30">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="284.529" y="22.1528" z="206.773"/>
-			<Orientation angle="-0.962564"/>
+			<Position x="290.46" y="22.1528" z="194.419"/>
+			<Orientation angle="0.0969553"/>
 		</Entity>
 		<Entity uid="31">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="284.305" y="22.1651" z="210.983"/>
-			<Orientation angle="-1.54487"/>
+			<Position x="299.262" y="22.1651" z="194.369"/>
+			<Orientation angle="-0.596594"/>
 		</Entity>
 		<Entity uid="32">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="284.549" y="22.0669" z="209.841"/>
-			<Orientation angle="-1.77566"/>
+			<Position x="301.303" y="22.0669" z="195.996"/>
+			<Orientation angle="-0.479093"/>
 		</Entity>
 		<Entity uid="33">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="284.558" y="21.7911" z="209.538"/>
-			<Orientation angle="-1.72399"/>
+			<Position x="303.131" y="21.7911" z="198.563"/>
+			<Orientation angle="-0.467381"/>
 		</Entity>
 		<Entity uid="34">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="297.781" y="21.6244" z="209.985"/>
-			<Orientation angle="-0.173046"/>
+			<Position x="304.261" y="21.6244" z="200.312"/>
+			<Orientation angle="-0.623539"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>rome_infantry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="295.634" y="21.9897" z="195.578"/>
+			<Orientation angle="-0.591739"/>
 		</Entity>
 		<Entity uid="36">
 			<Template>rome_infantry_swordsman_b</Template>
 			<Player>1</Player>
-			<Position x="295.791" y="22.3579" z="211.194"/>
-			<Orientation angle="-1.51343"/>
+			<Position x="300.808" y="22.3579" z="191.29"/>
+			<Orientation angle="-0.561372"/>
 		</Entity>
 		<Entity uid="37">
 			<Template>rome_infantry_swordsman_a</Template>
 			<Player>1</Player>
-			<Position x="284.566" y="21.586" z="208.502"/>
-			<Orientation angle="-1.54378"/>
+			<Position x="299.009" y="21.586" z="199.025"/>
+			<Orientation angle="-0.685074"/>
 		</Entity>
 		<Entity uid="38">
 			<Template>rome_infantry_swordsman_a</Template>
 			<Player>1</Player>
-			<Position x="284.732" y="21.4786" z="208.048"/>
-			<Orientation angle="-1.46786"/>
+			<Position x="300.549" y="21.4786" z="200.136"/>
+			<Orientation angle="-0.196388"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>rome_infantry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="296.573" y="22.2699" z="192.934"/>
+			<Orientation angle="-0.370283"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>rome_infantry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="297.134" y="21.7171" z="197.434"/>
+			<Orientation angle="-0.316696"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>rome_infantry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="302.81" y="22.2541" z="193.691"/>
+			<Orientation angle="-0.351869"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>rome_infantry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="305.26" y="22.0674" z="197.079"/>
+			<Orientation angle="-0.476022"/>
 		</Entity>
 		<Entity uid="43">
 			<Template>rome_infantry_swordsman_a</Template>
 			<Player>1</Player>
-			<Position x="298.631" y="21.7194" z="209.89"/>
-			<Orientation angle="-0.299864"/>
+			<Position x="305.557" y="21.7194" z="200.157"/>
+			<Orientation angle="-0.69777"/>
 		</Entity>
 		<Entity uid="44">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="284.519" y="20.4866" z="209.539"/>
-			<Orientation angle="-1.72512"/>
+			<Position x="293.198" y="20.4866" z="200.542"/>
+			<Orientation angle="-0.302514"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="302.144" y="21.4462" z="200.999"/>
+			<Orientation angle="-0.385965"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>rome_infantry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="285.666" y="22.2668" z="194.041"/>
+			<Orientation angle="0.102832"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>rome_infantry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="304.37" y="22.2298" z="194.239"/>
+			<Orientation angle="-0.332577"/>
 		</Entity>
 		<Entity uid="49">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="268.327" y="22.4" z="199.258"/>
-			<Orientation angle="-0.578954"/>
+			<Position x="269.553" y="22.4" z="197.383"/>
+			<Orientation angle="-0.127187"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>rome_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="281.441" y="20.6745" z="203.005"/>
+			<Orientation angle="0.207766"/>
 		</Entity>
 		<Entity uid="53">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="277.635" y="22.4" z="202.442"/>
-			<Orientation angle="0.011392"/>
+			<Position x="284.119" y="22.4" z="190.481"/>
+			<Orientation angle="0.386542"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>rome_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="279.086" y="22.3942" z="192.355"/>
+			<Orientation angle="0.210349"/>
 		</Entity>
 		<Entity uid="55">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="273.984" y="20.613" z="205.304"/>
-			<Orientation angle="-0.619232"/>
+			<Position x="279.906" y="20.613" z="204.717"/>
+			<Orientation angle="0.0315086"/>
 		</Entity>
 		<Entity uid="57">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="271.762" y="22.299" z="203.374"/>
-			<Orientation angle="-0.108588"/>
+			<Position x="275.395" y="22.299" z="199.078"/>
+			<Orientation angle="0.725221"/>
 		</Entity>
 		<Entity uid="58">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="266.507" y="22.4" z="199.147"/>
-			<Orientation angle="-0.272351"/>
+			<Position x="278.815" y="22.4" z="188.382"/>
+			<Orientation angle="0.524834"/>
 		</Entity>
 		<Entity uid="59">
 			<Template>hele_hero_themistocles</Template>
 			<Player>2</Player>
-			<Position x="278.846" y="18.1054" z="208.656"/>
-			<Orientation angle="1.67373"/>
+			<Position x="288.768" y="18.1054" z="216.524"/>
+			<Orientation angle="-2.97165"/>
 		</Entity>
 		<Entity uid="60">
 			<Template>geology_stone_greek</Template>
@@ -292,6 +352,12 @@
 			<Position x="274.656" y="19.3233" z="212.932"/>
 			<Orientation angle="-0.0968067"/>
 		</Entity>
+		<Entity uid="63">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="302.455" y="18.0519" z="213.336"/>
+			<Orientation angle="0.246121"/>
+		</Entity>
 		<Entity uid="64">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
@@ -307,8 +373,8 @@
 		<Entity uid="66">
 			<Template>celt_hero_vercingetorix</Template>
 			<Player>3</Player>
-			<Position x="176.111" y="21.0588" z="187.757"/>
-			<Orientation angle="1.41544"/>
+			<Position x="84.1075" y="21.0588" z="178.789"/>
+			<Orientation angle="2.21968"/>
 		</Entity>
 		<Entity uid="67">
 			<Template>celt_house</Template>
@@ -350,7 +416,7 @@
 			<Template>celt_ship_merchant</Template>
 			<Player>3</Player>
 			<Position x="91.7661" y="20.055" z="162.859"/>
-			<Orientation angle="1.8882"/>
+			<Orientation angle="2.70314"/>
 		</Entity>
 		<Entity uid="74">
 			<Template>celt_dock</Template>
@@ -391,20 +457,20 @@
 		<Entity uid="80">
 			<Template>temp_celt_support_female_citizen_gatherer</Template>
 			<Player>3</Player>
-			<Position x="120.296" y="22.4" z="186.652"/>
-			<Orientation angle="1.17923"/>
+			<Position x="110.624" y="21.949" z="178.556"/>
+			<Orientation angle="0.900856"/>
 		</Entity>
 		<Entity uid="81">
 			<Template>temp_celt_support_female_citizen_gatherer</Template>
 			<Player>3</Player>
-			<Position x="124.344" y="22.4" z="196.582"/>
-			<Orientation angle="2.58536"/>
+			<Position x="123.309" y="22.4" z="198.247"/>
+			<Orientation angle="-2.39369"/>
 		</Entity>
 		<Entity uid="82">
 			<Template>temp_celt_support_female_citizen_gatherer</Template>
 			<Player>3</Player>
 			<Position x="128.953" y="22.1019" z="183.764"/>
-			<Orientation angle="-0.402277"/>
+			<Orientation angle="0.00112973"/>
 		</Entity>
 		<Entity uid="83">
 			<Template>celt_wall</Template>
@@ -664,6 +730,12 @@
 			<Position x="62.9531" y="22.4" z="192.734"/>
 			<Orientation angle="-2.76936"/>
 		</Entity>
+		<Entity uid="131">
+			<Template>flora_tree_oak</Template>
+			<Player>3</Player>
+			<Position x="60.6224" y="22.4" z="187.55"/>
+			<Orientation angle="-2.73229"/>
+		</Entity>
 		<Entity uid="132">
 			<Template>flora_tree_oak</Template>
 			<Player>3</Player>
@@ -705,6 +777,12 @@
 			<Player>3</Player>
 			<Position x="67.1968" y="22.3349" z="170.839"/>
 			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>flora_tree_oak</Template>
+			<Player>3</Player>
+			<Position x="67.6261" y="22.4" z="176.25"/>
+			<Orientation angle="-1.81096"/>
 		</Entity>
 		<Entity uid="140">
 			<Template>flora_tree_oak</Template>
@@ -766,6 +844,18 @@
 			<Position x="162.997" y="22.3906" z="179.654"/>
 			<Orientation angle="2.56605"/>
 		</Entity>
+		<Entity uid="151">
+			<Template>flora_tree_pine</Template>
+			<Player>3</Player>
+			<Position x="181.098" y="23.437" z="186.05"/>
+			<Orientation angle="2.70232"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>flora_tree_pine</Template>
+			<Player>3</Player>
+			<Position x="182.463" y="23.5276" z="183.963"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
 		<Entity uid="153">
 			<Template>flora_tree_pine</Template>
 			<Player>3</Player>
@@ -825,6 +915,18 @@
 			<Player>3</Player>
 			<Position x="83.3568" y="22.4" z="238.577"/>
 			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>flora_tree_oak</Template>
+			<Player>3</Player>
+			<Position x="85.5886" y="22.4" z="235.483"/>
+			<Orientation angle="-2.76434"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>flora_tree_oak</Template>
+			<Player>3</Player>
+			<Position x="80.2273" y="22.4" z="228.098"/>
+			<Orientation angle="-1.98474"/>
 		</Entity>
 		<Entity uid="166">
 			<Template>flora_tree_oak</Template>
@@ -1114,11 +1216,35 @@
 			<Position x="36.3644" y="22.4" z="189.399"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
+		<Entity uid="214">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="128.148" y="22.3463" z="185.656"/>
+			<Orientation angle="-1.7551"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="123.2" y="22.4" z="188.147"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="126.093" y="22.4" z="193.769"/>
+			<Orientation angle="-1.79018"/>
+		</Entity>
 		<Entity uid="218">
 			<Template>flora_bush_berry</Template>
 			<Player>0</Player>
 			<Position x="130.053" y="22.4" z="192.043"/>
 			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="137.036" y="21.5692" z="184.573"/>
+			<Orientation angle="1.96356"/>
 		</Entity>
 		<Entity uid="221">
 			<Template>celt_wall</Template>
@@ -1141,26 +1267,26 @@
 		<Entity uid="224">
 			<Template>temp_celt_infantry_spearman_a_gatherer</Template>
 			<Player>3</Player>
-			<Position x="83.8947" y="22.4" z="226.765"/>
-			<Orientation angle="-1.2222"/>
+			<Position x="86.805" y="22.4" z="223.409"/>
+			<Orientation angle="-2.0838"/>
 		</Entity>
 		<Entity uid="225">
 			<Template>temp_celt_infantry_spearman_a_gatherer</Template>
 			<Player>3</Player>
 			<Position x="87.9564" y="22.4" z="233.022"/>
-			<Orientation angle="-0.7661"/>
+			<Orientation angle="-2.27835"/>
 		</Entity>
 		<Entity uid="226">
 			<Template>temp_celt_infantry_spearman_a_gatherer</Template>
 			<Player>3</Player>
-			<Position x="139.924" y="20.4855" z="181.897"/>
-			<Orientation angle="-0.823508"/>
+			<Position x="140.317" y="20.4855" z="181.533"/>
+			<Orientation angle="0.304966"/>
 		</Entity>
 		<Entity uid="227">
 			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
-			<Position x="145.834" y="20.9472" z="184.312"/>
-			<Orientation angle="-0.190301"/>
+			<Position x="146.659" y="20.9472" z="180.031"/>
+			<Orientation angle="-1.06658"/>
 		</Entity>
 		<Entity uid="228">
 			<Template>celt_infantry_spearman_e</Template>
@@ -1171,44 +1297,50 @@
 		<Entity uid="229">
 			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
-			<Position x="112.605" y="22.4" z="189.114"/>
-			<Orientation angle="0.40674"/>
+			<Position x="111.83" y="22.4" z="187.314"/>
+			<Orientation angle="0.554886"/>
 		</Entity>
 		<Entity uid="230">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="177.332" y="21.0631" z="186.385"/>
-			<Orientation angle="1.17759"/>
+			<Position x="80.198" y="21.0631" z="178.022"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="231">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="182.157" y="21.0684" z="181.588"/>
-			<Orientation angle="0.166573"/>
+			<Position x="75.9842" y="21.0684" z="177.38"/>
+			<Orientation angle="1.98232"/>
 		</Entity>
 		<Entity uid="232">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="181.304" y="21.0684" z="182.485"/>
-			<Orientation angle="0.313993"/>
+			<Position x="79.8748" y="21.0684" z="181.399"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="233">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>3</Player>
-			<Position x="187.91" y="21.1934" z="185.251"/>
-			<Orientation angle="-0.892603"/>
+			<Position x="75.7431" y="21.1934" z="180.862"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="234">
 			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="71.493" y="21.8795" z="175.851"/>
-			<Orientation angle="-1.46798"/>
+			<Orientation angle="-1.16564"/>
 		</Entity>
 		<Entity uid="235">
 			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
-			<Position x="64.4678" y="22.4" z="186.87"/>
-			<Orientation angle="-1.39568"/>
+			<Position x="69.9822" y="22.4" z="185.894"/>
+			<Orientation angle="-2.83532"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="114.922" y="22.4" z="194.492"/>
+			<Orientation angle="-0.592685"/>
 		</Entity>
 		<Entity uid="237">
 			<Template>flora_tree_poplar_lombardy</Template>
@@ -1255,20 +1387,20 @@
 		<Entity uid="246">
 			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
-			<Position x="227.231" y="22.4" z="146.975"/>
-			<Orientation angle="1.85162"/>
+			<Position x="218.779" y="22.4" z="146.855"/>
+			<Orientation angle="1.74277"/>
 		</Entity>
 		<Entity uid="247">
 			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
-			<Position x="108.954" y="22.4" z="194.918"/>
-			<Orientation angle="1.64204"/>
+			<Position x="105.323" y="22.4" z="195.177"/>
+			<Orientation angle="1.6742"/>
 		</Entity>
 		<Entity uid="248">
 			<Template>temp_celt_infantry_spearman_b_gatherer</Template>
 			<Player>3</Player>
 			<Position x="119.23" y="22.4" z="195.918"/>
-			<Orientation angle="-1.89045"/>
+			<Orientation angle="0.780045"/>
 		</Entity>
 		<Entity uid="249">
 			<Template>celt_civil_centre</Template>
@@ -1279,266 +1411,470 @@
 		<Entity uid="1427">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="297.262" y="18.704" z="202.801"/>
-			<Orientation angle="2.41395"/>
+			<Position x="283.244" y="18.704" z="223.703"/>
+			<Orientation angle="-3.03576"/>
 		</Entity>
 		<Entity uid="1428">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="295.664" y="19.4333" z="208.957"/>
-			<Orientation angle="1.44227"/>
+			<Position x="285.362" y="19.4333" z="229.519"/>
+			<Orientation angle="-3.12858"/>
 		</Entity>
 		<Entity uid="1429">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="296.21" y="19.291" z="206.898"/>
-			<Orientation angle="1.21498"/>
+			<Position x="282.211" y="19.291" z="228.913"/>
+			<Orientation angle="3.1131"/>
+		</Entity>
+		<Entity uid="1430">
+			<Template>temp_hele_super_infantry_p</Template>
+			<Player>2</Player>
+			<Position x="289.847" y="18.4152" z="219.781"/>
+			<Orientation angle="-3.09196"/>
+		</Entity>
+		<Entity uid="1431">
+			<Template>temp_hele_super_infantry_p</Template>
+			<Player>2</Player>
+			<Position x="292.351" y="18.3561" z="219.263"/>
+			<Orientation angle="-3.08566"/>
 		</Entity>
 		<Entity uid="1432">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="295.875" y="20.2699" z="202.485"/>
-			<Orientation angle="0.688104"/>
+			<Position x="278.428" y="20.2699" z="229.467"/>
+			<Orientation angle="3.02857"/>
 		</Entity>
 		<Entity uid="1433">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="300.566" y="18.2723" z="201.449"/>
-			<Orientation angle="1.03135"/>
+			<Position x="278.578" y="18.2723" z="220.742"/>
+			<Orientation angle="-2.99454"/>
 		</Entity>
 		<Entity uid="1434">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="297.19" y="18.3319" z="204.549"/>
-			<Orientation angle="0.730316"/>
+			<Position x="284.85" y="18.3319" z="220.712"/>
+			<Orientation angle="-2.98048"/>
 		</Entity>
 		<Entity uid="1435">
 			<Template>temp_hele_super_infantry_p</Template>
 			<Player>2</Player>
-			<Position x="296.813" y="19.2478" z="209.044"/>
-			<Orientation angle="1.4303"/>
+			<Position x="290.61" y="19.2478" z="225.223"/>
+			<Orientation angle="-2.86153"/>
 		</Entity>
 		<Entity uid="1439">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="259.82" y="22.4" z="186.323"/>
-			<Orientation angle="-0.84781"/>
+			<Position x="264.353" y="22.4" z="177.999"/>
+			<Orientation angle="-0.281951"/>
 		</Entity>
 		<Entity uid="1440">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="257.139" y="22.4" z="182.035"/>
-			<Orientation angle="-0.184374"/>
+			<Position x="261.884" y="22.4" z="174.515"/>
+			<Orientation angle="0.585578"/>
 		</Entity>
 		<Entity uid="1443">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="260.169" y="22.4" z="188.041"/>
-			<Orientation angle="-0.88737"/>
+			<Position x="268.689" y="22.4" z="181.213"/>
+			<Orientation angle="0.469457"/>
 		</Entity>
 		<Entity uid="1445">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="255.099" y="22.4" z="181.93"/>
-			<Orientation angle="0.183705"/>
+			<Position x="257.771" y="22.4" z="174.962"/>
+			<Orientation angle="0.763999"/>
 		</Entity>
 		<Entity uid="1455">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="281.158" y="22.4" z="201.181"/>
-			<Orientation angle="-0.40869"/>
+			<Position x="288.42" y="22.4" z="185.245"/>
+			<Orientation angle="-0.264359"/>
+		</Entity>
+		<Entity uid="1456">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="274.193" y="22.4" z="181.741"/>
+			<Orientation angle="-0.0884902"/>
 		</Entity>
 		<Entity uid="1457">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="283.925" y="22.4" z="183.02"/>
-			<Orientation angle="-1.40445"/>
+			<Position x="298.292" y="22.4" z="180.328"/>
+			<Orientation angle="-0.317211"/>
 		</Entity>
 		<Entity uid="1458">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="267.826" y="22.4" z="197.996"/>
-			<Orientation angle="-2.04681"/>
+			<Position x="275.776" y="22.4" z="190.107"/>
+			<Orientation angle="-0.349604"/>
 		</Entity>
 		<Entity uid="1459">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="284.089" y="22.4" z="181.019"/>
-			<Orientation angle="-1.27509"/>
+			<Position x="301.547" y="22.4" z="179.996"/>
+			<Orientation angle="-0.175298"/>
 		</Entity>
 		<Entity uid="1460">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="260.694" y="22.4" z="186.985"/>
-			<Orientation angle="-1.72101"/>
+			<Position x="268.689" y="22.4" z="176.564"/>
+			<Orientation angle="-0.572585"/>
 		</Entity>
 		<Entity uid="1461">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="290.162" y="22.4" z="191.403"/>
-			<Orientation angle="-0.967247"/>
+			<Position x="303.697" y="22.4" z="181.375"/>
+			<Orientation angle="-0.325671"/>
+		</Entity>
+		<Entity uid="1462">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="278.977" y="22.4" z="185.539"/>
+			<Orientation angle="-0.222058"/>
 		</Entity>
 		<Entity uid="1463">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="262.339" y="22.4" z="189.34"/>
-			<Orientation angle="-2.08867"/>
+			<Position x="271.587" y="22.4" z="176.127"/>
+			<Orientation angle="-0.428389"/>
 		</Entity>
 		<Entity uid="1464">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="260.438" y="22.4" z="184.604"/>
-			<Orientation angle="-0.985326"/>
+			<Position x="265.136" y="22.4" z="172.069"/>
+			<Orientation angle="-0.189317"/>
+		</Entity>
+		<Entity uid="1467">
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="274.46" y="22.4" z="187.015"/>
+			<Orientation angle="1.76618"/>
+		</Entity>
+		<Entity uid="1468">
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="272.465" y="22.4" z="179.306"/>
+			<Orientation angle="0.0183866"/>
 		</Entity>
 		<Entity uid="1471">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="273.683" y="22.4" z="203.768"/>
-			<Orientation angle="-0.681695"/>
+			<Position x="281.553" y="22.4" z="189.142"/>
+			<Orientation angle="0.0462786"/>
 		</Entity>
 		<Entity uid="1474">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="276.396" y="22.4" z="192.787"/>
-			<Orientation angle="-0.954639"/>
+			<Position x="291.858" y="22.4" z="185.525"/>
+			<Orientation angle="-0.134724"/>
 		</Entity>
 		<Entity uid="1478">
 			<Template>hele_super_cavalry_p</Template>
 			<Player>2</Player>
-			<Position x="279.207" y="22.4" z="187.375"/>
-			<Orientation angle="2.48649"/>
+			<Position x="251.104" y="22.4" z="198.567"/>
+			<Orientation angle="2.49287"/>
 		</Entity>
 		<Entity uid="1479">
 			<Template>hele_super_cavalry_p</Template>
 			<Player>2</Player>
-			<Position x="278.133" y="22.3764" z="181.675"/>
-			<Orientation angle="1.68042"/>
+			<Position x="259.953" y="22.3764" z="208.342"/>
+			<Orientation angle="2.81582"/>
 		</Entity>
 		<Entity uid="1480">
 			<Template>hele_super_cavalry_p</Template>
 			<Player>2</Player>
-			<Position x="298.202" y="22.0314" z="198.906"/>
-			<Orientation angle="-2.85212"/>
+			<Position x="262.638" y="22.0314" z="209.971"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="1481">
 			<Template>hele_super_cavalry_p</Template>
 			<Player>2</Player>
-			<Position x="301.357" y="22.4" z="203.509"/>
-			<Orientation angle="0.211966"/>
+			<Position x="248.824" y="22.4" z="195.986"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="1482">
 			<Template>hele_super_cavalry_p</Template>
 			<Player>2</Player>
-			<Position x="270.062" y="19.863" z="208.23"/>
-			<Orientation angle="2.83674"/>
+			<Position x="265.08" y="19.863" z="217.38"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="1483">
 			<Template>hele_super_cavalry_p</Template>
 			<Player>2</Player>
-			<Position x="301.531" y="21.0826" z="202.153"/>
-			<Orientation angle="2.9625"/>
+			<Position x="266.687" y="21.0826" z="212.843"/>
+			<Orientation angle="2.8348"/>
 		</Entity>
 		<Entity uid="1488">
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="255.682" y="22.4" z="191.695"/>
-			<Orientation angle="1.76284"/>
+			<Position x="252.46" y="22.4" z="193.388"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1489">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="253.853" y="22.4" z="195.669"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1490">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="257.067" y="22.4" z="199.242"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1491">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="258.949" y="22.4" z="200.928"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1493">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="260.68" y="22.4" z="202.463"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="1494">
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="257.844" y="22.4" z="194.043"/>
-			<Orientation angle="2.3481"/>
+			<Position x="255.347" y="22.4" z="197.412"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1495">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="248.231" y="22.4" z="193.485"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="1496">
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="266.183" y="21.9351" z="205.775"/>
-			<Orientation angle="2.29192"/>
+			<Position x="264.977" y="21.9351" z="209.414"/>
+			<Orientation angle="2.96294"/>
+		</Entity>
+		<Entity uid="1497">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="250.752" y="22.4" z="191.566"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="3865">
 			<Template>skeleton</Template>
 			<Player>6</Player>
 			<Position x="183.386" y="23.2627" z="188.896"/>
-			<Orientation angle="-0.00875586"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5087">
+			<Template>rome_hero_marcellus</Template>
+			<Player>1</Player>
+			<Position x="278.566" y="22.303" z="196.384"/>
+			<Orientation angle="-0.218569"/>
+		</Entity>
+		<Entity uid="5092">
+			<Template>rome_hero_marcellus</Template>
+			<Player>1</Player>
+			<Position x="259.674" y="22.4" z="176.842"/>
+			<Orientation angle="-0.482356"/>
+		</Entity>
+		<Entity uid="6313">
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="268.308" y="22.4" z="186.379"/>
+			<Orientation angle="-0.482819"/>
 		</Entity>
 		<Entity uid="6314">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="258.575" y="22.4" z="185.402"/>
-			<Orientation angle="-0.586372"/>
+			<Position x="266.193" y="22.4" z="175.474"/>
+			<Orientation angle="-0.124905"/>
+		</Entity>
+		<Entity uid="6315">
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="271.762" y="22.4" z="185.625"/>
+			<Orientation angle="0.0587968"/>
 		</Entity>
 		<Entity uid="6316">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="283.01" y="22.3454" z="204.572"/>
-			<Orientation angle="-0.795212"/>
+			<Position x="288.341" y="22.3454" z="192.625"/>
+			<Orientation angle="0.194027"/>
 		</Entity>
 		<Entity uid="6317">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="268.377" y="22.4" z="186.496"/>
-			<Orientation angle="-1.03603"/>
+			<Position x="286.074" y="22.4" z="183.396"/>
+			<Orientation angle="0.33438"/>
+		</Entity>
+		<Entity uid="6318">
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="290.423" y="22.4" z="189.313"/>
+			<Orientation angle="0.19191"/>
 		</Entity>
 		<Entity uid="6319">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="278.89" y="22.4" z="189.303"/>
-			<Orientation angle="-1.13595"/>
+			<Position x="293.685" y="22.4" z="183.201"/>
+			<Orientation angle="0.0951828"/>
 		</Entity>
 		<Entity uid="6320">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="287.022" y="22.4" z="198.873"/>
-			<Orientation angle="-0.666379"/>
+			<Position x="298.671" y="22.4" z="185.625"/>
+			<Orientation angle="-0.228436"/>
+		</Entity>
+		<Entity uid="6321">
+			<Template>rome_infantry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="300.529" y="22.3864" z="188.983"/>
+			<Orientation angle="-0.497703"/>
 		</Entity>
 		<Entity uid="6322">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="289.457" y="22.3822" z="198.979"/>
-			<Orientation angle="-1.04308"/>
+			<Position x="302.856" y="22.3822" z="189.159"/>
+			<Orientation angle="-0.249922"/>
 		</Entity>
 		<Entity uid="6323">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="261.351" y="22.4" z="190.592"/>
-			<Orientation angle="-1.07355"/>
+			<Position x="269.891" y="22.4" z="183.256"/>
+			<Orientation angle="-0.326548"/>
 		</Entity>
 		<Entity uid="6324">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="261.886" y="22.4" z="186.983"/>
-			<Orientation angle="-1.48788"/>
+			<Position x="277.271" y="22.4" z="178.759"/>
+			<Orientation angle="-0.211895"/>
 		</Entity>
 		<Entity uid="6325">
 			<Template>rome_infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="260.752" y="22.4" z="188.13"/>
-			<Orientation angle="-1.19282"/>
+			<Position x="268.639" y="22.4" z="170.98"/>
+			<Orientation angle="-0.249103"/>
+		</Entity>
+		<Entity uid="6327">
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="262.519" y="22.3799" z="204.734"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6328">
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="264.023" y="22.3478" z="205.843"/>
+			<Orientation angle="2.65925"/>
+		</Entity>
+		<Entity uid="6329">
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="258.228" y="22.4" z="204.503"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="6330">
 			<Template>hele_infantry_spearman_b</Template>
 			<Player>2</Player>
-			<Position x="266.913" y="22.0747" z="205.037"/>
-			<Orientation angle="2.9016"/>
+			<Position x="266.042" y="22.0747" z="208.265"/>
+			<Orientation angle="2.9275"/>
+		</Entity>
+		<Entity uid="6332">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="254.741" y="22.4" z="200.093"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6333">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="257.205" y="22.4" z="202.045"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6334">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="252.329" y="22.4" z="199.153"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6335">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="258.168" y="22.4" z="207.217"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="6336">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>2</Player>
-			<Position x="268.138" y="21.7889" z="205.046"/>
-			<Orientation angle="3.10895"/>
+			<Position x="267.894" y="21.7889" z="208.916"/>
+			<Orientation angle="2.59568"/>
+		</Entity>
+		<Entity uid="6337">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="250.724" y="22.4" z="195.578"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="7558">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="294.969" y="18.4749" z="223.768"/>
+			<Orientation angle="3.00235"/>
 		</Entity>
 		<Entity uid="7559">
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="298.64" y="18.0237" z="215.308"/>
-			<Orientation angle="-2.98153"/>
+			<Position x="298.324" y="18.0237" z="225.135"/>
+			<Orientation angle="3.13038"/>
+		</Entity>
+		<Entity uid="7560">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="298.475" y="17.8912" z="230.698"/>
+			<Orientation angle="-3.09179"/>
+		</Entity>
+		<Entity uid="7561">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="299.622" y="17.8889" z="226.455"/>
+			<Orientation angle="-2.97251"/>
 		</Entity>
 		<Entity uid="7562">
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="291.436" y="18.2009" z="210.459"/>
-			<Orientation angle="1.79041"/>
+			<Position x="294.101" y="18.2009" z="219.819"/>
+			<Orientation angle="-3.05016"/>
+		</Entity>
+		<Entity uid="7563">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="294.738" y="18.4006" z="228.119"/>
+			<Orientation angle="3.1137"/>
+		</Entity>
+		<Entity uid="7565">
+			<Template>flora_tree_pine</Template>
+			<Player>1</Player>
+			<Position x="223.637" y="22.4" z="155.254"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="7566">
+			<Template>flora_tree_pine</Template>
+			<Player>1</Player>
+			<Position x="226.74" y="22.4" z="144.247"/>
+			<Orientation angle="-0.326555"/>
+		</Entity>
+		<Entity uid="7567">
+			<Template>flora_tree_pine</Template>
+			<Player>1</Player>
+			<Position x="233.735" y="22.4" z="145.099"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="7569">
+			<Template>flora_tree_pine</Template>
+			<Player>1</Player>
+			<Position x="220.913" y="22.4" z="152.587"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="8798">
 			<Template>hele_super_infantry_p</Template>
@@ -1582,107 +1918,233 @@
 			<Position x="148.143" y="22.4" z="241.216"/>
 			<Orientation angle="-2.43013"/>
 		</Entity>
+		<Entity uid="10049">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="255.688" y="22.4" z="199.921"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10053">
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="245.416" y="22.4" z="198.337"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10054">
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="246.733" y="22.4" z="201.337"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10055">
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="248.779" y="22.4" z="203.365"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10057">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="251.27" y="22.4" z="205.457"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10058">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="244.388" y="22.4" z="192.356"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10061">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="247.497" y="22.4" z="197.694"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10062">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="249.682" y="22.4" z="200.428"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10063">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="292.307" y="19.4976" z="227.807"/>
+			<Orientation angle="-3.04263"/>
+		</Entity>
+		<Entity uid="10064">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="289.38" y="19.2891" z="229.789"/>
+			<Orientation angle="3.13643"/>
+		</Entity>
 		<Entity uid="10065">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>2</Player>
-			<Position x="293.841" y="19.8447" z="213.549"/>
-			<Orientation angle="2.59549"/>
+			<Position x="294.212" y="19.8447" z="230.046"/>
+			<Orientation angle="-3.05328"/>
+		</Entity>
+		<Entity uid="10071">
+			<Template>temp_hele_super_infantry_p</Template>
+			<Player>2</Player>
+			<Position x="296.989" y="18.009" z="221.759"/>
+			<Orientation angle="-3.08367"/>
+		</Entity>
+		<Entity uid="10072">
+			<Template>temp_hele_super_infantry_p</Template>
+			<Player>2</Player>
+			<Position x="299.392" y="17.7764" z="222.409"/>
+			<Orientation angle="-3.03845"/>
+		</Entity>
+		<Entity uid="10077">
+			<Template>hele_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="292.163" y="19.6594" z="231.381"/>
+			<Orientation angle="3.04585"/>
 		</Entity>
 		<Entity uid="10078">
 			<Template>hele_infantry_javelinist_b</Template>
 			<Player>2</Player>
-			<Position x="283.537" y="18.8013" z="225.2"/>
-			<Orientation angle="2.26691"/>
+			<Position x="281.174" y="18.8013" z="227.175"/>
+			<Orientation angle="3.00894"/>
+		</Entity>
+		<Entity uid="10080">
+			<Template>hele_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="284.091" y="18.7174" z="228.069"/>
+			<Orientation angle="3.08034"/>
 		</Entity>
 		<Entity uid="10082">
 			<Template>hele_infantry_javelinist_e</Template>
 			<Player>2</Player>
-			<Position x="297.229" y="18.114" z="227.824"/>
-			<Orientation angle="2.85989"/>
+			<Position x="296.94" y="18.114" z="229.576"/>
+			<Orientation angle="-2.88704"/>
 		</Entity>
 		<Entity uid="10084">
 			<Template>hele_infantry_javelinist_b</Template>
 			<Player>2</Player>
-			<Position x="250.156" y="22.4" z="196.506"/>
-			<Orientation angle="1.27093"/>
+			<Position x="245.358" y="22.4" z="194.98"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="10087">
 			<Template>hele_infantry_javelinist_a</Template>
 			<Player>2</Player>
-			<Position x="250.602" y="22.4" z="194.959"/>
-			<Orientation angle="1.20622"/>
+			<Position x="241.104" y="22.4" z="195.284"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="10088">
 			<Template>hele_infantry_javelinist_a</Template>
 			<Player>2</Player>
-			<Position x="251.138" y="22.4" z="193.54"/>
-			<Orientation angle="1.14533"/>
+			<Position x="241.232" y="22.4" z="192.294"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="10089">
 			<Template>hele_infantry_javelinist_a</Template>
 			<Player>2</Player>
-			<Position x="254.253" y="22.4" z="191.865"/>
-			<Orientation angle="1.67444"/>
+			<Position x="239.465" y="22.4" z="192.503"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10091">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>2</Player>
+			<Position x="244.121" y="22.4" z="206.917"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="10092">
 			<Template>hele_infantry_archer_e</Template>
 			<Player>2</Player>
-			<Position x="249.36" y="22.4" z="207.923"/>
-			<Orientation angle="1.73624"/>
+			<Position x="245.32" y="22.4" z="208.963"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10094">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="243.554" y="22.4" z="203.217"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="10096">
 			<Template>hele_infantry_archer_a</Template>
 			<Player>2</Player>
-			<Position x="248.985" y="22.4" z="201.413"/>
-			<Orientation angle="1.4738"/>
+			<Position x="240.334" y="22.4" z="203.504"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="10098">
 			<Template>hele_infantry_archer_b</Template>
 			<Player>2</Player>
-			<Position x="281.785" y="19.7967" z="224.567"/>
-			<Orientation angle="2.20652"/>
+			<Position x="280.387" y="19.7967" z="229.296"/>
+			<Orientation angle="3.02569"/>
 		</Entity>
 		<Entity uid="10100">
 			<Template>hele_infantry_archer_a</Template>
 			<Player>2</Player>
-			<Position x="290.344" y="20.4845" z="230.748"/>
-			<Orientation angle="2.64003"/>
+			<Position x="290.16" y="20.4845" z="232.758"/>
+			<Orientation angle="2.94752"/>
+		</Entity>
+		<Entity uid="10102">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>2</Player>
+			<Position x="286.128" y="20.7105" z="232.192"/>
+			<Orientation angle="2.92459"/>
+		</Entity>
+		<Entity uid="11333">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="273.389" y="22.4" z="190.403"/>
+			<Orientation angle="-0.199253"/>
+		</Entity>
+		<Entity uid="11334">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="272.178" y="22.3942" z="196.477"/>
+			<Orientation angle="-0.589543"/>
 		</Entity>
 		<Entity uid="11335">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="264.29" y="22.4" z="193.595"/>
-			<Orientation angle="-0.330737"/>
+			<Position x="267.44" y="22.4" z="188.377"/>
+			<Orientation angle="-0.489902"/>
+		</Entity>
+		<Entity uid="11336">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="272.976" y="22.4" z="184.46"/>
+			<Orientation angle="-0.409871"/>
+		</Entity>
+		<Entity uid="11337">
+			<Template>rome_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="275.486" y="22.4" z="194.064"/>
+			<Orientation angle="-0.249657"/>
 		</Entity>
 		<Entity uid="11338">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="258.099" y="22.4" z="185.055"/>
-			<Orientation angle="-0.486738"/>
+			<Position x="261.934" y="22.4" z="179.232"/>
+			<Orientation angle="-0.317027"/>
 		</Entity>
 		<Entity uid="11340">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="260.96" y="22.4" z="188.921"/>
-			<Orientation angle="-1.08687"/>
+			<Position x="264.182" y="22.4" z="187.227"/>
+			<Orientation angle="-0.503692"/>
 		</Entity>
 		<Entity uid="11342">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="272.925" y="22.4" z="203.46"/>
-			<Orientation angle="-0.305669"/>
+			<Position x="280.94" y="22.4" z="185.382"/>
+			<Orientation angle="-0.115833"/>
 		</Entity>
 		<Entity uid="11343">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="268.507" y="22.4" z="192.455"/>
-			<Orientation angle="-0.973689"/>
+			<Position x="283.373" y="22.4" z="184.499"/>
+			<Orientation angle="0.00536821"/>
 		</Entity>
 		<Entity uid="11344">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="281.524" y="22.4" z="203.559"/>
-			<Orientation angle="-0.483826"/>
+			<Position x="286.569" y="22.4" z="189.561"/>
+			<Orientation angle="-0.0355863"/>
 		</Entity>
 		<Entity uid="12576">
 			<Template>rome_infantry_spearman_e</Template>
@@ -1762,6 +2224,12 @@
 			<Position x="151.629" y="22.4" z="194.74"/>
 			<Orientation angle="-1.90324"/>
 		</Entity>
+		<Entity uid="13821">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>0</Player>
+			<Position x="145.084" y="22.4" z="188.207"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
 		<Entity uid="13822">
 			<Template>flora_tree_euro_beech</Template>
 			<Player>0</Player>
@@ -1783,350 +2251,68 @@
 		<Entity uid="13829">
 			<Template>hele_hero_xenophon</Template>
 			<Player>2</Player>
-			<Position x="298.804" y="22.4" z="204.568"/>
-			<Orientation angle="1.72315"/>
+			<Position x="249.406" y="22.4" z="190.324"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="13830">
 			<Template>hele_hero_xenophon</Template>
 			<Player>2</Player>
-			<Position x="302.525" y="22.4" z="203.544"/>
-			<Orientation angle="0.012708"/>
+			<Position x="248.095" y="22.4" z="188.946"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="13839">
+			<Template>rome_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="274.713" y="22.4" z="174.729"/>
+			<Orientation angle="-0.915079"/>
+		</Entity>
+		<Entity uid="13841">
+			<Template>rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="282.788" y="22.3103" z="193.973"/>
+			<Orientation angle="0.00783291"/>
+		</Entity>
+		<Entity uid="13842">
+			<Template>rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="293.687" y="22.3814" z="189.553"/>
+			<Orientation angle="-0.0815887"/>
+		</Entity>
+		<Entity uid="13843">
+			<Template>rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="265.401" y="22.4" z="183.273"/>
+			<Orientation angle="-0.766963"/>
+		</Entity>
+		<Entity uid="13845">
+			<Template>rome_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="297.389" y="22.3906" z="188.784"/>
+			<Orientation angle="-0.149705"/>
+		</Entity>
+		<Entity uid="13846">
+			<Template>rome_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="270.18" y="22.4" z="191.361"/>
+			<Orientation angle="-0.173208"/>
+		</Entity>
+		<Entity uid="13849">
+			<Template>rome_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="285.175" y="22.4" z="180.179"/>
+			<Orientation angle="-0.179792"/>
+		</Entity>
+		<Entity uid="13851">
+			<Template>rome_hero_marcellus</Template>
+			<Player>1</Player>
+			<Position x="277.386" y="22.4" z="183.6"/>
+			<Orientation angle="-0.0627981"/>
 		</Entity>
 		<Entity uid="15084">
 			<Template>celt_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="108.017" y="22.4" z="236.29"/>
-			<Orientation angle="-2.10851"/>
-		</Entity>
-		<Entity uid="51">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="275.16" y="20.6745" z="205.494"/>
-			<Orientation angle="0.861666"/>
-		</Entity>
-		<Entity uid="42">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="301.854" y="22.0674" z="209.757"/>
-			<Orientation angle="-1.0275"/>
-		</Entity>
-		<Entity uid="45">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="296.754" y="21.4462" z="208.756"/>
-			<Orientation angle="0.27058"/>
-		</Entity>
-		<Entity uid="6328">
-			<Template>hele_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="265.095" y="22.3478" z="204.202"/>
-			<Orientation angle="2.26458"/>
-		</Entity>
-		<Entity uid="1493">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="262.957" y="22.4" z="201.389"/>
-			<Orientation angle="2.13399"/>
-		</Entity>
-		<Entity uid="1491">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="262.506" y="22.4" z="200.182"/>
-			<Orientation angle="1.82381"/>
-		</Entity>
-		<Entity uid="6332">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="261.899" y="22.4" z="196.757"/>
-			<Orientation angle="2.49421"/>
-		</Entity>
-		<Entity uid="1468">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="261.15" y="22.4" z="189.49"/>
-			<Orientation angle="-2.23641"/>
-		</Entity>
-		<Entity uid="6318">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="285.339" y="22.4" z="211.428"/>
-			<Orientation angle="1.29955"/>
-		</Entity>
-		<Entity uid="35">
-			<Template>rome_infantry_swordsman_a</Template>
-			<Player>1</Player>
-			<Position x="285.623" y="21.9897" z="206.458"/>
-			<Orientation angle="0.736236"/>
-		</Entity>
-		<Entity uid="40">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="283.43" y="21.7171" z="212.499"/>
-			<Orientation angle="-1.13048"/>
-		</Entity>
-		<Entity uid="46">
-			<Template>rome_infantry_swordsman_a</Template>
-			<Player>1</Player>
-			<Position x="283.757" y="22.2668" z="205.294"/>
-			<Orientation angle="-1.31109"/>
-		</Entity>
-		<Entity uid="1467">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="268.814" y="22.4" z="197.294"/>
-			<Orientation angle="-1.84767"/>
-		</Entity>
-		<Entity uid="1462">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="268.52" y="22.4" z="199.164"/>
-			<Orientation angle="-1.01535"/>
-		</Entity>
-		<Entity uid="11336">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="269.63" y="22.4" z="200.494"/>
-			<Orientation angle="-0.857254"/>
-		</Entity>
-		<Entity uid="10049">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="262.847" y="22.4" z="197.504"/>
-			<Orientation angle="1.95139"/>
-		</Entity>
-		<Entity uid="7561">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="295.465" y="17.8889" z="214.201"/>
-			<Orientation angle="3.03349"/>
-		</Entity>
-		<Entity uid="11337">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="270.612" y="22.4" z="201.882"/>
-			<Orientation angle="-1.15103"/>
-		</Entity>
-		<Entity uid="54">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="271.232" y="22.3942" z="201.796"/>
-			<Orientation angle="-1.15406"/>
-		</Entity>
-		<Entity uid="11334">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="269.614" y="22.3942" z="200.444"/>
-			<Orientation angle="-0.848925"/>
-		</Entity>
-		<Entity uid="10094">
-			<Template>hele_infantry_archer_a</Template>
-			<Player>2</Player>
-			<Position x="249.016" y="22.4" z="202.823"/>
-			<Orientation angle="1.53017"/>
-		</Entity>
-		<Entity uid="11333">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="268.732" y="22.4" z="195.246"/>
-			<Orientation angle="-1.46265"/>
-		</Entity>
-		<Entity uid="6315">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="266.408" y="22.4" z="193.821"/>
-			<Orientation angle="-0.959162"/>
-		</Entity>
-		<Entity uid="41">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="295.596" y="22.2541" z="208.761"/>
-			<Orientation angle="-0.786139"/>
-		</Entity>
-		<Entity uid="6313">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="262.69" y="22.4" z="190.875"/>
-			<Orientation angle="0.178085"/>
-		</Entity>
-		<Entity uid="1456">
-			<Template>rome_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="263.533" y="22.4" z="192.151"/>
-			<Orientation angle="0.0120302"/>
-		</Entity>
-		<Entity uid="10077">
-			<Template>hele_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="292.138" y="19.6594" z="229.701"/>
-			<Orientation angle="2.66839"/>
-		</Entity>
-		<Entity uid="10063">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="288.525" y="19.4976" z="209.66"/>
-			<Orientation angle="2.04576"/>
-		</Entity>
-		<Entity uid="7558">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="289.286" y="18.4749" z="211.029"/>
-			<Orientation angle="2.31214"/>
-		</Entity>
-		<Entity uid="10080">
-			<Template>hele_infantry_javelinist_e</Template>
-			<Player>2</Player>
-			<Position x="285.084" y="18.7174" z="227.06"/>
-			<Orientation angle="2.36398"/>
-		</Entity>
-		<Entity uid="47">
-			<Template>rome_infantry_swordsman_a</Template>
-			<Player>1</Player>
-			<Position x="298.011" y="22.2298" z="211.658"/>
-			<Orientation angle="-0.282355"/>
-		</Entity>
-		<Entity uid="7560">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="297.883" y="17.8912" z="212.962"/>
-			<Orientation angle="2.23493"/>
-		</Entity>
-		<Entity uid="39">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="285.012" y="22.2699" z="205.153"/>
-			<Orientation angle="0.126157"/>
-		</Entity>
-		<Entity uid="10058">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="279.347" y="22.4" z="184.674"/>
-			<Orientation angle="2.22736"/>
-		</Entity>
-		<Entity uid="7563">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="302.55" y="18.4006" z="202.44"/>
-			<Orientation angle="0.972147"/>
-		</Entity>
-		<Entity uid="6321">
-			<Template>rome_infantry_swordsman_e</Template>
-			<Player>1</Player>
-			<Position x="293.466" y="22.3864" z="207.553"/>
-			<Orientation angle="-0.363391"/>
-		</Entity>
-		<Entity uid="10091">
-			<Template>hele_infantry_archer_e</Template>
-			<Player>2</Player>
-			<Position x="249.056" y="22.4" z="206.019"/>
-			<Orientation angle="1.65872"/>
-		</Entity>
-		<Entity uid="6334">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="276.185" y="22.4" z="185.306"/>
-			<Orientation angle="-1.90104"/>
-		</Entity>
-		<Entity uid="10062">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="277.555" y="22.4" z="185.485"/>
-			<Orientation angle="-2.39377"/>
-		</Entity>
-		<Entity uid="10054">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="278.672" y="22.4" z="179.96"/>
-			<Orientation angle="1.37772"/>
-		</Entity>
-		<Entity uid="10102">
-			<Template>hele_infantry_archer_e</Template>
-			<Player>2</Player>
-			<Position x="287.517" y="20.7105" z="229.048"/>
-			<Orientation angle="2.50246"/>
-		</Entity>
-		<Entity uid="10053">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="298.676" y="22.4" z="201.892"/>
-			<Orientation angle="-2.87332"/>
-		</Entity>
-		<Entity uid="10057">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="276.163" y="22.4" z="184.119"/>
-			<Orientation angle="-1.37695"/>
-		</Entity>
-		<Entity uid="10064">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="301.651" y="19.2891" z="200.939"/>
-			<Orientation angle="3.01788"/>
-		</Entity>
-		<Entity uid="6335">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="278.26" y="22.4" z="183.971"/>
-			<Orientation angle="1.73715"/>
-		</Entity>
-		<Entity uid="6337">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="281.114" y="22.4" z="178.303"/>
-			<Orientation angle="0.830906"/>
-		</Entity>
-		<Entity uid="10055">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="278.931" y="22.4" z="180.983"/>
-			<Orientation angle="1.5638"/>
-		</Entity>
-		<Entity uid="10061">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="298.108" y="22.4" z="205.329"/>
-			<Orientation angle="0.850206"/>
-		</Entity>
-		<Entity uid="1489">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="277.51" y="22.4" z="183.002"/>
-			<Orientation angle="1.86346"/>
-		</Entity>
-		<Entity uid="6333">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="279.809" y="22.4" z="179.469"/>
-			<Orientation angle="1.22337"/>
-		</Entity>
-		<Entity uid="1490">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="278.58" y="22.4" z="182.698"/>
-			<Orientation angle="1.8665"/>
-		</Entity>
-		<Entity uid="1495">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="280.783" y="22.4" z="185.792"/>
-			<Orientation angle="2.53573"/>
-		</Entity>
-		<Entity uid="6327">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="299.59" y="22.3799" z="199.973"/>
-			<Orientation angle="1.29279"/>
-		</Entity>
-		<Entity uid="6329">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="297.067" y="22.4" z="201.202"/>
-			<Orientation angle="-2.59086"/>
-		</Entity>
-		<Entity uid="1497">
-			<Template>hele_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="299.775" y="22.4" z="204.245"/>
-			<Orientation angle="0.360703"/>
+			<Position x="103.823" y="22.4" z="237.046"/>
+			<Orientation angle="-2.4754"/>
 		</Entity>
 	</Entities>
 	<Nonentities>

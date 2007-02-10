@@ -450,7 +450,7 @@ void CGameView::UnloadResources()
 void CGameView::ResetCamera()
 {
 	// quick hack to return camera home, for screenshots (after alt+tabbing)
-	m->ViewCamera.SetProjection (1, 5000, DEGTORAD(20));
+	m->ViewCamera.SetProjection (defaultNear, defaultFar, defaultFOV);
 	m->ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
 	m->ViewCamera.m_Orientation.RotateY(DEGTORAD(-45));
 	m->ViewCamera.m_Orientation.Translate (100, 150, -100);
@@ -466,7 +466,7 @@ void CGameView::ResetCameraOrientation()
 
 	target -= CVector3D( -22.474480f, 50.0f, 22.474480f );
 
-	m->ViewCamera.SetProjection (1, 5000, DEGTORAD(20));
+	m->ViewCamera.SetProjection (defaultNear, defaultFar, defaultFOV);
 	m->ViewCamera.m_Orientation.SetXRotation(DEGTORAD(30));
 	m->ViewCamera.m_Orientation.RotateY(DEGTORAD(-45));
 

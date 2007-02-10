@@ -47,6 +47,7 @@
 #include "ps/Loader.h"
 #include "ps/ProfileViewer.h"
 
+#include "graphics/GameView.h"
 #include "graphics/ParticleEngine.h"
 #include "graphics/DefaultEmitter.h"
 #include "renderer/FixedFunctionModelRenderer.h"
@@ -1067,7 +1068,7 @@ void CRenderer::RenderReflections()
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	m_ViewCamera.SetViewPort(&vp);
-	m_ViewCamera.SetProjection(1, 5000, DEGTORAD(21));	// Slightly higher than view FOV of 20
+	m_ViewCamera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV*1.05f); // Slightly higher than view FOV
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
@@ -1139,7 +1140,7 @@ void CRenderer::RenderRefractions()
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	m_ViewCamera.SetViewPort(&vp);
-	m_ViewCamera.SetProjection(1, 5000, DEGTORAD(21));	// Slightly higher than view FOV of 20
+	m_ViewCamera.SetProjection(CGameView::defaultNear, CGameView::defaultFar, CGameView::defaultFOV*1.05f); // Slightly higher than view FOV
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
