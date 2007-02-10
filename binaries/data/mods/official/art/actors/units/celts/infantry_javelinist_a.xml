@@ -80,7 +80,7 @@
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
       </props>
     </variant>
     <variant name="gather_wood">
