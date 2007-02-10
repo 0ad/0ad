@@ -82,7 +82,12 @@ ShadowMap::ShadowMap()
 	m->EffectiveWidth = 0;
 	m->EffectiveHeight = 0;
 	m->UseDepthTexture = false;
-	m->DepthTextureBits = 24;
+	m->DepthTextureBits = 0;
+	// DepthTextureBits: 24/32 are very much faster than 16, on GeForce 4 and FX;
+	// but they're very much slower on Radeon 9800.
+	// In both cases, the default (no specified depth) is fast, so we just use
+	// that by default and hope it's alright. (Otherwise, we'd probably need to
+	// do some kind of hardware detection to work out what to use.)
 }
 
 
