@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="263.987" y="69.3831" z="125.383"/>
-		<Rotation angle="0.0255897"/>
-		<Declination angle="0.589283"/>
+		<Position x="95.4065" y="143.156" z="110.553"/>
+		<Rotation angle="0.0547989"/>
+		<Declination angle="0.863301"/>
 	</Camera>
 	<Entities>
 		<Entity uid="0">
@@ -427,7 +427,7 @@
 		<Entity uid="75">
 			<Template>celt_house</Template>
 			<Player>3</Player>
-			<Position x="78.5361" y="22.4" z="218.089"/>
+			<Position x="78.6127" y="22.4" z="218.708"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="76">
@@ -463,13 +463,13 @@
 		<Entity uid="81">
 			<Template>temp_celt_support_female_citizen_gatherer</Template>
 			<Player>3</Player>
-			<Position x="131.22" y="22.4" z="200.238"/>
+			<Position x="123.309" y="22.4" z="198.247"/>
 			<Orientation angle="-2.39369"/>
 		</Entity>
 		<Entity uid="82">
 			<Template>temp_celt_support_female_citizen_gatherer</Template>
 			<Player>3</Player>
-			<Position x="128.897" y="22.2012" z="184.052"/>
+			<Position x="128.953" y="22.1019" z="183.764"/>
 			<Orientation angle="0.00112973"/>
 		</Entity>
 		<Entity uid="83">
@@ -565,7 +565,7 @@
 		<Entity uid="99">
 			<Template>flora_tree_euro_beech</Template>
 			<Player>3</Player>
-			<Position x="134.519" y="22.3207" z="188.318"/>
+			<Position x="138.412" y="22.4" z="243.555"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="104">
@@ -1225,25 +1225,25 @@
 		<Entity uid="215">
 			<Template>flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="122.312" y="22.4" z="186.756"/>
+			<Position x="123.2" y="22.4" z="188.147"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="217">
 			<Template>flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="125.471" y="22.4" z="194.324"/>
+			<Position x="126.093" y="22.4" z="193.769"/>
 			<Orientation angle="-1.79018"/>
 		</Entity>
 		<Entity uid="218">
 			<Template>flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="131.223" y="22.3373" z="188.311"/>
+			<Position x="130.053" y="22.4" z="192.043"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="220">
 			<Template>flora_tree_poplar</Template>
 			<Player>0</Player>
-			<Position x="136.585" y="21.6914" z="185.276"/>
+			<Position x="137.036" y="21.5692" z="184.573"/>
 			<Orientation angle="1.96356"/>
 		</Entity>
 		<Entity uid="221">
@@ -1279,7 +1279,7 @@
 		<Entity uid="226">
 			<Template>temp_celt_infantry_spearman_a_gatherer</Template>
 			<Player>3</Player>
-			<Position x="139.745" y="21.2775" z="183.124"/>
+			<Position x="140.317" y="20.4855" z="181.533"/>
 			<Orientation angle="0.304966"/>
 		</Entity>
 		<Entity uid="227">
@@ -1903,7 +1903,7 @@
 		<Entity uid="10040">
 			<Template>celt_hero_cynvelin</Template>
 			<Player>3</Player>
-			<Position x="124.21" y="22.4" z="199.416"/>
+			<Position x="125.032" y="22.4" z="202.39"/>
 			<Orientation angle="-2.31733"/>
 		</Entity>
 		<Entity uid="10043">
@@ -2307,6 +2307,12 @@
 			<Player>1</Player>
 			<Position x="277.386" y="22.4" z="183.6"/>
 			<Orientation angle="-0.0627981"/>
+		</Entity>
+		<Entity uid="15084">
+			<Template>celt_support_female_citizen</Template>
+			<Player>3</Player>
+			<Position x="103.823" y="22.4" z="237.046"/>
+			<Orientation angle="-2.4754"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -6907,7 +6913,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>fauna/sheep1.xml</Actor>
-			<Position x="105.451" y="22.4" z="232.787"/>
+			<Position x="105.817" y="22.4" z="230.501"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
