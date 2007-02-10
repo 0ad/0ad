@@ -459,7 +459,10 @@ void SortModelRenderer::Submit(CModel* model)
 // Transform and sort all models
 struct SortModelsByDist {
 	bool operator()(SModel* lhs, SModel* rhs) {
-		return lhs->m_Distance > rhs->m_Distance ? true : false;
+		// Sort by distance, and break ties by comparing pointers
+		return lhs->m_Distance > rhs->m_Distance ? true
+			: lhs->m_Distance < rhs->m_Distance ? false
+			: (lhs > rhs);
 	}
 };
 

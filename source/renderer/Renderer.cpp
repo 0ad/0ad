@@ -525,8 +525,8 @@ bool CRenderer::Open(int width, int height, int depth)
 
 	// Particle engine
 	CParticleEngine::GetInstance()->initParticleSystem();
-	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
-	CParticleEngine::GetInstance()->addEmitter(pEmitter);
+// 	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
+// 	CParticleEngine::GetInstance()->addEmitter(pEmitter);
 
 	// Dimensions
 	m_Width = width;
