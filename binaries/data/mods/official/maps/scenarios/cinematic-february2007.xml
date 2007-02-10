@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="95.4065" y="143.156" z="110.553"/>
-		<Rotation angle="0.0547989"/>
-		<Declination angle="0.863301"/>
+		<Position x="266.432" y="73.9057" z="115.218"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
 		<Entity uid="0">
@@ -439,7 +439,7 @@
 		<Entity uid="77">
 			<Template>celt_house</Template>
 			<Player>3</Player>
-			<Position x="107.738" y="22.4" z="242.675"/>
+			<Position x="107.879" y="22.4" z="242.705"/>
 			<Orientation angle="-2.70852"/>
 		</Entity>
 		<Entity uid="78">
@@ -2260,12 +2260,6 @@
 			<Position x="248.095" y="22.4" z="188.946"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="13839">
-			<Template>rome_cavalry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="274.713" y="22.4" z="174.729"/>
-			<Orientation angle="-0.915079"/>
-		</Entity>
 		<Entity uid="13841">
 			<Template>rome_cavalry_spearman_a</Template>
 			<Player>1</Player>
@@ -2311,8 +2305,14 @@
 		<Entity uid="15084">
 			<Template>celt_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="103.823" y="22.4" z="237.046"/>
+			<Position x="104.256" y="22.4" z="236.697"/>
 			<Orientation angle="-2.4754"/>
+		</Entity>
+		<Entity uid="16314">
+			<Template>rome_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="275.595" y="22.4" z="178.022"/>
+			<Orientation angle="-0.732282"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -5968,8 +5968,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_me.xml</Actor>
-			<Position x="84.5618" y="22.4" z="236.251"/>
-			<Orientation angle="0.595047"/>
+			<Position x="87.8841" y="22.4" z="240.709"/>
+			<Orientation angle="-1.96143"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_me.xml</Actor>
@@ -6253,7 +6253,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="93.1748" y="22.4" z="248.646"/>
+			<Position x="92.1634" y="22.4" z="242.43"/>
 			<Orientation angle="1.25024"/>
 		</Nonentity>
 		<Nonentity>
@@ -6268,12 +6268,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="90.2854" y="22.4" z="238.374"/>
+			<Position x="94.25" y="22.4" z="236.709"/>
 			<Orientation angle="-2.52213"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="84.9756" y="22.4" z="233.622"/>
+			<Position x="89.1741" y="22.4" z="236.672"/>
 			<Orientation angle="-2.60051"/>
 		</Nonentity>
 		<Nonentity>
@@ -6283,7 +6283,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="106.007" y="22.4" z="247.938"/>
+			<Position x="102.604" y="22.4" z="244.442"/>
 			<Orientation angle="2.3023"/>
 		</Nonentity>
 		<Nonentity>
