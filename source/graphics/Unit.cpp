@@ -7,6 +7,7 @@
 #include "ObjectManager.h"
 #include "SkeletonAnim.h"
 #include "SkeletonAnimDef.h"
+#include "UnitAnimation.h"
 
 #include "ps/Game.h"
 #include "simulation/Entity.h"
@@ -17,10 +18,12 @@ CUnit::CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManage
   m_ID(-1), m_ActorSelections(actorSelections), m_PlayerID(-1),
   m_ObjectManager(objectManager)
 {
+	m_Animation = new CUnitAnimation(*this);
 }
 
 CUnit::~CUnit()
 {
+	delete m_Animation;
 	delete m_Model;
 }
 
@@ -129,9 +132,29 @@ CSkeletonAnim* CUnit::GetRandomAnimation(const CStr& name)
 	return ::GetRandomAnimation(name, m_Object);
 }
 
+bool CUnit::HasAnimation(const CStr& name)
+{
+	return (m_Object->GetRandomAnimation(name) != NULL);
+}
+
 bool CUnit::IsPlayingAnimation(const CStr& name)
 {
 	return (m_Model->GetAnimation() && m_Model->GetAnimation()->m_Name == name);
+}
+
+void CUnit::SetAnimationState(const CStr& name, bool once, float speed, bool keepSelection)
+{
+	m_Animation->SetAnimationState(name, once, speed, keepSelection);
+}
+
+void CUnit::SetAnimationSync(float timeUntilActionPos)
+{
+	m_Animation->SetAnimationSync(timeUntilActionPos);
+}
+
+void CUnit::UpdateModel(float frameTime)
+{
+	m_Animation->Update(frameTime);
 }
 
 

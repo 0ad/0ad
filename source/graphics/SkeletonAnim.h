@@ -25,7 +25,10 @@ public:
 	CSkeletonAnimDef* m_AnimDef;
 	// speed at which this animation runs
 	float m_Speed;
-	// time(s) during the animation at which the interesting bit(s) happens (fractional)
+	// Times during the animation at which the interesting bits happen. Measured
+	// as fractions (0..1) of the total animation length.
+	// ActionPos is used for melee hits, projectile launches, etc.
+	// ActionPos2 is used for loading projectile ammunition.
 	float m_ActionPos;
 	float m_ActionPos2;
 	// object space bounds of the model when this animation is applied to it

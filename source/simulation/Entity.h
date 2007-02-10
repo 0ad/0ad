@@ -210,9 +210,6 @@ public:
 	// Position in the current state's cycle
 	static const size_t NOT_IN_CYCLE = (size_t)-1;
 	size_t m_fsm_cyclepos; // -cycle_length....cycle_length
-	CSkeletonAnim* m_fsm_animation; // the animation we're about to play this cycle,
-	size_t m_fsm_anipos; // the time at which we should start playing it.
-	size_t m_fsm_anipos2; // for when there are two animation-related events we need to take care of.
 
 	CEntityOrders m_orderQueue;
 	std::deque<CEntityListener> m_listeners;

@@ -101,6 +101,12 @@ bool CSimulation::Update(double frameTime)
 	return ok;
 }
 
+void CSimulation::DiscardMissedUpdates()
+{
+	if (m_DeltaTime > 0.0)
+		m_DeltaTime = 0.0;
+}
+
 void CSimulation::Interpolate(double frameTime)
 {
 	double turnLength = m_pTurnManager->GetTurnLength()/1000.0;
@@ -110,10 +116,9 @@ void CSimulation::Interpolate(double frameTime)
 	// m_DeltaTime/turnLength will usually be between -1 and 0, indicating
 	// the time until the next frame, so we can use that easily.
 	// If the simulation is going too slowly and hasn't been giving a chance
-	// to catch up before Interpolate is called, then m_DeltaTime > 0, and
-	// we'll just end up being clamped to offset=1 inside CEntity::interpolate,
-	// which is alright.
-	Interpolate(frameTime, m_DeltaTime / turnLength + 1.0);
+	// to catch up before Interpolate is called, then m_DeltaTime > 0, so we'll
+	// just clamp it to offset=1, which is alright.
+	Interpolate(frameTime, clamp(m_DeltaTime / turnLength + 1.0, 0.0, 1.0));
 }
 
 void CSimulation::Interpolate(double frameTime, double offset)
@@ -122,25 +127,27 @@ void CSimulation::Interpolate(double frameTime, double offset)
 
 	const std::vector<CUnit*>& units = m_pWorld->GetUnitManager().GetUnits();
 	for (size_t i = 0; i < units.size(); ++i)
-		units[i]->GetModel()->Update((float)frameTime);
+		units[i]->UpdateModel((float)frameTime);
 
 	g_EntityManager.interpolateAll(offset);
-	m_pWorld->GetProjectileManager().InterpolateAll(frameTime);
+	m_pWorld->GetProjectileManager().InterpolateAll(offset);
 	g_Renderer.GetWaterManager()->m_WaterTexTimer += frameTime;
 }
 
 void CSimulation::Simulate()
 {
+	float time = m_pTurnManager->GetTurnLength();
+
 	PROFILE_START( "scheduler tick" );
-	g_Scheduler.update(m_pTurnManager->GetTurnLength());
+	g_Scheduler.update(time);
 	PROFILE_END( "scheduler tick" );
 
 	PROFILE_START( "entity updates" );
-	g_EntityManager.updateAll( m_pTurnManager->GetTurnLength() );
+	g_EntityManager.updateAll(time);
 	PROFILE_END( "entity updates" );
 
 	PROFILE_START( "projectile updates" );
-	m_pWorld->GetProjectileManager().UpdateAll( m_pTurnManager->GetTurnLength() );
+	m_pWorld->GetProjectileManager().UpdateAll(time);
 	PROFILE_END( "projectile updates" );
 
 	PROFILE_START( "los update" );
@@ -148,7 +155,7 @@ void CSimulation::Simulate()
 	PROFILE_END( "los update" );
 
 	PROFILE_START("trigger update");
-	g_TriggerManager.Update( m_pTurnManager->GetTurnLength() );
+	g_TriggerManager.Update(time);
 	PROFILE_END("trigger udpate");
 
 	PROFILE_START( "turn manager update" );

@@ -3,6 +3,7 @@
 #include "MapReader.h"
 
 #include "graphics/Camera.h"
+#include "graphics/CinemaTrack.h"
 #include "graphics/GameView.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"

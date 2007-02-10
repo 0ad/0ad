@@ -36,14 +36,14 @@ enum EGotoSituation
 
 bool CEntity::shouldRun(float distance)
 {
-	if (!entf_get(ENTF_SHOULD_RUN))
+	if( !entf_get(ENTF_SHOULD_RUN) )
 		return false;
 
 	// tired
-	if(m_staminaCurr <= 0)
+	if( m_staminaCurr <= 0 )
 		return false;
 
-	if(distance >= m_runMaxRange)
+	if( distance >= m_runMaxRange )
 		return false; 
 
 	// don't start running if less than minimum
@@ -65,22 +65,16 @@ float CEntity::chooseMovementSpeed( float distance )
 	int sector = rintf( angle / (PI/2) * m_base->m_pitchDivs );
 	speed -= sector * m_base->m_pitchValue;
 
-	// TODO: the animation code requires unicode for now. will be changed to
-	// 8bit later (for consistency; note that filenames etc. need not be
-	// unicode), so remove this then. 
-	const CStrW u_anim_name(anim_name);
+	entf_set_to(ENTF_IS_RUNNING, should_run);
 
 	if ( m_actor )
 	{
 		if ( !m_actor->IsPlayingAnimation( anim_name ) )
 		{
-			m_actor->SetEntitySelection( u_anim_name );
-			m_actor->SetRandomAnimation( anim_name, false, speed );
+			m_actor->SetAnimationState( anim_name, false, speed );
 
 			// Animation desync
 			m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
-			
-			entf_set_to(ENTF_IS_RUNNING, should_run);
 		}
 	}
 	
@@ -409,6 +403,7 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 		return true;
 	}
 }
+
 bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
 {
 	HEntity target = current->m_target_entity;
@@ -416,31 +411,9 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	if( m_fsm_cyclepos != NOT_IN_CYCLE )
 	{
 		size_t nextpos = m_fsm_cyclepos + timestep_millis * 2;
-		if( ( m_fsm_cyclepos <= m_fsm_anipos ) &&
-			( nextpos > m_fsm_anipos ) )
-		{
-			// Start playing.
-			// Start the animation. Actual damage/gather will be done in a 
-			// few hundred ms, at the 'action point' of the animation we're
-			// now setting.
-			entf_clear(ENTF_IS_RUNNING);
-			// TODO: this is set to be looping, because apparently it otherwise
-			// plays one frame of 'idle' after e.g. attacks. But this way means
-			// animations sometimes play ~1.5 times then repeat, which looks
-			// broken too.
-			//m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_actor->GetRandomAnimation( "idle" ) );
-			m_actor->GetModel()->SetAnimation( m_fsm_animation, false, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed );
-		}
-		if( ( m_fsm_cyclepos <= m_fsm_anipos2 ) &&
-			( nextpos > m_fsm_anipos2 ) )
-		{
-			// Load the ammunition.
-			m_actor->ShowAmmunition();
-		}
+
 		if( ( m_fsm_cyclepos <= action->m_Speed ) && ( nextpos > action->m_Speed ) )
 		{
-			m_actor->HideAmmunition();
-
 			// TODO: Play a sound here. Use m_base->m_SoundGroupTable[animation] to get the
 			// name of the soundgroup XML file to play.
 
@@ -449,8 +422,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 				// Cancel current order
 				entf_clear(ENTF_IS_RUNNING);
 				entf_clear(ENTF_SHOULD_RUN);
-				m_actor->SetEntitySelection( "idle" );
-				m_actor->SetRandomAnimation( "idle" );
+				m_actor->SetAnimationState( "idle" );
 				popOrder();
 				if( m_orderQueue.empty() && target.isValid() )
 				{
@@ -503,7 +475,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->allowsMovement() )
 			{
 				popOrder();
-				m_actor->SetRandomAnimation( "idle" );
+				m_actor->SetAnimationState( "idle" );
 				return false;		// We're not allowed to move at all by the current stance
 			}
 
@@ -513,7 +485,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			// The pathfinder will push its result in front of the current order
 			if( !g_Pathfinder.requestAvoidPath( me, current, action->m_MinRange + 2.0f ) )
 			{
-				m_actor->SetRandomAnimation( "idle" );	// Nothing we can do.. maybe we'll find a better target
+				m_actor->SetAnimationState( "idle" );	// Nothing we can do.. maybe we'll find a better target
 				popOrder();
 			}
 
@@ -596,44 +568,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		entf_clear(ENTF_IS_RUNNING);
 	}
 
-	// Pick our animation, calculate the time to play it, and start the timer.
-	m_actor->SetEntitySelection( animation );
-	m_fsm_animation = m_actor->GetRandomAnimation( animation );
-
-	// Here's the idea - we want to be at that animation's event point
-	// when the timer reaches action->m_Speed. The timer increments by 2 every millisecond.
-	// animation->m_actionpos is the time offset into that animation that event
-	// should happen. So...
-	m_fsm_anipos = (size_t)( action->m_Speed * ( 1.0f - 2 * m_fsm_animation->m_ActionPos ) );
-	// But...
-	if( m_fsm_anipos < 0 ) // (FIXME: m_fsm_anipos is unsigned, so this will never be true...)
-	{
-		// We ought to have started it in the past. Oh well.
-		// Here's what we'll do: play it now, and advance it to
-		// the point it should be by now.
-		
-		m_actor->GetModel()->SetAnimation( m_fsm_animation, true, 1000.0f * m_fsm_animation->m_AnimDef->GetDuration() / (float)action->m_Speed, m_actor->GetRandomAnimation( "idle" ) );
-		m_actor->GetModel()->Update( action->m_Speed * ( m_fsm_animation->m_ActionPos / 1000.0f - 0.0005f ) );
-	}
-	else
-	{
-		// If we've just transitioned, play idle. Otherwise, let the previous animation complete, if it
-		// hasn't already.
-		if( entf_get(ENTF_TRANSITION) )
-		{
-			// (don't change actor's entity-selection)
-			m_actor->SetRandomAnimation( "idle" );
-		}
-	}
-
-	// Load time needs to be animation->m_ActionPos2 ms after the start of the animation.
-
-	m_fsm_anipos2 = m_fsm_anipos + (size_t)( action->m_Speed * m_fsm_animation->m_ActionPos2 * 2 );
-	if( m_fsm_anipos2 < 0 ) // (FIXME: m_fsm_anipos2 is unsigned, so this will never be true...)
-	{
-		// Load now.
-		m_actor->ShowAmmunition();
-	}
+	m_actor->SetAnimationState( animation, false, 1000.f / (float)action->m_Speed );
+	m_actor->SetAnimationSync( (float)( action->m_Speed / 2) / 1000.f );
 
 	m_fsm_cyclepos = 0;
 

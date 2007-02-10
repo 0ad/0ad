@@ -9,6 +9,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "ps/CLogger.h"
 #include "lib/timer.h"
+#include "maths/MathUtil.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -153,17 +154,13 @@ bool CObjectBase::Load(const char* filename)
 								}
 								else if (ae.Name == at_event)
 								{
-									anim.m_ActionPos = CStr(ae.Value).ToDouble();
-									if (anim.m_ActionPos < 0.0) anim.m_ActionPos = 0.0;
-									else if (anim.m_ActionPos > 100.0) anim.m_ActionPos = 1.0;
-									else if (anim.m_ActionPos > 1.0) anim.m_ActionPos /= 100.0;
+									float pos = CStr(ae.Value).ToFloat();
+									anim.m_ActionPos = clamp(pos, 0.f, 1.f);
 								}
 								else if (ae.Name == at_load)
 								{
-									anim.m_ActionPos2 = CStr(ae.Value).ToDouble();
-									if (anim.m_ActionPos2 < 0.0) anim.m_ActionPos2 = 0.0;
-									else if (anim.m_ActionPos2 > 100.0) anim.m_ActionPos2 = 1.0;
-									else if (anim.m_ActionPos2 > 1.0) anim.m_ActionPos2 /= 100.0;
+									float pos = CStr(ae.Value).ToFloat();
+									anim.m_ActionPos2 = clamp(pos, 0.f, 1.f);
 								}
 								else
 									; // unrecognised element

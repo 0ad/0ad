@@ -26,8 +26,8 @@ public:
 		float m_Speed;
 		// fraction of the way through the animation that the interesting bit(s)
 		// happens 
-		double m_ActionPos;
-		double m_ActionPos2;
+		float m_ActionPos;
+		float m_ActionPos2;
 	};
 
 	struct Prop {

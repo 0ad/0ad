@@ -10,8 +10,9 @@
 #define _FILEUNPACKER_H
 
 #include <vector>
-#include "lib/res/file/file.h"
-#include "CStr.h"
+#include "lib/res/file/file_io.h"
+
+class CStr8;
 
 #include "ps/Errors.h"
 #ifndef ERROR_GROUP_FILE_DEFINED
@@ -47,7 +48,7 @@ public:
 	// the given number of bytes have been read
 	void UnpackRaw(void* rawdata, u32 rawdatalen);
 	// UnpackString: unpack a string from the raw data stream
-	void UnpackString(CStr& result);
+	void UnpackString(CStr8& result);
 
 private:
 	// the data read from file and used during unpack operations

@@ -30,6 +30,7 @@
 #include "ps/Util.h"
 #include "ps/i18n.h"
 
+#include "graphics/CinemaTrack.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapReader.h"

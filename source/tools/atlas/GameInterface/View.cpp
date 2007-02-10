@@ -197,9 +197,14 @@ void ViewGame::Update(float frameLength)
 				ok = g_Game->Update(0.0, false); // don't add on any extra sim time
 			}
 		}
-		// Interpolate the graphics - we only want to do it once per visual frame,
+
+		// Interpolate the graphics - we only want to do this once per visual frame,
 		// not in every call to g_Game->Update
 		g_Game->GetSimulation()->Interpolate(actualFrameLength);
+
+		// If we still couldn't keep up, just drop the sim rate instead of building
+		// up a (potentially very large) backlog of required updates
+		g_Game->GetSimulation()->DiscardMissedUpdates();
 	}
 
 	// Cinematic motion should be independent of simulation update, so we can

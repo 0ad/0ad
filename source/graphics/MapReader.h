@@ -5,7 +5,6 @@
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
 #include "LightEnv.h"
-#include "CinemaTrack.h"
 #include "ps/FileUnpacker.h"
 
 class CObjectEntry;

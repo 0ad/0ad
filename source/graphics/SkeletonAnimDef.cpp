@@ -9,6 +9,7 @@
 #include "precompiled.h"
 
 #include "SkeletonAnimDef.h"
+#include "maths/MathUtil.h"
 #include "ps/FilePacker.h"
 #include "ps/FileUnpacker.h"
 
@@ -31,27 +32,46 @@ CSkeletonAnimDef::~CSkeletonAnimDef()
 // animation
 void CSkeletonAnimDef::BuildBoneMatrices(float time,CMatrix3D* matrices) const
 {
-	float fstartframe=time/m_FrameTime;
-	u32 startframe=u32(time/m_FrameTime);
-	float deltatime=fstartframe-startframe;
+	float fstartframe = time/m_FrameTime;
+	u32 startframe = u32(time/m_FrameTime);
+	float deltatime = fstartframe-startframe;
 
-	startframe%=m_NumFrames; 
+	startframe %= m_NumFrames; 
 
-	u32 endframe=startframe+1;
-	endframe%=m_NumFrames; 
+	u32 endframe = startframe + 1;
+	endframe %= m_NumFrames; 
 
-	u32 i;
-	for (i=0;i<m_NumKeys;i++) {
-		const Key& startkey=GetKey(startframe,i);
-		const Key& endkey=GetKey(endframe,i);
-		
-		CVector3D trans=startkey.m_Translation*(1-deltatime)+endkey.m_Translation*deltatime;
-		CQuaternion rot;
-		rot.Slerp(startkey.m_Rotation,endkey.m_Rotation,deltatime);
+	if (endframe == 0)
+	{
+		// This might be something like a death animation, and interpolating
+		// between the final frame and the initial frame is wrong, because they're
+		// totally different. So if we've looped around to endframe==0, just display
+		// the animation's final frame with no interpolation.
+		// (TODO: this is only sometimes valid - how can we tell the difference?)
+		for (u32 i = 0; i < m_NumKeys; i++)
+		{
+			const Key& key = GetKey(startframe, i);
+			matrices[i].SetIdentity();
+			matrices[i].Rotate(key.m_Rotation);
+			matrices[i].Translate(key.m_Translation);
+		}
+	}
+	else
+	{
+		for (u32 i = 0; i < m_NumKeys; i++)
+		{
+			const Key& startkey=  GetKey(startframe, i);
+			const Key& endkey = GetKey(endframe, i);
 
-		matrices[i].SetIdentity();
-		matrices[i].Rotate(rot);
-		matrices[i].Translate(trans);
+			CVector3D trans = Interpolate(startkey.m_Translation, endkey.m_Translation, deltatime);
+			// TODO: is slerp the best thing to use here?
+			CQuaternion rot;
+			rot.Slerp(startkey.m_Rotation, endkey.m_Rotation, deltatime);
+
+			matrices[i].SetIdentity();
+			matrices[i].Rotate(rot);
+			matrices[i].Translate(trans);
+		}
 	}
 }
 

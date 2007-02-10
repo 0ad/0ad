@@ -1143,31 +1143,31 @@ static LibError SndData_reload(SndData * sd, const char * fn, Handle hsd)
 	ALsizei al_size = (ALsizei)file_size;
 
 #ifdef OGG_HACK
-std::vector<u8> data;
-data.reserve(500000);
-if(file_type == FT_OGG)
-{
- sd->o = ogg_create();
- ogg_give_raw(sd->o, (void*)file, file_size);
- ogg_open(sd->o, sd->al_fmt, sd->al_freq);
- size_t datasize=0;
- size_t bytes_read;
- do
- {
-  const size_t bufsize = 32*KiB;
-  char buf[bufsize];
-  bytes_read = ogg_read(sd->o, buf, bufsize);
-  data.insert(data.end(), &buf[0], &buf[bytes_read]);
-  datasize += bytes_read;
- }
- while(bytes_read > 0);
- al_data = &data[0];
- al_size = (ALsizei)datasize;
-}
-else
-{
- sd->o = NULL;
-}
+	std::vector<u8> data;
+	data.reserve(500000);
+	if(file_type == FT_OGG)
+	{
+		sd->o = ogg_create();
+		ogg_give_raw(sd->o, (void*)file, file_size);
+		ogg_open(sd->o, sd->al_fmt, sd->al_freq);
+		size_t datasize=0;
+		size_t bytes_read;
+		do
+		{
+			const size_t bufsize = 32*KiB;
+			char buf[bufsize];
+			bytes_read = ogg_read(sd->o, buf, bufsize);
+			data.insert(data.end(), &buf[0], &buf[bytes_read]);
+			datasize += bytes_read;
+		}
+		while(bytes_read > 0);
+		al_data = &data[0];
+		al_size = (ALsizei)datasize;
+	}
+	else
+	{
+		sd->o = NULL;
+	}
 #endif
 
 	(void)file_buf_free(file);

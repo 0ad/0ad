@@ -29,6 +29,10 @@ class CSkeletonAnimDef;
 // information for a model in game
 class CModel : public CRenderableObject
 {
+	friend class CUnitAnimation;
+		// HACK - we should probably move the rest of this class's animation state
+		// into the animation class, then it wouldn't need friend access
+
 public:
 	struct Prop {
 		Prop() : m_Point(0), m_Model(0), m_ObjectEntry(0) {}
@@ -50,6 +54,9 @@ public:
 	void CalcBounds();
 	// update this model's state; 'time' is the time since the last update, in MS
 	void Update(float time);
+	// returns true if Update(time) will require a new animation (due to the
+	// current one ending)
+	bool NeedsNewAnim(float time) const;
 
 	// get the model's geometry data
 	CModelDefPtr GetModelDef() { return m_pModelDef; }
@@ -76,7 +83,7 @@ public:
 	bool SetAnimation(CSkeletonAnim* anim, bool once = false, float speed = 1000.0f, CSkeletonAnim* next = NULL);
 
 	// get the currently playing animation, if any
-	CSkeletonAnim* GetAnimation() { return m_Anim; }
+	CSkeletonAnim* GetAnimation() const { return m_Anim; }
 
 	// set the animation state to be the same as from another; both models should
 	// be compatible types (same type of skeleton)

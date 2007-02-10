@@ -44,6 +44,11 @@ public:
 	// Returns false if it can't keep up with the desired simulation rate.
 	bool Update(double frameTime);
 
+	// If the last Update couldn't keep up with the desired rate, ignore that
+	// and don't try to catch up when Update is called again. Will completely break
+	// synchronisation of sim time vs real time.
+	void DiscardMissedUpdates();
+
 	// Update the graphical representations of the simulation by the given time.
 	void Interpolate(double frameTime);
 

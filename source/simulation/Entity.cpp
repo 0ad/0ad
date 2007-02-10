@@ -257,11 +257,12 @@ void CEntity::kill(bool keepActor)
 	g_Selection.removeAll( me );
 
 	entf_set(ENTF_DESTROYED);
-	g_EntityManager.SetDeath(true);		// remember that a unit died this frame
+	g_EntityManager.m_refd[me.m_handle] = false; // refd must be made false when DESTROYED is set
+	g_EntityManager.SetDeath(true); // remember that a unit died this frame
 
 	// If we have a death animation and want to keep the actor, play that animation
 	if( keepActor && m_actor && 
-		m_actor->GetRandomAnimation( "death" ) != m_actor->GetRandomAnimation( "idle" ) )
+		m_actor->HasAnimation( "death" ) )
 	{
 		// Prevent "wiggling" as we try to interpolate between here and our death position (if we were moving)
 		m_graphics_position = m_position;
@@ -274,16 +275,13 @@ void CEntity::kill(bool keepActor)
 
 		// Play death animation and keep the actor in the game in a dead state 
 		// (TODO: remove the actor after some time through some kind of fading mechanism)
-		m_actor->SetEntitySelection( "death" );
-		m_actor->SetRandomAnimation( "death", true );
+		m_actor->SetAnimationState( "death", true );
 	}
 	else
 	{
-		g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
-		delete( m_actor );
+		g_Game->GetWorld()->GetUnitManager().DeleteUnit( m_actor );
 		m_actor = NULL;
 
-		g_EntityManager.m_refd[me.m_handle] = false;
 		me = HEntity(); // Will deallocate the entity, assuming nobody else has a reference to it
 	}
 }
@@ -526,8 +524,7 @@ void CEntity::update( size_t timestep )
 		{
 			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
 			{
-				m_actor->SetEntitySelection( "idle" );
-				m_actor->SetRandomAnimation( "idle" );
+				m_actor->SetAnimationState( "idle" );
 			}
 		}
 	}

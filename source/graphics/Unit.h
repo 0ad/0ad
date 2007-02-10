@@ -10,7 +10,7 @@ class CObjectEntry;
 class CObjectManager;
 class CEntity;
 class CSkeletonAnim;
-class CStrW;
+class CUnitAnimation;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // CUnit: simple "actor" definition - defines a sole object within the world
@@ -47,9 +47,15 @@ public:
 	// SetEntitySelection(name) should typically be used before this.
 	bool SetRandomAnimation(const CStr& name, bool once = false, float speed = 0.0f);
 
+	void SetAnimationState(const CStr& name, bool once = false, float speed = 0.0f, bool keepSelection = false);
+	void SetAnimationSync(float timeUntilActionPos);
+	void UpdateModel(float frameTime);
+
 	// Returns a random animation matching 'name'. If none is found,
 	// returns idle instead.
 	CSkeletonAnim* GetRandomAnimation(const CStr& name);
+
+	bool HasAnimation(const CStr& name);
 
 	// Sets the entity-selection, and updates the unit to use the new
 	// actor variation.
@@ -84,6 +90,8 @@ private:
 	CEntity* m_Entity;
 	// player id of this unit (only read for graphical effects), or -1 if unspecified
 	int m_PlayerID;
+
+	CUnitAnimation* m_Animation;
 
 	// unique (per map) ID number for units created in the editor, as a
 	// permanent way of referencing them. -1 for non-editor units.

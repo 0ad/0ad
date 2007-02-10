@@ -9,24 +9,28 @@
 #include "ScriptGlue.h"
 #include "JSConversions.h"
 #include "GameEvents.h"
+
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapWriter.h"
+#include "graphics/Unit.h"
+#include "graphics/UnitManager.h"
 #include "graphics/scripting/JSInterface_Camera.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
 #include "gui/CGUI.h"
 #include "lib/timer.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
+#include "network/Client.h"
+#include "network/Server.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
-#include "ps/Interact.h"
-#include "network/Client.h"
-#include "network/Server.h"
-#include "ps/i18n.h"
 #include "ps/Hotkey.h"
+#include "ps/Interact.h"
+#include "ps/ProfileViewer.h"
+#include "ps/i18n.h"
 #include "ps/scripting/JSCollection.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSInterface_Selection.h"
@@ -34,20 +38,18 @@
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
-#include "graphics/Unit.h"
-#include "graphics/UnitManager.h"
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/TechnologyCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityFormation.h"
 #include "simulation/EntityHandles.h"
 #include "simulation/EntityManager.h"
 #include "simulation/EntityTemplate.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/FormationManager.h"
-#include "simulation/TriggerManager.h"
 #include "simulation/LOSManager.h"
 #include "simulation/Scheduler.h"
 #include "simulation/Simulation.h"
+#include "simulation/TechnologyCollection.h"
+#include "simulation/TriggerManager.h"
 
 #ifndef NO_GUI
 # include "gui/scripting/JSInterface_IGUIObject.h"
@@ -1058,6 +1060,14 @@ JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv,
 	return( JS_TRUE );
 }
 
+// Saves the current profiling data to the logs/profile.txt file
+JSBool saveProfileData( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_NO_PARAMS();
+	g_ProfileViewer.SaveToFile();
+	return( JS_TRUE );
+}
+
 // Activates the building placement cursor for placing a building. The currently selected units
 // are then ordered to construct the building if it is placed.
 // params: templateName - the name of the entity to place.
@@ -1474,6 +1484,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(v3dist, v3dist, 2)
 	JS_FUNC(buildTime, buildTime, 0)
 	JS_FUNC(getGlobal, getGlobal, 0)
+	JS_FUNC(saveProfileData, saveProfileData, 0)
 
 	// end of table marker
 	{0, 0, 0, 0, 0}

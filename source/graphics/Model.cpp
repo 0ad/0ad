@@ -225,20 +225,35 @@ void CModel::Update(float time)
 	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
 	{
 		// adjust for animation speed
-		float animtime = time*m_AnimSpeed;
+		float animTimeDelta = time*m_AnimSpeed;
+
+		float oldAnimTime = m_AnimTime;
 
 		// update animation time, but don't calculate bone matrices - do that (lazily) when
 		// something requests them; that saves some calculation work for offscreen models,
 		// and also assures the world space, inverted bone matrices (required for normal
 		// skinning) are up to date with respect to m_Transform 
-		m_AnimTime += animtime;
+		m_AnimTime += animTimeDelta;
 		
-
 		float duration = m_Anim->m_AnimDef->GetDuration();
 		if (m_AnimTime > duration)
 		{
 			if (m_Flags & MODELFLAG_NOLOOPANIMATION)
-				SetAnimation(m_NextAnim);
+			{
+				if (m_NextAnim)
+					SetAnimation(m_NextAnim);
+				else
+				{
+					// Changing to no animation - probably becoming a corpse.
+					// Make sure the last displayed frame is the final frame
+					// of the animation.
+					float nearlyEnd = duration - 1.f; // 1 msec
+					if (abs(oldAnimTime - nearlyEnd) < 1.f)
+						SetAnimation(NULL);
+					else
+						m_AnimTime = nearlyEnd;
+				}
+			}
 			else
 				m_AnimTime = fmod(m_AnimTime, duration);
 		}
@@ -253,6 +268,24 @@ void CModel::Update(float time)
 	// update props
 	for (size_t i = 0; i < m_Props.size(); ++i)
 		m_Props[i].m_Model->Update(time);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+bool CModel::NeedsNewAnim(float time) const
+{
+	// TODO: fix UnitAnimation so it correctly loops animated props
+
+	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
+	{
+		// adjust for animation speed
+		float animtime = time * m_AnimSpeed;
+
+		float duration = m_Anim->m_AnimDef->GetDuration();
+		if (m_AnimTime + animtime > duration)
+			return true;
+	}
+
+	return false;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

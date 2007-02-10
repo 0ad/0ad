@@ -17,6 +17,7 @@
 #include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"
 #include "ps/DllLoader.h"
+#include "ps/Profile.h"
 
 using namespace AtlasMessage;
 
@@ -200,6 +201,10 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 		state.view->Update(state.frameLength);
 
 		state.view->Render();
+
+		if (CProfileManager::IsInitialised())
+			g_Profiler.Frame();
+
 
 		double time = get_time();
 		if (recent_activity)
