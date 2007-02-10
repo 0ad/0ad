@@ -50,8 +50,8 @@ static bool bookmarkInUse[10] = { false, false, false, false, false, false, fals
 static i8 currentBookmark = -1;
 
 const float CGameView::defaultFOV = DEGTORAD(20.f);
-const float CGameView::defaultNear = 1.f;
-const float CGameView::defaultFar = 5000.f;
+const float CGameView::defaultNear = 4.f;
+const float CGameView::defaultFar = 4096.f;
 
 class CGameViewImpl : public CJSObject<CGameViewImpl>, boost::noncopyable
 {
@@ -327,6 +327,8 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	const std::vector<CUnit*>& units = unitMan.GetUnits();
 	for (uint i=0;i<units.size();++i)
 	{
+		oglCheck();
+
 		CEntity* ent = units[i]->GetEntity();
 		if( ent && !ent->m_visible )
 			continue;

@@ -35,7 +35,7 @@
 WaterManager::WaterManager()
 {
 	// water
-	m_RenderWater = true;
+	m_RenderWater = false; // disabled until textures are successfully loaded
 	m_WaterHeight = 5.0f;
 	m_WaterColor = CColor(0.3f, 0.35f, 0.7f, 1.0f);
 	m_WaterFullDepth = 4.0f;
@@ -50,6 +50,8 @@ WaterManager::WaterManager()
 	m_WaterCurrentTex = 0;
 	m_ReflectionTexture = 0;
 	m_RefractionTexture = 0;
+	m_ReflectionTextureSize = 0;
+	m_RefractionTextureSize = 0;
 	m_WaterTexTimer = 0.0;
 	m_Shininess = 150.0f;
 	m_SpecularStrength = 0.4f;
@@ -158,6 +160,9 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	// Enable rendering, now that we've succeeded this far
+	m_RenderWater = true;
 
 	return 0;
 }
