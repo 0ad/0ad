@@ -101,7 +101,7 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::checkGroup );
 	AddClassProperty( L"traits.extant", &CEntity::m_extant );
 	AddClassProperty( L"actions.move.turningRadius", &CEntity::m_turningRadius );
-	AddClassProperty( L"position", &CEntity::m_graphics_position, false, (NotifyFn)&CEntity::teleport );
+	AddClassProperty( L"position", &CEntity::m_position, false, (NotifyFn)&CEntity::teleport );
 	AddClassProperty( L"orientation", &CEntity::m_orientation, false, (NotifyFn)&CEntity::reorient );
 	AddClassProperty( L"player", (GetFn)&CEntity::JSI_GetPlayer, (SetFn)&CEntity::JSI_SetPlayer );
 	AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );

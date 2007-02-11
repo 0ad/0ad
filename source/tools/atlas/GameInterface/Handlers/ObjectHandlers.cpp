@@ -577,13 +577,8 @@ BEGIN_COMMAND(MoveObject)
 
 		if (unit->GetEntity())
 		{
-			// Set the current position, and also set the previous position so
-			// CEntity::interpolate puts the entity in the right place (without
-			// having to call CEntity::update before it'll look right)
 			unit->GetEntity()->m_position = pos;
-			unit->GetEntity()->m_position_previous = pos;
-			unit->GetEntity()->m_bounds->setPosition(pos.X, pos.Z);
-			unit->GetEntity()->updateCollisionPatch();
+			unit->GetEntity()->teleport();
 
 			if (unit->GetEntity()->m_base->m_isTerritoryCentre)
 				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
@@ -679,8 +674,7 @@ BEGIN_COMMAND(RotateObject)
 		if (unit->GetEntity())
 		{
 			unit->GetEntity()->m_orientation.Y = angle;
-			// TODO: set bounds orientation? (but we'd have to work out whether
-			// it's an orientable type first)
+			unit->GetEntity()->reorient();
 		}
 		else
 		{

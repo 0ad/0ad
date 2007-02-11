@@ -181,7 +181,8 @@ public:
 
 	//-- Interpolated property
 	CVector3D m_orientation;
-	CVector3D m_orientation_previous;
+	CVector3D m_orientation_smoothed; // used for slow graphical-only rotation - tends towards m_orientation
+	CVector3D m_orientation_previous; // previous smoothed value
 	CVector3D m_graphics_orientation;
 	
 	CVector2D m_orientation_unclamped;
@@ -244,6 +245,8 @@ private:
 	float chooseMovementSpeed( float distance );
 	
 	bool shouldRun( float distance );		// Given our distance to a target, can we be running?
+
+	void updateOrders( size_t timestep_millis );
 
 public:
 	~CEntity();

@@ -33,7 +33,7 @@
 
 #include <algorithm>
 
-extern int g_xres, g_yres;
+const float MAX_ROTATION_RATE = 2*PI; // radians per second
 
 CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building )
 {
@@ -46,7 +46,7 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_ahead.x = sin( m_orientation.Y );
 	m_ahead.y = cos( m_orientation.Y );
 	m_position_previous = m_position;
-	m_orientation_previous = m_orientation;
+	m_orientation_smoothed = m_orientation_previous = m_orientation;
 	m_player = NULL;
 
 	m_productionQueue = new CProductionQueue( this );
@@ -268,6 +268,7 @@ void CEntity::kill(bool keepActor)
 		m_graphics_position = m_position;
 		m_position_previous = m_position;
 		m_graphics_orientation = m_orientation;
+		m_orientation_smoothed = m_orientation;
 		m_orientation_previous = m_orientation;
 
 		snapToGround();
@@ -373,7 +374,7 @@ void CEntity::update( size_t timestep )
 	if( !m_extant ) return;
 
 	m_position_previous = m_position;
-	m_orientation_previous = m_orientation;
+	m_orientation_previous = m_orientation_smoothed;
 
 	CalculateRegen( timestep );
 
@@ -401,6 +402,31 @@ void CEntity::update( size_t timestep )
 
 	PROFILE_END( "aura processing" );
 
+	updateOrders( timestep );
+
+
+	// Calculate smoothed rotation: rotate around Y by at most MAX_ROTATION_RATE per second
+
+	float delta = m_orientation.Y - m_orientation_smoothed.Y;
+	// Wrap delta to -PI..PI
+	delta = fmod(delta + PI, 2*PI); // range -2PI..2PI
+	if (delta < 0) delta += 2*PI; // range 0..2PI
+	delta -= PI; // range -PI..PI
+	// Clamp to max rate
+	float deltaClamped = clamp(delta, -MAX_ROTATION_RATE*timestep/1000.f, +MAX_ROTATION_RATE*timestep/1000.f);
+	// Calculate new orientation, in a peculiar way in order to make sure the
+	// result gets close to m_orientation (rather than being n*2*PI out)
+	float newY = m_orientation.Y + deltaClamped - delta;
+	// Apply the smoothed rotation
+	m_orientation_smoothed = CVector3D(
+		m_orientation.X,
+		newY,
+		m_orientation.Z
+	);
+}
+
+void CEntity::updateOrders( size_t timestep )
+{
 	// The process[...] functions return 'true' if the order at the top of the stack
 	// still needs to be (re-)evaluated; else 'false' to terminate the processing of
 	// this entity in this timestep.
@@ -846,7 +872,9 @@ void CEntity::repath()
 
 void CEntity::reorient()
 {
-	m_orientation = m_graphics_orientation;
+	m_graphics_orientation = m_orientation;
+	m_orientation_previous = m_orientation;
+	m_orientation_smoothed = m_orientation;
 
 	m_ahead.x = sin( m_orientation.Y );
 	m_ahead.y = cos( m_orientation.Y );
@@ -857,11 +885,16 @@ void CEntity::reorient()
 
 void CEntity::teleport()
 {
-	m_position = m_graphics_position;
+	m_position_previous = m_position;
+	m_graphics_position = m_position;
 	m_bounds->setPosition( m_position.X, m_position.Z );
 	updateActorTransforms();
 	updateCollisionPatch();
-	repath();
+
+	// TODO: repath breaks things - entities get sent to (0,0) if they're moved in
+	// Atlas. I can't see teleport being used anywhere else important, so
+	// hopefully it won't hurt to just remove it for now...
+//	repath();
 }
 
 void CEntity::stanceChanged()
@@ -940,7 +973,7 @@ void CEntity::interpolate( float relativeoffset )
 
 	updateXZOrientation();
 
-	m_graphics_orientation = Interpolate<CVector3D>( m_orientation_previous, m_orientation, relativeoffset );
+	m_graphics_orientation = Interpolate<CVector3D>( m_orientation_previous, m_orientation_smoothed, relativeoffset );
 
 	// Mark the actor transform data as invalid if the entity has moved since
 	// the last call to 'interpolate'.
