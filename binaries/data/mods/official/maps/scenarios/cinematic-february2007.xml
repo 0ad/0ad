@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="266.432" y="73.9057" z="115.218"/>
+		<Position x="295.201" y="52.0463" z="150.4"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -379,7 +379,7 @@
 		<Entity uid="67">
 			<Template>celt_house</Template>
 			<Player>3</Player>
-			<Position x="88.4149" y="22.4" z="189.503"/>
+			<Position x="88.6796" y="22.3048" z="187.422"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="68">
@@ -397,8 +397,8 @@
 		<Entity uid="70">
 			<Template>celt_sb1</Template>
 			<Player>3</Player>
-			<Position x="81.1929" y="22.4" z="202.606"/>
-			<Orientation angle="2.35619"/>
+			<Position x="82.4527" y="22.4" z="199.262"/>
+			<Orientation angle="2.53214"/>
 		</Entity>
 		<Entity uid="71">
 			<Template>celt_scout_tower</Template>
@@ -427,8 +427,8 @@
 		<Entity uid="75">
 			<Template>celt_house</Template>
 			<Player>3</Player>
-			<Position x="78.6127" y="22.4" z="218.708"/>
-			<Orientation angle="2.35619"/>
+			<Position x="78.6956" y="22.4" z="221.536"/>
+			<Orientation angle="2.48939"/>
 		</Entity>
 		<Entity uid="76">
 			<Template>celt_house</Template>
@@ -445,8 +445,8 @@
 		<Entity uid="78">
 			<Template>celt_house</Template>
 			<Player>3</Player>
-			<Position x="98.3712" y="22.4" z="238.76"/>
-			<Orientation angle="2.35619"/>
+			<Position x="98.296" y="22.4" z="239.032"/>
+			<Orientation angle="2.44861"/>
 		</Entity>
 		<Entity uid="79">
 			<Template>celt_house</Template>
@@ -2281,7 +2281,7 @@
 		<Entity uid="13845">
 			<Template>rome_cavalry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="297.389" y="22.3906" z="188.784"/>
+			<Position x="297.021" y="22.3828" z="189.439"/>
 			<Orientation angle="-0.149705"/>
 		</Entity>
 		<Entity uid="13846">
@@ -2305,7 +2305,7 @@
 		<Entity uid="15084">
 			<Template>celt_support_female_citizen</Template>
 			<Player>3</Player>
-			<Position x="104.256" y="22.4" z="236.697"/>
+			<Position x="103.993" y="22.4" z="233.916"/>
 			<Orientation angle="-2.4754"/>
 		</Entity>
 		<Entity uid="16314">
@@ -2313,6 +2313,12 @@
 			<Player>1</Player>
 			<Position x="275.595" y="22.4" z="178.022"/>
 			<Orientation angle="-0.732282"/>
+		</Entity>
+		<Entity uid="17544">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="63.3692" y="22.4" z="205.591"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -8463,12 +8469,12 @@
 			<Path>
 				<Rotation x="0.523599" y="0" z="0"/>
 				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="292" y="50" z="151" t="0"/>
-				<Node x="286" y="58" z="136" t="10"/>
+				<Node x="292" y="50" z="165" t="0"/>
+				<Node x="286" y="58" z="153" t="10"/>
 				<Node x="274" y="72" z="127" t="5"/>
 				<Node x="262" y="99" z="82" t="5"/>
-				<Node x="223" y="84" z="112" t="3"/>
-				<Node x="190" y="100" z="36" t="6"/>
+				<Node x="223" y="74" z="112" t="3"/>
+				<Node x="190" y="93" z="39" t="6"/>
 				<Node x="121" y="100" z="62" t="8"/>
 				<Node x="98" y="74" z="136" t="5"/>
 				<Node x="98" y="60" z="204" t="10"/>
@@ -8558,6 +8564,23 @@
 					<Parameter>[233]</Parameter>
 					<Parameter>[3865]</Parameter>
 					<Parameter>Attack</Parameter>
+				</Effect>
+			</Effects>
+		</Trigger>
+		<Trigger name="Female villager">
+			<Active>true</Active>
+			<MaxRunCount>1</MaxRunCount>
+			<Delay>3</Delay>
+			<Conditions>
+				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
+			</Conditions>
+			<Effects>
+				<Effect name="Effect 0">
+					<function>trigObjectTask</function>
+					<display>Object task</display>
+					<Parameter>[15084]</Parameter>
+					<Parameter>[17544]</Parameter>
+					<Parameter>Gather</Parameter>
 				</Effect>
 			</Effects>
 		</Trigger>

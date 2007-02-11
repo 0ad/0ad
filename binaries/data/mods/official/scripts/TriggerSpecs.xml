@@ -101,7 +101,7 @@
 			<Parameter name="Task">
 				<Window type="choice" position="5,0" size="80,20"/>
 				<Choices>None,Attack,Gather,Heal,Build,Repair</Choices>
-				<ChoiceTranslation>0, 1, 2, 3, 5, 6</ChoiceTranslation>
+				<ChoiceTranslation>ACTION_NONE, ACTION_ATTACK, ACTION_GATHER, ACTION_HEAL, ACTION_BUILD, ACTION_REPAIR</ChoiceTranslation>
 				<ParameterOrder>2</ParameterOrder>
 			</Parameter>
 		</WindowRow>
