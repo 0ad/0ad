@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="125.264" y="99.2454" z="132.896"/>
-		<Rotation angle="-0.590686"/>
-		<Declination angle="0.64406"/>
+		<Position x="98.0001" y="60" z="204"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
 		<Entity uid="0">
@@ -409,19 +409,19 @@
 		<Entity uid="72">
 			<Template>celt_ship_merchant</Template>
 			<Player>3</Player>
-			<Position x="77.2515" y="20.055" z="161.27"/>
+			<Position x="87.174" y="20.055" z="160.115"/>
 			<Orientation angle="0.644417"/>
 		</Entity>
 		<Entity uid="73">
 			<Template>celt_ship_merchant</Template>
 			<Player>3</Player>
-			<Position x="91.7661" y="20.055" z="162.859"/>
+			<Position x="101.098" y="20.055" z="160.708"/>
 			<Orientation angle="2.70314"/>
 		</Entity>
 		<Entity uid="74">
 			<Template>celt_dock</Template>
 			<Player>3</Player>
-			<Position x="84.3714" y="20.3909" z="167.856"/>
+			<Position x="93.5466" y="19.4699" z="167.575"/>
 			<Orientation angle="-0.164027"/>
 		</Entity>
 		<Entity uid="75">
@@ -440,7 +440,7 @@
 			<Template>celt_house</Template>
 			<Player>3</Player>
 			<Position x="106.939" y="22.4" z="242.874"/>
-			<Orientation angle="-2.70852"/>
+			<Orientation angle="-2.49992"/>
 		</Entity>
 		<Entity uid="78">
 			<Template>celt_house</Template>
@@ -1279,7 +1279,7 @@
 		<Entity uid="226">
 			<Template>temp_celt_infantry_spearman_a_gatherer</Template>
 			<Player>3</Player>
-			<Position x="140.317" y="20.4855" z="181.533"/>
+			<Position x="143.026" y="22.0843" z="184.617"/>
 			<Orientation angle="0.304966"/>
 		</Entity>
 		<Entity uid="227">
@@ -2317,7 +2317,7 @@
 		<Entity uid="17544">
 			<Template>flora_bush_berry</Template>
 			<Player>0</Player>
-			<Position x="63.3692" y="22.4" z="205.591"/>
+			<Position x="64.2795" y="22.4" z="204.553"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
@@ -8469,7 +8469,7 @@
 			<Path>
 				<Rotation x="0.523599" y="0" z="0"/>
 				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="292" y="50" z="165" t="0"/>
+				<Node x="268" y="50" z="165" t="0"/>
 				<Node x="286" y="58" z="153" t="10"/>
 				<Node x="274" y="72" z="127" t="5"/>
 				<Node x="262" y="99" z="82" t="5"/>
