@@ -14,15 +14,17 @@
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
         <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/temp/rome_sign_infantry_javelinist_a.xml" attachpoint="head_extra"/>
-        <prop actor="props/temp/placeholder_helmet_a.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/placeholder_head_rome.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/pillum.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/rome_monte_a.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/rome_scutum_a.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/plac_rome_a.dds</texture>
+      <texture>skeletal/rome_isw_e.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
