@@ -4,13 +4,17 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="Helmet-Illyrian-Early">
+    <variant frequency="1" name="Helmet-Illyrian-NoCrest">
+      <mesh>props/helmet/hele_helmet_c.pmd</mesh>
+      <texture>props/helmet/hele_h1.dds</texture>
+    </variant>
+    <variant frequency="1" name="Helmet-Illyrian-Crested">
       <mesh>props/helmet/hele_helmet_k.pmd</mesh>
       <texture>props/helmet/hele_h1.dds</texture>
     </variant>
     <variant frequency="1" name="Helmet-Thracian-Early">
-      <mesh>props/helmet/mace_helmet_g.pmd</mesh>
-      <texture>props/helmet/mace_c.dds</texture>
+      <mesh>props/helmet/rome_helmet_n.pmd</mesh>
+      <texture>props/helmet/rome-c.dds</texture>
     </variant>
   </group>
 

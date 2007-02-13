@@ -4,13 +4,13 @@
   <castshadow/>
 
   <group>
-    <variant>
+    <variant frequency="1" name="Beard-Small">
       <mesh>props/head_beard_small.pmd</mesh>
     </variant>
-    <variant>
+    <variant frequency="1" name="Beard-Large">
       <mesh>props/head_beard_large.pmd</mesh>
     </variant>
-    <variant>
+    <variant frequency="1" name="Beard-Wide">
       <mesh>props/head_beard_wide.pmd</mesh>
     </variant>
   </group>
@@ -22,13 +22,13 @@
   </group>
 
   <group>
-    <variant name="medium blonde">
+    <variant frequency="1" name="medium blonde">
       <colour>208 188 119</colour>
     </variant>
-    <variant name="brown">
+    <variant frequency="1" name="brown">
       <colour>149 116 72</colour>
     </variant>
-    <variant name="light blonde">
+    <variant frequency="1" name="light blonde">
       <colour>244 213 117</colour>
     </variant>
   </group>
