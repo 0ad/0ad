@@ -8570,7 +8570,7 @@
 		<Trigger name="Female villager">
 			<Active>true</Active>
 			<MaxRunCount>1</MaxRunCount>
-			<Delay>3</Delay>
+			<Delay>2</Delay>
 			<Conditions>
 				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
 			</Conditions>
