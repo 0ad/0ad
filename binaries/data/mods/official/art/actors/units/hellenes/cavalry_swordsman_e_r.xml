@@ -9,6 +9,8 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="200"/>
+        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="200"/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
@@ -21,10 +23,10 @@
   </group>
 
   <group>
-    <variant name="armor-cavsword_e">
+    <variant frequency="1" name="armor-cavsword_e">
       <texture>skeletal/hele_csw_e.dds</texture>
     </variant>
-    <variant name="armor-infspear_a">
+    <variant frequency="1" name="armor-infspear_a">
       <texture>skeletal/hele_isp_a.dds</texture>
     </variant>
   </group>
