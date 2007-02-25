@@ -2,6 +2,7 @@
 
 #include "ScenarioEditor.h"
 
+#include "wx/config.h"
 #include "wx/evtloop.h"
 #include "wx/tooltip.h"
 #include "wx/image.h"

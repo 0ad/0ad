@@ -162,10 +162,6 @@
 # include <hash_set>
 #endif
 
-// Boost
-#include <boost/utility.hpp>	// noncopyable
-
-
 // (further headers to be precompiled go here)
 
 #endif // #if HAVE_PCH
@@ -188,3 +184,7 @@
 // note: mmgr.h activates mmgr or the VC debug heap or nothing depending
 // on CONFIG_USE_MMGR and HAVE_VC_DEBUG_ALLOC settings.
 # include "mmgr.h"
+
+
+// Boost
+#include <boost/utility.hpp>	// noncopyable

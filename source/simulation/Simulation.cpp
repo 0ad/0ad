@@ -136,7 +136,7 @@ void CSimulation::Interpolate(double frameTime, double offset)
 
 void CSimulation::Simulate()
 {
-	float time = m_pTurnManager->GetTurnLength();
+	uint time = m_pTurnManager->GetTurnLength();
 
 	PROFILE_START( "scheduler tick" );
 	g_Scheduler.update(time);

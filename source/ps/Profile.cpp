@@ -154,7 +154,7 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		else if (col == 4)
 			snprintf(buf, sizeof(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
 		else if (col == 5)
-			snprintf(buf, sizeof(buf), "%d", unlogged_mallocs);
+			snprintf(buf, sizeof(buf), "%ld", unlogged_mallocs);
 		buf[sizeof(buf)-1] = '\0';
 		
 		return CStr(buf);
@@ -183,7 +183,7 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		snprintf(buf, sizeof(buf), "%.1f", child->GetFrameTime() * 100.0 / node->GetFrameTime());
 		break;
 	case 5:
-		snprintf(buf, sizeof(buf), "%d", child->GetFrameMallocs());
+		snprintf(buf, sizeof(buf), "%ld", child->GetFrameMallocs());
 		break;
 	}
 	buf[sizeof(buf)-1] = '\0';

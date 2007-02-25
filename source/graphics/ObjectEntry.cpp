@@ -67,8 +67,10 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	// Build the model:
 
+/*
 	// remember the old model so we can replace any models using it later on
 	CModelDefPtr oldmodeldef = m_Model ? m_Model->GetModelDef() : CModelDefPtr();
+*/
 
 	// try and create a model
 	CModelDefPtr modeldef (objectManager.GetMeshManager().GetMesh(m_ModelName));

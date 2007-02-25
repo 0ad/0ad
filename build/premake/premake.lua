@@ -100,6 +100,7 @@ function package_set_build_flags()
 				"-Wno-switch",		-- enumeration value not handled in switch
 				"-Wno-reorder",		-- order of initialization list in constructors
 				"-Wno-non-virtual-dtor",
+				"-Wno-invalid-offsetof",	-- offsetof on non-POD types
 	
 				-- do something (?) so that ccache can handle compilation with PCH enabled
 				"-fpch-preprocess",
@@ -127,7 +128,7 @@ function package_set_build_flags()
 		}
 		package.defines = {
 			"__STDC_VERSION__=199901L",
-			"CONFIG_USE_MMGR",
+			-- "CONFIG_USE_MMGR",
 		}
 	end
 end

@@ -248,7 +248,7 @@ void CModel::Update(float time)
 					// Make sure the last displayed frame is the final frame
 					// of the animation.
 					float nearlyEnd = duration - 1.f; // 1 msec
-					if (abs(oldAnimTime - nearlyEnd) < 1.f)
+					if (fabs(oldAnimTime - nearlyEnd) < 1.f)
 						SetAnimation(NULL);
 					else
 						m_AnimTime = nearlyEnd;
