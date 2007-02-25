@@ -69,7 +69,7 @@ extern_lib_defs = {
 		no_delayload = 1,
 	},
 	ffmpeg = {
-		win_names  = { "avcodec-51", "avformat-51", "avutil-49" },
+		win_names  = { "avcodec-51", "avformat-51", "avutil-49", "swscale-0" },
 		unix_names = { "avcodec", "avformat", "avutil" },
 		dbg_suffix = "",
 	},
