@@ -333,62 +333,51 @@ void CMapWriter::WriteXML(const char* filename,
 			}
 		}
 
-		const std::map<CStrW, CCinemaTrack>& tracks = pCinema->GetAllTracks();
-		std::map<CStrW, CCinemaTrack>::const_iterator it = tracks.begin();
+		const std::map<CStrW, CCinemaPath>& paths = pCinema->GetAllPaths();
+		std::map<CStrW, CCinemaPath>::const_iterator it = paths.begin();
 		
 		{
-			XML_Element("Tracks");
+			XML_Element("Paths");
 
-			for ( ; it != tracks.end(); it++ )
+			for ( ; it != paths.end(); it++ )
 			{
-				const std::vector<CCinemaPath>& paths = it->second.GetAllPaths();
 				CStrW name = it->first;
-				size_t numPaths = paths.size();
-				CVector3D startRotation = it->second.GetRotation();
 				float timescale = it->second.GetTimescale();
-	
-				XML_Element("Track");
+				
+				XML_Element("Path");
 				XML_Attribute("name", name);
 				XML_Attribute("timescale", timescale);
+
+				const std::vector<SplineData>& nodes = it->second.GetAllNodes();
+				const CCinemaData* data = it->second.GetData();
 				
 				{
-					XML_Element("StartRotation");
-					XML_Attribute("x", startRotation.X);
-					XML_Attribute("y", startRotation.Y);
-					XML_Attribute("z", startRotation.Z);
+					XML_Element("Distortion");
+					XML_Attribute("mode", data->m_Mode);
+					XML_Attribute("style", data->m_Style);
+					XML_Attribute("growth", data->m_Growth);
+					XML_Attribute("switch", data->m_Switch);
 				}
-					
-				for ( size_t i=0; i<numPaths; ++i )
+
+				for ( int j=(int)nodes.size()-1; j >= 0; --j )
 				{
-					const std::vector<SplineData>& nodes = paths[i].GetAllNodes();
-					const CCinemaData* data = paths[i].GetData();
-
-					XML_Element("Path");
-				
-					{	
-						CVector3D rot = data->m_TotalRotation;
-						XML_Element("Rotation");
-						XML_Attribute("x", rot.X);
-						XML_Attribute("y", rot.Y);
-						XML_Attribute("z", rot.Z);
-					}
-				
+					XML_Element("Node");
+					
 					{
-						XML_Element("Distortion");
-						XML_Attribute("mode", data->m_Mode);
-						XML_Attribute("style", data->m_Style);
-						XML_Attribute("growth", data->m_Growth);
-						XML_Attribute("switch", data->m_Switch);
-					}
-
-					for ( int j=(int)nodes.size()-1; j >= 0; --j )
-					{
-						XML_Element("Node");
+						XML_Element("Position");
 						XML_Attribute("x", nodes[j].Position.X);
 						XML_Attribute("y", nodes[j].Position.Y);
 						XML_Attribute("z", nodes[j].Position.Z);
-						XML_Attribute("t", nodes[j].Distance);
 					}
+
+					{
+						XML_Element("Rotation");
+						XML_Attribute("x", nodes[j].Rotation.X);
+						XML_Attribute("y", nodes[j].Rotation.Y);
+						XML_Attribute("z", nodes[j].Rotation.Z);
+					}
+
+					XML_Setting("Time", nodes[j].Distance);
 				}
 			}
 		}

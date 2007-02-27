@@ -37,6 +37,7 @@ public:
 	
 	//Finds condition number (index+1) of m_SelectedCond [needed because of logic blocks]
 	int GetConditionCount(int limit);
+	int GetLogicBlockCount(int limit);
 	void UpdateLists();
 	void UpdateEngineData();
 

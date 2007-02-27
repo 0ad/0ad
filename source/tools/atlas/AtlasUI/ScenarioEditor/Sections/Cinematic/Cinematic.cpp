@@ -35,20 +35,19 @@ class CinematicBottomBar : public wxPanel
 	friend void TimescaleSpin(void*);
 public:
 	CinematicBottomBar(wxWindow* parent, CinematicSidebar* side);
-	void AddLists(CinematicSidebar* side, TrackListCtrl* tracks,
-				PathListCtrl* paths, NodeListCtrl* nodes);
+	void AddLists(CinematicSidebar* side, PathListCtrl* paths, NodeListCtrl* nodes);
 	void OnText(wxCommandEvent& WXUNUSED(event))
 	{
 		m_OldScale = CinemaTextFloat(*m_TimeText, 2, -5.f, 5.f, m_OldScale);
-		m_Sidebar->UpdateTrack(m_Name->GetLineText(0).wc_str(), m_OldScale);
+		m_Sidebar->UpdatePath(m_Name->GetLineText(0).wc_str(), m_OldScale);
 	}
 	void Update(std::wstring name, float scale)
 	{
 		m_Name->SetValue( wxString(name.c_str()) );
 		m_TimeText->SetValue( wxString::Format(L"%f", scale) );
-		if ( m_OldTrackIndex != m_Sidebar->GetSelectedTrack() )
+		if ( m_OldPathIndex != m_Sidebar->GetSelectedPath() )
 		{
-			m_OldTrackIndex = m_Sidebar->GetSelectedTrack();
+			m_OldPathIndex = m_Sidebar->GetSelectedPath();
 			m_OldScale = 0.f;
 		}
 		CinemaTextFloat(*m_TimeText, 2, -5.f, 5.f, 0.f);
@@ -58,7 +57,7 @@ private:
 	CinematicSidebar* m_Sidebar;
 	wxTextCtrl* m_Name, *m_TimeText;
 	float m_OldScale;
-	ssize_t m_OldTrackIndex;
+	ssize_t m_OldPathIndex;
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(CinematicBottomBar, wxPanel)
@@ -66,48 +65,6 @@ EVT_TEXT_ENTER(wxID_ANY, CinematicBottomBar::OnText)
 END_EVENT_TABLE()
 	
 /////////////////////////////////////////////////////////////////////
-class TrackListCtrl : public wxListCtrl
-{
-public:
-	TrackListCtrl(wxWindow* parent, CinematicSidebar* side)
-		: wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|/*wxLC_EDIT_LABELS|*/wxLC_SINGLE_SEL),
-		m_Sidebar(side)
-	{
-		InsertColumn(0, _("Tracks"), wxLIST_FORMAT_LEFT, 180);
-	}
-
-	void OnSelect(wxListEvent& event)
-	{
-		m_Sidebar->SelectTrack(event.GetIndex());
-		m_Sidebar->UpdateTexts();
-	}
-	void AddTrack()
-	{
-		std::wstringstream message;
-		message << "Track " << GetItemCount();
-		std::wstring msgString = message.str();
-		wxString fmt( msgString.c_str(), msgString.length() );
-		InsertItem(GetItemCount(), fmt);
-		
-		qGetCameraInfo qry;
-		qry.Post();
-		sCameraInfo info = qry.info;
-		m_Sidebar->AddTrack(msgString, GetItemCount()-1);
-	}
-	void DeleteTrack()
-	{
-		DeleteItem(m_Sidebar->GetSelectedTrack());
-		m_Sidebar->DeleteTrack();
-	}
-
-private:
-	CinematicSidebar* m_Sidebar;
-
-	DECLARE_EVENT_TABLE();
-};
-BEGIN_EVENT_TABLE(TrackListCtrl, wxListCtrl)
-	EVT_LIST_ITEM_SELECTED(wxID_ANY, TrackListCtrl::OnSelect)
-END_EVENT_TABLE()
 
 class PathListCtrl : public wxListCtrl
 {
@@ -131,23 +88,12 @@ public:
 		std::wstring msgString = message.str();
 		wxString fmt( msgString.c_str(), msgString.length() );
 		InsertItem(GetItemCount(), fmt);
-
-		qGetCameraInfo qry;
-		qry.Post();
-		sCameraInfo info = qry.info;
-		m_Sidebar->AddPath(info.rX, info.rY, info.rZ, GetItemCount()-1);
+		m_Sidebar->AddPath(msgString, GetItemCount()-1);
 	}
 	void DeletePath()
 	{
 		DeleteItem(m_Sidebar->GetSelectedPath());
 		m_Sidebar->DeletePath();
-	}
-	void UpdatePath()
-	{
-		qGetCameraInfo qry;
-		qry.Post();
-		sCameraInfo info = qry.info;
-		m_Sidebar->UpdatePath(info.rX, info.rY, info.rZ);
 	}
 
 private:
@@ -184,7 +130,7 @@ public:
 		qGetCameraInfo qry;
 		qry.Post();
 		sCameraInfo info = qry.info;
-		m_Sidebar->AddNode(info.pX, info.pY, info.pZ, GetItemCount()-1);
+		m_Sidebar->AddNode(info.pX, info.pY, info.pZ, info.rX, info.rY, info.rZ, GetItemCount()-1);
 	}
 	void DeleteNode()
 	{
@@ -196,7 +142,7 @@ public:
 		qGetCameraInfo qry;
 		qry.Post();
 		sCameraInfo info = qry.info;
-		m_Sidebar->UpdateNode(info.pX, info.pY, info.pZ);
+		m_Sidebar->UpdateNode(info.pX, info.pY, info.pZ, info.rX, info.rY, info.rZ, -1.f);
 	}
 	void GotoNode()
 	{
@@ -213,11 +159,7 @@ END_EVENT_TABLE()
 
 /////////////////////////////////////////////////////////////////
 
-void CinemaTrackAdd(void* data)
-{
-	TrackListCtrl* list = reinterpret_cast<TrackListCtrl*>(data);
-	list->AddTrack();
-}
+
 void CinemaPathAdd(void* data)
 {
 	PathListCtrl* list = reinterpret_cast<PathListCtrl*>(data);
@@ -228,11 +170,7 @@ void CinemaNodeAdd(void* data)
 	NodeListCtrl* list = reinterpret_cast<NodeListCtrl*>(data);
 	list->AddNode();
 }
-void CinemaTrackDel(void* data)
-{
-	TrackListCtrl* list = reinterpret_cast<TrackListCtrl*>(data);
-	list->DeleteTrack();
-}
+
 void CinemaPathDel(void* data)
 {
 	PathListCtrl* list = reinterpret_cast<PathListCtrl*>(data);
@@ -244,11 +182,6 @@ void CinemaNodeDel(void* data)
 	list->DeleteNode();
 }
 
-void CinemaPathUpdate(void* data)
-{
-	PathListCtrl* list = reinterpret_cast<PathListCtrl*>(data);
-	list->UpdatePath();
-}
 void CinemaNodeUpdate(void* data)
 {
 	NodeListCtrl* list = reinterpret_cast<NodeListCtrl*>(data);
@@ -304,137 +237,90 @@ float CinemaTextFloat(wxTextCtrl& ctrl, size_t decimals, float min,
 	return val;
 	
 }
-void WrapCinemaPath(sCinemaPath& path)
-{
-	if ( path.x > 360 )
-		path.x = 360;
-	else if ( path.x < -360 )
-		path.x = -360;
-	
-	if ( path.y > 360 )
-		path.y = 360;
-	else if ( path.y < -360 )
-		path.y = -360;
-	
-	if ( path.y > 360 )
-		path.z = 360;
-	else if ( path.x < -360 )
-		path.z = -360;
-}
+
 /////////////////////////////////////////////////////////////
 
 class CinemaSpinnerBox : public wxPanel
 {
 public:
-	enum {  /*TrackX_ID, TrackY_ID, TrackZ_ID,*/
-			PathX_ID, PathY_ID, PathZ_ID,
-			NodeX_ID, NodeY_ID, NodeZ_ID };
+	enum {	RotationX_ID, RotationY_ID, RotationZ_ID, PositionX_ID, PositionY_ID, PositionZ_ID };
 	CinemaSpinnerBox(wxWindow* parent, CinematicSidebar* side) 
 		: wxPanel(parent), m_OldT(0), m_OldIndex(0)
 	{
 		m_MainSizer = new wxBoxSizer(wxHORIZONTAL);
 		SetSizer(m_MainSizer);
 		m_Sidebar = side;
-		
-		//wxStaticBoxSizer* tracks = new wxStaticBoxSizer(wxHORIZONTAL,
-											//this, _T("Start Rotation"));
-		wxStaticBoxSizer* paths = new wxStaticBoxSizer(wxHORIZONTAL,this, _T("Rotation"));
-		wxStaticBoxSizer* nodes = new wxStaticBoxSizer(wxHORIZONTAL,this, _T("Position")); 
+
+		wxStaticBoxSizer* rotation = new wxStaticBoxSizer(wxHORIZONTAL,this, _T("Rotation"));
+		wxStaticBoxSizer* position = new wxStaticBoxSizer(wxHORIZONTAL,this, _T("Position")); 
 		wxStaticBoxSizer* time = new wxStaticBoxSizer(wxHORIZONTAL, this, _T("Time"));
 
-		/*	m_TrackX = new wxSpinCtrl(this, TrackX_ID, _T("x"), 
-		wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
-			m_TrackY = new wxSpinCtrl(this, TrackY_ID, _T("y"), 
-		wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
-			m_TrackZ = new wxSpinCtrl(this, TrackZ_ID, _T("z"), 
-		wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );*/
-
-			m_PathX = new wxSpinCtrl(this, PathX_ID, _T("x"), 
-		wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
-			m_PathY = new wxSpinCtrl(this, PathY_ID, _T("y"), 
-		wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
-			m_PathZ = new wxSpinCtrl(this, PathZ_ID, _T("z"), 
-		wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
+		m_NodeRotationX = new wxSpinCtrl(this, RotationX_ID, _T("x"), 
+			wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
+		m_NodeRotationY = new wxSpinCtrl(this, RotationY_ID, _T("y"), 
+			wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
+		m_NodeRotationZ = new wxSpinCtrl(this, RotationZ_ID, _T("z"), 
+			wxDefaultPosition, wxSize(50, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
 		
-			m_NodeX = new wxSpinCtrl(this, NodeX_ID, _T("x"), 
-		wxDefaultPosition, wxSize(55, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
-			m_NodeY = new wxSpinCtrl(this, NodeY_ID, _T("y"), 
-		wxDefaultPosition, wxSize(55, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
-			m_NodeZ = new wxSpinCtrl(this, NodeZ_ID, _T("z"), 
-		wxDefaultPosition, wxSize(55, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
-			m_NodeT = new wxTextCtrl(this, wxID_ANY, _T("0.00"),
-		wxDefaultPosition, wxSize(55, 15), wxTE_PROCESS_ENTER );
+		m_NodePositionX = new wxSpinCtrl(this, PositionX_ID, _T("x"), 
+			wxDefaultPosition, wxSize(55, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
+		m_NodePositionY = new wxSpinCtrl(this, PositionY_ID, _T("y"), 
+			wxDefaultPosition, wxSize(55, 15), wxSP_ARROW_KEYS|wxSP_WRAP );
+		m_NodePositionZ = new wxSpinCtrl(this, PositionZ_ID, _T("z"), 
+			wxDefaultPosition, wxSize(55, 15), wxSP_ARROW_KEYS | wxSP_WRAP );
+		m_NodeT = new wxTextCtrl(this, wxID_ANY, _T("0.00"),
+			wxDefaultPosition, wxSize(55, 15), wxTE_PROCESS_ENTER );
 
 		time->Add(m_NodeT);
 			
-		/*m_TrackX->SetRange(-360, 360);
-		m_TrackY->SetRange(-360, 360);
-		m_TrackZ->SetRange(-360, 360);*/
-		m_PathX->SetRange(-360, 360);
-		m_PathY->SetRange(-360, 360);
-		m_PathZ->SetRange(-360, 360);
-		m_NodeX->SetRange(-1000, 1000);	//TODO make these more exact
-		m_NodeY->SetRange(-200, 600);
-		m_NodeZ->SetRange(-1000, 1000);
+		m_NodeRotationX->SetRange(-360, 360);
+		m_NodeRotationY->SetRange(-360, 360);
+		m_NodeRotationZ->SetRange(-360, 360);
+		m_NodePositionX->SetRange(-1000, 1000);	//TODO make these more exact
+		m_NodePositionY->SetRange(-200, 600);
+		m_NodePositionZ->SetRange(-1000, 1000);
 
-		
-		/*tracks->Add(m_TrackX);
-		tracks->Add(m_TrackY);
-		tracks->Add(m_TrackZ);*/
-		paths->Add(m_PathX);
-		paths->Add(m_PathY);
-		paths->Add(m_PathZ);
-		nodes->Add(m_NodeX);
-		nodes->Add(m_NodeY);
-		nodes->Add(m_NodeZ);
-		
-		//m_MainSizer->Add(tracks);
-		m_MainSizer->Add(paths, 0, wxLEFT, 60);
-		m_MainSizer->Add(nodes);
+		rotation->Add(m_NodeRotationX);
+		rotation->Add(m_NodeRotationY);
+		rotation->Add(m_NodeRotationZ);
+		position->Add(m_NodePositionX);
+		position->Add(m_NodePositionY);
+		position->Add(m_NodePositionZ);
+
+		m_MainSizer->Add(rotation);
+		m_MainSizer->Add(position);
 		m_MainSizer->Add(time);
 	}
 
-	/*void OnTrackPush(wxSpinEvent& WXUNUSED(event))
-	{
-		m_Sidebar->UpdateTrack( m_TrackX->GetValue(), 
-				m_TrackY->GetValue(), m_TrackZ->GetValue());
-	}*/
-	void OnPathPush(wxSpinEvent& WXUNUSED(event))
-	{
-		m_Sidebar->UpdatePath( m_PathX->GetValue(), 
-					m_PathY->GetValue(), m_PathZ->GetValue());
-	}
 	void OnNodePush(wxSpinEvent& WXUNUSED(event))
 	{
-		m_OldT = CinemaTextFloat(*m_NodeT, 2, 0.f, 100.f, m_OldT);
-		m_Sidebar->UpdateNode( m_NodeX->GetValue(), 
-				m_NodeY->GetValue(), m_NodeZ->GetValue(), m_OldT);
+		m_Sidebar->UpdateNode( m_NodePositionX->GetValue(), m_NodePositionY->GetValue(), 
+							   m_NodePositionZ->GetValue(), m_NodeRotationX->GetValue(), 
+							   m_NodeRotationY->GetValue(), m_NodeRotationZ->GetValue(), m_OldT);
 	}
+
 	void OnText(wxCommandEvent& WXUNUSED(event))
 	{
 		m_OldT = CinemaTextFloat(*m_NodeT, 2, 0.f, 100.f, m_OldT);
-		m_Sidebar->UpdateNode( m_NodeX->GetValue(), 
-				m_NodeY->GetValue(), m_NodeZ->GetValue(), m_OldT);
+		m_Sidebar->UpdateNode( m_NodePositionX->GetValue(), m_NodePositionY->GetValue(), 
+							   m_NodePositionZ->GetValue(), m_NodeRotationX->GetValue(), 
+							   m_NodeRotationY->GetValue(), m_NodeRotationZ->GetValue(), m_OldT );
 	}
 
-	/*void UpdateTrackSpinners(int x, int y, int z)
+	void UpdateRotationSpinners(int x, int y, int z)
 	{
-		m_TrackX->SetValue(x);
-		m_TrackY->SetValue(y);
-		m_TrackZ->SetValue(z);
-	}*/
-	void UpdatePathSpinners(int x, int y, int z)
-	{
-		m_PathX->SetValue(x);
-		m_PathY->SetValue(y);
-		m_PathZ->SetValue(z);
+		m_NodeRotationX->SetValue(x);
+		m_NodeRotationY->SetValue(y);
+		m_NodeRotationZ->SetValue(z);
 	}
-	void UpdateNodeSpinners(int x, int y, int z, float t, ssize_t index)
+
+	void UpdatePositionSpinners(int x, int y, int z, float t, ssize_t index)
 	{
-		m_NodeX->SetValue(x);
-		m_NodeY->SetValue(y);
-		m_NodeZ->SetValue(z);
+		m_NodePositionX->SetValue(x);
+		m_NodePositionY->SetValue(y);
+		m_NodePositionZ->SetValue(z);
 		m_NodeT->SetValue(wxString::Format(L"%f", t));
+
 		if ( m_OldIndex != index )
 		{
 			m_OldT = 0.f;
@@ -443,7 +329,7 @@ public:
 		m_OldT = CinemaTextFloat(*m_NodeT, 2, 0.f, 100.f, m_OldT);
 	}
 private:
-	wxSpinCtrl* m_TrackX, *m_TrackY, *m_TrackZ, *m_PathX, *m_PathY, *m_PathZ, *m_NodeX, *m_NodeY, *m_NodeZ;
+	wxSpinCtrl* m_NodeRotationX, *m_NodeRotationY, *m_NodeRotationZ, *m_NodePositionX, *m_NodePositionY, *m_NodePositionZ;
 	wxTextCtrl* m_NodeT;
 	float m_OldT;
 	int m_OldIndex;
@@ -451,50 +337,41 @@ private:
 	CinematicSidebar* m_Sidebar;
 	DECLARE_EVENT_TABLE();
 };
+
 BEGIN_EVENT_TABLE(CinemaSpinnerBox, wxPanel)
-//EVT_SPINCTRL(CinemaSpinnerBox::TrackX_ID, CinemaSpinnerBox::OnTrackPush)
-//EVT_SPINCTRL(CinemaSpinnerBox::TrackY_ID, CinemaSpinnerBox::OnTrackPush)
-//EVT_SPINCTRL(CinemaSpinnerBox::TrackZ_ID, CinemaSpinnerBox::OnTrackPush)
-EVT_SPINCTRL(CinemaSpinnerBox::PathX_ID, CinemaSpinnerBox::OnPathPush)
-EVT_SPINCTRL(CinemaSpinnerBox::PathY_ID, CinemaSpinnerBox::OnPathPush)
-EVT_SPINCTRL(CinemaSpinnerBox::PathZ_ID, CinemaSpinnerBox::OnPathPush)
-EVT_SPINCTRL(CinemaSpinnerBox::NodeX_ID, CinemaSpinnerBox::OnNodePush)
-EVT_SPINCTRL(CinemaSpinnerBox::NodeY_ID, CinemaSpinnerBox::OnNodePush)
-EVT_SPINCTRL(CinemaSpinnerBox::NodeZ_ID, CinemaSpinnerBox::OnNodePush)
+EVT_SPINCTRL(CinemaSpinnerBox::RotationX_ID, CinemaSpinnerBox::OnNodePush)
+EVT_SPINCTRL(CinemaSpinnerBox::RotationY_ID, CinemaSpinnerBox::OnNodePush)
+EVT_SPINCTRL(CinemaSpinnerBox::RotationZ_ID, CinemaSpinnerBox::OnNodePush)
+EVT_SPINCTRL(CinemaSpinnerBox::PositionX_ID, CinemaSpinnerBox::OnNodePush)
+EVT_SPINCTRL(CinemaSpinnerBox::PositionY_ID, CinemaSpinnerBox::OnNodePush)
+EVT_SPINCTRL(CinemaSpinnerBox::PositionZ_ID, CinemaSpinnerBox::OnNodePush)
 EVT_TEXT_ENTER(wxID_ANY, CinemaSpinnerBox::OnText)
 END_EVENT_TABLE()
 
 /////////////////////////////////////////////////////////////
 CinematicBottomBar::CinematicBottomBar(wxWindow* parent, CinematicSidebar* side)
-: wxPanel(parent), m_Sidebar(side), m_OldScale(0), m_OldTrackIndex(-1)
+: wxPanel(parent), m_Sidebar(side), m_OldScale(0), m_OldPathIndex(-1)
 {
 	m_Sizer = new wxStaticBoxSizer(wxVERTICAL, this);
 	SetSizer(m_Sizer);
 }
-void CinematicBottomBar::AddLists(CinematicSidebar* side, 
-		TrackListCtrl* tracks, PathListCtrl* paths, NodeListCtrl* nodes)
+void CinematicBottomBar::AddLists(CinematicSidebar* side, PathListCtrl* paths, NodeListCtrl* nodes)
 {
 	wxBoxSizer* top = new wxBoxSizer(wxHORIZONTAL);
 	CinemaSpinnerBox* spinners = new CinemaSpinnerBox(this, side);
 	side->SetSpinners(spinners);
-	wxBoxSizer* trackButtons = new wxBoxSizer(wxVERTICAL);
+
 	wxBoxSizer* pathButtons = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* nodeButtons = new wxBoxSizer(wxVERTICAL);
 
-	ActionButton* TrackAdd = new ActionButton(this, _T("Add"), 
-							&CinemaTrackAdd, tracks, wxSize(40, 18));
 	ActionButton* PathAdd = new ActionButton(this, _T("Add"),
 							&CinemaPathAdd, paths, wxSize(40, 18));
 	ActionButton* NodeAdd = new ActionButton(this, _T("Add"),
 							&CinemaNodeAdd, nodes, wxSize(40, 18));
-	ActionButton* TrackDel = new ActionButton(this, _T("Del"),
-							&CinemaTrackDel, tracks, wxSize(40, 18));
 	ActionButton* PathDel = new ActionButton(this, _T("Del"),
 							&CinemaPathDel, paths, wxSize(40, 18));
 	ActionButton* NodeDel = new ActionButton(this, _T("Del"),
 							&CinemaNodeDel, nodes, wxSize(40, 18));	
-	ActionButton* PathUpdate =  new ActionButton(this, _T("Mod"),
-							&CinemaPathUpdate, paths, wxSize(40, 18));
 	ActionButton* NodeUpdate =  new ActionButton(this, _T("Mod"),
 							&CinemaNodeUpdate, nodes, wxSize(40, 18));
 	ActionButton* NodeGoto = new ActionButton(this, _T("Goto"),
@@ -518,18 +395,13 @@ void CinematicBottomBar::AddLists(CinematicSidebar* side,
 	textBoxes->Add(timescale);
 	textBoxes->Add(nameBox, 0, wxEXPAND);
 
-	trackButtons->Add(TrackAdd, 0);
-	trackButtons->Add(TrackDel, 0);
 	pathButtons->Add(PathAdd, 0);
 	pathButtons->Add(PathDel, 0);
-	pathButtons->Add(PathUpdate, 0);
 	nodeButtons->Add(NodeAdd, 0);
 	nodeButtons->Add(NodeDel, 0);
 	nodeButtons->Add(NodeUpdate, 0);
 	nodeButtons->Add(NodeGoto, 0);
 	
-	top->Add(tracks, 0);
-	top->Add(trackButtons, 0);
 	top->Add(textBoxes, 0);
 	top->Add(paths, 0);
 	top->Add(pathButtons, 0);
@@ -546,7 +418,7 @@ public:
 	enum { Mode_ID, Style_ID, Rotation_ID, Spline_ID, Reset_ID };
 
 	CinemaInfoBox(CinematicSidebar* side) : wxPanel(side), 
-	m_Sidebar(side), m_OldGrowth(0), m_OldSwitch(0), m_OldTrackIndex(-1)
+	m_Sidebar(side), m_OldGrowth(0), m_OldSwitch(0), m_OldPathIndex(-1)
 	{
 		m_Sizer = new wxBoxSizer(wxVERTICAL);
 		SetSizer(m_Sizer);
@@ -588,7 +460,6 @@ public:
 		
 		//Put this here since there isn't any other place yet
 		wxBoxSizer* displayH = new wxBoxSizer(wxHORIZONTAL);
-		m_DrawAll = new wxCheckBox(this, wxID_ANY, _T("Draw all"));
 		m_DrawCurrent = new wxCheckBox(this, wxID_ANY, _T("Draw current"));
 		
 		wxString splineStrings[2] = { _T("Points"), _T("Lines") };
@@ -601,16 +472,16 @@ public:
 		displayH->Add(m_SplineDisplay, 0);
 		displayH->Add(m_RotationDisplay, 0);
 		m_Sizer->Add(displayH, 0, wxTop | wxALIGN_CENTER, 10);
-		m_Sizer->Add(m_DrawAll, 0);
 		m_Sizer->Add(m_DrawCurrent, 0);
 		m_Sizer->Add( new wxButton(this, Reset_ID, L"Reset Camera"), 0, wxALIGN_CENTER );
 	}
-	void Update(const sCinemaPath& path)
+	void Update(const sCinemaPath* path)
 	{
-		m_ModeBox->SetSelection(path.mode);
-		m_StyleBox->SetSelection(path.style);
-		float growth = path.growth;	//wxFormat doesn't like to share(able)
-		float change = path.change;
+		m_ModeBox->SetSelection(path->mode);
+		m_StyleBox->SetSelection(path->style);
+		float growth = path->growth;	//wxFormat doesn't like to share(able)
+		float change = path->change;
+		
 		m_Growth->SetValue( wxString::Format(L"%f", growth) );
 		m_Switch->SetValue( wxString::Format(L"%f", change) );
 		UpdateOldIndex();
@@ -622,9 +493,9 @@ public:
 		m_OldGrowth = CinemaTextFloat(*m_Growth, 2, 0.f, 10.f, m_OldGrowth);
 		m_OldSwitch = CinemaTextFloat(*m_Switch, 2, 0.f, 10.f, m_OldSwitch);
 		UpdateOldIndex();
-		m_Sidebar->UpdatePathInfo( m_ModeBox->GetSelection(),
-			m_StyleBox->GetSelection(), m_OldGrowth, m_OldSwitch, m_DrawAll->IsChecked(), 
-						m_DrawCurrent->IsChecked(), m_SplineDisplay->GetSelection()!=0 );
+		m_Sidebar->UpdatePathInfo( m_ModeBox->GetSelection(), m_StyleBox->GetSelection(), 
+								m_OldGrowth, m_OldSwitch,  m_DrawCurrent->IsChecked(), 
+												m_SplineDisplay->GetSelection() != 0 );
 	}
 	void OnRotation(wxCommandEvent& WXUNUSED(event))
 	{
@@ -633,19 +504,18 @@ public:
 	}
 	void ResetCamera(wxCommandEvent& WXUNUSED(event))
 	{
-		POST_MESSAGE(CinemaEvent, ( m_Sidebar->GetSelectedTrackName(), eCinemaEventMode::RESET, 
-								0.0f, GetDrawAll(),GetDrawCurrent(), GetDrawLines() ) );
+		POST_MESSAGE(CinemaEvent, ( m_Sidebar->GetSelectedPathName(), eCinemaEventMode::RESET, 
+								0.0f, GetDrawCurrent(), GetDrawLines() ) );
 	}
 	void UpdateOldIndex()
 	{
-		if ( m_Sidebar->GetSelectedTrack() != m_OldTrackIndex )
+		if ( m_Sidebar->GetSelectedPath() != m_OldPathIndex )
 		{
-			m_OldTrackIndex = m_Sidebar->GetSelectedTrack();
+			m_OldPathIndex = m_Sidebar->GetSelectedPath();
 			m_OldGrowth = m_OldSwitch = 0.f;
 		}
 	}	
 
-	bool GetDrawAll() { return m_DrawAll->IsChecked(); }
 	bool GetDrawCurrent() { return m_DrawCurrent->IsChecked(); }
 	bool GetDrawLines() { return m_SplineDisplay->GetSelection()!=0; }
 
@@ -654,10 +524,10 @@ private:
 	CinematicSidebar* m_Sidebar;
 	wxRadioBox* m_ModeBox, *m_StyleBox, *m_RotationDisplay, *m_SplineDisplay;
 	wxTextCtrl* m_Growth, *m_Switch;
-	wxCheckBox* m_DrawAll, *m_DrawCurrent;
+	wxCheckBox* m_DrawCurrent;
 
 	float m_OldGrowth, m_OldSwitch;
-	ssize_t m_OldTrackIndex;
+	ssize_t m_OldPathIndex;
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(CinemaInfoBox, wxPanel)
@@ -670,91 +540,34 @@ EVT_TEXT_ENTER(wxID_ANY, CinemaInfoBox::OnChange)
 EVT_BUTTON(CinemaInfoBox::Reset_ID, CinemaInfoBox::ResetCamera)
 END_EVENT_TABLE()
 
-class PathSlider;
-class CinemaSliderBox;
-
-class TrackSlider : public wxSlider
-{
-	static const int range=1024;
-public:
-	TrackSlider(CinematicSidebar* side, CinemaSliderBox* parent) 
-		: wxSlider((wxWindow*)parent, wxID_ANY, 0, 0, range),
-		m_Sidebar(side), m_Parent(parent)
-	{
-	}
-	void OnScroll(wxScrollEvent& event);
-	void Update(float interval);
-	void SetPathSlider(PathSlider* slider)
-	{
-		m_Path = slider;
-	}
-	
-private:
-	PathSlider* m_Path;
-	CinematicSidebar* m_Sidebar;
-	CinemaSliderBox* m_Parent;
-
-	DECLARE_EVENT_TABLE();
-};
-BEGIN_EVENT_TABLE(TrackSlider, wxSlider)
-	EVT_SCROLL(TrackSlider::OnScroll)
-END_EVENT_TABLE()
-
 class PathSlider : public wxSlider
 {
 	static const int range=1024;
 public:
-	PathSlider(CinematicSidebar* side, wxWindow* parent) 
-		: wxSlider(parent, wxID_ANY, 0, 0, range, wxDefaultPosition,
-		wxDefaultSize, wxSL_HORIZONTAL, wxDefaultValidator, _("Path")),
-		m_Sidebar(side)
+	PathSlider(CinematicSidebar* side) 
+		: wxSlider(side, wxID_ANY, 0, 0, range, wxDefaultPosition,
+			wxDefaultSize, wxSL_HORIZONTAL, wxDefaultValidator, _("Path")),
+			m_Sidebar(side), m_OldTime(0), m_NewTime(0)
 	{
-	}
-
-	void OnScroll(wxScrollEvent& WXUNUSED(event));
-
-	void SetTrackSlider(TrackSlider* slider)
-	{
-		m_Track = slider;
-	}
-private:
-	TrackSlider* m_Track;
-	CinematicSidebar* m_Sidebar;
-
-	DECLARE_EVENT_TABLE();
-};
-BEGIN_EVENT_TABLE(PathSlider, wxSlider)
-	EVT_SCROLL(PathSlider::OnScroll)
-END_EVENT_TABLE()
-
-class CinemaSliderBox : public wxPanel
-{
-public:
-	CinemaSliderBox(CinematicSidebar* parent, const wxString& label) 
-		: wxPanel(parent), m_Sidebar(parent), m_OldTime(0), m_NewTime(0)
-	{
-		m_Sizer = new wxStaticBoxSizer(wxVERTICAL, this, label);
-		SetSizer(m_Sizer);
-		m_Path = new PathSlider(parent, this);
-		m_Track = new TrackSlider(parent, this);
-		m_Path->SetTrackSlider(m_Track);
-		m_Track->SetPathSlider(m_Path);
-
-		m_Sizer->Add(m_Track, 0);
-		m_Sizer->Add(m_Path, 0);
-
 		m_Timer.SetOwner(this);
 	}
-	void Update()
+	
+	void Update(float interval)
 	{
-		m_Track->Update(0);
+		if ( m_Sidebar->m_SelectedPath < 0 )
+			return;
+		int sliderValue = (m_Sidebar->m_TimeElapsed / m_Sidebar->GetCurrentPath()->duration) * range;
+		SetValue(sliderValue);
 	}
+	
 	void OnTick(wxTimerEvent& WXUNUSED(event))
 	{
 		m_NewTime = m_HighResTimer.GetTime();
-		m_Track->Update(m_NewTime - m_OldTime);
+		Update(m_NewTime - m_OldTime);
 		m_OldTime = m_NewTime;
 	}
+	void OnScroll(wxScrollEvent& WXUNUSED(event));
+
 	void PrepareTimers()
 	{
 		m_OldTime = m_NewTime = m_HighResTimer.GetTime();
@@ -762,109 +575,48 @@ public:
 	}
 	void Reset()
 	{
-		m_Track->SetValue(0);
-		m_Path->SetValue(0);
+		SetValue(0);
 	}
 	
 	float m_OldTime;
 	float m_NewTime;
 	wxTimer m_Timer;
+
 private:
-	TrackSlider* m_Track;
 	HighResTimer m_HighResTimer;
-	PathSlider* m_Path;
-	wxStaticBoxSizer* m_Sizer;
 	CinematicSidebar* m_Sidebar;
 
 	DECLARE_EVENT_TABLE();
 };
-BEGIN_EVENT_TABLE(CinemaSliderBox, wxPanel)
-	EVT_TIMER(wxID_ANY, CinemaSliderBox::OnTick)
+BEGIN_EVENT_TABLE(PathSlider, wxSlider)
+	EVT_SCROLL(PathSlider::OnScroll)
+	EVT_TIMER(wxID_ANY, PathSlider::OnTick)
 END_EVENT_TABLE()
 
-void TrackSlider::OnScroll(wxScrollEvent& WXUNUSED(event))
-{
-	//Move path and send movement message
-	m_Sidebar->m_SliderBox->m_Timer.Stop();
-	if ( m_Sidebar->m_SelectedTrack < 0 || m_Sidebar->m_SelectedPath < 0 )
-	{
-		SetValue(0);
-		return;		
-	}
-	float ratio = (float)GetValue() / (float)range;
-	float time = ratio * m_Sidebar->m_Tracks[m_Sidebar->m_SelectedTrack].duration;
-	
-	POST_MESSAGE(CinemaEvent,
-		( m_Sidebar->GetSelectedTrackName(), eCinemaEventMode::IMMEDIATE_TRACK, time, 
-		m_Sidebar->m_InfoBox->GetDrawAll(), m_Sidebar->m_InfoBox->GetDrawCurrent(), 
-											m_Sidebar->m_InfoBox->GetDrawLines() ) );
-	
-	m_Sidebar->m_AbsoluteTime = time;
-	m_Path->SetValue( (int)( m_Sidebar->UpdateSelectedPath() /
-		m_Sidebar->GetCurrentPath().duration * range ) );
-}
+
 void PathSlider::OnScroll(wxScrollEvent& WXUNUSED(event))
 {
-	m_Sidebar->m_SliderBox->m_Timer.Stop();
-	if ( m_Sidebar->m_SelectedTrack < 0 || m_Sidebar->m_SelectedPath < 0 )
+	m_Timer.Stop();
+	if ( m_Sidebar->m_SelectedPath < 0 )
 	{
 		SetValue(0);
 		return;		
 	}
-	//Move path and send movement message
-	//If blank path, ignore
-	if ( m_Sidebar->m_Tracks[m_Sidebar->m_SelectedTrack].duration < .0001f )
+
+	//Move path and send movement message.  If blank path, ignore
+	if ( m_Sidebar->GetCurrentPath()->duration < .0001f )
 		return;
 
-	float trackTime = 0.0f, ratio = (float)GetValue() / (float)range;
-	float time = ratio * m_Sidebar->GetCurrentPath().duration;
-	
-	for ( ssize_t i=0; i<m_Sidebar->m_SelectedPath; ++i )
-	{
-		trackTime += (*m_Sidebar->m_Tracks[m_Sidebar->m_SelectedTrack].paths)
-										[m_Sidebar->m_SelectedPath].duration;
-	}
+	float ratio = (float)GetValue() / (float)range;
+	float time = ratio * m_Sidebar->GetCurrentPath()->duration;
 	
 	POST_MESSAGE(CinemaEvent,
-	( m_Sidebar->GetSelectedTrackName(), eCinemaEventMode::IMMEDIATE_TRACK, trackTime + time, 
-		m_Sidebar->m_InfoBox->GetDrawAll(), m_Sidebar->m_InfoBox->GetDrawCurrent(),
-											m_Sidebar->m_InfoBox->GetDrawLines()) );
+	( m_Sidebar->GetSelectedPathName(), eCinemaEventMode::IMMEDIATE_PATH, time, 
+		  m_Sidebar->m_InfoBox->GetDrawCurrent(),  m_Sidebar->m_InfoBox->GetDrawLines()) );
 
-	m_Sidebar->m_AbsoluteTime = trackTime + time;
 	m_Sidebar->m_TimeElapsed = time;
-	m_Track->SetValue( (int)(m_Sidebar->m_AbsoluteTime  / m_Sidebar->m_Tracks
-						[m_Sidebar->m_SelectedTrack].duration * range) );
 }
 
-void TrackSlider::Update(float interval)
-{
-	if ( m_Sidebar->m_SelectedTrack < 0 || m_Sidebar->m_SelectedPath < 0 )
-	{
-		SetValue(0);
-		return;		
-	}
-	interval *= m_Sidebar->m_Tracks[m_Sidebar->m_SelectedTrack].timescale;
-	m_Sidebar->m_AbsoluteTime += interval; 
-	int move = m_Sidebar->m_AbsoluteTime / m_Sidebar->m_Tracks
-			[m_Sidebar->m_SelectedTrack].duration * (float)range;
-	
-	if ( move > range )
-		move = range;
-	SetValue( move );
-	if ( m_Sidebar->GetCurrentPath().duration < CINEMA_EPSILON )
-		m_Path->SetValue(range);
-	else
-		m_Path->SetValue( (int)( m_Sidebar->m_TimeElapsed / m_Sidebar->GetCurrentPath().duration * range ) );
-	
-	if ( move == range && m_Sidebar->m_Playing )
-	{
-		m_Parent->m_Timer.Stop();
-		SetValue(0);
-		m_Path->SetValue(0);
-		m_Sidebar->GotoNode(0);
-		m_Sidebar->m_Playing = false;
-	}
-}
 //////////////////////////////////////////////////////////////////////////
 
 class CinemaButtonBox : public wxPanel
@@ -881,119 +633,89 @@ public:
 	}
 	void OnPrevious(wxCommandEvent& WXUNUSED(event))
 	{
-		if ( m_Parent->m_SelectedTrack < 0 )
-			return;
-		m_Parent->m_SliderBox->m_Timer.Stop();
+		m_Parent->m_PathSlider->m_Timer.Stop();
 		m_Parent->m_Playing = false;
-		std::wstring name=*m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name;
-
-		if ( m_Parent->m_SelectedPath > 0 && m_Parent->m_TimeElapsed < CINEMA_EPSILON)
-		{
-			m_Parent->SelectPath(m_Parent->m_SelectedPath-1);
-			float t = -m_Parent->GetCurrentPath().duration;
-			m_Parent->m_AbsoluteTime += t;
-			m_Parent->m_TimeElapsed = 0.f;
 		
-			POST_MESSAGE(CinemaEvent, 
-			( name, eCinemaEventMode::IMMEDIATE_PATH, t, m_Parent->m_InfoBox->GetDrawAll(), 
-				m_Parent->m_InfoBox->GetDrawCurrent(), m_Parent->m_InfoBox->GetDrawLines() ) );
-		}
-		else
+		if ( m_Parent->m_SelectedPath > 0)
 		{
-			m_Parent->m_AbsoluteTime -= m_Parent->m_TimeElapsed;
 			m_Parent->m_TimeElapsed = 0.0f;
-				POST_MESSAGE(CinemaEvent, 
-				( name, eCinemaEventMode::IMMEDIATE_PATH, 0.0f,
-				m_Parent->m_InfoBox->GetDrawAll(), m_Parent->m_InfoBox->GetDrawCurrent(),
-				m_Parent->m_InfoBox->GetDrawLines()) );
+			POST_MESSAGE(CinemaEvent, 
+				( m_Parent->GetSelectedPathName(), eCinemaEventMode::IMMEDIATE_PATH, 0.0f, 
+				m_Parent->m_InfoBox->GetDrawCurrent(), m_Parent->m_InfoBox->GetDrawLines()) );
 		}
-		m_Parent->m_SliderBox->Update();
+		m_Parent->m_PathSlider->Update(0);
 	}
 	//void OnRewind(wxCommandEvent& event)
 	
 	//void OnReverse(wxCommandEvent& event)
 	void OnStop(wxCommandEvent& WXUNUSED(event))
 	{
-		if ( m_Parent->m_SelectedTrack < 0 || m_Parent->m_SelectedPath < 0)
+		if ( m_Parent->m_SelectedPath < 0)
 			return;
-		m_Parent->m_SliderBox->m_Timer.Stop();
+
+		m_Parent->m_PathSlider->m_Timer.Stop();
 		m_Parent->m_Playing = false;
-		m_Parent->m_AbsoluteTime = m_Parent->m_TimeElapsed = 0.0f;
-		m_Parent->SelectPath(0);
-		m_Parent->m_SliderBox->Update();
+		m_Parent->m_TimeElapsed = 0.0f;
+		m_Parent->m_PathSlider->Update(0.0f);
 
 		POST_MESSAGE(CinemaEvent,
-			(*m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name, 
-			eCinemaEventMode::IMMEDIATE_TRACK, 0.0f,
-			m_Parent->m_InfoBox->GetDrawAll(), m_Parent->m_InfoBox->GetDrawCurrent(),
-			m_Parent->m_InfoBox->GetDrawLines()) );
+			(m_Parent->GetSelectedPathName(), eCinemaEventMode::IMMEDIATE_PATH, 0.0f, 
+			m_Parent->m_InfoBox->GetDrawCurrent(), m_Parent->m_InfoBox->GetDrawLines()) );
 	}
 	void OnPlay(wxCommandEvent& WXUNUSED(event))
 	{
-		if ( m_Parent->m_SelectedTrack < 0 )
+		if ( m_Parent->m_SelectedPath < 0 )
 			return;
-		m_Parent->m_SliderBox->m_Timer.Stop();
-		m_Parent->m_SliderBox->PrepareTimers();
+
+		m_Parent->m_PathSlider->m_Timer.Stop();
+		m_Parent->m_PathSlider->PrepareTimers();
 
 		POST_MESSAGE(CinemaEvent,
-			(*m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name, 
-			eCinemaEventMode::SMOOTH, 0.0f,
-			m_Parent->m_InfoBox->GetDrawAll(), m_Parent->m_InfoBox->GetDrawCurrent(),
+			(m_Parent->GetSelectedPathName(), 
+			eCinemaEventMode::SMOOTH, 0.0f, m_Parent->m_InfoBox->GetDrawCurrent(),
 			m_Parent->m_InfoBox->GetDrawLines()) );
 			
 		m_Parent->m_Playing = true;
 	}
 	void OnRecord(wxCommandEvent& WXUNUSED(event))
 	{
-		if ( m_Parent->m_SelectedTrack < 0 )
+		if ( m_Parent->m_SelectedPath < 0 )
 			return;
-		m_Parent->m_SliderBox->m_Timer.Stop();
-		m_Parent->m_SliderBox->PrepareTimers();
+		m_Parent->m_PathSlider->m_Timer.Stop();
+		m_Parent->m_PathSlider->PrepareTimers();
 
 		VideoRecorder::RecordCinematic(this,
-			m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name.c_str(),
-			m_Parent->m_Tracks[m_Parent->m_SelectedTrack].duration);
+			wxString( m_Parent->GetSelectedPathName().c_str() ), m_Parent->GetCurrentPath()->duration);
 	}
 	void OnPause(wxCommandEvent& WXUNUSED(event))
 	{
-		if ( m_Parent->m_SelectedTrack < 0 )
+		if ( m_Parent->m_SelectedPath < 0 )
 			return;
-		m_Parent->m_SliderBox->m_Timer.Stop();
+		m_Parent->m_PathSlider->m_Timer.Stop();
 		//m_Parent->m_SliderBox->Reset();
 		//m_Parent->m_NodeList->Thaw();
 		m_Parent->m_Playing = false;
 
 		POST_MESSAGE(CinemaEvent,
-			(*m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name, 
+			(m_Parent->GetSelectedPathName(), 
 			eCinemaEventMode::IMMEDIATE_PATH, m_Parent->m_TimeElapsed,
-			m_Parent->m_InfoBox->GetDrawAll(), m_Parent->m_InfoBox->GetDrawCurrent(),
-			m_Parent->m_InfoBox->GetDrawLines()) );
+			m_Parent->m_InfoBox->GetDrawCurrent(), m_Parent->m_InfoBox->GetDrawLines()) );
 	}
 
 	void OnNext(wxCommandEvent& WXUNUSED(event))
 	{
-		m_Parent->m_SliderBox->m_Timer.Stop();
+		m_Parent->m_PathSlider->m_Timer.Stop();
 		m_Parent->m_Playing = false;
-		std::wstring name=*m_Parent->m_Tracks[m_Parent->m_SelectedTrack].name;
-		sCinemaPath path = m_Parent->GetCurrentPath();
-		float t = path.duration - m_Parent->m_TimeElapsed;
+		std::wstring name = m_Parent->GetSelectedPathName();
+		const sCinemaPath* path = m_Parent->GetCurrentPath();
 
-		if ( m_Parent->m_SelectedPath < (ssize_t)m_Parent->m_Tracks
-				[m_Parent->m_SelectedTrack].paths.GetSize()-1 )
-		{
-			m_Parent->SelectPath(m_Parent->m_SelectedPath+1);
-			m_Parent->m_TimeElapsed = 0.f;
-		}
-		else
-			m_Parent->m_TimeElapsed = path.duration;
-		m_Parent->m_AbsoluteTime += t;	
+		m_Parent->m_TimeElapsed = path->duration;
 		
 		POST_MESSAGE(CinemaEvent, 
-		( name, eCinemaEventMode::IMMEDIATE_TRACK, m_Parent->m_AbsoluteTime,
-		m_Parent->m_InfoBox->GetDrawAll(), m_Parent->m_InfoBox->GetDrawCurrent(),
-		m_Parent->m_InfoBox->GetDrawLines()) );
+		( name, eCinemaEventMode::IMMEDIATE_PATH, path->duration,
+		m_Parent->m_InfoBox->GetDrawCurrent(), m_Parent->m_InfoBox->GetDrawLines()) );
 		
-		m_Parent->m_SliderBox->Update();
+		m_Parent->m_PathSlider->Update(0);
 	}
 	CinematicSidebar* m_Parent;
 	wxStaticBoxSizer* m_Sizer;
@@ -1011,15 +733,16 @@ END_EVENT_TABLE()
 //////////////////////////////////////////////////////////////////////////
 
 CinematicSidebar::CinematicSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(sidebarContainer, bottomBarContainer), m_SelectedTrack(-1),
-m_SelectedPath(-1), m_SelectedSplineNode(-1), m_TimeElapsed(0.f), 
-m_AbsoluteTime(0.f), m_RotationAbsolute(false), //m_UpdatePathEcho(false),
-m_Playing(false)
+: Sidebar(sidebarContainer, bottomBarContainer), m_SelectedPath(-1), m_SelectedSplineNode(-1),
+m_TimeElapsed(0.f), m_RotationAbsolute(false), m_Playing(false)
 {
-	m_SliderBox = new CinemaSliderBox(this, _T("Timeline"));
-	m_MainSizer->Add(m_SliderBox, 0, wxALIGN_CENTER);
+	m_PathSlider = new PathSlider(this);
+	wxStaticBoxSizer* sliderBox = new wxStaticBoxSizer(wxVERTICAL, this, _T("Timeline"));
+	sliderBox->Add(m_PathSlider);
+	m_MainSizer->Add(sliderBox, 0, wxALIGN_CENTER);
 	m_IconSizer = new CinemaButtonBox(this);
 	LoadIcons(); //do this here; buttons must be added before box is
+
 	m_MainSizer->Add(m_IconSizer, 0, wxALIGN_CENTER);
 	m_InfoBox = new CinemaInfoBox(this);
 	m_MainSizer->Add(m_InfoBox, 0, wxALIGN_CENTER);
@@ -1027,61 +750,30 @@ m_Playing(false)
 	CinematicBottomBar* bottom = new CinematicBottomBar(bottomBarContainer, this);
 	m_BottomBar = bottom;
 	m_CinemaBottomBar = bottom;  //avoid casting later
-	m_TrackList = new TrackListCtrl(bottom, this);
+
 	m_PathList = new PathListCtrl(bottom, this);
 	m_NodeList = new NodeListCtrl(bottom, this);
-	bottom->AddLists(this, m_TrackList, m_PathList, m_NodeList);
+	bottom->AddLists(this, m_PathList, m_NodeList);
 }
 
 void CinematicSidebar::OnFirstDisplay()
 {
-	qGetCinemaTracks qry;
+	qGetCinemaPaths qry;
 	qry.Post();
-	m_Tracks = *qry.tracks;
+	m_Paths = *qry.paths;
 
-	m_TrackList->Freeze();
-	for (size_t track = 0; track < m_Tracks.size(); ++track)
+	m_PathList->Freeze();
+	for (size_t path = 0; path < m_Paths.size(); ++path)
 	{
-		m_TrackList->InsertItem((long)track, wxString(m_Tracks[track].name.c_str()));
+		m_PathList->InsertItem((long)path, wxString(m_Paths[path].name.c_str()));
 	}
-	m_TrackList->Thaw();
+	m_PathList->Thaw();
 
 }		
 
-void CinematicSidebar::SelectTrack(ssize_t n)
-{
-	if (n == -1)
-	{
-		m_SelectedTrack = -1;
-		SelectPath(-1);
-		return;
-	}
-	else
-	{
-		wxCHECK_RET (n >= 0 && n < (ssize_t)m_Tracks.size(), _T("SelectTrack out of bounds"));
-		
-		m_SelectedTrack = n;
-		SelectPath(-1);
-		m_PathList->Freeze();
-		m_PathList->DeleteAllItems();
-
-		if (n != -1)
-		{
-			std::vector<sCinemaPath> paths = *m_Tracks[n].paths;
-			for (size_t path = 0; path < paths.size(); ++path)
-			{
-				m_PathList->InsertItem((long)path, wxString::Format(_("Path %d"), path));
-			}
-		}
-		m_PathList->Thaw();
-	}
-
-	UpdateSpinners();
-}
-
 void CinematicSidebar::SelectPath(ssize_t n)
 {
-	if (n == -1 || m_SelectedTrack == -1)
+	if (n == -1)
 	{
 		m_PathList->DeleteAllItems();
 		//Do this here to avoid thinking that there's still a path
@@ -1091,9 +783,7 @@ void CinematicSidebar::SelectPath(ssize_t n)
 	}
 	else
 	{
-		std::vector<sCinemaPath> paths = *m_Tracks[m_SelectedTrack].paths;
-		ssize_t size = (ssize_t)paths.size();
-		wxCHECK_RET (n >= 0 && n < size, _T("SelectPath out of bounds"));
+		wxCHECK_RET (n >= 0 && n < (ssize_t)m_Paths.size(), _T("SelectPath out of bounds"));
 		
 		m_SelectedPath = n;
 		SelectSplineNode(-1);
@@ -1102,8 +792,8 @@ void CinematicSidebar::SelectPath(ssize_t n)
 
 		if (n != -1)
 		{
-			std::vector<sCinemaSplineNode> nodes = *paths[n].nodes;
-			for ( size_t i=0; i<nodes.size(); ++i )
+			size_t size = GetCurrentPath()->nodes.GetSize();
+			for ( size_t i=0; i<size; ++i )
 			{
 				m_NodeList->InsertItem((long)i, wxString::Format(_("Node %d"), i));
 			}
@@ -1111,9 +801,8 @@ void CinematicSidebar::SelectPath(ssize_t n)
 
 		m_NodeList->Thaw();
 	}
-	POST_MESSAGE(CinemaEvent, ( *GetCurrentTrack()->name, 
-		eCinemaEventMode::SELECT, (int)m_SelectedPath, m_InfoBox->GetDrawAll(), 
-		m_InfoBox->GetDrawCurrent(), m_InfoBox->GetDrawLines() ));
+	POST_MESSAGE(CinemaEvent, ( GetSelectedPathName(), eCinemaEventMode::SELECT, 
+		(int)m_SelectedPath, m_InfoBox->GetDrawCurrent(), m_InfoBox->GetDrawLines() ));
 	
 	UpdateSpinners();
 }
@@ -1129,23 +818,19 @@ void CinematicSidebar::SelectSplineNode(ssize_t n, ssize_t size)
 	m_SelectedSplineNode = n;
 	UpdateSpinners();
 }
-const sCinemaTrack* CinematicSidebar::GetCurrentTrack()
+const sCinemaPath* CinematicSidebar::GetCurrentPath() const
 {
-	return &m_Tracks[m_SelectedTrack];
+	return &m_Paths[m_SelectedPath];
 }
-sCinemaPath CinematicSidebar::GetCurrentPath()
+
+sCinemaSplineNode CinematicSidebar::GetCurrentNode() const
 {
-	if ( m_SelectedPath < 0 )
+	if ( m_SelectedSplineNode < 0 )
 	{
-		wxFAIL_MSG(L"CurrentPath() request out of range.  The game will attempt to continue.");
-		return sCinemaPath();
+		wxLogError(_("Invalid request for current spline node (no node selected)"));
+		return sCinemaSplineNode();
 	}
-	return (*m_Tracks[m_SelectedTrack].paths)[m_SelectedPath];
-}
-sCinemaSplineNode CinematicSidebar::GetCurrentNode()
-{
-	return (* (*m_Tracks[m_SelectedTrack].paths)[m_SelectedPath].nodes )
-										[m_SelectedSplineNode];
+	return (*GetCurrentPath()->nodes)[m_SelectedSplineNode];
 }
 //copied from sectionlayout's addpage()
 wxImage CinematicSidebar::LoadIcon(const wxString& filename)
@@ -1193,71 +878,43 @@ void CinematicSidebar::LoadIcons()
 			eCinemaButton::record, LoadIcon( _T("record_s.bmp") ));
 	m_IconSizer->Add(record);
 }
-void CinematicSidebar::AddTrack(std::wstring& name, int count)
+
+void CinematicSidebar::AddPath(std::wstring& name, int count)  //rotation
 {
-	m_Tracks.push_back(sCinemaTrack(name));
-	SelectPath(-1);
-	SelectTrack(count);
-	UpdateEngineData();
-}
-void CinematicSidebar::AddPath(int x, int y, int z, int count)  //rotation
-{
-	if ( m_SelectedTrack < 0 )
-		return;
-	std::vector<sCinemaPath> paths=*m_Tracks[m_SelectedTrack].paths;
-	paths.push_back( sCinemaPath(x, y, z) );
-	
-	m_Tracks[m_SelectedTrack].paths = paths;
+	m_Paths.push_back( sCinemaPath(name) );
 	SelectSplineNode(-1);
+	m_SelectedSplineNode = -1;
+	m_SelectedPath = count;	  //Ensure that selection is valid for UpdateEngineData
+	UpdateEngineData();	  //Make sure the path exists in the engine before we send a select message to it
 	SelectPath(count);
-	UpdateEngineData();
+	
 }
-void CinematicSidebar::AddNode(float x, float y, float z, int count)
+void CinematicSidebar::AddNode(float px, float py, float pz, float rx, float ry, float rz, int count)
 {
-	if ( m_SelectedTrack < 0 || m_SelectedPath < 0 )
+	if ( m_SelectedPath < 0 )
 		return;
 
-	std::vector<sCinemaPath> paths=*m_Tracks[m_SelectedTrack].paths;
-	std::vector<sCinemaSplineNode> nodes=*(*m_Tracks[m_SelectedTrack].paths)
-										[m_SelectedPath].nodes;
-	sCinemaSplineNode newNode(x, y, z);
+	std::vector<sCinemaSplineNode> nodes = *GetCurrentPath()->nodes;
+	sCinemaSplineNode newNode(px, py, pz, rx, ry, rz);
 	if ( !nodes.empty() )
 	{
 		newNode.SetTime(1.0f);
-		paths[m_SelectedPath].duration = paths[m_SelectedPath].duration + 1.0f;
-		m_Tracks[m_SelectedTrack].duration = m_Tracks[m_SelectedTrack].duration + 1.0f;
+		m_Paths[m_SelectedPath].duration = m_Paths[m_SelectedPath].duration + 1.0f;
 	}
 	
 	nodes.push_back(newNode);
-	paths[m_SelectedPath].nodes = nodes;
-	m_Tracks[m_SelectedTrack].paths = paths;
+	m_Paths[m_SelectedPath].nodes = nodes;
 	UpdateEngineData();
 	SelectSplineNode(count, count+1);
 }
-void CinematicSidebar::DeleteTrack()
-{
-	m_Tracks.erase( m_Tracks.begin() + m_SelectedTrack );
-	ssize_t size = (ssize_t)m_Tracks.size();
-	
-	m_SelectedPath = -1;
-	m_SelectedSplineNode = -1;
-	if ( size == 0 )
-		SelectTrack(-1);
-	else if ( m_SelectedTrack > size-1 )
-		SelectTrack(size-1);
-	else
-		SelectTrack(m_SelectedTrack);
 
-	UpdateEngineData();
-}
 void CinematicSidebar::DeletePath()
 {
-	if ( m_SelectedTrack < 0 || m_SelectedPath < 0 )
+	if ( m_SelectedPath < 0 )
 		return;
-	std::vector<sCinemaPath> paths = *m_Tracks[m_SelectedTrack].paths;
-	paths.erase( paths.begin() + m_SelectedPath );
-	m_Tracks[m_SelectedTrack].paths = paths;
-	ssize_t size = (ssize_t)paths.size();
+
+	m_Paths.erase( m_Paths.begin() + m_SelectedPath );
+	ssize_t size = (ssize_t)m_Paths.size();
 	
 	m_SelectedSplineNode = -1;
 	if ( size == 0 )
@@ -1267,31 +924,22 @@ void CinematicSidebar::DeletePath()
 	else
 		SelectPath(m_SelectedPath);
 	
-	SelectTrack(m_SelectedTrack);
 	UpdateEngineData();
 }
+
 void CinematicSidebar::DeleteNode()
 {
-	if ( m_SelectedTrack < 0 || m_SelectedPath < 0 || 
-									m_SelectedSplineNode < 0 )
-	{
+	if ( m_SelectedPath < 0 || m_SelectedSplineNode < 0 )
 		return;
-	}
-	std::vector<sCinemaPath> paths = *m_Tracks[m_SelectedTrack].paths;
-	std::vector<sCinemaSplineNode> nodes = *paths[m_SelectedPath].nodes;
- 	m_Tracks[m_SelectedTrack].duration = m_Tracks[m_SelectedTrack].duration - 
-									nodes[m_SelectedSplineNode].t;
-	paths[m_SelectedPath].duration = paths[m_SelectedPath].duration - 
-									nodes[m_SelectedSplineNode].t;
+
+	std::vector<sCinemaSplineNode> nodes = *m_Paths[m_SelectedPath].nodes;
+	m_Paths[m_SelectedPath].duration = m_Paths[m_SelectedPath].duration - nodes[m_SelectedSplineNode].t;
 	
-	if ( m_AbsoluteTime > m_Tracks[m_SelectedTrack].duration )
-		m_AbsoluteTime = m_Tracks[m_SelectedTrack].duration;
-	if ( m_TimeElapsed > paths[m_SelectedPath].duration )
-		m_TimeElapsed = paths[m_SelectedPath].duration;
+	if ( m_TimeElapsed > m_Paths[m_SelectedPath].duration )
+		m_TimeElapsed = m_Paths[m_SelectedPath].duration;
 
 	nodes.erase( nodes.begin() + m_SelectedSplineNode );
-	paths[m_SelectedPath].nodes = nodes;
-	m_Tracks[m_SelectedTrack].paths = paths;
+	m_Paths[m_SelectedPath].nodes = nodes;
 	ssize_t size = (ssize_t)nodes.size();
 	
 	if ( size == 0 )
@@ -1300,206 +948,143 @@ void CinematicSidebar::DeleteNode()
 		SelectSplineNode(size-1, size);
 	else
 		SelectSplineNode(m_SelectedSplineNode, size);
+	
 	SelectPath(m_SelectedPath);	//Correct numbering
 	UpdateEngineData();
-	
 }	
 
-void CinematicSidebar::UpdateTrack(std::wstring name, float timescale)
+void CinematicSidebar::UpdatePath(std::wstring name, float timescale)
 {
-	if ( m_SelectedTrack < 0 )
+	if ( m_SelectedPath < 0 )
 		return;
-	m_Tracks[m_SelectedTrack].name = name;
-	m_Tracks[m_SelectedTrack].timescale = timescale;
-	m_TrackList->SetItemText(m_SelectedTrack, wxString(name.c_str()));
+	
+	m_Paths[m_SelectedPath].name = name;
+	m_Paths[m_SelectedPath].timescale = timescale;
 	UpdateEngineData();
 }
-void CinematicSidebar::UpdatePath(int x, int y, int z, ssize_t index)
+
+void CinematicSidebar::UpdateNode(float px, float py, float pz, float rx, float ry, float rz, float t)
 {
-	if ( m_SelectedTrack < 0 || m_SelectedPath < 0 )
+	if ( m_SelectedPath < 0 || m_SelectedSplineNode < 0 )
 		return;
-	if ( index < 0 )
-		index = m_SelectedPath;
-
-	std::vector<sCinemaPath> paths=*m_Tracks[m_SelectedTrack].paths;
-	
-	//Convert to relative rotation
-	if ( m_RotationAbsolute || index == 0 )
-	{
-		/*int x2, y2, z2;
-		GetAbsoluteRotation(x2, y2, z2, index-1);
-		paths[index].x = x - x2;
-		paths[index].y = y - y2;
-		paths[index].z = z - z2;*/
-		paths[index].x = x;
-		paths[index].y = y;
-		paths[index].z = z;
-	}
-	else
-	{
-		paths[index].x = x + paths[index-1].x;
-		paths[index].y = y + paths[index-1].y;
-		paths[index].z = z + paths[index-1].z;
-	}
-	
-	/*if ( index != (ssize_t)paths.size()-1 && !m_UpdatePathEcho )
-	{
-		//Recalculate relative rotation for path
-		m_Tracks[m_SelectedTrack].paths = paths;
-		int x2, y2, z2;
-		bool marker = m_RotationAbsolute;
-		m_RotationAbsolute = false;
-		GetAbsoluteRotation(x, y, z, index);
-		GetAbsoluteRotation(x2, y2, z2, index+1);
-
-		m_UpdatePathEcho = true;
-		UpdatePath(x2 - x, y2 - y, z2 - z, m_SelectedPath+1);
-		m_RotationAbsolute = marker;
-	}
-	else if ( m_UpdatePathEcho )
-		m_UpdatePathEcho = false;*/
-
-	m_Tracks[m_SelectedTrack].paths = paths;
-	UpdateEngineData();
-}
-void CinematicSidebar::UpdateNode(float x, float y, float z, float t)
-{
-	if ( m_SelectedTrack < 0 || m_SelectedPath < 0 || 
-									m_SelectedSplineNode < 0 )
-	{
-		return;
-	}
 	else if ( m_SelectedSplineNode == 0 && t > 0.0f )
 	{
 		wxBell();	//Let them know: the first node has no meaning
 		return;
 	}
-	std::vector<sCinemaPath> paths=*m_Tracks[m_SelectedTrack].paths;
-	std::vector<sCinemaSplineNode> nodes=*(*m_Tracks[m_SelectedTrack].paths)[m_SelectedPath].nodes;
+
+	std::vector<sCinemaSplineNode> nodes = *GetCurrentPath()->nodes;
 	if ( t < 0 )
 		t = nodes[m_SelectedSplineNode].t;
 	
-	sCinemaSplineNode newNode(x, y, z);
+	if ( m_RotationAbsolute )
+	{
+		nodes[m_SelectedSplineNode].rx = rx;
+		nodes[m_SelectedSplineNode].ry = ry;
+		nodes[m_SelectedSplineNode].rz = rz;
+	}
+	else
+	{
+		nodes[m_SelectedSplineNode].rx = rx + nodes[m_SelectedSplineNode-1].rx;
+		nodes[m_SelectedSplineNode].ry = ry + nodes[m_SelectedSplineNode-1].ry;
+		nodes[m_SelectedSplineNode].rz = rz + nodes[m_SelectedSplineNode-1].rz;
+	}
+
+	sCinemaSplineNode newNode(px, py, pz, rx, ry, rz);
 	newNode.SetTime(t);
 	float delta = newNode.t - nodes[m_SelectedSplineNode].t;
-	paths[m_SelectedPath].duration = paths[m_SelectedPath].duration + delta;
-	m_Tracks[m_SelectedTrack].duration = m_Tracks[m_SelectedTrack].duration + delta;
+	m_Paths[m_SelectedPath].duration = m_Paths[m_SelectedPath].duration + delta;
 
 	nodes[m_SelectedSplineNode] = newNode;
-	paths[m_SelectedPath].nodes = nodes;
-	m_Tracks[m_SelectedTrack].paths = paths;
+	m_Paths[m_SelectedPath].nodes = nodes;
+
 	UpdateEngineData();
 }
+
 void CinematicSidebar::UpdateSpinners()
 {
-	if ( m_SelectedTrack < 0 || m_SelectedPath < 0 ) 
+	if ( m_SelectedPath < 0 || m_SelectedSplineNode < 0 ) 
 		return;
-
-	sCinemaPath path = GetCurrentPath();
-	int x = path.x, y = path.y, z = path.z;
 	
-	if ( !m_RotationAbsolute &&  m_SelectedPath != 0 )
+	std::vector<sCinemaSplineNode> nodes = *GetCurrentPath()->nodes;
+	sCinemaSplineNode node = nodes[m_SelectedSplineNode];
+	
+	if ( !m_RotationAbsolute && m_SelectedSplineNode != 0 )
 	{
-		std::vector<sCinemaPath> paths = *m_Tracks[m_SelectedTrack].paths;
-		x -= paths[m_SelectedPath-1].x;
-		y -= paths[m_SelectedPath-1].y;
-		z -= paths[m_SelectedPath-1].z;
+		m_SpinnerBox->UpdateRotationSpinners(node.rx - nodes[m_SelectedSplineNode-1].rx, 
+									 	 node.ry - nodes[m_SelectedSplineNode-1].ry, 
+										 node.rz - nodes[m_SelectedSplineNode-1].rz);
 	}
-	m_SpinnerBox->UpdatePathSpinners(x, y, z);
-	
-	if ( m_SelectedSplineNode < 0 )
-		return;
+	else
+		m_SpinnerBox->UpdateRotationSpinners(node.rx, node.ry, node.rz);
 
-	sCinemaSplineNode node = (*path.nodes)[m_SelectedSplineNode];
-	x = node.x, y = node.y, z = node.z;
-	float t = node.t;
-	m_SpinnerBox->UpdateNodeSpinners(x, y, z, t, m_SelectedSplineNode);
+	m_SpinnerBox->UpdatePositionSpinners(node.px, node.py, node.pz, node.t, m_SelectedSplineNode);
 }
+
 void CinematicSidebar::UpdateTexts()
 {
-	if ( m_SelectedTrack < 0 )
+	if ( m_SelectedPath < 0 )
 		return;
 
-	m_CinemaBottomBar->Update(* m_Tracks[m_SelectedTrack].name, 
-						m_Tracks[m_SelectedTrack].timescale );
+	m_CinemaBottomBar->Update(GetSelectedPathName(), m_Paths[m_SelectedPath].timescale );
 	if ( m_SelectedPath >= 0 )
 	{
-		sCinemaPath path = GetCurrentPath();
+		const sCinemaPath* path = GetCurrentPath();
 		m_InfoBox->Update(path);
 	}
 }
-void CinematicSidebar::UpdatePathInfo(int mode, int style, float growth, 
-				float change, bool drawAll, bool drawCurrent, bool drawLine)
+void CinematicSidebar::UpdatePathInfo(int mode, int style, float growth, float change, 
+													bool drawCurrent, bool drawLine)
 {
-	if ( m_SelectedTrack < 0 || m_SelectedPath < 0 )
+	if ( m_SelectedPath < 0 )
 		return;
-	std::vector<sCinemaPath> paths = *m_Tracks[m_SelectedTrack].paths;
-	paths[m_SelectedPath].mode = mode;
-	paths[m_SelectedPath].style = style;
-	paths[m_SelectedPath].growth = growth;
-	paths[m_SelectedPath].change = change;
-	m_Tracks[m_SelectedTrack].paths = paths;
+
+	m_Paths[m_SelectedPath].mode = mode;
+	m_Paths[m_SelectedPath].style = style;
+	m_Paths[m_SelectedPath].growth = growth;
+	m_Paths[m_SelectedPath].change = change;
+
 	UpdateEngineData();
-	POST_MESSAGE( CinemaEvent, (*m_Tracks[m_SelectedTrack].name, 
-		eCinemaEventMode::SELECT, (int)m_SelectedPath, drawAll, 
-							drawCurrent, drawLine) );
+	POST_MESSAGE( CinemaEvent, (GetSelectedPathName(), 
+		eCinemaEventMode::SELECT, (int)m_SelectedPath, drawCurrent, drawLine) );
 }
+
 void CinematicSidebar::UpdateEngineData()
 {
-	POST_COMMAND(SetCinemaTracks, (m_Tracks) );
+	POST_COMMAND(SetCinemaPaths, (m_Paths) );
+	SendEngineSelection();
 	UpdateSpinners();
+}
+void CinematicSidebar::SendEngineSelection()
+{
+	POST_MESSAGE(CinemaEvent, ( GetSelectedPathName(), eCinemaEventMode::SELECT, 
+		(int)m_SelectedPath, m_InfoBox->GetDrawCurrent(), m_InfoBox->GetDrawLines() ));
 }
 void CinematicSidebar::GotoNode(ssize_t index)
 {
-	if ( m_SelectedTrack < 0 || m_SelectedPath < 0 ||
-								m_SelectedSplineNode < 0 )
-	{
+	if ( m_SelectedPath < 0 || m_SelectedSplineNode < 0 )
 		return;
-	}
 	if ( index < 0 )
 		index = m_SelectedSplineNode;
 
-	std::vector<sCinemaPath> paths=*m_Tracks[m_SelectedTrack].paths;
-	std::vector<sCinemaSplineNode> nodes=*(*m_Tracks[m_SelectedTrack].paths)
-										[m_SelectedPath].nodes;
-	float nodeTime=0;
-	float pathTime=0;
-	for ( ssize_t i=0; i<=index; ++i )
-		nodeTime += nodes[i].t;
-	for ( ssize_t i=0; i<m_SelectedPath; ++i )
-		pathTime += (*m_Tracks[m_SelectedTrack].paths)[m_SelectedPath].duration;
-	
-	m_TimeElapsed = nodeTime;
-	m_AbsoluteTime = pathTime + nodeTime;
+	std::vector<sCinemaSplineNode> nodes = *GetCurrentPath()->nodes;
+	float time = 0;
 
-	POST_MESSAGE(CinemaEvent,
-		( *m_Tracks[m_SelectedTrack].name, eCinemaEventMode::IMMEDIATE_TRACK, m_AbsoluteTime, 
-			m_InfoBox->GetDrawAll(), m_InfoBox->GetDrawCurrent(), m_InfoBox->GetDrawLines() ) );
+	for ( ssize_t i=0; i<=index; ++i )
+		time += nodes[i].t;
+	
+	m_TimeElapsed = time;
+	POST_MESSAGE( CinemaEvent, (GetSelectedPathName(), eCinemaEventMode::IMMEDIATE_PATH, time, 
+								m_InfoBox->GetDrawCurrent(), m_InfoBox->GetDrawLines()) );
 	
 	//this is just an echo if false
-	if ( m_AbsoluteTime / m_Tracks[m_SelectedTrack].duration + CINEMA_EPSILON < 1.f || !m_Playing )
-		m_SliderBox->Update();
+	if ( m_TimeElapsed / GetCurrentPath()->duration < 1.f )
+		m_PathSlider->Update(0.0f);
 }
 
-float CinematicSidebar::UpdateSelectedPath()
-{
-	size_t i=0;
-	std::vector<sCinemaPath>paths = *m_Tracks[m_SelectedTrack].paths;
-	for ( float time=0.0f; i < paths.size(); ++i )
-	{
-		float duration = paths[i].duration;
-		time += duration;
-		if ( time > m_AbsoluteTime )
-		{
-			static size_t index=(size_t)-1;	//Bogus value to begin with
-			if ( index != i )	//If not the same as previous path, change
-			{
-				SelectPath((ssize_t)i);
-				index = i;
-			}
-			m_TimeElapsed = m_AbsoluteTime-(time-duration);
-			return m_TimeElapsed;
-		}
-	}
-	return m_TimeElapsed;
+std::wstring CinematicSidebar::GetSelectedPathName() const 
+{ 
+	if ( m_SelectedPath < 0 )
+		return std::wstring(L"Invalid path");
+	return *m_Paths[m_SelectedPath].name; 
 }

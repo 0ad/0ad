@@ -121,7 +121,6 @@ public:
 	CLightEnv CachedLightEnv;
 
 	CCinemaManager TrackManager;
-	CCinemaTrack TestTrack;
 
 	////////////////////////////////////////
 	// Settings

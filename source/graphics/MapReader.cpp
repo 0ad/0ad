@@ -508,12 +508,12 @@ void CXMLReader::ReadCinema(XMBElement parent)
 	#define EL(x) int el_##x = xmb_file.getElementID(#x)
 	#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
 
-	EL(track);
-	EL(startrotation);
 	EL(path);
 	EL(rotation);
 	EL(distortion);
 	EL(node);
+	EL(position);
+	EL(time);
 	AT(name);
 	AT(timescale);
 	AT(mode);
@@ -523,97 +523,98 @@ void CXMLReader::ReadCinema(XMBElement parent)
 	AT(x);
 	AT(y);
 	AT(z);
-	AT(t);
 
 #undef EL
 #undef AT
 	
-	std::map<CStrW, CCinemaTrack> trackList;
+	std::map<CStrW, CCinemaPath> pathList;
 	XERO_ITER_EL(parent, element)
 	{
 		int elementName = element.getNodeName();
 			
-		if ( elementName == el_track )
+		if ( elementName == el_path )
 		{
-			CCinemaTrack track;
 			XMBAttributeList attrs = element.getAttributes();
 			CStrW name( CStr(attrs.getNamedItem(at_name)) );
 			float timescale = CStr(attrs.getNamedItem(at_timescale)).ToFloat();
-			track.SetTimescale(timescale);
+			CCinemaData pathData;
+			pathData.m_Timescale = timescale;
+			TNSpline spline, backwardSpline;
 
-			XERO_ITER_EL(element, trackChild)
+			XERO_ITER_EL(element, pathChild)
 			{
-				elementName = trackChild.getNodeName();
+				elementName = pathChild.getNodeName();
+				attrs = pathChild.getAttributes();
 
-				if ( elementName == el_startrotation )
+				//Load distortion attributes
+				if ( elementName == el_distortion )
 				{
-					attrs = trackChild.getAttributes();
-					float x = CStr(attrs.getNamedItem(at_x)).ToFloat();
-					float y = CStr(attrs.getNamedItem(at_y)).ToFloat();
-					float z = CStr(attrs.getNamedItem(at_z)).ToFloat();
-					track.SetStartRotation(CVector3D(x, y, z));
+						pathData.m_Mode = CStr(attrs.getNamedItem(at_mode)).ToInt();
+						pathData.m_Style = CStr(attrs.getNamedItem(at_style)).ToInt();
+						pathData.m_Growth = CStr(attrs.getNamedItem(at_growth)).ToInt();
+						pathData.m_Switch = CStr(attrs.getNamedItem(at_switch)).ToInt();
 				}
-				else if ( elementName == el_path )
+				
+				//Load node data used for spline
+				else if ( elementName == el_node )
 				{
-					CCinemaData pathData;
-					TNSpline spline, backwardSpline;
-
-					XERO_ITER_EL(trackChild, pathChild)
+					SplineData data;
+					XERO_ITER_EL(pathChild, nodeChild)
 					{
-						elementName = pathChild.getNodeName();
-						attrs = pathChild.getAttributes();
-
-						if ( elementName == el_rotation )
+						elementName = nodeChild.getNodeName();
+						attrs = nodeChild.getAttributes();
+						
+						//Fix?:  assumes that time is last element
+						if ( elementName == el_position )
 						{
-							float x = CStr(attrs.getNamedItem(at_x)).ToFloat();
-							float y = CStr(attrs.getNamedItem(at_y)).ToFloat();
-							float z = CStr(attrs.getNamedItem(at_z)).ToFloat();
-							pathData.m_TotalRotation = CVector3D(x, y, z);
-						}
-						else if ( elementName == el_distortion )
-						{
-							pathData.m_Mode = CStr(attrs.getNamedItem(at_mode)).ToInt();
-							pathData.m_Style = CStr(attrs.getNamedItem(at_style)).ToInt();
-							pathData.m_Growth = CStr(attrs.getNamedItem(at_growth)).ToInt();
-							pathData.m_Switch = CStr(attrs.getNamedItem(at_switch)).ToInt();
-						}
-						else if ( elementName == el_node )
-						{
-							SplineData data;
 							data.Position.X = CStr(attrs.getNamedItem(at_x)).ToFloat();
 							data.Position.Y = CStr(attrs.getNamedItem(at_y)).ToFloat();
 							data.Position.Z = CStr(attrs.getNamedItem(at_z)).ToFloat();
-							data.Distance = CStr(attrs.getNamedItem(at_t)).ToFloat();
-							backwardSpline.AddNode(data.Position, data.Distance);
+							continue;
 						}
-						else
-							debug_warn("Invalid cinematic element for path child");
-					}	//node loop
-					CCinemaPath temp(pathData, backwardSpline);
-					const std::vector<SplineData>& nodes = temp.GetAllNodes();
-					if ( nodes.empty() )
-					{
-						debug_warn("Failure loading cinematics");
-						return;
-					}
+						else if ( elementName == el_rotation )
+						{
+							data.Rotation.X = CStr(attrs.getNamedItem(at_x)).ToFloat();
+							data.Rotation.Y = CStr(attrs.getNamedItem(at_y)).ToFloat();
+							data.Rotation.Z = CStr(attrs.getNamedItem(at_z)).ToFloat();
+							continue;
+						}
+						else if ( elementName == el_time )
+							data.Distance = CStr( nodeChild.getText() ).ToFloat();
+						else 
+							debug_warn("Invalid cinematic element for node child");
 					
-					for ( std::vector<SplineData>::const_reverse_iterator 
-						it=nodes.rbegin(); it != nodes.rend(); ++it )
-					{
-						spline.AddNode(it->Position, it->Distance);
+						backwardSpline.AddNode(data.Position, data.Rotation, data.Distance);
 					}
-					track.AddPath(pathData, spline);
-
-				}	// == el_path
+				}
 				else
-					debug_warn("Invalid cinematic element for track child");
+					debug_warn("Invalid cinematic element for path child");
+				
+				
 			}
-			trackList[name] = track;
+
+			//Construct cinema path with data gathered
+			CCinemaPath temp(pathData, backwardSpline);
+			const std::vector<SplineData>& nodes = temp.GetAllNodes();
+			if ( nodes.empty() )
+			{
+				debug_warn("Failure loading cinematics");
+				return;
+			}
+					
+			for ( std::vector<SplineData>::const_reverse_iterator it = nodes.rbegin(); 
+															it != nodes.rend(); ++it )
+			{
+				spline.AddNode(it->Position, it->Rotation, it->Distance);
+			}
+				
+			CCinemaPath path(pathData, spline);
+			pathList[name] = path;	
 		}
-		else 
-			debug_warn("Invalid cinematic element for root track child");
+		else
+			debug_assert("Invalid cinema child");
 	}
-	g_Game->GetView()->GetCinema()->SetAllTracks(trackList);
+	g_Game->GetView()->GetCinema()->SetAllPaths(pathList);
 }
 
 void CXMLReader::ReadTriggers(XMBElement parent)
@@ -987,7 +988,7 @@ int CXMLReader::ProgressiveRead()
 			if (ret != 0)	// error or timed out
 				return ret;
 		}
-		else if (name == "Tracks")
+		else if (name == "Paths")
 		{
 			ReadCinema(node);
 		}

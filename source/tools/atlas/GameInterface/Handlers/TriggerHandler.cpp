@@ -266,8 +266,8 @@ QUERYHANDLER(GetTriggerChoices)
 		if ( choices[0] == std::wstring(L"ATLAS_CINEMA_LIST") )
 		{
 			choices.clear();
-			const std::map<CStrW, CCinemaTrack>& tracks = g_Game->GetView()->GetCinema()->GetAllTracks();
-			for ( std::map<CStrW, CCinemaTrack>::const_iterator it = tracks.begin(); it != tracks.end(); ++it )
+			const std::map<CStrW, CCinemaPath>& paths = g_Game->GetView()->GetCinema()->GetAllPaths();
+			for ( std::map<CStrW, CCinemaPath>::const_iterator it = paths.begin(); it != paths.end(); ++it )
 			{
 				choices.push_back(it->first);
 				translations.push_back( L"\"" + it->first + L"\"" );	//Strings need quotes in JS

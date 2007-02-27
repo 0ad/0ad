@@ -362,7 +362,7 @@ void Render()
 		
 		PROFILE_START( "render cinematic splines" );
 		//Sets/resets renderering properties itself
-		g_Game->GetView()->GetCinema()->DrawAllSplines();
+		g_Game->GetView()->GetCinema()->DrawSpline();
 		PROFILE_END( "render cinematic splines" );
 	}
 

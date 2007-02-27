@@ -287,13 +287,17 @@ public:
 	TriggerSidebar* m_Sidebar;
 	size_t m_CondCount, m_EffectCount;
 	bool m_Group;
-	std::list<int> m_BlockIndices, m_BlockEndIndices;
+	std::list<int> m_BlockIndices, m_BlockEndIndices;	//index in sidebar list
 
 	void AddBlock(const int block, const int index)
 	{
 		std::vector<int> copy = *logicBlocks;
+		std::vector<bool> notCopy = *logicNots;
 		copy.push_back(block);
+		notCopy.push_back(false);
+
 		logicBlocks = copy;
+		logicNots = notCopy;
 		m_BlockIndices.push_back(index);
 	}
 	void AddBlockEnd(const int block, const int index)
@@ -345,10 +349,10 @@ class TriggerBottomBar : public wxPanel
 	enum {  ID_TimeEdit, ID_CondNameEdit, ID_EffectNameEdit, ID_TriggerNameEdit, ID_RunsEdit,
 			ID_EffectChoice, ID_CondChoice, 
 			ID_TimeRadio, ID_LogicRadio, 
-			ID_NotCheck, ID_ActiveCheck };
+			ID_NotCheck, ID_ActiveCheck, ID_LogicNotCheck };
 	
 public:
-	enum { NO_VIEW, TRIGGER_VIEW, CONDITION_VIEW, EFFECT_VIEW };
+	enum { NO_VIEW, TRIGGER_VIEW, CONDITION_VIEW, EFFECT_VIEW, LOGIC_END_VIEW, LOGIC_VIEW };
 
 	TriggerBottomBar(TriggerSidebar* sidebar, wxWindow* parent)
 		: wxPanel(parent), m_Sidebar(sidebar)
@@ -477,6 +481,7 @@ public:
 		m_Sidebar->GetSelectedItemData()->maxRuns = iValue;
 		m_Sidebar->UpdateEngineData();
 	}
+	
 	void onLogicRadio(wxCommandEvent& evt)
 	{
 		if ( m_Sidebar->m_SelectedCond == -1 )
@@ -508,11 +513,22 @@ public:
 		m_Sidebar->UpdateEngineData();
 	}
 
+	void onLogicNotCheck(wxCommandEvent& evt)
+	{
+		TriggerItemData* data = m_Sidebar->GetSelectedItemData();
+
+		int logicIndex = m_Sidebar->GetLogicBlockCount(m_Sidebar->m_SelectedCond) - 1;
+		std::vector<bool> nots = *data->logicNots;
+		nots[logicIndex] = evt.IsChecked();
+		data->logicNots = nots;
+	}
+	
 	void DisplayTriggerSpec(const sTriggerSpec& spec)
 	{
 		if ( m_Sizer->Detach(m_ParameterSizer) )
 		{
 			m_ParameterSizer->DeleteWindows();
+			delete m_ParameterSizer;
 			//m_Sizer->Layout();
 		//	Layout();
 		}
@@ -642,11 +658,13 @@ public:
 	
 	void FillConditionData()
 	{
-		if ( m_Sidebar->m_SelectedCond== -1 )
+		if ( m_Sidebar->m_SelectedCond == -1 )
 			return;
 
 		TriggerItemData* itemData = m_Sidebar->GetSelectedItemData();		
 		int iCondition = m_Sidebar->GetConditionCount(m_Sidebar->m_SelectedCond);
+		if ( iCondition <= 0 )
+			return;
 		sTriggerCondition condition = (*itemData->conditions)[iCondition-1];
 		wxString display( (*condition.displayName).c_str() );
 		m_ConditionEdit->SetValue( wxString(condition.name.c_str()) );
@@ -707,6 +725,13 @@ public:
 		m_RunsEdit->SetValue( wxString( wxString::Format(L"%d", runs)) );
 
 	}
+
+	void FillLogicData()
+	{
+		std::vector<bool> nots = *m_Sidebar->GetSelectedItemData()->logicNots;
+		m_LogicNotCheck->SetValue( nots[m_Sidebar->GetLogicBlockCount(m_Sidebar->m_SelectedCond)-1] );
+	}
+
 
 	void ToEffectView()
 	{
@@ -828,6 +853,22 @@ public:
 		Layout();
 		m_DependentStatus = TRIGGER_VIEW;
 	}
+	//void ToLogicEndView();
+		
+	void ToLogicView()
+	{
+		DestroyChildren();
+		m_Sizer = new wxBoxSizer(wxHORIZONTAL);
+		m_DependentSizer = new wxStaticBoxSizer(wxVERTICAL, this, wxString(L"Trigger Editor"));
+		SetSizer(m_Sizer, true);
+
+		m_LogicNotCheck = new wxCheckBox(this, ID_LogicNotCheck, L"Not");
+		m_DependentSizer->Add(m_LogicNotCheck);
+		m_Sizer->Add(m_DependentSizer, 0, wxTOP | wxLEFT | wxALIGN_LEFT, 10);
+		m_Sizer->Layout();
+		Layout();
+		m_DependentStatus = LOGIC_VIEW;
+	}
 	void ToNoView()
 	{
 		if ( m_DependentStatus == NO_VIEW )
@@ -844,9 +885,9 @@ private:
 	wxStaticBoxSizer* m_DependentSizer; //dependent = effect/condition
 	
 	wxTextCtrl* m_TimeEdit, *m_ConditionEdit, *m_EffectEdit, *m_TriggerEdit, *m_RunsEdit;
-	wxCheckBox* m_ActiveCheck, *m_NotCheck;
+	wxCheckBox* m_ActiveCheck, *m_NotCheck, *m_LogicNotCheck;
 	wxChoice* m_ConditionChoice, *m_EffectChoice;
-	wxRadioBox* m_LogicRadio, *m_TimeRadio;
+	wxRadioBox* m_LogicRadio, *m_TimeRadio, m_LogicEndRadio;
 
 	std::vector<sTriggerSpec> m_ConditionSpecs, m_EffectSpecs;
 	
@@ -868,6 +909,7 @@ EVT_CHOICE(TriggerBottomBar::ID_CondChoice, TriggerBottomBar::onCondChoice)
 EVT_RADIOBOX(TriggerBottomBar::ID_LogicRadio, TriggerBottomBar::onLogicRadio)
 EVT_CHECKBOX(TriggerBottomBar::ID_ActiveCheck, TriggerBottomBar::onActiveCheck)
 EVT_CHECKBOX(TriggerBottomBar::ID_NotCheck, TriggerBottomBar::onNotCheck)
+EVT_CHECKBOX(TriggerBottomBar::ID_LogicNotCheck, TriggerBottomBar::onLogicNotCheck)
 //EVT_RADIOBOX(TriggerBotomBar::ID_TimeRadio, TriggerBottomBar::onTimeRadio)
 END_EVENT_TABLE()
 
@@ -892,9 +934,34 @@ void TriggerListCtrl::onClick(wxMouseEvent& evt)
 	if ( m_Condition )
 	{
 		//if ( m_Sidebar->m_TriggerBottom->GetDependentStatus() != TriggerBottomBar::CONDITION_VIEW )
+		
+		/*if ( m_Sidebar->m_ConditionPage->m_List->GetItemText(m_Sidebar->m_SelectedCond) 
+													== m_Sidebar->m_LogicBlockEndString )
+		{
+			m_Sidebar->m_TriggerBottom->ToLogicEndView();
+			
+			if ( m_Sidebar->m_SelectedCond != -1 )
+				m_Sidebar->m_TriggerBottom->FillLogicEndData();
+		}*/
+		if ( m_Sidebar->m_ConditionPage->m_List->GetItemText(m_Sidebar->m_SelectedCond) 
+													== m_Sidebar->m_LogicBlockEndString )
+		{
+			m_Sidebar->m_TriggerBottom->ToNoView();
+		}
+		else if ( m_Sidebar->m_ConditionPage->m_List->GetItemText(m_Sidebar->m_SelectedCond) 
+													== m_Sidebar->m_LogicBlockString  )
+		{
+			m_Sidebar->m_TriggerBottom->ToLogicView();
+
+			if ( m_Sidebar->m_SelectedCond != -1 )
+				m_Sidebar->m_TriggerBottom->FillLogicData();
+		}
+		else
+		{
 			m_Sidebar->m_TriggerBottom->ToConditionView();
-		if ( m_Sidebar->m_SelectedCond != -1 )
-			m_Sidebar->m_TriggerBottom->FillConditionData();
+			if ( m_Sidebar->m_SelectedCond != -1 )
+				m_Sidebar->m_TriggerBottom->FillConditionData();
+		}
 	}
 	else
 	{
@@ -1233,6 +1300,8 @@ void onLogicBlockPush(void* data)
 
 	sidebar->GetSelectedItemData()->AddBlock(conditionCount, limit);
 	sidebar->UpdateLists();
+	sidebar->m_TriggerBottom->ToLogicView();	//Some data is not valid, so reset
+	sidebar->m_TriggerBottom->FillLogicData();
 	sidebar->UpdateEngineData();
 }
 
@@ -1336,11 +1405,21 @@ int TriggerSidebar::GetConditionCount(int limit)
 	for ( int i = 0; i <= limit; ++i )
 	{
 		if ( list->GetItemText(i) != m_LogicBlockString && list->GetItemText(i) != m_LogicBlockEndString)
-		{
 			++conditionCount;
-		}
 	}
 	return conditionCount;
+}
+
+int TriggerSidebar::GetLogicBlockCount(int limit)
+{
+	int logicCount = 0;
+	wxListCtrl* list = m_ConditionPage->m_List;
+	for ( int i = 0; i <= limit; ++i )
+	{
+		if ( list->GetItemText(i) == m_LogicBlockString )
+			++logicCount;
+	}
+	return logicCount;
 }
 void TriggerSidebar::OnFirstDisplay()
 {
@@ -1542,8 +1621,25 @@ void TriggerSidebar::onCondSelect(wxListEvent& evt)
 {
 	m_SelectedCond = evt.GetIndex();
 	//if ( m_TriggerBottom->GetDependentStatus() != TriggerBottomBar::CONDITION_VIEW )
+	if ( m_ConditionPage->m_List->GetItemText(m_SelectedCond) 
+												== m_LogicBlockEndString )
+	{
+		m_TriggerBottom->ToNoView();
+	}
+	else if ( m_ConditionPage->m_List->GetItemText(m_SelectedCond) 
+												== m_LogicBlockString  )
+	{
+		m_TriggerBottom->ToLogicView();
+
+		if ( m_SelectedCond != -1 )
+			m_TriggerBottom->FillLogicData();
+	}
+	else
+	{
 		m_TriggerBottom->ToConditionView();
-	m_TriggerBottom->FillConditionData();
+		if ( m_SelectedCond != -1 )
+			m_TriggerBottom->FillConditionData();
+	}
 }
 void TriggerSidebar::onEffectSelect(wxListEvent& evt)
 {

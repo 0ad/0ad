@@ -17,14 +17,7 @@
 
 namespace AtlasMessage {
 
-sCinemaTrack ConstructCinemaTrack(const CCinemaTrack& data)
-{
-	sCinemaTrack track;
-	track.timescale = data.GetTimescale();
-	track.duration = data.GetTotalDuration();
-	
-	return track;
-}
+
 sCinemaPath ConstructCinemaPath(const CCinemaPath* source)
 {
 	sCinemaPath path;
@@ -32,6 +25,7 @@ sCinemaPath ConstructCinemaPath(const CCinemaPath* source)
 	path.mode = data->m_Mode;
 	path.style = data->m_Style;
 	path.growth = data->m_Growth;
+	path.timescale = data->m_Timescale;
 	path.change = data->m_Switch;
 
 	return path;
@@ -49,121 +43,75 @@ CCinemaData ConstructCinemaData(const sCinemaPath& path)
 sCinemaSplineNode ConstructCinemaNode(const SplineData& data)
 {
 	sCinemaSplineNode node;
-	node.x = data.Position.X;
-	node.y = data.Position.Y;
-	node.z = data.Position.Z;
+	node.px = data.Position.X;
+	node.py = data.Position.Y;
+	node.pz = data.Position.Z;
+	
+	node.rx = data.Rotation.X;
+	node.ry = data.Rotation.Y;
+	node.rz = data.Rotation.Z;
 	node.t = data.Distance;
 	
 	return node;
 }
 
-std::vector<sCinemaTrack> GetCurrentTracks()
+std::vector<sCinemaPath> GetCurrentPaths()
 {
-	const std::map<CStrW, CCinemaTrack>& tracks = g_Game->GetView()->GetCinema()->GetAllTracks();
-	std::vector<sCinemaTrack> atlasTracks;
+	const std::map<CStrW, CCinemaPath>& paths = g_Game->GetView()->GetCinema()->GetAllPaths();
+	std::vector<sCinemaPath> atlasPaths;
 
-	for ( std::map<CStrW, CCinemaTrack>::const_iterator it=tracks.begin(); it!=tracks.end(); it++  )
+	for ( std::map<CStrW, CCinemaPath>::const_iterator it=paths.begin(); it!=paths.end(); it++  )
 	{
-		sCinemaTrack atlasTrack = ConstructCinemaTrack(it->second);
-
-		atlasTrack.name = it->first;
-		const std::vector<CCinemaPath>& paths = it->second.GetAllPaths();
-
-		std::vector<sCinemaPath> atlasPaths;
-
-		for ( std::vector<CCinemaPath>::const_iterator it2=paths.begin(); it2!=paths.end(); it2++ )
+		sCinemaPath path = ConstructCinemaPath(&it->second);	
+		path.name = it->first;
+		
+		const std::vector<SplineData>& nodes = it->second.GetAllNodes();
+		std::vector<sCinemaSplineNode> atlasNodes;
+			
+		for ( size_t i=0; i<nodes.size(); ++i )
+			atlasNodes.push_back( ConstructCinemaNode(nodes[i]) );
+		
+		if ( !atlasNodes.empty() )
 		{
-			sCinemaPath path = ConstructCinemaPath(&*it2);	
-			
-			CVector3D rotation;
-			if ( it2 == paths.begin() )
-				rotation = it->second.GetRotation();
-			else
-				rotation = (it2-1)->GetData()->m_TotalRotation;
-
-			path.x = RADTODEG(rotation.X);
-			path.y = RADTODEG(rotation.Y);
-			path.z = RADTODEG(rotation.Z);
-	
-			const std::vector<SplineData>& nodes = it2->GetAllNodes();
-			std::vector<sCinemaSplineNode> atlasNodes;
-			
-			for ( size_t i=0; i<nodes.size(); ++i )
+			float back = atlasNodes.back().t;
+			if ( atlasNodes.size() > 2 )
 			{
-				atlasNodes.push_back( ConstructCinemaNode(nodes[i]) );
+				for ( size_t i=atlasNodes.size()-2; i>0; --i )
+					atlasNodes[i].t = atlasNodes[i-1].t;
 			}
-			if ( !atlasNodes.empty() )
-			{
-				float back = atlasNodes.back().t;
-				if ( atlasNodes.size() > 2 )
-				{
-					for ( size_t i=atlasNodes.size()-2; i>0; --i )
-						atlasNodes[i].t = atlasNodes[i-1].t;
-				}
-				atlasNodes.back().t = atlasNodes.front().t;
-				atlasNodes.front().t = back;
-			}
-			path.nodes = atlasNodes;
-			path.duration = it2->GetDuration();
-			atlasPaths.push_back(path);
+			atlasNodes.back().t = atlasNodes.front().t;
+			atlasNodes.front().t = back;
 		}
-		atlasTrack.paths = atlasPaths;
-		atlasTracks.push_back(atlasTrack);
+		path.nodes = atlasNodes;
+		atlasPaths.push_back(path);
 	}
-	return atlasTracks;
+	return atlasPaths;
 }
 
-void SetCurrentTracks(const std::vector<sCinemaTrack>& atlasTracks)
+void SetCurrentPaths(const std::vector<sCinemaPath>& atlasPaths)
 {
-	std::map<CStrW, CCinemaTrack> tracks;
+	std::map<CStrW, CCinemaPath> paths;
 	
-	for ( std::vector<sCinemaTrack>::const_iterator it=atlasTracks.begin(); it!=atlasTracks.end(); it++ )
+	for ( std::vector<sCinemaPath>::const_iterator it=atlasPaths.begin(); it!=atlasPaths.end(); it++ )
 	{
-		CStrW trackName(*it->name);
-		tracks[trackName] = CCinemaTrack();
-		
-		tracks[trackName].SetTimescale(it->timescale);
-		const std::vector<sCinemaPath> paths = *it->paths;
-		size_t i=0;
+		CStrW pathName(*it->name);
+		paths[pathName] = CCinemaPath();
+		paths[pathName].SetTimescale(it->timescale);
 
-		for ( std::vector<sCinemaPath>::const_iterator it2=paths.begin();
-				it2!=paths.end(); it2++, ++i )
-		{
-			const sCinemaPath& atlasPath = *it2;
-			const std::vector<sCinemaSplineNode> nodes = *atlasPath.nodes;
-			TNSpline spline;
-			CCinemaData data = ConstructCinemaData(atlasPath);
-
-			if ( i == 0 )
-			{
-				tracks[trackName].SetStartRotation( CVector3D(DEGTORAD(it2->x), 
-										DEGTORAD(it2->y), DEGTORAD(it2->z)) );
-				if ( paths.size() == 1 )
-				{
-					data.m_TotalRotation = CVector3D( DEGTORAD(it2->x), 
-										DEGTORAD(it2->y), DEGTORAD(it2->z) );
-				}
-			}
-			
-			if ( i < paths.size() -1 ) 
-			{
-				data.m_TotalRotation = CVector3D(CVector3D(DEGTORAD((it2+1)->x),
-									DEGTORAD((it2+1)->y), DEGTORAD((it2+1)->z)));
-			}
-			else if ( i > 0 )	//no rotation (ending path)
-			{
-				data.m_TotalRotation = CVector3D(DEGTORAD((it2)->x), 
-							DEGTORAD((it2)->y), DEGTORAD((it2)->z));
-			}
-
- 			for ( size_t j=0; j<nodes.size(); ++j )
-			{	
-				spline.AddNode( CVector3D(nodes[j].x, nodes[j].y, nodes[j].z), nodes[j].t );
-			}
-			tracks[trackName].AddPath(data, spline);
+		const sCinemaPath& atlasPath = *it;
+		const std::vector<sCinemaSplineNode> nodes = *atlasPath.nodes;
+		TNSpline spline;
+		CCinemaData data = ConstructCinemaData(atlasPath);
+	
+ 		for ( size_t j=0; j<nodes.size(); ++j )
+		{	
+			spline.AddNode( CVector3D(nodes[j].px, nodes[j].py, nodes[j].pz), 
+							CVector3D(nodes[j].rx, nodes[j].ry, nodes[j].rz), nodes[j].t );
 		}
+		paths[pathName] = CCinemaPath(data, spline);
 	}
-	g_Game->GetView()->GetCinema()->SetAllTracks(tracks);
+
+	g_Game->GetView()->GetCinema()->SetAllPaths(paths);
 }
 QUERYHANDLER(GetCameraInfo)
 {
@@ -190,44 +138,43 @@ QUERYHANDLER(GetCameraInfo)
 MESSAGEHANDLER(CinemaEvent)
 {
 	CCinemaManager* manager = g_Game->GetView()->GetCinema();
-	manager->SetCurrentTrack(*msg->track, msg->drawAll, 
-				msg->drawCurrent, msg->lines);
+	
 
 	if ( msg->mode == eCinemaEventMode::SMOOTH )
-		manager->OverrideTrack(*msg->track);	
+		manager->OverridePath(*msg->path);	
 	else if ( msg->mode == eCinemaEventMode::IMMEDIATE_PATH )
 		manager->MoveToPointAt(msg->t);
-	else if ( msg->mode == eCinemaEventMode::IMMEDIATE_TRACK )
-		manager->MoveToPointAbsolute(msg->t);
 	else if ( msg->mode == eCinemaEventMode::RESET )
 		g_Game->GetView()->ResetCamera();
+	else if ( msg->mode == eCinemaEventMode::SELECT )
+		manager->SetCurrentPath(*msg->path, msg->drawCurrent, msg->lines);
 	else
-		manager->SetCurrentPath((int)msg->t);
+		debug_assert(false);
 }
 			
-BEGIN_COMMAND(SetCinemaTracks)
+BEGIN_COMMAND(SetCinemaPaths)
 {
-	std::vector<sCinemaTrack> m_oldTracks, m_newTracks;
+	std::vector<sCinemaPath> m_oldPaths, m_newPaths;
 	void Do()
 	{
-		m_oldTracks = GetCurrentTracks();
-		m_newTracks = *msg->tracks;
+		m_oldPaths = GetCurrentPaths();
+		m_newPaths = *msg->paths;
 		Redo();
 	}
 	void Redo()
 	{
-		SetCurrentTracks(m_newTracks);
+		SetCurrentPaths(m_newPaths);
 	}
 	void Undo()
 	{
-		SetCurrentTracks(m_oldTracks);
+		SetCurrentPaths(m_oldPaths);
 	}
 };
-END_COMMAND(SetCinemaTracks)
+END_COMMAND(SetCinemaPaths)
 
-QUERYHANDLER(GetCinemaTracks)
+QUERYHANDLER(GetCinemaPaths)
 {
-	msg->tracks = GetCurrentTracks();
+	msg->paths = GetCurrentPaths();
 }
 
 }

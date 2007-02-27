@@ -146,7 +146,7 @@ void SNSpline::Smooth()
 
 // as with RNSpline but use timePeriod in place of actual node spacing
 // ie time period is time from last node to this node
-void TNSpline::AddNode(const CVector3D &pos, float timePeriod)
+void TNSpline::AddNode(const CVector3D &pos, const CVector3D& rotation, float timePeriod)
 {
   if ( NodeCount >= MAX_SPLINE_NODES )
 	  return;
@@ -155,19 +155,22 @@ void TNSpline::AddNode(const CVector3D &pos, float timePeriod)
   else
   {
     Node[NodeCount-1].Distance = timePeriod;
-    MaxDistance += Node[NodeCount-1].Distance;
+	MaxDistance += Node[NodeCount-1].Distance;
   }
+
   SplineData temp;
   temp.Position = pos;
+
   //make sure we don't end up using undefined numbers...
   temp.Distance = 0.0f;
   temp.Velocity = CVector3D( 0.0f, 0.0f, 0.0f );
+  temp.Rotation = rotation;
   Node.push_back(temp);
   NodeCount++;
 }
 
 //Inserts node before position
-void TNSpline::InsertNode(const int index, const CVector3D &pos, float timePeriod)
+void TNSpline::InsertNode(const int index, const CVector3D &pos, const CVector3D& rotation, float timePeriod)
 {
   if ( NodeCount >= MAX_SPLINE_NODES || index < NodeCount - 1  )
 	  return;
@@ -176,6 +179,7 @@ void TNSpline::InsertNode(const int index, const CVector3D &pos, float timePerio
   else
   {
     Node[NodeCount-1].Distance = timePeriod;
+	Node[NodeCount-1].Rotation = rotation;
     MaxDistance += Node[NodeCount-1].Distance;
   }
   SplineData temp;

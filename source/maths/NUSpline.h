@@ -13,7 +13,8 @@ struct SplineData
 {
     CVector3D Position;
     CVector3D Velocity;
-    float Distance;
+	CVector3D Rotation;
+    float Distance/*, DistanceOffset*/;	//DistanceOffset is to keep track of how far into the spline this node is
 };
 
 class RNSpline
@@ -22,9 +23,12 @@ public:
 	
 	RNSpline() { NodeCount = 0; }
 	virtual ~RNSpline() {}
+  
   void AddNode(const CVector3D &pos);
   void BuildSpline();
   CVector3D GetPosition(float time) const;
+  CVector3D GetRotation(float time) const;
+  const std::vector<SplineData>& GetAllNodes() const { return Node; }
   
   float MaxDistance;
   int NodeCount;
@@ -47,9 +51,10 @@ class TNSpline : public SNSpline
 {
 public:
 	virtual ~TNSpline() {}
-  void AddNode(const CVector3D &pos, float timePeriod);
+
+  void AddNode(const CVector3D& pos, const CVector3D& rotation, float timePeriod);
   void PushNode() { Node.push_back( SplineData() ); }
-  void InsertNode(const int index, const CVector3D &pos, float timePeriod);
+  void InsertNode(const int index, const CVector3D &pos, const CVector3D& rotation, float timePeriod);
   void RemoveNode(const int index);
   void UpdateNodeTime(const int index, float time);
   void UpdateNodePos(const int index, const CVector3D &pos);

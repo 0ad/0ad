@@ -106,7 +106,7 @@ struct sCinemaRecordCB
 SHAREABLE_STRUCT(sCinemaRecordCB);
 
 QUERY(CinemaRecord,
-	  ((std::wstring, track))
+	  ((std::wstring, path))
 	  ((int, framerate))
 	  ((float, duration))
 	  ((int, width))
@@ -354,9 +354,9 @@ COMMAND(SetObjectSettings, NOMERGE,
 
 //////////////////////////////////////////////////////////////////////////
 
-QUERY(GetCinemaTracks,
+QUERY(GetCinemaPaths,
 	  , // no inputs
-	  ((std::vector<AtlasMessage::sCinemaTrack> , tracks))
+	  ((std::vector<AtlasMessage::sCinemaPath> , paths))
 	  );
 
 QUERY(GetCameraInfo,
@@ -364,15 +364,14 @@ QUERY(GetCameraInfo,
 	  ((AtlasMessage::sCameraInfo, info))
 	  );
 
-COMMAND(SetCinemaTracks, NOMERGE,
-		((std::vector<AtlasMessage::sCinemaTrack>, tracks))
+COMMAND(SetCinemaPaths, NOMERGE,
+		((std::vector<AtlasMessage::sCinemaPath>, paths))
 		);
 
 MESSAGE(CinemaEvent,
-		((std::wstring, track))
+		((std::wstring, path))
 		((int, mode))
 		((float, t))
-		((bool, drawAll))
 		((bool, drawCurrent))
 		((bool, lines))
 		);
