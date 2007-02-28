@@ -190,6 +190,9 @@ void VertexArray::Upload()
 	if (!m_VB)
 		m_VB = g_VBMan.Allocate(m_Stride, m_NumVertices, m_Dynamic);
 
+	if (!m_VB) // failed to allocate VBO
+		return;
+
 	m_VB->m_Owner->UpdateChunkVertices(m_VB, m_BackingStore);
 }
 
@@ -197,6 +200,9 @@ void VertexArray::Upload()
 // Bind this array, returns the base address for calls to glVertexPointer etc.
 u8* VertexArray::Bind()
 {
+	if (!m_VB)
+		return NULL;
+
 	u8* base = m_VB->m_Owner->Bind();
 	base += m_VB->m_Index*m_Stride;
 	return base;

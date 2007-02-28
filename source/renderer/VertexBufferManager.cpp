@@ -37,7 +37,7 @@ void CVertexBufferManager::Shutdown()
 // Allocate: try to allocate a buffer of given number of vertices (each of 
 // given size), with the given type, and using the given texture - return null 
 // if no free chunks available
-CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize,size_t numVertices,bool dynamic)
+CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize, size_t numVertices, bool dynamic)
 {
 	CVertexBuffer::VBChunk* result=0;
 
@@ -46,23 +46,21 @@ CVertexBuffer::VBChunk* CVertexBufferManager::Allocate(size_t vertexSize,size_t 
 	// iterate through all existing buffers testing for one that'll 
 	// satisfy the allocation
 	typedef std::list<CVertexBuffer*>::iterator Iter;
-	for (Iter iter=m_Buffers.begin();iter!=m_Buffers.end();++iter) {
-		CVertexBuffer* buffer=*iter;
-		result=buffer->Allocate(vertexSize,numVertices,dynamic);
-		if (result) return result;
+	for (Iter iter = m_Buffers.begin(); iter != m_Buffers.end(); ++iter) {
+		CVertexBuffer* buffer = *iter;
+		result = buffer->Allocate(vertexSize, numVertices, dynamic);
+		if (result)
+			return result;
 	}
 
 	// got this far; need to allocate a new buffer
-	CVertexBuffer* buffer=new CVertexBuffer(vertexSize,dynamic);
+	CVertexBuffer* buffer = new CVertexBuffer(vertexSize, dynamic);
 	m_Buffers.push_front(buffer);
-	result=buffer->Allocate(vertexSize,numVertices,dynamic);
+	result = buffer->Allocate(vertexSize, numVertices, dynamic);
 	
-	// TODO, RC - debug_assert not really suitable?  probably need to handle "failed to create 
-	// VBO case" better
 	if (!result)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Failed to create VBOs");
-		debug_warn("Failed to create VBOs");
+		LOG(ERROR, LOG_CATEGORY, "Failed to create VBOs (%d*%d)", vertexSize, numVertices);
 	}
 
 	return result;

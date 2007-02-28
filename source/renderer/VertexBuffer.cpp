@@ -113,9 +113,7 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize,size_t numVert
 		if (numVertices<=(*iter)->m_Count) {
 			chunk=*iter;
 			// remove this chunk from the free list
-//			size_t size1=m_FreeList.size();
 			m_FreeList.erase(iter);
-//			size_t size2=m_FreeList.size();
 			// no need to search further ..
 			break;
 		}
