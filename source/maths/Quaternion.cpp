@@ -25,45 +25,65 @@ CQuaternion::CQuaternion(float x, float y, float z, float w)
 {
 }
 
-//quaternion addition
 CQuaternion CQuaternion::operator + (const CQuaternion &quat) const
 {
 	CQuaternion Temp;
-
 	Temp.m_W = m_W + quat.m_W;
 	Temp.m_V = m_V + quat.m_V;
-
 	return Temp;
 }
 
-//quaternion addition/assignment
 CQuaternion &CQuaternion::operator += (const CQuaternion &quat)
 {
-	m_W += quat.m_W;
-	m_V += quat.m_V;
-
-	return (*this);
+	*this = *this + quat;
+	return *this;
 }
 
-//quaternion multiplication
+CQuaternion CQuaternion::operator - (const CQuaternion &quat) const
+{
+	CQuaternion Temp;
+	Temp.m_W = m_W - quat.m_W;
+	Temp.m_V = m_V - quat.m_V;
+	return Temp;
+}
+
+CQuaternion &CQuaternion::operator -= (const CQuaternion &quat)
+{
+	*this = *this - quat;
+	return *this;
+}
+
 CQuaternion CQuaternion::operator * (const CQuaternion &quat) const
 {
 	CQuaternion Temp;
-
 	Temp.m_W = (m_W * quat.m_W) - (m_V.Dot(quat.m_V));
 	Temp.m_V = (m_V.Cross(quat.m_V)) + (quat.m_V * m_W) + (m_V * quat.m_W);
-
 	return Temp;
 }
 
-//quaternion multiplication/assignment
 CQuaternion &CQuaternion::operator *= (const CQuaternion &quat)
 {
-	(*this) = (*this) * quat;
-
-	return (*this);
+	*this = *this * quat;
+	return *this;
 }
 
+CQuaternion CQuaternion::operator * (float factor) const
+{
+	CQuaternion Temp;
+	Temp.m_W = m_W * factor;
+	Temp.m_V = m_V * factor;
+	return Temp;
+}
+
+
+float CQuaternion::Dot(const CQuaternion& quat) const
+{
+	return
+		m_V.X * quat.m_V.X +
+		m_V.Y * quat.m_V.Y +
+		m_V.Z * quat.m_V.Z +
+		m_W   * quat.m_W;
+}
 
 void CQuaternion::FromEulerAngles (float x, float y, float z)
 {
@@ -167,16 +187,13 @@ void CQuaternion::ToMatrix(CMatrix3D& result) const
 	result._44 = 1;
 }
 
-void CQuaternion::Slerp(const CQuaternion& from,const CQuaternion& to, float ratio)
+void CQuaternion::Slerp(const CQuaternion& from, const CQuaternion& to, float ratio)
 {
 	float to1[4];
 	float omega, cosom, sinom, scale0, scale1;
 	
 	// calc cosine
-	cosom = from.m_V.X * to.m_V.X  +
-			from.m_V.Y * to.m_V.Y  +
-			from.m_V.Z * to.m_V.Z  +
-			from.m_W * to.m_W;
+	cosom = from.Dot(to);
 
 
 	// adjust signs (if necessary)
@@ -218,6 +235,16 @@ void CQuaternion::Slerp(const CQuaternion& from,const CQuaternion& to, float rat
 	m_V.Y = scale0 * from.m_V.Y + scale1 * to1[1];
 	m_V.Z = scale0 * from.m_V.Z + scale1 * to1[2];
 	m_W	  = scale0 * from.m_W + scale1 * to1[3];
+}
+
+void CQuaternion::Nlerp(const CQuaternion& from, const CQuaternion& to, float ratio)
+{
+	float c = from.Dot(to);
+	if (c < 0.f)
+		*this = from - (to + from) * ratio;
+	else
+		*this = from + (to - from) * ratio;
+	Normalize();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////

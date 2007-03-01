@@ -22,15 +22,18 @@ public:
 	CQuaternion();
 	CQuaternion(float x, float y, float z, float w);
 	
-	// Quaternion addition
 	CQuaternion operator + (const CQuaternion &quat) const;
-	// Quaternion addition/assignment
 	CQuaternion &operator += (const CQuaternion &quat);
 
-	// Quaternion multiplication
+	CQuaternion operator - (const CQuaternion &quat) const;
+	CQuaternion &operator -= (const CQuaternion &quat);
+
 	CQuaternion operator * (const CQuaternion &quat) const;
-	// Quaternion multiplication/assignment
 	CQuaternion &operator *= (const CQuaternion &quat);
+
+	CQuaternion operator * (float factor) const;
+
+	float Dot(const CQuaternion& quat) const;
 	
 	void FromEulerAngles (float x, float y, float z);
 	CVector3D ToEulerAngles();
@@ -41,6 +44,9 @@ public:
 
 	// Sphere interpolation
 	void Slerp(const CQuaternion& from, const CQuaternion& to, float ratio);
+
+	// Normalised linear interpolation
+	void Nlerp(const CQuaternion& from, const CQuaternion& to, float ratio);
 
 	// Create a quaternion from axis/angle representation of a rotation
 	void FromAxisAngle(const CVector3D& axis, float angle);

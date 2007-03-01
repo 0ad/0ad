@@ -218,14 +218,16 @@ void CMatrix3D::SetTranslation(const CVector3D& vector)
 //Applies a translation to the matrix
 void CMatrix3D::Translate(float x, float y, float z)
 {
-	CMatrix3D Temp;
-	Temp.SetTranslation(x,y,z);
-	Concatenate(Temp);
+	_14 += x;
+	_24 += y;
+	_34 += z;
 }
 
 void CMatrix3D::Translate(const CVector3D &vector)
 {
-	Translate(vector.X,vector.Y,vector.Z);
+	_14 += vector.X;
+	_24 += vector.Y;
+	_34 += vector.Z;
 }
 
 void CMatrix3D::Concatenate(const CMatrix3D& m)

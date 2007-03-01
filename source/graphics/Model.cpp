@@ -325,7 +325,7 @@ void CModel::ValidatePosition()
 	
 		debug_assert(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
 	
-		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime,m_BoneMatrices);
+		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime, m_BoneMatrices, !(m_Flags & MODELFLAG_NOLOOPANIMATION));
 	
 		const CMatrix3D& transform=GetTransform();
 		for (size_t i=0;i<m_pModelDef->GetNumBones();i++) {

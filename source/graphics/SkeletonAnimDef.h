@@ -61,7 +61,7 @@ public:
 	size_t GetNumFrames() const { return (size_t)m_NumFrames; }
 
 	// build matrices for all bones at the given time (in MS) in this animation
-	void BuildBoneMatrices(float time, CMatrix3D* matrices) const;
+	void BuildBoneMatrices(float time, CMatrix3D* matrices, bool loop) const;
 
 	// anim I/O functions
 	static CSkeletonAnimDef* Load(const char* filename);

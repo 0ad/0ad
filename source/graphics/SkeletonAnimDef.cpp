@@ -30,7 +30,7 @@ CSkeletonAnimDef::~CSkeletonAnimDef()
 ///////////////////////////////////////////////////////////////////////////////////////////
 // BuildBoneMatrices: build matrices for all bones at the given time (in MS) in this 
 // animation
-void CSkeletonAnimDef::BuildBoneMatrices(float time,CMatrix3D* matrices) const
+void CSkeletonAnimDef::BuildBoneMatrices(float time, CMatrix3D* matrices, bool loop) const
 {
 	float fstartframe = time/m_FrameTime;
 	u32 startframe = u32(time/m_FrameTime);
@@ -41,13 +41,12 @@ void CSkeletonAnimDef::BuildBoneMatrices(float time,CMatrix3D* matrices) const
 	u32 endframe = startframe + 1;
 	endframe %= m_NumFrames; 
 
-	if (endframe == 0)
+	if (!loop && endframe == 0)
 	{
 		// This might be something like a death animation, and interpolating
 		// between the final frame and the initial frame is wrong, because they're
 		// totally different. So if we've looped around to endframe==0, just display
 		// the animation's final frame with no interpolation.
-		// (TODO: this is only sometimes valid - how can we tell the difference?)
 		for (u32 i = 0; i < m_NumKeys; i++)
 		{
 			const Key& key = GetKey(startframe, i);
@@ -60,7 +59,7 @@ void CSkeletonAnimDef::BuildBoneMatrices(float time,CMatrix3D* matrices) const
 	{
 		for (u32 i = 0; i < m_NumKeys; i++)
 		{
-			const Key& startkey=  GetKey(startframe, i);
+			const Key& startkey = GetKey(startframe, i);
 			const Key& endkey = GetKey(endframe, i);
 
 			CVector3D trans = Interpolate(startkey.m_Translation, endkey.m_Translation, deltatime);
@@ -68,8 +67,7 @@ void CSkeletonAnimDef::BuildBoneMatrices(float time,CMatrix3D* matrices) const
 			CQuaternion rot;
 			rot.Slerp(startkey.m_Rotation, endkey.m_Rotation, deltatime);
 
-			matrices[i].SetIdentity();
-			matrices[i].Rotate(rot);
+			rot.ToMatrix(matrices[i]);
 			matrices[i].Translate(trans);
 		}
 	}

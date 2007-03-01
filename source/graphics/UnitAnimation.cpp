@@ -81,6 +81,9 @@ void CUnitAnimation::Update(float time)
 	if (m_Looping && model->NeedsNewAnim(time))
 	{
 		m_Unit.SetRandomAnimation(m_State, !m_Looping, DesyncSpeed(m_Speed));
+		// TODO: this really ought to transition smoothly into the new animation,
+		// instead of just cutting off the end of the previous one and jumping
+		// straight into the new.
 	}
 
 	if (m_TimeToNextSync >= 0.0 && m_TimeToNextSync-time < 0.0)

@@ -82,7 +82,9 @@ public:
 	void SetTranslation(float x, float y, float z);
 	void SetTranslation(const CVector3D& vector);
 
-	// concatenate given translation onto this matrix
+	// concatenate given translation onto this matrix. Assumes the current
+	// matrix is an affine transformation (i.e. the bottom row is [0,0,0,1])
+	// as an optimisation.
 	void Translate(float x, float y, float z);
 	void Translate(const CVector3D& vector);
 
