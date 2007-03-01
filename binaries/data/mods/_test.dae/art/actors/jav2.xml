@@ -1,0 +1,14 @@
+<actor version="1">
+ <castshadow/>
+ <group>
+  <variant frequency="100" name="Base">
+   <mesh>jav2.pmd</mesh>
+   <texture>male.dds</texture>
+   <animations>
+    <animation file="dudeidle.psa" name="Idle" speed="100"/>
+    <animation file="dudecorpse.psa" name="Corpse" speed="100"/>
+    <animation file="jav2.psa" name="Melee" speed="100"/>
+   </animations>
+  </variant>
+ </group>
+</actor>

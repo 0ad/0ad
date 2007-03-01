@@ -63,7 +63,7 @@ extern_lib_defs = {
 		dbg_suffix = "",
 	},
 	fcollada = {
-		win_names  = { "FColladaS" },
+		win_names  = { "FCollada" },
 		unix_names = { "FCollada" },
 		dbg_suffix = "D",
 		no_delayload = 1,

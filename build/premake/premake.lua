@@ -68,7 +68,7 @@ function package_set_build_flags()
 	package.config["Testing"].buildflags = { "no-runtime-checks" }
 	package.config["Testing"].defines = { "TESTING" }
 
-	package.config["Release"].buildflags = { "no-runtime-checks", "optimize" }
+	package.config["Release"].buildflags = { "no-runtime-checks", "optimize-speed" }
 	package.config["Release"].defines = { "NDEBUG" }
 
 	-- various platform-specific build flags
