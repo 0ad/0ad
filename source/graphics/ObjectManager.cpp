@@ -34,8 +34,8 @@ bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::Object
 		return a.ActorVariation < b.ActorVariation;
 }
 
-CObjectManager::CObjectManager(CMeshManager& meshManager)
-: m_MeshManager(meshManager)
+CObjectManager::CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& skeletonAnimManager)
+: m_MeshManager(meshManager), m_SkeletonAnimManager(skeletonAnimManager)
 {
 }
 

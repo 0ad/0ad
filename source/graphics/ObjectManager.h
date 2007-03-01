@@ -10,6 +10,7 @@ class CMatrix3D;
 class CMeshManager;
 class CObjectBase;
 class CObjectEntry;
+class CSkeletonAnimManager;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CObjectManager: manager class for all possible actor types
@@ -28,10 +29,14 @@ public:
 public:
 
 	// constructor, destructor
-	CObjectManager(CMeshManager& meshManager);
+	CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& skeletonAnimManager);
 	~CObjectManager();
 
+	// Provide access to the manager classes for meshes and animations - they're
+	// needed when objects are being created and so this seems like a convenient
+	// place to centralise access.
 	CMeshManager& GetMeshManager() const { return m_MeshManager; }
+	CSkeletonAnimManager& GetSkeletonAnimManager() const { return m_SkeletonAnimManager; }
 
 	void UnloadObjects();
 
@@ -49,6 +54,7 @@ public:
 
 private:
 	CMeshManager& m_MeshManager;
+	CSkeletonAnimManager& m_SkeletonAnimManager;
 
 	std::map<ObjectKey, CObjectEntry*> m_Objects;
 	std::map<CStr, CObjectBase*> m_ObjectBases;

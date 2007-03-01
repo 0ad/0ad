@@ -6,6 +6,7 @@
 #include "lib/res/file/trace.h"
 #include "lib/res/h_mgr.h"
 
+#include "graphics/ColladaManager.h"
 #include "graphics/MeshManager.h"
 #include "graphics/ModelDef.h"
 
@@ -95,6 +96,7 @@ class TestMeshManager : public CxxTest::TestSuite
 		TS_ASSERT_OK(vfs_opt_rebuild_main_archive(MOD_PATH"/trace.txt", MOD_PATH"/test%02d.zip"));
 	}
 
+	CColladaManager* colladaManager;
 	CMeshManager* meshManager;
 
 public:
@@ -102,12 +104,14 @@ public:
 	void setUp()
 	{
 		initVfs();
-		meshManager = new CMeshManager();
+		colladaManager = new CColladaManager();
+		meshManager = new CMeshManager(*colladaManager);
 	}
 
 	void tearDown()
 	{
 		delete meshManager;
+		delete colladaManager;
 		deinitVfs();
 	}
 
@@ -161,6 +165,18 @@ public:
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(modeldef);
 		if (modeldef) TS_ASSERT_STR_EQUALS(modeldef->GetName(), testBase);
+	}
+
+	void test_load_dae_caching()
+	{
+		copyFile(srcDAE, testDAE);
+
+		CStr daeName1 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
+		CStr daeName2 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
+		TS_ASSERT(daeName1.length());
+		TS_ASSERT_STR_EQUALS(daeName1, daeName2);
+		// TODO: it'd be nice to test that it isn't doing the DAE->PMD conversion
+		// again, but there doesn't seem to be an easy way to check that
 	}
 
 	void test_load_nonexistent_pmd()

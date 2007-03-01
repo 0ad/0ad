@@ -4,11 +4,13 @@
 
 #include "graphics/Camera.h"
 #include "graphics/CinemaTrack.h"
+#include "graphics/ColladaManager.h"
 #include "graphics/HFTracer.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
+#include "graphics/SkeletonAnimManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
 #include "graphics/Unit.h"
@@ -57,7 +59,9 @@ class CGameViewImpl : public CJSObject<CGameViewImpl>, boost::noncopyable
 {
 public:
 	CGameViewImpl(CGame* game)
-		: Game(game), MeshManager(), ObjectManager(MeshManager),
+		: Game(game),
+		ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
+		ObjectManager(MeshManager, SkeletonAnimManager),
 		ViewCamera(),
 		CullCamera(),
 		LockCullCamera(false),
@@ -79,7 +83,9 @@ public:
 	}
 
 	CGame* Game;
+	CColladaManager ColladaManager;
 	CMeshManager MeshManager;
+	CSkeletonAnimManager SkeletonAnimManager;
 	CObjectManager ObjectManager;
 
 	/**

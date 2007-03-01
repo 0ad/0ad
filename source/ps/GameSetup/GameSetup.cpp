@@ -36,7 +36,6 @@
 #include "graphics/MapReader.h"
 #include "graphics/MaterialManager.h"
 #include "graphics/ParticleEngine.h"
-#include "graphics/SkeletonAnimManager.h"
 #include "graphics/TextureManager.h"
 
 #include "renderer/Renderer.h"
@@ -710,9 +709,6 @@ static void InitRenderer()
 	// create the material manager
 	new CMaterialManager;
 
-	// create actor related stuff
-	new CSkeletonAnimManager;
-
 	MICROLOG(L"init renderer");
 	g_Renderer.Open(g_xres,g_yres,g_bpp);
 
@@ -811,8 +807,6 @@ void Shutdown(uint flags)
 
 	// destroy actor related stuff
 	TIMER_BEGIN("shutdown actor stuff");
-	delete &g_SkelAnimMan;
-
 	delete &g_MaterialManager;
 	TIMER_END("shutdown actor stuff");
 

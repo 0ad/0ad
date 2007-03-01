@@ -372,6 +372,11 @@ void CProfileNode::Frame()
 static long get_memory_alloc_count()
 {
 #if HAVE_VC_DEBUG_ALLOC
+	// TODO: it's probably better to use _CrtSetAllocHook to increment a
+	// user-visible counter. (I didn't know that existed when I wrote this.)
+
+	// Find the number of allocations that have ever occurred, by doing a dummy
+	// allocation and checking its request number
 	static long bias = 0; // so we can subtract the allocations caused by this function
 	void* p = malloc(1);
 	long requestNumber = 0;
@@ -381,6 +386,9 @@ static long get_memory_alloc_count()
 	++bias;
 	return requestNumber - bias;
 #else
+	// TODO: support other compilers if it's easy.
+	// TODO: don't show this column of data when we don't have sensible values
+	// to display.
 	return 0;
 #endif
 }
@@ -450,7 +458,7 @@ void CProfileManager::StartScript( const char* name )
 	current->Call();
 }
 
-const char* CProfileManager::InternString( CStr8 intern )
+const char* CProfileManager::InternString( const CStr8& intern )
 {
 	std::map<CStr8, const char*>::iterator it = m_internedStrings.find( intern );
 	if( it != m_internedStrings.end() )

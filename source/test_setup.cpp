@@ -25,7 +25,7 @@ class LeakReporter : public CxxTest::GlobalFixture
 
 		// Send output to stdout as well as the debug window, so it works during
 		// the normal build process as well as when debugging the test .exe
-		_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE|_CRTDBG_MODE_DEBUG);
+		_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE | _CRTDBG_MODE_DEBUG);
 		_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
 #endif
 

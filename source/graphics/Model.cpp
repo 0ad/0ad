@@ -26,10 +26,11 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
-CModel::CModel() 
+CModel::CModel(CSkeletonAnimManager& skeletonAnimManager)
 	: m_Parent(NULL), m_Flags(0), m_Anim(NULL), m_AnimTime(0), 
 	m_BoneMatrices(NULL), m_InverseBindBoneMatrices(NULL),
-	m_PositionValid(false), m_ShadingColor(1,1,1,1)
+	m_PositionValid(false), m_ShadingColor(1,1,1,1),
+	m_SkeletonAnimManager(skeletonAnimManager)
 {
 }
 
@@ -201,7 +202,7 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 // animation specific to this model
 CSkeletonAnim* CModel::BuildAnimation(const char* filename, const char* name, float speed, double actionpos, double actionpos2)
 {
-	CSkeletonAnimDef* def=g_SkelAnimMan.GetAnimation(filename);
+	CSkeletonAnimDef* def = m_SkeletonAnimManager.GetAnimation(filename);
 	if (!def) return NULL;
 
 
@@ -463,7 +464,7 @@ void CModel::RemoveProp(SPropPoint* point)
 // Clone: return a clone of this model
 CModel* CModel::Clone() const
 {
-	CModel* clone = new CModel;
+	CModel* clone = new CModel(m_SkeletonAnimManager);
 	clone->m_ObjectBounds = m_ObjectBounds;
 	clone->InitModel(m_pModelDef);
 	clone->SetTexture(m_Texture);

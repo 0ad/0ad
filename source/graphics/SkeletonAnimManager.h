@@ -11,34 +11,32 @@
 
 #include <map>
 #include <set>
-#include "SkeletonAnimDef.h"
-#include "ps/Singleton.h"
 
-
-// access to sole CSkeletonAnimManager object
-#define g_SkelAnimMan CSkeletonAnimManager::GetSingleton()
+class CColladaManager;
+class CSkeletonAnimDef;
+class CStr8;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimManager : owner class of all skeleton anims - manages creation, 
 // loading and destruction of animation data
-class CSkeletonAnimManager : public Singleton<CSkeletonAnimManager>
+class CSkeletonAnimManager : boost::noncopyable
 {
 public:
 	// constructor, destructor
-	CSkeletonAnimManager();
+	CSkeletonAnimManager(CColladaManager& colladaManager);
 	~CSkeletonAnimManager();
 	
 	// return a given animation by filename; return null if filename doesn't
 	// refer to valid animation file
-	CSkeletonAnimDef* GetAnimation(const char* filename);
+	CSkeletonAnimDef* GetAnimation(const CStr8& filename);
 
 private:
 	CSkeletonAnimDef* LoadAnimation(const char* filename);
 
-	// map of all known animations
-	std::map<CStr,CSkeletonAnimDef*> m_Animations;
-	// set of bad animation names - prevents multiple reloads of bad files
-	std::set<CStr> m_BadAnimationFiles;
+	// map of all known animations. Value is NULL if it failed to load.
+	std::map<CStr8, CSkeletonAnimDef*> m_Animations;
+
+	CColladaManager& m_ColladaManager;
 };
 
 #endif

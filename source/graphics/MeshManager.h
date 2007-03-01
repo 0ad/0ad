@@ -1,25 +1,28 @@
 #ifndef __H_MESHMANAGER_H__
 #define __H_MESHMANAGER_H__
 
+#include "ps/CStr.h"
+
 #include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 
 class CModelDef;
 typedef boost::shared_ptr<CModelDef> CModelDefPtr;
 
-class CStr8;
+class CColladaManager;
 
-class CMeshManagerImpl;
-
-class CMeshManager
+class CMeshManager : boost::noncopyable
 {
 public:
-	CMeshManager();
+	CMeshManager(CColladaManager& colladaManager);
 	~CMeshManager();
 
-	CModelDefPtr GetMesh(const CStr8& filename);
+	CModelDefPtr GetMesh(const CStr& filename);
 
 private:
-	CMeshManagerImpl* m;
+	typedef STL_HASH_MAP<CStr, boost::weak_ptr<CModelDef>, CStr_hash_compare> mesh_map;
+	mesh_map m_MeshMap;
+	CColladaManager& m_ColladaManager;
 };
 
 #endif

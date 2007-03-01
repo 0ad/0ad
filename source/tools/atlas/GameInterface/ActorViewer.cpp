@@ -4,11 +4,13 @@
 
 #include "View.h"
 
+#include "graphics/ColladaManager.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
 #include "graphics/SkeletonAnim.h"
 #include "graphics/SkeletonAnimDef.h"
+#include "graphics/SkeletonAnimManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
@@ -25,7 +27,8 @@
 struct ActorViewerImpl : public Scene, boost::noncopyable
 {
 	ActorViewerImpl()
-		: Unit(NULL), MeshManager(), ObjectManager(MeshManager)
+		: Unit(NULL), ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
+		ObjectManager(MeshManager, SkeletonAnimManager)
 	{
 	}
 
@@ -41,7 +44,9 @@ struct ActorViewerImpl : public Scene, boost::noncopyable
 	
 	CTerrain Terrain;
 
+	CColladaManager ColladaManager;
 	CMeshManager MeshManager;
+	CSkeletonAnimManager SkeletonAnimManager;
 	CObjectManager ObjectManager;
 
 	// Simplistic implementation of the Scene interface

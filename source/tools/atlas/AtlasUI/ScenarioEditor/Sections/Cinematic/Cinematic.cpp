@@ -841,7 +841,7 @@ wxImage CinematicSidebar::LoadIcon(const wxString& filename)
 	wxFileName iconPath (_T("tools/atlas/buttons/"));
 	iconPath.MakeAbsolute(Datafile::GetDataDirectory());
 	iconPath.SetFullName(filename);
-	wxFileInputStream fstr (iconPath.GetFullPath());
+	wxFFileInputStream fstr (iconPath.GetFullPath());
 	if (! fstr.Ok())
 	{
 		wxLogError(_("Failed to open cinematic icon file '%s'"), iconPath.GetFullPath().c_str());

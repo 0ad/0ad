@@ -20,6 +20,7 @@ struct SPropPoint;
 class CObjectEntry;
 class CSkeletonAnim;
 class CSkeletonAnimDef;
+class CSkeletonAnimManager;
 
 #define MODELFLAG_CASTSHADOWS		(1<<0)
 #define MODELFLAG_NOLOOPANIMATION	(1<<1)
@@ -27,7 +28,7 @@ class CSkeletonAnimDef;
 ///////////////////////////////////////////////////////////////////////////////
 // CModel: basically, a mesh object - holds the texturing and skinning 
 // information for a model in game
-class CModel : public CRenderableObject
+class CModel : public CRenderableObject, boost::noncopyable
 {
 	friend class CUnitAnimation;
 		// HACK - we should probably move the rest of this class's animation state
@@ -44,7 +45,7 @@ public:
 
 public:
 	// constructor
-	CModel();
+	CModel(CSkeletonAnimManager& skeletonAnimManager);
 	// destructor
 	~CModel();
 
@@ -201,6 +202,9 @@ private:
 
 	// modulating color
 	CColor m_ShadingColor;
+
+	// manager object which can load animations for us
+	CSkeletonAnimManager& m_SkeletonAnimManager;
 };
 
 #endif

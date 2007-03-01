@@ -82,7 +82,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	// delete old model, create new 
 	delete m_Model;
-	m_Model = new CModel;
+	m_Model = new CModel(objectManager.GetSkeletonAnimManager());
 	m_Model->SetTexture((const char*) m_TextureName);
 	m_Model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
 	m_Model->InitModel(modeldef);

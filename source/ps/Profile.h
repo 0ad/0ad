@@ -134,7 +134,7 @@ public:
 	// Resets absolutely everything
 	void StructuralReset();
 
-	const char* InternString( CStr8 intern );
+	const char* InternString( const CStr8& intern );
 
 	inline const CProfileNode* GetCurrent() { return( current ); }
 	inline const CProfileNode* GetRoot() { return( root ); }
@@ -150,11 +150,13 @@ class CProfileSample
 public:
 	CProfileSample( const char* name )
 	{
-		g_Profiler.Start( name );
+		if (CProfileManager::IsInitialised())
+			g_Profiler.Start( name );
 	}
 	~CProfileSample()
 	{
-		g_Profiler.Stop();
+		if (CProfileManager::IsInitialised())
+			g_Profiler.Stop();
 	}
 };
 

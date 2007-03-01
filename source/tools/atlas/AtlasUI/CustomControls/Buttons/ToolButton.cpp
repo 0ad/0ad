@@ -71,7 +71,7 @@ void ToolButtonBar::AddToolButton(const wxString& shortLabel, const wxString& lo
 	wxFileName iconPath (_T("tools/atlas/toolbar/"));
 	iconPath.MakeAbsolute(Datafile::GetDataDirectory());
 	iconPath.SetFullName(iconPNGFilename);
-	wxFileInputStream fstr (iconPath.GetFullPath());
+	wxFFileInputStream fstr (iconPath.GetFullPath());
 	if (! fstr.Ok())
 	{
 		wxLogError(_("Failed to open toolbar icon file '%s'"), iconPath.GetFullPath().c_str());

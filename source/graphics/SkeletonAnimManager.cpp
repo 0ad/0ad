@@ -8,18 +8,21 @@
 
 #include "precompiled.h"
 
-#include "lib/res/res.h"
-#include "Model.h"
-#include "ps/CLogger.h"
 #include "SkeletonAnimManager.h"
+
+#include "graphics/ColladaManager.h"
+#include "graphics/Model.h"
+#include "graphics/SkeletonAnimDef.h"
+#include "lib/res/res.h"
+#include "ps/CLogger.h"
 #include "ps/FileUnpacker.h"
-#include <algorithm>
 
 #define LOG_CATEGORY "graphics"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimManager constructor
-CSkeletonAnimManager::CSkeletonAnimManager()
+CSkeletonAnimManager::CSkeletonAnimManager(CColladaManager& colladaManager)
+: m_ColladaManager(colladaManager)
 {
 }
 
@@ -28,48 +31,55 @@ CSkeletonAnimManager::CSkeletonAnimManager()
 CSkeletonAnimManager::~CSkeletonAnimManager()
 {
 	typedef std::map<CStr,CSkeletonAnimDef*>::iterator Iter;
-	for (Iter i=m_Animations.begin();i!=m_Animations.end();++i) {
+	for (Iter i = m_Animations.begin(); i != m_Animations.end(); ++i)
 		delete i->second;
-	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // GetAnimation: return a given animation by filename; return null if filename 
 // doesn't refer to valid animation file
-CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const char* filename)
+CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const CStr& filename)
 {
-	// already loaded?
-	CStr fname(filename);
-	std::map<CStr,CSkeletonAnimDef*>::iterator iter=m_Animations.find(fname);
-	if (iter!=m_Animations.end()) {
-		// yes - return it
+	// Strip a three-letter file extension (if there is one) from the filename
+	CStr name;
+	if (filename.length() > 4 && filename[filename.length()-4] == '.')
+		name = filename.substr(0, filename.length()-4);
+	else
+		name = filename;
+
+	// Find if it's already been loaded
+	std::map<CStr, CSkeletonAnimDef*>::iterator iter = m_Animations.find(name);
+	if (iter != m_Animations.end())
 		return iter->second;
+
+	CSkeletonAnimDef* def = NULL;
+
+	// Find the file to load
+	CStr psaFilename = m_ColladaManager.GetLoadableFilename(name, CColladaManager::PSA);
+
+	if (psaFilename.empty())
+	{
+		LOG(ERROR, LOG_CATEGORY, "Could not load animation '%s'", filename.c_str());
+		def = NULL;
+	}
+	else
+	{
+		try
+		{
+			def = CSkeletonAnimDef::Load(psaFilename);
+		}
+		catch (PSERROR_File&)
+		{
+			// ignore errors (they'll be logged elsewhere)
+		}
 	}
 
-	// already failed to load?
-	std::set<CStr>::iterator setiter=m_BadAnimationFiles.find(fname);
-	if (setiter!=m_BadAnimationFiles.end()) {
-		// yes - return null
-		return 0;
-	}
+	if (def)
+		LOG(NORMAL, LOG_CATEGORY, "CSkeletonAnimManager::GetAnimation(%s): Loaded successfully", filename.c_str());
+	else
+		LOG(ERROR, LOG_CATEGORY, "CSkeletonAnimManager::GetAnimation(%s): Failed loading, marked file as bad", filename.c_str());
 
-	// try and load it now
-	CSkeletonAnimDef* def;
-	try {
-		def=CSkeletonAnimDef::Load(filename);
-	} catch (PSERROR_File&) {
-		def=0;
-	}
-
-	if (!def) {
-		LOG(ERROR, LOG_CATEGORY, "CSkeletonAnimManager::GetAnimation(%s): Failed loading, marked file as bad", filename);
-		// add this file as bad
-		m_BadAnimationFiles.insert(fname);
-		return 0;
-	} else {
-		LOG(NORMAL, LOG_CATEGORY, "CSkeletonAnimManager::GetAnimation(%s): Loaded successfully", filename);
-		// add mapping for this file
-		m_Animations[fname]=def;
-		return def;
-	}
+	// Add to map
+	m_Animations[name] = def; // NULL if failed to load - we won't try loading it again
+	return def;
 }
