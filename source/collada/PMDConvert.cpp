@@ -50,17 +50,13 @@ public:
 	 */
 	static void ColladaToPMD(const char* input, OutputCB& output, std::string& xmlErrors)
 	{
-		FUStatus ret;
-
-		// Grab all the error output from libxml2. Be careful to never use
-		// libxml2 outside this function without having first set/reset the
-		// errorfunc (since xmlErrors won't be valid any more).
-		xmlSetGenericErrorFunc(&xmlErrors, &errorHandler);
+		FColladaErrorHandler err (xmlErrors);
 
 		std::auto_ptr<FCDocument> doc (FCollada::NewTopDocument());
 		REQUIRE_SUCCESS(doc->LoadFromText("", input));
 
 		FCDSceneNode* root = doc->GetVisualSceneRoot();
+		REQUIRE(root != NULL, "has root object");
 
 		// Find the instance to convert
 		FCDEntityInstance* instance;
@@ -101,12 +97,26 @@ public:
 
 			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms);
 		}
-		else if (instance->GetEntity()->GetType() == FCDEntity::CONTROLLER)
+		else if (instance->GetType() == FCDEntityInstance::CONTROLLER)
 		{
+			FCDControllerInstance* controllerInstance = (FCDControllerInstance*)instance;
+
+			// (NB: GetType is deprecated and should be replaced with HasType,
+			// except that has irritating linker errors when using a DLL, so don't
+			// bother)
+			
+			assert(instance->GetEntity()->GetType() == FCDEntity::CONTROLLER); // assume this is always true?
 			FCDController* controller = (FCDController*)instance->GetEntity();
 
-			REQUIRE(controller->HasSkinController(), "has skin controller");
 			FCDSkinController* skin = controller->GetSkinController();
+			REQUIRE(skin != NULL, "is skin controller");
+
+			// Data for joints is stored in two places - avoid overflows by limiting
+			// to the minimum of the two sizes, and warn if they're different (which
+			// happens in practice for slightly-broken meshes)
+			size_t jointCount = std::min(skin->GetJointCount(), controllerInstance->GetJointCount());
+			if (skin->GetJointCount() != controllerInstance->GetJointCount())
+				Log(LOG_WARNING, "Mismatched bone counts");
 
 			// Get the skinned mesh for this entity
 			FCDEntity* baseTarget = controller->GetBaseTarget();
@@ -135,7 +145,12 @@ public:
 				{
 					uint32 jointIdx = vertexInfluences[i][j].jointIndex;
 					REQUIRE(jointIdx <= 0xFF, "sensible number of joints");
-					FCDSceneNode* joint = skin->GetJoint(jointIdx)->joint;
+
+					// Find the joint on the skeleton, after checking it really exists
+					FCDSceneNode* joint = NULL;
+					if (jointIdx < controllerInstance->GetJointCount())
+						joint = controllerInstance->GetJoint(jointIdx);
+
 					if (! joint)
 					{
 						if (! hasComplainedAboutNonexistentJoints)
@@ -159,17 +174,9 @@ public:
 
 			transform = skin->GetBindShapeTransform();
 
-			for (size_t i = 0; i < skin->GetJointCount(); ++i)
+			for (size_t i = 0; i < jointCount; ++i)
 			{
-				FCDJointMatrixPair* joint = skin->GetJoint(i);
-				
-				if (! joint->joint)
-				{
-					Log(LOG_WARNING, "Skin has nonexistent joint");
-					continue;
-				}
-
-				FMMatrix44 bindPose = joint->invertedBindPose.Inverted();
+				FMMatrix44 bindPose = skin->GetBindPoses()[i].Inverted();
 
 				HMatrix matrix;
 				memcpy(matrix, bindPose.Transposed().m, sizeof(matrix));
@@ -183,8 +190,14 @@ public:
 					{ parts.q.x, parts.q.y, parts.q.z, parts.q.w }
 				};
 
-				int boneId = StdSkeletons::FindStandardBoneID(joint->joint->GetName());
-				REQUIRE(boneId >= 0, "recognised bone name");
+				FCDSceneNode* joint = controllerInstance->GetJoint(i);
+				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+				if (boneId < 0)
+				{
+					Log(LOG_WARNING, "Unrecognised bone name '%s'", joint->GetName().c_str());
+					continue;
+				}
+
 				boneTransforms[boneId] = b;
 			}
 

@@ -8,23 +8,12 @@
 
 #include <cassert>
 
-/** Throws a ColladaException unless the value is true. */
-#define REQUIRE(value, message) require_(__LINE__, value, "Assertion not satisfied", message)
-
-/** Throws a ColladaException unless the status is successful. */
-#define REQUIRE_SUCCESS(status) require_(__LINE__, status)
-
 void require_(int line, bool value, const char* type, const char* message)
 {
 	if (value) return;
 	char linestr[16];
 	sprintf(linestr, "%d", line);
 	throw ColladaException(std::string(type) + " (line " + linestr + "): " + message);
-}
-
-void require_(int line, const FUStatus& status)
-{
-	require_(line, status, "FCollada error", status.GetErrorString());
 }
 
 /** Error handler for libxml2 */
@@ -40,7 +29,49 @@ void errorHandler(void* ctx, const char* msg, ...)
 	*((std::string*)ctx) += buffer;
 }
 
+FColladaErrorHandler::FColladaErrorHandler(std::string& xmlErrors_)
+: xmlErrors(xmlErrors_)
+{
+	// Grab all the error output from libxml2, for useful error reporting
+	xmlSetGenericErrorFunc(&xmlErrors, &errorHandler);
+
+	FUError::SetErrorCallback(FUError::DEBUG, new FUFunctor3<FColladaErrorHandler, FUError::Level, uint32, uint32, void>(this, &FColladaErrorHandler::OnError));
+	FUError::SetErrorCallback(FUError::WARNING, new FUFunctor3<FColladaErrorHandler, FUError::Level, uint32, uint32, void>(this, &FColladaErrorHandler::OnError));
+	FUError::SetErrorCallback(FUError::ERROR, new FUFunctor3<FColladaErrorHandler, FUError::Level, uint32, uint32, void>(this, &FColladaErrorHandler::OnError));
+}
+
+FColladaErrorHandler::~FColladaErrorHandler()
+{
+	xmlSetGenericErrorFunc(NULL, NULL);
+
+	FUError::SetErrorCallback(FUError::DEBUG, NULL);
+	FUError::SetErrorCallback(FUError::WARNING, NULL);
+	FUError::SetErrorCallback(FUError::ERROR, NULL);
+}
+
+void FColladaErrorHandler::OnError(FUError::Level errorLevel, uint32 errorCode, uint32 UNUSED(lineNumber))
+{
+	const char* errorString = FUError::GetErrorString((FUError::Code) errorCode);
+	if (! errorString)
+		errorString = "Unknown error code";
+
+	if (errorLevel == FUError::DEBUG)
+		Log(LOG_INFO, "FCollada message %d: %s", errorCode, errorString);
+	else if (errorLevel == FUError::WARNING)
+		Log(LOG_WARNING, "FCollada error %d: %s", errorCode, errorString);
+	else
+		throw ColladaException(errorString);
+}
+
+
+
 //////////////////////////////////////////////////////////////////////////
+
+// These don't get exported properly from FCollada (3.02, DLL), so define them
+// here instead of fixing it correctly.
+const FMVector3 FMVector3::XAxis(1.0f, 0.0f, 0.0f);
+static float identity[] = { 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 };
+FMMatrix44 FMMatrix44::Identity(identity);
 
 struct FoundInstance
 {

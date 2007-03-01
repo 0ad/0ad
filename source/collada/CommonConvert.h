@@ -35,14 +35,27 @@ struct OutputCB
 	virtual void operator() (const char* data, unsigned int length)=0;
 };
 
+class FColladaErrorHandler
+{
+public:
+	FColladaErrorHandler(std::string& xmlErrors);
+	~FColladaErrorHandler();
+
+private:
+	void OnError(FUError::Level errorLevel, uint32 errorCode, uint32 lineNumber);
+	std::string& xmlErrors;
+
+	void operator=(FColladaErrorHandler);
+};
+
 /** Throws a ColladaException unless the value is true. */
 #define REQUIRE(value, message) require_(__LINE__, value, "Assertion not satisfied", message)
 
 /** Throws a ColladaException unless the status is successful. */
-#define REQUIRE_SUCCESS(status) require_(__LINE__, status)
+#define REQUIRE_SUCCESS(status) require_(__LINE__, status, "FCollada error", "Line " STRINGIFY(__LINE__))
+#define STRINGIFY(x) #x
 
 void require_(int line, bool value, const char* type, const char* message);
-void require_(int line, const FUStatus& status);
 
 /** Outputs a structure, using sizeof to get the size. */
 template<typename T> void write(OutputCB& output, const T& data)

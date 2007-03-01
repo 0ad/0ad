@@ -88,7 +88,7 @@ int convert_dae_to_whatever(const char* dae, OutputFn writer, void* cb_data, voi
 	{
 		conv(dae, cb, xmlErrors);
 	}
-	catch (ColladaException e)
+	catch (const ColladaException& e)
 	{
 		if (! xmlErrors.empty())
 			Log(LOG_ERROR, "%s", xmlErrors.c_str());

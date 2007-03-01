@@ -14,7 +14,6 @@
 #include "FCDocument/FCDGeometryPolygons.h"
 #include "FCDocument/FCDGeometrySource.h"
 #include "FCDocument/FCDSceneNode.h"
-#include "FCDocument/FCDSkinController.h"
 
 #include "StdSkeletons.h"
 #include "Decompose.h"
@@ -23,6 +22,7 @@
 
 #include <cassert>
 #include <vector>
+#include <limits>
 
 struct BoneTransform
 {
@@ -44,17 +44,13 @@ public:
 	 */
 	static void ColladaToPSA(const char* input, OutputCB& output, std::string& xmlErrors)
 	{
-		FUStatus ret;
-
-		// Grab all the error output from libxml2. Be careful to never use
-		// libxml2 outside this function without having first set/reset the
-		// errorfunc (since xmlErrors won't be valid any more).
-		xmlSetGenericErrorFunc(&xmlErrors, &errorHandler);
+		FColladaErrorHandler err (xmlErrors);
 
 		std::auto_ptr<FCDocument> doc (FCollada::NewTopDocument());
 		REQUIRE_SUCCESS(doc->LoadFromText("", input));
 
 		FCDSceneNode* root = doc->GetVisualSceneRoot();
+		REQUIRE(root != NULL, "has root object");
 
 		// Find the instance to convert
 		FCDEntityInstance* instance;
@@ -65,28 +61,33 @@ public:
 		assert(instance);
 		Log(LOG_INFO, "Converting '%s'", instance->GetEntity()->GetName().c_str());
 
-		if (instance->GetEntity()->GetType() == FCDEntity::CONTROLLER)
+		if (instance->GetType() == FCDEntityInstance::CONTROLLER)
 		{
-			FCDController* controller = (FCDController*)instance->GetEntity();
-
-			REQUIRE(controller->HasSkinController(), "has skin controller");
-			FCDSkinController* skin = controller->GetSkinController();
+			FCDControllerInstance* controllerInstance = (FCDControllerInstance*)instance;
 
 			// Find the first and last times which have animations
+			// TODO: use the FCOLLADA start_time/end_time where available
 			float timeStart = std::numeric_limits<float>::max();
 			float timeEnd = -std::numeric_limits<float>::max();
-			for (size_t i = 0; i < skin->GetJointCount(); ++i)
+			for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
 			{
-				FCDJointMatrixPair* joint = skin->GetJoint(i);
-				REQUIRE(joint->joint != NULL, "joint exists");
+				FCDSceneNode* joint = controllerInstance->GetJoint(i);
+				REQUIRE(joint != NULL, "joint exists");
+
+				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+				if (boneId < 0)
+				{
+					Log(LOG_WARNING, "Unrecognised bone name '%s'", joint->GetName().c_str());
+					continue;
+				}
 
 				// Skip unanimated joints
-				if (joint->joint->GetTransformCount() == 0)
+				if (joint->GetTransformCount() == 0)
 					continue;
 
-				REQUIRE(joint->joint->GetTransformCount() == 1, "joint has single transform");
+				REQUIRE(joint->GetTransformCount() == 1, "joint has single transform");
 
-				FCDTransform* transform = joint->joint->GetTransform(0);
+				FCDTransform* transform = joint->GetTransform(0);
 
 				// Skip unanimated joints again. (TODO: Which of these happens in practice?)
 				if (! transform->IsAnimated())
@@ -111,6 +112,7 @@ public:
 
 			// Count frames; don't include the last keyframe
 			size_t frameCount = (size_t)((timeEnd - timeStart) / frameLength - 0.5f);
+			// (TODO: sort out the timing/looping problems)
 
 			size_t boneCount = StdSkeletons::GetBoneCount();
 
@@ -124,18 +126,47 @@ public:
 				std::vector<BoneTransform> frameBoneTransforms (boneCount, boneDefault);
 
 				// Move the model into the new animated pose
-				for (size_t i = 0; i < skin->GetJointCount(); ++i)
+				for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
 				{
-					FCDTransform* transform = skin->GetJoint(i)->joint->GetTransform(0);
+					FCDSceneNode* joint = controllerInstance->GetJoint(i);
+
+					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+					if (boneId < 0)
+						continue; // already emitted a warning earlier
+
+					FCDTransform* transform = joint->GetTransform(0);
 					FCDAnimated* anim = transform->GetAnimated();
 					anim->Evaluate(time);
 				}
+				// As well as the joints, we need to update all the ancestors
+				// of the skeleton (e.g. the Bip01 node, since the skeleton is
+				// hanging off Bip01-Pelvis instead).
+				// So choose an arbitrary joint, which is hopefully actually the
+				// top-most joint but it doesn't really matter, and evaluate all
+				// its ancestors;
+				if (controllerInstance->GetJointCount() >= 1)
+				{
+					FCDSceneNode* node = controllerInstance->GetJoint(0);
+					while (node->GetParentCount() == 1) // (I guess this should be true in sensible models)
+					{
+						node = node->GetParent();
+						if (node->IsJoint() && node->GetTransformCount() == 1)
+							node->GetTransform(0)->GetAnimated()->Evaluate(time);
+						else
+							break;
+					}
+				}
 
 				// Convert the pose into the form require by the game
-				for (size_t i = 0; i < skin->GetJointCount(); ++i)
+				for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
 				{
-					FCDSceneNode* jointNode = skin->GetJoint(i)->joint;
-					FMMatrix44 worldTransform = jointNode->CalculateWorldTransform();
+					FCDSceneNode* joint = controllerInstance->GetJoint(i);
+
+					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+					if (boneId < 0)
+						continue; // already emitted a warning earlier
+
+					FMMatrix44 worldTransform = joint->CalculateWorldTransform();
 
 					HMatrix matrix;
 					memcpy(matrix, worldTransform.Transposed().m, sizeof(matrix));
@@ -148,13 +179,12 @@ public:
 						{ parts.q.x, parts.q.y, parts.q.z, parts.q.w }
 					};
 
-					int boneId = StdSkeletons::FindStandardBoneID(jointNode->GetName());
-					REQUIRE(boneId >= 0, "recognised bone name");
 					frameBoneTransforms[boneId] = b;
 				}
 
 				// Push frameBoneTransforms onto the back of boneTransforms
-				copy(frameBoneTransforms.begin(), frameBoneTransforms.end(), inserter(boneTransforms, boneTransforms.end()));
+				copy(frameBoneTransforms.begin(), frameBoneTransforms.end(),
+					inserter(boneTransforms, boneTransforms.end()));
 			}
 
 			// Convert into game's coordinate space
