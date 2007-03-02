@@ -9,6 +9,7 @@
 #include "FCDocument/FCDAnimationCurve.h"
 #include "FCDocument/FCDController.h"
 #include "FCDocument/FCDControllerInstance.h"
+#include "FCDocument/FCDExtra.h"
 #include "FCDocument/FCDGeometry.h"
 #include "FCDocument/FCDGeometryMesh.h"
 #include "FCDocument/FCDGeometryPolygons.h"
@@ -65,50 +66,65 @@ public:
 		{
 			FCDControllerInstance* controllerInstance = (FCDControllerInstance*)instance;
 
-			// Find the first and last times which have animations
-			// TODO: use the FCOLLADA start_time/end_time where available
-			float timeStart = std::numeric_limits<float>::max();
-			float timeEnd = -std::numeric_limits<float>::max();
-			for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
+			float frameLength = 1.f / 30.f; // currently we always want to create PMDs at fixed 30fps
+
+			// Find the extents of the animation:
+
+			float timeStart, timeEnd;
+			
+			// FCollada tools export <extra> info in the scene to specify the start
+			// and end times.
+			// If that isn't available, we have to search for the earliest and latest
+			// keyframes on any of the bones.
+			if (doc->HasStartTime() && doc->HasEndTime())
 			{
-				FCDSceneNode* joint = controllerInstance->GetJoint(i);
-				REQUIRE(joint != NULL, "joint exists");
-
-				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
-				if (boneId < 0)
+				timeStart = doc->GetStartTime();
+				timeEnd = doc->GetEndTime();
+			}
+			else
+			{
+				timeStart = std::numeric_limits<float>::max();
+				timeEnd = -std::numeric_limits<float>::max();
+				for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
 				{
-					Log(LOG_WARNING, "Unrecognised bone name '%s'", joint->GetName().c_str());
-					continue;
-				}
+					FCDSceneNode* joint = controllerInstance->GetJoint(i);
+					REQUIRE(joint != NULL, "joint exists");
 
-				// Skip unanimated joints
-				if (joint->GetTransformCount() == 0)
-					continue;
-
-				REQUIRE(joint->GetTransformCount() == 1, "joint has single transform");
-
-				FCDTransform* transform = joint->GetTransform(0);
-
-				// Skip unanimated joints again. (TODO: Which of these happens in practice?)
-				if (! transform->IsAnimated())
-					continue;
-
-				// Iterate over all curves
-				FCDAnimated* anim = transform->GetAnimated();
-				FCDAnimationCurveListList& curvesList = anim->GetCurves();
-				for (size_t j = 0; j < curvesList.size(); ++j)
-				{
-					FCDAnimationCurveList& curves = curvesList[j];
-					for (size_t k = 0; k < curves.size(); ++k)
+					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+					if (boneId < 0)
 					{
-						FCDAnimationCurve* curve = curves[k];
-						timeStart = std::min(timeStart, curve->GetKeys().front());
-						timeEnd = std::max(timeEnd, curve->GetKeys().back());
+						// unrecognised joint - it's probably just a prop point
+						// or something, so ignore it
+						continue;
+					}
+
+					// Skip unanimated joints
+					if (joint->GetTransformCount() == 0)
+						continue;
+
+					REQUIRE(joint->GetTransformCount() == 1, "joint has single transform");
+
+					FCDTransform* transform = joint->GetTransform(0);
+
+					// Skip unanimated joints (TODO: Which of these happens in practice?)
+					if (! transform->IsAnimated())
+						continue;
+
+					// Iterate over all curves
+					FCDAnimated* anim = transform->GetAnimated();
+					FCDAnimationCurveListList& curvesList = anim->GetCurves();
+					for (size_t j = 0; j < curvesList.size(); ++j)
+					{
+						FCDAnimationCurveList& curves = curvesList[j];
+						for (size_t k = 0; k < curves.size(); ++k)
+						{
+							FCDAnimationCurve* curve = curves[k];
+							timeStart = std::min(timeStart, curve->GetKeys().front());
+							timeEnd = std::max(timeEnd, curve->GetKeys().back());
+						}
 					}
 				}
 			}
-
-			float frameLength = 1.f / 30.f;
 
 			// Count frames; don't include the last keyframe
 			size_t frameCount = (size_t)((timeEnd - timeStart) / frameLength - 0.5f);
@@ -132,7 +148,7 @@ public:
 
 					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
 					if (boneId < 0)
-						continue; // already emitted a warning earlier
+						continue; // not a recognised bone - ignore it, same as before
 
 					FCDTransform* transform = joint->GetTransform(0);
 					FCDAnimated* anim = transform->GetAnimated();
@@ -164,7 +180,7 @@ public:
 
 					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
 					if (boneId < 0)
-						continue; // already emitted a warning earlier
+						continue; // not a recognised bone - ignore it, same as before
 
 					FMMatrix44 worldTransform = joint->CalculateWorldTransform();
 

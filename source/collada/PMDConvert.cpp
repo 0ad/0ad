@@ -6,6 +6,7 @@
 #include "FCollada.h"
 #include "FCDocument/FCDocument.h"
 #include "FCDocument/FCDController.h"
+#include "FCDocument/FCDControllerInstance.h"
 #include "FCDocument/FCDGeometry.h"
 #include "FCDocument/FCDGeometryMesh.h"
 #include "FCDocument/FCDGeometryPolygons.h"
@@ -177,7 +178,7 @@ public:
 
 					// Store into the VertexBlend
 					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
-					REQUIRE(boneId >= 0, "recognised bone name");
+					REQUIRE(boneId >= 0, "vertex influenced by recognised bone");
 					influences.bones[j] = (uint8)boneId;
 					influences.weights[j] = vertexInfluences[i][j].weight;
 				}
@@ -194,6 +195,16 @@ public:
 
 			for (size_t i = 0; i < jointCount; ++i)
 			{
+				FCDSceneNode* joint = controllerInstance->GetJoint(i);
+
+				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+				if (boneId < 0)
+				{
+					// unrecognised joint - it's probably just a prop point
+					// or something, so ignore it
+					continue;
+				}
+
 				FMMatrix44 bindPose = skin->GetBindPoses()[i].Inverted();
 
 				HMatrix matrix;
@@ -208,20 +219,13 @@ public:
 					{ parts.q.x, parts.q.y, parts.q.z, parts.q.w }
 				};
 
-				FCDSceneNode* joint = controllerInstance->GetJoint(i);
-				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
-				if (boneId < 0)
-				{
-					Log(LOG_WARNING, "Unrecognised bone name '%s'", joint->GetName().c_str());
-					continue;
-				}
-
 				boneTransforms[boneId] = b;
 			}
 
 			// Construct the list of prop points
-			// (Currently, all objects that aren't recognised a standard bone,
-			// which are attached to a standard bone, are assumed to be props)
+			// (Currently, all objects that aren't recognised as a standard bone,
+			// but which are directly attached to a standard bone, are assumed to
+			// be prop points)
 
 			std::vector<PropPoint> propPoints;
 
@@ -232,7 +236,7 @@ public:
 				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
 				if (boneId < 0)
 				{
-					// Unrecognised bone name - already reported as a warning
+					// unrecognised joint name - ignore, same as before
 					continue;
 				}
 
@@ -245,7 +249,7 @@ public:
 						continue;
 					}
 
-					Log(LOG_INFO, "Adding prop point %s", child->GetName().c_str());
+					//Log(LOG_INFO, "Adding prop point %s", child->GetName().c_str());
 
 					// Get translation and orientation of local transform
 
