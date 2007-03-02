@@ -164,9 +164,13 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 			&dataTexcoord[(*indicesTexcoord)[i]*strideTexcoord],
 			weights
 		);
-		size_t idx = inserter.add(vtx);//InsertWithoutDuplicates(vertexes, vtx);
+		size_t idx = inserter.add(vtx);
 		indicesCombined.push_back((uint32)idx);
 	}
+
+	// TODO: rearrange indicesCombined (and rearrange vertexes to match) to use
+	// the vertex cache efficiently
+	// (<http://home.comcast.net/~tom_forsyth/papers/fast_vert_cache_opt.html> etc)
 
 	FloatList newDataPosition;
 	FloatList newDataNormal;

@@ -205,8 +205,8 @@ public:
 	static void WritePSA(OutputCB& output, size_t frameCount, size_t boneCount, const std::vector<BoneTransform>& boneTransforms)
 	{
 		output("PSSA", 4);  // magic number
-		write<uint32>(output, 1); // version number
-		write<uint32>(output, (uint32)(
+		write(output, (uint32)1); // version number
+		write(output, (uint32)(
 			4 + 0 + // name
 			4 + // frameLength
 			4 + 4 + // numBones, numFrames
@@ -214,13 +214,13 @@ public:
 			)); // data size
 
 		// Name
-		write<uint32>(output, 0);
+		write(output, (uint32)0);
 
 		// Frame length
-		write<float>(output, 1000/30.f);
+		write(output, 1000.f/30.f);
 
-		write<uint32>(output, (uint32)boneCount);
-		write<uint32>(output, (uint32)frameCount);
+		write(output, (uint32)boneCount);
+		write(output, (uint32)frameCount);
 
 		for (size_t i = 0; i < boneCount*frameCount; ++i)
 		{

@@ -35,6 +35,13 @@ struct BoneTransform
 	float orientation[4];
 };
 
+struct PropPoint
+{
+	std::string name;
+	float translation[3];
+	float orientation[4];
+	uint8 bone;
+};
 
 class PMDConvert
 {
@@ -94,11 +101,14 @@ public:
 
 			std::vector<VertexBlend> boneWeights;
 			std::vector<BoneTransform> boneTransforms;
+			std::vector<PropPoint> propPoints;
 
-			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms);
+			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms, propPoints);
 		}
 		else if (instance->GetType() == FCDEntityInstance::CONTROLLER)
 		{
+			Log(LOG_INFO, "Found skinned geometry");
+
 			FCDControllerInstance* controllerInstance = (FCDControllerInstance*)instance;
 
 			// (NB: GetType is deprecated and should be replaced with HasType,
@@ -131,7 +141,7 @@ public:
 
 			// Convert the bone influences into VertexBlend structures for the PMD:
 
-			bool hasComplainedAboutNonexistentJoints = false;
+			bool hasComplainedAboutNonexistentJoints = false; // because we want to emit a warning only once
 
 			std::vector<VertexBlend> boneWeights; // one per vertex
 
@@ -140,17 +150,21 @@ public:
 			{
 				VertexBlend influences = defaultInfluences;
 
-				assert(vertexInfluences[i].size() <= maxInfluences); // guaranteed by ReduceInfluences
+				assert(vertexInfluences[i].size() <= maxInfluences);
+					// guaranteed by ReduceInfluences; necessary for avoiding
+					// out-of-bounds writes to the VertexBlend
+
 				for (size_t j = 0; j < vertexInfluences[i].size(); ++j)
 				{
 					uint32 jointIdx = vertexInfluences[i][j].jointIndex;
-					REQUIRE(jointIdx <= 0xFF, "sensible number of joints");
+					REQUIRE(jointIdx <= 0xFF, "sensible number of joints"); // because we only have a u8 to store them in
 
 					// Find the joint on the skeleton, after checking it really exists
 					FCDSceneNode* joint = NULL;
 					if (jointIdx < controllerInstance->GetJointCount())
 						joint = controllerInstance->GetJoint(jointIdx);
 
+					// Complain on error
 					if (! joint)
 					{
 						if (! hasComplainedAboutNonexistentJoints)
@@ -160,6 +174,8 @@ public:
 						}
 						continue;
 					}
+
+					// Store into the VertexBlend
 					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
 					REQUIRE(boneId >= 0, "recognised bone name");
 					influences.bones[j] = (uint8)boneId;
@@ -169,7 +185,9 @@ public:
 				boneWeights.push_back(influences);
 			}
 
-			BoneTransform boneDefault  = { { 0, 0, 0 }, { 0, 0, 0, 1 } };
+			// Convert the bind pose into BoneTransform structures for the PMD:
+
+			BoneTransform boneDefault  = { { 0, 0, 0 }, { 0, 0, 0, 1 } }; // identity transform
 			std::vector<BoneTransform> boneTransforms (StdSkeletons::GetBoneCount(), boneDefault);
 
 			transform = skin->GetBindShapeTransform();
@@ -180,7 +198,7 @@ public:
 
 				HMatrix matrix;
 				memcpy(matrix, bindPose.Transposed().m, sizeof(matrix));
-					// matrix = bindPose^T, to match what decomp_affine wants
+					// set matrix = bindPose^T, to match what decomp_affine wants
 
 				AffineParts parts;
 				decomp_affine(matrix, &parts);
@@ -201,11 +219,64 @@ public:
 				boneTransforms[boneId] = b;
 			}
 
+			// Construct the list of prop points
+			// (Currently, all objects that aren't recognised a standard bone,
+			// which are attached to a standard bone, are assumed to be props)
+
+			std::vector<PropPoint> propPoints;
+
+			for (size_t i = 0; i < jointCount; ++i)
+			{
+				FCDSceneNode* joint = controllerInstance->GetJoint(i);
+
+				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+				if (boneId < 0)
+				{
+					// Unrecognised bone name - already reported as a warning
+					continue;
+				}
+
+				for (size_t j = 0; j < joint->GetChildrenCount(); ++j)
+				{
+					FCDSceneNode* child = joint->GetChild(j);
+					if (StdSkeletons::FindStandardBoneID(child->GetName()) >= 0)
+					{
+						// recognised as a bone, hence not a prop point, so skip it
+						continue;
+					}
+
+					Log(LOG_INFO, "Adding prop point %s", child->GetName().c_str());
+
+					// Get translation and orientation of local transform
+
+					FMMatrix44 localTransform = child->ToMatrix();
+
+					HMatrix matrix;
+					memcpy(matrix, localTransform.Transposed().m, sizeof(matrix));
+
+					AffineParts parts;
+					decomp_affine(matrix, &parts);
+
+					// Add prop point to list
+
+					PropPoint p = {
+						child->GetName(),
+						{ parts.t.x, parts.t.y, parts.t.z },
+						{ parts.q.x, parts.q.y, parts.q.z, parts.q.w },
+						(uint8)boneId
+					};
+					propPoints.push_back(p);
+				}
+			}
+
+			// Get the raw vertex data
+
 			FCDGeometryPolygonsInput* inputPosition = polys->FindInput(FUDaeGeometryInput::POSITION);
 			FCDGeometryPolygonsInput* inputNormal   = polys->FindInput(FUDaeGeometryInput::NORMAL);
 			FCDGeometryPolygonsInput* inputTexcoord = polys->FindInput(FUDaeGeometryInput::TEXCOORD);
 
-			UInt32List* indicesCombined = polys->FindIndices(inputPosition); // guaranteed by ReindexGeometry
+			UInt32List* indicesCombined = polys->FindIndices(inputPosition);
+				// guaranteed by ReindexGeometry to be the same for all inputs
 
 			FCDGeometrySource* sourcePosition = inputPosition->GetSource();
 			FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
@@ -215,9 +286,9 @@ public:
 			FloatList& dataNormal   = sourceNormal  ->GetSourceData();
 			FloatList& dataTexcoord = sourceTexcoord->GetSourceData();
 
-			TransformVertices(dataPosition, dataNormal, boneTransforms, transform);
+			TransformVertices(dataPosition, dataNormal, boneTransforms, propPoints, transform);
 
-			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms);
+			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms, propPoints);
 		}
 		else
 		{
@@ -232,7 +303,8 @@ public:
 	static void WritePMD(OutputCB& output,
 		const UInt32List& indices,
 		const FloatList& position, const FloatList& normal, const FloatList& texcoord,
-		const std::vector<VertexBlend>& boneWeights, const std::vector<BoneTransform>& boneTransforms)
+		const std::vector<VertexBlend>& boneWeights, const std::vector<BoneTransform>& boneTransforms,
+		const std::vector<PropPoint>& propPoints)
 	{
 		static const VertexBlend noBlend = { { 0xFF, 0xFF, 0xFF, 0xFF }, { 0, 0, 0, 0 } };
 
@@ -242,13 +314,20 @@ public:
 		if (boneCount)
 			assert(boneWeights.size() == vertexCount);
 
+		size_t propPointsSize = 0; // can't calculate this statically, so loop over all the prop points
+		for (size_t i = 0; i < propPoints.size(); ++i)
+		{
+			propPointsSize += 4 + propPoints[i].name.length();
+			propPointsSize += 3*4 + 4*4 + 1;
+		}
+
 		output("PSMD", 4);  // magic number
-		write<uint32>(output, 3); // version number
-		write<uint32>(output, (uint32)(
+		write(output, (uint32)3); // version number
+		write(output, (uint32)(
 			4 + 13*4*vertexCount + // vertices
 			4 + 6*faceCount + // faces
 			4 + 7*4*boneCount + // bones
-			4 + 0 // props
+			4 + propPointsSize // props
 			)); // data size
 
 		// Vertex data
@@ -265,21 +344,30 @@ public:
 		}
 
 		// Face data
-		write<uint32>(output, (uint32)faceCount);
+		write(output, (uint32)faceCount);
 		for (size_t i = 0; i < indices.size(); ++i)
 		{
 			write(output, (uint16)indices[i]);
 		}
 
 		// Bones data
-		write<uint32>(output, (uint32)boneCount);
+		write(output, (uint32)boneCount);
 		for (size_t i = 0; i < boneCount; ++i)
 		{
 			output((char*)&boneTransforms[i], 7*4);
 		}
 
 		// Prop points data
-		write<uint32>(output, 0);
+		write(output, (uint32)propPoints.size());
+		for (size_t i = 0; i < propPoints.size(); ++i)
+		{
+			uint32 nameLen = (uint32)propPoints[i].name.length();
+			write(output, nameLen);
+			output((char*)propPoints[i].name.c_str(), nameLen);
+			write(output, propPoints[i].translation);
+			write(output, propPoints[i].orientation);
+			write(output, propPoints[i].bone);
+		}
 	}
 
 	static FCDGeometryPolygons* GetPolysFromGeometry(FCDGeometry* geom)
@@ -318,12 +406,16 @@ public:
 		}
 	}
 
-	static void TransformVertices(FloatList& position, FloatList& normal, std::vector<BoneTransform>& bones, const FMMatrix44& transform)
+	static void TransformVertices(FloatList& position, FloatList& normal,
+		std::vector<BoneTransform>& bones, std::vector<PropPoint>& propPoints,
+		const FMMatrix44& transform)
 	{
-		for (size_t vtxId = 0; vtxId < position.size()/3; ++vtxId)
+		// Update the vertex positions and normals
+		assert(position.size() == normal.size());
+		for (size_t i = 0; i < position.size()/3; ++i)
 		{
-			FMVector3 pos (&position[vtxId*3], 0);
-			FMVector3 norm (&normal[vtxId*3], 0);
+			FMVector3 pos (&position[i*3], 0);
+			FMVector3 norm (&normal[i*3], 0);
 
 			// Apply the scene-node transforms
 			pos = transform.TransformCoordinate(pos);
@@ -336,13 +428,13 @@ public:
 
 			// and copy back into the original array
 
-			position[vtxId*3+0] = pos.x;
-			position[vtxId*3+1] = pos.y;
-			position[vtxId*3+2] = pos.z;
+			position[i*3+0] = pos.x;
+			position[i*3+1] = pos.y;
+			position[i*3+2] = pos.z;
 
-			normal[vtxId*3+0] = norm.x;
-			normal[vtxId*3+1] = norm.y;
-			normal[vtxId*3+2] = norm.z;
+			normal[i*3+0] = norm.x;
+			normal[i*3+1] = norm.y;
+			normal[i*3+2] = norm.z;
 		}
 
 		// We also need to change the bone rest states into the new coordinate
@@ -361,6 +453,15 @@ public:
 			std::swap(bones[i].orientation[1], bones[i].orientation[2]);
 			bones[i].orientation[3] = -bones[i].orientation[3];
 		}
+
+		// And do the same for prop points
+		for (size_t i = 0; i < propPoints.size(); ++i)
+		{
+			std::swap(propPoints[i].translation[1], propPoints[i].translation[2]);
+			std::swap(propPoints[i].orientation[1], propPoints[i].orientation[2]);
+			propPoints[i].orientation[3] = -propPoints[i].orientation[3];
+		}
+
 	}
 };
 

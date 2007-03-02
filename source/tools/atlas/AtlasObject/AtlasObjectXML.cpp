@@ -63,6 +63,8 @@ private:
 	}
 };
 
+// TODO: replace most of the asserts below (e.g. for when it fails to load
+// a file) with some proper logging/reporting system
 
 static AtSmartPtr<AtNode> ConvertNode(DOMElement* element);
 
