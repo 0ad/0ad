@@ -8,8 +8,8 @@
       <animations>
         <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
         <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="20"/>
-        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Melee" speed="100"/>
-        <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="17"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Melee" speed="200"/>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="13"/>
         <animation file="infantry/general/chop.psa" name="gather_wood" speed="200"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="400"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="100"/>
@@ -20,7 +20,6 @@
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_05.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
@@ -49,8 +48,11 @@
   </group>
 
   <group>
-    <variant frequency="1" name="texture-a">
+    <variant frequency="1" name="Armour-a">
       <texture>skeletal/hele_isp_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Armour-b">
+      <texture>skeletal/hele_csw_e.dds</texture>
     </variant>
   </group>
 

@@ -15,9 +15,28 @@
 			<Entity>hele_infantry_spearman_e</Entity>
 			
 		</Promotion>
+
+		<Armour>
+			<Hack>5.5</Hack>
+			<Pierce>3.3</Pierce>
+			<Crush>11.0</Crush>
+		</Armour>
+
+		<Health>
+			<Max>100</Max>
+		</Health>
 	
 	</Traits>
 
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>11.0</Hack>
+ 				<Pierce>6.0</Pierce>
+ 				<Crush>0.0</Crush>
+			</Melee>
+ 		</Attack>
+	</Actions>
 
 	<Actor>units/hellenes/infantry_spearman_a.xml</Actor>
 

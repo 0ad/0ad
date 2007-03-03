@@ -15,13 +15,13 @@
 		
 		<Auras>
 			<Trample>
-				<Radius>5</Radius>
+				<Radius>4</Radius>
 				<Speed>1000</Speed>
 				<Duration>3</Duration>
 				
-				<Crush>0.0</Crush>
-				<Hack>10.0</Hack>
-				<Pierce>10.0</Pierce>
+				<Crush>11.0</Crush>
+				<Hack>0.0</Hack>
+				<Pierce>0.0</Pierce>
 				
 				<r>1.0</r>
 				<g>0.1</g>
@@ -44,9 +44,9 @@
 			</Melee>
 		
 			<Charge>
-				<Hack>10.0</Hack>
+				<Hack>15.0</Hack>
 				<Pierce>10.0</Pierce>
-				<Crush>0.0</Crush>
+				<Crush>15.0</Crush>
 				
 				<Range>5.0</Range>
 				<Speed>1500</Speed>

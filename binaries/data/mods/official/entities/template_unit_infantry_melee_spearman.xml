@@ -18,16 +18,29 @@
 		</Id>
 		
 		<Creation>
-				<Resource>
- 				<Food>50</Food>
-				<Metal>25</Metal>
+			<Resource>
+ 				<Food>60</Food>
+				<Wood>55</Wood>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>10.0</Hack>
-			<Pierce>5.0</Pierce>
-			<Crush>8.0</Crush>
-		</Armour>		
+			<Hack>5.0</Hack>
+			<Pierce>3.0</Pierce>
+			<Crush>10.0</Crush>
+		</Armour>
+
+		<Health>
+			<Max>90</Max>
+		</Health>
+
+		<Stamina>
+			<Max>300.0</Max>
+		</Stamina>
+
+		<Vision>
+			<Los>12</Los>
+		</Vision>
+	
 	</Traits>
 	
 
@@ -35,12 +48,11 @@
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>5.0</Hack>
+ 				<Hack>10.0</Hack>
  				<Pierce>5.0</Pierce>
  				<Crush>0.0</Crush>
 			</Melee>
  		</Attack>
 	</Actions>
-
 
 </Entity>

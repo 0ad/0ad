@@ -6,9 +6,9 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="100"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="100"/>
-        <animation file="cavalry/rider_gallop.psa" name="run" speed="100"/>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="20"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="17"/>
+        <animation file="cavalry/rider_gallop.psa" name="run" speed="8"/>
         <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Attack" speed="100"/>
       </animations>
       <mesh>skeletal/m_tunic_b.pmd</mesh>

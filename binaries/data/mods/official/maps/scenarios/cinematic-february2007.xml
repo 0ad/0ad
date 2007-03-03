@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="98.0001" y="60" z="204"/>
+		<Position x="275.34" y="75.9485" z="103.886"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -2319,6 +2319,126 @@
 			<Player>0</Player>
 			<Position x="64.2795" y="22.4" z="204.553"/>
 			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="18774">
+			<Template>rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="271.084" y="22.4" z="172.734"/>
+			<Orientation angle="-0.795309"/>
+		</Entity>
+		<Entity uid="18775">
+			<Template>rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="273.03" y="22.4" z="174.591"/>
+			<Orientation angle="-0.115509"/>
+		</Entity>
+		<Entity uid="18776">
+			<Template>rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="278.731" y="22.4" z="175.835"/>
+			<Orientation angle="-0.0226842"/>
+		</Entity>
+		<Entity uid="18777">
+			<Template>rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="280.921" y="22.4" z="179.34"/>
+			<Orientation angle="0.138914"/>
+		</Entity>
+		<Entity uid="18778">
+			<Template>rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="287.466" y="22.4" z="176.912"/>
+			<Orientation angle="0.294166"/>
+		</Entity>
+		<Entity uid="18780">
+			<Template>rome_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="289.971" y="22.4" z="181.344"/>
+			<Orientation angle="0.0280241"/>
+		</Entity>
+		<Entity uid="18781">
+			<Template>rome_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="294.293" y="22.4" z="179.548"/>
+			<Orientation angle="0.0610831"/>
+		</Entity>
+		<Entity uid="18782">
+			<Template>rome_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="296.363" y="22.4" z="183.76"/>
+			<Orientation angle="-0.110467"/>
+		</Entity>
+		<Entity uid="18783">
+			<Template>rome_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="275.136" y="22.4" z="172.009"/>
+			<Orientation angle="-0.0913065"/>
+		</Entity>
+		<Entity uid="18785">
+			<Template>rome_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="261.694" y="22.4" z="170.767"/>
+			<Orientation angle="-0.229917"/>
+		</Entity>
+		<Entity uid="18786">
+			<Template>rome_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="269.974" y="22.4" z="178.928"/>
+			<Orientation angle="-0.119672"/>
+		</Entity>
+		<Entity uid="18787">
+			<Template>rome_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="278.356" y="22.4" z="180.386"/>
+			<Orientation angle="0.0535424"/>
+		</Entity>
+		<Entity uid="18789">
+			<Template>rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="282.779" y="22.4" z="176.419"/>
+			<Orientation angle="-0.0711662"/>
+		</Entity>
+		<Entity uid="18791">
+			<Template>rome_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="287.54" y="22.4" z="181.56"/>
+			<Orientation angle="-0.00987934"/>
+		</Entity>
+		<Entity uid="18792">
+			<Template>rome_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="262.631" y="22.4" z="173.468"/>
+			<Orientation angle="-0.425979"/>
+		</Entity>
+		<Entity uid="18794">
+			<Template>rome_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="290.671" y="22.4" z="178.825"/>
+			<Orientation angle="0.20602"/>
+		</Entity>
+		<Entity uid="18795">
+			<Template>rome_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="306.97" y="22.3158" z="192.763"/>
+			<Orientation angle="-0.223733"/>
+		</Entity>
+		<Entity uid="18796">
+			<Template>rome_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="304.55" y="22.3917" z="188.542"/>
+			<Orientation angle="0.122428"/>
+		</Entity>
+		<Entity uid="18798">
+			<Template>rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="301.392" y="22.4" z="186.429"/>
+			<Orientation angle="-0.284398"/>
+		</Entity>
+		<Entity uid="18799">
+			<Template>rome_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="306.728" y="22.3684" z="190.055"/>
+			<Orientation angle="-0.400624"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -8463,24 +8583,7 @@
 			<Orientation angle="0.910544"/>
 		</Nonentity>
 	</Nonentities>
-	<Tracks>
-		<Track name="Track 0" timescale="1">
-			<StartRotation x="0.523599" y="0" z="0"/>
-			<Path>
-				<Rotation x="0.523599" y="0" z="0"/>
-				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="268" y="50" z="165" t="0"/>
-				<Node x="286" y="58" z="153" t="10"/>
-				<Node x="274" y="72" z="127" t="5"/>
-				<Node x="262" y="99" z="82" t="5"/>
-				<Node x="223" y="74" z="112" t="3"/>
-				<Node x="190" y="93" z="39" t="6"/>
-				<Node x="121" y="100" z="62" t="8"/>
-				<Node x="98" y="74" z="136" t="5"/>
-				<Node x="98" y="60" z="204" t="10"/>
-			</Path>
-		</Track>
-	</Tracks>
+	<Paths/>
 	<Triggers>
 		<Trigger name="Village walk 0">
 			<Active>true</Active>

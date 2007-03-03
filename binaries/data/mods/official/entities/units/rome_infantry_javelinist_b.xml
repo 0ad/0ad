@@ -21,7 +21,36 @@
 			
 		</Promotion>
 		
+		<Health>
+			<Max>80</Max>
+		</Health>
+
+		<Armour>
+			<Hack>1.5</Hack>
+			<Pierce>3.5</Pierce>
+			<Crush>3.0</Crush>
+		</Armour>
+
+		<Stamina>
+			<Max>550.0</Max>
+		</Stamina>		
 	</Traits>
 
+	<Actions>
+ 		<Attack>
+			<Ranged>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>22.0</Pierce>
+ 				<Crush>0.0</Crush>
+
+				<Range>34</Range>
+				<Speed>1500</Speed>
+				<ProjectileSpeed>25.0</ProjectileSpeed>
+			</Ranged>
+ 		</Attack>
+
+	</Actions>
+
 	<Actor>units/romans/infantry_javelinist_b.xml</Actor>
+
 </Entity>

@@ -9,9 +9,28 @@
 			<Icon_Cell>5</Icon_Cell>
 
 		</Id>
+
+		<Armour>
+			<Hack>7.0</Hack>
+			<Pierce>7.0</Pierce>
+			<Crush>11.0</Crush>
+		</Armour>
+
+		<Health>
+			<Max>120</Max>
+		</Health>
 	
 	</Traits>
 
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>14.5</Hack>
+ 				<Pierce>7.75</Pierce>
+ 				<Crush>0.0</Crush>
+			</Melee>
+ 		</Attack>
+	</Actions>
 
 	<Actor>units/hellenes/infantry_spearman_e.xml</Actor>
 
