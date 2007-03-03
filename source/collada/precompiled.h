@@ -13,14 +13,17 @@ extern void Log(int severity, const char* fmt, ...);
 #endif
 
 #include "FCollada.h"
+#include "FCDocument/FCDAsset.h"
 #include "FCDocument/FCDocument.h"
 #include "FCDocument/FCDAnimated.h"
 #include "FCDocument/FCDAnimationCurve.h"
 #include "FCDocument/FCDController.h"
 #include "FCDocument/FCDControllerInstance.h"
+#include "FCDocument/FCDExtra.h"
 #include "FCDocument/FCDGeometry.h"
 #include "FCDocument/FCDGeometryMesh.h"
 #include "FCDocument/FCDGeometryPolygons.h"
+#include "FCDocument/FCDGeometryPolygonsTools.h"
 #include "FCDocument/FCDGeometrySource.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSkinController.h"

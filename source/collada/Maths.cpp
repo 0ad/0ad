@@ -4,6 +4,7 @@
 
 #include "FCollada.h"
 
+/*
 FMMatrix44 operator+ (const FMMatrix44& a, const FMMatrix44& b)
 {
 	FMMatrix44 r;
@@ -48,3 +49,4 @@ FMMatrix44 QuatToMatrix(float x, float y, float z, float w)
 
 	return r;
 }
+*/

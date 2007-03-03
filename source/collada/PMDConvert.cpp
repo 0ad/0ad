@@ -4,12 +4,14 @@
 #include "CommonConvert.h"
 
 #include "FCollada.h"
+#include "FCDocument/FCDAsset.h"
 #include "FCDocument/FCDocument.h"
 #include "FCDocument/FCDController.h"
 #include "FCDocument/FCDControllerInstance.h"
 #include "FCDocument/FCDGeometry.h"
 #include "FCDocument/FCDGeometryMesh.h"
 #include "FCDocument/FCDGeometryPolygons.h"
+#include "FCDocument/FCDGeometryPolygonsTools.h"
 #include "FCDocument/FCDGeometrySource.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSkinController.h"
@@ -75,6 +77,9 @@ public:
 		assert(instance);
 		Log(LOG_INFO, "Converting '%s'", instance->GetEntity()->GetName().c_str());
 
+		FMVector3 upAxis = doc->GetAsset()->GetUpAxis();
+		bool yUp = (upAxis.y != 0); // assume either Y_UP or Z_UP (TODO: does anyone ever do X_UP?)
+
 		if (instance->GetEntity()->GetType() == FCDEntity::GEOMETRY)
 		{
 			Log(LOG_INFO, "Found static geometry");
@@ -98,7 +103,7 @@ public:
 			FloatList& dataNormal   = sourceNormal  ->GetSourceData();
 			FloatList& dataTexcoord = sourceTexcoord->GetSourceData();
 
-			TransformVertices(dataPosition, dataNormal, transform);
+			TransformVertices(dataPosition, dataNormal, transform, yUp);
 
 			std::vector<VertexBlend> boneWeights;
 			std::vector<BoneTransform> boneTransforms;
@@ -378,16 +383,26 @@ public:
 	{
 		REQUIRE(geom->IsMesh(), "geometry is mesh");
 		FCDGeometryMesh* mesh = geom->GetMesh();
+
+// 		if (! mesh->IsTriangles())
+// 			FCDGeometryPolygonsTools::Triangulate(mesh);
+		// disabled for now - just let the exporter triangulate the mesh
+		
 		REQUIRE(mesh->IsTriangles(), "mesh is made of triangles");
 		REQUIRE(mesh->GetPolygonsCount() == 1, "mesh has single set of polygons");
-		return mesh->GetPolygons(0);
+		FCDGeometryPolygons* polys = mesh->GetPolygons(0);
+		REQUIRE(polys->FindIndices(polys->FindInput(FUDaeGeometryInput::POSITION)) != NULL, "mesh has vertex positions");
+		REQUIRE(polys->FindIndices(polys->FindInput(FUDaeGeometryInput::NORMAL)) != NULL, "mesh has vertex normals");
+		REQUIRE(polys->FindIndices(polys->FindInput(FUDaeGeometryInput::TEXCOORD)) != NULL, "mesh has vertex tex coords");
+		return polys;
 	}
 
 	/**
 	 * Applies world-space transform to vertex data, and flips into other-handed
 	 * coordinate space.
 	 */
-	static void TransformVertices(FloatList& position, FloatList& normal, const FMMatrix44& transform)
+	static void TransformVertices(FloatList& position, FloatList& normal,
+		const FMMatrix44& transform, bool yUp)
 	{
 		for (size_t i = 0; i < position.size(); i += 3)
 		{
@@ -398,15 +413,28 @@ public:
 			pos = transform.TransformCoordinate(pos);
 			norm = transform.TransformVector(norm).Normalize();
 
-			// Copy back to array, while switching the coordinate system around
+			// Convert from Y_UP or Z_UP to the game's coordinate system
+
+			if (yUp)
+			{
+				pos.z = -pos.z;
+				norm.z = -norm.z;
+			}
+			else
+			{
+				std::swap(pos.y, pos.z);
+				std::swap(norm.y, norm.z);
+			}
+
+			// Copy back to array
 
 			position[i+0] = pos.x;
-			position[i+1] = pos.z;
-			position[i+2] = pos.y;
+			position[i+1] = pos.y;
+			position[i+2] = pos.z;
 
 			normal[i+0] = norm.x;
-			normal[i+1] = norm.z;
-			normal[i+2] = norm.y;
+			normal[i+1] = norm.y;
+			normal[i+2] = norm.z;
 		}
 	}
 
@@ -426,6 +454,7 @@ public:
 			norm = transform.TransformVector(norm).Normalize();
 
 			// Switch from Max's coordinate system into the game's:
+			// (TODO: handle Y_UP mode too)
 
 			std::swap(pos.y, pos.z);
 			std::swap(norm.y, norm.z);
