@@ -21,7 +21,6 @@
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_05.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
       </animations>
@@ -29,7 +28,7 @@
       <props>
         <prop actor="props/units/heads/thrac_a.xml" attachpoint="head"/>
         <prop actor="props/units/shields/hele_pelta_b.xml" attachpoint="shield"/>
-		<prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
       </props>
       <texture>skeletal/hele_ijv_b.dds</texture>

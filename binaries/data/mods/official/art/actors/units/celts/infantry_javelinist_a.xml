@@ -6,7 +6,6 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-		<!-- Class Specific -->
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
         <animation event="0.4" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="Melee" speed="100"/>
         <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="20"/>
@@ -17,15 +16,15 @@
         <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="150"/>
         <animation file="infantry/general/mine.psa" name="gather_stone" speed="150"/>
+        <animation file="infantry/general/mine.psa" name="gather_metal" speed="150"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_05.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
-      </animations>	
+      </animations>
       <mesh>skeletal/m_pants_b.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_lime.xml" attachpoint="head"/>
@@ -37,41 +36,41 @@
   </group>
 
   <group>
-    <variant name="skin 01">
+    <variant frequency="1" name="skin 01">
       <texture>skeletal/celt_ijv_a_01.dds</texture>
     </variant>
-    <variant name="skin 02">
+    <variant frequency="1" name="skin 02">
       <texture>skeletal/celt_ijv_a_02.dds</texture>
     </variant>
-    <variant name="skin 03">
+    <variant frequency="1" name="skin 03">
       <texture>skeletal/celt_ijv_a_03.dds</texture>
     </variant>
-    <variant name="skin 04">
+    <variant frequency="1" name="skin 04">
       <texture>skeletal/celt_ijv_a_04.dds</texture>
     </variant>
-    <variant name="skin 05">
+    <variant frequency="1" name="skin 05">
       <texture>skeletal/celt_ijv_a_05.dds</texture>
     </variant>
-    <variant name="skin 06">
+    <variant frequency="1" name="skin 06">
       <texture>skeletal/celt_ijv_a_06.dds</texture>
     </variant>
-    <variant name="skin 07">
+    <variant frequency="1" name="skin 07">
       <texture>skeletal/celt_ijv_a_07.dds</texture>
     </variant>
-    <variant name="skin 08">
+    <variant frequency="1" name="skin 08">
       <texture>skeletal/celt_ijv_a_08.dds</texture>
     </variant>
-    <variant name="skin 09">
+    <variant frequency="1" name="skin 09">
       <texture>skeletal/celt_ijv_a_09.dds</texture>
     </variant>
-    <variant name="skin 10">
+    <variant frequency="1" name="skin 10">
       <texture>skeletal/celt_ijv_a_10.dds</texture>
     </variant>
-    <variant name="skin 11">
+    <variant frequency="1" name="skin 11">
       <texture>skeletal/celt_ijv_a_11.dds</texture>
     </variant>
   </group>
-  
+
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
@@ -110,6 +109,13 @@
         <prop actor="" attachpoint="r_hand"/>
       </props>
     </variant>
+    <variant name="gather_metal">
+      <props>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+      </props>
+    </variant>
     <variant name="Build">
       <props>
         <prop actor="" attachpoint="shield"/>
@@ -118,7 +124,6 @@
       </props>
     </variant>
   </group>
-
 
   <material>player_trans.xml</material>
 

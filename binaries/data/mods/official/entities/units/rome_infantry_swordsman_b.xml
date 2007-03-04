@@ -19,8 +19,28 @@
 			<Entity>rome_infantry_swordsman_a</Entity>
 			
 		</Promotion>
+
+		<Armour>
+			<Hack>6.0</Hack>
+			<Pierce>5.0</Pierce>
+			<Crush>10.0</Crush>
+		</Armour>	
+
+		<Health>
+			<Max>95</Max>
+		</Health>
 		
 	</Traits>
+
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>15.0</Hack>
+ 				<Pierce>0.0</Pierce>
+ 				<Crush>0.0</Crush>
+			</Melee>
+ 		</Attack>
+	</Actions>
 
 	<Actor>units/romans/infantry_swordsman_b.xml</Actor>
 
