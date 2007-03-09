@@ -6,6 +6,7 @@
 #include "FCollada.h"
 #include "FCDocument/FCDAsset.h"
 #include "FCDocument/FCDocument.h"
+#include "FCDocument/FCDocumentTools.h"
 #include "FCDocument/FCDController.h"
 #include "FCDocument/FCDControllerInstance.h"
 #include "FCDocument/FCDGeometry.h"
@@ -62,10 +63,10 @@ public:
 	{
 		FColladaErrorHandler err (xmlErrors);
 
-		std::auto_ptr<FCDocument> doc (FCollada::NewTopDocument());
-		REQUIRE_SUCCESS(doc->LoadFromText("", input));
+		FColladaDocument doc;
+		doc.LoadFromText(input);
 
-		FCDSceneNode* root = doc->GetVisualSceneRoot();
+		FCDSceneNode* root = doc.GetDocument()->GetVisualSceneRoot();
 		REQUIRE(root != NULL, "has root object");
 
 		// Find the instance to convert
@@ -77,7 +78,8 @@ public:
 		assert(instance);
 		Log(LOG_INFO, "Converting '%s'", instance->GetEntity()->GetName().c_str());
 
-		FMVector3 upAxis = doc->GetAsset()->GetUpAxis();
+		// StandardizeUpAxisAndLength completely mangles the skeletons, so don't use it
+		FMVector3 upAxis = doc.GetDocument()->GetAsset()->GetUpAxis();
 		bool yUp = (upAxis.y != 0); // assume either Y_UP or Z_UP (TODO: does anyone ever do X_UP?)
 
 		if (instance->GetEntity()->GetType() == FCDEntity::GEOMETRY)
@@ -127,12 +129,14 @@ public:
 			FCDSkinController* skin = controller->GetSkinController();
 			REQUIRE(skin != NULL, "is skin controller");
 
+			FixSkeletonRoots(controllerInstance);
+
 			// Data for joints is stored in two places - avoid overflows by limiting
 			// to the minimum of the two sizes, and warn if they're different (which
 			// happens in practice for slightly-broken meshes)
 			size_t jointCount = std::min(skin->GetJointCount(), controllerInstance->GetJointCount());
 			if (skin->GetJointCount() != controllerInstance->GetJointCount())
-				Log(LOG_WARNING, "Mismatched bone counts");
+				Log(LOG_WARNING, "Mismatched bone counts (skin has %d, skeleton has %d)", skin->GetJointCount(), controllerInstance->GetJointCount());
 
 			// Get the skinned mesh for this entity
 			FCDEntity* baseTarget = controller->GetBaseTarget();
@@ -295,7 +299,7 @@ public:
 			FloatList& dataNormal   = sourceNormal  ->GetSourceData();
 			FloatList& dataTexcoord = sourceTexcoord->GetSourceData();
 
-			TransformVertices(dataPosition, dataNormal, boneTransforms, propPoints, transform);
+			TransformVertices(dataPosition, dataNormal, boneTransforms, propPoints, transform, yUp);
 
 			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms, propPoints);
 		}
@@ -440,7 +444,7 @@ public:
 
 	static void TransformVertices(FloatList& position, FloatList& normal,
 		std::vector<BoneTransform>& bones, std::vector<PropPoint>& propPoints,
-		const FMMatrix44& transform)
+		const FMMatrix44& transform, bool yUp)
 	{
 		// Update the vertex positions and normals
 		assert(position.size() == normal.size());
@@ -453,11 +457,18 @@ public:
 			pos = transform.TransformCoordinate(pos);
 			norm = transform.TransformVector(norm).Normalize();
 
-			// Switch from Max's coordinate system into the game's:
-			// (TODO: handle Y_UP mode too)
+			// Convert from Y_UP or Z_UP to the game's coordinate system
 
-			std::swap(pos.y, pos.z);
-			std::swap(norm.y, norm.z);
+			if (yUp)
+			{
+				pos.x = -pos.x;
+				norm.x = -norm.x;
+			}
+			else
+			{
+				std::swap(pos.y, pos.z);
+				std::swap(norm.y, norm.z);
+			}
 
 			// and copy back into the original array
 
@@ -475,24 +486,45 @@ public:
 		// applied to the skeleton.
 		for (size_t i = 0; i < bones.size(); ++i)
 		{
-			// Convert bone translations from xyz into xzy axes:
-			std::swap(bones[i].translation[1], bones[i].translation[2]);
+			if (yUp)
+			{
+				// TODO: this is all just guesses which seem to work for data
+				// exported from XSI, rather than having been properly thought
+				// through
+				bones[i].translation[0] = -bones[i].translation[0];
+				bones[i].orientation[0] = -bones[i].orientation[0];
+				bones[i].orientation[3] = -bones[i].orientation[3];
+			}
+			else
+			{
+				// Convert bone translations from xyz into xzy axes:
+				std::swap(bones[i].translation[1], bones[i].translation[2]);
 
-			// To convert the quaternions: imagine you're using the axis/angle
-			// representation, then swap the y,z basis vectors and change the
-			// direction of rotation by negating the angle ( => negating sin(angle)
-			// => negating x,y,z => changing (x,y,z,w) to (-x,-z,-y,w)
-			// but then (-x,-z,-y,w) == (x,z,y,-w) so do that instead)
-			std::swap(bones[i].orientation[1], bones[i].orientation[2]);
-			bones[i].orientation[3] = -bones[i].orientation[3];
+				// To convert the quaternions: imagine you're using the axis/angle
+				// representation, then swap the y,z basis vectors and change the
+				// direction of rotation by negating the angle ( => negating sin(angle)
+				// => negating x,y,z => changing (x,y,z,w) to (-x,-z,-y,w)
+				// but then (-x,-z,-y,w) == (x,z,y,-w) so do that instead)
+				std::swap(bones[i].orientation[1], bones[i].orientation[2]);
+				bones[i].orientation[3] = -bones[i].orientation[3];
+			}
 		}
 
 		// And do the same for prop points
 		for (size_t i = 0; i < propPoints.size(); ++i)
 		{
-			std::swap(propPoints[i].translation[1], propPoints[i].translation[2]);
-			std::swap(propPoints[i].orientation[1], propPoints[i].orientation[2]);
-			propPoints[i].orientation[3] = -propPoints[i].orientation[3];
+			if (yUp)
+			{
+				propPoints[i].translation[0] = -propPoints[i].translation[0];
+				propPoints[i].orientation[0] = -propPoints[i].orientation[0];
+				propPoints[i].orientation[3] = -propPoints[i].orientation[3];
+			}
+			else
+			{
+				std::swap(propPoints[i].translation[1], propPoints[i].translation[2]);
+				std::swap(propPoints[i].orientation[1], propPoints[i].orientation[2]);
+				propPoints[i].orientation[3] = -propPoints[i].orientation[3];
+			}
 		}
 
 	}

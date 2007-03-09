@@ -5,6 +5,9 @@
 #include "FCollada.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSkinController.h"
+#include "FUtils/FUDaeSyntax.h"
+#include "FUtils/FUFileManager.h"
+#include "FUtils/FUXmlParser.h"
 
 #include <cassert>
 
@@ -64,11 +67,76 @@ void FColladaErrorHandler::OnError(FUError::Level errorLevel, uint32 errorCode, 
 }
 
 
+//////////////////////////////////////////////////////////////////////////
+
+void FColladaDocument::LoadFromText(const char *text)
+{
+	document.reset(FCollada::NewTopDocument());
+
+	FUFileManager* fileManager = document->GetFileManager();
+	const char* basePath = "";
+
+	// Mostly copied from FCDocument::LoadFromText
+
+	bool status = true;
+
+	// Push the given path unto the file manager's stack
+	fileManager->PushRootPath(basePath);
+
+	// Parse the document into a XML tree
+	xmlDoc* daeDocument = xmlParseDoc((const xmlChar*)text);
+	if (daeDocument != NULL)
+	{
+		xmlNode *rootNode = xmlDocGetRootElement(daeDocument);
+
+		// Read in the whole document from the root node
+		status &= (document->LoadDocumentFromXML(rootNode));
+
+		// HACK (sort of): read in <extra> from the root, because FCollada
+		// doesn't let us do that
+		ReadExtras(rootNode);
+
+		// Free the XML document
+		xmlFreeDoc(daeDocument);
+	}
+	else
+	{
+		FUError::Error(FUError::ERROR, FUError::ERROR_MALFORMED_XML);
+		status = false;
+	}
+
+	// Clean-up the XML reader
+	xmlCleanupParser();
+
+	// Restore the original OS current folder
+	fileManager->PopRootPath();
+
+	if (status)
+		FUError::Error(FUError::DEBUG, FUError::DEBUG_LOAD_SUCCESSFUL);
+
+	REQUIRE_SUCCESS(status);
+}
+
+void FColladaDocument::ReadExtras(xmlNode* colladaNode)
+{
+	if (! IsEquivalent(colladaNode->name, DAE_COLLADA_ELEMENT))
+		return;
+
+	extra.reset(new FCDExtra(document.get()));
+
+	xmlNodeList extraNodes;
+	FUXmlParser::FindChildrenByType(colladaNode, DAE_EXTRA_ELEMENT, extraNodes);
+	for (xmlNodeList::iterator it = extraNodes.begin(); it != extraNodes.end(); ++it)
+	{
+		xmlNode* extraNode = (*it);
+		extra->LoadFromXML(extraNode);
+	}
+}
 
 //////////////////////////////////////////////////////////////////////////
 
-// These don't get exported properly from FCollada (3.02, DLL), so define them
-// here instead of fixing it correctly.
+// HACK: These don't get exported properly from FCollada (3.02, DLL), so define
+// them here instead of fixing it correctly.
 const FMVector3 FMVector3::XAxis(1.0f, 0.0f, 0.0f);
 static float identity[] = { 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 };
 FMMatrix44 FMMatrix44::Identity(identity);
@@ -78,6 +146,45 @@ struct FoundInstance
 	FCDEntityInstance* instance;
 	FMMatrix44 transform;
 };
+
+static bool IsVisible_XSI(FCDSceneNode* node, bool& visible)
+{
+	// Look for <extra><technique profile="XSI"><SI_Visibility><xsi_param sid="visibility">
+
+	FCDExtra* extra = node->GetExtra();
+	if (! extra) return false;
+
+	FCDEType* type = extra->GetDefaultType();
+	if (! type) return false;
+
+	FCDETechnique* technique = type->FindTechnique("XSI");
+	if (! technique) return false;
+
+	FCDENode* visibility1 = technique->FindChildNode("SI_Visibility");
+	if (! visibility1) return false;
+
+	FCDENode* visibility2 = visibility1->FindChildNode("xsi_param");
+	if (! visibility2) return false;
+
+	if (IsEquivalent(visibility2->GetContent(), "TRUE"))
+		visible = true;
+	else if (IsEquivalent(visibility2->GetContent(), "FALSE"))
+		visible = false;
+	return true;
+}
+
+static bool IsVisible(FCDSceneNode* node)
+{
+	bool visible;
+
+	// Try the XSI visibility property
+	if (IsVisible_XSI(node, visible))
+		return visible;
+
+	// Else fall back to the FCollada-specific setting
+	visible = (node->GetVisibility() != 0.0);
+	return visible;
+}
 
 /**
  * Recursively finds all entities under the current node. If onlyMarked is
@@ -110,10 +217,15 @@ static void FindInstances(FCDSceneNode* node, std::vector<FoundInstance>& instan
 		if (! (type == FCDEntity::GEOMETRY || type == FCDEntity::CONTROLLER))
 			continue;
 
+		// Ignore invisible objects, because presumably nobody wanted to export them
+		if (! IsVisible(node))
+			continue;
+
 		FoundInstance f;
 		f.transform = transform * node->ToMatrix();
 		f.instance = node->GetInstance(i);
 		instances.push_back(f);
+		Log(LOG_INFO, "Found convertible object '%s'", node->GetName().c_str());
 	}
 }
 
@@ -208,4 +320,20 @@ void SkinReduceInfluences(FCDSkinController* skin, size_t maxInfluenceCount, flo
 	}
 
 	skin->SetDirtyFlag();
+}
+
+
+void FixSkeletonRoots(FCDControllerInstance* controllerInstance)
+{
+	// HACK: The XSI exporter doesn't do a <skeleton> and FCollada doesn't
+	// seem to know where else to look, so just guess that it's somewhere
+	// under Scene_Root
+	if (controllerInstance->GetSkeletonRoots().empty())
+	{
+		// HACK (evil): SetSkeletonRoot is declared but not defined, and there's
+		// no other proper way to modify the skeleton-roots list, so cheat horribly
+		FUUriList& uriList = const_cast<FUUriList&>(controllerInstance->GetSkeletonRoots());
+		uriList.push_back(FUUri("Scene_Root"));
+		controllerInstance->LinkImport();
+	}
 }

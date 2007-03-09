@@ -15,6 +15,7 @@ extern void Log(int severity, const char* fmt, ...);
 #include "FCollada.h"
 #include "FCDocument/FCDAsset.h"
 #include "FCDocument/FCDocument.h"
+#include "FCDocument/FCDocumentTools.h"
 #include "FCDocument/FCDAnimated.h"
 #include "FCDocument/FCDAnimationCurve.h"
 #include "FCDocument/FCDController.h"
@@ -27,6 +28,9 @@ extern void Log(int severity, const char* fmt, ...);
 #include "FCDocument/FCDGeometrySource.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSkinController.h"
+#include "FUtils/FUDaeSyntax.h"
+#include "FUtils/FUFileManager.h"
+#include "FUtils/FUXmlParser.h"
 #include <cassert>
 #include <string>
 

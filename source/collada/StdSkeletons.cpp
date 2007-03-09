@@ -4,7 +4,7 @@
 
 namespace
 {
-	const char* standardBoneNames[] = {
+	const char* standardBoneNames0[] = {
 		/* */ "Bip01",
 		/* */   "Bip01_Pelvis",
 		/* */     "Bip01_Spine",
@@ -36,8 +36,65 @@ namespace
 		/* */               "Bip01_R_Toe0Nub",
 		// (the above comments just stop the indentation being dropped by
 		// automatic code-formatting things...)
+// 		NULL
+// 	};
+// (TODO (important): do this stuff properly)
+// 	const char* standardBoneNames1[] = {
+		/* */ "Biped_GlobalSRT",
+		/* */   "Biped_Spineroot",
+		/* */     "Biped_Spine01",
+		/* */       "Biped_Spine02",
+		/* */         "Biped_Spine03",
+		/* */     "Biped_Spineeffector",
+		/* */       "Biped_Lshoulderroot",
+		/* */         "Biped_Lshoulder",
+		/* */         "Biped_Lshouldereffector",
+		/* */           "Biped_Larmroot",
+		/* */             "Biped_Lbicept",
+		/* */               "Biped_Lforearm",
+		/* */             "Biped_Larmupvector",
+		/* */       "Biped_Rshoulderroot",
+		/* */         "Biped_Rshoulder",
+		/* */         "Biped_Rshouldereffector",
+		/* */           "Biped_Rarmroot",
+		/* */             "Biped_Rbicept",
+		/* */               "Biped_Rforearm",
+		/* */             "Biped_Rarmupvector",
+		/* */       "Biped_neckroot",
+		/* */         "Biped_neck",
+		/* */           "Biped_head",
+		/* */         "Biped_headeffector",
+		/* */     "Biped_Llegroot",
+		/* */       "Biped_Lthigh",
+		/* */         "Biped_Lshin",
+		/* */     "Biped_Rlegroot",
+		/* */       "Biped_Rthigh",
+		/* */         "Biped_Rshin",
+		/* */     "Biped_Llegupvector",
+		/* */     "Biped_Rlegupvector",
+		/* */   "Biped_Larmeffector",
+		/* */     "Biped_Lhandroot",
+		/* */       "Biped_Lhand",
+		/* */         "Biped_Lfingers",
+		/* */       "Biped_Lhandeffector",
+		/* */   "Biped_Llegeffector",
+		/* */     "Biped_Lfooteffector",
+		/* */       "Biped_Lfoot",
+		/* */         "Biped_Ltoe",
+		/* */       "Biped_Ltoeeffector",
+		/* */   "Biped_Rarmeffector",
+		/* */     "Biped_Rhandroot",
+		/* */       "Biped_Rhand",
+		/* */         "Biped_Rfingers",
+		/* */       "Biped_Rhandeffector",
+		/* */   "Biped_Rlegeffector",
+		/* */     "Biped_Rfootroot",
+		/* */       "Biped_Rfoot",
+		/* */         "Biped_Rtoe",
+		/* */       "Biped_Rtoeeffector",
 		NULL
 	};
+
 }
 
 namespace StdSkeletons
@@ -45,15 +102,15 @@ namespace StdSkeletons
 	int GetBoneCount()
 	{
 		int i = 0;
-		while (standardBoneNames[i] != NULL)
+		while (standardBoneNames0[i] != NULL)
 			++i;
 		return i;
 	}
 
 	int FindStandardBoneID(const std::string& name)
 	{
-		for (int i = 0; standardBoneNames[i] != NULL; ++i)
-			if (standardBoneNames[i] == name)
+		for (int i = 0; standardBoneNames0[i] != NULL; ++i)
+			if (standardBoneNames0[i] == name)
 				return i;
 		return -1;
 	}

@@ -5,6 +5,7 @@
 
 #include "FCollada.h"
 #include "FCDocument/FCDocument.h"
+#include "FCDocument/FCDocumentTools.h"
 #include "FCDocument/FCDAnimated.h"
 #include "FCDocument/FCDAnimationCurve.h"
 #include "FCDocument/FCDController.h"
@@ -47,10 +48,10 @@ public:
 	{
 		FColladaErrorHandler err (xmlErrors);
 
-		std::auto_ptr<FCDocument> doc (FCollada::NewTopDocument());
-		REQUIRE_SUCCESS(doc->LoadFromText("", input));
+		FColladaDocument doc;
+		doc.LoadFromText(input);
 
-		FCDSceneNode* root = doc->GetVisualSceneRoot();
+		FCDSceneNode* root = doc.GetDocument()->GetVisualSceneRoot();
 		REQUIRE(root != NULL, "has root object");
 
 		// Find the instance to convert
@@ -62,69 +63,21 @@ public:
 		assert(instance);
 		Log(LOG_INFO, "Converting '%s'", instance->GetEntity()->GetName().c_str());
 
+		FMVector3 upAxis = doc.GetDocument()->GetAsset()->GetUpAxis();
+		bool yUp = (upAxis.y != 0); // assume either Y_UP or Z_UP (TODO: does anyone ever do X_UP?)
+
 		if (instance->GetType() == FCDEntityInstance::CONTROLLER)
 		{
 			FCDControllerInstance* controllerInstance = (FCDControllerInstance*)instance;
+
+			FixSkeletonRoots(controllerInstance);
 
 			float frameLength = 1.f / 30.f; // currently we always want to create PMDs at fixed 30fps
 
 			// Find the extents of the animation:
 
 			float timeStart, timeEnd;
-			
-			// FCollada tools export <extra> info in the scene to specify the start
-			// and end times.
-			// If that isn't available, we have to search for the earliest and latest
-			// keyframes on any of the bones.
-			if (doc->HasStartTime() && doc->HasEndTime())
-			{
-				timeStart = doc->GetStartTime();
-				timeEnd = doc->GetEndTime();
-			}
-			else
-			{
-				timeStart = std::numeric_limits<float>::max();
-				timeEnd = -std::numeric_limits<float>::max();
-				for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
-				{
-					FCDSceneNode* joint = controllerInstance->GetJoint(i);
-					REQUIRE(joint != NULL, "joint exists");
-
-					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
-					if (boneId < 0)
-					{
-						// unrecognised joint - it's probably just a prop point
-						// or something, so ignore it
-						continue;
-					}
-
-					// Skip unanimated joints
-					if (joint->GetTransformCount() == 0)
-						continue;
-
-					REQUIRE(joint->GetTransformCount() == 1, "joint has single transform");
-
-					FCDTransform* transform = joint->GetTransform(0);
-
-					// Skip unanimated joints (TODO: Which of these happens in practice?)
-					if (! transform->IsAnimated())
-						continue;
-
-					// Iterate over all curves
-					FCDAnimated* anim = transform->GetAnimated();
-					FCDAnimationCurveListList& curvesList = anim->GetCurves();
-					for (size_t j = 0; j < curvesList.size(); ++j)
-					{
-						FCDAnimationCurveList& curves = curvesList[j];
-						for (size_t k = 0; k < curves.size(); ++k)
-						{
-							FCDAnimationCurve* curve = curves[k];
-							timeStart = std::min(timeStart, curve->GetKeys().front());
-							timeEnd = std::max(timeEnd, curve->GetKeys().back());
-						}
-					}
-				}
-			}
+			GetAnimationRange(doc, controllerInstance, timeStart, timeEnd);
 
 			// Count frames; don't include the last keyframe
 			size_t frameCount = (size_t)((timeEnd - timeStart) / frameLength - 0.5f);
@@ -142,36 +95,9 @@ public:
 				std::vector<BoneTransform> frameBoneTransforms (boneCount, boneDefault);
 
 				// Move the model into the new animated pose
-				for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
-				{
-					FCDSceneNode* joint = controllerInstance->GetJoint(i);
-
-					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
-					if (boneId < 0)
-						continue; // not a recognised bone - ignore it, same as before
-
-					FCDTransform* transform = joint->GetTransform(0);
-					FCDAnimated* anim = transform->GetAnimated();
-					anim->Evaluate(time);
-				}
-				// As well as the joints, we need to update all the ancestors
-				// of the skeleton (e.g. the Bip01 node, since the skeleton is
-				// hanging off Bip01-Pelvis instead).
-				// So choose an arbitrary joint, which is hopefully actually the
-				// top-most joint but it doesn't really matter, and evaluate all
-				// its ancestors;
-				if (controllerInstance->GetJointCount() >= 1)
-				{
-					FCDSceneNode* node = controllerInstance->GetJoint(0);
-					while (node->GetParentCount() == 1) // (I guess this should be true in sensible models)
-					{
-						node = node->GetParent();
-						if (node->IsJoint() && node->GetTransformCount() == 1)
-							node->GetTransform(0)->GetAnimated()->Evaluate(time);
-						else
-							break;
-					}
-				}
+				// (We can't tell exactly which nodes should be animated, so
+				// just update the entire world recursively)
+				EvaluateAnimations(root, time);
 
 				// Convert the pose into the form require by the game
 				for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
@@ -204,7 +130,7 @@ public:
 			}
 
 			// Convert into game's coordinate space
-			TransformVertices(boneTransforms);
+			TransformVertices(boneTransforms, yUp);
 
 			// Write out the file
 			WritePSA(output, frameCount, boneCount, boneTransforms);
@@ -244,16 +170,141 @@ public:
 		}
 	}
 
-	static void TransformVertices(std::vector<BoneTransform>& bones)
+	static void TransformVertices(std::vector<BoneTransform>& bones, bool yUp)
 	{
 		// (See PMDConvert.cpp for explanatory comments)
 		for (size_t i = 0; i < bones.size(); ++i)
 		{
-			std::swap(bones[i].translation[1], bones[i].translation[2]);
-			std::swap(bones[i].orientation[1], bones[i].orientation[2]);
-			bones[i].orientation[3] = -bones[i].orientation[3];
+			if (yUp)
+			{
+				bones[i].translation[0] = -bones[i].translation[0];
+				bones[i].orientation[0] = -bones[i].orientation[0];
+				bones[i].orientation[3] = -bones[i].orientation[3];
+			}
+			else
+			{
+				std::swap(bones[i].translation[1], bones[i].translation[2]);
+				std::swap(bones[i].orientation[1], bones[i].orientation[2]);
+				bones[i].orientation[3] = -bones[i].orientation[3];
+			}
 		}
 	}
+
+	static void GetAnimationRange(FColladaDocument& doc, FCDControllerInstance* controllerInstance,
+		float& timeStart, float& timeEnd)
+	{
+		// FCollada tools export <extra> info in the scene to specify the start
+		// and end times.
+		// If that isn't available, we have to search for the earliest and latest
+		// keyframes on any of the bones.
+		if (doc.GetDocument()->HasStartTime() && doc.GetDocument()->HasEndTime())
+		{
+			timeStart = doc.GetDocument()->GetStartTime();
+			timeEnd = doc.GetDocument()->GetEndTime();
+			return;
+		}
+
+		// XSI exports relevant information in
+		// <extra><technique profile="XSI"><SI_Scene><xsi_param sid="start">
+		// (and 'end' and 'frameRate') so use those
+		if (GetAnimationRange_XSI(doc, timeStart, timeEnd))
+			return;
+
+		timeStart = std::numeric_limits<float>::max();
+		timeEnd = -std::numeric_limits<float>::max();
+		for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
+		{
+			FCDSceneNode* joint = controllerInstance->GetJoint(i);
+			REQUIRE(joint != NULL, "joint exists");
+
+			int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+			if (boneId < 0)
+			{
+				// unrecognised joint - it's probably just a prop point
+				// or something, so ignore it
+				continue;
+			}
+
+			// Skip unanimated joints
+			if (joint->GetTransformCount() == 0)
+				continue;
+
+			for (size_t j = 0; j < joint->GetTransformCount(); ++j)
+			{
+				FCDTransform* transform = joint->GetTransform(j);
+
+				if (! transform->IsAnimated())
+					continue;
+
+				// Iterate over all curves
+				FCDAnimated* anim = transform->GetAnimated();
+				FCDAnimationCurveListList& curvesList = anim->GetCurves();
+				for (size_t j = 0; j < curvesList.size(); ++j)
+				{
+					FCDAnimationCurveList& curves = curvesList[j];
+					for (size_t k = 0; k < curves.size(); ++k)
+					{
+						FCDAnimationCurve* curve = curves[k];
+						timeStart = std::min(timeStart, curve->GetKeys().front());
+						timeEnd = std::max(timeEnd, curve->GetKeys().back());
+					}
+				}
+			}
+		}
+	}
+
+	static bool GetAnimationRange_XSI(FColladaDocument& doc, float& timeStart, float& timeEnd)
+	{
+		FCDExtra* extra = doc.GetExtra();
+		if (! extra) return false;
+
+		FCDEType* type = extra->GetDefaultType();
+		if (! type) return false;
+
+		FCDETechnique* technique = type->FindTechnique("XSI");
+		if (! technique) return false;
+
+		FCDENode* scene = technique->FindChildNode("SI_Scene");
+		if (! scene) return false;
+
+		float start = FLT_MAX, end = -FLT_MAX, framerate = 0.f;
+
+		FCDENodeList paramNodes;
+		scene->FindChildrenNodes("xsi_param", paramNodes);
+		for (FCDENodeList::iterator it = paramNodes.begin(); it != paramNodes.end(); ++it)
+		{
+			if ((*it)->ReadAttribute("sid") == "start")
+				start = FUStringConversion::ToFloat((*it)->GetContent());
+			else if ((*it)->ReadAttribute("sid") == "end")
+				end = FUStringConversion::ToFloat((*it)->GetContent());
+			else if ((*it)->ReadAttribute("sid") == "frameRate")
+				framerate = FUStringConversion::ToFloat((*it)->GetContent());
+		}
+
+		if (framerate != 0.f && start != FLT_MAX && end != -FLT_MAX)
+		{
+			timeStart = start / framerate;
+			timeEnd = end / framerate;
+			return true;
+		}
+
+		return false;
+	}
+
+	static void EvaluateAnimations(FCDSceneNode* node, float time)
+	{
+		for (size_t i = 0; i < node->GetTransformCount(); ++i)
+		{
+			FCDTransform* transform = node->GetTransform(i);
+			FCDAnimated* anim = transform->GetAnimated();
+			if (anim)
+				anim->Evaluate(time);
+		}
+
+		for (size_t i = 0; i < node->GetChildrenCount(); ++i)
+			EvaluateAnimations(node->GetChild(i), time);
+	}
+
 };
 
 
