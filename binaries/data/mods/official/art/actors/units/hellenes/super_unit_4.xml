@@ -9,6 +9,8 @@
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_gallop.psa" name="Run" speed="13"/>
         <animation file="quadraped/horse_walk.psa" name="Walk" speed="28"/>
+        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="melee" speed="100"/>
+        <animation event="0.5" file="quadraped/horse_attack_a.psa" name="melee" speed="100"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
     </variant>
@@ -23,6 +25,9 @@
     </variant>
     <variant frequency="1" name="horse-rust">
       <colour>241 131 0</colour>
+    </variant>
+    <variant frequency="1" name="horse-black">
+      <colour>0 0 0</colour>
     </variant>
   </group>
 

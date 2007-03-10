@@ -9,6 +9,8 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="13"/>
+        <animation event="" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" load="" name="melee" speed="100"/>
+        <animation name=""/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
@@ -21,11 +23,14 @@
   </group>
 
   <group>
-    <variant name="armor-linen linothorax">
+    <variant frequency="1" name="armor-linen linothorax">
       <texture>skeletal/hele_hetairoi_a.dds</texture>
     </variant>
-    <variant name="armor-scale mail">
+    <variant frequency="1" name="armor-scale mail">
       <texture>skeletal/hele_hetairoi_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="armor-bronze cuirass">
+      <texture>skeletal/hele_hetairoi_c.dds</texture>
     </variant>
   </group>
 
