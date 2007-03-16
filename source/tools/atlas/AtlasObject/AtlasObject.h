@@ -8,7 +8,6 @@
 #define ATLASOBJECT_H__
 
 #include <wchar.h> // for wchar_t
-#include <wx/string.h>
 
 //////////////////////////////////////////////////////////////////////////
 // Mostly-private bits:
@@ -70,7 +69,7 @@ class AtIter
 public:
 	// Increment the iterator; or make it undefined, if there weren't any
 	// AtObjs left to iterate over
-	AtIter& operator ++ ();
+	AtIter& operator++ ();
 	// Return whether this iterator has an AtObj to point to
 	bool defined() const;
 	// Return whether this iterator is pointing to a non-contentless AtObj
@@ -78,21 +77,13 @@ public:
 
 	// Return an iterator to the children matching 'key'. (That is, children
 	// of the AtObj currently pointed to by this iterator)
-	const AtIter operator [] (const char* key) const;
+	const AtIter operator[] (const char* key) const;
 
 	// Return the AtObj currently pointed to by this iterator
-	//operator const AtObj () const;
-	const AtObj operator *() const;
+	const AtObj operator* () const;
 
 	// Return the string value of the AtObj currently pointed to by this iterator
 	operator const wchar_t* () const;
-	//operator const wxChar* () const { return (const wchar_t*)*this; }
-
-#ifdef __WXWINDOWS__
-	// Wrapper function around 'operator wchar_t*', for convenience in wx programs
-	//operator wxString () const { return (const wchar_t*)*this; }
-	//wxString towxString() const { return (const wchar_t*)*this; }
-#endif
 
 	// Private implementation. (But not 'private:', because it's a waste of time
 	// adding loads of friend functions)
@@ -107,7 +98,7 @@ public:
 	AtObj(const AtObj& r) : p(r.p) {}
 
 	// Return an iterator to the children matching 'key'
-	const AtIter operator [] (const char* key) const;
+	const AtIter operator[] (const char* key) const;
 
 	// Return the string value of this object
 	operator const wchar_t* () const;

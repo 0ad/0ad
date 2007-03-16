@@ -4,6 +4,25 @@
 
 #include "FCollada.h"
 
+
+void DumpMatrix(const FMMatrix44& m)
+{
+	Log(LOG_INFO, "\n[%f %f %f %f]\n[%f %f %f %f]\n[%f %f %f %f]\n[%f %f %f %f]",
+		m.m[0][0], m.m[0][1], m.m[0][2], m.m[0][3],
+		m.m[1][0], m.m[1][1], m.m[1][2], m.m[1][3],
+		m.m[2][0], m.m[2][1], m.m[2][2], m.m[2][3],
+		m.m[3][0], m.m[3][1], m.m[3][2], m.m[3][3]
+	);
+}
+
+FMMatrix44 DecomposeToScaleMatrix(const FMMatrix44& m)
+{
+	FMVector3 scale, rotation, translation;
+	float inverted;
+	m.Decompose(scale, rotation, translation, inverted);
+	return FMMatrix44::ScaleMatrix(scale);
+}
+
 /*
 FMMatrix44 operator+ (const FMMatrix44& a, const FMMatrix44& b)
 {

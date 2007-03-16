@@ -4,11 +4,13 @@
 #include <exception>
 #include <string>
 
-class FUStatus;
-class FCDSceneNode;
 class FCDEntityInstance;
-class FMMatrix44;
+class FCDSceneNode;
 class FCDSkinController;
+class FMMatrix44;
+class FUStatus;
+
+class Skeleton;
 
 class ColladaException : public std::exception
 {
@@ -49,7 +51,8 @@ private:
 class FColladaDocument
 {
 public:
-	/** Loads the document from the given XML string. Should be the first function
+	/**
+	 * Loads the document from the given XML string. Should be the first function
 	 * called on this object, and should only be called once.
 	 * @throws ColladaException if unable to load.
 	 */
@@ -67,8 +70,32 @@ private:
 	std::auto_ptr<FCDExtra> extra;
 };
 
+/**
+ * Wrapper for code shared between the PMD and PSA converters. Loads the document
+ * and provides access to the relevant objects and values.
+ */
+class CommonConvert
+{
+public:
+	CommonConvert(const char* text, std::string& xmlErrors);
+	const FColladaDocument& GetDocument() const { return m_Doc; }
+	FCDSceneNode& GetRoot() { return *m_Doc.GetDocument()->GetVisualSceneRoot(); }
+	FCDEntityInstance& GetInstance() { return *m_Instance; }
+	const FMMatrix44& GetEntityTransform() const { return m_EntityTransform; }
+	bool IsYUp() const { return m_YUp; }
+	bool IsXSI() const { return m_IsXSI; }
+
+private:
+	FColladaErrorHandler m_Err;
+	FColladaDocument m_Doc;
+	FCDEntityInstance* m_Instance;
+	FMMatrix44 m_EntityTransform;
+	bool m_YUp;
+	bool m_IsXSI;
+};
+
 /** Throws a ColladaException unless the value is true. */
-#define REQUIRE(value, message) require_(__LINE__, value, "Assertion not satisfied", message)
+#define REQUIRE(value, message) require_(__LINE__, value, "Assertion not satisfied", "failed requirement \"" message "\"")
 
 /** Throws a ColladaException unless the status is successful. */
 #define REQUIRE_SUCCESS(status) require_(__LINE__, status, "FCollada error", "Line " STRINGIFY(__LINE__))
@@ -81,10 +108,6 @@ template<typename T> void write(OutputCB& output, const T& data)
 {
 	output((char*)&data, sizeof(T));
 }
-
-/** Error handler for libxml2 */
-void errorHandler(void* ctx, const char* msg, ...);
-
 
 /**
  * Tries to find a single suitable entity instance in the scene. Fails if there
@@ -111,6 +134,25 @@ void SkinReduceInfluences(FCDSkinController* skin, size_t maxInfluenceCount, flo
  * controller. (In particular, it's needed for models exported from XSI.)
  * Should be called before extracting any joint information from the controller.
  */
-void FixSkeletonRoots(FCDControllerInstance* controllerInstance);
+void FixSkeletonRoots(FCDControllerInstance& controllerInstance);
+
+/**
+ * Finds the skeleton definition which best matches the given controller.
+ * @throws ColladaException if none is found.
+ */
+const Skeleton& FindSkeleton(const FCDControllerInstance& controllerInstance);
+
+/** Bone pose data */
+struct BoneTransform
+{
+	float translation[3];
+	float orientation[4];
+};
+
+/**
+ * Performs the standard transformations on bones, applying a scale matrix and
+ * moving them into the game's coordinate space.
+ */
+void TransformBones(std::vector<BoneTransform>& bones, const FMMatrix44& scaleTransform, bool yUp);
 
 #endif // COMMONCONVERT_H__

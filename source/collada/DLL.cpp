@@ -3,6 +3,7 @@
 #include "CommonConvert.h"
 #include "PMDConvert.h"
 #include "PSAConvert.h"
+#include "StdSkeletons.h"
 
 #include <cstdarg>
 #include <cassert>
@@ -116,4 +117,19 @@ EXPORT int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_dat
 EXPORT int convert_dae_to_psa(const char* dae, OutputFn psa_writer, void* cb_data)
 {
 	return convert_dae_to_whatever(dae, psa_writer, cb_data, ColladaToPSA);
+}
+
+EXPORT int set_skeletons(const char* xml)
+{
+	try
+	{
+		Skeleton::LoadSkeletonDataFromXml(xml);
+	}
+	catch (const ColladaException& e)
+	{
+		Log(LOG_ERROR, "%s", e.what());
+
+		return -2;
+	}
+	return 0;
 }

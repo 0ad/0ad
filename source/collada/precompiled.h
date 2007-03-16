@@ -31,7 +31,9 @@ extern void Log(int severity, const char* fmt, ...);
 #include "FUtils/FUDaeSyntax.h"
 #include "FUtils/FUFileManager.h"
 #include "FUtils/FUXmlParser.h"
+
 #include <cassert>
+#include <cstdarg>
 #include <string>
 
 // FCollada pollutes the global namespace by defining these

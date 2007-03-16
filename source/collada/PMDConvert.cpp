@@ -33,12 +33,6 @@ struct VertexBlend
 };
 VertexBlend defaultInfluences = { { 0xFF, 0xFF, 0xFF, 0xFF }, { 0, 0, 0, 0 } };
 
-struct BoneTransform
-{
-	float translation[3];
-	float orientation[4];
-};
-
 struct PropPoint
 {
 	std::string name;
@@ -61,32 +55,13 @@ public:
 	 */
 	static void ColladaToPMD(const char* input, OutputCB& output, std::string& xmlErrors)
 	{
-		FColladaErrorHandler err (xmlErrors);
+		CommonConvert converter(input, xmlErrors);
 
-		FColladaDocument doc;
-		doc.LoadFromText(input);
-
-		FCDSceneNode* root = doc.GetDocument()->GetVisualSceneRoot();
-		REQUIRE(root != NULL, "has root object");
-
-		// Find the instance to convert
-		FCDEntityInstance* instance;
-		FMMatrix44 transform;
-		if (! FindSingleInstance(root, instance, transform))
-			throw ColladaException("Couldn't find object to convert");
-
-		assert(instance);
-		Log(LOG_INFO, "Converting '%s'", instance->GetEntity()->GetName().c_str());
-
-		// StandardizeUpAxisAndLength completely mangles the skeletons, so don't use it
-		FMVector3 upAxis = doc.GetDocument()->GetAsset()->GetUpAxis();
-		bool yUp = (upAxis.y != 0); // assume either Y_UP or Z_UP (TODO: does anyone ever do X_UP?)
-
-		if (instance->GetEntity()->GetType() == FCDEntity::GEOMETRY)
+		if (converter.GetInstance().GetEntity()->GetType() == FCDEntity::GEOMETRY)
 		{
 			Log(LOG_INFO, "Found static geometry");
 
-			FCDGeometryPolygons* polys = GetPolysFromGeometry((FCDGeometry*)instance->GetEntity());
+			FCDGeometryPolygons* polys = GetPolysFromGeometry((FCDGeometry*)converter.GetInstance().GetEntity());
 
 			// Convert the geometry into a suitable form for the game
 			ReindexGeometry(polys);
@@ -101,11 +76,11 @@ public:
 			FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
 			FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
 
-			FloatList& dataPosition = sourcePosition->GetSourceData();
-			FloatList& dataNormal   = sourceNormal  ->GetSourceData();
-			FloatList& dataTexcoord = sourceTexcoord->GetSourceData();
+			FloatList& dataPosition = sourcePosition->GetData();
+			FloatList& dataNormal   = sourceNormal  ->GetData();
+			FloatList& dataTexcoord = sourceTexcoord->GetData();
 
-			TransformVertices(dataPosition, dataNormal, transform, yUp);
+			TransformVertices(dataPosition, dataNormal, converter.GetEntityTransform(), converter.IsYUp());
 
 			std::vector<VertexBlend> boneWeights;
 			std::vector<BoneTransform> boneTransforms;
@@ -113,18 +88,18 @@ public:
 
 			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms, propPoints);
 		}
-		else if (instance->GetType() == FCDEntityInstance::CONTROLLER)
+		else if (converter.GetInstance().GetType() == FCDEntityInstance::CONTROLLER)
 		{
 			Log(LOG_INFO, "Found skinned geometry");
 
-			FCDControllerInstance* controllerInstance = (FCDControllerInstance*)instance;
+			FCDControllerInstance& controllerInstance = static_cast<FCDControllerInstance&>(converter.GetInstance());
 
 			// (NB: GetType is deprecated and should be replaced with HasType,
 			// except that has irritating linker errors when using a DLL, so don't
 			// bother)
 			
-			assert(instance->GetEntity()->GetType() == FCDEntity::CONTROLLER); // assume this is always true?
-			FCDController* controller = (FCDController*)instance->GetEntity();
+			assert(converter.GetInstance().GetEntity()->GetType() == FCDEntity::CONTROLLER); // assume this is always true?
+			FCDController* controller = static_cast<FCDController*>(converter.GetInstance().GetEntity());
 
 			FCDSkinController* skin = controller->GetSkinController();
 			REQUIRE(skin != NULL, "is skin controller");
@@ -134,20 +109,25 @@ public:
 			// Data for joints is stored in two places - avoid overflows by limiting
 			// to the minimum of the two sizes, and warn if they're different (which
 			// happens in practice for slightly-broken meshes)
-			size_t jointCount = std::min(skin->GetJointCount(), controllerInstance->GetJointCount());
-			if (skin->GetJointCount() != controllerInstance->GetJointCount())
-				Log(LOG_WARNING, "Mismatched bone counts (skin has %d, skeleton has %d)", skin->GetJointCount(), controllerInstance->GetJointCount());
+			size_t jointCount = std::min(skin->GetJointCount(), controllerInstance.GetJointCount());
+			if (skin->GetJointCount() != controllerInstance.GetJointCount())
+			{
+				Log(LOG_WARNING, "Mismatched bone counts (skin has %d, skeleton has %d)", 
+					skin->GetJointCount(), controllerInstance.GetJointCount());
+			}
 
 			// Get the skinned mesh for this entity
-			FCDEntity* baseTarget = controller->GetBaseTarget();
-			REQUIRE(baseTarget->GetType() == FCDEntity::GEOMETRY, "base target is geometry");
-			FCDGeometryPolygons* polys = GetPolysFromGeometry((FCDGeometry*)baseTarget);
+			FCDGeometry* baseGeometry = controller->GetBaseGeometry();
+			REQUIRE(baseGeometry != NULL, "controller has base geometry");
+			FCDGeometryPolygons* polys = GetPolysFromGeometry(baseGeometry);
 
 			// Make sure it doesn't use more bones per vertex than the game can handle
 			SkinReduceInfluences(skin, maxInfluences, 0.001f);
 
 			// Convert the geometry into a suitable form for the game
 			ReindexGeometry(polys, skin);
+
+			const Skeleton& skeleton = FindSkeleton(controllerInstance);
 
 			// Convert the bone influences into VertexBlend structures for the PMD:
 
@@ -171,8 +151,8 @@ public:
 
 					// Find the joint on the skeleton, after checking it really exists
 					FCDSceneNode* joint = NULL;
-					if (jointIdx < controllerInstance->GetJointCount())
-						joint = controllerInstance->GetJoint(jointIdx);
+					if (jointIdx < controllerInstance.GetJointCount())
+						joint = controllerInstance.GetJoint(jointIdx);
 
 					// Complain on error
 					if (! joint)
@@ -186,8 +166,15 @@ public:
 					}
 
 					// Store into the VertexBlend
-					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
-					REQUIRE(boneId >= 0, "vertex influenced by recognised bone");
+					int boneId = skeleton.GetBoneID(joint->GetName());
+					if (boneId < 0)
+					{
+						// The relevant joint does exist, but it's not a recognised
+						// bone in our chosen skeleton structure
+						Log(LOG_ERROR, "Vertex influenced by unrecognised bone '%s'", joint->GetName().c_str());
+						continue;
+					}
+
 					influences.bones[j] = (uint8)boneId;
 					influences.weights[j] = vertexInfluences[i][j].weight;
 				}
@@ -198,15 +185,13 @@ public:
 			// Convert the bind pose into BoneTransform structures for the PMD:
 
 			BoneTransform boneDefault  = { { 0, 0, 0 }, { 0, 0, 0, 1 } }; // identity transform
-			std::vector<BoneTransform> boneTransforms (StdSkeletons::GetBoneCount(), boneDefault);
-
-			transform = skin->GetBindShapeTransform();
+			std::vector<BoneTransform> boneTransforms (skeleton.GetBoneCount(), boneDefault);
 
 			for (size_t i = 0; i < jointCount; ++i)
 			{
-				FCDSceneNode* joint = controllerInstance->GetJoint(i);
+				FCDSceneNode* joint = controllerInstance.GetJoint(i);
 
-				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+				int boneId = skeleton.GetRealBoneID(joint->GetName());
 				if (boneId < 0)
 				{
 					// unrecognised joint - it's probably just a prop point
@@ -240,9 +225,9 @@ public:
 
 			for (size_t i = 0; i < jointCount; ++i)
 			{
-				FCDSceneNode* joint = controllerInstance->GetJoint(i);
+				FCDSceneNode* joint = controllerInstance.GetJoint(i);
 
-				int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+				int boneId = skeleton.GetBoneID(joint->GetName());
 				if (boneId < 0)
 				{
 					// unrecognised joint name - ignore, same as before
@@ -252,13 +237,13 @@ public:
 				for (size_t j = 0; j < joint->GetChildrenCount(); ++j)
 				{
 					FCDSceneNode* child = joint->GetChild(j);
-					if (StdSkeletons::FindStandardBoneID(child->GetName()) >= 0)
+					if (skeleton.GetBoneID(child->GetName()) >= 0)
 					{
 						// recognised as a bone, hence not a prop point, so skip it
 						continue;
 					}
 
-					//Log(LOG_INFO, "Adding prop point %s", child->GetName().c_str());
+					// Log(LOG_INFO, "Adding prop point %s", child->GetName().c_str());
 
 					// Get translation and orientation of local transform
 
@@ -295,11 +280,13 @@ public:
 			FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
 			FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
 
-			FloatList& dataPosition = sourcePosition->GetSourceData();
-			FloatList& dataNormal   = sourceNormal  ->GetSourceData();
-			FloatList& dataTexcoord = sourceTexcoord->GetSourceData();
+			FloatList& dataPosition = sourcePosition->GetData();
+			FloatList& dataNormal   = sourceNormal  ->GetData();
+			FloatList& dataTexcoord = sourceTexcoord->GetData();
 
-			TransformVertices(dataPosition, dataNormal, boneTransforms, propPoints, transform, yUp);
+			TransformVertices(dataPosition, dataNormal, boneTransforms, propPoints,
+				converter.GetEntityTransform(), skin->GetBindShapeTransform(),
+				converter.IsYUp(), converter.IsXSI());
 
 			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms, propPoints);
 		}
@@ -444,8 +431,23 @@ public:
 
 	static void TransformVertices(FloatList& position, FloatList& normal,
 		std::vector<BoneTransform>& bones, std::vector<PropPoint>& propPoints,
-		const FMMatrix44& transform, bool yUp)
+		const FMMatrix44& transform, const FMMatrix44& bindTransform, bool yUp, bool isXSI)
 	{
+		FMMatrix44 scaledTransform; // for vertexes
+		FMMatrix44 scaleMatrix; // for bones
+
+		// HACK: see comment in PSAConvert::TransformVertices
+		if (isXSI)
+		{
+			scaleMatrix = DecomposeToScaleMatrix(transform);
+			scaledTransform = DecomposeToScaleMatrix(bindTransform) * transform;
+		}
+		else
+		{
+			scaleMatrix = FMMatrix44::Identity;
+			scaledTransform = bindTransform;
+		}
+
 		// Update the vertex positions and normals
 		assert(position.size() == normal.size());
 		for (size_t i = 0; i < position.size()/3; ++i)
@@ -454,15 +456,15 @@ public:
 			FMVector3 norm (&normal[i*3], 0);
 
 			// Apply the scene-node transforms
-			pos = transform.TransformCoordinate(pos);
-			norm = transform.TransformVector(norm).Normalize();
+			pos = scaledTransform.TransformCoordinate(pos);
+			norm = scaledTransform.TransformVector(norm).Normalize();
 
 			// Convert from Y_UP or Z_UP to the game's coordinate system
 
 			if (yUp)
 			{
-				pos.x = -pos.x;
-				norm.x = -norm.x;
+				pos.z = -pos.z;
+				norm.z = -norm.z;
 			}
 			else
 			{
@@ -481,34 +483,7 @@ public:
 			normal[i*3+2] = norm.z;
 		}
 
-		// We also need to change the bone rest states into the new coordinate
-		// system, so it'll look correct when displayed without any animation
-		// applied to the skeleton.
-		for (size_t i = 0; i < bones.size(); ++i)
-		{
-			if (yUp)
-			{
-				// TODO: this is all just guesses which seem to work for data
-				// exported from XSI, rather than having been properly thought
-				// through
-				bones[i].translation[0] = -bones[i].translation[0];
-				bones[i].orientation[0] = -bones[i].orientation[0];
-				bones[i].orientation[3] = -bones[i].orientation[3];
-			}
-			else
-			{
-				// Convert bone translations from xyz into xzy axes:
-				std::swap(bones[i].translation[1], bones[i].translation[2]);
-
-				// To convert the quaternions: imagine you're using the axis/angle
-				// representation, then swap the y,z basis vectors and change the
-				// direction of rotation by negating the angle ( => negating sin(angle)
-				// => negating x,y,z => changing (x,y,z,w) to (-x,-z,-y,w)
-				// but then (-x,-z,-y,w) == (x,z,y,-w) so do that instead)
-				std::swap(bones[i].orientation[1], bones[i].orientation[2]);
-				bones[i].orientation[3] = -bones[i].orientation[3];
-			}
-		}
+		TransformBones(bones, scaleMatrix, yUp);
 
 		// And do the same for prop points
 		for (size_t i = 0; i < propPoints.size(); ++i)

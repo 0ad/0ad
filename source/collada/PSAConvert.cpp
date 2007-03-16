@@ -26,12 +26,6 @@
 #include <vector>
 #include <limits>
 
-struct BoneTransform
-{
-	float translation[3];
-	float orientation[4];
-};
-
 class PSAConvert
 {
 public:
@@ -46,44 +40,34 @@ public:
 	 */
 	static void ColladaToPSA(const char* input, OutputCB& output, std::string& xmlErrors)
 	{
-		FColladaErrorHandler err (xmlErrors);
+		CommonConvert converter(input, xmlErrors);
 
-		FColladaDocument doc;
-		doc.LoadFromText(input);
-
-		FCDSceneNode* root = doc.GetDocument()->GetVisualSceneRoot();
-		REQUIRE(root != NULL, "has root object");
-
-		// Find the instance to convert
-		FCDEntityInstance* instance;
-		FMMatrix44 entityTransform;
-		if (! FindSingleInstance(root, instance, entityTransform))
-			throw ColladaException("Couldn't find object to convert");
-
-		assert(instance);
-		Log(LOG_INFO, "Converting '%s'", instance->GetEntity()->GetName().c_str());
-
-		FMVector3 upAxis = doc.GetDocument()->GetAsset()->GetUpAxis();
-		bool yUp = (upAxis.y != 0); // assume either Y_UP or Z_UP (TODO: does anyone ever do X_UP?)
-
-		if (instance->GetType() == FCDEntityInstance::CONTROLLER)
+		if (converter.GetInstance().GetType() == FCDEntityInstance::CONTROLLER)
 		{
-			FCDControllerInstance* controllerInstance = (FCDControllerInstance*)instance;
+			FCDControllerInstance& controllerInstance = static_cast<FCDControllerInstance&>(converter.GetInstance());
 
 			FixSkeletonRoots(controllerInstance);
+
+			assert(converter.GetInstance().GetEntity()->GetType() == FCDEntity::CONTROLLER); // assume this is always true?
+			FCDController* controller = static_cast<FCDController*>(converter.GetInstance().GetEntity());
+
+			FCDSkinController* skin = controller->GetSkinController();
+			REQUIRE(skin != NULL, "is skin controller");
+
+			const Skeleton& skeleton = FindSkeleton(controllerInstance);
 
 			float frameLength = 1.f / 30.f; // currently we always want to create PMDs at fixed 30fps
 
 			// Find the extents of the animation:
 
 			float timeStart, timeEnd;
-			GetAnimationRange(doc, controllerInstance, timeStart, timeEnd);
+			GetAnimationRange(converter.GetDocument(), skeleton, controllerInstance, timeStart, timeEnd);
 
 			// Count frames; don't include the last keyframe
 			size_t frameCount = (size_t)((timeEnd - timeStart) / frameLength - 0.5f);
 			// (TODO: sort out the timing/looping problems)
 
-			size_t boneCount = StdSkeletons::GetBoneCount();
+			size_t boneCount = skeleton.GetBoneCount();
 
 			std::vector<BoneTransform> boneTransforms;
 
@@ -97,14 +81,14 @@ public:
 				// Move the model into the new animated pose
 				// (We can't tell exactly which nodes should be animated, so
 				// just update the entire world recursively)
-				EvaluateAnimations(root, time);
+				EvaluateAnimations(converter.GetRoot(), time);
 
 				// Convert the pose into the form require by the game
-				for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
+				for (size_t i = 0; i < controllerInstance.GetJointCount(); ++i)
 				{
-					FCDSceneNode* joint = controllerInstance->GetJoint(i);
+					FCDSceneNode* joint = controllerInstance.GetJoint(i);
 
-					int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+					int boneId = skeleton.GetRealBoneID(joint->GetName());
 					if (boneId < 0)
 						continue; // not a recognised bone - ignore it, same as before
 
@@ -130,7 +114,7 @@ public:
 			}
 
 			// Convert into game's coordinate space
-			TransformVertices(boneTransforms, yUp);
+			TransformVertices(boneTransforms, skin->GetBindShapeTransform(), converter.IsYUp(), converter.IsXSI());
 
 			// Write out the file
 			WritePSA(output, frameCount, boneCount, boneTransforms);
@@ -170,27 +154,25 @@ public:
 		}
 	}
 
-	static void TransformVertices(std::vector<BoneTransform>& bones, bool yUp)
+	static void TransformVertices(std::vector<BoneTransform>& bones,
+		const FMMatrix44& transform, bool yUp, bool isXSI)
 	{
-		// (See PMDConvert.cpp for explanatory comments)
-		for (size_t i = 0; i < bones.size(); ++i)
+		// HACK: we want to handle scaling in XSI because that makes it easy
+		// for artists to adjust the models to the right size. But this way
+		// doesn't work in Max, and I can't see how to make it do so, so this
+		// is only applied to models from XSI.
+		if (isXSI)
 		{
-			if (yUp)
-			{
-				bones[i].translation[0] = -bones[i].translation[0];
-				bones[i].orientation[0] = -bones[i].orientation[0];
-				bones[i].orientation[3] = -bones[i].orientation[3];
-			}
-			else
-			{
-				std::swap(bones[i].translation[1], bones[i].translation[2]);
-				std::swap(bones[i].orientation[1], bones[i].orientation[2]);
-				bones[i].orientation[3] = -bones[i].orientation[3];
-			}
+			TransformBones(bones, DecomposeToScaleMatrix(transform), yUp);
+		}
+		else
+		{
+			TransformBones(bones, FMMatrix44::Identity, yUp);
 		}
 	}
 
-	static void GetAnimationRange(FColladaDocument& doc, FCDControllerInstance* controllerInstance,
+	static void GetAnimationRange(const FColladaDocument& doc, const Skeleton& skeleton,
+		const FCDControllerInstance& controllerInstance,
 		float& timeStart, float& timeEnd)
 	{
 		// FCollada tools export <extra> info in the scene to specify the start
@@ -212,12 +194,12 @@ public:
 
 		timeStart = std::numeric_limits<float>::max();
 		timeEnd = -std::numeric_limits<float>::max();
-		for (size_t i = 0; i < controllerInstance->GetJointCount(); ++i)
+		for (size_t i = 0; i < controllerInstance.GetJointCount(); ++i)
 		{
-			FCDSceneNode* joint = controllerInstance->GetJoint(i);
+			const FCDSceneNode* joint = controllerInstance.GetJoint(i);
 			REQUIRE(joint != NULL, "joint exists");
 
-			int boneId = StdSkeletons::FindStandardBoneID(joint->GetName());
+			int boneId = skeleton.GetBoneID(joint->GetName());
 			if (boneId < 0)
 			{
 				// unrecognised joint - it's probably just a prop point
@@ -231,20 +213,20 @@ public:
 
 			for (size_t j = 0; j < joint->GetTransformCount(); ++j)
 			{
-				FCDTransform* transform = joint->GetTransform(j);
+				const FCDTransform* transform = joint->GetTransform(j);
 
 				if (! transform->IsAnimated())
 					continue;
 
 				// Iterate over all curves
-				FCDAnimated* anim = transform->GetAnimated();
-				FCDAnimationCurveListList& curvesList = anim->GetCurves();
+				const FCDAnimated* anim = transform->GetAnimated();
+				const FCDAnimationCurveListList& curvesList = anim->GetCurves();
 				for (size_t j = 0; j < curvesList.size(); ++j)
 				{
-					FCDAnimationCurveList& curves = curvesList[j];
+					const FCDAnimationCurveList& curves = curvesList[j];
 					for (size_t k = 0; k < curves.size(); ++k)
 					{
-						FCDAnimationCurve* curve = curves[k];
+						const FCDAnimationCurve* curve = curves[k];
 						timeStart = std::min(timeStart, curve->GetKeys().front());
 						timeEnd = std::max(timeEnd, curve->GetKeys().back());
 					}
@@ -253,7 +235,7 @@ public:
 		}
 	}
 
-	static bool GetAnimationRange_XSI(FColladaDocument& doc, float& timeStart, float& timeEnd)
+	static bool GetAnimationRange_XSI(const FColladaDocument& doc, float& timeStart, float& timeEnd)
 	{
 		FCDExtra* extra = doc.GetExtra();
 		if (! extra) return false;
@@ -291,18 +273,18 @@ public:
 		return false;
 	}
 
-	static void EvaluateAnimations(FCDSceneNode* node, float time)
+	static void EvaluateAnimations(FCDSceneNode& node, float time)
 	{
-		for (size_t i = 0; i < node->GetTransformCount(); ++i)
+		for (size_t i = 0; i < node.GetTransformCount(); ++i)
 		{
-			FCDTransform* transform = node->GetTransform(i);
+			FCDTransform* transform = node.GetTransform(i);
 			FCDAnimated* anim = transform->GetAnimated();
 			if (anim)
 				anim->Evaluate(time);
 		}
 
-		for (size_t i = 0; i < node->GetChildrenCount(); ++i)
-			EvaluateAnimations(node->GetChild(i), time);
+		for (size_t i = 0; i < node.GetChildrenCount(); ++i)
+			EvaluateAnimations(*node.GetChild(i), time);
 	}
 
 };

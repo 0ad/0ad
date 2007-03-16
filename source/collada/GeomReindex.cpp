@@ -131,19 +131,19 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 	FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
 	FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
 
-	const FloatList& dataPosition = sourcePosition->GetSourceData();
-	const FloatList& dataNormal   = sourceNormal  ->GetSourceData();
-	const FloatList& dataTexcoord = sourceTexcoord->GetSourceData();
+	const FloatList& dataPosition = sourcePosition->GetData();
+	const FloatList& dataNormal   = sourceNormal  ->GetData();
+	const FloatList& dataTexcoord = sourceTexcoord->GetData();
 
 	if (skin)
 	{
-		size_t numVertexPositions = dataPosition.size() / sourcePosition->GetSourceStride();
+		size_t numVertexPositions = dataPosition.size() / sourcePosition->GetStride();
 		assert(skin->GetVertexInfluenceCount() == numVertexPositions);
 	}
 
-	uint32 stridePosition = sourcePosition->GetSourceStride();
-	uint32 strideNormal   = sourceNormal  ->GetSourceStride();
-	uint32 strideTexcoord = sourceTexcoord->GetSourceStride();
+	uint32 stridePosition = sourcePosition->GetStride();
+	uint32 strideNormal   = sourceNormal  ->GetStride();
+	uint32 strideTexcoord = sourceTexcoord->GetStride();
 
 	UInt32List indicesCombined;
 	std::vector<VertexData> vertexes;

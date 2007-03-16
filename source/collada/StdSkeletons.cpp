@@ -2,116 +2,192 @@
 
 #include "StdSkeletons.h"
 
+#include "CommonConvert.h"
+
+#include "FUtils/FUXmlParser.h"
+
 namespace
 {
-	const char* standardBoneNames0[] = {
-		/* */ "Bip01",
-		/* */   "Bip01_Pelvis",
-		/* */     "Bip01_Spine",
-		/* */       "Bip01_Spine1",
-		/* */         "Bip01_Neck",
-		/* */           "Bip01_Head",
-		/* */             "Bip01_HeadNub",
-		/* */             "Bip01_L_Clavicle",
-		/* */               "Bip01_L_UpperArm",
-		/* */                 "Bip01_L_Forearm",
-		/* */                   "Bip01_L_Hand",
-		/* */                     "Bip01_L_Finger0",
-		/* */                       "Bip01_L_Finger0Nub",
-		/* */             "Bip01_R_Clavicle",
-		/* */               "Bip01_R_UpperArm",
-		/* */                 "Bip01_R_Forearm",
-		/* */                   "Bip01_R_Hand",
-		/* */                     "Bip01_R_Finger0",
-		/* */                       "Bip01_R_Finger0Nub",
-		/* */       "Bip01_L_Thigh",
-		/* */         "Bip01_L_Calf",
-		/* */           "Bip01_L_Foot",
-		/* */             "Bip01_L_Toe0",
-		/* */               "Bip01_L_Toe0Nub",
-		/* */       "Bip01_R_Thigh",
-		/* */         "Bip01_R_Calf",
-		/* */           "Bip01_R_Foot",
-		/* */             "Bip01_R_Toe0",
-		/* */               "Bip01_R_Toe0Nub",
-		// (the above comments just stop the indentation being dropped by
-		// automatic code-formatting things...)
-// 		NULL
-// 	};
-// (TODO (important): do this stuff properly)
-// 	const char* standardBoneNames1[] = {
-		/* */ "Biped_GlobalSRT",
-		/* */   "Biped_Spineroot",
-		/* */     "Biped_Spine01",
-		/* */       "Biped_Spine02",
-		/* */         "Biped_Spine03",
-		/* */     "Biped_Spineeffector",
-		/* */       "Biped_Lshoulderroot",
-		/* */         "Biped_Lshoulder",
-		/* */         "Biped_Lshouldereffector",
-		/* */           "Biped_Larmroot",
-		/* */             "Biped_Lbicept",
-		/* */               "Biped_Lforearm",
-		/* */             "Biped_Larmupvector",
-		/* */       "Biped_Rshoulderroot",
-		/* */         "Biped_Rshoulder",
-		/* */         "Biped_Rshouldereffector",
-		/* */           "Biped_Rarmroot",
-		/* */             "Biped_Rbicept",
-		/* */               "Biped_Rforearm",
-		/* */             "Biped_Rarmupvector",
-		/* */       "Biped_neckroot",
-		/* */         "Biped_neck",
-		/* */           "Biped_head",
-		/* */         "Biped_headeffector",
-		/* */     "Biped_Llegroot",
-		/* */       "Biped_Lthigh",
-		/* */         "Biped_Lshin",
-		/* */     "Biped_Rlegroot",
-		/* */       "Biped_Rthigh",
-		/* */         "Biped_Rshin",
-		/* */     "Biped_Llegupvector",
-		/* */     "Biped_Rlegupvector",
-		/* */   "Biped_Larmeffector",
-		/* */     "Biped_Lhandroot",
-		/* */       "Biped_Lhand",
-		/* */         "Biped_Lfingers",
-		/* */       "Biped_Lhandeffector",
-		/* */   "Biped_Llegeffector",
-		/* */     "Biped_Lfooteffector",
-		/* */       "Biped_Lfoot",
-		/* */         "Biped_Ltoe",
-		/* */       "Biped_Ltoeeffector",
-		/* */   "Biped_Rarmeffector",
-		/* */     "Biped_Rhandroot",
-		/* */       "Biped_Rhand",
-		/* */         "Biped_Rfingers",
-		/* */       "Biped_Rhandeffector",
-		/* */   "Biped_Rlegeffector",
-		/* */     "Biped_Rfootroot",
-		/* */       "Biped_Rfoot",
-		/* */         "Biped_Rtoe",
-		/* */       "Biped_Rtoeeffector",
-		NULL
+	struct SkeletonMap : public std::map<std::string, const Skeleton*>
+	{
+		~SkeletonMap()
+		{
+			for (iterator it = begin(); it != end(); ++it)
+				delete it->second;
+		}
 	};
 
+	SkeletonMap g_StandardSkeletons;
+	SkeletonMap g_MappedSkeletons;
+
+	struct Bone
+	{
+		std::string parent;
+		std::string name;
+		int targetId;
+		int realTargetId;
+	};
 }
 
-namespace StdSkeletons
+struct Skeleton_impl
 {
-	int GetBoneCount()
+	std::string title;
+	std::vector<Bone> bones;
+	const Skeleton* target;
+};
+
+Skeleton::Skeleton() : m(new Skeleton_impl) { }
+Skeleton::~Skeleton() { }
+
+const Skeleton* Skeleton::FindSkeleton(const std::string& name)
+{
+	return g_MappedSkeletons[name];
+}
+
+int Skeleton::GetBoneID(const std::string& name) const
+{
+	for (size_t i = 0; i < m->bones.size(); ++i)
+		if (m->bones[i].name == name)
+			return m->bones[i].targetId;
+	return -1;
+}
+
+int Skeleton::GetRealBoneID(const std::string& name) const
+{
+	for (size_t i = 0; i < m->bones.size(); ++i)
+		if (m->bones[i].name == name)
+			return m->bones[i].realTargetId;
+	return -1;
+}
+
+int Skeleton::GetBoneCount() const
+{
+	return (int)m->target->m->bones.size();
+}
+
+namespace
+{
+	bool AlreadyUsedTargetBone(const std::vector<Bone>& bones, int targetId)
 	{
-		int i = 0;
-		while (standardBoneNames0[i] != NULL)
-			++i;
-		return i;
+		for (size_t i = 0; i < bones.size(); ++i)
+			if (bones[i].targetId == targetId)
+				return true;
+		return false;
 	}
 
-	int FindStandardBoneID(const std::string& name)
+	// Recursive helper function used by LoadSkeletonData
+	void LoadSkeletonBones(xmlNode* parent, std::vector<Bone>& bones, const Skeleton* targetSkeleton, const std::string& targetName)
 	{
-		for (int i = 0; standardBoneNames0[i] != NULL; ++i)
-			if (standardBoneNames0[i] == name)
-				return i;
-		return -1;
+		xmlNodeList boneNodes;
+		FUXmlParser::FindChildrenByType(parent, "bone", boneNodes);
+		for (xmlNodeList::iterator boneNode = boneNodes.begin(); boneNode != boneNodes.end(); ++boneNode)
+		{
+			std::string name = FUXmlParser::ReadNodeProperty(*boneNode, "name");
+
+			Bone b;
+			b.name = name;
+			
+			std::string newTargetName = targetName;
+
+			if (targetSkeleton)
+			{
+				xmlNode* targetNode = FUXmlParser::FindChildByType(*boneNode, "target");
+				if (targetNode)
+					newTargetName = FUXmlParser::ReadNodeContentFull(targetNode);
+				// else fall back to the parent node's target
+
+				b.targetId = targetSkeleton->GetBoneID(newTargetName);
+				REQUIRE(b.targetId != -1, "skeleton bone target matches some standard_skeleton bone name");
+
+				if (AlreadyUsedTargetBone(bones, b.targetId))
+					b.realTargetId = -1;
+				else
+					b.realTargetId = b.targetId;
+			}
+			else
+			{
+				b.targetId = (int)bones.size();
+				b.realTargetId = b.targetId;
+			}
+
+			bones.push_back(b);
+
+			LoadSkeletonBones(*boneNode, bones, targetSkeleton, newTargetName);
+		}
+	}
+
+	void LoadSkeletonData(xmlNode* root)
+	{
+		xmlNodeList skeletonNodes;
+		FUXmlParser::FindChildrenByType(root, "standard_skeleton", skeletonNodes);
+		FUXmlParser::FindChildrenByType(root, "skeleton", skeletonNodes);
+		for (xmlNodeList::iterator skeletonNode = skeletonNodes.begin();
+			skeletonNode != skeletonNodes.end(); ++skeletonNode)
+		{
+			std::auto_ptr<Skeleton> skeleton (new Skeleton());
+
+			std::string title = FUXmlParser::ReadNodeProperty(*skeletonNode, "title");
+			
+			skeleton->m->title = title;
+
+			if (IsEquivalent((*skeletonNode)->name, "standard_skeleton"))
+			{
+				skeleton->m->target = NULL;
+
+				LoadSkeletonBones(*skeletonNode, skeleton->m->bones, NULL, "");
+
+				std::string id = FUXmlParser::ReadNodeProperty(*skeletonNode, "id");
+				REQUIRE(! id.empty(), "standard_skeleton has id");
+
+				g_StandardSkeletons[id] = skeleton.release();
+			}
+			else
+			{
+				// Non-standard skeletons need to choose a standard skeleton
+				// as their target to be mapped onto
+
+				std::string target = FUXmlParser::ReadNodeProperty(*skeletonNode, "target");
+				const Skeleton* targetSkeleton = g_StandardSkeletons[target];
+				REQUIRE(targetSkeleton != NULL, "skeleton target matches some standard_skeleton id");
+
+				skeleton->m->target = targetSkeleton;
+
+				LoadSkeletonBones(*skeletonNode, skeleton->m->bones, targetSkeleton, "");
+
+				// Currently the only supported identifier is a precise name match,
+				// so just look for that
+				xmlNode* identifier = FUXmlParser::FindChildByType(*skeletonNode, "identifier");
+				REQUIRE(identifier != NULL, "skeleton has <identifier>");
+				xmlNode* identRoot = FUXmlParser::FindChildByType(identifier, "root");
+				REQUIRE(identRoot != NULL, "skeleton identifier has <root>");
+				std::string identRootName = FUXmlParser::ReadNodeContentFull(identRoot);
+
+				g_MappedSkeletons[identRootName] = skeleton.release();
+			}
+		}
+	}
+}
+
+void Skeleton::LoadSkeletonDataFromXml(const char* text)
+{
+	xmlDoc* doc = NULL;
+	try
+	{
+		doc = xmlParseDoc(reinterpret_cast<const unsigned char*>(text));
+		if (doc)
+		{
+			xmlNode* root = xmlDocGetRootElement(doc);
+			LoadSkeletonData(root);
+			xmlFreeDoc(doc);
+			doc = NULL;
+		}
+		xmlCleanupParser();
+	}
+	catch (const ColladaException&)
+	{
+		if (doc)
+			xmlFreeDoc(doc);
+		xmlCleanupParser();
+		throw;
 	}
 }

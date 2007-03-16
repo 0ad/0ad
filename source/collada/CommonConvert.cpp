@@ -2,6 +2,8 @@
 
 #include "CommonConvert.h"
 
+#include "StdSkeletons.h"
+
 #include "FCollada.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSkinController.h"
@@ -131,6 +133,35 @@ void FColladaDocument::ReadExtras(xmlNode* colladaNode)
 		xmlNode* extraNode = (*it);
 		extra->LoadFromXML(extraNode);
 	}
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+CommonConvert::CommonConvert(const char* text, std::string& xmlErrors)
+: m_Err(xmlErrors)
+{
+	m_Doc.LoadFromText(text);
+	FCDSceneNode* root = m_Doc.GetDocument()->GetVisualSceneRoot();
+	REQUIRE(root != NULL, "has root object");
+
+	// Find the instance to convert
+	if (! FindSingleInstance(root, m_Instance, m_EntityTransform))
+		throw ColladaException("Couldn't find object to convert");
+
+	assert(m_Instance);
+	Log(LOG_INFO, "Converting '%s'", m_Instance->GetEntity()->GetName().c_str());
+
+	m_IsXSI = false;
+	FCDAsset* asset = m_Doc.GetDocument()->GetAsset();
+	if (asset && asset->GetContributorCount() >= 1)
+	{
+		std::string tool = asset->GetContributor(0)->GetAuthoringTool();
+		if (tool.find("XSI") != tool.npos)
+			m_IsXSI = true;
+	}
+
+	FMVector3 upAxis = m_Doc.GetDocument()->GetAsset()->GetUpAxis();
+	m_YUp = (upAxis.y != 0); // assume either Y_UP or Z_UP (TODO: does anyone ever do X_UP?)
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -305,6 +336,9 @@ void SkinReduceInfluences(FCDSkinController* skin, size_t maxInfluenceCount, flo
 			newWeights.resize(maxInfluenceCount);
 
 		// Enforce the minimum weight per influence
+		// (This is done here rather than in the earlier loop, because several
+		// small weights for the same bone might add up to a value above the
+		// threshold)
 		while (!newWeights.empty() && newWeights.back().weight < minimumWeight)
 			newWeights.pop_back();
 
@@ -323,17 +357,88 @@ void SkinReduceInfluences(FCDSkinController* skin, size_t maxInfluenceCount, flo
 }
 
 
-void FixSkeletonRoots(FCDControllerInstance* controllerInstance)
+void FixSkeletonRoots(FCDControllerInstance& controllerInstance)
 {
 	// HACK: The XSI exporter doesn't do a <skeleton> and FCollada doesn't
 	// seem to know where else to look, so just guess that it's somewhere
 	// under Scene_Root
-	if (controllerInstance->GetSkeletonRoots().empty())
+	if (controllerInstance.GetSkeletonRoots().empty())
 	{
 		// HACK (evil): SetSkeletonRoot is declared but not defined, and there's
 		// no other proper way to modify the skeleton-roots list, so cheat horribly
-		FUUriList& uriList = const_cast<FUUriList&>(controllerInstance->GetSkeletonRoots());
+		FUUriList& uriList = const_cast<FUUriList&>(controllerInstance.GetSkeletonRoots());
 		uriList.push_back(FUUri("Scene_Root"));
-		controllerInstance->LinkImport();
+		controllerInstance.LinkImport();
+	}
+}
+
+const Skeleton& FindSkeleton(const FCDControllerInstance& controllerInstance)
+{
+	// I can't see any proper way to determine the real root of the skeleton,
+	// so just choose an arbitrary bone and search upwards until we find a
+	// recognised ancestor (or until we fall off the top of the tree)
+
+	const Skeleton* skeleton = NULL;
+	const FCDSceneNode* joint = controllerInstance.GetJoint(0);
+	while (joint && (skeleton = Skeleton::FindSkeleton(joint->GetName())) == NULL)
+	{
+		joint = joint->GetParent();
+	}
+	REQUIRE(skeleton != NULL, "recognised skeleton structure");
+	return *skeleton;
+}
+
+void TransformBones(std::vector<BoneTransform>& bones, const FMMatrix44& scaleTransform, bool yUp)
+{
+	for (size_t i = 0; i < bones.size(); ++i)
+	{
+		// Apply the desired transformation to the bone coordinates
+		FMVector3 trans(bones[i].translation, 0);
+		trans = scaleTransform.TransformCoordinate(trans);
+		bones[i].translation[0] = trans.x;
+		bones[i].translation[1] = trans.y;
+		bones[i].translation[2] = trans.z;
+
+		// DON'T apply the transformation to orientation, because I can't get
+		// that kind of thing to work in practice (interacting nicely between
+		// the models and animations), so this function assumes the transform
+		// just does scaling, so there's no need to rotate anything. (But I think
+		// this code would work for rotation, though not very efficiently.)
+		/*
+		FMMatrix44 m = FMQuaternion(bones[i].orientation[0], bones[i].orientation[1], bones[i].orientation[2], bones[i].orientation[3]).ToMatrix();
+		m *= scaleTransform;
+		HMatrix matrix;
+		memcpy(matrix, m.Transposed().m, sizeof(matrix));
+		AffineParts parts;
+		decomp_affine(matrix, &parts);
+
+		bones[i].orientation[0] = parts.q.x;
+		bones[i].orientation[1] = parts.q.y;
+		bones[i].orientation[2] = parts.q.z;
+		bones[i].orientation[3] = parts.q.w;
+		*/
+
+		if (yUp)
+		{
+			// TODO: this is all just guesses which seem to work for data
+			// exported from XSI, rather than having been properly thought
+			// through
+			bones[i].translation[2] = -bones[i].translation[2];
+			bones[i].orientation[2] = -bones[i].orientation[2];
+			bones[i].orientation[3] = -bones[i].orientation[3];
+		}
+		else
+		{
+			// Convert bone translations from xyz into xzy axes:
+			std::swap(bones[i].translation[1], bones[i].translation[2]);
+
+			// To convert the quaternions: imagine you're using the axis/angle
+			// representation, then swap the y,z basis vectors and change the
+			// direction of rotation by negating the angle ( => negating sin(angle)
+			// => negating x,y,z => changing (x,y,z,w) to (-x,-z,-y,w)
+			// but then (-x,-z,-y,w) == (x,z,y,-w) so do that instead)
+			std::swap(bones[i].orientation[1], bones[i].orientation[2]);
+			bones[i].orientation[3] = -bones[i].orientation[3];
+		}
 	}
 }
