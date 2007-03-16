@@ -232,3 +232,21 @@ int CLogger::Interestedness(const char* category)
 
 	return level;
 }
+
+
+TestLogger::TestLogger()
+{
+	m_OldLogger = g_Logger;
+	g_Logger = new CLogger(&m_Stream, &blackHoleStream, false);
+}
+
+TestLogger::~TestLogger()
+{
+	delete g_Logger;
+	g_Logger = m_OldLogger;
+}
+
+std::string TestLogger::GetOutput()
+{
+	return m_Stream.str();
+}

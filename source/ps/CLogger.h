@@ -65,4 +65,19 @@ private:
 	std::set<std::string> m_LoggedOnce;
 };
 
+/**
+ * Helper class for unit tests - captures all log output while it is in scope,
+ * and returns it as a single string.
+ */
+class TestLogger
+{
+public:
+	TestLogger();
+	~TestLogger();
+	std::string GetOutput();
+private:
+	CLogger* m_OldLogger;
+	std::stringstream m_Stream;
+};
+
 #endif

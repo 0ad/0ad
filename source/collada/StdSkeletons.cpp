@@ -106,6 +106,8 @@ namespace
 			}
 			else
 			{
+				// No target - this is a standard skeleton
+
 				b.targetId = (int)bones.size();
 				b.realTargetId = b.targetId;
 			}
@@ -168,12 +170,15 @@ namespace
 	}
 }
 
-void Skeleton::LoadSkeletonDataFromXml(const char* text)
+void errorHandler(void* ctx, const char* msg, ...);
+
+void Skeleton::LoadSkeletonDataFromXml(const char* xmlData, size_t xmlLength, std::string& xmlErrors)
 {
 	xmlDoc* doc = NULL;
 	try
 	{
-		doc = xmlParseDoc(reinterpret_cast<const unsigned char*>(text));
+		xmlSetGenericErrorFunc(&xmlErrors, &errorHandler);
+		doc = xmlParseMemory(xmlData, xmlLength);
 		if (doc)
 		{
 			xmlNode* root = xmlDocGetRootElement(doc);
@@ -182,12 +187,17 @@ void Skeleton::LoadSkeletonDataFromXml(const char* text)
 			doc = NULL;
 		}
 		xmlCleanupParser();
+		xmlSetGenericErrorFunc(NULL, NULL);
 	}
 	catch (const ColladaException&)
 	{
 		if (doc)
 			xmlFreeDoc(doc);
 		xmlCleanupParser();
+		xmlSetGenericErrorFunc(NULL, NULL);
 		throw;
 	}
+
+	if (! xmlErrors.empty())
+		throw ColladaException("XML parsing failed");
 }

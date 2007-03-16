@@ -49,6 +49,7 @@ class CColladaManagerImpl
 	DllLoader dll;
 
 	void (*set_logger)(Collada::LogFn logger);
+	int (*set_skeleton_definitions)(const char* xml, int length);
 	int (*convert_dae_to_pmd)(const char* dae, Collada::OutputFn pmd_writer, void* cb_data);
 	int (*convert_dae_to_psa)(const char* dae, Collada::OutputFn psa_writer, void* cb_data);
 
@@ -83,6 +84,7 @@ public:
 			try
 			{
 				dll.LoadSymbol("set_logger", set_logger);
+				dll.LoadSymbol("set_skeleton_definitions", set_skeleton_definitions);
 				dll.LoadSymbol("convert_dae_to_pmd", convert_dae_to_pmd);
 				dll.LoadSymbol("convert_dae_to_psa", convert_dae_to_psa);
 			}
@@ -94,6 +96,26 @@ public:
 			}
 
 			set_logger(ColladaLog);
+
+			CVFSFile skeletonFile;
+			if (skeletonFile.Load("art/skeletons/skeletons.xml") != PSRETURN_OK)
+			{
+				LOG(ERROR, "collada", "Failed to read skeleton definitions");
+				dll.Unload();
+				return false;
+			}
+
+			int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
+			if (ok < 0)
+			{
+				LOG(ERROR, "collada", "Failed to load skeleton definitions");
+				dll.Unload();
+				return false;
+			}
+
+			// TODO: the cached PMD/PSA files should probably be invalidated when
+			// the skeleton definition file is changed, else people will get confused
+			// as to why it's not picking up their changes
 		}
 
 		// We need to null-terminate the buffer, so do it (possibly inefficiently)
@@ -142,7 +164,7 @@ CColladaManager::~CColladaManager()
 	delete m;
 }
 
-CStr CColladaManager::GetLoadableFilename(const CStr &sourceName, FileType type)
+CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 {
 	const char* extn = NULL;
 	switch (type)

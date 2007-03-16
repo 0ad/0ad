@@ -10,6 +10,8 @@
 #include "graphics/MeshManager.h"
 #include "graphics/ModelDef.h"
 
+#include "ps/CLogger.h"
+
 #define MOD_PATH "mods/_test.mesh"
 #define CACHE_PATH "_testcache"
 
@@ -18,6 +20,9 @@ const char* srcPMD = "tests/collada/sphere.pmd";
 const char* testDAE = "art/meshes/skeletal/test.dae";
 const char* testPMD = "art/meshes/skeletal/test.pmd";
 const char* testBase = "art/meshes/skeletal/test";
+
+const char* srcSkeletonDefs = "tests/collada/skeletons.xml";
+const char* testSkeletonDefs = "art/skeletons/skeletons.xml";
 
 class TestMeshManager : public CxxTest::TestSuite 
 {
@@ -79,11 +84,11 @@ class TestMeshManager : public CxxTest::TestSuite
 		FileIOBuf buf = FILE_BUF_ALLOC;
 		ssize_t read = file_io(&f, 0, f.size, &buf);
 		TS_ASSERT_EQUALS(read, f.size);
+		file_close(&f);
 
 		vfs_store(dst, buf, read, FILE_NO_AIO);
 
 		file_buf_free(buf);
-		file_close(&f);
 	}
 
 	void buildArchive()
@@ -160,7 +165,13 @@ public:
 
 	void test_load_dae()
 	{
+		// TODO: I get
+		//  Assertion failed: "buf_in_cache == buf"
+		//  Location: file_cache.cpp:1094 (file_buf_free)
+		// when the order of these is swapped...
+
 		copyFile(srcDAE, testDAE);
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(modeldef);
@@ -170,13 +181,41 @@ public:
 	void test_load_dae_caching()
 	{
 		copyFile(srcDAE, testDAE);
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
 		CStr daeName1 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
 		CStr daeName2 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
 		TS_ASSERT(daeName1.length());
 		TS_ASSERT_STR_EQUALS(daeName1, daeName2);
-		// TODO: it'd be nice to test that it isn't doing the DAE->PMD conversion
-		// again, but there doesn't seem to be an easy way to check that
+		// TODO: it'd be nice to test that it really isn't doing the DAE->PMD
+		// conversion a second time, but there doesn't seem to be an easy way
+		// to check that
+	}
+
+	void test_invalid_skeletons()
+	{
+		TestLogger logger;
+
+		copyFile(srcDAE, testDAE);
+		const char text[] = "Not valid XML";
+		vfs_store(testSkeletonDefs, text, strlen(text), FILE_NO_AIO);
+
+		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
+		TS_ASSERT(! modeldef);
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "parser error");
+	}
+
+	void test_invalid_dae()
+	{
+		TestLogger logger;
+
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
+		const char text[] = "Not valid XML";
+		vfs_store(testDAE, text, strlen(text), FILE_NO_AIO);
+
+		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
+		TS_ASSERT(! modeldef);
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "parser error");
 	}
 
 	void test_load_nonexistent_pmd()

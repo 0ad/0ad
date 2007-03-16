@@ -119,17 +119,22 @@ EXPORT int convert_dae_to_psa(const char* dae, OutputFn psa_writer, void* cb_dat
 	return convert_dae_to_whatever(dae, psa_writer, cb_data, ColladaToPSA);
 }
 
-EXPORT int set_skeletons(const char* xml)
+EXPORT int set_skeleton_definitions(const char* xml, int length)
 {
+	std::string xmlErrors;
 	try
 	{
-		Skeleton::LoadSkeletonDataFromXml(xml);
+		Skeleton::LoadSkeletonDataFromXml(xml, length, xmlErrors);
 	}
 	catch (const ColladaException& e)
 	{
+		if (! xmlErrors.empty())
+			Log(LOG_ERROR, "%s", xmlErrors.c_str());
+
 		Log(LOG_ERROR, "%s", e.what());
 
-		return -2;
+		return -1;
 	}
+
 	return 0;
 }

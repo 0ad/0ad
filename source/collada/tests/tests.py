@@ -24,6 +24,8 @@ def log(severity, message):
 clog = CFUNCTYPE(None, c_int, c_char_p)(log)
 	# (the CFUNCTYPE must not be GC'd, so try to keep a reference)
 library.set_logger(clog)
+skeleton_definitions = open('%s/data/tools/collada/skeletons.xml' % binaries).read()
+library.set_skeleton_definitions(skeleton_definitions, len(skeleton_definitions))
 
 def _convert_dae(func, filename, expected_status=0):
 	output = []
@@ -55,16 +57,22 @@ def clean_dir(path):
 	except OSError:
 		pass # (ignore errors if it already exists)
 
-def create_actor(mesh, texture, anims):
+def create_actor(mesh, texture, anims, props_):
 	actor = ET.Element('actor', version='1')
 	ET.SubElement(actor, 'castshadow')
 	group = ET.SubElement(actor, 'group')
 	variant = ET.SubElement(group, 'variant', frequency='100', name='Base')
 	ET.SubElement(variant, 'mesh').text = mesh+'.pmd'
 	ET.SubElement(variant, 'texture').text = texture+'.dds'
+
 	animations = ET.SubElement(variant, 'animations')
 	for name, file in anims:
 		ET.SubElement(animations, 'animation', file=file+'.psa', name=name, speed='100')
+	
+	props = ET.SubElement(variant, 'props')
+	for name, file in props_:
+		ET.SubElement(props, 'prop', actor=file+'.xml', attachpoint=name)
+
 	return ET.tostring(actor)
 	
 def create_actor_static(mesh, texture):
@@ -80,11 +88,10 @@ def create_actor_static(mesh, texture):
 
 # Error handling
 
-convert_dae_to_pmd('This is not well-formed XML', expected_status=-2)
-
-convert_dae_to_pmd('<html>This is not COLLADA</html>', expected_status=-2)
-
-convert_dae_to_pmd('<COLLADA>This is still not valid COLLADA</COLLADA>', expected_status=-2)
+if False:
+	convert_dae_to_pmd('This is not well-formed XML', expected_status=-2)
+	convert_dae_to_pmd('<html>This is not COLLADA</html>', expected_status=-2)
+	convert_dae_to_pmd('<COLLADA>This is still not valid COLLADA</COLLADA>', expected_status=-2)
 
 # Do some real conversions, so the output can be tested in the Actor Viewer
 
@@ -95,7 +102,11 @@ clean_dir(test_mod + '/art/meshes')
 clean_dir(test_mod + '/art/actors')
 clean_dir(test_mod + '/art/animation')
 
-for test_file in ['cube', 'jav2', 'jav2b', 'teapot_basic', 'teapot_skin', 'plane_skin', 'dude_skin', 'mergenonbone', 'densemesh']:
+#for test_file in ['cube', 'jav2', 'jav2b', 'teapot_basic', 'teapot_skin', 'plane_skin', 'dude_skin', 'mergenonbone', 'densemesh']:
+#for test_file in ['teapot_basic', 'jav2b', 'jav2d']:
+for test_file in ['xsitest3c','xsitest3e','jav2d','jav2d2']:
+#for test_file in ['xsitest3']:
+#for test_file in []:
 	print "* Converting PMD %s" % (test_file)
 
 	input_filename = '%s/%s.dae' % (test_data, test_file)
@@ -105,13 +116,15 @@ for test_file in ['cube', 'jav2', 'jav2b', 'teapot_basic', 'teapot_skin', 'plane
 	output = convert_dae_to_pmd(input)
 	open(output_filename, 'wb').write(output)
 
-	xml = create_actor(test_file, 'male', [('Idle','dudeidle'),('Corpse','dudecorpse'),('Melee','jav2b')])
+	xml = create_actor(test_file, 'male', [('Idle','dudeidle'),('Corpse','dudecorpse'),('attack1',test_file),('attack2','jav2d')], [('helmet','teapot_basic_static')])
 	open('%s/art/actors/%s.xml' % (test_mod, test_file), 'w').write(xml)
 
 	xml = create_actor_static(test_file, 'male')
 	open('%s/art/actors/%s_static.xml' % (test_mod, test_file), 'w').write(xml)
 
-for test_file in ['jav2b']:
+#for test_file in ['jav2','jav2b', 'jav2d']:
+for test_file in ['xsitest3c','xsitest3e','jav2d','jav2d2']:
+#for test_file in []:
 	print "* Converting PSA %s" % (test_file)
 
 	input_filename = '%s/%s.dae' % (test_data, test_file)

@@ -81,7 +81,7 @@ allow_abort();
 $svn_output =~ /^(?:Updated to|At) revision (\d+)\.$/m or die;
 my $svn_revision = $1;
 
-if ($svn_output =~ m~^.  (source(?![/\\]tools(?![/\\]atlas[/\\]GameInterface))|build|libraries)~m)
+if ($svn_output =~ m~^.  (source(?![/\\](tools(?![/\\]atlas[/\\]GameInterface)|collada))|build|libraries)~m)
 {
 	# The source has been updated.
 	# ('source' means something in the source, build, or libraries directories, excluding source/tools, but including source/tools/atlas/GameInterface)

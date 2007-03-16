@@ -63,7 +63,7 @@ void FColladaErrorHandler::OnError(FUError::Level errorLevel, uint32 errorCode, 
 	if (errorLevel == FUError::DEBUG)
 		Log(LOG_INFO, "FCollada message %d: %s", errorCode, errorString);
 	else if (errorLevel == FUError::WARNING)
-		Log(LOG_WARNING, "FCollada error %d: %s", errorCode, errorString);
+		Log(LOG_WARNING, "FCollada warning %d: %s", errorCode, errorString);
 	else
 		throw ColladaException(errorString);
 }
@@ -103,6 +103,7 @@ void FColladaDocument::LoadFromText(const char *text)
 	}
 	else
 	{
+		xmlCleanupParser(); // do it here because our error handler throws
 		FUError::Error(FUError::ERROR, FUError::ERROR_MALFORMED_XML);
 		status = false;
 	}
