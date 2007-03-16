@@ -79,3 +79,13 @@ function toTitleCase (string)
 }
 
 // ====================================================================
+
+// Get last piece of a dot-separated string
+function lastPiece(x) {
+	var str = ""+x;
+	var idx = str.lastIndexOf('.');
+	if(idx >= 0) {
+		str = str.substring(idx+1, str.length);
+	}
+	return str;
+}

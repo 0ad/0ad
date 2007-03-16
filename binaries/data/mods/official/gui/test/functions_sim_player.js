@@ -62,6 +62,7 @@ function refreshResources ()
 	var shouldRefresh = false;
 	for (var currResource in resourcePool) 
 	{
+		currResource = lastPiece(currResource);
 		if( oldResources[currResource] != localPlayer.resources[currResource] )
 		{
 			oldResources[currResource] = localPlayer.resources[currResource].valueOf();
@@ -76,6 +77,7 @@ function refreshResources ()
 			var resourceCount = 0;
 			for (var currResource in resourcePool) 
 			{
+				currResource = lastPiece(currResource);
 				if(currResource != "housing")
 				{
 					// Pass the array index of the resource as the second parameter (as we'll need that to determine the centered screen position of each counter).
@@ -94,7 +96,7 @@ function refreshResource (resourceName, resourceIndex)
 	// Refresh the onscreen counter for a given resource (called to recalculate the size of the coordinates, as these dynamically adjust depending on character length).
 	
 	// Ensure resource name is title-case.
-	resourceName = toTitleCase (resourceName);	
+	resourceName = toTitleCase (lastPiece(resourceName));	
 
 	// Ignore the "Housing" resource ... It doesn't work like normal resources and doesn't have a counter to resize.
 	if (resourceName == "Housing")

@@ -308,7 +308,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 			{	// If it's a list where each element is a value, (entity list)
 				for ( var i in attribute )
 				{
-					listArray[listArray.length] = i;
+					listArray[listArray.length] = lastPiece(i);
 					// Store any current quantity in the queue for this object.
 //					if (attribute[i].quantity)
 //						listArray[listArray.length].quantity = attribute[i].quantity;					
@@ -322,9 +322,9 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 					// If cell sheet for each item is stored in attribute.sheet, transfer that across too.
 					if (arrayCells == true)
 					{
-						console.write (attribute[i].sheet);					
+						//console.write (attribute[i].sheet);					
 						listArray[listArray.length].sheet = new Object(attribute[i].sheet);
-						console.write (listArray[listArray.length].sheet);
+						//console.write (listArray[listArray.length].sheet);
 					}
 					// Store any current quantity in the queue for this object.
 //					if (attribute[i].quantity)
@@ -418,6 +418,8 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 							}
 						break;
 						default:
+							var itemName = "?";
+							//console.write(listArray[createLoop]);
 							switch (tab)
 							{
 								case "selection":
@@ -425,11 +427,11 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 								case "research":
 									// Get name of item to display in list.
 									// (These already know the full name of the entity tag, so we don't prefix it.)
-									var itemName = listArray[createLoop];
+									itemName = listArray[createLoop];
 								break;
 								default:
 									// Get name of item to display in list.
-									var itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
+									itemName = selection[0].traits.id.civ_code + "_" + listArray[createLoop];
 								break;
 							}
 
@@ -439,16 +441,22 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 							{
 								case "research":
 									// Store name of tech to display in list in this button's coordinate.
-									Crd[getCrd (listObject.name, true)].entity = getTechnology(itemName, selection[0].player);							
+									var tech = getTechnology(itemName, selection[0].player);
+									Crd[getCrd (listObject.name, true)].entity = tech;
 									
-									// Set tooltip.
-									listObject.tooltip = Crd[getCrd (listObject.name, true)].entity.generic + " (" + Crd[getCrd (listObject.name, true)].entity.specific + ")";
-									
-									// Set portrait.
-									setPortrait (listObject.name, 
-										Crd[getCrd (listObject.name, true)].entity.icon, 
-										"Button", 
-										Crd[getCrd (listObject.name, true)].entity.icon_cell);						
+									if(!tech) {
+										listObject.tooltip = "Bad tech: " + itemName;
+									}
+									else {
+										// Set tooltip.
+										listObject.tooltip = Crd[getCrd (listObject.name, true)].entity.generic + " (" + Crd[getCrd (listObject.name, true)].entity.specific + ")";
+										
+										// Set portrait.
+										setPortrait (listObject.name, 
+											Crd[getCrd (listObject.name, true)].entity.icon, 
+											"Button", 
+											Crd[getCrd (listObject.name, true)].entity.icon_cell);
+									}
 								break;
 								default:
 									// Store name of entity to display in list in this button's coordinate.
@@ -601,9 +609,12 @@ function refreshCommandButtons()
 		// Update production lists (both types of Construction, Train). (Tab button, persistent buttons, click them to do things.)
 		if (validProperty ("selection[0].actions.create.list"))
 		{
+			console.write("Got actions.create.list");
 			listRoot = selection[0].actions.create.list;
 			for (listTab in listRoot)
 			{
+				listTab = lastPiece(listTab);
+				console.write("Updating " + listTab);
 				if (listTab != "research")	// Do research later.
 					updateTab (listTab, "production", "Tab", "listRoot[listTab]", "");
 			}	
