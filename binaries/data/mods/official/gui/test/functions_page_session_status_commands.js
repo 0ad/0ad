@@ -308,7 +308,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 			{	// If it's a list where each element is a value, (entity list)
 				for ( var i in attribute )
 				{
-					listArray[listArray.length] = lastPiece(i);
+					listArray[listArray.length] = i;
 					// Store any current quantity in the queue for this object.
 //					if (attribute[i].quantity)
 //						listArray[listArray.length].quantity = attribute[i].quantity;					
@@ -613,7 +613,6 @@ function refreshCommandButtons()
 			listRoot = selection[0].actions.create.list;
 			for (listTab in listRoot)
 			{
-				listTab = lastPiece(listTab);
 				console.write("Updating " + listTab);
 				if (listTab != "research")	// Do research later.
 					updateTab (listTab, "production", "Tab", "listRoot[listTab]", "");

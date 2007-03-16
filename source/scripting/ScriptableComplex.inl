@@ -136,7 +136,7 @@ public:
 					IJSComplex::PropertyTable::iterator iit;
 					for( iit = T::m_IntrinsicProperties.begin(); iit != T::m_IntrinsicProperties.end(); iit++ )
 						if( ( iit->first.length() > rlen ) && ( iit->first.Left( rlen ) == Instance->m_PropertyRoot ) && ( iit->first[rlen] == '.' ) )
-							it->first.insert( iit->first.BeforeFirst( L".", rlen + 1 ) );
+							it->first.insert( CStrW( iit->first.substr( rlen + 1 ) ).BeforeFirst( L"." ) );
 
 
 					Instance->m_Owner->FillEnumerateSet( it, &( Instance->m_PropertyRoot ) );
@@ -922,7 +922,7 @@ void CJSComplex<T, ReadOnly>::FillEnumerateSet( IteratorState* it, CStrW* Proper
 		size_t rlen = PropertyRoot->length();
 		for( iit = m_Properties.begin(); iit != m_Properties.end(); iit++ )
 			if( ( iit->first.length() > rlen ) && ( iit->first.Left( rlen ) == *PropertyRoot ) && ( iit->first[rlen] == '.' ) )
-				it->first.insert( iit->first.BeforeFirst( L".", rlen + 1 ) );
+				it->first.insert( CStrW( iit->first.substr( rlen + 1 ) ).BeforeFirst( L"." ) );
 	}
 	else
 	{
