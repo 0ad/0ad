@@ -217,10 +217,7 @@ namespace CxxTest
 #define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::string(str1), std::string(str2))
 #define TS_ASSERT_WSTR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::wstring(str1), std::wstring(str2))
 
-static bool ts_str_contains(const std::string& str1, const std::string& str2)
-{
-	return str1.find(str2) != str1.npos;
-}
+bool ts_str_contains(const std::string& str1, const std::string& str2); // defined in test_setup.cpp
 #define TS_ASSERT_STR_CONTAINS(str1, str2) TS_ASSERT(ts_str_contains(str1, str2))
 
 template <typename T>

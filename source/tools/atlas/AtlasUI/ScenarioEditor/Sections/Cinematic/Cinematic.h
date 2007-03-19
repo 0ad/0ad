@@ -10,6 +10,7 @@
 
 class PathListCtrl;
 class NodeListCtrl;
+class PathSlider;
 class CinemaSpinnerBox;
 class CinemaInfoBox;
 class CinematicBottomBar;

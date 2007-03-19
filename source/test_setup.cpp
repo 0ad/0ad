@@ -45,3 +45,9 @@ class LeakReporter : public CxxTest::GlobalFixture
 };
 
 static LeakReporter leakReporter;
+
+// Definition of function from lib/self_test.h
+bool ts_str_contains(const std::string& str1, const std::string& str2)
+{
+	return str1.find(str2) != str1.npos;
+}
