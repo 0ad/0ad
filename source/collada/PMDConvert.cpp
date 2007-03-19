@@ -216,10 +216,9 @@ public:
 				boneTransforms[boneId] = b;
 			}
 
-			// Construct the list of prop points
-			// (Currently, all objects that aren't recognised as a standard bone,
-			// but which are directly attached to a standard bone, are assumed to
-			// be prop points)
+			// Construct the list of prop points.
+			// Currently takes all objects that are directly attached to a
+			// standard bone, and whose name begins with "prop-".
 
 			std::vector<PropPoint> propPoints;
 
@@ -234,16 +233,19 @@ public:
 					continue;
 				}
 
+				// Check all the objects attached to this bone
 				for (size_t j = 0; j < joint->GetChildrenCount(); ++j)
 				{
 					FCDSceneNode* child = joint->GetChild(j);
-					if (skeleton.GetBoneID(child->GetName()) >= 0)
+					if (child->GetName().find("prop-") != 0)
 					{
-						// recognised as a bone, hence not a prop point, so skip it
+						// doesn't begin with "prop-", so skip it
 						continue;
 					}
+					// Strip off the "prop-" from the name
+					std::string propPointName = child->GetName().substr(5);
 
-					// Log(LOG_INFO, "Adding prop point %s", child->GetName().c_str());
+					Log(LOG_INFO, "Adding prop point %s", propPointName.c_str());
 
 					// Get translation and orientation of local transform
 
@@ -258,7 +260,7 @@ public:
 					// Add prop point to list
 
 					PropPoint p = {
-						child->GetName(),
+						propPointName,
 						{ parts.t.x, parts.t.y, parts.t.z },
 						{ parts.q.x, parts.q.y, parts.q.z, parts.q.w },
 						(uint8)boneId
