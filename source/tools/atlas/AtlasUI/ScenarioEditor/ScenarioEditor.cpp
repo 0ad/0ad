@@ -404,9 +404,6 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// Need to make sure the canvas is realized by GTK, so that its context is valid
 	Show(true);
 	wxSafeYield();
-
-	assert(canvas->GetContext() != NULL);
-	assert(glXGetCurrentContext() == NULL);
 #endif
 
 	// Send setup messages to game engine:
@@ -428,6 +425,13 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// else to do))
 	m_Timer.SetOwner(this);
 	m_Timer.Start(20);
+
+#ifdef __WXGTK__
+	// HACK: because of how we fiddle with stuff earlier to make sure the canvas
+	// is displayed, the layout gets messed up, and it only seems to be fixable
+	// by changing the window's size
+	SetSize(GetSize() + wxSize(1, 0));
+#endif
 }
 
 float ScenarioEditor::GetSpeedModifier()

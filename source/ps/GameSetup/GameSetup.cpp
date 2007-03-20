@@ -611,7 +611,7 @@ static void InitPs(bool setup_gui)
 	if (setup_gui)
 	{
 		// The things here aren't strictly GUI, but they're unnecessary when in Atlas
-		// because the game doesn't draw any text or handle keys of anything
+		// because the game doesn't draw any text or handle keys or anything
 
 		{
 			// console

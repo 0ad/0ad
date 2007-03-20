@@ -19,6 +19,10 @@
 #include "wx/debugrpt.h"
 #include "wx/file.h"
 
+#ifdef __WXGTK__
+#include <X11/Xlib.h>
+#endif
+
 // Shared memory allocation functions
 ATLASDLLIMPEXP void* ShareableMalloc(size_t n)
 {
@@ -79,10 +83,19 @@ ATLASDLLIMPEXP void Atlas_SetMessagePasser(MessagePasser* passer)
 ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 {
 	g_InitialWindowType = type;
-
 #ifdef __WXMSW__
 	wxEntry(g_Module);
 #else
+# ifdef __WXGTK__
+	// Because we do GL calls from a secondary thread, Xlib needs to
+	// be told to support multiple threads safely
+	int status = XInitThreads();
+	if (status == 0)
+	{
+		fprintf(stderr, "Error enabling thread-safety via XInitThreads\n");
+	}
+# endif
+
 	int argc = 1;
 	char *argv[] = {"atlas", NULL};
 	wxEntry(argc, argv);

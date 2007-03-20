@@ -63,6 +63,37 @@ private:
 	}
 };
 
+template <typename T>
+class StrConv
+{
+public:
+	template <typename S> StrConv(const S* str) { init(str); }
+	template <typename S> StrConv(const std::basic_string<S>& str) { init(str.c_str()); }
+	
+	~StrConv()
+	{
+		delete[] data;
+	}
+	const T* c_str()
+	{
+		return data;	
+	}
+	
+private:
+	template <typename S>
+	void init(S* str)
+	{
+		size_t len = 0;
+		while (str[len] != '\0')
+			++len;
+		data = new T[len+1];
+		for (size_t i = 0; i < len+1; ++i)
+			data[i] = (T)str[i];
+	}
+	
+	T* data;
+};
+
 // TODO: replace most of the asserts below (e.g. for when it fails to load
 // a file) with some proper logging/reporting system
 
@@ -70,10 +101,6 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element);
 
 AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
 {
-	// TODO: Convert wchar_t* to XMLCh* when running under GCC
-	assert(sizeof(wchar_t) == sizeof(XMLCh));
-
-
 	XercesInitialiser::enable();
 
 	XercesDOMParser* parser = new XercesDOMParser();
@@ -84,7 +111,7 @@ AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
 	parser->setLoadExternalDTD(false); // because I really don't like bothering with them
 	parser->setCreateEntityReferenceNodes(false);
 
-	parser->parse((XMLCh*)filename);
+	parser->parse(StrConv<XMLCh>(filename).c_str());
 
 	if (parser->getErrorCount() != 0)
 	{
@@ -140,10 +167,7 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 		else if (type == DOMNode::TEXT_NODE)
 		{
 			// Text inside the element. Append it to the current node's string.
-
-			// TODO: Make this work on GCC, where wchar_t != XMLCh
-			assert(sizeof(wchar_t) == sizeof(XMLCh));
-			std::wstring value_wstr (reinterpret_cast<const wchar_t*>(node->getNodeValue()));
+			std::wstring value_wstr (StrConv<wchar_t>(node->getNodeValue()).c_str());
 			obj->value += value_wstr;
 		}
 	}
@@ -157,15 +181,15 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 		{
 			DOMAttr* attr = (DOMAttr*)node;
 
-			// Get name and value. (TODO: GCC)
+			// Get name and value
 			char* name = XMLString::transcode(attr->getName());
-			const wchar_t* value = reinterpret_cast<const wchar_t*>(attr->getValue());
+			StrConv<wchar_t> value (attr->getValue());
 
 			// Prefix the name with an @, to differentiate it from an element
 			std::string newName ("@"); newName += name;
 
 			// Create new node
-			AtNode* newNode = new AtNode(value);
+			AtNode* newNode = new AtNode(value.c_str());
 
 			// Add to this node's list of children
 			obj->children.insert(AtNode::child_pairtype(newName.c_str(), AtNode::Ptr(newNode)));
@@ -208,8 +232,7 @@ static DOMAttr* BuildDOMAttr(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
 
 	DOMAttr* attr = doc->createAttribute(name);
 
-	// TODO: make work on GCC
-	attr->setValue(reinterpret_cast<const XMLCh*>(p->value.c_str()));
+	attr->setValue(StrConv<XMLCh>(p->value).c_str());
 
 	return attr;
 }
@@ -221,9 +244,8 @@ static DOMNode* BuildDOMNode(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
 
 	if (p)
 	{
-		// TODO: make this work on GCC
 		if (p->value.length())
-			node->setTextContent(reinterpret_cast<const XMLCh*>(p->value.c_str()));
+			node->setTextContent(StrConv<XMLCh>(p->value).c_str());
 
 		XMLCh tempStr[256]; // urgh, nasty fixed-size buffer
 		for (AtNode::child_maptype::const_iterator it = p->children.begin(); it != p->children.end(); ++it)
@@ -247,10 +269,6 @@ static DOMNode* BuildDOMNode(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
 
 bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 {
-	// TODO: Convert wchar_t* to XMLCh* when running under GCC
-	assert(sizeof(wchar_t) == sizeof(XMLCh));
-
-
 	XercesInitialiser::enable();
 
 	// Why does it take so much work just to create a standard DOMWriter? :-(
@@ -282,7 +300,7 @@ bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
 		std::auto_ptr<DOMDocument> doc (impl->createDocument());
 		doc->appendChild(BuildDOMNode(doc.get(), rootName, firstChild));
 
-		LocalFileFormatTarget formatTarget ((XMLCh*)filename);
+		LocalFileFormatTarget formatTarget (StrConv<XMLCh>(filename).c_str());
 		writer->writeNode(&formatTarget, *doc);
 	}
 	catch (const XMLException& e) {

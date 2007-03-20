@@ -193,6 +193,10 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 #ifdef __WXMSW__
 	wglMakeCurrent(NULL, NULL);
+#elif defined(__WXGTK__)
+	// Need to make sure the canvas is realized by GTK, so that its context is valid
+	Show(true);
+	wxSafeYield();
 #endif
 	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas)));
 
@@ -318,6 +322,13 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	SetActorView();
 
 	POST_MESSAGE(RenderEnable, (eRenderView::ACTOR));
+
+#ifdef __WXGTK__
+	// HACK: because of how we fiddle with stuff earlier to make sure the canvas
+	// is displayed, the layout gets messed up, and it only seems to be fixable
+	// by changing the window's size
+	SetSize(GetSize() + wxSize(1, 0));
+#endif
 }
 
 void ActorViewer::OnClose(wxCloseEvent& WXUNUSED(event))

@@ -446,7 +446,7 @@ public:
 		}
 		else
 		{
-			scaleMatrix = FMMatrix44::Identity;
+			scaleMatrix = FMMatrix44_Identity;
 			scaledTransform = bindTransform;
 		}
 

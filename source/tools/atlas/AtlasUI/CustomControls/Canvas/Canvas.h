@@ -6,12 +6,11 @@ public:
 	Canvas(wxWindow* parent, int* attribList, long style);
 
 	void InitSize();
-
 protected:
 	virtual void HandleMouseEvent(wxMouseEvent& evt) = 0;
 
 private:
-	void OnResize(wxSizeEvent&);
+	void OnResize(wxSizeEvent& evt);
 	void OnMouseCapture(wxMouseCaptureChangedEvent& evt);
 	void OnMouse(wxMouseEvent& evt);
 

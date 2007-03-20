@@ -167,7 +167,7 @@ public:
 		}
 		else
 		{
-			TransformBones(bones, FMMatrix44::Identity, yUp);
+			TransformBones(bones, FMMatrix44_Identity, yUp);
 		}
 	}
 

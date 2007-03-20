@@ -155,4 +155,6 @@ struct BoneTransform
  */
 void TransformBones(std::vector<BoneTransform>& bones, const FMMatrix44& scaleTransform, bool yUp);
 
+extern FMMatrix44 FMMatrix44_Identity;
+
 #endif // COMMONCONVERT_H__

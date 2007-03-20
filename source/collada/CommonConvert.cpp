@@ -167,11 +167,11 @@ CommonConvert::CommonConvert(const char* text, std::string& xmlErrors)
 
 //////////////////////////////////////////////////////////////////////////
 
-// HACK: These don't get exported properly from FCollada (3.02, DLL), so define
+// HACK: The originals don't get exported properly from FCollada (3.02, DLL), so define
 // them here instead of fixing it correctly.
-const FMVector3 FMVector3::XAxis(1.0f, 0.0f, 0.0f);
+const FMVector3 FMVector3_XAxis(1.0f, 0.0f, 0.0f);
 static float identity[] = { 1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1 };
-FMMatrix44 FMMatrix44::Identity(identity);
+FMMatrix44 FMMatrix44_Identity(identity);
 
 struct FoundInstance
 {
@@ -265,7 +265,7 @@ bool FindSingleInstance(FCDSceneNode* node, FCDEntityInstance*& instance, FMMatr
 {
 	std::vector<FoundInstance> instances;
 
-	FindInstances(node, instances, FMMatrix44::Identity, true);
+	FindInstances(node, instances, FMMatrix44_Identity, true);
 	if (instances.size() > 1)
 	{
 		Log(LOG_ERROR, "Found too many export-marked objects");
@@ -273,7 +273,7 @@ bool FindSingleInstance(FCDSceneNode* node, FCDEntityInstance*& instance, FMMatr
 	}
 	if (instances.empty())
 	{
-		FindInstances(node, instances, FMMatrix44::Identity, false);
+		FindInstances(node, instances, FMMatrix44_Identity, false);
 		if (instances.size() > 1)
 		{
 			Log(LOG_ERROR, "Found too many possible objects to convert - try adding the 'export' property to disambiguate one");
