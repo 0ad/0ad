@@ -2,28 +2,28 @@
 
 <Scenario>
 	<Environment>
-		<SkySet>default</SkySet>
-		<SunColour r="1" g="1" b="1"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-0.785398"/>
-		<TerrainAmbientColour r="0.529412" g="0.529412" b="0.568627"/>
-		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<SkySet>cirrus</SkySet>
+		<SunColour r="1" g="0.996078" b="0.882353"/>
+		<SunElevation angle="0.773126"/>
+		<SunRotation angle="-0.79767"/>
+		<TerrainAmbientColour r="0.443137" g="0.462745" b="0.517647"/>
+		<UnitsAmbientColour r="0.521569" g="0.521569" b="0.521569"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0" g="1" b="1"/>
-				<Height>11.655</Height>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>11.76</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.169922</Murkiness>
-				<Tint r="0" g="0.501961" b="1"/>
-				<ReflectionTint r="0" g="1" b="1"/>
-				<ReflectionTintStrength>0.398438</ReflectionTintStrength>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0" g="1" b="1"/>
+				<ReflectionTint r="0" g="0.501961" b="0.752941"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="179.013" y="107.028" z="837.62"/>
+		<Position x="189.874" y="102.669" z="818.297"/>
 		<Rotation angle="0.0875157"/>
 		<Declination angle="0.72885"/>
 	</Camera>
@@ -109,7 +109,7 @@
 		<Entity uid="13">
 			<Template>hele_dock</Template>
 			<Player>1</Player>
-			<Position x="168.921" y="10.6648" z="806.757"/>
+			<Position x="169.523" y="10.8005" z="806.573"/>
 			<Orientation angle="-2.00165"/>
 		</Entity>
 		<Entity uid="14">
@@ -6367,14 +6367,14 @@
 		<Entity uid="1056">
 			<Template>hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="161.049" y="28.7984" z="918.416"/>
-			<Orientation angle="-0.887289"/>
+			<Position x="160.66" y="28.7984" z="920.169"/>
+			<Orientation angle="2.41911"/>
 		</Entity>
 		<Entity uid="1057">
 			<Template>hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="204.123" y="28.7984" z="924.002"/>
-			<Orientation angle="-0.226481"/>
+			<Position x="197.186" y="28.7984" z="898.862"/>
+			<Orientation angle="0.4868"/>
 		</Entity>
 		<Entity uid="1058">
 			<Template>hele_support_female_citizen</Template>
@@ -10771,7 +10771,7 @@
 		<Entity uid="1790">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="165.139" y="28.7984" z="912.029"/>
+			<Position x="161.468" y="29.3314" z="911.033"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="1791">
@@ -11354,7 +11354,7 @@
 			<Template>hele_super_infantry_m</Template>
 			<Player>3</Player>
 			<Position x="257.521" y="23.1376" z="376.041"/>
-			<Orientation angle="0.211468"/>
+			<Orientation angle="0.349763"/>
 		</Entity>
 		<Entity uid="1888">
 			<Template>hele_super_infantry_m</Template>
@@ -11388,9 +11388,9 @@
 		</Entity>
 		<Entity uid="1893">
 			<Template>hele_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="199.948" y="28.7984" z="902.26"/>
-			<Orientation angle="2.35619"/>
+			<Player>7</Player>
+			<Position x="201.082" y="28.7984" z="902.152"/>
+			<Orientation angle="-2.37852"/>
 		</Entity>
 		<Entity uid="1894">
 			<Template>hele_infantry_javelinist_a</Template>
@@ -14202,27 +14202,27 @@
 		</Entity>
 		<Entity uid="2363">
 			<Template>hele_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="197.187" y="28.7984" z="899.649"/>
-			<Orientation angle="2.35619"/>
+			<Player>4</Player>
+			<Position x="196.106" y="28.7984" z="904.396"/>
+			<Orientation angle="-2.71551"/>
 		</Entity>
 		<Entity uid="2364">
 			<Template>hele_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="196.048" y="28.7984" z="898.536"/>
-			<Orientation angle="2.35619"/>
+			<Player>8</Player>
+			<Position x="193.953" y="28.7984" z="901.96"/>
+			<Orientation angle="0.500754"/>
 		</Entity>
 		<Entity uid="2365">
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="194.362" y="28.7984" z="897.536"/>
-			<Orientation angle="2.35619"/>
+			<Position x="203.804" y="28.7984" z="900.517"/>
+			<Orientation angle="-2.20285"/>
 		</Entity>
 		<Entity uid="2366">
 			<Template>hele_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="192.97" y="28.7984" z="896.029"/>
-			<Orientation angle="2.35619"/>
+			<Player>2</Player>
+			<Position x="191.971" y="28.7984" z="897.61"/>
+			<Orientation angle="3.00467"/>
 		</Entity>
 		<Entity uid="2367">
 			<Template>hele_infantry_spearman_e</Template>
@@ -14293,13 +14293,13 @@
 		<Entity uid="2378">
 			<Template>hele_ship_bireme</Template>
 			<Player>1</Player>
-			<Position x="97.1557" y="11.235" z="812.402"/>
+			<Position x="97.9737" y="11.76" z="818.364"/>
 			<Orientation angle="-2.75285"/>
 		</Entity>
 		<Entity uid="2379">
 			<Template>hele_ship_trireme</Template>
 			<Player>1</Player>
-			<Position x="116.296" y="11.235" z="830.435"/>
+			<Position x="119.26" y="11.76" z="830.531"/>
 			<Orientation angle="2.97756"/>
 		</Entity>
 		<Entity uid="2380">
@@ -14389,13 +14389,13 @@
 		<Entity uid="2396">
 			<Template>hele_ship_bireme</Template>
 			<Player>2</Player>
-			<Position x="75.1952" y="11.235" z="841.361"/>
+			<Position x="75.2797" y="11.76" z="838.277"/>
 			<Orientation angle="2.96749"/>
 		</Entity>
 		<Entity uid="2397">
 			<Template>hele_ship_trireme</Template>
 			<Player>2</Player>
-			<Position x="49.7646" y="11.235" z="839.528"/>
+			<Position x="49.2173" y="11.76" z="837.53"/>
 			<Orientation angle="2.37501"/>
 		</Entity>
 		<Entity uid="2398">
@@ -17131,8 +17131,8 @@
 		<Entity uid="2853">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="198.706" y="28.7984" z="900.876"/>
-			<Orientation angle="2.35619"/>
+			<Position x="198.65" y="28.7984" z="903.414"/>
+			<Orientation angle="-2.50781"/>
 		</Entity>
 		<Entity uid="7239">
 			<Template>hele_hero_demetrius</Template>
@@ -17161,8 +17161,8 @@
 		<Entity uid="7254">
 			<Template>hele_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="195.868" y="28.7984" z="887.432"/>
-			<Orientation angle="2.35619"/>
+			<Position x="199.63" y="28.7984" z="894.923"/>
+			<Orientation angle="2.62253"/>
 		</Entity>
 		<Entity uid="7257">
 			<Template>hele_infantry_archer_b</Template>
@@ -17206,7 +17206,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small.xml</Actor>
-			<Position x="164.463" y="28.7984" z="910.264"/>
+			<Position x="162.633" y="29.0634" z="910.058"/>
 			<Orientation angle="-2.06275"/>
 		</Nonentity>
 		<Nonentity>
@@ -18221,7 +18221,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_log.xml</Actor>
-			<Position x="317.406" y="11.445" z="903.979"/>
+			<Position x="318.099" y="11.76" z="902.043"/>
 			<Orientation angle="-0.94301"/>
 		</Nonentity>
 		<Nonentity>
@@ -18236,22 +18236,22 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="325.042" y="11.655" z="910.942"/>
+			<Position x="324.552" y="11.76" z="912.707"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="314.466" y="11.655" z="901.812"/>
+			<Position x="314.293" y="11.76" z="902.377"/>
 			<Orientation angle="-0.952795"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="304.633" y="11.655" z="893.418"/>
+			<Position x="305.529" y="11.76" z="891.2"/>
 			<Orientation angle="-0.0967037"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="305.375" y="11.655" z="896.592"/>
+			<Position x="304.092" y="11.76" z="897.41"/>
 			<Orientation angle="0.818451"/>
 		</Nonentity>
 		<Nonentity>
@@ -18266,12 +18266,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="320.986" y="11.655" z="910.322"/>
-			<Orientation angle="0.834998"/>
+			<Position x="324.908" y="11.76" z="908.11"/>
+			<Orientation angle="0.259732"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="324.861" y="11.445" z="912.672"/>
+			<Position x="324.627" y="11.76" z="913.444"/>
 			<Orientation angle="1.27066"/>
 		</Nonentity>
 		<Nonentity>
@@ -18306,7 +18306,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="318.453" y="11.655" z="901.494"/>
+			<Position x="307.559" y="11.76" z="897.928"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -18341,7 +18341,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="296.588" y="11.655" z="872.925"/>
+			<Position x="295.497" y="11.76" z="872.15"/>
 			<Orientation angle="-2.28561"/>
 		</Nonentity>
 		<Nonentity>
@@ -18361,17 +18361,17 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="291.8" y="11.655" z="869.517"/>
+			<Position x="290.798" y="11.76" z="869.016"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="294.177" y="11.655" z="881.51"/>
+			<Position x="296.134" y="11.76" z="884.579"/>
 			<Orientation angle="-0.98693"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="293.044" y="11.655" z="878.214"/>
+			<Position x="292.131" y="11.76" z="878.88"/>
 			<Orientation angle="1.31048"/>
 		</Nonentity>
 		<Nonentity>
@@ -18496,7 +18496,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_a.xml</Actor>
-			<Position x="293.799" y="7.72268" z="881.104"/>
+			<Position x="292.469" y="9.80836" z="881.456"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -18511,7 +18511,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_a.xml</Actor>
-			<Position x="294.459" y="9.52293" z="885.442"/>
+			<Position x="293.55" y="10.9619" z="885.35"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -18611,7 +18611,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="291.387" y="8.20527" z="869.717"/>
+			<Position x="290.546" y="9.91212" z="868.349"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -18621,7 +18621,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="293.308" y="8.94697" z="873.884"/>
+			<Position x="291.124" y="9.69935" z="873.79"/>
 			<Orientation angle="0.535246"/>
 		</Nonentity>
 		<Nonentity>
@@ -18631,17 +18631,17 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="293.831" y="8.21788" z="882.051"/>
+			<Position x="292.385" y="9.93167" z="881.603"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="294.847" y="7.85243" z="883.158"/>
+			<Position x="293.995" y="9.41005" z="883.097"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="295.037" y="9.97694" z="886.161"/>
+			<Position x="294.468" y="10.8201" z="886.188"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -18746,7 +18746,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="300.177" y="10.1806" z="887.508"/>
+			<Position x="299.648" y="10.4729" z="888.276"/>
 			<Orientation angle="0.487534"/>
 		</Nonentity>
 		<Nonentity>
@@ -18756,7 +18756,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="344.009" y="9.88124" z="897.512"/>
+			<Position x="345.248" y="10.1569" z="898.302"/>
 			<Orientation angle="0.929844"/>
 		</Nonentity>
 		<Nonentity>
@@ -18796,12 +18796,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="346.33" y="9.81906" z="901.696"/>
+			<Position x="347.637" y="10.2409" z="901.99"/>
 			<Orientation angle="0.31333"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="348.11" y="10.329" z="910.361"/>
+			<Position x="349.244" y="10.7139" z="910.966"/>
 			<Orientation angle="0.663596"/>
 		</Nonentity>
 		<Nonentity>
@@ -18851,7 +18851,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="320.101" y="8.52826" z="907.585"/>
+			<Position x="320.503" y="10.044" z="907.403"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
