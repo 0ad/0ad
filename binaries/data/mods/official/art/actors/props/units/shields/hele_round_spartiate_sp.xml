@@ -40,8 +40,11 @@
     <variant frequency="1" name="shield-mora-gorgon">
       <texture>props/shield/hele_spartan_f.dds</texture>
     </variant>
+    <variant frequency="1" name="shield-dokana">
+      <texture>props/shield/hele_spartan_dokana.dds</texture>
+    </variant>
   </group>
 
-  <material>player_trans.xml</material>
+  <material>basic_trans.xml</material>
 
 </actor>
