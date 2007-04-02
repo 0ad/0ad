@@ -10,7 +10,7 @@
         <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="20"/>
         <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Melee" speed="200"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="13"/>
-        <animation file="infantry/general/chop.psa" name="gather_wood" speed="200"/>
+        <animation file="infantry/general/chop.psa" name="gather_wood" speed="250"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="400"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="100"/>
         <animation file="infantry/general/mine.psa" name="gather_stone" speed="250"/>
@@ -56,6 +56,7 @@
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
         <prop attachpoint="shield"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="gather_grain">
@@ -63,6 +64,7 @@
         <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
         <prop attachpoint="shield"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="gather_fruit">
@@ -70,6 +72,7 @@
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
         <prop attachpoint="r_hand"/>
         <prop attachpoint="shield"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="gather_stone">
@@ -77,6 +80,7 @@
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
         <prop attachpoint="shield"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="gather_metal">
@@ -84,6 +88,7 @@
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
         <prop attachpoint="shield"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="Build">
@@ -91,6 +96,7 @@
         <prop actor="props/units/tools/mallet.xml" attachpoint="r_hand"/>
         <prop attachpoint="l_hand"/>
         <prop attachpoint="shield"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
   </group>

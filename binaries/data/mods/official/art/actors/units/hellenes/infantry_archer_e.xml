@@ -51,12 +51,14 @@
       <props>
         <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="gather_grain">
       <props>
         <prop actor="props/units/tools/hoe.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="gather_fruit">
@@ -64,18 +66,21 @@
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
         <prop attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="gather_stone">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="gather_metal">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>
+        <prop attachpoint="helmet"/>
       </props>
     </variant>
     <variant name="Build">
