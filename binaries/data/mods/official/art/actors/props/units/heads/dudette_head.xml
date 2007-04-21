@@ -11,17 +11,20 @@
   </group>
 
   <group>
-    <variant name="blonde">
+    <variant frequency="1" name="blonde">
       <colour>224 215 31</colour>
     </variant>
-    <variant name="brown">
-      <colour>157 151 21</colour>
-    </variant>
-    <variant name="red">
+    <variant frequency="2" name="red">
       <colour>224 120 16</colour>
     </variant>
-    <variant name="darkbrown">
+    <variant frequency="3" name="brown">
+      <colour>120 114 35</colour>
+    </variant>
+    <variant frequency="4" name="darkbrown">
       <colour>68 66 30</colour>
+    </variant>
+    <variant frequency="5" name="black">
+      <colour>0 0 0</colour>
     </variant>
   </group>
 
