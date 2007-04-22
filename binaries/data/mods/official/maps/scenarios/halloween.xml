@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <Scenario>
 	<Environment>
@@ -23,42 +23,42 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="92.5908" y="85.19" z="7.23268"/>
+		<Position x="92.5908" y="61.2373" z="48.7199"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
-		<Entity>
+		<Entity uid="0">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>2</Player>
 			<Position x="83.9504" y="22.4" z="105.09"/>
 			<Orientation angle="0.21739"/>
 		</Entity>
-		<Entity>
+		<Entity uid="1">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>2</Player>
 			<Position x="86.9242" y="22.4" z="99.8488"/>
 			<Orientation angle="0.362211"/>
 		</Entity>
-		<Entity>
+		<Entity uid="2">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>0</Player>
 			<Position x="80.1116" y="22.4" z="90.4044"/>
 			<Orientation angle="-2.3601"/>
 		</Entity>
-		<Entity>
+		<Entity uid="3">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>0</Player>
 			<Position x="74.6076" y="22.4" z="88.7186"/>
 			<Orientation angle="-2.75668"/>
 		</Entity>
-		<Entity>
+		<Entity uid="4">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>0</Player>
 			<Position x="82.1797" y="22.4" z="85.4714"/>
 			<Orientation angle="-2.55083"/>
 		</Entity>
-		<Entity>
+		<Entity uid="5">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>2</Player>
 			<Position x="82.2884" y="22.4" z="96.2715"/>
@@ -1027,81 +1027,6 @@
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="110.297" y="22.4" z="151.441"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="113.704" y="22.4" z="146.323"/>
-			<Orientation angle="-1.83456"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="113.039" y="22.4" z="149.1"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="109.582" y="22.4" z="146.047"/>
-			<Orientation angle="0.189465"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="113.673" y="22.4" z="141.613"/>
-			<Orientation angle="-0.129757"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="116.969" y="22.4" z="145.68"/>
-			<Orientation angle="-2.0555"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="109.839" y="22.4" z="141.778"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="105.398" y="22.4" z="141.531"/>
-			<Orientation angle="-2.34647"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="110.264" y="22.4" z="136.051"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="117.225" y="22.4" z="142.027"/>
-			<Orientation angle="-0.828553"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="118.241" y="22.4" z="146.047"/>
-			<Orientation angle="0.619147"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="115.312" y="22.4" z="150.001"/>
-			<Orientation angle="-0.069693"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="114.398" y="22.4" z="147.071"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="112.618" y="22.4" z="147.641"/>
-			<Orientation angle="-0.305002"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="113.525" y="22.4" z="145.772"/>
-			<Orientation angle="-2.37958"/>
-		</Nonentity>
-		<Nonentity>
 			<Actor>structures/gravestone.xml</Actor>
 			<Position x="85.7754" y="22.4" z="158.955"/>
 			<Orientation angle="2.35619"/>
@@ -1196,11 +1121,7 @@
 			<Position x="100.094" y="22.4791" z="155.138"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="143.728" y="22.4" z="175.498"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
 	</Nonentities>
-	<Tracks/>
+	<Paths/>
+	<Triggers/>
 </Scenario>

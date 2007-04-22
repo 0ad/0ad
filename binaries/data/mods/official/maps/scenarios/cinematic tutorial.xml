@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <Scenario>
 	<Environment>
@@ -23,60 +23,60 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="166" y="34" z="351"/>
+		<Position x="-255.367" y="93.5849" z="34.6024"/>
 		<Rotation angle="1.0472"/>
 		<Declination angle="0.017453"/>
 	</Camera>
 	<Entities>
-		<Entity>
+		<Entity uid="0">
 			<Template>hele_wall</Template>
 			<Player>0</Player>
 			<Position x="220.382" y="22.4" z="419.192"/>
 			<Orientation angle="-1.72261"/>
 		</Entity>
-		<Entity>
+		<Entity uid="1">
 			<Template>hele_wall</Template>
 			<Player>0</Player>
 			<Position x="228.716" y="22.4" z="386.211"/>
 			<Orientation angle="-1.95849"/>
 		</Entity>
-		<Entity>
+		<Entity uid="2">
 			<Template>hele_wall_gate</Template>
 			<Player>0</Player>
 			<Position x="224.425" y="22.4" z="397.855"/>
 			<Orientation angle="-1.86598"/>
 		</Entity>
-		<Entity>
+		<Entity uid="3">
 			<Template>hele_wall</Template>
 			<Player>0</Player>
 			<Position x="235.542" y="22.4" z="368.381"/>
 			<Orientation angle="-2.45876"/>
 		</Entity>
-		<Entity>
+		<Entity uid="4">
 			<Template>hele_wall_tower</Template>
 			<Player>0</Player>
 			<Position x="251.115" y="22.4" z="353.84"/>
 			<Orientation angle="0.503947"/>
 		</Entity>
-		<Entity>
+		<Entity uid="5">
 			<Template>hele_wall</Template>
 			<Player>0</Player>
 			<Position x="204.395" y="22.4" z="430.459"/>
 			<Orientation angle="-2.48052"/>
 		</Entity>
-		<Entity>
+		<Entity uid="6">
 			<Template>hele_wall</Template>
 			<Player>0</Player>
 			<Position x="184.089" y="22.4" z="425.943"/>
 			<Orientation angle="2.90777"/>
 		</Entity>
-		<Entity>
+		<Entity uid="7">
 			<Template>hele_wall_tower</Template>
 			<Player>0</Player>
 			<Position x="218.6" y="22.4" z="418.029"/>
 			<Orientation angle="0.678185"/>
 		</Entity>
-		<Entity>
+		<Entity uid="8">
 			<Template>hele_wall_tower</Template>
 			<Player>0</Player>
 			<Position x="236.007" y="22.4" z="368.395"/>
@@ -1307,7 +1307,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_field_bloom_short.xml</Actor>
 			<Position x="137.709" y="22.49" z="214.62"/>
-			<Orientation angle="0.0883033"/>
+			<Orientation angle="0.0883034"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_bloom_short.xml</Actor>
@@ -1857,7 +1857,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_field_bloom_short.xml</Actor>
 			<Position x="138.092" y="28.0472" z="158.12"/>
-			<Orientation angle="0.00353605"/>
+			<Orientation angle="0.00353607"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_bloom_short.xml</Actor>
@@ -1887,7 +1887,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_field_bloom_short.xml</Actor>
 			<Position x="139.551" y="30.6829" z="162.803"/>
-			<Orientation angle="-0.0784362"/>
+			<Orientation angle="-0.078436"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_bloom_short.xml</Actor>
@@ -2077,7 +2077,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_field_bloom_short.xml</Actor>
 			<Position x="126.615" y="32.6137" z="146.587"/>
-			<Orientation angle="-0.040989"/>
+			<Orientation angle="-0.0409888"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_bloom_short.xml</Actor>
@@ -2737,7 +2737,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_soft_large.xml</Actor>
 			<Position x="175.086" y="30.6037" z="315.713"/>
-			<Orientation angle="-0.0796807"/>
+			<Orientation angle="-0.0796806"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_large.xml</Actor>
@@ -3514,55 +3514,7 @@
 			<Position x="184.652" y="21.21" z="203.15"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="162.807" y="22.409" z="182.065"/>
-			<Orientation angle="2.35619"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="310.398" y="22.4" z="426.858"/>
-			<Orientation angle="-3.08442"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/skeleton_dead.xml</Actor>
-			<Position x="306.772" y="22.4" z="341.762"/>
-			<Orientation angle="0.317547"/>
-		</Nonentity>
 	</Nonentities>
-	<Tracks>
-		<Track name="tutorial" timescale="3">
-			<StartRotation x="0.139626" y="0.401426" z="0"/>
-			<Path>
-				<Rotation x="-0.174533" y="0.436332" z="0"/>
-				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="70" y="28" z="102" t="0"/>
-				<Node x="43" y="39" z="69" t="5"/>
-				<Node x="45" y="44" z="23" t="5"/>
-				<Node x="45.6747" y="43.9499" z="22.9726" t="5"/>
-			</Path>
-			<Path>
-				<Rotation x="0.139626" y="-0.401426" z="0"/>
-				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="155" y="29" z="157" t="0"/>
-				<Node x="142" y="28" z="133" t="5"/>
-				<Node x="70" y="27" z="103" t="5"/>
-			</Path>
-			<Path>
-				<Rotation x="0.174533" y="-1.65806" z="-0.0349066"/>
-				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="210" y="48" z="285" t="0"/>
-				<Node x="213" y="39" z="222" t="10"/>
-				<Node x="155" y="29" z="157" t="10"/>
-			</Path>
-			<Path>
-				<Rotation x="-0.261799" y="2.26893" z="0.0349066"/>
-				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="166" y="34" z="351" t="0"/>
-				<Node x="155" y="40" z="324" t="5"/>
-				<Node x="210" y="48" z="285" t="10"/>
-			</Path>
-		</Track>
-	</Tracks>
+	<Paths/>
 	<Triggers/>
 </Scenario>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <Scenario>
 	<Environment>
@@ -28,25 +28,25 @@
 		<Declination angle="0.44208"/>
 	</Camera>
 	<Entities>
-		<Entity id="0">
+		<Entity uid="0">
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>2</Player>
 			<Position x="48.0871" y="22.4" z="110.259"/>
 			<Orientation angle="-2.13318"/>
 		</Entity>
-		<Entity id="1">
+		<Entity uid="1">
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>1</Player>
 			<Position x="16.6428" y="22.4" z="19.564"/>
 			<Orientation angle="-0.229355"/>
 		</Entity>
-		<Entity id="2">
+		<Entity uid="2">
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>1</Player>
 			<Position x="25.3497" y="22.4" z="14.4153"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity id="3">
+		<Entity uid="3">
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>1</Player>
 			<Position x="19.9283" y="22.4" z="23.8953"/>
@@ -54,51 +54,6 @@
 		</Entity>
 	</Entities>
 	<Nonentities/>
-	<Tracks/>
-	<Triggers>
-		<Trigger name="Trigger 0">
-			<Active>true</Active>
-			<MaxRunCount>2</MaxRunCount>
-			<Delay>0</Delay>
-			<Conditions>
-				<Condition name="Condition 0" not="false">
-					<function>trigPlayerUnitCount</function>
-					<display>Player unit count</display>
-					<Parameter>1</Parameter>
-					<Parameter>Unit</Parameter>
-					<Parameter>&gt;=</Parameter>
-					<Parameter>4</Parameter>
-					<LinkLogic>AND</LinkLogic>
-				</Condition>
-			</Conditions>
-			<Effects>
-				<Effect name="Effect 0">
-					<function>console.write</function>
-					<display>Text</display>
-					<Parameter>"this will work"</Parameter>
-				</Effect>
-			</Effects>
-		</Trigger>
-		<Trigger name="Trigger 1">
-			<Active>true</Active>
-			<MaxRunCount>1</MaxRunCount>
-			<Delay>0</Delay>
-			<Conditions>
-				<Condition name="Condition 0" not="false">
-					<function>trigGetAlwaysTrue</function>
-					<display>Always</display>
-					<LinkLogic>AND</LinkLogic>
-				</Condition>
-			</Conditions>
-			<Effects>
-				<Effect name="Effect 0">
-					<function>trigObjectTask</function>
-					<display>Object task</display>
-					<Parameter>[3]</Parameter>
-			<Parameter>[0]</Parameter>
-			<Parameter>Attack</Parameter>
-				</Effect>
-			</Effects>
-		</Trigger>
-	</Triggers>
+	<Paths/>
+	<Triggers/>
 </Scenario>

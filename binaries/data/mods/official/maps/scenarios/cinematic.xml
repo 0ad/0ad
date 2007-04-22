@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="282.611" y="67.1202" z="125.93"/>
+		<Position x="142.254" y="294.844" z="-300.373"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -8372,109 +8372,6 @@
 			<Orientation angle="0.910544"/>
 		</Nonentity>
 	</Nonentities>
-	<Tracks>
-		<Track name="Track 0" timescale="1">
-			<StartRotation x="0.523599" y="0" z="0"/>
-			<Path>
-				<Rotation x="0.523599" y="0" z="0"/>
-				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="294.999" y="51.0002" z="158" t="0"/>
-				<Node x="295" y="51" z="158" t="1"/>
-				<Node x="276" y="65" z="149" t="5"/>
-				<Node x="263" y="100" z="100" t="5"/>
-				<Node x="224" y="100" z="98" t="3"/>
-				<Node x="190" y="100" z="36" t="5"/>
-				<Node x="121" y="100" z="62" t="8"/>
-				<Node x="98" y="74" z="136" t="5"/>
-				<Node x="98.9175" y="60.9729" z="176.898" t="5"/>
-			</Path>
-		</Track>
-	</Tracks>
-	<Triggers>
-		<Trigger name="Village walk 0">
-			<Active>true</Active>
-			<MaxRunCount>1</MaxRunCount>
-			<Delay>5</Delay>
-			<Conditions>
-				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
-			</Conditions>
-			<Effects>
-				<Effect name="Effect 0">
-					<function>trigObjectTask</function>
-					<display>Object task</display>
-					<Parameter>[66]</Parameter>
-					<Parameter>[3865]</Parameter>
-					<Parameter>Attack</Parameter>
-				</Effect>
-			</Effects>
-		</Trigger>
-		<Trigger name="Village walk 1">
-			<Active>true</Active>
-			<MaxRunCount>1</MaxRunCount>
-			<Delay>5.5</Delay>
-			<Conditions>
-				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
-			</Conditions>
-			<Effects>
-				<Effect name="Effect 1">
-					<function>trigObjectTask</function>
-					<display>Object task</display>
-					<Parameter>[231]</Parameter>
-					<Parameter>[3865]</Parameter>
-					<Parameter>Attack</Parameter>
-				</Effect>
-			</Effects>
-		</Trigger>
-		<Trigger name="Village walk 2">
-			<Active>true</Active>
-			<MaxRunCount>1</MaxRunCount>
-			<Delay>5.7</Delay>
-			<Conditions>
-				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
-			</Conditions>
-			<Effects>
-				<Effect name="Effect 1">
-					<function>trigObjectTask</function>
-					<display>Object task</display>
-					<Parameter>[230]</Parameter>
-					<Parameter>[3865]</Parameter>
-					<Parameter>Attack</Parameter>
-				</Effect>
-			</Effects>
-		</Trigger>
-		<Trigger name="Village walk 3">
-			<Active>true</Active>
-			<MaxRunCount>1</MaxRunCount>
-			<Delay>5.9</Delay>
-			<Conditions>
-				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
-			</Conditions>
-			<Effects>
-				<Effect name="Effect 1">
-					<function>trigObjectTask</function>
-					<display>Object task</display>
-					<Parameter>[232]</Parameter>
-					<Parameter>[3865]</Parameter>
-					<Parameter>Attack</Parameter>
-				</Effect>
-			</Effects>
-		</Trigger>
-		<Trigger name="Village walk 4">
-			<Active>true</Active>
-			<MaxRunCount>1</MaxRunCount>
-			<Delay>6.1</Delay>
-			<Conditions>
-				<Condition name="Condition 0" function="trigGetAlwaysTrue" display="Always" not="false"/>
-			</Conditions>
-			<Effects>
-				<Effect name="Effect 1">
-					<function>trigObjectTask</function>
-					<display>Object task</display>
-					<Parameter>[233]</Parameter>
-					<Parameter>[3865]</Parameter>
-					<Parameter>Attack</Parameter>
-				</Effect>
-			</Effects>
-		</Trigger>
-	</Triggers>
+	<Paths/>
+	<Triggers/>
 </Scenario>

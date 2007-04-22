@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <Scenario>
 	<Environment>
@@ -15,6 +15,10 @@
 				<Height>5</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0" g="1" b="1"/>
+				<ReflectionTint r="0" g="1" b="1"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
@@ -25,5 +29,6 @@
 	</Camera>
 	<Entities/>
 	<Nonentities/>
-	<Tracks/>
+	<Paths/>
+	<Triggers/>
 </Scenario>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <Scenario>
 	<Environment>
@@ -15,6 +15,10 @@
 				<Height>22.05</Height>
 				<Shininess>397.949</Shininess>
 				<Waviness>2.88086</Waviness>
+				<Murkiness>0.322266</Murkiness>
+				<Tint r="0.411765" g="0.466667" b="0.603922"/>
+				<ReflectionTint r="0.54902" g="0.556863" b="0.627451"/>
+				<ReflectionTintStrength>0.101563</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
@@ -24,157 +28,157 @@
 		<Declination angle="0.207402"/>
 	</Camera>
 	<Entities>
-		<Entity>
+		<Entity uid="0">
 			<Template>celt_support_female_citizen</Template>
 			<Player>6</Player>
 			<Position x="244.258" y="22.4" z="223.452"/>
 			<Orientation angle="-2.29473"/>
 		</Entity>
-		<Entity>
+		<Entity uid="1">
 			<Template>celt_support_female_citizen</Template>
 			<Player>6</Player>
 			<Position x="217.432" y="22.4" z="244.525"/>
 			<Orientation angle="2.73889"/>
 		</Entity>
-		<Entity>
+		<Entity uid="2">
 			<Template>celt_support_female_citizen</Template>
 			<Player>6</Player>
 			<Position x="214.957" y="22.4" z="242.583"/>
 			<Orientation angle="1.31736"/>
 		</Entity>
-		<Entity>
+		<Entity uid="3">
 			<Template>celt_cavalry_swordsman_e</Template>
 			<Player>6</Player>
 			<Position x="222.569" y="22.4" z="192.323"/>
 			<Orientation angle="0.404258"/>
 		</Entity>
-		<Entity>
+		<Entity uid="4">
 			<Template>celt_cavalry_swordsman_b</Template>
 			<Player>6</Player>
 			<Position x="218.324" y="22.4" z="191.032"/>
 			<Orientation angle="0.565966"/>
 		</Entity>
-		<Entity>
+		<Entity uid="5">
 			<Template>celt_cavalry_swordsman_b</Template>
 			<Player>6</Player>
 			<Position x="224.079" y="22.4" z="184.911"/>
 			<Orientation angle="0.492272"/>
 		</Entity>
-		<Entity>
+		<Entity uid="6">
 			<Template>celt_hero_vercingetorix</Template>
 			<Player>6</Player>
 			<Position x="232.022" y="22.4" z="204.446"/>
 			<Orientation angle="-2.83021"/>
 		</Entity>
-		<Entity>
+		<Entity uid="7">
 			<Template>celt_infantry_javelinist_e</Template>
 			<Player>6</Player>
 			<Position x="235.051" y="22.4" z="208.511"/>
 			<Orientation angle="-2.7424"/>
 		</Entity>
-		<Entity>
+		<Entity uid="8">
 			<Template>celt_infantry_spearman_e</Template>
 			<Player>6</Player>
 			<Position x="231.842" y="22.4" z="208.949"/>
 			<Orientation angle="-3.05522"/>
 		</Entity>
-		<Entity>
+		<Entity uid="9">
 			<Template>celt_cavalry_spearman_a</Template>
 			<Player>0</Player>
 			<Position x="219.761" y="22.4" z="238.193"/>
 			<Orientation angle="-1.84939"/>
 		</Entity>
-		<Entity>
+		<Entity uid="10">
 			<Template>celt_cavalry_spearman_b</Template>
 			<Player>0</Player>
 			<Position x="220.712" y="22.4" z="235.638"/>
 			<Orientation angle="-2.5809"/>
 		</Entity>
-		<Entity>
+		<Entity uid="11">
 			<Template>celt_cavalry_spearman_e</Template>
 			<Player>0</Player>
 			<Position x="225.086" y="22.4" z="228.017"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="12">
 			<Template>celt_cavalry_spearman_a</Template>
 			<Player>0</Player>
 			<Position x="230.321" y="22.4" z="205.693"/>
 			<Orientation angle="-2.66159"/>
 		</Entity>
-		<Entity>
+		<Entity uid="13">
 			<Template>celt_infantry_javelinist_e</Template>
 			<Player>6</Player>
 			<Position x="233.678" y="22.4" z="223.385"/>
 			<Orientation angle="-2.95825"/>
 		</Entity>
-		<Entity>
+		<Entity uid="14">
 			<Template>celt_infantry_javelinist_b</Template>
 			<Player>6</Player>
 			<Position x="236.19" y="22.4" z="229.306"/>
 			<Orientation angle="-2.8851"/>
 		</Entity>
-		<Entity>
+		<Entity uid="15">
 			<Template>celt_infantry_javelinist_b</Template>
 			<Player>6</Player>
 			<Position x="241.708" y="22.4" z="219.508"/>
 			<Orientation angle="-2.53181"/>
 		</Entity>
-		<Entity>
+		<Entity uid="16">
 			<Template>celt_infantry_javelinist_b</Template>
 			<Player>6</Player>
 			<Position x="239.297" y="22.4" z="216.384"/>
 			<Orientation angle="-1.93902"/>
 		</Entity>
-		<Entity>
+		<Entity uid="17">
 			<Template>celt_infantry_javelinist_e</Template>
 			<Player>6</Player>
 			<Position x="229.59" y="22.4" z="219.669"/>
 			<Orientation angle="2.80305"/>
 		</Entity>
-		<Entity>
+		<Entity uid="18">
 			<Template>celt_infantry_spearman_b</Template>
 			<Player>6</Player>
 			<Position x="237.25" y="22.4" z="214.146"/>
 			<Orientation angle="-2.21192"/>
 		</Entity>
-		<Entity>
+		<Entity uid="19">
 			<Template>celt_infantry_spearman_b</Template>
 			<Player>6</Player>
 			<Position x="234.447" y="22.4" z="217.973"/>
 			<Orientation angle="-3.03519"/>
 		</Entity>
-		<Entity>
+		<Entity uid="20">
 			<Template>celt_infantry_spearman_b</Template>
 			<Player>6</Player>
 			<Position x="235.871" y="22.4" z="204.816"/>
 			<Orientation angle="-3.04027"/>
 		</Entity>
-		<Entity>
+		<Entity uid="21">
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>6</Player>
 			<Position x="232.957" y="22.4" z="212.155"/>
 			<Orientation angle="-2.91346"/>
 		</Entity>
-		<Entity>
+		<Entity uid="22">
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>6</Player>
 			<Position x="229.096" y="22.4" z="209.39"/>
 			<Orientation angle="-3.1319"/>
 		</Entity>
-		<Entity>
+		<Entity uid="23">
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>6</Player>
 			<Position x="227.639" y="22.4" z="208.491"/>
 			<Orientation angle="-2.86891"/>
 		</Entity>
-		<Entity>
+		<Entity uid="24">
 			<Template>celt_infantry_spearman_a</Template>
 			<Player>6</Player>
 			<Position x="239.151" y="22.4" z="220.875"/>
 			<Orientation angle="-2.73635"/>
 		</Entity>
-		<Entity>
+		<Entity uid="25">
 			<Template>celt_cavalry_swordsman_a</Template>
 			<Player>1</Player>
 			<Position x="217.963" y="22.1688" z="259.65"/>
@@ -470,7 +474,7 @@
 		<Nonentity>
 			<Actor>flora/trees/dead_a_1.xml</Actor>
 			<Position x="198.524" y="22.4" z="232.647"/>
-			<Orientation angle="-0.0357585"/>
+			<Orientation angle="-0.0357584"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small_tall.xml</Actor>
@@ -630,7 +634,7 @@
 		<Nonentity>
 			<Actor>fauna/horse_a.xml</Actor>
 			<Position x="245.481" y="22.4" z="200.81"/>
-			<Orientation angle="0.0557348"/>
+			<Orientation angle="0.055735"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/pine_w.xml</Actor>
@@ -1025,7 +1029,7 @@
 		<Nonentity>
 			<Actor>flora/trees/pine_w.xml</Actor>
 			<Position x="226.696" y="25.4107" z="321.213"/>
-			<Orientation angle="0.05096"/>
+			<Orientation angle="0.0509601"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small_tall.xml</Actor>
@@ -1128,16 +1132,6 @@
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 	</Nonentities>
-	<Tracks>
-		<Track name="Track 0" timescale="1">
-			<StartRotation x="0.556468" y="-0.0758476" z="-2.24955e-009"/>
-			<Path>
-				<Rotation x="-0.349066" y="-2.54818" z="0"/>
-				<Distortion mode="0" style="0" growth="0" switch="0"/>
-				<Node x="300" y="50" z="350" t="0"/>
-				<Node x="462" y="120" z="219" t="6"/>
-				<Node x="266.401" y="168.412" z="-3.57455" t="5"/>
-			</Path>
-		</Track>
-	</Tracks>
+	<Paths/>
+	<Triggers/>
 </Scenario>

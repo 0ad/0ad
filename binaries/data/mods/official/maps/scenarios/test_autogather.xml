@@ -28,73 +28,73 @@
 		<Declination angle="0.523599"/>
 	</Camera>
 	<Entities>
-		<Entity>
+		<Entity uid="0">
 			<Template>flora_tree_oak</Template>
 			<Player>0</Player>
 			<Position x="60.6743" y="22.4" z="65.3839"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="1">
 			<Template>flora_tree_oak</Template>
 			<Player>0</Player>
 			<Position x="64.862" y="22.4" z="72.151"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="2">
 			<Template>flora_tree_oak</Template>
 			<Player>0</Player>
 			<Position x="69.7814" y="22.4" z="61.0003"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="3">
 			<Template>flora_tree_oak</Template>
 			<Player>0</Player>
 			<Position x="96.273" y="22.4" z="204.402"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="4">
 			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
 			<Player>1</Player>
 			<Position x="78.1401" y="22.4" z="64.4475"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="5">
 			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
 			<Player>1</Player>
 			<Position x="100.453" y="22.4" z="193.553"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="6">
 			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
 			<Player>1</Player>
 			<Position x="60.1693" y="22.4" z="57.2121"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="7">
 			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
 			<Player>1</Player>
 			<Position x="65.8666" y="22.4" z="55.2558"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="8">
 			<Template>hele_infantry_javelinist_b</Template>
 			<Player>1</Player>
 			<Position x="74.1046" y="22.4" z="78.0031"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="9">
 			<Template>hele_infantry_javelinist_b</Template>
 			<Player>1</Player>
 			<Position x="142.917" y="22.4" z="121.367"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="10">
 			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
 			<Player>1</Player>
 			<Position x="141.125" y="22.4" z="96.4471"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity>
+		<Entity uid="11">
 			<Template>hele_mill</Template>
 			<Player>1</Player>
 			<Position x="74.2147" y="22.4" z="49.1112"/>
@@ -102,6 +102,6 @@
 		</Entity>
 	</Entities>
 	<Nonentities/>
-	<Tracks/>
+	<Paths/>
 	<Triggers/>
 </Scenario>
