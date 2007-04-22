@@ -997,7 +997,10 @@ int CXMLReader::ProgressiveRead()
 			ReadTriggers(node);
 		}
 		else
+		{
+			debug_printf("Invalid XML element in map file: %s\n", name.c_str());
 			debug_warn("Invalid map XML data");
+		}
 
 		node_idx++;
 	}

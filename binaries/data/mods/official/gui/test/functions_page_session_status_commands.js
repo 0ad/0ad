@@ -609,11 +609,9 @@ function refreshCommandButtons()
 		// Update production lists (both types of Construction, Train). (Tab button, persistent buttons, click them to do things.)
 		if (validProperty ("selection[0].actions.create.list"))
 		{
-			console.write("Got actions.create.list");
 			listRoot = selection[0].actions.create.list;
 			for (listTab in listRoot)
 			{
-				console.write("Updating " + listTab);
 				if (listTab != "research")	// Do research later.
 					updateTab (listTab, "production", "Tab", "listRoot[listTab]", "");
 			}	

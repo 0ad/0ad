@@ -1,12 +1,17 @@
-//Andrew aka pyrolink
-//ajdecker1022@msn.com
-//Holds template information for technologies and research
+// Andrew aka pyrolink
+// ajdecker1022@msn.com
+//
+// Holds effects of a technology (research item), as well as its status 
+// (unavailable, researched, in progress, etc).
+//
+// There is a separate CTechnology object for each tech for each player,
+// because the status can be different for different players.
 
 #ifndef TECHNOLOGY_INCLUDED
 #define TECHNOLOGY_INCLUDED
 
 #include <vector>
-#include "scripting/ScriptableObject.h"
+#include "scripting/ScriptableComplex.h"
 #include "simulation/ScriptObject.h"
 #include "ps/Game.h"
 
@@ -14,7 +19,7 @@ class XMBElement;
 class CXeromyces;
 class CEntity;
 
-class CTechnology : public CJSObject<CTechnology>
+class CTechnology : public CJSComplex<CTechnology>
 {
 	friend class CTechnologyCollection;
 	
@@ -63,19 +68,15 @@ private:
 	CStrW m_History;
 
 	float m_ReqTime;
-	float m_ReqWood;
-	float m_ReqFood;
-	float m_ReqStone;
-	float m_ReqMetal;
-
 	std::vector<CStr> m_ReqEntities;
 	std::vector<CStr> m_ReqTechs;
+
 	std::vector<CStr> m_Pairs;
 	std::vector<CStr> m_Targets;
 	std::vector<Modifier> m_Modifiers;
 	std::vector<Modifier> m_Sets;
 	
-	CPlayer* m_player;	//Which player this tech belongs to
+	CPlayer* m_player;	//Which player this tech object belongs to
 
 	CScriptObject m_effectFunction;
 
@@ -85,6 +86,9 @@ private:
 
 	bool hasReqEntities();
 	bool hasReqTechs();
+
+	// Hack: shouldn't be part of CJSComplex
+	void rebuildClassSet() {};
 };
 
 #endif

@@ -120,11 +120,7 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 	
 	EL(time);
 	EL(resource);
-	EL(food);
 	EL(tech);
-	EL(stone);
-	EL(metal);
-	EL(wood);
 	EL(entity);
 	
 	#undef EL
@@ -144,29 +140,21 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 			for ( int j=0; j<resChildren.Count; ++j )
 			{
 				XMBElement resElement = resChildren.item(j);
-				int resName = resElement.getNodeName();
+				CStrW resName = XeroFile.getElementString( resElement.getNodeName() );
 				CStrW resValue = resElement.getText();
 
-				if ( resName == el_food )	//NOT LOADED-GET CHILD NODES
-					m_ReqFood = resValue.ToFloat();
-				else if ( resName == el_wood )
-					m_ReqWood = resValue.ToFloat();
-				else if ( resName == el_stone )
-					m_ReqStone = resValue.ToFloat();
-				else if ( resName == el_metal )
-					m_ReqMetal = resValue.ToFloat();
-				else
-				{
-					const char* tagName = XeroFile.getElementString(name).c_str();
-					LOG( ERROR, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
-					return false;
-				}
+				// Add each resource as a property using its name in the XML file
+				AddProperty( resName.LowerCase(), resValue);
 			}
 		}
 		else if ( name == el_entity )
+		{
 			m_ReqEntities.push_back( value );
+		}
 		else if ( name == el_tech )
+		{
 			m_ReqTechs.push_back( value );
+		}
 		else
 		{
 			const char* tagName = XeroFile.getElementString(name).c_str();
@@ -419,21 +407,17 @@ void CTechnology::apply( CEntity* entity )
 
 void CTechnology::ScriptingInit()
 {
-	AddProperty(L"name", &CTechnology::m_Name, true);
-	AddProperty(L"player", &CTechnology::m_player, true);
-	AddProperty(L"generic", &CTechnology::m_Generic, true);
-	AddProperty(L"specific", &CTechnology::m_Specific, true);
-	AddProperty(L"icon", &CTechnology::m_Icon);	//GUI might want to change this...?
-	AddProperty<int>(L"icon_cell", &CTechnology::m_IconCell);
-	AddProperty(L"classes", &CTechnology::m_Classes, true);
-	AddProperty(L"history", &CTechnology::m_History, true);
+	AddClassProperty(L"name", &CTechnology::m_Name, true);
+	AddClassProperty(L"player", &CTechnology::m_player, true);
+	AddClassProperty(L"generic", &CTechnology::m_Generic, true);
+	AddClassProperty(L"specific", &CTechnology::m_Specific, true);
+	AddClassProperty(L"icon", &CTechnology::m_Icon);	//GUI might want to change this...?
+	AddClassProperty(L"icon_cell", &CTechnology::m_IconCell);
+	AddClassProperty(L"classes", &CTechnology::m_Classes, true);
+	AddClassProperty(L"history", &CTechnology::m_History, true);
 
-	AddProperty<float>(L"time", &CTechnology::m_ReqTime);	//Techs may upgrade research time and cost of other techs
-	AddProperty<float>(L"food", &CTechnology::m_ReqFood);
-	AddProperty<float>(L"wood", &CTechnology::m_ReqWood);
-	AddProperty<float>(L"stone", &CTechnology::m_ReqStone);
-	AddProperty<float>(L"metal", &CTechnology::m_ReqMetal);
-	AddProperty<bool>(L"in_progress", &CTechnology::m_inProgress);
+	AddClassProperty(L"time", &CTechnology::m_ReqTime);	//Techs may upgrade research time and cost of other techs
+	AddClassProperty(L"in_progress", &CTechnology::m_inProgress);
 
 	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 2 );
 	AddMethod<jsval, &CTechnology::IsExcluded>( "isExcluded", 0 );
@@ -441,7 +425,7 @@ void CTechnology::ScriptingInit()
 	AddMethod<jsval, &CTechnology::IsResearched>( "isResearched", 0 );
 	AddMethod<jsval, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
 
-	CJSObject<CTechnology>::ScriptingInit("Technology");
+	CJSComplex<CTechnology>::ScriptingInit("Technology");
 }
 
 jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
