@@ -506,6 +506,7 @@ extern u16 fp_to_u16(double in);
  * showing up in searches)
  **/
 #define SAFE_STRCPY str##cpy
+#define SAFE_WCSCPY wcs##cpy
 
 
 /**

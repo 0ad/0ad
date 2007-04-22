@@ -102,7 +102,7 @@ public:
 	void test_create_archive_with_random_files()
 	{
 		if(!file_exists("archivetest")) // don't get stuck if this test fails and never deletes the directory it created
-			TS_ASSERT_OK(dir_create("archivetest", S_IRWXU|S_IRWXG|S_IRWXO));
+			TS_ASSERT_OK(dir_create("archivetest"));
 
 		TS_ASSERT_OK(vfs_mount("", "archivetest"));
 

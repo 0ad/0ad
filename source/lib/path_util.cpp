@@ -41,7 +41,7 @@ AT_STARTUP(\
 )
 
 
-static inline bool is_dir_sep(char c)
+bool path_is_dir_sep(char c)
 {
 	// note: ideally path strings would only contain '/' or even SYS_DIR_SEP.
 	// however, windows-specific code (e.g. the sound driver detection)
@@ -75,8 +75,8 @@ bool path_is_subpath(const char* s1, const char* s2)
 		{
 			// s1 matched s2 up until:
 			if((c2 == '\0') ||	// its end (i.e. they're equal length) OR
-				is_dir_sep(c2) ||		// start of next component OR
-				is_dir_sep(last_c1))	// ", but both have a trailing slash
+				path_is_dir_sep(c2) ||		// start of next component OR
+				path_is_dir_sep(last_c1))	// ", but both have a trailing slash
 				// => is subpath
 				return true;
 		}
@@ -170,8 +170,8 @@ LibError path_append(char* dst, const char* path1, const char* path2, uint flags
 	const size_t len1 = strlen(path1);
 	const size_t len2 = strlen(path2);
 	size_t total_len = len1 + len2 + 1;	// includes '\0'
-	const bool no_end_slash1 = (len1 == 0 || !is_dir_sep(path1[len1-1]));
-	const bool no_end_slash2 = (len2 == 0 || !is_dir_sep(path2[len2-1]));
+	const bool no_end_slash1 = (len1 == 0 || !path_is_dir_sep(path1[len1-1]));
+	const bool no_end_slash2 = (len2 == 0 || !path_is_dir_sep(path2[len2-1]));
 
 	// check if we need to add '/' between path1 and path2
 	// notes:
@@ -222,7 +222,7 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 	// if removing will leave a separator at beginning of src, remove it
 	// (example: "a/b"; removing "a" would yield "/b")
 	const char* start = src+remove_len;
-	if(is_dir_sep(*start))
+	if(path_is_dir_sep(*start))
 		start++;
 
 	// prepend replace.
@@ -392,7 +392,7 @@ LibError path_package_set_dir(PathPackage* pp, const char* dir)
 	if(len != 0)
 	{
 		char* last_char = pp->path+len-1;
-		if(!is_dir_sep(*last_char))
+		if(!path_is_dir_sep(*last_char))
 		{
 			*(last_char+1) = '/';
 			// note: need to 0-terminate because pp.path is uninitialized
@@ -406,6 +406,14 @@ LibError path_package_set_dir(PathPackage* pp, const char* dir)
 	pp->end = pp->path+len;
 	pp->chars_left = ARRAY_SIZE(pp->path)-len;
 	return INFO::OK;
+}
+
+
+void path_package_copy(PathPackage* pp_dst, const PathPackage* pp_src)
+{
+	*pp_dst = *pp_src;
+	const ptrdiff_t end_ofs = pp_src->end - pp_src->path;
+	pp_dst->end = pp_dst->path + end_ofs;
 }
 
 

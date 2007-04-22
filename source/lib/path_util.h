@@ -66,6 +66,13 @@ extern LibError path_validate(const char* path);
  **/
 extern LibError path_component_validate(const char* name);
 
+/**
+ * is the given character a path separator character?
+ *
+ * @param c character to test
+ * @return bool
+ **/
+extern bool path_is_dir_sep(char c);
 
 /**
  * is s2 a subpath of s1, or vice versa? (equal counts as subpath)
@@ -221,6 +228,11 @@ struct PathPackage
  * @return LibError
  **/
 extern LibError path_package_set_dir(PathPackage* pp, const char* dir);
+
+/**
+ * copy one PathPackage into another (doing so directly is incorrect!)
+ **/
+extern void path_package_copy(PathPackage* pp_dst, const PathPackage* pp_src);
 
 /**
  * append the given filename to the directory established by the last

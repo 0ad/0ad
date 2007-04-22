@@ -73,6 +73,7 @@ struct DynArray
 	u8* base;
 	size_t max_size_pa;	 /// reserved
 	size_t cur_size;	 /// committed
+	size_t cur_size_pa;
 
 	/**
 	 * mprotect flags applied to newly committed pages

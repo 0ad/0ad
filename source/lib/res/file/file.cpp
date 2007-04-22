@@ -38,6 +38,10 @@
 #include "lib/allocators.h"
 #include "file_internal.h"
 
+#if OS_WIN
+#include <direct.h>	// _mkdir
+#endif
+
 
 AT_STARTUP(\
 	error_setDescription(ERR::FILE_ACCESS, "Insufficient access rights to open file");\
@@ -196,7 +200,26 @@ LibError dir_close(DirIterator* di)
 }
 
 
-LibError dir_create(const char* P_path, mode_t mode)
+bool dir_exists(const char* P_path)
+{
+	// modified from file_stat_impl - we don't want errors to be raised here.
+	char N_path[PATH_MAX];
+	THROW_ERR(file_make_full_native_path(P_path, N_path));
+
+	// if path ends in slash, remove it (required by stat)
+	char* last_char = N_path+strlen(N_path)-1;
+	if(path_is_dir_sep(*last_char))
+		*last_char = '\0';
+
+	struct stat s;
+	if(stat(N_path, &s) != 0)
+		return false;
+	debug_assert(S_ISDIR(s.st_mode));
+	return true;
+}
+
+
+LibError dir_create(const char* P_path)
 {
 	char N_path[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(P_path, N_path));
@@ -207,7 +230,7 @@ LibError dir_create(const char* P_path, mode_t mode)
 		return INFO::ALREADY_EXISTS;
 
 	errno = 0;
-	ret = mkdir(N_path, mode);
+	ret = _mkdir(N_path);
 	return LibError_from_posix(ret);
 }
 

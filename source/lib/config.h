@@ -312,6 +312,13 @@
 # define HAVE_NPRINTF 1
 #endif
 
+// strdup, wcsdup
+#define HAVE_STRDUP 1
+#if OS_MACOSX
+# undef  HAVE_STRDUP
+# define HAVE_STRDUP 0
+#endif
+
 // rint*, fminf, fpclassify (too few/diverse to make separate HAVE_ for each)
 #define HAVE_C99_MATH 0
 #if HAVE_C99

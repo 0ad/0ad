@@ -897,7 +897,7 @@ LibError mount_create_real_dir(const char* V_path, const Mount* m)
 	char P_path[PATH_MAX];
 	RETURN_ERR(mount_realpath(V_path, m, P_path));
 
-	return dir_create(P_path, S_IRWXU|S_IRWXG|S_IRWXO);
+	return dir_create(P_path);
 }
 
 

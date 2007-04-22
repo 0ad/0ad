@@ -90,3 +90,23 @@ i64 i64_from_double(double d)
 }
 
 #endif
+
+#if !HAVE_STRDUP
+
+char* strdup(const char* str)
+{
+	const size_t num_chars = strlen(str);
+	char* new_str = malloc(num_chars*sizeof(char)+1);
+	SAFE_STRCPY(new_str, str);
+	return new_str;
+}
+
+wchar_t* wcsdup(const wchar_t* str)
+{
+	const size_t num_chars = wcslen(str);
+	wchar_t* new_str = malloc(num_chars*sizeof(wchar_t)+1);
+	SAFE_WCSCPY(new_str, str);
+	return new_str;
+}
+
+#endif	// #if !HAVE_STRDUP

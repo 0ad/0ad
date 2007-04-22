@@ -212,6 +212,7 @@ LibError da_alloc(DynArray* da, size_t max_size)
 	da->base        = p;
 	da->max_size_pa = max_size_pa;
 	da->cur_size    = 0;
+	da->cur_size_pa = 0;
 	da->prot        = PROT_READ|PROT_WRITE;
 	da->pos         = 0;
 	CHECK_DA(da);
@@ -237,6 +238,7 @@ LibError da_wrap_fixed(DynArray* da, u8* p, size_t size)
 	da->base        = p;
 	da->max_size_pa = round_up_to_page(size);
 	da->cur_size    = size;
+	da->cur_size_pa = da->max_size_pa;
 	da->prot        = PROT_READ|PROT_WRITE|DA_NOT_OUR_MEM;
 	da->pos         = 0;
 	CHECK_DA(da);
@@ -257,7 +259,7 @@ LibError da_free(DynArray* da)
 	CHECK_DA(da);
 
 	u8* p            = da->base;
-	size_t size      = da->max_size_pa;
+	size_t size_pa   = da->max_size_pa;
 	bool was_wrapped = (da->prot & DA_NOT_OUR_MEM) != 0;
 
 	// wipe out the DynArray for safety
@@ -268,7 +270,7 @@ LibError da_free(DynArray* da)
 	// (i.e. it doesn't actually own any memory). don't complain;
 	// da_free is supposed to be called even in the above case.
 	if(!was_wrapped)
-		RETURN_ERR(mem_release(p, size));
+		RETURN_ERR(mem_release(p, size_pa));
 	return INFO::OK;
 }
 
@@ -296,7 +298,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 
 	// not enough memory to satisfy this expand request: abort.
 	// note: do not complain - some allocators (e.g. file_cache)
-	// egitimately use up all available space.
+	// legitimately use up all available space.
 	if(new_size_pa > da->max_size_pa)
 		return ERR::LIMIT;	// NOWARN
 
@@ -311,6 +313,7 @@ LibError da_set_size(DynArray* da, size_t new_size)
 	// (we don't want mem_* to have to handle size=0)
 
 	da->cur_size = new_size;
+	da->cur_size_pa = new_size_pa;
 	CHECK_DA(da);
 	return INFO::OK;
 }
@@ -326,12 +329,9 @@ LibError da_set_size(DynArray* da, size_t new_size)
 */
 LibError da_reserve(DynArray* da, size_t size)
 {
-	// default to page size (the OS won't commit less anyway);
-	// grab more if request requires it.
-	const size_t expand_amount = MAX(4*KiB, size);
-
-	if(da->pos + size > da->cur_size)
-		return da_set_size(da, da->cur_size + expand_amount);
+	if(da->pos+size > da->cur_size_pa)
+		RETURN_ERR(da_set_size(da, da->cur_size_pa+size));
+	da->cur_size = std::max(da->cur_size, da->pos+size);
 	return INFO::OK;
 }
 
@@ -355,7 +355,7 @@ LibError da_set_prot(DynArray* da, int prot)
 		WARN_RETURN(ERR::LOGIC);
 
 	da->prot = prot;
-	RETURN_ERR(mem_protect(da->base, da->cur_size, prot));
+	RETURN_ERR(mem_protect(da->base, da->cur_size_pa, prot));
 
 	CHECK_DA(da);
 	return INFO::OK;

@@ -25,7 +25,6 @@
 
 // misc routines
 
-extern int chdir(const char*);
 #undef getcwd
 extern char* getcwd(char*, size_t);
 

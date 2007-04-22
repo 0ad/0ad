@@ -159,7 +159,8 @@ extern LibError dir_next_ent(DirIterator* d, DirEnt* ent);
 extern LibError dir_close(DirIterator* d);
 
 
-extern LibError dir_create(const char* P_path, mode_t mode);
+extern bool dir_exists(const char* P_path);
+extern LibError dir_create(const char* P_path);
 extern LibError dir_delete(const char* P_path);
 
 

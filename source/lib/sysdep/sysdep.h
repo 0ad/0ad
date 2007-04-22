@@ -206,6 +206,11 @@ extern void* alloca(size_t size);
 # define __func__ "(unknown)"
 #endif
 
+#if !HAVE_STRDUP
+extern char* strdup(const char* str);
+extern wchar_t* wcsdup(const wchar_t* str);
+#endif	// #if !HAVE_STRDUP
+
 
 //-----------------------------------------------------------------------------
 // sysdep API
