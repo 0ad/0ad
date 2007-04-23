@@ -89,7 +89,7 @@ bool CTechnology::loadELID( XMBElement ID, CXeromyces& XeroFile )
 	{
 		XMBElement element = children.item(i);
 		int name = element.getNodeName();
-		CStrW value = element.getText();
+		CStr8 value = element.getText();
 		
 		if ( name == el_generic )
 			m_Generic = value;
@@ -130,7 +130,7 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 	{
 		XMBElement element = children.item(i);
 		int name = element.getNodeName();
-		CStrW value = element.getText();
+		CStr8 value = element.getText();
 		
 		if ( name == el_time )
 			m_ReqTime = value.ToFloat();
@@ -140,11 +140,11 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 			for ( int j=0; j<resChildren.Count; ++j )
 			{
 				XMBElement resElement = resChildren.item(j);
-				CStrW resName = XeroFile.getElementString( resElement.getNodeName() );
-				CStrW resValue = resElement.getText();
+				CStr8 resName = XeroFile.getElementString( resElement.getNodeName() );
+				CStr8 resValue = resElement.getText();
 
 				// Add each resource as a property using its name in the XML file
-				AddProperty( resName.LowerCase(), resValue);
+				AddProperty( CStrW(resName).LowerCase(), resValue);
 			}
 		}
 		else if ( name == el_entity )
