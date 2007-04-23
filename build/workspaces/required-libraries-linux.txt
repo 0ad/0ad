@@ -1,7 +1,10 @@
 Linux Build Instructions
 
-Use the script in source/workspaces/update-workspaces.sh to generate the GNU/GCC
-makefile in the gcc subdirectory. The makefile supports the standard targets
+Build premake via makefile in build/premake/src/. Copy the resulting
+executable in build/premake/src/bin/premake/ to build/premake/.
+
+Use source/workspaces/update-workspaces.sh to generate the GNU/GCC makefile
+in build/workspaces/gcc. The makefile supports the standard targets
 'all' and 'clean', and you may set CONFIG=Release to build a release version.
 Note that if you have previously built a Debug config you must 'make clean'
 before building a Release config.
@@ -9,7 +12,6 @@ before building a Release config.
 The Makefile supports Icecream for distributed builds, so if you have two or
 more reasonably homogenous (both Linux, but they may even use different
 distributions) machines on a LAN, you can significantly reduce build times.
-
 See URL: http://wiki.kde.org/tiki-editpage.php?page=icecream
 
 Required Libraries
@@ -74,6 +76,6 @@ we can rely on being installed.
 With the libraries in a non-standard location, LD_LIBRARY_PATH will need to be
 set by a script before launching the actual ps executable.
 
-FAM: Prometheus needs a running FAM daemon. Either we include the daemon exec
-in the distribution and launch it in the start script, or we just add it as a
-prereq (i.e. leave it to the user to install).
+FAM: Pyrogenesis benefits from a running FAM daemon. Either we include the
+daemon exec in the distribution and launch it in the start script, or we
+just add it as a prereq (i.e. leave it to the user to install).
