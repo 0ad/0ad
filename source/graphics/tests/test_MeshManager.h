@@ -43,8 +43,8 @@ class TestMeshManager : public CxxTest::TestSuite
 		if (file_exists(CACHE_PATH))
 			TS_ASSERT_OK(dir_delete(CACHE_PATH));
 
-		TS_ASSERT_OK(dir_create(MOD_PATH, S_IRWXU|S_IRWXG|S_IRWXO));
-		TS_ASSERT_OK(dir_create(CACHE_PATH, S_IRWXU|S_IRWXG|S_IRWXO));
+		TS_ASSERT_OK(dir_create(MOD_PATH));
+		TS_ASSERT_OK(dir_create(CACHE_PATH));
 
 		vfs_init();
 
