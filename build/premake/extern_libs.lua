@@ -64,7 +64,7 @@ extern_lib_defs = {
 	},
 	fcollada = {
 		win_names  = { "FCollada" },
-		unix_names = { "FCollada" },
+		unix_names = { "FColladaSD" },
 		dbg_suffix = "D",
 		no_delayload = 1,
 	},
@@ -162,7 +162,9 @@ end
 local function add_extern_lib(extern_lib, def)
 
 	-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
-	tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
+	if OS ~= "linux" or extern_lib == 'cxxtest' or extern_lib == 'fcollada' then
+		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
+	end
 	tinsert(package.libpaths,     libraries_dir .. extern_lib .. "/lib")
 
 	-- careful: make sure to only use *_names when on the correct platform.

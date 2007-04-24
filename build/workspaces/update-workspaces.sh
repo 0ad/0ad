@@ -5,6 +5,7 @@
 start_dir=$(pwd)
 premake_dir=$(pwd)/../premake
 workspace_dir=$(pwd)/gcc
+mkdir $workspace_dir 2>/dev/null
 
 cd $premake_dir
 
