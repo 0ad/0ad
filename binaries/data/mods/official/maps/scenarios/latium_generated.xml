@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="192.724" y="96.8825" z="58.7643"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="191.937" y="122.922" z="58.8141"/>
+		<Rotation angle="0.00722699"/>
+		<Declination angle="0.676067"/>
 	</Camera>
 	<Entities>
 		<Entity uid="0">
@@ -7016,7 +7016,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_medit_me_dry.xml</Actor>
 			<Position x="171.387" y="21.8633" z="506.911"/>
-			<Orientation angle="-0.038715"/>
+			<Orientation angle="-0.0387148"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
@@ -7292,11 +7292,6 @@
 			<Actor>geology/stone_granite_greek_med.xml</Actor>
 			<Position x="454.257" y="26.8519" z="105.159"/>
 			<Orientation angle="2.28565"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>units/hellenes/female_citizen.xml</Actor>
-			<Position x="158.826" y="23.9823" z="207.623"/>
-			<Orientation angle="2.35619"/>
 		</Nonentity>
 	</Nonentities>
 	<Paths/>
