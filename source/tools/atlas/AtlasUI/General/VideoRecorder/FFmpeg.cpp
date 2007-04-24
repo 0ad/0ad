@@ -17,6 +17,13 @@ Please complain if I forget to do those things.
 
 */
 
+#ifdef __GNUC__
+// ugly hack to make recent versions of FFmpeg work
+#define __STDC_CONSTANT_MACROS
+#undef _STDINT_H
+#include <stdint.h>
+#endif
+
 #include "FFmpeg.h"
 
 #ifdef _MSC_VER
