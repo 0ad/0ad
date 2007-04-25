@@ -720,16 +720,6 @@ void CJSComplex<T, ReadOnly>::DefaultFinalize( JSContext *cx, JSObject *obj )
 	JS_SetPrivate( cx, obj, NULL );
 }
 
-
-template<typename T, bool ReadOnly> 
-JSObject* CJSComplex<T, ReadOnly>::GetScript() 
-{
-	if( !m_JS )
-		CreateScriptObject();
-	return( m_JS );
-}
-
-
 // Creating and releasing script objects is done automatically most of the time, but you
 // can do it explicitly. 
 template<typename T, bool ReadOnly>

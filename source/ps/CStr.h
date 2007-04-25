@@ -196,7 +196,7 @@ public:
 	 * Destructor
 	 *
 	 **/
-	~CStr() {};
+	//~CStr() {};
 
 	// Conversions:
 

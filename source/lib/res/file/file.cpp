@@ -40,6 +40,9 @@
 
 #if OS_WIN
 #include <direct.h>	// _mkdir
+#else
+#include <sys/stat.h>
+#include <sys/types.h>
 #endif
 
 
@@ -230,7 +233,11 @@ LibError dir_create(const char* P_path)
 		return INFO::ALREADY_EXISTS;
 
 	errno = 0;
+#if OS_WIN
 	ret = _mkdir(N_path);
+#else
+	ret = mkdir(N_path, 0777);
+#endif
 	return LibError_from_posix(ret);
 }
 

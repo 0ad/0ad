@@ -175,12 +175,17 @@ public:
 
 public:
 
-	JSObject* GetScript(); 
 	// Creating and releasing script objects is done automatically most of the time, but you
 	// can do it explicitly. 
 	void CreateScriptObject();
 	void ReleaseScriptObject();
-	
+
+	JSObject* GetScript()
+	{
+		if( !m_JS )
+                	CreateScriptObject();
+        	return( m_JS );
+	}
 
 	CJSComplex();
 	virtual ~CJSComplex();
