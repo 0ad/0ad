@@ -360,6 +360,7 @@ function setup_all_libs ()
 		"lib",
 		"lib/posix",
 		"lib/sysdep",
+		"lib/sysdep/ia32",
 		"lib/res",
 		"lib/res/file",
 		"lib/res/graphics",
