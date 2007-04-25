@@ -277,7 +277,7 @@ static void cdfh_decompose(const CDFH* cdfh_le,
 	// return 0-terminated copy of filename
 	const char* fn_src = (const char*)cdfh_le+CDFH_SIZE; // not 0-terminated!
 	char fn_buf[PATH_MAX];
-	memcpy2(fn_buf, fn_src, fn_len*sizeof(char));
+	cpu_memcpy(fn_buf, fn_src, fn_len*sizeof(char));
 	fn_buf[fn_len] = '\0';
 	fn = file_make_unique_fn_copy(fn_buf);
 
@@ -528,7 +528,7 @@ static LibError lfh_copier_cb(uintptr_t ctx, const void* block, size_t size, siz
 	LFH_Copier* p = (LFH_Copier*)ctx;
 
 	debug_assert(size <= p->lfh_bytes_remaining);
-	memcpy2(p->lfh_dst, block, size);
+	cpu_memcpy(p->lfh_dst, block, size);
 	p->lfh_dst += size;
 	p->lfh_bytes_remaining -= size;
 
@@ -644,7 +644,7 @@ LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file
 		WARN_RETURN(ERR::NO_MEM);
 	const size_t slack = za->cdfhs.da.pos-prev_pos - (CDFH_SIZE+fn_len);
 	cdfh_assemble(&p->cdfh, ae->method, ae->mtime, ae->crc, ae->csize, ae->ucsize, fn_len, slack, lfh_ofs);
-	memcpy2(p->fn, ae->atom_fn, fn_len);
+	cpu_memcpy(p->fn, ae->atom_fn, fn_len);
 
 	za->cd_entries++;
 

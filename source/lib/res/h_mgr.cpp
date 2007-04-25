@@ -451,7 +451,7 @@ static void fn_store(HDATA* hd, const char* fn)
 			WARN_ERR_RETURN(ERR::NO_MEM);
 	}
 
-	memcpy2((void*)hd->fn, fn, size);	// faster than strcpy
+	cpu_memcpy((void*)hd->fn, fn, size);	// faster than strcpy
 }
 
 // TODO: store this in a flag - faster.

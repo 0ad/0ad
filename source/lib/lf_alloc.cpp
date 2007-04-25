@@ -174,7 +174,7 @@ static Descriptor* DescAlloc()
 		{
 			desc = (Descriptor*)AllocNewSB(DESCSBSIZE);
 			// organize descriptors in a linked list
-			mfence();
+			cpu_mfence();
 			if(CAS(&DescAvail, 0, desc->next))
 				break;
 			FreeSB((u8*)desc);
@@ -190,7 +190,7 @@ static void DescRetire(Descriptor* desc)
 	{
 		old_head = DescAvail;
 		desc->next = old_head;
-		mfence();
+		cpu_mfence();
 	}
 	while(!CAS(&DescAvail, old_head, desc));
 }
@@ -385,7 +385,7 @@ static void* MallocFromNewSB(ProcHeap* heap)
 	new_active.credits = MIN(desc->maxcount-1, MAX_CREDITS)-1;
 	desc->anchor.count = (desc->maxcount-1)-(new_active.credits+1);
 	desc->anchor.state = ACTIVE;
-	mfence();
+	cpu_mfence();
 	if(!CAS(&heap->active, 0, new_active))
 	{
 		FreeSB(desc->sb);
@@ -464,7 +464,7 @@ void lf_free(void* p_)
 		}
 		else
 			new_anchor.count++;
-		mfence();
+		cpu_mfence();
 	}
 	while(!CAS(&desc->anchor, old_anchor, new_anchor));
 	if(new_anchor.state == EMPTY)

@@ -1,7 +1,7 @@
 #include "lib/self_test.h"
 
 #include "lib/lib.h"
-#include "lib/sysdep/ia32.h"
+#include "lib/sysdep/ia32/ia32.h"
 
 // note: ia32_i??_from_*, ia32_rint*, ia32_fm??f are all tested within
 // sysdep to avoid test duplication (both the ia32 versions and

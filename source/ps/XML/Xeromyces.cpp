@@ -41,14 +41,14 @@ public:
 	void write(const void* data, int size)
 	{
 		while (length + size >= allocated) grow();
-		memcpy2(&buffer[length], data, size);
+		cpu_memcpy(&buffer[length], data, size);
 		length += size;
 	}
 
 	void write(const void* data, int size, int offset)
 	{
 		debug_assert(offset >= 0 && offset+size < length);
-		memcpy2(&buffer[offset], data, size);
+		cpu_memcpy(&buffer[offset], data, size);
 	}
 
 	int tell()

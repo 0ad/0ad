@@ -68,7 +68,7 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 	// given a heightmap?
 	if (data) {
 		// yes; keep a copy of it
-		memcpy2(m_Heightmap,data,m_MapSize*m_MapSize*sizeof(u16));
+		cpu_memcpy(m_Heightmap,data,m_MapSize*m_MapSize*sizeof(u16));
 	} else {
 		// build a flat terrain
 		memset(m_Heightmap,0,m_MapSize*m_MapSize*sizeof(u16));
@@ -318,7 +318,7 @@ void CTerrain::Resize(u32 size)
 	u16* dst=newHeightmap;
 	u32 copysize=newMapSize>m_MapSize ? m_MapSize : newMapSize;
 	for (j=0;j<copysize;j++) {
-		memcpy2(dst,src,copysize*sizeof(u16));
+		cpu_memcpy(dst,src,copysize*sizeof(u16));
 		dst+=copysize;
 		src+=m_MapSize;
 		if (newMapSize>m_MapSize) {
@@ -335,7 +335,7 @@ void CTerrain::Resize(u32 size)
 		src=newHeightmap+((m_MapSize-1)*newMapSize);
 		dst=src+newMapSize;
 		for (u32 i=0;i<newMapSize-m_MapSize;i++) {
-			memcpy2(dst,src,newMapSize*sizeof(u16));
+			cpu_memcpy(dst,src,newMapSize*sizeof(u16));
 			dst+=newMapSize;
 		}
 	}
@@ -345,7 +345,7 @@ void CTerrain::Resize(u32 size)
 		for (u32 i=0;i<size;i++) {
 			// copy over texture data from existing tiles, if possible
 			if (i<m_MapSizePatches && j<m_MapSizePatches) {
-				memcpy2(newPatches[j*size+i].m_MiniPatches,m_Patches[j*m_MapSizePatches+i].m_MiniPatches,sizeof(CMiniPatch)*PATCH_SIZE*PATCH_SIZE);
+				cpu_memcpy(newPatches[j*size+i].m_MiniPatches,m_Patches[j*m_MapSizePatches+i].m_MiniPatches,sizeof(CMiniPatch)*PATCH_SIZE*PATCH_SIZE);
 			}
 		}
 
@@ -416,7 +416,7 @@ void CTerrain::InitialisePatches()
 void CTerrain::SetHeightMap(u16* heightmap)
 {
 	// keep a copy of the given heightmap
-	memcpy2(m_Heightmap,heightmap,m_MapSize*m_MapSize*sizeof(u16));
+	cpu_memcpy(m_Heightmap,heightmap,m_MapSize*m_MapSize*sizeof(u16));
 
 	// recalculate patch bounds, invalidate vertices
 	for (u32 j=0;j<m_MapSizePatches;j++) {

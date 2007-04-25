@@ -10,6 +10,8 @@
 // native type and distinct from utf16_t.
 #include <string>
 
+#include "lib/sysdep/cpu.h"
+
 typedef uint16_t utf16_t;
 typedef std::basic_string<utf16_t> utf16string;
 typedef std::basic_stringstream<utf16_t> utf16stringstream;
@@ -59,7 +61,7 @@ namespace std {
 
 		static char_type* copy(char_type* s1, const char_type* s2, size_t n)
 		{
-			return (char_type *)memcpy2(s1, s2, n*sizeof(char_type));
+			return (char_type *)cpu_memcpy(s1, s2, n*sizeof(char_type));
 		}
 
 		static char_type* assign(char_type* s, size_t n, char_type a)

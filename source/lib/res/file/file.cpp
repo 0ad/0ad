@@ -38,13 +38,6 @@
 #include "lib/allocators.h"
 #include "file_internal.h"
 
-#if OS_WIN
-#include <direct.h>	// _mkdir
-#else
-#include <sys/stat.h>
-#include <sys/types.h>
-#endif
-
 
 AT_STARTUP(\
 	error_setDescription(ERR::FILE_ACCESS, "Insufficient access rights to open file");\
@@ -233,11 +226,7 @@ LibError dir_create(const char* P_path)
 		return INFO::ALREADY_EXISTS;
 
 	errno = 0;
-#if OS_WIN
-	ret = _mkdir(N_path);
-#else
-	ret = mkdir(N_path, 0777);
-#endif
+	ret = mkdir(N_path, S_IRWXO|S_IRWXU|S_IRWXG); 
 	return LibError_from_posix(ret);
 }
 

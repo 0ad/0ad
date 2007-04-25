@@ -76,7 +76,7 @@ CSocketAddress::CSocketAddress(int port, ESocketProtocol proto)
 		break;
 	case IPv6:
 		m_Union.m_IPv6.sin6_family=PF_INET6;
-		memcpy2(&m_Union.m_IPv6.sin6_addr, &in6addr_any, sizeof(in6addr_any));
+		cpu_memcpy(&m_Union.m_IPv6.sin6_addr, &in6addr_any, sizeof(in6addr_any));
 		m_Union.m_IPv6.sin6_port=htons(port);
 		break;
 	default:
@@ -96,7 +96,7 @@ CSocketAddress CSocketAddress::Loopback(int port, ESocketProtocol proto)
 		break;
 	case IPv6:
 		ret.m_Union.m_IPv6.sin6_family=PF_INET6;
-		memcpy2(&ret.m_Union.m_IPv6.sin6_addr, &in6addr_loopback, sizeof(in6addr_loopback));
+		cpu_memcpy(&ret.m_Union.m_IPv6.sin6_addr, &in6addr_loopback, sizeof(in6addr_loopback));
 		ret.m_Union.m_IPv6.sin6_port=htons(port);
 		break;
 	default:
@@ -114,7 +114,7 @@ PS_RESULT CSocketAddress::Resolve(const char *name, int port, CSocketAddress &ad
 		if (res == 0)
 		{
 			if (ai->ai_addrlen < sizeof(addr.m_Union))
-				memcpy2(&addr.m_Union, ai->ai_addr, ai->ai_addrlen);
+				cpu_memcpy(&addr.m_Union, ai->ai_addr, ai->ai_addrlen);
 			switch (addr.m_Union.m_Family)
 			{
 			case IPv4:

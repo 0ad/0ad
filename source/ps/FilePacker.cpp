@@ -45,7 +45,7 @@ void CFilePacker::PackRaw(const void* rawdata,u32 rawdatalen)
 {
 	u32 start=(u32)m_Data.size();
 	m_Data.resize(m_Data.size()+rawdatalen);
-	memcpy2(&m_Data[start],rawdata,rawdatalen);
+	cpu_memcpy(&m_Data[start],rawdata,rawdatalen);
 	
 	*(u32*)&m_Data[8] += rawdatalen;	// FIXME byte order?
 }

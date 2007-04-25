@@ -191,7 +191,7 @@ static void create_level(uint level, uint level_w, uint level_h,
 	if(level == 0)
 	{
 		debug_assert(level_data_size == cld->prev_level_data_size);
-		memcpy2(dst, src, level_data_size);
+		cpu_memcpy(dst, src, level_data_size);
 	}
 	else
 	{
@@ -317,7 +317,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	void* new_data = mem_alloc(data_size, 4*KiB, 0, &hm);
 	if(!new_data)
 		WARN_RETURN(ERR::NO_MEM);
-	memcpy2(new_data, data, data_size);
+	cpu_memcpy(new_data, data, data_size);
 
 	// setup row source/destination pointers (simplifies outer loop)
 	u8* dst = (u8*)new_data;
@@ -338,7 +338,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	{
 		for(uint y = 0; y < h; y++)
 		{
-			memcpy2(dst, src, pitch);
+			cpu_memcpy(dst, src, pitch);
 			dst += pitch;
 			src += row_ofs;
 		}

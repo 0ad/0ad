@@ -29,7 +29,7 @@
 #include <ctime>
 
 #include "lib/adts.h"
-#include "lib/sysdep/ia32.h"
+#include "lib/sysdep/ia32/ia32.h"
 #include "lib/sysdep/cpu.h"
 #include "wposix_internal.h"
 #include "wpthread.h"
@@ -77,7 +77,7 @@ AT_STARTUP(\
 // (default values for HRT_NONE impl)
 
 // initial measurement of the time source's tick rate. not necessarily
-// correct (e.g. when using TSC; cpu_freq isn't exact).
+// correct (e.g. when using TSC; cpu_clockFrequency isn't exact).
 static double hrt_nominal_freq = -1.0;
 
 // actual resolution of the time source (may differ from hrt_nominal_freq
@@ -199,14 +199,14 @@ static LibError choose_impl()
 	//   will do this as well (if not to save power, for heat reasons).
 	//   frequency changes are too often and drastic to correct,
 	//   and we don't want to mess with the system power settings => unsafe.
-	if(cpu_freq > 0.0 && ia32_cap(IA32_CAP_TSC))
+	if(cpu_isModuleInitialized() && cpu_clockFrequency() > 0.0 && ia32_cap(IA32_CAP_TSC))
 	{
-		safe = (cpus == 1 && cpu_speedstep == 0);
+		safe = (cpu_coresPerPackage() == 1 && cpu_numPackages() == 1 && cpu_isThrottlingPossible() == 0);
 		SAFETY_OVERRIDE(HRT_TSC);
 		if(safe)
 		{
 			hrt_impl = HRT_TSC;
-			hrt_nominal_freq = cpu_freq;
+			hrt_nominal_freq = cpu_clockFrequency();
 			hrt_res = (1.0 / hrt_nominal_freq);
 			return INFO::OK;
 		}
@@ -249,13 +249,13 @@ static LibError choose_impl()
 		else
 		{
 			// can't decide yet - assume unsafe
-			if(cpu_freq == 0.0)
+			if(!cpu_isModuleInitialized())
 				safe = false;
 			else
 			{
 				// compare QPC freq to CPU clock freq - can't rule out HPET,
 				// because its frequency isn't known (it's at least 10 MHz).
-				double freq_dist = fabs(cpu_freq/qpc_freq - 1.0);
+				double freq_dist = fabs(cpu_clockFrequency()/qpc_freq - 1.0);
 				safe = freq_dist > 0.05;
 					// safe if freqs not within 5% (i.e. it doesn't use TSC)
 			}
@@ -711,7 +711,7 @@ static i64 time_ns()
 	}
 
 	const double dt = hrt_time() - hrt_start_time;
-	const i64 ns = st_start + i64_from_double(dt * _1e9);
+	const i64 ns = st_start + cpu_i64_from_double(dt * _1e9);
 	return ns;
 }
 

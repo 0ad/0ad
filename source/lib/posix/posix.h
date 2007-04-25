@@ -72,4 +72,10 @@ need only be renamed (e.g. _open, _stat).
 #include "posix_time.h"
 #include "posix_utsname.h"
 
+
+#if OS_MACOSX
+extern char* strdup(const char* str);
+extern wchar_t* wcsdup(const wchar_t* str);
+#endif	// #if OS_MACOSX
+
 #endif	// #ifndef INCLUDED_POSIX

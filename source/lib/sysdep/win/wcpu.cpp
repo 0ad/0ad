@@ -21,7 +21,7 @@
  */
 
 #include "precompiled.h"
-#include "lib/sysdep/cpu.h"
+#include "wcpu.h"
 
 #include "lib/lib.h"
 #include "lib/posix/posix_pthread.h"
@@ -29,17 +29,31 @@
 #include "win_internal.h"
 
 // limit allows statically allocated per-CPU structures (for simplicity).
-// we're Windows-specific anyway; such systems won't foreseeably have more.
-// note: int instead of unsigned because <cpus> is also signed (tri-state).
+// WinAPI only supports max. 32 CPUs anyway (due to DWORD bitfields).
+// signed int because num_cpus is tri-state.
 static const int MAX_CPUS = 32;
 
-static void check_speedstep()
+
+int wcpu_numProcessors()
+{
+	// get number of CPUs (can't fail)
+	SYSTEM_INFO si;
+	GetSystemInfo(&si);
+	const int num_processors = (int)si.dwNumberOfProcessors;
+	return num_processors;
+}
+
+
+int wcpu_isThrottlingPossible()
 {
 	WIN_SAVE_LAST_ERROR;
+	int is_throttling_possible = -1;
 
 	// CallNtPowerInformation
 	// (manual import because it's not supported on Win95)
 	NTSTATUS (WINAPI *pCNPI)(POWER_INFORMATION_LEVEL, PVOID, ULONG, PVOID, ULONG) = 0;
+	// this is most likely the only reference, so don't free it
+	// (=> unload) until done with the DLL.
 	HMODULE hPowrprofDll = LoadLibrary("powrprof.dll");
 	*(void**)&pCNPI = GetProcAddress(hPowrprofDll, "CallNtPowerInformation");
 	if(pCNPI)
@@ -47,77 +61,58 @@ static void check_speedstep()
 		// most likely not speedstep-capable if these aren't supported
 		SYSTEM_POWER_CAPABILITIES spc;
 		if(pCNPI(SystemPowerCapabilities, 0,0, &spc,sizeof(spc)) == STATUS_SUCCESS)
+		{
 			if(!spc.ProcessorThrottle || !spc.ThermalControl)
-				cpu_speedstep = 0;
+				is_throttling_possible = 0;
+		}
 
 		// probably speedstep if cooling mode active.
 		// the documentation of PO_TZ_* is unclear, so we can't be sure.
 		SYSTEM_POWER_INFORMATION spi;
 		if(pCNPI(SystemPowerInformation, 0,0, &spi,sizeof(spi)) == STATUS_SUCCESS)
+		{
 			if(spi.CoolingMode != PO_TZ_INVALID_MODE)
-				cpu_speedstep = 1;
+				is_throttling_possible = 1;
+		}
 
 		// definitely speedstep if any throttle is less than 100%.
 		PROCESSOR_POWER_INFORMATION ppi[MAX_CPUS];
 		if(pCNPI(ProcessorInformation, 0,0, ppi,sizeof(ppi)) == STATUS_SUCCESS)
 		{
 			const PROCESSOR_POWER_INFORMATION* p = ppi;
-			for(int i = 0; i < MIN(cpus, MAX_CPUS); i++, p++)
+			for(int i = 0; i < MIN(wcpu_numProcessors(), MAX_CPUS); i++, p++)
+			{
 				if(p->MhzLimit != p->MaxMhz || p->CurrentMhz != p->MaxMhz)
 				{
-					cpu_speedstep = 1;
+					is_throttling_possible = 1;
 					break;
 				}
+			}
 		}
 	}
 	FreeLibrary(hPowrprofDll);
-		// this is most likely the only reference,
-		// so don't free it (=> unload) until done with the DLL.
 
 	// CallNtPowerInformation not available, or none of the above apply:
 	// don't know yet (for certain, at least).
-	if(cpu_speedstep == -1)
+	if(is_throttling_possible == -1)
 	{
 		// check if running on a laptop
 		HW_PROFILE_INFO hi;
 		GetCurrentHwProfile(&hi);
-		bool is_laptop = !(hi.dwDockInfo & DOCKINFO_DOCKED) ^ !(hi.dwDockInfo & DOCKINFO_UNDOCKED);
+		const bool is_laptop = !(hi.dwDockInfo & DOCKINFO_DOCKED) ^ !(hi.dwDockInfo & DOCKINFO_UNDOCKED);
 			// both flags set <==> this is a desktop machine.
 			// both clear is unspecified; we assume it's not a laptop.
 			// NOTE: ! is necessary (converts expression to bool)
 
 		// we'll guess SpeedStep is active if on a laptop.
 		// ia32 code will get a second crack at it.
-		cpu_speedstep = (is_laptop)? 1 : 0;
+		is_throttling_possible = (is_laptop)? 1 : 0;
 	}
-
+    
 	WIN_RESTORE_LAST_ERROR;
-}
 
-
-LibError win_get_cpu_info()
-{
-	// get number of CPUs (can't fail)
-	SYSTEM_INFO si;
-	GetSystemInfo(&si);
-	cpus = (int)si.dwNumberOfProcessors;
-
-	// read CPU frequency from registry
-	HKEY hKey;
-	const char* key = "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0";
-	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_QUERY_VALUE, &hKey) == 0)
-	{
-		DWORD freq_mhz;
-		DWORD size = sizeof(freq_mhz);
-		if(RegQueryValueEx(hKey, "~MHz", 0, 0, (LPBYTE)&freq_mhz, &size) == 0)
-			cpu_freq = freq_mhz * 1e6;
-
-		RegCloseKey(hKey);
-	}
-
-	check_speedstep();
-
-	return INFO::OK;
+	debug_assert(is_throttling_possible == 0 || is_throttling_possible == 1);
+	return is_throttling_possible;
 }
 
 
@@ -131,7 +126,7 @@ LibError win_get_cpu_info()
 //
 // may fail if e.g. OS is preventing us from running on some CPUs.
 // called from ia32.cpp get_cpu_count.
-LibError sys_on_each_cpu(void (*cb)())
+LibError wcpu_callByEachCPU(CpuCallback cb, void* param)
 {
 	const HANDLE hProcess = GetCurrentProcess();
 	DWORD process_affinity, system_affinity;
@@ -142,26 +137,26 @@ LibError sys_on_each_cpu(void (*cb)())
 	if(process_affinity != system_affinity)
 		WARN_RETURN(ERR::CPU_RESTRICTED_AFFINITY);
 
-	for(DWORD cpu_bit = 1; cpu_bit != 0 && cpu_bit <= process_affinity; cpu_bit *= 2)
+	for(DWORD_PTR cpu_bit = 1; cpu_bit != 0 && cpu_bit <= process_affinity; cpu_bit *= 2)
 	{
 		// check if we can switch to target CPU
 		if(!(process_affinity & cpu_bit))
 			continue;
 		// .. and do so.
-		if(!SetProcessAffinityMask(hProcess, process_affinity))
+		if(!SetThreadAffinityMask(GetCurrentThread(), cpu_bit))
 		{
 			WARN_ERR(ERR::CPU_RESTRICTED_AFFINITY);
 			continue;
 		}
 
-		// reschedule, to make sure we switch CPUs
+		// reschedule to make sure we switch CPUs.
 		Sleep(1);
 
-		cb();
+		cb(param);
 	}
 
 	// restore to original value
-	SetProcessAffinityMask(hProcess, process_affinity);
+	SetThreadAffinityMask(hProcess, process_affinity);
 
 	return INFO::OK;
 }

@@ -139,7 +139,7 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicI
 
 		const ptrdiff_t prefixlen=end-m_DocName;
 		
-		memcpy2(abspath, m_DocName, prefixlen);
+		cpu_memcpy(abspath, m_DocName, prefixlen);
 		strncpy(abspath+prefixlen, path, PATH_MAX-prefixlen);
 		// strncpy might not have terminated, if path was too long
 		abspath[PATH_MAX-1]=0;

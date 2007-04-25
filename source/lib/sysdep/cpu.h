@@ -23,57 +23,99 @@
 #ifndef CPU_H__
 #define CPU_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 namespace ERR
 {
 	const LibError CPU_FEATURE_MISSING     = -130000;
 	const LibError CPU_UNKNOWN_OPCODE      = -130001;
-	const LibError CPU_RESTRICTED_AFFINITY = -130002;
+	const LibError CPU_UNKNOWN_VENDOR      = -130002;
+	const LibError CPU_RESTRICTED_AFFINITY = -130003;
 }
 
 
-const size_t CPU_TYPE_LEN = 49;	// IA32 processor brand string is <= 48 chars
-extern char cpu_type[CPU_TYPE_LEN];
-
-extern double cpu_freq;
-
-
-// -1 if detect not yet called, or cannot be determined:
-
-extern "C" int cpus;			// # packages (i.e. sockets; > 1 => SMP system)
-extern int cpu_ht_units;	// degree of hyperthreading, typically 2
-extern int cpu_cores;		// cores per package, typically 2
-
-extern int cpu_speedstep;
-
-
+// must be called before any of the below accessors.
 extern void cpu_init(void);
 
+extern bool cpu_isModuleInitialized();
 
-extern size_t tot_mem;
-extern size_t avl_mem;
 
-// updates *_mem above
-extern void get_mem_status(void);
+extern const char* cpu_identifierString();
+extern double cpu_clockFrequency();
+extern int cpu_numPackages();	// i.e. sockets
+extern int cpu_coresPerPackage();
+extern int cpu_logicalPerPackage();
+extern bool cpu_isThrottlingPossible();
 
+
+//
+// memory
+//
+
+enum CpuMemoryIndicators
+{
+	CPU_MEM_TOTAL, CPU_MEM_AVAILABLE
+};
+
+extern size_t cpu_memorySize(CpuMemoryIndicators mem_type);
+
+// faster than cpu_memorySize (caches total size determined during init),
+// returns #Mebibytes (cleaned up to account e.g. for nonpaged pool)
+extern size_t cpu_memoryTotalMiB();
+
+
+//
+// misc
+//
 
 // atomic "compare and swap". compare the machine word at <location> against
 // <expected>; if not equal, return false; otherwise, overwrite it with
 // <new_value> and return true.
-extern "C" bool CAS_(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
+extern bool cpu_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 
 // this is often used for pointers, so the macro coerces parameters to
 // uinptr_t. invalid usage unfortunately also goes through without warnings.
 // to catch cases where the caller has passed <expected> as <location> or
 // similar mishaps, the implementation verifies <location> is a valid pointer.
-#define CAS(l,o,n) CAS_((uintptr_t*)l, (uintptr_t)o, (uintptr_t)n)
+#define CAS(l,o,n) cpu_CAS((uintptr_t*)l, (uintptr_t)o, (uintptr_t)n)
 
-extern "C" void atomic_add(intptr_t* location, intptr_t increment);
+extern void cpu_atomic_add(intptr_t* location, intptr_t increment);
 
 // enforce strong memory ordering.
-extern "C" void mfence();
+extern void cpu_mfence();
 
-extern "C" void serialize();
+extern void cpu_serialize();
+
+
+// drop-in replacement for libc memcpy(). only requires CPU support for
+// MMX (by now universal). highly optimized for Athlon and Pentium III
+// microarchitectures; significantly outperforms VC7.1 memcpy and memcpy_amd.
+// for details, see accompanying article.
+extern void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size);
+
+
+// execute the specified function once on each CPU.
+// this includes logical HT units and proceeds serially (function
+// is never re-entered) in order of increasing OS CPU ID.
+// note: implemented by switching thread affinity masks and forcing
+// a reschedule, which is apparently not possible with POSIX.
+//
+// may fail if e.g. OS is preventing us from running on some CPUs.
+// called from ia32.cpp get_cpu_count.
+
+typedef void (*CpuCallback)(void* param);
+extern LibError cpu_callByEachCPU(CpuCallback cb, void* param);
+
+
+// convert float to int much faster than _ftol2, which would normally be
+// used by (int) casts.
+extern i32 cpu_i32_from_float(float f);
+extern i32 cpu_i32_from_double(double d);
+extern i64 cpu_i64_from_double(double d);
+
+
 
 
 // Win32 CONTEXT field abstraction
@@ -86,6 +128,10 @@ extern "C" void serialize();
 # define PC_ Eip
 # define FP_ Ebp
 # define SP_ Esp
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif	// #ifndef CPU_H__

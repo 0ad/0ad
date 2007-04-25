@@ -201,7 +201,7 @@ public:
 					void* cdata_copy = malloc(buf.csize);
 					if(!cdata_copy)
 						 WARN_RETURN(ERR::NO_MEM);
-					memcpy2(cdata_copy, buf.cdata, buf.csize);
+					cpu_memcpy(cdata_copy, buf.cdata, buf.csize);
 					buf.cdata = (const u8*)cdata_copy;
 				}
 

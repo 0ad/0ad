@@ -48,7 +48,6 @@ void WriteSystemInfo()
 
 	// get_cpu_info and gfx_detect already called during init - see call site
 	snd_detect();
-	get_mem_status();
 
 	struct utsname un;
 	uname(&un);
@@ -63,9 +62,8 @@ void WriteSystemInfo()
 	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// .. CPU
-	fprintf(f, "CPU            : %s, %s", un.machine, cpu_type);
-	if(cpus > 1)
-		fprintf(f, " (x%d)", cpus);
+	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_identifierString(), cpu_numPackages(), cpu_coresPerPackage(), cpu_logicalPerPackage()/cpu_coresPerPackage());
+	const double cpu_freq = cpu_clockFrequency();
 	if(cpu_freq != 0.0f)
 	{
 		if(cpu_freq < 1e9)
@@ -77,7 +75,7 @@ void WriteSystemInfo()
 		fprintf(f, "\n");
 
 	// .. memory
-	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", tot_mem/MiB, avl_mem/MiB);
+	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", cpu_memoryTotalMiB(), cpu_memorySize(CPU_MEM_AVAILABLE)/MiB);
 
 	// .. graphics
 	fprintf(f, "Graphics Card  : %s\n", gfx_card);
@@ -278,7 +276,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 			{
 				void* dest = (char*)img + ((tile_y*tile_h + y) * img_w + (tile_x*tile_w)) * bpp/8;
 				void* src = (char*)tile_data + y * tile_w * bpp/8;
-				memcpy2(dest, src, tile_w * bpp/8);
+				cpu_memcpy(dest, src, tile_w * bpp/8);
 			}
 		}
 	}

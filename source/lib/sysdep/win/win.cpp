@@ -27,6 +27,7 @@
 
 #include "win_internal.h"
 #include "lib/path_util.h"
+#include "lib/posix/posix.h"
 
 #if MSC_VERSION >= 1400
 #include <process.h>	// __security_init_cookie
@@ -36,7 +37,6 @@
 
 char win_sys_dir[MAX_PATH+1];
 char win_exe_dir[MAX_PATH+1];
-
 
 // only call after a Win32 function indicates failure.
 static LibError LibError_from_GLE(bool warn_if_failed = true)

@@ -41,25 +41,6 @@ LibError sys_get_executable_name(char* n_path, size_t buf_size)
 	return INFO::OK;
 }
 
-extern int cpus;
-int unix_get_cpu_info()
-{
-	long res = sysconf(_SC_NPROCESSORS_CONF);
-	if (res == -1)
-		cpus = 1;
-	else
-		cpus = (int)res;
-	return 0;
-}
-
-// apparently not possible on non-Windows OSes because they seem to lack
-// a CPU affinity API. see sysdep.h comment.
-LibError sys_on_each_cpu(void(*cb)())
-{
-	UNUSED2(cb);
-
-	return ERR::NO_SYS;
-}
 
 ErrorReaction sys_display_error(const wchar_t* text, uint flags)
 {

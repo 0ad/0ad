@@ -30,7 +30,7 @@
 #include "wfilesystem.h"	// mode_t
 #include "wtime.h"			// timespec
 #include "waio_internal.h"
-
+#include "lib/sysdep/cpu.h"
 
 #pragma SECTION_PRE_LIBC(J)
 WIN_REGISTER_FUNC(waio_init);
@@ -657,7 +657,7 @@ static int aio_rw(struct aiocb* cb)
 				// unaligned buffer: copy to align buffer and write from there.
 				if(buf_misaligned)
 				{
-					memcpy2(r->buf, buf, size);
+					cpu_memcpy(r->buf, buf, size);
 					actual_buf = r->buf;
 					// clear previous contents at end of align buf
 					memset((char*)r->buf + size, 0, actual_size - size);
@@ -761,7 +761,7 @@ ssize_t aio_return(struct aiocb* cb)
 
 	// we read into align buffer - copy to user's buffer
 	if(r->read_into_align_buffer)
-		memcpy2((void*)cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
+		cpu_memcpy((void*)cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
 
 	// TODO: this copies data back into original buffer from align buffer
 	// when writing from unaligned buffer. unnecessarily slow.

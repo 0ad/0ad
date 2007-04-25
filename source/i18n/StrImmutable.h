@@ -12,6 +12,8 @@ which is not insignificant).
 #include <wchar.h>
 #include <string.h>
 
+#include "lib/sysdep/cpu.h"
+
 typedef unsigned short jschar;
 
 namespace I18n
@@ -35,7 +37,7 @@ namespace I18n
 			ref = new strImW_data;
 			size_t len = wcslen(s)+1;
 			ref->data = new wchar_t[len];
-			memcpy2((void*)ref->data, s, len*sizeof(wchar_t));
+			cpu_memcpy((void*)ref->data, s, len*sizeof(wchar_t));
 		}
 
 		StrImW(const char* s)

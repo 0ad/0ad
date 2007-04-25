@@ -247,7 +247,7 @@ size_t file_sector_size;
 
 // the underlying aio implementation likes buffer and offset to be
 // sector-aligned; if not, the transfer goes through an align buffer,
-// and requires an extra memcpy2.
+// and requires an extra cpu_memcpy.
 //
 // if the user specifies an unaligned buffer, there's not much we can
 // do - we can't assume the buffer contains padding. therefore,
@@ -513,7 +513,7 @@ class IOManager
 		if(!slot.cached_block && pbuf != FILE_BUF_TEMP && f->flags & FILE_CACHE_BLOCK)
 		{
 			slot.temp_buf = block_cache_alloc(slot.block_id);
-			memcpy2(slot.temp_buf, block, block_size);
+			cpu_memcpy(slot.temp_buf, block, block_size);
 			// block_cache_mark_completed will be called in process()
 		}
 
@@ -531,7 +531,7 @@ class IOManager
 		// we have useable data from a previous temp buffer,
 		// but it needs to be copied into the user's buffer
 		if(slot.cached_block && pbuf != FILE_BUF_TEMP)
-			memcpy2((char*)*pbuf+ofs_misalign+total_transferred, block, block_size);
+			cpu_memcpy((char*)*pbuf+ofs_misalign+total_transferred, block, block_size);
 
 		total_transferred += block_size;
 	}

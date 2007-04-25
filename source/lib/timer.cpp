@@ -307,7 +307,7 @@ void timer_display_client_totals()
 		double sum;
 #if TIMER_USE_RAW_TICKS
 # if CPU_IA32
-		sum = tc->sum / cpu_freq;
+		sum = tc->sum / cpu_clockFrequency();
 # else
 #  error "port"
 # endif

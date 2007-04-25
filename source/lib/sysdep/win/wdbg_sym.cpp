@@ -34,7 +34,7 @@
 #include "lib/app_hooks.h"
 #include "lib/path_util.h"
 #if CPU_IA32
-# include "lib/sysdep/ia32.h"
+# include "lib/sysdep/ia32/ia32.h"
 #endif
 #include "win_internal.h"
 
@@ -369,7 +369,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		// compiler-generated prolog code trashes some registers.
 
 #if CPU_IA32
-		ia32_get_current_context(&context);
+		ia32_asm_get_current_context(&context);
 #else
 		// preferred implementation (was imported during module init)
 		if(pRtlCaptureContext)

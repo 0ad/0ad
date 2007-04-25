@@ -140,10 +140,19 @@ int stat(const char* fn, struct stat* s)
 */
 
 
-int mkdir(const char* path, mode_t)
+#if !HAVE_MKDIR
+
+int mkdir(const char* path, mode_t UNUSED(mode))
 {
-	return CreateDirectory(path, 0)? 0 : -1;
+	if(!CreateDirectory(path, (LPSECURITY_ATTRIBUTES)NULL))
+	{
+		return -1;
+	}
+
+	return 0;
 }
+
+#endif	// #if !HAVE_MKDIR
 
 
 //-----------------------------------------------------------------------------

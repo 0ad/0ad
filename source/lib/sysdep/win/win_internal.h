@@ -430,6 +430,10 @@ extern int win_is_locked(uint idx);
 //   cope with split string literals (e.g. "ab" "c"). that disqualifies
 //   it, since we want to hide the section name behind a macro, which
 //   would require the abovementioned merging.
+
+// note: the purpose of pre-libc init (with the resulting requirement that
+// no CRT functions be used during init!) is to allow the use of the
+// initialized module in static ctors.
 #define SECTION_PRE_LIBC(group)    data_seg(".LIB$C" #group)
 #define SECTION_PRE_MAIN(group)    data_seg(".LIB$I" #group)
 #define SECTION_POST_ATEXIT(group) data_seg(".LIB$T" #group)

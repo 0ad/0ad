@@ -70,12 +70,13 @@ extern void calc_fps(void);
 // 
 // note that overflow isn't an issue either way (63 bit cycle counts
 // at 10 GHz cover intervals of 29 years).
-#define TIMER_USE_RAW_TICKS 1
-#if TIMER_USE_RAW_TICKS
+#if CPU_IA32
+# define TIMER_USE_RDTSC 1
 typedef i64 TimerUnit;
 #else
+# define TIMER_USE_RDTSC 0
 typedef double TimerUnit;
-#endif
+#endif	// #if CPU_IA32
 
 // opaque - do not access its fields!
 // note: must be defined here because clients instantiate them;
@@ -192,9 +193,8 @@ Example usage:
 #define TIMER_END(description) }
 
 
-#if TIMER_USE_RAW_TICKS
+#if TIMER_USE_RDTSC
 
-#if CPU_IA32
 // fast, not usable as wall-clock (http://www.gamedev.net/reference/programming/features/timing)
 class TimerRdtsc
 {
@@ -205,9 +205,6 @@ public:
 		return ia32_rdtsc();
 	}
 };
-#else
-# error "port"
-#endif	// CPU_IA32
 
 #else
 
@@ -221,7 +218,7 @@ public:
 	}
 };
 
-#endif	// TIMER_USE_RAW_TICKS
+#endif	// TIMER_USE_RDTSC
 
 
 // used via TIMER_ACCRUE

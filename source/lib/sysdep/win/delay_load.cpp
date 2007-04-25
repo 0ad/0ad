@@ -26,6 +26,7 @@
 #include "delay_load.h"
 
 #include "win_internal.h"
+#include "lib/sysdep/cpu.h"
 
 
 #define _DELAY_IMP_VER  2
@@ -261,7 +262,7 @@ PinhFromImageBase(HMODULE hmod) {
 
 static inline void WINAPI
 OverlayIAT(PImgThunkData pitdDst, PCImgThunkData pitdSrc) {
-    memcpy2(pitdDst, pitdSrc, CountOfImports(pitdDst) * sizeof IMAGE_THUNK_DATA);
+    cpu_memcpy(pitdDst, pitdSrc, CountOfImports(pitdDst) * sizeof IMAGE_THUNK_DATA);
     }
 
 static inline DWORD WINAPI

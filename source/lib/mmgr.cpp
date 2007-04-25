@@ -1224,7 +1224,7 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 	// old_size should only be non-zero if the Alloc security checks all passed
 	// If the old buffer was actually zero bytes large, do nothing :P
 	if (old_size && ret)
-		memcpy2(ret, user_p, MIN(old_size, user_size));
+		cpu_memcpy(ret, user_p, MIN(old_size, user_size));
 
 	if(user_p)
 		free_dbg(user_p, AT_FREE, file,line,func, stack_frames+1);

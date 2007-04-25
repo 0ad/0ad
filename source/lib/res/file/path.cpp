@@ -262,7 +262,7 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 		DEBUG_WARN_ERR(ERR::NO_MEM);
 		return 0;
 	}
-	memcpy2((void*)unique_fn, P_fn, fn_len);
+	cpu_memcpy((void*)unique_fn, P_fn, fn_len);
 	((char*)unique_fn)[fn_len] = '\0';
 
 	atom_map.insert(unique_fn, unique_fn);

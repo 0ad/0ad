@@ -319,6 +319,13 @@
 # define HAVE_STRDUP 0
 #endif
 
+// emulation needed on VC8 because this function is "deprecated"
+#define HAVE_MKDIR 1
+#if MSC_VERSION > 800
+# undef  HAVE_MKDIR
+# define HAVE_MKDIR 0
+#endif
+
 // rint*, fminf, fpclassify (too few/diverse to make separate HAVE_ for each)
 #define HAVE_C99_MATH 0
 #if HAVE_C99

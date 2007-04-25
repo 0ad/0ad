@@ -27,30 +27,13 @@
 #error "including ia32.h without CPU_IA32=1"
 #endif
 
-// some of these are implemented in asm, so make sure name mangling is
-// disabled.
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "ia32_asm.h"
+#include "ia32_memcpy.h"
 
 
 // call before any of the following functions
 extern void ia32_init();
 
-
-//
-// fast implementations of some sysdep.h functions; see documentation there
-//
-
-extern float ia32_rintf(float f);
-extern double ia32_rint(double f);
-
-extern float ia32_fminf(float f1, float f2);
-extern float ia32_fmaxf(float f1, float f2);
-
-extern i32 ia32_i32_from_float(float f);
-extern i32 ia32_i32_from_double(double d);
-extern i64 ia32_i64_from_double(double d);
 
 // fpclassify return values
 #define IA32_FP_NAN       0x0100
@@ -58,12 +41,6 @@ extern i64 ia32_i64_from_double(double d);
 #define IA32_FP_INFINITE  (IA32_FP_NAN | IA32_FP_NORMAL)
 #define IA32_FP_ZERO      0x4000
 #define IA32_FP_SUBNORMAL (IA32_FP_NORMAL | IA32_FP_ZERO)
-
-extern uint ia32_fpclassify(double d);
-extern uint ia32_fpclassifyf(float f);
-
-extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);	// asm
-
 
 // FPU control word
 // .. Precision Control:
@@ -84,19 +61,31 @@ extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);	// asm
 #define IA32_EM_UNDERFLOW  BIT(4)
 #define IA32_EM_INEXACT    BIT(5)
 
-extern uint ia32_control87(uint new_val, uint mask);	// asm
 
 
-extern u64 ia32_rdtsc_edx_eax(void);
+extern void ia32_mfence();
+extern void ia32_serialize();
+
+
 extern u64 ia32_rdtsc_safe(void);
 #if CONFIG_RETURN64_EDX_EAX
-# define ia32_rdtsc ia32_rdtsc_edx_eax
+# define ia32_rdtsc ia32_asm_rdtsc_edx_eax
 #else
 # define ia32_rdtsc ia32_rdtsc_safe
 #endif
 
 extern void ia32_debug_break(void);
 
+
+// order in which registers are stored in CPUID regs array
+// (do not change! brand string relies on this ordering)
+enum IA32Regs
+{
+	EAX,
+	EBX,
+	ECX,
+	EDX
+};
 
 // CPU capability flags (128 bits)
 // do not change the order!
@@ -127,19 +116,6 @@ enum IA32Cap
 // indicate if the CPU supports the indicated cap.
 extern bool ia32_cap(IA32Cap cap);
 
-
-extern void ia32_get_cpu_info(void);
-
-
-//-----------------------------------------------------------------------------
-// internal use only
-
-// write the current execution state (e.g. all register values) into
-// (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
-extern void ia32_get_current_context(void* pcontext);
-
-extern void ia32_asm_init();
-
 // checks if there is an IA-32 CALL instruction right before ret_addr.
 // returns INFO::OK if so and ERR::FAIL if not.
 // also attempts to determine the call target. if that is possible
@@ -149,23 +125,13 @@ extern void ia32_asm_init();
 // this is useful for walking the stack manually.
 extern LibError ia32_get_call_target(void* ret_addr, void** target);
 
-// order in which registers are stored in regs array
-// (do not change! brand string relies on this ordering)
-enum IA32Regs
-{
-	EAX,
-	EBX,
-	ECX,
-	EDX
-};
 
-// try to call the specified CPUID sub-function. returns true on success or
-// false on failure (i.e. CPUID or the specific function not supported).
-// returns eax, ebx, ecx, edx registers in above order.
-extern bool ia32_cpuid(u32 func, u32* regs);
+extern const char* ia32_identifierString();
+extern int ia32_isThrottlingPossible();
+extern double ia32_clockFrequency();
 
-#ifdef __cplusplus
-}
-#endif
+extern uint ia32_logicalPerPackage();
+extern uint ia32_coresPerPackage();
+extern uint ia32_numPackages();
 
 #endif	// #ifndef IA32_H

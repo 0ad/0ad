@@ -400,9 +400,9 @@ void CMiniMap::Draw()
 			if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
 				// Use the player colour
 				const SPlayerColour& colour = entity->GetPlayer()->GetColour();
-				v.r = i32_from_float(colour.r*255.f);
-				v.g = i32_from_float(colour.g*255.f);
-				v.b = i32_from_float(colour.b*255.f);
+				v.r = cpu_i32_from_float(colour.r*255.f);
+				v.g = cpu_i32_from_float(colour.g*255.f);
+				v.b = cpu_i32_from_float(colour.b*255.f);
 				v.a = 255;
 			}
 			else {

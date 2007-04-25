@@ -31,147 +31,81 @@
 #include "lib/posix/posix_pthread.h"
 #include "lib/lib.h"
 #include "lib/timer.h"
-#include "cpu.h"
-
-// HACK (see call to wtime_reset_impl)
-#if OS_WIN
-#include "lib/sysdep/win/wposix/wtime_internal.h"
-#endif
+#include "lib/sysdep/cpu.h"
 
 #if !HAVE_MS_ASM && !HAVE_GNU_ASM
 #error ia32.cpp needs inline assembly support!
 #endif
 
-extern "C" {
-
-// set by ia32_init, referenced by ia32_memcpy (asm)
-extern u32 ia32_memcpy_size_mask = 0;
-
-void ia32_init()
-{
-	ia32_asm_init();
-
-	// memcpy init: set the mask that is applied to transfer size before
-	// choosing copy technique. this is the mechanism for disabling
-	// codepaths that aren't supported on all CPUs; see article for details.
-	// .. check for PREFETCHNTA and MOVNTQ support. these are part of the SSE
-	// instruction set, but also supported on older Athlons as part of
-	// the extended AMD MMX set.
-	if(ia32_cap(IA32_CAP_SSE) || ia32_cap(IA32_CAP_AMD_MMX_EXT))
-		ia32_memcpy_size_mask = ~0u;
-}
-
-
 //-----------------------------------------------------------------------------
-// fast implementations of some sysdep.h functions; see documentation there
-//-----------------------------------------------------------------------------
+// capability bits
 
-#if HAVE_MS_ASM
+// set by ia32_cap_init, referenced by ia32_cap
+// treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
+// keep in sync with enum CpuCap!
+static u32 ia32_caps[4];
 
-// notes:
-// - declspec naked is significantly faster: it avoids redundant
-//   store/load, even though it prevents inlining.
-// - stupid VC7 gets arguments wrong when using __declspec(naked);
-//   we need to use DWORD PTR and esp-relative addressing.
 
-// if on 64-bit systems, [esp+4] will have to change
-cassert(sizeof(int)*CHAR_BIT == 32);
-
-__declspec(naked) float ia32_rintf(float)
+static void ia32_cap_init()
 {
-	__asm fld		[esp+4]
-	__asm frndint
-	__asm ret
-}
-
-__declspec(naked) double ia32_rint(double)
-{
-	__asm fld		QWORD PTR [esp+4]
-	__asm frndint
-	__asm ret
-}
-
-__declspec(naked) float ia32_fminf(float, float)
-{
-	__asm
+	u32 regs[4];
+	if(ia32_asm_cpuid(1, regs))
 	{
-		fld		DWORD PTR [esp+4]
-		fld		DWORD PTR [esp+8]
-		fcomi	st(0), st(1)
-		fcmovnb	st(0), st(1)
-		fxch
-		fstp	st(0)
-		ret
+		ia32_caps[0] = regs[ECX];
+		ia32_caps[1] = regs[EDX];
+	}
+	if(ia32_asm_cpuid(0x80000001, regs))
+	{
+		ia32_caps[2] = regs[ECX];
+		ia32_caps[3] = regs[EDX];
 	}
 }
 
-__declspec(naked) float ia32_fmaxf(float, float)
+bool ia32_cap(IA32Cap cap)
 {
-	__asm
+	const uint tbl_idx = cap >> 5;
+	const uint bit_idx = cap & 0x1f;
+	if(tbl_idx > 3)
 	{
-		fld		DWORD PTR [esp+4]
-		fld		DWORD PTR [esp+8]
-		fcomi	st(0), st(1)
-		fcmovb	st(0), st(1)
-		fxch
-		fstp	st(0)
-		ret
+		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
+		return false;
 	}
+	return (ia32_caps[tbl_idx] & BIT(bit_idx)) != 0;
 }
 
-#endif	// HAVE_MS_ASM
 
-
-#if USE_IA32_FLOAT_TO_INT	// implies HAVE_MS_ASM
-
-// notes:
-// - PTR is necessary because __declspec(naked) means the assembler
-//   cannot refer to parameter argument type to get it right.
-// - to conform with the fallback implementation (a C cast), we need to
-//   end up with truncate/"chop" rounding. subtracting does the trick,
-//   assuming RC is the IA-32 default round-to-nearest mode.
-
-static const float round_bias = 0.4999999f;
-
-__declspec(naked) i32 ia32_i32_from_float(float f)
+// we only store enum Vendor rather than the string because that
+// is easier to compare.
+static enum Vendor
 {
-	UNUSED2(f);
-__asm{
-	push		eax
-	fld			DWORD PTR [esp+8]
-	fsub		[round_bias]
-	fistp		DWORD PTR [esp]
-	pop			eax
-	ret
-}}
+	UNKNOWN, INTEL, AMD
+}
+vendor = UNKNOWN;
 
-__declspec(naked) i32 ia32_i32_from_double(double d)
+static void detectVendor()
 {
-	UNUSED2(d);
-__asm{
-	push		eax
-	fld			QWORD PTR [esp+8]
-	fsub		[round_bias]
-	fistp		DWORD PTR [esp]
-	pop			eax
-	ret
-}}
+	u32 regs[4];
+	if(!ia32_asm_cpuid(0, regs))
+		return;
 
-__declspec(naked) i64 ia32_i64_from_double(double d)
-{
-	UNUSED2(d);
-__asm{
-	push		edx
-	push		eax
-	fld			QWORD PTR [esp+12]
-	fsub		[round_bias]
-	fistp		QWORD PTR [esp]
-	pop			eax
-	pop			edx
-	ret
-}}
+	// copy regs to string
+	// note: 'strange' ebx,edx,ecx reg order is due to ModR/M encoding order.
+	char vendor_str[13];
+	u32* vendor_str_u32 = (u32*)vendor_str;
+	vendor_str_u32[0] = regs[EBX];
+	vendor_str_u32[1] = regs[EDX];
+	vendor_str_u32[2] = regs[ECX];
+	vendor_str[12] = '\0';	// 0-terminate
 
-#endif	// USE_IA32_FLOAT_TO_INT
+	if(!strcmp(vendor_str, "AuthenticAMD"))
+		vendor = AMD;
+	else if(!strcmp(vendor_str, "GenuineIntel"))
+		vendor = INTEL;
+	else
+		DEBUG_WARN_ERR(ERR::CPU_UNKNOWN_VENDOR);
+}
+
+
 
 
 //-----------------------------------------------------------------------------
@@ -179,7 +113,7 @@ __asm{
 // this RDTSC implementation writes edx:eax to a temporary and returns that.
 // rationale: this insulates against changing compiler calling conventions,
 // at the cost of some efficiency.
-// use ia32_rdtsc_edx_eax instead if the return convention is known to be
+// use ia32_asm_rdtsc_edx_eax instead if the return convention is known to be
 // edx:eax (should be the case on all 32-bit x86).
 u64 ia32_rdtsc_safe()
 {
@@ -213,7 +147,7 @@ void ia32_debug_break()
 // (SIGTRAP) is most probably available if HAVE_GNU_ASM.
 // we include it for completeness, though.
 #elif HAVE_GNU_ASM
-	__asm__ __volatile__ ("mfence");
+	__asm__ __volatile__ ("int $3");
 #endif
 }
 
@@ -223,7 +157,7 @@ void ia32_debug_break()
 //-----------------------------------------------------------------------------
 
 // enforce strong memory ordering.
-void mfence()
+void ia32_mfence()
 {
 	// Pentium IV
 	if(ia32_cap(IA32_CAP_SSE2))
@@ -234,7 +168,7 @@ void mfence()
 #endif
 }
 
-void serialize()
+void ia32_serialize()
 {
 #if HAVE_MS_ASM
 	__asm cpuid
@@ -248,100 +182,37 @@ void serialize()
 // CPU / feature detect
 //-----------------------------------------------------------------------------
 
-bool ia32_cap(IA32Cap cap)
+// returned in edx by CPUID 0x80000007.
+enum AmdPowerNowFlags
 {
-	// treated as 128 bit field; order: std ecx, std edx, ext ecx, ext edx
-	// keep in sync with enum CpuCap!
-	static u32 caps[4];
-	ONCE(\
-		u32 regs[4];
-		if(ia32_cpuid(1, regs))\
-		{\
-			caps[0] = regs[ECX];\
-			caps[1] = regs[EDX];\
-		}\
-		if(ia32_cpuid(0x80000001, regs))\
-		{\
-			caps[2] = regs[ECX];\
-			caps[3] = regs[EDX];\
-		}\
-	);
-
-	const uint tbl_idx = cap >> 5;
-	const uint bit_idx = cap & 0x1f;
-	if(tbl_idx > 3)
-	{
-		debug_warn("cap invalid");
-		return false;
-	}
-	return (caps[tbl_idx] & BIT(bit_idx)) != 0;
-}
-
-
-
-
-
-// we only store enum Vendor rather than the string because that
-// is easier to compare.
-enum Vendor { UNKNOWN, INTEL, AMD };
-static Vendor vendor = UNKNOWN;
-
-
-
-enum MiscCpuCapBits
-{
-	// AMD PowerNow! flags (returned in edx by CPUID 0x80000007)
 	POWERNOW_FREQ_ID_CTRL = 2
 };
 
 
-
-static void get_cpu_vendor()
+const char* ia32_identifierString()
 {
-	u32 regs[4];
-	if(!ia32_cpuid(0, regs))
-		return;
+	// 3 calls x 4 registers x 4 bytes = 48
+	static char identifier_string[48+1] = "";
 
-	// copy regs to string
-	// note: 'strange' ebx,edx,ecx reg order is due to ModR/M encoding order.
-	char vendor_str[13];
-	u32* vendor_str_u32 = (u32*)vendor_str;
-	vendor_str_u32[0] = regs[EBX];
-	vendor_str_u32[1] = regs[EDX];
-	vendor_str_u32[2] = regs[ECX];
-	vendor_str[12] = '\0';	// 0-terminate
-
-	if(!strcmp(vendor_str, "AuthenticAMD"))
-		vendor = AMD;
-	else if(!strcmp(vendor_str, "GenuineIntel"))
-		vendor = INTEL;
-	else
-		debug_warn("unknown vendor");
-}
-
-
-static void get_cpu_type()
-{
 	// get processor signature
 	u32 regs[4];
-	if(!ia32_cpuid(1, regs))
-		debug_warn("cpuid 1 failed");
+	if(!ia32_asm_cpuid(1, regs))
+		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 	const uint model  = bits(regs[EAX], 4, 7);
 	const uint family = bits(regs[EAX], 8, 11);
 
 	// get brand string (if available)
-	// note: ia32_cpuid writes 4 u32s directly to cpu_type -
+	// note: ia32_asm_cpuid writes 4 u32s directly to identifier_string -
 	// be very careful with pointer arithmetic!
-	u32* cpu_type_u32 = (u32*)cpu_type;
+	u32* u32_string = (u32*)identifier_string;
 	bool have_brand_string = false;
-	if(ia32_cpuid(0x80000002, cpu_type_u32+0 ) &&
-	   ia32_cpuid(0x80000003, cpu_type_u32+4) &&
-	   ia32_cpuid(0x80000004, cpu_type_u32+8))
+	if(ia32_asm_cpuid(0x80000002, u32_string+0 ) &&
+	   ia32_asm_cpuid(0x80000003, u32_string+4) &&
+	   ia32_asm_cpuid(0x80000004, u32_string+8))
 		have_brand_string = true;
 
-
-	// note: cpu_type is guaranteed to hold 48+1 chars, since that's the
-	// length of the CPU brand string => we can safely copy short literals.
+	// note: we previously verified max_chars is long enough, so copying
+	// short literals into it is safe.
 
 	// fall back to manual detect of CPU type because either:
 	// - CPU doesn't support brand string (we use a flag to indicate this
@@ -349,7 +220,7 @@ static void get_cpu_type()
 	// - the brand string is useless, e.g. "Unknown". this happens on
 	//   some older boards whose BIOS reprograms the string for CPUs it
 	//   doesn't recognize.
-	if(!have_brand_string || strncmp(cpu_type, "Unknow", 6) == 0)
+	if(!have_brand_string || strncmp(identifier_string, "Unknow", 6) == 0)
 	{
 		if(vendor == AMD)
 		{
@@ -357,15 +228,15 @@ static void get_cpu_type()
 			if(family == 6)
 			{
 				if(model == 3 || model == 7)
-					SAFE_STRCPY(cpu_type, "AMD Duron");
+					SAFE_STRCPY(identifier_string, "AMD Duron");
 				else if(model <= 5)
-					SAFE_STRCPY(cpu_type, "AMD Athlon");
+					SAFE_STRCPY(identifier_string, "AMD Athlon");
 				else
 				{
 					if(ia32_cap(IA32_CAP_AMD_MP))
-						SAFE_STRCPY(cpu_type, "AMD Athlon MP");
+						SAFE_STRCPY(identifier_string, "AMD Athlon MP");
 					else
-						SAFE_STRCPY(cpu_type, "AMD Athlon XP");
+						SAFE_STRCPY(identifier_string, "AMD Athlon XP");
 				}
 			}
 		}
@@ -375,139 +246,60 @@ static void get_cpu_type()
 			if(family == 6)
 			{
 				if(model == 1)
-					SAFE_STRCPY(cpu_type, "Intel Pentium Pro");
+					SAFE_STRCPY(identifier_string, "Intel Pentium Pro");
 				else if(model == 3 || model == 5)
-					SAFE_STRCPY(cpu_type, "Intel Pentium II");
+					SAFE_STRCPY(identifier_string, "Intel Pentium II");
 				else if(model == 6)
-					SAFE_STRCPY(cpu_type, "Intel Celeron");	
+					SAFE_STRCPY(identifier_string, "Intel Celeron");	
 				else
-					SAFE_STRCPY(cpu_type, "Intel Pentium III");
+					SAFE_STRCPY(identifier_string, "Intel Pentium III");
 			}
 		}
 	}
-	// cpu_type already holds a valid brand string; pretty it up.
+	// identifier_string already holds a valid brand string; pretty it up.
 	else
 	{
 		// strip (tm) from Athlon string
-		if(!strncmp(cpu_type, "AMD Athlon(tm)", 14))
-			memmove(cpu_type+10, cpu_type+14, 35);
+		if(!strncmp(identifier_string, "AMD Athlon(tm)", 14))
+			memmove(identifier_string+10, identifier_string+14, 35);
 
 		// remove 2x (R) and CPU freq from P4 string
 		float freq;
 		// we can't use this because it isn't necessarily correct - the CPU
 		// may be overclocked. a variable must be passed, though, since
 		// scanf returns the number of fields actually stored.
-		if(sscanf(cpu_type, " Intel(R) Pentium(R) 4 CPU %fGHz", &freq) == 1)
-			SAFE_STRCPY(cpu_type, "Intel Pentium 4");
+		if(sscanf(identifier_string, " Intel(R) Pentium(R) 4 CPU %fGHz", &freq) == 1)
+			SAFE_STRCPY(identifier_string, "Intel Pentium 4");
 	}
+
+	return identifier_string;
 }
 
 
-//-----------------------------------------------------------------------------
-
-static uint log_id_bits;	// bit index; divides APIC ID into log and phys
-
-static const uint INVALID_ID = ~0u;
-static uint last_phys_id = INVALID_ID, last_log_id = INVALID_ID;
-static uint phys_ids = 0, log_ids = 0;
-
-// count # distinct physical and logical APIC IDs for get_cpu_count.
-// called on each OS-visible "CPU" by on_each_cpu.
-static void count_ids()
-{
-	// get APIC id
-	u32 regs[4];
-	if(!ia32_cpuid(1, regs))
-		debug_warn("cpuid 1 failed");
-	const uint id = bits(regs[EBX], 24, 31);
-
-	// partition into physical and logical ID
-	const uint phys_id = bits(id, 0, log_id_bits-1);
-	const uint log_id  = bits(id, log_id_bits, 7);
-
-	// note: APIC IDs are assigned sequentially, so we compare against the
-	// last one encountered.
-	if(last_phys_id != INVALID_ID && last_phys_id != phys_id)
-		cpus++;
-	if(last_log_id  != INVALID_ID && last_log_id  != log_id )
-		cpus++;
-	last_phys_id = phys_id;
-	last_log_id  = log_id;
-}
-
-
-// fix CPU count reported by OS (incorrect if HT active or multicore);
-// also separates it into cpu_ht_units and cpu_cores.
-static void get_cpu_count()
-{
-	debug_assert(cpus > 0 && "must know # 'CPU's (call OS-specific detect first)");
-
-	// get # "logical CPUs" per package (uniform over all packages).
-	// TFM is unclear but seems to imply this includes HT units *and* cores!
-	u32 regs[4];
-	if(!ia32_cpuid(1, regs))
-		debug_warn("ia32_cpuid(1) failed");
-	const uint log_cpu_per_package = bits(regs[EBX], 16, 23);
-	// .. and # cores
-	if(ia32_cpuid(4, regs))
-		cpu_cores = bits(regs[EBX], 26, 31)+1;
-	else
-		cpu_cores = 1;
-
-	// if HT is active (enabled in BIOS and OS), we have a problem:
-	// OSes (Windows at least) report # CPUs as packages * cores * HT_units.
-	// there is no direct way to determine if HT is actually enabled,
-	// so if it is supported, we have to examine all APIC IDs and
-	// figure out what kind of "CPU" each one is. *sigh*
-	//
-	// note: we don't check if it's Intel and P4 or above - HT may be
-	// supported on other CPUs in future. all processors should set this
-	// feature bit correctly, so it's not a problem.
-	if(ia32_cap(IA32_CAP_HT))
-	{
-		log_id_bits = log2(log_cpu_per_package);	// see above
-		last_phys_id = last_log_id = INVALID_ID;
-		phys_ids = log_ids = 0;
-		if(sys_on_each_cpu(count_ids) == 0)
-		{
-			cpus         = phys_ids;
-			cpu_ht_units = log_ids / cpu_cores;
-			return;	// this is authoritative
-		}
-		// OS apparently doesn't support CPU affinity.
-		// HT might be disabled, but return # units anyway.
-		else
-			cpu_ht_units = log_cpu_per_package / cpu_cores;
-	}
-	// not HT-capable; return 1 to allow total = cpus * HT_units * cores.
-	else
-		cpu_ht_units = 1;
-
-	cpus /= cpu_cores;
-}
-
-
-
-
-static void check_for_speedstep()
+int ia32_isThrottlingPossible()
 {
 	if(vendor == INTEL)
 	{
 		if(ia32_cap(IA32_CAP_EST))
-			cpu_speedstep = 1;
+			return 1;
 	}
 	else if(vendor == AMD)
 	{
 		u32 regs[4];
-		if(ia32_cpuid(0x80000007, regs))
+		if(ia32_asm_cpuid(0x80000007, regs))
+		{
 			if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
-				cpu_speedstep = 1;
+				return 1;
+		}
 	}
+
+	return 0;	// pretty much authoritative, so don't return -1.
 }
 
-
-static void measure_cpu_freq()
+double ia32_clockFrequency()
 {
+	double clock_frequency = 0.0;
+
 	// set max priority, to reduce interference while measuring.
 	int old_policy; static sched_param old_param;	// (static => 0-init)
 	pthread_getschedparam(pthread_self(), &old_policy, &old_param);
@@ -582,34 +374,140 @@ static void measure_cpu_freq()
 		const int lo = num_samples/4, hi = 3*num_samples/4;
 		for(i = lo; i < hi; i++)
 			sum += samples[i];
-		cpu_freq = sum / (hi-lo);
+		clock_frequency = sum / (hi-lo);
 
 	}
 	// else: TSC not available, can't measure; cpu_freq remains unchanged.
 
 	// restore previous policy and priority.
 	pthread_setschedparam(pthread_self(), old_policy, &old_param);
+
+	return clock_frequency;
 }
 
 
 
-void ia32_get_cpu_info()
+// (these are uniform over all packages)
+
+
+static uint logicalPerPackage()
 {
-	get_cpu_vendor();
-	get_cpu_type();
-	get_cpu_count();
-	check_for_speedstep();
-	measure_cpu_freq();
+	// not Hyperthreading capable
+	if(!ia32_cap(IA32_CAP_HT))
+		return 1;
 
-	// HACK: on Windows, the HRT makes its final implementation choice
-	// in the first calibrate call where cpu info is available.
-	// call wtime_reset_impl here to have that happen now,
-	// so app code isn't surprised by a timer change, although the HRT
-	// does try to keep the timer continuous.
-#if OS_WIN
-	wtime_reset_impl();
-#endif
+	u32 regs[4];
+	if(!ia32_asm_cpuid(1, regs))
+		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
+	const uint logical_per_package = bits(regs[EBX], 16, 23);
+	return logical_per_package;
 }
+
+static uint coresPerPackage()
+{
+	// single core
+	u32 regs[4];
+	if(!ia32_asm_cpuid(4, regs))
+		return 1;
+
+	const uint cores_per_package = bits(regs[EAX], 26, 31)+1;
+	return cores_per_package;
+}
+
+
+typedef std::vector<u8> Ids;
+typedef std::set<u8> IdSet;
+
+static void storeApicId(void* param)
+{
+	u32 regs[4];
+	if(!ia32_asm_cpuid(1, regs))
+		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
+	const uint apic_id = bits(regs[EBX], 24, 31);
+
+	Ids* apic_ids = (Ids*)param;
+	apic_ids->push_back(apic_id);
+}
+
+static void extractFieldsIntoSet(const Ids& apic_ids, uint& bit_pos, uint num_values, IdSet& ids)
+{
+	const uint id_bits = log2(num_values);
+	if(id_bits == 0)
+		return;
+
+	const uint mask = bit_mask(id_bits);
+
+	for(size_t i = 0; i < apic_ids.size(); i++)
+	{
+		const u8 apic_id = apic_ids[i];
+		const u8 field = (apic_id >> bit_pos) & mask;
+		ids.insert(field);
+	}
+
+	bit_pos += id_bits;
+}
+
+static int num_packages = -1;	// i.e. sockets; > 1 => true SMP system
+static int cores_per_package = -1;
+static int logical_per_package = -1;	// hyperthreading units
+
+// note: even though APIC IDs are assigned sequentially, we can't make any
+// assumptions about the values/ordering because we get them according to
+// the CPU affinity mask, which is unknown.
+
+// HT and dual cores may be disabled, so see how many are actually enabled.
+// (examine each APIC ID to determine the kind of CPU)
+static void detectActualTopology()
+{
+	Ids apic_ids;
+	if(cpu_callByEachCPU(storeApicId, &apic_ids) != INFO::OK)
+		return;
+	std::sort(apic_ids.begin(), apic_ids.end());
+	debug_assert(std::unique(apic_ids.begin(), apic_ids.end()) == apic_ids.end());
+
+	const uint max_cores_per_package = coresPerPackage();
+	const uint logical_per_core = logicalPerPackage() / max_cores_per_package;
+
+	// extract values from all 3 fields into separate sets
+	// (we want to know how many logical CPUs per core, cores per package and packages exist)
+	uint bit_pos = 0;
+	IdSet logical_ids;
+	extractFieldsIntoSet(apic_ids, bit_pos, logical_per_core, logical_ids);
+	IdSet core_ids;
+	extractFieldsIntoSet(apic_ids, bit_pos, max_cores_per_package, core_ids);
+	IdSet package_ids;
+	extractFieldsIntoSet(apic_ids, bit_pos, 0xFF, core_ids);
+
+	num_packages = std::max((int)package_ids.size(), 1);
+	cores_per_package = std::max((int)core_ids.size(), 1);
+	logical_per_package = std::max((int)logical_ids.size(), 1) * cores_per_package;
+}
+
+
+uint ia32_logicalPerPackage()
+{
+#ifndef NDEBUG
+	debug_assert(logical_per_package != -1);
+#endif
+	return (uint)logical_per_package;
+}
+
+uint ia32_coresPerPackage()
+{
+#ifndef NDEBUG
+	debug_assert(cores_per_package != -1);
+#endif
+	return (uint)cores_per_package;
+}
+
+uint ia32_numPackages()
+{
+#ifndef NDEBUG
+	debug_assert(num_packages != -1);
+#endif
+	return (uint)num_packages;
+}
+
 
 //-----------------------------------------------------------------------------
 
@@ -676,4 +574,16 @@ LibError ia32_get_call_target(void* ret_addr, void** target)
 	WARN_RETURN(ERR::CPU_UNKNOWN_OPCODE);
 }
 
-}	// extern "C"
+
+//-----------------------------------------------------------------------------
+
+void ia32_init()
+{
+	ia32_asm_cpuid_init();
+
+	ia32_cap_init();
+
+	detectVendor();
+
+	detectActualTopology();
+}

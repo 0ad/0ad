@@ -40,7 +40,7 @@
 # include "lib/sysdep/unix/unix.h"
 #endif
 #if CPU_IA32
-#include "ia32.h"
+#include "ia32/ia32.h"
 #endif
 
 
@@ -109,17 +109,17 @@ extern void* alloca(size_t size);
 #if !HAVE_C99_MATH
 // .. fast IA-32 versions
 # if CPU_IA32
-#  define rintf ia32_rintf
-#  define rint ia32_rint
-#  define fminf ia32_fminf
-#  define fmaxf ia32_fmaxf
+#  define rintf ia32_asm_rintf
+#  define rint ia32_asm_rint
+#  define fminf ia32_asm_fminf
+#  define fmaxf ia32_asm_fmaxf
 
 #  define FP_NAN       IA32_FP_NAN
 #  define FP_NORMAL    IA32_FP_NORMAL
 #  define FP_INFINITE  (FP_NAN | FP_NORMAL)
 #  define FP_ZERO      IA32_FP_ZERO
 #  define FP_SUBNORMAL (FP_NORMAL | FP_ZERO)
-#  define fpclassify(x) ( (sizeof(x) == sizeof(float))? ia32_fpclassifyf(x) : ia32_fpclassify(x) )
+#  define fpclassify(x) ( (sizeof(x) == sizeof(float))? ia32_asm_fpclassifyf(x) : ia32_asm_fpclassify(x) )
 // .. portable C emulation
 # else
    extern float rintf(float f);
@@ -152,6 +152,7 @@ extern void* alloca(size_t size);
 #  define isnormal std::isnormal
 # endif
 #endif	// HAVE_C99_MATH
+
 
 // C99-like restrict (non-standard in C++, but widely supported in various forms).
 //
@@ -195,6 +196,7 @@ extern void* alloca(size_t size);
 # define RESTRICT
 #endif
 
+
 // C99 __func__
 // .. already available; need do nothing
 #if HAVE_C99
@@ -205,11 +207,6 @@ extern void* alloca(size_t size);
 #else
 # define __func__ "(unknown)"
 #endif
-
-#if !HAVE_STRDUP
-extern char* strdup(const char* str);
-extern wchar_t* wcsdup(const wchar_t* str);
-#endif	// #if !HAVE_STRDUP
 
 
 //-----------------------------------------------------------------------------
@@ -309,41 +306,7 @@ extern LibError sys_get_executable_name(char* n_path, size_t buf_size);
 // PATH_MAX chars.
 extern LibError sys_pick_directory(char* n_path, size_t buf_size);
 
-// execute the specified function once on each CPU.
-// this includes logical HT units and proceeds serially (function
-// is never re-entered) in order of increasing OS CPU ID.
-// note: implemented by switching thread affinity masks and forcing
-// a reschedule, which is apparently not possible with POSIX.
-//
-// may fail if e.g. OS is preventing us from running on some CPUs.
-// called from ia32.cpp get_cpu_count.
-extern LibError sys_on_each_cpu(void (*cb)());
 
-
-// drop-in replacement for libc memcpy(). only requires CPU support for
-// MMX (by now universal). highly optimized for Athlon and Pentium III
-// microarchitectures; significantly outperforms VC7.1 memcpy and memcpy_amd.
-// for details, see accompanying article.
-#ifdef CPU_IA32
-# define memcpy2 ia32_memcpy
-extern void* ia32_memcpy(void* dst, const void* src, size_t nbytes);
-#else
-# define memcpy2 memcpy
-#endif
-
-// i32_from_float et al: convert float to int. much faster than _ftol2,
-// which would normally be used by (int) casts.
-// .. fast IA-32 version: only used in some cases; see macro definition.
-#if USE_IA32_FLOAT_TO_INT
-# define i32_from_float ia32_i32_from_float
-# define i32_from_double ia32_i32_from_double
-# define i64_from_double ia32_i64_from_double
-// .. portable C emulation
-#else
-extern i32 i32_from_float(float);
-extern i32 i32_from_double(double);
-extern i64 i64_from_double(double);
-#endif
 
 
 // return the largest sector size [bytes] of any storage medium
