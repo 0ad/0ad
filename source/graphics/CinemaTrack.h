@@ -133,7 +133,7 @@ public:
 
 private:
 	
-	bool m_Active, m_DrawCurrentSpline, m_DrawLines;
+	bool m_Active, m_DrawCurrentSpline, m_DrawLines, m_ValidCurrent;
 	std::map<CStrW, CCinemaPath>::iterator m_CurrentPath;
 	std::map<CStrW, CCinemaPath> m_Paths;
 	std::list<CCinemaPath> m_PathQueue;

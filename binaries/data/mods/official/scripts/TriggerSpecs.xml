@@ -14,7 +14,7 @@
 			</Parameter>
 			<Parameter name ="awesome">
 				<Window type="choice" position ="0,0" size="80, 20"/>
-				<Choices>holy,crap,comma,seperated,choices</Choices>
+				<Choices>holy,crap,comma,separated,choices</Choices>
 				<ParameterOrder>0</ParameterOrder>
 			</Parameter>
 		</WindowRow>
@@ -72,6 +72,30 @@
 				<Window type="text" position = "5,0" size = "80, 20"/>
 				<InputType>int</InputType>
 				<ParameterOrder>3</ParameterOrder>
+			</Parameter>
+
+		</WindowRow>
+	</Condition>
+
+	<Condition name = "Significant entities" function = "trigPlayerSigEntities" funcParameters = "1">
+		<WindowRow>
+			
+			<Parameter name = "Player">
+				<Window type="choice" position = "0,0" size = "80, 20"/>
+				<Choices>1,2,3,4,5,6</Choices>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+		
+			<Parameter name = "Operator">
+				<Window type="choice" position = "5,0" size = "80, 20"/>
+				<Choices>&lt;,&lt;=,==,!=,&gt;=,&gt;</Choices>
+				<ParameterOrder>1</ParameterOrder>
+			</Parameter>
+
+			<Parameter name = "Value">
+				<Window type="text" position = "5,0" size = "80, 20"/>
+				<InputType>int</InputType>
+				<ParameterOrder>2</ParameterOrder>
 			</Parameter>
 
 		</WindowRow>

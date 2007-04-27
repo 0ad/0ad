@@ -183,7 +183,7 @@ JSBool getPlayerUnitCount( JSContext* cx, JSObject*, uint argc, jsval* argv, jsv
 	CStrW unitName = ToPrimitive<CStrW>( argv[1] );
 
 	unitCount = g_EntityManager.getPlayerUnitCount((size_t)playerNum, unitName);
-	*rval = ToJSVal<int>( unitCount );
+	*rval = ToJSVal( unitCount );
 	return JS_TRUE;
 }
 
@@ -758,6 +758,13 @@ JSBool endGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 	return JS_TRUE;
 }
 
+JSBool getGameMode(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+{
+	JSU_REQUIRE_NO_PARAMS();
+
+	*rval = ToJSVal( g_GameAttributes.GetGameMode() );
+	return JS_TRUE;
+}
 
 //-----------------------------------------------------------------------------
 // Internationalization
@@ -1392,6 +1399,8 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC(removeFromFormation, removeFromFormation, 1)
 	JS_FUNC(lockEntityFormation, lockEntityFormation, 1)
 	JS_FUNC(isFormationLocked, isFormationLocked, 1)
+
+	JS_FUNC(registerTrigger, registerTrigger, 1)
 	
 	//Tech
 	JS_FUNC(getTechnology, getTechnology, 2)
@@ -1444,6 +1453,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	// Game Setup
 	JS_FUNC(startGame, startGame, 0)
 	JS_FUNC(endGame, endGame, 0)
+	JS_FUNC(getGameMode, getGameMode, 0)
 	JS_FUNC(createClient, createClient, 0)
 	JS_FUNC(createServer, createServer, 0)
 

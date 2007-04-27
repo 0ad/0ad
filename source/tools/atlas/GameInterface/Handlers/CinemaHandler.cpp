@@ -139,7 +139,6 @@ MESSAGEHANDLER(CinemaEvent)
 {
 	CCinemaManager* manager = g_Game->GetView()->GetCinema();
 	
-
 	if ( msg->mode == eCinemaEventMode::SMOOTH )
 		manager->OverridePath(*msg->path);	
 	else if ( msg->mode == eCinemaEventMode::IMMEDIATE_PATH )

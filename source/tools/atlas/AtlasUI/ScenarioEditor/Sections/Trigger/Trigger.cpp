@@ -875,6 +875,8 @@ public:
 			return;
 		DestroyChildren();
 		m_DependentStatus = NO_VIEW;
+		m_Sidebar->m_ConditionPage->m_List->DeleteAllItems();
+		m_Sidebar->m_EffectPage->m_List->DeleteAllItems();
 	}
 	
 	TriggerSidebar* m_Sidebar;
@@ -931,18 +933,12 @@ void TriggerTreeCtrl::onClick(wxMouseEvent& evt)
 
 void TriggerListCtrl::onClick(wxMouseEvent& evt)
 {
+	evt.Skip();
 	if ( m_Condition )
 	{
-		//if ( m_Sidebar->m_TriggerBottom->GetDependentStatus() != TriggerBottomBar::CONDITION_VIEW )
+		if ( m_Sidebar->m_SelectedCond < 0 )
+			return;
 		
-		/*if ( m_Sidebar->m_ConditionPage->m_List->GetItemText(m_Sidebar->m_SelectedCond) 
-													== m_Sidebar->m_LogicBlockEndString )
-		{
-			m_Sidebar->m_TriggerBottom->ToLogicEndView();
-			
-			if ( m_Sidebar->m_SelectedCond != -1 )
-				m_Sidebar->m_TriggerBottom->FillLogicEndData();
-		}*/
 		if ( m_Sidebar->m_ConditionPage->m_List->GetItemText(m_Sidebar->m_SelectedCond) 
 													== m_Sidebar->m_LogicBlockEndString )
 		{
@@ -952,25 +948,21 @@ void TriggerListCtrl::onClick(wxMouseEvent& evt)
 													== m_Sidebar->m_LogicBlockString  )
 		{
 			m_Sidebar->m_TriggerBottom->ToLogicView();
-
-			if ( m_Sidebar->m_SelectedCond != -1 )
-				m_Sidebar->m_TriggerBottom->FillLogicData();
+			m_Sidebar->m_TriggerBottom->FillLogicData();
 		}
 		else
 		{
 			m_Sidebar->m_TriggerBottom->ToConditionView();
-			if ( m_Sidebar->m_SelectedCond != -1 )
-				m_Sidebar->m_TriggerBottom->FillConditionData();
+			m_Sidebar->m_TriggerBottom->FillConditionData();
 		}
 	}
 	else
 	{
-		//if ( m_Sidebar->m_TriggerBottom->GetDependentStatus() != TriggerBottomBar::EFFECT_VIEW )
-			m_Sidebar->m_TriggerBottom->ToEffectView();
+		m_Sidebar->m_TriggerBottom->ToEffectView();
 		if ( m_Sidebar->m_SelectedEffect != -1 )
 			m_Sidebar->m_TriggerBottom->FillEffectData();
 	}
-	evt.Skip();
+	
 }
 
 

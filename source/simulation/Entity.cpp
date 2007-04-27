@@ -260,6 +260,8 @@ void CEntity::kill(bool keepActor)
 	g_EntityManager.m_refd[me.m_handle] = false; // refd must be made false when DESTROYED is set
 	g_EntityManager.SetDeath(true); // remember that a unit died this frame
 
+	g_EntityManager.removeUnitCount(this);	//Decrease population
+
 	// If we have a death animation and want to keep the actor, play that animation
 	if( keepActor && m_actor && 
 		m_actor->HasAnimation( "death" ) )

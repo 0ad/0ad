@@ -142,7 +142,7 @@ public:
 		qGetCameraInfo qry;
 		qry.Post();
 		sCameraInfo info = qry.info;
-		m_Sidebar->UpdateNode(info.pX, info.pY, info.pZ, info.rX, info.rY, info.rZ, -1.f);
+		m_Sidebar->UpdateNode(info.pX, info.pY, info.pZ, info.rX, info.rY, info.rZ, true, -1.f);
 	}
 	void GotoNode()
 	{
@@ -296,7 +296,7 @@ public:
 	{
 		m_Sidebar->UpdateNode( m_NodePositionX->GetValue(), m_NodePositionY->GetValue(), 
 							   m_NodePositionZ->GetValue(), m_NodeRotationX->GetValue(), 
-							   m_NodeRotationY->GetValue(), m_NodeRotationZ->GetValue(), m_OldT);
+							   m_NodeRotationY->GetValue(), m_NodeRotationZ->GetValue(), false, m_OldT);
 	}
 
 	void OnText(wxCommandEvent& WXUNUSED(event))
@@ -304,7 +304,7 @@ public:
 		m_OldT = CinemaTextFloat(*m_NodeT, 2, 0.f, 100.f, m_OldT);
 		m_Sidebar->UpdateNode( m_NodePositionX->GetValue(), m_NodePositionY->GetValue(), 
 							   m_NodePositionZ->GetValue(), m_NodeRotationX->GetValue(), 
-							   m_NodeRotationY->GetValue(), m_NodeRotationZ->GetValue(), m_OldT );
+							   m_NodeRotationY->GetValue(), m_NodeRotationZ->GetValue(), false, m_OldT );
 	}
 
 	void UpdateRotationSpinners(int x, int y, int z)
@@ -552,7 +552,7 @@ public:
 		m_Timer.SetOwner(this);
 	}
 	
-	void Update(float interval)
+	void Update()
 	{
 		if ( m_Sidebar->m_SelectedPath < 0 )
 			return;
@@ -563,7 +563,18 @@ public:
 	void OnTick(wxTimerEvent& WXUNUSED(event))
 	{
 		m_NewTime = m_HighResTimer.GetTime();
-		Update(m_NewTime - m_OldTime);
+		m_Sidebar->m_TimeElapsed += m_NewTime - m_OldTime;
+		
+		if ( m_Sidebar->m_TimeElapsed >= m_Sidebar->GetCurrentPath()->duration )
+		{
+			m_Timer.Stop();
+			m_Sidebar->m_TimeElapsed = 0.0f;
+			POST_MESSAGE(CinemaEvent, 
+				( *m_Sidebar->GetCurrentPath()->name, eCinemaEventMode::IMMEDIATE_PATH, 0.0f,
+				m_Sidebar->m_InfoBox->GetDrawCurrent(), m_Sidebar->m_InfoBox->GetDrawLines()) );
+		}
+
+		Update();
 		m_OldTime = m_NewTime;
 	}
 	void OnScroll(wxScrollEvent& WXUNUSED(event));
@@ -633,21 +644,31 @@ public:
 	}
 	void OnPrevious(wxCommandEvent& WXUNUSED(event))
 	{
+		if ( m_Parent->m_SelectedPath < 0 )
+			return;
+		
 		m_Parent->m_PathSlider->m_Timer.Stop();
 		m_Parent->m_Playing = false;
-		
-		if ( m_Parent->m_SelectedPath > 0)
+		float timeSet = 0.0f;
+		std::vector<sCinemaSplineNode> nodes = *m_Parent->GetCurrentPath()->nodes;
+
+		for ( size_t i = 0; i < nodes.size(); ++i )
 		{
-			m_Parent->m_TimeElapsed = 0.0f;
-			POST_MESSAGE(CinemaEvent, 
-				( m_Parent->GetSelectedPathName(), eCinemaEventMode::IMMEDIATE_PATH, 0.0f, 
-				m_Parent->m_InfoBox->GetDrawCurrent(), m_Parent->m_InfoBox->GetDrawLines()) );
+			timeSet += nodes[i].t;
+			if ( fabs((timeSet - m_Parent->m_TimeElapsed)) < .0001f )
+			{
+				timeSet -= nodes[i].t;
+				break;
+			}
 		}
-		m_Parent->m_PathSlider->Update(0);
+
+		m_Parent->m_TimeElapsed = timeSet;
+		POST_MESSAGE(CinemaEvent, 
+			( m_Parent->GetSelectedPathName(), eCinemaEventMode::IMMEDIATE_PATH, timeSet, 
+			m_Parent->m_InfoBox->GetDrawCurrent(), m_Parent->m_InfoBox->GetDrawLines()) );
+
+		m_Parent->m_PathSlider->Update();
 	}
-	//void OnRewind(wxCommandEvent& event)
-	
-	//void OnReverse(wxCommandEvent& event)
 	void OnStop(wxCommandEvent& WXUNUSED(event))
 	{
 		if ( m_Parent->m_SelectedPath < 0)
@@ -656,7 +677,7 @@ public:
 		m_Parent->m_PathSlider->m_Timer.Stop();
 		m_Parent->m_Playing = false;
 		m_Parent->m_TimeElapsed = 0.0f;
-		m_Parent->m_PathSlider->Update(0.0f);
+		m_Parent->m_PathSlider->Update();
 
 		POST_MESSAGE(CinemaEvent,
 			(m_Parent->GetSelectedPathName(), eCinemaEventMode::IMMEDIATE_PATH, 0.0f, 
@@ -666,7 +687,7 @@ public:
 	{
 		if ( m_Parent->m_SelectedPath < 0 )
 			return;
-
+	
 		m_Parent->m_PathSlider->m_Timer.Stop();
 		m_Parent->m_PathSlider->PrepareTimers();
 
@@ -692,8 +713,6 @@ public:
 		if ( m_Parent->m_SelectedPath < 0 )
 			return;
 		m_Parent->m_PathSlider->m_Timer.Stop();
-		//m_Parent->m_SliderBox->Reset();
-		//m_Parent->m_NodeList->Thaw();
 		m_Parent->m_Playing = false;
 
 		POST_MESSAGE(CinemaEvent,
@@ -704,18 +723,28 @@ public:
 
 	void OnNext(wxCommandEvent& WXUNUSED(event))
 	{
+		if ( m_Parent->m_SelectedPath < 0 )
+			return;
+
 		m_Parent->m_PathSlider->m_Timer.Stop();
 		m_Parent->m_Playing = false;
 		std::wstring name = m_Parent->GetSelectedPathName();
-		const sCinemaPath* path = m_Parent->GetCurrentPath();
+		std::vector<sCinemaSplineNode> nodes = *m_Parent->GetCurrentPath()->nodes;
+		float timeSet = 0.0f;
 
-		m_Parent->m_TimeElapsed = path->duration;
-		
+		for ( size_t i = 0; i < nodes.size(); ++i )
+		{
+			timeSet += nodes[i].t;
+			if ( timeSet > m_Parent->m_TimeElapsed )
+				break;
+		}
+		m_Parent->m_TimeElapsed = timeSet;
+
 		POST_MESSAGE(CinemaEvent, 
-		( name, eCinemaEventMode::IMMEDIATE_PATH, path->duration,
+		( name, eCinemaEventMode::IMMEDIATE_PATH, timeSet,
 		m_Parent->m_InfoBox->GetDrawCurrent(), m_Parent->m_InfoBox->GetDrawLines()) );
 		
-		m_Parent->m_PathSlider->Update(0);
+		m_Parent->m_PathSlider->Update();
 	}
 	CinematicSidebar* m_Parent;
 	wxStaticBoxSizer* m_Sizer;
@@ -939,8 +968,12 @@ void CinematicSidebar::DeleteNode()
 		m_TimeElapsed = m_Paths[m_SelectedPath].duration;
 
 	nodes.erase( nodes.begin() + m_SelectedSplineNode );
-	m_Paths[m_SelectedPath].nodes = nodes;
 	ssize_t size = (ssize_t)nodes.size();
+
+	if ( m_SelectedSplineNode == 0 && size != 0 )
+		nodes[m_SelectedSplineNode].t = 0;	//Reset the first node's time to 0
+	m_Paths[m_SelectedPath].nodes = nodes;
+	
 	
 	if ( size == 0 )
 		SelectSplineNode(-1);
@@ -960,10 +993,11 @@ void CinematicSidebar::UpdatePath(std::wstring name, float timescale)
 	
 	m_Paths[m_SelectedPath].name = name;
 	m_Paths[m_SelectedPath].timescale = timescale;
+	m_PathList->SetItemText(m_SelectedPath, name.c_str());
 	UpdateEngineData();
 }
 
-void CinematicSidebar::UpdateNode(float px, float py, float pz, float rx, float ry, float rz, float t)
+void CinematicSidebar::UpdateNode(float px, float py, float pz, float rx, float ry, float rz, bool absoluteOveride, float t)
 {
 	if ( m_SelectedPath < 0 || m_SelectedSplineNode < 0 )
 		return;
@@ -977,7 +1011,7 @@ void CinematicSidebar::UpdateNode(float px, float py, float pz, float rx, float 
 	if ( t < 0 )
 		t = nodes[m_SelectedSplineNode].t;
 	
-	if ( m_RotationAbsolute )
+	if ( m_RotationAbsolute || m_SelectedSplineNode == 0 || absoluteOveride )
 	{
 		nodes[m_SelectedSplineNode].rx = rx;
 		nodes[m_SelectedSplineNode].ry = ry;
@@ -990,7 +1024,8 @@ void CinematicSidebar::UpdateNode(float px, float py, float pz, float rx, float 
 		nodes[m_SelectedSplineNode].rz = rz + nodes[m_SelectedSplineNode-1].rz;
 	}
 
-	sCinemaSplineNode newNode(px, py, pz, rx, ry, rz);
+	sCinemaSplineNode newNode(px, py, pz, nodes[m_SelectedSplineNode].rx, 
+				nodes[m_SelectedSplineNode].ry, nodes[m_SelectedSplineNode].rz);
 	newNode.SetTime(t);
 	float delta = newNode.t - nodes[m_SelectedSplineNode].t;
 	m_Paths[m_SelectedPath].duration = m_Paths[m_SelectedPath].duration + delta;
@@ -1079,7 +1114,7 @@ void CinematicSidebar::GotoNode(ssize_t index)
 	
 	//this is just an echo if false
 	if ( m_TimeElapsed / GetCurrentPath()->duration < 1.f )
-		m_PathSlider->Update(0.0f);
+		m_PathSlider->Update();
 }
 
 std::wstring CinematicSidebar::GetSelectedPathName() const 

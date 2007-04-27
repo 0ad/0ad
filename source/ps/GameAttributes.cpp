@@ -187,6 +187,7 @@ CGameAttributes::CGameAttributes():
 	m_StartingPhase("default"),
 	m_LOSSetting(0),
 	m_FogOfWar(true),
+	m_GameMode("default"),
 	m_ScreenshotMode(false),
 	m_NumSlots(8),
 	m_UpdateCB(NULL),
@@ -207,6 +208,7 @@ CGameAttributes::CGameAttributes():
 	AddSynchedProperty(L"numSlots", &m_NumSlots, &CGameAttributes::OnNumSlotsUpdate);
 	AddSynchedProperty(L"losSetting", &m_LOSSetting);
 	AddSynchedProperty(L"fogOfWar", &m_FogOfWar);
+	AddSynchedProperty(L"gameMode", &m_GameMode);
 	AddSynchedProperty(L"screenshotMode", &m_ScreenshotMode);
 
 	CXeromyces XeroFile;

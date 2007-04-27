@@ -35,7 +35,7 @@ public:
 	void AddPath(std::wstring& name, int count);
 	void AddNode(float px, float py, float pz, float rx, float ry, float rz, int count);
 	void UpdatePath(std::wstring name, float timescale);
-	void UpdateNode(float px, float py, float pz, float rx, float ry, float rz, float t=-1);
+	void UpdateNode(float px, float py, float pz, float rx, float ry, float rz, bool absoluteOveride, float t=-1);
 
 	void DeleteTrack();
 	void DeletePath();

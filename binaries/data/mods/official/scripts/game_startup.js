@@ -39,6 +39,51 @@ for(var i=0; i<players.length; i++)
 		tech.applyEffects( false, false );
 	}
 }
+				
+						
+/*var gameMode = getGameMode();
+//Create end game trigger based on game type
+
+var endGameConquestFunction = 
+function() 
+{
+	TODO: Needs player alliance information with team numbers for determining defeated teams.  
+			Also needs local player ID to end game on 'this' computer.  Also, receive pplayer set
+			size from somewhere, don't assume 6
+	
+	var livePlayers = new Array();
+	for ( var i = 1; i < 7; ++i )
+	{
+		if ( trigPlayerSigEntities(i) <= 0 )
+		{
+			//if ( isPlayerAlive(i) == true ) { killPlayer(i); }
+		}
+		else
+			livePlayers[i] = true;
+	}
+	
+	var gameOver = true;
+	var playerSet = getPlayerSet();
+	
+	//Go through and find team numbers (of alliance) - test against every other team number for enemies - if found, game is not done.
+	for ( var i = 0; i < livePlayers.length; ++i )
+	{
+		for ( var j = 0; j < livePlayers.length; ++j )
+		{
+			if ( playerSet[i].getDiplomaticStance(j) == DIPLOMACY_ENEMY  )
+				return;
+		}
+	}
+	endGame()
+}
+	
+				
+if ( gameMode == "Conquest" )
+{
+	registerTrigger( 
+		Trigger("END_GAME_TRIGGER", true, 0.0, -1, endGameConquestFunction, trigEndGame ) );
+}
+*/
 
 console.write( "Game startup script done." );
 

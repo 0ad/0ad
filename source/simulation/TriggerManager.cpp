@@ -54,8 +54,8 @@ JSBool CTrigger::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsv
 	CScriptObject effectFunc( JS_ValueToFunction(cx, argv[5]) );
 	CTrigger* newTrigger = new CTrigger( ToPrimitive<CStr>( argv[0] ),
 										 ToPrimitive<bool>( argv[1] ),
-										 ToPrimitive<int>( argv[2] ),
-										 ToPrimitive<float>( argv[3] ),
+										 ToPrimitive<float>( argv[2] ),
+										 ToPrimitive<int>( argv[3]),
 										 condFunc, effectFunc );
 
 	g_TriggerManager.AddTrigger(newTrigger);
@@ -191,7 +191,7 @@ void CTriggerManager::Update(float delta_ms)
 	//Remove all expired triggers
 	for ( std::list<TriggerIter>::iterator it = expired.begin(); it != expired.end(); ++it )
 	{
-		delete (*it)->second;;
+		delete (*it)->second;
 		m_TriggerMap.erase(*it);
 	}
 }

@@ -271,8 +271,11 @@ void SectionLayout::Build()
 	ADD_SIDEBAR(TerrainSidebar,     _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,      _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar, _T("environment.png"), _("Environment"));
-	ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinema"));
-	ADD_SIDEBAR(TriggerSidebar,		_T("trigger.png"),	   _("Trigger"));
+	
+	#ifndef ATLAS_PUBLIC_RELEASE
+		ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinema"));
+		ADD_SIDEBAR(TriggerSidebar,		_T("trigger.png"),	   _("Trigger"));
+	#endif
 
 	#undef ADD_SIDEBAR
 

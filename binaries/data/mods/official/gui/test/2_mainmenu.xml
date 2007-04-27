@@ -922,6 +922,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 							getCurrItemValue("pgSessionSetupMapName"),
 							losSetting,
 							fowEnabled,
+							getCurrItemValue("pgSessionSetupGameMode"),
 							getGUIObjectByName("pgSessionSetupScreenshotMode").checked,
 							"pgSessionSetup");
 				]]></action>

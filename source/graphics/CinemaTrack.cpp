@@ -201,7 +201,7 @@ float CCinemaPath::EaseSine(float t) const
 
 bool CCinemaPath::Validate()
 {
-	if ( m_TimeElapsed < GetDuration() && m_TimeElapsed > 0.0f )
+	if ( m_TimeElapsed <= GetDuration() && m_TimeElapsed >= 0.0f )
 	{
 		//Find current node and past "node time"
 		float previousTime = 0.0f, cumulation = 0.0f;
@@ -209,7 +209,7 @@ bool CCinemaPath::Validate()
 		for ( size_t i = 0; i < Node.size() - 1; ++i )
 		{
 			cumulation += Node[i].Distance;
-			if ( m_TimeElapsed < cumulation )
+			if ( m_TimeElapsed <= cumulation )
 			{
 				m_PreviousNodeTime = previousTime;
 				m_PreviousRotation = Node[i].Rotation;
@@ -228,16 +228,19 @@ bool CCinemaPath::Play(float DeltaTime)
 	m_TimeElapsed += m_Timescale*DeltaTime;
 
 	if (!Validate())
+	{
+		m_TimeElapsed = 0.0f;
 		return false;
+	}
 	
 	MoveToPointAt( m_TimeElapsed / GetDuration(), GetNodeFraction(), m_PreviousRotation );
 	return true;
 }
 
 
-CCinemaManager::CCinemaManager() : m_DrawCurrentSpline(false), m_Active(true)
+CCinemaManager::CCinemaManager() : m_DrawCurrentSpline(false), m_Active(true), m_ValidCurrent(false)
 {
-	m_CurrentPath = m_Paths.end();	
+	m_CurrentPath = m_Paths.end();
 }
 
 void CCinemaManager::AddPath(CCinemaPath path, const CStrW& name)
@@ -273,7 +276,11 @@ void CCinemaManager::SetAllPaths( const std::map<CStrW, CCinemaPath>& paths)
 }
 void CCinemaManager::SetCurrentPath(const CStrW& name, bool current, bool drawLines)
 {
-	debug_assert(HasTrack(name));
+	if ( !HasTrack(name) )
+		m_ValidCurrent = false;
+	else
+		m_ValidCurrent = true;
+
 	m_CurrentPath = m_Paths.find(name);
 	m_DrawCurrentSpline = current;
 	m_DrawLines = drawLines;
@@ -287,7 +294,7 @@ bool CCinemaManager::HasTrack(const CStrW& name) const
 
 void CCinemaManager::DrawSpline() const
 {
-	if ( !(m_DrawCurrentSpline || m_CurrentPath != m_Paths.end()) )
+	if ( !(m_DrawCurrentSpline && m_ValidCurrent) )
 		return;
 	static const int smoothness = 200;
 

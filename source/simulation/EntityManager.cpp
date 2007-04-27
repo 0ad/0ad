@@ -123,6 +123,10 @@ void CEntityManager::AddEntityClassData(const HEntity& handle)
 		++m_entityClassData[playerID][className];
 		classList = classList.AfterFirst(L" ");
 	}
+
+	//For last element
+	if ( m_entityClassData[playerID].find(className) == m_entityClassData[playerID].end() )
+		m_entityClassData[playerID][className] = 0;
 	++m_entityClassData[playerID][className];
 }
 
@@ -349,12 +353,9 @@ void CEntityManager::invalidateAll()
 			m_entities[i].m_entity->invalidateActor();
 }
 
-void CEntityManager::destroy( u16 handle )
+
+void CEntityManager::removeUnitCount(CEntity* ent)
 {
-	m_reaper.push_back( m_entities[handle].m_entity );
-	
-	//Remove trigger-helper data
-	CEntity* ent = m_entities[handle].m_entity;
 	size_t playerID = (size_t)ent->GetPlayer()->GetPlayerID();
 	CStrW className, classList = ent->m_classes.getMemberList();
 
@@ -364,8 +365,10 @@ void CEntityManager::destroy( u16 handle )
 		classList = classList.AfterFirst(L" ");
 	}
 	--m_entityClassData[playerID][className];
-
-	ent->me.m_handle = INVALID_HANDLE;
+}
+void CEntityManager::destroy( u16 handle )
+{
+	m_reaper.push_back( m_entities[handle].m_entity );
 }
 
 bool CEntityManager::m_extant = false;

@@ -5,7 +5,7 @@
 
 // ====================================================================
 
-function startMap (mapName, losSetting, fogOfWar, screenshotMode, openWindow)
+function startMap (mapName, losSetting, fogOfWar, gameMode, screenshotMode, openWindow)
 {
 	// Starts the map, closing the current window.
 	// mapName: 	.pmp to load.
@@ -23,6 +23,7 @@ function startMap (mapName, losSetting, fogOfWar, screenshotMode, openWindow)
 	g_GameAttributes.mapFile = mapName;
 	g_GameAttributes.losSetting = losSetting;
 	g_GameAttributes.fogOfWar = fogOfWar;
+	g_GameAttributes.gameMode = gameMode
 	g_GameAttributes.screenshotMode = screenshotMode;
 	
 	// Close setup window

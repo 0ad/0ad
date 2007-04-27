@@ -223,14 +223,14 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	
 	// TODO Detect game over and bring up the summary screen or something
 	// ^ Quick game over hack is implemented, no summary screen however
-	if (m_World->GetEntityManager().GetDeath())
+	/*if (m_World->GetEntityManager().GetDeath())
 	{
 		UpdateGameStatus();
 		if (GameStatus != 0)
 			EndGame();
 	}
 	//reset death event flag
-	m_World->GetEntityManager().SetDeath(false);
+	m_World->GetEntityManager().SetDeath(false);*/
 
 	return ok;
 }
@@ -239,6 +239,7 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
  * Test player statistics and update game status as required.
  *
  **/
+/*
 void CGame::UpdateGameStatus()
 {
 	bool EOG_lose = true;
@@ -275,7 +276,7 @@ void CGame::UpdateGameStatus()
 		GameStatus = EOG_LOSE;
 	else
 		GameStatus = EOG_NEUTRAL;
-}
+}*/
 
 /**
  * End of game console message creation.

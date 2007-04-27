@@ -118,6 +118,7 @@ public:
 	CStrW m_MapFile;
 	CStrW m_ResourceLevel;
 	CStrW m_StartingPhase;
+	CStrW m_GameMode;
 	uint m_LOSSetting;
 	bool m_FogOfWar;
 	bool m_ScreenshotMode;
@@ -166,6 +167,9 @@ public:
 	
 	inline uint GetSlotCount()
 	{	return m_NumSlots; }
+
+	inline CStrW GetGameMode()
+	{ return m_GameMode; }
 
 	// Remove all slots that are either opened or closed, so that all slots have
 	// an assignment and a player. Player IDs will be assigned in the same order

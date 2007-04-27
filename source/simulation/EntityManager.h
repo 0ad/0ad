@@ -82,8 +82,11 @@ public:
 	
 	inline int getPlayerUnitCount( size_t player, const CStrW& name )
 	{
+		if ( m_entityClassData[player].find(name) == m_entityClassData[player].end() )
+			m_entityClassData[player][name] = 0;
 		return m_entityClassData[player][name];
 	}
+	void removeUnitCount(CEntity* ent);	//Removes unit from population count
 	void AddEntityClassData(const HEntity& handle);
 
 	void updateAll( size_t timestep );
