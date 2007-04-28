@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "premake.h"
 #include "gnu.h"
 #include "os.h"
