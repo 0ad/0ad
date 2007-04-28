@@ -1,6 +1,7 @@
 #include "precompiled.h"
 #include "bsd.h"
 
+#if OS_BSD
 
 static int sysctlFromMemType(CpuMemoryIndicators mem_type)
 {
@@ -22,3 +23,5 @@ size_t bsd_memorySize(CpuMemoryIndicators mem_type)
 	sysctl(mib, 2, &memory_size, &len, 0, 0);
 	return memory_size;
 }
+
+#endif
