@@ -386,38 +386,69 @@ double ia32_clockFrequency()
 }
 
 
+//-----------------------------------------------------------------------------
+// detect processor types / topology
+//-----------------------------------------------------------------------------
 
-// (these are uniform over all packages)
-
-
-static uint logicalPerPackage()
-{
-	// not Hyperthreading capable
-	if(!ia32_cap(IA32_CAP_HT))
-		return 1;
-
-	u32 regs[4];
-	if(!ia32_asm_cpuid(1, regs))
-		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
-	const uint logical_per_package = bits(regs[EBX], 16, 23);
-	return logical_per_package;
-}
+// OSes report hyperthreading units and cores as "processors". we need to
+// drill down and find out the exact counts (for thread pool dimensioning
+// and cache sharing considerations).
+// note: Intel Appnote 485 (CPUID) assures uniformity of coresPerPackage and
+// logicalPerCore.
 
 static uint coresPerPackage()
 {
-	// single core
-	u32 regs[4];
-	if(!ia32_asm_cpuid(4, regs))
-		return 1;
+	static uint cores_per_package = 0;
+	if(cores_per_package == 0)
+	{
+		u32 regs[4];
+		if(ia32_asm_cpuid(4, regs))
+			cores_per_package = bits(regs[EAX], 26, 31)+1;
+		else
+			cores_per_package = 1;	// single-core
+	}
 
-	const uint cores_per_package = bits(regs[EAX], 26, 31)+1;
 	return cores_per_package;
 }
 
+static uint logicalPerCore()
+{
+	static uint logical_per_core = 0;
+	if(logical_per_core == 0)
+	{
+		if(ia32_cap(IA32_CAP_HT))
+		{
+			u32 regs[4];
+			if(!ia32_asm_cpuid(1, regs))
+				DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
+			const uint logical_per_package = bits(regs[EBX], 16, 23);
+			// cores ought to be uniform WRT # logical processors
+			debug_assert(logical_per_package % coresPerPackage() == 0);
+			logical_per_core = logical_per_package / coresPerPackage();
+		}
+		else
+			logical_per_core = 1;	// not Hyperthreading capable
+	}
+
+	return logical_per_core;
+}
+
+// the above two functions give the maximum number of cores/logical units.
+// however, some of them may actually be disabled by the BIOS!
+// what we can do is to analyze the APIC IDs. they are allocated sequentially
+// for all "processors". treating the IDs as variable-width bitfields
+// (according to the number of cores/logical units present) allows
+// determining the exact topology as well as number of packages.
+
+// these are set by detectProcessorTopology, called from ia32_init.
+static uint num_packages = 0;	// i.e. sockets; > 1 => true SMP system
+static uint enabled_cores_per_package = 0;
+static uint enabled_logical_per_core = 0;	// hyperthreading units
 
 typedef std::vector<u8> Ids;
 typedef std::set<u8> IdSet;
 
+// add the currently running processor's APIC ID to a list of IDs.
 static void storeApicId(void* param)
 {
 	u32 regs[4];
@@ -429,9 +460,14 @@ static void storeApicId(void* param)
 	apic_ids->push_back(apic_id);
 }
 
+
+// field := a range of bits sufficient to represent <num_values> integers.
+// for each id in apic_ids: extract the value of the field at offset bit_pos
+// and insert it into ids. afterwards, adjust bit_pos to the next field.
+// used to gather e.g. all core IDs from all APIC IDs.
 static void extractFieldsIntoSet(const Ids& apic_ids, uint& bit_pos, uint num_values, IdSet& ids)
 {
-	const uint id_bits = log2(num_values);
+	const uint id_bits = log2(num_values);	// (rounded up)
 	if(id_bits == 0)
 		return;
 
@@ -447,65 +483,62 @@ static void extractFieldsIntoSet(const Ids& apic_ids, uint& bit_pos, uint num_va
 	bit_pos += id_bits;
 }
 
-static int num_packages = -1;	// i.e. sockets; > 1 => true SMP system
-static int cores_per_package = -1;
-static int logical_per_package = -1;	// hyperthreading units
 
-// note: even though APIC IDs are assigned sequentially, we can't make any
-// assumptions about the values/ordering because we get them according to
-// the CPU affinity mask, which is unknown.
-
-// HT and dual cores may be disabled, so see how many are actually enabled.
-// (examine each APIC ID to determine the kind of CPU)
-static void detectActualTopology()
+// determine how many coresPerPackage and logicalPerCore are
+// actually enabled and also count numPackages.
+// (scans the APIC IDs, which requires OS support for thread affinity)
+static void detectProcessorTopology()
 {
 	Ids apic_ids;
 	if(cpu_callByEachCPU(storeApicId, &apic_ids) != INFO::OK)
 		return;
+	// .. if they're not unique, cpu_callByEachCPU is broken.
 	std::sort(apic_ids.begin(), apic_ids.end());
 	debug_assert(std::unique(apic_ids.begin(), apic_ids.end()) == apic_ids.end());
 
-	const uint max_cores_per_package = coresPerPackage();
-	const uint logical_per_core = logicalPerPackage() / max_cores_per_package;
-
-	// extract values from all 3 fields into separate sets
-	// (we want to know how many logical CPUs per core, cores per package and packages exist)
+	// extract values from all 3 ID bitfields into separate sets
 	uint bit_pos = 0;
 	IdSet logical_ids;
-	extractFieldsIntoSet(apic_ids, bit_pos, logical_per_core, logical_ids);
+	extractFieldsIntoSet(apic_ids, bit_pos, logicalPerCore(), logical_ids);
 	IdSet core_ids;
-	extractFieldsIntoSet(apic_ids, bit_pos, max_cores_per_package, core_ids);
+	extractFieldsIntoSet(apic_ids, bit_pos, coresPerPackage(), core_ids);
 	IdSet package_ids;
-	extractFieldsIntoSet(apic_ids, bit_pos, 0xFF, core_ids);
+	extractFieldsIntoSet(apic_ids, bit_pos, 0xFF, package_ids);
 
-	num_packages = std::max((int)package_ids.size(), 1);
-	cores_per_package = std::max((int)core_ids.size(), 1);
-	logical_per_package = std::max((int)logical_ids.size(), 1) * cores_per_package;
+	// (the set cardinality is representative of all packages/cores since
+	// they are uniform.)
+	num_packages              = std::max((uint)package_ids.size(), 1u);
+	enabled_cores_per_package = std::max((uint)core_ids   .size(), 1u);
+	enabled_logical_per_core  = std::max((uint)logical_ids.size(), 1u);
+
+	// note: even though APIC IDs are assigned sequentially, we can't make any
+	// assumptions about the values/ordering because we get them according to
+	// the CPU affinity mask, which is unknown.
 }
 
 
-uint ia32_logicalPerPackage()
+uint ia32_numPackages()
 {
 #ifndef NDEBUG
-	debug_assert(logical_per_package != -1);
+	debug_assert(num_packages != 0);
 #endif
-	return (uint)logical_per_package;
+	return (uint)num_packages;
 }
 
 uint ia32_coresPerPackage()
 {
 #ifndef NDEBUG
-	debug_assert(cores_per_package != -1);
+	debug_assert(enabled_cores_per_package != 0);
 #endif
-	return (uint)cores_per_package;
+	return (uint)enabled_cores_per_package;
 }
 
-uint ia32_numPackages()
+uint ia32_logicalPerCore()
 {
 #ifndef NDEBUG
-	debug_assert(num_packages != -1);
+	debug_assert(enabled_logical_per_core != 0);
 #endif
-	return (uint)num_packages;
+	return (uint)enabled_logical_per_core;
 }
 
 
@@ -585,5 +618,5 @@ void ia32_init()
 
 	detectVendor();
 
-	detectActualTopology();
+	detectProcessorTopology();
 }

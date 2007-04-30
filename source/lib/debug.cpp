@@ -32,6 +32,7 @@
 #include "path_util.h"
 #include "debug_stl.h"
 #include "lib/sysdep/cpu.h"	// CAS
+#include "lib/sysdep/sysdep.h"
 #include "lib/res/file/file.h"	// FILE_ACCESS
 // some functions here are called from within mmgr; disable its hooks
 // so that our allocations don't cause infinite recursion.
@@ -178,6 +179,7 @@ bool debug_filter_allows(const char* text)
 }
 
 
+#undef debug_printf	// allowing #defining it out
 void debug_printf(const char* fmt, ...)
 {
 	char buf[MAX_CHARS]; buf[ARRAY_SIZE(buf)-1] = '\0';
@@ -191,6 +193,7 @@ void debug_printf(const char* fmt, ...)
 		debug_puts(buf);
 }
 
+#undef debug_wprintf	// allowing #defining it out
 void debug_wprintf(const wchar_t* fmt, ...)
 {
 	wchar_t wcs_buf[MAX_CHARS]; wcs_buf[ARRAY_SIZE(wcs_buf)-1] = '\0';
@@ -698,7 +701,7 @@ ErrorReaction debug_display_error(const wchar_t* description,
 
 	ErrorMessageMem emm;
 	emm.alloca_buf_size = 50000;
-	emm.alloca_buf = alloca(emm.alloca_buf_size);
+	emm.alloca_buf = sys_alloca(emm.alloca_buf_size);
 	const wchar_t* text = debug_error_message_build(description,
 		fn_only, line, func, skip, context, &emm);
 

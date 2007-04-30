@@ -56,6 +56,8 @@ need only be renamed (e.g. _open, _stat).
 #ifndef INCLUDED_POSIX
 #define INCLUDED_POSIX
 
+#include <cmath>	// see isfinite comment below
+
 #if OS_WIN
 # include "lib/sysdep/win/wposix/wposix.h"
 # include "lib/sysdep/win/win.h"
@@ -73,9 +75,60 @@ need only be renamed (e.g. _open, _stat).
 #include "posix_utsname.h"
 
 
-#if OS_MACOSX
+// provide C99 *snprintf functions if compiler doesn't already
+// (MinGW does, VC7.1 doesn't).
+#if MSC_VERSION
+# define snprintf _snprintf
+# define swprintf _snwprintf
+# define vsnprintf _vsnprintf
+# define vswprintf _vsnwprintf
+#endif
+
+
+#if !HAVE_STRDUP
 extern char* strdup(const char* str);
 extern wchar_t* wcsdup(const wchar_t* str);
-#endif	// #if OS_MACOSX
+#endif	// #if !HAVE_STRDUP
+
+
+#if !HAVE_C99_MATH
+// round float to nearest integral value, according to
+// current rounding mode.
+extern float rintf(float f);
+extern double rint(double d);
+// return minimum/maximum of two floats.
+extern float fminf(float a, float b);
+extern float fmaxf(float a, float b);
+
+extern uint fpclassifyf(float f);
+extern uint fpclassifyd(double d);
+#define fpclassify(x) ( (sizeof(x) == sizeof(float))? fpclassifyf(x) : fpclassifyd(x) )
+
+// these definitions "happen" to match IA32_FP_* and allow using
+// ia32_fp_classify without having to translate the return value.
+// we don't #define to IA32_FP_* to avoid dependency.
+#  define FP_NAN       0x0100
+#  define FP_NORMAL    0x0400
+#  define FP_INFINITE  (FP_NAN | FP_NORMAL)
+#  define FP_ZERO      0x4000
+#  define FP_SUBNORMAL (FP_NORMAL | FP_ZERO)
+
+# define isnan(d) (fpclassify(d) == FP_NAN)
+# define isfinite(d) ((fpclassify(d) & (FP_NORMAL|FP_ZERO)) != 0)
+# define isinf(d) (fpclassify(d) == FP_NAN|FP_NORMAL)
+# define isnormal(d) (fpclassify(d) == FP_NORMAL)
+//# define signbit
+#else	// HAVE_C99_MATH
+// Some systems have C99 support but in C++ they provide only std::isfinite
+// and not isfinite. C99 specifies that isfinite is a macro, so we can use
+// #ifndef and define it if it's not there already.
+// We've included <cmath> above to make sure it defines that macro.
+# ifndef isfinite
+#  define isfinite std::isfinite
+#  define isnan std::isnan
+#  define isinf std::isinf
+#  define isnormal std::isnormal
+# endif
+#endif	// HAVE_C99_MATH
 
 #endif	// #ifndef INCLUDED_POSIX

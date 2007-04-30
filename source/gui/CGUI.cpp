@@ -39,6 +39,7 @@ gee@pyro.nu
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "lib/timer.h"
+#include "lib/sysdep/sysdep.h"
 
 // namespaces used
 using namespace std;

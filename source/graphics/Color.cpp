@@ -4,6 +4,7 @@
 
 #include "maths/MathUtil.h"
 #include "graphics/SColor.h"
+#include "lib/sysdep/ia32/ia32.h"
 
 static u32 fallback_ConvertRGBColorTo4ub(const RGBColor& src)
 {

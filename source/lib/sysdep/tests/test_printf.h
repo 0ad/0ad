@@ -1,6 +1,8 @@
 #include "lib/lib.h"
 #include "lib/self_test.h"
 
+#include "lib/sysdep/sysdep.h"
+
 class TestPrintf : public CxxTest::TestSuite 
 {
 	// Split some bits into separate functions, so we can get

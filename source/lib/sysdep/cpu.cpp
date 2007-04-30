@@ -86,10 +86,10 @@ int cpu_coresPerPackage()
 #endif
 }
 
-int cpu_logicalPerPackage()
+int cpu_logicalPerCore()
 {
 #if CPU_IA32
-	return ia32_logicalPerPackage();
+	return ia32_logicalPerCore();
 #endif
 }
 

@@ -664,6 +664,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 	if(!should_build_mini_archive(mini_archive_fn_fmt))
 		return INFO::SKIPPED;
 
+#if AB_COUNT_LOOSE_FILES
 	Filenames V_fns = (Filenames)malloc((loose_files.size()+1) * sizeof(const char*));
 	if(!V_fns)
 		WARN_RETURN(ERR::NO_MEM);
@@ -678,6 +679,9 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 
 	RETURN_ERR(archive_build(mini_archive_fn, V_fns));
 	return INFO::OK;
+#else
+	return ERR::NOT_IMPLEMENTED;
+#endif
 }
 
 

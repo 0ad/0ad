@@ -20,27 +20,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef WIN_H__
-#define WIN_H__
+#ifndef INCLUDED_WIN
+#define INCLUDED_WIN
 
 #include "lib/config.h"
 
 #if !OS_WIN
 #error "win.h: do not include if not compiling for Windows"
 #endif
-
-#include <wchar.h>
-
-// provide C99 *snprintf functions if compiler doesn't already
-// (MinGW does, VC7.1 doesn't).
-#if !HAVE_NPRINTF
-# define snprintf _snprintf
-# define swprintf _snwprintf
-# define vsnprintf _vsnprintf
-# define vswprintf _vsnwprintf
-#endif
-
-#include <stddef.h>	// wchar_t
 
 // libpng.h -> zlib.h -> zconf.h includes <windows.h>, which causes conflicts.
 // prevent that, and define what they actually need from windows.h.
@@ -75,4 +62,4 @@
 // remembering to call the init function, but it can't be helped.
 extern void win_pre_main_init();
 
-#endif	// #ifndef WIN_H__
+#endif	// #ifndef INCLUDED_WIN

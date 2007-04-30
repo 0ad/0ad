@@ -130,8 +130,8 @@ extern const char* ia32_identifierString();
 extern int ia32_isThrottlingPossible();
 extern double ia32_clockFrequency();
 
-extern uint ia32_logicalPerPackage();
-extern uint ia32_coresPerPackage();
 extern uint ia32_numPackages();
+extern uint ia32_coresPerPackage();
+extern uint ia32_logicalPerCore();
 
 #endif	// #ifndef IA32_H

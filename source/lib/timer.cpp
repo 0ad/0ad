@@ -33,6 +33,10 @@
 #include "adts.h"
 #include "lib/sysdep/cpu.h"
 
+#if TIMER_USE_RDTSC
+# include "lib/sysdep/ia32/ia32.h"
+#endif
+
 // rationale for wrapping gettimeofday and clock_gettime, instead of emulating
 // them where not available: allows returning higher-resolution timer values
 // than their us / ns interface, via double [seconds]. they're also not
@@ -328,3 +332,13 @@ void timer_display_client_totals()
 
 	debug_printf("-----------------------------------------------------\n");
 }
+
+
+#if TIMER_USE_RDTSC
+
+TimerRdtsc::unit TimerRdtsc::get_timestamp() const
+{
+	return ia32_rdtsc();
+}
+
+#endif

@@ -62,7 +62,7 @@ void WriteSystemInfo()
 	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// .. CPU
-	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_identifierString(), cpu_numPackages(), cpu_coresPerPackage(), cpu_logicalPerPackage()/cpu_coresPerPackage());
+	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_identifierString(), cpu_numPackages(), cpu_coresPerPackage(), cpu_logicalPerCore());
 	const double cpu_freq = cpu_clockFrequency();
 	if(cpu_freq != 0.0f)
 	{

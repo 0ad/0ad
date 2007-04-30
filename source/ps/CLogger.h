@@ -69,7 +69,7 @@ private:
  * Helper class for unit tests - captures all log output while it is in scope,
  * and returns it as a single string.
  */
-class TestLogger
+class TestLogger : boost::noncopyable
 {
 public:
 	TestLogger();

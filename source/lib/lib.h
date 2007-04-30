@@ -8,7 +8,7 @@
  * =========================================================================
  */
 
-/*
+/*b
  * Copyright (c) 2003-2005 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the
@@ -261,7 +261,7 @@ checking, but does not cause any compiler warnings.
 // 1) final build: optimize assuming this location cannot be reached.
 //    may crash if that turns out to be untrue, but removes checking overhead.
 #if CONFIG_FINAL
-# define UNREACHABLE SYS_UNREACHABLE
+# define UNREACHABLE ASSUME_UNREACHABLE
 // 2) normal build:
 #else
 //    a) normal implementation: includes "abort", which is declared with
@@ -275,7 +275,7 @@ checking, but does not cause any compiler warnings.
 	)
 //    b) VC only: don't generate any code; squelch the warning and optimize.
 # else
-#  define UNREACHABLE SYS_UNREACHABLE
+#  define UNREACHABLE ASSUME_UNREACHABLE
 # endif
 #endif
 

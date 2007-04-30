@@ -46,13 +46,7 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 }
 
 
-
-// workaround: apparently PCH contents may be included after the headers.
-// malloc.h is defining alloca to _alloca and then VC complains about us
-// redefining an intrinsic. so, stomp on the macro here.
-#undef alloca
-
-void* alloca(size_t size)
+void* sys_alloca(size_t size)
 {
 	void* ret;
 	__try

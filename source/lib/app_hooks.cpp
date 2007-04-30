@@ -24,6 +24,7 @@
 #include "app_hooks.h"
 
 #include "lib/path_util.h"
+#include "lib/sysdep/sysdep.h"
 
 
 //-----------------------------------------------------------------------------

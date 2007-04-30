@@ -5,6 +5,7 @@
 
 #include "lib/path_util.h"
 #include "lib/res/file/file.h"
+#include "lib/sysdep/sysdep.h"
 
 DEFINE_ERROR(PS_OK, "OK");
 DEFINE_ERROR(PS_FAIL, "Fail");

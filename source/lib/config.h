@@ -305,12 +305,6 @@
 # endif
 #endif
 
-// snprintf, swprintf, etc.
-#define HAVE_NPRINTF 0
-#if HAVE_C99
-# undef  HAVE_NPRINTF
-# define HAVE_NPRINTF 1
-#endif
 
 // strdup, wcsdup
 #define HAVE_STRDUP 1

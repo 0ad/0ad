@@ -200,10 +200,7 @@ class TimerRdtsc
 {
 public:
 	typedef i64 unit;
-	unit get_timestamp() const
-	{
-		return ia32_rdtsc();
-	}
+	unit get_timestamp() const;
 };
 
 #else

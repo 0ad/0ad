@@ -46,7 +46,7 @@ extern const char* cpu_identifierString();
 extern double cpu_clockFrequency();
 extern int cpu_numPackages();	// i.e. sockets
 extern int cpu_coresPerPackage();
-extern int cpu_logicalPerPackage();
+extern int cpu_logicalPerCore();
 extern bool cpu_isThrottlingPossible();
 
 
