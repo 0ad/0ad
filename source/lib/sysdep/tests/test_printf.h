@@ -6,7 +6,7 @@
 class TestPrintf : public CxxTest::TestSuite 
 {
 	// Split some bits into separate functions, so we can get
-	// a legitimate va_list to pass to vsnprintf2:
+	// a legitimate va_list to pass to sys_vsnprintf:
 
 	void _test_truncate(int buffer_size, char* expected_output, int expected_return, /* char* input_string */...)
 	{
@@ -15,7 +15,7 @@ class TestPrintf : public CxxTest::TestSuite
 		va_list ap;
 		va_start(ap, expected_return);
 
-		int ret = vsnprintf2(buf, buffer_size, "%s", ap);
+		int ret = sys_vsnprintf(buf, buffer_size, "%s", ap);
 
 		TS_ASSERT_STR_EQUALS(buf, expected_output);
 		TS_ASSERT_EQUALS(ret, expected_return);
@@ -33,7 +33,7 @@ class TestPrintf : public CxxTest::TestSuite
 		va_list ap;
 		va_start(ap, format);
 
-		vsnprintf2(buf, sizeof(buf), format, ap);
+		sys_vsnprintf(buf, sizeof(buf), format, ap);
 		TS_ASSERT_STR_EQUALS(buf, expected_output);
 
 		va_end(ap);

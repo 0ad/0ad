@@ -26,30 +26,8 @@
 #include "lib/config.h"
 #include "lib/debug.h"	// ErrorReaction
 
-#include <cstdarg>	// needed for vsnprintf2
+#include <cstdarg>	// needed for sys_vsnprintf
 
-
-//-----------------------------------------------------------------------------
-// C99 / SUSv3 emulation where needed
-//-----------------------------------------------------------------------------
-
-// vsnprintf2: doesn't quite follow the standard for vsnprintf, but works
-// better across compilers:
-// - handles positional parameters and %lld
-// - always null-terminates the buffer
-// - returns -1 on overflow (if the output string (including null) does not fit in the buffer)
-extern int vsnprintf2(char* buffer, size_t count, const char* format, va_list argptr);
-
-#if !MSC_VERSION
-#define stricmp strcasecmp
-#define strnicmp strncasecmp
-#endif
-
-
-
-//-----------------------------------------------------------------------------
-// sysdep API
-//-----------------------------------------------------------------------------
 
 //
 // output
@@ -119,6 +97,14 @@ extern LibError sys_cursor_free(void* cursor);
 //
 // misc
 //
+
+// sys_vsnprintf: doesn't quite follow the standard for vsnprintf, but works
+// better across compilers:
+// - handles positional parameters and %lld
+// - always null-terminates the buffer
+// - returns -1 on overflow (if the output string (including null) does not fit in the buffer)
+extern int sys_vsnprintf(char* buffer, size_t count, const char* format, va_list argptr);
+
 
 /**
  * allocate on stack, automatically free when current function returns.

@@ -91,7 +91,7 @@ static bool tga_is_hdr(const u8* file)
 
 static bool tga_is_ext(const char* ext)
 {
-	return !stricmp(ext, "tga");
+	return !strcasecmp(ext, "tga");
 }
 
 

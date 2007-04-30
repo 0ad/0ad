@@ -75,6 +75,10 @@ need only be renamed (e.g. _open, _stat).
 #include "posix_utsname.h"
 
 
+// note: the following need only be #defined (instead of defining a
+// trampoline function) because the redefined functions are already
+// declared by standard headers.
+
 // provide C99 *snprintf functions if compiler doesn't already
 // (MinGW does, VC7.1 doesn't).
 #if MSC_VERSION
@@ -82,6 +86,12 @@ need only be renamed (e.g. _open, _stat).
 # define swprintf _snwprintf
 # define vsnprintf _vsnprintf
 # define vswprintf _vsnwprintf
+#endif
+
+// VC doesn't define str[n]casecmp
+#if MSC_VERSION
+#define strcasecmp stricmp
+#define strncasecmp strnicmp
 #endif
 
 

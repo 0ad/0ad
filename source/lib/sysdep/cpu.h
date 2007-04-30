@@ -81,6 +81,10 @@ extern bool cpu_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value
 // similar mishaps, the implementation verifies <location> is a valid pointer.
 #define CAS(l,o,n) cpu_CAS((uintptr_t*)l, (uintptr_t)o, (uintptr_t)n)
 
+/**
+ * add a signed value to a variable without the possibility of interference
+ * from other threads/CPUs.
+ **/
 extern void cpu_atomic_add(intptr_t* location, intptr_t increment);
 
 // enforce strong memory ordering.

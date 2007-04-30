@@ -176,7 +176,7 @@ void WriteScreenshot(const char* extension)
 	int flags = TEX_BOTTOM_UP;
 	// we want writing BMP to be as fast as possible,
 	// so read data from OpenGL in BMP format to obviate conversion.
-	if(!stricmp(extension, "bmp"))
+	if(!strcasecmp(extension, "bmp"))
 	{
 		fmt = GL_BGR;
 		flags |= TEX_BGR;
@@ -221,7 +221,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	int flags = TEX_BOTTOM_UP;
 	// we want writing BMP to be as fast as possible,
 	// so read data from OpenGL in BMP format to obviate conversion.
-	if(!stricmp(extension, "bmp"))
+	if(!strcasecmp(extension, "bmp"))
 	{
 		fmt = GL_BGR;
 		flags |= TEX_BGR;

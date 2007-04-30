@@ -552,7 +552,7 @@ public:
 
 		// remove if not same extension
 		const char* ext = path_extension(ent.name);
-		if(stricmp(archive_ext, ext) != 0)
+		if(strcasecmp(archive_ext, ext) != 0)
 			return true;
 
 		// keep

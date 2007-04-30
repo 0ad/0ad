@@ -184,13 +184,12 @@ std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate, void* 
 	return( matchlist );
 }
 
-std::vector<HEntity>* CEntityManager::getExtant()
+void CEntityManager::GetExtantAsHandles( std::vector<HEntity>& results )
 {
-	std::vector<HEntity>* activelist = new std::vector<HEntity>;
+	results.clear();
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		if( isEntityRefd(i) )
-			activelist->push_back( HEntity( i ) );
-	return( activelist );
+			results.push_back( HEntity( i ) );
 }
 
 void CEntityManager::GetExtant( std::vector<CEntity*>& results )

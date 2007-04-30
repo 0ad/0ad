@@ -623,7 +623,7 @@ static FARPROC WINAPI notify_hook(unsigned dliNotify, PDelayLoadInfo pdli)
 		return 0;
 
 	for(DllLoadNotify* n = notify_list; n; n = n->next)
-		if(strnicmp(pdli->szDll, n->dll_name, strlen(n->dll_name)) == 0)
+		if(strncasecmp(pdli->szDll, n->dll_name, strlen(n->dll_name)) == 0)
 			n->func();
 
 	return 0;

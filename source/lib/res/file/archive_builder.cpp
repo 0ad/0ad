@@ -50,7 +50,7 @@ static inline bool file_type_is_uncompressible(const char* fn)
 
 	for(uint i = 0; i < ARRAY_SIZE(uncompressible_exts); i++)
 	{
-		if(!stricmp(ext+1, uncompressible_exts[i]))
+		if(!strcasecmp(ext+1, uncompressible_exts[i]))
 			return true;
 	}
 

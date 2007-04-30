@@ -89,7 +89,7 @@ int XMBFile::getElementID(const char* Name) const
 	{
 		// See if this could be the right string, checking its
 		// length and then its contents
-		if (*(int*)Pos == len && strnicmp(Pos+4, Name, len) == 0)
+		if (*(int*)Pos == len && strncasecmp(Pos+4, Name, len) == 0)
 			return i;
 		// If not, jump to the next string
 		Pos += 4 + *(int*)Pos;
@@ -109,7 +109,7 @@ int XMBFile::getAttributeID(const char* Name) const
 	{
 		// See if this could be the right string, checking its
 		// length and then its contents
-		if (*(int*)Pos == len && strnicmp(Pos+4, Name, len) == 0)
+		if (*(int*)Pos == len && strncasecmp(Pos+4, Name, len) == 0)
 			return i;
 		// If not, jump to the next string
 		Pos += 4 + *(int*)Pos;

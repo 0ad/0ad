@@ -1092,7 +1092,7 @@ static LibError SndData_reload(SndData * sd, const char * fn, Handle hsd)
 
 	const char * ext = path_extension(fn);
 	// .. OGG (data will be passed directly to OpenAL)
-	if(!stricmp(ext, "ogg"))
+	if(!strcasecmp(ext, "ogg"))
 	{
 #ifdef OGG_HACK
 #else
@@ -1626,7 +1626,7 @@ static LibError VSrc_reload(VSrc * vs, const char * fn, Handle hvs)
 	// declare here so that it doesn't go out of scope below.
 
 	const char * ext = path_extension(fn);
-	if(!stricmp(ext, "txt"))
+	if(!strcasecmp(ext, "txt"))
 	{
 		FileIOBuf buf; size_t size;
 		RETURN_ERR(vfs_load(fn, buf, size));

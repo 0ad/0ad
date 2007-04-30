@@ -2,7 +2,7 @@
 #include "posix.h"
 
 #if CPU_IA32
-# include "lib/sysdep/ia32/ia32.h"
+# include "lib/sysdep/ia32/ia32_asm.h"
 #endif
 
 
@@ -48,17 +48,26 @@ float fmaxf(float a, float b)
 
 uint fpclassifyd(double d)
 {
+#if CPU_IA32
+	return ia32_asm_fpclassifyd(d);
+#else
 	// really sucky stub implementation; doesn't attempt to cover all cases.
 
 	if(d != d)
 		return FP_NAN;
 	else
 		return FP_NORMAL;
+#endif
 }
 
 uint fpclassifyf(float f)
 {
-	return fpclassify((double)f);
+#if CPU_IA32
+	return ia32_asm_fpclassifyf(f);
+#else
+	const double d = (double)f;
+	return fpclassifyd(d);
+#endif
 }
 
 #endif	// #if !HAVE_C99_MATH

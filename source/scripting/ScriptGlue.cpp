@@ -1508,11 +1508,11 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 JSBool GetEntitySet( JSContext* UNUSED(cx), JSObject* UNUSED(obj), jsval UNUSED(argv), jsval* vp )
 {
-	std::auto_ptr<std::vector<HEntity> > extant (g_EntityManager.getExtant());
+	std::vector<HEntity> extant;
+	g_EntityManager.GetExtantAsHandles(extant);
+	*vp = OBJECT_TO_JSVAL(EntityCollection::Create(extant));
 
-	*vp = OBJECT_TO_JSVAL( EntityCollection::Create( *extant ) );
-
-	return( JS_TRUE );
+	return JS_TRUE;
 }
 
 

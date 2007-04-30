@@ -31,7 +31,7 @@ HEntity::HEntity()
 
 HEntity::~HEntity()
 {
-	if( CEntityManager::extant() )
+	if( CEntityManager::IsExtant() )
 		decRef();
 }
 

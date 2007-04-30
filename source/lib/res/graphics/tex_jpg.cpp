@@ -579,7 +579,7 @@ static bool jpg_is_hdr(const u8* file)
 
 static bool jpg_is_ext(const char* ext)
 {
-	return !stricmp(ext, "jpg") || !stricmp(ext, "jpeg");
+	return !strcasecmp(ext, "jpg") || !strcasecmp(ext, "jpeg");
 }
 
 

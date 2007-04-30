@@ -9,7 +9,7 @@
  */
 
 /*
- * Copyright (c) 2003-2005 Jan Wassenberg
+ * Copyright (c) 2003-2007 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the
  * terms of the GNU General Public License as published by the
@@ -20,8 +20,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef IA32_H
-#define IA32_H
+#ifndef INCLUDED_IA32
+#define INCLUDED_IA32
 
 #if !CPU_IA32
 #error "including ia32.h without CPU_IA32=1"
@@ -30,19 +30,19 @@
 #include "ia32_asm.h"
 #include "ia32_memcpy.h"
 
-
-// call before any of the following functions
+/**
+ * must be called exactly once before any of the following functions.
+ **/
 extern void ia32_init();
 
-
-// fpclassify return values
+/// fpclassify return values
 #define IA32_FP_NAN       0x0100
 #define IA32_FP_NORMAL    0x0400
 #define IA32_FP_INFINITE  (IA32_FP_NAN | IA32_FP_NORMAL)
 #define IA32_FP_ZERO      0x4000
 #define IA32_FP_SUBNORMAL (IA32_FP_NORMAL | IA32_FP_ZERO)
 
-// FPU control word
+// FPU control word (for ia32_asm_control87)
 // .. Precision Control:
 #define IA32_MCW_PC 0x0300
 #define IA32_PC_24  0x0000
@@ -61,24 +61,9 @@ extern void ia32_init();
 #define IA32_EM_UNDERFLOW  BIT(4)
 #define IA32_EM_INEXACT    BIT(5)
 
-
-
-extern void ia32_mfence();
-extern void ia32_serialize();
-
-
-extern u64 ia32_rdtsc_safe(void);
-#if CONFIG_RETURN64_EDX_EAX
-# define ia32_rdtsc ia32_asm_rdtsc_edx_eax
-#else
-# define ia32_rdtsc ia32_rdtsc_safe
-#endif
-
-extern void ia32_debug_break(void);
-
-
-// order in which registers are stored in CPUID regs array
-// (do not change! brand string relies on this ordering)
+/**
+ * order in which ia32_asm_cpuid stores register values
+ **/
 enum IA32Regs
 {
 	EAX,
@@ -87,8 +72,10 @@ enum IA32Regs
 	EDX
 };
 
-// CPU capability flags (128 bits)
-// do not change the order!
+/**
+ * bit indices of CPU capability flags (128 bits).
+ * values are defined by IA-32 CPUID feature flags - do not change!
+ **/
 enum IA32Cap
 {
 	// standard (ecx) - currently only defined by Intel
@@ -113,25 +100,89 @@ enum IA32Cap
 	IA32_CAP_AMD_3DNOW     = 96+31
 };
 
-// indicate if the CPU supports the indicated cap.
+/**
+ * @return whether the CPU supports the indicated IA32Cap / feature flag.
+ **/
 extern bool ia32_cap(IA32Cap cap);
 
-// checks if there is an IA-32 CALL instruction right before ret_addr.
-// returns INFO::OK if so and ERR::FAIL if not.
-// also attempts to determine the call target. if that is possible
-// (directly addressed relative or indirect jumps), it is stored in
-// target, which is otherwise 0.
-//
-// this is useful for walking the stack manually.
+/**
+ * check if there is an IA-32 CALL instruction right before ret_addr.
+ * @return INFO::OK if so and ERR::FAIL if not.
+ *
+ * also attempts to determine the call target. if that is possible
+ * (directly addressed relative or indirect jumps), it is stored in
+ * target, which is otherwise 0.
+ *
+ * this function is used for walking the call stack.
+ **/
 extern LibError ia32_get_call_target(void* ret_addr, void** target);
 
 
+/// safe but slow inline-asm version
+extern u64 ia32_rdtsc_safe(void);
+
+/**
+ * @return the current value of the TimeStampCounter (a counter of
+ * CPU cycles since power-on, which is useful for high-resolution timing
+ * but potentially differs between multiple CPUs)
+ **/
+extern u64 ia32_rdtsc();	// only for CppDoc's benefit
+#if CONFIG_RETURN64_EDX_EAX
+# define ia32_rdtsc ia32_asm_rdtsc_edx_eax
+#else
+# define ia32_rdtsc ia32_rdtsc_safe
+#endif
+
+/**
+ * trigger a breakpoint inside this function when it is called.
+ **/
+extern void ia32_debug_break(void);
+
+
+// CPU detection
+
+/**
+ * @return string identifying the CPU (usually a cleaned-up version of the
+ * brand string)
+ **/
 extern const char* ia32_identifierString();
+
+/**
+ * @return whether CPU frequency throttling is possible or
+ * may potentially happen (if so, using RDTSC is unsafe).
+ **/
 extern int ia32_isThrottlingPossible();
+
+/**
+ * @return the cached result of a precise measurement of the
+ * CPU frequency.
+ **/
 extern double ia32_clockFrequency();
 
+/**
+ * @return number of *enabled* CPU packages / sockets.
+ **/
 extern uint ia32_numPackages();
+
+/**
+ * @return number of *enabled* CPU cores per package.
+ * (2 on dual-core systems)
+ **/
 extern uint ia32_coresPerPackage();
+
+/**
+ * @return number of *enabled* hyperthreading units per core.
+ * (2 on P4 EE)
+ **/
 extern uint ia32_logicalPerCore();
 
-#endif	// #ifndef IA32_H
+
+// implementations of the cpu.h interface
+
+/// see cpu_mfence
+extern void ia32_mfence();
+
+// see cpu_serialize
+extern void ia32_serialize();
+
+#endif	// #ifndef INCLUDED_IA32

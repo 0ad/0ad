@@ -661,11 +661,11 @@ static bool can_ignore_reload(const char* V_path, PathList pending_reloads, uint
 		return true;
 	// .. compiled XML files the engine writes out by the hundreds;
 	//    skipping them is a big performance gain.
-	if(!stricmp(ext, "xmb"))
+	if(!strcasecmp(ext, "xmb"))
 		return true;
 	// .. temp files, usually created when an editor saves a file
 	//    (delete, create temp, rename temp); no need to reload those.
-	if(!stricmp(ext, "tmp"))
+	if(!strcasecmp(ext, "tmp"))
 		return true;
 	// .. more than one notification for a file; only reload once.
 	//    note: this doesn't suffer from the 'reloaded too early'

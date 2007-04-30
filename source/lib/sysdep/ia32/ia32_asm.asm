@@ -192,9 +192,9 @@ sym(ia32_asm_control87):
 ; possible IA-32 FPU control word flags after FXAM: NAN|NORMAL|ZERO
 FP_CLASSIFY_MASK	equ 0x4500
 
-; extern "C" uint __cdecl ia32_asm_fpclassify(double d);
-global sym(ia32_asm_fpclassify)
-sym(ia32_asm_fpclassify):
+; extern "C" uint __cdecl ia32_asm_fpclassifyd(double d);
+global sym(ia32_asm_fpclassifyd)
+sym(ia32_asm_fpclassifyd):
 	fld		qword [esp+4]
 	fxam
 	fnstsw	ax

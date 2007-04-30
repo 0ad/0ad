@@ -11,7 +11,7 @@
 //        Perform updates on all world entities by g_EntityManager.updateAll( timestep )
 //		  Dispatch an identical message to all world entities by g_EntityManager.dispatchAll( message_pointer )
 //		  Get an STL vector container of all entities with a certain property with g_EntityManager.matches( predicate )
-//        or just get all entities with g_EntityManager.getExtant().
+//        or just get all entities with g_EntityManager.GetExtant().
 //        
 //        Those last two functions - caller has responsibility for deleting the collection when you're done with it.
 
@@ -113,9 +113,9 @@ public:
 	{	return( !operand( target, userdata ) );	}
 
 	std::vector<HEntity>* matches( EntityPredicate predicate, void* userdata = NULL );
-	std::vector<HEntity>* getExtant();
-	void GetExtant( std::vector<CEntity*>& results ); // TODO: Switch most/all uses of getExtant() to this.
-	static inline bool extant()	// True if the singleton is actively maintaining handles. When false, system is shutting down, handles are quietly dumped.
+	void GetExtantAsHandles( std::vector<HEntity>& results );
+	void GetExtant( std::vector<CEntity*>& results );
+	static inline bool IsExtant()	// True if the singleton is actively maintaining handles. When false, system is shutting down, handles are quietly dumped.
 	{
 		return( m_extant );
 	}

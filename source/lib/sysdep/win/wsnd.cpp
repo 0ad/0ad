@@ -90,7 +90,7 @@ static LibError add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dl
 
 	// skip if not an OpenAL DLL.
 	const size_t len = strlen(fn);
-	const bool oal = len >= 7 && !stricmp(fn+len-7, "oal.dll");
+	const bool oal = len >= 7 && !strcasecmp(fn+len-7, "oal.dll");
 	const bool openal = strstr(fn, "OpenAL") != 0;
 	if(!oal && !openal)
 		return INFO::OK;

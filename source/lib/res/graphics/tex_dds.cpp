@@ -605,7 +605,7 @@ static bool dds_is_hdr(const u8* file)
 
 static bool dds_is_ext(const char* ext)
 {
-	return !stricmp(ext, "dds");
+	return !strcasecmp(ext, "dds");
 }
 
 

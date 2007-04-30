@@ -170,7 +170,7 @@ void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 	char buffer[512];
 	
 	va_start(argp, fmt);
-	if (vsnprintf2(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
 		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
@@ -187,7 +187,7 @@ void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, 
 	char buffer[512];
 
 	va_start(argp, fmt);
-	if (vsnprintf2(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
 		strcpy(buffer+sizeof(buffer)-4, "...");	// safe

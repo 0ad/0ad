@@ -5,7 +5,7 @@
 
 // See declaration in sysdep.h for explanation of need
 
-int vsnprintf2(char* buffer, size_t count, const char* format, va_list argptr)
+int sys_vsnprintf(char* buffer, size_t count, const char* format, va_list argptr)
 {
 	int ret = vsnprintf(buffer, count, format, argptr);
 

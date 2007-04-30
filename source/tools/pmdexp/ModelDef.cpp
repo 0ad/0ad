@@ -35,7 +35,7 @@ CModelDef::~CModelDef()
 SPropPoint* CModelDef::FindPropPoint(const char* name) const
 {
 	for (uint i=0;i<m_NumPropPoints;i++) {
-		if (stricmp(name,m_PropPoints[i].m_Name)==0) {
+		if (strcasecmp(name,m_PropPoints[i].m_Name)==0) {
 			return &m_PropPoints[i];
 		}
 	}

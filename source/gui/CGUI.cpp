@@ -1022,7 +1022,7 @@ void CGUI::ReportParseError(const char *str, ...)
 	memset(buffer,0,sizeof(buffer));
 	
 	va_start(argp, str);
-	vsnprintf2(buffer, sizeof(buffer), str, argp);
+	sys_vsnprintf(buffer, sizeof(buffer), str, argp);
 	va_end(argp);
 
 	// Print header

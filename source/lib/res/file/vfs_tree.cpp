@@ -174,7 +174,7 @@ public:
 		//   possibly OS are case-sensitive) and wastes memory here.
 		// what we'll do is warn and treat as separate filename
 		// (least surprise).
-//		if(!stricmp(k1, k2))
+//		if(!strcasecmp(k1, k2))
 //			debug_warn("filenames differ only in case: bug?");
 #endif
 		return false;

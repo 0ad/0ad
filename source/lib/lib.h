@@ -8,7 +8,7 @@
  * =========================================================================
  */
 
-/*b
+/*
  * Copyright (c) 2003-2005 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the

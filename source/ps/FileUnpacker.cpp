@@ -46,7 +46,7 @@ void CFileUnpacker::Read(const char* filename,const char magicstr[4])
 	// that the buffer will be kept in memory longer (avoids warning).
 	uint flags = 0;
 	const char* ext = path_extension(filename);
-	if(!stricmp(ext, "pmp"))
+	if(!strcasecmp(ext, "pmp"))
 		flags |= FILE_LONG_LIVED;
 
 	// load the whole thing into memory

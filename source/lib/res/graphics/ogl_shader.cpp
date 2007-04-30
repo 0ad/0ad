@@ -53,9 +53,9 @@ static const char* shader_type_to_string(GLenum type, char* buf, size_t buflen)
 // or 0 if the shader type is not known.
 static GLenum string_to_shader_type(const char* name)
 {
-	if (!stricmp(name, "VERTEX_SHADER"))
+	if (!strcasecmp(name, "VERTEX_SHADER"))
 		return GL_VERTEX_SHADER_ARB;
-	if (!stricmp(name, "FRAGMENT_SHADER"))
+	if (!strcasecmp(name, "FRAGMENT_SHADER"))
 		return GL_FRAGMENT_SHADER_ARB;
 	return 0;
 }
