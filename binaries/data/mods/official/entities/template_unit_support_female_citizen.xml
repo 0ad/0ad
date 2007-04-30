@@ -20,6 +20,7 @@
  				<Food>40</Food>
  			</Resource>
 		</Creation>
+
 		<Auras>
 			<Infidelity>
 				<Radius>25</Radius>
@@ -87,6 +88,18 @@
 			<Rate>1.0</Rate>
 			<Speed>1000</Speed>
 		</Build>
+
+		<Move>
+			<Speed>10.0</Speed>
+			<TurningRadius>1.0</TurningRadius>
+			
+			<Run>
+				<Speed>15.0</Speed>
+				<Range>50.0</Range>
+				<RangeMin>0.0</RangeMin>
+			</Run>			
+			
+		</Move>
 	
 	</Actions>	
 	
