@@ -16,14 +16,14 @@
 		</Id>
 					<Creation>
 				<Resource>
- 				<Food>150</Food>
-				<Metal>75</Metal>
+ 				<Food>100</Food>
+				<Metal>175</Metal>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>250.0</Hack>
-			<Pierce>210.0</Pierce>
-			<Crush>180.0</Crush>
+			<Hack>5.0</Hack>
+			<Pierce>4.0</Pierce>
+			<Crush>12.0</Crush>
 		</Armour>
 	</Traits>
 
@@ -31,9 +31,7 @@
 
 	<Actions>
  		<Attack>
- 			<Hack>220.0</Hack>
- 			<Pierce>170.0</Pierce>
- 			<Crush>150.0</Crush>
+ 			<Hack>25.0</Hack>
  		</Attack>
 	</Actions>
 
