@@ -5,12 +5,12 @@
 // Maintains entity id->object mappings. Does most of the work involved in creating an entity.
 //
 // Usage: Do not attempt to directly instantiate an entity class.
-//        HEntity bob = g_EntityManager.create( unit_class_name, position, orientation );
-//	   or HEntity jim = g_EntityManager.create( pointer_to_unit_class, position, orientation );
+//        HEntity bob = g_EntityManager.Create( unit_class_name, position, orientation );
+//	   or HEntity jim = g_EntityManager.Create( pointer_to_unit_class, position, orientation );
 //
-//        Perform updates on all world entities by g_EntityManager.updateAll( timestep )
+//        Perform updates on all world entities by g_EntityManager.UpdateAll( timestep )
 //		  Dispatch an identical message to all world entities by g_EntityManager.dispatchAll( message_pointer )
-//		  Get an STL vector container of all entities with a certain property with g_EntityManager.matches( predicate )
+//		  Fill an STL vector container with all entities matching a certain predicate with g_EntityManager.GetMatchingAsHandles( container, predicate, data )
 //        or just get all entities with g_EntityManager.GetExtant().
 //        
 //        Those last two functions - caller has responsibility for deleting the collection when you're done with it.
@@ -53,10 +53,10 @@ friend class CHandle;
 	//Optimized data for triggers. key = playerID, nested key = entity class, value = frequency
 	std::map<size_t, std::map<CStrW, int> > m_entityClassData;
 
-	void destroy( u16 handle );
-	void deleteAllHelper();
+	void Destroy( u16 handle );
+	void DeleteAllHelper();
 	
-	inline bool isEntityRefd( u16 index )
+	inline bool IsEntityRefd( u16 index )
 	{
 		return m_refd[index];
 		//return m_entities[index].m_refcount && !m_entities[index].m_entity->entf_get(ENTF_DESTROYED);
@@ -68,36 +68,36 @@ public:
 	CEntityManager();
 	~CEntityManager();
 
-	HEntity create( CEntityTemplate* base, CVector3D position, float orientation, 
+	HEntity Create( CEntityTemplate* base, CVector3D position, float orientation, 
 		const std::set<CStr>& actorSelections, const CStrW* building = 0 );
 
-	HEntity create( const CStrW& templateName, CPlayer* player, CVector3D position, 
+	HEntity Create( const CStrW& templateName, CPlayer* player, CVector3D position, 
 		float orientation, const CStrW* building = 0 );
 
-	HEntity createFoundation( const CStrW& templateName, CPlayer* player, CVector3D position, 
+	HEntity CreateFoundation( const CStrW& templateName, CPlayer* player, CVector3D position, 
 		float orientation );
 
-	HEntity* getByHandle( u16 index );
-	CHandle *getHandle( int index );
+	HEntity* GetByHandle( u16 index );
+	CHandle *GetHandle( int index );
 	
-	inline int getPlayerUnitCount( size_t player, const CStrW& name )
+	inline int GetPlayerUnitCount( size_t player, const CStrW& name )
 	{
 		if ( m_entityClassData[player].find(name) == m_entityClassData[player].end() )
 			m_entityClassData[player][name] = 0;
 		return m_entityClassData[player][name];
 	}
-	void removeUnitCount(CEntity* ent);	//Removes unit from population count
+	void RemoveUnitCount(CEntity* ent);	//Removes unit from population count
 	void AddEntityClassData(const HEntity& handle);
 
-	void updateAll( size_t timestep );
-	void interpolateAll( float relativeoffset );
+	void UpdateAll( size_t timestep );
+	void InterpolateAll( float relativeoffset );
 	void InitializeAll();
 // 	void TickAll();
-	void renderAll();
-	void conformAll();
-	void invalidateAll();
+	void RenderAll();
+	void ConformAll();
+	void InvalidateAll();
 
-	void deleteAll();
+	void DeleteAll();
 	
 	bool GetDeath() { return m_death; }
 	void SetDeath(bool set) { m_death=set; }
@@ -112,7 +112,7 @@ public:
 	template<EntityPredicate operand> static bool EntityPredicateLogicalNot( CEntity* target, void* userdata )
 	{	return( !operand( target, userdata ) );	}
 
-	std::vector<HEntity>* matches( EntityPredicate predicate, void* userdata = NULL );
+	void GetMatchingAsHandles( std::vector<HEntity>& matchlist, EntityPredicate predicate, void* userdata = 0 );
 	void GetExtantAsHandles( std::vector<HEntity>& results );
 	void GetExtant( std::vector<CEntity*>& results );
 	static inline bool IsExtant()	// True if the singleton is actively maintaining handles. When false, system is shutting down, handles are quietly dumped.
@@ -123,7 +123,7 @@ public:
 	void GetInRange( float x, float z, float radius, std::vector<CEntity*>& results );
 	void GetInLOS( CEntity* entity, std::vector<CEntity*>& results );
 
-	std::vector<CEntity*>* getCollisionPatch( CEntity* e );
+	std::vector<CEntity*>* GetCollisionPatch( CEntity* e );
 };
 
 #endif

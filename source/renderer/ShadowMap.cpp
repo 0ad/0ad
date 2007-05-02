@@ -131,7 +131,7 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 
 	z.Normalize();
 	x -= z * z.Dot(x);
-	if (x.GetLength() < 0.001)
+	if (x.Length() < 0.001)
 	{
 		// this is invoked if the camera and light directions almost coincide
 		// assumption: light direction has a significant Z component

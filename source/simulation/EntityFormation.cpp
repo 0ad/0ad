@@ -63,6 +63,7 @@ void CEntityFormation::SwitchBase( CFormation*& base )
 	for ( std::vector<CEntity*>::iterator it=copy.begin(); it != copy.end(); it++ )
 		g_FormationManager.AddUnit(*it, m_index);
 }
+
 bool CEntityFormation::AddUnit( CEntity* entity )
 {
 	debug_assert( entity );
@@ -89,6 +90,7 @@ bool CEntityFormation::AddUnit( CEntity* entity )
 	}
 	return false;
 }
+
 void CEntityFormation::RemoveUnit( CEntity* entity )
 {
 	if ( !(IsValidOrder(entity->m_formationSlot) && entity) )
@@ -101,6 +103,7 @@ void CEntityFormation::RemoveUnit( CEntity* entity )
 	--m_numEntities;
 	//UpdateFormation();
 }
+
 bool CEntityFormation::IsSlotAppropriate( int order, CEntity* entity )
 {
 	debug_assert( entity );
@@ -115,6 +118,7 @@ bool CEntityFormation::IsSlotAppropriate( int order, CEntity* entity )
 	}
 	return false;
 }
+
 bool CEntityFormation::IsBetterUnit( int order, CEntity* entity )
 {
 	if ( !( IsValidOrder(order) && entity ) )
@@ -175,17 +179,19 @@ void CEntityFormation::ResetAllEntities()
 	for ( int i=0; i<m_base->m_numSlots; ++i )
 		m_entities[i] = NULL;
 }
+
 void CEntityFormation::ResetAngleDivs()
 {
 	for ( int i=0; i<m_base->m_anglePenaltyDivs; ++i )
 		m_angleDivs[i] = false;
 }
+
 void CEntityFormation::SelectAllUnits()
 {
 	for ( int i=0; i<m_base->m_numSlots; ++i )
 	{
-		if ( m_entities[i] && !g_Selection.isSelected(m_entities[i]->me) )
-			g_Selection.addSelection( m_entities[i]->me );
+		if ( m_entities[i] && !g_Selection.IsSelected(m_entities[i]->me) )
+			g_Selection.AddSelection( m_entities[i]->me );
 	}
 }
 
@@ -206,16 +212,18 @@ CVector2D CEntityFormation::GetSlotPosition( int order )
 		return CVector2D ( m_base->m_slots[order].rankOff, m_base->m_slots[order].fileOff );
 	return CVector2D(-1, -1);
 }
+
 void CEntityFormation::BaseToMovement()
 {
 	CFormation* tmp = m_self;
-	CFormation* move = g_EntityFormationCollection.getTemplate( m_base->m_movement );
+	CFormation* move = g_EntityFormationCollection.GetTemplate( m_base->m_movement );
 	if (!move)
 		return;
 	SwitchBase( move );
 	//SwitchBase resets m_self, so reset it so we can return to the correct base later
 	m_self = tmp;
 }
+
 void CEntityFormation::ResetIndex( size_t index )
 {
 	m_index = (int)index;
@@ -226,6 +234,7 @@ void CEntityFormation::ResetIndex( size_t index )
 			m_entities[i]->m_formation = m_index;
 	}
 }
+
 /*
 inline void CEntityFormation::SetDuplication( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* argv )
 {

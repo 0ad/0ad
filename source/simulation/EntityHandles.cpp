@@ -15,13 +15,13 @@ CHandle::CHandle()
 HEntity::HEntity( u16 index )
 {
 	m_handle = index;
-	addRef();
+	AddRef();
 }
 
 HEntity::HEntity( const HEntity& copy )
 {
 	m_handle = copy.m_handle;
-	addRef();
+	AddRef();
 }
 
 HEntity::HEntity()
@@ -32,14 +32,14 @@ HEntity::HEntity()
 HEntity::~HEntity()
 {
 	if( CEntityManager::IsExtant() )
-		decRef();
+		DecRef();
 }
 
 void HEntity::operator=( const HEntity& copy )
 {
-	decRef();
+	DecRef();
 	m_handle = copy.m_handle;
-	addRef();
+	AddRef();
 }
 
 bool HEntity::operator ==( const HEntity& test ) const
@@ -65,7 +65,7 @@ bool HEntity::operator!() const
 	return( g_EntityManager.m_entities[m_handle].m_entity->entf_get(ENTF_DESTROYED) );
 }
 
-void HEntity::addRef()
+void HEntity::AddRef()
 {
 	if( m_handle != INVALID_HANDLE )
 	{
@@ -75,14 +75,14 @@ void HEntity::addRef()
 	}
 }
 
-void HEntity::decRef()
+void HEntity::DecRef()
 {
 	if( m_handle != INVALID_HANDLE )
 	{
 		if( --g_EntityManager.m_entities[m_handle].m_refcount == 0 )
 		{
 			g_EntityManager.m_refd[m_handle] = false;
-			g_EntityManager.destroy( m_handle );
+			g_EntityManager.Destroy( m_handle );
 		}
 	}
 }
@@ -123,9 +123,9 @@ u8 *HEntity::Serialize(u8* buffer) const
 const u8* HEntity::Deserialize(const u8* buffer, const u8* UNUSED(end))
 {
 	Deserialize_int_2(buffer, m_handle);
-	// We can't let addRef debug_assert just because someone sent us bogus data
+	// We can't let AddRef debug_assert just because someone sent us bogus data
 	if (m_handle < MAX_HANDLES && m_handle != INVALID_HANDLE)
-		addRef();
+		AddRef();
 	return buffer;
 }
 

@@ -129,7 +129,7 @@ void CSimulation::Interpolate(double frameTime, double offset)
 	for (size_t i = 0; i < units.size(); ++i)
 		units[i]->UpdateModel((float)frameTime);
 
-	g_EntityManager.interpolateAll(offset);
+	g_EntityManager.InterpolateAll(offset);
 	m_pWorld->GetProjectileManager().InterpolateAll(offset);
 	g_Renderer.GetWaterManager()->m_WaterTexTimer += frameTime;
 }
@@ -139,11 +139,11 @@ void CSimulation::Simulate()
 	uint time = m_pTurnManager->GetTurnLength();
 
 	PROFILE_START( "scheduler tick" );
-	g_Scheduler.update(time);
+	g_Scheduler.Update(time);
 	PROFILE_END( "scheduler tick" );
 
 	PROFILE_START( "entity updates" );
-	g_EntityManager.updateAll(time);
+	g_EntityManager.UpdateAll(time);
 	PROFILE_END( "entity updates" );
 
 	PROFILE_START( "projectile updates" );
@@ -200,9 +200,9 @@ void RandomizeLocations(CEntityOrder order, const std::vector<HEntity> &entities
 		randomizedOrder.m_target_location.y = clamp(randomizedOrder.m_target_location.y, 0.0f, mapsize);
 
 		if( !isQueued )
-			(*it)->clearOrders();
+			(*it)->ClearOrders();
 
-		(*it)->pushOrder( randomizedOrder );
+		(*it)->PushOrder( randomizedOrder );
 	}
 }
 
@@ -219,10 +219,10 @@ void FormationLocations(CEntityOrder order, const std::vector<HEntity> &entities
 		CVector2D posDelta = orderCopy.m_target_location - formation->GetPosition();
 		CVector2D formDelta = formation->GetSlotPosition( (*it)->m_formationSlot );
 		
-		posDelta = posDelta.normalize();
+		posDelta = posDelta.Normalize();
 		//Rotate the slot position's offset vector according to the rotation of posDelta.
 		CVector2D rotDelta;
-		float deltaCos = posDelta.dot(upvec);
+		float deltaCos = posDelta.Dot(upvec);
 		float deltaSin = sinf( acosf(deltaCos) );
 		rotDelta.x = formDelta.x * deltaCos - formDelta.y * deltaSin;
 		rotDelta.y = formDelta.x * deltaSin + formDelta.y * deltaCos; 
@@ -235,9 +235,9 @@ void FormationLocations(CEntityOrder order, const std::vector<HEntity> &entities
 		orderCopy.m_target_location.y = clamp(orderCopy.m_target_location.y, 0.0f, mapsize);
 
 		if( !isQueued )
-			(*it)->clearOrders();
+			(*it)->ClearOrders();
 
-		(*it)->pushOrder( orderCopy );
+		(*it)->PushOrder( orderCopy );
 	}
 }
 
@@ -248,9 +248,9 @@ void QueueOrder(CEntityOrder order, const std::vector<HEntity> &entities, bool i
 	for (it = entities.begin(); it < entities.end(); it++)
 	{
 		if( !isQueued )
-			(*it)->clearOrders();
+			(*it)->ClearOrders();
 
-		(*it)->pushOrder( order );
+		(*it)->PushOrder( order );
 	}
 }
 
@@ -315,13 +315,13 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 					if (ord_it->m_type == CEntityOrder::ORDER_PATH_END_MARKER)
 					{
 						order.m_type = CEntityOrder::ORDER_GOTO;
-						hentity->pushOrder(order);
+						hentity->PushOrder(order);
 						break;
 					}
 					if (ord_it->m_type == CEntityOrder::ORDER_PATROL)
 					{
 						order.m_type = ord_it->m_type;
-						hentity->pushOrder(order);
+						hentity->PushOrder(order);
 						break;
 					}
 				}
@@ -372,7 +372,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 
 				// Create the object
 				CVector3D pos(msg->m_X/1000.0f, msg->m_Y/1000.0f, msg->m_Z/1000.0f);
-				HEntity newObj = g_EntityManager.createFoundation( msg->m_Template, player, pos, msg->m_Angle/1000.0f );
+				HEntity newObj = g_EntityManager.CreateFoundation( msg->m_Template, player, pos, msg->m_Angle/1000.0f );
 				newObj->m_actor->SetPlayerID(player->GetPlayerID());
 				if( newObj->Initialize() )
 				{

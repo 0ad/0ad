@@ -172,7 +172,7 @@ public:
 	 *
 	 * @param Filename Name of file
 	 */
-	void LoadXMLFile(const std::string &Filename);
+	void LoadXmlFile(const std::string &Filename);
 
 	/**
 	 * Checks if object exists and return true or false accordingly
@@ -371,7 +371,7 @@ private:
 	 *					the objects-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile);
 
@@ -382,7 +382,7 @@ private:
 	 *					the sprites-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile);
 
@@ -393,7 +393,7 @@ private:
 	 *					the styles-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadRootStyles(XMBElement Element, CXeromyces* pFile);
 
@@ -404,7 +404,7 @@ private:
 	 *					the setup-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile);
 
@@ -428,7 +428,7 @@ private:
 	 * @param pFile		The Xeromyces object for the file being read
 	 * @param pParent	Parent to add this object as child in.
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent);
 
@@ -440,7 +440,7 @@ private:
 	 *					the sprite-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile);
 
@@ -452,7 +452,7 @@ private:
 	 *					the sprite-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile);
 
@@ -465,7 +465,7 @@ private:
 	 * @param pFile		The Xeromyces object for the file being read
 	 * @param parent	Parent sprite.
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite &parent);
 
@@ -480,7 +480,7 @@ private:
 	 *					the style-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile);
 
@@ -492,7 +492,7 @@ private:
 	 *					the scrollbar-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile);
 
@@ -504,7 +504,7 @@ private:
 	 *					the scrollbar-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile);
 	
@@ -516,7 +516,7 @@ private:
 	 *					the scrollbar-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile);
 
@@ -528,7 +528,7 @@ private:
 	 *					the scrollbar-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
-	 * @see LoadXMLFile()
+	 * @see LoadXmlFile()
 	 */
 	void Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile);
 

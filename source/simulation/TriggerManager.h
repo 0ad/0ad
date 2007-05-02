@@ -75,16 +75,16 @@ struct MapTriggerGroup
 };
 
 
-struct copyIfRootChild
+struct CopyIfRootChild
 {
-	copyIfRootChild(std::list<MapTriggerGroup>& groupList) : m_groupList(groupList) {}
+	CopyIfRootChild(std::list<MapTriggerGroup>& groupList) : m_groupList(groupList) {}
 	void operator() ( const MapTriggerGroup& group )
 	{ 
 		if ( group.parentName == L"Triggers" )
 			m_groupList.push_back(group);
 	}
 private:
-	void operator= (const copyIfRootChild& UNUSED(group)) const {}
+	void operator= (const CopyIfRootChild& UNUSED(group)) const {}
 	std::list<MapTriggerGroup>& m_groupList;
 };
 
@@ -183,7 +183,7 @@ public:
 	~CTriggerManager();
 	
 	//Returns false on detection of error
-	bool LoadXML( const CStr& filename );
+	bool LoadXml( const CStr& filename );
 	void Update(float delta);
 
 	//Add simulation trigger (probably only called from JS)
@@ -202,7 +202,7 @@ public:
 	std::map<CStrW, CTrigger*> m_TriggerMap;	//Simulation triggers - used in engine
 	
 private:
-	bool loadTriggerSpec( XMBElement condition, CXeromyces& XeroFile, bool isCondition );
+	bool LoadTriggerSpec( XMBElement condition, CXeromyces& XeroFile, bool isCondition );
 	
 	//Contains choices for trigger choice box parameters, with key = spec.funcName+paramName
 	std::map<std::wstring, std::vector<std::wstring> > m_TriggerChoices;

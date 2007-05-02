@@ -29,15 +29,15 @@ CMusicPlayer::CMusicPlayer(void)
 
 CMusicPlayer::~CMusicPlayer(void)
 {
-	release();
+	Release();
 }
 
-void CMusicPlayer::open(char* UNUSED(filename))
+void CMusicPlayer::Open(char* UNUSED(filename))
 {
 	// If a new file is opened while another is already in memory,
 	// close the old one first.
 	if (is_open)
-		release();
+		Release();
 
 /*
 	void* p;
@@ -76,7 +76,7 @@ void CMusicPlayer::open(char* UNUSED(filename))
 }
 
 
-void CMusicPlayer::release()
+void CMusicPlayer::Release()
 {
 /*
 	if(!is_open)
@@ -104,7 +104,7 @@ void CMusicPlayer::release()
 }
 
 
-bool CMusicPlayer::isPlaying()
+bool CMusicPlayer::IsPlaying()
 {
 	return false;
 }
@@ -121,7 +121,7 @@ bool CMusicPlayer::isPlaying()
 */
 /*
 
-bool CMusicPlayer::issue(int slot_idx)
+bool CMusicPlayer::Issue(int slot_idx)
 {
 	Buf* buf = &bufs[slot_idx];
 
@@ -141,11 +141,11 @@ bool CMusicPlayer::issue(int slot_idx)
 }
 */
 
-bool CMusicPlayer::play()
+bool CMusicPlayer::Play()
 {
-	check();
+	Check();
 
-	if(isPlaying())
+	if(IsPlaying())
 		return true;
 
 	if(!is_open)
@@ -165,9 +165,9 @@ bool CMusicPlayer::play()
 }
 
 
-bool CMusicPlayer::update()
+bool CMusicPlayer::Update()
 {
-	if(!isPlaying())
+	if(!IsPlaying())
 		return false;
 /*
 	//check which buffers have already been played
@@ -210,7 +210,7 @@ found:
 }
 
 
-void CMusicPlayer::check()
+void CMusicPlayer::Check()
 {
 /*
 	int error = alGetError();
@@ -224,7 +224,7 @@ void CMusicPlayer::check()
 }
 
 
-void CMusicPlayer::empty()
+void CMusicPlayer::Empty()
 {
 /*
 	int queued;
@@ -243,7 +243,7 @@ void CMusicPlayer::empty()
 
 
 
-std::string CMusicPlayer::errorString(int UNUSED(errorcode))
+std::string CMusicPlayer::ErrorString(int UNUSED(errorcode))
 {
 	/*
 	switch(errorcode)

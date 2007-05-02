@@ -76,7 +76,7 @@ private:
 	//The key is the "order" of the slot
 	std::map<int, FormationSlot> m_slots;
 
-	bool loadXML(const CStr& filename);
+	bool LoadXml(const CStr& filename);
 	void AssignCategory(int order, CStr category);	//takes care of formatting strings
 };
 #endif

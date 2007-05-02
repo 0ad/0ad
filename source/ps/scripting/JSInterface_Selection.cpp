@@ -16,7 +16,7 @@ JSBool JSI_Selection::getSelection( JSContext* UNUSED(cx), JSObject* UNUSED(obj)
 	return( JS_TRUE );
 }
 
-JSBool JSI_Selection::setSelection( JSContext* cx, JSObject* UNUSED(obj),
+JSBool JSI_Selection::SetSelection( JSContext* cx, JSObject* UNUSED(obj),
 	jsval UNUSED(id), jsval* vp )
 {
 	if( !JSVAL_IS_OBJECT( *vp ) )
@@ -36,11 +36,11 @@ JSBool JSI_Selection::setSelection( JSContext* cx, JSObject* UNUSED(obj),
 		return( JS_TRUE );
 	}
 
-	g_Selection.clearSelection();
+	g_Selection.ClearSelection();
 	std::vector<HEntity>::iterator it;
 
 	for( it = Info->m_Data->begin(); it < Info->m_Data->end(); it++ )
-		g_Selection.addSelection( *it );
+		g_Selection.AddSelection( *it );
 
 	return( JS_TRUE );
 }
@@ -88,7 +88,7 @@ JSBool JSI_Selection::setGroups( JSContext* cx, JSObject* UNUSED(obj),
 				std::vector<HEntity>::iterator it;
 
 				for( it = Info->m_Data->begin(); it < Info->m_Data->end(); it++ )
-					g_Selection.addToGroup( groupId, *it );
+					g_Selection.AddToGroup( groupId, *it );
 
 			}
 		}

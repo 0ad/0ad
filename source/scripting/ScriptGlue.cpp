@@ -112,7 +112,7 @@ JSBool WriteLog(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 // Retrieve the entity currently occupying the specified handle.
 // params: handle [int]
 // returns: entity
-JSBool getEntityByUnitID( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool GetEntityByUnitID( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(1);
 	*rval = JSVAL_NULL;
@@ -143,7 +143,7 @@ JSBool getEntityByUnitID( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 // Look up an EntityTemplate by name.
 // params: template name [wstring]
 // returns: entity template object
-JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool GetEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAM_RANGE(1, 2);
 	*rval = JSVAL_NULL;
@@ -165,7 +165,7 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 		return( JS_TRUE );
 	}
 
-	CEntityTemplate* v = g_EntityTemplateCollection.getTemplate( templateName, player );
+	CEntityTemplate* v = g_EntityTemplateCollection.GetTemplate( templateName, player );
 	if( !v )
 	{
 		JS_ReportError( cx, "No such template: %s", CStr(templateName).c_str() );
@@ -176,19 +176,19 @@ JSBool getEntityTemplate( JSContext* cx, JSObject*, uint argc, jsval* argv, jsva
 	return( JS_TRUE );
 }
 
-JSBool getPlayerUnitCount( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool GetPlayerUnitCount( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(2);
 	int unitCount, playerNum = ToPrimitive<int>( argv[0] );
 	CStrW unitName = ToPrimitive<CStrW>( argv[1] );
 
-	unitCount = g_EntityManager.getPlayerUnitCount((size_t)playerNum, unitName);
+	unitCount = g_EntityManager.GetPlayerUnitCount((size_t)playerNum, unitName);
 	*rval = ToJSVal( unitCount );
 	return JS_TRUE;
 }
 
 
-//Used to create net messages for formations--msgList.front() is the original message. see issueCommand
+//Used to create net messages for formations--msgList.front() is the original message. see IssueCommand
 void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* msg, CEntityList& formation )
 {
 	CNetMessage* retMsg;
@@ -223,7 +223,7 @@ void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* ms
 // params: either an entity- or entity collection object, message ID [int],
 //   any further params needed by CNetMessage::CommandFromJSArgs
 // returns: command in serialized form [string]
-JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool IssueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	// at least one for target object, one for isQueued, and then 1 or more for the CommandFromJSArgs
 	JSU_REQUIRE_MIN_PARAMS(3);
@@ -281,55 +281,14 @@ JSBool issueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	
 	for ( std::vector<CNetMessage*>::iterator it=messages.begin(); it != messages.end(); it++ )
 	{
-		//g_Console->InsertMessage(L"issueCommand: %hs", (*it)->GetString().c_str());
+		//g_Console->InsertMessage(L"IssueCommand: %hs", (*it)->GetString().c_str());
 		g_Game->GetSimulation()->QueueLocalCommand(*it);
 		*rval = g_ScriptingHost.UCStringToValue((*it)->GetString());
 	}
 
 	return JS_TRUE;
 }
-//Formation stuff
-JSBool createEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(2);
-	
-	CEntityList entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-	CStrW name = ToPrimitive<CStrW>( argv[1] );
-	g_FormationManager.CreateFormation( entities, name );
-	*rval = JSVAL_VOID;
-	return JS_TRUE;
 
-}
-JSBool removeFromFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(1);
-	
-	CEntityList entities;
-	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
-		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
-	else
-		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-
-	*rval = g_FormationManager.RemoveUnitList(entities) ? JS_TRUE : JS_FALSE;
-	return JS_TRUE;
-}
-JSBool lockEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(1);
-
-	CEntity* entity = ToNative<CEntity>( argv[0] );
-	entity->GetFormation()->SetLock( ToPrimitive<bool>( argv[1] ) );
-	*rval = JSVAL_VOID;
-	return JS_TRUE;
-}
-JSBool isFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(1);
-
-	CEntity* entity = ToNative<CEntity>( argv[0] );
-	*rval = entity->GetFormation()->IsLocked() ? JS_TRUE : JS_FALSE;
-	return JS_TRUE;
-}
 
 // Get the state of a given hotkey (from the hotkeys file)
 JSBool isOrderQueued( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
@@ -342,10 +301,60 @@ JSBool isOrderQueued( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* ar
 
 
 //-----------------------------------------------------------------------------
+// formations
+//-----------------------------------------------------------------------------
+
+JSBool CreateEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS(2);
+	
+	CEntityList entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
+	CStrW name = ToPrimitive<CStrW>( argv[1] );
+	g_FormationManager.CreateFormation( entities, name );
+	*rval = JSVAL_VOID;
+	return JS_TRUE;
+
+}
+
+JSBool RemoveFromFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS(1);
+	
+	CEntityList entities;
+	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
+		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
+	else
+		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
+
+	*rval = g_FormationManager.RemoveUnitList(entities) ? JS_TRUE : JS_FALSE;
+	return JS_TRUE;
+}
+
+JSBool LockEntityFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS(1);
+
+	CEntity* entity = ToNative<CEntity>( argv[0] );
+	entity->GetFormation()->SetLock( ToPrimitive<bool>( argv[1] ) );
+	*rval = JSVAL_VOID;
+	return JS_TRUE;
+}
+
+JSBool IsFormationLocked( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_PARAMS(1);
+
+	CEntity* entity = ToNative<CEntity>( argv[0] );
+	*rval = entity->GetFormation()->IsLocked() ? JS_TRUE : JS_FALSE;
+	return JS_TRUE;
+}
+
+
+//-----------------------------------------------------------------------------
 // Techs
 //-----------------------------------------------------------------------------
 
-JSBool getTechnology( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool GetTechnology( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(2);
 	
@@ -359,17 +368,17 @@ JSBool getTechnology( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* ar
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
-		JS_ReportError( cx, "Invalid parameters for getTechnology (expected name and player)" );
+		JS_ReportError( cx, "Invalid parameters for GetTechnology (expected name and player)" );
 		return( JS_TRUE );
 	}
 
 	*rval = JSVAL_NULL;
 
-	CTechnology* tech = g_TechnologyCollection.getTechnology( name, player );	
+	CTechnology* tech = g_TechnologyCollection.GetTechnology( name, player );	
 	if ( tech )
 		*rval = ToJSVal( tech );
 	else
-		g_Console->InsertMessage( L"Warning: Invalid tech template name \"%ls\" passed for getTechnology()", name.c_str() );
+		g_Console->InsertMessage( L"Warning: Invalid tech template name \"%ls\" passed for GetTechnology()", name.c_str() );
 
 	return JS_TRUE;
 }
@@ -420,9 +429,9 @@ JSBool RemoveGlobalHandler( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsv
 //   therefore suspended while the game is paused or frozen. Granularity of
 //   timing is also limited to 1/(Simulation frame rate); currently 100ms.
 //   The called function or script executes in the same scope as the
-//   code that called setTimeout (amongst other things, the
+//   code that called SetTimeout (amongst other things, the
 //   'this' reference is usually maintained)
-JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool SetTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAM_RANGE(2, 3);
 
@@ -457,14 +466,14 @@ JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval
 	case JSTYPE_STRING:
 	{
 		CStrW fragment = g_ScriptingHost.ValueToUCString( argv[0] );
-		int id = g_Scheduler.pushTime( delay, fragment, scope );
+		int id = g_Scheduler.PushTime( delay, fragment, scope );
 		*rval = INT_TO_JSVAL( id );
 		return( JS_TRUE );
 	}
 	case JSTYPE_FUNCTION:
 	{
 		JSFunction* fn = JS_ValueToFunction( cx, argv[0] );
-		int id = g_Scheduler.pushTime( delay, fn, scope );
+		int id = g_Scheduler.PushTime( delay, fn, scope );
 		*rval = INT_TO_JSVAL( id );
 		return( JS_TRUE );
 	}
@@ -479,8 +488,8 @@ JSBool setTimeout( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval
 //   OR callback [fragment or function], period in ms [int] (initial delay = period)
 // returns:
 // notes:
-// - setTimeout's notes apply here as well.
-JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+// - SetTimeout's notes apply here as well.
+JSBool SetInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAM_RANGE(2, 3);
 
@@ -510,14 +519,14 @@ JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 	case JSTYPE_STRING:
 	{
 		CStrW fragment = g_ScriptingHost.ValueToUCString( argv[0] );
-		int id = g_Scheduler.pushInterval( first, interval, fragment, JS_GetScopeChain( cx ) );
+		int id = g_Scheduler.PushInterval( first, interval, fragment, JS_GetScopeChain( cx ) );
 		*rval = INT_TO_JSVAL( id );
 		return( JS_TRUE );
 	}
 	case JSTYPE_FUNCTION:
 	{
 		JSFunction* fn = JS_ValueToFunction( cx, argv[0] );
-		int id = g_Scheduler.pushInterval( first, interval, fn, JS_GetScopeChain( cx ) );
+		int id = g_Scheduler.PushInterval( first, interval, fn, JS_GetScopeChain( cx ) );
 		*rval = INT_TO_JSVAL( id );
 		return( JS_TRUE );
 	}
@@ -527,14 +536,14 @@ JSBool setInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 	}
 }
 
-// Cause all periodic functions registered via setInterval to
+// Cause all periodic functions registered via SetInterval to
 //   no longer be called.
 // params:
 // returns:
 // notes:
 // - Execution continues until the end of the triggered function or
 //   script fragment, but is not triggered again.
-JSBool cancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool CancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -549,14 +558,14 @@ JSBool cancelInterval( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* 
 // notes:
 // - Execution continues until the end of the triggered function or
 //   script fragment, but is not triggered again.
-JSBool cancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool CancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(1);
 
 	try
 	{
 		int id = ToPrimitive<int>( argv[0] );
-		g_Scheduler.cancelTask( id );
+		g_Scheduler.CancelTask( id );
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
@@ -569,7 +578,7 @@ JSBool cancelTimer( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 
 //Set the simulation rate scalar-time becomes time * SimRate.
 //Params: rate [float] : sets SimRate
-JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool SetSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_PARAMS(1);
 
@@ -578,7 +587,7 @@ JSBool setSimRate(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 }
 
 //Generate a random float in [0, 1) using the simulation's random generator
-JSBool simRand(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool SimRand(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -587,35 +596,34 @@ JSBool simRand(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 }
 
 //Generate a random float int between 0 and the given number - 1 using the simulation's RNG
-JSBool simRandInt(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool SimRandInt(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_PARAMS(1);
-	JSU_ASSERT(JSVAL_IS_INT(argv[0]), "simRandInt(): first parameter must be an int");
+	JSU_ASSERT(JSVAL_IS_INT(argv[0]), "SimRandInt(): first parameter must be an int");
 
 	*rval = ToJSVal( g_Game->GetSimulation()->RandInt(ToPrimitive<int>(argv[0])) );
 	return JS_TRUE;
 }
 
-// Script profiling functions: Begin timing a piece of code with startXTimer(num)
-// and stop timing with stopXTimer(num). The results will be printed to stdout
+// Script profiling functions: Begin timing a piece of code with StartJsTimer(num)
+// and stop timing with StopJsTimer(num). The results will be printed to stdout
 // when the game exits.
 
-static const uint MAX_XTIMERS = 20;
-typedef TimerRdtsc XTimerImpl;	// type must be kept in sync with timer.h TIMER_USE_RAW_TICKS
-static XTimerImpl xtimer_impl;
-static XTimerImpl::unit xstart_times[MAX_XTIMERS];
-static XTimerImpl::unit xoverhead;
-static TimerClient xclients[MAX_XTIMERS];
-static char xdescription_buf[MAX_XTIMERS * 11];
+static const uint MAX_JS_TIMERS = 20;
+static Timer js_timer;
+static TimerUnit js_start_times[MAX_JS_TIMERS];
+static TimerUnit js_timer_overhead;
+static TimerClient js_timer_clients[MAX_JS_TIMERS];
+static char js_timer_descriptions_buf[MAX_JS_TIMERS * 12];	// depends on MAX_JS_TIMERS and format string below
 
-static void initXTimers()
+static void InitJsTimers()
 {
-	char* pos = xdescription_buf;
-	for(uint i = 0; i < MAX_XTIMERS; i++)
+	char* pos = js_timer_descriptions_buf;
+	for(uint i = 0; i < MAX_JS_TIMERS; i++)
 	{
 		const char* description = pos;
-		pos += sprintf(pos, "xtimer %d", i)+1;
-		timer_add_client(&xclients[i], description);
+		pos += sprintf(pos, "js_timer %d", i)+1;
+		timer_add_client(&js_timer_clients[i], description);
 	}
 
 	// call several times to get a good approximation of 'hot' performance.
@@ -633,35 +641,35 @@ static void initXTimers()
 		"stopXTimer (0);\n"
 		"\n";
 	g_ScriptingHost.RunMemScript(calibration_script, strlen(calibration_script));
-	xoverhead = xclients[0].sum/4;
+	js_timer_overhead = js_timer_clients[0].sum/4;
 }
 
-JSBool startXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool StartJsTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
-	ONCE(initXTimers());
+	ONCE(InitJsTimers());
 
 	JSU_REQUIRE_PARAMS(1);
 	uint slot = ToPrimitive<uint>(argv[0]);
-	if (slot >= MAX_XTIMERS)
+	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
 
-	debug_assert(xstart_times[slot] == 0);
-	xstart_times[slot] = xtimer_impl.get_timestamp();
+	debug_assert(js_start_times[slot] == 0);
+	js_start_times[slot] = js_timer.get_timestamp();
 	return JS_TRUE;
 }
 
 
-JSBool stopXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool StopJsTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_PARAMS(1);
 	uint slot = ToPrimitive<uint>(argv[0]);
-	if (slot >= MAX_XTIMERS)
+	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
 
-	debug_assert(xstart_times[slot] != 0);
-	XTimerImpl::unit dt = xtimer_impl.get_timestamp() - xstart_times[slot] - xoverhead;
-	xstart_times[slot] = 0;
-	timer_bill_client(&xclients[slot], dt);
+	debug_assert(js_start_times[slot] != 0);
+	TimerUnit dt = js_timer.get_timestamp() - js_start_times[slot] - js_timer_overhead;
+	js_start_times[slot] = 0;
+	timer_bill_client(&js_timer_clients[slot], dt);
 	return JS_TRUE;
 }
 
@@ -673,7 +681,7 @@ JSBool stopXTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 // Create a new network server object.
 // params:
 // returns: net server object
-JSBool createServer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool CreateServer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -690,7 +698,7 @@ JSBool createServer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 // Create a new network client object.
 // params:
 // returns: net client object
-JSBool createClient(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool CreateClient(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -711,9 +719,9 @@ JSBool createClient(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 // - Performs necessary initialization while calling back into the
 //   main loop, so the game remains responsive to display+user input.
 // - When complete, the engine calls the reallyStartGame JS function.
-// TODO: Replace startGame with create(Game|Server|Client)/game.start() -
+// TODO: Replace StartGame with Create(Game|Server|Client)/game.start() -
 //   after merging CGame and CGameAttributes
-JSBool startGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool StartGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -722,7 +730,7 @@ JSBool startGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 	// Hosted MP Game
 	if (g_NetServer)
 		*rval = BOOLEAN_TO_JSVAL(g_NetServer->StartGame() == 0);
-	// Joined MP Game: startGame is invalid - do nothing
+	// Joined MP Game: StartGame is invalid - do nothing
 	else if (g_NetClient)
 	{
 	}
@@ -750,7 +758,7 @@ JSBool startGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 // Immediately ends the current game (if any).
 // params:
 // returns:
-JSBool endGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool EndGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -758,7 +766,7 @@ JSBool endGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 	return JS_TRUE;
 }
 
-JSBool getGameMode(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool GetGameMode(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -778,7 +786,7 @@ JSBool getGameMode(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval
 // Replaces the current language (locale) with a new one.
 // params: language id [string] as in I18n::LoadLanguage
 // returns:
-JSBool loadLanguage(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool LoadLanguage(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_PARAMS(1);
 
@@ -792,7 +800,7 @@ JSBool loadLanguage(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 // Return identifier of the current language (locale) in use.
 // params:
 // returns: language id [string] as in I18n::LoadLanguage
-JSBool getLanguageID(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool GetLanguageID(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 	*rval = JSVAL_NULL;
@@ -819,7 +827,7 @@ JSBool getLanguageID(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 // notes:
 // - currently implemented via access violation (read of address 0)
 // - useful for testing the crashlog/stack trace code.
-JSBool crash(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool ProvokeCrash(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -828,12 +836,12 @@ JSBool crash(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 }
 
 
-// Force a JS GC (garbage collection) cycle to take place immediately.
+// Force a JS garbage collection cycle to take place immediately.
 // params:
 // returns: true [bool]
 // notes:
 // - writes an indication of how long this took to the console.
-JSBool forceGC(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)
+JSBool ForceGarbageCollection(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -856,7 +864,7 @@ JSBool forceGC(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsv
 // returns: global object
 // notes:
 // - Useful for accessing an object from another scope.
-JSBool getGUIGlobal(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool GetGuiGlobal(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -867,7 +875,7 @@ JSBool getGUIGlobal(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 // Resets the entire GUI state and reloads the XML files.
 // params:
 // returns:
-JSBool resetGUI(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
+JSBool ResetGui(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -893,7 +901,7 @@ JSBool resetGUI(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 // notes:
 // - This value is recalculated once a frame. We take special care to
 //   filter it, so it is both accurate and free of jitter.
-JSBool getFPS( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool GetFps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -908,7 +916,7 @@ JSBool getFPS( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 // notes:
 // - Exit happens after the current main loop iteration ends
 //   (since this only sets a flag telling it to end)
-JSBool exitProgram( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool ExitProgram( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -924,7 +932,7 @@ JSBool exitProgram( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 // - Not supported on all platforms.
 // - Only a rough approximation; do not base low-level decisions
 //   ("should I allocate one more texture?") on this.
-JSBool vmem( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool WriteVideoMemToConsole( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -946,13 +954,14 @@ JSBool vmem( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 // returns:
 // notes:
 // - Cursors are stored in "art\textures\cursors"
-JSBool setCursor( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool SetCursor( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(1);
 	g_CursorName = g_ScriptingHost.ValueToString(argv[0]);
 	return JS_TRUE;
 }
-JSBool getCursorName( JSContext* UNUSED(cx), JSObject*, uint UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
+
+JSBool GetCursorName( JSContext* UNUSED(cx), JSObject*, uint UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 {
 	*rval = ToJSVal(g_CursorName);
 	return JS_TRUE;
@@ -963,7 +972,7 @@ JSBool getCursorName( JSContext* UNUSED(cx), JSObject*, uint UNUSED(argc), jsval
 // returns:
 // notes:
 // - Usefulness is unclear. If you need it, consider renaming this and updating the docs.
-JSBool _rewriteMaps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool _RewriteMaps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -978,7 +987,7 @@ JSBool _rewriteMaps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 // notes:
 // - value is as required by GL_TEXTURE_LOD_BIAS.
 // - useful for adjusting image "sharpness" (since it affects which mipmap level is chosen)
-JSBool _lodbias( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool _LodBias( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(1);
 
@@ -990,7 +999,7 @@ JSBool _lodbias( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 // Focus the game camera on a given position.
 // params: target position vector [CVector3D]
 // returns: success [bool]
-JSBool setCameraTarget( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool SetCameraTarget( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(1);
 	*rval = JSVAL_NULL;
@@ -1022,13 +1031,13 @@ JSBool setCameraTarget( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* 
 //   but that's a bit more trouble.
 // - To be exact, the date/time returned is when scriptglue.cpp was
 //   last compiled; since the auto-build does full rebuilds, that is moot.
-JSBool buildTime( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
+JSBool GetBuildTimestamp( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAM_RANGE(0, 1);
 
-	// buildTime( ) = "date time"
-	// buildTime(0) = "date"
-	// buildTime(1) = "time"
+	// no param => "date time"
+	// param = 0 => "date"
+	// param = 1 => "time"
 	JSString* s = JS_NewStringCopyZ(cx,
 		argc && argv[0]==JSVAL_ONE ? __TIME__
 		:	argc ? __DATE__
@@ -1042,13 +1051,13 @@ JSBool buildTime( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval 
 // Return distance between 2 points.
 // params: 2 position vectors [CVector3D]
 // returns: Euclidean distance [float]
-JSBool v3dist( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool ComputeDistanceBetweenTwoPoints( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(2);
 
 	CVector3D* a = ToNative<CVector3D>( argv[0] );
 	CVector3D* b = ToNative<CVector3D>( argv[1] );
-	float dist = ( *a - *b ).GetLength();
+	float dist = ( *a - *b ).Length();
 	*rval = ToJSVal( dist );
 	return( JS_TRUE );
 }
@@ -1059,7 +1068,7 @@ JSBool v3dist( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsv
 // returns: global object
 // notes:
 // - Useful for accessing an object from another scope.
-JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv, jsval* rval )
+JSBool GetGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -1068,7 +1077,7 @@ JSBool getGlobal( JSContext* cx, JSObject* globalObject, uint argc, jsval* argv,
 }
 
 // Saves the current profiling data to the logs/profile.txt file
-JSBool saveProfileData( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SaveProfileData( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 	g_ProfileViewer.SaveToFile();
@@ -1079,7 +1088,7 @@ JSBool saveProfileData( JSContext* cx, JSObject* UNUSED(globalObject), uint argc
 // are then ordered to construct the building if it is placed.
 // params: templateName - the name of the entity to place.
 // returns: true if cursor was activated, false if cursor was already active.
-JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool StartPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	CStrW name;
 	if(argc == 0) {
@@ -1094,27 +1103,13 @@ JSBool startPlacing( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 		}
 	}
 
-	*rval = g_BuildingPlacer.activate(name) ? JS_TRUE : JS_FALSE;
+	*rval = g_BuildingPlacer.Activate(name) ? JS_TRUE : JS_FALSE;
 
 	return( JS_TRUE );
 }
 
-/*
-//Converts given screenspace coordinates to worldspace. (CURRENTLY NOT IN USE)
-JSBool getWorldCoordinates( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
-{
-	JSU_REQUIRE_PARAMS(2);
-	int x = ToPrimitive<int>( argv[0] );
-	int y = ToPrimitive<int>( argv[1] );
-
-	CVector3D world = g_Game->GetView()->GetCamera()->GetWorldCoordinates(x, y);
-	*rval = ToJSVal(world);
-	return JS_TRUE;
-}
-*/
-
 // Toggles drawing the sky
-JSBool toggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool ToggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 	g_Renderer.GetSkyManager()->m_RenderSky = !g_Renderer.GetSkyManager()->m_RenderSky;
@@ -1123,7 +1118,7 @@ JSBool toggleSky( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 }
 
 // Toggles drawing territory outlines
-JSBool toggleTerritoryRendering( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool ToggleTerritoryRendering( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 	g_Renderer.m_RenderTerritories = !g_Renderer.m_RenderTerritories;
@@ -1131,8 +1126,12 @@ JSBool toggleTerritoryRendering( JSContext* cx, JSObject* UNUSED(globalObject), 
 	return( JS_TRUE );
 }
 
+
+//-----------------------------------------------------------------------------
+// water
+
 // Toggles drawing the water plane
-JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool ToggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 	g_Renderer.GetWaterManager()->m_RenderWater = !g_Renderer.GetWaterManager()->m_RenderWater;
@@ -1141,7 +1140,7 @@ JSBool toggleWater( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, js
 }
 
 // Sets the water plane height
-JSBool setWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SetWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS( 1 );
 	float newHeight;
@@ -1158,7 +1157,7 @@ JSBool setWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 }
 
 // Gets the water plane height
-JSBool getWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool GetWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 	*rval = ToJSVal(g_Renderer.GetWaterManager()->m_WaterHeight);
@@ -1166,7 +1165,7 @@ JSBool getWaterHeight( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 }
 
 // Sets the water color
-JSBool setWaterColor( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SetWaterColor( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS( 3 );
 	float r,g,b;
@@ -1184,7 +1183,7 @@ JSBool setWaterColor( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, 
 }
 
 // Sets the water tint (used to tint reflections in fancy water)
-JSBool setWaterTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SetWaterTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS( 3 );
 	float r,g,b;
@@ -1202,7 +1201,7 @@ JSBool setWaterTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, j
 }
 
 // Sets the water tint (used to tint reflections in fancy water)
-JSBool setReflectionTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SetReflectionTint( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS( 3 );
 	float r,g,b;
@@ -1220,7 +1219,7 @@ JSBool setReflectionTint( JSContext* cx, JSObject* UNUSED(globalObject), uint ar
 }
 
 // Sets the max water alpha (achieved when it is at WaterFullDepth or deeper)
-JSBool setWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SetWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS( 1 );
 	float val;
@@ -1236,7 +1235,7 @@ JSBool setWaterMaxAlpha( JSContext* cx, JSObject* UNUSED(globalObject), uint arg
 }
 
 // Sets the water full depth (when it is colored WaterMaxAlpha)
-JSBool setWaterFullDepth( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SetWaterFullDepth( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS( 1 );
 	float val;
@@ -1252,7 +1251,7 @@ JSBool setWaterFullDepth( JSContext* cx, JSObject* UNUSED(globalObject), uint ar
 }
 
 // Sets the water alpha offset (added to tweak water alpha near the shore)
-JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SetWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS( 1 );
 	float val;
@@ -1267,8 +1266,10 @@ JSBool setWaterAlphaOffset( JSContext* cx, JSObject* UNUSED(globalObject), uint 
 	return( JS_TRUE );
 }
 
+//-----------------------------------------------------------------------------
+
 // Is the game paused?
-JSBool isPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool IsPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -1283,7 +1284,7 @@ JSBool isPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval
 }
 
 // Pause/unpause the game
-JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool SetPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS( 1 );
 
@@ -1299,14 +1300,14 @@ JSBool setPaused( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
-		JS_ReportError( cx, "Invalid parameter to setPaused" );
+		JS_ReportError( cx, "Invalid parameter to SetPaused" );
 	}
 
 	return  JS_TRUE;
 }
 
 // Get game time
-JSBool getGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool GetGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
@@ -1320,8 +1321,7 @@ JSBool getGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, js
 	return JS_TRUE;
 }
 
-JSBool registerTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, 
-														jsval* argv, jsval* rval )
+JSBool RegisterTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	CTrigger* trigger = ToNative<CTrigger>( argv[0] );
@@ -1331,8 +1331,8 @@ JSBool registerTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc
 	*rval = JSVAL_NULL;
 	return JS_TRUE;
 }
-JSBool getTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, 
-													jsval* argv, jsval* rval )
+
+JSBool GetTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	CStrW name = ToPrimitive<CStrW>( argv[0] );
@@ -1348,7 +1348,7 @@ JSBool getTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uint argc,
 }
 
 // Reveal map
-JSBool revealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
+JSBool RevealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAM_RANGE(0, 1);
 
@@ -1381,120 +1381,123 @@ JSBool revealMap( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, jsva
 // - Extra (reserved for future use, always zero)
 //
 // we simplify this a bit with a macro:
-#define JS_FUNC(script_name, cpp_function, min_params) { #script_name, cpp_function, min_params, 0, 0 },
+#define JS_FUNC(script_name, cpp_function, min_params) { script_name, cpp_function, min_params, 0, 0 },
 
 JSFunctionSpec ScriptFunctionTable[] =
 {
 	// Console
-	JS_FUNC(writeConsole, JSI_Console::writeConsole, 1)	// external
+	JS_FUNC("writeConsole", JSI_Console::writeConsole, 1)	// external
 
 	// Entity
-	JS_FUNC(getEntityByUnitID, getEntityByUnitID, 1)
-	JS_FUNC(getPlayerUnitCount, getPlayerUnitCount, 1)
-	JS_FUNC(getEntityTemplate, getEntityTemplate, 1)
-	JS_FUNC(issueCommand, issueCommand, 2)
-	JS_FUNC(startPlacing, startPlacing, 1)
+	JS_FUNC("getEntityByUnitID", GetEntityByUnitID, 1)
+	JS_FUNC("GetPlayerUnitCount", GetPlayerUnitCount, 1)
+	JS_FUNC("getEntityTemplate", GetEntityTemplate, 1)
+	JS_FUNC("issueCommand", IssueCommand, 2)
+	JS_FUNC("startPlacing", StartPlacing, 1)
 
-	JS_FUNC(createEntityFormation, createEntityFormation, 2)
-	JS_FUNC(removeFromFormation, removeFromFormation, 1)
-	JS_FUNC(lockEntityFormation, lockEntityFormation, 1)
-	JS_FUNC(isFormationLocked, isFormationLocked, 1)
+	// Formation
+	JS_FUNC("createEntityFormation", CreateEntityFormation, 2)
+	JS_FUNC("removeFromFormation", RemoveFromFormation, 1)
+	JS_FUNC("lockEntityFormation", LockEntityFormation, 1)
+	JS_FUNC("isFormationLocked", IsFormationLocked, 1)
 
-	JS_FUNC(registerTrigger, registerTrigger, 1)
+	// Trigger
+	JS_FUNC("registerTrigger", RegisterTrigger, 1)
 	
-	//Tech
-	JS_FUNC(getTechnology, getTechnology, 2)
+	// Tech
+	JS_FUNC("getTechnology", GetTechnology, 2)
+
 	// Camera
-	JS_FUNC(setCameraTarget, setCameraTarget, 1)
+	JS_FUNC("setCameraTarget", SetCameraTarget, 1)
 
 	// Sky
-	JS_FUNC(toggleSky, toggleSky, 0)
+	JS_FUNC("toggleSky", ToggleSky, 0)
 
 	// Water
-	JS_FUNC(toggleWater, toggleWater, 0)
-	JS_FUNC(setWaterHeight, setWaterHeight, 1)
-	JS_FUNC(getWaterHeight, getWaterHeight, 0)
-	JS_FUNC(setWaterColor, setWaterColor, 3)
-	JS_FUNC(setWaterTint, setWaterTint, 3)
-	JS_FUNC(setReflectionTint, setReflectionTint, 3)
-	JS_FUNC(setWaterMaxAlpha, setWaterMaxAlpha, 0)
-	JS_FUNC(setWaterFullDepth, setWaterFullDepth, 0)
-	JS_FUNC(setWaterAlphaOffset, setWaterAlphaOffset, 0)
+	JS_FUNC("toggleWater", ToggleWater, 0)
+	JS_FUNC("setWaterHeight", SetWaterHeight, 1)
+	JS_FUNC("getWaterHeight", GetWaterHeight, 0)
+	JS_FUNC("setWaterColor", SetWaterColor, 3)
+	JS_FUNC("setWaterTint", SetWaterTint, 3)
+	JS_FUNC("setReflectionTint", SetReflectionTint, 3)
+	JS_FUNC("setWaterMaxAlpha", SetWaterMaxAlpha, 0)
+	JS_FUNC("setWaterFullDepth", SetWaterFullDepth, 0)
+	JS_FUNC("setWaterAlphaOffset", SetWaterAlphaOffset, 0)
 
 	// Territory rendering
-	JS_FUNC(toggleTerritoryRendering, toggleTerritoryRendering, 0)
+	JS_FUNC("toggleTerritoryRendering", ToggleTerritoryRendering, 0)
 
 	// GUI
 #ifndef NO_GUI
-	JS_FUNC(getGUIObjectByName, JSI_IGUIObject::getByName, 1)	// external
-	JS_FUNC(getGUIGlobal, getGUIGlobal, 0)
-	JS_FUNC(resetGUI, resetGUI, 0)
+	JS_FUNC("getGUIObjectByName", JSI_IGUIObject::getByName, 1)	// external
+	JS_FUNC("getGUIGlobal", GetGuiGlobal, 0)
+	JS_FUNC("resetGUI", ResetGui, 0)
 #endif
 
 	// Events
-	JS_FUNC(addGlobalHandler, AddGlobalHandler, 2)
-	JS_FUNC(removeGlobalHandler, RemoveGlobalHandler, 2)
+	JS_FUNC("addGlobalHandler", AddGlobalHandler, 2)
+	JS_FUNC("removeGlobalHandler", RemoveGlobalHandler, 2)
 
 	// Timer
-	JS_FUNC(setTimeout, setTimeout, 2)
-	JS_FUNC(setInterval, setInterval, 2)
-	JS_FUNC(cancelInterval, cancelInterval, 0)
-	JS_FUNC(cancelTimer, cancelTimer, 0)
-	JS_FUNC(setSimRate, setSimRate, 1)
+	JS_FUNC("setTimeout", SetTimeout, 2)
+	JS_FUNC("setInterval", SetInterval, 2)
+	JS_FUNC("cancelInterval", CancelInterval, 0)
+	JS_FUNC("cancelTimer", CancelTimer, 0)
+	JS_FUNC("setSimRate", SetSimRate, 1)
 
 	// Random number generator
-	JS_FUNC(simRand, simRand, 0)
-	JS_FUNC(simRandInt, simRandInt, 1)
+	JS_FUNC("simRand", SimRand, 0)
+	JS_FUNC("simRandInt", SimRandInt, 1)
 
 	// Profiling
-	JS_FUNC(startXTimer, startXTimer, 1)
-	JS_FUNC(stopXTimer, stopXTimer, 1)
+	JS_FUNC("startXTimer", StartJsTimer, 1)
+	JS_FUNC("stopXTimer", StopJsTimer, 1)
 
 	// Game Setup
-	JS_FUNC(startGame, startGame, 0)
-	JS_FUNC(endGame, endGame, 0)
-	JS_FUNC(getGameMode, getGameMode, 0)
-	JS_FUNC(createClient, createClient, 0)
-	JS_FUNC(createServer, createServer, 0)
+	JS_FUNC("startGame", StartGame, 0)
+	JS_FUNC("endGame", EndGame, 0)
+	JS_FUNC("getGameMode", GetGameMode, 0)
+	JS_FUNC("createClient", CreateClient, 0)
+	JS_FUNC("createServer", CreateServer, 0)
 
 	// VFS (external)
-	JS_FUNC(buildDirEntList, JSI_VFS::BuildDirEntList, 1)
-	JS_FUNC(getFileMTime, JSI_VFS::GetFileMTime, 1)
-	JS_FUNC(getFileSize, JSI_VFS::GetFileSize, 1)
-	JS_FUNC(readFile, JSI_VFS::ReadFile, 1)
-	JS_FUNC(readFileLines, JSI_VFS::ReadFileLines, 1)
-	JS_FUNC(archiveBuilderCancel, JSI_VFS::ArchiveBuilderCancel, 1)
+	JS_FUNC("buildDirEntList", JSI_VFS::BuildDirEntList, 1)
+	JS_FUNC("getFileMTime", JSI_VFS::GetFileMTime, 1)
+	JS_FUNC("getFileSize", JSI_VFS::GetFileSize, 1)
+	JS_FUNC("readFile", JSI_VFS::ReadFile, 1)
+	JS_FUNC("readFileLines", JSI_VFS::ReadFileLines, 1)
+	JS_FUNC("archiveBuilderCancel", JSI_VFS::ArchiveBuilderCancel, 1)
 
 	// Internationalization
-	JS_FUNC(loadLanguage, loadLanguage, 1)
-	JS_FUNC(getLanguageID, getLanguageID, 0)
+	JS_FUNC("loadLanguage", LoadLanguage, 1)
+	JS_FUNC("getLanguageID", GetLanguageID, 0)
 	// note: i18n/ScriptInterface.cpp registers translate() itself.
 	// rationale: see implementation section above.
 
 	// Debug
-	JS_FUNC(crash, crash, 0)
-	JS_FUNC(forceGC, forceGC, 0)
-	JS_FUNC(revealMap, revealMap, 1)
+	JS_FUNC("crash", ProvokeCrash, 0)
+	JS_FUNC("forceGC", ForceGarbageCollection, 0)
+	JS_FUNC("revealMap", RevealMap, 1)
 
 	// Misc. Engine Interface
-	JS_FUNC(writeLog, WriteLog, 1)
-	JS_FUNC(exit, exitProgram, 0)
-	JS_FUNC(isPaused, isPaused, 0)
-	JS_FUNC(setPaused, setPaused, 1)
-	JS_FUNC(getGameTime, getGameTime, 0)
-	JS_FUNC(vmem, vmem, 0)
-	JS_FUNC(_rewriteMaps, _rewriteMaps, 0)
-	JS_FUNC(_lodbias, _lodbias, 0)
-	JS_FUNC(setCursor, setCursor, 1)
-	JS_FUNC(getCursorName, getCursorName, 0)
-	JS_FUNC(getFPS, getFPS, 0)
-	JS_FUNC(isOrderQueued, isOrderQueued, 1)
+	JS_FUNC("writeLog", WriteLog, 1)
+	JS_FUNC("exit", ExitProgram, 0)
+	JS_FUNC("isPaused", IsPaused, 0)
+	JS_FUNC("setPaused", SetPaused, 1)
+	JS_FUNC("getGameTime", GetGameTime, 0)
+	JS_FUNC("vmem", WriteVideoMemToConsole, 0)
+	JS_FUNC("_rewriteMaps", _RewriteMaps, 0)
+	JS_FUNC("_lodBias", _LodBias, 0)
+	JS_FUNC("setCursor", SetCursor, 1)
+	JS_FUNC("getCursorName", GetCursorName, 0)
+	JS_FUNC("getFPS", GetFps, 0)
+	JS_FUNC("isOrderQueued", isOrderQueued, 1)
 
 	// Miscellany
-	JS_FUNC(v3dist, v3dist, 2)
-	JS_FUNC(buildTime, buildTime, 0)
-	JS_FUNC(getGlobal, getGlobal, 0)
-	JS_FUNC(saveProfileData, saveProfileData, 0)
+	JS_FUNC("v3dist", ComputeDistanceBetweenTwoPoints, 2)
+	JS_FUNC("buildTime", GetBuildTimestamp, 0)
+	JS_FUNC("getGlobal", GetGlobal, 0)
+	JS_FUNC("saveProfileData", SaveProfileData, 0)
 
 	// end of table marker
 	{0, 0, 0, 0, 0}
@@ -1590,7 +1593,7 @@ enum ScriptGlobalTinyIDs
 
 JSPropertySpec ScriptGlobalTable[] =
 {
-	{ "selection"  , GLOBAL_SELECTION,   PERM,         JSI_Selection::getSelection, JSI_Selection::setSelection },
+	{ "selection"  , GLOBAL_SELECTION,   PERM,         JSI_Selection::getSelection, JSI_Selection::SetSelection },
 	{ "groups"     , GLOBAL_GROUPSARRAY, PERM,         JSI_Selection::getGroups,    JSI_Selection::setGroups },
 	{ "camera"     , GLOBAL_CAMERA,      PERM,         JSI_Camera::getCamera,       JSI_Camera::setCamera },
 	{ "console"    , GLOBAL_CONSOLE,     PERM | CONST, JSI_Console::getConsole,     0 },

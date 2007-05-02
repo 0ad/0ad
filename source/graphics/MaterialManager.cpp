@@ -182,8 +182,8 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 	if(xeroFile.Load(file) != PSRETURN_OK)
 		return NullMaterial;
 
-	#define EL(x) int el_##x = xeroFile.getElementID(#x)
-	#define AT(x) int at_##x = xeroFile.getAttributeID(#x)
+	#define EL(x) int el_##x = xeroFile.GetElementID(#x)
+	#define AT(x) int at_##x = xeroFile.GetAttributeID(#x)
 	EL(texture);
 	EL(vertexprogram);
 	EL(fragmentprogram);
@@ -204,52 +204,52 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 	CMaterial *material = NULL;
 	try
 	{
-		XMBElement root = xeroFile.getRoot();
-		XMBElementList childNodes = root.getChildNodes();
+		XMBElement root = xeroFile.GetRoot();
+		XMBElementList childNodes = root.GetChildNodes();
 		material = new CMaterial();
 
 		for(int i = 0; i < childNodes.Count; i++)
 		{
-			XMBElement node = childNodes.item(i);
-			int token = node.getNodeName();
-			XMBAttributeList attrs = node.getAttributes();
+			XMBElement node = childNodes.Item(i);
+			int token = node.GetNodeName();
+			XMBAttributeList attrs = node.GetAttributes();
 			CStr temp;
 			if(token == el_texture)
 			{
-				CStr value(node.getText());
+				CStr value(node.GetText());
 				material->SetTexture(value);
 			}
 			else if(token == el_vertexprogram)
 			{
-				CStr value(node.getText());
+				CStr value(node.GetText());
 				material->SetVertexProgram(value);
 			}
 			else if(token == el_fragmentprogram)
 			{
-				CStr value(node.getText());
+				CStr value(node.GetText());
 				material->SetFragmentProgram(value);
 			}
 			else if(token == el_colors)
 			{
-				temp = (CStr)attrs.getNamedItem(at_diffuse);
+				temp = (CStr)attrs.GetNamedItem(at_diffuse);
 				if(! temp.empty())
 					material->SetDiffuse(ParseColor(temp));
 
-				temp = (CStr)attrs.getNamedItem(at_ambient);
+				temp = (CStr)attrs.GetNamedItem(at_ambient);
 				if(! temp.empty())
 					material->SetAmbient(ParseColor(temp));
 
-				temp = (CStr)attrs.getNamedItem(at_specular);
+				temp = (CStr)attrs.GetNamedItem(at_specular);
 				if(! temp.empty())
 					material->SetSpecular(ParseColor(temp));
 
-				temp = (CStr)attrs.getNamedItem(at_specularpower);
+				temp = (CStr)attrs.GetNamedItem(at_specularpower);
 				if(! temp.empty())
 					material->SetSpecularPower(ClampFloat(temp.ToFloat(), 0.0f, 1.0f));
 			}
 			else if(token == el_alpha)
 			{
-				temp = (CStr)attrs.getNamedItem(at_usage);
+				temp = (CStr)attrs.GetNamedItem(at_usage);
 
 				// Determine whether the alpha is used for basic transparency or player color
 				if (temp == "playercolor")

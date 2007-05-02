@@ -299,7 +299,7 @@ static void state_latch(OglTexState* ots)
 	//    if we're using one of the others, we squelch the error that
 	//    may have resulted if this GL implementation is old.
 	if(wrap != GL_CLAMP && wrap != GL_REPEAT)
-		oglSquelchError(GL_INVALID_ENUM);
+		ogl_SquelchError(GL_INVALID_ENUM);
 }
 
 
@@ -441,7 +441,7 @@ static LibError OglTex_validate(const OglTex* ot)
 	if(w == 0 || h == 0)
 		WARN_RETURN(ERR::_11);
 	// .. greater than max supported tex dimension.
-	//    no-op if oglInit not yet called
+	//    no-op if ogl_Init not yet called
 	if(w > (GLsizei)ogl_max_tex_size || h > (GLsizei)ogl_max_tex_size)
 		WARN_RETURN(ERR::_12);
 	// .. not power-of-2.
@@ -658,13 +658,13 @@ static void detect_gl_upload_caps()
 	// "undecided" (if overrides were set before this, they must remain).
 	if(have_auto_mipmap_gen == -1)
 	{
-		have_auto_mipmap_gen = oglHaveExtension("GL_SGIS_generate_mipmap");
+		have_auto_mipmap_gen = ogl_HaveExtension("GL_SGIS_generate_mipmap");
 	}
 	if(have_s3tc == -1)
 	{
 		// note: we don't bother checking for GL_S3_s3tc - it is incompatible
 		// and irrelevant (was never widespread).
-		have_s3tc = oglHaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", 0) == 0;
+		have_s3tc = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", 0) == 0;
 	}
 
 	// allow app hook to make ogl_tex_override calls
@@ -843,7 +843,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 	if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
 
 	// now actually send to OpenGL:
-	oglCheck();
+	ogl_WarnIfError();
 	{
 		// (note: we know ht is valid due to H_DEREF, but ogl_tex_bind can
 		// fail in debug builds if OglTex.id isn't a valid texture name)
@@ -857,7 +857,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 		state_latch(&ot->state);
 		upload_impl(t, ot->fmt, ot->int_fmt, levels_to_skip);
 	}
-	oglCheck();
+	ogl_WarnIfError();
 
 	ot->flags |= OT_NEED_AUTO_UPLOAD|OT_IS_UPLOADED;
 

@@ -36,8 +36,8 @@ public:
 	inline void SetParent(CClassSet* Parent)
 		{ m_Parent = Parent; Rebuild(); }
 
-	CStrW getMemberList();
-	void setFromMemberList(const CStrW& list);
+	CStrW GetMemberList();
+	void SetFromMemberList(const CStrW& list);
 };
 
 #endif

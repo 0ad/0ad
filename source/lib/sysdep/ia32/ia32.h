@@ -33,7 +33,7 @@
 /**
  * must be called exactly once before any of the following functions.
  **/
-extern void ia32_init();
+extern void ia32_Init();
 
 /// fpclassify return values
 #define IA32_FP_NAN       0x0100
@@ -115,7 +115,7 @@ extern bool ia32_cap(IA32Cap cap);
  *
  * this function is used for walking the call stack.
  **/
-extern LibError ia32_get_call_target(void* ret_addr, void** target);
+extern LibError ia32_GetCallTarget(void* ret_addr, void** target);
 
 
 /// safe but slow inline-asm version
@@ -136,7 +136,7 @@ extern u64 ia32_rdtsc();	// only for CppDoc's benefit
 /**
  * trigger a breakpoint inside this function when it is called.
  **/
-extern void ia32_debug_break(void);
+extern void ia32_DebugBreak(void);
 
 
 // CPU detection
@@ -145,44 +145,44 @@ extern void ia32_debug_break(void);
  * @return string identifying the CPU (usually a cleaned-up version of the
  * brand string)
  **/
-extern const char* ia32_identifierString();
+extern const char* ia32_IdentifierString();
 
 /**
  * @return whether CPU frequency throttling is possible or
  * may potentially happen (if so, using RDTSC is unsafe).
  **/
-extern int ia32_isThrottlingPossible();
+extern int ia32_IsThrottlingPossible();
 
 /**
  * @return the cached result of a precise measurement of the
  * CPU frequency.
  **/
-extern double ia32_clockFrequency();
+extern double ia32_ClockFrequency();
 
 /**
  * @return number of *enabled* CPU packages / sockets.
  **/
-extern uint ia32_numPackages();
+extern uint ia32_NumPackages();
 
 /**
  * @return number of *enabled* CPU cores per package.
  * (2 on dual-core systems)
  **/
-extern uint ia32_coresPerPackage();
+extern uint ia32_CoresPerPackage();
 
 /**
  * @return number of *enabled* hyperthreading units per core.
  * (2 on P4 EE)
  **/
-extern uint ia32_logicalPerCore();
+extern uint ia32_LogicalPerCore();
 
 
 // implementations of the cpu.h interface
 
-/// see cpu_mfence
-extern void ia32_mfence();
+/// see cpu_MemoryFence
+extern void ia32_MemoryFence();
 
-// see cpu_serialize
-extern void ia32_serialize();
+// see cpu_Serialize
+extern void ia32_Serialize();
 
 #endif	// #ifndef INCLUDED_IA32

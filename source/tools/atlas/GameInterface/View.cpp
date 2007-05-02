@@ -313,7 +313,7 @@ void ViewGame::RestoreState(const std::wstring& label)
 
 	// delete all existing entities
 	g_Game->GetWorld()->GetProjectileManager().DeleteAll();
-	g_EntityManager.deleteAll();
+	g_EntityManager.DeleteAll();
 
 	if (! simState->onlyEntities)
 	{
@@ -326,10 +326,10 @@ void ViewGame::RestoreState(const std::wstring& label)
 	{
 		SimState::Entity& e = simState->entities[i];
 
-		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(e.templateName, g_Game->GetPlayer(e.playerID));
+		CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(e.templateName, g_Game->GetPlayer(e.playerID));
 		if (base)
 		{
-			HEntity ent = g_EntityManager.create(base, e.position, e.angle, e.selections);
+			HEntity ent = g_EntityManager.Create(base, e.position, e.angle, e.selections);
 
 			if (ent)
 			{

@@ -3,9 +3,9 @@
 
 #include "lib/sysdep/cpu.h"
 
-extern int ucpu_isThrottlingPossible();
-extern int ucpu_numPackages();
-extern double ucpu_clockFrequency();
-extern LibError ucpu_callByEachCPU(CpuCallback cb, void* param);
+extern int ucpu_IsThrottlingPossible();
+extern int ucpu_NumPackages();
+extern double ucpu_ClockFrequency();
+extern LibError ucpu_CallByEachCPU(CpuCallback cb, void* param);
 
 #endif	// #ifndef INCLUDED_UCPU

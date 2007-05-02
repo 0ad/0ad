@@ -283,7 +283,7 @@ static SKeycodeMapping keycodeMapping[] =
 	{ 0, 0, 0 },
 };
 
-void initKeyNameMap()
+void InitKeyNameMap()
 {
 	SKeycodeMapping* it = keycodeMapping;
 	while( it->keycode != 0 )
@@ -295,7 +295,7 @@ void initKeyNameMap()
 	};
 }
 
-int getKeyCode( const CStr& keyname )
+int FindKeyCode( const CStr& keyname )
 {
 	std::map<CStr,int>::iterator it;
 	it = keymap.find( keyname.LowerCase() );
@@ -304,7 +304,7 @@ int getKeyCode( const CStr& keyname )
 	return( 0 );
 }
 
-CStr getKeyName( int keycode )
+CStr FindKeyName( int keycode )
 {	
 	SKeycodeMapping* it = keycodeMapping;
 	while( it->keycode != 0 )

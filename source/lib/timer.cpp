@@ -33,7 +33,7 @@
 #include "adts.h"
 #include "lib/sysdep/cpu.h"
 
-#if TIMER_USE_RDTSC
+#if CPU_IA32
 # include "lib/sysdep/ia32/ia32.h"
 #endif
 
@@ -311,7 +311,7 @@ void timer_display_client_totals()
 		double sum;
 #if TIMER_USE_RAW_TICKS
 # if CPU_IA32
-		sum = tc->sum / cpu_clockFrequency();
+		sum = tc->sum / cpu_ClockFrequency();
 # else
 #  error "port"
 # endif
@@ -334,7 +334,7 @@ void timer_display_client_totals()
 }
 
 
-#if TIMER_USE_RDTSC
+#if CPU_IA32
 
 TimerRdtsc::unit TimerRdtsc::get_timestamp() const
 {

@@ -4,7 +4,7 @@
 // 
 // The pathfinding engine singleton.
 //
-// Usage: g_Pathfinder.requestPath( HEntity me, float x, float y );
+// Usage: g_Pathfinder.RequestPath( HEntity me, float x, float y );
 //
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 
@@ -32,14 +32,14 @@ class CPathfindEngine : public Singleton<CPathfindEngine>
 public:
 	CPathfindEngine();
 
-	void requestPath( HEntity entity, const CVector2D& destination, 
+	void RequestPath( HEntity entity, const CVector2D& destination, 
 		CEntityOrder::EOrderSource orderSource );
 
-	void requestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact, 
+	void RequestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact, 
 		float radius, CEntityOrder::EOrderSource orderSource );
 
-	void requestContactPath( HEntity entity, CEntityOrder* current, float range );
-	bool requestAvoidPath( HEntity entity, CEntityOrder* current, float avoidRange );
+	void RequestContactPath( HEntity entity, CEntityOrder* current, float range );
+	bool RequestAvoidPath( HEntity entity, CEntityOrder* current, float avoidRange );
 private:
 	CAStarEngineLowLevel mLowPathfinder;
 };

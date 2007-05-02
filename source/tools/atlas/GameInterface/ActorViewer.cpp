@@ -247,7 +247,7 @@ void ActorViewer::Render()
 
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, oldShadows);
 
-	oglCheck();
+	ogl_WarnIfError();
 }
 
 void ActorViewer::Update(float dt)

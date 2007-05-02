@@ -54,7 +54,7 @@ public:
 	void Initialize();	// initialize, called after the game is fully loaded
 	void Recalculate();	// recalculate the territory boundaries
 	void DelayedRecalculate();	// recalculate the territory boundaries when next rendered
-	void renderTerritories();
+	void RenderTerritories();
 	CTerritory* GetTerritory(int x, int z);			// get the territory to which the given tile belongs
 	CTerritory* GetTerritory(float x, float z);		// get the territory to which the given world-space point belongs
 

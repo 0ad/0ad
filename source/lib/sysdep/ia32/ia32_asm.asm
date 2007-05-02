@@ -112,9 +112,9 @@ sym(ia32_asm_cpuid):
 ; lock-free support routines
 ;-------------------------------------------------------------------------------
 
-; extern "C" void __cdecl ia32_asm_atomic_add(intptr_t* location, intptr_t increment);
-global sym(ia32_asm_atomic_add)
-sym(ia32_asm_atomic_add):
+; extern "C" void __cdecl ia32_asm_AtomicAdd(intptr_t* location, intptr_t increment);
+global sym(ia32_asm_AtomicAdd)
+sym(ia32_asm_AtomicAdd):
 	mov		edx, [esp+4]				; location
 	mov		eax, [esp+8]				; increment
 db		0xf0							; LOCK prefix
@@ -251,9 +251,9 @@ sym(ia32_asm_fmaxf):
 	ret
 
 
-; extern "C" i32 __cdecl ia32_asm_i32_from_float(float f)
-global sym(ia32_asm_i32_from_float)
-sym(ia32_asm_i32_from_float):
+; extern "C" i32 __cdecl ia32_asm_i32FromFloat(float f)
+global sym(ia32_asm_i32FromFloat)
+sym(ia32_asm_i32FromFloat):
 	push		eax
 	fld			dword [esp+8]
 	fsub		dword [round_bias]
@@ -261,9 +261,9 @@ sym(ia32_asm_i32_from_float):
 	pop			eax
 	ret
 
-; extern "C" i32 __cdecl ia32_asm_i32_from_double(double d)
-global sym(ia32_asm_i32_from_double)
-sym(ia32_asm_i32_from_double):
+; extern "C" i32 __cdecl ia32_asm_i32FromDouble(double d)
+global sym(ia32_asm_i32FromDouble)
+sym(ia32_asm_i32FromDouble):
 	push		eax
 	fld			qword [esp+8]
 	fsub		dword [round_bias]
@@ -271,9 +271,9 @@ sym(ia32_asm_i32_from_double):
 	pop			eax
 	ret
 
-; extern "C" i64 __cdecl ia32_asm_i64_from_double(double d)
-global sym(ia32_asm_i64_from_double)
-sym(ia32_asm_i64_from_double):
+; extern "C" i64 __cdecl ia32_asm_i64FromDouble(double d)
+global sym(ia32_asm_i64FromDouble)
+sym(ia32_asm_i64FromDouble):
 	push		edx
 	push		eax
 	fld			qword [esp+12]
@@ -312,9 +312,9 @@ sym(ia32_asm_rdtsc_edx_eax):
 ; optimized for size; this must be straight asm because ; extern "C"
 ; is compiler-specific and compiler-generated prolog code inserted before
 ; inline asm trashes EBP and ESP (unacceptable).
-; extern "C" void ia32_asm_get_current_context(void* pcontext)
-global sym(ia32_asm_get_current_context)
-sym(ia32_asm_get_current_context):
+; extern "C" void ia32_asm_GetCurrentContext(void* pcontext)
+global sym(ia32_asm_GetCurrentContext)
+sym(ia32_asm_GetCurrentContext):
 	pushad
 	pushfd
 	mov		edi, [esp+4+32+4]	; pcontext

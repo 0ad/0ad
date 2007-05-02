@@ -43,7 +43,7 @@ MESSAGEHANDLER(Init)
 	// (it shouldn't hurt if this is called multiple times, I think)
 #endif
 
-	oglInit();
+	ogl_Init();
 
 	g_Quickstart = true;
 
@@ -58,7 +58,7 @@ MESSAGEHANDLER(Init)
 #if OS_WIN
 	// HACK (to stop things looking very ugly when scrolling) - should
 	// use proper config system.
-	if(oglHaveExtension("WGL_EXT_swap_control"))
+	if(ogl_HaveExtension("WGL_EXT_swap_control"))
 		pwglSwapIntervalEXT(1);
 #endif
 }

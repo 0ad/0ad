@@ -87,7 +87,7 @@ void CMaterial::Bind()
     glMaterialfv(GL_FRONT, GL_SPECULAR, &m_Specular.r);
     glMaterialfv(GL_FRONT, GL_EMISSION, &m_Emissive.r);
 
-    oglCheck();
+    ogl_WarnIfError();
 }
 
 void CMaterial::Unbind()

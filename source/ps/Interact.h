@@ -31,7 +31,7 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 {
 	CSelectedEntities()
 	{
-		clearSelection();
+		ClearSelection();
 		m_group = -1;
 		m_group_highlight = -1;
 		m_defaultCommand = -1;
@@ -41,11 +41,11 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 		m_selectionChanged = true;
 		m_mouseOverMM = false;
 
-		loadUnitUITextures();
+		LoadUnitUiTextures();
 	}
 	~CSelectedEntities()
 	{
-		destroyUnitUITextures();
+		DestroyUnitUiTextures();
 	}
 	std::vector<HEntity> m_selected;
 	std::vector<HEntity> m_groups[MAX_GROUPS];
@@ -57,38 +57,38 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 	int m_secondaryCommand;
 	int m_secondaryAction;
 
-	void addSelection( HEntity entity );
-	void removeSelection( HEntity entity );
-	void setSelection( HEntity entity );
-	void clearSelection();
-	void removeAll( HEntity entity );
-	bool isSelected( HEntity entity );
-	CVector3D getSelectionPosition();
+	void AddSelection( HEntity entity );
+	void RemoveSelection( HEntity entity );
+	void SetSelection( HEntity entity );
+	void ClearSelection();
+	void RemoveAll( HEntity entity );
+	bool IsSelected( HEntity entity );
+	CVector3D GetSelectionPosition();
 
-	void addToGroup( i8 groupid, HEntity entity );
-	void saveGroup( i8 groupid );
-	void loadGroup( i8 groupid );
-	void addGroup( i8 groupid );
-	void changeGroup( HEntity entity, i8 groupid );
-	void highlightGroup( i8 groupid );
-	void highlightNone();
-	int getGroupCount( i8 groupid );
-	CVector3D getGroupPosition( i8 groupid );
+	void AddToGroup( i8 groupid, HEntity entity );
+	void SaveGroup( i8 groupid );
+	void LoadGroup( i8 groupid );
+	void AddGroup( i8 groupid );
+	void ChangeGroup( HEntity entity, i8 groupid );
+	void HighlightGroup( i8 groupid );
+	void HighlightNone();
+	int GetGroupCount( i8 groupid );
+	CVector3D GetGroupPosition( i8 groupid );
 
-	void update();
+	void Update();
 
-	void renderSelectionOutlines();
-	void renderOverlays();
-	void renderAuras();
-	void renderRallyPoints();
-	void renderBars();
-	void renderHealthBars();
-	void renderStaminaBars();
-	void renderRanks();
-	void renderBarBorders();
+	void RenderSelectionOutlines();
+	void RenderOverlays();
+	void RenderAuras();
+	void RenderRallyPoints();
+	void RenderBars();
+	void RenderHealthBars();
+	void RenderStaminaBars();
+	void RenderRanks();
+	void RenderBarBorders();
 	
-	void destroyUnitUITextures();
-	int loadUnitUITextures();
+	void DestroyUnitUiTextures();
+	int LoadUnitUiTextures();
 	std::map<CStr, Handle> m_unitUITextures;
 };
 
@@ -127,30 +127,30 @@ struct CMouseoverEntities : public Singleton<CMouseoverEntities>
 		m_targetChanged = true;
 	}
 	std::vector<SMouseoverFader> m_mouseover;
-	void update( float timestep );
+	void Update( float timestep );
 
-	void addSelection();
-	void removeSelection();
-	void setSelection();
+	void AddSelection();
+	void RemoveSelection();
+	void SetSelection();
 
-	void expandAcrossScreen();
-	void expandAcrossWorld();
+	void ExpandAcrossScreen();
+	void ExpandAcrossWorld();
 
-	void renderSelectionOutlines();
-	void renderOverlays();
-	void renderRallyPoints();
-	void renderAuras();
-	void renderBars();
-	void renderHealthBars();
-	void renderStaminaBars();
-	void renderRanks();
-	void renderBarBorders();
+	void RenderSelectionOutlines();
+	void RenderOverlays();
+	void RenderRallyPoints();
+	void RenderAuras();
+	void RenderBars();
+	void RenderHealthBars();
+	void RenderStaminaBars();
+	void RenderRanks();
+	void RenderBarBorders();
 
-	bool isBandbox() { return( m_bandbox ); }
-	void startBandbox( u16 x, u16 y );
-	void stopBandbox();
+	bool IsBandbox() { return( m_bandbox ); }
+	void StartBandbox( u16 x, u16 y );
+	void StopBandbox();
 
-	void clear() { m_mouseover.clear(); }
+	void Clear() { m_mouseover.clear(); }
 };
 
 struct CBuildingPlacer : public Singleton<CBuildingPlacer>
@@ -175,20 +175,20 @@ struct CBuildingPlacer : public Singleton<CBuildingPlacer>
 	CUnit* m_actor;
 	CBoundingObject* m_bounds;
 
-	bool activate( CStrW& templateName );
-	void deactivate();
-	void mousePressed();
-	void mouseReleased();
-	void update( float timeStep );
+	bool Activate( CStrW& templateName );
+	void Deactivate();
+	void MousePressed();
+	void MouseReleased();
+	void Update( float timeStep );
 };
 
-bool isMouseoverType( CEntity* ev, void* userdata );
-bool isOnScreen( CEntity* ev, void* userdata );
+bool IsMouseoverType( CEntity* ev, void* userdata );
+bool IsOnScreen( CEntity* ev, void* userdata );
 
 void StartCustomSelection();
 void ResetInteraction();
 
-InReaction interactInputHandler( const SDL_Event_* ev );
+InReaction InteractInputHandler( const SDL_Event_* ev );
 
 #define g_Selection CSelectedEntities::GetSingleton()
 #define g_Mouseover CMouseoverEntities::GetSingleton()

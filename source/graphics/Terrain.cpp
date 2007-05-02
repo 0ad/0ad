@@ -82,17 +82,17 @@ bool CTerrain::Initialize(u32 size,const u16* data)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-float CTerrain::getExactGroundLevel(const CVector2D& v) const
+float CTerrain::GetExactGroundLevel(const CVector2D& v) const
 {
-	return getExactGroundLevel(v.x, v.y);
+	return GetExactGroundLevel(v.x, v.y);
 }
 
-bool CTerrain::isOnMap(const CVector2D& v) const
+bool CTerrain::IsOnMap(const CVector2D& v) const
 {
-	return isOnMap(v.x, v.y);
+	return IsOnMap(v.x, v.y);
 }
 
-bool CTerrain::isPassable(const CVector2D &loc/*tile space*/, HEntity entity) const
+bool CTerrain::IsPassable(const CVector2D &loc/*tile space*/, HEntity entity) const
 {
 	CMiniPatch *pTile = GetTile(loc.x, loc.y);
 	if(!pTile->Tex1)
@@ -162,7 +162,7 @@ void CTerrain::CalcNormal(u32 i, u32 j, CVector3D& normal) const
 	CVector3D n3 = right.Cross(up);
 
 	normal = n0 + n1 + n2 + n3;
-	float nlen=normal.GetLength();
+	float nlen=normal.Length();
 	if (nlen>0.00001f) normal*=1.0f/nlen;
 }
 
@@ -193,7 +193,7 @@ CMiniPatch* CTerrain::GetTile(i32 i, i32 j) const
 	return &patch->m_MiniPatches[j%PATCH_SIZE][i%PATCH_SIZE];
 }
 
-float CTerrain::getVertexGroundLevel(int i, int j) const
+float CTerrain::GetVertexGroundLevel(int i, int j) const
 {
 	if (i < 0)
 		i = 0;
@@ -208,7 +208,7 @@ float CTerrain::getVertexGroundLevel(int i, int j) const
 	return HEIGHT_SCALE * m_Heightmap[j*m_MapSize + i];
 }
 
-float CTerrain::getSlope(float x, float z) const
+float CTerrain::GetSlope(float x, float z) const
 {
 	x /= (float)CELL_SIZE;
 	z /= (float)CELL_SIZE;
@@ -216,8 +216,8 @@ float CTerrain::getSlope(float x, float z) const
 	int xi = (int)floor(x);
 	int zi = (int)floor(z);
 
-	clampCoordToMap(xi);
-	clampCoordToMap(zi);
+	ClampCoordToMap(xi);
+	ClampCoordToMap(zi);
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
 	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];
@@ -228,7 +228,7 @@ float CTerrain::getSlope(float x, float z) const
 	return std::max(std::max(h00, h01), std::max(h10, h11)) -
 	       std::min(std::min(h00, h01), std::min(h10, h11));
 }
-CVector2D CTerrain::getSlopeAngleFace( CEntity* entity ) const
+CVector2D CTerrain::GetSlopeAngleFace( CEntity* entity ) const
 {
 	CVector2D ret;
 
@@ -237,19 +237,19 @@ CVector2D CTerrain::getSlopeAngleFace( CEntity* entity ) const
 	float z = entity->m_position.Z;
 
 	// Get forward slope and use it as the x angle
-	CVector2D d = entity->m_ahead.normalize() * D;
-	float dy = getExactGroundLevel(x+d.x, z+d.y) - getExactGroundLevel(x-d.x, z-d.y);
+	CVector2D d = entity->m_ahead.Normalize() * D;
+	float dy = GetExactGroundLevel(x+d.x, z+d.y) - GetExactGroundLevel(x-d.x, z-d.y);
 	ret.x = atan2(dy, 2*D);
 
 	// Get sideways slope and use it as the y angle
 	CVector2D d2(-d.y, d.x);
-	float dy2 = getExactGroundLevel(x+d2.x, z+d2.y) - getExactGroundLevel(x-d2.x, z-d2.y);
+	float dy2 = GetExactGroundLevel(x+d2.x, z+d2.y) - GetExactGroundLevel(x-d2.x, z-d2.y);
 	ret.y = atan2(dy2, 2*D);
 
 	return ret;
 }
 
-float CTerrain::getExactGroundLevel(float x, float z) const
+float CTerrain::GetExactGroundLevel(float x, float z) const
 {
 	x /= (float)CELL_SIZE;
 	z /= (float)CELL_SIZE;

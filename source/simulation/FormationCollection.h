@@ -25,13 +25,13 @@ class CFormationCollection : public Singleton<CFormationCollection>
 	templateFilenameMap m_templateFilenames;
 public:
 	~CFormationCollection();
-	CFormation* getTemplate( const CStrW& formationType );
-	int loadTemplates();
+	CFormation* GetTemplate( const CStrW& formationType );
+	int LoadTemplates();
 	void LoadFile( const char* path );
 
 	// Create a list of the names of all base entities, excluding template_*,
 	// for display in ScEd's entity-selection box.
-	void getFormationNames( std::vector<CStrW>& names );
+	void GetFormationNames( std::vector<CStrW>& names );
 };
 
 #endif

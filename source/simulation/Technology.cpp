@@ -17,48 +17,50 @@
 
 STL_HASH_SET<CStr, CStr_hash_compare> CTechnology::m_scriptsLoaded;
 
-CTechnology::CTechnology( const CStrW& name, CPlayer* player ) : m_Name(name), m_player(player)
+CTechnology::CTechnology( const CStrW& name, CPlayer* player )
+: m_Name(name), m_player(player)
 {
 	ONCE( ScriptingInit(); );
 
-	m_researched=false;
+	m_researched = false;
 	m_excluded = false;
 	m_inProgress = false;
 } 
-bool CTechnology::loadXML( const CStr& filename )
+
+bool CTechnology::LoadXml( const CStr& filename )
 {
 	CXeromyces XeroFile;
 
 	if (XeroFile.Load(filename) != PSRETURN_OK)
         return false;
 
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
 
 	EL(tech);
 	EL(id);
 	EL(req);
 	EL(effect);
 	
-	#undef EL
+#undef EL
 
-	XMBElement Root = XeroFile.getRoot();
-	if ( Root.getNodeName() != el_tech )
+	XMBElement Root = XeroFile.GetRoot();
+	if ( Root.GetNodeName() != el_tech )
 	{
 		LOG( ERROR, LOG_CATEGORY, "CTechnology: XML root was not \"Tech\" in file %s. Load failed.", filename.c_str() );
 		return false;
 	}
-	XMBElementList RootChildren = Root.getChildNodes();
+	XMBElementList RootChildren = Root.GetChildNodes();
 	bool ret;
 	for  ( int i=0; i<RootChildren.Count; ++i )
 	{
-		XMBElement element = RootChildren.item(i);
-		int name = element.getNodeName();
+		XMBElement element = RootChildren.Item(i);
+		int name = element.GetNodeName();
 		if ( name == el_id )
-			ret = loadELID( element, XeroFile );
+			ret = LoadElId( element, XeroFile );
 		else if ( name == el_req )
-			ret = loadELReq( element, XeroFile );
+			ret = LoadElReq( element, XeroFile );
 		else if ( name == el_effect )
-			ret = loadELEffect( element, XeroFile, filename );
+			ret = LoadElEffect( element, XeroFile, filename );
 		else 
 			continue;
 		if ( !ret )
@@ -70,9 +72,10 @@ bool CTechnology::loadXML( const CStr& filename )
 	
 	return true;	
 }
-bool CTechnology::loadELID( XMBElement ID, CXeromyces& XeroFile )
+
+bool CTechnology::LoadElId( XMBElement ID, CXeromyces& XeroFile )
 {
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
 	
 	EL(generic);
 	EL(specific);
@@ -82,14 +85,14 @@ bool CTechnology::loadELID( XMBElement ID, CXeromyces& XeroFile )
 	EL(rollover);
 	EL(history);
 
-	#undef EL
+#undef EL
 
-	XMBElementList children = ID.getChildNodes();
+	XMBElementList children = ID.GetChildNodes();
 	for ( int i=0; i<children.Count; ++i )
 	{
-		XMBElement element = children.item(i);
-		int name = element.getNodeName();
-		CStr8 value = element.getText();
+		XMBElement element = children.Item(i);
+		int name = element.GetNodeName();
+		CStr8 value = element.GetText();
 		
 		if ( name == el_generic )
 			m_Generic = value;
@@ -107,41 +110,42 @@ bool CTechnology::loadELID( XMBElement ID, CXeromyces& XeroFile )
 			m_History = value;
 		else
 		{
-			const char* tagName = XeroFile.getElementString(name).c_str();
+			const char* tagName = XeroFile.GetElementString(name).c_str();
 			LOG( ERROR, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
 			return false;
 		}
 	}
 	return true;
 }
-bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
+
+bool CTechnology::LoadElReq( XMBElement Req, CXeromyces& XeroFile )
 {
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
 	
 	EL(time);
 	EL(resource);
 	EL(tech);
 	EL(entity);
 	
-	#undef EL
+#undef EL
 
-	XMBElementList children = Req.getChildNodes();
+	XMBElementList children = Req.GetChildNodes();
 	for ( int i=0; i<children.Count; ++i )
 	{
-		XMBElement element = children.item(i);
-		int name = element.getNodeName();
-		CStr8 value = element.getText();
+		XMBElement element = children.Item(i);
+		int name = element.GetNodeName();
+		CStr8 value = element.GetText();
 		
 		if ( name == el_time )
 			m_ReqTime = value.ToFloat();
 		else if ( name == el_resource )
 		{
-			XMBElementList resChildren = element.getChildNodes();
+			XMBElementList resChildren = element.GetChildNodes();
 			for ( int j=0; j<resChildren.Count; ++j )
 			{
-				XMBElement resElement = resChildren.item(j);
-				CStr8 resName = XeroFile.getElementString( resElement.getNodeName() );
-				CStr8 resValue = resElement.getText();
+				XMBElement resElement = resChildren.Item(j);
+				CStr8 resName = XeroFile.GetElementString( resElement.GetNodeName() );
+				CStr8 resValue = resElement.GetText();
 
 				// Add each resource as a property using its name in the XML file
 				AddProperty( CStrW(resName).LowerCase(), resValue);
@@ -157,17 +161,18 @@ bool CTechnology::loadELReq( XMBElement Req, CXeromyces& XeroFile )
 		}
 		else
 		{
-			const char* tagName = XeroFile.getElementString(name).c_str();
+			const char* tagName = XeroFile.GetElementString(name).c_str();
 			LOG( ERROR, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
 			return false;
 		}
 	}
 	return true;
 }
-bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const CStr& filename )
+
+bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const CStr& filename )
 {
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 
 	EL(target);
 	EL(pair);
@@ -180,37 +185,36 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 	AT(name);
 	AT(file);
 	
-	#undef EL
-	#undef AT
+#undef EL
+#undef AT
 
-	XMBElementList children = effect.getChildNodes();
+	XMBElementList children = effect.GetChildNodes();
 	for ( int i=0; i<children.Count; ++i )
 	{
-		XMBElement element = children.item(i);
-		int name = element.getNodeName();
-		CStr value = element.getText();
+		XMBElement element = children.Item(i);
+		int name = element.GetNodeName();
+		CStr value = element.GetText();
 
 		if ( name == el_target )
 			m_Targets.push_back(value);
 		else if ( name == el_pair )
 			m_Pairs.push_back(value);
-		
 		else if ( name == el_modifier )
 		{
-			XMBElementList modChildren = element.getChildNodes();
+			XMBElementList modChildren = element.GetChildNodes();
 			m_Modifiers.push_back(Modifier());
 			for ( int j=0; j<modChildren.Count; ++j )
 			{
-				XMBElement modElement = modChildren.item(j);
-				CStrW modValue = modElement.getText();
+				XMBElement modElement = modChildren.Item(j);
+				CStrW modValue = modElement.GetText();
 
-				if ( modElement.getNodeName() == el_attribute)
+				if ( modElement.GetNodeName() == el_attribute)
 					m_Modifiers.back().attribute = modValue;
-				else if ( modElement.getNodeName() == el_value )
+				else if ( modElement.GetNodeName() == el_value )
 				{
 					if( modValue.size() == 0)
 					{
-						LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid Modifier value (empty string)" );
+						LOG( ERROR, LOG_CATEGORY, "CTechnology::LoadXml: invalid Modifier value (empty string)" );
 						m_Modifiers.pop_back();
 						return false;
 					}
@@ -224,53 +228,51 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 				}
 				else
 				{
-					LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid tag inside \"Modifier\" tag" );
+					LOG( ERROR, LOG_CATEGORY, "CTechnology::LoadXml: invalid tag inside \"Modifier\" tag" );
 					m_Modifiers.pop_back();
 					return false;
 				}
 			}
 		}
-
 		else if ( name == el_set )
 		{
-			XMBElementList setChildren = element.getChildNodes();
+			XMBElementList setChildren = element.GetChildNodes();
 			m_Sets.push_back(Modifier());
 			for ( int j=0; j<setChildren.Count; ++j )
 			{
-				XMBElement setElement = setChildren.item(j);
-				CStrW setValue = setElement.getText();
+				XMBElement setElement = setChildren.Item(j);
+				CStrW setValue = setElement.GetText();
 
-				if ( setElement.getNodeName() == el_attribute)
+				if ( setElement.GetNodeName() == el_attribute)
 					m_Sets.back().attribute = setValue;
-				else if ( setElement.getNodeName() == el_value )
+				else if ( setElement.GetNodeName() == el_value )
 					m_Sets.back().value = setValue.ToFloat();
 				else
 				{
-					LOG( ERROR, LOG_CATEGORY, "CTechnology::loadXML invalid tag inside \"Set\" tag" );
+					LOG( ERROR, LOG_CATEGORY, "CTechnology::LoadXml: invalid tag inside \"Set\" tag" );
 					m_Sets.pop_back();
 					return false;
 				}
 			}
 		}
-		
 		else if ( name == el_script )
 		{
-			CStr Include = element.getAttributes().getNamedItem( at_file );
+			CStr Include = element.GetAttributes().GetNamedItem( at_file );
 			if( !Include.empty() && m_scriptsLoaded.find( Include ) == m_scriptsLoaded.end() )
 			{
 				m_scriptsLoaded.insert( Include );
 				g_ScriptingHost.RunScript( Include );
 			}
-			CStr Inline = element.getText();
+			CStr Inline = element.GetText();
 			if( !Inline.empty() )
 			{
-				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), filename, element.getLineNumber() );
+				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), filename, element.GetLineNumber() );
 			}
 		}
 		else if ( name == el_function )
 		{
-			utf16string funcName = element.getAttributes().getNamedItem( at_name );
-			CStr Inline = element.getText();
+			utf16string funcName = element.GetAttributes().GetNamedItem( at_name );
+			CStr Inline = element.GetText();
 
 			if ( funcName != utf16string() )
 			{
@@ -280,48 +282,50 @@ bool CTechnology::loadELEffect( XMBElement effect, CXeromyces& XeroFile, const C
 				JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 				if( !fn )
 				{
-					LOG( ERROR, LOG_CATEGORY, "CTechnology::LoadXML: Function does not exist for %hs in file %s. Load failed.", funcName.c_str(), filename.c_str() );
+					LOG( ERROR, LOG_CATEGORY, "CTechnology::LoadXml: Function does not exist for %hs in file %s. Load failed.", funcName.c_str(), filename.c_str() );
 					return false;
 				}
 				m_effectFunction.SetFunction( fn );
 			}
 			else if ( Inline != CStr() )
-				m_effectFunction.Compile( CStrW( filename ) + L"::" + (CStrW)funcName + L" (" + CStrW( element.getLineNumber() ) + L")", Inline );
+				m_effectFunction.Compile( CStrW( filename ) + L"::" + (CStrW)funcName + L" (" + CStrW( element.GetLineNumber() ) + L")", Inline );
 			//(No error needed; scripts are optional)
 		}
 		else
 		{
-			const char* tagName = XeroFile.getElementString(name).c_str();
+			const char* tagName = XeroFile.GetElementString(name).c_str();
 			LOG( ERROR, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
 			return false;
 		}
 	}
 	return true;
 }
-bool CTechnology::isTechValid()
+
+bool CTechnology::IsTechValid()
 {
 	if ( m_excluded || m_inProgress )
 		return false;
 
 	for( size_t i=0; i<m_Pairs.size(); i++ )
 	{
-		if( g_TechnologyCollection.getTechnology( m_Pairs[i], m_player )->m_inProgress )
+		if( g_TechnologyCollection.GetTechnology( m_Pairs[i], m_player )->m_inProgress )
 			return false;
 	}
 
-	return ( hasReqEntities() && hasReqTechs() );
+	return ( HasReqEntities() && HasReqTechs() );
 }
 
-bool CTechnology::hasReqEntities()
+bool CTechnology::HasReqEntities()
 {
 	// Check whether we have ALL the required entities.
 
-	std::vector<HEntity>* entities = m_player->GetControlledEntities();
+	std::vector<HEntity> entities;
+	m_player->GetControlledEntities(entities);
 	for ( std::vector<CStr>::iterator it=m_ReqEntities.begin(); it != m_ReqEntities.end(); it++ )
 	{
 		// For each required class, check that we have it
 		bool got = false;
-		for( CEntityList::iterator it2=entities->begin(); it2 != entities->end(); it2++ )
+		for( CEntityList::iterator it2=entities.begin(); it2 != entities.end(); it2++ )
 		{
 			if ( (*it2)->m_classes.IsMember(*it) )
 			{	
@@ -330,16 +334,12 @@ bool CTechnology::hasReqEntities()
 			}
 		}
 		if( !got )
-		{
-			delete entities;
 			return false;
-		}
 	}
-	delete entities;
 	return true;
 }
 
-bool CTechnology::hasReqTechs()
+bool CTechnology::HasReqTechs()
 {
 	// Check whether we have ANY of the required techs (this is slightly confusing but required for 
 	// the way the tech system is currently planned; ideally we'd have an <Or> or <And> in the XML).
@@ -349,7 +349,7 @@ bool CTechnology::hasReqTechs()
 
 	for ( std::vector<CStr>::iterator it=m_ReqTechs.begin(); it != m_ReqTechs.end(); it++ )
 	{
-		if ( g_TechnologyCollection.getTechnology( (CStrW)*it, m_player )->isResearched() )
+		if ( g_TechnologyCollection.GetTechnology( (CStrW)*it, m_player )->IsResearched() )
 		{	
 			return true;
 		}
@@ -357,7 +357,7 @@ bool CTechnology::hasReqTechs()
 	return false;
 }
 
-void CTechnology::apply( CEntity* entity )
+void CTechnology::Apply( CEntity* entity )
 {
 	// Find out if the unit has one of our target classes
 	bool ok = false;
@@ -421,7 +421,7 @@ void CTechnology::ScriptingInit()
 
 	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 2 );
 	AddMethod<jsval, &CTechnology::IsExcluded>( "isExcluded", 0 );
-	AddMethod<jsval, &CTechnology::IsValid>( "isValid", 0 );
+	AddMethod<jsval, &CTechnology::IsValid>( "IsValid", 0 );
 	AddMethod<jsval, &CTechnology::IsResearched>( "isResearched", 0 );
 	AddMethod<jsval, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
 
@@ -433,14 +433,14 @@ jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsva
 	// Unmark ourselves as in progress
 	m_inProgress = false;
 
-	if ( !isTechValid() )
+	if ( !IsTechValid() )
 	{
 		return JSVAL_FALSE;
 	}
 
 	// Disable any paired techs
 	for ( std::vector<CStr>::iterator it=m_Pairs.begin(); it != m_Pairs.end(); it++ )
-		g_TechnologyCollection.getTechnology(*it, m_player)->setExclusion(true);
+		g_TechnologyCollection.GetTechnology(*it, m_player)->SetExclusion(true);
 
 	// Disable ourselves so we can't be researched twice
 	m_excluded = true;
@@ -449,12 +449,12 @@ jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsva
 	m_researched = true;
 
 	// Apply effects to all entities
-	std::vector<HEntity>* entities = m_player->GetControlledEntities();
-	for ( size_t i=0; i<entities->size(); ++i )
+	std::vector<HEntity> entities;
+	m_player->GetControlledEntities(entities);
+	for ( size_t i=0; i<entities.size(); ++i )
 	{
-		apply( (*entities)[i] );
+		Apply( entities[i] );
 	}
-	delete entities;
 	
 	// Run one-time tech script
 	if( m_effectFunction )
@@ -472,7 +472,7 @@ jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsva
 
 jsval CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return ToJSVal( isTechValid() );
+	return ToJSVal( IsTechValid() );
 }
 
 jsval CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
@@ -482,14 +482,12 @@ jsval CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval*
 
 jsval CTechnology::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return ToJSVal( isResearched() );
+	return ToJSVal( IsResearched() );
 }
 
 inline jsval CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( m_player->GetPlayerID() );
 }
-
-
 
 

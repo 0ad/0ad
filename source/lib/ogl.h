@@ -20,8 +20,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef __OGL_H__
-#define __OGL_H__
+#ifndef INCLUDED_OGL
+#define INCLUDED_OGL
 
 #if OS_WIN
 // wgl.h is a private header and should only be included from here.
@@ -67,9 +67,16 @@
 #endif
 
 
-//
+/**
+ * initialization: import extension function pointers and do feature detect.
+ * call before using any other function, and after each video mode change.
+ * fails if OpenGL not ready for use.
+ **/
+extern void ogl_Init(void);
+
+
+//-----------------------------------------------------------------------------
 // extensions
-//
 
 /**
  * check if an extension is supported by the OpenGL implementation.
@@ -80,7 +87,7 @@
  * @param ext extension string; exact case.
  * @return bool.
  **/
-extern bool oglHaveExtension(const char* ext);
+extern bool ogl_HaveExtension(const char* ext);
 
 /**
  * make sure the OpenGL implementation version matches or is newer than
@@ -89,11 +96,11 @@ extern bool oglHaveExtension(const char* ext);
  * @param version version string; format: ("%d.%d", major, minor).
  * example: "1.2".
  **/
-extern bool oglHaveVersion(const char* version);
+extern bool ogl_HaveVersion(const char* version);
 
 /**
  * check if a list of extensions are all supported (as determined by
- * oglHaveExtension).
+ * ogl_HaveExtension).
  *
  * @param dummy value ignored; varargs requires a placeholder.
  * follow it by a list of const char* extension string parameters,
@@ -101,7 +108,7 @@ extern bool oglHaveVersion(const char* version);
  * @return 0 if all are present; otherwise, the first extension in the
  * list that's not supported (useful for reporting errors).
  **/
-extern const char* oglHaveExtensions(int dummy, ...);
+extern const char* ogl_HaveExtensions(int dummy, ...);
 
 /**
  * get a list of all supported extensions.
@@ -111,8 +118,7 @@ extern const char* oglHaveExtensions(int dummy, ...);
  * @return read-only C string of unspecified length containing all
  * advertised extension names, separated by space.
  **/
-extern const char* oglExtList(void);
-
+extern const char* ogl_ExtensionString(void);
 
 // declare extension function pointers
 #if OS_WIN
@@ -128,27 +134,8 @@ extern const char* oglExtList(void);
 // leave CALL_CONV defined for ogl.cpp
 
 
-//
-// implementation limits / feature detect
-//
-
-extern GLint ogl_max_tex_size;				/// [pixels]
-extern GLint ogl_max_tex_units;				/// limit on GL_TEXTUREn
-
-/**
- * set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
- * 
- * fails if OpenGL not ready for use.
- * gfx_card and gfx_drv_ver are unchanged on failure.
- *
- * @return LibError
- **/
-extern LibError ogl_get_gfx_info(void);
-
-
-//
-// misc
-//
+//-----------------------------------------------------------------------------
+// errors
 
 /**
  * raise a warning (break into the debugger) if an OpenGL error is pending.
@@ -162,9 +149,9 @@ extern LibError ogl_get_gfx_info(void);
  *
  * disabled in release mode for efficiency and to avoid annoying errors.
  **/
-extern void oglCheck(void);
+extern void ogl_WarnIfError(void);
 #ifdef NDEBUG
-# define oglCheck()
+# define ogl_WarnIfError()
 #endif
 
 /**
@@ -179,14 +166,23 @@ extern void oglCheck(void);
  *
  * @param err_to_ignore: one of the glGetError enums.
  **/
-extern void oglSquelchError(GLenum err_to_ignore);
+extern void ogl_SquelchError(GLenum err_to_ignore);
 
+
+//-----------------------------------------------------------------------------
+// implementation limits / feature detect
+
+extern GLint ogl_max_tex_size;				/// [pixels]
+extern GLint ogl_max_tex_units;				/// limit on GL_TEXTUREn
 
 /**
- * initialization: import extension function pointers and do feature detect.
- * call before using any of the above, and after each video mode change.
+ * set sysdep/gfx.h gfx_card and gfx_drv_ver. called by gfx_detect.
+ * 
  * fails if OpenGL not ready for use.
+ * gfx_card and gfx_drv_ver are unchanged on failure.
+ *
+ * @return LibError
  **/
-extern void oglInit(void);
+extern LibError ogl_get_gfx_info(void);
 
-#endif	// #ifndef __OGL_H__
+#endif	// #ifndef INCLUDED_OGL

@@ -161,7 +161,7 @@ CMusicPlayer music_player;
 static void Frame()
 {
 	MICROLOG(L"Frame");
-	oglCheck();
+	ogl_WarnIfError();
 
 	// get elapsed time
 	calc_fps();
@@ -211,7 +211,7 @@ static void Frame()
 
 
 	PROFILE_START( "update music" );
-	music_player.update();
+	music_player.Update();
 	PROFILE_END( "update music" );
 
 	bool is_building_archive;	// must come before PROFILE_START's {
@@ -244,7 +244,7 @@ static void Frame()
 	g_SessionManager.Poll();
 	PROFILE_END("input");
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	PROFILE_START("gui tick");
 	MICROLOG(L"gui tick");
@@ -253,7 +253,7 @@ static void Frame()
 #endif
 	PROFILE_END("gui tick");
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	PROFILE_START( "game logic" );
 	if (g_Game && g_Game->IsGameStarted() && need_update)
@@ -270,9 +270,9 @@ static void Frame()
 
 		PROFILE_START( "selection and interaction ui" );
 		// TODO Where does GameView end and other things begin?
-		g_Mouseover.update( TimeSinceLastFrame );
-		g_Selection.update();
-		g_BuildingPlacer.update( TimeSinceLastFrame );
+		g_Mouseover.Update( TimeSinceLastFrame );
+		g_Selection.Update();
+		g_BuildingPlacer.Update( TimeSinceLastFrame );
 		PROFILE_END( "selection and interaction ui" );
 
 		PROFILE_START( "sound update" );
@@ -291,7 +291,7 @@ static void Frame()
 		// CSimulation would do this with the proper turn length if we were in
 		// a game. This is basically just to keep script timers running.
 		uint ms_elapsed = (uint)(TimeSinceLastFrame*1000);
-		g_Scheduler.update(ms_elapsed);
+		g_Scheduler.Update(ms_elapsed);
 		if(snd_update(0, 0, 0) < 0)
 			debug_printf("snd_update (pos=0 version) failed\n");
 	}
@@ -302,7 +302,7 @@ static void Frame()
 	PROFILE_END( "update console" );
 
 	PROFILE_START("render");
-	oglCheck();
+	ogl_WarnIfError();
 	if(need_render)
 	{
 		MICROLOG(L"render");
@@ -312,7 +312,7 @@ static void Frame()
 		SDL_GL_SwapBuffers();
 		PROFILE_END( "swap buffers" );
 	}
-	oglCheck();
+	ogl_WarnIfError();
 	PROFILE_END("render");
 
 	g_Profiler.Frame();
@@ -344,7 +344,7 @@ static void MainControllerInit()
 
 static void MainControllerShutdown()
 {
-	music_player.release();
+	music_player.Release();
 }
 
 

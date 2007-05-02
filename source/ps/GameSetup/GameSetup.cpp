@@ -125,7 +125,7 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	g_GUI.UpdateResolution();
 #endif
 
-	oglInit();	// required after each mode change
+	ogl_Init();	// required after each mode change
 
 	if(SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
 		debug_warn("SDL_SetGamma failed");
@@ -204,11 +204,11 @@ void GUI_Init()
 	g_GUI.Initialize();}
 
 	{TIMER("ps_gui_setup_xml");
-	g_GUI.LoadXMLFile("gui/test/setup.xml");}
+	g_GUI.LoadXmlFile("gui/test/setup.xml");}
 	{TIMER("ps_gui_styles_xml");
-	g_GUI.LoadXMLFile("gui/test/styles.xml");}
+	g_GUI.LoadXmlFile("gui/test/styles.xml");}
 	{TIMER("ps_gui_sprite1_xml");
-	g_GUI.LoadXMLFile("gui/test/sprite1.xml");}
+	g_GUI.LoadXmlFile("gui/test/sprite1.xml");}
 
 	// Atlas is running, we won't need these GUI pages (for now!
 	// what if Atlas switches to in-game mode?!)
@@ -217,23 +217,23 @@ void GUI_Init()
 //		return;
 
 	{TIMER("ps_gui_1");
-	g_GUI.LoadXMLFile("gui/test/1_init.xml");}
+	g_GUI.LoadXmlFile("gui/test/1_init.xml");}
 	{TIMER("ps_gui_2");
-	g_GUI.LoadXMLFile("gui/test/2_mainmenu.xml");}
+	g_GUI.LoadXmlFile("gui/test/2_mainmenu.xml");}
 	{TIMER("ps_gui_3");
-	g_GUI.LoadXMLFile("gui/test/3_loading.xml");}
+	g_GUI.LoadXmlFile("gui/test/3_loading.xml");}
 	{TIMER("ps_gui_4");
-	g_GUI.LoadXMLFile("gui/test/4_session.xml");}
+	g_GUI.LoadXmlFile("gui/test/4_session.xml");}
 	{TIMER("ps_gui_6");
-	g_GUI.LoadXMLFile("gui/test/6_subwindows.xml");}
+	g_GUI.LoadXmlFile("gui/test/6_subwindows.xml");}
 	{TIMER("ps_gui_6_1");
-	g_GUI.LoadXMLFile("gui/test/6_1_manual.xml");}
+	g_GUI.LoadXmlFile("gui/test/6_1_manual.xml");}
 	{TIMER("ps_gui_6_2");
-	g_GUI.LoadXMLFile("gui/test/6_2_jukebox.xml");}
+	g_GUI.LoadXmlFile("gui/test/6_2_jukebox.xml");}
 	{TIMER("ps_gui_7");
-	g_GUI.LoadXMLFile("gui/test/7_atlas.xml");}
+	g_GUI.LoadXmlFile("gui/test/7_atlas.xml");}
 	{TIMER("ps_gui_9");
-	g_GUI.LoadXMLFile("gui/test/9_global.xml");}
+	g_GUI.LoadXmlFile("gui/test/9_global.xml");}
 #endif
 }
 
@@ -271,7 +271,7 @@ void Render()
 {
 	MICROLOG(L"begin frame");
 
-	oglCheck();
+	ogl_WarnIfError();
 
 #ifndef NO_GUI // HACK: because colour-parsing requires the GUI
 	CStr skystring = "61 193 255";
@@ -284,7 +284,7 @@ void Render()
 	// start new frame
 	g_Renderer.BeginFrame();
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	if (g_Game && g_Game->IsGameStarted())
 	{
@@ -299,19 +299,19 @@ void Render()
 		{
 			PROFILE( "render entity overlays" );
 			glColor3f( 1.0f, 0.0f, 1.0f );
-			g_EntityManager.renderAll(); // <-- collision outlines, pathing routes
+			g_EntityManager.RenderAll(); // <-- collision outlines, pathing routes
 		}
 
 		glEnable( GL_DEPTH_TEST );
 
 		PROFILE_START( "render entity outlines" );
-		g_Mouseover.renderSelectionOutlines();
-		g_Selection.renderSelectionOutlines();
+		g_Mouseover.RenderSelectionOutlines();
+		g_Selection.RenderSelectionOutlines();
 		PROFILE_END( "render entity outlines" );
 		
 		PROFILE_START( "render entity auras" );
-		g_Mouseover.renderAuras();
-		g_Selection.renderAuras();
+		g_Mouseover.RenderAuras();
+		g_Selection.RenderAuras();
 		PROFILE_END( "render entity auras" );
 
 		glDisable(GL_DEPTH_TEST);
@@ -340,8 +340,8 @@ void Render()
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		g_Mouseover.renderBars();
-		g_Selection.renderBars();
+		g_Mouseover.RenderBars();
+		g_Selection.RenderBars();
 		
 		glDisable(GL_BLEND);
 		/*glPopMatrix();
@@ -355,8 +355,8 @@ void Render()
 
 		// Depth test is now enabled
 		PROFILE_START( "render rally points" );
-		g_Selection.renderRallyPoints();
-		g_Mouseover.renderRallyPoints();
+		g_Selection.RenderRallyPoints();
+		g_Mouseover.RenderRallyPoints();
 		PROFILE_END( "render rally points" );
 		
 		PROFILE_START( "render cinematic splines" );
@@ -365,7 +365,7 @@ void Render()
 		PROFILE_END( "render cinematic splines" );
 	}
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	PROFILE_START( "render fonts" );
 	MICROLOG(L"render fonts");
@@ -387,7 +387,7 @@ void Render()
 
 	PROFILE_END( "render fonts" );
 
-	oglCheck();
+	ogl_WarnIfError();
 
 #ifndef NO_GUI
 	// Temp GUI message GeeTODO
@@ -397,10 +397,10 @@ void Render()
 	PROFILE_END( "render gui" );
 #endif
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	// Particle Engine Updating
-	CParticleEngine::GetInstance()->updateEmitters();
+	CParticleEngine::GetInstance()->UpdateEmitters();
 
 	// Text:
 
@@ -411,7 +411,7 @@ void Render()
 	glEnable(GL_TEXTURE_2D);
 	// -- GL
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	{
 		PROFILE( "render console" );
@@ -423,7 +423,7 @@ void Render()
 		g_Console->Render();
 	}
 
-	oglCheck();
+	ogl_WarnIfError();
 
 
 	// Profile information
@@ -432,16 +432,16 @@ void Render()
 	g_ProfileViewer.RenderProfile();
 	PROFILE_END( "render profiling" );
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	if (g_Game && g_Game->IsGameStarted())
 	{
 		PROFILE( "render selection overlays" );
-		g_Mouseover.renderOverlays();
-		g_Selection.renderOverlays();
+		g_Mouseover.RenderOverlays();
+		g_Selection.RenderOverlays();
 	}
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	CStr cursorName = g_BuildingPlacer.m_active ? "action-build" : g_CursorName;
@@ -457,7 +457,7 @@ void Render()
 	MICROLOG(L"end frame");
 	g_Renderer.EndFrame();
 
-	oglCheck();
+	ogl_WarnIfError();
 }
 
 
@@ -636,7 +636,7 @@ static void InitPs(bool setup_gui)
 			CFG_GET_SYS_VAL("language", String, lang);
 			I18n::LoadLanguage(lang.c_str());
 
-			loadHotkeys();
+			LoadHotkeys();
 		}
 
 		// GUI uses VFS, so this must come after VFS init.
@@ -658,13 +658,13 @@ static void InitInput()
 	//  processed.
 	in_add_handler(game_view_handler);
 
-	in_add_handler(interactInputHandler);
+	in_add_handler(InteractInputHandler);
 
 	in_add_handler(conInputHandler);
 
 	in_add_handler(CProfileViewer::InputThunk);
 
-	in_add_handler(hotkeyInputHandler);
+	in_add_handler(HotkeyInputHandler);
 
 	in_add_handler(GlobalsInputHandler);
 }
@@ -885,7 +885,7 @@ void Init(const CmdLineArgs& args, uint flags)
 	debug_filter_add("TIMER");
 
 	// Query CPU capabilities, possibly set some CPU-dependent flags
-	cpu_init();
+	cpu_Init();
 
 	// Do this as soon as possible, because it chdirs
 	// and will mess up the error reporting if anything
@@ -968,7 +968,7 @@ void Init(const CmdLineArgs& args, uint flags)
 	// required by ogl_tex to detect broken gfx card/driver combos
 	gfx_detect();
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	if(!g_Quickstart)
 	{
@@ -984,8 +984,8 @@ void Init(const CmdLineArgs& args, uint flags)
 		snd_disable(true);
 	}
 
-	// (must come after SetVideoMode, since it calls oglInit)
-	const char* missing = oglHaveExtensions(0,
+	// (must come after SetVideoMode, since it calls ogl_Init)
+	const char* missing = ogl_HaveExtensions(0,
 		"GL_ARB_multitexture",
 		"GL_EXT_draw_range_elements",
 		"GL_ARB_texture_env_combine",
@@ -1003,7 +1003,7 @@ void Init(const CmdLineArgs& args, uint flags)
 		// TODO: i18n
 	}
 
-	if (!oglHaveExtension("GL_ARB_texture_env_crossbar"))
+	if (!ogl_HaveExtension("GL_ARB_texture_env_crossbar"))
 	{
 		DISPLAY_ERROR(
 			L"The GL_ARB_texture_env_crossbar extension doesn't appear to be available on your computer."
@@ -1015,14 +1015,14 @@ void Init(const CmdLineArgs& args, uint flags)
 	// enable/disable VSync
 	// note: "GL_EXT_SWAP_CONTROL" is "historical" according to dox.
 #if OS_WIN
-	if(oglHaveExtension("WGL_EXT_swap_control"))
+	if(ogl_HaveExtension("WGL_EXT_swap_control"))
 		pwglSwapIntervalEXT(g_VSync? 1 : 0);
 #endif
 
 	MICROLOG(L"init ps");
 	InitPs(setup_gui);
 
-	oglCheck();
+	ogl_WarnIfError();
 	InitRenderer();
 
 	if (! (flags & INIT_NO_SIM))
@@ -1033,11 +1033,11 @@ void Init(const CmdLineArgs& args, uint flags)
 			new CEntityTemplateCollection;
 			new CFormationCollection;
 			new CTechnologyCollection;
-			g_EntityFormationCollection.loadTemplates();
-			g_TechnologyCollection.loadTechnologies();
+			g_EntityFormationCollection.LoadTemplates();
+			g_TechnologyCollection.LoadTechnologies();
 			new CFormationManager;
 			new CTriggerManager;
-			g_TriggerManager.LoadXML(CStr("scripts/TriggerSpecs.xml"));
+			g_TriggerManager.LoadXml(CStr("scripts/TriggerSpecs.xml"));
 			g_ScriptingHost.RunScript("scripts/trigger_functions.js");
 
 			// CEntityManager is managed by CWorld
@@ -1066,7 +1066,7 @@ void Init(const CmdLineArgs& args, uint flags)
 
 	InitInput();
 
-	oglCheck();
+	ogl_WarnIfError();
 
 #ifndef NO_GUI
 	{

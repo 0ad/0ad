@@ -19,7 +19,7 @@ CEmitter::CEmitter(const int MAX_PARTICLES, const int lifetime, int UNUSED(textu
 	emitterLife = lifetime;
 	decrementLife = true;
 	decrementAlpha = true;
-	renderParticles = true;
+	RenderParticles = true;
 	isFinished = false;
 	updateSpeed = 0.02f;
 	blend_mode		= 1;
@@ -45,7 +45,7 @@ CEmitter::~CEmitter(void)
 	delete [] heap;
 }
 
-bool CEmitter::addParticle()
+bool CEmitter::AddParticle()
 {
 	tColor start, end;
 	float fYaw, fPitch, fSpeed;
@@ -59,9 +59,9 @@ bool CEmitter::addParticle()
 		tParticle *particle = openList;
 
 		// set it's initial position to the emitter's position
-		particle->pos.x = pos.x;
-		particle->pos.y = pos.y;
-		particle->pos.z = pos.z;
+		particle->pos.X = pos.X;
+		particle->pos.Y = pos.Y;
+		particle->pos.Z = pos.Z;
 
 		// Calculate the starting direction vector
 		fYaw = yaw + (yawVar * RandomNum());
@@ -72,9 +72,9 @@ bool CEmitter::addParticle()
 
 		// Multiply in the speed factor
 		fSpeed = speed + (speedVar * RandomNum());
-		particle->dir.x *= fSpeed;
-		particle->dir.y *= fSpeed;
-		particle->dir.z *= fSpeed;
+		particle->dir.X *= fSpeed;
+		particle->dir.Y *= fSpeed;
+		particle->dir.Z *= fSpeed;
 
 		// Calculate the life span
 		particle->life = life + (int)((float)lifeVar * RandomNum());
@@ -115,9 +115,9 @@ bool CEmitter::addParticle()
 	return false;
 }
 
-bool CEmitter::renderEmitter()
+bool CEmitter::Render()
 {
-	if(renderParticles)
+	if(RenderParticles)
 	{
 		switch(blend_mode)
 		{
@@ -148,14 +148,14 @@ bool CEmitter::renderEmitter()
 				tColor *pColor = &(tempParticle->color);
 				glColor4ub(pColor->r,pColor->g, pColor->b, (GLubyte)tempParticle->alpha);
 				glTexCoord2d(0.0, 0.0);
-				tVector *pPos = &(tempParticle->pos);
-				glVertex3f(pPos->x - size, pPos->y + size, pPos->z);
+				CVector3D *pPos = &(tempParticle->pos);
+				glVertex3f(pPos->X - size, pPos->Y + size, pPos->Z);
 				glTexCoord2d(0.0, 1.0);
-				glVertex3f(pPos->x - size, pPos->y - size, pPos->z);
+				glVertex3f(pPos->X - size, pPos->Y - size, pPos->Z);
 				glTexCoord2d(1.0, 1.0);
-				glVertex3f(pPos->x + size, pPos->y - size, pPos->z);
+				glVertex3f(pPos->X + size, pPos->Y - size, pPos->Z);
 				glTexCoord2d(1.0, 0.0);
-				glVertex3f(pPos->x + size, pPos->y + size, pPos->z);
+				glVertex3f(pPos->X + size, pPos->Y + size, pPos->Z);
 				tempParticle = tempParticle->next;
 			}
 		}

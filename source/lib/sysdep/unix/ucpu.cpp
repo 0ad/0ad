@@ -2,12 +2,12 @@
 
 #include "ucpu.h"
 
-int ucpu_isThrottlingPossible()
+int ucpu_IsThrottlingPossible()
 {
 	return -1; // don't know
 }
 
-int ucpu_numPackages()
+int ucpu_NumPackages()
 {
 	long res = sysconf(_SC_NPROCESSORS_CONF);
 	if (res == -1)
@@ -16,7 +16,7 @@ int ucpu_numPackages()
 		return (int)res;
 }
 
-double ucpu_clockFrequency()
+double ucpu_ClockFrequency()
 {
 	return -1; // don't know
 }
@@ -24,7 +24,7 @@ double ucpu_clockFrequency()
 
 // apparently not possible on non-Windows OSes because they seem to lack
 // a CPU affinity API. see sysdep.h comment.
-LibError ucpu_callByEachCPU(CpuCallback cb, void* param)
+LibError ucpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 	UNUSED2(cb);
 

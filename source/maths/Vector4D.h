@@ -25,84 +25,101 @@ public:
     CVector4D(float x,float y,float z,float w) { m_X=x; m_Y=y; m_Z=z; m_W=w; }
 	CVector4D(const CVector4D& p) { m_X=p.m_X; m_Y=p.m_Y; m_Z=p.m_Z; m_W=p.m_W; }
 
-	operator float*() {
+	operator float*()
+	{
 		return &m_X;
 	}
 
-	operator const float*() const {
+	operator const float*() const
+	{
 		return &m_X;
 	}
 
-	CVector4D operator-() const {
+	CVector4D operator-() const
+	{
 	    return CVector4D(-m_X,-m_Y,-m_Z,-m_W);
 	}
 
-    CVector4D operator+(const CVector4D& t) const {
+    CVector4D operator+(const CVector4D& t) const
+	{
     	return CVector4D(m_X+t.m_X,m_Y+t.m_Y,m_Z+t.m_Z,m_W+t.m_W);
 	}
 
-	CVector4D operator-(const CVector4D& t) const {
+	CVector4D operator-(const CVector4D& t) const
+	{
 	    return CVector4D(m_X-t.m_X,m_Y-t.m_Y,m_Z-t.m_Z,m_W-t.m_W);
 	}
 
-    CVector4D operator*(const CVector4D& t) const {
+    CVector4D operator*(const CVector4D& t) const
+	{
 	    return CVector4D(m_X*t.m_X,m_Y*t.m_Y,m_Z*t.m_Z,m_W*t.m_W);
 	}
 
-	CVector4D operator*(float f) const {
+	CVector4D operator*(float f) const
+	{
 	    return CVector4D(m_X*f,m_Y*f,m_Z*f,m_W*f);
 	}
 
-	CVector4D operator/(float f) const {
-	    float inv=1.0f/f;
-		return CVector4D(m_X*inv,m_Y*inv,m_Z*inv,m_W*inv);
+	CVector4D operator/(float f) const
+	{
+	    float inv_f = 1.0f/f;
+		return CVector4D(m_X*inv_f,m_Y*inv_f,m_Z*inv_f,m_W*inv_f);
 	}
 
-	CVector4D& operator+=(const CVector4D& t) {
-		m_X+=t.m_X; m_Y+=t.m_Y; m_Z+=t.m_Z; m_W+=t.m_W;
+	CVector4D& operator+=(const CVector4D& t)
+	{
+		m_X += t.m_X; m_Y += t.m_Y; m_Z += t.m_Z; m_W += t.m_W;
 	    return *this;
 	}
 
-	CVector4D& operator-=(const CVector4D& t) {
-		m_X-=t.m_X; m_Y-=t.m_Y; m_Z-=t.m_Z; m_W-=t.m_W;
+	CVector4D& operator-=(const CVector4D& t)
+	{
+		m_X -= t.m_X; m_Y -= t.m_Y; m_Z -= t.m_Z; m_W -= t.m_W;
 	    return *this;
 	}
 
-	CVector4D& operator*=(const CVector4D& t) {
-		m_X*=t.m_X; m_Y*=t.m_Y; m_Z*=t.m_Z; m_W*=t.m_W;
+	CVector4D& operator*=(const CVector4D& t)
+	{
+		m_X *= t.m_X; m_Y *= t.m_Y; m_Z *= t.m_Z; m_W *= t.m_W;
 		return *this;
 	}
 
-	CVector4D& operator*=(float f) {
-	    m_X*=f; m_Y*=f; m_Z*=f; m_W*=f;
+	CVector4D& operator*=(float f)
+	{
+	    m_X *= f; m_Y *= f; m_Z *= f; m_W *= f;
 	    return *this;
 	}
 
-	CVector4D& operator/=(float f) {
-		float invf=1.0f/f;
-	    m_X*=invf; m_Y*=invf; m_Z*=invf; m_W*=invf;
+	CVector4D& operator/=(float f)
+	{
+		float inv_f = 1.0f / f;
+	    m_X *= inv_f; m_Y *= inv_f; m_Z *= inv_f; m_W *= inv_f;
     	return *this;
 	}
 
-    float dot(const CVector4D& a) const {
-		return m_X*a.m_X+m_Y*a.m_Y+m_Z*a.m_Z+m_W*a.m_W;
+    float Dot(const CVector4D& a) const
+	{
+		return m_X*a.m_X + m_Y*a.m_Y + m_Z*a.m_Z + m_W*a.m_W;
 	}
 
-	float lengthSquared() const {
-	    return dot(*this);
+	float LengthSquared() const
+	{
+	    return Dot(*this);
 	}
 
-    float length() const {
-		return (float) sqrt(lengthSquared());
+    float Length() const
+	{
+		return sqrtf(LengthSquared());
 	}
 
-    void normalize() {
-		float mag=length();
-        m_X/=mag; m_Y/=mag; m_Z/=mag; m_W/=mag;
+    void Normalize()
+	{
+		const float inv_mag = 1.0f / Length();
+        m_X *= inv_mag; m_Y *= inv_mag; m_Z *= inv_mag; m_W *= inv_mag;
 	}
 
 public:
-	float m_X,m_Y,m_Z,m_W;
+	float m_X, m_Y, m_Z, m_W;
 };
 //////////////////////////////////////////////////////////////////////////////////
 

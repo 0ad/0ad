@@ -393,7 +393,7 @@ void CMapWriter::WriteXML(const char* filename,
 		}
 		else
 		{
-			std::for_each(rootChildren.begin(), rootChildren.end(), copyIfRootChild(rootChildren));
+			std::for_each(rootChildren.begin(), rootChildren.end(), CopyIfRootChild(rootChildren));
 		
 			XML_Element("Triggers");
 			for ( std::list<MapTriggerGroup>::const_iterator it = rootChildren.begin(); 

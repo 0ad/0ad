@@ -7,7 +7,7 @@ extern "C" {
 
 /**
  * prepare ia32_asm_cpuid for use (detects which CPUID functions are
- * available). called by ia32_init.
+ * available). called by ia32_Init.
  **/
 extern void ia32_asm_cpuid_init();
 
@@ -36,21 +36,21 @@ extern u64 ia32_asm_rdtsc_edx_eax(void);
  * write the current execution state (e.g. all register values) into
  * (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
  **/
-extern void ia32_asm_get_current_context(void* pcontext);
+extern void ia32_asm_GetCurrentContext(void* pcontext);
 
 
 // implementations of the cpu.h interface
 
-/// see cpu_atomic_add
-extern void ia32_asm_atomic_add(intptr_t* location, intptr_t increment);
+/// see cpu_AtomicAdd
+extern void ia32_asm_AtomicAdd(intptr_t* location, intptr_t increment);
 
 /// see cpu_CAS
 extern bool ia32_asm_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 
-/// see cpu_i32_from_float
-extern i32 ia32_asm_i32_from_float(float f);
-extern i32 ia32_asm_i32_from_double(double d);
-extern i64 ia32_asm_i64_from_double(double d);
+/// see cpu_i32FromFloat
+extern i32 ia32_asm_i32FromFloat(float f);
+extern i32 ia32_asm_i32FromDouble(double d);
+extern i64 ia32_asm_i64FromDouble(double d);
 
 
 // backends for POSIX/SUS functions

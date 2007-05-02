@@ -65,7 +65,7 @@ MESSAGEHANDLER(Scroll)
 	if (msg->type == eScrollType::FROM)
 	{
 		targetPos = msg->pos->GetWorldSpace();
-		targetDistance = (targetPos - camera.GetTranslation()).GetLength();
+		targetDistance = (targetPos - camera.GetTranslation()).Length();
 	}
 	else if (msg->type == eScrollType::TO)
 	{

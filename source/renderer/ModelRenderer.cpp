@@ -288,7 +288,7 @@ void BatchModelRenderer::Submit(CModel* model)
 {
 	debug_assert(m->phase == BMRSubmit);
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	CModelDefPtr mdef = model->GetModelDef();
 	BMRModelDefTracker* mdeftracker = (BMRModelDefTracker*)mdef->GetRenderData(m);
@@ -349,7 +349,7 @@ void BatchModelRenderer::Submit(CModel* model)
 	bmrdata->m_Next = mdeftracker->m_ModelSlots[idx];
 	mdeftracker->m_ModelSlots[idx] = bmrdata;
 
-	oglCheck();
+	ogl_WarnIfError();
 }
 
 

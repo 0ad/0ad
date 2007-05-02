@@ -55,6 +55,12 @@
 # define CONFIG_RETURN64_EDX_EAX 1
 #endif
 
+// allow use of RDTSC for raw tick counts (otherwise, the slower but
+// more reliable on MP systems wall-clock will be used).
+#ifndef CONFIG_TIMER_ALLOW_RDTSC
+# define CONFIG_TIMER_ALLOW_RDTSC 1
+#endif
+
 // this enables/disables the actual checking done by OverrunProtector-s
 // (quite slow, entailing mprotect() before/after each access).
 // define to 1 here or in the relevant module if you suspect mem corruption.

@@ -3,6 +3,6 @@
 
 #include "../cpu.h"
 
-extern size_t bsd_memorySize(CpuMemoryIndicators mem_type);
+extern size_t bsd_MemorySize(CpuMemoryIndicators mem_type);
 
 #endif	// #ifndef INCLUDED_BSD

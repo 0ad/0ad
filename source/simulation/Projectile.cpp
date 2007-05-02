@@ -34,7 +34,7 @@ CProjectile::CProjectile( const CModel* Actor, const CVector3D& Position, const 
 	// We want horizontal distance only:
 
 	m_Axis = Target - Position;
-	double s = m_Axis.length();
+	double s = m_Axis.Length();
 	m_Axis /= (float)s; 
 
 	// Now vertical distance:
@@ -67,7 +67,7 @@ bool CProjectile::Update( size_t timestep_millis )
 	m_Position.Y += (float)( timestep_millis * ( m_Speed_V - timestep_millis * GRAVITY_2 ) );
 	m_Speed_V -= (float)( timestep_millis * GRAVITY );
 
-	float height = m_Position.Y - g_Game->GetWorld()->GetTerrain()->getExactGroundLevel( m_Position.X, m_Position.Z );
+	float height = m_Position.Y - g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel( m_Position.X, m_Position.Z );
 	
 	if( height < 0.0f )
 	{
@@ -164,7 +164,7 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, 
 		// Use the position vector of this entity, add a bit (so the arrow doesn't appear out of the ground)
 		// In future, find the appropriate position from the entity (location of a specific prop point?)
 		Here = Temp->m_position;
-		Here.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel( Here.X, Here.Z ) + 2.5f;
+		Here.Y = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel( Here.X, Here.Z ) + 2.5f;
 	}
 	else if( !( ToPrimitive<CVector3D>( cx, argv[1], Here ) ) )
 	{
@@ -179,7 +179,7 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, 
 		// TODO: Maybe: Correct for the movement of this entity.
 		//       Then again, that doesn't belong here.
 		There = Temp->m_position;
-		There.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel( There.X, There.Z ) + 2.5f;
+		There.Y = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel( There.X, There.Z ) + 2.5f;
 	}
 	else if( !( ToPrimitive<CVector3D>( cx, argv[2], There ) ) )
 	{

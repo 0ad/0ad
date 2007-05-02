@@ -21,7 +21,7 @@ typedef CVector4D RGBAColor;
 // one of several implementations depending on CPU caps.
 extern u32 (*ConvertRGBColorTo4ub)(const RGBColor& src);
 
-// call once ia32_init has run; detects CPU caps and activates the best
+// call once ia32_Init has run; detects CPU caps and activates the best
 // possible codepath.
 extern void ColorActivateFastImpl();
 

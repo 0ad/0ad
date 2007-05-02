@@ -22,7 +22,7 @@ bool InputProcessor::ProcessInput(GameLoopState* state)
 	// Calculate a vector pointing forwards, parallel to the ground
 	CVector3D forwards = inwards;
 	forwards.Y = 0.0f;
-	if (forwards.GetLength() < 0.001f) // be careful if the camera is looking straight down
+	if (forwards.Length() < 0.001f) // be careful if the camera is looking straight down
 		forwards = CVector3D(1.f, 0.f, 0.f);
 	else
 		forwards.Normalize();

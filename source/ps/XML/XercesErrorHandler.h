@@ -76,7 +76,7 @@ public:
 	/**
 	 * @return true if Errors Occured
 	 */
-	bool getSawErrors() const { return fSawErrors; }
+	bool GetSawErrors() const { return fSawErrors; }
 
 	//@}
 private:

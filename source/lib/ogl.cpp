@@ -64,9 +64,9 @@ static bool have_20, have_14, have_13, have_12;
 // return a C string of unspecified length containing a space-separated
 // list of all extensions the OpenGL implementation advertises.
 // (useful for crash logs).
-const char* oglExtList()
+const char* ogl_ExtensionString()
 {
-	debug_assert(exts && "call oglInit before using this function");
+	debug_assert(exts && "call ogl_Init before using this function");
 	return exts;
 }
 
@@ -74,7 +74,7 @@ const char* oglExtList()
 // paranoia: newer drivers may forget to advertise an extension
 // indicating support for something that has been folded into the core.
 // we therefore check for all extensions known to be offered by the
-// GL implementation present on the user's system; oglHaveExtension will
+// GL implementation present on the user's system; ogl_HaveExtension will
 // take this into account.
 // the app can therefore just ask for extensions and not worry about this.
 static bool isImplementedInCore(const char* ext)
@@ -140,9 +140,9 @@ static bool isImplementedInCore(const char* ext)
 
 // check if the extension <ext> is supported by the OpenGL implementation.
 // takes subsequently added core support for some extensions into account.
-bool oglHaveExtension(const char* ext)
+bool ogl_HaveExtension(const char* ext)
 {
-	debug_assert(exts && "call oglInit before using this function");
+	debug_assert(exts && "call ogl_Init before using this function");
 
 	if(isImplementedInCore(ext))
 		return true;
@@ -172,7 +172,7 @@ bool oglHaveExtension(const char* ext)
 
 // check if the OpenGL implementation is at least at <version>.
 // (format: "%d.%d" major minor)
-bool oglHaveVersion(const char* desired_version)
+bool ogl_HaveVersion(const char* desired_version)
 {
 	int desired_major, desired_minor;
 	if(sscanf(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
@@ -196,7 +196,7 @@ bool oglHaveVersion(const char* desired_version)
 
 // check if all given extension strings (passed as const char* parameters,
 // terminated by a 0 pointer) are supported by the OpenGL implementation,
-// as determined by oglHaveExtension.
+// as determined by ogl_HaveExtension.
 // returns 0 if all are present; otherwise, the first extension in the
 // list that's not supported (useful for reporting errors).
 //
@@ -204,7 +204,7 @@ bool oglHaveVersion(const char* desired_version)
 //
 //
 // rationale: this interface is more convenient than individual
-// oglHaveExtension calls and allows reporting which extension is missing.
+// ogl_HaveExtension calls and allows reporting which extension is missing.
 //
 // one disadvantage is that there is no way to indicate that either one
 // of 2 extensions would be acceptable, e.g. (ARB|EXT)_texture_env_dot3.
@@ -212,7 +212,7 @@ bool oglHaveVersion(const char* desired_version)
 // if there weren't non-trivial changes between them. for that reason,
 // we refrain from equivalence checks (which would boil down to
 // string-matching known extensions to their equivalents).
-const char* oglHaveExtensions(int dummy, ...)
+const char* ogl_HaveExtensions(int dummy, ...)
 {
 	const char* ext;
 
@@ -226,7 +226,7 @@ const char* oglHaveExtensions(int dummy, ...)
 			break;
 
 		// not found => return name of missing extension.
-		if(!oglHaveExtension(ext))
+		if(!ogl_HaveExtension(ext))
 			break;
 	}
 	va_end(args);
@@ -240,12 +240,12 @@ static void importExtensionFunctions()
 	// It should be safe to load the ARB function pointers even if the
 	// extension isn't advertised, since we won't actually use them without
 	// checking for the extension.
-	// (TODO: this calls oglHaveVersion far more times than is necessary -
+	// (TODO: this calls ogl_HaveVersion far more times than is necessary -
 	// we should probably use the have_* variables instead)
 #define FUNC(ret, name, params) *(void**)&p##name = SDL_GL_GetProcAddress(#name);
 #define FUNC2(ret, nameARB, nameCore, version, params) \
 	p##nameARB = NULL; \
-	if(oglHaveVersion(version)) \
+	if(ogl_HaveVersion(version)) \
 		*(void**)&p##nameARB = SDL_GL_GetProcAddress(#nameCore); \
 	if(!p##nameARB) /* use the ARB name if the driver lied about what version it supports */ \
 		*(void**)&p##nameARB = SDL_GL_GetProcAddress(#nameARB);
@@ -275,9 +275,9 @@ static void dump_gl_error(GLenum err)
 #undef E
 }
 
-#ifndef oglCheck
+#ifndef ogl_WarnIfError
 	// don't include this function if it has been defined (in ogl.h) as a no-op
-void oglCheck()
+void ogl_WarnIfError()
 {
 	// glGetError may return multiple errors, so we poll it in a loop.
 	// the debug_warn should only happen once (if this is set), though.
@@ -308,12 +308,12 @@ void oglCheck()
 
 
 // ignore and reset the specified error (as returned by glGetError).
-// any other errors that have occurred are reported as oglCheck would.
+// any other errors that have occurred are reported as ogl_WarnIfError would.
 //
 // this is useful for suppressing annoying error messages, e.g.
 // "invalid enum" for GL_CLAMP_TO_EDGE even though we've already
 // warned the user that their OpenGL implementation is too old.
-void oglSquelchError(GLenum err_to_ignore)
+void ogl_SquelchError(GLenum err_to_ignore)
 {
 	// glGetError may return multiple errors, so we poll it in a loop.
 	// the debug_warn should only happen once (if this is set), though.
@@ -378,7 +378,7 @@ LibError ogl_get_gfx_info()
 
 // call after each video mode change, since thereafter extension functions
 // may have changed [address].
-void oglInit()
+void ogl_Init()
 {
 	// cache extension list and versions for oglHave*.
 	// note: this is less about performance (since the above are not
@@ -386,10 +386,10 @@ void oglInit()
 	exts = (const char*)glGetString(GL_EXTENSIONS);
 	if(!exts)
 		debug_warn("called before OpenGL is ready for use");
-	have_12 = oglHaveVersion("1.2");
-	have_13 = oglHaveVersion("1.3");
-	have_14 = oglHaveVersion("1.4");
-	have_20 = oglHaveVersion("2.0");
+	have_12 = ogl_HaveVersion("1.2");
+	have_13 = ogl_HaveVersion("1.3");
+	have_14 = ogl_HaveVersion("1.4");
+	have_20 = ogl_HaveVersion("2.0");
 
 	importExtensionFunctions();
 

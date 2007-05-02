@@ -27,7 +27,7 @@ static void LoadFormationThunk( const char* path, const DirEnt* UNUSED(ent), voi
 	this_->LoadFile(path);
 }
 
-int CFormationCollection::loadTemplates()
+int CFormationCollection::LoadTemplates()
 {
 	// Load all files in formations and subdirectories.
 	THROW_ERR( vfs_dir_enum( "formations", VFS_DIR_RECURSIVE, "*.xml",
@@ -35,7 +35,7 @@ int CFormationCollection::loadTemplates()
 	return 0;
 }
 
-CFormation* CFormationCollection::getTemplate( const CStrW& name )
+CFormation* CFormationCollection::GetTemplate( const CStrW& name )
 {
 	// Check whether this template has already been loaded
 	templateMap::iterator it = m_templates.find( name );
@@ -51,20 +51,20 @@ CFormation* CFormationCollection::getTemplate( const CStrW& name )
 
 	//Try to load to the formation
 	CFormation* newTemplate = new CFormation();
-	if( !newTemplate->loadXML( path ) )
+	if( !newTemplate->LoadXml( path ) )
 	{
-		LOG(ERROR, LOG_CATEGORY, "CFormationCollection::loadTemplates(): Couldn't load template \"%s\"", path.c_str());
+		LOG(ERROR, LOG_CATEGORY, "CFormationCollection::LoadTemplates(): Couldn't load template \"%s\"", path.c_str());
 		delete newTemplate;
 		return( NULL );
 	}
 
-	LOG(NORMAL, LOG_CATEGORY, "CFormationCollection::loadTemplates(): Loaded template \"%s\"", path.c_str());
+	LOG(NORMAL, LOG_CATEGORY, "CFormationCollection::LoadTemplates(): Loaded template \"%s\"", path.c_str());
 	m_templates[name] = newTemplate;
 
 	return newTemplate;
 }
 
-void CFormationCollection::getFormationNames( std::vector<CStrW>& names )
+void CFormationCollection::GetFormationNames( std::vector<CStrW>& names )
 {
 	for( templateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
 		if( ! (it->first.length() > 8 && it->first.Left(8) == L"template"))

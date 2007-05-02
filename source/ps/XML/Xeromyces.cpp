@@ -316,7 +316,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 	delete Parser;
 
-	if (errorHandler.getSawErrors())
+	if (errorHandler.GetSawErrors())
 	{
 		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename);
 		return PSRETURN_Xeromyces_XMLParseError;

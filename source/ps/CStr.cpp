@@ -91,16 +91,16 @@ CStr8 CStrW::ToUTF8() const
  * Test for valid UTF-8 string
  *
  * @param const unsigned char * source pointer to string to test.
- * @param int length of string to test.
+ * @param int Length of string to test.
  * @return bool true if source string is legal UTF-8,
  *				false if not.
  **/
-static bool isLegalUTF8(const unsigned char *source, int length)
+static bool isLegalUTF8(const unsigned char *source, int Length)
 {
 	unsigned char a;
-	const unsigned char *srcptr = source+length;
+	const unsigned char *srcptr = source+Length;
 
-	switch (length) {
+	switch (Length) {
 	default: return false;
 	case 4: if ((a = (*--srcptr)) < 0x80 || a > 0xBF) return false;
 	case 3: if ((a = (*--srcptr)) < 0x80 || a > 0xBF) return false;

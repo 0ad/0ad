@@ -46,37 +46,62 @@ extern float spf;	// for time-since-last-frame use
 extern void calc_fps(void);
 
 
-//
-// cumulative timer API
-//
-
-// this supplements in-game profiling by providing low-overhead,
-// high resolution time accounting.
+//-----------------------------------------------------------------------------
+// timestamp sources
 
 // since TIMER_ACCRUE et al. are called so often, we try to keep
-// overhead to an absolute minimum. this flag allows storing
-// raw tick counts (e.g. CPU cycles returned by ia32_rdtsc) instead of
-// absolute time. there are two benefits:
+// overhead to an absolute minimum. storing raw tick counts (e.g. CPU cycles
+// returned by ia32_rdtsc) instead of absolute time has two benefits:
 // - no need to convert from raw->time on every call
 //   (instead, it's only done once when displaying the totals)
 // - possibly less overhead to querying the time itself
 //   (get_time may be using slower time sources with ~3us overhead)
 //
 // however, the cycle count is not necessarily a measure of wall-clock time.
-// therefore, on systems with SpeedStep active, measurements of
-// I/O or other non-CPU bound activity may be skewed. this is ok because
-// the timer is only used for profiling; just be aware of the issue.
-// if it's a problem or no raw tick source is available, disable this.
+// therefore, on systems with SpeedStep active, measurements of I/O or other
+// non-CPU bound activity may be skewed. this is ok because the timer is
+// only used for profiling; just be aware of the issue.
+// if this is a problem, disable CONFIG_TIMER_ALLOW_RDTSC.
 // 
 // note that overflow isn't an issue either way (63 bit cycle counts
 // at 10 GHz cover intervals of 29 years).
+
 #if CPU_IA32
-# define TIMER_USE_RDTSC 1
-typedef i64 TimerUnit;
+
+// fast, not usable as wall-clock (http://www.gamedev.net/reference/programming/features/timing)
+class TimerRdtsc
+{
+public:
+	typedef i64 unit;
+	unit get_timestamp() const;
+};
+
+#endif
+
+class TimerSafe
+{
+public:
+	typedef double unit;
+	unit get_timestamp() const
+	{
+		return get_time();
+	}
+};
+
+#if CPU_IA32 && TIMER_ALLOW_RDTSC
+typedef TimerRdtsc Timer;
 #else
-# define TIMER_USE_RDTSC 0
-typedef double TimerUnit;
-#endif	// #if CPU_IA32
+typedef TimerSafe Timer;
+#endif
+
+typedef Timer::unit TimerUnit;	// convenience
+
+
+//-----------------------------------------------------------------------------
+// cumulative timer API
+
+// this supplements in-game profiling by providing low-overhead,
+// high resolution time accounting.
 
 // opaque - do not access its fields!
 // note: must be defined here because clients instantiate them;
@@ -115,6 +140,8 @@ extern void timer_bill_client(TimerClient* tc, TimerUnit dt);
 extern void timer_display_client_totals();
 
 
+//-----------------------------------------------------------------------------
+// scoped-based timers
 
 // used via TIMER* macros below.
 class ScopeTimer
@@ -193,33 +220,8 @@ Example usage:
 #define TIMER_END(description) }
 
 
-#if TIMER_USE_RDTSC
-
-// fast, not usable as wall-clock (http://www.gamedev.net/reference/programming/features/timing)
-class TimerRdtsc
-{
-public:
-	typedef i64 unit;
-	unit get_timestamp() const;
-};
-
-#else
-
-class TimerNormal
-{
-public:
-	typedef double unit;
-	unit get_timestamp() const
-	{
-		return get_time();
-	}
-};
-
-#endif	// TIMER_USE_RDTSC
-
-
 // used via TIMER_ACCRUE
-template<class TimerImpl = TimerRdtsc> class ScopeTimerAccrue
+template<class TimerImpl = Timer> class ScopeTimerAccrue
 {
 	TimerImpl impl;
 	typename TimerImpl::unit t0;

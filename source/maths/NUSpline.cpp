@@ -37,7 +37,7 @@ void RNSpline::AddNode(const CVector3D &pos)
     MaxDistance = 0.f;
   else
   {
-    Node[NodeCount-1].Distance = (Node[NodeCount-1].Position - pos).GetLength();
+    Node[NodeCount-1].Distance = (Node[NodeCount-1].Position - pos).Length();
     MaxDistance += Node[NodeCount-1].Distance;
   }
   SplineData temp;
@@ -226,8 +226,8 @@ void TNSpline::Constrain()
   for (int i = 1; i<NodeCount-1; i++)
   {
     // Equation 13
-    float r0 = (Node[i].Position-Node[i-1].Position).GetLength() / Node[i-1].Distance;
-    float r1 = (Node[i+1].Position - Node[i].Position).GetLength() / Node[i].Distance;
+    float r0 = (Node[i].Position-Node[i-1].Position).Length() / Node[i-1].Distance;
+    float r1 = (Node[i+1].Position - Node[i].Position).Length() / Node[i].Distance;
     Node[i].Velocity *= 4.0f*r0*r1/((r0+r1)*(r0+r1));
   }
 }

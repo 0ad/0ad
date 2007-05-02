@@ -38,8 +38,8 @@ bool CObjectBase::Load(const char* filename)
 	m_ShortName = CStr(filename).AfterLast("/").BeforeLast(".xml");
 
 	// Define all the elements used in the XML file
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(actor);
 	EL(castshadow);
 	EL(float);
@@ -64,11 +64,11 @@ bool CObjectBase::Load(const char* filename)
 	#undef AT
 	#undef EL
 
-	XMBElement root = XeroFile.getRoot();
+	XMBElement root = XeroFile.GetRoot();
 
-	if (root.getNodeName() != el_actor)
+	if (root.GetNodeName() != el_actor)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.getElementString(root.getNodeName()).c_str());
+		LOG(ERROR, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 
@@ -80,9 +80,9 @@ bool CObjectBase::Load(const char* filename)
 		std::vector<int> variantGroupSizes;
 		XERO_ITER_EL(root, child)
 		{
-			if (child.getNodeName() == el_group)
+			if (child.GetNodeName() == el_group)
 			{
-				variantGroupSizes.push_back(child.getChildNodes().Count);
+				variantGroupSizes.push_back(child.GetChildNodes().Count);
 			}
 		}
 
@@ -99,14 +99,14 @@ bool CObjectBase::Load(const char* filename)
 
 	XERO_ITER_EL(root, child)
 	{
-		int child_name = child.getNodeName();
+		int child_name = child.GetNodeName();
 
 		if (child_name == el_group)
 		{
 			std::vector<Variant>::iterator currentVariant = currentGroup->begin();
 			XERO_ITER_EL(child, variant)
 			{
-				debug_assert(variant.getNodeName() == el_variant);
+				debug_assert(variant.GetNodeName() == el_variant);
 				XERO_ITER_ATTR(variant, attr)
 				{
 					if (attr.Name == at_name)
@@ -119,22 +119,22 @@ bool CObjectBase::Load(const char* filename)
 
 				XERO_ITER_EL(variant, option)
 				{
-					int option_name = option.getNodeName();
+					int option_name = option.GetNodeName();
 
 					if (option_name == el_mesh)
-						currentVariant->m_ModelFilename = "art/meshes/" + CStr(option.getText());
+						currentVariant->m_ModelFilename = "art/meshes/" + CStr(option.GetText());
 
 					else if (option_name == el_texture)
-						currentVariant->m_TextureFilename = "art/textures/skins/" + CStr(option.getText());
+						currentVariant->m_TextureFilename = "art/textures/skins/" + CStr(option.GetText());
 
 					else if (option_name == el_colour)
-						currentVariant->m_Color = option.getText();
+						currentVariant->m_Color = option.GetText();
 
 					else if (option_name == el_animations)
 					{
 						XERO_ITER_EL(option, anim_element)
 						{
-							debug_assert(anim_element.getNodeName() == el_animation);
+							debug_assert(anim_element.GetNodeName() == el_animation);
 
 							Anim anim;
 							XERO_ITER_ATTR(anim_element, ae)
@@ -173,7 +173,7 @@ bool CObjectBase::Load(const char* filename)
 					{
 						XERO_ITER_EL(option, prop_element)
 						{
-							debug_assert(prop_element.getNodeName() == el_prop);
+							debug_assert(prop_element.GetNodeName() == el_prop);
 
 							Prop prop;
 							XERO_ITER_ATTR(prop_element, pe)
@@ -212,7 +212,7 @@ bool CObjectBase::Load(const char* filename)
 		}
 		else if (child_name == el_material)
 		{
-			m_Material = "art/materials/" + CStr(child.getText());
+			m_Material = "art/materials/" + CStr(child.GetText());
 		}
 		else
 			; // unrecognised element

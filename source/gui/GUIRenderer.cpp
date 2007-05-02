@@ -301,7 +301,7 @@ public:
 		// OpenGL error that's raised if they aren't actually present.
 		// Note: higher-level code checks for this extension, but
 		// allows users the choice of continuing even if not present.
-		oglSquelchError(GL_INVALID_ENUM);
+		ogl_SquelchError(GL_INVALID_ENUM);
 
 		glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
 

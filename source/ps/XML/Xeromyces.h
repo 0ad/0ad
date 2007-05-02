@@ -53,19 +53,19 @@ private:
 #define _XERO_I _XERO_MAKE_UID1__(_i_, __LINE__)
 
 #define XERO_ITER_EL(parent_element, child_element)					\
-	XMBElementList _XERO_CHILDREN = parent_element.getChildNodes();	\
+	XMBElementList _XERO_CHILDREN = parent_element.GetChildNodes();	\
 	XMBElement child_element (0);									\
 	for (int _XERO_I = 0;											\
 		 _XERO_I < _XERO_CHILDREN.Count								\
-			&& (child_element = _XERO_CHILDREN.item(_XERO_I), 1);	\
+			&& (child_element = _XERO_CHILDREN.Item(_XERO_I), 1);	\
 		 ++_XERO_I)
 
 #define XERO_ITER_ATTR(parent_element, attribute)						\
-	XMBAttributeList _XERO_CHILDREN = parent_element.getAttributes();	\
+	XMBAttributeList _XERO_CHILDREN = parent_element.GetAttributes();	\
 	XMBAttribute attribute;												\
 	for (int _XERO_I = 0;												\
 		 _XERO_I < _XERO_CHILDREN.Count									\
-			&& (attribute = _XERO_CHILDREN.item(_XERO_I), 1);			\
+			&& (attribute = _XERO_CHILDREN.Item(_XERO_I), 1);			\
 		 ++_XERO_I)
 
 #endif // _XEROMYCES_H_

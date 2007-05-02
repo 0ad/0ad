@@ -76,18 +76,18 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::RegisterDamage>( "registerDamage", 0 );
 	AddMethod<jsval, &CEntity::RegisterOrderChange>( "registerOrderChange", 0 );
 	AddMethod<jsval, &CEntity::GetAttackDirections>( "getAttackDirections", 0 );
-	AddMethod<jsval, &CEntity::FindSector>( "findSector", 4);
+	AddMethod<jsval, &CEntity::FindSector>( "FindSector", 4);
 	AddMethod<jsval, &CEntity::GetHeight>( "getHeight", 0 );
 	AddMethod<jsval, &CEntity::HasRallyPoint>( "hasRallyPoint", 0 );
 	AddMethod<jsval, &CEntity::SetRallyPoint>( "setRallyPoint", 0 );
 	AddMethod<jsval, &CEntity::GetRallyPoint>( "getRallyPoint", 0 );
-	AddMethod<jsval, &CEntity::OnDamaged>( "onDamaged", 1 );
+	AddMethod<jsval, &CEntity::OnDamaged>( "OnDamaged", 1 );
 	AddMethod<jsval, &CEntity::GetVisibleEntities>( "getVisibleEntities", 0 );
 	AddMethod<float, &CEntity::GetDistance>( "getDistance", 1 );
 	AddMethod<jsval, &CEntity::FlattenTerrain>( "flattenTerrain", 0 );
 
-	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::getClassSet, (SetFn)&CEntity::setClassSet );
-	AddClassProperty( L"template", (CEntityTemplate* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::loadBase );
+	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::GetClassSet, (SetFn)&CEntity::SetClassSet );
+	AddClassProperty( L"template", (CEntityTemplate* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::LoadBase );
 
 	/* Any inherited property MUST be added to EntityTemplate.cpp as well */
 
@@ -97,12 +97,12 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"actions.move.run.range", &CEntity::m_runMaxRange );
 	AddClassProperty( L"actions.move.run.regenRate", &CEntity::m_runRegenRate );
 	AddClassProperty( L"actions.move.run.decayRate", &CEntity::m_runDecayRate );
-	AddClassProperty( L"selected", &CEntity::m_selected, false, (NotifyFn)&CEntity::checkSelection );
-	AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::checkGroup );
+	AddClassProperty( L"selected", &CEntity::m_selected, false, (NotifyFn)&CEntity::CheckSelection );
+	AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::CheckGroup );
 	AddClassProperty( L"traits.extant", &CEntity::m_extant );
 	AddClassProperty( L"actions.move.turningRadius", &CEntity::m_turningRadius );
-	AddClassProperty( L"position", &CEntity::m_position, false, (NotifyFn)&CEntity::teleport );
-	AddClassProperty( L"orientation", &CEntity::m_orientation, false, (NotifyFn)&CEntity::reorient );
+	AddClassProperty( L"position", &CEntity::m_position, false, (NotifyFn)&CEntity::Teleport );
+	AddClassProperty( L"orientation", &CEntity::m_orientation, false, (NotifyFn)&CEntity::Reorient );
 	AddClassProperty( L"player", (GetFn)&CEntity::JSI_GetPlayer, (SetFn)&CEntity::JSI_SetPlayer );
 	AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );
 	AddClassProperty( L"traits.health.max", &CEntity::m_healthMax );
@@ -113,7 +113,7 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"traits.stamina.max", &CEntity::m_staminaMax );
 	AddClassProperty( L"traits.rank.name", &CEntity::m_rankName );
 	AddClassProperty( L"traits.vision.los", &CEntity::m_los );
-	AddClassProperty( L"traits.ai.stance.curr", &CEntity::m_stanceName, false, (NotifyFn)&CEntity::stanceChanged );
+	AddClassProperty( L"traits.ai.stance.curr", &CEntity::m_stanceName, false, (NotifyFn)&CEntity::StanceChanged );
 	AddClassProperty( L"lastCombatTime", &CEntity::m_lastCombatTime );
 	AddClassProperty( L"lastRunTime", &CEntity::m_lastRunTime );
 	AddClassProperty( L"building", &CEntity::m_building );
@@ -153,7 +153,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 			JS_ReportError( cx, "Invalid template identifier" );
 			return( JS_TRUE );
 		}
-		baseEntity = g_EntityTemplateCollection.getTemplate( templateName );
+		baseEntity = g_EntityTemplateCollection.GetTemplate( templateName );
 	}
 
 	if( !baseEntity )
@@ -198,7 +198,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 	}
 
 	std::set<CStr8> selections; // TODO: let scripts specify selections?
-	HEntity handle = g_EntityManager.create( baseEntity, position, orientation, selections );
+	HEntity handle = g_EntityManager.Create( baseEntity, position, orientation, selections );
 	handle->m_actor->SetPlayerID( player->GetPlayerID() );
 	handle->Initialize();
 
@@ -343,8 +343,8 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrde
 	}
 
 	if( !Queued )
-		clearOrders();
-	pushOrder( newOrder );
+		ClearOrders();
+	PushOrder( newOrder );
 
 	return( true );
 }
@@ -354,7 +354,7 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 	CEventDeath evt;
 	DispatchEvent( &evt );
 
-	kill(true);
+	Kill(true);
 
 	return( true );
 }
@@ -423,7 +423,7 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 
 		// Then step around the edge (clockwise) until a free space is found, or
 		// we've gone all the way around.
-		while( getCollisionObject( &spawn ) )
+		while( GetCollisionObject( &spawn ) )
 		{
 			switch( edge )
 			{
@@ -468,7 +468,7 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 				return( JSVAL_NULL );
 			spawn.m_pos = pos;
 		}
-		CVector3D rval( pos.x, getAnchorLevel( pos.x, pos.y ), pos.y );
+		CVector3D rval( pos.x, GetAnchorLevel( pos.x, pos.y ), pos.y );
 		return( ToJSVal( rval ) );
 	}
 	else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
@@ -484,15 +484,15 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 		{
 			x = m_position.X + radius * cos( ang );
 			y = m_position.Z + radius * sin( ang );
-			spawn.setPosition( x, y );
-			if( !getCollisionObject( &spawn ) )
+			spawn.SetPosition( x, y );
+			if( !GetCollisionObject( &spawn ) )
 				break;
 		}
 		if( ang < ang_end )
 		{
 			// Found a satisfactory position...
 			CVector3D pos( x, 0, y );
-			pos.Y = getAnchorLevel( x, y );
+			pos.Y = GetAnchorLevel( x, y );
 			return( ToJSVal( pos ) );
 		}
 		else
@@ -751,11 +751,11 @@ jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 	CEntity* inflictor = ToNative<CEntity>( argv[0] );
 	CVector2D up(1.0f, 0.0f);
 	CVector2D pos = CVector2D( inflictor->m_position.X, inflictor->m_position.Z );
-	CVector2D posDelta = (pos - m_position).normalize();
+	CVector2D posDelta = (pos - m_position).Normalize();
 
-	float angle = acosf( up.dot(posDelta) );
+	float angle = acosf( up.Dot(posDelta) );
 	//Find what section it is between and "activate" it
-	int sector = findSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f))-1;
+	int sector = FindSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f))-1;
 	m_sectorValues[sector]=true;
 	return JS_TRUE;
 }
@@ -766,11 +766,11 @@ jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
 
 	CVector2D up(1.0f, 0.0f);
 	CVector2D pos = CVector2D( idleEntity->m_position.X, idleEntity->m_position.Z );
-	CVector2D posDelta = (pos - m_position).normalize();
+	CVector2D posDelta = (pos - m_position).Normalize();
 
-	float angle = acosf( up.dot(posDelta) );
+	float angle = acosf( up.Dot(posDelta) );
 	//Find what section it is between and "deactivate" it
-	int sector = std::max(0, findSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f)));
+	int sector = std::max(0, FindSector(m_base->m_sectorDivs, angle, DEGTORAD(360.0f)));
 	m_sectorValues[sector]=false;
 	return JS_TRUE;
 }
@@ -796,11 +796,11 @@ jsval CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
 		float maxAngle = ToPrimitive<float>( argv[2] );
 		bool negative = ToPrimitive<bool>( argv[3] );
 
-		return ToJSVal( findSector(divs, angle, maxAngle, negative) );
+		return ToJSVal( FindSector(divs, angle, maxAngle, negative) );
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
-		JS_ReportError( cx, "Invalid parameters for findSector" );
+		JS_ReportError( cx, "Invalid parameters for FindSector" );
 		return 0;
 	}
 }
@@ -824,7 +824,7 @@ jsval CEntity::OnDamaged( JSContext* cx, uintN argc, jsval* argv )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	CEntity* damageSource = ToNative<CEntity>( argv[0] );
-	m_stance->onDamaged( damageSource );
+	m_stance->OnDamaged( damageSource );
 	return JSVAL_VOID;
 }
 
@@ -844,7 +844,7 @@ float CEntity::GetDistance( JSContext* cx, uintN argc, jsval* argv )
 	CEntity* target = ToNative<CEntity>( argv[0] );
 	if( !target )
 		return -1.0f;
-	return this->distance2D( target );
+	return this->Distance2D( target );
 }
 
 /*
@@ -896,6 +896,6 @@ jsval CEntity::FlattenTerrain( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval*
 	//	points[i].y *= sin*circle.Z;
 	//}
 	g_Game->GetWorld()->GetTerrain()->FlattenArea(pos.X-xDiff, pos.X+xDiff, pos.Z-yDiff, pos.Z+yDiff);
-	snapToGround();
+	SnapToGround();
 	return JS_TRUE;
 }

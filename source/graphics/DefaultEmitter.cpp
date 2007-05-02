@@ -12,18 +12,19 @@
 
 CDefaultEmitter::CDefaultEmitter(const int MAX_PARTICLES, const int lifetime) : CEmitter(MAX_PARTICLES, lifetime)
 {
-	setupEmitter();
+	Setup();
 }
 
 CDefaultEmitter::~CDefaultEmitter(void)
 {
 }
 
-bool CDefaultEmitter::setupEmitter()
+bool CDefaultEmitter::Setup()
 {
-	pos.x = 0.0f;					// XYZ Position
-	pos.y = 20.0f;					// XYZ Position
-	pos.z = 0.0f;					// XYZ Position
+	// XYZ Position
+	pos.X = 0.0f;
+	pos.Y = 20.0f;
+	pos.Z = 0.0f;
 
 	yaw = DEGTORAD(0.0f);
 	yawVar = DEGTORAD(360.0f);
@@ -51,13 +52,13 @@ bool CDefaultEmitter::setupEmitter()
 	endColorVar.g = 15;
 	endColorVar.b = 15;
 
-	force.x = 0.000f;
-	force.y = -0.001f;
-	force.z = 0.0f;
+	force.X = 0.000f;
+	force.Y = -0.001f;
+	force.Z = 0.0f;
 	return true;
 }
 
-bool CDefaultEmitter::updateEmitter()
+bool CDefaultEmitter::Update()
 {
 	int emits;
 	// walk through the used list, and update each of the particles
@@ -70,14 +71,14 @@ bool CDefaultEmitter::updateEmitter()
 		{
 			// update the particle
 			// Calculate the new pos
-			tempParticle->pos.x += tempParticle->dir.x;
-			tempParticle->pos.y += tempParticle->dir.y;
-			tempParticle->pos.z += tempParticle->dir.z;
+			tempParticle->pos.X += tempParticle->dir.X;
+			tempParticle->pos.Y += tempParticle->dir.Y;
+			tempParticle->pos.Z += tempParticle->dir.Z;
 
 			// Add global force to direction
-			tempParticle->dir.x += force.x;
-			tempParticle->dir.y += force.y;
-			tempParticle->dir.z += force.z;
+			tempParticle->dir.X += force.X;
+			tempParticle->dir.Y += force.Y;
+			tempParticle->dir.Z += force.Z;
 
 			// Get the new color
 			tempParticle->color.r += tempParticle->deltaColor.r;
@@ -139,7 +140,7 @@ bool CDefaultEmitter::updateEmitter()
 			emitterLife--;
 		
 		for(int i = 0; i < emits; i++)
-			addParticle();
+			AddParticle();
 		return true;
 	}
 	else

@@ -11,7 +11,7 @@ CPlayList::CPlayList(void)
 
 CPlayList::CPlayList(const char* file)
 {
-	load(file);
+	Load(file);
 }
 
 CPlayList::~CPlayList(void)
@@ -19,7 +19,7 @@ CPlayList::~CPlayList(void)
 
 }
 
-void CPlayList::load(const char* file)
+void CPlayList::Load(const char* file)
 {
 	tracks.clear();
 
@@ -37,7 +37,7 @@ void CPlayList::load(const char* file)
 }
 
 
-void CPlayList::list()
+void CPlayList::List()
 {
 	for(unsigned int i = 0; i < tracks.size(); i++)
 	{
@@ -45,7 +45,7 @@ void CPlayList::list()
 	}
 }
 
-void CPlayList::add(std::string name)
+void CPlayList::Add(std::string name)
 {
 	tracks.push_back(name);
 }

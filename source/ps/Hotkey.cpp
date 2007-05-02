@@ -1,12 +1,13 @@
 #include "precompiled.h"
-
 #include "Hotkey.h"
+
 #include "lib/input.h"
 #include "ConfigDB.h"
 #include "CLogger.h"
 #include "CConsole.h"
 #include "CStr.h"
 #include "ps/Globals.h"
+#include "KeyName.h"
 
 extern CConsole* g_Console;
 
@@ -151,28 +152,27 @@ static SHotkeyInfo hotkeyInfo[] =
 
 /* GUI-type */
 
-struct SHotkeyMappingGUI
+struct SHotkeyMappingGui
 {
 	CStr mapsTo;
 	bool negation;
 	std::vector<int> requires;
-	SHotkeyMappingGUI() : mapsTo(-1) {}
+	SHotkeyMappingGui() : mapsTo(-1) {}
 };
 
-typedef std::vector<SHotkeyMappingGUI> GuiMapping;
+typedef std::vector<SHotkeyMappingGui> GuiMapping;
 
 // A mapping of keycodes onto sets of hotkey name strings (e.g. '[hotkey.]camera.reset')
-static GuiMapping hotkeyMapGUI[HK_MAX_KEYCODES];
+static GuiMapping hotkeyMapGui[HK_MAX_KEYCODES];
 
-typedef std::vector<CStr> GUIObjectList; // A list of GUI objects
-typedef std::map<CStr,GUIObjectList> GUIHotkeyMap; // A mapping of name strings to lists of GUI objects that they trigger
+typedef std::vector<CStr> GuiObjectList; // A list of GUI objects
+typedef std::map<CStr,GuiObjectList> GuiHotkeyMap; // A mapping of name strings to lists of GUI objects that they trigger
 
-static GUIHotkeyMap guiHotkeyMap;
+static GuiHotkeyMap guiHotkeyMap;
 
 // Look up a key binding in the config file and set the mappings for
 // all key combinations that trigger it.
-
-void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
+static void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 {
 	CConfigValueSet* binding = g_ConfigDB.GetValues( CFG_USER, CStr( "hotkey." ) + hotkeyName );
 	if( binding )
@@ -211,7 +211,7 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 						}
 
 						// Attempt decode as key name
-						mapping = getKeyCode( hotkey );	
+						mapping = FindKeyCode( hotkey );	
 
 						// Attempt to decode as a negation of a keyname
 						// Yes, it's going a bit far, perhaps.
@@ -237,7 +237,7 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 				std::vector<int>::iterator itKey, itKey2;
 
 				SHotkeyMapping bindCode;
-				SHotkeyMappingGUI bindName;
+				SHotkeyMappingGui bindName;
 
 				for( itKey = keyCombination.begin(); itKey != keyCombination.end(); itKey++ )
 				{
@@ -261,7 +261,7 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 						}
 					}
 
-					hotkeyMapGUI[*itKey & ~HOTKEY_NEGATION_FLAG].push_back( bindName );
+					hotkeyMapGui[*itKey & ~HOTKEY_NEGATION_FLAG].push_back( bindName );
 					if( integerMapping != -1 )
 						hotkeyMap[*itKey & ~HOTKEY_NEGATION_FLAG].push_back( bindCode );
 				}
@@ -282,13 +282,11 @@ void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 			hotkeyMap[ hotkeyInfo[integerMapping].defaultmapping2 ].push_back( bind[1] );
 	}
 }
-void loadHotkeys()
+void LoadHotkeys()
 {
-	initKeyNameMap();
+	InitKeyNameMap();
 
-	int i;
-
-	for( i = 0; i < HOTKEY_LAST; i++ )
+	for(int i = 0; i < HOTKEY_LAST; i++ )
 		setBindings( hotkeyInfo[i].name, i );
 	
 	// Set up the state of the hotkeys given no key is down.
@@ -298,7 +296,7 @@ void loadHotkeys()
 	std::vector<int>::iterator j;
 	bool allNegated;
 
-	for( i = 1; i < HK_MAX_KEYCODES; i++ )
+	for(int i = 1; i < HK_MAX_KEYCODES; i++ )
 	{
 		for( it = hotkeyMap[i].begin(); it != hotkeyMap[i].end(); it++ )
 		{
@@ -319,9 +317,9 @@ void loadHotkeys()
 	}
 }
 
-void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName )
+void HotkeyRegisterGuiObject( const CStr& objName, const CStr& hotkeyName )
 {
-	GUIObjectList& boundTo = guiHotkeyMap[hotkeyName];
+	GuiObjectList& boundTo = guiHotkeyMap[hotkeyName];
 	if( boundTo.empty() )
 	{
 		// Load keybindings from the config file
@@ -330,7 +328,7 @@ void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName )
 	boundTo.push_back( objName );
 }
 
-InReaction hotkeyInputHandler( const SDL_Event_* ev )
+InReaction HotkeyInputHandler( const SDL_Event_* ev )
 {
 	int keycode = 0;
 
@@ -358,31 +356,31 @@ InReaction hotkeyInputHandler( const SDL_Event_* ev )
 	{
 		(int&)phantom.ev.key.keysym.sym = UNIFIED_SHIFT;
 		unified[0] = ( phantom.ev.type == SDL_KEYDOWN );
-		hotkeyInputHandler( &phantom );
+		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LCTRL ) || ( keycode == SDLK_RCTRL ) )
 	{
 		(int&)phantom.ev.key.keysym.sym = UNIFIED_CTRL;
 		unified[1] = ( phantom.ev.type == SDL_KEYDOWN );
-		hotkeyInputHandler( &phantom );
+		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LALT ) || ( keycode == SDLK_RALT ) )
 	{
 		(int&)phantom.ev.key.keysym.sym = UNIFIED_ALT;
 		unified[2] = ( phantom.ev.type == SDL_KEYDOWN );
-		hotkeyInputHandler( &phantom );
+		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LMETA ) || ( keycode == SDLK_RMETA ) )
 	{
 		(int&)phantom.ev.key.keysym.sym = UNIFIED_META;
 		unified[3] = ( phantom.ev.type == SDL_KEYDOWN );
-		hotkeyInputHandler( &phantom );
+		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) )
 	{
 		(int&)phantom.ev.key.keysym.sym = UNIFIED_SUPER;
 		unified[4] = ( phantom.ev.type == SDL_KEYDOWN );
-		hotkeyInputHandler( &phantom );
+		HotkeyInputHandler( &phantom );
 	}
 
 	// Inhibit the dispatch of hotkey events caused by printable or control keys
@@ -399,7 +397,7 @@ InReaction hotkeyInputHandler( const SDL_Event_* ev )
 		consoleCapture = true;
 
 	std::vector<SHotkeyMapping>::iterator it;
-	std::vector<SHotkeyMappingGUI>::iterator itGUI;
+	std::vector<SHotkeyMappingGui>::iterator itGUI;
 
 	SDL_Event hotkeyNotification;
 
@@ -493,7 +491,7 @@ InReaction hotkeyInputHandler( const SDL_Event_* ev )
 	CStr closestMapName = -1;
 	closestMapMatch = 0;
 
-	for( itGUI = hotkeyMapGUI[keycode].begin(); itGUI != hotkeyMapGUI[keycode].end(); itGUI++ )
+	for( itGUI = hotkeyMapGui[keycode].begin(); itGUI != hotkeyMapGui[keycode].end(); itGUI++ )
 	{	
 		// If a key has been pressed, and this event triggers on it's release, skip it.
 		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
@@ -549,12 +547,12 @@ InReaction hotkeyInputHandler( const SDL_Event_* ev )
 
 	if( closestMapMatch )
 	{
-		GUIHotkeyMap::iterator map_it;
-		GUIObjectList::iterator obj_it;
+		GuiHotkeyMap::iterator map_it;
+		GuiObjectList::iterator obj_it;
 		map_it = guiHotkeyMap.find( closestMapName );
 		if( map_it != guiHotkeyMap.end() )
 		{
-			GUIObjectList& targets = map_it->second;
+			GuiObjectList& targets = map_it->second;
 			for( obj_it = targets.begin(); obj_it != targets.end(); obj_it++ )
 			{
 				hotkeyNotification.type = SDL_GUIHOTKEYPRESS;
@@ -611,10 +609,7 @@ InReaction hotkeyInputHandler( const SDL_Event_* ev )
 }
 
 
-// Returns true if the specified HOTKEY_* responds to the specified SDLK_*
-// (mainly for the screenshot system to know whether it needs to override
-// the printscreen screen). Ignores modifier keys.
-bool keyRespondsTo( int hotkey, int sdlkey )
+bool HotkeyRespondsTo( int hotkey, int sdlkey )
 {
 	for (KeyMapping::iterator it = hotkeyMap[sdlkey].begin(); it != hotkeyMap[sdlkey].end(); ++it)
 		if (it->mapsTo == hotkey)
@@ -622,8 +617,8 @@ bool keyRespondsTo( int hotkey, int sdlkey )
 	return false;
 }
 
-// Returns true if one of the key combinations for the given hotkey is pressed
-bool isKeyDown( const CStr& keyname )
+
+bool HotkeyIsPressed( const CStr& keyname )
 {
-	return hotkeys[getKeyCode(keyname)];
+	return hotkeys[FindKeyCode(keyname)];
 }

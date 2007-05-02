@@ -32,7 +32,7 @@ public:
 	{
 		return( x == rhs.x && y == rhs.y );
 	}
-	static inline float dot( const CVector2D& u, const CVector2D& v )
+	static inline float Dot( const CVector2D& u, const CVector2D& v )
 	{
 		return( u.x * v.x + u.y * v.y );
 	}
@@ -48,9 +48,9 @@ public:
 	{
 		return( CVector2D( y, -x ) );
 	}
-	inline float dot( const CVector2D& u ) const
+	inline float Dot( const CVector2D& u ) const
 	{
-		return( dot( *this, u ) );
+		return( Dot( *this, u ) );
 	}
 	inline float betadot( const CVector2D& u ) const
 	{	
@@ -92,7 +92,7 @@ public:
 		x /= scale; y /= scale;
 		return( *this );
 	}
-	inline float length() const
+	inline float Length() const
 	{
 		return( sqrt( x * x + y * y ) );
 	}
@@ -100,9 +100,9 @@ public:
 	{
 		return( x * x + y * y );
 	}
-	CVector2D normalize() const
+	CVector2D Normalize() const
 	{
-		float l = length();
+		float l = Length();
 		if( l < 0.00001 ) return( CVector2D( 1.0f, 0.0f ) );
 		l = 1 / l;
 		return( CVector2D( x * l, y * l ) );

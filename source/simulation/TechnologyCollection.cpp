@@ -20,7 +20,7 @@ static void LoadTechThunk( const char* path, const DirEnt* UNUSED(ent), void* co
 	this_->LoadFile(path);
 }
 
-int CTechnologyCollection::loadTechnologies()
+int CTechnologyCollection::LoadTechnologies()
 {
 	// Load all files in techs/ and subdirectories.
 	THROW_ERR( vfs_dir_enum( "technologies/", VFS_DIR_RECURSIVE, "*.xml",
@@ -28,7 +28,7 @@ int CTechnologyCollection::loadTechnologies()
 	return 0;
 }
 
-CTechnology* CTechnologyCollection::getTechnology( const CStrW& name, CPlayer* player )
+CTechnology* CTechnologyCollection::GetTechnology( const CStrW& name, CPlayer* player )
 {
 	// Find player ID
 	debug_assert( player != 0 );
@@ -49,16 +49,16 @@ CTechnology* CTechnologyCollection::getTechnology( const CStrW& name, CPlayer* p
 
 	//Try to load to the tech
 	CTechnology* newTemplate = new CTechnology( name, player );
-	if( !newTemplate->loadXML( path ) )
+	if( !newTemplate->LoadXml( path ) )
 	{
-		LOG(ERROR, LOG_CATEGORY, "CTechnologyCollection::getTechnology(): Couldn't load tech \"%s\"", path.c_str());
+		LOG(ERROR, LOG_CATEGORY, "CTechnologyCollection::GetTechnology(): Couldn't load tech \"%s\"", path.c_str());
 		delete newTemplate;
 		return( NULL );
 
 	}
 	m_techs[id][name] = newTemplate;
 	
-	LOG(NORMAL, LOG_CATEGORY, "CTechnologyCollection::getTechnology(): Loaded tech \"%s\"", path.c_str());
+	LOG(NORMAL, LOG_CATEGORY, "CTechnologyCollection::GetTechnology(): Loaded tech \"%s\"", path.c_str());
 	return newTemplate;
 }
 

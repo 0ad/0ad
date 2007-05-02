@@ -407,7 +407,7 @@ CRenderer::~CRenderer()
 	delete m_VertexShader;
 	m_VertexShader = 0;
 
-	CParticleEngine::GetInstance()->cleanup();
+	CParticleEngine::GetInstance()->Cleanup();
 
 	// we no longer UnloadAlphaMaps / UnloadWaterTextures here -
 	// that is the responsibility of the module that asked for
@@ -430,23 +430,23 @@ void CRenderer::EnumCaps()
 
 	// now start querying extensions
 	if (!m_Options.m_NoVBO) {
-		if (oglHaveExtension("GL_ARB_vertex_buffer_object")) {
+		if (ogl_HaveExtension("GL_ARB_vertex_buffer_object")) {
 			m_Caps.m_VBO=true;
 		}
 	}
-	if (oglHaveExtension("GL_ARB_texture_border_clamp")) {
+	if (ogl_HaveExtension("GL_ARB_texture_border_clamp")) {
 		m_Caps.m_TextureBorderClamp=true;
 	}
-	if (oglHaveExtension("GL_SGIS_generate_mipmap")) {
+	if (ogl_HaveExtension("GL_SGIS_generate_mipmap")) {
 		m_Caps.m_GenerateMipmaps=true;
 	}
-	if (0 == oglHaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", 0))
+	if (0 == ogl_HaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", 0))
 	{
-		if (oglHaveExtension("GL_ARB_vertex_shader"))
+		if (ogl_HaveExtension("GL_ARB_vertex_shader"))
 			m_Caps.m_VertexShader=true;
 	}
 
-	if (0 == oglHaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", 0)) {
+	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", 0)) {
 		// According to Delphi3d.net, all relevant graphics chips that support depth textures
 		// (i.e. Geforce3+, Radeon9500+, even i915) also have >= 4 TMUs, so this restriction
 		// isn't actually a restriction, and it helps with integrating depth texture
@@ -456,7 +456,7 @@ void CRenderer::EnumCaps()
 	}
 	if (!m_Options.m_NoFramebufferObject)
 	{
-		if (oglHaveExtension("GL_EXT_framebuffer_object"))
+		if (ogl_HaveExtension("GL_EXT_framebuffer_object"))
 			m_Caps.m_FramebufferObject = true;
 	}
 }
@@ -525,9 +525,9 @@ bool CRenderer::Open(int width, int height, int depth)
 	m->Model.ModTransparentDepthShadow = RenderModifierPtr(new TransparentDepthShadowModifier);
 
 	// Particle engine
-	CParticleEngine::GetInstance()->initParticleSystem();
+	CParticleEngine::GetInstance()->InitParticleSystem();
 // 	CEmitter *pEmitter = new CDefaultEmitter(1000, -1);
-// 	CParticleEngine::GetInstance()->addEmitter(pEmitter);
+// 	CParticleEngine::GetInstance()->AddEmitter(pEmitter);
 
 	// Dimensions
 	m_Width = width;
@@ -978,7 +978,7 @@ CMatrix3D CRenderer::GetModelViewProjectionMatrix()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SetObliqueFrustumClipping: change the near plane to the given clip plane (in world space)
 // Based on code from Game Programming Gems 5, from http://www.terathon.com/code/oblique.html
-// - cp is a clip plane in camera space (cp.dot(v) = 0 for any vector v on the plane)
+// - cp is a clip plane in camera space (cp.Dot(v) = 0 for any vector v on the plane)
 // - sign is 1 or -1, to specify the side to clip on
 void CRenderer::SetObliqueFrustumClipping(const CVector4D& cp, int sign)
 {
@@ -1001,13 +1001,13 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& cp, int sign)
 	// Convert the normal to camera space
 	CVector4D planeNormal(cp.m_X, cp.m_Y, cp.m_Z, 0);
 	planeNormal = normalMatrix.Transform(planeNormal);
-	planeNormal.normalize();
+	planeNormal.Normalize();
 
 	// Find a point on the plane: we'll take the normal times -D
 	float oldD = cp.m_W;
 	CVector4D pointOnPlane(-oldD * cp.m_X, -oldD * cp.m_Y, -oldD * cp.m_Z, 1);
 	pointOnPlane = viewMatrix.Transform(pointOnPlane);
-	float newD = -pointOnPlane.dot(planeNormal);
+	float newD = -pointOnPlane.Dot(planeNormal);
 
 	// Now create a clip plane from the new normal and new D
 	CVector4D camPlane = planeNormal;
@@ -1027,7 +1027,7 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& cp, int sign)
     q.m_W = (1.0f + matrix[10]) / matrix[14];
     
     // Calculate the scaled plane vector
-    CVector4D c = camPlane * (sign * 2.0f / camPlane.dot(q));
+    CVector4D c = camPlane * (sign * 2.0f / camPlane.Dot(q));
     
     // Replace the third row of the projection matrix
     matrix[2] = c.m_X;
@@ -1093,13 +1093,13 @@ void CRenderer::RenderReflections()
 
 	// Render sky, terrain and models
 	m->skyManager.RenderSky();
-	oglCheck();
+	ogl_WarnIfError();
 	RenderPatches();
-	oglCheck();
+	ogl_WarnIfError();
 	RenderModels();
-	oglCheck();
+	ogl_WarnIfError();
 	RenderTransparentModels();
-	oglCheck();
+	ogl_WarnIfError();
 
 	// Copy the image to a texture
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
@@ -1161,11 +1161,11 @@ void CRenderer::RenderRefractions()
 
 	// Render terrain and models
 	RenderPatches();
-	oglCheck();
+	ogl_WarnIfError();
 	RenderModels();
-	oglCheck();
+	ogl_WarnIfError();
 	RenderTransparentModels();
-	oglCheck();
+	ogl_WarnIfError();
 
 	// Copy the image to a texture
 	pglActiveTextureARB(GL_TEXTURE0_ARB);
@@ -1188,7 +1188,7 @@ void CRenderer::RenderRefractions()
 // RenderSubmissions: force rendering of any batched objects
 void CRenderer::RenderSubmissions()
 {
-	oglCheck();
+	ogl_WarnIfError();
 
 	// Set the camera
 	m->SetOpenGLCamera(m_ViewCamera);
@@ -1218,7 +1218,7 @@ void CRenderer::RenderSubmissions()
 	glClearColor(m_ClearColor[0],m_ClearColor[1],m_ClearColor[2],m_ClearColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	if (m_WaterManager->m_RenderWater && m_Options.m_FancyWater)
 	{
@@ -1237,44 +1237,44 @@ void CRenderer::RenderSubmissions()
 	{
 		MICROLOG(L"render sky");
 		m->skyManager.RenderSky();
-		oglCheck();
+		ogl_WarnIfError();
 	}
 
 	// render submitted patches and models
 	MICROLOG(L"render patches");
 	RenderPatches();
-	oglCheck();
+	ogl_WarnIfError();
 
 	if (g_Game && m_RenderTerritories)
 	{
-		g_Game->GetWorld()->GetTerritoryManager()->renderTerritories();
-		oglCheck();
+		g_Game->GetWorld()->GetTerritoryManager()->RenderTerritories();
+		ogl_WarnIfError();
 	}
 
 	// render debug-related terrain overlays
 	TerrainOverlay::RenderOverlays();
-	oglCheck();
+	ogl_WarnIfError();
 
 	MICROLOG(L"render models");
 	RenderModels();
-	oglCheck();
+	ogl_WarnIfError();
 
 	// render transparent stuff, so it can overlap models/terrain
 	MICROLOG(L"render transparent");
 	RenderTransparentModels();
-	oglCheck();
+	ogl_WarnIfError();
 
 	// render water
 	if (m_WaterManager->m_RenderWater && g_Game)
 	{
 		MICROLOG(L"render water");
 		m->terrainRenderer->RenderWater();
-		oglCheck();
+		ogl_WarnIfError();
 		
 		// render transparent stuff again, so it can overlap the water
 		MICROLOG(L"render transparent 2");
 		RenderTransparentModels();
-		oglCheck();
+		ogl_WarnIfError();
 		
 		// TODO: Maybe think of a better way to deal with transparent objects;
 		// they can appear both under and above water (seaweed vs. trees), but doing
@@ -1291,8 +1291,8 @@ void CRenderer::RenderSubmissions()
 
 	//// Particle Engine Rendering.
 	MICROLOG(L"render particles");
-	CParticleEngine::GetInstance()->renderParticles();
-	oglCheck();
+	CParticleEngine::GetInstance()->RenderParticles();
+	ogl_WarnIfError();
 
 	// render debug lines
 	if (m_DisplayFrustum)
@@ -1300,7 +1300,7 @@ void CRenderer::RenderSubmissions()
 		MICROLOG(L"display frustum");
 		DisplayFrustum();
 		m->shadow->RenderDebugDisplay();
-		oglCheck();
+		ogl_WarnIfError();
 	}
 
 	// empty lists
@@ -1423,7 +1423,7 @@ void CRenderer::RenderScene(Scene *scene)
 	MICROLOG(L"collect objects");
 	scene->EnumerateObjects(frustum, this);
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	MICROLOG(L"flush objects");
 	RenderSubmissions();

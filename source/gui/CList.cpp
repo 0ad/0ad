@@ -415,11 +415,11 @@ void CList::AddItem(const CStr& str)
 
 bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
 {
-	int elmt_item = pFile->getElementID("item");
+	int elmt_item = pFile->GetElementID("item");
 
-	if (child.getNodeName() == elmt_item)
+	if (child.GetNodeName() == elmt_item)
 	{
-		AddItem((CStr)child.getText());
+		AddItem((CStr)child.GetText());
 		
 		return true;
 	}

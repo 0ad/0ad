@@ -33,94 +33,47 @@ public:
 	virtual ~CParticleEngine(void);
 
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: GetInstance
-	//Date: 8/1/05
-	//Author: Will Dull
-	//Purpose: returns the instance of the singleton class
-	//////////////////////////////////////////////////////////////
+	/// @return instance of the singleton class
 	static CParticleEngine* GetInstance();
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: DeleteInstance
-	//Date: 8/1/05
-	//Author: Will Dull
-	//Purpose: deletes the instance of the singleton class
-	//////////////////////////////////////////////////////////////
+	/// delete the instance of the singleton class
 	static void DeleteInstance();
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: initParticleSystem
-	//Date: 6/29/05
-	//Author: Will Dull
-	//Out: True if particle system initialized correctly, 
-	//	   false otherwise
-	//Purpose: inits particle system.
-	//////////////////////////////////////////////////////////////
-	bool initParticleSystem(void);
+	/// @return true on success, false on failure
+	bool InitParticleSystem(void);
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: addEmitter
-	//Date: 7/20/05
-	//Author: Will Dull
-	//In: emitter to add, texture type, id of emitter
-	//Out: True if emitter added correctly, 
-	//	   false otherwise
-	//Purpose: adds the emitter to the engines list
-	//////////////////////////////////////////////////////////////
-	bool addEmitter(CEmitter *emitter, int type = DEFAULTTEXT, int ID = DEFAULTEMIT);
+	/**
+	 * add the emitter to the engine's list.
+	 * @return indicator of success.
+	 **/
+	bool AddEmitter(CEmitter *emitter, int type = DEFAULTTEXT, int ID = DEFAULTEMIT);
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: findEmitter
-	//Date: 7/21/05
-	//Author: Will Dull
-	//In: id of emitter to find
-	//Out: the emitter if found, 
-	//	   NULL otherwise
-	//Purpose: finds the emitter using its ID
-	//////////////////////////////////////////////////////////////
-	CEmitter* findEmitter(int ID);
+	/// @return emitter with the given ID or 0 if not found.
+	CEmitter* FindEmitter(int ID);
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: updateEmitters
-	//Date: 7/20/05
-	//Author: Will Dull
-	//Purpose: Checks if the emitter is ready to be deleted
-	//		and removed. If not it calls the emitters update
-	//		function.
-	//////////////////////////////////////////////////////////////
-	void updateEmitters();
+	/**
+	 * Check if the emitters are ready to be deleted and removed.
+	 * If not, call Update() on them.
+	 **/
+	void UpdateEmitters();
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: renderParticles
-	//Date: 7/20/05
-	//Author: Will Dull
-	//Purpose: Renders the emitter and all it's particles
-	//////////////////////////////////////////////////////////////
-	void renderParticles();
+	/// render each emitter and their particles
+	void RenderParticles();
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: destroyAllEmitters
-	//Date: 8/1/05
-	//Author: Will Dull
-	//In: fade - if true, will allow the emitter to fade itself out
-	//	if false, emitter and particles will disappear instantly
-	//Purpose: Destroys every active emitter on screen.
-	//////////////////////////////////////////////////////////////
-	void destroyAllEmitters(bool fade = true);
+	/**
+	 * destroy all active emitters on screen.
+	 * @param fade if true, allows emitters to fade out. if false,
+	 * they disappear instantly.
+	 **/
+	void DestroyAllEmitters(bool fade = true);
 
-	//////////////////////////////////////////////////////////////
-	//Func Name: cleanup
-	//Date: 8/3/05
-	//Author: Will Dull
-	//Purpose: Any cleanup not done in the destructor.
-	//////////////////////////////////////////////////////////////
-	void cleanup();
+	/// do cleanup that's not done in the destructor.
+	void Cleanup();
 
 	void EnterParticleContext(void);
 	void LeaveParticleContext(void);
 
-	int getTotalParticles() { return totalParticles; }
+	int GetTotalParticles() { return totalParticles; }
 	void SetTotalParticles(int particles) { totalParticles = particles; }
 	void AddToTotalParticles(int addAmount) { totalParticles += addAmount; }
 	void SubToTotalParticles(int subAmount) { totalParticles -= subAmount; }

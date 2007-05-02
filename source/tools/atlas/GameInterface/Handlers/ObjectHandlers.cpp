@@ -63,10 +63,10 @@ QUERYHANDLER(GetObjectsList)
 	if (CEntityTemplateCollection::IsInitialised())
 	{
 		std::vector<CStrW> names;
-		g_EntityTemplateCollection.getEntityTemplateNames(names);
+		g_EntityTemplateCollection.GetEntityTemplateNames(names);
 		for (std::vector<CStrW>::iterator it = names.begin(); it != names.end(); ++it)
 		{
-			//CEntityTemplate* baseent = g_EntityTemplateCollection.getTemplate(*it);
+			//CEntityTemplate* baseent = g_EntityTemplateCollection.GetTemplate(*it);
 			sObjectsListItem e;
 			e.id = L"(e) " + *it;
 			e.name = *it; //baseent->m_Tag
@@ -104,7 +104,7 @@ void AtlasRenderSelection()
 		{
 			if (unit->GetEntity())
 			{
-				unit->GetEntity()->renderSelectionOutline();
+				unit->GetEntity()->RenderSelectionOutline();
 			}
 			else
 			{
@@ -115,7 +115,7 @@ void AtlasRenderSelection()
 				CVector3D a = (bound[0] - centre) * 1.1f + centre;
 				CVector3D b = (bound[1] - centre) * 1.1f + centre;
 
-				float h = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel(centre.X, centre.Z);
+				float h = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(centre.X, centre.Z);
 				if (IsFloating(unit))
 					h = std::max(h, g_Renderer.GetWaterManager()->m_WaterHeight);
 
@@ -260,12 +260,12 @@ static CVector3D GetUnitPos(const Position& pos, bool floating)
 	float xOnMap = clamp(vec.X, 0.f, mapWidth * (1.f - delta));
 	float zOnMap = clamp(vec.Z, 0.f, mapWidth * (1.f - delta));
 
-	// Don't waste time with getExactGroundLevel unless we've changed
+	// Don't waste time with GetExactGroundLevel unless we've changed
 	if (xOnMap != vec.X || zOnMap != vec.Z)
 	{
 		vec.X = xOnMap;
 		vec.Z = zOnMap;
-		vec.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel(xOnMap, zOnMap);
+		vec.Y = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(xOnMap, zOnMap);
 	}
 
 	return vec;
@@ -316,7 +316,7 @@ MESSAGEHANDLER(ObjectPreview)
 			// Create new unit
 			if (isEntity)
 			{
-				CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(name);
+				CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(name);
 				if (base) // (ignore errors)
 				{
 					previewUnit = GetUnitManager().CreateUnit(base->m_actorName, NULL, selections);
@@ -357,7 +357,7 @@ MESSAGEHANDLER(ObjectPreview)
 			// Aim from pos towards msg->target
 			CVector3D target = msg->target->GetWorldSpace(pos.Y);
 			CVector2D dir(target.X-pos.X, target.Z-pos.Z);
-			dir = dir.normalize();
+			dir = dir.Normalize();
 			s = dir.x;
 			c = dir.y;
 		}
@@ -423,12 +423,12 @@ BEGIN_COMMAND(CreateObject)
 
 			if (isEntity)
 			{
-				CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(name);
+				CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(name);
 				if (! base)
 					LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", name.c_str());
 				else
 				{
-					HEntity ent = g_EntityManager.create(base, m_Pos, m_Angle, selections);
+					HEntity ent = g_EntityManager.Create(base, m_Pos, m_Angle, selections);
 
 					if (! ent)
 					{
@@ -439,7 +439,7 @@ BEGIN_COMMAND(CreateObject)
 						// We don't want to allow entities with no actors, because
 						// they'll be be invisible and will confuse scenario designers
 						LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
-						ent->kill();
+						ent->Kill();
 					}
 					else
 					{
@@ -489,7 +489,7 @@ BEGIN_COMMAND(CreateObject)
 			{
 				bool wasTerritoryCentre = unit->GetEntity()->m_base->m_isTerritoryCentre;
 
-				unit->GetEntity()->kill();
+				unit->GetEntity()->Kill();
 
 				if (wasTerritoryCentre)
 					g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
@@ -529,7 +529,7 @@ QUERYHANDLER(PickObject)
 		
 		CVector3D centre = target->GetModel()->GetTransform().GetTranslation();
 
-		centre.Y = g_Game->GetWorld()->GetTerrain()->getExactGroundLevel(centre.X, centre.Z);
+		centre.Y = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(centre.X, centre.Z);
 		if (IsFloating(target))
 			centre.Y = std::max(centre.Y, g_Renderer.GetWaterManager()->m_WaterHeight);
 
@@ -578,7 +578,7 @@ BEGIN_COMMAND(MoveObject)
 		if (unit->GetEntity())
 		{
 			unit->GetEntity()->m_position = pos;
-			unit->GetEntity()->teleport();
+			unit->GetEntity()->Teleport();
 
 			if (unit->GetEntity()->m_base->m_isTerritoryCentre)
 				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
@@ -647,7 +647,7 @@ BEGIN_COMMAND(RotateObject)
 			{
 				CVector3D target = msg->target->GetWorldSpace(pos.Y);
 				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
-				dir = dir.normalize();
+				dir = dir.Normalize();
 				s = dir.x;
 				c = dir.y;
 			}
@@ -674,7 +674,7 @@ BEGIN_COMMAND(RotateObject)
 		if (unit->GetEntity())
 		{
 			unit->GetEntity()->m_orientation.Y = angle;
-			unit->GetEntity()->reorient();
+			unit->GetEntity()->Reorient();
 		}
 		else
 		{
@@ -717,7 +717,7 @@ BEGIN_COMMAND(DeleteObject)
 		if (m_UnitInLimbo)
 		{
 			if (m_UnitInLimbo->GetEntity())
-				m_UnitInLimbo->GetEntity()->kill();
+				m_UnitInLimbo->GetEntity()->Kill();
 			else
 				delete m_UnitInLimbo;
 		}

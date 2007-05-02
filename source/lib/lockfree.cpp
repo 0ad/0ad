@@ -64,11 +64,11 @@ static const size_t MAX_RETIRED = 11;
 
 
 // used to allocate a flat array of all hazard pointers.
-// changed via cpu_atomic_add by TLS when a thread first calls us / exits.
+// changed via cpu_AtomicAdd by TLS when a thread first calls us / exits.
 static intptr_t active_threads;
 
 // basically module refcount; we can't shut down before it's 0.
-// changed via cpu_atomic_add by each data structure's init/free.
+// changed via cpu_AtomicAdd by each data structure's init/free.
 static intptr_t active_data_structures;
 
 
@@ -143,7 +143,7 @@ static void tls_retire(void* tls_)
 	// successfully marked as unused (must only decrement once)
 	if(CAS(&tls->active, 1, 0))
 	{
-		cpu_atomic_add(&active_threads, -1);
+		cpu_AtomicAdd(&active_threads, -1);
 		debug_assert(active_threads >= 0);
 	}
 }
@@ -224,7 +224,7 @@ static TLS* tls_alloc()
 
 
 have_tls:
-	cpu_atomic_add(&active_threads, 1);
+	cpu_AtomicAdd(&active_threads, 1);
 
 	WARN_ERR(pthread_setspecific(tls_key, tls));
 	return tls;
@@ -460,7 +460,7 @@ LibError lfl_init(LFList* list)
 	}
 
 	list->head = 0;
-	cpu_atomic_add(&active_data_structures, 1);
+	cpu_AtomicAdd(&active_data_structures, 1);
 	return INFO::OK;
 }
 
@@ -479,7 +479,7 @@ void lfl_free(LFList* list)
 		cur = next;
 	}
 
-	cpu_atomic_add(&active_data_structures, -1);
+	cpu_AtomicAdd(&active_data_structures, -1);
 	debug_assert(active_data_structures >= 0);
 	smr_try_shutdown();
 }

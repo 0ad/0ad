@@ -62,8 +62,8 @@ void WriteSystemInfo()
 	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// .. CPU
-	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_identifierString(), cpu_numPackages(), cpu_coresPerPackage(), cpu_logicalPerCore());
-	const double cpu_freq = cpu_clockFrequency();
+	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), cpu_NumPackages(), cpu_CoresPerPackage(), cpu_LogicalPerCore());
+	const double cpu_freq = cpu_ClockFrequency();
 	if(cpu_freq != 0.0f)
 	{
 		if(cpu_freq < 1e9)
@@ -75,7 +75,7 @@ void WriteSystemInfo()
 		fprintf(f, "\n");
 
 	// .. memory
-	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", cpu_memoryTotalMiB(), cpu_memorySize(CPU_MEM_AVAILABLE)/MiB);
+	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", cpu_MemoryTotalMiB(), cpu_MemorySize(CPU_MEM_AVAILABLE)/MiB);
 
 	// .. graphics
 	fprintf(f, "Graphics Card  : %s\n", gfx_card);
@@ -124,7 +124,7 @@ no_ip:
 
 
 	// .. OpenGL extensions (write them last, since it's a lot of text)
-	const char* exts = oglExtList();
+	const char* exts = ogl_ExtensionString();
 	if (!exts) exts = "{unknown}";
 	fprintf(f, "\nOpenGL Extensions: \n%s\n", SplitExts(exts).c_str());
 
@@ -240,7 +240,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	if(tex_wrap(img_w, img_h, bpp, flags, img, &t) < 0)
 		return;
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	// Resize various things so that the sizes and aspect ratios are correct
 	{

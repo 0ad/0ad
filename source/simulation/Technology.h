@@ -34,8 +34,15 @@ class CTechnology : public CJSComplex<CTechnology>
 
 public:
 	CTechnology(const CStrW& name, CPlayer* player);
-	~CTechnology() {} 
-	
+	~CTechnology() {}
+
+	// noncopyable (avoid VC7.1 warning); don't derive from
+	// boost::noncopyable, so that multiple inheritance is avoided
+private:
+	CTechnology(const CTechnology&);
+	const CTechnology& operator=(const CTechnology&);
+public:
+
 	//JS functions
 	static void ScriptingInit();
 	jsval ApplyEffects( JSContext* cx, uintN argc, jsval* argv );
@@ -44,17 +51,17 @@ public:
 	jsval IsExcluded( JSContext* cx, uintN argc, jsval* argv );
 	inline jsval GetPlayerID( JSContext* cx, uintN argc, jsval* argv );
 	
-	void apply( CEntity* entity );
+	void Apply( CEntity* entity );
 
-	bool isTechValid();
-	inline bool isResearched() { return m_researched; }
+	bool IsTechValid();
+	inline bool IsResearched() { return m_researched; }
 
-	void setExclusion( bool exclude ) { m_excluded=exclude; }
+	void SetExclusion( bool exclude ) { m_excluded=exclude; }
 
-	bool loadXML( const CStr& filename );
-	bool loadELID( XMBElement ID, CXeromyces& XeroFile );
-	bool loadELReq( XMBElement Req, CXeromyces& XeroFile );
-	bool loadELEffect( XMBElement Effect, CXeromyces& XeroFile, const CStr& filename );
+	bool LoadXml( const CStr& filename );
+	bool LoadElId( XMBElement ID, CXeromyces& XeroFile );
+	bool LoadElReq( XMBElement Req, CXeromyces& XeroFile );
+	bool LoadElEffect( XMBElement Effect, CXeromyces& XeroFile, const CStr& filename );
 
 private:
 	CStrW m_Name;	// name of the tech file
@@ -84,11 +91,11 @@ private:
 	bool m_researched;
 	bool m_inProgress;
 
-	bool hasReqEntities();
-	bool hasReqTechs();
+	bool HasReqEntities();
+	bool HasReqTechs();
 
 	// Hack: shouldn't be part of CJSComplex
-	void rebuildClassSet() {};
+	void RebuildClassSet() {};
 };
 
 #endif

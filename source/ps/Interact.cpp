@@ -47,19 +47,19 @@ const int ORDER_DELAY = 5;
 
 bool customSelectionMode=false;
 
-void CSelectedEntities::addSelection( HEntity entity )
+void CSelectedEntities::AddSelection( HEntity entity )
 {
 	m_group = -1;
-	debug_assert( !isSelected( entity ) );
+	debug_assert( !IsSelected( entity ) );
 	m_selected.push_back( entity );
 	entity->m_selected = true;
 	m_selectionChanged = true;
 }
 
-void CSelectedEntities::removeSelection( HEntity entity )
+void CSelectedEntities::RemoveSelection( HEntity entity )
 {
 	m_group = -1;
-	debug_assert( isSelected( entity ) );
+	debug_assert( IsSelected( entity ) );
 	entity->m_selected = false;
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
@@ -73,11 +73,11 @@ void CSelectedEntities::removeSelection( HEntity entity )
 	}
 }
 
-void CSelectedEntities::renderSelectionOutlines()
+void CSelectedEntities::RenderSelectionOutlines()
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		(*it)->renderSelectionOutline();
+		(*it)->RenderSelectionOutline();
 
 	if( m_group_highlight != -1 )
 	{
@@ -86,17 +86,17 @@ void CSelectedEntities::renderSelectionOutlines()
 
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
-			(*it)->renderSelectionOutline( 0.5f );
+			(*it)->RenderSelectionOutline( 0.5f );
 
 		glDisable( GL_BLEND );
 	}
 }
 
-void CSelectedEntities::renderBars()
+void CSelectedEntities::RenderBars()
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		(*it)->renderBars();
+		(*it)->RenderBars();
 
 	/*if( m_group_highlight != -1 )
 	{
@@ -105,26 +105,26 @@ void CSelectedEntities::renderBars()
 
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
-			(*it)->renderBars();
+			(*it)->RenderBars();
 
 
 		glDisable( GL_BLEND );
 	}*/
 }
-void CSelectedEntities::renderAuras()
+void CSelectedEntities::RenderAuras()
 {
 	std::vector<HEntity>::iterator it;
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
 
 	for ( it = m_selected.begin(); it != m_selected.end(); ++it )
-		(*it)->renderAuras();
+		(*it)->RenderAuras();
 }
-void CSelectedEntities::renderHealthBars()
+void CSelectedEntities::RenderHealthBars()
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		(*it)->renderHealthBar();
+		(*it)->RenderHealthBar();
 
 	if( m_group_highlight != -1 )
 	{
@@ -133,17 +133,17 @@ void CSelectedEntities::renderHealthBars()
 
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
-			(*it)->renderHealthBar();
+			(*it)->RenderHealthBar();
 
 
 		glDisable( GL_BLEND );
 	}
 }
-void CSelectedEntities::renderStaminaBars()
+void CSelectedEntities::RenderStaminaBars()
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		(*it)->renderStaminaBar();
+		(*it)->RenderStaminaBar();
 
 	if( m_group_highlight != -1 )
 	{
@@ -152,16 +152,16 @@ void CSelectedEntities::renderStaminaBars()
 
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
-			(*it)->renderStaminaBar();
+			(*it)->RenderStaminaBar();
 
 		glDisable( GL_BLEND );
 	}
 }
-void CSelectedEntities::renderBarBorders()
+void CSelectedEntities::RenderBarBorders()
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		(*it)->renderBarBorders();
+		(*it)->RenderBarBorders();
 
 	if( m_group_highlight != -1 )
 	{
@@ -170,17 +170,17 @@ void CSelectedEntities::renderBarBorders()
 
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
-			(*it)->renderBarBorders();
+			(*it)->RenderBarBorders();
 
 		glDisable( GL_BLEND );
 	}
 }
 
-void CSelectedEntities::renderRanks()
+void CSelectedEntities::RenderRanks()
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		(*it)->renderRank();
+		(*it)->RenderRank();
 
 	if( m_group_highlight != -1 )
 	{
@@ -189,14 +189,14 @@ void CSelectedEntities::renderRanks()
 
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
-			(*it)->renderRank();
+			(*it)->RenderRank();
 
 		glDisable( GL_BLEND );
 	}
 }
 
 
-void CSelectedEntities::renderOverlays()
+void CSelectedEntities::RenderOverlays()
 {
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
@@ -214,7 +214,7 @@ void CSelectedEntities::renderOverlays()
 			float x, y;
 			CVector3D labelpos = (*it)->m_graphics_position - pCamera->m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = pTerrain->getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = pTerrain->GetExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
 			pCamera->GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
@@ -238,7 +238,7 @@ void CSelectedEntities::renderOverlays()
 			float x, y;
 			CVector3D labelpos = (*it)->m_graphics_position - pCamera->m_Orientation.GetLeft() * (*it)->m_bounds->m_radius;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = pTerrain->getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = pTerrain->GetExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
 			pCamera->GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, 0.5f );
@@ -276,31 +276,31 @@ void CSelectedEntities::renderOverlays()
 	glDisable( GL_TEXTURE_2D );
 	glPopMatrix();
 }
-void CSelectedEntities::renderRallyPoints()
+void CSelectedEntities::RenderRallyPoints()
 {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glEnable( GL_BLEND );
 
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
-		(*it)->renderRallyPoint();
+		(*it)->RenderRallyPoint();
 
 	if( m_group_highlight != -1 )
 	{
 		std::vector<HEntity>::iterator it;
 		for( it = m_groups[m_group_highlight].begin(); it < m_groups[m_group_highlight].end(); it++ )
-			(*it)->renderRallyPoint();
+			(*it)->RenderRallyPoint();
 	}
 	glDisable( GL_BLEND );
 }
-void CSelectedEntities::setSelection( HEntity entity )
+void CSelectedEntities::SetSelection( HEntity entity )
 {
 	m_group = -1;
-	clearSelection();
+	ClearSelection();
 	m_selected.push_back( entity );
 }
 
-void CSelectedEntities::clearSelection()
+void CSelectedEntities::ClearSelection()
 {
 	m_group = -1;
 	std::vector<HEntity>::iterator it;
@@ -310,7 +310,7 @@ void CSelectedEntities::clearSelection()
 	m_selectionChanged = true;
 }
 
-void CSelectedEntities::removeAll( HEntity entity )
+void CSelectedEntities::RemoveAll( HEntity entity )
 {
 	// Remove a reference to an entity from everywhere
 	// (for use when said entity is being destroyed)
@@ -338,7 +338,7 @@ void CSelectedEntities::removeAll( HEntity entity )
 	}
 }
 
-CVector3D CSelectedEntities::getSelectionPosition()
+CVector3D CSelectedEntities::GetSelectionPosition()
 {
 	CVector3D avg;
 	std::vector<HEntity>::iterator it;
@@ -347,7 +347,7 @@ CVector3D CSelectedEntities::getSelectionPosition()
 	return( avg * ( 1.0f / m_selected.size() ) );
 }
 
-void CSelectedEntities::saveGroup( i8 groupid )
+void CSelectedEntities::SaveGroup( i8 groupid )
 {
 	std::vector<HEntity>::iterator it;
 	// Clear all entities in the group...
@@ -380,7 +380,7 @@ void CSelectedEntities::saveGroup( i8 groupid )
 	m_group = groupid;
 }
 
-void CSelectedEntities::addToGroup( i8 groupid, HEntity entity )
+void CSelectedEntities::AddToGroup( i8 groupid, HEntity entity )
 {
 	std::vector<HEntity>::iterator it;
 
@@ -404,7 +404,7 @@ void CSelectedEntities::addToGroup( i8 groupid, HEntity entity )
 	m_groups[groupid].push_back( entity );
 }
 
-void CSelectedEntities::loadGroup( i8 groupid )
+void CSelectedEntities::LoadGroup( i8 groupid )
 {
 	if( m_group == groupid )
 		return;
@@ -415,7 +415,7 @@ void CSelectedEntities::loadGroup( i8 groupid )
 		return;
 	}
 
-	clearSelection();
+	ClearSelection();
 	m_selected = m_groups[groupid];
 
 	std::vector<HEntity>::iterator it;
@@ -426,19 +426,19 @@ void CSelectedEntities::loadGroup( i8 groupid )
 	m_selectionChanged = true;
 }
 
-void CSelectedEntities::addGroup( i8 groupid )
+void CSelectedEntities::AddGroup( i8 groupid )
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_groups[groupid].begin(); it < m_groups[groupid].end(); it++ )
 	{
-		if( !isSelected( *it ) )
-			addSelection( *it );
+		if( !IsSelected( *it ) )
+			AddSelection( *it );
 	}
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
 		(*it)->m_selected = true;
 }
 
-void CSelectedEntities::changeGroup( HEntity entity, i8 groupid )
+void CSelectedEntities::ChangeGroup( HEntity entity, i8 groupid )
 {
 	// Remove from current group
 	i32 current = entity->m_grouped;
@@ -459,7 +459,7 @@ void CSelectedEntities::changeGroup( HEntity entity, i8 groupid )
 	entity->m_grouped = groupid;
 }
 
-bool CSelectedEntities::isSelected( HEntity entity )
+bool CSelectedEntities::IsSelected( HEntity entity )
 {
 	std::vector<HEntity>::iterator it;
 	for( it = m_selected.begin(); it < m_selected.end(); it++ )
@@ -470,17 +470,17 @@ bool CSelectedEntities::isSelected( HEntity entity )
 	return( false );
 }
 
-void CSelectedEntities::highlightGroup( i8 groupid )
+void CSelectedEntities::HighlightGroup( i8 groupid )
 {
 	if( m_group_highlight != -1 )
 		return;
-	if( !getGroupCount( groupid ) )
+	if( !GetGroupCount( groupid ) )
 		return;
 	m_group_highlight = groupid;
-	g_Game->GetView()->PushCameraTarget( getGroupPosition( groupid ) );
+	g_Game->GetView()->PushCameraTarget( GetGroupPosition( groupid ) );
 }
 
-void CSelectedEntities::highlightNone()
+void CSelectedEntities::HighlightNone()
 {
 
 	if( m_group_highlight != -1 )
@@ -489,12 +489,12 @@ void CSelectedEntities::highlightNone()
 
 }
 
-int CSelectedEntities::getGroupCount( i8 groupid )
+int CSelectedEntities::GetGroupCount( i8 groupid )
 {
 	return( (int)m_groups[groupid].size() );
 }
 
-CVector3D CSelectedEntities::getGroupPosition( i8 groupid )
+CVector3D CSelectedEntities::GetGroupPosition( i8 groupid )
 {
 	CVector3D avg;
 	std::vector<HEntity>::iterator it;
@@ -503,7 +503,7 @@ CVector3D CSelectedEntities::getGroupPosition( i8 groupid )
 	return( avg * ( 1.0f / m_groups[groupid].size() ) );
 }
 
-void CSelectedEntities::update()
+void CSelectedEntities::Update()
 {
 	static std::vector<HEntity> lastSelection;
 
@@ -520,7 +520,7 @@ void CSelectedEntities::update()
 	if( m_selectionChanged || g_Mouseover.m_targetChanged )
 	{
 		// Can't order anything off the map
-		if( !g_Game->GetWorld()->GetTerrain()->isOnMap( g_Mouseover.m_worldposition ) )
+		if( !g_Game->GetWorld()->GetTerrain()->IsOnMap( g_Mouseover.m_worldposition ) )
 		{
 			m_defaultCommand = -1;
 			m_secondaryCommand = -1;
@@ -631,12 +631,12 @@ void CSelectedEntities::update()
 		g_Mouseover.m_targetChanged = false;
 	}
 
-	if( ( m_group_highlight != -1 ) && getGroupCount( m_group_highlight ) )
-		g_Game->GetView()->SetCameraTarget( getGroupPosition( m_group_highlight ) );
+	if( ( m_group_highlight != -1 ) && GetGroupCount( m_group_highlight ) )
+		g_Game->GetView()->SetCameraTarget( GetGroupPosition( m_group_highlight ) );
 
 }
 
-void CMouseoverEntities::update( float timestep )
+void CMouseoverEntities::Update( float timestep )
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
 	//CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
@@ -670,14 +670,14 @@ void CMouseoverEntities::update( float timestep )
 
 		m_mouseover.clear();
 
-		std::vector<HEntity>* onscreen = g_EntityManager.matches( isOnScreen );
-		std::vector<HEntity>::iterator it;
-
-		for( it = onscreen->begin(); it < onscreen->end(); it++ )
-			if( (*it)->m_extant && ( (*it)->GetPlayer() == g_Game->GetLocalPlayer() ) )
-				m_mouseover.push_back( SMouseoverFader( *it, m_fademaximum, false ) );
-
-		delete( onscreen );
+		std::vector<HEntity> onscreen;
+		g_EntityManager.GetMatchingAsHandles( onscreen, IsOnScreen );
+		for(std::vector<HEntity>::iterator it = onscreen.begin(); it < onscreen.end(); it++ )
+		{
+			HEntity entity = *it;
+			if( entity->m_extant && ( entity->GetPlayer() == g_Game->GetLocalPlayer() ) )
+				m_mouseover.push_back( SMouseoverFader( entity, m_fademaximum, false ) );
+		}
 	}
 	else if( m_bandbox )
 	{
@@ -689,28 +689,26 @@ void CMouseoverEntities::update( float timestep )
 		//
 		// Fade in the ones in the box at (in+out) speed, then fade everything
 		// out at (out) speed.
-		std::vector<HEntity>* onscreen = g_EntityManager.matches( isOnScreen );
-		std::vector<HEntity>::iterator it;
+		std::vector<HEntity> onscreen;
+		g_EntityManager.GetMatchingAsHandles( onscreen, IsOnScreen );
 
 		// Reset active flags on everything...
-
-		std::vector<SMouseoverFader>::iterator it2;
-		for( it2 = m_mouseover.begin(); it2 < m_mouseover.end(); it2++ )
+		for(std::vector<SMouseoverFader>::iterator it2 = m_mouseover.begin(); it2 < m_mouseover.end(); it2++ )
 			it2->isActive = false;
 
-		for( it = onscreen->begin(); it < onscreen->end(); it++ )
+		for(std::vector<HEntity>::iterator it = onscreen.begin(); it < onscreen.end(); it++ )
 		{
-			if( !(*it)->m_extant )
+			HEntity entity = *it;
+			if( !entity->m_extant )
 				continue;
 
 			// Can only bandbox units the local player controls.
-			if( (*it)->GetPlayer() != g_Game->GetLocalPlayer() )
+			if( entity->GetPlayer() != g_Game->GetLocalPlayer() )
 				continue;
 
-			CVector3D worldspace = (*it)->m_graphics_position;
+			CVector3D worldspace = entity->m_graphics_position;
 
 			float x, y;
-
 			pCamera->GetScreenCoordinates( worldspace, x, y );
 
 			bool inBox;
@@ -735,7 +733,7 @@ void CMouseoverEntities::update( float timestep )
 			if( inBox )
 			{
 				bool found = false;
-				for( it2 = m_mouseover.begin(); it2 < m_mouseover.end(); it2++ )
+				for(std::vector<SMouseoverFader>::iterator it2 = m_mouseover.begin(); it2 < m_mouseover.end(); it2++ )
 					if( it2->entity == &(**it) )
 					{
 						found = true;
@@ -746,9 +744,8 @@ void CMouseoverEntities::update( float timestep )
 					m_mouseover.push_back( SMouseoverFader( *it, ( m_fadeinrate + m_fadeoutrate ) * timestep ) );
 			}
 		}
-		delete( onscreen );
 
-		for( it2 = m_mouseover.begin(); it2 < m_mouseover.end(); )
+		for(std::vector<SMouseoverFader>::iterator it2 = m_mouseover.begin(); it2 < m_mouseover.end(); )
 		{
 			it2->fade -= m_fadeoutrate * timestep;
 			if( it2->fade > m_fademaximum ) it2->fade = m_fademaximum;
@@ -762,10 +759,9 @@ void CMouseoverEntities::update( float timestep )
 	}
 	else
 	{
-		std::vector<SMouseoverFader>::iterator it;
 		bool found = false;
 
-		for( it = m_mouseover.begin(); it < m_mouseover.end(); )
+		for(std::vector<SMouseoverFader>::iterator it = m_mouseover.begin(); it < m_mouseover.end(); )
 		{
 			if( it->entity == m_target )
 			{
@@ -794,7 +790,7 @@ void CMouseoverEntities::update( float timestep )
 	}
 }
 
-void CMouseoverEntities::addSelection()
+void CMouseoverEntities::AddSelection()
 {
 	// Rules for shift-click selection:
 
@@ -815,48 +811,54 @@ void CMouseoverEntities::addSelection()
 
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		if( it->isActive && !g_Selection.isSelected( it->entity ) )
-			g_Selection.addSelection( it->entity );
+		if( it->isActive && !g_Selection.IsSelected( it->entity ) )
+			g_Selection.AddSelection( it->entity );
 }
 
-void CMouseoverEntities::removeSelection()
+void CMouseoverEntities::RemoveSelection()
 {
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		if( it->isActive && g_Selection.isSelected( it->entity ) )
-			g_Selection.removeSelection( it->entity );
+		if( it->isActive && g_Selection.IsSelected( it->entity ) )
+			g_Selection.RemoveSelection( it->entity );
 }
 
-void CMouseoverEntities::setSelection()
+void CMouseoverEntities::SetSelection()
 {
-	g_Selection.clearSelection();
-	addSelection();
+	g_Selection.ClearSelection();
+	AddSelection();
 }
 
-void CMouseoverEntities::expandAcrossScreen()
+void CMouseoverEntities::ExpandAcrossScreen()
 {
-	std::vector<HEntity>* activeset = g_EntityManager.matches(
-		CEntityManager::EntityPredicateLogicalAnd<isMouseoverType,isOnScreen> );
+	std::vector<HEntity> activeset;
+	g_EntityManager.GetMatchingAsHandles(
+		activeset,
+		CEntityManager::EntityPredicateLogicalAnd<IsMouseoverType,IsOnScreen>
+	);
 	m_mouseover.clear();
-	std::vector<HEntity>::iterator it;
-	for( it = activeset->begin(); it < activeset->end(); it++ )
-		if( (*it)->m_extant )
-			m_mouseover.push_back( SMouseoverFader( *it ) );
-	delete( activeset );
+	for(std::vector<HEntity>::iterator it = activeset.begin(); it < activeset.end(); it++ )
+	{
+		HEntity entity = *it;
+		if( entity->m_extant )
+			m_mouseover.push_back( SMouseoverFader( entity ) );
+	}
 }
 
-void CMouseoverEntities::expandAcrossWorld()
+void CMouseoverEntities::ExpandAcrossWorld()
 {
-	std::vector<HEntity>* activeset = g_EntityManager.matches( isMouseoverType );
+	std::vector<HEntity> activeset;
+	g_EntityManager.GetMatchingAsHandles( activeset, IsMouseoverType );
 	m_mouseover.clear();
-	std::vector<HEntity>::iterator it;
-	for( it = activeset->begin(); it < activeset->end(); it++ )
-		if( (*it)->m_extant )
-			m_mouseover.push_back( SMouseoverFader( *it ) );
-	delete( activeset );
+	for(std::vector<HEntity>::iterator it = activeset.begin(); it < activeset.end(); it++ )
+	{
+		HEntity entity = *it;
+		if( entity->m_extant )
+			m_mouseover.push_back( SMouseoverFader( entity ) );
+	}
 }
 
-void CMouseoverEntities::renderSelectionOutlines()
+void CMouseoverEntities::RenderSelectionOutlines()
 {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glEnable( GL_BLEND );
@@ -864,13 +866,13 @@ void CMouseoverEntities::renderSelectionOutlines()
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
 	{
-		if( !g_Selection.isSelected(it->entity) )
-			it->entity->renderSelectionOutline( it->fade );
+		if( !g_Selection.IsSelected(it->entity) )
+			it->entity->RenderSelectionOutline( it->fade );
 	}
 
 	glDisable( GL_BLEND );
 }
-void CMouseoverEntities::renderAuras()
+void CMouseoverEntities::RenderAuras()
 {
 	std::vector<SMouseoverFader>::iterator it;
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -878,77 +880,77 @@ void CMouseoverEntities::renderAuras()
 
 	for ( it = m_mouseover.begin(); it != m_mouseover.end(); ++it )
 	{
-		if( !g_Selection.isSelected(it->entity) )
-			it->entity->renderAuras();
+		if( !g_Selection.IsSelected(it->entity) )
+			it->entity->RenderAuras();
 	}
 }
-void CMouseoverEntities::renderBars()
+void CMouseoverEntities::RenderBars()
 {
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
 	{
-		if( !g_Selection.isSelected(it->entity) )
-			it->entity->renderBars();
+		if( !g_Selection.IsSelected(it->entity) )
+			it->entity->RenderBars();
 	}
 }
 
-void CMouseoverEntities::renderHealthBars()
+void CMouseoverEntities::RenderHealthBars()
 {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glEnable( GL_BLEND );
 
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		it->entity->renderHealthBar();
+		it->entity->RenderHealthBar();
 
 	glDisable( GL_BLEND );
 }
 
-void CMouseoverEntities::renderStaminaBars()
+void CMouseoverEntities::RenderStaminaBars()
 {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glEnable( GL_BLEND );
 
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		it->entity->renderStaminaBar();
+		it->entity->RenderStaminaBar();
 
 	glDisable( GL_BLEND );
 }
-void CMouseoverEntities::renderRanks()
+void CMouseoverEntities::RenderRanks()
 {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glEnable( GL_BLEND );
 
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		it->entity->renderRank();
+		it->entity->RenderRank();
 
 	glDisable( GL_BLEND );
 }
-void CMouseoverEntities::renderBarBorders()
+void CMouseoverEntities::RenderBarBorders()
 {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glEnable( GL_BLEND );
 
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		it->entity->renderBarBorders();
+		it->entity->RenderBarBorders();
 
 	glDisable( GL_BLEND );
 }
-void CMouseoverEntities::renderRallyPoints()
+void CMouseoverEntities::RenderRallyPoints()
 {
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 	glEnable( GL_BLEND );
 
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = m_mouseover.begin(); it < m_mouseover.end(); it++ )
-		it->entity->renderRallyPoint();
+		it->entity->RenderRallyPoint();
 
 	glDisable( GL_BLEND );
 }
-// Helper function for CSelectedEntities::loadUnitUITextures
+// Helper function for CSelectedEntities::LoadUnitUiTextures
 static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
 {
 	std::map<CStr, Handle>* textures = (std::map<CStr, Handle>*) context;
@@ -966,13 +968,13 @@ static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* 
 	(*textures)[name] = tmp;
 	ogl_tex_upload(tmp);
 }
-int CSelectedEntities::loadUnitUITextures()
+int CSelectedEntities::LoadUnitUiTextures()
 {
 	THROW_ERR( vfs_dir_enum( "art/textures/ui/session/icons/", VFS_DIR_RECURSIVE,
 		NULL, LoadUnitUIThunk, &m_unitUITextures ) );
 	return 0;
 }
-void CSelectedEntities::destroyUnitUITextures()
+void CSelectedEntities::DestroyUnitUiTextures()
 {
 	for ( std::map<CStr, Handle>::iterator it=m_unitUITextures.begin(); it != m_unitUITextures.end(); it++ )
 	{
@@ -980,7 +982,7 @@ void CSelectedEntities::destroyUnitUITextures()
 		it->second = 0;
 	}
 }
-void CMouseoverEntities::renderOverlays()
+void CMouseoverEntities::RenderOverlays()
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
@@ -1013,7 +1015,7 @@ void CMouseoverEntities::renderOverlays()
 			float x, y;
 			CVector3D labelpos = it->entity->m_graphics_position - pCamera->m_Orientation.GetLeft() * it->entity->m_bounds->m_radius;
 #ifdef SELECTION_TERRAIN_CONFORMANCE
-			labelpos.Y = pTerrain->getExactGroundLevel( labelpos.X, labelpos.Z );
+			labelpos.Y = pTerrain->GetExactGroundLevel( labelpos.X, labelpos.Z );
 #endif
 			pCamera->GetScreenCoordinates( labelpos, x, y );
 			glColor4f( 1.0f, 1.0f, 1.0f, it->fade );
@@ -1026,13 +1028,13 @@ void CMouseoverEntities::renderOverlays()
 	}
 }
 
-void CMouseoverEntities::startBandbox( u16 x, u16 y )
+void CMouseoverEntities::StartBandbox( u16 x, u16 y )
 {
 	m_bandbox = true;
 	m_x1 = x; m_y1 = y;
 }
 
-void CMouseoverEntities::stopBandbox()
+void CMouseoverEntities::StopBandbox()
 {
 	m_bandbox = false;
 }
@@ -1074,7 +1076,7 @@ void MouseButtonUpHandler(const SDL_Event_* ev, int clicks)
 	case SDL_BUTTON_LEFT:
 		if( g_BuildingPlacer.m_active )
 		{
-			g_BuildingPlacer.mouseReleased();
+			g_BuildingPlacer.MouseReleased();
 			break;
 		}
 
@@ -1087,36 +1089,36 @@ void MouseButtonUpHandler(const SDL_Event_* ev, int clicks)
 		if( clicks == 2 )
 		{
 			// Double click
-			g_Mouseover.expandAcrossScreen();
+			g_Mouseover.ExpandAcrossScreen();
 		}
 		else if( clicks == 3 )
 		{
 			// Triple click
-			g_Mouseover.expandAcrossWorld();
+			g_Mouseover.ExpandAcrossWorld();
 		}
 
-		g_Mouseover.stopBandbox();
+		g_Mouseover.StopBandbox();
 		if( hotkeys[HOTKEY_SELECTION_ADD] )
 		{
-			g_Mouseover.addSelection();
+			g_Mouseover.AddSelection();
 		}
 		else if( hotkeys[HOTKEY_SELECTION_REMOVE] )
 		{
-			g_Mouseover.removeSelection();
+			g_Mouseover.RemoveSelection();
 		}
 		else
-			g_Mouseover.setSelection();
+			g_Mouseover.SetSelection();
 		break;
 	case SDL_BUTTON_RIGHT:
 		if( g_BuildingPlacer.m_active )
 		{
-			g_BuildingPlacer.deactivate();
+			g_BuildingPlacer.Deactivate();
 			break;
 		}
 	}
 }
 
-InReaction interactInputHandler( const SDL_Event_* ev )
+InReaction InteractInputHandler( const SDL_Event_* ev )
 {
 	if (!g_app_has_focus || !g_Game)
 		return IN_PASS;
@@ -1160,7 +1162,7 @@ InReaction interactInputHandler( const SDL_Event_* ev )
 			break;
 		case HOTKEY_SELECTION_SNAP:
 			if( g_Selection.m_selected.size() )
-				pView->SetCameraTarget( g_Selection.getSelectionPosition() );
+				pView->SetCameraTarget( g_Selection.GetSelectionPosition() );
 			break;
 		case HOTKEY_CAMERA_UNIT_VIEW:
 		{
@@ -1213,24 +1215,24 @@ InReaction interactInputHandler( const SDL_Event_* ev )
 
 				if( hotkeys[HOTKEY_SELECTION_GROUP_ADD] )
 				{
-					g_Selection.addGroup( id );
+					g_Selection.AddGroup( id );
 				}
 				else if( hotkeys[HOTKEY_SELECTION_GROUP_SAVE] )
 				{
-					g_Selection.saveGroup( id );
+					g_Selection.SaveGroup( id );
 				}
 				else if( hotkeys[HOTKEY_SELECTION_GROUP_SNAP] )
 				{
-					g_Selection.highlightGroup( id );
+					g_Selection.HighlightGroup( id );
 				}
 				else
 				{
-					if( ( g_Selection.m_group == id ) && g_Selection.getGroupCount( id ) )
+					if( ( g_Selection.m_group == id ) && g_Selection.GetGroupCount( id ) )
 					{
-						pView->SetCameraTarget( g_Selection.getGroupPosition( id ) );
+						pView->SetCameraTarget( g_Selection.GetGroupPosition( id ) );
 					}
 					else
-						g_Selection.loadGroup( id );
+						g_Selection.LoadGroup( id );
 				}
 				return( IN_HANDLED );
 			}
@@ -1243,7 +1245,7 @@ InReaction interactInputHandler( const SDL_Event_* ev )
 		{
 		case HOTKEY_SELECTION_GROUP_SNAP:
 			if( g_Selection.m_group_highlight != -1 )
-				g_Selection.highlightNone();
+				g_Selection.HighlightNone();
 			break;
 		case HOTKEY_HIGHLIGHTALL:
 			g_Mouseover.m_viewall = false;
@@ -1291,7 +1293,7 @@ InReaction interactInputHandler( const SDL_Event_* ev )
 			button_down_time = get_time();
 			if( g_BuildingPlacer.m_active )
 			{
-				g_BuildingPlacer.mousePressed();
+				g_BuildingPlacer.MousePressed();
 			}
 			break;
 		case SDL_BUTTON_RIGHT:
@@ -1299,19 +1301,19 @@ InReaction interactInputHandler( const SDL_Event_* ev )
 		}
 		break;
 	case SDL_MOUSEMOTION:
-		if( !g_Mouseover.isBandbox() && button_down && !g_BuildingPlacer.m_active && !right_button_down )
+		if( !g_Mouseover.IsBandbox() && button_down && !g_BuildingPlacer.m_active && !right_button_down )
 		{
 			int deltax = ev->ev.motion.x - button_down_x;
 			int deltay = ev->ev.motion.y - button_down_y;
 			if( abs( deltax ) > 2 || abs( deltay ) > 2 )
-				g_Mouseover.startBandbox( button_down_x, button_down_y );
+				g_Mouseover.StartBandbox( button_down_x, button_down_y );
 		}
 		break;
 	}
 	return( IN_PASS );
 }
 
-bool isOnScreen( CEntity* e, void* UNUSED(userdata) )
+bool IsOnScreen( CEntity* e, void* UNUSED(userdata) )
 {
 	CCamera *pCamera=g_Game->GetView()->GetCamera();
 
@@ -1324,7 +1326,7 @@ bool isOnScreen( CEntity* e, void* UNUSED(userdata) )
 		return( frustum.IsBoxVisible( e->m_graphics_position, CBound() ) );
 }
 
-bool isMouseoverType( CEntity* e, void* UNUSED(userdata) )
+bool IsMouseoverType( CEntity* e, void* UNUSED(userdata) )
 {
 	std::vector<SMouseoverFader>::iterator it;
 	for( it = g_Mouseover.m_mouseover.begin(); it < g_Mouseover.m_mouseover.end(); it++ )
@@ -1347,7 +1349,7 @@ void ResetInteraction()
 }
 
 
-bool CBuildingPlacer::activate(CStrW& templateName)
+bool CBuildingPlacer::Activate(CStrW& templateName)
 {
 	if(m_active)
 	{
@@ -1363,11 +1365,11 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 	m_totalTime = 0;
 	m_valid = false;
 
-	m_template = g_EntityTemplateCollection.getTemplate( m_templateName );
+	m_template = g_EntityTemplateCollection.GetTemplate( m_templateName );
 
 	if( !m_template )
 	{
-		deactivate();
+		Deactivate();
 		return false;
 	}
 
@@ -1391,7 +1393,7 @@ bool CBuildingPlacer::activate(CStrW& templateName)
 	return true;
 }
 
-void CBuildingPlacer::mousePressed()
+void CBuildingPlacer::MousePressed()
 {
 	CCamera &camera=*g_Game->GetView()->GetCamera();
 	if( m_template->m_socket == L"" )
@@ -1399,9 +1401,9 @@ void CBuildingPlacer::mousePressed()
 	m_clicked = true;
 }
 
-void CBuildingPlacer::mouseReleased()
+void CBuildingPlacer::MouseReleased()
 {
-	deactivate();	// do it first in case we fail for any reason
+	Deactivate();	// do it first in case we fail for any reason
 
 	if( m_valid )
 	{
@@ -1419,11 +1421,11 @@ void CBuildingPlacer::mouseReleased()
 
 	if( hotkeys[HOTKEY_ORDER_QUEUE] )
 	{
-		activate( m_templateName );		// reactivate so we can place more buildings of the same type
+		Activate( m_templateName );		// reactivate so we can place more buildings of the same type
 	}
 }
 
-void CBuildingPlacer::deactivate()
+void CBuildingPlacer::Deactivate()
 {
 	m_active = false;
 	g_Game->GetWorld()->GetUnitManager().RemoveUnit( m_actor );
@@ -1433,7 +1435,7 @@ void CBuildingPlacer::deactivate()
 	m_bounds = 0;
 }
 
-void CBuildingPlacer::update( float timeStep )
+void CBuildingPlacer::Update( float timeStep )
 {
 	if(!m_active)
 		return;
@@ -1476,8 +1478,8 @@ void CBuildingPlacer::update( float timeStep )
 	if( m_template->m_socket != L"" )
 	{
 		// If we're on a socket of our type, remember that and snap ourselves to it
-		m_bounds->setPosition(pos.X, pos.Z);	// first, move bounds to mouse pos
-		CEntity* ent = getCollisionEntity( m_bounds, 0 );	// now, check what we intersect
+		m_bounds->SetPosition(pos.X, pos.Z);	// first, move bounds to mouse pos
+		CEntity* ent = GetCollisionEntity( m_bounds, 0 );	// now, check what we intersect
 		if( ent && ent->m_classes.IsMember( m_template->m_socket ) )	// if it's a socket, snap to it
 		{
 			onSocket = true;
@@ -1494,19 +1496,19 @@ void CBuildingPlacer::update( float timeStep )
 	m.Translate(pos);
 	m_actor->GetModel()->SetTransform( m );
 
-	m_bounds->setPosition(pos.X, pos.Z);
+	m_bounds->SetPosition(pos.X, pos.Z);
 
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
 	{
 		CBoundingBox* box = (CBoundingBox*) m_bounds;
-		box->setOrientation( m_angle );
+		box->SetOrientation( m_angle );
 	}
 
 	// Check whether the placement location is valid (look at whether we're
 	// on the map, who owns the territory, whether we are on a socket, and 
 	// whether we are colliding with anything).
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
-	if( pTerrain->isOnMap( pos.X, pos.Z ) )
+	if( pTerrain->IsOnMap( pos.X, pos.Z ) )
 	{
 		// Check that we are being placed in a valid territory; currently, m_territoryRestriction
 		// can be either "Allied" for placing in allied territories, or nothing. 
@@ -1522,10 +1524,10 @@ void CBuildingPlacer::update( float timeStep )
 		{
 			// It's valid to place the object here if the position is unobstructed by
 			// anything except possibly our socket (which we find out by passing an
-			// ignoreClass to getCollisionObject); also, if we are a socketed object,
+			// ignoreClass to GetCollisionObject); also, if we are a socketed object,
 			// we check that we are actually on a socket, using onSocket (set above).
 			m_valid = ( m_template->m_socket == L"" || onSocket )
-					&& ( getCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 );
+					&& ( GetCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 );
 		}
 	}
 	else

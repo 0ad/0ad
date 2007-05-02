@@ -304,7 +304,7 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 		WARN_RETURN(ERR::_15);
 
 	void* target;
-	LibError err = ia32_get_call_target(ret_addr, &target);
+	LibError err = ia32_GetCallTarget(ret_addr, &target);
 	RETURN_ERR(err);
 	if(target)	// were able to determine it from the call instruction
 		debug_assert(debug_is_code_ptr(target));
@@ -369,7 +369,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		// compiler-generated prolog code trashes some registers.
 
 #if CPU_IA32
-		ia32_asm_get_current_context(&context);
+		ia32_asm_GetCurrentContext(&context);
 #else
 		// preferred implementation (was imported during module init)
 		if(pRtlCaptureContext)

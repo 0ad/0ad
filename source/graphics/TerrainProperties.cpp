@@ -33,8 +33,8 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 	if (XeroFile.Load(path) != PSRETURN_OK)
 		return CTerrainPropertiesPtr();
 
-	XMBElement root = XeroFile.getRoot();
-	CStr rootName = XeroFile.getElementString(root.getNodeName());
+	XMBElement root = XeroFile.GetRoot();
+	CStr rootName = XeroFile.GetElementString(root.GetNodeName());
 
 	// Check that we've got the right kind of xml document
 	if (rootName != "Terrains")
@@ -47,8 +47,8 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 		return CTerrainPropertiesPtr();
 	}
 	
-	#define ELMT(x) int el_##x = XeroFile.getElementID(#x)
-	#define ATTR(x) int at_##x = XeroFile.getAttributeID(#x)
+	#define ELMT(x) int el_##x = XeroFile.GetElementID(#x)
+	#define ATTR(x) int at_##x = XeroFile.GetAttributeID(#x)
 	ELMT(terrain);
 	#undef ELMT
 	#undef ATTR
@@ -57,16 +57,16 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 	// returning it.
 	// Really, we only expect there to be one child and it to be of the right
 	// type, though.
-	XMBElementList children = root.getChildNodes();
+	XMBElementList children = root.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
 		//debug_printf("Object %d\n", i);
-		XMBElement child = children.item(i);
+		XMBElement child = children.Item(i);
 
-		if (child.getNodeName() == el_terrain)
+		if (child.GetNodeName() == el_terrain)
 		{
 			CTerrainPropertiesPtr ret (new CTerrainProperties(parent));
-			ret->LoadXML(child, &XeroFile, path);
+			ret->LoadXml(child, &XeroFile, path);
 			return ret;
 		}
 		else
@@ -74,7 +74,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 			LOG(WARNING, LOG_CATEGORY, 
 				"TerrainProperties: Loading %s: Unexpected node %s\n",
 				path,
-				XeroFile.getElementString(child.getNodeName()).c_str());
+				XeroFile.GetElementString(child.GetNodeName()).c_str());
 			// Keep reading - typos shouldn't be showstoppers
 		}
 	}
@@ -82,10 +82,10 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 	return CTerrainPropertiesPtr();
 }
 
-void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile, const char *path)
+void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const char *path)
 {
-	#define ELMT(x) int elmt_##x = pFile->getElementID(#x)
-	#define ATTR(x) int attr_##x = pFile->getAttributeID(#x)
+	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
+	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
 	ELMT(doodad);
 	ELMT(passable);
 	ELMT(impassable);
@@ -110,10 +110,10 @@ void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile, const char 
 	UNUSED2(elmt_passable);
 	UNUSED2(elmt_doodad);
 
-	XMBAttributeList attribs = node.getAttributes();
+	XMBAttributeList attribs = node.GetAttributes();
 	for (int i=0;i<attribs.Count;i++)
 	{
-		XMBAttribute attr = attribs.item(i);
+		XMBAttribute attr = attribs.Item(i);
 
 		if (attr.Name == attr_groups)
 		{
@@ -155,16 +155,16 @@ void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile, const char 
 		}
 	}
 	
-	XMBElementList children = node.getChildNodes();
+	XMBElementList children = node.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		XMBElement child = children.item(i);
+		XMBElement child = children.Item(i);
 
-		if (child.getNodeName() == elmt_passable)
+		if (child.GetNodeName() == elmt_passable)
 		{
 			ReadPassability(true, child, pFile, path);
 		}
-		else if (child.getNodeName() == elmt_impassable)
+		else if (child.GetNodeName() == elmt_impassable)
 		{
 			ReadPassability(false, child, pFile, path);
 		}
@@ -174,7 +174,7 @@ void CTerrainProperties::LoadXML(XMBElement node, CXeromyces *pFile, const char 
 
 void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const char *UNUSED(path))
 {
-	#define ATTR(x) int attr_##x = pFile->getAttributeID(#x)		
+	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)		
 	// Passable Attribs
 	ATTR(type);
 	ATTR(speed);
@@ -185,10 +185,10 @@ void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromy
 	STerrainPassability pass(passable);
 	bool hasType = false;
 	bool hasSpeed;
-	XMBAttributeList attribs = node.getAttributes();
+	XMBAttributeList attribs = node.GetAttributes();
 	for (int i=0;i<attribs.Count;i++)
 	{
-		XMBAttribute attr = attribs.item(i);
+		XMBAttribute attr = attribs.Item(i);
 		
 		if (attr.Name == attr_type)
 		{

@@ -61,13 +61,13 @@ public:
 	CAStarEngine(AStarGoalBase* goal);
 	virtual ~CAStarEngine();
 
-	void setGoal(AStarGoalBase* goal) { mGoal = goal; }
+	void SetGoal(AStarGoalBase* goal) { mGoal = goal; }
 
-	bool findPath( const CVector2D& src, const CVector2D& dest, HEntity entity, float radius=0.0f );
-	std::vector<CVector2D> getLastPath();
+	bool FindPath( const CVector2D& src, const CVector2D& dest, HEntity entity, float radius=0.0f );
+	std::vector<CVector2D> GetLastPath();
 
 	// The maximum number of nodes that will be expanded before failure is declared
-	void setSearchLimit( int limit );
+	void SetSearchLimit( int limit );
 
 protected:
 	AStarGoalBase* mGoal;
@@ -84,32 +84,32 @@ private:
 	std::vector<AStarNode*> freeNodes;
 	std::vector<AStarNode*> usedNodes;
 
-	// addToOpen will promote if the node already is in Open
-	void addToOpen( AStarNode* );
-	AStarNode* removeBestOpenNode();
+	// AddToOpen will promote if the node already is in Open
+	void AddToOpen( AStarNode* );
+	AStarNode* RemoveBestOpenNode();
 
-	void addToClosed( AStarNode* );
-	void removeFromClosed( AStarNode* );
-	AStarNode* getFromClosed( const CVector2D& );
+	void AddToClosed( AStarNode* );
+	void RemoveFromClosed( AStarNode* );
+	AStarNode* GetFromClosed( const CVector2D& );
 
-	void clearOpen();
-	void clearClosed();
+	void ClearOpen();
+	void ClearClosed();
 
-	void constructPath( AStarNode* );
+	void ConstructPath( AStarNode* );
 
-	AStarNode* getFreeASNode();
-	void cleanup();
+	AStarNode* GetFreeASNode();
+	void Cleanup();
 
 	inline AStarNodeFlag* GetFlag(const CVector2D&);
-	inline bool GetIsClear(AStarNodeFlag*);
-	inline bool GetIsClosed(AStarNodeFlag*);
-	inline bool GetIsOpen(AStarNodeFlag*);
+	inline bool IsClear(AStarNodeFlag*);
+	inline bool IsClosed(AStarNodeFlag*);
+	inline bool IsOpen(AStarNodeFlag*);
 	inline void SetClosedFlag(AStarNodeFlag*);
 	inline void ClearClosedFlag(AStarNodeFlag*);
 	inline void SetOpenFlag(AStarNodeFlag*);
 	inline void ClearOpenFlag(AStarNodeFlag*);
-	inline bool GetIsPassable(AStarNodeFlag*);
-	inline bool GetIsBlocked(AStarNodeFlag*);
+	inline bool IsPassable(AStarNodeFlag*);
+	inline bool IsBlocked(AStarNodeFlag*);
 	inline void SetPassableFlag(AStarNodeFlag*);
 	inline void SetBlockedFlag(AStarNodeFlag*);
 
@@ -126,32 +126,32 @@ class AStarGoalBase
 {
 public:
 	AStarGoalBase() {}
-	virtual void setDestination( const CVector2D& ) = 0;
-	virtual void setRadius( float r ) = 0;
-	virtual float distanceToGoal( const CVector2D& ) = 0;
-	virtual bool atGoal( const CVector2D& ) = 0;
-	virtual float getTileCost( const CVector2D&, const CVector2D& ) = 0;
-	virtual bool isPassable( const CVector2D&, HEntity entity) = 0;
-	virtual std::vector<CVector2D> getNeighbors( const CVector2D&, HEntity entity) = 0;
-	virtual CVector2D getCoord( const CVector2D& ) = 0;
-	virtual CVector2D getTile( const CVector2D& ) = 0;
-	virtual float getRadius() = 0;
+	virtual void SetDestination( const CVector2D& ) = 0;
+	virtual void SetRadius( float r ) = 0;
+	virtual float DistanceToGoal( const CVector2D& ) = 0;
+	virtual bool IsAtGoal( const CVector2D& ) = 0;
+	virtual float GetTileCost( const CVector2D&, const CVector2D& ) = 0;
+	virtual bool IsPassable( const CVector2D&, HEntity entity) = 0;
+	virtual std::vector<CVector2D> GetNeighbors( const CVector2D&, HEntity entity) = 0;
+	virtual CVector2D GetCoord( const CVector2D& ) = 0;
+	virtual CVector2D GetTile( const CVector2D& ) = 0;
+	virtual float GetRadius() = 0;
 };
 
 class AStarGoalLowLevel : public AStarGoalBase
 {
 public:
 	AStarGoalLowLevel(): radius(0.0f) {}
-	void setDestination( const CVector2D& dest );
-	void setRadius( float r );
-	float distanceToGoal( const CVector2D& loc );
-	bool atGoal( const CVector2D& loc );
-	float getTileCost( const CVector2D& loc1, const CVector2D& loc2 );
-	bool isPassable( const CVector2D& loc, HEntity entity);
-	std::vector<CVector2D> getNeighbors( const CVector2D& loc, HEntity entity);
-	CVector2D getCoord( const CVector2D& loc);
-	CVector2D getTile( const CVector2D& loc);
-	float getRadius();
+	void SetDestination( const CVector2D& dest );
+	void SetRadius( float r );
+	float DistanceToGoal( const CVector2D& loc );
+	bool IsAtGoal( const CVector2D& loc );
+	float GetTileCost( const CVector2D& loc1, const CVector2D& loc2 );
+	bool IsPassable( const CVector2D& loc, HEntity entity);
+	std::vector<CVector2D> GetNeighbors( const CVector2D& loc, HEntity entity);
+	CVector2D GetCoord( const CVector2D& loc);
+	CVector2D GetTile( const CVector2D& loc);
+	float GetRadius();
 private:
 	CVector2D coord;
 	float radius;

@@ -546,7 +546,7 @@ void TerrainRenderer::RenderWater()
 				bool shouldRender = false;
 				for(int j=0; j<4; j++)
 				{
-					float terrainHeight = terrain->getVertexGroundLevel(x + DX[j], z + DZ[j]);
+					float terrainHeight = terrain->GetVertexGroundLevel(x + DX[j], z + DZ[j]);
 					if( terrainHeight < WaterMgr->m_WaterHeight )
 					{
 						shouldRender = true;
@@ -566,7 +566,7 @@ void TerrainRenderer::RenderWater()
 					float vertX = ix * CELL_SIZE;
 					float vertZ = iz * CELL_SIZE;
 
-					float terrainHeight = terrain->getVertexGroundLevel(ix, iz);
+					float terrainHeight = terrain->GetVertexGroundLevel(ix, iz);
 
 					float alpha = clamp(
 						(WaterMgr->m_WaterHeight - terrainHeight) / WaterMgr->m_WaterFullDepth + WaterMgr->m_WaterAlphaOffset,

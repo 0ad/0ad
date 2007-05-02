@@ -112,7 +112,7 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir, boo
 			CVector3D closest = origin + dir * distance;
 			CVector3D offset = obj - closest;
 
-			float rel = offset.GetLength();
+			float rel = offset.Length();
 			if (rel < minrel) {
 				hit = unit;
 				dist = tmin;

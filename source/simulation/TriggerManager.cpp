@@ -18,7 +18,7 @@ CTrigger::~CTrigger()
 
 }
 CTrigger::CTrigger(const CStrW& name, bool active, float delay, int maxRuns, const CStrW& condFunc, 
-																const CStrW& effectFunc)
+	const CStrW& effectFunc)
 {
 	m_name = name;
 	m_active = active;
@@ -327,15 +327,15 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 
 //XML stuff
 
-bool CTriggerManager::LoadXML( const CStr& filename )
+bool CTriggerManager::LoadXml( const CStr& filename )
 {
 	CXeromyces XeroFile;
 
 	if ( XeroFile.Load( filename.c_str() ) != PSRETURN_OK )
 		return false;
 
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 
 	EL(condition);
 	EL(effect);
@@ -345,17 +345,17 @@ bool CTriggerManager::LoadXML( const CStr& filename )
 	#undef AT
 	
 	//Return false on any error to be extra sure the point gets across (FIX IT)
-	XMBElement root = XeroFile.getRoot();
+	XMBElement root = XeroFile.GetRoot();
 	
-	if ( root.getNodeName() != el_definitions )
+	if ( root.GetNodeName() != el_definitions )
 		return false;
 
 	XERO_ITER_EL(root, rootChild)
 	{
-		int name = rootChild.getNodeName();
+		int name = rootChild.GetNodeName();
 		if ( name == el_condition )
 		{
-			if ( !loadTriggerSpec(rootChild, XeroFile, true) )
+			if ( !LoadTriggerSpec(rootChild, XeroFile, true) )
 			{
 				LOG(ERROR, LOG_CATEGORY, "Error detected in Trigger XML <condition> tag. File: %s", filename.c_str());
 				return false;
@@ -363,7 +363,7 @@ bool CTriggerManager::LoadXML( const CStr& filename )
 		}
 		else if ( name == el_effect )
 		{
-			if ( !loadTriggerSpec(rootChild, XeroFile, false) )
+			if ( !LoadTriggerSpec(rootChild, XeroFile, false) )
 			{
 				LOG(ERROR, LOG_CATEGORY, "Error detected in Trigger XML <effect> tag. File: %s", filename.c_str());
 				return false;
@@ -378,10 +378,10 @@ bool CTriggerManager::LoadXML( const CStr& filename )
 	return true;
 }
 
-bool CTriggerManager::loadTriggerSpec( XMBElement condition, CXeromyces& XeroFile, bool isCondition )
+bool CTriggerManager::LoadTriggerSpec( XMBElement condition, CXeromyces& XeroFile, bool isCondition )
 {
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 
 	EL(parameter);
 	EL(window);
@@ -402,14 +402,14 @@ bool CTriggerManager::loadTriggerSpec( XMBElement condition, CXeromyces& XeroFil
 	#undef AT
 	
 	CTriggerSpec specStore;
-	specStore.functionName = CStrW( condition.getAttributes().getNamedItem(at_function) );
-	specStore.displayName = CStrW( condition.getAttributes().getNamedItem(at_name) );
-	specStore.funcParameters = CStr( condition.getAttributes().getNamedItem(at_funcParameters) ).ToInt();
+	specStore.functionName = CStrW( condition.GetAttributes().GetNamedItem(at_function) );
+	specStore.displayName = CStrW( condition.GetAttributes().GetNamedItem(at_name) );
+	specStore.funcParameters = CStr( condition.GetAttributes().GetNamedItem(at_funcParameters) ).ToInt();
 	int row = -1, column = -1;
 
 	XERO_ITER_EL(condition, child)
 	{
-		int childID = child.getNodeName();
+		int childID = child.GetNodeName();
 		
 		if ( childID == el_windowrow )
 		{
@@ -420,32 +420,32 @@ bool CTriggerManager::loadTriggerSpec( XMBElement condition, CXeromyces& XeroFil
 			{
 				++column;
 				TriggerParameter specParam(row, column);
-				specParam.name = windowChild.getAttributes().getNamedItem(at_name);
-				childID = windowChild.getNodeName();
+				specParam.name = windowChild.GetAttributes().GetNamedItem(at_name);
+				childID = windowChild.GetNodeName();
 				
 				if ( childID != el_parameter)
 					return false;
 
 				XERO_ITER_EL(windowChild, parameterChild)
 				{
-					childID = parameterChild.getNodeName();
+					childID = parameterChild.GetNodeName();
 					
 					if ( childID == el_window )
 					{
-						CStrW type( parameterChild.getAttributes().getNamedItem(at_type) );
-						CStrW pos( parameterChild.getAttributes().getNamedItem(at_position) );
-						CStrW size( parameterChild.getAttributes().getNamedItem(at_size) );
+						CStrW type( parameterChild.GetAttributes().GetNamedItem(at_type) );
+						CStrW pos( parameterChild.GetAttributes().GetNamedItem(at_position) );
+						CStrW size( parameterChild.GetAttributes().GetNamedItem(at_size) );
 						specParam.SetWindowData(type, pos, size);
 					}
 					
 					else if ( childID == el_inputtype )
-						specParam.inputType = CStrW( parameterChild.getText() );
+						specParam.inputType = CStrW( parameterChild.GetText() );
 					else if ( childID == el_parameterorder )
-						specParam.parameterOrder = CStrW( parameterChild.getText() ).ToInt();
+						specParam.parameterOrder = CStrW( parameterChild.GetText() ).ToInt();
 					else if ( childID == el_choices )
 					{
 						std::vector<std::wstring> choices;
-						CStrW comma(L","), input(parameterChild.getText());
+						CStrW comma(L","), input(parameterChild.GetText());
 						CStrW substr;
 						while ( (substr = input.BeforeFirst(comma)) != input )
 						{
@@ -459,7 +459,7 @@ bool CTriggerManager::loadTriggerSpec( XMBElement condition, CXeromyces& XeroFil
 					else if ( childID == el_choicetranslation )
 					{
 						std::vector<std::wstring> choices;
-						CStrW comma(L","), input(parameterChild.getText());
+						CStrW comma(L","), input(parameterChild.GetText());
 						CStrW substr;
 						while ( (substr = input.BeforeFirst(comma)) != input )
 						{

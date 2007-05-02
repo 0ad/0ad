@@ -58,7 +58,7 @@ private:
 	std::vector<STerrainPassability> m_Passabilities;
 
 	void ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const char *path);
-	void LoadXML(XMBElement node, CXeromyces *pFile, const char *path);
+	void LoadXml(XMBElement node, CXeromyces *pFile, const char *path);
 
 public:
 	CTerrainProperties(CTerrainPropertiesPtr parent);

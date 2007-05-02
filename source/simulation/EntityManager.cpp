@@ -38,7 +38,7 @@ CEntityManager::CEntityManager()
 }
 
 
-void CEntityManager::deleteAllHelper()
+void CEntityManager::DeleteAllHelper()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
 	{
@@ -55,9 +55,9 @@ void CEntityManager::deleteAllHelper()
 CEntityManager::~CEntityManager()
 {	
 	m_extant = false;
-	deleteAllHelper();
+	DeleteAllHelper();
 
-	// Delete entities that were killed, but not yet reaped by a call to updateAll,
+	// Delete entities that were killed, but not yet reaped by a call to UpdateAll,
 	// to avoid memory leak warnings upon exiting
 	std::vector<CEntity*>::iterator it;
 	for( it = m_reaper.begin(); it < m_reaper.end(); it++ )
@@ -68,11 +68,11 @@ CEntityManager::~CEntityManager()
 	m_collisionPatches = NULL;
 }
 
-void CEntityManager::deleteAll()
+void CEntityManager::DeleteAll()
 {
 	m_extant = false;
 	
-	deleteAllHelper();
+	DeleteAllHelper();
 	
 	m_nextalloc = 0;
 
@@ -82,8 +82,8 @@ void CEntityManager::deleteAll()
 	m_extant = true;
 }
 
-HEntity CEntityManager::create(CEntityTemplate* base, CVector3D position, float orientation,
-							   const std::set<CStr>& actorSelections, const CStrW* building)
+HEntity CEntityManager::Create(CEntityTemplate* base, CVector3D position, float orientation,
+	const std::set<CStr>& actorSelections, const CStrW* building)
 {
 	debug_assert( base );
 	if( !base )
@@ -105,7 +105,7 @@ HEntity CEntityManager::create(CEntityTemplate* base, CVector3D position, float 
 
 	m_entities[pos].m_entity = new CEntity( base, position, orientation, actorSelections, building );
 	if( m_collisionPatches)
-		m_entities[pos].m_entity->updateCollisionPatch();
+		m_entities[pos].m_entity->UpdateCollisionPatch();
 	m_entities[pos].m_entity->me = HEntity( pos );
 	return( HEntity( pos ) );
 }
@@ -114,7 +114,7 @@ void CEntityManager::AddEntityClassData(const HEntity& handle)
 {
 	//Add data for this particular entity and player
 	size_t playerID = handle->GetPlayer()->GetPlayerID();
-	CStrW className, classList = handle->m_classes.getMemberList();
+	CStrW className, classList = handle->m_classes.GetMemberList();
 
 	while ( (className = classList.BeforeFirst(L" ")) != classList )
 	{
@@ -130,23 +130,23 @@ void CEntityManager::AddEntityClassData(const HEntity& handle)
 	++m_entityClassData[playerID][className];
 }
 
-HEntity CEntityManager::create( const CStrW& templateName, CPlayer* player, CVector3D position, float orientation, const CStrW* building )
+HEntity CEntityManager::Create( const CStrW& templateName, CPlayer* player, CVector3D position, float orientation, const CStrW* building )
 {
-	CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( templateName, player );
+	CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate( templateName, player );
 	debug_assert( base );
 	if( !base )
 		return HEntity();
 
 	std::set<CStr> selections;
 
-	HEntity ret = create( base, position, orientation, selections, building );
+	HEntity ret = Create( base, position, orientation, selections, building );
 	AddEntityClassData(ret);
 	return ret;
 }
 
-HEntity CEntityManager::createFoundation( const CStrW& templateName, CPlayer* player, CVector3D position, float orientation )
+HEntity CEntityManager::CreateFoundation( const CStrW& templateName, CPlayer* player, CVector3D position, float orientation )
 {
-	CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( templateName, player );
+	CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate( templateName, player );
 	debug_assert( base );
 	if( !base )
 		return HEntity();
@@ -154,41 +154,42 @@ HEntity CEntityManager::createFoundation( const CStrW& templateName, CPlayer* pl
 	std::set<CStr> selections;
 
 	if( base->m_foundation == L"" )
-		return create( base, position, orientation, selections );	// Entity has no foundation, so just create it
+		return Create( base, position, orientation, selections );	// Entity has no foundation, so just create it
 
 	// Else, place the foundation object, telling it to convert into the right template when built.
-	CEntityTemplate* foundation = g_EntityTemplateCollection.getTemplate( base->m_foundation );
-	return create( foundation, position, orientation, selections, &templateName );
+	CEntityTemplate* foundation = g_EntityTemplateCollection.GetTemplate( base->m_foundation );
+	return Create( foundation, position, orientation, selections, &templateName );
 }
 
-HEntity* CEntityManager::getByHandle( u16 index )
+HEntity* CEntityManager::GetByHandle( u16 index )
 {
 	if( index >= MAX_HANDLES ) return( NULL );
 	if( !m_entities[index].m_refcount ) return( NULL );
 	return( new HEntity( index ) );
 }
-CHandle *CEntityManager::getHandle( int index )
+CHandle *CEntityManager::GetHandle( int index )
 {
 	if (!m_entities[index].m_refcount )
 		return NULL;
 	return &m_entities[index];
 }
 
-std::vector<HEntity>* CEntityManager::matches( EntityPredicate predicate, void* userdata )
+void CEntityManager::GetMatchingAsHandles(std::vector<HEntity>& matchlist, EntityPredicate predicate, void* userdata)
 {
-	std::vector<HEntity>* matchlist = new std::vector<HEntity>;
+	matchlist.clear();
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( isEntityRefd(i) )
+	{
+		if( IsEntityRefd(i) )
 			if( predicate( m_entities[i].m_entity, userdata ) )
-				matchlist->push_back( HEntity( i ) );
-	return( matchlist );
+				matchlist.push_back( HEntity( i ) );
+	}
 }
 
 void CEntityManager::GetExtantAsHandles( std::vector<HEntity>& results )
 {
 	results.clear();
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( isEntityRefd(i) )
+		if( IsEntityRefd(i) )
 			results.push_back( HEntity( i ) );
 }
 
@@ -196,7 +197,7 @@ void CEntityManager::GetExtant( std::vector<CEntity*>& results )
 {
 	results.clear();
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( isEntityRefd(i) && m_entities[i].m_entity->m_extant )
+		if( IsEntityRefd(i) && m_entities[i].m_entity->m_extant )
 			results.push_back( m_entities[i].m_entity );
 }
 
@@ -264,14 +265,14 @@ void CEntityManager::InitializeAll()
 
 	for( int i = 0; i < MAX_HANDLES; i++ )
 	{
-		if( isEntityRefd(i) )
+		if( IsEntityRefd(i) )
 		{
 			// [2006-06-26 2780ms total]
 			CEntity* e = m_entities[i].m_entity;
 			e->Initialize();
 
 			// [2006-06-26 8ms total]
-			e->updateCollisionPatch();
+			e->UpdateCollisionPatch();
 		}
 	}
 }
@@ -280,12 +281,12 @@ void CEntityManager::InitializeAll()
 void CEntityManager::TickAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( isEntityRefd(i) && m_entities[i].m_entity->m_extant )
+		if( IsEntityRefd(i) && m_entities[i].m_entity->m_extant )
 			m_entities[i].m_entity->Tick();
 }
 */
 
-void CEntityManager::updateAll( size_t timestep )
+void CEntityManager::UpdateAll( size_t timestep )
 {
 	PROFILE_START( "reaper" );
 	std::vector<CEntity*>::iterator it;
@@ -310,53 +311,53 @@ void CEntityManager::updateAll( size_t timestep )
 
 	PROFILE_START( "update all" );
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( isEntityRefd(i) )
-			m_entities[i].m_entity->update( timestep );
+		if( IsEntityRefd(i) )
+			m_entities[i].m_entity->Update( timestep );
 	PROFILE_END( "update all" );
 }
 
-void CEntityManager::interpolateAll( float relativeoffset )
+void CEntityManager::InterpolateAll( float relativeoffset )
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
 		// This needs to handle all entities, including destroyed/non-extant ones
-		// (mainly dead bodies), so it can't use isEntityRefd
+		// (mainly dead bodies), so it can't use IsEntityRefd
 		if( m_entities[i].m_refcount )
-			m_entities[i].m_entity->interpolate( relativeoffset );
+			m_entities[i].m_entity->Interpolate( relativeoffset );
 }
 
-void CEntityManager::renderAll()
+void CEntityManager::RenderAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( isEntityRefd(i) )
-			m_entities[i].m_entity->render();
+		if( IsEntityRefd(i) )
+			m_entities[i].m_entity->Render();
 }
 
-void CEntityManager::conformAll()
+void CEntityManager::ConformAll()
 {
 	PROFILE_START("conform all");
 	for ( int i=0; i < MAX_HANDLES; i++ )
 	{
-		if( isEntityRefd(i) )
+		if( IsEntityRefd(i) )
 		{
-			m_entities[i].m_entity->updateXZOrientation();
-			m_entities[i].m_entity->updateActorTransforms();
+			m_entities[i].m_entity->UpdateXZOrientation();
+			m_entities[i].m_entity->UpdateActorTransforms();
 		}
 	}
 	PROFILE_END("conform all");
 }
 
-void CEntityManager::invalidateAll()
+void CEntityManager::InvalidateAll()
 {
 	for( int i = 0; i < MAX_HANDLES; i++ )
-		if( isEntityRefd(i) )
-			m_entities[i].m_entity->invalidateActor();
+		if( IsEntityRefd(i) )
+			m_entities[i].m_entity->InvalidateActor();
 }
 
 
-void CEntityManager::removeUnitCount(CEntity* ent)
+void CEntityManager::RemoveUnitCount(CEntity* ent)
 {
 	size_t playerID = (size_t)ent->GetPlayer()->GetPlayerID();
-	CStrW className, classList = ent->m_classes.getMemberList();
+	CStrW className, classList = ent->m_classes.GetMemberList();
 
 	while ( (className = classList.BeforeFirst(L" ")) != classList )
 	{
@@ -365,14 +366,14 @@ void CEntityManager::removeUnitCount(CEntity* ent)
 	}
 	--m_entityClassData[playerID][className];
 }
-void CEntityManager::destroy( u16 handle )
+void CEntityManager::Destroy( u16 handle )
 {
 	m_reaper.push_back( m_entities[handle].m_entity );
 }
 
 bool CEntityManager::m_extant = false;
 
-std::vector<CEntity*>* CEntityManager::getCollisionPatch( CEntity* e ) 
+std::vector<CEntity*>* CEntityManager::GetCollisionPatch( CEntity* e ) 
 {
 	if( !e->m_extant )
 	{

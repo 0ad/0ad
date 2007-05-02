@@ -71,10 +71,10 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_base = base;
 
 	m_actorSelections = actorSelections;
-	loadBase();
+	LoadBase();
 
 	if( m_bounds )
-	m_bounds->setPosition( m_position.X, m_position.Z );
+	m_bounds->SetPosition( m_position.X, m_position.Z );
 
 	m_graphics_position = m_position;
 	m_graphics_orientation = m_orientation;
@@ -147,7 +147,7 @@ CEntity::~CEntity()
 	g_FormationManager.RemoveUnit(remove);
 }
 
-void CEntity::loadBase()
+void CEntity::LoadBase()
 {
 	int previous_unit_id = -1;
 
@@ -222,7 +222,7 @@ void CEntity::initAuraData()
 	}
 }
 
-void CEntity::kill(bool keepActor)
+void CEntity::Kill(bool keepActor)
 {
 	if( entf_get( ENTF_DESTROYED ) )
 	{
@@ -246,21 +246,21 @@ void CEntity::kill(bool keepActor)
 
 	ExitAuras();
 
-	clearOrders();
+	ClearOrders();
 
 	SAFE_DELETE(m_bounds);
 
 	m_extant = false;
 
-	updateCollisionPatch();
+	UpdateCollisionPatch();
 
-	g_Selection.removeAll( me );
+	g_Selection.RemoveAll( me );
 
 	entf_set(ENTF_DESTROYED);
 	g_EntityManager.m_refd[me.m_handle] = false; // refd must be made false when DESTROYED is set
 	g_EntityManager.SetDeath(true); // remember that a unit died this frame
 
-	g_EntityManager.removeUnitCount(this);	//Decrease population
+	g_EntityManager.RemoveUnitCount(this);	//Decrease population
 
 	// If we have a death animation and want to keep the actor, play that animation
 	if( keepActor && m_actor && 
@@ -273,16 +273,16 @@ void CEntity::kill(bool keepActor)
 		m_orientation_smoothed = m_orientation;
 		m_orientation_previous = m_orientation;
 
-		snapToGround();
+		SnapToGround();
 		
 		// Conform to the ground
-		CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace(this);
+		CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->GetSlopeAngleFace(this);
 		m_orientation.X = clamp( targetXZ.x, -1.0f, 1.0f );
 		m_orientation.Z = clamp( targetXZ.y, -1.0f, 1.0f );
 		m_orientation_unclamped.x = targetXZ.x;
 		m_orientation_unclamped.y = targetXZ.y;
 
-		updateActorTransforms();
+		UpdateActorTransforms();
 		m_actor_transform_valid = true;
 
 		// Play death animation and keep the actor in the game in a dead state 
@@ -310,7 +310,7 @@ void CEntity::SetPlayer(CPlayer *pPlayer)
 		m_associatedTerritory->owner = pPlayer;
 }
 
-void CEntity::updateActorTransforms()
+void CEntity::UpdateActorTransforms()
 {
 	CMatrix3D m;
 	CMatrix3D mXZ;
@@ -331,47 +331,47 @@ void CEntity::updateActorTransforms()
 		m_actor->GetModel()->SetTransform( mXZ );
 }
 
-void CEntity::snapToGround()
+void CEntity::SnapToGround()
 {
-	m_graphics_position.Y = getAnchorLevel( m_graphics_position.X, m_graphics_position.Z );
+	m_graphics_position.Y = GetAnchorLevel( m_graphics_position.X, m_graphics_position.Z );
 }
 
-void CEntity::updateXZOrientation()
+void CEntity::UpdateXZOrientation()
 {
 	// Make sure m_ahead is correct
 	m_ahead.x = sin( m_orientation.Y );
 	m_ahead.y = cos( m_orientation.Y );
 
-	CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->getSlopeAngleFace(this);
+	CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->GetSlopeAngleFace(this);
 	m_orientation.X = clamp( targetXZ.x, -m_base->m_anchorConformX, m_base->m_anchorConformX );
 	m_orientation.Z = clamp( targetXZ.y, -m_base->m_anchorConformZ, m_base->m_anchorConformZ );
 	m_orientation_unclamped.x = targetXZ.x;
 	m_orientation_unclamped.y = targetXZ.y;
 }
 
-jsval CEntity::getClassSet()
+jsval CEntity::GetClassSet()
 {
-	CStrW result = m_classes.getMemberList(); 
+	CStrW result = m_classes.GetMemberList(); 
 	return( ToJSVal( result ) );
 }
 
-void CEntity::setClassSet( jsval value )
+void CEntity::SetClassSet( jsval value )
 {
 	CStr memberCmdList = ToPrimitive<CStrW>( value );
-	m_classes.setFromMemberList(memberCmdList);
+	m_classes.SetFromMemberList(memberCmdList);
 
-	rebuildClassSet();
+	RebuildClassSet();
 }
 
-void CEntity::rebuildClassSet()
+void CEntity::RebuildClassSet()
 {
 	m_classes.Rebuild();
 	InheritorsList::iterator it;
 	for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
-		(*it)->rebuildClassSet();
+		(*it)->RebuildClassSet();
 }
 
-void CEntity::update( size_t timestep )
+void CEntity::Update( size_t timestep )
 {
 	if( !m_extant ) return;
 
@@ -404,7 +404,7 @@ void CEntity::update( size_t timestep )
 
 	PROFILE_END( "aura processing" );
 
-	updateOrders( timestep );
+	UpdateOrders( timestep );
 
 
 	// Calculate smoothed rotation: rotate around Y by at most MAX_ROTATION_RATE per second
@@ -427,7 +427,7 @@ void CEntity::update( size_t timestep )
 	);
 }
 
-void CEntity::updateOrders( size_t timestep )
+void CEntity::UpdateOrders( size_t timestep )
 {
 	// The process[...] functions return 'true' if the order at the top of the stack
 	// still needs to be (re-)evaluated; else 'false' to terminate the processing of
@@ -444,7 +444,7 @@ void CEntity::updateOrders( size_t timestep )
 	{
 		// We are idle. Tell our stance in case it wants us to do something.
 		PROFILE( "unit ai" );
-		m_stance->onIdle();
+		m_stance->OnIdle();
 	}
 
 	while( !m_orderQueue.empty() )
@@ -489,14 +489,14 @@ void CEntity::updateOrders( size_t timestep )
 			case CEntityOrder::ORDER_GOTO_NOPATHING:
 			case CEntityOrder::ORDER_GOTO_COLLISION:
 			case CEntityOrder::ORDER_GOTO_SMOOTHED:
-				if( processGotoNoPathing( current, timestep ) )
+				if( ProcessGotoNoPathing( current, timestep ) )
 					break;
-				updateCollisionPatch();
+				UpdateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_GENERIC:
-				if( processGeneric( current, timestep ) )
+				if( ProcessGeneric( current, timestep ) )
 					break;
-				updateCollisionPatch();
+				UpdateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_START_CONSTRUCTION:
 				{
@@ -506,34 +506,34 @@ void CEntity::updateOrders( size_t timestep )
 				}
 				break;
 			case CEntityOrder::ORDER_PRODUCE:
-				processProduce( current );
+				ProcessProduce( current );
 				m_orderQueue.pop_front();
 				break;
 			case CEntityOrder::ORDER_GENERIC_NOPATHING:
-				if( processGenericNoPathing( current, timestep ) )
+				if( ProcessGenericNoPathing( current, timestep ) )
 					break;
-				updateCollisionPatch();
+				UpdateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_GOTO_WAYPOINT:
-				if ( processGotoWaypoint( current, timestep, false ) )
+				if ( ProcessGotoWaypoint( current, timestep, false ) )
 					break;
-				updateCollisionPatch();
+				UpdateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_GOTO_WAYPOINT_CONTACT:
-				if ( processGotoWaypoint( current, timestep, true ) )
+				if ( ProcessGotoWaypoint( current, timestep, true ) )
 					break;
-				updateCollisionPatch();
+				UpdateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_GOTO:
 			case CEntityOrder::ORDER_RUN:
-				if( processGoto( current, timestep ) )
+				if( ProcessGoto( current, timestep ) )
 					break;
-				updateCollisionPatch();
+				UpdateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_PATROL:
-				if( processPatrol( current, timestep ) )
+				if( ProcessPatrol( current, timestep ) )
 					break;
-				updateCollisionPatch();
+				UpdateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_PATH_END_MARKER:
 				m_orderQueue.pop_front();
@@ -577,9 +577,9 @@ void CEntity::updateOrders( size_t timestep )
 	}
 }
 
-void CEntity::updateCollisionPatch()
+void CEntity::UpdateCollisionPatch()
 {
-	std::vector<CEntity*>* newPatch = g_EntityManager.getCollisionPatch( this );
+	std::vector<CEntity*>* newPatch = g_EntityManager.GetCollisionPatch( this );
 	if( newPatch != m_collisionPatch )
 	{
 		if( m_collisionPatch )
@@ -739,7 +739,7 @@ bool CEntity::Initialize()
 	const std::vector<CTechnology*>& techs = m_player->GetActiveTechs();
 	for( size_t i=0; i<techs.size(); i++ )
 	{
-		techs[i]->apply( this );
+		techs[i]->Apply( this );
 	}
 
 	// Dispatch the initialize script event
@@ -747,7 +747,7 @@ bool CEntity::Initialize()
     if( !DispatchEvent( &evt ) ) 
 	{
 		//debug_printf("start construction failed, killing self\n");
-		kill();
+		Kill();
 		return false;
 	}
 
@@ -755,7 +755,7 @@ bool CEntity::Initialize()
 	{
 		// Stay in Hold stance no matter what the init script wanted us to be
 		m_stanceName = "hold";
-		stanceChanged();
+		StanceChanged();
 	}
 
 	return true;
@@ -769,7 +769,7 @@ void CEntity::Tick()
 }
 */
 
-void CEntity::clearOrders()
+void CEntity::ClearOrders()
 {
 	if ( m_orderQueue.empty() )
 		return;
@@ -777,7 +777,7 @@ void CEntity::clearOrders()
 	DispatchEvent(&evt);
 	m_orderQueue.clear();
 }
-void CEntity::popOrder()
+void CEntity::PopOrder()
 {
 	if ( m_orderQueue.empty() )
 		return;
@@ -786,7 +786,7 @@ void CEntity::popOrder()
 
 	m_orderQueue.pop_front();
 }
-void CEntity::pushOrder( CEntityOrder& order )
+void CEntity::PushOrder( CEntityOrder& order )
 {
 	CEventPrepareOrder evt( order.m_target_entity, order.m_type, order.m_action, order.m_produce_name );
 	if( DispatchEvent(&evt) )
@@ -852,7 +852,7 @@ void CEntity::DispatchFormationEvent( int type )
 	CFormationEvent evt( type );
 	DispatchEvent( &evt );
 }
-void CEntity::repath()
+void CEntity::Repath()
 {
 	CVector2D destination;
 	CEntityOrder::EOrderSource orderSource = CEntityOrder::SOURCE_PLAYER;
@@ -869,10 +869,10 @@ void CEntity::repath()
 		orderSource = m_orderQueue.front().m_source;
 		m_orderQueue.pop_front();
 	}
-	g_Pathfinder.requestPath( me, destination, orderSource );
+	g_Pathfinder.RequestPath( me, destination, orderSource );
 }
 
-void CEntity::reorient()
+void CEntity::Reorient()
 {
 	m_graphics_orientation = m_orientation;
 	m_orientation_previous = m_orientation;
@@ -881,25 +881,25 @@ void CEntity::reorient()
 	m_ahead.x = sin( m_orientation.Y );
 	m_ahead.y = cos( m_orientation.Y );
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
-		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
-	updateActorTransforms();
+		((CBoundingBox*)m_bounds)->SetOrientation( m_ahead );
+	UpdateActorTransforms();
 }
 
-void CEntity::teleport()
+void CEntity::Teleport()
 {
 	m_position_previous = m_position;
 	m_graphics_position = m_position;
-	m_bounds->setPosition( m_position.X, m_position.Z );
-	updateActorTransforms();
-	updateCollisionPatch();
+	m_bounds->SetPosition( m_position.X, m_position.Z );
+	UpdateActorTransforms();
+	UpdateCollisionPatch();
 
-	// TODO: repath breaks things - entities get sent to (0,0) if they're moved in
-	// Atlas. I can't see teleport being used anywhere else important, so
+	// TODO: Repath breaks things - entities get sent to (0,0) if they're moved in
+	// Atlas. I can't see Teleport being used anywhere else important, so
 	// hopefully it won't hurt to just remove it for now...
-//	repath();
+//	Repath();
 }
 
-void CEntity::stanceChanged()
+void CEntity::StanceChanged()
 {
 	delete m_stance;
 	m_stance = 0;
@@ -922,35 +922,35 @@ void CEntity::stanceChanged()
 	}
 }
 
-void CEntity::checkSelection()
+void CEntity::CheckSelection()
 {
 	if( m_selected )
 	{
-		if( !g_Selection.isSelected( me ) )
-			g_Selection.addSelection( me );
+		if( !g_Selection.IsSelected( me ) )
+			g_Selection.AddSelection( me );
 	}
 	else
 	{
-		if( g_Selection.isSelected( me ) )
-			g_Selection.removeSelection( me );
+		if( g_Selection.IsSelected( me ) )
+			g_Selection.RemoveSelection( me );
 	}
 }
 
-void CEntity::checkGroup()
+void CEntity::CheckGroup()
 {
-	g_Selection.changeGroup( me, -1 ); // Ungroup
+	g_Selection.ChangeGroup( me, -1 ); // Ungroup
 	if( ( m_grouped >= 0 ) && ( m_grouped < MAX_GROUPS ) )
-		g_Selection.changeGroup( me, m_grouped );
+		g_Selection.ChangeGroup( me, m_grouped );
 }
 
-void CEntity::interpolate( float relativeoffset )
+void CEntity::Interpolate( float relativeoffset )
 {
 	CVector3D old_graphics_position = m_graphics_position;
 	CVector3D old_graphics_orientation = m_graphics_orientation;
 
 	relativeoffset = clamp( relativeoffset, 0.f, 1.f );
 
-	m_graphics_position = Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
+	m_graphics_position = ::Interpolate<CVector3D>( m_position_previous, m_position, relativeoffset );
 
 	// Avoid wraparound glitches for interpolating angles.
 	
@@ -973,14 +973,14 @@ void CEntity::interpolate( float relativeoffset )
 	while( m_orientation.Z > m_orientation_previous.Z + PI )
 		m_orientation_previous.Z += 2 * PI;
 
-	updateXZOrientation();
+	UpdateXZOrientation();
 
-	m_graphics_orientation = Interpolate<CVector3D>( m_orientation_previous, m_orientation_smoothed, relativeoffset );
+	m_graphics_orientation = ::Interpolate<CVector3D>( m_orientation_previous, m_orientation_smoothed, relativeoffset );
 
 	// Mark the actor transform data as invalid if the entity has moved since
 	// the last call to 'interpolate'.
 	// position.Y is ignored because we can't determine the new value without
-	// calling snapToGround, which is slow. TODO: This may need to be adjusted to
+	// calling SnapToGround, which is slow. TODO: This may need to be adjusted to
 	// handle flying units or moving terrain.
 	if( m_graphics_orientation != old_graphics_orientation ||
 		m_graphics_position.X != old_graphics_position.X ||
@@ -992,21 +992,21 @@ void CEntity::interpolate( float relativeoffset )
 	// Update the actor transform data when necessary.
 	if( !m_actor_transform_valid )
 	{
-		snapToGround();
-		updateActorTransforms();
+		SnapToGround();
+		UpdateActorTransforms();
 		m_actor_transform_valid = true;
 	}
 }
 
-void CEntity::invalidateActor()
+void CEntity::InvalidateActor()
 {
 	m_actor_transform_valid = false;
 }
 
-float CEntity::getAnchorLevel( float x, float z )
+float CEntity::GetAnchorLevel( float x, float z )
 {
 	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
-	float groundLevel = pTerrain->getExactGroundLevel( x, z );
+	float groundLevel = pTerrain->GetExactGroundLevel( x, z );
 	if( m_base->m_anchorType==L"Ground" )
 	{
 		return groundLevel;
@@ -1017,7 +1017,7 @@ float CEntity::getAnchorLevel( float x, float z )
 	}
 }
 
-int CEntity::findSector( int divs, float angle, float maxAngle, bool negative )
+int CEntity::FindSector( int divs, float angle, float maxAngle, bool negative )
 {
 	float step=maxAngle/divs;
 	if ( negative )
@@ -1047,7 +1047,7 @@ int CEntity::findSector( int divs, float angle, float maxAngle, bool negative )
 				return i;
 		}
 	}
-	debug_warn("CEntity::findSector() - invalid parameters passed.");
+	debug_warn("CEntity::FindSector() - invalid parameters passed.");
 	return -1;
 }
 

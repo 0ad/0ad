@@ -318,7 +318,7 @@ JSBool JSI_Vector3D::length( JSContext* cx, JSObject* obj,
 	if(!v)
 		return( JS_TRUE );
 
-	*rval = ToJSVal( v->GetLength() );
+	*rval = ToJSVal( v->Length() );
 	return( JS_TRUE );
 }
 

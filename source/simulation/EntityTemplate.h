@@ -38,7 +38,7 @@ public:
 	CEntityTemplate(CPlayer* player);
 	~CEntityTemplate();
 	// Load from XML
-	bool loadXML(const CStr& filename);
+	bool LoadXml(const CStr& filename);
 	// Load a tree of properties from an XML (XMB) node.
 	void XMLLoadProperty(const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName);
 
@@ -156,10 +156,10 @@ public:
 	float m_turningRadius;
 	CScriptObject m_EventHandlers[EVENT_LAST];
 
-	void loadBase();
-	jsval getClassSet();
-	void setClassSet( jsval value );
-	void rebuildClassSet();
+	void LoadBase();
+	jsval GetClassSet();
+	void SetClassSet( jsval value );
+	void RebuildClassSet();
 
 	// Script-bound functions
 

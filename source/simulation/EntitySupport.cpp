@@ -55,7 +55,7 @@ void CClassSet::Rebuild()
 	m_Members = newMembers;
 }
 
-CStrW CClassSet::getMemberList()
+CStrW CClassSet::GetMemberList()
 {
 	Set::iterator it = m_Members.begin();
 	CStrW result = L"";
@@ -68,7 +68,7 @@ CStrW CClassSet::getMemberList()
 	return result;
 }
 
-void CClassSet::setFromMemberList(const CStrW& list)
+void CClassSet::SetFromMemberList(const CStrW& list)
 {
 	CStr entry;
 	CStr temp = list;

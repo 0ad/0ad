@@ -70,15 +70,15 @@ struct CScheduler : public Singleton<CScheduler>
 	STL_HASH_SET<int> tasksToCancel;
 
 	CScheduler();
-	int pushTime( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
-	int pushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
-	int pushInterval( size_t first, size_t interval, const CStrW& fragment, JSObject* operateOn = NULL, int id = 0 );
-	int pushTime( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
-	int pushFrame( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
-	int pushInterval( size_t first, size_t interval, JSFunction* function, JSObject* operateOn = NULL, int id = 0 );
-	void pushProgressTimer( CJSProgressTimer* progressTimer );
-	void cancelTask( int id );
-	void update(size_t elapsedSimulationTime);
+	int PushTime( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
+	int PushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn = NULL );
+	int PushInterval( size_t first, size_t interval, const CStrW& fragment, JSObject* operateOn = NULL, int id = 0 );
+	int PushTime( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
+	int PushFrame( size_t delay, JSFunction* function, JSObject* operateOn = NULL );
+	int PushInterval( size_t first, size_t interval, JSFunction* function, JSObject* operateOn = NULL, int id = 0 );
+	void PushProgressTimer( CJSProgressTimer* progressTimer );
+	void CancelTask( int id );
+	void Update(size_t elapsedSimulationTime);
 };
 
 #define g_Scheduler CScheduler::GetSingleton()

@@ -2,7 +2,7 @@
 
 #include "AStarEngine.h"
 
-/* For AStarGoalLowLevel isPassable/cost */
+/* For AStarGoalLowLevel IsPassable/cost */
 #include "Collision.h"
 #include "Entity.h"
 
@@ -66,38 +66,38 @@ CAStarEngine::~CAStarEngine()
 }
 
 
-bool CAStarEngine::findPath( 
+bool CAStarEngine::FindPath( 
 	const CVector2D &src, const CVector2D &dest, HEntity entity, float radius )
 {
 	mSolved = false;
 	int iterations = 0;
 
-	mGoal->setDestination(dest);
-	mGoal->setRadius(radius);
+	mGoal->SetDestination(dest);
+	mGoal->SetRadius(radius);
 
-	AStarNode *start = getFreeASNode();
-	start->coord = mGoal->getTile(src);
+	AStarNode *start = GetFreeASNode();
+	start->coord = mGoal->GetTile(src);
 	start->parent = NULL;
 	start->g = 0;
-	start->f = start->h = mGoal->distanceToGoal(start->coord);
+	start->f = start->h = mGoal->DistanceToGoal(start->coord);
 
-	clearOpen();
-	clearClosed();
+	ClearOpen();
+	ClearClosed();
 	PROFILE_START("memset cache");
 	memset(mFlags, 0, mFlagArraySize*mFlagArraySize*sizeof(AStarNodeFlag));
 	PROFILE_END("memset cache");
 
-	addToOpen(start);
+	AddToOpen(start);
 
 	AStarNode *best = NULL;
 
-	while( iterations<mSearchLimit && (best = removeBestOpenNode()) != NULL )
+	while( iterations<mSearchLimit && (best = RemoveBestOpenNode()) != NULL )
 	{
 		iterations++;
-		PROFILE_START("addToClosed");
-		addToClosed(best);
-		PROFILE_END("addToClosed");
-		if ( mGoal->atGoal(best->coord) )
+		PROFILE_START("AddToClosed");
+		AddToClosed(best);
+		PROFILE_END("AddToClosed");
+		if ( mGoal->IsAtGoal(best->coord) )
 		{
 			/* Path solved */
 			mSolved = true;
@@ -107,33 +107,33 @@ bool CAStarEngine::findPath(
 		/* Get neighbors of the best node */
 		std::vector<CVector2D> neighbors;
 		PROFILE_START("get neighbors");
-		neighbors = mGoal->getNeighbors(best->coord, entity);
+		neighbors = mGoal->GetNeighbors(best->coord, entity);
 		PROFILE_END("get neighbors");
 
 		/* Update the neighbors of the best node */
 		std::vector<CVector2D>::iterator it;
 		for( it = neighbors.begin(); it != neighbors.end(); it++ )
 		{
-			AStarNode* N = getFreeASNode();
+			AStarNode* N = GetFreeASNode();
 			PROFILE_START("initialize neighbor");
 			N->coord = *it;
 			// Assign f,g,h to neighbor
-			N->g = best->g + mGoal->getTileCost(best->coord, N->coord);
-			N->h = mGoal->distanceToGoal(*it);
+			N->g = best->g + mGoal->GetTileCost(best->coord, N->coord);
+			N->h = mGoal->DistanceToGoal(*it);
 			N->f = N->g + N->h;
 			N->parent = best;
 			PROFILE_END("initialize neighbor");
 
 			AStarNode* C;
 			PROFILE_START("search closed");
-			C = getFromClosed(N->coord);
+			C = GetFromClosed(N->coord);
 			PROFILE_END("search closed");
 			bool update = false;
 			if( C!=NULL && (N->f < C->f) )
 			{
 				PROFILE_START("remove from closed");
 				/* N is on Closed and N->f is better */
-				removeFromClosed(C);
+				RemoveFromClosed(C);
 				update = true;
 				PROFILE_END("remove from closed");
 			}
@@ -141,7 +141,7 @@ bool CAStarEngine::findPath(
 			{
 				PROFILE_START("add to open");
 				/* N is not on Closed */
-				addToOpen(N);
+				AddToOpen(N);
 				PROFILE_END("add to open");
 			}
 		}
@@ -150,45 +150,45 @@ bool CAStarEngine::findPath(
 	if (mSolved && best!=NULL)
 	{
 		//debug_printf("Number of nodes searched: %d\n", iterations);
-		constructPath(best);
+		ConstructPath(best);
 	}
 	
-	cleanup();
+	Cleanup();
 
 	return mSolved;
 }
 
 
-void CAStarEngine::constructPath( AStarNode* end )
+void CAStarEngine::ConstructPath( AStarNode* end )
 {
 	std::deque<CVector2D> path;
 	mPath.clear();
 	while( end!=NULL && (end->parent)!=NULL )
 	{
-		path.push_front(mGoal->getCoord(end->coord));
+		path.push_front(mGoal->GetCoord(end->coord));
 		end = end->parent;
 	}
 	mPath.insert(mPath.begin(), path.begin(), path.end());
 }
 
 
-std::vector<CVector2D> CAStarEngine::getLastPath()
+std::vector<CVector2D> CAStarEngine::GetLastPath()
 {
 	return mPath;
 }
 
 
-void CAStarEngine::setSearchLimit( int limit )
+void CAStarEngine::SetSearchLimit( int limit )
 {
 	mSearchLimit = limit;
 }
 
 
-void CAStarEngine::addToOpen( AStarNode* node )
+void CAStarEngine::AddToOpen( AStarNode* node )
 {
 	/* If not in open, should add, otherwise should promote */
 	AStarNodeFlag *flag = GetFlag(node->coord);
-	if (!GetIsOpen(flag))
+	if (!IsOpen(flag))
 	{
 		mOpen.push(node);
 	}
@@ -200,7 +200,7 @@ void CAStarEngine::addToOpen( AStarNode* node )
 }
 
 
-AStarNode* CAStarEngine::removeBestOpenNode()
+AStarNode* CAStarEngine::RemoveBestOpenNode()
 {
 	if (mOpen.empty())
 		return NULL;
@@ -214,23 +214,23 @@ AStarNode* CAStarEngine::removeBestOpenNode()
 }
 
 
-void CAStarEngine::addToClosed( AStarNode* node )
+void CAStarEngine::AddToClosed( AStarNode* node )
 {
 	mClosed[node->coord] = node;
 	SetClosedFlag(GetFlag(node->coord));
 }
 
 
-void CAStarEngine::removeFromClosed( AStarNode* node )
+void CAStarEngine::RemoveFromClosed( AStarNode* node )
 {
 	mClosed.erase(node->coord);
 	ClearClosedFlag(GetFlag(node->coord));
 }
 
 
-AStarNode* CAStarEngine::getFromClosed( const CVector2D& loc )
+AStarNode* CAStarEngine::GetFromClosed( const CVector2D& loc )
 {
-	if (!GetIsClosed(GetFlag(loc)))
+	if (!IsClosed(GetFlag(loc)))
 	{
 		return NULL;
 	}
@@ -239,19 +239,19 @@ AStarNode* CAStarEngine::getFromClosed( const CVector2D& loc )
 }
 
 
-void CAStarEngine::clearOpen()
+void CAStarEngine::ClearOpen()
 {
 	mOpen.clear();
 }
 
 
-void CAStarEngine::clearClosed()
+void CAStarEngine::ClearClosed()
 {
 	mClosed.clear();
 }
 
 
-AStarNode* CAStarEngine::getFreeASNode()
+AStarNode* CAStarEngine::GetFreeASNode()
 {
 	AStarNode* ret;
 	PROFILE_START("allocator");
@@ -271,7 +271,7 @@ AStarNode* CAStarEngine::getFreeASNode()
 }
 
 
-void CAStarEngine::cleanup()
+void CAStarEngine::Cleanup()
 {
 	std::vector<AStarNode*>::iterator it;
 	for( it = usedNodes.begin(); it != usedNodes.end(); it++)
@@ -327,40 +327,40 @@ CVector2D WorldspaceToTilespace( const CVector2D &ws )
 }
 
 
-void AStarGoalLowLevel::setDestination( const CVector2D &dest )
+void AStarGoalLowLevel::SetDestination( const CVector2D &dest )
 {
 	coord = WorldspaceToTilespace(dest);
 }
 
 
-void AStarGoalLowLevel::setRadius( float r )
+void AStarGoalLowLevel::SetRadius( float r )
 {
 	radius = r;
 }
 
-float AStarGoalLowLevel::getRadius()
+float AStarGoalLowLevel::GetRadius()
 {
 	return radius;
 }
 
-float AStarGoalLowLevel::distanceToGoal( const CVector2D &loc )
+float AStarGoalLowLevel::DistanceToGoal( const CVector2D &loc )
 {
-	return ((coord-loc).length());
+	return ((coord-loc).Length());
 }
 
-bool AStarGoalLowLevel::atGoal( const CVector2D &loc )
+bool AStarGoalLowLevel::IsAtGoal( const CVector2D &loc )
 {
 	float dx = coord.x - loc.x;
 	float dy = coord.y - loc.y;
 	return dx*dx + dy*dy <= radius*radius;
 }
 
-float AStarGoalLowLevel::getTileCost( const CVector2D& loc1, const CVector2D& loc2 )
+float AStarGoalLowLevel::GetTileCost( const CVector2D& loc1, const CVector2D& loc2 )
 {
-	return (loc2-loc1).length() - radius;
+	return (loc2-loc1).Length() - radius;
 }
 
-bool AStarGoalLowLevel::isPassable( const CVector2D &loc, HEntity entity )
+bool AStarGoalLowLevel::IsPassable( const CVector2D &loc, HEntity entity )
 {
 	CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
 	int size = pTerrain->GetTilesPerSide();
@@ -370,12 +370,12 @@ bool AStarGoalLowLevel::isPassable( const CVector2D &loc, HEntity entity )
 		return false;
 	}
 
-	if ( pTerrain->isPassable(loc, entity) )
+	if ( pTerrain->IsPassable(loc, entity) )
 	{
 		// If no entity blocking, return true
 		CVector2D wloc = TilespaceToWorldspace(loc);
 		CBoundingBox bounds(wloc.x, wloc.y, 0, CELL_SIZE, CELL_SIZE, 3);
-		if ( getCollisionObject(&bounds, entity->GetPlayer()) == NULL )
+		if ( GetCollisionObject(&bounds, entity->GetPlayer()) == NULL )
 		{
 			return true;
 		}
@@ -383,17 +383,17 @@ bool AStarGoalLowLevel::isPassable( const CVector2D &loc, HEntity entity )
 	return false;
 }
 
-CVector2D AStarGoalLowLevel::getCoord( const CVector2D &loc )
+CVector2D AStarGoalLowLevel::GetCoord( const CVector2D &loc )
 {
 	return TilespaceToWorldspace(loc);
 }
 
-CVector2D AStarGoalLowLevel::getTile( const CVector2D &loc )
+CVector2D AStarGoalLowLevel::GetTile( const CVector2D &loc )
 {
 	return WorldspaceToTilespace(loc);
 }
 
-std::vector<CVector2D> AStarGoalLowLevel::getNeighbors( const CVector2D &loc, HEntity entity)
+std::vector<CVector2D> AStarGoalLowLevel::GetNeighbors( const CVector2D &loc, HEntity entity)
 {
 	std::vector<CVector2D> vec;
 
@@ -405,7 +405,7 @@ std::vector<CVector2D> AStarGoalLowLevel::getNeighbors( const CVector2D &loc, HE
 			{
 				CVector2D c = loc;
 				c.x += xdiff;  c.y += ydiff;
-				if ( isPassable(c, entity) )
+				if ( IsPassable(c, entity) )
 				{
 					vec.push_back(c);
 				}
@@ -425,19 +425,19 @@ inline AStarNodeFlag* CAStarEngine::GetFlag(const CVector2D &loc)
 }
 
 
-inline bool CAStarEngine::GetIsClear(AStarNodeFlag* flag)
+inline bool CAStarEngine::IsClear(AStarNodeFlag* flag)
 {
 	return (*flag)==kClear;
 }
 
 
-inline bool CAStarEngine::GetIsClosed(AStarNodeFlag* flag)
+inline bool CAStarEngine::IsClosed(AStarNodeFlag* flag)
 {
 	return ((*flag) & kClosed) != kClear;
 }
 
 
-inline bool CAStarEngine::GetIsOpen(AStarNodeFlag* flag)
+inline bool CAStarEngine::IsOpen(AStarNodeFlag* flag)
 {
 	return ((*flag) & kOpen) != kClear;
 }
@@ -467,13 +467,13 @@ inline void CAStarEngine::ClearOpenFlag(AStarNodeFlag* flag)
 }
 
 
-inline bool CAStarEngine::GetIsPassable(AStarNodeFlag* flag)
+inline bool CAStarEngine::IsPassable(AStarNodeFlag* flag)
 {
 	return ((*flag) & kPassable) != kClear;
 }
 
 
-inline bool CAStarEngine::GetIsBlocked(AStarNodeFlag* flag)
+inline bool CAStarEngine::IsBlocked(AStarNodeFlag* flag)
 {
 	return ((*flag) & kBlocked) != kClear;
 }

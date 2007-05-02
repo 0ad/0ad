@@ -58,7 +58,7 @@ std::string XMBFile::ReadZStrA()
 	return String;
 }
 
-XMBElement XMBFile::getRoot() const
+XMBElement XMBFile::GetRoot() const
 {
 	return XMBElement(m_Pointer);
 }
@@ -66,19 +66,19 @@ XMBElement XMBFile::getRoot() const
 
 #ifdef XERO_USEMAP
 
-int XMBFile::getElementID(const char* Name) const
+int XMBFile::GetElementID(const char* Name) const
 {
 	return m_ElementNames[Name];
 }
 
-int XMBFile::getAttributeID(const char* Name) const
+int XMBFile::GetAttributeID(const char* Name) const
 {
 	return m_AttributeNames[Name];
 }
 
 #else // #ifdef XERO_USEMAP
 
-int XMBFile::getElementID(const char* Name) const
+int XMBFile::GetElementID(const char* Name) const
 {
 	const char* Pos = m_ElementPointer;
 
@@ -98,7 +98,7 @@ int XMBFile::getElementID(const char* Name) const
 	return -1;
 }
 
-int XMBFile::getAttributeID(const char* Name) const
+int XMBFile::GetAttributeID(const char* Name) const
 {
 	const char* Pos = m_AttributePointer;
 
@@ -122,7 +122,7 @@ int XMBFile::getAttributeID(const char* Name) const
 
 // Relatively inefficient, so only use when
 // laziness overcomes the need for speed
-std::string XMBFile::getElementString(const int ID) const
+std::string XMBFile::GetElementString(const int ID) const
 {
 	const char* Pos = m_ElementPointer;
 	for (int i = 0; i < ID; ++i)
@@ -130,7 +130,7 @@ std::string XMBFile::getElementString(const int ID) const
 	return std::string(Pos+4);
 }
 
-std::string XMBFile::getAttributeString(const int ID) const
+std::string XMBFile::GetAttributeString(const int ID) const
 {
 	const char* Pos = m_AttributePointer;
 	for (int i = 0; i < ID; ++i)
@@ -140,12 +140,12 @@ std::string XMBFile::getAttributeString(const int ID) const
 
 
 
-int XMBElement::getNodeName() const
+int XMBElement::GetNodeName() const
 {
 	return *(int*)(m_Pointer + 4); // == ElementName
 }
 
-XMBElementList XMBElement::getChildNodes() const
+XMBElementList XMBElement::GetChildNodes() const
 {
 	return XMBElementList(
 		m_Pointer + 20 + *(int*)(m_Pointer + 16), // == Children[]
@@ -153,7 +153,7 @@ XMBElementList XMBElement::getChildNodes() const
 	);
 }
 
-XMBAttributeList XMBElement::getAttributes() const
+XMBAttributeList XMBElement::GetAttributes() const
 {
 	return XMBAttributeList(
 		m_Pointer + 24 + *(int*)(m_Pointer + 20), // == Attributes[]
@@ -161,7 +161,7 @@ XMBAttributeList XMBElement::getAttributes() const
 	);
 }
 
-utf16string XMBElement::getText() const
+utf16string XMBElement::GetText() const
 {
 	// Return empty string if there's no text
 	if (*(int*)(m_Pointer + 20) == 0)
@@ -170,7 +170,7 @@ utf16string XMBElement::getText() const
 		return utf16string((utf16_t*)(m_Pointer + 28));
 }
 
-int XMBElement::getLineNumber() const
+int XMBElement::GetLineNumber() const
 {
 	// Make sure there actually was some text to record the line of
 	if (*(int*)(m_Pointer + 20) == 0)
@@ -179,7 +179,7 @@ int XMBElement::getLineNumber() const
 		return *(int*)(m_Pointer + 24);
 }
 
-XMBElement XMBElementList::item(const int id)
+XMBElement XMBElementList::Item(const int id)
 {
 	debug_assert(id >= 0 && id < Count && "Element ID out of range");
 	const char* Pos;
@@ -205,7 +205,7 @@ XMBElement XMBElementList::item(const int id)
 	return XMBElement(Pos);
 }
 
-utf16string XMBAttributeList::getNamedItem(const int AttributeName) const
+utf16string XMBAttributeList::GetNamedItem(const int AttributeName) const
 {
 	const char* Pos = m_Pointer;
 
@@ -222,7 +222,7 @@ utf16string XMBAttributeList::getNamedItem(const int AttributeName) const
 	return utf16string();
 }
 
-XMBAttribute XMBAttributeList::item(const int id)
+XMBAttribute XMBAttributeList::Item(const int id)
 {
 	debug_assert(id >= 0 && id < Count && "Attribute ID out of range");
 	const char* Pos;

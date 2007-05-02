@@ -19,19 +19,19 @@ public:
 	virtual ~CStance() {}
 
 	// Called each tick if the unit is idle.
-	virtual void onIdle() = 0;
+	virtual void OnIdle() = 0;
 
 	// Called when the unit is damaged. Source might be NULL for damage from "acts of Gaia"
 	// (but we get notified anyway in case we want to run around in fear). Most stances will
 	// probably want to retaliate here.
-	virtual void onDamaged(CEntity* source) = 0;
+	virtual void OnDamaged(CEntity* source) = 0;
 
 	// Does this stance allow movement at all during AI control?
-	virtual bool allowsMovement() = 0;
+	virtual bool AllowsMovement() = 0;
 
 	// Called when the unit is under AI control and wishes to move to the given position;
 	// the stance may choose to cancel if it is too far.
-	virtual bool checkMovement(CVector2D proposedPos) = 0;
+	virtual bool CheckMovement(CVector2D proposedPos) = 0;
 };
 
 /**
@@ -42,10 +42,10 @@ class CHoldStance : public CStance
 public:
 	CHoldStance(CEntity* ent): CStance(ent) {};
 	virtual ~CHoldStance() {};
-	virtual void onIdle() {};
-	virtual void onDamaged(CEntity* UNUSED(source)) {};
-	virtual bool allowsMovement() { return false; };
-	virtual bool checkMovement(CVector2D UNUSED(proposedPos)) { return false; }
+	virtual void OnIdle() {};
+	virtual void OnDamaged(CEntity* UNUSED(source)) {};
+	virtual bool AllowsMovement() { return false; };
+	virtual bool CheckMovement(CVector2D UNUSED(proposedPos)) { return false; }
 };
 
 /**
@@ -56,10 +56,10 @@ class CAggressStance : public CStance
 public:
 	CAggressStance(CEntity* ent): CStance(ent) {};
 	virtual ~CAggressStance() {};
-	virtual void onIdle();
-	virtual void onDamaged(CEntity* source);
-	virtual bool allowsMovement() { return true; };
-	virtual bool checkMovement(CVector2D UNUSED(proposedPos)) { return true; }
+	virtual void OnIdle();
+	virtual void OnDamaged(CEntity* source);
+	virtual bool AllowsMovement() { return true; };
+	virtual bool CheckMovement(CVector2D UNUSED(proposedPos)) { return true; }
 };
 
 /**
@@ -70,10 +70,10 @@ class CStandStance : public CStance
 public:
 	CStandStance(CEntity* ent): CStance(ent) {};
 	virtual ~CStandStance() {};
-	virtual void onIdle();
-	virtual void onDamaged(CEntity* source);
-	virtual bool allowsMovement() { return false; };
-	virtual bool checkMovement(CVector2D UNUSED(proposedPos)) { return false; }
+	virtual void OnIdle();
+	virtual void OnDamaged(CEntity* source);
+	virtual bool AllowsMovement() { return false; };
+	virtual bool CheckMovement(CVector2D UNUSED(proposedPos)) { return false; }
 };
 
 /**
@@ -86,10 +86,10 @@ class CDefendStance : public CStance
 public:
 	CDefendStance(CEntity* ent): CStance(ent) {};
 	virtual ~CDefendStance() {};
-	virtual void onIdle();
-	virtual void onDamaged(CEntity* source);
-	virtual bool allowsMovement() { return true; };
-	virtual bool checkMovement(CVector2D proposedPos);
+	virtual void OnIdle();
+	virtual void OnDamaged(CEntity* source);
+	virtual bool AllowsMovement() { return true; };
+	virtual bool CheckMovement(CVector2D proposedPos);
 };
 
 /**
@@ -101,13 +101,13 @@ private:
 	CStanceUtils() {};
 public:
 	// Attacks the given target using the appropriate attack action (obtained from JavaScript).
-	static void attack(CEntity* entity, CEntity* target);
+	static void Attack(CEntity* entity, CEntity* target);
 
 	// Picks a visible entity to attack.
-	static CEntity* chooseTarget(CEntity* entity);
+	static CEntity* ChooseTarget(CEntity* entity);
 
 	// Picks a visible entity within the given circle to attack
-	static CEntity* chooseTarget(float x, float y, float radius, CPlayer* player);
+	static CEntity* ChooseTarget(float x, float y, float radius, CPlayer* player);
 };
 
 #endif

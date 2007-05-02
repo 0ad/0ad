@@ -94,7 +94,7 @@ public:
 	virtual void Rebuild() = 0;
 
 	// HACK: Doesn't belong here.
-	virtual void rebuildClassSet() = 0;
+	virtual void RebuildClassSet() = 0;
 	
 	// Check for a property
 	virtual IJSComplexProperty* HasProperty( const CStrW& PropertyName ) = 0;

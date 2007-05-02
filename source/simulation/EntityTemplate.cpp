@@ -84,7 +84,7 @@ CEntityTemplate::~CEntityTemplate()
 		delete( m_bound_circle );
 }
 
-void CEntityTemplate::loadBase()
+void CEntityTemplate::LoadBase()
 { 
 	// Copy the parent's bounds, unless we're providing a replacement.
 	if( m_bound_type == CBoundingObject::BOUND_NONE )
@@ -92,14 +92,14 @@ void CEntityTemplate::loadBase()
 		if( m_base->m_bound_type == CBoundingObject::BOUND_CIRCLE )
 		{
  			m_bound_circle = new CBoundingCircle();
-			m_bound_circle->setRadius( m_base->m_bound_circle->m_radius );
-			m_bound_circle->setHeight( m_base->m_bound_circle->m_height );
+			m_bound_circle->SetRadius( m_base->m_bound_circle->m_radius );
+			m_bound_circle->SetHeight( m_base->m_bound_circle->m_height );
 		}
 		else if( m_base->m_bound_type == CBoundingObject::BOUND_OABB )
 		{
 			m_bound_box = new CBoundingBox();
-			m_bound_box->setDimensions( m_base->m_bound_box->getWidth(), m_base->m_bound_box->getDepth() );
-			m_bound_box->setHeight( m_base->m_bound_box->m_height );
+			m_bound_box->SetDimensions( m_base->m_bound_box->GetWidth(), m_base->m_bound_box->GetDepth() );
+			m_bound_box->SetHeight( m_base->m_bound_box->m_height );
 		}
 		m_bound_type = m_base->m_bound_type;
 	}
@@ -116,29 +116,29 @@ void CEntityTemplate::loadBase()
 	SetNextObject( m_base );
 }
 
-jsval CEntityTemplate::getClassSet()
+jsval CEntityTemplate::GetClassSet()
 {
-	CStrW result = m_classes.getMemberList(); 
+	CStrW result = m_classes.GetMemberList(); 
 	return( ToJSVal( result ) );
 }
 
-void CEntityTemplate::setClassSet( jsval value )
+void CEntityTemplate::SetClassSet( jsval value )
 {
 	CStr memberCmdList = ToPrimitive<CStrW>( value );
-	m_classes.setFromMemberList(memberCmdList);
+	m_classes.SetFromMemberList(memberCmdList);
 
-	rebuildClassSet();
+	RebuildClassSet();
 }
 
-void CEntityTemplate::rebuildClassSet()
+void CEntityTemplate::RebuildClassSet()
 {
 	m_classes.Rebuild();
 	InheritorsList::iterator it;
 	for( it = m_Inheritors.begin(); it != m_Inheritors.end(); it++ )
-		(*it)->rebuildClassSet();
+		(*it)->RebuildClassSet();
 }
 
-bool CEntityTemplate::loadXML( const CStr& filename )
+bool CEntityTemplate::LoadXml( const CStr& filename )
 {
 	CXeromyces XeroFile;
 	if (XeroFile.Load(filename) != PSRETURN_OK)
@@ -146,8 +146,8 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 		return false;
 
 	// Define all the elements and attributes used in the XML file
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	// Only the ones we can't load using normal methods.
 	EL(Entity);
 	EL(Script);
@@ -166,28 +166,28 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 	#undef AT
 	#undef EL
 
-	XMBElement Root = XeroFile.getRoot();
+	XMBElement Root = XeroFile.GetRoot();
 
-	if( Root.getNodeName() != el_Entity )
+	if( Root.GetNodeName() != el_Entity )
 	{
-		LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXML: XML root was not \"Entity\" in file %s. Load failed.", filename.c_str() );
+		LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXml: XML root was not \"Entity\" in file %s. Load failed.", filename.c_str() );
 		return( false );
 	}
 
-	XMBElementList RootChildren = Root.getChildNodes();
+	XMBElementList RootChildren = Root.GetChildNodes();
 
 	m_Tag = CStr(filename).AfterLast("/").BeforeLast(".xml");
 
-	m_Base_Name = Root.getAttributes().getNamedItem( at_Parent );
+	m_Base_Name = Root.GetAttributes().GetNamedItem( at_Parent );
 
 	// Load our parent, if we have one
 	if( ! m_Base_Name.empty() )
 	{
-		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate( m_Base_Name, m_player );
+		CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate( m_Base_Name, m_player );
 		if( base )
 		{
 			m_base = base;
-			loadBase();
+			LoadBase();
 		}
 		else
 		{
@@ -199,12 +199,12 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 	
 	for (int i = 0; i < RootChildren.Count; ++i)
 	{
-		XMBElement Child = RootChildren.item(i);
+		XMBElement Child = RootChildren.Item(i);
 
-		int ChildName = Child.getNodeName();
+		int ChildName = Child.GetNodeName();
 		if( ChildName == el_Script )
 		{
-			CStr Include = Child.getAttributes().getNamedItem( at_File );
+			CStr Include = Child.GetAttributes().GetNamedItem( at_File );
 
 			if( !Include.empty() && scriptsLoaded.find( Include ) == scriptsLoaded.end() )
 			{
@@ -212,45 +212,45 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 				g_ScriptingHost.RunScript( Include );
 			}
 
-			CStr Inline = Child.getText();
+			CStr Inline = Child.GetText();
 			if( !Inline.empty() )
 			{
-				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), filename.c_str(), Child.getLineNumber() );
+				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), filename.c_str(), Child.GetLineNumber() );
 			}
 		}
 		else if (ChildName == el_Traits)
 		{
-			XMBElementList TraitChildren = Child.getChildNodes();
+			XMBElementList TraitChildren = Child.GetChildNodes();
 			for(int j = 0; j < TraitChildren.Count; ++j)
 			{
-				XMBElement TraitChild = TraitChildren.item(j);
-				int TraitChildName = TraitChild.getNodeName();
+				XMBElement TraitChild = TraitChildren.Item(j);
+				int TraitChildName = TraitChild.GetNodeName();
 				if( TraitChildName == el_Footprint )
 				{
-					XMBElementList FootprintChildren = TraitChild.getChildNodes();
+					XMBElementList FootprintChildren = TraitChild.GetChildNodes();
 					float radius=0, height=0, width=0, depth=0;
 					bool hadRadius = false, hadDepth = false;
 					for(int k = 0; k < FootprintChildren.Count; ++k)
 					{
-						XMBElement FootprintChild = FootprintChildren.item(k);
-						int FootprintChildName = FootprintChild.getNodeName();
+						XMBElement FootprintChild = FootprintChildren.Item(k);
+						int FootprintChildName = FootprintChild.GetNodeName();
 						if( FootprintChildName == el_Radius )
 						{
 							hadRadius = true;
-							radius = CStrW( FootprintChild.getText() ).ToFloat();
+							radius = CStrW( FootprintChild.GetText() ).ToFloat();
 						}
 						else if( FootprintChildName == el_Width )
 						{
-							width = CStrW( FootprintChild.getText() ).ToFloat();
+							width = CStrW( FootprintChild.GetText() ).ToFloat();
 						}
 						else if( FootprintChildName == el_Height )
 						{
-							height = CStrW( FootprintChild.getText() ).ToFloat();
+							height = CStrW( FootprintChild.GetText() ).ToFloat();
 						}
 						else if( FootprintChildName == el_Depth )
 						{
 							hadDepth = true;
-							depth = CStrW( FootprintChild.getText() ).ToFloat();
+							depth = CStrW( FootprintChild.GetText() ).ToFloat();
 						}
 					}
 					if( hadRadius ) 
@@ -258,8 +258,8 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 						// Specifying a circular footprint
 						if( !m_bound_circle )
 							m_bound_circle = new CBoundingCircle();
-						m_bound_circle->setRadius( radius );
-						m_bound_circle->setHeight( height );
+						m_bound_circle->SetRadius( radius );
+						m_bound_circle->SetHeight( height );
 						m_bound_type = CBoundingObject::BOUND_CIRCLE;
 					}
 					else if( hadDepth )
@@ -267,8 +267,8 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 						// Specifying a rectangular footprint
 						if( !m_bound_box )
 							m_bound_box = new CBoundingBox();
-						m_bound_box->setDimensions( width, depth );
-						m_bound_box->setHeight( height );
+						m_bound_box->SetDimensions( width, depth );
+						m_bound_box->SetHeight( height );
 						m_bound_type = CBoundingObject::BOUND_OABB;
 					}
 					// Else, entity has no footprint.
@@ -280,10 +280,10 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 		else if( ChildName == el_Event )
 		{
 			// Action...On for consistency with the GUI.
-			CStrW EventName = L"on" + (CStrW)Child.getAttributes().getNamedItem( at_On );
+			CStrW EventName = L"on" + (CStrW)Child.GetAttributes().GetNamedItem( at_On );
 
-			CStrW Code (Child.getText());
-			utf16string ExternalFunction = Child.getAttributes().getNamedItem( at_Function );
+			CStrW Code (Child.GetText());
+			utf16string ExternalFunction = Child.GetAttributes().GetNamedItem( at_Function );
 
 			// Does a property with this name already exist?
 
@@ -299,13 +299,13 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 						JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 						if( !fn )
 						{
-							LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXML: Function does not exist for event %hs in file %s. Load failed.", EventName.c_str(), filename.c_str() );
+							LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXml: Function does not exist for event %hs in file %s. Load failed.", EventName.c_str(), filename.c_str() );
 							break;
 						}
 						m_EventHandlers[eventID].SetFunction( fn );
 					}
 					else
-						m_EventHandlers[eventID].Compile( CStrW( filename ) + L"::" + EventName + L" (" + CStrW( Child.getLineNumber() ) + L")", Code );
+						m_EventHandlers[eventID].Compile( CStrW( filename ) + L"::" + EventName + L" (" + CStrW( Child.GetLineNumber() ) + L")", Code );
 					HasProperty( EventName )->m_Inherited = false;
 					break;
 				}
@@ -314,12 +314,12 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 		else if( ChildName == el_SoundGroups )
 		{
 			// Read every child element's value into m_SoundGroupTable with its tag as the key
-			XMBElementList children = Child.getChildNodes();
+			XMBElementList children = Child.GetChildNodes();
 			for(int j = 0; j < children.Count; ++j)
 			{
-				XMBElement child = children.item(j);
-				CStr8 name = toCamelCase( XeroFile.getElementString( child.getNodeName() ) );
-				CStr8 value = child.getText();
+				XMBElement child = children.Item(j);
+				CStr8 name = toCamelCase( XeroFile.GetElementString( child.GetNodeName() ) );
+				CStr8 value = child.GetText();
 				m_SoundGroupTable[name] = value;
 			}
 		}
@@ -336,7 +336,7 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 	}
 	else
 	{
-		m_unmodified = g_EntityTemplateCollection.getTemplate( m_Tag, 0 );
+		m_unmodified = g_EntityTemplateCollection.GetTemplate( m_Tag, 0 );
 	}
 
 	return true;
@@ -345,19 +345,19 @@ bool CEntityTemplate::loadXML( const CStr& filename )
 void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName )
 {
 	// Add a property, put the node text into it.
-	CStrW PropertyName = BasePropertyName + CStrW( toCamelCase( XeroFile.getElementString( Source.getNodeName() ) ) );
+	CStrW PropertyName = BasePropertyName + CStrW( toCamelCase( XeroFile.GetElementString( Source.GetNodeName() ) ) );
 
 	IJSComplexProperty* Existing = HasProperty( PropertyName );
 	if( Existing )
 	{	
 		if( !Existing->m_Intrinsic )
 			LOG( WARNING, LOG_CATEGORY, "CEntityTemplate::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
-		Existing->Set( this, JSParseString( Source.getText() ) );
+		Existing->Set( this, JSParseString( Source.GetText() ) );
 		//Existing->m_Inherited = false;
 	}
 	else
 	{
-		if( !Source.getText().length() )
+		if( !Source.GetText().length() )
 		{
 			// Arbitrarily say that if a node has no other value, define it to be 'true'.
 			// Appears to be the most convenient thing to do in most circumstances.
@@ -365,7 +365,7 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 		}
 		else
 		{
-			AddProperty( PropertyName, Source.getText() );
+			AddProperty( PropertyName, Source.GetText() );
 		}
 	}
 
@@ -373,11 +373,11 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 	PropertyName += CStrW( L"." );
 
 	// Retrieve any attributes it has and add them as subproperties.
-	XMBAttributeList AttributeSet = Source.getAttributes();
+	XMBAttributeList AttributeSet = Source.GetAttributes();
 	for( unsigned int AttributeID = 0; AttributeID < (unsigned int)AttributeSet.Count; AttributeID++ )
 	{
-		XMBAttribute Attribute = AttributeSet.item( AttributeID );
-		CStrW AttributeName = PropertyName + CStr8( toCamelCase( XeroFile.getAttributeString( Attribute.Name ) ) );
+		XMBAttribute Attribute = AttributeSet.Item( AttributeID );
+		CStrW AttributeName = PropertyName + CStr8( toCamelCase( XeroFile.GetAttributeString( Attribute.Name ) ) );
 		Existing = HasProperty( AttributeName );
 		
 		if( Existing )
@@ -390,10 +390,10 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 	}
 
 	// Retrieve any child nodes the property has and, similarly, add them as subproperties.
-	XMBElementList NodeSet = Source.getChildNodes();
+	XMBElementList NodeSet = Source.GetChildNodes();
 	for( unsigned int NodeID = 0; NodeID < (unsigned int)NodeSet.Count; NodeID++ )
 	{
-		XMBElement Node = NodeSet.item( NodeID );
+		XMBElement Node = NodeSet.Item( NodeID );
 		XMLLoadProperty( XeroFile, Node, PropertyName );
 	}
 
@@ -409,7 +409,7 @@ void CEntityTemplate::ScriptingInit()
 {
 	AddMethod<jsval, &CEntityTemplate::ToString>( "toString", 0 );
 
-	AddClassProperty( L"traits.id.classes", (GetFn)&CEntityTemplate::getClassSet, (SetFn)&CEntityTemplate::setClassSet );
+	AddClassProperty( L"traits.id.classes", (GetFn)&CEntityTemplate::GetClassSet, (SetFn)&CEntityTemplate::SetClassSet );
 	
 	AddClassProperty( L"actions.move.speed", &CEntityTemplate::m_speed );
 	AddClassProperty( L"actions.move.turningRadius", &CEntityTemplate::m_turningRadius );

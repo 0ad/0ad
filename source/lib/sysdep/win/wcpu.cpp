@@ -30,21 +30,20 @@
 
 // limit allows statically allocated per-CPU structures (for simplicity).
 // WinAPI only supports max. 32 CPUs anyway (due to DWORD bitfields).
-// signed int because num_cpus is tri-state.
-static const int MAX_CPUS = 32;
+static const uint MAX_CPUS = 32;
 
 
-int wcpu_numProcessors()
+/// get number of CPUs (can't fail)
+uint wcpu_NumProcessors()
 {
-	// get number of CPUs (can't fail)
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);
-	const int num_processors = (int)si.dwNumberOfProcessors;
+	const uint num_processors = (uint)si.dwNumberOfProcessors;
 	return num_processors;
 }
 
 
-int wcpu_isThrottlingPossible()
+int wcpu_IsThrottlingPossible()
 {
 	WIN_SAVE_LAST_ERROR;
 	int is_throttling_possible = -1;
@@ -80,7 +79,7 @@ int wcpu_isThrottlingPossible()
 		if(pCNPI(ProcessorInformation, 0,0, ppi,sizeof(ppi)) == STATUS_SUCCESS)
 		{
 			const PROCESSOR_POWER_INFORMATION* p = ppi;
-			for(int i = 0; i < MIN(wcpu_numProcessors(), MAX_CPUS); i++, p++)
+			for(uint i = 0; i < std::min(wcpu_NumProcessors(), MAX_CPUS); i++, p++)
 			{
 				if(p->MhzLimit != p->MaxMhz || p->CurrentMhz != p->MaxMhz)
 				{
@@ -126,7 +125,7 @@ int wcpu_isThrottlingPossible()
 //
 // may fail if e.g. OS is preventing us from running on some CPUs.
 // called from ia32.cpp get_cpu_count.
-LibError wcpu_callByEachCPU(CpuCallback cb, void* param)
+LibError wcpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 	const HANDLE hProcess = GetCurrentProcess();
 	DWORD process_affinity, system_affinity;

@@ -51,7 +51,7 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize,bool dynamic)
 
 		// (PT: Disabled the VBOFailed test because it's not very useful at the
 		// moment (it'll just cause the program to terminate, and I don't think
-		// it has ever helped to discover any problems, and a later oglCheck()
+		// it has ever helped to discover any problems, and a later ogl_WarnIfError()
 		// will tell us if there were any VBO issues anyway), and so it's a
 		// waste of time to call glGetError so frequently.)
 		// glGetError(); // clear the error state

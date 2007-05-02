@@ -20,8 +20,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef CPU_H__
-#define CPU_H__
+#ifndef INCLUDED_CPU
+#define INCLUDED_CPU
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,17 +37,17 @@ namespace ERR
 
 
 // must be called before any of the below accessors.
-extern void cpu_init(void);
+extern void cpu_Init(void);
 
-extern bool cpu_isModuleInitialized();
+extern bool cpu_IsModuleInitialized();
 
 
-extern const char* cpu_identifierString();
-extern double cpu_clockFrequency();
-extern int cpu_numPackages();	// i.e. sockets
-extern int cpu_coresPerPackage();
-extern int cpu_logicalPerCore();
-extern bool cpu_isThrottlingPossible();
+extern const char* cpu_IdentifierString();
+extern double cpu_ClockFrequency();
+extern uint cpu_NumPackages();	// i.e. sockets
+extern uint cpu_CoresPerPackage();
+extern uint cpu_LogicalPerCore();
+extern bool cpu_IsThrottlingPossible();
 
 
 //
@@ -59,11 +59,11 @@ enum CpuMemoryIndicators
 	CPU_MEM_TOTAL, CPU_MEM_AVAILABLE
 };
 
-extern size_t cpu_memorySize(CpuMemoryIndicators mem_type);
+extern size_t cpu_MemorySize(CpuMemoryIndicators mem_type);
 
-// faster than cpu_memorySize (caches total size determined during init),
+// faster than cpu_MemorySize (caches total size determined during init),
 // returns #Mebibytes (cleaned up to account e.g. for nonpaged pool)
-extern size_t cpu_memoryTotalMiB();
+extern size_t cpu_MemoryTotalMiB();
 
 
 //
@@ -85,12 +85,12 @@ extern bool cpu_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value
  * add a signed value to a variable without the possibility of interference
  * from other threads/CPUs.
  **/
-extern void cpu_atomic_add(intptr_t* location, intptr_t increment);
+extern void cpu_AtomicAdd(intptr_t* location, intptr_t increment);
 
 // enforce strong memory ordering.
-extern void cpu_mfence();
+extern void cpu_MemoryFence();
 
-extern void cpu_serialize();
+extern void cpu_Serialize();
 
 
 // drop-in replacement for libc memcpy(). only requires CPU support for
@@ -110,14 +110,14 @@ extern void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t siz
 // called from ia32.cpp get_cpu_count.
 
 typedef void (*CpuCallback)(void* param);
-extern LibError cpu_callByEachCPU(CpuCallback cb, void* param);
+extern LibError cpu_CallByEachCPU(CpuCallback cb, void* param);
 
 
 // convert float to int much faster than _ftol2, which would normally be
 // used by (int) casts.
-extern i32 cpu_i32_from_float(float f);
-extern i32 cpu_i32_from_double(double d);
-extern i64 cpu_i64_from_double(double d);
+extern i32 cpu_i32FromFloat(float f);
+extern i32 cpu_i32FromDouble(double d);
+extern i64 cpu_i64FromDouble(double d);
 
 
 
@@ -138,4 +138,4 @@ extern i64 cpu_i64_from_double(double d);
 }
 #endif
 
-#endif	// #ifndef CPU_H__
+#endif	// #ifndef INCLUDED_CPU

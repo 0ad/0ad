@@ -248,7 +248,7 @@ void CGame::UpdateGameStatus()
 
 	for (int i=0; i<MAX_HANDLES; i++)
 	{	
-		CHandle *handle = m_World->GetEntityManager().getHandle(i);
+		CHandle *handle = m_World->GetEntityManager().GetHandle(i);
 		if ( !handle )
 			continue;
 		CPlayer *tmpPlayer = handle->m_entity->GetPlayer();

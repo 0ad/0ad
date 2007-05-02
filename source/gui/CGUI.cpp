@@ -1040,7 +1040,7 @@ void CGUI::ReportParseError(const char *str, ...)
 /**
  * @callgraph
  */
-void CGUI::LoadXMLFile(const string &Filename)
+void CGUI::LoadXmlFile(const string &Filename)
 {
 	// Reset parse error
 	//  we can later check if this has increased
@@ -1051,11 +1051,11 @@ void CGUI::LoadXMLFile(const string &Filename)
 		// Fail silently
 		return;
 
-	XMBElement node = XeroFile.getRoot();
+	XMBElement node = XeroFile.GetRoot();
 
 	// Check root element's (node) name so we know what kind of
 	//  data we'll be expecting
-	CStr root_name (XeroFile.getElementString(node.getNodeName()));
+	CStr root_name (XeroFile.GetElementString(node.GetNodeName()));
 
 	try
 	{
@@ -1084,7 +1084,7 @@ void CGUI::LoadXMLFile(const string &Filename)
 		}
 		else
 		{
-			debug_warn("CGUI::LoadXMLFile error");
+			debug_warn("CGUI::LoadXmlFile error");
 			// TODO Gee: Output in log
 		}
 	}
@@ -1108,17 +1108,17 @@ void CGUI::LoadXMLFile(const string &Filename)
 
 void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile)
 {
-	int el_script = pFile->getElementID("script");
+	int el_script = pFile->GetElementID("script");
 
 	// Iterate main children
 	//  they should all be <object> or <script> elements
-	XMBElementList children = Element.getChildNodes();
+	XMBElementList children = Element.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
 		//debug_printf("Object %d\n", i);
-		XMBElement child = children.item(i);
+		XMBElement child = children.Item(i);
 
-		if (child.getNodeName() == el_script)
+		if (child.GetNodeName() == el_script)
 			// Execute the inline script
 			Xeromyces_ReadScript(child, pFile);
 		else
@@ -1131,10 +1131,10 @@ void CGUI::Xeromyces_ReadRootSprites(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <sprite> elements
-	XMBElementList children = Element.getChildNodes();
+	XMBElementList children = Element.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		XMBElement child = children.item(i);
+		XMBElement child = children.Item(i);
 
 		// Read in this whole object into the GUI
 		Xeromyces_ReadSprite(child, pFile);
@@ -1145,10 +1145,10 @@ void CGUI::Xeromyces_ReadRootStyles(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <styles> elements
-	XMBElementList children = Element.getChildNodes();
+	XMBElementList children = Element.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		XMBElement child = children.item(i);
+		XMBElement child = children.Item(i);
 
 		// Read in this whole object into the GUI
 		Xeromyces_ReadStyle(child, pFile);
@@ -1159,14 +1159,14 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 {
 	// Iterate main children
 	//  they should all be <icon>, <scrollbar> or <tooltip>.
-	XMBElementList children = Element.getChildNodes();
+	XMBElementList children = Element.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		XMBElement child = children.item(i);
+		XMBElement child = children.Item(i);
 
 		// Read in this whole object into the GUI
 
-		CStr name (pFile->getElementString(child.getNodeName()));
+		CStr name (pFile->GetElementString(child.GetNodeName()));
 
 		if (name == "scrollbar")
 		{
@@ -1202,10 +1202,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	// Our object we are going to create
 	IGUIObject *object = NULL;
 
-	XMBAttributeList attributes = Element.getAttributes();
+	XMBAttributeList attributes = Element.GetAttributes();
 
 	// Well first of all we need to determine the type
-	CStr type (attributes.getNamedItem(pFile->getAttributeID("type")));
+	CStr type (attributes.GetNamedItem(pFile->GetAttributeID("type")));
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
@@ -1220,8 +1220,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 
 	// Cache some IDs for element attribute names, to avoid string comparisons
-	#define ELMT(x) int elmt_##x = pFile->getElementID(#x)
-	#define ATTR(x) int attr_##x = pFile->getAttributeID(#x)
+	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
+	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
 	ELMT(object);
 	ELMT(action);
 	ATTR(style);
@@ -1239,7 +1239,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	//
 	//	Always load default (if it's available) first!
 	//
-	CStr argStyle (attributes.getNamedItem(attr_style));
+	CStr argStyle (attributes.GetNamedItem(attr_style));
 
 	if (m_Styles.count("default") == 1)
 		object->LoadStyle(*this, "default");
@@ -1267,7 +1267,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	// Now we can iterate all attributes and store
 	for (i=0; i<attributes.Count; ++i)
 	{
-		XMBAttribute attr = attributes.item(i);
+		XMBAttribute attr = attributes.Item(i);
 
 		// If value is "null", then it is equivalent as never being entered
 		if ((CStr)attr.Value == "null")
@@ -1293,9 +1293,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			ManuallySetZ = true;
 
 		// Try setting the value
-		if (object->SetSetting(pFile->getAttributeString(attr.Name), (CStr)attr.Value, true) != PS_OK)
+		if (object->SetSetting(pFile->GetAttributeString(attr.Name), (CStr)attr.Value, true) != PS_OK)
 		{
-			ReportParseError("(object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName().c_str(), pFile->getAttributeString(attr.Name).c_str(), CStr(attr.Value).c_str());
+			ReportParseError("(object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), CStr(attr.Value).c_str());
 
 			// This is not a fatal error
 		}
@@ -1310,9 +1310,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 	// Attempt to register the hotkey tag, if one was provided
 	if (! hotkeyTag.empty())
-		hotkeyRegisterGUIObject(object->GetName(), hotkeyTag);
+		HotkeyRegisterGuiObject(object->GetName(), hotkeyTag);
 
-	CStrW caption (Element.getText());
+	CStrW caption (Element.GetText());
 	if (! caption.empty())
 	{
 		// Set the setting caption to this
@@ -1327,15 +1327,15 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	//
 
 	// Iterate children
-	XMBElementList children = Element.getChildNodes();
+	XMBElementList children = Element.GetChildNodes();
 
 	for (i=0; i<children.Count; ++i)
 	{
 		// Get node
-		XMBElement child = children.item(i);
+		XMBElement child = children.Item(i);
 
 		// Check what name the elements got
-		int element_name = child.getNodeName();
+		int element_name = child.GetNodeName();
 
 		if (element_name == elmt_object)
 		{
@@ -1347,7 +1347,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// Scripted <action> element
 
 			// Check for a 'file' parameter
-			CStr file (child.getAttributes().getNamedItem(attr_file));
+			CStr file (child.GetAttributes().GetNamedItem(attr_file));
 
 			CStr code;
 
@@ -1365,9 +1365,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			}
 
 			// Read the inline code (concatenating to the file code, if both are specified)
-			code += (CStr)child.getText();
+			code += (CStr)child.GetText();
 
-			CStr action = (CStr)child.getAttributes().getNamedItem(attr_on);
+			CStr action = (CStr)child.GetAttributes().GetNamedItem(attr_on);
 			object->RegisterScriptHandler(action.LowerCase(), code, this);
 		}
 		else
@@ -1432,16 +1432,16 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 {
 
 	// Check for a 'file' parameter
-	CStr file (Element.getAttributes().getNamedItem( pFile->getAttributeID("file") ));
+	CStr file (Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("file") ));
 
 	// If there is a file specified, open and execute it
 	if (! file.empty())
 		g_ScriptingHost.RunScript(file, m_ScriptObject);
 
 	// Execute inline scripts
-	CStr code (Element.getText());
+	CStr code (Element.GetText());
 	if (! code.empty())
-		g_ScriptingHost.RunMemScript(code.c_str(), code.length(), "Some XML file", Element.getLineNumber(), m_ScriptObject);
+		g_ScriptingHost.RunMemScript(code.c_str(), code.length(), "Some XML file", Element.GetLineNumber(), m_ScriptObject);
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
@@ -1457,7 +1457,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Get name, we know it exists because of DTD requirements
-	name = Element.getAttributes().getNamedItem( pFile->getAttributeID("name") );
+	name = Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("name") );
 
 	if (m_Sprites.find(name) != m_Sprites.end())
 		LOG(WARNING, LOG_CATEGORY, "Sprite name '%s' used more than once; first definition will be discarded", (const char*)name);
@@ -1469,14 +1469,14 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	SGUIImageEffects* effects = NULL;
 
 	// Iterate children
-	XMBElementList children = Element.getChildNodes();
+	XMBElementList children = Element.GetChildNodes();
 
 	for (int i=0; i<children.Count; ++i)
 	{
 		// Get node
-		XMBElement child = children.item(i);
+		XMBElement child = children.Item(i);
 
-		CStr ElementName (pFile->getElementString(child.getNodeName()));
+		CStr ElementName (pFile->GetElementString(child.GetNodeName()));
 
 		if (ElementName == "image")
 		{
@@ -1527,11 +1527,11 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	//
 
 	// Now we can iterate all attributes and store
-	XMBAttributeList attributes = Element.getAttributes();
+	XMBAttributeList attributes = Element.GetAttributes();
 	for (int i=0; i<attributes.Count; ++i)
 	{
-		XMBAttribute attr = attributes.item(i);
-		CStr attr_name (pFile->getAttributeString(attr.Name));
+		XMBAttribute attr = attributes.Item(i);
+		CStr attr_name (pFile->GetAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
 		if (attr_name == "texture")
@@ -1612,11 +1612,11 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 	}
 
 	// Look for effects
-	XMBElementList children = Element.getChildNodes();
+	XMBElementList children = Element.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		XMBElement child = children.item(i);
-		CStr ElementName (pFile->getElementString(child.getNodeName()));
+		XMBElement child = children.Item(i);
+		CStr ElementName (pFile->GetElementString(child.GetNodeName()));
 		if (ElementName == "effect")
 		{
 			debug_assert(! image.m_Effects); // DTD should only allow one effect per sprite
@@ -1638,11 +1638,11 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 
 void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImageEffects &effects)
 {
-	XMBAttributeList attributes = Element.getAttributes();
+	XMBAttributeList attributes = Element.GetAttributes();
 	for (int i=0; i<attributes.Count; ++i)
 	{
-		XMBAttribute attr = attributes.item(i);
-		CStr attr_name (pFile->getAttributeString(attr.Name));
+		XMBAttribute attr = attributes.Item(i);
+		CStr attr_name (pFile->GetAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
 #define COLOR(xml, mem, alpha) \
@@ -1684,11 +1684,11 @@ void CGUI::Xeromyces_ReadStyle(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Now we can iterate all attributes and store
-	XMBAttributeList attributes = Element.getAttributes();
+	XMBAttributeList attributes = Element.GetAttributes();
 	for (int i=0; i<attributes.Count; ++i)
 	{
-		XMBAttribute attr = attributes.item(i);
-		CStr attr_name (pFile->getAttributeString(attr.Name));
+		XMBAttribute attr = attributes.Item(i);
+		CStr attr_name (pFile->GetAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
 		// The "name" setting is actually the name of the style
@@ -1717,11 +1717,11 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 	//
 
 	// Now we can iterate all attributes and store
-	XMBAttributeList attributes = Element.getAttributes();
+	XMBAttributeList attributes = Element.GetAttributes();
 	for (int i=0; i<attributes.Count; ++i)
 	{
-		XMBAttribute attr = attributes.item(i);
-		CStr attr_name = pFile->getAttributeString(attr.Name);
+		XMBAttribute attr = attributes.Item(i);
+		CStr attr_name = pFile->GetAttributeString(attr.Name);
 		CStr attr_value (attr.Value);
 
 		if (attr_value == "null")
@@ -1800,11 +1800,11 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 	SGUIIcon icon;
 	CStr name;
 
-	XMBAttributeList attributes = Element.getAttributes();
+	XMBAttributeList attributes = Element.GetAttributes();
 	for (int i=0; i<attributes.Count; ++i)
 	{
-		XMBAttribute attr = attributes.item(i);
-		CStr attr_name (pFile->getAttributeString(attr.Name));
+		XMBAttribute attr = attributes.Item(i);
+		CStr attr_name (pFile->GetAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
 		if (attr_value == "null")
@@ -1846,11 +1846,11 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 
 	IGUIObject* object = new CTooltip;
 
-	XMBAttributeList attributes = Element.getAttributes();
+	XMBAttributeList attributes = Element.GetAttributes();
 	for (int i=0; i<attributes.Count; ++i)
 	{
-		XMBAttribute attr = attributes.item(i);
-		CStr attr_name (pFile->getAttributeString(attr.Name));
+		XMBAttribute attr = attributes.Item(i);
+		CStr attr_name (pFile->GetAttributeString(attr.Name));
 		CStr attr_value (attr.Value);
 
 		if (attr_name == "name")
@@ -1871,14 +1871,14 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 {
 	// Read the color and stor in m_PreDefinedColors
 
-	XMBAttributeList attributes = Element.getAttributes();
+	XMBAttributeList attributes = Element.GetAttributes();
 
 	//IGUIObject* object = new CTooltip;
 	CColor color;
-	CStr name = attributes.getNamedItem(pFile->getAttributeID("name"));
+	CStr name = attributes.GetNamedItem(pFile->GetAttributeID("name"));
 
 	// Try parsing value 
-	CStr value (Element.getText());
+	CStr value (Element.GetText());
 	if (! value.empty())
 	{
 		// Try setting color to value

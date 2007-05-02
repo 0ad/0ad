@@ -51,17 +51,17 @@ public:
 	// return number of patches along edge of the terrain
 	u32 GetPatchesPerSide() const { return m_MapSizePatches; }
 
-	bool isOnMap(float x, float z) const
+	bool IsOnMap(float x, float z) const
 	{
 		return ((x >= 0.0f) && (x < (float)((m_MapSize-1) * CELL_SIZE))
 		     && (z >= 0.0f) && (z < (float)((m_MapSize-1) * CELL_SIZE)));
 	}
 
-	bool isOnMap(const CVector2D& v) const;
+	bool IsOnMap(const CVector2D& v) const;
 
-	bool isPassable(const CVector2D& tileSpaceLoc, HEntity entity) const;
+	bool IsPassable(const CVector2D& tileSpaceLoc, HEntity entity) const;
 
-	void clampCoordToMap(int& index) const
+	void ClampCoordToMap(int& index) const
 	{
 		if(index < 0)
 			index = 0;
@@ -69,13 +69,13 @@ public:
 			index = m_MapSize - 2;
 	}
 
-	float getVertexGroundLevel(int i, int j) const;
-	float getExactGroundLevel(float x, float z) const;
-	float getExactGroundLevel(const CVector2D& v) const;
+	float GetVertexGroundLevel(int i, int j) const;
+	float GetExactGroundLevel(float x, float z) const;
+	float GetExactGroundLevel(const CVector2D& v) const;
 
-	float getSlope(float x, float z) const ;
+	float GetSlope(float x, float z) const ;
 	//Find the slope of in X and Z axes depending on the way the entity is facing
-	CVector2D getSlopeAngleFace(CEntity* entity) const;	
+	CVector2D GetSlopeAngleFace(CEntity* entity) const;	
 	// resize this terrain such that each side has given number of patches
 	void Resize(u32 size);
 
@@ -96,14 +96,14 @@ public:
 	// calculate the vertex under a given position (rounding down coordinates)
 	static void CalcFromPosition(const CVector3D& pos, i32& i, i32& j)
 	{
-		i = cpu_i32_from_float(pos.X/CELL_SIZE);
-		j = cpu_i32_from_float(pos.Z/CELL_SIZE);
+		i = cpu_i32FromFloat(pos.X/CELL_SIZE);
+		j = cpu_i32FromFloat(pos.Z/CELL_SIZE);
 	}
 	// calculate the vertex under a given position (rounding down coordinates)
 	static void CalcFromPosition(float x, float z, i32& i, i32& j)
 	{
-		i = cpu_i32_from_float(x/CELL_SIZE);
-		j = cpu_i32_from_float(z/CELL_SIZE);
+		i = cpu_i32FromFloat(x/CELL_SIZE);
+		j = cpu_i32FromFloat(z/CELL_SIZE);
 	}
 	// calculate the normal at a given vertex
 	void CalcNormal(u32 i, u32 j, CVector3D& normal) const;

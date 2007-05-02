@@ -14,11 +14,11 @@ namespace JSI_Selection
 	void finalize( JSContext* cx, JSObject* obj );
 
 	JSBool getSelection( JSContext* context, JSObject* obj, jsval id, jsval* vp );
-	JSBool setSelection( JSContext* context, JSObject* obj, jsval id, jsval* vp );
+	JSBool SetSelection( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 	JSBool getGroups( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 	JSBool setGroups( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 
-	JSBool isValidContextOrder( JSContext* context, JSObject* obj, uint argc, jsval* argv, jsval* rval );
+	JSBool IsValidContextOrder( JSContext* context, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 	JSBool getContextOrder( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 	JSBool setContextOrder( JSContext* context, JSObject* obj, jsval id, jsval* vp );
 	 

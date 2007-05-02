@@ -64,7 +64,7 @@ CWorld::CWorld(CGame *pGame):
 void CWorld::Initialize(CGameAttributes *pAttribs)
 {
 	// TODO: Find a better way of handling these global things
-	ONCE(RegMemFun(CEntityTemplateCollection::GetSingletonPtr(), &CEntityTemplateCollection::loadTemplates, L"loadTemplates", 15));
+	ONCE(RegMemFun(CEntityTemplateCollection::GetSingletonPtr(), &CEntityTemplateCollection::LoadTemplates, L"LoadTemplates", 15));
 
 	// Load the map, if one was specified
 	if (pAttribs->m_MapFile.length())

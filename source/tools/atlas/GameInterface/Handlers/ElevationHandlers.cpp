@@ -118,21 +118,21 @@ BEGIN_COMMAND(AlterElevation)
 			}
 
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_VERTICES);
-		g_EntityManager.invalidateAll();
+		g_EntityManager.InvalidateAll();
 	}
 
 	void Undo()
 	{
 		m_TerrainDelta.Undo();
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
-		g_EntityManager.invalidateAll();
+		g_EntityManager.InvalidateAll();
 	}
 
 	void Redo()
 	{
 		m_TerrainDelta.Redo();
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
-		g_EntityManager.invalidateAll();
+		g_EntityManager.InvalidateAll();
 	}
 
 	void MergeIntoPrevious(cAlterElevation* prev)
@@ -177,21 +177,21 @@ BEGIN_COMMAND(FlattenElevation)
 			}
 
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(x0, y0, x0+g_CurrentBrush.m_W, y0+g_CurrentBrush.m_H, RENDERDATA_UPDATE_VERTICES);
-		g_EntityManager.invalidateAll();
+		g_EntityManager.InvalidateAll();
 	}
 
 	void Undo()
 	{
 		m_TerrainDelta.Undo();
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
-		g_EntityManager.invalidateAll();
+		g_EntityManager.InvalidateAll();
 	}
 
 	void Redo()
 	{
 		m_TerrainDelta.Redo();
 		g_Game->GetWorld()->GetTerrain()->MakeDirty(RENDERDATA_UPDATE_VERTICES);
-		g_EntityManager.invalidateAll();
+		g_EntityManager.InvalidateAll();
 	}
 
 	void MergeIntoPrevious(cFlattenElevation* prev)

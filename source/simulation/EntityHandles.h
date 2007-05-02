@@ -48,8 +48,8 @@ class HEntity
 	friend struct CEntityList;
 	u16 m_handle;
 private:
-	void addRef();
-	void decRef();
+	void AddRef();
+	void DecRef();
 	HEntity( u16 index );
 public:
 	CEntity& operator*() const;
@@ -63,7 +63,7 @@ public:
 	bool operator!() const;
 	operator CEntity*() const;
 	// Visual C++ 2003 can't handle (bool && HEntity) expressions, so provide another alias for operator bool()
-	bool isValid() const {return this->operator bool();}
+	bool IsValid() const {return this->operator bool();}
 	~HEntity();
 
 	uint GetSerializedLength() const;

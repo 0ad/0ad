@@ -85,8 +85,7 @@ public:
 		return m_ActiveTechs;
 	}
 
-	// Caller frees...
-	std::vector<HEntity>* GetControlledEntities();
+	void GetControlledEntities(std::vector<HEntity>& controlled_entities);
 
 	// JS Interface Functions
 	jsval JSI_ToString( JSContext* context, uintN argc, jsval* argv );

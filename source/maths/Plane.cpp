@@ -56,7 +56,7 @@ void CPlane::Normalize ()
 {
 	float Scale;
 
-	Scale = 1.0f/m_Norm.GetLength ();
+	Scale = 1.0f/m_Norm.Length ();
 
 	m_Norm.X *= Scale;
 	m_Norm.Y *= Scale;

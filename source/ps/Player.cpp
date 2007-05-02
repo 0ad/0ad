@@ -107,9 +107,9 @@ static bool ControllerPredicate( CEntity* entity, void* userdata )
 	return( entity->GetPlayer() == userdata );
 }
 
-std::vector<HEntity>* CPlayer::GetControlledEntities()
+void CPlayer::GetControlledEntities(std::vector<HEntity>& controlled_entities)
 {
-	return( g_EntityManager.matches( ControllerPredicate, this ) );
+	g_EntityManager.GetMatchingAsHandles( controlled_entities, ControllerPredicate, this );
 }
 
 jsval CPlayer::JSI_ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
@@ -123,9 +123,9 @@ jsval CPlayer::JSI_ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(ar
 
 jsval CPlayer::JSI_GetControlledEntities(JSContext* UNUSED(cx))
 {
-	std::vector<HEntity>* controlledSet = GetControlledEntities();
-	jsval vp = OBJECT_TO_JSVAL( EntityCollection::Create( *controlledSet ) );
-	delete( controlledSet );
+	std::vector<HEntity> controlledSet;
+	GetControlledEntities(controlledSet);
+	jsval vp = OBJECT_TO_JSVAL( EntityCollection::Create( controlledSet ) );
 	return( vp );
 }
 

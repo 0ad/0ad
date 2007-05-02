@@ -118,14 +118,20 @@ enum
 	HOTKEY_NEGATION_FLAG = 65536
 };
 
-extern void loadHotkeys();
-extern InReaction hotkeyInputHandler( const SDL_Event_* ev );
-extern void hotkeyRegisterGUIObject( const CStr& objName, const CStr& hotkeyName );
+extern void LoadHotkeys();
+extern InReaction HotkeyInputHandler( const SDL_Event_* ev );
+extern void HotkeyRegisterGuiObject( const CStr& objName, const CStr& hotkeyName );
 
-extern void initKeyNameMap();
-extern CStr getKeyName( int keycode );
-extern int getKeyCode( const CStr& keyname );
+/**
+ * @return whether the specified HOTKEY_* responds to the specified SDLK_*
+ * (mainly for the screenshot system to know whether it needs to override
+ * the printscreen screen). Ignores modifier keys.
+ **/
+extern bool HotkeyRespondsTo( int hotkey, int sdlkey );
 
-extern bool keyRespondsTo( int hotkey, int sdlkey );
+/**
+ * @return whether one of the key combinations for the given hotkey is pressed
+ **/
+extern bool HotkeyIsPressed( const CStr& keyname );
 
 extern bool hotkeys[HOTKEY_LAST];

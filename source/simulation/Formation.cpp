@@ -10,15 +10,15 @@ CFormation::CFormation()
 {
 	m_numSlots = 0;
 }
-bool CFormation::loadXML(const CStr& filename)
+bool CFormation::LoadXml(const CStr& filename)
 {
 	CXeromyces XeroFile;
 
 	if (XeroFile.Load(filename) != PSRETURN_OK)
 		return false;
 
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(formation);
 	EL(fl);
 	EL(rk);
@@ -49,18 +49,18 @@ bool CFormation::loadXML(const CStr& filename)
 	#undef AT
 	#undef EL
 
-	XMBElement Root = XeroFile.getRoot();
-	if( Root.getNodeName() != el_formation )
+	XMBElement Root = XeroFile.GetRoot();
+	if( Root.GetNodeName() != el_formation )
 	{
-		LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: XML root was not \"Formation\" in file %s. Load failed.", filename.c_str() );
+		LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXml: XML root was not \"Formation\" in file %s. Load failed.", filename.c_str() );
 		return( false );
 	}
 
 	//Load in single attributes
-	XMBAttributeList Attributes = Root.getAttributes();
+	XMBAttributeList Attributes = Root.GetAttributes();
 	for ( int i=0; i<Attributes.Count; ++i )
 	{
-		XMBAttribute Attr = Attributes.item(i);
+		XMBAttribute Attr = Attributes.Item(i);
 		if ( Attr.Name == at_tag )
 			m_tag = CStr(Attr.Value);
 		else if ( Attr.Name == at_bonus )
@@ -103,13 +103,13 @@ bool CFormation::loadXML(const CStr& filename)
 			m_fileSpacing = CStr(Attr.Value).ToFloat();
 		else
 		{
-			const char* invAttr = XeroFile.getAttributeString(Attr.Name).c_str();
-			LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: Invalid attribute %s defined in formation file %s. Load failed.", invAttr, filename.c_str() );
+			const char* invAttr = XeroFile.GetAttributeString(Attr.Name).c_str();
+			LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXml: Invalid attribute %s defined in formation file %s. Load failed.", invAttr, filename.c_str() );
 			return( false );
 		}
 	}
 
-    XMBElementList RootChildren = Root.getChildNodes();
+    XMBElementList RootChildren = Root.GetChildNodes();
 	int file=0;
 	int rank=0;
 	int maxrank=0;
@@ -117,41 +117,41 @@ bool CFormation::loadXML(const CStr& filename)
 	//Read in files and ranks
     for (int i = 0; i < RootChildren.Count; ++i)
     {
-        XMBElement RootChild = RootChildren.item(i);
-        int ChildName = RootChild.getNodeName();
+        XMBElement RootChild = RootChildren.Item(i);
+        int ChildName = RootChild.GetNodeName();
 
         if ( ChildName == el_fl )
 		{
 			 rank = 0;
-			XMBAttributeList FileAttribList = RootChild.getAttributes();
+			XMBAttributeList FileAttribList = RootChild.GetAttributes();
 			//Load default category
-			CStr FileCatValue = FileAttribList.getNamedItem(at_category);
+			CStr FileCatValue = FileAttribList.GetNamedItem(at_category);
 
 			//Specific slots in this file (row)
-			XMBElementList RankNodes = RootChild.getChildNodes();
+			XMBElementList RankNodes = RootChild.GetChildNodes();
 			for ( int r=0; r<RankNodes.Count; ++r )
 			{
-				XMBElement Rank = RankNodes.item(r);
-				if ( Rank.getNodeName() == el_blank )
+				XMBElement Rank = RankNodes.Item(r);
+				if ( Rank.GetNodeName() == el_blank )
 				{
 					++rank;
 					continue;
 				}
-				else if ( Rank.getNodeName() != el_rk )
+				else if ( Rank.GetNodeName() != el_rk )
 					return false;
 					//error
 
-				XMBAttributeList RankAttribList = Rank.getAttributes();
-				int order = CStr( RankAttribList.getNamedItem(at_order) ).ToInt();
-				CStr category = CStr( RankAttribList.getNamedItem(at_category) );
+				XMBAttributeList RankAttribList = Rank.GetAttributes();
+				int order = CStr( RankAttribList.GetNamedItem(at_order) ).ToInt();
+				CStr category = CStr( RankAttribList.GetNamedItem(at_category) );
 
 				if( order <= 0 )
 				{
-					LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: Invalid (negative number or 0) order defined in formation file %s. The game will try to continue anyway.", filename.c_str() );
+					LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXml: Invalid (negative number or 0) order defined in formation file %s. The game will try to continue anyway.", filename.c_str() );
 					continue;
 				}
 				--order;	//We need this to be in line with arrays, so start at 0
-				//if ( category.length() )
+				//if ( category.Length() )
 					//AssignCategory(order, category);
 				//else
 					AssignCategory(order, FileCatValue);
@@ -179,7 +179,7 @@ bool CFormation::loadXML(const CStr& filename)
 	{
 		if ( m_slots.find(i) == m_slots.end() )
 		{
-			LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXML: Missing orders in %s. Load failed.", filename.c_str() );
+			LOG( ERROR, LOG_CATEGORY, "CFormation::LoadXml: Missing orders in %s. Load failed.", filename.c_str() );
 			return false;
 		}
 		else

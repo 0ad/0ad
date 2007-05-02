@@ -160,7 +160,7 @@ void JSI_Sound::ScriptingInit()
 	AddMethod<bool, &JSI_Sound::Free>("free", 0);
 	AddMethod<bool, &JSI_Sound::SetGain>("setGain", 0);
 	AddMethod<bool, &JSI_Sound::SetPitch>("setPitch", 0);
-	AddMethod<bool, &JSI_Sound::SetPosition>("setPosition", 0);
+	AddMethod<bool, &JSI_Sound::SetPosition>("SetPosition", 0);
 	AddMethod<bool, &JSI_Sound::Fade>("fade", 0);
 
 	CJSObject<JSI_Sound>::ScriptingInit("Sound", &JSI_Sound::Construct, 1);

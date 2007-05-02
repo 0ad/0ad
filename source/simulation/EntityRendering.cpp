@@ -35,7 +35,7 @@
 
 extern int g_xres, g_yres;
 
-void CEntity::render()
+void CEntity::Render()
 {
 	if( !m_visible ) return;
 
@@ -55,7 +55,7 @@ void CEntity::render()
 			x = it->m_target_location.x;
 			y = it->m_target_location.y;
 		}
-		destinationCollisionObject = getContainingObject( CVector2D( x, y ) );
+		destinationCollisionObject = GetContainingObject( CVector2D( x, y ) );
 
 		glShadeModel( GL_FLAT );
 		glBegin( GL_LINE_STRIP );
@@ -73,19 +73,19 @@ void CEntity::render()
 			y = it->m_target_location.y;
 			rayIntersectionResults r;
 			CVector2D fwd( x - x0, y - y0 );
-			float l = fwd.length();
-			fwd = fwd.normalize();
+			float l = fwd.Length();
+			fwd = fwd.Normalize();
 			CVector2D rgt = fwd.beta();
-			if( getRayIntersection( CVector2D( x0, y0 ), fwd, rgt, l, m_bounds->m_radius, destinationCollisionObject, &r ) )
+			if( GetRayIntersection( CVector2D( x0, y0 ), fwd, rgt, l, m_bounds->m_radius, destinationCollisionObject, &r ) )
 			{
 				glEnd();
 				glBegin( GL_LINES );
 				glColor3f( 1.0f, 0.0f, 0.0f );
-				glVertex3f( x0 + fwd.x * r.distance, getAnchorLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
-				glVertex3f( r.position.x, getAnchorLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
+				glVertex3f( x0 + fwd.x * r.distance, GetAnchorLevel( x0 + fwd.x * r.distance, y0 + fwd.y * r.distance ) + 0.25f, y0 + fwd.y * r.distance );
+				glVertex3f( r.position.x, GetAnchorLevel( r.position.x, r.position.y ) + 0.25f, r.position.y );
 				glEnd();
 				glBegin( GL_LINE_STRIP );
-				glVertex3f( x0, getAnchorLevel( x0, y0 ), y0 );
+				glVertex3f( x0, GetAnchorLevel( x0, y0 ), y0 );
 			}
 			switch( it->m_type )
 			{
@@ -106,7 +106,7 @@ void CEntity::render()
 				continue;
 			}
 
-			glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
+			glVertex3f( x, GetAnchorLevel( x, y ) + 0.25f, y );
 		}
 
 		glEnd();
@@ -114,17 +114,17 @@ void CEntity::render()
 	}
 
 	glColor3f( 1.0f, 1.0f, 1.0f );
-	if( getCollisionObject( this ) )
+	if( GetCollisionObject( this ) )
 		glColor3f( 0.5f, 0.5f, 1.0f );
-	m_bounds->render( getAnchorLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
+	m_bounds->Render( GetAnchorLevel( m_position.X, m_position.Z ) + 0.25f ); //m_position.Y + 0.25f );
 }
 
-void CEntity::renderSelectionOutline( float alpha )
+void CEntity::RenderSelectionOutline( float alpha )
 {
 	if( !m_bounds || !m_visible )
 		return;
 
-	if( getCollisionObject( m_bounds, m_player, &m_base->m_socket ) )
+	if( GetCollisionObject( m_bounds, m_player, &m_base->m_socket ) )
 	{
 		glColor4f( 1.0f, 0.5f, 0.5f, alpha );	// We're colliding with another unit; colour outline pink
 	}
@@ -150,7 +150,7 @@ void CEntity::renderSelectionOutline( float alpha )
 				float y = pos.Z + radius * cos( ang );
 #ifdef SELECTION_TERRAIN_CONFORMANCE
 
-				glVertex3f( x, getAnchorLevel( x, y ) + 0.25f, y );
+				glVertex3f( x, GetAnchorLevel( x, y ) + 0.25f, y );
 #else
 
 				glVertex3f( x, pos.Y + 0.25f, y );
@@ -178,38 +178,38 @@ void CEntity::renderSelectionOutline( float alpha )
 			for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 			{
 				p = q + u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-				glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+				glVertex3f( p.x, GetAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 			}
 
 			for( int i = SELECTION_BOX_POINTS; i > -SELECTION_BOX_POINTS; i-- )
 			{
 				p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) - v * w;
-				glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+				glVertex3f( p.x, GetAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 			}
 
 			for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 			{
 				p = q - u * d + v * ( w * (float)i / (float)SELECTION_BOX_POINTS );
-				glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+				glVertex3f( p.x, GetAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 			}
 
 			for( int i = -SELECTION_BOX_POINTS; i < SELECTION_BOX_POINTS; i++ )
 			{
 				p = q + u * ( d * (float)i / (float)SELECTION_BOX_POINTS ) + v * w;
-				glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+				glVertex3f( p.x, GetAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 			}
 #else
 			p = q + u * h + v * w;
-			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, GetAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
 			p = q + u * h - v * w;
-			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, GetAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
 			p = q - u * h + v * w;
-			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, GetAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 
 			p = q + u * h + v * w;
-			glVertex3f( p.x, getAnchorLevel( p.x, p.y ) + 0.25f, p.y );
+			glVertex3f( p.x, GetAnchorLevel( p.x, p.y ) + 0.25f, p.y );
 #endif
 
 
@@ -220,7 +220,7 @@ void CEntity::renderSelectionOutline( float alpha )
 	glEnd();
 }
 
-void CEntity::renderAuras()
+void CEntity::RenderAuras()
 {
 	if( !(m_bounds && m_visible && !m_auras.empty()) )
 		return;
@@ -242,19 +242,19 @@ void CEntity::renderAuras()
 		if ( it->second->m_radius < 15.0f )
 		{
 			glBegin(GL_TRIANGLE_FAN);
-			glVertex3f(0.0f, getAnchorLevel(m_graphics_position.X, 
+			glVertex3f(0.0f, GetAnchorLevel(m_graphics_position.X, 
 					m_graphics_position.Z)-m_graphics_position.Y+.5f, 0.0f);
 			for ( int j=0; j<AURA_CIRCLE_POINTS; ++j )
 			{
 				CVector2D ypos( m_unsnappedPoints[i][j].x+m_graphics_position.X,
 							m_unsnappedPoints[i][j].y+m_graphics_position.Z );
-				CVector3D pos( m_unsnappedPoints[i][j].x, getAnchorLevel(ypos.x, ypos.y)-
+				CVector3D pos( m_unsnappedPoints[i][j].x, GetAnchorLevel(ypos.x, ypos.y)-
 					m_graphics_position.Y+.5f, m_unsnappedPoints[i][j].y );
 				glVertex3f(pos.X, pos.Y, pos.Z);
 			}
 			//Loop around
 			CVector3D pos( m_unsnappedPoints[i][0].x, 
-					getAnchorLevel(m_unsnappedPoints[i][0].x+m_graphics_position.X, 
+					GetAnchorLevel(m_unsnappedPoints[i][0].x+m_graphics_position.X, 
 					m_unsnappedPoints[i][0].y+m_graphics_position.Z)-
 					m_graphics_position.Y+.5f, m_unsnappedPoints[i][0].y );
 			glVertex3f(pos.X, pos.Y, pos.Z);
@@ -270,7 +270,7 @@ void CEntity::renderAuras()
 		{
 			CVector2D ypos( m_unsnappedPoints[i][j].x+m_graphics_position.X,
 						m_unsnappedPoints[i][j].y+m_graphics_position.Z );
-			CVector3D pos( m_unsnappedPoints[i][j].x, getAnchorLevel(ypos.x, ypos.y)-
+			CVector3D pos( m_unsnappedPoints[i][j].x, GetAnchorLevel(ypos.x, ypos.y)-
 				m_graphics_position.Y+.5f, m_unsnappedPoints[i][j].y );
 			glVertex3f(pos.X, pos.Y, pos.Z);
 		}
@@ -296,7 +296,7 @@ void CEntity::renderAuras()
 	glPopMatrix();
 }
 
-CVector2D CEntity::getScreenCoords( float height )
+CVector2D CEntity::GetScreenCoords( float height )
 {
 	CCamera &camera = *g_Game->GetView()->GetCamera();
 
@@ -304,12 +304,12 @@ CVector2D CEntity::getScreenCoords( float height )
 	CVector3D above;
 	above.X = m_position.X;
 	above.Z = m_position.Z;
-	above.Y = getAnchorLevel(m_position.X, m_position.Z) + height;
+	above.Y = GetAnchorLevel(m_position.X, m_position.Z) + height;
 	camera.GetScreenCoordinates(above, sx, sy);
 	return CVector2D( sx, sy );
 }
 
-void CEntity::drawRect( CVector3D& centre, CVector3D& up, CVector3D& right, float x1, float y1, float x2, float y2 )
+void CEntity::DrawRect( CVector3D& centre, CVector3D& up, CVector3D& right, float x1, float y1, float x2, float y2 )
 {
 	glBegin(GL_QUADS);
 	const int X[] = {1,1,0,0};	// which X and Y to choose at each vertex
@@ -323,7 +323,7 @@ void CEntity::drawRect( CVector3D& centre, CVector3D& up, CVector3D& right, floa
 	glEnd();
 }
 
-void CEntity::drawBar( CVector3D& centre, CVector3D& up, CVector3D& right, 
+void CEntity::DrawBar( CVector3D& centre, CVector3D& up, CVector3D& right, 
 		float x1, float y1, float x2, float y2,
 		SColour col1, SColour col2, float currVal, float maxVal )
 {
@@ -334,7 +334,7 @@ void CEntity::drawBar( CVector3D& centre, CVector3D& up, CVector3D& right,
 
 	/*// Draw the border at full size
 	ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_barBorder] );
-	drawRect( centre, up, right, x1, y1, x2, y2 );
+	DrawRect( centre, up, right, x1, y1, x2, y2 );
 	ogl_tex_bind( 0 );
 
 	// Make the bar contents slightly smaller than the border
@@ -346,17 +346,17 @@ void CEntity::drawBar( CVector3D& centre, CVector3D& up, CVector3D& right,
 	// Draw the bar contents
 	float xMid = x2 * fraction + x1 * (1.0f - fraction);
 	glColor3fv( &col1.r );
-	drawRect( centre, up, right, x1, y1, xMid, y2 );
+	DrawRect( centre, up, right, x1, y1, xMid, y2 );
 	glColor3fv( &col2.r );
-	drawRect( centre, up, right, xMid, y1, x2, y2 );
+	DrawRect( centre, up, right, xMid, y1, x2, y2 );
 }
 
-void CEntity::renderBars()
+void CEntity::RenderBars()
 {
 	if( !m_base->m_barsEnabled || !m_bounds || !m_visible)
 		return;
 
-	snapToGround();
+	SnapToGround();
 	CVector3D centre = m_graphics_position;
 	centre.Y += m_base->m_barOffset;
 	CVector3D up = g_Game->GetView()->GetCamera()->m_Orientation.GetUp();
@@ -375,16 +375,16 @@ void CEntity::renderBars()
 	float backgroundW = w+2*borderSize;
 	float backgroundH = hasStamina ? 2*h+2*borderSize : h+2*borderSize;
 	ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_barBorder] );
-	drawRect( centre, up, right, -backgroundW/2, -backgroundH/2, backgroundW/2, backgroundH/2 );
+	DrawRect( centre, up, right, -backgroundW/2, -backgroundH/2, backgroundW/2, backgroundH/2 );
 	ogl_tex_bind( 0 );
 
 	float off = hasStamina ? h/2 : 0;
-	drawBar( centre, up, right, -w/2, off-h/2, w/2, off+h/2, 
+	DrawBar( centre, up, right, -w/2, off-h/2, w/2, off+h/2, 
 			SColour(0,1,0), SColour(1,0,0), m_healthCurr, m_healthMax );
 
 	if( hasStamina ) 
 	{
-		drawBar( centre, up, right, -w/2, -h, w/2, 0, 
+		DrawBar( centre, up, right, -w/2, -h, w/2, 0, 
 				SColour(0,0,1), SColour(0.4f,0.4f,0.1f), m_staminaCurr, m_staminaMax );
 	}
 
@@ -395,12 +395,12 @@ void CEntity::renderBars()
 	{
 		float size = 2*h + borderSize;
 		ogl_tex_bind( it->second );
-		drawRect( centre, up, right, w/2+borderSize, -size/2, w/2+borderSize+size, size/2 );
+		DrawRect( centre, up, right, w/2+borderSize, -size/2, w/2+borderSize+size, size/2 );
 		ogl_tex_bind( 0 );
 	}
 }
 
-void CEntity::renderBarBorders()
+void CEntity::RenderBarBorders()
 { 
 	if( !m_visible )
 		return;
@@ -409,7 +409,7 @@ void CEntity::renderBarBorders()
 		g_Selection.m_unitUITextures.find(m_base->m_healthBorderName) != g_Selection.m_unitUITextures.end() )
 	{
 		ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_healthBorderName] );
-		CVector2D pos = getScreenCoords( m_base->m_healthBarHeight );
+		CVector2D pos = GetScreenCoords( m_base->m_healthBarHeight );
 
 		float left = pos.x - m_base->m_healthBorderWidth/2;
 		float right = pos.x + m_base->m_healthBorderWidth/2;
@@ -431,7 +431,7 @@ void CEntity::renderBarBorders()
 	{
 		ogl_tex_bind( g_Selection.m_unitUITextures[m_base->m_staminaBorderName] );
 
-		CVector2D pos = getScreenCoords( m_base->m_staminaBarHeight );
+		CVector2D pos = GetScreenCoords( m_base->m_staminaBarHeight );
 		float left = pos.x - m_base->m_staminaBorderWidth/2;
 		float right = pos.x + m_base->m_staminaBorderWidth/2;
 		pos.y = g_yres - pos.y;
@@ -449,7 +449,7 @@ void CEntity::renderBarBorders()
 	}
 }
 
-void CEntity::renderHealthBar()
+void CEntity::RenderHealthBar()
 {
 	if( !m_bounds || !m_visible )
 		return;
@@ -460,7 +460,7 @@ void CEntity::renderHealthBar()
 	if(m_healthMax == 0) fraction = 1.0f;
 	else fraction = clamp(m_healthCurr / m_healthMax, 0.0f, 1.0f);
 
-	CVector2D pos = getScreenCoords( m_base->m_healthBarHeight );
+	CVector2D pos = GetScreenCoords( m_base->m_healthBarHeight );
 	float x1 = pos.x - m_base->m_healthBarSize/2;
 	float x2 = pos.x + m_base->m_healthBarSize/2;
 	float y = g_yres - pos.y;
@@ -485,7 +485,7 @@ void CEntity::renderHealthBar()
 	glLineWidth(1.0f);
 }
 
-void CEntity::renderStaminaBar()
+void CEntity::RenderStaminaBar()
 {
 	if( !m_bounds || !m_visible )
 		return;
@@ -496,7 +496,7 @@ void CEntity::renderStaminaBar()
 	if(m_staminaMax == 0) fraction = 1.0f;
 	else fraction = clamp(m_staminaCurr / m_staminaMax, 0.0f, 1.0f);
 
-	CVector2D pos = getScreenCoords( m_base->m_staminaBarHeight );
+	CVector2D pos = GetScreenCoords( m_base->m_staminaBarHeight );
 	float x1 = pos.x - m_base->m_staminaBarSize/2;
 	float x2 = pos.x + m_base->m_staminaBarSize/2;
 	float y = g_yres - pos.y;
@@ -520,7 +520,7 @@ void CEntity::renderStaminaBar()
 	glLineWidth(1.0f);
 }
 
-void CEntity::renderRank()
+void CEntity::RenderRank()
 {
 	if( !m_bounds || !m_visible )
 		return;
@@ -536,7 +536,7 @@ void CEntity::renderRank()
 	CVector3D above;
 	above.X = m_position.X;
 	above.Z = m_position.Z;
-	above.Y = getAnchorLevel(m_position.X, m_position.Z) + m_base->m_rankHeight;
+	above.Y = GetAnchorLevel(m_position.X, m_position.Z) + m_base->m_rankHeight;
 	camera->GetScreenCoordinates(above, sx, sy);
 	int size = m_base->m_rankWidth/2;
 
@@ -560,7 +560,7 @@ void CEntity::renderRank()
 	glEnd();
 }
 
-void CEntity::renderRallyPoint()
+void CEntity::RenderRallyPoint()
 {
 	if( !m_visible )
 		return;

@@ -6,8 +6,8 @@
 //
 // General note: Template, Base Entity, and Entity Class are used more-or-less interchangably.
 // 
-// Usage: g_EntityTemplateCollection.loadTemplates(): loads all templates
-//        g_EntityTemplateCollection.getTemplate(name): get a template by name
+// Usage: g_EntityTemplateCollection.LoadTemplates(): loads all templates
+//        g_EntityTemplateCollection.GetTemplate(name): get a template by name
 //
 // EntityTemplateCollection will look at all subdirectiroes of entities/, but each template's
 // name will only be its filename; thus, no two templates should have the same filename,
@@ -41,18 +41,18 @@ class CEntityTemplateCollection : public Singleton<CEntityTemplateCollection>
 	TemplateFilenameMap m_templateFilenames;
 public:
 	~CEntityTemplateCollection();
-	CEntityTemplate* getTemplate( const CStrW& entityType, CPlayer* player = 0 );
+	CEntityTemplate* GetTemplate( const CStrW& entityType, CPlayer* player = 0 );
 
 	// Load list of template filenames
-	int loadTemplates();
+	int LoadTemplates();
 	void LoadFile( const char* path );
 
 	// Create a list of the names of all base entities, excluding template_*,
 	// for display in ScEd's entity-selection box.
-	void getEntityTemplateNames( std::vector<CStrW>& names );
+	void GetEntityTemplateNames( std::vector<CStrW>& names );
 
 	// Get all the templates owned by a specific player, which is useful for techs
-	void getPlayerTemplates( CPlayer* player, std::vector<CEntityTemplate*>& dest );
+	void GetPlayerTemplates( CPlayer* player, std::vector<CEntityTemplate*>& dest );
 };
 
 #endif

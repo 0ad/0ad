@@ -29,7 +29,7 @@ static void LoadFileThunk( const char* path, const DirEnt* UNUSED(ent), void* co
 	this_->LoadFile(path);
 }
 
-int CEntityTemplateCollection::loadTemplates()
+int CEntityTemplateCollection::LoadTemplates()
 {
 	// List all files in entities/ and its subdirectories.
 	THROW_ERR( vfs_dir_enum( "entities/", VFS_DIR_RECURSIVE, "*.xml",
@@ -40,19 +40,19 @@ int CEntityTemplateCollection::loadTemplates()
 	for( TemplateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
 	{
 		// Load the no-player version of this template (used by techs for base values)
-		getTemplate( it->first, 0 );
+		GetTemplate( it->first, 0 );
 
 		for( uint i=0; i<=g_Game->GetNumPlayers(); i++ )
 		{
 			// TODO: Load the template just once and clone it to get these player templates
-			getTemplate( it->first, g_Game->GetPlayer(i) );
+			GetTemplate( it->first, g_Game->GetPlayer(i) );
 		}
 	}*/
 
 	return 0;
 }
 
-CEntityTemplate* CEntityTemplateCollection::getTemplate( const CStrW& name, CPlayer* player )
+CEntityTemplate* CEntityTemplateCollection::GetTemplate( const CStrW& name, CPlayer* player )
 {
 	// Find player ID
 	int id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
@@ -71,27 +71,27 @@ CEntityTemplate* CEntityTemplateCollection::getTemplate( const CStrW& name, CPla
 
 	// Try to load to the entity
 	CEntityTemplate* newTemplate = new CEntityTemplate( player );
-	if( !newTemplate->loadXML( path ) )
+	if( !newTemplate->LoadXml( path ) )
 	{
-		LOG(ERROR, LOG_CATEGORY, "CEntityTemplateCollection::getTemplate(): Couldn't load template \"%s\"", path.c_str());
+		LOG(ERROR, LOG_CATEGORY, "CEntityTemplateCollection::GetTemplate(): Couldn't load template \"%s\"", path.c_str());
 		delete newTemplate;
 		return( NULL );
 	}
 
-	LOG(NORMAL, LOG_CATEGORY, "CEntityTemplateCollection::getTemplate(): Loaded template \"%s\"", path.c_str());
+	LOG(NORMAL, LOG_CATEGORY, "CEntityTemplateCollection::GetTemplate(): Loaded template \"%s\"", path.c_str());
 	m_templates[id][name] = newTemplate;
 
 	return newTemplate;
 }
 
-void CEntityTemplateCollection::getEntityTemplateNames( std::vector<CStrW>& names )
+void CEntityTemplateCollection::GetEntityTemplateNames( std::vector<CStrW>& names )
 {
 	for( TemplateFilenameMap::iterator it = m_templateFilenames.begin(); it != m_templateFilenames.end(); ++it )
 		if( ! (it->first.length() > 8 && it->first.Left(8) == L"template"))
 			names.push_back( it->first );
 }
 
-void CEntityTemplateCollection::getPlayerTemplates( CPlayer* player, std::vector<CEntityTemplate*>& dest )
+void CEntityTemplateCollection::GetPlayerTemplates( CPlayer* player, std::vector<CEntityTemplate*>& dest )
 {
 	int id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
 

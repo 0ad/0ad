@@ -116,18 +116,18 @@ public:
 	void Initialise(const char* FileData);
 
 	// Returns the root element
-	XMBElement getRoot() const;
+	XMBElement GetRoot() const;
 
 	
 	// Returns internal ID for a given ASCII element/attribute string.
-	int getElementID(const char* Name) const;
-	int getAttributeID(const char* Name) const;
+	int GetElementID(const char* Name) const;
+	int GetAttributeID(const char* Name) const;
 
 	// For lazy people (e.g. me) when speed isn't vital:
 
 	// Returns element/attribute string for a given internal ID
-	std::string getElementString(const int ID) const;
-	std::string getAttributeString(const int ID) const;
+	std::string GetElementString(const int ID) const;
+	std::string GetAttributeString(const int ID) const;
 
 private:
 	const char* m_Pointer;
@@ -155,11 +155,11 @@ public:
 	XMBElement(const char* offset)
 		: m_Pointer(offset)	{}
 
-	int getNodeName() const;
-	XMBElementList getChildNodes() const;
-	XMBAttributeList getAttributes() const;
-	utf16string getText() const;
-	int getLineNumber() const;
+	int GetNodeName() const;
+	XMBElementList GetChildNodes() const;
+	XMBAttributeList GetAttributes() const;
+	utf16string GetText() const;
+	int GetLineNumber() const;
 
 private:
 	// Pointer to the start of the node
@@ -178,7 +178,7 @@ public:
 		  m_Pointer(offset),
 		  m_LastItemID(-2) {} // use -2 because it isn't x-1 where x is a non-negative integer
 
-	XMBElement item(const int id); // returns Children[id]
+	XMBElement Item(const int id); // returns Children[id]
 
 	int Count;
 
@@ -208,10 +208,10 @@ public:
 		: Count(count), m_Pointer(offset), m_LastItemID(-2) {};
 
 	// Get the attribute value directly (unlike Xerces)
-	utf16string getNamedItem(const int AttributeName) const;
+	utf16string GetNamedItem(const int AttributeName) const;
 
 	// Returns an attribute by position in the list
-	XMBAttribute item(const int id);
+	XMBAttribute Item(const int id);
 
 	int Count;
 

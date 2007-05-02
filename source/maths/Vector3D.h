@@ -58,7 +58,7 @@ class CVector3D
 		CVector3D Cross (const CVector3D &vector) const;
 
 		//Returns length of the vector
-		float GetLength () const;
+		float Length () const;
 		float LengthSquared () const;
 		void Normalize ();
 

@@ -26,7 +26,7 @@
 #include "ps/Vector2D.h"
 #include "Collision.h"
 
-struct sparsePathTree
+struct SparsePathTree
 {
 	enum
 	{
@@ -52,24 +52,24 @@ struct sparsePathTree
 	{
 		struct
 		{
-			sparsePathTree* leftPre;
-			sparsePathTree* leftPost;
-			sparsePathTree* rightPre;
-			sparsePathTree* rightPost;
+			SparsePathTree* leftPre;
+			SparsePathTree* leftPost;
+			SparsePathTree* rightPre;
+			SparsePathTree* rightPost;
 		};
-		sparsePathTree* subtrees[4];
+		SparsePathTree* subtrees[4];
 	};
 	unsigned short nextSubtree;
-	sparsePathTree( const CVector2D& from, const CVector2D& to, HEntity entity, CBoundingObject* destinationCollisionObject, int _recursionDepth );
-	~sparsePathTree();
+	SparsePathTree( const CVector2D& from, const CVector2D& to, HEntity entity, CBoundingObject* destinationCollisionObject, int _recursionDepth );
+	~SparsePathTree();
 	bool slice();
 	void pushResults( std::vector<CVector2D>& nodelist );
 };
 
 extern int SPF_RECURSION_DEPTH;
 
-void nodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist );
-void pathSparse( HEntity entity, CVector2D destination );
-bool pathSparseRecursive( HEntity entity, CVector2D from, CVector2D to, CBoundingObject* destinationCollisionObject );
+void NodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist );
+void PathSparse( HEntity entity, CVector2D destination );
+bool PathSparseRecursive( HEntity entity, CVector2D from, CVector2D to, CBoundingObject* destinationCollisionObject );
 
 #endif

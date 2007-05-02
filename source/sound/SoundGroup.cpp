@@ -193,8 +193,8 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 	//m_Name = XMLfile + directorypath;
 
 	//Define elements used in XML file
-	#define EL(x) int el_##x = XeroFile.getElementID(#x)
-	#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(soundgroup);
 	EL(gain);
 	EL(looping);
@@ -218,122 +218,122 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 	#undef AT
 	#undef EL
 
-	XMBElement root = XeroFile.getRoot();
+	XMBElement root = XeroFile.GetRoot();
 
-	if (root.getNodeName() != el_soundgroup)
+	if (root.GetNodeName() != el_soundgroup)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.getElementString(root.getNodeName()).c_str());
+		LOG(ERROR, LOG_CATEGORY, "Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 	
 	XERO_ITER_EL(root, child)
 	{
 	
-		int child_name = child.getNodeName();			
+		int child_name = child.GetNodeName();			
 		
 		if(child_name == el_gain)
 		{
-			this->m_Gain = CStr(child.getText()).ToFloat();
+			this->m_Gain = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_looping)
 		{			
-			if(CStr(child.getText()).ToInt() == 1)
+			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eLoop);
 		}
 
 		if(child_name == el_pitch)
 		{
-			this->m_Pitch = CStr(child.getText()).ToFloat();
+			this->m_Pitch = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_priority)
 		{
-			this->m_Priority = CStr(child.getText()).ToFloat();
+			this->m_Priority = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_randorder)
 		{
-			if(CStr(child.getText()).ToInt() == 1)
+			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eRandOrder);
 		}
 
 		if(child_name == el_randgain)
 		{
-			if(CStr(child.getText()).ToInt() == 1)
+			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eRandGain);
 		}
 
 		if(child_name == el_gainupper)
 		{
-			this->m_GainUpper = CStr(child.getText()).ToFloat();
+			this->m_GainUpper = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_gainlower)
 		{
-			this->m_GainLower = CStr(child.getText()).ToFloat();
+			this->m_GainLower = CStr(child.GetText()).ToFloat();
 		}
 
 
 
 		if(child_name == el_randpitch)
 		{
-			if(CStr(child.getText()).ToInt() == 1)
+			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eRandPitch);
 		}
 
 
 		if(child_name == el_pitchupper)
 		{
-			this->m_PitchUpper = CStr(child.getText()).ToFloat();
+			this->m_PitchUpper = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_pitchlower)
 		{
-			this->m_PitchLower = CStr(child.getText()).ToFloat();
+			this->m_PitchLower = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_conegain)
 		{
-			this->m_ConeOuterGain = CStr(child.getText()).ToFloat();
+			this->m_ConeOuterGain = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_coneinner)
 		{
-			this->m_ConeInnerAngle = CStr(child.getText()).ToFloat();
+			this->m_ConeInnerAngle = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_coneouter)
 		{
-			this->m_ConeOuterAngle = CStr(child.getText()).ToFloat();
+			this->m_ConeOuterAngle = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_sound)
 		{
-			CStr szTemp(child.getText());
+			CStr szTemp(child.GetText());
 			this->filenames.push_back(szTemp);	
 			
 		}
 		if(child_name == el_path)
 		{
-			m_filepath = child.getText();
+			m_filepath = child.GetText();
 		
 		}
 		if(child_name == el_threshold)
 		{
-			//m_intensity_threshold = CStr(child.getText()).ToFloat();
-			m_IntensityThreshold = CStr(child.getText()).ToFloat();
+			//m_intensity_threshold = CStr(child.GetText()).ToFloat();
+			m_IntensityThreshold = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_decay)
 		{
-			//m_intensity_threshold = CStr(child.getText()).ToFloat();
-			m_Decay = CStr(child.getText()).ToFloat();
+			//m_intensity_threshold = CStr(child.GetText()).ToFloat();
+			m_Decay = CStr(child.GetText()).ToFloat();
 		}
 
 		if(child_name == el_replacement)
 		{
-			m_intensity_file = child.getText();
+			m_intensity_file = child.GetText();
 		
 		}
 	}

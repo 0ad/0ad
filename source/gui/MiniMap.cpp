@@ -141,7 +141,7 @@ void CMiniMap::SetCameraPos()
 	m_Camera->m_Orientation._34+=TransVector.Z;
 
 	//Lock Y coord.  No risk of zoom exceeding limit-Y does not increase
-	float Height=MMTerrain->getExactGroundLevel(
+	float Height=MMTerrain->GetExactGroundLevel(
 		m_Camera->m_Orientation._14, m_Camera->m_Orientation._34) + g_YMinOffset;
 
 	if (m_Camera->m_Orientation._24 < Height)
@@ -400,9 +400,9 @@ void CMiniMap::Draw()
 			if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
 				// Use the player colour
 				const SPlayerColour& colour = entity->GetPlayer()->GetColour();
-				v.r = cpu_i32_from_float(colour.r*255.f);
-				v.g = cpu_i32_from_float(colour.g*255.f);
-				v.b = cpu_i32_from_float(colour.b*255.f);
+				v.r = cpu_i32FromFloat(colour.r*255.f);
+				v.g = cpu_i32FromFloat(colour.g*255.f);
+				v.b = cpu_i32FromFloat(colour.b*255.f);
 				v.a = 255;
 			}
 			else {
@@ -494,10 +494,10 @@ void CMiniMap::RebuildTerrainTexture()
 		u32 *dataPtr = m_TerrainData + ((y + j) * (m_MapSize - 1)) + x;
 		for(u32 i = 0; i < w; i++)
 		{
-			float avgHeight = ( m_Terrain->getVertexGroundLevel((int)i, (int)j)
-					+ m_Terrain->getVertexGroundLevel((int)i+1, (int)j)
-					+ m_Terrain->getVertexGroundLevel((int)i, (int)j+1)
-					+ m_Terrain->getVertexGroundLevel((int)i+1, (int)j+1)
+			float avgHeight = ( m_Terrain->GetVertexGroundLevel((int)i, (int)j)
+					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j)
+					+ m_Terrain->GetVertexGroundLevel((int)i, (int)j+1)
+					+ m_Terrain->GetVertexGroundLevel((int)i+1, (int)j+1)
 				) / 4.0f;
 
 			if(avgHeight < waterHeight)

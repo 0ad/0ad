@@ -60,7 +60,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
 	}
 
 	// delete all existing entities
-	g_EntityManager.deleteAll();
+	g_EntityManager.DeleteAll();
 	// delete all remaining non-entity units
 	pUnitMan->DeleteAll();
 	pUnitMan->SetNextID(0);
@@ -214,7 +214,7 @@ int CMapReader::ApplyData()
 		if (unpacker.GetVersion() < 3)
 		{
 			debug_warn("Old unsupported map version - objects will be missing");
-			// (getTemplateByActor doesn't work, since entity templates are now
+			// (GetTemplateByActor doesn't work, since entity templates are now
 			// loaded on demand)
 		}
 
@@ -229,7 +229,7 @@ int CMapReader::ApplyData()
 		}
 	}
 	//Make units start out conforming correctly
-	g_EntityManager.conformAll();
+	g_EntityManager.ConformAll();
 
 	if (unpacker.GetVersion() >= 2)
 	{
@@ -305,8 +305,8 @@ void CXMLReader::Init(const CStr& xml_filename)
 	// so we don't need to do lots of string construction and comparison when
 	// reading the data.
 	// (Needs to be synchronised with the list in CXMLReader - ugh)
-#define EL(x) el_##x = xmb_file.getElementID(#x)
-#define AT(x) at_##x = xmb_file.getAttributeID(#x)
+#define EL(x) el_##x = xmb_file.GetElementID(#x)
+#define AT(x) at_##x = xmb_file.GetAttributeID(#x)
 	EL(entity);
 	EL(tracks);
 	EL(template);
@@ -321,23 +321,23 @@ void CXMLReader::Init(const CStr& xml_filename)
 #undef AT
 #undef EL
 
-	XMBElement root = xmb_file.getRoot();
-	debug_assert(xmb_file.getElementString(root.getNodeName()) == "Scenario");
-	nodes = root.getChildNodes();
+	XMBElement root = xmb_file.GetRoot();
+	debug_assert(xmb_file.GetElementString(root.GetNodeName()) == "Scenario");
+	nodes = root.GetChildNodes();
 
 	// find out total number of entities+nonentities
 	// (used when calculating progress)
 	completed_jobs = 0;
 	total_jobs = 0;
 	for (int i = 0; i < nodes.Count; i++)
-		total_jobs += nodes.item(i).getChildNodes().Count;
+		total_jobs += nodes.Item(i).GetChildNodes().Count;
 }
 
 
 void CXMLReader::ReadEnvironment(XMBElement parent)
 {
-#define EL(x) int el_##x = xmb_file.getElementID(#x)
-#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
+#define EL(x) int el_##x = xmb_file.GetElementID(#x)
+#define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
 	EL(skyset);
 	EL(suncolour);
 	EL(sunelevation);
@@ -362,55 +362,55 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 
 	XERO_ITER_EL(parent, element)
 	{
-		int element_name = element.getNodeName();
+		int element_name = element.GetNodeName();
 
-		XMBAttributeList attrs = element.getAttributes();
+		XMBAttributeList attrs = element.GetAttributes();
 
 		if (element_name == el_skyset)
 		{
-			m_MapReader.pSkyMan->SetSkySet(element.getText());
+			m_MapReader.pSkyMan->SetSkySet(element.GetText());
 		}
 		else if (element_name == el_suncolour)
 		{
 			m_MapReader.m_LightEnv.m_SunColor = RGBColor(
-				CStr(attrs.getNamedItem(at_r)).ToFloat(),
-				CStr(attrs.getNamedItem(at_g)).ToFloat(),
-				CStr(attrs.getNamedItem(at_b)).ToFloat());
+				CStr(attrs.GetNamedItem(at_r)).ToFloat(),
+				CStr(attrs.GetNamedItem(at_g)).ToFloat(),
+				CStr(attrs.GetNamedItem(at_b)).ToFloat());
 		}
 		else if (element_name == el_sunelevation)
 		{
-			m_MapReader.m_LightEnv.m_Elevation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+			m_MapReader.m_LightEnv.m_Elevation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
 		}
 		else if (element_name == el_sunrotation)
 		{
-			m_MapReader.m_LightEnv.m_Rotation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+			m_MapReader.m_LightEnv.m_Rotation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
 		}
 		else if (element_name == el_terrainambientcolour)
 		{
 			m_MapReader.m_LightEnv.m_TerrainAmbientColor = RGBColor(
-				CStr(attrs.getNamedItem(at_r)).ToFloat(),
-				CStr(attrs.getNamedItem(at_g)).ToFloat(),
-				CStr(attrs.getNamedItem(at_b)).ToFloat());
+				CStr(attrs.GetNamedItem(at_r)).ToFloat(),
+				CStr(attrs.GetNamedItem(at_g)).ToFloat(),
+				CStr(attrs.GetNamedItem(at_b)).ToFloat());
 		}
 		else if (element_name == el_unitsambientcolour)
 		{
 			m_MapReader.m_LightEnv.m_UnitsAmbientColor = RGBColor(
-				CStr(attrs.getNamedItem(at_r)).ToFloat(),
-				CStr(attrs.getNamedItem(at_g)).ToFloat(),
-				CStr(attrs.getNamedItem(at_b)).ToFloat());
+				CStr(attrs.GetNamedItem(at_r)).ToFloat(),
+				CStr(attrs.GetNamedItem(at_g)).ToFloat(),
+				CStr(attrs.GetNamedItem(at_b)).ToFloat());
 		}
 		else if (element_name == el_terrainshadowtransparency)
 		{
-			m_MapReader.m_LightEnv.SetTerrainShadowTransparency(CStr(element.getText()).ToFloat());
+			m_MapReader.m_LightEnv.SetTerrainShadowTransparency(CStr(element.GetText()).ToFloat());
 		}
 		else if (element_name == el_water)
 		{
 			XERO_ITER_EL(element, waterbody)
 			{
-				debug_assert(waterbody.getNodeName() == el_waterbody);
+				debug_assert(waterbody.GetNodeName() == el_waterbody);
 				XERO_ITER_EL(waterbody, waterelement)
 				{
-					int element_name = waterelement.getNodeName();
+					int element_name = waterelement.GetNodeName();
 					if (element_name == el_type)
 					{
 						// TODO: implement this, when WaterManager supports it
@@ -419,18 +419,18 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 #define READ_COLOUR(el, out) \
 					else if (element_name == el) \
 					{ \
-						XMBAttributeList attrs = waterelement.getAttributes(); \
+						XMBAttributeList attrs = waterelement.GetAttributes(); \
 						out = CColor( \
-							CStr(attrs.getNamedItem(at_r)).ToFloat(), \
-							CStr(attrs.getNamedItem(at_g)).ToFloat(), \
-							CStr(attrs.getNamedItem(at_b)).ToFloat(), \
+							CStr(attrs.GetNamedItem(at_r)).ToFloat(), \
+							CStr(attrs.GetNamedItem(at_g)).ToFloat(), \
+							CStr(attrs.GetNamedItem(at_b)).ToFloat(), \
 							1.f); \
 					}
 
 #define READ_FLOAT(el, out) \
 					else if (element_name == el) \
 					{ \
-						out = CStr(waterelement.getText()).ToFloat(); \
+						out = CStr(waterelement.GetText()).ToFloat(); \
 					} \
 
 					READ_COLOUR(el_colour, m_MapReader.pWaterMan->m_WaterColor)
@@ -460,8 +460,8 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 
 void CXMLReader::ReadCamera(XMBElement parent)
 {
-#define EL(x) int el_##x = xmb_file.getElementID(#x)
-#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
+#define EL(x) int el_##x = xmb_file.GetElementID(#x)
+#define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
 	EL(declination);
 	EL(rotation);
 	EL(position);
@@ -475,23 +475,23 @@ void CXMLReader::ReadCamera(XMBElement parent)
 
 	XERO_ITER_EL(parent, element)
 	{
-		int element_name = element.getNodeName();
+		int element_name = element.GetNodeName();
 
-		XMBAttributeList attrs = element.getAttributes();
+		XMBAttributeList attrs = element.GetAttributes();
 		if (element_name == el_declination)
 		{
-			declination = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+			declination = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
 		}
 		else if (element_name == el_rotation)
 		{
-			rotation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+			rotation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
 		}
 		else if (element_name == el_position)
 		{
 			translation = CVector3D(
-				CStr(attrs.getNamedItem(at_x)).ToFloat(),
-				CStr(attrs.getNamedItem(at_y)).ToFloat(),
-				CStr(attrs.getNamedItem(at_z)).ToFloat());
+				CStr(attrs.GetNamedItem(at_x)).ToFloat(),
+				CStr(attrs.GetNamedItem(at_y)).ToFloat(),
+				CStr(attrs.GetNamedItem(at_z)).ToFloat());
 		}
 		else
 			debug_warn("Invalid map XML data");
@@ -505,8 +505,8 @@ void CXMLReader::ReadCamera(XMBElement parent)
 
 void CXMLReader::ReadCinema(XMBElement parent)
 {
-	#define EL(x) int el_##x = xmb_file.getElementID(#x)
-	#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
+	#define EL(x) int el_##x = xmb_file.GetElementID(#x)
+	#define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
 
 	EL(path);
 	EL(rotation);
@@ -530,29 +530,29 @@ void CXMLReader::ReadCinema(XMBElement parent)
 	std::map<CStrW, CCinemaPath> pathList;
 	XERO_ITER_EL(parent, element)
 	{
-		int elementName = element.getNodeName();
+		int elementName = element.GetNodeName();
 			
 		if ( elementName == el_path )
 		{
-			XMBAttributeList attrs = element.getAttributes();
-			CStrW name( CStr(attrs.getNamedItem(at_name)) );
-			float timescale = CStr(attrs.getNamedItem(at_timescale)).ToFloat();
+			XMBAttributeList attrs = element.GetAttributes();
+			CStrW name( CStr(attrs.GetNamedItem(at_name)) );
+			float timescale = CStr(attrs.GetNamedItem(at_timescale)).ToFloat();
 			CCinemaData pathData;
 			pathData.m_Timescale = timescale;
 			TNSpline spline, backwardSpline;
 
 			XERO_ITER_EL(element, pathChild)
 			{
-				elementName = pathChild.getNodeName();
-				attrs = pathChild.getAttributes();
+				elementName = pathChild.GetNodeName();
+				attrs = pathChild.GetAttributes();
 
 				//Load distortion attributes
 				if ( elementName == el_distortion )
 				{
-						pathData.m_Mode = CStr(attrs.getNamedItem(at_mode)).ToInt();
-						pathData.m_Style = CStr(attrs.getNamedItem(at_style)).ToInt();
-						pathData.m_Growth = CStr(attrs.getNamedItem(at_growth)).ToInt();
-						pathData.m_Switch = CStr(attrs.getNamedItem(at_switch)).ToInt();
+						pathData.m_Mode = CStr(attrs.GetNamedItem(at_mode)).ToInt();
+						pathData.m_Style = CStr(attrs.GetNamedItem(at_style)).ToInt();
+						pathData.m_Growth = CStr(attrs.GetNamedItem(at_growth)).ToInt();
+						pathData.m_Switch = CStr(attrs.GetNamedItem(at_switch)).ToInt();
 				}
 				
 				//Load node data used for spline
@@ -561,26 +561,26 @@ void CXMLReader::ReadCinema(XMBElement parent)
 					SplineData data;
 					XERO_ITER_EL(pathChild, nodeChild)
 					{
-						elementName = nodeChild.getNodeName();
-						attrs = nodeChild.getAttributes();
+						elementName = nodeChild.GetNodeName();
+						attrs = nodeChild.GetAttributes();
 						
 						//Fix?:  assumes that time is last element
 						if ( elementName == el_position )
 						{
-							data.Position.X = CStr(attrs.getNamedItem(at_x)).ToFloat();
-							data.Position.Y = CStr(attrs.getNamedItem(at_y)).ToFloat();
-							data.Position.Z = CStr(attrs.getNamedItem(at_z)).ToFloat();
+							data.Position.X = CStr(attrs.GetNamedItem(at_x)).ToFloat();
+							data.Position.Y = CStr(attrs.GetNamedItem(at_y)).ToFloat();
+							data.Position.Z = CStr(attrs.GetNamedItem(at_z)).ToFloat();
 							continue;
 						}
 						else if ( elementName == el_rotation )
 						{
-							data.Rotation.X = CStr(attrs.getNamedItem(at_x)).ToFloat();
-							data.Rotation.Y = CStr(attrs.getNamedItem(at_y)).ToFloat();
-							data.Rotation.Z = CStr(attrs.getNamedItem(at_z)).ToFloat();
+							data.Rotation.X = CStr(attrs.GetNamedItem(at_x)).ToFloat();
+							data.Rotation.Y = CStr(attrs.GetNamedItem(at_y)).ToFloat();
+							data.Rotation.Z = CStr(attrs.GetNamedItem(at_z)).ToFloat();
 							continue;
 						}
 						else if ( elementName == el_time )
-							data.Distance = CStr( nodeChild.getText() ).ToFloat();
+							data.Distance = CStr( nodeChild.GetText() ).ToFloat();
 						else 
 							debug_warn("Invalid cinematic element for node child");
 					
@@ -626,8 +626,8 @@ void CXMLReader::ReadTriggers(XMBElement parent)
 
 void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 {
-	#define EL(x) int el_##x = xmb_file.getElementID(#x)
-	#define AT(x) int at_##x = xmb_file.getAttributeID(#x)
+	#define EL(x) int el_##x = xmb_file.GetElementID(#x)
+	#define AT(x) int at_##x = xmb_file.GetAttributeID(#x)
 	
 	EL(group);
 	EL(trigger);
@@ -653,7 +653,7 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 	#undef EL
 	#undef AT
 	
-	CStrW name = parent.getAttributes().getNamedItem(at_name), parentName = group.parentName;
+	CStrW name = parent.GetAttributes().GetNamedItem(at_name), parentName = group.parentName;
 	if ( group.name == L"Triggers" )
 		name = group.name;
 	
@@ -661,63 +661,63 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 
 	XERO_ITER_EL(parent, groupChild)
 	{
-		int elementName = groupChild.getNodeName();
+		int elementName = groupChild.GetNodeName();
 		if ( elementName == el_group )
 			ReadTriggerGroup(groupChild, mapGroup);
 		
 		else if ( elementName == el_trigger )
 		{
 			MapTrigger mapTrigger;
-			mapTrigger.name = CStrW( groupChild.getAttributes().getNamedItem(at_name) );
+			mapTrigger.name = CStrW( groupChild.GetAttributes().GetNamedItem(at_name) );
 
 			//Read everything in this trigger
 			XERO_ITER_EL(groupChild, triggerChild)
 			{
-				elementName = triggerChild.getNodeName();
+				elementName = triggerChild.GetNodeName();
 				if ( elementName == el_active )
 				{
-					if ( CStr("false") == CStr( triggerChild.getText() ) )
+					if ( CStr("false") == CStr( triggerChild.GetText() ) )
 						mapTrigger.active = false;
 					else
 						mapTrigger.active = true;
 				}
 			
 				else if ( elementName == el_maxruncount )
-					mapTrigger.maxRunCount = CStr( triggerChild.getText() ).ToInt();
+					mapTrigger.maxRunCount = CStr( triggerChild.GetText() ).ToInt();
 				else if ( elementName == el_delay )
-					mapTrigger.timeValue = CStr( triggerChild.getText() ).ToFloat();
+					mapTrigger.timeValue = CStr( triggerChild.GetText() ).ToFloat();
 			
 				else if ( elementName == el_conditions )
 				{
 					//Read in all conditions for this trigger
 					XERO_ITER_EL(triggerChild, condition)
 					{
-						elementName = condition.getNodeName();
+						elementName = condition.GetNodeName();
 						if ( elementName == el_condition )
 						{
 							MapTriggerCondition mapCondition;
-							mapCondition.name = condition.getAttributes().getNamedItem(at_name);
-							mapCondition.functionName = condition.getAttributes().getNamedItem(at_function);
-							mapCondition.displayName = condition.getAttributes().getNamedItem(at_display);
+							mapCondition.name = condition.GetAttributes().GetNamedItem(at_name);
+							mapCondition.functionName = condition.GetAttributes().GetNamedItem(at_function);
+							mapCondition.displayName = condition.GetAttributes().GetNamedItem(at_display);
 							
-							CStr notAtt(condition.getAttributes().getNamedItem(at_not));
+							CStr notAtt(condition.GetAttributes().GetNamedItem(at_not));
 							if ( notAtt == CStr("true") )
 								mapCondition.negated = true;
 
 							//Read in each condition child
 							XERO_ITER_EL(condition, conditionChild)
 							{
-								elementName = conditionChild.getNodeName();
+								elementName = conditionChild.GetNodeName();
 						
 								if ( elementName == el_function )
-									mapCondition.functionName = CStrW(conditionChild.getText());
+									mapCondition.functionName = CStrW(conditionChild.GetText());
 								else if ( elementName == el_display )
-									mapCondition.displayName = CStrW(conditionChild.getText());
+									mapCondition.displayName = CStrW(conditionChild.GetText());
 								else if ( elementName == el_parameter )
-									mapCondition.parameters.push_back( conditionChild.getText() );
+									mapCondition.parameters.push_back( conditionChild.GetText() );
 								else if ( elementName == el_linklogic )
 								{
-									CStr logic = conditionChild.getText();
+									CStr logic = conditionChild.GetText();
 									if ( logic == CStr("AND") )
 										mapCondition.linkLogic = 1;
 									else
@@ -729,7 +729,7 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 
 						else if ( elementName == el_logicblock)
 						{
-							if ( CStr(condition.getAttributes().getNamedItem(at_not)) == CStr("true") )	
+							if ( CStr(condition.GetAttributes().GetNamedItem(at_not)) == CStr("true") )	
 								mapTrigger.AddLogicBlock(true);
 							else
 								mapTrigger.AddLogicBlock(false);
@@ -745,24 +745,24 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 					//Read all effects
 					XERO_ITER_EL(triggerChild, effect)
 					{
-						if ( effect.getNodeName() != el_effect )
+						if ( effect.GetNodeName() != el_effect )
 						{
 							debug_warn("Invalid effect tag in trigger XML file");
 							return;
 						}
 						MapTriggerEffect mapEffect;
-						mapEffect.name = effect.getAttributes().getNamedItem(at_name);
+						mapEffect.name = effect.GetAttributes().GetNamedItem(at_name);
 						
 						//Read parameters
 						XERO_ITER_EL(effect, effectChild)
 						{
-							elementName = effectChild.getNodeName();
+							elementName = effectChild.GetNodeName();
 							if ( elementName == el_function )
-								mapEffect.functionName = effectChild.getText();
+								mapEffect.functionName = effectChild.GetText();
 							else if ( elementName == el_display )
-								mapEffect.displayName = effectChild.getText();
+								mapEffect.displayName = effectChild.GetText();
 							else if ( elementName == el_parameter )
-								mapEffect.parameters.push_back( effectChild.getText() );
+								mapEffect.parameters.push_back( effectChild.GetText() );
 							else
 							{
 								debug_warn("Invalid parameter tag in trigger XML file");
@@ -787,7 +787,7 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 
 int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 {
-	XMBElementList entities = parent.getChildNodes();
+	XMBElementList entities = parent.GetChildNodes();
 
 	// If this is the first time in ReadEntities, find the next free ID number
 	// in case we need to allocate new ones in the future
@@ -797,10 +797,10 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 		XERO_ITER_EL(parent, entity)
 		{
-			debug_assert(entity.getNodeName() == el_entity);
+			debug_assert(entity.GetNodeName() == el_entity);
 
-			XMBAttributeList attrs = entity.getAttributes();
-			utf16string uid = attrs.getNamedItem(at_uid);
+			XMBAttributeList attrs = entity.GetAttributes();
+			utf16string uid = attrs.GetNamedItem(at_uid);
 			int unitId = uid.empty() ? -1 : CStr(uid).ToInt();
 			maxUnitID = std::max(maxUnitID, unitId);
 		}
@@ -813,11 +813,11 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		// all new state at this scope and below doesn't need to be
 		// wrapped, since we only yield after a complete iteration.
 
-		XMBElement entity = entities.item(entity_idx++);
-		debug_assert(entity.getNodeName() == el_entity);
+		XMBElement entity = entities.Item(entity_idx++);
+		debug_assert(entity.GetNodeName() == el_entity);
 
-		XMBAttributeList attrs = entity.getAttributes();
-		utf16string uid = attrs.getNamedItem(at_uid);
+		XMBAttributeList attrs = entity.GetAttributes();
+		utf16string uid = attrs.GetNamedItem(at_uid);
 		int unitId = uid.empty() ? -1 : CStr(uid).ToInt();
 
 		CStrW TemplateName;
@@ -827,45 +827,45 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 		XERO_ITER_EL(entity, setting)
 		{
-			int element_name = setting.getNodeName();
+			int element_name = setting.GetNodeName();
 
 			// <template>
 			if (element_name == el_template)
 			{
-				TemplateName = setting.getText();
+				TemplateName = setting.GetText();
 			}
 			// <player>
 			else if (element_name == el_player)
 			{
-				PlayerID = CStr(setting.getText()).ToInt();
+				PlayerID = CStr(setting.GetText()).ToInt();
 			}
 			// <position>
 			else if (element_name == el_position)
 			{
-				XMBAttributeList attrs = setting.getAttributes();
+				XMBAttributeList attrs = setting.GetAttributes();
 				Position = CVector3D(
-					CStr(attrs.getNamedItem(at_x)).ToFloat(),
-					CStr(attrs.getNamedItem(at_y)).ToFloat(),
-					CStr(attrs.getNamedItem(at_z)).ToFloat());
+					CStr(attrs.GetNamedItem(at_x)).ToFloat(),
+					CStr(attrs.GetNamedItem(at_y)).ToFloat(),
+					CStr(attrs.GetNamedItem(at_z)).ToFloat());
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
-				XMBAttributeList attrs = setting.getAttributes();
-				Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+				XMBAttributeList attrs = setting.GetAttributes();
+				Orientation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
 			}
 			else
 				debug_warn("Invalid map XML data");
 		}
 
-		CEntityTemplate* base = g_EntityTemplateCollection.getTemplate(TemplateName, g_Game->GetPlayer(PlayerID));
+		CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(TemplateName, g_Game->GetPlayer(PlayerID));
 		if (! base)
 			LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
 		else
 		{
 			std::set<CStr> selections; // TODO: read from file
 
-			HEntity ent = g_EntityManager.create(base, Position, Orientation, selections);
+			HEntity ent = g_EntityManager.Create(base, Position, Orientation, selections);
 
 			if (! ent)
 				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
@@ -891,14 +891,14 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 {
-	XMBElementList nonentities = parent.getChildNodes();
+	XMBElementList nonentities = parent.GetChildNodes();
 	while (nonentity_idx < nonentities.Count)
 	{
 		// all new state at this scope and below doesn't need to be
 		// wrapped, since we only yield after a complete iteration.
 
-		XMBElement nonentity = nonentities.item(nonentity_idx++);
-		debug_assert(nonentity.getNodeName() == el_nonentity);
+		XMBElement nonentity = nonentities.Item(nonentity_idx++);
+		debug_assert(nonentity.GetNodeName() == el_nonentity);
 
 		CStr ActorName;
 		CVector3D Position;
@@ -906,27 +906,27 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 
 		XERO_ITER_EL(nonentity, setting)
 		{
-			int element_name = setting.getNodeName();
+			int element_name = setting.GetNodeName();
 
 			// <actor>
 			if (element_name == el_actor)
 			{
-				ActorName = setting.getText();
+				ActorName = setting.GetText();
 			}
 			// <position>
 			else if (element_name == el_position)
 			{
-				XMBAttributeList attrs = setting.getAttributes();
+				XMBAttributeList attrs = setting.GetAttributes();
 				Position = CVector3D(
-					CStr(attrs.getNamedItem(at_x)).ToFloat(),
-					CStr(attrs.getNamedItem(at_y)).ToFloat(),
-					CStr(attrs.getNamedItem(at_z)).ToFloat());
+					CStr(attrs.GetNamedItem(at_x)).ToFloat(),
+					CStr(attrs.GetNamedItem(at_y)).ToFloat(),
+					CStr(attrs.GetNamedItem(at_z)).ToFloat());
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
-				XMBAttributeList attrs = setting.getAttributes();
-				Orientation = CStr(attrs.getNamedItem(at_angle)).ToFloat();
+				XMBAttributeList attrs = setting.GetAttributes();
+				Orientation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
 			}
 			else
 				debug_warn("Invalid map XML data");
@@ -966,8 +966,8 @@ int CXMLReader::ProgressiveRead()
 
 	while (node_idx < nodes.Count)
 	{
-		XMBElement node = nodes.item(node_idx);
-		CStr name = xmb_file.getElementString(node.getNodeName());
+		XMBElement node = nodes.Item(node_idx);
+		CStr name = xmb_file.GetElementString(node.GetNodeName());
 		if (name == "Environment")
 		{
 			ReadEnvironment(node);

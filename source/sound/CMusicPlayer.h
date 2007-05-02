@@ -31,17 +31,17 @@ class CMusicPlayer
 public:
 	CMusicPlayer(void);
 	~CMusicPlayer(void);
-	void open(char *filename);
-	void release();
-	bool play();
-	bool isPlaying();
-	bool update();
+	void Open(char *filename);
+	void Release();
+	bool Play();
+	bool IsPlaying();
+	bool Update();
 
 protected:	
-//	bool stream(ALuint buffer);
-	void check();
-	void empty();
-	std::string errorString(int errorcode);
+//	bool Stream(ALuint buffer);
+	void Check();
+	void Empty();
+	std::string ErrorString(int errorcode);
 
 private:
 	bool is_open;

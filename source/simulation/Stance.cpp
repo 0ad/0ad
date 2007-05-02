@@ -11,48 +11,48 @@
 
 // AggressStance ////////////////////////////////////////////////////
 
-void CAggressStance::onIdle()
+void CAggressStance::OnIdle()
 {
-	CEntity* target = CStanceUtils::chooseTarget( m_Entity );
+	CEntity* target = CStanceUtils::ChooseTarget( m_Entity );
 	if( target )
-		CStanceUtils::attack( m_Entity, target );
+		CStanceUtils::Attack( m_Entity, target );
 }
 
-void CAggressStance::onDamaged(CEntity *source)
+void CAggressStance::OnDamaged(CEntity *source)
 {
 	if( source && m_Entity->m_orderQueue.empty() 
 		&& m_Entity->GetPlayer()->GetDiplomaticStance(source->GetPlayer()) != DIPLOMACY_ALLIED )
-		CStanceUtils::attack( m_Entity, source );
+		CStanceUtils::Attack( m_Entity, source );
 }
 
 // StandStance //////////////////////////////////////////////////////
 
-void CStandStance::onIdle()
+void CStandStance::OnIdle()
 {
-	CEntity* target = CStanceUtils::chooseTarget( m_Entity );
+	CEntity* target = CStanceUtils::ChooseTarget( m_Entity );
 	if( target )
-		CStanceUtils::attack( m_Entity, target );
+		CStanceUtils::Attack( m_Entity, target );
 }
 
-void CStandStance::onDamaged(CEntity *source)
+void CStandStance::OnDamaged(CEntity *source)
 {
 	if( source && m_Entity->m_orderQueue.empty() 
 		&& m_Entity->GetPlayer()->GetDiplomaticStance(source->GetPlayer()) != DIPLOMACY_ALLIED )
-		CStanceUtils::attack( m_Entity, source );
+		CStanceUtils::Attack( m_Entity, source );
 }
 
 // DefendStance /////////////////////////////////////////////////////
 
-void CDefendStance::onIdle()
+void CDefendStance::OnIdle()
 {
 	idlePos = CVector2D( m_Entity->m_position.X, m_Entity->m_position.Z );
 
-	CEntity* target = CStanceUtils::chooseTarget( m_Entity );
+	CEntity* target = CStanceUtils::ChooseTarget( m_Entity );
 	if( target )
-		CStanceUtils::attack( m_Entity, target );
+		CStanceUtils::Attack( m_Entity, target );
 }
 
-void CDefendStance::onDamaged(CEntity *source)
+void CDefendStance::OnDamaged(CEntity *source)
 {
 	if( source && m_Entity->m_orderQueue.empty()
 		&& m_Entity->GetPlayer()->GetDiplomaticStance(source->GetPlayer()) != DIPLOMACY_ALLIED )
@@ -63,23 +63,23 @@ void CDefendStance::onDamaged(CEntity *source)
 		if( action )
 		{
 			float range = m_Entity->m_actions[action].m_MaxRange;
-			if( ( range + m_Entity->m_los * CELL_SIZE ) >= m_Entity->distance2D( source ) )
+			if( ( range + m_Entity->m_los * CELL_SIZE ) >= m_Entity->Distance2D( source ) )
 			{
 				CEntityOrder order( CEntityOrder::ORDER_GENERIC, CEntityOrder::SOURCE_UNIT_AI );
 				order.m_target_entity = source->me;
 				order.m_action = action;
-				m_Entity->pushOrder( order );
+				m_Entity->PushOrder( order );
 			}
 		}
 	}
 }
 
-bool CDefendStance::checkMovement( CVector2D proposedPos )
+bool CDefendStance::CheckMovement( CVector2D proposedPos )
 {
 	float los = m_Entity->m_los*CELL_SIZE;
 
 	// Check that we haven't moved too far from the place where we were stationed.
-	if( (proposedPos - idlePos).length() > los )
+	if( (proposedPos - idlePos).Length() > los )
 	{
 		// TODO: Make sure we don't clear any player orders here; the best way would be to make
 		// shift-clicked player orders either unqueue any AI orders or convert those AI orders 
@@ -101,8 +101,8 @@ bool CDefendStance::checkMovement( CVector2D proposedPos )
 			float range = m_Entity->m_actions[m_Entity->GetAttackAction(ent->me)].m_MaxRange;
 			if( m_Entity->GetPlayer()->GetDiplomaticStance( ent->GetPlayer() ) == DIPLOMACY_ENEMY )
 			{
-				float distToMe = ent->distance2D( m_Entity );
-				float distToIdlePos = ent->distance2D( idlePos );
+				float distToMe = ent->Distance2D( m_Entity );
+				float distToIdlePos = ent->Distance2D( idlePos );
 				if( distToIdlePos <= los+range && distToMe < bestDist )
 				{
 					bestDist = distToMe;
@@ -113,14 +113,14 @@ bool CDefendStance::checkMovement( CVector2D proposedPos )
 
 		if( bestTarget != 0 )
 		{
-			CStanceUtils::attack( m_Entity, bestTarget );
+			CStanceUtils::Attack( m_Entity, bestTarget );
 		}
 		else
 		{
 			// Let's just walk back to our idle spot
 			CEntityOrder order( CEntityOrder::ORDER_GOTO, CEntityOrder::SOURCE_UNIT_AI );
 			order.m_target_location = idlePos;
-			m_Entity->pushOrder( order );
+			m_Entity->PushOrder( order );
 		}
 	
 		return false;
@@ -133,7 +133,7 @@ bool CDefendStance::checkMovement( CVector2D proposedPos )
 
 // StanceUtils //////////////////////////////////////////////////////
 
-void CStanceUtils::attack(CEntity* entity, CEntity* target)
+void CStanceUtils::Attack(CEntity* entity, CEntity* target)
 {
 	int action = entity->GetAttackAction( target->me );
 	if( action )
@@ -141,16 +141,16 @@ void CStanceUtils::attack(CEntity* entity, CEntity* target)
 		CEntityOrder order( CEntityOrder::ORDER_GENERIC, CEntityOrder::SOURCE_UNIT_AI );
 		order.m_target_entity = target->me;
 		order.m_action = action;
-		entity->pushOrder( order );
+		entity->PushOrder( order );
 	}
 }
 
-CEntity* CStanceUtils::chooseTarget( CEntity* entity )
+CEntity* CStanceUtils::ChooseTarget( CEntity* entity )
 {
-	return chooseTarget( entity->m_position.X, entity->m_position.Z, entity->m_los*CELL_SIZE, entity->GetPlayer() );
+	return ChooseTarget( entity->m_position.X, entity->m_position.Z, entity->m_los*CELL_SIZE, entity->GetPlayer() );
 }
 
-CEntity* CStanceUtils::chooseTarget( float x, float z, float radius, CPlayer* myPlayer )
+CEntity* CStanceUtils::ChooseTarget( float x, float z, float radius, CPlayer* myPlayer )
 {
 	std::vector<CEntity*> results;
 	g_EntityManager.GetInRange( x, z, radius, results );
@@ -163,7 +163,7 @@ CEntity* CStanceUtils::chooseTarget( float x, float z, float radius, CPlayer* my
 		CEntity* ent = results[i];
 		if( myPlayer->GetDiplomaticStance( ent->GetPlayer() ) == DIPLOMACY_ENEMY )
 		{
-			float dist = ent->distance2D( x, z );
+			float dist = ent->Distance2D( x, z );
 			if( dist < bestDist )
 			{
 				bestDist = dist;

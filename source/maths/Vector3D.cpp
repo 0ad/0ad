@@ -123,14 +123,14 @@ float CVector3D::LengthSquared () const
 	return ( SQR(X) + SQR(Y) + SQR(Z) );
 }
 
-float CVector3D::GetLength () const 
+float CVector3D::Length () const 
 {
 	return sqrtf ( LengthSquared() );
 }
 
 void CVector3D::Normalize ()
 {
-	float scale = 1.0f/GetLength ();
+	float scale = 1.0f/Length ();
 
 	X *= scale;
 	Y *= scale;

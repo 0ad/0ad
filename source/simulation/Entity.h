@@ -12,14 +12,14 @@
 //			Destroying entities: An entity is destroyed when all references to it expire.
 //								 It is somewhat unfunny if this happens while a method from this
 //                               class is still executing. If you need to kill an entity,
-//								 use CEntity::kill(). If kill() releases the final handle,
+//								 use CEntity::Kill(). If Kill() releases the final handle,
 //								 the entity is placed in the reaper queue and is deleted immediately
 //								 prior to its next update cycle.
 //
 //			CUnit* m_actor: is the visible representation of this entity.
 //
-//			snapToGround(): Called every frame, this will ensure the entity never takes flight.
-//			updateActorTransforms(): Must be called every time the position of this entity changes.
+//			SnapToGround(): Called every frame, this will ensure the entity never takes flight.
+//			UpdateActorTransforms(): Must be called every time the position of this entity changes.
 //			Also remember to update the collision object if you alter the position directly.
 //
 
@@ -226,27 +226,27 @@ public:
 private:
 	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building = 0 );
 
-	uint processGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
+	uint ProcessGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
 
-	bool processContactAction( CEntityOrder* current, size_t timestep_millis, CEntityOrder::EOrderType transition, SEntityAction* action );
-	bool processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
+	bool ProcessContactAction( CEntityOrder* current, size_t timestep_millis, CEntityOrder::EOrderType transition, SEntityAction* action );
+	bool ProcessContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
 
-	bool processGeneric( CEntityOrder* current, size_t timestep_milli );
-	bool processGenericNoPathing( CEntityOrder* current, size_t timestep_milli );
+	bool ProcessGeneric( CEntityOrder* current, size_t timestep_milli );
+	bool ProcessGenericNoPathing( CEntityOrder* current, size_t timestep_milli );
 
-	bool processProduce( CEntityOrder* order );
+	bool ProcessProduce( CEntityOrder* order );
 
-	bool processGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
-	bool processGoto( CEntityOrder* current, size_t timestep_milli );
-	bool processGotoWaypoint( CEntityOrder* current, size_t timestep_milli, bool contact );
+	bool ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
+	bool ProcessGoto( CEntityOrder* current, size_t timestep_milli );
+	bool ProcessGotoWaypoint( CEntityOrder* current, size_t timestep_milli, bool contact );
 
-	bool processPatrol( CEntityOrder* current, size_t timestep_milli );
+	bool ProcessPatrol( CEntityOrder* current, size_t timestep_milli );
 
-	float chooseMovementSpeed( float distance );
+	float ChooseMovementSpeed( float distance );
 	
-	bool shouldRun( float distance );		// Given our distance to a target, can we be running?
+	bool ShouldRun( float distance );		// Given our distance to a target, can we be running?
 
-	void updateOrders( size_t timestep_millis );
+	void UpdateOrders( size_t timestep_millis );
 
 public:
 	~CEntity();
@@ -255,15 +255,15 @@ public:
 	HEntity me;
 
 	// Updates gameplay information for the specified timestep
-	void update( size_t timestep_millis );
+	void Update( size_t timestep_millis );
 	// Updates graphical information for a point between the last and current
 	// simulation frame; should be 0 <= relativeoffset <= 1 (else it'll be
 	// clamped)
-	void interpolate( float relativeoffset );
+	void Interpolate( float relativeoffset );
 
 	// Forces update of actor information during next call to 'interpolate'.
 	// (Necessary when terrain might move underneath the actor.)
-	void invalidateActor();
+	void InvalidateActor();
 
 	// Updates auras
 	void UpdateAuras( size_t timestep_millis );
@@ -275,32 +275,32 @@ public:
 	// The keepActor parameter specifies whether to remove the unit's actor immediately (for
 	// units we want removed immediately, e.g. in Atkas) or to keep it and play the death
 	// animation (for units that die of "natural causes").
-	void kill(bool keepActor = false);
+	void Kill(bool keepActor = false);
 
 	// Process initialization
 	bool Initialize();
 	void initAuraData();
 
 	// Process tick.
-// 	void Tick(); // (see comment in CEntityManager::updateAll)
+// 	void Tick(); // (see comment in CEntityManager::UpdateAll)
 
 	// Calculate distances along the terrain
 
-	float distance2D( float x, float z )
+	float Distance2D( float x, float z )
 	{
 		float dx = x - m_position.X;
 		float dz = z - m_position.Z;
 		return sqrt( dx*dx + dz*dz );
 	}
 
-	float distance2D( CEntity* other )
+	float Distance2D( CEntity* other )
 	{
-		return distance2D( other->m_position.X, other->m_position.Z );
+		return Distance2D( other->m_position.X, other->m_position.Z );
 	}
 
-	float distance2D( CVector2D p )
+	float Distance2D( CVector2D p )
 	{
-		return distance2D( p.x, p.y );
+		return Distance2D( p.x, p.y );
 	}
 
 private:
@@ -313,66 +313,66 @@ public:
 	CPlayer* GetPlayer() { return m_player; }
 
 	// Update collision patch (move ourselves to a new one if necessary)
-	void updateCollisionPatch();
+	void UpdateCollisionPatch();
 
-	float getAnchorLevel( float x, float z );
+	float GetAnchorLevel( float x, float z );
 
-	void snapToGround();
-	void updateActorTransforms();
-	void updateXZOrientation();
+	void SnapToGround();
+	void UpdateActorTransforms();
+	void UpdateXZOrientation();
 
 	// Getter and setter for the class sets
-	jsval getClassSet();
-	void setClassSet( jsval value );
-	void rebuildClassSet();
+	jsval GetClassSet();
+	void SetClassSet( jsval value );
+	void RebuildClassSet();
 
 	// Things like selection circles and debug info - possibly move to gui if/when it becomes responsible for (and capable of) it.
-	void render();
-	void renderSelectionOutline( float alpha = 1.0f );
-	void renderAuras();
-	void renderBars();
-	void renderBarBorders();
-	void renderHealthBar();
-	void renderStaminaBar();
-	void renderRank();
-	void renderRallyPoint();
+	void Render();
+	void RenderSelectionOutline( float alpha = 1.0f );
+	void RenderAuras();
+	void RenderBars();
+	void RenderBarBorders();
+	void RenderHealthBar();
+	void RenderStaminaBar();
+	void RenderRank();
+	void RenderRallyPoint();
 	
 	// Utility functions for rendering:
 
 	// Draw rectangle around the given centre, aligned with the given axes
-	void drawRect(CVector3D& centre, CVector3D& up, CVector3D& right, float x1, float y1, float x2, float y2);
-	void drawBar(CVector3D& centre, CVector3D& up, CVector3D& right, 
+	void DrawRect(CVector3D& centre, CVector3D& up, CVector3D& right, float x1, float y1, float x2, float y2);
+	void DrawBar(CVector3D& centre, CVector3D& up, CVector3D& right, 
 		float x1, float y1, float x2, float y2,
 		SColour col1, SColour col2, float currVal, float maxVal);
 
-	CVector2D getScreenCoords( float height );
+	CVector2D GetScreenCoords( float height );
 
 	// After a collision, recalc the path to the next fixed waypoint.
-	void repath();
+	void Repath();
 
 	//Calculate stamina points
 	void CalculateRegen(float timestep);
 
 	// Reset properties after the entity-template we use changes.
-	void loadBase();
-	static void initAttributes(const CEntity* _this);
+	void LoadBase();
+	static void InitAttributes(const CEntity* _this);
 
-	void reorient(); // Orientation
-	void teleport(); // Fixes things if the position is changed by something externally.
-	void stanceChanged(); // Sets m_stance to the right CStance object when our stance property is changed through scripts
-	void checkSelection(); // In case anyone tries to select/deselect this through JavaScript.
-	void checkGroup(); // Groups
-	void checkExtant(); // Existence
+	void Reorient(); // Orientation
+	void Teleport(); // Fixes things if the position is changed by something externally.
+	void StanceChanged(); // Sets m_stance to the right CStance object when our stance property is changed through scripts
+	void CheckSelection(); // In case anyone tries to select/deselect this through JavaScript.
+	void CheckGroup(); // Groups
+	void CheckExtant(); // Existence
 
-	void clearOrders();
-	void popOrder();	//Use this if and order has finished instead of m_orderQueue.pop_front()
-	void pushOrder( CEntityOrder& order );
+	void ClearOrders();
+	void PopOrder();	//Use this if an order has finished instead of m_orderQueue.pop_front()
+	void PushOrder( CEntityOrder& order );
 
 	void DispatchNotification( CEntityOrder order, int type );
 	int DestroyNotifier( CEntity* target );	//Stop notifier from sending to us
 	void DestroyAllNotifiers();
 
-	int findSector( int divs, float angle, float maxAngle, bool negative=true );
+	int FindSector( int divs, float angle, float maxAngle, bool negative=true );
 	jsval FlattenTerrain( JSContext* cx, uintN argc, jsval* argv );
 
 	CEntityFormation* GetFormation();
@@ -393,8 +393,8 @@ public:
 	jsval GetAttackDirections( JSContext* cx, uintN argc, jsval* argv );
 
 	jsval FindSector( JSContext* cx, uintN argc, jsval* argv );
-	// Script constructor
 
+	// Script constructor
 	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 
 	// Script-bound functions
@@ -441,7 +441,7 @@ public:
 
 	bool Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrderSource source, bool Queued );
 
-	// TODO: Replace these variants of order() with a single function, and update scripts accordingly.
+	// TODO: Replace these variants of Order() with a single function, and update scripts accordingly.
 	inline bool OrderSingle( JSContext* cx, uintN argc, jsval* argv )
 	{
 		return( Order( cx, argc, argv, CEntityOrder::SOURCE_PLAYER, false ) );

@@ -20,7 +20,7 @@ CParticleEngine::~CParticleEngine(void)
 {
 }
 
-void CParticleEngine::cleanup()
+void CParticleEngine::Cleanup()
 {
 	tEmitterNode *temp = m_pHead;
 	totalParticles = 0;
@@ -60,7 +60,7 @@ void CParticleEngine::DeleteInstance()
 	m_pInstance = 0;
 }
 
-bool CParticleEngine::initParticleSystem()
+bool CParticleEngine::InitParticleSystem()
 {
 	// Texture Loading
 	CTexture pTex;
@@ -86,9 +86,9 @@ bool CParticleEngine::initParticleSystem()
 	return true;
 }
 
-bool CParticleEngine::addEmitter(CEmitter *emitter, int type, int ID)
+bool CParticleEngine::AddEmitter(CEmitter *emitter, int type, int ID)
 {
-	emitter->setTexture(&idTexture[type]);
+	emitter->SetTexture(&idTexture[type]);
 	if(m_pHead == NULL)
 	{
 		tEmitterNode *temp = new tEmitterNode;
@@ -112,7 +112,7 @@ bool CParticleEngine::addEmitter(CEmitter *emitter, int type, int ID)
 	}
 }
 
-CEmitter* CParticleEngine::findEmitter(int ID)
+CEmitter* CParticleEngine::FindEmitter(int ID)
 {
 	tEmitterNode *temp = m_pHead;
 	while(temp)
@@ -140,14 +140,14 @@ CEmitter* CParticleEngine::findEmitter(int ID)
 	return NULL;
 }
 
-void CParticleEngine::updateEmitters()
+void CParticleEngine::UpdateEmitters()
 {
 	tEmitterNode *temp = m_pHead;
 	totalParticles = 0;
 	while(temp)
 	{
 		// are we ready for deletion?
-		if(temp->pEmitter->getIsFinished())
+		if(temp->pEmitter->IsFinished())
 		{
 			// store a pointer to the next node
 			tEmitterNode *pTemp = temp->next;
@@ -170,37 +170,37 @@ void CParticleEngine::updateEmitters()
 		}
 		else
 		{
-			temp->pEmitter->updateEmitter();
+			temp->pEmitter->Update();
 
 			// Add current emitter to particle count
-			totalParticles += temp->pEmitter->getParticleCount();
+			totalParticles += temp->pEmitter->GetParticleCount();
 			temp = temp->next;
 		}
 	}
 }
 
-void CParticleEngine::renderParticles()
+void CParticleEngine::RenderParticles()
 {
 	EnterParticleContext();
 
 	tEmitterNode *temp = m_pHead;
 	while(temp)
 	{
-		temp->pEmitter->renderEmitter();
+		temp->pEmitter->Render();
 		temp = temp->next;
 	}
 
 	LeaveParticleContext();
 }
 
-void CParticleEngine::destroyAllEmitters(bool fade)
+void CParticleEngine::DestroyAllEmitters(bool fade)
 {
 	tEmitterNode *temp = m_pHead;
 	while(temp)
 	{
 		if(fade)
 		{
-			temp->pEmitter->setEmitterLife(0);
+			temp->pEmitter->SetEmitterLife(0);
 			temp = temp->next;
 		}
 		else
@@ -226,7 +226,7 @@ void CParticleEngine::destroyAllEmitters(bool fade)
 		}
 	}
 	m_pHead = NULL;
-	updateEmitters();
+	UpdateEmitters();
 }
 
 void CParticleEngine::EnterParticleContext(void)

@@ -23,10 +23,12 @@ class CTechnologyCollection : public Singleton<CTechnologyCollection>
 public:
 	std::vector<CTechnology*> activeTechs[PS_MAX_PLAYERS+1];
 
-	CTechnology* getTechnology( const CStrW& techType, CPlayer* player );
+	CTechnology* GetTechnology( const CStrW& techType, CPlayer* player );
 	~CTechnologyCollection();
 
-	int loadTechnologies();
+	int LoadTechnologies();
+
+	// called by non-member trampoline via LoadTechnologies
 	void LoadFile( const char* path );
 };
 

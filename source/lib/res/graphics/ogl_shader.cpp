@@ -105,7 +105,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 
 	RETURN_ERR(vfs_load(filename, file, file_size));
 
-	oglCheck();
+	ogl_WarnIfError();
 
 	shdr->id = pglCreateShaderObjectARB(shdr->type);
 	if (!shdr->id)
@@ -113,7 +113,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 		// May be out of memory, but bad shdr->type is also possible.
 		// In any case, checking OpenGL error state will help spot
 		// bad code.
-		oglCheck();
+		ogl_WarnIfError();
 		
 		err  = ERR::SHDR_CREATE;
 		goto fail_fileloaded;
@@ -145,7 +145,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 		// errors at the GLSL level does not set OpenGL error state
 		// according to the spec, but this might still prove to be
 		// useful some time.
-		oglCheck();
+		ogl_WarnIfError();
 	
 		char typenamebuf[32];
 		debug_printf("Failed to compile shader %hs (type %hs)\n",
@@ -251,11 +251,11 @@ static LibError do_load_shader(
 		Ogl_Program* p, const char* filename, Handle UNUSED(h),
 		const CXeromyces& XeroFile, const XMBElement& Shader)
 {
-#define AT(x) int at_##x = XeroFile.getAttributeID(#x)
+#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	AT(type);
 #undef AT
 	
-	CStr Type = Shader.getAttributes().getNamedItem(at_type);
+	CStr Type = Shader.GetAttributes().GetNamedItem(at_type);
 
 	if (Type.empty())
 	{
@@ -273,7 +273,7 @@ static LibError do_load_shader(
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
-	CStr Name = Shader.getText();
+	CStr Name = Shader.GetText();
 	
 	if (Name.empty())
 	{
@@ -302,14 +302,14 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 	if (p->id)
 		return INFO::OK;
 
-	oglCheck();
+	ogl_WarnIfError();
 	
 	p->id = pglCreateProgramObjectARB();
 	if (!p->id)
 	{
 		// The spec doesn't mention any error state that can be set
 		// here, but it may still help spot bad code.
-		oglCheck();
+		ogl_WarnIfError();
 		
 		WARN_RETURN(ERR::SHDR_CREATE);
 	}
@@ -319,36 +319,36 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 		WARN_RETURN(ERR::CORRUPTED); // more informative error message?
 
 	// Define all the elements and attributes used in the XML file
-#define EL(x) int el_##x = XeroFile.getElementID(#x)
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
 	EL(program);
 	EL(shaders);
 	EL(shader);
 #undef EL
 
-	XMBElement Root = XeroFile.getRoot();
+	XMBElement Root = XeroFile.GetRoot();
 
-	if (Root.getNodeName() != el_program)
+	if (Root.GetNodeName() != el_program)
 	{
 		LOG(ERROR, LOG_CATEGORY, "%hs: XML root was not \"Program\".", filename);
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
-	XMBElementList RootChildren = Root.getChildNodes();
+	XMBElementList RootChildren = Root.GetChildNodes();
 
 	for(int i = 0; i < RootChildren.Count; ++i)
 	{
-		XMBElement Child = RootChildren.item(i);
+		XMBElement Child = RootChildren.Item(i);
 	
-		int ChildName = Child.getNodeName();
+		int ChildName = Child.GetNodeName();
 		if (ChildName == el_shaders)
 		{
-			XMBElementList Shaders = Child.getChildNodes();
+			XMBElementList Shaders = Child.GetChildNodes();
 			
 			for(int j = 0; j < Shaders.Count; ++j)
 			{
-				XMBElement Shader = Shaders.item(j);
+				XMBElement Shader = Shaders.Item(j);
 				
-				if (Shader.getNodeName() != el_shader)
+				if (Shader.GetNodeName() != el_shader)
 				{
 					LOG(ERROR, LOG_CATEGORY, "%hs: Only \"Shader\" may be child of \"Shaders\".",
 					    filename);

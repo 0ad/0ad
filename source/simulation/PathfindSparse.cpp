@@ -8,7 +8,7 @@
 
 int SPF_RECURSION_DEPTH = 10;
 
-sparsePathTree::sparsePathTree( const CVector2D& _from, const CVector2D& _to, HEntity _entity, CBoundingObject* _destinationCollisionObject, int _recursionDepth )
+SparsePathTree::SparsePathTree( const CVector2D& _from, const CVector2D& _to, HEntity _entity, CBoundingObject* _destinationCollisionObject, int _recursionDepth )
 {
 	from = _from; to = _to;
 	recursionDepth = _recursionDepth;
@@ -21,7 +21,7 @@ sparsePathTree::sparsePathTree( const CVector2D& _from, const CVector2D& _to, HE
 	nextSubtree = 0;
 }
 
-sparsePathTree::~sparsePathTree()
+SparsePathTree::~SparsePathTree()
 {
 	if( leftPre ) delete( leftPre );
 	if( leftPost ) delete( leftPost );
@@ -29,7 +29,7 @@ sparsePathTree::~sparsePathTree()
 	if( rightPost ) delete( rightPost );
 }
 
-bool sparsePathTree::slice()
+bool SparsePathTree::slice()
 {
 	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
 	
@@ -45,7 +45,7 @@ bool sparsePathTree::slice()
 		rayIntersectionResults r;
 
 		CVector2D forward = to - from;
-		float len = forward.length();
+		float len = forward.Length();
 
 		if( len == 0.0f )
 		{
@@ -57,7 +57,7 @@ bool sparsePathTree::slice()
 		forward /= len;
 		CVector2D v_right = CVector2D( forward.y, -forward.x );
 
-		if( !getRayIntersection( from, forward, v_right, len, entity->m_bounds->m_radius * 1.1f, destinationCollisionObject, &r ) )
+		if( !GetRayIntersection( from, forward, v_right, len, entity->m_bounds->m_radius * 1.1f, destinationCollisionObject, &r ) )
 		{
 			type = SPF_CLOSED_DIRECT;
 			return( true );
@@ -86,7 +86,7 @@ bool sparsePathTree::slice()
 			// A distance of offsetDistance is sufficient to guarantee we'll make the turn.
 
 			CVector2D delta = r.position - from;
-			float length = delta.length();
+			float length = delta.Length();
 
 			float offsetDistance = ( turningRadius * length / sqrt( length * length - turningRadius * turningRadius ) );
 			
@@ -100,13 +100,13 @@ bool sparsePathTree::slice()
 		
 		// First we path to the left...
 		
-		leftPre = new sparsePathTree( from, left, entity, destinationCollisionObject, recursionDepth - 1 );
-		leftPost = new sparsePathTree( left, to, entity, destinationCollisionObject, recursionDepth - 1 );
+		leftPre = new SparsePathTree( from, left, entity, destinationCollisionObject, recursionDepth - 1 );
+		leftPost = new SparsePathTree( left, to, entity, destinationCollisionObject, recursionDepth - 1 );
 
 		// Then we path to the right...
 
-		rightPre = new sparsePathTree( from, right, entity, destinationCollisionObject, recursionDepth - 1 );
-		rightPost = new sparsePathTree( right, to, entity, destinationCollisionObject, recursionDepth - 1 );
+		rightPre = new SparsePathTree( from, right, entity, destinationCollisionObject, recursionDepth - 1 );
+		rightPost = new SparsePathTree( right, to, entity, destinationCollisionObject, recursionDepth - 1 );
 
 		// If anybody reaches this point and is thinking:
 		//
@@ -115,14 +115,14 @@ bool sparsePathTree::slice()
 		// Let me know.
 
 		// Check that the subwaypoints are on the map...
-		if( !pTerrain->isOnMap( left ) )
+		if( !pTerrain->IsOnMap( left ) )
 		{
 			// Shut that path down
 			leftPre->type = SPF_IMPOSSIBLE;
 			leftPost->type = SPF_IMPOSSIBLE;
 		}
 
-		if( !pTerrain->isOnMap( right ) )
+		if( !pTerrain->IsOnMap( right ) )
 		{
 			// Shut that path down
 			rightPre->type = SPF_IMPOSSIBLE;
@@ -170,7 +170,7 @@ bool sparsePathTree::slice()
 	}
 }
 
-void sparsePathTree::pushResults( std::vector<CVector2D>& nodelist )
+void SparsePathTree::pushResults( std::vector<CVector2D>& nodelist )
 {
 	debug_assert( type & SPF_SOLVED );
 
@@ -197,7 +197,7 @@ void sparsePathTree::pushResults( std::vector<CVector2D>& nodelist )
 	}
 }		
 
-void nodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist )
+void NodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist )
 {
 	std::vector<CVector2D>::iterator it;
 	CVector2D next = nodelist.front();
@@ -218,11 +218,11 @@ void nodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist )
 		CVector2D previous = *( it + 1 );
 		CVector2D u = current - previous;
 		CVector2D v = next - current;
-		u = u.normalize();
-		v = v.normalize();
+		u = u.Normalize();
+		v = v.Normalize();
 		CVector2D ubar = u.beta();
 		CVector2D vbar = v.beta();
-		float alpha = entity->m_turningRadius * ( ubar - vbar ).length() / ( u + v ).length();
+		float alpha = entity->m_turningRadius * ( ubar - vbar ).Length() / ( u + v ).Length();
 		node.m_target_location = current - u * alpha;
 		entity->m_orderQueue.push_front( node );
 		next = current;
@@ -234,23 +234,23 @@ void nodePostProcess( HEntity entity, std::vector<CVector2D>& nodelist )
 	entity->m_orderQueue.front().m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
 }
 
-void pathSparse( HEntity entity, CVector2D destination )
+void PathSparse( HEntity entity, CVector2D destination )
 {
 	std::vector<CVector2D> pathnodes;
 	CVector2D source( entity->m_position.X, entity->m_position.Z );
 	// Sanity check:
-	if( source.length() < 0.01f ) return;
+	if( source.Length() < 0.01f ) return;
 
-	sparsePathTree sparseEngine( source, destination, entity, getContainingObject( destination ), SPF_RECURSION_DEPTH );
-	while( sparseEngine.type & sparsePathTree::SPF_OPEN ) sparseEngine.slice();
+	SparsePathTree sparseEngine( source, destination, entity, GetContainingObject( destination ), SPF_RECURSION_DEPTH );
+	while( sparseEngine.type & SparsePathTree::SPF_OPEN ) sparseEngine.slice();
 
-	// debug_assert( sparseEngine.type & sparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.
+	// debug_assert( sparseEngine.type & SparsePathTree::SPF_SOLVED ); // Shouldn't be any impossible cases yet.
 
-	if( sparseEngine.type & sparsePathTree::SPF_SOLVED )
+	if( sparseEngine.type & SparsePathTree::SPF_SOLVED )
 	{
 		sparseEngine.pushResults( pathnodes );
 		pathnodes.push_back( source );
-		nodePostProcess( entity, pathnodes );
+		NodePostProcess( entity, pathnodes );
 	}
 	else
 	{

@@ -188,9 +188,9 @@ CGameView::CGameView(CGame *pGame):
 
 CGameView::~CGameView()
 {
-	g_Selection.clearSelection();
-	g_Mouseover.clear();
-	g_BuildingPlacer.deactivate();
+	g_Selection.ClearSelection();
+	g_Mouseover.Clear();
+	g_BuildingPlacer.Deactivate();
 	UnloadResources();
 
 	delete m;
@@ -332,7 +332,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	const std::vector<CUnit*>& units = unitMan.GetUnits();
 	for (uint i=0;i<units.size();++i)
 	{
-		oglCheck();
+		ogl_WarnIfError();
 
 		CEntity* ent = units[i]->GetEntity();
 		if( ent && !ent->m_visible )
@@ -396,7 +396,7 @@ void CGameView::CameraLock(const CVector3D& Trans, bool smooth)
 void CGameView::CameraLock(float x, float y, float z, bool smooth)
 {
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
-	float height = pTerrain->getExactGroundLevel(
+	float height = pTerrain->GetExactGroundLevel(
 			m->ViewCamera.m_Orientation._14 + x, m->ViewCamera.m_Orientation._34 + z) +
 			g_YMinOffset;
 	//is requested position within limits?

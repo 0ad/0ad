@@ -7,7 +7,7 @@
 
 #include <float.h>
 
-CBoundingObject* getContainingObject( const CVector2D& point )
+CBoundingObject* GetContainingObject( const CVector2D& point )
 {
 	std::vector<CEntity*> entities;
 	g_EntityManager.GetInRange( point.x, point.y, COLLISION_RANGE, entities );
@@ -16,7 +16,7 @@ CBoundingObject* getContainingObject( const CVector2D& point )
 	for( it = entities.begin(); it != entities.end(); it++ )
 	{
 		if( !(*it)->m_bounds ) continue;
-		if( (*it)->m_bounds->contains( point ) )
+		if( (*it)->m_bounds->Contains( point ) )
 		{
 			CBoundingObject* bounds = (*it)->m_bounds;
 			return( bounds );
@@ -37,7 +37,7 @@ CEntity* GetCollisionObject( float x, float y )
 	for( it = entities.begin(); it != entities.end(); it++ )
 	{
 		if( !(*it)->m_bounds ) continue;
-		if( (*it)->m_bounds->contains( point ) )
+		if( (*it)->m_bounds->Contains( point ) )
 		{
 			CEntity* e = (*it);
 			return( e );
@@ -47,7 +47,7 @@ CEntity* GetCollisionObject( float x, float y )
 	return( NULL );
 }
 
-CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, const CStrW* ignoreClass )
+CBoundingObject* GetCollisionObject( CBoundingObject* bounds, CPlayer* player, const CStrW* ignoreClass )
 {
 	std::vector<CEntity*> entities;
 	g_EntityManager.GetInRange( bounds->m_pos.x, bounds->m_pos.y, COLLISION_RANGE, entities );
@@ -64,7 +64,7 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, c
 
 		if( ignoreClass && (*it)->m_classes.IsMember( *ignoreClass ) ) continue;
 
-		if( bounds->intersects( (*it)->m_bounds ) )
+		if( bounds->Intersects( (*it)->m_bounds ) )
 		{
 			CBoundingObject* obj = (*it)->m_bounds;
 			return( obj );
@@ -74,7 +74,7 @@ CBoundingObject* getCollisionObject( CBoundingObject* bounds, CPlayer* player, c
 	return( NULL );
 }
 
-CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CStrW* ignoreClass )
+CEntity* GetCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CStrW* ignoreClass )
 {
 	std::vector<CEntity*> entities;
 	g_EntityManager.GetInRange( bounds->m_pos.x, bounds->m_pos.y, COLLISION_RANGE, entities );
@@ -91,7 +91,7 @@ CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CSt
 
 		if( ignoreClass && (*it)->m_classes.IsMember( *ignoreClass ) ) continue;
 
-		if( bounds->intersects( (*it)->m_bounds ) )
+		if( bounds->Intersects( (*it)->m_bounds ) )
 		{
 			return (*it);
 		}
@@ -100,7 +100,7 @@ CEntity* getCollisionEntity( CBoundingObject* bounds, CPlayer* player, const CSt
 	return( NULL );
 }
 
-HEntity getCollisionObject( CEntity* entity, bool enablePassThroughAllies )
+HEntity GetCollisionObject( CEntity* entity, bool enablePassThroughAllies )
 {
 #ifndef NDEBUG
 	debug_assert( entity->m_bounds ); 
@@ -123,7 +123,7 @@ HEntity getCollisionObject( CEntity* entity, bool enablePassThroughAllies )
 				&& entity->GetPlayer() == (*it)->GetPlayer() ) 
 			continue;
 
-		if( entity->m_bounds->intersects( (*it)->m_bounds ) )
+		if( entity->m_bounds->Intersects( (*it)->m_bounds ) )
 		{
 			HEntity collisionObject = HEntity((*it)->me);
 			return( collisionObject );
@@ -133,17 +133,17 @@ HEntity getCollisionObject( CEntity* entity, bool enablePassThroughAllies )
 	return HEntity();
 }
 
-HEntity getCollisionObject( CEntity* entity, float x, float y )
+HEntity GetCollisionObject( CEntity* entity, float x, float y )
 {
 	float _x = entity->m_bounds->m_pos.x;
 	float _y = entity->m_bounds->m_pos.y;
-	entity->m_bounds->setPosition( x, y );
-	HEntity _e = getCollisionObject( entity );
-	entity->m_bounds->setPosition( _x, _y );
+	entity->m_bounds->SetPosition( x, y );
+	HEntity _e = GetCollisionObject( entity );
+	entity->m_bounds->SetPosition( _x, _y );
 	return( _e );
 }
 
-bool getRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, CBoundingObject* destinationCollisionObject, rayIntersectionResults* results )
+bool GetRayIntersection( const CVector2D& source, const CVector2D& forward, const CVector2D& right, float length, float maxDistance, CBoundingObject* destinationCollisionObject, rayIntersectionResults* results )
 {
 	std::vector<CEntity*> entities;
 	g_EntityManager.GetExtant( entities );
@@ -167,8 +167,8 @@ bool getRayIntersection( const CVector2D& source, const CVector2D& forward, cons
 
 		CBoundingObject* obj = (*it)->m_bounds;
 		delta = obj->m_pos - source;
-		closestApproach = delta.dot( right );
-		dist = delta.dot( forward );
+		closestApproach = delta.Dot( right );
+		dist = delta.Dot( forward );
 		float collisionRadius = maxDistance + obj->m_radius;
 
 		if( ( fabs( closestApproach ) < collisionRadius ) && ( dist > collisionRadius * 0.0f ) && ( dist < length - collisionRadius * 0.0f ) ) 
@@ -206,7 +206,7 @@ void GetProjectileIntersection( const CVector2D& position, const CVector2D& axis
 		closestApproach = delta.betadot( axis );
 		if( fabs( closestApproach ) > obj->m_radius )
 			continue; // Safe, doesn't get close enough.
-		dist = delta.dot( axis );
+		dist = delta.Dot( axis );
 		// I just want to see if this will work before I simplify the maths
 		l = sqrt( obj->m_radius * obj->m_radius - closestApproach * closestApproach );
 		if( dist > 0 )

@@ -190,12 +190,12 @@ void CTerritoryManager::CalculateBoundary( std::vector<CEntity*>& centres, size_
 			for( size_t j=0; j<boundary.size(); j++ )
 			{
 				CVector2D& pos = boundary[j];
-				float dot = (pos - midpoint).dot(normal);
+				float dot = (pos - midpoint).Dot(normal);
 				bool inside = dot < 0.0f;
 					
 				size_t nextJ = (j+1) % boundary.size();		// index of next point
 				CVector2D& nextPos = boundary[nextJ];
-				float nextDot = (nextPos - midpoint).dot(normal);
+				float nextDot = (nextPos - midpoint).Dot(normal);
 				bool nextInside = nextDot < 0.0f;
 
 				if( inside )
@@ -220,7 +220,7 @@ void CTerritoryManager::CalculateBoundary( std::vector<CEntity*>& centres, size_
 		}
 	}
 }
-void CTerritoryManager::renderTerritories()
+void CTerritoryManager::RenderTerritories()
 {
 	PROFILE( "render territories" );
 
@@ -310,15 +310,15 @@ const std::vector<CVector3D>& CTerritory::GetEdgeCoords(size_t edge)
 			size_t nextI = (i+1) % boundary.size();
 
 			// Figure out the direction perpendicular to each of the two edges that meet at this point.
-			CVector2D dir1 = (boundary[i]-boundary[prevI]).beta().normalize();
-			CVector2D dir2 = (boundary[nextI]-boundary[i]).beta().normalize();
+			CVector2D dir1 = (boundary[i]-boundary[prevI]).beta().Normalize();
+			CVector2D dir2 = (boundary[nextI]-boundary[i]).beta().Normalize();
 
 			// If you draw a picture of what our point looks like and what the two lines 0.3 units 
 			// away from it look like, and draw a line between our point and that one as well as 
 			// drop perpendicular lines from it to the original edges, you get this formula for the
 			// length and direction we have to be moved.
-			float angle = acosf(dir1.dot(dir2));
-			tweakedBoundary[i] += (dir1 + dir2).normalize() * 0.3f / cosf(angle/2);
+			float angle = acosf(dir1.Dot(dir2));
+			tweakedBoundary[i] += (dir1 + dir2).Normalize() * 0.3f / cosf(angle/2);
 		}
 
 		// Calculate the heights at points TERRITORY_PRECISION_STEP apart on our edges
@@ -330,14 +330,14 @@ const std::vector<CVector3D>& CTerritory::GetEdgeCoords(size_t edge)
 			CVector2D start = tweakedBoundary[e];
 			CVector2D end = tweakedBoundary[(e+1) % boundary.size()];
 
-			float iterf = (end - start).length() / TERRITORY_PRECISION_STEP;
+			float iterf = (end - start).Length() / TERRITORY_PRECISION_STEP;
 			for ( float i=0; i < iterf; i += TERRITORY_PRECISION_STEP )
 			{
 				CVector2D pos = Interpolate( start, end, i/iterf );
-				coords.push_back( CVector3D( pos.x, pTerrain->getExactGroundLevel(pos)+0.25f, pos.y ) );
+				coords.push_back( CVector3D( pos.x, pTerrain->GetExactGroundLevel(pos)+0.25f, pos.y ) );
 			}
 
-			coords.push_back( CVector3D( end.x, pTerrain->getExactGroundLevel(end)+0.25f, end.y ) );
+			coords.push_back( CVector3D( end.x, pTerrain->GetExactGroundLevel(end)+0.25f, end.y ) );
 		}
 	}
 	

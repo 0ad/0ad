@@ -228,18 +228,18 @@ CGameAttributes::CGameAttributes():
 	}
 	else
 	{
-		int at_name = XeroFile.getAttributeID("name");
-		int at_rgb = XeroFile.getAttributeID("rgb");
+		int at_name = XeroFile.GetAttributeID("name");
+		int at_rgb = XeroFile.GetAttributeID("rgb");
 
-		XMBElement root = XeroFile.getRoot();
+		XMBElement root = XeroFile.GetRoot();
 		XERO_ITER_EL(root, player)
 		{
-			XMBAttributeList attr = player.getAttributes();
+			XMBAttributeList attr = player.GetAttributes();
 			m_Players.push_back(new CPlayer((int)m_Players.size()));
-			m_Players.back()->SetName(attr.getNamedItem(at_name));
+			m_Players.back()->SetName(attr.GetNamedItem(at_name));
 
 			std::stringstream str;
-			str << (CStr)attr.getNamedItem(at_rgb);
+			str << (CStr)attr.GetNamedItem(at_rgb);
 			int r, g, b;
 			if (str >> r >> g >> b)
 				m_Players.back()->SetColour(SPlayerColour(r/255.0f, g/255.0f, b/255.0f));

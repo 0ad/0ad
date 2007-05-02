@@ -34,7 +34,7 @@ enum EGotoSituation
 	STANCE_DISALLOWS
 };
 
-bool CEntity::shouldRun(float distance)
+bool CEntity::ShouldRun(float distance)
 {
 	if( !entf_get(ENTF_SHOULD_RUN) )
 		return false;
@@ -53,9 +53,9 @@ bool CEntity::shouldRun(float distance)
 	return true;
 }
 
-float CEntity::chooseMovementSpeed( float distance )
+float CEntity::ChooseMovementSpeed( float distance )
 {
-	bool should_run = shouldRun(distance);
+	bool should_run = ShouldRun(distance);
 	
 	float speed = should_run? m_runSpeed : m_speed;
 	const char* anim_name = should_run? "run" : "walk";
@@ -83,7 +83,7 @@ float CEntity::chooseMovementSpeed( float distance )
 
 // Does all the shared processing for line-of-sight gotos
 
-uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide )
+uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide )
 {
 	float timestep=timestep_millis/1000.0f;
 
@@ -91,7 +91,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	delta.x = (float)current->m_target_location.x - m_position.X;
 	delta.y = (float)current->m_target_location.y - m_position.Z;
 
-	float len = delta.length();
+	float len = delta.Length();
 
 	if( len < 0.01f )
 		return( ALREADY_AT_DESTINATION );
@@ -99,7 +99,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	// Curve smoothing.
 	// Here there be trig.
 
-	float scale = chooseMovementSpeed( len ) * timestep;
+	float scale = ChooseMovementSpeed( len ) * timestep;
 
 	// Note: Easy optimization: flag somewhere that this unit
 	// is already pointing the  way, and don't do this
@@ -147,10 +147,10 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 		m_orientation.Y = m_targetorientation;
 	}
 	
-	updateXZOrientation();
+	UpdateXZOrientation();
 
 	if( m_bounds && m_bounds->m_type == CBoundingObject::BOUND_OABB )
-		((CBoundingBox*)m_bounds)->setOrientation( m_ahead );
+		((CBoundingBox*)m_bounds)->SetOrientation( m_ahead );
 
 	EGotoSituation rc = NORMAL;
 
@@ -169,13 +169,13 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 	if( m_bounds )
 	{
-		m_bounds->setPosition( m_position.X, m_position.Z );
+		m_bounds->SetPosition( m_position.X, m_position.Z );
 
 		// For now, ignore passThroughAllies for low-level movement (but leave it on for long-range
 		// pathfinding); ideally we will enable pass-through-allies only for the long-range pathing
 		// and when the unit is moving to assume its place in a formation, since it looks bad to have
 		// units stand on each other otherwise.
-		collide = getCollisionObject( this, false );
+		collide = GetCollisionObject( this, false );
 		
 		if( collide )
 		{	
@@ -186,7 +186,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 			// Is it too late to avoid the collision?
 
-			if( collide->m_bounds->intersects( m_bounds ) )
+			if( collide->m_bounds->Intersects( m_bounds ) )
 			{
 				// Yes. Oh dear. That can't be good.
 				// This really shouldn't happen in the current build.
@@ -199,7 +199,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 			}
 
 			// No. Is our destination within the obstacle?
-			if( collide->m_bounds->contains( current->m_target_location ) )
+			if( collide->m_bounds->Contains( current->m_target_location ) )
 				return( COLLISION_WITH_DESTINATION );
 
 			// No. Are we nearing our destination, do we wish to stop there, and is it obstructed?
@@ -207,7 +207,7 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 			if( ( m_orderQueue.size() == 1 ) && ( len <= 10.0f ) )
 			{
 				CBoundingCircle destinationObs( current->m_target_location.x, current->m_target_location.y, m_bounds->m_radius, 0.0f );
-				if( getCollisionObject( &destinationObs ) )
+				if( GetCollisionObject( &destinationObs ) )
 				{
 					// Yes. (Chances are a bunch of units were tasked to the same destination)
 					return( COLLISION_NEAR_DESTINATION );
@@ -221,14 +221,14 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	}
 
 	// Will we step off the map?
-	if( !g_Game->GetWorld()->GetTerrain()->isOnMap( m_position.X, m_position.Z ) )
+	if( !g_Game->GetWorld()->GetTerrain()->IsOnMap( m_position.X, m_position.Z ) )
 	{
 		// Yes. That's not a particularly good idea, either.
 
 		m_position.X -= delta.x;
 		m_position.Z -= delta.y;
 		if( m_bounds )
-			m_bounds->setPosition( m_position.X, m_position.Z );
+			m_bounds->SetPosition( m_position.X, m_position.Z );
 
 		// All things being equal, we should only get here while on a collision path
 		// (No destination should be off the map)
@@ -237,12 +237,12 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	}
 
 	// Does our stance not allow us to go there?
-	if( current->m_source==CEntityOrder::SOURCE_UNIT_AI && !m_stance->checkMovement( m_position ) )
+	if( current->m_source==CEntityOrder::SOURCE_UNIT_AI && !m_stance->CheckMovement( m_position ) )
 	{
 		m_position.X -= delta.x;
 		m_position.Z -= delta.y;
 		if( m_bounds )
-			m_bounds->setPosition( m_position.X, m_position.Z );
+			m_bounds->SetPosition( m_position.X, m_position.Z );
 
 		return( STANCE_DISALLOWS );
 	}
@@ -253,16 +253,16 @@ uint CEntity::processGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 }
 
 
-bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
 	HEntity collide;
-	switch( processGotoHelper( current, timestep_millis, collide ) )
+	switch( ProcessGotoHelper( current, timestep_millis, collide ) )
 	{
 	case ALREADY_AT_DESTINATION:
 		// If on a collision path; decide where to go next. Otherwise, proceed to the next waypoint.
 		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
 		{
-			repath();
+			Repath();
 		}
 		else
 		{
@@ -295,8 +295,8 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 			delta = interval / r;
 			theta += delta;
 			r += ( interval * delta ) / ( 2 * PI );
-			destinationObs.setPosition( _x + r * cosf( theta ), _y + r * sinf( theta ) );
-			if( !getCollisionObject( &destinationObs ) ) break;
+			destinationObs.SetPosition( _x + r * cosf( theta ), _y + r * sinf( theta ) );
+			if( !GetCollisionObject( &destinationObs ) ) break;
 		}
 		
 		// Reset our destination
@@ -318,7 +318,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		// Which is the shortest diversion, going left or right?
 		// (Weight a little towards the right, to stop both units dodging the same way)
 
-		if( ( collide->m_bounds->m_pos - m_bounds->m_pos ).dot( right ) < 1 )
+		if( ( collide->m_bounds->m_pos - m_bounds->m_pos ).Dot( right ) < 1 )
 		{
 			// Turn right.
 			avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
@@ -339,7 +339,7 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		return( false );
 	}
 	case WOULD_LEAVE_MAP:
-		// Just stop here, repath if necessary.
+		// Just stop here, Repath if necessary.
 		m_orderQueue.pop_front();
 		//entf_clear(ENTF_IS_RUNNING);
 		//entf_clear(ENTF_SHOULD_RUN);
@@ -354,14 +354,14 @@ bool CEntity::processGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 }
 
 // Handles processing common to (at the moment) gather and melee attack actions
-bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), CEntityOrder::EOrderType transition, SEntityAction* action )
+bool CEntity::ProcessContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), CEntityOrder::EOrderType transition, SEntityAction* action )
 {
 	HEntity target = current->m_target_entity;
 
 	if( !target || !target->m_extant )
 	{
-		popOrder();
-		if( m_orderQueue.empty() && target.isValid() )
+		PopOrder();
+		if( m_orderQueue.empty() && target.IsValid() )
 		{
 			CEventTargetExhausted evt( target, action->m_Id );
 			DispatchEvent( &evt );
@@ -372,12 +372,12 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	if( current->m_source != CEntityOrder::SOURCE_TRIGGERS &&
 		g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
 	{
-		popOrder();
+		PopOrder();
 		return false;
 	}
 
 	current->m_target_location = target->m_position;
-	float Distance = distance2D(current->m_target_location);
+	float Distance = Distance2D(current->m_target_location);
 
 	if( Distance < action->m_MaxRange ) 
 	{
@@ -387,24 +387,24 @@ bool CEntity::processContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	}
 	else
 	{
-		if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->allowsMovement() )
+		if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->AllowsMovement() )
 		{
-			popOrder();
+			PopOrder();
 			return false;		// We're not allowed to move at all by the current stance
 		}
 
-		chooseMovementSpeed( Distance );
+		ChooseMovementSpeed( Distance );
 
 		// The pathfinder will push its result back into this unit's queue and
 		// add back the current order at the end with the transition type.
 		current->m_type = transition;
-		g_Pathfinder.requestContactPath( me, current, action->m_MaxRange );
+		g_Pathfinder.RequestContactPath( me, current, action->m_MaxRange );
 
 		return true;
 	}
 }
 
-bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
+bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
 {
 	HEntity target = current->m_target_entity;
 
@@ -423,8 +423,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 				entf_clear(ENTF_IS_RUNNING);
 				entf_clear(ENTF_SHOULD_RUN);
 				m_actor->SetAnimationState( "idle" );
-				popOrder();
-				if( m_orderQueue.empty() && target.isValid() )
+				PopOrder();
+				if( m_orderQueue.empty() && target.IsValid() )
 				{
 					CEventTargetExhausted evt( target, action->m_Id );
 					DispatchEvent( &evt );
@@ -449,8 +449,8 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	if( !target || !target->m_extant
 		|| g_Game->GetWorld()->GetLOSManager()->GetUnitStatus( target, m_player ) == UNIT_HIDDEN )
 	{
-		popOrder();
-		if( m_orderQueue.empty() && target.isValid() )
+		PopOrder();
+		if( m_orderQueue.empty() && target.IsValid() )
 		{
 			CEventTargetExhausted evt( target, action->m_Id );
 			DispatchEvent( &evt );
@@ -462,7 +462,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	}
 
 	CVector2D delta = CVector2D(target->m_position) - CVector2D(m_position);
-	float deltaLength = delta.length();
+	float deltaLength = delta.Length();
 
 	float adjRange = action->m_MaxRange + m_bounds->m_radius + target->m_bounds->m_radius;
 
@@ -472,21 +472,21 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 		if( delta.within( adjMinRange ) )
 		{
 			// Too close... avoid it if allowed by the current stance.
-			if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->allowsMovement() )
+			if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->AllowsMovement() )
 			{
-				popOrder();
+				PopOrder();
 				m_actor->SetAnimationState( "idle" );
 				return false;		// We're not allowed to move at all by the current stance
 			}
 
 			entf_set(ENTF_SHOULD_RUN);
-			chooseMovementSpeed( action->m_MinRange );
+			ChooseMovementSpeed( action->m_MinRange );
 			
 			// The pathfinder will push its result in front of the current order
-			if( !g_Pathfinder.requestAvoidPath( me, current, action->m_MinRange + 2.0f ) )
+			if( !g_Pathfinder.RequestAvoidPath( me, current, action->m_MinRange + 2.0f ) )
 			{
 				m_actor->SetAnimationState( "idle" );	// Nothing we can do.. maybe we'll find a better target
-				popOrder();
+				PopOrder();
 			}
 
 			return false;
@@ -496,22 +496,22 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	if( !delta.within( adjRange ) )
 	{
 		// Too far away at the moment, chase after the target if allowed...
-		if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->allowsMovement() )
+		if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->AllowsMovement() )
 		{
-			popOrder();
+			PopOrder();
 			return false;
 		}
 
 		// We're aiming to end up at a location just inside our maximum range
 		// (is this good enough?)
-		delta = delta.normalize() * ( adjRange - m_bounds->m_radius );
+		delta = delta.Normalize() * ( adjRange - m_bounds->m_radius );
 
-		chooseMovementSpeed(deltaLength);
+		ChooseMovementSpeed(deltaLength);
 	
 		current->m_target_location = (CVector2D)target->m_position - delta;
 
 		HEntity collide;	
-		switch( processGotoHelper( current, timestep_millis, collide ) )
+		switch( ProcessGotoHelper( current, timestep_millis, collide ) )
 		{
 		case ALREADY_AT_DESTINATION:
 		case REACHED_DESTINATION:
@@ -540,7 +540,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 			// Which is the shortest diversion, going left or right?
 			// (Weight a little towards the right, to stop both units dodging the same way)
 
-			if( ( collide->m_bounds->m_pos - m_bounds->m_pos ).dot( right ) < 1 )
+			if( ( collide->m_bounds->m_pos - m_bounds->m_pos ).Dot( right ) < 1 )
 			{
 				// Turn right.
 				avoidancePosition = collide->m_bounds->m_pos + right * ( collide->m_bounds->m_radius + m_bounds->m_radius * 2.5f );
@@ -564,7 +564,7 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	{
 		// Close enough, but turn to face them.  
 		m_orientation.Y = atan2( delta.x, delta.y );
-		m_ahead = delta.normalize();
+		m_ahead = delta.Normalize();
 		entf_clear(ENTF_IS_RUNNING);
 	}
 
@@ -576,17 +576,17 @@ bool CEntity::processContactActionNoPathing( CEntityOrder* current, size_t times
 	return( false );
 }
 
-bool CEntity::processGeneric( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::ProcessGeneric( CEntityOrder* current, size_t timestep_millis )
 {
 	if( m_actions.find( current->m_action ) == m_actions.end() )
 	{	
 		return false;	// we've been tasked as part of a group but we can't do this action
 	}
 	SEntityAction& action_obj = m_actions[current->m_action];
-	return( processContactAction( current, timestep_millis, CEntityOrder::ORDER_GENERIC_NOPATHING, &action_obj ) );
+	return( ProcessContactAction( current, timestep_millis, CEntityOrder::ORDER_GENERIC_NOPATHING, &action_obj ) );
 }
 
-bool CEntity::processGenericNoPathing( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::ProcessGenericNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
 	if( m_actions.find( current->m_action ) == m_actions.end() )
 	{	
@@ -595,10 +595,10 @@ bool CEntity::processGenericNoPathing( CEntityOrder* current, size_t timestep_mi
 	CEventGeneric evt( current->m_target_entity, current->m_action );
 	if( !m_actor ) return( false );
 	SEntityAction& action_obj = m_actions[current->m_action];
-	return( processContactActionNoPathing( current, timestep_millis, action_obj.m_Animation, &evt, &action_obj ) );
+	return( ProcessContactActionNoPathing( current, timestep_millis, action_obj.m_Animation, &evt, &action_obj ) );
 }
 
-bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis) )
+bool CEntity::ProcessGoto( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
 	// float timestep=timestep_millis/1000.0f;
 	// janwas: currently unused
@@ -607,7 +607,7 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_target_location;
 	m_orderQueue.pop_front();
-	float Distance = ( path_to - pos ).length();
+	float Distance = ( path_to - pos ).Length();
 	
 	// Let's just check we're going somewhere...
 	if( Distance < 0.1f ) 
@@ -617,21 +617,21 @@ bool CEntity::processGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 		return( false );
 	}
 
-	chooseMovementSpeed( Distance );
+	ChooseMovementSpeed( Distance );
 
 	// The pathfinder will push its result back into this unit's queue.
 
-	g_Pathfinder.requestPath( me, path_to, current->m_source );
+	g_Pathfinder.RequestPath( me, path_to, current->m_source );
 
 	return( true );
 }
 
-bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep_milli), bool contact )
+bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep_milli), bool contact )
 {
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_target_location;
 	m_orderQueue.pop_front();
-	float Distance = ( path_to - pos ).length();
+	float Distance = ( path_to - pos ).Length();
 	
 	// Let's just check we're going somewhere...
 	if( Distance < 0.1f ) 
@@ -641,14 +641,14 @@ bool CEntity::processGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 		return( false );
 	}
 
-	chooseMovementSpeed( Distance );
+	ChooseMovementSpeed( Distance );
 
-	g_Pathfinder.requestLowLevelPath( me, path_to, contact, current->m_pathfinder_radius, current->m_source );
+	g_Pathfinder.RequestLowLevelPath( me, path_to, contact, current->m_pathfinder_radius, current->m_source );
 
 	return( true );
 }
 
-bool CEntity::processPatrol( CEntityOrder* current, size_t UNUSED(timestep_millis) )
+bool CEntity::ProcessPatrol( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
 	// float timestep=timestep_millis/1000.0f;
 	// janwas: currently unused
@@ -670,7 +670,7 @@ bool CEntity::processPatrol( CEntityOrder* current, size_t UNUSED(timestep_milli
 	return( true );
 }
 
-bool CEntity::processProduce( CEntityOrder* order )
+bool CEntity::ProcessProduce( CEntityOrder* order )
 {
 	CEventStartProduction evt( order->m_produce_type, order->m_produce_name );
 	if( DispatchEvent( &evt ) && evt.GetTime() >= 0 )

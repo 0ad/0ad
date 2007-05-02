@@ -11,9 +11,9 @@ public:
 	CPlayList();
 	CPlayList(const char* file);
 	~CPlayList();
-	void load(const char* file);
-	void list();
-	void add(std::string name);
+	void Load(const char* file);
+	void List();
+	void Add(std::string name);
 
 private:
 	std::vector<std::string> tracks;
