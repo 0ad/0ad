@@ -26,11 +26,12 @@
 #include <stdarg.h>
 #include <string.h>
 
-#include "lib/posix/posix_pthread.h"
 #include "lib.h"
 #include "app_hooks.h"
 #include "path_util.h"
 #include "debug_stl.h"
+#include "allocators.h"
+#include "lib/posix/posix_pthread.h"
 #include "lib/sysdep/cpu.h"	// CAS
 #include "lib/sysdep/sysdep.h"
 #include "lib/res/file/file.h"	// FILE_ACCESS
@@ -504,45 +505,12 @@ static bool should_suppress_error(u8* suppress)
 	return false;
 }
 
-static wchar_t* alloc_mem(void* alloca_buf, size_t alloca_buf_size,
-	void*& heap_mem, size_t& max_chars)
-{
-	void* chosen_buf;
-	size_t chosen_size;
 
-	// rationale:
-	// - this needs to be quite large, so preallocating is undesirable.
-	// - prefer malloc to alloca because it allows returning larger
-	//   buffers (stack space may be quite limited).
-	// - do not rely on malloc because we might be called upon to report
-	//   heap corruption errors. therefore, the caller should allocate some
-	//   scratch memory via alloca, which is used as an (optional) backup.
-	// - note: we can't alloca here because it'd be lost after
-	//   function return, but must be passed on to debug_display_error.
-
-	// try allocating from heap.
-	chosen_size = 500*KiB;	// 'enough'
-	chosen_buf = heap_mem = malloc(chosen_size);
-	// .. failed; use alloca_buf.
-	if(!chosen_buf)
-	{
-		// caller didn't set it up => we have no memory to return; abort.
-		if(!alloca_buf)
-			return 0;
-
-		chosen_buf  = alloca_buf;
-		chosen_size = alloca_buf_size;
-	}
-
-	max_chars = chosen_size / sizeof(wchar_t);
-	return (wchar_t*)chosen_buf;
-}
-
+static const size_t message_size_bytes = 256*KiB;	// enough
 
 void debug_error_message_free(ErrorMessageMem* emm)
 {
-	// note: no-op if wasn't allocated from heap.
-	free(emm->heap_mem);
+	page_aligned_free(emm->pa_mem, message_size_bytes);
 }
 
 // split out of debug_display_error because it's used by the self-test.
@@ -552,10 +520,12 @@ const wchar_t* debug_error_message_build(
 	uint skip, void* context,
 	ErrorMessageMem* emm)
 {
-	size_t max_chars;
-	wchar_t* buf = alloc_mem(emm->alloca_buf, emm->alloca_buf_size, emm->heap_mem, max_chars);
-	if(!buf)
+	// rationale: see ErrorMessageMem
+	emm->pa_mem = page_aligned_alloc(message_size_bytes);
+	if(!emm->pa_mem)
 		return L"(insufficient memory to generate error message)";
+	wchar_t* const buf = (wchar_t*)emm->pa_mem;
+	const size_t max_chars = size_bytes / sizeof(wchar_t);
 	wchar_t* pos = buf; size_t chars_left = max_chars; int len;
 
 	// header
@@ -700,8 +670,6 @@ ErrorReaction debug_display_error(const wchar_t* description,
 
 
 	ErrorMessageMem emm;
-	emm.alloca_buf_size = 50000;
-	emm.alloca_buf = sys_alloca(emm.alloca_buf_size);
 	const wchar_t* text = debug_error_message_build(description,
 		fn_only, line, func, skip, context, &emm);
 

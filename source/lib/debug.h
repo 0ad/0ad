@@ -650,12 +650,16 @@ extern const char* debug_get_thread_name();
  **/
 struct ErrorMessageMem
 {
-	// passed to debug_error_message_build from caller
-	void* alloca_buf;
-	size_t alloca_buf_size;
-
-	// allocated within debug_error_message_build
-	void* heap_mem;
+	// rationale:
+	// - error messages with stack traces require a good deal of memory
+	//   (dozens of KB). static buffers of that size are undesirable.
+ 	// - the heap may be corrupted, so don't use malloc. allocator.h's
+	//   page_aligned_malloc (implemented via mmap) should be safe.
+	// - alloca is a bit iffy (the stack may be maxed out), non-portable and
+	//   complicates the code because it can't be allocated by a subroutine.
+	// - this method is probably slow, but error messages aren't built often.
+	//   if necessary, first try malloc and use mmap if that fails.
+	void* pa_mem;
 };
 
 /**

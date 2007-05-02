@@ -106,11 +106,6 @@ extern LibError sys_cursor_free(void* cursor);
 extern int sys_vsnprintf(char* buffer, size_t count, const char* format, va_list argptr);
 
 
-/**
- * allocate on stack, automatically free when current function returns.
- **/
-extern void* sys_alloca(size_t size);
-
 // describe the current OS error state.
 //
 // err: if not 0, use that as the error code to translate; otherwise,

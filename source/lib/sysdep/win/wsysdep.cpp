@@ -46,24 +46,6 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 }
 
 
-void* sys_alloca(size_t size)
-{
-	void* ret;
-	__try
-	{
-		ret = _alloca(size);
-	}
-	// if stack overflow, handle it; otherwise, continue handler search.
-	__except(GetExceptionCode() == STATUS_STACK_OVERFLOW)
-	{
-		// restore guard page - necessary on XP, works everywhere.
-		_resetstkoflw();
-		ret = 0;
-	}
-	return ret;
-}
-
-
 //-----------------------------------------------------------------------------
 // "program error" dialog (triggered by debug_assert and exception)
 //-----------------------------------------------------------------------------

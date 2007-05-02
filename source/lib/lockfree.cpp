@@ -284,7 +284,7 @@ static void smr_release_unreferenced_nodes(TLS* tls)
 retry:
 	const size_t max_hps = (active_threads+3) * NUM_HPS;
 		// allow for creating a few additional threads during the loop
-	void** hps = (void**)sys_alloca(max_hps * sizeof(void*));
+	void** hps = (void**)alloca(max_hps * sizeof(void*));
 	size_t num_hps = 0;
 	// for each participating thread:
 	for(TLS* t = tls_list; t; t = t->next)
@@ -561,7 +561,7 @@ retry:
 // or 0 if not found in the list.
 void* lfl_find(LFList* list, uintptr_t key)
 {
-	ListPos* pos = (ListPos*)sys_alloca(sizeof(ListPos));
+	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
 	if(!list_lookup(list, key, pos))
 		return 0;
 	return node_user_data(pos->cur);
@@ -579,7 +579,7 @@ void* lfl_insert(LFList* list, uintptr_t key, size_t additional_bytes, int* was_
 		// if this triggers, tls_alloc called from lfl_init failed due to
 		// lack of memory and the caller didn't check its return value.
 
-	ListPos* pos = (ListPos*)sys_alloca(sizeof(ListPos));
+	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
 
 	Node* node = 0;
 	if(was_inserted)
@@ -632,7 +632,7 @@ LibError lfl_erase(LFList* list, uintptr_t key)
 		// if this triggers, tls_alloc called from lfl_init failed due to
 		// lack of memory and the caller didn't check its return value.
 
-	ListPos* pos = (ListPos*)sys_alloca(sizeof(ListPos));
+	ListPos* pos = (ListPos*)alloca(sizeof(ListPos));
 
 retry:
 	// not found in list - abort.

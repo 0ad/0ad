@@ -12,7 +12,6 @@
 #include <list>
 #include <set>
 
-#include "EntityMessage.h"
 #include "EntityHandles.h"
 #include "ps/Singleton.h"
 #include "ps/CStr.h"
