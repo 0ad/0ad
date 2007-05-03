@@ -525,7 +525,7 @@ const wchar_t* debug_error_message_build(
 	if(!emm->pa_mem)
 		return L"(insufficient memory to generate error message)";
 	wchar_t* const buf = (wchar_t*)emm->pa_mem;
-	const size_t max_chars = size_bytes / sizeof(wchar_t);
+	const size_t max_chars = message_size_bytes / sizeof(wchar_t);
 	wchar_t* pos = buf; size_t chars_left = max_chars; int len;
 
 	// header
