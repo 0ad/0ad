@@ -88,7 +88,7 @@ class TestMultithread : public CxxTest::TestSuite
 		TestMultithread* this_        = param->this_;
 		const uintptr_t thread_number = param->thread_number;
 
-		cpu_atomic_add(&this_->num_active_threads, 1);
+		cpu_AtomicAdd(&this_->num_active_threads, 1);
 
 		// chosen randomly every iteration (int_value % 4)
 		enum TestAction
@@ -176,7 +176,7 @@ class TestMultithread : public CxxTest::TestSuite
 			}	// switch
 		}	// while !is_complete
 
-		cpu_atomic_add(&this_->num_active_threads, -1);
+		cpu_AtomicAdd(&this_->num_active_threads, -1);
 		TS_ASSERT(this_->num_active_threads >= 0);
 
 		delete param;

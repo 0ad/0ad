@@ -59,7 +59,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		// therefore, use debug_display_error with DE_HIDE_DIALOG.
 		// unfortunately this means we can no longer get at the error text.
 		// a sanity check of the text length has been added to debug_display_error
-		ErrorMessageMem emm = {0,0,0};
+		ErrorMessageMem emm = {0};
 		const wchar_t* text = debug_error_message_build(L"dummy", 0,0,0, 0,0, &emm);
 		TS_ASSERT(wcslen(text) > 500);
 		debug_error_message_free(&emm);
