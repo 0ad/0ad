@@ -5,6 +5,7 @@
 
 #include "lib/lib.h"
 #include "lib/res/file/file.h"
+#include "lib/sysdep/sysdep.h"
 #include "ps/CLogger.h"
 
 #include <fam.h>
