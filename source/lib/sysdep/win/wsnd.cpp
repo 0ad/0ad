@@ -32,6 +32,7 @@
 #include "lib/res/file/file.h"
 #include "dll_ver.h"	// dll_list_*
 #include "win_internal.h"
+#include "wutil.h"
 
 
 // DirectSound header
@@ -58,7 +59,7 @@
 #else
 # define DS_OK 0
 typedef BOOL (CALLBACK* LPDSENUMCALLBACKA)(void*, const char*, const char*, void*);
-extern "C" __declspec(dllimport) HRESULT WINAPI DirectSoundEnumerateA(LPDSENUMCALLBACKA, void*);
+EXTERN_C __declspec(dllimport) HRESULT WINAPI DirectSoundEnumerateA(LPDSENUMCALLBACKA, void*);
 #endif
 
 #if MSC_VERSION

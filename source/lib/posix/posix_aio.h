@@ -1,7 +1,11 @@
+// despite the comment in wposix.h about not using Windows headers for
+// POSIX declarations, this one is harmless (no incompatible declarations)
+// and can safely be used on Windows as well.
+#include <fcntl.h>
+
 #if OS_WIN
 # include "lib/sysdep/win/wposix/waio.h"
 #else
-# include <fcntl.h>
 # include <aio.h>
 #endif
 

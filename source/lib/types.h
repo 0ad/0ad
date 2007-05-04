@@ -20,8 +20,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef __TYPES_H__
-#define __TYPES_H__
+#ifndef INCLUDED_TYPES
+#define INCLUDED_TYPES
 
 #include "posix/posix_types.h"
 
@@ -53,4 +53,4 @@ typedef unsigned int PS_uint;
 //# endif
 //#endif
 
-#endif // #ifndef __TYPES_H__
+#endif // #ifndef INCLUDED_TYPES

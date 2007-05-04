@@ -1,45 +1,29 @@
 #ifndef INCLUDED_WFILESYSTEM
 #define INCLUDED_WFILESYSTEM
 
+#include <sys/stat.h>
+
+#include "no_crt_posix.h"
+
+
 //
 // sys/stat.h
 //
 
-// already defined by MinGW
+// stat is defined by <sys/stat.h> (we allow this because VC8 declares
+// inline macros that are worth keeping)
+
+// defined by MinGW but not VC
 #if MSC_VERSION
 typedef unsigned int mode_t;
 #endif
 
-// VC libc includes stat, but it's quite slow.
-// we implement our own, but use the CRT struct definition.
-// rename the VC function definition to avoid conflict.
-/*
-#define stat vc_stat
-//
-// Extra hack for VC++ 2005, since it defines inline stat/fstat
-// functions inside stat.h (which get confused by the
-// macro-renaming of "stat")
-# if MSC_VERSION >= 1400
-#  define RC_INVOKED // stat.h only includes stat.inl if "!defined(RC_INVOKED) && !defined(__midl)"
-#  include <sys/stat.h>
-#  undef RC_INVOKED
-# else
-#  include <sys/stat.h>
-# endif
-#undef stat
-*/
-#include <sys/stat.h>
+// mkdir is defined by posix_filesystem #if !HAVE_MKDIR
 
-extern int mkdir(const char*, mode_t);
-
-// currently only sets st_mode (file or dir) and st_size.
-//extern int stat(const char*, struct stat*);
-
+// (christmas-tree values because mkdir mode is ignored anyway)
 #define S_IRWXO 0xFFFF
 #define S_IRWXU 0xFFFF
 #define S_IRWXG 0xFFFF
-// stat.h _S_* values are wrong! disassembly shows _S_IWRITE is 0x80,
-// instead of 0x100. define christmas-tree value to be safe.
 
 #define S_ISDIR(m) (m & S_IFDIR)
 #define S_ISREG(m) (m & S_IFREG)

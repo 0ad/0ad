@@ -37,6 +37,8 @@
 # include "lib/sysdep/ia32/ia32.h"
 #endif
 #include "win_internal.h"
+#include "winit.h"
+#include "wutil.h"
 
 #define _NO_CVCONST_H	// request SymTagEnum be defined
 #include <dbghelp.h>	// must come after win_internal

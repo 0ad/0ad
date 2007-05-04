@@ -9,7 +9,7 @@ gee@pyro.nu
 #include "CDropDown.h"
 
 #include "lib/ogl.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 
 using namespace std;
 

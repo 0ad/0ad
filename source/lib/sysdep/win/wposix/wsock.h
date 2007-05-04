@@ -23,7 +23,7 @@
 #ifndef INCLUDED_WSOCK
 #define INCLUDED_WSOCK
 
-#define IMP(ret, name, param) extern "C" __declspec(dllimport) ret __stdcall name param;
+#define IMP(ret, name, param) EXTERN_C __declspec(dllimport) ret __stdcall name param;
 
 
 //
@@ -223,6 +223,15 @@ IMP(ssize_t, recv, (int, void*, size_t, int))
 IMP(ssize_t, send, (int, const void*, size_t, int))
 IMP(ssize_t, sendto, (int, const void*, size_t, int, const struct sockaddr*, socklen_t))
 IMP(ssize_t, recvfrom, (int, void*, size_t, int, struct sockaddr*, socklen_t*))
+
+
+// WSAAsyncSelect event bits
+// (values taken from winsock2.h - do not change!)
+#define FD_READ    BIT(0)
+#define FD_WRITE   BIT(1)
+#define FD_ACCEPT  BIT(3)
+#define FD_CONNECT BIT(4)
+#define FD_CLOSE   BIT(5)
 
 
 #undef IMP

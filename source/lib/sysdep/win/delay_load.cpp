@@ -25,8 +25,16 @@
 #include "precompiled.h"
 #include "delay_load.h"
 
-#include "win_internal.h"
 #include "lib/sysdep/cpu.h"
+#include "win_internal.h"
+#include "winit.h"
+
+
+// note: must be last, since DLLs are unloaded here
+#pragma SECTION_POST_ATEXIT(Y)
+WIN_REGISTER_FUNC(wdll_shutdown);
+#pragma FORCE_INCLUDE(wdll_shutdown)
+#pragma SECTION_RESTORE
 
 
 #define _DELAY_IMP_VER  2
@@ -155,11 +163,6 @@ PfnDliHook   __pfnDliFailureHook2;
 
 
 
-// note: must be last, since DLLs are unloaded here
-#pragma SECTION_POST_ATEXIT(Y)
-WIN_REGISTER_FUNC(wdll_shutdown);
-#pragma FORCE_INCLUDE(wdll_shutdown)
-#pragma SECTION_RESTORE
 
 
 #pragma intrinsic(strlen,memcmp,memcpy)

@@ -28,6 +28,7 @@
 
 #include "lib/path_util.h"
 #include "win_internal.h"
+#include "wutil.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "version.lib")		// DLL version

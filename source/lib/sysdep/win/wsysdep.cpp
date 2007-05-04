@@ -28,6 +28,7 @@
 
 #include "lib/lib.h"
 #include "error_dialog.h"
+#include "wutil.h"
 
 
 #if MSC_VERSION

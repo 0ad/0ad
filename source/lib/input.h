@@ -25,7 +25,7 @@
 #define INPUT_H__
 
 
-#include "lib/sdl_fwd.h"
+#include "lib/external_libraries/sdl_fwd.h"
 
 // input handler return values.
 enum InReaction

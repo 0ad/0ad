@@ -23,7 +23,7 @@
 #include "lib/res/file/file.h"
 #include "Hotkey.h"
 #include "ps/CLogger.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 
 extern int g_xres, g_yres;
 

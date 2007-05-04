@@ -25,6 +25,8 @@
 
 #include "wposix_types.h"
 
+#include "no_crt_posix.h"
+
 
 // Note: for maximum efficiency, transfer buffers, offsets, and lengths
 // should be sector aligned (otherwise, buffer is copied).
@@ -53,15 +55,6 @@ struct sigevent
 // <fcntl.h>
 //
 
-// values from MS _open - do not change!
-#define O_RDONLY       0x0000  // open for reading only
-#define O_WRONLY       0x0001  // open for writing only
-#define O_RDWR         0x0002  // open for reading and writing
-#define O_APPEND       0x0008  // writes done at eof
-#define O_CREAT        0x0100  // create and open file
-#define O_TRUNC        0x0200  // open and truncate
-#define O_EXCL         0x0400  // open only if file doesn't already exist
-
 // .. Win32-only (not specified by POSIX)
 #define O_TEXT_NP      0x4000  // file mode is text (translated)
 #define O_BINARY_NP    0x8000  // file mode is binary (untranslated)
@@ -83,14 +76,13 @@ struct sigevent
 extern int open(const char* fn, int mode, ...);
 extern int close(int);
 
-
 //
 // <unistd.h>
 //
 
 extern int read (int fd, void* buf, size_t nbytes);	// thunk
 extern int write(int fd, void* buf, size_t nbytes);	// thunk
-extern "C" _CRTIMP off_t lseek(int fd, off_t ofs, int whence);
+extern off_t lseek(int fd, off_t ofs, int whence);  // thunk
 
 
 //
@@ -137,6 +129,7 @@ extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
 
 extern int aio_close(int fd);
 extern int aio_reopen(int fd, const char* fn, int oflag, ...);
+
 
 // allocate and return a file descriptor 
 extern int aio_assign_handle(uintptr_t handle);

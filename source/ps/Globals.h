@@ -1,5 +1,5 @@
 #include "lib/input.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 
 // thin abstraction layer on top of SDL.
 // game code should use it instead of SDL_GetMouseState etc. because

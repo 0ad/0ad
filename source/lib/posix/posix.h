@@ -60,7 +60,6 @@ need only be renamed (e.g. _open, _stat).
 
 #if OS_WIN
 # include "lib/sysdep/win/wposix/wposix.h"
-# include "lib/sysdep/win/win.h"
 #endif
 
 #include "posix_types.h"

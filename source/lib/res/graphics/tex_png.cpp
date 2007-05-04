@@ -22,14 +22,7 @@
 
 #include "precompiled.h"
 
-// include libpng header. we also prevent it from including windows.h, which
-// would conflict with other headers. instead, WINAPI is defined here.
-#if OS_WIN
-# define _WINDOWS_
-# define WINAPI __stdcall
-# define WINAPIV __cdecl
-#endif	// OS_WIN
-#include <png.h>
+#include "lib/external_libraries/png.h"
 
 #include "lib/byte_order.h"
 #include "lib/res/res.h"

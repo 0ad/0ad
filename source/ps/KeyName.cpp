@@ -3,7 +3,7 @@
 #include "precompiled.h"
 #include <map>
 #include "CStr.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 
 static std::map<CStr,int> keymap;
 

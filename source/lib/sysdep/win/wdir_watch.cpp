@@ -31,6 +31,8 @@
 #include "lib/path_util.h"
 #include "lib/res/file/file.h"	// path_is_subpath
 #include "win_internal.h"
+#include "winit.h"
+#include "wutil.h"
 
 
 #pragma SECTION_POST_ATEXIT(J)

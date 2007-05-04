@@ -21,7 +21,7 @@
  */
 
 #include "precompiled.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 
 #include <stdio.h>
 #include <math.h>
@@ -36,6 +36,8 @@
 #include "lib/posix/posix_pthread.h"
 #include "lib/lib.h"
 #include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
+#include "winit.h"
+#include "wutil.h"
 
 
 // for easy removal of DirectDraw dependency (used to query total video mem)

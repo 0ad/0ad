@@ -5,7 +5,7 @@
 
 // set by ia32_memcpy_init, referenced by ia32_memcpy (asm)
 // default to "all codepaths supported"
-extern "C" u32 ia32_memcpy_size_mask = ~0u;
+EXTERN_C u32 ia32_memcpy_size_mask = ~0u;
 
 void ia32_memcpy_init()
 {

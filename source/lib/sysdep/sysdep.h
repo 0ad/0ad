@@ -23,7 +23,6 @@
 #ifndef INCLUDED_SYSDEP
 #define INCLUDED_SYSDEP
 
-#include "lib/config.h"
 #include "lib/debug.h"	// ErrorReaction
 
 #include <cstdarg>	// needed for sys_vsnprintf

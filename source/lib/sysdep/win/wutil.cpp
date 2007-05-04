@@ -1,15 +1,15 @@
 /**
  * =========================================================================
- * File        : win.cpp
+ * File        : wutil.cpp
  * Project     : 0 A.D.
- * Description : various Windows-specific code and program entry point.
+ * Description : various Windows-specific utilities
  *
  * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
 /*
- * Copyright (c) 2003-2004 Jan Wassenberg
+ * Copyright (c) 2003-2007 Jan Wassenberg
  *
  * Redistribution and/or modification are also permitted under the
  * terms of the GNU General Public License as published by the
@@ -21,22 +21,29 @@
  */
 
 #include "precompiled.h"
+#include "wutil.h"
 
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
-#include "win_internal.h"
 #include "lib/path_util.h"
 #include "lib/posix/posix.h"
+#include "win_internal.h"
+#include "winit.h"
 
-#if MSC_VERSION >= 1400
-#include <process.h>	// __security_init_cookie
-#define NEED_COOKIE_INIT
-#endif
+
+#pragma SECTION_PRE_LIBC(B)
+WIN_REGISTER_FUNC(wutil_PreLibcInit);
+#pragma FORCE_INCLUDE(wutil_PreLibcInit)
+#pragma SECTION_POST_ATEXIT(Y)
+WIN_REGISTER_FUNC(wutil_Shutdown);
+#pragma FORCE_INCLUDE(wutil_Shutdown)
+#pragma SECTION_RESTORE
 
 
 char win_sys_dir[MAX_PATH+1];
 char win_exe_dir[MAX_PATH+1];
+
 
 // only call after a Win32 function indicates failure.
 static LibError LibError_from_GLE(bool warn_if_failed = true)
@@ -103,43 +110,6 @@ void win_free(void* p)
 
 
 //-----------------------------------------------------------------------------
-// module init and shutdown
-//-----------------------------------------------------------------------------
-
-typedef LibError (*Pfn)(void);
-
-// pointers to start and end of function tables.
-// note: COFF tosses out empty segments, so we have to put in one value
-// (zero, because call_func_tbl has to ignore NULL entries anyway).
-#pragma SECTION_PRE_LIBC(A)
-Pfn pre_libc_begin = 0;
-#pragma SECTION_PRE_LIBC(Z)
-Pfn pre_libc_end = 0;
-#pragma SECTION_PRE_MAIN(A)
-Pfn pre_main_begin = 0;
-#pragma SECTION_PRE_MAIN(Z)
-Pfn pre_main_end = 0;
-#pragma SECTION_POST_ATEXIT(A)
-Pfn shutdown_begin = 0;
-#pragma SECTION_POST_ATEXIT(Z)
-Pfn shutdown_end = 0;
-#pragma SECTION_RESTORE
-// note: /include is not necessary, since these are referenced below.
-
-#pragma comment(linker, "/merge:.LIB=.data")
-
-// call all non-NULL function pointers in [begin, end).
-// note: the range may be larger than expected due to section padding.
-// that (and the COFF empty section problem) is why we need to ignore zeroes.
-static void call_func_tbl(Pfn* begin, Pfn* end)
-{
-	for(Pfn* p = begin; p < end; p++)
-		if(*p)
-			(*p)();
-}
-
-
-//-----------------------------------------------------------------------------
 // locking for win-specific code
 //-----------------------------------------------------------------------------
 
@@ -176,7 +146,7 @@ int win_is_locked(uint idx)
 }
 
 
-static void cs_init()
+static void InitLocks()
 {
 	for(int i = 0; i < NUM_CS; i++)
 		InitializeCriticalSection(&cs[i]);
@@ -184,7 +154,7 @@ static void cs_init()
 	cs_valid = true;
 }
 
-static void cs_shutdown()
+static void ShutdownLocks()
 {
 	cs_valid = false;
 
@@ -195,35 +165,12 @@ static void cs_shutdown()
 
 
 //-----------------------------------------------------------------------------
-// startup
-//-----------------------------------------------------------------------------
-
-// entry -> pre_libc -> WinMainCRTStartup -> WinMain -> pre_main -> main
-// at_exit is called as the last of the atexit handlers
-// (assuming, as documented in lib.cpp, constructors don't use atexit!)
-//
-// rationale: we need to gain control after _cinit and before main() to
-// complete initialization.
-// note: this way of getting control before main adds overhead
-// (setting up the WinMain parameters), but is simpler and safer than
-// SDL-style #define main SDL_main.
 
 // explained where used.
 static HMODULE hUser32Dll;
 
-static void at_exit(void)
-{
-	call_func_tbl(&shutdown_begin, &shutdown_end);
 
-	cs_shutdown();
-
-	// free the reference taken in win_pre_libc_init;
-	// this avoids Boundschecker warnings at exit.
-	FreeLibrary(hUser32Dll);
-}
-
-
-void win_pre_main_init()
+static LibError wutil_PreLibcInit()
 {
 	// enable memory tracking and leak detection;
 	// no effect if !HAVE_VC_DEBUG_ALLOC.
@@ -233,21 +180,6 @@ void win_pre_main_init()
 	debug_heap_enable(DEBUG_HEAP_NORMAL);
 #endif
 
-	call_func_tbl(&pre_main_begin, &pre_main_end);
-
-	atexit(at_exit);
-
-	// no point redirecting stdout yet - the current directory
-	// may be incorrect (file_set_root not yet called).
-	// (w)sdl will take care of it anyway.
-}
-
-
-// perform all initialization that needs to run before _cinit
-// (which calls C++ ctors).
-// be very careful to avoid non-stateless libc functions!
-static inline void pre_libc_init()
-{
 	// enable low-fragmentation heap
 #if WINVER >= 0x0501
 	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
@@ -265,7 +197,7 @@ static inline void pre_libc_init()
 	}
 #endif	// #if WINVER >= 0x0501
 
-	cs_init();
+	InitLocks();
 
 	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
 
@@ -287,62 +219,17 @@ static inline void pre_libc_init()
 	// than documenting the problem and asking it not be delay-loaded.
 	hUser32Dll = LoadLibrary("user32.dll");
 
-	call_func_tbl(&pre_libc_begin, &pre_libc_end);
+	return INFO::OK;
 }
 
 
-static int SEH_wrapped_entry()
+static LibError wutil_Shutdown()
 {
-	int ret;
-	__try
-	{
-		pre_libc_init();
-#ifdef USE_WINMAIN
-		ret = WinMainCRTStartup();	// calls _cinit and then our main
-#else
-		ret = mainCRTStartup();	// calls _cinit and then our main
-#endif
-	}
-	__except(wdbg_exception_filter(GetExceptionInformation()))
-	{
-		ret = -1;
-	}
-	return ret;
-}
+	ShutdownLocks();
 
+	// free the reference taken in win_PreInit;
+	// this avoids Boundschecker warnings at exit.
+	FreeLibrary(hUser32Dll);
 
-int entry()
-{
-#ifdef NEED_COOKIE_INIT
-	// 2006-02-16 workaround for R6035 on VC8:
-	//
-	// SEH code compiled with /GS pushes a "security cookie" onto the
-	// stack. since we're called before _cinit, the cookie won't have
-	// been initialized yet, which would cause the CRT to FatalAppExit.
-	// to solve this, we must call __security_init_cookie before any
-	// hidden compiler-generated SEH registration code runs,
-	// which means the __try block must be moved into a helper function.
-	//
-	// NB: entry() must not contain local string buffers, either -
-	// /GS would install a cookie here as well (same problem).
-	//
-	// see http://msdn2.microsoft.com/en-US/library/ms235603.aspx
-	__security_init_cookie();
-#endif
-	return SEH_wrapped_entry();
-}
-
-
-// Alternative entry point, for programs that don't want the SEH handler
-// (e.g. unit tests, where it's better to let the debugger handle any errors)
-int entry_noSEH()
-{
-	int ret;
-	pre_libc_init();
-#ifdef USE_WINMAIN
-	ret = WinMainCRTStartup();
-#else
-	ret = mainCRTStartup();
-#endif
-	return ret;
+	return INFO::OK;
 }

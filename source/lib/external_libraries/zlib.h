@@ -1,0 +1,20 @@
+// zlib.h -> zconf.h includes <windows.h>, which causes conflicts.
+// define the include guard to prevent it from actually being included and
+// then manually define the few things that are actually needed.
+#define _WINDOWS_	// windows.h include guard
+#ifndef WINAPI
+# define WINAPI __stdcall
+# define WINAPIV __cdecl
+#endif
+
+#define ZLIB_DLL
+#include <zlib.h>
+
+// automatically link against the required library
+#if MSC_VERSION
+# ifdef NDEBUG
+#  pragma comment(lib, "zlib1.lib")
+# else
+#  pragma comment(lib, "zlib1d.lib")
+# endif
+#endif

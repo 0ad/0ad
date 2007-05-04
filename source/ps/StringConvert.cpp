@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "StringConvert.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 #include "scripting/SpiderMonkey.h"
 
 #if SDL_BYTEORDER == SDL_BIG_ENDIAN

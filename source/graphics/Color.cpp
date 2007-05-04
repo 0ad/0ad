@@ -22,7 +22,7 @@ u32 (*ConvertRGBColorTo4ub)(const RGBColor& src) = fallback_ConvertRGBColorTo4ub
 
 // Assembler-optimized function for color conversion
 #if CPU_IA32
-extern "C" u32 sse_ConvertRGBColorTo4ub(const RGBColor& src);
+EXTERN_C u32 sse_ConvertRGBColorTo4ub(const RGBColor& src);
 #endif
 
 void ColorActivateFastImpl()

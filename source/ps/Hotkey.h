@@ -19,7 +19,7 @@
 
 #include "CStr.h"
 #include "lib/input.h"
-#include "lib/sdl.h"	// see note below
+#include "lib/external_libraries/sdl.h"	// see note below
 
 // note: we need the real SDL header - it defines SDL_USEREVENT, which is
 // required for our HOTKEY event type definition. this is OK since

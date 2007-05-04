@@ -9,7 +9,7 @@ gee@pyro.nu
 #include "CList.h"
 
 #include "ps/CLogger.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 
 using namespace std;
 

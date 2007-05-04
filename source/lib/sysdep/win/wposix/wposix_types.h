@@ -65,6 +65,8 @@ typedef unsigned long long uint64_t;
 //
 
 typedef long ssize_t;
+// prevent wxWidgets from (incompatibly) redefining it
+#define HAVE_SSIZE_T
 
 
 //

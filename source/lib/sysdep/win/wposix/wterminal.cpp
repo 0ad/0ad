@@ -2,6 +2,7 @@
 #include "wterminal.h"
 
 #include "wposix_internal.h"
+#include "crt_posix.h"		// _get_osfhandle
 
 
 int ioctl(int fd, int op, int* data)

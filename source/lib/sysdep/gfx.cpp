@@ -24,7 +24,7 @@
 #include "gfx.h"
 
 #include "lib/lib.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 
 
 char gfx_card[GFX_CARD_LEN] = "";

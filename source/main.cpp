@@ -12,10 +12,9 @@ that of Atlas depending on commandline parameters.
 // not for any PCH effort, but instead for the (common) definitions
 // included there.
 #include "lib/precompiled.h"
-#include <boost/utility.hpp>
 
 #include "lib/input.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 #include "lib/timer.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/sound/snd_mgr.h"
@@ -41,7 +40,7 @@ that of Atlas depending on commandline parameters.
 #include "gui/GUI.h"
 
 #if OS_WIN
-# include "lib/sysdep/win/win.h"
+# include "lib/sysdep/win/wstartup.h"
 #endif
 
 #define LOG_CATEGORY "main"
@@ -358,40 +357,32 @@ void kill_mainloop()
 }
 
 
-#include "lib/res/file/trace.h"
-
 int main(int argc, char* argv[])
 {
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(321);
 
-	// see discussion at declaration of win_pre_main_init.
+	// see discussion at declaration of wstartup_PreMainInit.
 #if OS_WIN
-	win_pre_main_init();
+	wstartup_PreMainInit();
 #endif
 
-	{ // scope for args
+	CmdLineArgs args(argc, argv);
 
-		CmdLineArgs args(argc, argv);
+	// run Atlas (if requested via args)
+	bool ran_atlas = ATLAS_RunIfOnCmdLine(args);
+	// Atlas handles the whole init/shutdown/etc sequence by itself,
+	// so just exit after it has run.
+	if(ran_atlas)
+		exit(EXIT_SUCCESS);
 
-		bool ran_atlas = ATLAS_RunIfOnCmdLine(args);
+	// run the game
+	Init(args, 0);
+	MainControllerInit();
+	while(!quit)
+		Frame();
+	Shutdown(0);
+	MainControllerShutdown();
 
-		// Atlas handles the whole init/shutdown/etc sequence by itself,
-		// so we skip all this and just exit if Atlas was run
-		if (! ran_atlas)
-		{
-			Init(args, 0);
-			MainControllerInit();
-
-			while(!quit)
-				Frame();
-
-			Shutdown(0);
-			MainControllerShutdown();
-		}
-	}
-
-	debug_printf("Shutdown complete, calling exit() now\n");
-	
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

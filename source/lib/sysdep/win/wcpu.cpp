@@ -27,6 +27,7 @@
 #include "lib/posix/posix_pthread.h"
 #include "lib/posix/posix_time.h"
 #include "win_internal.h"
+#include "wutil.h"
 
 // limit allows statically allocated per-CPU structures (for simplicity).
 // WinAPI only supports max. 32 CPUs anyway (due to DWORD bitfields).

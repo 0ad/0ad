@@ -28,7 +28,7 @@
 #include <stdlib.h>
 
 #include "lib.h"
-#include "sdl.h"
+#include "lib/external_libraries/sdl.h"
 #include "lib/res/file/file.h"
 
 const uint MAX_HANDLERS = 8;

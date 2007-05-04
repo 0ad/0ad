@@ -11,7 +11,7 @@
 #include "gui/CGUI.h"
 #include "gui/GUIbase.h"
 #include "lib/res/file/vfs.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 #include "maths/MathUtil.h"
 #include "ps/CConsole.h"
 #include "ps/Game.h"

@@ -1,7 +1,7 @@
 #include "precompiled.h"
 
 #include "lib/lib.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/input.h"

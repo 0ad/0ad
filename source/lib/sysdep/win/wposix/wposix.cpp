@@ -24,6 +24,7 @@
 #include "wposix.h"
 
 #include "wposix_internal.h"
+#include "crt_posix.h"		// _getcwd
 
 
 long sysconf(int name)
@@ -104,7 +105,7 @@ long sysconf(int name)
 #endif
 char* getcwd(char* buf, size_t buf_size)
 {
-	return _getcwd(buf, buf_size);
+	return _getcwd(buf, (int)buf_size);
 }
 #ifdef REDEFINED_NEW
 # include "lib/mmgr.h"

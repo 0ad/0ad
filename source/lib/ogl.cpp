@@ -28,7 +28,7 @@
 #include <stdarg.h>
 
 #include "lib.h"
-#include "sdl.h"
+#include "lib/external_libraries/sdl.h"
 #include "debug.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/h_mgr.h"

@@ -94,5 +94,11 @@
 # define ASSUME_UNREACHABLE
 #endif
 
+// extern "C", but does the right thing in pure-C mode
+#if defined(__cplusplus)
+# define EXTERN_C extern "C"
+#else
+# define EXTERN_C extern
+#endif
 
 #endif	// #ifndef INCLUDED_COMPILER

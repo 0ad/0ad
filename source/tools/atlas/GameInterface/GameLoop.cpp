@@ -12,7 +12,7 @@
 #include "InputProcessor.h"
 
 #include "lib/app_hooks.h"
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 #include "lib/timer.h"
 #include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"

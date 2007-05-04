@@ -61,14 +61,6 @@ scope
 
 #include "config.h"
 
-
-#if defined(__cplusplus)
-# define EXTERN_C extern "C"
-#else
-# define EXTERN_C extern
-#endif
-
-
 const size_t KiB = 1ul << 10;
 const size_t MiB = 1ul << 20;
 const size_t GiB = 1ul << 30;

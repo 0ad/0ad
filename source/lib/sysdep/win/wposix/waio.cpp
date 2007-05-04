@@ -23,14 +23,14 @@
 #include "precompiled.h"
 #include "waio.h"
 
-#include <stdlib.h>
-#include <malloc.h>		// _aligned_malloc
+#include <malloc.h>         // _aligned_malloc
+#include "crt_posix.h"      // correct definitions of _open() etc.
 
 #include "wposix_internal.h"
-#include "wfilesystem.h"	// mode_t
-#include "wtime.h"			// timespec
-#include "waio_internal.h"
+#include "wfilesystem.h"    // mode_t
+#include "wtime.h"          // timespec
 #include "lib/sysdep/cpu.h"
+
 
 #pragma SECTION_PRE_LIBC(J)
 WIN_REGISTER_FUNC(waio_init);
@@ -418,12 +418,17 @@ int close(int fd)
 
 int read(int fd, void* buf, size_t nbytes)
 {
-	return _read(fd, buf, nbytes);
+	return _read(fd, buf, (int)nbytes);
 }
 
 int write(int fd, void* buf, size_t nbytes)
 {
-	return _write(fd, buf, nbytes);
+	return _write(fd, buf, (int)nbytes);
+}
+
+off_t lseek(int fd, off_t ofs, int whence)
+{
+	return _lseek(fd, ofs, whence);
 }
 
 

@@ -42,16 +42,7 @@ AT_STARTUP(\
 //#define NO_ZLIB
 
 #ifndef NO_ZLIB
-# define ZLIB_DLL
-# include <zlib.h>
-
-# if MSC_VERSION
-#  ifdef NDEBUG
-#   pragma comment(lib, "zlib1.lib")
-#  else
-#   pragma comment(lib, "zlib1d.lib")
-#  endif
-# endif
+# include "lib/external_libraries/zlib.h"
 #else
 // several switch statements are going to have all cases removed.
 // squelch the corresponding warning.
