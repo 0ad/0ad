@@ -357,6 +357,28 @@ void kill_mainloop()
 }
 
 
+// moved into a helper function to ensure args is destroyed before
+// exit(), which may result in a memory leak.
+static void RunGameOrAtlas(int argc, char* argv[])
+{
+	CmdLineArgs args(argc, argv);
+
+	// run Atlas (if requested via args)
+	bool ran_atlas = ATLAS_RunIfOnCmdLine(args);
+	// Atlas handles the whole init/shutdown/etc sequence by itself;
+	// when we get here, it has exited and we're done.
+	if(ran_atlas)
+		return;
+
+	// run the game
+	Init(args, 0);
+	MainControllerInit();
+	while(!quit)
+		Frame();
+	Shutdown(0);
+	MainControllerShutdown();
+}
+
 int main(int argc, char* argv[])
 {
 	// If you ever want to catch a particular allocation:
@@ -367,22 +389,7 @@ int main(int argc, char* argv[])
 	wstartup_PreMainInit();
 #endif
 
-	CmdLineArgs args(argc, argv);
-
-	// run Atlas (if requested via args)
-	bool ran_atlas = ATLAS_RunIfOnCmdLine(args);
-	// Atlas handles the whole init/shutdown/etc sequence by itself,
-	// so just exit after it has run.
-	if(ran_atlas)
-		exit(EXIT_SUCCESS);
-
-	// run the game
-	Init(args, 0);
-	MainControllerInit();
-	while(!quit)
-		Frame();
-	Shutdown(0);
-	MainControllerShutdown();
+	RunGameOrAtlas(argc, argv);
 
 	exit(EXIT_SUCCESS);
 }

@@ -12,6 +12,7 @@
 #include "ColourTester/ColourTester.h"
 #include "FileConverter/FileConverter.h"
 #include "ScenarioEditor/ScenarioEditor.h"
+#include "ErrorReporter/ErrorReporter.h"
 
 #include "GameInterface/MessagePasser.h"
 
@@ -118,6 +119,13 @@ ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, unsigned int WXUNUSE
 	// TODO: 'text' (or at least some copy of it) appears to get leaked when
 	// this function is called
 }
+
+
+ATLASDLLIMPEXP void Atlas_ReportError()
+{
+	///ReportError();	// janwas: disabled until ErrorReporter.cpp compiles
+}
+
 
 class AtlasDLLApp : public wxApp
 {

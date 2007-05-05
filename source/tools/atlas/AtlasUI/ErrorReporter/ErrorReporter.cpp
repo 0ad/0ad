@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * File        : debug_report.cpp
+ * File        : ErrorReporter.cpp
  * Project     : 0 A.D.
  * Description : preview and send crashlogs to server.
  *
@@ -14,9 +14,12 @@
  * License: wxWindows license
  */
 
-#include "precompiled.h"
+#include "stdafx.h"
 
-#include "lib/external_libraries/wxwidgets.h"
+#if 0
+
+#include "wx/statline.h"
+#include "wx/mimetype.h"
 
 static const wxChar* DIALOG_TITLE = _T("WildfireGames Reporting Utility");
 static const wxChar* PROBLEM_TITLE = _T("Problem Report for 0AD");
@@ -357,8 +360,7 @@ bool wxDebugReportDialog::TransferDataToWindow()
 	const size_t count = m_dbgrpt.GetFilesCount();
 	for ( size_t n = 0; n < count; n++ )
 	{
-		wxString name,
-			desc;
+		wxString name, desc;
 		if ( m_dbgrpt.GetFile(n, &name, &desc) )
 		{
 			m_checklst->Append(name + _T(" (") + desc + _T(')'));
@@ -640,71 +642,22 @@ public:
 // application class
 // ----------------------------------------------------------------------------
 
-// this is a usual application class modified to work with debug reporter
-//
-// basically just 2 things are necessary: call wxHandleFatalExceptions() as
-// early as possible and override OnFatalException() to create the report there
-class MyApp : public wxApp
-{
-public:
-	// call wxHandleFatalExceptions here
-	MyApp();
+bool m_uploadReport = true;
 
-	// create our main window here
-	virtual bool OnInit();
+//m_generateReport = false;	//Flag to report back to wxWidgets that indicates
+//whether the DoProcess() method should be called.
+//GenerateReport(false);		//Create the compressed report file.
+//The argument is not used in this version but
+//is meant to indicate whether crash files already
+//existed and the calling method did not create new ones.
+//false means the crash files were recently generated...
+//true means they already existed.
 
-	// called when a crash occurs in this application
-	//virtual void OnFatalException();
-
-	// this is where we really generate the debug report
-	void GenerateReport(bool CrashFilesExist);
-
-	// if this function is called, we'll use MyDebugReport which would try to
-	// upload the (next) generated debug report to its URL, otherwise we just
-	// generate the debug report and leave it in a local file
-	void UploadReport(bool doIt) { m_uploadReport = doIt; }
-
-private:
-	bool m_uploadReport;
-	bool m_generateReport;
-
-	DECLARE_NO_COPY_CLASS(MyApp)
-};
+// this is where we really generate the debug report
+//void GenerateReport(bool CrashFilesExist);
 
 
-// ----------------------------------------------------------------------------
-// MyApp
-// ----------------------------------------------------------------------------
-
-MyApp::MyApp()
-{
-	// user needs to explicitely enable this
-	m_uploadReport = false;
-
-	// call this to tell the library to call our OnFatalException()
-	//wxHandleFatalExceptions();
-}
-
-bool MyApp::OnInit()
-{
-	if ( !wxApp::OnInit() )
-		return false;
-
-	m_uploadReport = true;		//Upload the compressed report.
-	m_generateReport = false;	//Flag to report back to wxWidgets that indicates
-								//whether the DoProcess() method should be called.
-	GenerateReport(false);		//Create the compressed report file.
-								//The argument is not used in this version but
-								//is meant to indicate whether crash files already
-								//existed and the calling method did not create new ones.
-								//false means the crash files were recently generated...
-								//true means they already existed.
-	//new MyFrame;
-		
-	return m_generateReport;
-}
-
-void MyApp::GenerateReport(bool CrashFilesExist)
+void GenerateReport()
 {
 	wxDebugReportCompress *report = m_uploadReport ? new MyDebugReport
 												   : new wxDebugReportCompress;
@@ -714,22 +667,19 @@ void MyApp::GenerateReport(bool CrashFilesExist)
 	fn2 = _T(LOGS_LOCATION);
 	fn2 += _T("crashlog.txt");
 
-	if(!CrashFilesExist)	//This flag better be false or nothing will get added.
-	{
-		if(wxFileExists(fn1))
-			report->AddFile(fn1, _T("memory dump"));
-		else
-			wxLogError(_T("crashlog.dmp not found!"));
-		if(wxFileExists(fn2))
-			report->AddFile(fn2, _T("debug information"));
-		else
-			wxLogError(_T("crashlog.txt not found!"));
-	}
+	if(wxFileExists(fn1))
+		report->AddFile(fn1, _T("memory dump"));
+	else
+		wxLogError(_T("crashlog.dmp not found!"));
+	if(wxFileExists(fn2))
+		report->AddFile(fn2, _T("debug information"));
+	else
+		wxLogError(_T("crashlog.txt not found!"));
 
 	//Then call the built in wxWidgets dialog which is modified to be
 	//customizable for each individual project and can be found in
 	// *****dbgrptg.cpp*****
-	m_generateReport = wxDebugReportPreviewStd().Show(*report);
+	bool m_generateReport = wxDebugReportPreviewStd().Show(*report);
 	if ( m_generateReport )
 	{	//User clicked OK
 		if ( report->Process() )
@@ -753,3 +703,4 @@ void MyApp::GenerateReport(bool CrashFilesExist)
 	delete report;
 }
 
+#endif

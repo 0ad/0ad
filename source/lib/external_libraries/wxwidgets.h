@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * File        : wxw.h
+ * File        : wxwidgets.h
  * Project     : 0 A.D.
  * Description : pulls in wxWidgets headers, with compatibility fixes
  *
@@ -20,8 +20,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef INCLUDED_WXW
-#define INCLUDED_WXW
+#ifndef INCLUDED_WXWIDGETS
+#define INCLUDED_WXWIDGETS
 
 // prevent wxWidgets from pulling in windows.h - it's mostly unnecessary
 // and interferes with posix_sock's declarations.
@@ -51,4 +51,39 @@ typedef struct HINSTANCE__* HINSTANCE;	// definition as if STRICT were #defined
 #endif // __WXMSW__
 
 
-#endif	// #ifndef INCLUDED_WXW
+// automatically link against the required library
+#if MSC_VERSION
+# ifdef NDEBUG
+# else
+#  pragma comment(lib, "wxmsw28ud_core.lib")
+#  pragma comment(lib, "wxmsw28ud_qa.lib")
+#  pragma comment(lib, "wxbase28ud.lib")
+#  pragma comment(lib, "wxbase28ud_xml.lib")
+
+
+//#  pragma comment(lib, "wxbase28ud_net.lib")
+//#  pragma comment(lib, "wxbase28ud_odbc.lib")
+//#  pragma comment(lib, "wxmsw28ud_adv.lib")
+//#  pragma comment(lib, "wxmsw28ud_aui.lib")
+//#  pragma comment(lib, "wxmsw28ud_dbgrid.lib")
+//#  pragma comment(lib, "wxmsw28ud_gl.lib")
+//#  pragma comment(lib, "wxmsw28ud_html.lib")
+//#  pragma comment(lib, "wxmsw28ud_media.lib")
+//#  pragma comment(lib, "wxmsw28ud_richtext.lib")
+//#  pragma comment(lib, "wxmsw28ud_xrc.lib")
+//#  pragma comment(lib, "wxexpatd.lib")
+//#  pragma comment(lib, "wxpngd.lib")
+//#  pragma comment(lib, "wxjpegd.lib")
+//#  pragma comment(lib, "wxtiffd.lib")
+//#  pragma comment(lib, "wxzlibd.lib")
+//#  pragma comment(lib, "wxregexd.lib")
+
+#  pragma comment(lib, "Rpcrt4.lib")	// Uuid
+#  pragma comment(lib, "comctl32.lib")	// ImageList_*
+
+
+# endif	// NDEBUG
+#endif	// MSC_VERSION
+
+
+#endif	// #ifndef INCLUDED_WXWIDGETS

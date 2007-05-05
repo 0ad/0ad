@@ -38,13 +38,6 @@
 // called in their prolog/epilog code).
 # pragma warning(disable: 4611)
 
-// pull in the appropriate debug/release library
-# ifdef NDEBUG
-#  pragma comment(lib, "libpng13.lib")
-# else
-#  pragma comment(lib, "libpng13d.lib")
-# endif	// NDEBUG
-
 #endif	// MSC_VERSION
 
 

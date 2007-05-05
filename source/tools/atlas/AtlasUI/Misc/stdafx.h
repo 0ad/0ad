@@ -36,6 +36,7 @@
 #include "wx/sound.h"
 #include "wx/spinctrl.h"
 #include "wx/splitter.h"
+#include "wx/notebook.h"	// required by SectionLayout.cpp -> Trigger.h
 #include "wx/tooltip.h"
 #include "wx/treectrl.h"
 #include "wx/wfstream.h"
