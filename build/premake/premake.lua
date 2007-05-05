@@ -364,7 +364,8 @@ function setup_all_libs ()
 		"lib/res",
 		"lib/res/file",
 		"lib/res/graphics",
-		"lib/res/sound"
+		"lib/res/sound",
+		"lib/external_libraries"
 	}
 	extern_libs = {
 		"boost",
@@ -559,6 +560,7 @@ function setup_atlas_packages()
 		"CustomControls/SnapSplitterWindow",
 		"CustomControls/VirtualDirTreeCtrl",
 		"CustomControls/Windows",
+		"ErrorReporter",
 		"FileConverter",
 		"General",
 		"General/VideoRecorder",
