@@ -2,9 +2,6 @@
 
 \usepackage{parskip}
 
-\usepackage{listings}
-\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt, language=C++, tabsize=4}
-
 \usepackage[linkcolor=black,pdftex]{hyperref}
 
 \newcommand{\id}[1]{\texttt{#1}}
@@ -19,7 +16,7 @@
 
 \section{Objective}
 
-The goal of this document is to provide a standardized coding methodology for the 0 A.D. programming team. With but a few guidelines such as Layout-, Commenting- and Naming conventions the team should feel as if they are reading their own code when reading someone else's code.
+The goal of this document is to provide a standardized coding methodology for the 0 A.D. programming team. With but a few guidelines for layout, commenting and naming conventions, the team should feel as if they are reading their own code when reading someone else's code.
 
 \section{Layout}
 
@@ -28,102 +25,96 @@ The goal of this document is to provide a standardized coding methodology for th
 Most editors allow for the conversion of tabs to spaces and most people prefer the use of tabs versus wearing out the spacebar. The size of the tabs is up to each programmer –-- just ensure that you are using tabs.
 
 Limit the length of a line of code to not more than 80 characters; not everyone has a 1600x1200 display. Functions that have many parameters and extend over 80 characters should be written as:
-\begin{lstlisting}
-SomeFunction(
-	HWND hWnd, 
-	BITMAP bmDeviceBitmap, 
-	long lAnimationFrame);
-\end{lstlisting}
+\begin{verbatim}
+   SomeFunction(
+       HWND hWnd, 
+       BITMAP bmDeviceBitmap, 
+       long lAnimationFrame);
+\end{verbatim}
 instead of:
-\begin{lstlisting}
-SomeFunction(HWND hWnd, 
-             BITMAP bmDeviceBitmap, 
-             long lAnimationFrame);
-\end{lstlisting}
+\begin{verbatim}
+   SomeFunction(HWND hWnd, 
+                BITMAP bmDeviceBitmap, 
+                long lAnimationFrame);
+\end{verbatim}
 Although the second method is commonly used, it is more difficult to maintain (if the name of the function changed, you would need to re-align the parameters).
 
 \pagebreak
 \subsection{Brackets}
 
 Brackets should be aligned, here's an example of good bracket placement:
-\begin{lstlisting}
-void CGameObject::CleanUp()
-{
-	if(NULL != m_ThisObject)
-	{
-		delete m_ThisObject;
-	}
-}
-\end{lstlisting}
+\begin{verbatim}
+   void CGameObject::CleanUp()
+   {
+       if(NULL != m_ThisObject)
+       {
+           delete m_ThisObject;
+       }
+   }
+\end{verbatim}
 Now we're not out to save vertical lines on the screen; it's about being able to read the code. Therefore, the following style should be avoided:
-\begin{lstlisting}
-void CGameObject::CleanUp() {
-	if(NULL != m_ThisObject) {
-		delete m_ThisObject;
-}
-}
-\end{lstlisting}
+\begin{verbatim}
+   void CGameObject::CleanUp() {
+       if(NULL != m_ThisObject) {
+           delete m_ThisObject;
+       }
+   }
+\end{verbatim}
 
 \section{Commenting}
 
 Commenting is a subject that is sure to cause debate, but minimal comments with maximum expressiveness are preferable. Bad commenting style is shown below:
-\begin{lstlisting}
-void CGameObject::SetModifiedFlag(bool flag)
-{
-	m_ModifiedFlag = flag;	// set the modified flag
-}
-\end{lstlisting}
+\begin{verbatim}
+   void CGameObject::SetModifiedFlag(bool flag)
+   {
+       m_ModifiedFlag = flag;    // set the modified flag
+   }
+\end{verbatim}
 The above comment does not tell us anything that we don't already know from reading the code; here's a better approach:
-\begin{lstlisting}
-void CGameObject::SetModifiedFlag(bool flag)
-{
-	// This sets the CGameObject's modified
-	// flag, which is used to determine
-	// if this object needs to be serialized.
-	m_ModifiedFlag = flag;
-}
-\end{lstlisting}
+\begin{verbatim}
+   void CGameObject::SetModifiedFlag(bool flag)
+   {
+       // This sets the CGameObject's modified
+       // flag, which is used to determine
+       // if this object needs to be serialized.
+       m_ModifiedFlag = flag;
+   }
+\end{verbatim}
 
 \section{Documentation}
 
 Each programmer is responsible for properly documenting their code. During code review the code reviewer will ensure that interfaces or APIs are properly documented.
 
-If the comments are formatted in a certain way, they will automatically be extracted and added to the relevant documentation file. It suffices to write them as follows:
-\begin{lstlisting}
-/**
- * Your comment here.
- **/
-\end{lstlisting}
-For single-line comments, \lstinline|///| can be used as well. The comment text is inserted into the documentation, and can additionally be formatted by certain tags (e.g. @param \textit{description} for function parameters). For more details, see the CppDoc documentation.
+If the comments are formatted in a certain way, they will automatically be extracted and added to the relevant documentation file. It suffices to write them as follows (sample comment for a class):
+\begin{verbatim}
+   /**
+    * An object that represents a civilian entity.
+    *
+    * (Notes regarding usage and possible problems etc...)
+    **/
+\end{verbatim}
+For single-line comments, \id{///} can be used as well. The comment text is inserted into the documentation, and can additionally be formatted by certain tags (e.g. \id{@param description} for function parameters). For more details, see the CppDoc documentation.
 
-The recommended comment for a class is as follows:
-\begin{lstlisting}
-/**
- * An object that represents a civilian entity.
- *
- * (Notes regarding usage and possible problems etc...)
- **/
-\end{lstlisting}
 Each method of a class should be documented as well and here is the suggested method of documenting a member function (continuing with \id{CExample}):
-\begin{lstlisting}
-class CExample
-{
-public:
-	CExample();
-	~CExample():
-
-	/**
-	 * This function does nothing, but is a good example of
-	 * documenting a member function.
-	 * @param dummy A dummy parameter.
-	 **/
-	void ShowExample(int dummy); 
-
-private:
-	intptr_t m_ExampleData;          // Holds the value of this example.
-  double m_FairlyLongVariableName; // Shows the lining up of comments
-};
-\end{lstlisting}
+\begin{verbatim}
+   class CExample
+   {
+   public:
+       CExample();
+       ~CExample():
+   
+       /**
+        * This function does nothing, but is a good example of
+        * documenting a member function.
+        * @param dummy A dummy parameter.
+        **/
+       void ShowExample(int dummy); 
+   
+   private:
+       intptr_t m_ExampleData;          // Holds the value of this example.
+       double m_FairlyLongVariableName; // Shows the lining up of comments
+   };
+   \end{verbatim}
 The ctor and dtor need not be commented --- everyone knows what they are and what they do. \id{ShowExample()}, on the other hand, provides a brief comment as to its purpose. You may also want to provide an example of a method's usage. Member data is commented on the right side and it is generally good (when possible) to line up comments for easier reading.
 
 \section{Naming Conventions}
@@ -162,58 +153,60 @@ Member variables should be prefixed with \id{m\_}, but both \id{m\_camelCase} an
 \subsection{Example}
 
 Here is a sample header file layout, \texttt{Example.h}:
-\begin{lstlisting}
-
-/**
- * =========================================================================
- * File        : Example.h
- * Project     : 0 A.D.
- * Description : CExample interface file.
- *
- * @author TheProgrammer@email.com
- * =========================================================================
- **/
-
-/*
-This interface is difficult to write as it really 
-pertains to nothing and serves no purpose other than to 
-suggest a documentation scheme.
-*/
-
-#ifndef INCLUDED_EXAMPLE
-#define INCLUDED_EXAMPLE
-
-#include "utils.h"
-
-/**
- * CExample
- * This serves no purpose other than to 
- * provide an example of documenting a class.
- * Notes regarding usage and possible problems etc...
- **/
-class CExample
-{
-public:
-	CExample();
-	~CExample():
-
-	/**
-	 * This function does nothing, but is a good example of
-	 * documenting a member function.
-	 * @param dummy A dummy parameter.
-	 **/
-	void ShowExample(int dummy); 
-
-protected:
-	int m_UsefulForDerivedClasses;
-
-private:
-	uint8_t m_ExampleData;        // Holds the value of this example.
-	int m_RatherLongVariableName; // Shows the lining up of comments
-};
-
-#endif	// #ifndef INCLUDED_EXAMPLE
-\end{lstlisting}
+\begin{verbatim}
+   /**
+    * =========================================================================
+    * File        : Example.h
+    * Project     : 0 A.D.
+    * Description : CExample interface file.
+    *
+    * @author TheProgrammer@email.com
+    * =========================================================================
+    **/
+   
+   /*
+   This interface is difficult to write as it really 
+   pertains to nothing and serves no purpose other than to 
+   suggest a documentation scheme.
+   */
+\end{verbatim}
+(continues..)
+\pagebreak
+\begin{verbatim}
+   #ifndef INCLUDED_EXAMPLE
+   #define INCLUDED_EXAMPLE
+   
+   #include "utils.h"
+   
+   /**
+    * CExample
+    * This serves no purpose other than to 
+    * provide an example of documenting a class.
+    * Notes regarding usage and possible problems etc...
+    **/
+   class CExample
+   {
+   public:
+       CExample();
+       ~CExample():
+   
+       /**
+        * This function does nothing, but is a good example of
+        * documenting a member function.
+        * @param dummy A dummy parameter.
+        **/
+       void ShowExample(int dummy); 
+   
+   protected:
+       int m_UsefulForDerivedClasses;
+   
+   private:
+       uint8_t m_ExampleData;        // Holds the value of this example.
+       int m_RatherLongVariableName; // Shows the lining up of comments
+   };
+   
+   #endif    // #ifndef INCLUDED_EXAMPLE
+\end{verbatim}
 From the above we can see that header guards are utilized. Header file comment blocks show filename, project and author; a short overview follows. 
 
 The order of declarations ought to be: public followed by protected and finally by private.
@@ -232,6 +225,6 @@ We will make use of the Automatic Singleton Utility as described by Scott Bilas 
 
 \section{Strings}
 
-A string class has been written, \id{CStr}, that should be used instead of directly using \id{std::string} or using C-style strings (i.e. \lstinline|char*|).
+A string class has been written, \id{CStr}, that should be used instead of directly using \id{std::string} or using C-style strings (i.e. \id{char*}).
 
 \end{document}
