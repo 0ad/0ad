@@ -3,6 +3,7 @@
 // Name:		ModelDef.cpp
 // Author:		Rich Cross
 // Contact:		rich@wildfiregames.com
+// Modified by:	30. April 2007 - Christian Heubach
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -16,12 +17,14 @@
 // CPatch constructor
 CPatch::CPatch() : m_Parent(0)
 {
+	this->m_bWillBeDrawn = false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // CPatch destructor
 CPatch::~CPatch()
 {
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -43,6 +46,24 @@ void CPatch::Initialize(CTerrain* parent,u32 x,u32 z)
 	}
 
 	InvalidateBounds();
+
+	// get the neightbors
+	this->m_Neightbors[CPATCH_NEIGHTBOR_LEFT_TOP] = 
+		this->m_Parent->GetPatch(x-1,z-1);
+	this->m_Neightbors[CPATCH_NEIGHTBOR_TOP] = 
+		this->m_Parent->GetPatch(x,z-1);
+	this->m_Neightbors[CPATCH_NEIGHTBOR_RIGHT_TOP] = 
+		this->m_Parent->GetPatch(x+1,z-1);
+	this->m_Neightbors[CPATCH_NEIGHTBOR_LEFT] = 
+		this->m_Parent->GetPatch(x-1,z);
+	this->m_Neightbors[CPATCH_NEIGHTBOR_RIGHT] = 
+		this->m_Parent->GetPatch(x+1,z);
+	this->m_Neightbors[CPATCH_NEIGHTBOR_LEFT_BOTTOM] = 
+		this->m_Parent->GetPatch(x-1,z+1);
+	this->m_Neightbors[CPATCH_NEIGHTBOR_BOTTOM] = 
+		this->m_Parent->GetPatch(x,z+1);
+	this->m_Neightbors[CPATCH_NEIGHTBOR_RIGHT_BOTTOM] = 
+		this->m_Parent->GetPatch(x+1,z+1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

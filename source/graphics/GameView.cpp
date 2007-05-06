@@ -305,6 +305,8 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	PROFILE_START( "submit terrain" );
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
 	u32 patchesPerSide = pTerrain->GetPatchesPerSide();
+
+	// findout, which patches will be drawn
 	for (uint j=0; j<patchesPerSide; j++) {
 		for (uint i=0; i<patchesPerSide; i++) {
 			CPatch* patch=pTerrain->GetPatch(i,j);
@@ -317,7 +319,22 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			}
 			
 			if (!m->Culling || frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
+				//c->Submit(patch);
+				patch->setDrawState();
+			}
+		}
+	}
+
+	// draw the patches
+	for (uint j=0; j<patchesPerSide; j++)
+	{
+		for (uint i=0; i<patchesPerSide; i++)
+		{
+			CPatch* patch=pTerrain->GetPatch(i,j);
+			if(patch->getDrawState() == true)
+			{
 				c->Submit(patch);
+				patch->resetDrawState();
 			}
 		}
 	}
