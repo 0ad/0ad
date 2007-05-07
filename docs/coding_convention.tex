@@ -81,42 +81,6 @@ The above comment does not tell us anything that we don't already know from read
    }
 \end{verbatim}
 
-\section{Documentation}
-
-Each programmer is responsible for properly documenting their code. During code review the code reviewer will ensure that interfaces or APIs are properly documented.
-
-If the comments are formatted in a certain way, they will automatically be extracted and added to the relevant documentation file. It suffices to write them as follows (sample comment for a class):
-\begin{verbatim}
-   /**
-    * An object that represents a civilian entity.
-    *
-    * (Notes regarding usage and possible problems etc...)
-    **/
-\end{verbatim}
-For single-line comments, \id{///} can be used as well. The comment text is inserted into the documentation, and can additionally be formatted by certain tags (e.g. \id{@param description} for function parameters). For more details, see the CppDoc documentation.
-
-Each method of a class should be documented as well and here is the suggested method of documenting a member function (continuing with \id{CExample}):
-\begin{verbatim}
-   class CExample
-   {
-   public:
-       CExample();
-       ~CExample():
-   
-       /**
-        * This function does nothing, but is a good example of
-        * documenting a member function.
-        * @param dummy A dummy parameter.
-        **/
-       void ShowExample(int dummy); 
-   
-   private:
-       intptr_t m_ExampleData;          // Holds the value of this example.
-       double m_FairlyLongVariableName; // Shows the lining up of comments
-   };
-   \end{verbatim}
-The ctor and dtor need not be commented --- everyone knows what they are and what they do. \id{ShowExample()}, on the other hand, provides a brief comment as to its purpose. You may also want to provide an example of a method's usage. Member data is commented on the right side and it is generally good (when possible) to line up comments for easier reading.
-
 \section{Naming Conventions}
 
 \subsection{Filenames}
@@ -150,6 +114,54 @@ Variable should use concise, descriptive names that provide innate clues as to t
 
 Member variables should be prefixed with \id{m\_}, but both \id{m\_camelCase} and \id{m\_PascalCase} may be used according to personal preference (either way, the prefix ensures clarity). Example: \id{m\_GameObject} is more descriptive than \id{gobj}.
 
+\section{Documentation}
+
+Each programmer is responsible for properly documenting their code. During code review the code reviewer will ensure that interfaces or APIs are properly documented.
+
+If the comments are formatted in a certain way, they will automatically be extracted and added to the relevant documentation file. It suffices to write them as follows (sample comment for a class):
+\begin{verbatim}
+   /**
+    * An object that represents a civilian entity.
+    *
+    * (Notes regarding usage and possible problems etc...)
+    **/
+\end{verbatim}
+For single-line comments, \id{///} can be used as well. The comment text is inserted into the documentation, and can additionally be formatted by certain tags (e.g. \id{@param description} for function parameters). For more details, see the CppDoc documentation.
+
+Each method of a class should be documented as well and here is the suggested method of documenting a member function (continuing with \id{CExample}):
+\begin{verbatim}
+   class CExample
+   {
+   public:
+       CExample();
+       ~CExample():
+\end{verbatim}
+(continued)
+\pagebreak
+\begin{verbatim}
+       /**
+        * This function does nothing, but is a good example of
+        * documenting a member function.
+        * @param dummy A dummy parameter.
+        **/
+       void ShowExample(int dummy); 
+   
+   private:
+       intptr_t m_ExampleData;          // Holds the value of this example.
+       double m_FairlyLongVariableName; // Shows the lining up of comments
+   };
+   \end{verbatim}
+The ctor and dtor need not be commented --- everyone knows what they are and what they do. \id{ShowExample()}, on the other hand, provides a brief comment as to its purpose. You may also want to provide an example of a method's usage. Member data is commented on the right side and it is generally good (when possible) to line up comments for easier reading.
+
+\subsection{Author and Modified By}
+
+To promote collective code ownership and encourage making necessary fixes to modules that happen to be written by others, we will avoid explicitly mentioning the author at the top of the file. Such a tag could (subconsciously) be interpreted as ``his code only'', a condition we want to avoid because ``he'' might get run over by a bus (thus losing the only source of knowledge and expertise on that piece of code).
+
+On a similar note, we will also avoid modified-by tags. The reasoning is as above, with the additional wrinkle of having to figure out when exactly to consider oneself to have modified the code. Is it after a quick typo fix, adding 2 lines, a function, \ldots?
+
+Note that the authors of course retain copyright; we can also reconstruct the file history and find out all contributors via SVN revision information. The purpose of this measure is simplicity and improved cooperation and does not deprive anyone of credit.
+
+
 \subsection{Example}
 
 Here is a sample header file layout, \texttt{Example.h}:
@@ -159,8 +171,6 @@ Here is a sample header file layout, \texttt{Example.h}:
     * File        : Example.h
     * Project     : 0 A.D.
     * Description : CExample interface file.
-    *
-    * @author TheProgrammer@email.com
     * =========================================================================
     **/
    
@@ -169,10 +179,7 @@ Here is a sample header file layout, \texttt{Example.h}:
    pertains to nothing and serves no purpose other than to 
    suggest a documentation scheme.
    */
-\end{verbatim}
-(continues..)
-\pagebreak
-\begin{verbatim}
+
    #ifndef INCLUDED_EXAMPLE
    #define INCLUDED_EXAMPLE
    
