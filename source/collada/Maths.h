@@ -1,5 +1,5 @@
-#ifndef MATHS_H__
-#define MATHS_H__
+#ifndef INCLUDED_MATHS
+#define INCLUDED_MATHS
 
 class FMMatrix44;
 
@@ -11,4 +11,4 @@ extern FMMatrix44 DecomposeToScaleMatrix(const FMMatrix44& m);
 // extern FMMatrix44 operator/ (const FMMatrix44& a, const float b);
 // extern FMMatrix44 QuatToMatrix(float x, float y, float z, float w);
 
-#endif // MATHS_H__
+#endif // INCLUDED_MATHS

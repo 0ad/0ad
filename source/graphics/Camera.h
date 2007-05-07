@@ -1,17 +1,14 @@
-//***********************************************************
-//
-// Name:		Camera.H
-// Last Update: 24/2/02
-// Author:		Poya Manouchehri
-//
-// Description: CCamera holds a view and a projection matrix.
-//				It also has a frustum which can be used to
-//				cull objects for rendering.
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Camera.h
+ * Project     : 0 A.D.
+ * Description : CCamera holds a view and a projection matrix. It also has
+ *               a frustum which can be used to cull objects for rendering.
+ * =========================================================================
+ */
 
-#ifndef CAMERA_H
-#define CAMERA_H
+#ifndef INCLUDED_CAMERA
+#define INCLUDED_CAMERA
 
 #include "Frustum.h"
 #include "maths/Matrix3D.h"

@@ -1,11 +1,9 @@
 //========================================================
-//Andrew Decker aka pyrolink
-//ajdecker1022@msn.com
 //Description: Manages loading trigger specs (format in Atlas) and updating trigger objects
 //=======================================================
 
-#ifndef TRIGGERMANAGER_INCLUDED
-#define TRIGGERMANAGER_INCLUDED
+#ifndef INCLUDED_TRIGGERMANAGER
+#define INCLUDED_TRIGGERMANAGER
 
 #include "ps/Singleton.h"
 #include "scripting/ScriptableObject.h"
@@ -220,4 +218,4 @@ private:
 
 #define g_TriggerManager CTriggerManager::GetSingleton()
 
-#endif	//ifndef TRIGGERMANAGER_INCLUDED
+#endif	//ifndef INCLUDED_TRIGGERMANAGER

@@ -1,5 +1,5 @@
-#ifndef _GameView_H
-#define _GameView_H
+#ifndef INCLUDED_GAMEVIEW
+#define INCLUDED_GAMEVIEW
 
 // needed by minimap
 extern float g_MaxZoomHeight;	//note:  Max terrain height is this minus YMinOffset

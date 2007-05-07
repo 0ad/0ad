@@ -1,7 +1,5 @@
 /*
 A GUI Sprite
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -19,8 +17,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CGUISprite_H
-#define CGUISprite_H
+#ifndef INCLUDED_CGUISPRITE
+#define INCLUDED_CGUISPRITE
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -57,8 +55,6 @@ struct SGUIImageEffects
 
 
 /**
- * @author Gustav Larsson
- *
  * A CGUISprite is actually a collage of several <b>real</b>
  * sprites, this struct represents is such real sprite.
  */
@@ -106,8 +102,6 @@ struct SGUIImage
 
 
 /**
- * @author Gustav Larsson
- *
  * The GUI sprite, is actually several real sprites (images)
  * like a collage. View the section <sprites> in the GUI
  * TDD for more information.

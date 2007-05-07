@@ -1,5 +1,5 @@
-#ifndef _Network_NetSession_H
-#define _Network_NetSession_H
+#ifndef INCLUDED_NETWORK_SESSION
+#define INCLUDED_NETWORK_SESSION
 
 #include "Network.h"
 #include "SessionManager.h"
@@ -68,4 +68,4 @@ public:
 	}
 };
 
-#endif //_Network_NetSession_H
+#endif //INCLUDED_NETWORK_SESSION

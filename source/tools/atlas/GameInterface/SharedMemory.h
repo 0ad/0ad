@@ -1,5 +1,5 @@
-#ifndef SHAREDMEMORY_H__
-#define SHAREDMEMORY_H__
+#ifndef INCLUDED_SHAREDMEMORY
+#define INCLUDED_SHAREDMEMORY
 
 // We want to use placement new, which breaks when compiling Debug configurations
 // in the game and in wx, and they both need different workarounds.
@@ -61,4 +61,4 @@ template<typename T> void ShareableDelete(T* p)
 #endif
 
 
-#endif // SHAREDMEMORY_H__
+#endif // INCLUDED_SHAREDMEMORY

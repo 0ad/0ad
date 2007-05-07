@@ -1,5 +1,5 @@
-#ifndef ATLASWINDOWCOMMAND_H__
-#define ATLASWINDOWCOMMAND_H__
+#ifndef INCLUDED_ATLASWINDOWCOMMAND
+#define INCLUDED_ATLASWINDOWCOMMAND
 
 #include "wx/cmdproc.h"
 #include "AtlasObject/AtlasObject.h"
@@ -59,4 +59,4 @@ public:
 };
 
 
-#endif // ATLASWINDOWCOMMANDPROC_H__
+#endif // INCLUDED_ATLASWINDOWCOMMAND

@@ -3,8 +3,6 @@
  * File        : unifont.cpp
  * Project     : 0 A.D.
  * Description : Unicode OpenGL texture font.
- *
- * @author Philip Taylor (philip@zaynar.demon.co.uk)
  * =========================================================================
  */
 

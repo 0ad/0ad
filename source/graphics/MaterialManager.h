@@ -1,5 +1,5 @@
-#ifndef __H_MATERIALREADER_H__
-#define __H_MATERIALREADER_H__
+#ifndef INCLUDED_MATERIALMANAGER
+#define INCLUDED_MATERIALMANAGER
 
 #include <map>
 #include "ps/Singleton.h"

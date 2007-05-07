@@ -1,10 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		FileUnpacker.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : FileUnpacker.cpp
+ * Project     : 0 A.D.
+ * Description : Buffer and 'stream' for reading binary files
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 
@@ -120,4 +120,5 @@ void CFileUnpacker::UnpackString(CStr& result)
 	else
 		throw PSERROR_File_UnexpectedEOF();
 }
+
 

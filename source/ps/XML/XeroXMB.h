@@ -1,7 +1,5 @@
 /* 
 	Xeromyces - XMB reading library
-
-	Philip Taylor (philip@zaynar.demon.co.uk / @wildfiregames.com)
 */
 
 /* 
@@ -80,8 +78,8 @@ XMB_Text {
 
 */
 
-#ifndef _XEROXMB_H_
-#define _XEROXMB_H_
+#ifndef INCLUDED_XEROXMB
+#define INCLUDED_XEROXMB
 
 // Define to use a std::map for name lookups rather than a linear search.
 // (The map is usually slower.)
@@ -224,4 +222,4 @@ private:
 	const char* m_LastPointer;
 };
 
-#endif // _XEROXMB_H_
+#endif // INCLUDED_XEROXMB

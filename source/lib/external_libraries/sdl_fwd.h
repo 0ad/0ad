@@ -1,5 +1,5 @@
-#ifndef SDL_FWD_H__
-#define SDL_FWD_H__
+#ifndef INCLUDED_SDL_FWD
+#define INCLUDED_SDL_FWD
 
 // 2006-08-26 SDL is dragged into 6 of our 7 static library components.
 // it must be specified in each of their "extern_libs" so that the
@@ -12,4 +12,4 @@
 // forward-declared and used for pointers.
 struct SDL_Event_;
 
-#endif	// #ifndef SDL_FWD_H__
+#endif	// #ifndef INCLUDED_SDL_FWD

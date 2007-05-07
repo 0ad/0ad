@@ -8,8 +8,8 @@ All other methods are used internally by other I18n components.
 
 */
 
-#ifndef I18N_CLOCALE_H
-#define I18N_CLOCALE_H
+#ifndef INCLUDED_I18N_CLOCALE
+#define INCLUDED_I18N_CLOCALE
 
 #include "Common.h"
 
@@ -122,4 +122,4 @@ namespace I18n
 	};
 }
 
-#endif // I18N_CLOCALE_H
+#endif // INCLUDED_I18N_CLOCALE

@@ -3,8 +3,6 @@
  * File        : ShadowMap.cpp
  * Project     : Pyrogenesis
  * Description : Shadow mapping related texture and matrix management
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

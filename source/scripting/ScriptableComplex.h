@@ -14,8 +14,8 @@ before, 30+ files had to be recompiled because they #included Entity.h
 which #includes ScriptableComplex.h.
 */
 
-#ifndef SCRIPTABLE_COMPLEX_INCLUDED
-#define SCRIPTABLE_COMPLEX_INCLUDED
+#ifndef INCLUDED_SCRIPTABLECOMPLEX
+#define INCLUDED_SCRIPTABLECOMPLEX
 
 #include "scripting/ScriptingHost.h"
 #include "simulation/ScriptObject.h"

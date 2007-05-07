@@ -4,12 +4,6 @@
 |
 |===================================================================
 |
-| Author: Ben Vinegar
-| Contact: benvinegar () hotmail ! com
-|
-|
-| Last Modified: 03/08/04
-|
 | Overview: Billboarding sprite class - always faces the camera. It
 |           does this by getting the current model view matrix state.
 |
@@ -17,10 +11,6 @@
 | Usage: The functions speak for themselves. Instantiate, then be
 |        sure to pass a loaded (using tex_load()) texture before 
 |        calling Render().
-|
-| To do: TBA
-|
-| More Information: TBA
 |
 ==================================================================*/
 

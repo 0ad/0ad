@@ -1,5 +1,5 @@
-#ifndef COLLADA_DLL_H__
-#define COLLADA_DLL_H__
+#ifndef INCLUDED_COLLADA_DLL
+#define INCLUDED_COLLADA_DLL
 
 #ifdef _WIN32
 # ifdef COLLADA_DLL
@@ -29,4 +29,4 @@ EXPORT int set_skeleton_definitions(const char* xml, int length);
 EXPORT int convert_dae_to_pmd(const char* dae, OutputFn pmd_writer, void* cb_data);
 EXPORT int convert_dae_to_psa(const char* dae, OutputFn psa_writer, void* cb_data);
 
-#endif /* COLLADA_DLL_H__ */
+#endif /* INCLUDED_COLLADA_DLL */

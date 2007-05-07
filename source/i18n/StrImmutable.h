@@ -6,8 +6,8 @@ which is not insignificant).
 
 */
 
-#ifndef I18N_STRIMMUTABLE_H
-#define I18N_STRIMMUTABLE_H
+#ifndef INCLUDED_I18N_STRIMMUTABLE
+#define INCLUDED_I18N_STRIMMUTABLE
 
 #include <wchar.h>
 #include <string.h>
@@ -103,4 +103,4 @@ namespace I18n
 	};
 }
 
-#endif // I18N_STRIMMUTABLE_H
+#endif // INCLUDED_I18N_STRIMMUTABLE

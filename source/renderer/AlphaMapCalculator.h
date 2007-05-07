@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		AlphaMapCalculator.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : AlphaMapCalculator.h
+ * Project     : 0 A.D.
+ * Description : Determine which alpha blend map fits a given shape.
+ * =========================================================================
+ */
 
-#ifndef _ALPHAMAPCALCULATOR_H
-#define _ALPHAMAPCALCULATOR_H
+#ifndef INCLUDED_ALPHAMAPCALCULATOR
+#define INCLUDED_ALPHAMAPCALCULATOR
 
 #include <string.h>
 #include "BlendShapes.h"

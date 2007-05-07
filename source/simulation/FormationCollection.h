@@ -1,12 +1,11 @@
 //FormationCollection.h
-//Andrew aka pyrolink:  ajdecker1022@msn.com
 
 //Nearly identical to EntityTemplateCollection and associates i.e. EntityTemplate, Entity.
 //This is the manager of the entity formation "templates"
 
 
-#ifndef FORMATION_COLLECTION_INCLUDED
-#define FORMATION_COLLECTION_INCLUDED
+#ifndef INCLUDED_FORMATIONCOLLECTION
+#define INCLUDED_FORMATIONCOLLECTION
 
 #include <vector>
 #include "ps/CStr.h"

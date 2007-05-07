@@ -1,5 +1,5 @@
-#ifndef _Serialization_H
-#define _Serialization_H
+#ifndef INCLUDED_NETWORK_SERIALIZATION
+#define INCLUDED_NETWORK_SERIALIZATION
 
 #include "lib/lib.h"
 

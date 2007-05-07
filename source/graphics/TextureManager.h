@@ -1,5 +1,5 @@
-#ifndef _TEXTUREMANAGER_H
-#define _TEXTUREMANAGER_H
+#ifndef INCLUDED_TEXTUREMANAGER
+#define INCLUDED_TEXTUREMANAGER
 
 #include <vector>
 #include <map>

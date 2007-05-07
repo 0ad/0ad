@@ -1,16 +1,11 @@
 //-----------------------------------------------------------
-//
 // Name:		Texture.h
-// Last Update: 25/11/03
-// Author:		Rich Cross
-// Contact:		rich@0ad.wildfiregames.com
-//
 // Description: Basic texture class
 //
 //-----------------------------------------------------------
 
-#ifndef _TEXTURE_H
-#define _TEXTURE_H
+#ifndef INCLUDED_TEXTURE
+#define INCLUDED_TEXTURE
 
 #include "lib/res/handle.h"
 #include "ps/CStr.h"

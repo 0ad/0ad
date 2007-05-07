@@ -1,5 +1,5 @@
-#ifndef _MAPREADER_H
-#define _MAPREADER_H
+#ifndef INCLUDED_MAPREADER
+#define INCLUDED_MAPREADER
 
 #include "MapIO.h"
 #include "lib/res/handle.h"

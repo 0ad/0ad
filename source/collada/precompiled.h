@@ -1,5 +1,5 @@
-#ifndef PRECOMPILED_H__
-#define PRECOMPILED_H__
+#ifndef INCLUDED_COLLADA_PRECOMPILED
+#define INCLUDED_COLLADA_PRECOMPILED
 
 #define COLLADA_DLL
 #include "DLL.h"
@@ -41,4 +41,4 @@ extern void Log(int severity, const char* fmt, ...);
 #undef min
 #undef max
 
-#endif // PRECOMPILED_H__
+#endif // INCLUDED_COLLADA_PRECOMPILED

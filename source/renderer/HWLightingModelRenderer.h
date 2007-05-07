@@ -4,13 +4,11 @@
  * Project     : Pyrogenesis
  * Description : ModelVertexRenderer that transforms models on the CPU
  *             : but performs lighting in a vertex shader.
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef HWLIGHTINGMODELRENDERER_H
-#define HWLIGHTINGMODELRENDERER_H
+#ifndef INCLUDED_HWLIGHTINGMODELRENDERER
+#define INCLUDED_HWLIGHTINGMODELRENDERER
 
 #include "renderer/ModelVertexRenderer.h"
 
@@ -62,4 +60,4 @@ private:
 };
 
 
-#endif // HWLIGHTINGMODELRENDERER_H
+#endif // INCLUDED_HWLIGHTINGMODELRENDERER

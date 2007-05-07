@@ -1,5 +1,5 @@
-#ifndef UNITANIMATION_H__
-#define UNITANIMATION_H__
+#ifndef INCLUDED_UNITANIMATION
+#define INCLUDED_UNITANIMATION
 
 #include "ps/CStr.h"
 
@@ -25,4 +25,4 @@ private:
 	float m_TimeToNextSync;
 };
 
-#endif // UNITANIMATION_H__
+#endif // INCLUDED_UNITANIMATION

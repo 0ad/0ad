@@ -2,8 +2,8 @@
 	A basic_string derivative that works with uint16_t as its underlying char
 	type.
 */
-#ifndef utf16string_H
-#define utf16string_H
+#ifndef INCLUDED_UTF16STRING
+#define INCLUDED_UTF16STRING
 
 // On Windows, wchar_t is typedef'ed to unsigned short, which conflicts
 // with uint16_t (which is also an unsigned short), so just use std::wstring

@@ -4,9 +4,6 @@
  * Project     : Pyrogenesis
  * Description : Implementation of profile display (containing only display
  *             : routines, the data model(s) are implemented elsewhere).
- *
- * @author Mark Thompson <mark@wildfiregames.com>
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

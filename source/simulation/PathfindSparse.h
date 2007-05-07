@@ -1,6 +1,4 @@
 // PathfindSparse.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Sparse pathfinder.
 //
@@ -19,8 +17,8 @@
 //
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 
-#ifndef PATHFIND_SPARSE_INCLUDED
-#define PATHFIND_SPARSE_INCLUDED
+#ifndef INCLUDED_PATHFINDSPARSE
+#define INCLUDED_PATHFINDSPARSE
 
 #include "EntityHandles.h"
 #include "ps/Vector2D.h"

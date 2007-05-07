@@ -1,10 +1,8 @@
 // A generic type and some helper functions
 // for scripts
 
-// Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
-
-#ifndef SCRIPTOBJECT_INCLUDED
-#define SCRIPTOBJECT_INCLUDED
+#ifndef INCLUDED_SCRIPTOBJECT
+#define INCLUDED_SCRIPTOBJECT
 
 #include "scripting/SpiderMonkey.h"
 

@@ -1,11 +1,9 @@
 // Vector2D.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // 2-dimensional vector class, primarily for use by simulation code.
 
-#ifndef VECTOR_2D_INCLUDED
-#define VECTOR_2D_INCLUDED
+#ifndef INCLUDED_VECTOR2D
+#define INCLUDED_VECTOR2D
 
 #include <math.h>
 #include "maths/Vector3D.h"

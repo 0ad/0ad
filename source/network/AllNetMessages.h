@@ -1,5 +1,5 @@
-#ifndef _AllNetMessages_H
-#define _AllNetMessages_H
+#ifndef INCLUDED_ALLNETMESSAGES
+#define INCLUDED_ALLNETMESSAGES
 
 #include "ps/CStr.h"
 #include "scripting/JSSerialization.h"

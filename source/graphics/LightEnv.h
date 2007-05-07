@@ -3,14 +3,11 @@
  * File        : LightEnv.h
  * Project     : Pyrogenesis
  * Description : CLightEnv, a class describing the current lights
- *
- * @author Rich Cross <rich@wildfiregames.com>
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef __LIGHTENV_H
-#define __LIGHTENV_H
+#ifndef INCLUDED_LIGHTENV
+#define INCLUDED_LIGHTENV
 
 #include "Color.h"
 #include "maths/Vector3D.h"

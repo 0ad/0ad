@@ -1,7 +1,5 @@
 /*
 	XML.h - Xerces wrappers & convenience functions
-	
-	AUTHOR	:	Simon Brenner <simon@wildfiregames.com>, <simon.brenner@home.se>
 	EXAMPLE	:
 		Simple usage:
 	
@@ -19,8 +17,8 @@
 		goes for the entity resolver.
 */
 
-#ifndef _XercesVFS_H
-#define _XercesVFS_H
+#ifndef INCLUDED_XML
+#define INCLUDED_XML
 
 // Temporarily undefine new, because the Xerces headers don't like it
 #include "lib/nommgr.h"
@@ -109,4 +107,4 @@ public:
 	{}
 };
 
-#endif // _XercesVFS_H
+#endif // INCLUDED_XML

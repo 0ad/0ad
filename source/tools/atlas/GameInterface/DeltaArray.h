@@ -1,5 +1,5 @@
-#ifndef DELTAARRAY_H__
-#define DELTAARRAY_H__
+#ifndef INCLUDED_DELTAARRAY
+#define INCLUDED_DELTAARRAY
 
 template<typename T> class DeltaArray2D
 {
@@ -89,4 +89,4 @@ void DeltaArray2D<T>::Redo()
 		setNew(it->first.first, it->first.second, it->second.second);
 }
 
-#endif // DELTAARRAY_H__
+#endif // INCLUDED_DELTAARRAY

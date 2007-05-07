@@ -1,7 +1,7 @@
 #include "scripting/ScriptingHost.h"
 
-#ifndef JSI_IGUIOBJECT_INCLUDED
-#define JSI_IGUIOBJECT_INCLUDED
+#ifndef INCLUDED_JSI_IGUIOBJECT
+#define INCLUDED_JSI_IGUIOBJECT
 
 namespace JSI_IGUIObject
 {

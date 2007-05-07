@@ -4,20 +4,6 @@
 |
 |===================================================================
 |
-| Author: Ben Vinegar
-| Contact: benvinegar () hotmail ! com
-|
-|
-| Last Modified: 04/23/04
-|
-| Overview: TBA
-|
-| Usage: TBA
-|
-| To do: TBA
-|
-| More Information: TBA
-|
 ==================================================================*/
 
 #ifndef PARTICLE_SYSTEM_H

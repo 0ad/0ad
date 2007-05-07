@@ -1,5 +1,5 @@
-#ifndef BRUSHES_H__
-#define BRUSHES_H__
+#ifndef INCLUDED_BRUSHES
+#define INCLUDED_BRUSHES
 
 class BrushShapeCtrl;
 class BrushSizeCtrl;
@@ -43,4 +43,4 @@ extern Brush g_Brush_Elevation;
 
 extern Brush* g_Brush_CurrentlyActive;
 
-#endif // BRUSHES_H__
+#endif // INCLUDED_BRUSHES

@@ -3,9 +3,6 @@
  * File        : PlayerRenderer.cpp
  * Project     : Pyrogenesis
  * Description : Implementation of player colour RenderModifiers.
- *
- * @author John M. Mena <JohnMMena@hotmail.com>
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -400,5 +397,6 @@ void LitPlayerColorRender::PrepareModel(uint pass, CModel* model)
 		glColor3f(colour.r, colour.g, colour.b);
 	}
 }
+
 
 

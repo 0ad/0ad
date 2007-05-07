@@ -4,8 +4,6 @@
  * Project     : Pyrogenesis
  * Description : Terrain rendering (everything related to patches and
  *             : water) is encapsulated in TerrainRenderer
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -634,4 +632,5 @@ void TerrainRenderer::RenderWater()
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
 }
+
 

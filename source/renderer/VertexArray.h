@@ -1,5 +1,5 @@
-#ifndef __VERTEXARRAY_H__
-#define __VERTEXARRAY_H__
+#ifndef INCLUDED_VERTEXARRAY
+#define INCLUDED_VERTEXARRAY
 
 #include "renderer/VertexBuffer.h"
 
@@ -175,4 +175,4 @@ private:
 };
 
 
-#endif // __VERTEXARRAY_H__
+#endif // INCLUDED_VERTEXARRAY

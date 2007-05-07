@@ -5,9 +5,6 @@
  * Description : ModelRenderer implementation that sorts models and/or
  *             : polygons based on distance from viewer, for transparency
  *             : rendering.
- *
- * @author Rich Cross <rich@wildfiregames.com>
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

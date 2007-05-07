@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		Color.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : Color.h
+ * Project     : 0 A.D.
+ * Description : Convert float RGB(A) colors to unsigned byte
+ * =========================================================================
+ */
 
-#ifndef _COLOR_H
-#define _COLOR_H
+#ifndef INCLUDED_COLOR
+#define INCLUDED_COLOR
 
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"

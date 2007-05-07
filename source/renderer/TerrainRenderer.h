@@ -4,13 +4,11 @@
  * Project     : Pyrogenesis
  * Description : Terrain rendering (everything related to patches and
  *             : water) is encapsulated in TerrainRenderer
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef TERRAINRENDERER_H
-#define TERRAINRENDERER_H
+#ifndef INCLUDED_TERRAINRENDERER
+#define INCLUDED_TERRAINRENDERER
 
 class CPatch;
 class ShadowMap;
@@ -105,4 +103,4 @@ private:
 	TerrainRendererInternals* m;
 };
 
-#endif // TERRAINRENDERER_H
+#endif // INCLUDED_TERRAINRENDERER

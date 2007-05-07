@@ -1,9 +1,8 @@
-//Andrew aka pyrolink - ajdecker1022@msn.com
 //Manages the tech templates.  More detail: see CFormation and CEntityTemplate (collections)
 
 
-#ifndef TECHNOLOGY_COLLECTION_INCLUDED
-#define TECHNOLOGY_COLLECTION_INCLUDED
+#ifndef INCLUDED_TECHNOLOGYCOLLECTION
+#define INCLUDED_TECHNOLOGYCOLLECTION
 
 #include "ps/CStr.h"
 #include "ps/Singleton.h"

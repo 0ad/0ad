@@ -1,13 +1,11 @@
 // BoundingObjects.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Bounding circle and object-aligned bounding box. 2D, for simulation code.
 //
 // Note: object-aligned bounding boxes are often referred to as oriented bounding boxes (OBBs)
 
-#ifndef BOUNDING_OBJECTS_INCLUDED
-#define BOUNDING_OBJECTS_INCLUDED
+#ifndef INCLUDED_BOUNDINGOBJECTS
+#define INCLUDED_BOUNDINGOBJECTS
 
 #include "ps/Vector2D.h"
 

@@ -1,6 +1,5 @@
 // Functions for (de)serialization of jsvals
-//
-// Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
+
 // WIP, not yet functional
 
 #include "network/Serialization.h"

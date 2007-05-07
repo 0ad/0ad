@@ -1,5 +1,5 @@
-#ifndef SIDEBAR_H__
-#define SIDEBAR_H__
+#ifndef INCLUDED_SIDEBAR
+#define INCLUDED_SIDEBAR
 
 class Sidebar : public wxPanel
 {
@@ -27,4 +27,4 @@ private:
 	bool m_AlreadyDisplayed;
 };
 
-#endif // SIDEBAR_H__
+#endif // INCLUDED_SIDEBAR

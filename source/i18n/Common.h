@@ -1,7 +1,7 @@
 // Things that are used by most I18n code:
 
-#ifndef I18N_COMMON_H
-#define I18N_COMMON_H
+#ifndef INCLUDED_I18N_COMMON
+#define INCLUDED_I18N_COMMON
 
 #include <string>
 
@@ -17,4 +17,4 @@ ERROR_GROUP(I18n);
 
 // That was exciting.
 
-#endif // I18N_COMMON_H
+#endif // INCLUDED_I18N_COMMON

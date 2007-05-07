@@ -2,8 +2,8 @@
 // Using integer tags should be ever-so-slightly faster than the hashmap lookup
 // Also allows events to be renamed without affecting other code.
 
-#ifndef EVENT_HANDLERS_INCLUDED
-#define EVENT_HANDLERS_INCLUDED
+#ifndef INCLUDED_EVENTHANDLERS
+#define INCLUDED_EVENTHANDLERS
 
 #include "scripting/DOMEvent.h"
 #include "maths/Vector3D.h"

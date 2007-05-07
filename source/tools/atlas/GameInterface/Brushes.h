@@ -1,5 +1,5 @@
-#ifndef BRUSHES_H__
-#define BRUSHES_H__
+#ifndef INCLUDED_BRUSHES
+#define INCLUDED_BRUSHES
 
 #include "maths/Vector3D.h"
 
@@ -37,4 +37,4 @@ extern Brush g_CurrentBrush;
 
 }
 
-#endif // BRUSHES_H__
+#endif // INCLUDED_BRUSHES

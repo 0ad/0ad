@@ -1,5 +1,5 @@
-#ifndef TOOLS_H__
-#define TOOLS_H__
+#ifndef INCLUDED_TOOLS
+#define INCLUDED_TOOLS
 
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "General/AtlasWindowCommand.h"
@@ -130,4 +130,4 @@ private:
 };
 
 
-#endif // TOOLS_H__
+#endif // INCLUDED_TOOLS

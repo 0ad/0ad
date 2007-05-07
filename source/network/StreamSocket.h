@@ -1,5 +1,5 @@
-#ifndef _StreamSocket_H
-#define _StreamSocket_H
+#ifndef INCLUDED_NETWORK_STREAMSOCKET
+#define INCLUDED_NETWORK_STREAMSOCKET
 
 #include "ps/Pyrogenesis.h"
 #include "Network.h"

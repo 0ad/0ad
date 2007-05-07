@@ -4,13 +4,11 @@
  * Project     : Pyrogenesis
  * Description : Definition of ModelVertexRenderer, the abstract base class
  *             : for model vertex transformation implementations.
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef MODELVERTEXRENDERER_H
-#define MODELVERTEXRENDERER_H
+#ifndef INCLUDED_MODELVERTEXRENDERER
+#define INCLUDED_MODELVERTEXRENDERER
 
 #include "graphics/MeshManager.h"
 
@@ -165,4 +163,4 @@ public:
 };
 
 
-#endif // MODELVERTEXRENDERER_H
+#endif // INCLUDED_MODELVERTEXRENDERER

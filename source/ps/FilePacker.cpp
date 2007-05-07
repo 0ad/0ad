@@ -1,10 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		FilePacker.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : FilePacker.cpp
+ * Project     : 0 A.D.
+ * Description : Resizable buffer, for writing binary files
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 
@@ -58,4 +58,5 @@ void CFilePacker::PackString(const CStr& str)
 	PackRaw(&len,sizeof(len));
 	PackRaw((const char*) str,len);
 }
+
 

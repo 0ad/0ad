@@ -1,11 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		ModelDef.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-// Modified by:	30. April 2007 - Christian Heubach
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : Patch.cpp
+ * Project     : 0 A.D.
+ * Description : A patch of terrain holding NxN MiniPatch tiles
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 
@@ -80,4 +79,5 @@ void CPatch::CalcBounds()
 		}
 	}
 }
+
 

@@ -1,7 +1,5 @@
 /*
 A GUI ScrollBar
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -19,8 +17,8 @@ gee@pyro.nu
 
 */
 
-#ifndef IGUIScrollBar_H
-#define IGUIScrollBar_H
+#ifndef INCLUDED_IGUISCROLLBAR
+#define INCLUDED_IGUISCROLLBAR
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -32,8 +30,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * The GUI Scroll-bar style. Tells us how scroll-bars look and feel.
  *
  * A scroll-bar style can choose whether to support horizontal, vertical
@@ -121,8 +117,6 @@ struct SGUIScrollBarStyle
 
 
 /**
- * @author Gustav Larsson
- *
  * The GUI Scroll-bar, used everywhere there is a scroll-bar in the game.
  *
  * To include a scroll-bar to an object, inherent the object from

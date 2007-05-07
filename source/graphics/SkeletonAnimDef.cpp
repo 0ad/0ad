@@ -1,10 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		SkeletonAnimDef.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : SkeletonAnim.cpp
+ * Project     : 0 A.D.
+ * Description : Raw description of a skeleton animation
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 
@@ -119,4 +119,5 @@ void CSkeletonAnimDef::Save(const char* filename,const CSkeletonAnimDef* anim)
 	// now write it
 	packer.Write(filename);
 }
+
 

@@ -1,5 +1,5 @@
-#ifndef _SocketBase_H
-#define _SocketBase_H
+#ifndef INCLUDED_NETWORK_SOCKETBASE
+#define INCLUDED_NETWORK_SOCKETBASE
 
 //--------------------------------------------------------
 //  Includes / Compiler directives

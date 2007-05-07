@@ -6,12 +6,10 @@
  *             : in that scene.
  *
  * @note This file would fit just as well into the graphics/ subdirectory.
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  **/
 
-#ifndef RENDERER_SCENE_H
-#define RENDERER_SCENE_H
+#ifndef INCLUDED_SCENE
+#define INCLUDED_SCENE
 
 class CFrustum;
 class CModel;
@@ -66,4 +64,4 @@ public:
 };
 
 
-#endif // RENDERER_SCENE_H
+#endif // INCLUDED_SCENE

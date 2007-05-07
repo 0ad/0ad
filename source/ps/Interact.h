@@ -4,8 +4,6 @@
 // and the hotkey message processor.
 // Does this belong in GUI?
 
-// Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
-
 #include <vector>
 #include <map>
 
@@ -193,4 +191,5 @@ InReaction InteractInputHandler( const SDL_Event_* ev );
 #define g_Selection CSelectedEntities::GetSingleton()
 #define g_Mouseover CMouseoverEntities::GetSingleton()
 #define g_BuildingPlacer CBuildingPlacer::GetSingleton()
+
 

@@ -1,7 +1,7 @@
 // Supporting data types for CEntity and related
 
-#ifndef ENTITY_SUPPORT_INCLUDED
-#define ENTITY_SUPPORT_INCLUDED
+#ifndef INCLUDED_ENTITYSUPPORT
+#define INCLUDED_ENTITYSUPPORT
 
 #include "ps/CStr.h"
 

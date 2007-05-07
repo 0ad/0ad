@@ -1,5 +1,5 @@
-#ifndef _FONT_H
-#define _FONT_H
+#ifndef INCLUDED_FONT
+#define INCLUDED_FONT
 
 #include "lib/res/handle.h"
 
@@ -32,4 +32,4 @@ private:
 };
 
 
-#endif // _FONT_H
+#endif // INCLUDED_FONT

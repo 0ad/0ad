@@ -3,25 +3,13 @@
  * File        : zip.h
  * Project     : 0 A.D.
  * Description : archive backend for Zip files.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2003-2006 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef ZIP_H__
-#define ZIP_H__
+#ifndef INCLUDED_ZIP
+#define INCLUDED_ZIP
 
 struct File;
 struct Archive;
@@ -76,4 +64,4 @@ extern LibError zip_archive_finish(ZipArchive* za);
 extern time_t time_t_from_FAT(u32 fat_timedate);
 extern u32 FAT_from_time_t(time_t time);
 
-#endif	// #ifndef ZIP_H__
+#endif	// #ifndef INCLUDED_ZIP

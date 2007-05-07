@@ -1,5 +1,5 @@
-#ifndef _ERRORS_H_
-#define _ERRORS_H_
+#ifndef INCLUDED_ERRORS
+#define INCLUDED_ERRORS
 
 #include <exception>
 

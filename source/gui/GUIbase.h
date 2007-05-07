@@ -1,7 +1,5 @@
 /*
 GUI Core, stuff that the whole GUI uses
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -14,8 +12,8 @@ gee@pyro.nu
 
 */
 
-#ifndef GUIbase_H
-#define GUIbase_H
+#ifndef INCLUDED_GUIBASE
+#define INCLUDED_GUIBASE
 
 
 //--------------------------------------------------------
@@ -86,8 +84,6 @@ enum EGUIMessageType
 };
 
 /**
- * @author Gustav Larsson
- *
  * Message send to IGUIObject::HandleMessage() in order
  * to give life to Objects manually with
  * a derived HandleMessage().
@@ -162,8 +158,6 @@ struct SGUIIcon
 };
 
 /**
- * @author Gustav Larsson
- *
  * Client Area is a rectangle relative to a parent rectangle
  *
  * You can input the whole value of the Client Area by

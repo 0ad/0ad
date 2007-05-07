@@ -1,5 +1,5 @@
-#ifndef _TEXTUREENTRY_H
-#define _TEXTUREENTRY_H
+#ifndef INCLUDED_TEXTUREENTRY
+#define INCLUDED_TEXTUREENTRY
 
 #include <map>
 

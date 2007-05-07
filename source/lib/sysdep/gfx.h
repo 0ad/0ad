@@ -3,25 +3,13 @@
  * File        : gfx.h
  * Project     : 0 A.D.
  * Description : graphics card detection.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004-2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef GFX_H__
-#define GFX_H__
+#ifndef INCLUDED_GFX
+#define INCLUDED_GFX
 
 const size_t GFX_CARD_LEN = 128;
 /**
@@ -79,4 +67,4 @@ extern LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq);
  **/
 extern LibError gfx_get_monitor_size(int& width_mm, int& height_mm);
 
-#endif	// #ifndef GFX_H__
+#endif	// #ifndef INCLUDED_GFX

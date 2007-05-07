@@ -1,5 +1,5 @@
-#ifndef ps_GameAttributes_H
-#define ps_GameAttributes_H
+#ifndef INCLUDED_GAMEATTRIBUTES
+#define INCLUDED_GAMEATTRIBUTES
 
 #include "Player.h"
 

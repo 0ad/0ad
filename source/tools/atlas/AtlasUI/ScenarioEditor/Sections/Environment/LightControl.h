@@ -1,5 +1,5 @@
-#ifndef LIGHTCONTROL_H__
-#define LIGHTCONTROL_H__
+#ifndef INCLUDED_LIGHTCONTROL
+#define INCLUDED_LIGHTCONTROL
 
 #include "GameInterface/Messages.h"
 #include "GameInterface/Shareable.h"
@@ -22,4 +22,4 @@ private:
 	LightSphere* m_Sphere;
 };
 
-#endif // LIGHTCONTROL_H__
+#endif // INCLUDED_LIGHTCONTROL

@@ -1,5 +1,5 @@
-#ifndef _MAPIO_H
-#define _MAPIO_H
+#ifndef INCLUDED_MAPIO
+#define INCLUDED_MAPIO
 
 class CMapIO 
 {

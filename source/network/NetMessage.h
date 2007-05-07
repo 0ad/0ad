@@ -1,5 +1,5 @@
-#ifndef _NetMessage_H
-#define _NetMessage_H
+#ifndef INCLUDED_NETWORK_NETMESSAGE
+#define INCLUDED_NETWORK_NETMESSAGE
 
 #include "Serialization.h"
 #include "SocketBase.h"
@@ -94,4 +94,4 @@ struct SNetMessageDeserializerRegistration
 // This time, the classes are created
 #include "AllNetMessages.h"
 
-#endif // #ifndef _NetMessage_H
+#endif // #ifndef INCLUDED_NETWORK_NETMESSAGE

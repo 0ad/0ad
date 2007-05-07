@@ -1,5 +1,5 @@
-#ifndef COMMONCONVERT_H__
-#define COMMONCONVERT_H__
+#ifndef INCLUDED_COMMONCONVERT
+#define INCLUDED_COMMONCONVERT
 
 #include <exception>
 #include <string>
@@ -157,4 +157,4 @@ void TransformBones(std::vector<BoneTransform>& bones, const FMMatrix44& scaleTr
 
 extern FMMatrix44 FMMatrix44_Identity;
 
-#endif // COMMONCONVERT_H__
+#endif // INCLUDED_COMMONCONVERT

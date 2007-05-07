@@ -1,5 +1,5 @@
-#ifndef SECTIONLAYOUT_H__
-#define SECTIONLAYOUT_H__
+#ifndef INCLUDED_SECTIONLAYOUT
+#define INCLUDED_SECTIONLAYOUT
 
 #include <map>
 #include <string>
@@ -29,4 +29,4 @@ private:
 	std::map<std::wstring, int> m_PageMappings;
 };
 
-#endif // SECTIONLAYOUT_H__
+#endif // INCLUDED_SECTIONLAYOUT

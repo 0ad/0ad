@@ -1,3 +1,15 @@
+/**
+ * =========================================================================
+ * File        : Noise.cpp
+ * Project     : 0 A.D.
+ * Description : 2D and 3D seamless Perlin noise
+ * =========================================================================
+ */
+
+// Based on http://www.cs.cmu.edu/~mzucker/code/perlin-noise-math-faq.html 
+// and http://mrl.nyu.edu/~perlin/paper445.pdf.
+// Not optimized for speed yet.
+
 #include "precompiled.h"
 #include "Noise.h"
 #include <cmath>
@@ -157,4 +169,5 @@ float Noise3D::operator()(float x, float y, float z)
 	
 	return (c0 + ez*(c1-c0)) * .5 + .5;
 }
+
 

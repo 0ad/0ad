@@ -4,12 +4,6 @@
 |
 |===================================================================
 |
-| Author: Ben Vinegar
-| Contact: benvinegar () hotmail ! com
-|
-|
-| Last Modified: 03/08/04
-|
 | Overview: Particle emitter class that emits particles from
 |           an origin (or area) with a variety of set colours,
 |		    durations, forces and a single common sprite.
@@ -19,11 +13,6 @@
 |        various fields (preferably all, the defaults are rather
 |		 boring) and then call Frame() - you guessed it - every
 |		 frame. 
-|
-| To do: TBA
-|
-| More Information: TBA
-|
 ==================================================================*/
 
 #ifndef PARTICLE_EMITTER_H

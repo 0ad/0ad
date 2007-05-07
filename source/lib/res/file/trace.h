@@ -4,25 +4,13 @@
  * Project     : 0 A.D.
  * Description : allows recording and 'playing back' a sequence of
  *             : I/Os - useful for benchmarking and archive builder.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2006 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef TRACE_H__
-#define TRACE_H__
+#ifndef INCLUDED_TRACE
+#define INCLUDED_TRACE
 
 namespace ERR
 {
@@ -100,4 +88,4 @@ enum TraceRunFlags
 extern LibError trace_run(const char* trace_filename, uint flags = 0);
 
 
-#endif	// #ifndef TRACE_H__
+#endif	// #ifndef INCLUDED_TRACE

@@ -4,8 +4,8 @@
 // The CScriptEvent-derived events are declared here as well,
 // with their type set to one of EventTypes.h's EEventType.
 
-#ifndef GAME_EVENTS_INCLUDED
-#define GAME_EVENTS_INCLUDED
+#ifndef INCLUDED_GAMEEVENTS
+#define INCLUDED_GAMEEVENTS
 
 #include "DOMEvent.h"
 #include "EventTypes.h"

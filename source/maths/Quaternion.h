@@ -1,13 +1,13 @@
-/************************************************************
- *
- * File Name: Quaternion.H
- *
- * Description: 
- *
- ************************************************************/
+/**
+ * =========================================================================
+ * File        : Quaternion.h
+ * Project     : 0 A.D.
+ * Description : 
+ * =========================================================================
+ */
 
-#ifndef QUATERNION_H
-#define QUATERNION_H
+#ifndef INCLUDED_QUATERNION
+#define INCLUDED_QUATERNION
 
 #include "Matrix3D.h"
 #include "Vector3D.h"

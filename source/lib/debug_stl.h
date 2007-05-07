@@ -3,25 +3,13 @@
  * File        : debug_stl.h
  * Project     : 0 A.D.
  * Description : portable debugging helper functions specific to the STL.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004-2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef DEBUG_STL_H_INCLUDED
-#define DEBUG_STL_H_INCLUDED
+#ifndef INCLUDED_DEBUG_STL
+#define INCLUDED_DEBUG_STL
 
 
 namespace ERR
@@ -78,4 +66,4 @@ const size_t DEBUG_STL_MAX_ITERATOR_SIZE = 64;
 extern LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugIterator* el_iterator, void* it_mem);
 
-#endif	// #ifndef DEBUG_STL_H_INCLUDED
+#endif	// #ifndef INCLUDED_DEBUG_STL

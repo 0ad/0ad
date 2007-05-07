@@ -3,25 +3,13 @@
  * File        : vfs_tree.h
  * Project     : 0 A.D.
  * Description : the actual 'filesystem' and its tree of directories.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef VFS_TREE_H__
-#define VFS_TREE_H__
+#ifndef INCLUDED_VFS_TREE
+#define INCLUDED_VFS_TREE
 
 class TFile;	// must come before vfs_mount.h
 class TDir;
@@ -133,4 +121,4 @@ extern RealDir* tree_get_real_dir(TDir* td);
 extern void tree_lock();
 extern void tree_unlock();
 
-#endif	// #ifndef VFS_TREE_H__
+#endif	// #ifndef INCLUDED_VFS_TREE

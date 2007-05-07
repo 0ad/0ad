@@ -3,25 +3,13 @@
  * File        : lockfree.h
  * Project     : 0 A.D.
  * Description : lock-free synchronized data structures.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef LOCKFREE_H__
-#define LOCKFREE_H__
+#ifndef INCLUDED_LOCKFREE
+#define INCLUDED_LOCKFREE
 
 #include "posix/posix_types.h"	// uintptr_t
 
@@ -163,4 +151,4 @@ extern void* lfh_insert(LFHash* hash, uintptr_t key, size_t additional_bytes, in
 extern LibError lfh_erase(LFHash* hash, uintptr_t key);
 
 
-#endif	// #ifndef LOCKFREE_H__
+#endif	// #ifndef INCLUDED_LOCKFREE

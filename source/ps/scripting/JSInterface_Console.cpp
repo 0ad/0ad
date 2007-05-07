@@ -1,7 +1,5 @@
 // JavaScript interface to native code selection and group objects
 
-// Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
-
 #include "precompiled.h"
 #include "JSInterface_Console.h"
 #include "ps/CConsole.h"

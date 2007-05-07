@@ -6,8 +6,6 @@
  *             : classes.
  *
  * @note This file would fit just as well into the graphics/ subdirectory.
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  **/
 
 #include "precompiled.h"
@@ -30,4 +28,5 @@ void SceneCollector::SubmitRecursive(CModel* model)
 		SubmitRecursive(props[i].m_Model);
 	}
 }
+
 

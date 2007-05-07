@@ -4,22 +4,10 @@
  * Project     : 0 A.D.
  * Description : wrapper for all OpenGL texturing calls.
  *             : provides caching, hotloading and lifetime management.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2003-2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 /*
 
@@ -140,8 +128,8 @@ the next function to fail, but real apps should check and report errors.
 
 */
 
-#ifndef OGL_TEX_H__
-#define OGL_TEX_H__
+#ifndef INCLUDED_OGL_TEX
+#define INCLUDED_OGL_TEX
 
 #include "lib/res/handle.h"
 #include "lib/ogl.h"
@@ -423,4 +411,4 @@ extern LibError ogl_tex_transform(Handle ht, uint flags);
 */
 extern LibError ogl_tex_transform_to(Handle ht, uint new_flags);
 
-#endif	// #ifndef OGL_TEX_H__
+#endif	// #ifndef INCLUDED_OGL_TEX

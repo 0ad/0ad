@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		VertexBuffer.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : VertexBuffer.h
+ * Project     : 0 A.D.
+ * Description : encapsulation of VBOs with batching and sharing
+ * =========================================================================
+ */
 
-#ifndef _VERTEXBUFFER_H
-#define _VERTEXBUFFER_H
+#ifndef INCLUDED_VERTEXBUFFER
+#define INCLUDED_VERTEXBUFFER
 
 #include "lib/lib.h"
 #include "lib/res/graphics/ogl_tex.h"

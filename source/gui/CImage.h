@@ -1,7 +1,5 @@
 /*
 GUI Object - Image object
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -13,8 +11,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CImage_H
-#define CImage_H
+#ifndef INCLUDED_CIMAGE
+#define INCLUDED_CIMAGE
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -34,8 +32,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Object just for drawing a sprite. Like CText, without the
  * possibility to draw text.
  *

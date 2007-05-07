@@ -5,8 +5,8 @@ Simple storage for translated phrases, made up of lots of TSComponents
 
 */
 
-#ifndef I18N_TSTRING_H
-#define I18N_TSTRING_H
+#ifndef INCLUDED_I18N_TRANSLATEDSTRING
+#define INCLUDED_I18N_TRANSLATEDSTRING
 
 #include <vector>
 
@@ -25,4 +25,4 @@ namespace I18n
 
 }
 
-#endif // I18N_TSTRING_H
+#endif // INCLUDED_I18N_TRANSLATEDSTRING

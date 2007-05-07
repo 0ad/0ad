@@ -1,5 +1,5 @@
-#ifndef MESSAGEPASSER_H__
-#define MESSAGEPASSER_H__
+#ifndef INCLUDED_MESSAGEPASSER
+#define INCLUDED_MESSAGEPASSER
 
 #include "SharedMemory.h"
 
@@ -27,4 +27,4 @@ extern MessagePasser* g_MessagePasser;
 
 }
 
-#endif // MESSAGEPASSER_H__
+#endif // INCLUDED_MESSAGEPASSER

@@ -1,5 +1,5 @@
-#ifndef STREAM_H__
-#define STREAM_H__
+#ifndef INCLUDED_STREAM
+#define INCLUDED_STREAM
 
 /*
 	Stream: A system for input/output of data, particularly with chained streams
@@ -69,4 +69,4 @@ namespace DatafileIO
 
 }
 
-#endif // STREAM_H__
+#endif // INCLUDED_STREAM

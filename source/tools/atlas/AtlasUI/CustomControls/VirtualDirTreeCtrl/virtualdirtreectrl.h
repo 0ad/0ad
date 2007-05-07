@@ -1,12 +1,9 @@
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxVirtualDirTreeCtrl.h
-// Author:      XX
-// Created:     Saturday, March 27, 2004 14:15:56
-// Copyright:   XX
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef __WXVIRTUALDIRTREECTRL_H__
-#define __WXVIRTUALDIRTREECTRL_H__
+#ifndef INCLUDED_VIRTUALDIRTREECTRL
+#define INCLUDED_VIRTUALDIRTREECTRL
 
 //#ifdef __GNUG__
 //    #pragma interface "virtualdirtreectrl.cpp"

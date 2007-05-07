@@ -2,7 +2,6 @@
 	CConfigDB - Load, access and store configuration variables
 	
 	TDD		:	http://forums.wildfiregames.com/0ad/index.php?showtopic=1125
-	AUTHOR	:	Simon Brenner <simon@wildfiregames.com>, <simon.brenner@home.se>
 	OVERVIEW:
 
 	JavaScript:
@@ -30,8 +29,8 @@
 		void SetFile() => g_ConfigDB.SetConfigFile()
 */
 
-#ifndef _ps_ConfigDB_H
-#define _ps_ConfigDB_H
+#ifndef INCLUDED_CONFIGDB
+#define INCLUDED_CONFIGDB
 
 #include "Pyrogenesis.h"
 #include "Parser.h"

@@ -1,5 +1,5 @@
-#ifndef _Network_SessionManager_H
-#define _Network_SessionManager_H
+#ifndef INCLUDED_NETWORK_SESSIONMANAGER
+#define INCLUDED_NETWORK_SESSIONMANAGER
 
 #include "ps/ThreadUtil.h"
 

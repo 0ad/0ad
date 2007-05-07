@@ -5,13 +5,11 @@
  * Description : Home to the ModelRenderer class, an abstract base class
  *             : that manages a per-frame list of submitted models,
  *             : as well as simple helper classes.
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef MODELRENDERER_H
-#define MODELRENDERER_H
+#ifndef INCLUDED_MODELRENDERER
+#define INCLUDED_MODELRENDERER
 
 #include <boost/shared_ptr.hpp>
 
@@ -266,4 +264,4 @@ private:
 };
 
 
-#endif // MODELRENDERER_H
+#endif // INCLUDED_MODELRENDERER

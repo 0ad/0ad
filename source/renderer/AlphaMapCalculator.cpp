@@ -1,10 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		AlphaMapCalculator.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : AlphaMapCalculator.cp
+ * Project     : 0 A.D.
+ * Description : Determine which alpha blend map fits a given shape.
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 

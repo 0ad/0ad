@@ -3,13 +3,11 @@
  * File        : ogl_shader.h
  * Project     : 0 A.D.
  * Description : load and link together shaders; provides hotload support.
- *
- * @author Nicolai Haehnle
  * =========================================================================
  */
 
-#ifndef OGL_SHADER_H__
-#define OGL_SHADER_H__
+#ifndef INCLUDED_OGL_SHADER
+#define INCLUDED_OGL_SHADER
 
 #include "lib/res/handle.h"
 
@@ -68,4 +66,4 @@ GLint ogl_program_get_uniform_location(Handle h, const char* name);
 // Query vertex attribute information
 GLint ogl_program_get_attrib_location(Handle h, const char* name);
 
-#endif // OGL_SHADER_H__
+#endif // INCLUDED_OGL_SHADER

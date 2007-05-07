@@ -1,5 +1,5 @@
-#ifndef I18N_DATATYPES_H
-#define I18N_DATATYPES_H
+#ifndef INCLUDED_I18N_DATATYPES
+#define INCLUDED_I18N_DATATYPES
 
 #include "StrImmutable.h"
 
@@ -28,4 +28,4 @@ namespace I18n
 }
 
 
-#endif // I18N_DATATYPES_H
+#endif // INCLUDED_I18N_DATATYPES

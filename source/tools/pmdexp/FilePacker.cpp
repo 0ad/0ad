@@ -1,9 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-//
 // Name:		FilePacker.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "pmdexp_types.h"
@@ -74,4 +70,5 @@ void CFilePacker::PackString(const char* str)
 	PackRaw(&len,sizeof(len));
 	PackRaw((const char*) str,len);
 }
+
 

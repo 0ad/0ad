@@ -1,15 +1,11 @@
-/**********************************************************************
- *<
-	FILE: DllEntry.cpp
+/**
+ * =========================================================================
+ * File        : DllEntry.cpp
+ * Project     : 0 A.D.
+ * Description : Defines the DLL entry point
+ * =========================================================================
+ */
 
-	DESCRIPTION: Contains the Dll Entry stuff
-
-	CREATED BY: 
-
-	HISTORY: 
-
- *>	Copyright (c) 2000, All Rights Reserved.
- **********************************************************************/
 #include "PMDExp.h"
 #include "PSAExp.h"
 #include "PSProp.h"
@@ -121,5 +117,6 @@ __declspec( dllexport ) ULONG CanAutoDefer()
 {
 	return 1;
 }
+
 
 

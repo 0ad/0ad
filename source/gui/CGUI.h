@@ -1,7 +1,5 @@
 /*
 CGUI
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -14,8 +12,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CGUI_H
-#define CGUI_H
+#ifndef INCLUDED_CGUI
+#define INCLUDED_CGUI
 
 #include "ps/Errors.h"
 ERROR_GROUP(GUI);
@@ -56,8 +54,6 @@ extern InReaction gui_handler(const SDL_Event_* ev);
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Contains a list of values for new defaults to objects.
  */
 struct SGUIStyle
@@ -80,8 +76,6 @@ struct SGUIScrollBarStyle;
 class GUITooltip;
 
 /**
- * @author Gustav Larsson
- *
  * The main object that includes the whole GUI. Is singleton
  * and accessed by g_GUI.
  *

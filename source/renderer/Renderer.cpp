@@ -1,16 +1,11 @@
-
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		Renderer.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-// Description: OpenGL renderer class; a higher level interface
-//	on top of OpenGL to handle rendering the basic visual games
-//	types - terrain, models, sprites, particles etc
-//
-///////////////////////////////////////////////////////////////////////////////
-
+/**
+ * =========================================================================
+ * File        : Renderer.cpp
+ * Project     : 0 A.D.
+ * Description : higher level interface on top of OpenGL to render basic
+ *               objects: terrain, models, sprites, particles etc.
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 
@@ -1756,4 +1751,5 @@ void CRenderer::ScriptingInit()
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }
+
 

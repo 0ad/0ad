@@ -1,7 +1,5 @@
 /*
 GUI util
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -14,8 +12,8 @@ gee@pyro.nu
 
 */
 
-#ifndef GUIutil_H
-#define GUIutil_H
+#ifndef INCLUDED_GUIUTIL
+#define INCLUDED_GUIUTIL
 
 
 //--------------------------------------------------------
@@ -50,8 +48,6 @@ void guiLoadIdentity();
 struct SGUIMessage;
 
 /**
- * @author Gustav Larsson
- *
  * Base class to only the class GUI. This superclass is 
  * kind of a templateless extention of the class GUI.
  * Used for other functions to friend with, because it
@@ -81,8 +77,6 @@ template<typename T> void CheckType(const IGUIObject* obj, const CStr& setting);
 
 
 /**
- * @author Gustav Larsson
- *
  * Includes static functions that needs one template
  * argument.
  *

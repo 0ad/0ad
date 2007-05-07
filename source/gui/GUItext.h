@@ -1,7 +1,5 @@
 /*
 GUI text, handles text stuff
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -14,8 +12,8 @@ gee@pyro.nu
 
 */
 
-#ifndef GUItext_H
-#define GUItext_H
+#ifndef INCLUDED_GUITEXT
+#define INCLUDED_GUITEXT
 
 
 //--------------------------------------------------------
@@ -30,8 +28,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * An SGUIText object is a parsed string, divided into
  * text-rendering components. Each component, being a 
  * call to the Renderer. For instance, if you by tags
@@ -49,8 +45,6 @@ gee@pyro.nu
 struct SGUIText
 {
 	/**
-	 * @author Gustav Larsson
-	 *
 	 * A sprite call to the CRenderer
 	 */
 	struct SSpriteCall
@@ -71,8 +65,6 @@ struct SGUIText
 	};
 
 	/**
-	 * @author Gustav Larsson
-	 *
 	 * A text call to the CRenderer
 	 */
 	struct STextCall
@@ -144,8 +136,6 @@ struct SGUIText
 };
 
 /**
- * @author Gustav Larsson
- *
  * String class, substitute for CStr, but that parses
  * the tags and builds up a list of all text that will
  * be different when outputted.
@@ -160,8 +150,6 @@ class CGUIString
 {
 public:
 	/**
-	 * @author Gustav Larsson
-	 *
 	 * A chunk of text that represents one call to the renderer.
 	 * In other words, all text in one chunk, will be drawn
 	 * exactly with the same settings.
@@ -169,8 +157,6 @@ public:
 	struct TextChunk
 	{
 		/**
-		 * @author Gustav Larsson
-		 *
 		 * A tag looks like this "Hello [B]there[/B] little"
 		 */
 		struct Tag
@@ -228,8 +214,6 @@ public:
 	};
 
 	/**
-	 * @author Gustav Larsson
-	 *
 	 * All data generated in GenerateTextCall()
 	 */
 	struct SFeedback

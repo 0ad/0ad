@@ -1,5 +1,5 @@
-#ifndef __STANCE_H__
-#define __STANCE_H__
+#ifndef INCLUDED_STANCE
+#define INCLUDED_STANCE
 
 #include "ps/Vector2D.h"
 

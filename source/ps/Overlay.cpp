@@ -1,7 +1,5 @@
 /*
 Overlay.cpp
-by Rich Cross
-rich@0ad.wildfiregames.com
 */
 
 #include "precompiled.h"

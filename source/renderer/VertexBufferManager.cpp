@@ -1,10 +1,11 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		VertexBufferManager.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : VertexBufferManager.cpp
+ * Project     : 0 A.D.
+ * Description : Allocate and destroy CVertexBuffers
+ * =========================================================================
+ */
+
 #include "precompiled.h"
 
 #include "lib/ogl.h"

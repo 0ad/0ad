@@ -3,9 +3,6 @@
  * Project     : engine
  * Description : Controls compilation of CStr class and
  *             : includes some function implementations.
- *
- * @author Caecus
- * Caecus@0ad.wildfiregames.com
  **/
 #include "precompiled.h"
 

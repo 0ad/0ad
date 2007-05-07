@@ -3,25 +3,13 @@
  * File        : tex_codec.cpp
  * Project     : 0 A.D.
  * Description : support routines and interface for texture codecs.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef TEX_CODEC_H__
-#define TEX_CODEC_H__
+#ifndef INCLUDED_TEX_CODEC
+#define INCLUDED_TEX_CODEC
 
 #include "tex.h"
 #include "tex_internal.h"	// for codec's convenience
@@ -244,4 +232,4 @@ extern LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
  **/
 extern LibError tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
 
-#endif	 // #ifndef TEX_CODEC_H__
+#endif	 // #ifndef INCLUDED_TEX_CODEC

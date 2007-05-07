@@ -1,5 +1,5 @@
-#ifndef SHAREABLE_H__
-#define SHAREABLE_H__
+#ifndef INCLUDED_SHAREABLE
+#define INCLUDED_SHAREABLE
 
 /*
 
@@ -302,4 +302,4 @@ public:
 # undef SHAREABLE_USED_NOMMGR
 #endif
 
-#endif // SHAREABLE_H__
+#endif // INCLUDED_SHAREABLE

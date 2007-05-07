@@ -5,8 +5,8 @@ before converting into a string.
 
 */
 
-#ifndef I18N_STRINGBUF_H
-#define I18N_STRINGBUF_H
+#ifndef INCLUDED_I18N_STRINGBUFFER
+#define INCLUDED_I18N_STRINGBUFFER
 
 #include "Common.h"
 #include "TranslatedString.h"
@@ -56,4 +56,4 @@ namespace I18n
 
 }
 
-#endif // I18N_STRINGBUF_H
+#endif // INCLUDED_I18N_STRINGBUFFER

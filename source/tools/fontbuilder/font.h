@@ -1,5 +1,5 @@
-#ifndef _FONT_H_
-#define _FONT_H_
+#ifndef INCLUDED_FONT
+#define INCLUDED_FONT
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -81,4 +81,4 @@ private:
 	FT_Face LastFontFace; // = FontFace(0|1), depending on the last LoadGlyph
 };
 
-#endif // _FONT_H_
+#endif // INCLUDED_FONT

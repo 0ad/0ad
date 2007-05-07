@@ -1,7 +1,7 @@
 #include "scripting/ScriptableObject.h"
 
-#ifndef _SCRIPTCUSTOMTYPES_H_
-#define _SCRIPTCUSTOMTYPES_H_
+#ifndef INCLUDED_SCRIPTCUSTOMTYPES
+#define INCLUDED_SCRIPTCUSTOMTYPES
 
 // Custom object types
 

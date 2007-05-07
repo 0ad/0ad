@@ -1,5 +1,5 @@
-#ifndef GUITooltip_H
-#define GUITooltip_H
+#ifndef INCLUDED_GUITOOLTIP
+#define INCLUDED_GUITOOLTIP
 
 class IGUIObject;
 class CGUI;
@@ -26,4 +26,4 @@ private:
 	double m_Time;
 };
 
-#endif // GUITooltip_H
+#endif // INCLUDED_GUITOOLTIP

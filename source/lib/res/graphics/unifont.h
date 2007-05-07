@@ -3,13 +3,11 @@
  * File        : unifont.h
  * Project     : 0 A.D.
  * Description : Unicode OpenGL texture font.
- *
- * @author Philip Taylor (philip@zaynar.demon.co.uk)
  * =========================================================================
  */
 
-#ifndef __UNIFONT_H__
-#define __UNIFONT_H__
+#ifndef INCLUDED_UNIFONT
+#define INCLUDED_UNIFONT
 
 #include <stdarg.h>	// va_list
 
@@ -56,4 +54,4 @@ int unifont_character_width(const Handle h, wchar_t c);
 // Return spacing in pixels from one line of text to the next
 int unifont_linespacing(const Handle h);
 
-#endif // __UNIFONT_H__
+#endif // INCLUDED_UNIFONT

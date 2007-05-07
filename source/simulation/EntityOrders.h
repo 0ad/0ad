@@ -1,6 +1,4 @@
 // EntityOrders.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Entity orders structure.
 //
@@ -32,8 +30,8 @@
 //		  Entities which exhaust all orders from their queue go to idle status; there is no specific order
 //			  type for this status.
 
-#ifndef ENTITY_ORDER_INCLUDED
-#define ENTITY_ORDER_INCLUDED
+#ifndef INCLUDED_ENTITYORDERS
+#define INCLUDED_ENTITYORDERS
 
 #define ORDER_MAX_DATA 2
 

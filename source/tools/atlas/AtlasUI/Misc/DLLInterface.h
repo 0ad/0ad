@@ -13,3 +13,5 @@ ATLASDLLIMPEXP void Atlas_NotifyEndOfFrame();
 ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, unsigned int flags);
 
 ATLASDLLIMPEXP void Atlas_ReportError();
+
+ATLASDLLIMPEXP void Atlas_ReportError();

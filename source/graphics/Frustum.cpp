@@ -1,17 +1,17 @@
-//***********************************************************
-//
-// Name:		Frustum.Cpp
-// Last Update: 24/2/02
-// Author:		Poya Manouchehri
-//
-// Description: CFrustum is a collection of planes which define
-//				a viewing space. Usually associated with the
-//				camera, there are 6 planes which define the
-//				view pyramid. But we allow more planes per
-//				frustum which maybe used for portal rendering,
-//				where a portal may have 3 or more edges.
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Frustum.cpp
+ * Project     : 0 A.D.
+ * Description : CFrustum is a collection of planes which define
+ *               a viewing space.
+ * =========================================================================
+ */
+
+/*
+Usually associated with the camera, there are 6 planes which define the
+view pyramid. But we allow more planes per frustum which may be used for
+portal rendering, where a portal may have 3 or more edges.
+*/
 
 #include "precompiled.h"
 
@@ -163,4 +163,5 @@ bool CFrustum::IsBoxVisible (const CVector3D &position,const CBound &bounds) con
 
 	return true;
 }
+
 

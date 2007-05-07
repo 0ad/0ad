@@ -1,3 +1,11 @@
+/**
+ * =========================================================================
+ * File        : CConsole.cpp
+ * Project     : 0 A.D.
+ * Description : Implements the in-game console with scripting support.
+ * =========================================================================
+ */
+
 #include "precompiled.h"
 #include <wctype.h>
 

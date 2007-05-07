@@ -1,12 +1,13 @@
-/////////////////////////////////////////////////////
-//	File Name:	DefaultEmitter.h
-//	Date:		7/20/05
-//	Author:		Will Dull
-//	Purpose:	Default emitter
-/////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : DefaultEmitter.h
+ * Project     : 0 A.D.
+ * Description : Default particle emitter implementation.
+ * =========================================================================
+ */
 
-#ifndef _DEFAULTEMITTER_H_
-#define _DEFAULTEMITTER_H_
+#ifndef INCLUDED_DEFAULTEMITTER
+#define INCLUDED_DEFAULTEMITTER
 
 #include "ParticleEmitter.h"
 

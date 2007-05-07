@@ -7,8 +7,8 @@ Mostly like CText, but intended for dynamic tooltips
 
 */
 
-#ifndef CTooltip_H
-#define CTooltip_H
+#ifndef INCLUDED_CTOOLTIP
+#define INCLUDED_CTOOLTIP
 
 #include "IGUITextOwner.h"
 

@@ -1,5 +1,5 @@
-#ifndef PSACONVERT_H__
-#define PSACONVERT_H__
+#ifndef INCLUDED_PSACONVERT
+#define INCLUDED_PSACONVERT
 
 #include <string>
 
@@ -7,4 +7,4 @@ struct OutputCB;
 
 void ColladaToPSA(const char* input, OutputCB& output, std::string& xmlErrors);
 
-#endif // PSACONVERT_H__
+#endif // INCLUDED_PSACONVERT

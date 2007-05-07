@@ -5,13 +5,11 @@
  * Description : RenderModifiers can affect the fragment stage behaviour
  *             : of some ModelRenderers. This file defines some common
  *             : RenderModifiers in addition to the base class.
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef RENDERMODIFIERS_H
-#define RENDERMODIFIERS_H
+#ifndef INCLUDED_RENDERMODIFIERS
+#define INCLUDED_RENDERMODIFIERS
 
 #include "ModelRenderer.h"
 
@@ -220,4 +218,4 @@ public:
 	void PrepareModel(uint pass, CModel* model);
 };
 
-#endif // RENDERMODIFIERS_H
+#endif // INCLUDED_RENDERMODIFIERS

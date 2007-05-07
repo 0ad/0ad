@@ -1,5 +1,5 @@
-#ifndef MESSAGES_H__
-#define MESSAGES_H__
+#ifndef INCLUDED_MESSAGES
+#define INCLUDED_MESSAGES
 
 #ifndef MESSAGES_SKIP_SETUP
 #include "MessagesSetup.h"
@@ -420,4 +420,4 @@ MESSAGE(TriggerToggleSelector,
 #include "MessagesSetup.h"
 #endif
 
-#endif // MESSAGES_H__
+#endif // INCLUDED_MESSAGES

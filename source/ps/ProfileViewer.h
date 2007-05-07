@@ -3,14 +3,11 @@
  * File        : ProfileViewer.h
  * Project     : Pyrogenesis
  * Description : Viewing profiling information (timing and other statistics)
- *
- * @author Mark Thompson <mark@wildfiregames.com>
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef PROFILE_VIEWER_INCLUDED
-#define PROFILE_VIEWER_INCLUDED
+#ifndef INCLUDED_PROFILE_VIEWER
+#define INCLUDED_PROFILE_VIEWER
 
 #include "lib/input.h"
 #include "ps/CStr.h"

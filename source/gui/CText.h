@@ -1,7 +1,5 @@
 /*
 GUI Object - Text [field]
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -13,8 +11,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CText_H
-#define CText_H
+#ifndef INCLUDED_CTEXT
+#define INCLUDED_CTEXT
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -37,8 +35,6 @@ class IGUIScrollBar;
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Text field that just displays static text.
  * 
  * @see IGUIObject

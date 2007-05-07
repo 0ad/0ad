@@ -4,25 +4,13 @@
  * Project     : 0 A.D.
  * Description : SDL input redirector; dispatches to multiple handlers and
  *             : allows record/playback of events.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2002 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef INPUT_H__
-#define INPUT_H__
+#ifndef INCLUDED_INPUT
+#define INCLUDED_INPUT
 
 
 #include "lib/external_libraries/sdl_fwd.h"
@@ -55,4 +43,4 @@ extern LibError in_record(const char* fn);
 extern LibError in_playback(const char* fn);
 extern void in_stop(void);
 
-#endif	// #ifndef INPUT_H__
+#endif	// #ifndef INCLUDED_INPUT

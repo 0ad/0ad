@@ -1,7 +1,5 @@
 /*
 GUI Object - Progress bar
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -13,8 +11,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CProgressBar_H
-#define CProgressBar_H
+#ifndef INCLUDED_CPROGRESSBAR
+#define INCLUDED_CPROGRESSBAR
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -34,8 +32,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Object used to draw a value from 0 to 100 visually.
  * 
  * @see IGUIObject

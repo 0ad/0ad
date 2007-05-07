@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		HFTracer.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : HFTracer.h
+ * Project     : 0 A.D.
+ * Description : Determine intersection of rays with a heightfield.
+ * =========================================================================
+ */
 
-#ifndef _HFTRACER_H
-#define _HFTRACER_H
+#ifndef INCLUDED_HFTRACER
+#define INCLUDED_HFTRACER
 
 class CVector3D;
 class CTerrain;

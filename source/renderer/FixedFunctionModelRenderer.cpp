@@ -3,8 +3,6 @@
  * File        : FixedFunctionModelRenderer.cpp
  * Project     : Pyrogenesis
  * Description : Implementation of FixedFunctionModelRenderer
- *
- * @author  Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -281,4 +279,5 @@ void FixedFunctionModelRenderer::RenderModel(uint streamflags, CModel* model, vo
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }
+
 

@@ -1,5 +1,5 @@
-#ifndef CMDLINEARGS_H__
-#define CMDLINEARGS_H__
+#ifndef INCLUDED_CMDLINEARGS
+#define INCLUDED_CMDLINEARGS
 
 #include "ps/CStr.h"
 
@@ -49,4 +49,4 @@ private:
 	CStr m_Arg0;
 };
 
-#endif // CMDLINEARGS_H__
+#endif // INCLUDED_CMDLINEARGS

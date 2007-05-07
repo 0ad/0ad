@@ -1,5 +1,5 @@
-#ifndef COLLADAMANAGER_H__
-#define COLLADAMANAGER_H__
+#ifndef INCLUDED_COLLADAMANAGER
+#define INCLUDED_COLLADAMANAGER
 
 class CStr8;
 
@@ -29,4 +29,4 @@ private:
 	CColladaManagerImpl* m;
 };
 
-#endif // COLLADAMANAGER_H__
+#endif // INCLUDED_COLLADAMANAGER

@@ -1,7 +1,5 @@
 /*
 GUI Object Base - Button Behavior
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -17,8 +15,8 @@ gee@pyro.nu
 
 */
 
-#ifndef IGUIButtonBehavior_H
-#define IGUIButtonBehavior_H
+#ifndef INCLUDED_IGUIBUTTONBEHAVIOR
+#define INCLUDED_IGUIBUTTONBEHAVIOR
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -40,8 +38,6 @@ class CGUISpriteInstance;
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Appends button behaviours to the IGUIObject.
  * Can be used with multiple inheritance alongside
  * IGUISettingsObject and such.

@@ -1,15 +1,14 @@
-//***********************************************************
-//
-// Name:		Vector2D.h
-// Author:		Matei Zaharia
-//
-// Description: Provides an interface for a vector in R4 and
-//				allows vector and scalar operations on it
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Vector2D.h
+ * Project     : 0 A.D.
+ * Description : Provides an interface for a vector in R2 and
+ *               allows vector and scalar operations on it
+ * =========================================================================
+ */
 
-#ifndef VECTOR2D_H
-#define VECTOR2D_H
+#ifndef INCLUDED_VECTOR2D
+#define INCLUDED_VECTOR2D
 
 
 #include <math.h>

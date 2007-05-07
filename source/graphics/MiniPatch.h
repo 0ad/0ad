@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		MiniPatch.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : MiniPatch.h
+ * Project     : 0 A.D.
+ * Description : Definition of a single terrain tile
+ * =========================================================================
+ */
 
-#ifndef _MINIPATCH_H
-#define _MINIPATCH_H
+#ifndef INCLUDED_MINIPATCH
+#define INCLUDED_MINIPATCH
 
 #include "lib/res/handle.h"
 

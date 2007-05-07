@@ -4,8 +4,8 @@ The only file that external code should need to include.
 
 */
 
-#ifndef I18N_INTERFACE_H
-#define I18N_INTERFACE_H
+#ifndef INCLUDED_I18N_INTERFACE
+#define INCLUDED_I18N_INTERFACE
 
 #include "StringBuffer.h"
 #include "DataTypes.h"
@@ -43,4 +43,4 @@ namespace I18n
 	CLocale_interface* NewLocale(JSContext* cx, JSObject* scope);
 }
 
-#endif // I18N_INTERFACE_H
+#endif // INCLUDED_I18N_INTERFACE

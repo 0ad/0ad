@@ -1,7 +1,5 @@
 /*
 Xerces Error Handler for Pyrogenesis (and the GUI)
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -17,16 +15,14 @@ gee@pyro.nu
 */
 
 
-#ifndef XercesErrorHandler_H
-#define XercesErrorHandler_H
+#ifndef INCLUDED_XERCESERRORHANDLER
+#define INCLUDED_XERCESERRORHANDLER
 
 #include "XML.h"
 
 #include <iostream>
 
 /**
- * @author Gustav Larsson
- *
  * Adapter function that catches Xerces Reading Exceptions
  * and lets us output them in Pyrogenesis CLogFile.
  *

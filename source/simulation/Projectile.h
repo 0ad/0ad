@@ -1,11 +1,9 @@
 // Projectile.h
 //
 // Simple class that represents a single projectile in the simulation.
-//
-// Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 
-#ifndef PROJECTILE_INCLUDED
-#define PROJECTILE_INCLUDED
+#ifndef INCLUDED_PROJECTILE
+#define INCLUDED_PROJECTILE
 
 #include "maths/Vector3D.h"
 #include "ps/Vector2D.h"

@@ -1,9 +1,7 @@
-//Andrew aka pyrolink
-//ajdecker1022@msn.com
 //This keeps track of all the formations exisisting in the game.
 
-#ifndef FORMATIONMANAGER_INCLUDED
-#define FORMATIONMANAGER_INCLUDED
+#ifndef INCLUDED_FORMATIONMANAGER
+#define INCLUDED_FORMATIONMANAGER
 
 #include "ps/Singleton.h"
 #include "scripting/DOMEvent.h"
@@ -45,4 +43,4 @@ private:
 	std::vector<CEntityFormation*> m_formations;
 };
 
-#endif // FORMATIONMANAGER_INCLUDED
+#endif // INCLUDED_FORMATIONMANAGER

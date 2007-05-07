@@ -1,17 +1,14 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		Renderer.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-// Description: OpenGL renderer class; a higher level interface
-//	on top of OpenGL to handle rendering the basic visual games
-//	types - terrain, models, sprites, particles etc
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : Renderer.h
+ * Project     : 0 A.D.
+ * Description : higher level interface on top of OpenGL to render basic
+ *               objects: terrain, models, sprites, particles etc.
+ * =========================================================================
+ */
 
-#ifndef RENDERER_H
-#define RENDERER_H
+#ifndef INCLUDED_RENDERER
+#define INCLUDED_RENDERER
 
 #include "graphics/Camera.h"
 #include "lib/ogl.h"

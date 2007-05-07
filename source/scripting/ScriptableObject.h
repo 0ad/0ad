@@ -2,14 +2,12 @@
 //
 // A quick way to add (mostly) sensibly-behaving JavaScript interfaces to native classes.
 //
-// Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
-//
 
 #include "scripting/ScriptingHost.h"
 #include "JSConversions.h"
 
-#ifndef SCRIPTABLE_INCLUDED
-#define SCRIPTABLE_INCLUDED
+#ifndef INCLUDED_SCRIPTABLEOBJECT
+#define INCLUDED_SCRIPTABLEOBJECT
 
 #define ALLOW_NONSHARED_NATIVES
 
@@ -440,5 +438,6 @@ template<typename T, bool ReadOnly> std::vector<JSFunctionSpec> CJSObject<T, Rea
 template<typename T, bool ReadOnly> typename CJSObject<T, ReadOnly>::PropertyTable CJSObject<T, ReadOnly>::m_NativeProperties;
 
 #endif
+
 
 

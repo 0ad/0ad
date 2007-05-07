@@ -1,14 +1,12 @@
 // TerritoryManager.h
-//
-// Matei Zaharia matei@sprint.ca / matei@wildfiregames.com
 // 
 // Calculates territory boundaries and maintains territory data.
 //
 // Usage: 
 
 
-#ifndef TERRITORY_MANAGER_INCLUDED
-#define TERRITORY_MANAGER_INCLUDED
+#ifndef INCLUDED_TERRITORYMANAGER
+#define INCLUDED_TERRITORYMANAGER
 
 #include "ps/Vector2D.h"
 #include "maths/Vector3D.h"

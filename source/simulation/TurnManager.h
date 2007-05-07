@@ -1,5 +1,5 @@
-#ifndef _simulation_TurnManager_H
-#define _simulation_TurnManager_H
+#ifndef INCLUDED_TURNMANAGER
+#define INCLUDED_TURNMANAGER
 
 //#include "Network/NetMessage.h"
 //#include "Network/Network.h"

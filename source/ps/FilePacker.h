@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		FilePacker.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : FilePacker.h
+ * Project     : 0 A.D.
+ * Description : Resizable buffer, for writing binary files
+ * =========================================================================
+ */
 
-#ifndef _FILEPACKER_H
-#define _FILEPACKER_H
+#ifndef INCLUDED_FILEPACKER
+#define INCLUDED_FILEPACKER
 
 #include <vector>
 #include "CStr.h"

@@ -1,6 +1,6 @@
 
-#ifndef _SCRIPTINGHOST_H_
-#define _SCRIPTINGHOST_H_
+#ifndef INCLUDED_SCRIPTINGHOST
+#define INCLUDED_SCRIPTINGHOST
 
 #include "ps/Errors.h"
 

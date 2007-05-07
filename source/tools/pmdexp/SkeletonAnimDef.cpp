@@ -1,9 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-//
 // Name:		SkeletonAnimDef.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "pmdexp_types.h"
@@ -69,4 +65,5 @@ void CSkeletonAnimDef::Save(const char* filename,const CSkeletonAnimDef* anim)
 	// now write it
 	packer.Write(filename,FILE_VERSION,"PSSA");
 }
+
 

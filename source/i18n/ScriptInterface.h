@@ -7,8 +7,8 @@ and 'variables' (dependent on the type passed with "translate(...) <<").
 
 */
 
-#ifndef I18N_SCRIPTINTERFACE_H
-#define I18N_SCRIPTINTERFACE_H
+#ifndef INCLUDED_I18N_SCRIPTINTERFACE
+#define INCLUDED_I18N_SCRIPTINTERFACE
 
 #include "Common.h"
 #include "BufferVariable.h"
@@ -95,4 +95,4 @@ namespace I18n
 	};
 }
 
-#endif // I18N_SCRIPTINTERFACE_H
+#endif // INCLUDED_I18N_SCRIPTINTERFACE

@@ -1,7 +1,5 @@
 /*
 Network.h
-by Simon Brenner
-simon.brenner@home.se
 
 OVERVIEW
 
@@ -38,8 +36,8 @@ MORE INFO
 
 */
 
-#ifndef _Network_H
-#define _Network_H
+#ifndef INCLUDED_NETWORK_NETWORK
+#define INCLUDED_NETWORK_NETWORK
 
 //--------------------------------------------------------
 //  Includes / Compiler directives

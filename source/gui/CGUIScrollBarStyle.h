@@ -1,7 +1,5 @@
 /*
 A GUI ScrollBar Style
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -18,8 +16,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CGUIScrollBarStyle_H
-#define CGUIScrollBarStyle_H
+#ifndef INCLUDED_CGUISCROLLBARSTYLE
+#define INCLUDED_CGUISCROLLBARSTYLE
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -31,8 +29,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * The GUI Scroll-bar style.
  *
  * A scroll-bar style can choose whether to support horizontal, vertical

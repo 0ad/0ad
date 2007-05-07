@@ -3,25 +3,13 @@
  * File        : wsdl.h
  * Project     : 0 A.D.
  * Description : emulate SDL on Windows.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2003-2004 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef WSDL_H__
-#define WSDL_H__
+#ifndef INCLUDED_WSDL
+#define INCLUDED_WSDL
 
 #include "SDL/SDL_keysym.h"
 
@@ -299,4 +287,4 @@ extern Uint8 SDL_GetMouseState(int* x, int* y);
 
 extern Uint8 SDL_GetAppState();
 
-#endif	// #ifndef WSDL_H__
+#endif	// #ifndef INCLUDED_WSDL

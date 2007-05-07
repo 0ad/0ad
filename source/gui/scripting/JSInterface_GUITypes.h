@@ -1,7 +1,7 @@
 #include "scripting/ScriptingHost.h"
 
-#ifndef JSI_GUITYPES_INCLUDED
-#define JSI_GUITYPES_INCLUDED
+#ifndef INCLUDED_JSI_GUITYPES
+#define INCLUDED_JSI_GUITYPES
 
 #define GUISTDTYPE(x)							\
 	namespace JSI_GUI##x						\

@@ -1,5 +1,5 @@
-#ifndef ATLASEVENTLOOP_H__
-#define ATLASEVENTLOOP_H__
+#ifndef INCLUDED_ATLASEVENTLOOP
+#define INCLUDED_ATLASEVENTLOOP
 
 /* Disabled (and should be removed if it turns out to be unnecessary)
 - see MessagePasserImpl.cpp for information
@@ -26,4 +26,4 @@ public:
 
 */
 
-#endif // ATLASEVENTLOOP_H__
+#endif // INCLUDED_ATLASEVENTLOOP

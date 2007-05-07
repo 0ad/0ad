@@ -3,13 +3,11 @@
  * File        : SkyManager.h
  * Project     : Pyrogenesis
  * Description : Sky settings and texture management
- *
- * @author Matei Zaharia <matei@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef SKYMANAGER_H
-#define SKYMANAGER_H
+#ifndef INCLUDED_SKYMANAGER
+#define INCLUDED_SKYMANAGER
 
 #include "ps/Overlay.h"
 
@@ -86,4 +84,4 @@ private:
 };
 
 
-#endif // SKYMANAGER_H
+#endif // INCLUDED_SKYMANAGER

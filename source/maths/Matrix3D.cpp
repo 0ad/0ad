@@ -1,13 +1,11 @@
-//***********************************************************
-//
-// Name:		Matrix3D.Cpp
-// Last Update:	31/1/02
-// Author:		Poya Manouchehri
-//
-// Description: A Matrix class used for holding and 
-//				manipulating transformation info.
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Matrix3D.cpp
+ * Project     : 0 A.D.
+ * Description : A Matrix class used for holding and manipulating
+ *               transformation info.
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 

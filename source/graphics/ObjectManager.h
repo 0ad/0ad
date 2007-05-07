@@ -1,5 +1,5 @@
-#ifndef _OBJECTMANAGER_H
-#define _OBJECTMANAGER_H
+#ifndef INCLUDED_OBJECTMANAGER
+#define INCLUDED_OBJECTMANAGER
 
 #include <vector>
 #include <map>

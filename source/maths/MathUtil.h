@@ -1,5 +1,5 @@
-#ifndef MATH_UTIL_H
-#define MATH_UTIL_H
+#ifndef INCLUDED_MATHUTIL
+#define INCLUDED_MATHUTIL
 
 #ifndef PI
 #define PI							3.14159265358979323846f

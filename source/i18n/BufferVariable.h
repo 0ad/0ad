@@ -5,8 +5,8 @@ providing hashes and strings on request.
 
 */
 
-#ifndef I18N_BUFFERVARIABLE_H
-#define I18N_BUFFERVARIABLE_H
+#ifndef INCLUDED_I18N_BUFFERVARIABLE
+#define INCLUDED_I18N_BUFFERVARIABLE
 
 #include "Common.h"
 
@@ -84,4 +84,4 @@ namespace I18n
 	bool operator== (BufferVariable&, BufferVariable&);
 }
 
-#endif // I18N_BUFFERVARIABLE_H
+#endif // INCLUDED_I18N_BUFFERVARIABLE

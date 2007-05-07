@@ -1,6 +1,6 @@
 /**** Decompose.h - Basic declarations ****/
-#ifndef _H_Decompose
-#define _H_Decompose
+#ifndef INCLUDED_DECOMPOSE
+#define INCLUDED_DECOMPOSE
 typedef struct {float x, y, z, w;} Quat; /* Quaternion */
 enum QuatPart {X, Y, Z, W};
 typedef Quat HVect; /* Homogeneous 3D vector */

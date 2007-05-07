@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		SkeletonAnimManager.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : SkeletonAnimManager.h
+ * Project     : 0 A.D.
+ * Description : Owner of all skeleton animations
+ * =========================================================================
+ */
 
-#ifndef _SKELETONANIMMANAGER_H
-#define _SKELETONANIMMANAGER_H
+#ifndef INCLUDED_SKELETONANIMMANAGER
+#define INCLUDED_SKELETONANIMMANAGER
 
 #include <map>
 #include <set>

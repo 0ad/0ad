@@ -1,5 +1,5 @@
-#ifndef EDITABLELISTCTRL_H__
-#define EDITABLELISTCTRL_H__
+#ifndef INCLUDED_EDITABLELISTCTRL
+#define INCLUDED_EDITABLELISTCTRL
 
 #include "wx/listctrl.h"
 
@@ -96,4 +96,4 @@ protected:
 	DECLARE_EVENT_TABLE();
 };
 
-#endif // EDITABLELISTCTRL_H__
+#endif // INCLUDED_EDITABLELISTCTRL

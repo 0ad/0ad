@@ -1,6 +1,4 @@
 // LOSManager.h
-//
-// Matei Zaharia matei@sprint.ca / matei@wildfiregames.com
 // 
 // Maintains and updates line of sight data (including Shroud of Darkness
 // and Fog of War).
@@ -13,8 +11,8 @@
 //    - GetUnitStatus returns the LOS status of an entity or actor
 
 
-#ifndef LOS_MANAGER_INCLUDED
-#define LOS_MANAGER_INCLUDED
+#ifndef INCLUDED_LOSMANAGER
+#define INCLUDED_LOSMANAGER
 
 class CUnit;
 class CEntity;

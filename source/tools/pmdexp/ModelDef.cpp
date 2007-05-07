@@ -1,9 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-//
 // Name:		ModelDef.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -74,4 +70,5 @@ void CModelDef::Save(const char* filename,const CModelDef* mdef)
 	// flush everything out to file
 	packer.Write(filename,FILE_VERSION,"PSMD");
 }
+
 

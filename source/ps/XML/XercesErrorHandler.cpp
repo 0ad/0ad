@@ -1,7 +1,5 @@
 /*
 Xerces Error Handler for Pyrogenesis (and the GUI)
-by Gustav Larsson
-gee@pyro.nu
 */
 
 // ---------------------------------------------------------------------------

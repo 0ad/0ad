@@ -1,5 +1,5 @@
-#ifndef __H_MATERIAL_H__
-#define __H_MATERIAL_H__
+#ifndef INCLUDED_MATERIAL
+#define INCLUDED_MATERIAL
 
 #include "ps/CStr.h"
 

@@ -1,18 +1,16 @@
-//***********************************************************
-//
-// Name:		Plane.h
-// Last Update:	17/2/02
-// Author:		Poya Manouchehri
-//
-// Description: A Plane in R3 and several utility methods. 
-//				Note that the format used for the plane
-//				equation is Ax + By + Cz + D = 0, where 
-//				<A,B,C> is the normal vector.
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Plane.h
+ * Project     : 0 A.D.
+ * Description : A Plane in R3 and several utility methods.
+ * =========================================================================
+ */
 
-#ifndef PLANE_H
-#define PLANE_H
+// Note that the format used for the plane equation is
+// Ax + By + Cz + D = 0, where <A,B,C> is the normal vector.
+
+#ifndef INCLUDED_PLANE
+#define INCLUDED_PLANE
 
 #include "Vector3D.h"
 

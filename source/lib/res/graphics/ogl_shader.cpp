@@ -3,8 +3,6 @@
  * File        : ogl_shader.cpp
  * Project     : 0 A.D.
  * Description : load and link together shaders; provides hotload support.
- *
- * @author Nicolai Haehnle
  * =========================================================================
  */
 

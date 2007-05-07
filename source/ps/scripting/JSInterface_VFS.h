@@ -2,8 +2,8 @@
 //
 // The JavaScript wrapper around useful snippets of the VFS
 
-#ifndef JSI_VFS_INCLUDED
-#define JSI_VFS_INCLUDED
+#ifndef INCLUDED_JSI_VFS
+#define INCLUDED_JSI_VFS
 
 #include "scripting/ScriptingHost.h"
 

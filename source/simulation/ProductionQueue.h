@@ -1,5 +1,5 @@
-#ifndef __PRODUCTIONQUEUE_H__
-#define __PRODUCTIONQUEUE_H__
+#ifndef INCLUDED_PRODUCTIONQUEUE
+#define INCLUDED_PRODUCTIONQUEUE
 
 #include "EntityHandles.h"
 #include "scripting/ScriptableObject.h"

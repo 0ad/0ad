@@ -1,5 +1,5 @@
-#ifndef FILEHISTORY_H__
-#define FILEHISTORY_H__
+#ifndef INCLUDED_FILEHISTORY
+#define INCLUDED_FILEHISTORY
 
 #include "wx/docview.h"
 
@@ -14,4 +14,4 @@ private:
 	wxString m_configSubdir;
 };
 
-#endif // FILEHISTORY_H__
+#endif // INCLUDED_FILEHISTORY

@@ -5,8 +5,8 @@
 
 #include "scripting/ScriptingHost.h"
 
-#ifndef JSI_SELECTION_INCLUDED
-#define JSI_SELECTION_INCLUDED
+#ifndef INCLUDED_JSI_SELECTION
+#define INCLUDED_JSI_SELECTION
 
 namespace JSI_Selection
 {

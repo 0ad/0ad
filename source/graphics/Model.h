@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		Model.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : Model.h
+ * Project     : 0 A.D.
+ * Description : Mesh object with texture and skinning information
+ * =========================================================================
+ */
 
-#ifndef _MODEL_H
-#define _MODEL_H
+#ifndef INCLUDED_MODEL
+#define INCLUDED_MODEL
 
 #include <vector>
 

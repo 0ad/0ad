@@ -1,6 +1,4 @@
 // Collision.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Collision detection functions
 //
@@ -12,8 +10,8 @@
 //
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 
-#ifndef COLLISION_INCLUDED
-#define COLLISION_INCLUDED
+#ifndef INCLUDED_COLLISION
+#define INCLUDED_COLLISION
 
 #include "BoundingObjects.h"
 

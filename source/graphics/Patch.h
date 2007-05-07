@@ -1,14 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		Patch.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-// Modified by:	30. April 2007 - Christian Heubach
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : Patch.h
+ * Project     : 0 A.D.
+ * Description : A patch of terrain holding NxN MiniPatch tiles
+ * =========================================================================
+ */
 
-#ifndef _PATCH_H
-#define _PATCH_H
+#ifndef INCLUDED_PATCH
+#define INCLUDED_PATCH
 
 #include "MiniPatch.h"
 #include "RenderableObject.h"
@@ -77,4 +76,5 @@ public:
 
 
 #endif
+
 

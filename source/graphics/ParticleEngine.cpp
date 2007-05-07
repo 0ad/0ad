@@ -1,10 +1,10 @@
-/////////////////////////////////////////////////////
-//	File Name:	ParticleEngine.cpp
-//	Date:		6/29/05
-//	Author:		Will Dull
-//	Purpose:	The particle engine system
-//				implementation.
-/////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : ParticleEngine.cpp
+ * Project     : 0 A.D.
+ * Description : Particle engine implementation
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 #include "ParticleEngine.h"

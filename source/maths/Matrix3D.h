@@ -1,5 +1,14 @@
-#ifndef __MATRIX3D_H
-#define __MATRIX3D_H
+/**
+ * =========================================================================
+ * File        : Matrix3D.h
+ * Project     : 0 A.D.
+ * Description : A Matrix class used for holding and manipulating
+ *               transformation info.
+ * =========================================================================
+ */
+
+#ifndef INCLUDED_MATRIX3D
+#define INCLUDED_MATRIX3D
 
 class CVector3D;
 class CVector4D;

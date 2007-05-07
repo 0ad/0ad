@@ -1,9 +1,5 @@
 //***********************************************************
-//
 // Name:		Matrix3D.Cpp
-// Last Update:	31/1/02
-// Author:		Poya Manouchehri
-//
 // Description: A Matrix class used for holding and 
 //				manipulating transformation info.
 //
@@ -535,5 +531,6 @@ void CMatrix3D::SetRotation(const CQuaternion& quat)
 {
 	quat.ToMatrix(*this);
 }
+
 
 

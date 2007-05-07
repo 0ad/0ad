@@ -1,8 +1,7 @@
 // A general system of converting between native objects and their JavaScript representations
-// Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
 
-#ifndef JSCONVERSIONS_INCLUDED
-#define JSCONVERSIONS_INCLUDED
+#ifndef INCLUDED_JSCONVERSIONS
+#define INCLUDED_JSCONVERSIONS
 
 #include "scripting/ScriptingHost.h"
 

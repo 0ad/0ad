@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		BlendShapes.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : BlendShapes.h
+ * Project     : 0 A.D.
+ * Description : 
+ * =========================================================================
+ */
 
-#ifndef _BLENDSHAPES_H
-#define _BLENDSHAPES_H
+#ifndef INCLUDED_BLENDSHAPES
+#define INCLUDED_BLENDSHAPES
 
 struct BlendShape4
 {

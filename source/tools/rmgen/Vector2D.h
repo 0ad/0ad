@@ -1,8 +1,5 @@
 //***********************************************************
-//
 // Name:		Vector2D.h
-// Author:		Matei Zaharia
-//
 // Description: Provides an interface for a vector in R4 and
 //				allows vector and scalar operations on it
 //

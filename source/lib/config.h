@@ -3,25 +3,13 @@
  * File        : config.h
  * Project     : 0 A.D.
  * Description : compile-time configuration and capability detection.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef CONFIG_H_INCLUDED
-#define CONFIG_H_INCLUDED
+#ifndef INCLUDED_CONFIG
+#define INCLUDED_CONFIG
 
 // the config/have macros are always defined; their values (1 or 0) are
 // tested with #if instead of #ifdef.
@@ -422,4 +410,4 @@
 # define USE_IA32_FLOAT_TO_INT 0
 #endif
 
-#endif	// #ifndef CONFIG_H_INCLUDED
+#endif	// #ifndef INCLUDED_CONFIG

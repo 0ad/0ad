@@ -3,22 +3,10 @@
  * File        : delay_load.cpp
  * Project     : 0 A.D.
  * Description : allow delay-loading DLLs.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 // modified from VC7 DelayHlp.cpp and DelayImp.h
 
@@ -634,6 +622,7 @@ static FARPROC WINAPI notify_hook(unsigned dliNotify, PDelayLoadInfo pdli)
 
 EXTERN_C PfnDliHook __pfnDliNotifyHook2 = notify_hook;
 EXTERN_C PfnDliHook __pfnDliFailureHook2 = 0;
+
 
 
 

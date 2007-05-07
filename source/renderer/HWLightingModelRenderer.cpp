@@ -3,8 +3,6 @@
  * File        : HWLightingModelRenderer.cpp
  * Project     : Pyrogenesis
  * Description : Implementation of HWLightingModelRenderer
- *
- * @author  Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -316,4 +314,5 @@ void HWLightingModelRenderer::RenderModel(uint streamflags, CModel* model, void*
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }
+
 

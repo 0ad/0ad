@@ -1,6 +1,6 @@
 
-#ifndef CGUIList_H
-#define CGUIList_H
+#ifndef INCLUDED_CGUILIST
+#define INCLUDED_CGUILIST
 
 #include "GUItext.h"
 

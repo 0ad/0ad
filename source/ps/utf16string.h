@@ -2,8 +2,8 @@
 	A basic_string derivative that works with uint16_t as its underlying char
 	type.
 */
-#ifndef utf16string_H
-#define utf16string_H
+#ifndef INCLUDED_UTF16STRING
+#define INCLUDED_UTF16STRING
 
 // On Linux, wchar_t is 32-bit, so define a new version of it.
 // We now use this code on Windows as well, because wchar_t is a

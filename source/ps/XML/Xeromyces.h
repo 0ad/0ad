@@ -2,12 +2,10 @@
   Xeromyces file-loading interface.
   Automatically creates and caches relatively
   efficient binary representations of XML files.
-
-  - Philip Taylor (philip@zaynar.demon.co.uk / @wildfiregames.com)
 */
 
-#ifndef _XEROMYCES_H_
-#define _XEROMYCES_H_
+#ifndef INCLUDED_XEROMYCES
+#define INCLUDED_XEROMYCES
 
 #include "ps/Errors.h"
 ERROR_GROUP(Xeromyces);
@@ -68,4 +66,4 @@ private:
 			&& (attribute = _XERO_CHILDREN.Item(_XERO_I), 1);			\
 		 ++_XERO_I)
 
-#endif // _XEROMYCES_H_
+#endif // INCLUDED_XEROMYCES

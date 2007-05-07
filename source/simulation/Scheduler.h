@@ -1,12 +1,10 @@
 // Scheduler.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Message scheduler
 //
 
-#ifndef SCHEDULER_INCLUDED
-#define SCHEDULER_INCLUDED
+#ifndef INCLUDED_SCHEDULER
+#define INCLUDED_SCHEDULER
 
 #include <queue>
 #include <list>

@@ -1,5 +1,5 @@
-#ifndef PMDCONVERT_H__
-#define PMDCONVERT_H__
+#ifndef INCLUDED_PMDCONVERT
+#define INCLUDED_PMDCONVERT
 
 #include <string>
 
@@ -7,4 +7,4 @@ struct OutputCB;
 
 void ColladaToPMD(const char* input, OutputCB& output, std::string& xmlErrors);
 
-#endif // PMDCONVERT_H__
+#endif // INCLUDED_PMDCONVERT

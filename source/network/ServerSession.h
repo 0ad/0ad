@@ -1,14 +1,12 @@
 /*
 	CNetServerSession - the server's representation of a connected client
 	
-	AUTHOR: Simon Brenner <simon.brenner@home.se>
-	
 	DESCRIPTION:
 		
 */
 
-#ifndef _Network_ServerSession_H
-#define _Network_ServerSession_H
+#ifndef INCLUDED_NETWORK_SERVERSESSION
+#define INCLUDED_NETWORK_SERVERSESSION
 
 #include "Session.h"
 #include "scripting/ScriptableObject.h"

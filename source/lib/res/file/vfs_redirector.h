@@ -3,25 +3,13 @@
  * File        : vfs_redirector.h
  * Project     : 0 A.D.
  * Description : 
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004-2006 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef VFS_REDIRECTOR_H__
-#define VFS_REDIRECTOR_H__
+#ifndef INCLUDED_VFS_REDIRECTOR
+#define INCLUDED_VFS_REDIRECTOR
 
 #include "file.h"
 struct FileIo;
@@ -81,4 +69,4 @@ extern ssize_t  xfile_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileI
 extern LibError xfile_map(File* f, void*& p, size_t& size);
 extern LibError xfile_unmap(File* f);
 
-#endif	//	#ifndef VFS_REDIRECTOR_H__
+#endif	//	#ifndef INCLUDED_VFS_REDIRECTOR

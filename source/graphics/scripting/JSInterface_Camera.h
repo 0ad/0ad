@@ -3,8 +3,6 @@
 // A JavaScript wrapper around a camera object.
 //
 // Usage: When manipulating objects of type 'Camera' in JavaScript
-//
-// Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 
 #include "scripting/ScriptingHost.h"
 
@@ -12,8 +10,8 @@
 #include "graphics/Camera.h"
 #include "graphics/HFTracer.h"
 
-#ifndef JSI_CAMERA_INCLUDED
-#define JSI_CAMERA_INCLUDED
+#ifndef INCLUDED_JSI_CAMERA
+#define INCLUDED_JSI_CAMERA
 
 namespace JSI_Camera
 {

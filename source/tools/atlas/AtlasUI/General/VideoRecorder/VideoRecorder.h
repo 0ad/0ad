@@ -1,5 +1,5 @@
-#ifndef VIDEORECORDER_H__
-#define VIDEORECORDER_H__
+#ifndef INCLUDED_VIDEORECORDER
+#define INCLUDED_VIDEORECORDER
 
 class VideoRecorder
 {
@@ -7,4 +7,4 @@ public:
 	static void RecordCinematic(wxWindow* window, const wxString& trackName, float duration);
 };
 
-#endif // VIDEORECORDER_H__
+#endif // INCLUDED_VIDEORECORDER

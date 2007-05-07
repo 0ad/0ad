@@ -3,8 +3,6 @@
  * File        : InstancingModelRenderer.cpp
  * Project     : Pyrogenesis
  * Description : Implementation of InstancingModelRenderer
- *
- * @author  Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -271,4 +269,5 @@ void InstancingModelRenderer::RenderModel(uint streamflags, CModel* model, void*
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }
+
 

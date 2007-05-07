@@ -1,6 +1,4 @@
-/* Andrew Decker, a.k.a pyrolink
-   Contact ajdecker1022@msn.com
-   Desc: interface for creation and editing of triggers.  Interprets
+/* Desc: interface for creation and editing of triggers.  Interprets
    XML specifications then uses this to construct layout.
 */
 
@@ -79,4 +77,5 @@ private:
 
 	DECLARE_EVENT_TABLE();
 };
+
 

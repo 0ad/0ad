@@ -3,25 +3,13 @@
  * File        : tex_internal.h
  * Project     : 0 A.D.
  * Description : private texture loader helper functions
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2006 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef TEX_INTERNAL_H__
-#define TEX_INTERNAL_H__
+#ifndef INCLUDED_TEX_INTERNAL
+#define INCLUDED_TEX_INTERNAL
 
 #include "lib/res/res.h"	// error codes and mem.h
 #include "lib/allocators.h"	// DynArray
@@ -82,4 +70,4 @@ extern LibError tex_decode(const u8* data, size_t data_size, MEM_DTOR dtor, Tex*
  **/
 extern LibError tex_encode(Tex* t, const char* fn, DynArray* da);
 
-#endif	// #ifndef TEX_INTERNAL_H__
+#endif	// #ifndef INCLUDED_TEX_INTERNAL

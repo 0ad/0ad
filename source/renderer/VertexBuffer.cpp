@@ -1,10 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		VertexBuffer.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : VertexBuffer.cpp
+ * Project     : 0 A.D.
+ * Description : encapsulation of VBOs with batching and sharing
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 #include "ps/Errors.h"

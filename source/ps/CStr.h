@@ -3,9 +3,6 @@
  * Project     : engine
  * Description : Contains CStr class which is a versatile class for making string use easy.
  *			   : The class implements a series of string manipulation/formatting functions.
- *
- * @author Caecus
- * Caecus@0ad.wildfiregames.com
  **/
 /*
 Examples:
@@ -29,8 +26,8 @@ Examples:
 // 2004-10-31 Philip: Changed to inherit from std::[w]string
 // 2007-01-26 greybeard(joe@wildfiregames.com): added comments for doc generation
 
-#ifndef CSTR_H_FIRST
-#define CSTR_H_FIRST
+#ifndef INCLUDED_CSTR
+#define INCLUDED_CSTR
 
 /**
  * Whitespace trim identifier for Trim and Pad functions

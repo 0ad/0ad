@@ -1,7 +1,5 @@
 // Entity.h
 //
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
-//
 // Entity class.
 //
 // Usage: Do not attempt to instantiate this class directly. (See EntityManager.h)
@@ -23,8 +21,8 @@
 //			Also remember to update the collision object if you alter the position directly.
 //
 
-#ifndef ENTITY_INCLUDED
-#define ENTITY_INCLUDED
+#ifndef INCLUDED_ENTITY
+#define INCLUDED_ENTITY
 
 #include <deque>
 #include "scripting/ScriptableComplex.h"

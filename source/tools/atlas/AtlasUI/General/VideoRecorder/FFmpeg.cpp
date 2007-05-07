@@ -25,6 +25,9 @@ Please complain if I forget to do those things.
 #endif
 
 #include "FFmpeg.h"
+#if _MSC_VER	// HACK
+#define vsnprintf _vsnprintf
+#endif
 
 #ifdef _MSC_VER
 # pragma warning(disable: 4100 4505 4510 4610)

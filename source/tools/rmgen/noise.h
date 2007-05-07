@@ -1,8 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-//
 // Name:		Noise.h
-// Author:		Matei Zaharia
-// Contact:		matei@wildfiregames.com
 //
 // Description: 2D and 3D seamless Perlin noise classes. Not optimized for speed yet.
 //

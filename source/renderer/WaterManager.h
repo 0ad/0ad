@@ -3,13 +3,11 @@
  * File        : WaterManager.h
  * Project     : Pyrogenesis
  * Description : Water settings (speed, height) and texture management
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef WATERMANAGER_H
-#define WATERMANAGER_H
+#ifndef INCLUDED_WATERMANAGER
+#define INCLUDED_WATERMANAGER
 
 #include "ps/Overlay.h"
 #include "maths/Matrix3D.h"
@@ -91,4 +89,4 @@ private:
 };
 
 
-#endif // WATERMANAGER_H
+#endif // INCLUDED_WATERMANAGER

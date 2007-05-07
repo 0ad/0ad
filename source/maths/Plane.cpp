@@ -1,15 +1,13 @@
-//***********************************************************
-//
-// Name:		Plane.Cpp
-// Last Update:	17/2/02
-// Author:		Poya Manouchehri
-//
-// Description: A Plane in R3 and several utility methods. 
-//				Note that the format used for the plane
-//				equation is Ax + By + Cz + D = 0, where 
-//				<A,B,C> is the normal vector.
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Plane.cpp
+ * Project     : 0 A.D.
+ * Description : A Plane in R3 and several utility methods.
+ * =========================================================================
+ */
+
+// Note that the format used for the plane equation is
+// Ax + By + Cz + D = 0, where <A,B,C> is the normal vector.
 
 #include "precompiled.h"
 

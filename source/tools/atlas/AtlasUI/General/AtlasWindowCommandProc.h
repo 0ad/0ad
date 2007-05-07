@@ -1,5 +1,5 @@
-#ifndef ATLASWINDOWCOMMANDPROC_H__
-#define ATLASWINDOWCOMMANDPROC_H__
+#ifndef INCLUDED_ATLASWINDOWCOMMANDPROC
+#define INCLUDED_ATLASWINDOWCOMMANDPROC
 
 #include "wx/cmdproc.h"
 
@@ -15,4 +15,4 @@ public:
 	static AtlasWindowCommandProc* GetFromParentFrame(wxWindow* object);
 };
 
-#endif // ATLASWINDOWCOMMANDPROC_H__
+#endif // INCLUDED_ATLASWINDOWCOMMANDPROC

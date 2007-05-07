@@ -1,11 +1,9 @@
-//Andrew aka pyrolink
-//ajdecker1022@msn.com
 //Instances of this class contain the actual information about in-game formations.
 //It is based off of Formation.cpp and uses it as a reference as to what can and cannot
 //be done in this formation.  This is represented as m_base.
 
-#ifndef ENTITYFORMATION_INCLUDED
-#define ENTITYFORMATION_INCLUDED
+#ifndef INCLUDED_ENTITYFORMATION
+#define INCLUDED_ENTITYFORMATION
 
 #include "ps/Vector2D.h"
 

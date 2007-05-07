@@ -1,5 +1,5 @@
-#ifndef __H_MESHMANAGER_H__
-#define __H_MESHMANAGER_H__
+#ifndef INCLUDED_MESHMANAGER
+#define INCLUDED_MESHMANAGER
 
 #include "ps/CStr.h"
 

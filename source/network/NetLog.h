@@ -1,5 +1,5 @@
-#ifndef _Network_NetLog_H
-#define _Network_NetLog_H
+#ifndef INCLUDED_NETWORK_NETLOG
+#define INCLUDED_NETWORK_NETLOG
 
 #include <stdio.h>
 #include "ps/ThreadUtil.h"

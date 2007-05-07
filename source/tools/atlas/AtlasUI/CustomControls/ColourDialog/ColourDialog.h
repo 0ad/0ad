@@ -1,5 +1,5 @@
-#ifndef COLOURDIALOG_H__
-#define COLOURDIALOG_H__
+#ifndef INCLUDED_COLOURDIALOG
+#define INCLUDED_COLOURDIALOG
 
 #include <wx/colordlg.h>
 
@@ -15,4 +15,4 @@ private:
 	wxString m_ConfigPath;
 };
 
-#endif // COLOURDIALOG_H__
+#endif // INCLUDED_COLOURDIALOG

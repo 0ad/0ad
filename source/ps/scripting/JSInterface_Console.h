@@ -4,8 +4,8 @@
 
 #include "scripting/ScriptingHost.h"
 
-#ifndef JSI_CONSOLE_INCLUDED
-#define JSI_CONSOLE_INCLUDED
+#ifndef INCLUDED_JSI_CONSOLE
+#define INCLUDED_JSI_CONSOLE
 
 namespace JSI_Console
 {

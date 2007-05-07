@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		ModelDef.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : ModelDef.h
+ * Project     : 0 A.D.
+ * Description : Defines a raw 3d model.
+ * =========================================================================
+ */
 
-#ifndef _MODELDEF_H
-#define _MODELDEF_H
+#ifndef INCLUDED_MODELDEF
+#define INCLUDED_MODELDEF
 
 #include "ps/CStr.h"
 #include "maths/Vector3D.h"

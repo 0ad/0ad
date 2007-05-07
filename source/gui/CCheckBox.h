@@ -1,7 +1,5 @@
 /*
 GUI Object - Check box
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -13,8 +11,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CCheckBox_H
-#define CCheckBox_H
+#ifndef INCLUDED_CCHECKBOX
+#define INCLUDED_CCHECKBOX
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -34,8 +32,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * CheckBox
  * 
  * @see IGUIObject

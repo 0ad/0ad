@@ -1,5 +1,5 @@
-#ifndef ObjectSettings_H__
-#define ObjectSettings_H__
+#ifndef INCLUDED_OBJECTSETTINGS
+#define INCLUDED_OBJECTSETTINGS
 
 #include <vector>
 #include <set>
@@ -62,4 +62,4 @@ private:
 
 extern Observable<ObjectSettings> g_ObjectSettings;
 
-#endif // ObjectSettings_H__
+#endif // INCLUDED_OBJECTSETTINGS

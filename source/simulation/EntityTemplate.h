@@ -1,6 +1,4 @@
 // EntityTemplate.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Entity Templates
 //
@@ -14,8 +12,8 @@
 //           a template in this way.
 //
 
-#ifndef BASE_ENTITY_INCLUDED
-#define BASE_ENTITY_INCLUDED
+#ifndef INCLUDED_ENTITYTEMPLATE
+#define INCLUDED_ENTITYTEMPLATE
 
 #include "ps/CStr.h"
 

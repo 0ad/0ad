@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		RenderableObject.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : RenderableObject.h
+ * Project     : 0 A.D.
+ * Description : Base class for renderable objects
+ * =========================================================================
+ */
 
-#ifndef _RENDERABLEOBJECT_H
-#define _RENDERABLEOBJECT_H
+#ifndef INCLUDED_RENDERABLEOBJECT
+#define INCLUDED_RENDERABLEOBJECT
 
 
 #include "maths/Bound.h"

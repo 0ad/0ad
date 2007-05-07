@@ -1,5 +1,5 @@
-#ifndef _OBJECTBASE_H
-#define _OBJECTBASE_H
+#ifndef INCLUDED_OBJECTBASE
+#define INCLUDED_OBJECTBASE
 
 class CModel;
 class CSkeletonAnim;

@@ -1,5 +1,5 @@
-#ifndef _MAPWRITER_H
-#define _MAPWRITER_H
+#ifndef INCLUDED_MAPWRITER
+#define INCLUDED_MAPWRITER
 
 #include <vector>
 #include "MapIO.h"

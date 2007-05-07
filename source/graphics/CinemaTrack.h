@@ -1,6 +1,6 @@
 
-#ifndef H_CinemaTracks_H
-#define H_CinemaTracks_H
+#ifndef INCLUDED_CINEMATRACK
+#define INCLUDED_CINEMATRACK
 
 #include <list>
 #include <map>
@@ -8,8 +8,6 @@
 #include "maths/NUSpline.h"
 
 /*
-	Andrew Decker (aka pyrolink)
-	Contact: ajdecker1022@msn.com
 	desc: contains various functions used for cinematic camera paths
 	See also: CinemaHandler.cpp, Cinematic.h/.cpp
 */

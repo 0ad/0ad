@@ -1,6 +1,4 @@
 // JS sound binding
-//
-// Jan Wassenberg (jan@wildfiregames.com)
 
 // interface rationale:
 // - can't just expose fire and forget playSound to script code:
@@ -14,8 +12,8 @@
 // - instead, we provide a thin class wrapper (using scriptableobject.h)
 //   on top of the snd API that encapsulates the Handle.
 
-#ifndef JSSOUND_INCLUDED
-#define JSSOUND_INCLUDED
+#ifndef INCLUDED_JSI_SOUND
+#define INCLUDED_JSI_SOUND
 
 #include "scripting/ScriptableObject.h"
 #include "lib/res/handle.h"
@@ -63,4 +61,4 @@ private:
 	bool m_SoundDisabled;	// see constructor and JSI_Sound::Construct
 };
 
-#endif	// #ifndef JSSOUND_INCLUDED
+#endif	// #ifndef INCLUDED_JSI_SOUND

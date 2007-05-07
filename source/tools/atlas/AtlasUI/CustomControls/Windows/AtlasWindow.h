@@ -1,5 +1,5 @@
-#ifndef ATLASWINDOW_H__
-#define ATLASWINDOW_H__
+#ifndef INCLUDED_ATLASWINDOW
+#define INCLUDED_ATLASWINDOW
 
 #include "General/AtlasWindowCommandProc.h"
 
@@ -78,4 +78,4 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 
-#endif // ATLASWINDOW_H__
+#endif // INCLUDED_ATLASWINDOW

@@ -1,7 +1,5 @@
 /*
 GUI Object Base - Scroll-bar owner
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -13,8 +11,8 @@ gee@pyro.nu
 
 */
 
-#ifndef IGUIScrollBarOwner_H
-#define IGUIScrollBarOwner_H
+#ifndef INCLUDED_IGUISCROLLBAROWNER
+#define INCLUDED_IGUISCROLLBAROWNER
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -37,8 +35,6 @@ class IGUIScrollBar;
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Base-class this if you want an object to contain
  * one, or several, scroll-bars.
  *

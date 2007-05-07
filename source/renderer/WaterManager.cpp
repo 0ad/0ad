@@ -3,8 +3,6 @@
  * File        : WaterManager.cpp
  * Project     : Pyrogenesis
  * Description : Water settings (speed, height) and texture management
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

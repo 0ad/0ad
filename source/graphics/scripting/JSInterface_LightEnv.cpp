@@ -3,8 +3,6 @@
  * File        : JSInterface_LightEnv.cpp
  * Project     : Pyrogenesis
  * Description : Provide the LightEnv object type for JavaScript
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -235,4 +233,5 @@ JSBool setLightEnv(JSContext* cx, JSObject* UNUSED(obj), jsval UNUSED(id), jsval
 }
 
 } // namespace JSI_LightEnv
+
 

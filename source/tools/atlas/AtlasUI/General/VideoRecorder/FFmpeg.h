@@ -1,5 +1,5 @@
-#ifndef FFMPEG_H__
-#define FFMPEG_H__
+#ifndef INCLUDED_FFMPEG
+#define INCLUDED_FFMPEG
 
 struct VideoEncoderImpl;
 
@@ -14,4 +14,4 @@ private:
 	VideoEncoderImpl* m;
 };
 
-#endif // FFMPEG_H__
+#endif // INCLUDED_FFMPEG

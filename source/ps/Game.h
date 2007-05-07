@@ -4,8 +4,8 @@
  * Description : Contains the CGame Class which is a representation of the game itself.
  *
  **/
-#ifndef _ps_Game_H
-#define _ps_Game_H
+#ifndef INCLUDED_GAME
+#define INCLUDED_GAME
 
 #include "ps/Errors.h"
 #include <vector>

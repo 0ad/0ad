@@ -4,12 +4,6 @@
 |
 |===================================================================
 |
-| Author: Ben Vinegar
-| Contact: benvinegar () hotmail ! com
-|
-|
-| Last Modified: 03/08/04
-|
 | Overview: A single particle, currently only utilized by
 |           CParticleEmitter. Public variables are for performance
 |           reasons.
@@ -17,11 +11,6 @@
 |
 | Usage: Instantiate a particle, set public variables, then call
 |        Frame() every frame.
-|
-| To do: TBA
-|
-| More Information: TBA
-|
 ==================================================================*/
 
 #include "Particle.h"

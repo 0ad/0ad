@@ -1,9 +1,6 @@
 //***********************************************************
 //
 // Name:		Vector3D.Cpp
-// Last Update:	28/1/02
-// Author:		Poya Manouchehri
-//
 // Description: Provides an interface for a vector in R3 and
 //				allows vector and scalar operations on it
 //

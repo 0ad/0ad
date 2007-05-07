@@ -4,14 +4,12 @@
 // A JavaScript class representing a Pyrogenesis CVector3D object.
 //
 // Usage: Used when manipulating objects of class 'Vector3D' in JavaScript.
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 
 #include "scripting/ScriptingHost.h"
 #include "maths/Vector3D.h"
 
-#ifndef JSI_VECTOR3_INCLUDED
-#define JSI_VECTOR3_INCLUDED
+#ifndef INCLUDED_JSI_VECTOR3
+#define INCLUDED_JSI_VECTOR3
 
 namespace JSI_Vector3D
 {
@@ -58,4 +56,5 @@ namespace JSI_Vector3D
 }
 
 #endif
+
 

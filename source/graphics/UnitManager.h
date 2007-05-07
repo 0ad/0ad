@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		UnitManager.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : UnitManager.h
+ * Project     : 0 A.D.
+ * Description : Container that owns all units
+ * =========================================================================
+ */
 
-#ifndef _UNITMANAGER_H
-#define _UNITMANAGER_H
+#ifndef INCLUDED_UNITMANAGER
+#define INCLUDED_UNITMANAGER
 
 #include <vector>
 #include <set>

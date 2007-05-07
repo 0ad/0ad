@@ -4,14 +4,11 @@
  * Project     : Pyrogenesis
  * Description : RenderModifier for player color rendering, to be used
  *             : with e.g. FixedFunctionModelRenderer
- *
- * @author John M. Mena <JohnMMena@hotmail.com>
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef __PLAYERRENDERER_H
-#define __PLAYERRENDERER_H
+#ifndef INCLUDED_PLAYERRENDERER
+#define INCLUDED_PLAYERRENDERER
 
 #include "RenderModifiers.h"
 

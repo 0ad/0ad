@@ -1,5 +1,5 @@
-#ifndef INPUTPROCESSOR_H__
-#define INPUTPROCESSOR_H__
+#ifndef INCLUDED_INPUTPROCESSOR
+#define INCLUDED_INPUTPROCESSOR
 
 #include "GameLoop.h"
 
@@ -10,4 +10,4 @@ public:
 	bool ProcessInput(GameLoopState* state);
 };
 
-#endif // INPUTPROCESSOR_H__
+#endif // INCLUDED_INPUTPROCESSOR

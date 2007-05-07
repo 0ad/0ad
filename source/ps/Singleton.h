@@ -1,23 +1,19 @@
-//////////////////////////////////////////////////////////////////////////////
-//    AUTHOR: Michael Reiland
-//  FILENAME: Singleton.h
-//   PURPOSE: Provides a base template class for Singletons
-//
-//    USEAGE: class myClass : Singleton<myClass>{};
-//
-//      INFO: This implementation was originally copied from: 
-//
-//                           Enginuity, Part II 
-//            Memory Management, Error Logging, and Utility Classes; 
-//                 or, How To Forget To Explode Your Underwear 
-//                        by Richard "superpig" Fine
-//
-//            hosted at Gamedev.net at
-//            http://gamedev.net/reference/articles/article1954.asp
-//
-//  MODIFIED: 07.09.2003 mreiland
-#ifndef _TEMPLATE_SINGLETON
-#define _TEMPLATE_SINGLETON
+/**
+ * =========================================================================
+ * File        : Singleton.h
+ * Project     : 0 A.D.
+ * Description : template base class for Singletons
+ * =========================================================================
+ */
+
+/*
+USAGE: class myClass : Singleton<myClass>{};
+
+Modified from http://gamedev.net/reference/articles/article1954.asp
+*/
+            
+#ifndef INCLUDED_SINGLETON
+#define INCLUDED_SINGLETON
 
 #include "lib/debug.h"
 

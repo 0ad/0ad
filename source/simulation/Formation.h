@@ -1,9 +1,7 @@
-//Andrew aka pyrolink
-//ajdecker1022@msn.com
 //This class loads all the formation data needs to create an instance of a particular formation.
 
-#ifndef FORMATION_INCLUDED
-#define FORMATION_INCLUDED
+#ifndef INCLUDED_FORMATION
+#define INCLUDED_FORMATION
 
 #include <vector>
 #include <map>
@@ -80,4 +78,5 @@ private:
 	void AssignCategory(int order, CStr category);	//takes care of formatting strings
 };
 #endif
+
 

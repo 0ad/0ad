@@ -1,5 +1,5 @@
-#ifndef CPLAYLIST_H
-#define CPLAYLIST_H
+#ifndef INCLUDED_CPLAYLIST
+#define INCLUDED_CPLAYLIST
 
 #include <vector>
 #include <string>

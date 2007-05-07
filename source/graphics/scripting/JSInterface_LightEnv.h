@@ -3,13 +3,11 @@
  * File        : JSInterface_LightEnv.h
  * Project     : Pyrogenesis
  * Description : Provide the LightEnv object type for JavaScript
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef JSI_LIGHTENV_INCLUDED
-#define JSI_LIGHTENV_INCLUDED
+#ifndef INCLUDED_JSI_LIGHTENV
+#define INCLUDED_JSI_LIGHTENV
 
 #include "scripting/ScriptingHost.h"
 

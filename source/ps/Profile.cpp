@@ -3,9 +3,6 @@
  * File        : Profile.cpp
  * Project     : Pyrogeneses
  * Description : GPG3-style hierarchical profiler
- *
- * @author Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -510,4 +507,5 @@ double CProfileManager::GetFrameTime()
 {
 	return( get_time() - frame_start );
 }
+
 

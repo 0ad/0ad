@@ -1,5 +1,5 @@
-#ifndef _ps_CLogger_H
-#define _ps_CLogger_H
+#ifndef INCLUDED_CLOGGER
+#define INCLUDED_CLOGGER
 
 #include <fstream>
 #include <string>

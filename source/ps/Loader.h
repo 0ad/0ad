@@ -1,11 +1,8 @@
 // FIFO queue of load 'functors' with time limit; enables displaying
 // load progress without resorting to threads (complicated).
-//
-// Jan Wassenberg, initial implementation finished 2005-03-21
-// jan@wildfiregames.com
 
-#ifndef LOADER_H_INCLUDED
-#define LOADER_H_INCLUDED
+#ifndef INCLUDED_LOADER
+#define INCLUDED_LOADER
 
 #include <wchar.h>
 
@@ -167,4 +164,4 @@ extern LibError LDR_NonprogressiveLoad();
 		return progress_percent;\
 	}
 
-#endif	// #ifndef LOADER_H_INCLUDED
+#endif	// #ifndef INCLUDED_LOADER

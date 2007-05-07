@@ -1,7 +1,5 @@
 /*
 GUI Object - List [box]
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -15,8 +13,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CList_H
-#define CList_H
+#ifndef INCLUDED_CLIST
+#define INCLUDED_CLIST
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -40,8 +38,6 @@ gee@pyro.nu
 
 
 /**
- * @author Gustav Larsson
- *
  * Create a list of elements, where one can be selected
  * by the user. The control will use a pre-processed
  * text-object for each element, which will be managed

@@ -1,7 +1,5 @@
 /*
 Customizeable Text Parser
-by Gee
-Gee@pyro.nu
 
 --Overview-- 
 
@@ -22,8 +20,8 @@ will exist, and it's up to the system to figure out which one acquired.
 
 */
 
-#ifndef __PARSER_H
-#define __PARSER_H
+#ifndef INCLUDED_PARSER
+#define INCLUDED_PARSER
 
 #include "Pyrogenesis.h"
 

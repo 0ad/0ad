@@ -1,5 +1,5 @@
-#ifndef _PATCHRDATA_H
-#define _PATCHRDATA_H
+#ifndef INCLUDED_PATCHRDATA
+#define INCLUDED_PATCHRDATA
 
 #include <vector>
 #include "graphics/SColor.h"

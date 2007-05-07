@@ -2,8 +2,8 @@
 //Borrowed from Game Programming Gems4.  (Slightly changed to better suit our purposes 
 //(and compatability).  Any references to external material can be found there
 
-#ifndef NUSPLINE_H
-#define NUSPLINE_H
+#ifndef INCLUDED_NUSPLINE
+#define INCLUDED_NUSPLINE
 
 #define MAX_SPLINE_NODES 40
 #include <stdlib.h>
@@ -64,4 +64,4 @@ public:
   void Constrain(); 
 };
 
-#endif // NUSPLINE_H
+#endif // INCLUDED_NUSPLINE

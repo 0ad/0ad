@@ -4,8 +4,8 @@
 // Tries to include as few headers as possible, to minimise its impact
 // on compile times.
 
-#ifndef ATLASOBJECT_H__
-#define ATLASOBJECT_H__
+#ifndef INCLUDED_ATLASOBJECT
+#define INCLUDED_ATLASOBJECT
 
 #include <wchar.h> // for wchar_t
 
@@ -137,4 +137,4 @@ namespace AtlasObject
 	AtObj TrimEmptyChildren(AtObj& obj);
 }
 
-#endif // ATLASOBJECT_H__
+#endif // INCLUDED_ATLASOBJECT

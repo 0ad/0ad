@@ -1,8 +1,6 @@
 /*
 	CSynchedJSObject
 	
-	AUTHOR: Simon Brenner <simon.brenner@home.se>
-	
 	DESCRIPTION:
 		A helper class for CJSObject that enables a callback to be called
 		whenever an attribute of the class changes and enables all (synched)
@@ -32,8 +30,8 @@
 
 */
 
-#ifndef _SynchedJSObject_H
-#define _SynchedJSObject_H
+#ifndef INCLUDED_SYNCHEDJSOBJECT
+#define INCLUDED_SYNCHEDJSOBJECT
 
 #include "ps/CStr.h"
 #include "ScriptableObject.h"

@@ -3,8 +3,6 @@
  * File        : RenderModifiers.cpp
  * Project     : Pyrogenesis
  * Description : Implementation of common RenderModifiers
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

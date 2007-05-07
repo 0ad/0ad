@@ -1,15 +1,13 @@
-/////////////////////////////////////////////////////
-//	File Name:	ParticleEngine.h
-//	Date:		6/29/05
-//	Author:		Will Dull
-//	Purpose:	The particle engine system.
-//				controls and maintain particles
-//				through emitters that are passed
-//				into each of the main functions.
-/////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : ParticleEngine.h
+ * Project     : 0 A.D.
+ * Description : Particle engine implementation
+ * =========================================================================
+ */
 
-#ifndef _PARTICLEENGINE_H_
-#define _PARTICLEENGINE_H_
+#ifndef INCLUDED_PARTICLEENGINE
+#define INCLUDED_PARTICLEENGINE
 
 #include "ParticleEmitter.h"
 #include "lib/res/graphics/tex.h"

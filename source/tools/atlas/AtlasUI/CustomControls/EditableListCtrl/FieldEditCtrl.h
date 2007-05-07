@@ -1,5 +1,5 @@
-#ifndef FIELDEDITCTRL_H__
-#define FIELDEDITCTRL_H__
+#ifndef INCLUDED_FIELDEDITCTRL
+#define INCLUDED_FIELDEDITCTRL
 
 class EditableListCtrl;
 class AtlasDialog;
@@ -78,4 +78,4 @@ private:
 	wxString m_RememberedDir;
 };
 
-#endif // FIELDEDITCTRL_H__
+#endif // INCLUDED_FIELDEDITCTRL

@@ -3,25 +3,13 @@
  * File        : string_s.h
  * Project     : 0 A.D.
  * Description : implementation of proposed CRT safe string functions
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef STRING_S_H__
-#define STRING_S_H__
+#ifndef INCLUDED_STRING_S
+#define INCLUDED_STRING_S
 
 #include "posix/posix_types.h"	// size_t
 #include "config.h"
@@ -84,4 +72,4 @@ extern int wcscat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src);
 
 #endif	// #if !HAVE_SECURE_CRT
 
-#endif	// #ifndef STRING_S_H__
+#endif	// #ifndef INCLUDED_STRING_S

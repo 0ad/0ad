@@ -2,8 +2,6 @@
 // 
 // Constant definitions and a couple of exports for the hotkey processor
 //
-// Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
-//
 // Hotkeys can be mapped onto SDL events (for use internal to the engine),
 // or used to trigger activation of GUI buttons.
 //

@@ -5,8 +5,8 @@ and JS function calls, allowing conversion to strings.
 
 */
 
-#ifndef I18N_TSCOMPONENT_H
-#define I18N_TSCOMPONENT_H
+#ifndef INCLUDED_I18N_TSCOMPONENT
+#define INCLUDED_I18N_TSCOMPONENT
 
 #include "StrImmutable.h"
 #include "BufferVariable.h"
@@ -71,4 +71,4 @@ namespace I18n
 
 }
 
-#endif // I18N_TSCOMPONENT_H
+#endif // INCLUDED_I18N_TSCOMPONENT

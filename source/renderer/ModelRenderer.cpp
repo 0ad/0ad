@@ -3,8 +3,6 @@
  * File        : ModelRenderer.cpp
  * Project     : Pyrogenesis
  * Description : Implementation of ModelRenderer and BatchModelRenderer
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -464,4 +462,5 @@ void BatchModelRendererInternals::RenderAllModels(
 		}
 	}
 }
+
 

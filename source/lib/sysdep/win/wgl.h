@@ -3,22 +3,10 @@
  * File        : wgl.cpp
  * Project     : 0 A.D.
  * Description : Windows definitions required for GL/gl.h
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2002-2003 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 // RAGE! Win32 OpenGL headers are full of crap we have to emulate
 // (must not include windows.h)

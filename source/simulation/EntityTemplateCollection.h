@@ -1,6 +1,4 @@
 // EntityTemplateCollection.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Keeps tabs on the various types of entity that roam the world.
 //
@@ -13,8 +11,8 @@
 // name will only be its filename; thus, no two templates should have the same filename,
 // but subdirectories can be created in entities/ to organize the files nicely.
 
-#ifndef ENTITY_TEMPLATE_COLLECTION_INCLUDED
-#define ENTITY_TEMPLATE_COLLECTION_INCLUDED
+#ifndef INCLUDED_ENTITYTEMPLATECOLLECTION
+#define INCLUDED_ENTITYTEMPLATECOLLECTION
 
 #include <vector>
 #include <map>

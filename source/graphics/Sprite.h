@@ -1,31 +1,17 @@
-/*==================================================================
-| 
-| Name: Sprite.h
-|
-|===================================================================
-|
-| Author: Ben Vinegar
-| Contact: benvinegar () hotmail ! com
-|
-|
-| Last Modified: 03/08/04
-|
-| Overview: Billboarding sprite class - always faces the camera. It
-|           does this by getting the current model view matrix state.
-|
-|
-| Usage: The functions speak for themselves. Instantiate, then be
-|        sure to pass a loaded (using ogl_tex_load()) texture before 
-|        calling Render().
-|
-| To do: TBA
-|
-| More Information: TBA
-|
-==================================================================*/
+/**
+ * =========================================================================
+ * File        : Sprite.h
+ * Project     : 0 A.D.
+ * Description : Billboarding sprite class - always faces the camera. It
+ *               does this by getting the current model view matrix state.
+ * =========================================================================
+ */
 
-#ifndef SPRITE_H
-#define SPRITE_H
+// Usage: Instantiate, then be sure to pass a loaded
+// (using ogl_tex_load()) texture before calling Render().
+
+#ifndef INCLUDED_SPRITE
+#define INCLUDED_SPRITE
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -83,4 +69,4 @@ private:
 	float m_colour[4];
 };
 
-#endif // SPRITE_H
+#endif // INCLUDED_SPRITE

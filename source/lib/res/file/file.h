@@ -4,25 +4,13 @@
  * Project     : 0 A.D.
  * Description : file layer on top of POSIX. avoids the need for
  *             : absolute paths and provides fast I/O.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004-2006 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef FILE_H
-#define FILE_H
+#ifndef INCLUDED_FILE
+#define INCLUDED_FILE
 
 #include "lib/posix/posix_filesystem.h"		// struct stat
 
@@ -366,4 +354,4 @@ extern LibError file_unmap(File* f);
 
 extern LibError file_shutdown();
 
-#endif	// #ifndef FILE_H
+#endif	// #ifndef INCLUDED_FILE

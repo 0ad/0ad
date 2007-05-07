@@ -1,7 +1,5 @@
 /*
 ThreadUtil.h - Thread Utility Functions
-by Simon Brenner
-simon.brenner@home.se
 
 --Overview-- 
 

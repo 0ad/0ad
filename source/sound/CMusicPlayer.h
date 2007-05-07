@@ -1,5 +1,5 @@
-#ifndef CMUSICPLAYER_H
-#define CMUSICPLAYER_H
+#ifndef INCLUDED_CMUSICPLAYER
+#define INCLUDED_CMUSICPLAYER
 
 #include <string>
 #include <iostream>

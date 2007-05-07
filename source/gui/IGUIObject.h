@@ -1,7 +1,5 @@
 /*
 The base class of an object
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -25,8 +23,8 @@ gee@pyro.nu
 
 */
 
-#ifndef IGUIObject_H
-#define IGUIObject_H
+#ifndef INCLUDED_IGUIOBJECT
+#define INCLUDED_IGUIOBJECT
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -81,8 +79,6 @@ enum EGUISettingType
 #undef TYPE
 
 /**
- * @author Gustav Larsson
- *
  * A GUI Setting is anything that can be inputted from XML as
  * <object>-attributes (with exceptions). For instance:
  * <object style="null">
@@ -98,8 +94,6 @@ struct SGUISetting
 };
 
 /**
- * @author Gustav Larsson
- *
  * Base settings, all objects possess these settings
  * in their m_BaseSettings
  * Instructions can be found in the documentations.
@@ -120,8 +114,6 @@ struct SGUISetting
 //////////////////////////////////////////////////////////
 
 /**
- * @author Gustav Larsson
- *
  * GUI object such as a button or an input-box.
  * Abstract data type !
  */
@@ -533,8 +525,6 @@ private:
 
 
 /**
- * @author Gustav Larsson
- *
  * Dummy object used primarily for the root object
  * or objects of type 'empty'
  */

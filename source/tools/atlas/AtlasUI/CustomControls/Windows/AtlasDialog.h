@@ -1,5 +1,5 @@
-#ifndef ATLASDIALOG_H__
-#define ATLASDIALOG_H__
+#ifndef INCLUDED_ATLASDIALOG
+#define INCLUDED_ATLASDIALOG
 
 #include "wx/dialog.h"
 
@@ -32,4 +32,4 @@ private:
 	DECLARE_EVENT_TABLE()
 };
 
-#endif // ATLASDIALOG_H__
+#endif // INCLUDED_ATLASDIALOG

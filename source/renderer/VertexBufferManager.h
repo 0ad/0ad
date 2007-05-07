@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		VertexBufferManager.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : VertexBufferManager.h
+ * Project     : 0 A.D.
+ * Description : Allocate and destroy CVertexBuffers
+ * =========================================================================
+ */
 
-#ifndef _VERTEXBUFFERMANAGER_H
-#define _VERTEXBUFFERMANAGER_H
+#ifndef INCLUDED_VERTEXBUFFERMANAGER
+#define INCLUDED_VERTEXBUFFERMANAGER
 
 #include "VertexBuffer.h"
 

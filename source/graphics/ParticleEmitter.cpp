@@ -1,10 +1,10 @@
-/////////////////////////////////////////////////////
-//	File Name:	ParticleEmitter.cpp
-//	Date:		6/29/05
-//	Author:		Will Dull
-//	Purpose:	The base particle and emitter
-//				classes implementations.
-/////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : ParticleEmitter.cpp
+ * Project     : 0 A.D.
+ * Description : Particle and Emitter base classes.
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 #include "ParticleEmitter.h"

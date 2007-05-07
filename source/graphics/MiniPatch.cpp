@@ -1,10 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		MiniPatch.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : MiniPatch.cpp
+ * Project     : 0 A.D.
+ * Description : Definition of a single terrain tile
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 
@@ -36,4 +36,5 @@ void CMiniPatch::GetTileIndex(u32& x,u32& z)
 	x=(m_Parent->m_X*PATCH_SIZE)+tindex%PATCH_SIZE;
 	z=(m_Parent->m_Z*PATCH_SIZE)+tindex/PATCH_SIZE;
 }
+
 

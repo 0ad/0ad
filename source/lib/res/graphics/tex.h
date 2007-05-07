@@ -4,22 +4,10 @@
  * Project     : 0 A.D.
  * Description : read/write 2d texture files; allows conversion between
  *             : pixel formats and automatic orientation correction.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004-2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 /**
 
@@ -97,8 +85,8 @@ library and IO layer. Read and write are zero-copy.
 
 **/
 
-#ifndef TEX_H__
-#define TEX_H__
+#ifndef INCLUDED_TEX
+#define INCLUDED_TEX
 
 #include "lib/res/handle.h"
 
@@ -438,4 +426,4 @@ extern size_t tex_hdr_size(const char* fn);
  **/
 extern LibError tex_write(Tex* t, const char* fn);
 
-#endif	 // TEX_H__
+#endif	 // INCLUDED_TEX

@@ -1,5 +1,5 @@
-#ifndef DLLLOADER_H__
-#define DLLLOADER_H__
+#ifndef INCLUDED_DLLLOADER
+#define INCLUDED_DLLLOADER
 
 #include "ps/Errors.h"
 
@@ -66,4 +66,4 @@ void DllLoader::LoadSymbol(const char* name, T& fptr) const
 	LoadSymbolInternal(name, (void**)&fptr);
 }
 
-#endif // DLLLOADER_H__
+#endif // INCLUDED_DLLLOADER

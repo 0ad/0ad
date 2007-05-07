@@ -1,5 +1,5 @@
-#ifndef _UNIT_H
-#define _UNIT_H
+#ifndef INCLUDED_UNIT
+#define INCLUDED_UNIT
 
 #include <set>
 

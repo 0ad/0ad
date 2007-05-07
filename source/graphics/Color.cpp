@@ -1,3 +1,11 @@
+/**
+ * =========================================================================
+ * File        : Color.cpp
+ * Project     : 0 A.D.
+ * Description : Convert float RGB(A) colors to unsigned byte
+ * =========================================================================
+ */
+
 #include "precompiled.h"
 
 #include "graphics/Color.h"

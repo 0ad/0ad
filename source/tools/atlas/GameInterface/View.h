@@ -1,5 +1,5 @@
-#ifndef VIEW_H__
-#define VIEW_H__
+#ifndef INCLUDED_VIEW
+#define INCLUDED_VIEW
 
 #include "graphics/Camera.h"
 
@@ -91,4 +91,4 @@ private:
 	ActorViewer* m_ActorViewer;
 };
 
-#endif // VIEW_H__
+#endif // INCLUDED_VIEW

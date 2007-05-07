@@ -1,5 +1,5 @@
-#ifndef _ps_scripting_JSMap_H
-#define _ps_scripting_JSMap_H
+#ifndef INCLUDED_JSMAP
+#define INCLUDED_JSMAP
 
 /*
 	A simple read-only JS wrapper for map types (STL associative containers).
@@ -95,4 +95,4 @@ JSClass CJSMap<T, KeyType>::JSI_class =
 	NULL, NULL, NULL, NULL
 };
 
-#endif // _ps_scripting_JSMap_H
+#endif // INCLUDED_JSMAP

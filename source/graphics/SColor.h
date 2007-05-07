@@ -1,5 +1,5 @@
-#ifndef SCOLOR_H__
-#define SCOLOR_H__
+#ifndef INCLUDED_SCOLOR
+#define INCLUDED_SCOLOR
 
 // SColor3ub: structure for packed RGB colors
 struct SColor3ub

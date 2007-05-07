@@ -4,22 +4,10 @@
  * Project     : 0 A.D.
  * Description : Virtual File System API - allows transparent access to
  *             : files in archives and modding via multiple mount points.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004-2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 /*
 
@@ -193,8 +181,8 @@ Decompression is free because it is done in parallel with IOs.
 
 */
 
-#ifndef __VFS_H__
-#define __VFS_H__
+#ifndef INCLUDED_VFS
+#define INCLUDED_VFS
 
 #include "../handle.h"	// Handle def
 #include "lib/posix/posix_filesystem.h"	// struct stat
@@ -467,4 +455,4 @@ extern LibError vfs_reload(const char* fn);
 // this must be called from the main thread? (wdir_watch problem)
 extern LibError vfs_reload_changed_files(void);
 
-#endif	// #ifndef __VFS_H__
+#endif	// #ifndef INCLUDED_VFS

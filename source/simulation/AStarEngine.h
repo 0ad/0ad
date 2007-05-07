@@ -1,5 +1,5 @@
-#ifndef __ASTAR_ENGINE_H__
-#define __ASTAR_ENGINE_H__
+#ifndef INCLUDED_ASTARENGINE
+#define INCLUDED_ASTARENGINE
 
 #include "ps/Vector2D.h"
 #include "ps/Player.h"

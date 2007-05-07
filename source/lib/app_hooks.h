@@ -3,22 +3,10 @@
  * File        : app_hooks.h
  * Project     : 0 A.D.
  * Description : hooks to allow customization / app-specific behavior.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 /*
 
@@ -84,8 +72,8 @@ extern const wchar_t*, translate, (const wchar_t* text), (text), return)
 
 */
 
-#ifndef APP_HOOKS_H__
-#define APP_HOOKS_H__
+#ifndef INCLUDED_APP_HOOKS
+#define INCLUDED_APP_HOOKS
 
 // trampolines for user code to call the hooks. they encapsulate
 // the details of how exactly to do this.
@@ -203,4 +191,4 @@ extern bool app_hook_was_redefined(size_t offset_in_struct);
 // name is identifier of the function pointer within AppHooks to test.
 #define AH_IS_DEFINED(name) app_hook_was_redefined(offsetof(AppHooks, name))
 
-#endif	// #ifndef APP_HOOKS_H__
+#endif	// #ifndef INCLUDED_APP_HOOKS

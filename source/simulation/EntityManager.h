@@ -1,6 +1,4 @@
 // EntityManager.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Maintains entity id->object mappings. Does most of the work involved in creating an entity.
 //
@@ -15,8 +13,8 @@
 //        
 //        Those last two functions - caller has responsibility for deleting the collection when you're done with it.
 
-#ifndef ENTITY_MANAGER_INCLUDED
-#define ENTITY_MANAGER_INCLUDED
+#ifndef INCLUDED_ENTITYMANAGER
+#define INCLUDED_ENTITYMANAGER
 
 #include <set>
 

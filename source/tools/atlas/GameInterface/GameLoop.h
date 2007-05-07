@@ -1,5 +1,5 @@
-#ifndef GAMELOOP_H__
-#define GAMELOOP_H__
+#ifndef INCLUDED_GAMELOOP
+#define INCLUDED_GAMELOOP
 
 #include "ps/GameSetup/CmdLineArgs.h"
 
@@ -26,4 +26,4 @@ struct GameLoopState
 
 extern GameLoopState* g_GameLoop;
 
-#endif // GAMELOOP_H__
+#endif // INCLUDED_GAMELOOP

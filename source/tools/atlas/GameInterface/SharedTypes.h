@@ -1,5 +1,5 @@
-#ifndef SHAREDTYPES_H__
-#define SHAREDTYPES_H__
+#ifndef INCLUDED_SHAREDTYPES
+#define INCLUDED_SHAREDTYPES
 
 #include "Shareable.h"
 
@@ -224,4 +224,4 @@ SHAREABLE_STRUCT(sTriggerGroup);
 
 }
 
-#endif // SHAREDTYPES_H__
+#endif // INCLUDED_SHAREDTYPES

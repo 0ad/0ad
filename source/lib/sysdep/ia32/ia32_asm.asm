@@ -3,19 +3,9 @@
 ; Project     : 0 A.D.
 ; Description : optimized assembly code for IA-32. not provided as
 ;             : inline assembly because that's compiler-specific.
-;
-; @author Jan.Wassenberg@stud.uni-karlsruhe.de
 ; =========================================================================
 
-; Copyright (c) 2004-2005 Jan Wassenberg
-;
-; Redistribution and/or modification are also permitted under the
-; terms of the GNU General Public License as published by th;e
-; Free Software Foundation (version 2 or later, at your option).
-;
-; This program is distributed in the hope that it will be useful, but
-; WITHOUT ANY WARRANTY; without even the implied warranty of
-; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+; license: GPL; see lib/license.txt
 
 %include "ia32.inc"
 

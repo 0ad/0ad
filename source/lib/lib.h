@@ -3,22 +3,10 @@
  * File        : lib.h
  * Project     : 0 A.D.
  * Description : various utility functions.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2003-2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 /**
 
@@ -53,8 +41,8 @@ scope
 
 **/
 
-#ifndef LIB_H__
-#define LIB_H__
+#ifndef INCLUDED_LIB
+#define INCLUDED_LIB
 
 #include <stddef.h>
 #include <math.h>	// fabsf
@@ -575,4 +563,4 @@ extern void moduleInit_assertCanShutdown(ModuleInitState init_state);
 extern void moduleInit_markInitialized(ModuleInitState* init_state);
 extern void moduleInit_markShutdown(ModuleInitState* init_state);
 
-#endif	// #ifndef LIB_H__
+#endif	// #ifndef INCLUDED_LIB

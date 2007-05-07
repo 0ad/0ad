@@ -1,5 +1,5 @@
-#ifndef _Network_NetServer_H
-#define _Network_NetServer_H
+#ifndef INCLUDED_NETWORK_SERVER
+#define INCLUDED_NETWORK_SERVER
 
 #include "Session.h"
 #include "ps/GameAttributes.h"
@@ -145,4 +145,4 @@ public:
 
 extern CNetServer *g_NetServer;
 
-#endif // _Network_NetServer_H
+#endif // INCLUDED_NETWORK_SERVER

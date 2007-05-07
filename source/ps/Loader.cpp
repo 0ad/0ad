@@ -1,8 +1,5 @@
 // FIFO queue of load 'functors' with time limit; enables displaying
 // load progress without resorting to threads (complicated).
-//
-// Jan Wassenberg, initial implementation finished 2005-03-21
-// jan@wildfiregames.com
 
 #include "precompiled.h"
 

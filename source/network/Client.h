@@ -1,5 +1,5 @@
-#ifndef _Network_NetClient_H
-#define _Network_NetClient_H
+#ifndef INCLUDED_NETWORK_CLIENT
+#define INCLUDED_NETWORK_CLIENT
 
 #include "ps/CStr.h"
 #include "Session.h"
@@ -78,4 +78,4 @@ public:
 
 extern CNetClient *g_NetClient;
 
-#endif //_Network_NetClient_H
+#endif //INCLUDED_NETWORK_CLIENT

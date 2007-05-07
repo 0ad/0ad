@@ -1,16 +1,14 @@
-//***********************************************************
-//
-// Name:		Vector3D.H
-// Last Update:	28/1/02
-// Author:		Poya Manouchehri
-//
-// Description: Provides an interface for a vector in R3 and
-//				allows vector and scalar operations on it
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Vector3D.h
+ * Project     : 0 A.D.
+ * Description : Provides an interface for a vector in R3 and
+ *               allows vector and scalar operations on it
+ * =========================================================================
+ */
 
-#ifndef VECTOR3D_H
-#define VECTOR3D_H
+#ifndef INCLUDED_VECTOR3D
+#define INCLUDED_VECTOR3D
 
 class CVector3D
 {

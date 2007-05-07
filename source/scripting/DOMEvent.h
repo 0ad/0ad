@@ -1,6 +1,4 @@
 // DOM-style event object
-//
-// Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
 
 // Note: Cancellable [UK]? Cancelable [US]? DOM says one l, OED says 2.
 //       JS interface uses 1.
@@ -8,8 +6,8 @@
 // Entity and e.g. projectile classes derive from this and use it for
 // sending/receiving events.
 
-#ifndef DOMEVENT_INCLUDED
-#define DOMEVENT_INCLUDED
+#ifndef INCLUDED_DOMEVENT
+#define INCLUDED_DOMEVENT
 
 #include "ScriptableObject.h"
 #include "EventTypes.h"	// for EVENT_LAST
@@ -133,4 +131,5 @@ public:
 };
 
 #endif
+
 

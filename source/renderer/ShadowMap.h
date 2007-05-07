@@ -3,13 +3,11 @@
  * File        : ShadowMap.h
  * Project     : Pyrogenesis
  * Description : Shadow mapping related texture and matrix management
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef SHADOWMAP_H
-#define SHADOWMAP_H
+#ifndef INCLUDED_SHADOWMAP
+#define INCLUDED_SHADOWMAP
 
 #include "lib/ogl.h"
 
@@ -137,4 +135,4 @@ private:
 	ShadowMapInternals* m;
 };
 
-#endif // SHADOWMAP_H
+#endif // INCLUDED_SHADOWMAP

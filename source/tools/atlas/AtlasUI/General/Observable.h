@@ -1,5 +1,5 @@
-#ifndef OBSERVABLE_H__
-#define OBSERVABLE_H__
+#ifndef INCLUDED_OBSERVABLE
+#define INCLUDED_OBSERVABLE
 
 /*
 Wrapper around Boost.Signals to make watching objects for changes more convenient.
@@ -96,4 +96,4 @@ private:
 	std::vector<ObservableConnection> m_Conns;
 };
 
-#endif // OBSERVABLE_H__
+#endif // INCLUDED_OBSERVABLE

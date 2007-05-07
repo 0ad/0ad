@@ -3,8 +3,6 @@
  * File        : SkyManager.cpp
  * Project     : Pyrogenesis
  * Description : Sky settings, texture management and rendering.
- *
- * @author Matei Zaharia <matei@wildfiregames.com>
  * =========================================================================
  */
 

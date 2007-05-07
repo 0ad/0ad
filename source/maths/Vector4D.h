@@ -1,16 +1,14 @@
-//***********************************************************
-//
-// Name:		CVector4D.h
-// Last Update:	02/11/03
-// Author:		Rich Cross
-//
-// Description: Provides an interface for a vector in R4 and
-//				allows vector and scalar operations on it
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Vector4D.h
+ * Project     : 0 A.D.
+ * Description : Provides an interface for a vector in R4 and
+ *               allows vector and scalar operations on it
+ * =========================================================================
+ */
 
-#ifndef _VECTOR4D_H
-#define _VECTOR4D_H
+#ifndef INCLUDED_VECTOR4D
+#define INCLUDED_VECTOR4D
 
 
 #include <math.h>

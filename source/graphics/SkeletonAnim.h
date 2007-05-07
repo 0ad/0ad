@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		SkeletonAnim.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : SkeletonAnim.h
+ * Project     : 0 A.D.
+ * Description : Instance of CSkeletonAnimDef for application onto a model
+ * =========================================================================
+ */
 
-#ifndef _SKELETONANIM_H
-#define _SKELETONANIM_H
+#ifndef INCLUDED_SKELETONANIM
+#define INCLUDED_SKELETONANIM
 
 #include "maths/Bound.h"
 

@@ -1,5 +1,5 @@
-#ifndef _Network_JSEvents_H
-#define _Network_JSEvents_H
+#ifndef INCLUDED_NETWORK_JSEVENTS
+#define INCLUDED_NETWORK_JSEVENTS
 
 #include "ServerSession.h"
 #include "scripting/DOMEvent.h"

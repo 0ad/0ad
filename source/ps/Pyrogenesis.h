@@ -1,13 +1,11 @@
 /*
 Pyrogenesis.h
-by Raj Sharma
-rsharma@uiuc.edu
 
 Standard declarations which are included in all projects.
 */
 
-#ifndef PYROGENESIS_H
-#define PYROGENESIS_H
+#ifndef INCLUDED_PYROGENESIS
+#define INCLUDED_PYROGENESIS
 
 
 typedef const char * PS_RESULT;

@@ -3,8 +3,6 @@
  * File        : LightEnv.cpp
  * Project     : Pyrogenesis
  * Description : CLightEnv implementation
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 

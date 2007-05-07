@@ -1,5 +1,5 @@
-#ifndef _Simulation_H
-#define _Simulation_H
+#ifndef INCLUDED_SIMULATION
+#define INCLUDED_SIMULATION
 
 #include <boost/random.hpp>
 

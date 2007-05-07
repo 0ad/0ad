@@ -1,5 +1,5 @@
-#ifndef _Player_H
-#define _Player_H
+#ifndef INCLUDED_PLAYER
+#define INCLUDED_PLAYER
 
 #include "CStr.h"
 #include "scripting/SynchedJSObject.h"

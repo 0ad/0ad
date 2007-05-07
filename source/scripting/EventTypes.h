@@ -4,8 +4,8 @@
 // DOMEvent currently uses a preallocated array of EVENT_LAST elements,
 // so these must be consecutive integers starting with 0.
 
-#ifndef EVENTTYPES_H__
-#define EVENTTYPES_H__
+#ifndef INCLUDED_EVENTTYPES
+#define INCLUDED_EVENTTYPES
 
 enum EEventType
 {
@@ -58,5 +58,6 @@ static const wchar_t* const EventNames[EVENT_LAST] =
 	/* EVENT_IDLE */ L"onIdle", /* When this unit becomes idle, do something */
 };
 
-#endif	// #ifndef EVENTTYPES_H__
+#endif	// #ifndef INCLUDED_EVENTTYPES
+
 

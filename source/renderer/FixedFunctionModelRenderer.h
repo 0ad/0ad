@@ -4,13 +4,11 @@
  * Project     : Pyrogenesis
  * Description : ModelVertexRenderer that uses only fixed function pipeline
  *             : to render animated models.
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef FIXEDFUNCTIONMODELRENDERER_H
-#define FIXEDFUNCTIONMODELRENDERER_H
+#ifndef INCLUDED_FIXEDFUNCTIONMODELRENDERER
+#define INCLUDED_FIXEDFUNCTIONMODELRENDERER
 
 #include "renderer/ModelVertexRenderer.h"
 
@@ -47,4 +45,4 @@ private:
 };
 
 
-#endif // FIXEDFUNCTIONMODELRENDERER_H
+#endif // INCLUDED_FIXEDFUNCTIONMODELRENDERER

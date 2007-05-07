@@ -1,6 +1,6 @@
 
-#ifndef _SCRIPTGLUE_H_
-#define _SCRIPTGLUE_H_
+#ifndef INCLUDED_SCRIPTGLUE
+#define INCLUDED_SCRIPTGLUE
 
 #include "ScriptingHost.h"
 
@@ -20,4 +20,4 @@ extern void EndGame();
 extern int GetVRAMInfo(int&, int&);
 #endif
 
-#endif	// #ifndef _SCRIPTGLUE_H_
+#endif	// #ifndef INCLUDED_SCRIPTGLUE

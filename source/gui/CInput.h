@@ -1,7 +1,5 @@
 /*
 GUI Object - Input [box]
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -13,8 +11,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CInput_H
-#define CInput_H
+#ifndef INCLUDED_CINPUT
+#define INCLUDED_CINPUT
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -37,8 +35,6 @@ class IGUIScrollBar;
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Text field where you can input and edit the text.
  *
  * It doesn't use IGUITextOwner, because we don't need

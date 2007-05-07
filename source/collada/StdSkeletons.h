@@ -1,5 +1,5 @@
-#ifndef STDSKELETONS_H__
-#define STDSKELETONS_H__
+#ifndef INCLUDED_STDSKELETONS
+#define INCLUDED_STDSKELETONS
 
 #include <string>
 
@@ -77,4 +77,4 @@ private:
 	Skeleton(Skeleton&);
 };
 
-#endif // STDSKELETONS_H__
+#endif // INCLUDED_STDSKELETONS

@@ -1,5 +1,5 @@
-#ifndef __H_MINIMAP_H__
-#define __H_MINIMAP_H__
+#ifndef INCLUDED_MINIMAP
+#define INCLUDED_MINIMAP
 
 #include "gui/GUI.h"
 

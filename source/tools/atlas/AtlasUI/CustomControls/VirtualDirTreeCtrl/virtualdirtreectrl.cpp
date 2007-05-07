@@ -1,11 +1,8 @@
-#include "stdafx.h"
-
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wxVirtualDirTreeCtrl.cpp
-// Author:      XX
-// Created:     Saturday, March 27, 2004 14:15:56
-// Copyright:   XX
 /////////////////////////////////////////////////////////////////////////////
+
+#include "stdafx.h"
 
 //#ifdef __GNUG__
 //    #pragma implementation "wxVirtualDirTreeCtrl.cpp"
@@ -616,4 +613,5 @@ void wxVirtualDirTreeCtrl::OnDirectoryScanEnd(VdtcTreeItemBaseArray &WXUNUSED(it
 {
 	return;
 }
+
 

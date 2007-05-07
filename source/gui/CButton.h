@@ -1,7 +1,5 @@
 /*
 GUI Object - Button
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -13,8 +11,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CButton_H
-#define CButton_H
+#ifndef INCLUDED_CBUTTON
+#define INCLUDED_CBUTTON
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -34,8 +32,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Button
  * 
  * @see IGUIObject

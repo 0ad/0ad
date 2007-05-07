@@ -1,5 +1,5 @@
-#ifndef VARIATIONCONTROL_H__
-#define VARIATIONCONTROL_H__
+#ifndef INCLUDED_VARIATIONCONTROL
+#define INCLUDED_VARIATIONCONTROL
 
 #include "General/Observable.h"
 
@@ -22,4 +22,4 @@ private:
 	wxSizer* m_Sizer;
 };
 
-#endif // VARIATIONCONTROL_H__
+#endif // INCLUDED_VARIATIONCONTROL

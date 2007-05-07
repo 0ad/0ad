@@ -1,13 +1,13 @@
-/////////////////////////////////////////////////////
-//	File Name:	ParticleEmitter.h
-//	Date:		6/29/05
-//	Author:		Will Dull
-//	Purpose:	The base particle and emitter
-//				classes.
-/////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : ParticleEmitter.h
+ * Project     : 0 A.D.
+ * Description : Particle and Emitter base classes.
+ * =========================================================================
+ */
 
-#ifndef _PARTICLEEMITTER_H_
-#define _PARTICLEEMITTER_H_
+#ifndef INCLUDED_PARTICLEEMITTER
+#define INCLUDED_PARTICLEEMITTER
 
 #include "maths/Vector3D.h"
 

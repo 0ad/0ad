@@ -1,14 +1,11 @@
-//***********************************************************
-//
-// Name:		Camera.Cpp
-// Last Update: 24/2/02
-// Author:		Poya Manouchehri
-//
-// Description: CCamera holds a view and a projection matrix.
-//				It also has a frustum which can be used to
-//				cull objects for rendering.
-//
-//***********************************************************
+/**
+ * =========================================================================
+ * File        : Camera.cpp
+ * Project     : 0 A.D.
+ * Description : CCamera holds a view and a projection matrix. It also has
+ *               a frustum which can be used to cull objects for rendering.
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 
@@ -379,4 +376,5 @@ void CCamera::Render(uint intermediates) const
 		glEnd();
 	}
 }
+
 

@@ -4,25 +4,13 @@
  * Project     : 0 A.D.
  * Description : platform-independent high resolution timer and
  *             : FPS measuring code.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2003-2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef INCLUDED_TIMER
+#define INCLUDED_TIMER
 
 #include <string>
 
@@ -276,4 +264,4 @@ Example usage:
 */
 #define TIMER_ACCRUE(client) ScopeTimerAccrue<> UID__(client)
 
-#endif	// #ifndef TIMER_H
+#endif	// #ifndef INCLUDED_TIMER

@@ -4,13 +4,11 @@
  * Project     : Pyrogenesis
  * Description : Special ModelVertexRender that only works for non-animated
  *             : models, but is very fast for instanced models.
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef INSTANCINGMODELRENDERER_H
-#define INSTANCINGMODELRENDERER_H
+#ifndef INCLUDED_INSTANCINGMODELRENDERER
+#define INCLUDED_INSTANCINGMODELRENDERER
 
 #include "renderer/ModelVertexRenderer.h"
 
@@ -62,4 +60,4 @@ private:
 };
 
 
-#endif // INSTANCINGMODELRENDERER_H
+#endif // INCLUDED_INSTANCINGMODELRENDERER

@@ -3,22 +3,10 @@
  * File        : self_test.h
  * Project     : 0 A.D.
  * Description : helpers for built-in self tests
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2005 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 /*
 
@@ -103,8 +91,8 @@ For further details, see below.
 
 */
 
-#ifndef SELF_TEST_H__
-#define SELF_TEST_H__
+#ifndef INCLUDED_SELF_TEST
+#define INCLUDED_SELF_TEST
 
 /*
 
@@ -227,4 +215,4 @@ std::vector<T> ts_make_vector(T* start, size_t size_bytes)
 }
 #define TS_ASSERT_VECTOR_EQUALS_ARRAY(vec1, array) TS_ASSERT_EQUALS(vec1, ts_make_vector((array), sizeof(array)))
 
-#endif	// #ifndef SELF_TEST_H__
+#endif	// #ifndef INCLUDED_SELF_TEST

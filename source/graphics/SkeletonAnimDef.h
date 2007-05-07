@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		SkeletonAnimDef.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : SkeletonAnim.h
+ * Project     : 0 A.D.
+ * Description : Raw description of a skeleton animation
+ * =========================================================================
+ */
 
-#ifndef _SKELETONANIMDEF_H
-#define _SKELETONANIMDEF_H
+#ifndef INCLUDED_SKELETONANIMDEF
+#define INCLUDED_SKELETONANIMDEF
 
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"

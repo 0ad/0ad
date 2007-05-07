@@ -5,14 +5,11 @@
  * Description : ModelRenderer implementation that sorts models and/or
  *             : polygons based on distance from viewer, for transparency
  *             : rendering.
- *
- * @author Rich Cross <rich@wildfiregames.com>
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
-#ifndef __TRANSPARENCYRENDERER_H
-#define __TRANSPARENCYRENDERER_H
+#ifndef INCLUDED_TRANSPARENCYRENDERER
+#define INCLUDED_TRANSPARENCYRENDERER
 
 #include "renderer/ModelRenderer.h"
 #include "renderer/ModelVertexRenderer.h"

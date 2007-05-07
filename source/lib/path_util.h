@@ -3,22 +3,10 @@
  * File        : path_util.h
  * Project     : 0 A.D.
  * Description : helper functions for path strings.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004-2006 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
 // notes:
 // - this module is split out of lib/res/file so that it can be used from
@@ -30,8 +18,8 @@
 //   native and portable and VFS paths.
 //   when reading, both '/' and SYS_DIR_SEP are accepted; '/' is written.
 
-#ifndef PATH_UTIL_H__
-#define PATH_UTIL_H__
+#ifndef INCLUDED_PATH_UTIL
+#define INCLUDED_PATH_UTIL
 
 #include "posix/posix_types.h"	// PATH_MAX
 
@@ -241,4 +229,4 @@ extern void path_package_copy(PathPackage* pp_dst, const PathPackage* pp_src);
  **/
 extern LibError path_package_append_file(PathPackage* pp, const char* path);
 
-#endif	// #ifndef PATH_UTIL_H__
+#endif	// #ifndef INCLUDED_PATH_UTIL

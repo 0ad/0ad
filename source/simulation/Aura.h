@@ -1,5 +1,5 @@
-#ifndef __AURA_H__
-#define __AURA_H__
+#ifndef INCLUDED_AURA
+#define INCLUDED_AURA
 
 #include "EntityHandles.h"
 #include "maths/Vector4D.h"

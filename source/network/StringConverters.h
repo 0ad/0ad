@@ -1,5 +1,5 @@
-#ifndef _StringConverters_H
-#define _StringConverters_H
+#ifndef INCLUDED_NETWORK_STRINGCONVERTERS
+#define INCLUDED_NETWORK_STRINGCONVERTERS
 
 #include "ps/CStr.h"
 #include "simulation/EntityHandles.h"

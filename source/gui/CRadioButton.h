@@ -1,7 +1,5 @@
 /*
 GUI Object - Radio Button
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -13,8 +11,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CRadioButton_H
-#define CRadioButton_H
+#ifndef INCLUDED_CRADIOBUTTON
+#define INCLUDED_CRADIOBUTTON
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -23,8 +21,6 @@ gee@pyro.nu
 #include "CCheckBox.h"
 
 /**
- * @author Gustav Larsson
- *
  * Just like a check box, but it'll nullify its siblings (of the same kind),
  * and it won't switch itself.
  * 

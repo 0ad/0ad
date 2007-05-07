@@ -1,18 +1,17 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		Noise.h
-// Author:		Matei Zaharia
-// Contact:		matei@wildfiregames.com
-//
-// Description: 2D and 3D seamless Perlin noise classes. Not optimized for speed yet.
-//
+/**
+ * =========================================================================
+ * File        : Noise.h
+ * Project     : 0 A.D.
+ * Description : 2D and 3D seamless Perlin noise
+ * =========================================================================
+ */
+
 // Based on http://www.cs.cmu.edu/~mzucker/code/perlin-noise-math-faq.html 
 // and http://mrl.nyu.edu/~perlin/paper445.pdf.
-//
-///////////////////////////////////////////////////////////////////////////////
+// Not optimized for speed yet.
 
-#ifndef NOISE_H
-#define NOISE_H
+#ifndef INCLUDED_NOISE
+#define INCLUDED_NOISE
 
 #include "Vector2D.h"
 #include "Vector3D.h"

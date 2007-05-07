@@ -1,6 +1,4 @@
 // EntityHandles.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // Entity smart pointer definitions.
 //
@@ -17,8 +15,8 @@
 //		  CEntity pointers will be faster for passing to the graphics subsytem, etc. where they won't be stored.
 //		  And yes, most of this /is/ obvious. But it should be said anyway.
 
-#ifndef ENTITY_HANDLE_INCLUDED
-#define ENTITY_HANDLE_INCLUDED
+#ifndef INCLUDED_ENTITYHANDLES
+#define INCLUDED_ENTITYHANDLES
 
 #define INVALID_HANDLE 65535
 // The maximum numerical value of an entity handle sent over the network

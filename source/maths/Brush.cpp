@@ -3,8 +3,6 @@
  * File        : Brush.h
  * Project     : Pyrogenesis
  * Description : Implementation of CBrush, a class representing a convex object
- *
- * @author Nicolai Haehnle <nicolai@wildfiregames.com>
  * =========================================================================
  */
 
@@ -321,4 +319,5 @@ void CBrush::Render() const
 
 	debug_assert(firstInFace == no_vertex);
 }
+
 

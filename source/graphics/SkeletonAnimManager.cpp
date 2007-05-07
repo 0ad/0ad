@@ -1,10 +1,10 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		SkeletonAnimManager.cpp
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : SkeletonAnimManager.cpp
+ * Project     : 0 A.D.
+ * Description : Owner of all skeleton animations
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 

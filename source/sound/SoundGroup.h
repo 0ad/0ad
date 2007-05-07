@@ -4,22 +4,20 @@
 * Project     : 0 A.D.
 * Description : Loads up a group of sound files with shared properties, 
 *				and provides a simple interface for playing them.        
-*
-* Author      : Gavin Fowler
 * =========================================================================
 */
 
 /*
-* Copyright (c) 2005-2006 Gavin Fowler
-*
-* Redistribution and/or modification are also permitted under the
-* terms of the GNU General Public License as published by the
-* Free Software Foundation (version 2 or later, at your option).
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*/
+ * Copyright (c) 2005-2006 Gavin Fowler
+ *
+ * Redistribution and/or modification are also permitted under the
+ * terms of the GNU General Public License as published by the
+ * Free Software Foundation (version 2 or later, at your option).
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /*
 Example usage: (SEE SOUNDGROUPMGR.H)
@@ -46,8 +44,8 @@ Example SoundGroup.xml
 
 */
 
-#ifndef SOUNDGROUP_H_
-#define SOUNDGROUP_H_
+#ifndef INCLUDED_SOUNDGROUP
+#define INCLUDED_SOUNDGROUP
 
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
@@ -122,4 +120,4 @@ public:
 
 };
 
-#endif //#ifndef SOUNDGROUP_H_
+#endif //#ifndef INCLUDED_SOUNDGROUP

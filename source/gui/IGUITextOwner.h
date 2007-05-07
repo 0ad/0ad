@@ -1,7 +1,5 @@
 /*
 GUI Object Base - Text Owner
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -17,8 +15,8 @@ gee@pyro.nu
 
 */
 
-#ifndef IGUITextOwner_H
-#define IGUITextOwner_H
+#ifndef INCLUDED_IGUITEXTOWNER
+#define INCLUDED_IGUITEXTOWNER
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -38,8 +36,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Framework for handling Output text.
  *
  * @see IGUIObject

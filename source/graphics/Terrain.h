@@ -1,14 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		Terrain.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : Terrain.h
+ * Project     : 0 A.D.
+ * Description : Describes ground via heightmap and array of CPatch.
+ * =========================================================================
+ */
 
-
-#ifndef _TERRAIN_H
-#define _TERRAIN_H
+#ifndef INCLUDED_TERRAIN
+#define INCLUDED_TERRAIN
 
 #include "maths/Vector3D.h"
 #include "graphics/SColor.h"

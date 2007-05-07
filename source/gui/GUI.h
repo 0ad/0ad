@@ -1,7 +1,5 @@
 /*
 GUI Inclusion file
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -14,8 +12,8 @@ gee@pyro.nu
 */
 
 
-#ifndef GUI_H
-#define GUI_H
+#ifndef INCLUDED_GUI
+#define INCLUDED_GUI
 
 //--------------------------------------------------------
 //  Includes

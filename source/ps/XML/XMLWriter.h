@@ -1,5 +1,5 @@
-#ifndef XMLWRITER_H
-#define XMLWRITER_H
+#ifndef INCLUDED_XMLWRITER
+#define INCLUDED_XMLWRITER
 
 /*
 
@@ -136,4 +136,4 @@ private:
 	int m_Type;
 };
 
-#endif // XMLWRITER_H
+#endif // INCLUDED_XMLWRITER

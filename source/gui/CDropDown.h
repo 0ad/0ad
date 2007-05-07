@@ -1,7 +1,5 @@
 /*
 GUI Object - Drop Down (list)
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -15,8 +13,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CDropDown_H
-#define CDropDown_H
+#ifndef INCLUDED_CDROPDOWN
+#define INCLUDED_CDROPDOWN
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -38,8 +36,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Drop Down
  *
  * The control can be pressed, but we will not inherent

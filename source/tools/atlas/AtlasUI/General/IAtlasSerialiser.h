@@ -1,5 +1,5 @@
-#ifndef IATLASSERIALISER_H__
-#define IATLASSERIALISER_H__
+#ifndef INCLUDED_IATLASSERIALISER
+#define INCLUDED_IATLASSERIALISER
 
 #include "AtlasObject/AtlasObject.h"
 
@@ -26,4 +26,4 @@ public:
 	virtual AtObj ExportData() { return FreezeData(); }
 };
 
-#endif // IATLASSERIALISER_H__
+#endif // INCLUDED_IATLASSERIALISER

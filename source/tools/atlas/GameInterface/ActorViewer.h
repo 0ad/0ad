@@ -1,5 +1,5 @@
-#ifndef ACTORVIEWER_H__
-#define ACTORVIEWER_H__
+#ifndef INCLUDED_ACTORVIEWER
+#define INCLUDED_ACTORVIEWER
 
 struct ActorViewerImpl;
 struct SColor4ub;
@@ -31,4 +31,4 @@ private:
 	ActorViewerImpl& m;
 };
 
-#endif // ACTORVIEWER_H__
+#endif // INCLUDED_ACTORVIEWER

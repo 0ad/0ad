@@ -1,14 +1,11 @@
-// Andrew aka pyrolink
-// ajdecker1022@msn.com
-//
 // Holds effects of a technology (research item), as well as its status 
 // (unavailable, researched, in progress, etc).
 //
 // There is a separate CTechnology object for each tech for each player,
 // because the status can be different for different players.
 
-#ifndef TECHNOLOGY_INCLUDED
-#define TECHNOLOGY_INCLUDED
+#ifndef INCLUDED_TECHNOLOGY
+#define INCLUDED_TECHNOLOGY
 
 #include <vector>
 #include "scripting/ScriptableComplex.h"

@@ -1,7 +1,5 @@
 /*
 CGUI
-by Gustav Larsson
-gee@pyro.nu
 */
 
 #include "precompiled.h"

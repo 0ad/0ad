@@ -3,13 +3,11 @@
  * File        : Profile.h
  * Project     : Pyrogenesis
  * Description : GPG3-style hierarchical profiler
- *
- * @author Mark Thompson (mark@wildfiregames.com / mot20@cam.ac.uk)
  * =========================================================================
  */
 
-#ifndef PROFILE_H_INCLUDED
-#define PROFILE_H_INCLUDED
+#ifndef INCLUDED_PROFILE
+#define INCLUDED_PROFILE
 
 #include <vector>
 #include "Singleton.h"
@@ -167,4 +165,4 @@ public:
 #define PROFILE_START( name ) { CProfileSample __profile( name )
 #define PROFILE_END( name ) }
 
-#endif // PROFILE_H_INCLUDED
+#endif // INCLUDED_PROFILE

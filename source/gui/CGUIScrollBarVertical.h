@@ -1,7 +1,5 @@
 /*
 A GUI ScrollBar
-by Gustav Larsson
-gee@pyro.nu
 
 --Overview--
 
@@ -19,8 +17,8 @@ gee@pyro.nu
 
 */
 
-#ifndef CGUIScrollBarVertical_H
-#define CGUIScrollBarVertical_H
+#ifndef INCLUDED_CGUISCROLLBARVERTICAL
+#define INCLUDED_CGUISCROLLBARVERTICAL
 
 //--------------------------------------------------------
 //  Includes / Compiler directives
@@ -32,8 +30,6 @@ gee@pyro.nu
 //--------------------------------------------------------
 
 /**
- * @author Gustav Larsson
- *
  * Vertical implementation of IGUIScrollBar
  *
  * @see IGUIScrollBar

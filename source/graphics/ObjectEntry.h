@@ -1,5 +1,5 @@
-#ifndef _OBJECTENTRY_H
-#define _OBJECTENTRY_H
+#ifndef INCLUDED_OBJECTENTRY
+#define INCLUDED_OBJECTENTRY
 
 class CModel;
 class CSkeletonAnim;

@@ -1,7 +1,5 @@
 /*
 Overlay.h
-by Rich Cross, rich@0ad.wildfiregames.com
-
 
 --Overview--
 
@@ -9,8 +7,8 @@ by Rich Cross, rich@0ad.wildfiregames.com
 	position, color, texture and borders.
 */
 
-#ifndef COVERLAY_H
-#define COVERLAY_H
+#ifndef INCLUDED_OVERLAY
+#define INCLUDED_OVERLAY
 
 class CStr8;
 
@@ -48,8 +46,6 @@ class CSize;
 
 
 /**
- * @author Gustav Larsson
- *
  * Rectangle class used for screen rectangles. It's very similar to the MS
  * CRect, but with FLOATS because it's meant to be used with OpenGL which
  * takes float values.
@@ -138,8 +134,6 @@ public:
 };
 
 /**
- * @author Gustav Larsson
- *
  * Made to represent screen positions and delta values.
  * @see CRect
  * @see CSize
@@ -176,8 +170,6 @@ public:
 };
 
 /**
- * @author Gustav Larsson
- *
  * Made to represent a screen size, should in philosophy
  * be made of unsigned ints, but for the sake of compatibility
  * with CRect and CPos it's not.

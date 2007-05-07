@@ -1,6 +1,4 @@
 // PathfindEngine.h
-//
-// Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 // 
 // The pathfinding engine singleton.
 //
@@ -8,8 +6,8 @@
 //
 // Mark Thompson mot20@cam.ac.uk / mark@wildfiregames.com
 
-#ifndef PATHFIND_ENGINE_INCLUDED
-#define PATHFIND_ENGINE_INCLUDED
+#ifndef INCLUDED_PATHFINDENGINE
+#define INCLUDED_PATHFINDENGINE
 
 #include "ps/Singleton.h"
 #include "EntityHandles.h"

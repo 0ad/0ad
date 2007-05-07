@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		FileUnpacker.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : FileUnpacker.h
+ * Project     : 0 A.D.
+ * Description : Buffer and 'stream' for reading binary files
+ * =========================================================================
+ */
 
-#ifndef _FILEUNPACKER_H
-#define _FILEUNPACKER_H
+#ifndef INCLUDED_FILEUNPACKER
+#define INCLUDED_FILEUNPACKER
 
 #include <vector>
 #include "lib/res/file/file_io.h"

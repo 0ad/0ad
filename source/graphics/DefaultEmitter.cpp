@@ -1,10 +1,10 @@
-/////////////////////////////////////////////////////
-//	File Name:	DefaultEmitter.cpp
-//	Date:		7/20/05
-//	Author:		Will Dull
-//	Purpose:	Implementation of the default
-//				emitter class.
-/////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : DefaultEmitter.cpp
+ * Project     : 0 A.D.
+ * Description : Default particle emitter implementation.
+ * =========================================================================
+ */
 
 #include "precompiled.h"
 #include "maths/MathUtil.h"

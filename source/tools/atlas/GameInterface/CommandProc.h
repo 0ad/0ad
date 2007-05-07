@@ -1,5 +1,5 @@
-#ifndef COMMANDPROC_H__
-#define COMMANDPROC_H__
+#ifndef INCLUDED_COMMANDPROC
+#define INCLUDED_COMMANDPROC
 
 #include <string>
 #include <list>
@@ -166,4 +166,4 @@ The following macros convert that into:
 
 }
 
-#endif // COMMANDPROC_H__
+#endif // INCLUDED_COMMANDPROC

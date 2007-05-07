@@ -1,7 +1,5 @@
 // JavaScript interface to native code selection and group objects
 
-// Mark Thompson (mot20@cam.ac.uk / mark@wildfiregames.com)
-
 #include "precompiled.h"
 #include "JSInterface_Selection.h"
 #include "ps/scripting/JSCollection.h"
@@ -96,4 +94,5 @@ JSBool JSI_Selection::setGroups( JSContext* cx, JSObject* UNUSED(obj),
 	
 	return( JS_TRUE );
 }
+
 

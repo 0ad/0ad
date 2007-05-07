@@ -1,9 +1,6 @@
 //***********************************************************
 //
 // Name:		CVector4D.h
-// Last Update:	02/11/03
-// Author:		Rich Cross
-//
 // Description: Provides an interface for a vector in R4 and
 //				allows vector and scalar operations on it
 //

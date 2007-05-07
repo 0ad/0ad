@@ -3,25 +3,13 @@
  * File        : dll_ver.h
  * Project     : 0 A.D.
  * Description : return DLL version information.
- *
- * @author Jan.Wassenberg@stud.uni-karlsruhe.de
  * =========================================================================
  */
 
-/*
- * Copyright (c) 2004 Jan Wassenberg
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see lib/license.txt
 
-#ifndef DLL_VER_H__
-#define DLL_VER_H__
+#ifndef INCLUDED_DLL_VER
+#define INCLUDED_DLL_VER
 
 // note: this module is not re-entrant or thread-safe!
 
@@ -35,4 +23,4 @@ extern void dll_list_init(char* buf, size_t chars);
 // we add the .dll extension if necessary.
 extern LibError dll_list_add(const char* name);
 
-#endif	// #ifndef DLL_VER_H__
+#endif	// #ifndef INCLUDED_DLL_VER

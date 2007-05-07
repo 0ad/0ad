@@ -1,13 +1,13 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-// Name:		Bound.h
-// Author:		Rich Cross
-// Contact:		rich@wildfiregames.com
-//
-///////////////////////////////////////////////////////////////////////////////
+/**
+ * =========================================================================
+ * File        : Bound.h
+ * Project     : 0 A.D.
+ * Description : Axis-aligned bounding box
+ * =========================================================================
+ */
 
-#ifndef _BOUND_H
-#define _BOUND_H
+#ifndef INCLUDED_BOUND
+#define INCLUDED_BOUND
 
 // necessary includes
 #include "Vector3D.h"

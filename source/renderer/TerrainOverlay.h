@@ -7,8 +7,8 @@
  * =========================================================================
  */
 
-#ifndef __TERRAINOVERLAY_H__
-#define __TERRAINOVERLAY_H__
+#ifndef INCLUDED_TERRAINOVERLAY
+#define INCLUDED_TERRAINOVERLAY
 
 #include "ps/Overlay.h" // for CColor
 
@@ -147,4 +147,4 @@ public:
 ExampleTerrainOverlay test; // or allocate it dynamically somewhere
 */
 
-#endif // __TERRAINOVERLAY_H__
+#endif // INCLUDED_TERRAINOVERLAY

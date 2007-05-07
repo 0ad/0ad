@@ -1,5 +1,5 @@
-#ifndef _ps_GameRecord_H
-#define _ps_GameRecord_H
+#ifndef INCLUDED_GAMERECORD
+#define INCLUDED_GAMERECORD
 
 #include "CStr.h"
 

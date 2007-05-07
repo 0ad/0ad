@@ -1,5 +1,5 @@
-#ifndef _NetworkInternal_H
-#define _NetworkInternal_H
+#ifndef INCLUDED_NETWORK_NETWORKINTERNAL
+#define INCLUDED_NETWORK_NETWORKINTERNAL
 
 #include <map>
 

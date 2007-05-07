@@ -1,5 +1,5 @@
 /*
-
+///////////////////////////////////////////////
 	CTerrainProperties
 	
 	Basically represents a set of terrain attributes loaded from XML. These
@@ -7,8 +7,8 @@
 
 */
 
-#ifndef graphics_TerrainProperties_H
-#define graphics_TerrainProperties_H
+#ifndef INCLUDED_TERRAINPROPERTIES
+#define INCLUDED_TERRAINPROPERTIES
 
 #include "ps/CStr.h"
 #include <boost/shared_ptr.hpp>

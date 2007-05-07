@@ -1,14 +1,10 @@
-/***************************************************************************************
-	AUTHOR:			John M. Mena
-	EMAIL:			JohnMMena@hotmail.com
-	FILE:			CConsole.h
-	CREATED:		12/3/03
-	COMPLETED:		NULL
-
-	DESCRIPTION:	The class CConsole provides an interface to the
-					scripting abilities of an engine.
-****************************************************************************************/
-
+/**
+ * =========================================================================
+ * File        : CConsole.h
+ * Project     : 0 A.D.
+ * Description : Implements the in-game console with scripting support.
+ * =========================================================================
+ */
 
 #include <stdarg.h>
 #include <string>
@@ -19,8 +15,8 @@
 
 #include "lib/input.h"
 
-#ifndef CCONSOLE_H
-#define CCONSOLE_H
+#ifndef INCLUDED_CCONSOLE
+#define INCLUDED_CCONSOLE
 
 #define CONSOLE_BUFFER_SIZE 1024 // for text being typed into the console
 #define CONSOLE_MESSAGE_SIZE 1024 // for messages being printed into the console

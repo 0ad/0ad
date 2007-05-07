@@ -7,8 +7,8 @@
 #include "simulation/ScriptObject.h"
 #include "scripting/JSConversions.h"
 
-#ifndef JS_COLLECTION_INCLUDED
-#define JS_COLLECTION_INCLUDED
+#ifndef INCLUDED_JSCOLLECTION
+#define INCLUDED_JSCOLLECTION
 
 template<typename T, JSClass* ScriptType> class CJSCollection
 {

@@ -1,5 +1,4 @@
-/* Andrew Decker, a.k.a pyrolink
-   Contact ajdecker1022@msn.com
+/*
    Desc: receives user input and communicates with the engine
         to perform various cinematic functions.
 */

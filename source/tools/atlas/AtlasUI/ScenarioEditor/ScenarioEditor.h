@@ -1,5 +1,5 @@
-#ifndef SCENARIOEDITOR_H__
-#define SCENARIOEDITOR_H__
+#ifndef INCLUDED_SCENARIOEDITOR
+#define INCLUDED_SCENARIOEDITOR
 
 #include "General/AtlasWindowCommandProc.h"
 #include "CustomControls/FileHistory/FileHistory.h"
@@ -47,4 +47,4 @@ private:
 	DECLARE_EVENT_TABLE();
 };
 
-#endif // SCENARIOEDITOR_H__
+#endif // INCLUDED_SCENARIOEDITOR

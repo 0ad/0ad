@@ -4,8 +4,8 @@
  * Description : Contains the CWorld Class which contains all the entities and represents them at a specific moment in time.
  *
  **/
-#ifndef _ps_World_H
-#define _ps_World_H
+#ifndef INCLUDED_WORLD
+#define INCLUDED_WORLD
 
 #include "ps/Errors.h"
 
