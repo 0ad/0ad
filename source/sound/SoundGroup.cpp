@@ -7,32 +7,18 @@
 * =========================================================================
 */
 
-/*
- * Copyright (c) 2005-2006 Gavin Fowler
- *
- * Redistribution and/or modification are also permitted under the
- * terms of the GNU General Public License as published by the
- * Free Software Foundation (version 2 or later, at your option).
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- */
+// license: GPL; see sound/license.txt
 
 #include "precompiled.h"
+#include "SoundGroup.h"
 
 #include <algorithm>
 
-#include "SoundGroup.h"
-
 #include "ps/XML/Xeromyces.h"
-
 #include "ps/CLogger.h"
-
 #include "lib/lib.h"
 
 #define LOG_CATEGORY "audio"
-
 
 
 CSoundGroup::CSoundGroup()

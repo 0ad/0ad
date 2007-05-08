@@ -13,7 +13,7 @@
 
 #include "winit.h"
 #include "wdbg.h"			// wdbg_exception_filter
-#include "win_internal.h"	// GetExceptionInformation
+#include "win.h"	// GetExceptionInformation
 
 #if MSC_VERSION >= 1400
 #include <process.h>		// __security_init_cookie

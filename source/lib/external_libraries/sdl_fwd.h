@@ -1,3 +1,13 @@
+/**
+ * =========================================================================
+ * File        : sdl_fwd.h
+ * Project     : 0 A.D.
+ * Description : forward declaration of SDL_Event
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
 #ifndef INCLUDED_SDL_FWD
 #define INCLUDED_SDL_FWD
 
@@ -9,7 +19,7 @@
 // SDL_Event is needed. unfortunately it cannot be forward-declared,
 // because it is a union (regrettable design mistake).
 // we fix this by wrapping it in a struct, which can safely be
-// forward-declared and used for pointers.
+// forward-declared and used for SDL_Event_* parameters.
 struct SDL_Event_;
 
 #endif	// #ifndef INCLUDED_SDL_FWD

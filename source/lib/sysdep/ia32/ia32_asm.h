@@ -1,3 +1,13 @@
+/**
+ * =========================================================================
+ * File        : ia32_asm.h
+ * Project     : 0 A.D.
+ * Description : interface to various IA-32 functions (written in asm)
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
 #ifndef INCLUDED_IA32_ASM
 #define INCLUDED_IA32_ASM
 

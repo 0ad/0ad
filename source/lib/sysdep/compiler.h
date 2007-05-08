@@ -1,6 +1,15 @@
+/**
+ * =========================================================================
+ * File        : compiler.h
+ * Project     : 0 A.D.
+ * Description : compiler-specific macros and fixes
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
 #ifndef INCLUDED_COMPILER
 #define INCLUDED_COMPILER
-
 
 // pass "omit frame pointer" setting on to the compiler
 #if MSC_VERSION

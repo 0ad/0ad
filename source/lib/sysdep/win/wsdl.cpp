@@ -16,7 +16,7 @@
 #include <queue>
 #include <algorithm>
 
-#include "win_internal.h"
+#include "win.h"
 #include <ddraw.h>
 #include <process.h>	// _beginthreadex
 #include <WindowsX.h>	// message crackers

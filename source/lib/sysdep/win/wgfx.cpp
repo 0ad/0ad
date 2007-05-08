@@ -12,7 +12,7 @@
 #include "lib/sysdep/gfx.h"
 
 #include "dll_ver.h"	// dll_list_*
-#include "win_internal.h"
+#include "win.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "advapi32.lib")	// registry

@@ -1,3 +1,13 @@
+/**
+ * =========================================================================
+ * File        : zlib.h
+ * Project     : 0 A.D.
+ * Description : bring in ZLib header+library, with compatibility fixes
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
 // zlib.h -> zconf.h includes <windows.h>, which causes conflicts.
 // define the include guard to prevent it from actually being included and
 // then manually define the few things that are actually needed.

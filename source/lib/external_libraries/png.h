@@ -1,3 +1,13 @@
+/**
+ * =========================================================================
+ * File        : png.h
+ * Project     : 0 A.D.
+ * Description : bring in LibPNG header+library, with compatibility fixes
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
 // <png.h> includes <zlib.h>, which requires some fixes by our header.
 #include "lib/external_libraries/zlib.h"
 

@@ -1,3 +1,13 @@
+/**
+ * =========================================================================
+ * File        : wcpu.h
+ * Project     : 0 A.D.
+ * Description : Windows backend for CPU related code
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
 #ifndef INCLUDED_WCPU
 #define INCLUDED_WCPU
 

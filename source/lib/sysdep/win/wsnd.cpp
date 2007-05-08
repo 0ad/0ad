@@ -19,7 +19,7 @@
 #include "lib/path_util.h"
 #include "lib/res/file/file.h"
 #include "dll_ver.h"	// dll_list_*
-#include "win_internal.h"
+#include "win.h"
 #include "wutil.h"
 
 

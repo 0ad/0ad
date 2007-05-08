@@ -16,7 +16,7 @@
 
 #include "lib/path_util.h"
 #include "lib/posix/posix.h"
-#include "win_internal.h"
+#include "win.h"
 #include "winit.h"
 
 

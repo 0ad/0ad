@@ -1,4 +1,12 @@
-// define "Handle". split out of h_mgr.h to reduce dependencies.
+/**
+ * =========================================================================
+ * File        : handle.h
+ * Project     : 0 A.D.
+ * Description : forward declaration of Handle (reduces dependencies)
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
 
 #ifndef INCLUDED_HANDLE
 #define INCLUDED_HANDLE

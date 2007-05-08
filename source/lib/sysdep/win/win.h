@@ -1,8 +1,8 @@
 /**
  * =========================================================================
- * File        : win_internal.h
+ * File        : win.h
  * Project     : 0 A.D.
- * Description : include <windows.h>, with compatibility fixes afterwards
+ * Description : bring in <windows.h> with compatibility fixes
  * =========================================================================
  */
 
@@ -12,7 +12,7 @@
 #define INCLUDED_WIN
 
 #if !OS_WIN
-#error "win_internal.h: do not include if not compiling for Windows"
+#error "win.h: do not include if not compiling for Windows"
 #endif
 
 // Win32 socket declarations aren't portable (e.g. problems with socklen_t)

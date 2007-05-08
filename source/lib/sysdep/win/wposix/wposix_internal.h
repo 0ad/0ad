@@ -2,7 +2,7 @@
 #define INCLUDED_WPOSIX_INTERNAL
 
 #include "lib/lib.h"
-#include "lib/sysdep/win/win_internal.h"
+#include "lib/sysdep/win/win.h"
 #include "lib/sysdep/win/winit.h"
 #include "lib/sysdep/win/wutil.h"
 

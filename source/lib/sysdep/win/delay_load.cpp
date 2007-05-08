@@ -14,7 +14,7 @@
 #include "delay_load.h"
 
 #include "lib/sysdep/cpu.h"
-#include "win_internal.h"
+#include "win.h"
 #include "winit.h"
 
 
@@ -622,6 +622,7 @@ static FARPROC WINAPI notify_hook(unsigned dliNotify, PDelayLoadInfo pdli)
 
 EXTERN_C PfnDliHook __pfnDliNotifyHook2 = notify_hook;
 EXTERN_C PfnDliHook __pfnDliFailureHook2 = 0;
+
 
 
 

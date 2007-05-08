@@ -31,7 +31,7 @@
 
 // for DLL-load hack in alc_init
 #if OS_WIN
-# include "lib/sysdep/win/win_internal.h"
+# include "lib/sysdep/win/win.h"
 #endif
 
 #include "lib/res/res.h"

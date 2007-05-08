@@ -5,10 +5,10 @@
 
 #include "lib/self_test.h"
 
-#include "lib/sysdep/win/win_internal.h"	// HWND
+#include "lib/sysdep/win/win.h"	// HWND
 #include "lib/debug.h"	// no wdbg_sym interface needed
 #include "lib/sysdep/sysdep.h"
-#include "lib/sysdep/win/win_internal.h"
+#include "lib/sysdep/win/win.h"
 
 #include <queue>
 #include <deque>

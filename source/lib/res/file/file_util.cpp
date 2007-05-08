@@ -1,3 +1,13 @@
+/**
+ * =========================================================================
+ * File        : file_util.cpp
+ * Project     : 0 A.D.
+ * Description : utility functions for file and path handling modules
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
 #include "precompiled.h"
 
 #include <queue>

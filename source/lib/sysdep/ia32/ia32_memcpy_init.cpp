@@ -1,3 +1,13 @@
+/**
+ * =========================================================================
+ * File        : ia32_memcpy_init.cpp
+ * Project     : 0 A.D.
+ * Description : initialization for ia32_memcpy (detect CPU caps)
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
 #include "precompiled.h"
 
 #include "ia32.h"

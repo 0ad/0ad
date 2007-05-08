@@ -15,7 +15,7 @@
 #error "wutil.h: do not include if not compiling for Windows"
 #endif
 
-#include "win_internal.h"
+#include "win.h"
 
 
 //-----------------------------------------------------------------------------

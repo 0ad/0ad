@@ -20,7 +20,7 @@
 #include "lib/byte_order.h"		// FOURCC
 #include "lib/app_hooks.h"
 #include "lib/sysdep/cpu.h"
-#include "win_internal.h"
+#include "win.h"
 #include "wdbg_sym.h"
 #include "winit.h"
 #include "wutil.h"
@@ -798,6 +798,7 @@ bool debug_is_stack_ptr(void* p)
 
 	return true;
 }
+
 
 
 

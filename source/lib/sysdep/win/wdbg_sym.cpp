@@ -24,7 +24,7 @@
 #if CPU_IA32
 # include "lib/sysdep/ia32/ia32.h"
 #endif
-#include "win_internal.h"
+#include "win.h"
 #include "winit.h"
 #include "wutil.h"
 

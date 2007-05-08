@@ -18,7 +18,7 @@
 #include "lib/lib.h"
 #include "lib/path_util.h"
 #include "lib/res/file/file.h"	// path_is_subpath
-#include "win_internal.h"
+#include "win.h"
 #include "winit.h"
 #include "wutil.h"
 

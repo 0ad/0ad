@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 #include "lib/path_util.h"
-#include "win_internal.h"
+#include "win.h"
 #include "wutil.h"
 
 #if MSC_VERSION

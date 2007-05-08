@@ -2,7 +2,7 @@
  * =========================================================================
  * File        : wcpu.cpp
  * Project     : 0 A.D.
- * Description : Windows-specific CPU related code
+ * Description : Windows backend for CPU related code
  * =========================================================================
  */
 
@@ -14,7 +14,7 @@
 #include "lib/lib.h"
 #include "lib/posix/posix_pthread.h"
 #include "lib/posix/posix_time.h"
-#include "win_internal.h"
+#include "win.h"
 #include "wutil.h"
 
 // limit allows statically allocated per-CPU structures (for simplicity).

@@ -2,7 +2,7 @@
  * =========================================================================
  * File        : wxwidgets.h
  * Project     : 0 A.D.
- * Description : pulls in wxWidgets headers, with compatibility fixes
+ * Description : bring in wxWidgets headers, with compatibility fixes
  * =========================================================================
  */
 

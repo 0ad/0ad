@@ -2,7 +2,7 @@
  * =========================================================================
  * File        : ia32.h
  * Project     : 0 A.D.
- * Description : C++ and inline asm implementations for IA-32.
+ * Description : C++ and inline asm implementations of IA-32 functions
  * =========================================================================
  */
 

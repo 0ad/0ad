@@ -11,7 +11,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/sysdep.h"
 
-#include "win_internal.h"	// includes windows.h; must come before shlobj
+#include "win.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
 
 #include "lib/lib.h"
@@ -606,5 +606,6 @@ LibError sys_pick_directory(char* path, size_t buf_size)
 
 	return LibError_from_win32(ok);
 }
+
 
 
