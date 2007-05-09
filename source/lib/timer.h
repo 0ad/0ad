@@ -54,9 +54,10 @@ extern void calc_fps(void);
 // note that overflow isn't an issue either way (63 bit cycle counts
 // at 10 GHz cover intervals of 29 years).
 
-#if CPU_IA32
+#if CONFIG_TIMER_ALLOW_RDTSC
 
-// fast, not usable as wall-clock (http://www.gamedev.net/reference/programming/features/timing)
+// fast, IA-32 specific, not usable as wall-clock
+// (see http://www.gamedev.net/reference/programming/features/timing)
 class TimerRdtsc
 {
 public:
@@ -76,7 +77,7 @@ public:
 	}
 };
 
-#if CPU_IA32 && TIMER_ALLOW_RDTSC
+#if CONFIG_TIMER_ALLOW_RDTSC
 typedef TimerRdtsc Timer;
 #else
 typedef TimerSafe Timer;

@@ -15,8 +15,8 @@
 #include <stdlib.h>
 #include <algorithm>
 
-#include "lib/lib.h"
 #include "lib/timer.h"
+#include "lib/bits.h"
 #include "lib/res/res.h"
 
 #include "tex_codec.h"
@@ -192,7 +192,7 @@ static void create_level(uint level, uint level_w, uint level_h,
 			// image is either a horizontal or vertical line.
 			// their memory layout is the same (packed pixels), so no special
 			// handling is needed; just pick max dimension.
-			for(uint y = 0; y < MAX(src_w, src_h); y += 2)
+			for(uint y = 0; y < std::max(src_w, src_h); y += 2)
 			{
 				for(uint i = 0; i < num_components; i++)
 				{

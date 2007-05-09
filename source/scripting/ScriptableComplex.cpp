@@ -18,7 +18,7 @@ static uint suballoc_refs;	// initialized in suballoc_attach
 void jscomplexproperty_suballoc_attach()
 {
 	ONCE(\
-		size_t el_size = MAX(sizeof(CJSValComplexProperty), sizeof(CJSComplexProperty<int, true>));\
+		size_t el_size = std::max(sizeof(CJSValComplexProperty), sizeof(CJSComplexProperty<int, true>));\
 		(void)bucket_create(&bucket, el_size);\
 		suballoc_refs = 0;\
 	);

@@ -54,7 +54,6 @@
 
 #include "lib/mmgr.h"		// restore malloc/new macros
 
-#include "lib/lib.h"
 #include "lib/res/handle.h"
 #include "lib/res/file/file.h"
 #include "XercesErrorHandler.h"

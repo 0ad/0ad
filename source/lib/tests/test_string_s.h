@@ -1,6 +1,5 @@
 #include "lib/self_test.h"
 
-#include "lib/lib.h"
 #include "lib/string_s.h"
 
 // note: we only test the char version. this avoids having to

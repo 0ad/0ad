@@ -5,7 +5,6 @@
 #include <wchar.h>
 
 #include "lib/sdl.h"
-#include "lib/lib.h"
 #include "lib/sysdep/sysdep.h"
 #include "udbg.h"
 

@@ -22,7 +22,6 @@
 #include <WindowsX.h>	// message crackers
 
 #include "lib/posix/posix_pthread.h"
-#include "lib/lib.h"
 #include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
 #include "winit.h"
 #include "wutil.h"
@@ -100,7 +99,7 @@ static LibError calc_gamma_ramp(float gamma, u16* ramp)
 		// don't add 1/256 - this isn't time-critical and
 		// accuracy is more important.
 		// need a temp variable to disambiguate pow() argument type.
-		ramp[i] = fp_to_u16(pow(frac, inv_gamma));
+		ramp[i] = u16_from_double(pow(frac, inv_gamma));
 	}
 
 	return INFO::OK;
@@ -924,7 +923,7 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int scr
 	// false due to its window-on-top check, so we better not
 	// ignore messages based on that. it is safest to clamp coords to
 	// what the app can handle.
-	uint x = MAX(client_x, 0), y = MAX(client_y, 0);
+	uint x = std::max(client_x, 0), y = std::max(client_y, 0);
 	queue_button_event(button, state, x, y);
 	return 0;
 }

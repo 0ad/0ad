@@ -11,7 +11,7 @@
 #include "precompiled.h"
 #include "cpu.h"
 
-#include "lib/lib.h"
+#include "lib/bits.h"
 #include "lib/posix/posix.h"
 #if CPU_IA32
 # include "lib/sysdep/ia32/ia32.h"

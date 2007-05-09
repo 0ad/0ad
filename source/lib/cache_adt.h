@@ -147,7 +147,7 @@ public:
 
 	void notify_decreased(const Entry& entry)
 	{
-		min_credit_density = MIN(min_credit_density, entry.credit_density());
+		min_credit_density = std::min(min_credit_density, entry.credit_density());
 	}
 
 	void notify_impending_increase_or_remove(const Entry& entry)

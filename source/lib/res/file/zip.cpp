@@ -14,7 +14,7 @@
 #include <time.h>
 #include <limits>
 
-#include "lib/lib.h"
+#include "lib/bits.h"
 #include "lib/byte_order.h"
 #include "lib/allocators.h"
 #include "lib/timer.h"
@@ -361,7 +361,7 @@ static LibError za_find_ecdr(File* f, size_t max_scan_amount, ECDR* dst_ecdr_le)
 {
 	// don't scan more than the entire file
 	const size_t file_size = f->size;
-	const size_t scan_amount = MIN(max_scan_amount, file_size);
+	const size_t scan_amount = std::min(max_scan_amount, file_size);
 
 	// read desired chunk of file into memory
 	const off_t ofs = (off_t)(file_size - scan_amount);

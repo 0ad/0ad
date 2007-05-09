@@ -1,6 +1,5 @@
 #include "lib/self_test.h"
 
-#include "lib/lib.h"
 #include "lib/self_test.h"
 #include "lib/res/file/path.h"
 #include "lib/res/file/file.h"

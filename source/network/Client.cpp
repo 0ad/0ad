@@ -1,7 +1,5 @@
 #include "precompiled.h"
 
-#include "lib/lib.h"
-
 #include "scripting/DOMEvent.h"
 #include "scripting/JSConversions.h"
 #include "scripting/ScriptableObject.h"

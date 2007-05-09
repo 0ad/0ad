@@ -8,8 +8,6 @@
 
 #include "precompiled.h"
 
-#include "lib/lib.h"
-
 #include "Patch.h"
 #include "MiniPatch.h"
 #include "Terrain.h"
@@ -36,5 +34,6 @@ void CMiniPatch::GetTileIndex(u32& x,u32& z)
 	x=(m_Parent->m_X*PATCH_SIZE)+tindex%PATCH_SIZE;
 	z=(m_Parent->m_Z*PATCH_SIZE)+tindex/PATCH_SIZE;
 }
+
 
 

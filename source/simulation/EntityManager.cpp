@@ -212,10 +212,10 @@ void CEntityManager::GetInRange( float x, float z, float radius, std::vector<CEn
 
 	int r = (int) ( radius / COLLISION_PATCH_SIZE + 1 );
 
-	int minX = MAX(cx-r, 0);
-	int minZ = MAX(cz-r, 0);
-	int maxX = MIN(cx+r, m_collisionPatchesPerSide-1);
-	int maxZ = MIN(cz+r, m_collisionPatchesPerSide-1);
+	int minX = std::max(cx-r, 0);
+	int minZ = std::max(cz-r, 0);
+	int maxX = std::min(cx+r, m_collisionPatchesPerSide-1);
+	int maxZ = std::min(cz+r, m_collisionPatchesPerSide-1);
 		
 	for( int px = minX; px <= maxX; px++ ) 
 	{

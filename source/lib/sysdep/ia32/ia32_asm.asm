@@ -297,6 +297,21 @@ sym(ia32_asm_rdtsc_edx_eax):
 	ret
 
 
+; extern "C" int ia32_asm_log2_of_pow2(uint n)
+global sym(ia32_asm_log2_of_pow2)
+sym(ia32_asm_log2_of_pow2):
+	mov		ecx, [esp+4]	; n
+	or		eax, -1			; return value if not a POT
+	test	ecx, ecx
+	jz		.not_pot
+	lea		edx, [ecx-1]
+	test	ecx, edx
+	jnz		.not_pot
+	bsf		eax, ecx
+.not_pot:
+	ret
+
+
 ; write the current execution state (e.g. all register values) into
 ; (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).
 ; optimized for size; this must be straight asm because ; extern "C"

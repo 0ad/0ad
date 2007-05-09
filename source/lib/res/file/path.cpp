@@ -14,7 +14,6 @@
 #include <string.h>
 
 #include "lib/posix/posix_filesystem.h"
-#include "lib/lib.h"
 #include "lib/adts.h"
 #include "lib/allocators.h"
 #include "lib/sysdep/sysdep.h"

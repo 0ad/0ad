@@ -31,7 +31,6 @@ AT_STARTUP(\
 #include <stdarg.h>
 #include <new>
 
-#include "lib.h"
 #include "posix/posix.h"
 #include "debug.h"
 
@@ -507,9 +506,9 @@ static void stats_add(const Alloc* a)
 	stats.total_mem      += size;
 	stats.total_allocs++;
 
-	stats.peak_user_mem = MAX(stats.peak_user_mem, stats.cur_user_mem);
-	stats.peak_mem      = MAX(stats.peak_mem, stats.cur_mem);
-	stats.peak_allocs   = MAX(stats.peak_allocs, stats.cur_allocs);
+	stats.peak_user_mem = std::max(stats.peak_user_mem, stats.cur_user_mem);
+	stats.peak_mem      = std::max(stats.peak_mem, stats.cur_mem);
+	stats.peak_allocs   = std::max(stats.peak_allocs, stats.cur_allocs);
 }
 
 static void stats_remove(const Alloc* a)
@@ -1212,7 +1211,7 @@ void* realloc_dbg(const void* user_p, size_t user_size, AllocType type, const ch
 	// old_size should only be non-zero if the Alloc security checks all passed
 	// If the old buffer was actually zero bytes large, do nothing :P
 	if (old_size && ret)
-		cpu_memcpy(ret, user_p, MIN(old_size, user_size));
+		cpu_memcpy(ret, user_p, std::min(old_size, user_size));
 
 	if(user_p)
 		free_dbg(user_p, AT_FREE, file,line,func, stack_frames+1);

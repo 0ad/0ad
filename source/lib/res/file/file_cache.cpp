@@ -16,6 +16,7 @@
 
 #include "lib/posix/posix_mman.h"
 #include "lib/allocators.h"
+#include "lib/bits.h"
 #include "lib/byte_order.h"
 #include "lib/cache_adt.h"
 #include "file_internal.h"
@@ -499,7 +500,7 @@ private:
 	// except for i=0, which corresponds to size=1.
 	static uint size_class_of(size_t size_pa)
 	{
-		return log2((uint)size_pa);
+		return ceil_log2((uint)size_pa);
 	}
 
 	// value of LSB 1-bit.

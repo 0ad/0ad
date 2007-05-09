@@ -17,7 +17,7 @@
 #include <algorithm>
 
 #include "lib/posix/posix_pthread.h"
-#include "lib/lib.h"
+#include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/sysdep/cpu.h"
 
@@ -456,7 +456,7 @@ static void StoreApicId(void* param)
 // used to gather e.g. all core IDs from all APIC IDs.
 static void ExtractFieldsIntoSet(const Ids& apic_ids, uint& bit_pos, uint num_values, IdSet& ids)
 {
-	const uint id_bits = log2(num_values);	// (rounded up)
+	const uint id_bits = ceil_log2(num_values);
 	if(id_bits == 0)
 		return;
 

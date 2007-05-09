@@ -14,8 +14,6 @@
 #include <string.h>
 #include <errno.h>
 
-#include "lib.h"
-
 
 AT_STARTUP(\
 	error_setDescription(ERR::PATH_LENGTH, "Path exceeds PATH_MAX characters");\
@@ -236,7 +234,7 @@ const char* path_name_only(const char* path)
 		return path;
 
 	// return name, i.e. component after the last portable or platform slash
-	return MAX(slash1, slash2)+1;
+	return std::max(slash1, slash2)+1;
 }
 
 

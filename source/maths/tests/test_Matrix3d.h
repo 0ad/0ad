@@ -2,7 +2,6 @@
 
 #include <cstdlib>
 #include <cmath>
-#include "lib/lib.h"
 #include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
 
@@ -65,4 +64,5 @@ public:
 		}
 	}
 };
+
 

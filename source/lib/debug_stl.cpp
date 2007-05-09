@@ -16,7 +16,7 @@
 #include <set>
 #include <cassert>
 
-#include "lib.h"	// match_wildcard
+#include "regex.h"
 
 
 AT_STARTUP(\
@@ -251,7 +251,7 @@ class Any_deque : public std::deque<int>
 	const u8* get_item(size_t i, size_t el_size) const
 	{
 		const u8** map = (const u8**)_Map;
-		const size_t el_per_bucket = MAX(16 / el_size, 1);
+		const size_t el_per_bucket = std::max(16u / el_size, 1u);
 		const size_t bucket_idx = i / el_per_bucket;
 		const size_t idx_in_bucket = i - bucket_idx * el_per_bucket;
 		const u8* bucket = map[bucket_idx];
@@ -266,7 +266,7 @@ public:
 #if STL_DINKUMWARE
 		if(!container_valid(_Map, _Mysize))
 			return false;
-		const size_t el_per_bucket = MAX(16 / el_size, 1);	// see _DEQUESIZ
+		const size_t el_per_bucket = std::max(16u / el_size, 1u);	// see _DEQUESIZ
 		// initial element is beyond end of first bucket
 		if(_Myoff >= el_per_bucket)
 			return false;

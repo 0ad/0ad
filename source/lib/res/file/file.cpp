@@ -19,7 +19,6 @@
 #include "lib/posix/posix_filesystem.h"
 #include "lib/posix/posix_aio.h"
 #include "lib/posix/posix_mman.h"
-#include "lib/lib.h"
 #include "lib/adts.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/byte_order.h"

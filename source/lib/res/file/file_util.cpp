@@ -12,6 +12,7 @@
 
 #include <queue>
 
+#include "lib/regex.h"
 #include "file_internal.h"
 
 
@@ -285,7 +286,7 @@ void next_numbered_filename(const char* fn_fmt,
 				while(vfs_dir_next_ent(hd, &ent, 0) == INFO::OK)
 				{
 					if(!DIRENT_IS_DIR(&ent) && sscanf(ent.name, name_fmt, &num) == 1)
-						max_num = MAX(num, max_num);
+						max_num = std::max(num, max_num);
 				}
 				(void)vfs_dir_close(hd);
 			}
@@ -297,7 +298,7 @@ void next_numbered_filename(const char* fn_fmt,
 			{
 				while(dir_next_ent(&it, &ent) == INFO::OK)
 					if(!DIRENT_IS_DIR(&ent) && sscanf(ent.name, name_fmt, &num) == 1)
-						max_num = MAX(num, max_num);
+						max_num = std::max(num, max_num);
 				(void)dir_close(&it);
 			}
 		}

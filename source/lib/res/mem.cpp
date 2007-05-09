@@ -16,7 +16,7 @@
 #include <map>
 
 #include "lib/posix/posix_pthread.h"
-#include "lib/lib.h"
+#include "lib/bits.h"
 #include "lib/allocators.h"	// OverrunProtector
 #include "h_mgr.h"
 

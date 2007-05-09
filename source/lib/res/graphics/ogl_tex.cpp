@@ -12,9 +12,9 @@
 #include "precompiled.h"
 #include "ogl_tex.h"
 
-#include "lib/lib.h"
 #include "lib/app_hooks.h"
 #include "lib/ogl.h"
+#include "lib/bits.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/res.h"
 #include "tex.h"
@@ -741,7 +741,7 @@ static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_
 		// require uploading unused levels, which is wasteful.
 		// .. can be expanded to reduce to 1/4, 1/8 by encoding factor in q_flags.
 		const uint reduce = (q_flags & OGL_TEX_HALF_RES)? 2 : 1;
-		*plevels_to_skip = log2(reduce);
+		*plevels_to_skip = ceil_log2(reduce);
 	}
 
 	return INFO::OK;

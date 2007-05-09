@@ -138,10 +138,10 @@ void CLOSManager::Update()
 		int cx, cz;
 		CTerrain::CalcFromPosition(e->m_position.X, e->m_position.Z, cx, cz);
 
-		int minX = MAX(cx-los, 0);
-		int minZ = MAX(cz-los, 0);
-		int maxX = MIN(cx+los, (int)m_TilesPerSide_1);
-		int maxZ = MIN(cz+los, (int)m_TilesPerSide_1);
+		int minX = std::max(cx-los, 0);
+		int minZ = std::max(cz-los, 0);
+		int maxX = std::min(cx+los, (int)m_TilesPerSide_1);
+		int maxZ = std::min(cz+los, (int)m_TilesPerSide_1);
 
 		for(int x=minX; x<=maxX; x++) 
 		{
@@ -251,4 +251,5 @@ EUnitLOSStatus CLOSManager::GetUnitStatus(CEntity* entity, CPlayer* player)
 {
 	return GetUnitStatus( entity->m_actor, player );
 }
+
 

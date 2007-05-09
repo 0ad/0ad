@@ -11,7 +11,6 @@
 
 #include "CConsole.h"
 
-#include "lib/lib.h"
 #include "lib/ogl.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/graphics/unifont.h"

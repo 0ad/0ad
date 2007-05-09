@@ -9,7 +9,6 @@
 #include "precompiled.h"
 #include "ogl_shader.h"
 
-#include "lib/lib.h"
 #include "lib/res/res.h"
 #include "lib/ogl.h"
 

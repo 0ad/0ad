@@ -2,7 +2,6 @@
 
 #include <time.h>
 
-#include "lib/lib.h"
 #include "lib/res/file/zip.h"
 
 class TestZip : public CxxTest::TestSuite 

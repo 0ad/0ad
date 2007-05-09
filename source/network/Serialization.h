@@ -1,8 +1,6 @@
 #ifndef INCLUDED_NETWORK_SERIALIZATION
 #define INCLUDED_NETWORK_SERIALIZATION
 
-#include "lib/lib.h"
-
 #define Serialize_int_1(_pos, _val) \
 	STMT( *((_pos)++) = (u8)((_val)&0xff); )
 

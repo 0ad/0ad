@@ -75,6 +75,20 @@ extern void write_be16(void* p, u16 x);
 extern void write_be32(void* p, u32 x);	/// see write_be16
 extern void write_be64(void* p, u64 x);	/// see write_be16
 
+/**
+ * zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
+ * starting at address <p> (need not be aligned).
+ **/
+extern u64 movzx_le64(const u8* p, size_t size);
+extern u64 movzx_be64(const u8* p, size_t size);
+
+/**
+ * sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
+ * starting at address <p> (need not be aligned).
+ **/
+extern i64 movsx_le64(const u8* p, size_t size);
+extern i64 movsx_be64(const u8* p, size_t size);
+
 
 // Debug-mode ICC doesn't like the intrinsics, so only use them
 // for MSVC and non-debug ICC.

@@ -3,6 +3,7 @@
 #include "ColladaManager.h"
 
 #include "graphics/ModelDef.h"
+#include "lib/fnv_hash.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/handle.h"
 #include "ps/CLogger.h"

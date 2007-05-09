@@ -1,4 +1,3 @@
-#include "lib/lib.h"
 #include "lib/self_test.h"
 
 #include "lib/sysdep/sysdep.h"

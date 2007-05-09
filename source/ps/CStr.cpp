@@ -10,6 +10,7 @@
 #define CStr_CPP_FIRST
 
 #include "lib/posix/posix_sock.h" // htons, ntohs
+#include "lib/fnv_hash.h"
 #include "network/Serialization.h"
 #include <cassert>
 

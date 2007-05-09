@@ -1,7 +1,6 @@
 #include "precompiled.h"
 
 #include "Parser.h"
-#include "lib/lib.h"
 
 #if MSC_VERSION
 #pragma warning(disable:4786)

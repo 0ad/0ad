@@ -126,7 +126,7 @@ bool CMusicPlayer::Issue(int slot_idx)
 	Buf* buf = &bufs[slot_idx];
 
 	ssize_t left = (ssize_t)memFile.dataSize - (ssize_t)memFile.dataRead;
-	ssize_t size = MIN(64*KB, left);
+	ssize_t size = std::min(64*KB, left);
 	debug_assert(size >= 0);
 	void* data = memFile.dataPtr;
 	data = (char*)data + memFile.dataRead;

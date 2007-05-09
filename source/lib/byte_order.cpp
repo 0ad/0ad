@@ -11,6 +11,7 @@
 #include "precompiled.h"
 #include "byte_order.h"
 
+#include "bits.h"
 
 #ifndef swap16
 
@@ -160,4 +161,59 @@ void write_be32(void* p, u32 x)
 void write_be64(void* p, u64 x)
 {
 	*(u64*)p = to_be64(x);
+}
+
+
+u64 movzx_le64(const u8* p, size_t size_bytes)
+{
+	u64 number = 0;
+	for(uint i = 0; i < std::min(size_bytes, 8u); i++)
+		number |= ((u64)p[i]) << (i*8);
+
+	return number;
+}
+
+u64 movzx_be64(const u8* p, size_t size_bytes)
+{
+	u64 number = 0;
+	for(uint i = 0; i < std::min(size_bytes, 8u); i++)
+	{
+		number <<= 8;
+		number |= p[i];
+	}
+
+	return number;
+}
+
+
+static inline i64 SignExtend(u64 bits, size_t size_bytes)
+{
+	// no point in sign-extending if >= 8 bytes were requested
+	if(size_bytes < 8)
+	{
+		const u64 sign_bit = BIT64((size_bytes*8)-1);
+
+		// number would be negative in the smaller type,
+		// so sign-extend, i.e. set all more significant bits.
+		if(bits & sign_bit)
+		{
+			const u64 valid_bit_mask = (sign_bit+sign_bit)-1;
+			bits |= ~valid_bit_mask;
+		}
+	}
+
+	const i64 number = static_cast<i64>(bits);
+	return number;
+}
+
+i64 movsx_le64(const u8* p, size_t size_bytes)
+{
+	const u64 number = movzx_le64(p, size_bytes);
+	return SignExtend(number, size_bytes);
+}
+
+i64 movsx_be64(const u8* p, size_t size_bytes)
+{
+	const u64 number = movzx_be64(p, size_bytes);
+	return SignExtend(number, size_bytes);
 }

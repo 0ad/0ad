@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <new>		// std::bad_alloc
 
-#include "lib/lib.h"
+#include "lib/fnv_hash.h"
 #include "lib/allocators.h"
 
 

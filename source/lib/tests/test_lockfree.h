@@ -1,6 +1,5 @@
 #include "lib/self_test.h"
 
-#include "lib/lib.h"
 #include "lib/lockfree.h"
 #include "lib/sysdep/cpu.h"	// atomic_add
 #include "lib/timer.h"

@@ -76,6 +76,14 @@ extern float ia32_asm_fminf(float, float);
 extern float ia32_asm_fmaxf(float, float);
 
 
+// misc
+
+/**
+ * @return the (integral) base 2 logarithm, or -1 if the number
+ * is not a power-of-two.
+ **/
+extern int ia32_asm_log2_of_pow2(uint n);
+
 #ifdef __cplusplus
 }
 #endif

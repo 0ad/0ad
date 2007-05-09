@@ -14,7 +14,6 @@
 #include <string.h>
 #include <errno.h>
 
-#include "lib.h"
 #include "posix/posix_types.h"	// SIZE_MAX
 
 // we were included from wstring_s.cpp; skip all stuff that
@@ -127,7 +126,7 @@ int tncpy_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	// optimized for size (less comparisons than MS impl) and
 	// speed (due to well-predicted jumps; we don't bother unrolling).
 	tchar* p = dst;
-	size_t chars_left = MIN(max_dst_chars, max_src_chars);
+	size_t chars_left = std::min(max_dst_chars, max_src_chars);
 	while(chars_left != 0)
 	{
 		// success: reached end of string normally.

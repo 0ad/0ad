@@ -1,6 +1,5 @@
 #include "lib/self_test.h"
 
-#include "lib/lib.h"
 #include "ps/CStr.h"
 
 class TestCStr : public CxxTest::TestSuite 

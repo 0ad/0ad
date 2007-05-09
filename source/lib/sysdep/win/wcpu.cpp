@@ -11,7 +11,6 @@
 #include "precompiled.h"
 #include "wcpu.h"
 
-#include "lib/lib.h"
 #include "lib/posix/posix_pthread.h"
 #include "lib/posix/posix_time.h"
 #include "win.h"

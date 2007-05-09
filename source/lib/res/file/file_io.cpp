@@ -14,7 +14,7 @@
 #include <deque>
 
 #include "lib/posix/posix_aio.h"
-#include "lib/lib.h"
+#include "lib/bits.h"
 #include "lib/allocators.h"
 #include "lib/adts.h"
 #include "file_internal.h"
@@ -434,7 +434,7 @@ class IOManager
 			const off_t bytes_left = f->size - start_ofs;
 			if(bytes_left < 0)
 				WARN_RETURN(ERR::IO_EOF);
-			size = MIN(size, (size_t)bytes_left);
+			size = std::min(size, (size_t)bytes_left);
 
 			// and round back up to sector size.
 			// see rationale in file_io_issue.
@@ -450,7 +450,7 @@ class IOManager
 	{
 		const off_t ofs = start_ofs+(off_t)total_issued;
 		// for both reads and writes, do not issue beyond end of file/data
-		const size_t issue_size = MIN(FILE_BLOCK_SIZE, size - total_issued);
+		const size_t issue_size = std::min(FILE_BLOCK_SIZE, size - total_issued);
 // try to grab whole blocks (so we can put them in the cache).
 // any excess data (can only be within first or last) is
 // discarded in wait().

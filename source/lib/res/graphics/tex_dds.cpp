@@ -12,6 +12,7 @@
 
 #include "lib/byte_order.h"
 #include "tex_codec.h"
+#include "lib/bits.h"
 
 // NOTE: the convention is bottom-up for DDS, but there's no way to tell.
 
@@ -549,7 +550,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 		{
 			// mipmap chain is incomplete
 			// note: DDS includes the base level in its count, hence +1.
-			if(mipmap_count != log2(MAX(w,h))+1)
+			if(mipmap_count != ceil_log2(std::max(w,h))+1)
 				WARN_RETURN(ERR::TEX_FMT_INVALID);
 			flags |= TEX_MIPMAPS;
 		}

@@ -1,6 +1,5 @@
 #include "precompiled.h"
 
-#include "lib/lib.h"
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"

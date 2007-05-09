@@ -15,6 +15,7 @@
 #include "lib/posix/posix.h"		// sysconf
 #include "lib/sysdep/cpu.h"	// CAS
 #include "byte_order.h"
+#include "bits.h"
 
 
 

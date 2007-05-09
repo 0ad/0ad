@@ -13,6 +13,7 @@
 
 #include "wposix_internal.h"
 #include "crt_posix.h"		// _getcwd
+#include "lib/bits.h"
 
 
 long sysconf(int name)

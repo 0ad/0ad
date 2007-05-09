@@ -11,7 +11,6 @@
 #include "precompiled.h"
 #include "gfx.h"
 
-#include "lib/lib.h"
 #include "lib/external_libraries/sdl.h"
 
 

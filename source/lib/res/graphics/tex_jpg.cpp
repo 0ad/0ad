@@ -16,7 +16,6 @@ extern "C" {
 #include <jerror.h>
 }
 
-#include "lib/lib.h"
 #include "lib/res/res.h"
 #include "tex_codec.h"
 #include <setjmp.h>

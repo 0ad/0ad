@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <set>
 
-#include "lib/lib.h"
+#include "lib/byte_order.h"
 #include "lib/sysdep/cpu.h"
 
 #include "lib/debug_stl.h"
@@ -141,10 +141,10 @@ struct TI_FINDCHILDREN_PARAMS2
 	TI_FINDCHILDREN_PARAMS2(DWORD num_children)
 	{
 		p.Start = 0;
-		p.Count = MIN(num_children, MAX_CHILDREN);
+		p.Count = std::min(num_children, MAX_CHILDREN);
 	}
 
-	static const size_t MAX_CHILDREN = 400;
+	static const DWORD MAX_CHILDREN = 400;
 	TI_FINDCHILDREN_PARAMS p;
 	DWORD additional_children[MAX_CHILDREN-1];
 };
@@ -787,17 +787,17 @@ static void seq_determine_formatting(size_t el_size, size_t el_count,
 	if(el_size == sizeof(char))
 	{
 		*fits_on_one_line = el_count <= 16;
-		*num_elements_to_show = MIN(16, el_count);
+		*num_elements_to_show = std::min(16u, el_count);
 	}
 	else if(el_size <= sizeof(int))
 	{
 		*fits_on_one_line = el_count <= 8;
-		*num_elements_to_show = MIN(12, el_count);
+		*num_elements_to_show = std::min(12u, el_count);
 	}
 	else
 	{
 		*fits_on_one_line = false;
-		*num_elements_to_show = MIN(8, el_count);
+		*num_elements_to_show = std::min(8u, el_count);
 	}
 
 	// make sure empty containers are displayed with [0] {}, otherwise
@@ -1035,7 +1035,7 @@ static LibError dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 	// must be declared before goto to avoid W4 warning.
 	const wchar_t* fmt = L"";
 
-	u64 data = movzx_64le(p, size);
+	u64 data = movzx_le64(p, size);
 	// if value is 0xCC..CC (uninitialized mem), we display as hex. 
 	// the output would otherwise be garbage; this makes it obvious.
 	// note: be very careful to correctly handle size=0 (e.g. void*).
@@ -1074,7 +1074,7 @@ static LibError dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 			if(size != 1 && size != 2 && size != 4 && size != 8)
 				debug_warn("dump_sym_base_type: invalid int size");
 			// need to re-load and sign-extend, because we output 64 bits.
-			data = movsx_64le(p, size);
+			data = movsx_le64(p, size);
 			fmt = L"%I64d";
 			break;
 
@@ -1223,7 +1223,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 	const size_t size = (size_t)size_;
 
-	const i64 enum_value = movsx_64le(p, size);
+	const i64 enum_value = movsx_le64(p, size);
 
 	// get array of child symbols (enumerants).
 	DWORD num_children;
@@ -1337,7 +1337,7 @@ static LibError dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 	const size_t size = (size_t)size_;
 
 	// read+output pointer's value.
-	p = (const u8*)movzx_64le(p, size);
+	p = (const u8*)movzx_le64(p, size);
 	out(L"0x%p", p);
 
 	// bail if it's obvious the pointer is bogus

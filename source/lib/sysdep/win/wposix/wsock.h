@@ -215,11 +215,11 @@ IMP(ssize_t, recvfrom, (int, void*, size_t, int, struct sockaddr*, socklen_t*))
 
 // WSAAsyncSelect event bits
 // (values taken from winsock2.h - do not change!)
-#define FD_READ    BIT(0)
-#define FD_WRITE   BIT(1)
-#define FD_ACCEPT  BIT(3)
-#define FD_CONNECT BIT(4)
-#define FD_CLOSE   BIT(5)
+#define FD_READ    0x01
+#define FD_WRITE   0x02
+#define FD_ACCEPT  0x08
+#define FD_CONNECT 0x10
+#define FD_CLOSE   0x20
 
 
 #undef IMP

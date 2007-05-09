@@ -56,7 +56,7 @@ static void* node_alloc();
 static time_t most_recent_mtime;
 static void set_most_recent_if_newer(time_t mtime)
 {
-	most_recent_mtime = MAX(most_recent_mtime, mtime);
+	most_recent_mtime = std::max(most_recent_mtime, mtime);
 }
 time_t tree_most_recent_mtime()
 {
@@ -316,7 +316,7 @@ static Pool node_pool;
 
 static inline void node_init()
 {
-	const size_t el_size = MAX(sizeof(TDir), sizeof(TFile));
+	const size_t el_size = std::max(sizeof(TDir), sizeof(TFile));
 	(void)pool_create(&node_pool, VFS_MAX_FILES*el_size, el_size);
 }
 

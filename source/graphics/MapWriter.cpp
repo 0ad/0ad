@@ -61,7 +61,7 @@ void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
 // handle isn't in list
 static u16 GetHandleIndex(const Handle handle, const std::vector<Handle>& handles)
 {
-	const uint limit = MIN((uint)handles.size(), 0xFFFE);	// paranoia
+	const uint limit = std::min((uint)handles.size(), 0xFFFEu);	// paranoia
 	for (uint i=0;i<limit;i++) {
 		if (handles[i]==handle) {
 			return (u16)i;

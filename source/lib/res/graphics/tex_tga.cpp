@@ -12,7 +12,7 @@
 
 #include "lib/byte_order.h"
 #include "tex_codec.h"
-
+#include "lib/bits.h"
 
 #pragma pack(push, 1)
 

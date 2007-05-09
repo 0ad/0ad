@@ -58,10 +58,22 @@ void WriteSystemInfo()
 	if(!f)
 		return;
 
-	// .. OS
+	// current timestamp (redundant WRT OS timestamp, but that is not
+	// visible when people are posting this file's contents online)
+	{
+	char timestamp_buf[100] = {'\0'};
+	time_t seconds;
+	time(&seconds);
+	struct tm* t = gmtime(&seconds);
+	const size_t chars_written = strftime(timestamp_buf, ARRAY_SIZE(timestamp_buf), "(generated %Y-%m-%d %H:%M:%S)", t);
+	debug_assert(chars_written != 0);
+	fprintf(f, "%s\n", timestamp_buf);
+	}
+
+	// OS
 	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
-	// .. CPU
+	// CPU
 	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), cpu_NumPackages(), cpu_CoresPerPackage(), cpu_LogicalPerCore());
 	const double cpu_freq = cpu_ClockFrequency();
 	if(cpu_freq != 0.0f)
@@ -74,21 +86,21 @@ void WriteSystemInfo()
 	else
 		fprintf(f, "\n");
 
-	// .. memory
+	// memory
 	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", cpu_MemoryTotalMiB(), cpu_MemorySize(CPU_MEM_AVAILABLE)/MiB);
 
-	// .. graphics
+	// graphics
 	fprintf(f, "Graphics Card  : %s\n", gfx_card);
 	fprintf(f, "OpenGL Drivers : %s; %s\n", glGetString(GL_VERSION), gfx_drv_ver);
 	fprintf(f, "Video Mode     : %dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 
-	// .. sound
+	// sound
 	fprintf(f, "Sound Card     : %s\n", snd_card);
 	fprintf(f, "Sound Drivers  : %s\n", snd_drv_ver);
 
 
 	//
-	// .. network name / ips
+	// network name / ips
 	//
 
 	// note: can't use un.nodename because it is for an
@@ -123,7 +135,7 @@ no_ip:
 	fprintf(f, "\n");
 
 
-	// .. OpenGL extensions (write them last, since it's a lot of text)
+	// OpenGL extensions (write them last, since it's a lot of text)
 	const char* exts = ogl_ExtensionString();
 	if (!exts) exts = "{unknown}";
 	fprintf(f, "\nOpenGL Extensions: \n%s\n", SplitExts(exts).c_str());

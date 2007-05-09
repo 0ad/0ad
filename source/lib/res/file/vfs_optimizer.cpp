@@ -498,7 +498,7 @@ static bool should_rebuild_main_archive(const char* trace_filename,
 	// note: a loop is more convenient than std::for_each, which would
 	// require referencing the returned functor (since param is a copy).
 	for(DirEnts::const_iterator it = existing_archives.begin(); it != existing_archives.end(); ++it)
-		most_recent_archive_mtime = MAX(it->mtime, most_recent_archive_mtime);
+		most_recent_archive_mtime = std::max(it->mtime, most_recent_archive_mtime);
 	// .. no archive yet OR 'lots' of them: rebuild so that they'll be
 	//    merged into one archive and the rest deleted.
 	if(existing_archives.empty() || existing_archives.size() >= 4)

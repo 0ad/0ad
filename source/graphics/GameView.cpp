@@ -16,7 +16,6 @@
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "lib/input.h"
-#include "lib/lib.h"
 #include "lib/timer.h"
 #include "maths/Bound.h"
 #include "maths/MathUtil.h"

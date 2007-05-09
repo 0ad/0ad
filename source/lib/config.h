@@ -46,7 +46,11 @@
 // allow use of RDTSC for raw tick counts (otherwise, the slower but
 // more reliable on MP systems wall-clock will be used).
 #ifndef CONFIG_TIMER_ALLOW_RDTSC
-# define CONFIG_TIMER_ALLOW_RDTSC 1
+# if CPU_IA32
+#  define CONFIG_TIMER_ALLOW_RDTSC 1
+# else
+#  define CONFIG_TIMER_ALLOW_RDTSC 0
+# endif
 #endif
 
 // this enables/disables the actual checking done by OverrunProtector-s

@@ -64,7 +64,6 @@ CLocker usage 2:
 //  Includes / Compiler directives
 //--------------------------------------------------------
 
-#include "lib/lib.h"
 #include "lib/posix/posix_pthread.h"
 
 #ifdef DEBUG_LOCKS

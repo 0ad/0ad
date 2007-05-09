@@ -432,7 +432,7 @@ LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, void* u
 	// less work for aio) or up to EOF.
 	const ssize_t left_in_chunk = CHUNK_SIZE - (cofs % CHUNK_SIZE);
 	const ssize_t left_in_file = af->csize - cofs;
-	const size_t csize = MIN(left_in_chunk, left_in_file);
+	const size_t csize = std::min(left_in_chunk, left_in_file);
 
 	void* cbuf = mem_alloc(csize, 4*KiB);
 	if(!cbuf)

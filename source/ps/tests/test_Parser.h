@@ -1,6 +1,5 @@
 #include "lib/self_test.h"
 
-#include "lib/lib.h"
 #include "ps/Parser.h"
 
 class TestParser : public CxxTest::TestSuite 

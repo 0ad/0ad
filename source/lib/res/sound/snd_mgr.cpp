@@ -2376,7 +2376,7 @@ static LibError vm_update()
 	// partition list; the first al_src_cap will be granted a source
 	// (if they don't have one already), after reclaiming all sources from
 	// the remainder of the VSrc list entries.
-	uint first_unimportant = MIN((uint)vsrcs.size(), al_src_cap); 
+	uint first_unimportant = std::min((uint)vsrcs.size(), al_src_cap); 
 	list_foreach(reclaim, first_unimportant, 0);
 	list_foreach(grant, 0, first_unimportant);
 

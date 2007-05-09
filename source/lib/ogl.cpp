@@ -15,7 +15,6 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include "lib.h"
 #include "lib/external_libraries/sdl.h"
 #include "debug.h"
 #include "lib/sysdep/gfx.h"

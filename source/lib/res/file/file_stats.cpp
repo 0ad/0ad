@@ -119,7 +119,7 @@ void stats_unique_name(size_t name_len)
 void stats_open(const char* atom_fn, size_t file_size)
 {
 	open_files_cur++;
-	open_files_max = MAX(open_files_max, open_files_cur);
+	open_files_max = std::max(open_files_max, open_files_cur);
 
 	PairIB ret = opened_files.insert(atom_fn);
 	// hadn't been opened yet
@@ -141,7 +141,7 @@ void stats_close()
 void stats_buf_alloc(size_t user_size, size_t padded_size)
 {
 	extant_bufs_cur++;
-	extant_bufs_max = MAX(extant_bufs_max, extant_bufs_cur);
+	extant_bufs_max = std::max(extant_bufs_max, extant_bufs_cur);
 	extant_bufs_total++;
 
 	buf_user_size_total += user_size;

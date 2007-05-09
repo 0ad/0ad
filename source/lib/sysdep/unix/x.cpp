@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include <Xatom.h>
 
-#include "lib/lib.h"
 #include "lib/debug.h"
 #include "lib/sysdep/gfx.h"
 #include "SDL/SDL.h"

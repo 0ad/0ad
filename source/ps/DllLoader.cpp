@@ -3,7 +3,6 @@
 #include "DllLoader.h"
 
 #include "lib/posix/posix_dlfcn.h"
-#include "lib/lib.h"
 #include "ps/CStr.h"
 
 void* const HANDLE_UNAVAILABLE = (void*)-1;

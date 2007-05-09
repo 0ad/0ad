@@ -37,4 +37,39 @@ public:
 		// note: no need to test read_?e* / write_?e* - they are
 		// trivial wrappers on top of to_?e*.
 	}
+
+	void test_movzx()
+	{
+		const u8 d1[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+		const u8 d2[] = { 0x43, 0x12, 0x23, 0xA4 };
+
+		TS_ASSERT_EQUALS(movzx_le64(d1, 1), 0x01ull);
+		TS_ASSERT_EQUALS(movzx_le64(d1, 2), 0x0201ull);
+		TS_ASSERT_EQUALS(movzx_le64(d1, 8), 0x0807060504030201ull);
+		TS_ASSERT_EQUALS(movzx_le64(d2, 4), 0xA4231243ull);
+		TS_ASSERT_EQUALS(movzx_le64(d2+3, 1), 0xA4ull);
+
+		TS_ASSERT_EQUALS(movzx_be64(d1, 1), 0x01ull);
+		TS_ASSERT_EQUALS(movzx_be64(d1, 2), 0x0102ull);
+		TS_ASSERT_EQUALS(movzx_be64(d1, 8), 0x0102030405060708ull);
+		TS_ASSERT_EQUALS(movzx_be64(d2, 4), 0x431223A4ull);
+		TS_ASSERT_EQUALS(movzx_be64(d2+3, 1), 0xA4ull);
+	}
+
+	void test_movsx()
+	{
+		const u8 d1[] = { 0x09, 0xFE };
+		const u8 d2[] = { 0xD9, 0x2C, 0xDD, 0x8F };
+		const u8 d3[] = { 0x92, 0x26, 0x88, 0xF1, 0x35, 0xAC, 0x01, 0x83 };
+
+		TS_ASSERT_EQUALS(movsx_le64(d1, 1), 0x09ull);
+		TS_ASSERT_EQUALS(movsx_le64(d1, 2), 0xFFFFFFFFFFFFFE09ull);
+		TS_ASSERT_EQUALS(movsx_le64(d2, 4), 0xFFFFFFFF8FDD2CD9ull);
+		TS_ASSERT_EQUALS(movsx_le64(d3, 8), 0x8301AC35F1882692ull);
+
+		TS_ASSERT_EQUALS(movsx_be64(d1, 1), 0x09ull);
+		TS_ASSERT_EQUALS(movsx_be64(d1, 2), 0x00000000000009FEull);
+		TS_ASSERT_EQUALS(movsx_be64(d2, 4), 0xFFFFFFFFD92CDD8Full);
+		TS_ASSERT_EQUALS(movsx_be64(d3, 8), 0x922688F135AC0183ull);
+	}
 };

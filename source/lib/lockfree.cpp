@@ -15,7 +15,7 @@
 #include <algorithm>
 
 #include "lib/posix/posix_pthread.h"
-#include "lib.h"
+#include "lib/bits.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/sysdep.h"
 #include "timer.h"

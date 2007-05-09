@@ -30,6 +30,7 @@ CGUI
 
 #include "ps/Pyrogenesis.h"
 #include "lib/input.h"
+#include "lib/bits.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
 #include "ps/Overlay.h"
 
@@ -708,7 +709,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					//  after the last image, like a stack downwards.
 					float _y;
 					if (Images[j].size() > 0)
-						_y = MAX(y, Images[j].back().m_YTo);
+						_y = std::max(y, Images[j].back().m_YTo);
 					else
 						_y = y; 
 
@@ -719,7 +720,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					Image.SetupSpriteCall((j==CGUIString::SFeedback::Left), SpriteCall, Width, _y, size, icon.m_SpriteName, BufferZone, icon.m_CellID);
 
 					// Check if image is the lowest thing.
-					Text.m_Size.cy = MAX(Text.m_Size.cy, Image.m_YTo);
+					Text.m_Size.cy = std::max(Text.m_Size.cy, Image.m_YTo);
 
 					Images[j].push_back(Image);
 					Text.m_SpriteCalls.push_back(SpriteCall);
@@ -727,10 +728,10 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			}
 		}
 
-		pos_last_img = MAX(pos_last_img, i);
+		pos_last_img = std::max(pos_last_img, i);
 
 		x += Feedback.m_Size.cx;
-		prelim_line_height = MAX(prelim_line_height, Feedback.m_Size.cy);
+		prelim_line_height = std::max(prelim_line_height, Feedback.m_Size.cy);
 
 		// If Width is 0, then there's no word-wrapping, disable NewLine.
 		if ((WordWrapping && (x > Width-BufferZone || Feedback.m_NewLine)) || i == (int)string.m_Words.size()-2)
@@ -766,16 +767,16 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 						//  let's find the union of these two.
 						float union_from, union_to;
 
-						union_from = MAX(y, it->m_YFrom);
-						union_to = MIN(y+prelim_line_height, it->m_YTo);
+						union_from = std::max(y, it->m_YFrom);
+						union_to = std::min(y+prelim_line_height, it->m_YTo);
 						
 						// The union is not empty
 						if (union_to > union_from)
 						{
 							if (j == From)
-								width_range[From] = MAX(width_range[From], it->m_Indentation);
+								width_range[From] = std::max(width_range[From], it->m_Indentation);
 							else
-								width_range[To] = MIN(width_range[To], Width - it->m_Indentation);
+								width_range[To] = std::min(width_range[To], Width - it->m_Indentation);
 						}
 					}
 				}
@@ -811,7 +812,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 					break;
 
 				// Let line_height be the maximum m_Height we encounter.
-				line_height = MAX(line_height, Feedback2.m_Size.cy);
+				line_height = std::max(line_height, Feedback2.m_Size.cy);
 
 				if (WordWrapping && Feedback2.m_NewLine)
 					break;
@@ -856,7 +857,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				// Append X value.
 				x += Feedback2.m_Size.cx;
 
-				Text.m_Size.cx = MAX(Text.m_Size.cx, x+BufferZone);
+				Text.m_Size.cx = std::max(Text.m_Size.cx, x+BufferZone);
 
 				// The first word overrides the width limit, what we
 				//  do, in those cases, are just drawing that word even
@@ -898,7 +899,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			x = 0.f;
 
 			// Update height of all
-			Text.m_Size.cy = MAX(Text.m_Size.cy, y+BufferZone);
+			Text.m_Size.cy = std::max(Text.m_Size.cy, y+BufferZone);
 
 			FirstLine = false;
 

@@ -11,7 +11,6 @@
 #ifndef INCLUDED_DEBUG
 #define INCLUDED_DEBUG
 
-#include "lib.h" // STMT
 #if OS_WIN
 # include "lib/sysdep/win/wdbg.h"
 #else

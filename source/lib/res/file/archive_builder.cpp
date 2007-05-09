@@ -11,7 +11,6 @@
 #include "precompiled.h"
 #include "archive_builder.h"
 
-#include "lib/lib.h"
 #include "lib/timer.h"
 #include "file_internal.h"
 

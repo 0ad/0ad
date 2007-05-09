@@ -6,7 +6,6 @@
 #include <deque>
 #include <numeric>
 
-#include "lib/lib.h"	// error codes
 #include "lib/timer.h"
 #include "CStr.h"
 #include "Loader.h"

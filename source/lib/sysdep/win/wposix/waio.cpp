@@ -18,6 +18,7 @@
 #include "wfilesystem.h"    // mode_t
 #include "wtime.h"          // timespec
 #include "lib/sysdep/cpu.h"
+#include "lib/bits.h"
 
 
 #pragma SECTION_PRE_LIBC(J)
@@ -56,9 +57,9 @@ WIN_REGISTER_FUNC(waio_shutdown);
 size_t sys_max_sector_size()
 {
 	// users may call us more than once, so cache the results.
-	static size_t cached_sector_size;
+	static DWORD cached_sector_size;
 	if(cached_sector_size)
-		return cached_sector_size;
+		return static_cast<size_t>(cached_sector_size);
 	
 			// currently disabled: DVDs have 2..4KB, but this causes
 			// waio to unnecessarily align some file transfers (when at EOF)
@@ -88,7 +89,7 @@ size_t sys_max_sector_size()
 		DWORD spc, nfc, tnc;	// don't need these
 		DWORD cur_sector_size;
 		if(GetDiskFreeSpace(drive_str, &spc, &cur_sector_size, &nfc, &tnc))
-			cached_sector_size = MAX(cached_sector_size, cur_sector_size);
+			cached_sector_size = std::max(cached_sector_size, cur_sector_size);
 		// otherwise, it's probably an empty CD drive. ignore the
 		// BoundsChecker error; GetDiskFreeSpace seems to be the
 		// only way of getting at the sector size.

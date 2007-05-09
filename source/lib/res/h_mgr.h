@@ -232,8 +232,6 @@ we could switch H_DEREF to throwing an exception on error.
 
 #include <stdarg.h>		// type init routines get va_list of args
 
-#include "lib/lib.h"
-
 #ifndef INCLUDED_HANDLE
 #include "handle.h"
 #endif

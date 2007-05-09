@@ -8,7 +8,6 @@
 #include "Network.h"
 #include "NetworkInternal.h"
 
-#include "lib/lib.h"
 #include "ps/CStr.h"
 // ERROR is defined by some windows header. Undef it
 #undef ERROR

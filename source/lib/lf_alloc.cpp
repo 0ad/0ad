@@ -15,7 +15,6 @@
 #include <algorithm>
 #include <limits.h>
 
-#include "lib.h"
 #include "posix.h"
 #include "lib/sysdep/cpu.h"
 #include "lockfree.h"
@@ -296,7 +295,7 @@ static void* MallocFromActive(ProcHeap* heap)
 				new_anchor.state = FULL;
 			else
 			{
-				more_credits = MIN(old_anchor.count, MAX_CREDITS);
+				more_credits = std::min(old_anchor.count, MAX_CREDITS);
 				new_anchor.count -= more_credits;
 			}
 		}
@@ -332,7 +331,7 @@ retry:
 		}
 		// old_anchor state must be PARTIAL
 		// old_anchor count must be > 0
-		more_credits = MIN(old_anchor.count-1, MAX_CREDITS);
+		more_credits = std::min(old_anchor.count-1, MAX_CREDITS);
 		new_anchor.count -= more_credits+1;
 		new_anchor.state = (more_credits > 0)? ACTIVE : FULL;
 	}
@@ -370,7 +369,7 @@ static void* MallocFromNewSB(ProcHeap* heap)
 	desc->sz = heap->sc->sz;
 	desc->maxcount = (uint)(heap->sc->sb_size/desc->sz);
 	Active new_active = (Active)desc;
-	new_active.credits = MIN(desc->maxcount-1, MAX_CREDITS)-1;
+	new_active.credits = std::min(desc->maxcount-1, MAX_CREDITS)-1;
 	desc->anchor.count = (desc->maxcount-1)-(new_active.credits+1);
 	desc->anchor.state = ACTIVE;
 	cpu_MemoryFence();

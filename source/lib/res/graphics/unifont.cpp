@@ -14,7 +14,6 @@
 #include <sstream>
 #include <map>
 
-#include "lib/lib.h"
 #include "lib/ogl.h"
 #include "lib/res/res.h"
 #include "ogl_tex.h"

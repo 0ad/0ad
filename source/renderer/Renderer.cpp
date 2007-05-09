@@ -12,6 +12,7 @@
 #include <map>
 #include <set>
 #include <algorithm>
+#include "lib/bits.h"	// is_pow2
 #include "Renderer.h"
 #include "graphics/Terrain.h"
 #include "maths/Matrix3D.h"
@@ -1751,5 +1752,6 @@ void CRenderer::ScriptingInit()
 
 	CJSObject<CRenderer>::ScriptingInit("Renderer");
 }
+
 
 

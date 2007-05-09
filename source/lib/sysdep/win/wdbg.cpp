@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <typeinfo>
 
-#include "lib/lib.h"
+#include "lib/bits.h"
 #include "lib/posix/posix_pthread.h"
 #include "lib/byte_order.h"		// FOURCC
 #include "lib/app_hooks.h"
@@ -798,6 +798,7 @@ bool debug_is_stack_ptr(void* p)
 
 	return true;
 }
+
 
 
 

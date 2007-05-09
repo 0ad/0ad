@@ -1,5 +1,6 @@
 #include "lib/self_test.h"
 
+#include "lib/base32.h"
 #include "lib/res/file/path.h"
 #include "lib/res/file/file.h"
 #include "lib/res/file/file_cache.h"

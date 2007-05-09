@@ -1,6 +1,5 @@
 #include "lib/self_test.h"
 
-#include "lib/lib.h"
 #include "lib/res/file/file_cache.h"
 
 class TestFileCache : public CxxTest::TestSuite 

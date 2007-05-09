@@ -257,7 +257,7 @@ public:
 	 * Set content length
 	 * @param range Maximum scrollable range
 	 */
-	void SetScrollRange(const float &range) { m_ScrollRange = MAX(range, 1.f); SetupBarSize(); UpdatePosBoundaries(); }
+	void SetScrollRange(const float &range) { m_ScrollRange = std::max(range, 1.f); SetupBarSize(); UpdatePosBoundaries(); }
 
 	/**
 	 * Set space that is visible in the scrollable control.

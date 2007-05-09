@@ -17,12 +17,11 @@
 #include <stdarg.h>
 
 #include "lib/posix/posix_time.h"
-#include "lib.h"
 #include "adts.h"
 #include "lib/sysdep/cpu.h"
 
-#if CPU_IA32
-# include "lib/sysdep/ia32/ia32.h"
+#if CONFIG_TIMER_ALLOW_RDTSC
+# include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
 #endif
 
 // rationale for wrapping gettimeofday and clock_gettime, instead of emulating
@@ -205,7 +204,7 @@ void calc_fps()
 		// comes closer to the average again (meaning it probably
 		// wasn't really changing).
 		if(same_side >= 2 && !is_close)
-			bias += MIN(same_side, 4);
+			bias += std::min(same_side, 4);
 	}
 
 	// bias = 0: no change. > 0: increase (n-th root). < 0: decrease (^n)
@@ -322,7 +321,7 @@ void timer_display_client_totals()
 }
 
 
-#if CPU_IA32
+#if CONFIG_TIMER_ALLOW_RDTSC
 
 TimerRdtsc::unit TimerRdtsc::get_timestamp() const
 {

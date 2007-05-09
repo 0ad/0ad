@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lib.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/file/file.h"
 
