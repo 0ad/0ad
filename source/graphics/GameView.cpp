@@ -319,7 +319,36 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			
 			if (!m->Culling || frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
 				//c->Submit(patch);
-				patch->setDrawState();
+
+				// set the renderstate for this patch
+				patch->setDrawState(true);
+
+				// set the renderstate for the neighbors
+				CPatch *nPatch;
+
+				nPatch = pTerrain->GetPatch(i-1,j-1);
+				if(nPatch) nPatch->setDrawState(true);
+
+				nPatch = pTerrain->GetPatch(i,j-1);
+				if(nPatch) nPatch->setDrawState(true);
+
+				nPatch = pTerrain->GetPatch(i+1,j-1);
+				if(nPatch) nPatch->setDrawState(true);
+
+				nPatch = pTerrain->GetPatch(i-1,j);
+				if(nPatch) nPatch->setDrawState(true);
+
+				nPatch = pTerrain->GetPatch(i+1,j);
+				if(nPatch) nPatch->setDrawState(true);
+
+				nPatch = pTerrain->GetPatch(i-1,j+1);
+				if(nPatch) nPatch->setDrawState(true);
+
+				nPatch = pTerrain->GetPatch(i,j+1);
+				if(nPatch) nPatch->setDrawState(true);
+
+				nPatch = pTerrain->GetPatch(i+1,j+1);
+				if(nPatch) nPatch->setDrawState(true);
 			}
 		}
 	}
@@ -333,7 +362,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			if(patch->getDrawState() == true)
 			{
 				c->Submit(patch);
-				patch->resetDrawState();
+				patch->setDrawState(false);
 			}
 		}
 	}
