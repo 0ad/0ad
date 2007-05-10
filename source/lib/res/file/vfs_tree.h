@@ -76,7 +76,7 @@ extern LibError tree_lookup(const char* path, TFile** ptf, uint flags = 0);
 //
 // if <flags> & LF_CREATE_MISSING, all missing subdirectory components are
 //   added to the VFS.
-// if <flags> & LF_START_DIR, traversal starts at *pdir
+// if <flags> & LF_START_DIR, traversal starts at *ptd
 //   (used when looking up paths relative to a mount point).
 //
 // <path> can be to a file or dir (in which case it must end in '/',

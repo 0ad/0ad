@@ -1,11 +1,11 @@
 #include "lib/self_test.h"
 
-#include "lib/string_s.h"
+#include "lib/secure_crt.h"
 
 // note: we only test the char version. this avoids having to
-// expose string_s.cpp's tchar / tcpy etc. macros in the header and/or
+// expose secure_crt.cpp's tchar / tcpy etc. macros in the header and/or
 // writing a copy of this test for the unicode version.
-// string_s.cpp's unicode functions are the same anyway
+// secure_crt.cpp's unicode functions are the same anyway
 // (they're implemented via the abovementioned tcpy macro redirection).
 
 class TestString_s : public CxxTest::TestSuite 

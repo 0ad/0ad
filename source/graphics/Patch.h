@@ -18,19 +18,20 @@ class CTerrain;
 // Terrain Constants:
 //
 // PATCH_SIZE: number of tiles in each patch
-const int	PATCH_SIZE = 16;
+const int PATCH_SIZE = 16;
 
-///////////////////////////////////////////////////////////////////////////////
-// CPatchNeightbors: neighbor - IDs for CPatch
-
-#define	CPATCH_NEIGHBOR_LEFT_TOP		0
-#define	CPATCH_NEIGHBOR_TOP				1
-#define	CPATCH_NEIGHBOR_RIGHT_TOP		2
-#define CPATCH_NEIGHBOR_LEFT			3
-#define CPATCH_NEIGHBOR_RIGHT			4
-#define CPATCH_NEIGHBOR_LEFT_BOTTOM		5
-#define CPATCH_NEIGHBOR_BOTTOM			6
-#define CPATCH_NEIGHBOR_RIGHT_BOTTOM	7
+/// neighbor IDs for CPatch
+enum CPatchNeighbors
+{
+	CPATCH_NEIGHTBOR_LEFT_TOP     = 0,
+	CPATCH_NEIGHTBOR_TOP          = 1,
+	CPATCH_NEIGHTBOR_RIGHT_TOP    = 2,
+	CPATCH_NEIGHTBOR_LEFT         = 3,
+	CPATCH_NEIGHTBOR_RIGHT        = 4,
+	CPATCH_NEIGHTBOR_LEFT_BOTTOM  = 5,
+	CPATCH_NEIGHTBOR_BOTTOM       = 6,
+	CPATCH_NEIGHTBOR_RIGHT_BOTTOM = 7
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 // CPatch: a single terrain patch, PATCH_SIZE tiles square
@@ -47,7 +48,7 @@ public:
 	// calculate and store bounds of this patch
 	void CalcBounds();
 
-	// is alread in the DrawList
+	// is already in the DrawList
 	bool m_bWillBeDrawn;
 
 public:

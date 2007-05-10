@@ -137,6 +137,8 @@ size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
 static size_t DetermineMemoryTotalMiB()
 {
 	size_t memory_total = cpu_MemorySize(CPU_MEM_TOTAL);
+
+	// account for inaccurate reporting by rounding up (see wposix sysconf)
 	const size_t memory_total_pow2 = (size_t)round_up_to_pow2((uint)memory_total);
 	// .. difference too great, just round up to 1 MiB
 	if(memory_total_pow2 - memory_total > 3*MiB)
@@ -144,6 +146,7 @@ static size_t DetermineMemoryTotalMiB()
 	// .. difference acceptable, use next power of two
 	else
 		memory_total = memory_total_pow2;
+
 	const size_t memory_total_mib = memory_total / MiB;
 	return memory_total_mib;
 }

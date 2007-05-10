@@ -14,9 +14,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // CPatch constructor
-CPatch::CPatch() : m_Parent(0)
+CPatch::CPatch()
+: m_Parent(0), m_bWillBeDrawn(false)
 {
-	this->m_bWillBeDrawn = false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -38,8 +38,10 @@ void CPatch::Initialize(CTerrain* parent,u32 x,u32 z)
 	m_Z=z;
 
 	// set parent of each patch	
-	for (int j=0;j<PATCH_SIZE;j++) {
-		for (int i=0;i<PATCH_SIZE;i++) {
+	for (int j=0;j<PATCH_SIZE;j++)
+	{
+		for (int i=0;i<PATCH_SIZE;i++)
+		{
 			m_MiniPatches[j][i].m_Parent=this;
 		}
 	}
@@ -53,12 +55,13 @@ void CPatch::CalcBounds()
 {
 	m_Bounds.SetEmpty();
 
-	for (int j=0;j<PATCH_SIZE+1;j++) {
-		for (int i=0;i<PATCH_SIZE+1;i++) {
+	for (int j=0;j<PATCH_SIZE+1;j++)
+	{
+		for (int i=0;i<PATCH_SIZE+1;i++)
+		{
 			CVector3D pos;
 			m_Parent->CalcPosition(m_X*PATCH_SIZE+i,m_Z*PATCH_SIZE+j,pos);
 			m_Bounds+=pos;
 		}
 	}
 }
-

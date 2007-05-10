@@ -314,6 +314,7 @@ static LibError mount_archives(TDir* td, Archives* archives, const Mount* mount)
 	if(archives->empty())
 		return INFO::OK;
 
+	// load archives in alphabetical filename order to allow patches
 	std::sort(archives->begin(), archives->end(), archive_less);
 
 	for(ArchiveCIt it = archives->begin(); it != archives->end(); ++it)
@@ -335,21 +336,13 @@ static LibError mount_archives(TDir* td, Archives* archives, const Mount* mount)
 
 struct TDirAndPath
 {
-	TDir* const td;
-	const std::string path;
+	TDir* td;
+	std::string path;
 
 	TDirAndPath(TDir* d, const char* p)
-		: td(d), path(p) {}
-
-	// copy ctor needed for STL
-	TDirAndPath(const TDirAndPath& rhs)
-		: td(rhs.td), path(rhs.path) {}
-
-	// can't implement or generate assignment operator because of the
-	// const member. just disallow its use.
-	// NB: can't use boost::noncopyable because STL requires a copy ctor.
-private:
-	TDirAndPath& operator=(const TDirAndPath& rhs);
+	: td(d), path(p)
+	{
+	}
 };
 
 typedef std::deque<TDirAndPath> DirQueue;
@@ -374,7 +367,7 @@ static LibError enqueue_dir(TDir* parent_td, const char* name,
 	// prepend parent path to get complete pathname.
 	char P_path[PATH_MAX];
 	CHECK_ERR(path_append(P_path, P_parent_path, name));
-
+	
 	// create subdirectory..
 	TDir* td;
 	CHECK_ERR(tree_add_dir(parent_td, name, &td));
@@ -693,7 +686,7 @@ LibError vfs_unmount(const char* P_name)
 {
 	// this removes all Mounts ensuing from the given mounting. their dtors
 	// free all resources and there's no need to remove the files from
-	// VFS (nor is this feasible), since it is completely rebuilt afterwards.
+	// VFS (nor is this possible), since it is completely rebuilt afterwards.
 
 	MountIt begin = mounts.begin(), end = mounts.end();
 	MountIt last = std::remove_if(begin, end,

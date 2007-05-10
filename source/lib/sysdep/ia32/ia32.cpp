@@ -177,6 +177,34 @@ enum AmdPowerNowFlags
 };
 
 
+/// functor to remove substrings from the CPU identifier string
+class StringStripper
+{
+	char* m_string;
+	size_t m_max_chars;
+
+public:
+	StringStripper(char* string, size_t max_chars)
+	: m_string(string), m_max_chars(max_chars)
+	{
+	}
+
+	// remove all instances of substring from m_string
+	void operator()(const char* substring)
+	{
+		const size_t substring_length = strlen(substring);
+		for(;;)
+		{
+			char* substring_pos = strstr(m_string, substring);
+			if(!substring_pos)
+				break;
+			const size_t substring_ofs = substring_pos - m_string;
+			const size_t num_chars = m_max_chars - substring_ofs - substring_length;
+			memmove(substring_pos, substring_pos+substring_length, num_chars);
+		}
+	}
+};
+
 const char* ia32_IdentifierString()
 {
 	// 3 calls x 4 registers x 4 bytes = 48
@@ -247,17 +275,13 @@ const char* ia32_IdentifierString()
 	// identifier_string already holds a valid brand string; pretty it up.
 	else
 	{
-		// strip (tm) from Athlon string
-		if(!strncmp(identifier_string, "AMD Athlon(tm)", 14))
-			memmove(identifier_string+10, identifier_string+14, 35);
+		const char* undesired_strings[] = { "(tm)", "(R)", "CPU " };
+		std::for_each(undesired_strings, undesired_strings+ARRAY_SIZE(undesired_strings),
+			StringStripper(identifier_string, ARRAY_SIZE(identifier_string)));
 
-		// remove 2x (R) and CPU freq from P4 string
-		float freq;
-		// we can't use this because it isn't necessarily correct - the CPU
-		// may be overclocked. a variable must be passed, though, since
-		// scanf returns the number of fields actually stored.
-		if(sscanf(identifier_string, " Intel(R) Pentium(R) 4 CPU %fGHz", &freq) == 1)
-			SAFE_STRCPY(identifier_string, "Intel Pentium 4");
+		// note: Intel brand strings include a frequency, but we can't rely
+		// on it because the CPU may be overclocked. we'll leave it in the
+		// string to show measurement accuracy and if SpeedStep is active.
 	}
 
 	return identifier_string;

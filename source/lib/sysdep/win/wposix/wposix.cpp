@@ -16,34 +16,41 @@
 #include "lib/bits.h"
 
 
+#pragma SECTION_PRE_LIBC(J)
+WIN_REGISTER_FUNC(wposix_Init);
+#pragma FORCE_INCLUDE(wposix_Init)
+#pragma SECTION_RESTORE
+
+
+//-----------------------------------------------------------------------------
+// sysconf
+
+// used by _SC_PAGESIZE and _SC_*_PAGES
+static DWORD page_size;
+static BOOL (WINAPI *pGlobalMemoryStatusEx)(MEMORYSTATUSEX*);  
+
+static void InitSysconf()
+{
+	// get page size
+	// (used by _SC_PAGESIZE and _SC_*_PAGES)
+	SYSTEM_INFO si;
+	GetSystemInfo(&si);		// can't fail => page_size always > 0.
+	page_size = si.dwPageSize;
+
+	// import GlobalMemoryStatusEx - it's not defined by the VC6 PSDK.
+	// used by _SC_*_PAGES if available (provides better results).
+	const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
+	*(void**)&pGlobalMemoryStatusEx = GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
+	FreeLibrary(hKernel32Dll);
+}
+
 long sysconf(int name)
 {
-	// used by _SC_*_PAGES
-	static DWORD page_size;
-	static BOOL (WINAPI *pGlobalMemoryStatusEx)(MEMORYSTATUSEX*);  
-
-	ONCE(
-	{
-		// get page size
-		// (used by _SC_PAGESIZE and _SC_*_PAGES)
-		SYSTEM_INFO si;
-		GetSystemInfo(&si);		// can't fail => page_size always > 0.
-		page_size = si.dwPageSize;
-
-		// import GlobalMemoryStatusEx - it's not defined by the VC6 PSDK.
-		// used by _SC_*_PAGES if available (provides better results).
-		const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
-		*(void**)&pGlobalMemoryStatusEx = GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
-		FreeLibrary(hKernel32Dll);
-	}
-	);
-
-
 	switch(name)
 	{
 	case _SC_PAGESIZE:
-	// note: don't add _SC_PAGE_SIZE - they are different names but
-	// have the same value.
+	// note: no separate case for _SC_PAGE_SIZE - they are
+	// different names but have the same value.
 		return page_size;
 
 	case _SC_PHYS_PAGES:
@@ -52,16 +59,18 @@ long sysconf(int name)
 		u64 total_phys_mem;
 		u64 avail_phys_mem;
 
-		// first try GlobalMemoryStatus - cannot fail.
+		// first query GlobalMemoryStatus - cannot fail.
 		// override its results if GlobalMemoryStatusEx is available.
+		{
 		MEMORYSTATUS ms;
 		GlobalMemoryStatus(&ms);
-			// can't fail.
 		total_phys_mem = ms.dwTotalPhys;
 		avail_phys_mem = ms.dwAvailPhys;
+		}
 
 		// newer API is available: use it to report correct results
 		// (no overflow or wraparound) on systems with > 4 GB of memory.
+		{
 		MEMORYSTATUSEX mse = { sizeof(mse) };
 		if(pGlobalMemoryStatusEx && pGlobalMemoryStatusEx(&mse))
 		{
@@ -70,13 +79,17 @@ long sysconf(int name)
 		}
 		// else: not an error, since this isn't available before Win2k / XP.
 		// we have results from GlobalMemoryStatus anyway.
+		}
+
+		// Richter, "Programming Applications for Windows": the reported
+		// value doesn't include non-paged pool reserved during boot;
+		// it's not considered available to kernel. (size is 528 KiB on
+		// a 512 MiB WinXP/Win2k machine)
+		// something similar may happen on other OSes, so it is fixed
+		// by cpu.cpp instead of here.
 
 		if(name == _SC_PHYS_PAGES)
-			return (long)(round_up((uintptr_t)total_phys_mem, 2*MiB) / page_size);
-				// Richter, "Programming Applications for Windows":
-				// reported value doesn't include non-paged pool reserved
-				// during boot; it's not considered available to kernel.
-				// it's 528 KiB on my 512 MiB machine (WinXP and Win2k).
+			return (long)(total_phys_mem / page_size);
  		else
 			return (long)(avail_phys_mem / page_size);
 		}
@@ -99,3 +112,12 @@ char* getcwd(char* buf, size_t buf_size)
 #ifdef REDEFINED_NEW
 # include "lib/mmgr.h"
 #endif
+
+
+//-----------------------------------------------------------------------------
+
+static LibError wposix_Init()
+{
+	InitSysconf();
+	return INFO::OK;
+}

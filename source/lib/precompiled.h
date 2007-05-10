@@ -46,7 +46,7 @@
 #include "lib/types.h"
 #include "lib/lib.h"
 #include "lib/lib_errors.h"
-#include "lib/string_s.h"	// CRT secure string
+#include "lib/secure_crt.h"
 #include "lib/debug.h"
 #include "lib/code_annotation.h"
 #include "lib/sysdep/compiler.h"
