@@ -2,7 +2,7 @@
 
 #include "lib/bits.h"
 
-class TestLib : public CxxTest::TestSuite 
+class TestBits : public CxxTest::TestSuite 
 {
 public:
 	void test_is_pow2()
@@ -33,11 +33,11 @@ public:
 		TS_ASSERT_EQUALS(ceil_log2(0x80000000u), 31u);
 	}
 
-	void test_ilog2f()
+	void test_floor_log2()
 	{
-		TS_ASSERT_EQUALS(ilog2(1.f), 0);
-		TS_ASSERT_EQUALS(ilog2(3.f), 1);
-		TS_ASSERT_EQUALS(ilog2(256.f), 8);
+		TS_ASSERT_EQUALS(floor_log2(1.f), 0);
+		TS_ASSERT_EQUALS(floor_log2(3.f), 1);
+		TS_ASSERT_EQUALS(floor_log2(256.f), 8);
 	}
 
 	void test_round_up_to_pow2()

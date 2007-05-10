@@ -65,9 +65,9 @@ void WriteSystemInfo()
 	time_t seconds;
 	time(&seconds);
 	struct tm* t = gmtime(&seconds);
-	const size_t chars_written = strftime(timestamp_buf, ARRAY_SIZE(timestamp_buf), "(generated %Y-%m-%d %H:%M:%S)", t);
+	const size_t chars_written = strftime(timestamp_buf, ARRAY_SIZE(timestamp_buf), "(generated %Y-%m-%d %H:%M:%S UTC)", t);
 	debug_assert(chars_written != 0);
-	fprintf(f, "%s\n", timestamp_buf);
+	fprintf(f, "%s\n\n", timestamp_buf);
 	}
 
 	// OS

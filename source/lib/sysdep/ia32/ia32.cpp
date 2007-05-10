@@ -275,7 +275,7 @@ const char* ia32_IdentifierString()
 	// identifier_string already holds a valid brand string; pretty it up.
 	else
 	{
-		const char* undesired_strings[] = { "(tm)", "(R)", "CPU " };
+		const char* const undesired_strings[] = { "(tm)", "(TM)", "(R)", "CPU " };
 		std::for_each(undesired_strings, undesired_strings+ARRAY_SIZE(undesired_strings),
 			StringStripper(identifier_string, ARRAY_SIZE(identifier_string)));
 

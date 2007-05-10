@@ -2,7 +2,7 @@
 
 #include "lib/regex.h"
 
-class TestLib : public CxxTest::TestSuite 
+class TestRegex : public CxxTest::TestSuite 
 {
 public:
 	void test_regex()

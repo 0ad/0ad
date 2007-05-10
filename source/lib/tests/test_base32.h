@@ -2,7 +2,7 @@
 
 #include "lib/base32.h"
 
-class TestLib : public CxxTest::TestSuite 
+class TestBase32 : public CxxTest::TestSuite 
 {
 public:
 	void test_base32()

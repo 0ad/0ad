@@ -2,7 +2,7 @@
 
 #include "lib/fnv_hash.h"
 
-class TestLib : public CxxTest::TestSuite 
+class TestFnvHash : public CxxTest::TestSuite 
 {
 public:
 	void test_fnv_hash()
