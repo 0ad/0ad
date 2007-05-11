@@ -76,12 +76,12 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval, &CEntity::RegisterDamage>( "registerDamage", 0 );
 	AddMethod<jsval, &CEntity::RegisterOrderChange>( "registerOrderChange", 0 );
 	AddMethod<jsval, &CEntity::GetAttackDirections>( "getAttackDirections", 0 );
-	AddMethod<jsval, &CEntity::FindSector>( "FindSector", 4);
+	AddMethod<jsval, &CEntity::FindSector>( "findSector", 4);
 	AddMethod<jsval, &CEntity::GetHeight>( "getHeight", 0 );
 	AddMethod<jsval, &CEntity::HasRallyPoint>( "hasRallyPoint", 0 );
 	AddMethod<jsval, &CEntity::SetRallyPoint>( "setRallyPoint", 0 );
 	AddMethod<jsval, &CEntity::GetRallyPoint>( "getRallyPoint", 0 );
-	AddMethod<jsval, &CEntity::OnDamaged>( "OnDamaged", 1 );
+	AddMethod<jsval, &CEntity::OnDamaged>( "onDamaged", 1 );
 	AddMethod<jsval, &CEntity::GetVisibleEntities>( "getVisibleEntities", 0 );
 	AddMethod<float, &CEntity::GetDistance>( "getDistance", 1 );
 	AddMethod<jsval, &CEntity::FlattenTerrain>( "flattenTerrain", 0 );

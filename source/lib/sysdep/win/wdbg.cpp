@@ -653,6 +653,11 @@ static void get_exception_locus(const EXCEPTION_POINTERS* ep,
 // - this information would not be available for C++ exceptions.
 LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 {
+	// OutputDebugString raises an exception, which OUGHT to be swallowed
+	// by WaitForDebugEvent but sometimes isn't. if we see it, ignore it.
+	if(ep->ExceptionRecord->ExceptionCode == 0x40010006)	// DBG_PRINTEXCEPTION_C
+		return EXCEPTION_CONTINUE_EXECUTION;
+
 	// note: we risk infinite recursion if someone raises an SEH exception
 	// from within this function. therefore, abort immediately if we have
 	// already been called; the first error is the most important, anyway.

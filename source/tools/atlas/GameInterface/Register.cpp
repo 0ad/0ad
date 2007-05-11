@@ -4,7 +4,7 @@
 
 // We want to include Messages.h again below, with some different definitions,
 // so cheat and undefine its include-guard
-#undef MESSAGES_H__
+#undef INCLUDED_MESSAGES
 
 #include <map>
 #include <string>

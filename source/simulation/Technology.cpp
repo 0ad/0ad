@@ -421,7 +421,7 @@ void CTechnology::ScriptingInit()
 
 	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 2 );
 	AddMethod<jsval, &CTechnology::IsExcluded>( "isExcluded", 0 );
-	AddMethod<jsval, &CTechnology::IsValid>( "IsValid", 0 );
+	AddMethod<jsval, &CTechnology::IsValid>( "isValid", 0 );
 	AddMethod<jsval, &CTechnology::IsResearched>( "isResearched", 0 );
 	AddMethod<jsval, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
 
