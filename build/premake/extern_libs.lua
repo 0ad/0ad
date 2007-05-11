@@ -3,8 +3,7 @@
 --
 -- TYPICAL TASK: add new library. Instructions:
 -- 1) add a new extern_lib_defs entry
--- 2) add library name to package_add_extern_libs call site
---    (for the package that wants to use it)
+-- 2) add library name to extern_libs tables in premake.lua for all 'packages' that want to use it
 
 
 -- directory in which all library subdirectories reside.
@@ -46,6 +45,8 @@ libraries_dir = "../../../libraries/"
 extern_lib_defs = {
 	boost = {
 		unix_names = { "boost_signals" }
+	},
+	cryptopp = {
 	},
 	cxxtest = {
 	},

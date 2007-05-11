@@ -53,6 +53,11 @@ $binaries := directory containing system/ and data/
 - OpenAL: [sound]
   <No instructions here yet>
 
+- cryptopp
+  unzip libraries/cryptopp/source_and_build_and_test_files.zip to a temp dir
+  copy header files from libraries/cryptopp/include/cryptlib into the same dir
+  compile per cryptopp instructions (see website)
+  
 These libraries should have packages available for your distribution. You will
 need to get the corresponding -dev or -devel package for each library.
 - SDL

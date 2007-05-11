@@ -377,7 +377,8 @@ function setup_all_libs ()
 		"vorbis",
 		"libjpg",
 		"dbghelp",
-		"directx"
+		"directx",
+		"cryptopp"
 	}
 	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
 	sysdep_dirs = {
