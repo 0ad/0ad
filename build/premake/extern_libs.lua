@@ -107,9 +107,9 @@ extern_lib_defs = {
 				tinsert(package.includepaths, libraries_dir.."wxwidgets/include/msvc")
 				tinsert(package.includepaths, libraries_dir.."wxwidgets/include")
 				tinsert(package.libpaths, libraries_dir.."wxwidgets/lib/vc_lib")
-				tinsert(package.config["Debug"  ].links, "wxmsw26ud_gl")
-				tinsert(package.config["Testing"].links, "wxmsw26ud_gl")
-				tinsert(package.config["Release"].links, "wxmsw26u_gl")
+				tinsert(package.config["Debug"  ].links, "wxmsw28ud_gl")
+				tinsert(package.config["Testing"].links, "wxmsw28ud_gl")
+				tinsert(package.config["Release"].links, "wxmsw28u_gl")
 			else
 				tinsert(package.buildoptions, "`wx-config --cxxflags`")
 				tinsert(package.linkoptions, "`wx-config --libs std,gl,ogl,media`")

@@ -90,7 +90,7 @@ public:
 
 protected:
 
-	void OnOK(wxCommandEvent& event)
+	void OnButtonOK(wxCommandEvent& event)
 	{
 		wxTextCtrl* filenameWin = wxDynamicCast(FindWindow(ID_FILENAME), wxTextCtrl);
 		wxComboBox* framerateWin = wxDynamicCast(FindWindow(ID_FRAMERATE), wxComboBox);
@@ -112,7 +112,7 @@ protected:
 			return;
 		}
 
-		wxDialog::OnOK(event);
+		event.Skip();	// janwas: wxDialog::OnOK has been removed in 2.8 wxw; see http://wxforum.shadonet.com/viewtopic.php?t=11103
 	}
 
 private:
@@ -134,7 +134,7 @@ private:
 		else if (size < 1024*1024*100)  sizeStr = wxString::Format(_T("~%.1f MiB"), (float)size/(1024*1024));
 		else if (size < 1024*1024*1024) sizeStr = wxString::Format(_T("~%.0f MiB"), (float)size/(1024*1024));
 		else                            sizeStr = wxString::Format(_T("~%.2f GiB"), (float)size/(1024*1024*1024));
-		filesizeWin->SetTitle(sizeStr);
+		filesizeWin->SetLabel(sizeStr);
 	}
 
 	void FileBrowse(wxCommandEvent& WXUNUSED(event))
@@ -160,7 +160,7 @@ BEGIN_EVENT_TABLE(RecorderDialog, wxDialog)
 	EVT_TEXT(ID_FRAMERATE, RecorderDialog::RecalculateSizes)
 	EVT_TEXT(ID_BITRATE, RecorderDialog::RecalculateSizes)
 	EVT_BUTTON(ID_FILECHOOSE, RecorderDialog::FileBrowse)
-	EVT_BUTTON(wxID_OK, RecorderDialog::OnOK)
+	EVT_BUTTON(wxID_OK, RecorderDialog::OnButtonOK)
 END_EVENT_TABLE()
 
 
