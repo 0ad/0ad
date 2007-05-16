@@ -71,3 +71,28 @@ uint fpclassifyf(float f)
 }
 
 #endif	// #if !HAVE_C99_MATH
+
+
+#if !HAVE_STRDUP
+
+char* strdup(const char* str)
+{
+	const size_t num_chars = strlen(str);
+	char* dst = (char*)malloc((num_chars+1)*sizeof(char));
+	if(!dst)
+		return 0;
+	SAFE_STRCPY(dst, str);
+	return dst;
+}
+
+wchar_t* wcsdup(const wchar_t* str)
+{
+	const size_t num_chars = wcslen(str);
+	wchar_t* dst = (wchar_t*)malloc((num_chars+1)*sizeof(wchar_t));
+	if(!dst)
+		return 0;
+	SAFE_WCSCPY(dst, str);
+	return dst;
+}
+
+#endif	// #if !HAVE_STRDUP
