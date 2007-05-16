@@ -65,7 +65,7 @@ AT_STARTUP(\
 // (default values for HRT_NONE impl)
 
 // initial measurement of the time source's tick rate. not necessarily
-// correct (e.g. when using TSC; cpu_ClockFrequency isn't exact).
+// correct (e.g. when using TSC: cpu_ClockFrequency isn't exact).
 static double hrt_nominal_freq = -1.0;
 
 // actual resolution of the time source (may differ from hrt_nominal_freq
@@ -130,9 +130,9 @@ enum HRTOverride
 	HRT_FORCE
 };
 
+// HRTImpl enums as index
+// HACK: no init needed - static data is zeroed (= HRT_DEFAULT)
 static HRTOverride overrides[HRT_NUM_IMPLS];
-	// HRTImpl enums as index
-	// HACK: no init needed - static data is zeroed (= HRT_DEFAULT)
 cassert((int)HRT_DEFAULT == 0);
 
 
@@ -152,6 +152,14 @@ static inline void unlock(void)
 }
 
 
+static bool IsSimilarMagnitude(double d1, double d2, const double relative_error_tolerance = 0.05)
+{
+	const double relative_error = fabs(d1/d2 - 1.0);
+	if(relative_error > relative_error_tolerance)
+		return false;
+	return true;
+}
+
 // decide upon a HRT implementation, checking if we can work around
 // each timer's issues on this platform, but allow user override
 // in case there are unforeseen problems with one of them.
@@ -165,6 +173,9 @@ static LibError choose_impl()
 		safe = false;\
 	if(overrides[impl] == HRT_FORCE)\
 		safe = true;
+
+	// used several times below, so latch it for convenience.
+	const double cpu_freq = cpu_IsModuleInitialized()? cpu_ClockFrequency() : 0.0;
 
 #if CPU_IA32 && !defined(NO_TSC)
 	// CPU Timestamp Counter (incremented every clock)
@@ -187,7 +198,62 @@ static LibError choose_impl()
 	//   will do this as well (if not to save power, for heat reasons).
 	//   frequency changes are too often and drastic to correct,
 	//   and we don't want to mess with the system power settings => unsafe.
-	if(cpu_IsModuleInitialized() && cpu_ClockFrequency() > 0.0 && ia32_cap(IA32_CAP_TSC))
+
+
+/*
+AMD  has  defined  a CPUID  feature  bit  that
+software   can   test   to   determine   if   the   TSC   is
+invariant. Issuing a CPUID instruction with an %eax register
+value of  0x8000_0007, on a  processor whose base  family is
+0xF, returns "Advanced  Power Management Information" in the
+%eax, %ebx, %ecx,  and %edx registers.  Bit 8  of the return
+%edx is  the "TscInvariant" feature  flag which is  set when
+TSC is P-state, C-state, and STPCLK-throttling invariant; it
+is clear otherwise.
+*/
+
+/*
+if (CPUID.base_family < 0xf) {
+// TSC drift doesn't exist on 7th Gen or less
+// However, OS still needs to consider effects
+// of P-state changes on TSC
+return TRUE;
+
+} else if (CPUID.AdvPowerMgmtInfo.TscInvariant) {
+// Invariant TSC on 8th Gen or newer, use it
+// (assume all cores have invariant TSC)
+return TRUE;
+
+} else if ((number_processors == 1)&&(number_cores == 1)){
+// OK to use TSC on uni-processor-uni-core
+// However, OS still needs to consider effects
+// of P-state changes on TSC
+return TRUE;
+
+} else if ( (number_processors == 1) &&
+(CPUID.effective_family == 0x0f) &&
+!C1_ramp_8gen                       ){
+// Use TSC on 8th Gen uni-proc with C1_ramp off
+// However, OS still needs to consider effects
+// of P-state changes on TSC
+return TRUE;
+
+} else {
+return FALSE;
+}
+
+}
+
+C1_ramp_8gen() {
+// Check if C1-Clock ramping enabled in  PMM7.CpuLowPwrEnh
+// On 8th-Generation cores only. Assume BIOS has setup
+// all Northbridges equivalently.
+
+return (1 & read_pci_byte(bus=0,dev=0x18,fcn=3,offset=0x87));
+}
+*/
+
+	if(cpu_freq > 0.0 && ia32_cap(IA32_CAP_TSC))
 	{
 		safe = (cpu_CoresPerPackage() == 1 && cpu_NumPackages() == 1 && cpu_IsThrottlingPossible() == 0);
 		SAFETY_OVERRIDE(HRT_TSC);
@@ -213,17 +279,15 @@ static LibError choose_impl()
 	//   2) "System clock problem can inflate benchmark scores":
 	//      incorrect value if not polled every 4.5 seconds? solved
 	//      by calibration thread, which reads timer every second anyway.
-	// - TSC on MP HAL - see TSC above.
+	// - TSC on MP HAL, sometimes with 1/3 of CPU freq.
 
 	// cache freq because QPF is fairly slow.
-	static i64 qpc_freq = -1;
-
-	// first call - check if QPC is supported
-	if(qpc_freq == -1)
+	static i64 qpc_freq = -1;	// set to 0 if unsupported
+	if(qpc_freq == -1)	// first call
 	{
-		LARGE_INTEGER i;
-		BOOL qpc_ok = QueryPerformanceFrequency(&i);
-		qpc_freq = qpc_ok? i.QuadPart : 0;
+		LARGE_INTEGER freq;
+		BOOL qpc_ok = QueryPerformanceFrequency(&freq);
+		qpc_freq = qpc_ok? freq.QuadPart : 0;
 	}
 
 	// QPC is available
@@ -241,11 +305,14 @@ static LibError choose_impl()
 				safe = false;
 			else
 			{
-				// compare QPC freq to CPU clock freq - can't rule out HPET,
-				// because its frequency isn't known (it's at least 10 MHz).
-				double freq_dist = fabs(cpu_ClockFrequency()/qpc_freq - 1.0);
-				safe = freq_dist > 0.05;
-					// safe if freqs not within 5% (i.e. it doesn't use TSC)
+				safe = true;
+				// compare QPC freq to CPU clock freq. note: we can't
+				// single out the HPET (as with PIT and PMT above) because
+				// its frequency is variable and at least 10 MHz.
+				if(IsSimilarMagnitude(qpc_freq, cpu_freq))
+					safe = false;
+				if(IsSimilarMagnitude(qpc_freq, cpu_freq/3))	// QPC sometimes uses RDTSC/3
+					safe = false;
 			}
 		}
 
@@ -318,12 +385,8 @@ static i64 ticks_lk()
 
 	// add further timers here.
 
-	case HRT_NUM_IMPLS:
 	default:
 		debug_warn("invalid impl");
-		//-fallthrough
-
-	case HRT_NONE:
 		return 0;
 	}	// switch(impl)
 }
@@ -348,7 +411,7 @@ static double time_lk()
 
 
 
-// this module is dependent upon detect (supplies system information needed to
+// this module is dependent upon cpu.cpp (supplies information needed to
 // choose a HRT), which in turn uses our timer to detect the CPU clock
 // when running on Windows (clock(), the only cross platform HRT available on
 // Windows, isn't good enough - only 10..15 ms resolution).
@@ -390,6 +453,8 @@ static LibError reset_impl_lk()
 		hrt_cal_ticks = ticks_lk();
 	}
 
+debug_printf("HRT impl=%d nominal_freq=%f cur_freq=%f\n", hrt_impl, hrt_nominal_freq, hrt_cur_freq);
+
 	return INFO::OK;
 }
 
@@ -408,9 +473,8 @@ unlock();
 // return seconds since init.
 static double hrt_time()
 {
-	double t;
 lock();
-	t = time_lk();
+	const double t = time_lk();
 unlock();
 	return t;
 }
@@ -423,7 +487,7 @@ static double hrt_delta_s(i64 start, i64 end)
 {
 	// paranoia: reading double may not be atomic.
 lock();
-	double freq = hrt_cur_freq;
+	const double freq = hrt_cur_freq;
 unlock();
 
 	debug_assert(freq != -1.0 && "hrt_delta_s: hrt_cur_freq not set");
@@ -434,8 +498,6 @@ unlock();
 // return current timer implementation and its nominal (rated) frequency.
 // nominal_freq is never 0.
 // implementation only changes after hrt_override_impl.
-//
-// may be called before first hrt_ticks / hrt_time, so do init here also.
 static void hrt_query_impl(HRTImpl& impl, double& nominal_freq, double& res)
 {
 lock();
@@ -472,12 +534,9 @@ unlock();
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // calibration
-//
-//////////////////////////////////////////////////////////////////////////////
-
+//-----------------------------------------------------------------------------
 
 // 'safe' timer, used to measure HRT freq in calibrate()
 static const long safe_timer_freq = 1000;
@@ -629,11 +688,9 @@ static LibError hrt_shutdown()
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // wtime wrapper: emulates POSIX functions
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 // NT system time and FILETIME are hectonanoseconds since Jan. 1, 1601 UTC.
 // SYSTEMTIME is a struct containing month, year, etc.

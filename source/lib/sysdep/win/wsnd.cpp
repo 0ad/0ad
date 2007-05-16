@@ -129,7 +129,7 @@ static char ds_drv_path[MAX_PATH+1];
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
 static BOOL CALLBACK ds_enum(void* UNUSED(guid), const char* description,
-							 const char* module, void* UNUSED(ctx))
+	const char* module, void* UNUSED(ctx))
 {
 	// skip first (dummy) entry, where description == "Primary Sound Driver".
 	if(module[0] == '\0')

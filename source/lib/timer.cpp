@@ -58,7 +58,7 @@ double get_time()
 	// make sure time is monotonic (never goes backwards)
 	static double t_last = 0.0;
 	if(t < t_last)
-		t = t_last;
+		t = t_last+DBL_EPSILON;
 	t_last = t;
 
 	return t;

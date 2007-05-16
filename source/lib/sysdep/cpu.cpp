@@ -34,108 +34,56 @@ AT_STARTUP(\
 )
 
 
-static ModuleInitState module_init_state = MODULE_BEFORE_INIT;
-
-
 //-----------------------------------------------------------------------------
 #pragma region Accessor functions
-// prevent other modules from changing the underlying data.
+// insulate caller from the system-specific modules and cache results.
+// note: the providers sometimes need to store the results anyway, so we
+// don't need to do caching in those cases.
+// these are set once during cpu_Init since they're usually all used and
+// we thus avoid needing if(already_called) return old_result.
+// initially set to 'impossible' values to catch uses before cpu_Init.
 
-bool cpu_IsModuleInitialized()
-{
-	return module_init_state == MODULE_INITIALIZED;
-}
+static ModuleInitState module_init_state = MODULE_BEFORE_INIT;
+static double clock_frequency = -1.0;
+static bool is_throttling_possible = true;
+static size_t page_size = 1;
+static size_t memory_total_mib = 1;
 
-const char* cpu_IdentifierString()
-{
-#if CPU_IA32
-	return ia32_IdentifierString();
-#endif
-}
 
-double cpu_ClockFrequency()
-{
-#if CPU_IA32
-	return ia32_ClockFrequency();	// authoritative, precise
-#endif
-}
-
-uint cpu_NumPackages()
+static void DetectClockFrequency()
 {
 #if CPU_IA32
-	return ia32_NumPackages();
-#endif
-}
-
-uint cpu_CoresPerPackage()
-{
-#if CPU_IA32
-	return ia32_CoresPerPackage();
-#endif
-}
-
-uint cpu_LogicalPerCore()
-{
-#if CPU_IA32
-	return ia32_LogicalPerCore();
+	clock_frequency = ia32_ClockFrequency();	// authoritative, precise
 #endif
 }
 
 
-bool cpu_IsThrottlingPossible()
+static void DetectIfThrottlingPossible()
 {
 #if CPU_IA32
 	if(ia32_IsThrottlingPossible() == 1)
-		return true;
+	{
+		is_throttling_possible = true;
+		return;
+	}
 #endif
+
 #if OS_WIN
 	if(wcpu_IsThrottlingPossible() == 1)
-		return true;
-#endif
-	return false;
-}
-
-#pragma endregion
-//-----------------------------------------------------------------------------
-// memory
-
-static size_t cpu_page_size = 0;
-// determined during cpu_Init; cleaned up and given in MiB
-static size_t cpu_memory_total_mib = 0;
-
-// System V derived (GNU/Linux, Solaris)
-#if defined(_SC_AVPHYS_PAGES)
-
-static int SysconfFromMemType(CpuMemoryIndicators mem_type)
-{
-	switch(mem_type)
 	{
-	case CPU_MEM_TOTAL:
-		return _SC_PHYS_PAGES;
-	case CPU_MEM_AVAILABLE:
-		return _SC_AVPHYS_PAGES;
+		is_throttling_possible = true;
+		return;
 	}
-	UNREACHABLE;
-}
-
 #endif
 
-size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
-{
-	// quasi-POSIX
-#if defined(_SC_AVPHYS_PAGES)
-	const int sc_name = SysconfFromMemType(mem_type);
-	const size_t memory_size = sysconf(sc_name) * cpu_page_size;
-	return memory_size;
-	// BSD / Mac OS X
-#else
-	return bsd_MemorySize(mem_type);
-#endif
+	is_throttling_possible = false;
 }
 
 
-static size_t DetermineMemoryTotalMiB()
+static void DetectMemory()
 {
+	page_size = (size_t)sysconf(_SC_PAGESIZE);
+
 	size_t memory_total = cpu_MemorySize(CPU_MEM_TOTAL);
 
 	// account for inaccurate reporting by rounding up (see wposix sysconf)
@@ -147,16 +95,59 @@ static size_t DetermineMemoryTotalMiB()
 	else
 		memory_total = memory_total_pow2;
 
-	const size_t memory_total_mib = memory_total / MiB;
-	return memory_total_mib;
+	memory_total_mib = memory_total / MiB;
+}
+
+
+bool cpu_IsModuleInitialized()
+{
+	return module_init_state == MODULE_INITIALIZED;
+}
+
+double cpu_ClockFrequency()
+{
+	return clock_frequency;
+}
+
+bool cpu_IsThrottlingPossible()
+{
+	return is_throttling_possible;
 }
 
 size_t cpu_MemoryTotalMiB()
 {
-	return cpu_memory_total_mib;
+	return memory_total_mib;
 }
 
+const char* cpu_IdentifierString()
+{
+#if CPU_IA32
+	return ia32_IdentifierString();	// cached
+#endif
+}
 
+uint cpu_NumPackages()
+{
+#if CPU_IA32
+	return ia32_NumPackages();	// cached
+#endif
+}
+
+uint cpu_CoresPerPackage()
+{
+#if CPU_IA32
+	return ia32_CoresPerPackage();	// cached
+#endif
+}
+
+uint cpu_LogicalPerCore()
+{
+#if CPU_IA32
+	return ia32_LogicalPerCore();	// cached
+#endif
+}
+
+#pragma endregion
 //-----------------------------------------------------------------------------
 
 #if CPU_IA32
@@ -195,16 +186,16 @@ void cpu_Init()
 	InitAndConfigureIA32();
 #endif
 
-	// memory
-	cpu_page_size = (size_t)sysconf(_SC_PAGESIZE);
-	cpu_memory_total_mib = DetermineMemoryTotalMiB();
+	DetectMemory();
+	DetectIfThrottlingPossible();
+	DetectClockFrequency();
 
 	// must be set before wtime_reset_impl since it queries this flag via
 	// cpu_IsModuleInitialized.
 	module_init_state = MODULE_INITIALIZED;
 
 	// HACK: on Windows, the HRT makes its final implementation choice
-	// in the first calibrate call where cpu info is available.
+	// in the first calibrate call where CPU info is available.
 	// call wtime_reset_impl here to have that happen now so app code isn't
 	// surprised by a timer change, although the HRT does try to
 	// keep the timer continuous.
@@ -215,6 +206,7 @@ void cpu_Init()
 
 
 //-----------------------------------------------------------------------------
+// stateless routines
 
 bool cpu_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
@@ -285,5 +277,36 @@ i64 cpu_i64FromDouble(double d)
 	return ia32_asm_i64FromDouble(d);
 #else
 	return (i64)d;
+#endif
+}
+
+
+// System V derived (GNU/Linux, Solaris)
+#if defined(_SC_AVPHYS_PAGES)
+
+static int SysconfFromMemType(CpuMemoryIndicators mem_type)
+{
+	switch(mem_type)
+	{
+	case CPU_MEM_TOTAL:
+		return _SC_PHYS_PAGES;
+	case CPU_MEM_AVAILABLE:
+		return _SC_AVPHYS_PAGES;
+	}
+	UNREACHABLE;
+}
+
+#endif
+
+size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
+{
+	// quasi-POSIX
+#if defined(_SC_AVPHYS_PAGES)
+	const int sc_name = SysconfFromMemType(mem_type);
+	const size_t memory_size = sysconf(sc_name) * page_size;
+	return memory_size;
+	// BSD / Mac OS X
+#else
+	return bsd_MemorySize(mem_type);
 #endif
 }

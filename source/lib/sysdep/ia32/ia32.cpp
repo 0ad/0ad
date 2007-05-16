@@ -208,7 +208,11 @@ public:
 const char* ia32_IdentifierString()
 {
 	// 3 calls x 4 registers x 4 bytes = 48
-	static char identifier_string[48+1] = "";
+	static char identifier_string[48+1] = {'\0'};
+
+	// not first call, return previous result
+	if(identifier_string[0] != '\0')
+		return identifier_string;
 
 	// get processor signature
 	u32 regs[4];
@@ -309,92 +313,106 @@ int ia32_IsThrottlingPossible()
 }
 
 
+// set scheduling priority and restore when going out of scope.
+class ScopedSetPriority
+{
+	int m_old_policy;
+	sched_param m_old_param;
+
+public:
+	ScopedSetPriority(int new_priority)
+	{
+		// get current scheduling policy and priority
+		pthread_getschedparam(pthread_self(), &m_old_policy, &m_old_param);
+
+		// set new priority
+		sched_param new_param = {0};
+		new_param.sched_priority = new_priority;
+		pthread_setschedparam(pthread_self(), SCHED_FIFO, &new_param);
+	}
+
+	~ScopedSetPriority()
+	{
+		// restore previous policy and priority.
+		pthread_setschedparam(pthread_self(), m_old_policy, &m_old_param);
+	}
+};
+
 double ia32_ClockFrequency()
 {
-	double clock_frequency = 0.0;
+	// if the TSC isn't available, there's really no good way to count the
+	// actual CPU clocks per known time interval, so bail.
+	// note: loop iterations ("bogomips") are not a reliable measure due
+	// to differing IPC and compiler optimizations.
+	if(!ia32_cap(IA32_CAP_TSC))
+		return -1.0;	// impossible value
 
-	// set max priority, to reduce interference while measuring.
-	int old_policy; static sched_param old_param;	// (static => 0-init)
-	pthread_getschedparam(pthread_self(), &old_policy, &old_param);
-	static sched_param max_param;
-	max_param.sched_priority = sched_get_priority_max(SCHED_FIFO);
-	pthread_setschedparam(pthread_self(), SCHED_FIFO, &max_param);
+	// increase priority to reduce interference while measuring.
+	const int priority = sched_get_priority_max(SCHED_FIFO)-1;
+	ScopedSetPriority ssp(priority);
 
-	// make sure the TSC is available, because we're going to
-	// measure actual CPU clocks per known time interval.
-	// counting loop iterations ("bogomips") is unreliable.
-	if(ia32_cap(IA32_CAP_TSC))
+	// note: no need to "warm up" cpuid - it will already have been
+	// called several times by the time this code is reached.
+	// (background: it's used in ia32_rdtsc() to serialize instruction flow;
+	// the first call is documented to be slower on Intel CPUs)
+
+	int num_samples = 16;
+	// if clock is low-res, do less samples so it doesn't take too long.
+	// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
+	// ok for using the TSC as a time reference)
+	if(timer_res() >= 1e-3)
+		num_samples = 8;
+	std::vector<double> samples(num_samples);
+
+	for(int i = 0; i < num_samples; i++)
 	{
-		// note: no need to "warm up" cpuid - it will already have been
-		// called several times by the time this code is reached.
-		// (background: it's used in ia32_rdtsc() to serialize instruction flow;
-		// the first call is documented to be slower on Intel CPUs)
+		double dt;
+		i64 dc; // i64 because VC6 can't convert u64 -> double,
+		        // and we don't need all 64 bits.
 
-		int num_samples = 16;
-		// if clock is low-res, do less samples so it doesn't take too long.
-		// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
-		// ok for using the TSC as a time reference)
-		if(timer_res() >= 1e-3)
-			num_samples = 8;
-		std::vector<double> samples(num_samples);
-
-		int i;
-		for(i = 0; i < num_samples; i++)
+		// count # of clocks in max{1 tick, 1 ms}:
+		// .. wait for start of tick.
+		const double t0 = get_time();
+		u64 c1; double t1;
+		do
 		{
-			double dt;
-			i64 dc;
-			// i64 because VC6 can't convert u64 -> double,
-			// and we don't need all 64 bits.
-
-			// count # of clocks in max{1 tick, 1 ms}:
-			// .. wait for start of tick.
-			const double t0 = get_time();
-			u64 c1; double t1;
-			do
-			{
-				// note: get_time effectively has a long delay (up to 5 us)
-				// before returning the time. we call it before ia32_rdtsc to
-				// minimize the delay between actually sampling time / TSC,
-				// thus decreasing the chance for interference.
-				// (if unavoidable background activity, e.g. interrupts,
-				// delays the second reading, inaccuracy is introduced).
-				t1 = get_time();
-				c1 = ia32_rdtsc();
-			}
-			while(t1 == t0);
-			// .. wait until start of next tick and at least 1 ms elapsed.
-			do
-			{
-				const double t2 = get_time();
-				const u64 c2 = ia32_rdtsc();
-				dc = (i64)(c2 - c1);
-				dt = t2 - t1;
-			}
-			while(dt < 1e-3);
-
-			// .. freq = (delta_clocks) / (delta_seconds);
-			//    ia32_rdtsc/timer overhead is negligible.
-			const double freq = dc / dt;
-			samples[i] = freq;
+			// note: get_time effectively has a long delay (up to 5 us)
+			// before returning the time. we call it before ia32_rdtsc to
+			// minimize the delay between actually sampling time / TSC,
+			// thus decreasing the chance for interference.
+			// (if unavoidable background activity, e.g. interrupts,
+			// delays the second reading, inaccuracy is introduced).
+			t1 = get_time();
+			c1 = ia32_rdtsc();
 		}
+		while(t1 == t0);
+		// .. wait until start of next tick and at least 1 ms elapsed.
+		do
+		{
+			const double t2 = get_time();
+			const u64 c2 = ia32_rdtsc();
+			dc = (i64)(c2 - c1);
+			dt = t2 - t1;
+		}
+		while(dt < 1e-3);
 
-		std::sort(samples.begin(), samples.end());
-
-		// median filter (remove upper and lower 25% and average the rest).
-		// note: don't just take the lowest value! it could conceivably be
-		// too low, if background processing delays reading c1 (see above).
-		double sum = 0.0;
-		const int lo = num_samples/4, hi = 3*num_samples/4;
-		for(i = lo; i < hi; i++)
-			sum += samples[i];
-		clock_frequency = sum / (hi-lo);
-
+		// .. freq = (delta_clocks) / (delta_seconds);
+		//    ia32_rdtsc/timer overhead is negligible.
+		const double freq = dc / dt;
+		samples[i] = freq;
 	}
-	// else: TSC not available, can't measure; cpu_freq remains unchanged.
 
-	// restore previous policy and priority.
-	pthread_setschedparam(pthread_self(), old_policy, &old_param);
+	std::sort(samples.begin(), samples.end());
 
+	// median filter (remove upper and lower 25% and average the rest).
+	// note: don't just take the lowest value! it could conceivably be
+	// too low, if background processing delays reading c1 (see above).
+	double sum = 0.0;
+	const int lo = num_samples/4, hi = 3*num_samples/4;
+	for(int i = lo; i < hi; i++)
+		sum += samples[i];
+
+	const double clock_frequency = sum / (hi-lo);
 	return clock_frequency;
 }
 

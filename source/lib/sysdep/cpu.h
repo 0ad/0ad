@@ -28,26 +28,12 @@ namespace ERR
 extern void cpu_Init(void);
 
 extern bool cpu_IsModuleInitialized();
-
-
 extern const char* cpu_IdentifierString();
 extern double cpu_ClockFrequency();
+extern bool cpu_IsThrottlingPossible();
 extern uint cpu_NumPackages();	// i.e. sockets
 extern uint cpu_CoresPerPackage();
 extern uint cpu_LogicalPerCore();
-extern bool cpu_IsThrottlingPossible();
-
-
-//
-// memory
-//
-
-enum CpuMemoryIndicators
-{
-	CPU_MEM_TOTAL, CPU_MEM_AVAILABLE
-};
-
-extern size_t cpu_MemorySize(CpuMemoryIndicators mem_type);
 
 // faster than cpu_MemorySize (caches total size determined during init),
 // returns #Mebibytes (cleaned up to account e.g. for nonpaged pool)
@@ -55,7 +41,7 @@ extern size_t cpu_MemoryTotalMiB();
 
 
 //
-// misc
+// misc (stateless)
 //
 
 // atomic "compare and swap". compare the machine word at <location> against
@@ -75,10 +61,18 @@ extern bool cpu_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value
  **/
 extern void cpu_AtomicAdd(intptr_t* location, intptr_t increment);
 
+extern void cpu_Serialize();
+
 // enforce strong memory ordering.
 extern void cpu_MemoryFence();
 
-extern void cpu_Serialize();
+
+enum CpuMemoryIndicators
+{
+	CPU_MEM_TOTAL, CPU_MEM_AVAILABLE
+};
+
+extern size_t cpu_MemorySize(CpuMemoryIndicators mem_type);
 
 
 // drop-in replacement for libc memcpy(). only requires CPU support for

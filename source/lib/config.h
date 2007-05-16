@@ -396,7 +396,7 @@
 # define HAVE_STL_HASH 0
 #endif
 
-// safe string functions: strcpy_s et al.
+// safe CRT functions: strcpy_s, fopen_s, etc.
 // these are always available to users: if not provided by the CRT, we
 // implement them ourselves. this flag is only used to skip our impl.
 #if MSC_VERSION >= 1400
