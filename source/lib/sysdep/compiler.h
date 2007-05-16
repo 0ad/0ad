@@ -55,14 +55,9 @@
 // this in an even very slightly unclear way, in case it causes obscure problems
 // in a rare compiler due to differing semantics.
 //
-// .. we made g++ claim to support C99 by defining __STDC_VERSION__ in the
-//    makefiles, but that's wrong and it doesn't have the restrict keyword.
-//    use the extension __restrict__ instead.
+// .. GCC
 #if GCC_VERSION
 # define RESTRICT __restrict__
-// .. already available in C99 as 'restrict'
-#elif HAVE_C99
-# define RESTRICT restrict
 // .. VC8 provides __restrict
 #elif MSC_VERSION >= 1400
 # define RESTRICT __restrict
@@ -79,13 +74,14 @@
 #endif
 
 
-// C99 __func__
-// .. already available; need do nothing
-#if HAVE_C99
-// .. VC supports something similar
-#elif MSC_VERSION
+// C99-style __func__
+// .. newer GCC already have it
+#if GCC_VERSION >= 300
+	// nothing need be done
+// .. old GCC and MSVC have __FUNCTION__
+#elif GCC_VERSION >= 200 || MSC_VERSION
 # define __func__ __FUNCTION__
-// .. unsupported; remove it from code
+// .. unsupported
 #else
 # define __func__ "(unknown)"
 #endif

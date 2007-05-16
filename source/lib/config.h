@@ -219,9 +219,17 @@
 #endif
 
 // convenience: additionally set OS_UNIX for Unix-based OSes
+// note: doing this in an separate section instead of adding the extra define
+// to all affected OSes saves a few undefs or macro redefinition warnings.
 #if OS_LINUX || OS_MACOSX || OS_BSD || OS_SOLARIS
 # undef OS_UNIX
 # define OS_UNIX 1
+#endif
+
+// convenience: additionally set OS_BSD for BSD-based OSes. see note above.
+#if OS_MACOSX
+# undef OS_BSD
+# define OS_BSD 1
 #endif
 
 
@@ -281,15 +289,15 @@
 // auto-detect platform features, given the above information
 //-----------------------------------------------------------------------------
 
-// compiler support for C99
+// check if compiling in pure C mode (not C++) with support for C99.
 // (this is more convenient than testing __STDC_VERSION__ directly)
 //
 // note: C99 provides several useful but disjunct bits of functionality.
-// unfortunately, most C++ compilers do not offer a complete C99
-// implementation. however, many of these features are likely to be added to
-// C++, and/or are already available as extensions. what we'll do is add a
-// HAVE_ macro for each and test those instead. they are set if HAVE_C99, or
-// also if the compiler happens to support something compatible.
+// unfortunately, most C++ compilers do not offer a complete implementation.
+// however, many of these features are likely to be added to C++, and/or are
+// already available as extensions. what we'll do is add a HAVE_ macro for
+// each feature and test those instead. they are set if HAVE_C99, or also if
+// the compiler happens to support something compatible.
 //
 // rationale: lying about __STDC_VERSION__ via Premake so as to enable support
 // for some C99 functions doesn't work. Mac OS X headers would then use the
@@ -303,26 +311,25 @@
 # endif
 #endif
 
-
 // strdup, wcsdup
-#define HAVE_STRDUP 1
 #if OS_MACOSX
-# undef  HAVE_STRDUP
 # define HAVE_STRDUP 0
+#else
+# define HAVE_STRDUP 1
 #endif
 
 // emulation needed on VC8 because this function is "deprecated"
-#define HAVE_MKDIR 1
-#if MSC_VERSION > 800
-# undef  HAVE_MKDIR
+#if MSC_VERSION >= 1400
 # define HAVE_MKDIR 0
+#else
+# define HAVE_MKDIR 1
 #endif
 
 // rint*, fminf, fpclassify (too few/diverse to make separate HAVE_ for each)
-#define HAVE_C99_MATH 0
-#if HAVE_C99
-# undef  HAVE_C99_MATH
+#if HAVE_C99 || GCC_VERSION
 # define HAVE_C99_MATH 1
+#else
+# define HAVE_C99_MATH 0
 #endif
 
 // gettimeofday()
@@ -333,13 +340,13 @@
 #endif
 
 // clock_gettime()
+#define HAVE_CLOCK_GETTIME 0
 #if OS_UNIX
 # include <unistd.h>
-# if (defined(_POSIX_TIMERS) && _POSIX_TIMERS > 0)
+# if defined(_POSIX_TIMERS) && _POSIX_TIMERS > 0
+#  undef HAVE_CLOCK_GETTIME
 #  define HAVE_CLOCK_GETTIME 1
 # endif
-#else
-# define HAVE_CLOCK_GETTIME 0
 #endif
 
 // X server
@@ -399,7 +406,7 @@
 // safe CRT functions: strcpy_s, fopen_s, etc.
 // these are always available to users: if not provided by the CRT, we
 // implement them ourselves. this flag is only used to skip our impl.
-#if MSC_VERSION >= 1400
+#if MSC_VERSION >= 1400 || GCC_VERSION
 # define HAVE_SECURE_CRT 1
 #else
 # define HAVE_SECURE_CRT 0
