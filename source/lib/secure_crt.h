@@ -70,9 +70,11 @@ extern int wcscat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src);
 
 
 extern int sprintf_s(char* buf, size_t max_chars, const char* fmt, ...);
+extern int swprintf_s(wchar_t* buf, size_t max_chars, const wchar_t* fmt, ...);
 
 typedef int errno_t;
 extern errno_t fopen_s(FILE** pfile, const char* filename, const char* mode);
+extern errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode);
 
 #define fscanf_s fscanf
 

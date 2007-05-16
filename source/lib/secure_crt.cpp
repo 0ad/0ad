@@ -42,6 +42,10 @@ AT_STARTUP(\
 # define tcat_s wcscat_s
 # define tcmp wcscmp
 # define tcpy wcscpy
+# define tprintf_s swprintf_s
+# define vtnprintf vswprintf    // private
+# define tfopen_s _wfopen_s
+# define tfopen _wfopen         // private
 #else
 # define tchar char
 # define T(string_literal) string_literal
@@ -52,6 +56,10 @@ AT_STARTUP(\
 # define tcat_s strcat_s
 # define tcmp strcmp
 # define tcpy strcpy
+# define tprintf_s sprintf_s
+# define vtnprintf vsnprintf    // private
+# define tfopen_s fopen_s
+# define tfopen fopen           // private
 #endif	// #ifdef WSECURE_CRT
 
 
@@ -205,20 +213,20 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 
 
 
-int sprintf_s(char* buf, size_t max_chars, const char* fmt, ...)
+int tprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	int len = vsnprintf(buf, max_chars, fmt, args);
+	int len = vtnprintf(buf, max_chars, fmt, args);
 	va_end(args);
 	return len;
 }
 
 
-errno_t fopen_s(FILE** pfile, const char* filename, const char* mode)
+errno_t tfopen_s(FILE** pfile, const tchar* filename, const tchar* mode)
 {
 	*pfile = NULL;
-	FILE* file = fopen(filename, mode);
+	FILE* file = tfopen(filename, mode);
 	if(!file)
 		return ENOENT;
 	*pfile = file;
