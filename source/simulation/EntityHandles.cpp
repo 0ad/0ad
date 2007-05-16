@@ -47,22 +47,19 @@ bool HEntity::operator ==( const HEntity& test ) const
 	return( m_handle == test.m_handle );
 }
 
-HEntity::operator bool() const
+bool HEntity::IsValid() const
 { 
 	if( m_handle == INVALID_HANDLE )
 		return( false );
 	
 	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
-	return( !g_EntityManager.m_entities[m_handle].m_entity->entf_get(ENTF_DESTROYED) );
+	//return( !g_EntityManager.m_entities[m_handle].m_entity->entf_get(ENTF_DESTROYED) );
+	return( true );
 }
 
-bool HEntity::operator!() const
-{
-	if( m_handle == INVALID_HANDLE )
-		return( true );
-	
-	debug_assert( g_EntityManager.m_entities[m_handle].m_refcount );
-	return( g_EntityManager.m_entities[m_handle].m_entity->entf_get(ENTF_DESTROYED) );
+bool HEntity::IsAlive() const
+{ 
+	return( IsValid() && !g_EntityManager.m_entities[m_handle].m_entity->entf_get(ENTF_DESTROYED) );
 }
 
 void HEntity::AddRef()

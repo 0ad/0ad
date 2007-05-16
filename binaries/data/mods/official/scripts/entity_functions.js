@@ -1963,7 +1963,6 @@ function InfidelityAura( source, time )
 				{
 					if( this.count[i] > 0 )
 					{
-						console.write( "Starting convert timer" );
 						this.convertTimer = setTimeout( this.convert, parseInt( this.time * 1000 ), this );
 						return;
 					}
@@ -1974,7 +1973,6 @@ function InfidelityAura( source, time )
 		// If we had started a convert timer before, cancel it (either we have units from our owner in range, or there are no units from anyone in range)
 		if( this.convertTimer )
 		{
-			console.write( "Cancelling convert timer" );
 			cancelTimer( this.convertTimer );
 			this.convertTimer = 0;
 		}
@@ -1982,8 +1980,6 @@ function InfidelityAura( source, time )
 	
 	this.convert = function()
 	{
-		console.write( "Conversion time!" );
-		
 		// Switch ownership to whichever non-gaia player has the most units near us
 		bestPlayer = 0;
 		bestCount = 0;

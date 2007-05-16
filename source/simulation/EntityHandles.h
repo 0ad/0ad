@@ -50,19 +50,31 @@ private:
 	void DecRef();
 	HEntity( u16 index );
 public:
-	CEntity& operator*() const;
-	CEntity* operator->() const;
 	HEntity();
 	HEntity( const HEntity& copy );
+	~HEntity();
+
 	void operator=( const HEntity& copy );
+
+	CEntity& operator*() const;
+	CEntity* operator->() const;
+
 	bool operator==( const HEntity& test ) const;
 	bool operator!=( const HEntity& test ) const { return( !operator==( test ) ); }
-	operator bool() const;
-	bool operator!() const;
+	
 	operator CEntity*() const;
-	// Visual C++ 2003 can't handle (bool && HEntity) expressions, so provide another alias for operator bool()
-	bool IsValid() const {return this->operator bool();}
-	~HEntity();
+
+	// Returns true iff we are a valid handle, i.e. one to a non-deleted (but possibly destroyed) entity
+	bool IsValid() const;
+
+	// Returns true iff we are a valid handle to an entity that is not destroyed
+	bool IsAlive() const;
+
+	// Same as IsValid(); maybe this should be removed altogether to prevent confusion?
+	operator bool() const { return IsValid(); }
+
+	// Same as !IsValid()
+	bool operator!() const { return !IsValid(); };
 
 	uint GetSerializedLength() const;
 	u8 *Serialize(u8 *buffer) const;
