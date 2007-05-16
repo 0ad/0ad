@@ -74,7 +74,6 @@ uint fpclassifyf(float f)
 
 
 #if !HAVE_STRDUP
-
 char* strdup(const char* str)
 {
 	const size_t num_chars = strlen(str);
@@ -84,7 +83,9 @@ char* strdup(const char* str)
 	SAFE_STRCPY(dst, str);
 	return dst;
 }
+#endif
 
+#if !HAVE_WCSDUP
 wchar_t* wcsdup(const wchar_t* str)
 {
 	const size_t num_chars = wcslen(str);
@@ -94,5 +95,4 @@ wchar_t* wcsdup(const wchar_t* str)
 	SAFE_WCSCPY(dst, str);
 	return dst;
 }
-
-#endif	// #if !HAVE_STRDUP
+#endif	// #if !HAVE_WCSDUP

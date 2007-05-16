@@ -84,8 +84,10 @@ need only be renamed (e.g. _open, _stat).
 
 #if !HAVE_STRDUP
 extern char* strdup(const char* str);
+#endif
+#if !HAVE_WCSDUP
 extern wchar_t* wcsdup(const wchar_t* str);
-#endif	// #if !HAVE_STRDUP
+#endif
 
 
 #if !HAVE_C99_MATH

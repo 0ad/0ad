@@ -313,9 +313,11 @@
 
 // strdup, wcsdup
 #if OS_MACOSX
-# define HAVE_STRDUP 0
+# define HAVE_STRDUP 1
+# define HAVE_WCSDUP 0
 #else
 # define HAVE_STRDUP 1
+# define HAVE_WCSDUP 1
 #endif
 
 // emulation needed on VC8 because this function is "deprecated"
