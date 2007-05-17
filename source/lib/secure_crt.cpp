@@ -222,7 +222,9 @@ int tprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
 	return len;
 }
 
-
+#if OS_WIN || !defined(WSECURE_CRT)
+// FIXME this doesn't work in the wchar_t version, for the platforms where it's
+// supposed to do good, since wfopen is microsoft-specific.
 errno_t tfopen_s(FILE** pfile, const tchar* filename, const tchar* mode)
 {
 	*pfile = NULL;
@@ -232,5 +234,6 @@ errno_t tfopen_s(FILE** pfile, const tchar* filename, const tchar* mode)
 	*pfile = file;
 	return 0;
 }
+#endif
 
 #endif // #if !HAVE_SECURE_CRT

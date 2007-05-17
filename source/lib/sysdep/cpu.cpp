@@ -17,7 +17,7 @@
 # include "lib/sysdep/ia32/ia32.h"
 # include "lib/sysdep/ia32/ia32_memcpy.h"
 #endif
-#if OS_BSD
+#if OS_BSD || OS_MACOSX
 # include "lib/sysdep/unix/bsd.h"
 #endif
 #if OS_WIN
@@ -249,6 +249,10 @@ LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 #if OS_WIN
 	return wcpu_CallByEachCPU(cb, param);
+#else
+	UNUSED2(cb);
+	UNUSED2(param);
+	return ERR::NOT_IMPLEMENTED;
 #endif
 }
 

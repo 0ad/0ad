@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <wchar.h>
 
-#include "lib/sdl.h"
+#include "lib/external_libraries/sdl.h"
 #include "lib/sysdep/sysdep.h"
 #include "udbg.h"
 

@@ -2,6 +2,10 @@
 
 #include "ucpu.h"
 
+#if OS_MACOSX
+#include <sys/sysctl.h>
+#endif
+
 int ucpu_IsThrottlingPossible()
 {
 	return -1; // don't know
@@ -9,11 +13,21 @@ int ucpu_IsThrottlingPossible()
 
 int ucpu_NumPackages()
 {
+#if OS_MACOSX
+	int mib[]={CTL_HW, HW_NCPU};
+	int ncpus;
+	size_t len = sizeof(ncpus);
+	if (sysctl(mib, 2, &ncpus, &len, NULL, 0) == -1)
+		return -1; // don't know
+	else
+		return ncpus;
+#else
 	long res = sysconf(_SC_NPROCESSORS_CONF);
 	if (res == -1)
 		return 1;
 	else
 		return (int)res;
+#endif
 }
 
 double ucpu_ClockFrequency()

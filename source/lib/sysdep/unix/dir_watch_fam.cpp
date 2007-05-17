@@ -5,7 +5,27 @@
 
 #include "lib/res/file/file.h"
 #include "lib/sysdep/sysdep.h"
+#include "lib/sysdep/dir_watch.h"
 #include "ps/CLogger.h"
+
+#if !OS_LINUX
+
+LibError dir_add_watch(const char * const n_full_path, intptr_t* const watch)
+{
+  return INFO::OK;
+}
+
+LibError dir_cancel_watch(const intptr_t watch)
+{
+  return INFO::OK;
+}
+
+LibError dir_get_changed_file(char *)
+{
+  return INFO::OK;
+}
+
+#else
 
 #include <fam.h>
 
@@ -73,7 +93,7 @@ LibError dir_cancel_watch(const intptr_t watch)
 	return INFO::OK;
 }
 
-int dir_get_changed_file(char* fn)
+LibError dir_get_changed_file(char* fn)
 {
 	if(initialized == -1)
 		return ERR::FAIL;	// NOWARN
@@ -99,3 +119,4 @@ int dir_get_changed_file(char* fn)
 	// just nothing new; try again later
 	return ERR::AGAIN;	// NOWARN
 }
+#endif

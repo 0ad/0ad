@@ -311,8 +311,16 @@ int gnu_cpp()
 	if (!prj_is_kind("cxxtestgen"))
 	{
 		/* Include the automatically generated dependency lists */
-		io_print("-include $(OBJECTS:%%.o=%%.d)\n\n");
-		io_print("-include $(PCHS:%%.%s=%%.d)\n\n", pchExt);
+		/* But skip that if OBJECTS would have been empty - make doesn't like
+		 * empty include lists */
+		if (*prj_get_files())
+			io_print("-include $(OBJECTS:%%.o=%%.d)\n\n");
+		
+		/* Include the dependency list for the precompiled header. But skip
+		 * it if we're not doing PCH's, to get rid of "no file name for
+		 * -include" warnings from make */
+		if (prj_get_pch_source() != NULL)
+			io_print("-include $(PCHS:%%.%s=%%.d)\n\n", pchExt);
 	}
 
 	io_closefile();
@@ -477,12 +485,17 @@ static const char* listCppTargets(const char* name)
 				strcat(input_dir, "/");
 
 				opts = "";
-				if (!os_is("windows"))
+				if (!os_is("windows") && !os_is("macosx"))
 					opts = "-dDONT_USE_UNDERLINE=1 ";
 				
 				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); 
 				strcat(g_buffer, " -i"); strcat(g_buffer,input_dir ); 
-				strcat(g_buffer, " -f elf -o $@ $<\n");
+				strcat(g_buffer, " -f ");
+				if (os_is("macosx"))
+					strcat(g_buffer, "macho");
+				else
+					strcat(g_buffer, "elf");
+				strcat(g_buffer, " -o $@ $<\n");
 				strcat(g_buffer, "\t");
 				
 				if (!g_verbose)

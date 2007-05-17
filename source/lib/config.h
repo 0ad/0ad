@@ -408,7 +408,7 @@
 // safe CRT functions: strcpy_s, fopen_s, etc.
 // these are always available to users: if not provided by the CRT, we
 // implement them ourselves. this flag is only used to skip our impl.
-#if MSC_VERSION >= 1400 || GCC_VERSION
+#if MSC_VERSION >= 1400
 # define HAVE_SECURE_CRT 1
 #else
 # define HAVE_SECURE_CRT 0

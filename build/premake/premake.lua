@@ -118,16 +118,26 @@ function package_set_build_flags()
 			"-fvisibility-inlines-hidden",
 		})
 
+		-- Include and lib paths:
+		-- X11 includes may be installed in one of a gaszillion of three places
+		-- And MacPorts uses /opt/local as its prefix
+		-- Famous last words: "You can't include too much! ;-)"
+
 		package.includepaths = {
 			"/usr/X11R6/include/X11",
+			"/usr/X11R6/include",
 			"/usr/include/X11",
+			"/opt/local/include",
 		}
 		package.libpaths = {
-			"/usr/X11R6/lib",
-			"/usr/i686-pc-linux-gnu/lib", -- needed for ICC to find libbfd
+			"/opt/local/lib",
+			"/usr/X11R6/lib"
 		}
+		if OS=="linux" and options["icc"] then
+			tinsert(package.libpaths,
+			"/usr/i686-pc-linux-gnu/lib") -- needed for ICC to find libbfd
+		end
 		package.defines = {
-			"__STDC_VERSION__=199901L",
 			-- "CONFIG_USE_MMGR",
 		}
 	end
@@ -385,7 +395,7 @@ function setup_all_libs ()
 		linux = { "lib/sysdep/unix" },
 		-- note: RC file must be added to main_exe package.
 		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix" },
-		macosx = { "lib/sysdep/osx" },
+		macosx = { "lib/sysdep/osx", "lib/sysdep/unix" },
 	}
 	tinsert(package.files, sourcesfromdirs(source_root, sysdep_dirs[OS]));
 end

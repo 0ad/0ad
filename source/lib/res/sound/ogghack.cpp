@@ -6,7 +6,11 @@
 #include <algorithm>
 #include <cassert>
 
+#ifdef __APPLE__
+#include <OpenAL/al.h>
+#else
 #include <AL/al.h>
+#endif
 #include <vorbis/vorbisfile.h>
 
 #include "ogghack.h"	// HACK: must be included after al.h (bad interface)

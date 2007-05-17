@@ -1,8 +1,8 @@
 
 ; set section attributes
-section .data data align=32 use32
-section .bss  bss  align=16 use32
-section .text code align=64 use32
+; section .data data align=32 use32
+; section .bss  bss  align=16 use32
+; section .text code align=64 use32
 ; activate .text (needs to be separate because __SECT__ will otherwise
 ; complain that the above definition is redeclaring attributes)
 section .text

@@ -9,6 +9,18 @@
 -- directory in which all library subdirectories reside.
 libraries_dir = "../../../libraries/"
 
+local function add_extern_lib_paths(extern_lib)
+	-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
+	
+	-- Often, the headers in libraries/ are windows-specific (always, except
+	-- for cxxtest and fcollada). So don't add the include dir unless on
+	-- windows or processing one of those libs.
+	if OS == "windows" or extern_lib == 'cxxtest' or extern_lib == 'fcollada' then
+		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
+	end
+	tinsert(package.libpaths,     libraries_dir .. extern_lib .. "/lib")
+
+end
 
 -- library definitions
 -- in a perfect world, libraries would have a common installation template,
@@ -85,6 +97,7 @@ extern_lib_defs = {
 	openal = {
 		win_names  = { "openal32" },
 		unix_names = { "openal" },
+		osx_frameworks = { "OpenAL" },
 		dbg_suffix = "",
 	},
 	opengl = {
@@ -127,7 +140,13 @@ extern_lib_defs = {
 	},
 
 	sdl = {
-		unix_names = { "SDL" },
+		add_func = function()
+			add_extern_lib_paths("sdl")
+			if OS ~= "windows" then
+				tinsert(package.buildoptions, "`sdl-config --cflags`")
+				tinsert(package.linkoptions, "`sdl-config --libs`")
+			end
+		end
 	}
 }
 
@@ -159,14 +178,9 @@ local function add_delayload(name, suffix, def)
 
 end
 
-
 local function add_extern_lib(extern_lib, def)
 
-	-- Add '<libraries root>/<libraryname>/lib' and '/include' to the includepaths and libpaths
-	if OS ~= "linux" or extern_lib == 'cxxtest' or extern_lib == 'fcollada' then
-		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
-	end
-	tinsert(package.libpaths,     libraries_dir .. extern_lib .. "/lib")
+	add_extern_lib_paths(extern_lib)
 
 	-- careful: make sure to only use *_names when on the correct platform.
 	local names = {}
@@ -192,13 +206,21 @@ local function add_extern_lib(extern_lib, def)
 		suffix = ""
 	end
 	
-	for i,name in names do
-		tinsert(package.config["Debug"  ].links, name .. suffix)
-		-- 'Testing' config uses 'Debug' DLLs
-		tinsert(package.config["Testing"].links, name .. suffix)
-		tinsert(package.config["Release"].links, name)
-
-		add_delayload(name, suffix, def)
+	-- OS X "Frameworks" need to be added in a special way to the link
+	-- i.e. by linkoptions += "-framework ..."
+	if OS == "macosx" and def.osx_frameworks then
+		for i,name in def.osx_frameworks do
+			tinsert(package.linkoptions, "-framework " .. name)
+		end
+	else
+		for i,name in names do
+			tinsert(package.config["Debug"  ].links, name .. suffix)
+			-- 'Testing' config uses 'Debug' DLLs
+			tinsert(package.config["Testing"].links, name .. suffix)
+			tinsert(package.config["Release"].links, name)
+	
+			add_delayload(name, suffix, def)
+		end
 	end
 end
 
