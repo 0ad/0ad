@@ -3,6 +3,7 @@
 #include "lib/lockfree.h"
 #include "lib/sysdep/cpu.h"	// atomic_add
 #include "lib/timer.h"
+#include "lib/rand.h"
 
 // make sure the data structures work at all; doesn't test thread-safety.
 class TestLockfreeBasic : public CxxTest::TestSuite 

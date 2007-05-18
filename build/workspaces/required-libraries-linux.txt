@@ -24,8 +24,7 @@ $GL := directory containing OpenGL headers.
 $binaries := directory containing system/ and data/
 
 - OpenGL extensions:
-  download http://www.wildfiregames.com/~code/libraries/glext.h
-  ... and put it in $GL.
+  copy libraries/opengl/include/GL/glext.h to $GL.
 
 - SpiderMonkey [javascript]
   The source is *not* compatible with the mozjs libraries included in mozilla

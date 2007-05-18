@@ -21,6 +21,8 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 
+#include "lib/rand.h"
+
 enum EGotoSituation
 {
 	NORMAL = 0,

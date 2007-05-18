@@ -207,14 +207,6 @@ inline bool feqf(float f1, float f2, float epsilon = 0.001f)
 }
 
 
-/**
- * return random integer in [min, max).
- * avoids several common pitfalls; see discussion at
- * http://www.azillionmonkeys.com/qed/random.html
- **/
-extern uint rand(uint min_inclusive, uint max_exclusive);
-
-
 //-----------------------------------------------------------------------------
 // type conversion
 

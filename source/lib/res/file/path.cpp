@@ -15,6 +15,7 @@
 
 #include "lib/posix/posix_filesystem.h"
 #include "lib/adts.h"
+#include "lib/rand.h"
 #include "lib/allocators.h"
 #include "lib/sysdep/sysdep.h"
 #include "file_internal.h"

@@ -9,6 +9,7 @@
 #include "lib/res/file/archive_builder.h"
 #include "lib/res/h_mgr.h"
 #include "lib/res/mem.h"
+#include "lib/rand.h"
 
 class TestArchiveBuilder : public CxxTest::TestSuite 
 {

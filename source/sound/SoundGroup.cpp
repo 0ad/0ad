@@ -16,6 +16,7 @@
 
 #include "ps/XML/Xeromyces.h"
 #include "ps/CLogger.h"
+#include "lib/rand.h"
 
 #define LOG_CATEGORY "audio"
 

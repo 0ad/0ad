@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "bsd.h"
 
-#if OS_BSD || OS_MACOSX
+#if OS_BSD
 
 #include <sys/sysctl.h>
 

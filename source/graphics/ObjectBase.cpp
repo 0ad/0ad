@@ -9,6 +9,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "ps/CLogger.h"
 #include "lib/timer.h"
+#include "lib/rand.h"
 #include "maths/MathUtil.h"
 
 #define LOG_CATEGORY "graphics"

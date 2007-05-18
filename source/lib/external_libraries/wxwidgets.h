@@ -23,55 +23,19 @@ struct HINSTANCE__
 typedef struct HINSTANCE__* HINSTANCE;	// definition as if STRICT were #defined
 
 
-#include "wx/wx.h"
+#include "wx/wxprec.h"
 
 #include "wx/file.h"
 #include "wx/ffile.h"
 #include "wx/filename.h"
 #include "wx/mimetype.h"
-
 #include "wx/statline.h"
-
 #include "wx/debugrpt.h"
 
 #ifdef __WXMSW__
 #include "wx/evtloop.h"     // for SetCriticalWindow()
 #endif // __WXMSW__
 
-
-// automatically link against the required library
-#if MSC_VERSION
-# ifdef NDEBUG
-# else
-#  pragma comment(lib, "wxmsw28ud_core.lib")
-#  pragma comment(lib, "wxmsw28ud_qa.lib")
-#  pragma comment(lib, "wxbase28ud.lib")
-#  pragma comment(lib, "wxbase28ud_xml.lib")
-
-
-//#  pragma comment(lib, "wxbase28ud_net.lib")
-//#  pragma comment(lib, "wxbase28ud_odbc.lib")
-//#  pragma comment(lib, "wxmsw28ud_adv.lib")
-//#  pragma comment(lib, "wxmsw28ud_aui.lib")
-//#  pragma comment(lib, "wxmsw28ud_dbgrid.lib")
-//#  pragma comment(lib, "wxmsw28ud_gl.lib")
-//#  pragma comment(lib, "wxmsw28ud_html.lib")
-//#  pragma comment(lib, "wxmsw28ud_media.lib")
-//#  pragma comment(lib, "wxmsw28ud_richtext.lib")
-//#  pragma comment(lib, "wxmsw28ud_xrc.lib")
-//#  pragma comment(lib, "wxexpatd.lib")
-//#  pragma comment(lib, "wxpngd.lib")
-//#  pragma comment(lib, "wxjpegd.lib")
-//#  pragma comment(lib, "wxtiffd.lib")
-//#  pragma comment(lib, "wxzlibd.lib")
-//#  pragma comment(lib, "wxregexd.lib")
-
-#  pragma comment(lib, "Rpcrt4.lib")	// Uuid
-#  pragma comment(lib, "comctl32.lib")	// ImageList_*
-
-
-# endif	// NDEBUG
-#endif	// MSC_VERSION
-
+// note: wxWidgets already does #pragma comment(lib) to add link targets.
 
 #endif	// #ifndef INCLUDED_WXWIDGETS

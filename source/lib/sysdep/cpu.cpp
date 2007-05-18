@@ -17,7 +17,7 @@
 # include "lib/sysdep/ia32/ia32.h"
 # include "lib/sysdep/ia32/ia32_memcpy.h"
 #endif
-#if OS_BSD || OS_MACOSX
+#if OS_BSD
 # include "lib/sysdep/unix/bsd.h"
 #endif
 #if OS_WIN

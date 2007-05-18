@@ -19,15 +19,7 @@
 #include <deque>
 #include <math.h>
 
-#include "maths/MathUtil.h"
-
-#ifdef __APPLE__
-# include <OpenAL/al.h>
-# include <OpenAL/alc.h>
-#else
-# include <AL/al.h>
-# include <AL/alc.h>
-#endif
+#include "maths/MathUtil.h"	// PI
 
 // for DLL-load hack in alc_init
 #if OS_WIN
@@ -37,14 +29,10 @@
 #include "lib/res/res.h"
 #include "lib/timer.h"
 #include "lib/app_hooks.h"
+#include "lib/external_libraries/openal.h"
 
 #define OGG_HACK
 #include "ogghack.h"
-
-
-#if MSC_VERSION
-# pragma comment(lib, "openal32.lib")
-#endif
 
 // HACK: OpenAL loads and unloads certain DLLs several times on Windows.
 // that looks unnecessary and wastes 100..400 ms on startup.
