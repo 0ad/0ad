@@ -59,7 +59,7 @@
 //#define NOMSG             // typedef MSG and associated routines
 #define NOOPENFILE          // OpenFile(), OemToAnsi, AnsiToOem, and OF_*
 #define NOSCROLL            // SB_* and scrolling routines
-#define NOSERVICE           // All Service Controller routines, SERVICE_ equates, etc.
+//#define NOSERVICE         // All Service Controller routines, SERVICE_ equates, etc.
 //#define NOSOUND           // Sound driver routines
 #define NOTEXTMETRIC        // typedef TEXTMETRIC and associated routines
 //#define NOWH              // SetWindowsHook and WH_*

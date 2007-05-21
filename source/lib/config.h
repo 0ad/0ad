@@ -164,6 +164,11 @@
 
 // OS
 // .. Windows
+#if defined(_WIN64)
+# define OS_WIN64 1
+#else
+# define OS_WIN64 0
+#endif
 #if defined(_WIN32)
 # define OS_WIN 1
 #else

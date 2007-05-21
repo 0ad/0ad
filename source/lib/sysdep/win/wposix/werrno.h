@@ -9,7 +9,9 @@
 
 // this is an exhaustive list of SUSv3 error codes;
 // see http://www.opengroup.org/onlinepubs/009695399/basedefs/errno.h.html .
-// .. the following are already correctly defined by VC errno.h:
+
+// defined by VC errno.h and SUSv3
+// (commented out so that we use VC errno.h's already correct values)
 #if 0
 #define EPERM            1      // Operation not permitted
 #define ENOENT           2      // No such file or directory
@@ -42,9 +44,9 @@
 #define EDOM            33      // Math argument out of domain of func
 #define ERANGE          34      // Math result not representable
 #endif
-// .. the following are unfortunately defined differently by VC errno.h;
-//    we have to stick with those interpretations because they are set
-//    by already-compiled CRT code.
+
+// defined by VC errno.h and also SUSv3 (with different values)
+// (commented out because we must match the values used by the compiled CRT)
 #if 0
 #define EDEADLK         35      // Resource deadlock would occur
 #define ENAMETOOLONG    36      // File name too long
@@ -53,42 +55,62 @@
 #define ENOTEMPTY       39      // Directory not empty
 #define EILSEQ          84      // Illegal byte sequence
 #endif
-// .. the following aren't yet defined; we take on the Linux values for
-//    simplicity (why assign different values?)
-#define ELOOP           40      // Too many symbolic links encountered
+
+// defined by winsock2 and also Linux (with different values)
+// (values derived from winsock2 WSA* constants minus WSABASEERR)
+#define EWOULDBLOCK     35
+#define EINPROGRESS     36
+#define EALREADY        37
+#define ENOTSOCK        38
+#define EDESTADDRREQ    39
+#define EMSGSIZE        40
+#define EPROTOTYPE      41
+#define ENOPROTOOPT     42
+#define EPROTONOSUPPORT 43
+#define EOPNOTSUPP      45
+#define EAFNOSUPPORT    47
+#define EADDRINUSE      48
+#define EADDRNOTAVAIL   49
+#define ENETDOWN        50
+#define ENETUNREACH     51
+#define ENETRESET       52
+#define ECONNABORTED    53
+#define ECONNRESET      54
+#define ENOBUFS         55
+#define EISCONN         56
+#define ENOTCONN        57
+#define ETIMEDOUT       60
+#define ECONNREFUSED    61
+#define EHOSTUNREACH    65
+#define EDQUOT          69
+#define ESTALE          70
+
+// defined by winsock2 but not Linux
+// (commented out because they're not portable)
+#if 0
+#define ESOCKTNOSUPPORT 44
+#define EPFNOSUPPORT    46
+#define ESHUTDOWN       58
+#define ETOOMANYREFS    59
+#define ELOOP           62
+#define EHOSTDOWN       64
+#define EPROCLIM        67
+#define EUSERS          68
+#define EREMOTE         71
+#endif
+
+// defined by Linux but not winsock2
+// (commented out because they're not generated on Windows and thus
+// probably shouldn't be used)
+#if 0
 #define ENOMSG          42      // No message of desired type
 #define EIDRM           43      // Identifier removed
-#define EWOULDBLOCK     EAGAIN  // Operation would block
 #define ENOLINK         67      // Reserved
 #define EPROTO          71      // Protocol error
 #define EMULTIHOP       72      // Reserved
 #define EBADMSG         74      // Not a data message
 #define EOVERFLOW       75      // Value too large for defined data type
-#define ENOTSOCK        88      // Socket operation on non-socket
-#define EDESTADDRREQ    89      // Destination address required
-#define EMSGSIZE        90      // Message too long
-#define EPROTOTYPE      91      // Protocol wrong type for socket
-#define ENOPROTOOPT     92      // Protocol not available
-#define EPROTONOSUPPORT 93      // Protocol not supported
-#define EOPNOTSUPP      95      // Operation not supported on transport endpoint
-#define EAFNOSUPPORT    97      // Address family not supported by protocol
-#define EADDRINUSE      98      // Address already in use
-#define EADDRNOTAVAIL   99      // Cannot assign requested address
-#define ENETDOWN        100     // Network is down
-#define ENETUNREACH     101     // Network is unreachable
-#define ENETRESET       102     // Network dropped connection because of reset
-#define ECONNABORTED    103     // Software caused connection abort
-#define ECONNRESET      104     // Connection reset by peer
-#define ENOBUFS         105     // No buffer space available
-#define EISCONN         106     // Transport endpoint is already connected
-#define ENOTCONN        107     // Transport endpoint is not connected
-#define ETIMEDOUT       110     // Connection timed out
-#define ECONNREFUSED    111     // Connection refused
-#define EHOSTUNREACH    113     // No route to host
-#define EALREADY        114     // Operation already in progress
-#define EINPROGRESS     115     // Operation now in progress
-#define ESTALE          116     // Reserved
-#define EDQUOT          122     // Reserved
 #define ECANCELED       125     // Operation Canceled
+#endif
 
 #endif	// #ifndef INCLUDED_WERRNO

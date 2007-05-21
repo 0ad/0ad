@@ -62,11 +62,20 @@ extern void win_free(void* p);
 #define WIN_SAVE_LAST_ERROR DWORD last_err__ = GetLastError();
 #define WIN_RESTORE_LAST_ERROR STMT(if(last_err__ != 0 && GetLastError() == 0) SetLastError(last_err__););
 
+/**
+ * @return the LibError equivalent of GetLastError(), or ERR::FAIL if
+ * there's no equivalent.
+ * you should SetLastError(0) before calling whatever will set ret
+ * to make sure we do not report any stale errors.
+ *
+ * @param warn_if_failed if set, raises an error dialog that reports
+ * the LibError.
+ **/
+LibError LibError_from_GLE(bool warn_if_failed = true);
 
-// return the LibError equivalent of GetLastError(), or ERR::FAIL if
-// there's no equal.
-// you should SetLastError(0) before calling whatever will set ret
-// to make sure we do not return any stale errors.
+#define WARN_WIN32_ERR (void)LibError_from_GLE(true)
+
+/// if ret is false, returns LibError_from_GLE.
 extern LibError LibError_from_win32(DWORD ret, bool warn_if_failed = true);
 
 

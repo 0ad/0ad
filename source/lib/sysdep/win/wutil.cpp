@@ -34,7 +34,7 @@ char win_exe_dir[MAX_PATH+1];
 
 
 // only call after a Win32 function indicates failure.
-static LibError LibError_from_GLE(bool warn_if_failed = true)
+LibError LibError_from_GLE(bool warn_if_failed)
 {
 	LibError err;
 	switch(GetLastError())

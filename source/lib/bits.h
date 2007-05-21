@@ -41,6 +41,11 @@ inline uint bit_mask(uint num_bits)
 	return (1u << num_bits)-1;
 }
 
+inline u64 bit_mask64(uint num_bits)
+{
+	return (1ull << num_bits)-1;
+}
+
 /**
  * extract the value of bits hi_idx:lo_idx within num
  *
@@ -56,6 +61,14 @@ inline uint bits(uint num, uint lo_idx, uint hi_idx)
 	const uint count = (hi_idx - lo_idx)+1;	// # bits to return
 	uint result = num >> lo_idx;
 	result &= bit_mask(count);
+	return result;
+}
+
+inline u64 bits64(u64 num, uint lo_idx, uint hi_idx)
+{
+	const uint count = (hi_idx - lo_idx)+1;	// # bits to return
+	u64  result = num >> lo_idx;
+	result &= bit_mask64(count);
 	return result;
 }
 
