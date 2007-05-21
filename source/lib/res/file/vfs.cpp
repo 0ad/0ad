@@ -26,6 +26,7 @@
 #include "lib/res/res.h"
 #include "lib/sysdep/dir_watch.h"
 #include "file_internal.h"
+#include "lib/module_init.h"
 
 // not safe to call before main!
 
@@ -724,7 +725,7 @@ void vfs_display()
 	tree_display();
 }
 
-static ModuleInitState init_state;
+static ModuleInitState initState;
 
 // make the VFS tree ready for use. must be called before all other
 // functions below, barring explicit mentions to the contrary.
@@ -735,21 +736,23 @@ static ModuleInitState init_state;
 // is necessary anyway and this way is simpler/easier to maintain.
 void vfs_init()
 {
-	moduleInit_assertCanInit(init_state);
+	if(!ModuleShouldInitialize(&initState))
+		return;
+
+	h_mgr_init();
 
 	stats_vfs_init_start();
 	mount_init();
 	stats_vfs_init_finish();
-
-	moduleInit_markInitialized(&init_state);
 }
 
 void vfs_shutdown()
 {
-	moduleInit_assertCanShutdown(init_state);
+	if(!ModuleShouldShutdown(&initState))
+		return;
 
 	trace_shutdown();
 	mount_shutdown();
 
-	moduleInit_markShutdown(&init_state);
+	h_mgr_shutdown();
 }

@@ -15,9 +15,10 @@
 #include "aken/aken.h"
 #include "wutil.h"
 #include "lib/path_util.h"
+#include "lib/module_init.h"
 
 
-static HANDLE hAken;	// handle to Aken driver
+static HANDLE hAken = INVALID_HANDLE_VALUE;	// handle to Aken driver
 
 //-----------------------------------------------------------------------------
 // ioctl wrappers
@@ -158,60 +159,81 @@ static bool Is64BitOs()
 }
 
 
+static SC_HANDLE OpenServiceControlManager()
+{
+	LPCSTR machineName = 0;	// local
+	LPCSTR databaseName = 0;	// default
+	SC_HANDLE hSCM = OpenSCManager(machineName, databaseName, SC_MANAGER_ALL_ACCESS);
+	// non-admin account => we can't start the driver. note that installing
+	// the driver and having it start with Windows would allow access to
+	// the service even from least-permission accounts.
+	if(!hSCM)
+		return 0;
+
+	return hSCM;
+}
+
+
+static void UninstallDriver()
+{
+	SC_HANDLE hSCM = OpenServiceControlManager();
+	if(!hSCM)
+		return;
+	SC_HANDLE hService = OpenService(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
+	if(!hService)
+		return;
+
+	BOOL ok;
+	SERVICE_STATUS serviceStatus;
+	ok = ControlService(hService, SERVICE_CONTROL_STOP, &serviceStatus);
+	WARN_IF_FALSE(ok);
+	ok = DeleteService(hService);
+	WARN_IF_FALSE(ok);
+	ok = CloseServiceHandle(hService);
+	WARN_IF_FALSE(ok);
+
+	ok = CloseServiceHandle(hSCM);
+	WARN_IF_FALSE(ok);
+}
+
+
 static void StartDriver(const char* driverPathname)
 {
-	// open SC manager
-	SC_HANDLE serviceControlManager;
-	{
-		LPCSTR machineName = 0;	// local
-		LPCSTR databaseName = 0;	// default
-		serviceControlManager = OpenSCManager(machineName, databaseName, SC_MANAGER_ALL_ACCESS);
-		// non-admin account => we can't start the driver. note that installing
-		// the driver and having it start with Windows would allow access to
-		// the service even from least-permission accounts.
-		if(!serviceControlManager)
-			return;
-	}
+	const SC_HANDLE hSCM = OpenServiceControlManager();
 
 	// create service (note: this just enters the service into SCM's DB;
 	// no error is raised if the driver binary doesn't exist etc.)
-	SC_HANDLE service;
+	SC_HANDLE hService;
 	{
 create:
 		LPCSTR startName = 0;	// LocalSystem
-		service = CreateService(serviceControlManager, AKEN_NAME, AKEN_NAME,
+		hService = CreateService(hSCM, AKEN_NAME, AKEN_NAME,
 			SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
 			driverPathname, 0, 0, 0, startName, 0);
-		if(!service)
+		if(!hService)
 		{
 			// was already created
 			if(GetLastError() == ERROR_SERVICE_EXISTS)
 			{
-				service = OpenService(serviceControlManager, AKEN_NAME, SERVICE_ALL_ACCESS);
-
 #if 1
 				// during development, we want to unload and re-create the
 				// service every time to ensure the newest build is used.
-				BOOL ok;
-				SERVICE_STATUS serviceStatus;
-				ok = ControlService(service, SERVICE_CONTROL_STOP, &serviceStatus);
-				WARN_IF_FALSE(ok);
-				ok = DeleteService(service);
-				WARN_IF_FALSE(ok);
-				ok = CloseServiceHandle(service);
-				WARN_IF_FALSE(ok);
+				UninstallDriver();
 				goto create;
+#else
+				// in final builds, just use the existing service.
+				hService = OpenService(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
 #endif
 			}
 			else
-				WARN_IF_FALSE(0);	// creating failed
+				WARN_IF_FALSE(0);	// creating actually failed
 		}
 	}
 
 	// start service
 	{
 		DWORD numArgs = 0;
-		BOOL ok = StartService(service, numArgs, 0);
+		BOOL ok = StartService(hService, numArgs, 0);
 		if(!ok)
 		{
 			// if it wasn't already running, starting failed
@@ -220,13 +242,20 @@ create:
 		}
 	}
 
-	CloseServiceHandle(service);
-	CloseServiceHandle(serviceControlManager);
+	CloseServiceHandle(hService);
+	CloseServiceHandle(hSCM);
 }
 
 
+//-----------------------------------------------------------------------------
+
+static ModuleInitState initState;
+
 bool MahafInit()
 {
+	if(!ModuleShouldInitialize(&initState))
+		return true;
+
 	char driverPathname[PATH_MAX];
 	const char* const driverName = Is64BitOs()? "aken64.sys" : "aken.sys";
 	(void)path_append(driverPathname, win_exe_dir, driverName);
@@ -244,5 +273,11 @@ bool MahafInit()
 
 void MahafShutdown()
 {
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
 	CloseHandle(hAken);
+	hAken = INVALID_HANDLE_VALUE;
+
+	UninstallDriver();
 }

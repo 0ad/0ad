@@ -886,6 +886,8 @@ void Init(const CmdLineArgs& args, uint flags)
 	// Query CPU capabilities, possibly set some CPU-dependent flags
 	cpu_Init();
 
+	h_mgr_init();
+
 	// Do this as soon as possible, because it chdirs
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.

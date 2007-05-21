@@ -65,7 +65,6 @@ class TestMeshManager : public CxxTest::TestSuite
 		// duplicated in each test suite that's using VFS things)
 
 		vfs_shutdown();
-		h_mgr_shutdown();
 		TS_ASSERT_OK(file_shutdown());
 
 		TS_ASSERT_OK(dir_delete(MOD_PATH));

@@ -52,10 +52,10 @@ extern void ia32_asm_GetCurrentContext(void* pcontext);
 // implementations of the cpu.h interface
 
 /// see cpu_AtomicAdd
-extern void ia32_asm_AtomicAdd(intptr_t* location, intptr_t increment);
+extern void ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 
 /// see cpu_CAS
-extern bool ia32_asm_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
+extern bool ia32_asm_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 
 /// see cpu_i32FromFloat
 extern i32 ia32_asm_i32FromFloat(float f);

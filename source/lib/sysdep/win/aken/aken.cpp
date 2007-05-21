@@ -3,7 +3,7 @@ extern "C" {	// must come before ntddk.h
 #include <ntddk.h>
 #include "aken.h"
 
-#define KDPRINT KdPrint(("")); KdPrint
+#define KDPRINT KdPrint(("AKEN: ")); KdPrint
 
 #define WIN32_NAME L"\\DosDevices\\Aken"
 #define DEVICE_NAME L"\\Device\\Aken"
@@ -76,8 +76,6 @@ static NTSTATUS AkenMapPhysicalMemory(const DWORD64 physicalAddress64, const DWO
 		const DWORD32 numBytesRoundedDown = physicalAddress.LowPart - physicalBaseAddress.LowPart;
 		ASSERT(numBytesRoundedDown < 0x10000);
 		virtualAddress64 = (DWORD64)virtualBaseAddress + numBytesRoundedDown;
-
-		KDPRINT(("mapped phys=%I64x physBase=%I64x physSize=%d to virt=%p. roundDown=%d   => final virt=%I64x\n", physicalAddress64, physicalBaseAddress.QuadPart, mappedSize, virtualBaseAddress, numBytesRoundedDown, virtualAddress64));
 	}
 
 	ntStatus = STATUS_SUCCESS;

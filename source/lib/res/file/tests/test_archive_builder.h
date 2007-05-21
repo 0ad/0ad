@@ -97,7 +97,6 @@ public:
 	{
 		vfs_shutdown();
 		file_shutdown();
-		h_mgr_shutdown();
 		path_reset_root_dir();
 	}
 

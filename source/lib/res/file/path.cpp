@@ -18,6 +18,7 @@
 #include "lib/rand.h"
 #include "lib/allocators.h"
 #include "lib/sysdep/sysdep.h"
+#include "lib/module_init.h"
 #include "file_internal.h"
 
 
@@ -261,25 +262,23 @@ const char* file_make_unique_fn_copy(const char* P_fn)
 }
 
 
-static ModuleInitState init_state;
+static ModuleInitState initState;
 
 void path_init()
 {
-	moduleInit_assertCanInit(init_state);
+	if(!ModuleShouldInitialize(&initState))
+		return;
 
 	pool_create(&atom_pool, 8*MiB, POOL_VARIABLE_ALLOCS);
-
-	moduleInit_markInitialized(&init_state);
 }
 
 void path_shutdown()
 {
-	moduleInit_assertCanShutdown(init_state);
+	if(!ModuleShouldShutdown(&initState))
+		return;
 
 	atom_map.clear();
 	(void)pool_destroy(&atom_pool);
-
-	moduleInit_markShutdown(&init_state);
 }
 
 

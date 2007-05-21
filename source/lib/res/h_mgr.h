@@ -236,6 +236,8 @@ we could switch H_DEREF to throwing an exception on error.
 #include "handle.h"
 #endif
 
+extern void h_mgr_init();
+extern void h_mgr_shutdown();
 
 
 // handle type (for 'type safety' - can't use a texture handle as a sound)
@@ -445,8 +447,5 @@ extern void h_add_ref(Handle h);
 // necessary (always wrapping objects in Handles is excessive), we
 // provide access to the internal reference count.
 extern int h_get_refcnt(Handle h);
-
-extern void h_mgr_shutdown(void);
-
 
 #endif	// #ifndef INCLUDED_H_MGR

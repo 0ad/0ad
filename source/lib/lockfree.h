@@ -90,6 +90,10 @@ terminology
 */
 
 
+extern void lockfree_Init();
+extern void lockfree_Shutdown();
+
+
 //
 // lock-free singly linked list
 //

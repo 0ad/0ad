@@ -11,10 +11,6 @@
 #ifndef INCLUDED_CPU
 #define INCLUDED_CPU
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 namespace ERR
 {
 	const LibError CPU_FEATURE_MISSING     = -130000;
@@ -27,7 +23,7 @@ namespace ERR
 // must be called before any of the below accessors.
 extern void cpu_Init(void);
 
-extern bool cpu_IsModuleInitialized();
+extern bool cpu_IsDetectFinished();
 extern const char* cpu_IdentifierString();
 extern double cpu_ClockFrequency();
 extern bool cpu_IsThrottlingPossible();
@@ -47,7 +43,7 @@ extern size_t cpu_MemoryTotalMiB();
 // atomic "compare and swap". compare the machine word at <location> against
 // <expected>; if not equal, return false; otherwise, overwrite it with
 // <new_value> and return true.
-extern bool cpu_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
+extern bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 
 // this is often used for pointers, so the macro coerces parameters to
 // uinptr_t. invalid usage unfortunately also goes through without warnings.
@@ -59,7 +55,7 @@ extern bool cpu_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value
  * add a signed value to a variable without the possibility of interference
  * from other threads/CPUs.
  **/
-extern void cpu_AtomicAdd(intptr_t* location, intptr_t increment);
+extern void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 
 extern void cpu_Serialize();
 
@@ -114,10 +110,6 @@ extern i64 cpu_i64FromDouble(double d);
 # define PC_ Eip
 # define FP_ Ebp
 # define SP_ Esp
-#endif
-
-#ifdef __cplusplus
-}
 #endif
 
 #endif	// #ifndef INCLUDED_CPU

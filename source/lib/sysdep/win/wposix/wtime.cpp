@@ -175,7 +175,7 @@ static LibError choose_impl()
 		safe = true;
 
 	// used several times below, so latch it for convenience.
-	const double cpu_freq = cpu_IsModuleInitialized()? cpu_ClockFrequency() : 0.0;
+	const double cpu_freq = cpu_IsDetectFinished()? cpu_ClockFrequency() : 0.0;
 
 #if CPU_IA32 && !defined(NO_TSC)
 	// CPU Timestamp Counter (incremented every clock)
@@ -301,7 +301,7 @@ return (1 & read_pci_byte(bus=0,dev=0x18,fcn=3,offset=0x87));
 		else
 		{
 			// can't decide yet - assume unsafe
-			if(!cpu_IsModuleInitialized())
+			if(!cpu_IsDetectFinished())
 				safe = false;
 			else
 			{

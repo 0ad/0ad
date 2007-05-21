@@ -43,7 +43,6 @@ AT_STARTUP(\
 // we thus avoid needing if(already_called) return old_result.
 // initially set to 'impossible' values to catch uses before cpu_Init.
 
-static ModuleInitState module_init_state = MODULE_BEFORE_INIT;
 static double clock_frequency = -1.0;
 static bool is_throttling_possible = true;
 static size_t page_size = 1;
@@ -96,12 +95,6 @@ static void DetectMemory()
 		memory_total = memory_total_pow2;
 
 	memory_total_mib = memory_total / MiB;
-}
-
-
-bool cpu_IsModuleInitialized()
-{
-	return module_init_state == MODULE_INITIALIZED;
 }
 
 double cpu_ClockFrequency()
@@ -180,8 +173,19 @@ static void InitAndConfigureIA32()
 
 #endif
 
+// note: can't use ModuleInitState for this because it changes as soon as
+// init has *begun*, which isn't what we want.
+static bool isDetectFinished = false;
+
+bool cpu_IsDetectFinished()
+{
+	return isDetectFinished;
+}
+
+
 void cpu_Init()
 {
+
 #if CPU_IA32
 	InitAndConfigureIA32();
 #endif
@@ -191,8 +195,8 @@ void cpu_Init()
 	DetectClockFrequency();
 
 	// must be set before wtime_reset_impl since it queries this flag via
-	// cpu_IsModuleInitialized.
-	module_init_state = MODULE_INITIALIZED;
+	// cpu_IsDetectFinished.
+	isDetectFinished = true;
 
 	// HACK: on Windows, the HRT makes its final implementation choice
 	// in the first calibrate call where CPU info is available.
@@ -208,14 +212,14 @@ void cpu_Init()
 //-----------------------------------------------------------------------------
 // stateless routines
 
-bool cpu_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value)
+bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value)
 {
 #if CPU_IA32
 	return ia32_asm_CAS(location, expected, new_value);
 #endif
 }
 
-void cpu_AtomicAdd(intptr_t* location, intptr_t increment)
+void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 {
 #if CPU_IA32
 	return ia32_asm_AtomicAdd(location, increment);

@@ -227,28 +227,4 @@ extern u8 u8_from_double(double in);
 /// convert double to u16; verifies number is in range.
 extern u16 u16_from_double(double in);
 
-
-//-----------------------------------------------------------------------------
-// helpers for module init
-
-/**
- * initialization state of a module (class, source file, or whatever).
- *
- * can be declared as a static variable => no init needed, since 0 is
- * the correct initial value.
- **/
-enum ModuleInitState
-{
-	MODULE_BEFORE_INIT = 0,
-	MODULE_INITIALIZED,
-	MODULE_SHUTDOWN,
-	MODULE_ERROR
-};
-
-extern void moduleInit_assertCanInit(ModuleInitState init_state);
-extern void moduleInit_assertInitialized(ModuleInitState init_state);
-extern void moduleInit_assertCanShutdown(ModuleInitState init_state);
-extern void moduleInit_markInitialized(ModuleInitState* init_state);
-extern void moduleInit_markShutdown(ModuleInitState* init_state);
-
 #endif	// #ifndef INCLUDED_LIB

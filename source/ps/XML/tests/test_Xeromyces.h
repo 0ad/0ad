@@ -27,7 +27,6 @@ public:
 		TS_ASSERT_STR_EQUALS(xmbPath, "cache/mods/_test.xero/xmb/a/b/test1.xmb");
 
 		vfs_shutdown();
-		h_mgr_shutdown();
 		path_reset_root_dir();
 		TS_ASSERT_OK(file_shutdown());
 	}

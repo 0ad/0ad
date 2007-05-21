@@ -3,6 +3,7 @@
 
 #include "win/mahaf.h"
 #include "lib/sysdep/cpu.h"
+#include "lib/module_init.h"
 
 #pragma pack(1)
 
@@ -26,10 +27,8 @@ static u8 ComputeChecksum(const void* buf, size_t numBytes)
 // free() the returned pointer.
 static const AcpiTable* AllocateCopyOfTable(u64 physicalAddress)
 {
-	// 4 KiB ought to be enough; if not, the table will be
-	// re-mapped with the actual size.
+	// 4 KiB ought to be enough; if not, the table will be re-mapped.
 	const size_t initialSize = 4*KiB;
-
 	const AcpiTable* mappedTable = (const AcpiTable*)MapPhysicalMemory(physicalAddress, initialSize);
 	if(!mappedTable)
 		return 0;
@@ -37,6 +36,7 @@ static const AcpiTable* AllocateCopyOfTable(u64 physicalAddress)
 
 	if(size > initialSize)
 	{
+		// re-map with correct size
 		UnmapPhysicalMemory((void*)mappedTable);
 		mappedTable = (const AcpiTable*)MapPhysicalMemory(physicalAddress, size);
 		if(!mappedTable)
@@ -192,6 +192,9 @@ static bool VerifyRsdp(const RSDP& rsdp)
 	{
 		if(ComputeChecksum(&rsdp, rsdp.v2.size) != 0)
 			return false;
+
+		if(rsdp.v2.size < sizeof(RSDP))
+			return false;
 	}
 
 	return true;
@@ -204,7 +207,7 @@ struct RSDT
 	u32 tables[1];
 };
 
-// eXtended root System Descriptor Table
+// eXtended root System Descriptor Table (same thing, just 64-bit pointers)
 struct XSDT
 {
 	AcpiTable header;
@@ -223,13 +226,13 @@ static const XSDT* AllocateCopyOfXsdt()
 	if(!VerifyRsdp(rsdp))
 		return 0;
 
-	// callers should only have to deal with XSDTs (same as RSDT but with
-	// 64-bit pointers). if running on ACPI 2.0, just return XSDT,
-	// otherwise convert RSDT to XSDT.
+	// callers should only have to deal with XSDTs, not the obsolete RSDTs.
 
+	// ACPI 2.0+, already have XSDT (note: caller must verify+free it)
 	if(rsdp.v1.revision >= 2)
 		return (const XSDT*)AllocateCopyOfTable(rsdp.v2.xsdtPhysicalAddress64);
 
+	// ACPI 1.0 - convert RSDT to XSDT (32->64 bit pointers)
 	const RSDT* rsdt = (const RSDT*)AllocateCopyOfTable(rsdp.v1.rsdtPhysicalAddress);
 	if(!rsdt)
 		return 0;
@@ -266,7 +269,6 @@ static bool LatchAllTables()
 	const XSDT* xsdt = AllocateCopyOfXsdt();
 	if(!xsdt)
 		return false;
-
 	if(!VerifyTable((const AcpiTable*)xsdt, "XSDT"))
 	{
 		free((void*)xsdt);
@@ -283,8 +285,10 @@ static bool LatchAllTables()
 			debug_warn("invalid ACPI table");
 		const u32 signature32 = *(u32*)table->signature;
 		tables[signature32] = table;
+		// table is now owned by tables and released via FreeAllTables.
 	}
 
+	free((void*)xsdt);
 	return true;
 }
 
@@ -309,8 +313,13 @@ const AcpiTable* acpiGetTable(const char* signature)
 
 //-----------------------------------------------------------------------------
 
+static ModuleInitState initState;
+
 bool acpiInit()
 {
+	if(!ModuleShouldInitialize(&initState))
+		return true;
+
 	if(!MahafInit())
 		return false;
 
@@ -320,6 +329,9 @@ bool acpiInit()
 
 void acpiShutdown()
 {
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
 	FreeAllTables();
 
 	MahafShutdown();

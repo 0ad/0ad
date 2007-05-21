@@ -107,32 +107,3 @@ u16 u16_from_double(double in)
 	debug_assert((unsigned long)l <= 65535u);
 	return (u16)l;
 }
-
-
-//-----------------------------------------------------------------------------
-// helpers for module init
-
-void moduleInit_assertCanInit(ModuleInitState init_state)
-{
-	debug_assert(init_state == MODULE_BEFORE_INIT || init_state == MODULE_SHUTDOWN);
-}
-
-void moduleInit_assertInitialized(ModuleInitState init_state)
-{
-	debug_assert(init_state == MODULE_INITIALIZED);
-}
-
-void moduleInit_assertCanShutdown(ModuleInitState init_state)
-{
-	debug_assert(init_state == MODULE_INITIALIZED);
-}
-
-void moduleInit_markInitialized(ModuleInitState* init_state)
-{
-	*init_state = MODULE_INITIALIZED;
-}
-
-void moduleInit_markShutdown(ModuleInitState* init_state)
-{
-	*init_state = MODULE_SHUTDOWN;
-}

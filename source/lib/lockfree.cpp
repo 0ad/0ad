@@ -19,6 +19,8 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/sysdep.h"
 #include "timer.h"
+#include "module_init.h"
+
 
 /*
 liberties taken:
@@ -99,9 +101,6 @@ static inline void* node_user_data(Node* n)
 //////////////////////////////////////////////////////////////////////////////
 
 static pthread_key_t tls_key;
-static pthread_once_t tls_once = PTHREAD_ONCE_INIT;
-
-static ModuleInitState init_state;
 
 struct TLS
 {
@@ -137,24 +136,15 @@ static void tls_retire(void* tls_)
 }
 
 
-// (called via pthread_once from tls_get)
 static void tls_init()
 {
-	moduleInit_assertCanInit(init_state);
 	WARN_ERR(pthread_key_create(&tls_key, tls_retire));
-	moduleInit_markInitialized(&init_state);
 }
 
 
 // free all TLS info. called by smr_try_shutdown.
 static void tls_shutdown()
 {
-	// note: if tls_init is never called, i.e. noone has needed our services,
-	// there is no initialized state that needs to be undone.
-	if(init_state == MODULE_BEFORE_INIT)
-		return;
-	moduleInit_assertCanShutdown(init_state);
-
 	WARN_ERR(pthread_key_delete(tls_key));
 	memset(&tls_key, 0, sizeof(tls_key));
 
@@ -164,8 +154,6 @@ static void tls_shutdown()
 		tls_list = tls->next;
 		free(tls);
 	}
-
-	moduleInit_markShutdown(&init_state);
 }
 
 
@@ -175,10 +163,6 @@ static void tls_shutdown()
 // called from tls_get after tls_init.
 static TLS* tls_alloc()
 {
-	// make sure we weren't shut down in the meantime - re-init isn't
-	// possible since pthread_once (which can't be reset) calls tls_init.
-	moduleInit_assertInitialized(init_state);
-
 	TLS* tls;
 
 	// try to reuse a retired TLS slot
@@ -223,8 +207,6 @@ have_tls:
 // called from each lfl_* function, so don't waste any time.
 static TLS* tls_get()
 {
-	WARN_ERR(pthread_once(&tls_once, tls_init));
-
 	// already allocated or tls_alloc failed.
 	TLS* tls = (TLS*)pthread_getspecific(tls_key);
 	if(tls)
@@ -739,4 +721,25 @@ void* lfh_insert(LFHash* hash, uintptr_t key, size_t additional_bytes, int* was_
 LibError lfh_erase(LFHash* hash, uintptr_t key)
 {
 	return lfl_erase(chain(hash,key), key);
+}
+
+
+//-----------------------------------------------------------------------------
+
+static ModuleInitState initState;
+
+void lockfree_Init()
+{
+	if(!ModuleShouldInitialize(&initState))
+		return;
+
+	tls_init();
+}
+
+void lockfree_Shutdown()
+{
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
+	tls_shutdown();
 }

@@ -14,6 +14,7 @@
 #include "acpi.h"
 #include "win/mahaf.h"
 #include "lib/bits.h"
+#include "lib/module_init.h"
 
 #pragma pack(1)
 
@@ -46,9 +47,15 @@ static volatile HpetRegisters* hpetRegisters;
 static const u64 CONFIG_ENABLE = BIT64(0);
 
 
+//-----------------------------------------------------------------------------
+
+static ModuleInitState initState;
 
 bool hpetInit()
 {
+	if(!ModuleShouldInitialize(&initState))
+		return true;
+
 	if(!acpiInit())
 		return false;
 
@@ -66,10 +73,16 @@ bool hpetInit()
 	hpetRegisters->config |= CONFIG_ENABLE;
 
 	debug_printf("HPET freq=%f counter=%I64d\n", freq, hpetRegisters->counterValue);
+	return true;
 }
 
 
 void hpetShutdown()
 {
-	UnmapPhysicalMemory(hpetRegisters);
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
+	UnmapPhysicalMemory((void*)hpetRegisters);
+
+	acpiShutdown();
 }

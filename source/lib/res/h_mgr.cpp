@@ -18,6 +18,7 @@
 
 #include "lib/fnv_hash.h"
 #include "lib/allocators.h"
+#include "lib/module_init.h"
 
 
 static const uint MAX_EXTANT_HANDLES = 10000;
@@ -397,28 +398,18 @@ static void key_remove(uintptr_t key, H_Type type)
 
 static Pool fn_pool;
 
-
 // if fn is longer than this, it has to be allocated from the heap.
 // choose this to balance internal fragmentation and accessing the heap.
 static const size_t FN_POOL_EL_SIZE = 64;
 
-static ModuleInitState init_state;
-
 static void fn_init()
 {
-	moduleInit_assertCanInit(init_state);
-
 	// (if this fails, so will subsequent fn_stores - no need to complain here)
 	(void)pool_create(&fn_pool, MAX_EXTANT_HANDLES*FN_POOL_EL_SIZE, FN_POOL_EL_SIZE);
-
-	moduleInit_markInitialized(&init_state);
 }
 
 static void fn_store(HDATA* hd, const char* fn)
 {
-	if (init_state != MODULE_INITIALIZED)
-		fn_init();
-
 	const size_t size = strlen(fn)+1;
 
 	hd->fn = 0;
@@ -463,15 +454,7 @@ static void fn_free(HDATA* hd)
 
 static void fn_shutdown()
 {
-	// this can be validly called even if not initialized yet,
-	// since fn_store may have never been called
-
-	if (init_state == MODULE_INITIALIZED)
-	{
-		pool_destroy(&fn_pool);
-	}
-
-	moduleInit_markShutdown(&init_state);
+	pool_destroy(&fn_pool);
 }
 
 
@@ -921,8 +904,22 @@ int h_get_refcnt(Handle h)
 }
 
 
+static ModuleInitState initState;
+
+void h_mgr_init()
+{
+	if(!ModuleShouldInitialize(&initState))
+		return;
+
+	fn_init();
+}
+
+
 void h_mgr_shutdown()
 {
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
 	debug_printf("H_MGR| shutdown. any handle frees after this are leaks!\n");
 
 	// forcibly close all open handles

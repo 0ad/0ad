@@ -2,10 +2,9 @@
 #include "wfilesystem.h"
 
 #include "lib/allocators.h"		// single_calloc
-
 #include "wposix_internal.h"
 #include "wtime_internal.h"		// wtime_utc_filetime_to_time_t
-
+#include "crt_posix.h"			// _rmdir, _access
 
 //
 // determine file system type on the current drive -
@@ -140,8 +139,13 @@ int stat(const char* fn, struct stat* s)
 */
 
 
-#if !HAVE_MKDIR
+int access(const char* path, int mode)
+{
+	return _access(path, mode);
+}
 
+
+#if !HAVE_MKDIR
 int mkdir(const char* path, mode_t UNUSED(mode))
 {
 	if(!CreateDirectory(path, (LPSECURITY_ATTRIBUTES)NULL))
@@ -151,8 +155,13 @@ int mkdir(const char* path, mode_t UNUSED(mode))
 
 	return 0;
 }
-
 #endif	// #if !HAVE_MKDIR
+
+
+int rmdir(const char* path)
+{
+	return _rmdir(path);
+}
 
 
 //-----------------------------------------------------------------------------

@@ -9,7 +9,7 @@
 // license: GPL; see lib/license.txt
 
 #include "precompiled.h"
-#include "wdbg.h"
+#include "wdbg_sym.h"
 
 #include <stdlib.h>
 #include <stdio.h>

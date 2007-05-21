@@ -102,7 +102,7 @@ sym(ia32_asm_cpuid):
 ; lock-free support routines
 ;-------------------------------------------------------------------------------
 
-; extern "C" void __cdecl ia32_asm_AtomicAdd(intptr_t* location, intptr_t increment);
+; extern "C" void __cdecl ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 global sym(ia32_asm_AtomicAdd)
 sym(ia32_asm_AtomicAdd):
 	mov		edx, [esp+4]				; location
@@ -125,7 +125,7 @@ db		0xf0							; LOCK prefix
 ; - nor do we bother skipping the LOCK prefix on single-processor systems.
 ;   the branch may be well-predicted, but difference in performance still
 ;   isn't expected to be enough to justify the effort.
-; extern "C" ; extern "C" bool __cdecl ia32_asm_CAS(uintptr_t* location, uintptr_t expected, uintptr_t new_value);
+; extern "C" ; extern "C" bool __cdecl ia32_asm_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 global sym(ia32_asm_CAS)
 sym(ia32_asm_CAS):
 	mov		edx, [esp+4]				; location
