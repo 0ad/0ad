@@ -95,9 +95,12 @@ extern char win_exe_dir[MAX_PATH+1];
 
 
 //
-// Wow64 detection
+// Wow64
 //
 
 extern bool wutil_IsWow64();
+extern void wutil_DisableWow64Redirection(void*& wasRedirectionEnabled);
+extern void wutil_RevertWow64Redirection(void* wasRedirectionEnabled);
+
 
 #endif	// #ifndef INCLUDED_WUTIL

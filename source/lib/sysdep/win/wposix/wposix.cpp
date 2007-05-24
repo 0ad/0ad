@@ -46,6 +46,8 @@ static void InitSysconf()
 
 long sysconf(int name)
 {
+	debug_assert(page_size);	// must not be called before InitSysconf
+
 	switch(name)
 	{
 	case _SC_PAGESIZE:

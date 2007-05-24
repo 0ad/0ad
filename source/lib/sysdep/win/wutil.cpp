@@ -227,18 +227,30 @@ static void EnableLowFragmentationHeap()
 
 
 //-----------------------------------------------------------------------------
-// Wow64 detection
+// Wow64
+
+// Wow64 'helpfully' redirects all 32-bit apps' accesses of
+// %windir%\\system32\\drivers to %windir%\\system32\\drivers\\SysWOW64.
+// that's bad, because the actual drivers are not in the subdirectory. to
+// work around this, provide for temporarily disabling redirection.
+
+static BOOL (WINAPI *pIsWow64Process)(HANDLE, PBOOL);
+static BOOL (WINAPI *pWow64DisableWow64FsRedirection)(PVOID*) = 0;
+static BOOL (WINAPI *pWow64RevertWow64FsRedirection)(PVOID) = 0;
 
 static bool isWow64;
 
+static void ImportWow64Functions()
+{
+	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
+	*(void**)&pIsWow64Process = GetProcAddress(hKernel32Dll, "IsWow64Process"); 
+	*(void**)&pWow64DisableWow64FsRedirection = GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
+	*(void**)&pWow64RevertWow64FsRedirection  = GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");
+	FreeLibrary(hKernel32Dll);
+}
+
 static void DetectWow64()
 {
-	// import kernel32!IsWow64Process
-	const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
-	BOOL (WINAPI *pIsWow64Process)(HANDLE, PBOOL);
-	*(void**)&pIsWow64Process = GetProcAddress(hKernel32Dll, "IsWow64Process"); 
-	FreeLibrary(hKernel32Dll);
-
 	// function not found => running on 32-bit Windows
 	if(!pIsWow64Process)
 	{
@@ -257,6 +269,26 @@ bool wutil_IsWow64()
 	return isWow64;
 }
 
+void wutil_DisableWow64Redirection(void*& wasRedirectionEnabled)
+{
+	// note: don't just check if the function pointers are valid. 32-bit
+	// Vista includes them but isn't running Wow64, so calling the functions
+	// would fail. since we have to check if actually on Wow64, there's no
+	// more need to verify the pointers (their existence is implied).
+	if(!wutil_IsWow64())
+		return;
+	BOOL ok = pWow64DisableWow64FsRedirection(&wasRedirectionEnabled);
+	WARN_IF_FALSE(ok);
+}
+
+void wutil_RevertWow64Redirection(void* wasRedirectionEnabled)
+{
+	if(!wutil_IsWow64())
+		return;
+	BOOL ok = pWow64RevertWow64FsRedirection(wasRedirectionEnabled);
+	WARN_IF_FALSE(ok);
+}
+
 
 //-----------------------------------------------------------------------------
 
@@ -272,6 +304,7 @@ static LibError wutil_PreLibcInit()
 
 	GetDirectories();
 
+	ImportWow64Functions();
 	DetectWow64();
 
 	return INFO::OK;

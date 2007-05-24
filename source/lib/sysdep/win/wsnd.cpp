@@ -58,43 +58,29 @@ EXTERN_C __declspec(dllimport) HRESULT WINAPI DirectSoundEnumerateA(LPDSENUMCALL
 // note: OpenAL alGetString is worthless: it only returns OpenAL API version
 // and renderer (e.g. "Software").
 
+// indicate if this directory entry is an OpenAL DLL.
+// (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
+static LibError IsOpenAlDll(const DirEnt* ent)
+{
+	// not a file
+	if(!DIRENT_IS_DIR(ent))
+		return false;
+
+	// name doesn't match
+	const size_t len = strlen(ent->name);
+	const bool oal = len >= 7 && !strcasecmp(ent->name+len-7, "oal.dll");
+	const bool openal = strstr(ent->name, "OpenAL") != 0;
+	if(!oal && !openal)
+		return false;
+
+	return true;
+}
+
 // ensures each OpenAL DLL is only listed once (even if present in several
 // directories on our search path).
 typedef std::set<std::string> StringSet;
 
-// if this directory entry is an OpenAL DLL, add it to our list.
-// (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
-// called by add_oal_dlls_in_dir.
-//
-// note: we need the full DLL path for dll_list_add but DirEnt only gives us
-// the name. for efficiency, we append this in a PathPackage allocated by
-// add_oal_dlls_in_dir.
-static LibError add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dlls)
-{
-	const char* fn = ent->name;
-
-	// skip non-files.
-	if(!DIRENT_IS_DIR(ent))
-		return INFO::OK;
-
-	// skip if not an OpenAL DLL.
-	const size_t len = strlen(fn);
-	const bool oal = len >= 7 && !strcasecmp(fn+len-7, "oal.dll");
-	const bool openal = strstr(fn, "OpenAL") != 0;
-	if(!oal && !openal)
-		return INFO::OK;
-
-	// skip if already in StringSet (i.e. has already been dll_list_add-ed)
-	std::pair<StringSet::iterator, bool> ret = dlls->insert(fn);
-	if(!ret.second)	// insert failed - element already there
-		return INFO::OK;
-
-	RETURN_ERR(path_package_append_file(pp, fn));
-	return dll_list_add(pp->path);
-}
-
-
-// find all OpenAL DLLs in a dir (via file_enum and add_if_oal_dll).
+// find all OpenAL DLLs in a dir (via file_enum and IsOpenAlDll).
 // call in library search order (exe dir, then win sys dir); otherwise,
 // DLLs in the executable's starting directory hide those of the
 // same name in the system directory.
@@ -102,19 +88,31 @@ static LibError add_if_oal_dll(const DirEnt* ent, PathPackage* pp, StringSet* dl
 // <dir>: no trailing.
 static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 {
+	// note: dll_list_add requires the full DLL path but DirEnt only gives us
+	// the name. for efficiency, we append this via PathPackage.
 	PathPackage pp;
 	RETURN_ERR(path_package_set_dir(&pp, dir));
 
 	DirIterator d;
 	RETURN_ERR(dir_open(dir, &d));
 
-	DirEnt ent;
 	for(;;)	// instead of while to avoid warning
 	{
+		DirEnt ent;
 		LibError err = dir_next_ent(&d, &ent);
 		if(err != INFO::OK)
 			break;
-		(void)add_if_oal_dll(&ent, &pp, dlls);
+
+		if(!IsOpenAlDll(&ent))
+			continue;
+
+		// already in StringSet (i.e. has already been dll_list_add-ed)
+		std::pair<StringSet::iterator, bool> ret = dlls->insert(ent.name);
+		if(!ret.second)	// insert failed - element already there
+			continue;
+
+		(void)path_package_append_file(&pp, ent.name);
+		(void)dll_list_add(pp.path);
 	}
 
 	(void)dir_close(&d);
@@ -128,17 +126,18 @@ static char ds_drv_path[MAX_PATH+1];
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
-static BOOL CALLBACK ds_enum(void* UNUSED(guid), const char* description,
+static BOOL CALLBACK ds_enum(void* guid, const char* description,
 	const char* module, void* UNUSED(ctx))
 {
-	// skip first (dummy) entry, where description == "Primary Sound Driver".
-	if(module[0] == '\0')
+	// skip first dummy entry (description == "Primary Sound Driver")
+	if(guid == NULL)
 		return TRUE;	// continue calling
 
 	strcpy_s(snd_card, SND_CARD_LEN, description);
-	snprintf(ds_drv_path, ARRAY_SIZE(ds_drv_path), "%s\\drivers\\%s", win_sys_dir, module);
-	// note: this directory is not in LoadLibrary's search list,
+
+	// note: $system\\drivers is not in LoadLibrary's search list,
 	// so we have to give the full pathname.
+	snprintf(ds_drv_path, ARRAY_SIZE(ds_drv_path), "%s\\drivers\\%s", win_sys_dir, module);
 
 	// we assume the first "driver name" (sound card) is the one we want;
 	// stick with that and stop calling.
