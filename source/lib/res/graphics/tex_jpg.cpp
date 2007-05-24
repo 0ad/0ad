@@ -10,35 +10,21 @@
 
 #include "precompiled.h"
 
-extern "C" {
-// this is not a core library module, so it doesn't define JPEG_INTERNALS
-#include <jpeglib.h>
-#include <jerror.h>
-}
+#include "lib/external_libraries/libjpeg.h"
 
 #include "lib/res/res.h"
 #include "tex_codec.h"
 #include <setjmp.h>
 
 
-#if MSC_VERSION
-
 // squelch "dtor / setjmp interaction" warnings.
 // all attempts to resolve the underlying problem failed; apparently
 // the warning is generated if setjmp is used at all in C++ mode.
-// (png_*_impl have no code that would trigger ctors/dtors, nor are any
+// (jpg_*code have no code that would trigger ctors/dtors, nor are any
 // called in their prolog/epilog code).
+#if MSC_VERSION
 # pragma warning(disable: 4611)
-
-// pull in the appropriate debug/release library
-# ifdef NDEBUG
-#  pragma comment(lib, "jpeg-6b.lib")
-# else
-#  pragma comment(lib, "jpeg-6bd.lib")
-# endif	// #ifdef NDEBUG
-
-#endif	// #ifdef MSC_VERSION
-
+#endif
 
 
 /* IMPORTANT: we assume that JOCTET is 8 bits. */

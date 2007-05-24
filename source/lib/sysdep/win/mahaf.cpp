@@ -140,21 +140,7 @@ static bool Is64BitOs()
 #if OS_WIN64
 	return true;
 #else
-	// import kernel32!IsWow64Process
-	const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
-	BOOL (WINAPI *pIsWow64Process)(HANDLE, PBOOL);
-	*(void**)&pIsWow64Process = GetProcAddress(hKernel32Dll, "IsWow64Process"); 
-	FreeLibrary(hKernel32Dll);
-
-	// function not found => running on 32-bit Windows
-	if(!pIsWow64Process)
-		return false;
-
-	BOOL isWow64Process = FALSE;
-	const BOOL ok = IsWow64Process(GetCurrentProcess(), &isWow64Process);
-	WARN_IF_FALSE(ok);
-
-	return (isWow64Process == TRUE);
+	return wutil_IsWow64();
 #endif
 }
 

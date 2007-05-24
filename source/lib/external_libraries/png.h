@@ -8,6 +8,9 @@
 
 // license: GPL; see lib/license.txt
 
+#ifndef INCLUDED_PNG
+#define INCLUDED_PNG
+
 // <png.h> includes <zlib.h>, which requires some fixes by our header.
 #include "lib/external_libraries/zlib.h"
 
@@ -21,3 +24,5 @@
 #  pragma comment(lib, "libpng13d.lib")
 # endif	// NDEBUG
 #endif	// MSC_VERSION
+
+#endif	//	#ifndef INCLUDED_PNG

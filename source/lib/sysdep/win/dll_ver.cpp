@@ -17,10 +17,61 @@
 #include "lib/path_util.h"
 #include "win.h"
 #include "wutil.h"
+#include "winit.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "version.lib")		// DLL version
 #endif
+
+
+#pragma SECTION_PRE_LIBC(B)
+WIN_REGISTER_FUNC(dll_ver_PreLibcInit);
+#pragma FORCE_INCLUDE(dll_ver_PreLibcInit)
+#pragma SECTION_RESTORE
+
+
+//-----------------------------------------------------------------------------
+// temporarily disable and re-enable Wow64 file redirection.
+//-----------------------------------------------------------------------------
+
+// Wow64 'helpfully' redirects all 32-bit apps' accesses of
+// %windir\\system32\\drivers to %windir\\system32\\drivers\\SysWOW64.
+// that's bad, because the actual drivers are not in the subdirectory. to
+// work around this, we disable redirection over the duration of get_ver.
+
+static BOOL (WINAPI *pWow64DisableWow64FsRedirection)(PVOID*) = 0;
+static BOOL (WINAPI *pWow64RevertWow64FsRedirection)(PVOID) = 0;
+
+static void ImportWow64Functions()
+{
+	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
+	*(void**)&pWow64DisableWow64FsRedirection = GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
+	*(void**)&pWow64RevertWow64FsRedirection  = GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");
+	FreeLibrary(hKernel32Dll);
+}
+
+static void DisableRedirection(PVOID& wasRedirectionEnabled)
+{
+	// note: don't just check if the function pointers are valid. 32-bit
+	// Vista includes them but isn't running Wow64, so calling the functions
+	// would fail. since we have to check if actually on Wow64, there's no
+	// more need to verify the pointers (their existence is implied).
+	if(!wutil_IsWow64())
+		return;
+	BOOL ok = pWow64DisableWow64FsRedirection(&wasRedirectionEnabled);
+	WARN_IF_FALSE(ok);
+}
+
+static void RevertRedirection(PVOID wasRedirectionEnabled)
+{
+	if(!wutil_IsWow64())
+		return;
+	BOOL ok = pWow64RevertWow64FsRedirection(wasRedirectionEnabled);
+	WARN_IF_FALSE(ok);
+}
+
+
+//-----------------------------------------------------------------------------
 
 // helper function that does all the work; caller wraps it and takes care of
 // undoing various operations if we fail midway.
@@ -58,37 +109,19 @@ static LibError get_ver_impl(const char* module_path, char* out_ver, size_t out_
 // get version information for the specified DLL.
 static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_len)
 {
+	LibError ret;
+
 	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
-
-	// WinXP x64 'helpfully' redirects all 32-bit apps' accesses of
-	// %windir\\system32\\drivers to %windir\\system32\\drivers\\SysWOW64.
-	// that's bad, because the actual drivers are not in the subdirectory.
-	// to work around this, we disable the redirection over the duration of
-	// this call. if not on a 64-bit OS (i.e. these entry points aren't
-	// found), no action need be taken.
-	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
-	BOOL (WINAPI *pWow64DisableWow64FsRedirection)(PVOID*) = 0;
-	BOOL (WINAPI *pWow64RevertWow64FsRedirection)(PVOID) = 0;
-	*(void**)&pWow64DisableWow64FsRedirection = GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
-	*(void**)&pWow64RevertWow64FsRedirection  = GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");
-	PVOID old_value = 0;
-	if(pWow64DisableWow64FsRedirection)
 	{
-		BOOL ok = pWow64DisableWow64FsRedirection(&old_value);
-		WARN_IF_FALSE(ok);
+		PVOID wasRedirectionEnabled;
+		DisableRedirection(wasRedirectionEnabled);
+		{
+			void* mem = NULL;
+			ret = get_ver_impl(module_path, out_ver, out_ver_len, mem);
+			free(mem);
+		}
+		RevertRedirection(wasRedirectionEnabled);
 	}
-
-	void* mem = NULL;
-	LibError ret = get_ver_impl(module_path, out_ver, out_ver_len, mem);
-	free(mem);
-
-	if(pWow64DisableWow64FsRedirection)
-	{
-		BOOL ok = pWow64RevertWow64FsRedirection(old_value);
-		WARN_IF_FALSE(ok);
-	}
-	FreeLibrary(hKernel32Dll);
-
 	WIN_RESTORE_LAST_ERROR;
 
 	if(ret != INFO::OK)
@@ -163,4 +196,14 @@ LibError dll_list_add(const char* name)
 	sprintf(dll_list_pos, "...");	// (room was reserved above)
 	dll_list_pos = 0;	// poison pill, prevent further calls
 	WARN_RETURN(ERR::BUF_SIZE);
+}
+
+
+//-----------------------------------------------------------------------------
+
+static LibError dll_ver_PreLibcInit()
+{
+	ImportWow64Functions();
+
+	return INFO::OK;
 }

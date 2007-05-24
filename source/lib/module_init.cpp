@@ -61,6 +61,7 @@ retry:
 		return false;
 	if(!cpu_CAS(pInitState, latchedInitState, latchedInitState-1))
 		goto retry;
+
 	// refcount reached zero => allow shutdown.
 	if(latchedInitState-1 == MODULE_UNINITIALIZED)
 		return true;

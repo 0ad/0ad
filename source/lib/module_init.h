@@ -24,7 +24,7 @@ typedef uintptr_t ModuleInitState;	// uintptr_t required by cpu_CAS
 
 /**
  * @return whether initialization should go forward, i.e. initState is
- * currently MODULE_BEFORE_INIT. increments initState afterwards.
+ * currently MODULE_UNINITIALIZED. increments initState afterwards.
  *
  * (the reason for this function - and tricky part - is thread-safety)
  **/
@@ -33,7 +33,7 @@ extern bool ModuleShouldInitialize(volatile ModuleInitState* initState);
 /**
  * if module reference count is valid, decrement it.
  * @return whether shutdown should go forward, i.e. this is the last
- * shutdown call. if so, sets initState to MODULE_SHUTDOWN.
+ * shutdown call.
  **/
 extern bool ModuleShouldShutdown(volatile ModuleInitState* initState);
 

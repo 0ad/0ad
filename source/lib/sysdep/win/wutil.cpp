@@ -29,54 +29,8 @@ WIN_REGISTER_FUNC(wutil_Shutdown);
 #pragma SECTION_RESTORE
 
 
-char win_sys_dir[MAX_PATH+1];
-char win_exe_dir[MAX_PATH+1];
-
-
-// only call after a Win32 function indicates failure.
-LibError LibError_from_GLE(bool warn_if_failed)
-{
-	LibError err;
-	switch(GetLastError())
-	{
-	case ERROR_OUTOFMEMORY:
-		err = ERR::NO_MEM; break;
-
-	case ERROR_INVALID_PARAMETER:
-		err = ERR::INVALID_PARAM; break;
-	case ERROR_INSUFFICIENT_BUFFER:
-		err = ERR::BUF_SIZE; break;
-
-/*
-	case ERROR_ACCESS_DENIED:
-		err = ERR::FILE_ACCESS; break;
-	case ERROR_FILE_NOT_FOUND:
-	case ERROR_PATH_NOT_FOUND:
-		err = ERR::TNODE_NOT_FOUND; break;
-*/
-	default:
-		err = ERR::FAIL; break;
-	}
-
-	if(warn_if_failed)
-		DEBUG_WARN_ERR(err);
-	return err;
-}
-
-
-// return the LibError equivalent of GetLastError(), or ERR::FAIL if
-// there's no equal.
-// you should SetLastError(0) before calling whatever will set ret
-// to make sure we do not return any stale errors.
-LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
-{
-	if(ret != FALSE)
-		return INFO::OK;
-	return LibError_from_GLE(warn_if_failed);
-}
-
-
 //-----------------------------------------------------------------------------
+// safe allocator
 
 //
 // safe allocator that may be used independently of libc malloc
@@ -98,8 +52,7 @@ void win_free(void* p)
 
 
 //-----------------------------------------------------------------------------
-// locking for win-specific code
-//-----------------------------------------------------------------------------
+// locks
 
 // several init functions are before called before _cinit.
 // POSIX static mutex init may not have been done by then,
@@ -153,59 +106,173 @@ static void ShutdownLocks()
 
 
 //-----------------------------------------------------------------------------
+// error codes
 
-// explained where used.
+// only call after a Win32 function indicates failure.
+LibError LibError_from_GLE(bool warn_if_failed)
+{
+	LibError err;
+	switch(GetLastError())
+	{
+	case ERROR_OUTOFMEMORY:
+		err = ERR::NO_MEM; break;
+
+	case ERROR_INVALID_PARAMETER:
+		err = ERR::INVALID_PARAM; break;
+	case ERROR_INSUFFICIENT_BUFFER:
+		err = ERR::BUF_SIZE; break;
+
+/*
+	case ERROR_ACCESS_DENIED:
+		err = ERR::FILE_ACCESS; break;
+	case ERROR_FILE_NOT_FOUND:
+	case ERROR_PATH_NOT_FOUND:
+		err = ERR::TNODE_NOT_FOUND; break;
+*/
+	default:
+		err = ERR::FAIL; break;
+	}
+
+	if(warn_if_failed)
+		DEBUG_WARN_ERR(err);
+	return err;
+}
+
+
+// return the LibError equivalent of GetLastError(), or ERR::FAIL if
+// there's no equal.
+// you should SetLastError(0) before calling whatever will set ret
+// to make sure we do not return any stale errors.
+LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
+{
+	if(ret != FALSE)
+		return INFO::OK;
+	return LibError_from_GLE(warn_if_failed);
+}
+
+
+//-----------------------------------------------------------------------------
+// directories
+
+char win_sys_dir[MAX_PATH+1];
+char win_exe_dir[MAX_PATH+1];
+
+static void GetDirectories()
+{
+	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
+
+	if(GetModuleFileName(GetModuleHandle(0), win_exe_dir, MAX_PATH) != 0)
+		path_strip_fn(win_exe_dir);
+}
+
+
+//-----------------------------------------------------------------------------
+// user32 fix
+
+// HACK: make sure a reference to user32 is held, even if someone
+// decides to delay-load it. this fixes bug #66, which was the
+// Win32 mouse cursor (set via user32!SetCursor) appearing as a
+// black 32x32(?) rectangle. underlying cause was as follows:
+// powrprof.dll was the first client of user32, causing it to be
+// loaded. after we were finished with powrprof, we freed it, in turn
+// causing user32 to unload. later code would then reload user32,
+// which apparently terminally confused the cursor implementation.
+//
+// since we hold a reference here, user32 will never unload.
+// of course, the benefits of delay-loading are lost for this DLL,
+// but that is unavoidable. it is safer to force loading it, rather
+// than documenting the problem and asking it not be delay-loaded.
 static HMODULE hUser32Dll;
 
-
-static LibError wutil_PreLibcInit()
+static void ForciblyLoadUser32Dll()
 {
-	// enable memory tracking and leak detection;
-	// no effect if !HAVE_VC_DEBUG_ALLOC.
+	hUser32Dll = LoadLibrary("user32.dll");
+}
+
+// avoids Boundschecker warning
+static void FreeUser32Dll()
+{
+	FreeLibrary(hUser32Dll);
+}
+
+
+//-----------------------------------------------------------------------------
+// memory
+
+// note: has no effect if config.h's HAVE_VC_DEBUG_ALLOC is 0.
+static void EnableMemoryTracking()
+{
 #if CONFIG_PARANOIA
 	debug_heap_enable(DEBUG_HEAP_ALL);
 #elif !defined(NDEBUG)
 	debug_heap_enable(DEBUG_HEAP_NORMAL);
 #endif
+}
 
-	// enable low-fragmentation heap
+static void EnableLowFragmentationHeap()
+{
 #if WINVER >= 0x0501
 	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
-	if(hKernel32Dll)
-	{
-		BOOL (WINAPI* pHeapSetInformation)(HANDLE, HEAP_INFORMATION_CLASS, void*, size_t);
-		*(void**)&pHeapSetInformation = GetProcAddress(hKernel32Dll, "HeapSetInformation");
-		if(pHeapSetInformation)
-		{
-			ULONG flags = 2;	// enable LFH
-			pHeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
-		}
+	BOOL (WINAPI* pHeapSetInformation)(HANDLE, HEAP_INFORMATION_CLASS, void*, size_t);
+	*(void**)&pHeapSetInformation = GetProcAddress(hKernel32Dll, "HeapSetInformation");
+	if(!pHeapSetInformation)
+		return;
 
-		FreeLibrary(hKernel32Dll);
-	}
+	ULONG flags = 2;	// enable LFH
+	pHeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
+
+	FreeLibrary(hKernel32Dll);
 #endif	// #if WINVER >= 0x0501
+}
 
+
+//-----------------------------------------------------------------------------
+// Wow64 detection
+
+static bool isWow64;
+
+static void DetectWow64()
+{
+	// import kernel32!IsWow64Process
+	const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
+	BOOL (WINAPI *pIsWow64Process)(HANDLE, PBOOL);
+	*(void**)&pIsWow64Process = GetProcAddress(hKernel32Dll, "IsWow64Process"); 
+	FreeLibrary(hKernel32Dll);
+
+	// function not found => running on 32-bit Windows
+	if(!pIsWow64Process)
+	{
+		isWow64 = false;
+		return;
+	}
+
+	BOOL isWow64Process = FALSE;
+	const BOOL ok = IsWow64Process(GetCurrentProcess(), &isWow64Process);
+	WARN_IF_FALSE(ok);
+	isWow64 = (isWow64Process == TRUE);
+}
+
+bool wutil_IsWow64()
+{
+	return isWow64;
+}
+
+
+//-----------------------------------------------------------------------------
+
+static LibError wutil_PreLibcInit()
+{
 	InitLocks();
 
-	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
+	ForciblyLoadUser32Dll();
 
-	if(GetModuleFileName(GetModuleHandle(0), win_exe_dir, MAX_PATH) != 0)
-		path_strip_fn(win_exe_dir);
+	EnableMemoryTracking();
 
-	// HACK: make sure a reference to user32 is held, even if someone
-	// decides to delay-load it. this fixes bug #66, which was the
-	// Win32 mouse cursor (set via user32!SetCursor) appearing as a
-	// black 32x32(?) rectangle. underlying cause was as follows:
-	// powrprof.dll was the first client of user32, causing it to be
-	// loaded. after we were finished with powrprof, we freed it, in turn
-	// causing user32 to unload. later code would then reload user32,
-	// which apparently terminally confused the cursor implementation.
-	//
-	// since we hold a reference here, user32 will never unload.
-	// of course, the benefits of delay-loading are lost for this DLL,
-	// but that is unavoidable. it is safer to force loading it, rather
-	// than documenting the problem and asking it not be delay-loaded.
-	hUser32Dll = LoadLibrary("user32.dll");
+	EnableLowFragmentationHeap();
+
+	GetDirectories();
+
+	DetectWow64();
 
 	return INFO::OK;
 }
@@ -213,11 +280,9 @@ static LibError wutil_PreLibcInit()
 
 static LibError wutil_Shutdown()
 {
-	ShutdownLocks();
+	FreeUser32Dll();
 
-	// free the reference taken in win_PreInit;
-	// this avoids Boundschecker warnings at exit.
-	FreeLibrary(hUser32Dll);
+	ShutdownLocks();
 
 	return INFO::OK;
 }

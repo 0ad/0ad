@@ -8,6 +8,9 @@
 
 // license: GPL; see lib/license.txt
 
+#ifndef INCLUDED_ZLIB
+#define INCLUDED_ZLIB
+
 // zlib.h -> zconf.h includes <windows.h>, which causes conflicts.
 // define the include guard to prevent it from actually being included and
 // then manually define the few things that are actually needed.
@@ -28,3 +31,5 @@
 #  pragma comment(lib, "zlib1d.lib")
 # endif
 #endif
+
+#endif	// #ifndef INCLUDED_ZLIB

@@ -18,8 +18,17 @@
 #include "win.h"
 
 
-//-----------------------------------------------------------------------------
-// locking
+//
+// safe allocator
+//
+
+extern void* win_alloc(size_t size);
+extern void win_free(void* p);
+
+
+//
+// locks
+//
 
 // critical sections used by win-specific code
 enum
@@ -39,13 +48,6 @@ extern void win_unlock(uint idx);
 // used in a desperate attempt to avoid deadlock in wdbg_exception_handler.
 extern int win_is_locked(uint idx);
 
-
-//-----------------------------------------------------------------------------
-
-extern void* win_alloc(size_t size);
-extern void win_free(void* p);
-
-
 // thread safe, usable in constructors
 #define WIN_ONCE(code)\
 {\
@@ -58,6 +60,11 @@ extern void win_free(void* p);
 	}\
 	win_unlock(ONCE_CS);\
 }
+
+
+//
+// error codes
+//
 
 #define WIN_SAVE_LAST_ERROR DWORD last_err__ = GetLastError();
 #define WIN_RESTORE_LAST_ERROR STMT(if(last_err__ != 0 && GetLastError() == 0) SetLastError(last_err__););
@@ -79,7 +86,18 @@ LibError LibError_from_GLE(bool warn_if_failed = true);
 extern LibError LibError_from_win32(DWORD ret, bool warn_if_failed = true);
 
 
+//
+// directories
+//
+
 extern char win_sys_dir[MAX_PATH+1];
 extern char win_exe_dir[MAX_PATH+1];
+
+
+//
+// Wow64 detection
+//
+
+extern bool wutil_IsWow64();
 
 #endif	// #ifndef INCLUDED_WUTIL
