@@ -13,6 +13,9 @@
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/cursor.h"
+#if OS_WIN
+# include "lib/sysdep/win/wstartup.h"
+#endif
 
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -93,9 +96,6 @@ ERROR_TYPE(System, VmodeFailed);
 ERROR_TYPE(System, RequiredExtensionsMissing);
 
 #define LOG_CATEGORY "gamesetup"
-
-
-
 
 
 static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
@@ -876,22 +876,34 @@ void Shutdown(uint flags)
 	TIMER_END("shutdown misc");
 }
 
-
-void Init(const CmdLineArgs& args, uint flags)
+void EarlyInit()
 {
-	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
+#if OS_WIN
+	// see discussion at declaration of wstartup_PreMainInit.
+	wstartup_PreMainInit();	// must come before any use of lib/sysdep/win
+#endif
 
-	MICROLOG(L"Init");
+	MICROLOG(L"EarlyInit");
+
+	// If you ever want to catch a particular allocation:
+	//_CrtSetBreakAlloc(321);
 
 	debug_set_thread_name("main");
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add("TIMER");
 
 	lockfree_Init();
+
 	timer_Init();
 
-	// Query CPU capabilities, possibly set some CPU-dependent flags
-	cpu_Init();
+	cpu_Init();	// must come after timer_Init
+}
+
+void Init(const CmdLineArgs& args, uint flags)
+{
+	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
+
+	MICROLOG(L"Init");
 
 	h_mgr_init();
 

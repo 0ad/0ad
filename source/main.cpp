@@ -14,8 +14,8 @@ that of Atlas depending on commandline parameters.
 #include "lib/precompiled.h"
 
 #include "lib/input.h"
-#include "lib/external_libraries/sdl.h"
 #include "lib/timer.h"
+#include "lib/external_libraries/sdl.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/file/vfs_optimizer.h"
@@ -38,10 +38,6 @@ that of Atlas depending on commandline parameters.
 #include "simulation/Scheduler.h"
 #include "sound/CMusicPlayer.h"
 #include "gui/GUI.h"
-
-#if OS_WIN
-# include "lib/sysdep/win/wstartup.h"
-#endif
 
 #define LOG_CATEGORY "main"
 
@@ -381,13 +377,7 @@ static void RunGameOrAtlas(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(321);
-
-	// see discussion at declaration of wstartup_PreMainInit.
-#if OS_WIN
-	wstartup_PreMainInit();
-#endif
+	EarlyInit();	// must come at beginning of main
 
 	RunGameOrAtlas(argc, argv);
 

@@ -41,7 +41,11 @@ extern int usleep(useconds_t us);
 
 typedef enum
 {
-	CLOCK_REALTIME
+	// in our implementation, these actually do the same thing
+	// (a timer that latches the system time at startup and uses the
+	// monotonic HRT to add elapsed time since then)
+	CLOCK_REALTIME,
+	CLOCK_MONOTONIC
 }
 clockid_t;
 

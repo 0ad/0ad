@@ -245,7 +245,10 @@ bool acpi_Init()
 		return true;
 
 	if(!mahaf_Init())
+	{
+		ModuleSetError(&initState);
 		return false;
+	}
 
 	LatchAllTables();
 	return true;

@@ -18,6 +18,12 @@ extern void Render();
 extern void RenderActor();
 
 
+/**
+ * initialize global modules that are be needed before Init.
+ * must be called from the very beginning of main.
+ **/
+extern void EarlyInit();
+
 enum InitFlags
 {
 	// avoid setting a video mode / initializing OpenGL; assume that has

@@ -261,7 +261,10 @@ bool mahaf_Init()
 	DWORD shareMode = 0;
 	hAken = CreateFile("\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	if(hAken == INVALID_HANDLE_VALUE)
+	{
+		ModuleSetError(&initState);
 		return false;
+	}
 
 	return true;
 }

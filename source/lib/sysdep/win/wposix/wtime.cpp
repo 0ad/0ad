@@ -110,7 +110,7 @@ static uint MsFromTimespec(const timespec& ts)
 
 int clock_gettime(clockid_t clock, struct timespec* ts)
 {
-	debug_assert(clock == CLOCK_REALTIME);
+	debug_assert(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
 
 	const i64 ns = CurrentSystemTime_ns();
 	*ts = TimespecFromNs(ns);
@@ -120,7 +120,7 @@ int clock_gettime(clockid_t clock, struct timespec* ts)
 
 int clock_getres(clockid_t clock, struct timespec* ts)
 {
-	debug_assert(clock == CLOCK_REALTIME);
+	debug_assert(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
 
 	const i64 ns = cpu_i64FromDouble(whrt_Resolution() * 1e9);
 	*ts = TimespecFromNs(ns);
