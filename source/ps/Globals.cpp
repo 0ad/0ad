@@ -40,7 +40,10 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 		if(c < ARRAY_SIZE(g_mouse_buttons))
 			g_mouse_buttons[c] = (ev->ev.type == SDL_MOUSEBUTTONDOWN);
 		else
-			debug_warn("invalid mouse button");
+		{
+			// don't complain: just ignore people with too many mouse buttons
+			//debug_warn("invalid mouse button");
+		}
 		return IN_PASS;
 
 	case SDL_KEYDOWN:

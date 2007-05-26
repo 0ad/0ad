@@ -340,10 +340,14 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		break;
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
-		keycode = SDLK_LAST + (int)ev->ev.button.button;
-		break;
+		if ((int)ev->ev.button.button <= SDL_BUTTON_WHEELDOWN)
+		{
+			keycode = SDLK_LAST + (int)ev->ev.button.button;
+			break;
+		}
+		// fall through
 	default:
-		return( IN_PASS );
+		return IN_PASS;
 	}
 
 	// Somewhat hackish:
