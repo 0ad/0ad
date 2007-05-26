@@ -72,7 +72,7 @@ extern_lib_defs = {
 		unix_names = { "IL", "ILU" },
 	},
 	directx = {
-		win_names  = { "ddraw", "dsound" },
+		win_names  = { "ddraw", },
 		dbg_suffix = "",
 	},
 	fcollada = {

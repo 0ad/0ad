@@ -394,7 +394,8 @@ function setup_all_libs ()
 	sysdep_dirs = {
 		linux = { "lib/sysdep/unix" },
 		-- note: RC file must be added to main_exe package.
-		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix" },
+		-- note: don't add "lib/sysdep/win/aken.cpp" because that must be compiled with the DDK.
+		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix", "lib/sysdep/win/whrt" },
 		macosx = { "lib/sysdep/osx", "lib/sysdep/unix" },
 	}
 	tinsert(package.files, sourcesfromdirs(source_root, sysdep_dirs[OS]));
@@ -467,7 +468,8 @@ function setup_main_exe ()
 			"/DELAYLOAD:user32.dll",
 			"/DELAYLOAD:ws2_32.dll",
 			"/DELAYLOAD:version.dll",
-
+			"/DELAYLOAD:winmm.dll",
+			
 			-- allow manual unload of delay-loaded DLLs
 			"/DELAY:UNLOAD"
 		}
