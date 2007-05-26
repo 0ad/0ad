@@ -210,7 +210,7 @@ void udbg_bfd_init(void)
 		exename=EXE_NAME;
 	}
 
-	debug_printf("udbg_init: loading symbols from %s.\n", exename);
+	debug_printf("udbg_bfd_init: loading symbols from %s.\n", exename);
 
 	if (read_symbols(exename, &ps_dbg_context)==0)
 		udbg_initialized=true;
@@ -316,7 +316,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 
 LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
-	ONCE(udbg_init());
+	ONCE(udbg_bfd_init());
 
 	// We use our default context - in the future we could do something like
 	// mapping library -> file context to support more detailed reporting on
