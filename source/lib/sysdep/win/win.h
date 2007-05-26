@@ -70,8 +70,9 @@
 #define NOPROFILER          // Profiler interface.
 #define NODEFERWINDOWPOS    // DeferWindowPos routines
 #define NOMCX               // Modem Configuration Extensions
-
 #include <windows.h>
+
+#include <winreg.h>
 
 
 //-----------------------------------------------------------------------------

@@ -29,7 +29,7 @@ static const AcpiTable* AllocateCopyOfTable(u64 physicalAddress)
 {
 	// 4 KiB ought to be enough; if not, the table will be re-mapped.
 	const size_t initialSize = 4*KiB;
-	const AcpiTable* mappedTable = (const AcpiTable*)MapPhysicalMemory(physicalAddress, initialSize);
+	const AcpiTable* mappedTable = (const AcpiTable*)mahaf_MapPhysicalMemory(physicalAddress, initialSize);
 	if(!mappedTable)
 		return 0;
 	const size_t size = mappedTable->size;
@@ -37,8 +37,8 @@ static const AcpiTable* AllocateCopyOfTable(u64 physicalAddress)
 	if(size > initialSize)
 	{
 		// re-map with correct size
-		UnmapPhysicalMemory((void*)mappedTable);
-		mappedTable = (const AcpiTable*)MapPhysicalMemory(physicalAddress, size);
+		mahaf_UnmapPhysicalMemory((void*)mappedTable);
+		mappedTable = (const AcpiTable*)mahaf_MapPhysicalMemory(physicalAddress, size);
 		if(!mappedTable)
 			return 0;
 	}
@@ -47,7 +47,7 @@ static const AcpiTable* AllocateCopyOfTable(u64 physicalAddress)
 	if(table)
 		cpu_memcpy(table, mappedTable, size);
 
-	UnmapPhysicalMemory((void*)mappedTable);
+	mahaf_UnmapPhysicalMemory((void*)mappedTable);
 	return table;
 }
 
@@ -86,14 +86,10 @@ static bool VerifyTable(const AcpiTable* table, const char* signature = 0)
 
 
 //-----------------------------------------------------------------------------
-// get pointer to (eXtended) Root System Descriptor Table
+// Root System Descriptor Pointer
 //-----------------------------------------------------------------------------
 
-// Root System Descriptor Pointer
-
-static const size_t RSDP_ALIGNMENT = 16;
-
-struct RSDPv1
+struct RSDP
 {
 	char signature[8];			// "RSD PTR "
 	u8 checksum;				// sum of this struct = 0
@@ -102,20 +98,7 @@ struct RSDPv1
 	u32 rsdtPhysicalAddress;
 };
 
-struct RSDPv2Additions
-{
-	u32 size;					// of entire table (including V1)
-	u64 xsdtPhysicalAddress64;
-	u8 extendedChecksum;		// sum of entire table (including V1) = 0
-	char reserved[3];			// must be 0
-};
-
-struct RSDP
-{
-	RSDPv1 v1;
-	RSDPv2Additions v2;
-};
-
+static const size_t RSDP_ALIGNMENT = 16;
 
 static const RSDP* LocateRsdp(const u8* buf, size_t numBytes)
 {
@@ -124,10 +107,10 @@ static const RSDP* LocateRsdp(const u8* buf, size_t numBytes)
 	{
 		const RSDP* rsdp = (const RSDP*)p;
 
-		if(memcmp(rsdp->v1.signature, "RSD PTR ", 8) != 0)
+		if(memcmp(rsdp->signature, "RSD PTR ", 8) != 0)
 			continue;
 
-		if(ComputeChecksum(p, 20) != 0)
+		if(ComputeChecksum(p, sizeof(RSDP)) != 0)
 			continue;
 
 		return rsdp;
@@ -139,13 +122,13 @@ static const RSDP* LocateRsdp(const u8* buf, size_t numBytes)
 
 static bool LocateAndRetrieveRsdp(uintptr_t physicalAddress, size_t numBytes, RSDP& rsdp)
 {
-	void* virtualAddress = MapPhysicalMemory(physicalAddress, numBytes);
+	void* virtualAddress = mahaf_MapPhysicalMemory(physicalAddress, numBytes);
 
 	const RSDP* prsdp = LocateRsdp((const u8*)virtualAddress, numBytes);
 	if(prsdp)
 		rsdp = *prsdp;	// stash in output parameter before unmapping
 
-	UnmapPhysicalMemory(virtualAddress);
+	mahaf_UnmapPhysicalMemory(virtualAddress);
 	return (prsdp != 0);
 }
 
@@ -159,7 +142,7 @@ static uintptr_t LocateEbdaPhysicalAddress()
 		u16 ebdaSegment;
 		// ...
 	};
-	const BiosDataArea* bda = (const BiosDataArea*)MapPhysicalMemory(0x400, 0x100);
+	const BiosDataArea* bda = (const BiosDataArea*)mahaf_MapPhysicalMemory(0x400, 0x100);
 	if(!bda)
 		return 0;
 	const uintptr_t ebdaPhysicalAddress = ((uintptr_t)bda->ebdaSegment) * 16;
@@ -183,22 +166,7 @@ static bool RetrieveRsdp(RSDP& rsdp)
 }
 
 
-static bool VerifyRsdp(const RSDP& rsdp)
-{
-	if(ComputeChecksum(&rsdp.v1, sizeof(rsdp.v1)) != 0)
-		return false;
-
-	if(rsdp.v1.revision >= 2)
-	{
-		if(ComputeChecksum(&rsdp, rsdp.v2.size) != 0)
-			return false;
-
-		if(rsdp.v2.size < sizeof(RSDP))
-			return false;
-	}
-
-	return true;
-}
+//-----------------------------------------------------------------------------
 
 // Root System Descriptor Table
 struct RSDT
@@ -207,107 +175,63 @@ struct RSDT
 	u32 tables[1];
 };
 
-// eXtended root System Descriptor Table (same thing, just 64-bit pointers)
-struct XSDT
-{
-	AcpiTable header;
-	u64 tables[1];
-};
-
-
-// caller is responsible for verifying the table is valid and must
-// free() the returned pointer.
-static const XSDT* AllocateCopyOfXsdt()
-{
-	RSDP rsdp;
-	if(!RetrieveRsdp(rsdp))
-		return 0;
-
-	if(!VerifyRsdp(rsdp))
-		return 0;
-
-	// callers should only have to deal with XSDTs, not the obsolete RSDTs.
-
-	// ACPI 2.0+, already have XSDT (note: caller must verify+free it)
-	if(rsdp.v1.revision >= 2)
-		return (const XSDT*)AllocateCopyOfTable(rsdp.v2.xsdtPhysicalAddress64);
-
-	// ACPI 1.0 - convert RSDT to XSDT (32->64 bit pointers)
-	const RSDT* rsdt = (const RSDT*)AllocateCopyOfTable(rsdp.v1.rsdtPhysicalAddress);
-	if(!rsdt)
-		return 0;
-	if(!VerifyTable((const AcpiTable*)rsdt, "RSDT"))
-	{
-		free((void*)rsdt);
-		return 0;
-	}
-	const size_t numTables = (rsdt->header.size - sizeof(AcpiTable)) / sizeof(u32);
-	const size_t xsdtSize = sizeof(AcpiTable) + numTables * sizeof(u64);
-	XSDT* xsdt = (XSDT*)malloc(xsdtSize);
-	if(xsdt)
-	{
-		xsdt->header = rsdt->header;
-		cpu_memcpy(xsdt->header.signature, "XSDT", 4);
-		xsdt->header.size = (u32)xsdtSize;
-		for(size_t i = 0; i < numTables; i++)
-			xsdt->tables[i] = (u64)rsdt->tables[i];
-		xsdt->header.checksum = -ComputeChecksum(xsdt, xsdtSize);
-	}
-
-	free((void*)rsdt);
-	return xsdt;
-}
-
-
-//-----------------------------------------------------------------------------
-
-typedef std::map<u32, const AcpiTable*> Tables;
-static Tables tables;
+// avoid std::map et al. because we are called before _cinit
+static const AcpiTable** tables;
+static size_t numTables;
 
 static bool LatchAllTables()
 {
-	const XSDT* xsdt = AllocateCopyOfXsdt();
-	if(!xsdt)
+	RSDP rsdp;
+	if(!RetrieveRsdp(rsdp))
 		return false;
-	if(!VerifyTable((const AcpiTable*)xsdt, "XSDT"))
+	const RSDT* rsdt = (const RSDT*)AllocateCopyOfTable(rsdp.rsdtPhysicalAddress);
+	if(!rsdt)
+		return false;
+	if(!VerifyTable((const AcpiTable*)rsdt, "RSDT"))
 	{
-		free((void*)xsdt);
+		free((void*)rsdt);
 		return false;
 	}
 
-	const size_t numTables = (xsdt->header.size - sizeof(AcpiTable)) / sizeof(u64);
+	numTables = (rsdt->header.size - sizeof(AcpiTable)) / sizeof(rsdt->tables[0]);
+	tables = new const AcpiTable*[numTables];
+
 	for(size_t i = 0; i < numTables; i++)
 	{
-		const AcpiTable* table = AllocateCopyOfTable(xsdt->tables[i]);
+		const AcpiTable* table = AllocateCopyOfTable(rsdt->tables[i]);
 		if(!table)
 			continue;
 		if(!VerifyTable(table))
 			debug_warn("invalid ACPI table");
-		const u32 signature32 = *(u32*)table->signature;
-		tables[signature32] = table;
-		// table is now owned by tables and released via FreeAllTables.
+		tables[i] = table;	// transfers ownership
 	}
 
-	free((void*)xsdt);
+	free((void*)rsdt);
 	return true;
 }
 
 
 static void FreeAllTables()
 {
-	for(Tables::iterator it(tables.begin()); it != tables.end(); ++it)
+	for(size_t i = 0; i < numTables; i++)
 	{
-		std::pair<u32, const AcpiTable*> item = *it;
-		free((void*)item.second);
+		SAFE_FREE(tables[i]);
 	}
+	delete[] tables;
 }
 
 
-const AcpiTable* acpiGetTable(const char* signature)
+const AcpiTable* acpi_GetTable(const char* signature)
 {
-	const u32 signature32 = *(u32*)signature;
-	const AcpiTable* table = tables[signature32];
-	return table;
+	// (typically only a few tables, linear search is OK)
+	for(size_t i = 0; i < numTables; i++)
+	{
+		const AcpiTable* table = tables[i];
+		if(strncmp(table->signature, signature, 4) == 0)
+			return table;
+	}
+
+	return 0;
 }
 
 
@@ -315,24 +239,24 @@ const AcpiTable* acpiGetTable(const char* signature)
 
 static ModuleInitState initState;
 
-bool acpiInit()
+bool acpi_Init()
 {
 	if(!ModuleShouldInitialize(&initState))
 		return true;
 
-	if(!MahafInit())
+	if(!mahaf_Init())
 		return false;
 
 	LatchAllTables();
 	return true;
 }
 
-void acpiShutdown()
+void acpi_Shutdown()
 {
 	if(!ModuleShouldShutdown(&initState))
 		return;
 
 	FreeAllTables();
 
-	MahafShutdown();
+	mahaf_Shutdown();
 }

@@ -170,7 +170,7 @@ STMT(\
  **/
 #define SAFE_FREE(p)\
 STMT(\
-	free(p);	/* if p == 0, free is a no-op */ \
+	free((void*)p);	/* if p == 0, free is a no-op */ \
 	(p) = 0;\
 )
 
@@ -206,6 +206,14 @@ inline bool feqf(float f1, float f2, float epsilon = 0.001f)
 	return fabsf(f1 - f2) < epsilon;
 }
 
+inline bool IsSimilarMagnitude(double d1, double d2, const double relativeErrorTolerance = 0.05)
+{
+	const double relativeError = fabs(d1/d2 - 1.0);
+	if(relativeError > relativeErrorTolerance)
+		return false;
+	return true;
+}
+
 
 //-----------------------------------------------------------------------------
 // type conversion
@@ -221,6 +229,32 @@ extern u16 u32_lo(u32 x);	/// return lower 16-bits
 
 extern u64 u64_from_u32(u32 hi, u32 lo);	/// assemble u64 from u32
 extern u32 u32_from_u16(u16 hi, u16 lo);	/// assemble u32 from u16
+
+// safe downcasters: cast from any integral type to u32 or u16; 
+// issues warning if larger than would fit in the target type.
+//
+// these are generally useful but included here (instead of e.g. lib.h) for
+// several reasons:
+// - including implementation in lib.h doesn't work because the definition
+//   of debug_assert in turn requires lib.h's STMT.
+// - separate compilation of templates via export isn't supported by
+//   most compilers.
+
+template<typename T> u32 u32_from_larger(T x)
+{
+	const u32 max = std::numeric_limits<u32>::max();
+	if((u64)x > (u64)max)
+		throw std::out_of_range("u32_from_larger");
+	return (u32)(x & max);
+}
+
+template<typename T> u16 u16_from_larger(T x)
+{
+	const u16 max = std::numeric_limits<u16>::max();
+	if((u64)x > (u64)max)
+		throw std::out_of_range("u16_from_larger");
+	return (u16)(x & max);
+}
 
 /// convert double to u8; verifies number is in range.
 extern u8 u8_from_double(double in);

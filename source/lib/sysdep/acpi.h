@@ -48,9 +48,9 @@ struct AcpiGenericAddress
 
 #pragma pack(pop)
 
-extern bool acpiInit();
-extern void acpiShutdown();
+extern bool acpi_Init();
+extern void acpi_Shutdown();
 
-extern const AcpiTable* acpiGetTable(const char* signature);
+extern const AcpiTable* acpi_GetTable(const char* signature);
 
 #endif	// #ifndef INCLUDED_ACPI

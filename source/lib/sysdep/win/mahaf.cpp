@@ -45,21 +45,21 @@ static u32 ReadPort(u16 port, u8 numBytes)
 	return value;
 }
 
-u8 ReadPort8(u16 port)
+u8 mahaf_ReadPort8(u16 port)
 {
 	const u32 value = ReadPort(port, 1);
 	debug_assert(value <= 0xFF);
 	return (u8)(value & 0xFF);
 }
 
-u16 ReadPort16(u16 port)
+u16 mahaf_ReadPort16(u16 port)
 {
 	const u32 value = ReadPort(port, 2);
 	debug_assert(value <= 0xFFFF);
 	return (u16)(value & 0xFFFF);
 }
 
-u32 ReadPort32(u16 port)
+u32 mahaf_ReadPort32(u16 port)
 {
 	const u32 value = ReadPort(port, 4);
 	return value;
@@ -80,23 +80,23 @@ static void WritePort(u16 port, u32 value, u8 numBytes)
 		WARN_WIN32_ERR;
 }
 
-void WritePort8(u16 port, u8 value)
+void mahaf_WritePort8(u16 port, u8 value)
 {
 	WritePort(port, (u32)value, 1);
 }
 
-void WritePort16(u16 port, u16 value)
+void mahaf_WritePort16(u16 port, u16 value)
 {
 	WritePort(port, (u32)value, 2);
 }
 
-void WritePort32(u16 port, u32 value)
+void mahaf_WritePort32(u16 port, u32 value)
 {
 	WritePort(port, value, 4);
 }
 
 
-void* MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
+void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
 {
 	AkenMapIn in;
 	in.physicalAddress = (DWORD64)physicalAddress;
@@ -118,7 +118,7 @@ void* MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
 }
 
 
-void UnmapPhysicalMemory(void* virtualAddress)
+void mahaf_UnmapPhysicalMemory(void* virtualAddress)
 {
 	AkenUnmapIn in;
 	in.virtualAddress = (DWORD64)virtualAddress;
@@ -237,7 +237,7 @@ create:
 
 static ModuleInitState initState;
 
-bool MahafInit()
+bool mahaf_Init()
 {
 	if(!ModuleShouldInitialize(&initState))
 		return true;
@@ -257,7 +257,7 @@ bool MahafInit()
 }
 
 
-void MahafShutdown()
+void mahaf_Shutdown()
 {
 	if(!ModuleShouldShutdown(&initState))
 		return;

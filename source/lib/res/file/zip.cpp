@@ -22,31 +22,6 @@
 #include "file_internal.h"
 
 
-// safe downcasters: cast from any integral type to u32 or u16; 
-// issues warning if larger than would fit in the target type.
-//
-// these are generally useful but included here (instead of e.g. lib.h) for
-// several reasons:
-// - including implementation in lib.h doesn't work because the definition
-//   of debug_assert in turn requires lib.h's STMT.
-// - separate compilation of templates via export isn't supported by
-//   most compilers.
-
-template<typename T> u32 u32_from_larger(T x)
-{
-	const u32 max = std::numeric_limits<u32>::max();
-	debug_assert((u64)x <= (u64)max);
-	return (u32)(x & max);
-}
-
-template<typename T> u16 u16_from_larger(T x)
-{
-	const u16 max = std::numeric_limits<u16>::max();
-	debug_assert((u64)x <= (u64)max);
-	return (u16)(x & max);
-}
-
-
 //-----------------------------------------------------------------------------
 // timestamp conversion: DOS FAT <-> Unix time_t
 //-----------------------------------------------------------------------------

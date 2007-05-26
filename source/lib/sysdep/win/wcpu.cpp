@@ -20,21 +20,60 @@
 // WinAPI only supports max. 32 CPUs anyway (due to DWORD bitfields).
 static const uint MAX_CPUS = 32;
 
+// note: the below routines should cache their results to simplify things
+// for callers. however, we don't want to set the variables during init
+// because that would create init order dependencies (if other modules
+// use this from e.g. their PreLibcInit). hence, each routine must check
+// if they've been called for the first time.
 
 /// get number of CPUs (can't fail)
 uint wcpu_NumProcessors()
 {
+	static uint numProcessors = 0;
+	if(numProcessors)
+		return numProcessors;
+
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);
-	const uint num_processors = (uint)si.dwNumberOfProcessors;
-	return num_processors;
+	numProcessors = (uint)si.dwNumberOfProcessors;
+
+	return numProcessors;
+}
+
+
+double wcpu_ClockFrequency()
+{
+	static double clockFrequency = -1.0;
+	if(clockFrequency > 0.0)
+		return clockFrequency;
+
+	// read CPU frequency from registry
+	HKEY hKey;
+	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
+	{
+		DWORD freqMhz;
+		DWORD size = sizeof(freqMhz);
+		if(RegQueryValueEx(hKey, "~MHz", 0, 0, (LPBYTE)&freqMhz, &size) == STATUS_SUCCESS)
+			clockFrequency = freqMhz * 1e6;
+		else
+			debug_assert(0);
+
+		RegCloseKey(hKey);
+	}
+	else
+		debug_assert(0);
+
+	return clockFrequency;
 }
 
 
 int wcpu_IsThrottlingPossible()
 {
+	static int isThrottlingPossible = -1;
+	if(isThrottlingPossible != -1)
+		return isThrottlingPossible;
+
 	WIN_SAVE_LAST_ERROR;
-	int is_throttling_possible = -1;
 
 	// CallNtPowerInformation
 	// (manual import because it's not supported on Win95)
@@ -50,7 +89,7 @@ int wcpu_IsThrottlingPossible()
 		if(pCNPI(SystemPowerCapabilities, 0,0, &spc,sizeof(spc)) == STATUS_SUCCESS)
 		{
 			if(!spc.ProcessorThrottle || !spc.ThermalControl)
-				is_throttling_possible = 0;
+				isThrottlingPossible = 0;
 		}
 
 		// probably speedstep if cooling mode active.
@@ -59,7 +98,7 @@ int wcpu_IsThrottlingPossible()
 		if(pCNPI(SystemPowerInformation, 0,0, &spi,sizeof(spi)) == STATUS_SUCCESS)
 		{
 			if(spi.CoolingMode != PO_TZ_INVALID_MODE)
-				is_throttling_possible = 1;
+				isThrottlingPossible = 1;
 		}
 
 		// definitely speedstep if any throttle is less than 100%.
@@ -71,7 +110,7 @@ int wcpu_IsThrottlingPossible()
 			{
 				if(p->MhzLimit != p->MaxMhz || p->CurrentMhz != p->MaxMhz)
 				{
-					is_throttling_possible = 1;
+					isThrottlingPossible = 1;
 					break;
 				}
 			}
@@ -81,7 +120,7 @@ int wcpu_IsThrottlingPossible()
 
 	// CallNtPowerInformation not available, or none of the above apply:
 	// don't know yet (for certain, at least).
-	if(is_throttling_possible == -1)
+	if(isThrottlingPossible == -1)
 	{
 		// check if running on a laptop
 		HW_PROFILE_INFO hi;
@@ -93,13 +132,13 @@ int wcpu_IsThrottlingPossible()
 
 		// we'll guess SpeedStep is active if on a laptop.
 		// ia32 code will get a second crack at it.
-		is_throttling_possible = (is_laptop)? 1 : 0;
+		isThrottlingPossible = (is_laptop)? 1 : 0;
 	}
     
 	WIN_RESTORE_LAST_ERROR;
 
-	debug_assert(is_throttling_possible == 0 || is_throttling_possible == 1);
-	return is_throttling_possible;
+	debug_assert(isThrottlingPossible == 0 || isThrottlingPossible == 1);
+	return isThrottlingPossible;
 }
 
 
@@ -155,6 +194,7 @@ LibError wcpu_CallByEachCPU(CpuCallback cb, void* param)
 //
 //////////////////////////////////////////////////////////////////////////////
 
+#if 0
 
 // we need a means of measuring performance, since it is hard to predict and
 // depends on many factors. to cover a wider range of configurations, this
@@ -371,3 +411,4 @@ probably hard; a start would be just the function in which the address is, then 
 
 
 */
+#endif

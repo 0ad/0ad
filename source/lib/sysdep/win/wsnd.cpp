@@ -23,41 +23,6 @@
 #include "wutil.h"
 
 
-// DirectSound header
-// HACK: workaround for "subwtype.h not found" errors on VC6/7 hybrid.
-// (subwtype.h <- d3dtypes.h <- dsound.h)
-// since we're only using one DS function (DirectSoundEnumerate),
-// we forward-declare it rather than fix/mess with the system headers.
-#if 0
-// mmsystem.h is necessary for dsound.h; we cut out unnecessary junk
-# define MMNODRV         // Installable driver support
-# define MMNOSOUND       // Sound support
-//# define MMNOWAVE        // Waveform support
-# define MMNOMIDI        // MIDI support
-# define MMNOAUX         // Auxiliary audio support
-# define MMNOMIXER       // Mixer support
-# define MMNOTIMER       // Timer support
-# define MMNOJOY         // Joystick support
-# define MMNOMCI         // MCI support
-# define MMNOMMIO        // Multimedia file I/O support
-# define MMNOMMSYSTEM    // General MMSYSTEM functions
-# include <MMSystem.h>
-# define DIRECTSOUND_VERSION 0x0500
-# include <dsound.h>
-#else
-# define DS_OK 0
-typedef BOOL (CALLBACK* LPDSENUMCALLBACKA)(void*, const char*, const char*, void*);
-EXTERN_C __declspec(dllimport) HRESULT WINAPI DirectSoundEnumerateA(LPDSENUMCALLBACKA, void*);
-#endif
-
-#if MSC_VERSION
-#pragma comment(lib, "dsound.lib")
-#endif
-
-
-// note: OpenAL alGetString is worthless: it only returns OpenAL API version
-// and renderer (e.g. "Software").
-
 // indicate if this directory entry is an OpenAL DLL.
 // (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
 static LibError IsOpenAlDll(const DirEnt* ent)
@@ -120,50 +85,64 @@ static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 }
 
 
-// DS3D driver path; filled by ds_enum, used by win_get_snd_info.
-// side effect: remains zeroed if there's no sound card installed.
-static char ds_drv_path[MAX_PATH+1];
+//-----------------------------------------------------------------------------
+// DirectSound driver version
+
+// we've seen audio problems caused by buggy DirectSound drivers (because
+// OpenAL can use them in its implementation), so their version should be
+// retrieved as well. the only way I know of is to enumerate all DS devices.
+//
+// unfortunately this fails with Vista's DS emulation - it returns some
+// GUID crap as the module name. to avoid crashing when attempting to get
+// the version info for that bogus driver path, we'll skip this code there.
+// (delay-loading dsound.dll eliminates any overhead)
+
+static char directSoundDriverPath[MAX_PATH+1];
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
-static BOOL CALLBACK ds_enum(void* guid, const char* description,
+static BOOL CALLBACK DirectSoundCallback(void* guid, const char* UNUSED(description),
 	const char* module, void* UNUSED(ctx))
 {
 	// skip first dummy entry (description == "Primary Sound Driver")
 	if(guid == NULL)
 		return TRUE;	// continue calling
 
-	strcpy_s(snd_card, SND_CARD_LEN, description);
-
 	// note: $system\\drivers is not in LoadLibrary's search list,
 	// so we have to give the full pathname.
-	snprintf(ds_drv_path, ARRAY_SIZE(ds_drv_path), "%s\\drivers\\%s", win_sys_dir, module);
+	snprintf(directSoundDriverPath, ARRAY_SIZE(directSoundDriverPath), "%s\\drivers\\%s", win_sys_dir, module);
 
 	// we assume the first "driver name" (sound card) is the one we want;
 	// stick with that and stop calling.
 	return FALSE;
 }
 
+static const char* GetDirectSoundDriverPath()
+{
+#define DS_OK 0
+	typedef BOOL (CALLBACK* LPDSENUMCALLBACKA)(void*, const char*, const char*, void*);
+	HRESULT (WINAPI *pDirectSoundEnumerateA)(LPDSENUMCALLBACKA, void*);
+	HMODULE hDsoundDll = LoadLibrary("dsound.dll");
+	*(void**)&pDirectSoundEnumerateA = GetProcAddress(hDsoundDll, "DirectSoundEnumerateA");
+	if(pDirectSoundEnumerateA)
+	{
+		if(DirectSoundEnumerateA(DirectSoundCallback, (void*)0) != DS_OK)
+			debug_warn("DirectSoundEnumerate failed");
+	}
+	FreeLibrary(hDsoundDll);
+
+	return directSoundDriverPath;
+}
+
+//-----------------------------------------------------------------------------
 
 LibError win_get_snd_info()
 {
-	// get sound card name and DS driver path.
-	if(DirectSoundEnumerateA((LPDSENUMCALLBACKA)ds_enum, (void*)0) != DS_OK)
-		debug_warn("DirectSoundEnumerate failed");
-
-	// there are apparently no sound card/drivers installed; so indicate.
-	// (the code below would fail and not produce reasonable output)
-	if(ds_drv_path[0] == '\0')
-	{
-		strcpy_s(snd_card, SND_CARD_LEN, "(none)");
-		strcpy_s(snd_drv_ver, SND_DRV_VER_LEN, "(none)");
-		return INFO::OK;
-	}
-
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
 	dll_list_init(snd_drv_ver, SND_DRV_VER_LEN);
-	(void)dll_list_add(ds_drv_path);
+	if(!wutil_IsVista())
+		(void)dll_list_add(GetDirectSoundDriverPath());
 	StringSet dlls;	// ensures uniqueness
 	(void)add_oal_dlls_in_dir(win_exe_dir, &dlls);
 	(void)add_oal_dlls_in_dir(win_sys_dir, &dlls);

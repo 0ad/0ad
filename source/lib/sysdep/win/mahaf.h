@@ -14,17 +14,17 @@
 #ifndef INCLUDED_MAHAF
 #define INCLUDED_MAHAF
 
-extern bool MahafInit();
-extern void MahafShutdown();
+extern bool mahaf_Init();
+extern void mahaf_Shutdown();
 
-extern u8  ReadPort8 (u16 port);
-extern u16 ReadPort16(u16 port);
-extern u32 ReadPort32(u16 port);
-extern void WritePort8 (u16 port, u8  value);
-extern void WritePort16(u16 port, u16 value);
-extern void WritePort32(u16 port, u32 value);
+extern u8  mahaf_ReadPort8 (u16 port);
+extern u16 mahaf_ReadPort16(u16 port);
+extern u32 mahaf_ReadPort32(u16 port);
+extern void mahaf_WritePort8 (u16 port, u8  value);
+extern void mahaf_WritePort16(u16 port, u16 value);
+extern void mahaf_WritePort32(u16 port, u32 value);
 
-extern void* MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes);
-extern void UnmapPhysicalMemory(void* virtualAddress);
+extern void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes);
+extern void mahaf_UnmapPhysicalMemory(void* virtualAddress);
 
 #endif	// INCLUDED_MAHAF

@@ -227,6 +227,39 @@ static void EnableLowFragmentationHeap()
 
 
 //-----------------------------------------------------------------------------
+// version
+
+static char versionString[20];
+
+static void DetectWindowsVersion()
+{
+	// note: don't use GetVersion[Ex] because it gives the version of the
+	// emulated OS when running an app with compatibility shims enabled.
+	HKEY hKey;
+	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
+	{
+		DWORD size = ARRAY_SIZE(versionString);
+		(void)RegQueryValueEx(hKey, "CurrentVersion", 0, 0, (LPBYTE)versionString, &size);
+
+		RegCloseKey(hKey);
+	}
+	else
+		debug_assert(0);
+}
+
+const char* wutil_WindowsVersionString()
+{
+	debug_assert(versionString[0] != '\0');
+	return versionString;
+}
+
+bool wutil_IsVista()
+{
+	debug_assert(versionString[0] != '\0');
+	return (versionString[0] >= '6');
+}
+
+//-----------------------------------------------------------------------------
 // Wow64
 
 // Wow64 'helpfully' redirects all 32-bit apps' accesses of
@@ -303,6 +336,8 @@ static LibError wutil_PreLibcInit()
 	EnableLowFragmentationHeap();
 
 	GetDirectories();
+
+	DetectWindowsVersion();
 
 	ImportWow64Functions();
 	DetectWow64();

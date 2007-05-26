@@ -95,6 +95,14 @@ extern char win_exe_dir[MAX_PATH+1];
 
 
 //
+// version
+//
+
+extern const char* wutil_WindowsVersionString();
+extern bool wutil_IsVista();
+
+
+//
 // Wow64
 //
 
