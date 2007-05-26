@@ -117,7 +117,7 @@ static TLS* tls_list = 0;
 
 
 // mark a participating thread's slot as unused; clear its hazard pointers.
-// called during smr_try_shutdown and when a thread exits
+// called during smr_shutdown and when a thread exits
 // (by pthread dtor, which is registered in tls_init).
 static void tls_retire(void* tls_)
 {
@@ -142,7 +142,7 @@ static void tls_init()
 }
 
 
-// free all TLS info. called by smr_try_shutdown.
+// free all TLS info. called by smr_shutdown.
 static void tls_shutdown()
 {
 	WARN_ERR(pthread_key_delete(tls_key));
@@ -240,7 +240,6 @@ static bool is_node_referenced(Node* node, void** hps, size_t num_hps)
 static void smr_release_unreferenced_nodes(TLS* tls)
 {
 	// nothing to do, and taking address of array[-1] isn't portable.
-	// we're called from smr_try_shutdown,
 	if(tls->num_retired_nodes == 0)
 		return;
 
@@ -320,59 +319,24 @@ static void smr_retire_node(Node* node)
 }
 
 
-//
-// shutdown
-//
-
 // although not strictly necessary (the OS will free resources at exit),
-// we want to free all nodes and TLS to avoid spamming leak detectors.
-// that can only happen after our users indicate all data structures are
-// no longer in use (i.e. active_data_structures == 0).
-//
-// problem: if the first user of a data structure is finished before
-// program termination, we'd shut down and not be able to reinitialize
-// (see tls_alloc). therefore, we don't shut down before
-// static destructors are called, i.e. end of program is at hand.
-
-static bool is_static_dtor_time = false;
-
-// call when a data structure is freed (i.e. no longer in use);
-// we shut down if it is time to do so.
-static void smr_try_shutdown()
+// we free all nodes and TLS to avoid spurious leak reports.
+static void smr_shutdown()
 {
-	// shouldn't or can't shut down yet.
-	if(!is_static_dtor_time || active_data_structures != 0)
-		return;
+	// there better not be any data structures still in use, else we're
+	// going to pull the rug out from under them.
+	debug_assert(active_data_structures == 0);
 
 	for(TLS* t = tls_list; t; t = t->next)
 	{
+		// wipe out hazard pointers so that everything can be freed.
 		tls_retire(t);
-			// wipe out hazard pointers so that everything can be freed.
+
 		smr_release_unreferenced_nodes(t);
 	}
 
 	tls_shutdown();
 }
-
-// non-local static object - its destructor being called indicates
-// program end is at hand. could use atexit for this, but registering
-// that would be a bit more work.
-static struct NLSO
-{
-	NLSO()
-	{
-	}
-
-	~NLSO()
-	{
-		is_static_dtor_time = true;
-
-		// trigger shutdown in case all data structures have
-		// already been freed.
-		smr_try_shutdown();
-	}
-}
-nlso;
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -452,7 +416,6 @@ void lfl_free(LFList* list)
 
 	cpu_AtomicAdd(&active_data_structures, -1);
 	debug_assert(active_data_structures >= 0);
-	smr_try_shutdown();
 }
 
 
@@ -634,8 +597,8 @@ retry:
 //
 //////////////////////////////////////////////////////////////////////////////
 
-// note: implemented via lfl, so we don't need to track
-// active_data_structures or call smr_try_shutdown here.
+// note: implemented via lfl, so we don't need to update
+// active_data_structures.
 
 static void validate(LFHash* hash)
 {
@@ -742,5 +705,5 @@ void lockfree_Shutdown()
 	if(!ModuleShouldShutdown(&initState))
 		return;
 
-	tls_shutdown();
+	smr_shutdown();
 }

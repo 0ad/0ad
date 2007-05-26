@@ -229,7 +229,8 @@ public:
 		for(uintptr_t i = 0; i < NUM_THREADS; i++)
 		{
 			ThreadFuncParam* param = new ThreadFuncParam(this, i);
-			pthread_create(0, 0, thread_func, param);
+			pthread_t thread;	// unused, but GCC raises warning if 0 is passed
+			pthread_create(&thread, 0, thread_func, param);
 		}
 
 		// wait until time interval elapsed (if we get that far, all is well).
