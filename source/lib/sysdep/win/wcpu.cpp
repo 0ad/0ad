@@ -15,39 +15,47 @@
 #include "lib/posix/posix_time.h"
 #include "win.h"
 #include "wutil.h"
+#include "winit.h"
+
+#pragma SECTION_PRE_LIBC(B)	// early; whrt depends on us
+WIN_REGISTER_FUNC(wcpu_Init);
+#pragma FORCE_INCLUDE(wcpu_Init)
+#pragma SECTION_RESTORE
+
 
 // limit allows statically allocated per-CPU structures (for simplicity).
 // WinAPI only supports max. 32 CPUs anyway (due to DWORD bitfields).
 static const uint MAX_CPUS = 32;
 
-// note: the below routines should cache their results to simplify things
-// for callers. however, we don't want to set the variables during init
-// because that would create init order dependencies (if other modules
-// use this from e.g. their PreLibcInit). hence, each routine must check
-// if they've been called for the first time.
+
+static uint numProcessors = 0;
 
 /// get number of CPUs (can't fail)
 uint wcpu_NumProcessors()
 {
-	static uint numProcessors = 0;
-	if(numProcessors)
-		return numProcessors;
+	debug_assert(numProcessors != 0);
+	return numProcessors;	
+}
 
+static void DetectNumProcessors()
+{
 	SYSTEM_INFO si;
-	GetSystemInfo(&si);
+	GetSystemInfo(&si);	// can't fail
 	numProcessors = (uint)si.dwNumberOfProcessors;
-
-	return numProcessors;
 }
 
 
+static double clockFrequency = -1.0;
+
 double wcpu_ClockFrequency()
 {
-	static double clockFrequency = -1.0;
-	if(clockFrequency > 0.0)
-		return clockFrequency;
+	debug_assert(clockFrequency > 0.0);
+	return clockFrequency;
+}
 
-	// read CPU frequency from registry
+static void DetectClockFrequency()
+{
+	// read from registry
 	HKEY hKey;
 	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
 	{
@@ -62,17 +70,19 @@ double wcpu_ClockFrequency()
 	}
 	else
 		debug_assert(0);
-
-	return clockFrequency;
 }
 
 
+static int isThrottlingPossible = -1;
+
 int wcpu_IsThrottlingPossible()
 {
-	static int isThrottlingPossible = -1;
-	if(isThrottlingPossible != -1)
-		return isThrottlingPossible;
+	debug_assert(isThrottlingPossible != -1);
+	return isThrottlingPossible;
+}
 
+static void CheckIfThrottlingPossible()
+{
 	WIN_SAVE_LAST_ERROR;
 
 	// CallNtPowerInformation
@@ -138,7 +148,6 @@ int wcpu_IsThrottlingPossible()
 	WIN_RESTORE_LAST_ERROR;
 
 	debug_assert(isThrottlingPossible == 0 || isThrottlingPossible == 1);
-	return isThrottlingPossible;
 }
 
 
@@ -186,6 +195,31 @@ LibError wcpu_CallByEachCPU(CpuCallback cb, void* param)
 
 	return INFO::OK;
 }
+
+//-----------------------------------------------------------------------------
+
+static LibError wcpu_Init()
+{
+	DetectNumProcessors();
+	DetectClockFrequency();
+	CheckIfThrottlingPossible();
+
+	return INFO::OK;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////

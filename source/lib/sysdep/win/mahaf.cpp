@@ -150,13 +150,21 @@ static SC_HANDLE OpenServiceControlManager()
 	LPCSTR machineName = 0;	// local
 	LPCSTR databaseName = 0;	// default
 	SC_HANDLE hSCM = OpenSCManager(machineName, databaseName, SC_MANAGER_ALL_ACCESS);
-	// non-admin account => we can't start the driver. note that installing
-	// the driver and having it start with Windows would allow access to
-	// the service even from least-permission accounts.
 	if(!hSCM)
-		return 0;
+	{
+		// administrator privileges are required. note: installing the
+		// service and having it start automatically would allow
+		// Least-Permission accounts to use it, but is too invasive and
+		// thus out of the question.
 
-	return hSCM;
+		// make sure the error is as expected, otherwise something is afoot.
+		if(GetLastError() != ERROR_ACCESS_DENIED)
+			debug_assert(0);
+
+		return 0;
+	}
+
+	return hSCM;	// success
 }
 
 
@@ -186,6 +194,8 @@ static void UninstallDriver()
 static void StartDriver(const char* driverPathname)
 {
 	const SC_HANDLE hSCM = OpenServiceControlManager();
+	if(!hSCM)
+		return;
 
 	// create service (note: this just enters the service into SCM's DB;
 	// no error is raised if the driver binary doesn't exist etc.)
@@ -212,7 +222,7 @@ create:
 #endif
 			}
 			else
-				WARN_IF_FALSE(0);	// creating actually failed
+				debug_assert(0);	// creating actually failed
 		}
 	}
 
