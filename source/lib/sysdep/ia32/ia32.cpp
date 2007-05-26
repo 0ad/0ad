@@ -19,6 +19,7 @@
 #include "lib/posix/posix_pthread.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
+#include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"
 
 #if !HAVE_MS_ASM && !HAVE_GNU_ASM
@@ -421,6 +422,16 @@ double ia32_ClockFrequency()
 // detect processor types / topology
 //-----------------------------------------------------------------------------
 
+uint ia32_ApicId()
+{
+	u32 regs[4];
+	if(!ia32_asm_cpuid(1, regs))
+		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
+	const uint apicId = bits(regs[EBX], 24, 31);
+	return apicId;
+}
+
+
 // OSes report hyperthreading units and cores as "processors". we need to
 // drill down and find out the exact counts (for thread pool dimensioning
 // and cache sharing considerations).
@@ -429,23 +440,23 @@ double ia32_ClockFrequency()
 
 static uint CoresPerPackage()
 {
-	static uint cores_per_package = 0;
-	if(cores_per_package == 0)
+	static uint coresPerPackage = 0;
+	if(coresPerPackage == 0)
 	{
 		u32 regs[4];
 		if(ia32_asm_cpuid(4, regs))
-			cores_per_package = bits(regs[EAX], 26, 31)+1;
+			coresPerPackage = bits(regs[EAX], 26, 31)+1;
 		else
-			cores_per_package = 1;	// single-core
+			coresPerPackage = 1;	// single-core
 	}
 
-	return cores_per_package;
+	return coresPerPackage;
 }
 
 static uint LogicalPerCore()
 {
-	static uint logical_per_core = 0;
-	if(logical_per_core == 0)
+	static uint logicalPerCore = 0;
+	if(logicalPerCore == 0)
 	{
 		if(ia32_cap(IA32_CAP_HT))
 		{
@@ -455,13 +466,13 @@ static uint LogicalPerCore()
 			const uint logical_per_package = bits(regs[EBX], 16, 23);
 			// cores ought to be uniform WRT # logical processors
 			debug_assert(logical_per_package % CoresPerPackage() == 0);
-			logical_per_core = logical_per_package / CoresPerPackage();
+			logicalPerCore = logical_per_package / CoresPerPackage();
 		}
 		else
-			logical_per_core = 1;	// not Hyperthreading capable
+			logicalPerCore = 1;	// not Hyperthreading capable
 	}
 
-	return logical_per_core;
+	return logicalPerCore;
 }
 
 // the above two functions give the maximum number of cores/logical units.
@@ -472,9 +483,9 @@ static uint LogicalPerCore()
 // determining the exact topology as well as number of packages.
 
 // these are set by DetectProcessorTopology, called from ia32_Init.
-static uint num_packages = 0;	// i.e. sockets; > 1 => true SMP system
-static uint enabled_cores_per_package = 0;
-static uint enabled_logical_per_core = 0;	// hyperthreading units
+static uint numPackages = 0;	// i.e. sockets; > 1 => true SMP system
+static uint enabledCoresPerPackage = 0;
+static uint enabledLogicalPerCore = 0;	// hyperthreading units
 
 typedef std::vector<u8> Ids;
 typedef std::set<u8> IdSet;
@@ -482,21 +493,16 @@ typedef std::set<u8> IdSet;
 // add the currently running processor's APIC ID to a list of IDs.
 static void StoreApicId(void* param)
 {
-	u32 regs[4];
-	if(!ia32_asm_cpuid(1, regs))
-		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
-	const uint apic_id = bits(regs[EBX], 24, 31);
-
-	Ids* apic_ids = (Ids*)param;
-	apic_ids->push_back(apic_id);
+	Ids* apicIds = (Ids*)param;
+	apicIds->push_back(ia32_ApicId());
 }
 
 
 // field := a range of bits sufficient to represent <num_values> integers.
-// for each id in apic_ids: extract the value of the field at offset bit_pos
+// for each id in apicIds: extract the value of the field at offset bit_pos
 // and insert it into ids. afterwards, adjust bit_pos to the next field.
 // used to gather e.g. all core IDs from all APIC IDs.
-static void ExtractFieldsIntoSet(const Ids& apic_ids, uint& bit_pos, uint num_values, IdSet& ids)
+static void ExtractFieldsIntoSet(const Ids& apicIds, uint& bit_pos, uint num_values, IdSet& ids)
 {
 	const uint id_bits = ceil_log2(num_values);
 	if(id_bits == 0)
@@ -504,9 +510,9 @@ static void ExtractFieldsIntoSet(const Ids& apic_ids, uint& bit_pos, uint num_va
 
 	const uint mask = bit_mask(id_bits);
 
-	for(size_t i = 0; i < apic_ids.size(); i++)
+	for(size_t i = 0; i < apicIds.size(); i++)
 	{
-		const u8 apic_id = apic_ids[i];
+		const u8 apic_id = apicIds[i];
 		const u8 field = (apic_id >> bit_pos) & mask;
 		ids.insert(field);
 	}
@@ -520,27 +526,27 @@ static void ExtractFieldsIntoSet(const Ids& apic_ids, uint& bit_pos, uint num_va
 // (scans the APIC IDs, which requires OS support for thread affinity)
 static void DetectProcessorTopology()
 {
-	Ids apic_ids;
-	if(cpu_CallByEachCPU(StoreApicId, &apic_ids) != INFO::OK)
+	Ids apicIds;
+	if(cpu_CallByEachCPU(StoreApicId, &apicIds) != INFO::OK)
 		return;
 	// .. if they're not unique, cpu_CallByEachCPU is broken.
-	std::sort(apic_ids.begin(), apic_ids.end());
-	debug_assert(std::unique(apic_ids.begin(), apic_ids.end()) == apic_ids.end());
+	std::sort(apicIds.begin(), apicIds.end());
+	debug_assert(std::unique(apicIds.begin(), apicIds.end()) == apicIds.end());
 
 	// extract values from all 3 ID bitfields into separate sets
 	uint bit_pos = 0;
 	IdSet logical_ids;
-	ExtractFieldsIntoSet(apic_ids, bit_pos, LogicalPerCore(), logical_ids);
+	ExtractFieldsIntoSet(apicIds, bit_pos, LogicalPerCore(), logical_ids);
 	IdSet core_ids;
-	ExtractFieldsIntoSet(apic_ids, bit_pos, CoresPerPackage(), core_ids);
+	ExtractFieldsIntoSet(apicIds, bit_pos, CoresPerPackage(), core_ids);
 	IdSet package_ids;
-	ExtractFieldsIntoSet(apic_ids, bit_pos, 0xFF, package_ids);
+	ExtractFieldsIntoSet(apicIds, bit_pos, 0xFF, package_ids);
 
 	// (the set cardinality is representative of all packages/cores since
 	// they are uniform.)
-	num_packages              = std::max((uint)package_ids.size(), 1u);
-	enabled_cores_per_package = std::max((uint)core_ids   .size(), 1u);
-	enabled_logical_per_core  = std::max((uint)logical_ids.size(), 1u);
+	numPackages              = std::max((uint)package_ids.size(), 1u);
+	enabledCoresPerPackage = std::max((uint)core_ids   .size(), 1u);
+	enabledLogicalPerCore  = std::max((uint)logical_ids.size(), 1u);
 
 	// note: even though APIC IDs are assigned sequentially, we can't make any
 	// assumptions about the values/ordering because we get them according to
@@ -551,25 +557,25 @@ static void DetectProcessorTopology()
 uint ia32_NumPackages()
 {
 #ifndef NDEBUG
-	debug_assert(num_packages != 0);
+	debug_assert(numPackages != 0);
 #endif
-	return (uint)num_packages;
+	return (uint)numPackages;
 }
 
 uint ia32_CoresPerPackage()
 {
 #ifndef NDEBUG
-	debug_assert(enabled_cores_per_package != 0);
+	debug_assert(enabledCoresPerPackage != 0);
 #endif
-	return (uint)enabled_cores_per_package;
+	return (uint)enabledCoresPerPackage;
 }
 
 uint ia32_LogicalPerCore()
 {
 #ifndef NDEBUG
-	debug_assert(enabled_logical_per_core != 0);
+	debug_assert(enabledLogicalPerCore != 0);
 #endif
-	return (uint)enabled_logical_per_core;
+	return (uint)enabledLogicalPerCore;
 }
 
 
@@ -641,8 +647,13 @@ LibError ia32_GetCallTarget(void* ret_addr, void** target)
 
 //-----------------------------------------------------------------------------
 
+static ModuleInitState initState;
+
 void ia32_Init()
 {
+	if(!ModuleShouldInitialize(&initState))
+		return;
+
 	ia32_asm_cpuid_init();
 
 	ia32_cap_init();
@@ -650,4 +661,13 @@ void ia32_Init()
 	DetectVendor();
 
 	DetectProcessorTopology();
+}
+
+
+void ia32_Shutdown()
+{
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
+	// nothing to do
 }

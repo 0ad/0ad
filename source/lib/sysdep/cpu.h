@@ -21,9 +21,9 @@ namespace ERR
 
 
 // must be called before any of the below accessors.
-extern void cpu_Init(void);
+extern void cpu_Init();
+extern void cpu_Shutdown();
 
-extern bool cpu_IsDetectFinished();
 extern const char* cpu_IdentifierString();
 extern double cpu_ClockFrequency();
 extern bool cpu_IsThrottlingPossible();

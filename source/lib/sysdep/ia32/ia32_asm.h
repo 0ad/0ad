@@ -22,6 +22,17 @@ extern "C" {
 extern void ia32_asm_cpuid_init();
 
 /**
+ * order in which ia32_asm_cpuid stores register values
+ **/
+enum IA32Regs
+{
+	EAX,
+	EBX,
+	ECX,
+	EDX
+};
+
+/**
  * try to call the specified CPUID sub-function.
  * (note: ECX is set to 0 beforehand as required by sub-function 4)
  * fills register array according to IA32Regs.

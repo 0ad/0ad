@@ -19,6 +19,9 @@
 #include "lib/posix/posix_time.h"
 #include "adts.h"
 #include "lib/sysdep/cpu.h"
+#if OS_WIN
+#include "lib/sysdep/win/whrt/whrt.h"
+#endif
 
 #if CONFIG_TIMER_ALLOW_RDTSC
 # include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
@@ -29,28 +32,35 @@
 // than their us / ns interface, via double [seconds]. they're also not
 // guaranteed to be monotonic.
 
+#if HAVE_CLOCK_GETTIME
+static struct timespec start;
+#elif HAVE_GETTIMEOFDAY
+static struct timeval start;
+#endif
+
+void timer_Init()
+{
+#if HAVE_CLOCK_GETTIME
+	(void)clock_gettime(CLOCK_REALTIME, &start);
+#elif HAVE_GETTIMEOFDAY
+	gettimeofday(&start, 0);
+#endif
+}
+
 double get_time()
 {
 	double t;
 
 #if HAVE_CLOCK_GETTIME
-	static struct timespec start = {0};
-	struct timespec ts;
-
-	if(!start.tv_sec)
-		(void)clock_gettime(CLOCK_REALTIME, &start);
-
-	(void)clock_gettime(CLOCK_REALTIME, &ts);
-	t = (ts.tv_sec - start.tv_sec) + (ts.tv_nsec - start.tv_nsec)*1e-9;
+	struct timespec cur;
+	(void)clock_gettime(CLOCK_REALTIME, &cur);
+	t = (cur.tv_sec - start.tv_sec) + (cur.tv_nsec - start.tv_nsec)*1e-9;
 #elif HAVE_GETTIMEOFDAY
-	static struct timeval start;
 	struct timeval cur;
-
-	if(!start.tv_sec)
-		gettimeofday(&start, 0);
-
 	gettimeofday(&cur, 0);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec)*1e-6;
+#elif OS_WIN
+	t = whrt_Time();
 #else
 # error "get_time: add timer implementation for this platform!"
 #endif
@@ -77,19 +87,17 @@ double timer_res()
 	double res = 0.0;
 
 #if HAVE_CLOCK_GETTIME
-
 	struct timespec ts;
 	if(clock_getres(CLOCK_REALTIME, &ts) == 0)
 		res = ts.tv_nsec * 1e-9;
-
+#elif OS_WIN
+	res = whrt_Resolution();
 #else
-
 	const double t0 = get_time();
 	double t1, t2;
 	do t1 = get_time();	while(t1 == t0);
 	do t2 = get_time();	while(t2 == t1);
 	res = t2-t1;
-
 #endif
 
 	cached_res = res;

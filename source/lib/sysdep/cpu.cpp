@@ -12,6 +12,7 @@
 #include "cpu.h"
 
 #include "lib/bits.h"
+#include "lib/module_init.h"
 #include "lib/posix/posix.h"
 #if CPU_IA32
 # include "lib/sysdep/ia32/ia32.h"
@@ -22,7 +23,6 @@
 #endif
 #if OS_WIN
 # include "lib/sysdep/win/wcpu.h"
-# include "lib/sysdep/win/wposix/wtime_internal.h"	// HACK (see call to wtime_reset_impl)
 #endif
 
 
@@ -43,26 +43,36 @@ AT_STARTUP(\
 // we thus avoid needing if(already_called) return old_result.
 // initially set to 'impossible' values to catch uses before cpu_Init.
 
-static double clock_frequency = -1.0;
-static bool is_throttling_possible = true;
-static size_t page_size = 1;
-static size_t memory_total_mib = 1;
+static double clockFrequency = -1.0;
 
+double cpu_ClockFrequency()
+{
+	debug_assert(clockFrequency > 0.0);
+	return clockFrequency;
+}
 
 static void DetectClockFrequency()
 {
 #if CPU_IA32
-	clock_frequency = ia32_ClockFrequency();	// authoritative, precise
+	clockFrequency = ia32_ClockFrequency();	// authoritative, precise
 #endif
 }
 
+
+static bool isThrottlingPossible = true;
+
+bool cpu_IsThrottlingPossible()
+{
+	debug_assert(clockFrequency > 0.0);	// (can't verify isThrottlingPossible directly)
+	return isThrottlingPossible;
+}
 
 static void DetectIfThrottlingPossible()
 {
 #if CPU_IA32
 	if(ia32_IsThrottlingPossible() == 1)
 	{
-		is_throttling_possible = true;
+		isThrottlingPossible = true;
 		return;
 	}
 #endif
@@ -70,47 +80,39 @@ static void DetectIfThrottlingPossible()
 #if OS_WIN
 	if(wcpu_IsThrottlingPossible() == 1)
 	{
-		is_throttling_possible = true;
+		isThrottlingPossible = true;
 		return;
 	}
 #endif
 
-	is_throttling_possible = false;
+	isThrottlingPossible = false;
 }
 
 
-static void DetectMemory()
-{
-	page_size = (size_t)sysconf(_SC_PAGESIZE);
-
-	size_t memory_total = cpu_MemorySize(CPU_MEM_TOTAL);
-
-	// account for inaccurate reporting by rounding up (see wposix sysconf)
-	const size_t memory_total_pow2 = (size_t)round_up_to_pow2((uint)memory_total);
-	// .. difference too great, just round up to 1 MiB
-	if(memory_total_pow2 - memory_total > 3*MiB)
-		memory_total = round_up(memory_total, 1*MiB);
-	// .. difference acceptable, use next power of two
-	else
-		memory_total = memory_total_pow2;
-
-	memory_total_mib = memory_total / MiB;
-}
-
-double cpu_ClockFrequency()
-{
-	return clock_frequency;
-}
-
-bool cpu_IsThrottlingPossible()
-{
-	return is_throttling_possible;
-}
+static size_t memoryTotalMib = 1;
 
 size_t cpu_MemoryTotalMiB()
 {
-	return memory_total_mib;
+	debug_assert(memoryTotalMib > 1);
+	return memoryTotalMib;
 }
+
+static void DetectMemory()
+{
+	size_t memoryTotal = cpu_MemorySize(CPU_MEM_TOTAL);
+
+	// account for inaccurate reporting by rounding up (see wposix sysconf)
+	const size_t memoryTotalPow2 = (size_t)round_up_to_pow2((uint)memoryTotal);
+	// .. difference too great, just round up to 1 MiB
+	if(memoryTotalPow2 - memoryTotal > 3*MiB)
+		memoryTotal = round_up(memoryTotal, 1*MiB);
+	// .. difference acceptable, use next power of two
+	else
+		memoryTotal = memoryTotalPow2;
+
+	memoryTotalMib = memoryTotal / MiB;
+}
+
 
 const char* cpu_IdentifierString()
 {
@@ -173,18 +175,15 @@ static void InitAndConfigureIA32()
 
 #endif
 
-// note: can't use ModuleInitState for this because it changes as soon as
-// init has *begun*, which isn't what we want.
-static bool isDetectFinished = false;
 
-bool cpu_IsDetectFinished()
-{
-	return isDetectFinished;
-}
+//-----------------------------------------------------------------------------
 
+static ModuleInitState initState;
 
 void cpu_Init()
 {
+	if(!ModuleShouldInitialize(&initState))
+		return;
 
 #if CPU_IA32
 	InitAndConfigureIA32();
@@ -193,19 +192,15 @@ void cpu_Init()
 	DetectMemory();
 	DetectIfThrottlingPossible();
 	DetectClockFrequency();
+}
 
-	// must be set before wtime_reset_impl since it queries this flag via
-	// cpu_IsDetectFinished.
-	isDetectFinished = true;
 
-	// HACK: on Windows, the HRT makes its final implementation choice
-	// in the first calibrate call where CPU info is available.
-	// call wtime_reset_impl here to have that happen now so app code isn't
-	// surprised by a timer change, although the HRT does try to
-	// keep the timer continuous.
-#if OS_WIN
-	wtime_reset_impl();
-#endif
+void cpu_Shutdown()
+{
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
+	// currently nothing to do
 }
 
 
@@ -311,7 +306,8 @@ size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
 	// quasi-POSIX
 #if defined(_SC_AVPHYS_PAGES)
 	const int sc_name = SysconfFromMemType(mem_type);
-	const size_t memory_size = sysconf(sc_name) * page_size;
+	const size_t pageSize = sysconf(_SC_PAGESIZE);
+	const size_t memory_size = sysconf(sc_name) * pageSize;
 	return memory_size;
 	// BSD / Mac OS X
 #else

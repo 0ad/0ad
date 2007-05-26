@@ -19,46 +19,10 @@
 #include "ia32_memcpy.h"
 
 /**
- * must be called exactly once before any of the following functions.
+ * must be called before any of the following functions.
  **/
 extern void ia32_Init();
-
-/// fpclassify return values
-#define IA32_FP_NAN       0x0100
-#define IA32_FP_NORMAL    0x0400
-#define IA32_FP_INFINITE  (IA32_FP_NAN | IA32_FP_NORMAL)
-#define IA32_FP_ZERO      0x4000
-#define IA32_FP_SUBNORMAL (IA32_FP_NORMAL | IA32_FP_ZERO)
-
-// FPU control word (for ia32_asm_control87)
-// .. Precision Control:
-#define IA32_MCW_PC 0x0300
-#define IA32_PC_24  0x0000
-// .. Rounding Control:
-#define IA32_MCW_RC  0x0C00
-#define IA32_RC_NEAR 0x0000
-#define IA32_RC_DOWN 0x0400
-#define IA32_RC_UP   0x0800
-#define IA32_RC_CHOP 0x0C00
-// .. Exception Mask:
-#define IA32_MCW_EM 0x003f
-#define IA32_EM_INVALID    BIT(0)
-#define IA32_EM_DENORMAL   BIT(1)
-#define IA32_EM_ZERODIVIDE BIT(2)
-#define IA32_EM_OVERFLOW   BIT(3)
-#define IA32_EM_UNDERFLOW  BIT(4)
-#define IA32_EM_INEXACT    BIT(5)
-
-/**
- * order in which ia32_asm_cpuid stores register values
- **/
-enum IA32Regs
-{
-	EAX,
-	EBX,
-	ECX,
-	EDX
-};
+extern void ia32_Shutdown();
 
 /**
  * bit indices of CPU capability flags (128 bits).
@@ -92,39 +56,6 @@ enum IA32Cap
  * @return whether the CPU supports the indicated IA32Cap / feature flag.
  **/
 extern bool ia32_cap(IA32Cap cap);
-
-/**
- * check if there is an IA-32 CALL instruction right before ret_addr.
- * @return INFO::OK if so and ERR::FAIL if not.
- *
- * also attempts to determine the call target. if that is possible
- * (directly addressed relative or indirect jumps), it is stored in
- * target, which is otherwise 0.
- *
- * this function is used for walking the call stack.
- **/
-extern LibError ia32_GetCallTarget(void* ret_addr, void** target);
-
-
-/// safe but slow inline-asm version
-extern u64 ia32_rdtsc_safe(void);
-
-/**
- * @return the current value of the TimeStampCounter (a counter of
- * CPU cycles since power-on, which is useful for high-resolution timing
- * but potentially differs between multiple CPUs)
- **/
-extern u64 ia32_rdtsc();	// only for CppDoc's benefit
-#if CONFIG_RETURN64_EDX_EAX
-# define ia32_rdtsc ia32_asm_rdtsc_edx_eax
-#else
-# define ia32_rdtsc ia32_rdtsc_safe
-#endif
-
-/**
- * trigger a breakpoint inside this function when it is called.
- **/
-extern void ia32_DebugBreak(void);
 
 
 // CPU detection
@@ -165,6 +96,49 @@ extern uint ia32_CoresPerPackage();
 extern uint ia32_LogicalPerCore();
 
 
+//-----------------------------------------------------------------------------
+// stateless
+
+/**
+ * @return APIC ID of the currently executing processor
+ **/
+extern uint ia32_ApicId();
+
+
+/**
+ * check if there is an IA-32 CALL instruction right before ret_addr.
+ * @return INFO::OK if so and ERR::FAIL if not.
+ *
+ * also attempts to determine the call target. if that is possible
+ * (directly addressed relative or indirect jumps), it is stored in
+ * target, which is otherwise 0.
+ *
+ * this function is used for walking the call stack.
+ **/
+extern LibError ia32_GetCallTarget(void* ret_addr, void** target);
+
+
+/// safe but slow inline-asm version
+extern u64 ia32_rdtsc_safe(void);
+
+/**
+ * @return the current value of the TimeStampCounter (a counter of
+ * CPU cycles since power-on, which is useful for high-resolution timing
+ * but potentially differs between multiple CPUs)
+ **/
+extern u64 ia32_rdtsc();	// only for CppDoc's benefit
+#if CONFIG_RETURN64_EDX_EAX
+# define ia32_rdtsc ia32_asm_rdtsc_edx_eax
+#else
+# define ia32_rdtsc ia32_rdtsc_safe
+#endif
+
+/**
+ * trigger a breakpoint inside this function when it is called.
+ **/
+extern void ia32_DebugBreak(void);
+
+
 // implementations of the cpu.h interface
 
 /// see cpu_MemoryFence
@@ -172,5 +146,32 @@ extern void ia32_MemoryFence();
 
 // see cpu_Serialize
 extern void ia32_Serialize();
+
+
+/// fpclassify return values
+#define IA32_FP_NAN       0x0100
+#define IA32_FP_NORMAL    0x0400
+#define IA32_FP_INFINITE  (IA32_FP_NAN | IA32_FP_NORMAL)
+#define IA32_FP_ZERO      0x4000
+#define IA32_FP_SUBNORMAL (IA32_FP_NORMAL | IA32_FP_ZERO)
+
+// FPU control word (for ia32_asm_control87)
+// .. Precision Control:
+#define IA32_MCW_PC 0x0300
+#define IA32_PC_24  0x0000
+// .. Rounding Control:
+#define IA32_MCW_RC  0x0C00
+#define IA32_RC_NEAR 0x0000
+#define IA32_RC_DOWN 0x0400
+#define IA32_RC_UP   0x0800
+#define IA32_RC_CHOP 0x0C00
+// .. Exception Mask:
+#define IA32_MCW_EM 0x003f
+#define IA32_EM_INVALID    BIT(0)
+#define IA32_EM_DENORMAL   BIT(1)
+#define IA32_EM_ZERODIVIDE BIT(2)
+#define IA32_EM_OVERFLOW   BIT(3)
+#define IA32_EM_UNDERFLOW  BIT(4)
+#define IA32_EM_INEXACT    BIT(5)
 
 #endif	// #ifndef INCLUDED_IA32
