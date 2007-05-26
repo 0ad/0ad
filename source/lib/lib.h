@@ -46,6 +46,8 @@ scope
 
 #include <stddef.h>
 #include <math.h>	// fabsf
+#include <limits>	// numeric_limits
+#include <stdexcept>	// out_of_range
 
 #include "config.h"
 
