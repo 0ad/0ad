@@ -325,8 +325,9 @@
 # define HAVE_WCSDUP 1
 #endif
 
-// emulation needed on VC8 because this function is "deprecated"
-#if MSC_VERSION >= 1400
+// emulation needed on VC8 because this function is "deprecated".
+// not present on VC7, either.
+#if MSC_VERSION
 # define HAVE_MKDIR 0
 #else
 # define HAVE_MKDIR 1
