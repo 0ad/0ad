@@ -4,6 +4,7 @@
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/input.h"
+#include "lib/lockfree.h"
 #include "lib/app_hooks.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
@@ -869,6 +870,9 @@ void Shutdown(uint flags)
 		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
+
+		timer_Shutdown();
+		lockfree_Shutdown();
 	TIMER_END("shutdown misc");
 }
 
@@ -882,6 +886,9 @@ void Init(const CmdLineArgs& args, uint flags)
 	debug_set_thread_name("main");
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add("TIMER");
+
+	lockfree_Init();
+	timer_Init();
 
 	// Query CPU capabilities, possibly set some CPU-dependent flags
 	cpu_Init();

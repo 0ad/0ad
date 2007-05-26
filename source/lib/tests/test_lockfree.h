@@ -9,10 +9,19 @@
 class TestLockfreeBasic : public CxxTest::TestSuite 
 {
 public:
+	void setUp()
+	{
+		lockfree_Init();
+	}
+
+	void tearDown()
+	{
+		lockfree_Shutdown();
+	}
+
 	void test_basic_single_threaded()
 	{
 		void* user_data;
-
 		const uint ENTRIES = 50;
 		// should be more than max # retired nodes to test release..() code
 		uintptr_t key = 0x1000;
@@ -59,6 +68,16 @@ public:
 // known to fail on P4 due to mem reordering and lack of membars.
 class TestMultithread : public CxxTest::TestSuite 
 {
+	void setUp()
+	{
+		lockfree_Init();
+	}
+
+	void tearDown()
+	{
+		lockfree_Shutdown();
+	}
+
 	// poor man's synchronization "barrier"
 	bool is_complete;
 	intptr_t num_active_threads;

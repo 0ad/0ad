@@ -119,6 +119,7 @@ static TickSource* CreateNextBestTickSource()
 		{
 			TickSource* tickSource = CreateTickSource(id);
 			debug_printf("HRT/ create id=%d name=%s freq=%f\n", id, tickSource->Name(), tickSource->NominalFrequency());
+			debug_assert(tickSources[id] == 0);
 			tickSources[id] = tickSource;
 			return tickSource;
 		}

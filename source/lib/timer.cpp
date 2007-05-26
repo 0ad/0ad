@@ -18,6 +18,7 @@
 
 #include "lib/posix/posix_time.h"
 #include "adts.h"
+#include "module_init.h"
 #include "lib/sysdep/cpu.h"
 #if OS_WIN
 #include "lib/sysdep/win/whrt/whrt.h"
@@ -38,7 +39,7 @@ static struct timespec start;
 static struct timeval start;
 #endif
 
-void timer_Init()
+static void LatchStartTime()
 {
 #if HAVE_CLOCK_GETTIME
 	(void)clock_gettime(CLOCK_REALTIME, &start);
@@ -337,3 +338,24 @@ TimerRdtsc::unit TimerRdtsc::get_timestamp() const
 }
 
 #endif
+
+
+//-----------------------------------------------------------------------------
+
+static ModuleInitState initState;
+
+void timer_Init()
+{
+	if(!ModuleShouldInitialize(&initState))
+		return;
+
+	LatchStartTime();
+}
+
+void timer_Shutdown()
+{
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
+	// nothing to do
+}

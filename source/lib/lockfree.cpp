@@ -245,7 +245,7 @@ static void smr_release_unreferenced_nodes(TLS* tls)
 		return;
 
 	// required for head/tail below; guaranteed by callers.
-	debug_assert(tls->num_retired_nodes != 0);
+	debug_assert(0 < tls->num_retired_nodes && tls->num_retired_nodes <= MAX_RETIRED);
 
 	//
 	// build array of all active (non-NULL) hazard pointers (more efficient
@@ -313,8 +313,9 @@ static void smr_retire_node(Node* node)
 		// if this triggers, tls_alloc called from lfl_init failed due to
 		// lack of memory and the caller didn't check its return value.
 
+	debug_assert(tls->num_retired_nodes < MAX_RETIRED);
 	tls->retired_nodes[tls->num_retired_nodes++] = node;
-	if(tls->num_retired_nodes >= MAX_RETIRED)
+	if(tls->num_retired_nodes >= MAX_RETIRED/2)
 		smr_release_unreferenced_nodes(tls);
 }
 

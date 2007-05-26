@@ -17,6 +17,9 @@
 #include "debug.h"	// debug_printf
 
 
+extern void timer_Init();
+extern void timer_Shutdown();
+
 // high resolution (> 1 us) timestamp [s], starting at or near 0 s.
 extern double get_time(void);
 
