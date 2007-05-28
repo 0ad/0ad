@@ -5,11 +5,11 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>structural/pers_st.pmd</mesh>
-      <props/>
       <texture>structural/pers_struct_a.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

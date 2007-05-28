@@ -2,28 +2,28 @@
 <actor version="1">
 
   <group>
-    <variant frequency="10" name="House A">
+    <variant frequency="1" name="House A">
       <mesh>structural/pers_ho_a.pmd</mesh>
       <props>
         <prop actor="props/structures/persians/house_a.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/pers_struct_a.dds</texture>
     </variant>
-    <variant frequency="10" name="House B">
+    <variant frequency="1" name="House B">
       <mesh>structural/pers_ho_b.pmd</mesh>
       <props>
         <prop actor="props/structures/persians/house_b.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/pers_struct_a.dds</texture>
     </variant>
-    <variant frequency="10" name="House C">
+    <variant frequency="1" name="House C">
       <mesh>structural/pers_ho_c.pmd</mesh>
       <props>
         <prop actor="props/structures/persians/house_c.xml" attachpoint="props_main"/>
       </props>
       <texture>structural/pers_struct_a.dds</texture>
     </variant>
-    <variant frequency="10" name="House D">
+    <variant frequency="1" name="House D">
       <mesh>structural/pers_ho_d.pmd</mesh>
       <props>
         <prop actor="props/structures/persians/house_d.xml" attachpoint="props_main"/>
@@ -31,5 +31,7 @@
       <texture>structural/pers_struct_a.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

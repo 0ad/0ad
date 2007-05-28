@@ -5,7 +5,6 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <animations/>
       <mesh>structural/pers_rc.pmd</mesh>
       <props>
         <prop actor="props/structures/persians/mill.xml" attachpoint="props_main"/>
@@ -13,5 +12,7 @@
       <texture>structural/pers_struct_a.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
