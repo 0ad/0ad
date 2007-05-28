@@ -49,12 +49,7 @@ bool ModuleShouldShutdown(volatile ModuleInitState* pInitState)
 	// decrement reference count - unless already in a final state.
 retry:
 	ModuleInitState latchedInitState = *pInitState;
-	if(latchedInitState == MODULE_UNINITIALIZED)
-	{
-		debug_warn("shutting down before initialization");
-		return false;
-	}
-	if(latchedInitState == MODULE_ERROR)
+	if(latchedInitState == MODULE_UNINITIALIZED || latchedInitState == MODULE_ERROR)
 		return false;
 	if(!cpu_CAS(pInitState, latchedInitState, latchedInitState-1))
 		goto retry;

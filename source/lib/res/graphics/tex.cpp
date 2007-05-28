@@ -22,14 +22,14 @@
 #include "tex_codec.h"
 
 
-ERROR_ASSOCIATE(ERR::TEX_FMT_INVALID, "Invalid/unsupported texture format");
-ERROR_ASSOCIATE(ERR::TEX_INVALID_COLOR_TYPE, "Invalid color type");
-ERROR_ASSOCIATE(ERR::TEX_NOT_8BIT_PRECISION, "Not 8-bit channel precision");
-ERROR_ASSOCIATE(ERR::TEX_INVALID_LAYOUT, "Unsupported texel layout, e.g. right-to-left");
-ERROR_ASSOCIATE(ERR::TEX_COMPRESSED, "Unsupported texture compression");
-ERROR_ASSOCIATE(WARN::TEX_INVALID_DATA, "Warning: invalid texel data encountered");
-ERROR_ASSOCIATE(ERR::TEX_INVALID_SIZE, "Texture size is incorrect");
-ERROR_ASSOCIATE(INFO::TEX_CODEC_CANNOT_HANDLE, "Texture codec cannot handle the given format");
+ERROR_ASSOCIATE(ERR::TEX_FMT_INVALID, "Invalid/unsupported texture format", -1);
+ERROR_ASSOCIATE(ERR::TEX_INVALID_COLOR_TYPE, "Invalid color type", -1);
+ERROR_ASSOCIATE(ERR::TEX_NOT_8BIT_PRECISION, "Not 8-bit channel precision", -1);
+ERROR_ASSOCIATE(ERR::TEX_INVALID_LAYOUT, "Unsupported texel layout, e.g. right-to-left", -1);
+ERROR_ASSOCIATE(ERR::TEX_COMPRESSED, "Unsupported texture compression", -1);
+ERROR_ASSOCIATE(WARN::TEX_INVALID_DATA, "Warning: invalid texel data encountered", -1);
+ERROR_ASSOCIATE(ERR::TEX_INVALID_SIZE, "Texture size is incorrect", -1);
+ERROR_ASSOCIATE(INFO::TEX_CODEC_CANNOT_HANDLE, "Texture codec cannot handle the given format", -1);
 
 
 //-----------------------------------------------------------------------------

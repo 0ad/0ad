@@ -25,7 +25,7 @@ namespace
 		{
 			FileIOBuf buf = (FileIOBuf)data;
 			const ssize_t ret = vfs_io(hf, length, &buf);
-			// TODO: handle errors sensibly
+			WARN_ERR(ret);
 		}
 
 		Handle hf;

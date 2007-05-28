@@ -18,7 +18,7 @@
 #include "file_internal.h"
 
 
-ERROR_ASSOCIATE(ERR::TRACE_EMPTY, "No valid entries in trace");
+ERROR_ASSOCIATE(ERR::TRACE_EMPTY, "No valid entries in trace", -1);
 
 
 static uintptr_t trace_initialized;	// set via CAS

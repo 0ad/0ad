@@ -340,6 +340,7 @@ END_COMMAND(SetAllTriggers)
 MESSAGEHANDLER(TriggerToggleSelector)
 {
 	//TODO: Draw stuff
+	UNUSED2(msg);
 }
 
 }

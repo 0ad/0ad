@@ -19,11 +19,11 @@
 #define LOG_CATEGORY "shaders"
 
 
-ERROR_ASSOCIATE(ERR::SHDR_CREATE, "Shader creation failed");
-ERROR_ASSOCIATE(ERR::SHDR_COMPILE, "Shader compile failed");
-ERROR_ASSOCIATE(ERR::SHDR_NO_SHADER, "Invalid shader reference");
-ERROR_ASSOCIATE(ERR::SHDR_LINK, "Shader linking failed");
-ERROR_ASSOCIATE(ERR::SHDR_NO_PROGRAM, "Invalid shader program reference");
+ERROR_ASSOCIATE(ERR::SHDR_CREATE, "Shader creation failed", -1);
+ERROR_ASSOCIATE(ERR::SHDR_COMPILE, "Shader compile failed", -1);
+ERROR_ASSOCIATE(ERR::SHDR_NO_SHADER, "Invalid shader reference", -1);
+ERROR_ASSOCIATE(ERR::SHDR_LINK, "Shader linking failed", -1);
+ERROR_ASSOCIATE(ERR::SHDR_NO_PROGRAM, "Invalid shader program reference", -1);
 
 
 // Convert a shader object type into a descriptive string.

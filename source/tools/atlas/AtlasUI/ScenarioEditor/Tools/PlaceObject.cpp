@@ -8,7 +8,7 @@
 
 using AtlasMessage::Position;
 
-static float g_DefaultAngle = M_PI*3.0/4.0;
+static float g_DefaultAngle = (float)(M_PI*3.0/4.0);
 
 class PlaceObject : public StateDrivenTool<PlaceObject>
 {
