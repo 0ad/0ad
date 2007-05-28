@@ -20,8 +20,8 @@
 #include "lib/sysdep/win/whrt/whrt.h"
 
 
-#pragma SECTION_PRE_LIBC(M)	// late; dependent on whrt
-WIN_REGISTER_FUNC(wtime_Init);
+#pragma SECTION_INIT(7)	// depends on whrt
+WINIT_REGISTER_FUNC(wtime_Init);
 #pragma FORCE_INCLUDE(wtime_Init)
 #pragma SECTION_RESTORE
 

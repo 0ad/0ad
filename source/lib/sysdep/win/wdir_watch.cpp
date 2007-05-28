@@ -22,8 +22,8 @@
 #include "wutil.h"
 
 
-#pragma SECTION_POST_ATEXIT(J)
-WIN_REGISTER_FUNC(wdir_watch_shutdown);
+#pragma SECTION_SHUTDOWN(5)
+WINIT_REGISTER_FUNC(wdir_watch_shutdown);
 #pragma FORCE_INCLUDE(wdir_watch_shutdown)
 #pragma SECTION_RESTORE
 
@@ -155,10 +155,10 @@ static LibError wdir_watch_shutdown()
 	hIOCP = INVALID_HANDLE_VALUE;
 
 	// free all (dynamically allocated) Watch objects
-	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
+/*si	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
 		delete it->second;
 	watches.clear();
-
+*/
 	return INFO::OK;
 }
 

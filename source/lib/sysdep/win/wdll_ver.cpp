@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * File        : dll_ver.cpp
+ * File        : wdll_ver.cpp
  * Project     : 0 A.D.
  * Description : return DLL version information.
  * =========================================================================
@@ -9,7 +9,7 @@
 // license: GPL; see lib/license.txt
 
 #include "precompiled.h"
-#include "dll_ver.h"
+#include "wdll_ver.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -93,15 +93,15 @@ static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_l
 // build a string containing DLL filename(s) and their version info.
 //
 
-static char* dll_list_buf;
-static size_t dll_list_chars;
-static char* dll_list_pos;
+static char* ver_list_buf;
+static size_t ver_list_chars;
+static char* ver_list_pos;
 
 // set output buffer into which DLL names and their versions will be written.
-void dll_list_init(char* buf, size_t chars)
+void wdll_ver_list_init(char* buf, size_t chars)
 {
-	dll_list_pos = dll_list_buf = buf;
-	dll_list_chars = chars;
+	ver_list_pos = ver_list_buf = buf;
+	ver_list_chars = chars;
 }
 
 
@@ -110,10 +110,10 @@ void dll_list_init(char* buf, size_t chars)
 // name should preferably be the complete path to DLL, to make sure
 // we don't inadvertently load another one on the library search path.
 // we add the .dll extension if necessary.
-LibError dll_list_add(const char* name)
+LibError wdll_ver_list_add(const char* name)
 {
-	// not be called before dll_list_init or after failure
-	if(!dll_list_pos)
+	// not be called before wdll_ver_list_init or after failure
+	if(!ver_list_pos)
 		WARN_RETURN(ERR::LOGIC);
 
 	// some driver names are stored in the registry without .dll extension.
@@ -134,26 +134,26 @@ LibError dll_list_add(const char* name)
 	(void)get_ver(dll_name, dll_ver, sizeof(dll_ver));
 		// if this fails, default is already set and we don't want to abort.
 
-	const ssize_t max_chars_to_write = (ssize_t)dll_list_chars - (dll_list_pos-dll_list_buf) - 10;
+	const ssize_t max_chars_to_write = (ssize_t)ver_list_chars - (ver_list_pos-ver_list_buf) - 10;
 		// reserves enough room for subsequent comma and "..." strings.
 
 	// not first time: prepend comma to string (room was reserved above).
-	if(dll_list_pos != dll_list_buf)
-		dll_list_pos += sprintf(dll_list_pos, ", ");
+	if(ver_list_pos != ver_list_buf)
+		ver_list_pos += sprintf(ver_list_pos, ", ");
 
 	// extract filename.
 	const char* dll_fn = path_name_only(dll_name);
 
-	int len = snprintf(dll_list_pos, max_chars_to_write, "%s (%s)", dll_fn, dll_ver);
+	int len = snprintf(ver_list_pos, max_chars_to_write, "%s (%s)", dll_fn, dll_ver);
 	// success
 	if(len > 0)
 	{
-		dll_list_pos += len;
+		ver_list_pos += len;
 		return INFO::OK;
 	}
 
 	// didn't fit; complain
-	sprintf(dll_list_pos, "...");	// (room was reserved above)
-	dll_list_pos = 0;	// poison pill, prevent further calls
+	sprintf(ver_list_pos, "...");	// (room was reserved above)
+	ver_list_pos = 0;	// poison pill, prevent further calls
 	WARN_RETURN(ERR::BUF_SIZE);
 }

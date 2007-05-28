@@ -20,11 +20,11 @@
 #include "winit.h"
 
 
-#pragma SECTION_PRE_LIBC(B)
-WIN_REGISTER_FUNC(wutil_PreLibcInit);
+#pragma SECTION_INIT(1)	// early, several modules depend on us
+WINIT_REGISTER_FUNC(wutil_PreLibcInit);
 #pragma FORCE_INCLUDE(wutil_PreLibcInit)
-#pragma SECTION_POST_ATEXIT(Y)
-WIN_REGISTER_FUNC(wutil_Shutdown);
+#pragma SECTION_SHUTDOWN(8)
+WINIT_REGISTER_FUNC(wutil_Shutdown);
 #pragma FORCE_INCLUDE(wutil_Shutdown)
 #pragma SECTION_RESTORE
 

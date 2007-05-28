@@ -16,8 +16,8 @@
 #include "lib/bits.h"
 
 
-#pragma SECTION_PRE_LIBC(J)
-WIN_REGISTER_FUNC(wposix_Init);
+#pragma SECTION_INIT(5)
+WINIT_REGISTER_FUNC(wposix_Init);
 #pragma FORCE_INCLUDE(wposix_Init)
 #pragma SECTION_RESTORE
 

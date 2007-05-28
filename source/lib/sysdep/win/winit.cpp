@@ -15,24 +15,23 @@
 typedef LibError (*PfnLibErrorVoid)(void);
 
 // pointers to start and end of function tables.
-// note: COFF tosses out empty segments, so we have to put in one value
-// (zero, because CallFunctionPointers has to ignore entries =0 anyway).
-#pragma SECTION_PRE_LIBC(A)
-PfnLibErrorVoid pre_libc_begin = 0;
-#pragma SECTION_PRE_LIBC(Z)
-PfnLibErrorVoid pre_libc_end = 0;
-#pragma SECTION_PRE_MAIN(A)
-PfnLibErrorVoid pre_main_begin = 0;
-#pragma SECTION_PRE_MAIN(Z)
-PfnLibErrorVoid pre_main_end = 0;
-#pragma SECTION_POST_ATEXIT(A)
-PfnLibErrorVoid shutdown_begin = 0;
-#pragma SECTION_POST_ATEXIT(Z)
-PfnLibErrorVoid shutdown_end = 0;
+// notes:
+// - COFF tosses out empty segments, so we have to put in one value
+//   (zero, because CallFunctionPointers has to ignore entries =0 anyway).
+// - ASCII '$' and 'Z' come before resp. after '0'..'9', so use that to
+//   bound the section names.
+#pragma SECTION_INIT($)
+PfnLibErrorVoid initBegin = 0;
+#pragma SECTION_INIT(Z)
+PfnLibErrorVoid initEnd = 0;
+#pragma SECTION_SHUTDOWN($)
+PfnLibErrorVoid shutdownBegin = 0;
+#pragma SECTION_SHUTDOWN(Z)
+PfnLibErrorVoid shutdownEnd = 0;
 #pragma SECTION_RESTORE
 // note: /include is not necessary, since these are referenced below.
 
-#pragma comment(linker, "/merge:.LIB=.data")
+#pragma comment(linker, "/merge:.WINIT=.data")
 
 
 /**
@@ -53,17 +52,12 @@ static void CallFunctionPointers(PfnLibErrorVoid* begin, PfnLibErrorVoid* end)
 }
 
 
-void winit_CallPreLibcFunctions()
+void winit_CallInitFunctions()
 {
-	CallFunctionPointers(&pre_libc_begin, &pre_libc_end);
-}
-
-void winit_CallPreMainFunctions()
-{
-	CallFunctionPointers(&pre_main_begin, &pre_main_end);
+	CallFunctionPointers(&initBegin, &initEnd);
 }
 
 void winit_CallShutdownFunctions()
 {
-	CallFunctionPointers(&shutdown_begin, &shutdown_end);
+	CallFunctionPointers(&shutdownBegin, &shutdownEnd);
 }

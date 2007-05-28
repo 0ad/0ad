@@ -13,9 +13,6 @@
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/cursor.h"
-#if OS_WIN
-# include "lib/sysdep/win/wstartup.h"
-#endif
 
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -878,11 +875,6 @@ void Shutdown(uint flags)
 
 void EarlyInit()
 {
-#if OS_WIN
-	// see discussion at declaration of wstartup_PreMainInit.
-	wstartup_PreMainInit();	// must come before any use of lib/sysdep/win
-#endif
-
 	MICROLOG(L"EarlyInit");
 
 	// If you ever want to catch a particular allocation:

@@ -17,8 +17,8 @@
 #include "wutil.h"
 #include "winit.h"
 
-#pragma SECTION_PRE_LIBC(B)	// early; whrt depends on us
-WIN_REGISTER_FUNC(wcpu_Init);
+#pragma SECTION_INIT(2)	// early; whrt depends on us
+WINIT_REGISTER_FUNC(wcpu_Init);
 #pragma FORCE_INCLUDE(wcpu_Init)
 #pragma SECTION_RESTORE
 

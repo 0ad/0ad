@@ -23,7 +23,7 @@
 
 #include "lib/posix/posix_pthread.h"
 #include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
-#include "winit.h"
+#include "lib/module_init.h"
 #include "wutil.h"
 
 
@@ -41,16 +41,6 @@
 #endif
 
 #endif
-
-
-
-#pragma SECTION_PRE_MAIN(K)
-WIN_REGISTER_FUNC(wsdl_init);
-#pragma FORCE_INCLUDE(wsdl_init)
-#pragma SECTION_POST_ATEXIT(D)
-WIN_REGISTER_FUNC(wsdl_shutdown);
-#pragma FORCE_INCLUDE(wsdl_shutdown)
-#pragma SECTION_RESTORE
 
 
 // in fullscreen mode, i.e. not windowed.
@@ -1303,16 +1293,26 @@ inline void* SDL_GL_GetProcAddress(const char* name)
 //-----------------------------------------------------------------------------
 // init/shutdown
 
-static LibError wsdl_init()
+// note: winit no longer supports pre-main init since that requires users
+// to manually call an init function at the start of main() (unreliable).
+// we do all init in SDL_Init, which means that any printfs before then
+// are lost. oh well.
+
+// defend against calling SDL_Quit twice (GameSetup does this to work
+// around ATI driver breakage)
+static ModuleInitState initState;
+
+int SDL_Init(Uint32 UNUSED(flags))
 {
+	if(!ModuleShouldInitialize(&initState))
+		return 0;
+
 	hInst = GetModuleHandle(0);
 
 	// redirect stdout to file (otherwise it's simply ignored on Win32).
 	// notes:
 	// - use full path for safety (works even if someone does chdir)
-	// - SDL does this in its WinMain hook. we need to do this here
-	//   (before main is called) instead of in SDL_Init to completely
-	//   emulate SDL; bonus: we don't miss any output before SDL_Init.
+	// - SDL does this in its WinMain hook; see note above.
 	char path[MAX_PATH];
 	snprintf(path, ARRAY_SIZE(path), "%s\\stdout.txt", win_exe_dir);
 	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
@@ -1320,8 +1320,7 @@ static LibError wsdl_init()
 	// stdout isn't associated with a lowio handle; _close ends up
 	// getting called with fd = -1. oh well, nothing we can do.
 	FILE* f = freopen(path, "wt", stdout);
-	if(!f)
-		debug_warn("stdout freopen failed");
+	debug_assert(f);
 
 #if CONFIG_PARANOIA
 	// disable buffering, so that no writes are lost even if the program
@@ -1331,12 +1330,14 @@ static LibError wsdl_init()
 
 	enable_kbd_hook(true);
 
-	return INFO::OK;
+	return 0;
 }
 
-
-static LibError wsdl_shutdown()
+void SDL_Quit()
 {
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
 	is_shutdown = true;
 
 	// redirected to stdout.txt in SDL_Init;
@@ -1348,19 +1349,4 @@ static LibError wsdl_shutdown()
 	video_shutdown();
 
 	enable_kbd_hook(false);
-
-	return INFO::OK;
-}
-
-
-// these are placebos. since some init needs to happen before main(),
-// we take care of it all in the module init/shutdown hooks.
-
-int SDL_Init(Uint32 UNUSED(flags))
-{
-	return 0;
-}
-
-void SDL_Quit()
-{
 }

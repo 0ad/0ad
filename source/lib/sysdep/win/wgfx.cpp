@@ -11,7 +11,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/gfx.h"
 
-#include "dll_ver.h"	// dll_list_*
+#include "wdll_ver.h"
 #include "win.h"
 
 #if MSC_VERSION
@@ -145,7 +145,7 @@ static LibError win_get_gfx_drv_ver()
 	DWORD i;
 	char drv_name[MAX_PATH+1];
 
-	dll_list_init(gfx_drv_ver, GFX_DRV_VER_LEN);
+	wdll_ver_list_init(gfx_drv_ver, GFX_DRV_VER_LEN);
 
 	HKEY hkOglDrivers;
 	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
@@ -166,7 +166,7 @@ static LibError win_get_gfx_drv_ver()
 		{
 			DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
 			if(RegQueryValueEx(hkSet, "Dll", 0, 0, (LPBYTE)drv_name, &drv_name_len) == 0)
-				ret = dll_list_add(drv_name);
+				ret = wdll_ver_list_add(drv_name);
 
 			RegCloseKey(hkSet);
 		}
@@ -186,7 +186,7 @@ static LibError win_get_gfx_drv_ver()
 		if(err != ERROR_SUCCESS)	// error or no more items - bail
 			break;
 		if(type == REG_SZ)
-			ret = dll_list_add(drv_name);
+			ret = wdll_ver_list_add(drv_name);
 	}	// for each value
 
 	RegCloseKey(hkOglDrivers);

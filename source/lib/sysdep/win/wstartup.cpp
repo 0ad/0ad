@@ -8,39 +8,90 @@
 
 // license: GPL; see lib/license.txt
 
+// this module can wrap the program in a SEH __try block and takes care of
+// calling winit's functions at the appropriate times.
+// to use it, set Linker Options -> Advanced -> Entry Point to
+// "entry" (without quotes).
+//
+// besides commandeering the entry point, it hooks ExitProcess.
+// control flow overview: entry [-> RunWithinTryBlock] -> InitAndCallMain ->
+// (init) -> mainCRTStartup -> main -> exit -> HookedExitProcess ->
+// (shutdown) -> ExitProcess.
+
 #include "precompiled.h"
 #include "wstartup.h"
 
-#include "winit.h"
-#include "wdbg.h"			// wdbg_exception_filter
-#include "win.h"	// GetExceptionInformation
+#include "win.h"
+#include <process.h>	// __security_init_cookie
+#include <detours.h>
 
-#if MSC_VERSION >= 1400
-#include <process.h>		// __security_init_cookie
-#define NEED_COOKIE_INIT
+#include "winit.h"
+#include "wdbg.h"		// wdbg_exception_filter
+
+
+#if MSC_VERSION
+#pragma comment(lib, "detours.lib")
+#pragma comment(lib, "detoured.lib")
 #endif
 
-// this module is responsible for startup and triggering winit's calls to
-// registered functions at the appropriate times. control flow overview:
-// entry [-> RunWithinTryBlock] -> InitAndCallMain -> MainCRTStartup ->
-// main -> wstartup_PreMainInit.
-// our atexit handler is called as the last of them, provided constructors
-// do not use atexit! (this requirement is documented)
-//
-// rationale: see declaration of wstartup_PreMainInit.
 
+//-----------------------------------------------------------------------------
+// do shutdown at exit
 
-void wstartup_PreMainInit()
+// note: the alternative of using atexit has two disadvantages.
+// - the call to atexit must come after _cinit, which means we'd need to be
+//   called manually from main (see discussion on init below)
+// - other calls to atexit from ctors or hidden compiler-generated init code
+//   for static objects would cause those handlers to be called after ours,
+//   which may cause shutdown order bugs.
+
+static VOID (WINAPI *RealExitProcess)(UINT uExitCode);
+
+static VOID WINAPI HookedExitProcess(UINT uExitCode)
 {
-	winit_CallPreMainFunctions();
+	winit_CallShutdownFunctions();
 
-	atexit(winit_CallShutdownFunctions);
-
-	// no point redirecting stdout yet - the current directory
-	// may be incorrect (file_set_root not yet called).
-	// (w)sdl will take care of it anyway.
+	RealExitProcess(uExitCode);
 }
 
+static void InstallExitHook()
+{
+	// (can't do this in a static initializer because they haven't run yet!)
+	RealExitProcess = ExitProcess;
+
+	DetourTransactionBegin();
+	DetourUpdateThread(GetCurrentThread());
+	DetourAttach(&(PVOID&)RealExitProcess, HookedExitProcess);
+	DetourTransactionCommit();
+}
+
+//-----------------------------------------------------------------------------
+// init
+
+// the init functions need to be called before any use of Windows-specific
+// code.
+//
+// one possibility is using WinMain as the entry point, and then calling the
+// application's main(), but this is expressly forbidden by the C standard.
+// VC apparently makes use of this and changes its calling convention.
+// if we call it, everything appears to work but stack traces in
+// release mode are incorrect (symbol address is off by 4).
+//
+// another alternative is re#defining the app's main function to app_main,
+// having the OS call our main, and then dispatching to app_main.
+// however, this leads to trouble when another library (e.g. SDL) wants to
+// do the same.
+// moreover, this file is compiled into a static library and used both for
+// the 0ad executable as well as the separate self-test. this means
+// we can't enable the main() hook for one and disable it in the other.
+//
+// requiring users to call us at the beginning of main is brittle in general
+// and not possible with the self-test's auto-generated main file.
+//
+// the only alternative is to commandeer the entry point and do all init
+// before calling mainCRTStartup. this means init will be finished before
+// C++ static ctors run (allowing our APIs to be called from those ctors),
+// but also denies init the use of any non-stateless CRT functions!
 
 // these aren't defined in VC include files, so we have to do it manually.
 #ifdef USE_WINMAIN
@@ -53,10 +104,9 @@ EXTERN_C int mainCRTStartup(void);
 // entry and entry_noSEH)
 static int InitAndCallMain()
 {
-	// perform all initialization that needs to run before _cinit
-	// (i.e. when C++ ctors are called).
-	// be very careful to avoid non-stateless libc functions!
-	winit_CallPreLibcFunctions();
+	winit_CallInitFunctions();
+
+	InstallExitHook();
 
 	int ret;
 #ifdef USE_WINMAIN
@@ -67,6 +117,9 @@ static int InitAndCallMain()
 	return ret;
 }
 
+
+//-----------------------------------------------------------------------------
+// entry point and SEH wrapper
 
 typedef int(*PfnIntVoid)(void);
 
@@ -87,7 +140,7 @@ static int RunWithinTryBlock(PfnIntVoid func)
 
 int entry()
 {
-#ifdef NEED_COOKIE_INIT
+#if MSC_VERSION >= 1400
 	// 2006-02-16 workaround for R6035 on VC8:
 	//
 	// SEH code compiled with /GS pushes a "security cookie" onto the
@@ -111,7 +164,7 @@ int entry()
 // (e.g. unit tests, where it's better to let the debugger handle any errors)
 int entry_noSEH()
 {
-#ifdef NEED_COOKIE_INIT
+#if MSC_VERSION >= 1400
 	// see above. this is also necessary here in case pre-libc init
 	// functions use SEH.
 	__security_init_cookie();

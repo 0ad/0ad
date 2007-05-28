@@ -38,11 +38,11 @@
 #endif
 
 
-#pragma SECTION_PRE_LIBC(D)
-WIN_REGISTER_FUNC(wdbg_sym_init);
+#pragma SECTION_INIT(5)
+WINIT_REGISTER_FUNC(wdbg_sym_init);
 #pragma FORCE_INCLUDE(wdbg_sym_init)
-#pragma SECTION_POST_ATEXIT(J)
-WIN_REGISTER_FUNC(wdbg_sym_shutdown);
+#pragma SECTION_SHUTDOWN(5)
+WINIT_REGISTER_FUNC(wdbg_sym_shutdown);
 #pragma FORCE_INCLUDE(wdbg_sym_shutdown)
 #pragma SECTION_RESTORE
 

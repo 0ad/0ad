@@ -11,9 +11,6 @@
 #ifndef INCLUDED_WINIT
 #define INCLUDED_WINIT
 
-// register functions to be called before libc init, before main,
-// or after atexit.
-//
 // overview:
 // participating modules store function pointer(s) to their init and/or
 // shutdown function in a specific COFF section. the sections are
@@ -26,21 +23,18 @@
 //
 // details:
 // the section names are of the format ".LIB${type}{group}".
-// {type} is C for pre-libc init, I for pre-main init, or
-//   T for terminators (last of the atexit handlers).
-// {group} is [B, Y]; all functions in a group are called before those of
-//   the next (alphabetically) higher group, but order within the group is
-//   undefined. this is because the linker sorts sections alphabetically,
-//   but doesn't specify the order in which object files are processed.
-//   another consequence is that groups A and Z must not be used!
-//   (data placed there might end up outside the start/end markers)
+// {type} is I for initialization- or S for shutdown functions.
+// {group} is [0, 9]; all functions in a group are called before those of
+//   the next higher group, but order within the group is undefined.
+//   (this is because the linker sorts sections alphabetically but doesn't
+//   specify the order in which object files are processed.)
 //
 // example:
-// #pragma SECTION_PRE_LIBC(G))
-// WIN_REGISTER_FUNC(wtime_init);
+// #pragma SECTION_INIT(7))
+// WINIT_REGISTER_FUNC(wtime_init);
 // #pragma FORCE_INCLUDE(wtime_init)
-// #pragma SECTION_POST_ATEXIT(D))
-// WIN_REGISTER_FUNC(wtime_shutdown);
+// #pragma SECTION_SHUTDOWN(3))
+// WINIT_REGISTER_FUNC(wtime_shutdown);
 // #pragma FORCE_INCLUDE(wtime_shutdown)
 // #pragma SECTION_RESTORE
 //
@@ -50,7 +44,7 @@
 //   if init already happened. that would be brittle and hard to verify.
 // - singleton: variant of the above, but not applicable to a
 //   procedural interface (and quite ugly to boot).
-// - registration: NLSO constructors call a central notification function.
+// - registration: static constructors call a central notification function.
 //   module dependencies would be quite difficult to express - this would
 //   require a graph or separate lists for each priority (clunky).
 //   worse, a fatal flaw is that other C++ constructors may depend on the
@@ -68,23 +62,21 @@
 // notes:
 // - #pragma cannot be packaged in macros due to expansion rules.
 // - __declspec(allocate) would be tempting, since that could be
-//   wrapped in WIN_REGISTER_FUNC. unfortunately it inexplicably cannot
+//   wrapped in WINIT_REGISTER_FUNC. unfortunately it inexplicably cannot
 //   cope with split string literals (e.g. "ab" "c"). that disqualifies
 //   it, since we want to hide the section name behind a macro, which
 //   would require the abovementioned merging.
 
-// note: the purpose of pre-libc init (with the resulting requirement that
-// no CRT functions be used during init!) is to allow the use of the
-// initialized module in static ctors.
-#define SECTION_PRE_LIBC(group)    data_seg(".LIB$C" #group)
-#define SECTION_PRE_MAIN(group)    data_seg(".LIB$I" #group)
-#define SECTION_POST_ATEXIT(group) data_seg(".LIB$T" #group)
+// note: init functions are called before _cinit and MUST NOT use
+// any stateful CRT functions (e.g. atexit)!
+#define SECTION_INIT(group)     data_seg(".WINIT$I" #group)
+#define SECTION_SHUTDOWN(group) data_seg(".WINIT$S" #group)
 #define SECTION_RESTORE data_seg()
 // use to make sure the link-stage optimizer doesn't discard the
 // function pointers (happens on VC8)
 #define FORCE_INCLUDE(id) comment(linker, "/include:_p"#id)
 
-#define WIN_REGISTER_FUNC(func)\
+#define WINIT_REGISTER_FUNC(func)\
 	static LibError func(void);\
 	EXTERN_C LibError (*p##func)(void) = func
 
@@ -92,8 +84,7 @@
  * call each registered function.
  * these are invoked by wstartup at the appropriate times.
  **/
-extern void winit_CallPreLibcFunctions();
-extern void winit_CallPreMainFunctions();
+extern void winit_CallInitFunctions();
 extern void winit_CallShutdownFunctions();
 
 #endif	// #ifndef INCLUDED_WINIT

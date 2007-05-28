@@ -156,8 +156,8 @@ struct addrinfo
 	int ai_protocol;           // 0 or IPPROTO_xxx for IPv4 and IPv6
 	size_t ai_addrlen;         // Length of ai_addr
 	char *ai_canonname;        // Canonical name for nodename
-	struct sockaddr *ai_addr;  // Binary address
-	struct addrinfo *ai_next;  // Next structure in linked list
+	struct sockaddr* ai_addr;  // Binary address
+	struct addrinfo* ai_next;  // Next structure in linked list
 };
 
 // Hint flags for getaddrinfo
@@ -169,22 +169,9 @@ struct addrinfo
 #define NI_MAXHOST 1025
 #define NI_MAXSERV 32
 
-	// Note that these are function pointers. They will be initialized by the
-	// wsock_init in wsock.cpp
-	typedef int (__stdcall *fp_getnameinfo_t)(const struct sockaddr *sa, socklen_t salen, char *node,
-									socklen_t nodelen, char *serv, socklen_t servlen, unsigned int flags);
-	typedef int (__stdcall *fp_getaddrinfo_t)(const char	*nodename, const char *servname,
-									const struct addrinfo *hints, struct addrinfo **res);
-	typedef void (__stdcall *fp_freeaddrinfo_t)(struct addrinfo *ai);
-
-	extern fp_getnameinfo_t import_getnameinfo();
-	extern fp_getaddrinfo_t import_getaddrinfo();
-	extern fp_freeaddrinfo_t import_freeaddrinfo();
-
-	#define getnameinfo (import_getnameinfo())
-	#define getaddrinfo (import_getaddrinfo())
-	#define freeaddrinfo (import_freeaddrinfo())
-
+extern int getnameinfo(const struct sockaddr*, socklen_t, char*, socklen_t, char*, socklen_t, unsigned int);
+extern int getaddrinfo(const char*, const char*, const struct addrinfo*, struct addrinfo**);
+extern void freeaddrinfo(struct addrinfo*);
 
 
 // getaddr/nameinfo error codes

@@ -21,11 +21,11 @@
 #include "lib/bits.h"
 
 
-#pragma SECTION_PRE_LIBC(J)
-WIN_REGISTER_FUNC(waio_init);
+#pragma SECTION_INIT(5)
+WINIT_REGISTER_FUNC(waio_init);
 #pragma FORCE_INCLUDE(waio_init)
-#pragma SECTION_POST_ATEXIT(D)
-WIN_REGISTER_FUNC(waio_shutdown);
+#pragma SECTION_SHUTDOWN(5)
+WINIT_REGISTER_FUNC(waio_shutdown);
 #pragma FORCE_INCLUDE(waio_shutdown)
 #pragma SECTION_RESTORE
 

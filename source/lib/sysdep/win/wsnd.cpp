@@ -18,7 +18,7 @@
 
 #include "lib/path_util.h"
 #include "lib/res/file/file.h"
-#include "dll_ver.h"	// dll_list_*
+#include "wdll_ver.h"
 #include "win.h"
 #include "wutil.h"
 
@@ -53,7 +53,7 @@ typedef std::set<std::string> StringSet;
 // <dir>: no trailing.
 static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 {
-	// note: dll_list_add requires the full DLL path but DirEnt only gives us
+	// note: wdll_ver_list_add requires the full DLL path but DirEnt only gives us
 	// the name. for efficiency, we append this via PathPackage.
 	PathPackage pp;
 	RETURN_ERR(path_package_set_dir(&pp, dir));
@@ -71,13 +71,13 @@ static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 		if(!IsOpenAlDll(&ent))
 			continue;
 
-		// already in StringSet (i.e. has already been dll_list_add-ed)
+		// already in StringSet (i.e. has already been wdll_ver_list_add-ed)
 		std::pair<StringSet::iterator, bool> ret = dlls->insert(ent.name);
 		if(!ret.second)	// insert failed - element already there
 			continue;
 
 		(void)path_package_append_file(&pp, ent.name);
-		(void)dll_list_add(pp.path);
+		(void)wdll_ver_list_add(pp.path);
 	}
 
 	(void)dir_close(&d);
@@ -140,9 +140,9 @@ LibError win_get_snd_info()
 {
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
-	dll_list_init(snd_drv_ver, SND_DRV_VER_LEN);
+	wdll_ver_list_init(snd_drv_ver, SND_DRV_VER_LEN);
 	if(!wutil_IsVista())
-		(void)dll_list_add(GetDirectSoundDriverPath());
+		(void)wdll_ver_list_add(GetDirectSoundDriverPath());
 	StringSet dlls;	// ensures uniqueness
 	(void)add_oal_dlls_in_dir(win_exe_dir, &dlls);
 	(void)add_oal_dlls_in_dir(win_sys_dir, &dlls);

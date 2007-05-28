@@ -26,8 +26,8 @@
 #include "wutil.h"
 
 
-#pragma SECTION_PRE_LIBC(D)
-WIN_REGISTER_FUNC(wdbg_init);
+#pragma SECTION_INIT(5)
+WINIT_REGISTER_FUNC(wdbg_init);
 #pragma FORCE_INCLUDE(wdbg_init)
 #pragma SECTION_RESTORE
 

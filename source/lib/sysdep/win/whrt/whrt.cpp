@@ -28,11 +28,11 @@
 // insert a case in ConstructCounterAt's switch statement.
 
 
-#pragma SECTION_PRE_LIBC(D)	// wposix depends on us
-WIN_REGISTER_FUNC(whrt_Init);
+#pragma SECTION_INIT(4)	// wposix depends on us
+WINIT_REGISTER_FUNC(whrt_Init);
 #pragma FORCE_INCLUDE(whrt_Init)
-#pragma SECTION_POST_ATEXIT(V)
-WIN_REGISTER_FUNC(whrt_Shutdown);
+#pragma SECTION_SHUTDOWN(8)
+WINIT_REGISTER_FUNC(whrt_Shutdown);
 #pragma FORCE_INCLUDE(whrt_Shutdown)
 #pragma SECTION_RESTORE
 
