@@ -16,7 +16,7 @@
 #include "lib/bits.h"
 
 
-#pragma SECTION_INIT(5)
+#pragma SECTION_INIT(0)	// very early (pageSize is needed by debug_error_message_build)
 WINIT_REGISTER_FUNC(wposix_Init);
 #pragma FORCE_INCLUDE(wposix_Init)
 #pragma SECTION_RESTORE
@@ -26,7 +26,7 @@ WINIT_REGISTER_FUNC(wposix_Init);
 // sysconf
 
 // used by _SC_PAGESIZE and _SC_*_PAGES
-static DWORD page_size;
+static DWORD pageSize;
 static BOOL (WINAPI *pGlobalMemoryStatusEx)(MEMORYSTATUSEX*);  
 
 static void InitSysconf()
@@ -34,8 +34,8 @@ static void InitSysconf()
 	// get page size
 	// (used by _SC_PAGESIZE and _SC_*_PAGES)
 	SYSTEM_INFO si;
-	GetSystemInfo(&si);		// can't fail => page_size always > 0.
-	page_size = si.dwPageSize;
+	GetSystemInfo(&si);		// can't fail => pageSize always > 0.
+	pageSize = si.dwPageSize;
 
 	// import GlobalMemoryStatusEx - it's not defined by the VC6 PSDK.
 	// used by _SC_*_PAGES if available (provides better results).
@@ -46,14 +46,14 @@ static void InitSysconf()
 
 long sysconf(int name)
 {
-	debug_assert(page_size);	// must not be called before InitSysconf
+	debug_assert(pageSize);	// must not be called before InitSysconf
 
 	switch(name)
 	{
 	case _SC_PAGESIZE:
 	// note: no separate case for _SC_PAGE_SIZE - they are
 	// different names but have the same value.
-		return page_size;
+		return pageSize;
 
 	case _SC_PHYS_PAGES:
 	case _SC_AVPHYS_PAGES:
@@ -91,9 +91,9 @@ long sysconf(int name)
 		// by cpu.cpp instead of here.
 
 		if(name == _SC_PHYS_PAGES)
-			return (long)(total_phys_mem / page_size);
+			return (long)(total_phys_mem / pageSize);
  		else
-			return (long)(avail_phys_mem / page_size);
+			return (long)(avail_phys_mem / pageSize);
 		}
 
 	default:
