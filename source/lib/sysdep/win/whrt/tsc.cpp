@@ -95,6 +95,8 @@ static LibError InitPerCpuTscStates(double cpuClockFrequency)
 
 LibError CounterTSC::Activate()
 {
+	ia32_Init();
+
 	if(!ia32_cap(IA32_CAP_TSC))
 		return ERR::NO_SYS;		// NOWARN (CPU doesn't support RDTSC)
 
@@ -104,6 +106,7 @@ LibError CounterTSC::Activate()
 
 void CounterTSC::Shutdown()
 {
+	ia32_Shutdown();
 }
 
 bool CounterTSC::IsSafe() const

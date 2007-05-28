@@ -37,7 +37,8 @@ LibError CounterPMT::Activate()
 		return ERR::FAIL;	// NOWARN (no Administrator privileges)
 	if(!acpi_Init())
 		WARN_RETURN(ERR::FAIL);
-	const FADT* fadt = (const FADT*)acpi_GetTable("FADT");
+	// (note: it's called FADT, but the signature is "FACP")
+	const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 	if(!fadt)
 		WARN_RETURN(ERR::NO_SYS);
 	m_portAddress = u16_from_larger(fadt->pmTimerPortAddress);
@@ -73,7 +74,8 @@ u64 CounterPMT::Counter() const
  **/
 uint CounterPMT::CounterBits() const
 {
-	const FADT* fadt = (const FADT*)acpi_GetTable("FADT");
+	// (see previous acpi_GetTable call)
+	const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 	debug_assert(fadt);	// Activate made sure FADT is available
 	const uint counterBits = (fadt->flags & TMR_VAL_EXT)? 32 : 24;
 	return counterBits;

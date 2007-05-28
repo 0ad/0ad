@@ -68,18 +68,12 @@ bool CounterQPC::IsSafe() const
 	//   therefore considered unsafe and recognized by comparing frequency
 	//   against the CPU clock.
 
-	const double cpuClockFrequency = wcpu_ClockFrequency();
-	// failed for some reason => can't tell if RDTSC is being used
-	// => assume unsafe
-	if(cpuClockFrequency == 0.0)
-		return false;
-
 	// QPC frequency matches the CPU clock => it uses RDTSC => unsafe.
-	if(IsSimilarMagnitude(m_frequency, cpuClockFrequency))
+	if(IsSimilarMagnitude(m_frequency, wcpu_ClockFrequency()))
 		return false;
 	// unconfirmed reports indicate QPC sometimes uses 1/3 of the
 	// CPU clock frequency, so check that as well.
-	if(IsSimilarMagnitude(m_frequency, cpuClockFrequency/3))
+	if(IsSimilarMagnitude(m_frequency, wcpu_ClockFrequency()/3))
 		return false;
 
 	// otherwise: it's apparently using the HPET => safe.
