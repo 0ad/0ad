@@ -177,10 +177,19 @@ static void UninstallDriver()
 	if(!hService)
 		return;
 
-	BOOL ok;
+	// stop service
 	SERVICE_STATUS serviceStatus;
-	ok = ControlService(hService, SERVICE_CONTROL_STOP, &serviceStatus);
-	WARN_IF_FALSE(ok);
+	if(!ControlService(hService, SERVICE_CONTROL_STOP, &serviceStatus))
+	{
+		// if the problem wasn't that the service is already stopped,
+		// something actually went wrong.
+		const DWORD err = GetLastError();
+		if(err != ERROR_SERVICE_NOT_ACTIVE && err != ERROR_SERVICE_CANNOT_ACCEPT_CTRL)
+			debug_assert(0);
+	}
+
+	// delete service
+	BOOL ok;
 	ok = DeleteService(hService);
 	WARN_IF_FALSE(ok);
 	ok = CloseServiceHandle(hService);

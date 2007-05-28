@@ -20,9 +20,7 @@
 #include "file_io.h"	// IO_EOF
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::COMPRESSION_UNKNOWN_METHOD, "Unknown/unsupported compression method");\
-)
+ERROR_ASSOCIATE(ERR::COMPRESSION_UNKNOWN_METHOD, "Unknown/unsupported compression method", -1);
 
 
 // provision for removing all ZLib code (all inflate calls will fail).

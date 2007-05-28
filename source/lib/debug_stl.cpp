@@ -19,10 +19,8 @@
 #include "regex.h"
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::STL_CNT_UNKNOWN, "Unknown STL container type_name");\
-	error_setDescription(ERR::STL_CNT_INVALID, "Container type is known but contents are invalid");\
-)
+ERROR_ASSOCIATE(ERR::STL_CNT_UNKNOWN, "Unknown STL container type_name", -1);
+ERROR_ASSOCIATE(ERR::STL_CNT_INVALID, "Container type is known but contents are invalid", -1);
 
 
 // used in debug_stl_simplify_name.

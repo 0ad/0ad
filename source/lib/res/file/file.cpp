@@ -26,13 +26,9 @@
 #include "file_internal.h"
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::FILE_ACCESS, "Insufficient access rights to open file");\
-	error_setDescription(ERR::DIR_END, "End of directory reached (no more files)");\
-	error_setDescription(ERR::FILE_NOT_MAPPED, "File was not mapped");\
-	\
-	error_setEquivalent(ERR::FILE_ACCESS, EACCES);\
-)
+ERROR_ASSOCIATE(ERR::FILE_ACCESS, "Insufficient access rights to open file", EACCES);
+ERROR_ASSOCIATE(ERR::DIR_END, "End of directory reached (no more files)", -1);
+ERROR_ASSOCIATE(ERR::FILE_NOT_MAPPED, "File was not mapped", -1);
 
 // rationale for aio, instead of only using mmap:
 // - parallelism: instead of just waiting for the transfer to complete,

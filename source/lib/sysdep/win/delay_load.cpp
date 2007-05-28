@@ -267,24 +267,6 @@ FLoadedAtPreferredAddress(PIMAGE_NT_HEADERS pinh, HMODULE hmod) {
     }
 
 
-// Do the InterlockedExchange magic
-//
-#if CPU_IA32
-
-#undef  InterlockedExchangePointer
-#define InterlockedExchangePointer(Target, Value) \
-    (PVOID)(uintptr_t)InterlockedExchange((PLONG)(Target), (LONG)(uintptr_t)(Value))
-
-
-#if MSC_VERSION >= 1300
-typedef __w64 unsigned long *PULONG_PTR;
-#else
-typedef unsigned long *PULONG_PTR;
-#endif
-
-
-#endif
-
 extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfnIATEntry)
 {
     // Set up some data we use for the hook procs but also useful for

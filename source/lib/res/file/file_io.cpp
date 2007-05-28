@@ -20,12 +20,8 @@
 #include "file_internal.h"
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::IO, "Error during IO");\
-	error_setDescription(ERR::IO_EOF, "Reading beyond end of file");\
-	\
-	error_setEquivalent(ERR::IO, EIO);\
-)
+ERROR_ASSOCIATE(ERR::IO, "Error during IO", EIO);
+ERROR_ASSOCIATE(ERR::IO_EOF, "Reading beyond end of file", -1);
 
 
 //-----------------------------------------------------------------------------

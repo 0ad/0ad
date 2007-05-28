@@ -23,63 +23,50 @@
 #include "lib/posix/posix_errno.h"
 #include "lib/sysdep/sysdep.h"
 
+// linked list (most recent first)
+// note: no memory is allocated, all nodes are static instances.
+static LibErrorAssociation* associations;
 
-struct LibErrorAssociation
+int error_AddAssociation(LibErrorAssociation* lea)
 {
-	const char* description_;
-	int errno_equivalent_;
-	LibErrorAssociation()
-		: description_(0), errno_equivalent_(-1) {}
+	// insert at front of list
+	lea->next = associations;
+	associations = lea;
 
-	void setDescription(const char* description)
+	return 0;	// stored in dummy variable
+}
+
+static const LibErrorAssociation* AssociationFromLibError(LibError err)
+{
+	for(const LibErrorAssociation* lea = associations; lea; lea = lea->next)
 	{
-		debug_assert(description_ == 0);	// not already set
-		description_ = description;
+		if(lea->err == err)
+			return lea;
 	}
 
-	void setEquivalent(int errno_equivalent)
+	return 0;
+}
+
+static const LibErrorAssociation* AssociationFromErrno(errno_t errno_equivalent)
+{
+	for(const LibErrorAssociation* lea = associations; lea; lea = lea->next)
 	{
-		debug_assert(errno_equivalent_ == -1);	// not already set
-		errno_equivalent_ = errno_equivalent;
+		if(lea->errno_equivalent == errno_equivalent)
+			return lea;
 	}
-};
-typedef std::map<LibError, LibErrorAssociation> LibErrorAssociations;
 
-// wrapper required because error_set* is called from AT_STARTUP
-// (potentially before our static map is constructed)
-static LibErrorAssociations& associations()
-{
-	static LibErrorAssociations associations_;
-	return associations_;
-}
-
-void error_setDescription(LibError err, const char* description)
-{
-	associations()[err].setDescription(description);
-}
-
-void error_setEquivalent(LibError err, int errno_equivalent)
-{
-	associations()[err].setEquivalent(errno_equivalent);
+	return 0;
 }
 
 
-// generate textual description of an error code.
-// stores up to <max_chars> in the given buffer.
-// if error is unknown/invalid, the string will be something like
-// "Unknown error (65536, 0x10000)".
 char* error_description_r(LibError err, char* buf, size_t max_chars)
 {
 	// lib error
-	LibErrorAssociations::iterator it = associations().find(err);
-	if(it != associations().end())
+	const LibErrorAssociation* lea = AssociationFromLibError(err);
+	if(lea)
 	{
-		const LibErrorAssociation& a = it->second;
-		if(a.description_)
-		{
-			strcpy_s(buf, max_chars, a.description_);
-			return buf;
-		}
+		strcpy_s(buf, max_chars, lea->description);
+		return buf;
 	}
 
 	// unknown
@@ -88,33 +75,20 @@ char* error_description_r(LibError err, char* buf, size_t max_chars)
 }
 
 
-// return the LibError equivalent of errno, or ERR::FAIL if there's no equal.
-// only call after a POSIX function indicates failure.
-// raises a warning (avoids having to on each call site).
 LibError LibError_from_errno(bool warn_if_failed)
 {
 	LibError ret = ERR::FAIL;
 
-	LibErrorAssociations::iterator it;
-	for(it = associations().begin(); it != associations().end(); ++it)
-	{
-		const LibErrorAssociation& a = it->second;
-		if(a.errno_equivalent_ == errno)
-		{
-			ret = it->first;
-			break;
-		}
-	}
+	const LibErrorAssociation* lea = AssociationFromErrno(errno);
+	if(lea)
+		ret = lea->err;
 	
 	if(warn_if_failed)
 		DEBUG_WARN_ERR(ret);
 	return ret;
 }
 
-// translate the return value of any POSIX function into LibError.
-// ret is typically to -1 to indicate error and 0 on success.
-// you should set errno to 0 before calling the POSIX function to
-// make sure we do not return any stale errors.
+
 LibError LibError_from_posix(int ret, bool warn_if_failed)
 {
 	debug_assert(ret == 0 || ret == -1);
@@ -128,13 +102,9 @@ LibError LibError_from_posix(int ret, bool warn_if_failed)
 // does not assign to errno (this simplifies code by allowing direct return)
 static int return_errno_from_LibError(LibError err)
 {
-	LibErrorAssociations::iterator it = associations().find(err);
-	if(it != associations().end())
-	{
-		const LibErrorAssociation& a = it->second;
-		if(a.errno_equivalent_ != -1)
-			return a.errno_equivalent_;
-	}
+	const LibErrorAssociation* lea = AssociationFromLibError(err);
+	if(lea && lea->errno_equivalent != -1)
+		return lea->errno_equivalent;
 
 	// somewhat of a quandary: the set of errnos in wposix.h doesn't
 	// have an "unknown error". we pick EPERM because we don't expect
@@ -142,11 +112,6 @@ static int return_errno_from_LibError(LibError err)
 	return EPERM;
 }
 
-
-// set errno to the equivalent of <err>. used in wposix - underlying
-// functions return LibError but must be translated to errno at
-// e.g. the mmap interface level. higher-level code that calls mmap will
-// in turn convert back to LibError.
 void LibError_set_errno(LibError err)
 {
 	errno = return_errno_from_LibError(err);
@@ -155,64 +120,55 @@ void LibError_set_errno(LibError err)
 
 //-----------------------------------------------------------------------------
 
-AT_STARTUP(\
-	/* INFO::OK doesn't really need a string because calling error_description_r(0) should never happen, but go the safe route. */\
-	error_setDescription(INFO::OK, "(but return value was 0 which indicates success)");\
-	error_setDescription(ERR::FAIL, "Function failed (no details available)");\
-	\
-	error_setDescription(INFO::CB_CONTINUE,    "Continue (not an error)");\
-	error_setDescription(INFO::SKIPPED,        "Skipped (not an error)");\
-	error_setDescription(INFO::CANNOT_HANDLE,  "Cannot handle (not an error)");\
-	error_setDescription(INFO::ALL_COMPLETE,   "All complete (not an error)");\
-	error_setDescription(INFO::ALREADY_EXISTS, "Already exists (not an error)");\
-	\
-	error_setDescription(ERR::LOGIC, "Logic error in code");\
-	error_setDescription(ERR::TIMED_OUT, "Timed out");\
-	error_setDescription(ERR::REENTERED, "Single-call function was reentered");\
-	error_setDescription(ERR::CORRUPTED, "File/memory data is corrupted");\
-	\
-	error_setDescription(ERR::INVALID_PARAM, "Invalid function argument");\
-	error_setDescription(ERR::INVALID_HANDLE, "Invalid Handle (argument)");\
-	error_setDescription(ERR::BUF_SIZE, "Buffer argument too small");\
-	error_setDescription(ERR::AGAIN, "Try again later");\
-	error_setDescription(ERR::LIMIT, "Fixed limit exceeded");\
-	error_setDescription(ERR::NO_SYS, "OS doesn't provide a required API");\
-	error_setDescription(ERR::NOT_IMPLEMENTED, "Feature currently not implemented");\
-	error_setDescription(ERR::NOT_SUPPORTED, "Feature isn't and won't be supported");\
-	error_setDescription(ERR::NO_MEM, "Not enough memory");\
-	\
-	error_setDescription(ERR::_1, "Case 1");\
-	error_setDescription(ERR::_2, "Case 2");\
-	error_setDescription(ERR::_3, "Case 3");\
-	error_setDescription(ERR::_4, "Case 4");\
-	error_setDescription(ERR::_5, "Case 5");\
-	error_setDescription(ERR::_6, "Case 6");\
-	error_setDescription(ERR::_7, "Case 7");\
-	error_setDescription(ERR::_8, "Case 8");\
-	error_setDescription(ERR::_9, "Case 9");\
-	error_setDescription(ERR::_11, "Case 11");\
-	error_setDescription(ERR::_12, "Case 12");\
-	error_setDescription(ERR::_13, "Case 13");\
-	error_setDescription(ERR::_14, "Case 14");\
-	error_setDescription(ERR::_15, "Case 15");\
-	error_setDescription(ERR::_16, "Case 16");\
-	error_setDescription(ERR::_17, "Case 17");\
-	error_setDescription(ERR::_18, "Case 18");\
-	error_setDescription(ERR::_19, "Case 19");\
-	error_setDescription(ERR::_21, "Case 21");\
-	error_setDescription(ERR::_22, "Case 22");\
-	error_setDescription(ERR::_23, "Case 23");\
-	error_setDescription(ERR::_24, "Case 24");\
-	error_setDescription(ERR::_25, "Case 25");\
-	error_setDescription(ERR::_26, "Case 26");\
-	error_setDescription(ERR::_27, "Case 27");\
-	error_setDescription(ERR::_28, "Case 28");\
-	error_setDescription(ERR::_29, "Case 29");\
-)
+// INFO::OK doesn't really need a string because calling error_description_r(0) should never happen, but go the safe route.
+ERROR_ASSOCIATE(INFO::OK, "(but return value was 0 which indicates success)", -1);
+ERROR_ASSOCIATE(ERR::FAIL, "Function failed (no details available)", -1);
 
+ERROR_ASSOCIATE(INFO::CB_CONTINUE,    "Continue (not an error)", -1);
+ERROR_ASSOCIATE(INFO::SKIPPED,        "Skipped (not an error)", -1);
+ERROR_ASSOCIATE(INFO::CANNOT_HANDLE,  "Cannot handle (not an error)", -1);
+ERROR_ASSOCIATE(INFO::ALL_COMPLETE,   "All complete (not an error)", -1);
+ERROR_ASSOCIATE(INFO::ALREADY_EXISTS, "Already exists (not an error)", -1);
 
-AT_STARTUP(\
-	error_setEquivalent(ERR::NO_MEM, ENOMEM);\
-	error_setEquivalent(ERR::INVALID_PARAM, EINVAL);\
-	error_setEquivalent(ERR::NOT_IMPLEMENTED, ENOSYS);\
-)
+ERROR_ASSOCIATE(ERR::LOGIC, "Logic error in code", -1);
+ERROR_ASSOCIATE(ERR::TIMED_OUT, "Timed out", -1);
+ERROR_ASSOCIATE(ERR::REENTERED, "Single-call function was reentered", -1);
+ERROR_ASSOCIATE(ERR::CORRUPTED, "File/memory data is corrupted", -1);
+
+ERROR_ASSOCIATE(ERR::INVALID_PARAM, "Invalid function argument", EINVAL);
+ERROR_ASSOCIATE(ERR::INVALID_HANDLE, "Invalid Handle (argument)", -1);
+ERROR_ASSOCIATE(ERR::BUF_SIZE, "Buffer argument too small", -1);
+ERROR_ASSOCIATE(ERR::AGAIN, "Try again later", -1);
+ERROR_ASSOCIATE(ERR::LIMIT, "Fixed limit exceeded", -1);
+ERROR_ASSOCIATE(ERR::NO_SYS, "OS doesn't provide a required API", -1);
+ERROR_ASSOCIATE(ERR::NOT_IMPLEMENTED, "Feature currently not implemented", ENOSYS);
+ERROR_ASSOCIATE(ERR::NOT_SUPPORTED, "Feature isn't and won't be supported", -1);
+ERROR_ASSOCIATE(ERR::NO_MEM, "Not enough memory", ENOMEM);
+
+ERROR_ASSOCIATE(ERR::_1, "Case 1", -1);
+ERROR_ASSOCIATE(ERR::_2, "Case 2", -1);
+ERROR_ASSOCIATE(ERR::_3, "Case 3", -1);
+ERROR_ASSOCIATE(ERR::_4, "Case 4", -1);
+ERROR_ASSOCIATE(ERR::_5, "Case 5", -1);
+ERROR_ASSOCIATE(ERR::_6, "Case 6", -1);
+ERROR_ASSOCIATE(ERR::_7, "Case 7", -1);
+ERROR_ASSOCIATE(ERR::_8, "Case 8", -1);
+ERROR_ASSOCIATE(ERR::_9, "Case 9", -1);
+ERROR_ASSOCIATE(ERR::_11, "Case 11", -1);
+ERROR_ASSOCIATE(ERR::_12, "Case 12", -1);
+ERROR_ASSOCIATE(ERR::_13, "Case 13", -1);
+ERROR_ASSOCIATE(ERR::_14, "Case 14", -1);
+ERROR_ASSOCIATE(ERR::_15, "Case 15", -1);
+ERROR_ASSOCIATE(ERR::_16, "Case 16", -1);
+ERROR_ASSOCIATE(ERR::_17, "Case 17", -1);
+ERROR_ASSOCIATE(ERR::_18, "Case 18", -1);
+ERROR_ASSOCIATE(ERR::_19, "Case 19", -1);
+ERROR_ASSOCIATE(ERR::_21, "Case 21", -1);
+ERROR_ASSOCIATE(ERR::_22, "Case 22", -1);
+ERROR_ASSOCIATE(ERR::_23, "Case 23", -1);
+ERROR_ASSOCIATE(ERR::_24, "Case 24", -1);
+ERROR_ASSOCIATE(ERR::_25, "Case 25", -1);
+ERROR_ASSOCIATE(ERR::_26, "Case 26", -1);
+ERROR_ASSOCIATE(ERR::_27, "Case 27", -1);
+ERROR_ASSOCIATE(ERR::_28, "Case 28", -1);
+ERROR_ASSOCIATE(ERR::_29, "Case 29", -1);

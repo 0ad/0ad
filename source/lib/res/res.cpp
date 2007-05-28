@@ -12,7 +12,5 @@
 #include "res.h"
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::RES_UNKNOWN_FORMAT, "Unknown file format");\
-	error_setDescription(ERR::RES_INCOMPLETE_HEADER, "File header not completely read");\
-)
+ERROR_ASSOCIATE(ERR::RES_UNKNOWN_FORMAT, "Unknown file format", -1);
+ERROR_ASSOCIATE(ERR::RES_INCOMPLETE_HEADER, "File header not completely read", -1);

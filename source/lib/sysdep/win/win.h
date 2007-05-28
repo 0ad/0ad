@@ -99,6 +99,12 @@
 typedef unsigned __int64 DWORDLONG;
 typedef DWORD ULONG_PTR;
 
+#if MSC_VERSION >= 1300
+typedef __w64 unsigned long* PULONG_PTR;
+#else
+typedef unsigned long* PULONG_PTR;
+#endif
+
 typedef struct _MEMORYSTATUSEX
 { 
 	DWORD dwLength;
@@ -316,5 +322,14 @@ enum DataKind
 	DataIsStaticMember,
 	DataIsConstant
 };
+
+
+
+
+#if CPU_IA32
+// the official version causes pointer truncation warnings.
+# undef InterlockedExchangePointer
+# define InterlockedExchangePointer(Target, Value) (PVOID)(uintptr_t)InterlockedExchange((PLONG)(Target), (LONG)(uintptr_t)(Value))
+#endif
 
 #endif	// #ifndef INCLUDED_WIN

@@ -11,10 +11,8 @@
 #include "precompiled.h"
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::MEM_ALLOC_NOT_FOUND, "Not a valid allocated address");\
-	error_setDescription(ERR::MEM_OVERWRITTEN, "Wrote to memory outside valid allocation");\
-)
+ERROR_ASSOCIATE(ERR::MEM_ALLOC_NOT_FOUND, "Not a valid allocated address", -1);
+ERROR_ASSOCIATE(ERR::MEM_OVERWRITTEN, "Wrote to memory outside valid allocation", -1);
 
 
 // for easy removal in release builds, so that we don't cause any overhead.

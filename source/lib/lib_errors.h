@@ -143,15 +143,34 @@ Notes:
 // Lint's 'strong type' checking can be used to find errors.
 typedef long LibError;
 
+// opaque - do not access its fields!
+// note: must be defined here because clients instantiate them;
+// fields cannot be made private due to POD requirement.
+struct LibErrorAssociation
+{
+	LibError err;
+
+	// must remain valid until end of program.
+	const char* description;
+
+	// POSIX errno, or -1
+	int errno_equivalent;
+
+	LibErrorAssociation* next;
+};
 
 /**
- * associate textual description with an error code.
- *
- * @param err LibError to be associate with. if it already has a
- * description, a warning will be generated.
- * @param description string. Must remain valid until end of program.
+ * associate a LibError with a description and errno equivalent.
+ * @return dummy integer to allow calling via static initializer.
  **/
-extern void error_setDescription(LibError err, const char* description);
+extern int error_AddAssociation(LibErrorAssociation*);
+
+// associate a LibError with a description and errno equivalent.
+// Invoke this at file or function scope.
+#define ERROR_ASSOCIATE(err, description, errno_equivalent)\
+	static LibErrorAssociation UID__ = { err, description, errno_equivalent };\
+	static int UID2__ = error_AddAssociation(&UID__);
+
 
 /**
  * generate textual description of an error code.
@@ -165,23 +184,11 @@ extern void error_setDescription(LibError err, const char* description);
  **/
 extern char* error_description_r(LibError err, char* buf, size_t max_chars);
 
-
 //-----------------------------------------------------------------------------
 
 // conversion to/from other error code definitions.
 // note: other conversion routines (e.g. to/from Win32) are implemented in
 // the corresponding modules to keep this header portable.
-
-
-/**
- * associate POSIX errno with an error code.
- *
- * @param err LibError to be associate with. if it already has a
- * equivalent, a warning will be generated.
- * @param errno (as defined by POSIX)
- **/
-extern void error_setEquivalent(LibError err, int errno_);
-
 
 /**
  * translate errno to LibError.

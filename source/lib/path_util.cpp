@@ -15,16 +15,12 @@
 #include <errno.h>
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::PATH_LENGTH, "Path exceeds PATH_MAX characters");\
-	error_setDescription(ERR::PATH_EMPTY, "Path is an empty string");\
-	error_setDescription(ERR::PATH_NOT_RELATIVE, "Path is not relative");\
-	error_setDescription(ERR::PATH_NON_PORTABLE, "Path contains OS-specific dir separator");\
-	error_setDescription(ERR::PATH_NON_CANONICAL, "Path contains unsupported .. or ./");\
-	error_setDescription(ERR::PATH_COMPONENT_SEPARATOR, "Path component contains dir separator");\
-	\
-	error_setEquivalent(ERR::PATH_LENGTH, ENAMETOOLONG);\
-)
+ERROR_ASSOCIATE(ERR::PATH_LENGTH, "Path exceeds PATH_MAX characters", ENAMETOOLONG, -1);
+ERROR_ASSOCIATE(ERR::PATH_EMPTY, "Path is an empty string", -1);
+ERROR_ASSOCIATE(ERR::PATH_NOT_RELATIVE, "Path is not relative", -1);
+ERROR_ASSOCIATE(ERR::PATH_NON_PORTABLE, "Path contains OS-specific dir separator", -1);
+ERROR_ASSOCIATE(ERR::PATH_NON_CANONICAL, "Path contains unsupported .. or ./", -1);
+ERROR_ASSOCIATE(ERR::PATH_COMPONENT_SEPARATOR, "Path component contains dir separator", -1);
 
 
 bool path_is_dir_sep(char c)

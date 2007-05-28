@@ -34,9 +34,7 @@
 // - file mapping
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::IS_COMPRESSED, "Invalid operation for a compressed file");\
-)
+ERROR_ASSOCIATE(ERR::IS_COMPRESSED, "Invalid operation for a compressed file", -1);
 
 
 ///////////////////////////////////////////////////////////////////////////////

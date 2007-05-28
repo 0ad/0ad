@@ -23,12 +23,8 @@
 #include "file_internal.h"
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::TNODE_NOT_FOUND, "File/directory not found");\
-	error_setDescription(ERR::TNODE_WRONG_TYPE, "Using a directory as file or vice versa");\
-	\
-	error_setEquivalent(ERR::TNODE_NOT_FOUND, ENOENT);\
-)
+ERROR_ASSOCIATE(ERR::TNODE_NOT_FOUND, "File/directory not found", ENOENT);
+ERROR_ASSOCIATE(ERR::TNODE_WRONG_TYPE, "Using a directory as file or vice versa", -1);
 
 
 // we add/cancel directory watches from the VFS mount code for convenience -

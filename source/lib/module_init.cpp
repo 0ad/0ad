@@ -37,10 +37,7 @@ bool ModuleShouldInitialize(volatile ModuleInitState* pInitState)
 retry:
 	ModuleInitState latchedInitState = *pInitState;
 	if(latchedInitState == MODULE_ERROR)
-	{
-		debug_warn("attempting to init after error");
 		return false;
-	}
 	if(!cpu_CAS(pInitState, latchedInitState, latchedInitState+1))
 		goto retry;
 	return false;

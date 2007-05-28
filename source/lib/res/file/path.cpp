@@ -22,9 +22,7 @@
 #include "file_internal.h"
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::ROOT_DIR_ALREADY_SET, "Attempting to set FS root dir more than once");\
-)
+ERROR_ASSOCIATE(ERR::ROOT_DIR_ALREADY_SET, "Attempting to set FS root dir more than once", -1);
 
 
 // path types:

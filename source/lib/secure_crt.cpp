@@ -19,9 +19,7 @@
 // we were included from wsecure_crt.cpp; skip all stuff that
 // must only be done once.
 #ifndef WSECURE_CRT
-AT_STARTUP(\
-	error_setDescription(ERR::STRING_NOT_TERMINATED, "Invalid string (no 0 terminator found in buffer)")\
-)
+ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, "Invalid string (no 0 terminator found in buffer)", -1);
 #endif
 
 

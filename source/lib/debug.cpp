@@ -30,18 +30,16 @@
 #endif
 
 
-AT_STARTUP(\
-	error_setDescription(ERR::SYM_NO_STACK_FRAMES_FOUND, "No stack frames found");\
-	error_setDescription(ERR::SYM_UNRETRIEVABLE_STATIC, "Value unretrievable (stored in external module)");\
-	error_setDescription(ERR::SYM_UNRETRIEVABLE_REG, "Value unretrievable (stored in register)");\
-	error_setDescription(ERR::SYM_TYPE_INFO_UNAVAILABLE, "Error getting type_info");\
-	error_setDescription(ERR::SYM_INTERNAL_ERROR, "Exception raised while processing a symbol");\
-	error_setDescription(ERR::SYM_UNSUPPORTED, "Symbol type not (fully) supported");\
-	error_setDescription(ERR::SYM_CHILD_NOT_FOUND, "Symbol does not have the given child");\
-	error_setDescription(ERR::SYM_NESTING_LIMIT, "Symbol nesting too deep or infinite recursion");\
-	error_setDescription(ERR::SYM_SINGLE_SYMBOL_LIMIT, "Symbol has produced too much output");\
-	error_setDescription(INFO::SYM_SUPPRESS_OUTPUT, "Symbol was suppressed");\
-)
+ERROR_ASSOCIATE(ERR::SYM_NO_STACK_FRAMES_FOUND, "No stack frames found", -1);
+ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE_STATIC, "Value unretrievable (stored in external module)", -1);
+ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE_REG, "Value unretrievable (stored in register)", -1);
+ERROR_ASSOCIATE(ERR::SYM_TYPE_INFO_UNAVAILABLE, "Error getting type_info", -1);
+ERROR_ASSOCIATE(ERR::SYM_INTERNAL_ERROR, "Exception raised while processing a symbol", -1);
+ERROR_ASSOCIATE(ERR::SYM_UNSUPPORTED, "Symbol type not (fully) supported", -1);
+ERROR_ASSOCIATE(ERR::SYM_CHILD_NOT_FOUND, "Symbol does not have the given child", -1);
+ERROR_ASSOCIATE(ERR::SYM_NESTING_LIMIT, "Symbol nesting too deep or infinite recursion", -1);
+ERROR_ASSOCIATE(ERR::SYM_SINGLE_SYMBOL_LIMIT, "Symbol has produced too much output", -1);
+ERROR_ASSOCIATE(INFO::SYM_SUPPRESS_OUTPUT, "Symbol was suppressed", -1);
 
 
 // needed when writing crashlog

@@ -97,7 +97,7 @@ typedef Timer::unit TimerUnit;	// convenience
 
 // opaque - do not access its fields!
 // note: must be defined here because clients instantiate them;
-// fields cannot be made private due to C compatibility requirement.
+// fields cannot be made private due to POD requirement.
 struct TimerClient
 {
 	TimerUnit sum;	// total bill
