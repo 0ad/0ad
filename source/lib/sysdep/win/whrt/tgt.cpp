@@ -29,20 +29,22 @@
 static const UINT PERIOD_MS = 2;
 
 
-TickSourceTgt::TickSourceTgt()
+LibError CounterTGT::Activate()
 {
 	// note: timeGetTime is always available and cannot fail.
 
 	MMRESULT ret = timeBeginPeriod(PERIOD_MS);
 	debug_assert(ret == TIMERR_NOERROR);
+
+	return INFO::OK;
 }
 
-TickSourceTgt::~TickSourceTgt()
+void CounterTGT::Shutdown()
 {
 	timeEndPeriod(PERIOD_MS);
 }
 
-bool TickSourceTgt::IsSafe() const
+bool CounterTGT::IsSafe() const
 {
 	// the only point of criticism is the possibility of falling behind
 	// due to lost interrupts. this can happen to any interrupt-based timer
@@ -51,7 +53,7 @@ bool TickSourceTgt::IsSafe() const
 	return true;
 }
 
-u64 TickSourceTgt::Ticks() const
+u64 CounterTGT::Counter() const
 {
 	return timeGetTime();
 }
@@ -60,7 +62,7 @@ u64 TickSourceTgt::Ticks() const
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint TickSourceTgt::CounterBits() const
+uint CounterTGT::CounterBits() const
 {
 	return 32;
 }
@@ -69,7 +71,7 @@ uint TickSourceTgt::CounterBits() const
  * initial measurement of the tick rate. not necessarily correct
  * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
  **/
-double TickSourceTgt::NominalFrequency() const
+double CounterTGT::NominalFrequency() const
 {
 	return 1000.0;
 }
@@ -77,7 +79,7 @@ double TickSourceTgt::NominalFrequency() const
 /**
  * actual resolution [s]
  **/
-double TickSourceTgt::Resolution() const
+double CounterTGT::Resolution() const
 {
 	return PERIOD_MS*1e-3;
 }

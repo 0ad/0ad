@@ -11,23 +11,23 @@
 #ifndef INCLUDED_HPET
 #define INCLUDED_HPET
 
-#include "tick_source.h"
+#include "counter.h"
 
 
-class TickSourceHpet : public TickSource
+class CounterHPET : public ICounter
 {
 public:
-	TickSourceHpet();
-	virtual ~TickSourceHpet();
-
 	virtual const char* Name() const
 	{
 		return "HPET";
 	}
 
+	virtual LibError Activate();
+	virtual void Shutdown();
+
 	virtual bool IsSafe() const;
 
-	virtual u64 Ticks() const;
+	virtual u64 Counter() const;
 
 	/**
 	 * WHRT uses this to ensure the counter (running at nominal frequency)
@@ -42,10 +42,8 @@ public:
 	virtual double NominalFrequency() const;
 
 private:
-	double m_frequency;
 	struct HpetRegisters;
 	volatile HpetRegisters* m_hpetRegisters;
-	uint m_counterBits;
 };
 
 #endif	// #ifndef INCLUDED_HPET

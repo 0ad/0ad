@@ -11,22 +11,22 @@
 #ifndef INCLUDED_TGT
 #define INCLUDED_TGT
 
-#include "tick_source.h"
+#include "counter.h"
 
-class TickSourceTgt : public TickSource
+class CounterTGT : public ICounter
 {
 public:
-	TickSourceTgt();
-	virtual ~TickSourceTgt();
-
 	virtual const char* Name() const
 	{
 		return "TGT";
 	}
 
+	virtual LibError Activate();
+	virtual void Shutdown();
+
 	virtual bool IsSafe() const;
 
-	virtual u64 Ticks() const;
+	virtual u64 Counter() const;
 
 	/**
 	 * WHRT uses this to ensure the counter (running at nominal frequency)

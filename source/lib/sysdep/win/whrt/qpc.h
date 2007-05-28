@@ -11,22 +11,22 @@
 #ifndef INCLUDED_QPC
 #define INCLUDED_QPC
 
-#include "tick_source.h"
+#include "counter.h"
 
-class TickSourceQpc : public TickSource
+class CounterQPC : public ICounter
 {
 public:
-	TickSourceQpc();
-	virtual ~TickSourceQpc();
-
 	virtual const char* Name() const
 	{
 		return "QPC";
 	}
 
+	virtual LibError Activate();
+	virtual void Shutdown();
+
 	virtual bool IsSafe() const;
 
-	virtual u64 Ticks() const;
+	virtual u64 Counter() const;
 
 	/**
 	 * WHRT uses this to ensure the counter (running at nominal frequency)
@@ -41,7 +41,7 @@ public:
 	virtual double NominalFrequency() const;
 
 private:
-	// cached because QPF is a bit slow.
+	// used in several places and QPF is a bit slow+cumbersome.
 	// (i64 allows easier conversion to double)
 	i64 m_frequency;
 };

@@ -11,22 +11,22 @@
 #ifndef INCLUDED_TSC
 #define INCLUDED_TSC
 
-#include "tick_source.h"
+#include "counter.h"
 
-class TickSourceTsc : public TickSource
+class CounterTSC : public ICounter
 {
 public:
-	TickSourceTsc();
-	~TickSourceTsc();
-
 	virtual const char* Name() const
 	{
 		return "TSC";
 	}
 
+	virtual LibError Activate();
+	virtual void Shutdown();
+
 	virtual bool IsSafe() const;
 
-	virtual u64 Ticks() const;
+	virtual u64 Counter() const;
 
 	/**
 	 * WHRT uses this to ensure the counter (running at nominal frequency)

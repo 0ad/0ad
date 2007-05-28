@@ -29,13 +29,13 @@
 
 struct PerCpuTscState
 {
-	u64 calibrationTicks;
-	double calibrationTime;
+	u64 m_lastTicks;
+	double m_lastTime;
+	double m_observedFrequency;
 	// mark this struct used just in case cpu_CallByEachCPU doesn't ensure
 	// only one thread is running. a flag is safer than a magic APIC ID value.
-	uintptr_t isInitialized;
-	uint apicId;
-	float observedFrequency;
+	uintptr_t m_isInitialized;
+	uint m_apicId;
 };
 
 static const size_t MAX_CPUS = 32;	// Win32 also imposes this limit
@@ -46,7 +46,7 @@ static PerCpuTscState& NextUnusedPerCpuTscState()
 	for(size_t i = 0; i < MAX_CPUS; i++)
 	{
 		PerCpuTscState& cpuTscState = cpuTscStates[i];
-		if(cpu_CAS(&cpuTscState.isInitialized, 0, 1))
+		if(cpu_CAS(&cpuTscState.m_isInitialized, 0, 1))
 			return cpuTscState;
 	}
 
@@ -59,7 +59,7 @@ static PerCpuTscState& CurrentCpuTscState()
 	for(size_t i = 0; i < MAX_CPUS; i++)
 	{
 		PerCpuTscState& cpuTscState = cpuTscStates[i];
-		if(cpuTscState.isInitialized && cpuTscState.apicId == apicId)
+		if(cpuTscState.m_isInitialized && cpuTscState.m_apicId == apicId)
 			return cpuTscState;
 	}
 
@@ -71,10 +71,10 @@ static void InitPerCpuTscState(void* param)	// callback
 	const double cpuClockFrequency = *(double*)param;
 
 	PerCpuTscState& cpuTscState = NextUnusedPerCpuTscState();
-	cpuTscState.apicId            = ia32_ApicId();
-	cpuTscState.calibrationTicks  = ia32_rdtsc();
-	cpuTscState.calibrationTime   = 0.0;
-	cpuTscState.observedFrequency = cpuClockFrequency;
+	cpuTscState.m_apicId            = ia32_ApicId();
+	cpuTscState.m_lastTicks         = ia32_rdtsc();
+	cpuTscState.m_lastTime          = 0.0;
+	cpuTscState.m_observedFrequency = cpuClockFrequency;
 }
 
 static LibError InitPerCpuTscStates(double cpuClockFrequency)
@@ -84,6 +84,7 @@ static LibError InitPerCpuTscStates(double cpuClockFrequency)
 	return INFO::OK;
 }
 
+
 //-----------------------------------------------------------------------------
 
 // note: calibration is necessary due to long-term thermal drift
@@ -92,20 +93,20 @@ static LibError InitPerCpuTscStates(double cpuClockFrequency)
 //-----------------------------------------------------------------------------
 
 
-TickSourceTsc::TickSourceTsc()
+LibError CounterTSC::Activate()
 {
 	if(!ia32_cap(IA32_CAP_TSC))
-		throw TickSourceUnavailable("TSC: unsupported");
+		return ERR::NO_SYS;		// NOWARN (CPU doesn't support RDTSC)
 
-	if(InitPerCpuTscStates(wcpu_ClockFrequency()) != INFO::OK)
-		throw TickSourceUnavailable("TSC: per-CPU init failed");
+//	RETURN_ERR(InitPerCpuTscStates(wcpu_ClockFrequency()));
+	return INFO::OK;
 }
 
-TickSourceTsc::~TickSourceTsc()
+void CounterTSC::Shutdown()
 {
 }
 
-bool TickSourceTsc::IsSafe() const
+bool CounterTSC::IsSafe() const
 {
 return false;
 
@@ -160,7 +161,7 @@ return false;
 	return false;
 }
 
-u64 TickSourceTsc::Ticks() const
+u64 CounterTSC::Counter() const
 {
 	return ia32_rdtsc();
 }
@@ -169,7 +170,7 @@ u64 TickSourceTsc::Ticks() const
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint TickSourceTsc::CounterBits() const
+uint CounterTSC::CounterBits() const
 {
 	return 64;
 }
@@ -178,7 +179,7 @@ uint TickSourceTsc::CounterBits() const
  * initial measurement of the tick rate. not necessarily correct
  * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
  **/
-double TickSourceTsc::NominalFrequency() const
+double CounterTSC::NominalFrequency() const
 {
 	return wcpu_ClockFrequency();
 }

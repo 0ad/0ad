@@ -17,7 +17,7 @@
 #include "pmt.h"	// PMT_FREQ
 
 
-TickSourceQpc::TickSourceQpc()
+LibError CounterQPC::Activate()
 {
 	// note: QPC is observed to be universally supported, but the API
 	// provides for failure, so play it safe.
@@ -25,30 +25,32 @@ TickSourceQpc::TickSourceQpc()
 	LARGE_INTEGER qpcFreq, qpcValue;
 	const BOOL ok1 = QueryPerformanceFrequency(&qpcFreq);
 	const BOOL ok2 = QueryPerformanceCounter(&qpcValue);
-	if(!ok1 || !ok2 || !qpcFreq.QuadPart || !qpcValue.QuadPart)
-		throw TickSourceUnavailable("QPC not supported?!");
+	WARN_RETURN_IF_FALSE(ok1 && ok2);
+	if(!qpcFreq.QuadPart || !qpcValue.QuadPart)
+		WARN_RETURN(ERR::FAIL);
 
 	m_frequency = (i64)qpcFreq.QuadPart;
+	return INFO::OK;
 }
 
-TickSourceQpc::~TickSourceQpc()
+void CounterQPC::Shutdown()
 {
 }
 
-bool TickSourceQpc::IsSafe() const
+bool CounterQPC::IsSafe() const
 {
 	// the PIT is entirely safe (even if annoyingly slow to read)
 	if(m_frequency == PIT_FREQ)
 		return true;
 
 	// note: we have separate modules that directly access some of the
-	// tick sources potentially used by QPC. marking them or QPC unsafe is
+	// counters potentially used by QPC. marking them or QPC unsafe is
 	// risky because users can override either of those decisions.
 	// directly disabling them is ugly (increased coupling).
 	// instead, we'll make sure our implementations can coexist with QPC and
 	// verify the secondary reference timer has a different frequency.
 
-	// the PMT is safe (see discussion in TickSourcePmt::IsSafe);
+	// the PMT is safe (see discussion in CounterPmt::IsSafe);
 	if(m_frequency == PIT_FREQ)
 		return true;
 
@@ -84,7 +86,7 @@ bool TickSourceQpc::IsSafe() const
 	return true;
 }
 
-u64 TickSourceQpc::Ticks() const
+u64 CounterQPC::Counter() const
 {
 	// fairly time-critical here, don't check the return value
 	// (IsSupported made sure it succeeded initially)
@@ -97,25 +99,12 @@ u64 TickSourceQpc::Ticks() const
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint TickSourceQpc::CounterBits() const
+uint CounterQPC::CounterBits() const
 {
-	// note: the PMT is either 24 or 32 bits; older QPC implementations
-	// apparently had troubles with rollover.
-	// "System clock problem can inflate benchmark scores"
-	// (http://www.lionbridge.com/bi/cont2000/200012/perfcnt.asp ; no longer
-	// online, nor findable in Google Cache / archive.org) reports
-	// incorrect values every 4.6 seconds unless the timer is polled in
-	// the meantime. the given timeframe corresponds to 24 bits @ 3.57 MHz.
-	//
-	// we will therefore return the worst case value of 24 when using PMT
-	// (don't bother checking if it's 32-bit because there's no harm in
-	// ignoring the upper bits since we read it often enough)
-	if(m_frequency == PMT_FREQ)
-		return 24;
-
-	// no reports of trouble with the other implementations have surfaced,
-	// so we'll assume Windows correctly handles rollover and that we
-	// have the full 64 bits.
+	// there are reports of incorrect rollover handling in the PMT
+	// implementation of QPC (see CounterPMT::IsSafe). however, other
+	// counters would be used on those systems, so it's irrelevant.
+	// we'll report the full 64 bits.
 	return 64;
 }
 
@@ -123,7 +112,7 @@ uint TickSourceQpc::CounterBits() const
  * initial measurement of the tick rate. not necessarily correct
  * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
  **/
-double TickSourceQpc::NominalFrequency() const
+double CounterQPC::NominalFrequency() const
 {
 	return (double)m_frequency;
 }

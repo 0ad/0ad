@@ -29,28 +29,30 @@ struct FADT
 
 static const u32 TMR_VAL_EXT = BIT(8);
 
-TickSourcePmt::TickSourcePmt()
+//-----------------------------------------------------------------------------
+
+LibError CounterPMT::Activate()
 {
-	// (no need to check return value - valid fadt implies success)
-	(void)mahaf_Init();
-	(void)acpi_Init();
+	if(!mahaf_Init())
+		return ERR::FAIL;	// NOWARN (no Administrator privileges)
+	if(!acpi_Init())
+		WARN_RETURN(ERR::FAIL);
 	const FADT* fadt = (const FADT*)acpi_GetTable("FADT");
 	if(!fadt)
-		throw TickSourceUnavailable("PMT: no FADT");
+		WARN_RETURN(ERR::NO_SYS);
 	m_portAddress = u16_from_larger(fadt->pmTimerPortAddress);
-	m_counterBits = (fadt->flags & TMR_VAL_EXT)? 32 : 24;
+
+	return INFO::OK;
 }
 
-TickSourcePmt::~TickSourcePmt()
+void CounterPMT::Shutdown()
 {
 	acpi_Shutdown();
 	mahaf_Shutdown();
 }
 
-bool TickSourcePmt::IsSafe() const
+bool CounterPMT::IsSafe() const
 {
-return false;
-
 	// the PMT has one issue: "Performance counter value may unexpectedly
 	// leap forward" (Q274323). This happens on some buggy Pentium-era
 	// systems under heavy PCI bus load. We are clever and observe that
@@ -60,31 +62,28 @@ return false;
 	return true;
 }
 
-u64 TickSourcePmt::Ticks() const
+u64 CounterPMT::Counter() const
 {
-	u32 ticks = mahaf_ReadPort32(m_portAddress);
-	// note: the spec allows 24 or 32 bit counters. given the fixed
-	// frequency of 3.57 MHz, worst case is rollover within 4.6 s. this is
-	// obviously not long enough to never happen more than once, so it must
-	// be handled; there is no benefit in using all 32 bits where available.
-	ticks &= 0xFFFFFFu;
-	return (u64)ticks;
+	return mahaf_ReadPort32(m_portAddress);
 }
 
 /**
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint TickSourcePmt::CounterBits() const
+uint CounterPMT::CounterBits() const
 {
-	return m_counterBits;
+	const FADT* fadt = (const FADT*)acpi_GetTable("FADT");
+	debug_assert(fadt);	// Activate made sure FADT is available
+	const uint counterBits = (fadt->flags & TMR_VAL_EXT)? 32 : 24;
+	return counterBits;
 }
 
 /**
  * initial measurement of the tick rate. not necessarily correct
  * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
  **/
-double TickSourcePmt::NominalFrequency() const
+double CounterPMT::NominalFrequency() const
 {
 	return (double)PMT_FREQ;
 }

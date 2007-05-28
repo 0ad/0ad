@@ -18,7 +18,7 @@
 // - reading it is slow and cannot be done by two independent users
 //   (the second being QPC) since the counter value must be latched.
 //
-// there are enough other tick sources anway.
+// there are enough other counters anway.
 
 static const i64 PIT_FREQ = 1193182;	// (= master oscillator frequency/12)
 
