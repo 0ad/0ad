@@ -18,7 +18,7 @@ local function add_extern_lib_paths(extern_lib)
 	if OS == "windows" or extern_lib == 'cxxtest' or extern_lib == 'fcollada' then
 		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
 	end
-	tinsert(package.libpaths,     libraries_dir .. extern_lib .. "/lib")
+	tinsert(package.libpaths, libraries_dir .. extern_lib .. "/lib")
 
 end
 
@@ -70,6 +70,9 @@ extern_lib_defs = {
 	},
 	devil = {
 		unix_names = { "IL", "ILU" },
+	},
+	detours = {
+		dbg_suffix = "",
 	},
 	directx = {
 		win_names  = { "ddraw", },

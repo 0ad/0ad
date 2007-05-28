@@ -388,7 +388,8 @@ function setup_all_libs ()
 		"libjpg",
 		"dbghelp",
 		"directx",
-		"cryptopp"
+		"cryptopp",
+		"detours"
 	}
 	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
 	sysdep_dirs = {
@@ -425,6 +426,7 @@ used_extern_libs = {
 	"dbghelp",
 	"cxxtest",
 	"directx",
+	"detours"
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.
@@ -458,7 +460,7 @@ function setup_main_exe ()
 		end
 
 		package.linkoptions = {
-			-- required for win.cpp's init mechanism
+			-- required for winit.cpp's init mechanism
 			"/ENTRY:entry",
 
 			-- delay loading of various Windows DLLs (not specific to any of the
