@@ -63,13 +63,12 @@ bool ia32_cap(IA32Cap cap)
 }
 
 
-// we only store enum Vendor rather than the string because that
-// is easier to compare.
-static enum Vendor
+static Ia32Vendor vendor;
+
+Ia32Vendor ia32_Vendor()
 {
-	UNKNOWN, INTEL, AMD
+	return vendor;
 }
-vendor = UNKNOWN;
 
 static void DetectVendor()
 {
@@ -87,9 +86,9 @@ static void DetectVendor()
 	vendor_str[12] = '\0';	// 0-terminate
 
 	if(!strcmp(vendor_str, "AuthenticAMD"))
-		vendor = AMD;
+		vendor = IA32_VENDOR_AMD;
 	else if(!strcmp(vendor_str, "GenuineIntel"))
-		vendor = INTEL;
+		vendor = IA32_VENDOR_INTEL;
 	else
 		DEBUG_WARN_ERR(ERR::CPU_UNKNOWN_VENDOR);
 }
@@ -168,15 +167,7 @@ void ia32_Serialize()
 
 
 //-----------------------------------------------------------------------------
-// CPU / feature detect
-//-----------------------------------------------------------------------------
-
-// returned in edx by CPUID 0x80000007.
-enum AmdPowerNowFlags
-{
-	POWERNOW_FREQ_ID_CTRL = 2
-};
-
+// identifier string
 
 /// functor to remove substrings from the CPU identifier string
 class StringStripper
@@ -243,25 +234,25 @@ const char* ia32_IdentifierString()
 	//   doesn't recognize.
 	if(!have_brand_string || strncmp(identifier_string, "Unknow", 6) == 0)
 	{
-		if(vendor == AMD)
+		if(vendor == IA32_VENDOR_AMD)
 		{
 			// everything else is either too old, or should have a brand string.
 			if(family == 6)
 			{
 				if(model == 3 || model == 7)
-					SAFE_STRCPY(identifier_string, "AMD Duron");
+					SAFE_STRCPY(identifier_string, "IA32_VENDOR_AMD Duron");
 				else if(model <= 5)
-					SAFE_STRCPY(identifier_string, "AMD Athlon");
+					SAFE_STRCPY(identifier_string, "IA32_VENDOR_AMD Athlon");
 				else
 				{
 					if(ia32_cap(IA32_CAP_AMD_MP))
-						SAFE_STRCPY(identifier_string, "AMD Athlon MP");
+						SAFE_STRCPY(identifier_string, "IA32_VENDOR_AMD Athlon MP");
 					else
-						SAFE_STRCPY(identifier_string, "AMD Athlon XP");
+						SAFE_STRCPY(identifier_string, "IA32_VENDOR_AMD Athlon XP");
 				}
 			}
 		}
-		else if(vendor == INTEL)
+		else if(vendor == IA32_VENDOR_INTEL)
 		{
 			// everything else is either too old, or should have a brand string.
 			if(family == 6)
@@ -293,26 +284,8 @@ const char* ia32_IdentifierString()
 }
 
 
-int ia32_IsThrottlingPossible()
-{
-	if(vendor == INTEL)
-	{
-		if(ia32_cap(IA32_CAP_EST))
-			return 1;
-	}
-	else if(vendor == AMD)
-	{
-		u32 regs[4];
-		if(ia32_asm_cpuid(0x80000007, regs))
-		{
-			if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
-				return 1;
-		}
-	}
-
-	return 0;	// pretty much authoritative, so don't return -1.
-}
-
+//-----------------------------------------------------------------------------
+// CPU frequency
 
 // set scheduling priority and restore when going out of scope.
 class ScopedSetPriority

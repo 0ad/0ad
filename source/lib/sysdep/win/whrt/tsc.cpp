@@ -84,6 +84,36 @@ static LibError InitPerCpuTscStates(double cpuClockFrequency)
 	return INFO::OK;
 }
 
+//-----------------------------------------------------------------------------
+/*
+int ia32_IsThrottlingPossible()
+{
+
+	// returned in edx by CPUID 0x80000007.
+	enum AmdPowerNowFlags
+	{
+		POWERNOW_FREQ_ID_CTRL = 2
+	};
+
+
+	if(vendor == IA32_VENDOR_INTEL)
+	{
+		if(ia32_cap(IA32_CAP_EST))
+			return 1;
+	}
+	else if(vendor == IA32_VENDOR_AMD)
+	{
+		u32 regs[4];
+		if(ia32_asm_cpuid(0x80000007, regs))
+		{
+			if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
+				return 1;
+		}
+	}
+
+	return 0;	// pretty much authoritative, so don't return -1.
+}
+*/
 
 //-----------------------------------------------------------------------------
 

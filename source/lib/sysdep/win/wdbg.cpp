@@ -49,12 +49,6 @@ static void unlock()
 	win_unlock(WDBG_CS);
 }
 
-// used in a desperate attempt to avoid deadlock in wdbg_exception_handler.
-static bool is_locked()
-{
-	return win_is_locked(WDBG_CS) == 1;
-}
-
 
 void debug_puts(const char* text)
 {
@@ -234,7 +228,7 @@ static LibError call_while_suspended(WhileSuspendedFunc func, void* user_arg)
 
 // parameter passing to helper thread. currently static storage,
 // but the struct simplifies switching to a queue later.
-static struct BreakInfo
+struct BreakInfo
 {
 	uintptr_t addr;
 	DbgBreakType type;
@@ -242,13 +236,14 @@ static struct BreakInfo
 	// determines what brk_thread_func will do.
 	// set/reset by debug_remove_all_breaks.
 	bool want_all_disabled;
-}
-brk_info;
+};
+
+static BreakInfo brk_info;
 
 // Local Enable bits of all registers we enabled (used when restoring all).
 static DWORD brk_all_local_enables;
 
-// IA32 limit; will need to update brk_enable_in_ctx if this changes.
+// IA-32 limit; will need to update brk_enable_in_ctx if this changes.
 static const uint MAX_BREAKPOINTS = 4;
 
 
@@ -668,7 +663,7 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 	// someone is already holding the dbghelp lock - this is bad.
 	// we'll report this problem first and then try to display the
 	// exception info regardless (maybe dbghelp won't blow up).
-	if(is_locked())
+	if(win_is_locked(WDBG_SYM_CS) == 1)
 		DISPLAY_ERROR(L"Exception raised while critical section is held - may deadlock..");
 
 	// extract details from ExceptionRecord.

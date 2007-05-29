@@ -44,13 +44,19 @@ bool CounterQPC::IsSafe() const
 		return true;
 
 	// note: we have separate modules that directly access some of the
-	// counters potentially used by QPC. marking them or QPC unsafe is
-	// risky because users can override either of those decisions.
-	// directly disabling them is ugly (increased coupling).
-	// instead, we'll make sure our implementations can coexist with QPC and
-	// verify the secondary reference timer has a different frequency.
+	// counters potentially used by QPC. disabling the redundant counters
+	// would be ugly (increased coupling). instead, we'll make sure our
+	// implementations can coexist with QPC and verify the secondary
+	// reference timer has a different frequency.
 
-	// the PMT is safe (see discussion in CounterPmt::IsSafe);
+	// the PMT is generally safe (see discussion in CounterPmt::IsSafe),
+	// but older QPC implementations had problems with 24-bit rollover.
+	// "System clock problem can inflate benchmark scores"
+	// (http://www.lionbridge.com/bi/cont2000/200012/perfcnt.asp ; no longer
+	// online, nor findable in Google Cache / archive.org) tells of
+	// incorrect values every 4.6 seconds (i.e. 24 bits @ 3.57 MHz) unless
+	// the timer is polled in the meantime. fortunately, this is guaranteed
+	// by our periodic updates (which come at least that often).
 	if(m_frequency == PIT_FREQ)
 		return true;
 

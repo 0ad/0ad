@@ -30,9 +30,11 @@
  * note that this allocator is stateless and very litte error checking
  * can be performed.
  *
+ * the memory is initially writable and you can use mprotect to set other
+ * access permissions if desired.
+ *
  * @param unaligned_size minimum size [bytes] to allocate.
- * @return writable, page-aligned and -padded memory; you can use
- * mprotect to set other access permissions if desired.
+ * @return page-aligned and -padded memory or 0 on error / out of memory.
  **/
 extern void* page_aligned_alloc(size_t unaligned_size);
 
@@ -87,11 +89,12 @@ extern LibError da_alloc(DynArray* da, size_t max_size);
 
 /**
  * free all memory (address space + physical) that constitutes the
- * given DynArray.
+ * given array.
  *
- * @param da DynArray. zeroed afterwards; continued use of the allocated
- * memory is impossible because it is marked not-present via MMU.
- * @return LibError.
+ * use-after-free is impossible because the memory is unmapped.
+ *
+ * @param DynArray* da; zeroed afterwards.
+ * @return LibError
  **/
 extern LibError da_free(DynArray* da);
 
@@ -107,12 +110,12 @@ extern LibError da_free(DynArray* da);
 extern LibError da_set_size(DynArray* da, size_t new_size);
 
 /**
- * make sure a given number of bytes starting from the current position
- * (DynArray.pos) are committed and ready for use.
+ * Make sure at least <size> bytes starting at da->pos are committed and
+ * ready for use.
  *
- * @param da DynArray.
- * @param size minimum size [bytes].
- * @return LibError.
+ * @param DynArray*
+ * @param size Minimum amount to guarantee [bytes]
+ * @return LibError
  **/
 extern LibError da_reserve(DynArray* da, size_t size);
 
@@ -135,7 +138,8 @@ extern LibError da_set_prot(DynArray* da, int prot);
  * da_free should be called when the DynArray is no longer needed,
  * even though it doesn't free this memory (but does zero the DynArray).
  *
- * @param da DynArray.
+ * @param da DynArray. Note: any future operations on it that would
+ * change the underlying memory (e.g. da_set_size) will fail.
  * @param p target memory (no alignment/padding requirements)
  * @param size maximum size (no alignment requirements)
  * @return LibError.
@@ -204,16 +208,16 @@ struct Pool
 const size_t POOL_VARIABLE_ALLOCS = ~0u;
 
 /**
- * ready the Pool object for use.
+ * Ready Pool for use.
  *
- * @param p Pool.
- * @param max_size size [bytes] of address space to reserve (*);
- * the Pool can never expand beyond this.
- * (* rounded up to next page size multiple)
- * @param el_size 0 to allow variable-sized allocations (which cannot be
- * freed individually); otherwise, it specifies the number of bytes that
- * will be returned by pool_alloc (whose size parameter is then ignored).
- * @return LibError.
+ * @param Pool*
+ * @param max_size Max size [bytes] of the Pool; this much
+ * (rounded up to next page multiple) virtual address space is reserved.
+ * no virtual memory is actually committed until calls to pool_alloc.
+ * @param el_size Number of bytes that will be returned by each
+ * pool_alloc (whose size parameter is then ignored). Can be 0 to
+ * allow variable-sized allocations, but pool_free is then unusable.
+ * @return LibError
  **/
 extern LibError pool_create(Pool* p, size_t max_size, size_t el_size);
 
@@ -221,9 +225,12 @@ extern LibError pool_create(Pool* p, size_t max_size, size_t el_size);
  * free all memory (address space + physical) that constitutes the
  * given Pool.
  *
- * @param p Pool. continued use of the allocated memory (*) is
+ * future alloc and free calls on this pool will fail.
+ * continued use of the allocated memory (*) is
  * impossible because it is marked not-present via MMU.
  * (* no matter if in freelist or unused or "allocated" to user)
+ *
+ * @param Pool*
  * @return LibError.
  **/
 extern LibError pool_destroy(Pool* p);
@@ -233,33 +240,31 @@ extern LibError pool_destroy(Pool* p);
  *
  * this is useful for callers that use several types of allocators.
  *
- * @param p Pool.
+ * @param Pool*
  * @return bool.
  **/
 extern bool pool_contains(Pool* p, void* el);
 
 /**
- * allocate memory from the pool.
- *
+ * Dole out memory from the pool.
  * exhausts the freelist before returning new entries to improve locality.
  *
- * @param p Pool.
- * @param size [bytes] to allocated. ignored if pool was set up with
- * fixed-size elements.
- * @return 0 if the Pool would have to be expanded and there isn't enough
- * memory to do so, otherwise the allocated memory.
+ * @param Pool*
+ * @param size bytes to allocate; ignored if pool_create's el_size was not 0.
+ * @return allocated memory, or 0 if the Pool would have to be expanded and
+ * there isn't enough memory to do so.
  **/
 extern void* pool_alloc(Pool* p, size_t size);
 
 /**
- * make an entry available for reuse in the given Pool.
+ * Make a fixed-size element available for reuse in the given Pool.
  *
- * this is not allowed if created for variable-size elements.
+ * this is not allowed if the Pool was created for variable-size elements.
  * rationale: avoids having to pass el_size here and compare with size when
  * allocating; also prevents fragmentation and leaking memory.
  *
- * @param p Pool.
- * @param el entry allocated via pool_alloc.
+ * @param Pool*
+ * @param el Element returned by pool_alloc.
  **/
 extern void pool_free(Pool* p, void* el);
 
@@ -267,9 +272,9 @@ extern void pool_free(Pool* p, void* el);
  * "free" all user allocations that ensued from the given Pool.
  *
  * this resets it as if freshly pool_create-d, but doesn't release the
- * underlying memory.
+ * underlying reserved virtual memory.
  *
- * @param p Pool.
+ * @param Pool*
  **/
 extern void pool_free_all(Pool* p);
 
@@ -319,7 +324,7 @@ struct Bucket
 /**
  * ready the Bucket object for use.
  *
- * @param b Bucket.
+ * @param Bucket*
  * @param el_size 0 to allow variable-sized allocations (which cannot be
  * freed individually); otherwise, it specifies the number of bytes that
  * will be returned by bucket_alloc (whose size parameter is then ignored).
@@ -332,20 +337,18 @@ extern LibError bucket_create(Bucket* b, size_t el_size);
  *
  * future alloc and free calls on this Bucket will fail.
  *
- * @param b Bucket.
+ * @param Bucket*
  **/
 extern void bucket_destroy(Bucket* b);
 
 /**
- * allocate memory from the bucket.
- *
+ * Dole out memory from the Bucket.
  * exhausts the freelist before returning new entries to improve locality.
  *
- * @param b Bucket.
- * @param size [bytes] to allocated. ignored if pool was set up with
- * fixed-size elements.
- * @return 0 if the Bucket would have to be expanded and there isn't enough
- * memory to do so, otherwise the allocated memory.
+ * @param Bucket*
+ * @param size bytes to allocate; ignored if bucket_create's el_size was not 0.
+ * @return allocated memory, or 0 if the Bucket would have to be expanded and
+ * there isn't enough memory to do so.
  **/
 extern void* bucket_alloc(Bucket* b, size_t size);
 
@@ -356,7 +359,7 @@ extern void* bucket_alloc(Bucket* b, size_t size);
  * rationale: avoids having to pass el_size here and compare with size when
  * allocating; also prevents fragmentation and leaking memory.
  *
- * @param b Bucket.
+ * @param Bucket*
  * @param el entry allocated via bucket_alloc.
  **/
 extern void bucket_free(Bucket* b, void* el);
@@ -396,25 +399,31 @@ extern void matrix_free(void** matrix);
 //
 
 /**
- * allocator for applications that frequently alloc/free a single
- * fixed-size object.
+ * Allocate <size> bytes of zeroed memory.
  *
- * if there is only one object in use at a time, malloc is avoided;
- * this is faster and avoids heap fragmentation.
+ * intended for applications that frequently alloc/free a single
+ * fixed-size object. caller provides static storage and an in-use flag;
+ * we use that memory if available and otherwise fall back to the heap.
+ * if the application only has one object in use at a time, malloc is
+ * avoided; this is faster and avoids heap fragmentation.
  *
- * @param storage static storage; enough to fit one item.
- * @param in_use_flag: indicates if storage is in use. manipulated via CAS,
- * so this is thread-safe.
- * @param size [bytes] of storage (we need to know this if falling back to
- * heap allocation).
- * @return pointer to storage if available, otherwise a heap allocation.
+ * note: thread-safe despite use of shared static data.
+ *
+ * @param storage Caller-allocated memory of at least <size> bytes
+ * (typically a static array of bytes)
+ * @param in_use_flag Pointer to a flag we set when <storage> is in-use.
+ * @param size [bytes] to allocate
+ * @return allocated memory (typically = <storage>, but falls back to
+ * malloc if that's in-use), or 0 (with warning) if out of memory.
  **/
 extern void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size);
 
 /**
- * free memory allocated via single_calloc.
+ * Free a memory block that had been allocated by single_calloc.
  *
- * see description there.
+ * @param storage Exact value passed to single_calloc.
+ * @param in_use_flag Exact value passed to single_calloc.
+ * @param Exact value returned by single_calloc.
  **/
 extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p);
 
@@ -448,6 +457,58 @@ public:
 };
 
 #endif	// #ifdef __cplusplus
+
+
+//
+// static allocator
+//
+
+// dole out chunks of memory from storage reserved in the BSS.
+// freeing isn't necessary.
+
+/**
+ * opaque; initialized by STATIC_STORAGE and used by static_calloc
+ **/
+struct StaticStorage
+{
+	void* pos;
+	void* end;
+};
+
+// define <size> bytes of storage and prepare <name> for use with
+// static_calloc.
+// must be invoked from file or function scope.
+#define STATIC_STORAGE(name, size)\
+	static u8 storage[(size)];\
+	static StaticStorage name = { storage, storage+(size) }
+
+/*
+usage example:
+static Object* pObject;
+void InitObject()
+{
+	STATIC_STORAGE(ss, 100);	// includes padding
+	void* addr = static_calloc(ss, sizeof(Object));
+	pObject = new(addr) Object;
+}
+*/
+
+/**
+ * dole out memory from static storage reserved in BSS.
+ *
+ * this is useful for static objects that are used before _cinit - callers
+ * define static storage for one or several objects, use this function to
+ * retrieve an aligned pointer, then construct there via placement new.
+ *
+ * @param ss - initialized via STATIC_STORAGE
+ * @param size [bytes] to allocate
+ * @return aligned (suitable for any type) pointer
+ *
+ * raises a warning if there's not enough room (indicates incorrect usage)
+ **/
+extern void* static_calloc(StaticStorage* ss, size_t size);
+
+// (no need to free static_calloc-ed memory since it's in the BSS)
 
 
 //

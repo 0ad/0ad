@@ -16,6 +16,7 @@
 #include "lib/sysdep/win/win.h"
 #include "lib/sysdep/win/winit.h"
 #include "lib/sysdep/win/wcpu.h"
+#include "lib/sysdep/acpi.h"
 #include "lib/adts.h"
 #include "lib/bits.h"
 
@@ -97,9 +98,12 @@ static ICounter* CreateCounter(uint id)
 	// unusual and thus bad, but there's also one advantage: we avoid
 	// using global operator new before the CRT is initialized (risky).
 	//
-	// note: we can't just define these classes as static because their
-	// ctors (necessary for vptr initialization) will run during _cinit,
-	// which is already after our use of them.
+	// alternatives:
+	// - defining as static doesn't work because the ctors (necessary for
+	//   vptr initialization) run during _cinit, which comes after our
+	//   first use of them.
+	// - using static_calloc isn't possible because we don't know the
+	//   size until after the alloc / placement new.
 	static const size_t MEM_SIZE = 200;	// checked below
 	static u8 mem[MEM_SIZE];
 	static u8* nextMem = mem;
@@ -458,6 +462,12 @@ static inline void ShutdownUpdateThread()
 
 static LibError whrt_Init()
 {
+	// note: several counter implementations use acpi.cpp. if a counter is
+	// deemed unsafe, it is shut down, which releases the (possibly only)
+	// reference to the ACPI module. unloading and reloading it after trying
+	// each counter would be a waste of time, so we grab a reference here.
+	(void)acpi_Init();
+
 	InitCounter();
 
 	UpdateTimerState();	// must come before InitUpdateThread to avoid race
@@ -473,6 +483,8 @@ static LibError whrt_Shutdown()
 	ShutdownUpdateThread();
 
 	ShutdownCounter();
+
+	acpi_Shutdown();
 
 	return INFO::OK;
 }

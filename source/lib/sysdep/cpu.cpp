@@ -57,36 +57,6 @@ static void DetectClockFrequency()
 }
 
 
-static bool isThrottlingPossible = true;
-
-bool cpu_IsThrottlingPossible()
-{
-	debug_assert(clockFrequency > 0.0);	// (can't verify isThrottlingPossible directly)
-	return isThrottlingPossible;
-}
-
-static void DetectIfThrottlingPossible()
-{
-#if CPU_IA32
-	if(ia32_IsThrottlingPossible() == 1)
-	{
-		isThrottlingPossible = true;
-		return;
-	}
-#endif
-
-#if OS_WIN
-	if(wcpu_IsThrottlingPossible() == 1)
-	{
-		isThrottlingPossible = true;
-		return;
-	}
-#endif
-
-	isThrottlingPossible = false;
-}
-
-
 static size_t memoryTotalMib = 1;
 
 size_t cpu_MemoryTotalMiB()
@@ -188,7 +158,6 @@ void cpu_Init()
 #endif
 
 	DetectMemory();
-	DetectIfThrottlingPossible();
 	DetectClockFrequency();
 }
 

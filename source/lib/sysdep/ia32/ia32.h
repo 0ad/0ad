@@ -25,6 +25,21 @@ extern void ia32_Init();
 extern void ia32_Shutdown();
 
 /**
+ * CPU vendor.
+ * (this is exposed because some CPUID functions are vendor-specific.)
+ * (an enum is easier to compare than the original string values.)
+ **/
+enum Ia32Vendor
+{
+	IA32_VENDOR_UNKNOWN,
+	IA32_VENDOR_INTEL,
+	IA32_VENDOR_AMD,
+};
+
+extern Ia32Vendor ia32_Vendor();
+
+
+/**
  * bit indices of CPU capability flags (128 bits).
  * values are defined by IA-32 CPUID feature flags - do not change!
  **/
@@ -65,12 +80,6 @@ extern bool ia32_cap(IA32Cap cap);
  * brand string)
  **/
 extern const char* ia32_IdentifierString();
-
-/**
- * @return whether CPU frequency throttling is possible or
- * may potentially happen (if so, using RDTSC is unsafe).
- **/
-extern int ia32_IsThrottlingPossible();
 
 /**
  * @return the cached result of a precise measurement of the

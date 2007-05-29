@@ -34,10 +34,9 @@ extern void win_free(void* p);
 enum
 {
 	ONCE_CS,
-	WTIME_CS,
 	WAIO_CS,
-	WIN_CS,
 	WDBG_CS,
+	WDBG_SYM_CS,
 
 	NUM_CS
 };

@@ -30,8 +30,15 @@ WINIT_REGISTER_FUNC(waio_shutdown);
 #pragma SECTION_RESTORE
 
 
-#define lock() win_lock(WAIO_CS)
-#define unlock() win_unlock(WAIO_CS)
+static void lock()
+{
+	win_lock(WAIO_CS);
+}
+
+static void unlock()
+{
+	win_unlock(WAIO_CS);
+}
 
 
 // return the largest sector size [bytes] of any storage medium

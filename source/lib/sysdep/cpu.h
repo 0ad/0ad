@@ -26,7 +26,6 @@ extern void cpu_Shutdown();
 
 extern const char* cpu_IdentifierString();
 extern double cpu_ClockFrequency();
-extern bool cpu_IsThrottlingPossible();
 extern uint cpu_NumPackages();	// i.e. sockets
 extern uint cpu_CoresPerPackage();
 extern uint cpu_LogicalPerCore();
@@ -46,10 +45,10 @@ extern size_t cpu_MemoryTotalMiB();
 extern bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
 
 // this is often used for pointers, so the macro coerces parameters to
-// uinptr_t. invalid usage unfortunately also goes through without warnings.
+// uintptr_t. invalid usage unfortunately also goes through without warnings.
 // to catch cases where the caller has passed <expected> as <location> or
 // similar mishaps, the implementation verifies <location> is a valid pointer.
-#define CAS(l,o,n) cpu_CAS((uintptr_t*)l, (uintptr_t)o, (uintptr_t)n)
+#define CAS(l,o,n) cpu_CAS((volatile uintptr_t*)l, (uintptr_t)o, (uintptr_t)n)
 
 /**
  * add a signed value to a variable without the possibility of interference

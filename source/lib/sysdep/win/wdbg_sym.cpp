@@ -52,15 +52,15 @@ WINIT_REGISTER_FUNC(wdbg_sym_shutdown);
 // nested stack traces are ignored and only the error is displayed.
 
 
-// protects dbghelp (which isn't thread-safe) and
-// parameter passing to the breakpoint helper thread.
+// protects the non-reentrant dbghelp library.
 static void lock()
 {
-	win_lock(WDBG_CS);
+	win_lock(WDBG_SYM_CS);
 }
+
 static void unlock()
 {
-	win_unlock(WDBG_CS);
+	win_unlock(WDBG_SYM_CS);
 }
 
 

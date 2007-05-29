@@ -25,6 +25,12 @@
 
 // linked list (most recent first)
 // note: no memory is allocated, all nodes are static instances.
+//
+// rationale: don't use a std::map. we don't care about lookup speed,
+// dynamic allocation would be ugly, and returning a local static object
+// from a function doesn't work, either (the compiler generates calls to
+// atexit, which leads to disaster since we're sometimes called by
+// winit functions before the CRT has initialized)
 static LibErrorAssociation* associations;
 
 int error_AddAssociation(LibErrorAssociation* lea)

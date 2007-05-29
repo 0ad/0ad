@@ -49,7 +49,7 @@ static bool fullscreen;
 
 // the app is shutting down.
 // if set, ignore further Windows messages for clean shutdown.
-static bool is_shutdown;
+static bool is_quitting;
 
 // app instance.
 // returned by GetModuleHandle and used in kbd hook and window creation. 
@@ -426,34 +426,27 @@ SDL_Surface* SDL_GetVideoSurface()
 //----------------------------------------------------------------------------
 // event queue
 
+// note: we aren't using winit at all, so static objects are safe.
 typedef std::queue<SDL_Event> Queue;
 static Queue queue;
 
 static void queue_event(const SDL_Event& ev)
 {
+	debug_assert(!is_quitting);
+
 	queue.push(ev);
 }
 
 static bool dequeue_event(SDL_Event* ev)
 {
+	debug_assert(!is_quitting);
+
 	if(queue.empty())
 		return false;
 	*ev = queue.front();
 	queue.pop();
 	return true;
 }
-
-
-
-static void queue_quit_event()
-{
-	SDL_Event ev;
-	ev.type = SDL_QUIT;
-	queue_event(ev);
-}
-
-
-
 
 
 //----------------------------------------------------------------------------
@@ -540,6 +533,15 @@ Uint8 SDL_GetAppState()
 	return app_state;
 }
 
+
+static void queue_quit_event()
+{
+	SDL_Event ev;
+	ev.type = SDL_QUIT;
+	queue_event(ev);
+}
+
+
 //----------------------------------------------------------------------------
 // keyboard
 
@@ -556,7 +558,7 @@ static void queue_key_event(uint type, uint sdlk, WCHAR unicode_char)
 
 static Uint8 keys[SDLK_LAST];
 
-// winuser.h promises VK_0 and VK_A etc. match ASCII value.
+// winuser.h promises VK_0..9 and VK_A..Z etc. match ASCII value.
 #define VK_0 '0'
 #define VK_A 'A'
 
@@ -792,7 +794,7 @@ static void screen_to_client(int screen_x, int screen_y, int& client_x, int& cli
 	pt.x = (LONG) screen_x;
 	pt.y = (LONG) screen_y;
 	// this can fail for unknown reasons even if hWnd is still
-	// valid and !is_shutdown. don't WARN_IF_FALSE.
+	// valid and !is_quitting. don't WARN_IF_FALSE.
 	if(!ScreenToClient(hWnd, &pt))
 		pt.x = pt.y = 0;
 	client_x = (int)pt.x;
@@ -987,7 +989,7 @@ int SDL_ShowCursor(int toggle)
 
 static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	if(is_shutdown)
+	if(is_quitting)
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);
 
 	switch(uMsg)
@@ -1338,7 +1340,7 @@ void SDL_Quit()
 	if(!ModuleShouldShutdown(&initState))
 		return;
 
-	is_shutdown = true;
+	is_quitting = true;
 
 	// redirected to stdout.txt in SDL_Init;
 	// close to avoid BoundsChecker warning.

@@ -16,15 +16,19 @@
 #include <list>
 
 #include "lib/path_util.h"
+#include "lib/allocators.h"
 #include "lib/res/file/file.h"	// path_is_subpath
 #include "win.h"
 #include "winit.h"
 #include "wutil.h"
 
 
+#pragma SECTION_INIT(5)
+WINIT_REGISTER_FUNC(wdir_watch_Init);
+#pragma FORCE_INCLUDE(wdir_watch_Init)
 #pragma SECTION_SHUTDOWN(5)
-WINIT_REGISTER_FUNC(wdir_watch_shutdown);
-#pragma FORCE_INCLUDE(wdir_watch_shutdown)
+WINIT_REGISTER_FUNC(wdir_watch_Shutdown);
+#pragma FORCE_INCLUDE(wdir_watch_Shutdown)
 #pragma SECTION_RESTORE
 
 
@@ -62,23 +66,6 @@ WINIT_REGISTER_FUNC(wdir_watch_shutdown);
 // the completion key is used to associate Watch with the directory handle.
 
 
-// list of all active watches. required, since we have to be able to
-// cancel watches; also makes detecting duplicates possible.
-//
-// only store pointer in container - they're not copy-equivalent
-// (dtor would close hDir).
-//
-// key is intptr_t "reqnum"; they aren't reused to avoid problems
-// with stale reqnums after cancelling;
-// hence, map instead of vector and freelist.
-struct Watch;
-typedef std::map<intptr_t, Watch*> Watches;
-typedef Watches::iterator WatchIt;
-
-// list of all active watches to detect duplicates and for easier cleanup.
-// only store pointer in container - they're not copy-equivalent.
-static Watches watches;
-
 // don't worry about size; heap-allocated.
 struct Watch
 {
@@ -115,72 +102,110 @@ struct Watch
 	{
 		memset(&ovl, 0, sizeof(ovl));
 		// change_buf[] doesn't need init
-
-		watches[reqnum] = this;
 	}
 
 	~Watch()
 	{
 		CloseHandle(hDir);
 		hDir = INVALID_HANDLE_VALUE;
-
-		watches[reqnum] = 0;
 	}
 };
 
 
-// global state
-static HANDLE hIOCP = 0;
-	// not INVALID_HANDLE_VALUE! (CreateIoCompletionPort requirement)
+//-----------------------------------------------------------------------------
+// list of active watches
 
-static intptr_t last_reqnum = 1000;
-	// start value provides a little protection against passing in bogus reqnums
-	// (we don't bother using a tag for safety though - it isn't important)
+// we need to be able to cancel watches, which requires a 'list' of them.
+// this also makes detecting duplicates possible and simplifies cleanup.
+//
+// key is intptr_t "reqnum"; they aren't reused to avoid problems with
+// stale reqnums after canceling; hence, use map instead of array.
+//
+// only store pointer in container - they're not copy-equivalent
+// (dtor would close hDir).
+typedef std::map<intptr_t, Watch*> Watches;
+typedef Watches::iterator WatchIt;
+static Watches* watches;
 
-
-typedef std::list<std::string> Events;
-static Events pending_events;
-	// rationale:
-	// we need a queue, instead of just taking events from the change_buf,
-	// because we need to re-issue the watch immediately after it returns
-	// data. of course we can't have the app read from the buffer while
-	// waiting for RDC to write to the buffer - race condition.
-	// an alternative to a queue would be to allocate another buffer,
-	// but that's more complicated, and this way is cleaner anyway.
-
-
-static LibError wdir_watch_shutdown()
+static void FreeAllWatches()
 {
-	CloseHandle(hIOCP);
-	hIOCP = INVALID_HANDLE_VALUE;
-
-	// free all (dynamically allocated) Watch objects
-/*si	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
-		delete it->second;
-	watches.clear();
-*/
-	return INFO::OK;
+	for(WatchIt it = watches->begin(); it != watches->end(); ++it)
+	{
+		Watch* w = it->second;
+		delete w;
+	}
+	watches->clear();
 }
+
+static Watch* WatchFromReqnum(intptr_t reqnum)
+{
+	return (*watches)[reqnum];
+}
+
+
+//-----------------------------------------------------------------------------
+// event queue
+
+// rationale:
+// we need a queue, instead of just taking events from the change_buf,
+// because we need to re-issue the watch immediately after it returns
+// data. of course we can't have the app read from the buffer while
+// waiting for RDC to write to the buffer - race condition.
+// an alternative to a queue would be to allocate another buffer,
+// but that's more complicated, and this way is cleaner anyway.
+typedef std::list<std::string> Events;
+static Events* pending_events;
+
+
+//-----------------------------------------------------------------------------
+// allocate static objects
+
+// manual allocation and construction/destruction of static objects is
+// required because winit calls us before static ctors and after dtors.
+
+static void AllocStaticObjects()
+{
+	STATIC_STORAGE(ss, 200);
+#include "lib/nommgr.h"
+	void* addr1 = static_calloc(&ss, sizeof(Watches));
+	watches = new(addr1) Watches;
+
+	void* addr2 = static_calloc(&ss, sizeof(Events));
+	pending_events = new(addr2) Events;
+#include "lib/mmgr.h"
+}
+
+static void FreeStaticObjects()
+{
+	watches->~Watches();
+	pending_events->~Events();
+}
+
+
+//-----------------------------------------------------------------------------
+// global state
+
+static HANDLE hIOCP = 0;	// CreateIoCompletionPort requires 0, not INVALID_HANDLE_VALUE
+
+// note: the start value provides a little protection against bogus reqnums
+// (we don't bother using a tag for safety though - it isn't important)
+static intptr_t last_reqnum = 1000;
 
 
 // HACK - see call site
 static void get_packet();
 
 
-static Watch* find_watch(intptr_t reqnum)
-{
-	return watches[reqnum];
-}
 
 // path: portable and relative, must add current directory and convert to native
 // better to use a cached string from rel_chdir - secure
-LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
+LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 {
-	LibError err  = ERR::FAIL;
+	LibError err = ERR::FAIL;
 	WIN_SAVE_LAST_ERROR;	// Create*
 
 	intptr_t reqnum;
-	*_reqnum = 0;
+	*preqnum = 0;
 
 	{
 	const std::string dir_s(dir);
@@ -188,7 +213,7 @@ LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
 	// check if this is a subdirectory of an already watched dir tree
 	// (much faster than issuing a new watch for every subdir).
 	// this also prevents watching the same directory twice.
-	for(WatchIt it = watches.begin(); it != watches.end(); ++it)
+	for(WatchIt it = watches->begin(); it != watches->end(); ++it)
 	{
 		Watch* const w = it->second;
 		if(!w)
@@ -237,6 +262,7 @@ LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
 	try
 	{
 		Watch* w = new Watch(reqnum, dir_s, hDir);
+		(*watches)[reqnum] = w;
 
 		// add trailing \ if not already there
 		if(dir_s[dir_s.length()-1] != '\\')
@@ -260,7 +286,7 @@ LibError dir_add_watch(const char* dir, intptr_t* _reqnum)
 
 done:
 	err = INFO::OK;
-	*_reqnum = reqnum;
+	*preqnum = reqnum;
 
 fail:
 	WIN_RESTORE_LAST_ERROR;
@@ -273,7 +299,7 @@ LibError dir_cancel_watch(const intptr_t reqnum)
 	if(reqnum <= 0)
 		WARN_RETURN(ERR::INVALID_PARAM);
 
-	Watch* w = find_watch(reqnum);
+	Watch* w = WatchFromReqnum(reqnum);
 	// watches[reqnum] is invalid - big trouble
 	if(!w)
 		WARN_RETURN(ERR::FAIL);
@@ -290,8 +316,8 @@ LibError dir_cancel_watch(const intptr_t reqnum)
 	// its reqnum isn't reused; if we receive a packet, it's ignored.
 	BOOL ok = CancelIo(w->hDir);
 
+	(*watches)[reqnum] = 0;
 	delete w;
-	watches[reqnum] = 0;
 	return LibError_from_win32(ok);
 }
 
@@ -315,7 +341,7 @@ static void extract_events(Watch* w)
 		for(int i = 0; i < (int)fni->FileNameLength/2; i++)
 			fn += (char)fni->FileName[i];
 
-		pending_events.push_back(fn);
+		pending_events->push_back(fn);
 
 		// advance to next entry in buffer (variable length)
 		const DWORD ofs = fni->NextEntryOffset;
@@ -332,8 +358,7 @@ static void extract_events(Watch* w)
 static void get_packet()
 {
 	// poll for change notifications from all pending watches
-	DWORD bytes_transferred;
-		// used to determine if packet is valid or a kickoff
+	DWORD bytes_transferred;	// used to determine if packet is valid or a kickoff
 	ULONG_PTR key;
 	OVERLAPPED* povl;
 	BOOL got_packet = GetQueuedCompletionStatus(hIOCP, &bytes_transferred, &key, &povl, 0);
@@ -341,7 +366,7 @@ static void get_packet()
 		return;
 
 	const intptr_t reqnum = (intptr_t)key;
-	Watch* const w = find_watch(reqnum);
+	Watch* const w = WatchFromReqnum(reqnum);
 	// watch was subsequently removed - ignore the error.
 	if(!w)
 		return;
@@ -375,12 +400,32 @@ LibError dir_get_changed_file(char* fn)
 	get_packet();
 
 	// nothing to return; call again later.
-	if(pending_events.empty())
+	if(pending_events->empty())
 		return ERR::AGAIN;	// NOWARN
 
-	const std::string& fn_s = pending_events.front();
+	const std::string& fn_s = pending_events->front();
 	strcpy_s(fn, PATH_MAX, fn_s.c_str());
-	pending_events.pop_front();
+	pending_events->pop_front();
+
+	return INFO::OK;
+}
+
+
+//-----------------------------------------------------------------------------
+
+static LibError wdir_watch_Init()
+{
+	AllocStaticObjects();
+	return INFO::OK;
+}
+
+static LibError wdir_watch_Shutdown()
+{
+	CloseHandle(hIOCP);
+	hIOCP = INVALID_HANDLE_VALUE;
+
+	FreeAllWatches();
+	FreeStaticObjects();
 
 	return INFO::OK;
 }
