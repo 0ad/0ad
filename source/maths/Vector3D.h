@@ -64,4 +64,6 @@ class CVector3D
 		const float* GetFloatArray() const { return &X; }
 };
 
+extern float MaxComponent(const CVector3D& v);
+
 #endif

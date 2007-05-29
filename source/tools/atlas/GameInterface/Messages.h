@@ -264,6 +264,11 @@ struct sEnvironmentSettings
 	Shareable<float> sunrotation; // range -pi..+pi
 	Shareable<float> sunelevation; // range -pi/2 .. +pi/2
 
+	// emulate 'HDR' by allowing overly bright suncolour. this is
+	// multiplied on to suncolour after converting to float
+	// (struct Colour stores as normal u8, 0..255)
+	Shareable<float> sunoverbrightness; // range 1..3
+
 	Shareable<std::wstring> skyset;
 
 	Shareable<Colour> suncolour;

@@ -42,6 +42,13 @@ sEnvironmentSettings GetSettings()
 
 	// RGBColor (CVector3D) colours
 #define COLOUR(A, B) A = Colour((int)(B.X*255), (int)(B.Y*255), (int)(B.Z*255))
+	s.sunoverbrightness = MaxComponent(g_LightEnv.m_SunColor);
+	// clamp color to [0..1] before packing into u8 triplet
+	if(s.sunoverbrightness > 1.0f)
+		g_LightEnv.m_SunColor *= 1.0/s.sunoverbrightness;	// (there's no operator/=)
+	// no component was above 1.0, so reset scale factor (don't want to darken)
+	else
+		s.sunoverbrightness = 1.0f;
 	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
 	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
 	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
@@ -75,6 +82,7 @@ void SetSettings(const sEnvironmentSettings& s)
 
 #define COLOUR(A, B) B = RGBColor(A->r/255.f, A->g/255.f, A->b/255.f)
 	COLOUR(s.suncolour, g_LightEnv.m_SunColor);
+	g_LightEnv.m_SunColor *= s.sunoverbrightness;
 	COLOUR(s.terraincolour, g_LightEnv.m_TerrainAmbientColor);
 	COLOUR(s.unitcolour, g_LightEnv.m_UnitsAmbientColor);
 #undef COLOUR

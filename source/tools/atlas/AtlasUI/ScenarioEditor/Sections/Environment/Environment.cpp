@@ -206,6 +206,7 @@ EnvironmentSidebar::EnvironmentSidebar(wxWindow* sidebarContainer, wxWindow* bot
 
 	sunSizer->Add(new VariableSliderBox(this, _("Sun rotation"), g_EnvironmentSettings.sunrotation, -M_PI, M_PI), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableSliderBox(this, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -M_PI/2, M_PI/2), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableSliderBox(this, _("Sun overbrightness"), g_EnvironmentSettings.sunoverbrightness, 1.0f, 3.0f), wxSizerFlags().Expand());
 
 	m_MainSizer->Add(new LightControl(this, wxSize(150, 150), g_EnvironmentSettings));
 	m_MainSizer->Add(m_SkyList = new VariableListBox(this, _("Sky set"), g_EnvironmentSettings.skyset));

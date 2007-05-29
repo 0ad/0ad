@@ -134,3 +134,14 @@ void CVector3D::Normalize ()
 	Y *= scale;
 	Z *= scale;
 }
+
+
+//-----------------------------------------------------------------------------
+
+float MaxComponent(const CVector3D& v)
+{
+	float max = -FLT_MAX;
+	for(int i = 0; i < 3; i++)
+		max = std::max(max, v[i]);
+	return max;
+}

@@ -268,6 +268,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 	m_EnvironmentSettings.sunelevation = 45 * M_PI/180;
 	m_EnvironmentSettings.sunrotation = 315 * M_PI/180;
+	m_EnvironmentSettings.sunoverbrightness = 1.0f;
 	m_EnvironmentSettings.suncolour = Colour(255, 255, 255);
 	m_EnvironmentSettings.terraincolour = Colour(164, 164, 164);
 	m_EnvironmentSettings.unitcolour = Colour(164, 164, 164);
