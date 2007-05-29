@@ -121,9 +121,9 @@ public:
 
 // -- 
 
-	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
-	jsval PreventDefault( JSContext* cx, uintN argc, jsval* argv );
-	jsval StopPropagation( JSContext* cx, uintN argc, jsval* argv );
+	CStr ToString( JSContext* cx, uintN argc, jsval* argv );
+	void PreventDefault( JSContext* cx, uintN argc, jsval* argv );
+	void StopPropagation( JSContext* cx, uintN argc, jsval* argv );
 
 public:
 	CScriptEvent( const CStrW& Type, unsigned int TypeCode = (unsigned int)-1, bool Cancelable = true, bool Blockable = true );

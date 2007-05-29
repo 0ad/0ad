@@ -31,7 +31,7 @@ public:
 
 	// Script-bound functions
 
-	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
+	CStr ToString( JSContext* cx, uintN argc, jsval* argv );
 
 	// start playing the sound (one-shot).
 	// it will automatically be freed when done.

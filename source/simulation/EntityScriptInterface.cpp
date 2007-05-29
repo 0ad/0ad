@@ -46,48 +46,50 @@ extern int g_xres, g_yres;
 
 void CEntity::ScriptingInit()
 {
-	AddMethod<jsval, &CEntity::ToString>( "toString", 0 );
+	// TODO: lots of these return jsval when they should return proper types
+	// and make use of automatic type conversion
+	AddMethod<jsval_t, &CEntity::ToString>( "toString", 0 );
 	AddMethod<bool, &CEntity::OrderSingle>( "order", 1 );
 	AddMethod<bool, &CEntity::OrderQueued>( "orderQueued", 1 );
 	AddMethod<bool, &CEntity::OrderFromTriggers>( "orderFromTriggers", 1 );
-	AddMethod<jsval, &CEntity::TerminateOrder>( "terminateOrder", 1 );
+	AddMethod<jsval_t, &CEntity::TerminateOrder>( "terminateOrder", 1 );
 	AddMethod<bool, &CEntity::Kill>( "kill", 0 );
 	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
 	AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
-	AddMethod<jsval, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
-	AddMethod<jsval, &CEntity::AddAura>( "addAura", 3 );
-	AddMethod<jsval, &CEntity::RemoveAura>( "removeAura", 1 );
-	AddMethod<jsval, &CEntity::SetActionParams>( "setActionParams", 5 );
+	AddMethod<jsval_t, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
+	AddMethod<jsval_t, &CEntity::AddAura>( "addAura", 3 );
+	AddMethod<jsval_t, &CEntity::RemoveAura>( "removeAura", 1 );
+	AddMethod<jsval_t, &CEntity::SetActionParams>( "setActionParams", 5 );
 	AddMethod<int, &CEntity::GetCurrentRequest>( "getCurrentRequest", 0 );
 	AddMethod<bool, &CEntity::ForceCheckListeners>( "forceCheckListeners", 2 );
 	AddMethod<bool, &CEntity::RequestNotification>( "requestNotification", 4 );
-	AddMethod<jsval, &CEntity::DestroyNotifier>( "destroyNotifier", 1 );
-	AddMethod<jsval, &CEntity::DestroyAllNotifiers>( "destroyAllNotifiers", 0 );
-	AddMethod<jsval, &CEntity::TriggerRun>( "triggerRun", 1 );
-	AddMethod<jsval, &CEntity::SetRun>( "setRun", 1 );
-	AddMethod<jsval, &CEntity::GetRunState>( "getRunState", 0 );
+	AddMethod<jsval_t, &CEntity::DestroyNotifier>( "destroyNotifier", 1 );
+	AddMethod<jsval_t, &CEntity::DestroyAllNotifiers>( "destroyAllNotifiers", 0 );
+	AddMethod<jsval_t, &CEntity::TriggerRun>( "triggerRun", 1 );
+	AddMethod<jsval_t, &CEntity::SetRun>( "setRun", 1 );
+	AddMethod<jsval_t, &CEntity::GetRunState>( "getRunState", 0 );
 	AddMethod<bool, &CEntity::IsInFormation>( "isInFormation", 0 );
-	AddMethod<jsval, &CEntity::GetFormationBonus>( "getFormationBonus", 0 );
-	AddMethod<jsval, &CEntity::GetFormationBonusType>( "getFormationBonusType", 0 );
-	AddMethod<jsval, &CEntity::GetFormationBonusVal>( "getFormationBonusVal", 0 );
-	AddMethod<jsval, &CEntity::GetFormationPenalty>( "getFormationPenalty", 0 );
-	AddMethod<jsval, &CEntity::GetFormationPenaltyType>( "getFormationPenaltyType", 0 );
-	AddMethod<jsval, &CEntity::GetFormationPenaltyVal>( "getFormationPenaltyVal", 0 );
-	AddMethod<jsval, &CEntity::RegisterDamage>( "registerDamage", 0 );
-	AddMethod<jsval, &CEntity::RegisterOrderChange>( "registerOrderChange", 0 );
-	AddMethod<jsval, &CEntity::GetAttackDirections>( "getAttackDirections", 0 );
-	AddMethod<jsval, &CEntity::FindSector>( "findSector", 4);
-	AddMethod<jsval, &CEntity::GetHeight>( "getHeight", 0 );
-	AddMethod<jsval, &CEntity::HasRallyPoint>( "hasRallyPoint", 0 );
-	AddMethod<jsval, &CEntity::SetRallyPoint>( "setRallyPoint", 0 );
-	AddMethod<jsval, &CEntity::GetRallyPoint>( "getRallyPoint", 0 );
-	AddMethod<jsval, &CEntity::OnDamaged>( "onDamaged", 1 );
-	AddMethod<jsval, &CEntity::GetVisibleEntities>( "getVisibleEntities", 0 );
+	AddMethod<jsval_t, &CEntity::GetFormationBonus>( "getFormationBonus", 0 );
+	AddMethod<jsval_t, &CEntity::GetFormationBonusType>( "getFormationBonusType", 0 );
+	AddMethod<jsval_t, &CEntity::GetFormationBonusVal>( "getFormationBonusVal", 0 );
+	AddMethod<jsval_t, &CEntity::GetFormationPenalty>( "getFormationPenalty", 0 );
+	AddMethod<jsval_t, &CEntity::GetFormationPenaltyType>( "getFormationPenaltyType", 0 );
+	AddMethod<jsval_t, &CEntity::GetFormationPenaltyVal>( "getFormationPenaltyVal", 0 );
+	AddMethod<jsval_t, &CEntity::RegisterDamage>( "registerDamage", 0 );
+	AddMethod<jsval_t, &CEntity::RegisterOrderChange>( "registerOrderChange", 0 );
+	AddMethod<jsval_t, &CEntity::GetAttackDirections>( "getAttackDirections", 0 );
+	AddMethod<jsval_t, &CEntity::FindSector>( "findSector", 4);
+	AddMethod<jsval_t, &CEntity::GetHeight>( "getHeight", 0 );
+	AddMethod<jsval_t, &CEntity::HasRallyPoint>( "hasRallyPoint", 0 );
+	AddMethod<jsval_t, &CEntity::SetRallyPoint>( "setRallyPoint", 0 );
+	AddMethod<jsval_t, &CEntity::GetRallyPoint>( "getRallyPoint", 0 );
+	AddMethod<jsval_t, &CEntity::OnDamaged>( "onDamaged", 1 );
+	AddMethod<jsval_t, &CEntity::GetVisibleEntities>( "getVisibleEntities", 0 );
 	AddMethod<float, &CEntity::GetDistance>( "getDistance", 1 );
-	AddMethod<jsval, &CEntity::FlattenTerrain>( "flattenTerrain", 0 );
+	AddMethod<jsval_t, &CEntity::FlattenTerrain>( "flattenTerrain", 0 );
 
-	AddClassProperty( L"traits.id.classes", (GetFn)&CEntity::GetClassSet, (SetFn)&CEntity::SetClassSet );
-	AddClassProperty( L"template", (CEntityTemplate* CEntity::*)&CEntity::m_base, false, (NotifyFn)&CEntity::LoadBase );
+	AddClassProperty( L"traits.id.classes", static_cast<GetFn>(&CEntity::GetClassSet), static_cast<SetFn>(&CEntity::SetClassSet) );
+	AddClassProperty( L"template", static_cast<CEntityTemplate* CEntity::*>(&CEntity::m_base), false, static_cast<NotifyFn>(&CEntity::LoadBase) );
 
 	/* Any inherited property MUST be added to EntityTemplate.cpp as well */
 
@@ -97,13 +99,13 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"actions.move.run.range", &CEntity::m_runMaxRange );
 	AddClassProperty( L"actions.move.run.regenRate", &CEntity::m_runRegenRate );
 	AddClassProperty( L"actions.move.run.decayRate", &CEntity::m_runDecayRate );
-	AddClassProperty( L"selected", &CEntity::m_selected, false, (NotifyFn)&CEntity::CheckSelection );
-	AddClassProperty( L"group", &CEntity::m_grouped, false, (NotifyFn)&CEntity::CheckGroup );
+	AddClassProperty( L"selected", &CEntity::m_selected, false, static_cast<NotifyFn>(&CEntity::CheckSelection) );
+	AddClassProperty( L"group", &CEntity::m_grouped, false, static_cast<NotifyFn>(&CEntity::CheckGroup) );
 	AddClassProperty( L"traits.extant", &CEntity::m_extant );
 	AddClassProperty( L"actions.move.turningRadius", &CEntity::m_turningRadius );
-	AddClassProperty( L"position", &CEntity::m_position, false, (NotifyFn)&CEntity::Teleport );
-	AddClassProperty( L"orientation", &CEntity::m_orientation, false, (NotifyFn)&CEntity::Reorient );
-	AddClassProperty( L"player", (GetFn)&CEntity::JSI_GetPlayer, (SetFn)&CEntity::JSI_SetPlayer );
+	AddClassProperty( L"position", &CEntity::m_position, false, static_cast<NotifyFn>(&CEntity::Teleport) );
+	AddClassProperty( L"orientation", &CEntity::m_orientation, false, static_cast<NotifyFn>(&CEntity::Reorient) );
+	AddClassProperty( L"player", static_cast<GetFn>(&CEntity::JSI_GetPlayer), static_cast<SetFn>(&CEntity::JSI_SetPlayer) );
 	AddClassProperty( L"traits.health.curr", &CEntity::m_healthCurr );
 	AddClassProperty( L"traits.health.max", &CEntity::m_healthMax );
 	AddClassProperty( L"traits.health.regenRate", &CEntity::m_healthRegenRate );
@@ -113,7 +115,7 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"traits.stamina.max", &CEntity::m_staminaMax );
 	AddClassProperty( L"traits.rank.name", &CEntity::m_rankName );
 	AddClassProperty( L"traits.vision.los", &CEntity::m_los );
-	AddClassProperty( L"traits.ai.stance.curr", &CEntity::m_stanceName, false, (NotifyFn)&CEntity::StanceChanged );
+	AddClassProperty( L"traits.ai.stance.curr", &CEntity::m_stanceName, false, static_cast<NotifyFn>(&CEntity::StanceChanged) );
 	AddClassProperty( L"lastCombatTime", &CEntity::m_lastCombatTime );
 	AddClassProperty( L"lastRunTime", &CEntity::m_lastRunTime );
 	AddClassProperty( L"building", &CEntity::m_building );
@@ -208,7 +210,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 
 // Script-bound methods
 
-jsval CEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	CStrW name( L"[object Entity: " + m_base->m_Tag + L"]" );
 	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, name.utf16().c_str() ) ) );
@@ -267,7 +269,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrde
 
 	CEntity* target;
 
-	(int&)newOrder.m_type = orderCode;
+	newOrder.m_type = (CEntityOrder::EOrderType)orderCode;
 
 	switch( orderCode )
 	{
@@ -359,7 +361,7 @@ bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(arg
 	return( true );
 }
 
-jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+jsval_t CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
 	float spawn_clearance = 2.0f;
 	if( argc >= 1 )
@@ -501,7 +503,7 @@ jsval CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	return( JSVAL_NULL );
 }
 
-jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
+jsval_t CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
 {
 	debug_assert( argc >= 8 );
 	debug_assert( JSVAL_IS_OBJECT(argv[7]) );
@@ -527,7 +529,7 @@ jsval CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
 	return JSVAL_VOID;
 }
 
-jsval CEntity::RemoveAura( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+jsval_t CEntity::RemoveAura( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
 	debug_assert( argc >= 1 );
 	CStrW name = ToPrimitive<CStrW>( argv[0] );
@@ -542,7 +544,7 @@ jsval CEntity::RemoveAura( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	return JSVAL_VOID;
 }
 
-jsval CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+jsval_t CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 {
 	debug_assert( argc == 5 );
 
@@ -563,7 +565,7 @@ bool CEntity::RequestNotification( JSContext* cx, uintN argc, jsval* argv )
 
 	CEntityListener notify;
 	CEntity *target = ToNative<CEntity>( argv[0] );
-	(int&)notify.m_type = ToPrimitive<int>( argv[1] );
+	notify.m_type = (CEntityListener::EType)ToPrimitive<int>( argv[1] );
 	bool tmpDestroyNotifiers = ToPrimitive<bool>( argv[2] );
 	entf_set_to(ENTF_DESTROY_NOTIFIERS, !ToPrimitive<bool>( argv[3] ));
 
@@ -682,25 +684,25 @@ void CEntity::CheckListeners( int type, CEntity *target)
 		}
 	}
 }
-jsval CEntity::DestroyAllNotifiers( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::DestroyAllNotifiers( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	DestroyAllNotifiers();
 	return JS_TRUE;
 }
-jsval CEntity::DestroyNotifier( JSContext* cx, uintN argc, jsval* argv )
+jsval_t CEntity::DestroyNotifier( JSContext* cx, uintN argc, jsval* argv )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	DestroyNotifier( ToNative<CEntity>( argv[0] ) );
 	return JS_TRUE;
 }
 
-jsval CEntity::TriggerRun( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::TriggerRun( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	entf_set(ENTF_TRIGGER_RUN);
 	return JSVAL_VOID;
 }
 
-jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
+jsval_t CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	bool should_run = ToPrimitive<bool> ( argv[0] );
@@ -708,44 +710,44 @@ jsval CEntity::SetRun( JSContext* cx, uintN argc, jsval* argv )
 	entf_set_to(ENTF_IS_RUNNING, should_run);
 	return JSVAL_VOID;
 }
-jsval CEntity::GetRunState( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetRunState( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return BOOLEAN_TO_JSVAL( entf_get(ENTF_SHOULD_RUN) );
 }
-jsval CEntity::GetFormationPenalty( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetFormationPenalty( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetPenalty() );
 }
-jsval CEntity::GetFormationPenaltyBase( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetFormationPenaltyBase( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetPenaltyBase() );
 }
-jsval CEntity::GetFormationPenaltyType( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetFormationPenaltyType( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetPenaltyType() );
 }
-jsval CEntity::GetFormationPenaltyVal( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetFormationPenaltyVal( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetPenaltyVal() );
 }
-jsval CEntity::GetFormationBonus( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetFormationBonus( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetBonus() );
 }
-jsval CEntity::GetFormationBonusBase( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetFormationBonusBase( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetBonusBase() );
 }
-jsval CEntity::GetFormationBonusType( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetFormationBonusType( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetBonusType() );
 }
-jsval CEntity::GetFormationBonusVal( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetFormationBonusVal( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( GetFormation()->GetBase()->GetBonusVal() );
 }
 
-jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
+jsval_t CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	CEntity* inflictor = ToNative<CEntity>( argv[0] );
@@ -759,7 +761,7 @@ jsval CEntity::RegisterDamage( JSContext* cx, uintN argc, jsval* argv )
 	m_sectorValues[sector]=true;
 	return JS_TRUE;
 }
-jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
+jsval_t CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	CEntity* idleEntity = ToNative<CEntity>( argv[0] );
@@ -774,7 +776,7 @@ jsval CEntity::RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv )
 	m_sectorValues[sector]=false;
 	return JS_TRUE;
 }
-jsval CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	int directions=0;
 
@@ -785,7 +787,7 @@ jsval CEntity::GetAttackDirections( JSContext* UNUSED(cx), uintN UNUSED(argc), j
 	}
 	return ToJSVal( directions );
 }
-jsval CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
+jsval_t CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
 {
 	JSU_REQUIRE_PARAMS_CPP(4);
 
@@ -804,15 +806,15 @@ jsval CEntity::FindSector( JSContext* cx, uintN argc, jsval* argv )
 		return 0;
 	}
 }
-jsval CEntity::HasRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::HasRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( entf_get(ENTF_HAS_RALLY_POINT) );
 }
-jsval CEntity::GetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return ToJSVal( m_rallyPoint );
 }
-jsval CEntity::SetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::SetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	entf_set(ENTF_HAS_RALLY_POINT);
 	m_rallyPoint = g_Game->GetView()->GetCamera()->GetWorldCoordinates(true);
@@ -820,7 +822,7 @@ jsval CEntity::SetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* 
 }
 
 // Called by the script when the entity is damaged, to let it retaliate
-jsval CEntity::OnDamaged( JSContext* cx, uintN argc, jsval* argv )
+jsval_t CEntity::OnDamaged( JSContext* cx, uintN argc, jsval* argv )
 {
 	JSU_REQUIRE_PARAMS_CPP(1);
 	CEntity* damageSource = ToNative<CEntity>( argv[0] );
@@ -828,7 +830,7 @@ jsval CEntity::OnDamaged( JSContext* cx, uintN argc, jsval* argv )
 	return JSVAL_VOID;
 }
 
-jsval CEntity::GetVisibleEntities( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::GetVisibleEntities( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	std::vector<CEntity*> pointers;
 	g_EntityManager.GetInLOS( this, pointers );
@@ -870,7 +872,7 @@ int CEntity::GetAttackAction( HEntity target )
 	return 0;
 }
 
-jsval CEntity::FlattenTerrain( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::FlattenTerrain( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	float xDiff, yDiff;
 	CVector3D pos = m_position;

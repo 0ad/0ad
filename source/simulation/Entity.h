@@ -371,53 +371,53 @@ public:
 	void DestroyAllNotifiers();
 
 	int FindSector( int divs, float angle, float maxAngle, bool negative=true );
-	jsval FlattenTerrain( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t FlattenTerrain( JSContext* cx, uintN argc, jsval* argv );
 
 	CEntityFormation* GetFormation();
-	jsval GetFormationPenalty( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetFormationPenaltyBase( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetFormationPenaltyType( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetFormationPenaltyVal( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetFormationPenalty( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetFormationPenaltyBase( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetFormationPenaltyType( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetFormationPenaltyVal( JSContext* cx, uintN argc, jsval* argv );
 
-	jsval GetFormationBonus( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetFormationBonusBase( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetFormationBonusType( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetFormationBonusVal( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetFormationBonus( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetFormationBonusBase( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetFormationBonusType( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetFormationBonusVal( JSContext* cx, uintN argc, jsval* argv );
 
 	void DispatchFormationEvent( int type );
 
-	jsval RegisterDamage( JSContext* cx, uintN argc, jsval* argv );
-	jsval RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetAttackDirections( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t RegisterDamage( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t RegisterOrderChange( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetAttackDirections( JSContext* cx, uintN argc, jsval* argv );
 
-	jsval FindSector( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t FindSector( JSContext* cx, uintN argc, jsval* argv );
 
 	// Script constructor
 	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 
 	// Script-bound functions
 
-	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t ToString( JSContext* cx, uintN argc, jsval* argv );
 
 	bool Kill( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetSpawnPoint( JSContext* cx, uintN argc, jsval* argv );
 
-	inline jsval HasRallyPoint( JSContext* cx, uintN argc, jsval* argv );
-	inline jsval GetRallyPoint( JSContext* cx, uintN argc, jsval* argv );
-	inline jsval SetRallyPoint( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t HasRallyPoint( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetRallyPoint( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t SetRallyPoint( JSContext* cx, uintN argc, jsval* argv );
 
-	jsval AddAura( JSContext* cx, uintN argc, jsval* argv );
-	jsval RemoveAura( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t AddAura( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t RemoveAura( JSContext* cx, uintN argc, jsval* argv );
 
-	jsval SetActionParams( JSContext* cx, uintN argc, jsval* argv );
-	jsval TriggerRun( JSContext* cx, uintN argc, jsval* argv );
-	jsval SetRun( JSContext* cx, uintN argc, jsval* argv );
-	jsval IsRunning( JSContext* cx, uintN argc, jsval* argv );
-	jsval GetRunState( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t SetActionParams( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t TriggerRun( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t SetRun( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t IsRunning( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetRunState( JSContext* cx, uintN argc, jsval* argv );
 	
-	jsval OnDamaged( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t OnDamaged( JSContext* cx, uintN argc, jsval* argv );
 
-	jsval GetVisibleEntities( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t GetVisibleEntities( JSContext* cx, uintN argc, jsval* argv );
 
 	float GetDistance( JSContext* cx, uintN argc, jsval* argv );
 
@@ -426,8 +426,8 @@ public:
 	bool ForceCheckListeners( JSContext* cx, uintN argc, jsval* argv );
 	int GetCurrentRequest( JSContext* cx, uintN argc, jsval* argv );
 	void CheckListeners( int type, CEntity *target );
-	jsval DestroyAllNotifiers( JSContext* cx, uintN argc, jsval* argv );
-	jsval DestroyNotifier( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t DestroyAllNotifiers( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t DestroyNotifier( JSContext* cx, uintN argc, jsval* argv );
 
 	jsval JSI_GetPlayer();
 	void JSI_SetPlayer(jsval val);
@@ -464,7 +464,7 @@ public:
 		return( m_classes.IsMember( ToPrimitive<CStrW>( cx, argv[0] ) ) );
 	}
 
-	jsval TerminateOrder( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+	jsval_t TerminateOrder( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	{
 		debug_assert( argc >= 1);
 		if ( ToPrimitive<bool>( argv[0] ) )
@@ -474,7 +474,7 @@ public:
 		return JSVAL_VOID;
 	}
 
-	jsval GetHeight( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+	jsval_t GetHeight( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 	{
 		return ToJSVal(m_position.Y);
 	}

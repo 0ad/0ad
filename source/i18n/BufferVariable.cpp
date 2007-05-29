@@ -8,6 +8,7 @@
 // Hashing functions are currently 32-bit only
 cassert(sizeof(int) == 4);
 cassert(sizeof(double) == 8);
+// (TODO: the hashing here is quite rubbish)
 
 using namespace I18n;
 
@@ -48,7 +49,12 @@ StrImW BufferVariable_double::ToString(CLocale*)
 u32 BufferVariable_double::Hash()
 {
 	// Add the two four-bytes of the double
-	return *((u32*)&value) + *((u32*)&value + 1);
+	union {
+		u32 i[2];
+		double d;
+	} u;
+	u.d = value;
+	return u.i[0]+u.i[1];
 }
 
 

@@ -43,7 +43,7 @@ void CProductionItem::ScriptingInit()
 	AddProperty(L"name", &CProductionItem::m_name, true);
 	AddProperty(L"elapsedTime", &CProductionItem::m_elapsedTime, true);
 	AddProperty(L"totalTime", &CProductionItem::m_totalTime, true);
-	AddProperty(L"progress", (GetFn)&CProductionItem::JSI_GetProgress);
+	AddProperty(L"progress", static_cast<GetFn>(&CProductionItem::JSI_GetProgress));
 	CJSObject<CProductionItem>::ScriptingInit("ProductionItem");
 }
 
@@ -103,12 +103,12 @@ jsval CProductionQueue::JSI_GetLength( JSContext* UNUSED(cx) )
 	return ToJSVal( (int) m_items.size() );
 }
 
-jsval CProductionQueue::JSI_Get( JSContext* cx, uintN argc, jsval* argv )
+jsval_t CProductionQueue::JSI_Get( JSContext* cx, uintN argc, jsval* argv )
 {
 	debug_assert( argc == 1 );
 	debug_assert( JSVAL_IS_INT(argv[0]) );
 
-    int index = ToPrimitive<int>( argv[0] );
+	int index = ToPrimitive<int>( argv[0] );
 
 	if(index < 0 || index >= (int)m_items.size() )
 	{
@@ -124,7 +124,7 @@ bool CProductionQueue::JSI_Cancel( JSContext* cx, uintN argc, jsval* argv )
 	debug_assert( argc == 1 );
 	debug_assert( JSVAL_IS_INT(argv[0]) );
 
-    int index = ToPrimitive<int>( argv[0] );
+	int index = ToPrimitive<int>( argv[0] );
 
 	if(index < 0 || index >= (int)m_items.size() )
 	{
@@ -141,8 +141,8 @@ bool CProductionQueue::JSI_Cancel( JSContext* cx, uintN argc, jsval* argv )
 
 void CProductionQueue::ScriptingInit()
 {
-	AddProperty(L"length", (GetFn)&CProductionQueue::JSI_GetLength);
-	AddMethod<jsval, &CProductionQueue::JSI_Get>( "get", 1 );
+	AddProperty(L"length", static_cast<GetFn>(&CProductionQueue::JSI_GetLength));
+	AddMethod<jsval_t, &CProductionQueue::JSI_Get>( "get", 1 );
 	AddMethod<bool, &CProductionQueue::JSI_Cancel>( "cancel", 1 );
 	CJSObject<CProductionQueue>::ScriptingInit("ProductionQueue");
 }

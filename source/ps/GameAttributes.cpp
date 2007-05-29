@@ -280,13 +280,13 @@ void CGameAttributes::ScriptingInit()
 	g_ScriptingHost.DefineCustomObjectType(&PlayerSlotArray_JS::Class,
 		PlayerSlotArray_JS::Construct, 0, NULL, NULL, NULL, NULL);
 	
-	AddMethod<jsval, &CGameAttributes::JSI_GetOpenSlot>("getOpenSlot", 0);
+	AddMethod<jsval_t, &CGameAttributes::JSI_GetOpenSlot>("getOpenSlot", 0);
 	AddProperty(L"slots", &CGameAttributes::JSI_GetPlayerSlots);
 
 	CJSObject<CGameAttributes>::ScriptingInit("GameAttributes");
 }
 
-jsval CGameAttributes::JSI_GetOpenSlot(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
+jsval_t CGameAttributes::JSI_GetOpenSlot(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	vector <CPlayerSlot *>::iterator it;
 	for (it = m_PlayerSlots.begin();it != m_PlayerSlots.end();++it)

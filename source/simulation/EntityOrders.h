@@ -52,7 +52,7 @@ struct SOrderData
 class CEntityListener
 {
 public:
-	enum
+	enum EType
 	{
 		NOTIFY_NONE = 0x00,
 

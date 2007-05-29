@@ -164,7 +164,7 @@ public:
 	// Get script execution contexts - always run in the context of the entity that fired it.
 	JSObject* GetScriptExecContext(IEventTarget* target);
 
-	jsval ToString(JSContext* cx, uintN argc, jsval* argv);
+	CStr ToString(JSContext* cx, uintN argc, jsval* argv);
 
 	static void ScriptingInit();
 

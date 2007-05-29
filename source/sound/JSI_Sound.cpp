@@ -154,7 +154,7 @@ bool JSI_Sound::Free(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(ar
 
 void JSI_Sound::ScriptingInit()
 {
-	AddMethod<jsval, &JSI_Sound::ToString>("toString", 0);
+	AddMethod<CStr, &JSI_Sound::ToString>("toString", 0);
 	AddMethod<bool, &JSI_Sound::Play>("play", 0);
 	AddMethod<bool, &JSI_Sound::Loop>("loop", 0);
 	AddMethod<bool, &JSI_Sound::Free>("free", 0);
@@ -166,10 +166,9 @@ void JSI_Sound::ScriptingInit()
 	CJSObject<JSI_Sound>::ScriptingInit("Sound", &JSI_Sound::Construct, 1);
 }
 
-jsval JSI_Sound::ToString(JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv))
+CStr JSI_Sound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	CStr name = "[object Sound: " + CStr(h_filename(m_Handle)) + "]";
-	return STRING_TO_JSVAL(JS_NewStringCopyZ(cx, name));
+	return "[object Sound: " + CStr(h_filename(m_Handle)) + "]";
 }
 
 JSBool JSI_Sound::Construct(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)

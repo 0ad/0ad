@@ -163,10 +163,10 @@ CScriptEvent::CScriptEvent( const CStrW& Type, unsigned int TypeCode, bool Cance
 
 void CScriptEvent::ScriptingInit()
 {
-	AddMethod<jsval, &CScriptEvent::ToString>( "toString", 0 );
-	AddMethod<jsval, &CScriptEvent::PreventDefault>( "preventDefault", 0 );
-	AddMethod<jsval, &CScriptEvent::PreventDefault>( "cancel", 0 );
-	AddMethod<jsval, &CScriptEvent::StopPropagation>( "stopPropagation", 0 );
+	AddMethod<CStr, &CScriptEvent::ToString>( "toString", 0 );
+	AddMethod<void, &CScriptEvent::PreventDefault>( "preventDefault", 0 );
+	AddMethod<void, &CScriptEvent::PreventDefault>( "cancel", 0 );
+	AddMethod<void, &CScriptEvent::StopPropagation>( "stopPropagation", 0 );
 
 	AddProperty( L"type", &CScriptEvent::m_Type, true );
 	AddProperty( L"cancelable", &CScriptEvent::m_Cancelable, true );
@@ -176,26 +176,19 @@ void CScriptEvent::ScriptingInit()
 	CJSObject<CScriptEvent>::ScriptingInit( "Event" );
 }
 
-jsval CScriptEvent::PreventDefault( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+void CScriptEvent::PreventDefault( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if( m_Cancelable )
 		m_Cancelled = true;
-	return( JSVAL_VOID );
 }
 
-jsval CScriptEvent::StopPropagation( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+void CScriptEvent::StopPropagation( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	if( m_Blockable )
 		m_Blocked = true;
-	return( JSVAL_VOID );
 }
 
-jsval CScriptEvent::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
+CStr CScriptEvent::ToString( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	wchar_t buffer[256];
-	swprintf( buffer, 256, L"[object Event: %ls]", m_Type.c_str() );
-	buffer[255] = 0;
-	utf16string str16=utf16string(buffer, buffer+wcslen(buffer));
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
+	return "[object Event: " + CStr(m_Type) + "]";
 }
-

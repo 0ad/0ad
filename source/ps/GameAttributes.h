@@ -150,7 +150,7 @@ private:
 	static void OnNumSlotsUpdate(CSynchedJSObjectBase *owner);
 
 	jsval JSI_GetPlayerSlots(JSContext* cx);
-	jsval JSI_GetOpenSlot(JSContext *cx, uintN argc, jsval *argv);
+	jsval_t JSI_GetOpenSlot(JSContext *cx, uintN argc, jsval *argv);
 	static void ScriptingInit();
 
 public:

@@ -25,19 +25,21 @@ struct SHotkeyMapping
 
 typedef std::vector<SHotkeyMapping> KeyMapping;
 
-// 'Keycodes' for the mouse buttons
-const int MOUSE_LEFT = SDLK_LAST + SDL_BUTTON_LEFT;
-const int MOUSE_RIGHT = SDLK_LAST + SDL_BUTTON_RIGHT;
-const int MOUSE_MIDDLE = SDLK_LAST + SDL_BUTTON_MIDDLE;
-const int MOUSE_WHEELUP = SDLK_LAST + SDL_BUTTON_WHEELUP;
-const int MOUSE_WHEELDOWN = SDLK_LAST + SDL_BUTTON_WHEELDOWN;
+enum {
+	// 'Keycodes' for the mouse buttons
+	MOUSE_LEFT = SDLK_LAST + SDL_BUTTON_LEFT,
+	MOUSE_RIGHT = SDLK_LAST + SDL_BUTTON_RIGHT,
+	MOUSE_MIDDLE = SDLK_LAST + SDL_BUTTON_MIDDLE,
+	MOUSE_WHEELUP = SDLK_LAST + SDL_BUTTON_WHEELUP,
+	MOUSE_WHEELDOWN = SDLK_LAST + SDL_BUTTON_WHEELDOWN,
 
-// 'Keycodes' for the unified modifier keys
-const int UNIFIED_SHIFT = MOUSE_WHEELDOWN + 1;
-const int UNIFIED_CTRL = MOUSE_WHEELDOWN + 2;
-const int UNIFIED_ALT = MOUSE_WHEELDOWN + 3;
-const int UNIFIED_META = MOUSE_WHEELDOWN + 4;
-const int UNIFIED_SUPER = MOUSE_WHEELDOWN + 5;
+	// 'Keycodes' for the unified modifier keys
+	UNIFIED_SHIFT,
+	UNIFIED_CTRL,
+	UNIFIED_ALT,
+	UNIFIED_META,
+	UNIFIED_SUPER
+}; 
 
 /**
  * HK_MAX_KEYCODES: Global maximum number of keycodes, including our "fake" keycodes for
@@ -358,31 +360,31 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	phantom.ev.type = ( ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) ) ? SDL_KEYDOWN : SDL_KEYUP;
 	if( ( keycode == SDLK_LSHIFT ) || ( keycode == SDLK_RSHIFT ) )
 	{
-		(int&)phantom.ev.key.keysym.sym = UNIFIED_SHIFT;
+		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_SHIFT;
 		unified[0] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LCTRL ) || ( keycode == SDLK_RCTRL ) )
 	{
-		(int&)phantom.ev.key.keysym.sym = UNIFIED_CTRL;
+		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_CTRL;
 		unified[1] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LALT ) || ( keycode == SDLK_RALT ) )
 	{
-		(int&)phantom.ev.key.keysym.sym = UNIFIED_ALT;
+		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_ALT;
 		unified[2] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LMETA ) || ( keycode == SDLK_RMETA ) )
 	{
-		(int&)phantom.ev.key.keysym.sym = UNIFIED_META;
+		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_META;
 		unified[3] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}
 	else if( ( keycode == SDLK_LSUPER ) || ( keycode == SDLK_RSUPER ) )
 	{
-		(int&)phantom.ev.key.keysym.sym = UNIFIED_SUPER;
+		phantom.ev.key.keysym.sym = (SDLKey)UNIFIED_SUPER;
 		unified[4] = ( phantom.ev.type == SDL_KEYDOWN );
 		HotkeyInputHandler( &phantom );
 	}

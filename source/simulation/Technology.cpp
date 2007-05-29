@@ -419,23 +419,23 @@ void CTechnology::ScriptingInit()
 	AddClassProperty(L"time", &CTechnology::m_ReqTime);	//Techs may upgrade research time and cost of other techs
 	AddClassProperty(L"in_progress", &CTechnology::m_inProgress);
 
-	AddMethod<jsval, &CTechnology::ApplyEffects>( "applyEffects", 2 );
-	AddMethod<jsval, &CTechnology::IsExcluded>( "isExcluded", 0 );
-	AddMethod<jsval, &CTechnology::IsValid>( "isValid", 0 );
-	AddMethod<jsval, &CTechnology::IsResearched>( "isResearched", 0 );
-	AddMethod<jsval, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
+	AddMethod<bool, &CTechnology::ApplyEffects>( "applyEffects", 2 );
+	AddMethod<bool, &CTechnology::IsExcluded>( "isExcluded", 0 );
+	AddMethod<bool, &CTechnology::IsValid>( "isValid", 0 );
+	AddMethod<bool, &CTechnology::IsResearched>( "isResearched", 0 );
+	AddMethod<int, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
 
 	CJSComplex<CTechnology>::ScriptingInit("Technology");
 }
 
-jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+bool CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	// Unmark ourselves as in progress
 	m_inProgress = false;
 
 	if ( !IsTechValid() )
 	{
-		return JSVAL_FALSE;
+		return false;
 	}
 
 	// Disable any paired techs
@@ -467,27 +467,27 @@ jsval CTechnology::ApplyEffects( JSContext* UNUSED(cx), uintN UNUSED(argc), jsva
 	// Add ourselves to player's researched techs
 	m_player->AddActiveTech( this );
 
-	return JSVAL_TRUE;
+	return true;
 }
 
-jsval CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+bool CTechnology::IsValid( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return ToJSVal( IsTechValid() );
+	return IsTechValid();
 }
 
-jsval CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+bool CTechnology::IsExcluded( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return ToJSVal( m_excluded );
+	return m_excluded;
 }
 
-jsval CTechnology::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+bool CTechnology::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return ToJSVal( IsResearched() );
+	return IsResearched();
 }
 
-inline jsval CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+int CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return ToJSVal( m_player->GetPlayerID() );
+	return m_player->GetPlayerID();
 }
 
 

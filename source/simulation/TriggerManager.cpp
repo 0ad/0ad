@@ -83,8 +83,8 @@ void CTrigger::ScriptingInit()
 	AddProperty<int>(L"maxRunCount", &CTrigger::m_maxRunCount);
 	AddProperty<float>(L"timeDelay", &CTrigger::m_timeDelay);
 
-	AddMethod<jsval, &CTrigger::Activate>( "activate", 0 );
-	AddMethod<jsval, &CTrigger::Deactivate>( "deactivate", 0 );
+	AddMethod<void, &CTrigger::Activate>( "activate", 0 );
+	AddMethod<void, &CTrigger::Deactivate>( "deactivate", 0 );
 
 	CJSObject<CTrigger>::ScriptingInit("Trigger", CTrigger::Construct, 6);
 }
@@ -103,15 +103,13 @@ bool CTrigger::Fire()
 	return (m_runCount < m_maxRunCount);
 }
 
-jsval CTrigger::Activate(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* UNUSED(argv))
+void CTrigger::Activate(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* UNUSED(argv))
 {
 	m_active = true;
-	return JS_TRUE;
 }
-jsval CTrigger::Deactivate(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* UNUSED(argv))
+void CTrigger::Deactivate(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* UNUSED(argv))
 {
 	m_active = false;
-	return JS_TRUE;
 }
 
 

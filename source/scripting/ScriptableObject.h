@@ -171,6 +171,23 @@ public:
 	}
 };
 
+// Special case for void functions
+template<typename T, bool ReadOnly, void (T::*NativeFunction)( JSContext* cx, uintN argc, jsval* argv )>
+class CNativeFunction<T, ReadOnly, void, NativeFunction>
+{
+public:
+	static JSBool JSFunction( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval) )
+	{
+		T* Native = ToNative<T>( cx, obj );
+		if( !Native )
+			return( JS_TRUE );
+
+		(Native->*NativeFunction)( cx, argc, argv );
+
+		return( JS_TRUE );
+	}
+};
+
 template<typename T, bool ReadOnly> class CJSObject : public IJSObject
 {
 	// This object

@@ -407,9 +407,9 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 
 void CEntityTemplate::ScriptingInit()
 {
-	AddMethod<jsval, &CEntityTemplate::ToString>( "toString", 0 );
+	AddMethod<CStr, &CEntityTemplate::ToString>( "toString", 0 );
 
-	AddClassProperty( L"traits.id.classes", (GetFn)&CEntityTemplate::GetClassSet, (SetFn)&CEntityTemplate::SetClassSet );
+	AddClassProperty( L"traits.id.classes", static_cast<GetFn>(&CEntityTemplate::GetClassSet), static_cast<SetFn>(&CEntityTemplate::SetClassSet) );
 	
 	AddClassProperty( L"actions.move.speed", &CEntityTemplate::m_speed );
 	AddClassProperty( L"actions.move.turningRadius", &CEntityTemplate::m_turningRadius );
@@ -420,8 +420,8 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"actions.move.run.decayRate", &CEntityTemplate::m_runDecayRate );
 	AddClassProperty( L"actions.move.passThroughAllies", &CEntityTemplate::m_passThroughAllies );
 	AddClassProperty( L"actor", &CEntityTemplate::m_actorName );
-    AddClassProperty( L"traits.health.max", &CEntityTemplate::m_healthMax );
-    AddClassProperty( L"traits.health.barHeight", &CEntityTemplate::m_healthBarHeight );
+	AddClassProperty( L"traits.health.max", &CEntityTemplate::m_healthMax );
+	AddClassProperty( L"traits.health.barHeight", &CEntityTemplate::m_healthBarHeight );
 	AddClassProperty( L"traits.health.barSize", &CEntityTemplate::m_healthBarSize );
 	AddClassProperty( L"traits.health.barWidth", &CEntityTemplate::m_healthBarWidth );
 	AddClassProperty( L"traits.health.borderHeight", &CEntityTemplate::m_healthBorderHeight);
@@ -430,8 +430,8 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"traits.health.regenRate", &CEntityTemplate::m_healthRegenRate );
 	AddClassProperty( L"traits.health.regenStart", &CEntityTemplate::m_healthRegenStart );
 	AddClassProperty( L"traits.health.decayRate", &CEntityTemplate::m_healthDecayRate );
-    AddClassProperty( L"traits.stamina.max", &CEntityTemplate::m_staminaMax );
-    AddClassProperty( L"traits.stamina.barHeight", &CEntityTemplate::m_staminaBarHeight );
+	AddClassProperty( L"traits.stamina.max", &CEntityTemplate::m_staminaMax );
+	AddClassProperty( L"traits.stamina.barHeight", &CEntityTemplate::m_staminaBarHeight );
 	AddClassProperty( L"traits.stamina.barSize", &CEntityTemplate::m_staminaBarSize );
 	AddClassProperty( L"traits.stamina.barWidth", &CEntityTemplate::m_staminaBarWidth );
 	AddClassProperty( L"traits.stamina.borderHeight", &CEntityTemplate::m_staminaBorderHeight);
@@ -477,14 +477,10 @@ JSObject* CEntityTemplate::GetScriptExecContext( IEventTarget* target )
 	return( target->GetScriptExecContext( target ) );
 }
 
-jsval CEntityTemplate::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
+CStr CEntityTemplate::ToString( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	wchar_t buffer[256];
 	if( m_player == 0 )
-		swprintf( buffer, 256, L"[object EntityTemplate: %ls base]", m_Tag.c_str() );
+		return "[object EntityTemplate: " + CStr(m_Tag) + " base]";
 	else
-		swprintf( buffer, 256, L"[object EntityTemplate: %ls for player %d]", m_Tag.c_str(), m_player->GetPlayerID() );
-	buffer[255] = 0;
-	utf16string str16(buffer, buffer+wcslen(buffer));
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
+		return "[object EntityTemplate: " + CStr(m_Tag) + " for player " + CStr(m_player->GetPlayerID()) + "]";
 }

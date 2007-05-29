@@ -47,7 +47,7 @@ void SColour::SColourInit( float _r, float _g, float _b, float _a )
 
 void SColour::ScriptingInit()
 {
-	AddMethod<jsval, &SColour::ToString>( "toString", 0 );
+	AddMethod<CStr, &SColour::ToString>( "toString", 0 );
 	AddProperty<float>( L"r", (float IJSObject::*)&SColour::r );
 	AddProperty<float>( L"g", (float IJSObject::*)&SColour::g );
 	AddProperty<float>( L"b", (float IJSObject::*)&SColour::b );
@@ -56,15 +56,9 @@ void SColour::ScriptingInit()
 	CJSObject<SColour>::ScriptingInit( "Colour", SColour::Construct, 3 );
 }
 
-jsval SColour::ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
+CStr SColour::ToString( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	wchar_t buffer[256];
-	
-	swprintf( buffer, 256, L"[object Colour: ( %f, %f, %f, %f )]", r, g, b, a );
-	buffer[255] = 0;
-
-	utf16string str16(buffer, buffer+wcslen(buffer));
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
+	return "[object Colour: ( " + CStr(r) + ", " + CStr(g) + ", " + CStr(b) + ", " + CStr(a) + " )]";
 }
 
 

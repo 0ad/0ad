@@ -31,7 +31,7 @@ private:
 	PS_uint m_PlayerID;
 	PS_uint m_LOSToken;
 	SPlayerColour m_Colour;
-	EDiplomaticStance m_DiplomaticStance[PS_MAX_PLAYERS+1];
+	int /*EDiplomaticStance*/ m_DiplomaticStance[PS_MAX_PLAYERS+1];
 	std::vector<CTechnology*> m_ActiveTechs;
 	
 	UpdateCallback *m_UpdateCB;
@@ -64,7 +64,7 @@ public:
 	{	m_Colour = colour; }
 
 	inline EDiplomaticStance GetDiplomaticStance(CPlayer* other) const
-	{	return m_DiplomaticStance[other->m_PlayerID]; }
+	{	return (EDiplomaticStance)m_DiplomaticStance[other->m_PlayerID]; }
 	inline void SetDiplomaticStance(CPlayer* other, EDiplomaticStance stance)
 	{	m_DiplomaticStance[other->m_PlayerID] = stance; }
 
@@ -88,12 +88,12 @@ public:
 	void GetControlledEntities(std::vector<HEntity>& controlled_entities);
 
 	// JS Interface Functions
-	jsval JSI_ToString( JSContext* context, uintN argc, jsval* argv );
+	CStrW JSI_ToString( JSContext* context, uintN argc, jsval* argv );
 	jsval JSI_GetControlledEntities( JSContext* context );
-	jsval JSI_SetColour(JSContext *context, uintN argc, jsval *argv);
-	jsval JSI_GetColour(JSContext *context, uintN argc, jsval *argv);
-	jsval JSI_SetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);
-	jsval JSI_GetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);
+	void JSI_SetColour(JSContext *context, uintN argc, jsval *argv);
+	jsval_t JSI_GetColour(JSContext *context, uintN argc, jsval *argv);
+	void JSI_SetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);
+	jsval_t JSI_GetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);
 
 	static void ScriptingInit();
 };

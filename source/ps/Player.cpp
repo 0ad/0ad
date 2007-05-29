@@ -41,7 +41,7 @@ CPlayer::CPlayer(uint playerID):
 	for(int i=0; i<=PS_MAX_PLAYERS; i++)
 	{
 		CStrW name = CStrW(L"diplomaticStance_") + CStrW(i);
-		ISynchedJSProperty *prop=new CSynchedJSProperty<int>(name, (int*)&m_DiplomaticStance[i], this);
+		ISynchedJSProperty *prop=new CSynchedJSProperty<int>(name, &m_DiplomaticStance[i], this);
 		m_SynchedProperties[name]=prop;
 	}
 }
@@ -66,11 +66,11 @@ void CPlayer::ScriptingInit()
 	g_ScriptingHost.DefineConstant("DIPLOMACY_NEUTRAL", DIPLOMACY_NEUTRAL);
 	g_ScriptingHost.DefineConstant("DIPLOMACY_ALLIED", DIPLOMACY_ALLIED);
 
-	AddMethod<jsval, &CPlayer::JSI_ToString>( "toString", 0 );
-	AddMethod<jsval, &CPlayer::JSI_SetColour>( "setColour", 1);
-	AddMethod<jsval, &CPlayer::JSI_GetColour>( "getColour", 0);
-	AddMethod<jsval, &CPlayer::JSI_SetDiplomaticStance>( "setDiplomaticStance", 2);
-	AddMethod<jsval, &CPlayer::JSI_GetDiplomaticStance>( "getDiplomaticStance", 1);
+	AddMethod<CStrW, &CPlayer::JSI_ToString>("toString", 0);
+	AddMethod<void, &CPlayer::JSI_SetColour>("setColour", 1);
+	AddMethod<jsval_t, &CPlayer::JSI_GetColour>("getColour", 0);
+	AddMethod<void, &CPlayer::JSI_SetDiplomaticStance>("setDiplomaticStance", 2);
+	AddMethod<jsval_t, &CPlayer::JSI_GetDiplomaticStance>("getDiplomaticStance", 1);
 	
 	AddProperty( L"id", &CPlayer::m_PlayerID, true );
 	// MT: Work out how this fits with the Synched stuff...
@@ -112,13 +112,9 @@ void CPlayer::GetControlledEntities(std::vector<HEntity>& controlled_entities)
 	g_EntityManager.GetMatchingAsHandles( controlled_entities, ControllerPredicate, this );
 }
 
-jsval CPlayer::JSI_ToString( JSContext* cx, uintN UNUSED(argc), jsval* UNUSED(argv) )
+CStrW CPlayer::JSI_ToString( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	wchar_t buffer[256];
-	swprintf( buffer, 256, L"[object Player: %ls]", m_Name.c_str() );
-	buffer[255] = 0;
-	utf16string str16(buffer, buffer+wcslen(buffer));
-	return( STRING_TO_JSVAL( JS_NewUCStringCopyZ( cx, str16.c_str() ) ) );
+	return L"[object Player: " + m_Name + L"]";
 }
 
 jsval CPlayer::JSI_GetControlledEntities(JSContext* UNUSED(cx))
@@ -129,20 +125,14 @@ jsval CPlayer::JSI_GetControlledEntities(JSContext* UNUSED(cx))
 	return( vp );
 }
 
-jsval CPlayer::JSI_SetColour( JSContext* UNUSED(cx), uintN argc, jsval* argv )
+void CPlayer::JSI_SetColour( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* argv )
 {
-	if (argc != 1)
-		return JSVAL_NULL;
-
 	m_Colour=*( ToNative<SPlayerColour>(argv[0]) );
 	ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
 	Update(L"colour", prop);
-	
-	// Return something that isn't null, so users can check whether this function succeeded
-	return argv[0];
 }
 
-jsval CPlayer::JSI_GetColour( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CPlayer::JSI_GetColour( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	//ISynchedJSProperty *prop=GetSynchedProperty(L"colour");
 	//return prop->Get(cx, this);
@@ -150,35 +140,32 @@ jsval CPlayer::JSI_GetColour( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* 
 	return ToJSVal(col);
 }
 
-jsval CPlayer::JSI_SetDiplomaticStance(JSContext *cx, uintN argc, jsval *argv)
+void CPlayer::JSI_SetDiplomaticStance(JSContext *cx, uintN UNUSED(argc), jsval *argv)
 {
-	JSU_ASSERT(argc==2, "2 arguments required");
-	JSU_ASSERT( JSVAL_IS_INT(argv[1]), "Argument 2 must be a valid stance ID" );
 	try
 	{
 		CPlayer* player = ToPrimitive<CPlayer*>( argv[0] );
 		int stance = ToPrimitive<int>( argv[1] );
-		JSU_ASSERT( stance==DIPLOMACY_ENEMY || stance==DIPLOMACY_NEUTRAL || stance==DIPLOMACY_ALLIED,
-			"Argument 2 must be a valid stance ID" );
+		if (! (stance==DIPLOMACY_ENEMY || stance==DIPLOMACY_NEUTRAL || stance==DIPLOMACY_ALLIED))
+		{
+			JS_ReportError(cx, "Argument 2 must be a valid stance ID");
+			return;
+		}
 
 		m_DiplomaticStance[player->m_PlayerID] = (EDiplomaticStance) stance;
 		
 		CStrW name = CStrW(L"diplomaticStance_") + CStrW(player->m_PlayerID);
 		ISynchedJSProperty *prop=GetSynchedProperty(name);
 		Update(name, prop);
-
-		return JSVAL_VOID;
 	}
 	catch( PSERROR_Scripting_ConversionFailed )
 	{
 		JS_ReportError( cx, "Could not convert argument 1 to a Player object" );
-		return JSVAL_VOID;
 	}
 }
 
-jsval CPlayer::JSI_GetDiplomaticStance(JSContext *cx, uintN argc, jsval *argv)
+jsval_t CPlayer::JSI_GetDiplomaticStance(JSContext *cx, uintN UNUSED(argc), jsval *argv)
 {	
-	JSU_ASSERT(argc==1, "1 argument required");
 	try
 	{
 		CPlayer* player = ToPrimitive<CPlayer*>( argv[0] );

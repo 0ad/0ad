@@ -41,7 +41,7 @@ public:
 	void CancelAll();
 
 	jsval JSI_GetLength( JSContext* cx );
-	jsval JSI_Get( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t JSI_Get( JSContext* cx, uintN argc, jsval* argv );
 	bool JSI_Cancel( JSContext* cx, uintN argc, jsval* argv );
 
 	static void ScriptingInit();

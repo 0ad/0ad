@@ -110,12 +110,15 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 		// bad code.
 		ogl_WarnIfError();
 		
-		err  = ERR::SHDR_CREATE;
+		err = ERR::SHDR_CREATE;
 		goto fail_fileloaded;
 	}
 	
-	pglShaderSourceARB(shdr->id, 1, (const char**)&file, (const GLint*)&file_size);
-	pglCompileShaderARB(shdr->id);
+	{
+		const GLchar* strings[] = { (const GLchar*)file };
+		pglShaderSourceARB(shdr->id, 1, strings, (const GLint*)&file_size);
+		pglCompileShaderARB(shdr->id);
+	}
 	
 	pglGetObjectParameterivARB(shdr->id, GL_OBJECT_COMPILE_STATUS_ARB, &compile_success);
 	pglGetObjectParameterivARB(shdr->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);

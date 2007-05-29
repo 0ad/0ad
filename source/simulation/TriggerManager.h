@@ -115,8 +115,8 @@ public:
 	//Returns false if trigger exceeds run count
 	bool Fire();
 
-	jsval Activate(JSContext* cx, uint argc, jsval* argv);
-	jsval Deactivate(JSContext* cx, uint argc, jsval* argv);
+	void Activate(JSContext* cx, uint argc, jsval* argv);
+	void Deactivate(JSContext* cx, uint argc, jsval* argv);
 
 	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 	static void ScriptingInit();

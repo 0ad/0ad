@@ -584,7 +584,7 @@ LibError tree_lookup_dir(const char* V_path, TDir** ptd, uint flags)
 		WARN_RETURN(ERR::TNODE_WRONG_TYPE);
 
 	TDir* td = (flags & LF_START_DIR)? *ptd : tree_root;
-	TNode* node;
+	TNode* node = NULL;
 	CHECK_ERR(lookup(td, V_path, flags, &node));
 		// directories should exist, so warn if this fails
 	*ptd = (TDir*)node;
@@ -598,7 +598,7 @@ LibError tree_lookup(const char* V_path, TFile** pfile, uint flags)
 	if(VFS_PATH_IS_DIR(V_path))
 		WARN_RETURN(ERR::TNODE_WRONG_TYPE);
 
-	TNode* node;
+	TNode* node = NULL;
 	LibError ret = lookup(tree_root, V_path, flags, &node);
 	RETURN_ERR(ret);
 	*pfile = (TFile*)node;

@@ -59,8 +59,8 @@ void CProgressBar::Draw()
 		float bz = GetBufferedZ();
 
 		CGUISpriteInstance *sprite_background, *sprite_bar;
-		int cell_id;
-		float value;
+		int cell_id = 0;
+		float value = 0;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_background", sprite_background);
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_bar", sprite_bar);
 		GUI<int>::GetSetting(this, "cell_id", cell_id);

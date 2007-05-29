@@ -26,7 +26,7 @@ public:
 	
 	SColour &operator = (const SColour &o);
 
-	jsval ToString( JSContext* cx, uintN argc, jsval* argv );
+	CStr ToString( JSContext* cx, uintN argc, jsval* argv );
 	static void ScriptingInit();
 	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
 };

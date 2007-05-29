@@ -251,9 +251,9 @@ template<> jsval ToJSVal<CStr8>( CStr8& Native )
 
 // jsval
 
-template<> jsval ToJSVal<jsval>( const jsval& Native )
+template<> jsval ToJSVal<jsval_t>( const jsval_t& Native )
 {
-	return( Native );
+	return( Native.v );
 }
 
 // String->JSVal

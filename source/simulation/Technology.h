@@ -42,11 +42,11 @@ public:
 
 	//JS functions
 	static void ScriptingInit();
-	jsval ApplyEffects( JSContext* cx, uintN argc, jsval* argv );
-	jsval IsValid( JSContext* cx, uintN argc, jsval* argv );
-	jsval IsResearched( JSContext* cx, uintN argc, jsval* argv );
-	jsval IsExcluded( JSContext* cx, uintN argc, jsval* argv );
-	inline jsval GetPlayerID( JSContext* cx, uintN argc, jsval* argv );
+	bool ApplyEffects( JSContext* cx, uintN argc, jsval* argv );
+	bool IsValid( JSContext* cx, uintN argc, jsval* argv );
+	bool IsResearched( JSContext* cx, uintN argc, jsval* argv );
+	bool IsExcluded( JSContext* cx, uintN argc, jsval* argv );
+	int GetPlayerID( JSContext* cx, uintN argc, jsval* argv );
 	
 	void Apply( CEntity* entity );
 

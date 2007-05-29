@@ -158,7 +158,15 @@ template<> jsval ToJSVal<CStr8>( CStr8& Native );
 
 // jsval
 
-template<> jsval ToJSVal<jsval>( const jsval& Native );
+// Don't want to just use jsval directly, because it's equivalent to long and
+// can cause conflicts or confusion. So create a simple wrapper class for it,
+// so it's a real distinguishable type.
+struct jsval_t
+{
+	jsval v;
+	jsval_t(jsval v) : v(v) {}
+};
+template<> jsval ToJSVal<jsval_t>( const jsval_t& Native );
 
 // Intelligent CStrW->JSVal conversion
 
