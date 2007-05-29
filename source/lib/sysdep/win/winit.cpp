@@ -11,6 +11,8 @@
 #include "precompiled.h"
 #include "winit.h"
 
+#include "win.h"	// GetTickCount
+
 
 typedef LibError (*PfnLibErrorVoid)(void);
 
@@ -44,11 +46,16 @@ PfnLibErrorVoid shutdownEnd = 0;
  **/
 static void CallFunctionPointers(PfnLibErrorVoid* begin, PfnLibErrorVoid* end)
 {
+	const DWORD t0 = GetTickCount();
+
 	for(PfnLibErrorVoid* ppfunc = begin; ppfunc < end; ppfunc++)
 	{
 		if(*ppfunc)
 			(*ppfunc)();
 	}
+
+	const DWORD t1 = GetTickCount();
+	debug_printf("WINIT/ total elapsed time in callbacks %d ms (+-10)\n", t1-t0);
 }
 
 

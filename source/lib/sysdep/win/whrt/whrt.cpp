@@ -64,6 +64,7 @@ static ICounter* ConstructCounterAt(uint id, void* address, size_t& size)
 	// counters are chosen according to the following order. rationale:
 	// - TSC must come before QPC and PMT to make sure a bug in the latter on
 	//   Pentium systems doesn't come up.
+	// - PMT works, but is inexplicably slower than QPC on a PIII Mobile.
 	// - TGT really isn't as safe as the others, so it should be last.
 	// - low-overhead and high-resolution counters are preferred.
 	switch(id)
@@ -73,9 +74,9 @@ static ICounter* ConstructCounterAt(uint id, void* address, size_t& size)
 	case 1:
 		CREATE(HPET)
 	case 2:
-		CREATE(PMT)
-	case 3:
 		CREATE(QPC)
+	case 3:
+		CREATE(PMT)
 	case 4:
 		CREATE(TGT)
 	default:

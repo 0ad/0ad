@@ -14,7 +14,6 @@
 #include <winioctl.h>
 #include "aken/aken.h"
 #include "wutil.h"
-#include "lib/path_util.h"
 #include "lib/module_init.h"
 
 
@@ -76,8 +75,7 @@ static void WritePort(u16 port, u32 value, u8 numBytes)
 	DWORD bytesReturned;	// unused but must be passed to DeviceIoControl
 	LPOVERLAPPED ovl = 0;	// synchronous
 	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_WRITE_PORT, &in, sizeof(in), 0, 0u, &bytesReturned, ovl);
-	if(!ok)
-		WARN_WIN32_ERR;
+	WARN_IF_FALSE(ok);
 }
 
 void mahaf_WritePort8(u16 port, u8 value)
@@ -126,24 +124,13 @@ void mahaf_UnmapPhysicalMemory(void* virtualAddress)
 	DWORD bytesReturned;	// unused but must be passed to DeviceIoControl
 	LPOVERLAPPED ovl = 0;	// synchronous
 	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_UNMAP, &in, sizeof(in), 0, 0u, &bytesReturned, ovl);
-	if(!ok)
-		WARN_WIN32_ERR;
+	WARN_IF_FALSE(ok);
 }
 
 
 //-----------------------------------------------------------------------------
 // driver installation
 //-----------------------------------------------------------------------------
-
-static bool Is64BitOs()
-{
-#if OS_WIN64
-	return true;
-#else
-	return wutil_IsWow64();
-#endif
-}
-
 
 static SC_HANDLE OpenServiceControlManager()
 {
@@ -206,33 +193,26 @@ static void StartDriver(const char* driverPathname)
 	if(!hSCM)
 		return;
 
+	SC_HANDLE hService = OpenService(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
+
+#if 0
+	// during development, we want to unload and re-create the
+	// service every time to ensure the newest build is used.
+	BOOL ok = CloseServiceHandle(hService);
+	WARN_IF_FALSE(ok);
+	hService = 0;
+	UninstallDriver();
+#endif	
+
 	// create service (note: this just enters the service into SCM's DB;
 	// no error is raised if the driver binary doesn't exist etc.)
-	SC_HANDLE hService;
+	if(!hService)
 	{
-create:
 		LPCSTR startName = 0;	// LocalSystem
 		hService = CreateService(hSCM, AKEN_NAME, AKEN_NAME,
 			SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
 			driverPathname, 0, 0, 0, startName, 0);
-		if(!hService)
-		{
-			// was already created
-			if(GetLastError() == ERROR_SERVICE_EXISTS)
-			{
-#if 1
-				// during development, we want to unload and re-create the
-				// service every time to ensure the newest build is used.
-				UninstallDriver();
-				goto create;
-#else
-				// in final builds, just use the existing service.
-				hService = OpenService(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
-#endif
-			}
-			else
-				debug_assert(0);	// creating actually failed
-		}
+		debug_assert(hService != 0);
 	}
 
 	// start service
@@ -252,6 +232,27 @@ create:
 }
 
 
+static bool Is64BitOs()
+{
+#if OS_WIN64
+	return true;
+#else
+	return wutil_IsWow64();
+#endif
+}
+
+static void GetDriverPathname(char* driverPathname, size_t maxChars)
+{
+	const char* const bits = Is64BitOs()? "64" : "";
+#ifdef NDEBUG
+	const char* const debug = "";
+#else
+	const char* const debug = "d";
+#endif
+	sprintf_s(driverPathname, maxChars, "%s\\aken%s%s.sys", win_exe_dir, bits, debug);
+}
+
+
 //-----------------------------------------------------------------------------
 
 static ModuleInitState initState;
@@ -262,8 +263,7 @@ bool mahaf_Init()
 		return true;
 
 	char driverPathname[PATH_MAX];
-	const char* const driverName = Is64BitOs()? "aken64.sys" : "aken.sys";
-	(void)path_append(driverPathname, win_exe_dir, driverName);
+	GetDriverPathname(driverPathname, ARRAY_SIZE(driverPathname));
 
 	StartDriver(driverPathname);
 

@@ -75,7 +75,8 @@ LibError CounterHPET::Activate()
 
 void CounterHPET::Shutdown()
 {
-	mahaf_UnmapPhysicalMemory((void*)m_hpetRegisters);
+	if(m_hpetRegisters)
+		mahaf_UnmapPhysicalMemory((void*)m_hpetRegisters);
 
 	acpi_Shutdown();
 	mahaf_Shutdown();

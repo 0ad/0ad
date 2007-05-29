@@ -18,6 +18,11 @@ static const i64 PMT_FREQ = 3579545;	// (= master oscillator frequency/4)
 class CounterPMT : public ICounter
 {
 public:
+	CounterPMT()
+	: m_portAddress(0xFFFF)
+	{
+	}
+
 	virtual const char* Name() const
 	{
 		return "PMT";

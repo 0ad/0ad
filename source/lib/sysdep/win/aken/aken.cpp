@@ -3,8 +3,6 @@ extern "C" {	// must come before ntddk.h
 #include <ntddk.h>
 #include "aken.h"
 
-#define KDPRINT KdPrint(("AKEN: ")); KdPrint
-
 #define WIN32_NAME L"\\DosDevices\\Aken"
 #define DEVICE_NAME L"\\Device\\Aken"
 
@@ -36,7 +34,7 @@ static NTSTATUS AkenMapPhysicalMemory(const DWORD64 physicalAddress64, const DWO
 		ntStatus = ZwOpenSection(&hMemory, SECTION_ALL_ACCESS, &objectAttributes);
 		if(!NT_SUCCESS(ntStatus))
 		{
-			KDPRINT(("ZwOpenSection failed\n"));
+			KdPrint(("AkenMapPhysicalMemory: ZwOpenSection failed\n"));
 			return ntStatus;
 		}
 	}
@@ -48,7 +46,7 @@ static NTSTATUS AkenMapPhysicalMemory(const DWORD64 physicalAddress64, const DWO
 		ntStatus = ObReferenceObjectByHandle(hMemory, SECTION_ALL_ACCESS, objectType, KernelMode, &physicalMemorySection, 0);
 		if(!NT_SUCCESS(ntStatus))
 		{
-			KDPRINT(("ObReferenceObjectByHandle failed\n"));
+			KdPrint(("AkenMapPhysicalMemory: ObReferenceObjectByHandle failed\n"));
 			goto close_handle;
 		}
 	}
@@ -67,7 +65,7 @@ static NTSTATUS AkenMapPhysicalMemory(const DWORD64 physicalAddress64, const DWO
 		ntStatus = ZwMapViewOfSection(hMemory, hProcess, &virtualBaseAddress, zeroBits, mappedSize, &physicalBaseAddress, &mappedSize, inheritDisposition, allocationType, protect);
 		if(!NT_SUCCESS(ntStatus))
 		{
-			KDPRINT(("ZwMapViewOfSection failed\n"));
+			KdPrint(("AkenMapPhysicalMemory: ZwMapViewOfSection failed\n"));
 			goto close_handle;
 		}
 
@@ -97,7 +95,7 @@ static NTSTATUS AkenUnmapPhysicalMemory(const DWORD64 virtualAddress)
 	NTSTATUS ntStatus = ZwUnmapViewOfSection(hProcess, baseAddress);
 	if(!NT_SUCCESS(ntStatus))
 	{
-		KDPRINT(("ZwUnmapViewOfSection failed\n"));
+		KdPrint(("AkenUnmapPhysicalMemory: ZwUnmapViewOfSection failed\n"));
 		return ntStatus;
 	}
 
@@ -111,8 +109,6 @@ static NTSTATUS AkenUnmapPhysicalMemory(const DWORD64 virtualAddress)
 
 static NTSTATUS AkenIoctlReadPort(PVOID buf, const ULONG inSize, ULONG& outSize)
 {
-	KDPRINT(("IOCTL_AKEN_READ_PORT\n"));
-
 	if(inSize != sizeof(AkenReadPortIn) || outSize != sizeof(AkenReadPortOut))
 		return STATUS_BUFFER_TOO_SMALL;
 
@@ -134,7 +130,7 @@ static NTSTATUS AkenIoctlReadPort(PVOID buf, const ULONG inSize, ULONG& outSize)
 	default:
 		return STATUS_INVALID_PARAMETER;
 	}
-	KDPRINT((" port %x = %x\n", port, value));
+	KdPrint(("AkenIoctlReadPort: port %x = %x\n", port, value));
 
 	AkenReadPortOut* out = (AkenReadPortOut*)buf;
 	out->value = value;
@@ -143,8 +139,6 @@ static NTSTATUS AkenIoctlReadPort(PVOID buf, const ULONG inSize, ULONG& outSize)
 
 static NTSTATUS AkenIoctlWritePort(PVOID buf, const ULONG inSize, ULONG& outSize)
 {
-	KDPRINT(("IOCTL_AKEN_WRITE_PORT\n"));
-
 	if(inSize != sizeof(AkenWritePortIn) || outSize != 0)
 		return STATUS_BUFFER_TOO_SMALL;
 
@@ -166,15 +160,13 @@ static NTSTATUS AkenIoctlWritePort(PVOID buf, const ULONG inSize, ULONG& outSize
 	default:
 		return STATUS_INVALID_PARAMETER;
 	}
-	KDPRINT((" port %x := %x\n", port, value));
+	KdPrint(("AkenIoctlWritePort: port %x := %x\n", port, value));
 
 	return STATUS_SUCCESS;
 }
 
 static NTSTATUS AkenIoctlMap(PVOID buf, const ULONG inSize, ULONG& outSize)
 {
-	KDPRINT(("IOCTL_AKEN_MAP\n"));
-
 	if(inSize != sizeof(AkenMapIn) || outSize != sizeof(AkenMapOut))
 		return STATUS_BUFFER_TOO_SMALL;
 
@@ -191,8 +183,6 @@ static NTSTATUS AkenIoctlMap(PVOID buf, const ULONG inSize, ULONG& outSize)
 
 static NTSTATUS AkenIoctlUnmap(PVOID buf, const ULONG inSize, ULONG& outSize)
 {
-	KDPRINT(("IOCTL_AKEN_UNMAP\n"));
-
 	if(inSize != sizeof(AkenUnmapIn) || outSize != 0)
 		return STATUS_BUFFER_TOO_SMALL;
 
@@ -205,7 +195,7 @@ static NTSTATUS AkenIoctlUnmap(PVOID buf, const ULONG inSize, ULONG& outSize)
 
 static NTSTATUS AkenIoctlUnknown(PVOID buf, const ULONG inSize, ULONG& outSize)
 {
-	KDPRINT(("Unknown IOCTL\n"));
+	KdPrint(("AkenIoctlUnknown\n"));
 	outSize = 0;
 	return STATUS_INVALID_DEVICE_REQUEST;
 }
@@ -239,8 +229,7 @@ static inline AkenIoctl AkenIoctlFromCode(ULONG ioctlCode)
 // entry points
 //-----------------------------------------------------------------------------
 
-// used as Create and Close entry point since this driver is stateless.
-static NTSTATUS MarkRequestComplete(IN PDEVICE_OBJECT deviceObject, IN PIRP irp)
+static NTSTATUS AkenCreate(IN PDEVICE_OBJECT deviceObject, IN PIRP irp)
 {
 	irp->IoStatus.Status = STATUS_SUCCESS;
 	irp->IoStatus.Information = 0;
@@ -249,7 +238,17 @@ static NTSTATUS MarkRequestComplete(IN PDEVICE_OBJECT deviceObject, IN PIRP irp)
 }
 
 
-static NTSTATUS DeviceControl(IN PDEVICE_OBJECT deviceObject, IN PIRP irp)
+static NTSTATUS AkenClose(IN PDEVICE_OBJECT deviceObject, IN PIRP irp)
+{
+	// same as AkenCreate ATM
+	irp->IoStatus.Status = STATUS_SUCCESS;
+	irp->IoStatus.Information = 0;
+	IoCompleteRequest(irp, IO_NO_INCREMENT);
+	return STATUS_SUCCESS;
+}
+
+
+static NTSTATUS AkenDeviceControl(IN PDEVICE_OBJECT deviceObject, IN PIRP irp)
 {
 	// get buffer from IRP. all our IOCTLs are METHOD_BUFFERED, so buf is
 	// allocated by the I/O manager and used for both input and output.
@@ -269,9 +268,9 @@ static NTSTATUS DeviceControl(IN PDEVICE_OBJECT deviceObject, IN PIRP irp)
 }
 
 
-static VOID Unload(IN PDRIVER_OBJECT driverObject)
+static VOID AkenUnload(IN PDRIVER_OBJECT driverObject)
 {
-	KDPRINT(("Unload\n"));
+	KdPrint(("AkenUnload\n"));
 
 	UNICODE_STRING win32Name = RTL_CONSTANT_STRING(WIN32_NAME);
 	IoDeleteSymbolicLink(&win32Name);
@@ -283,8 +282,6 @@ static VOID Unload(IN PDRIVER_OBJECT driverObject)
 
 NTSTATUS DriverEntry(IN OUT PDRIVER_OBJECT driverObject, IN PUNICODE_STRING registryPath)
 {
-	KDPRINT(("DriverEntry\n"));
-
 	UNICODE_STRING deviceName = RTL_CONSTANT_STRING(DEVICE_NAME);
 
 	// create device object
@@ -296,16 +293,16 @@ NTSTATUS DriverEntry(IN OUT PDRIVER_OBJECT driverObject, IN PUNICODE_STRING regi
 		NTSTATUS ntStatus = IoCreateDevice(driverObject, deviceExtensionSize, &deviceName, FILE_DEVICE_AKEN, deviceCharacteristics, exlusive, &deviceObject);
 		if(!NT_SUCCESS(ntStatus))
 		{
-			KDPRINT(("IoCreateDevice failed\n"));
+			KdPrint(("DriverEntry: IoCreateDevice failed\n"));
 			return ntStatus;
 		}
 	}
 
 	// set entry points
-	driverObject->MajorFunction[IRP_MJ_CREATE] = MarkRequestComplete;
-	driverObject->MajorFunction[IRP_MJ_CLOSE]  = MarkRequestComplete;
-	driverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = DeviceControl;
-	driverObject->DriverUnload = Unload;
+	driverObject->MajorFunction[IRP_MJ_CREATE] = AkenCreate;
+	driverObject->MajorFunction[IRP_MJ_CLOSE]  = AkenClose;
+	driverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = AkenDeviceControl;
+	driverObject->DriverUnload = AkenUnload;
 
 	// symlink NT device name to Win32 namespace
 	{
@@ -313,7 +310,7 @@ NTSTATUS DriverEntry(IN OUT PDRIVER_OBJECT driverObject, IN PUNICODE_STRING regi
 		NTSTATUS ntStatus = IoCreateSymbolicLink(&win32Name, &deviceName);
 		if(!NT_SUCCESS(ntStatus))
 		{
-			KDPRINT(("IoCreateSymbolicLink failed\n"));
+			KdPrint(("DriverEntry: IoCreateSymbolicLink failed\n"));
 			IoDeleteDevice(deviceObject);
 			return ntStatus;
 		}

@@ -161,8 +161,14 @@ static void GetDirectories()
 {
 	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
 
-	if(GetModuleFileName(GetModuleHandle(0), win_exe_dir, MAX_PATH) != 0)
-		path_strip_fn(win_exe_dir);
+	const DWORD len = GetModuleFileName(GetModuleHandle(0), win_exe_dir, MAX_PATH);
+	debug_assert(len != 0);
+	// strip EXE filename and trailing slash
+	char* slash = strrchr(win_exe_dir, '\\');
+	if(slash)
+		*slash = '\0';
+	else
+		debug_assert(0);	// directory name invalid?!
 }
 
 

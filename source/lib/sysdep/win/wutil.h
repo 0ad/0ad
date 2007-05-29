@@ -89,6 +89,7 @@ extern LibError LibError_from_win32(DWORD ret, bool warn_if_failed = true);
 // directories
 //
 
+// neither of these end in a slash.
 extern char win_sys_dir[MAX_PATH+1];
 extern char win_exe_dir[MAX_PATH+1];
 

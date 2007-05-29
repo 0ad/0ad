@@ -17,6 +17,11 @@
 class CounterHPET : public ICounter
 {
 public:
+	CounterHPET()
+	: m_hpetRegisters(0)
+	{
+	}
+
 	virtual const char* Name() const
 	{
 		return "HPET";

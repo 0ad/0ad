@@ -39,8 +39,6 @@ public:
 	 * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
 	 **/
 	virtual double NominalFrequency() const;
-
-private:
 };
 
 #endif	// #ifndef INCLUDED_TSC
