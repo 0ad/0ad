@@ -110,14 +110,18 @@ sub createfeed : Local
 
 sub generate_text
 {
-	my @logentries = SVNLog::Model::CDBI::Logentry->recent(7);
+	#my @logentries = SVNLog::Model::CDBI::Logentry->recent(7);
+	#my $maxentries = 0; # unlimited
 	
-	my $out = qq{<a href="$feed_url"><img alt="Atom feed" title="Subscribe to feed of revision log (Atom 1.0 format)" src="/images/feed-icon-16x16.png" style="float: right"></a>};
+	my @logentries = SVNLog::Model::CDBI::Logentry->recent(28);
+	my $maxentries = 10;
+	
+	my $out = qq{<a href="$feed_url"><img alt="Atom feed" title="Subscribe to feed of revision log" src="/images/feed-icon-16x16.png" style="float: right"></a>\n};
 	for (@logentries)
 	{
 		my ($revision, $author, $date, $msg) = ($_->revision, $_->author, $_->date, $_->public_msg);
 		next unless defined $msg and $msg->msg;
-		
+
 		$date =~ s/T.*Z//;
 		$out .= <<EOF;
 <b>revision:</b> $revision<br>
@@ -129,7 +133,9 @@ EOF
 		$text =~ s/</&lt;/g;
 		$text =~ s/>/&gt;/g;
 		$text =~ s/\n/<br>/g;
-		$out .= $text . '<hr>';
+		$out .= $text . "\n<hr>\n";
+
+		last if --$maxentries == 0;
 	}
 	
 	$out ||= 'Sorry, no data is available right now.';

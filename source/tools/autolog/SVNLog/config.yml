@@ -2,10 +2,10 @@ name: SVNLog
 svn:
   username: philip
   password: ????????
-  url     : http://artificetech.co.uk/svn/trunk
+  url     : http://svn.0ad.homeip.net/svn/ps/trunk
 cdbi:
   dsn     : dbi:SQLite:/var/www/svnlog/SVNLog/sql/svnlog.db
 scp:
   command : /usr/bin/scp -i /var/www/svnlog/ssh/wfgkey
   filename: philip@wildfiregames.com:~/svnlog/public
-  filename_feed: philip@wildfiregames.com:~/svnlog/public_feed
+  filename_feed: philip@wildfiregames.com:~/public_html/svnlog.xml

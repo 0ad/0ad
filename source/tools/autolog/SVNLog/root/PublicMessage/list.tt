@@ -4,6 +4,7 @@
     <tr>
         <th>Revision</th>
         <th>Author</th>
+        <th>Date</th>
         <th>Log message</th>
         <th>Public message</th>
         <th/>
@@ -16,6 +17,8 @@
         <tr>
             <td>[% object.logentry.revision %]</td>
             <td>[% object.logentry.author %]</td>
+            <td>[% str = object.logentry.date.match('(\d{4}-\d{2}-\d{2}).(\d{2}:\d{2}:\d{2})');
+                   str.0 %] [% str.1 %]</td>
             <td>[% object.logentry.msg | html | html_line_break %]</td>
             <td>[% object.msg | html | html_line_break %]</td>
             <td>
