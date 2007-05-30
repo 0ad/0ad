@@ -107,20 +107,31 @@ sub createfeed : Local
 	$c->res->body($out);
 }
 
+sub get_log_entries
+{
+	my ($days, $max) = @_;
+	my @logentries = ();
+	for (SVNLog::Model::CDBI::Logentry->recent($days))
+	{
+		my $msg = $_->public_msg;
+		next unless defined $msg and $msg->msg; # skip ones with empty messages
+
+		push @logentries, $_;
+
+		last if $max and @logentries >= $max;
+	}
+	return @logentries;
+}
 
 sub generate_text
 {
-	#my @logentries = SVNLog::Model::CDBI::Logentry->recent(7);
-	#my $maxentries = 0; # unlimited
-	
-	my @logentries = SVNLog::Model::CDBI::Logentry->recent(28);
-	my $maxentries = 10;
-	
 	my $out = qq{<a href="$feed_url"><img alt="Atom feed" title="Subscribe to feed of revision log" src="/images/feed-icon-16x16.png" style="float: right"></a>\n};
+
+	my @logentries = get_log_entries(28, 10);
+
 	for (@logentries)
 	{
 		my ($revision, $author, $date, $msg) = ($_->revision, $_->author, $_->date, $_->public_msg);
-		next unless defined $msg and $msg->msg;
 
 		$date =~ s/T.*Z//;
 		$out .= <<EOF;
@@ -134,18 +145,18 @@ EOF
 		$text =~ s/>/&gt;/g;
 		$text =~ s/\n/<br>/g;
 		$out .= $text . "\n<hr>\n";
-
-		last if --$maxentries == 0;
 	}
 	
-	$out ||= 'Sorry, no data is available right now.';
+	if (not @logentries)
+	{
+		$out .= 'Sorry, no data is available right now.';
+	}
+
 	return $out;
 }
 
 sub generate_feed
 {
-	my @logentries = SVNLog::Model::CDBI::Logentry->recent(7);
-	
 	my $uid_gen = new Data::UUID;
 
 	my $feed = new XML::Atom::SimpleFeed(
@@ -155,10 +166,11 @@ sub generate_feed
 		id => "urn:uuid:" . $uid_gen->create_from_name_str('WFG SVN feed', 'feed'),
 	);
 
+	my @logentries = get_log_entries(7);
+
 	for (@logentries)
 	{
 		my ($revision, $author, $date, $msg) = ($_->revision, $_->author, $_->date, $_->public_msg);
-		next unless defined $msg and $msg->msg;
 
 		my $uid = $uid_gen->create_from_name_str('WFG SVN feed', $revision);
 		
