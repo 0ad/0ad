@@ -13,7 +13,9 @@
 #include "wx/spinctrl.h"
 #include "wx/listctrl.h"
 #include "wx/image.h"
+#include "wx/imaglist.h"
 #include "wx/busyinfo.h"
+#include "wx/notebook.h"
 
 class TextureNotebook;
 

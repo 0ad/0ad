@@ -128,7 +128,7 @@ extern_lib_defs = {
 				tinsert(package.config["Release"].links, "wxmsw28u_gl")
 			else
 				tinsert(package.buildoptions, "`wx-config --cxxflags`")
-				tinsert(package.linkoptions, "`wx-config --libs std,gl,ogl,media`")
+				tinsert(package.linkoptions, "`wx-config --libs std,gl`")
 			end
 		end,
 	},

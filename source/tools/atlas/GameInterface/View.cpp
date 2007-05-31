@@ -281,8 +281,8 @@ void ViewGame::SaveState(const std::wstring& label, bool onlyEntities)
 
 	if (! onlyEntities)
 	{
-		for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit) {
-
+		for (std::vector<CUnit*>::const_iterator unit = units.begin(); unit != units.end(); ++unit)
+		{
 			// Ignore objects that are entities
 			if ((*unit)->GetEntity())
 				continue;

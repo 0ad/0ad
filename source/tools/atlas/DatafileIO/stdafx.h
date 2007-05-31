@@ -1,17 +1,15 @@
 // Precompiled headers:
 
-#ifdef _WIN32
-# define HAVE_PCH
-#endif
-
 #ifdef _MSC_VER
 # define _SCL_SECURE_NO_DEPRECATE // shut up, std::copy isn't deprecated
 #endif
 
-#ifdef HAVE_PCH
+#ifdef USING_PCH
 
 // Exclude rarely-used stuff from Windows headers
-#define WIN32_LEAN_AND_MEAN
+#ifdef _WIN32
+# define WIN32_LEAN_AND_MEAN
+#endif
 
 #include <vector>
 #include <string>
@@ -19,4 +17,4 @@
 #include <stack>
 #include <map>
 
-#endif // HAVE_PCH
+#endif // USING_PCH

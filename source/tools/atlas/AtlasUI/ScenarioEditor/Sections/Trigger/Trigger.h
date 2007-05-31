@@ -11,6 +11,8 @@ class TriggerBottomBar;
 class TriggerPage;
 class wxTreeItemId;
 class wxTreeItemData;
+class wxNotebook;
+class wxNotebookEvent;
 
 class TriggerSidebar : public Sidebar
 {

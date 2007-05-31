@@ -22,8 +22,22 @@ project.configs = { "Debug", "Release", "Testing" }
 if OS == "windows" then
 	project.nasmpath = "../../build/bin/nasm.exe"
 	project.cxxtestpath = "../../build/bin/cxxtestgen.exe"
+	has_broken_pch = false
 else
 	project.cxxtestpath = "../../build/bin/cxxtestgen.pl"
+
+	-- GCC bug (http://gcc.gnu.org/bugzilla/show_bug.cgi?id=10591) - PCH breaks anonymous namespaces
+	-- Fixed in 4.2.0, but we have to disable PCH for earlier versions, else
+	-- it conflicts annoyingly with wx 2.8 headers.
+	-- It's too late to do this test by the time we start compiling the PCH file, so
+	-- do the test in this build script instead (which is kind of ugly - please fix if
+	-- you have a better idea)
+	os.execute("gcc -dumpversion > .gccver.tmp")
+	f = io.open(".gccver.tmp")
+	major, dot, minor = f:read(1, 1, 1)
+	major = 0+major -- coerce to number
+	minor = 0+minor
+	has_broken_pch = (major < 4 or (major == 4 and minor < 2))
 end
 
 source_root = "../../../source/" -- default for most projects - overridden by local in others
@@ -601,7 +615,7 @@ function setup_atlas_packages()
 		"wxwidgets",
 		"xerces"
 	},{	-- extra_params
-		pch = 1,
+		pch = (not has_broken_pch),
 		extra_links = { "AtlasObject", "DatafileIO" },
 		extra_files = { "Misc/atlas.rc" }
 	})
