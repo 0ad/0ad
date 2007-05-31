@@ -13,115 +13,45 @@
 
 #include "lib/sysdep/win/win.h"
 #include "lib/sysdep/win/wcpu.h"
-#include "lib/sysdep/ia32/ia32.h"
-#include "lib/sysdep/cpu.h"		// cpu_CAS
+#include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
+#include "lib/bits.h"
 
 
 //-----------------------------------------------------------------------------
-// per-CPU state
+// detect throttling
 
-// necessary because CPUs are initialized one-by-one and the TSC values
-// differ significantly. (while at it, we also keep per-CPU frequency values
-// in case the clocks aren't exactly synced)
-//
-// note: only reading the TSC from one CPU (possible via thread affinity)
-// would work but take much longer (context switch).
-
-struct PerCpuTscState
+enum AmdPowerNowFlags
 {
-	u64 m_lastTicks;
-	double m_lastTime;
-	double m_observedFrequency;
-	// mark this struct used just in case cpu_CallByEachCPU doesn't ensure
-	// only one thread is running. a flag is safer than a magic APIC ID value.
-	uintptr_t m_isInitialized;
-	uint m_apicId;
+	PN_FREQ_ID_CTRL    = BIT(1),
+	PN_SW_THERMAL_CTRL = BIT(5),
+	PN_INVARIANT_TSC   = BIT(8)
 };
 
-static const size_t MAX_CPUS = 32;	// Win32 also imposes this limit
-static PerCpuTscState cpuTscStates[MAX_CPUS];
-
-static PerCpuTscState& NextUnusedPerCpuTscState()
+static bool IsThrottlingPossible()
 {
-	for(size_t i = 0; i < MAX_CPUS; i++)
+	u32 regs[4];
+
+	switch(ia32_Vendor())
 	{
-		PerCpuTscState& cpuTscState = cpuTscStates[i];
-		if(cpu_CAS(&cpuTscState.m_isInitialized, 0, 1))
-			return cpuTscState;
-	}
+	case IA32_VENDOR_INTEL:
+		if(ia32_cap(IA32_CAP_TM_SCC) || ia32_cap(IA32_CAP_EST))
+			return true;
+		break;
 
-	throw std::runtime_error("allocated too many PerCpuTscState");
-}
-
-static PerCpuTscState& CurrentCpuTscState()
-{
-	const uint apicId = ia32_ApicId();
-	for(size_t i = 0; i < MAX_CPUS; i++)
-	{
-		PerCpuTscState& cpuTscState = cpuTscStates[i];
-		if(cpuTscState.m_isInitialized && cpuTscState.m_apicId == apicId)
-			return cpuTscState;
-	}
-
-	throw std::runtime_error("no matching PerCpuTscState found");
-}
-
-static void InitPerCpuTscState(void* param)	// callback
-{
-	const double cpuClockFrequency = *(double*)param;
-
-	PerCpuTscState& cpuTscState = NextUnusedPerCpuTscState();
-	cpuTscState.m_apicId            = ia32_ApicId();
-	cpuTscState.m_lastTicks         = ia32_rdtsc();
-	cpuTscState.m_lastTime          = 0.0;
-	cpuTscState.m_observedFrequency = cpuClockFrequency;
-}
-
-static LibError InitPerCpuTscStates(double cpuClockFrequency)
-{
-	LibError ret = cpu_CallByEachCPU(InitPerCpuTscState, &cpuClockFrequency);
-	CHECK_ERR(ret);
-	return INFO::OK;
-}
-
-//-----------------------------------------------------------------------------
-/*
-int ia32_IsThrottlingPossible()
-{
-
-	// returned in edx by CPUID 0x80000007.
-	enum AmdPowerNowFlags
-	{
-		POWERNOW_FREQ_ID_CTRL = 2
-	};
-
-
-	if(vendor == IA32_VENDOR_INTEL)
-	{
-		if(ia32_cap(IA32_CAP_EST))
-			return 1;
-	}
-	else if(vendor == IA32_VENDOR_AMD)
-	{
-		u32 regs[4];
+	case IA32_VENDOR_AMD:
 		if(ia32_asm_cpuid(0x80000007, regs))
 		{
-			if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
-				return 1;
+			if(regs[EDX] & (PN_FREQ_ID_CTRL|PN_SW_THERMAL_CTRL))
+				return true;
 		}
+		break;
 	}
 
-	return 0;	// pretty much authoritative, so don't return -1.
+	return false;
 }
-*/
+
 
 //-----------------------------------------------------------------------------
-
-// note: calibration is necessary due to long-term thermal drift
-// (oscillator is usually poor quality) and inaccurate initial measurement.
-
-//-----------------------------------------------------------------------------
-
 
 LibError CounterTSC::Activate()
 {
@@ -130,7 +60,6 @@ LibError CounterTSC::Activate()
 	if(!ia32_cap(IA32_CAP_TSC))
 		return ERR::NO_SYS;		// NOWARN (CPU doesn't support RDTSC)
 
-//	RETURN_ERR(InitPerCpuTscStates(wcpu_ClockFrequency()));
 	return INFO::OK;
 }
 
@@ -141,57 +70,65 @@ void CounterTSC::Shutdown()
 
 bool CounterTSC::IsSafe() const
 {
-return false;
+	// use of the TSC for timing is subject to a litany of potential problems:
+	// - separate, unsynchronized counters with offset and drift;
+	// - frequency changes (P-state transitions and STPCLK throttling);
+	// - failure to increment in C3 and C4 deep-sleep states.
+	// we will discuss the specifics below.
 
-	u32 regs[4];
-	if(ia32_asm_cpuid(0x80000007, regs))
+	// SMP or multi-core => counters are unsynchronized. this could be
+	// solved by maintaining separate per-core counter states, but that
+	// requires atomic reads of the TSC and the current processor number.
+	//
+	// (otherwise, we have a subtle race condition: if preempted while
+	// reading the time and rescheduled on a different core, incorrect
+	// results may be returned, which would be unacceptable.)
+	//
+	// unfortunately this isn't possible without OS support or the
+	// as yet unavailable RDTSCP instruction => unsafe.
+	//
+	// (note: if the TSC is invariant, drift is no longer a concern.
+	// we could synchronize the TSC MSRs during initialization and avoid
+	// per-core counter state and the abovementioned race condition.
+	// however, we won't bother, since such platforms aren't yet widespread
+	// and would surely support the nice and safe HPET, anyway)
+	if(ia32_NumPackages() != 1 || ia32_CoresPerPackage() != 1)
+		return false;
+
+	// recent CPU:
+	if(ia32_Generation() >= 7)
 	{
-	//	if(regs[EDX] & POWERNOW_FREQ_ID_CTRL)
+		// note: 8th generation CPUs support C1-clock ramping, which causes
+		// drift on multi-core systems, but those were excluded above.
+
+		u32 regs[4];
+		if(ia32_asm_cpuid(0x80000007, regs))
+		{
+			// TSC is invariant WRT P-state, C-state and STPCLK => safe.
+			if(regs[EDX] & PN_INVARIANT_TSC)
+				return true;
+		}
+
+		// in addition to P-state transitions, we're also subject to
+		// STPCLK throttling. this happens when the chipset thinks the
+		// system is dangerously overheated; the OS isn't even notified.
+		// it may be rare, but could cause incorrect results => unsafe.
+		return false;
+
+		// newer systems also support the C3 Deep Sleep state, in which
+		// the TSC isn't incremented. that's not nice, but irrelevant
+		// since STPCLK dooms the TSC on those systems anyway.
 	}
 
+	// we're dealing with a single older CPU; the only problem there is
+	// throttling, i.e. changes to the TSC frequency. we don't want to
+	// disable this because it may be important for cooling. the OS
+	// initiates changes but doesn't notify us; jumps are too frequent
+	// and drastic to detect and account for => unsafe.
+	if(IsThrottlingPossible())
+		return false;
 
-	/*
-	AMD  has  defined  a CPUID  feature  bit  that
-	software   can   test   to   determine   if   the   TSC   is
-	invariant. Issuing a CPUID instruction with an %eax register
-	value of  0x8000_0007, on a  processor whose base  family is
-	0xF, returns "Advanced  Power Management Information" in the
-	%eax, %ebx, %ecx,  and %edx registers.  Bit 8  of the return
-	%edx is  the "TscInvariant" feature  flag which is  set when
-	TSC is P-state, C-state, and STPCLK-throttling invariant; it
-	is clear otherwise.
-	*/
-
-#if 0
-	if (CPUID.base_family < 0xf) {
-	// TSC drift doesn't exist on 7th Gen or less
-	// However, OS still needs to consider effects
-	// of P-state changes on TSC
-	return TRUE;
-
-	} else if (CPUID.AdvPowerMgmtInfo.TscInvariant) {
-	// Invariant TSC on 8th Gen or newer, use it
-	// (assume all cores have invariant TSC)
-	return TRUE;
-
-	// - deep sleep modes: TSC may not be advanced.
-	//   not a problem though, because if the TSC is disabled, the CPU
-	//   isn't doing any other work, either.
-	// - SpeedStep/'gearshift' CPUs: frequency may change.
-	//   this happens on notebooks now, but eventually desktop systems
-	//   will do this as well (if not to save power, for heat reasons).
-	//   frequency changes are too often and drastic to correct,
-	//   and we don't want to mess with the system power settings => unsafe.
-	if(cpu_IsThrottlingPossible() == 0)
-		return true;
-
-
-		/* But TSC doesn't tick in C3 so don't use it there */
-	957                 if (acpi_fadt.length > 0 && acpi_fadt.plvl3_lat < 1000)
-		958                         return 1;
-
-#endif
-	return false;
+	return true;
 }
 
 u64 CounterTSC::Counter() const
@@ -214,5 +151,5 @@ uint CounterTSC::CounterBits() const
  **/
 double CounterTSC::NominalFrequency() const
 {
-	return wcpu_ClockFrequency();
+	return cpu_ClockFrequency();
 }

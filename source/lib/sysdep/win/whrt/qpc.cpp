@@ -46,8 +46,8 @@ bool CounterQPC::IsSafe() const
 	// note: we have separate modules that directly access some of the
 	// counters potentially used by QPC. disabling the redundant counters
 	// would be ugly (increased coupling). instead, we'll make sure our
-	// implementations can coexist with QPC and verify the secondary
-	// reference timer has a different frequency.
+	// implementations could (if necessary) coexist with QPC, but it
+	// shouldn't come to that since only one counter is needed/used.
 
 	// the PMT is generally safe (see discussion in CounterPmt::IsSafe),
 	// but older QPC implementations had problems with 24-bit rollover.

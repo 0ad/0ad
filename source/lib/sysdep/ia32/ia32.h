@@ -40,31 +40,40 @@ extern Ia32Vendor ia32_Vendor();
 
 
 /**
+ * @return the colloquial processor generation
+ * (6 = Pentium II / K6, 7 = Pentium III / Athlon, 8 = Opteron)
+ **/
+extern uint ia32_Generation();
+
+
+/**
  * bit indices of CPU capability flags (128 bits).
  * values are defined by IA-32 CPUID feature flags - do not change!
  **/
 enum IA32Cap
 {
 	// standard (ecx) - currently only defined by Intel
-	IA32_CAP_SSE3 = 0+0,	// Streaming SIMD Extensions 3
-	IA32_CAP_EST  = 0+7,	// Enhanced Speedstep Technology
+	IA32_CAP_SSE3            = 0+0,	// Streaming SIMD Extensions 3
+	IA32_CAP_EST             = 0+7,	// Enhanced Speedstep Technology
 
 	// standard (edx)
-	IA32_CAP_FPU  = 32+0,	// Floating Point Unit
-	IA32_CAP_TSC  = 32+4,	// TimeStamp Counter
-	IA32_CAP_CMOV = 32+15,	// Conditional MOVe
-	IA32_CAP_MMX  = 32+23,	// MultiMedia eXtensions
-	IA32_CAP_SSE  = 32+25,	// Streaming SIMD Extensions
-	IA32_CAP_SSE2 = 32+26,	// Streaming SIMD Extensions 2
-	IA32_CAP_HT   = 32+28,	// HyperThreading
+	IA32_CAP_FPU             = 32+0,	// Floating Point Unit
+	IA32_CAP_TSC             = 32+4,	// TimeStamp Counter
+	IA32_CAP_CMOV            = 32+15,	// Conditional MOVe
+	IA32_CAP_TM_SCC          = 32+22,	// Thermal Monitoring and Software Controlled Clock
+	IA32_CAP_MMX             = 32+23,	// MultiMedia eXtensions
+	IA32_CAP_SSE             = 32+25,	// Streaming SIMD Extensions
+	IA32_CAP_SSE2            = 32+26,	// Streaming SIMD Extensions 2
+	IA32_CAP_HT              = 32+28,	// HyperThreading
 
 	// extended (ecx)
+	IA32_CAP_AMD_CMP_LEGACY  = 64+1,	// N-core and IA32_CAP_HT is falsely set
 
-	// extended (edx) - currently only defined by AMD
-	IA32_CAP_AMD_MP        = 96+19,	// MultiProcessing capable; reserved on AMD64
-	IA32_CAP_AMD_MMX_EXT   = 96+22,
-	IA32_CAP_AMD_3DNOW_PRO = 96+30,
-	IA32_CAP_AMD_3DNOW     = 96+31
+	// extended (edx)
+	IA32_CAP_AMD_MP          = 96+19,	// MultiProcessing capable; reserved on AMD64
+	IA32_CAP_AMD_MMX_EXT     = 96+22,
+	IA32_CAP_AMD_3DNOW_PRO   = 96+30,
+	IA32_CAP_AMD_3DNOW       = 96+31
 };
 
 /**

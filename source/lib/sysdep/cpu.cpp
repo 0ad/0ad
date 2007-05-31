@@ -51,6 +51,16 @@ double cpu_ClockFrequency()
 
 static void DetectClockFrequency()
 {
+#if OS_WIN
+	clockFrequency = wcpu_ClockFrequency();
+	// success; we stick with this value because it either doesn't matter
+	// (WHRT isn't using the TSC), or cannot be determined more accurately
+	// (ia32 will use WHRT's TSC to measure its own frequency).
+	// bonus: the wcpu function is much faster than ia32's measurement loop.
+	if(clockFrequency > 0.0)
+		return;
+#endif
+
 #if CPU_IA32
 	clockFrequency = ia32_ClockFrequency();	// authoritative, precise
 #endif

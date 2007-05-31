@@ -15,7 +15,7 @@
 
 extern uint wcpu_NumProcessors();
 extern double wcpu_ClockFrequency();
-extern int wcpu_IsThrottlingPossible();
+
 extern LibError wcpu_CallByEachCPU(CpuCallback cb, void* param);
 
 #endif	// #ifndef INCLUDED_WCPU

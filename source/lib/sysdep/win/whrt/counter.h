@@ -2,14 +2,14 @@
  * =========================================================================
  * File        : counter.h
  * Project     : 0 A.D.
- * Description : Interface for timer implementations
+ * Description : Interface for counter implementations
  * =========================================================================
  */
 
 // license: GPL; see lib/license.txt
 
-#ifndef INCLUDED_TICK_SOURCE
-#define INCLUDED_TICK_SOURCE
+#ifndef INCLUDED_COUNTER
+#define INCLUDED_COUNTER
 
 // derived implementations must be called CounterIMPL,
 // where IMPL matches the WHRT_IMPL identifier. (see CREATE)
@@ -60,4 +60,16 @@ public:
 	}
 };
 
-#endif	// #ifndef INCLUDED_TICK_SOURCE
+
+/**
+ * @return a newly created ICounter of type <id> or 0 iff the ID is invalid.
+ * @param id integer ID (0..N-1)
+ **/
+extern ICounter* CreateCounter(uint id);
+
+/**
+ * shut down the counter, free its resources and zero its pointer.
+ **/
+extern void DestroyCounter(ICounter*& counter);
+
+#endif	// #ifndef INCLUDED_COUNTER

@@ -20,16 +20,10 @@
 #include "lib/adts.h"
 #include "lib/bits.h"
 
-#include "tsc.h"
-#include "hpet.h"
-#include "pmt.h"
-#include "qpc.h"
-#include "tgt.h"
-// to add a new counter type, simply include its header here and
-// insert a case in ConstructCounterAt's switch statement.
+#include "counter.h"
 
 
-#pragma SECTION_INIT(4)	// wposix depends on us
+#pragma SECTION_INIT(4)	// wtime depends on us
 WINIT_REGISTER_FUNC(whrt_Init);
 #pragma FORCE_INCLUDE(whrt_Init)
 #pragma SECTION_SHUTDOWN(8)
@@ -45,94 +39,7 @@ namespace ERR
 
 
 //-----------------------------------------------------------------------------
-// create/destroy counters
-
-/**
- * @return pointer to a newly constructed ICounter subclass of type <id> at
- * the given address, or 0 iff the ID is invalid.
- * @param size receives the size [bytes] of the created instance.
- **/
-static ICounter* ConstructCounterAt(uint id, void* address, size_t& size)
-{
-	// rationale for placement new: see call site.
-#define CREATE(impl)\
-	size = sizeof(Counter##impl);\
-	return new(address) Counter##impl();
-
-#include "lib/nommgr.h"	// MMGR interferes with placement new
-
-	// counters are chosen according to the following order. rationale:
-	// - TSC must come before QPC and PMT to make sure a bug in the latter on
-	//   Pentium systems doesn't come up.
-	// - PMT works, but is inexplicably slower than QPC on a PIII Mobile.
-	// - TGT really isn't as safe as the others, so it should be last.
-	// - low-overhead and high-resolution counters are preferred.
-	switch(id)
-	{
-	case 0:
-		CREATE(TSC)
-	case 1:
-		CREATE(HPET)
-	case 2:
-		CREATE(QPC)
-	case 3:
-		CREATE(PMT)
-	case 4:
-		CREATE(TGT)
-	default:
-		size = 0;
-		return 0;
-	}
-
-#include "lib/mmgr.h"
-
-#undef CREATE
-}
-
-/**
- * @return a newly created Counter of type <id> or 0 iff the ID is invalid.
- **/
-static ICounter* CreateCounter(uint id)
-{
-	// we placement-new the Counter classes in a static buffer.
-	// this is dangerous, but we are careful to ensure alignment. it is
-	// unusual and thus bad, but there's also one advantage: we avoid
-	// using global operator new before the CRT is initialized (risky).
-	//
-	// alternatives:
-	// - defining as static doesn't work because the ctors (necessary for
-	//   vptr initialization) run during _cinit, which comes after our
-	//   first use of them.
-	// - using static_calloc isn't possible because we don't know the
-	//   size until after the alloc / placement new.
-	static const size_t MEM_SIZE = 200;	// checked below
-	static u8 mem[MEM_SIZE];
-	static u8* nextMem = mem;
-
-	u8* addr = (u8*)round_up((uintptr_t)nextMem, 16);
-	size_t size;
-	ICounter* counter = ConstructCounterAt(id, addr, size);
-
-	nextMem = addr+size;
-	debug_assert(nextMem < mem+MEM_SIZE);	// had enough room?
-
-	return counter;
-}
-
-
-static inline void DestroyCounter(ICounter*& counter)
-{
-	if(!counter)
-		return;
-
-	counter->Shutdown();
-	counter->~ICounter();	// must be called due to placement new
-	counter = 0;
-}
-
-
-//-----------------------------------------------------------------------------
-// choose best available counter
+// choose best available safe counter
 
 // (moved into a separate function to simplify error handling)
 static inline LibError ActivateCounter(ICounter* counter)
@@ -178,6 +85,7 @@ static ICounter* GetNextBestSafeCounter()
 // counter that drives the timer
 
 static ICounter* counter;
+// (these counter properties are cached for efficiency and convenience:)
 static double nominalFrequency;
 static double resolution;
 static uint counterBits;
@@ -213,7 +121,10 @@ static inline u64 Counter()
 	return counter->Counter();
 }
 
-/// @return difference [ticks], taking rollover into account.
+/**
+ * @return difference [ticks], taking rollover into account.
+ * (time-critical, so it's not called through ICounter.)
+ **/
 static inline u64 CounterDelta(u64 oldCounter, u64 newCounter)
 {
 	return (newCounter - oldCounter) & counterMask;
@@ -228,27 +139,28 @@ double whrt_Resolution()
 //-----------------------------------------------------------------------------
 // timer state
 
+// we're not going to bother calibrating the counter (i.e. measuring its
+// current frequency by means of a second timer). rationale:
+// - all counters except the TSC are stable and run at fixed frequencies;
+// - it's not clear that any other HRT or the tick count would be useful
+//   as a stable time reference (if it were, we should be using it instead);
+// - calibration would complicate the code (we'd have to make sure the
+//   secondary counter is safe and can co-exist with the primary).
+
 /**
  * stores all timer state shared between readers and the update thread.
  * (must be POD because it's used before static ctors run.)
  **/
 struct TimerState
 {
-	// current value of the counter.
+	// value of the counter at last update.
 	u64 counter;
-
-	// sum of all counter ticks since first update.
-	// rollover is not an issue (even at a high frequency of 10 GHz,
-	// it'd only happen after 58 years)
-	u64 ticks;
 
 	// total elapsed time [seconds] since first update.
 	// converted from tick deltas with the *then current* frequency
-	// (avoids retroactive changes when then frequency changes)
+	// (this enables calibration, which is currently not implemented,
+	// but leaving open the possibility costs nothing)
 	double time;
-
-	// current frequency that will be used to convert ticks to seconds.
-	double frequency;
 };
 
 // how do we detect when the old TimerState is no longer in use and can be
@@ -276,9 +188,7 @@ static void UpdateTimerState()
 	const u64 counter = Counter();
 	const u64 deltaTicks = CounterDelta(ts->counter, counter);
 	ts2->counter = counter;
-	ts2->frequency = nominalFrequency;
-	ts2->ticks = ts->ticks + deltaTicks;
-	ts2->time  = ts->time  + deltaTicks/ts2->frequency;
+	ts2->time = ts->time + deltaTicks/nominalFrequency;
 	ts = (TimerState*)InterlockedExchangePointer(&ts2, ts);
 }
 
@@ -294,117 +204,25 @@ retry:
 		goto retry;
 
 	const u64 deltaTicks = CounterDelta(counter, Counter());
-	return (time + deltaTicks/ts->frequency);
+	return (time + deltaTicks/nominalFrequency);
 }
-
-
-
-#if 0
-
-
-
-class Calibrator
-{
-	double LastFreqs[8];	// ring buffer
-
-	// current ticks per second; average of last few values measured in
-	// calibrate(). needed to prevent long-term drift, and because
-	// hrt_nominal_freq isn't necessarily correct. only affects the ticks since
-	// last calibration - don't want to retroactively change the time.
-	double CurFreq;
-};
-
-calibrationCounter = DetermineBestSafeCounter(counter);
-IsSimilarMagnitude(counter->NominalFrequency(), counter2->NominalFrequency()
-
-// measure current HRT freq - prevents long-term drift; also useful because
-// hrt_nominal_freq isn't necessarily exact.
-static void calibrate_lk()
-{
-	debug_assert(hrt_cal_ticks > 0);
-
-	// we're called from a WinMM event or after thread wakeup,
-	// so the timer has just been updated. no need to determine tick / compensate.
-
-	// get elapsed HRT ticks
-	const i64 hrt_cur = ticks_lk();
-	const i64 hrt_d = hrt_cur - hrt_cal_ticks;
-	hrt_cal_ticks = hrt_cur;
-
-	hrt_cal_time += hrt_d / hrt_cur_freq;
-
-	// get elapsed time from safe millisecond timer
-	static long safe_last = LONG_MAX;
-	// chosen so that dt and therefore hrt_est_freq will be negative
-	// on first call => it won't be added to buffer
-	const long safe_cur = safe_time();
-	const double dt = (safe_cur - safe_last) / safe_timer_freq;
-	safe_last = safe_cur;
-
-	double hrt_est_freq = hrt_d / dt;
-
-	// past couple of calculated hrt freqs, for averaging
-	typedef RingBuf<double, 8> SampleBuf;
-	static SampleBuf samples;
-
-	// only add to buffer if within 10% of nominal
-	// (don't want to pollute buffer with flukes / incorrect results)
-	if(fabs(hrt_est_freq/hrt_nominal_freq - 1.0) < 0.10)
-	{
-		samples.push_back(hrt_est_freq);
-
-		// average all samples in buffer
-		double freq_sum = std::accumulate(samples.begin(), samples.end(), 0.0);
-		hrt_cur_freq = freq_sum / (int)samples.size();
-	}
-	else
-	{
-		samples.clear();
-
-		hrt_cur_freq = hrt_nominal_freq;
-	}
-
-	debug_assert(hrt_cur_freq > 0.0);
-}
-
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //-----------------------------------------------------------------------------
 // update thread
 
 // note: we used to discipline the HRT timestamp to the system time, so it
-// was advantageous to perform updates triggered by a WinMM event
-// (reducing instances where we're called in the middle of a scheduler tick).
+// was advantageous to trigger updates via WinMM event (thus reducing
+// instances where we're called in the middle of a scheduler tick).
 // since that's no longer relevant, we prefer using a thread, because that
 // avoids the dependency on WinMM and its lengthy startup time.
 
 // rationale: (+ and - are reasons for longer and shorter lengths)
 // + minimize CPU usage
-// + tolerate possibly low secondary counter resolution
 // + ensure all threads currently using TimerState return from those
 //   functions before the next interval
-// - notice frequency drift quickly enough
-// - ensure there's no more than 1 counter rollover per interval (this is
-//   checked via RolloversPerCalibrationInterval)
+// - avoid more than 1 counter rollover per interval (InitUpdateThread makes
+//   sure our interval is shorter than the current counter's rollover rate)
 static const DWORD UPDATE_INTERVAL_MS = 1000;
 
 static HANDLE hExitEvent;
@@ -430,7 +248,7 @@ static unsigned __stdcall UpdateThread(void* UNUSED(data))
 static inline LibError InitUpdateThread()
 {
 	// make sure our interval isn't too long
-	// (counterBits can be 64 => BIT64 would overflow => calculate period/2
+	// (counterBits can be 64 => BIT64 would overflow => calculate period/2)
 	const double period_2 = BIT64(counterBits-1) / nominalFrequency;
 	const uint rolloversPerInterval = UPDATE_INTERVAL_MS / cpu_i64FromDouble(period_2*2.0*1000.0);
 	debug_assert(rolloversPerInterval <= 1);

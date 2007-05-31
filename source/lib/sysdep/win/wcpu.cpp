@@ -23,11 +23,6 @@ WINIT_REGISTER_FUNC(wcpu_Init);
 #pragma SECTION_RESTORE
 
 
-// limit allows statically allocated per-CPU structures (for simplicity).
-// WinAPI only supports max. 32 CPUs anyway (due to DWORD bitfields).
-static const uint MAX_CPUS = 32;
-
-
 static uint numProcessors = 0;
 
 /// get number of CPUs (can't fail)
@@ -70,84 +65,6 @@ static void DetectClockFrequency()
 	}
 	else
 		debug_assert(0);
-}
-
-
-static int isThrottlingPossible = -1;
-
-int wcpu_IsThrottlingPossible()
-{
-	debug_assert(isThrottlingPossible != -1);
-	return isThrottlingPossible;
-}
-
-static void CheckIfThrottlingPossible()
-{
-	WIN_SAVE_LAST_ERROR;
-
-	// CallNtPowerInformation
-	// (manual import because it's not supported on Win95)
-	NTSTATUS (WINAPI *pCNPI)(POWER_INFORMATION_LEVEL, PVOID, ULONG, PVOID, ULONG) = 0;
-	// this is most likely the only reference, so don't free it
-	// (=> unload) until done with the DLL.
-	HMODULE hPowrprofDll = LoadLibrary("powrprof.dll");
-	*(void**)&pCNPI = GetProcAddress(hPowrprofDll, "CallNtPowerInformation");
-	if(pCNPI)
-	{
-		// most likely not speedstep-capable if these aren't supported
-		SYSTEM_POWER_CAPABILITIES spc;
-		if(pCNPI(SystemPowerCapabilities, 0,0, &spc,sizeof(spc)) == STATUS_SUCCESS)
-		{
-			if(!spc.ProcessorThrottle || !spc.ThermalControl)
-				isThrottlingPossible = 0;
-		}
-
-		// probably speedstep if cooling mode active.
-		// the documentation of PO_TZ_* is unclear, so we can't be sure.
-		SYSTEM_POWER_INFORMATION spi;
-		if(pCNPI(SystemPowerInformation, 0,0, &spi,sizeof(spi)) == STATUS_SUCCESS)
-		{
-			if(spi.CoolingMode != PO_TZ_INVALID_MODE)
-				isThrottlingPossible = 1;
-		}
-
-		// definitely speedstep if any throttle is less than 100%.
-		PROCESSOR_POWER_INFORMATION ppi[MAX_CPUS];
-		if(pCNPI(ProcessorInformation, 0,0, ppi,sizeof(ppi)) == STATUS_SUCCESS)
-		{
-			const PROCESSOR_POWER_INFORMATION* p = ppi;
-			for(uint i = 0; i < std::min(wcpu_NumProcessors(), MAX_CPUS); i++, p++)
-			{
-				if(p->MhzLimit != p->MaxMhz || p->CurrentMhz != p->MaxMhz)
-				{
-					isThrottlingPossible = 1;
-					break;
-				}
-			}
-		}
-	}
-	FreeLibrary(hPowrprofDll);
-
-	// CallNtPowerInformation not available, or none of the above apply:
-	// don't know yet (for certain, at least).
-	if(isThrottlingPossible == -1)
-	{
-		// check if running on a laptop
-		HW_PROFILE_INFO hi;
-		GetCurrentHwProfile(&hi);
-		const bool is_laptop = !(hi.dwDockInfo & DOCKINFO_DOCKED) ^ !(hi.dwDockInfo & DOCKINFO_UNDOCKED);
-			// both flags set <==> this is a desktop machine.
-			// both clear is unspecified; we assume it's not a laptop.
-			// NOTE: ! is necessary (converts expression to bool)
-
-		// we'll guess SpeedStep is active if on a laptop.
-		// ia32 code will get a second crack at it.
-		isThrottlingPossible = (is_laptop)? 1 : 0;
-	}
-    
-	WIN_RESTORE_LAST_ERROR;
-
-	debug_assert(isThrottlingPossible == 0 || isThrottlingPossible == 1);
 }
 
 
@@ -202,7 +119,6 @@ static LibError wcpu_Init()
 {
 	DetectNumProcessors();
 	DetectClockFrequency();
-	CheckIfThrottlingPossible();
 
 	return INFO::OK;
 }

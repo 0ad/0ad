@@ -34,7 +34,6 @@
 // keep in sync with enum CpuCap!
 static u32 ia32_caps[4];
 
-
 static void ia32_cap_init()
 {
 	u32 regs[4];
@@ -62,6 +61,9 @@ bool ia32_cap(IA32Cap cap)
 	return (ia32_caps[tbl_idx] & BIT(bit_idx)) != 0;
 }
 
+
+//-----------------------------------------------------------------------------
+// CPU identification
 
 static Ia32Vendor vendor;
 
@@ -94,80 +96,48 @@ static void DetectVendor()
 }
 
 
+static uint model, family;
+static uint generation;
 
-
-//-----------------------------------------------------------------------------
-
-// this RDTSC implementation writes edx:eax to a temporary and returns that.
-// rationale: this insulates against changing compiler calling conventions,
-// at the cost of some efficiency.
-// use ia32_asm_rdtsc_edx_eax instead if the return convention is known to be
-// edx:eax (should be the case on all 32-bit x86).
-u64 ia32_rdtsc_safe()
+uint ia32_Generation()
 {
-	u64 c;
-#if HAVE_MS_ASM
-__asm
-{
-	cpuid
-	rdtsc
-	mov			dword ptr [c], eax
-	mov			dword ptr [c+4], edx
-}
-#elif HAVE_GNU_ASM
-	// note: we save+restore EBX to avoid xcode complaining about a
-	// "PIC register" being clobbered, whatever that means.
-	__asm__ __volatile__ (
-		"pushl %%ebx; cpuid; popl %%ebx; rdtsc"
-		: "=A" (c)
-		: /* no input */
-		: "ecx" /* cpuid clobbers eax..edx, but the rest are covered */);
-#endif
-	return c;
+	return generation;
 }
 
-
-void ia32_DebugBreak()
+static void DetectSignature()
 {
-#if HAVE_MS_ASM
-	__asm int 3
-// note: this probably isn't necessary, since unix_debug_break
-// (SIGTRAP) is most probably available if HAVE_GNU_ASM.
-// we include it for completeness, though.
-#elif HAVE_GNU_ASM
-	__asm__ __volatile__ ("int $3");
-#endif
-}
+	u32 regs[4];
+	if(!ia32_asm_cpuid(1, regs))
+		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
+	model  = bits(regs[EAX], 4, 7);
+	family = bits(regs[EAX], 8, 11);
 
-
-//-----------------------------------------------------------------------------
-// support code for lock-free primitives
-//-----------------------------------------------------------------------------
-
-// enforce strong memory ordering.
-void ia32_MemoryFence()
-{
-	// Pentium IV
-	if(ia32_cap(IA32_CAP_SSE2))
-#if HAVE_MS_ASM
-		__asm mfence
-#elif HAVE_GNU_ASM
-		__asm__ __volatile__ ("mfence");
-#endif
-}
-
-void ia32_Serialize()
-{
-#if HAVE_MS_ASM
-	__asm cpuid
-#elif HAVE_GNU_ASM
-	__asm__ __volatile__ ("cpuid");
-#endif
+	switch(family)
+	{
+	case 5:
+	case 6:
+	case 7:
+		generation = family;
+		break;
+	case 0xF:
+		generation = 8;
+		break;
+	default:
+		debug_assert(0);
+	}
 }
 
 
 //-----------------------------------------------------------------------------
 // identifier string
+
+// 3 calls x 4 registers x 4 bytes = 48
+static char identifierString[48+1] = {'\0'};
+
+const char* ia32_IdentifierString()
+{
+	return identifierString;
+}
 
 /// functor to remove substrings from the CPU identifier string
 class StringStripper
@@ -197,26 +167,12 @@ public:
 	}
 };
 
-const char* ia32_IdentifierString()
+static void DetectIdentifierString()
 {
-	// 3 calls x 4 registers x 4 bytes = 48
-	static char identifier_string[48+1] = {'\0'};
-
-	// not first call, return previous result
-	if(identifier_string[0] != '\0')
-		return identifier_string;
-
-	// get processor signature
-	u32 regs[4];
-	if(!ia32_asm_cpuid(1, regs))
-		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
-	const uint model  = bits(regs[EAX], 4, 7);
-	const uint family = bits(regs[EAX], 8, 11);
-
 	// get brand string (if available)
-	// note: ia32_asm_cpuid writes 4 u32s directly to identifier_string -
+	// note: ia32_asm_cpuid writes 4 u32s directly to identifierString -
 	// be very careful with pointer arithmetic!
-	u32* u32_string = (u32*)identifier_string;
+	u32* u32_string = (u32*)identifierString;
 	bool have_brand_string = false;
 	if(ia32_asm_cpuid(0x80000002, u32_string+0 ) &&
 	   ia32_asm_cpuid(0x80000003, u32_string+4) &&
@@ -232,7 +188,7 @@ const char* ia32_IdentifierString()
 	// - the brand string is useless, e.g. "Unknown". this happens on
 	//   some older boards whose BIOS reprograms the string for CPUs it
 	//   doesn't recognize.
-	if(!have_brand_string || strncmp(identifier_string, "Unknow", 6) == 0)
+	if(!have_brand_string || strncmp(identifierString, "Unknow", 6) == 0)
 	{
 		if(vendor == IA32_VENDOR_AMD)
 		{
@@ -240,15 +196,15 @@ const char* ia32_IdentifierString()
 			if(family == 6)
 			{
 				if(model == 3 || model == 7)
-					SAFE_STRCPY(identifier_string, "IA32_VENDOR_AMD Duron");
+					SAFE_STRCPY(identifierString, "IA32_VENDOR_AMD Duron");
 				else if(model <= 5)
-					SAFE_STRCPY(identifier_string, "IA32_VENDOR_AMD Athlon");
+					SAFE_STRCPY(identifierString, "IA32_VENDOR_AMD Athlon");
 				else
 				{
 					if(ia32_cap(IA32_CAP_AMD_MP))
-						SAFE_STRCPY(identifier_string, "IA32_VENDOR_AMD Athlon MP");
+						SAFE_STRCPY(identifierString, "IA32_VENDOR_AMD Athlon MP");
 					else
-						SAFE_STRCPY(identifier_string, "IA32_VENDOR_AMD Athlon XP");
+						SAFE_STRCPY(identifierString, "IA32_VENDOR_AMD Athlon XP");
 				}
 			}
 		}
@@ -258,29 +214,27 @@ const char* ia32_IdentifierString()
 			if(family == 6)
 			{
 				if(model == 1)
-					SAFE_STRCPY(identifier_string, "Intel Pentium Pro");
+					SAFE_STRCPY(identifierString, "Intel Pentium Pro");
 				else if(model == 3 || model == 5)
-					SAFE_STRCPY(identifier_string, "Intel Pentium II");
+					SAFE_STRCPY(identifierString, "Intel Pentium II");
 				else if(model == 6)
-					SAFE_STRCPY(identifier_string, "Intel Celeron");	
+					SAFE_STRCPY(identifierString, "Intel Celeron");	
 				else
-					SAFE_STRCPY(identifier_string, "Intel Pentium III");
+					SAFE_STRCPY(identifierString, "Intel Pentium III");
 			}
 		}
 	}
-	// identifier_string already holds a valid brand string; pretty it up.
+	// identifierString already holds a valid brand string; pretty it up.
 	else
 	{
 		const char* const undesired_strings[] = { "(tm)", "(TM)", "(R)", "CPU " };
 		std::for_each(undesired_strings, undesired_strings+ARRAY_SIZE(undesired_strings),
-			StringStripper(identifier_string, ARRAY_SIZE(identifier_string)));
+			StringStripper(identifierString, ARRAY_SIZE(identifierString)));
 
 		// note: Intel brand strings include a frequency, but we can't rely
 		// on it because the CPU may be overclocked. we'll leave it in the
 		// string to show measurement accuracy and if SpeedStep is active.
 	}
-
-	return identifier_string;
 }
 
 
@@ -312,6 +266,10 @@ public:
 	}
 };
 
+// note: this function uses timer.cpp!get_time, which is implemented via
+// whrt.cpp on Windows, which again calls ia32_Init. be careful that
+// this function isn't called from there as well, else WHRT will be used
+// before its init completes.
 double ia32_ClockFrequency()
 {
 	// if the TSC isn't available, there's really no good way to count the
@@ -392,7 +350,7 @@ double ia32_ClockFrequency()
 
 
 //-----------------------------------------------------------------------------
-// detect processor types / topology
+// processor topology
 //-----------------------------------------------------------------------------
 
 uint ia32_ApicId()
@@ -408,44 +366,62 @@ uint ia32_ApicId()
 // OSes report hyperthreading units and cores as "processors". we need to
 // drill down and find out the exact counts (for thread pool dimensioning
 // and cache sharing considerations).
-// note: Intel Appnote 485 (CPUID) assures uniformity of CoresPerPackage and
-// LogicalPerCore.
+// note: Intel Appnote 485 (CPUID) assures uniformity of coresPerPackage and
+// logicalPerCore.
 
-static uint CoresPerPackage()
+static uint coresPerPackage = 0;
+static uint logicalPerCore = 0;
+
+static void DetectCoresPerPackage()
 {
-	static uint coresPerPackage = 0;
-	if(coresPerPackage == 0)
+	u32 regs[4];
+
+	coresPerPackage = 1;	// single-core unless..
+
+	switch(vendor)
 	{
-		u32 regs[4];
+	case IA32_VENDOR_INTEL:
 		if(ia32_asm_cpuid(4, regs))
 			coresPerPackage = bits(regs[EAX], 26, 31)+1;
-		else
-			coresPerPackage = 1;	// single-core
-	}
+		break;
 
-	return coresPerPackage;
+	case IA32_VENDOR_AMD:
+		if(ia32_asm_cpuid(0x80000008, regs))
+			coresPerPackage = bits(regs[ECX], 0, 7)+1;
+		break;
+	}
 }
 
-static uint LogicalPerCore()
+static bool IsHyperthreadingCapable()
 {
-	static uint logicalPerCore = 0;
-	if(logicalPerCore == 0)
+	// definitely not
+	if(!ia32_cap(IA32_CAP_HT))
+		return false;
+
+	// AMD N-core systems falsely set the HT bit for compatibility reasons
+	// (don't bother resetting it, might confuse callers)
+	if(vendor == IA32_VENDOR_AMD && ia32_cap(IA32_CAP_AMD_CMP_LEGACY))
+		return false;
+
+	return true;
+}
+
+static void DetectLogicalPerCore()
+{
+	u32 regs[4];
+
+	if(!IsHyperthreadingCapable())
 	{
-		if(ia32_cap(IA32_CAP_HT))
-		{
-			u32 regs[4];
-			if(!ia32_asm_cpuid(1, regs))
-				DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
-			const uint logical_per_package = bits(regs[EBX], 16, 23);
-			// cores ought to be uniform WRT # logical processors
-			debug_assert(logical_per_package % CoresPerPackage() == 0);
-			logicalPerCore = logical_per_package / CoresPerPackage();
-		}
-		else
-			logicalPerCore = 1;	// not Hyperthreading capable
+		logicalPerCore = 1;
+		return;
 	}
 
-	return logicalPerCore;
+	if(!ia32_asm_cpuid(1, regs))
+		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
+	const uint logicalPerPackage = bits(regs[EBX], 16, 23);
+	// cores ought to be uniform WRT # logical processors
+	debug_assert(logicalPerPackage % coresPerPackage == 0);
+	logicalPerCore = logicalPerPackage / coresPerPackage;
 }
 
 // the above two functions give the maximum number of cores/logical units.
@@ -508,18 +484,18 @@ static void DetectProcessorTopology()
 
 	// extract values from all 3 ID bitfields into separate sets
 	uint bit_pos = 0;
-	IdSet logical_ids;
-	ExtractFieldsIntoSet(apicIds, bit_pos, LogicalPerCore(), logical_ids);
-	IdSet core_ids;
-	ExtractFieldsIntoSet(apicIds, bit_pos, CoresPerPackage(), core_ids);
-	IdSet package_ids;
-	ExtractFieldsIntoSet(apicIds, bit_pos, 0xFF, package_ids);
+	IdSet logicalIds;
+	ExtractFieldsIntoSet(apicIds, bit_pos, logicalPerCore, logicalIds);
+	IdSet coreIds;
+	ExtractFieldsIntoSet(apicIds, bit_pos, coresPerPackage, coreIds);
+	IdSet packageIds;
+	ExtractFieldsIntoSet(apicIds, bit_pos, 0xFF, packageIds);
 
 	// (the set cardinality is representative of all packages/cores since
 	// they are uniform.)
-	numPackages              = std::max((uint)package_ids.size(), 1u);
-	enabledCoresPerPackage = std::max((uint)core_ids   .size(), 1u);
-	enabledLogicalPerCore  = std::max((uint)logical_ids.size(), 1u);
+	numPackages            = std::max((uint)packageIds.size(), 1u);
+	enabledCoresPerPackage = std::max((uint)coreIds   .size(), 1u);
+	enabledLogicalPerCore  = std::max((uint)logicalIds.size(), 1u);
 
 	// note: even though APIC IDs are assigned sequentially, we can't make any
 	// assumptions about the values/ordering because we get them according to
@@ -553,6 +529,70 @@ uint ia32_LogicalPerCore()
 
 
 //-----------------------------------------------------------------------------
+// misc stateless functions
+
+// this RDTSC implementation writes edx:eax to a temporary and returns that.
+// rationale: this insulates against changing compiler calling conventions,
+// at the cost of some efficiency.
+// use ia32_asm_rdtsc_edx_eax instead if the return convention is known to be
+// edx:eax (should be the case on all 32-bit x86).
+u64 ia32_rdtsc_safe()
+{
+	u64 c;
+#if HAVE_MS_ASM
+	__asm
+	{
+		cpuid
+		rdtsc
+		mov			dword ptr [c], eax
+		mov			dword ptr [c+4], edx
+	}
+#elif HAVE_GNU_ASM
+	// note: we save+restore EBX to avoid xcode complaining about a
+	// "PIC register" being clobbered, whatever that means.
+	__asm__ __volatile__ (
+		"pushl %%ebx; cpuid; popl %%ebx; rdtsc"
+		: "=A" (c)
+		: /* no input */
+	: "ecx" /* cpuid clobbers eax..edx, but the rest are covered */);
+#endif
+	return c;
+}
+
+
+void ia32_DebugBreak()
+{
+#if HAVE_MS_ASM
+	__asm int 3
+		// note: this probably isn't necessary, since unix_debug_break
+		// (SIGTRAP) is most probably available if HAVE_GNU_ASM.
+		// we include it for completeness, though.
+#elif HAVE_GNU_ASM
+	__asm__ __volatile__ ("int $3");
+#endif
+}
+
+
+// enforce strong memory ordering.
+void ia32_MemoryFence()
+{
+	// Pentium IV
+	if(ia32_cap(IA32_CAP_SSE2))
+#if HAVE_MS_ASM
+		__asm mfence
+#elif HAVE_GNU_ASM
+		__asm__ __volatile__ ("mfence");
+#endif
+}
+
+void ia32_Serialize()
+{
+#if HAVE_MS_ASM
+	__asm cpuid
+#elif HAVE_GNU_ASM
+	__asm__ __volatile__ ("cpuid");
+#endif
+}
 
 
 // checks if there is an IA-32 CALL instruction right before ret_addr.
@@ -632,7 +672,11 @@ void ia32_Init()
 	ia32_cap_init();
 
 	DetectVendor();
+	DetectSignature();
+	DetectIdentifierString();
 
+	DetectCoresPerPackage();
+	DetectLogicalPerCore();
 	DetectProcessorTopology();
 }
 
