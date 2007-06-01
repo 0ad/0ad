@@ -77,10 +77,14 @@ public:
 			}
 			break;
 		case TAG_DOUBLE:
-			// Ehm. I think this works, but I can't say as it's something I've tried before.
 			{
-				u64 ival = *( (u64*)JSVAL_TO_DOUBLE( m_data ) );
-				Serialize_int_8( buffer, ival );
+				union {
+					u64 ival;
+					double dval;
+				} val;
+				cassert(sizeof(u64) == sizeof(double));
+				val.dval = *JSVAL_TO_DOUBLE( m_data );
+				Serialize_int_8( buffer, val.ival );
 			}
 			break;
 		case TAG_STRING:
@@ -116,7 +120,7 @@ public:
 					u64 ival;
 					double dval;
 				} val;
-				cassert(sizeof(val.ival) == sizeof(val.dval));
+				cassert(sizeof(u64) == sizeof(double));
 				Deserialize_int_8( buffer, val.ival );
 				JS_NewDoubleValue( g_ScriptingHost.GetContext(), val.dval, &m_data );
 			}

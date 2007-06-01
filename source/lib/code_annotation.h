@@ -133,7 +133,7 @@ switch(x % 2)
  *
  * @param expression that is expected to evaluate to non-zero at compile-time.
  **/
-#define cassert(expr) struct UID__ { int CASSERT_FAILURE: (expr); }
+#define cassert(expr) struct UID__ { unsigned int CASSERT_FAILURE: (expr); }
 
 /**
  * compile-time debug_assert. causes a compile error if the expression

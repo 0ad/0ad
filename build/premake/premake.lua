@@ -32,12 +32,14 @@ else
 	-- It's too late to do this test by the time we start compiling the PCH file, so
 	-- do the test in this build script instead (which is kind of ugly - please fix if
 	-- you have a better idea)
-	os.execute("gcc -dumpversion > .gccver.tmp")
-	f = io.open(".gccver.tmp")
-	major, dot, minor = f:read(1, 1, 1)
-	major = 0+major -- coerce to number
-	minor = 0+minor
-	has_broken_pch = (major < 4 or (major == 4 and minor < 2))
+	if not options["icc"] then
+		os.execute("gcc -dumpversion > .gccver.tmp")
+		f = io.open(".gccver.tmp")
+		major, dot, minor = f:read(1, 1, 1)
+		major = 0+major -- coerce to number
+		minor = 0+minor
+		has_broken_pch = (major < 4 or (major == 4 and minor < 2))
+	end
 end
 
 source_root = "../../../source/" -- default for most projects - overridden by local in others

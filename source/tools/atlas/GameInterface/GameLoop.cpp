@@ -163,7 +163,8 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 				else
 				{
 					debug_warn("Unrecognised message");
-					// TODO: CLogger might not be initialised
+					// CLogger might not be initialised, but this error will be sent
+					// to the debug output window anyway so people can still see it
 					LOG(ERROR, "atlas", "Unrecognised message (%s)", name.c_str());
 				}
 
