@@ -23,16 +23,10 @@
 
 #include "win.h"
 #include <process.h>	// __security_init_cookie
-#include <detours.h>
+#include "lib/sysdep/win/detours/detours.h"
 
 #include "winit.h"
 #include "wdbg.h"		// wdbg_exception_filter
-
-
-#if MSC_VERSION
-#pragma comment(lib, "detours.lib")
-#pragma comment(lib, "detoured.lib")
-#endif
 
 
 //-----------------------------------------------------------------------------
@@ -60,7 +54,6 @@ static void InstallExitHook()
 	RealExitProcess = ExitProcess;
 
 	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
 	DetourAttach(&(PVOID&)RealExitProcess, HookedExitProcess);
 	DetourTransactionCommit();
 }
@@ -126,11 +119,11 @@ typedef int(*PfnIntVoid)(void);
 static int RunWithinTryBlock(PfnIntVoid func)
 {
 	int ret;
-	__try
+	//__try
 	{
 		ret = func();
 	}
-	__except(wdbg_exception_filter(GetExceptionInformation()))
+	//__except(wdbg_exception_filter(GetExceptionInformation()))
 	{
 		ret = -1;
 	}
