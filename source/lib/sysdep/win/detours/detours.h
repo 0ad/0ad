@@ -48,6 +48,4 @@ PVOID WINAPI DetourCopyInstructionEx(PVOID pDst, PVOID pSrc, PVOID *ppTarget, LO
 #endif
 #endif
 
-#endif // DETOURS_INTERNAL
-
 #endif // _DETOURS_H_
