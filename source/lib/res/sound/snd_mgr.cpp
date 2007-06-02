@@ -703,10 +703,10 @@ const char* snd_dev_next()
 // one stream apiece for music and voiceover (narration during tutorial).
 // allowing more is possible, but would be inefficent due to seek overhead.
 // set this limit to catch questionable usage (e.g. streaming normal sounds).
-static const int MAX_STREAMS = 2;
+static const uint MAX_STREAMS = 2;
 
 // maximum IOs queued per stream.
-static const int MAX_IOS = 4;
+static const uint MAX_IOS = 4;
 
 static const size_t STREAM_BUF_SIZE = 32*KiB;
 
