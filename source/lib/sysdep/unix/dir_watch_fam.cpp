@@ -74,6 +74,25 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 		WARN_RETURN(ERR::FAIL);	// no way of getting error code?
 	}
 
+	// Monitoring a directory causes a FAMExists event per file in that directory, then a
+	// FAMEndExist. We have to wait for these events, else the FAM server's write buffer fills
+	// up and we get deadlocked when trying to open another directory. (That happens only with
+	// the original fam, and seems fixed in gamin, but we want to work with both.)
+	FAMEvent e;
+	do {
+		if(FAMNextEvent(&fc, &e) < 0)
+		{
+			// Oops, failed - rather than getting stuck waiting forever for a
+			// FAMEndExist event that may never come, just give up and return now.
+			debug_warn("FAMNextEvent failed");
+			return ERR::FAIL;
+		}
+		// (We might be missing some real events other than the FAMExists ones, if
+		// they happen to be generated right now. That's not a critical problem, so
+		// just ignore it.)
+	}
+	while (e.code != FAMEndExist);
+
 	*watch = (intptr_t)req.reqnum;
 	dirs[*watch] = n_full_path;
 	return INFO::OK;
