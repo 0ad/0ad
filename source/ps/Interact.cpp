@@ -1505,7 +1505,7 @@ void CBuildingPlacer::Update( float timeStep )
 	}
 
 	// Validate placement location.
-	IsValid(pos, onSocket);
+	CheckValid(pos, onSocket);
 
 	// Flash our actor red if the position is invalid.
 
@@ -1523,7 +1523,7 @@ void CBuildingPlacer::Update( float timeStep )
 }
 
 // Alex's mess
-void CBuildingPlacer::IsValid( CVector3D pos, bool onSocket )
+void CBuildingPlacer::CheckValid( CVector3D pos, bool onSocket )
 {
 	// Check whether the placement location is valid (look at whether we're
 	// on the map, who owns the territory, whether we are on a socket, and 

@@ -178,7 +178,7 @@ struct CBuildingPlacer : public Singleton<CBuildingPlacer>
 	void MousePressed();
 	void MouseReleased();
 	void Update( float timeStep );
-	void IsValid( CVector3D pos, bool onSocket );
+	void CheckValid( CVector3D pos, bool onSocket );
 };
 
 bool IsMouseoverType( CEntity* ev, void* userdata );
