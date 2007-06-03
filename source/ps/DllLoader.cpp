@@ -4,6 +4,7 @@
 
 #include "lib/posix/posix_dlfcn.h"
 #include "ps/CStr.h"
+#include "ps/CLogger.h"
 
 void* const HANDLE_UNAVAILABLE = (void*)-1;
 
@@ -65,7 +66,12 @@ bool DllLoader::LoadDLL()
 
 		// open failed (mostly likely SO not found)
 		if (! m_Handle)
+		{
+			char* error = dlerror();
+			if (error)
+				LOG(ERROR, "", "dlopen error: %s", error);
 			m_Handle = HANDLE_UNAVAILABLE;
+		}
 	}
 
 	return (m_Handle != HANDLE_UNAVAILABLE);

@@ -12,12 +12,17 @@
 //////////////////////////////////////////////////////////////////////////
 // Mostly-private bits:
 
+// Helper class to let us define a conversion operator only for AtSmartPtr<not const>
+template<class ConstSmPtr, class T> struct ConstCastHelper { operator ConstSmPtr (); };
+template<class ConstSmPtr, class T> struct ConstCastHelper<ConstSmPtr, const T> { };
+
 // Simple reference-counted pointer. class T must contain a reference count,
 // initialised to 0. An external implementation (in AtlasObjectImpl.cpp)
 // provides the inc_ref and dec_ref methods, so that this header file doesn't
 // need to know their implementations.
-template<class T> class AtSmartPtr
+template<class T> class AtSmartPtr : public ConstCastHelper<AtSmartPtr<const T>, T>
 {
+	friend struct ConstCastHelper<AtSmartPtr<const T>, T>;
 public:
 	// Constructors
 	AtSmartPtr() : ptr(NULL) {}
@@ -30,7 +35,7 @@ public:
 	// Destructor
 	~AtSmartPtr() { dec_ref(); }
 	// Allow conversion from non-const T* to const T*
-	operator AtSmartPtr<const T> () { return AtSmartPtr<const T>(ptr); }
+	//operator AtSmartPtr<const T> () { return AtSmartPtr<const T>(ptr); } // (actually provided by ConstCastHelper)
 	// Override ->
 	T* operator->() const { return ptr; }
 	// Test whether the pointer is pointing to anything
@@ -41,6 +46,12 @@ private:
 	void dec_ref();
 	T* ptr;
 };
+
+template<class ConstSmPtr, class T>
+ConstCastHelper<ConstSmPtr, T>::operator ConstSmPtr ()
+{
+	return ConstSmPtr(static_cast<AtSmartPtr<T>*>(this)->ptr);
+}
 
 // A few required declarations
 class AtObj;

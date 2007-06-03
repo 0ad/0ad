@@ -372,6 +372,7 @@ static void RunGameOrAtlas(int argc, char* argv[])
 	while(!quit)
 		Frame();
 	Shutdown(0);
+	ScriptingHost::FinalShutdown(); // this can't go in Shutdown() because that could be called multiple times per process, so stick it here instead
 	MainControllerShutdown();
 }
 

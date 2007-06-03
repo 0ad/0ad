@@ -253,6 +253,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 
 	// Clean up
 	View::DestroyViews();
+	ScriptingHost::FinalShutdown();
 
 	return true;
 }

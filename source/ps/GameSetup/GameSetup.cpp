@@ -112,7 +112,7 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	// some kind of double-free problem causes a crash and lockup in the driver.
 	// Calling SDL_Quit twice appears to be harmless, though, and avoids the problem
 	// by destroying the context *before* the driver's atexit hook is called.
-	// (Note that atexit hooks are guarantueed to be called in reverse order of their registration.)
+	// (Note that atexit hooks are guaranteed to be called in reverse order of their registration.)
 	atexit(SDL_Quit);
 	// End work around.
 

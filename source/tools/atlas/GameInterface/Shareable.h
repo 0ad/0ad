@@ -11,7 +11,7 @@ the same way.
 So, the Shareable<T> class is used to make things a bit safer:
 Simple types (primitives, basic structs, etc) are passed as normal.
 std::string is converted to an array, using a shared (and thread-safe) memory
-allocation function so that it works when the DLL and EXE use different heaps. 
+allocation function so that it works when the DLL and EXE use different heaps.
 std::vector is done the same, though its element type must be Shareable too.
 
 This ought to protect against:

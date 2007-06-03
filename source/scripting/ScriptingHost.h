@@ -77,6 +77,8 @@ public:
 
 	ScriptingHost();
 	~ScriptingHost();
+
+	static void FinalShutdown();
 	
 	// Helpers:
 

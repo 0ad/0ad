@@ -82,7 +82,13 @@ ScriptingHost::~ScriptingHost()
 		JS_DestroyRuntime(m_RunTime);
 		m_RunTime = NULL;
 	}
+}
 
+void ScriptingHost::FinalShutdown()
+{
+	// This should only be called once per process, just to clean up before
+	// we report memory leaks. (Otherwise, if it's called while there are
+	// other contexts active in other threads, things will break.)
 	JS_ShutDown();
 }
 
