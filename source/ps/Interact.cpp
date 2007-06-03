@@ -1504,6 +1504,27 @@ void CBuildingPlacer::Update( float timeStep )
 		box->SetOrientation( m_angle );
 	}
 
+	// Validate placement location.
+	IsValid(pos, onSocket);
+
+	// Flash our actor red if the position is invalid.
+
+	CColor col;
+	if( m_valid )
+	{
+		col = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+	}
+	else
+	{
+		float add = ( sin(4*PI*m_totalTime) + 1.0f ) * 0.08f;
+		col = CColor( 1.4f+add, 0.4f+add, 0.4f+add, 1.0f );
+	}
+	m_actor->GetModel()->SetShadingColor( col );
+}
+
+// Alex's mess
+void CBuildingPlacer::IsValid( CVector3D pos, bool onSocket )
+{
 	// Check whether the placement location is valid (look at whether we're
 	// on the map, who owns the territory, whether we are on a socket, and 
 	// whether we are colliding with anything).
@@ -1534,18 +1555,4 @@ void CBuildingPlacer::Update( float timeStep )
 	{
 		m_valid = false;
 	}
-
-	// Flash our actor red if the position is invalid.
-
-	CColor col;
-	if( m_valid )
-	{
-		col = CColor(1.0f, 1.0f, 1.0f, 1.0f);
-	}
-	else
-	{
-		float add = ( sin(4*PI*m_totalTime) + 1.0f ) * 0.08f;
-		col = CColor( 1.4f+add, 0.4f+add, 0.4f+add, 1.0f );
-	}
-	m_actor->GetModel()->SetShadingColor( col );
 }
