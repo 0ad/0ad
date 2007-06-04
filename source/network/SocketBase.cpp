@@ -277,7 +277,7 @@ PS_RESULT CSocketBase::Initialize(ESocketProtocol proto)
 	g_SocketSetInternal.m_NumSockets++;
 	GLOBAL_UNLOCK();
 
-	SetNonBlocking(true);
+	SetNonBlocking(m_NonBlocking);
 
 	return PS_OK;
 }

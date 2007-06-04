@@ -234,7 +234,7 @@ void CMessageSocket::StartReadHeader()
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=false;
-	//printf("CMessageSocket::StartReadHeader(): Trying to read %u\n", HEADER_LENGTH);
+	printf("CMessageSocket::StartReadHeader(): Trying to read %u\n", HEADER_LENGTH);
 	PS_RESULT res=Read(m_pRdBuffer, HEADER_LENGTH);
 	if (res != PS_OK)
 	{
@@ -260,7 +260,7 @@ void CMessageSocket::StartReadMessage()
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=true;
-	//printf("CMessageSocket::StartReadMessage(): Got type %d, trying to read %u\n", hdr.m_MsgType, hdr.m_MsgLength);
+	printf("CMessageSocket::StartReadMessage(): Got type %d, trying to read %u\n", hdr.m_MsgType, hdr.m_MsgLength);
 
 	if (hdr.m_MsgLength == 0)
 	{

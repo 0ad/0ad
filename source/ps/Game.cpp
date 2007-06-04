@@ -180,7 +180,7 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		if (g_NetClient)
 		{
 			// TODO
-			//m_pLocalPlayer=g_NetClient->GetLocalPlayer();
+			m_pLocalPlayer = g_NetClient->GetLocalPlayer();
 			debug_assert(m_pLocalPlayer && "Darn it! We weren't assigned to a slot!");
 		}
 		else

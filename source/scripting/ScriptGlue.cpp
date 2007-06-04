@@ -237,17 +237,18 @@ JSBool IssueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
 	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
-	
+
 	std::map<int, CEntityList> entityStore;
 
 	bool isQueued = ToPrimitive<bool>(argv[1]);
-	
+
 	//Destroy old notifiers if we're explicitly being reassigned
 	for ( size_t i=0; i < entities.size(); i++)
 	{
 		if ( entities[i]->entf_get(ENTF_DESTROY_NOTIFIERS))
 			entities[i]->DestroyAllNotifiers();
 	}
+
 	std::vector<CNetMessage*> messages;
 	
 	//Generate messages for formations
@@ -281,9 +282,9 @@ JSBool IssueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	
 	for ( std::vector<CNetMessage*>::iterator it=messages.begin(); it != messages.end(); it++ )
 	{
-		//g_Console->InsertMessage(L"IssueCommand: %hs", (*it)->GetString().c_str());
-		g_Game->GetSimulation()->QueueLocalCommand(*it);
+		g_Console->InsertMessage(L"IssueCommand: %hs", (*it)->GetString().c_str());
 		*rval = g_ScriptingHost.UCStringToValue((*it)->GetString());
+		g_Game->GetSimulation()->QueueLocalCommand(*it);
 	}
 
 	return JS_TRUE;
@@ -728,11 +729,14 @@ JSBool StartGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 	*rval = BOOLEAN_TO_JSVAL(JS_TRUE);
 
 	// Hosted MP Game
-	if (g_NetServer)
+	if (g_NetServer) 
+	{
 		*rval = BOOLEAN_TO_JSVAL(g_NetServer->StartGame() == 0);
-	// Joined MP Game: StartGame is invalid - do nothing
+	}
+	// Joined MP Game
 	else if (g_NetClient)
 	{
+		*rval = BOOLEAN_TO_JSVAL(g_NetClient->StartGame() == 0);
 	}
 	// Start an SP Game Session
 	else if (!g_Game)
@@ -749,6 +753,10 @@ JSBool StartGame(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 			*rval = BOOLEAN_TO_JSVAL(JS_FALSE);
 			return( JS_TRUE );
 		}
+	}
+	else
+	{
+		*rval = BOOLEAN_TO_JSVAL(JS_FALSE);
 	}
 
 	return( JS_TRUE );

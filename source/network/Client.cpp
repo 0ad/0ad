@@ -252,7 +252,7 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	{
 		case NMT_StartGame:
 		{
-			pClient->StartGame();
+			pClient->OnStartGameMessage();
 			HANDLED(pMsg);
 		}
 		case NMT_ClientConnect:
@@ -425,16 +425,29 @@ void CNetClient::OnClientDisconnect(int sessionID)
 	m_ServerSessions.erase(it);
 }
 
-void CNetClient::StartGame()
+void CNetClient::OnStartGameMessage()
 {
 	m_pMessageHandler=InGameHandler;
-	m_pGame->StartGame(m_pGameAttributes);
-	
-	if (m_OnStartGame.Defined())
+	debug_assert( m_OnStartGame.Defined() );
+	CStartGameEvent evt;
+	m_OnStartGame.DispatchEvent(GetScript(), &evt);
+}
+
+int CNetClient::StartGame()
+{
+	if (m_pGame->StartGame(m_pGameAttributes) != PSRETURN_OK)
 	{
-		CStartGameEvent evt;
-		m_OnStartGame.DispatchEvent(GetScript(), &evt);
+		return -1;
 	}
+	else
+	{
+		return 0;
+	}
+}
+
+CPlayer* CNetClient::GetLocalPlayer()
+{
+	return m_pLocalPlayerSlot->GetPlayer();
 }
 
 void CNetClient::NewTurn()

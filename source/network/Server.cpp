@@ -65,9 +65,10 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 	m_pGameAttributes->SetPlayerSlotAssignmentCallback(PlayerSlotAssignmentCallback, this);
 
 	m_pGame->GetSimulation()->SetTurnManager(this);
-	// Set an incredibly long turn length - less command batch spam that way
+
+	// Set an incredibly long turn length for debugging - less command batch spam that way
 	for (int i=0;i<3;i++)
-		CTurnManager::SetTurnLength(i, 3000);
+		CTurnManager::SetTurnLength(i, 1000);
 
 	g_ScriptingHost.SetGlobal("g_NetServer", OBJECT_TO_JSVAL(GetScript()));
 }
@@ -348,7 +349,9 @@ int CNetServer::StartGame()
 	Broadcast(new CStartGame());
 	
 	if (m_pGame->StartGame(m_pGameAttributes) != PSRETURN_OK)
+	{
 		return -1;
+	}
 	else
 	{
 		CTurnManager::Initialize(m_pGameAttributes->GetSlotCount());

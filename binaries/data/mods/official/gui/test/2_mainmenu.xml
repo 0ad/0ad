@@ -911,20 +911,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				tooltip="Click this button to start a new game with the current settings."
 			>Start!
 				<action on="Press"><![CDATA[
-						var losSetting = getGUIObjectByName("pgSessionSetupLosSetting").selected;
-						var fowEnabled = getGUIObjectByName("pgSessionSetupFoW").checked;
-						if(getGUIObjectByName("pgSessionSetupScreenshotMode").checked)
-						{
-							losSetting = 2;
-							fowEnabled = false;
-						}
-						startMap (
-							getCurrItemValue("pgSessionSetupMapName"),
-							losSetting,
-							fowEnabled,
-							getCurrItemValue("pgSessionSetupGameMode"),
-							getGUIObjectByName("pgSessionSetupScreenshotMode").checked,
-							"pgSessionSetup");
+					launchGame();
 				]]></action>
 			</object>
 

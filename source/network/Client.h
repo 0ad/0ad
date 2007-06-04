@@ -50,6 +50,7 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 
 	void OnClientConnect(int sessionID, const CStrW& name);
 	void OnClientDisconnect(int sessionID);
+	void OnStartGameMessage();
 
 	// JS Interface Functions
 	bool JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv);
@@ -59,11 +60,15 @@ protected:
 	virtual void NewTurn();
 	virtual void QueueLocalCommand(CNetMessage *pMsg);
 
-	void StartGame();
-	
 public:
 	CNetClient(CGame *pGame, CGameAttributes *pGameAttribs);
 	virtual ~CNetClient();
+
+	// Launch a game through this client
+	int StartGame();
+
+	// Get a pointer to our player
+	CPlayer* GetLocalPlayer();
 
 	static MessageHandler ConnectHandler;
 

@@ -42,7 +42,7 @@ function openSessionSetup (sessionReturnWindow)
 						// Open the slot.
 						g_GameAttributes.slots[slotNumber-1].assignOpen();
 
-						console.write ("Opened slot " + this.name);
+						//console.write ("Opened slot " + this.name);
 					break;
 					case "Closed":
 						// If "Closed" selected,
@@ -61,7 +61,7 @@ function openSessionSetup (sessionReturnWindow)
 						// Close the slot.
 						g_GameAttributes.slots[slotNumber-1].assignClosed();
 
-						console.write ("Closed slot " + this.name);
+						//console.write ("Closed slot " + this.name);
 					break;
 					default:
 					break;

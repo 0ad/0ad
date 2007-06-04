@@ -5,11 +5,20 @@
 
 // ====================================================================
 
-function startMap (mapName, losSetting, fogOfWar, gameMode, screenshotMode, openWindow)
+function launchGame ()
 {
-	// Starts the map, closing the current window.
-	// mapName: 	.pmp to load.
-	// openWindow: 	Window group (usually parent string) of control that called the function. It'll be hidden.
+	// Starts the map, closing the session setup window.
+	
+	var mapName = getCurrItemValue("pgSessionSetupMapName");
+	var gameMode = getCurrItemValue("pgSessionSetupGameMode");
+	var screenshotMode = getGUIObjectByName("pgSessionSetupScreenshotMode").checked;
+	var losSetting = getGUIObjectByName("pgSessionSetupLosSetting").selected;
+	var fogOfWar = getGUIObjectByName("pgSessionSetupFoW").checked;
+	if(screenshotMode)
+	{
+		losSetting = 2;
+		fogOfWar = false;
+	}
 	
 	// Check whether we have a correct file extension, to avoid crashes
 	var extension = mapName.substring (mapName.length, mapName.length-4);
@@ -27,11 +36,13 @@ function startMap (mapName, losSetting, fogOfWar, gameMode, screenshotMode, open
 	g_GameAttributes.screenshotMode = screenshotMode;
 	
 	// Close setup window
-	closeMainMenuSubWindow (openWindow);
+	closeMainMenuSubWindow ("pgSessionSetup");
 
 	// Display loading screen.	
 	startLoadingScreen();
 
+	console.write( "running startGame()" );
+	
 	// Begin game session.
 	if (! startGame())
 	{
@@ -44,6 +55,8 @@ function startMap (mapName, losSetting, fogOfWar, gameMode, screenshotMode, open
 		btCode = new Array("");
 		messageBox(400, 200, "The game could not be started with the given parameters. You probably have entered an invalid map name.", "Error", 0, btCaptions, btCode);
 	}
+	
+	console.write( "done running startGame()" );
 
 	// Set starting UI layout.
 	GUIType=rb;

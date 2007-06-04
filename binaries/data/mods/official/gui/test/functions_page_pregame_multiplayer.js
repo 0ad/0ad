@@ -74,26 +74,17 @@ function initMPClient (mpParentWindow, ipAddress, profileName)
 	// Player Name
 	client.playerName = profileName;
 
-	var success = client.beginConnect (ipAddress);
-	if (!success)
-	{
-		messageBox(400, 200, "Failed to connect to server. Please check the network connection.",
-			"Client Failure", 2, new Array(), new Array());
-		return 1;
-	}
-	else
-	{
-		console.write ("Client successfully started to connect to " + ipAddress + ".");
-	}
-
 	client.onClientConnect = function (event)
 	{
 		// Set player slot to new player's name.
-		pushItem ("pgSessionSetupP" + (event.id), event.name);
+		console.write("onClientConnect: name is " + event.name + ", id is " + event.id);
+		if( event.id != 1 )
+			pushItem ("pgSessionSetupP" + (event.id), event.name);
 	}
 
 	client.onConnectComplete = function (event)
 	{
+		console.write("onConnectComplete: " + event.message);
 		if (event.success)
 		{
 			// Switch to Session Setup screen.
@@ -118,29 +109,34 @@ function initMPClient (mpParentWindow, ipAddress, profileName)
 
 	client.onDisconnect = function (event)
 	{
+		console.write("onDisconnect: " + event.message);
 		messageBox (400, 200, event.message,
 			"Host Disconnected", 2, new Array(), new Array());
 	}
 
 	client.onClientDisconnect = function (event)
 	{
+		console.write("onClientDisconnect: " + event.message);
 		messageBox (400, 200, event.session,
 			"Client " + event.name + "(" + event.id + ") Disconnected", 2, new Array(), new Array());
-	}
-
-	client.onConnect = function (event)
-	{
-		messageBox (400, 200, event.session,
-			"Client " + event.name + "(" + event.id + ") Connected", 2, new Array(), new Array());
 	}
 
 	client.onStartGame = function (event)
 	{
 		// The server has called Start Game!, so we better switch to the session GUI and stuff like that.
-		startMap (
-			getCurrItemValue ("pgSessionSetupMapName"), 
-			getGUIObjectByName("pgSessionSetupLosSetting").selected, 
-			"pgSessionSetup");
+		launchGame();
+	}
+	
+	var success = client.beginConnect (ipAddress);
+	if (!success)
+	{
+		messageBox(400, 200, "Failed to connect to server. Please check the network connection.",
+			"Client Failure", 2, new Array(), new Array());
+		return 1;
+	}
+	else
+	{
+		console.write ("Client successfully started to connect to " + ipAddress + ".");
 	}
 }
 

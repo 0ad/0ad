@@ -32,6 +32,8 @@ that of Atlas depending on commandline parameters.
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Interact.h"
+#include "network/Client.h"
+#include "network/Server.h"
 #include "network/SessionManager.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
@@ -175,31 +177,19 @@ static void Frame()
 	debug_assert(TimeSinceLastFrame >= 0.0f);
 
 	// decide if update/render is necessary
-	bool need_render, need_update;
-	if( g_app_minimized )
-	{
-		// TODO: eventually update ought to be re-enabled so the server host
-		// can Alt+Tab out without the match hanging. however, game updates
-		// are currently really slow and disabling them makes debugging nicer.
-		need_update = false;
-		need_render = false;
+	bool need_render = !g_app_minimized;
+	bool need_update = true;
 
-		// inactive; relinquish CPU for a little while
+	// If we are not running a multiplayer game, disable updates when the game is
+	// minimized or out of focus and relinquish the CPU a bit, in order to make 
+	// debugging easier.
+	if( !g_NetClient && !g_NetServer && !g_app_has_focus )
+	{
+		need_update = false;
 		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
 		SDL_Delay(10);
 	}
-	else if( !g_app_has_focus )
-	{
-		need_update = false;	// see above
-		need_render = true;
 
-		SDL_Delay(5);	// see above
-	}
-	else	// active
-	{
-		need_update = true;
-		need_render = true;
-	}
 	// TODO: throttling: limit update and render frequency to the minimum.
 	// this is mostly relevant for "inactive" state, so that other windows
 	// get enough CPU time, but it's always nice for power+thermal management.
