@@ -71,9 +71,6 @@ extern_lib_defs = {
 	devil = {
 		unix_names = { "IL", "ILU" },
 	},
-	detours = {
-		dbg_suffix = "",
-	},
 	directx = {
 		win_names  = { "ddraw", },
 		dbg_suffix = "",

@@ -37,15 +37,8 @@
 #pragma comment(lib, "oleaut32.lib")	// VariantChangeType
 #endif
 
-
-#pragma SECTION_INIT(5)
-WINIT_REGISTER_FUNC(wdbg_sym_init);
-#pragma FORCE_INCLUDE(wdbg_sym_init)
-#pragma SECTION_SHUTDOWN(5)
-WINIT_REGISTER_FUNC(wdbg_sym_shutdown);
-#pragma FORCE_INCLUDE(wdbg_sym_shutdown)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_INIT_MAIN(wdbg_sym_Init);
+WINIT_REGISTER_SHUTDOWN_MAIN(wdbg_sym_Shutdown);
 
 // note: it is safe to use debug_assert/debug_warn/CHECK_ERR even during a
 // stack trace (which is triggered by debug_assert et al. in app code) because
@@ -117,7 +110,7 @@ static LibError sym_init()
 }
 
 
-// called from wdbg_sym_shutdown.
+// called from wdbg_sym_Shutdown.
 static LibError sym_shutdown()
 {
 	SymCleanup(hProcess);
@@ -1312,7 +1305,7 @@ static PtrSet* already_visited_ptrs;
 	// if we put it in a function, construction still fails on VC7 because
 	// the atexit table will not have been initialized yet.
 
-// called by debug_dump_stack and wdbg_sym_shutdown
+// called by debug_dump_stack and wdbg_sym_Shutdown
 static void ptr_reset_visited()
 {
 	delete already_visited_ptrs;
@@ -1922,7 +1915,7 @@ fail:
 
 
 
-static LibError wdbg_sym_init()
+static LibError wdbg_sym_Init()
 {
 	// try to import RtlCaptureContext (available on WinXP and later).
 	// it's used in walk_stack; import here to avoid overhead of doing so
@@ -1937,7 +1930,7 @@ static LibError wdbg_sym_init()
 }
 
 
-static LibError wdbg_sym_shutdown()
+static LibError wdbg_sym_Shutdown()
 {
 	ptr_reset_visited();
 	return sym_shutdown();

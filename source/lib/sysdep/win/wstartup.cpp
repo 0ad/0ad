@@ -2,35 +2,20 @@
  * =========================================================================
  * File        : wstartup.cpp
  * Project     : 0 A.D.
- * Description : windows-specific entry point and startup code
+ * Description : windows-specific startup code
  * =========================================================================
  */
 
 // license: GPL; see lib/license.txt
 
-// this module can wrap the program in a SEH __try block and takes care of
-// calling winit's functions at the appropriate times.
-// to use it, set Linker Options -> Advanced -> Entry Point to
-// "entry" (without quotes).
-//
-// besides commandeering the entry point, it hooks ExitProcess.
-// control flow overview: entry [-> RunWithinTryBlock] -> InitAndCallMain ->
-// (init) -> mainCRTStartup -> main -> exit -> HookedExitProcess ->
-// (shutdown) -> ExitProcess.
-
 #include "precompiled.h"
 #include "wstartup.h"
 
-#include "win.h"
-#include <process.h>	// __security_init_cookie
-#include "lib/sysdep/win/detours/detours.h"
-
 #include "winit.h"
-#include "wdbg.h"		// wdbg_exception_filter
 
 
 //-----------------------------------------------------------------------------
-// do shutdown at exit
+// shutdown
 
 // note: the alternative of using atexit has two disadvantages.
 // - the call to atexit must come after _cinit, which means we'd need to be
@@ -39,30 +24,12 @@
 //   for static objects would cause those handlers to be called after ours,
 //   which may cause shutdown order bugs.
 
-static VOID (WINAPI *RealExitProcess)(UINT uExitCode);
-
-static VOID WINAPI HookedExitProcess(UINT uExitCode)
-{
-	winit_CallShutdownFunctions();
-
-	RealExitProcess(uExitCode);
-}
-
-static void InstallExitHook()
-{
-	// (can't do this in a static initializer because they haven't run yet!)
-	RealExitProcess = ExitProcess;
-
-	DetourTransactionBegin();
-	DetourAttach(&(PVOID&)RealExitProcess, HookedExitProcess);
-	DetourTransactionCommit();
-}
-
 //-----------------------------------------------------------------------------
 // init
 
 // the init functions need to be called before any use of Windows-specific
-// code.
+// code. in particular, static ctors may use whrt or wpthread, so we ought to
+// be initialized before them as well.
 //
 // one possibility is using WinMain as the entry point, and then calling the
 // application's main(), but this is expressly forbidden by the C standard.
@@ -78,41 +45,32 @@ static void InstallExitHook()
 // the 0ad executable as well as the separate self-test. this means
 // we can't enable the main() hook for one and disable it in the other.
 //
-// requiring users to call us at the beginning of main is brittle in general
-// and not possible with the self-test's auto-generated main file.
+// requiring users to call us at the beginning of main is brittle in general,
+// comes after static ctors, and is difficult to achieve in external code
+// such as the (automatically generated) self-test.
 //
-// the only alternative is to commandeer the entry point and do all init
-// before calling mainCRTStartup. this means init will be finished before
-// C++ static ctors run (allowing our APIs to be called from those ctors),
-// but also denies init the use of any non-stateless CRT functions!
+// commandeering the entry point, doing init there and then calling
+// mainCRTStartup would work, but doesn't help with shutdown - additional
+// measures are required (see above). note that this approach means we're
+// initialized before _cinit, denying the use of non-stateless CRT functions.
 
-// these aren't defined in VC include files, so we have to do it manually.
-#ifdef USE_WINMAIN
-EXTERN_C int WinMainCRTStartup(void);
-#else
-EXTERN_C int mainCRTStartup(void);
-#endif
 
-// (moved into a separate function because it's used by both
-// entry and entry_noSEH)
-static int InitAndCallMain()
+EXTERN_C void InitAndRegisterShutdown()
 {
 	winit_CallInitFunctions();
-
-	InstallExitHook();
-
-	int ret;
-#ifdef USE_WINMAIN
-	ret = WinMainCRTStartup(); // calls _cinit and then our WinMain
-#else
-	ret = mainCRTStartup();    // calls _cinit and then our main
-#endif
-	return ret;
+	atexit(winit_CallShutdownFunctions);
 }
+
+#pragma data_seg(".CRT$XCB")
+EXTERN_C void(*pInitAndRegisterShutdown)() = InitAndRegisterShutdown;
+#pragma comment(linker, "/include:_pInitAndRegisterShutdown")
+#pragma data_seg()
 
 
 //-----------------------------------------------------------------------------
-// entry point and SEH wrapper
+// SEH wrapper
+
+#include "wdbg.h"		// wdbg_exception_filter
 
 typedef int(*PfnIntVoid)(void);
 
@@ -128,40 +86,4 @@ static int RunWithinTryBlock(PfnIntVoid func)
 		ret = -1;
 	}
 	return ret;
-}
-
-
-int entry()
-{
-#if MSC_VERSION >= 1400
-	// 2006-02-16 workaround for R6035 on VC8:
-	//
-	// SEH code compiled with /GS pushes a "security cookie" onto the
-	// stack. since we're called before _cinit, the cookie won't have
-	// been initialized yet, which would cause the CRT to FatalAppExit.
-	// to solve this, we must call __security_init_cookie before any
-	// hidden compiler-generated SEH registration code runs,
-	// which means the __try block must be moved into a helper function.
-	//
-	// NB: entry() must not contain local string buffers, either -
-	// /GS would install a cookie here as well (same problem).
-	//
-	// see http://msdn2.microsoft.com/en-US/library/ms235603.aspx
-	__security_init_cookie();
-#endif
-	return RunWithinTryBlock(InitAndCallMain);
-}
-
-
-// Alternative entry point, for programs that don't want the SEH handler
-// (e.g. unit tests, where it's better to let the debugger handle any errors)
-int entry_noSEH()
-{
-#if MSC_VERSION >= 1400
-	// see above. this is also necessary here in case pre-libc init
-	// functions use SEH.
-	__security_init_cookie();
-#endif
-
-	return InitAndCallMain();
 }

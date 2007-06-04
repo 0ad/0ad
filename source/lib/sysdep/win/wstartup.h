@@ -2,17 +2,21 @@
  * =========================================================================
  * File        : wstartup.h
  * Project     : 0 A.D.
- * Description : windows-specific entry point and startup code
+ * Description : windows-specific startup code
  * =========================================================================
  */
 
 // license: GPL; see lib/license.txt
 
+// linking with this component automatically causes winit's functions to
+// be called at the appropriate times.
+//
+// the current implementation manages to trigger winit initialization
+// between CRT init and static C++ ctors. that means wpthread etc. APIs
+// are safe to use from the ctors and also that winit initializers are
+// allowed to use non-stateless CRT functions such as atexit.
+
 #ifndef INCLUDED_WSTARTUP
 #define INCLUDED_WSTARTUP
-
-// entry points (normal and without SEH wrapper; see definition)
-EXTERN_C int entry();
-EXTERN_C int entry_noSEH();
 
 #endif	// #ifndef INCLUDED_WSTARTUP

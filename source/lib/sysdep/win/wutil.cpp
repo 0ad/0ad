@@ -19,15 +19,8 @@
 #include "win.h"
 #include "winit.h"
 
-
-#pragma SECTION_INIT(1)	// early, several modules depend on us
-WINIT_REGISTER_FUNC(wutil_PreLibcInit);
-#pragma FORCE_INCLUDE(wutil_PreLibcInit)
-#pragma SECTION_SHUTDOWN(8)
-WINIT_REGISTER_FUNC(wutil_Shutdown);
-#pragma FORCE_INCLUDE(wutil_Shutdown)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_INIT_EARLY(wutil_Init);
+WINIT_REGISTER_SHUTDOWN_LATE(wutil_Shutdown);
 
 //-----------------------------------------------------------------------------
 // safe allocator
@@ -331,7 +324,7 @@ void wutil_RevertWow64Redirection(void* wasRedirectionEnabled)
 
 //-----------------------------------------------------------------------------
 
-static LibError wutil_PreLibcInit()
+static LibError wutil_Init()
 {
 	InitLocks();
 

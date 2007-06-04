@@ -22,14 +22,8 @@
 
 #include "counter.h"
 
-
-#pragma SECTION_INIT(4)	// wtime depends on us
-WINIT_REGISTER_FUNC(whrt_Init);
-#pragma FORCE_INCLUDE(whrt_Init)
-#pragma SECTION_SHUTDOWN(8)
-WINIT_REGISTER_FUNC(whrt_Shutdown);
-#pragma FORCE_INCLUDE(whrt_Shutdown)
-#pragma SECTION_RESTORE
+WINIT_REGISTER_INIT_EARLY2(whrt_Init);	// whrt -> wtime
+WINIT_REGISTER_SHUTDOWN_LATE(whrt_Shutdown);
 
 
 namespace ERR

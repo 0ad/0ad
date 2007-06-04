@@ -404,15 +404,14 @@ function setup_all_libs ()
 		"libjpg",
 		"dbghelp",
 		"directx",
-		"cryptopp",
-		"detours"
+		"cryptopp"
 	}
 	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
 	sysdep_dirs = {
 		linux = { "lib/sysdep/unix" },
 		-- note: RC file must be added to main_exe package.
 		-- note: don't add "lib/sysdep/win/aken.cpp" because that must be compiled with the DDK.
-		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix", "lib/sysdep/win/whrt", "lib/sysdep/win/detours" },
+		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix", "lib/sysdep/win/whrt" },
 		macosx = { "lib/sysdep/osx", "lib/sysdep/unix" },
 	}
 	tinsert(package.files, sourcesfromdirs(source_root, sysdep_dirs[OS]));
@@ -441,8 +440,7 @@ used_extern_libs = {
 	"boost",
 	"dbghelp",
 	"cxxtest",
-	"directx",
-	"detours"
+	"directx"
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.
@@ -476,8 +474,8 @@ function setup_main_exe ()
 		end
 
 		package.linkoptions = {
-			-- required for winit.cpp's init mechanism
-			"/ENTRY:entry",
+			-- required since main.cpp uses main instead of WinMain and subsystem=Win32
+			"/ENTRY:mainCRTStartup",
 
 			-- delay loading of various Windows DLLs (not specific to any of the
 			-- external libraries; those are handled separately)
@@ -801,9 +799,7 @@ function setup_tests()
 	package_add_extern_libs(used_extern_libs)
 
 	if OS == "windows" then
-		-- required for win.cpp's init mechanism
-		tinsert(package.linkoptions, "/ENTRY:entry_noSEH")
-		
+	
 		-- from "lowlevel" static lib; must be added here to be linked in
 		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
 

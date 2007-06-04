@@ -13,6 +13,8 @@
 
 #include "win.h"	// GetTickCount
 
+// see http://blogs.msdn.com/larryosterman/archive/2004/09/27/234840.aspx
+
 
 typedef LibError (*PfnLibErrorVoid)(void);
 
@@ -22,18 +24,12 @@ typedef LibError (*PfnLibErrorVoid)(void);
 //   (zero, because CallFunctionPointers has to ignore entries =0 anyway).
 // - ASCII '$' and 'Z' come before resp. after '0'..'9', so use that to
 //   bound the section names.
-#pragma SECTION_INIT($)
-PfnLibErrorVoid initBegin = 0;
-#pragma SECTION_INIT(Z)
-PfnLibErrorVoid initEnd = 0;
-#pragma SECTION_SHUTDOWN($)
-PfnLibErrorVoid shutdownBegin = 0;
-#pragma SECTION_SHUTDOWN(Z)
-PfnLibErrorVoid shutdownEnd = 0;
-#pragma SECTION_RESTORE
-// note: /include is not necessary, since these are referenced below.
-
-#pragma comment(linker, "/merge:.WINIT=.data")
+__declspec(allocate("WINIT$I$")) PfnLibErrorVoid initBegin = 0;
+__declspec(allocate("WINIT$IZ")) PfnLibErrorVoid initEnd = 0;
+__declspec(allocate("WINIT$S$")) PfnLibErrorVoid shutdownBegin = 0;
+__declspec(allocate("WINIT$SZ")) PfnLibErrorVoid shutdownEnd = 0;
+// note: #pragma comment(linker, "/include") is not necessary since
+// these are referenced below.
 
 
 /**

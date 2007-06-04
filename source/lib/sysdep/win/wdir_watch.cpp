@@ -22,15 +22,8 @@
 #include "winit.h"
 #include "wutil.h"
 
-
-#pragma SECTION_INIT(5)
-WINIT_REGISTER_FUNC(wdir_watch_Init);
-#pragma FORCE_INCLUDE(wdir_watch_Init)
-#pragma SECTION_SHUTDOWN(5)
-WINIT_REGISTER_FUNC(wdir_watch_Shutdown);
-#pragma FORCE_INCLUDE(wdir_watch_Shutdown)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_INIT_MAIN(wdir_watch_Init);
+WINIT_REGISTER_SHUTDOWN_MAIN(wdir_watch_Shutdown);
 
 // rationale for polling:
 // much simpler than pure asynchronous notification: no need for a

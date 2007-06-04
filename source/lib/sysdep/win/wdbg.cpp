@@ -25,16 +25,11 @@
 #include "winit.h"
 #include "wutil.h"
 
-
-#pragma SECTION_INIT(5)
-WINIT_REGISTER_FUNC(wdbg_init);
-#pragma FORCE_INCLUDE(wdbg_init)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_INIT_MAIN(wdbg_Init);
 
 // used to prevent the vectored exception handler from taking charge when
 // an exception is raised from the main thread (allows __try blocks to
-// get control). latched in wdbg_init.
+// get control). latched in wdbg_Init.
 static DWORD main_thread_id;
 
 
@@ -710,7 +705,7 @@ static LONG WINAPI vectored_exception_handler(EXCEPTION_POINTERS* ep)
 }
 
 
-static LibError wdbg_init(void)
+static LibError wdbg_Init(void)
 {
 	// see decl
 	main_thread_id = GetCurrentThreadId();

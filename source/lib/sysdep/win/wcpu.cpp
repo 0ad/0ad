@@ -17,11 +17,7 @@
 #include "wutil.h"
 #include "winit.h"
 
-#pragma SECTION_INIT(2)	// early; whrt depends on us
-WINIT_REGISTER_FUNC(wcpu_Init);
-#pragma FORCE_INCLUDE(wcpu_Init)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_INIT_EARLY(wcpu_Init);	// wcpu -> whrt
 
 static uint numProcessors = 0;
 

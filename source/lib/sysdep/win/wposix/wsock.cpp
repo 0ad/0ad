@@ -20,15 +20,8 @@
 #pragma comment(lib, "ws2_32.lib")
 #endif
 
-
-#pragma SECTION_INIT(5)
-WINIT_REGISTER_FUNC(wsock_init);
-#pragma FORCE_INCLUDE(wsock_init)
-#pragma SECTION_SHUTDOWN(5)
-WINIT_REGISTER_FUNC(wsock_shutdown);
-#pragma FORCE_INCLUDE(wsock_shutdown)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_INIT_MAIN(wsock_Init);
+WINIT_REGISTER_SHUTDOWN_MAIN(wsock_Shutdown);
 
 uint16_t htons(uint16_t s)
 {
@@ -102,7 +95,7 @@ static LibError wsock_actual_init()
 	return INFO::OK;
 }
 
-static LibError wsock_init()
+static LibError wsock_Init()
 {
 	// trigger wsock_actual_init when someone first calls a wsock function.
 	static WdllLoadNotify loadNotify = { "ws2_32", wsock_actual_init };
@@ -111,7 +104,7 @@ static LibError wsock_init()
 }
 
 
-static LibError wsock_shutdown()
+static LibError wsock_Shutdown()
 {
 	if(!ModuleShouldShutdown(&initState))
 		return INFO::OK;

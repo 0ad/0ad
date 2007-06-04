@@ -15,12 +15,7 @@
 #include "crt_posix.h"		// _getcwd
 #include "lib/bits.h"
 
-
-#pragma SECTION_INIT(0)	// very early (pageSize is needed by debug_error_message_build)
-WINIT_REGISTER_FUNC(wposix_Init);
-#pragma FORCE_INCLUDE(wposix_Init)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_INIT_CRITICAL(wposix_Init);	// wposix -> error handling
 
 //-----------------------------------------------------------------------------
 // sysconf
@@ -46,7 +41,12 @@ static void InitSysconf()
 
 long sysconf(int name)
 {
-	debug_assert(pageSize);	// must not be called before InitSysconf
+	// called before InitSysconf => winit/wstartup are broken. this is
+	// going to cause a hard crash because debug.cpp's error reporting
+	// code requires the page size to be known. we'll exit with a unique
+	// value to hopefully help track down the problem.
+	if(!pageSize)
+		exit(239786);	// 0x3A8AA
 
 	switch(name)
 	{

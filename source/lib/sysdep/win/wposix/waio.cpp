@@ -20,14 +20,8 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/bits.h"
 
-
-#pragma SECTION_INIT(5)
-WINIT_REGISTER_FUNC(waio_init);
-#pragma FORCE_INCLUDE(waio_init)
-#pragma SECTION_SHUTDOWN(5)
-WINIT_REGISTER_FUNC(waio_shutdown);
-#pragma FORCE_INCLUDE(waio_shutdown)
-#pragma SECTION_RESTORE
+WINIT_REGISTER_INIT_MAIN(waio_Init);
+WINIT_REGISTER_SHUTDOWN_MAIN(waio_Shutdown);
 
 
 static void lock()
@@ -889,14 +883,14 @@ int aio_fsync(int, struct aiocb*)
 //////////////////////////////////////////////////////////////////////////////
 
 
-static LibError waio_init()
+static LibError waio_Init()
 {
 	req_init();
 	return INFO::OK;
 }
 
 
-static LibError waio_shutdown()
+static LibError waio_Shutdown()
 {
 	req_cleanup();
 	aio_h_cleanup();

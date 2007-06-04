@@ -19,12 +19,7 @@
 #include "lib/sysdep/cpu.h"				// cpu_i64FromDouble
 #include "lib/sysdep/win/whrt/whrt.h"
 
-
-#pragma SECTION_INIT(7)	// depends on whrt
-WINIT_REGISTER_FUNC(wtime_Init);
-#pragma FORCE_INCLUDE(wtime_Init)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_INIT_MAIN(wtime_Init);	// whrt -> wtime
 
 // NT system time and FILETIME are hectonanoseconds since Jan. 1, 1601 UTC.
 // SYSTEMTIME is a struct containing month, year, etc.

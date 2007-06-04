@@ -15,12 +15,7 @@
 #include "win.h"
 #include "winit.h"
 
-
-#pragma SECTION_SHUTDOWN(9)	// last, since DLLs are unloaded here
-WINIT_REGISTER_FUNC(wdll_Shutdown);
-#pragma FORCE_INCLUDE(wdll_Shutdown)
-#pragma SECTION_RESTORE
-
+WINIT_REGISTER_SHUTDOWN_LATE2(wdll_Shutdown);	// last - DLLs are unloaded here
 
 //-----------------------------------------------------------------------------
 // delay loading (modified from VC7 DelayHlp.cpp and DelayImp.h)
