@@ -20,8 +20,8 @@
 #pragma comment(lib, "ws2_32.lib")
 #endif
 
-WINIT_REGISTER_INIT_MAIN(wsock_Init);
-WINIT_REGISTER_SHUTDOWN_MAIN(wsock_Shutdown);
+WINIT_REGISTER_MAIN_INIT(wsock_Init);
+WINIT_REGISTER_MAIN_SHUTDOWN(wsock_Shutdown);
 
 uint16_t htons(uint16_t s)
 {

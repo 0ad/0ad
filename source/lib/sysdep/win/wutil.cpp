@@ -19,8 +19,8 @@
 #include "win.h"
 #include "winit.h"
 
-WINIT_REGISTER_INIT_EARLY(wutil_Init);
-WINIT_REGISTER_SHUTDOWN_LATE(wutil_Shutdown);
+WINIT_REGISTER_EARLY_INIT(wutil_Init);
+WINIT_REGISTER_LATE_SHUTDOWN(wutil_Shutdown);
 
 //-----------------------------------------------------------------------------
 // safe allocator

@@ -17,7 +17,7 @@
 #include "wutil.h"
 #include "winit.h"
 
-WINIT_REGISTER_INIT_EARLY(wcpu_Init);	// wcpu -> whrt
+WINIT_REGISTER_EARLY_INIT(wcpu_Init);	// wcpu -> whrt
 
 static uint numProcessors = 0;
 

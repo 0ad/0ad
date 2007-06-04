@@ -15,7 +15,7 @@
 #include "win.h"
 #include "winit.h"
 
-WINIT_REGISTER_SHUTDOWN_LATE2(wdll_Shutdown);	// last - DLLs are unloaded here
+WINIT_REGISTER_LATE_SHUTDOWN2(wdll_Shutdown);	// last - DLLs are unloaded here
 
 //-----------------------------------------------------------------------------
 // delay loading (modified from VC7 DelayHlp.cpp and DelayImp.h)

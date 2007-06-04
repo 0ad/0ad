@@ -37,8 +37,8 @@
 #pragma comment(lib, "oleaut32.lib")	// VariantChangeType
 #endif
 
-WINIT_REGISTER_INIT_MAIN(wdbg_sym_Init);
-WINIT_REGISTER_SHUTDOWN_MAIN(wdbg_sym_Shutdown);
+WINIT_REGISTER_MAIN_INIT(wdbg_sym_Init);
+WINIT_REGISTER_MAIN_SHUTDOWN(wdbg_sym_Shutdown);
 
 // note: it is safe to use debug_assert/debug_warn/CHECK_ERR even during a
 // stack trace (which is triggered by debug_assert et al. in app code) because

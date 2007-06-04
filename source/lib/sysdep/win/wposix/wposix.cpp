@@ -15,7 +15,7 @@
 #include "crt_posix.h"		// _getcwd
 #include "lib/bits.h"
 
-WINIT_REGISTER_INIT_CRITICAL(wposix_Init);	// wposix -> error handling
+WINIT_REGISTER_CRITICAL_INIT(wposix_Init);	// wposix -> error handling
 
 //-----------------------------------------------------------------------------
 // sysconf

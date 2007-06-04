@@ -20,8 +20,8 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/bits.h"
 
-WINIT_REGISTER_INIT_MAIN(waio_Init);
-WINIT_REGISTER_SHUTDOWN_MAIN(waio_Shutdown);
+WINIT_REGISTER_MAIN_INIT(waio_Init);
+WINIT_REGISTER_MAIN_SHUTDOWN(waio_Shutdown);
 
 
 static void lock()

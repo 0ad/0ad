@@ -11,9 +11,10 @@
 #include "precompiled.h"
 #include "winit.h"
 
-#include "win.h"	// GetTickCount
+#include "win.h"	// GetTickCount for quick'n dirty timing
 
 // see http://blogs.msdn.com/larryosterman/archive/2004/09/27/234840.aspx
+// for discussion of a similar mechanism.
 
 
 typedef LibError (*PfnLibErrorVoid)(void);

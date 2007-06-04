@@ -25,12 +25,7 @@
 #include "winit.h"
 #include "wutil.h"
 
-WINIT_REGISTER_INIT_MAIN(wdbg_Init);
-
-// used to prevent the vectored exception handler from taking charge when
-// an exception is raised from the main thread (allows __try blocks to
-// get control). latched in wdbg_Init.
-static DWORD main_thread_id;
+WINIT_REGISTER_EARLY_INIT(wdbg_Init);	// registers exception handler
 
 
 // protects the breakpoint helper thread.
@@ -45,43 +40,15 @@ static void unlock()
 }
 
 
-void debug_puts(const char* text)
+static NT_TIB* get_tib()
 {
-	OutputDebugStringA(text);
-}
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-
-// inform the debugger of the current thread's description, which it then
-// displays instead of just the thread handle.
-void wdbg_set_thread_name(const char* name)
-{
-	// we pass information to the debugger via a special exception it
-	// swallows. if not running under one, bail now to avoid
-	// "first chance exception" warnings.
-	if(!IsDebuggerPresent())
-		return;
-
-	// presented by Jay Bazuzi (from the VC debugger team) at TechEd 1999.
-	const struct ThreadNameInfo
+	NT_TIB* tib;
+	__asm
 	{
-		DWORD type;
-		const char* name;
-		DWORD thread_id;	// any valid ID or -1 for current thread
-		DWORD flags;
+		mov		eax, fs:[NT_TIB.Self]
+		mov		[tib], eax
 	}
-	info = { 0x1000, name, (DWORD)-1, 0 };
-	__try
-	{
-		RaiseException(0x406D1388, 0, sizeof(info)/sizeof(DWORD), (DWORD*)&info);
-	}
-	__except(EXCEPTION_EXECUTE_HANDLER)
-	{
-		// if we get here, the debugger didn't handle the exception.
-		debug_warn("thread name hack doesn't work under this debugger");
-	}
+	return tib;
 }
 
 
@@ -143,7 +110,9 @@ void debug_heap_enable(DebugHeapChecks what)
 
 
 //-----------------------------------------------------------------------------
+// thread suspension
 
+// suspend a thread, execute a user callback, revive the thread.
 
 // to avoid deadlock, be VERY CAREFUL to avoid anything that may block,
 // including locks taken by the OS (e.g. malloc, GetProcAddress).
@@ -207,11 +176,9 @@ static LibError call_while_suspended(WhileSuspendedFunc func, void* user_arg)
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // breakpoints
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 // breakpoints are set by storing the address of interest in a
 // debug register and marking it 'enabled'.
@@ -390,11 +357,8 @@ LibError debug_remove_all_breaks()
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
-// exception handler
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
+// analyze SEH exceptions
 
 //
 // analyze exceptions; determine their type and locus
@@ -594,59 +558,70 @@ static void get_exception_locus(const EXCEPTION_POINTERS* ep,
 }
 
 
-// called* when an SEH exception was not caught by the app;
-// provides detailed debugging information and exits.
-// (via win.cpp!entry's __except or vectored_exception_handler; see below) 
+//-----------------------------------------------------------------------------
+// exception handler
+
+/*
+
+rationale:
+we want to replace the OS "program error" dialog box because
+it is not all too helpful in debugging. to that end, there are
+5 ways to make sure unhandled SEH exceptions are caught:
+- via WaitForDebugEvent; the app is run from a separate debugger process.
+  this complicates analysis, since the exception is in another
+  address space. also, we are basically implementing a full-featured
+  debugger - overkill.
+- by wrapping all threads in __try (necessary since the handler chain
+  is in TLS). this can be done with the cooperation of wpthread,
+  but threads not under our control aren't covered.
+- with a vectored exception handler. this works across threads, but
+  is never called when the process is being debugged (messing with
+  the PEB flag doesn't help; root cause is the Win32
+  KiUserExceptionDispatcher implementation). also, it's only available
+  on WinXP (unacceptable). finally, it is called before __try blocks,
+  so would receive expected/legitimate exceptions.
+- by setting the per-process unhandled exception filter. as above,
+  this works across threads and isn't called while a debugger is active;
+  it is at least portable across Win32. unfortunately, some Win32 DLLs
+  appear to register their own handlers, so this isn't reliable.
+- by hooking the exception dispatcher. this isn't future-proof.
+
+wrapping all threads in a __try appears to be the best choice. however,
+with wstartup no longer commandeering the exit point, we need to
+retroactively install an SEH handler. this is done by directly
+hooking into the TIB handler list.
+
+since C++ exceptions are implemented via SEH, we can also catch those here;
+it's nicer than a global try{} and avoids duplicating this code.
+we can still get at the C++ information (std::exception.what()) by
+examining the internal exception data structures. these are
+compiler-specific, but haven't changed from VC5-VC7.1.
+alternatively, _set_se_translator could be used to translate all
+SEH exceptions to C++. this way is more reliable/documented, but has
+several drawbacks:
+- it wouldn't work at all in C programs,
+- a new fat exception class would have to be created to hold the
+  SEH exception information (e.g. CONTEXT for a stack trace), and
+- this information would not be available for C++ exceptions.
+
+*/
+
+// called when an exception is detected (see below); provides detailed
+// debugging information and exits.
 //
 // note: keep memory allocs and locking to an absolute minimum, because
 // they may deadlock the process!
-//
-// rationale:
-// we want to replace the OS "program error" dialog box because
-// it is not all too helpful in debugging. to that end, there are
-// 5 ways to make sure unhandled SEH exceptions are caught:
-// - via WaitForDebugEvent; the app is run from a separate debugger process.
-//   this complicates analysis, since the exception is in another
-//   address space. also, we are basically implementing a full-featured
-//   debugger - overkill.
-// - by wrapping all threads in __try (necessary since the handler chain
-//   is in TLS). this is very difficult to guarantee.
-// - with a vectored exception handler. this works across threads, but
-//   is never called when the process is being debugged
-//   (messing with the PEB flag doesn't help; root cause is the
-//   Win32 KiUserExceptionDispatcher implementation).
-//   worse, it's only available on WinXP (unacceptable).
-// - by setting the per-process unhandled exception filter. as above,
-//   this works across threads and isn't called while a debugger is active;
-//   it is at least portable across Win32. unfortunately, some Win32 DLLs
-//   appear to register their own handlers, so this isn't reliable.
-// - by hooking the exception dispatcher. this isn't future-proof.
-//
-// so, SNAFU. we compromise and register a regular __except filter at
-// program entry point and add a vectored exception handler
-// (if supported by the OS) to cover other threads.
-// we steer clear of the process-wide unhandled exception filter,
-// because it is not understood in what cases it can be overwritten;
-// this precludes reliable use.
-//
-// since C++ exceptions are implemented via SEH, we can also catch those here;
-// it's nicer than a global try{} and avoids duplicating this code.
-// we can still get at the C++ information (std::exception.what()) by
-// examining the internal exception data structures. these are
-// compiler-specific, but haven't changed from VC5-VC7.1.
-// alternatively, _set_se_translator could be used to translate all
-// SEH exceptions to C++. this way is more reliable/documented, but has
-// several drawbacks:
-// - it wouldn't work at all in C programs,
-// - a new fat exception class would have to be created to hold the
-//   SEH exception information (e.g. CONTEXT for a stack trace), and
-// - this information would not be available for C++ exceptions.
 LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 {
 	// OutputDebugString raises an exception, which OUGHT to be swallowed
 	// by WaitForDebugEvent but sometimes isn't. if we see it, ignore it.
 	if(ep->ExceptionRecord->ExceptionCode == 0x40010006)	// DBG_PRINTEXCEPTION_C
 		return EXCEPTION_CONTINUE_EXECUTION;
+
+	// if run in a debugger, let it handle exceptions (tends to be more
+	// convenient since it can bring up the crash location)
+	if(IsDebuggerPresent())
+		return EXCEPTION_CONTINUE_SEARCH;
 
 	// note: we risk infinite recursion if someone raises an SEH exception
 	// from within this function. therefore, abort immediately if we have
@@ -693,39 +668,64 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 }
 
 
-static LONG WINAPI vectored_exception_handler(EXCEPTION_POINTERS* ep)
+//-----------------------------------------------------------------------------
+// install SEH exception handler
+
+typedef EXCEPTION_DISPOSITION (*PEXCEPTION_ROUTINE)(_EXCEPTION_RECORD* ExceptionRecord, PVOID EstablisherFrame, _CONTEXT* ContextRecord, PVOID DispatcherContext);
+
+struct _EXCEPTION_REGISTRATION_RECORD
 {
-	// since we're called from the vectored handler chain,
-	// ignore exceptions from the main thread. this allows
-	// __try blocks to take charge; entry() catches all exceptions with a
-	// standard filter and relays them to wdbg_exception_filter.
-	if(main_thread_id == GetCurrentThreadId())
-		return EXCEPTION_CONTINUE_SEARCH;
-	return wdbg_exception_filter(ep);
+	_EXCEPTION_REGISTRATION_RECORD* Next;
+	PEXCEPTION_ROUTINE Handler;
+};
+
+static bool IsUnwinding(DWORD exceptionFlags)
+{
+	return (exceptionFlags & 2) != 0;
+}
+
+static EXCEPTION_DISPOSITION ExceptionHandler(_EXCEPTION_RECORD* ExceptionRecord, PVOID EstablisherFrame, _CONTEXT* ContextRecord, PVOID DispatcherContext)
+{
+	if(!IsUnwinding(ExceptionRecord->ExceptionFlags))
+	{
+		EXCEPTION_POINTERS ep;
+		ep.ExceptionRecord = ExceptionRecord;
+		ep.ContextRecord   = ContextRecord;
+		if(wdbg_exception_filter(&ep) == EXCEPTION_CONTINUE_EXECUTION)
+			return ExceptionContinueExecution;
+	}
+
+	return ExceptionContinueSearch;
 }
 
 
+cassert(WDBG_XRR_STORAGE_SIZE >= sizeof(_EXCEPTION_REGISTRATION_RECORD));
+
+void wdbg_InstallExceptionHandler(void* xrrStorage)
+{
+	_EXCEPTION_REGISTRATION_RECORD* xrr = (_EXCEPTION_REGISTRATION_RECORD*)xrrStorage;
+
+	// add to front of handler list
+	NT_TIB* tib = get_tib();
+	xrr->Handler = ExceptionHandler;
+	xrr->Next = tib->ExceptionList;
+	tib->ExceptionList = xrr;
+}
+
+
+//-----------------------------------------------------------------------------
+
 static LibError wdbg_Init(void)
 {
-	// see decl
-	main_thread_id = GetCurrentThreadId();
-
-	// add vectored exception handler (if supported by the OS).
-	// see rationale above.
-#if _WIN32_WINNT >= 0x0500	// this is how winbase.h tests for it
-	const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
-	PVOID (WINAPI *pAddVectoredExceptionHandler)(IN ULONG FirstHandler, IN PVECTORED_EXCEPTION_HANDLER VectoredHandler);
-	*(void**)&pAddVectoredExceptionHandler = GetProcAddress(hKernel32Dll, "AddVectoredExceptionHandler"); 
-	FreeLibrary(hKernel32Dll);
-	if(pAddVectoredExceptionHandler)
-		pAddVectoredExceptionHandler(TRUE, vectored_exception_handler);
-#endif
+	static _EXCEPTION_REGISTRATION_RECORD xrrStorage;
+	wdbg_InstallExceptionHandler(&xrrStorage);
 
 	return INFO::OK;
 }
 
 
-
+//-----------------------------------------------------------------------------
+// stateless functions
 
 // return 1 if the pointer appears to be totally bogus, otherwise 0.
 // this check is not authoritative (the pointer may be "valid" but incorrect)
@@ -766,17 +766,6 @@ bool debug_is_code_ptr(void* p)
 }
 
 
-static NT_TIB* get_tib()
-{
-	NT_TIB* tib;
-	__asm
-	{
-		mov		eax, fs:[NT_TIB.Self]
-		mov		[tib], eax
-	}
-	return tib;
-}
-
 bool debug_is_stack_ptr(void* p)
 {
 	uintptr_t addr = (uintptr_t)p;
@@ -795,6 +784,38 @@ bool debug_is_stack_ptr(void* p)
 }
 
 
+void debug_puts(const char* text)
+{
+	OutputDebugStringA(text);
+}
 
 
+// inform the debugger of the current thread's description, which it then
+// displays instead of just the thread handle.
+void wdbg_set_thread_name(const char* name)
+{
+	// we pass information to the debugger via a special exception it
+	// swallows. if not running under one, bail now to avoid
+	// "first chance exception" warnings.
+	if(!IsDebuggerPresent())
+		return;
 
+	// presented by Jay Bazuzi (from the VC debugger team) at TechEd 1999.
+	const struct ThreadNameInfo
+	{
+		DWORD type;
+		const char* name;
+		DWORD thread_id;	// any valid ID or -1 for current thread
+		DWORD flags;
+	}
+	info = { 0x1000, name, (DWORD)-1, 0 };
+	__try
+	{
+		RaiseException(0x406D1388, 0, sizeof(info)/sizeof(DWORD), (DWORD*)&info);
+	}
+	__except(EXCEPTION_EXECUTE_HANDLER)
+	{
+		// if we get here, the debugger didn't handle the exception.
+		debug_warn("thread name hack doesn't work under this debugger");
+	}
+}

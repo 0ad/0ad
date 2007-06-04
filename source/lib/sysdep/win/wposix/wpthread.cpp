@@ -469,14 +469,10 @@ static unsigned __stdcall thread_start(void* param)
 	void* arg            = func_and_arg->arg;
 	win_free(param);
 
-	void* ret = (void*)-1;
-	__try
-	{
-		ret = func(arg);
-	}
-	__except(wdbg_exception_filter(GetExceptionInformation()))
-	{
-	}
+	u8 xrrStorage[WDBG_XRR_STORAGE_SIZE];
+	wdbg_InstallExceptionHandler(xrrStorage);
+
+	void* ret = func(arg);
 
 	call_tls_dtors();
 

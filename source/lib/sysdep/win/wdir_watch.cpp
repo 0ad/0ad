@@ -22,8 +22,8 @@
 #include "winit.h"
 #include "wutil.h"
 
-WINIT_REGISTER_INIT_MAIN(wdir_watch_Init);
-WINIT_REGISTER_SHUTDOWN_MAIN(wdir_watch_Shutdown);
+WINIT_REGISTER_MAIN_INIT(wdir_watch_Init);
+WINIT_REGISTER_MAIN_SHUTDOWN(wdir_watch_Shutdown);
 
 // rationale for polling:
 // much simpler than pure asynchronous notification: no need for a

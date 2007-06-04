@@ -22,8 +22,8 @@
 
 #include "counter.h"
 
-WINIT_REGISTER_INIT_EARLY2(whrt_Init);	// whrt -> wtime
-WINIT_REGISTER_SHUTDOWN_LATE(whrt_Shutdown);
+WINIT_REGISTER_EARLY_INIT2(whrt_Init);	// whrt -> wtime
+WINIT_REGISTER_LATE_SHUTDOWN(whrt_Shutdown);
 
 
 namespace ERR
