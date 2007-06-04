@@ -23,10 +23,6 @@
 WINIT_REGISTER_MAIN_INIT(wsock_Init);
 WINIT_REGISTER_MAIN_SHUTDOWN(wsock_Shutdown);
 
-uint16_t htons(uint16_t s)
-{
-	return (s >> 8) | ((s & 0xff) << 8);
-}
 
 // IPv6 globals
 // These are included in the linux C libraries and in newer platform SDKs,
@@ -36,40 +32,65 @@ const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT; // ::_1
 
 
 //-----------------------------------------------------------------------------
-// manual import of certain functions
+// 'optional' IPv6 routines
 
-// don't delay-load because we don't want to require these functions to be
-// present. the user must be able to check if they are available (currently,
-// on Win2k with IPv6 update or WinXP). can't use compile-time HAVE_* to
-// make that decision because we don't want to distribute a separate EXE.
+// we hide the function pointers behind stub functions - this avoids
+// surprising users. speed is irrelevant here. manually writing these stubs
+// is ugly, but delay-load error handling is hairy, so don't use that.
+//
+// the first call of these stubs must trigger wsock_ActualInit in case no
+// other winsock function was called yet. we can't simply rely on
+// ModuleShouldInitialize because taking references prevents shutdown.
+// adding an extra haveInitialized flag would be redundant. instead,
+// enter a clever but safe hack: we call a harmless winsock function that
+// triggers the delay load or does nothing if init has already happened.
 
-// function pointers, automatically initialized before any use of ws2_32.dll
 static int (WINAPI *pgetnameinfo)(const struct sockaddr*, socklen_t, char*, socklen_t, char*, socklen_t, unsigned int);
 static int (WINAPI *pgetaddrinfo)(const char*, const char*, const struct addrinfo*, struct addrinfo**);
 static void (WINAPI *pfreeaddrinfo)(struct addrinfo*);
 
-static HMODULE hWs2_32Dll;
-
-static void ImportOptionalFunctions()
-{
-	*(void**)&pgetnameinfo = GetProcAddress(hWs2_32Dll, "getnameinfo");
-	*(void**)&pgetaddrinfo = GetProcAddress(hWs2_32Dll, "getaddrinfo");
-	*(void**)&pfreeaddrinfo = GetProcAddress(hWs2_32Dll, "freeaddrinfo");
-}
-
 int getnameinfo(const struct sockaddr* sa, socklen_t salen, char* host, socklen_t hostlen, char* serv, socklen_t servlen, unsigned int flags)
 {
+	(void)htonl(0);	// trigger init if not done already
+	if(!pgetnameinfo)
+	{
+		errno = ENOSYS;
+		return -1;
+	}
+
 	return pgetnameinfo(sa, salen, host, hostlen, serv, servlen, flags);
 }
 
 int getaddrinfo(const char* nodename, const char* servname, const struct addrinfo* hints, struct addrinfo** res)
 {
+	(void)htonl(0);		// trigger init if not done already
+	if(!pgetaddrinfo)
+	{
+		errno = ENOSYS;
+		return -1;
+	}
+
 	return pgetaddrinfo(nodename, servname, hints, res);
 }
 
 void freeaddrinfo(struct addrinfo* ai)
 {
+	// (no dummy htonl call or checking of the function pointer is needed
+	// since getaddrinfo must succeed to get a valid addrinfo*.)
+
 	pfreeaddrinfo(ai);
+}
+
+
+static void ImportOptionalFunctions()
+{
+	// (by the time we get here, ws2_32.dll will have been loaded, so
+	// this isn't the only reference and can be freed immediately)
+	HMODULE hWs2_32Dll = LoadLibrary("ws2_32.dll");
+	*(void**)&pgetnameinfo = GetProcAddress(hWs2_32Dll, "getnameinfo");
+	*(void**)&pgetaddrinfo = GetProcAddress(hWs2_32Dll, "getaddrinfo");
+	*(void**)&pfreeaddrinfo = GetProcAddress(hWs2_32Dll, "freeaddrinfo");
+	FreeLibrary(hWs2_32Dll);
 }
 
 
@@ -79,12 +100,10 @@ static ModuleInitState initState;
 
 // called from delay loader the first time a wsock function is called
 // (shortly before the actual wsock function is called).
-static LibError wsock_actual_init()
+static LibError wsock_ActualInit()
 {
 	if(!ModuleShouldInitialize(&initState))
 		return INFO::OK;
-
-	hWs2_32Dll = LoadLibrary("ws2_32.dll");
 
 	char d[1024];
 	int ret = WSAStartup(0x0002, d);	// want 2.0
@@ -97,8 +116,8 @@ static LibError wsock_actual_init()
 
 static LibError wsock_Init()
 {
-	// trigger wsock_actual_init when someone first calls a wsock function.
-	static WdllLoadNotify loadNotify = { "ws2_32", wsock_actual_init };
+	// trigger wsock_ActualInit when someone first calls a winsock function.
+	static WdllLoadNotify loadNotify = { "ws2_32", wsock_ActualInit };
 	wdll_add_notify(&loadNotify);
 	return INFO::OK;
 }
@@ -111,8 +130,6 @@ static LibError wsock_Shutdown()
 
 	int ret = WSACleanup();
 	debug_assert(ret >= 0);
-
-	FreeLibrary(hWs2_32Dll);
 
 	return INFO::OK;
 }

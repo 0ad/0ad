@@ -106,67 +106,60 @@ CSocketAddress CSocketAddress::Loopback(int port, ESocketProtocol proto)
 
 PS_RESULT CSocketAddress::Resolve(const char *name, int port, CSocketAddress &addr)
 {
-	if ((getaddrinfo) != NULL)
+	addrinfo *ai;
+	int res=getaddrinfo(name, NULL, NULL, &ai);
+	if (res == 0)
 	{
-		addrinfo *ai;
-		int res=getaddrinfo(name, NULL, NULL, &ai);
-		if (res == 0)
+		if (ai->ai_addrlen < sizeof(addr.m_Union))
+			cpu_memcpy(&addr.m_Union, ai->ai_addr, ai->ai_addrlen);
+		switch (addr.m_Union.m_Family)
 		{
-			if (ai->ai_addrlen < sizeof(addr.m_Union))
-				cpu_memcpy(&addr.m_Union, ai->ai_addr, ai->ai_addrlen);
-			switch (addr.m_Union.m_Family)
-			{
-			case IPv4:
-				addr.m_Union.m_IPv4.sin_port=htons(port);
-				break;
-			case IPv6:
-				addr.m_Union.m_IPv6.sin6_port=htons(port);
-				break;
-			}
-			freeaddrinfo(ai);
-			return PS_OK;
+		case IPv4:
+			addr.m_Union.m_IPv4.sin_port=htons(port);
+			break;
+		case IPv6:
+			addr.m_Union.m_IPv6.sin6_port=htons(port);
+			break;
 		}
-		else
-			return NO_SUCH_HOST;
-	}
-	else
-	{
- 		hostent *he;
-	 
-  		addr.m_Union.m_IPv4.sin_family=AF_INET;
- 		addr.m_Union.m_IPv4.sin_port=htons(port);
-		// Try to parse dot-notation IP
- 		addr.m_Union.m_IPv4.sin_addr.s_addr=inet_addr(name);
- 		if (addr.m_Union.m_IPv4.sin_addr.s_addr==INADDR_NONE) // Not a dotted IP, try name resolution
- 		{
- 			he=gethostbyname(name);
- 			if (!he)
- 			{
- 				return NO_SUCH_HOST;
-			}
- 			addr.m_Union.m_IPv4.sin_addr=*(struct in_addr *)(he->h_addr_list[0]);
-		}
+		freeaddrinfo(ai);
 		return PS_OK;
 	}
+	// supported, but failed
+	if (errno != ENOSYS)
+		return NO_SUCH_HOST;
+	// else: IPv6 not supported, fall back to IPv4
+
+	hostent *he;
+ 
+	addr.m_Union.m_IPv4.sin_family=AF_INET;
+	addr.m_Union.m_IPv4.sin_port=htons(port);
+	// Try to parse dot-notation IP
+	addr.m_Union.m_IPv4.sin_addr.s_addr=inet_addr(name);
+	if (addr.m_Union.m_IPv4.sin_addr.s_addr==INADDR_NONE) // Not a dotted IP, try name resolution
+	{
+		he=gethostbyname(name);
+		if (!he)
+			return NO_SUCH_HOST;
+		addr.m_Union.m_IPv4.sin_addr=*(struct in_addr *)(he->h_addr_list[0]);
+	}
+	return PS_OK;
 }
 
 CStr CSocketAddress::GetString() const
 {
 	char convBuf[NI_MAXHOST];
-	if ((getnameinfo) != NULL)
-	{
-		int res=getnameinfo((sockaddr *)&m_Union, sizeof(m_Union), convBuf, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
-		if (res == 0)
-		{
-			return CStr(convBuf);
-		}
-		// getnameinfo won't return a string for the IPv6 unspecified address
-		else if (m_Union.m_Family == IPv6 && res==EAI_NONAME)
-			return "::";
-		else
-			return "";
-	}
-	else if (m_Union.m_Family == IPv4)
+	int res=getnameinfo((sockaddr *)&m_Union, sizeof(m_Union), convBuf, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
+	if (res == 0)
+		return CStr(convBuf);
+	// getnameinfo won't return a string for the IPv6 unspecified address
+	else if (m_Union.m_Family == IPv6 && res==EAI_NONAME)
+		return "::";
+	// supported, but failed
+	else if (errno != ENOSYS)
+		return "";
+	// else: IPv6 not supported, fall back to IPv4
+
+	if (m_Union.m_Family == IPv4)
 	{
 		sprintf(convBuf, "%d.%d.%d.%d",
 			m_Union.m_IPv4.sin_addr.s_addr&0xff,

@@ -671,7 +671,8 @@ LONG WINAPI wdbg_exception_filter(EXCEPTION_POINTERS* ep)
 //-----------------------------------------------------------------------------
 // install SEH exception handler
 
-typedef EXCEPTION_DISPOSITION (*PEXCEPTION_ROUTINE)(_EXCEPTION_RECORD* ExceptionRecord, PVOID EstablisherFrame, _CONTEXT* ContextRecord, PVOID DispatcherContext);
+typedef EXCEPTION_DISPOSITION (*PEXCEPTION_ROUTINE)(_EXCEPTION_RECORD* ExceptionRecord,
+	PVOID EstablisherFrame, _CONTEXT* ContextRecord, PVOID DispatcherContext);
 
 struct _EXCEPTION_REGISTRATION_RECORD
 {
@@ -684,7 +685,8 @@ static bool IsUnwinding(DWORD exceptionFlags)
 	return (exceptionFlags & 2) != 0;
 }
 
-static EXCEPTION_DISPOSITION ExceptionHandler(_EXCEPTION_RECORD* ExceptionRecord, PVOID EstablisherFrame, _CONTEXT* ContextRecord, PVOID DispatcherContext)
+static EXCEPTION_DISPOSITION ExceptionHandler(_EXCEPTION_RECORD* ExceptionRecord,
+	PVOID UNUSED(EstablisherFrame), _CONTEXT* ContextRecord, PVOID UNUSED(DispatcherContext))
 {
 	if(!IsUnwinding(ExceptionRecord->ExceptionFlags))
 	{

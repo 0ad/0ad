@@ -169,6 +169,8 @@ struct addrinfo
 #define NI_MAXHOST 1025
 #define NI_MAXSERV 32
 
+// these functions are only supported on WinXP+, and Win2k with IPv6 update.
+// otherwise, they return -1 with errno = ENOSYS.
 extern int getnameinfo(const struct sockaddr*, socklen_t, char*, socklen_t, char*, socklen_t, unsigned int);
 extern int getaddrinfo(const char*, const char*, const struct addrinfo*, struct addrinfo**);
 extern void freeaddrinfo(struct addrinfo*);
@@ -183,10 +185,10 @@ extern void freeaddrinfo(struct addrinfo*);
 // <arpa/inet.h>
 //
 
-extern uint16_t htons(uint16_t hostshort);
-#define ntohs htons
+IMP(unsigned short, htons, (unsigned short hostlong))
+IMP(unsigned short, ntohs, (unsigned short hostlong))
 IMP(unsigned long, htonl, (unsigned long hostlong))
-
+IMP(unsigned long, ntohl, (unsigned long hostlong))
 
 IMP(in_addr_t, inet_addr, (const char*))
 IMP(char*, inet_ntoa, (in_addr))
