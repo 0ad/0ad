@@ -3,7 +3,7 @@
 class TerrainSidebar : public Sidebar
 {
 public:
-	TerrainSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
+	TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
 protected:
 	virtual void OnFirstDisplay();

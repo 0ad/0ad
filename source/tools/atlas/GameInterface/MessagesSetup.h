@@ -99,6 +99,7 @@ const bool NOMERGE = false;
 #define B_TYPE(elem) BOOST_PP_TUPLE_ELEM(2, 0, elem)
 #define B_NAME(elem) BOOST_PP_TUPLE_ELEM(2, 1, elem)
 #define B_CONSTRUCTORARGS(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_TYPE(elem) BOOST_PP_CAT(B_NAME(elem),_)
+#define B_CONSTRUCTORTYPES(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_TYPE(elem)
 #define B_CONSTRUCTORINIT(r, data, n, elem) BOOST_PP_COMMA_IF(n) B_NAME(elem)(BOOST_PP_CAT(B_NAME(elem),_))
 #define B_CONSTMEMBERS(r, data, n, elem) const Shareable< B_TYPE(elem) > B_NAME(elem);
 #define B_MEMBERS(r, data, n, elem) Shareable< B_TYPE(elem) > B_NAME(elem);
@@ -107,6 +108,7 @@ const bool NOMERGE = false;
 	struct mBlah : public IMessage {
 		const char* GetName() const { return "Blah"; }
 		mBlah(int in0_, bool in1_) : in0(in0_), in1(in1_) {}
+		static mBlah* CtorType (int, bool) { return NULL; } // This doesn't do anything useful - it's just to make template-writing easier
 		const Shareable<int> in0;
 		const Shareable<bool> in1;
 	}
@@ -116,12 +118,14 @@ const bool NOMERGE = false;
 	MESSAGESTRUCT(name) \
 		m##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, vals) ) \
 			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, vals) {} \
+		static m##name* CtorType( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORTYPES, ~, vals) ) { return NULL; } \
 		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, vals) \
 	}
 
 #define MESSAGE_WITHOUT_INPUTS(name, vals) \
 	MESSAGESTRUCT(name) \
 		m##name() {} \
+		static m##name* CtorType() { return NULL; } \
 	}
 
 #define MESSAGE(name, vals) \
@@ -177,6 +181,7 @@ const bool NOMERGE = false;
 #undef B_TYPE
 #undef B_NAME
 #undef B_CONSTRUCTORARGS
+#undef B_CONSTRUCTORTYPES
 #undef B_CONSTRUCTORINIT
 #undef B_CONSTMEMBERS
 #undef B_MEMBERS

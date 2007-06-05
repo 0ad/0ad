@@ -19,7 +19,7 @@ class TriggerSidebar : public Sidebar
 public:
 	enum { ID_CondList, ID_EffectList };
 
-	TriggerSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
+	TriggerSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
 	void onTreeDrag(wxTreeEvent& evt);
 	void onTreeNameChange(wxTreeEvent& evt);

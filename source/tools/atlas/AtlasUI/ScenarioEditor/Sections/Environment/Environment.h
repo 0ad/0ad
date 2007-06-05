@@ -7,7 +7,7 @@ class VariableListBox;
 class EnvironmentSidebar : public Sidebar
 {
 public:
-	EnvironmentSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
+	EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
 protected:
 	virtual void OnFirstDisplay();

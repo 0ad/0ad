@@ -24,7 +24,7 @@ class CinematicSidebar : public Sidebar
 
 public:
 	
-	CinematicSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
+	CinematicSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 	
 	//The actual data is stored in bottom bar, but is controled from here
 	void SelectPath(ssize_t n);

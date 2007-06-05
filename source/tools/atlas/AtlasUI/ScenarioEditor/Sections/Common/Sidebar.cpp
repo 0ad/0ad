@@ -2,10 +2,8 @@
 
 #include "Sidebar.h"
 
-IMPLEMENT_DYNAMIC_CLASS(Sidebar, wxPanel)
-
-Sidebar::Sidebar(wxWindow* sidebarContainer, wxWindow* WXUNUSED(bottomBarContainer))
-	: wxPanel(sidebarContainer), m_BottomBar(NULL), m_AlreadyDisplayed(false)
+Sidebar::Sidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* WXUNUSED(bottomBarContainer))
+	: wxPanel(sidebarContainer), m_ScenarioEditor(scenarioEditor), m_BottomBar(NULL), m_AlreadyDisplayed(false)
 {
 	m_MainSizer = new wxBoxSizer(wxVERTICAL);
 	SetSizer(m_MainSizer);

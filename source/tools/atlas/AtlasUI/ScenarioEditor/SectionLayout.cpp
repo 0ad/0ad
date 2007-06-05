@@ -252,7 +252,7 @@ void SectionLayout::SetCanvas(wxWindow* canvas)
 	m_Canvas = canvas;
 }
 
-void SectionLayout::Build()
+void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 {
 	// TODO: wxWidgets bug (http://sourceforge.net/tracker/index.php?func=detail&aid=1298803&group_id=9863&atid=109863)
 	// - pressing menu keys (e.g. alt+f) with notebook tab focussed causes application to freeze
@@ -261,7 +261,7 @@ void SectionLayout::Build()
 	Sidebar* sidebar;
 
 	#define ADD_SIDEBAR(classname, icon, tooltip) \
-		sidebar = new classname(m_SidebarBook->GetContentWindow(), m_VertSplitter); \
+		sidebar = new classname(scenarioEditor, m_SidebarBook->GetContentWindow(), m_VertSplitter); \
 		if (sidebar->GetBottomBar()) \
 			sidebar->GetBottomBar()->Show(false); \
 		m_SidebarBook->AddPage(sidebar, icon, tooltip); \

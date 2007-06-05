@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 
+class ScenarioEditor;
 class SnapSplitterWindow;
 class SidebarBook;
 class wxWindow;
@@ -17,7 +18,7 @@ public:
 	void SetWindow(wxWindow* window);
 	wxWindow* GetCanvasParent();
 	void SetCanvas(wxWindow*);
-	void Build();
+	void Build(ScenarioEditor&);
 
 	void SelectPage(const wxString& classname);
 

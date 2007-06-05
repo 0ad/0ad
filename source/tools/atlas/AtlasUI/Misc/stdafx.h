@@ -3,6 +3,12 @@
 #ifndef INCLUDED_STDAFX
 #define INCLUDED_STDAFX
 
+#ifdef USING_PCH
+# define HAVE_PCH 1
+#else
+# define HAVE_PCH 0
+#endif
+
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 # pragma warning(disable: 6334) // TODO: what was this for?
 #endif

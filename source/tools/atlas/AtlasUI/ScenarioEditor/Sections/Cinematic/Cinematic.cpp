@@ -761,8 +761,8 @@ BEGIN_EVENT_TABLE(CinemaButtonBox, wxPanel)
 END_EVENT_TABLE()
 //////////////////////////////////////////////////////////////////////////
 
-CinematicSidebar::CinematicSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(sidebarContainer, bottomBarContainer), m_SelectedPath(-1), m_SelectedSplineNode(-1),
+CinematicSidebar::CinematicSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), m_SelectedPath(-1), m_SelectedSplineNode(-1),
 m_TimeElapsed(0.f), m_RotationAbsolute(false), m_Playing(false)
 {
 	m_PathSlider = new PathSlider(this);

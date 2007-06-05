@@ -1,13 +1,12 @@
 #ifndef INCLUDED_SIDEBAR
 #define INCLUDED_SIDEBAR
 
+class ScenarioEditor;
+
 class Sidebar : public wxPanel
 {
-	DECLARE_DYNAMIC_CLASS(Sidebar);
-
 public:
-	Sidebar() {}
-	Sidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
+	Sidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer);
 
 	void OnSwitchAway();
 	void OnSwitchTo();
@@ -15,6 +14,8 @@ public:
 	wxWindow* GetBottomBar() { return m_BottomBar; }
 
 protected:
+	ScenarioEditor& m_ScenarioEditor;
+
 	wxSizer* m_MainSizer; // vertical box sizer, used by most sidebars
 
 	wxWindow* m_BottomBar; // window that goes at the bottom of the screen; may be NULL

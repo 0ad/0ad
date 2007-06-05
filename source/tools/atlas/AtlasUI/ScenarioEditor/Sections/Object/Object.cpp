@@ -77,8 +77,8 @@ struct ObjectSidebarImpl
 	std::vector<AtlasMessage::sObjectsListItem> m_Objects;
 };
 
-ObjectSidebar::ObjectSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(sidebarContainer, bottomBarContainer), p(new ObjectSidebarImpl())
+ObjectSidebar::ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), p(new ObjectSidebarImpl())
 {
 	wxArrayString strings;
 	strings.Add(_("Entities"));

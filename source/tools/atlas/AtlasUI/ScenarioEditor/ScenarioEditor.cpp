@@ -2,12 +2,13 @@
 
 #include "ScenarioEditor.h"
 
+#include "wx/busyinfo.h"
 #include "wx/config.h"
 #include "wx/evtloop.h"
-#include "wx/tooltip.h"
-#include "wx/image.h"
-#include "wx/busyinfo.h"
+#include "wx/ffile.h"
 #include "wx/filename.h"
+#include "wx/image.h"
+#include "wx/tooltip.h"
 
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"
@@ -18,6 +19,8 @@
 
 #include "GameInterface/MessagePasser.h"
 #include "GameInterface/Messages.h"
+
+#include "AtlasScript/ScriptInterface.h"
 
 #include "Tools/Common/Tools.h"
 
@@ -256,13 +259,12 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
 
-
 static AtlasWindowCommandProc g_CommandProc;
 AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc; }
 
 ScenarioEditor::ScenarioEditor(wxWindow* parent)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
-, m_FileHistory(_T("Scenario Editor"))
+, m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(new ScriptInterface())
 {
 	// Global application initialisation:
 
@@ -275,6 +277,21 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	wxToolTip::Enable(true);
 
 	wxImage::AddHandler(new wxPNGHandler);
+
+	//////////////////////////////////////////////////////////////////////////
+	// Script interface functions
+	m_ScriptInterface->RegisterFunction<wxString, Datafile::GetDataDirectory>("GetDataDirectory");
+
+	{
+		const wxString relativePath (_T("tools/atlas/scripts/main.js"));
+		wxFileName filename (relativePath, wxPATH_UNIX);
+		filename.MakeAbsolute(Datafile::GetDataDirectory());
+		wxFFile file (filename.GetFullPath());
+		wxString script;
+		if (! file.ReadAll(&script))
+			wxLogError(_("Failed to read script"));
+		GetScriptInterface().LoadScript(filename.GetFullName(), script);
+	}
 
 	//////////////////////////////////////////////////////////////////////////
 	// Menu
@@ -356,7 +373,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	// Set up sidebars:
 
-	m_SectionLayout.Build();
+	m_SectionLayout.Build(*this);
 
 #if defined(__WXMSW__)
 	// The canvas' context gets made current on creation; but it can only be

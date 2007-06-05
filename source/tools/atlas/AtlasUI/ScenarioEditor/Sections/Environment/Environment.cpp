@@ -183,8 +183,8 @@ static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 	POST_COMMAND(SetEnvironmentSettings, (settings));
 }
 
-EnvironmentSidebar::EnvironmentSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(sidebarContainer, bottomBarContainer)
+EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
 {
 	wxSizer* waterSizer = new wxGridSizer(2);
 	m_MainSizer->Add(waterSizer, wxSizerFlags().Expand());

@@ -29,8 +29,8 @@ private:
 };
 
 
-TerrainSidebar::TerrainSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(sidebarContainer, bottomBarContainer)
+TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
 {
 	// TODO: Less ugliness
 

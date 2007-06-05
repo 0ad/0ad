@@ -149,7 +149,7 @@ function package_set_build_flags()
 			"/opt/local/lib",
 			"/usr/X11R6/lib"
 		}
-		if OS=="linux" and options["icc"] then
+		if OS == "linux" and options["icc"] then
 			tinsert(package.libpaths,
 			"/usr/i686-pc-linux-gnu/lib") -- needed for ICC to find libbfd
 		end
@@ -555,6 +555,12 @@ function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_inc
 	else -- Non-Windows, = Unix
 		tinsert(package.buildoptions, "-rdynamic")
 		tinsert(package.linkoptions, "-rdynamic")
+
+		if extra_params["no_unused_warnings"] then
+				if not options["icc"] then
+					tinsert(package.buildoptions, "-Wno-unused-parameter")
+				end
+		end
 	end
 
 end
@@ -571,6 +577,36 @@ function setup_atlas_packages()
 		"xerces",
 		"wxwidgets"
 	},{	-- extra_params
+	})
+
+	setup_atlas_package("AtlasScript", "lib",
+	{	-- src
+		""
+	},{	-- include
+		".."
+	},{	-- extern_libs
+		"spidermonkey",
+		"wxwidgets"
+	},{	-- extra_params
+	})
+
+	setup_atlas_package("wxJS", "lib",
+	{	-- src
+		"",
+		"common",
+		"ext",
+		"gui",
+		"gui/control",
+		"gui/event",
+		"gui/misc",
+		"io",
+	},{	-- include
+	},{	-- extern_libs
+		"spidermonkey",
+		"wxwidgets"
+	},{	-- extra_params
+		pch = (not has_broken_pch),
+		no_unused_warnings = 1, -- wxJS has far too many and we're never going to fix them, so just ignore them
 	})
 
 	setup_atlas_package("AtlasUI", "dll",
@@ -612,11 +648,12 @@ function setup_atlas_packages()
 		"boost",
 		"devil",
 		"ffmpeg",
+		"spidermonkey",
 		"wxwidgets",
 		"xerces"
 	},{	-- extra_params
 		pch = (not has_broken_pch),
-		extra_links = { "AtlasObject", "DatafileIO" },
+		extra_links = { "AtlasObject", "AtlasScript", "wxJS", "DatafileIO" },
 		extra_files = { "Misc/atlas.rc" }
 	})
 
@@ -828,7 +865,6 @@ function setup_tests()
 
 	tinsert(package.buildflags, "use-library-dep-inputs")
 
-	
 	package_create("test_1_run", "run")
 	package.links = { "test_2_build" } -- This determines which project's executable to run
 

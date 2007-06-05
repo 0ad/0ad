@@ -5,6 +5,8 @@
 #include "CustomControls/FileHistory/FileHistory.h"
 #include "SectionLayout.h"
 
+class ScriptInterface;
+
 class ScenarioEditor : public wxFrame
 {
 public:
@@ -35,10 +37,13 @@ public:
 
 	static float GetSpeedModifier();
 
+	ScriptInterface& GetScriptInterface() const { return *m_ScriptInterface; }
+
 private:
 	wxTimer m_Timer;
 
 	SectionLayout m_SectionLayout;
+	std::auto_ptr<ScriptInterface> m_ScriptInterface;
 
 	void SetOpenFilename(const wxString& filename);
 	wxString m_OpenFilename;

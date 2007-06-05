@@ -1323,8 +1323,8 @@ void onBlockEndPush(void* data)
 }
 
 
-TriggerSidebar::TriggerSidebar(wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(sidebarContainer, bottomBarContainer), m_GroupCount(0), m_TriggerCount(0),
+TriggerSidebar::TriggerSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), m_GroupCount(0), m_TriggerCount(0),
 									m_SelectedCond(-1), m_SelectedEffect(-1)
 {
 	m_TriggerBottom = new TriggerBottomBar(this, bottomBarContainer);
