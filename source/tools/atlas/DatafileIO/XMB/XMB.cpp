@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompiled.h"
 
 #include "XMB.h"
 #include "Stream/Stream.h"

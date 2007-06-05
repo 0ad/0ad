@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompiled.h"
 
 /* Disabled (and should be removed if it turns out to be unnecessary)
 - see MessagePasserImpl.cpp for information

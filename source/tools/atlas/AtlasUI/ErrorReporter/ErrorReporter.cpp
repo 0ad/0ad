@@ -14,7 +14,7 @@
  * License: wxWindows license
  */
 
-#include "stdafx.h"
+#include "precompiled.h"
 
 #if 0
 

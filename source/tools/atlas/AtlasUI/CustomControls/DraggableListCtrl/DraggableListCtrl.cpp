@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompiled.h"
 
 #include "DraggableListCtrl.h"
 

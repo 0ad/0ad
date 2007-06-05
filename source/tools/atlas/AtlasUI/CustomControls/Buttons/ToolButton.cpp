@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompiled.h"
 
 #include "wx/sysopt.h"
 #include "wx/wfstream.h"

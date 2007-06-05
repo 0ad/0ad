@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "precompiled.h"
 
 #include "wx/regex.h"
 #include "wx/config.h"

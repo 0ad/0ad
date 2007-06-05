@@ -521,7 +521,7 @@ end
 
 -- setup a typical Atlas component package
 -- extra_params: as in package_add_contents; also zero or more of the following:
--- * pch: (any type) set stdafx.h and .cpp as PCH
+-- * pch: (any type) set precompiled.h and .cpp as PCH
 function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_include_dirs, extern_libs, extra_params)
 
 	local source_root = "../../../source/tools/atlas/" .. package_name .. "/"
@@ -534,7 +534,7 @@ function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_inc
 	package_add_extern_libs(extern_libs)
 
 	if extra_params["pch"] then
-		package_setup_pch(nil, "stdafx.h", "stdafx.cpp");
+		package_setup_pch(nil, "precompiled.h", "precompiled.cpp");
 	end
 
 	-- Platform Specifics

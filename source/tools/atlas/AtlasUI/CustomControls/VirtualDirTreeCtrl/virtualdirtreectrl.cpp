@@ -2,7 +2,7 @@
 // Name:        wxVirtualDirTreeCtrl.cpp
 /////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "precompiled.h"
 
 //#ifdef __GNUG__
 //    #pragma implementation "wxVirtualDirTreeCtrl.cpp"
