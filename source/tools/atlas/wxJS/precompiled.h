@@ -16,8 +16,8 @@
 #ifdef USING_PCH
 
 #define WX_PRECOMP
-#include "wx/wxprec.h"
 #include "common/main.h"
+#include "wx/wxprec.h"
 
 #endif
 
