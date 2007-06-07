@@ -477,6 +477,9 @@ function setup_main_exe ()
 			-- required since main.cpp uses main instead of WinMain and subsystem=Win32
 			"/ENTRY:mainCRTStartup",
 
+			-- see wstartup.h
+			"/INCLUDE:_wstartup_InitAndRegisterShutdown",
+
 			-- delay loading of various Windows DLLs (not specific to any of the
 			-- external libraries; those are handled separately)
 			"/DELAYLOAD:oleaut32.dll",
@@ -836,9 +839,11 @@ function setup_tests()
 	package_add_extern_libs(used_extern_libs)
 
 	if OS == "windows" then
-	
 		-- from "lowlevel" static lib; must be added here to be linked in
 		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
+
+		-- see wstartup.h
+		tinsert(package.linkoptions, "/INCLUDE:_wstartup_InitAndRegisterShutdown")
 
 	elseif OS == "linux" then
 
