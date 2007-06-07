@@ -69,25 +69,25 @@ Several methods of module init are possible: (see Large Scale C++ Design)
 //-----------------------------------------------------------------------------
 // section declarations
 
-// section names are of the format "WINIT${type}{group}".
+// section names are of the format ".WINIT${type}{group}".
 // {type} is I for initialization- or S for shutdown functions.
 // {group} is [0, 9] - see below.
 // note: __declspec(allocate) requires declaring segments in advance via
 // #pragma section.
-#pragma section("WINIT$I$", read)
-#pragma section("WINIT$I0", read)
-#pragma section("WINIT$I1", read)
-#pragma section("WINIT$I2", read)
-#pragma section("WINIT$I6", read)
-#pragma section("WINIT$I7", read)
-#pragma section("WINIT$IZ", read)
-#pragma section("WINIT$S$", read)
-#pragma section("WINIT$S0", read)
-#pragma section("WINIT$S1", read)
-#pragma section("WINIT$S6", read)
-#pragma section("WINIT$S7", read)
-#pragma section("WINIT$S8", read)
-#pragma section("WINIT$SZ", read)
+#pragma section(".WINIT$I$", read)
+#pragma section(".WINIT$I0", read)
+#pragma section(".WINIT$I1", read)
+#pragma section(".WINIT$I2", read)
+#pragma section(".WINIT$I6", read)
+#pragma section(".WINIT$I7", read)
+#pragma section(".WINIT$IZ", read)
+#pragma section(".WINIT$S$", read)
+#pragma section(".WINIT$S0", read)
+#pragma section(".WINIT$S1", read)
+#pragma section(".WINIT$S6", read)
+#pragma section(".WINIT$S7", read)
+#pragma section(".WINIT$S8", read)
+#pragma section(".WINIT$SZ", read)
 #pragma comment(linker, "/merge:WINIT=.rdata")
 
 
@@ -117,29 +117,29 @@ Several methods of module init are possible: (see Large Scale C++ Design)
 
 // very early init; must not fail, since error handling code *crashes*
 // if called before these have completed.
-#define WINIT_REGISTER_CRITICAL_INIT(func)   static LibError func(void); EXTERN_C __declspec(allocate("WINIT$I0")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_CRITICAL_INIT(func)   static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I0")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
 
 // meant for modules with dependents but whose init is complicated and may
 // raise error/warning messages (=> can't go in WINIT_REGISTER_CRITICAL_INIT)
-#define WINIT_REGISTER_EARLY_INIT(func)      static LibError func(void); EXTERN_C __declspec(allocate("WINIT$I1")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_EARLY_INIT(func)      static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I1")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
 
 // available for dependents of WINIT_REGISTER_EARLY_INIT-modules that
 // must still come before WINIT_REGISTER_MAIN_INIT.
-#define WINIT_REGISTER_EARLY_INIT2(func)     static LibError func(void); EXTERN_C __declspec(allocate("WINIT$I2")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_EARLY_INIT2(func)     static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I2")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
 
 // most modules will go here unless they are often used or
 // have many dependents.
-#define WINIT_REGISTER_MAIN_INIT(func)       static LibError func(void); EXTERN_C __declspec(allocate("WINIT$I6")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_MAIN_INIT(func)       static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I6")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
 
 // available for any modules that may need to come after
 // WINIT_REGISTER_MAIN_INIT (unlikely)
-#define WINIT_REGISTER_LATE_INIT(func)       static LibError func(void); EXTERN_C __declspec(allocate("WINIT$I7")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_LATE_INIT(func)       static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I7")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
 
-#define WINIT_REGISTER_EARLY_SHUTDOWN(func)  static LibError func(void); EXTERN_C __declspec(allocate("WINIT$S0")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
-#define WINIT_REGISTER_EARLY_SHUTDOWN2(func) static LibError func(void); EXTERN_C __declspec(allocate("WINIT$S1")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
-#define WINIT_REGISTER_MAIN_SHUTDOWN(func)   static LibError func(void); EXTERN_C __declspec(allocate("WINIT$S6")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
-#define WINIT_REGISTER_LATE_SHUTDOWN(func)   static LibError func(void); EXTERN_C __declspec(allocate("WINIT$S7")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
-#define WINIT_REGISTER_LATE_SHUTDOWN2(func)  static LibError func(void); EXTERN_C __declspec(allocate("WINIT$S8")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_EARLY_SHUTDOWN(func)  static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S0")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_EARLY_SHUTDOWN2(func) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S1")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_MAIN_SHUTDOWN(func)   static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S6")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_LATE_SHUTDOWN(func)   static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S7")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
+#define WINIT_REGISTER_LATE_SHUTDOWN2(func)  static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S8")) LibError (*p##func)(void) = func; __pragma(comment(linker, "/include:_p"#func))
 
 
 //-----------------------------------------------------------------------------

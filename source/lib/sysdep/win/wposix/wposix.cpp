@@ -43,10 +43,10 @@ long sysconf(int name)
 {
 	// called before InitSysconf => winit/wstartup are broken. this is
 	// going to cause a hard crash because debug.cpp's error reporting
-	// code requires the page size to be known. we'll exit with a unique
-	// value to hopefully help track down the problem.
+	// code requires the page size to be known. we'll raise an exception
+	// with a unique value so that this issue is immediately noticed.
 	if(!pageSize)
-		exit(239786);	// 0x3A8AA
+		RaiseException(0xFA57FA57, 0, 0, 0);
 
 	switch(name)
 	{

@@ -15,7 +15,10 @@
 
 // see http://blogs.msdn.com/larryosterman/archive/2004/09/27/234840.aspx
 // for discussion of a similar mechanism.
-
+//
+// note: this module is kept distinct from the CRT's init/shutdown mechanism
+// to insulate against changes there. another advantage is that callbacks
+// can return LibError instead of int.
 
 typedef LibError (*PfnLibErrorVoid)(void);
 
@@ -25,10 +28,10 @@ typedef LibError (*PfnLibErrorVoid)(void);
 //   (zero, because CallFunctionPointers has to ignore entries =0 anyway).
 // - ASCII '$' and 'Z' come before resp. after '0'..'9', so use that to
 //   bound the section names.
-__declspec(allocate("WINIT$I$")) PfnLibErrorVoid initBegin = 0;
-__declspec(allocate("WINIT$IZ")) PfnLibErrorVoid initEnd = 0;
-__declspec(allocate("WINIT$S$")) PfnLibErrorVoid shutdownBegin = 0;
-__declspec(allocate("WINIT$SZ")) PfnLibErrorVoid shutdownEnd = 0;
+__declspec(allocate(".WINIT$I$")) PfnLibErrorVoid initBegin = 0;
+__declspec(allocate(".WINIT$IZ")) PfnLibErrorVoid initEnd = 0;
+__declspec(allocate(".WINIT$S$")) PfnLibErrorVoid shutdownBegin = 0;
+__declspec(allocate(".WINIT$SZ")) PfnLibErrorVoid shutdownEnd = 0;
 // note: #pragma comment(linker, "/include") is not necessary since
 // these are referenced below.
 
