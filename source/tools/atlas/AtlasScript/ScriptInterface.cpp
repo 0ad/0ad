@@ -10,7 +10,7 @@
 #include "wxJS/ext/jsmembuf.h"
 #include "wxJS/io/init.h"
 #include "wxJS/gui/init.h"
-#include "wxJS/gui/control/window.h"
+#include "wxJS/gui/control/panel.h"
 
 #include "GameInterface/Shareable.h"
 #include "GameInterface/Messages.h"
@@ -67,6 +67,14 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v,
 	JSString* ret = JS_ValueToString(cx, v); // never returns NULL
 	jschar* ch = JS_GetStringChars(ret);
 	out = std::wstring(ch, ch+JS_GetStringLength(ret));
+	return true;
+}
+
+template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, jsval v, std::string& out)
+{
+	JSString* ret = JS_ValueToString(cx, v); // never returns NULL
+	char* ch = JS_GetStringBytes(ret);
+	out = std::string(ch);
 	return true;
 }
 
@@ -130,9 +138,10 @@ namespace
 		}
 		logMessage << wxString::FromAscii(message);
 		if (isWarning)
-			wxLogWarning(logMessage);
+			wxLogWarning(_T("%s"), logMessage.c_str());
 		else
-			wxLogError(logMessage);
+			wxLogError(_T("%s"), logMessage.c_str());
+		wxPrintf(_T("wxJS %s: %s\n--------\n"), isWarning ? _T("warning") : _T("error"), logMessage.c_str());
 	}
 
 	JSBool LoadScript(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)
@@ -155,6 +164,24 @@ namespace
 		if (! ok)
 			return JS_FALSE;
 		
+		return JS_TRUE;
+	}
+
+	JSBool ForceGC(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* WXUNUSED(argv), jsval* WXUNUSED(rval))
+	{
+		JS_GC(cx);
+		return JS_TRUE;
+	}
+
+	JSBool print(JSContext* cx, JSObject* WXUNUSED(obj), uintN argc, jsval* argv, jsval* WXUNUSED(rval))
+	{
+		for (uintN i = 0; i < argc; ++i)
+		{
+			std::string str;
+			if (! ScriptInterface::FromJSVal(cx, argv[i], str))
+				return JS_FALSE;
+			printf("%s", str.c_str());
+		}
 		return JS_TRUE;
 	}
 }
@@ -185,9 +212,12 @@ ScriptInterface_impl::ScriptInterface_impl()
 	wxjs::io::InitClass(m_cx, m_glob);
 	wxjs::ext::MemoryBuffer::JSInit(m_cx, m_glob);
 
+	JS_DefineFunction(m_cx, m_glob, "print", ::print, 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
+	
 	m_atlas = JS_DefineObject(m_cx, m_glob, "Atlas", NULL, NULL, JSPROP_READONLY|JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_atlas, "LoadScript", ::LoadScript, 2, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
-
+	JS_DefineFunction(m_cx, m_atlas, "ForceGC", ::ForceGC, 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
+	
 	RegisterMessages(m_atlas);
 }
 
@@ -227,16 +257,6 @@ void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
 	m->Register(name, fptr, nargs);
 }
 
-// wxJS requires an object that's a wxWindow* and also a wxjs::Object*,
-// so define one based on wxPanel
-struct WindowWrapper : public wxPanel, wxjs::Object
-{
-	WindowWrapper(wxWindow* parent)
-	: wxPanel(parent, -1)
-	{
-	}
-};
-
 void ScriptInterface::LoadScript(const wxString& filename, const wxString& code)
 {
 	m->LoadScript(filename, code);
@@ -244,13 +264,15 @@ void ScriptInterface::LoadScript(const wxString& filename, const wxString& code)
 
 wxPanel* ScriptInterface::LoadScriptAsPanel(const wxString& name, wxWindow* parent)
 {
-	wxPanel* panel = new WindowWrapper(parent);
-	jsval jsWindow = wxjs::gui::Window::CreateObject(m->m_cx, panel);
+	wxPanel* panel = new wxPanel(parent, -1);
+	JSObject* jsWindow = JSVAL_TO_OBJECT(wxjs::gui::Panel::CreateObject(m->m_cx, panel));
+	panel->SetClientObject(new wxjs::JavaScriptClientData(m->m_cx, jsWindow, true, false));
+	
 	jsval jsName = ToJSVal(m->m_cx, name);
-
+	
 	const uintN argc = 2;
-	jsval argv[argc] = { jsName, jsWindow };
-
+	jsval argv[argc] = { jsName, OBJECT_TO_JSVAL(jsWindow) };
+	
 	jsval rval;
 	JS_CallFunctionName(m->m_cx, m->m_glob, "loadScript", argc, argv, &rval); // TODO: error checking
 	return panel;

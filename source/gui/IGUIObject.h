@@ -272,6 +272,11 @@ public:
 	 * @param pGUI GUI instance to associate the script with
 	 */
 	void RegisterScriptHandler(const CStr& Action, const CStr& Code, CGUI* pGUI);
+	
+	/**
+	 * Retrieves the JSObject representing this GUI object.
+	 */
+	JSObject* GetJSObject();
 
 	//@}
 protected:
@@ -521,6 +526,9 @@ private:
 
 	// Internal storage for registered script handlers.
 	std::map<CStr, JSObject**> m_ScriptHandlers;
+	
+	// Cached JSObject representing this GUI object
+	JSObject								*m_JSObject;
 };
 
 

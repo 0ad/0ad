@@ -233,7 +233,7 @@ JSBool IssueCommand( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rv
 	
 	CEntityList entities, msgEntities;
 
-	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
+	if (JS_GetClass(cx, JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
 		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
 	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));
@@ -322,7 +322,7 @@ JSBool RemoveFromFormation( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsv
 	JSU_REQUIRE_PARAMS(1);
 	
 	CEntityList entities;
-	if (JS_GetClass(JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
+	if (JS_GetClass(cx, JSVAL_TO_OBJECT(argv[0])) == &CEntity::JSI_class)
 		entities.push_back( (ToNative<CEntity>(argv[0])) ->me);
 	else
 		entities = *EntityCollection::RetrieveSet(cx, JSVAL_TO_OBJECT(argv[0]));

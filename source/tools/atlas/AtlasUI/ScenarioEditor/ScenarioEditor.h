@@ -10,7 +10,7 @@ class ScriptInterface;
 class ScenarioEditor : public wxFrame
 {
 public:
-	ScenarioEditor(wxWindow* parent);
+	ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface);
 	void OnClose(wxCloseEvent& event);
 	void OnTimer(wxTimerEvent& event);
 	void OnIdle(wxIdleEvent& event);
@@ -37,13 +37,14 @@ public:
 
 	static float GetSpeedModifier();
 
-	ScriptInterface& GetScriptInterface() const { return *m_ScriptInterface; }
+	ScriptInterface& GetScriptInterface() const { return m_ScriptInterface; }
 
 private:
+	ScriptInterface& m_ScriptInterface;
+
 	wxTimer m_Timer;
 
 	SectionLayout m_SectionLayout;
-	std::auto_ptr<ScriptInterface> m_ScriptInterface;
 
 	void SetOpenFilename(const wxString& filename);
 	wxString m_OpenFilename;

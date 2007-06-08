@@ -16,6 +16,8 @@
 
 #include "GameInterface/MessagePasser.h"
 
+#include "AtlasScript/ScriptInterface.h"
+
 #include "wx/config.h"
 #include "wx/debugrpt.h"
 #include "wx/file.h"
@@ -130,6 +132,15 @@ ATLASDLLIMPEXP void Atlas_ReportError()
 class AtlasDLLApp : public wxApp
 {
 public:
+	AtlasDLLApp()
+	: m_ScriptInterface(NULL)
+	{
+	}
+	
+	~AtlasDLLApp()
+	{
+		delete m_ScriptInterface;
+	}
 
 	virtual bool OnInit()
 	{
@@ -154,9 +165,14 @@ public:
 		MAYBE(ArchiveViewer)
 		MAYBE(ColourTester)
 		MAYBE(FileConverter)
-		MAYBE(ScenarioEditor)
 #undef MAYBE
 		// else
+		if (g_InitialWindowType == _T("ScenarioEditor"))
+		{
+			m_ScriptInterface = new ScriptInterface();
+			frame = new ScenarioEditor(NULL, *m_ScriptInterface);
+		}
+		else
 		{
 			wxFAIL_MSG(_("Internal error: invalid window type"));
 			return false;
@@ -221,6 +237,7 @@ public:
 */
 
 private:
+	ScriptInterface* m_ScriptInterface;
 
 	bool OpenDirectory(const wxString& dir)
 	{

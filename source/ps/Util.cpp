@@ -74,7 +74,14 @@ void WriteSystemInfo()
 	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
 
 	// CPU
+#if OS_LINUX
+	// TODO: implement the cpu_ functions on Linux, then add them back here. (But it's not worthwhile
+	// doing that while we're not using those functions for anything that's actually useful, so currently
+	// we just don't use them here.)
+	fprintf(f, "CPU            : %s, %s", un.machine, cpu_IdentifierString());
+#else
 	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), cpu_NumPackages(), cpu_CoresPerPackage(), cpu_LogicalPerCore());
+#endif
 	const double cpu_freq = cpu_ClockFrequency();
 	if(cpu_freq != 0.0f)
 	{

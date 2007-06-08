@@ -23,9 +23,12 @@
 # define XP_UNIX
 #endif
 
+#define JS_THREADSAFE
+
 #include <js/jsapi.h>
-#include <js/jsatom.h>
+
 #ifndef NDEBUG
+// Used by ScriptingHost::jshook_{script,function}
 # include <js/jsdbgapi.h>
 #endif
 

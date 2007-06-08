@@ -131,6 +131,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CColor colour;
 				GUI<CColor>::GetSetting(e, propName, colour);
 				JSObject* obj = JS_NewObject(cx, &JSI_GUIColor::JSI_class, NULL, NULL);
+				*vp = OBJECT_TO_JSVAL(obj); // root it
 
 				// Attempt to minimise ugliness through macrosity
 				#define P(x) jsval x = DOUBLE_TO_JSVAL(JS_NewDouble(cx, colour.x)); JS_SetProperty(cx, obj, #x, &x)
@@ -140,7 +141,6 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					P(a);
 				#undef P
 
-				*vp = OBJECT_TO_JSVAL(obj);
 				break;
 			}
 
@@ -149,7 +149,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CClientArea area;
 				GUI<CClientArea>::GetSetting(e, propName, area);
 				JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
-				JS_AddRoot(cx, &obj);
+				*vp = OBJECT_TO_JSVAL(obj); // root it
 				try
 				{
 				#define P(x, y, z) g_ScriptingHost.SetObjectProperty_Double(obj, #z, area.x.y)
@@ -166,12 +166,9 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				catch (PSERROR_Scripting_ConversionFailed)
 				{
 					debug_warn("Error creating size object!");
-					JS_RemoveRoot(cx, &obj);
 					break;
 				}
 
-				*vp = OBJECT_TO_JSVAL(obj);
-				JS_RemoveRoot(cx, &obj);
 				break;
 			}
 
@@ -245,18 +242,16 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				CGUIList value;
 				GUI<CGUIList>::GetSetting(e, propName, value);
 
-				jsval *vector = new jsval[value.m_Items.size()];
-				for (size_t i=0; i<value.m_Items.size(); ++i)
+				JSObject *obj = JS_NewArrayObject(cx, 0, NULL);
+				*vp = OBJECT_TO_JSVAL(obj); // root it
+				
+				for (size_t i = 0; i < value.m_Items.size(); ++i)
 				{
 					JSString* s = StringConvert::wchars_to_jsstring(cx, value.m_Items[i].GetRawString().c_str());
-					vector[i] = STRING_TO_JSVAL(s);
-					// TODO: Make sure these strings never get garbage-collected
+					jsval val = STRING_TO_JSVAL(s);
+					JS_SetElement(cx, obj, i, &val);
 				}
 
-				JSObject *obj = JS_NewArrayObject(cx, (jsint)value.m_Items.size(), vector);
-				delete[] vector;
-
-				*vp = OBJECT_TO_JSVAL(obj);
 				break;
 			}
 
@@ -421,7 +416,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					return JS_FALSE;
 				}
 			}
-			else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(JSVAL_TO_OBJECT(*vp)) == &JSI_GUISize::JSI_class)
+			else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(cx, JSVAL_TO_OBJECT(*vp)) == &JSI_GUISize::JSI_class)
 			{
 				CClientArea area;
 				GUI<CClientArea>::GetSetting(e, propName, area);
@@ -458,7 +453,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					return JS_FALSE;
 				}
 			}
-			else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(JSVAL_TO_OBJECT(*vp)) == &JSI_GUIColor::JSI_class)
+			else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(cx, JSVAL_TO_OBJECT(*vp)) == &JSI_GUIColor::JSI_class)
 			{
 				CColor colour;
 				JSObject* obj = JSVAL_TO_OBJECT(*vp);
@@ -490,10 +485,15 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				for (int i=0; i<(int)length; ++i)
 				{
 					jsval element;
-					JS_GetElement(cx, obj, i, &element);
+					if (! JS_GetElement(cx, obj, i, &element))
+					{
+						JS_ReportError(cx, "Failed to get list element");
+						return JS_FALSE;
+					}
 
 					std::wstring value;
-					StringConvert::jsstring_to_wstring(JS_ValueToString(cx, element), value);
+					JSString* string = JS_ValueToString(cx, element);
+					StringConvert::jsstring_to_wstring(string, value);
 
 					CGUIString str;
 					str.SetValue(value);
@@ -555,9 +555,7 @@ JSBool JSI_IGUIObject::getByName(JSContext* cx, JSObject* UNUSED(obj), uint argc
 		return JS_TRUE;
 	}
 
-	JSObject* entity = JS_NewObject(cx, &JSI_IGUIObject::JSI_class, NULL, NULL);
-	JS_SetPrivate(cx, entity, guiObject);
-	*rval = OBJECT_TO_JSVAL(entity);
+	*rval = OBJECT_TO_JSVAL(guiObject->GetJSObject());
 	return JS_TRUE;
 }
 

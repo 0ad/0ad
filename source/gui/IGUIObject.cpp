@@ -27,7 +27,8 @@ using namespace std;
 IGUIObject::IGUIObject() : 
 	m_pGUI(NULL), 
 	m_pParent(NULL),
-	m_MouseHovering(false)
+	m_MouseHovering(false),
+	m_JSObject(NULL)
 {
 	AddSetting(GUIST_bool,			"enabled");
 	AddSetting(GUIST_bool,			"hidden");
@@ -78,6 +79,9 @@ IGUIObject::~IGUIObject()
 			delete it->second;
 		}
 	}
+	
+	if (m_JSObject)
+		JS_RemoveRoot(g_ScriptingHost.getContext(), &m_JSObject);
 }
 
 //-------------------------------------------------------------------
@@ -493,6 +497,20 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	// Allow the temporary parameters to be garbage-collected
 	JS_RemoveRoot(g_ScriptingHost.getContext(), &mouseObj);
 	JS_RemoveRoot(g_ScriptingHost.getContext(), &jsGuiObject);
+}
+
+JSObject* IGUIObject::GetJSObject()
+{
+	// Cache the object when somebody first asks for it, because otherwise
+	// we end up doing far too much object allocation. TODO: Would be nice to
+	// not have these objects hang around forever using up memory, though.
+	if (! m_JSObject)
+	{
+		m_JSObject = JS_NewObject(g_ScriptingHost.getContext(), &JSI_IGUIObject::JSI_class, NULL, NULL);
+		JS_AddRoot(g_ScriptingHost.getContext(), &m_JSObject);
+		JS_SetPrivate(g_ScriptingHost.getContext(), m_JSObject, this);
+	}
+	return m_JSObject;
 }
 
 CStr IGUIObject::GetPresentableName() const

@@ -262,9 +262,9 @@ END_EVENT_TABLE()
 static AtlasWindowCommandProc g_CommandProc;
 AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc; }
 
-ScenarioEditor::ScenarioEditor(wxWindow* parent)
+ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
-, m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(new ScriptInterface())
+, m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(scriptInterface)
 {
 	// Global application initialisation:
 
@@ -280,7 +280,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 
 	//////////////////////////////////////////////////////////////////////////
 	// Script interface functions
-	m_ScriptInterface->RegisterFunction<wxString, Datafile::GetDataDirectory>("GetDataDirectory");
+	GetScriptInterface().RegisterFunction<wxString, Datafile::GetDataDirectory>("GetDataDirectory");
 
 	{
 		const wxString relativePath (_T("tools/atlas/scripts/main.js"));
