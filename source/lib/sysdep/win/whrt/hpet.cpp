@@ -84,8 +84,8 @@ void CounterHPET::Shutdown()
 
 bool CounterHPET::IsSafe() const
 {
-	// the HPET being created to address other timers' problems, it has
-	// no issues of its own.
+	// the HPET having been created to address other timers' problems,
+	// it has no issues of its own.
 	return true;
 }
 

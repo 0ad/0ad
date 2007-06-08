@@ -17,7 +17,8 @@
 #include "lib/sysdep/cpu.h"	// CAS
 
 #include "wposix_internal.h"
-#include "wtime.h"	// timespec
+#include "wtime.h"			// timespec
+#include "../wseh.h"		// wseh_ExceptionFilter
 
 
 static HANDLE HANDLE_from_pthread(pthread_t p)
@@ -469,12 +470,16 @@ static unsigned __stdcall thread_start(void* param)
 	void* arg            = func_and_arg->arg;
 	win_free(param);
 
-	u8 xrrStorage[WDBG_XRR_STORAGE_SIZE];
-	wdbg_InstallExceptionHandler(xrrStorage);
-
-	void* ret = func(arg);
-
-	call_tls_dtors();
+	void* ret = 0;
+	__try
+	{
+		ret = func(arg);
+		call_tls_dtors();
+	}
+	__except(wseh_ExceptionFilter(GetExceptionInformation()))
+	{
+		ret = 0;
+	}
 
 	return (unsigned)(uintptr_t)ret;
 }

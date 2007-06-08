@@ -474,8 +474,8 @@ function setup_main_exe ()
 		end
 
 		package.linkoptions = {
-			-- required since main.cpp uses main instead of WinMain and subsystem=Win32
-			"/ENTRY:mainCRTStartup",
+			-- wraps main thread in a __try block(see wseh.cpp). replace with mainCRTStartup if that's undesired.
+			"/ENTRY:wseh_EntryPoint",
 
 			-- see wstartup.h
 			"/INCLUDE:_wstartup_InitAndRegisterShutdown",
