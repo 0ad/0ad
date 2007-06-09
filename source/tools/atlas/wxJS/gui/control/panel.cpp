@@ -189,6 +189,7 @@ wxPanel* Panel::Construct(JSContext *cx,
                           bool WXUNUSED(constructing))
 {
   wxPanel *p = new wxPanel();
+  SetPrivate(cx, obj, p);
   if ( argc > 0 )
   {
     jsval rval;
@@ -238,7 +239,7 @@ JSBool Panel::create(JSContext *cx,
   if ( argc > 5 )
       argc = 5;
 
-    int style = 0;
+    int style = wxTAB_TRAVERSAL;
     const wxPoint *pt = &wxDefaultPosition;
     const wxSize *size = &wxDefaultSize;
 

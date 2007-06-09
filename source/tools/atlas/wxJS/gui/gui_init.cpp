@@ -113,6 +113,7 @@
 #include "control/finddata.h"
 
 // Miscellaneous wxWindow classes
+#include "misc/timer.h"
 #include "misc/point.h"
 #include "misc/size.h"
 #include "misc/rect.h"
@@ -319,6 +320,11 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 
 	obj = Slider::JSInit(cx, global, Control::GetClassPrototype());
 	wxASSERT_MSG(obj != NULL, wxT("wxSlider prototype creation failed"));
+	if (! obj )
+		return false;
+
+	obj = Timer::JSInit(cx, global);
+	wxASSERT_MSG(obj != NULL, wxT("wxTimer prototype creation failed"));
 	if (! obj )
 		return false;
 
