@@ -35,6 +35,7 @@
 using namespace wxjs;
 using namespace wxjs::ext;
 
+/*
 #ifdef __WXMSW__
 	BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 	{
@@ -67,8 +68,9 @@ WXJSAPI bool wxJS_EXTInitClass(JSContext *cx, JSObject *obj)
 WXJSAPI void wxJS_EXTDestroy()
 {
 }
+*/
 
-WXJSAPI JSObject *wxjs::ext::CreateMemoryBuffer(JSContext *cx, void *buffer, int size)
+JSObject *wxjs::ext::CreateMemoryBuffer(JSContext *cx, void *buffer, int size)
 {
 	wxMemoryBuffer *membuf = new wxMemoryBuffer(size);
 	membuf->AppendData(buffer, size);
@@ -77,12 +79,12 @@ WXJSAPI JSObject *wxjs::ext::CreateMemoryBuffer(JSContext *cx, void *buffer, int
 	return obj;
 }
 
-WXJSAPI wxMemoryBuffer* wxjs::ext::GetMemoryBuffer(JSContext *cx, JSObject *obj)
+wxMemoryBuffer* wxjs::ext::GetMemoryBuffer(JSContext *cx, JSObject *obj)
 {
 	return MemoryBuffer::GetPrivate(cx, obj);
 }
 
-WXJSAPI wxMemoryBuffer* wxjs::ext::NewMemoryBuffer(void *buffer, int size)
+wxMemoryBuffer* wxjs::ext::NewMemoryBuffer(void *buffer, int size)
 {
 	wxMemoryBuffer *membuf = new wxMemoryBuffer(size);
 	membuf->AppendData(buffer, size);

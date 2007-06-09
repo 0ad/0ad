@@ -291,7 +291,7 @@ static void DetectWow64()
 	}
 
 	BOOL isWow64Process = FALSE;
-	const BOOL ok = IsWow64Process(GetCurrentProcess(), &isWow64Process);
+	const BOOL ok = pIsWow64Process(GetCurrentProcess(), &isWow64Process);
 	WARN_IF_FALSE(ok);
 	isWow64 = (isWow64Process == TRUE);
 }

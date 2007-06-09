@@ -4,6 +4,10 @@
 
 #include "js/jsapi.h"
 
+#ifdef _WIN32
+# pragma warning(disable: 4996) // avoid complaints about deprecated localtime
+#endif
+
 #include "wx/wx.h"
 
 #include "wxJS/common/main.h"
@@ -42,7 +46,7 @@ template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, jsval v, bool& o
 {
 	JSBool ret;
 	if (! JS_ValueToBoolean(cx, v, &ret)) return false;
-	out = ret;
+	out = (ret ? true : false);
 	return true;
 }
 
@@ -144,7 +148,7 @@ namespace
 		wxPrintf(_T("wxJS %s: %s\n--------\n"), isWarning ? _T("warning") : _T("error"), logMessage.c_str());
 	}
 
-	JSBool LoadScript(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval)
+	JSBool LoadScript(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* rval)
 	{
 		if (! ( JSVAL_IS_STRING(argv[0]) && JSVAL_IS_STRING(argv[1]) ))
 			return JS_FALSE;
@@ -159,7 +163,7 @@ namespace
 		
 		jsval scriptRval;
 		JSBool ok = JS_EvaluateUCScript(
-			cx, scriptObj, JS_GetStringChars(code), JS_GetStringLength(code),
+			cx, scriptObj, JS_GetStringChars(code), (uintN)JS_GetStringLength(code),
 			JS_GetStringBytes(name), 1, &scriptRval);
 		if (! ok)
 			return JS_FALSE;
@@ -234,7 +238,7 @@ void ScriptInterface_impl::LoadScript(const wxString& filename, const wxString& 
 	wxMBConvUTF16 conv;
 	wxCharBuffer codeUTF16 = conv.cWC2MB(code.c_str(), code.length()+1, &codeLength);
 	jsval rval;
-	JS_EvaluateUCScript(m_cx, m_glob, reinterpret_cast<jschar*>(codeUTF16.data()), codeLength/2, filename.ToAscii(), 1, &rval);
+	JS_EvaluateUCScript(m_cx, m_glob, reinterpret_cast<jschar*>(codeUTF16.data()), (uintN)(codeLength/2), filename.ToAscii(), 1, &rval);
 }
 
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
@@ -254,7 +258,7 @@ ScriptInterface::~ScriptInterface()
 
 void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
 {
-	m->Register(name, fptr, nargs);
+	m->Register(name, fptr, (uintN)nargs);
 }
 
 void ScriptInterface::LoadScript(const wxString& filename, const wxString& code)

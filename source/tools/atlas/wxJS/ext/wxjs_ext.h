@@ -43,9 +43,9 @@ namespace wxjs
 {
     namespace ext
     {
-        WXJSAPI wxMemoryBuffer* NewMemoryBuffer(void *buffer, int size);
-        WXJSAPI JSObject *CreateMemoryBuffer(JSContext *cx, void *buffer, int size);
-        WXJSAPI wxMemoryBuffer* GetMemoryBuffer(JSContext *cx, JSObject *obj);
+        wxMemoryBuffer* NewMemoryBuffer(void *buffer, int size);
+        JSObject *CreateMemoryBuffer(JSContext *cx, void *buffer, int size);
+        wxMemoryBuffer* GetMemoryBuffer(JSContext *cx, JSObject *obj);
     };
 };
 

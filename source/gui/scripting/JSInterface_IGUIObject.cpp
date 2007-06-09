@@ -249,7 +249,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				{
 					JSString* s = StringConvert::wchars_to_jsstring(cx, value.m_Items[i].GetRawString().c_str());
 					jsval val = STRING_TO_JSVAL(s);
-					JS_SetElement(cx, obj, i, &val);
+					JS_SetElement(cx, obj, (jsint)i, &val);
 				}
 
 				break;

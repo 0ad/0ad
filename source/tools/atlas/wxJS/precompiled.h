@@ -11,6 +11,12 @@
 
 #define JS_THREADSAFE
 
+
+#ifdef _WIN32
+# pragma warning (disable: 4100) // "unreferenced formal parameter"
+# pragma warning (disable: 4267 4311 4312) // conversions between ints/pointers/etc
+#endif
+
 // Precompiled headers:
 
 #ifdef USING_PCH

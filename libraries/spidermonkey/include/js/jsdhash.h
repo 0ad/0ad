@@ -45,6 +45,12 @@
 
 JS_BEGIN_EXTERN_C
 
+#if defined(__GNUC__) && defined(__i386__) && (__GNUC__ >= 3) && !defined(XP_OS2)
+#define JS_DHASH_FASTCALL __attribute__ ((regparm (3),stdcall))
+#else
+#define JS_DHASH_FASTCALL
+#endif
+
 #ifdef DEBUG_XXXbrendan
 #define JS_DHASHMETER 1
 #endif
@@ -433,7 +439,7 @@ JS_DHashTableInit(JSDHashTable *table, const JSDHashTableOps *ops, void *data,
  * we don't shrink on the very next remove after growing a table upon adding
  * an entry that brings entryCount past maxAlpha * tableSize.
  */
-JS_PUBLIC_API(void)
+extern JS_PUBLIC_API(void)
 JS_DHashTableSetAlphaBounds(JSDHashTable *table,
                             float maxAlpha,
                             float minAlpha);
@@ -500,7 +506,7 @@ typedef enum JSDHashOperator {
  * the entry is marked so that JS_DHASH_ENTRY_IS_FREE(entry).  This operation
  * returns null unconditionally; you should ignore its return value.
  */
-extern JS_PUBLIC_API(JSDHashEntryHdr *)
+extern JS_PUBLIC_API(JSDHashEntryHdr *) JS_DHASH_FASTCALL
 JS_DHashTableOperate(JSDHashTable *table, const void *key, JSDHashOperator op);
 
 /*

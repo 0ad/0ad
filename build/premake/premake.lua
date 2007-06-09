@@ -89,10 +89,10 @@ function package_set_build_flags()
 
 	-- various platform-specific build flags
 	if OS == "windows" then
-		tinsert(package.buildflags, "no-rtti")
 
 		-- use native wchar_t type (not typedef to unsigned short)
 		tinsert(package.buildflags, "native-wchar_t")
+
 	else	-- *nix
 		if options["icc"] then
 			tinsert(package.buildoptions, {
@@ -265,6 +265,10 @@ function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, e
 	package_add_extern_libs(extern_libs)
 
 	tinsert(static_lib_names, package_name)
+
+	if OS == "windows" then
+		tinsert(package.buildflags, "no-rtti")
+	end
 
 	-- Precompiled Headers
 	-- rationale: we need one PCH per static lib, since one global header would
@@ -473,6 +477,8 @@ function setup_main_exe ()
 			tinsert(package.files, source_root.."lib/sysdep/win/manifest.rc")
 		end
 
+		tinsert(package.buildflags, "no-rtti")
+
 		package.linkoptions = {
 			-- wraps main thread in a __try block(see wseh.cpp). replace with mainCRTStartup if that's undesired.
 			"/ENTRY:wseh_EntryPoint",
@@ -546,7 +552,7 @@ function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_inc
 		tinsert(package.defines, "_UNICODE")
 
 		-- Link to required libraries
-		package.links = { "winmm", "comctl32", "rpcrt4", "delayimp" }
+		package.links = { "winmm", "comctl32", "rpcrt4", "delayimp", "ws2_32" }
 
 		-- required to use WinMain() on Windows, otherwise will default to main()
 		tinsert(package.buildflags, "no-main")
@@ -588,6 +594,7 @@ function setup_atlas_packages()
 	},{	-- include
 		".."
 	},{	-- extern_libs
+		"boost",
 		"spidermonkey",
 		"wxwidgets"
 	},{	-- extra_params

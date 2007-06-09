@@ -44,6 +44,7 @@ class wxJSIOApp : public wxAppConsole
     virtual int OnRun() { return 0; }
 };
 
+/*
 IMPLEMENT_APP_NO_MAIN(wxJSIOApp)
 
 #ifdef __WXMSW__
@@ -86,3 +87,4 @@ WXJSAPI void wxJS_Destroy()
 {
     Destroy();
 }
+*/

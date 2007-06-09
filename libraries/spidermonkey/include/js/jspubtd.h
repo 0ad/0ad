@@ -69,6 +69,7 @@ typedef enum JSVersion {
     JSVERSION_1_4     = 140,
     JSVERSION_ECMA_3  = 148,
     JSVERSION_1_5     = 150,
+    JSVERSION_1_6     = 160,
     JSVERSION_DEFAULT = 0,
     JSVERSION_UNKNOWN = -1
 } JSVersion;
@@ -84,6 +85,8 @@ typedef enum JSType {
     JSTYPE_STRING,              /* string */
     JSTYPE_NUMBER,              /* number */
     JSTYPE_BOOLEAN,             /* boolean */
+    JSTYPE_NULL,                /* null */
+    JSTYPE_XML,                 /* xml object */
     JSTYPE_LIMIT
 } JSType;
 
@@ -112,6 +115,7 @@ typedef enum JSIterateOp {
 
 /* Struct typedefs. */
 typedef struct JSClass           JSClass;
+typedef struct JSExtendedClass   JSExtendedClass;
 typedef struct JSConstDoubleSpec JSConstDoubleSpec;
 typedef struct JSContext         JSContext;
 typedef struct JSErrorReport     JSErrorReport;
@@ -123,11 +127,12 @@ typedef struct JSPropertySpec    JSPropertySpec;
 typedef struct JSObject          JSObject;
 typedef struct JSObjectMap       JSObjectMap;
 typedef struct JSObjectOps       JSObjectOps;
+typedef struct JSXMLObjectOps    JSXMLObjectOps;
 typedef struct JSRuntime         JSRuntime;
-typedef struct JSRuntime         JSTaskState;	/* XXX deprecated name */
+typedef struct JSRuntime         JSTaskState;   /* XXX deprecated name */
 typedef struct JSScript          JSScript;
 typedef struct JSString          JSString;
-typedef struct JSXDRState	 JSXDRState;
+typedef struct JSXDRState        JSXDRState;
 typedef struct JSExceptionState  JSExceptionState;
 typedef struct JSLocaleCallbacks JSLocaleCallbacks;
 
@@ -203,6 +208,9 @@ typedef JSBool
  *
  *  JSRESOLVE_QUALIFIED   a qualified property id: obj.id or obj[id], not id
  *  JSRESOLVE_ASSIGNING   obj[id] is on the left-hand side of an assignment
+ *  JSRESOLVE_DETECTING   'if (o.p)...' or similar detection opcode sequence
+ *  JSRESOLVE_DECLARING   var, const, or function prolog declaration opcode
+ *  JSRESOLVE_CLASSNAME   class name used when constructing
  *
  * The *objp out parameter, on success, should be null to indicate that id
  * was not resolved; and non-null, referring to obj or one of its prototypes,
@@ -263,12 +271,17 @@ typedef void
  * Thus JSClass (which pre-dates JSObjectOps in the API) provides a low-level
  * interface to class-specific code and data, while JSObjectOps allows for a
  * higher level of operation, which does not use the object's class except to
- * find the class's JSObjectOps struct, by calling clasp->getObjectOps.
+ * find the class's JSObjectOps struct, by calling clasp->getObjectOps, and to
+ * finalize the object.
  *
  * If this seems backwards, that's because it is!  API compatibility requires
  * a JSClass *clasp parameter to JS_NewObject, etc.  Most host objects do not
  * need to implement the larger JSObjectOps, and can share the common JSScope
  * code and data used by the native (js_ObjectOps, see jsobj.c) ops.
+ *
+ * Further extension to preserve API compatibility: if this function returns
+ * a pointer to JSXMLObjectOps.base, not to JSObjectOps, then the engine calls
+ * extended hooks needed for E4X.
  */
 typedef JSObjectOps *
 (* JS_DLL_CALLBACK JSGetObjectOps)(JSContext *cx, JSClass *clasp);
@@ -326,6 +339,21 @@ typedef JSBool
 typedef uint32
 (* JS_DLL_CALLBACK JSMarkOp)(JSContext *cx, JSObject *obj, void *arg);
 
+/*
+ * The optional JSClass.reserveSlots hook allows a class to make computed
+ * per-instance object slots reservations, in addition to or instead of using
+ * JSCLASS_HAS_RESERVED_SLOTS(n) in the JSClass.flags initializer to reserve
+ * a constant-per-class number of slots.  Implementations of this hook should
+ * return the number of slots to reserve, not including any reserved by using
+ * JSCLASS_HAS_RESERVED_SLOTS(n) in JSClass.flags.
+ *
+ * NB: called with obj locked by the JSObjectOps-specific mutual exclusion
+ * mechanism appropriate for obj, so don't nest other operations that might
+ * also lock obj.
+ */
+typedef uint32
+(* JS_DLL_CALLBACK JSReserveSlotsOp)(JSContext *cx, JSObject *obj);
+
 /* JSObjectOps function pointer typedefs. */
 
 /*
@@ -372,11 +400,7 @@ typedef void
  */
 typedef JSBool
 (* JS_DLL_CALLBACK JSLookupPropOp)(JSContext *cx, JSObject *obj, jsid id,
-                                   JSObject **objp, JSProperty **propp
-#if defined JS_THREADSAFE && defined DEBUG
-                                 , const char *file, uintN line
-#endif
-                                  );
+                                   JSObject **objp, JSProperty **propp);
 
 /*
  * Define obj[id], a direct property of obj named id, having the given initial
@@ -472,9 +496,30 @@ typedef jsval
 (* JS_DLL_CALLBACK JSGetRequiredSlotOp)(JSContext *cx, JSObject *obj,
                                         uint32 slot);
 
-typedef void
+typedef JSBool
 (* JS_DLL_CALLBACK JSSetRequiredSlotOp)(JSContext *cx, JSObject *obj,
                                         uint32 slot, jsval v);
+
+typedef JSObject *
+(* JS_DLL_CALLBACK JSGetMethodOp)(JSContext *cx, JSObject *obj, jsid id,
+                                  jsval *vp);
+
+typedef JSBool
+(* JS_DLL_CALLBACK JSSetMethodOp)(JSContext *cx, JSObject *obj, jsid id,
+                                  jsval *vp);
+
+typedef JSBool
+(* JS_DLL_CALLBACK JSEnumerateValuesOp)(JSContext *cx, JSObject *obj,
+                                        JSIterateOp enum_op,
+                                        jsval *statep, jsid *idp, jsval *vp);
+
+typedef JSBool
+(* JS_DLL_CALLBACK JSEqualityOp)(JSContext *cx, JSObject *obj, jsval v,
+                                 JSBool *bp);
+
+typedef JSBool
+(* JS_DLL_CALLBACK JSConcatenateOp)(JSContext *cx, JSObject *obj, jsval v,
+                                    jsval *vp);
 
 /* Typedef for native functions called by the JS VM. */
 
@@ -502,13 +547,19 @@ typedef void
                                     JSErrorReport *report);
 
 typedef struct JSErrorFormatString {
+    /* The error format string (UTF-8 if JS_C_STRINGS_ARE_UTF8 is defined). */
     const char *format;
-    uintN argCount;
+
+    /* The number of arguments to expand in the formatted error message. */
+    uint16 argCount;
+
+    /* One of the JSExnType constants above. */
+    int16 exnType;
 } JSErrorFormatString;
 
 typedef const JSErrorFormatString *
 (* JS_DLL_CALLBACK JSErrorCallback)(void *userRef, const char *locale,
-			            const uintN errorNumber);
+                                    const uintN errorNumber);
 
 #ifdef va_start
 #define JS_ARGUMENT_FORMATTER_DEFINED 1
@@ -531,6 +582,9 @@ typedef JSBool
 (* JS_DLL_CALLBACK JSLocaleCompare)(JSContext *cx,
                                     JSString *src1, JSString *src2,
                                     jsval *rval);
+
+typedef JSBool
+(* JS_DLL_CALLBACK JSLocaleToUnicode)(JSContext *cx, char *src, jsval *rval);
 
 /*
  * Security protocol types.
