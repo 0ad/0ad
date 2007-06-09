@@ -36,31 +36,30 @@ double ucpu_ClockFrequency()
 }
 
 
-// apparently not possible on non-Windows OSes because they seem to lack
-// a CPU affinity API. see sysdep.h comment.
+#if OS_LINUX
 LibError ucpu_CallByEachCPU(CpuCallback cb, void* param)
 {
-	UNUSED2(cb);
+	long ncpus = sysconf(_SC_NPROCESSORS_CONF);
 
-/*
-cpu_set_t currentCPU; 
-
-while ( j < sysNumProcs ) 
-
-{ 
-
-CPU_ZERO(&currentCPU); 
-
-CPU_SET(j, &currentCPU); 
-
-if ( sched_setaffinity (0, sizeof (currentCPU), &currentCPU) 
-
-== 0 ) 
-
-{ 
-
-sleep(0); // Ensure system to switch to the right
-*/
-
-	return ERR::NO_SYS;
+	cpu_set_t set;
+	for (long i = 0; i < ncpus && i < CPU_SETSIZE; ++i)
+	{
+		CPU_ZERO(&set);
+		CPU_SET(i, &set);
+		
+		int ret = sched_setaffinity(0, sizeof(set), &set);
+		if (ret)
+			WARN_RETURN(ERR::FAIL);
+		// (The process gets migrated immediately by the setaffinity call)
+		
+		cb(param);
+	}
+	return INFO::OK;
 }
+#else
+LibError ucpu_CallByEachCPU(CpuCallback cb, void* param)
+{
+	// TODO: implement
+	return ERR::NOT_IMPLEMENTED;
+}
+#endif

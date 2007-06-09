@@ -21,6 +21,9 @@
 #if OS_BSD
 # include "lib/sysdep/unix/bsd.h"
 #endif
+#if OS_UNIX
+# include "lib/sysdep/unix/ucpu.h"
+#endif
 #if OS_WIN
 # include "lib/sysdep/win/wcpu.h"
 #endif
@@ -225,6 +228,8 @@ LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 #if OS_WIN
 	return wcpu_CallByEachCPU(cb, param);
+#elif OS_LINUX
+	return ucpu_CallByEachCPU(cb, param);
 #else
 	UNUSED2(cb);
 	UNUSED2(param);
