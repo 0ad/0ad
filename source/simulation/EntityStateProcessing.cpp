@@ -335,7 +335,6 @@ bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 
 		avoidance.m_target_location = avoidancePosition;
 		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
-
 			m_orderQueue.pop_front();
 		m_orderQueue.push_front( avoidance );
 		return( false );
@@ -602,14 +601,13 @@ bool CEntity::ProcessGenericNoPathing( CEntityOrder* current, size_t timestep_mi
 
 bool CEntity::ProcessGoto( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
-	// float timestep=timestep_millis/1000.0f;
-	// janwas: currently unused
-
-
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_target_location;
-	m_orderQueue.pop_front();
 	float Distance = ( path_to - pos ).Length();
+	
+	CEntityOrder::EOrderSource source = current->m_source;
+	m_orderQueue.pop_front();
+	// pop_front may delete 'current', so we mustn't use it after this point
 	
 	// Let's just check we're going somewhere...
 	if( Distance < 0.1f ) 
@@ -623,7 +621,7 @@ bool CEntity::ProcessGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 
 	// The pathfinder will push its result back into this unit's queue.
 
-	g_Pathfinder.RequestPath( me, path_to, current->m_source );
+	g_Pathfinder.RequestPath( me, path_to, source );
 
 	return( true );
 }
@@ -632,9 +630,13 @@ bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 {
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_target_location;
-	m_orderQueue.pop_front();
 	float Distance = ( path_to - pos ).Length();
 	
+	CEntityOrder::EOrderSource source = current->m_source;
+	float pathfinder_radius = current->m_pathfinder_radius;
+	m_orderQueue.pop_front();
+	// pop_front may delete 'current', so we mustn't use it after this point
+		
 	// Let's just check we're going somewhere...
 	if( Distance < 0.1f ) 
 	{
@@ -645,16 +647,13 @@ bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 
 	ChooseMovementSpeed( Distance );
 
-	g_Pathfinder.RequestLowLevelPath( me, path_to, contact, current->m_pathfinder_radius, current->m_source );
+	g_Pathfinder.RequestLowLevelPath( me, path_to, contact, pathfinder_radius, source );
 
 	return( true );
 }
 
 bool CEntity::ProcessPatrol( CEntityOrder* current, size_t UNUSED(timestep_millis) )
 {
-	// float timestep=timestep_millis/1000.0f;
-	// janwas: currently unused
-
 	CEntityOrder this_segment;
 	CEntityOrder repeat_patrol;
 

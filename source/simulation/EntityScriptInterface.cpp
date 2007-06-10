@@ -95,7 +95,7 @@ void CEntity::ScriptingInit()
 
 	AddClassProperty( L"actions.move.speed", &CEntity::m_speed );
 	AddClassProperty( L"actions.move.run.speed", &CEntity::m_runSpeed );
-	AddClassProperty( L"actions.move.run.rangemin", &CEntity::m_runMinRange );
+	AddClassProperty( L"actions.move.run.rangeMin", &CEntity::m_runMinRange );
 	AddClassProperty( L"actions.move.run.range", &CEntity::m_runMaxRange );
 	AddClassProperty( L"actions.move.run.regenRate", &CEntity::m_runRegenRate );
 	AddClassProperty( L"actions.move.run.decayRate", &CEntity::m_runDecayRate );

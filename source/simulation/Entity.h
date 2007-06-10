@@ -271,7 +271,7 @@ public:
 
 	// Removes entity from the gameworld and deallocates it, but not necessarily immediately.
 	// The keepActor parameter specifies whether to remove the unit's actor immediately (for
-	// units we want removed immediately, e.g. in Atkas) or to keep it and play the death
+	// units we want removed immediately, e.g. in Alkas) or to keep it and play the death
 	// animation (for units that die of "natural causes").
 	void Kill(bool keepActor = false);
 
