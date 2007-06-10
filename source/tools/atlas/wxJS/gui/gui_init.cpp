@@ -62,6 +62,7 @@
 // Controls
 #include "control/control.h"
 #include "control/textctrl.h"
+#include "control/spinctrl.h"
 #include "control/button.h"
 #include "control/bmpbtn.h"
 #include "control/sttext.h"
@@ -220,6 +221,11 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 
 	obj = TextCtrl::JSInit(cx, global, Control::GetClassPrototype());
 	wxASSERT_MSG(obj != NULL, wxT("wxTextCtrl prototype creation failed"));
+	if (! obj )
+		return false;
+
+	obj = SpinCtrl::JSInit(cx, global, Control::GetClassPrototype());
+	wxASSERT_MSG(obj != NULL, wxT("wxSpinCtrl prototype creation failed"));
 	if (! obj )
 		return false;
 

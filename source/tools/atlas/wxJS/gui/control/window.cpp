@@ -656,6 +656,7 @@ WXJS_BEGIN_METHOD_MAP(Window)
   WXJS_METHOD("convertDialogToPixels", convertDialogToPixels, 1)
   WXJS_METHOD("convertPixelsToDialog", convertPixelsToDialog, 1)
   WXJS_METHOD("destroy", destroy, 0)
+  WXJS_METHOD("destroyChildren", destroyChildren, 0)
   WXJS_METHOD("releaseMouse", releaseMouse, 0)
   WXJS_METHOD("layout", layout, 0)
   WXJS_METHOD("move", move, 2)
@@ -924,6 +925,25 @@ JSBool Window::destroy(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, js
 		return JS_FALSE;
 
 	*rval = ToJS(cx, p->Destroy());
+
+	return JS_TRUE;
+}
+
+/***
+ * <method name="destroyChildren">
+ *	<function />
+ *	<desc>
+ *   Destroys all children of the window.
+ *  </desc>
+ * </method>
+ */
+JSBool Window::destroyChildren(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+    wxWindow *p = GetPrivate(cx, obj);
+    if ( p == NULL )
+		return JS_FALSE;
+
+	p->DestroyChildren();
 
 	return JS_TRUE;
 }

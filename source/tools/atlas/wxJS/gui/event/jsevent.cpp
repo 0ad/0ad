@@ -51,6 +51,7 @@
 #include "notify.h"
 #include "listevt.h"
 #include "treeevt.h"
+#include "spinevt.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;
@@ -172,5 +173,10 @@ bool wxjs::gui::InitEventClasses(JSContext *cx, JSObject *global)
 	if (! obj )
 		return false;
 
-    return true;
+	obj = SpinEvent::JSInit(cx, global, NotifyEvent::GetClassPrototype());
+	wxASSERT_MSG(obj != NULL, wxT("wxSpinEvent prototype creation failed"));
+	if (! obj )
+		return false;
+
+	return true;
 }

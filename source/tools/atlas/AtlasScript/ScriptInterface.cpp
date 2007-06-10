@@ -113,7 +113,7 @@ struct ScriptInterface_impl
 {
 	ScriptInterface_impl();
 	~ScriptInterface_impl();
-	void LoadScript(const wxString& filename, const wxString& code);
+	static JSBool LoadScript(JSContext* cx, const jschar* chars, uintN length, const char* filename, jsval* rval);
 	void RegisterMessages(JSObject* parent);
 	void Register(const char* name, JSNative fptr, uintN nargs);
 
@@ -156,19 +156,9 @@ namespace
 		JSString* name = JSVAL_TO_STRING(argv[0]);
 		JSString* code = JSVAL_TO_STRING(argv[1]);
 		
-		JSObject* scriptObj = JS_NewObject(cx, NULL, NULL, NULL);
-		if (! scriptObj)
-			return JS_FALSE;
-		*rval = OBJECT_TO_JSVAL(scriptObj); // root it to keep GC happy
-		
-		jsval scriptRval;
-		JSBool ok = JS_EvaluateUCScript(
-			cx, scriptObj, JS_GetStringChars(code), (uintN)JS_GetStringLength(code),
-			JS_GetStringBytes(name), 1, &scriptRval);
-		if (! ok)
-			return JS_FALSE;
-		
-		return JS_TRUE;
+		return ScriptInterface_impl::LoadScript(cx,
+				JS_GetStringChars(code), (uintN)JS_GetStringLength(code),
+				JS_GetStringBytes(name), rval);
 	}
 
 	JSBool ForceGC(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* WXUNUSED(argv), jsval* WXUNUSED(rval))
@@ -186,6 +176,7 @@ namespace
 				return JS_FALSE;
 			printf("%s", str.c_str());
 		}
+		fflush(stdout);
 		return JS_TRUE;
 	}
 }
@@ -211,6 +202,8 @@ ScriptInterface_impl::ScriptInterface_impl()
 
 	m_glob = JS_NewObject(m_cx, &global_class, NULL, NULL);
 	ok = JS_InitStandardClasses(m_cx, m_glob);
+	
+	JS_DefineProperty(m_cx, m_glob, "global", OBJECT_TO_JSVAL(m_glob), NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
 	wxjs::gui::InitClass(m_cx, m_glob);
 	wxjs::io::InitClass(m_cx, m_glob);
@@ -232,13 +225,19 @@ ScriptInterface_impl::~ScriptInterface_impl()
 	JS_DestroyRuntime(m_rt);
 }
 
-void ScriptInterface_impl::LoadScript(const wxString& filename, const wxString& code)
+JSBool ScriptInterface_impl::LoadScript(JSContext* cx, const jschar* chars, uintN length, const char* filename, jsval* rval)
 {
-	size_t codeLength;
-	wxMBConvUTF16 conv;
-	wxCharBuffer codeUTF16 = conv.cWC2MB(code.c_str(), code.length()+1, &codeLength);
-	jsval rval;
-	JS_EvaluateUCScript(m_cx, m_glob, reinterpret_cast<jschar*>(codeUTF16.data()), (uintN)(codeLength/2), filename.ToAscii(), 1, &rval);
+	JSObject* scriptObj = JS_NewObject(cx, NULL, NULL, NULL);
+	if (! scriptObj)
+		return JS_FALSE;
+	*rval = OBJECT_TO_JSVAL(scriptObj);
+		
+	jsval scriptRval;
+	JSBool ok = JS_EvaluateUCScript(cx, scriptObj, chars, length, filename, 1, &scriptRval);
+	if (! ok)
+		return JS_FALSE;
+		
+	return JS_TRUE;
 }
 
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
@@ -263,7 +262,11 @@ void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
 
 void ScriptInterface::LoadScript(const wxString& filename, const wxString& code)
 {
-	m->LoadScript(filename, code);
+	size_t codeLength;
+	wxMBConvUTF16 conv;
+	wxCharBuffer codeUTF16 = conv.cWC2MB(code.c_str(), code.length()+1, &codeLength);
+	jsval rval;
+	m->LoadScript(m->m_cx, reinterpret_cast<jschar*>(codeUTF16.data()), (uintN)(codeLength/2), filename.ToAscii(), &rval);
 }
 
 wxPanel* ScriptInterface::LoadScriptAsPanel(const wxString& name, wxWindow* parent)

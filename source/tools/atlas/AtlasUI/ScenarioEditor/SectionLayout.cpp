@@ -7,7 +7,9 @@
 
 #include "SnapSplitterWindow/SnapSplitterWindow.h"
 
-#include "Sections/Map/Map.h"
+#include "ScenarioEditor.h"
+#include "AtlasScript/ScriptInterface.h"
+
 #include "Sections/Terrain/Terrain.h"
 #include "Sections/Object/Object.h"
 #include "Sections/Environment/Environment.h"
@@ -226,6 +228,16 @@ void SidebarButton::OnClick(wxCommandEvent& WXUNUSED(event))
 
 //////////////////////////////////////////////////////////////////////////
 
+class ScriptedSidebar : public Sidebar
+{
+public:
+	ScriptedSidebar(const wxString& name, ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
+	{
+		wxPanel* panel = m_ScenarioEditor.GetScriptInterface().LoadScriptAsPanel(_T("section/") + name, this);
+		m_MainSizer->Add(panel, wxSizerFlags(1).Expand());
+	}
+};
 
 
 SectionLayout::SectionLayout()
@@ -267,10 +279,18 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 		m_SidebarBook->AddPage(sidebar, icon, tooltip); \
 		m_PageMappings.insert(std::make_pair(L###classname, (int)m_SidebarBook->GetPageCount()-1));
 	
-	ADD_SIDEBAR(MapSidebar,         _T("map.png"),         _("Map"));
-	ADD_SIDEBAR(TerrainSidebar,     _T("terrain.png"),     _("Terrain"));
-	ADD_SIDEBAR(ObjectSidebar,      _T("object.png"),      _("Object"));
-	ADD_SIDEBAR(EnvironmentSidebar, _T("environment.png"), _("Environment"));
+	#define ADD_SIDEBAR_SCRIPT(name, icon, tooltip) \
+		sidebar = new ScriptedSidebar(name, scenarioEditor, m_SidebarBook->GetContentWindow(), m_VertSplitter); \
+		if (sidebar->GetBottomBar()) \
+			sidebar->GetBottomBar()->Show(false); \
+		m_SidebarBook->AddPage(sidebar, icon, tooltip); \
+		m_PageMappings.insert(std::make_pair(name, (int)m_SidebarBook->GetPageCount()-1));
+	
+	ADD_SIDEBAR_SCRIPT(_T("map"),       _T("map.png"),         _("Map"));
+	ADD_SIDEBAR_SCRIPT(_T("terrain"),   _T("terrain.png"),     _("Terrain"));
+	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
+	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
+	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));
 	
 	#ifndef ATLAS_PUBLIC_RELEASE
 		ADD_SIDEBAR(CinematicSidebar,   _T("cinematic.png"),   _("Cinema"));

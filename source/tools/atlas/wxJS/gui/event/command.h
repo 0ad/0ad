@@ -53,6 +53,7 @@ namespace wxjs
               P_CHECKED
               , P_SELECTION
               , P_STRING
+              , P_INTEGER
             };
 
             WXJS_DECLARE_PROPERTY_MAP()

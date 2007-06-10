@@ -442,7 +442,10 @@ void Render()
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
 	CStr cursorName = g_BuildingPlacer.m_active ? "action-build" : g_CursorName;
-	cursor_draw(cursorName, g_mouse_x, g_mouse_y);
+	if (cursorName.empty())
+		cursor_draw(NULL, g_mouse_x, g_mouse_y);
+	else
+		cursor_draw(cursorName, g_mouse_x, g_mouse_y);
 
 	// restore
 	glMatrixMode(GL_PROJECTION);

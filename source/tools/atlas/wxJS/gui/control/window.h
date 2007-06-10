@@ -62,6 +62,7 @@ namespace wxjs
       WXJS_DECLARE_METHOD(convertDialogToPixels)
       WXJS_DECLARE_METHOD(convertPixelsToDialog)
       WXJS_DECLARE_METHOD(destroy)
+      WXJS_DECLARE_METHOD(destroyChildren)
       WXJS_DECLARE_METHOD(releaseMouse)
       WXJS_DECLARE_METHOD(layout)
       WXJS_DECLARE_METHOD(setSize)

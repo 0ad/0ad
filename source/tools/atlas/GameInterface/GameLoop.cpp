@@ -113,6 +113,10 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	AppHooks hooks = {0};
 	hooks.display_error = AtlasDisplayError;
 	app_hooks_update(&hooks);
+	
+	// Disable the game's cursor rendering
+	extern CStr g_CursorName;
+	g_CursorName = "";
 
 	state.args = args;
 	state.running = true;

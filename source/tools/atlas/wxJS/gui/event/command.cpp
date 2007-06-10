@@ -65,6 +65,7 @@ WXJS_BEGIN_PROPERTY_MAP(CommandEvent)
 	WXJS_READONLY_PROPERTY(P_CHECKED, "checked")
 	WXJS_READONLY_PROPERTY(P_SELECTION, "selection")
 	WXJS_READONLY_PROPERTY(P_STRING, "string")
+	WXJS_READONLY_PROPERTY(P_INTEGER, "integer")
 WXJS_END_PROPERTY_MAP()
 
 bool CommandEvent::GetProperty(PrivCommandEvent *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
@@ -80,6 +81,9 @@ bool CommandEvent::GetProperty(PrivCommandEvent *p, JSContext *cx, JSObject *obj
 		break;
 	case P_STRING:
 		*vp = ToJS(cx, event->GetString());
+		break;
+	case P_INTEGER:
+		*vp = ToJS(cx, event->GetInt());
 		break;
 	}
 	return true;
