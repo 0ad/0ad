@@ -7,6 +7,7 @@
 
 #pragma pack(1)
 
+
 //-----------------------------------------------------------------------------
 // table utility functions
 //-----------------------------------------------------------------------------
@@ -27,27 +28,32 @@ static u8 ComputeChecksum(const void* buf, size_t numBytes)
 // free() the returned pointer.
 static const AcpiTable* AllocateCopyOfTable(u64 physicalAddress)
 {
-	// 4 KiB ought to be enough; if not, the table will be re-mapped.
-	const size_t initialSize = 4*KiB;
-	const AcpiTable* mappedTable = (const AcpiTable*)mahaf_MapPhysicalMemory(physicalAddress, initialSize);
-	if(!mappedTable)
+	// ACPI table sizes are not known until they've been mapped and copied.
+	// since that is slow, we don't want to do it twice; solution is to copy
+	// into a buffer big enough to hold a typical table. if it should be too
+	// small, we map and copy again. using a temporary buffer, rather than
+	// allocating that much up-front, avoids wasting memory for each table.
+	static const size_t tempTableSize = 4*KiB;
+	static u8 tempTableBuf[tempTableSize];
+	const AcpiTable* tempTable = (const AcpiTable*)tempTableBuf;
+	if(!mahaf_CopyPhysicalMemory(physicalAddress, tempTableSize, (void*)tempTable))
 		return 0;
-	const size_t size = mappedTable->size;
 
-	if(size > initialSize)
+	// allocate the final table
+	const size_t size = tempTable->size;
+	const AcpiTable* table = (const AcpiTable*)malloc(size);
+	if(!table)
+		return 0;
+
+	// and fill it.
+	if(size <= tempTableSize)
+		cpu_memcpy((void*)table, tempTable, size);
+	else
 	{
-		// re-map with correct size
-		mahaf_UnmapPhysicalMemory((void*)mappedTable);
-		mappedTable = (const AcpiTable*)mahaf_MapPhysicalMemory(physicalAddress, size);
-		if(!mappedTable)
+		if(!mahaf_CopyPhysicalMemory(physicalAddress, size, (void*)table))
 			return 0;
 	}
 
-	AcpiTable* table = (AcpiTable*)malloc(size);
-	if(table)
-		cpu_memcpy(table, mappedTable, size);
-
-	mahaf_UnmapPhysicalMemory((void*)mappedTable);
 	return table;
 }
 
@@ -175,7 +181,7 @@ struct RSDT
 	u32 tables[1];
 };
 
-// avoid std::map et al. because we are called before _cinit
+// avoid std::map et al. because we may be called before _cinit
 static const AcpiTable** tables;
 static size_t numTables;
 

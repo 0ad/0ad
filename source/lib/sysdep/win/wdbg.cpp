@@ -11,16 +11,8 @@
 #include "precompiled.h"
 #include "wdbg.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <typeinfo>
-
 #include "lib/bits.h"
-#include "lib/posix/posix_pthread.h"
-#include "lib/app_hooks.h"
-#include "lib/sysdep/cpu.h"
 #include "win.h"
-#include "wdbg_sym.h"
 #include "wutil.h"
 
 

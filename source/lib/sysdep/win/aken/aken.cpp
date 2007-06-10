@@ -193,6 +193,29 @@ static NTSTATUS AkenIoctlUnmap(PVOID buf, const ULONG inSize, ULONG& outSize)
 	return ntStatus;
 }
 
+static NTSTATUS AkenIoctlCopyPhysical(PVOID buf, const ULONG inSize, ULONG& outSize)
+{
+	if(inSize != sizeof(AkenCopyPhysicalIn) || outSize != 0)
+		return STATUS_BUFFER_TOO_SMALL;
+
+	const AkenCopyPhysicalIn* in = (const AkenCopyPhysicalIn*)buf;
+	PHYSICAL_ADDRESS physicalAddress;
+	physicalAddress.QuadPart = in->physicalAddress;
+	const ULONG numBytes     = (ULONG)in->numBytes;
+	void* userBuffer         = (void*)(UINT_PTR)in->userAddress;
+
+	PVOID kernelBuffer = MmMapIoSpace(physicalAddress, numBytes, MmNonCached);
+	if(!kernelBuffer)
+		return STATUS_NO_MEMORY;
+
+	// (this works because we're called in the user's context)
+	RtlCopyMemory(userBuffer, kernelBuffer, numBytes);
+
+	MmUnmapIoSpace(kernelBuffer, numBytes);
+
+	return STATUS_SUCCESS;
+}
+
 static NTSTATUS AkenIoctlUnknown(PVOID buf, const ULONG inSize, ULONG& outSize)
 {
 	KdPrint(("AkenIoctlUnknown\n"));
@@ -218,6 +241,9 @@ static inline AkenIoctl AkenIoctlFromCode(ULONG ioctlCode)
 
 	case IOCTL_AKEN_UNMAP:
 		return AkenIoctlUnmap;
+
+	case IOCTL_AKEN_COPY_PHYSICAL:
+		return AkenIoctlCopyPhysical;
 
 	default:
 		return AkenIoctlUnknown;

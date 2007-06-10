@@ -27,4 +27,9 @@ extern void mahaf_WritePort32(u16 port, u32 value);
 extern void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes);
 extern void mahaf_UnmapPhysicalMemory(void* virtualAddress);
 
+/**
+ * @return false on failure (insufficient paged pool?)
+ **/
+extern bool mahaf_CopyPhysicalMemory(uintptr_t physicalAddress, size_t numBytes, void* buffer);
+
 #endif	// INCLUDED_MAHAF

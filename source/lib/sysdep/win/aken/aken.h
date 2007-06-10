@@ -25,6 +25,7 @@
 #define IOCTL_AKEN_WRITE_PORT          CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+1, METHOD_BUFFERED, FILE_ANY_ACCESS)
 #define IOCTL_AKEN_MAP                 CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+2, METHOD_BUFFERED, FILE_ANY_ACCESS)
 #define IOCTL_AKEN_UNMAP               CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+3, METHOD_BUFFERED, FILE_ANY_ACCESS)
+#define IOCTL_AKEN_COPY_PHYSICAL       CTL_CODE(FILE_DEVICE_AKEN, AKEN_IOCTL+4, METHOD_BUFFERED, FILE_ANY_ACCESS)
 
 
 // input and output data structures for the IOCTLs
@@ -65,6 +66,13 @@ struct AkenMapOut
 struct AkenUnmapIn
 {
 	DWORD64 virtualAddress;
+};
+
+struct AkenCopyPhysicalIn
+{
+	DWORD64 physicalAddress;
+	DWORD64 numBytes;
+	DWORD64 userAddress;
 };
 
 #pragma pack(pop)

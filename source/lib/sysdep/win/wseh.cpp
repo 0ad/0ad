@@ -22,6 +22,8 @@
 # define NEED_COOKIE_INIT
 #endif
 
+// note: several excellent references are pointed to by comments below.
+
 
 //-----------------------------------------------------------------------------
 // analyze an exception (determine description and locus)
@@ -292,6 +294,7 @@ unhandled SEH exceptions are caught:
 - with a vectored exception handler. this works across threads, but it's
   only available on WinXP (unacceptable). since it is called before __try
   blocks, we would receive expected/legitimate exceptions.
+  (see http://msdn.microsoft.com/msdnmag/issues/01/09/hood/default.aspx)
 - by setting the per-process unhandled exception filter. as above, this works
   across threads and is at least portable across Win32. unfortunately, some
   Win32 DLLs appear to register their own handlers, so this isn't reliable.
@@ -306,7 +309,9 @@ dialog (it is able to jump directly to the offending code).
 wrapping all threads in a __try appears to be the best choice. unfortunately,
 we cannot retroactively install an SEH handler: the OS ensures SEH chain
 nodes are on the thread's stack (as defined by NT_TIB) in ascending order.
-(the handler would also have to be marked via .safeseh, but that is doable)
+(see http://www.microsoft.com/msj/0197/exception/exception.aspx)
+the handler would also have to be marked via .safeseh, but that is doable
+(see http://blogs.msdn.com/greggm/archive/2004/07/22/191544.aspx)
 consequently, we'll have to run within a __try; if the init code is to be
 covered, this must happen within the program entry point.
 
@@ -321,6 +326,7 @@ C++ classes. this way is more reliable/documented, but has several drawbacks:
 - a new fat exception class would have to be created to hold the
   SEH exception information (e.g. CONTEXT for a stack trace), and
 - this information would not be available for C++ exceptions.
+(see http://blogs.msdn.com/cbrumme/archive/2003/10/01/51524.aspx)
 
 */
 

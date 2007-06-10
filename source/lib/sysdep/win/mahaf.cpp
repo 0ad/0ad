@@ -128,6 +128,26 @@ void mahaf_UnmapPhysicalMemory(void* virtualAddress)
 }
 
 
+bool mahaf_CopyPhysicalMemory(uintptr_t physicalAddress, size_t numBytes, void* buffer)
+{
+	AkenCopyPhysicalIn in;
+	in.physicalAddress = (DWORD64)physicalAddress;
+	in.numBytes        = (DWORD64)numBytes;
+	in.userAddress     = (DWORD64)buffer;
+
+	DWORD bytesReturned;
+	LPOVERLAPPED ovl = 0;	// synchronous
+	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_COPY_PHYSICAL, &in, sizeof(in), 0, 0, &bytesReturned, ovl);
+	if(!ok)
+	{
+		WARN_WIN32_ERR;
+		return false;
+	}
+
+	return true;
+}
+
+
 //-----------------------------------------------------------------------------
 // driver installation
 //-----------------------------------------------------------------------------
@@ -195,13 +215,16 @@ static void StartDriver(const char* driverPathname)
 
 	SC_HANDLE hService = OpenService(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
 
-#if 0
-	// during development, we want to unload and re-create the
-	// service every time to ensure the newest build is used.
-	BOOL ok = CloseServiceHandle(hService);
-	WARN_IF_FALSE(ok);
-	hService = 0;
-	UninstallDriver();
+#if 1
+	// during development, we want to ensure the newest build is used, so
+	// unload and re-create the service if it's running/installed.
+	if(hService)
+	{
+		BOOL ok = CloseServiceHandle(hService);
+		WARN_IF_FALSE(ok);
+		hService = 0;
+		UninstallDriver();
+	}
 #endif	
 
 	// create service (note: this just enters the service into SCM's DB;

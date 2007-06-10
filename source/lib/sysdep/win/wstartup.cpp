@@ -87,13 +87,14 @@ application, not the CRT DLL.)
 
 // reference: see http://www.codeguru.com/cpp/misc/misc/threadsprocesses/article.php/c6945__1
 
-EXTERN_C void wstartup_InitAndRegisterShutdown()
+EXTERN_C int wstartup_InitAndRegisterShutdown()
 {
 	winit_CallInitFunctions();
 	atexit(winit_CallShutdownFunctions);
+	return 0;
 }
 
 #pragma data_seg(".CRT$XIV")	// after C init, after XIU ("User") block
-EXTERN_C void(*wstartup_pInitAndRegisterShutdown)() = wstartup_InitAndRegisterShutdown;
+EXTERN_C int(*wstartup_pInitAndRegisterShutdown)() = wstartup_InitAndRegisterShutdown;
 #pragma data_seg()
 #pragma comment(linker, "/include:_wstartup_pInitAndRegisterShutdown")
