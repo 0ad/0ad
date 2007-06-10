@@ -21,11 +21,16 @@
 
 namespace AtlasMessage {
 
+static bool g_IsInitialised = false;
 static bool g_DidInitSim;
 
 MESSAGEHANDLER(Init)
 {
 	UNUSED2(msg);
+	
+	// Don't do anything if we're called multiple times
+	if (g_IsInitialised)
+		return;
 
 #if OS_LINUX
 	// When using GLX (Linux), SDL has to load the GL library to find
@@ -61,6 +66,8 @@ MESSAGEHANDLER(Init)
 	if(ogl_HaveExtension("WGL_EXT_swap_control"))
 		pwglSwapIntervalEXT(1);
 #endif
+	
+	g_IsInitialised = true;
 }
 
 
@@ -68,6 +75,10 @@ MESSAGEHANDLER(Shutdown)
 {
 	UNUSED2(msg);
 	
+	// Don't do anything if we're called multiple times
+	if (! g_IsInitialised)
+		return;
+
 	// Empty the CommandProc, to get rid of its references to entities before
 	// we kill the EntityManager
 	GetCommandProc().Destroy();
@@ -79,6 +90,8 @@ MESSAGEHANDLER(Shutdown)
 	if (! g_DidInitSim)
 		flags |= INIT_NO_SIM;
 	Shutdown(flags);
+	
+	g_IsInitialised = false;
 }
 
 

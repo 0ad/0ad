@@ -4,6 +4,7 @@
 
 #include "MessageHandler.h"
 #include "../CommandProc.h"
+#include "../SimState.h"
 #include "../View.h"
 
 #include "graphics/GameView.h"
@@ -705,28 +706,13 @@ END_COMMAND(RotateObject)
 
 BEGIN_COMMAND(DeleteObject)
 {
-	CUnit* m_UnitInLimbo;
+	// These two values are never both non-NULL
+	std::auto_ptr<SimState::Entity> m_FrozenEntity;
+	std::auto_ptr<SimState::Nonentity> m_FrozenNonentity;
 
 	cDeleteObject()
+	: m_FrozenEntity(NULL), m_FrozenNonentity(NULL)
 	{
-		m_UnitInLimbo = NULL;
-	}
-
-	~cDeleteObject()
-	{
-		if (m_UnitInLimbo)
-		{
-			if (m_UnitInLimbo->GetEntity())
-				m_UnitInLimbo->GetEntity()->Kill();
-			else
-				delete m_UnitInLimbo;
-		}
-
-		// TODO (IMPORTANT): this can crash when interacting with simulation
-		// playing/resetting because the entity gets deleted while we still
-		// think we have a reference to it. This system should probably be
-		// replaced by something like SimState::Entity to safely serialise
-		// units while they're in limbo.
 	}
 
 	void Do()
@@ -741,30 +727,32 @@ BEGIN_COMMAND(DeleteObject)
 
 		if (unit->GetEntity())
 		{
-			// HACK: I don't know the proper way of undoably deleting entities...
-			unit->GetEntity()->entf_set(ENTF_DESTROYED);
-
-			// TODO: territories don't ignore DESTROYED entities
-			if (unit->GetEntity()->m_base->m_isTerritoryCentre)
-				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
+			m_FrozenEntity.reset(new SimState::Entity( SimState::Entity::Freeze(unit) ));
+			unit->GetEntity()->Kill();
 		}
-
-		GetUnitManager().RemoveUnit(unit);
-		m_UnitInLimbo = unit;
+		else
+		{
+			m_FrozenNonentity.reset(new SimState::Nonentity( SimState::Nonentity::Freeze(unit) ));
+			GetUnitManager().RemoveUnit(unit);
+		}
 	}
 
 	void Undo()
 	{
-		if (m_UnitInLimbo->GetEntity())
+		if (m_FrozenEntity.get())
 		{
-			m_UnitInLimbo->GetEntity()->entf_clear(ENTF_DESTROYED);
+			m_FrozenEntity->Thaw();
+			
+			// XXXif (m_UnitInLimbo->GetEntity()->m_base->m_isTerritoryCentre)
+				//g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 
-			if (m_UnitInLimbo->GetEntity()->m_base->m_isTerritoryCentre)
-				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
+			m_FrozenEntity.reset();
 		}
-
-		GetUnitManager().AddUnit(m_UnitInLimbo);
-		m_UnitInLimbo = NULL;
+		else if (m_FrozenNonentity.get())
+		{
+			m_FrozenNonentity->Thaw();
+			m_FrozenNonentity.reset();
+		}
 	}
 };
 END_COMMAND(DeleteObject)
