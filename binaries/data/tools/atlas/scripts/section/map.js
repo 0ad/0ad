@@ -39,17 +39,16 @@ function setupSimTest(window)
 		[ 'Reset', function () { reset() }, function () { return state != 'inactive' } ],
 	];
 	
-	var statBox = new wxStaticBox(window, -1, 'Simulation test');
-	var sizer = new wxStaticBoxSizer(statBox, wxOrientation.HORIZONTAL);
-	for (var i in buttons)
+	var sizer = new wxStaticBoxSizer(new wxStaticBox(window, -1, 'Simulation test'), wxOrientation.HORIZONTAL);
+	for each (var b in buttons)
 	{
-		var button = new wxButton(window, -1, buttons[i][0]);
-		button.onClicked = buttons[i][1];
+		var button = new wxButton(window, -1, b[0]);
+		button.onClicked = b[1];
 		sizer.add(button, 1);
-		buttons[i][3] = button;
+		b[3] = button;
 	}
 	updateEnableStatus();
-	window.sizer.add(sizer, 0, wxStretch.EXPAND | wxDirection.LEFT|wxDirection.RIGHT, 4);
+	window.sizer.add(sizer, 0, wxStretch.EXPAND | wxDirection.LEFT|wxDirection.RIGHT, 2);
 }
 
 function generateRMS(name)
@@ -70,7 +69,7 @@ function init(window)
 	
 	var button = new wxButton(window, -1, 'Generate empty map');
 	button.onClicked = function () { Atlas.Message.GenerateMap(9); };
-	window.sizer.add(button, 0, wxDirection.ALL, 4);
+	window.sizer.add(button, 0, wxDirection.ALL, 2);
 	
 	var sizer = new wxBoxSizer(wxOrientation.HORIZONTAL);
 	var rmsFilename = new wxTextCtrl(window, -1, 'cantabrian_highlands');
@@ -78,7 +77,7 @@ function init(window)
 	rmsButton.onClicked = function () { generateRMS(rmsFilename.value) }
 	sizer.add(rmsFilename, 1);
 	sizer.add(rmsButton, 0);
-	window.sizer.add(sizer, 0, wxStretch.EXPAND | wxDirection.ALL, 4);
+	window.sizer.add(sizer, 0, wxStretch.EXPAND | wxDirection.ALL, 2);
 	
 	setupSimTest(window);
 }

@@ -287,7 +287,7 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 		m_PageMappings.insert(std::make_pair(name, (int)m_SidebarBook->GetPageCount()-1));
 	
 	ADD_SIDEBAR_SCRIPT(_T("map"),       _T("map.png"),         _("Map"));
-	ADD_SIDEBAR_SCRIPT(_T("terrain"),   _T("terrain.png"),     _("Terrain"));
+	//ADD_SIDEBAR_SCRIPT(_T("terrain"),   _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));
