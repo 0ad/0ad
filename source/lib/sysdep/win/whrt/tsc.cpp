@@ -147,9 +147,9 @@ uint CounterTSC::CounterBits() const
 
 /**
  * initial measurement of the tick rate. not necessarily correct
- * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
+ * (e.g. when using TSC: wcpu_ClockFrequency isn't exact).
  **/
 double CounterTSC::NominalFrequency() const
 {
-	return cpu_ClockFrequency();
+	return wcpu_ClockFrequency();
 }

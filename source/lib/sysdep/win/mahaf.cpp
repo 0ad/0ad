@@ -94,8 +94,14 @@ void mahaf_WritePort32(u16 port, u32 value)
 }
 
 
-void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
+volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
 {
+	// WinXP introduced checks that ensure we don't re-map pages with
+	// incompatible attributes. without this, mapping physical pages risks
+	// disaster due to TLB corruption, so disable it for safety.
+	if(wutil_WindowsVersion() < WUTIL_VERSION_XP)
+		return 0;
+
 	AkenMapIn in;
 	in.physicalAddress = (DWORD64)physicalAddress;
 	in.numBytes        = (DWORD64)numBytes;
@@ -111,12 +117,12 @@ void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
 	}
 
 	debug_assert(bytesReturned == sizeof(out));
-	void* virtualAddress = (void*)out.virtualAddress;
+	volatile void* virtualAddress = (volatile void*)out.virtualAddress;
 	return virtualAddress;
 }
 
 
-void mahaf_UnmapPhysicalMemory(void* virtualAddress)
+void mahaf_UnmapPhysicalMemory(volatile void* virtualAddress)
 {
 	AkenUnmapIn in;
 	in.virtualAddress = (DWORD64)virtualAddress;
@@ -125,26 +131,6 @@ void mahaf_UnmapPhysicalMemory(void* virtualAddress)
 	LPOVERLAPPED ovl = 0;	// synchronous
 	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_UNMAP, &in, sizeof(in), 0, 0u, &bytesReturned, ovl);
 	WARN_IF_FALSE(ok);
-}
-
-
-bool mahaf_CopyPhysicalMemory(uintptr_t physicalAddress, size_t numBytes, void* buffer)
-{
-	AkenCopyPhysicalIn in;
-	in.physicalAddress = (DWORD64)physicalAddress;
-	in.numBytes        = (DWORD64)numBytes;
-	in.userAddress     = (DWORD64)buffer;
-
-	DWORD bytesReturned;
-	LPOVERLAPPED ovl = 0;	// synchronous
-	BOOL ok = DeviceIoControl(hAken, (DWORD)IOCTL_AKEN_COPY_PHYSICAL, &in, sizeof(in), 0, 0, &bytesReturned, ovl);
-	if(!ok)
-	{
-		WARN_WIN32_ERR;
-		return false;
-	}
-
-	return true;
 }
 
 

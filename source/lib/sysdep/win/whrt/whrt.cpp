@@ -283,6 +283,9 @@ static LibError whrt_Init()
 
 	InitCounter();
 
+	// latch initial counter value so that timer starts at 0
+	ts->counter = Counter();	// must come before UpdateTimerState
+
 	UpdateTimerState();	// must come before InitUpdateThread to avoid race
 
 	RETURN_ERR(InitUpdateThread());

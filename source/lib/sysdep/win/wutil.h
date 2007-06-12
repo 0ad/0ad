@@ -99,7 +99,12 @@ extern char win_exe_dir[MAX_PATH+1];
 //
 
 extern const char* wutil_WindowsVersionString();
-extern bool wutil_IsVista();
+
+// (same format as WINVER)
+const uint WUTIL_VERSION_XP    = 0x0501;
+const uint WUTIL_VERSION_VISTA = 0x0600;
+
+extern uint wutil_WindowsVersion();
 
 
 //

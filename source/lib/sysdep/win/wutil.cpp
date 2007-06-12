@@ -228,7 +228,8 @@ static void EnableLowFragmentationHeap()
 //-----------------------------------------------------------------------------
 // version
 
-static char versionString[20];
+static char windowsVersionString[20];
+static uint windowsVersion;	// see WUTIL_VERSION_*
 
 static void DetectWindowsVersion()
 {
@@ -237,8 +238,14 @@ static void DetectWindowsVersion()
 	HKEY hKey;
 	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
 	{
-		DWORD size = ARRAY_SIZE(versionString);
-		(void)RegQueryValueEx(hKey, "CurrentVersion", 0, 0, (LPBYTE)versionString, &size);
+		DWORD size = ARRAY_SIZE(windowsVersionString);
+		(void)RegQueryValueEx(hKey, "CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
+
+		uint major = 0, minor = 0;
+		int ret = sscanf(windowsVersionString, "%d.%d", &major, &minor);
+		debug_assert(ret == 2);
+		debug_assert(major <= 0xFF && minor <= 0xFF);
+		windowsVersion = (major << 8) | minor;
 
 		RegCloseKey(hKey);
 	}
@@ -248,15 +255,16 @@ static void DetectWindowsVersion()
 
 const char* wutil_WindowsVersionString()
 {
-	debug_assert(versionString[0] != '\0');
-	return versionString;
+	debug_assert(windowsVersionString[0] != '\0');
+	return windowsVersionString;
 }
 
-bool wutil_IsVista()
+uint wutil_WindowsVersion()
 {
-	debug_assert(versionString[0] != '\0');
-	return (versionString[0] >= '6');
+	debug_assert(windowsVersion != 0);
+	return windowsVersion;
 }
+
 
 //-----------------------------------------------------------------------------
 // Wow64

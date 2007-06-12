@@ -43,7 +43,7 @@ private:
 	CCamera dummyCamera;
 };
 
-struct SimState;
+class SimState;
 
 class ViewGame : public View
 {

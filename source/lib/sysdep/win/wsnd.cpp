@@ -141,7 +141,7 @@ LibError win_get_snd_info()
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
 	wdll_ver_list_init(snd_drv_ver, SND_DRV_VER_LEN);
-	if(!wutil_IsVista())
+	if(wutil_WindowsVersion() < WUTIL_VERSION_VISTA)
 		(void)wdll_ver_list_add(GetDirectSoundDriverPath());
 	StringSet dlls;	// ensures uniqueness
 	(void)add_oal_dlls_in_dir(win_exe_dir, &dlls);

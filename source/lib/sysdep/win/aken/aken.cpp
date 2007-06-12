@@ -13,8 +13,48 @@ extern "C" {	// must come before ntddk.h
 // memory mapping
 //-----------------------------------------------------------------------------
 
-// references: DDK mapmem.c sample,
-// http://support.microsoft.com/kb/189327/en-us
+/*
+
+there are three approaches to mapping physical memory:
+(http://www.microsoft.com/whdc/driver/kernel/mem-mgmt.mspx)
+
+- MmMapIoSpace (http://support.microsoft.com/kb/189327/en-us). despite the
+  name, it maps physical pages of any kind by allocating PTEs. very easy to
+  implement, but occupies precious kernel address space. possible bugs:
+    http://www.osronline.com/showThread.cfm?link=96737
+    http://support.microsoft.com/kb/925793/en-us
+
+- ZwMapViewOfSection of PhysicalMemory (http://tinyurl.com/yozmgy).
+  a bit bulky, but the WinXP implementation prevents mapping pages with
+  conflicting attributes (see below).
+
+- MmMapLockedPagesSpecifyCache or MmGetSystemAddressForMdlSafe
+  (http://www.osronline.com/article.cfm?id=423). note: the latter is a macro
+  that calls the former. this is the 'normal' and fully documented way,
+  but it doesn't appear able to map a fixed physical address.
+  (MmAllocatePagesForMdl understandably doesn't work since some pages we
+  want to map are marked as unavailable for allocation, and I don't see
+  another documented way to fill an MDL with PFNs.)
+
+our choice here is forced by a very insidious issue. if someone else has
+already mapped a page with different attributes (e.g. cacheable), TLBs
+may end up corrupted, leading to disaster. the search for a documented
+means of accessing the page frame database (to check if mapped anywhere
+and determine the previously set attributes) has not borne fruit, so we
+must use ZwMapViewOfSection.
+
+*/
+
+
+static bool IsMemoryUncacheable(DWORD64 physicalAddress64)
+{
+	// original PC memory - contains BIOS
+	if(physicalAddress64 < 0x100000)
+		return true;
+
+	return false;
+}
+
 static NTSTATUS AkenMapPhysicalMemory(const DWORD64 physicalAddress64, const DWORD64 numBytes64, DWORD64& virtualAddress64)
 {
 	NTSTATUS ntStatus;
@@ -51,8 +91,11 @@ static NTSTATUS AkenMapPhysicalMemory(const DWORD64 physicalAddress64, const DWO
 		}
 	}
 
-	// map desired memory into user PTEs (note: don't use MmMapIoSpace
-	// because that occupies precious non-paged pool)
+	// note: mapmem.c does HalTranslateBusAddress, but we only care about
+	// system memory. translating doesn't appear to be necessary, even if
+	// much existing code uses it (probably due to cargo cult).
+
+	// map desired memory into user PTEs
 	{
 		const HANDLE hProcess = (HANDLE)-1;
 		PVOID virtualBaseAddress = 0;	// let ZwMapViewOfSection pick
@@ -61,7 +104,9 @@ static NTSTATUS AkenMapPhysicalMemory(const DWORD64 physicalAddress64, const DWO
 		LARGE_INTEGER physicalBaseAddress = physicalAddress;	// will be rounded down to 64KB boundary
 		const SECTION_INHERIT inheritDisposition = ViewShare;
 		const ULONG allocationType = 0;
-		const ULONG protect = PAGE_READWRITE|PAGE_NOCACHE;
+		ULONG protect = PAGE_READWRITE;
+		if(IsMemoryUncacheable(physicalAddress64))
+			protect |= PAGE_NOCACHE;
 		ntStatus = ZwMapViewOfSection(hMemory, hProcess, &virtualBaseAddress, zeroBits, mappedSize, &physicalBaseAddress, &mappedSize, inheritDisposition, allocationType, protect);
 		if(!NT_SUCCESS(ntStatus))
 		{
@@ -173,6 +218,7 @@ static NTSTATUS AkenIoctlMap(PVOID buf, const ULONG inSize, ULONG& outSize)
 	const AkenMapIn* in = (const AkenMapIn*)buf;
 	const DWORD64 physicalAddress = in->physicalAddress;
 	const DWORD64 numBytes        = in->numBytes;
+
 	DWORD64 virtualAddress;
 	NTSTATUS ntStatus = AkenMapPhysicalMemory(physicalAddress, numBytes, virtualAddress);
 
@@ -191,29 +237,6 @@ static NTSTATUS AkenIoctlUnmap(PVOID buf, const ULONG inSize, ULONG& outSize)
 	NTSTATUS ntStatus = AkenUnmapPhysicalMemory(virtualAddress);
 
 	return ntStatus;
-}
-
-static NTSTATUS AkenIoctlCopyPhysical(PVOID buf, const ULONG inSize, ULONG& outSize)
-{
-	if(inSize != sizeof(AkenCopyPhysicalIn) || outSize != 0)
-		return STATUS_BUFFER_TOO_SMALL;
-
-	const AkenCopyPhysicalIn* in = (const AkenCopyPhysicalIn*)buf;
-	PHYSICAL_ADDRESS physicalAddress;
-	physicalAddress.QuadPart = in->physicalAddress;
-	const ULONG numBytes     = (ULONG)in->numBytes;
-	void* userBuffer         = (void*)(UINT_PTR)in->userAddress;
-
-	PVOID kernelBuffer = MmMapIoSpace(physicalAddress, numBytes, MmNonCached);
-	if(!kernelBuffer)
-		return STATUS_NO_MEMORY;
-
-	// (this works because we're called in the user's context)
-	RtlCopyMemory(userBuffer, kernelBuffer, numBytes);
-
-	MmUnmapIoSpace(kernelBuffer, numBytes);
-
-	return STATUS_SUCCESS;
 }
 
 static NTSTATUS AkenIoctlUnknown(PVOID buf, const ULONG inSize, ULONG& outSize)
@@ -241,9 +264,6 @@ static inline AkenIoctl AkenIoctlFromCode(ULONG ioctlCode)
 
 	case IOCTL_AKEN_UNMAP:
 		return AkenIoctlUnmap;
-
-	case IOCTL_AKEN_COPY_PHYSICAL:
-		return AkenIoctlCopyPhysical;
 
 	default:
 		return AkenIoctlUnknown;

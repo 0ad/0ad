@@ -28,31 +28,26 @@ static u8 ComputeChecksum(const void* buf, size_t numBytes)
 // free() the returned pointer.
 static const AcpiTable* AllocateCopyOfTable(u64 physicalAddress)
 {
-	// ACPI table sizes are not known until they've been mapped and copied.
-	// since that is slow, we don't want to do it twice; solution is to copy
-	// into a buffer big enough to hold a typical table. if it should be too
-	// small, we map and copy again. using a temporary buffer, rather than
-	// allocating that much up-front, avoids wasting memory for each table.
-	static const size_t tempTableSize = 4*KiB;
-	static u8 tempTableBuf[tempTableSize];
-	const AcpiTable* tempTable = (const AcpiTable*)tempTableBuf;
-	if(!mahaf_CopyPhysicalMemory(physicalAddress, tempTableSize, (void*)tempTable))
+	// ACPI table sizes are not known until they've been mapped. since that
+	// is slow, we don't want to do it twice; solution is map enough to
+	// hold a typical table. if it should be too small, we do so again.
+	static const size_t initialSize = 4*KiB;
+	const volatile AcpiTable* mappedTable = (const volatile AcpiTable*)mahaf_MapPhysicalMemory(physicalAddress, initialSize);
+	if(!mappedTable)
 		return 0;
-
-	// allocate the final table
-	const size_t size = tempTable->size;
-	const AcpiTable* table = (const AcpiTable*)malloc(size);
-	if(!table)
-		return 0;
-
-	// and fill it.
-	if(size <= tempTableSize)
-		cpu_memcpy((void*)table, tempTable, size);
-	else
+	const size_t size = mappedTable->size;
+	if(initialSize < size)
 	{
-		if(!mahaf_CopyPhysicalMemory(physicalAddress, size, (void*)table))
+		mappedTable = (const volatile AcpiTable*)mahaf_MapPhysicalMemory(physicalAddress, size);
+		if(!mappedTable)
 			return 0;
 	}
+
+	const AcpiTable* table = (const AcpiTable*)malloc(size);
+	if(table)
+		cpu_memcpy((void*)table, (const void*)mappedTable, size);
+
+	mahaf_UnmapPhysicalMemory((volatile void*)mappedTable);
 
 	return table;
 }
@@ -128,31 +123,37 @@ static const RSDP* LocateRsdp(const u8* buf, size_t numBytes)
 
 static bool LocateAndRetrieveRsdp(uintptr_t physicalAddress, size_t numBytes, RSDP& rsdp)
 {
-	void* virtualAddress = mahaf_MapPhysicalMemory(physicalAddress, numBytes);
+	const volatile u8* buffer = (const volatile u8*)mahaf_MapPhysicalMemory(physicalAddress, numBytes);
+	if(!buffer)
+		return false;
 
-	const RSDP* prsdp = LocateRsdp((const u8*)virtualAddress, numBytes);
+	const RSDP* prsdp = LocateRsdp((const u8*)buffer, numBytes);
 	if(prsdp)
 		rsdp = *prsdp;	// stash in output parameter before unmapping
 
-	mahaf_UnmapPhysicalMemory(virtualAddress);
+	mahaf_UnmapPhysicalMemory((volatile void*)buffer);
 	return (prsdp != 0);
 }
 
-
 static uintptr_t LocateEbdaPhysicalAddress()
 {
+#pragma pack(push, 1)
 	struct BiosDataArea
 	{ 
 		u16 serialBase[4];
 		u16 parallelBase[3];
 		u16 ebdaSegment;
-		// ...
 	};
-	const BiosDataArea* bda = (const BiosDataArea*)mahaf_MapPhysicalMemory(0x400, 0x100);
+#pragma pack(pop)
+	const volatile BiosDataArea* bda = (const volatile BiosDataArea*)mahaf_MapPhysicalMemory(0x400, 0x100);
 	if(!bda)
+	{
+		debug_assert(0);
 		return 0;
-	const uintptr_t ebdaPhysicalAddress = ((uintptr_t)bda->ebdaSegment) * 16;
+	}
 
+	const uintptr_t ebdaPhysicalAddress = ((uintptr_t)bda->ebdaSegment) * 16;
+	mahaf_UnmapPhysicalMemory((void*)bda);
 	return ebdaPhysicalAddress;
 }
 
@@ -161,7 +162,9 @@ static bool RetrieveRsdp(RSDP& rsdp)
 {
 	// See ACPIspec30b, section 5.2.5.1:
 	// RSDP is either in the first KIB of the extended BIOS data area,
-	if(LocateAndRetrieveRsdp(LocateEbdaPhysicalAddress(), 1*KiB, rsdp))
+	const uintptr_t ebdaPhysicalAddress = LocateEbdaPhysicalAddress();
+	debug_assert(ebdaPhysicalAddress != 0);
+	if(LocateAndRetrieveRsdp(ebdaPhysicalAddress, 1*KiB, rsdp))
 		return true;
 
 	// or in read-only BIOS memory.

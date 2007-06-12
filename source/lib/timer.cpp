@@ -52,7 +52,9 @@ double get_time()
 {
 	double t;
 
-#if HAVE_CLOCK_GETTIME
+#if OS_WIN
+	t = whrt_Time();
+#elif HAVE_CLOCK_GETTIME
 	struct timespec cur;
 	(void)clock_gettime(CLOCK_REALTIME, &cur);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_nsec - start.tv_nsec)*1e-9;
@@ -60,8 +62,6 @@ double get_time()
 	struct timeval cur;
 	gettimeofday(&cur, 0);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec)*1e-6;
-#elif OS_WIN
-	t = whrt_Time();
 #else
 # error "get_time: add timer implementation for this platform!"
 #endif

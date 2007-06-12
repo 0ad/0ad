@@ -22,7 +22,6 @@
 #include "lib/posix/posix_pthread.h"
 #include "lib/sysdep/cpu.h"	// CAS
 #include "lib/sysdep/sysdep.h"
-#include "lib/res/file/file.h"	// FILE_ACCESS
 // some functions here are called from within mmgr; disable its hooks
 // so that our allocations don't cause infinite recursion.
 #ifdef REDEFINED_NEW
@@ -237,7 +236,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 	if(!f)
 	{
 		in_progress = 0;
-		WARN_RETURN(ERR::FILE_ACCESS);
+		WARN_RETURN(ERR::FAIL);
 	}
 
 	fputwc(0xfeff, f);	// BOM
