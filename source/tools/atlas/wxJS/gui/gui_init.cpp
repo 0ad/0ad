@@ -115,6 +115,7 @@
 #include "control/finddata.h"
 
 // Miscellaneous wxWindow classes
+#include "misc/settings.h"
 #include "misc/timer.h"
 #include "misc/point.h"
 #include "misc/size.h"
@@ -325,6 +326,11 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 	if (! obj )
 		return false;
 
+	obj = SystemSettings::JSInit(cx, global);
+	wxASSERT_MSG(obj != NULL, wxT("wxSystemSettings prototype creation failed"));
+	if (! obj )
+		return false;
+	
 	obj = Timer::JSInit(cx, global);
 	wxASSERT_MSG(obj != NULL, wxT("wxTimer prototype creation failed"));
 	if (! obj )
