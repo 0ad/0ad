@@ -93,7 +93,8 @@ wxMDIChildFrame* MDIChildFrame::Construct(JSContext* cx,
   if ( argc > 0 )
   {
     jsval rval;
-    create(cx, obj, argc, argv, &rval);
+    if ( ! create(cx, obj, argc, argv, &rval) )
+      return NULL;
   }
   return p;
 }
@@ -180,9 +181,9 @@ JSBool MDIChildFrame::create(JSContext* cx,
         parent = MDIParentFrame::GetPrivate(cx, argv[0]);
         if (    parent == NULL 
 #ifdef __WXMSW__
-				|| parent->GetHWND() == NULL
+             || parent->GetHWND() == NULL
 #endif
-		   )
+           )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 1, "wxMDIParentFrame");
           return JS_FALSE;

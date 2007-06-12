@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: frame.cpp 708 2007-05-14 15:30:45Z fbraem $
+ * $Id: frame.cpp 746 2007-06-11 20:58:21Z fbraem $
  */
 #ifndef WX_PRECOMP
 	#include <wx/wx.h>
@@ -350,7 +350,8 @@ wxFrame* Frame::Construct(JSContext* cx,
   if ( argc > 0 )
   {
     jsval rval;
-    create(cx, obj, argc, argv, &rval);
+    if ( ! create(cx, obj, argc, argv, &rval) )
+      return NULL;
   }
   return p;
 }
@@ -490,7 +491,7 @@ JSBool Frame::processCommand(JSContext *cx,
 		return JS_FALSE;
 
 #ifdef __WXMSW__
-	if ( p->GetHWND() == NULL )
+    if ( p->GetHWND() == NULL )
     {
       JS_ReportError(cx, "%s is not yet created", GetClass()->name);
       return JS_FALSE;
@@ -605,7 +606,7 @@ JSBool Frame::createToolBar(JSContext *cx, JSObject *obj, uintN argc, jsval *arg
       return JS_FALSE;
     }
 #endif
-	
+
     long style = wxNO_BORDER | wxTB_HORIZONTAL;
     int id = -1;
     
@@ -670,7 +671,7 @@ JSBool Frame::setStatusText(JSContext *cx,
       return JS_FALSE;
     }
 #endif
-	
+
 	wxStatusBar *statusBar = p->GetStatusBar();
 	if ( statusBar != (wxStatusBar*) NULL )
 	{
@@ -725,7 +726,7 @@ JSBool Frame::setStatusWidths(JSContext *cx,
       return JS_FALSE;
     }
 #endif
-	
+
 	wxStatusBar *statusBar = p->GetStatusBar();
 	if ( statusBar == (wxStatusBar*) NULL )
         return JS_TRUE;

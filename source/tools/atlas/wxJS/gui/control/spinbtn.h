@@ -1,41 +1,41 @@
-#ifndef _WXJSSPINCTRL_H
-#define _WXJSSPINCTRL_H
+#ifndef _WXJSSPINBTN_H
+#define _WXJSSPINBTN_H
 
 #include "../../common/evtconn.h"
 
-#include <wx/spinctrl.h>
+#include <wx/spinbutt.h>
 
 namespace wxjs
 {
 	namespace gui
 	{
-		class SpinCtrl : public ApiWrapper<SpinCtrl, wxSpinCtrl>
+		class SpinButton : public ApiWrapper<SpinButton, wxSpinButton>
 		{
 		public:
 			static void InitClass(JSContext* cx,
 								  JSObject* obj,
 								  JSObject* proto);
-			static bool AddProperty(wxSpinCtrl *p,
+			static bool AddProperty(wxSpinButton *p,
 									JSContext *cx,
 									JSObject *obj,
 									const wxString &prop,
 									jsval *vp);
-			static bool DeleteProperty(wxSpinCtrl *p,
+			static bool DeleteProperty(wxSpinButton *p,
 									JSContext* cx,
 									JSObject* obj,
 									const wxString &prop);
-			static bool GetProperty(wxSpinCtrl *p,
+			static bool GetProperty(wxSpinButton *p,
 									JSContext *cx,
 									JSObject *obj,
 									int id,
 									jsval *vp);
-			static bool SetProperty(wxSpinCtrl *p,
+			static bool SetProperty(wxSpinButton *p,
 									JSContext *cx,
 									JSObject *obj,
 									int id,
 									jsval *vp);
 
-			static wxSpinCtrl* Construct(JSContext *cx,
+			static wxSpinButton* Construct(JSContext *cx,
 										 JSObject *obj,
 										 uintN argc,
 										 jsval *argv,
@@ -44,7 +44,6 @@ namespace wxjs
 			WXJS_DECLARE_METHOD_MAP()
 			WXJS_DECLARE_METHOD(create)
 			WXJS_DECLARE_METHOD(setRange)
-			WXJS_DECLARE_METHOD(setSelection)
 
 			WXJS_DECLARE_CONSTANT_MAP()
 		
@@ -57,24 +56,20 @@ namespace wxjs
 			};
 		};
 
-		class SpinCtrlEventHandler : public EventConnector<wxSpinCtrl>
-								   , public wxEvtHandler
+		class SpinButtonEventHandler : public EventConnector<wxSpinButton>
+						   		     , public wxEvtHandler
 		{
 		public:
-			void OnText(wxCommandEvent &event);
-			void OnSpinCtrl(wxSpinEvent &event);
 			void OnSpin(wxSpinEvent &event);
 			void OnSpinUp(wxSpinEvent &event);
 			void OnSpinDown(wxSpinEvent &event);
 			static void InitConnectEventMap();
 		private:
-			static void ConnectText(wxSpinCtrl *p, bool connect);
-			static void ConnectSpinCtrl(wxSpinCtrl *p, bool connect);
-			static void ConnectSpin(wxSpinCtrl *p, bool connect);
-			static void ConnectSpinUp(wxSpinCtrl *p, bool connect);
-			static void ConnectSpinDown(wxSpinCtrl *p, bool connect);
+			static void ConnectSpin(wxSpinButton *p, bool connect);
+			static void ConnectSpinUp(wxSpinButton *p, bool connect);
+			static void ConnectSpinDown(wxSpinButton *p, bool connect);
 		};
 	}; // namespace gui
 }; // namespace wxjs
 
-#endif //_WXJSSPINCTRL_H
+#endif //_WXJSSPINBTN_H

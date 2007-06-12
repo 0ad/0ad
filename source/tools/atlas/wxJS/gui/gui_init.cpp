@@ -62,7 +62,6 @@
 // Controls
 #include "control/control.h"
 #include "control/textctrl.h"
-#include "control/spinctrl.h"
 #include "control/button.h"
 #include "control/bmpbtn.h"
 #include "control/sttext.h"
@@ -89,6 +88,8 @@
 #include "control/pwdlg.h"
 #include "control/scrollwnd.h"
 #include "control/htmlwin.h"
+#include "control/spinctrl.h"
+#include "control/spinbtn.h"
 
 // Validators
 #include "misc/validate.h"
@@ -224,11 +225,6 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 	if (! obj )
 		return false;
 
-	obj = SpinCtrl::JSInit(cx, global, Control::GetClassPrototype());
-	wxASSERT_MSG(obj != NULL, wxT("wxSpinCtrl prototype creation failed"));
-	if (! obj )
-		return false;
-
 	obj = Button::JSInit(cx, global, Control::GetClassPrototype());
 	wxASSERT_MSG(obj != NULL, wxT("wxButton prototype creation failed"));
 	if (! obj )
@@ -333,7 +329,7 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 	wxASSERT_MSG(obj != NULL, wxT("wxTimer prototype creation failed"));
 	if (! obj )
 		return false;
-
+	
 	obj = Point::JSInit(cx, global);
 	wxASSERT_MSG(obj != NULL, wxT("wxPoint prototype creation failed"));
 	if (! obj )
@@ -625,6 +621,16 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
     wxASSERT_MSG(obj != NULL, wxT("wxHtmlWindow prototype creation failed"));
     if (! obj )
         return false;
+
+	obj = SpinCtrl::JSInit(cx, global, Control::GetClassPrototype());
+	wxASSERT_MSG(obj != NULL, wxT("wxSpinCtrl prototype creation failed"));
+	if (! obj )
+		return false;
+
+    obj = SpinButton::JSInit(cx, global, Control::GetClassPrototype());
+	wxASSERT_MSG(obj != NULL, wxT("wxSpinButton prototype creation failed"));
+	if (! obj )
+		return false;
 
 	// Define the global functions
 	InitFunctions(cx, global);

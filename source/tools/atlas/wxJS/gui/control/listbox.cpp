@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: listbox.cpp 710 2007-05-14 20:05:10Z fbraem $
+ * $Id: listbox.cpp 746 2007-06-11 20:58:21Z fbraem $
  */
 
 #ifndef WX_PRECOMP
@@ -195,7 +195,8 @@ wxListBox* ListBox::Construct(JSContext *cx,
   if ( argc > 0 )
   {
     jsval rval;
-    create(cx, obj, argc, argv, &rval);
+    if ( ! create(cx, obj, argc, argv, &rval) )
+      return NULL;
   }
   return p;
 }

@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: panel.cpp 708 2007-05-14 15:30:45Z fbraem $
+ * $Id: panel.cpp 746 2007-06-11 20:58:21Z fbraem $
  */
 // panel.cpp
 
@@ -189,11 +189,12 @@ wxPanel* Panel::Construct(JSContext *cx,
                           bool WXUNUSED(constructing))
 {
   wxPanel *p = new wxPanel();
-  SetPrivate(cx, obj, p);
+  JS_SetPrivate(cx, obj, p);
   if ( argc > 0 )
   {
     jsval rval;
-    create(cx, obj, argc, argv, &rval);
+    if ( ! create(cx, obj, argc, argv, &rval) )
+      return NULL;
   }
 
   return p;

@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: command.h 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: command.h 744 2007-06-11 19:57:09Z fbraem $
  */
 #ifndef _WXJSCommandEvent_H
 #define _WXJSCommandEvent_H

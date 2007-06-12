@@ -92,7 +92,8 @@ wxMDIParentFrame* MDIParentFrame::Construct(JSContext* cx,
   if ( argc > 0 )
   {
     jsval rval;
-    create(cx, obj, argc, argv, &rval);
+    if ( ! create(cx, obj, argc, argv, &rval) )
+      return NULL;
   }
   return p;
 }

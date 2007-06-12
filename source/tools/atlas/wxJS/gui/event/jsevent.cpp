@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: jsevent.cpp 693 2007-05-03 20:37:24Z fbraem $
+ * $Id: jsevent.cpp 744 2007-06-11 19:57:09Z fbraem $
  */
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
@@ -47,11 +47,11 @@
 #include "sizeevt.h"
 #include "htmllink.h"
 #include "split.h"
+#include "spinevt.h"
 
 #include "notify.h"
 #include "listevt.h"
 #include "treeevt.h"
-#include "spinevt.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;
@@ -178,5 +178,5 @@ bool wxjs::gui::InitEventClasses(JSContext *cx, JSObject *global)
 	if (! obj )
 		return false;
 
-	return true;
+    return true;
 }

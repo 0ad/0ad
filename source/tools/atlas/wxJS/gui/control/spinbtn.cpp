@@ -10,7 +10,7 @@
 #include "../event/command.h"
 #include "../event/spinevt.h"
 
-#include "spinctrl.h"
+#include "spinbtn.h"
 #include "window.h"
 
 #include "../misc/point.h"
@@ -23,17 +23,21 @@ using namespace wxjs::gui;
 
 /***
  * <module>gui</module>
- * <file>spinctrl</file>
- * <class name="wxSplitCtrl" prototype="@wxControl">
- *  wxSpinCtrl combines @wxTextCtrl and @wxSpinButton in one control.
+ * <file>spinbtn</file>
+ * <class name="wxSplitButton" prototype="@wxControl">
+ *  A wxSpinButton has two small up and down (or left and right) arrow buttons. 
+ *  It is often used next to a text control for increment and decrementing a 
+ *  value. Portable programs should try to use @wxSpinButton instead as 
+ *  wxSpinButton is not implemented for all platforms but @wxSpinButton is as it 
+ *  degenerates to a simple @wxTextCtrl on such platforms.
  * </class>
  */
-WXJS_INIT_CLASS(SpinCtrl, "wxSpinCtrl", 1)
-void SpinCtrl::InitClass(JSContext* WXUNUSED(cx),
+WXJS_INIT_CLASS(SpinButton, "wxSpinButton", 2)
+void SpinButton::InitClass(JSContext* WXUNUSED(cx),
                          JSObject* WXUNUSED(obj), 
                          JSObject* WXUNUSED(proto))
 {
-	SpinCtrlEventHandler::InitConnectEventMap();
+	SpinButtonEventHandler::InitConnectEventMap();
 }
 
 /***
@@ -41,12 +45,16 @@ void SpinCtrl::InitClass(JSContext* WXUNUSED(cx),
  *	<type name="styles">
  *   <constant name="ARROW_KEYS" />
  *   <constant name="WRAP" />
+ *   <constant name="HORIZONTAL" />
+ *   <constant name="VERTICAL" />
  *  </type>
  * </constants>
  */
-WXJS_BEGIN_CONSTANT_MAP(SpinCtrl)
+WXJS_BEGIN_CONSTANT_MAP(SpinButton)
 	WXJS_CONSTANT(wxSP_, ARROW_KEYS)
 	WXJS_CONSTANT(wxSP_, WRAP)
+    WXJS_CONSTANT(wxSP_, HORIZONTAL)
+    WXJS_CONSTANT(wxSP_, VERTICAL)
 WXJS_END_CONSTANT_MAP()
 
 /***
@@ -62,13 +70,13 @@ WXJS_END_CONSTANT_MAP()
  *  </property>
  * </properties>
  */   
-WXJS_BEGIN_PROPERTY_MAP(SpinCtrl)
+WXJS_BEGIN_PROPERTY_MAP(SpinButton)
 	WXJS_PROPERTY(P_VALUE, "value")
 	WXJS_READONLY_PROPERTY(P_MIN, "min")
 	WXJS_READONLY_PROPERTY(P_MAX, "max")
 WXJS_END_PROPERTY_MAP()
 
-bool SpinCtrl::GetProperty(wxSpinCtrl *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
+bool SpinButton::GetProperty(wxSpinButton *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
 {
 	switch (id) 
 	{
@@ -85,13 +93,13 @@ bool SpinCtrl::GetProperty(wxSpinCtrl *p, JSContext *cx, JSObject *obj, int id, 
 	return true;
 }
 
-bool SpinCtrl::SetProperty(wxSpinCtrl *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
+bool SpinButton::SetProperty(wxSpinButton *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
 {
 	switch (id) 
 	{
 	case P_VALUE:
 		{
-			wxString value;
+			int value;
 			FromJS(cx, *vp, value);
 			p->SetValue(value);
 			break;
@@ -100,7 +108,7 @@ bool SpinCtrl::SetProperty(wxSpinCtrl *p, JSContext *cx, JSObject *obj, int id, 
 	return true;
 }
 
-bool SpinCtrl::AddProperty(wxSpinCtrl *p, 
+bool SpinButton::AddProperty(wxSpinButton *p, 
                            JSContext* WXUNUSED(cx), 
                            JSObject* WXUNUSED(obj), 
                            const wxString &prop, 
@@ -109,12 +117,12 @@ bool SpinCtrl::AddProperty(wxSpinCtrl *p,
 	if ( WindowEventHandler::ConnectEvent(p, prop, true) )
 		return true;
 
-	SpinCtrlEventHandler::ConnectEvent(p, prop, true);
+	SpinButtonEventHandler::ConnectEvent(p, prop, true);
 
 	return true;
 }
 
-bool SpinCtrl::DeleteProperty(wxSpinCtrl *p, 
+bool SpinButton::DeleteProperty(wxSpinButton *p, 
                               JSContext* WXUNUSED(cx), 
                               JSObject* WXUNUSED(obj), 
                               const wxString &prop)
@@ -122,7 +130,7 @@ bool SpinCtrl::DeleteProperty(wxSpinCtrl *p,
 	if ( WindowEventHandler::ConnectEvent(p, prop, false) )
 		return true;
 	
-	SpinCtrlEventHandler::ConnectEvent(p, prop, false);
+	SpinButtonEventHandler::ConnectEvent(p, prop, false);
 	return true;
 }
 
@@ -133,11 +141,8 @@ bool SpinCtrl::DeleteProperty(wxSpinCtrl *p,
  *   <arg name="parent" type="@wxWindow">
  *    Parent window. Must not be NULL.
  *   </arg>
- *   <arg name="id" type="Integer" default="-1">
+ *   <arg name="id" type="Integer">
  *    Window identifier. A value of -1 indicates a default value.
- *   </arg>
- *   <arg name="value" type="String" default="">
- *    Default value.
  *   </arg>
  *   <arg name="pos" type="@wxPoint" default="wxDefaultPosition">
  *    Window position.
@@ -145,31 +150,22 @@ bool SpinCtrl::DeleteProperty(wxSpinCtrl *p,
  *   <arg name="size" type="@wxSize" default="wxDefaultSize">
  *    Window size.
  *   </arg>
- *   <arg name="style" type="Integer" default="wxSpinCtrl.ARROW_KEYS">
+ *   <arg name="style" type="Integer" default="wxSpinButton.ARROW_KEYS">
  *    Window style.
- *   </arg>
- *   <arg name="min" type="Integer" default="0">
- *    Minimal value.
- *   </arg>
- *   <arg name="max" type="Integer" default="100">
- *    Maximal value.
- *   </arg>
- *   <arg name="initial" type="Integer default="0">
- *    Initial value.
  *   </arg>
  *  </function>
  *  <desc>
- *   Create a wxSpinCtrl
+ *   Create a wxSpinButton
  *  </desc>
  * </ctor>
  */
-wxSpinCtrl* SpinCtrl::Construct(JSContext *cx,
+wxSpinButton* SpinButton::Construct(JSContext *cx,
                                 JSObject *obj,
                                 uintN argc,
                                 jsval *argv,
                                 bool WXUNUSED(constructing))
 {
-	wxSpinCtrl *p = new wxSpinCtrl();
+	wxSpinButton *p = new wxSpinButton();
 	SetPrivate(cx, obj, p);
 	
 	if ( argc > 0 )
@@ -181,10 +177,9 @@ wxSpinCtrl* SpinCtrl::Construct(JSContext *cx,
 	return p;
 }
 
-WXJS_BEGIN_METHOD_MAP(SpinCtrl)
-  WXJS_METHOD("create", create, 1)
+WXJS_BEGIN_METHOD_MAP(SpinButton)
+  WXJS_METHOD("create", create, 2)
   WXJS_METHOD("setRange", setRange, 2)
-  WXJS_METHOD("setSelection", setSelection, 2)
 WXJS_END_METHOD_MAP()
 
 /***
@@ -193,11 +188,8 @@ WXJS_END_METHOD_MAP()
  *   <arg name="parent" type="@wxWindow">
  *    Parent window. Must not be NULL.
  *   </arg>
- *   <arg name="id" type="Integer" default="-1">
+ *   <arg name="id" type="Integer">
  *    Window identifier. A value of -1 indicates a default value.
- *   </arg>
- *   <arg name="value" type="String" default="">
- *    Default value.
  *   </arg>
  *   <arg name="pos" type="@wxPoint" default="wxDefaultPosition">
  *    Window position.
@@ -205,104 +197,66 @@ WXJS_END_METHOD_MAP()
  *   <arg name="size" type="@wxSize" default="wxDefaultSize">
  *    Window size.
  *   </arg>
- *   <arg name="style" type="Integer" default="wxSpinCtrl.ARROW_KEYS">
+ *   <arg name="style" type="Integer" default="wxSpinButton.HORIZONTAL">
  *    Window style.
- *   </arg>
- *   <arg name="min" type="Integer" default="0">
- *    Minimal value.
- *   </arg>
- *   <arg name="max" type="Integer" default="100">
- *    Maximal value.
- *   </arg>
- *   <arg name="initial" type="Integer default="0">
- *    Initial value.
  *   </arg>
  *  </function>
  *  <desc>
- *   Create a wxSpinCtrl
+ *   Create a wxSpinButton
  *  </desc>
  * </method>
  */
-JSBool SpinCtrl::create(JSContext *cx,
+JSBool SpinButton::create(JSContext *cx,
                         JSObject *obj,
                         uintN argc,
                         jsval *argv,
                         jsval *rval)
 {
-	wxSpinCtrl *p = GetPrivate(cx, obj);
+	wxSpinButton *p = GetPrivate(cx, obj);
 	*rval = JSVAL_FALSE;
 
-	if ( argc > 9 )
-		argc = 9;
+	if ( argc > 5 )
+		argc = 5;
 
 	wxWindowID id = -1;
-	wxString value = wxEmptyString;
 	const wxPoint *pt = &wxDefaultPosition;
 	const wxSize *size = &wxDefaultSize;
 	int style = wxSP_ARROW_KEYS;
-	int min = 0;
-	int max = 100;
-	int initial = 0;
 
 	switch(argc)
 	{
-	case 9:
-		if ( ! FromJS(cx, argv[8], initial) )
-		{
-			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 9, "Integer");
-			return JS_FALSE;
-		}
-		// Fall through
-	case 8:
-		if ( ! FromJS(cx, argv[7], max) )
-		{
-			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 8, "Integer");
-			return JS_FALSE;
-		}
-		// Fall through
-	case 7:
-		if ( ! FromJS(cx, argv[6], min) )
-		{
-			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 7, "Integer");
-			return JS_FALSE;
-		}
-		// Fall through
-	case 6:
-		if ( ! FromJS(cx, argv[5], style) )
-		{
-			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 6, "Integer");
-			return JS_FALSE;
-		}
-		// Fall through
 	case 5:
-		size = Size::GetPrivate(cx, argv[4]);
-		if ( size == NULL )
+		if ( ! FromJS(cx, argv[4], style) )
 		{
-			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 5, "wxSize");
+			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 4, "Integer");
 			return JS_FALSE;
 		}
 		// Fall through
 	case 4:
-		pt = Point::GetPrivate(cx, argv[3]);
-		if ( pt == NULL )
+		size = Size::GetPrivate(cx, argv[3]);
+		if ( size == NULL )
 		{
-			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 4, "wxPoint");
+			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxSize");
 			return JS_FALSE;
 		}
 		// Fall through
 	case 3:
-		FromJS(cx, argv[2], value);
-		// Fall through
-	case 2:
-		if ( ! FromJS(cx, argv[1], id) )
+		pt = Point::GetPrivate(cx, argv[2]);
+		if ( pt == NULL )
 		{
-			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 2, "Integer");
+			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxPoint");
 			return JS_FALSE;
 		}
 		// Fall through
 	default:
 
-		wxWindow *parent = Window::GetPrivate(cx, argv[0]);
+		if ( ! FromJS(cx, argv[1], id) )
+		{
+			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 2, "Integer");
+			return JS_FALSE;
+		}
+
+        wxWindow *parent = Window::GetPrivate(cx, argv[0]);
 		if ( parent == NULL )
 		{
 			JS_ReportError(cx, WXJS_NO_PARENT_ERROR, GetClass()->name);
@@ -317,43 +271,12 @@ JSBool SpinCtrl::create(JSContext *cx,
 		}
 		JS_SetParent(cx, obj, clntParent->GetObject());
 
-		if ( p->Create(parent, id, value, *pt, *size, style, min, max, initial) )
+		if ( p->Create(parent, id, *pt, *size, style) )
 		{
 			*rval = JSVAL_TRUE;
 			p->SetClientObject(new JavaScriptClientData(cx, obj, true, false));
 		}
 	}
-
-	return JS_TRUE;
-}
-
-/***
- * <method name="setSelection">
- *  <function>
- *   <arg name="From" type="Integer" />
- *   <arg name="To" type="Integer" />
- *  </function>
- *  <desc>
- *   Select the text in the text part of the control between positions from 
- *   (inclusive) and to (exclusive). This is similar to @wxTextCtrl#setSelection.
- *  </desc>
- * </method>
- */
-JSBool SpinCtrl::setSelection(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
-{
-	wxSpinCtrl *p = GetPrivate(cx, obj);
-	if ( p == NULL )
-		return JS_FALSE;
-
-	long from, to;
-
-	if (! FromJS(cx, argv[0], from))
-		return JS_FALSE;
-		
-	if (! FromJS(cx, argv[1], to))
-		return JS_FALSE;
-	
-	p->SetSelection(from, to);
 
 	return JS_TRUE;
 }
@@ -369,9 +292,9 @@ JSBool SpinCtrl::setSelection(JSContext *cx, JSObject *obj, uintN argc, jsval *a
  *  </desc>
  * </method>
  */
-JSBool SpinCtrl::setRange(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+JSBool SpinButton::setRange(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-	wxSpinCtrl *p = GetPrivate(cx, obj);
+	wxSpinButton *p = GetPrivate(cx, obj);
 	if ( p == NULL )
 		return JS_FALSE;
 
@@ -390,13 +313,6 @@ JSBool SpinCtrl::setRange(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
 
 /***
  * <events>
- *  <event name="onText">
- *   See @wxTextCtrl#onText
- *  </event>
- *  <event name="onSpinCtrl">
- *   Called whenever the numeric value of the spinctrl is updated.
- *   The method takes a @wxSpinEvent.
- *  </event>
  *  <event name="onSpin">
  *   Generated whenever an arrow is pressed. A @wxSpinEvent is passed
  *   as argument.
@@ -409,70 +325,29 @@ JSBool SpinCtrl::setRange(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
  *   Generated when right/down arrow is pressed. A @wxSpinEvent is passed
  *   as argument.
  *  </event>
- *  </event>
  * </events>
  */
-WXJS_INIT_EVENT_MAP(wxSpinCtrl)
-const wxString WXJS_TEXT_EVENT = wxT("onText");
-const wxString WXJS_SPIN_CTRL_EVENT = wxT("onSpinCtrl");
+WXJS_INIT_EVENT_MAP(wxSpinButton)
 const wxString WXJS_SPIN_EVENT = wxT("onSpin");
 const wxString WXJS_SPIN_UP_EVENT = wxT("onSpinUp");
 const wxString WXJS_SPIN_DOWN_EVENT = wxT("onSpinDown");
 
-void SpinCtrlEventHandler::OnText(wxCommandEvent &event)
-{
-	PrivCommandEvent::Fire<CommandEvent>(event, WXJS_TEXT_EVENT);
-}
-
-void SpinCtrlEventHandler::OnSpinCtrl(wxSpinEvent &event)
-{
-	PrivSpinEvent::Fire<SpinEvent>(event, WXJS_SPIN_CTRL_EVENT);
-}
-
-void SpinCtrlEventHandler::OnSpin(wxSpinEvent &event)
+void SpinButtonEventHandler::OnSpin(wxSpinEvent &event)
 {
 	PrivSpinEvent::Fire<SpinEvent>(event, WXJS_SPIN_EVENT);
 }
 
-void SpinCtrlEventHandler::OnSpinUp(wxSpinEvent &event)
+void SpinButtonEventHandler::OnSpinUp(wxSpinEvent &event)
 {
 	PrivSpinEvent::Fire<SpinEvent>(event, WXJS_SPIN_UP_EVENT);
 }
 
-void SpinCtrlEventHandler::OnSpinDown(wxSpinEvent &event)
+void SpinButtonEventHandler::OnSpinDown(wxSpinEvent &event)
 {
 	PrivSpinEvent::Fire<SpinEvent>(event, WXJS_SPIN_DOWN_EVENT);
 }
 
-void SpinCtrlEventHandler::ConnectText(wxSpinCtrl *p, bool connect)
-{
-	if ( connect )
-	{
-		p->Connect(wxEVT_COMMAND_TEXT_UPDATED,
-				wxCommandEventHandler(OnText));
-	}
-	else
-	{
-		p->Disconnect(wxEVT_COMMAND_TEXT_UPDATED,
-				wxCommandEventHandler(OnText));
-	}
-}
-
-void SpinCtrlEventHandler::ConnectSpinCtrl(wxSpinCtrl *p, bool connect)
-{
-	if ( connect )
-	{
-		p->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED,
-				wxSpinEventHandler(OnSpinCtrl));
-	}
-	else
-	{
-		p->Disconnect(wxEVT_COMMAND_SPINCTRL_UPDATED,
-				wxSpinEventHandler(OnSpinCtrl));
-	}
-}
-
-void SpinCtrlEventHandler::ConnectSpin(wxSpinCtrl *p, bool connect)
+void SpinButtonEventHandler::ConnectSpin(wxSpinButton *p, bool connect)
 {
 	if ( connect )
 	{
@@ -486,7 +361,7 @@ void SpinCtrlEventHandler::ConnectSpin(wxSpinCtrl *p, bool connect)
 	}
 }
 
-void SpinCtrlEventHandler::ConnectSpinUp(wxSpinCtrl *p, bool connect)
+void SpinButtonEventHandler::ConnectSpinUp(wxSpinButton *p, bool connect)
 {
 	if ( connect )
 	{
@@ -500,7 +375,7 @@ void SpinCtrlEventHandler::ConnectSpinUp(wxSpinCtrl *p, bool connect)
 	}
 }
 
-void SpinCtrlEventHandler::ConnectSpinDown(wxSpinCtrl *p, bool connect)
+void SpinButtonEventHandler::ConnectSpinDown(wxSpinButton *p, bool connect)
 {
 	if ( connect )
 	{
@@ -514,10 +389,8 @@ void SpinCtrlEventHandler::ConnectSpinDown(wxSpinCtrl *p, bool connect)
 	}
 }
 
-void SpinCtrlEventHandler::InitConnectEventMap()
+void SpinButtonEventHandler::InitConnectEventMap()
 {
-	AddConnector(WXJS_TEXT_EVENT, ConnectText);
-	AddConnector(WXJS_SPIN_CTRL_EVENT, ConnectSpinCtrl);
 	AddConnector(WXJS_SPIN_EVENT, ConnectSpin);
 	AddConnector(WXJS_SPIN_UP_EVENT, ConnectSpinUp);
 	AddConnector(WXJS_SPIN_DOWN_EVENT, ConnectSpinDown);

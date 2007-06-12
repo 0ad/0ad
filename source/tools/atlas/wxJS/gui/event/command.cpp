@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: command.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: command.cpp 744 2007-06-11 19:57:09Z fbraem $
  */
 // command.cpp
 
@@ -49,6 +49,11 @@ WXJS_INIT_CLASS(CommandEvent, "wxCommandEvent", 0)
 
 /***
  * <properties>
+ *  <property name="integer" type="Integer" readonly="Y">
+ *   Returns the integer identifier corresponding to a listbox, choice or 
+ *   radiobox selection (only if the event was a selection, not a deselection)
+ *   , or a boolean value representing the value of a checkbox. 
+ *  </property>
  *	<property name="checked" type="Boolean" readonly="Y">
  *	 This can be used for menus or checkboxes to check if they are checked or not
  *  </property>
@@ -82,9 +87,9 @@ bool CommandEvent::GetProperty(PrivCommandEvent *p, JSContext *cx, JSObject *obj
 	case P_STRING:
 		*vp = ToJS(cx, event->GetString());
 		break;
-	case P_INTEGER:
-		*vp = ToJS(cx, event->GetInt());
-		break;
+    case P_INTEGER:
+      *vp = ToJS(cx, event->GetInt());
+      break;
 	}
 	return true;
 }
