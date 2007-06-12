@@ -26,61 +26,130 @@
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
+#define FAIL(msg) do { JS_ReportError(cx, msg); return false; } while (false)
+
 const int RUNTIME_SIZE = 1024*1024; // TODO: how much memory is needed?
 const int STACK_CHUNK_SIZE = 8192;
 
 ////////////////////////////////////////////////////////////////
 
-template<typename T> bool ScriptInterface::FromJSVal(JSContext* cx, jsval WXUNUSED(v), T& WXUNUSED(out))
+namespace
 {
-	JS_ReportError(cx, "Unrecognised argument type");
-	// TODO: SetPendingException turns the error into a JS-catchable exception,
-	// but the error report doesn't say anything useful like the line number,
-	// so I'm just using ReportError instead for now (and failures are uncatchable
-	// and will terminate the whole script)
-	//JS_SetPendingException(cx, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, "Unrecognised argument type")));
-	return false;
+	// Use templated structs instead of functions, so that we can use partial specialisation:
+	
+	template<typename T> struct FromJSVal
+	{
+		static bool Convert(JSContext* cx, jsval WXUNUSED(v), T& WXUNUSED(out))
+		{
+			JS_ReportError(cx, "Unrecognised argument type");
+			// TODO: SetPendingException turns the error into a JS-catchable exception,
+			// but the error report doesn't say anything useful like the line number,
+			// so I'm just using ReportError instead for now (and failures are uncatchable
+			// and will terminate the whole script)
+			//JS_SetPendingException(cx, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, "Unrecognised argument type")));
+			return false;
+		}
+	};
+	
+	template<> struct FromJSVal<bool>
+	{
+		static bool Convert(JSContext* cx, jsval v, bool& out)
+		{
+			JSBool ret;
+			if (! JS_ValueToBoolean(cx, v, &ret)) return false;
+			out = (ret ? true : false);
+			return true;
+		}
+	};
+
+	template<> struct FromJSVal<float>
+	{
+		static bool Convert(JSContext* cx, jsval v, float& out)
+		{
+			jsdouble ret;
+			if (! JS_ValueToNumber(cx, v, &ret)) return false;
+			out = ret;
+			return true;
+		}
+	};
+
+	template<> struct FromJSVal<int>
+	{
+		static bool Convert(JSContext* cx, jsval v, int& out)
+		{
+			int32 ret;
+			if (! JS_ValueToInt32(cx, v, &ret)) return false;
+			out = ret;
+			return true;
+		}
+	};
+
+	template<> struct FromJSVal<std::wstring>
+	{
+		static bool Convert(JSContext* cx, jsval v, std::wstring& out)
+		{
+			JSString* ret = JS_ValueToString(cx, v); // never returns NULL
+			jschar* ch = JS_GetStringChars(ret);
+			out = std::wstring(ch, ch+JS_GetStringLength(ret));
+			return true;
+		}
+	};
+
+	template<> struct FromJSVal<std::string>
+	{
+		static bool Convert(JSContext* cx, jsval v, std::string& out)
+		{
+			JSString* ret = JS_ValueToString(cx, v); // never returns NULL
+			char* ch = JS_GetStringBytes(ret);
+			out = std::string(ch);
+			return true;
+		}
+	};
+
+	template<> struct FromJSVal<wxString>
+	{
+		static bool Convert(JSContext* cx, jsval v, wxString& out)
+		{
+			JSString* ret = JS_ValueToString(cx, v); // never returns NULL
+			jschar* ch = JS_GetStringChars(ret);
+			out = wxString((const char*)ch, wxMBConvUTF16(), JS_GetStringLength(ret)*2);
+			return true;
+		}
+	};
+
+	template<typename T> struct FromJSVal<std::vector<T> >
+	{
+		static bool Convert(JSContext* cx, jsval v, std::vector<T>& out)
+		{
+			JSObject* obj;
+			if (! JS_ValueToObject(cx, v, &obj) || obj == NULL || !JS_IsArrayObject(cx, obj))
+				FAIL("Argument must be an array");
+			jsuint length;
+			if (! JS_GetArrayLength(cx, obj, &length))
+				FAIL("Failed to get array length");
+			for (jsint i = 0; i < length; ++i)
+			{
+				jsval el;
+				if (! JS_GetElement(cx, obj, i, &el))
+					FAIL("Failed to read array element");
+				T el2;
+				if (! FromJSVal<T>::Convert(cx, el, el2))
+					return false;
+				out.push_back(el2);
+			}
+			return true;
+		}
+	};
 }
 
-template<> bool ScriptInterface::FromJSVal<bool>(JSContext* cx, jsval v, bool& out)
+template<typename T> bool ScriptInterface::FromJSVal(JSContext* cx, jsval v, T& out)
 {
-	JSBool ret;
-	if (! JS_ValueToBoolean(cx, v, &ret)) return false;
-	out = (ret ? true : false);
-	return true;
+	return ::FromJSVal<T>::Convert(cx, v, out);
 }
 
-template<> bool ScriptInterface::FromJSVal<float>(JSContext* cx, jsval v, float& out)
-{
-	jsdouble ret;
-	if (! JS_ValueToNumber(cx, v, &ret)) return false;
-	out = ret;
-	return true;
-}
-
-template<> bool ScriptInterface::FromJSVal<int>(JSContext* cx, jsval v, int& out)
-{
-	int32 ret;
-	if (! JS_ValueToInt32(cx, v, &ret)) return false;
-	out = ret;
-	return true;
-}
-
-template<> bool ScriptInterface::FromJSVal<std::wstring>(JSContext* cx, jsval v, std::wstring& out)
-{
-	JSString* ret = JS_ValueToString(cx, v); // never returns NULL
-	jschar* ch = JS_GetStringChars(ret);
-	out = std::wstring(ch, ch+JS_GetStringLength(ret));
-	return true;
-}
-
-template<> bool ScriptInterface::FromJSVal<std::string>(JSContext* cx, jsval v, std::string& out)
-{
-	JSString* ret = JS_ValueToString(cx, v); // never returns NULL
-	char* ch = JS_GetStringBytes(ret);
-	out = std::string(ch);
-	return true;
-}
+// Explicit instantiation of functions that would otherwise be unused in this file
+// but are required for linking with other files
+template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&);
 
 
 template<> jsval ScriptInterface::ToJSVal<float>(JSContext* cx, const float& val)
@@ -148,6 +217,14 @@ namespace
 		wxPrintf(_T("wxJS %s: %s\n--------\n"), isWarning ? _T("warning") : _T("error"), logMessage.c_str());
 	}
 
+	// Functions in the Atlas.* namespace:
+	
+	JSBool ForceGC(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* WXUNUSED(argv), jsval* WXUNUSED(rval))
+	{
+		JS_GC(cx);
+		return JS_TRUE;
+	}
+
 	JSBool LoadScript(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* rval)
 	{
 		if (! ( JSVAL_IS_STRING(argv[0]) && JSVAL_IS_STRING(argv[1]) ))
@@ -160,12 +237,8 @@ namespace
 				JS_GetStringChars(code), (uintN)JS_GetStringLength(code),
 				JS_GetStringBytes(name), rval);
 	}
-
-	JSBool ForceGC(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* WXUNUSED(argv), jsval* WXUNUSED(rval))
-	{
-		JS_GC(cx);
-		return JS_TRUE;
-	}
+	
+	// Functions in the global namespace:
 
 	JSBool print(JSContext* cx, JSObject* WXUNUSED(obj), uintN argc, jsval* argv, jsval* WXUNUSED(rval))
 	{
@@ -212,8 +285,8 @@ ScriptInterface_impl::ScriptInterface_impl()
 	JS_DefineFunction(m_cx, m_glob, "print", ::print, 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	
 	m_atlas = JS_DefineObject(m_cx, m_glob, "Atlas", NULL, NULL, JSPROP_READONLY|JSPROP_PERMANENT);
-	JS_DefineFunction(m_cx, m_atlas, "LoadScript", ::LoadScript, 2, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_atlas, "ForceGC", ::ForceGC, 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
+	JS_DefineFunction(m_cx, m_atlas, "LoadScript", ::LoadScript, 2, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	
 	RegisterMessages(m_atlas);
 }

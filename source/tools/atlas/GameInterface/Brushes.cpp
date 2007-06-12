@@ -40,9 +40,10 @@ public:
 		float avg = (
 			m_Brush->Get(i-i0, j-j0)   + m_Brush->Get(i-i0+1, j-j0) +
 			m_Brush->Get(i-i0, j-j0+1) + m_Brush->Get(i-i0+1, j-j0+1)
-			) / 4.f;
+		) / 4.f;
 		RenderTile(CColor(0, 1, 0, avg*0.8f), false);
-		RenderTileOutline(CColor(1, 1, 1, 0.4f), 1, true);
+		if (avg > 0.1f)
+			RenderTileOutline(CColor(1, 1, 1, std::min(0.4f, avg-0.1f)), 1, true);
 	}
 
 	const AtlasMessage::Brush* m_Brush;
@@ -64,6 +65,8 @@ void Brush::SetData(int w, int h, const std::vector<float>& data)
 	m_H = h;
 
 	m_Data = data;
+	
+	debug_assert(data.size() == w*h);
 }
 
 void Brush::GetCentre(int& x, int& y) const

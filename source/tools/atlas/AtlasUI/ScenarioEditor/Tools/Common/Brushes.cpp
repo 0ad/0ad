@@ -92,6 +92,11 @@ float Brush::GetStrength() const
 	return m_Strength;
 }
 
+void Brush::SetStrength(float strength)
+{
+	m_Strength = strength;
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 class BrushShapeCtrl : public wxRadioBox

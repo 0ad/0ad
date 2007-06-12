@@ -23,6 +23,7 @@
 #include "AtlasScript/ScriptInterface.h"
 
 #include "Tools/Common/Tools.h"
+#include "Tools/Common/Brushes.h"
 
 static HighResTimer g_Timer;
 
@@ -262,6 +263,21 @@ END_EVENT_TABLE()
 static AtlasWindowCommandProc g_CommandProc;
 AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc; }
 
+namespace
+{
+	// Wrapper function because SetCurrentTool takes an optional argument, which JS doesn't like
+	void SetCurrentTool_script(wxString name)
+	{
+		SetCurrentTool(name);
+	}
+	
+	// TODO: see comment in terrain.js, and remove this when/if it's no longer necessary
+	void SetBrushStrength(float strength)
+	{
+		g_Brush_Elevation.SetStrength(strength);
+	}
+}
+
 ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
 , m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(scriptInterface)
@@ -281,6 +297,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	//////////////////////////////////////////////////////////////////////////
 	// Script interface functions
 	GetScriptInterface().RegisterFunction<wxString, Datafile::GetDataDirectory>("GetDataDirectory");
+	GetScriptInterface().RegisterFunction<void, wxString, SetCurrentTool_script>("SetCurrentTool");
+	GetScriptInterface().RegisterFunction<void, float, SetBrushStrength>("SetBrushStrength");
 
 	{
 		const wxString relativePath (_T("tools/atlas/scripts/main.js"));

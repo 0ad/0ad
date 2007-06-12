@@ -21,6 +21,7 @@ public:
 	std::vector<float> GetData() const;
 
 	float GetStrength() const;
+	void SetStrength(float strength);
 
 	void CreateUI(wxWindow* parent, wxSizer* sizer);
 

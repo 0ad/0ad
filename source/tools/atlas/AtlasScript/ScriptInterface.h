@@ -29,7 +29,7 @@ public:
 
 	// Defined elsewhere:
 	//     template <TR, T0..., TR (*fptr) (T0...)>
-	//     void RegisterFunction(const wxString& functionName);
+	//     void RegisterFunction(const char* functionName);
 	// (NOTE: The return type must be defined as a ToJSVal<TR> specialisation
 	// in ScriptInterface.cpp, else you'll end up with linker errors.)
 
