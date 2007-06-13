@@ -1433,6 +1433,9 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 	if(fi.type == FT_NONE)
 		return FADE_NO_CHANGE;
 
+	debug_assert(0.0f <= fi.initial_val && fi.initial_val <= 1.0f);
+	debug_assert(0.0f <= fi.final_val && fi.final_val <= 1.0f);
+
 	// end reached - if fi.length is 0, but the fade is "in progress", do the
 	// processing here, and skip the dangerous division
 	if(fi.type == FT_ABORT || (cur_time >= fi.start_time + fi.length))
@@ -1453,6 +1456,7 @@ static FadeRet fade(FadeInfo& fi, double cur_time, float& out_val)
 
 	// how far into the fade are we? [0,1]
 	const float t = (cur_time - fi.start_time) / fi.length;
+	debug_assert(0.0f <= t && t <= 1.0f);
 
 	float factor;
 	switch(fi.type)
