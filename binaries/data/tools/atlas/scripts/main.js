@@ -11,17 +11,21 @@ function getScriptFilename(name)
  * Loads and executes a script from disk. The script runs in a separate scope,
  * so variables and functions declared in it will not be visible outside that file.
  */
-function loadScript(name, window)
+function loadScript(name /*, ...*/)
 {
 	var filename = getScriptFilename(name);
 	var file = new wxFFile(filename.fullPath);
 	var script = file.readAll(); // TODO: handle errors
 	file.close();
 
-	var script = Atlas.LoadScript(name+'.js', script);
-	scriptReloader.add(name, window, filename);
+	var args = [];
+	for (var i = 1; i < arguments.length; ++i)
+	args.push(arguments[i])
 	
-	script.init(window); // TODO: use a variable list of arguments
+	var script = Atlas.LoadScript(name+'.js', script);
+	scriptReloader.add(name, args, filename);
+	
+	script.init.apply(null, args);
 	
 	return script;
 }
@@ -67,19 +71,22 @@ var scriptReloader = {
 				}
 				else
 				{
-					script.window.destroyChildren();
-					loadScript(script.name, script.window);
-					script.window.layout();
+					// TODO: know which arguments are really windows that should be regenerated
+					for each (var window in script.args)
+						window.destroyChildren();
+					loadScript.apply(null, [script.name].concat(script.args));
+					for each (var window in script.args)
+						window.layout();
 				}
 			}
 		}
 	},
-	add: function (name, window, filename)
+	add: function (name, args, filename)
 	{
 		for each (var script in this.scripts)
 			if (script.name == name)
 				return; // stop if this is already loaded
-		this.scripts.push({ name:name, window:window, filename:filename, mtime:filename.modificationTime });
+		this.scripts.push({ name:name, args:args, filename:filename, mtime:filename.modificationTime });
 	}
 };
 scriptReloader.timer.onNotify = scriptReloader.notify;

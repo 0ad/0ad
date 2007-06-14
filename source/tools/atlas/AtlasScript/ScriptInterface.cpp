@@ -15,13 +15,10 @@
 #include "wxJS/io/init.h"
 #include "wxJS/gui/init.h"
 #include "wxJS/gui/control/panel.h"
+#include "wxJS/gui/misc/bitmap.h"
 
 #include "GameInterface/Shareable.h"
 #include "GameInterface/Messages.h"
-
-// We want to include Messages.h again below, with some different definitions,
-// so cheat and undefine its include-guard
-#undef INCLUDED_MESSAGES
 
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
@@ -88,7 +85,9 @@ namespace
 	{
 		static bool Convert(JSContext* cx, jsval v, std::wstring& out)
 		{
-			JSString* ret = JS_ValueToString(cx, v); // never returns NULL
+			JSString* ret = JS_ValueToString(cx, v);
+			if (! ret)
+				FAIL("Argument must be convertible to a string");
 			jschar* ch = JS_GetStringChars(ret);
 			out = std::wstring(ch, ch+JS_GetStringLength(ret));
 			return true;
@@ -99,7 +98,9 @@ namespace
 	{
 		static bool Convert(JSContext* cx, jsval v, std::string& out)
 		{
-			JSString* ret = JS_ValueToString(cx, v); // never returns NULL
+			JSString* ret = JS_ValueToString(cx, v);
+			if (! ret)
+				FAIL("Argument must be convertible to a string");
 			char* ch = JS_GetStringBytes(ret);
 			out = std::string(ch);
 			return true;
@@ -110,7 +111,9 @@ namespace
 	{
 		static bool Convert(JSContext* cx, jsval v, wxString& out)
 		{
-			JSString* ret = JS_ValueToString(cx, v); // never returns NULL
+			JSString* ret = JS_ValueToString(cx, v);
+			if (! ret)
+				FAIL("Argument must be convertible to a string");
 			jschar* ch = JS_GetStringChars(ret);
 			out = wxString((const char*)ch, wxMBConvUTF16(), JS_GetStringLength(ret)*2);
 			return true;
@@ -127,6 +130,7 @@ namespace
 			jsuint length;
 			if (! JS_GetArrayLength(cx, obj, &length))
 				FAIL("Failed to get array length");
+			out.reserve(length);
 			for (jsint i = 0; i < length; ++i)
 			{
 				jsval el;
@@ -140,6 +144,114 @@ namespace
 			return true;
 		}
 	};
+
+	////////////////////////////////////////////////////////////////
+	
+	template<typename T> struct ToJSVal
+	{
+		static jsval Convert(JSContext* cx, const T& val)
+		{
+			JS_ReportError(cx, "Unrecognised query return type");
+			return JSVAL_VOID;
+		}
+	};
+
+	/*template<> struct ToJSVal<float>
+	{
+		static jsval Convert(JSContext* cx, const float& val)
+		{
+			jsval rval = JSVAL_VOID;
+			JS_NewDoubleValue(cx, val, &rval); // ignore return value
+			return rval;
+		}
+	};*/
+
+	template<> struct ToJSVal<int>
+	{
+		static jsval Convert(JSContext* WXUNUSED(cx), const int& val)
+		{
+			return INT_TO_JSVAL(val);
+		}
+	};
+
+	template<> struct ToJSVal<wxString>
+	{
+		static jsval Convert(JSContext* cx, const wxString& val)
+		{
+			wxMBConvUTF16 conv;
+			size_t length;
+			wxCharBuffer utf16 = conv.cWC2MB(val.c_str(), val.length()+1, &length);
+			JSString* str = JS_NewUCStringCopyN(cx, reinterpret_cast<jschar*>(utf16.data()), length/2);
+			if (str)
+				return STRING_TO_JSVAL(str);
+			else
+				return JSVAL_VOID;
+		}
+	};
+
+	template<> struct ToJSVal<std::wstring>
+	{
+		static jsval Convert(JSContext* cx, const std::wstring& val)
+		{
+			wxMBConvUTF16 conv;
+			size_t length;
+			wxCharBuffer utf16 = conv.cWC2MB(val.c_str(), val.length()+1, &length);
+			JSString* str = JS_NewUCStringCopyN(cx, reinterpret_cast<jschar*>(utf16.data()), length/2);
+			if (str)
+				return STRING_TO_JSVAL(str);
+			else
+				return JSVAL_VOID;
+		}
+	};
+
+	template<typename T> struct ToJSVal<std::vector<T> >
+	{
+		static jsval Convert(JSContext* cx, const std::vector<T>& val)
+		{
+			JSObject* obj = JS_NewArrayObject(cx, 0, NULL);
+			if (! obj) return JSVAL_VOID;
+			JS_AddRoot(cx, &obj);
+			for (size_t i = 0; i < val.size(); ++i)
+			{
+				jsval el = ToJSVal<T>::Convert(cx, val[i]);
+				JS_SetElement(cx, obj, i, &el);
+			}
+			JS_RemoveRoot(cx, &obj);
+			return OBJECT_TO_JSVAL(obj);
+		}
+	};
+	
+	template<typename T> struct ToJSVal<AtlasMessage::Shareable<T> >
+	{
+		static jsval Convert(JSContext* cx, const AtlasMessage::Shareable<T>& val)
+		{
+			return ToJSVal<T>::Convert(cx, val._Unwrap());
+		}
+	};
+
+	////////////////////////////////////////////////////////////////
+
+	template<> struct ToJSVal<AtlasMessage::sTerrainGroupPreview>
+	{
+		static jsval Convert(JSContext* cx, const AtlasMessage::sTerrainGroupPreview& val)
+		{
+			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+			if (! obj) return JSVAL_VOID;
+			JS_AddRoot(cx, &obj);
+			
+			JS_DefineProperty(cx, obj, "name", ToJSVal<std::wstring>::Convert(cx, *val.name), NULL, NULL, JSPROP_ENUMERATE);
+			
+			unsigned char* buf = (unsigned char*)(malloc(val.imagedata.GetSize()));
+			memcpy(buf, val.imagedata.GetBuffer(), val.imagedata.GetSize());
+			jsval bmp = wxjs::gui::Bitmap::CreateObject(cx, new wxBitmap (wxImage(val.imagewidth, val.imageheight, buf)));
+			JS_DefineProperty(cx, obj, "imagedata", bmp, NULL, NULL, JSPROP_ENUMERATE);
+			
+			JS_RemoveRoot(cx, &obj);
+			
+			return OBJECT_TO_JSVAL(obj);
+		}
+	};
+
 }
 
 template<typename T> bool ScriptInterface::FromJSVal(JSContext* cx, jsval v, T& out)
@@ -147,34 +259,15 @@ template<typename T> bool ScriptInterface::FromJSVal(JSContext* cx, jsval v, T& 
 	return ::FromJSVal<T>::Convert(cx, v, out);
 }
 
+template<typename T> jsval ScriptInterface::ToJSVal(JSContext* cx, const T& v)
+{
+	return ::ToJSVal<T>::Convert(cx, v);
+}
+
 // Explicit instantiation of functions that would otherwise be unused in this file
 // but are required for linking with other files
 template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&);
 
-
-template<> jsval ScriptInterface::ToJSVal<float>(JSContext* cx, const float& val)
-{
-	jsval rval = JSVAL_VOID;
-	JS_NewDoubleValue(cx, val, &rval); // ignore return value
-	return rval;
-}
-
-template<> jsval ScriptInterface::ToJSVal<int>(JSContext* WXUNUSED(cx), const int& val)
-{
-	return INT_TO_JSVAL(val);
-}
-
-template<> jsval ScriptInterface::ToJSVal<wxString>(JSContext* cx, const wxString& val)
-{
-	wxMBConvUTF16 conv;
-	size_t length;
-	wxCharBuffer utf16 = conv.cWC2MB(val.c_str(), val.length()+1, &length);
-	JSString* str = JS_NewUCStringCopyN(cx, reinterpret_cast<jschar*>(utf16.data()), length/2);
-	if (str)
-		return STRING_TO_JSVAL(str);
-	else
-		return JSVAL_VOID;
-}
 
 ////////////////////////////////////////////////////////////////
 
@@ -358,32 +451,91 @@ wxPanel* ScriptInterface::LoadScriptAsPanel(const wxString& name, wxWindow* pare
 	return panel;
 }
 
+// TODO: this is an ugly function to provide
+std::pair<wxPanel*, wxPanel*> ScriptInterface::LoadScriptAsSidebar(const wxString& name, wxWindow* side, wxWindow* bottom)
+{
+	wxPanel* sidePanel = new wxPanel(side, -1);
+	JSObject* jsSideWindow = JSVAL_TO_OBJECT(wxjs::gui::Panel::CreateObject(m->m_cx, sidePanel));
+	sidePanel->SetClientObject(new wxjs::JavaScriptClientData(m->m_cx, jsSideWindow, true, false));
+	
+	wxPanel* bottomPanel = new wxPanel(bottom, -1);
+	JSObject* jsBottomWindow = JSVAL_TO_OBJECT(wxjs::gui::Panel::CreateObject(m->m_cx, bottomPanel));
+	bottomPanel->SetClientObject(new wxjs::JavaScriptClientData(m->m_cx, jsBottomWindow, true, false));
+
+	jsval jsName = ToJSVal(m->m_cx, name);
+	
+	const uintN argc = 3;
+	jsval argv[argc] = { jsName, OBJECT_TO_JSVAL(jsSideWindow), OBJECT_TO_JSVAL(jsBottomWindow) };
+	
+	jsval rval;
+	JS_CallFunctionName(m->m_cx, m->m_glob, "loadScript", argc, argv, &rval); // TODO: error checking
+	
+	// TODO: This really need a better way to handle these two windows (of which one is optional)...
+	if (bottomPanel->GetChildren().size() != 0)
+		return std::make_pair(sidePanel, bottomPanel);
+	else
+	{
+		bottomPanel->Destroy();
+		return std::make_pair(sidePanel, static_cast<wxPanel*>(NULL));
+	}
+}
+
 ////////////////////////////////////////////////////////////////
 
-struct MessageWrapper
+#define TYPE(elem) BOOST_PP_TUPLE_ELEM(2, 0, elem)
+#define NAME(elem) BOOST_PP_TUPLE_ELEM(2, 1, elem)
+#define MAKE_STR_(s) #s
+#define MAKE_STR(s) MAKE_STR_(s)
+
+#define CONVERT_ARGS(r, data, i, elem) \
+	TYPE(elem) a##i; \
+	if (! ScriptInterface::FromJSVal< TYPE(elem) >(cx, argv[i], a##i)) \
+		return JS_FALSE;
+		
+#define CONVERT_OUTPUTS(r, data, i, elem) \
+	JS_DefineProperty(cx, ret, MAKE_STR(NAME(elem)), ScriptInterface::ToJSVal(cx, q.NAME(elem)), \
+		NULL, NULL, JSPROP_ENUMERATE);
+		
+#define ARG_LIST(r, data, i, elem) BOOST_PP_COMMA_IF(i) a##i
+
+#define MESSAGE(name, vals) \
+	JSBool call_##name(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* WXUNUSED(rval)) \
+	{ \
+		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_ARGS, ~, vals) \
+		g_MessagePasser->Add(SHAREABLE_NEW(m##name, ( BOOST_PP_SEQ_FOR_EACH_I(ARG_LIST, ~, vals) ))); \
+		return JS_TRUE; \
+	}
+	
+#define QUERY(name, in_vals, out_vals) \
+	JSBool call_##name(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval) \
+	{ \
+		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_ARGS, ~, in_vals) \
+		q##name q = q##name( BOOST_PP_SEQ_FOR_EACH_I(ARG_LIST, ~, in_vals) ); \
+		q.Post(); \
+		JSObject* ret = JS_NewObject(cx, NULL, NULL, NULL); \
+		if (! ret) return JS_FALSE; \
+		*rval = OBJECT_TO_JSVAL(ret); \
+		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_OUTPUTS, ~, out_vals) \
+		return JS_TRUE; \
+	}
+
+#define COMMAND(name, merge, vals)
+
+#define MESSAGES_SKIP_SETUP
+#define MESSAGES_SKIP_STRUCTS
+
+// We want to include Messages.h again, with some different definitions,
+// so cheat and undefine its include-guard
+#undef INCLUDED_MESSAGES
+
+namespace
 {
-	#define NUMBERED_LIST(z, i, data) , data##i
-	#define NUMBERED_LIST2(z, i, data) BOOST_PP_COMMA_IF(i) data##i
-	#define CONVERT_ARGS(z, i, data) T##i a##i; if (! ScriptInterface::FromJSVal<T##i>(cx, argv[i], a##i)) return JS_FALSE;
-	#define OVERLOADS(z, i, data) \
-		template <typename Message BOOST_PP_REPEAT_##z (i, NUMBERED_LIST, typename T) > \
-		static JSNative call(Message* (*WXUNUSED(fptr)) ( BOOST_PP_REPEAT_##z(i, NUMBERED_LIST2, T) )) { \
-			return &_call<Message BOOST_PP_REPEAT_##z(i, NUMBERED_LIST, T) >; \
-		} \
-		template <typename Message BOOST_PP_REPEAT_##z (i, NUMBERED_LIST, typename T) > \
-		static uintN nargs(Message* (*WXUNUSED(fptr)) ( BOOST_PP_REPEAT_##z(i, NUMBERED_LIST2, T) )) { \
-			return i; \
-		} \
-		template <typename Message BOOST_PP_REPEAT_##z (i, NUMBERED_LIST, typename T) > \
-		static JSBool _call(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* WXUNUSED(rval)) \
-		{ \
-			(void)cx; (void)obj; (void)argc; (void)argv; /* avoid 'unused parameter' warnings */ \
-			BOOST_PP_REPEAT_##z (i, CONVERT_ARGS, ~) \
-			AtlasMessage::g_MessagePasser->Add(SHAREABLE_NEW(Message, ( BOOST_PP_REPEAT_##z(i, NUMBERED_LIST2, a) ))); \
-			return JS_TRUE; \
-		}
-	BOOST_PP_REPEAT(7, OVERLOADS, ~)
-};
+	using namespace AtlasMessage;
+	#include "GameInterface/Messages.h"
+}
+
+#undef MESSAGE
+#undef QUERY
 
 void ScriptInterface_impl::RegisterMessages(JSObject* parent)
 {
@@ -392,20 +544,17 @@ void ScriptInterface_impl::RegisterMessages(JSObject* parent)
 	JSFunction* ret;
 	JSObject* obj = JS_DefineObject(m_cx, parent, "Message", NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
-#define MESSAGE(name, vals) \
-	ret = JS_DefineFunction(m_cx, obj, #name, MessageWrapper::call(&m##name::CtorType), MessageWrapper::nargs(&m##name::CtorType), JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
+	#define MESSAGE(name, vals) \
+	ret = JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)vals)-1, \
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
-#define QUERY(name, in_vals, out_vals) /* TODO \
-	extern void f##name##_wrapper(AtlasMessage::IMessage*); \
-	AtlasMessage::GetMsgHandlers().insert(std::pair<std::string, AtlasMessage::msgHandler>(#name, &f##name##_wrapper));*/
+	#define QUERY(name, in_vals, out_vals) \
+	ret = JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)in_vals)-1, \
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
+	 
+	// TODO: #define COMMAND(name, merge, vals) ...
 
-#define COMMAND(name, merge, vals) /* TODO \
-	extern cmdHandler c##name##_create(); \
-	GetCmdHandlers().insert(std::pair<std::string, cmdHandler>("c"#name, c##name##_create()));*/
-
-#undef SHAREABLE_STRUCT
-#define SHAREABLE_STRUCT(name)
-
-	#define MESSAGES_SKIP_SETUP
+	#undef INCLUDED_MESSAGES
+	
 	#include "GameInterface/Messages.h"
 }

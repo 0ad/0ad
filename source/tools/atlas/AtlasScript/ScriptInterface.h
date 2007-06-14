@@ -35,6 +35,7 @@ public:
 
 	void LoadScript(const wxString& filename, const wxString& code);
 	wxPanel* LoadScriptAsPanel(const wxString& name, wxWindow* parent);
+	std::pair<wxPanel*, wxPanel*> LoadScriptAsSidebar(const wxString& name, wxWindow* side, wxWindow* bottom);
 
 	template <typename T> static bool FromJSVal(JSContext* cx, jsval val, T& ret);
 	template <typename T> static jsval ToJSVal(JSContext* cx, const T& val);

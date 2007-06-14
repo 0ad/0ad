@@ -99,11 +99,13 @@ MESSAGE(Screenshot,
 		((int, tiles)) // the final image will be (640*tiles)x(480*tiles)
 		);
 
+#ifndef MESSAGES_SKIP_STRUCTS
 struct sCinemaRecordCB
 {
 	unsigned char* buffer;
 };
 SHAREABLE_STRUCT(sCinemaRecordCB);
+#endif
 
 QUERY(CinemaRecord,
 	  ((std::wstring, path))
@@ -136,12 +138,16 @@ QUERY(GetTerrainGroups,
 	  ((std::vector<std::wstring>, groupnames))
 	  );
 
+#ifndef MESSAGES_SKIP_STRUCTS
 struct sTerrainGroupPreview
 {
 	Shareable<std::wstring> name;
-	Shareable<std::vector<unsigned char> > imagedata; // RGB*size*size
+	Shareable<int> imagewidth;
+	Shareable<int> imageheight;
+	Shareable<std::vector<unsigned char> > imagedata; // RGB*width*height
 };
 SHAREABLE_STRUCT(sTerrainGroupPreview);
+#endif
 
 QUERY(GetTerrainGroupPreviews,
 	  ((std::wstring, groupname))
@@ -154,6 +160,7 @@ QUERY(GetTerrainGroupPreviews,
 
 //////////////////////////////////////////////////////////////////////////
 
+#ifndef MESSAGES_SKIP_STRUCTS
 struct sObjectsListItem
 {
 	Shareable<std::wstring> id;
@@ -161,12 +168,14 @@ struct sObjectsListItem
 	Shareable<int> type; // 0 = entity, 1 = actor
 };
 SHAREABLE_STRUCT(sObjectsListItem);
+#endif
 
 QUERY(GetObjectsList,
 	  , // no inputs
 	  ((std::vector<sObjectsListItem>, objects)) // sorted by .name
 	  );
 
+#ifndef MESSAGES_SKIP_STRUCTS
 struct sObjectSettings
 {
 	Shareable<int> player;
@@ -178,6 +187,7 @@ struct sObjectSettings
 	Shareable<std::vector<std::vector<std::wstring> > > variantgroups;
 };
 SHAREABLE_STRUCT(sObjectSettings);
+#endif
 
 // Preview object in the game world - creates a temporary unit at the given
 // position, and removes it when the preview is next changed
@@ -249,6 +259,7 @@ MESSAGE(LookAt,
 
 //////////////////////////////////////////////////////////////////////////
 
+#ifndef MESSAGES_SKIP_STRUCTS
 struct sEnvironmentSettings
 {
 	Shareable<float> waterheight; // range 0..1 corresponds to min..max terrain height; out-of-bounds values allowed
@@ -276,6 +287,7 @@ struct sEnvironmentSettings
 	Shareable<Colour> unitcolour;
 };
 SHAREABLE_STRUCT(sEnvironmentSettings);
+#endif
 
 QUERY(GetEnvironmentSettings,
 	  // no inputs

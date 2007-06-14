@@ -88,6 +88,8 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 			delete[] texdata;
 		}
 
+		previews.back().imagewidth = msg->imagewidth;
+		previews.back().imageheight = msg->imageheight;
 		previews.back().imagedata = buf;
 	}
 

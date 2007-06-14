@@ -273,6 +273,7 @@ public:
 // (TODO - this is probably not really safely shareable, due to unspecified calling conventions)
 template<typename T> struct Callback
 {
+	Callback() : cb(NULL), cbdata(NULL) {}
 	Callback(void (*cb) (const T*, void*), void* cbdata) : cb(cb), cbdata(cbdata) {}
 	void (*cb) (const T*, void*);
 	void* cbdata;

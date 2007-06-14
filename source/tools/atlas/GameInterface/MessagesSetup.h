@@ -151,6 +151,7 @@ const bool NOMERGE = false;
 #define QUERY_WITHOUT_INPUTS(name, in_vals, out_vals) \
 	QUERYSTRUCT(name) \
 		q##name() {} \
+		static q##name* CtorType() { return NULL; } \
 		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, out_vals) /* other members */ \
 	}
 
@@ -158,6 +159,7 @@ const bool NOMERGE = false;
 	QUERYSTRUCT(name) \
 		q##name( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORARGS, ~, in_vals) ) \
 			: BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORINIT, ~, in_vals) {} \
+		static q##name* CtorType( BOOST_PP_SEQ_FOR_EACH_I(B_CONSTRUCTORTYPES, ~, in_vals) ) { return NULL; } \
 		BOOST_PP_SEQ_FOR_EACH_I(B_CONSTMEMBERS, ~, in_vals) \
 		BOOST_PP_SEQ_FOR_EACH_I(B_MEMBERS, ~, out_vals) \
 	}

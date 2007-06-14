@@ -32,6 +32,8 @@
 
 #include "../../common/main.h"
 
+#include <wx/tooltip.h>
+
 #include "window.h"
 #include "../misc/point.h"
 #include "../misc/size.h"
@@ -198,6 +200,7 @@ WXJS_BEGIN_PROPERTY_MAP(Window)
   WXJS_PROPERTY(P_BACKGROUND_COLOUR, "backgroundColour")
   WXJS_PROPERTY(P_FOREGROUND_COLOUR, "foregroundColour")
   WXJS_PROPERTY(P_FONT, "font")
+  WXJS_PROPERTY(P_TOOL_TIP, "toolTip")
 WXJS_END_PROPERTY_MAP()
 
 bool Window::GetProperty(wxWindow *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
@@ -346,6 +349,15 @@ bool Window::GetProperty(wxWindow *p, JSContext *cx, JSObject *obj, int id, jsva
 		break;
 	case P_FONT:
         *vp = Font::CreateObject(cx, new wxFont(p->GetFont()), obj);
+		break;
+	case P_TOOL_TIP:
+		if ( p->GetToolTip() == NULL )
+			*vp = JSVAL_VOID;
+		else
+		{
+			wxString tip = p->GetToolTip()->GetTip();
+			*vp = ToJS(cx, tip);
+		}
 		break;
 	}
 	return true;
@@ -527,6 +539,17 @@ bool Window::SetProperty(wxWindow *p, JSContext *cx, JSObject *obj, int id, jsva
 			if ( font != NULL )
 				p->SetFont(*font);
 			break;
+		}
+	case P_TOOL_TIP:
+		if ( JSVAL_IS_VOID(*vp) )
+		{
+			p->SetToolTip(NULL);
+		}
+		else
+		{
+			wxString tip;
+			FromJS(cx, *vp, tip);
+			p->SetToolTip(tip);
 		}
 	}
 	return true;

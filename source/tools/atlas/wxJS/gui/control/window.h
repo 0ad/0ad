@@ -129,6 +129,7 @@ namespace wxjs
           , P_BACKGROUND_COLOUR
           , P_FOREGROUND_COLOUR
           , P_FONT
+          , P_TOOL_TIP
       };
     };
 

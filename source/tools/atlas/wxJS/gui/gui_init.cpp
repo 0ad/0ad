@@ -90,6 +90,8 @@
 #include "control/htmlwin.h"
 #include "control/spinctrl.h"
 #include "control/spinbtn.h"
+#include "control/bookctrl.h"
+#include "control/notebook.h"
 
 // Validators
 #include "misc/validate.h"
@@ -635,6 +637,16 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 
     obj = SpinButton::JSInit(cx, global, Control::GetClassPrototype());
 	wxASSERT_MSG(obj != NULL, wxT("wxSpinButton prototype creation failed"));
+	if (! obj )
+		return false;
+
+	obj = BookCtrlBase::JSInit(cx, global, Control::GetClassPrototype());
+	wxASSERT_MSG(obj != NULL, wxT("wxBookCtrlBase prototype creation failed"));
+	if (! obj )
+		return false;
+
+	obj = Notebook::JSInit(cx, global, BookCtrlBase::GetClassPrototype());
+	wxASSERT_MSG(obj != NULL, wxT("wxNotebook prototype creation failed"));
 	if (! obj )
 		return false;
 

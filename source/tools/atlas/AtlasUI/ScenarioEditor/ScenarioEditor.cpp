@@ -24,6 +24,7 @@
 
 #include "Tools/Common/Tools.h"
 #include "Tools/Common/Brushes.h"
+#include "Tools/Common/MiscState.h"
 
 static HighResTimer g_Timer;
 
@@ -276,6 +277,10 @@ namespace
 	{
 		g_Brush_Elevation.SetStrength(strength);
 	}
+	void SetSelectedTexture(wxString name)
+	{
+		g_SelectedTexture = name;
+	}
 }
 
 ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface)
@@ -299,6 +304,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	GetScriptInterface().RegisterFunction<wxString, Datafile::GetDataDirectory>("GetDataDirectory");
 	GetScriptInterface().RegisterFunction<void, wxString, SetCurrentTool_script>("SetCurrentTool");
 	GetScriptInterface().RegisterFunction<void, float, SetBrushStrength>("SetBrushStrength");
+	GetScriptInterface().RegisterFunction<void, wxString, SetSelectedTexture>("SetSelectedTexture");
 
 	{
 		const wxString relativePath (_T("tools/atlas/scripts/main.js"));

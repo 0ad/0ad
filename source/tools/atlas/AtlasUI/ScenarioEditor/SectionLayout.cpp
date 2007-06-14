@@ -232,11 +232,19 @@ class ScriptedSidebar : public Sidebar
 {
 public:
 	ScriptedSidebar(const wxString& name, ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
+	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer), m_BottomBarContainer(bottomBarContainer), m_Name(name)
 	{
-		wxPanel* panel = m_ScenarioEditor.GetScriptInterface().LoadScriptAsPanel(_T("section/") + name, this);
-		m_MainSizer->Add(panel, wxSizerFlags(1).Expand());
 	}
+	
+	virtual void OnFirstDisplay()
+	{
+		std::pair<wxPanel*, wxPanel*> panels = m_ScenarioEditor.GetScriptInterface().LoadScriptAsSidebar(_T("section/") + m_Name, this, m_BottomBarContainer);
+		m_MainSizer->Add(panels.first, wxSizerFlags(1).Expand());
+		m_BottomBar = panels.second;
+	}
+private:
+	wxString m_Name;
+	wxWindow* m_BottomBarContainer;
 };
 
 
@@ -288,7 +296,7 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 	
 	ADD_SIDEBAR_SCRIPT(_T("map"),       _T("map.png"),         _("Map"));
 	ADD_SIDEBAR_SCRIPT(_T("terrain"),   _T("terrain.png"),     _("Terrain"));
-	ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
+	//ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
 	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));
 	

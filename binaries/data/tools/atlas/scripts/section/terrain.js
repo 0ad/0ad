@@ -55,7 +55,53 @@ var brush = {
 	}
 };
 
-function init(window)
+function TerrainPreviewPage(panel, name)
+{
+	this.panel = panel;
+	this.name = name;
+}
+TerrainPreviewPage.prototype = {
+	display: function() {
+		if (this.loaded)
+			return;
+		
+		this.panel.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
+		var list = new wxListCtrl(this.panel, -1, wxDefaultPosition, wxDefaultSize, wxListCtrl.ICON | wxListCtrl.SINGLE_SEL);
+		this.panel.sizer.add(list, 1, wxStretch.EXPAND);
+		
+		var w = 80, h = 40;
+		
+		var imglist = new wxImageList(w, h, false, 0);
+		
+		var previews = Atlas.Message.GetTerrainGroupPreviews(this.name, w, h).previews;
+		var i = 0;
+		var names = [];
+		for each (var p in previews)
+		{
+			imglist.add(p.imagedata);
+			list.insertItem(i, '', i);
+			names.push(p.name);
+			++i;
+		}
+		list.onMotion = function(evt) {
+			var hit = list.hitTest(evt.position);
+			var tip = undefined;
+			if (hit.item != -1 && (hit.flags & wxListHitTest.ONITEMICON))
+				tip = names[hit.item]
+			if (list.toolTip !== tip)
+				list.toolTip = tip;
+		};
+		list.onItemSelected = function(evt) {
+			Atlas.SetSelectedTexture(names[evt.index]);
+		};
+		
+		list.setImageList(imglist, wxListCtrl.NORMAL);
+		
+		this.loaded = true;
+	}
+};
+
+function init(window, bottomWindow)
 {
 	window.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
 		
@@ -91,8 +137,10 @@ function init(window)
 				}
 				else
 				{
+					// Disable the old tool
 					if (selectedTool)
 						selectedTool[2].backgroundColour = wxSystemSettings.getColour(wxSystemSettings.COLOUR_BTNFACE);
+					// Enable the new one
 					selectedTool = tool;
 					this.backgroundColour = new wxColour(0xEE, 0xCC, 0x55);
 					Atlas.SetCurrentTool(tool[1]);
@@ -139,4 +187,22 @@ function init(window)
 		brush.strength = evt.position / 10;
 		brush.send();
 	};
+	
+	
+	
+	var terrainGroups = Atlas.Message.GetTerrainGroups();
+	var nb = new wxNotebook(bottomWindow, -1);
+	bottomWindow.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
+	bottomWindow.sizer.add(nb, 1, wxStretch.EXPAND);
+	var pages = [];
+	nb.onPageChanged = function (evt) {
+		pages[evt.selection].display()
+	}
+	for each (var groupname in terrainGroups.groupnames)
+	{
+		var panel = new wxPanel(nb, -1);
+		var page = new TerrainPreviewPage(panel, groupname);
+		pages.push(page);
+		nb.addPage(panel, groupname); // TODO: use Titlecase letters
+	}
 }
