@@ -147,13 +147,12 @@ static uintptr_t LocateEbdaPhysicalAddress()
 #pragma pack(pop)
 	const volatile BiosDataArea* bda = (const volatile BiosDataArea*)mahaf_MapPhysicalMemory(0x400, 0x100);
 	if(!bda)
-	{
-		debug_assert(0);
 		return 0;
-	}
 
 	const uintptr_t ebdaPhysicalAddress = ((uintptr_t)bda->ebdaSegment) * 16;
+
 	mahaf_UnmapPhysicalMemory((void*)bda);
+
 	return ebdaPhysicalAddress;
 }
 
@@ -163,7 +162,6 @@ static bool RetrieveRsdp(RSDP& rsdp)
 	// See ACPIspec30b, section 5.2.5.1:
 	// RSDP is either in the first KIB of the extended BIOS data area,
 	const uintptr_t ebdaPhysicalAddress = LocateEbdaPhysicalAddress();
-	debug_assert(ebdaPhysicalAddress != 0);
 	if(LocateAndRetrieveRsdp(ebdaPhysicalAddress, 1*KiB, rsdp))
 		return true;
 
