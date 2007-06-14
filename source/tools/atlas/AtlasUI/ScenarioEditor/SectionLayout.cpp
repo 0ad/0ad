@@ -238,9 +238,12 @@ public:
 	
 	virtual void OnFirstDisplay()
 	{
+		Freeze();
 		std::pair<wxPanel*, wxPanel*> panels = m_ScenarioEditor.GetScriptInterface().LoadScriptAsSidebar(_T("section/") + m_Name, this, m_BottomBarContainer);
 		m_MainSizer->Add(panels.first, wxSizerFlags(1).Expand());
 		m_BottomBar = panels.second;
+		Layout();
+		Thaw();
 	}
 private:
 	wxString m_Name;

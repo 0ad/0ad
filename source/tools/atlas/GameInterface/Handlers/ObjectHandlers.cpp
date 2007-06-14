@@ -727,8 +727,13 @@ BEGIN_COMMAND(DeleteObject)
 
 		if (unit->GetEntity())
 		{
+			bool wasTerritoryCentre = unit->GetEntity()->m_base->m_isTerritoryCentre;
+
 			m_FrozenEntity.reset(new SimState::Entity( SimState::Entity::Freeze(unit) ));
 			unit->GetEntity()->Kill();
+
+			if (wasTerritoryCentre)
+				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 		}
 		else
 		{
@@ -741,10 +746,10 @@ BEGIN_COMMAND(DeleteObject)
 	{
 		if (m_FrozenEntity.get())
 		{
-			m_FrozenEntity->Thaw();
+			CEntity* entity = m_FrozenEntity->Thaw();
 			
-			// XXXif (m_UnitInLimbo->GetEntity()->m_base->m_isTerritoryCentre)
-				//g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
+			if (entity && entity->m_base->m_isTerritoryCentre)
+				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
 
 			m_FrozenEntity.reset();
 		}

@@ -275,7 +275,7 @@ JSBool RadioBox::create(JSContext *cx,
   if ( argc > 9 )
     argc = 9;
 
-  int style = 0;
+  int style = wxRA_SPECIFY_COLS;
   int max = 0;
   StringsPtr items;
   const wxSize *size = &wxDefaultSize;

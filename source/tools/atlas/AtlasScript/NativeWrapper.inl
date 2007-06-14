@@ -85,8 +85,8 @@ struct ScriptInterface_NativeWrapper<void> {
 // JSNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
 	template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( T0(z,i) )> \
-	JSBool ScriptInterface::call(JSContext* cx, JSObject* /*obj*/, uintN argc, jsval* argv, jsval* rval) { \
-		(void)argc; (void)argv; /* avoid 'unused parameter' warnings */ \
+	JSBool ScriptInterface::call(JSContext* cx, JSObject* /*obj*/, uintN /*argc*/, jsval* argv, jsval* rval) { \
+		(void)argv; /* avoid 'unused parameter' warnings */ \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		ScriptInterface_NativeWrapper<TR>::call(cx, *rval, fptr  A0_TAIL(z,i)); \
 		return JS_TRUE; \

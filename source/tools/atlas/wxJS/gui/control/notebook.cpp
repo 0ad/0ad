@@ -63,9 +63,6 @@ bool Notebook::GetProperty(wxNotebook *p, JSContext *cx, JSObject *obj, int id, 
 
 bool Notebook::SetProperty(wxNotebook *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
 {
-	switch (id)
-	{
-	}
 	return true;
 }
 
@@ -101,13 +98,16 @@ struct Wrapper_wxNotebook : public wxNotebook
 	~Wrapper_wxNotebook()
 	{
 		wxList* d = GetDynamicEventTable();
-		for (wxList::iterator it = d->begin(), end = d->end(); it != end; ++it)
+		if (d)
 		{
-			wxDynamicEventTableEntry *entry = (wxDynamicEventTableEntry*)*it;
-			delete entry->m_callbackUserData;
-			delete entry;
+			for (wxList::iterator it = d->begin(), end = d->end(); it != end; ++it)
+			{
+				wxDynamicEventTableEntry *entry = (wxDynamicEventTableEntry*)*it;
+				delete entry->m_callbackUserData;
+				delete entry;
+			}
+			d->Clear();
 		}
-		d->Clear();
 	}
 };
 

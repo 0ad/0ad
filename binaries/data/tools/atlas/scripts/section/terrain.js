@@ -87,15 +87,19 @@ TerrainPreviewPage.prototype = {
 			var hit = list.hitTest(evt.position);
 			var tip = undefined;
 			if (hit.item != -1 && (hit.flags & wxListHitTest.ONITEMICON))
+			{
 				tip = names[hit.item]
-			if (list.toolTip !== tip)
-				list.toolTip = tip;
+				if (list.toolTip !== tip)
+					list.toolTip = tip;
+			}
 		};
 		list.onItemSelected = function(evt) {
 			Atlas.SetSelectedTexture(names[evt.index]);
 		};
 		
 		list.setImageList(imglist, wxListCtrl.NORMAL);
+		
+		this.panel.layout();
 		
 		this.loaded = true;
 	}
@@ -159,7 +163,7 @@ function init(window, bottomWindow)
 	];
 	var shapeNames = [];
 	for each (var s in shapes) shapeNames.push(s[0]);
-	var shapeBox = new wxRadioBox(window, -1, 'Shape', wxDefaultPosition, wxDefaultSize, shapeNames);
+	var shapeBox = new wxRadioBox(window, -1, 'Shape', wxDefaultPosition, wxDefaultSize, shapeNames, 0, wxRadioBox.SPECIFY_ROWS);
 	brushSizer.add(shapeBox);
 	shapeBox.onRadioBox = function(evt)
 	{
@@ -194,9 +198,11 @@ function init(window, bottomWindow)
 	var nb = new wxNotebook(bottomWindow, -1);
 	bottomWindow.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
 	bottomWindow.sizer.add(nb, 1, wxStretch.EXPAND);
+
 	var pages = [];
 	nb.onPageChanged = function (evt) {
 		pages[evt.selection].display()
+		evt.skip = true;
 	}
 	for each (var groupname in terrainGroups.groupnames)
 	{

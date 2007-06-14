@@ -2,6 +2,7 @@
 #define SIMSTATE_INCLUDED
 
 class CUnit;
+class CEntity;
 #include "maths/Vector3D.h"
 
 class SimState
@@ -11,7 +12,7 @@ public:
 	{
 	public:
 		static Entity Freeze(CUnit* unit);
-		void Thaw();
+		CEntity* Thaw();
 	private:
 		CStrW templateName;
 		int unitID;
@@ -25,7 +26,7 @@ public:
 	{
 	public:
 		static Nonentity Freeze(CUnit* unit);
-		void Thaw();
+		CUnit* Thaw();
 	private:
 		CStrW actorName;
 		int unitID;

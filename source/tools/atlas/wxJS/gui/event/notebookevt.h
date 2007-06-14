@@ -1,7 +1,7 @@
 #ifndef _WXJSNotebookEvent_H
 #define _WXJSNotebookEvent_H
 
-class wxNotebookEvent;
+#include <wx/notebook.h>
 
 namespace wxjs
 {

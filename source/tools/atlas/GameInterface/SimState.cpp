@@ -32,19 +32,20 @@ SimState::Entity SimState::Entity::Freeze(CUnit* unit)
 	return e;
 }
 
-void SimState::Entity::Thaw()
+CEntity* SimState::Entity::Thaw()
 {
 	CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(templateName, g_Game->GetPlayer(playerID));
 	if (! base)
-		return;
+		return NULL;
 	
 	HEntity ent = g_EntityManager.Create(base, position, angle, selections);
 	if (! ent)
-		return;
+		return NULL;
 		
 	ent->m_actor->SetPlayerID(playerID);
 	ent->m_actor->SetID(unitID);
 	ent->Initialize();
+	return ent;
 }
 
 SimState::Nonentity SimState::Nonentity::Freeze(CUnit* unit)
@@ -59,18 +60,19 @@ SimState::Nonentity SimState::Nonentity::Freeze(CUnit* unit)
 	return n;
 }
 
-void SimState::Nonentity::Thaw()
+CUnit* SimState::Nonentity::Thaw()
 {
 	CUnitManager& unitMan = g_Game->GetWorld()->GetUnitManager();
 	CUnit* unit = unitMan.CreateUnit(actorName, NULL, selections);
 	if (! unit)
-		return;
+		return NULL;
 	CMatrix3D m;
 	m.SetYRotation(angle + PI);
 	m.Translate(position);
 	unit->GetModel()->SetTransform(m);
 
 	unit->SetID(unitID);
+	return unit;
 }
 
 SimState* SimState::Freeze(bool onlyEntities)
@@ -112,9 +114,6 @@ void SimState::Thaw()
 	CUnitManager& unitMan = g_Game->GetWorld()->GetUnitManager();
 
 	// delete all existing entities
-	g_Game;
-	g_Game->GetWorld();
-	g_Game->GetWorld()->GetProjectileManager();
 	g_Game->GetWorld()->GetProjectileManager().DeleteAll();
 	g_EntityManager.DeleteAll();
 

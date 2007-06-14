@@ -131,7 +131,7 @@ namespace
 			if (! JS_GetArrayLength(cx, obj, &length))
 				FAIL("Failed to get array length");
 			out.reserve(length);
-			for (jsint i = 0; i < length; ++i)
+			for (jsuint i = 0; i < length; ++i)
 			{
 				jsval el;
 				if (! JS_GetElement(cx, obj, i, &el))
@@ -149,7 +149,7 @@ namespace
 	
 	template<typename T> struct ToJSVal
 	{
-		static jsval Convert(JSContext* cx, const T& val)
+		static jsval Convert(JSContext* cx, const T& WXUNUSED(val))
 		{
 			JS_ReportError(cx, "Unrecognised query return type");
 			return JSVAL_VOID;
@@ -214,7 +214,7 @@ namespace
 			for (size_t i = 0; i < val.size(); ++i)
 			{
 				jsval el = ToJSVal<T>::Convert(cx, val[i]);
-				JS_SetElement(cx, obj, i, &el);
+				JS_SetElement(cx, obj, (jsint)i, &el);
 			}
 			JS_RemoveRoot(cx, &obj);
 			return OBJECT_TO_JSVAL(obj);
@@ -499,16 +499,18 @@ std::pair<wxPanel*, wxPanel*> ScriptInterface::LoadScriptAsSidebar(const wxStrin
 #define ARG_LIST(r, data, i, elem) BOOST_PP_COMMA_IF(i) a##i
 
 #define MESSAGE(name, vals) \
-	JSBool call_##name(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* WXUNUSED(rval)) \
+	JSBool call_##name(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* WXUNUSED(rval)) \
 	{ \
+		(void)cx; (void)argv; /* avoid 'unused parameter' warnings */ \
 		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_ARGS, ~, vals) \
 		g_MessagePasser->Add(SHAREABLE_NEW(m##name, ( BOOST_PP_SEQ_FOR_EACH_I(ARG_LIST, ~, vals) ))); \
 		return JS_TRUE; \
 	}
 	
 #define QUERY(name, in_vals, out_vals) \
-	JSBool call_##name(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval) \
+	JSBool call_##name(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* rval) \
 	{ \
+		(void)argv; /* avoid 'unused parameter' warnings */ \
 		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_ARGS, ~, in_vals) \
 		q##name q = q##name( BOOST_PP_SEQ_FOR_EACH_I(ARG_LIST, ~, in_vals) ); \
 		q.Post(); \

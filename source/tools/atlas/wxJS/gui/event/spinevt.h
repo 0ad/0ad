@@ -1,7 +1,7 @@
 #ifndef _WXJSSpinEvent_H
 #define _WXJSSpinEvent_H
 
-class wxSpinEvent;
+#include <wx/spinctrl.h>
 
 namespace wxjs
 {

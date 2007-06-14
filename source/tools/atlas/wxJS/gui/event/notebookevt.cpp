@@ -7,8 +7,6 @@
 #include "../../common/main.h"
 #include "../../common/apiwrap.h"
 
-#include <wx/notebook.h>
-
 #include "jsevent.h"
 #include "../misc/size.h"
 #include "notebookevt.h"
