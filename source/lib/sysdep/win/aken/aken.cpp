@@ -25,7 +25,7 @@ there are three approaches to mapping physical memory:
     http://support.microsoft.com/kb/925793/en-us
 
 - ZwMapViewOfSection of PhysicalMemory (http://tinyurl.com/yozmgy).
-  a bit bulky, but the WinXP implementation prevents mapping pages with
+  the code is a bit bulky, but the WinXP API prevents mapping pages with
   conflicting attributes (see below).
 
 - MmMapLockedPagesSpecifyCache or MmGetSystemAddressForMdlSafe
@@ -42,6 +42,9 @@ may end up corrupted, leading to disaster. the search for a documented
 means of accessing the page frame database (to check if mapped anywhere
 and determine the previously set attributes) has not borne fruit, so we
 must use ZwMapViewOfSection.
+
+note that we do try to guess if the page will have been mapped as cacheable
+and even try the opposite if we turn out to be incorrect.
 
 */
 
@@ -110,8 +113,14 @@ static NTSTATUS AkenMapPhysicalMemory(const DWORD64 physicalAddress64, const DWO
 		ntStatus = ZwMapViewOfSection(hMemory, hProcess, &virtualBaseAddress, zeroBits, mappedSize, &physicalBaseAddress, &mappedSize, inheritDisposition, allocationType, protect);
 		if(!NT_SUCCESS(ntStatus))
 		{
-			KdPrint(("AkenMapPhysicalMemory: ZwMapViewOfSection failed\n"));
-			goto close_handle;
+			// try again with the opposite cacheability attribute
+			protect ^= PAGE_NOCACHE;
+			ntStatus = ZwMapViewOfSection(hMemory, hProcess, &virtualBaseAddress, zeroBits, mappedSize, &physicalBaseAddress, &mappedSize, inheritDisposition, allocationType, protect);
+			if(!NT_SUCCESS(ntStatus))
+			{
+				KdPrint(("AkenMapPhysicalMemory: ZwMapViewOfSection failed\n"));
+				goto close_handle;
+			}
 		}
 
 		// the mapping rounded our physical base address down to the nearest
