@@ -33,6 +33,7 @@ CGUI
 #include "lib/bits.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
 #include "ps/Overlay.h"
+#include "ps/Profile.h"
 
 #include "scripting/ScriptingHost.h"
 #include "ps/Hotkey.h"
@@ -62,6 +63,7 @@ JSClass GUIClass = {
 //-------------------------------------------------------------------
 InReaction gui_handler(const SDL_Event_* ev)
 {
+	PROFILE(" GUI event handler ");
 	return g_GUI.HandleEvent(ev);
 }
 
@@ -120,6 +122,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	// TODO Gee: (2004-09-08) Big TODO, don't do the below if the SDL_Event is something like a keypress!
 	try
 	{
+		PROFILE( "mouse events" );
 		// TODO Gee: Optimizations needed!
 		//  these two recursive function are quite overhead heavy.
 

@@ -86,6 +86,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 // dispatch all pending events to the various receivers.
 static void PumpEvents()
 {
+	PROFILE( "dispatch events" );
 	in_dispatch_recorded_events();
 
 	SDL_Event_ ev;

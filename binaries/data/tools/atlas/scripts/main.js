@@ -43,7 +43,7 @@ function loadXML(name)
 	// "<?xml ...?>" (which E4X doesn't like parsing)
 	file.close();
 
-	return eval(xml);
+	return new XML(xml);
 }
 
 function init() { /* dummy function to make the script reloader happy */ }

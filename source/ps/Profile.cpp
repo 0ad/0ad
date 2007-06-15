@@ -12,6 +12,12 @@
 #include "ProfileViewer.h"
 #include "lib/timer.h"
 
+#if GCC_VERSION && !defined(NDEBUG)
+# define GLIBC_MALLOC_HOOK
+# include <malloc.h>
+# include "ThreadUtil.h"
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // CProfileNodeTable
 
@@ -366,29 +372,71 @@ void CProfileNode::Frame()
 		(*it)->Frame();
 }
 
+// TODO: these should probably only count allocations that occur in the thread being profiled
+#if HAVE_VC_DEBUG_ALLOC
+static long memory_alloc_bias = 0; // so we can subtract the allocations caused by this function
 static long get_memory_alloc_count()
 {
-#if HAVE_VC_DEBUG_ALLOC
 	// TODO: it's probably better to use _CrtSetAllocHook to increment a
 	// user-visible counter. (I didn't know that existed when I wrote this.)
 
 	// Find the number of allocations that have ever occurred, by doing a dummy
 	// allocation and checking its request number
-	static long bias = 0; // so we can subtract the allocations caused by this function
 	void* p = malloc(1);
 	long requestNumber = 0;
 	int ok = _CrtIsMemoryBlock(p, 1, &requestNumber, NULL, NULL);
 	UNUSED2(ok);
 	free(p);
-	++bias;
-	return requestNumber - bias;
+	cpu_AtomicAdd(&memory_alloc_bias, 1);
+	return requestNumber - memory_alloc_bias;
+}
+#elif defined(GLIBC_MALLOC_HOOK)
+// Set up malloc hooks to count allocations - see
+// http://www.gnu.org/software/libc/manual/html_node/Hooks-for-Malloc.html
+static int malloc_count = 0;
+static void *(*old_malloc_hook) (size_t, const void*);
+static CMutex malloc_mutex;
+static void *malloc_hook(size_t size, const void* caller)
+{
+	// TODO: this is totally not nicely thread-safe - glibc's hook system seems to
+	// not make threading easy, and I don't want to think too hard, so this is
+	// just all put inside a lock.
+	CScopeLock lock(malloc_mutex);
+	
+	++malloc_count;
+	__malloc_hook = old_malloc_hook;
+	void* result = malloc(size);
+	old_malloc_hook = __malloc_hook;
+	__malloc_hook = malloc_hook;
+	return result;
+}
+static void malloc_initialize_hook()
+{
+	CScopeLock lock(malloc_mutex);
+	
+	old_malloc_hook = __malloc_hook;
+	__malloc_hook = malloc_hook;
+}
+/*
+It would be nice to do:
+    __attribute__ ((visibility ("default"))) void (*__malloc_initialize_hook)() = malloc_initialize_hook;
+except that doesn't seem to work in practice, since something (?) resets the
+hook to NULL some time while loading the game, after we've set it here - so
+we just call malloc_initialize_hook once inside CProfileManager::Frame instead
+and hope nobody deletes our hook after that.
+*/
+static long get_memory_alloc_count()
+{
+	return malloc_count;
+}
 #else
-	// TODO: support other compilers if it's easy.
+static long get_memory_alloc_count()
+{
 	// TODO: don't show this column of data when we don't have sensible values
 	// to display.
 	return 0;
-#endif
 }
+#endif
 
 void CProfileNode::Call()
 {
@@ -429,6 +477,7 @@ CProfileManager::CProfileManager()
 	root = new CProfileNode( "root", NULL );
 	current = root;
 	frame_start = 0.0;
+	frame_start_mallocs = 0;
 	g_ProfileViewer.AddRootTable(root->display_table);
 }
 
@@ -478,16 +527,22 @@ void CProfileManager::Stop()
 void CProfileManager::Reset()
 {
 	root->Reset();
-	start = get_time();
-	frame_start = get_time();
+	start = frame_start = get_time();
+	start_mallocs = frame_start_mallocs = get_memory_alloc_count();
 }
 
 void CProfileManager::Frame()
 {
+#ifdef GLIBC_MALLOC_HOOK
+	ONCE(malloc_initialize_hook());
+#endif
+	
 	root->time_frame_current = ( get_time() - frame_start );
+	root->mallocs_frame_current = ( get_memory_alloc_count() - frame_start_mallocs );
 	root->Frame();
 	
 	frame_start = get_time();
+	frame_start_mallocs = get_memory_alloc_count();
 }
 
 void CProfileManager::StructuralReset()
@@ -497,15 +552,3 @@ void CProfileManager::StructuralReset()
 	current = root;
 	g_ProfileViewer.AddRootTable(root->display_table);
 }
-
-double CProfileManager::GetTime()
-{
-	return( get_time() - start );
-}
-
-double CProfileManager::GetFrameTime()
-{
-	return( get_time() - frame_start );
-}
-
-

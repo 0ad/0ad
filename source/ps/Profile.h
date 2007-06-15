@@ -112,6 +112,8 @@ class CProfileManager : public Singleton<CProfileManager>
 	CProfileNode* current;
 	double start;
 	double frame_start;
+	long start_mallocs;
+	long frame_start_mallocs;
 	std::map<CStr8, const char*> m_internedStrings;
 
 public:
@@ -136,8 +138,6 @@ public:
 
 	inline const CProfileNode* GetCurrent() { return( current ); }
 	inline const CProfileNode* GetRoot() { return( root ); }
-	double GetTime();
-	double GetFrameTime();
 };
 
 #define g_Profiler CProfileManager::GetSingleton()

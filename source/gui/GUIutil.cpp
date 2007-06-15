@@ -228,7 +228,6 @@ bool __ParseString<CGUISpriteInstance>(const CStr& Value, CGUISpriteInstance &Ou
 template <>
 bool __ParseString<CGUIList>(const CStr& UNUSED(Value), CGUIList& UNUSED(Output))
 {
-	//LOG(WARNING, LOG_CATEGORY, "Cannot set a 'list' from a string.");
 	return false;
 }
 
@@ -289,17 +288,18 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 
 
 //--------------------------------------------------------------------
-#include "ps/CLogger.h"
+
 template <typename T>
 PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value)
 {
 	if (pObject == NULL)
 		return PS_OBJECT_FAIL;
 
-	if (!pObject->SettingExists(Setting))
+	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
+	if (it == pObject->m_Settings.end())
 		return PS_SETTING_FAIL;
 
-	if (!pObject->m_Settings.find(Setting)->second.m_pSetting)
+	if (it->second.m_pSetting == NULL)
 		return PS_FAIL;
 
 #ifndef NDEBUG
@@ -307,7 +307,7 @@ PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setti
 #endif
 
 	// Get value
-	Value = (T*)pObject->m_Settings.find(Setting)->second.m_pSetting;
+	Value = (T*)(it->second.m_pSetting);
 
 	return PS_OK;
 }

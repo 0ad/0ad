@@ -280,7 +280,7 @@ private:
 	 * @throws PS_RESULT Depends on what pFunc might throw. PS_RESULT is standard.
 	 *			Itself doesn't throw anything.
 	*/
-	static void RecurseObject(const int &RR, IGUIObject *pObject, void_Object_pFunction_argT pFunc, const T &Argument)
+	static void RecurseObject(const int RR, IGUIObject *pObject, void_Object_pFunction_argT pFunc, const T &Argument)
 	{
 		// TODO Gee: Don't run this for the base object.
 		if (CheckIfRestricted(RR, pObject))
@@ -301,7 +301,7 @@ private:
 	 *
 	 * @see RecurseObject()
 	 */
-	static void RecurseObject(const int &RR, IGUIObject *pObject, void_Object_pFunction_argRefT pFunc, T &Argument)
+	static void RecurseObject(const int RR, IGUIObject *pObject, void_Object_pFunction_argRefT pFunc, T &Argument)
 	{
 		if (CheckIfRestricted(RR, pObject))
 			return;
@@ -321,7 +321,7 @@ private:
 	 *
 	 * @see RecurseObject()
 	 */
-	static void RecurseObject(const int &RR, IGUIObject *pObject, void_Object_pFunction pFunc)
+	static void RecurseObject(const int RR, IGUIObject *pObject, void_Object_pFunction pFunc)
 	{
 		if (CheckIfRestricted(RR, pObject))
 			return;
@@ -347,7 +347,7 @@ private:
 	 * @param pObject Object
 	 * @return true if restricted
 	 */
-	static bool CheckIfRestricted(const int &RR, IGUIObject *pObject)
+	static bool CheckIfRestricted(const int RR, IGUIObject *pObject)
 	{
 		if (RR & GUIRR_HIDDEN)
 		{
