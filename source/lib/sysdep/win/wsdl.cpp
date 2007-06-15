@@ -25,7 +25,7 @@
 #include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
 #include "lib/module_init.h"
 #include "wutil.h"
-
+#include "winit.h"
 
 // for easy removal of DirectDraw dependency (used to query total video mem)
 #define DDRAW
@@ -41,6 +41,9 @@
 #endif
 
 #endif
+
+WINIT_REGISTER_LATE_INIT(wsdl_Init);
+WINIT_REGISTER_EARLY_SHUTDOWN(wsdl_Shutdown);
 
 
 // in fullscreen mode, i.e. not windowed.
@@ -1295,11 +1298,6 @@ inline void* SDL_GL_GetProcAddress(const char* name)
 //-----------------------------------------------------------------------------
 // init/shutdown
 
-// note: winit no longer supports pre-main init since that requires users
-// to manually call an init function at the start of main() (unreliable).
-// we do all init in SDL_Init, which means that any printfs before then
-// are lost. oh well.
-
 // defend against calling SDL_Quit twice (GameSetup does this to work
 // around ATI driver breakage)
 static ModuleInitState initState;
@@ -1311,10 +1309,37 @@ int SDL_Init(Uint32 UNUSED(flags))
 
 	hInst = GetModuleHandle(0);
 
+	enable_kbd_hook(true);
+
+	return 0;
+}
+
+void SDL_Quit()
+{
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
+	is_quitting = true;
+
+	gamma_swap(GAMMA_RESTORE_ORIGINAL);
+
+	video_shutdown();
+
+	enable_kbd_hook(false);
+}
+
+
+// note: we go to the trouble of hooking stdout via winit because SDL_Init
+// is called fairly late (or even not at all in the case of Atlas) and
+// we would otherwise lose some printfs.
+// this is possible because wstartup calls winit after _cinit.
+
+static LibError wsdl_Init()
+{
 	// redirect stdout to file (otherwise it's simply ignored on Win32).
 	// notes:
 	// - use full path for safety (works even if someone does chdir)
-	// - SDL does this in its WinMain hook; see note above.
+	// - the real SDL does this in its WinMain hook
 	char path[MAX_PATH];
 	snprintf(path, ARRAY_SIZE(path), "%s\\stdout.txt", win_exe_dir);
 	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
@@ -1330,25 +1355,14 @@ int SDL_Init(Uint32 UNUSED(flags))
 	setvbuf(stdout, 0, _IONBF, 0);
 #endif
 
-	enable_kbd_hook(true);
-
-	return 0;
+	return INFO::OK;
 }
 
-void SDL_Quit()
+
+static LibError wsdl_Shutdown()
 {
-	if(!ModuleShouldShutdown(&initState))
-		return;
-
-	is_quitting = true;
-
-	// redirected to stdout.txt in SDL_Init;
-	// close to avoid BoundsChecker warning.
+	// was redirected to stdout.txt; closing avoids a BoundsChecker warning.
 	fclose(stdout);
 
-	gamma_swap(GAMMA_RESTORE_ORIGINAL);
-
-	video_shutdown();
-
-	enable_kbd_hook(false);
+	return INFO::OK;
 }
