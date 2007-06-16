@@ -160,8 +160,16 @@ public:
 			}
 
 			// I think this is what I'm supposed to do... (cheers, Philip)
-			if( !JS_ValueToId( g_ScriptingHost.GetContext(), ToJSVal<CStrW>( *( it->second ) ), idp ) )
+			if( !JS_ValueToId( cx, ToJSVal<CStrW>( *( it->second ) ), idp ) )
 				return( JS_FALSE );
+
+			// EVIL HACK: since https://bugzilla.mozilla.org/show_bug.cgi?id=261887 (which is in
+			// the SpiderMonkey 1.6 release, and not in 1.5), you can't enumerate properties that
+			// don't actually exist on the object. This should probably be fixed by defining a custom
+			// Resolve function to make them look like they exist, but for now we just define the
+			// property on the object here so that it will exist by the time the JS iteration code
+			// does its checks.
+			JS_DefineProperty(cx, obj, CStr(*it->second).c_str(), JSVAL_VOID, NULL, NULL, 0);
 
 			(it->second)++;
 
@@ -604,8 +612,11 @@ JSBool CJSComplex<T, ReadOnly>::JSEnumerate( JSContext* cx, JSObject* obj, JSIte
 		}
 
 		// I think this is what I'm supposed to do... (cheers, Philip)
-		if( !JS_ValueToId( g_ScriptingHost.GetContext(), ToJSVal<CStrW>( *( it->second ) ), idp ) )
+		if( !JS_ValueToId( cx, ToJSVal<CStrW>( *( it->second ) ), idp ) )
 			return( JS_FALSE );
+
+		// EVIL HACK: see the comment in the other JSEnumerate
+		JS_DefineProperty(cx, obj, CStr(*it->second).c_str(), JSVAL_VOID, NULL, NULL, 0);
 
 		(it->second)++;
 

@@ -63,7 +63,7 @@ JSClass GUIClass = {
 //-------------------------------------------------------------------
 InReaction gui_handler(const SDL_Event_* ev)
 {
-	PROFILE(" GUI event handler ");
+	PROFILE( "GUI event handler" );
 	return g_GUI.HandleEvent(ev);
 }
 

@@ -41,6 +41,8 @@ CConsole::CConsole()
 
 	m_iMsgHistPos = 1;
 	m_charsPerPage=0;
+	
+	m_ScriptObject = NULL; // scripting host isn't initialised yet - we'll set this later
 
 	InsertMessage(L"[ 0 A.D. Console v0.12 ]   type \"\\info\" for help");
 	InsertMessage(L"");
@@ -72,6 +74,9 @@ CConsole::~CConsole()
 	m_deqMsgHistory.clear();
 	m_deqBufHistory.clear();
 	delete[] m_szBuffer;
+
+	if (m_ScriptObject)
+		JS_RemoveRoot(g_ScriptingHost.GetContext(), &m_ScriptObject);
 }
 
 
@@ -666,29 +671,28 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 				Iter->second();
 		}
 	}
-	else if (szLine[0] == ':')
+	else if (szLine[0] == ':' || szLine[0] == '?')
 	{
 		// Process it as JavaScript
 
-		// (Cheating) run it as the first selected entity, if there is one.
-		JSObject* RunAs = NULL;
-		if( g_Selection.m_selected.size() )
-			RunAs = g_Selection.m_selected[0]->GetScript();
+		// Run the script inside the first selected entity, if there is one.
+		// (Actually do it by using a separate object with the entity as its parent, so the script
+		// can read the entities variables but will define new variables in a private scope)
+		// (NOTE: this doesn't actually work, because the entities don't really have properties
+		// since they aren't sufficiently like real JS objects, which makes them get ignored in
+		// this situation. But this code is here so that it will work when the entities get fixed.)
+		if (! m_ScriptObject)
+		{
+			m_ScriptObject = JS_NewObject(g_ScriptingHost.GetContext(), NULL, NULL, NULL);
+			JS_AddRoot(g_ScriptingHost.GetContext(), &m_ScriptObject); // gets unrooted in ~CConsole
+		}
+		if (! g_Selection.m_selected.empty())
+		{
+			JS_SetParent(g_ScriptingHost.GetContext(), m_ScriptObject, g_Selection.m_selected[0]->GetScript());
+		}
 
-		g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ), L"Console", RunAs );
-
-	}
-	else if (szLine[0] == '?')
-	{
-		// Process it as JavaScript and display the result
-
-		// (Cheating) run it as the first selected entity, if there is one.
-		JSObject* RunAs = NULL;
-		if( g_Selection.m_selected.size() )
-			RunAs = g_Selection.m_selected[0]->GetScript();
-
-		jsval rval = g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ), L"Console", RunAs );
-		if (rval)
+		jsval rval = g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ), L"Console", m_ScriptObject );
+		if (szLine[0] == '?' && rval)
 		{
 			try {
 				InsertMessage( L"%ls", g_ScriptingHost.ValueToUCString( rval ).c_str() );
@@ -696,9 +700,13 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 				InsertMessage( L"%hs", "<error converting return value to string>" );
 			}
 		}
+		
+		JS_SetParent(g_ScriptingHost.GetContext(), m_ScriptObject, NULL); // so the previous one can get garbage-collected
 	}
 	else
+	{
 		SendChatMessage(szLine);
+	}
 }
 
 void CConsole::LoadHistory()
