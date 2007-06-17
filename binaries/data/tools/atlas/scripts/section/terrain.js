@@ -103,7 +103,6 @@ TerrainPreviewPage.prototype = {
 			Atlas.SetSelectedTexture(names[evt.index]);
 		};
 		
-		list.setImageList(imglist, wxListCtrl.NORMAL);
 		list.setImageList(imglist, wxListCtrl.SMALL);
 		
 		this.panel.layout();
