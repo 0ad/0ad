@@ -66,7 +66,7 @@ TerrainPreviewPage.prototype = {
 			return;
 		
 		this.panel.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
-		var list = new wxListCtrl(this.panel, -1, wxDefaultPosition, wxDefaultSize, wxListCtrl.ICON | wxListCtrl.SINGLE_SEL);
+		var list = new wxListCtrl(this.panel, -1, wxDefaultPosition, wxDefaultSize, wxListCtrl.ICON | wxListCtrl.SINGLE_SEL | wxListCtrl.LIST);
 		this.panel.sizer.add(list, 1, wxStretch.EXPAND);
 		
 		var w = 80, h = 40;
@@ -79,7 +79,7 @@ TerrainPreviewPage.prototype = {
 		for each (var p in previews)
 		{
 			imglist.add(p.imagedata);
-			list.insertItem(i, '', i);
+			list.insertItem(i, p.name, i);
 			names.push(p.name);
 			++i;
 		}
@@ -92,12 +92,19 @@ TerrainPreviewPage.prototype = {
 				if (list.toolTip !== tip)
 					list.toolTip = tip;
 			}
+			else
+			{
+				tip = "";
+				if (list.toolTip !== tip)
+					list.toolTip = tip;
+			}
 		};
 		list.onItemSelected = function(evt) {
 			Atlas.SetSelectedTexture(names[evt.index]);
 		};
 		
 		list.setImageList(imglist, wxListCtrl.NORMAL);
+		list.setImageList(imglist, wxListCtrl.SMALL);
 		
 		this.panel.layout();
 		
