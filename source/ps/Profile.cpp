@@ -374,7 +374,7 @@ void CProfileNode::Frame()
 
 // TODO: these should probably only count allocations that occur in the thread being profiled
 #if HAVE_VC_DEBUG_ALLOC
-static long memory_alloc_bias = 0; // so we can subtract the allocations caused by this function
+static intptr_t memory_alloc_bias = 0; // so we can subtract the allocations caused by this function
 static long get_memory_alloc_count()
 {
 	// TODO: it's probably better to use _CrtSetAllocHook to increment a

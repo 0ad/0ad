@@ -6,15 +6,20 @@ extern "C" {	// must come before ntddk.h
 #define WIN32_NAME L"\\DosDevices\\Aken"
 #define DEVICE_NAME L"\\Device\\Aken"
 
-// note: this driver isn't much larger than a page anyway, so
-// there's little point in using #pragma alloc_text.
+// this driver isn't large, but it's still slightly nicer to make its
+// functions pageable and thus not waste precious non-paged pool.
+// #pragma code_seg is more convenient than specifying alloc_text for
+// every other function.
+NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING registryPath);
+#pragma alloc_text(INIT, DriverEntry)	// => discardable
+#pragma code_seg(push, "PAGE")
+
 
 //-----------------------------------------------------------------------------
 // memory mapping
 //-----------------------------------------------------------------------------
 
 /*
-
 there are three approaches to mapping physical memory:
 (http://www.microsoft.com/whdc/driver/kernel/mem-mgmt.mspx)
 
@@ -43,11 +48,9 @@ means of accessing the page frame database (to check if mapped anywhere
 and determine the previously set attributes) has not borne fruit, so we
 must use ZwMapViewOfSection.
 
-note that we do try to guess if the page will have been mapped as cacheable
-and even try the opposite if we turn out to be incorrect.
-
+note that we guess if the page will have been mapped as cacheable and
+even try the opposite if that turns out to have been incorrect.
 */
-
 
 static bool IsMemoryUncacheable(DWORD64 physicalAddress64)
 {
@@ -335,7 +338,9 @@ static VOID AkenUnload(IN PDRIVER_OBJECT driverObject)
 }
 
 
-NTSTATUS DriverEntry(IN OUT PDRIVER_OBJECT driverObject, IN PUNICODE_STRING registryPath)
+#pragma code_seg(pop)	// make sure we don't countermand the alloc_text
+
+NTSTATUS DriverEntry(IN PDRIVER_OBJECT driverObject, IN PUNICODE_STRING registryPath)
 {
 	UNICODE_STRING deviceName = RTL_CONSTANT_STRING(DEVICE_NAME);
 
