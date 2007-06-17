@@ -19,4 +19,19 @@
 
 	<Actor>structures/hellenes/fortress.xml</Actor>
 
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Super_Cavalry_M />
+					<Super_Infantry_M />
+					<Super_Cavalry_P/>
+					<Super_Infantry_P/>
+				</Train>
+				<Research>
+				</Research>
+			</List>
+		</Create>
+	</Actions>
+
 </Entity>
