@@ -22,15 +22,15 @@ WINIT_REGISTER_CRITICAL_INIT(wposix_Init);	// wposix -> error handling
 
 // used by _SC_PAGESIZE and _SC_*_PAGES
 static DWORD pageSize;
+static DWORD numProcessors;
 static BOOL (WINAPI *pGlobalMemoryStatusEx)(MEMORYSTATUSEX*);  
 
 static void InitSysconf()
 {
-	// get page size
-	// (used by _SC_PAGESIZE and _SC_*_PAGES)
 	SYSTEM_INFO si;
-	GetSystemInfo(&si);		// can't fail => pageSize always > 0.
-	pageSize = si.dwPageSize;
+	GetSystemInfo(&si);	// can't fail
+	pageSize      = si.dwPageSize;	// used by _SC_PAGESIZE and _SC_*_PAGES
+	numProcessors = si.dwNumberOfProcessors;
 
 	// import GlobalMemoryStatusEx - it's not defined by the VC6 PSDK.
 	// used by _SC_*_PAGES if available (provides better results).
@@ -95,6 +95,9 @@ long sysconf(int name)
  		else
 			return (long)(avail_phys_mem / pageSize);
 		}
+
+	case _SC_NPROCESSORS_CONF:
+		return numProcessors;
 
 	default:
 		return -1;

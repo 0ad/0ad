@@ -46,7 +46,8 @@ already mapped a page with different attributes (e.g. cacheable), TLBs
 may end up corrupted, leading to disaster. the search for a documented
 means of accessing the page frame database (to check if mapped anywhere
 and determine the previously set attributes) has not borne fruit, so we
-must use ZwMapViewOfSection.
+must use ZwMapViewOfSection. (if taking this up again, see
+http://www.woodmann.com/forum/archive/index.php/t-6516.html )
 
 note that we guess if the page will have been mapped as cacheable and
 even try the opposite if that turns out to have been incorrect.

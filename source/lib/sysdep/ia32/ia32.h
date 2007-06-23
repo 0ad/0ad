@@ -118,7 +118,13 @@ extern uint ia32_LogicalPerCore();
 // stateless
 
 /**
- * @return APIC ID of the currently executing processor
+ * @return APIC ID of the currently executing processor.
+ *
+ * the implementation uses CPUID.1 and only works on >= 8th generation CPUs;
+ * (P4/Athlon XP); otherwise it returns 0. the alternative of accessing the
+ * APIC mmio registers is not feasible - mahaf_MapPhysicalMemory only works
+ * reliably on WinXP. also, the OS already has the APIC registers mapped and
+ * in constant use, and we don't want to interfere.
  **/
 extern uint ia32_ApicId();
 

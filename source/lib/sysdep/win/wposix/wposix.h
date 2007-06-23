@@ -38,10 +38,11 @@
 extern char* getcwd(char*, size_t);
 
 // user tests if available via #ifdef; can't use enum.
-#define _SC_PAGESIZE      1
-#define _SC_PAGE_SIZE     1
-#define _SC_PHYS_PAGES    2
-#define _SC_AVPHYS_PAGES  3
+#define _SC_PAGESIZE                   1
+#define _SC_PAGE_SIZE                  1
+#define _SC_PHYS_PAGES                 2
+#define _SC_AVPHYS_PAGES               3
+#define _SC_NPROCESSORS_CONF           4
 
 extern long sysconf(int name);
 

@@ -16,7 +16,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "lib/posix/posix_pthread.h"
+#include "lib/posix/posix.h"	// pthread, sysconf
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/module_init.h"
@@ -470,15 +470,18 @@ static void ExtractFieldsIntoSet(const Ids& apicIds, uint& bit_pos, uint num_val
 }
 
 
-// determine how many CoresPerPackage and LogicalPerCore are
-// actually enabled and also count numPackages.
-// (scans the APIC IDs, which requires OS support for thread affinity)
-static void DetectProcessorTopology()
+static bool DetectProcessorTopologyViaApicIds()
 {
+	// old APIC (see ia32_ApicId for details)
+	if(generation < 8)
+		return false;
+
+	// get the set of all APIC IDs
 	Ids apicIds;
+	// .. OS affinity support is missing or excludes us from some processors
 	if(cpu_CallByEachCPU(StoreApicId, &apicIds) != INFO::OK)
-		return;
-	// .. if they're not unique, cpu_CallByEachCPU is broken.
+		return false;
+	// .. if IDs aren't unique, cpu_CallByEachCPU is broken.
 	std::sort(apicIds.begin(), apicIds.end());
 	debug_assert(std::unique(apicIds.begin(), apicIds.end()) == apicIds.end());
 
@@ -492,7 +495,7 @@ static void DetectProcessorTopology()
 	ExtractFieldsIntoSet(apicIds, bit_pos, 0xFF, packageIds);
 
 	// (the set cardinality is representative of all packages/cores since
-	// they are uniform.)
+	// their numbers are uniform across the system.)
 	numPackages            = std::max((uint)packageIds.size(), 1u);
 	enabledCoresPerPackage = std::max((uint)coreIds   .size(), 1u);
 	enabledLogicalPerCore  = std::max((uint)logicalIds.size(), 1u);
@@ -500,6 +503,46 @@ static void DetectProcessorTopology()
 	// note: even though APIC IDs are assigned sequentially, we can't make any
 	// assumptions about the values/ordering because we get them according to
 	// the CPU affinity mask, which is unknown.
+
+	return true;
+}
+
+
+static void GuessProcessorTopologyViaOsCount()
+{
+	// get the number of what the OS deems "processors"
+	const long numProcessors = sysconf(_SC_NPROCESSORS_CONF);
+
+	// note: we cannot hope to always return correct results since disabled
+	// cores/logical units cannot be distinguished from the situation of the
+	// OS simply not reporting them as "processors". unfortunately this
+	// function won't always only be called for older (#core = #logical = 1)
+	// systems because DetectProcessorTopologyViaApicIds may fail due to
+	// lack of OS support. what we'll do is assume nothing is disabled; this
+	// is reasonable because we care most about #packages. it's fine to assume
+	// more cores (without inflating the total #processors) because that
+	// count only indicates memory barriers etc. ought to be used.
+	enabledCoresPerPackage = coresPerPackage;
+	enabledLogicalPerCore = logicalPerCore;
+
+	const long numPackagesTimesLogical = numProcessors / coresPerPackage;
+	debug_assert(numPackagesTimesLogical != 0);	// otherwise processors didn't include cores, which would be stupid
+
+	numPackages = numPackagesTimesLogical / logicalPerCore;
+	if(!numPackages)	// processors didn't include logical units (reasonable)
+		numPackages = numPackagesTimesLogical;
+}
+
+
+// determine how many CoresPerPackage and LogicalPerCore are
+// actually enabled and also count numPackages.
+static void DetectProcessorTopology()
+{
+	// authoritative, but requires newer CPU, and OS support.
+	if(DetectProcessorTopologyViaApicIds())
+		return;	// success, we're done.
+
+	GuessProcessorTopologyViaOsCount();
 }
 
 
