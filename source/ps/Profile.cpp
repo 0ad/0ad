@@ -12,7 +12,7 @@
 #include "ProfileViewer.h"
 #include "lib/timer.h"
 
-#if GCC_VERSION && !defined(NDEBUG)
+#if defined(__GLIBC__) && !defined(NDEBUG)
 # define GLIBC_MALLOC_HOOK
 # include <malloc.h>
 # include "ThreadUtil.h"
