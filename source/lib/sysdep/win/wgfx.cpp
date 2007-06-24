@@ -13,6 +13,7 @@
 
 #include "wdll_ver.h"
 #include "win.h"
+#include "wmi.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "advapi32.lib")	// registry
@@ -63,57 +64,12 @@ LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 
 //-----------------------------------------------------------------------------
 
-// EnumDisplayDevices is not available on Win95 or NT.
-// try to import it manually here; return -1 if not available.
-static BOOL (WINAPI *pEnumDisplayDevicesA)(LPCSTR, DWORD, LPDISPLAY_DEVICEA, DWORD);
-static LibError import_EnumDisplayDevices()
-{
-	if(!pEnumDisplayDevicesA)
-	{
-		static HMODULE hUser32Dll = LoadLibrary("user32.dll");
-		*(void**)&pEnumDisplayDevicesA = GetProcAddress(hUser32Dll, "EnumDisplayDevicesA");
-
-		// do not free the DLL reference! if this happens to be the first
-		// use of user32 (possible if it's delay-loaded or otherwise unused),
-		// it would actually be unloaded. that apparently breaks the
-		// Windows cursor.
-		// unfortunately there's no way to get at the reference count,
-		// so this resource leak is unavoidable.
-	}
-
-	return pEnumDisplayDevicesA? INFO::OK : ERR::FAIL;
-}
-
-
 static LibError win_get_gfx_card()
 {
-	// make sure EnumDisplayDevices is available (as pEnumDisplayDevicesA)
-	if(import_EnumDisplayDevices() >= 0)
-	{
-		// loop through all display adapters and put the primary device's
-		// identifier in gfx_card.
-		// (we don't bother returning a list of all of them because it's
-		// likely to be redundant, e.g. "Radeon" and "Radeon Secondary";
-		// we're only interested in the 'main' card anyway)
-		DISPLAY_DEVICEA dd = { sizeof(DISPLAY_DEVICEA) };
-		for(DWORD dev_num = 0; ; dev_num++)
-		{
-			if(!pEnumDisplayDevicesA(0, dev_num, &dd, 0))
-				break;
-
-			// ignore mirror pseudo-devices (installed e.g. by NetMeeting)
-			if(dd.StateFlags & DISPLAY_DEVICE_MIRRORING_DRIVER)
-				continue;
-
-			if(dd.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE)
-			{
-				strcpy_s(gfx_card, ARRAY_SIZE(gfx_card), (const char*)dd.DeviceString);
-				return INFO::OK;
-			}
-		}
-	}
-
-	WARN_RETURN(ERR::FAIL);
+	WmiMap wmiMap;
+	RETURN_ERR(wmi_GetClass("Win32_VideoController", wmiMap));
+	sprintf_s(gfx_card, GFX_CARD_LEN, "%ls", wmiMap[L"Caption"].bstrVal);
+	return INFO::OK;
 }
 
 

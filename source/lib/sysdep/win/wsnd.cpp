@@ -21,6 +21,7 @@
 #include "wdll_ver.h"
 #include "win.h"
 #include "wutil.h"
+#include "wmi.h"
 
 
 // indicate if this directory entry is an OpenAL DLL.
@@ -93,7 +94,7 @@ static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
 // retrieved as well. the only way I know of is to enumerate all DS devices.
 //
 // unfortunately this fails with Vista's DS emulation - it returns some
-// GUID crap as the module name. to avoid crashing when attempting to get
+// GUID crap as the module name. to avoidc crashing when attempting to get
 // the version info for that bogus driver path, we'll skip this code there.
 // (delay-loading dsound.dll eliminates any overhead)
 
@@ -138,6 +139,10 @@ static const char* GetDirectSoundDriverPath()
 
 LibError win_get_snd_info()
 {
+	WmiMap wmiMap;
+	if(wmi_GetClass("Win32_SoundDevice", wmiMap) == INFO::OK)
+		sprintf_s(snd_card, SND_CARD_LEN, "%ls", wmiMap[L"ProductName"].bstrVal);
+
 	// find all DLLs related to OpenAL, retrieve their versions,
 	// and store in snd_drv_ver string.
 	wdll_ver_list_init(snd_drv_ver, SND_DRV_VER_LEN);

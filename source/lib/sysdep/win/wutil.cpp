@@ -22,6 +22,7 @@
 WINIT_REGISTER_EARLY_INIT(wutil_Init);
 WINIT_REGISTER_LATE_SHUTDOWN(wutil_Shutdown);
 
+
 //-----------------------------------------------------------------------------
 // safe allocator
 
@@ -252,6 +253,26 @@ static void DetectWindowsVersion()
 	else
 		debug_assert(0);
 }
+
+
+const char* wutil_WindowsFamily()
+{
+	debug_assert(windowsVersion != 0);
+	switch(windowsVersion)
+	{
+	case WUTIL_VERSION_2K:
+		return "Win2k";
+	case WUTIL_VERSION_XP:
+		return "WinXP";
+	case WUTIL_VERSION_XP64:
+		return "WinXP64";
+	case WUTIL_VERSION_VISTA:
+		return "Vista";
+	default:
+		return "Windows";
+	}
+}
+
 
 const char* wutil_WindowsVersionString()
 {

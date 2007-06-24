@@ -112,6 +112,7 @@ void WriteSystemInfo()
 	fprintf(f, "Network Name   : %s", hostname);
 
 	{
+		// ignore exception here - see https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=114032
 		hostent* host = gethostbyname(hostname);
 		if(!host)
 			goto no_ip;
