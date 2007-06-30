@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Bush Temperate Large A1">
+      <mesh>gaia/bush_tempe_la_a_1.pmd</mesh>
+      <texture>gaia/bush_tempe_la_a.dds</texture>
+    </variant>
+    <variant frequency="100" name="Bush Temperate Large A2">
+      <mesh>gaia/bush_tempe_la_a_2.pmd</mesh>
+      <texture>gaia/bush_tempe_la_a.dds</texture>
+    </variant>
+    <variant frequency="100" name="Bush Temperate Large A3">
+      <mesh>gaia/bush_tempe_la_a_3.pmd</mesh>
+      <texture>gaia/bush_tempe_la_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+</actor>
