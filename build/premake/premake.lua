@@ -444,7 +444,8 @@ used_extern_libs = {
 	"boost",
 	"dbghelp",
 	"cxxtest",
-	"directx"
+	"directx",
+	"comsuppw"
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.
@@ -660,7 +661,8 @@ function setup_atlas_packages()
 		"ffmpeg",
 		"spidermonkey",
 		"wxwidgets",
-		"xerces"
+		"xerces",
+		"comsuppw"
 	},{	-- extra_params
 		pch = (not has_broken_pch),
 		extra_links = { "AtlasObject", "AtlasScript", "wxJS", "DatafileIO" },

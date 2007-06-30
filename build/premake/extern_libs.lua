@@ -64,6 +64,11 @@ extern_lib_defs = {
 	},
 	misc = {
 	},
+	comsuppw = {
+		win_names  = { "comsuppw" },
+		dbg_suffix = "d",
+		no_delayload = 1
+	},
 	dbghelp = {
 		win_names  = { "dbghelp" },
 		dbg_suffix = "",
