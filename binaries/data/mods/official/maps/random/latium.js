@@ -140,7 +140,7 @@ function distanceToPlayers(x, y) {
 	for(var i=1; i<=NUM_PLAYERS; i++) {
 		var dx = x-playerX[i];
 		var dy = y-playerY[i];
-		r = Math.min(r, dx*dx + dy*dy);
+		r = min(r, dx*dx + dy*dy);
 	}
 	return Math.sqrt(r);
 }
@@ -150,6 +150,14 @@ function playerNearness(x, y) {
 	if(d < 13) return 0;
 	else if(d < 19) return (d-13)/(19-13);
 	else return 1;
+}
+
+function max(x, y) {
+	return x > y ? x : y;
+}
+
+function min(x, y) {
+	return x < y ? x : y;
 }
 
 // Paint elevation
@@ -176,16 +184,19 @@ for(ix=0; ix<=SIZE; ix++) {
 		h = 0;
 		distToWater = 0;
 		
+		h = 32 * (x-.5);
+		
+		
 		// add the rough shape of the water
 		if(x < WATER_WIDTH) {
-			h = Math.max(-16, -32*(WATER_WIDTH-x)/WATER_WIDTH);
+			h = max(-16.0, -28.0*(WATER_WIDTH-x)/WATER_WIDTH);
 		}
-		else if(x > 1-WATER_WIDTH) {
-			h = Math.max(-16, -32*(x-(1-WATER_WIDTH))/WATER_WIDTH);
+		else if(x > 1.0-WATER_WIDTH) {
+			h = max(-16.0, -28.0*(x-(1.0-WATER_WIDTH))/WATER_WIDTH);
 		}
 		else {
 			distToWater = (0.5 - WATER_WIDTH - Math.abs(x-0.5));
-			u = 1 - Math.abs(x-0.5)/(0.5-WATER_WIDTH);
+			u = 1 - Math.abs(x-0.5) / (0.5-WATER_WIDTH);
 			h = 12*u;
 		}
 		
@@ -193,7 +204,7 @@ for(ix=0; ix<=SIZE; ix++) {
 		baseNoise = 16*noise0.eval(x,y) + 8*noise1.eval(x,y) + 4*noise2.eval(x,y) - (16+8+4)/2;
 		if( baseNoise < 0 ) {
 			baseNoise *= pn;
-			baseNoise *= Math.max(0, 1 - 9*distToWater/(0.5-WATER_WIDTH));
+			baseNoise *= max(0.1, distToWater / (0.5-WATER_WIDTH));
 		}
 		oldH = h;
 		h += baseNoise;
@@ -201,7 +212,7 @@ for(ix=0; ix<=SIZE; ix++) {
 		// add some higher-frequency noise on land
 		if( oldH > 0 )
 		{
-			h += (1.5*noise2a.eval(x,y) + 0.7*noise2b.eval(x,y)) * Math.min(oldH/10.0, 1.0);
+			h += (0.4*noise2a.eval(x,y) + 0.2*noise2b.eval(x,y)) * min(oldH/10.0, 1.0);
 		}
 		
 		// create cliff noise
@@ -221,7 +232,7 @@ for(ix=0; ix<=SIZE; ix++) {
 			cliffNoise -= 0.59;
 			cliffNoise *= pn;
 			if(cliffNoise > 0) {
-				h += 19 * Math.min(cliffNoise, 0.045) / 0.045;
+				h += 19 * min(cliffNoise, 0.045) / 0.045;
 			}
 		}
 		
@@ -255,15 +266,15 @@ for(ix=0; ix<SIZE; ix++) {
 		h11 = getHeight(ix+1, iy+1);
 		
 		// find min and max height
-		maxH = Math.max(h00, h01, h10, h11);
-		minH = Math.min(h00, h01, h10, h11);
+		maxH = max(h00, h01, h10, h11);
+		minH = min(h00, h01, h10, h11);
 		
 		// figure out if we're at the top of a cliff using min adjacent height
 		minAdjHeight = minH;
 		if(maxH > 15) {
-			for(nx=Math.max(ix-1, 0); nx<=Math.min(ix+2, SIZE); nx++) {
-				for(ny=Math.max(iy-1, 0); ny<=Math.min(iy+2, SIZE); ny++) {
-					minAdjHeight = Math.min(minAdjHeight, getHeight(nx, ny));
+			for(nx=max(ix-1, 0); nx<=min(ix+2, SIZE); nx++) {
+				for(ny=max(iy-1, 0); ny<=min(iy+2, SIZE); ny++) {
+					minAdjHeight = min(minAdjHeight, getHeight(nx, ny));
 				}
 			}
 		}
