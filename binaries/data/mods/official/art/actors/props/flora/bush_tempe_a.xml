@@ -4,19 +4,26 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Bush Temperate Large A1">
+    <variant frequency="1" name="Bush Temperate Large A1">
       <mesh>gaia/bush_tempe_la_a_1.pmd</mesh>
-      <texture>gaia/bush_tempe_la_a.dds</texture>
     </variant>
-    <variant frequency="100" name="Bush Temperate Large A2">
+    <variant frequency="1" name="Bush Temperate Large A2">
       <mesh>gaia/bush_tempe_la_a_2.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large A3">
+      <mesh>gaia/bush_tempe_la_a_3.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Leaf-Color-Light">
       <texture>gaia/bush_tempe_la_a.dds</texture>
     </variant>
-    <variant frequency="100" name="Bush Temperate Large A3">
-      <mesh>gaia/bush_tempe_la_a_3.pmd</mesh>
-      <texture>gaia/bush_tempe_la_a.dds</texture>
+    <variant frequency="2" name="Leaf-Color-Dark">
+      <texture>gaia/bush_tempe_la_a2.dds</texture>
     </variant>
   </group>
 
   <material>basic_trans.xml</material>
+
 </actor>
