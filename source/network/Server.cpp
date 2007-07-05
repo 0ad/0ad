@@ -67,8 +67,8 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 	m_pGame->GetSimulation()->SetTurnManager(this);
 
 	// Set an incredibly long turn length for debugging - less command batch spam that way
-	for (int i=0;i<3;i++)
-		CTurnManager::SetTurnLength(i, 1000);
+	for (int i=0; i<3; i++)
+		CTurnManager::SetTurnLength(i, 150);
 
 	g_ScriptingHost.SetGlobal("g_NetServer", OBJECT_TO_JSVAL(GetScript()));
 }

@@ -224,21 +224,21 @@ public:
 private:
 	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building = 0 );
 
-	uint ProcessGotoHelper( CEntityOrder* current, size_t timestep_milli, HEntity& collide );
+	uint ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide, float& timeLeft );
 
 	bool ProcessContactAction( CEntityOrder* current, size_t timestep_millis, CEntityOrder::EOrderType transition, SEntityAction* action );
 	bool ProcessContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
 
-	bool ProcessGeneric( CEntityOrder* current, size_t timestep_milli );
-	bool ProcessGenericNoPathing( CEntityOrder* current, size_t timestep_milli );
+	bool ProcessGeneric( CEntityOrder* current, size_t timestep_millis );
+	bool ProcessGenericNoPathing( CEntityOrder* current, size_t timestep_millis );
 
 	bool ProcessProduce( CEntityOrder* order );
 
-	bool ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_milli );
-	bool ProcessGoto( CEntityOrder* current, size_t timestep_milli );
-	bool ProcessGotoWaypoint( CEntityOrder* current, size_t timestep_milli, bool contact );
+	bool ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_millis );
+	bool ProcessGoto( CEntityOrder* current, size_t timestep_millis );
+	bool ProcessGotoWaypoint( CEntityOrder* current, size_t timestep_millis, bool contact );
 
-	bool ProcessPatrol( CEntityOrder* current, size_t timestep_milli );
+	bool ProcessPatrol( CEntityOrder* current, size_t timestep_millis );
 
 	float ChooseMovementSpeed( float distance );
 	

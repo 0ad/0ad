@@ -38,7 +38,23 @@ void CPathfindEngine::RequestLowLevelPath( HEntity entity, const CVector2D& dest
 
 	if ( mLowPathfinder.FindPath(source, destination, entity, radius) )
 	{
-		std::vector<CVector2D> path = mLowPathfinder.GetLastPath();
+		std::vector<CVector2D> stepwisePath = mLowPathfinder.GetLastPath();
+
+		// Make the path take as few steps as possible by collapsing steps in the same direction together.
+		std::vector<CVector2D> path;
+		CVector2D lastDir(0, 0);
+		for(size_t i=0; i < stepwisePath.size(); i++)
+		{
+			if(i >= 2 && stepwisePath[i]-stepwisePath[i-1] == lastDir)
+				// We're in a colinear range; just update last point
+				path[path.size()-1] = stepwisePath[i];
+			else
+				path.push_back(stepwisePath[i]);
+
+			if(i >= 1)
+				lastDir = stepwisePath[i] - stepwisePath[i-1];
+		}
+
 		if( path.size() > 0 )
 		{
 			// Push the path onto the front of our order queue in reverse order,

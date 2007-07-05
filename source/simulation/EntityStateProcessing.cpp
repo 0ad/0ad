@@ -85,7 +85,7 @@ float CEntity::ChooseMovementSpeed( float distance )
 
 // Does all the shared processing for line-of-sight gotos
 
-uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide )
+uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide, float& timeLeft )
 {
 	float timestep=timestep_millis/1000.0f;
 
@@ -101,7 +101,8 @@ uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	// Curve smoothing.
 	// Here there be trig.
 
-	float scale = ChooseMovementSpeed( len ) * timestep;
+	float speed = ChooseMovementSpeed( len );
+	float scale = speed * timestep;
 
 	// Note: Easy optimization: flag somewhere that this unit
 	// is already pointing the  way, and don't do this
@@ -116,7 +117,7 @@ uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	{
 		if ( m_turningRadius != 0 )
 		{
-			float maxTurningSpeed = ( m_speed / m_turningRadius ) * timestep;
+			float maxTurningSpeed = ( speed / m_turningRadius ) * timestep;
 			deltatheta = clamp( deltatheta, -maxTurningSpeed, maxTurningSpeed );
 		}
 		m_orientation.Y = m_orientation.Y + deltatheta;
@@ -152,13 +153,15 @@ uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 	UpdateXZOrientation();
 
 	if( m_bounds && m_bounds->m_type == CBoundingObject::BOUND_OABB )
-		((CBoundingBox*)m_bounds)->SetOrientation( m_ahead );
+		((CBoundingBox*) m_bounds)->SetOrientation( m_ahead );
 
 	EGotoSituation rc = NORMAL;
 
 	if( scale > len )
 	{
+		// Reached destination. Calculate how much time we have left for the next order.
 		scale = len;
+		timeLeft = timestep - (len / speed);
 		rc = REACHED_DESTINATION;
 	}
 
@@ -218,7 +221,6 @@ uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 
 			// No?
 			return( COLLISION_OTHER );
-
 		}
 	}
 
@@ -258,30 +260,46 @@ uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_millis )
 {
 	HEntity collide;
-	switch( ProcessGotoHelper( current, timestep_millis, collide ) )
+	float timeLeft;
+	switch( ProcessGotoHelper( current, timestep_millis, collide, timeLeft ) )
 	{
-	case ALREADY_AT_DESTINATION:
+	case ALREADY_AT_DESTINATION:	
+	{
 		// If on a collision path; decide where to go next. Otherwise, proceed to the next waypoint.
 		if( current->m_type == CEntityOrder::ORDER_GOTO_COLLISION )
-		{
 			Repath();
-		}
 		else
-		{
 			m_orderQueue.pop_front();
-			//entf_clear(ENTF_IS_RUNNING);
-			//entf_clear(ENTF_SHOULD_RUN);
+		return( false );
+	}
+	case REACHED_DESTINATION:
+	{
+		// Start along the next segment of the path, if one exists
+		m_orderQueue.pop_front();
+		if( !m_orderQueue.empty() )
+		{
+			CEntityOrder* newOrder = &m_orderQueue.front();
+			switch( newOrder->m_type )
+			{
+				case CEntityOrder::ORDER_GOTO_NOPATHING:
+				case CEntityOrder::ORDER_GOTO_COLLISION:
+				case CEntityOrder::ORDER_GOTO_SMOOTHED:
+					size_t newTimestep = cpu_i32FromFloat(timeLeft * 1000.0f);
+					return( ProcessGotoNoPathing( current, newTimestep ) );
+			}
 		}
 		return( false );
+	}
 	case COLLISION_OVERLAPPING_OBJECTS:
+	{
 		return( false );
+	}
 	case COLLISION_WITH_DESTINATION:
+	{
 		// We're as close as we can get...
 		m_orderQueue.pop_front();
-		//entf_clear(ENTF_IS_RUNNING);
-		//entf_clear(ENTF_SHOULD_RUN);
-		
 		return( false );
+	}
 	case COLLISION_NEAR_DESTINATION:
 	{
 		// Here's a weird idea: (I hope it works)
@@ -340,16 +358,14 @@ bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		return( false );
 	}
 	case WOULD_LEAVE_MAP:
+	{
 		// Just stop here, Repath if necessary.
 		m_orderQueue.pop_front();
-		//entf_clear(ENTF_IS_RUNNING);
-		//entf_clear(ENTF_SHOULD_RUN);
 		return( false );
+	}
 	case STANCE_DISALLOWS:
 		return( false );		// The stance will have cleared our order queue already
-
-	default:
-		
+	default:	
 		return( false );
 	}
 }
@@ -511,11 +527,12 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, size_t times
 	
 		current->m_target_location = (CVector2D)target->m_position - delta;
 
-		HEntity collide;	
-		switch( ProcessGotoHelper( current, timestep_millis, collide ) )
+		HEntity collide;
+		float timeLeft;
+		switch( ProcessGotoHelper( current, timestep_millis, collide, timeLeft ) )
 		{
-		case ALREADY_AT_DESTINATION:
 		case REACHED_DESTINATION:
+		case ALREADY_AT_DESTINATION:
 		case COLLISION_WITH_DESTINATION:
 		case WOULD_LEAVE_MAP:
 		case STANCE_DISALLOWS:
@@ -530,8 +547,7 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, size_t times
 			// Otherwise, continue chasing
 			return( false );
 		default:
-			// Path around it.
-			
+			// We have a collision. Path around it.
 			CEntityOrder avoidance;
 			avoidance.m_type = CEntityOrder::ORDER_GOTO_COLLISION;
 			CVector2D right;
