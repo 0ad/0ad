@@ -29,12 +29,12 @@ void *CStreamSocket_ConnectThread(void *data)
 	if (res == PS_OK)
 	{
 		pSock->Initialize();
-		pSock->SetNonBlocking(false);
 		// If we don't do this we'll get spurious callbacks called since our
 		// network thread will notice the socket getting connected (and
 		// potentially receiving data) while we might not yet have called the
 		// ConnectComplete callback
 		pSock->SetOpMask(0);
+		pSock->SetNonBlocking(false);
 		res=pSock->Connect(addr);
 		NET_LOG("CStreamSocket_ConnectThread: Connect: %s", res);
 	}

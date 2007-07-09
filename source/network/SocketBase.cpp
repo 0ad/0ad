@@ -316,10 +316,13 @@ void CSocketBase::Destroy()
 
 void CSocketBase::SetNonBlocking(bool nonblocking)
 {
+	m_NonBlocking=nonblocking;
 #if OS_WIN
 	unsigned long nb=nonblocking;
+	if(!nonblocking)
+		SendWaitLoopUpdate();	// Need to call WSAAsyncSelect with event=0 before ioctlsocket
 	int res=ioctlsocket(m_pInternal->m_fd, FIONBIO, &nb);
-	if (res == -1)
+	if (res != 0)
 		NET_LOG("SetNonBlocking: res %d", res);
 #else
 	int oldflags=fcntl(m_pInternal->m_fd, F_GETFL, 0);
@@ -332,7 +335,6 @@ void CSocketBase::SetNonBlocking(bool nonblocking)
 		fcntl(m_pInternal->m_fd, F_SETFL, oldflags);
 	}
 #endif
-	m_NonBlocking=nonblocking;
 }
 
 void CSocketBase::SetTcpNoDelay(bool tcpNoDelay)
@@ -436,13 +438,17 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 
 PS_RESULT CSocketBase::Connect(const CSocketAddress &addr)
 {
-	int res=connect(m_pInternal->m_fd, (struct sockaddr *)&addr, sizeof(addr));
+	int res = connect(m_pInternal->m_fd, (struct sockaddr *)(&addr.m_Union), sizeof(addr));
+	NET_LOG("connect returned %d [%d]", res, m_NonBlocking);
 
 	if (res != 0)
 	{
 		int error=Network_LastError;
+		NET_LOG("last error was %d", error);
 		if (m_NonBlocking && error == EWOULDBLOCK)
+		{
 			m_State=SS_CONNECT_STARTED;
+		}
 		else
 		{
 			m_State=SS_UNCONNECTED;
@@ -940,6 +946,13 @@ void CSocketBase::SendWaitLoopUpdate()
 	GLOBAL_LOCK();
 	if (g_SocketSetInternal.m_hWnd)
 	{
+		if(m_NonBlocking == false)
+		{
+			GLOBAL_UNLOCK();
+			WSAAsyncSelect(m_pInternal->m_fd, g_SocketSetInternal.m_hWnd, MSG_SOCKET_READY, 0);
+			return;
+		}
+
 		long wsaOps=FD_CLOSE;
 		if (m_pInternal->m_Ops & READ)
 			wsaOps |= FD_READ|FD_ACCEPT;
