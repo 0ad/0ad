@@ -573,8 +573,14 @@
 						// Get a list of map names.
 						mapArray = buildDirEntList (mapPath, "*.pmp", false);
 
-						// Alphabetically sort the list.
-						mapArray.sort();
+						// Alphabetically sort the list, ignoring case.
+						mapArray.sort(function (x, y) {
+							var lowerX = x.toLowerCase();
+							var lowerY = y.toLowerCase();
+							if(lowerX < lowerY) return -1;
+							else if(lowerX > lowerY) return 1;
+							else return 0;
+						});
 						
 						for (mapIndex = 0; mapIndex < mapArray.length; mapIndex++)
 						{
