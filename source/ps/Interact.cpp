@@ -567,6 +567,9 @@ void CSelectedEntities::Update()
 			}
 		}
 
+		// Don't count GOTO as a majority action unless everything else has 0 votes.
+		defaultPoll[NMT_Goto - NMT_COMMAND_FIRST] = 0;
+
 		vote = -1;
 		secvote = -1;
 		for( t = 0; t < numCommands; t++ )
