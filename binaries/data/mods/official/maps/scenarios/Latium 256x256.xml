@@ -2,12 +2,12 @@
 
 <Scenario>
 	<Environment>
-		<SkySet>twilight</SkySet>
-		<SunColour r="1.16992" g="0.587255" b="0"/>
-		<SunElevation angle="0.138058"/>
-		<SunRotation angle="0.0375763"/>
-		<TerrainAmbientColour r="0.419608" g="0.447059" b="0.537255"/>
-		<UnitsAmbientColour r="0.372549" g="0.384314" b="0.427451"/>
+		<SkySet>cirrus</SkySet>
+		<SunColour r="1.54297" g="1.54297" b="1.54297"/>
+		<SunElevation angle="0.83705"/>
+		<SunRotation angle="-0.706614"/>
+		<TerrainAmbientColour r="0.529412" g="0.541176" b="0.592157"/>
+		<UnitsAmbientColour r="0.529412" g="0.541176" b="0.592157"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -15,17 +15,17 @@
 				<Height>11.865</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.419922</Murkiness>
-				<Tint r="0" g="0.25098" b="0.501961"/>
-				<ReflectionTint r="0" g="0.25098" b="0.501961"/>
-				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
+				<Murkiness>0.55957</Murkiness>
+				<Tint r="0" g="0.247059" b="0.501961"/>
+				<ReflectionTint r="0" g="1" b="1"/>
+				<ReflectionTintStrength>0.152344</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="158.554" y="189.553" z="573.582"/>
-		<Rotation angle="0.0916301"/>
-		<Declination angle="0.558885"/>
+		<Position x="180.14" y="139.127" z="779.416"/>
+		<Rotation angle="0.0156807"/>
+		<Declination angle="0.693527"/>
 	</Camera>
 	<Entities>
 		<Entity uid="0">
@@ -187,20 +187,20 @@
 		<Entity uid="26">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="208.014" y="24.5075" z="812.141"/>
-			<Orientation angle="2.35619"/>
+			<Position x="206.491" y="23.6844" z="809.549"/>
+			<Orientation angle="-0.621212"/>
 		</Entity>
 		<Entity uid="27">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="212.304" y="24.6164" z="812.268"/>
-			<Orientation angle="-0.0514331"/>
+			<Position x="213.585" y="25.4435" z="815.275"/>
+			<Orientation angle="0.462958"/>
 		</Entity>
 		<Entity uid="28">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
 			<Position x="214.662" y="23.0806" z="806.877"/>
-			<Orientation angle="-2.00788"/>
+			<Orientation angle="-1.55138"/>
 		</Entity>
 		<Entity uid="29">
 			<Template>geology_stone_greek</Template>
@@ -10483,8 +10483,8 @@
 		<Entity uid="1790">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="162.568" y="29.1" z="911.459"/>
-			<Orientation angle="-1.14728"/>
+			<Position x="163.775" y="28.8481" z="912.273"/>
+			<Orientation angle="1.69235"/>
 		</Entity>
 		<Entity uid="1791">
 			<Template>flora_bush_berry</Template>
@@ -11005,14 +11005,14 @@
 		<Entity uid="1877">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="730.331" y="18.5414" z="802.98"/>
-			<Orientation angle="-2.76069"/>
+			<Position x="729.142" y="17.9926" z="811.693"/>
+			<Orientation angle="2.81504"/>
 		</Entity>
 		<Entity uid="1878">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="732.23" y="19.7032" z="793.914"/>
-			<Orientation angle="0.657711"/>
+			<Position x="732.203" y="19.7103" z="793.765"/>
+			<Orientation angle="-1.89442"/>
 		</Entity>
 		<Entity uid="1879">
 			<Template>geology_stone_greek</Template>
@@ -13850,13 +13850,13 @@
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
 			<Position x="221.686" y="28.7984" z="919.863"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="-1.35502"/>
 		</Entity>
 		<Entity uid="2388">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
 			<Position x="215.283" y="28.7984" z="914.61"/>
-			<Orientation angle="-1.04954"/>
+			<Orientation angle="-0.368362"/>
 		</Entity>
 		<Entity uid="2389">
 			<Template>hele_temple</Template>
@@ -13921,8 +13921,8 @@
 		<Entity uid="2399">
 			<Template>geology_metal_greek</Template>
 			<Player>0</Player>
-			<Position x="171.821" y="28.7984" z="891.453"/>
-			<Orientation angle="1.40915"/>
+			<Position x="171.547" y="28.7984" z="893.625"/>
+			<Orientation angle="-1.74826"/>
 		</Entity>
 		<Entity uid="2400">
 			<Template>special_settlement</Template>
@@ -19072,8 +19072,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small.xml</Actor>
-			<Position x="162.633" y="29.0634" z="910.058"/>
-			<Orientation angle="-2.06275"/>
+			<Position x="161.613" y="29.261" z="909.515"/>
+			<Orientation angle="-2.87326"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small.xml</Actor>
@@ -19097,7 +19097,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small.xml</Actor>
-			<Position x="162.643" y="29.0981" z="913.351"/>
+			<Position x="164.406" y="28.7984" z="918.546"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -19408,7 +19408,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small.xml</Actor>
 			<Position x="213.892" y="25.9616" z="817.112"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="-2.72854"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small.xml</Actor>
@@ -19608,7 +19608,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_medit_flowering_tall.xml</Actor>
 			<Position x="223.069" y="28.7984" z="919.382"/>
-			<Orientation angle="-2.59428"/>
+			<Orientation angle="-1.78405"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_flowering_tall.xml</Actor>
@@ -19912,7 +19912,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_sm.xml</Actor>
-			<Position x="172.027" y="28.7984" z="892.074"/>
+			<Position x="171.172" y="28.7984" z="891.635"/>
 			<Orientation angle="-2.42868"/>
 		</Nonentity>
 		<Nonentity>
@@ -20057,7 +20057,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
-			<Position x="206.471" y="24.6411" z="812.818"/>
+			<Position x="207.552" y="23.6234" z="809.122"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -20097,33 +20097,33 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="320.844" y="11.655" z="905.059"/>
+			<Position x="321.058" y="11.865" z="904.96"/>
 			<Orientation angle="-2.69331"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="324.552" y="11.76" z="912.707"/>
+			<Position x="326.198" y="11.865" z="915.071"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="314.293" y="11.76" z="902.377"/>
-			<Orientation angle="-0.952795"/>
+			<Position x="316.963" y="11.865" z="900.434"/>
+			<Orientation angle="-0.257028"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="305.529" y="11.76" z="891.2"/>
-			<Orientation angle="-0.0967037"/>
+			<Position x="300.971" y="11.865" z="886.339"/>
+			<Orientation angle="-0.60871"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="304.092" y="11.76" z="897.41"/>
-			<Orientation angle="0.818451"/>
+			<Position x="304.802" y="11.865" z="894.403"/>
+			<Orientation angle="-0.13679"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="314.809" y="11.655" z="904.482"/>
-			<Orientation angle="0.60289"/>
+			<Position x="313.088" y="11.865" z="903.119"/>
+			<Orientation angle="0.23819"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
@@ -20137,17 +20137,17 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="324.627" y="11.76" z="913.444"/>
+			<Position x="323.842" y="11.865" z="913.85"/>
 			<Orientation angle="1.27066"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="327.393" y="11.445" z="915.273"/>
+			<Position x="327.961" y="11.865" z="915.893"/>
 			<Orientation angle="0.819299"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="330.377" y="11.445" z="914.838"/>
+			<Position x="330.808" y="11.865" z="914.019"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -20157,8 +20157,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="328.168" y="11.655" z="913.727"/>
-			<Orientation angle="-1.70267"/>
+			<Position x="325.81" y="11.865" z="909.625"/>
+			<Orientation angle="0.546934"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
@@ -20202,12 +20202,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="303.92" y="11.025" z="892.587"/>
-			<Orientation angle="2.35619"/>
+			<Position x="296.019" y="11.865" z="883.134"/>
+			<Orientation angle="0.323374"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="295.497" y="11.76" z="872.15"/>
+			<Position x="295.128" y="11.865" z="879.522"/>
 			<Orientation angle="-2.28561"/>
 		</Nonentity>
 		<Nonentity>
@@ -20242,12 +20242,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="292.427" y="11.445" z="877.379"/>
-			<Orientation angle="2.35619"/>
+			<Position x="293.506" y="11.865" z="877.221"/>
+			<Orientation angle="-1.70506"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="291.251" y="11.655" z="872.215"/>
+			<Position x="289.279" y="11.865" z="872.193"/>
 			<Orientation angle="-0.0919637"/>
 		</Nonentity>
 		<Nonentity>
@@ -20257,8 +20257,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="302.887" y="11.025" z="891.779"/>
-			<Orientation angle="1.06584"/>
+			<Position x="297.234" y="11.865" z="886.141"/>
+			<Orientation angle="0.10187"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
@@ -20472,12 +20472,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="291.125" y="8.42628" z="870.372"/>
+			<Position x="289.003" y="11.003" z="865.239"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="290.546" y="9.91212" z="868.349"/>
+			<Position x="286.961" y="12.3376" z="865.799"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -20532,7 +20532,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="301.901" y="10.2309" z="890.391"/>
+			<Position x="303.453" y="11.0521" z="889.845"/>
 			<Orientation angle="0.542128"/>
 		</Nonentity>
 		<Nonentity>
@@ -20547,7 +20547,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="303.254" y="10.1347" z="897.255"/>
+			<Position x="302.965" y="12.9418" z="900.423"/>
 			<Orientation angle="-0.381232"/>
 		</Nonentity>
 		<Nonentity>
@@ -20622,7 +20622,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="345.248" y="10.1569" z="898.302"/>
+			<Position x="345.483" y="10.8788" z="894.542"/>
 			<Orientation angle="0.929844"/>
 		</Nonentity>
 		<Nonentity>
@@ -20637,7 +20637,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="319.022" y="10.1589" z="907.875"/>
+			<Position x="318.26" y="10.3151" z="906.655"/>
 			<Orientation angle="-0.144028"/>
 		</Nonentity>
 		<Nonentity>
@@ -20657,8 +20657,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="328.434" y="10.1485" z="916.921"/>
-			<Orientation angle="2.38173"/>
+			<Position x="328.604" y="10.8688" z="917.106"/>
+			<Orientation angle="-3.03241"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
@@ -20682,7 +20682,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="321.215" y="10.0701" z="911.294"/>
+			<Position x="321.482" y="10.3323" z="910.734"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -20692,17 +20692,17 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="320.69" y="9.49609" z="909.852"/>
+			<Position x="320.702" y="10.2535" z="909.657"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="323.368" y="9.96894" z="907.694"/>
+			<Position x="323.839" y="10.0442" z="907.026"/>
 			<Orientation angle="0.462523"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="324.584" y="9.50553" z="911.628"/>
+			<Position x="325.035" y="10.1106" z="912.987"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -20712,12 +20712,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="320.708" y="9.09811" z="909.157"/>
+			<Position x="320.369" y="10.3486" z="909.673"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="320.503" y="10.044" z="907.403"/>
+			<Position x="321.101" y="9.99214" z="908.933"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -20727,7 +20727,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="317.246" y="10.0347" z="905.449"/>
+			<Position x="315.831" y="10.7612" z="904.528"/>
 			<Orientation angle="-0.382301"/>
 		</Nonentity>
 		<Nonentity>
@@ -20742,8 +20742,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/reeds_pond_lush_b.xml</Actor>
-			<Position x="298.355" y="9.118" z="874.206"/>
-			<Orientation angle="0.0510038"/>
+			<Position x="337.252" y="10.7056" z="865.953"/>
+			<Orientation angle="-1.38289"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
@@ -20952,8 +20952,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
-			<Position x="308.863" y="13.6135" z="906.129"/>
-			<Orientation angle="1.84196"/>
+			<Position x="300.717" y="17.4411" z="904.922"/>
+			<Orientation angle="-0.0371686"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
@@ -21007,7 +21007,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
-			<Position x="289.721" y="10.6613" z="874.654"/>
+			<Position x="291.32" y="10.3978" z="873.64"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -21147,7 +21147,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
-			<Position x="211.004" y="24.3887" z="811.525"/>
+			<Position x="213.111" y="24.1495" z="810.606"/>
 			<Orientation angle="2.84101"/>
 		</Nonentity>
 		<Nonentity>
@@ -21167,7 +21167,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
-			<Position x="204.1" y="24.1667" z="811.448"/>
+			<Position x="210.659" y="24.6839" z="812.606"/>
 			<Orientation angle="0.469341"/>
 		</Nonentity>
 		<Nonentity>

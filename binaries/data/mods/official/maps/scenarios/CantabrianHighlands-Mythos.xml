@@ -2,28 +2,28 @@
 
 <Scenario>
 	<Environment>
-		<SkySet>sunset</SkySet>
-		<SunColour r="1" g="0.901961" b="0.333333"/>
-		<SunElevation angle="0.34668"/>
-		<SunRotation angle="-0.656487"/>
-		<TerrainAmbientColour r="0.52549" g="0.52549" b="0.568627"/>
-		<UnitsAmbientColour r="0.52549" g="0.52549" b="0.568627"/>
+		<SkySet>cirrus</SkySet>
+		<SunColour r="1.91602" g="1.91602" b="1.91602"/>
+		<SunElevation angle="0.697177"/>
+		<SunRotation angle="-0.961338"/>
+		<TerrainAmbientColour r="0.407843" g="0.419608" b="0.466667"/>
+		<UnitsAmbientColour r="0.407843" g="0.419608" b="0.466667"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.556863" g="0.47451" b="0.313726"/>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
 				<Height>16.38</Height>
-				<Shininess>16.8457</Shininess>
+				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.355469</Murkiness>
-				<Tint r="0" g="0.501961" b="0.752941"/>
-				<ReflectionTint r="0" g="0.501961" b="0.752941"/>
-				<ReflectionTintStrength>0.101563</ReflectionTintStrength>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="267.238" y="128.772" z="48.0683"/>
+		<Position x="471.148" y="98.0023" z="207.653"/>
 		<Rotation angle="0.00735653"/>
 		<Declination angle="0.660516"/>
 	</Camera>
@@ -4762,7 +4762,7 @@
 		<Nonentity>
 			<Actor>flora/trees/pine.xml</Actor>
 			<Position x="333.103" y="32.5888" z="143.173"/>
-			<Orientation angle="0.0230831"/>
+			<Orientation angle="0.0230833"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/pine.xml</Actor>
@@ -10272,7 +10272,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_la_lush.xml</Actor>
 			<Position x="571.193" y="45.7918" z="467.007"/>
-			<Orientation angle="0.0569135"/>
+			<Orientation angle="0.0569137"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_la_lush.xml</Actor>
@@ -11762,7 +11762,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_la_lush.xml</Actor>
 			<Position x="330.422" y="28.6235" z="533.883"/>
-			<Orientation angle="-0.0999292"/>
+			<Orientation angle="-0.099929"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_la_lush.xml</Actor>
@@ -14027,7 +14027,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_me_lush.xml</Actor>
 			<Position x="260.731" y="31.7108" z="552.71"/>
-			<Orientation angle="-0.0756892"/>
+			<Orientation angle="-0.075689"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_me_lush.xml</Actor>
@@ -15392,7 +15392,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_me_lush.xml</Actor>
 			<Position x="117.407" y="29.547" z="305.637"/>
-			<Orientation angle="0.0555004"/>
+			<Orientation angle="0.0555006"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_me_lush.xml</Actor>
@@ -16412,7 +16412,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_sm_lush.xml</Actor>
 			<Position x="347.945" y="70.3221" z="346.394"/>
-			<Orientation angle="0.0290171"/>
+			<Orientation angle="0.0290173"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_sm_lush.xml</Actor>
@@ -17672,7 +17672,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_sm_lush.xml</Actor>
 			<Position x="395.485" y="65.5417" z="135.362"/>
-			<Orientation angle="-0.0497297"/>
+			<Orientation angle="-0.0497295"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_sm_lush.xml</Actor>
@@ -18237,7 +18237,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_sm_lush.xml</Actor>
 			<Position x="478.329" y="26.5287" z="169.825"/>
-			<Orientation angle="-0.0461272"/>
+			<Orientation angle="-0.046127"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_sm_lush.xml</Actor>
@@ -25072,7 +25072,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small.xml</Actor>
 			<Position x="307.99" y="36.2588" z="102.241"/>
-			<Orientation angle="-0.0946065"/>
+			<Orientation angle="-0.0946063"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_soft_dry_small.xml</Actor>
@@ -25147,7 +25147,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_sm.xml</Actor>
 			<Position x="244.025" y="37.9579" z="87.3176"/>
-			<Orientation angle="-0.0171324"/>
+			<Orientation angle="-0.0171322"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_sm.xml</Actor>
@@ -32642,7 +32642,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_field_flowering_tall.xml</Actor>
 			<Position x="281.641" y="24.0912" z="150.595"/>
-			<Orientation angle="0.0451329"/>
+			<Orientation angle="0.045133"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_flowering_tall.xml</Actor>
