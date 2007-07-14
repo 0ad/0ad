@@ -6,8 +6,8 @@
 		<SunColour r="1.54297" g="1.54297" b="1.54297"/>
 		<SunElevation angle="0.83705"/>
 		<SunRotation angle="-0.706614"/>
-		<TerrainAmbientColour r="0.529412" g="0.541176" b="0.592157"/>
-		<UnitsAmbientColour r="0.529412" g="0.541176" b="0.592157"/>
+		<TerrainAmbientColour r="0.529412" g="0.537255" b="0.592157"/>
+		<UnitsAmbientColour r="0.529412" g="0.537255" b="0.592157"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -15,15 +15,15 @@
 				<Height>11.865</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.55957</Murkiness>
-				<Tint r="0" g="0.247059" b="0.501961"/>
-				<ReflectionTint r="0" g="1" b="1"/>
-				<ReflectionTintStrength>0.152344</ReflectionTintStrength>
+				<Murkiness>0.491211</Murkiness>
+				<Tint r="0.0745098" g="0.67451" b="0.647059"/>
+				<ReflectionTint r="0.0745098" g="0.67451" b="0.647059"/>
+				<ReflectionTintStrength>0.355469</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="180.14" y="139.127" z="779.416"/>
+		<Position x="182.547" y="116.171" z="815.181"/>
 		<Rotation angle="0.0156807"/>
 		<Declination angle="0.693527"/>
 	</Camera>
@@ -6442,53 +6442,11 @@
 			<Position x="665.445" y="30.5852" z="679.794"/>
 			<Orientation angle="1.66617"/>
 		</Entity>
-		<Entity uid="1117">
-			<Template>geology_stone_greek</Template>
-			<Player>4</Player>
-			<Position x="546.972" y="37.7557" z="841.409"/>
-			<Orientation angle="2.1409"/>
-		</Entity>
-		<Entity uid="1118">
-			<Template>geology_stone_greek</Template>
-			<Player>4</Player>
-			<Position x="539.396" y="42.4268" z="839.293"/>
-			<Orientation angle="2.73156"/>
-		</Entity>
 		<Entity uid="1119">
 			<Template>geology_stone_greek</Template>
 			<Player>4</Player>
 			<Position x="544.59" y="47.0071" z="858.956"/>
 			<Orientation angle="-2.53311"/>
-		</Entity>
-		<Entity uid="1120">
-			<Template>geology_stone_greek</Template>
-			<Player>4</Player>
-			<Position x="569.436" y="33.0118" z="734.403"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="1121">
-			<Template>geology_stone_greek</Template>
-			<Player>4</Player>
-			<Position x="571.222" y="31.8907" z="742.091"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="1122">
-			<Template>geology_stone_greek</Template>
-			<Player>4</Player>
-			<Position x="571.974" y="32.4771" z="749.862"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="1123">
-			<Template>geology_stone_greek</Template>
-			<Player>4</Player>
-			<Position x="568.456" y="35.1834" z="747.597"/>
-			<Orientation angle="-1.10525"/>
-		</Entity>
-		<Entity uid="1124">
-			<Template>geology_stone_greek</Template>
-			<Player>4</Player>
-			<Position x="565.176" y="38.1098" z="744.259"/>
-			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="1125">
 			<Template>geology_stone_greek</Template>
@@ -7597,7 +7555,7 @@
 		<Entity uid="1309">
 			<Template>flora_tree_medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="686.197" y="17.9785" z="774.716"/>
+			<Position x="659.825" y="17.9064" z="788.331"/>
 			<Orientation angle="-1.3813"/>
 		</Entity>
 		<Entity uid="1310">
@@ -9931,20 +9889,20 @@
 		<Entity uid="1698">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="428.117" y="38.1662" z="819.9"/>
-			<Orientation angle="0.178326"/>
+			<Position x="428.147" y="38.178" z="820.01"/>
+			<Orientation angle="-1.78114"/>
 		</Entity>
 		<Entity uid="1699">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="430.419" y="38.3036" z="809.307"/>
-			<Orientation angle="-1.64181"/>
+			<Position x="440.597" y="41.3175" z="811.96"/>
+			<Orientation angle="-0.65773"/>
 		</Entity>
 		<Entity uid="1700">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="420.461" y="35.4119" z="816.548"/>
-			<Orientation angle="2.35619"/>
+			<Position x="436.536" y="41.1346" z="821.999"/>
+			<Orientation angle="-1.14762"/>
 		</Entity>
 		<Entity uid="1701">
 			<Template>geology_metal_greek</Template>
@@ -10484,7 +10442,7 @@
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
 			<Position x="163.775" y="28.8481" z="912.273"/>
-			<Orientation angle="1.69235"/>
+			<Orientation angle="-1.88386"/>
 		</Entity>
 		<Entity uid="1791">
 			<Template>flora_bush_berry</Template>
@@ -10999,20 +10957,20 @@
 		<Entity uid="1876">
 			<Template>geology_metal_greek</Template>
 			<Player>0</Player>
-			<Position x="658.166" y="17.8945" z="785.677"/>
-			<Orientation angle="0.136148"/>
+			<Position x="656.608" y="17.7379" z="785.175"/>
+			<Orientation angle="-1.47153"/>
 		</Entity>
 		<Entity uid="1877">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="729.142" y="17.9926" z="811.693"/>
-			<Orientation angle="2.81504"/>
+			<Position x="732.925" y="18.8905" z="804.204"/>
+			<Orientation angle="-1.1313"/>
 		</Entity>
 		<Entity uid="1878">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="732.203" y="19.7103" z="793.765"/>
-			<Orientation angle="-1.89442"/>
+			<Position x="732.519" y="19.8305" z="793.226"/>
+			<Orientation angle="-1.31619"/>
 		</Entity>
 		<Entity uid="1879">
 			<Template>geology_stone_greek</Template>
@@ -13849,14 +13807,14 @@
 		<Entity uid="2387">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="221.686" y="28.7984" z="919.863"/>
-			<Orientation angle="-1.35502"/>
+			<Position x="218.994" y="28.7984" z="918.623"/>
+			<Orientation angle="1.75282"/>
 		</Entity>
 		<Entity uid="2388">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="215.283" y="28.7984" z="914.61"/>
-			<Orientation angle="-0.368362"/>
+			<Position x="213.991" y="28.7984" z="914.06"/>
+			<Orientation angle="-2.39877"/>
 		</Entity>
 		<Entity uid="2389">
 			<Template>hele_temple</Template>
@@ -13921,8 +13879,8 @@
 		<Entity uid="2399">
 			<Template>geology_metal_greek</Template>
 			<Player>0</Player>
-			<Position x="171.547" y="28.7984" z="893.625"/>
-			<Orientation angle="-1.74826"/>
+			<Position x="172.036" y="28.7984" z="898.404"/>
+			<Orientation angle="2.08738"/>
 		</Entity>
 		<Entity uid="2400">
 			<Template>special_settlement</Template>
@@ -13970,13 +13928,13 @@
 			<Template>geology_metal_greek</Template>
 			<Player>0</Player>
 			<Position x="471.367" y="49.3422" z="778.917"/>
-			<Orientation angle="-0.692124"/>
+			<Orientation angle="-1.3125"/>
 		</Entity>
 		<Entity uid="2408">
 			<Template>geology_metal_greek</Template>
 			<Player>0</Player>
 			<Position x="468.72" y="47.4113" z="787.067"/>
-			<Orientation angle="-1.62468"/>
+			<Orientation angle="-1.43191"/>
 		</Entity>
 		<Entity uid="2409">
 			<Template>geology_metal_greek</Template>
@@ -17695,8 +17653,8 @@
 		<Entity uid="16330">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="565.844" y="48.8514" z="704.488"/>
-			<Orientation angle="-3.12912"/>
+			<Position x="567.85" y="46.9529" z="707.963"/>
+			<Orientation angle="0.979725"/>
 		</Entity>
 		<Entity uid="16331">
 			<Template>flora_tree_pine</Template>
@@ -19048,6 +19006,66 @@
 			<Position x="387.365" y="44.955" z="119.478"/>
 			<Orientation angle="1.65172"/>
 		</Entity>
+		<Entity uid="20945">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="546.036" y="35.7925" z="829.297"/>
+			<Orientation angle="-1.25566"/>
+		</Entity>
+		<Entity uid="20946">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="537.088" y="41.5416" z="828.299"/>
+			<Orientation angle="-1.06841"/>
+		</Entity>
+		<Entity uid="20947">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="553.137" y="33.88" z="839.406"/>
+			<Orientation angle="-1.4435"/>
+		</Entity>
+		<Entity uid="20948">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="569.527" y="31.9744" z="848.639"/>
+			<Orientation angle="0.148146"/>
+		</Entity>
+		<Entity uid="20949">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="539.014" y="43.6814" z="843.671"/>
+			<Orientation angle="-1.69495"/>
+		</Entity>
+		<Entity uid="20951">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="571.296" y="31.5828" z="738.424"/>
+			<Orientation angle="-0.538642"/>
+		</Entity>
+		<Entity uid="20952">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="565.973" y="37.0881" z="740.374"/>
+			<Orientation angle="-1.28926"/>
+		</Entity>
+		<Entity uid="20953">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="565.203" y="38.0126" z="746.927"/>
+			<Orientation angle="-1.22425"/>
+		</Entity>
+		<Entity uid="20954">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="570.769" y="33.1827" z="747.333"/>
+			<Orientation angle="1.3577"/>
+		</Entity>
+		<Entity uid="20955">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="565.14" y="38.2313" z="762.771"/>
+			<Orientation angle="-2.42652"/>
+		</Entity>
 	</Entities>
 	<Nonentities>
 		<Nonentity>
@@ -19477,13 +19495,13 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
-			<Position x="124.565" y="9.41123" z="934.312"/>
-			<Orientation angle="-3.13032"/>
+			<Position x="123.391" y="10.2173" z="939.847"/>
+			<Orientation angle="-0.400637"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
-			<Position x="131.117" y="8.8345" z="920.326"/>
-			<Orientation angle="-3.08779"/>
+			<Position x="129.982" y="10.3681" z="922.716"/>
+			<Orientation angle="-0.948207"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
@@ -19912,7 +19930,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_sm.xml</Actor>
-			<Position x="171.172" y="28.7984" z="891.635"/>
+			<Position x="170.966" y="28.7984" z="891.296"/>
 			<Orientation angle="-2.42868"/>
 		</Nonentity>
 		<Nonentity>
@@ -20953,7 +20971,7 @@
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
 			<Position x="300.717" y="17.4411" z="904.922"/>
-			<Orientation angle="-0.0371686"/>
+			<Orientation angle="-0.0371684"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
@@ -25062,18 +25080,18 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
-			<Position x="869.392" y="10.7897" z="709.503"/>
-			<Orientation angle="3.00236"/>
+			<Position x="867.242" y="10.174" z="707.325"/>
+			<Orientation angle="-1.35829"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
-			<Position x="878.187" y="8.26508" z="711.755"/>
+			<Position x="874.931" y="8.86311" z="713.202"/>
 			<Orientation angle="-1.07563"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
 			<Position x="875.44" y="8.06003" z="703.108"/>
-			<Orientation angle="-0.96085"/>
+			<Orientation angle="1.39891"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
@@ -25097,18 +25115,18 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
-			<Position x="873.212" y="9.26924" z="763.08"/>
-			<Orientation angle="-1.77096"/>
+			<Position x="874.69" y="8.54324" z="756.089"/>
+			<Orientation angle="-1.18315"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
-			<Position x="865.009" y="13.8268" z="772.246"/>
-			<Orientation angle="2.34308"/>
+			<Position x="869.548" y="10.5736" z="770.981"/>
+			<Orientation angle="-1.28735"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
-			<Position x="868.789" y="11.0039" z="770.682"/>
-			<Orientation angle="-1.15183"/>
+			<Position x="868.665" y="9.93137" z="744.131"/>
+			<Orientation angle="-1.44064"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_boulder.xml</Actor>
@@ -27842,8 +27860,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
-			<Position x="429.487" y="38.3805" z="813.405"/>
-			<Orientation angle="2.35619"/>
+			<Position x="443.476" y="42.0054" z="810.22"/>
+			<Orientation angle="2.02674"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
@@ -27852,12 +27870,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
-			<Position x="422.056" y="35.9621" z="816.039"/>
+			<Position x="432.141" y="39.7585" z="823.185"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
-			<Position x="421.602" y="35.5747" z="812.674"/>
+			<Position x="429.357" y="38.4484" z="815.217"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -31802,7 +31820,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_flowering_tall.xml</Actor>
-			<Position x="730.09" y="18.9054" z="797.213"/>
+			<Position x="731.608" y="19.2899" z="796.819"/>
 			<Orientation angle="1.55544"/>
 		</Nonentity>
 		<Nonentity>
