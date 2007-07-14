@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="1.30469" g="1.30469" b="0.654902"/>
+		<SunElevation angle="0.340549"/>
+		<SunRotation angle="-0.920926"/>
+		<TerrainAmbientColour r="0.384314" g="0.396078" b="0.443137"/>
+		<UnitsAmbientColour r="0.384314" g="0.396078" b="0.443137"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>20.055</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.96582</Murkiness>
+				<Tint r="0.321569" g="0.286275" b="0.180392"/>
+				<ReflectionTint r="0.321569" g="0.286275" b="0.180392"/>
+				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="98.6298" y="126.594" z="-39.1981"/>
+		<Rotation angle="-0.0466549"/>
+		<Declination angle="0.602373"/>
+	</Camera>
+	<Entities>
+		<Entity uid="1">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="65.8379" y="26.2607" z="104.176"/>
+			<Orientation angle="-2.50854"/>
+		</Entity>
+		<Entity uid="2">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="93.8501" y="23.1734" z="79.0707"/>
+			<Orientation angle="-1.43675"/>
+		</Entity>
+		<Entity uid="3">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="122.458" y="23.9346" z="90.9057"/>
+			<Orientation angle="-1.66275"/>
+		</Entity>
+		<Entity uid="4">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="121.41" y="22.4346" z="81.9573"/>
+			<Orientation angle="-1.10926"/>
+		</Entity>
+		<Entity uid="5">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="130.251" y="22.4851" z="94.705"/>
+			<Orientation angle="-1.03053"/>
+		</Entity>
+		<Entity uid="6">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="126.318" y="24.2735" z="115.701"/>
+			<Orientation angle="-1.5802"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="133.379" y="22.4" z="129.841"/>
+			<Orientation angle="-0.186828"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="91.2288" y="35.8483" z="109.989"/>
+			<Orientation angle="-1.33744"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="65.2331" y="22.8672" z="137.29"/>
+			<Orientation angle="-1.0644"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="65.859" y="24.262" z="126.749"/>
+			<Orientation angle="-1.15564"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="55.3516" y="22.6108" z="112.299"/>
+			<Orientation angle="-1.18051"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="63.8853" y="22.4654" z="86.9004"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="107.004" y="25.7926" z="86.0705"/>
+			<Orientation angle="-2.36222"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="124.8" y="23.7904" z="135.689"/>
+			<Orientation angle="0.469261"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="114.948" y="24.0192" z="144.217"/>
+			<Orientation angle="-1.08232"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="105.109" y="22.7182" z="152.757"/>
+			<Orientation angle="-1.53898"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="101.09" y="25.0611" z="146.964"/>
+			<Orientation angle="1.40249"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="87.3909" y="24.2819" z="149.108"/>
+			<Orientation angle="-1.74682"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="76.4303" y="25.4677" z="139.152"/>
+			<Orientation angle="-1.13366"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>geology_stone_temperate</Template>
+			<Player>0</Player>
+			<Position x="74.7121" y="22.4015" z="151.362"/>
+			<Orientation angle="-1.03892"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="104.883" y="19.8996" z="176.788"/>
+			<Orientation angle="0.0472447"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="126.313" y="18.9306" z="172.58"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="139.901" y="20.1543" z="156.306"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="138.068" y="19.9052" z="152.875"/>
+			<Orientation angle="-1.87753"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="131.269" y="19.5084" z="152.425"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>flora_bush_temperate</Template>
+			<Player>0</Player>
+			<Position x="135.827" y="18.3717" z="159.184"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="100.935" y="22.4" z="162.872"/>
+			<Orientation angle="-2.61135"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="121.691" y="20.7525" z="175.946"/>
+			<Orientation angle="2.31634"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="126.198" y="21.8603" z="179.586"/>
+			<Orientation angle="-0.64938"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="129.935" y="20.5507" z="174.884"/>
+			<Orientation angle="0.0498479"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="138.64" y="19.9421" z="154.334"/>
+			<Orientation angle="-1.9209"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="137.99" y="20.3755" z="170.08"/>
+			<Orientation angle="1.48101"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="128.178" y="21.454" z="177.363"/>
+			<Orientation angle="3.09248"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="129.545" y="21.9775" z="143.351"/>
+			<Orientation angle="-2.27037"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="56.1801" y="22.4567" z="125.087"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="62.5183" y="22.6416" z="135.576"/>
+			<Orientation angle="1.96033"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="57.3657" y="22.555" z="125.168"/>
+			<Orientation angle="1.7166"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="86.5604" y="24.8105" z="83.9136"/>
+			<Orientation angle="-2.91474"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="57.5397" y="22.5575" z="127.026"/>
+			<Orientation angle="0.661578"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>flora_tree_medit_fan_palm</Template>
+			<Player>0</Player>
+			<Position x="64.1413" y="22.7022" z="90.0195"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="88.626" y="24.9414" z="84.5769"/>
+			<Orientation angle="0.149087"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="92.8231" y="25.1274" z="83.438"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="95.7938" y="25.1009" z="85.85"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="97.3361" y="24.7822" z="86.1169"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="90.285" y="24.4621" z="82.157"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="88.8459" y="23.6057" z="80.6902"/>
+			<Orientation angle="-2.98384"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="89.0243" y="23.1909" z="78.9187"/>
+			<Orientation angle="2.09184"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="91.5119" y="23.2021" z="77.5233"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="97.8611" y="22.1907" z="78.8876"/>
+			<Orientation angle="0.697957"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="100.917" y="22.307" z="81.6537"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="102.112" y="23.3338" z="82.8113"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="61.0787" y="23.9033" z="113.251"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="65.6759" y="25.3286" z="117.731"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="55.5741" y="22.5474" z="120.406"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="59.4966" y="23.2906" z="104.804"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="65.5824" y="25.5196" z="100.634"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="67.1814" y="25.9491" z="100.387"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="76.7026" y="26.1831" z="93.5351"/>
+			<Orientation angle="-2.64066"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="64.3338" y="24.9918" z="99.6986"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="64.1023" y="23.6896" z="96.0326"/>
+			<Orientation angle="2.69044"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="67.8503" y="22.8074" z="86.3327"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="67.8749" y="22.4946" z="84.0525"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="66.763" y="22.4619" z="82.7443"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="123.164" y="23.861" z="105.139"/>
+			<Orientation angle="0.499036"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="126.142" y="23.6675" z="110.598"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="127.657" y="23.9697" z="110.699"/>
+			<Orientation angle="1.8562"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="134.089" y="22.9011" z="111.298"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="131.848" y="23.5434" z="117.272"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="135.327" y="22.561" z="120.512"/>
+			<Orientation angle="-2.99152"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="133.273" y="23.1015" z="110.811"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="86.1075" y="35.6356" z="113.268"/>
+			<Orientation angle="2.92673"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="96.8446" y="35.9979" z="104.394"/>
+			<Orientation angle="2.94195"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="96.4272" y="35.7809" z="99.651"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="101.919" y="36.8469" z="110.098"/>
+			<Orientation angle="-0.525232"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="97.1005" y="36.9716" z="117.731"/>
+			<Orientation angle="0.331151"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="82.1888" y="24.1781" z="147.083"/>
+			<Orientation angle="0.264007"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="81.0279" y="22.4022" z="152.871"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="81.9076" y="22.4" z="155.698"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="84.8261" y="22.4179" z="154.688"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="93.3225" y="23.0583" z="152.776"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="93.9446" y="24.4322" z="149.77"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="102.104" y="22.9445" z="152.425"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="110.923" y="23.3454" z="148.602"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="111.677" y="23.7276" z="146.781"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="114.506" y="22.4" z="154.987"/>
+			<Orientation angle="-1.31992"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="32.5476" y="22.4" z="123.655"/>
+			<Orientation angle="2.83272"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="38.0857" y="22.4" z="110.742"/>
+			<Orientation angle="2.88477"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="38.3113" y="22.4" z="103.31"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="37.1613" y="22.4" z="102.487"/>
+			<Orientation angle="0.02452"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="36.1671" y="22.4" z="116.621"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="32.9726" y="22.4" z="122.108"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="38.2568" y="22.4" z="118.371"/>
+			<Orientation angle="2.84618"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="40.6339" y="22.4" z="111.031"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="44.093" y="22.4" z="106.251"/>
+			<Orientation angle="2.21201"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="46.2595" y="22.4" z="104.77"/>
+			<Orientation angle="-2.67156"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="43.1448" y="22.4" z="100.505"/>
+			<Orientation angle="-1.82757"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="39.1337" y="22.4" z="100.615"/>
+			<Orientation angle="2.93524"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="39.4301" y="22.4" z="97.7011"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="36.1748" y="22.4" z="109.475"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="32.3187" y="22.4" z="112.185"/>
+			<Orientation angle="1.63978"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="35.6858" y="22.4" z="113.913"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="46.5245" y="22.4" z="140.416"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="138.7" y="23.1727" z="78.9455"/>
+			<Orientation angle="2.65075"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="133.661" y="23.0729" z="76.6481"/>
+			<Orientation angle="2.88821"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="138.509" y="22.4" z="68.3958"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="137.977" y="22.4" z="67.6348"/>
+			<Orientation angle="-0.818958"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="134.066" y="23.2857" z="68.954"/>
+			<Orientation angle="3.13366"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="132.011" y="22.4" z="65.4064"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="135.139" y="23.2536" z="64.9255"/>
+			<Orientation angle="1.37522"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="136.914" y="22.4" z="64.6365"/>
+			<Orientation angle="0.814969"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="138.795" y="22.4" z="67.1531"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="128.328" y="22.4" z="77.7135"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="128.899" y="22.4" z="81.2228"/>
+			<Orientation angle="-1.29806"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="126.592" y="22.4" z="81.6482"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="127.044" y="22.4" z="78.2837"/>
+			<Orientation angle="-2.94944"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="117.025" y="22.6741" z="81.7462"/>
+			<Orientation angle="2.15122"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="109.54" y="26.0296" z="85.1381"/>
+			<Orientation angle="2.81909"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="124.501" y="22.5359" z="86.6503"/>
+			<Orientation angle="-0.511673"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="60.8055" y="22.8643" z="124.737"/>
+			<Orientation angle="-0.00994346"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="57.2521" y="22.4392" z="132.034"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="58.2961" y="22.5463" z="124.24"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="110.896" y="21.2152" z="180.972"/>
+			<Orientation angle="0.987351"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="119.643" y="21.6908" z="178.703"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="121.339" y="20.7912" z="176.367"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="131.26" y="20.7287" z="174.881"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="137.171" y="21.0268" z="171.413"/>
+			<Orientation angle="2.90833"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="140.879" y="20.0557" z="162.634"/>
+			<Orientation angle="2.53296"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="143.841" y="22.8197" z="152.943"/>
+			<Orientation angle="-2.62687"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="139.78" y="21.1447" z="148.087"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="132.526" y="19.2325" z="153.329"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="133.288" y="21.1671" z="175.021"/>
+			<Orientation angle="0.631439"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="138.169" y="21.8106" z="174.191"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="127.804" y="21.1414" z="149.783"/>
+			<Orientation angle="-0.954953"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="121.333" y="20.8867" z="154.707"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="113.512" y="21.7437" z="158.359"/>
+			<Orientation angle="-0.782851"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="107.027" y="21.065" z="165.575"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="97.8203" y="22.4" z="162.726"/>
+			<Orientation angle="2.16012"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="99.8918" y="21.8833" z="170.524"/>
+			<Orientation angle="2.84812"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="102.355" y="22.4" z="159.703"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="103.466" y="22.4" z="156.235"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="106.843" y="22.4357" z="155.676"/>
+			<Orientation angle="1.52414"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="111.32" y="22.3186" z="156.945"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="113.836" y="22.8881" z="149.55"/>
+			<Orientation angle="2.09951"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="117.166" y="22.4602" z="148.04"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="122.508" y="22.5592" z="144.122"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="127.503" y="21.6011" z="178.244"/>
+			<Orientation angle="1.61283"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="143.247" y="21.6535" z="166.494"/>
+			<Orientation angle="2.37867"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="145.036" y="22.7301" z="155.27"/>
+			<Orientation angle="0.174798"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="94.941" y="22.4" z="175.131"/>
+			<Orientation angle="0.967586"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="98.919" y="22.2214" z="179.025"/>
+			<Orientation angle="0.947444"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="107.735" y="22.0813" z="183.731"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="109.286" y="22.1306" z="183.718"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="113.928" y="21.5694" z="181.638"/>
+			<Orientation angle="2.20481"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="120.007" y="22.3921" z="179.985"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="121.674" y="22.0975" z="179.766"/>
+			<Orientation angle="2.1805"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="127.39" y="21.4104" z="177.257"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="140.205" y="20.5553" z="167.11"/>
+			<Orientation angle="2.71573"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="142.836" y="21.5451" z="156.902"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="142.428" y="22.2063" z="151.259"/>
+			<Orientation angle="3.04644"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="141.445" y="21.4656" z="146.764"/>
+			<Orientation angle="-1.86573"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="135.558" y="19.6647" z="148.149"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="130.676" y="20.3768" z="149.778"/>
+			<Orientation angle="-2.84831"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="129.159" y="22.0452" z="143.436"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="123.55" y="23.177" z="139.176"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="121.933" y="21.8454" z="151.231"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="128.108" y="22.2694" z="142.698"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="129.331" y="22.411" z="139.521"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="130.514" y="22.434" z="136.953"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+	</Nonentities>
+	<Paths/>
+	<Triggers/>
+</Scenario>
