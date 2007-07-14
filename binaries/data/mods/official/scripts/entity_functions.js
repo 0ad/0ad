@@ -2184,7 +2184,6 @@ function entityEventFormation( evt )
 
 function getBuildingLimit( category/*, gameMode*/ )
 {
-console.write(category);
     // Civil
     if(category=="CivilCentre") return 1;
     if(category=="House") return 15;
