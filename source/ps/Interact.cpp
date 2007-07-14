@@ -1353,7 +1353,7 @@ void ResetInteraction()
 
 
 bool CBuildingPlacer::Activate(CStrW& templateName)
-{
+{	
 	if(m_active)
 	{
 		return false;
@@ -1376,7 +1376,6 @@ bool CBuildingPlacer::Activate(CStrW& templateName)
 		return false;
 	}
 
-	// m_actor
 	CStr actorName ( m_template->m_actorName );	// convert CStrW->CStr8
 
 	std::set<CStr8> selections;
@@ -1392,6 +1391,8 @@ bool CBuildingPlacer::Activate(CStrW& templateName)
 	{
 		m_bounds = new CBoundingBox( 0, 0, CVector2D(1, 0), m_template->m_bound_box );
 	}
+
+
 
 	return true;
 }
@@ -1508,7 +1509,7 @@ void CBuildingPlacer::Update( float timeStep )
 	}
 
 	// Validate placement location.
-	CheckValid(pos, onSocket);
+	CheckValidLocation(pos, onSocket);
 
 	// Flash our actor red if the position is invalid.
 
@@ -1525,12 +1526,16 @@ void CBuildingPlacer::Update( float timeStep )
 	m_actor->GetModel()->SetShadingColor( col );
 }
 
-// Alex's mess
-void CBuildingPlacer::CheckValid( CVector3D pos, bool onSocket )
+/**
+ * Check whether the placement location is valid (look at whether we're
+ * on the map, who owns the territory, whether we are on a socket, and 
+ * whether we are colliding with anything).
+ *
+ * @param pos position under the cursor
+ * @param onSocket whether on a socket or not
+ */
+void CBuildingPlacer::CheckValidLocation( CVector3D pos, bool onSocket )
 {
-	// Check whether the placement location is valid (look at whether we're
-	// on the map, who owns the territory, whether we are on a socket, and 
-	// whether we are colliding with anything).
 	CTerrain *pTerrain=g_Game->GetWorld()->GetTerrain();
 	if( pTerrain->IsOnMap( pos.X, pos.Z ) )
 	{
@@ -1550,12 +1555,62 @@ void CBuildingPlacer::CheckValid( CVector3D pos, bool onSocket )
 			// anything except possibly our socket (which we find out by passing an
 			// ignoreClass to GetCollisionObject); also, if we are a socketed object,
 			// we check that we are actually on a socket, using onSocket (set above).
+			// UPDATED: Check for territorial building limit
+
 			m_valid = ( m_template->m_socket == L"" || onSocket )
-					&& ( GetCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 );
+						&& ( GetCollisionObject( m_bounds, 0, &m_template->m_socket ) == 0 )
+						&& IsWithinLimit(pos); // Is this building within its appropriate territorial limit?
 		}
 	}
 	else
 	{
 		m_valid = false;
 	}
+}
+
+/**
+ * Checks whether there is space (territorial limit) in the current territory
+ *
+ * @param pos position under the cursor
+ * 
+ * @returns true if within limit, false otherwise
+ */
+bool CBuildingPlacer::IsWithinLimit( CVector3D pos )
+{
+	// Get the territorial building limit based on its category
+	CStrW category = m_template->m_buildingLimitCategory;
+	jsval param = ToJSVal(category);
+	int limit = ToPrimitive<int>(g_ScriptingHost.CallFunction("getBuildingLimit", &param, 1));
+
+	if( limit == 0 )
+	{
+		return true;
+	}
+	else
+	{
+		CTerritory* territory = g_Game->GetWorld()->GetTerritoryManager()->GetTerritory( pos.X, pos.Z );
+
+		std::vector<CEntity*> extantEntities;
+		std::vector<CEntity*>::iterator entIter;
+		int buildingCount = 0; // Number of buildings in the current territory
+
+		g_EntityManager.GetExtant(extantEntities);
+
+		// NOTE: This loop runs continuously because the function is called in Update()
+		for( entIter = extantEntities.begin(); entIter != extantEntities.end(); entIter++ )
+		{
+			if((*entIter)->m_buildingLimitCategory == m_template->m_buildingLimitCategory
+				&& g_Game->GetWorld()->GetTerritoryManager()->GetTerritory( (*entIter)->m_position.X, (*entIter)->m_position.Z ) == territory)
+			{
+				buildingCount++;
+			}
+		}
+
+		if(buildingCount < limit)
+			return true;
+		else
+			return false;
+	}
+
+
 }

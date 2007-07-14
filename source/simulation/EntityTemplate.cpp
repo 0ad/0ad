@@ -466,6 +466,9 @@ void CEntityTemplate::ScriptingInit()
 	AddClassProperty( L"traits.creation.foundation", &CEntityTemplate::m_foundation );
 	AddClassProperty( L"traits.creation.socket", &CEntityTemplate::m_socket );
 	AddClassProperty( L"traits.creation.territoryRestriction", &CEntityTemplate::m_territoryRestriction );
+	AddClassProperty( L"traits.creation.buildingLimitCategory", &CEntityTemplate::m_buildingLimitCategory );
+
+
 
 	CJSComplex<CEntityTemplate>::ScriptingInit( "EntityTemplate" );
 }

@@ -136,6 +136,9 @@ public:
 	// Can be "allied" to allow placement only in allied territories, or "" or "all" for all territories
 	CStrW m_territoryRestriction;
 
+	// Territorial limit
+	CStrW m_buildingLimitCategory;
+
 	float m_speed;
 	float m_runSpeed;
 	float m_runRegenRate;

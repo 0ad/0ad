@@ -110,6 +110,7 @@ function entityInit( evt )
 		this.buildPoints = new Object();
 		this.buildPoints.curr = 0.0;
 		this.buildPoints.max = parseFloat( building.traits.creation.time );
+		this.traits.creation.buildingLimitCategory = building.traits.creation.buildingLimitCategory;
 	}
 	
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
@@ -2177,4 +2178,25 @@ function entityEventFormation( evt )
 		}
 		
 	}
+}
+
+// ====================================================================
+
+function getBuildingLimit( category/*, gameMode*/ )
+{
+console.write(category);
+    // Civil
+    if(category=="CivilCentre") return 1;
+    if(category=="House") return 15;
+    if(category=="Farmstead") return 2;
+    if(category=="Field") return 5;
+    // Military
+    if(category=="Dock") return 2;
+    if(category=="Fortress") return 1;
+    if(category=="Barracks") return 2;
+    if(category=="ScoutTower") return 10;
+    // Other
+    if(category=="Special") return 1;
+    
+    return 0;
 }

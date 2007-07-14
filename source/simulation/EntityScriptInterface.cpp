@@ -121,6 +121,8 @@ void CEntity::ScriptingInit()
 	AddClassProperty( L"building", &CEntity::m_building );
 	AddClassProperty( L"visible", &CEntity::m_visible );
 	AddClassProperty( L"productionQueue", &CEntity::m_productionQueue );
+	AddClassProperty( L"traits.creation.buildingLimitCategory", &CEntity::m_buildingLimitCategory );
+
 
 	CJSComplex<CEntity>::ScriptingInit( "Entity", Construct, 2 );
 }

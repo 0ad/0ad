@@ -164,6 +164,9 @@ public:
 	// If the object is a territory centre, this points to its territory
 	CTerritory* m_associatedTerritory;
 
+	// Territorial limit
+	CStrW m_buildingLimitCategory;
+
 	// Auras
 	AuraTable m_auras;
 	AuraSet m_aurasInfluencingMe;
