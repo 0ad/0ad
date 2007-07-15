@@ -3,27 +3,27 @@
 <Scenario>
 	<Environment>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1" g="1" b="0.792157"/>
-		<SunElevation angle="0.665748"/>
-		<SunRotation angle="-0.840897"/>
-		<TerrainAmbientColour r="0.47451" g="0.47451" b="0.521569"/>
-		<UnitsAmbientColour r="0.466667" g="0.466667" b="0.466667"/>
+		<SunColour r="1.99609" g="1.99609" b="1.59688"/>
+		<SunElevation angle="0.855934"/>
+		<SunRotation angle="-0.54042"/>
+		<TerrainAmbientColour r="0.447059" g="0.462745" b="0.513726"/>
+		<UnitsAmbientColour r="0.447059" g="0.462745" b="0.513726"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.501961" g="0.501961" b="0.247059"/>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
 				<Height>20.055</Height>
-				<Shininess>10.9863</Shininess>
-				<Waviness>6.01563</Waviness>
-				<Murkiness>0.508789</Murkiness>
-				<Tint r="0" g="0.501961" b="0.74902"/>
-				<ReflectionTint r="0.584314" g="0.521569" b="0.337255"/>
-				<ReflectionTintStrength>0.711914</ReflectionTintStrength>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.947266</Murkiness>
+				<Tint r="0.321569" g="0.286275" b="0.180392"/>
+				<ReflectionTint r="0.321569" g="0.286275" b="0.180392"/>
+				<ReflectionTintStrength>0.152344</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="142.254" y="294.844" z="-300.373"/>
+		<Position x="274.815" y="89.1016" z="83.8671"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -421,13 +421,13 @@
 		<Entity uid="72">
 			<Template>celt_ship_merchant</Template>
 			<Player>3</Player>
-			<Position x="77.2515" y="20.055" z="161.27"/>
+			<Position x="77.2873" y="20.055" z="160.236"/>
 			<Orientation angle="0.644417"/>
 		</Entity>
 		<Entity uid="73">
 			<Template>celt_ship_merchant</Template>
 			<Player>3</Player>
-			<Position x="91.7661" y="20.055" z="162.859"/>
+			<Position x="91.6653" y="20.055" z="163.337"/>
 			<Orientation angle="2.70314"/>
 		</Entity>
 		<Entity uid="74">
@@ -8129,7 +8129,7 @@
 		<Nonentity>
 			<Actor>geology/stonemine_granite.xml</Actor>
 			<Position x="204.684" y="19.4996" z="193.688"/>
-			<Orientation angle="-2.66892"/>
+			<Orientation angle="0.166928"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stonemine_granite.xml</Actor>
@@ -8148,8 +8148,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stonemine_granite_greek.xml</Actor>
-			<Position x="185.638" y="23.9601" z="177.855"/>
-			<Orientation angle="-2.1366"/>
+			<Position x="184.525" y="23.8296" z="177.804"/>
+			<Orientation angle="1.66489"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_greek_med.xml</Actor>
