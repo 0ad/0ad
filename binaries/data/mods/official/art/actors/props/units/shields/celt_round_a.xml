@@ -2,7 +2,7 @@
 <actor version="1">
 
   <group>
-    <variant name="base">
+    <variant frequency="1" name="base">
       <mesh>props/shield/round_s_f.pmd</mesh>
       <props>
         <prop actor="props/units/shields/round_back.xml" attachpoint="back"/>
@@ -11,16 +11,16 @@
   </group>
 
   <group>
-    <variant name="E">
+    <variant frequency="1" name="shield-E">
       <texture>props/shield/celt_round_e.dds</texture>
     </variant>
-    <variant name="G">
+    <variant frequency="1" name="shield-G">
       <texture>props/shield/celt_round_g.dds</texture>
     </variant>
-    <variant name="K">
+    <variant frequency="1" name="shield-K">
       <texture>props/shield/celt_round_k.dds</texture>
     </variant>
-    <variant name="M">
+    <variant frequency="1" name="shield-M">
       <texture>props/shield/celt_round_m.dds</texture>
     </variant>
   </group>

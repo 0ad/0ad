@@ -10,20 +10,14 @@
   </group>
 
   <group>
-    <variant name="darkgrip">
-      <mesh>props/weap_jav_a.pmd</mesh>
-    </variant>
-    <variant name="medgrip">
+    <variant frequency="1" name="medgrip">
       <mesh>props/weap_jav_b.pmd</mesh>
     </variant>
-    <variant name="light">
+    <variant frequency="1" name="light">
       <mesh>props/weap_jav_c.pmd</mesh>
     </variant>
-    <variant name="med">
+    <variant frequency="1" name="med">
       <mesh>props/weap_jav_d.pmd</mesh>
-    </variant>
-    <variant name="dark">
-      <mesh>props/weap_jav_e.pmd</mesh>
     </variant>
   </group>
 

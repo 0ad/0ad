@@ -4,16 +4,12 @@
   <castshadow/>
 
   <group>
-    <variant frequency="10" name="a">
+    <variant frequency="1" name="a">
       <mesh>props/weap_csword_a.pmd</mesh>
       <texture>props/prop_weap.dds</texture>
     </variant>
-    <variant frequency="10" name="b">
+    <variant frequency="1" name="b">
       <mesh>props/weap_csword_b.pmd</mesh>
-      <texture>props/prop_weap.dds</texture>
-    </variant>
-    <variant frequency="10" name="c">
-      <mesh>props/weap_csword_c.pmd</mesh>
       <texture>props/prop_weap.dds</texture>
     </variant>
   </group>

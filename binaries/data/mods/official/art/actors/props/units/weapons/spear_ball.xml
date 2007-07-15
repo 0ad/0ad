@@ -10,20 +10,20 @@
   </group>
 
   <group>
-    <variant name="darkgold">
-      <mesh>props/weap_spear_a.pmd</mesh>
+    <variant frequency="1" name="spear-ball-darkgold">
+      <mesh>props/weap_spear_ball_a.pmd</mesh>
     </variant>
-    <variant name="darksilver">
-      <mesh>props/weap_spear_b.pmd</mesh>
+    <variant frequency="1" name="darksilver">
+      <mesh>props/weap_spear_ball_b.pmd</mesh>
     </variant>
-    <variant name="lightgold">
-      <mesh>props/weap_spear_c.pmd</mesh>
+    <variant frequency="1" name="lightgold">
+      <mesh>props/weap_spear_ball_c.pmd</mesh>
     </variant>
-    <variant name="medsilver">
-      <mesh>props/weap_spear_d.pmd</mesh>
+    <variant frequency="1" name="medsilver">
+      <mesh>props/weap_spear_ball_d.pmd</mesh>
     </variant>
-    <variant name="medgold">
-      <mesh>props/weap_spear_e.pmd</mesh>
+    <variant frequency="1" name="medgold">
+      <mesh>props/weap_spear_ball_e.pmd</mesh>
     </variant>
   </group>
 

@@ -10,17 +10,8 @@
   </group>
 
   <group>
-    <variant>
-      <mesh>props/weap_akin_a.pmd</mesh>
-    </variant>
-    <variant>
-      <mesh>props/weap_akin_b.pmd</mesh>
-    </variant>
-    <variant>
+    <variant frequency="1" name="akin">
       <mesh>props/weap_akin_c.pmd</mesh>
-    </variant>
-    <variant>
-      <mesh>props/weap_akin_d.pmd</mesh>
     </variant>
   </group>
 

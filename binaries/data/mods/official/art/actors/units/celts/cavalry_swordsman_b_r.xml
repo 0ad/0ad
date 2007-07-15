@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
@@ -21,16 +21,16 @@
   </group>
 
   <group>
-    <variant>
+    <variant frequency="1" name="clothing-01">
       <texture>skeletal/celt_isw_b_01.dds</texture>
     </variant>
-    <variant>
+    <variant frequency="1" name="clothing-02">
       <texture>skeletal/celt_isw_b_02.dds</texture>
     </variant>
-    <variant>
+    <variant frequency="1" name="clothing-03">
       <texture>skeletal/celt_isw_b_03.dds</texture>
     </variant>
-    <variant>
+    <variant frequency="1" name="clothing-04">
       <texture>skeletal/celt_isw_b_04.dds</texture>
     </variant>
   </group>

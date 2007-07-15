@@ -10,16 +10,10 @@
   </group>
 
   <group>
-    <variant name="med">
-      <mesh>props/weap_spear_long_a.pmd</mesh>
-    </variant>
-    <variant name="light">
+    <variant frequency="1" name="sarissa-light">
       <mesh>props/weap_spear_long_b.pmd</mesh>
     </variant>
-    <variant name="med2">
-      <mesh>props/weap_spear_long_c.pmd</mesh>
-    </variant>
-    <variant name="medgrip">
+    <variant frequency="1" name="sarissa-medgrip">
       <mesh>props/weap_spear_long_d.pmd</mesh>
     </variant>
   </group>

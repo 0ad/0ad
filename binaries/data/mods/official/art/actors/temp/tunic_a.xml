@@ -5,6 +5,9 @@
 
   <group>
     <variant frequency="100" name="Base">
+      <animations>
+        <animation file="infantry/general/dude/dudeidle.psa" name="idle" speed="100"/>
+      </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/floppy_a.xml" attachpoint="helmet"/>
