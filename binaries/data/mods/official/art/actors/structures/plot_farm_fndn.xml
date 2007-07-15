@@ -4,9 +4,17 @@
   <castshadow/>
 
   <group>
-    <variant>
+    <variant frequency="1" name="Base">
       <mesh>structural/plot_farm.pmd</mesh>
-            <texture>structural/plot_farm.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="furrows-01">
+      <texture>structural/plot_field.dds</texture>
+    </variant>
+    <variant frequency="1" name="furrows-02">
+      <texture>structural/plot_field_alternative.dds</texture>
     </variant>
   </group>
 
