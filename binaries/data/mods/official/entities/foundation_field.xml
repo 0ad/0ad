@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_foundation"
+>
+	<Traits>
+	
+		<Id>
+			<Generic>Foundation 5x5</Generic>
+
+			<Classes>Foundation</Classes>
+		</Id>
+	
+		<Footprint>
+			<Width>28.0</Width>
+			<Depth>28.0</Depth>
+			<Height>8.0</Height>
+		</Footprint>
+
+		<Vision>
+			<Los>6</Los>
+		</Vision>
+	
+	</Traits>
+		
+	<Actor>structures/plot_field_fallow.xml</Actor>
+
+</Entity>
