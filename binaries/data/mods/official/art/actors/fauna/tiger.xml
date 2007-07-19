@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Mesh">
+      <mesh>skeletal/tiger.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="100" name="texture">
+      <texture>skeletal/animal_tiger.dds</texture>
+    </variant>
+  </group>
+
+</actor>
