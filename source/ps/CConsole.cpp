@@ -701,7 +701,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 			}
 		}
 		
-		JS_SetParent(g_ScriptingHost.GetContext(), m_ScriptObject, NULL); // so the previous one can get garbage-collected
+		JS_SetParent(g_ScriptingHost.GetContext(), m_ScriptObject, JS_GetGlobalObject(g_ScriptingHost.GetContext())); // so the previous parent can get garbage-collected
 	}
 	else
 	{
