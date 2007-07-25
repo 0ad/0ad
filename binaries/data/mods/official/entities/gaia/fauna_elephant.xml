@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity 
-	Parent="template_unit_fauna_hunt_skittish"
+	Parent="template_unit_fauna_hunt_aggressive"
 >
 
 	<Traits>
 
 		<Id>
 
-				<Specific>Rabbit</Specific>
+				<Specific>Elephant</Specific>
 
 		</Id>
 
  		<Supply>
- 			<Max>50</Max>
+ 			<Max>500</Max>
  			<Type>food</Type>
  			<SubType>meat</SubType>
  		</Supply>
 	
 		<Footprint>
-			<Radius>0.75</Radius>
-			<Height>1.0</Height>
+			<Radius>2.5</Radius>
+			<Height>3.5</Height>
 		</Footprint>
-	
+
 	</Traits>
 
- 	<Actor>fauna/rabbit1.xml</Actor>
+ 	<Actor>fauna/elephant.xml</Actor>
 
 </Entity>

@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity 
-	Parent="template_unit_fauna_hunt_skittish"
+	Parent="template_unit_fauna_hunt_passive"
 >
 
 	<Traits>
 
 		<Id>
 
-				<Specific>Rabbit</Specific>
+				<Specific>Chicken</Specific>
 
 		</Id>
 
  		<Supply>
- 			<Max>50</Max>
+ 			<Max>40</Max>
  			<Type>food</Type>
  			<SubType>meat</SubType>
  		</Supply>
 	
 		<Footprint>
-			<Radius>0.75</Radius>
-			<Height>1.0</Height>
+			<Radius>0.5</Radius>
+			<Height>1.5</Height>
 		</Footprint>
-	
+
 	</Traits>
 
- 	<Actor>fauna/rabbit1.xml</Actor>
+ 	<Actor>fauna/chicken.xml</Actor>
 
 </Entity>
