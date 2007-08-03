@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant frequency="100" name="Mesh">
+      <mesh>props/shield/spara_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/pers_tower_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/pers_rect_a.dds</texture>
+    </variant>
+  </group>
+
+</actor>

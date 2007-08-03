@@ -4,23 +4,45 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="Bush Temperate Large A1">
+    <variant frequency="1" name="Bush Temperate Large A1-light">
       <mesh>gaia/bush_tempe_la_a_1.pmd</mesh>
-    </variant>
-    <variant frequency="1" name="Bush Temperate Large A2">
-      <mesh>gaia/bush_tempe_la_a_2.pmd</mesh>
-    </variant>
-    <variant frequency="1" name="Bush Temperate Large A3">
-      <mesh>gaia/bush_tempe_la_a_3.pmd</mesh>
-    </variant>
-  </group>
-
-  <group>
-    <variant frequency="1" name="Leaf-Color-Light">
       <texture>gaia/bush_tempe_la_a.dds</texture>
     </variant>
-    <variant frequency="2" name="Leaf-Color-Dark">
+    <variant frequency="1" name="Bush Temperate Large A1-dark">
+      <mesh>gaia/bush_tempe_la_a_1.pmd</mesh>
       <texture>gaia/bush_tempe_la_a2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large A2-light">
+      <mesh>gaia/bush_tempe_la_a_2.pmd</mesh>
+      <texture>gaia/bush_tempe_la_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large A2-dark">
+      <mesh>gaia/bush_tempe_la_a_2.pmd</mesh>
+      <texture>gaia/bush_tempe_la_a2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large A3-light">
+      <mesh>gaia/bush_tempe_la_a_3.pmd</mesh>
+      <texture>gaia/bush_tempe_la_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large A3-dark">
+      <mesh>gaia/bush_tempe_la_a_3.pmd</mesh>
+      <texture>gaia/bush_tempe_la_a2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large B1-light">
+      <mesh>gaia/bush_tempe_la_b_1.pmd</mesh>
+      <texture>gaia/bush_tempe_la_b2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large B1-dark">
+      <mesh>gaia/bush_tempe_la_b_1.pmd</mesh>
+      <texture>gaia/bush_tempe_la_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large B2-light">
+      <mesh>gaia/bush_tempe_la_b_2.pmd</mesh>
+      <texture>gaia/bush_tempe_la_b2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large B2-dark">
+      <mesh>gaia/bush_tempe_la_b_2.pmd</mesh>
+      <texture>gaia/bush_tempe_la_b.dds</texture>
     </variant>
   </group>
 
