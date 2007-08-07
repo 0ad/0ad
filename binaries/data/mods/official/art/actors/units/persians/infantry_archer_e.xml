@@ -24,17 +24,25 @@
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
       </animations>
-      <mesh>skeletal/m_pants_b.pmd</mesh>
+      <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
-        <prop actor="props/units/heads/floppy_pers_e.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/hele_hoplite_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_e.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="l_hand"/>
         <prop actor="props/temp/quiver.xml" attachpoint="l_hip"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/shields/pers_pelta_e_reverse.xml" attachpoint="back"/>
+        <prop actor="props/units/shields/pers_pelta_a_b_reverse.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/pers_iar_a_1.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="uniform-1">
+      <texture>skeletal/pers_iar_e_1.dds</texture>
+    </variant>
+    <variant name="uniform-2">
+      <texture>skeletal/pers_iar_e_2.dds</texture>
     </variant>
   </group>
 

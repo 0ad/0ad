@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.77232" g="1.77232" b="1.77232"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.447059" g="0.458824" b="0.513726"/>
+		<UnitsAmbientColour r="0.447059" g="0.458824" b="0.513726"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="92.9204" y="54.1186" z="70.3342"/>
+		<Rotation angle="-0.0704492"/>
+		<Declination angle="0.644004"/>
+	</Camera>
+	<Entities>
+		<Entity uid="126">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>4</Player>
+			<Position x="98.2267" y="22.4" z="89.1038"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>4</Player>
+			<Position x="102.974" y="22.4" z="90.4293"/>
+			<Orientation angle="0.778673"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>4</Player>
+			<Position x="105.645" y="22.4078" z="97.6939"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>4</Player>
+			<Position x="108.295" y="22.4" z="99.5569"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>4</Player>
+			<Position x="110.527" y="22.4016" z="102.542"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>4</Player>
+			<Position x="113.212" y="22.4" z="106.154"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>hele_infantry_archer_e</Template>
+			<Player>4</Player>
+			<Position x="117.327" y="22.4" z="112.614"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="103.762" y="22.4" z="88.4594"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="104.325" y="22.4" z="93.3871"/>
+			<Orientation angle="1.47879"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="108.56" y="22.4" z="94.9019"/>
+			<Orientation angle="0.915118"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="111.255" y="22.4" z="96.967"/>
+			<Orientation angle="0.551847"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="113.845" y="22.4" z="100.36"/>
+			<Orientation angle="0.475314"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="115.616" y="22.4" z="103.426"/>
+			<Orientation angle="0.435257"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>4</Player>
+			<Position x="116.852" y="22.4" z="107.228"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="94.2886" y="22.4" z="89.4094"/>
+			<Orientation angle="0.924271"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="99.8156" y="22.4" z="91.3182"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="102.893" y="22.6911" z="97.4345"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="106.296" y="22.8318" z="101.476"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="108.048" y="22.7673" z="103.492"/>
+			<Orientation angle="0.859539"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="110.522" y="22.5576" z="106.028"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="112.222" y="22.4167" z="108.378"/>
+			<Orientation angle="1.42702"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="114.634" y="22.4" z="110.16"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>hele_infantry_archer_a</Template>
+			<Player>4</Player>
+			<Position x="115.74" y="22.4278" z="114.867"/>
+			<Orientation angle="0.262193"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="74.3222" y="23.8574" z="121.614"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="84.6304" y="23.8574" z="117.808"/>
+			<Orientation angle="2.25588"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="81.8248" y="23.8574" z="122.153"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="88.5851" y="23.8574" z="124.963"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="89.105" y="23.8574" z="131.193"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="88.0084" y="23.8574" z="114.128"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="92.4825" y="23.8574" z="126.37"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="87.6257" y="23.8574" z="121.134"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="86.4146" y="23.8574" z="112.374"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="82.7344" y="23.8574" z="111.845"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="79.5047" y="23.8574" z="107.987"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>pers_infantry_archer_e</Template>
+			<Player>6</Player>
+			<Position x="74.8942" y="23.8574" z="104.891"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="72.452" y="23.8574" z="109.506"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="77.0016" y="23.8574" z="107.188"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="79.9277" y="23.8574" z="105.035"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="82.4993" y="23.8574" z="107.961"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="69.7708" y="23.8574" z="113.43"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="84.8683" y="23.8574" z="124.917"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="84.6887" y="23.8574" z="121.109"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="93.3734" y="23.8574" z="121.731"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="86.3392" y="23.8574" z="110.724"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>6</Player>
+			<Position x="87.0849" y="23.8574" z="116.208"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="231">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="77.7012" y="23.8574" z="103.829"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="83.2208" y="23.8574" z="104.265"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="80.6877" y="23.8574" z="110.517"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="84.4391" y="23.8574" z="109.631"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="77.957" y="23.8574" z="123.033"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="89.6912" y="23.8574" z="114.687"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="97.0973" y="23.8574" z="122.211"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="238">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="90.8297" y="23.8574" z="123.534"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="81.6138" y="23.8574" z="116.994"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="240">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>6</Player>
+			<Position x="85.5779" y="23.8574" z="128.691"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="295">
+			<Template>pers_super_infantry</Template>
+			<Player>4</Player>
+			<Position x="85.9918" y="23.8574" z="104.476"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="296">
+			<Template>pers_super_infantry</Template>
+			<Player>3</Player>
+			<Position x="87.4676" y="23.8574" z="106.15"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="297">
+			<Template>pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="88.7088" y="23.8574" z="108.331"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="298">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="92.7631" y="23.8574" z="107.063"/>
+			<Orientation angle="-2.0667"/>
+		</Entity>
+		<Entity uid="299">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="94.6324" y="23.8574" z="107.529"/>
+			<Orientation angle="-2.31701"/>
+		</Entity>
+		<Entity uid="300">
+			<Template>pers_super_infantry</Template>
+			<Player>7</Player>
+			<Position x="93.1415" y="23.8574" z="110.955"/>
+			<Orientation angle="2.41369"/>
+		</Entity>
+		<Entity uid="301">
+			<Template>pers_super_infantry</Template>
+			<Player>8</Player>
+			<Position x="91.5725" y="23.8574" z="112.201"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="302">
+			<Template>pers_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="91.317" y="23.8574" z="104.634"/>
+			<Orientation angle="-1.51365"/>
+		</Entity>
+		<Entity uid="303">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="96.425" y="23.8574" z="116.593"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="304">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="98.8649" y="23.8574" z="116.63"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="307">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>4</Player>
+			<Position x="96.996" y="23.3066" z="95.5725"/>
+			<Orientation angle="-0.733056"/>
+		</Entity>
+		<Entity uid="308">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>4</Player>
+			<Position x="96.7579" y="23.8574" z="100.756"/>
+			<Orientation angle="-0.872921"/>
+		</Entity>
+		<Entity uid="309">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>4</Player>
+			<Position x="104.293" y="23.8116" z="104.124"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="311">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="94.6521" y="23.8574" z="99.9141"/>
+			<Orientation angle="-0.467358"/>
+		</Entity>
+		<Entity uid="312">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="102.826" y="23.7448" z="102.272"/>
+			<Orientation angle="-0.403962"/>
+		</Entity>
+		<Entity uid="313">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="105.666" y="23.8261" z="107.618"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="314">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="108.224" y="23.7805" z="110.978"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="315">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="110.715" y="23.581" z="114.271"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="317">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="94.9019" y="23.0572" z="93.6721"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="318">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="97.5669" y="22.9379" z="94.9353"/>
+			<Orientation angle="0.937151"/>
+		</Entity>
+		<Entity uid="319">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="99.5769" y="22.9368" z="96.6528"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="320">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="101.576" y="23.1397" z="98.7187"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="321">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="102.306" y="23.3771" z="99.9634"/>
+			<Orientation angle="0.740646"/>
+		</Entity>
+		<Entity uid="322">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="105.045" y="23.3906" z="103.029"/>
+			<Orientation angle="0.918843"/>
+		</Entity>
+		<Entity uid="323">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="107.33" y="23.3289" z="105.38"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="324">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="108.726" y="23.498" z="107.86"/>
+			<Orientation angle="0.763971"/>
+		</Entity>
+		<Entity uid="325">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="110.884" y="23.0999" z="111.185"/>
+			<Orientation angle="0.541011"/>
+		</Entity>
+		<Entity uid="326">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="112.677" y="23.0474" z="114.247"/>
+			<Orientation angle="0.596189"/>
+		</Entity>
+		<Entity uid="327">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="114.675" y="23.0027" z="117.943"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="328">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="115.492" y="23.2282" z="123.307"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="329">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="113.5" y="23.6579" z="121.679"/>
+			<Orientation angle="-2.37186"/>
+		</Entity>
+		<Entity uid="330">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="111.094" y="23.9262" z="119.273"/>
+			<Orientation angle="-2.19"/>
+		</Entity>
+		<Entity uid="331">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="108.559" y="23.8701" z="117.422"/>
+			<Orientation angle="-2.50865"/>
+		</Entity>
+		<Entity uid="332">
+			<Template>hele_super_infantry_p</Template>
+			<Player>4</Player>
+			<Position x="106.612" y="23.8574" z="115.348"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="334">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="100.291" y="23.8574" z="118.618"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="335">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="101.276" y="23.8574" z="120.235"/>
+			<Orientation angle="0.997141"/>
+		</Entity>
+		<Entity uid="336">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="103.715" y="23.8574" z="122.123"/>
+			<Orientation angle="0.599141"/>
+		</Entity>
+		<Entity uid="337">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="104.983" y="23.9391" z="124.113"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="338">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="106.037" y="24.0366" z="125.412"/>
+			<Orientation angle="0.688307"/>
+		</Entity>
+		<Entity uid="339">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="108.245" y="24.2158" z="127.536"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="340">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="109.19" y="24.1518" z="128.439"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="341">
+			<Template>pers_super_infantry</Template>
+			<Player>6</Player>
+			<Position x="101.216" y="23.8574" z="123.025"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="342">
+			<Template>pers_super_infantry</Template>
+			<Player>5</Player>
+			<Position x="90.1574" y="23.8574" z="110.321"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="76.0879" y="22.4" z="120.002"/>
+			<Orientation angle="-0.0692364"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="99.4192" y="23.549" z="139.621"/>
+			<Orientation angle="3.09852"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="99.7758" y="23.8574" z="130.366"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="101.928" y="23.0429" z="135.494"/>
+			<Orientation angle="2.08857"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="106.493" y="24.0833" z="127.612"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="102.937" y="22.8913" z="140.017"/>
+			<Orientation angle="0.124893"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="102.101" y="22.939" z="136.168"/>
+			<Orientation angle="0.874575"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="96.4525" y="23.8574" z="127.975"/>
+			<Orientation angle="-1.43803"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="73.0112" y="23.8574" z="117.209"/>
+			<Orientation angle="1.5708"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="76.5659" y="23.8574" z="119.149"/>
+			<Orientation angle="0.112198"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="76.0927" y="23.8574" z="114.329"/>
+			<Orientation angle="0.576724"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="76.7399" y="23.8574" z="112.904"/>
+			<Orientation angle="1.76045"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="98.4109" y="23.4718" z="135.099"/>
+			<Orientation angle="2.83131"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="101.28" y="23.5954" z="131.453"/>
+			<Orientation angle="2.18709"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="103.928" y="23.8574" z="126.433"/>
+			<Orientation angle="1.80805"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="112.424" y="22.6301" z="110.574"/>
+			<Orientation angle="-2.93386"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="87.0943" y="23.7882" z="95.3707"/>
+			<Orientation angle="-1.3703"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="82.4775" y="23.8574" z="98.4259"/>
+			<Orientation angle="0.0835858"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="92.1913" y="23.2668" z="93.8336"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="76.661" y="23.8574" z="130.422"/>
+			<Orientation angle="0.142919"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="79.7965" y="23.8574" z="134.863"/>
+			<Orientation angle="2.41641"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="74.8262" y="23.8574" z="133.382"/>
+			<Orientation angle="2.68257"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="80.9478" y="23.8574" z="127.397"/>
+			<Orientation angle="1.74085"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="79.4896" y="22.4772" z="135.815"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
+			<Position x="79.7479" y="23.8574" z="130.691"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="87.4709" y="23.8574" z="98.9861"/>
+			<Orientation angle="-0.051423"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_desert_a.xml</Actor>
+			<Position x="83.863" y="23.5792" z="93.5206"/>
+			<Orientation angle="1.39281"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="112.281" y="22.6261" z="110.395"/>
+			<Orientation angle="-1.6521"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="109.997" y="22.4" z="128.807"/>
+			<Orientation angle="3.09775"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="74.3581" y="22.4" z="114.805"/>
+			<Orientation angle="2.46728"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="77.0568" y="22.4" z="111.038"/>
+			<Orientation angle="1.6849"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="78.4526" y="22.4" z="112.1"/>
+			<Orientation angle="0.573368"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="76.68" y="23.8574" z="110.923"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="79.5028" y="23.8574" z="128.089"/>
+			<Orientation angle="2.67427"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="80.3275" y="23.8574" z="131.849"/>
+			<Orientation angle="2.91425"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="80.046" y="23.8574" z="135.599"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="94.8123" y="23.8594" z="133.21"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="98.9368" y="23.8574" z="127.566"/>
+			<Orientation angle="2.918"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="101.426" y="23.8574" z="125.567"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="96.4425" y="23.8574" z="123.998"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="90.7195" y="23.8574" z="98.2069"/>
+			<Orientation angle="-2.33516"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="88.6195" y="22.4" z="94.5156"/>
+			<Orientation angle="-2.5892"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="86.8174" y="22.4" z="95.3472"/>
+			<Orientation angle="-1.4845"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="81.6032" y="23.8574" z="103.025"/>
+			<Orientation angle="2.09132"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="86.7151" y="23.5963" z="93.9117"/>
+			<Orientation angle="-1.84764"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="93.5131" y="23.8574" z="100.34"/>
+			<Orientation angle="2.44303"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm_dry.xml</Actor>
+			<Position x="85.1887" y="23.8325" z="95.7733"/>
+			<Orientation angle="0.346224"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm.xml</Actor>
+			<Position x="75.6359" y="22.4" z="113.466"/>
+			<Orientation angle="1.93814"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm.xml</Actor>
+			<Position x="79.5547" y="23.8574" z="116.302"/>
+			<Orientation angle="1.05445"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm.xml</Actor>
+			<Position x="102.351" y="23.8574" z="127.985"/>
+			<Orientation angle="2.57206"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm.xml</Actor>
+			<Position x="103.224" y="23.8574" z="125.049"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm.xml</Actor>
+			<Position x="100.989" y="22.4" z="129.263"/>
+			<Orientation angle="1.18173"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_medit_sm.xml</Actor>
+			<Position x="79.6294" y="23.5411" z="111.018"/>
+			<Orientation angle="2.01817"/>
+		</Nonentity>
+	</Nonentities>
+	<Paths/>
+	<Triggers/>
+</Scenario>

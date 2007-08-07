@@ -4,25 +4,39 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="infantry/spear/idle/isp_01.psa" name="Idle" speed="100"/>
+        <animation file="biped/walk_spearshield.psa" name="Walk" speed="20"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Melee" speed="120"/>
+        <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="6"/>
+        <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="8"/>
+        <animation file="infantry/sword/move/run/isw_s_em_03.psa" name="Run" speed="8"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation file="infantry/general/dude/dudeattack.psa" name="Attack" speed="100"/>
-        <animation file="infantry/general/dude/dudeattack1.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
-        <prop actor="props/temp/pers_sign_super_unit1.xml" attachpoint="head_extra"/>
-        <prop actor="props/temp/placeholder_helmet_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/placeholder_head_pers.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/gerron_b.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/spear_ball.xml" attachpoint="r_hand"/>
+        <prop actor="props/temp/quiver.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/plac_pers_e.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="1" name="Chain-Mail1">
+      <texture>skeletal/pers_su1_anusiya.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
