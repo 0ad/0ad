@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="mesh">
+      <mesh>props/head_beard_small.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="pers-face-a">
+      <texture>props/head/pers_face_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="pers-face-b">
+      <texture>props/head/pers_face_b.dds</texture>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>
