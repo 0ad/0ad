@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="mesh">
+      <mesh>props/head_beard_small.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="tiara-yellow-f">
+      <texture>props/head/pers_face_f_y.dds</texture>
+    </variant>
+    <variant frequency="1" name="tiara-yellow-g">
+      <texture>props/head/pers_face_g_y.dds</texture>
+    </variant>
+  </group>
+
+</actor>
