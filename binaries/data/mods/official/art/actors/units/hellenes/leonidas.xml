@@ -28,15 +28,11 @@
   <group>
     <variant frequency="1" name="Idle">
       <animations>
-        <animation file="biped/not used/inf_salute_a.psa" name="idle" speed="200"/>
-        <animation file="biped/not used/inf_salute_b.psa" name="idle" speed="200"/>
-        <animation file="biped/not used/inf_salute_c.psa" name="idle" speed="200"/>
-        <animation file="biped/not used/inf_salute_d.psa" name="idle" speed="200"/>
-        <animation file="biped/not used/inf_salute_e.psa" name="idle" speed="200"/>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="idle" speed="200"/>
       </animations>
       <props>
         <prop actor="props/units/shields/hele_round_leonidas.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="Melee">
