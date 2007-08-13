@@ -37,7 +37,7 @@
     </variant>
     <variant name="Melee">
       <animations>
-        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="melee" speed="320"/>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="melee" speed="220"/>
       </animations>
       <props>
         <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
