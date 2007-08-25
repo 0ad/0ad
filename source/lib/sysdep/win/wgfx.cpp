@@ -97,7 +97,7 @@ static LibError win_get_gfx_drv_ver()
 	//   gfx_card which one is correct; we thus avoid driver-specific
 	//   name checks and reporting incorrectly.
 
-	LibError ret  = ERR::FAIL;	// single point of exit (for RegCloseKey)
+	LibError ret = ERR::FAIL;	// single point of exit (for RegCloseKey)
 	DWORD i;
 	char drv_name[MAX_PATH+1];
 

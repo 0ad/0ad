@@ -100,8 +100,8 @@ static void InitCounter()
 	counterMask = bit_mask64(counterBits);
 
 	// sanity checks
-	debug_assert(nominalFrequency >= 500.0);
-	debug_assert(resolution <= 2e-3);
+	debug_assert(nominalFrequency >= 500.0-DBL_EPSILON);
+	debug_assert(resolution <= 2e-3+DBL_EPSILON);
 	debug_assert(8 <= counterBits && counterBits <= 64);
 }
 
