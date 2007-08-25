@@ -224,6 +224,19 @@ void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t nbytes)
 #endif
 }
 
+
+int cpu_OsNumProcessors()
+{
+#if OS_WIN
+	return wcpu_NumProcessors();
+#elif OS_UNIX
+	return ucpu_NumPackages();
+#else
+#error "port"
+#endif
+}
+
+
 LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 #if OS_WIN

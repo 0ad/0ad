@@ -77,6 +77,18 @@ extern size_t cpu_MemorySize(CpuMemoryIndicators mem_type);
 extern void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size);
 
 
+/**
+ * @return the number of what the OS deems "processors" or -1 on failure.
+ *
+ * this is used by ia32 when it cannot determine the number via APIC IDs.
+ * in other situations, the cpu_NumPackages et al. functions are preferable
+ * since they are more specific.
+ *
+ * note: this function is necessary because POSIX sysconf _SC_NPROCESSORS_CONF
+ * is not suppored on MacOSX, else we would use that.
+ **/
+extern int cpu_OsNumProcessors();
+
 // execute the specified function once on each CPU.
 // this includes logical HT units and proceeds serially (function
 // is never re-entered) in order of increasing OS CPU ID.

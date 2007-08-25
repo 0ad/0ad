@@ -16,7 +16,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "lib/posix/posix.h"	// pthread, sysconf
+#include "lib/posix/posix.h"	// pthread
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/module_init.h"
@@ -470,6 +470,7 @@ static void ExtractFieldsIntoSet(const Ids& apicIds, uint& bit_pos, uint num_val
 }
 
 
+// @return false if unavailable / no information can be returned.
 static bool DetectProcessorTopologyViaApicIds()
 {
 	// old APIC (see ia32_ApicId for details)
@@ -510,8 +511,7 @@ static bool DetectProcessorTopologyViaApicIds()
 
 static void GuessProcessorTopologyViaOsCount()
 {
-	// get the number of what the OS deems "processors"
-	const long numProcessors = sysconf(_SC_NPROCESSORS_CONF);
+	const int numProcessors = cpu_OsNumProcessors();
 
 	// note: we cannot hope to always return correct results since disabled
 	// cores/logical units cannot be distinguished from the situation of the
