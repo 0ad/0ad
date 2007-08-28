@@ -17,17 +17,20 @@
   </group>
 
   <group>
-    <variant frequency="1" name="horse-yellow">
-      <colour>254 216 0</colour>
+    <variant frequency="1" name="horse-roan">
+      <colour>255 242 168</colour>
     </variant>
     <variant frequency="1" name="horse-brown">
-      <colour>126 91 10</colour>
+      <colour>135 94 63</colour>
     </variant>
     <variant frequency="1" name="horse-rust">
-      <colour>241 131 0</colour>
+      <colour>228 187 101</colour>
     </variant>
     <variant frequency="1" name="horse-black">
-      <colour>0 0 0</colour>
+      <colour>45 45 45</colour>
+    </variant>
+    <variant frequency="1" name="horse-gray">
+      <colour>164 164 164</colour>
     </variant>
     <variant frequency="1" name="horse-white">
       <colour>255 255 255</colour>
@@ -46,7 +49,7 @@
       </props>
       <texture>skeletal/horse_hele_j.dds</texture>
     </variant>
-    <variant frequency="1" name="saddle-leopard-b">
+    <variant frequency="2" name="saddle-leopard-b">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h1.xml" attachpoint="chest"/>
@@ -68,7 +71,7 @@
       </props>
       <texture>skeletal/horse_hele_i.dds</texture>
     </variant>
-    <variant frequency="1" name="saddle-lion-b">
+    <variant frequency="2" name="saddle-lion-b">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
         <prop actor="props/units/horse/hele_saddle_h2.xml" attachpoint="chest"/>

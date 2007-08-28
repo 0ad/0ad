@@ -8,10 +8,13 @@
       <animations>
         <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
         <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="20"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
         <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Attack" speed="200"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="run" speed="20"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_03.psa" name="death" speed="200"/>
+        <animation file="infantry/general/death/inf_06.psa" name="death" speed="200"/>
+        <animation file="infantry/general/death/inf_07.psa" name="death" speed="200"/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
