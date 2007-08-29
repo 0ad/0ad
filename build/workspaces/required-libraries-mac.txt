@@ -1,0 +1,17 @@
+You can install all of 0AD's dependencies using MacPorts, available from
+http://www.macports.org.
+
+After installing MacPorts, use it to install the following packages:
+- boost
+- libsdl
+- spidermonkey
+- xercesc
+- wxWidgets-devel
+
+This can be done with the command: sudo port install <package>
+
+These packages bring in other dependencies, such as XFree86, libogg and zlib.
+
+WARNING: The current Mac build does not seem to work in full-screen mode.
+Please set windowed=true in binaries/data/config/system.cfg, and set the xres
+and yres parameters to a suitable window size.
