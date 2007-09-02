@@ -32,7 +32,7 @@ MESSAGEHANDLER(Init)
 	if (g_IsInitialised)
 		return;
 
-#if defined(OS_LINUX) || defined(__APPLE__)
+#if OS_LINUX || OS_MACOSX
 	// When using GLX (Linux), SDL has to load the GL library to find
 	// glXGetProcAddressARB before it can load any extensions.
 	// When running in Atlas, we skip the SDL video initialisation code

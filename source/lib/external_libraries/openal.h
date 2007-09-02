@@ -11,7 +11,7 @@
 #ifndef INCLUDED_OPENAL
 #define INCLUDED_OPENAL
 
-#ifdef __APPLE__
+#if OS_MACOSX
 # include <OpenAL/al.h>
 # include <OpenAL/alc.h>
 #else

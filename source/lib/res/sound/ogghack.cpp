@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <cassert>
 
-#ifdef __APPLE__
+#if OS_MACOSX
 #include <OpenAL/al.h>
 #else
 #include <AL/al.h>

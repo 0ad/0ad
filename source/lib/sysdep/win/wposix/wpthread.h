@@ -81,11 +81,17 @@ extern int   pthread_setspecific(pthread_key_t, const void* value);
 
 typedef uintptr_t sem_t;
 
+#define SEM_FAILED 0
+
+extern sem_t* sem_open(const char* name, int oflag, ...);
+extern int sem_close(sem_t* sem);
+extern int sem_unlink(const char* name);
 extern int sem_init(sem_t*, int pshared, unsigned value);
+extern int sem_destroy(sem_t*);
 extern int sem_post(sem_t*);
 extern int sem_wait(sem_t*);
 extern int sem_timedwait(sem_t*, const struct timespec*);
-extern int sem_destroy(sem_t*);
+
 
 // wait until semaphore is locked or a message arrives. non-portable.
 //

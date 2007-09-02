@@ -13,35 +13,37 @@
 
 #define LOG_CATEGORY "config"
 
+
+// (these variables are documented in the header.)
+
 CStr g_CursorName = "test";
 CStr g_ActiveProfile = "default";
 
-// flag to disable extended GL extensions until fix found - specifically, crashes
-// using VBOs on laptop Radeon cards
-bool g_NoGLVBO=false;
-// disable FBO extension in case the driver is flaky
+bool g_NoGLS3TC = false;
+bool g_NoGLAutoMipmap = false;
+bool g_NoGLVBO = false;
 bool g_NoGLFramebufferObject = false;
-// flag to switch on shadows
-bool g_Shadows=false;
-// flag to switch on reflective/refractive water
-bool g_FancyWater=false;
-// flag to switch on fixed frame timing (RC: I'm using this for profiling purposes)
-bool g_FixedFrameTiming=false;
-bool g_VSync = false;
+
+bool g_Shadows = false;
+bool g_FancyWater = false;
+
+bool g_FixedFrameTiming = false;
+
 float g_LodBias = 0.0f;
 float g_Gamma = 1.0f;
+
 bool g_EntGraph = false;
 CStr g_RenderPath = "default";
 
-// graphics mode
 int g_xres, g_yres;
 int g_bpp;
 int g_freq;
+bool g_VSync = false;
 
-bool g_Quickstart=false;
+bool g_Quickstart = false;
 
-// If non-empty, specified map will be automatically loaded
 CStr g_AutostartMap = "";
+
 
 //----------------------------------------------------------------------------
 // config and profile
@@ -70,8 +72,10 @@ static void LoadGlobals()
 
 	CFG_GET_USER_VAL("xres", Int, g_xres);
 	CFG_GET_USER_VAL("yres", Int, g_yres);
-
 	CFG_GET_USER_VAL("vsync", Bool, g_VSync);
+
+	CFG_GET_USER_VAL("nos3tc", Bool, g_NoGLS3TC);
+	CFG_GET_USER_VAL("noautomipmap", Bool, g_NoGLAutoMipmap);
 	CFG_GET_USER_VAL("novbo", Bool, g_NoGLVBO);
 	CFG_GET_USER_VAL("noframebufferobject", Bool, g_NoGLFramebufferObject);
 	CFG_GET_USER_VAL("shadows", Bool, g_Shadows);
@@ -144,14 +148,14 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 	if (args.Has("shadows"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "shadows")->m_String = "true";
 
-	if (args.Has("vsync"))
-		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
-
 	if (args.Has("xres"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "xres")->m_String = args.Get("xres");
 
 	if (args.Has("yres"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "yres")->m_String = args.Get("yres");
+
+	if (args.Has("vsync"))
+		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
 }
 
 

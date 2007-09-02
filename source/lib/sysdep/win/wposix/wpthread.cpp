@@ -289,10 +289,80 @@ int pthread_mutex_timedlock(pthread_mutex_t* UNUSED(m), const struct timespec* U
 // semaphore
 //-----------------------------------------------------------------------------
 
-
 static HANDLE HANDLE_from_sem_t(sem_t* sem)
 {
 	return (HANDLE)*sem;
+}
+
+sem_t* sem_open(const char* name, int oflag, ...)
+{
+	const bool create = (oflag & O_CREAT) != 0;
+	const bool exclusive = (oflag & O_EXCL) != 0;
+
+	// SUSv3 parameter requirements:
+	debug_assert(name[0] == '/');
+	debug_assert((oflag & ~(O_CREAT|O_EXCL)) == 0);	// no other bits
+	debug_assert(!exclusive || create);	// excl implies creat
+
+	// if creating, get additional parameters
+	unsigned initialValue = 0;
+	if(create)
+	{
+		va_list args;
+		va_start(args, oflag);
+		const mode_t mode = va_arg(args, mode_t);
+		initialValue = va_arg(args, unsigned);
+		va_end(args);
+		debug_assert(mode == 0700 && "this implementation ignores mode_t");
+	}
+
+	// create or open
+	WIN_SAVE_LAST_ERROR;
+	SetLastError(0);
+	const LONG maxValue = 0x7fffffff;
+	const HANDLE hSemaphore = CreateSemaphore(0, (LONG)initialValue, maxValue, 0);
+	if(hSemaphore == 0)
+		return SEM_FAILED;
+	const bool existed = (GetLastError() == ERROR_ALREADY_EXISTS);
+	WIN_RESTORE_LAST_ERROR;
+
+	// caller insisted on creating anew, but it already existed
+	if(exclusive && existed)
+	{
+		CloseHandle(hSemaphore);
+		errno = EEXIST;
+		return SEM_FAILED;
+	}
+
+	// caller wanted to open semaphore, but it didn't exist
+	if(!create && !existed)
+	{
+		CloseHandle(hSemaphore);
+		errno = ENOENT;
+		return SEM_FAILED;
+	}
+
+	// we have to return a pointer to sem_t, and the sem_init interface
+	// requires sem_t to be usable as the handle, so we'll have to
+	// allocate memory here (ugh).
+	sem_t* sem = new sem_t;
+	*sem = (sem_t)hSemaphore;
+	return sem;
+}
+
+int sem_close(sem_t* sem)
+{
+	// jw: not sure if this is correct according to SUSv3, but it's
+	// certainly enough for MessagePasserImpl's needs.
+	sem_destroy(sem);
+	delete sem;
+	return 0;	// success
+}
+
+int sem_unlink(const char* UNUSED(name))
+{
+	// see sem_close
+	return 0;	// success
 }
 
 int sem_init(sem_t* sem, int pshared, unsigned value)
@@ -301,7 +371,14 @@ int sem_init(sem_t* sem, int pshared, unsigned value)
 	sec.bInheritHandle = (BOOL)pshared;
 	HANDLE h = CreateSemaphore(&sec, (LONG)value, 0x7fffffff, 0);
 	WARN_IF_FALSE(h);
-	*sem = (uintptr_t)h;
+	*sem = (sem_t)h;
+	return 0;
+}
+
+int sem_destroy(sem_t* sem)
+{
+	HANDLE h = HANDLE_from_sem_t(sem);
+	WARN_IF_FALSE(CloseHandle(h));
 	return 0;
 }
 
@@ -317,13 +394,6 @@ int sem_wait(sem_t* sem)
 	HANDLE h = HANDLE_from_sem_t(sem);
 	DWORD ret = WaitForSingleObject(h, INFINITE);
 	debug_assert(ret == WAIT_OBJECT_0);
-	return 0;
-}
-
-int sem_destroy(sem_t* sem)
-{
-	HANDLE h = HANDLE_from_sem_t(sem);
-	WARN_IF_FALSE(CloseHandle(h));
 	return 0;
 }
 
