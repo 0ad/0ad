@@ -515,7 +515,7 @@ static const char* listCppTargets(const char* name)
 					if (matches(g_cc, "icc"))
 					{
 						basename = path_getbasename(pchSource);
-						strcat(g_buffer, " -create-pch $(OBJDIR)/");
+						strcat(g_buffer, " -pch-create $(OBJDIR)/");
 						strcat(g_buffer, basename);
 						strcat(g_buffer, ".pchi");
 						basename = NULL;
@@ -530,7 +530,7 @@ static const char* listCppTargets(const char* name)
 					if (matches(g_cc, "icc"))
 					{
 						basename = path_getbasename(pchSource);
-						strcat(g_buffer, " -use-pch $(OBJDIR)/");
+						strcat(g_buffer, " -pch-use $(OBJDIR)/");
 						strcat(g_buffer, basename);
 						strcat(g_buffer, ".pchi");
 						basename = NULL;

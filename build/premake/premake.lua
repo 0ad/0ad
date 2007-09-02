@@ -105,6 +105,7 @@ function package_set_build_flags()
 				"-Wuninitialized",
 				"-Wunknown-pragmas",
 				"-Wunused-function",
+				"-wd1292", -- avoid lots of 'attribute "__nonnull__" ignored'
 			})
 			tinsert(package.config["Debug"].buildoptions, {
 				"-O0", -- ICC defaults to -O2
@@ -408,7 +409,8 @@ function setup_all_libs ()
 		"libjpg",
 		"dbghelp",
 		"directx",
-		"cryptopp"
+		"cryptopp",
+		"valgrind"
 	}
 	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
 	sysdep_dirs = {

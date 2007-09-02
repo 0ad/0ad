@@ -15,7 +15,7 @@ local function add_extern_lib_paths(extern_lib)
 	-- Often, the headers in libraries/ are windows-specific (always, except
 	-- for cxxtest and fcollada). So don't add the include dir unless on
 	-- windows or processing one of those libs.
-	if OS == "windows" or extern_lib == 'cxxtest' or extern_lib == 'fcollada' then
+	if OS == "windows" or extern_lib == 'cxxtest' or extern_lib == 'fcollada' or extern_lib == 'valgrind' then
 		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
 	end
 	tinsert(package.libpaths, libraries_dir .. extern_lib .. "/lib")
@@ -113,6 +113,8 @@ extern_lib_defs = {
 	spidermonkey = {
 		win_names  = { "js32" },
 		unix_names = { "js" },
+	},
+	valgrind = {
 	},
 	vorbis = {
 		win_names  = { "vorbisfile" },
