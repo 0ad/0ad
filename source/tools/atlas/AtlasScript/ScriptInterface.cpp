@@ -268,6 +268,8 @@ template<typename T> jsval ScriptInterface::ToJSVal(JSContext* cx, const T& v)
 // but are required for linking with other files
 template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&);
 
+template bool ScriptInterface::FromJSVal<float>(JSContext*, jsval, float&);
+
 
 ////////////////////////////////////////////////////////////////
 

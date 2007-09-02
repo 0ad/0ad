@@ -309,12 +309,12 @@ void CheckBoxEventHandler::ConnectCheckBox(wxCheckBox *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_CHECKBOX_CLICKED, 
-               wxCommandEventHandler(OnCheckBox));
+               wxCommandEventHandler(CheckBoxEventHandler::OnCheckBox));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_CHECKBOX_CLICKED, 
-                  wxCommandEventHandler(OnCheckBox));
+                  wxCommandEventHandler(CheckBoxEventHandler::OnCheckBox));
   }
 }
 

@@ -553,12 +553,12 @@ void RadioBoxEventHandler::ConnectRadioBox(wxRadioBox *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_RADIOBOX_SELECTED, 
-               wxCommandEventHandler(OnRadioBox));
+               wxCommandEventHandler(RadioBoxEventHandler::OnRadioBox));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_RADIOBOX_SELECTED, 
-                  wxCommandEventHandler(OnRadioBox));
+                  wxCommandEventHandler(RadioBoxEventHandler::OnRadioBox));
   }
 }
 

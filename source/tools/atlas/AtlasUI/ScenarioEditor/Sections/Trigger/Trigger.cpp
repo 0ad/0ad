@@ -7,6 +7,7 @@
 #include "ScenarioEditor/Tools/Common/MiscState.h"
 
 #include "wx/treectrl.h"
+#include "wx/listctrl.h"
 #include "wx/notebook.h"
 #include <sstream>
 #include <list>

@@ -397,12 +397,13 @@ void ButtonEventHandler::ConnectClicked(wxButton *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(OnClicked));
+    p->Connect(wxEVT_COMMAND_BUTTON_CLICKED,
+	wxCommandEventHandler(ButtonEventHandler::OnClicked));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_BUTTON_CLICKED, 
-                  wxCommandEventHandler(OnClicked));
+	wxCommandEventHandler(ButtonEventHandler::OnClicked));
   }
 }
 

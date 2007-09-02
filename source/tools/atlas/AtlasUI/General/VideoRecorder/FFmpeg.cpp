@@ -1,5 +1,9 @@
 #include "precompiled.h"
 
+#define USE_FFMPEG 0
+
+#include "FFmpeg.h"
+
 /*
 
 Code originally taken from ffmpeg's output_example.c
@@ -16,6 +20,7 @@ This is all rather hacked together and unreliable. In particular, I should:
 Please complain if I forget to do those things.
 
 */
+#if USE_FFMPEG
 
 #ifdef __GNUC__
 // ugly hack to make recent versions of FFmpeg work
@@ -403,3 +408,19 @@ VideoEncoder::~VideoEncoder()
 	
 	delete m;
 }
+
+#else // !USE_FFMPEG:
+
+VideoEncoder::VideoEncoder(const wxString& filenameStr, int framerate, int bitrate, float duration, int width, int height)
+{
+}
+
+void VideoEncoder::Frame(const unsigned char* buffer)
+{
+}
+
+VideoEncoder::~VideoEncoder()
+{
+}
+
+#endif // !USE_FFMPEG

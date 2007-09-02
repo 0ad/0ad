@@ -811,12 +811,12 @@ void HtmlLinkEventHandler::ConnectLinkClicked(wxHtmlWindow *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_HTML_LINK_CLICKED, 
-               wxHtmlLinkEventHandler(OnLinkClicked));
+               wxHtmlLinkEventHandler(HtmlLinkEventHandler::OnLinkClicked));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_HTML_LINK_CLICKED, 
-                  wxHtmlLinkEventHandler(OnLinkClicked));
+                  wxHtmlLinkEventHandler(HtmlLinkEventHandler::OnLinkClicked));
   }
 }
 

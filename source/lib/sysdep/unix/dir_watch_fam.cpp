@@ -22,7 +22,7 @@ LibError dir_cancel_watch(const intptr_t watch)
 
 LibError dir_get_changed_file(char *)
 {
-  return INFO::OK;
+  return ERR::AGAIN; // Say no files are available.
 }
 
 #else

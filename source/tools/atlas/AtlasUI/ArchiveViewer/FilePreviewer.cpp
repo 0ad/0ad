@@ -210,10 +210,16 @@ void FilePreviewer::PreviewFile(const wxString& filename, SeekableInputStream& s
 			// (That's assuming we fix wxSound to not just leak the memory.)
 			// So, just use a static object, and hope it stops playing before
 			// the program is exited.
+			// The wxSound-from memory constructor does not exist on OS X, so
+			// just show a warning there.
+#ifdef __APPLE__
+			wxFAIL_MSG(_T("WAV playback not available on Mac OS X"));
+#else
 			static wxSound snd;
 			snd.Stop();
 			snd.Create((int)bufSize, (const wxByte*)buf);
 			snd.Play();
+#endif
 			stream.ReleaseBuffer(buf);
 		}
 		

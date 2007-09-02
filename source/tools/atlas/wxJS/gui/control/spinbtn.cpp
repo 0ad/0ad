@@ -352,12 +352,12 @@ void SpinButtonEventHandler::ConnectSpin(wxSpinButton *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_SCROLL_THUMBTRACK,
-				wxSpinEventHandler(OnSpin));
+				wxSpinEventHandler(SpinButtonEventHandler::OnSpin));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_SCROLL_THUMBTRACK,
-				wxSpinEventHandler(OnSpin));
+				wxSpinEventHandler(SpinButtonEventHandler::OnSpin));
 	}
 }
 
@@ -366,12 +366,12 @@ void SpinButtonEventHandler::ConnectSpinUp(wxSpinButton *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_SCROLL_LINEUP,
-				wxSpinEventHandler(OnSpinUp));
+				wxSpinEventHandler(SpinButtonEventHandler::OnSpinUp));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_SCROLL_LINEUP,
-				wxSpinEventHandler(OnSpinUp));
+				wxSpinEventHandler(SpinButtonEventHandler::OnSpinUp));
 	}
 }
 
@@ -380,12 +380,12 @@ void SpinButtonEventHandler::ConnectSpinDown(wxSpinButton *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_SCROLL_LINEDOWN,
-				wxSpinEventHandler(OnSpinDown));
+				wxSpinEventHandler(SpinButtonEventHandler::OnSpinDown));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_SCROLL_LINEDOWN,
-				wxSpinEventHandler(OnSpinDown));
+				wxSpinEventHandler(SpinButtonEventHandler::OnSpinDown));
 	}
 }
 

@@ -623,12 +623,12 @@ void ComboBoxEventHandler::ConnectText(wxComboBox *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TEXT_UPDATED, 
-               wxCommandEventHandler(OnText));
+               wxCommandEventHandler(ComboBoxEventHandler::OnText));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TEXT_UPDATED, 
-                  wxCommandEventHandler(OnText));
+                  wxCommandEventHandler(ComboBoxEventHandler::OnText));
   }
 }
 
@@ -637,12 +637,12 @@ void ComboBoxEventHandler::ConnectTextEnter(wxComboBox *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TEXT_ENTER, 
-               wxCommandEventHandler(OnTextEnter));
+               wxCommandEventHandler(ComboBoxEventHandler::OnTextEnter));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TEXT_ENTER, 
-                  wxCommandEventHandler(OnTextEnter));
+                  wxCommandEventHandler(ComboBoxEventHandler::OnTextEnter));
   }
 }
 
@@ -651,12 +651,12 @@ void ComboBoxEventHandler::ConnectComboBox(wxComboBox *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_COMBOBOX_SELECTED, 
-               wxCommandEventHandler(OnComboBox));
+               wxCommandEventHandler(ComboBoxEventHandler::OnComboBox));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_COMBOBOX_SELECTED, 
-                  wxCommandEventHandler(OnComboBox));
+                  wxCommandEventHandler(ComboBoxEventHandler::OnComboBox));
   }
 }
 

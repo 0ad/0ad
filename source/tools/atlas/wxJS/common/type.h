@@ -46,6 +46,9 @@ namespace wxjs
     bool FromJS<unsigned int>(JSContext *cx, jsval v, unsigned int &to);
 
     template<>
+    bool FromJS<unsigned long>(JSContext *cx, jsval v, unsigned long &to);
+
+    template<>
     bool FromJS<long>(JSContext *cx, jsval v, long &to);
 
     template<>

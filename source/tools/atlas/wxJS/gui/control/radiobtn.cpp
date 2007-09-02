@@ -299,12 +299,12 @@ void RadioButtonEventHandler::ConnectRadioButton(wxRadioButton *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_RADIOBUTTON_SELECTED,
-               wxCommandEventHandler(OnRadioButton));
+               wxCommandEventHandler(RadioButtonEventHandler::OnRadioButton));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_RADIOBUTTON_SELECTED, 
-                  wxCommandEventHandler(OnRadioButton));
+                  wxCommandEventHandler(RadioButtonEventHandler::OnRadioButton));
   }
 }
 

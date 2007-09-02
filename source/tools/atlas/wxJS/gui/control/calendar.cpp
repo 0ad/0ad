@@ -756,12 +756,12 @@ void CalendarEventHandler::ConnectCalendar(wxCalendarCtrl *p,
   if ( connect )
   {
     p->Connect(wxEVT_CALENDAR_DOUBLECLICKED,
-               wxCalendarEventHandler(OnCalendar));
+               wxCalendarEventHandler(CalendarEventHandler::OnCalendar));
   }
   else
   {
     p->Disconnect(wxEVT_CALENDAR_DOUBLECLICKED,
-                  wxCalendarEventHandler(OnCalendar));
+                  wxCalendarEventHandler(CalendarEventHandler::OnCalendar));
   }
 }
 
@@ -770,12 +770,12 @@ void CalendarEventHandler::ConnectCalendarDay(wxCalendarCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_CALENDAR_DAY_CHANGED, 
-               wxCalendarEventHandler(OnCalendarDay));
+               wxCalendarEventHandler(CalendarEventHandler::OnCalendarDay));
   }
   else
   {
     p->Disconnect(wxEVT_CALENDAR_DAY_CHANGED, 
-                  wxCalendarEventHandler(OnCalendarDay));
+                  wxCalendarEventHandler(CalendarEventHandler::OnCalendarDay));
   }
 }
 
@@ -785,12 +785,12 @@ void CalendarEventHandler::ConnectCalendarSelChanged(wxCalendarCtrl *p,
   if ( connect )
   {
     p->Connect(wxEVT_CALENDAR_SEL_CHANGED,
-               wxCalendarEventHandler(OnCalendarSelChanged));
+               wxCalendarEventHandler(CalendarEventHandler::OnCalendarSelChanged));
   }
   else
   {
     p->Disconnect(wxEVT_CALENDAR_SEL_CHANGED,
-                  wxCalendarEventHandler(OnCalendarSelChanged));
+                  wxCalendarEventHandler(CalendarEventHandler::OnCalendarSelChanged));
   }
 }
 
@@ -799,12 +799,12 @@ void CalendarEventHandler::ConnectCalendarMonth(wxCalendarCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_CALENDAR_MONTH_CHANGED,
-               wxCalendarEventHandler(OnCalendarMonth));
+               wxCalendarEventHandler(CalendarEventHandler::OnCalendarMonth));
   }
   else
   {
     p->Disconnect(wxEVT_CALENDAR_MONTH_CHANGED,
-                  wxCalendarEventHandler(OnCalendarMonth));
+                  wxCalendarEventHandler(CalendarEventHandler::OnCalendarMonth));
   }
 }
 
@@ -813,12 +813,12 @@ void CalendarEventHandler::ConnectCalendarYear(wxCalendarCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_CALENDAR_YEAR_CHANGED,
-               wxCalendarEventHandler(OnCalendarYear));
+               wxCalendarEventHandler(CalendarEventHandler::OnCalendarYear));
   }
   else
   {
     p->Disconnect(wxEVT_CALENDAR_YEAR_CHANGED,
-                  wxCalendarEventHandler(OnCalendarYear));
+                  wxCalendarEventHandler(CalendarEventHandler::OnCalendarYear));
   }
 }
 
@@ -828,12 +828,12 @@ void CalendarEventHandler::ConnectCalendarWeekDayClicked(wxCalendarCtrl *p,
   if ( connect )
   {
     p->Connect(wxEVT_CALENDAR_WEEKDAY_CLICKED,
-               wxCalendarEventHandler(OnCalendarWeekDayClicked));
+               wxCalendarEventHandler(CalendarEventHandler::OnCalendarWeekDayClicked));
   }
   else
   {
     p->Disconnect(wxEVT_CALENDAR_WEEKDAY_CLICKED,
-                  wxCalendarEventHandler(OnCalendarWeekDayClicked));
+                  wxCalendarEventHandler(CalendarEventHandler::OnCalendarWeekDayClicked));
   }
 }
 

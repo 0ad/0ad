@@ -430,11 +430,11 @@ void DialogEventHandler::ConnectClose(wxDialog *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(OnClose));
+    p->Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(DialogEventHandler::OnClose));
   }
   else
   {
-    p->Disconnect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(OnClose));
+    p->Disconnect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(DialogEventHandler::OnClose));
   }
 }
 
@@ -442,11 +442,11 @@ void DialogEventHandler::ConnectInitDialog(wxDialog *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_INIT_DIALOG, wxInitDialogEventHandler(OnInitDialog));
+    p->Connect(wxEVT_INIT_DIALOG, wxInitDialogEventHandler(DialogEventHandler::OnInitDialog));
   }
   else
   {
-    p->Disconnect(wxEVT_INIT_DIALOG, wxInitDialogEventHandler(OnInitDialog));
+    p->Disconnect(wxEVT_INIT_DIALOG, wxInitDialogEventHandler(DialogEventHandler::OnInitDialog));
   }
 }
 

@@ -4,6 +4,8 @@
 #include "General/Observable.h"
 #include "ScenarioEditor/Tools/Common/ObjectSettings.h"
 
+#include "wx/treectrl.h"
+
 class wxTreeCtrl;
 
 class ActorViewer : public wxFrame

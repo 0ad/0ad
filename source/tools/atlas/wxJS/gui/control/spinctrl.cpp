@@ -449,12 +449,12 @@ void SpinCtrlEventHandler::ConnectText(wxSpinCtrl *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_COMMAND_TEXT_UPDATED,
-				wxCommandEventHandler(OnText));
+				wxCommandEventHandler(SpinCtrlEventHandler::OnText));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_COMMAND_TEXT_UPDATED,
-				wxCommandEventHandler(OnText));
+				wxCommandEventHandler(SpinCtrlEventHandler::OnText));
 	}
 }
 
@@ -463,12 +463,12 @@ void SpinCtrlEventHandler::ConnectSpinCtrl(wxSpinCtrl *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_COMMAND_SPINCTRL_UPDATED,
-				wxSpinEventHandler(OnSpinCtrl));
+				wxSpinEventHandler(SpinCtrlEventHandler::OnSpinCtrl));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_COMMAND_SPINCTRL_UPDATED,
-				wxSpinEventHandler(OnSpinCtrl));
+				wxSpinEventHandler(SpinCtrlEventHandler::OnSpinCtrl));
 	}
 }
 
@@ -477,12 +477,12 @@ void SpinCtrlEventHandler::ConnectSpin(wxSpinCtrl *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_SCROLL_THUMBTRACK,
-				wxSpinEventHandler(OnSpin));
+				wxSpinEventHandler(SpinCtrlEventHandler::OnSpin));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_SCROLL_THUMBTRACK,
-				wxSpinEventHandler(OnSpin));
+				wxSpinEventHandler(SpinCtrlEventHandler::OnSpin));
 	}
 }
 
@@ -491,12 +491,12 @@ void SpinCtrlEventHandler::ConnectSpinUp(wxSpinCtrl *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_SCROLL_LINEUP,
-				wxSpinEventHandler(OnSpinUp));
+				wxSpinEventHandler(SpinCtrlEventHandler::OnSpinUp));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_SCROLL_LINEUP,
-				wxSpinEventHandler(OnSpinUp));
+				wxSpinEventHandler(SpinCtrlEventHandler::OnSpinUp));
 	}
 }
 
@@ -505,12 +505,12 @@ void SpinCtrlEventHandler::ConnectSpinDown(wxSpinCtrl *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_SCROLL_LINEDOWN,
-				wxSpinEventHandler(OnSpinDown));
+				wxSpinEventHandler(SpinCtrlEventHandler::OnSpinDown));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_SCROLL_LINEDOWN,
-				wxSpinEventHandler(OnSpinDown));
+				wxSpinEventHandler(SpinCtrlEventHandler::OnSpinDown));
 	}
 }
 

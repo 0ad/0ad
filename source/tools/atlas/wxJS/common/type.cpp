@@ -74,6 +74,19 @@ bool wxjs::FromJS<long>(JSContext *cx, jsval v, long &to)
 }
 
 template<>
+bool wxjs::FromJS<unsigned long>(JSContext *cx, jsval v, unsigned long &to)
+{
+	int32 temp;
+	if ( JS_ValueToInt32(cx, v, &temp) == JS_TRUE )
+	{
+		to = temp;
+		return true;
+	}
+	else
+		return false;
+}
+
+template<>
 bool wxjs::FromJS<double>(JSContext *cx, jsval v, double &to)
 {
     jsdouble d;

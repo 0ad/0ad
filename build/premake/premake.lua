@@ -662,7 +662,8 @@ function setup_atlas_packages()
 		"spidermonkey",
 		"wxwidgets",
 		"xerces",
-		"comsuppw"
+		"comsuppw",
+		"zlib"
 	},{	-- extra_params
 		pch = (not has_broken_pch),
 		extra_links = { "AtlasObject", "AtlasScript", "wxJS", "DatafileIO" },

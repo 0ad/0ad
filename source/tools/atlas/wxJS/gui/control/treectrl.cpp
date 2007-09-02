@@ -2407,12 +2407,12 @@ void TreeCtrlEventHandler::ConnectBeginDrag(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_BEGIN_DRAG, 
-               wxTreeEventHandler(onBeginDrag));
+               wxTreeEventHandler(TreeCtrlEventHandler::onBeginDrag));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_BEGIN_DRAG, 
-                  wxTreeEventHandler(onBeginDrag));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onBeginDrag));
   }
 }
 
@@ -2421,12 +2421,12 @@ void TreeCtrlEventHandler::ConnectBeginRDrag(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_BEGIN_RDRAG, 
-               wxTreeEventHandler(onBeginRDrag));
+               wxTreeEventHandler(TreeCtrlEventHandler::onBeginRDrag));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_BEGIN_RDRAG, 
-                  wxTreeEventHandler(onBeginRDrag));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onBeginRDrag));
   }
 }
 
@@ -2435,12 +2435,12 @@ void TreeCtrlEventHandler::ConnectBeginLabelEdit(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_BEGIN_LABEL_EDIT, 
-               wxTreeEventHandler(onBeginLabelEdit));
+               wxTreeEventHandler(TreeCtrlEventHandler::onBeginLabelEdit));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_BEGIN_LABEL_EDIT, 
-                  wxTreeEventHandler(onBeginLabelEdit));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onBeginLabelEdit));
   }
 }
 
@@ -2449,12 +2449,12 @@ void TreeCtrlEventHandler::ConnectEndLabelEdit(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_END_LABEL_EDIT, 
-               wxTreeEventHandler(onEndLabelEdit));
+               wxTreeEventHandler(TreeCtrlEventHandler::onEndLabelEdit));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_END_LABEL_EDIT, 
-                  wxTreeEventHandler(onEndLabelEdit));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onEndLabelEdit));
   }
 }
 
@@ -2463,12 +2463,12 @@ void TreeCtrlEventHandler::ConnectDeleteItem(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_DELETE_ITEM, 
-               wxTreeEventHandler(onDeleteItem));
+               wxTreeEventHandler(TreeCtrlEventHandler::onDeleteItem));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_DELETE_ITEM, 
-                  wxTreeEventHandler(onDeleteItem));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onDeleteItem));
   }
 }
 
@@ -2477,12 +2477,12 @@ void TreeCtrlEventHandler::ConnectGetInfo(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_GET_INFO, 
-               wxTreeEventHandler(onGetInfo));
+               wxTreeEventHandler(TreeCtrlEventHandler::onGetInfo));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_GET_INFO, 
-                  wxTreeEventHandler(onGetInfo));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onGetInfo));
   }
 }
 
@@ -2491,12 +2491,12 @@ void TreeCtrlEventHandler::ConnectSetInfo(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_SET_INFO, 
-               wxTreeEventHandler(onSetInfo));
+               wxTreeEventHandler(TreeCtrlEventHandler::onSetInfo));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_SET_INFO, 
-                  wxTreeEventHandler(onSetInfo));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onSetInfo));
   }
 }
 
@@ -2505,12 +2505,12 @@ void TreeCtrlEventHandler::ConnectItemExpanded(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_ITEM_EXPANDED, 
-               wxTreeEventHandler(onItemExpanded));
+               wxTreeEventHandler(TreeCtrlEventHandler::onItemExpanded));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_ITEM_EXPANDED, 
-                  wxTreeEventHandler(onItemExpanded));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onItemExpanded));
   }
 }
 
@@ -2519,12 +2519,12 @@ void TreeCtrlEventHandler::ConnectItemExpanding(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_ITEM_EXPANDING, 
-               wxTreeEventHandler(onItemExpanding));
+               wxTreeEventHandler(TreeCtrlEventHandler::onItemExpanding));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_ITEM_EXPANDING, 
-                  wxTreeEventHandler(onItemExpanding));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onItemExpanding));
   }
 }
 
@@ -2533,12 +2533,12 @@ void TreeCtrlEventHandler::ConnectItemCollapsed(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_ITEM_COLLAPSED, 
-               wxTreeEventHandler(onItemCollapsed));
+               wxTreeEventHandler(TreeCtrlEventHandler::onItemCollapsed));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_ITEM_COLLAPSED, 
-                  wxTreeEventHandler(onItemCollapsed));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onItemCollapsed));
   }
 }
 
@@ -2547,12 +2547,12 @@ void TreeCtrlEventHandler::ConnectItemCollapsing(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_ITEM_COLLAPSING, 
-               wxTreeEventHandler(onItemCollapsing));
+               wxTreeEventHandler(TreeCtrlEventHandler::onItemCollapsing));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_ITEM_COLLAPSING, 
-                  wxTreeEventHandler(onItemCollapsing));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onItemCollapsing));
   }
 }
 
@@ -2561,12 +2561,12 @@ void TreeCtrlEventHandler::ConnectSelChanged(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_SEL_CHANGED, 
-               wxTreeEventHandler(onSelChanged));
+               wxTreeEventHandler(TreeCtrlEventHandler::onSelChanged));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_SEL_CHANGED, 
-                  wxTreeEventHandler(onSelChanged));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onSelChanged));
   }
 }
 
@@ -2575,12 +2575,12 @@ void TreeCtrlEventHandler::ConnectSelChanging(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_SEL_CHANGING, 
-               wxTreeEventHandler(onSelChanging));
+               wxTreeEventHandler(TreeCtrlEventHandler::onSelChanging));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_SEL_CHANGING, 
-                  wxTreeEventHandler(onSelChanging));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onSelChanging));
   }
 }
 
@@ -2589,12 +2589,12 @@ void TreeCtrlEventHandler::ConnectKeyDown(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_KEY_DOWN, 
-               wxTreeEventHandler(onKeyDown));
+               wxTreeEventHandler(TreeCtrlEventHandler::onKeyDown));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_KEY_DOWN, 
-                  wxTreeEventHandler(onKeyDown));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onKeyDown));
   }
 }
 
@@ -2603,12 +2603,12 @@ void TreeCtrlEventHandler::ConnectItemActivated(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_ITEM_ACTIVATED, 
-               wxTreeEventHandler(onItemActivated));
+               wxTreeEventHandler(TreeCtrlEventHandler::onItemActivated));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_ITEM_ACTIVATED, 
-                  wxTreeEventHandler(onItemActivated));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onItemActivated));
   }}
 
 void TreeCtrlEventHandler::ConnectItemRightClick(wxTreeCtrl *p, bool connect)
@@ -2616,12 +2616,12 @@ void TreeCtrlEventHandler::ConnectItemRightClick(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_ITEM_RIGHT_CLICK, 
-               wxTreeEventHandler(onItemRightClick));
+               wxTreeEventHandler(TreeCtrlEventHandler::onItemRightClick));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_ITEM_RIGHT_CLICK, 
-                  wxTreeEventHandler(onItemRightClick));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onItemRightClick));
   }
 }
 
@@ -2630,12 +2630,12 @@ void TreeCtrlEventHandler::ConnectItemMiddleClick(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_ITEM_MIDDLE_CLICK, 
-               wxTreeEventHandler(onItemMiddleClick));
+               wxTreeEventHandler(TreeCtrlEventHandler::onItemMiddleClick));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_ITEM_MIDDLE_CLICK, 
-                  wxTreeEventHandler(onItemMiddleClick));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onItemMiddleClick));
   }
 }
 
@@ -2644,12 +2644,12 @@ void TreeCtrlEventHandler::ConnectEndDrag(wxTreeCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TREE_END_DRAG, 
-               wxTreeEventHandler(onEndDrag));
+               wxTreeEventHandler(TreeCtrlEventHandler::onEndDrag));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TREE_END_DRAG, 
-                  wxTreeEventHandler(onEndDrag));
+                  wxTreeEventHandler(TreeCtrlEventHandler::onEndDrag));
   }
 }
 

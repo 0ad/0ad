@@ -2820,12 +2820,12 @@ void ListCtrlEventHandler::ConnectBeginDrag(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_BEGIN_DRAG,
-               wxListEventHandler(OnBeginDrag));
+               wxListEventHandler(ListCtrlEventHandler::OnBeginDrag));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_BEGIN_DRAG, 
-                  wxListEventHandler(OnBeginDrag));
+                  wxListEventHandler(ListCtrlEventHandler::OnBeginDrag));
   }
 }
 
@@ -2834,12 +2834,12 @@ void ListCtrlEventHandler::ConnectBeginRDrag(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_BEGIN_RDRAG,
-               wxListEventHandler(OnBeginRDrag));
+               wxListEventHandler(ListCtrlEventHandler::OnBeginRDrag));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_BEGIN_RDRAG, 
-                  wxListEventHandler(OnBeginRDrag));
+                  wxListEventHandler(ListCtrlEventHandler::OnBeginRDrag));
   }
 }
 
@@ -2848,12 +2848,12 @@ void ListCtrlEventHandler::ConnectBeginLabelEdit(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_BEGIN_LABEL_EDIT,
-               wxListEventHandler(OnBeginLabelEdit));
+               wxListEventHandler(ListCtrlEventHandler::OnBeginLabelEdit));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_BEGIN_LABEL_EDIT, 
-                  wxListEventHandler(OnBeginLabelEdit));
+                  wxListEventHandler(ListCtrlEventHandler::OnBeginLabelEdit));
   }
 }
 
@@ -2862,12 +2862,12 @@ void ListCtrlEventHandler::ConnectEndLabelEdit(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_END_LABEL_EDIT,
-               wxListEventHandler(OnEndLabelEdit));
+               wxListEventHandler(ListCtrlEventHandler::OnEndLabelEdit));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_BEGIN_DRAG, 
-                  wxListEventHandler(OnEndLabelEdit));
+                  wxListEventHandler(ListCtrlEventHandler::OnEndLabelEdit));
   }
 }
 
@@ -2876,12 +2876,12 @@ void ListCtrlEventHandler::ConnectDeleteItem(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_DELETE_ITEM,
-               wxListEventHandler(OnDeleteItem));
+               wxListEventHandler(ListCtrlEventHandler::OnDeleteItem));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_DELETE_ITEM, 
-                  wxListEventHandler(OnDeleteItem));
+                  wxListEventHandler(ListCtrlEventHandler::OnDeleteItem));
   }
 }
 
@@ -2890,12 +2890,12 @@ void ListCtrlEventHandler::ConnectDeleteAllItems(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_DELETE_ALL_ITEMS,
-               wxListEventHandler(OnDeleteAllItems));
+               wxListEventHandler(ListCtrlEventHandler::OnDeleteAllItems));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_DELETE_ALL_ITEMS, 
-                  wxListEventHandler(OnDeleteAllItems));
+                  wxListEventHandler(ListCtrlEventHandler::OnDeleteAllItems));
   }
 }
 
@@ -2904,12 +2904,12 @@ void ListCtrlEventHandler::ConnectItemSelected(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_ITEM_SELECTED,
-               wxListEventHandler(OnItemSelected));
+               wxListEventHandler(ListCtrlEventHandler::OnItemSelected));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_ITEM_SELECTED, 
-                  wxListEventHandler(OnItemSelected));
+                  wxListEventHandler(ListCtrlEventHandler::OnItemSelected));
   }
 }
 
@@ -2918,12 +2918,12 @@ void ListCtrlEventHandler::ConnectItemDeselected(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_ITEM_DESELECTED,
-               wxListEventHandler(OnItemDeselected));
+               wxListEventHandler(ListCtrlEventHandler::OnItemDeselected));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_ITEM_DESELECTED, 
-                  wxListEventHandler(OnItemDeselected));
+                  wxListEventHandler(ListCtrlEventHandler::OnItemDeselected));
   }
 }
 
@@ -2932,12 +2932,12 @@ void ListCtrlEventHandler::ConnectItemActivated(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_ITEM_ACTIVATED,
-               wxListEventHandler(OnItemActivated));
+               wxListEventHandler(ListCtrlEventHandler::OnItemActivated));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, 
-                  wxListEventHandler(OnItemActivated));
+                  wxListEventHandler(ListCtrlEventHandler::OnItemActivated));
   }
 }
 
@@ -2946,12 +2946,12 @@ void ListCtrlEventHandler::ConnectItemFocused(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_ITEM_FOCUSED,
-               wxListEventHandler(OnItemFocused));
+               wxListEventHandler(ListCtrlEventHandler::OnItemFocused));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_ITEM_FOCUSED, 
-                  wxListEventHandler(OnItemFocused));
+                  wxListEventHandler(ListCtrlEventHandler::OnItemFocused));
   }
 }
 
@@ -2960,12 +2960,12 @@ void ListCtrlEventHandler::ConnectItemRightClick(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_ITEM_RIGHT_CLICK,
-               wxListEventHandler(OnItemRightClick));
+               wxListEventHandler(ListCtrlEventHandler::OnItemRightClick));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_ITEM_RIGHT_CLICK, 
-                  wxListEventHandler(OnItemRightClick));
+                  wxListEventHandler(ListCtrlEventHandler::OnItemRightClick));
   }
 }
 
@@ -2974,12 +2974,12 @@ void ListCtrlEventHandler::ConnectListKeyDown(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_KEY_DOWN,
-               wxListEventHandler(OnListKeyDown));
+               wxListEventHandler(ListCtrlEventHandler::OnListKeyDown));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_KEY_DOWN, 
-                  wxListEventHandler(OnListKeyDown));
+                  wxListEventHandler(ListCtrlEventHandler::OnListKeyDown));
   }
 }
 
@@ -2988,12 +2988,12 @@ void ListCtrlEventHandler::ConnectInsertItem(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_INSERT_ITEM,
-               wxListEventHandler(OnInsertItem));
+               wxListEventHandler(ListCtrlEventHandler::OnInsertItem));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_INSERT_ITEM, 
-                  wxListEventHandler(OnInsertItem));
+                  wxListEventHandler(ListCtrlEventHandler::OnInsertItem));
   }
 }
 
@@ -3002,12 +3002,12 @@ void ListCtrlEventHandler::ConnectColClick(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_COL_CLICK,
-               wxListEventHandler(OnColClick));
+               wxListEventHandler(ListCtrlEventHandler::OnColClick));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_COL_CLICK, 
-                  wxListEventHandler(OnColClick));
+                  wxListEventHandler(ListCtrlEventHandler::OnColClick));
   }
 }
 
@@ -3016,12 +3016,12 @@ void ListCtrlEventHandler::ConnectColRightClick(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_COL_RIGHT_CLICK,
-               wxListEventHandler(OnColRightClick));
+               wxListEventHandler(ListCtrlEventHandler::OnColRightClick));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_COL_RIGHT_CLICK, 
-                  wxListEventHandler(OnColRightClick));
+                  wxListEventHandler(ListCtrlEventHandler::OnColRightClick));
   }
 }
 
@@ -3030,12 +3030,12 @@ void ListCtrlEventHandler::ConnectColBeginDrag(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_COL_BEGIN_DRAG,
-               wxListEventHandler(OnColBeginDrag));
+               wxListEventHandler(ListCtrlEventHandler::OnColBeginDrag));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_COL_BEGIN_DRAG, 
-                  wxListEventHandler(OnColBeginDrag));
+                  wxListEventHandler(ListCtrlEventHandler::OnColBeginDrag));
   }
 }
 
@@ -3044,12 +3044,12 @@ void ListCtrlEventHandler::ConnectColDragging(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_COL_DRAGGING,
-               wxListEventHandler(OnColDragging));
+               wxListEventHandler(ListCtrlEventHandler::OnColDragging));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_COL_DRAGGING, 
-                  wxListEventHandler(OnColDragging));
+                  wxListEventHandler(ListCtrlEventHandler::OnColDragging));
   }
 }
 
@@ -3058,12 +3058,12 @@ void ListCtrlEventHandler::ConnectColEndDrag(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_COL_END_DRAG,
-               wxListEventHandler(OnColEndDrag));
+               wxListEventHandler(ListCtrlEventHandler::OnColEndDrag));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_COL_END_DRAG, 
-                  wxListEventHandler(OnColEndDrag));
+                  wxListEventHandler(ListCtrlEventHandler::OnColEndDrag));
   }
 }
 
@@ -3072,12 +3072,12 @@ void ListCtrlEventHandler::ConnectCacheHint(wxListCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LIST_CACHE_HINT,
-               wxListEventHandler(OnCacheHint));
+               wxListEventHandler(ListCtrlEventHandler::OnCacheHint));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LIST_CACHE_HINT, 
-                  wxListEventHandler(OnCacheHint));
+                  wxListEventHandler(ListCtrlEventHandler::OnCacheHint));
   }
 }
 

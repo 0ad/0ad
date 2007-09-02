@@ -754,12 +754,12 @@ void SliderEventHandler::ConnectScrollChanged(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_CHANGED, 
-               wxScrollEventHandler(OnScrollChanged));
+               wxScrollEventHandler(SliderEventHandler::OnScrollChanged));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_CHANGED, 
-                  wxScrollEventHandler(OnScrollChanged));
+                  wxScrollEventHandler(SliderEventHandler::OnScrollChanged));
   }
 }
 
@@ -768,12 +768,12 @@ void SliderEventHandler::ConnectScrollTop(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_TOP, 
-               wxScrollEventHandler(OnScrollTop));
+               wxScrollEventHandler(SliderEventHandler::OnScrollTop));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_TOP, 
-                  wxScrollEventHandler(OnScrollTop));
+                  wxScrollEventHandler(SliderEventHandler::OnScrollTop));
   }
 }
 
@@ -782,12 +782,12 @@ void SliderEventHandler::ConnectScrollBottom(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_BOTTOM, 
-               wxScrollEventHandler(OnScrollBottom));
+               wxScrollEventHandler(SliderEventHandler::OnScrollBottom));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_BOTTOM, 
-                  wxScrollEventHandler(OnScrollBottom));
+                  wxScrollEventHandler(SliderEventHandler::OnScrollBottom));
   }
 }
 
@@ -796,12 +796,12 @@ void SliderEventHandler::ConnectScrollLineUp(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_LINEUP, 
-               wxScrollEventHandler(OnScrollTop));
+               wxScrollEventHandler(SliderEventHandler::OnScrollTop));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_LINEUP, 
-                  wxScrollEventHandler(OnScrollTop));
+                  wxScrollEventHandler(SliderEventHandler::OnScrollTop));
   }
 }
 
@@ -810,12 +810,12 @@ void SliderEventHandler::ConnectScrollLineDown(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_LINEDOWN, 
-               wxScrollEventHandler(OnScrollLineDown));
+               wxScrollEventHandler(SliderEventHandler::OnScrollLineDown));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_LINEDOWN, 
-                  wxScrollEventHandler(OnScrollLineDown));
+                  wxScrollEventHandler(SliderEventHandler::OnScrollLineDown));
   }
 }
 
@@ -824,12 +824,12 @@ void SliderEventHandler::ConnectScrollPageUp(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_PAGEUP, 
-               wxScrollEventHandler(OnScrollPageUp));
+               wxScrollEventHandler(SliderEventHandler::OnScrollPageUp));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_PAGEUP, 
-               wxScrollEventHandler(OnScrollPageUp));
+               wxScrollEventHandler(SliderEventHandler::OnScrollPageUp));
   }
 }
 
@@ -838,12 +838,12 @@ void SliderEventHandler::ConnectScrollPageDown(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_PAGEDOWN, 
-               wxScrollEventHandler(OnScrollPageDown));
+               wxScrollEventHandler(SliderEventHandler::OnScrollPageDown));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_PAGEDOWN, 
-               wxScrollEventHandler(OnScrollPageDown));
+               wxScrollEventHandler(SliderEventHandler::OnScrollPageDown));
   }
 }
 
@@ -852,12 +852,12 @@ void SliderEventHandler::ConnectScrollThumbTrack(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_THUMBTRACK, 
-               wxScrollEventHandler(OnScrollThumbTrack));
+               wxScrollEventHandler(SliderEventHandler::OnScrollThumbTrack));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_THUMBTRACK, 
-                  wxScrollEventHandler(OnScrollThumbTrack));
+                  wxScrollEventHandler(SliderEventHandler::OnScrollThumbTrack));
   }
 }
 
@@ -866,12 +866,12 @@ void SliderEventHandler::ConnectScrollThumbRelease(wxSlider *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SCROLL_THUMBRELEASE, 
-               wxScrollEventHandler(OnScrollThumbRelease));
+               wxScrollEventHandler(SliderEventHandler::OnScrollThumbRelease));
   }
   else
   {
     p->Disconnect(wxEVT_SCROLL_THUMBRELEASE, 
-                  wxScrollEventHandler(OnScrollThumbRelease));
+                  wxScrollEventHandler(SliderEventHandler::OnScrollThumbRelease));
   }
 }
 

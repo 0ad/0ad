@@ -314,12 +314,12 @@ void CheckListBoxEventHandler::ConnectCheckListBox(wxCheckListBox *p,
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_CHECKLISTBOX_TOGGLED, 
-               wxCommandEventHandler(OnCheckListBox));
+               wxCommandEventHandler(CheckListBoxEventHandler::OnCheckListBox));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_CHECKLISTBOX_TOGGLED, 
-                  wxCommandEventHandler(OnCheckListBox));
+                  wxCommandEventHandler(CheckListBoxEventHandler::OnCheckListBox));
   }
 }
 

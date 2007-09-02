@@ -58,16 +58,22 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 		debug_printf("%8.3f add query: %s\n", get_time(), qry->GetName());
 
 	// Initialise a semaphore, so we can block until the query has been handled
-	int err;
-	sem_t sem;
-	err = sem_init(&sem, 0, 0);
-	if (err != 0)
+	int err = 0;
+	sem_t* psem = (sem_t*) SEM_FAILED;
+	//sem_t sem;
+	//psem = &sem;
+	//err = sem_init(psem, 0, 0);
+	const char* sem_name = "/tmp/atlas";
+	psem = sem_open(sem_name, O_CREAT, 0777, 0);
+	err = errno;
+	if (psem == (sem_t*) SEM_FAILED)
 	{
 		// Probably-fatal error
+		debug_printf("errno: %d (%s)\n", err, strerror(err));
 		debug_warn("sem_init failed");
 		return;
 	}
-	qry->m_Semaphore = (void*)&sem;
+	qry->m_Semaphore = (void*)psem;
 
 	m_Mutex.Lock();
 	m_Queue.push(qry);
@@ -95,19 +101,19 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 // #if OS_WIN
 // 	// On Win32, use MsgWaitForMultipleObjects, which waits on the semaphore
 // 	// but is also interrupted by incoming Windows-messages.
-//	// while (0 != (err = sem_msgwait_np(&sem)))
+//	// while (0 != (err = sem_msgwait_np(psem)))
 // 	
-// 	while (0 != (err = sem_wait(&sem)))
+// 	while (0 != (err = sem_wait(psem)))
 // #else
 // 	// TODO: On non-Win32, I have no idea whether the same problem exists; but
 // 	// it might do, so call the callback every few seconds just in case it helps.
 // 	struct timespec abs_timeout;
 // 	clock_gettime(CLOCK_REALTIME, &abs_timeout);
 // 	abs_timeout.tv_sec += 2;
-// 	while (0 != (err = sem_timedwait(&sem, &abs_timeout)))
+// 	while (0 != (err = sem_timedwait(psem, &abs_timeout)))
 // #endif
 
-	while (0 != (err = sem_wait(&sem)))
+	while (0 != (err = sem_wait(psem)))
 	{
 		// If timed out, call callback and try again
 // 		if (errno == ETIMEDOUT)
@@ -123,7 +129,9 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 
 	// Clean up
 	qry->m_Semaphore = NULL;
-	sem_destroy(&sem);
+	//sem_destroy(psem);
+	sem_close(psem);
+	sem_unlink(sem_name);
 }
 
 bool MessagePasserImpl::IsEmpty()

@@ -14,6 +14,7 @@
 #include "wx/spinctrl.h"
 #include "wx/filename.h"
 #include "wx/wfstream.h"
+#include "wx/listctrl.h"
 
 #include <sstream>
 

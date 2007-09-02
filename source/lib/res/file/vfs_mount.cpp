@@ -710,6 +710,7 @@ LibError vfs_unmount(const char* P_name)
 // used when receiving paths from external code.
 LibError mount_make_vfs_path(const char* P_path, char* V_path)
 {
+	debug_printf("mount_make_vfs_path %s %s\n", P_path, V_path);
 	for(MountIt it = mounts.begin(); it != mounts.end(); ++it)
 	{
 		const Mount& m = *it;

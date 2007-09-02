@@ -312,11 +312,11 @@ void FindReplaceEventHandler::ConnectFind(wxFindReplaceDialog *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_COMMAND_FIND, wxFindDialogEventHandler(OnFind));
+    p->Connect(wxEVT_COMMAND_FIND, wxFindDialogEventHandler(FindReplaceEventHandler::OnFind));
   }
   else
   {
-    p->Disconnect(wxEVT_COMMAND_FIND, wxFindDialogEventHandler(OnFind));
+    p->Disconnect(wxEVT_COMMAND_FIND, wxFindDialogEventHandler(FindReplaceEventHandler::OnFind));
   }
 }
 
@@ -325,12 +325,12 @@ void FindReplaceEventHandler::ConnectFindNext(wxFindReplaceDialog *p,
 {
   if ( connect )
   {
-    p->Connect(wxEVT_COMMAND_FIND_NEXT, wxFindDialogEventHandler(OnFindNext));
+    p->Connect(wxEVT_COMMAND_FIND_NEXT, wxFindDialogEventHandler(FindReplaceEventHandler::OnFindNext));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_FIND_NEXT,
-                  wxFindDialogEventHandler(OnFindNext));
+                  wxFindDialogEventHandler(FindReplaceEventHandler::OnFindNext));
   }
 }
 
@@ -339,12 +339,12 @@ void FindReplaceEventHandler::ConnectReplace(wxFindReplaceDialog *p,
 {
   if ( connect )
   {
-    p->Connect(wxEVT_COMMAND_FIND_REPLACE, wxFindDialogEventHandler(OnReplace));
+    p->Connect(wxEVT_COMMAND_FIND_REPLACE, wxFindDialogEventHandler(FindReplaceEventHandler::OnReplace));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_FIND_REPLACE, 
-                  wxFindDialogEventHandler(OnReplace));
+                  wxFindDialogEventHandler(FindReplaceEventHandler::OnReplace));
   }
 }
 
@@ -354,12 +354,12 @@ void FindReplaceEventHandler::ConnectReplaceAll(wxFindReplaceDialog *p,
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_FIND_REPLACE_ALL, 
-               wxFindDialogEventHandler(OnReplaceAll));
+               wxFindDialogEventHandler(FindReplaceEventHandler::OnReplaceAll));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_FIND_REPLACE_ALL, 
-                  wxFindDialogEventHandler(OnReplaceAll));
+                  wxFindDialogEventHandler(FindReplaceEventHandler::OnReplaceAll));
   }
 }
 
@@ -368,12 +368,12 @@ void FindReplaceEventHandler::ConnectFindClose(wxFindReplaceDialog *p,
 {
   if ( connect )
   {
-    p->Connect(wxEVT_COMMAND_FIND_CLOSE, wxFindDialogEventHandler(OnFindClose));
+    p->Connect(wxEVT_COMMAND_FIND_CLOSE, wxFindDialogEventHandler(FindReplaceEventHandler::OnFindClose));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_FIND_CLOSE,
-                  wxFindDialogEventHandler(OnFindClose));
+                  wxFindDialogEventHandler(FindReplaceEventHandler::OnFindClose));
   }
 }
 

@@ -702,12 +702,12 @@ void SplitterEventHandler::ConnectSashPosChanging(wxSplitterWindow *p,
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_SPLITTER_SASH_POS_CHANGING, 
-               wxSplitterEventHandler(OnSashPosChanging));
+               wxSplitterEventHandler(SplitterEventHandler::OnSashPosChanging));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_SPLITTER_SASH_POS_CHANGING, 
-                  wxSplitterEventHandler(OnSashPosChanging));
+                  wxSplitterEventHandler(SplitterEventHandler::OnSashPosChanging));
   }
 }
 
@@ -717,12 +717,12 @@ void SplitterEventHandler::ConnectSashPosChanged(wxSplitterWindow *p,
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_SPLITTER_SASH_POS_CHANGED, 
-               wxSplitterEventHandler(OnSashPosChanged));
+               wxSplitterEventHandler(SplitterEventHandler::OnSashPosChanged));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_SPLITTER_SASH_POS_CHANGED, 
-                  wxSplitterEventHandler(OnSashPosChanged));
+                  wxSplitterEventHandler(SplitterEventHandler::OnSashPosChanged));
   }
 }
 
@@ -732,12 +732,12 @@ void SplitterEventHandler::ConnectUnsplit(wxSplitterWindow *p,
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_SPLITTER_UNSPLIT, 
-               wxSplitterEventHandler(OnUnsplit));
+               wxSplitterEventHandler(SplitterEventHandler::OnUnsplit));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_SPLITTER_UNSPLIT, 
-                  wxSplitterEventHandler(OnUnsplit));
+                  wxSplitterEventHandler(SplitterEventHandler::OnUnsplit));
   }
 }
 
@@ -747,12 +747,12 @@ void SplitterEventHandler::ConnectDClick(wxSplitterWindow *p,
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_SPLITTER_DOUBLECLICKED, 
-               wxSplitterEventHandler(OnDClick));
+               wxSplitterEventHandler(SplitterEventHandler::OnDClick));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_SPLITTER_DOUBLECLICKED, 
-                  wxSplitterEventHandler(OnDClick));
+                  wxSplitterEventHandler(SplitterEventHandler::OnDClick));
   }
 }
 

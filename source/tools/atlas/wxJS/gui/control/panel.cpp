@@ -323,12 +323,12 @@ void PanelEventHandler::ConnectSysColourChanged(wxPanel *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_SYS_COLOUR_CHANGED,
-               wxSysColourChangedEventHandler(OnSysColourChanged));
+               wxSysColourChangedEventHandler(PanelEventHandler::OnSysColourChanged));
   }
   else
   {
     p->Disconnect(wxEVT_SYS_COLOUR_CHANGED, 
-                  wxSysColourChangedEventHandler(OnSysColourChanged));
+                  wxSysColourChangedEventHandler(PanelEventHandler::OnSysColourChanged));
   }
 }
 

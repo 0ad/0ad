@@ -89,7 +89,7 @@ ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 #ifdef __WXMSW__
 	wxEntry(g_Module);
 #else
-# ifdef __WXGTK__
+#ifdef __WXGTK__
 	// Because we do GL calls from a secondary thread, Xlib needs to
 	// be told to support multiple threads safely
 	int status = XInitThreads();
@@ -97,8 +97,7 @@ ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 	{
 		fprintf(stderr, "Error enabling thread-safety via XInitThreads\n");
 	}
-# endif
-
+#endif
 	int argc = 1;
 	char *argv[] = {"atlas", NULL};
 	wxEntry(argc, argv);

@@ -797,12 +797,12 @@ void TextCtrlEventHandler::ConnectText(wxTextCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TEXT_UPDATED, 
-               wxCommandEventHandler(OnText));
+               wxCommandEventHandler(TextCtrlEventHandler::OnText));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TEXT_UPDATED, 
-                  wxCommandEventHandler(OnText));
+                  wxCommandEventHandler(TextCtrlEventHandler::OnText));
   }
 }
 
@@ -811,12 +811,12 @@ void TextCtrlEventHandler::ConnectTextEnter(wxTextCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TEXT_ENTER, 
-               wxCommandEventHandler(OnTextEnter));
+               wxCommandEventHandler(TextCtrlEventHandler::OnTextEnter));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TEXT_ENTER, 
-                  wxCommandEventHandler(OnTextEnter));
+                  wxCommandEventHandler(TextCtrlEventHandler::OnTextEnter));
   }
 }
 
@@ -825,12 +825,12 @@ void TextCtrlEventHandler::ConnectTextURL(wxTextCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TEXT_URL, 
-               wxCommandEventHandler(OnTextURL));
+               wxCommandEventHandler(TextCtrlEventHandler::OnTextURL));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TEXT_URL, 
-                  wxCommandEventHandler(OnTextURL));
+                  wxCommandEventHandler(TextCtrlEventHandler::OnTextURL));
   }
 }
 
@@ -839,12 +839,12 @@ void TextCtrlEventHandler::ConnectTextMaxLen(wxTextCtrl *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_TEXT_MAXLEN, 
-               wxCommandEventHandler(OnTextMaxLen));
+               wxCommandEventHandler(TextCtrlEventHandler::OnTextMaxLen));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_TEXT_MAXLEN, 
-                  wxCommandEventHandler(OnTextMaxLen));
+                  wxCommandEventHandler(TextCtrlEventHandler::OnTextMaxLen));
   }
 }
 

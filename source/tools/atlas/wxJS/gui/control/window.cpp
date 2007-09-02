@@ -2137,55 +2137,55 @@ void WindowEventHandler::ConnectChar(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_CHAR, wxCharEventHandler(OnChar));
+    p->Connect(wxEVT_CHAR, wxCharEventHandler(WindowEventHandler::OnChar));
   }
   else
   {
-    p->Disconnect(wxEVT_CHAR, wxCharEventHandler(OnChar));
+    p->Disconnect(wxEVT_CHAR, wxCharEventHandler(WindowEventHandler::OnChar));
   }
 }
 void WindowEventHandler::ConnectKeyDown(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(OnKeyDown));
+    p->Connect(wxEVT_KEY_DOWN, wxKeyEventHandler(WindowEventHandler::OnKeyDown));
   }
   else
   {
-    p->Disconnect(wxEVT_KEY_DOWN, wxKeyEventHandler(OnKeyDown));
+    p->Disconnect(wxEVT_KEY_DOWN, wxKeyEventHandler(WindowEventHandler::OnKeyDown));
   }
 }
 void WindowEventHandler::ConnectKeyUp(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_KEY_UP, wxKeyEventHandler(OnKeyUp));
+    p->Connect(wxEVT_KEY_UP, wxKeyEventHandler(WindowEventHandler::OnKeyUp));
   }
   else
   {
-    p->Disconnect(wxEVT_KEY_UP, wxKeyEventHandler(OnKeyUp));
+    p->Disconnect(wxEVT_KEY_UP, wxKeyEventHandler(WindowEventHandler::OnKeyUp));
   }
 }
 void WindowEventHandler::ConnectCharHook(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_CHAR_HOOK, wxCharEventHandler(OnCharHook));
+    p->Connect(wxEVT_CHAR_HOOK, wxCharEventHandler(WindowEventHandler::OnCharHook));
   }
   else
   {
-    p->Disconnect(wxEVT_CHAR_HOOK, wxCharEventHandler(OnCharHook));
+    p->Disconnect(wxEVT_CHAR_HOOK, wxCharEventHandler(WindowEventHandler::OnCharHook));
   }
 }
 void WindowEventHandler::ConnectActivate(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_ACTIVATE, wxActivateEventHandler(OnActivate));
+    p->Connect(wxEVT_ACTIVATE, wxActivateEventHandler(WindowEventHandler::OnActivate));
   }
   else
   {
-    p->Disconnect(wxEVT_ACTIVATE, wxActivateEventHandler(OnActivate));
+    p->Disconnect(wxEVT_ACTIVATE, wxActivateEventHandler(WindowEventHandler::OnActivate));
   }
 }
 
@@ -2193,11 +2193,11 @@ void WindowEventHandler::ConnectSetFocus(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SET_FOCUS, wxFocusEventHandler(OnSetFocus));
+    p->Connect(wxEVT_SET_FOCUS, wxFocusEventHandler(WindowEventHandler::OnSetFocus));
   }
   else
   {
-    p->Disconnect(wxEVT_SET_FOCUS, wxFocusEventHandler(OnSetFocus));
+    p->Disconnect(wxEVT_SET_FOCUS, wxFocusEventHandler(WindowEventHandler::OnSetFocus));
   }
 }
 
@@ -2205,132 +2205,132 @@ void WindowEventHandler::ConnectKillFocus(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_KILL_FOCUS, wxFocusEventHandler(OnKillFocus));
+    p->Connect(wxEVT_KILL_FOCUS, wxFocusEventHandler(WindowEventHandler::OnKillFocus));
   }
   else
   {
-    p->Disconnect(wxEVT_KILL_FOCUS, wxFocusEventHandler(OnKillFocus));
+    p->Disconnect(wxEVT_KILL_FOCUS, wxFocusEventHandler(WindowEventHandler::OnKillFocus));
   }
 }
 void WindowEventHandler::ConnectMove(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_MOVE, wxMoveEventHandler(OnMove));
+    p->Connect(wxEVT_MOVE, wxMoveEventHandler(WindowEventHandler::OnMove));
   }
   else
   {
-    p->Disconnect(wxEVT_MOVE, wxMoveEventHandler(OnMove));
+    p->Disconnect(wxEVT_MOVE, wxMoveEventHandler(WindowEventHandler::OnMove));
   }
 }
 void WindowEventHandler::ConnectSize(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SIZE, wxSizeEventHandler(OnSize));
+    p->Connect(wxEVT_SIZE, wxSizeEventHandler(WindowEventHandler::OnSize));
   }
   else
   {
-    p->Disconnect(wxEVT_SIZE, wxSizeEventHandler(OnSize));
+    p->Disconnect(wxEVT_SIZE, wxSizeEventHandler(WindowEventHandler::OnSize));
   }
 }
 void WindowEventHandler::ConnectScrollTop(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SCROLL_TOP, wxScrollWinEventHandler(OnScrollTop));
+    p->Connect(wxEVT_SCROLL_TOP, wxScrollWinEventHandler(WindowEventHandler::OnScrollTop));
   }
   else
   {
-    p->Disconnect(wxEVT_SCROLL_TOP, wxScrollWinEventHandler(OnScrollTop));
+    p->Disconnect(wxEVT_SCROLL_TOP, wxScrollWinEventHandler(WindowEventHandler::OnScrollTop));
   }
 }
 void WindowEventHandler::ConnectScrollBottom(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SCROLL_BOTTOM, wxScrollWinEventHandler(OnScrollBottom));
+    p->Connect(wxEVT_SCROLL_BOTTOM, wxScrollWinEventHandler(WindowEventHandler::OnScrollBottom));
   }
   else
   {
-    p->Disconnect(wxEVT_SCROLL_BOTTOM, wxScrollWinEventHandler(OnScrollBottom));
+    p->Disconnect(wxEVT_SCROLL_BOTTOM, wxScrollWinEventHandler(WindowEventHandler::OnScrollBottom));
   }
 }
 void WindowEventHandler::ConnectScrollLineUp(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SCROLL_LINEUP, wxScrollWinEventHandler(OnScrollLineUp));
+    p->Connect(wxEVT_SCROLL_LINEUP, wxScrollWinEventHandler(WindowEventHandler::OnScrollLineUp));
   }
   else
   {
-    p->Disconnect(wxEVT_SCROLL_LINEUP, wxScrollWinEventHandler(OnScrollLineUp));
+    p->Disconnect(wxEVT_SCROLL_LINEUP, wxScrollWinEventHandler(WindowEventHandler::OnScrollLineUp));
   }
 }
 void WindowEventHandler::ConnectScrollLineDown(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SCROLL_LINEDOWN, wxScrollWinEventHandler(OnScrollLineDown));
+    p->Connect(wxEVT_SCROLL_LINEDOWN, wxScrollWinEventHandler(WindowEventHandler::OnScrollLineDown));
   }
   else
   {
-    p->Disconnect(wxEVT_SCROLL_LINEDOWN, wxScrollWinEventHandler(OnScrollLineDown));
+    p->Disconnect(wxEVT_SCROLL_LINEDOWN, wxScrollWinEventHandler(WindowEventHandler::OnScrollLineDown));
   }
 }
 void WindowEventHandler::ConnectScrollPageUp(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SCROLL_PAGEUP, wxScrollWinEventHandler(OnScrollPageUp));
+    p->Connect(wxEVT_SCROLL_PAGEUP, wxScrollWinEventHandler(WindowEventHandler::OnScrollPageUp));
   }
   else
   {
-    p->Disconnect(wxEVT_SCROLL_PAGEUP, wxScrollWinEventHandler(OnScrollPageUp));
+    p->Disconnect(wxEVT_SCROLL_PAGEUP, wxScrollWinEventHandler(WindowEventHandler::OnScrollPageUp));
   }
 }
 void WindowEventHandler::ConnectScrollPageDown(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SCROLL_PAGEDOWN, wxScrollWinEventHandler(OnScrollPageDown));
+    p->Connect(wxEVT_SCROLL_PAGEDOWN, wxScrollWinEventHandler(WindowEventHandler::OnScrollPageDown));
   }
   else
   {
-    p->Disconnect(wxEVT_SCROLL_PAGEDOWN, wxScrollWinEventHandler(OnScrollPageDown));
+    p->Disconnect(wxEVT_SCROLL_PAGEDOWN, wxScrollWinEventHandler(WindowEventHandler::OnScrollPageDown));
   }
 }
 void WindowEventHandler::ConnectScrollThumbTrack(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SCROLL_THUMBTRACK, wxScrollWinEventHandler(OnScrollThumbTrack));
+    p->Connect(wxEVT_SCROLL_THUMBTRACK, wxScrollWinEventHandler(WindowEventHandler::OnScrollThumbTrack));
   }
   else
   {
-    p->Disconnect(wxEVT_SCROLL_THUMBTRACK, wxScrollWinEventHandler(OnScrollThumbTrack));
+    p->Disconnect(wxEVT_SCROLL_THUMBTRACK, wxScrollWinEventHandler(WindowEventHandler::OnScrollThumbTrack));
   }
 }
 void WindowEventHandler::ConnectScrollThumbRelease(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_SCROLL_THUMBRELEASE, wxScrollWinEventHandler(OnScrollThumbRelease));
+    p->Connect(wxEVT_SCROLL_THUMBRELEASE, wxScrollWinEventHandler(WindowEventHandler::OnScrollThumbRelease));
   }
   else
   {
-    p->Disconnect(wxEVT_SCROLL_THUMBRELEASE, wxScrollWinEventHandler(OnScrollThumbRelease));
+    p->Disconnect(wxEVT_SCROLL_THUMBRELEASE, wxScrollWinEventHandler(WindowEventHandler::OnScrollThumbRelease));
   }
 }
 void WindowEventHandler::ConnectHelp(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_HELP, wxHelpEventHandler(OnHelp));
+    p->Connect(wxEVT_HELP, wxHelpEventHandler(WindowEventHandler::OnHelp));
   }
   else
   {
-    p->Disconnect(wxEVT_HELP, wxHelpEventHandler(OnHelp));
+    p->Disconnect(wxEVT_HELP, wxHelpEventHandler(WindowEventHandler::OnHelp));
   }
 }
 
@@ -2338,33 +2338,33 @@ void WindowEventHandler::ConnectLeftDown(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_LEFT_DOWN, wxMouseEventHandler(OnLeftDown));
+    p->Connect(wxEVT_LEFT_DOWN, wxMouseEventHandler(WindowEventHandler::OnLeftDown));
   }
   else
   {
-    p->Disconnect(wxEVT_LEFT_DOWN, wxMouseEventHandler(OnLeftDown));
+    p->Disconnect(wxEVT_LEFT_DOWN, wxMouseEventHandler(WindowEventHandler::OnLeftDown));
   }
 }
 void WindowEventHandler::ConnectLeftUp(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_LEFT_UP, wxMouseEventHandler(OnLeftUp));
+    p->Connect(wxEVT_LEFT_UP, wxMouseEventHandler(WindowEventHandler::OnLeftUp));
   }
   else
   {
-    p->Disconnect(wxEVT_LEFT_UP, wxMouseEventHandler(OnLeftUp));
+    p->Disconnect(wxEVT_LEFT_UP, wxMouseEventHandler(WindowEventHandler::OnLeftUp));
   }
 }
 void WindowEventHandler::ConnectLeftDClick(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(OnLeftDClick));
+    p->Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(WindowEventHandler::OnLeftDClick));
   }
   else
   {
-    p->Disconnect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(OnLeftDClick));
+    p->Disconnect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(WindowEventHandler::OnLeftDClick));
   }
 }
 
@@ -2372,11 +2372,11 @@ void WindowEventHandler::ConnectMiddleDown(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_MIDDLE_DOWN, wxMouseEventHandler(OnMiddleDown));
+    p->Connect(wxEVT_MIDDLE_DOWN, wxMouseEventHandler(WindowEventHandler::OnMiddleDown));
   }
   else
   {
-    p->Disconnect(wxEVT_MIDDLE_DOWN, wxMouseEventHandler(OnMiddleDown));
+    p->Disconnect(wxEVT_MIDDLE_DOWN, wxMouseEventHandler(WindowEventHandler::OnMiddleDown));
   }
 }
 
@@ -2384,11 +2384,11 @@ void WindowEventHandler::ConnectMiddleUp(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_MIDDLE_UP, wxMouseEventHandler(OnMiddleUp));
+    p->Connect(wxEVT_MIDDLE_UP, wxMouseEventHandler(WindowEventHandler::OnMiddleUp));
   }
   else
   {
-    p->Disconnect(wxEVT_MIDDLE_UP, wxMouseEventHandler(OnMiddleUp));
+    p->Disconnect(wxEVT_MIDDLE_UP, wxMouseEventHandler(WindowEventHandler::OnMiddleUp));
   }
 }
 
@@ -2396,11 +2396,11 @@ void WindowEventHandler::ConnectMiddleDClick(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_MIDDLE_DCLICK, wxMouseEventHandler(OnMiddleDClick));
+    p->Connect(wxEVT_MIDDLE_DCLICK, wxMouseEventHandler(WindowEventHandler::OnMiddleDClick));
   }
   else
   {
-    p->Disconnect(wxEVT_MIDDLE_DCLICK, wxMouseEventHandler(OnMiddleDClick));
+    p->Disconnect(wxEVT_MIDDLE_DCLICK, wxMouseEventHandler(WindowEventHandler::OnMiddleDClick));
   }
 }
 
@@ -2408,11 +2408,11 @@ void WindowEventHandler::ConnectRightDown(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(OnRightDown));
+    p->Connect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(WindowEventHandler::OnRightDown));
   }
   else
   {
-    p->Disconnect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(OnRightDown));
+    p->Disconnect(wxEVT_RIGHT_DOWN, wxMouseEventHandler(WindowEventHandler::OnRightDown));
   }
 }
 
@@ -2420,11 +2420,11 @@ void WindowEventHandler::ConnectRightUp(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_RIGHT_UP, wxMouseEventHandler(OnRightUp));
+    p->Connect(wxEVT_RIGHT_UP, wxMouseEventHandler(WindowEventHandler::OnRightUp));
   }
   else
   {
-    p->Disconnect(wxEVT_RIGHT_UP, wxMouseEventHandler(OnRightUp));
+    p->Disconnect(wxEVT_RIGHT_UP, wxMouseEventHandler(WindowEventHandler::OnRightUp));
   }
 }
 
@@ -2432,11 +2432,11 @@ void WindowEventHandler::ConnectRightDClick(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_RIGHT_DCLICK, wxMouseEventHandler(OnRightDClick));
+    p->Connect(wxEVT_RIGHT_DCLICK, wxMouseEventHandler(WindowEventHandler::OnRightDClick));
   }
   else
   {
-    p->Disconnect(wxEVT_RIGHT_DCLICK, wxMouseEventHandler(OnRightDClick));
+    p->Disconnect(wxEVT_RIGHT_DCLICK, wxMouseEventHandler(WindowEventHandler::OnRightDClick));
   }
 }
 
@@ -2444,11 +2444,11 @@ void WindowEventHandler::ConnectMotion(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_MOTION, wxMouseEventHandler(OnMotion));
+    p->Connect(wxEVT_MOTION, wxMouseEventHandler(WindowEventHandler::OnMotion));
   }
   else
   {
-    p->Disconnect(wxEVT_MOTION, wxMouseEventHandler(OnMotion));
+    p->Disconnect(wxEVT_MOTION, wxMouseEventHandler(WindowEventHandler::OnMotion));
   }
 }
 
@@ -2456,11 +2456,11 @@ void WindowEventHandler::ConnectEnterWindow(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_ENTER_WINDOW, wxMouseEventHandler(OnEnterWindow));
+    p->Connect(wxEVT_ENTER_WINDOW, wxMouseEventHandler(WindowEventHandler::OnEnterWindow));
   }
   else
   {
-    p->Disconnect(wxEVT_ENTER_WINDOW, wxMouseEventHandler(OnEnterWindow));
+    p->Disconnect(wxEVT_ENTER_WINDOW, wxMouseEventHandler(WindowEventHandler::OnEnterWindow));
   }
 }
 
@@ -2468,11 +2468,11 @@ void WindowEventHandler::ConnectLeaveWindow(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_LEAVE_WINDOW, wxMouseEventHandler(OnLeaveWindow));
+    p->Connect(wxEVT_LEAVE_WINDOW, wxMouseEventHandler(WindowEventHandler::OnLeaveWindow));
   }
   else
   {
-    p->Disconnect(wxEVT_LEAVE_WINDOW, wxMouseEventHandler(OnLeaveWindow));
+    p->Disconnect(wxEVT_LEAVE_WINDOW, wxMouseEventHandler(WindowEventHandler::OnLeaveWindow));
   }
 }
 
@@ -2480,10 +2480,10 @@ void WindowEventHandler::ConnectMouseWheel(wxWindow *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_MOUSEWHEEL, wxMouseEventHandler(OnMouseWheel));
+    p->Connect(wxEVT_MOUSEWHEEL, wxMouseEventHandler(WindowEventHandler::OnMouseWheel));
   }
   else
   {
-    p->Disconnect(wxEVT_MOUSEWHEEL, wxMouseEventHandler(OnMouseWheel));
+    p->Disconnect(wxEVT_MOUSEWHEEL, wxMouseEventHandler(WindowEventHandler::OnMouseWheel));
   }
 }

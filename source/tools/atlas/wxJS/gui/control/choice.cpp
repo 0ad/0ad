@@ -339,12 +339,12 @@ void ChoiceEventHandler::ConnectChoice(wxChoice *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_CHOICE_SELECTED, 
-               wxCommandEventHandler(OnChoice));
+               wxCommandEventHandler(ChoiceEventHandler::OnChoice));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_CHOICE_SELECTED, 
-                  wxCommandEventHandler(OnChoice));
+                  wxCommandEventHandler(ChoiceEventHandler::OnChoice));
   }
 }
 

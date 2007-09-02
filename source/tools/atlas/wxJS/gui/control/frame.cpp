@@ -868,11 +868,11 @@ void FrameEventHandler::ConnectClose(wxFrame *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(OnClose));
+    p->Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(FrameEventHandler::OnClose));
   }
   else
   {
-    p->Disconnect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(OnClose));
+    p->Disconnect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(FrameEventHandler::OnClose));
   }
 }
 
@@ -880,11 +880,11 @@ void FrameEventHandler::ConnectIconize(wxFrame *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_ICONIZE, wxIconizeEventHandler(OnIconize));
+    p->Connect(wxEVT_ICONIZE, wxIconizeEventHandler(FrameEventHandler::OnIconize));
   }
   else
   {
-    p->Disconnect(wxEVT_ICONIZE, wxIconizeEventHandler(OnIconize));
+    p->Disconnect(wxEVT_ICONIZE, wxIconizeEventHandler(FrameEventHandler::OnIconize));
   }
 }
 
@@ -892,11 +892,11 @@ void FrameEventHandler::ConnectMaximize(wxFrame *p, bool connect)
 {
   if ( connect )
   {
-    p->Connect(wxEVT_MAXIMIZE, wxMaximizeEventHandler(OnMaximize));
+    p->Connect(wxEVT_MAXIMIZE, wxMaximizeEventHandler(FrameEventHandler::OnMaximize));
   }
   else
   {
-    p->Disconnect(wxEVT_MAXIMIZE, wxMaximizeEventHandler(OnMaximize));
+    p->Disconnect(wxEVT_MAXIMIZE, wxMaximizeEventHandler(FrameEventHandler::OnMaximize));
   }
 }
 

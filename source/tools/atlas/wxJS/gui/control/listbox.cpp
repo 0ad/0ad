@@ -419,12 +419,12 @@ void ListBoxEventHandler::ConnectListBox(wxListBox *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LISTBOX_SELECTED, 
-               wxCommandEventHandler(OnListBox));
+               wxCommandEventHandler(ListBoxEventHandler::OnListBox));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LISTBOX_SELECTED, 
-                  wxCommandEventHandler(OnListBox));
+                  wxCommandEventHandler(ListBoxEventHandler::OnListBox));
   }
 }
 
@@ -433,12 +433,12 @@ void ListBoxEventHandler::ConnectDoubleClick(wxListBox *p, bool connect)
   if ( connect )
   {
     p->Connect(wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, 
-               wxCommandEventHandler(OnListBox));
+               wxCommandEventHandler(ListBoxEventHandler::OnListBox));
   }
   else
   {
     p->Disconnect(wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, 
-                  wxCommandEventHandler(OnListBox));
+                  wxCommandEventHandler(ListBoxEventHandler::OnListBox));
   }
 }
 

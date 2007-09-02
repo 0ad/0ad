@@ -13,6 +13,8 @@ class wxTreeItemId;
 class wxTreeItemData;
 class wxNotebook;
 class wxNotebookEvent;
+class wxTreeEvent;
+class wxListEvent;
 
 class TriggerSidebar : public Sidebar
 {

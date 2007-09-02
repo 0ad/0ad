@@ -227,12 +227,12 @@ void NotebookEventHandler::ConnectPageChanged(wxNotebook *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,
-				   wxNotebookEventHandler(OnPageChanged));
+				   wxNotebookEventHandler(NotebookEventHandler::OnPageChanged));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,
-					  wxNotebookEventHandler(OnPageChanged));
+					  wxNotebookEventHandler(NotebookEventHandler::OnPageChanged));
 	}
 }
 
@@ -241,12 +241,12 @@ void NotebookEventHandler::ConnectPageChanging(wxNotebook *p, bool connect)
 	if ( connect )
 	{
 		p->Connect(wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGING,
-				   wxNotebookEventHandler(OnPageChanging));
+				   wxNotebookEventHandler(NotebookEventHandler::OnPageChanging));
 	}
 	else
 	{
 		p->Disconnect(wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGING,
-					  wxNotebookEventHandler(OnPageChanging));
+					  wxNotebookEventHandler(NotebookEventHandler::OnPageChanging));
 	}
 }
 
