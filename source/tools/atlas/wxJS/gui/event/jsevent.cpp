@@ -48,6 +48,7 @@
 #include "htmllink.h"
 #include "split.h"
 #include "spinevt.h"
+#include "notebookevt.h"
 
 #include "notify.h"
 #include "listevt.h"
@@ -175,6 +176,11 @@ bool wxjs::gui::InitEventClasses(JSContext *cx, JSObject *global)
 
 	obj = SpinEvent::JSInit(cx, global, NotifyEvent::GetClassPrototype());
 	wxASSERT_MSG(obj != NULL, wxT("wxSpinEvent prototype creation failed"));
+	if (! obj )
+		return false;
+
+	obj = NotebookEvent::JSInit(cx, global, NotifyEvent::GetClassPrototype());
+	wxASSERT_MSG(obj != NULL, wxT("wxNotebookEvent prototype creation failed"));
 	if (! obj )
 		return false;
 

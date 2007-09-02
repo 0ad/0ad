@@ -11,7 +11,7 @@
 #include "wx/wx.h"
 
 #include "wxJS/common/main.h"
-#include "wxJS/ext/jsmembuf.h"
+#include "wxJS/ext/wxjs_ext.h"
 #include "wxJS/io/init.h"
 #include "wxJS/gui/init.h"
 #include "wxJS/gui/control/panel.h"
@@ -361,6 +361,8 @@ ScriptInterface_impl::ScriptInterface_impl()
 
 	JS_BeginRequest(m_cx); // if you get linker errors, see the comment in the .h about JS_THREADSAFE
 
+	JS_SetContextPrivate(m_cx, NULL);
+
 	JS_SetErrorReporter(m_cx, ErrorReporter);
 
 	JS_SetOptions(m_cx,
@@ -375,7 +377,8 @@ ScriptInterface_impl::ScriptInterface_impl()
 
 	wxjs::gui::InitClass(m_cx, m_glob);
 	wxjs::io::InitClass(m_cx, m_glob);
-	wxjs::ext::MemoryBuffer::JSInit(m_cx, m_glob);
+	wxjs::ext::InitClass(m_cx, m_glob);
+	wxjs::ext::InitObject(m_cx, m_glob);
 
 	JS_DefineFunction(m_cx, m_glob, "print", ::print, 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	
@@ -421,6 +424,16 @@ ScriptInterface::ScriptInterface()
 
 ScriptInterface::~ScriptInterface()
 {
+}
+
+void ScriptInterface::SetCallbackData(void* cbdata)
+{
+	JS_SetContextPrivate(m->m_cx, cbdata);
+}
+
+void* ScriptInterface::GetCallbackData(JSContext* cx)
+{
+	return JS_GetContextPrivate(cx);
 }
 
 void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)

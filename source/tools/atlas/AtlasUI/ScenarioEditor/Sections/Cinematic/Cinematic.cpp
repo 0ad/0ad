@@ -6,7 +6,7 @@
 #include "CustomControls/Buttons/ActionButton.h"
 //#include "CustomControls/Buttons/FloatingSpinCtrl.h"
 #include "General/Datafile.h"
-#include "ScenarioEditor/Tools/Common/Tools.h"
+#include "ScenarioEditor/ScenarioEditor.h"
 #include "HighResTimer/HighResTimer.h"
 
 #include "General/VideoRecorder/VideoRecorder.h"

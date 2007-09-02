@@ -26,9 +26,11 @@ class ScriptInterface
 public:
 	ScriptInterface();
 	~ScriptInterface();
+	void SetCallbackData(void* cbdata);
+	static void* GetCallbackData(JSContext* cx);
 
 	// Defined elsewhere:
-	//     template <TR, T0..., TR (*fptr) (T0...)>
+	//     template <TR, T0..., TR (*fptr) (void* cbdata, T0...)>
 	//     void RegisterFunction(const char* functionName);
 	// (NOTE: The return type must be defined as a ToJSVal<TR> specialisation
 	// in ScriptInterface.cpp, else you'll end up with linker errors.)

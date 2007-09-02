@@ -1,18 +1,18 @@
 #ifndef INCLUDED_TOOLS
 #define INCLUDED_TOOLS
 
-#include "ScenarioEditor/ScenarioEditor.h"
 #include "General/AtlasWindowCommand.h"
 
 class wxMouseEvent;
 class wxKeyEvent;
+class ScenarioEditor;
 
 class ITool : public wxObject
 {
 public:
 	enum KeyEventType { KEY_DOWN, KEY_UP, KEY_CHAR };
 
-	virtual void Init(void* initData) = 0;
+	virtual void Init(void* initData, ScenarioEditor* scenarioEditor) = 0;
 	virtual void Shutdown() = 0;
 	virtual bool OnMouse(wxMouseEvent& evt) = 0; // return true if handled
 	virtual bool OnKey(wxKeyEvent& evt, KeyEventType dir) = 0; // return true if handled
@@ -21,8 +21,18 @@ public:
 	virtual ~ITool() {};
 };
 
-extern ITool& GetCurrentTool();
-extern void SetCurrentTool(const wxString& name, void* initData = NULL);
+struct ToolManagerImpl;
+class ToolManager
+{
+public:
+	ToolManager(ScenarioEditor* scenarioEditor);
+	~ToolManager();
+	ITool& GetCurrentTool();
+	void SetCurrentTool(const wxString& name, void* initData = NULL);
+private:
+	ToolManagerImpl* m;
+	ScenarioEditor* m_ScenarioEditor;
+};
 
 class ToolButton;
 extern void RegisterToolButton(ToolButton* button, const wxString& toolName);
@@ -59,12 +69,13 @@ class StateDrivenTool : public ITool
 {
 public:
 	StateDrivenTool()
-		: m_CurrentState(&Disabled)
+		: m_CurrentState(&Disabled), m_ScenarioEditor(NULL)
 	{
 	}
 
-	virtual void Init(void* WXUNUSED(initData))
+	virtual void Init(void* WXUNUSED(initData), ScenarioEditor* scenarioEditor)
 	{
+		m_ScenarioEditor = scenarioEditor;
 	}
 
 	virtual void Shutdown()
@@ -110,8 +121,12 @@ protected:
 		m_CurrentState->OnEnter(static_cast<T*>(this));
 	}
 
+	ScenarioEditor& GetScenarioEditor() { wxASSERT(m_ScenarioEditor); return *m_ScenarioEditor; }
+
 private:
 	State* m_CurrentState;
+
+	ScenarioEditor* m_ScenarioEditor; // not NULL, except before Init has been called
 
 	virtual bool OnMouse(wxMouseEvent& evt)
 	{

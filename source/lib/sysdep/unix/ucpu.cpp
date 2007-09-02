@@ -6,6 +6,10 @@
 #include <sys/sysctl.h>
 #endif
 
+#if OS_LINUX
+#include "valgrind.h"
+#endif
+
 int ucpu_IsThrottlingPossible()
 {
 	return -1; // don't know
@@ -40,6 +44,12 @@ double ucpu_ClockFrequency()
 LibError ucpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 	long ncpus = sysconf(_SC_NPROCESSORS_CONF);
+
+	// Valgrind reports the number of real CPUs, but only emulates a single CPU.
+	// That causes problems when we expect all those CPUs to be distinct, so
+	// just pretend there's only one CPU
+	if (RUNNING_ON_VALGRIND)
+		ncpus = 1;
 
 	cpu_set_t set;
 	for (long i = 0; i < ncpus && i < CPU_SETSIZE; ++i)

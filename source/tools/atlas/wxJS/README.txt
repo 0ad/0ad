@@ -57,3 +57,11 @@ gui/gui_init.cpp: add
     wxASSERT_MSG(obj != NULL, wxT("wxTimer prototype creation failed"));
     if (! obj )
         return false;
+
+gui/event/jsevent.cpp: add
+    obj = NotebookEvent::JSInit(cx, global, NotifyEvent::GetClassPrototype());
+    wxASSERT_MSG(obj != NULL, wxT("wxNotebookEvent prototype creation failed"));
+    if (! obj )
+        return false;
+
+TODO: add back tooltips into window.cpp

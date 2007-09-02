@@ -12,6 +12,7 @@
 #include "Vector3D.h"
 
 #include <math.h>
+#include <float.h>
 #include "MathUtil.h"
 
 int CVector3D::operator ! () const 

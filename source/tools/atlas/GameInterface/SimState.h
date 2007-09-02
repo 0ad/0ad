@@ -1,9 +1,14 @@
 #ifndef SIMSTATE_INCLUDED
 #define SIMSTATE_INCLUDED
 
+#include <set>
+#include <vector>
+
+#include "ps/CStr.h"
+#include "maths/Vector3D.h"
+
 class CUnit;
 class CEntity;
-#include "maths/Vector3D.h"
 
 class SimState
 {

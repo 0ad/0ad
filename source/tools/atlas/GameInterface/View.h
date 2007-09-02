@@ -1,6 +1,8 @@
 #ifndef INCLUDED_VIEW
 #define INCLUDED_VIEW
 
+#include <map>
+
 #include "graphics/Camera.h"
 
 #include "Messages.h"

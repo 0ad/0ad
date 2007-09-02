@@ -4,7 +4,7 @@
 #include "LightControl.h"
 
 #include "GameInterface/Messages.h"
-#include "ScenarioEditor/Tools/Common/Tools.h"
+#include "ScenarioEditor/ScenarioEditor.h"
 #include "General/Observable.h"
 #include "CustomControls/ColourDialog/ColourDialog.h"
 

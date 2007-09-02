@@ -50,9 +50,9 @@ ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* canvas)
 class GameCanvas : public Canvas
 {
 public:
-	GameCanvas(wxWindow* parent, int* attribList)
+	GameCanvas(ToolManager& toolManager, wxWindow* parent, int* attribList)
 		: Canvas(parent, attribList, wxWANTS_CHARS),
-		m_MouseState(NONE), m_LastMouseState(NONE)
+		m_ToolManager(toolManager), m_MouseState(NONE), m_LastMouseState(NONE)
 	{
 	}
 
@@ -90,7 +90,7 @@ private:
 
 	void OnKeyDown(wxKeyEvent& evt)
 	{
-		if (GetCurrentTool().OnKey(evt, ITool::KEY_DOWN))
+		if (m_ToolManager.GetCurrentTool().OnKey(evt, ITool::KEY_DOWN))
 		{
 			// Key event has been handled by the tool, so don't try
 			// to use it for camera motion too
@@ -105,7 +105,7 @@ private:
 
 	void OnKeyUp(wxKeyEvent& evt)
 	{
-		if (GetCurrentTool().OnKey(evt, ITool::KEY_UP))
+		if (m_ToolManager.GetCurrentTool().OnKey(evt, ITool::KEY_UP))
 			return;
 
 		if (KeyScroll(evt, false))
@@ -116,7 +116,7 @@ private:
 
 	void OnChar(wxKeyEvent& evt)
 	{
-		if (GetCurrentTool().OnKey(evt, ITool::KEY_CHAR))
+		if (m_ToolManager.GetCurrentTool().OnKey(evt, ITool::KEY_CHAR))
 			return;
 
 		int dir = 0;
@@ -151,7 +151,7 @@ private:
 		if (evt.Moving())
 			SetFocus();
 
-		if (GetCurrentTool().OnMouse(evt))
+		if (m_ToolManager.GetCurrentTool().OnMouse(evt))
 		{
 			// Mouse event has been handled by the tool, so don't try
 			// to use it for camera motion too
@@ -203,6 +203,8 @@ private:
 
 	enum { NONE, SCROLL, ROTATEAROUND };
 	int m_MouseState, m_LastMouseState;
+
+	ToolManager& m_ToolManager;
 
 	DECLARE_EVENT_TABLE();
 };
@@ -267,17 +269,21 @@ AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc;
 namespace
 {
 	// Wrapper function because SetCurrentTool takes an optional argument, which JS doesn't like
-	void SetCurrentTool_script(wxString name)
+	void SetCurrentTool_script(void* cbdata, wxString name)
 	{
-		SetCurrentTool(name);
+		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name);
+	}
+	wxString GetDataDirectory(void*)
+	{
+		return Datafile::GetDataDirectory();
 	}
 	
 	// TODO: see comment in terrain.js, and remove this when/if it's no longer necessary
-	void SetBrushStrength(float strength)
+	void SetBrushStrength(void*, float strength)
 	{
 		g_Brush_Elevation.SetStrength(strength);
 	}
-	void SetSelectedTexture(wxString name)
+	void SetSelectedTexture(void*, wxString name)
 	{
 		g_SelectedTexture = name;
 	}
@@ -286,6 +292,8 @@ namespace
 ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
 , m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(scriptInterface)
+, m_ObjectSettings(g_SelectedObjects, AtlasMessage::eRenderView::GAME)
+, m_ToolManager(this)
 {
 	// Global application initialisation:
 
@@ -301,7 +309,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 
 	//////////////////////////////////////////////////////////////////////////
 	// Script interface functions
-	GetScriptInterface().RegisterFunction<wxString, Datafile::GetDataDirectory>("GetDataDirectory");
+	GetScriptInterface().SetCallbackData(static_cast<void*>(this));
+	GetScriptInterface().RegisterFunction<wxString, GetDataDirectory>("GetDataDirectory");
 	GetScriptInterface().RegisterFunction<void, wxString, SetCurrentTool_script>("SetCurrentTool");
 	GetScriptInterface().RegisterFunction<void, float, SetBrushStrength>("SetBrushStrength");
 	GetScriptInterface().RegisterFunction<void, wxString, SetSelectedTexture>("SetSelectedTexture");
@@ -366,7 +375,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 
 	// Toolbar:
 
-	ToolButtonBar* toolbar = new ToolButtonBar(this, &m_SectionLayout, ID_Toolbar);
+	ToolButtonBar* toolbar = new ToolButtonBar(m_ToolManager, this, &m_SectionLayout, ID_Toolbar);
 	// TODO: configurable small vs large icon images
 
 	// (button label; tooltip text; image; internal tool name; section to switch to)
@@ -379,7 +388,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	toolbar->Realize();
 	SetToolBar(toolbar);
 	// Set the default tool to be selected
-	SetCurrentTool(_T(""));
+	m_ToolManager.SetCurrentTool(_T(""));
 
 
 	// Set up GL canvas:
@@ -392,7 +401,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		WX_GL_MIN_ALPHA, 8, // alpha bits
 		0
 	};
-	Canvas* canvas = new GameCanvas(m_SectionLayout.GetCanvasParent(), glAttribList);
+	Canvas* canvas = new GameCanvas(m_ToolManager, m_SectionLayout.GetCanvasParent(), glAttribList);
 	m_SectionLayout.SetCanvas(canvas);
 
 	// Set up sidebars:
@@ -453,7 +462,7 @@ float ScenarioEditor::GetSpeedModifier()
 
 void ScenarioEditor::OnClose(wxCloseEvent&)
 {
-	SetCurrentTool(_T(""));
+	m_ToolManager.SetCurrentTool(_T(""));
 
 	m_FileHistory.Save(*wxConfigBase::Get());
 
@@ -467,7 +476,7 @@ void ScenarioEditor::OnClose(wxCloseEvent&)
 }
 
 
-static void UpdateTool()
+static void UpdateTool(ToolManager& toolManager)
 {
 	// Don't keep posting events if the game can't keep up
 	if (g_FrameHasEnded)
@@ -476,17 +485,17 @@ static void UpdateTool()
 		// TODO: Smoother timing stuff?
 		static double last = g_Timer.GetTime();
 		double time = g_Timer.GetTime();
-		GetCurrentTool().OnTick(time-last);
+		toolManager.GetCurrentTool().OnTick(time-last);
 		last = time;
 	}
 }
 void ScenarioEditor::OnTimer(wxTimerEvent&)
 {
-	UpdateTool();
+	UpdateTool(m_ToolManager);
 }
 void ScenarioEditor::OnIdle(wxIdleEvent&)
 {
-	UpdateTool();
+	UpdateTool(m_ToolManager);
 }
 
 void ScenarioEditor::OnQuit(wxCommandEvent&)
@@ -516,7 +525,7 @@ void ScenarioEditor::OpenFile(const wxString& name)
 
 	// Deactivate tools, so they don't carry forwards into the new CWorld
 	// and crash.
-	SetCurrentTool(_T(""));
+	m_ToolManager.SetCurrentTool(_T(""));
 	// TODO: clear the undo buffer, etc
 
 	POST_MESSAGE(LoadMap, (map));
@@ -569,7 +578,7 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 		// Deactivate tools, so things like unit previews don't get saved.
 		// (TODO: Would be nicer to leave the tools active, and just not save
 		// the preview units.)
-		SetCurrentTool(_T(""));
+		m_ToolManager.SetCurrentTool(_T(""));
 
 		std::wstring map = m_OpenFilename.c_str();
 		POST_MESSAGE(SaveMap, (map));
@@ -591,7 +600,7 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 	{
 		wxBusyInfo busy(_("Saving map"));
 
-		SetCurrentTool(_T(""));
+		m_ToolManager.SetCurrentTool(_T(""));
 
 		// TODO: Work when the map is not in .../maps/scenarios/
 		std::wstring map = dlg.GetFilename().c_str();

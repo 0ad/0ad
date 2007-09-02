@@ -1,5 +1,6 @@
 #include "precompiled.h"
 
+#include "ScenarioEditor/ScenarioEditor.h"
 #include "Common/Tools.h"
 #include "Common/Brushes.h"
 #include "GameInterface/Messages.h"

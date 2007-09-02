@@ -7,6 +7,7 @@
 
 #include "ToolButton.h"
 #include "ScenarioEditor/Tools/Common/Tools.h"
+#include "ScenarioEditor/SectionLayout.h"
 #include "General/Datafile.h"
 
 BEGIN_EVENT_TABLE(ToolButton, wxButton)
@@ -14,13 +15,10 @@ BEGIN_EVENT_TABLE(ToolButton, wxButton)
 END_EVENT_TABLE()
 
 ToolButton::ToolButton
-	(wxWindow *parent,
-	 const wxString& label,
-	 const wxString& toolName,
-	 const wxSize& size,
-	 long style)
-	: wxButton(parent, wxID_ANY, label, wxDefaultPosition, size, style),
-	m_Tool(toolName)
+	(ToolManager& toolManager, wxWindow *parent, const wxString& label, const wxString& toolName, const wxSize& size, long style)
+	: wxButton(parent, wxID_ANY, label, wxDefaultPosition, size, style)
+	, m_ToolManager(toolManager)
+	, m_Tool(toolName)
 {
 	// Explicitly set appearance, so that the button is always owner-drawn
 	// (by the wxButton code), rather than initially using the native
@@ -34,9 +32,9 @@ void ToolButton::OnClick(wxCommandEvent& WXUNUSED(evt))
 {
 	// Toggle on/off
 	if (m_Selected)
-		SetCurrentTool(_T(""));
+		m_ToolManager.SetCurrentTool(_T(""));
 	else
-		SetCurrentTool(m_Tool);
+		m_ToolManager.SetCurrentTool(m_Tool);
 }
 
 void ToolButton::SetSelectedAppearance(bool selected)
@@ -54,9 +52,9 @@ BEGIN_EVENT_TABLE(ToolButtonBar, wxToolBar)
 	EVT_TOOL(wxID_ANY, ToolButtonBar::OnTool)
 END_EVENT_TABLE()
 
-ToolButtonBar::ToolButtonBar(wxWindow* parent, SectionLayout* sectionLayout, int baseID)
+ToolButtonBar::ToolButtonBar(ToolManager& toolManager, wxWindow* parent, SectionLayout* sectionLayout, int baseID)
 : wxToolBar(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTB_FLAT|wxTB_HORIZONTAL)
-, m_SectionLayout(sectionLayout), m_Id(baseID), m_Size(-1)
+, m_ToolManager(toolManager), m_SectionLayout(sectionLayout), m_Id(baseID), m_Size(-1)
 {
 	/* "msw.remap: If 1 (the default), wxToolBar bitmap colours will be remapped
 	   to the current theme's values. Set this to 0 to disable this functionality,
@@ -105,7 +103,7 @@ void ToolButtonBar::OnTool(wxCommandEvent& evt)
 {
 	std::map<int, Button>::iterator it = m_Buttons.find(evt.GetId());
 	wxCHECK_RET(it != m_Buttons.end(), _T("Invalid toolbar button"));
-	SetCurrentTool(it->second.name);
+	m_ToolManager.SetCurrentTool(it->second.name);
 	if (! it->second.sectionPage.IsEmpty())
 		m_SectionLayout->SelectPage(it->second.sectionPage);
 }

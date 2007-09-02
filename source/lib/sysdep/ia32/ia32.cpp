@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <vector>
+#include <set>
 #include <algorithm>
 
 #include "lib/posix/posix.h"	// pthread

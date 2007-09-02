@@ -4,8 +4,8 @@
 
 #include "Buttons/ToolButton.h"
 #include "General/Datafile.h"
+#include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/Brushes.h"
-#include "ScenarioEditor/Tools/Common/Tools.h"
 #include "ScenarioEditor/Tools/Common/MiscState.h"
 
 #include "GameInterface/Messages.h"
@@ -38,11 +38,11 @@ TerrainSidebar::TerrainSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebar
 
 	{
 		wxSizer* sizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Elevation tools"));
-		sizer->Add(new ToolButton(this, _("Modify"), _T("AlterElevation"), wxSize(50,20)));
-		sizer->Add(new ToolButton(this, _("Flatten"), _T("FlattenElevation"), wxSize(50,20)));
-//		sizer->Add(new ToolButton(this, _("Smooth"), _T(""), wxSize(50,20)));
-//		sizer->Add(new ToolButton(this, _("Sample"), _T(""), wxSize(50,20)));
-		sizer->Add(new ToolButton(this, _("Paint"), _T("PaintTerrain"), wxSize(50,20)));
+		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Modify"), _T("AlterElevation"), wxSize(50,20)));
+		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Flatten"), _T("FlattenElevation"), wxSize(50,20)));
+//		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Smooth"), _T(""), wxSize(50,20)));
+//		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Sample"), _T(""), wxSize(50,20)));
+		sizer->Add(new ToolButton(scenarioEditor.GetToolManager(), this, _("Paint"), _T("PaintTerrain"), wxSize(50,20)));
 		m_MainSizer->Add(sizer);
 	}
 

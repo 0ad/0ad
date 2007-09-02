@@ -6,33 +6,49 @@
 
 class DummyTool : public ITool
 {
-	void Init(void*) {}
+	void Init(void*, ScenarioEditor*) {}
 	void Shutdown() {}
 	bool OnMouse(wxMouseEvent& WXUNUSED(evt)) { return false; }
 	bool OnKey(wxKeyEvent& WXUNUSED(evt), KeyEventType) { return false; }
 	void OnTick(float) {}
 } dummy;
 
-static ITool* g_CurrentTool = &dummy;
-static wxString g_CurrentToolName;
+struct ToolManagerImpl
+{
+	ToolManagerImpl() : CurrentTool(&dummy) {}
+
+	ITool* CurrentTool;
+	wxString CurrentToolName;
+
+};
+
+ToolManager::ToolManager(ScenarioEditor* scenarioEditor)
+	: m(new ToolManagerImpl), m_ScenarioEditor(scenarioEditor)
+{
+}
+
+ToolManager::~ToolManager()
+{
+	delete m;
+}
+
+ITool& ToolManager::GetCurrentTool()
+{
+	return *m->CurrentTool;
+}
 
 void SetActive(bool active, const wxString& name);
 
-ITool& GetCurrentTool()
+void ToolManager::SetCurrentTool(const wxString& name, void* initData)
 {
-	return *g_CurrentTool;
-}
-
-void SetCurrentTool(const wxString& name, void* initData)
-{
-	if (g_CurrentTool != &dummy)
+	if (m->CurrentTool != &dummy)
 	{
-		g_CurrentTool->Shutdown();
-		delete g_CurrentTool;
-		g_CurrentTool = &dummy;
+		m->CurrentTool->Shutdown();
+		delete m->CurrentTool;
+		m->CurrentTool = &dummy;
 	}
 
-	SetActive(false, g_CurrentToolName);
+	SetActive(false, m->CurrentToolName);
 
 	ITool* tool = NULL;
 	if (name.Len())
@@ -43,12 +59,12 @@ void SetCurrentTool(const wxString& name, void* initData)
 
 	if (tool)
 	{
-		g_CurrentTool = tool;
-		tool->Init(initData);
+		m->CurrentTool = tool;
+		tool->Init(initData, m_ScenarioEditor);
 	}
 
-	g_CurrentToolName = name;
-	SetActive(true, g_CurrentToolName);
+	m->CurrentToolName = name;
+	SetActive(true, m->CurrentToolName);
 }
 
 //////////////////////////////////////////////////////////////////////////

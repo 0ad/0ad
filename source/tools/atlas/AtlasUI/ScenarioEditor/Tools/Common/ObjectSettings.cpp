@@ -3,9 +3,7 @@
 #include "ObjectSettings.h"
 
 #include "GameInterface/Messages.h"
-#include "ScenarioEditor/Tools/Common/Tools.h"
-
-Observable<ObjectSettings> g_ObjectSettings(g_SelectedObjects, AtlasMessage::eRenderView::GAME);
+#include "ScenarioEditor/ScenarioEditor.h"
 
 ObjectSettings::ObjectSettings(Observable<std::vector<AtlasMessage::ObjectID> >& selectedObjects, int view)
 : m_PlayerID(0), m_SelectedObjects(selectedObjects), m_View(view)

@@ -14,6 +14,7 @@
 
 #include <numeric>
 #include <math.h>
+#include <float.h>
 #include <stdarg.h>
 
 #include "lib/posix/posix_time.h"

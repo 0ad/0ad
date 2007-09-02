@@ -17,6 +17,8 @@
 #define INCLUDED_ENTITYMANAGER
 
 #include <set>
+#include <bitset>
+#include <map>
 
 #include "EntityHandles.h"
 #include "ps/Game.h"
@@ -25,6 +27,7 @@
 class CEntityTemplate;
 class CPlayer;
 class CStrW;
+class CStr8;
 class CVector3D;
 
 #define MAX_HANDLES 4096
@@ -67,7 +70,7 @@ public:
 	~CEntityManager();
 
 	HEntity Create( CEntityTemplate* base, CVector3D position, float orientation, 
-		const std::set<CStr>& actorSelections, const CStrW* building = 0 );
+		const std::set<CStr8>& actorSelections, const CStrW* building = 0 );
 
 	HEntity Create( const CStrW& templateName, CPlayer* player, CVector3D position, 
 		float orientation, const CStrW* building = 0 );

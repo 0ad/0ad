@@ -11,6 +11,7 @@
 #include "FileUnpacker.h"
 #include "lib/path_util.h"
 #include "lib/res/res.h"
+#include "ps/CStr.h"
  
 ////////////////////////////////////////////////////////////////////////////////////////
 // CFileUnpacker constructor

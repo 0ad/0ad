@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <errno.h>
+#include <stdarg.h>
 
 #include "secure_crt.h"
 

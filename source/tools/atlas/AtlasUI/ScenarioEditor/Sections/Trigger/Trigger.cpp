@@ -3,7 +3,7 @@
 #include "Trigger.h"
 #include "GameInterface/Messages.h"
 #include "CustomControls/Buttons/ActionButton.h"
-#include "ScenarioEditor/Tools/Common/Tools.h"
+#include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/MiscState.h"
 
 #include "wx/treectrl.h"

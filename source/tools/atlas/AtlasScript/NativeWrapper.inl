@@ -26,7 +26,7 @@ public:
 
 	// Define RegisterFunction<TR, T0..., f>
 	#define OVERLOADS(z, i, data) \
-		template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( T0(z,i) )> \
+		template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( void* T0_TAIL(z,i) )> \
 		void RegisterFunction(const char* name) { \
 			Register(name, call<TR, T0_HEAD(z,i)  fptr>, nargs<0 T0_TAIL(z,i)>()); \
 		}
@@ -38,7 +38,7 @@ private:
 	// JSNative-compatible function that wraps the function identified in the template argument list
 	// (Definition comes later, since it depends on some things we haven't defined yet)
 	#define OVERLOADS(z, i, data) \
-		template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( T0(z,i) )> \
+		template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( void* T0_TAIL(z,i) )> \
 		static JSBool call(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
 	BOOST_PP_REPEAT(MAX_ARGS, OVERLOADS, ~)
 	#undef OVERLOADS
@@ -54,7 +54,7 @@ private:
    // are not permitted inside non-namespace scopes
 
 
-// ScriptInterface_NativeWrapper<T>::call(cx, rval, fptr, args...) will call fptr(args),
+// ScriptInterface_NativeWrapper<T>::call(cx, rval, fptr, args...) will call fptr(cbdata, args),
 // and if T != void then it will store the result in rval:
 
 // Templated on the return type so void can be handled separately
@@ -63,7 +63,7 @@ struct ScriptInterface_NativeWrapper {
 	#define OVERLOADS(z, i, data) \
 		template<TYPENAME_T0_HEAD(z,i)  typename f> \
 		static void call(JSContext* cx, jsval& rval, f fptr  T0_A0(z,i)) { \
-			rval = ScriptInterface::ToJSVal<TR>(cx, fptr(A0(z,i))); \
+			rval = ScriptInterface::ToJSVal<TR>(cx, fptr(ScriptInterface::GetCallbackData(cx)  A0_TAIL(z,i))); \
 		}
 
 	BOOST_PP_REPEAT(MAX_ARGS, OVERLOADS, ~)
@@ -75,8 +75,8 @@ template <>
 struct ScriptInterface_NativeWrapper<void> {
 	#define OVERLOADS(z, i, data) \
 		template<TYPENAME_T0_HEAD(z,i)  typename f> \
-		static void call(JSContext* /*cx*/, jsval& /*rval*/, f fptr  T0_A0(z,i)) { \
-			fptr(A0(z,i)); \
+		static void call(JSContext* cx, jsval& /*rval*/, f fptr  T0_A0(z,i)) { \
+			fptr(ScriptInterface::GetCallbackData(cx)  A0_TAIL(z,i)); \
 		}
 	BOOST_PP_REPEAT(MAX_ARGS, OVERLOADS, ~)
 	#undef OVERLOADS
@@ -84,7 +84,7 @@ struct ScriptInterface_NativeWrapper<void> {
 
 // JSNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
-	template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( T0(z,i) )> \
+	template <typename TR, TYPENAME_T0_HEAD(z,i)  TR (*fptr) ( void* T0_TAIL(z,i) )> \
 	JSBool ScriptInterface::call(JSContext* cx, JSObject* /*obj*/, uintN /*argc*/, jsval* argv, jsval* rval) { \
 		(void)argv; /* avoid 'unused parameter' warnings */ \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \

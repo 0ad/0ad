@@ -2,6 +2,9 @@
 #define INCLUDED_SCENARIOEDITOR
 
 #include "General/AtlasWindowCommandProc.h"
+#include "General/Observable.h"
+#include "Tools/Common/ObjectSettings.h"
+#include "Tools/Common/Tools.h"
 #include "CustomControls/FileHistory/FileHistory.h"
 #include "SectionLayout.h"
 
@@ -38,13 +41,20 @@ public:
 	static float GetSpeedModifier();
 
 	ScriptInterface& GetScriptInterface() const { return m_ScriptInterface; }
+	Observable<ObjectSettings>& GetObjectSettings() { return m_ObjectSettings; }
+
+	ToolManager& GetToolManager() { return m_ToolManager; }
 
 private:
 	ScriptInterface& m_ScriptInterface;
 
+	ToolManager m_ToolManager;
+
 	wxTimer m_Timer;
 
 	SectionLayout m_SectionLayout;
+
+	Observable<ObjectSettings> m_ObjectSettings;
 
 	void SetOpenFilename(const wxString& filename);
 	wxString m_OpenFilename;

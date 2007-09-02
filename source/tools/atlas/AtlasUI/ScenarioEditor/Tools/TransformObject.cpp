@@ -1,5 +1,6 @@
 #include "precompiled.h"
 
+#include "ScenarioEditor/ScenarioEditor.h"
 #include "Common/Tools.h"
 #include "Common/Brushes.h"
 #include "Common/MiscState.h"
@@ -77,7 +78,7 @@ public:
 				return false;
 		}
 
-		bool OnKey(TransformObject* WXUNUSED(obj), wxKeyEvent& evt, KeyEventType type)
+		bool OnKey(TransformObject* obj, wxKeyEvent& evt, KeyEventType type)
 		{
 			if (type == KEY_CHAR && evt.GetKeyCode() == WXK_DELETE)
 			{
@@ -93,8 +94,8 @@ public:
 			else if (type == KEY_CHAR && (evt.GetKeyCode() >= '0' && evt.GetKeyCode() <= '9'))
 			{
 				int playerID = evt.GetKeyCode() - '0';
-				g_ObjectSettings.SetPlayerID(playerID);
-				g_ObjectSettings.NotifyObservers();
+				obj->GetScenarioEditor().GetObjectSettings().SetPlayerID(playerID);
+				obj->GetScenarioEditor().GetObjectSettings().NotifyObservers();
 				return true;
 			}
 			else

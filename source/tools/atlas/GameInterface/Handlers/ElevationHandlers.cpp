@@ -5,6 +5,7 @@
 #include "../CommandProc.h"
 
 #include "graphics/Terrain.h"
+#include "ps/CStr.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "maths/MathUtil.h"

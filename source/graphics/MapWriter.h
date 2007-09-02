@@ -2,6 +2,7 @@
 #define INCLUDED_MAPWRITER
 
 #include <vector>
+#include <list>
 #include "MapIO.h"
 #include "ps/CStr.h"
 #include "ps/FilePacker.h"

@@ -1,5 +1,6 @@
 #include "precompiled.h"
 
+#include "ScenarioEditor/ScenarioEditor.h"
 #include "Common/Tools.h"
 #include "Common/Brushes.h"
 #include "Common/MiscState.h"
@@ -30,13 +31,15 @@ public:
 			+ (m_ScreenPos.type1.y-m_Target.type1.y)*(m_ScreenPos.type1.y-m_Target.type1.y);
 		bool useTarget = (dragDistSq >= 16*16);
 		if (preview)
-			POST_MESSAGE(ObjectPreview, (m_ObjectID.c_str(), g_ObjectSettings.GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_MESSAGE(ObjectPreview, (m_ObjectID.c_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 		else
-			POST_COMMAND(CreateObject, (m_ObjectID.c_str(), g_ObjectSettings.GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
+			POST_COMMAND(CreateObject, (m_ObjectID.c_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle));
 	}
 
-	virtual void Init(void* initData)
+	virtual void Init(void* initData, ScenarioEditor* scenarioEditor)
 	{
+		StateDrivenTool<PlaceObject>::Init(initData, scenarioEditor);
+
 		wxASSERT(initData);
 		wxString& id = *static_cast<wxString*>(initData);
 		m_ObjectID = id;
@@ -134,8 +137,8 @@ public:
 			if (type == KEY_CHAR && (evt.GetKeyCode() >= '0' && evt.GetKeyCode() <= '9'))
 			{
 				int playerID = evt.GetKeyCode() - '0';
-				g_ObjectSettings.SetPlayerID(playerID);
-				g_ObjectSettings.NotifyObservers();
+				obj->GetScenarioEditor().GetObjectSettings().SetPlayerID(playerID);
+				obj->GetScenarioEditor().GetObjectSettings().NotifyObservers();
 				obj->SendObjectMsg(true);
 				return true;
 			}

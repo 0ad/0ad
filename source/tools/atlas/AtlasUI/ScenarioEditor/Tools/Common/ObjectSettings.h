@@ -60,6 +60,4 @@ private:
 	void PostToGame();
 };
 
-extern Observable<ObjectSettings> g_ObjectSettings;
-
 #endif // INCLUDED_OBJECTSETTINGS

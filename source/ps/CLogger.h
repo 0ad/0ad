@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <set>
+#include <sstream>
 
 class CLogger;
 extern CLogger* g_Logger;

@@ -3,7 +3,7 @@
 #include "Object.h"
 
 #include "Buttons/ToolButton.h"
-#include "ScenarioEditor/Tools/Common/Tools.h"
+#include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Tools/Common/ObjectSettings.h"
 #include "ScenarioEditor/Tools/Common/MiscState.h"
 #include "VariationControl.h"
@@ -15,8 +15,9 @@
 class ObjectSelectListBox : public wxListBox
 {
 public:
-	ObjectSelectListBox(wxWindow* parent)
+	ObjectSelectListBox(wxWindow* parent, ToolManager& toolManager)
 		: wxListBox(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_HSCROLL)
+		, m_ToolManager(toolManager)
 	{
 	}
 
@@ -24,10 +25,11 @@ public:
 	{
 		// On selecting an object, enable the PlaceObject tool with this object
 		wxString id = static_cast<wxStringClientData*>(evt.GetClientObject())->GetData();
-		SetCurrentTool(_T("PlaceObject"), &id);
+		m_ToolManager.SetCurrentTool(_T("PlaceObject"), &id);
 	}
 
 private:
+	ToolManager& m_ToolManager;
 	DECLARE_EVENT_TABLE();
 };
 BEGIN_EVENT_TABLE(ObjectSelectListBox, wxListBox)
@@ -66,7 +68,7 @@ END_EVENT_TABLE();
 class ObjectBottomBar : public wxPanel
 {
 public:
-	ObjectBottomBar(wxWindow* parent);
+	ObjectBottomBar(wxWindow* parent, Observable<ObjectSettings>& objectSettings);
 };
 
 struct ObjectSidebarImpl
@@ -85,10 +87,10 @@ ObjectSidebar::ObjectSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarCo
 	strings.Add(_("Actors (all)"));
 	m_MainSizer->Add(new ObjectChoiceCtrl(this, strings, *this), wxSizerFlags().Expand());
 
-	p->m_ObjectListBox = new ObjectSelectListBox(this);
+	p->m_ObjectListBox = new ObjectSelectListBox(this, scenarioEditor.GetToolManager());
 	m_MainSizer->Add(p->m_ObjectListBox, wxSizerFlags().Proportion(1).Expand());
 
-	m_BottomBar = new ObjectBottomBar(bottomBarContainer);
+	m_BottomBar = new ObjectBottomBar(bottomBarContainer, scenarioEditor.GetObjectSettings());
 }
 
 ObjectSidebar::~ObjectSidebar()
@@ -129,20 +131,17 @@ void ObjectSidebar::SetObjectFilter(int type)
 class PlayerComboBox : public wxComboBox
 {
 public:
-	PlayerComboBox(wxWindow* parent, wxArrayString& choices)
-		: wxComboBox(parent, -1, choices[g_ObjectSettings.GetPlayerID()], wxDefaultPosition, wxDefaultSize, choices, wxCB_READONLY)
+	PlayerComboBox(wxWindow* parent, wxArrayString& choices, Observable<ObjectSettings>& objectSettings)
+		: wxComboBox(parent, -1, choices[objectSettings.GetPlayerID()], wxDefaultPosition, wxDefaultSize, choices, wxCB_READONLY)
+		, m_ObjectSettings(objectSettings)
 	{
-		m_Conn = g_ObjectSettings.RegisterObserver(1, &PlayerComboBox::OnObjectSettingsChange, this);
-	}
-
-	~PlayerComboBox()
-	{
-		g_ObjectSettings.RemoveObserver(m_Conn);
+		m_Conn = m_ObjectSettings.RegisterObserver(1, &PlayerComboBox::OnObjectSettingsChange, this);
 	}
 
 private:
 
-	ObservableConnection m_Conn;
+	ObservableScopedConnection m_Conn;
+	Observable<ObjectSettings>& m_ObjectSettings;
 
 	void OnObjectSettingsChange(const ObjectSettings& settings)
 	{
@@ -151,8 +150,8 @@ private:
 
 	void OnSelect(wxCommandEvent& evt)
 	{
-		g_ObjectSettings.SetPlayerID(evt.GetInt());
-		g_ObjectSettings.NotifyObserversExcept(m_Conn);
+		m_ObjectSettings.SetPlayerID(evt.GetInt());
+		m_ObjectSettings.NotifyObserversExcept(m_Conn);
 	}
 
 	DECLARE_EVENT_TABLE();
@@ -163,7 +162,7 @@ END_EVENT_TABLE();
 
 //////////////////////////////////////////////////////////////////////////
 
-ObjectBottomBar::ObjectBottomBar(wxWindow* parent)
+ObjectBottomBar::ObjectBottomBar(wxWindow* parent, Observable<ObjectSettings>& objectSettings)
 	: wxPanel(parent, wxID_ANY)
 {
 	wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
@@ -179,10 +178,10 @@ ObjectBottomBar::ObjectBottomBar(wxWindow* parent)
 	players.Add(_("Player 6"));
 	players.Add(_("Player 7"));
 	players.Add(_("Player 8"));
-	wxComboBox* playerSelect = new PlayerComboBox(this, players);
+	wxComboBox* playerSelect = new PlayerComboBox(this, players, objectSettings);
 	sizer->Add(playerSelect);
 
-	wxWindow* variationSelect = new VariationControl(this, g_ObjectSettings);
+	wxWindow* variationSelect = new VariationControl(this, objectSettings);
 	variationSelect->SetMinSize(wxSize(160, -1));
 	wxSizer* variationSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Variation"));
 	variationSizer->Add(variationSelect, wxSizerFlags().Proportion(1).Expand());

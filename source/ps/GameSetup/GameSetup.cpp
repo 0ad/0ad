@@ -898,6 +898,9 @@ void EarlyInit()
 	timer_Init();
 
 	cpu_Init();	// must come after timer_Init
+
+	// Initialise the low-quality rand function
+	srand(time(NULL));
 }
 
 void Init(const CmdLineArgs& args, uint flags)
