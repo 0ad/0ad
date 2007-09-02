@@ -11,7 +11,7 @@
 #define GNU_SOURCE
 #include <dlfcn.h>
 
-#ifdef OS_MACOSX
+#if OS_MACOSX
 #include <mach-o/dyld.h>
 #endif
 
@@ -31,7 +31,7 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 
 LibError sys_get_executable_name(char* n_path, size_t buf_size)
 {
-#ifdef OS_MACOSX
+#if OS_MACOSX
 	static char name[PATH_MAX];
 	static bool init = false;
 	if ( !init )
