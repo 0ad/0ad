@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: file.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: file.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // file.cpp
 #include <wx/wxprec.h>
@@ -32,7 +32,7 @@
 
 #include "../common/main.h"
 #include "../ext/wxjs_ext.h"
-
+#include "../ext/jsmembuf.h"
 #include "file.h"
 
 using namespace wxjs;
@@ -454,7 +454,7 @@ JSBool File::read(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *
 		}
 		else
 		{
-            *rval = OBJECT_TO_JSVAL(wxjs::ext::CreateMemoryBuffer(cx, buffer, count));
+            *rval = wxjs::ext::CreateMemoryBuffer(cx, buffer, count);
 		}
 		delete[] buffer;
 

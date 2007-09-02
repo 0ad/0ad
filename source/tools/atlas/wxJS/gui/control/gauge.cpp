@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: gauge.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: gauge.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // gauge.cpp
 
@@ -31,10 +31,8 @@
 #endif
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
 
-
-
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/validate.h"
 
@@ -293,7 +291,7 @@ JSBool Gauge::create(JSContext *cx,
       return JS_FALSE;
     }
   case 4:
-	pt = Point::GetPrivate(cx, argv[3]);
+    pt = wxjs::ext::GetPoint(cx, argv[3]);
 	if ( pt == NULL )
     {
       JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 4, "wxPoint");

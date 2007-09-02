@@ -22,19 +22,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: move.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: move.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // move.cpp
 
-#ifndef WX_PRECOMP
-	#include <wx/wx.h>
-#endif
+#include <wx/wx.h>
 
 #include "../../common/main.h"
 #include "../../common/apiwrap.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "jsevent.h"
-#include "../misc/point.h"
 #include "move.h"
 
 using namespace wxjs;
@@ -68,7 +66,7 @@ bool MoveEvent::GetProperty(PrivMoveEvent *p, JSContext *cx, JSObject *obj, int 
 
 	if ( id == P_POSITION )
 	{
-		*vp = Point::CreateObject(cx, new wxPoint(event->GetPosition()));
+      *vp = wxjs::ext::CreatePoint(cx, event->GetPosition());
 	}
 	return true;
 }

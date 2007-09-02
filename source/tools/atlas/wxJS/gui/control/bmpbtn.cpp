@@ -22,10 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: bmpbtn.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: bmpbtn.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
-// bmpbtn.cpp
-
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
 #endif
@@ -39,9 +37,9 @@
  */
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "../misc/size.h"
-#include "../misc/point.h"
 #include "bmpbtn.h"
 #include "../misc/bitmap.h"
 #include "button.h"
@@ -250,7 +248,7 @@ JSBool BitmapButton::create(JSContext *cx,
         }
         // Walk through
     case 4:
-        pt = Point::GetPrivate(cx, argv[3]);
+      pt = wxjs::ext::GetPoint(cx, argv[3]);
         if ( pt == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 4, "wxPoint");

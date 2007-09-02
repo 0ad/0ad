@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: textval.cpp 738 2007-06-08 18:47:56Z fbraem $
+ * $Id: textval.cpp 782 2007-06-24 20:23:23Z fbraem $
  */
 
 #ifndef WX_PRECOMP
@@ -85,7 +85,6 @@ wxObject* TextValidator::Clone() const
  *   }
  *
  *   wxTheApp.onInit = init;
- *   wxTheApp.mainLoop();
  *  </code></pre>
  * </class>
  */

@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: menubar.cpp 715 2007-05-18 20:38:04Z fbraem $
+ * $Id: menubar.cpp 784 2007-06-25 18:34:22Z fbraem $
  */
 // menubar.cpp
 #ifndef WX_PRECOMP
@@ -33,8 +33,6 @@
 
 #include "menubar.h"
 #include "menu.h"
-
-#include "../misc/app.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;

@@ -22,11 +22,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: helpbtn.cpp 708 2007-05-14 15:30:45Z fbraem $
+ * $Id: helpbtn.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
+#include <wx/wx.h>
 
 #include "../../common/main.h"
 
@@ -34,8 +32,6 @@
 #include "../event/jsevent.h"
 #include "../event/command.h"
 
-#include "../misc/size.h"
-#include "../misc/point.h"
 #include "helpbtn.h"
 #include "button.h"
 #include "window.h"

@@ -22,22 +22,13 @@
  *
  * $Id: point.h 598 2007-03-07 20:13:28Z fbraem $
  */
-/////////////////////////////////////////////////////////////////////////////
-// Name:        point.h
-// Purpose:		Ports wxPoint to JavaScript
-// Author:      Franky Braem
-// Modified by:
-// Created:     16.12.01
-// Copyright:   (c) 2001-2002 Franky Braem
-// Licence:     LGPL
-/////////////////////////////////////////////////////////////////////////////
 
 #ifndef _WXJSPoint_H
 #define _WXJSPoint_H
 
 namespace wxjs
 {
-    namespace gui
+    namespace ext
     {
         class Point : public ApiWrapper<Point, wxPoint>
         {

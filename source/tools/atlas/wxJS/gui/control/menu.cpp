@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: menu.cpp 696 2007-05-07 21:16:23Z fbraem $
+ * $Id: menu.cpp 783 2007-06-24 20:36:30Z fbraem $
  */
 // menu.cpp
 #ifndef WX_PRECOMP
@@ -34,8 +34,6 @@
 
 #include "menu.h"
 #include "menuitem.h"
-
-#include "../misc/app.h"
 
 #include "../event/jsevent.h"
 

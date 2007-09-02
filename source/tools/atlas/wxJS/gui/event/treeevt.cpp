@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: treeevt.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: treeevt.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // treeevt.cpp
 
@@ -40,8 +40,7 @@
 #include <wx/treectrl.h>
 
 #include "../../common/main.h"
-
-#include "../misc/point.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "../control/treeid.h"
 
@@ -113,7 +112,7 @@ bool TreeEvent::GetProperty(PrivTreeEvent *p, JSContext *cx, JSObject *obj, int 
             break;
         }
     case P_POINT:
-        *vp = Point::CreateObject(cx, new wxPoint(event->GetPoint()));
+      *vp = wxjs::ext::CreatePoint(cx, event->GetPoint());
         break;
     case P_LABEL:
         *vp = ToJS(cx, event->GetLabel());

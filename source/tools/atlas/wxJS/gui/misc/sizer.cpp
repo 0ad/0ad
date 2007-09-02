@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: sizer.cpp 733 2007-06-05 21:17:25Z fbraem $
+ * $Id: sizer.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // sizer.cpp
 
@@ -32,12 +32,12 @@
 
 #include "../../common/main.h"
 #include "../../common/apiwrap.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "../control/window.h"
 
 #include "sizer.h"
 #include "size.h"
-#include "point.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;
@@ -55,7 +55,6 @@ using namespace wxjs::gui;
  *  <pre><code class="whjs">
  *    // The wxSizer example
  *    wxTheApp.onInit = init;
- *    wxTheApp.mainLoop();
  *   
  *    function init()
  *    {
@@ -164,7 +163,7 @@ bool Sizer::GetProperty(wxSizer *p, JSContext *cx, JSObject *obj, int id, jsval 
 		*vp = Size::CreateObject(cx, new wxSize(p->GetSize()));
 		break;
 	case P_POSITION:
-		*vp = Point::CreateObject(cx, new wxPoint(p->GetPosition()));
+      *vp = wxjs::ext::CreatePoint(cx, p->GetPosition());
 		break;
 	}
 	return true;

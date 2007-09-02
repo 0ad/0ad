@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: mouse.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: mouse.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // mouse.cpp
 
@@ -33,10 +33,10 @@
 #include "../../common/main.h"
 #include "../../common/type.h"
 #include "../../common/apiwrap.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "jsevent.h"
 #include "mouse.h"
-#include "../misc/point.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;
@@ -206,7 +206,7 @@ bool MouseEvent::GetProperty(PrivMouseEvent *p, JSContext *cx, JSObject *obj, in
 			*vp = ToJS(cx, event->Entering());
 			break;
 		case P_POSITION:
-			*vp = Point::CreateObject(cx, new wxPoint(event->GetPosition()));
+          *vp = wxjs::ext::CreatePoint(cx, event->GetPosition());
 			break;
 		case P_LINES_PER_ACTION:
 			*vp = ToJS(cx, event->GetLinesPerAction());

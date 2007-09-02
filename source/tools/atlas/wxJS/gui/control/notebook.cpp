@@ -13,7 +13,7 @@
 #include "bookctrl.h"
 #include "window.h"
 
-#include "../misc/point.h"
+#include "../../ext/point.h"
 #include "../misc/size.h"
 #include "../errors.h"
 
@@ -168,7 +168,7 @@ JSBool Notebook::create(JSContext *cx,
 		}
 	// Fall through
 	case 3:
-		pt = Point::GetPrivate(cx, argv[2]);
+		pt = wxjs::ext::Point::GetPrivate(cx, argv[2]);
 		if ( pt == NULL )
 		{
 			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxPoint");

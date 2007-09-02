@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: zostream.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: zostream.cpp 759 2007-06-12 21:13:52Z fbraem $
  */
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
@@ -31,7 +31,7 @@
 
 #include "../common/main.h"
 #include "../ext/wxjs_ext.h"
-
+#include "../ext/jsmembuf.h"
 
 #include "stream.h"
 #include "ostream.h"

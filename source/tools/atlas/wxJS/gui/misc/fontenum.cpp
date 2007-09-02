@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: fontenum.cpp 715 2007-05-18 20:38:04Z fbraem $
+ * $Id: fontenum.cpp 784 2007-06-25 18:34:22Z fbraem $
  */
 // fontenum.cpp
 
@@ -34,7 +34,6 @@
 #include "../../common/jsutil.h"
 
 #include "fontenum.h"
-#include "app.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;

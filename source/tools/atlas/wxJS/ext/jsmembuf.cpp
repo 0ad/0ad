@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: jsmembuf.cpp 737 2007-06-08 18:12:16Z fbraem $
+ * $Id: jsmembuf.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // jsmembuf.cpp
 #include "../common/main.h"
@@ -199,7 +199,7 @@ wxMemoryBuffer *MemoryBuffer::Construct(JSContext *cx, JSObject *obj, uintN argc
     }
 
     wxMemoryBuffer *buffer = new wxMemoryBuffer();
-    buffer->AppendData(content, strlen(content));
+    buffer->AppendData(content, data.length());
 
     return buffer;
 }
@@ -284,7 +284,7 @@ JSBool MemoryBuffer::append(JSContext *cx, JSObject *obj, uintN argc, jsval *arg
         content = data.mb_str(conv);
     }
 
-    p->AppendData(content, strlen(content));
+    p->AppendData(content, data.length());
 	
     return JS_TRUE;
 }

@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: txtdlg.cpp 708 2007-05-14 15:30:45Z fbraem $
+ * $Id: txtdlg.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // txtdlg.cpp
 
@@ -32,8 +32,8 @@
 #include <wx/textdlg.h>
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
 
-#include "../misc/point.h"
 #include "../event/jsevent.h"
 
 #include "../errors.h"
@@ -144,7 +144,7 @@ wxTextEntryDialog* TextEntryDialog::Construct(JSContext *cx, JSObject *obj, uint
     switch(argc)
     {
     case 6:
-		pt = Point::GetPrivate(cx, argv[5]);
+      pt = wxjs::ext::GetPoint(cx, argv[5]);
 		if ( pt == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 6, "wxPoint");

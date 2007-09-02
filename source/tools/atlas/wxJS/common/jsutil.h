@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: jsutil.h 603 2007-03-08 20:36:17Z fbraem $
+ * $Id: jsutil.h 801 2007-07-02 20:54:19Z fbraem $
  */
 #ifndef _wxjs_util_h
 #define _wxjs_util_h
@@ -40,7 +40,18 @@ namespace wxjs
 
     bool GetScriptRoot(JSContext *cx, jsval *v);
 
-    // Define a UNICODE property
-    JSBool DefineUnicodeProperty(JSContext *cx, JSObject *obj, const wxString &propertyName, jsval *propertyValue);
+    // Property functions using wxString / UTF-16
+    JSBool wxDefineProperty(JSContext *cx, 
+                            JSObject *obj, 
+                            const wxString &propertyName, 
+                            jsval *propertyValue);
+    JSBool wxGetProperty(JSContext *cx, 
+                         JSObject *obj, 
+                         const wxString &propertyName, 
+                         jsval *propertyValue);
+    JSBool wxSetProperty(JSContext *cx, 
+                         JSObject *obj, 
+                         const wxString &propertyName, 
+                         jsval *propertyValue);
 };
 #endif //wxjs_util_h

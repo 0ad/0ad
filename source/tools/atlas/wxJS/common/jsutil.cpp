@@ -22,15 +22,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: jsutil.cpp 603 2007-03-08 20:36:17Z fbraem $
+ * $Id: jsutil.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 
 #include <js/jsapi.h>
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
+#include <wx/wx.h>
 
 #include "jsutil.h"
+#include "defs.h"
 
 JSBool wxjs::GetFunctionProperty(JSContext *cx, JSObject *obj, const char *propertyName, jsval *property)
 {
@@ -103,20 +102,61 @@ bool wxjs::HasPrototype(JSContext *cx, jsval v, const char *className)
 
 bool wxjs::GetScriptRoot(JSContext *cx, jsval *v)
 {
-    return JS_GetProperty(cx, JS_GetGlobalObject(cx), "scriptRoot", v) == JS_TRUE;
+  if ( JS_GetProperty(cx, JS_GetGlobalObject(cx), "script", v) == JS_TRUE )
+  {
+    if ( JSVAL_IS_OBJECT(*v) )
+    {
+      JSObject *obj = JSVAL_TO_OBJECT(*v);
+      return JS_GetProperty(cx, obj, "root", v) == JS_TRUE;
+    }
+  }
+  return false;
 }
 
-JSBool wxjs::DefineUnicodeProperty(JSContext *cx, 
-                                   JSObject *obj, 
-                                   const wxString &propertyName, 
-                                   jsval *propertyValue)
+JSBool wxjs::wxDefineProperty(JSContext *cx, 
+                              JSObject *obj, 
+                              const wxString &propertyName, 
+                              jsval *propertyValue)
 {
-    wxMBConvUTF16 utf16;
+    wxCSConv conv(wxJS_INTERNAL_ENCODING);
+    int length = propertyName.length();
+    wxCharBuffer s = propertyName.mb_str(conv);
+    
+/*
     int jsLength = utf16.WC2MB(NULL, propertyName, 0);
-    char *jsValue = new char[jsLength + utf16.GetMBNulLen()];
-    jsLength = utf16.WC2MB(jsValue, propertyName, jsLength + utf16.GetMBNulLen());
-    JSBool ret = JS_DefineUCProperty(cx, obj, (jschar *) jsValue, jsLength / utf16.GetMBNulLen(), 
+    char *jsValue = new char[jsLength + conv.GetMBNulLen()];
+    jsLength = conv.WC2MB(jsValue, propertyName, jsLength + conv.GetMBNulLen());
+    JSBool ret = JS_DefineUCProperty(cx, obj, (jschar *) jsValue, jsLength / conv.GetMBNulLen(), 
                                      *propertyValue, NULL, NULL, JSPROP_ENUMERATE);
     delete[] jsValue;
     return ret;
+*/
+    return JS_DefineUCProperty(cx, obj, (const jschar *) s.data(), length, 
+                               *propertyValue, NULL, NULL, JSPROP_ENUMERATE);
+}
+
+JSBool wxjs::wxGetProperty(JSContext *cx, 
+                           JSObject *obj, 
+                           const wxString &propertyName, 
+                           jsval *propertyValue)
+{
+  wxCSConv conv(wxJS_INTERNAL_ENCODING);
+  int length = propertyName.length();
+  wxCharBuffer s = propertyName.mb_str(conv);
+
+  return JS_GetUCProperty(cx, obj, 
+                         (const jschar *) s.data(), length, propertyValue);
+}
+
+JSBool wxjs::wxSetProperty(JSContext *cx, 
+                           JSObject *obj, 
+                           const wxString &propertyName, 
+                           jsval *propertyValue)
+{
+  wxCSConv conv(wxJS_INTERNAL_ENCODING);
+  int length = propertyName.length();
+  wxCharBuffer s = propertyName.mb_str(conv);
+
+  return JS_SetUCProperty(cx, obj, 
+                         (const jschar *) s.data(), length, propertyValue);
 }

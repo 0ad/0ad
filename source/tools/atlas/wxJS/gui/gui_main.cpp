@@ -42,7 +42,6 @@
  
 #include "init.h"
 
-/*
 #if defined( __WXMSW__)
 	void WXDLLEXPORT wxEntryCleanup();
 	extern "C" 
@@ -60,15 +59,11 @@
 		{
 		case DLL_PROCESS_ATTACH:
 			{
-				wxSetInstance(hinstDLL);
 				DisableThreadLibraryCalls(hinstDLL);
-    		    int app_argc = 0;
-	    	    char **app_argv = NULL;
-		        wxEntryStart(app_argc, app_argv);
 				break;
 			}
 		case DLL_PROCESS_DETACH:
-            wxEntryCleanup();
+            // Register the classes again, because otherwise we have debug messages
 			break;
 		}    
 	
@@ -90,4 +85,3 @@ WXJSAPI void wxJS_Destroy()
 {
   wxjs::gui::Destroy();
 }
-*/

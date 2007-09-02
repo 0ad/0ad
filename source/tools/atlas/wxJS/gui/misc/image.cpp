@@ -22,21 +22,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: image.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: image.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
-// image.cpp
 
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
+#include <wx/wx.h>
 
 #include "../../common/main.h"
 #include "../../common/jsutil.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "image.h"
 #include "size.h"
 #include "rect.h"
-#include "point.h"
 #include "colour.h"
 #include "imghand.h"
 
@@ -614,7 +611,7 @@ JSBool Image::rotate(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsva
     switch(argc)
     {
     case 4:
-        offset = Point::GetPrivate(cx, argv[3]);
+      offset = wxjs::ext::GetPoint(cx, argv[3]);
         if ( offset == NULL )
             break;
         // Fall through
@@ -622,7 +619,7 @@ JSBool Image::rotate(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsva
         if ( ! FromJS(cx, argv[2], interpol) )
             break;
     default:
-        wxPoint *center = Point::GetPrivate(cx, argv[1]);
+      wxPoint *center = wxjs::ext::GetPoint(cx, argv[1]);
         if ( center == NULL )
             break;
 

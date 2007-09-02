@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: statbar.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: statbar.cpp 782 2007-06-24 20:23:23Z fbraem $
  */
 // wxJSStatusBar.cpp
 
@@ -54,7 +54,6 @@ using namespace wxjs::gui;
  *  When you click the button the bitmap is changed.
  *  <pre><code class="whjs">
  *   wxTheApp.onInit = init;
- *   wxTheApp.mainLoop();
  *   
  *   function init()
  *   {

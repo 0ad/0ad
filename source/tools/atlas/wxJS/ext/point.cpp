@@ -22,23 +22,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: point.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id$
  */
 // point.cpp
 
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
+#include <wx/wx.h>
 
-#include "../../common/main.h"
+#include "../common/main.h"
 
 #include "point.h"
 using namespace wxjs;
-using namespace wxjs::gui;
+using namespace wxjs::ext;
 
 /***
- * <file>misc/point</file>
- * <module>gui</module>
+ * <file>point</file>
+ * <module>ext</module>
  * <class name="wxPoint">
  *  A wxPoint is a useful data structure for graphics operations.
  *  It simply contains integer x and y members.

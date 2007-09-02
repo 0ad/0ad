@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: listitattr.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: listitattr.cpp 784 2007-06-25 18:34:22Z fbraem $
  */
 // listitem.cpp
 #include <wx/wxprec.h>
@@ -33,7 +33,6 @@
 
 #include "../../common/main.h"
 
-#include "../misc/app.h"
 #include "../misc/font.h"
 #include "../misc/colour.h"
 

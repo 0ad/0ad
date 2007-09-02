@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: type.cpp 600 2007-03-07 22:08:44Z fbraem $
+ * $Id: type.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
@@ -290,22 +290,16 @@ jsval wxjs::ToJS<bool>(JSContext* WXUNUSED(cx), const bool &from)
 template<>
 jsval wxjs::ToJS<wxString>(JSContext* cx, const wxString &from)
 {
-    if ( from.Length() == 0 )
+  int length = from.length();
+    if ( length == 0 )
     {
         return STRING_TO_JSVAL(JS_NewUCStringCopyN(cx, (jschar *) "", 0));
     }
 	jsval val = JSVAL_VOID;
 	
 	wxMBConvUTF16 utf16;
-    int jsLength = utf16.WC2MB(NULL, from, 0);
-    if ( jsLength > 0 )
-    {
-        char *jsValue = new char[jsLength + utf16.GetMBNulLen()];
-        jsLength = utf16.WC2MB(jsValue, from, jsLength + utf16.GetMBNulLen());
-
-		val = STRING_TO_JSVAL(JS_NewUCStringCopyN(cx, (jschar *) jsValue, jsLength / utf16.GetMBNulLen()));
-        delete[] jsValue;
-    }
+    wxCharBuffer buffer = from.mb_str(utf16);
+    val = STRING_TO_JSVAL(JS_NewUCStringCopyN(cx, (jschar *) buffer.data(), length));
     return val;
 }
 

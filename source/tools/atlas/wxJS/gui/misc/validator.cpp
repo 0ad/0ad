@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: validator.cpp 739 2007-06-08 20:51:47Z fbraem $
+ * $Id: validator.cpp 784 2007-06-25 18:34:22Z fbraem $
  */
 // validator.cpp
 
@@ -36,7 +36,6 @@
 #include "../control/window.h"
 
 #include "validate.h"
-#include "app.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;

@@ -1,5 +1,31 @@
 #include "precompiled.h"
 
+/*
+ * wxJavaScript - settings.cpp
+ *
+ * Copyright (c) 2002-2007 Franky Braem and the wxJavaScript project
+ *
+ * Project Info: http://www.wxjavascript.net or http://wxjs.sourceforge.net
+ *
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+ *
+ * Remark: This class was donated by Philip Taylor
+ *
+ * $Id$
+ */
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
 #endif
@@ -16,12 +42,28 @@
 using namespace wxjs;
 using namespace wxjs::gui;
 
+/***
+ * <module>gui</module>
+ * <file>misc/settings</file>
+ * <class name="wxSystemSettings">
+ *  wxSystemSettings allows the application to ask for details about the system. 
+ *  This can include settings such as standard colours, fonts, and user 
+ *  interface element sizes.
+ * </class>
+ */
 WXJS_INIT_CLASS(SystemSettings, "wxSystemSettings", 0)
 
 WXJS_BEGIN_STATIC_PROPERTY_MAP(SystemSettings)
     WXJS_STATIC_PROPERTY(P_SCREEN_TYPE, "screenType")
 WXJS_END_PROPERTY_MAP()
 
+/***
+ * <class_properties>
+ *  <property name="screenType" type="Integer">
+ *   Get/Set the screen type.
+ *  </property>
+ * </class_properties>
+ */
 bool SystemSettings::GetStaticProperty(JSContext *cx, int id, jsval *vp)
 {
 	switch ( id )
@@ -54,6 +96,16 @@ WXJS_BEGIN_STATIC_METHOD_MAP(SystemSettings)
 	WXJS_METHOD("hasFeature", hasFeature, 1)
 WXJS_END_METHOD_MAP()
 
+/***
+ * <class_method name="getColour">
+ *  <function returns="@wxColour">
+ *   <arg name="Index" type="Integer" />
+ *  </function>
+ *  <desc>
+ *   Returns a system colour.
+ *  </desc>
+ * </class_method>
+ */
 JSBool SystemSettings::getColour(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	int index;
@@ -64,6 +116,16 @@ JSBool SystemSettings::getColour(JSContext *cx, JSObject *obj, uintN argc, jsval
 	return JS_TRUE;
 }
 
+/***
+ * <class_method name="getFont">
+ *  <function returns="@wxFont">
+ *   <arg name="Index" type="Integer" />
+ *  </function>
+ *  <desc>
+ *   Returns a system font.
+ *  </desc>
+ * </class_method>
+ */
 JSBool SystemSettings::getFont(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	int index;
@@ -74,6 +136,23 @@ JSBool SystemSettings::getFont(JSContext *cx, JSObject *obj, uintN argc, jsval *
 	return JS_TRUE;
 }
 
+/***
+ * <class_method name="getColour">
+ *  <function returns="Integer">
+ *   <arg name="Index" type="Integer" />
+ *   <arg name="Win" type="@wxWindow" default="null" />
+ *  </function>
+ *  <desc>
+ *   Returns the value of a system metric, or -1 if the metric is not
+ *   supported on the current system. Specifying the win parameter is 
+ *   encouraged, because some metrics on some ports are not supported without 
+ *   one, or they might be capable of reporting better values if given one. 
+ *   If a window does not make sense for a metric, one should still be given, 
+ *   as for example it might determine which displays cursor width is requested 
+ *   with wxSystemSettings.CURSOR_X
+ *  </desc>
+ * </class_method>
+ */
 JSBool SystemSettings::getMetric(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
 	int index;
@@ -101,6 +180,90 @@ JSBool SystemSettings::hasFeature(JSContext *cx, JSObject *obj, uintN argc, jsva
 	return JS_TRUE;
 }
 
+/***
+ * <constants>
+ *  <type name="System Colours">
+ *   <constant name="COLOUR_SCROLLBAR">The scrollbar grey area.</constant>
+ *   <constant name="COLOUR_BACKGROUND">The desktop colour.</constant>
+ *   <constant name="COLOUR_ACTIVECAPTION">Active window caption.</constant>
+ *   <constant name="COLOUR_INACTIVECAPTION">Inactive window caption.</constant>
+ *   <constant name="COLOUR_MENU">Menu background.</constant>
+ *   <constant name="COLOUR_WINDOW">Window background.</constant>
+ *   <constant name="COLOUR_WINDOWFRAME">Window frame.</constant>
+ *   <constant name="COLOUR_MENUTEXT">Menu text.</constant>
+ *   <constant name="COLOUR_WINDOWTEXT">Text in windows.</constant>
+ *   <constant name="COLOUR_CAPTIONTEXT">Text in caption, size box and scrollbar arrow box.</constant>
+ *   <constant name="COLOUR_ACTIVEBORDER">Active window border.</constant>
+ *   <constant name="COLOUR_INACTIVEBORDER">Inactive window border.</constant>
+ *   <constant name="COLOUR_APPWORKSPACE">Background colour MDI applications.</constant>
+ *   <constant name="COLOUR_HIGHLIGHT">Item(s) selected in a control.</constant>
+ *   <constant name="COLOUR_HIGHLIGHTTEXT">Text of item(s) selected in a control.</constant>
+ *   <constant name="COLOUR_BTNFACE">Face shading on push buttons.</constant>
+ *   <constant name="COLOUR_BTNSHADOW">Edge shading on push buttons.</constant>
+ *   <constant name="COLOUR_GRAYTEXT">Greyed (disabled) text.</constant>
+ *   <constant name="COLOUR_BTNTEXT">Text on push buttons.</constant>
+ *   <constant name="COLOUR_INACTIVECAPTIONTEXT">Colour of text in active captions.</constant>
+ *   <constant name="COLOUR_BTNHIGHLIGHT">Highlight colour for buttons (same as constant name="COLOUR_3DHILIGHT).</constant>
+ *   <constant name="COLOUR_3DDKSHADOW">Dark shadow for three-dimensional display elements.</constant>
+ *   <constant name="COLOUR_3DLIGHT">Light colour for three-dimensional display elements.</constant>
+ *   <constant name="COLOUR_INFOTEXT">Text colour for tooltip controls.</constant>
+ *   <constant name="COLOUR_INFOBK">Background colour for tooltip controls.</constant>
+ *   <constant name="COLOUR_DESKTOP">Same as COLOUR_BACKGROUND.</constant>
+ *   <constant name="COLOUR_3DFACE">Same as COLOUR_BTNFACE.</constant>
+ *   <constant name="COLOUR_3DSHADOW">Same as COLOUR_BTNSHADOW.</constant>
+ *   <constant name="COLOUR_3DHIGHLIGHT">Same as COLOUR_BTNHIGHLIGHT.</constant>
+ *   <constant name="COLOUR_3DHILIGHT">Same as COLOUR_BTNHIGHLIGHT.</constant>
+ *   <constant name="COLOUR_BTNHILIGHT">Same as COLOUR_BTNHIGHLIGHT.</constant>
+ *  </type>
+ *  <type name="System Fonts">
+ *   <constant name="OEM_FIXED_FONT">Original equipment manufacturer dependent fixed-pitch font.</constant>
+ *   <constant name="ANSI_FIXED_FONT">Windows fixed-pitch font.</constant>
+ *   <constant name="ANSI_VAR_FONT">Windows variable-pitch (proportional) font.</constant>
+ *   <constant name="SYSTEM_FONT">System font.</constant>
+ *   <constant name="DEVICE_DEFAULT_FONT">Device-dependent font (Windows NT only).</constant>
+ *   <constant name="DEFAULT_GUI_FONT">Default font for user interface objects such as menus and dialog boxes. Note that with modern GUIs nothing guarantees that the same font is used for all GUI elements, so some controls might use a different font by default.</constant>
+ *  </type>
+ *  <type name="System Metrics">
+ *   <constant name="MOUSE_BUTTONS">Number of buttons on mouse, or zero if no mouse was installed.</constant>
+ *   <constant name="BORDER_X">Width of single border.</constant>
+ *   <constant name="BORDER_Y">Height of single border.</constant>
+ *   <constant name="CURSOR_X">Width of cursor.</constant>
+ *   <constant name="CURSOR_Y">Height of cursor.</constant>
+ *   <constant name="DCLICK_X">Width in pixels of rectangle within which two successive mouse clicks must fall to generate a double-click.</constant>
+ *   <constant name="DCLICK_Y">Height in pixels of rectangle within which two successive mouse clicks must fall to generate a double-click.</constant>
+ *   <constant name="DRAG_X">Width in pixels of a rectangle centered on a drag point to allow for limited movement of the mouse pointer before a drag operation begins.</constant>
+ *   <constant name="DRAG_Y">Height in pixels of a rectangle centered on a drag point to allow for limited movement of the mouse pointer before a drag operation begins.</constant>
+ *   <constant name="EDGE_X">Width of a 3D border, in pixels.</constant>
+ *   <constant name="EDGE_Y">Height of a 3D border, in pixels.</constant>
+ *   <constant name="HSCROLL_ARROW_X">Width of arrow bitmap on horizontal scrollbar.</constant>
+ *   <constant name="HSCROLL_ARROW_Y">Height of arrow bitmap on horizontal scrollbar.</constant>
+ *   <constant name="HTHUMB_X">Width of horizontal scrollbar thumb.</constant>
+ *   <constant name="ICON_X">The default width of an icon.</constant>
+ *   <constant name="ICON_Y">The default height of an icon.</constant>
+ *   <constant name="ICONSPACING_X">Width of a grid cell for items in large icon view, in pixels. Each item fits into a rectangle of this size when arranged.</constant>
+ *   <constant name="ICONSPACING_Y">Height of a grid cell for items in large icon view, in pixels. Each item fits into a rectangle of this size when arranged.</constant>
+ *   <constant name="WINDOWMIN_X">Minimum width of a window.</constant>
+ *   <constant name="WINDOWMIN_Y">Minimum height of a window.</constant>
+ *   <constant name="SCREEN_X">Width of the screen in pixels.</constant>
+ *   <constant name="SCREEN_Y">Height of the screen in pixels.</constant>
+ *   <constant name="FRAMESIZE_X">Width of the window frame for a wxTHICK_FRAME window.</constant>
+ *   <constant name="FRAMESIZE_Y">Height of the window frame for a wxTHICK_FRAME window.</constant>
+ *   <constant name="SMALLICON_X">Recommended width of a small icon (in window captions, and small icon view).</constant>
+ *   <constant name="SMALLICON_Y">Recommended height of a small icon (in window captions, and small icon view).</constant>
+ *   <constant name="HSCROLL_Y">Height of horizontal scrollbar in pixels.</constant>
+ *   <constant name="VSCROLL_X">Width of vertical scrollbar in pixels.</constant>
+ *   <constant name="VSCROLL_ARROW_X">Width of arrow bitmap on a vertical scrollbar.</constant>
+ *   <constant name="VSCROLL_ARROW_Y">Height of arrow bitmap on a vertical scrollbar.</constant>
+ *   <constant name="VTHUMB_Y">Height of vertical scrollbar thumb.</constant>
+ *   <constant name="CAPTION_Y">Height of normal caption area.</constant>
+ *   <constant name="MENU_Y">Height of single-line menu bar.</constant>
+ *   <constant name="NETWORK_PRESENT">1 if there is a network present, 0 otherwise.</constant>
+ *   <constant name="PENWINDOWS_PRESENT">1 if PenWindows is installed, 0 otherwise.</constant>
+ *   <constant name="SHOW_SOUNDS">Non-zero if the user requires an application to present information visually in situations where it would otherwise present the information only in audible form; zero otherwise.</constant>
+ *   <constant name="SWAP_BUTTONS">Non-zero if the meanings of the left and right mouse buttons are swapped; zero otherwise.</constant>
+ *  </type>
+ * </constants>
+ */
 WXJS_BEGIN_CONSTANT_MAP(SystemSettings)
 	// wxSystemFont
 	WXJS_CONSTANT(wxSYS_, OEM_FIXED_FONT)

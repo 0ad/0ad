@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: listbox.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: listbox.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 
 #ifndef WX_PRECOMP
@@ -31,12 +31,11 @@
 
 #include "../../common/main.h"
 #include "../../common/index.h"
-
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 #include "../event/command.h"
 
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/validate.h"
 
@@ -273,7 +272,7 @@ JSBool ListBox::create(JSContext *cx,
 			break;
 		// Fall through
 	case 3:
-		pt = Point::GetPrivate(cx, argv[2]);
+      pt = wxjs::ext::GetPoint(cx, argv[2]);
 		if ( pt == NULL )
 			break;
 		// Fall through

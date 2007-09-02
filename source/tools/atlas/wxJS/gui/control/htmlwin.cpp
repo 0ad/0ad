@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: htmlwin.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: htmlwin.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
@@ -40,13 +40,12 @@
  */
 
 #include "../../common/main.h"
-
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 #include "../event/htmllink.h"
 
 #include "../misc/size.h"
-#include "../misc/point.h"
 #include "htmlwin.h"
 #include "frame.h"
 #include "window.h"
@@ -306,7 +305,7 @@ JSBool HtmlWindow::create(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
         }
 		// Walk through
 	case 3:
-		pt = Point::GetPrivate(cx, argv[2]);
+      pt = wxjs::ext::GetPoint(cx, argv[2]);
 		if ( pt == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxPoint");
@@ -563,7 +562,7 @@ JSBool HtmlWindow::selectLine(JSContext *cx,
 	if ( p == NULL )
 		return JS_FALSE;
 
-    wxPoint *pos = Point::GetPrivate(cx, argv[0]);
+    wxPoint *pos = wxjs::ext::GetPoint(cx, argv[0]);
     if ( pos != NULL )
     {
         p->SelectLine(*pos);
@@ -594,7 +593,7 @@ JSBool HtmlWindow::selectWord(JSContext *cx,
 	if ( p == NULL )
 		return JS_FALSE;
 
-    wxPoint *pos = Point::GetPrivate(cx, argv[0]);
+    wxPoint *pos = wxjs::ext::GetPoint(cx, argv[0]);
     if ( pos != NULL )
     {
         p->SelectWord(*pos);

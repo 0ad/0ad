@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: sockbase.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: sockbase.cpp 759 2007-06-12 21:13:52Z fbraem $
  */
 // file.cpp
 #include <wx/wxprec.h>
@@ -32,7 +32,7 @@
 
 #include "../common/main.h"
 #include "../ext/wxjs_ext.h"
-
+#include "../ext/jsmembuf.h"
 #include "sockbase.h"
 
 using namespace wxjs;

@@ -1,15 +1,8 @@
-Based on wxJavaScript r741, with some modifications:
+Based on wxJavaScript 0.9.71, with some modifications:
 
-# Fix line endings
-for i in `find . -name '*.cpp' -or -name '*.h'`; do dos2unix $i; done
-for i in `find . -name '*.cpp' -or -name '*.h'`; do svn propset svn:eol-style native $i; done
-
-# Add '#include "precompiled.h"' to every .cpp file
-for i in `find common ext gui io -name '*.cpp'`; do mv $i $i~; ( echo -e "#include \"precompiled.h\"\n" ; cat $i~ ) >$i; rm $i~; done
-
-# Fix JS include paths
-for i in `grep -lr '<jsapi.h>' .`; do sed -i 's/<jsapi.h>/<js\/jsapi.h>/' $i; done
-for i in `grep -lr '<jsdate.h>' .`; do sed -i 's/<jsdate.h>/<js\/jsdate.h>/' $i; done
+svn co -r818 https://wxjs.svn.sourceforge.net/svnroot/wxjs/trunk/wxJS2/src/ temp_src_dir
+# Copy {common,ext,gui,io} source files into tools/atlas/wxJS
+# Keep non-standard files gui/{control/{notebook,bookctrl},event/notebookevt,misc/timer}.{cpp,h}
 
 # Rename common filenames to prevent naming conflicts when we compile everything together
 for i in io ext gui; do
@@ -18,10 +11,22 @@ for i in io ext gui; do
   done;
 done
 
+# Make sure new files are added to our SVN
 
+# Fix line endings
+for i in `find . -name '*.cpp' -or -name '*.h'`; do dos2unix $i; done
+for i in `find . -name '*.cpp' -or -name '*.h'`; do svn propset svn:eol-style native $i; done
 
-gui/misc/app.cpp: delete
-  "IMPLEMENT_APP_NO_MAIN(App)"
+# Add '#include "precompiled.h"' to every .cpp file
+for i in `find common ext gui io -name '*.cpp'`; do
+  if [[ ! ( `grep precompiled.h $i` ) ]]; then
+    mv $i $i~; ( echo -e "#include \"precompiled.h\"\n" ; cat $i~ ) >$i; rm $i~;
+  fi
+done
+
+# Fix JS include paths
+for i in `grep -lr '<jsapi.h>' .`; do sed -i 's/<jsapi.h>/<js\/jsapi.h>/' $i; done
+for i in `grep -lr '<jsdate.h>' .`; do sed -i 's/<jsdate.h>/<js\/jsdate.h>/' $i; done
 
 io/io_constant.cpp: replace
   "JSConstDoubleSpec wxGlobalMap[] =
@@ -31,6 +36,24 @@ io/io_constant.cpp: replace
    };"
 with
   "extern JSConstDoubleSpec wxGlobalMap[];"
+(since it conflicts with wxGlobalMap in gui/misc/constant.cpp)
 
+gui/gui_init.cpp: add
+    #include "control/bookctrl.h"
+    #include "control/notebook.h"
+    #include "misc/timer.h"
 
-...and some other minor things
+    obj = BookCtrlBase::JSInit(cx, global, Control::GetClassPrototype());
+    wxASSERT_MSG(obj != NULL, wxT("wxBookCtrlBase prototype creation failed"));
+    if (! obj )
+        return false;
+
+    obj = Notebook::JSInit(cx, global, BookCtrlBase::GetClassPrototype());
+    wxASSERT_MSG(obj != NULL, wxT("wxNotebook prototype creation failed"));
+    if (! obj )
+        return false;
+
+    obj = Timer::JSInit(cx, global);
+    wxASSERT_MSG(obj != NULL, wxT("wxTimer prototype creation failed"));
+    if (! obj )
+        return false;

@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: genval.cpp 723 2007-05-31 19:59:50Z fbraem $
+ * $Id: genval.cpp 783 2007-06-24 20:36:30Z fbraem $
  */
 // validator.cpp
 
@@ -36,7 +36,6 @@
 #include "../control/window.h"
 
 #include "genval.h"
-#include "app.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;
@@ -106,7 +105,6 @@ IMPLEMENT_CLASS(GenericValidator, wxGenericValidator)
  *  }
  *
  *  wxTheApp.onInit = Application;
- *  wxTheApp.mainLoop();
  *  </code></pre>
  * </class>
  */

@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: globfun.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: globfun.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // globfun.cpp
 #ifndef WX_PRECOMP
@@ -31,8 +31,9 @@
 #include <wx/image.h>
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
+
 #include "globfun.h"
-#include "point.h"
 #include "colour.h"
 #include "size.h"
 #include "fontlist.h"
@@ -118,7 +119,6 @@ bool wxjs::gui::InitFunctions(JSContext *cx, JSObject *global)
  */
 void wxjs::gui::DefineGlobals(JSContext *cx, JSObject *global)
 {
-    wxjs::gui::Point::DefineObject(cx, global, "wxDefaultPosition", new wxPoint(wxDefaultPosition));
     wxjs::gui::Size::DefineObject(cx, global, "wxDefaultSize", new wxSize(wxDefaultSize));
     wxjs::gui::FontList::DefineObject(cx, global, "wxTheFontList", wxTheFontList);
     wxjs::gui::ColourDatabase::DefineObject(cx, global, "wxTheColourDatabase", wxTheColourDatabase);

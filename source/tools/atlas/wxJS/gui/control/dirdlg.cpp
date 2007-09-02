@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: dirdlg.cpp 708 2007-05-14 15:30:45Z fbraem $
+ * $Id: dirdlg.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 
 #ifndef WX_PRECOMP
@@ -30,10 +30,10 @@
 #endif
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "dirdlg.h"
 #include "window.h"
-#include "../misc/point.h"
 
 #include "../errors.h"
 
@@ -149,7 +149,7 @@ wxDirDialog* DirDialog::Construct(JSContext *cx,
     switch(argc)
     {
     case 5:
-		pt = Point::GetPrivate(cx, argv[4]);
+      pt = wxjs::ext::GetPoint(cx, argv[4]);
 		if ( pt == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 5, "wxPoint");

@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: mostream.cpp 715 2007-05-18 20:38:04Z fbraem $
+ * $Id: mostream.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
@@ -35,7 +35,7 @@
 #include "mostream.h"
 
 #include "../ext/wxjs_ext.h"
-
+#include "../ext/jsmembuf.h"
 
 using namespace wxjs;
 using namespace wxjs::io;
@@ -125,7 +125,7 @@ bool MemoryOutputStream::GetProperty(Stream *p, JSContext *cx, JSObject *obj, in
             char* buffer = new char[size];
             mstream->CopyTo(buffer, size);
 
-            *vp = OBJECT_TO_JSVAL(wxjs::ext::CreateMemoryBuffer(cx, buffer, size));
+            *vp = wxjs::ext::CreateMemoryBuffer(cx, buffer, size);
 			delete[] buffer;
             break;
         }

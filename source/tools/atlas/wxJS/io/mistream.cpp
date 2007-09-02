@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: mistream.cpp 716 2007-05-20 17:57:22Z fbraem $
+ * $Id: mistream.cpp 759 2007-06-12 21:13:52Z fbraem $
  */
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
@@ -35,6 +35,7 @@
 #include "mistream.h"
 
 #include "../ext/wxjs_ext.h"
+#include "../ext/jsmembuf.h"
 
 using namespace wxjs;
 using namespace wxjs::io;

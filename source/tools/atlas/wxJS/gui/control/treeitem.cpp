@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: treeitem.cpp 735 2007-06-06 20:22:54Z fbraem $
+ * $Id: treeitem.cpp 784 2007-06-25 18:34:22Z fbraem $
  */
 // wxJSTreeItem.cpp
 
@@ -33,8 +33,6 @@
 #include <wx/treectrl.h>
 
 #include "../../common/main.h"
-
-#include "../misc/app.h"
 
 #include "treectrl.h"
 #include "treeid.h"

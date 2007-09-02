@@ -22,20 +22,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: help.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: help.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
-// move.cpp
 
-#ifndef WX_PRECOMP
-	#include <wx/wx.h>
-#endif
+#include <wx/wx.h>
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "jsevent.h"
 #include "help.h"
-
-#include "../misc/point.h"
 
 using namespace wxjs;
 using namespace wxjs::gui;
@@ -82,7 +78,7 @@ bool HelpEvent::GetProperty(PrivHelpEvent *p, JSContext *cx, JSObject *obj, int 
 
 	if ( id == P_POSITION )
 	{
-		*vp = Point::CreateObject(cx, new wxPoint(event->GetPosition()));
+      *vp = wxjs::ext::CreatePoint(cx, event->GetPosition());
 	}
 	return true;
 }
@@ -93,7 +89,7 @@ bool HelpEvent::SetProperty(PrivHelpEvent *p, JSContext *cx, JSObject *obj, int 
 
 	if ( id == P_POSITION )
 	{
-        wxPoint *pt = Point::GetPrivate(cx, *vp);
+      wxPoint *pt = wxjs::ext::GetPoint(cx, *vp);
         if ( pt != NULL )
             event->SetPosition(*pt);
 	}

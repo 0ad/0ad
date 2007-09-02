@@ -20,57 +20,61 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: script.h 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: script.h 806 2007-07-05 20:17:47Z fbraem $
  */
 #ifndef _wxjs_script_h
 #define _wxjs_script_h
 
 #include <wx/string.h>
 
+class wxFileName;
+
 namespace wxjs
 {
   class ScriptSource
   {
   public:
-      ScriptSource()
-      {
-      }
-  
-      ScriptSource(const ScriptSource &copy);
-  
-      virtual ~ScriptSource()
-      {
-      }
-  
-      virtual void SetSource(const wxString &source);
-      
-      wxString GetName() const
-      {
-          return m_name; 
-      }
-  
-      void SetName(const wxString &name)
-      {
-          m_name = name;
-      }
-      
-      virtual wxString GetSource() const;
-  
-      wxString GetFile() const 
-      {
-          return m_file; 
-      }
-      
+    ScriptSource()
+    {
+    }
+
+    ScriptSource(const ScriptSource &copy);
+
+    virtual ~ScriptSource()
+    {
+    }
+
+    virtual void SetSource(const wxString &source);
+    
+    bool HasSource() const 
+    {
+      return m_source.length() > 0;
+    }
+
+    virtual wxString GetSource() const;
+
+    wxString GetFileName() const 
+    {
+        return m_file; 
+    }
+
+    wxString GetPath() const
+    {
+        return m_path;
+    }
+
+    void SetPath(const wxString &path)
+    {
+      m_path = path;
+    }
+
     // Sets the filename and reads the source from it
-    virtual void SetFile(const wxString &file, wxMBConv &conv = wxConvUTF8);
+    void SetFile(const wxFileName &file, wxMBConv &conv = wxConvUTF8);
   
-    // Sets the filename
-    virtual void SetFilename(const wxString &name) { m_file = name; }
-      
   private:
       wxString m_file;
+      wxString m_path;
       wxString m_source;
-      wxString m_name;
   };
 }; // namespace wxjs
 #endif // _wxjs_script_h

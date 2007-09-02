@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: main.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: main.cpp 777 2007-06-24 19:42:27Z fbraem $
  */
 // main.cpp
 #ifdef __WXMSW__
@@ -38,15 +38,6 @@
 using namespace wxjs;
 using namespace wxjs::io;
 
-// A wxApp is needed by wxSocketBase
-class wxJSIOApp : public wxAppConsole
-{
-    virtual int OnRun() { return 0; }
-};
-
-/*
-IMPLEMENT_APP_NO_MAIN(wxJSIOApp)
-
 #ifdef __WXMSW__
 	BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 	{
@@ -56,16 +47,10 @@ IMPLEMENT_APP_NO_MAIN(wxJSIOApp)
 		{
 		case DLL_PROCESS_ATTACH:
             {
-                wxSetInstance(hinstDLL);
-    		    wxAppConsole *app = new wxJSIOApp();
-    		    int app_argc = 0;
-	    	    char **app_argv = NULL;
-		        wxEntryStart(app_argc, app_argv);
 			    DisableThreadLibraryCalls(hinstDLL);
 			    break;
             }
 		case DLL_PROCESS_DETACH:
-            wxEntryCleanup();
 			break;
 		}    
 
@@ -87,4 +72,3 @@ WXJSAPI void wxJS_Destroy()
 {
     Destroy();
 }
-*/

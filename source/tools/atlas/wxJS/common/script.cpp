@@ -22,10 +22,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: script.cpp 631 2007-03-23 20:14:28Z fbraem $
+ * $Id: script.cpp 806 2007-07-05 20:17:47Z fbraem $
  */
 #include <wx/txtstrm.h>
 #include <wx/wfstream.h>
+#include <wx/filename.h>
 #include <wx/textfile.h>
 #include "script.h"
 
@@ -36,10 +37,12 @@ wxString ScriptSource::GetSource() const
     return m_source;
 }
 
-void ScriptSource::SetFile(const wxString &file, wxMBConv &conv)
+void ScriptSource::SetFile(const wxFileName &file, wxMBConv &conv)
 {
-	m_file = file;
-    wxFileInputStream fis(file);
+    m_file = file.GetFullPath();
+    m_path = file.GetPath();
+
+    wxFileInputStream fis(m_file);
     if ( fis.IsOk() )
     {
 	    wxTextInputStream tis(fis, wxT("\t"), conv);
@@ -62,7 +65,6 @@ void ScriptSource::SetFile(const wxString &file, wxMBConv &conv)
 
 ScriptSource::ScriptSource(const ScriptSource &copy) : m_file(copy.m_file)
                                                      , m_source(copy.m_source)
-                                                     , m_name(copy.m_name)
 {
 }
 

@@ -22,20 +22,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: window.cpp 745 2007-06-11 20:16:54Z fbraem $
+ * $Id: window.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // window.cpp
 
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
+#include <wx/wx.h>
 
 #include "../../common/main.h"
-
-#include <wx/tooltip.h>
+#include "../../ext/wxjs_ext.h"
 
 #include "window.h"
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/rect.h"
 #include "../misc/colour.h"
@@ -200,7 +196,6 @@ WXJS_BEGIN_PROPERTY_MAP(Window)
   WXJS_PROPERTY(P_BACKGROUND_COLOUR, "backgroundColour")
   WXJS_PROPERTY(P_FOREGROUND_COLOUR, "foregroundColour")
   WXJS_PROPERTY(P_FONT, "font")
-  WXJS_PROPERTY(P_TOOL_TIP, "toolTip")
 WXJS_END_PROPERTY_MAP()
 
 bool Window::GetProperty(wxWindow *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
@@ -233,14 +228,11 @@ bool Window::GetProperty(wxWindow *p, JSContext *cx, JSObject *obj, int id, jsva
 		*vp = ToJS(cx, p->GetClientSize().GetHeight());
 		break;
 	case P_POSITION:
-		*vp = Point::CreateObject(cx, new wxPoint(p->GetPosition()));
+      *vp = wxjs::ext::CreatePoint(cx, p->GetPosition());
 		break;
 	case P_CLIENT_ORIGIN:
-		{
-			const wxPoint &pt = p->GetClientAreaOrigin();
-			*vp = Point::CreateObject(cx, new wxPoint(pt));
-			break;
-        }
+      *vp = wxjs::ext::CreatePoint(cx, p->GetClientAreaOrigin());
+	    break;
 	case P_SIZER:
 		{
           wxSizer *sizer = p->GetSizer();
@@ -350,15 +342,6 @@ bool Window::GetProperty(wxWindow *p, JSContext *cx, JSObject *obj, int id, jsva
 	case P_FONT:
         *vp = Font::CreateObject(cx, new wxFont(p->GetFont()), obj);
 		break;
-	case P_TOOL_TIP:
-		if ( p->GetToolTip() == NULL )
-			*vp = JSVAL_VOID;
-		else
-		{
-			wxString tip = p->GetToolTip()->GetTip();
-			*vp = ToJS(cx, tip);
-		}
-		break;
 	}
 	return true;
 }
@@ -466,9 +449,9 @@ bool Window::SetProperty(wxWindow *p, JSContext *cx, JSObject *obj, int id, jsva
 		}
 	case P_POSITION:
 		{
-			wxPoint *pt = Point::GetPrivate(cx, *vp);
-			if ( pt != NULL )
-				p->Move(*pt);
+          wxPoint *pt = wxjs::ext::GetPoint(cx, *vp);
+		  if ( pt != NULL )
+			  p->Move(*pt);
 		}
 		break;
 	case P_AUTO_LAYOUT:
@@ -539,17 +522,6 @@ bool Window::SetProperty(wxWindow *p, JSContext *cx, JSObject *obj, int id, jsva
 			if ( font != NULL )
 				p->SetFont(*font);
 			break;
-		}
-	case P_TOOL_TIP:
-		if ( JSVAL_IS_VOID(*vp) )
-		{
-			p->SetToolTip(NULL);
-		}
-		else
-		{
-			wxString tip;
-			FromJS(cx, *vp, tip);
-			p->SetToolTip(tip);
 		}
 	}
 	return true;
@@ -800,11 +772,11 @@ JSBool Window::clientToScreen(JSContext *cx, JSObject *obj, uintN argc, jsval *a
     if ( p == NULL )
 		return JS_FALSE;
 
-	wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+    wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
 	if ( pt != NULL )
-		*rval = Point::CreateObject(cx, new wxPoint(p->ClientToScreen(*pt)));
+      *rval = wxjs::ext::CreatePoint(cx, p->ClientToScreen(*pt));
 	else
-		return JS_FALSE;
+	  return JS_FALSE;
 
 	return JS_TRUE;
 }
@@ -880,11 +852,11 @@ JSBool Window::convertDialogToPixels(JSContext *cx, JSObject *obj, uintN argc, j
 	}
 	else
 	{
-		wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+      wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
 		if ( pt != NULL )
 		{
-			*rval = Point::CreateObject(cx, new wxPoint(p->ConvertDialogToPixels(*pt)));
-			result = JS_TRUE;
+          *rval = wxjs::ext::CreatePoint(cx, p->ConvertDialogToPixels(*pt));
+		  result = JS_TRUE;
 		}
 	}
 
@@ -922,10 +894,10 @@ JSBool Window::convertPixelsToDialog(JSContext *cx, JSObject *obj, uintN argc, j
 	}
 	else
 	{
-		wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+      wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
 		if ( pt != NULL )
 		{
-			*rval = Point::CreateObject(cx, new wxPoint(p->ConvertPixelsToDialog(*pt)));
+          *rval = wxjs::ext::CreatePoint(cx, p->ConvertPixelsToDialog(*pt));
 			result = JS_TRUE;
 		}
 	}
@@ -1013,7 +985,7 @@ JSBool Window::warpPointer(JSContext *cx, JSObject *obj, uintN argc, jsval *argv
 
 	if ( argc == 1 )
 	{
-		wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+      wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
 		if ( pt != NULL )
 		{
 			p->WarpPointer(pt->x, pt->y);
@@ -1095,7 +1067,7 @@ JSBool Window::move(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval
         }
     case 1:
 	    {
-		    wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+          wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
 		    if ( pt == NULL )
             {
 			    p->Move(*pt);

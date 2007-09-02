@@ -7,6 +7,8 @@
 #include "../../common/main.h"
 #include "../../common/apiwrap.h"
 
+#include <wx/spinctrl.h>
+
 #include "jsevent.h"
 #include "../misc/size.h"
 #include "spinevt.h"

@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: apiwrap.h 676 2007-04-18 20:27:39Z fbraem $
+ * $Id: apiwrap.h 810 2007-07-13 20:07:05Z fbraem $
  */
 
 // ApiWrapper uses the Barton and Nackman trick (also known as
@@ -50,6 +50,9 @@ namespace wxjs
                                 JSObject *parent = NULL)
       {
         JSObject *obj = JS_NewObject(cx, &wxjs_class, m_classProto, parent);
+        if ( obj == NULL )
+          return JSVAL_NULL;
+
         JS_SetPrivate(cx, obj, p);
         return OBJECT_TO_JSVAL(obj);
       }
@@ -73,7 +76,10 @@ namespace wxjs
         JSObject *propObj = JS_DefineObject(cx, obj, name,
                                             &wxjs_class, m_classProto, 
                                             JSPROP_READONLY | JSPROP_PERMANENT);
-        JS_SetPrivate(cx, propObj, p);
+        if ( propObj )
+        {
+          JS_SetPrivate(cx, propObj, p);
+        }
         return propObj;
       }
 
@@ -102,12 +108,17 @@ namespace wxjs
         }
 
          JSClass *clazz = JS_GetClass(cx, obj);
+         if ( clazz == NULL )
+           return NULL;
+
          while((clazz->flags & JSCLASS_HAS_PRIVATE) != JSCLASS_HAS_PRIVATE)
          {
            obj = JS_GetPrototype(cx, obj);
            if ( obj == NULL )
              return NULL;
            clazz = JS_GetClass(cx, obj);
+           if ( clazz == NULL )
+             return NULL;
          }
 
          p = (T_Priv*) JS_GetPrivate(cx, obj);
@@ -646,7 +657,7 @@ namespace wxjs
         }
       }
     };
-};
+}; // namespace wxjs
 
 // The initialisation of wxjs_class
 template<class T_Port, class T_Priv>
@@ -733,15 +744,15 @@ JSClass wxjs::ApiWrapper<T_Port, T_Priv>::wxjs_class =
 
 // Ends a constant map
 #define WXJS_END_CONSTANT_MAP()                 \
-            { 0, 0, 0, 0 }                      \
+            { 0, 0, 0, { 0 } }                      \
         };                                      \
         JS_DefineConstDoubles(cx, obj, consts); \
     }
 
 // Defines a constant with a prefix
-#define WXJS_CONSTANT(prefix, name)	{ prefix##name, #name, WXJS_READONLY, 0, 0 },
+#define WXJS_CONSTANT(prefix, name)	{ prefix##name, #name, WXJS_READONLY, { 0 } },
 // Defines a constant
-#define WXJS_SIMPLE_CONSTANT(name)  { name, #name, WXJS_READONLY, 0, 0 },
+#define WXJS_SIMPLE_CONSTANT(name)  { name, #name, WXJS_READONLY, { 0 } },
 
 // METHOD MACROS
 #define WXJS_DECLARE_METHOD_MAP() \

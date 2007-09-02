@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: ffile.cpp 671 2007-04-11 21:03:11Z fbraem $
+ * $Id: ffile.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // file.cpp
 #include <wx/strconv.h>
@@ -31,7 +31,7 @@
 #include "../common/apiwrap.h"
 #include "../common/type.h"
 #include "../ext/wxjs_ext.h"
-
+#include "../ext/jsmembuf.h"
 #include "ffile.h"
 
 using namespace wxjs;
@@ -281,7 +281,7 @@ JSBool FFile::read(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval 
 		}
 		else
 		{
-            *rval = OBJECT_TO_JSVAL(wxjs::ext::CreateMemoryBuffer(cx, buffer, count));
+            *rval = wxjs::ext::CreateMemoryBuffer(cx, buffer, count);
 		}
 		delete[] buffer;
 

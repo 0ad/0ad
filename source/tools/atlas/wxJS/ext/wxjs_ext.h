@@ -20,7 +20,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: wxjs_ext.h 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: wxjs_ext.h 810 2007-07-13 20:07:05Z fbraem $
  */
 #ifndef _wxjs_ext_h
 #define _wxjs_ext_h
@@ -35,17 +35,23 @@
 	#define WXJSAPI WXIMPORT
 #endif
 
-WXJSAPI bool wxJS_EXTInit(JSContext *cx, JSObject *global);
-WXJSAPI bool wxJS_EXTInitClass(JSContext *cx, JSObject *obj);
-WXJSAPI void wxJS_EXTDestroy();
+class wxPoint;
 
 namespace wxjs
 {
     namespace ext
     {
-        wxMemoryBuffer* NewMemoryBuffer(void *buffer, int size);
-        JSObject *CreateMemoryBuffer(JSContext *cx, void *buffer, int size);
-        wxMemoryBuffer* GetMemoryBuffer(JSContext *cx, JSObject *obj);
+        WXJSAPI bool InitClass(JSContext *cx, JSObject *obj);
+        WXJSAPI bool InitObject(JSContext *cx, JSObject *global);
+        WXJSAPI void Destroy();
+
+        WXJSAPI wxMemoryBuffer* NewMemoryBuffer(void *buffer, int size);
+        WXJSAPI jsval CreateMemoryBuffer(JSContext *cx, void *buffer, int size);
+        WXJSAPI wxMemoryBuffer* GetMemoryBuffer(JSContext *cx, JSObject *obj);
+        WXJSAPI wxMemoryBuffer* GetMemoryBuffer(JSContext *cx, jsval v);
+        WXJSAPI wxPoint* GetPoint(JSContext* cx, JSObject *obj);
+        WXJSAPI wxPoint* GetPoint(JSContext* cx, jsval v);
+        WXJSAPI jsval CreatePoint(JSContext *cx, const wxPoint &p);
     };
 };
 

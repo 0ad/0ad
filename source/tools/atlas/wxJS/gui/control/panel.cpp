@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: panel.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: panel.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // panel.cpp
 
@@ -31,12 +31,11 @@
 #endif
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 
-
 #include "../misc/size.h"
-#include "../misc/point.h"
 
 #include "button.h"
 #include "panel.h"
@@ -262,7 +261,7 @@ JSBool Panel::create(JSContext *cx,
         }
         // Fall through
     case 3:
-		pt = Point::GetPrivate(cx, argv[2]);
+      pt = wxjs::ext::GetPoint(cx, argv[2]);
 		if ( pt == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxPoint");
@@ -334,5 +333,5 @@ void PanelEventHandler::ConnectSysColourChanged(wxPanel *p, bool connect)
 
 void PanelEventHandler::InitConnectEventMap()
 {
-    AddConnector(WXJS_SYS_COLOUR_CHANGED_EVENT, ConnectSysColourChanged);
+    AddConnector(WXJS_SYS_COLOUR_CHANGED_EVENT, PanelEventHandler::ConnectSysColourChanged);
 }

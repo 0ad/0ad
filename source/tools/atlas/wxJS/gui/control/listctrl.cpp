@@ -22,27 +22,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: listctrl.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: listctrl.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // ListCtrl.cpp
-#include <wx/wxprec.h>
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
+#include <wx/wx.h>
 
 #ifdef __WXMSW__
 	#include "commctrl.h"
 #endif
 
 #include "../../common/main.h"
-
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 #include "../event/listevt.h"
 
-#include "../misc/app.h"
 #include "../misc/validate.h"
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/rect.h"
 #include "../misc/colour.h"
@@ -273,7 +268,6 @@ int wxCALLBACK ListCtrl::SortFn(long item1, long item2, long data)
  *   }
  *   
  *   wxTheApp.onInit = init;
- *   wxTheApp.mainLoop();
  *  </code></pre>
  * </class>
  */
@@ -934,7 +928,7 @@ JSBool ListCtrl::create(JSContext *cx,
     }
 	// Fall through
 case 3:
-	pt = Point::GetPrivate(cx, argv[2]);
+  pt = wxjs::ext::GetPoint(cx, argv[2]);
 	if ( pt == NULL )
     {
       JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxPoint");
@@ -1650,15 +1644,10 @@ JSBool ListCtrl::getItemPosition(JSContext *cx,
 
     if ( FromJS(cx, argv[0], item) )
     {
-        wxPoint *pt = new wxPoint();
-        if ( p->GetItemPosition(item, *pt) )
+        wxPoint pt;
+        if ( p->GetItemPosition(item, pt) )
         {
-            *rval = Point::CreateObject(cx, pt);
-        }
-        else
-        {
-            delete pt;
-            *rval = JSVAL_VOID;
+          *rval = wxjs::ext::CreatePoint(cx, pt);
         }
         return JS_TRUE;
     }
@@ -1694,7 +1683,7 @@ JSBool ListCtrl::setItemPosition(JSContext *cx,
     long item;
     if ( FromJS(cx, argv[0], item) )
     {
-        wxPoint *pt = Point::GetPrivate(cx, argv[1]);
+      wxPoint *pt = wxjs::ext::GetPoint(cx, argv[1]);
         if ( pt != NULL )
         {
             *rval = ToJS(cx, p->SetItemPosition(item, *pt));
@@ -2452,12 +2441,12 @@ JSBool ListCtrl::findItem(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
 
     if ( FromJS(cx, argv[0], item) )
     {
-        if ( Point::HasPrototype(cx, argv[1]) )
+      wxPoint *pt = wxjs::ext::GetPoint(cx, argv[1]);
+        if ( pt != NULL )
         {
             if ( argc < 3 )
                 return JS_FALSE;
 
-            wxPoint *pt = Point::GetPrivate(cx, argv[1], false);
             int direction;
             if ( FromJS(cx, argv[2], direction) )
             {
@@ -2511,7 +2500,7 @@ JSBool ListCtrl::hitTest(JSContext *cx,
     if ( p == NULL )
         return JS_FALSE;
 
-    wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+    wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
     if ( pt != NULL )
     {
         int flags;

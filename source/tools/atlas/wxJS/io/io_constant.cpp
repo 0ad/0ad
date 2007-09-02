@@ -49,11 +49,6 @@ using namespace wxjs;
  * </class>
  */
 extern JSConstDoubleSpec wxGlobalMap[];
-/*JSConstDoubleSpec wxGlobalMap[] = 
-{
-    WXJS_SIMPLE_CONSTANT(wxNOT_FOUND)
-	{ 0 }
-};*/
 
 /***
  * <constants>

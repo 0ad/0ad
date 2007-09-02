@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: chklstbx.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: chklstbx.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 
 #ifndef WX_PRECOMP
@@ -32,6 +32,7 @@
 #include "../../common/main.h"
 #include "../../common/strsptr.h"
 #include "../../common/index.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 #include "../event/command.h"
@@ -41,7 +42,6 @@
 #include "window.h"
 #include "listbox.h"
 
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/validate.h"
 #include "../errors.h"
@@ -247,7 +247,7 @@ JSBool CheckListBox::create(JSContext *cx,
         }
 		// Fall through
 	case 3:
-		pt = Point::GetPrivate(cx, argv[2]);
+        pt = wxjs::ext::GetPoint(cx, argv[2]);
 		if ( pt == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxPoint");

@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: listevt.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: listevt.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // listevt.cpp
 
@@ -33,8 +33,7 @@
 #include <wx/listctrl.h>
 
 #include "../../common/main.h"
-
-#include "../misc/point.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "../control/listitem.h"
 
@@ -126,7 +125,7 @@ bool ListEvent::GetProperty(PrivListEvent *p, JSContext *cx, JSObject *obj, int 
         *vp = ToJS(cx, event->GetColumn());
         break;
     case P_POINT:
-        *vp = Point::CreateObject(cx, new wxPoint(event->GetPoint()));
+      *vp = wxjs::ext::CreatePoint(cx, event->GetPoint());
         break;
     case P_LABEL:
         *vp = ToJS(cx, event->GetLabel());

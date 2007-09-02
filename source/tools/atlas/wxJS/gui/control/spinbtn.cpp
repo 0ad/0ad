@@ -1,10 +1,36 @@
 #include "precompiled.h"
 
+/*
+ * wxJavaScript - spinbtn.cpp
+ *
+ * Copyright (c) 2002-2007 Franky Braem and the wxJavaScript project
+ *
+ * Project Info: http://www.wxjavascript.net or http://wxjs.sourceforge.net
+ *
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+ *
+ * $Id$
+ */
+
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
 #endif
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 #include "../event/command.h"
@@ -13,7 +39,6 @@
 #include "spinbtn.h"
 #include "window.h"
 
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/validate.h"
 #include "../errors.h"
@@ -23,8 +48,8 @@ using namespace wxjs::gui;
 
 /***
  * <module>gui</module>
- * <file>spinbtn</file>
- * <class name="wxSplitButton" prototype="@wxControl">
+ * <file>control/spinbtn</file>
+ * <class name="wxSpinButton" prototype="@wxControl">
  *  A wxSpinButton has two small up and down (or left and right) arrow buttons. 
  *  It is often used next to a text control for increment and decrementing a 
  *  value. Portable programs should try to use @wxSpinButton instead as 
@@ -241,7 +266,7 @@ JSBool SpinButton::create(JSContext *cx,
 		}
 		// Fall through
 	case 3:
-		pt = Point::GetPrivate(cx, argv[2]);
+      pt = wxjs::ext::GetPoint(cx, argv[2]);
 		if ( pt == NULL )
 		{
 			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxPoint");

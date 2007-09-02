@@ -33,7 +33,6 @@
 #include "../../common/apiwrap.h"
 
 #include "jsevent.h"
-#include "../misc/point.h"
 #include "split.h"
 
 using namespace wxjs;

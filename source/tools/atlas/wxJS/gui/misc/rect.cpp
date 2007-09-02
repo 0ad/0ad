@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: rect.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: rect.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // rect.cpp
 
@@ -32,9 +32,9 @@
 
 #include "../../common/main.h"
 #include "../../common/apiwrap.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "rect.h"
-#include "point.h"
 #include "size.h"
 
 using namespace wxjs;
@@ -99,7 +99,7 @@ bool Rect::GetProperty(wxRect *p, JSContext *cx, JSObject *obj, int id, jsval *v
 		*vp = ToJS(cx, p->GetLeft());
 		break;
 	case P_POSITION:
-		*vp = Point::CreateObject(cx, new wxPoint(p->GetPosition()));
+      *vp = wxjs::ext::CreatePoint(cx, p->GetPosition());
 		break;
 	case P_RIGHT:
 		*vp = ToJS(cx, p->GetRight());
@@ -239,10 +239,10 @@ wxRect* Rect::Construct(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, b
 	}
 	else if ( argc == 2 )
 	{
-		wxPoint *pt1 = Point::GetPrivate(cx, argv[0]);
+      wxPoint *pt1 = wxjs::ext::GetPoint(cx, argv[0]);
 		if ( pt1 != NULL )
 		{
-			wxPoint *pt2 = Point::GetPrivate(cx, argv[1]);
+          wxPoint *pt2 = wxjs::ext::GetPoint(cx, argv[1]);
 			if ( pt2 != NULL )
 			{
 				return new wxRect(*pt1, *pt2);
@@ -395,7 +395,7 @@ JSBool Rect::offset(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval
 	    }
     case 1:
 	    {
-		    wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+          wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
 		    if ( pt != NULL )
 		    {
 			    p->Offset(*pt);
@@ -471,7 +471,7 @@ JSBool Rect::inside(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval
 	    }
     case 1:
 	    {
-		    wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+          wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
 		    if ( pt != NULL )
 		    {
 			    *rval = ToJS(cx, p->Inside(*pt));

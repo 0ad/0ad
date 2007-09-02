@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: acctable.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: acctable.cpp 782 2007-06-24 20:23:23Z fbraem $
  */
 // acctable.cpp
 
@@ -51,7 +51,6 @@ using namespace wxjs::gui;
  *  the menu action associated with id 1 is executed.
  *  <pre><code class="whjs">
  *    wxTheApp.onInit = init;
- *    wxTheApp.mainLoop();
  *
  *    function init()
  *    {

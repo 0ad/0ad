@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: tempfile.cpp 598 2007-03-07 20:13:28Z fbraem $
+ * $Id: tempfile.cpp 758 2007-06-12 20:43:31Z fbraem $
  */
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
@@ -31,6 +31,7 @@
 
 #include "../common/main.h"
 #include "../ext/wxjs_ext.h"
+#include "../ext/jsmembuf.h"
 #include "tempfile.h"
 
 using namespace wxjs;

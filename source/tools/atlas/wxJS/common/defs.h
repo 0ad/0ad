@@ -20,15 +20,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: defs.h 714 2007-05-16 20:24:49Z fbraem $
+ * $Id: defs.h 812 2007-07-16 19:38:58Z fbraem $
  */
 #ifndef _wxjs_defs_h
 #define _wxjs_defs_h
 
 #define wxJS_MAJOR_VERSION      0
 #define wxJS_MINOR_VERSION      9
-#define wxJS_RELEASE_NUMBER     7
-#define wxJS_STR_VERSION        wxT("0.9.7")
+#define wxJS_RELEASE_NUMBER     71
+#define wxJS_STR_VERSION        wxT("0.9.71")
 
 // Encoding used internally. SpiderMonkey uses UTF-16
 #define wxJS_INTERNAL_ENCODING wxT("UTF-16")

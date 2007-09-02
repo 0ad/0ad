@@ -1,14 +1,40 @@
 #include "precompiled.h"
 
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
+/*
+ * wxJavaScript - mdichild.cpp
+ *
+ * Copyright (c) 2002-2007 Franky Braem and the wxJavaScript project
+ *
+ * Project Info: http://www.wxjavascript.net or http://wxjs.sourceforge.net
+ *
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+ *
+ * $Id$
+ */
 
+// 3rd party includes
+#include <wx/wx.h>
+
+// wxJS includes
 #include "../../common/main.h"
-#include "../errors.h"
+#include "../../ext/wxjs_ext.h"
 
+// wxJS_gui includes
+#include "../errors.h"
 #include "../misc/size.h"
-#include "../misc/point.h"
 #include "mdi.h"
 #include "mdichild.h"
 #include "frame.h"
@@ -158,7 +184,7 @@ JSBool MDIChildFrame::create(JSContext* cx,
         return JS_FALSE;
       }
     case 4:
-      pos = Point::GetPrivate(cx, argv[3]);
+      pos = wxjs::ext::GetPoint(cx, argv[3]);
       if ( pos == NULL )
       {
         JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 4, "wxPoint");
@@ -180,10 +206,7 @@ JSBool MDIChildFrame::create(JSContext* cx,
         
         parent = MDIParentFrame::GetPrivate(cx, argv[0]);
         if (    parent == NULL 
-#ifdef __WXMSW__
-             || parent->GetHWND() == NULL
-#endif
-           )
+             || parent->GetHandle() == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 1, "wxMDIParentFrame");
           return JS_FALSE;

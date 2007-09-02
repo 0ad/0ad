@@ -43,7 +43,7 @@ namespace wxjs
           Protect(protect);
         }
 
-        JavaScriptClientData(const JavaScriptClientData &copy)
+        JavaScriptClientData(const JavaScriptClientData &copy) : wxClientData(copy)
         {
           m_cx = copy.m_cx;
           m_obj = copy.m_obj;

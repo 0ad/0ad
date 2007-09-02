@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: treectrl.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: treectrl.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 // wxJSTreeCtrl.cpp
 
@@ -31,14 +31,12 @@
 #endif
 
 #include "../../common/main.h"
-
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 #include "../event/treeevt.h"
 
-#include "../misc/app.h"
 #include "../misc/validate.h"
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/rect.h"
 #include "../misc/colour.h"
@@ -505,7 +503,7 @@ JSBool TreeCtrl::create(JSContext *cx,
         }
 		// Fall through
 	case 3:
-		pt = Point::GetPrivate(cx, argv[2]);
+      pt = wxjs::ext::GetPoint(cx, argv[2]);
 		if ( pt == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 3, "wxPoint");
@@ -2196,7 +2194,7 @@ JSBool TreeCtrl::hitTest(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, 
     if ( p == NULL )
         return JS_FALSE;
 
-    wxPoint *pt = Point::GetPrivate(cx, argv[0]);
+    wxPoint *pt = wxjs::ext::GetPoint(cx, argv[0]);
     if ( pt != NULL )
     {
         int flags;

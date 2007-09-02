@@ -1,10 +1,37 @@
 #include "precompiled.h"
 
+/*
+ * wxJavaScript - spinctrl.cpp
+ *
+ * Copyright (c) 2002-2007 Franky Braem and the wxJavaScript project
+ *
+ * Project Info: http://www.wxjavascript.net or http://wxjs.sourceforge.net
+ *
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+ *
+ * Remark: This class was donated by Philip Taylor.
+ *
+ * $Id$
+ */
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
 #endif
 
 #include "../../common/main.h"
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 #include "../event/command.h"
@@ -13,7 +40,6 @@
 #include "spinctrl.h"
 #include "window.h"
 
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/validate.h"
 #include "../errors.h"
@@ -23,7 +49,7 @@ using namespace wxjs::gui;
 
 /***
  * <module>gui</module>
- * <file>spinctrl</file>
+ * <file>control/spinctrl</file>
  * <class name="wxSplitCtrl" prototype="@wxControl">
  *  wxSpinCtrl combines @wxTextCtrl and @wxSpinButton in one control.
  * </class>
@@ -154,7 +180,7 @@ bool SpinCtrl::DeleteProperty(wxSpinCtrl *p,
  *   <arg name="max" type="Integer" default="100">
  *    Maximal value.
  *   </arg>
- *   <arg name="initial" type="Integer default="0">
+ *   <arg name="initial" type="Integer" default="0">
  *    Initial value.
  *   </arg>
  *  </function>
@@ -214,7 +240,7 @@ WXJS_END_METHOD_MAP()
  *   <arg name="max" type="Integer" default="100">
  *    Maximal value.
  *   </arg>
- *   <arg name="initial" type="Integer default="0">
+ *   <arg name="initial" type="Integer" default="0">
  *    Initial value.
  *   </arg>
  *  </function>
@@ -283,7 +309,7 @@ JSBool SpinCtrl::create(JSContext *cx,
 		}
 		// Fall through
 	case 4:
-		pt = Point::GetPrivate(cx, argv[3]);
+      pt = wxjs::ext::GetPoint(cx, argv[3]);
 		if ( pt == NULL )
 		{
 			JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 4, "wxPoint");
@@ -408,7 +434,6 @@ JSBool SpinCtrl::setRange(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
  *  <event name="onSpinDown">
  *   Generated when right/down arrow is pressed. A @wxSpinEvent is passed
  *   as argument.
- *  </event>
  *  </event>
  * </events>
  */

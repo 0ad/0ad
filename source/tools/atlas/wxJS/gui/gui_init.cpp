@@ -48,7 +48,6 @@
 #include "../common/index.h"
  
 // All wxJS objects
-#include "misc/app.h"
 #include "control/window.h"
 #include "control/toplevel.h"
 #include "control/frame.h"
@@ -117,9 +116,6 @@
 #include "control/finddata.h"
 
 // Miscellaneous wxWindow classes
-#include "misc/settings.h"
-#include "misc/timer.h"
-#include "misc/point.h"
 #include "misc/size.h"
 #include "misc/rect.h"
 #include "misc/accentry.h"
@@ -138,6 +134,8 @@
 #if defined(__WXMSW__)
     #include "misc/autoobj.h"
 #endif
+#include "misc/settings.h"
+#include "misc/timer.h"
 
 // Events
 #include "event/jsevent.h"
@@ -165,17 +163,6 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
     InitGuiConstants(cx, global);
 
     JSObject *obj;
-
-    // Only create the wxApp prototype when no mainloop is running
-	// which would mean that there is already a wxApp Instance which is the
-	// case when embedding wxJS into a wxWidgets application
-	if ( ! wxApp::IsMainLoopRunning() )
-	{
-	    obj = App::JSInit(cx, global);
-	    wxASSERT_MSG(obj != NULL, wxT("wxApp prototype creation failed"));
-	    if (! obj )
-		    return false;
-    }
 
     // Initialize wxJS JavaScript objects
 	obj = Window::JSInit(cx, global);
@@ -325,21 +312,6 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 
 	obj = Slider::JSInit(cx, global, Control::GetClassPrototype());
 	wxASSERT_MSG(obj != NULL, wxT("wxSlider prototype creation failed"));
-	if (! obj )
-		return false;
-
-	obj = SystemSettings::JSInit(cx, global);
-	wxASSERT_MSG(obj != NULL, wxT("wxSystemSettings prototype creation failed"));
-	if (! obj )
-		return false;
-	
-	obj = Timer::JSInit(cx, global);
-	wxASSERT_MSG(obj != NULL, wxT("wxTimer prototype creation failed"));
-	if (! obj )
-		return false;
-	
-	obj = Point::JSInit(cx, global);
-	wxASSERT_MSG(obj != NULL, wxT("wxPoint prototype creation failed"));
 	if (! obj )
 		return false;
 
@@ -640,17 +612,27 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 	if (! obj )
 		return false;
 
-	obj = BookCtrlBase::JSInit(cx, global, Control::GetClassPrototype());
+    obj = SystemSettings::JSInit(cx, global, NULL);
+	wxASSERT_MSG(obj != NULL, wxT("wxSystemSettings prototype creation failed"));
+	if (! obj )
+		return false;
+
+    obj = BookCtrlBase::JSInit(cx, global, Control::GetClassPrototype());
 	wxASSERT_MSG(obj != NULL, wxT("wxBookCtrlBase prototype creation failed"));
 	if (! obj )
 		return false;
 
-	obj = Notebook::JSInit(cx, global, BookCtrlBase::GetClassPrototype());
+    obj = Notebook::JSInit(cx, global, BookCtrlBase::GetClassPrototype());
 	wxASSERT_MSG(obj != NULL, wxT("wxNotebook prototype creation failed"));
 	if (! obj )
 		return false;
 
-	// Define the global functions
+    obj = Timer::JSInit(cx, global);
+	wxASSERT_MSG(obj != NULL, wxT("wxTimer prototype creation failed"));
+	if (! obj )
+		return false;
+
+    // Define the global functions
 	InitFunctions(cx, global);
 
 	DefineGlobals(cx, global);
@@ -659,35 +641,9 @@ bool wxjs::gui::InitClass(JSContext *cx, JSObject *global)
 
 bool wxjs::gui::InitObject(JSContext *cx, JSObject *obj)
 {
-	// Only create wxTheApp, if there is no running mainloop, becuase in this
-	// case there exists already an instance of wxApp, which is the case when embedding
-	// wxJS into a wxWidgets application
-	if ( ! wxApp::IsMainLoopRunning() )
-	{
-      JSObject *jsApp = JS_NewObject(cx, App::GetClass(), NULL, NULL);
-      JS_SetPrivate(cx, jsApp, wxTheApp);
-      wxTheApp->SetClientObject(new JavaScriptClientData(cx, jsApp, true, false));
-      //JSObject *jsApp = JS_ConstructObject(cx, App::GetClass(), App::GetClassPrototype(), NULL);
-	  JS_DefineProperty(cx, obj, "wxTheApp", OBJECT_TO_JSVAL(jsApp), NULL, NULL, 0);
-	}
-
-    return true;
-
+  return true;
 }
 
 void wxjs::gui::Destroy()
 {
-    if ( ! wxApp::IsMainLoopRunning() )
-    {
-	    wxClassInfo *cInfo = wxTheApp->GetClassInfo();
-	    wxString	t_strClassName( cInfo->GetClassName() );
-    	
-        // Make sure the object is unrooted by cleaning up the client object
-        JavaScriptClientData *data 
-          = dynamic_cast<JavaScriptClientData*>(wxTheApp->GetClientObject());
-        if ( data != NULL )
-        {
-          wxTheApp->SetClientObject(NULL);
-        }
-    }
 }

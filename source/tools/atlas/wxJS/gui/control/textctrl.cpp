@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: textctrl.cpp 746 2007-06-11 20:58:21Z fbraem $
+ * $Id: textctrl.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 
 #ifndef WX_PRECOMP
@@ -31,7 +31,7 @@
 #include <wx/file.h>
 
 #include "../../common/main.h"
-
+#include "../../ext/wxjs_ext.h"
 
 #include "../event/jsevent.h"
 #include "../event/command.h"
@@ -39,7 +39,6 @@
 #include "textctrl.h"
 #include "window.h"
 
-#include "../misc/point.h"
 #include "../misc/size.h"
 #include "../misc/validate.h"
 #include "../errors.h"
@@ -367,7 +366,7 @@ JSBool TextCtrl::create(JSContext *cx,
         }
 		// Fall through
 	case 4:
-		pt = Point::GetPrivate(cx, argv[3]);
+      pt = wxjs::ext::GetPoint(cx, argv[3]);
 		if ( pt == NULL )
         {
           JS_ReportError(cx, WXJS_INVALID_ARG_TYPE, 4, "wxPoint");

@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
  * USA.
  *
- * $Id: coldlg.cpp 708 2007-05-14 15:30:45Z fbraem $
+ * $Id: coldlg.cpp 810 2007-07-13 20:07:05Z fbraem $
  */
 
 #ifndef WX_PRECOMP
@@ -31,11 +31,10 @@
 
 #include "../../common/main.h"
 #include "../../common/index.h"
+
 #include "coldlg.h"
 #include "coldata.h"
 #include "window.h"
-
-#include "../misc/point.h"
 
 #include "../errors.h"
 
@@ -62,11 +61,9 @@ using namespace wxjs::gui;
  *      dlg = new wxColourDialog(null, clrData);
  *      dlg.title = "Select a colour";
  *      dlg.showModal();
- *
- *      // Return false to exit the mainloop
- *      return false;
+ *      
+ *      return false;  
  *    }
- *    wxTheApp.mainLoop();
  *  </code></pre>
  * </class>
  */
