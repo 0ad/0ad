@@ -50,9 +50,9 @@ ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* canvas)
 class GameCanvas : public Canvas
 {
 public:
-	GameCanvas(ToolManager& toolManager, wxWindow* parent, int* attribList)
+	GameCanvas(ScenarioEditor& scenarioEditor, wxWindow* parent, int* attribList)
 		: Canvas(parent, attribList, wxWANTS_CHARS),
-		m_ToolManager(toolManager), m_MouseState(NONE), m_LastMouseState(NONE)
+		m_ScenarioEditor(scenarioEditor), m_MouseState(NONE), m_LastMouseState(NONE)
 	{
 	}
 
@@ -90,7 +90,7 @@ private:
 
 	void OnKeyDown(wxKeyEvent& evt)
 	{
-		if (m_ToolManager.GetCurrentTool().OnKey(evt, ITool::KEY_DOWN))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentTool().OnKey(evt, ITool::KEY_DOWN))
 		{
 			// Key event has been handled by the tool, so don't try
 			// to use it for camera motion too
@@ -105,7 +105,7 @@ private:
 
 	void OnKeyUp(wxKeyEvent& evt)
 	{
-		if (m_ToolManager.GetCurrentTool().OnKey(evt, ITool::KEY_UP))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentTool().OnKey(evt, ITool::KEY_UP))
 			return;
 
 		if (KeyScroll(evt, false))
@@ -116,8 +116,18 @@ private:
 
 	void OnChar(wxKeyEvent& evt)
 	{
-		if (m_ToolManager.GetCurrentTool().OnKey(evt, ITool::KEY_CHAR))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentTool().OnKey(evt, ITool::KEY_CHAR))
 			return;
+
+		// Alt+enter toggles fullscreen
+		if (evt.GetKeyCode() == WXK_RETURN && wxGetKeyState(WXK_ALT))
+		{
+			if (m_ScenarioEditor.IsFullScreen())
+				m_ScenarioEditor.ShowFullScreen(false);
+			else
+				m_ScenarioEditor.ShowFullScreen(true, wxFULLSCREEN_NOBORDER | wxFULLSCREEN_NOCAPTION);
+			return;
+		}
 
 		int dir = 0;
 		if (evt.GetKeyCode() == '-' || evt.GetKeyCode() == '_')
@@ -151,7 +161,7 @@ private:
 		if (evt.Moving())
 			SetFocus();
 
-		if (m_ToolManager.GetCurrentTool().OnMouse(evt))
+		if (m_ScenarioEditor.GetToolManager().GetCurrentTool().OnMouse(evt))
 		{
 			// Mouse event has been handled by the tool, so don't try
 			// to use it for camera motion too
@@ -204,7 +214,7 @@ private:
 	enum { NONE, SCROLL, ROTATEAROUND };
 	int m_MouseState, m_LastMouseState;
 
-	ToolManager& m_ToolManager;
+	ScenarioEditor& m_ScenarioEditor;
 
 	DECLARE_EVENT_TABLE();
 };
@@ -401,7 +411,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 		WX_GL_MIN_ALPHA, 8, // alpha bits
 		0
 	};
-	Canvas* canvas = new GameCanvas(m_ToolManager, m_SectionLayout.GetCanvasParent(), glAttribList);
+	Canvas* canvas = new GameCanvas(*this, m_SectionLayout.GetCanvasParent(), glAttribList);
 	m_SectionLayout.SetCanvas(canvas);
 
 	// Set up sidebars:
