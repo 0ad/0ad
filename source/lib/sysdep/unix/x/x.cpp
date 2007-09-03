@@ -4,7 +4,7 @@
 
 #include "precompiled.h"
 
-#ifdef HAVE_X
+#if HAVE_X
 
 #include <Xlib.h>
 #include <stdlib.h>
@@ -318,4 +318,4 @@ LibError sys_clipboard_set(const wchar_t *str)
 	return INFO::OK;
 }
 
-#endif	// #ifdef HAVE_X
+#endif	// #if HAVE_X
