@@ -36,11 +36,23 @@ namespace wxjs
       {
         public:
 
+          static bool GetProperty(wxGridSizer *p, JSContext *cx, JSObject *obj, int id, jsval *vp);
+          static bool SetProperty(wxGridSizer *p, JSContext *cx, JSObject *obj, int id, jsval *vp);
           static wxGridSizer* Construct(JSContext *cx,
                                         JSObject *obj,
                                         uintN argc,
                                         jsval *argv,
                                         bool constructing);
+
+            enum
+            {
+                P_COLS
+                , P_ROWS
+                , P_HGAP
+                , P_VGAP
+            };
+
+            WXJS_DECLARE_PROPERTY_MAP()
         };
     }; // namespace gui
 }; // namespace wxjs

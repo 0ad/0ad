@@ -173,6 +173,7 @@ wxStaticText* StaticText::Construct(JSContext *cx,
 
 WXJS_BEGIN_METHOD_MAP(StaticText)
   WXJS_METHOD("create", create, 2)
+  WXJS_METHOD("wrap", wrap, 1)
 WXJS_END_METHOD_MAP()
 
 /***
@@ -273,5 +274,23 @@ JSBool StaticText::create(JSContext *cx,
         }
     }
 
+    return JS_TRUE;
+}
+
+JSBool StaticText::wrap(JSContext *cx,
+                        JSObject *obj,
+                        uintN argc,
+                        jsval *argv,
+                        jsval* WXUNUSED(rval))
+{
+    wxStaticText *p = GetPrivate(cx, obj);
+    if ( p == NULL )
+        return JS_FALSE;
+
+    int width;
+    if ( ! FromJS(cx, argv[0], width) )
+        return JS_FALSE;
+
+    p->Wrap(width);
     return JS_TRUE;
 }

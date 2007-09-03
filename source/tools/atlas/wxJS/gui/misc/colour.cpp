@@ -191,6 +191,7 @@ void wxjs::gui::DefineGlobalColours(JSContext *cx, JSObject *obj)
 	DefineGlobalColour(cx, obj, "wxGREEN", wxGREEN);
 	DefineGlobalColour(cx, obj, "wxCYAN", wxCYAN);
 	DefineGlobalColour(cx, obj, "wxLIGHT_GREY", wxLIGHT_GREY);
+	DefineGlobalColour(cx, obj, "wxNullColour", &wxNullColour);
 }
 
 void wxjs::gui::DefineGlobalColour(JSContext *cx, JSObject *obj,

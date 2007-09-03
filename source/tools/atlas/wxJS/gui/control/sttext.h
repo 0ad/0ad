@@ -69,6 +69,7 @@ namespace wxjs
 
             WXJS_DECLARE_METHOD_MAP()
             WXJS_DECLARE_METHOD(create)
+            WXJS_DECLARE_METHOD(wrap)
         };
     }; // namespace gui
 }; // namespace wxjs

@@ -750,7 +750,7 @@ JSClass wxjs::ApiWrapper<T_Port, T_Priv>::wxjs_class =
     }
 
 // Defines a constant with a prefix
-#define WXJS_CONSTANT(prefix, name)	{ prefix##name, #name, WXJS_READONLY, { 0 } },
+#define WXJS_CONSTANT(prefix, name)	{ (int)prefix##name, #name, WXJS_READONLY, { 0 } },
 // Defines a constant
 #define WXJS_SIMPLE_CONSTANT(name)  { name, #name, WXJS_READONLY, { 0 } },
 

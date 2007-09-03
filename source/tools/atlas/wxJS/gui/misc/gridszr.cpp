@@ -50,6 +50,69 @@ using namespace wxjs::gui;
  */
 WXJS_INIT_CLASS(GridSizer, "wxGridSizer", 4)
 
+WXJS_BEGIN_PROPERTY_MAP(GridSizer)
+  WXJS_PROPERTY(P_COLS, "cols")
+  WXJS_PROPERTY(P_ROWS, "rows")
+  WXJS_PROPERTY(P_HGAP, "hgap")
+  WXJS_PROPERTY(P_VGAP, "vgap")
+WXJS_END_PROPERTY_MAP()
+
+bool GridSizer::GetProperty(wxGridSizer *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
+{
+    switch(id)
+    {
+    case P_COLS:
+        *vp = ToJS(cx, p->GetCols());
+        break;
+    case P_ROWS:
+        *vp = ToJS(cx, p->GetRows());
+        break;
+    case P_HGAP:
+        *vp = ToJS(cx, p->GetHGap());
+        break;
+    case P_VGAP:
+        *vp = ToJS(cx, p->GetVGap());
+        break;
+    }
+    return true;
+}
+
+bool GridSizer::SetProperty(wxGridSizer *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
+{
+    switch (id)
+    {
+    case P_COLS:
+        {
+            int value;
+            if ( FromJS(cx, *vp, value) )
+                p->SetCols(value);
+            break;
+        }
+    case P_ROWS:
+        {
+            int value;
+            if ( FromJS(cx, *vp, value) )
+                p->SetRows(value);
+            break;
+        }
+    case P_HGAP:
+        {
+            int value;
+            if ( FromJS(cx, *vp, value) )
+                p->SetHGap(value);
+            break;
+        }
+    case P_VGAP:
+        {
+            int value;
+            if ( FromJS(cx, *vp, value) )
+                p->SetVGap(value);
+            break;
+        }
+    }
+    return true;
+}
+
 /***
  * <ctor>
  *  <function>

@@ -66,10 +66,10 @@ bool Size::GetProperty(wxSize *p, JSContext *cx, JSObject *obj, int id, jsval *v
     switch (id) 
 	{
 	case P_WIDTH:
-		*vp = ToJS(cx, p->GetHeight());
+		*vp = ToJS(cx, p->GetWidth());
 		break;
 	case P_HEIGHT:
-		*vp = ToJS(cx, p->GetWidth());
+		*vp = ToJS(cx, p->GetHeight());
 		break;
     }
 	return true;
