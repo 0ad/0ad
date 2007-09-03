@@ -55,6 +55,16 @@ var brush = {
 	}
 };
 
+var lastTerrainSelection = null; // button that was last selected, so we can undo its colouring
+function onTerrainSelect()
+{
+	Atlas.SetSelectedTexture(this.terrainName);
+	if (lastTerrainSelection)
+		lastTerrainSelection.backgroundColour = wxNullColour;
+	this.backgroundColour = new wxColour(255, 255, 0);
+	lastTerrainSelection = this;
+}
+
 function TerrainPreviewPage(panel, name)
 {
 	this.panel = panel;
@@ -64,49 +74,44 @@ TerrainPreviewPage.prototype = {
 	display: function() {
 		if (this.loaded)
 			return;
+
+		// Size of texture preview images
+		var w = 120, h = 40;
 		
 		this.panel.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
-		var list = new wxListCtrl(this.panel, -1, wxDefaultPosition, wxDefaultSize, wxListCtrl.ICON | wxListCtrl.SINGLE_SEL | wxListCtrl.LIST);
-		this.panel.sizer.add(list, 1, wxStretch.EXPAND);
+		var scrolled = new wxScrolledWindow(this.panel, -1, wxDefaultPosition, wxDefaultSize, wxWindow.VSCROLL);
+		scrolled.setScrollRate(0, 10);
+		this.panel.sizer.add(scrolled, 1, wxStretch.EXPAND);
 		
-		var w = 80, h = 40;
+		var itemSizer = new wxGridSizer(6, 8, 0);
+		scrolled.sizer = itemSizer;
 		
-		var imglist = new wxImageList(w, h, false, 0);
+		// Adjust the number of columns to fit in the available area
+		scrolled.onSize = function (evt) {
+			var numCols = Math.max(1, Math.floor(evt.size.width / (w+16)));
+			if (itemSizer.cols != numCols)
+				itemSizer.cols = numCols;
+		};
 		
 		var previews = Atlas.Message.GetTerrainGroupPreviews(this.name, w, h).previews;
 		var i = 0;
 		var names = [];
 		for each (var p in previews)
 		{
-			imglist.add(p.imagedata);
-			list.insertItem(i, p.name, i);
-			names.push(p.name);
-			++i;
+			// Create a wrapped-text label (replacing '_' with ' ' so there are more wrapping opportunities)
+			var labelText = p.name.replace(/_/g, ' ');
+			var label = new wxStaticText(scrolled, -1, labelText, wxDefaultPosition, wxDefaultSize, wxStaticText.ALIGN_CENTER);
+			label.wrap(w);
+			
+			var imgSizer = new wxBoxSizer(wxOrientation.VERTICAL);
+			var button = new wxBitmapButton(scrolled, -1, p.imagedata);
+			button.terrainName = p.name;
+			button.onClicked = onTerrainSelect;
+			imgSizer.add(button, 0, wxAlignment.CENTRE);
+			imgSizer.add(label, 1, wxAlignment.CENTRE);
+			itemSizer.add(imgSizer, 0, wxAlignment.CENTRE | wxStretch.EXPAND);
 		}
-		list.onMotion = function(evt) {
-			var hit = list.hitTest(evt.position);
-			var tip = undefined;
-			if (hit.item != -1 && (hit.flags & wxListHitTest.ONITEMICON))
-			{
-				tip = names[hit.item]
-				if (list.toolTip !== tip)
-					list.toolTip = tip;
-			}
-			else
-			{
-				tip = "";
-				if (list.toolTip !== tip)
-					list.toolTip = tip;
-			}
-		};
-		list.onItemSelected = function(evt) {
-			Atlas.SetSelectedTexture(names[evt.index]);
-		};
-		
-		list.setImageList(imglist, wxListCtrl.SMALL);
-		
-		this.panel.layout();
-		
+
 		this.loaded = true;
 	}
 };
