@@ -7,6 +7,7 @@
 #include "wx/treectrl.h"
 
 class wxTreeCtrl;
+class wxTreeEvent;
 
 class ActorViewer : public wxFrame
 {

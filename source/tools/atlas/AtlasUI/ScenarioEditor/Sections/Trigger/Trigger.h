@@ -11,6 +11,8 @@ class TriggerBottomBar;
 class TriggerPage;
 class wxTreeItemId;
 class wxTreeItemData;
+class wxTreeEvent;
+class wxListEvent;
 class wxNotebook;
 class wxNotebookEvent;
 class wxTreeEvent;

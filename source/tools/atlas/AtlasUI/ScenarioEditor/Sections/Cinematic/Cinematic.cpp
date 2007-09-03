@@ -15,6 +15,7 @@
 #include "wx/filename.h"
 #include "wx/wfstream.h"
 #include "wx/listctrl.h"
+#include "wx/imaglist.h"
 
 #include <sstream>
 

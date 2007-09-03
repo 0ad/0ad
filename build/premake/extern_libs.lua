@@ -108,6 +108,7 @@ extern_lib_defs = {
 	opengl = {
 		win_names  = { "opengl32", "glu32", "gdi32" },
 		unix_names = { "GL", "GLU", "X11" },
+		osx_frameworks = { "OpenGL" },
 		dbg_suffix = "",
 	},
 	spidermonkey = {

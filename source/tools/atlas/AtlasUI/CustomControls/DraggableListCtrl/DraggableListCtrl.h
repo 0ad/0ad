@@ -10,6 +10,8 @@
 
 #include "EditableListCtrl/EditableListCtrl.h"
 
+#include "wx/listctrl.h"
+
 class DragCommand;
 
 class DraggableListCtrl : public EditableListCtrl

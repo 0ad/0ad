@@ -8,7 +8,11 @@
 
 // license: GPL; see lib/license.txt
 
+#if OS_MACOSX
+#include <OpenGL/glext.h>
+#else
 #include <GL/glext.h>
+#endif
 #if OS_WIN
 # include <GL/wglext.h>
 #endif

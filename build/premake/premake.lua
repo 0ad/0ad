@@ -110,6 +110,9 @@ function package_set_build_flags()
 			tinsert(package.config["Debug"].buildoptions, {
 				"-O0", -- ICC defaults to -O2
 			})
+			if OS == "macosx" then
+				tinsert(package.linkoptions, {"-multiply_defined","suppress"})
+			end
 		else
 			tinsert(package.buildoptions, {
 				"-Wall",
@@ -135,25 +138,27 @@ function package_set_build_flags()
 			"-fvisibility-inlines-hidden",
 		})
 
-		-- Include and lib paths:
-		-- X11 includes may be installed in one of a gaszillion of three places
-		-- And MacPorts uses /opt/local as its prefix
-		-- Famous last words: "You can't include too much! ;-)"
-
-		package.includepaths = {
-			"/usr/X11R6/include/X11",
-			"/usr/X11R6/include",
-			"/usr/include/X11",
-			"/opt/local/include",
-		}
-		package.libpaths = {
-			"/opt/local/lib",
-			"/usr/X11R6/lib"
-		}
+		if OS == "macosx" then
+			-- MacPorts uses /opt/local as its prefix
+			package.includepaths = { "/opt/local/include" }
+			package.libpaths = { "/opt/local/lib" }
+		else
+			-- X11 includes may be installed in one of a gadzillion of three places
+			-- Famous last words: "You can't include too much! ;-)"
+			package.includepaths = {
+				"/usr/X11R6/include/X11",
+				"/usr/X11R6/include",
+				"/usr/include/X11"
+			}
+			package.libpaths = {
+				"/usr/X11R6/lib"
+			}
+		end
 		if OS == "linux" and options["icc"] then
 			tinsert(package.libpaths,
 			"/usr/i686-pc-linux-gnu/lib") -- needed for ICC to find libbfd
 		end
+		
 		package.defines = {
 			-- "CONFIG_USE_MMGR",
 		}
@@ -412,15 +417,18 @@ function setup_all_libs ()
 		"cryptopp",
 		"valgrind"
 	}
-	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
 	sysdep_dirs = {
-		linux = { "lib/sysdep/unix" },
+		linux = { "lib/sysdep/unix", "lib/sysdep/unix/x" },
 		-- note: RC file must be added to main_exe package.
 		-- note: don't add "lib/sysdep/win/aken.cpp" because that must be compiled with the DDK.
 		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix", "lib/sysdep/win/whrt" },
 		macosx = { "lib/sysdep/osx", "lib/sysdep/unix" },
 	}
-	tinsert(package.files, sourcesfromdirs(source_root, sysdep_dirs[OS]));
+	for i,v in sysdep_dirs[OS] do
+		tinsert(source_dirs, v);
+	end
+	-- tinsert(source_dirs, sysdep_dirs[OS]);
+	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
 end
 
 
@@ -521,8 +529,6 @@ function setup_main_exe ()
 		tinsert(package.links, {			-- Utilities
 			"pthread"
 		})
-
-		tinsert(package.libpaths, "/usr/X11R6/lib")
 	end
 end
 
@@ -564,7 +570,7 @@ function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_inc
 			listconcat(package.links, extra_params["extra_links"]) 
 		end
 
-	else -- Non-Windows, = Unix
+	elseif OS == "linux" then
 		tinsert(package.buildoptions, "-rdynamic")
 		tinsert(package.linkoptions, "-rdynamic")
 
@@ -757,13 +763,18 @@ function setup_collada_package(package_name, target_type, rel_source_dirs, rel_i
 			listconcat(package.links, extra_params["extra_links"]) 
 		end
 
-	else -- Non-Windows, = Unix
+	elseif OS == "linux" then
 		tinsert(package.defines, "LINUX");
 		tinsert(package.includepaths, "/usr/include/libxml2")
 		tinsert(package.links, "xml2")
 
 		tinsert(package.buildoptions, "-rdynamic")
 		tinsert(package.linkoptions, "-rdynamic")
+	elseif OS == "macosx" then
+		-- define MACOS-something? 
+	
+		tinsert(package.buildoptions, "`pkg-config libxml-2.0 --cflags`")
+		tinsert(package.linkoptions, "`pkg-config libxml-2.0 --libs`")
 	end
 
 end

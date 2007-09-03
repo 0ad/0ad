@@ -28,15 +28,6 @@ static size_t selection_size=0;
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
-#if OS_MACOSX
-	// There might not be X. Instead, we should use Carbon. For now however,
-	// return some defaults.
-	*xres = 1024;
-	*yres = 768;
-	*bpp = 32;
-	*freq = 0;
-	return INFO::OK;
-#else
 	Display* disp = XOpenDisplay(0);
 	if(!disp)
 		WARN_RETURN(ERR::FAIL);
@@ -64,7 +55,6 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 		*freq = 0;
 	XCloseDisplay(disp);
 	return INFO::OK;
-#endif
 }
 
 

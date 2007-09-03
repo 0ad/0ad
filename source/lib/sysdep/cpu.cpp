@@ -27,6 +27,9 @@
 #if OS_WIN
 # include "lib/sysdep/win/wcpu.h"
 #endif
+#if OS_UNIX
+# include "lib/sysdep/unix/ucpu.h"
+#endif
 
 
 ERROR_ASSOCIATE(ERR::CPU_FEATURE_MISSING, "This CPU doesn't support a required feature", -1);
@@ -241,12 +244,8 @@ LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 #if OS_WIN
 	return wcpu_CallByEachCPU(cb, param);
-#elif OS_LINUX
-	return ucpu_CallByEachCPU(cb, param);
 #else
-	UNUSED2(cb);
-	UNUSED2(param);
-	return ERR::NOT_IMPLEMENTED;
+	return ucpu_CallByEachCPU(cb, param);
 #endif
 }
 

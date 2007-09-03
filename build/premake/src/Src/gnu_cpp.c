@@ -121,11 +121,11 @@ int gnu_cpp()
 
 		/* Write linker flags */
 		io_print("  LDFLAGS += -L$(BINDIR) -L$(LIBDIR)");
-		if (prj_is_kind("dll") && (g_cc == NULL || matches(g_cc, "gcc") || matches(g_cc, "icc")))
+		if (prj_is_kind("dll") && (g_cc == NULL || matches(g_cc, "gcc") || matches(g_cc, "icc")) && !os_is("macosx"))
 			io_print(" -shared");
 		if (prj_has_flag("no-symbols"))
 			io_print(" -s");
-		if (os_is("macosx") && prj_has_flag("dylib"))
+		if (os_is("macosx") && (prj_has_flag("dylib") || prj_is_kind("dll")))
 			io_print(" -dynamiclib -flat_namespace");
 		// Use start-group and end-group to get around the problem with the 
 		// order of link arguments.
@@ -249,8 +249,15 @@ int gnu_cpp()
 		io_print("\t-%s$(CMD_MKLIBDIR)\n", prefix);
 		io_print("\t-%s$(CMD_MKOUTDIR)\n", prefix);
 		if (os_is("macosx") && prj_is_kind("winexe"))
+		{
 			io_print("\t-%sif [ ! -d $(OUTDIR)/$(MACAPP)/MacOS ]; then mkdir -p $(OUTDIR)/$(MACAPP)/MacOS; fi\n", prefix);
-		io_print("\t%s$(BLDCMD)\n\n", prefix);
+			io_print("\t%s$(BLDCMD)\n", prefix);
+			io_print("\t%scp $(OUTDIR)/$(TARGET) $(OUTDIR)/$(MACAPP)/MacOS/$(TARGET)\n\n", prefix);
+		}
+		else
+		{
+			io_print("\t%s$(BLDCMD)\n\n", prefix);
+		}
 	}
 
 /*
@@ -268,8 +275,12 @@ int gnu_cpp()
 
 	if (os_is("macosx") && prj_is_kind("winexe"))
 	{
-		io_print("$(OUTDIR)/$(MACAPP)/PkgInfo:\n\n");
-		io_print("$(OUTDIR)/$(MACAPP)/Info.plist:\n\n");
+		io_print("$(OUTDIR)/$(MACAPP)/PkgInfo:\n"
+			"\t%smkdir -p $(OUTDIR)/$(MACAPP)\n"
+			"\t%stouch $@\n\n", prefix, prefix);
+		io_print("$(OUTDIR)/$(MACAPP)/Info.plist:\n"
+			"\t%smkdir -p $(OUTDIR)/$(MACAPP)\n"
+			"\t%stouch $@\n\n", prefix, prefix);
 	}
 
 	/* Write the "clean" target */

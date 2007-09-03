@@ -3,6 +3,8 @@
 
 #include "Shareable.h"
 
+#include <string>
+
 class wxPoint;
 class CVector3D;
 

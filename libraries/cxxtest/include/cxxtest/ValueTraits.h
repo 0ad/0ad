@@ -277,7 +277,9 @@ namespace CxxTest
     
     CXXTEST_COPY_CONST_TRAITS( signed int );
     //CXXTEST_COPY_CONST_TRAITS( unsigned int );
+#ifndef __APPLE__ // avoid redefinition errors on mac
     CXXTEST_COPY_TRAITS( size_t, const unsigned int ); // avoid /Wp64 warnings in MSVC
+#endif
     CXXTEST_COPY_CONST_TRAITS( signed short int );
     CXXTEST_COPY_CONST_TRAITS( unsigned short int );
     CXXTEST_COPY_CONST_TRAITS( unsigned char );

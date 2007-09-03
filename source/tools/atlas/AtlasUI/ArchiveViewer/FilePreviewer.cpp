@@ -217,7 +217,15 @@ void FilePreviewer::PreviewFile(const wxString& filename, SeekableInputStream& s
 #else
 			static wxSound snd;
 			snd.Stop();
+			// HACK, FIXME, XXX: I'd like to call the wx people idiots for
+			// having different API:s on different platforms, as well as for
+			// having public non-API methods.
+#if __APPLE__
+			snd.~wxSound();
+			new (&snd) wxSound((int)bufSize, (const wxByte*)buf);
+#else
 			snd.Create((int)bufSize, (const wxByte*)buf);
+#endif
 			snd.Play();
 #endif
 			stream.ReleaseBuffer(buf);

@@ -17,7 +17,9 @@ MessagePasserImpl::MessagePasserImpl()
 	{
 		CStr name = "/wfg-atlas-msgpass-" + CStr(rand(100000, 1000000));
 		sem_t* sem = sem_open(name, O_CREAT | O_EXCL, 0700, 0);
-		if (sem == SEM_FAILED)
+		// This cast should not be necessary, but apparently SEM_FAILED is not
+		// a value of a pointer type
+		if (sem == (sem_t*)SEM_FAILED)
 		{
 			int err = errno;
 			if (err == EEXIST)

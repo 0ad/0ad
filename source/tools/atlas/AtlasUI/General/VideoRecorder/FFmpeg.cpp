@@ -26,6 +26,7 @@ Please complain if I forget to do those things.
 // ugly hack to make recent versions of FFmpeg work
 #define __STDC_CONSTANT_MACROS
 #undef _STDINT_H
+#undef _STDINT_H_
 #include <stdint.h>
 #endif
 
@@ -47,8 +48,12 @@ typedef __int32 int32_t;
 typedef __int64 int64_t;
 #endif
 
+#define UNUSED(arg)
+
+extern "C" {
 #include "ffmpeg/avformat.h"
 #include "ffmpeg/swscale.h"
+}
 // (Have to use a sufficiently recent version to get swscale - it needs the ~x86 keyword on Gentoo)
 
 struct VideoEncoderImpl
@@ -269,7 +274,7 @@ struct VideoEncoderImpl
 		frame_count++;
 	}
 
-	void close_video(AVFormatContext *oc, AVStream *st)
+	void close_video(AVFormatContext *UNUSED(oc), AVStream *st)
 	{
 		avcodec_close(st->codec);
 		av_free(picture->data[0]);
@@ -284,7 +289,7 @@ struct VideoEncoderImpl
 
 //////////////////////////////////////////////////////////////////////////
 
-void log(void* v, int i, const char* format, va_list ap)
+void log(void* UNUSED(v), int i, const char* format, va_list ap)
 {
 	char buf[512];
 	vsnprintf(buf, sizeof(buf), format, ap);
