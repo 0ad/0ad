@@ -693,9 +693,9 @@ static void InitRenderer()
 {
 	TIMER("InitRenderer");
 
-	if(!g_NoGLS3TC)
+	if(g_NoGLS3TC)
 		ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
-	if(!g_NoGLAutoMipmap)
+	if(g_NoGLAutoMipmap)
 		ogl_tex_override(OGL_TEX_AUTO_MIPMAP_GEN, OGL_TEX_DISABLE);
 
 	// create renderer
