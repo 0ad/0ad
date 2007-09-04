@@ -81,9 +81,10 @@ TerrainPreviewPage.prototype = {
 		this.panel.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
 		var scrolled = new wxScrolledWindow(this.panel, -1, wxDefaultPosition, wxDefaultSize, wxWindow.VSCROLL);
 		scrolled.setScrollRate(0, 10);
+		scrolled.backgroundColour = new wxColour(255, 255, 255);
 		this.panel.sizer.add(scrolled, 1, wxStretch.EXPAND);
 		
-		var itemSizer = new wxGridSizer(6, 8, 0);
+		var itemSizer = new wxGridSizer(6, 4, 0);
 		scrolled.sizer = itemSizer;
 		
 		// Adjust the number of columns to fit in the available area
@@ -111,6 +112,8 @@ TerrainPreviewPage.prototype = {
 			imgSizer.add(label, 1, wxAlignment.CENTRE);
 			itemSizer.add(imgSizer, 0, wxAlignment.CENTRE | wxStretch.EXPAND);
 		}
+
+		this.panel.layout();
 
 		this.loaded = true;
 	}

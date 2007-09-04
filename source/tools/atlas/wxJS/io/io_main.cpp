@@ -57,7 +57,7 @@ using namespace wxjs::io;
 		return result;
 	}
 #endif
-
+/*
 WXJSAPI bool wxJS_InitClass(JSContext *cx, JSObject *global)
 {
     return InitClass(cx, global);
@@ -72,3 +72,4 @@ WXJSAPI void wxJS_Destroy()
 {
     Destroy();
 }
+*/

@@ -41,7 +41,7 @@
 #include "../common/main.h"
  
 #include "init.h"
-
+/*
 #if defined( __WXMSW__)
 	void WXDLLEXPORT wxEntryCleanup();
 	extern "C" 
@@ -85,3 +85,4 @@ WXJSAPI void wxJS_Destroy()
 {
   wxjs::gui::Destroy();
 }
+*/

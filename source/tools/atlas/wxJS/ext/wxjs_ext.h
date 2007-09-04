@@ -29,11 +29,14 @@
 
 #include <wx/dlimpexp.h>
 
+/*
 #ifdef WXJSDLL_BUILD
 	#define WXJSAPI WXEXPORT
 #else 
 	#define WXJSAPI WXIMPORT
 #endif
+*/
+#define WXJSAPI
 
 class wxPoint;
 

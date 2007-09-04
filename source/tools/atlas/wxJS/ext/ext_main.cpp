@@ -37,7 +37,7 @@
 
 using namespace wxjs;
 using namespace wxjs::ext;
-
+/*
 #ifdef __WXMSW__
 	BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 	{
@@ -55,7 +55,7 @@ using namespace wxjs::ext;
 		return result;
 	}
 #endif
-
+*/
 WXJSAPI bool wxjs::ext::InitClass(JSContext *cx, JSObject *global)
 {
 	MemoryBuffer::JSInit(cx, global);

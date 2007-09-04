@@ -26,11 +26,15 @@
 #define WXJS_H_
 
 #include <wx/dlimpexp.h>
+/*
 #ifdef WXJSDLL_BUILD
 	#define WXJSAPI WXEXPORT
 #else 
 	#define WXJSAPI WXIMPORT
 #endif
+*/
+#define WXJSAPI
+
 extern "C" WXJSAPI bool wxJS_InitClass(JSContext *cx, JSObject *global);
 extern "C" WXJSAPI bool wxJS_InitObject(JSContext *cx, JSObject *obj);
 extern "C" WXJSAPI void wxJS_Destroy();
