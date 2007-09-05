@@ -316,6 +316,9 @@ bool acpi_Init()
 	if(!mahaf_Init())
 		goto fail;
 
+	if(mahaf_IsPhysicalMappingDangerous())
+		goto fail;
+
 	if(!LatchAllTables())
 		goto fail;
 

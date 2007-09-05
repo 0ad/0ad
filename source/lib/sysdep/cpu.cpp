@@ -27,9 +27,6 @@
 #if OS_WIN
 # include "lib/sysdep/win/wcpu.h"
 #endif
-#if OS_UNIX
-# include "lib/sysdep/unix/ucpu.h"
-#endif
 
 
 ERROR_ASSOCIATE(ERR::CPU_FEATURE_MISSING, "This CPU doesn't support a required feature", -1);

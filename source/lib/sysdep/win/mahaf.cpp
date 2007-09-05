@@ -94,13 +94,21 @@ void mahaf_WritePort32(u16 port, u32 value)
 }
 
 
-volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
+bool mahaf_IsPhysicalMappingDangerous()
 {
 	// WinXP introduced checks that ensure we don't re-map pages with
 	// incompatible attributes. without this, mapping physical pages risks
-	// disaster due to TLB corruption, so disable it for safety.
+	// disaster due to TLB corruption.
 	if(wutil_WindowsVersion() < WUTIL_VERSION_XP)
-		return 0;
+		return true;
+
+	return false;
+}
+
+
+volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes)
+{
+	debug_assert(!mahaf_IsPhysicalMappingDangerous());
 
 	AkenMapIn in;
 	in.physicalAddress = (DWORD64)physicalAddress;
@@ -124,6 +132,8 @@ volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numByte
 
 void mahaf_UnmapPhysicalMemory(volatile void* virtualAddress)
 {
+	debug_assert(!mahaf_IsPhysicalMappingDangerous());
+
 	AkenUnmapIn in;
 	in.virtualAddress = (DWORD64)virtualAddress;
 

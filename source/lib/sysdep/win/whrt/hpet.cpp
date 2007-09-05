@@ -56,7 +56,7 @@ LibError CounterHPET::Activate()
 	if(!mahaf_Init())
 		return ERR::FAIL;	// NOWARN (no Administrator privileges)
 	if(!acpi_Init())
-		WARN_RETURN(ERR::FAIL);
+		return ERR::FAIL;	// NOWARN (happens on Win2k; see mahaf_IsPhysicalMappingDangerous)
 	const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
 	if(!hpet)
 		return ERR::NO_SYS;	// NOWARN (HPET not reported by BIOS)

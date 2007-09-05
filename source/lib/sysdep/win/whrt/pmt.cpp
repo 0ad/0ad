@@ -36,7 +36,7 @@ LibError CounterPMT::Activate()
 	if(!mahaf_Init())
 		return ERR::FAIL;	// NOWARN (no Administrator privileges)
 	if(!acpi_Init())
-		WARN_RETURN(ERR::FAIL);
+		return ERR::FAIL;	// NOWARN (happens on Win2k; see mahaf_IsPhysicalMappingDangerous)
 	// (note: it's called FADT, but the signature is "FACP")
 	const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 	if(!fadt)
