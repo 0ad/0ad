@@ -310,13 +310,14 @@ static ModuleInitState initState;
 
 bool acpi_Init()
 {
+	if(ModuleIsError(&initState))
+		return false;
 	if(!ModuleShouldInitialize(&initState))
 		return true;
 
-	if(!mahaf_Init())
-		goto fail;
-
 	if(mahaf_IsPhysicalMappingDangerous())
+		goto fail;
+	if(!mahaf_Init())
 		goto fail;
 
 	if(!LatchAllTables())

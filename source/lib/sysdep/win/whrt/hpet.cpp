@@ -53,10 +53,12 @@ static const u64 CONFIG_ENABLE = BIT64(0);
 
 LibError CounterHPET::Activate()
 {
+	if(mahaf_IsPhysicalMappingDangerous())
+		return ERR::FAIL;	// NOWARN (happens on Win2k)
 	if(!mahaf_Init())
 		return ERR::FAIL;	// NOWARN (no Administrator privileges)
 	if(!acpi_Init())
-		return ERR::FAIL;	// NOWARN (happens on Win2k; see mahaf_IsPhysicalMappingDangerous)
+		WARN_RETURN(ERR::FAIL);	// shouldn't fail, since we've checked mahaf_IsPhysicalMappingDangerous
 	const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
 	if(!hpet)
 		return ERR::NO_SYS;	// NOWARN (HPET not reported by BIOS)

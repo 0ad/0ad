@@ -14,6 +14,18 @@
 #ifndef INCLUDED_MAHAF
 #define INCLUDED_MAHAF
 
+/**
+ * @return whether mapping physical memory is known to be dangerous
+ * on this platform.
+ *
+ * callable before or after mahaf_Init.
+ *
+ * note: mahaf_MapPhysicalMemory will complain if it
+ * is called despite this function having returned true.
+ **/
+extern bool mahaf_IsPhysicalMappingDangerous();
+
+
 extern bool mahaf_Init();
 extern void mahaf_Shutdown();
 
@@ -23,15 +35,6 @@ extern u32 mahaf_ReadPort32(u16 port);
 extern void mahaf_WritePort8 (u16 port, u8  value);
 extern void mahaf_WritePort16(u16 port, u16 value);
 extern void mahaf_WritePort32(u16 port, u32 value);
-
-/**
- * @return whether mapping physical memory is known to be dangerous
- * on this platform.
- *
- * note: mahaf_MapPhysicalMemory will warn if it is called despite this
- * function having returned true.
- **/
-extern bool mahaf_IsPhysicalMappingDangerous();
 
 extern volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numBytes);
 extern void mahaf_UnmapPhysicalMemory(volatile void* virtualAddress);

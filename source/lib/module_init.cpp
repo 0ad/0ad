@@ -66,3 +66,9 @@ void ModuleSetError(volatile ModuleInitState* pInitState)
 {
 	*pInitState = MODULE_ERROR;
 }
+
+
+bool ModuleIsError(volatile ModuleInitState* pInitState)
+{
+	return (*pInitState == MODULE_ERROR);
+}

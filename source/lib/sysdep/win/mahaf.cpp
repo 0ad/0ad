@@ -278,6 +278,8 @@ static ModuleInitState initState;
 
 bool mahaf_Init()
 {
+	if(ModuleIsError(&initState))
+		return false;
 	if(!ModuleShouldInitialize(&initState))
 		return true;
 

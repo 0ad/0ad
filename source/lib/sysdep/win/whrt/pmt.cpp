@@ -33,6 +33,7 @@ static const u32 TMR_VAL_EXT = BIT(8);
 
 LibError CounterPMT::Activate()
 {
+	// mahaf is needed for port I/O.
 	if(!mahaf_Init())
 		return ERR::FAIL;	// NOWARN (no Administrator privileges)
 	if(!acpi_Init())

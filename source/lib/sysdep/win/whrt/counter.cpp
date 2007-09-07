@@ -12,6 +12,7 @@
 #include "counter.h"
 
 #include "lib/bits.h"
+#include "lib/allocators.h"
 
 #include "tsc.h"
 #include "hpet.h"
@@ -28,14 +29,11 @@
 /**
  * @return pointer to a newly constructed ICounter subclass of type <id> at
  * the given address, or 0 iff the ID is invalid.
- * @param size receives the size [bytes] of the created instance.
+ * @param size maximum allowable size [bytes] of the subclass instance
  **/
-static ICounter* ConstructCounterAt(uint id, void* address, size_t& size)
+static ICounter* ConstructCounterAt(uint id, void* address, size_t size)
 {
 	// rationale for placement new: see call site.
-#define CREATE(impl)\
-	size = sizeof(Counter##impl);\
-	return new(address) Counter##impl();
 
 #include "lib/nommgr.h"	// MMGR interferes with placement new
 
@@ -48,24 +46,29 @@ static ICounter* ConstructCounterAt(uint id, void* address, size_t& size)
 	switch(id)
 	{
 	case 0:
-		CREATE(HPET)
+		debug_assert(sizeof(CounterHPET) <= size);
+		return new(address) CounterHPET();
 	case 1:
-		CREATE(TSC)
+		debug_assert(sizeof(CounterTSC) <= size);
+		return new(address) CounterTSC();
 	case 2:
-		CREATE(QPC)
+		debug_assert(sizeof(CounterQPC) <= size);
+		return new(address) CounterQPC();
 	case 3:
-		CREATE(PMT)
+		debug_assert(sizeof(CounterPMT) <= size);
+		return new(address) CounterPMT();
 	case 4:
-		CREATE(TGT)
+		debug_assert(sizeof(CounterTGT) <= size);
+		return new(address) CounterTGT();
 	default:
-		size = 0;
 		return 0;
 	}
 
 #include "lib/mmgr.h"
-
-#undef CREATE
 }
+
+
+static volatile uintptr_t isCounterAllocated;
 
 ICounter* CreateCounter(uint id)
 {
@@ -80,16 +83,15 @@ ICounter* CreateCounter(uint id)
 	//   first use of them.
 	// - using static_calloc isn't possible because we don't know the
 	//   size until after the alloc / placement new.
-	static const size_t MEM_SIZE = 200;	// checked below
-	static u8 mem[MEM_SIZE];
-	static u8* nextMem = mem;
 
-	u8* addr = (u8*)round_up((uintptr_t)nextMem, 16);
-	size_t size;
-	ICounter* counter = ConstructCounterAt(id, addr, size);
+	if(!CAS(&isCounterAllocated, 0, 1))
+		debug_warn("static counter memory is already in use!");
 
-	nextMem = addr+size;
-	debug_assert(nextMem < mem+MEM_SIZE);	// had enough room?
+	static const size_t memSize = 200;
+	static u8 mem[memSize];
+	u8* alignedMem = (u8*)round_up((uintptr_t)mem, 16);
+	const size_t bytesLeft = mem+memSize - alignedMem;
+	ICounter* counter = ConstructCounterAt(id, alignedMem, bytesLeft);
 
 	return counter;
 }
@@ -97,10 +99,10 @@ ICounter* CreateCounter(uint id)
 
 void DestroyCounter(ICounter*& counter)
 {
-	if(!counter)
-		return;
-
+	debug_assert(counter);
 	counter->Shutdown();
 	counter->~ICounter();	// must be called due to placement new
 	counter = 0;
+
+	isCounterAllocated = 0;
 }

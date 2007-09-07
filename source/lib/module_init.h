@@ -44,4 +44,13 @@ extern bool ModuleShouldShutdown(volatile ModuleInitState* initState);
  **/
 extern void ModuleSetError(volatile ModuleInitState* initState);
 
+/**
+ * @return whether the module is in the failure state, i.e. ModuleSetError
+ * was previously called on the same initState.
+ *
+ * this function is provided so that modules can report init failure to
+ * the second or later caller.
+ **/
+extern bool ModuleIsError(volatile ModuleInitState* initState);
+
 #endif	// #ifndef INCLUDED_MODULE_INIT
