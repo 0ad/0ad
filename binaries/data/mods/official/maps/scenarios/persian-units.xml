@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="89.3084" y="51.6874" z="70.719"/>
+		<Position x="84.6223" y="94.4523" z="34.8452"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.523599"/>
 	</Camera>
@@ -171,6 +171,138 @@
 			<Player>1</Player>
 			<Position x="105.28" y="22.4394" z="140.32"/>
 			<Orientation angle="-2.13756"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>pers_barracks</Template>
+			<Player>2</Player>
+			<Position x="36.4259" y="22.4" z="169.988"/>
+			<Orientation angle="-2.46997"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>pers_barracks</Template>
+			<Player>1</Player>
+			<Position x="50.0648" y="22.4" z="184.588"/>
+			<Orientation angle="-2.3261"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>pers_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="66.0713" y="22.4" z="172.399"/>
+			<Orientation angle="-2.41051"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>pers_civil_centre</Template>
+			<Player>5</Player>
+			<Position x="49.3046" y="22.4" z="152.994"/>
+			<Orientation angle="-2.36633"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>pers_dock</Template>
+			<Player>2</Player>
+			<Position x="16.6792" y="22.4" z="158.656"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>pers_dock</Template>
+			<Player>3</Player>
+			<Position x="24.4219" y="22.4" z="139.935"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>pers_dock</Template>
+			<Player>1</Player>
+			<Position x="35.112" y="22.4" z="127.76"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>pers_farmstead</Template>
+			<Player>1</Player>
+			<Position x="83.9474" y="22.4" z="194.441"/>
+			<Orientation angle="-2.39242"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>pers_farmstead</Template>
+			<Player>2</Player>
+			<Position x="69.969" y="22.4" z="197.977"/>
+			<Orientation angle="-2.86672"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>pers_fortress</Template>
+			<Player>1</Player>
+			<Position x="95.2038" y="22.9947" z="168.714"/>
+			<Orientation angle="-2.26178"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>pers_house</Template>
+			<Player>2</Player>
+			<Position x="79.1898" y="22.4" z="159.282"/>
+			<Orientation angle="-2.60835"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>pers_house</Template>
+			<Player>2</Player>
+			<Position x="69.7363" y="22.4" z="148.366"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>pers_house</Template>
+			<Player>2</Player>
+			<Position x="84.1765" y="22.4" z="147.316"/>
+			<Orientation angle="-1.8397"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="54.108" y="22.4" z="138.542"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="58.4451" y="22.4" z="140.541"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>pers_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="77.3449" y="22.4" z="143.283"/>
+			<Orientation angle="-2.40288"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>pers_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="91.682" y="22.4" z="152.37"/>
+			<Orientation angle="-2.58274"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>pers_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="103.537" y="22.4" z="158.397"/>
+			<Orientation angle="-0.168875"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>pers_mill</Template>
+			<Player>2</Player>
+			<Position x="125.13" y="23.0663" z="178.917"/>
+			<Orientation angle="-2.20846"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>pers_scout_tower</Template>
+			<Player>2</Player>
+			<Position x="109.439" y="22.9947" z="192.661"/>
+			<Orientation angle="-3.00107"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>pers_temple</Template>
+			<Player>6</Player>
+			<Position x="139.041" y="22.9947" z="191.097"/>
+			<Orientation angle="-2.31575"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>pers_temple</Template>
+			<Player>2</Player>
+			<Position x="127.117" y="22.9947" z="219.135"/>
+			<Orientation angle="-2.31588"/>
 		</Entity>
 	</Entities>
 	<Nonentities>

@@ -2,28 +2,28 @@
 
 <Scenario>
 	<Environment>
-		<SkySet>cirrus</SkySet>
-		<SunColour r="1.54297" g="1.54297" b="1.54297"/>
-		<SunElevation angle="0.83705"/>
-		<SunRotation angle="-0.706614"/>
-		<TerrainAmbientColour r="0.529412" g="0.537255" b="0.592157"/>
-		<UnitsAmbientColour r="0.529412" g="0.537255" b="0.592157"/>
+		<SkySet>default</SkySet>
+		<SunColour r="1.91602" g="1.91602" b="1.91602"/>
+		<SunElevation angle="0.763054"/>
+		<SunRotation angle="-0.714091"/>
+		<TerrainAmbientColour r="0.513726" g="0.52549" b="0.572549"/>
+		<UnitsAmbientColour r="0.513726" g="0.52549" b="0.572549"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0" g="1" b="1"/>
-				<Height>11.865</Height>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>11.97</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.491211</Murkiness>
-				<Tint r="0.0745098" g="0.67451" b="0.647059"/>
-				<ReflectionTint r="0.0745098" g="0.67451" b="0.647059"/>
-				<ReflectionTintStrength>0.355469</ReflectionTintStrength>
+				<Murkiness>0.338867</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0" g="1" b="1"/>
+				<ReflectionTintStrength>0.135742</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="182.547" y="116.171" z="815.181"/>
+		<Position x="185.592" y="122.35" z="801.514"/>
 		<Rotation angle="0.0156807"/>
 		<Declination angle="0.693527"/>
 	</Camera>
@@ -11000,13 +11000,13 @@
 			<Template>geology_metal_greek</Template>
 			<Player>0</Player>
 			<Position x="351.084" y="17.371" z="850.313"/>
-			<Orientation angle="2.63474"/>
+			<Orientation angle="-0.147789"/>
 		</Entity>
 		<Entity uid="1884">
 			<Template>geology_metal_greek</Template>
 			<Player>0</Player>
-			<Position x="349.6" y="16.3845" z="843.215"/>
-			<Orientation angle="-1.73947"/>
+			<Position x="352.449" y="19.5068" z="840.909"/>
+			<Orientation angle="-2.7988"/>
 		</Entity>
 		<Entity uid="1885">
 			<Template>hele_support_female_citizen</Template>
@@ -13765,7 +13765,7 @@
 		<Entity uid="2378">
 			<Template>hele_ship_bireme</Template>
 			<Player>1</Player>
-			<Position x="96.3517" y="11.865" z="815.282"/>
+			<Position x="99.5463" y="11.97" z="815.093"/>
 			<Orientation angle="-2.75285"/>
 		</Entity>
 		<Entity uid="2379">
@@ -13861,13 +13861,13 @@
 		<Entity uid="2396">
 			<Template>hele_ship_bireme</Template>
 			<Player>2</Player>
-			<Position x="73.6434" y="11.865" z="839.257"/>
+			<Position x="73.9813" y="11.97" z="839.088"/>
 			<Orientation angle="2.96749"/>
 		</Entity>
 		<Entity uid="2397">
 			<Template>hele_ship_trireme</Template>
 			<Player>2</Player>
-			<Position x="49.2173" y="11.76" z="837.53"/>
+			<Position x="49.7776" y="11.97" z="836.534"/>
 			<Orientation angle="2.37501"/>
 		</Entity>
 		<Entity uid="2398">
@@ -33085,7 +33085,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="356.495" y="24.1376" z="723.392"/>
+			<Position x="357.233" y="23.9124" z="721.76"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
