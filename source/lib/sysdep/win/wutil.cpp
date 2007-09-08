@@ -174,6 +174,7 @@ static void ReadCommandLine()
 			// strip the " character
 			memmove(argvContents+i, argvContents+i+1, numChars-i);
 			numChars--;
+			i--;
 			break;
 
 		case ' ':
@@ -185,6 +186,7 @@ static void ReadCommandLine()
 			break;
 		}
 	}
+	wutil_argc++;
 
 	// have argv entries point into the tokenized string
 	wutil_argv = (char**)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, wutil_argc*sizeof(char*));
