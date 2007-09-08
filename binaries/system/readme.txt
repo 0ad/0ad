@@ -16,3 +16,20 @@ COMMAND LINE OPTIONS:
 
 -editor			launch the Atlas scenario editor
 -actorviewer	when combined with -editor, launch the Actor Viewer tool
+
+
+Windows-specific:
+-wQpcTscSafe	allow timing via QueryPerformanceCounter despite the fact
+				that it's using TSC and it may be unsafe. has no effect if
+				a better timer (i.e. the HPET) is available.
+				should only be specified if:
+				- you are sure your system does not engage in
+				  thermal throttling (including STPCLK) OR
+				- an "RDTSC patch" is installed
+				this flag is also useful if all other alternatives are worse
+				than a potentially risky or slightly broken TSC-based QPC.
+
+-wNoMahaf		prevent any physical memory mapping or direct port I/O.
+				this disables all ACPI-related code and thus some of the
+				timer backends. specify this if problems are observed with
+				one of the abovementioned subsystems.
