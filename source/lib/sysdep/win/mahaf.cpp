@@ -283,20 +283,27 @@ bool mahaf_Init()
 	if(!ModuleShouldInitialize(&initState))
 		return true;
 
+	if(wutil_HasCommandLineArgument("-wNoMahaf"))
+		goto fail;
+
+	{
 	char driverPathname[PATH_MAX];
 	GetDriverPathname(driverPathname, ARRAY_SIZE(driverPathname));
-
 	StartDriver(driverPathname);
+	}
 
-	DWORD shareMode = 0;
+	{
+	const DWORD shareMode = 0;
 	hAken = CreateFile("\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	if(hAken == INVALID_HANDLE_VALUE)
-	{
-		ModuleSetError(&initState);
-		return false;
+		goto fail;
 	}
 
 	return true;
+
+fail:
+	ModuleSetError(&initState);
+	return false;
 }
 
 

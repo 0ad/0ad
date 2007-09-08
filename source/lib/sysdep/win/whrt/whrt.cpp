@@ -22,7 +22,7 @@
 
 #include "counter.h"
 
-WINIT_REGISTER_EARLY_INIT2(whrt_Init);	// whrt -> wtime
+WINIT_REGISTER_EARLY_INIT2(whrt_Init);	// wutil -> whrt -> wtime
 WINIT_REGISTER_LATE_SHUTDOWN(whrt_Shutdown);
 
 

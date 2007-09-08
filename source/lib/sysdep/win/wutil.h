@@ -86,6 +86,16 @@ extern LibError LibError_from_win32(DWORD ret, bool warn_if_failed = true);
 
 
 //
+// command line
+//
+
+extern int wutil_argc;
+extern char** wutil_argv;
+
+extern bool wutil_HasCommandLineArgument(const char* arg);
+
+
+//
 // directories
 //
 

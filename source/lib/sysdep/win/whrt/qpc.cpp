@@ -13,6 +13,7 @@
 
 #include "lib/sysdep/win/win.h"
 #include "lib/sysdep/win/wcpu.h"
+#include "lib/sysdep/win/wutil.h"	// wutil_argv
 #include "pit.h"	// PIT_FREQ
 #include "pmt.h"	// PMT_FREQ
 
@@ -39,15 +40,15 @@ void CounterQPC::Shutdown()
 
 bool CounterQPC::IsSafe() const
 {
-	// the PIT is entirely safe (even if annoyingly slow to read)
-	if(m_frequency == PIT_FREQ)
-		return true;
-
 	// note: we have separate modules that directly access some of the
 	// counters potentially used by QPC. disabling the redundant counters
 	// would be ugly (increased coupling). instead, we'll make sure our
 	// implementations could (if necessary) coexist with QPC, but it
 	// shouldn't come to that since only one counter is needed/used.
+
+	// the PIT is entirely safe (even if annoyingly slow to read)
+	if(m_frequency == PIT_FREQ)
+		return true;
 
 	// the PMT is generally safe (see discussion in CounterPmt::IsSafe),
 	// but older QPC implementations had problems with 24-bit rollover.
@@ -57,32 +58,29 @@ bool CounterQPC::IsSafe() const
 	// incorrect values every 4.6 seconds (i.e. 24 bits @ 3.57 MHz) unless
 	// the timer is polled in the meantime. fortunately, this is guaranteed
 	// by our periodic updates (which come at least that often).
-	if(m_frequency == PIT_FREQ)
+	if(m_frequency == PMT_FREQ)
 		return true;
 
-	// two other implementations have been observed: HPET
-	// (on Vista) and RDTSC (on MP HAL).
-	//
-	// - the HPET is reliable but can't easily be recognized since its
-	//   frequency is variable (the spec says > 10 MHz; the master 14.318 MHz
-	//   oscillator is often used). note: considering frequencies between
-	//   10..100 MHz to be a HPET would be dangerous because it may actually
-	//   be faster or RDTSC slower.
-	//
-	// - the TSC implementation has been known to be buggy (even mentioned
-	//   in MSDN) and we don't know which systems have been patched. it is
-	//   therefore considered unsafe and recognized by comparing frequency
-	//   against the CPU clock.
-
-	// QPC frequency matches the CPU clock => it uses RDTSC => unsafe.
-	if(IsSimilarMagnitude(m_frequency, wcpu_ClockFrequency()))
-		return false;
+	// the TSC has been known to be buggy (even mentioned in MSDN). it is
+	// used on MP HAL systems and can be detected by comparing QPF with the
+	// CPU clock. we consider it unsafe unless the user promises (via
+	// command line) that it's patched and thus reliable on their system.
+	bool usesTsc = IsSimilarMagnitude(m_frequency, wcpu_ClockFrequency());
 	// unconfirmed reports indicate QPC sometimes uses 1/3 of the
 	// CPU clock frequency, so check that as well.
-	if(IsSimilarMagnitude(m_frequency, wcpu_ClockFrequency()/3))
-		return false;
+	usesTsc |= IsSimilarMagnitude(m_frequency, wcpu_ClockFrequency()/3);
+	if(usesTsc)
+	{
+		const bool isTscSafe = wutil_HasCommandLineArgument("-wQpcTscSafe");
+		return isTscSafe;
+	}
 
-	// otherwise: it's apparently using the HPET => safe.
+	// the HPET is reliable and used on Vista. it can't easily be recognized
+	// since its frequency is variable (the spec says > 10 MHz; the master
+	// 14.318 MHz oscillator is often used). considering frequencies in
+	// [10, 100 MHz) to be a HPET would be dangerous because it may actually
+	// be faster or RDTSC slower. we have to exclude all other cases and
+	// assume it's a HPET - and thus safe - if we get here.
 	return true;
 }
 

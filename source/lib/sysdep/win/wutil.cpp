@@ -146,6 +146,77 @@ LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
 
 
 //-----------------------------------------------------------------------------
+// command line
+
+// copy of GetCommandLine string. will be tokenized and then referenced by
+// the argv pointers.
+static char* argvContents;
+
+int wutil_argc = 0;
+char** wutil_argv = 0;
+
+static void ReadCommandLine()
+{
+	const char* commandLine = GetCommandLine();
+	// (this changes as quotation marks are removed)
+	size_t numChars = strlen(commandLine);
+	argvContents = (char*)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, numChars+1);
+	strcpy_s(argvContents, numChars+1, commandLine);
+
+	// first pass: tokenize string and count number of arguments
+	bool ignoreSpace = false;
+	for(size_t i = 0; i < numChars; i++)
+	{
+		switch(argvContents[i])
+		{
+		case '"':
+			ignoreSpace = !ignoreSpace;
+			// strip the " character
+			memmove(argvContents+i, argvContents+i+1, numChars-i);
+			numChars--;
+			break;
+
+		case ' ':
+			if(!ignoreSpace)
+			{
+				argvContents[i] = '\0';
+				wutil_argc++;
+			}
+			break;
+		}
+	}
+
+	// have argv entries point into the tokenized string
+	wutil_argv = (char**)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, wutil_argc*sizeof(char*));
+	char* nextArg = argvContents;
+	for(int i = 0; i < wutil_argc; i++)
+	{
+		wutil_argv[i] = nextArg;
+		nextArg += strlen(nextArg)+1;
+	}
+}
+
+
+static void FreeCommandLine()
+{
+	HeapFree(GetProcessHeap(), 0, wutil_argv);
+	HeapFree(GetProcessHeap(), 0, argvContents);
+}
+
+
+bool wutil_HasCommandLineArgument(const char* arg)
+{
+	for(int i = 0; i < wutil_argc; i++)
+	{
+		if(!strcmp(wutil_argv[i], arg))
+			return true;
+	}
+
+	return false;
+}
+
+
+//-----------------------------------------------------------------------------
 // directories
 
 char win_sys_dir[MAX_PATH+1];
@@ -363,6 +434,8 @@ static LibError wutil_Init()
 
 	EnableLowFragmentationHeap();
 
+	ReadCommandLine();
+
 	GetDirectories();
 
 	DetectWindowsVersion();
@@ -376,6 +449,8 @@ static LibError wutil_Init()
 
 static LibError wutil_Shutdown()
 {
+	FreeCommandLine();
+
 	FreeUser32Dll();
 
 	ShutdownLocks();
