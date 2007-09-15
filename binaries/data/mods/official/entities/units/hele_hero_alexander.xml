@@ -35,6 +35,37 @@
 		
 	</Traits>
 
+	<Actions>
+
+ 		<Attack>
+			<Melee>
+ 				<Hack>40.0</Hack>
+			</Melee>
+
+			<Charge>
+				<Hack>80.0</Hack>
+				<Crush>80.0</Crush>
+				
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
+			</Charge>	
+
+ 		</Attack>
+
+		<Move>
+			<Speed>13.0</Speed>
+			<TurningRadius>4.0</TurningRadius>
+			
+			<Run>
+				<Speed>25.0</Speed>
+				<Range>600.0</Range>
+				<RangeMin>5.0</RangeMin>
+			</Run>
+			
+		</Move>
+
+	</Actions>
+
 	<Actor>units/hellenes/alexander.xml</Actor>
 
 </Entity>

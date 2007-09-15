@@ -19,6 +19,21 @@
 		
 	</Traits>
 
+	<Actions>
+
+ 		<Attack>
+			<Melee>
+ 				<Pierce>20.0</Pierce>
+				<Hack>20.0</Hack>
+			</Melee>
+
+ 		</Attack>
+
+		<Move>
+			<Speed>8.5.0</Speed>
+			<TurningRadius>1.0</TurningRadius>
+		</Move>
+
 	<Actor>units/hellenes/demetrius.xml</Actor>
 
 </Entity>

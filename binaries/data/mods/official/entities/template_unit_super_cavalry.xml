@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-		Parent="template_unit_super"
->
+<Entity Parent="template_unit_super">
 	<Traits>
 	
 		<Id>
@@ -51,6 +49,13 @@
  			<Pierce>220.0</Pierce>
  			<Crush>260.0</Crush>
  		</Attack>
+
+		<Move>
+			<Speed>13.0</Speed>
+			<Run>
+				<Speed>25.0</Speed>
+			</Run>
+		</Move>
 	</Actions>
 
 </Entity>

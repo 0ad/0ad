@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_super"
->
+<Entity Parent="template_unit_super">
+
 	<Traits>
-	
 		<Id>
-		
 			<Generic>Super Infantry</Generic>
 
 			<Icon_Cell>42</Icon_Cell>
 
 			<Classes>Organic, Foot</Classes>
-		
 		</Id>
-					<Creation>
+		<Creation>
 				<Resource>
  				<Food>100</Food>
 				<Metal>125</Metal>
@@ -27,12 +23,16 @@
 		</Armour>
 	</Traits>
 
-
-
 	<Actions>
  		<Attack>
  			<Hack>25.0</Hack>
  		</Attack>
+		<Move>
+			<Speed>8.5</Speed>
+			<Run>
+				<Speed>16.5</Speed>
+			</Run>
+		</Move>
 	</Actions>
 
 </Entity>

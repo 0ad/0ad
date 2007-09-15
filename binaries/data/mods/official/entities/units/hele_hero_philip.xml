@@ -24,6 +24,38 @@
 		
 	</Traits>
 
+	<Actions>
+
+ 		<Attack>
+			<Melee>
+ 				<Pierce>30.0</Pierce>
+				<Crush>10.0</Crush>
+			</Melee>
+
+			<Charge>
+				<Crush>80.0</Crush>
+				<Pierce>80.0</Pierce>
+				
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
+			</Charge>	
+
+ 		</Attack>
+
+		<Move>
+			<Speed>13.0</Speed>
+			<TurningRadius>4.0</TurningRadius>
+			
+			<Run>
+				<Speed>25.0</Speed>
+				<Range>600.0</Range>
+				<RangeMin>5.0</RangeMin>
+			</Run>
+			
+		</Move>
+
+	</Actions>
+
 	<Actor>units/hellenes/philip_horse.xml</Actor>
 
 </Entity>
