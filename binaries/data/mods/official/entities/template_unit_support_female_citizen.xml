@@ -40,7 +40,7 @@
 		</Auras>		
 		<Armour>
 			<Hack>1.0</Hack>
-			<Pierce>5.0</Pierce>
+			<Pierce>1.0</Pierce>
 			<Crush>1.0</Crush>
 		</Armour>		
 	</Traits>
@@ -55,6 +55,7 @@
 				<StructCiv>
 					<Civil_Centre />
 					<Farmstead />
+					<Field />
 					<House />
 					<Market />
 					<Mill />
@@ -72,8 +73,8 @@
 					<Milk>20</Milk>
 				</Food>
 				<Wood>15</Wood>
-				<Metal>15</Metal>
-				<Stone>15</Stone>
+				<Metal>14</Metal>
+				<Stone>14</Stone>
 			</Resource>
  			<Range>2.0</Range>
 			<Speed>3000</Speed>
@@ -91,7 +92,7 @@
 
 		<Move>
 			<Speed>10.0</Speed>
-			<TurningRadius>1.0</TurningRadius>
+			<TurningRadius>0.8</TurningRadius>
 			
 			<Run>
 				<Speed>15.0</Speed>

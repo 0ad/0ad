@@ -22,7 +22,7 @@
 		</Health>		
 
 		<Loot>
-			<Xp>800</Xp>
+			<Xp>400</Xp>
 			<Food>1</Food>
 			<Wood>1</Wood>
 			<Stone>1</Stone>
@@ -46,6 +46,7 @@
 				<StructCiv>
 					<Civil_Centre />
 					<Farmstead />
+					<Field />
 					<House />
 					<Market />
 					<Mill />
@@ -73,12 +74,12 @@
 					<Fish>10</Fish>
 					<Milk>10</Milk>
 				</Food>
-				<Wood>10</Wood>
-				<Stone>10</Stone>
-				<Metal>10</Metal>
+				<Wood>18</Wood>
+				<Stone>18</Stone>
+				<Metal>18</Metal>
 			</Resource>
 			<AffectedByAllure>true</AffectedByAllure>
- 			<Range>2.0</Range>
+ 			<Range>1.2</Range>
 			<Speed>3000</Speed>
  		</Gather>
 		

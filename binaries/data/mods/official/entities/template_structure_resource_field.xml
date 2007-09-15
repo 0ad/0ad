@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_resource"
->
+<Entity Parent="template_structure_resource">
+
 	<Traits>
 	
 		<Id>
@@ -13,33 +12,36 @@
 
 			<Icon_Cell>50</Icon_Cell>
 
-			<Classes>Village</Classes>
+			<Classes>Resource</Classes>
 
 			<Rollover>Assign an economic unit to a Field to harvest grain and generate Food.</Rollover>
+
+			<History>Farming originated around 9500 BC in India and the Middle East. The history of agriculture is a central element of human history, as agricultural progress has been a crucial factor in worldwide socio-economic change. Wealth-building and militaristic specializations rarely seen in hunter-gatherer cultures are commonplace in agricultural and agro-industrial societies—when farmers became capable of producing food beyond the needs of their own families, others in the tribe/nation/empire were freed to devote themselves to projects other than food acquisition.</History>
 		
 		</Id>
 
 		<Creation>
-			<Foundation>foundation_3x3</Foundation>
 			<BuildingLimitCategory>Field</BuildingLimitCategory>
 		</Creation>
+
+		<Armour>
+			<Hack>1.0</Hack>
+			<Pierce>1.0</Pierce>
+			<Crush>1.0</Crush>
+		</Armour>
+
+		<Health>
+			<Max>100</Max>
+		</Health>
 		
  		<Footprint>
  			<Width>12.0</Width>
- 			<Depth>12.0</Depth>
- 			<Height>8.0</Height>
+ 			<Depth>18.0</Depth>
+ 			<Height>5.0</Height>
  		</Footprint>
 
- 		<Garrison>
- 			<Max>1</Max>
-		</Garrison>
-
-		<Health>
- 			<Max>50</Max>
-		</Health>
-
 		<Supply>
-			<Max>200</Max>
+			<Max>1000</Max>
 			<Type>food</Type>
 			<SubType>grain</SubType>
 		</Supply>

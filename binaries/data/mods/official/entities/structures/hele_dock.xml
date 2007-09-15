@@ -19,4 +19,20 @@
 
 	<Actor>structures/hellenes/dock.xml</Actor>
 
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Ship_Bireme />
+					<Ship_Trireme />
+					<Ship_Merchant />
+				</Train>
+				<Research>
+					<Hele_Spearman_Armour_1 />
+					<Hele_Spearman_Speed_1 />
+				</Research>
+			</List>
+		</Create>
+	</Actions>
+
 </Entity>
