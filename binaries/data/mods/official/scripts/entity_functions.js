@@ -94,7 +94,6 @@ function entityInit( evt )
 	
 	// Some temp variables to speed up property access
 	var id = this.traits.id;
-	var supply = this.traits.supply;
 	var health = this.traits.health;
 	var stamina = this.traits.stamina;
 	
@@ -111,6 +110,14 @@ function entityInit( evt )
 		this.buildPoints.curr = 0.0;
 		this.buildPoints.max = parseFloat( building.traits.creation.time );
 		this.traits.creation.buildingLimitCategory = building.traits.creation.buildingLimitCategory;
+		if( building.traits.supply )
+		{
+			this.traits.supply = new Object();
+			this.traits.supply.max = building.traits.supply.max;
+			this.traits.supply.curr = building.traits.supply.max;
+			this.traits.supply.type = building.traits.supply.type;
+			this.traits.supply.subType = building.traits.supply.subType;
+		}
 	}
 	
 	// Generate civ code (1st four characters of civ name, in lower case eg "Carthaginians" => "cart").
@@ -141,6 +148,7 @@ function entityInit( evt )
     stopXTimer(2);
     startXTimer(3);
 
+	var supply = this.traits.supply;
 	if( supply )
 	{
 		// If entity has supply, set current to same.
@@ -777,10 +785,11 @@ function performBuild( evt )
 		//t.placeBuildingFootprint(false);  //false means display regular footprint, not rubble
 	}
 	bp.curr += points;
-	hp.curr = Math.min( hp.max, hp.curr + (points/bp.max)*hp.max );
 	
+	hp.curr += ( points / bp.max ) * hp.max;
+	if( hp.curr >= hp.max )
+		hp.curr = hp.max;
 	
-
 	if( bp.curr >= bp.max )
 	{
 		// We've finished building this object; convert the foundation to a building
