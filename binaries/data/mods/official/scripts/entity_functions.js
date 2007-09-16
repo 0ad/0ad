@@ -1090,6 +1090,13 @@ function entityEventTargetExhausted( evt )
 	}
 	else if( evt.action == ACTION_BUILD )
 	{
+		// If the target was gatherable, try to gather it.
+		if( canGather(this, evt.target) )
+		{
+			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER );
+			return;
+		}
+		
 		// Look for other stuff to build
 		var visible = this.getVisibleEntities();
 		var bestDist = 1e20;
@@ -1110,10 +1117,12 @@ function entityEventTargetExhausted( evt )
 		if( bestTarget != null )
 		{
 			this.order( ORDER_GENERIC, bestTarget, ACTION_BUILD );
+			return;
 		}
-		else if( evt.target.hasClass("Village") )
+		
+		// Nothing to build, but try to gather any resource around us if this was a village object.
+		if( evt.target.hasClass("Village") )
 		{
-			// Nothing to build, but try to gather any resource around us
 			this.chooseGatherTarget( null, evt.target.getVisibleEntities() );
 		}
 	}

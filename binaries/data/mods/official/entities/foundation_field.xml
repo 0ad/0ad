@@ -4,14 +4,14 @@
 	<Traits>
 	
 		<Id>
-			<Generic>Foundation 6x6</Generic>
+			<Generic>Foundation Field</Generic>
 
 			<Classes>Foundation</Classes>
 		</Id>
 	
 		<Footprint>
-			<Width>28.0</Width>
-			<Depth>28.0</Depth>
+			<Width>10.0</Width>
+			<Depth>10.0</Depth>
 			<Height>8.0</Height>
 		</Footprint>
 
@@ -20,7 +20,7 @@
 		</Vision>
 	
 	</Traits>
-		
-	<Actor>structures/plot_field_fallow.xml</Actor>
+	
+	<Actor>structures/plot_field_found.xml</Actor>
 
 </Entity>
