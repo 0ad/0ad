@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_hero"
->
+<Entity Parent="template_unit_hero">
 	<Traits>
 	
 		<Id>
@@ -33,6 +31,9 @@
 			<Speed>8.5.0</Speed>
 			<TurningRadius>1.0</TurningRadius>
 		</Move>
+
+	</Actions>
+
 
 	<Actor>units/hellenes/demetrius.xml</Actor>
 
