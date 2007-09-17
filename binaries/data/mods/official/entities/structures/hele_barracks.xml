@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_military_barracks"
->
+<Entity Parent="template_structure_military_barracks">
 	<Traits>
 	
 		<Id>
@@ -11,7 +9,7 @@
 
 			<Civ>Hellenes</Civ>
 
-			<History>The Strategion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Strategoi.</History>
+			<History>The Strategion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
 		
 		</Id>
 
@@ -25,6 +23,7 @@
 				<Train>
 					<Infantry_Spearman_B />
 					<Infantry_Javelinist_B />
+					<Infantry_Archer_B />
 					<Cavalry_Swordsman_B />
 				</Train>
 				<Research>
