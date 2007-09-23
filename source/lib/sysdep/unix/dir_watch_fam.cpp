@@ -8,25 +8,6 @@
 #include "lib/sysdep/dir_watch.h"
 #include "ps/CLogger.h"
 
-#if !OS_LINUX
-
-LibError dir_add_watch(const char * const n_full_path, intptr_t* const watch)
-{
-  return INFO::OK;
-}
-
-LibError dir_cancel_watch(const intptr_t watch)
-{
-  return INFO::OK;
-}
-
-LibError dir_get_changed_file(char *)
-{
-  return ERR::AGAIN; // Say no files are available.
-}
-
-#else
-
 #include <fam.h>
 
 static FAMConnection fc;
@@ -138,4 +119,3 @@ LibError dir_get_changed_file(char* fn)
 	// just nothing new; try again later
 	return ERR::AGAIN;	// NOWARN
 }
-#endif

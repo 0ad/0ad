@@ -18,13 +18,14 @@
 # include "lib/sysdep/ia32/ia32.h"
 # include "lib/sysdep/ia32/ia32_memcpy.h"
 #endif
-#if OS_BSD
-# include "lib/sysdep/unix/bsd.h"
-#endif
-#if OS_UNIX
+
+#if OS_MACOSX
+# include "lib/sysdep/unix/ocpu.h"
+#elif OS_LINUX
+# include "lib/sysdep/unix/lcpu.h"
+#elif OS_UNIX
 # include "lib/sysdep/unix/ucpu.h"
-#endif
-#if OS_WIN
+#elif OS_WIN
 # include "lib/sysdep/win/wcpu.h"
 #endif
 
@@ -56,13 +57,14 @@ static void DetectClockFrequency()
 {
 #if OS_WIN
 	clockFrequency = wcpu_ClockFrequency();
+#endif
+
 	// success; we stick with this value because it either doesn't matter
 	// (WHRT isn't using the TSC), or cannot be determined more accurately
-	// (ia32 will use WHRT's TSC to measure its own frequency).
-	// bonus: the wcpu function is much faster than ia32's measurement loop.
+	// (ia32 will use WHRT's TSC to measure its own frequency). bonus: the
+	// OS-specific functions are much faster than ia32's measurement loop.
 	if(clockFrequency > 0.0)
 		return;
-#endif
 
 #if CPU_IA32
 	clockFrequency = ia32_ClockFrequency();	// authoritative, precise
@@ -241,8 +243,8 @@ LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 #if OS_WIN
 	return wcpu_CallByEachCPU(cb, param);
-#else
-	return ucpu_CallByEachCPU(cb, param);
+#elif OS_LINUX
+	return lcpu_CallByEachCPU(cb, param);
 #endif
 }
 
@@ -274,34 +276,23 @@ i64 cpu_i64FromDouble(double d)
 #endif
 }
 
-
-// System V derived (GNU/Linux, Solaris)
-#if defined(_SC_AVPHYS_PAGES)
-
-static int SysconfFromMemType(CpuMemoryIndicators mem_type)
+size_t cpu_PageSize()
 {
-	switch(mem_type)
-	{
-	case CPU_MEM_TOTAL:
-		return _SC_PHYS_PAGES;
-	case CPU_MEM_AVAILABLE:
-		return _SC_AVPHYS_PAGES;
-	}
-	UNREACHABLE;
-}
-
+#if OS_WIN
+	return wcpu_PageSize();
+#else
+	return ucpu_PageSize();
 #endif
+	
+}
 
 size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
 {
-	// quasi-POSIX
-#if defined(_SC_AVPHYS_PAGES)
-	const int sc_name = SysconfFromMemType(mem_type);
-	const size_t pageSize = sysconf(_SC_PAGESIZE);
-	const size_t memory_size = sysconf(sc_name) * pageSize;
-	return memory_size;
-	// BSD / Mac OS X
-#else
-	return bsd_MemorySize(mem_type);
+#if OS_LINUX
+	return lcpu_MemorySize(mem_type);
+#elif OS_MACOSX
+	return ocpu_MemorySize(mem_type);
+#elif OS_WIN
+	return wcpu_MemorySize(mem_type);
 #endif
 }

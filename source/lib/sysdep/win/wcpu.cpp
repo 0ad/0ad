@@ -19,6 +19,10 @@
 
 WINIT_REGISTER_EARLY_INIT(wcpu_Init);	// wcpu -> whrt
 
+
+//-----------------------------------------------------------------------------
+// NumProcessors
+
 static uint numProcessors = 0;
 
 /// get number of CPUs (can't fail)
@@ -35,6 +39,9 @@ static void DetectNumProcessors()
 	numProcessors = (uint)si.dwNumberOfProcessors;
 }
 
+
+//-----------------------------------------------------------------------------
+// ClockFrequency
 
 static double clockFrequency = -1.0;
 
@@ -61,6 +68,39 @@ static void DetectClockFrequency()
 	}
 	else
 		debug_assert(0);
+}
+
+
+//-----------------------------------------------------------------------------
+// MemorySize
+
+size_t wcpu_PageSize()
+{
+	SYSTEM_INFO si;
+	GetSystemInfo(&si);	// can't fail
+	return (size_t)si.dwPageSize;
+}
+
+size_t wcpu_MemorySize(CpuMemoryIndicators mem_type)
+{
+	// note: we no longer bother dynamically importing GlobalMemoryStatusEx -
+	// it's available on Win2k and above. this function safely handles
+	// systems with > 4 GB of memory.
+	MEMORYSTATUSEX mse = { sizeof(mse) };
+	BOOL ok = GlobalMemoryStatusEx(&mse);
+	WARN_IF_FALSE(ok);
+
+	// Richter, "Programming Applications for Windows": the reported
+	// value doesn't include non-paged pool reserved during boot;
+	// it's not considered available to kernel. (size is 528 KiB on
+	// a 512 MiB WinXP/Win2k machine)
+	// something similar may happen on other OSes, so it is fixed
+	// by cpu.cpp instead of here.
+
+	if(mem_type == CPU_MEM_TOTAL)
+		return (size_t)mse.ullTotalPhys;
+	else
+		return (size_t)mse.ullAvailPhys;
 }
 
 

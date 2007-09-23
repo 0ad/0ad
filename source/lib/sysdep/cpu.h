@@ -62,6 +62,8 @@ extern void cpu_Serialize();
 extern void cpu_MemoryFence();
 
 
+extern size_t cpu_PageSize();
+
 enum CpuMemoryIndicators
 {
 	CPU_MEM_TOTAL, CPU_MEM_AVAILABLE

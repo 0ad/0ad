@@ -27,19 +27,6 @@ ERROR_ASSOCIATE(ERR::TNODE_NOT_FOUND, "File/directory not found", ENOENT);
 ERROR_ASSOCIATE(ERR::TNODE_WRONG_TYPE, "Using a directory as file or vice versa", -1);
 
 
-// we add/cancel directory watches from the VFS mount code for convenience -
-// it iterates through all subdirectories anyway (*) and provides storage for
-// a key to identify the watch (obviates separate TDir -> watch mapping).
-//
-// define this to strip out that code - removes .watch from struct TDir,
-// and calls to res_watch_dir / res_cancel_watch.
-//
-// *: the add_watch code would need to iterate through subdirs and watch
-//    each one, because the monitor API (e.g. FAM) may only be able to
-//    watch single directories, instead of a whole subdirectory tree.
-//#define NO_DIR_WATCH
-
-
 // Mount  = location of a file in the tree.
 // TFile = all information about a file stored in the tree.
 // TDir  = container holding TFile-s representing a dir. in the tree.

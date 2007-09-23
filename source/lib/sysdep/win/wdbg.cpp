@@ -414,6 +414,8 @@ void debug_puts(const char* text)
 
 // inform the debugger of the current thread's description, which it then
 // displays instead of just the thread handle.
+//
+// see "Setting a Thread Name (Unmanaged)": http://msdn2.microsoft.com/en-us/library/xcb2z8hs(vs.71).aspx
 void wdbg_set_thread_name(const char* name)
 {
 	// we pass information to the debugger via a special exception it

@@ -5,6 +5,9 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/gfx.h"
 
+#include <mach-o/dyld.h>
+
+
 // "copy" text into the clipboard. replaces previous contents.
 LibError sys_clipboard_set(const wchar_t* text)
 {
@@ -49,4 +52,26 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
 	// TODO Implement
 	return ERR::NOT_IMPLEMENTED;
+}
+
+
+LibError sys_get_executable_name(char* n_path, size_t buf_size)
+{
+	static char name[PATH_MAX];
+	static bool init = false;
+	if ( !init )
+	{
+		init = true;
+		char temp[PATH_MAX];
+		u32 size = PATH_MAX;
+		if (_NSGetExecutablePath( temp, &size ))
+		{
+			return ERR::NO_SYS;
+		}
+		debug_printf("exe name before realpath: %s\n", temp);
+		realpath(temp, name);
+	}
+	strncpy(n_path, name, buf_size);
+	debug_printf("exe name: %s\n", name);
+	return INFO::OK;
 }

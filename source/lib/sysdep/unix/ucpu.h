@@ -6,6 +6,7 @@
 extern int ucpu_IsThrottlingPossible();
 extern int ucpu_NumPackages();
 extern double ucpu_ClockFrequency();
+extern size_t ucpu_PageSize();
 extern LibError ucpu_CallByEachCPU(CpuCallback cb, void* param);
 
 #endif	// #ifndef INCLUDED_UCPU

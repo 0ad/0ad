@@ -11,9 +11,6 @@
 #define GNU_SOURCE
 #include <dlfcn.h>
 
-#if OS_MACOSX
-#include <mach-o/dyld.h>
-#endif
 
 // these are basic POSIX-compatible backends for the sysdep.h functions.
 // Win32 has better versions which override these.
@@ -31,25 +28,6 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 
 LibError sys_get_executable_name(char* n_path, size_t buf_size)
 {
-#if OS_MACOSX
-	static char name[PATH_MAX];
-	static bool init = false;
-	if ( !init )
-	{
-		init = true;
-		char temp[PATH_MAX];
-		u32 size = PATH_MAX;
-		if (_NSGetExecutablePath( temp, &size ))
-		{
-			return ERR::NO_SYS;
-		}
-		debug_printf("exe name before realpath: %s\n", temp);
-		realpath(temp, name);
-	}
-	strncpy(n_path, name, buf_size);
-	debug_printf("exe name: %s\n", name);
-	return INFO::OK;
-#else
 	Dl_info dl_info;
 
 	memset(&dl_info, 0, sizeof(dl_info));
@@ -61,7 +39,6 @@ LibError sys_get_executable_name(char* n_path, size_t buf_size)
 
 	strncpy(n_path, dl_info.dli_fname, buf_size);
 	return INFO::OK;
-#endif
 }
 
 

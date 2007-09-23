@@ -1,7 +1,7 @@
-#include "precompiled.h"
+// note: the BFD stuff *could* be used on other platforms, if we saw the
+// need for it.
 
-// Only use BFD on linux (where it is supported)
-#if OS_LINUX
+#include "precompiled.h"
 
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
@@ -23,13 +23,9 @@
 #define bfd_get_section_size bfd_get_section_size_before_reloc
 #endif
 
-// This is a no-op. But we *could* use the BFD stuff on other platforms too, if
-// we saw the need for it
-#if OS_LINUX
 #define GNU_SOURCE
 #include <dlfcn.h>
 #include <execinfo.h>
-#endif
 
 // Hard-coded - yuck :P
 // These should only be used as fallbacks
@@ -378,5 +374,3 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 	
 	return INFO::OK;
 }
-
-#endif

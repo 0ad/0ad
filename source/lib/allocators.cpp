@@ -27,7 +27,7 @@
 // pool_create is therefore now safe to call before main().
 static size_t get_page_size()
 {
-	static const size_t page_size = sysconf(_SC_PAGE_SIZE);
+	static const size_t page_size = cpu_PageSize();
 	return page_size;
 }
 

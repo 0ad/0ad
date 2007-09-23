@@ -18,4 +18,7 @@ extern double wcpu_ClockFrequency();
 
 extern LibError wcpu_CallByEachCPU(CpuCallback cb, void* param);
 
+extern size_t wcpu_PageSize();
+extern size_t wcpu_MemorySize(CpuMemoryIndicators mem_type);
+
 #endif	// #ifndef INCLUDED_WCPU
