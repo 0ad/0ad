@@ -418,7 +418,7 @@ function setup_all_libs ()
 		"valgrind"
 	}
 	sysdep_dirs = {
-		linux = { "lib/sysdep/unix", "lib/sysdep/unix/x" },
+		linux = { "lib/sysdep/linux", "lib/sysdep/unix", "lib/sysdep/unix/x" },
 		-- note: RC file must be added to main_exe package.
 		-- note: don't add "lib/sysdep/win/aken.cpp" because that must be compiled with the DDK.
 		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix", "lib/sysdep/win/whrt" },
