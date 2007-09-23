@@ -10,7 +10,7 @@ CInput
 #include "lib/ogl.h"
 
 #include "lib/res/graphics/unifont.h"
-#include "lib/sysdep/sysdep.h"
+#include "lib/sysdep/clipboard.h"
 
 #include "ps/Hotkey.h"
 #include "ps/CLogger.h"

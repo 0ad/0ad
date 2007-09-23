@@ -24,7 +24,7 @@
 #endif
 
 #include "lib/ogl.h"
-#include "lib/sysdep/sysdep.h"	// sys_cursor_*
+#include "lib/sysdep/cursor.h"
 #include "lib/res/res.h"
 #include "ogl_tex.h"
 

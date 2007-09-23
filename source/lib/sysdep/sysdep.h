@@ -33,55 +33,6 @@ extern ErrorReaction sys_display_error(const wchar_t* text, uint flags);
 
 
 //
-// clipboard
-//
-
-// "copy" text into the clipboard. replaces previous contents.
-extern LibError sys_clipboard_set(const wchar_t* text);
-
-// allow "pasting" from clipboard. returns the current contents if they
-// can be represented as text, otherwise 0.
-// when it is no longer needed, the returned pointer must be freed via
-// sys_clipboard_free. (NB: not necessary if zero, but doesn't hurt)
-extern wchar_t* sys_clipboard_get(void);
-
-// frees memory used by <copy>, which must have been returned by
-// sys_clipboard_get. see note above.
-extern LibError sys_clipboard_free(wchar_t* copy);
-
-
-//
-// mouse cursor
-//
-
-// note: these do not warn on error; that is left to the caller.
-
-// creates a cursor from the given image.
-// w, h specify image dimensions [pixels]. limit is implementation-
-//   dependent; 32x32 is typical and safe.
-// bgra_img is the cursor image (BGRA format, bottom-up).
-//   it is no longer needed and can be freed after this call returns.
-// hotspot (hx,hy) is the offset from its upper-left corner to the
-//   position where mouse clicks are registered.
-// cursor is only valid when INFO::OK is returned; in that case, it must be
-//   sys_cursor_free-ed when no longer needed.
-extern LibError sys_cursor_create(uint w, uint h, void* bgra_img,
-	uint hx, uint hy, void** cursor);
-
-// create a fully transparent cursor (i.e. one that when passed to set hides
-// the system cursor)
-extern LibError sys_cursor_create_empty(void **cursor);
-
-// replaces the current system cursor with the one indicated. need only be
-// called once per cursor; pass 0 to restore the default.
-extern LibError sys_cursor_set(void* cursor);
-
-// destroys the indicated cursor and frees its resources. if it is
-// currently the system cursor, the default cursor is restored first.
-extern LibError sys_cursor_free(void* cursor);
-
-
-//
 // misc
 //
 
@@ -116,8 +67,6 @@ extern LibError sys_get_executable_name(char* n_path, size_t buf_size);
 // stores its full path in the given buffer, which must hold at least
 // PATH_MAX chars.
 extern LibError sys_pick_directory(char* n_path, size_t buf_size);
-
-
 
 
 // return the largest sector size [bytes] of any storage medium

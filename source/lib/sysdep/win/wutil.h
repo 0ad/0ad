@@ -133,4 +133,14 @@ extern void wutil_DisableWow64Redirection(void*& wasRedirectionEnabled);
 extern void wutil_RevertWow64Redirection(void* wasRedirectionEnabled);
 
 
+/**
+ * @return handle to the first window owned by the current process, or
+ * 0 if none exist (e.g. it hasn't yet created one).
+ *
+ * enumerates all top-level windows and stops if PID matches.
+ * once this function returns a non-NULL handle, it will always
+ * return that cached value.
+ **/
+extern HWND wutil_AppWindow();
+
 #endif	// #ifndef INCLUDED_WUTIL

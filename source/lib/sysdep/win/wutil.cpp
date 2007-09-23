@@ -425,6 +425,45 @@ void wutil_RevertWow64Redirection(void* wasRedirectionEnabled)
 
 
 //-----------------------------------------------------------------------------
+// find main window
+
+// this is required by the error dialog and clipboard code.
+// note that calling from wutil_Init won't work, because the app will not
+// have created its window by then.
+
+static HWND hAppWindow;
+
+static BOOL CALLBACK FindAppWindowByPid(HWND hWnd, LPARAM UNUSED(lParam))
+{
+	DWORD pid;
+	const DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
+	UNUSED2(tid);	// the function can't fail
+
+	if(pid == GetCurrentProcessId())
+	{
+		hAppWindow = hWnd;
+		return FALSE;	// done
+	}
+
+	return TRUE;	// keep calling
+}
+
+HWND wutil_AppWindow()
+{
+	if(!hAppWindow)
+	{
+		const DWORD ret = EnumWindows(FindAppWindowByPid, 0);
+		// the callback returns FALSE when it has found the window
+		// (so as not to waste time); EnumWindows then returns 0.
+		// we therefore cannot check for errors.
+		UNUSED2(ret);
+	}
+
+	return hAppWindow;
+}
+
+
+//-----------------------------------------------------------------------------
 
 static LibError wutil_Init()
 {

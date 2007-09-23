@@ -14,8 +14,10 @@
 #include "win.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
 
+#include "lib/sysdep/clipboard.h"
 #include "error_dialog.h"
 #include "wutil.h"
+
 
 
 #if MSC_VERSION
@@ -37,41 +39,6 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 //-----------------------------------------------------------------------------
 // "program error" dialog (triggered by debug_assert and exception)
 //-----------------------------------------------------------------------------
-
-// we need to know the app's main window for the error dialog, so that
-// it is modal and actually stops the app. if it keeps running while
-// we're reporting an error, it'll probably crash and take down the
-// error window before it is seen (since we're in the same process).
-
-static BOOL CALLBACK is_this_our_window(HWND hWnd, LPARAM lParam)
-{
-	DWORD pid;
-	DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
-	UNUSED2(tid);	// the function can't fail
-
-	if(pid == GetCurrentProcessId())
-	{
-		*(HWND*)lParam = hWnd;
-		return FALSE;	// done
-	}
-
-	return TRUE;	// keep calling
-}
-
-// try to determine the app's main window by enumerating all
-// top-level windows and comparing their PIDs.
-// returns 0 if not found, e.g. if the app doesn't have one yet.
-static HWND get_app_main_window()
-{
-	HWND our_window = 0;
-	DWORD ret = EnumWindows(is_this_our_window, (LPARAM)&our_window);
-	UNUSED2(ret);
-	// the callback returns FALSE when it has found the window
-	// (so as not to waste time); EnumWindows then returns 0.
-	// therefore, we can't check this; just return our_window.
-	return our_window;
-}
-
 
 // support for resizing the dialog / its controls
 // (have to do this manually - grr)
@@ -289,9 +256,10 @@ ErrorReaction sys_display_error(const wchar_t* text, uint flags)
 	LPCSTR lpTemplateName = MAKEINTRESOURCE(IDD_DIALOG1);
 	const DialogParams params = { text, flags };
 	// get the enclosing app's window handle. we can't just pass 0 or
-	// the desktop window because the dialog must be modal (the app
-	// must not crash/continue to run before it has been displayed).
-	const HWND hWndParent = get_app_main_window();
+	// the desktop window because the dialog must be modal (if the app
+	// continues running, it may crash and take down the process before
+	// we've managed to show the dialog).
+	const HWND hWndParent = wutil_AppWindow();
 
 	INT_PTR ret = DialogBoxParam(hInstance, lpTemplateName, hWndParent, error_dialog_proc, (LPARAM)&params);
 
@@ -305,204 +273,6 @@ ErrorReaction sys_display_error(const wchar_t* text, uint flags)
 		return ER_CONTINUE;
 	}
 	return (ErrorReaction)ret;
-}
-
-
-//-----------------------------------------------------------------------------
-// clipboard
-//-----------------------------------------------------------------------------
-
-// "copy" text into the clipboard. replaces previous contents.
-LibError sys_clipboard_set(const wchar_t* text)
-{
-	const HWND new_owner = 0;
-	// MSDN: passing 0 requests the current task be granted ownership;
-	// there's no need to pass our window handle.
-	if(!OpenClipboard(new_owner))
-		WARN_RETURN(ERR::FAIL);
-	EmptyClipboard();
-
-	LibError err  = ERR::FAIL;
-
-	{
-	const size_t len = wcslen(text);
-	HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, (len+1) * sizeof(wchar_t));
-	if(!hMem)
-	{
-		err  = ERR::NO_MEM;
-		goto fail;
-	}
-
-	wchar_t* copy = (wchar_t*)GlobalLock(hMem);
-	if(copy)
-	{
-		wcscpy(copy, text);
-
-		GlobalUnlock(hMem);
-
-		if(SetClipboardData(CF_UNICODETEXT, hMem) != 0)
-			err = INFO::OK;
-	}
-	}
-
-fail:
-	CloseClipboard();
-	return err;
-}
-
-
-// allow "pasting" from clipboard. returns the current contents if they
-// can be represented as text, otherwise 0.
-// when it is no longer needed, the returned pointer must be freed via
-// sys_clipboard_free. (NB: not necessary if zero, but doesn't hurt)
-wchar_t* sys_clipboard_get()
-{
-	wchar_t* ret = 0;
-
-	const HWND new_owner = 0;
-	// MSDN: passing 0 requests the current task be granted ownership;
-	// there's no need to pass our window handle.
-	if(!OpenClipboard(new_owner))
-		return 0;
-
-	// Windows NT/2000+ auto convert UNICODETEXT <-> TEXT
-	HGLOBAL hMem = GetClipboardData(CF_UNICODETEXT);
-	if(hMem != 0)
-	{
-		wchar_t* text = (wchar_t*)GlobalLock(hMem);
-		if(text)
-		{
-			SIZE_T size = GlobalSize(hMem);
-			wchar_t* copy = (wchar_t*)malloc(size);	// unavoidable
-			if(copy)
-			{
-				wcscpy(copy, text);
-				ret = copy;
-			}
-
-			GlobalUnlock(hMem);
-		}
-	}
-
-	CloseClipboard();
-
-	return ret;
-}
-
-
-// frees memory used by <copy>, which must have been returned by
-// sys_clipboard_get. see note above.
-LibError sys_clipboard_free(wchar_t* copy)
-{
-	free(copy);
-	return INFO::OK;
-}
-
-
-//-----------------------------------------------------------------------------
-// mouse cursor
-//-----------------------------------------------------------------------------
-
-static void* ptr_from_HICON(HICON hIcon)
-{
-	return (void*)(uintptr_t)hIcon;
-}
-
-static void* ptr_from_HCURSOR(HCURSOR hCursor)
-{
-	return (void*)(uintptr_t)hCursor;
-}
-
-static HICON HICON_from_ptr(void* p)
-{
-	return (HICON)(uintptr_t)p;
-}
-
-static HCURSOR HCURSOR_from_ptr(void* p)
-{
-	return (HCURSOR)(uintptr_t)p;
-}
-
-
-// creates a cursor from the given image.
-// w, h specify image dimensions [pixels]. limit is implementation-
-//   dependent; 32x32 is typical and safe.
-// bgra_img is the cursor image (BGRA format, bottom-up).
-//   it is no longer needed and can be freed after this call returns.
-// hotspot (hx,hy) is the offset from its upper-left corner to the
-//   position where mouse clicks are registered.
-// cursor is only valid when INFO::OK is returned; in that case, it must be
-//   sys_cursor_free-ed when no longer needed.
-LibError sys_cursor_create(uint w, uint h, void* bgra_img,
-	uint hx, uint hy, void** cursor)
-{
-	// MSDN says selecting this HBITMAP into a DC is slower since we use
-	// CreateBitmap; bpp/format must be checked against those of the DC.
-	// this is the simplest way and we don't care about slight performance
-	// differences because this is typically only called once.
-	HBITMAP hbmColour = CreateBitmap(w, h, 1, 32, bgra_img);
-
-	// CreateIconIndirect doesn't access this; we just need to pass
-	// an empty bitmap.
-	HBITMAP hbmMask = CreateBitmap(w, h, 1, 1, 0);
-
-	// create the cursor (really an icon; they differ only in
-	// fIcon and the hotspot definitions).
-	ICONINFO ii;
-	ii.fIcon = FALSE;  // cursor
-	ii.xHotspot = hx;
-	ii.yHotspot = hy;
-	ii.hbmMask  = hbmMask;
-	ii.hbmColor = hbmColour;
-	HICON hIcon = CreateIconIndirect(&ii);
-
-	// CreateIconIndirect makes copies, so we no longer need these.
-	DeleteObject(hbmMask);
-	DeleteObject(hbmColour);
-
-	if(!hIcon)	// not INVALID_HANDLE_VALUE
-		WARN_RETURN(ERR::FAIL);
-
-	*cursor = ptr_from_HICON(hIcon);
-	return INFO::OK;
-}
-
-LibError sys_cursor_create_empty(void **cursor)
-{
-	u8 bgra_img[] = {0, 0, 0, 0};
-	return sys_cursor_create(1, 1, bgra_img, 0, 0, cursor);
-}
-
-// replaces the current system cursor with the one indicated. need only be
-// called once per cursor; pass 0 to restore the default.
-LibError sys_cursor_set(void* cursor)
-{
-	// restore default cursor.
-	if(!cursor)
-		cursor = ptr_from_HCURSOR(LoadCursor(0, MAKEINTRESOURCE(IDC_ARROW)));
-
-	(void)SetCursor(HCURSOR_from_ptr(cursor));
-	// return value (previous cursor) is useless.
-
-	return INFO::OK;
-}
-
-
-// destroys the indicated cursor and frees its resources. if it is
-// currently the system cursor, the default cursor is restored first.
-LibError sys_cursor_free(void* cursor)
-{
-	// bail now to prevent potential confusion below; there's nothing to do.
-	if(!cursor)
-		return INFO::OK;
-
-	// if the cursor being freed is active, restore the default arrow
-	// (just for safety).
-	if(ptr_from_HCURSOR(GetCursor()) == cursor)
-		WARN_ERR(sys_cursor_set(0));
-
-	BOOL ok = DestroyIcon(HICON_from_ptr(cursor));
-	return LibError_from_win32(ok);
 }
 
 
@@ -605,7 +375,3 @@ LibError sys_pick_directory(char* path, size_t buf_size)
 
 	return LibError_from_win32(ok);
 }
-
-
-
-

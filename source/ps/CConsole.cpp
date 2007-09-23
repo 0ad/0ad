@@ -14,7 +14,7 @@
 #include "lib/ogl.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/graphics/unifont.h"
-#include "lib/sysdep/sysdep.h"
+#include "lib/sysdep/clipboard.h"
 #include "maths/MathUtil.h"
 #include "network/Client.h"
 #include "network/Server.h"
