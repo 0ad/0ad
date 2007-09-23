@@ -15,15 +15,6 @@
 #include "lib/bits.h"
 
 
-uint cpu_NumProcessors()
-{
-	SYSTEM_INFO si;
-	GetSystemInfo(&si);	// can't fail
-	const uint numProcessors = (uint)si.dwNumberOfProcessors;
-	return numProcessors;
-}
-
-
 static LibError ReadFrequencyFromRegistry(DWORD* freqMhz)
 {
 	HKEY hKey;
@@ -32,7 +23,7 @@ static LibError ReadFrequencyFromRegistry(DWORD* freqMhz)
 
 	DWORD size = sizeof(*freqMhz);
 	LONG ret = RegQueryValueEx(hKey, "~MHz", 0, 0, (LPBYTE)freqMhz, &size);
-	
+
 	RegCloseKey(hKey);
 
 	if(ret != ERROR_SUCCESS)
@@ -49,6 +40,15 @@ double cpu_ClockFrequency()
 
 	const double clockFrequency = freqMhz * 1e6;
 	return clockFrequency;
+}
+
+
+uint cpu_NumProcessors()
+{
+	SYSTEM_INFO si;
+	GetSystemInfo(&si);	// can't fail
+	const uint numProcessors = (uint)si.dwNumberOfProcessors;
+	return numProcessors;
 }
 
 
@@ -90,16 +90,6 @@ size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
 }
 
 
-//-----------------------------------------------------------------------------
-
-// execute the specified function once on each CPU.
-// this includes logical HT units and proceeds serially (function
-// is never re-entered) in order of increasing OS CPU ID.
-// note: implemented by switching thread affinity masks and forcing
-// a reschedule, which is apparently not possible with POSIX.
-//
-// may fail if e.g. OS is preventing us from running on some CPUs.
-// called from ia32.cpp get_cpu_count.
 LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 	const HANDLE hProcess = GetCurrentProcess();

@@ -1,10 +1,32 @@
 #include "precompiled.h"
 
-#include "lcpu.h"
+#include "../cpu.h"
 
 #if OS_LINUX
 #include "valgrind.h"
 #endif
+
+
+double cpu_ClockFrequency()
+{
+	return -1; // don't know
+}
+
+
+uint cpu_NumProcessors()
+{
+	long res = sysconf(_SC_NPROCESSORS_CONF);
+	if (res == -1)
+		return 0;
+	else
+		return (uint)res;
+}
+
+
+size_t cpu_PageSize()
+{
+	return (size_t)sysconf(_SC_PAGESIZE);
+}
 
 
 static int SysconfFromMemType(CpuMemoryIndicators mem_type)
@@ -19,7 +41,7 @@ static int SysconfFromMemType(CpuMemoryIndicators mem_type)
 	UNREACHABLE;
 }
 
-size_t lcpu_MemorySize(CpuMemoryIndicators mem_type)
+size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
 {
 	const int sc_name = SysconfFromMemType(mem_type);
 	const size_t pageSize = sysconf(_SC_PAGESIZE);
@@ -28,7 +50,7 @@ size_t lcpu_MemorySize(CpuMemoryIndicators mem_type)
 }
 
 
-LibError lcpu_CallByEachCPU(CpuCallback cb, void* param)
+LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 	long ncpus = sysconf(_SC_NPROCESSORS_CONF);
 

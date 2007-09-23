@@ -1,8 +1,8 @@
 /* udbg.cpp
 
 This file contains debug helpers that are common for all unix systems. See
-udbg_bfd.cpp for the linux-specific stuff (Using BFD and backtrace() for symbol
-lookups and backtraces)
+linux/ldbg.cpp for the linux-specific stuff (Using BFD and backtrace() for
+symbol lookups and backtraces)
 */
 
 #include "precompiled.h"
