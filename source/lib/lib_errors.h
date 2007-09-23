@@ -247,18 +247,6 @@ extern void LibError_set_errno(LibError err);
 
 // if expression evaluates to a negative error code, warn user and
 // return the number.
-#if OS_WIN
-#define CHECK_ERR(expression)\
-STMT(\
-	i64 err64__ = (i64)(expression);\
-	if(err64__ < 0)\
-	{\
-		LibError err__ = (LibError)(err64__ & UINT_MAX);\
-		DEBUG_WARN_ERR(err__);\
-		return err__;\
-	}\
-)
-#else
 #define CHECK_ERR(expression)\
 STMT(\
 	i64 err64__ = (i64)(expression);\
@@ -269,7 +257,6 @@ STMT(\
 		return (LibError)(err__ & UINT_MAX);\
 	}\
 )
-#endif
 
 // just pass on errors without any kind of annoying warning
 // (useful for functions that can legitimately fail, e.g. vfs_exists).

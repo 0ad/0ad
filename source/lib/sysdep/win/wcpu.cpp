@@ -2,86 +2,66 @@
  * =========================================================================
  * File        : wcpu.cpp
  * Project     : 0 A.D.
- * Description : Windows backend for CPU related code
+ * Description : Windows implementation of sysdep/cpu
  * =========================================================================
  */
 
 // license: GPL; see lib/license.txt
 
 #include "precompiled.h"
-#include "wcpu.h"
+#include "../cpu.h"
 
-#include "lib/posix/posix_pthread.h"
-#include "lib/posix/posix_time.h"
 #include "win.h"
-#include "wutil.h"
-#include "winit.h"
-
-WINIT_REGISTER_EARLY_INIT(wcpu_Init);	// wcpu -> whrt
+#include "lib/bits.h"
 
 
-//-----------------------------------------------------------------------------
-// NumProcessors
-
-static uint numProcessors = 0;
-
-/// get number of CPUs (can't fail)
-uint wcpu_NumProcessors()
-{
-	debug_assert(numProcessors != 0);
-	return numProcessors;	
-}
-
-static void DetectNumProcessors()
+uint cpu_NumProcessors()
 {
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);	// can't fail
-	numProcessors = (uint)si.dwNumberOfProcessors;
+	const uint numProcessors = (uint)si.dwNumberOfProcessors;
+	return numProcessors;
 }
 
 
-//-----------------------------------------------------------------------------
-// ClockFrequency
-
-static double clockFrequency = -1.0;
-
-double wcpu_ClockFrequency()
+static LibError ReadFrequencyFromRegistry(DWORD* freqMhz)
 {
-	debug_assert(clockFrequency > 0.0);
+	HKEY hKey;
+	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS)
+		return ERR::NO_SYS;
+
+	DWORD size = sizeof(*freqMhz);
+	LONG ret = RegQueryValueEx(hKey, "~MHz", 0, 0, (LPBYTE)freqMhz, &size);
+	
+	RegCloseKey(hKey);
+
+	if(ret != ERROR_SUCCESS)
+		WARN_RETURN(ERR::FAIL);
+
+	return INFO::OK;
+}
+
+double cpu_ClockFrequency()
+{
+	DWORD freqMhz;
+	if(ReadFrequencyFromRegistry(&freqMhz) < 0)
+		return -1.0;
+
+	const double clockFrequency = freqMhz * 1e6;
 	return clockFrequency;
 }
 
-static void DetectClockFrequency()
-{
-	// read from registry
-	HKEY hKey;
-	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
-	{
-		DWORD freqMhz;
-		DWORD size = sizeof(freqMhz);
-		if(RegQueryValueEx(hKey, "~MHz", 0, 0, (LPBYTE)&freqMhz, &size) == STATUS_SUCCESS)
-			clockFrequency = freqMhz * 1e6;
-		else
-			debug_assert(0);
 
-		RegCloseKey(hKey);
-	}
-	else
-		debug_assert(0);
-}
-
-
-//-----------------------------------------------------------------------------
-// MemorySize
-
-size_t wcpu_PageSize()
+size_t cpu_PageSize()
 {
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);	// can't fail
-	return (size_t)si.dwPageSize;
+	const size_t pageSize = (size_t)si.dwPageSize;
+	return pageSize;
 }
 
-size_t wcpu_MemorySize(CpuMemoryIndicators mem_type)
+
+size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
 {
 	// note: we no longer bother dynamically importing GlobalMemoryStatusEx -
 	// it's available on Win2k and above. this function safely handles
@@ -90,17 +70,23 @@ size_t wcpu_MemorySize(CpuMemoryIndicators mem_type)
 	BOOL ok = GlobalMemoryStatusEx(&mse);
 	WARN_IF_FALSE(ok);
 
-	// Richter, "Programming Applications for Windows": the reported
-	// value doesn't include non-paged pool reserved during boot;
-	// it's not considered available to kernel. (size is 528 KiB on
-	// a 512 MiB WinXP/Win2k machine)
-	// something similar may happen on other OSes, so it is fixed
-	// by cpu.cpp instead of here.
-
 	if(mem_type == CPU_MEM_TOTAL)
-		return (size_t)mse.ullTotalPhys;
+	{
+		size_t memoryTotal = (size_t)mse.ullTotalPhys;
+
+		// Richter, "Programming Applications for Windows": the reported
+		// value doesn't include non-paged pool reserved during boot;
+		// it's not considered available to the kernel. (the amount is
+		// 528 KiB on a 512 MiB WinXP/Win2k machine). we'll round up
+		// to the nearest megabyte to fix this.
+		memoryTotal = round_up(memoryTotal, 1*MiB);
+		return memoryTotal;
+	}
 	else
-		return (size_t)mse.ullAvailPhys;
+	{
+		const size_t memoryAvailable = (size_t)mse.ullAvailPhys;
+		return memoryAvailable;
+	}
 }
 
 
@@ -114,7 +100,7 @@ size_t wcpu_MemorySize(CpuMemoryIndicators mem_type)
 //
 // may fail if e.g. OS is preventing us from running on some CPUs.
 // called from ia32.cpp get_cpu_count.
-LibError wcpu_CallByEachCPU(CpuCallback cb, void* param)
+LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 	const HANDLE hProcess = GetCurrentProcess();
 	DWORD process_affinity, system_affinity;
@@ -145,16 +131,6 @@ LibError wcpu_CallByEachCPU(CpuCallback cb, void* param)
 
 	// restore to original value
 	SetThreadAffinityMask(hProcess, process_affinity);
-
-	return INFO::OK;
-}
-
-//-----------------------------------------------------------------------------
-
-static LibError wcpu_Init()
-{
-	DetectNumProcessors();
-	DetectClockFrequency();
 
 	return INFO::OK;
 }

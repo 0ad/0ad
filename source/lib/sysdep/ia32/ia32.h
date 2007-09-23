@@ -16,13 +16,7 @@
 #endif
 
 #include "ia32_asm.h"
-#include "ia32_memcpy.h"
 
-/**
- * must be called before any of the following functions.
- **/
-extern void ia32_Init();
-extern void ia32_Shutdown();
 
 /**
  * CPU vendor.
@@ -82,38 +76,6 @@ enum IA32Cap
 extern bool ia32_cap(IA32Cap cap);
 
 
-// CPU detection
-
-/**
- * @return string identifying the CPU (usually a cleaned-up version of the
- * brand string)
- **/
-extern const char* ia32_IdentifierString();
-
-/**
- * @return the cached result of a precise measurement of the
- * CPU frequency.
- **/
-extern double ia32_ClockFrequency();
-
-/**
- * @return number of *enabled* CPU packages / sockets.
- **/
-extern uint ia32_NumPackages();
-
-/**
- * @return number of *enabled* CPU cores per package.
- * (2 on dual-core systems)
- **/
-extern uint ia32_CoresPerPackage();
-
-/**
- * @return number of *enabled* hyperthreading units per core.
- * (2 on P4 EE)
- **/
-extern uint ia32_LogicalPerCore();
-
-
 //-----------------------------------------------------------------------------
 // stateless
 
@@ -162,14 +124,6 @@ extern u64 ia32_rdtsc();	// only for CppDoc's benefit
  **/
 extern void ia32_DebugBreak(void);
 
-
-// implementations of the cpu.h interface
-
-/// see cpu_MemoryFence
-extern void ia32_MemoryFence();
-
-// see cpu_Serialize
-extern void ia32_Serialize();
 
 
 /// fpclassify return values

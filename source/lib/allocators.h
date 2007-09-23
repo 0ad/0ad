@@ -14,7 +14,7 @@
 #include <map>
 
 #include "lib/posix/posix_mman.h"	// PROT_*
-#include "lib/sysdep/cpu.h"	// CAS
+#include "lib/sysdep/cpu.h"	// cpu_CAS
 
 
 //
@@ -591,7 +591,7 @@ fail:
 
 	void shutdown()
 	{
-		if(!CAS(&initialized, 1, 2))
+		if(!cpu_CAS(&initialized, 1, 2))
 			return;	// never initialized or already shut down - abort
 		unlock();
 		cached_ptr->~T();	// call dtor (since we used placement new)
@@ -605,7 +605,7 @@ public:
 		// this could theoretically be done in the ctor, but we try to
 		// minimize non-trivial code at NLSO ctor time
 		// (avoids init order problems).
-		if(CAS(&initialized, 0, 1))
+		if(cpu_CAS(&initialized, 0, 1))
 			init();
 		debug_assert(initialized != 2 && "OverrunProtector: used after dtor called:");
 		unlock();

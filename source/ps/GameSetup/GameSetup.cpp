@@ -895,9 +895,9 @@ void EarlyInit()
 
 	lockfree_Init();
 
-	timer_Init();
+	cpu_ConfigureFloatingPoint();
 
-	cpu_Init();	// must come after timer_Init
+	timer_Init();
 
 	// Initialise the low-quality rand function
 	srand(time(NULL));

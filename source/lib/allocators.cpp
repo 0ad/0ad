@@ -13,7 +13,7 @@
 
 #include "lib/posix/posix_mman.h"	// PROT_* constants for da_set_prot
 #include "lib/posix/posix.h"		// sysconf
-#include "lib/sysdep/cpu.h"	// CAS
+#include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "byte_order.h"
 #include "bits.h"
 
@@ -577,7 +577,7 @@ void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
 	void* p;
 
 	// successfully reserved the single instance
-	if(CAS(in_use_flag, 0, 1))
+	if(cpu_CAS(in_use_flag, 0, 1))
 		p = storage;
 	// already in use (rare) - allocate from heap
 	else
@@ -602,7 +602,7 @@ void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
 
 	if(p == storage)
 	{
-		if(CAS(in_use_flag, 1, 0))
+		if(cpu_CAS(in_use_flag, 1, 0))
 		{
 			// ok, flag has been reset to 0
 		}

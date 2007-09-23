@@ -20,7 +20,7 @@
 #include "allocators.h"
 #include "fnv_hash.h"
 #include "lib/posix/posix_pthread.h"
-#include "lib/sysdep/cpu.h"	// CAS
+#include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/sysdep/sysdep.h"
 // some functions here are called from within mmgr; disable its hooks
 // so that our allocations don't cause infinite recursion.
@@ -224,7 +224,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 {
 	// avoid potential infinite loop if an error occurs here.
 	static uintptr_t in_progress;
-	if(!CAS(&in_progress, 0, 1))
+	if(!cpu_CAS(&in_progress, 0, 1))
 		return ERR::REENTERED;	// NOWARN
 
 	// note: we go through some gyrations here (strcpy+strcat) to avoid
@@ -676,13 +676,13 @@ ErrorReaction debug_display_error(const wchar_t* description,
 
 // strobe indicating expected_err is valid and the next error should be
 // compared against that / skipped if equal to it.
-// set/reset via CAS for thread-safety (hence uintptr_t).
+// set/reset via cpu_CAS for thread-safety (hence uintptr_t).
 static uintptr_t expected_err_valid;
 static LibError expected_err;
 
 void debug_skip_next_err(LibError err)
 {
-	if(CAS(&expected_err_valid, 0, 1))
+	if(cpu_CAS(&expected_err_valid, 0, 1))
 		expected_err = err;
 	else
 		debug_warn("internal error: concurrent attempt to skip assert/error");
@@ -693,8 +693,8 @@ static bool should_skip_this_error(LibError err)
 {
 	// (compare before resetting strobe - expected_err may change afterwards)
 	bool was_expected_err = (expected_err == err);
-	// (use CAS to ensure only one error is skipped)
-	if(CAS(&expected_err_valid, 1, 0))
+	// (use cpu_CAS to ensure only one error is skipped)
+	if(cpu_CAS(&expected_err_valid, 1, 0))
 	{
 		if(!was_expected_err)
 			debug_warn("anticipated error was not raised");

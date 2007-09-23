@@ -84,7 +84,7 @@ ICounter* CreateCounter(uint id)
 	// - using static_calloc isn't possible because we don't know the
 	//   size until after the alloc / placement new.
 
-	if(!CAS(&isCounterAllocated, 0, 1))
+	if(!cpu_CAS(&isCounterAllocated, 0, 1))
 		debug_warn("static counter memory is already in use!");
 
 	static const size_t memSize = 200;

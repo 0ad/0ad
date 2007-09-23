@@ -30,7 +30,7 @@ struct Anchor
 	uint tag   : 10;
 	uint state :  2;
 
-	// convert to uintptr_t for CAS
+	// convert to uintptr_t for cpu_CAS
 	operator uintptr_t() const
 	{
 		return *(uintptr_t*)this;
@@ -70,7 +70,7 @@ struct Active
 	{
 	}
 
-	// convert to uintptr_t for CAS
+	// convert to uintptr_t for cpu_CAS
 	operator uintptr_t() const
 	{
 		return *(uintptr_t*)this;
@@ -154,7 +154,7 @@ static Descriptor* DescAlloc()
 		if(desc)
 		{
 			Descriptor* next = desc->next;
-			if(CAS(&DescAvail, desc, next))
+			if(cpu_CAS(&DescAvail, desc, next))
 				break;
 		}
 		else
@@ -162,7 +162,7 @@ static Descriptor* DescAlloc()
 			desc = (Descriptor*)AllocNewSB(DESCSBSIZE);
 			// organize descriptors in a linked list
 			cpu_MemoryFence();
-			if(CAS(&DescAvail, 0, desc->next))
+			if(cpu_CAS(&DescAvail, 0, desc->next))
 				break;
 			FreeSB((u8*)desc);
 		}
@@ -179,7 +179,7 @@ static void DescRetire(Descriptor* desc)
 		desc->next = old_head;
 		cpu_MemoryFence();
 	}
-	while(!CAS(&DescAvail, old_head, desc));
+	while(!cpu_CAS(&DescAvail, old_head, desc));
 }
 
 static Descriptor* ListGetPartial(SizeClass* sc)
@@ -210,7 +210,7 @@ static Descriptor* HeapGetPartial(ProcHeap* heap)
 		if(!desc)
 			return ListGetPartial(heap->sc);
 	}
-	while(!CAS(&heap->partial, desc, 0));
+	while(!cpu_CAS(&heap->partial, desc, 0));
 	return desc;
 }
 
@@ -220,7 +220,7 @@ static void HeapPutPartial(Descriptor* desc)
 	Descriptor* prev;
 	do
 	prev = desc->heap->partial;
-	while(!CAS(&desc->heap->partial, prev, desc));
+	while(!cpu_CAS(&desc->heap->partial, prev, desc));
 	if(prev)
 		ListPutPartial(prev);
 }
@@ -230,7 +230,7 @@ static void UpdateActive(ProcHeap* heap, Descriptor* desc, uint more_credits)
 {
 	Active new_active = desc;
 	new_active.credits = more_credits-1;
-	if(CAS(&heap->active, 0, new_active))
+	if(cpu_CAS(&heap->active, 0, new_active))
 		return;
 
 	// someone installed another active sb
@@ -242,7 +242,7 @@ static void UpdateActive(ProcHeap* heap, Descriptor* desc, uint more_credits)
 		new_anchor.count += more_credits;
 		new_anchor.state = PARTIAL;
 	}
-	while(!CAS(&desc->anchor, old_anchor, new_anchor));
+	while(!cpu_CAS(&desc->anchor, old_anchor, new_anchor));
 	HeapPutPartial(desc);
 }
 
@@ -250,7 +250,7 @@ static void UpdateActive(ProcHeap* heap, Descriptor* desc, uint more_credits)
 
 static void RemoveEmptyDesc(ProcHeap* heap, Descriptor* desc)
 {
-	if(CAS(&heap->partial, desc, 0))
+	if(cpu_CAS(&heap->partial, desc, 0))
 		DescRetire(desc);
 	else
 		ListRemoveEmptyDesc(heap->sc);
@@ -274,7 +274,7 @@ static void* MallocFromActive(ProcHeap* heap)
 		else
 			new_active.credits--;
 	}
-	while(!CAS(&heap->active, old_active, new_active));
+	while(!cpu_CAS(&heap->active, old_active, new_active));
 
 	u8* p;
 
@@ -300,7 +300,7 @@ static void* MallocFromActive(ProcHeap* heap)
 			}
 		}
 	}
-	while(!CAS(&desc->anchor, old_anchor, new_anchor));
+	while(!cpu_CAS(&desc->anchor, old_anchor, new_anchor));
 	if(old_active.credits == 0 && old_anchor.count > 0)
 		UpdateActive(heap, desc, more_credits);
 
@@ -335,7 +335,7 @@ retry:
 		new_anchor.count -= more_credits+1;
 		new_anchor.state = (more_credits > 0)? ACTIVE : FULL;
 	}
-	while(!CAS(&desc->anchor, old_anchor, new_anchor));
+	while(!cpu_CAS(&desc->anchor, old_anchor, new_anchor));
 
 	u8* p;
 
@@ -347,7 +347,7 @@ retry:
 		new_anchor.avail = *(uint*)p;
 		new_anchor.tag++;
 	}
-	while(!CAS(&desc->anchor, old_anchor, new_anchor));
+	while(!cpu_CAS(&desc->anchor, old_anchor, new_anchor));
 
 	if(more_credits > 0)
 		UpdateActive(heap, desc, more_credits);
@@ -373,7 +373,7 @@ static void* MallocFromNewSB(ProcHeap* heap)
 	desc->anchor.count = (desc->maxcount-1)-(new_active.credits+1);
 	desc->anchor.state = ACTIVE;
 	cpu_MemoryFence();
-	if(!CAS(&heap->active, 0, new_active))
+	if(!cpu_CAS(&heap->active, 0, new_active))
 	{
 		FreeSB(desc->sb);
 		return 0;
@@ -453,7 +453,7 @@ void lf_free(void* p_)
 			new_anchor.count++;
 		cpu_MemoryFence();
 	}
-	while(!CAS(&desc->anchor, old_anchor, new_anchor));
+	while(!cpu_CAS(&desc->anchor, old_anchor, new_anchor));
 	if(new_anchor.state == EMPTY)
 	{
 		FreeSB(sb);

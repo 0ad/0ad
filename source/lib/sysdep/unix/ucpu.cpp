@@ -7,6 +7,16 @@ int ucpu_IsThrottlingPossible()
 	return -1; // don't know
 }
 
+
+uint cpu_NumProcessors()
+{
+	long res = sysconf(_SC_NPROCESSORS_CONF);
+	if (res == -1)
+		return 0;
+	else
+		return (uint)res;
+}
+
 int ucpu_NumPackages()
 {
 	long res = sysconf(_SC_NPROCESSORS_CONF);

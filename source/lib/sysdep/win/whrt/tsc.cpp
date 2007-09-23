@@ -11,8 +11,8 @@
 #include "precompiled.h"
 #include "tsc.h"
 
+#include "lib/sysdep/cpu.h"
 #include "lib/sysdep/win/win.h"
-#include "lib/sysdep/win/wcpu.h"
 #include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
 #include "lib/bits.h"
 
@@ -55,8 +55,6 @@ static bool IsThrottlingPossible()
 
 LibError CounterTSC::Activate()
 {
-	ia32_Init();
-
 	if(!ia32_cap(IA32_CAP_TSC))
 		return ERR::NO_SYS;		// NOWARN (CPU doesn't support RDTSC)
 
@@ -65,7 +63,6 @@ LibError CounterTSC::Activate()
 
 void CounterTSC::Shutdown()
 {
-	ia32_Shutdown();
 }
 
 bool CounterTSC::IsSafe() const
@@ -92,7 +89,7 @@ bool CounterTSC::IsSafe() const
 	// per-core counter state and the abovementioned race condition.
 	// however, we won't bother, since such platforms aren't yet widespread
 	// and would surely support the nice and safe HPET, anyway)
-	if(ia32_NumPackages() != 1 || ia32_CoresPerPackage() != 1)
+	if(cpu_NumPackages() != 1 || cpu_CoresPerPackage() != 1)
 		return false;
 
 	// recent CPU:
@@ -147,9 +144,9 @@ uint CounterTSC::CounterBits() const
 
 /**
  * initial measurement of the tick rate. not necessarily correct
- * (e.g. when using TSC: wcpu_ClockFrequency isn't exact).
+ * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
  **/
 double CounterTSC::NominalFrequency() const
 {
-	return wcpu_ClockFrequency();
+	return cpu_ClockFrequency();
 }

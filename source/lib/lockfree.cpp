@@ -107,7 +107,7 @@ struct TLS
 	TLS* next;
 
 	void* hp[NUM_HPS];
-	uintptr_t active;	// used as bool, but set by CAS
+	uintptr_t active;	// used as bool, but set by cpu_CAS
 
 	Node* retired_nodes[MAX_RETIRED];
 	size_t num_retired_nodes;
@@ -128,7 +128,7 @@ static void tls_retire(void* tls_)
 		tls->hp[i] = 0;
 
 	// successfully marked as unused (must only decrement once)
-	if(CAS(&tls->active, 1, 0))
+	if(cpu_CAS(&tls->active, 1, 0))
 	{
 		cpu_AtomicAdd(&active_threads, -1);
 		debug_assert(active_threads >= 0);
@@ -168,7 +168,7 @@ static TLS* tls_alloc()
 	// try to reuse a retired TLS slot
 	for(tls = tls_list; tls; tls = tls->next)
 		// .. succeeded in reactivating one.
-		if(CAS(&tls->active, 0, 1))
+		if(cpu_CAS(&tls->active, 0, 1))
 			goto have_tls;
 
 	// no unused slots available - allocate another
@@ -191,7 +191,7 @@ static TLS* tls_alloc()
 		old_tls_list = tls_list;
 		tls->next = old_tls_list;
 	}
-	while(!CAS(&tls_list, old_tls_list, tls));
+	while(!cpu_CAS(&tls_list, old_tls_list, tls));
 	}
 
 
@@ -457,7 +457,7 @@ retry:
 		if(is_marked_as_deleted(pos->next))
 		{
 			Node* next = without_mark(pos->next);
-			if(!CAS(pos->pprev, pos->cur, next))
+			if(!cpu_CAS(pos->pprev, pos->cur, next))
 				goto retry;
 
 			smr_retire_node(pos->cur);
@@ -523,7 +523,7 @@ retry:
 	// already in list - return it and leave <was_inserted> 'false'
 	if(list_lookup(list, key, pos))
 	{
-		// free in case we allocated below, but CAS failed;
+		// free in case we allocated below, but cpu_CAS failed;
 		// no-op if node == 0, i.e. it wasn't allocated.
 		node_free(node);
 
@@ -547,7 +547,7 @@ retry:
 	// - *pprev was removed (i.e. it's 'marked')
 	// - cur was retired (i.e. no longer reachable from *phead)
 	// - a new node was inserted immediately before cur
-	if(!CAS(pos->pprev, pos->cur, node))
+	if(!cpu_CAS(pos->pprev, pos->cur, node))
 		goto retry;
 	// else: successfully inserted; linearization point
 	if(was_inserted)
@@ -577,11 +577,11 @@ retry:
 	// - next was removed
 	// - cur was retired (i.e. no longer reachable from *phead)
 	// - a new node was inserted immediately after cur
-	if(!CAS(&pos->cur->next, pos->next, with_mark(pos->next)))
+	if(!cpu_CAS(&pos->cur->next, pos->next, with_mark(pos->next)))
 		goto retry;
 	// remove from list; if successful, this is the
 	// linearization point and *pprev isn't marked.
-	if(CAS(pos->pprev, pos->cur, pos->next))
+	if(cpu_CAS(pos->pprev, pos->cur, pos->next))
 		smr_retire_node(pos->cur);
 	// failed: another thread removed cur after it was marked above.
 	// call list_lookup to ensure # non-released nodes < # threads.

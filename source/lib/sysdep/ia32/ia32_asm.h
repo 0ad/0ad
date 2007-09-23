@@ -16,12 +16,6 @@ extern "C" {
 #endif
 
 /**
- * prepare ia32_asm_cpuid for use (detects which CPUID functions are
- * available). called by ia32_Init.
- **/
-extern void ia32_asm_cpuid_init();
-
-/**
  * order in which ia32_asm_cpuid stores register values
  **/
 enum IA32Regs
@@ -60,21 +54,7 @@ extern u64 ia32_asm_rdtsc_edx_eax(void);
 extern void ia32_asm_GetCurrentContext(void* pcontext);
 
 
-// implementations of the cpu.h interface
-
-/// see cpu_AtomicAdd
-extern void ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
-
-/// see cpu_CAS
-extern bool ia32_asm_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
-
-/// see cpu_i32FromFloat
-extern i32 ia32_asm_i32FromFloat(float f);
-extern i32 ia32_asm_i32FromDouble(double d);
-extern i64 ia32_asm_i64FromDouble(double d);
-
-
-// backends for POSIX/SUS functions
+// implementations of POSIX/SUS functions
 
 /// see fpclassify
 extern uint ia32_asm_fpclassifyd(double d);

@@ -421,9 +421,9 @@
 #endif
 
 
-// should we use our float->int code? it requires IA32 and inline asm;
-// new GCC with -ffast-math and VC8 can use SSE, so skip it there.
-#if CPU_IA32 && HAVE_MS_ASM && MSC_VERSION && MSC_VERSION < 1400
+// should we use our float->int code? newer GCC versions with -ffast-math and
+// VC8 can use SSE, so skip it there.
+#if CPU_IA32 && MSC_VERSION && MSC_VERSION < 1400
 # define USE_IA32_FLOAT_TO_INT 1
 #else
 # define USE_IA32_FLOAT_TO_INT 0

@@ -78,7 +78,7 @@ static LibError sym_init()
 	// bail if already initialized (there's nothing to do).
 	// don't use pthread_once because we need to return success/error code.
 	static uintptr_t already_initialized = 0;
-	if(!CAS(&already_initialized, 0, 1))
+	if(!cpu_CAS(&already_initialized, 0, 1))
 		return INFO::OK;
 
 	hProcess = GetCurrentProcess();
@@ -374,12 +374,18 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 
 	STACKFRAME64 sf;
 	memset(&sf, 0, sizeof(sf));
-	sf.AddrPC.Offset    = pcontext->PC_;
 	sf.AddrPC.Mode      = AddrModeFlat;
-	sf.AddrFrame.Offset = pcontext->FP_;
 	sf.AddrFrame.Mode   = AddrModeFlat;
-	sf.AddrStack.Offset = pcontext->SP_;
 	sf.AddrStack.Mode   = AddrModeFlat;
+#if CPU_AMD64
+	sf.AddrPC.Offset    = pcontext->Rip;
+	sf.AddrFrame.Offset = pcontext->Rbp;
+	sf.AddrStack.Offset = pcontext->Rsp;
+#else
+	sf.AddrPC.Offset    = pcontext->Eip;
+	sf.AddrFrame.Offset = pcontext->Ebp;
+	sf.AddrStack.Offset = pcontext->Esp;
+#endif
 
 	// for each stack frame found:
 	LibError ret  = ERR::SYM_NO_STACK_FRAMES_FOUND;
@@ -1855,7 +1861,7 @@ static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
 {
 	static uintptr_t already_in_progress;
-	if(!CAS(&already_in_progress, 0, 1))
+	if(!cpu_CAS(&already_in_progress, 0, 1))
 		return ERR::REENTERED;	// NOWARN
 	lock();
 

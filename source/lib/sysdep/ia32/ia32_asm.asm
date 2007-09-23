@@ -19,50 +19,28 @@
 
 [section .data]
 
-; these are actually max_func+1, i.e. the first invalid value.
-; the idea here is to avoid a separate cpuid_available flag;
-; using signed values doesn't work because ext_funcs are >= 0x80000000.
 max_func		dd	0
 max_ext_func	dd	0
 
 __SECT__
-
-
-; extern "C" void __cdecl ia32_asm_cpuid_init()
-global sym(ia32_asm_cpuid_init)
-sym(ia32_asm_cpuid_init):
-	push	ebx
-
-	; check if CPUID is supported
-	pushfd
-	or		byte [esp+2], 32
-	popfd
-	pushfd
-	pop		eax
-	xor		edx, edx
-	shr		eax, 22						; bit 21 toggled?
-	jnc		.no_cpuid
-
-	; determine max supported CPUID function
-	xor		eax, eax
-	cpuid
-	inc		eax							; (see max_func decl)
-	mov		[max_func], eax
-	mov		eax, 0x80000000
-	cpuid
-	inc		eax							; (see max_func decl)
-	mov		[max_ext_func], eax
-.no_cpuid:
-
-	pop		ebx
-	ret
-
 
 ; extern "C" bool __cdecl ia32_asm_cpuid(u32 func, u32* regs)
 global sym(ia32_asm_cpuid)
 sym(ia32_asm_cpuid):
 	push	ebx
 	push	edi
+
+	cmp		dword [max_func], 0
+	ja		.already_initialized
+
+	; determine max supported CPUID function
+	xor		eax, eax
+	cpuid
+	mov		[max_func], eax
+	mov		eax, 0x80000000
+	cpuid
+	mov		[max_ext_func], eax
+.already_initialized:
 
 	mov		edx, [esp+8+4+0]			; func
 	mov		edi, [esp+8+4+4]			; -> regs
@@ -75,7 +53,7 @@ sym(ia32_asm_cpuid):
 	mov		ebx, [max_func]
 .is_ext_func:
 	cmp		edx, ebx
-	jae		.ret						; (see max_func decl)
+	ja		.ret
 
 	; issue CPUID and store result registers in array
 	mov		eax, edx
@@ -102,9 +80,9 @@ sym(ia32_asm_cpuid):
 ; lock-free support routines
 ;-------------------------------------------------------------------------------
 
-; extern "C" void __cdecl ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
-global sym(ia32_asm_AtomicAdd)
-sym(ia32_asm_AtomicAdd):
+; extern "C" void __cdecl cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+global sym(cpu_AtomicAdd)
+sym(cpu_AtomicAdd):
 	mov		edx, [esp+4]				; location
 	mov		eax, [esp+8]				; increment
 db		0xf0							; LOCK prefix
@@ -113,10 +91,6 @@ db		0xf0							; LOCK prefix
 
 
 ; notes:
-; - this is called via CAS macro, which silently casts its inputs for
-;   convenience. mixing up the <expected> and <location> parameters would
-;   go unnoticed; we therefore perform a basic sanity check on <location> and
-;   raise a warning if it is invalid.
 ; - a 486 or later processor is required since we use CMPXCHG.
 ;   there's no feature flag we can check, and the ia32 code doesn't
 ;   bother detecting anything < Pentium, so this'll crash and burn if
@@ -125,13 +99,11 @@ db		0xf0							; LOCK prefix
 ; - nor do we bother skipping the LOCK prefix on single-processor systems.
 ;   the branch may be well-predicted, but difference in performance still
 ;   isn't expected to be enough to justify the effort.
-; extern "C" ; extern "C" bool __cdecl ia32_asm_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
-global sym(ia32_asm_CAS)
-sym(ia32_asm_CAS):
+; extern "C" bool __cdecl cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
+global sym(cpu_CAS)
+sym(cpu_CAS):
 	mov		edx, [esp+4]				; location
 	mov		eax, [esp+8]				; expected
-	cmp		edx, 0x10000				; valid location?
-	jb		.invalid_location			;   no - raise warning
 	mov		ecx, [esp+12]				; new_value
 db		0xf0							; LOCK prefix
 	cmpxchg	[edx], ecx
@@ -139,12 +111,12 @@ db		0xf0							; LOCK prefix
 	movzx	eax, al
 	ret
 
-; NOTE: nasm 0.98.39 doesn't support generating debug info for win32
-; output format. that means this code may be misattributed to other
-; functions, which makes tracking it down very difficult.
-; we therefore raise an "Invalid Opcode" exception, which is rather distinct.
-.invalid_location:
-	ud2
+
+; extern "C" bool __cdecl cpu_Serialize();
+global sym(cpu_Serialize)
+sym(cpu_Serialize):
+	cpuid
+	ret
 
 
 ;-------------------------------------------------------------------------------
@@ -203,7 +175,7 @@ sym(ia32_asm_fpclassifyf):
 	ret
 
 
-; extern "C" float __cdecl ia32_asm_rintf(float)
+; extern "C" float __cdecl cpu_rintf(float)
 global sym(ia32_asm_rintf)
 sym(ia32_asm_rintf):
 	fld		dword [esp+4]
@@ -241,9 +213,9 @@ sym(ia32_asm_fmaxf):
 	ret
 
 
-; extern "C" i32 __cdecl ia32_asm_i32FromFloat(float f)
-global sym(ia32_asm_i32FromFloat)
-sym(ia32_asm_i32FromFloat):
+; extern "C" i32 __cdecl cpu_i32FromFloat(float f)
+global sym(cpu_i32FromFloat)
+sym(cpu_i32FromFloat):
 	push		eax
 	fld			dword [esp+8]
 	fsub		dword [round_bias]
@@ -251,9 +223,9 @@ sym(ia32_asm_i32FromFloat):
 	pop			eax
 	ret
 
-; extern "C" i32 __cdecl ia32_asm_i32FromDouble(double d)
-global sym(ia32_asm_i32FromDouble)
-sym(ia32_asm_i32FromDouble):
+; extern "C" i32 __cdecl cpu_i32FromDouble(double d)
+global sym(cpu_i32FromDouble)
+sym(cpu_i32FromDouble):
 	push		eax
 	fld			qword [esp+8]
 	fsub		dword [round_bias]
@@ -261,9 +233,9 @@ sym(ia32_asm_i32FromDouble):
 	pop			eax
 	ret
 
-; extern "C" i64 __cdecl ia32_asm_i64FromDouble(double d)
-global sym(ia32_asm_i64FromDouble)
-sym(ia32_asm_i64FromDouble):
+; extern "C" i64 __cdecl cpu_i64FromDouble(double d)
+global sym(cpu_i64FromDouble)
+sym(cpu_i64FromDouble):
 	push		edx
 	push		eax
 	fld			qword [esp+12]

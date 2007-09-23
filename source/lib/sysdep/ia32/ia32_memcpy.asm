@@ -13,6 +13,13 @@
 ; microarchitectures; significantly outperforms VC7.1 memcpy and memcpy_amd.
 ; for details, see accompanying article.
 
+; this mask is applied to the transfer size and is intended to prevent
+; use of the MOVNTQ technique on CPUs lacking SSE. however, to avoid
+; the trouble of checking for CPU support (doing so at runtime would
+; add unnecessary overhead, and requiring an Init call first is risky),
+; we will allow all codepaths and thus assume Pentium 3 / Athlon or above.
+ia32_memcpy_size_mask	equ	0xFFFFFFFF
+
 ; if transfer size is at least this much,
 ; .. it's too big for L1. use non-temporal instructions.
 UC_THRESHOLD	equ	64*1024
@@ -289,11 +296,11 @@ align 16
 
 ;------------------------------------------------------------------------------
 
-; void* __declspec(naked) ia32_memcpy(void* dst, const void* src, size_t nbytes)
 ; drop-in replacement for libc memcpy() (returns dst)
-global sym(ia32_memcpy)
+; void* __declspec(naked) cpu_memcpy(void* dst, const void* src, size_t nbytes)
+global sym(cpu_memcpy)
 align 64
-sym(ia32_memcpy):
+sym(cpu_memcpy):
 	push	edi
 	push	esi
 
@@ -329,8 +336,7 @@ choose_larger_method:
 	; that use SSE are jumped to if size is greater than a threshold.
 	; we simply set the requested transfer size to 0 if the CPU doesn't
 	; support SSE so that those are never reached (done by masking with this).
-	extern sym(ia32_memcpy_size_mask)
-	mov		eax, [sym(ia32_memcpy_size_mask)]
+	mov		eax, ia32_memcpy_size_mask
 	and		ecx, byte ~IC_TINY_MAX
 	jz		ic_tiny						; < 64 bytes left (due to IC_ALIGN)
 	add		esi, ecx

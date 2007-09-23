@@ -11,21 +11,21 @@ public:
 	{
 		char N_path[PATH_MAX] = {0};
 		TS_ASSERT_OK(file_make_native_path("a/b/c", N_path));
-	#if OS_WIN
+#if OS_WIN
 		TS_ASSERT_STR_EQUALS(N_path, "a\\b\\c");
-	#else
+#else
 		TS_ASSERT_STR_EQUALS(N_path, "a/b/c");
-	#endif
+#endif
 
 		char P_path[PATH_MAX] = {0};
 		TS_ASSERT_OK(file_make_portable_path("a\\b\\c", P_path));
-	#if OS_WIN
+#if OS_WIN
 		TS_ASSERT_STR_EQUALS(P_path, "a/b/c");
-	#else
+#else
 		// sounds strange, but correct: on non-Windows, \\ didn't
 		// get recognized as separators and weren't converted.
 		TS_ASSERT_STR_EQUALS(P_path, "a\\b\\c");
-	#endif
+#endif
 
 	}
 

@@ -14,7 +14,7 @@
 #include <new>
 #include <process.h>
 
-#include "lib/sysdep/cpu.h"	// CAS
+#include "lib/sysdep/cpu.h"	// cpu_CAS
 
 #include "wposix_internal.h"
 #include "wtime.h"			// timespec
@@ -44,7 +44,7 @@ pthread_t pthread_self(void)
 
 int pthread_once(pthread_once_t* once, void (*init_routine)(void))
 {
-	if(CAS(once, 0, 1))
+	if(cpu_CAS(once, 0, 1))
 		init_routine();
 	return 0;
 }
@@ -121,7 +121,7 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	uint i;
 	for(i = 0; i < MAX_DTORS; i++)
 	{
-		if(CAS(&dtors[i].dtor, 0, dtor))
+		if(cpu_CAS((volatile uintptr_t*)&dtors[i].dtor, 0, (uintptr_t)dtor))
 			goto have_slot;
 	}
 

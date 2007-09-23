@@ -27,13 +27,13 @@ static Pool trace_pool;
 // call at before using trace_pool. no-op if called more than once.
 static inline void trace_init()
 {
-	if(CAS(&trace_initialized, 0, 1))
+	if(cpu_CAS(&trace_initialized, 0, 1))
 		(void)pool_create(&trace_pool, 4*MiB, sizeof(TraceEntry));
 }
 
 void trace_shutdown()
 {
-	if(CAS(&trace_initialized, 1, 0))
+	if(cpu_CAS(&trace_initialized, 1, 0))
 		(void)pool_destroy(&trace_pool);
 }
 

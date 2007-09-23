@@ -40,10 +40,10 @@ LibError sys_clipboard_set(const wchar_t* text)
 
 	CloseClipboard();
 
-	// note: SetClipboardData says hMem must not be freed until after
-	// CloseClipboard. however, GlobalFree still fails after the successful
-	// completion of both. to avoid memory leaks when one of the calls fails,
-	// we'll leave it in and just ignore the return value.
+	// note: MSDN's SetClipboardData documentation says hMem must not be
+	// freed until after CloseClipboard. however, GlobalFree still fails
+	// after the successful completion of both. we'll leave it in to avoid
+	// memory leaks, but ignore its return value.
 	(void)GlobalFree(hMem);
 
 	return ret;

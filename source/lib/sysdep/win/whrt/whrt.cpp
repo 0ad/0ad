@@ -13,9 +13,9 @@
 
 #include <process.h>	// _beginthreadex
 
+#include "lib/sysdep/cpu.h"
 #include "lib/sysdep/win/win.h"
 #include "lib/sysdep/win/winit.h"
-#include "lib/sysdep/win/wcpu.h"
 #include "lib/sysdep/acpi.h"
 #include "lib/adts.h"
 #include "lib/bits.h"
