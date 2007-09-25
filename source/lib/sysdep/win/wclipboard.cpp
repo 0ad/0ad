@@ -12,10 +12,10 @@ static LibError SetClipboardText(const wchar_t* text, HGLOBAL* hMem)
 	if(!*hMem)
 		WARN_RETURN(ERR::NO_MEM);
 
-	wchar_t* lockedMemory = (wchar_t*)GlobalLock(*hMem);
-	if(!lockedMemory)
+	wchar_t* lockedText = (wchar_t*)GlobalLock(*hMem);
+	if(!lockedText)
 		WARN_RETURN(ERR::NO_MEM);
-	SAFE_WCSCPY(lockedMemory, text);
+	SAFE_WCSCPY(lockedText, text);
 	GlobalUnlock(*hMem);
 
 	HANDLE hData = SetClipboardData(CF_UNICODETEXT, *hMem);
@@ -24,7 +24,6 @@ static LibError SetClipboardText(const wchar_t* text, HGLOBAL* hMem)
 
 	return INFO::OK;
 }
-
 
 // "copy" text into the clipboard. replaces previous contents.
 LibError sys_clipboard_set(const wchar_t* text)
@@ -50,49 +49,44 @@ LibError sys_clipboard_set(const wchar_t* text)
 }
 
 
+static wchar_t* CopyClipboardContents()
+{
+	// Windows NT/2000+ auto convert UNICODETEXT <-> TEXT
+	HGLOBAL hMem = GetClipboardData(CF_UNICODETEXT);
+	if(!hMem)
+		return 0;
+
+	wchar_t* lockedText = (wchar_t*)GlobalLock(hMem);
+	if(!lockedText)
+		return 0;
+
+	const SIZE_T size = GlobalSize(hMem);
+	wchar_t* text = new wchar_t[size+1];
+	SAFE_WCSCPY(text, lockedText);
+
+	GlobalUnlock(hMem);
+
+	return text;
+}
+
 // allow "pasting" from clipboard. returns the current contents if they
 // can be represented as text, otherwise 0.
 // when it is no longer needed, the returned pointer must be freed via
 // sys_clipboard_free. (NB: not necessary if zero, but doesn't hurt)
 wchar_t* sys_clipboard_get()
 {
-	wchar_t* ret = 0;
-
-	const HWND newOwner = 0;
-	// MSDN: passing 0 requests the current task be granted ownership;
-	// there's no need to pass our window handle.
-	if(!OpenClipboard(newOwner))
+	if(!OpenClipboard(wutil_AppWindow()))
 		return 0;
-
-	// Windows NT/2000+ auto convert UNICODETEXT <-> TEXT
-	HGLOBAL hMem = GetClipboardData(CF_UNICODETEXT);
-	if(hMem != 0)
-	{
-		wchar_t* text = (wchar_t*)GlobalLock(hMem);
-		if(text)
-		{
-			SIZE_T size = GlobalSize(hMem);
-			wchar_t* copy = (wchar_t*)malloc(size);	// unavoidable
-			if(copy)
-			{
-				wcscpy(copy, text);
-				ret = copy;
-			}
-
-			GlobalUnlock(hMem);
-		}
-	}
-
+	wchar_t* const ret = CopyClipboardContents();
 	CloseClipboard();
-
 	return ret;
 }
 
 
 // frees memory used by <copy>, which must have been returned by
 // sys_clipboard_get. see note above.
-LibError sys_clipboard_free(wchar_t* copy)
+LibError sys_clipboard_free(wchar_t* text)
 {
-	free(copy);
+	delete[] text;
 	return INFO::OK;
 }

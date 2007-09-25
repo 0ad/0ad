@@ -356,10 +356,10 @@ const int TEX_BASE_LEVEL_ONLY = -1;
  * @param level_w, level_h pixel dimensions (powers of 2, never 0)
  * @param level_data the level's texels
  * @param level_data_size [bytes]
- * @param ctx passed through from tex_util_foreach_mipmap.
+ * @param cbData passed through from tex_util_foreach_mipmap.
  **/
 typedef void (*MipmapCB)(uint level, uint level_w, uint level_h,
-	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT ctx);
+	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData);
 
 /**
  * for a series of mipmaps stored from base to highest, call back for
@@ -376,10 +376,10 @@ typedef void (*MipmapCB)(uint level, uint level_w, uint level_h,
  * this is used in S3TC images, where each level is actually stored in
  * 4x4 blocks. usually 1 to indicate levels are consecutive.
  * @param cb MipmapCB to call
- * @param ctx extra data to pass to cb
+ * @param cbData extra data to pass to cb
  **/
 extern void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* RESTRICT data,
-	int levels_to_skip, uint data_padding, MipmapCB cb, void* RESTRICT ctx);
+	int levels_to_skip, uint data_padding, MipmapCB cb, void* RESTRICT cbData);
 
 
 //

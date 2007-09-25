@@ -12,6 +12,7 @@
 #include "file_io.h"
 
 #include <deque>
+#include <boost/shared_ptr.hpp>
 
 #include "lib/posix/posix_aio.h"
 #include "lib/bits.h"
@@ -250,12 +251,12 @@ size_t file_sector_size;
 // note: don't abort if = 0: zip callback may not actually
 // output anything if passed very little data.
 LibError file_io_call_back(const u8* block, size_t size,
-	FileIOCB cb, uintptr_t ctx, size_t& bytes_processed)
+	FileIOCB cb, uintptr_t cbData, size_t& bytes_processed)
 {
 	if(cb)
 	{
 		stats_cb_start();
-		LibError ret = cb(ctx, block, size, &bytes_processed);
+		LibError ret = cb(cbData, block, size, &bytes_processed);
 		stats_cb_finish();
 
 		// failed - reset byte count in case callback didn't
@@ -316,7 +317,7 @@ class IOManager
 	bool no_aio;
 
 	FileIOCB cb;
-	uintptr_t cb_ctx;
+	uintptr_t cbData;
 
 	off_t start_ofs;
 	FileIOBuf* pbuf;
@@ -377,31 +378,21 @@ class IOManager
 
 		// emulate temp buffers - we take care of allocating and freeing.
 		u8* dst;
-		u8* dst_mem = 0;
+		boost::shared_ptr<u8> dstMem;
 		if(pbuf == FILE_BUF_TEMP)
 		{
-			dst_mem = (u8*)malloc(size);
-			if(!dst_mem)
-				WARN_RETURN(ERR::NO_MEM);
-			dst = dst_mem;
+			dstMem.reset((u8*)page_aligned_alloc(size), PageAlignedDeleter(size));
+			dst = dstMem.get();
 		}
 		else
 			dst = (u8*)*pbuf;	// WARNING: FileIOBuf is nominally const; if that's ever enforced, this may need to change.
 
-		ssize_t total_transferred;
-		if(is_write)
-			total_transferred = write(fd, dst, size);
-		else
-			total_transferred = read (fd, dst, size);
+		const ssize_t total_transferred = is_write? write(fd, dst, size) : read(fd, dst, size);
 		if(total_transferred < 0)
-		{
-			free(dst_mem);
 			return LibError_from_errno();
-		}
 
 		size_t total_processed;
-		LibError ret = file_io_call_back(dst, total_transferred, cb, cb_ctx, total_processed);
-		free(dst_mem);
+		LibError ret = file_io_call_back(dst, total_transferred, cb, cbData, total_processed);
 		RETURN_ERR(ret);
 		return (ssize_t)total_processed;
 	}
@@ -520,12 +511,12 @@ class IOManager
 		total_transferred += block_size;
 	}
 
-	void process(IOSlot& slot, u8* block, size_t block_size, FileIOCB cb, uintptr_t ctx)
+	void process(IOSlot& slot, u8* block, size_t block_size, FileIOCB cb, uintptr_t cbData)
 	{
 		if(err == INFO::CB_CONTINUE)
 		{
 			size_t bytes_processed;
-			err = file_io_call_back(block, block_size, cb, ctx, bytes_processed);
+			err = file_io_call_back(block, block_size, cb, cbData, bytes_processed);
 			if(err == INFO::CB_CONTINUE || err == INFO::OK)
 				total_processed += bytes_processed;
 			// else: processing failed.
@@ -565,7 +556,7 @@ again:
 				IOSlot& slot = queue.front();
 				u8* block; size_t block_size;
 				wait(slot, block, block_size);
-				process(slot, block, block_size, cb, cb_ctx);
+				process(slot, block, block_size, cb, cbData);
 				queue.pop_front();
 				goto again;
 			}
@@ -578,14 +569,14 @@ again:
 
 public:
 	IOManager(File* f_, off_t ofs_, size_t size_, FileIOBuf* pbuf_,
-		FileIOCB cb_, uintptr_t cb_ctx_)
+		FileIOCB cb_, uintptr_t cbData_)
 	{
 		f = f_;
 		is_write = (f->flags & FILE_WRITE ) != 0;
 		no_aio =   (f->flags & FILE_NO_AIO) != 0;
 
 		cb = cb_;
-		cb_ctx = cb_ctx_;
+		cbData = cbData_;
 
 		start_ofs = ofs_;
 		user_size = size_;
@@ -630,7 +621,7 @@ public:
 // transfer <size> bytes, starting at <ofs>, to/from the given file.
 // (read or write access was chosen at file-open time).
 //
-// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
+// if non-NULL, <cb> is called for each block transferred, passing <cbData>.
 // it returns how much data was actually transferred, or a negative error
 // code (in which case we abort the transfer and return that value).
 // the callback mechanism is useful for user progress notification or
@@ -639,14 +630,14 @@ public:
 //
 // return number of bytes transferred (see above), or a negative error code.
 ssize_t file_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf,
-	FileIOCB cb, uintptr_t ctx) // optional
+	FileIOCB cb, uintptr_t cbData) // optional
 {
 	CHECK_FILE(f);
 
 	// note: do not update stats/trace here: this includes Zip IOs,
 	// which shouldn't be reported.
 
-	IOManager mgr(f, ofs, size, pbuf, cb, ctx);
+	IOManager mgr(f, ofs, size, pbuf, cb, cbData);
 	return mgr.run();
 }
 

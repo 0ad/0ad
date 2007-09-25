@@ -472,6 +472,8 @@ static LibError jpg_decode_impl(DynArray* da,
 	// mem data source.
 	(void)jpeg_finish_decompress(cinfo);
 
+	delete[] rows;
+
 	LibError ret = INFO::OK;
 	if(cinfo->err->num_warnings != 0)
 		ret = WARN::TEX_INVALID_DATA;
@@ -517,7 +519,6 @@ static LibError jpg_encode_impl(Tex* t,
 	u8* data = tex_get_data(t);
 	RETURN_ERR(tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN, rows));
 
-
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
 	JSAMPARRAY row = (JSAMPARRAY)rows;
@@ -532,6 +533,8 @@ static LibError jpg_encode_impl(Tex* t,
 	}
 
 	jpeg_finish_compress(cinfo);
+
+	delete[] rows;
 
 	LibError ret = INFO::OK;
 	if(cinfo->err->num_warnings != 0)

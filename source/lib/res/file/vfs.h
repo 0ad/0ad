@@ -384,7 +384,7 @@ extern LibError vfs_io_discard(Handle& hio);
 // transfer the next <size> bytes to/from the given file.
 // (read or write access was chosen at file-open time).
 //
-// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
+// if non-NULL, <cb> is called for each block transferred, passing <cbData>.
 // it returns how much data was actually transferred, or a negative error
 // code (in which case we abort the transfer and return that value).
 // the callback mechanism is useful for user progress notification or
@@ -401,7 +401,7 @@ extern LibError vfs_io_discard(Handle& hio);
 //   this is the preferred read method.
 //
 // return number of bytes transferred (see above), or a negative error code.
-extern ssize_t vfs_io(Handle hf, size_t size, FileIOBuf* p, FileIOCB cb = 0, uintptr_t ctx = 0);
+extern ssize_t vfs_io(Handle hf, size_t size, FileIOBuf* p, FileIOCB cb = 0, uintptr_t cbData = 0);
 
 
 // convenience functions that replace vfs_open / vfs_io / vfs_close:
@@ -411,7 +411,7 @@ extern ssize_t vfs_io(Handle hf, size_t size, FileIOBuf* p, FileIOCB cb = 0, uin
 // flags influences IO mode and is typically 0.
 // when the file contents are no longer needed, call file_buf_free(buf).
 extern LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
-uint flags = 0, FileIOCB cb = 0, uintptr_t cb_ctx = 0);
+uint flags = 0, FileIOCB cb = 0, uintptr_t cbData = 0);
 
 
 extern ssize_t vfs_store(const char* fn, const u8* p, size_t size, uint flags = 0);

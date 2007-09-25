@@ -127,7 +127,7 @@ void tex_codec_register_all()
 // bottom-up; the row array is inverted if necessary to match global
 // orienatation. (this is more efficient than "transforming" later)
 //
-// used by PNG and JPG codecs; caller must free() rows when done.
+// used by PNG and JPG codecs; caller must delete[] rows when done.
 //
 // note: we don't allocate the data param ourselves because this function is
 // needed for encoding, too (where data is already present).
@@ -136,9 +136,7 @@ LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 {
 	const bool flip = !tex_orientations_match(src_flags, dst_orientation);
 
-	rows = (RowArray)malloc(h * sizeof(RowPtr));
-	if(!rows)
-		WARN_RETURN(ERR::NO_MEM);
+	rows = new RowPtr[h];
 
 	// determine start position and direction
 	RowPtr pos        = flip? data+pitch*(h-1) : data;

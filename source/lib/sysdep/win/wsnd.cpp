@@ -103,7 +103,7 @@ static char directSoundDriverPath[MAX_PATH+1];
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
 static BOOL CALLBACK DirectSoundCallback(void* guid, const char* UNUSED(description),
-	const char* module, void* UNUSED(ctx))
+	const char* module, void* UNUSED(cbData))
 {
 	// skip first dummy entry (description == "Primary Sound Driver")
 	if(guid == NULL)

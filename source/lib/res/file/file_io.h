@@ -79,7 +79,7 @@ extern size_t file_sector_size;
 // for the entire IO. we do not split into fake blocks because it is
 // advantageous (e.g. for decompressors) to have all data at once, if available
 // anyway.
-typedef LibError (*FileIOCB)(uintptr_t ctx, const u8* block, size_t size, size_t* bytes_processed);
+typedef LibError (*FileIOCB)(uintptr_t cbData, const u8* block, size_t size, size_t* bytes_processed);
 
 
 typedef const u8* FileIOBuf;
@@ -129,7 +129,7 @@ extern LibError file_buf_free(FileIOBuf buf, uint fb_flags = 0);
 // transfer <size> bytes, starting at <ofs>, to/from the given file.
 // (read or write access was chosen at file-open time).
 //
-// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
+// if non-NULL, <cb> is called for each block transferred, passing <cbData>.
 // it returns how much data was actually transferred, or a negative error
 // code (in which case we abort the transfer and return that value).
 // the callback mechanism is useful for user progress notification or
@@ -137,10 +137,10 @@ extern LibError file_buf_free(FileIOBuf buf, uint fb_flags = 0);
 // (quasi-parallel, without the complexity of threads).
 //
 // return number of bytes transferred (see above), or a negative error code.
-extern ssize_t file_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb = 0, uintptr_t ctx = 0);
+extern ssize_t file_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb = 0, uintptr_t cbData = 0);
 
 extern ssize_t file_read_from_cache(const char* atom_fn, off_t ofs, size_t size,
-	FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx);
+	FileIOBuf* pbuf, FileIOCB cb, uintptr_t cbData);
 
 
 extern LibError file_io_get_buf(FileIOBuf* pbuf, size_t size,

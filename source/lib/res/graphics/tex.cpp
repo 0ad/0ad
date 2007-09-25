@@ -110,7 +110,7 @@ LibError tex_validate_plain_format(uint bpp, uint flags)
 //-----------------------------------------------------------------------------
 
 void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* RESTRICT data,
-	int levels_to_skip, uint data_padding, MipmapCB cb, void* RESTRICT ctx)
+	int levels_to_skip, uint data_padding, MipmapCB cb, void* RESTRICT cbData)
 {
 	uint level_w = w, level_h = h;
 	const u8* level_data = data;
@@ -129,7 +129,7 @@ void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* RESTRICT data,
 		const size_t level_data_size = (size_t)(round_up(level_w, data_padding) * round_up(level_h, data_padding) * bpp/8);
 
 		if(level >= 0)
-			cb((uint)level, level_w, level_h, level_data, level_data_size, ctx);
+			cb((uint)level, level_w, level_h, level_data, level_data_size, cbData);
 
 		level_data += level_data_size;
 
@@ -165,9 +165,9 @@ struct CreateLevelData
 
 // uses 2x2 box filter
 static void create_level(uint level, uint level_w, uint level_h,
-	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT ctx)
+	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
-	CreateLevelData* cld = (CreateLevelData*)ctx;
+	CreateLevelData* cld = (CreateLevelData*)cbData;
 	const size_t src_w = cld->prev_level_w;
 	const size_t src_h = cld->prev_level_h;
 	const u8* src = cld->prev_level_data;
@@ -564,9 +564,9 @@ u8* tex_get_data(const Tex* t)
 
 
 static void add_level_size(uint UNUSED(level), uint UNUSED(level_w), uint UNUSED(level_h),
-	const u8* RESTRICT UNUSED(level_data), size_t level_data_size, void* RESTRICT ctx)
+	const u8* RESTRICT UNUSED(level_data), size_t level_data_size, void* RESTRICT cbData)
 {
-	size_t* ptotal_size = (size_t*)ctx;
+	size_t* ptotal_size = (size_t*)cbData;
 	*ptotal_size += level_data_size;
 }
 

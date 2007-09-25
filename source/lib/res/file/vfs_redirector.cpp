@@ -211,14 +211,14 @@ LibError xfile_io_validate(const FileIo* io)
 	return io->type->io_validate(io);
 }
 
-ssize_t xfile_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx)
+ssize_t xfile_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t cbData)
 {
 	CHECK_VTBL(f->type);
 	// notes:
 	// - for archive file: vfs_open makes sure it wasn't opened for writing
 	// - normal file: let file_io alloc the buffer if the caller didn't
 	//   (i.e. p = 0), because it knows about alignment / padding requirements
-	return f->type->io(f, ofs, size, pbuf, cb, ctx);
+	return f->type->io(f, ofs, size, pbuf, cb, cbData);
 }
 
 

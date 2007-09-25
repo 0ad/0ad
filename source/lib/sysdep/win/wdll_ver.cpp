@@ -27,7 +27,7 @@
 
 // helper function that does all the work; caller wraps it and takes care of
 // undoing various operations if we fail midway.
-static LibError get_ver_impl(const char* module_path, char* out_ver, size_t out_ver_len, void*& mem)
+static LibError get_ver_impl(const char* module_path, char* out_ver, size_t out_ver_len, u8*& mem)
 {
 #ifndef NDEBUG
 	// make sure the file exists (rules out that problem as a cause of
@@ -42,9 +42,7 @@ static LibError get_ver_impl(const char* module_path, char* out_ver, size_t out_
 	const DWORD ver_size = GetFileVersionInfoSize(module_path, &unused);
 	if(!ver_size)
 		WARN_RETURN(ERR::FAIL);
-	mem = malloc(ver_size);
-	if(!mem)
-		WARN_RETURN(ERR::NO_MEM);
+	mem = new u8[ver_size];
 
 	if(!GetFileVersionInfo(module_path, 0, ver_size, mem))
 		WARN_RETURN(ERR::FAIL);
@@ -76,9 +74,9 @@ static LibError get_ver(const char* module_path, char* out_ver, size_t out_ver_l
 		PVOID wasRedirectionEnabled;
 		wutil_DisableWow64Redirection(wasRedirectionEnabled);
 		{
-			void* mem = NULL;
+			u8* mem = 0;
 			ret = get_ver_impl(module_path, out_ver, out_ver_len, mem);
-			free(mem);
+			delete[] mem;
 		}
 		wutil_RevertWow64Redirection(wasRedirectionEnabled);
 	}

@@ -176,7 +176,7 @@ extern const char* path_extension(const char* fn);
  * followed by a slash in the original path).
  * rationale: a bool isn't as nice as a flag or enum, but vfs_tree already
  *   has TNodeType and we don't want to expose that or create a new one.
- * @param ctx: context parameter that was passed to path_foreach_component.
+ * @param cbData: context parameter that was passed to path_foreach_component.
  * @return LibError; INFO::CB_CONTINUE to continue operation normally;
  * anything else will cause path_foreach_component to abort immediately and
  * return that. no need to 'abort' (e.g. return INFO::OK) after a filename is
@@ -185,7 +185,7 @@ extern const char* path_extension(const char* fn);
 typedef LibError (*PathComponentCb)(const char* component, bool is_dir, uintptr_t cbData);
 
 /**
- * call <cb> with <ctx> for each component in <path>.
+ * call <cb> with <cbData> for each component in <path>.
  * @return LibError
  **/
 extern LibError path_foreach_component(const char* path, PathComponentCb cb, uintptr_t cbData);

@@ -293,7 +293,7 @@ const char* path_extension(const char* fn)
 }
 
 
-// call <cb> with <ctx> for each component in <path>.
+// call <cb> with <cbData> for each component in <path>.
 LibError path_foreach_component(const char* path_org, PathComponentCb cb, uintptr_t cbData)
 {
 	CHECK_PATH(path_org);

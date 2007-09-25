@@ -42,7 +42,7 @@ struct FileProvider_VTbl
 	LibError (*io_wait)(FileIo* io, u8*& p, size_t& size);
 	LibError (*io_discard)(FileIo* io);
 	LibError (*io_validate)(const FileIo* io);
-	ssize_t  (*io)(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx);
+	ssize_t  (*io)(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t cbData);
 
 	// file mapping
 	LibError (*map)(File* f, u8*& p, size_t& size);
@@ -64,7 +64,7 @@ extern int      xfile_io_has_completed(FileIo* io);
 extern LibError xfile_io_wait(FileIo* io, u8*& p, size_t& size);
 extern LibError xfile_io_discard(FileIo* io);
 extern LibError xfile_io_validate(const FileIo* io);
-extern ssize_t  xfile_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx);
+extern ssize_t  xfile_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t cbData);
 
 extern LibError xfile_map(File* f, u8*& p, size_t& size);
 extern LibError xfile_unmap(File* f);

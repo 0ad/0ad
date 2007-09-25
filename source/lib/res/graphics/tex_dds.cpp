@@ -220,9 +220,9 @@ struct S3tcDecompressInfo
 };
 
 static void s3tc_decompress_level(uint UNUSED(level), uint level_w, uint level_h,
-	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT ctx)
+	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
-	S3tcDecompressInfo* di = (S3tcDecompressInfo*)ctx;
+	S3tcDecompressInfo* di = (S3tcDecompressInfo*)cbData;
 	const uint dxt             = di->dxt;
 	const uint s3tc_block_size = di->s3tc_block_size;
 

@@ -77,7 +77,7 @@ uint fpclassifyf(float f)
 char* strdup(const char* str)
 {
 	const size_t num_chars = strlen(str);
-	char* dst = (char*)malloc((num_chars+1)*sizeof(char));
+	char* dst = (char*)malloc((num_chars+1)*sizeof(char));	// note: strdup is required to use malloc
 	if(!dst)
 		return 0;
 	SAFE_STRCPY(dst, str);
@@ -89,7 +89,7 @@ char* strdup(const char* str)
 wchar_t* wcsdup(const wchar_t* str)
 {
 	const size_t num_chars = wcslen(str);
-	wchar_t* dst = (wchar_t*)malloc((num_chars+1)*sizeof(wchar_t));
+	wchar_t* dst = (wchar_t*)malloc((num_chars+1)*sizeof(wchar_t));	// note: wcsdup is required to use malloc
 	if(!dst)
 		return 0;
 	SAFE_WCSCPY(dst, str);

@@ -106,6 +106,7 @@ static LibError png_decode_impl(DynArray* da,
 
 	png_read_image(png_ptr, (png_bytepp)rows);
 	png_read_end(png_ptr, info_ptr);
+	delete[] rows;
 
 	// success; make sure all data was consumed.
 	debug_assert(da->pos == da->cur_size);
@@ -162,6 +163,7 @@ static LibError png_encode_impl(Tex* t,
 
 	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);
+	delete[] rows;
 
 	return INFO::OK;
 }

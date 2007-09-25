@@ -275,12 +275,7 @@ static const char* symbol_string_build(void* symbol, const char* name, const cha
 
 	if(!string_buf)
 	{
-		string_buf = (char*)malloc(STRING_BUF_SIZE);
-		if(!string_buf)
-		{
-			WARN_ERR(ERR::NO_MEM);
-			return 0;
-		}
+		string_buf = new char[STRING_BUF_SIZE];
 		string_buf_pos = string_buf;
 	}
 

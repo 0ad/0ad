@@ -341,7 +341,7 @@ LibError vfs_close(Handle& hf)
 // transfer the next <size> bytes to/from the given file.
 // (read or write access was chosen at file-open time).
 //
-// if non-NULL, <cb> is called for each block transferred, passing <ctx>.
+// if non-NULL, <cb> is called for each block transferred, passing <cbData>.
 // it returns how much data was actually transferred, or a negative error
 // code (in which case we abort the transfer and return that value).
 // the callback mechanism is useful for user progress notification or
@@ -359,7 +359,7 @@ LibError vfs_close(Handle& hf)
 //
 // return number of bytes transferred (see above), or a negative error code.
 ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
-	FileIOCB cb, uintptr_t cb_ctx)
+	FileIOCB cb, uintptr_t cbData)
 {
 	debug_printf("VFS| io: size=%d\n", size);
 
@@ -372,7 +372,7 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 	off_t ofs = vf->ofs;
 	vf->ofs += (off_t)size;
 
-	ssize_t nbytes = xfile_io(&vf->f, ofs, size, pbuf, cb, cb_ctx);
+	ssize_t nbytes = xfile_io(&vf->f, ofs, size, pbuf, cb, cbData);
 	RETURN_ERR(nbytes);
 	return nbytes;
 }
@@ -383,7 +383,7 @@ ssize_t vfs_io(const Handle hf, const size_t size, FileIOBuf* pbuf,
 // flags influences IO mode and is typically 0.
 // when the file contents are no longer needed, call file_buf_free(buf).
 LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
-	uint file_flags, FileIOCB cb, uintptr_t cb_ctx)	// all default 0
+	uint file_flags, FileIOCB cb, uintptr_t cbData)	// all default 0
 {
 	debug_printf("VFS| load: V_fn=%s\n", V_fn);
 
@@ -400,7 +400,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 		trace_notify_io(atom_fn, size, file_flags);
 
 		size_t actual_size;
-		LibError ret = file_io_call_back(buf, size, cb, cb_ctx, actual_size);
+		LibError ret = file_io_call_back(buf, size, cb, cbData, actual_size);
 		if(ret < 0)
 			file_buf_free(buf);
 		// we don't care if the cb has "had enough" or whether it would
@@ -420,7 +420,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 	size = vf->f.size;
 
 	buf = FILE_BUF_ALLOC;
-	ssize_t nread = vfs_io(hf, size, &buf, cb, cb_ctx);
+	ssize_t nread = vfs_io(hf, size, &buf, cb, cbData);
 	// IO failed
 	if(nread < 0)
 	{

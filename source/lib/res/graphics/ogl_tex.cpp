@@ -757,17 +757,17 @@ struct UploadParams
 };
 
 static void upload_level(uint level, uint level_w, uint level_h,
-	const u8* RESTRICT level_data, size_t UNUSED(level_data_size), void* RESTRICT ctx)
+	const u8* RESTRICT level_data, size_t UNUSED(level_data_size), void* RESTRICT cbData)
 {
-	const UploadParams* up = (const UploadParams*)ctx;
+	const UploadParams* up = (const UploadParams*)cbData;
 	glTexImage2D(GL_TEXTURE_2D, level, up->int_fmt, level_w, level_h, 0,
 		up->fmt, GL_UNSIGNED_BYTE, level_data);
 }
 
 static void upload_compressed_level(uint level, uint level_w, uint level_h,
-	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT ctx)
+	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
-	const UploadParams* up = (const UploadParams*)ctx;
+	const UploadParams* up = (const UploadParams*)cbData;
 	pglCompressedTexImage2DARB(GL_TEXTURE_2D, level, up->fmt,
 		(GLsizei)level_w, (GLsizei)level_h, 0, (GLsizei)level_data_size, level_data);
 }

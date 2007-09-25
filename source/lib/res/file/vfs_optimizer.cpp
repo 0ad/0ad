@@ -653,9 +653,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 		return INFO::SKIPPED;
 
 #if AB_COUNT_LOOSE_FILES
-	Filenames V_fns = (Filenames)malloc((loose_files.size()+1) * sizeof(const char*));
-	if(!V_fns)
-		WARN_RETURN(ERR::NO_MEM);
+	Filenames V_fns = new const char*[loose_files.size()+1];
 	std::copy(loose_files.begin(), loose_files.end(), &V_fns[0]);
 	V_fns[loose_files.size()] = 0;	// terminator
 
@@ -666,6 +664,7 @@ static LibError build_mini_archive(const char* mini_archive_fn_fmt)
 	next_numbered_filename(mini_archive_fn_fmt, &nfi, mini_archive_fn, use_vfs);
 
 	RETURN_ERR(archive_build(mini_archive_fn, V_fns));
+	delete[] V_fns;
 	return INFO::OK;
 #else
 	return ERR::NOT_IMPLEMENTED;

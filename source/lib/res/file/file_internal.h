@@ -49,7 +49,7 @@ const size_t FILE_BLOCK_SIZE = 32*KiB;
 // note: don't abort if = 0: zip callback may not actually
 // output anything if passed very little data.
 extern LibError file_io_call_back(const u8* block, size_t size,
-	FileIOCB cb, uintptr_t ctx, size_t& bytes_processed);
+	FileIOCB cb, uintptr_t cbData, size_t& bytes_processed);
 
 
 // retrieve the next (order is unspecified) dir entry matching <filter>.

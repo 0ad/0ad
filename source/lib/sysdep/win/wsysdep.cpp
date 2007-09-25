@@ -169,16 +169,13 @@ static INT_PTR CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wP
 		{
 		case IDC_COPY:
 			{
-				// (allocating on the stack would be easier+safer, but this is
-				// too big.)
+				// note: allocating on the stack would be easier+safer,
+				// but this is too big.
 				const size_t max_chars = 128*KiB;
-				wchar_t* buf = (wchar_t*)malloc(max_chars*sizeof(wchar_t));
-				if(buf)
-				{
-					GetDlgItemTextW(hDlg, IDC_EDIT1, buf, max_chars);
-					sys_clipboard_set(buf);
-					free(buf);
-				}
+				wchar_t* buf = new wchar_t[max_chars];
+				GetDlgItemTextW(hDlg, IDC_EDIT1, buf, max_chars);
+				sys_clipboard_set(buf);
+				delete[] buf;
 				return 0;
 			}
 

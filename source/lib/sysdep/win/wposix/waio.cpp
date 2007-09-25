@@ -11,7 +11,6 @@
 #include "precompiled.h"
 #include "waio.h"
 
-#include <malloc.h>         // _aligned_malloc
 #include "crt_posix.h"      // correct definitions of _open() etc.
 
 #include "wposix_internal.h"

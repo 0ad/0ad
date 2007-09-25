@@ -486,9 +486,9 @@ struct LFH_Copier
 	size_t lfh_bytes_remaining;
 };
 
-static LibError lfh_copier_cb(uintptr_t ctx, const u8* block, size_t size, size_t* bytes_processed)
+static LibError lfh_copier_cb(uintptr_t cbData, const u8* block, size_t size, size_t* bytes_processed)
 {
-	LFH_Copier* p = (LFH_Copier*)ctx;
+	LFH_Copier* p = (LFH_Copier*)cbData;
 
 	debug_assert(size <= p->lfh_bytes_remaining);
 	cpu_memcpy(p->lfh_dst, block, size);
