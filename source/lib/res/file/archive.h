@@ -163,7 +163,7 @@ enum ArchiveFileFlags
 struct ArchiveEntry
 {
 	// these are returned by afile_stat:
-	off_t ucsize;
+	off_t usize;
 	time_t mtime;
 
 	// used in IO
@@ -184,7 +184,7 @@ struct ArchiveEntry
 	//
 	// we also need a way to check if a file is compressed (e.g. to fail
 	// mmap requests if the file is compressed). packing a bit in ofs or
-	// ucsize is error prone and ugly (1 bit less won't hurt though).
+	// usize is error prone and ugly (1 bit less won't hurt though).
 	// any other way will mess up the nice 2^n byte size anyway, so
 	// might as well store csize.
 };

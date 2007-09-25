@@ -76,10 +76,10 @@ static LibError compress_cb(uintptr_t cb_ctx, const u8* block, size_t size, size
 
 // final decision on whether to store the file as compressed,
 // given the observed compressed/uncompressed sizes.
-static bool ShouldCompress(size_t ucsize, size_t csize)
+static bool ShouldCompress(size_t usize, size_t csize)
 {
-	const float ratio = (float)ucsize / csize;
-	const ssize_t bytes_saved = (ssize_t)ucsize - (ssize_t)csize;
+	const float ratio = (float)usize / csize;
+	const ssize_t bytes_saved = (ssize_t)usize - (ssize_t)csize;
 	UNUSED2(bytes_saved);
 
 	// tiny - store compressed regardless of savings.
@@ -87,14 +87,14 @@ static bool ShouldCompress(size_t ucsize, size_t csize)
 	// - CPU cost is negligible and overlapped with IO anyway;
 	// - reading from compressed files uses less memory because we
 	//   don't need to allocate space for padding in the final buffer.
-	if(ucsize < 512)
+	if(usize < 512)
 		return true;
 
 	// large high-entropy file - store uncompressed.
 	// rationale:
 	// - any bigger than this and CPU time becomes a problem: it isn't
 	//   necessarily hidden by IO time anymore.
-	if(ucsize >= 32*KiB && ratio < 1.02f)
+	if(usize >= 32*KiB && ratio < 1.02f)
 		return false;
 
 	// TODO: any other cases?
@@ -107,33 +107,33 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 {
 	struct stat s;
 	RETURN_ERR(vfs_stat(atom_fn, &s));
-	const size_t ucsize = s.st_size;
+	const size_t usize = s.st_size;
 	// skip 0-length files.
 	// rationale: zip.cpp needs to determine whether a CDFH entry is
 	// a file or directory (the latter are written by some programs but
 	// not needed - they'd only pollute the file table).
-	// it looks like checking for ucsize=csize=0 is the safest way -
+	// it looks like checking for usize=csize=0 is the safest way -
 	// relying on file attributes (which are system-dependent!) is
 	// even less safe.
 	// we thus skip 0-length files to avoid confusing them with dirs.
-	if(!ucsize)
+	if(!usize)
 		return INFO::SKIPPED;
 
 	const bool attempt_compress = !file_type_is_uncompressible(atom_fn);
 	if(attempt_compress)
 	{
 		comp_reset(ctx);
-		const size_t csizeBound = comp_max_output_size(ctx, ucsize);
+		const size_t csizeBound = comp_max_output_size(ctx, usize);
 		RETURN_ERR(comp_alloc_output(ctx, csizeBound));
 	}
 
 	// read file into newly allocated buffer. if attempt_compress, also
 	// compress the file into another buffer while waiting for IOs.
-	size_t ucsize_read;
+	size_t usize_read;
 	const uint flags = 0;
 	CompressParams params = { attempt_compress, ctx, 0 };
-	RETURN_ERR(vfs_load(atom_fn, buf, ucsize_read, flags, compress_cb, (uintptr_t)&params));
-	debug_assert(ucsize_read == ucsize);
+	RETURN_ERR(vfs_load(atom_fn, buf, usize_read, flags, compress_cb, (uintptr_t)&params));
+	debug_assert(usize_read == usize);
 
 	// if we compressed the file trial-wise, check results and
 	// decide whether to store as such or not (based on compression ratio)
@@ -149,11 +149,11 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 			return ret;
 		}
 
-		shouldCompress = ShouldCompress(ucsize, csize);
+		shouldCompress = ShouldCompress(usize, csize);
 	}
 
 	// store file info
-	ent.ucsize  = (off_t)ucsize;
+	ent.usize  = (off_t)usize;
 	ent.mtime   = s.st_mtime;
 	// .. ent.ofs is set by zip_archive_add_file
 	ent.flags   = 0;
@@ -168,7 +168,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	else
 	{
 		ent.method = CM_NONE;
-		ent.csize  = (off_t)ucsize;
+		ent.csize  = (off_t)usize;
 		file_contents = buf;
 	}
 

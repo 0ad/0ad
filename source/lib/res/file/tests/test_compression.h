@@ -16,7 +16,7 @@ public:
 			data[i] = rand() & 0x07;
 
 		u8* cdata; size_t csize;
-		u8 ucdata[data_size];
+		u8 udata[data_size];
 
 		// compress
 		uintptr_t c = comp_alloc(CT_COMPRESSION, CM_DEFLATE);
@@ -35,20 +35,20 @@ public:
 		uintptr_t d = comp_alloc(CT_DECOMPRESSION, CM_DEFLATE);
 		{
 		TS_ASSERT(d != 0);
-		comp_set_output(d, ucdata, data_size);
-		const ssize_t ucdata_produced = comp_feed(d, cdata, csize);
-		TS_ASSERT(ucdata_produced >= 0);
-		u8* ucdata_final; size_t ucsize_final; u32 checksum;
-		TS_ASSERT_OK(comp_finish(d, &ucdata_final, &ucsize_final, &checksum));
-		TS_ASSERT(ucdata_produced <= (ssize_t)ucsize_final);	// can't have produced more than total
-		TS_ASSERT_EQUALS(ucdata_final, ucdata);	// output buffer address is same
-		TS_ASSERT_EQUALS(ucsize_final, data_size);	// correct amount of output
+		comp_set_output(d, udata, data_size);
+		const ssize_t udata_produced = comp_feed(d, cdata, csize);
+		TS_ASSERT(udata_produced >= 0);
+		u8* udata_final; size_t usize_final; u32 checksum;
+		TS_ASSERT_OK(comp_finish(d, &udata_final, &usize_final, &checksum));
+		TS_ASSERT(udata_produced <= (ssize_t)usize_final);	// can't have produced more than total
+		TS_ASSERT_EQUALS(udata_final, udata);	// output buffer address is same
+		TS_ASSERT_EQUALS(usize_final, data_size);	// correct amount of output
 		}
 
 		comp_free(c);
 		comp_free(d);
 
 		// verify data survived intact
-		TS_ASSERT_SAME_DATA(data, ucdata, data_size);
+		TS_ASSERT_SAME_DATA(data, udata, data_size);
 	}
 };

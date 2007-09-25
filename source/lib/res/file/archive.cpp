@@ -198,7 +198,7 @@ LibError archive_enum(const Handle ha, const FileCB cb, const uintptr_t user)
 	{
 		const ArchiveEntry* ent = &a->ents[i];
 		s.st_mode  = S_IFREG;
-		s.st_size  = (off_t)ent->ucsize;
+		s.st_size  = (off_t)ent->usize;
 		s.st_mtime = ent->mtime;
 		const uintptr_t memento = (uintptr_t)ent;
 		LibError ret = cb(ent->atom_fn, &s, memento, user);
@@ -261,7 +261,7 @@ struct ArchiveFile
 cassert(sizeof(ArchiveFile) <= FILE_OPAQUE_SIZE);
 
 // convenience function, allows implementation change in File.
-// note that size == ucsize isn't foolproof, and adding a flag to
+// note that size == usize isn't foolproof, and adding a flag to
 // ofs or size is ugly and error-prone.
 // no error checking - always called from functions that check af.
 static inline bool is_compressed(ArchiveFile* af)
@@ -283,7 +283,7 @@ LibError afile_stat(Handle ha, const char* fn, struct stat* s)
 	ArchiveEntry* ent;
 	RETURN_ERR(archive_get_file_info(a, fn, 0, ent));
 
-	s->st_size  = ent->ucsize;
+	s->st_size  = ent->usize;
 	s->st_mtime = ent->mtime;
 	return INFO::OK;
 }
@@ -328,7 +328,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, uint fla
 
 	ArchiveEntry* ent;
 	// don't want File to contain a ArchiveEntry struct -
-	// its ucsize member must be 'loose' for compatibility with File.
+	// its usize member must be 'loose' for compatibility with File.
 	// => need to copy ArchiveEntry fields into File.
 	RETURN_ERR(archive_get_file_info(a, atom_fn, memento, ent));
 
@@ -344,7 +344,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, uint fla
 	}
 
 	f->flags   = flags;
-	f->size    = ent->ucsize;
+	f->size    = ent->usize;
 	f->atom_fn = atom_fn;
 	ArchiveFile* af = (ArchiveFile*)f->opaque;
 	af->ofs       = ent->ofs;
@@ -471,12 +471,12 @@ LibError afile_io_wait(FileIo* io, u8*& buf, size_t& size)
 	if(aio->ctx)
 	{
 		comp_set_output(aio->ctx, aio->user_buf, aio->max_output_size);
-		ssize_t ucbytes_output = comp_feed(aio->ctx, raw_buf, raw_size);
+		const ssize_t ubytes_output = comp_feed(aio->ctx, raw_buf, raw_size);
 		free(raw_buf);
-		RETURN_ERR(ucbytes_output);
+		RETURN_ERR(ubytes_output);
 
 		buf = aio->user_buf;
-		size = ucbytes_output;
+		size = ubytes_output;
 	}
 	else
 	{
@@ -635,11 +635,11 @@ ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb
 	const size_t csize_max = af->csize - af->last_cofs;
 
 	Decompressor d(af->ctx, pbuf, size, cb, cb_ctx);
-	ssize_t uc_transferred = file_io(&a->f, cofs, csize_max, FILE_BUF_TEMP, decompressor_feed_cb, (uintptr_t)&d);
+	const ssize_t usize_read = file_io(&a->f, cofs, csize_max, FILE_BUF_TEMP, decompressor_feed_cb, (uintptr_t)&d);
 
 	af->last_cofs += (off_t)d.NumCompressedBytesProcessed();
 
-	return uc_transferred;
+	return usize_read;
 }
 
 
