@@ -50,9 +50,9 @@ struct BuildDirEntListState
 };
 
 // called for each matching directory entry; add its full pathname to array.
-static void BuildDirEntListCB(const char* path, const DirEnt* UNUSED(ent), void* context)
+static void BuildDirEntListCB(const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData)
 {
-	BuildDirEntListState* s = (BuildDirEntListState*)context;
+	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
 
 	jsval val = ToJSVal( CStr ( path ) );
 		// note: <path> is already directory + name!
@@ -105,7 +105,7 @@ JSBool JSI_VFS::BuildDirEntList( JSContext* cx, JSObject* UNUSED(obj), uintN arg
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
-	vfs_dir_enum( path, flags, filter, BuildDirEntListCB, &state );
+	vfs_dir_enum( path, flags, filter, BuildDirEntListCB, (uintptr_t)&state );
 
 	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );

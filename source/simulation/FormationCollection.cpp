@@ -21,9 +21,9 @@ void CFormationCollection::LoadFile( const char* path )
 	m_templateFilenames[tag] = path;
 }
 
-static void LoadFormationThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
+static void LoadFormationThunk( const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData )
 {
-	CFormationCollection* this_ = (CFormationCollection*)context;
+	CFormationCollection* this_ = (CFormationCollection*)cbData;
 	this_->LoadFile(path);
 }
 
@@ -31,7 +31,7 @@ int CFormationCollection::LoadTemplates()
 {
 	// Load all files in formations and subdirectories.
 	THROW_ERR( vfs_dir_enum( "formations", VFS_DIR_RECURSIVE, "*.xml",
-		LoadFormationThunk, this ) );
+		LoadFormationThunk, (uintptr_t)this ) );
 	return 0;
 }
 

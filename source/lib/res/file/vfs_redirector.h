@@ -37,15 +37,15 @@ struct FileProvider_VTbl
 	LibError (*file_validate)(const File* f);
 
 	// IO
-	LibError (*io_issue)(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
+	LibError (*io_issue)(File* f, off_t ofs, size_t size, u8* buf, FileIo* io);
 	int      (*io_has_completed)(FileIo* io);
-	LibError (*io_wait)(FileIo* io, void*& p, size_t& size);
+	LibError (*io_wait)(FileIo* io, u8*& p, size_t& size);
 	LibError (*io_discard)(FileIo* io);
 	LibError (*io_validate)(const FileIo* io);
 	ssize_t  (*io)(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx);
 
 	// file mapping
-	LibError (*map)(File* f, void*& p, size_t& size);
+	LibError (*map)(File* f, u8*& p, size_t& size);
 	LibError (*unmap)(File* f);
 };
 
@@ -59,14 +59,14 @@ extern LibError xfile_open(const char* V_path, uint flags, TFile* tf, File* f);
 extern LibError xfile_close(File* f);
 extern LibError xfile_validate(const File* f);
 
-extern LibError xfile_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
+extern LibError xfile_io_issue(File* f, off_t ofs, size_t size, u8* buf, FileIo* io);
 extern int      xfile_io_has_completed(FileIo* io);
-extern LibError xfile_io_wait(FileIo* io, void*& p, size_t& size);
+extern LibError xfile_io_wait(FileIo* io, u8*& p, size_t& size);
 extern LibError xfile_io_discard(FileIo* io);
 extern LibError xfile_io_validate(const FileIo* io);
 extern ssize_t  xfile_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t ctx);
 
-extern LibError xfile_map(File* f, void*& p, size_t& size);
+extern LibError xfile_map(File* f, u8*& p, size_t& size);
 extern LibError xfile_unmap(File* f);
 
 #endif	//	#ifndef INCLUDED_VFS_REDIRECTOR

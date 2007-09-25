@@ -51,7 +51,7 @@ extern LibError zip_archive_create(const char* zip_filename, ZipArchive** pza);
 // can be CM_NONE.
 // IO cost: writes out <file_contents> to disk (we don't currently attempt
 // any sort of write-buffering).
-extern LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file_contents);
+extern LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, const u8* file_contents);
 
 // write out the archive to disk; only hereafter is it valid.
 // frees the ZipArchive instance.

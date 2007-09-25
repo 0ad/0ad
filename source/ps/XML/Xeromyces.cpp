@@ -327,7 +327,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	handler.CreateXMB();
 
 	// Save the file to disk, so it can be loaded quickly next time
-	vfs_store(xmbPath, handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
+	vfs_store(xmbPath, (const u8*)handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
 
 	// Store the buffer so it can be freed later
 	XMBBuffer = handler.buffer.steal_buffer();
@@ -348,7 +348,7 @@ bool CXeromyces::ReadXMBFile(const char* filename)
 	if (file->Load(filename, FILE_LONG_LIVED) != PSRETURN_OK)
 		return false;
 
-	const void* buffer = file->GetBuffer();
+	const u8* buffer = file->GetBuffer();
 
 	debug_assert(file->GetBufferSize() >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
 	debug_assert(*(u32*)buffer == HeaderMagic && "Invalid XMB file header");

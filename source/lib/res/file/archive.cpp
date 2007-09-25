@@ -17,6 +17,8 @@
 #include "lib/res/res.h"
 #include "file_internal.h"
 
+#include <boost/shared_ptr.hpp>
+
 
 // components:
 // - za_*: Zip archive handling
@@ -386,7 +388,7 @@ struct ArchiveFileIo
 	uintptr_t ctx;
 
 	size_t max_output_size;
-	void* user_buf;
+	u8* user_buf;
 };
 cassert(sizeof(ArchiveFileIo) <= FILE_IO_OPAQUE_SIZE);
 
@@ -396,7 +398,7 @@ static SingleAllocator<FileIo> io_allocator;
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with afile_io_wait; when no longer needed, free via afile_io_discard.
-LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, void* user_buf, FileIo* io)
+LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, u8* user_buf, FileIo* io)
 {
 	// zero output param in case we fail below.
 	memset(io, 0, sizeof(FileIo));
@@ -432,7 +434,7 @@ LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, void* u
 	const ssize_t left_in_file = af->csize - cofs;
 	const size_t csize = std::min(left_in_chunk, left_in_file);
 
-	void* cbuf = mem_alloc(csize, 4*KiB);
+	u8* cbuf = (u8*)mem_alloc(csize, 4*KiB);
 	if(!cbuf)
 		WARN_RETURN(ERR::NO_MEM);
 
@@ -454,21 +456,21 @@ int afile_io_has_completed(FileIo* io)
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-LibError afile_io_wait(FileIo* io, void*& buf, size_t& size)
+LibError afile_io_wait(FileIo* io, u8*& buf, size_t& size)
 {
 	buf = 0;
 	size = 0;
 
 	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
 
-	void* raw_buf;
+	u8* raw_buf;
 	size_t raw_size;
 	RETURN_ERR(file_io_wait(aio->io, raw_buf, raw_size));
 
 	// file is compressed and we need to decompress
 	if(aio->ctx)
 	{
-		comp_set_output(aio->ctx, (void*)aio->user_buf, aio->max_output_size);
+		comp_set_output(aio->ctx, aio->user_buf, aio->max_output_size);
 		ssize_t ucbytes_output = comp_feed(aio->ctx, raw_buf, raw_size);
 		free(raw_buf);
 		RETURN_ERR(ucbytes_output);
@@ -512,61 +514,72 @@ LibError afile_io_validate(const FileIo* io)
 class Decompressor
 {
 public:
-	Decompressor(uintptr_t comp_ctx_, size_t ucsize_max, bool use_temp_buf_, FileIOCB cb, uintptr_t cb_ctx)
+	Decompressor(uintptr_t ctx, FileIOBuf* pbuf, size_t usizeMax, FileIOCB cb, uintptr_t cbData)
+	: m_ctx(ctx)
+	, m_udataSize(usizeMax), m_csizeTotal(0), m_usizeTotal(0)
+	, m_cb(cb), m_cbData(cbData)
 	{
-		comp_ctx = comp_ctx_;
+		debug_assert(m_ctx != 0);
 
-		csize_total = 0;
-		ucsize_left = ucsize_max;
-
-		use_temp_buf = use_temp_buf_;
-
-		user_cb = cb;
-		user_cb_ctx = cb_ctx;
+		if(pbuf == FILE_BUF_TEMP)
+		{
+			m_tmpBuf.reset((u8*)page_aligned_alloc(m_udataSize), PageAlignedDeleter(m_udataSize));
+			m_udata = m_tmpBuf.get();
+		}
+		else
+			m_udata = (u8*)*pbuf;	// WARNING: FileIOBuf is nominally const; if that's ever enforced, this may need to change.
 	}
 
-	LibError feed(const void* cblock, size_t csize, size_t* bytes_processed)
+	LibError operator()(const u8* cblock, size_t cblockSize, size_t* bytes_processed)
 	{
-		if(use_temp_buf)
-			RETURN_ERR(comp_alloc_output(comp_ctx, csize));
+		// when decompressing into the temp buffer, always start at ofs=0.
+		const size_t ofs = m_tmpBuf.get()? 0 : m_usizeTotal;
+		u8* const ublock = m_udata + ofs;
+		comp_set_output(m_ctx, ublock, m_udataSize-ofs);
 
-		void* ucblock = comp_get_output(comp_ctx);
+		const size_t ublockSize = comp_feed(m_ctx, cblock, cblockSize);
 
-		const size_t ucsize = comp_feed(comp_ctx, cblock, csize);
-		*bytes_processed = ucsize;
-		debug_assert(ucsize <= ucsize_left);
-		ucsize_left -= ucsize;
+		m_csizeTotal += cblockSize;
+		m_usizeTotal += ublockSize;
+		debug_assert(m_usizeTotal <= m_udataSize);
 
+		*bytes_processed = ublockSize;
 		LibError ret = INFO::CB_CONTINUE;
-		if(user_cb)
-			ret = user_cb(user_cb_ctx, ucblock, ucsize, bytes_processed);
-		if(ucsize_left == 0)
+		if(m_cb)
+			ret = m_cb(m_cbData, ublock, ublockSize, bytes_processed);
+		if(m_usizeTotal == m_udataSize)
 			ret = INFO::OK;
 		return ret;
 	}
 
-	size_t total_csize_fed() const { return csize_total; }
+	size_t NumCompressedBytesProcessed() const
+	{
+		return m_csizeTotal;
+	}
 
 private:
-	uintptr_t comp_ctx;
+	uintptr_t m_ctx;
 
-	size_t csize_total;
-	size_t ucsize_left;
+	size_t m_csizeTotal;
+	size_t m_usizeTotal;
 
-	bool use_temp_buf;
+	u8* m_udata;
+	size_t m_udataSize;
+
+	boost::shared_ptr<u8> m_tmpBuf;
 
 	// allow user-specified callbacks: "chain" them, because file_io's
 	// callback mechanism is already used to return blocks.
-	FileIOCB user_cb;
-	uintptr_t user_cb_ctx;
+	FileIOCB m_cb;
+	uintptr_t m_cbData;
 };
 
 
-static LibError decompressor_feed_cb(uintptr_t cb_ctx,
-	const void* cblock, size_t csize, size_t* bytes_processed)
+static LibError decompressor_feed_cb(uintptr_t cbData,
+	const u8* cblock, size_t cblockSize, size_t* bytes_processed)
 {
-	Decompressor* d = (Decompressor*)cb_ctx;
-	return d->feed(cblock, csize, bytes_processed);
+	Decompressor& decompressor = *(Decompressor*)cbData;
+	return decompressor(cblock, cblockSize, bytes_processed);
 }
 
 
@@ -614,22 +627,17 @@ ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb
 		return bytes_read;
 	}
 
-	debug_assert(af->ctx != 0);
-
 	RETURN_ERR(file_io_get_buf(pbuf, size, f->atom_fn, f->flags, cb));
-	const bool use_temp_buf = (pbuf == FILE_BUF_TEMP);
-	if(!use_temp_buf)
-		comp_set_output(af->ctx, (void*)*pbuf, size);
 
 	const off_t cofs = af->ofs+af->last_cofs;
 	// remaining bytes in file. callback will cause IOs to stop when
-	// enough ucdata has been produced.
+	// enough udata has been produced.
 	const size_t csize_max = af->csize - af->last_cofs;
 
-	Decompressor d(af->ctx, size, use_temp_buf, cb, cb_ctx);
+	Decompressor d(af->ctx, pbuf, size, cb, cb_ctx);
 	ssize_t uc_transferred = file_io(&a->f, cofs, csize_max, FILE_BUF_TEMP, decompressor_feed_cb, (uintptr_t)&d);
 
-	af->last_cofs += (off_t)d.total_csize_fed();
+	af->last_cofs += (off_t)d.NumCompressedBytesProcessed();
 
 	return uc_transferred;
 }
@@ -649,7 +657,7 @@ ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-LibError afile_map(File* f, void*& p, size_t& size)
+LibError afile_map(File* f, u8*& p, size_t& size)
 {
 	p = 0;
 	size = 0;
@@ -666,11 +674,10 @@ LibError afile_map(File* f, void*& p, size_t& size)
 	// in the meantime to save memory in case it wasn't going to be mapped.
 	// now we do so again; it's unmapped in afile_unmap (refcounted).
 	H_DEREF(af->ha, Archive, a);
-	void* archive_p;
-	size_t archive_size;
+	u8* archive_p; size_t archive_size;
 	RETURN_ERR(file_map(&a->f, archive_p, archive_size));
 
-	p = (char*)archive_p + af->ofs;
+	p = archive_p + af->ofs;
 	size = f->size;
 
 	af->is_mapped = 1;

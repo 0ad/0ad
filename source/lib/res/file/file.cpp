@@ -344,7 +344,7 @@ struct PosixFile
 	int fd;
 
 	// for reference counted memory-mapping
-	void* mapping;
+	u8* mapping;
 	uint map_refs;
 };
 cassert(sizeof(PosixFile) < FILE_OPAQUE_SIZE);
@@ -498,7 +498,7 @@ static const uint MAX_MAP_REFS = 255;
 // rationale: reference counting is required for zip_map: several
 // Zip "mappings" each reference one ZArchive's actual file mapping.
 // implement it here so that we also get refcounting for normal files.
-LibError file_map(File* f, void*& p, size_t& size)
+LibError file_map(File* f, u8*& p, size_t& size)
 {
 	p = 0;
 	size = 0;
@@ -526,7 +526,7 @@ LibError file_map(File* f, void*& p, size_t& size)
 		return ERR::FAIL;	// NOWARN
 
 	errno = 0;
-	pf->mapping = mmap(0, f->size, prot, MAP_PRIVATE, pf->fd, (off_t)0);
+	pf->mapping = (u8*)mmap(0, f->size, prot, MAP_PRIVATE, pf->fd, (off_t)0);
 	if(pf->mapping == MAP_FAILED)
 		return LibError_from_errno();
 
@@ -559,7 +559,7 @@ LibError file_unmap(File* f)
 		return INFO::OK;
 
 	// no more references: remove the mapping
-	void* p = pf->mapping;
+	u8* p = pf->mapping;
 	pf->mapping = 0;
 	// don't clear f->size - the file is still open.
 

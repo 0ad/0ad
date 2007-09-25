@@ -392,9 +392,9 @@ struct LookupCbParams : boost::noncopyable
 	}
 };
 
-static LibError lookup_cb(const char* component, bool is_dir, void* ctx)
+static LibError lookup_cb(const char* component, bool is_dir, uintptr_t cbData)
 {
-	LookupCbParams* p = (LookupCbParams*)ctx;
+	LookupCbParams* p = (LookupCbParams*)cbData;
 	const TNodeType type = is_dir? NT_DIR : NT_FILE;
 
 	p->td->populate();
@@ -424,7 +424,7 @@ static LibError lookup(TDir* td, const char* path, uint flags, TNode** pnode)
 	debug_assert( (flags & ~(LF_CREATE_MISSING|LF_START_DIR)) == 0 );
 
 	LookupCbParams p(flags, td);
-	RETURN_ERR(path_foreach_component(path, lookup_cb, &p));
+	RETURN_ERR(path_foreach_component(path, lookup_cb, (uintptr_t)&p));
 
 	// success.
 	*pnode = p.node;
@@ -601,9 +601,9 @@ struct AddPathCbParams : boost::noncopyable
 		: m(m_), td(tree_root) {}
 };
 
-static LibError add_path_cb(const char* component, bool is_dir, void* ctx)
+static LibError add_path_cb(const char* component, bool is_dir, uintptr_t cbData)
 {
-	AddPathCbParams* p = (AddPathCbParams*)ctx;
+	AddPathCbParams* p = (AddPathCbParams*)cbData;
 
 	// should only be called for directory paths, so complain if not dir.
 	if(!is_dir)
@@ -626,7 +626,7 @@ LibError tree_add_path(const char* V_dir_path, const Mount* m, TDir** ptd)
 	debug_assert(VFS_PATH_IS_DIR(V_dir_path));
 
 	AddPathCbParams p(m);
-	RETURN_ERR(path_foreach_component(V_dir_path, add_path_cb, &p));
+	RETURN_ERR(path_foreach_component(V_dir_path, add_path_cb, (uintptr_t)&p));
 	*ptd = p.td;
 	return INFO::OK;
 }

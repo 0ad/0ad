@@ -314,7 +314,7 @@ extern LibError vfs_dir_next_ent(Handle hd, DirEnt* ent, const char* filter = 0)
 // its subdirectories as well), passing their complete path+name, the info
 // that would be returned by vfs_next_dirent, and user-specified context.
 // note: path and ent parameters are only valid during the callback.
-typedef void (*DirEnumCB)(const char* path, const DirEnt* ent, void* context);
+typedef void (*DirEnumCB)(const char* path, const DirEnt* ent, uintptr_t cbData);
 
 enum DirEnumFlags
 {
@@ -325,7 +325,7 @@ enum DirEnumFlags
 // directory <path>; if flags & VFS_DIR_RECURSIVE, entries in
 // subdirectories are also returned.
 extern LibError vfs_dir_enum(const char* path, uint enum_flags, const char* filter,
-	DirEnumCB cb, void* context);
+	DirEnumCB cb, uintptr_t cbData);
 
 
 //
@@ -363,7 +363,7 @@ extern LibError vfs_close(Handle& h);
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with vfs_wait_read; when no longer needed, free via vfs_io_discard.
-extern Handle vfs_io_issue(Handle hf, size_t size, void* buf);
+extern Handle vfs_io_issue(Handle hf, size_t size, u8* buf);
 
 // indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
@@ -371,7 +371,7 @@ extern int vfs_io_has_completed(Handle hio);
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern LibError vfs_io_wait(Handle hio, void*& p, size_t& size);
+extern LibError vfs_io_wait(Handle hio, u8*& p, size_t& size);
 
 // finished with transfer <hio> - free its buffer (returned by vfs_wait_read).
 extern LibError vfs_io_discard(Handle& hio);
@@ -414,7 +414,7 @@ extern LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 uint flags = 0, FileIOCB cb = 0, uintptr_t cb_ctx = 0);
 
 
-extern ssize_t vfs_store(const char* fn, const void* p, size_t size, uint flags = 0);
+extern ssize_t vfs_store(const char* fn, const u8* p, size_t size, uint flags = 0);
 
 
 //
@@ -435,7 +435,7 @@ extern ssize_t vfs_store(const char* fn, const void* p, size_t size, uint flags 
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-extern LibError vfs_map(Handle hf, uint flags, void*& p, size_t& size);
+extern LibError vfs_map(Handle hf, uint flags, u8*& p, size_t& size);
 
 // decrement the reference count for the mapping belonging to file <f>.
 // fail if there are no references; remove the mapping if the count reaches 0.

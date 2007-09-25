@@ -954,9 +954,9 @@ void CMouseoverEntities::RenderRallyPoints()
 	glDisable( GL_BLEND );
 }
 // Helper function for CSelectedEntities::LoadUnitUiTextures
-static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
+static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData )
 {
-	std::map<CStr, Handle>* textures = (std::map<CStr, Handle>*) context;
+	std::map<CStr, Handle>* textures = (std::map<CStr, Handle>*)cbData;
 	CStr name(path);
 
 	if ( !tex_is_known_extension(path) )
@@ -974,7 +974,7 @@ static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), void* 
 int CSelectedEntities::LoadUnitUiTextures()
 {
 	THROW_ERR( vfs_dir_enum( "art/textures/ui/session/icons/", VFS_DIR_RECURSIVE,
-		NULL, LoadUnitUIThunk, &m_unitUITextures ) );
+		NULL, LoadUnitUIThunk, (uintptr_t)&m_unitUITextures ) );
 	return 0;
 }
 void CSelectedEntities::DestroyUnitUiTextures()

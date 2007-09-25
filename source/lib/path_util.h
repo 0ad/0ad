@@ -182,13 +182,13 @@ extern const char* path_extension(const char* fn);
  * return that. no need to 'abort' (e.g. return INFO::OK) after a filename is
  * encountered - that's taken care of automatically.
  **/
-typedef LibError (*PathComponentCb)(const char* component, bool is_dir, void* ctx);
+typedef LibError (*PathComponentCb)(const char* component, bool is_dir, uintptr_t cbData);
 
 /**
  * call <cb> with <ctx> for each component in <path>.
  * @return LibError
  **/
-extern LibError path_foreach_component(const char* path, PathComponentCb cb, void* ctx);
+extern LibError path_foreach_component(const char* path, PathComponentCb cb, uintptr_t cbData);
 
 
 //-----------------------------------------------------------------------------

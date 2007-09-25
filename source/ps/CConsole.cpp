@@ -752,7 +752,7 @@ void CConsole::SaveHistory()
 			break;
 		buffer = CStrW(*it).ToUTF8() + "\n" + buffer;
 	}
-	vfs_store(m_sHistoryFile, (const void*)buffer.c_str(), buffer.length(), FILE_NO_AIO);
+	vfs_store(m_sHistoryFile, (const u8*)buffer.c_str(), buffer.length(), FILE_NO_AIO);
 }
 
 void CConsole::SendChatMessage(const wchar_t *szMessage)

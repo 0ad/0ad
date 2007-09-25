@@ -719,21 +719,21 @@ static const int TOTAL_IOS = MAX_STREAMS * MAX_IOS;
 static const size_t TOTAL_BUF_SIZE = TOTAL_IOS * STREAM_BUF_SIZE;
 
 // one large allocation for all buffers
-static void* io_bufs;
+static u8* io_bufs;
 	
 // list of free buffers. start of buffer holds pointer to next in list.
-static void* io_buf_freelist;
+static u8* io_buf_freelist;
 
 
 /**
  * Free an IO buffer.
  *
- * @param void* IO buffer
+ * @param p IO buffer
  */
-static void io_buf_free(void* p)
+static void io_buf_free(u8* p)
 {
-	debug_assert(io_bufs <= p && p <= (char*)io_bufs+TOTAL_BUF_SIZE);
-	*(void**)p = io_buf_freelist;
+	debug_assert(io_bufs <= p && p <= io_bufs+TOTAL_BUF_SIZE);
+	*(u8**)p = io_buf_freelist;
 	io_buf_freelist = p;
 }
 
@@ -745,13 +745,13 @@ static void io_buf_free(void* p)
 static void io_buf_init()
 {
 	// allocate 1 big aligned block for all buffers.
-	io_bufs = mem_alloc(TOTAL_BUF_SIZE, 4*KiB);
+	io_bufs = (u8*)mem_alloc(TOTAL_BUF_SIZE, 4*KiB);
 	// .. failed; io_buf_alloc calls will return 0
 	if(!io_bufs)
 		return;
 
 	// build freelist.
-	char * p = (char*)io_bufs;
+	u8* p = io_bufs;
 	for(int i = 0; i < TOTAL_IOS; i++)
 	{
 		io_buf_free(p);
@@ -763,13 +763,13 @@ static void io_buf_init()
 /**
  * Allocate a fixed-size IO buffer.
  *
- * @return void* buffer, or 0 (and warning) if not enough memory.
+ * @return buffer, or 0 (and warning) if not enough memory.
  */
-static void* io_buf_alloc()
+static u8* io_buf_alloc()
 {
 	ONCE(io_buf_init());
 
-	void* buf = io_buf_freelist;
+	u8* buf = io_buf_freelist;
 	// note: we have to bail now; can't update io_buf_freelist.
 	if(!buf)
 	{
@@ -784,7 +784,7 @@ static void* io_buf_alloc()
 		return 0;
 	}
 
-	io_buf_freelist = *(void**)io_buf_freelist;
+	io_buf_freelist = *(u8**)io_buf_freelist;
 	return buf;
 }
 
@@ -817,8 +817,7 @@ struct Stream
 	Handle ios[MAX_IOS];
 	uint active_ios;
 	/// set by stream_buf_get, used by stream_buf_discard to free buf.
-	void* last_buf;
-		
+	u8* last_buf;
 };
 
 /**
@@ -833,7 +832,7 @@ static LibError stream_issue(Stream * s)
 	if(s->active_ios >= MAX_IOS)
 		return INFO::OK;
 
-	void* buf = io_buf_alloc();
+	u8* buf = io_buf_alloc();
 	if(!buf)
 		WARN_RETURN(ERR::NO_MEM);
 
@@ -853,7 +852,7 @@ static LibError stream_issue(Stream * s)
  * @return LibError; if the first pending IO hasn't completed,
  * ERR::AGAIN (not an error).
  */
-static LibError stream_buf_get(Stream * s, void*& data, size_t& size)
+static LibError stream_buf_get(Stream * s, u8*& data, size_t& size)
 {
 	if(s->active_ios == 0)
 		WARN_RETURN(ERR::IO_EOF);
@@ -947,7 +946,7 @@ static LibError stream_close(Stream * s)
 	for(uint i = 0; i < s->active_ios; i++)
 	{
 		// .. wait until complete,
-		void* data; size_t size;	// unused
+		u8* data; size_t size;	// unused
 		do
 			err = stream_buf_get(s, data, size);
 		while(err == ERR::AGAIN);
@@ -1322,8 +1321,7 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 	// stream:
 
 	// .. check if IO finished.
-	void* data;
-	size_t size;
+	u8* data; size_t size;
 	err = stream_buf_get(&sd->s, data, size);
 	if(err == ERR::AGAIN)
 		return ERR::AGAIN;	// NOWARN

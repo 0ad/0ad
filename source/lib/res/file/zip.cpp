@@ -297,7 +297,7 @@ static void ecdr_assemble(ECDR* dst_ecdr_le, uint cd_entries, off_t cd_ofs, size
 // the given ID (fourcc). <record_size> includes ID field) bytes must
 // remain before EOF - this makes sure the record is completely in the file.
 // used by z_find_ecdr and z_extract_cdfh.
-static const u8* za_find_id(const u8* buf, size_t size, const void* start, u32 magic, size_t record_size)
+static const u8* za_find_id(const u8* buf, size_t size, const u8* start, u32 magic, size_t record_size)
 {
 	ssize_t bytes_left = (ssize_t)((buf+size) - (u8*)start - record_size);
 
@@ -486,7 +486,7 @@ struct LFH_Copier
 	size_t lfh_bytes_remaining;
 };
 
-static LibError lfh_copier_cb(uintptr_t ctx, const void* block, size_t size, size_t* bytes_processed)
+static LibError lfh_copier_cb(uintptr_t ctx, const u8* block, size_t size, size_t* bytes_processed)
 {
 	LFH_Copier* p = (LFH_Copier*)ctx;
 
@@ -580,7 +580,7 @@ LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 // can be CM_NONE.
 // IO cost: writes out <file_contents> to disk (we don't currently attempt
 // any sort of write-buffering).
-LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, void* file_contents)
+LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, const u8* file_contents)
 {
 	const size_t fn_len = strlen(ae->atom_fn);
 

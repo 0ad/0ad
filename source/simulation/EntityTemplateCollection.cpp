@@ -23,9 +23,9 @@ void CEntityTemplateCollection::LoadFile( const char* path )
 	m_templateFilenames[tag] = path;
 }
 
-static void LoadFileThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
+static void LoadFileThunk( const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData )
 {
-	CEntityTemplateCollection* this_ = (CEntityTemplateCollection*)context;
+	CEntityTemplateCollection* this_ = (CEntityTemplateCollection*)cbData;
 	this_->LoadFile(path);
 }
 
@@ -33,7 +33,7 @@ int CEntityTemplateCollection::LoadTemplates()
 {
 	// List all files in entities/ and its subdirectories.
 	THROW_ERR( vfs_dir_enum( "entities/", VFS_DIR_RECURSIVE, "*.xml",
-		LoadFileThunk, this ) );
+		LoadFileThunk, (uintptr_t)this ) );
 
 	/*// Load all the templates; this is necessary so that we can apply techs to them
 	// (otherwise a tech can't affect the template of a unit that doesn't yet exist)

@@ -23,7 +23,7 @@ public:
 	PSRETURN Load(const char* filename, uint flags = 0);
 
 	// These die if called when no file has been successfully loaded.
-	const void* GetBuffer() const;
+	const u8* GetBuffer() const;
 	size_t GetBufferSize() const;
 	CStr GetAsString() const;
 

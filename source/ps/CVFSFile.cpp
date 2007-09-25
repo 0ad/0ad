@@ -35,7 +35,7 @@ PSRETURN CVFSFile::Load(const char* filename, uint flags /* = 0 */)
 	return PSRETURN_OK;
 }
 
-const void* CVFSFile::GetBuffer() const
+const u8* CVFSFile::GetBuffer() const
 {
 	// Die in a very obvious way, to avoid subtle problems caused by
 	// accidentally forgetting to check that the open succeeded

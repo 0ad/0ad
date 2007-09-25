@@ -443,7 +443,7 @@ LibError vfs_load(const char* V_fn, FileIOBuf& buf, size_t& size,
 // caveat: pads file to next max(4kb, sector_size) boundary
 // (due to limitation of Win32 FILE_FLAG_NO_BUFFERING I/O).
 // if that's a problem, specify FILE_NO_AIO when opening.
-ssize_t vfs_store(const char* V_fn, const void* p, const size_t size, uint flags /* default 0 */)
+ssize_t vfs_store(const char* V_fn, const u8* p, const size_t size, uint flags /* default 0 */)
 {
 	Handle hf = vfs_open(V_fn, flags|FILE_WRITE);
 	H_DEREF(hf, VFile, vf);
@@ -466,7 +466,7 @@ struct VIo
 {
 	Handle hf;
 	size_t size;
-	void* buf;
+	u8* buf;
 
 	FileIo io;
 };
@@ -477,7 +477,7 @@ static void VIo_init(VIo* vio, va_list args)
 {
 	vio->hf   = va_arg(args, Handle);
 	vio->size = va_arg(args, size_t);
-	vio->buf  = va_arg(args, void*);
+	vio->buf  = va_arg(args, u8*);
 }
 
 static void VIo_dtor(VIo* vio)
@@ -495,7 +495,7 @@ static void VIo_dtor(VIo* vio)
 static LibError VIo_reload(VIo* vio, const char* UNUSED(fn), Handle UNUSED(h))
 {
 	size_t size = vio->size;
-	void* buf   = vio->buf;
+	u8* buf     = vio->buf;
 
 	H_DEREF(vio->hf, VFile, vf);
 	off_t ofs = vf->ofs;
@@ -524,7 +524,7 @@ static LibError VIo_to_string(const VIo* vio, char* buf)
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with vfs_io_wait; when no longer needed, free via vfs_io_discard.
-Handle vfs_io_issue(Handle hf, size_t size, void* buf)
+Handle vfs_io_issue(Handle hf, size_t size, u8* buf)
 {
 	const char* fn = 0;
 	uint flags = 0;
@@ -550,7 +550,7 @@ int vfs_io_has_completed(Handle hio)
 
 // wait until the transfer <hio> completes, and return its buffer.
 // output parameters are zeroed on error.
-LibError vfs_io_wait(Handle hio, void*& p, size_t& size)
+LibError vfs_io_wait(Handle hio, u8*& p, size_t& size)
 {
 	H_DEREF(hio, VIo, vio);
 	return xfile_io_wait(&vio->io, p, size);
@@ -571,7 +571,7 @@ LibError vfs_io_wait(Handle hio, void*& p, size_t& size)
 // the mapping will be removed (if still open) when its file is closed.
 // however, map/unmap calls should still be paired so that the mapping
 // may be removed when no longer needed.
-LibError vfs_map(const Handle hf, const uint UNUSED(flags), void*& p, size_t& size)
+LibError vfs_map(const Handle hf, const uint UNUSED(flags), u8*& p, size_t& size)
 {
 	p = 0;
 	size = 0;

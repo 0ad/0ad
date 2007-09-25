@@ -180,7 +180,7 @@ LibError xfile_validate(const File* f)
 // IO
 //
 
-LibError xfile_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io)
+LibError xfile_io_issue(File* f, off_t ofs, size_t size, u8* buf, FileIo* io)
 {
 	io->type = f->type;
 	CHECK_VTBL(io->type);
@@ -193,7 +193,7 @@ int xfile_io_has_completed(FileIo* io)
 	return io->type->io_has_completed(io);
 }
 
-LibError xfile_io_wait(FileIo* io, void*& p, size_t& size)
+LibError xfile_io_wait(FileIo* io, u8*& p, size_t& size)
 {
 	CHECK_VTBL(io->type);
 	return io->type->io_wait(io, p, size);
@@ -226,7 +226,7 @@ ssize_t xfile_io(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, 
 // file mapping
 //
 
-LibError xfile_map(File* f, void*& p, size_t& size)
+LibError xfile_map(File* f, u8*& p, size_t& size)
 {
 	CHECK_VTBL(f->type);
 	return f->type->map(f, p, size);

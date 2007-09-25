@@ -150,9 +150,9 @@ void CObjectManager::UnloadObjects()
 
 
 
-static void GetObjectName_ThunkCb(const char* path, const DirEnt* UNUSED(ent), void* context)
+static void GetObjectName_ThunkCb(const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData)
 {
-	std::vector<CStr>* names = (std::vector<CStr>*)context;
+	std::vector<CStr>* names = (std::vector<CStr>*)cbData;
 	CStr name (path);
 	names->push_back(name.AfterFirst("actors/"));
 }
@@ -160,11 +160,11 @@ static void GetObjectName_ThunkCb(const char* path, const DirEnt* UNUSED(ent), v
 void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 {
 	vfs_dir_enum("art/actors/", VFS_DIR_RECURSIVE, "*.xml",
-		GetObjectName_ThunkCb, &names);
+		GetObjectName_ThunkCb, (uintptr_t)&names);
 }
 
 void CObjectManager::GetPropObjectNames(std::vector<CStr>& names)
 {
 	vfs_dir_enum("art/actors/props/", VFS_DIR_RECURSIVE, "*.xml",
-		GetObjectName_ThunkCb, &names);
+		GetObjectName_ThunkCb, (uintptr_t)&names);
 }

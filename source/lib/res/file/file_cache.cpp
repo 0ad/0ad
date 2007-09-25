@@ -341,7 +341,7 @@ success:
 
 	// rationale: don't call this "free" because that would run afoul of the
 	// memory tracker's redirection macro and require #include "lib/nommgr.h".
-	void dealloc(u8* p, size_t size)
+	void dealloc(void* p, size_t size)
 	{
 #ifndef NDEBUG
 		alloc_checker.notify_free(p, size);
@@ -349,7 +349,7 @@ success:
 
 		const size_t size_pa = round_up(size, BUF_ALIGN);
 		// make sure entire (aligned!) range is within pool.
-		if(!pool_contains(&pool, p) || !pool_contains(&pool, p+size_pa-1))
+		if(!pool_contains(&pool, p) || !pool_contains(&pool, (u8*)p+size_pa-1))
 		{
 			debug_warn("invalid pointer");
 			return;
@@ -371,7 +371,7 @@ success:
 	// write access is restored when buffer is freed.
 	//
 	// p and size are the exact (non-padded) values as in dealloc.
-	void make_read_only(u8* p, size_t size)
+	void make_read_only(void* p, size_t size)
 	{
 		// bail to avoid mprotect failing
 		if(!size)
@@ -449,7 +449,7 @@ private:
 	// notes:
 	// - correctly deals with p lying at start/end of pool.
 	// - p and size_pa are trusted: [p, p+size_pa) lies within the pool.
-	void coalesce_and_free(u8* p, size_t size_pa)
+	void coalesce_and_free(void* p, size_t size_pa)
 	{
 		// CAVEAT: Header and Footer are wiped out by freelist_remove -
 		// must use them before that.
@@ -458,10 +458,10 @@ private:
 		// (unless p is at start of pool region)
 		if(p != pool.da.base)
 		{
-			const Footer* footer = (const Footer*)(p-sizeof(Footer));
+			const Footer* footer = (const Footer*)((u8*)p-sizeof(Footer));
 			if(is_valid_tag(FOOTER_ID, footer->id, footer->magic, footer->size_pa))
 			{
-				p       -= footer->size_pa;
+				(u8*&)p -= footer->size_pa;
 				size_pa += footer->size_pa;
 				Header* header = (Header*)p;
 				freelist_remove(header);
@@ -471,7 +471,7 @@ private:
 		// expand size_pa to include following memory if it was allocated
 		// and is currently free.
 		// (unless it starts beyond end of currently committed region)
-		Header* header = (Header*)(p+size_pa);
+		Header* header = (Header*)((u8*)p+size_pa);
 		if((u8*)header < pool.da.base+pool.da.cur_size)
 		{
 			if(is_valid_tag(HEADER_ID, header->id, header->magic, header->size_pa))
@@ -509,7 +509,7 @@ private:
 		return (x & -(int)x);
 	}
 
-	void freelist_add(u8* p, size_t size_pa)
+	void freelist_add(void* p, size_t size_pa)
 	{
 		debug_assert((uintptr_t)p % BUF_ALIGN == 0);
 		debug_assert(size_pa % BUF_ALIGN == 0);
@@ -521,7 +521,7 @@ private:
 		header->id = HEADER_ID;
 		header->magic = MAGIC;
 		header->size_pa = size_pa;
-		Footer* footer = (Footer*)(p+size_pa-sizeof(Footer));
+		Footer* footer = (Footer*)((u8*)p+size_pa-sizeof(Footer));
 		footer->id = FOOTER_ID;
 		footer->magic = MAGIC;
 		footer->size_pa = size_pa;
@@ -571,13 +571,13 @@ private:
 		{
 			if(cur->size_pa >= size_pa)
 			{
-				u8* p = (u8*)cur;
+				void* p = cur;
 				const size_t remnant_pa = cur->size_pa - size_pa;
 
 				freelist_remove(cur);
 
 				if(remnant_pa)
-					freelist_add(p+size_pa, remnant_pa);
+					freelist_add((u8*)p+size_pa, remnant_pa);
 
 				return p;
 			}
@@ -865,7 +865,7 @@ private:
 	// cannot be used.
 	bool matches(const ExtantBuf& eb, FileIOBuf buf) const
 	{
-		return (eb.buf <= buf && buf < (u8*)eb.buf+eb.size);
+		return (eb.buf <= buf && buf < eb.buf+eb.size);
 	}
 
 	uint epoch;
@@ -966,7 +966,7 @@ static void free_padded_buf(FileIOBuf padded_buf, size_t size, bool from_heap = 
 
 static void cache_free(FileIOBuf exact_buf, size_t exact_size)
 {
-	cache_allocator.dealloc((u8*)exact_buf, exact_size);
+	cache_allocator.dealloc((void*)exact_buf, exact_size);
 }
 
 static FileIOBuf cache_alloc(size_t size)
@@ -1112,7 +1112,7 @@ free_immediately:
 void file_buf_add_padding(FileIOBuf exact_buf, size_t exact_size, size_t padding)
 {
 	debug_assert(padding < FILE_BLOCK_SIZE);
-	FileIOBuf padded_buf = (FileIOBuf)((u8*)exact_buf + padding);
+	FileIOBuf padded_buf = exact_buf + padding;
 	exact_buf_oracle.add(exact_buf, exact_size, padded_buf);
 }
 
@@ -1169,7 +1169,7 @@ LibError file_cache_add(FileIOBuf buf, size_t size, const char* atom_fn,
 
 	ExactBufOracle::BufAndSize bas = exact_buf_oracle.get(buf, size);
 	FileIOBuf exact_buf = bas.first; size_t exact_size = bas.second;
-	cache_allocator.make_read_only((u8*)exact_buf, exact_size);
+	cache_allocator.make_read_only((void*)exact_buf, exact_size);
 
 	file_cache.add(atom_fn, buf, size, cost);
 
@@ -1285,7 +1285,7 @@ void* file_cache_allocator_alloc(size_t size)
 {
 	return cache_allocator.alloc(size);
 }
-void file_cache_allocator_free(u8* p, size_t size)
+void file_cache_allocator_free(void* p, size_t size)
 {
 	return cache_allocator.dealloc(p, size);
 }

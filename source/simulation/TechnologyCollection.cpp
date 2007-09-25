@@ -14,9 +14,9 @@ void CTechnologyCollection::LoadFile( const char* path )
 	m_techFilenames[tag] = path;
 }
 
-static void LoadTechThunk( const char* path, const DirEnt* UNUSED(ent), void* context )
+static void LoadTechThunk( const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData )
 {
-	CTechnologyCollection* this_ = (CTechnologyCollection*)context;
+	CTechnologyCollection* this_ = (CTechnologyCollection*)cbData;
 	this_->LoadFile(path);
 }
 
@@ -24,7 +24,7 @@ int CTechnologyCollection::LoadTechnologies()
 {
 	// Load all files in techs/ and subdirectories.
 	THROW_ERR( vfs_dir_enum( "technologies/", VFS_DIR_RECURSIVE, "*.xml",
-		LoadTechThunk, this ) );
+		LoadTechThunk, (uintptr_t)this ) );
 	return 0;
 }
 

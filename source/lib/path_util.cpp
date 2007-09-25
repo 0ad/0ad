@@ -294,7 +294,7 @@ const char* path_extension(const char* fn)
 
 
 // call <cb> with <ctx> for each component in <path>.
-LibError path_foreach_component(const char* path_org, PathComponentCb cb, void* ctx)
+LibError path_foreach_component(const char* path_org, PathComponentCb cb, uintptr_t cbData)
 {
 	CHECK_PATH(path_org);
 
@@ -328,7 +328,7 @@ LibError path_foreach_component(const char* path_org, PathComponentCb cb, void* 
 		else
 			*slash = '\0';	// 0-terminate cur_component
 
-		LibError ret = cb(cur_component, is_dir, ctx);
+		LibError ret = cb(cur_component, is_dir, cbData);
 		// callback wants to abort - return its value.
 		if(ret != INFO::CB_CONTINUE)
 			return ret;

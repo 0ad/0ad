@@ -101,7 +101,7 @@ extern void file_cache_shutdown();
 
 // test access mechanism
 extern void* file_cache_allocator_alloc(size_t size);
-extern void file_cache_allocator_free(u8* p, size_t size);
+extern void file_cache_allocator_free(void* p, size_t size);
 extern void file_cache_allocator_reset();
 
 #endif	// #ifndef INCLUDED_FILE_CACHE

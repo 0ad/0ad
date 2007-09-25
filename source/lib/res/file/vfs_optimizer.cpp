@@ -125,9 +125,9 @@ static IdMgr id_mgr;
 // optimizations like reading from vfs_tree container directly.
 class FileGatherer
 {
-	static void EntCb(const char* path, const DirEnt* ent, void* context)
+	static void EntCb(const char* path, const DirEnt* ent, uintptr_t cbData)
 	{
-		FileNodes* file_nodes = (FileNodes*)context;
+		FileNodes* file_nodes = (FileNodes*)cbData;
 
 		// we only want files
 		if(DIRENT_IS_DIR(ent))
@@ -148,7 +148,7 @@ public:
 
 		// TODO: only add entries from mount points that have
 		// VFS_MOUNT_ARCHIVE flag set (avoids adding screenshots etc.)
-		vfs_dir_enum("", VFS_DIR_RECURSIVE, 0, EntCb, &file_nodes);
+		vfs_dir_enum("", VFS_DIR_RECURSIVE, 0, EntCb, (uintptr_t)&file_nodes);
 
 		// MAX_IDS is a rather large limit on number of files, but must not
 		// be exceeded (otherwise FileId overflows).

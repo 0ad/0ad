@@ -581,14 +581,7 @@ void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size)
 		p = storage;
 	// already in use (rare) - allocate from heap
 	else
-	{
-		p = malloc(size);
-		if(!p)
-		{
-			WARN_ERR(ERR::NO_MEM);
-			return 0;
-		}
-	}
+		p = new u8[size];
 
 	memset(p, 0, size);
 	return p;
@@ -615,7 +608,7 @@ void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
 		// single instance may have been freed by now - cannot assume
 		// anything about in_use_flag.
 
-		free(p);
+		delete[] (u8*)p;
 	}
 }
 

@@ -68,7 +68,7 @@ extern LibError afile_open_vfs(const char* fn, uint flags, File* f, TFile* tf);
 
 // begin transferring <size> bytes, starting at <ofs>. get result
 // with afile_io_wait; when no longer needed, free via afile_io_discard.
-extern LibError afile_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
+extern LibError afile_io_issue(File* f, off_t ofs, size_t size, u8* buf, FileIo* io);
 
 // indicates if the IO referenced by <io> has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
@@ -76,7 +76,7 @@ extern int afile_io_has_completed(FileIo* io);
 
 // wait until the transfer <io> completes, and return its buffer.
 // output parameters are zeroed on error.
-extern LibError afile_io_wait(FileIo* io, void*& p, size_t& size);
+extern LibError afile_io_wait(FileIo* io, u8*& p, size_t& size);
 
 // finished with transfer <io> - free its buffer (returned by afile_io_wait)
 extern LibError afile_io_discard(FileIo* io);
@@ -121,7 +121,7 @@ extern ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, File
 // the mapping will be removed (if still open) when its archive is closed.
 // however, map/unmap calls should still be paired so that the archive mapping
 // may be removed when no longer needed.
-extern LibError afile_map(File* f, void*& p, size_t& size);
+extern LibError afile_map(File* f, u8*& p, size_t& size);
 
 // remove the mapping of file <zf>; fail if not mapped.
 //

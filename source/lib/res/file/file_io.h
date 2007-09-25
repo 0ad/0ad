@@ -47,14 +47,14 @@ struct FileIo
 //
 // rationale: this interface is more convenient than implicitly advancing a
 // file pointer because archive.cpp often accesses random offsets.
-extern LibError file_io_issue(File* f, off_t ofs, size_t size, void* buf, FileIo* io);
+extern LibError file_io_issue(File* f, off_t ofs, size_t size, u8* buf, FileIo* io);
 
 // indicates if the given IO has completed.
 // return value: 0 if pending, 1 if complete, < 0 on error.
 extern int file_io_has_completed(FileIo* io);
 
 // wait for the given IO to complete. passes back its buffer and size.
-extern LibError file_io_wait(FileIo* io, void*& p, size_t& size);
+extern LibError file_io_wait(FileIo* io, u8*& p, size_t& size);
 
 // indicates the IO's buffer is no longer needed and frees that memory.
 extern LibError file_io_discard(FileIo* io);
@@ -79,7 +79,7 @@ extern size_t file_sector_size;
 // for the entire IO. we do not split into fake blocks because it is
 // advantageous (e.g. for decompressors) to have all data at once, if available
 // anyway.
-typedef LibError (*FileIOCB)(uintptr_t ctx, const void* block, size_t size, size_t* bytes_processed);
+typedef LibError (*FileIOCB)(uintptr_t ctx, const u8* block, size_t size, size_t* bytes_processed);
 
 
 typedef const u8* FileIOBuf;

@@ -37,12 +37,18 @@ enum CompressionMethod
 
 extern uintptr_t comp_alloc(ContextType type, CompressionMethod method);
 
+/**
+ * @return an upper bound on the output size for the given amount of input.
+ * this is used when allocating a single buffer for the whole operation.
+ **/
+extern size_t comp_max_output_size(uintptr_t ctx, size_t inSize);
+
 // set output buffer. all subsequent comp_feed() calls will write into it.
 // should only be called once (*) due to the comp_finish() interface - since
 // that allows querying the output buffer, it must not be fragmented.
 // * the previous output buffer is wiped out by comp_reset, so
 // setting it again (once!) after that is allowed and required.
-extern void comp_set_output(uintptr_t ctx, void* out, size_t out_size);
+extern void comp_set_output(uintptr_t ctx, u8* out, size_t out_size);
 
 // [compression contexts only:] allocate an output buffer big enough to
 // hold worst_case_compression_ratio*in_size bytes.
@@ -56,10 +62,6 @@ extern void comp_set_output(uintptr_t ctx, void* out, size_t out_size);
 // comp_reset. this reduces malloc/free calls.
 extern LibError comp_alloc_output(uintptr_t ctx, size_t in_size);
 
-// get current position in output buffer.
-// precondition: valid calls to EITHER comp_alloc_output OR comp_set_output.
-extern void* comp_get_output(uintptr_t ctx);
-
 // 'feed' the given buffer to the compressor/decompressor.
 // returns number of output bytes produced (*), or a negative LibError code.
 // * 0 is a legitimate return value - this happens if the input buffer is
@@ -67,17 +69,17 @@ extern void* comp_get_output(uintptr_t ctx);
 // note: the buffer may be overwritten or freed immediately after - we take
 // care of copying and queuing any data that remains (e.g. due to
 // lack of output buffer space).
-extern ssize_t comp_feed(uintptr_t ctx, const void* in, size_t in_size);
+extern ssize_t comp_feed(uintptr_t ctx, const u8* in, size_t in_size);
 
 // feed any remaining queued input data, finish the compress/decompress and
 // pass back the output buffer.
-extern LibError comp_finish(uintptr_t ctx, void** out, size_t* out_size);
+extern LibError comp_finish(uintptr_t ctx, u8** out, size_t* out_size, u32* checksum);
 
 // prepare this context for reuse. the effect is similar to freeing this
 // context and creating another.
 // rationale: this API avoids reallocating a considerable amount of
 // memory (ballbark 200KB LZ window plus output buffer).
-extern LibError comp_reset(uintptr_t ctx);
+extern void comp_reset(uintptr_t ctx);
 
 // free this context and all associated memory.
 extern void comp_free(uintptr_t ctx);

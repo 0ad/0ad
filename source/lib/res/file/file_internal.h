@@ -48,7 +48,7 @@ const size_t FILE_BLOCK_SIZE = 32*KiB;
 // bytes_processed is 0 if return value != { INFO::OK, INFO::CB_CONTINUE }
 // note: don't abort if = 0: zip callback may not actually
 // output anything if passed very little data.
-extern LibError file_io_call_back(const void* block, size_t size,
+extern LibError file_io_call_back(const u8* block, size_t size,
 	FileIOCB cb, uintptr_t ctx, size_t& bytes_processed);
 
 

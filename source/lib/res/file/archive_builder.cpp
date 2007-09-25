@@ -52,7 +52,7 @@ struct CompressParams
 	u32 crc;
 };
 
-static LibError compress_cb(uintptr_t cb_ctx, const void* block, size_t size, size_t* bytes_processed)
+static LibError compress_cb(uintptr_t cb_ctx, const u8* block, size_t size, size_t* bytes_processed)
 {
 	CompressParams* p = (CompressParams*)cb_ctx;
 
@@ -64,14 +64,19 @@ static LibError compress_cb(uintptr_t cb_ctx, const void* block, size_t size, si
 	p->crc = crc32(p->crc, (const Bytef*)block, (uInt)size);
 
 	if(p->attempt_compress)
+	{
+		// note: we don't need the return value because comp_finish returns
+		// the size of the compressed data.
 		(void)comp_feed(p->ctx, block, size);
+	}
+
 	return INFO::CB_CONTINUE;
 }
 
 
 // final decision on whether to store the file as compressed,
 // given the observed compressed/uncompressed sizes.
-static bool should_store_compressed(size_t ucsize, size_t csize)
+static bool ShouldCompress(size_t ucsize, size_t csize)
 {
 	const float ratio = (float)ucsize / csize;
 	const ssize_t bytes_saved = (ssize_t)ucsize - (ssize_t)csize;
@@ -98,7 +103,7 @@ static bool should_store_compressed(size_t ucsize, size_t csize)
 }
 
 static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
-	ArchiveEntry& ent, void*& file_contents, FileIOBuf& buf)	// out
+	ArchiveEntry& ent, const u8*& file_contents, FileIOBuf& buf)	// out
 {
 	struct stat s;
 	RETURN_ERR(vfs_stat(atom_fn, &s));
@@ -117,8 +122,9 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	const bool attempt_compress = !file_type_is_uncompressible(atom_fn);
 	if(attempt_compress)
 	{
-		RETURN_ERR(comp_reset(ctx));
-		RETURN_ERR(comp_alloc_output(ctx, ucsize));
+		comp_reset(ctx);
+		const size_t csizeBound = comp_max_output_size(ctx, ucsize);
+		RETURN_ERR(comp_alloc_output(ctx, csizeBound));
 	}
 
 	// read file into newly allocated buffer. if attempt_compress, also
@@ -131,18 +137,19 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 
 	// if we compressed the file trial-wise, check results and
 	// decide whether to store as such or not (based on compression ratio)
-	bool store_compressed = false;
-	void* cdata = 0; size_t csize = 0;
+	bool shouldCompress = false;
+	u8* cdata = 0; size_t csize = 0;
 	if(attempt_compress)
 	{
-		LibError ret = comp_finish(ctx, &cdata, &csize);
+		u32 checksum;	// TODO: use instead of crc
+		LibError ret = comp_finish(ctx, &cdata, &csize, &checksum);
 		if(ret < 0)
 		{
 			file_buf_free(buf);
 			return ret;
 		}
 
-		store_compressed = should_store_compressed(ucsize, csize);
+		shouldCompress = ShouldCompress(ucsize, csize);
 	}
 
 	// store file info
@@ -152,7 +159,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	ent.flags   = 0;
 	ent.atom_fn = atom_fn;
 	ent.crc     = params.crc;
-	if(store_compressed)
+	if(shouldCompress)
 	{
 		ent.method = CM_DEFLATE;
 		ent.csize  = (off_t)csize;
@@ -162,7 +169,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	{
 		ent.method = CM_NONE;
 		ent.csize  = (off_t)ucsize;
-		file_contents = (void*)buf;
+		file_contents = buf;
 	}
 
 	// note: no need to free cdata - it is owned by the
@@ -173,8 +180,7 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 
 
 
-LibError archive_build_init(const char* P_archive_filename, Filenames V_fns,
-							ArchiveBuildState* ab)
+LibError archive_build_init(const char* P_archive_filename, Filenames V_fns, ArchiveBuildState* ab)
 {
 	RETURN_ERR(zip_archive_create(P_archive_filename, &ab->za));
 	ab->ctx = comp_alloc(CT_COMPRESSION, CM_DEFLATE);
@@ -198,7 +204,7 @@ int archive_build_continue(ArchiveBuildState* ab)
 		if(!V_fn)
 			break;
 
-		ArchiveEntry ent; void* file_contents; FileIOBuf buf;
+		ArchiveEntry ent; const u8* file_contents; FileIOBuf buf;
 		if(read_and_compress_file(V_fn, ab->ctx, ent, file_contents, buf) == INFO::OK)
 		{
 			(void)zip_archive_add_file(ab->za, &ent, file_contents);

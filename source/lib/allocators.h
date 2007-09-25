@@ -47,6 +47,28 @@ extern void* page_aligned_alloc(size_t unaligned_size);
 extern void page_aligned_free(void* p, size_t unaligned_size);
 
 
+// adapter that allows calling page_aligned_free as a boost::shared_ptr deleter.
+class PageAlignedDeleter
+{
+public:
+	PageAlignedDeleter(size_t size)
+		: m_size(size)
+	{
+		debug_assert(m_size != 0);
+	}
+
+	void operator()(u8* p)
+	{
+		debug_assert(m_size != 0);
+		page_aligned_free(p, m_size);
+		m_size = 0;
+	}
+
+private:
+	size_t m_size;
+};
+
+
 //
 // dynamic (expandable) array
 //
@@ -436,10 +458,16 @@ extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
  **/
 template<class T> class SingleAllocator
 {
-	T storage;
+	// evil but necessary hack: we don't want to instantiate a T directly
+	// because it may not have a default ctor. an array of uninitialized
+	// storage is used instead. single_calloc doesn't know about alignment,
+	// so we fix this by asking for an array of doubles.
+	double storage[(sizeof(T)+sizeof(double)-1)/sizeof(double)];
 	volatile uintptr_t is_in_use;
 
 public:
+	typedef T value_type;
+
 	SingleAllocator()
 	{
 		is_in_use = 0;

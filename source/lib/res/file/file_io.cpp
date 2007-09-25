@@ -89,7 +89,7 @@ static AiocbAllocator aiocb_allocator;
 
 // starts transferring to/from the given buffer.
 // no attempt is made at aligning or padding the transfer.
-LibError file_io_issue(File* f, off_t ofs, size_t size, void* p, FileIo* io)
+LibError file_io_issue(File* f, off_t ofs, size_t size, u8* p, FileIo* io)
 {
 	debug_printf("FILE| issue ofs=0x%X size=0x%X\n", ofs, size);
 
@@ -163,7 +163,7 @@ int file_io_has_completed(FileIo* io)
 }
 
 
-LibError file_io_wait(FileIo* io, void*& p, size_t& size)
+LibError file_io_wait(FileIo* io, u8*& p, size_t& size)
 {
 	PosixFileIo* pio = (PosixFileIo*)io;
 //	debug_printf("FILE| wait io=%p\n", io);
@@ -188,7 +188,7 @@ LibError file_io_wait(FileIo* io, void*& p, size_t& size)
 	// (see explanation in file_io_issue).
 	debug_assert(bytes_transferred >= (ssize_t)(cb->aio_nbytes-AIO_SECTOR_SIZE));
 
-	p = (void*)cb->aio_buf;	// cast from volatile void*
+	p = (u8*)cb->aio_buf;	// cast from volatile void*
 	size = bytes_transferred;
 	return INFO::OK;
 }
@@ -249,7 +249,7 @@ size_t file_sector_size;
 // bytes_processed is 0 if return value != { INFO::OK, INFO::CB_CONTINUE }
 // note: don't abort if = 0: zip callback may not actually
 // output anything if passed very little data.
-LibError file_io_call_back(const void* block, size_t size,
+LibError file_io_call_back(const u8* block, size_t size,
 	FileIOCB cb, uintptr_t ctx, size_t& bytes_processed)
 {
 	if(cb)
@@ -376,17 +376,17 @@ class IOManager
 		lseek(fd, start_ofs, SEEK_SET);
 
 		// emulate temp buffers - we take care of allocating and freeing.
-		void* dst;
-		void* dst_mem = 0;
+		u8* dst;
+		u8* dst_mem = 0;
 		if(pbuf == FILE_BUF_TEMP)
 		{
-			dst_mem = malloc(size);
+			dst_mem = (u8*)malloc(size);
 			if(!dst_mem)
 				WARN_RETURN(ERR::NO_MEM);
 			dst = dst_mem;
 		}
 		else
-			dst = (void*)*pbuf;
+			dst = (u8*)*pbuf;	// WARNING: FileIOBuf is nominally const; if that's ever enforced, this may need to change.
 
 		ssize_t total_transferred;
 		if(is_write)
@@ -464,7 +464,7 @@ class IOManager
 			else
 				buf = (char*)*pbuf + total_issued;
 
-			LibError ret = file_io_issue(f, ofs, issue_size, buf, &slot.io);
+			LibError ret = file_io_issue(f, ofs, issue_size, (u8*)buf, &slot.io);
 			// transfer failed - loop will now terminate after
 			// waiting for all pending transfers to complete.
 			if(ret != INFO::OK)
@@ -474,7 +474,7 @@ class IOManager
 		total_issued += issue_size;
 	}
 
-	void wait(IOSlot& slot, void*& block, size_t& block_size)
+	void wait(IOSlot& slot, u8*& block, size_t& block_size)
 	{
 		// get completed block address/size
 		if(slot.cached_block)
@@ -520,7 +520,7 @@ class IOManager
 		total_transferred += block_size;
 	}
 
-	void process(IOSlot& slot, void* block, size_t block_size, FileIOCB cb, uintptr_t ctx)
+	void process(IOSlot& slot, u8* block, size_t block_size, FileIOCB cb, uintptr_t ctx)
 	{
 		if(err == INFO::CB_CONTINUE)
 		{
@@ -563,7 +563,7 @@ again:
 			if(!queue.empty())
 			{
 				IOSlot& slot = queue.front();
-				void* block; size_t block_size;
+				u8* block; size_t block_size;
 				wait(slot, block, block_size);
 				process(slot, block, block_size, cb, cb_ctx);
 				queue.pop_front();

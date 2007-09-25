@@ -341,7 +341,7 @@ extern LibError file_cache_invalidate(const char* fn);
 // rationale: reference counting is required for zip_map: several
 // Zip "mappings" each reference one ZArchive's actual file mapping.
 // implement it here so that we also get refcounting for normal files.
-extern LibError file_map(File* f, void*& p, size_t& size);
+extern LibError file_map(File* f, u8*& p, size_t& size);
 
 // decrement the reference count for the mapping belonging to file <f>.
 // fail if there are no references; remove the mapping if the count reaches 0.

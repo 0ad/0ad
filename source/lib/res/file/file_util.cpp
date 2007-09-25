@@ -176,7 +176,7 @@ LibError dir_filtered_next_ent(DirIterator* di, DirEnt* ent, const char* filter)
 //
 // note: EnumDirEntsCB path and ent are only valid during the callback.
 LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filter,
-	DirEnumCB cb, void* context)
+	DirEnumCB cb, uintptr_t cbData)
 {
 	debug_assert((flags & ~(VFS_DIR_RECURSIVE)) == 0);
 	const bool recursive = (flags & VFS_DIR_RECURSIVE) != 0;
@@ -236,10 +236,10 @@ LibError vfs_dir_enum(const char* start_path, uint flags, const char* user_filte
 					dir_queue.push(atom_path);
 
 				if(user_filter_wants_dirs)
-					cb(atom_path, &ent, context);
+					cb(atom_path, &ent, cbData);
 			}
 			else
-				cb(atom_path, &ent, context);
+				cb(atom_path, &ent, cbData);
 		}
 
 		vfs_dir_close(hdir);

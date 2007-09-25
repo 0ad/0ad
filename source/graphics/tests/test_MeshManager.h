@@ -94,7 +94,7 @@ class TestMeshManager : public CxxTest::TestSuite
 	{
 		// Create a junk trace file first, because vfs_opt_auto_build requires one
 		std::string trace = "000.000000: L \"-\" 0 0000\n";
-		vfs_store("trace.txt", trace.c_str(), trace.size(), FILE_NO_AIO);
+		vfs_store("trace.txt", (const u8*)trace.c_str(), trace.size(), FILE_NO_AIO);
 
 		// then make the archive
 		TS_ASSERT_OK(vfs_opt_rebuild_main_archive(MOD_PATH"/trace.txt", MOD_PATH"/test%02d.zip"));
@@ -127,7 +127,7 @@ public:
 
 		// Have to specify FILE_WRITE_TO_TARGET in order to overwrite existent
 		// files when they might have been archived
-		vfs_store(testDAE, "Test", 4, FILE_NO_AIO | FILE_WRITE_TO_TARGET);
+		vfs_store(testDAE, (const u8*)"Test", 4, FILE_NO_AIO | FILE_WRITE_TO_TARGET);
 
 		// We can't overwrite cache files because FILE_WRITE_TO_TARGET won't
 		// write into cache/ - it might be nice to fix that. For now we just
@@ -197,7 +197,7 @@ public:
 
 		copyFile(srcDAE, testDAE);
 		const char text[] = "Not valid XML";
-		vfs_store(testSkeletonDefs, text, strlen(text), FILE_NO_AIO);
+		vfs_store(testSkeletonDefs, (const u8*)text, strlen(text), FILE_NO_AIO);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
@@ -210,7 +210,7 @@ public:
 
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 		const char text[] = "Not valid XML";
-		vfs_store(testDAE, text, strlen(text), FILE_NO_AIO);
+		vfs_store(testDAE, (const u8*)text, strlen(text), FILE_NO_AIO);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);

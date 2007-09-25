@@ -34,7 +34,7 @@ public:
 				AllocMap::iterator it = allocations.begin();
 				for(; chosen_idx != 0; chosen_idx--)
 					++it;
-				file_cache_allocator_free((u8*)it->first, it->second);
+				file_cache_allocator_free(it->first, it->second);
 				allocations.erase(it);
 			}
 
