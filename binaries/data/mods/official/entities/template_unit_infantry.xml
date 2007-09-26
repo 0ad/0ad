@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit"
->
+<Entity	Parent="template_unit">
 	<Traits>
 	
 		<Id>
@@ -69,14 +67,14 @@
  		<Gather>
 			<Resource>
 				<Food>
-					<Fruit>10</Fruit>
-					<Grain>10</Grain>
+					<Fruit>8</Fruit>
+					<Grain>8</Grain>
 					<Fish>10</Fish>
-					<Milk>10</Milk>
+					<Milk>8</Milk>
 				</Food>
-				<Wood>18</Wood>
-				<Stone>18</Stone>
-				<Metal>18</Metal>
+				<Wood>14</Wood>
+				<Stone>15</Stone>
+				<Metal>14</Metal>
 			</Resource>
 			<AffectedByAllure>true</AffectedByAllure>
  			<Range>1.2</Range>

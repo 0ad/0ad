@@ -45,9 +45,6 @@
 		</Armour>		
 	</Traits>
 
-
-
-
 	<Actions>
 	
 		<Create>
@@ -67,14 +64,14 @@
 		<Gather>
 			<Resource>
 				<Food>
-					<Fruit>20</Fruit>
-					<Grain>20</Grain>
-					<Fish>20</Fish>
-					<Milk>20</Milk>
+					<Fruit>18</Fruit>
+					<Grain>15</Grain>
+					<Fish>9</Fish>
+					<Milk>15</Milk>
 				</Food>
-				<Wood>15</Wood>
-				<Metal>14</Metal>
-				<Stone>14</Stone>
+				<Wood>11</Wood>
+				<Metal>9</Metal>
+				<Stone>10</Stone>
 			</Resource>
  			<Range>2.0</Range>
 			<Speed>3000</Speed>
@@ -91,11 +88,11 @@
 		</Build>
 
 		<Move>
-			<Speed>10.0</Speed>
+			<Speed>8.0</Speed>
 			<TurningRadius>0.8</TurningRadius>
 			
 			<Run>
-				<Speed>15.0</Speed>
+				<Speed>12.0</Speed>
 				<Range>50.0</Range>
 				<RangeMin>0.0</RangeMin>
 			</Run>			
