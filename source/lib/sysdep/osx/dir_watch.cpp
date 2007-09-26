@@ -3,12 +3,14 @@
 
 // stub implementations
 
-LibError dir_add_watch(const char * const n_full_path, intptr_t* const watch)
+LibError dir_add_watch(
+		const char * const UNUSED(n_full_path),
+		intptr_t* const UNUSED(watch))
 {
 	return INFO::OK;
 }
 
-LibError dir_cancel_watch(const intptr_t watch)
+LibError dir_cancel_watch(const intptr_t UNUSED(watch))
 {
 	return INFO::OK;
 }

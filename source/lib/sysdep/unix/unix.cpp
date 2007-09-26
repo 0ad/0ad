@@ -25,23 +25,6 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 	fwprintf(stderr, L"%ls: %ls\n", caption, msg);
 }
 
-
-LibError sys_get_executable_name(char* n_path, size_t buf_size)
-{
-	Dl_info dl_info;
-
-	memset(&dl_info, 0, sizeof(dl_info));
-	if (!dladdr((void *)sys_get_executable_name, &dl_info) ||
-		!dl_info.dli_fname )
-	{
-		return ERR::NO_SYS;
-	}
-
-	strncpy(n_path, dl_info.dli_fname, buf_size);
-	return INFO::OK;
-}
-
-
 ErrorReaction sys_display_error(const wchar_t* text, uint flags)
 {
 	printf("%ls\n\n", text);
