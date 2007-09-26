@@ -13,7 +13,18 @@
       <props>
         <prop actor="units/persians/cavalry_swordsman_a_r.xml" attachpoint="rider"/>
       </props>
-      <texture>skeletal/horse_pers_csw_b_1.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="horse-texture-1">
+      <texture>skeletal/horse_pers_csw_a_1.dds</texture>
+    </variant>
+    <variant name="horse-texture-2">
+      <texture>skeletal/horse_pers_csw_a_2.dds</texture>
+    </variant>
+    <variant name="horse-texture-3">
+      <texture>skeletal/horse_pers_csw_a_3.dds</texture>
     </variant>
   </group>
 
