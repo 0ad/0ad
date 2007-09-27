@@ -20,17 +20,29 @@
   </group>
 
   <group>
-    <variant frequency="1" name="horse-color-palamino">
-      <colour>188 159 44</colour>
-      <texture>skeletal/horse_hele_b.dds</texture>
+    <variant frequency="1" name="hyppikon-horse-texture-plain">
+      <texture>skeletal/horse_hele_a_1.dds</texture>
     </variant>
-    <variant frequency="1" name="horse-color-strawberryroan">
-      <colour>247 174 40</colour>
-      <texture>skeletal/horse_hele_c.dds</texture>
+    <variant frequency="1" name="hyppikon-horse-texture-stripe">
+      <texture>skeletal/horse_hele_a_2.dds</texture>
     </variant>
-    <variant frequency="1" name="horse-color-dun">
-      <colour>255 136 4</colour>
-      <texture>skeletal/horse_hele_a.dds</texture>
+  </group>
+
+  <group>
+    <variant frequency="1" name="horse-color-bay">
+      <colour>228 107 27</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-red-chestnut">
+      <colour>207 132 109</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-black-chestnut">
+      <colour>164 87 68</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-black">
+      <colour>42 42 42</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-gray">
+      <colour>210 210 210</colour>
     </variant>
   </group>
 
