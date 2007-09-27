@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_super_cavalry"
->
+<Entity	Parent="template_unit_super_cavalry">
 	<Traits>
 	
 		<Id>
@@ -16,6 +14,12 @@
 			<History>Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, whom increased their number from 600 to several thousand. The Companion Cavalry was also a preferred general stand.</History>
 		
 		</Id>
+		
+		<Footprint>
+			<Radius>1.2</Radius>
+			<Height>7.5</Height>
+		</Footprint>
+		
 	</Traits>
 
 	<Actor>units/hellenes/super_unit_4.xml</Actor>
