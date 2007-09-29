@@ -239,7 +239,7 @@ static void DetectIdentifierString(char* identifierString)
 	{
 		const char* const undesired_strings[] = { "(tm)", "(TM)", "(R)", "CPU " };
 		std::for_each(undesired_strings, undesired_strings+ARRAY_SIZE(undesired_strings),
-			StringStripper(identifierString, ARRAY_SIZE(identifierString)));
+			StringStripper(identifierString, strlen(identifierString)+1));
 
 		// note: Intel brand strings include a frequency, but we can't rely
 		// on it because the CPU may be overclocked. we'll leave it in the
