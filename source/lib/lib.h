@@ -57,8 +57,19 @@ const size_t MiB = 1ul << 20;
 const size_t GiB = 1ul << 30;
 
 
-/// number of array elements
-#define ARRAY_SIZE(name) (sizeof(name) / sizeof(name[0]))
+//
+// number of array elements
+//
+
+// (function taking a reference to an array and returning a pointer to
+// an array of characters. it's only declared and never defined; we just
+// need it to determine n, the size of the array that was passed.)
+template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
+
+// (although requiring C++, this method is much better than the standard
+// sizeof(name) / sizeof(name[0]) because it doesn't compile when a
+// pointer is passed, which can easily happen under maintenance.)
+#define ARRAY_SIZE(name) (sizeof(*ArraySizeDeducer(name)))
 
 
 //-----------------------------------------------------------------------------
