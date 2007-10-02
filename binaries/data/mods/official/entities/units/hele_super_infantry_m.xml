@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_super_infantry"
->
+<Entity	Parent="template_unit_super_infantry">
 	<Traits>
 	
 		<Id>
@@ -24,7 +22,7 @@
 		</Armour>
 
 		<Health>
-			<Max>140</Max>
+			<Max>180</Max>
 		</Health>
 
 	</Traits>
@@ -32,12 +30,17 @@
 	<Actions>
 		<Attack>
 			<Melee>
- 				<Hack>8.0</Hack>
- 				<Pierce>20.0</Pierce>
- 				<Crush>0.0</Crush>
-				<Range>7.0</Range>
+ 				<Hack>10.0</Hack>
+ 				<Pierce>25.0</Pierce>
+				<Range>6.0</Range>
 			</Melee>
 		</Attack>
+		<Move>
+			<Speed>6.5</Speed>
+			<Run>
+				<Speed>0.0</Speed>
+			</Run>
+		</Move>
 	</Actions>
 
 	<Actor>units/hellenes/super_unit_3.xml</Actor>

@@ -16,48 +16,42 @@
 			<History>Ekdromos (literally: out runner) was a development of the hoplite. Development of the hoplite took many twists and turns based on the changing dynamics on the field of battle. Once armies began using Peltasts imported from Thrace something had to be done to counter this barrage of javelins thrown into the midst of a phalanx. The Thebans began to increase the armor of their hoplites, but the Athenians took a completely different approach and lightened the load for their infantry. The Ekdromoi would dash out from the phalanx, close with the enemy ranged units at speed, and cut them down at will. This approach also worked to harass more heavily armed troops as well, the enemy carrying too much weight to catch the vexatious Ekdromoi.</History>
 		
 		</Id>
+		
+		<Footprint>
+			<Radius>0.5</Radius>
+			<Height>4.0</Height>
+		</Footprint>
 
 		<Armour>
-			<Hack>6.0</Hack>
-			<Pierce>5.0</Pierce>
-			<Crush>11.0</Crush>
+			<Hack>8.0</Hack>
+			<Pierce>9.0</Pierce>
+			<Crush>12.0</Crush>
 		</Armour>
 
 		<Health>
-			<Max>120</Max>
+			<Max>160</Max>
 		</Health>
-
+		
 	</Traits>
 
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>13.0</Hack>
- 				<Pierce>9.0</Pierce>
- 				<Crush>0.0</Crush>
+				<Hack>18.0</Hack>
+				<Pierce>10.0</Pierce>
 			</Melee>
-
 			<Charge>
 				<Hack>18.0</Hack>
 				<Pierce>11.0</Pierce>
 				<Crush>15.0</Crush>
-				
-				<Range>5.0</Range>
-				<Speed>1500</Speed>
 			</Charge>	
-
  		</Attack>
 
 		<Move>
-			<Speed>13.0</Speed>
-			<TurningRadius>1.0</TurningRadius>
-			
+			<Speed>12.0</Speed>
 			<Run>
-				<Speed>25.0</Speed>
-				<Range>600.0</Range>
-				<RangeMin>5.0</RangeMin>
+				<Speed>18.0</Speed>
 			</Run>
-			
 		</Move>
 
 	</Actions>

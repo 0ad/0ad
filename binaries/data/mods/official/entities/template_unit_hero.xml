@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit"
->
+<Entity	Parent="template_unit">
 	<Traits>
 	
 		<Id>
@@ -31,10 +29,10 @@
 
 		<Loot>
 			<Xp>1000</Xp>
-			<Food>1</Food>
-			<wood>1</wood>
-			<Stone>1</Stone>
-			<Metal>1</Metal>
+			<Food>10</Food>
+			<wood>10</wood>
+			<Stone>10</Stone>
+			<Metal>100</Metal>
 		</Loot>		
 
 		<MiniMap>
@@ -42,24 +40,17 @@
 		</MiniMap>
 
 	</Traits>
-	
-
-
 
 	<Actions>
 		<Attack>
 			<Melee>
-				<Hack>30.0</Hack>
-				<Pierce>20.0</Pierce>	
-				<Crush>2.0</Crush>	
+				<Hack>40.0</Hack>
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Melee>
 		
 			<Charge>
-				<Hack>35.0</Hack>
-				<Pierce>35.0</Pierce>
-				<Crush>0.0</Crush>		
+				<Hack>120.0</Hack>
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Charge>		

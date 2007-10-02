@@ -44,8 +44,8 @@
         <prop actor="props/units/shields/rome_scutum_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/pillum.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/pillum_reverse.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/pillum.xml" attachpoint="projectile"/>
+        <prop actor="" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="gather_wood">

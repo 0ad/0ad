@@ -12,15 +12,19 @@
 			<Classes>Organic, Mounted</Classes>
 		
 		</Id>
-					<Creation>
+		<Creation>
 				<Resource>
  				<Food>300</Food>
 				<Metal>150</Metal>
  			</Resource>
 		</Creation>
+		<Footprint>
+			<Radius>1.2</Radius>
+			<Height>7.5</Height>
+		</Footprint>
 		<Auras>
 			<Trample>
-				<Radius>1</Radius>
+				<Radius>3</Radius>
 				<Speed>1000</Speed>
 				<Duration>3</Duration>
 				
@@ -35,21 +39,27 @@
 			</Trample>
 		</Auras>		
 		<Armour>
-			<Hack>300.0</Hack>
-			<Pierce>240.0</Pierce>
-			<Crush>210.0</Crush>
-		</Armour>		
+			<Hack>7.0</Hack>
+			<Pierce>8.0</Pierce>
+			<Crush>14.0</Crush>
+		</Armour>
+		<Health>
+			<Max>200</Max>
+		</Health>
+		
 	</Traits>
-
-
 
 	<Actions>
  		<Attack>
- 			<Hack>350.0</Hack>
- 			<Pierce>220.0</Pierce>
- 			<Crush>260.0</Crush>
- 		</Attack>
+ 			<Hack>35.0</Hack>
+ 			<Pierce>0.0</Pierce>
+ 			<Crush>0.0</Crush>
 
+			<Charge>
+				<Hack>105.0</Hack>
+			</Charge>		
+ 		</Attack>
+		
 		<Move>
 			<Speed>13.0</Speed>
 			<Run>

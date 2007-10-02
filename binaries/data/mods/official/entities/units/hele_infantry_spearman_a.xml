@@ -17,8 +17,8 @@
 		</Promotion>
 
 		<Armour>
-			<Hack>5.5</Hack>
-			<Pierce>3.3</Pierce>
+			<Hack>6.5</Hack>
+			<Pierce>5.0</Pierce>
 			<Crush>11.0</Crush>
 		</Armour>
 
@@ -31,12 +31,22 @@
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>11.0</Hack>
- 				<Pierce>6.0</Pierce>
- 				<Crush>0.0</Crush>
+ 				<Hack>16.0</Hack>
+ 				<Pierce>7.5</Pierce>
 			</Melee>
+			<Charge>
+				<Hack>32.0</Hack>
+				<Pierce>15.0</Pierce>
+			</Charge>		
  		</Attack>
-	</Actions>
+
+		<Move>
+			<Speed>7.25</Speed>
+			<Run>
+				<Speed>14.0</Speed>
+			</Run>
+		</Move>
+	</Actions>	
 
 	<Actor>units/hellenes/infantry_spearman_a.xml</Actor>
 

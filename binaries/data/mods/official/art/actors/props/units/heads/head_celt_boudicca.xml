@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/dudette_head.pmd</mesh>
+      <texture>props/head/celt_fem_a.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="red">
+      <colour>206 70 4</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

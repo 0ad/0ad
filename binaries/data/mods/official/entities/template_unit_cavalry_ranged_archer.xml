@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_cavalry_ranged"
->
+<Entity	Parent="template_unit_cavalry_ranged">
 	<Traits>
 	
 		<Id>
@@ -29,13 +27,11 @@
 		</Armour>		
 	</Traits>
 
-
-
 	<Actions>
  		<Attack>
 			<Ranged>
  				<Hack>0.0</Hack>
- 				<Pierce>15.0</Pierce>
+ 				<Pierce>40.0</Pierce>
  				<Crush>0.0</Crush>
 			</Ranged>
  		</Attack>

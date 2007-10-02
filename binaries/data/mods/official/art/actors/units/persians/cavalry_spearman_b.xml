@@ -8,13 +8,30 @@
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_gallop.psa" name="Walk" speed="17"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="20"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="20"/>
+        <animation file="quadraped/horse_attack_a.psa" name="idle" speed="20"/>
+        <animation file="quadraped/horse_attack_b.psa" name="idle" speed="20"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>
         <prop actor="units/persians/cavalry_spearman_b_r.xml" attachpoint="rider"/>
       </props>
-      <texture>skeletal/horse_black_a.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="1" name="horse_color_brown">
+      <texture>skeletal/horse_pers_csp_b_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse_color_white">
+      <texture>skeletal/horse_pers_csp_b_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse_color_beige">
+      <texture>skeletal/horse_pers_csp_b_3.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
 
 </actor>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_cavalry_melee"
->
+<Entity	Parent="template_unit_cavalry_melee">
 	<Traits>
 	
 		<Id>
@@ -35,13 +33,16 @@
 
 	</Traits>
 
-
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>10.0</Hack>
+ 				<Hack>15.0</Hack>
  				<Pierce>5.0</Pierce>
  				<Crush>0.0</Crush>
+			<Charge>
+				<Hack>45.0</Hack>
+				<Pierce>15.0</Pierce>
+			</Charge>		
 			</Melee>
  		</Attack>
 

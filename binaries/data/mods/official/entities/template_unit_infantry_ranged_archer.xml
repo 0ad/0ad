@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_infantry_ranged"
->
+<Entity	Parent="template_unit_infantry_ranged">
 	<Traits>
 	
 		<Id>
@@ -42,7 +40,7 @@
  		<Attack>
 			<Ranged>
  				<Hack>0.0</Hack>
- 				<Pierce>35.0</Pierce>
+ 				<Pierce>40.0</Pierce>
  				<Crush>0.0</Crush>
 
 				<MinRange>20.0</MinRange>
