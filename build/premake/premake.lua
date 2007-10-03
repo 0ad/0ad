@@ -399,6 +399,7 @@ function setup_all_libs ()
 		"lib/sysdep/ia32",
 		"lib/res",
 		"lib/res/file",
+		"lib/res/file/archive",
 		"lib/res/graphics",
 		"lib/res/sound",
 		"lib/external_libraries"

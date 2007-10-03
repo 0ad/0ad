@@ -28,7 +28,7 @@ enum CompressionMethod
 {
 	CM_NONE,
 
-	// zlib "deflate" - see RFC 1750, 1751.
+	// zlib "deflate" (RFC 1750, 1751) and Adler32 checksum
 	CM_DEFLATE,
 
 	CM_UNSUPPORTED

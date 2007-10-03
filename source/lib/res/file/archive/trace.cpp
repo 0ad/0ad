@@ -15,7 +15,7 @@
 #include "lib/allocators.h"
 #include "lib/timer.h"
 #include "lib/sysdep/cpu.h"
-#include "file_internal.h"
+#include "../file_internal.h"
 
 
 ERROR_ASSOCIATE(ERR::TRACE_EMPTY, "No valid entries in trace", -1);

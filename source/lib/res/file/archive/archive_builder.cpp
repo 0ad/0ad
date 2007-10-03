@@ -12,7 +12,7 @@
 #include "archive_builder.h"
 
 #include "lib/timer.h"
-#include "file_internal.h"
+#include "../file_internal.h"
 
 // un-nice dependencies:
 #include "ps/Loader.h"

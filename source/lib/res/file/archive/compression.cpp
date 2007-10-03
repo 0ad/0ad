@@ -17,7 +17,7 @@
 #include "lib/res/mem.h"
 #include "lib/allocators.h"
 #include "lib/timer.h"
-#include "file_io.h"	// IO_EOF
+#include "../file_io.h"	// IO_EOF
 
 #include <boost/shared_ptr.hpp>
 

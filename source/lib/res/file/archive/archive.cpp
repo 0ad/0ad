@@ -15,7 +15,7 @@
 #include "lib/timer.h"
 #include "lib/allocators.h"
 #include "lib/res/res.h"
-#include "file_internal.h"
+#include "../file_internal.h"
 
 #include <boost/shared_ptr.hpp>
 

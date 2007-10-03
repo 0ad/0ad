@@ -13,7 +13,7 @@
 #define INCLUDED_ARCHIVE
 
 #include "lib/res/handle.h"
-#include "file.h"			// FileCB for afile_enum
+#include "../file.h"			// FileCB for afile_enum
 #include "compression.h"	// CompressionMethod
 
 namespace ERR
@@ -114,7 +114,7 @@ extern ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, File
 // would have to be inflated sequentially, which defeats the point of mapping.
 
 
-// map the entire file <zf> into memory. mapping compressed files
+// map the entire file <f> into memory. mapping compressed files
 // isn't allowed, since the compression algorithm is unspecified.
 // output parameters are zeroed on failure.
 //
@@ -123,7 +123,7 @@ extern ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, File
 // may be removed when no longer needed.
 extern LibError afile_map(File* f, u8*& p, size_t& size);
 
-// remove the mapping of file <zf>; fail if not mapped.
+// remove the mapping of file <f>; fail if not mapped.
 //
 // the mapping will be removed (if still open) when its archive is closed.
 // however, map/unmap calls should be paired so that the archive mapping

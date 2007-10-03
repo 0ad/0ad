@@ -1,7 +1,7 @@
 #include "lib/self_test.h"
 
 #include "lib/self_test.h"
-#include "lib/res/file/compression.h"
+#include "lib/res/file/archive/compression.h"
 
 class TestCompression : public CxxTest::TestSuite 
 {
