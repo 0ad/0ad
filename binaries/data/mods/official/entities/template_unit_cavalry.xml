@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit"
->
+<Entity	Parent="template_unit">
 	<Traits>
 	
 		<Id>
@@ -76,7 +74,7 @@
 		</Loot>		
 
 		<Move>
-			<Speed>10.0</Speed>
+			<Speed>11.5</Speed>
 			<TurningRadius>5.0</TurningRadius>
 			
 			<Run>

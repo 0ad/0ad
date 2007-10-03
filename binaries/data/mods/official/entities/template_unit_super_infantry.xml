@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity Parent="template_unit_super">
-
 	<Traits>
+	
 		<Id>
+		
 			<Generic>Super Infantry</Generic>
 
-			<Icon_Cell>42</Icon_Cell>
+			<Icon_Cell>43</Icon_Cell>
 
 			<Classes>Organic, Foot</Classes>
+		
 		</Id>
 		<Creation>
-				<Resource>
- 				<Food>100</Food>
-				<Metal>125</Metal>
+			<Resource>
+ 				<Food>300</Food>
+				<Metal>150</Metal>
  			</Resource>
 		</Creation>
+		<Footprint>
+			<Radius>0.5</Radius>
+			<Height>4.0</Height>
+		</Footprint>
 		<Armour>
 			<Hack>8.0</Hack>
 			<Pierce>7.0</Pierce>
@@ -24,15 +30,22 @@
 		<Health>
 			<Max>175</Max>
 		</Health>
+		<Population>
+			<Rem>1</Rem>
+		</Population>
 		
 	</Traits>
 
 	<Actions>
  		<Attack>
- 			<Hack>30.0</Hack>
+			<Melee>
+				<Hack>30.0</Hack>
+				<Pierce>0.0</Pierce>
+				<Crush>0.0</Crush>
+			</Melee>
 			<Charge>
 				<Hack>75.0</Hack>
-			</Charge>					
+			</Charge>		
  		</Attack>
 		<Move>
 			<Speed>8.5</Speed>

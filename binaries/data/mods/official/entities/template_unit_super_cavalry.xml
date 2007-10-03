@@ -13,7 +13,7 @@
 		
 		</Id>
 		<Creation>
-				<Resource>
+			<Resource>
  				<Food>300</Food>
 				<Metal>150</Metal>
  			</Resource>
@@ -46,20 +46,25 @@
 		<Health>
 			<Max>200</Max>
 		</Health>
+		<Population>
+			<Rem>2</Rem>
+		</Population>
 		
 	</Traits>
 
 	<Actions>
  		<Attack>
- 			<Hack>35.0</Hack>
- 			<Pierce>0.0</Pierce>
- 			<Crush>0.0</Crush>
-
+			<Melee>
+				<Hack>35.0</Hack>
+				<Pierce>0.0</Pierce>
+				<Crush>0.0</Crush>
+			</Melee>
 			<Charge>
 				<Hack>105.0</Hack>
+				<Pierce>0.0</Pierce>
+				<Crush>0.0</Crush>
 			</Charge>		
  		</Attack>
-		
 		<Move>
 			<Speed>13.0</Speed>
 			<Run>
