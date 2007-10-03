@@ -93,6 +93,14 @@ public:
 	 * @return error status for the entire operation.
 	 **/
 	virtual LibError Finish(u8*& out, size_t& outSize, u32& checksum) = 0;
+
+	/**
+	 * update a checksum to reflect the contents of a buffer.
+	 *
+	 * @param checksum the initial value (must be 0 on first call)
+	 * @return the new checksum.
+	 **/
+	virtual u32 UpdateChecksum(u32 checksum, const u8* in, size_t inSize) const = 0;
 };
 
 
@@ -103,6 +111,17 @@ public:
 class ZLibCodec : public ICodec
 {
 protected:
+	ZLibCodec()
+	{
+		memset(&m_zs, 0, sizeof(m_zs));
+		InitializeChecksum();
+	}
+
+	void InitializeChecksum()
+	{
+		m_checksum = crc32(0, 0, 0);
+	}
+
 	typedef int ZEXPORT (*ZLibFunc)(z_streamp strm, int flush);
 
 	static LibError LibError_from_zlib(int zlib_err, bool warn_if_failed = true)
@@ -157,7 +176,19 @@ protected:
 		return LibError_from_zlib(ret);
 	}
 
+	virtual u32 UpdateChecksum(u32 checksum, const u8* in, size_t inSize) const
+	{
+		return (u32)crc32(checksum, in, (uInt)inSize);
+	}
+
 	mutable z_stream m_zs;
+
+	// note: z_stream does contain an 'adler' checksum field, but that's
+	// not updated in streams lacking a gzip header, so we'll have to
+	// calculate a checksum ourselves.
+	// adler32 is somewhat weaker than CRC32, but a more important argument
+	// is that we should use the latter for compatibility with Zip archives.
+	mutable u32 m_checksum;
 };
 
 class ZLibCompressor : public ZLibCodec
@@ -165,8 +196,6 @@ class ZLibCompressor : public ZLibCodec
 public:
 	ZLibCompressor()
 	{
-		memset(&m_zs, 0, sizeof(m_zs));
-
 		// note: with Z_BEST_COMPRESSION, 78% percent of
 		// archive builder CPU time is spent in ZLib, even though
 		// that is interleaved with IO; everything else is negligible.
@@ -198,12 +227,14 @@ public:
 
 	virtual LibError Reset()
 	{
+		ZLibCodec::InitializeChecksum();
 		const int ret = deflateReset(&m_zs);
 		return LibError_from_zlib(ret);
 	}
 
 	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outConsumed)
 	{
+		m_checksum = UpdateChecksum(m_checksum, in, inSize);
 		return ZLibCodec::Process(deflate, 0, in, inSize, out, outSize, inConsumed, outConsumed);
 	}
 
@@ -218,7 +249,7 @@ public:
 
 		out = m_zs.next_out - m_zs.total_out;
 		outSize = m_zs.total_out;
-		checksum = m_zs.adler;
+		checksum = m_checksum;
 		return INFO::OK;
 	}
 };
@@ -229,8 +260,6 @@ class ZLibDecompressor : public ZLibCodec
 public:
 	ZLibDecompressor()
 	{
-		memset(&m_zs, 0, sizeof(m_zs));
-
 		const int windowBits = -MAX_WBITS;	// max window size; omit ZLib header
 		const int ret = inflateInit2(&m_zs, windowBits);
 		debug_assert(ret == Z_OK);
@@ -255,13 +284,16 @@ public:
 
 	virtual LibError Reset()
 	{
+		ZLibCodec::InitializeChecksum();
 		const int ret = inflateReset(&m_zs);
 		return LibError_from_zlib(ret);
 	}
 
 	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outConsumed)
 	{
-		return ZLibCodec::Process(inflate, Z_SYNC_FLUSH, in, inSize, out, outSize, inConsumed, outConsumed);
+		const LibError ret = ZLibCodec::Process(inflate, Z_SYNC_FLUSH, in, inSize, out, outSize, inConsumed, outConsumed);
+		m_checksum = UpdateChecksum(m_checksum, in, inSize);
+		return ret;
 	}
 
 	virtual LibError Finish(u8*& out, size_t& outSize, u32& checksum)
@@ -270,7 +302,7 @@ public:
 
 		out = m_zs.next_out - m_zs.total_out;
 		outSize = m_zs.total_out;
-		checksum = m_zs.adler;
+		checksum = m_checksum;
 		return INFO::OK;
 	}
 };
@@ -527,6 +559,11 @@ public:
 		return m_codec->Finish(out, outSize, checksum);
 	}
 
+	u32 UpdateChecksum(u32 checksum, const u8* in, size_t inSize) const
+	{
+		return m_codec->UpdateChecksum(checksum, in, inSize);
+	}
+
 private:
 	// ICodec::Finish is allowed to assume that output buffers were identical
 	// or contiguous; we verify this here.
@@ -603,16 +640,26 @@ uintptr_t comp_alloc(ContextType type, CompressionMethod method)
 	return (uintptr_t)stream;
 }
 
-size_t comp_max_output_size(uintptr_t ctx, size_t inSize)
+void comp_free(uintptr_t ctx)
 {
+	// no-op if context is 0 (i.e. was never allocated)
+	if(!ctx)
+		return;
+
 	Stream* stream = (Stream*)ctx;
-	return stream->MaxOutputSize(inSize);
+	streamFactory.Destroy(stream);
 }
 
 void comp_reset(uintptr_t ctx)
 {
 	Stream* stream = (Stream*)ctx;
 	stream->Reset();
+}
+
+size_t comp_max_output_size(uintptr_t ctx, size_t inSize)
+{
+	Stream* stream = (Stream*)ctx;
+	return stream->MaxOutputSize(inSize);
 }
 
 void comp_set_output(uintptr_t ctx, u8* out, size_t outSize)
@@ -639,12 +686,8 @@ LibError comp_finish(uintptr_t ctx, u8** out, size_t* outSize, u32* checksum)
 	return stream->Finish(*out, *outSize, *checksum);
 }
 
-void comp_free(uintptr_t ctx)
+u32 comp_update_checksum(uintptr_t ctx, u32 checksum, const u8* in, size_t inSize)
 {
-	// no-op if context is 0 (i.e. was never allocated)
-	if(!ctx)
-		return;
-
 	Stream* stream = (Stream*)ctx;
-	streamFactory.Destroy(stream);
+	return stream->UpdateChecksum(checksum, in, inSize);
 }

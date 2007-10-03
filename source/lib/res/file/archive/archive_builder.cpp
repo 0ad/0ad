@@ -16,91 +16,147 @@
 
 // un-nice dependencies:
 #include "ps/Loader.h"
-#include <zlib.h>
 
 
-static inline bool file_type_is_uncompressible(const char* fn)
+// vfs_load callback that compresses the data in parallel with IO
+// (for incompressible files, we just calculate the checksum)
+class Compressor
 {
-	const char* ext = path_extension(fn);
-
-	// this is a selection of file types that are certainly not
-	// further compressible. we need not include every type under the sun -
-	// this is only a slight optimization that avoids wasting time
-	// compressing files. the real decision as to cmethod is made based
-	// on attained compression ratio.
-	static const char* uncompressible_exts[] =
+public:
+	Compressor(uintptr_t ctx, const char* atom_fn, size_t usize)
+		: m_ctx(ctx)
+		, m_usize(usize)
+		, m_skipCompression(IsFileTypeIncompressible(atom_fn))
+		, m_cdata(0), m_csize(0), m_checksum(0)
 	{
-		"zip", "rar",
-		"jpg", "jpeg", "png",
-		"ogg", "mp3"
-	};
-
-	for(uint i = 0; i < ARRAY_SIZE(uncompressible_exts); i++)
-	{
-		if(!strcasecmp(ext+1, uncompressible_exts[i]))
-			return true;
+		comp_reset(m_ctx);
+		m_csizeBound = comp_max_output_size(m_ctx, usize);
+		THROW_ERR(comp_alloc_output(m_ctx, m_csizeBound));
 	}
 
-	return false;
-}
+	LibError Feed(const u8* ublock, size_t ublockSize, size_t* bytes_processed)
+	{
+		// comp_feed already makes note of total #bytes fed, and we need
+		// vfs_io to return the usize (to check if all data was read).
+		*bytes_processed = ublockSize;
+
+		if(m_skipCompression)
+		{
+			// (since comp_finish returns the checksum, we only need to update this
+			// when not compressing.)
+			m_checksum = comp_update_checksum(m_ctx, m_checksum, ublock, ublockSize);
+		}
+		else
+		{
+			// note: we don't need the return value because comp_finish
+			// will tell us the total csize.
+			(void)comp_feed(m_ctx, ublock, ublockSize);
+		}
+
+		return INFO::CB_CONTINUE;
+	}
+
+	LibError Finish()
+	{
+		if(m_skipCompression)
+			return INFO::OK;
+
+		RETURN_ERR(comp_finish(m_ctx, &m_cdata, &m_csize, &m_checksum));
+		debug_assert(m_csize <= m_csizeBound);
+		return INFO::OK;
+	}
+
+	u32 Checksum() const
+	{
+		return m_checksum;
+	}
+
+	// final decision on whether to store the file as compressed,
+	// given the observed compressed/uncompressed sizes.
+	bool IsCompressionProfitable() const
+	{
+		// file is definitely incompressible.
+		if(m_skipCompression)
+			return false;
+
+		const float ratio = (float)m_usize / m_csize;
+		const ssize_t bytes_saved = (ssize_t)m_usize - (ssize_t)m_csize;
+		UNUSED2(bytes_saved);
+
+		// tiny - store compressed regardless of savings.
+		// rationale:
+		// - CPU cost is negligible and overlapped with IO anyway;
+		// - reading from compressed files uses less memory because we
+		//   don't need to allocate space for padding in the final buffer.
+		if(m_usize < 512)
+			return true;
+
+		// large high-entropy file - store uncompressed.
+		// rationale:
+		// - any bigger than this and CPU time becomes a problem: it isn't
+		//   necessarily hidden by IO time anymore.
+		if(m_usize >= 32*KiB && ratio < 1.02f)
+			return false;
+
+		// we currently store everything else compressed.
+		return true;
+	}
+
+	void GetOutput(const u8*& cdata, size_t& csize) const
+	{
+		debug_assert(!m_skipCompression);
+		debug_assert(m_cdata && m_csize);
+		cdata = m_cdata;
+		csize = m_csize;
+
+		// note: no need to free cdata - it is owned by the
+		// compression context and can be reused.
+	}
+
+private:
+	static bool IsFileTypeIncompressible(const char* fn)
+	{
+		const char* ext = path_extension(fn);
+
+		// this is a selection of file types that are certainly not
+		// further compressible. we need not include every type under the sun -
+		// this is only a slight optimization that avoids wasting time
+		// compressing files. the real decision as to cmethod is made based
+		// on attained compression ratio.
+		static const char* incompressible_exts[] =
+		{
+			"zip", "rar",
+			"jpg", "jpeg", "png",
+			"ogg", "mp3"
+		};
+
+		for(uint i = 0; i < ARRAY_SIZE(incompressible_exts); i++)
+		{
+			if(!strcasecmp(ext+1, incompressible_exts[i]))
+				return true;
+		}
+
+		return false;
+	}
 
 
-struct CompressParams
-{
-	bool attempt_compress;
-	uintptr_t ctx;
-	u32 crc;
+	uintptr_t m_ctx;
+	size_t m_usize;
+	size_t m_csizeBound;
+	bool m_skipCompression;
+
+	u8* m_cdata;
+	size_t m_csize;
+	u32 m_checksum;
 };
 
-static LibError compress_cb(uintptr_t cb_ctx, const u8* block, size_t size, size_t* bytes_processed)
+static LibError compressor_feed_cb(uintptr_t cbData,
+	const u8* ublock, size_t ublockSize, size_t* bytes_processed)
 {
-	CompressParams* p = (CompressParams*)cb_ctx;
-
-	// comp_feed already makes note of total #bytes fed, and we need
-	// vfs_io to return the uc size (to check if all data was read).
-	*bytes_processed = size;
-
-	// update checksum
-	p->crc = crc32(p->crc, (const Bytef*)block, (uInt)size);
-
-	if(p->attempt_compress)
-	{
-		// note: we don't need the return value because comp_finish returns
-		// the size of the compressed data.
-		(void)comp_feed(p->ctx, block, size);
-	}
-
-	return INFO::CB_CONTINUE;
+	Compressor& compressor = *(Compressor*)cbData;
+	return compressor.Feed(ublock, ublockSize, bytes_processed);
 }
 
-
-// final decision on whether to store the file as compressed,
-// given the observed compressed/uncompressed sizes.
-static bool ShouldCompress(size_t usize, size_t csize)
-{
-	const float ratio = (float)usize / csize;
-	const ssize_t bytes_saved = (ssize_t)usize - (ssize_t)csize;
-	UNUSED2(bytes_saved);
-
-	// tiny - store compressed regardless of savings.
-	// rationale:
-	// - CPU cost is negligible and overlapped with IO anyway;
-	// - reading from compressed files uses less memory because we
-	//   don't need to allocate space for padding in the final buffer.
-	if(usize < 512)
-		return true;
-
-	// large high-entropy file - store uncompressed.
-	// rationale:
-	// - any bigger than this and CPU time becomes a problem: it isn't
-	//   necessarily hidden by IO time anymore.
-	if(usize >= 32*KiB && ratio < 1.02f)
-		return false;
-
-	// TODO: any other cases?
-	// we currently store everything else compressed.
-	return true;
-}
 
 static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	ArchiveEntry& ent, const u8*& file_contents, FileIOBuf& buf)	// out
@@ -115,55 +171,38 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 	// it looks like checking for usize=csize=0 is the safest way -
 	// relying on file attributes (which are system-dependent!) is
 	// even less safe.
-	// we thus skip 0-length files to avoid confusing them with dirs.
+	// we thus skip 0-length files to avoid confusing them with directories.
 	if(!usize)
 		return INFO::SKIPPED;
 
-	const bool attempt_compress = !file_type_is_uncompressible(atom_fn);
-	if(attempt_compress)
-	{
-		comp_reset(ctx);
-		const size_t csizeBound = comp_max_output_size(ctx, usize);
-		RETURN_ERR(comp_alloc_output(ctx, csizeBound));
-	}
+	Compressor compressor(ctx, atom_fn, usize);
 
-	// read file into newly allocated buffer. if attempt_compress, also
-	// compress the file into another buffer while waiting for IOs.
+	// read file into newly allocated buffer and run compressor.
 	size_t usize_read;
 	const uint flags = 0;
-	CompressParams params = { attempt_compress, ctx, 0 };
-	RETURN_ERR(vfs_load(atom_fn, buf, usize_read, flags, compress_cb, (uintptr_t)&params));
+	RETURN_ERR(vfs_load(atom_fn, buf, usize_read, flags, compressor_feed_cb, (uintptr_t)&compressor));
 	debug_assert(usize_read == usize);
 
-	// if we compressed the file trial-wise, check results and
-	// decide whether to store as such or not (based on compression ratio)
-	bool shouldCompress = false;
-	u8* cdata = 0; size_t csize = 0;
-	if(attempt_compress)
+	LibError ret = compressor.Finish();
+	if(ret < 0)
 	{
-		u32 checksum;	// TODO: use instead of crc
-		LibError ret = comp_finish(ctx, &cdata, &csize, &checksum);
-		if(ret < 0)
-		{
-			file_buf_free(buf);
-			return ret;
-		}
-
-		shouldCompress = ShouldCompress(usize, csize);
+		file_buf_free(buf);
+		return ret;
 	}
 
 	// store file info
-	ent.usize  = (off_t)usize;
-	ent.mtime   = s.st_mtime;
+	ent.usize = (off_t)usize;
+	ent.mtime = s.st_mtime;
 	// .. ent.ofs is set by zip_archive_add_file
-	ent.flags   = 0;
+	ent.flags = 0;
 	ent.atom_fn = atom_fn;
-	ent.crc     = params.crc;
-	if(shouldCompress)
+	ent.checksum = compressor.Checksum();
+	if(compressor.IsCompressionProfitable())
 	{
 		ent.method = CM_DEFLATE;
-		ent.csize  = (off_t)csize;
-		file_contents = cdata;
+		size_t csize;
+		compressor.GetOutput(file_contents, csize);
+		ent.csize = (off_t)csize;
 	}
 	else
 	{
@@ -172,13 +211,11 @@ static LibError read_and_compress_file(const char* atom_fn, uintptr_t ctx,
 		file_contents = buf;
 	}
 
-	// note: no need to free cdata - it is owned by the
-	// compression context and can be reused.
-
 	return INFO::OK;
 }
 
 
+//-----------------------------------------------------------------------------
 
 LibError archive_build_init(const char* P_archive_filename, Filenames V_fns, ArchiveBuildState* ab)
 {

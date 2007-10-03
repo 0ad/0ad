@@ -10,9 +10,6 @@
 #include "lib/res/file/vfs.h"
 #include "Xeromyces.h"
 
-#define ZLIB_DLL
-#include <zlib.h> // for crc32
-
 #define LOG_CATEGORY "xml"
 
 #include "XML.h"

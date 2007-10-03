@@ -247,6 +247,7 @@ struct ArchiveFile
 	off_t ofs;	// in archive
 	off_t csize;
 	CompressionMethod method;
+	u32 checksum;
 
 	off_t last_cofs;	// in compressed file
 
@@ -350,6 +351,7 @@ LibError afile_open(const Handle ha, const char* fn, uintptr_t memento, uint fla
 	af->ofs       = ent->ofs;
 	af->csize     = ent->csize;
 	af->method    = ent->method;
+	af->checksum  = ent->checksum;
 	af->ha        = ha;
 	af->ctx       = ctx;
 	af->is_mapped = 0;
@@ -515,9 +517,9 @@ class Decompressor
 {
 public:
 	Decompressor(uintptr_t ctx, FileIOBuf* pbuf, size_t usizeMax, FileIOCB cb, uintptr_t cbData)
-	: m_ctx(ctx)
-	, m_udataSize(usizeMax), m_csizeTotal(0), m_usizeTotal(0)
-	, m_cb(cb), m_cbData(cbData)
+		: m_ctx(ctx)
+		, m_udataSize(usizeMax), m_csizeTotal(0), m_usizeTotal(0)
+		, m_cb(cb), m_cbData(cbData)
 	{
 		debug_assert(m_ctx != 0);
 
@@ -530,7 +532,7 @@ public:
 			m_udata = (u8*)*pbuf;	// WARNING: FileIOBuf is nominally const; if that's ever enforced, this may need to change.
 	}
 
-	LibError operator()(const u8* cblock, size_t cblockSize, size_t* bytes_processed)
+	LibError Feed(const u8* cblock, size_t cblockSize, size_t* bytes_processed)
 	{
 		// when decompressing into the temp buffer, always start at ofs=0.
 		const size_t ofs = m_tmpBuf.get()? 0 : m_usizeTotal;
@@ -550,6 +552,12 @@ public:
 		if(m_usizeTotal == m_udataSize)
 			ret = INFO::OK;
 		return ret;
+	}
+
+	LibError Finish(u32& checksum)
+	{
+		u8* out; size_t outSize;	// unused
+		return comp_finish(m_ctx, &out, &outSize, &checksum);
 	}
 
 	size_t NumCompressedBytesProcessed() const
@@ -579,7 +587,7 @@ static LibError decompressor_feed_cb(uintptr_t cbData,
 	const u8* cblock, size_t cblockSize, size_t* bytes_processed)
 {
 	Decompressor& decompressor = *(Decompressor*)cbData;
-	return decompressor(cblock, cblockSize, bytes_processed);
+	return decompressor.Feed(cblock, cblockSize, bytes_processed);
 }
 
 
@@ -595,7 +603,7 @@ static LibError decompressor_feed_cb(uintptr_t cbData,
 // (quasi-parallel, without the complexity of threads).
 //
 // return bytes read, or a negative error code.
-ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t cb_ctx)
+ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb, uintptr_t cbData)
 {
 	CHECK_AFILE(f);
 	ArchiveFile* af = (ArchiveFile*)f->opaque;
@@ -620,7 +628,7 @@ ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb
 
 		bool we_allocated = (pbuf != FILE_BUF_TEMP) && (*pbuf == FILE_BUF_ALLOC);
 		// no need to set last_cofs - only checked if compressed.
-		ssize_t bytes_read = file_io(&a->f, af->ofs+ofs, size, pbuf, cb, cb_ctx);
+		ssize_t bytes_read = file_io(&a->f, af->ofs+ofs, size, pbuf, cb, cbData);
 		RETURN_ERR(bytes_read);
 		if(we_allocated)
 			(void)file_buf_set_real_fn(*pbuf, f->atom_fn);
@@ -634,10 +642,13 @@ ssize_t afile_read(File* f, off_t ofs, size_t size, FileIOBuf* pbuf, FileIOCB cb
 	// enough udata has been produced.
 	const size_t csize_max = af->csize - af->last_cofs;
 
-	Decompressor d(af->ctx, pbuf, size, cb, cb_ctx);
-	const ssize_t usize_read = file_io(&a->f, cofs, csize_max, FILE_BUF_TEMP, decompressor_feed_cb, (uintptr_t)&d);
+	Decompressor decompressor(af->ctx, pbuf, size, cb, cbData);
+	const ssize_t usize_read = file_io(&a->f, cofs, csize_max, FILE_BUF_TEMP, decompressor_feed_cb, (uintptr_t)&decompressor);
+	u32 checksum;
+	RETURN_ERR(decompressor.Finish(checksum));
+	//debug_assert(checksum == af->checksum);
 
-	af->last_cofs += (off_t)d.NumCompressedBytesProcessed();
+	af->last_cofs += (off_t)decompressor.NumCompressedBytesProcessed();
 
 	return usize_read;
 }

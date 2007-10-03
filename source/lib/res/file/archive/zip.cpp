@@ -215,20 +215,21 @@ static void lfh_assemble(LFH* lfh_le,
 	lfh_le->fat_mtime = to_le32(fat_mtime);
 	lfh_le->crc       = to_le32(crc);
 	lfh_le->csize     = to_le32(u32_from_larger(csize));
-	lfh_le->usize    = to_le32(u32_from_larger(usize));
+	lfh_le->usize     = to_le32(u32_from_larger(usize));
 	lfh_le->fn_len    = to_le16(u16_from_larger(fn_len));
 	lfh_le->e_len     = to_le16(0);
 }
 
 
 static void cdfh_decompose(const CDFH* cdfh_le,
-	CompressionMethod& method, time_t& mtime, off_t& csize, off_t& usize,
+	CompressionMethod& method, time_t& mtime, u32& crc, off_t& csize, off_t& usize,
 	const char*& fn, off_t& lfh_ofs, size_t& total_size)
 {
 	const u16 zip_method = read_le16(&cdfh_le->method);
 	const u32 fat_mtime  = read_le32(&cdfh_le->fat_mtime);
+	crc                  = read_le32(&cdfh_le->crc);
 	csize         = (off_t)read_le32(&cdfh_le->csize);
-	usize        = (off_t)read_le32(&cdfh_le->usize);
+	usize         = (off_t)read_le32(&cdfh_le->usize);
 	const u16 fn_len     = read_le16(&cdfh_le->fn_len);
 	const u16 e_len      = read_le16(&cdfh_le->e_len);
 	const u16 c_len      = read_le16(&cdfh_le->c_len);
@@ -261,7 +262,7 @@ static void cdfh_assemble(CDFH* dst_cdfh_le,
 	dst_cdfh_le->fat_mtime = to_le32(fat_mtime);
 	dst_cdfh_le->crc       = to_le32(crc);
 	dst_cdfh_le->csize     = to_le32(u32_from_larger(csize));
-	dst_cdfh_le->usize    = to_le32(u32_from_larger(usize));
+	dst_cdfh_le->usize     = to_le32(u32_from_larger(usize));
 	dst_cdfh_le->fn_len    = to_le16(u16_from_larger(fn_len));
 	dst_cdfh_le->e_len     = to_le16(0);
 	dst_cdfh_le->c_len     = to_le16(u16_from_larger(slack));
@@ -453,7 +454,7 @@ LibError zip_populate_archive(File* f, Archive* a)
 
 		// copy translated fields from CDFH into ArchiveEntry.
 		ArchiveEntry ae;
-		cdfh_decompose(cdfh, ae.method, ae.mtime, ae.csize, ae.usize, ae.atom_fn, ae.ofs, ofs_to_next_cdfh);
+		cdfh_decompose(cdfh, ae.method, ae.mtime, ae.checksum, ae.csize, ae.usize, ae.atom_fn, ae.ofs, ofs_to_next_cdfh);
 		ae.flags = ZIP_LFH_FIXUP_NEEDED;
 
 		// if file (we don't care about directories):
@@ -587,7 +588,7 @@ LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, const u8* 
 	// write (LFH, filename, file contents) to archive
 	// .. put LFH and filename into one 'package'
 	LFH_Package header;
-	lfh_assemble(&header.lfh, ae->method, ae->mtime, ae->crc, ae->csize, ae->usize, fn_len);
+	lfh_assemble(&header.lfh, ae->method, ae->mtime, ae->checksum, ae->csize, ae->usize, fn_len);
 	strcpy_s(header.fn, ARRAY_SIZE(header.fn), ae->atom_fn);
 	// .. write that out in 1 IO
 	const off_t lfh_ofs = za->cur_file_size;
@@ -606,7 +607,7 @@ LibError zip_archive_add_file(ZipArchive* za, const ArchiveEntry* ae, const u8* 
 	if(!p)
 		WARN_RETURN(ERR::NO_MEM);
 	const size_t slack = za->cdfhs.da.pos-prev_pos - (CDFH_SIZE+fn_len);
-	cdfh_assemble(&p->cdfh, ae->method, ae->mtime, ae->crc, ae->csize, ae->usize, fn_len, slack, lfh_ofs);
+	cdfh_assemble(&p->cdfh, ae->method, ae->mtime, ae->checksum, ae->csize, ae->usize, fn_len, slack, lfh_ofs);
 	cpu_memcpy(p->fn, ae->atom_fn, fn_len);
 
 	za->cd_entries++;
