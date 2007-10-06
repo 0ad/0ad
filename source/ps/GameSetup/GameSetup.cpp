@@ -9,7 +9,7 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/res.h"
-#include "lib/res/file/trace.h"
+#include "lib/res/file/archive/trace.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/cursor.h"

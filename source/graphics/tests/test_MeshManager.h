@@ -1,9 +1,9 @@
 #include "lib/self_test.h"
 
 #include "lib/res/file/vfs.h"
-#include "lib/res/file/vfs_optimizer.h"
+#include "lib/res/file/archive/vfs_optimizer.h"
 #include "lib/res/file/path.h"
-#include "lib/res/file/trace.h"
+#include "lib/res/file/archive/trace.h"
 #include "lib/res/h_mgr.h"
 
 #include "graphics/ColladaManager.h"

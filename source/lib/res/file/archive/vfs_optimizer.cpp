@@ -17,7 +17,7 @@
 #include <algorithm>
 #include <ctime>
 
-#include "file_internal.h"
+#include "../file_internal.h"
 
 // enough for 64K unique files - ought to suffice.
 typedef u16 FileId;

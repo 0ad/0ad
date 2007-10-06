@@ -17,18 +17,17 @@
 
 #include "file_stats.h"	// must come after file and file_cache
 
-#include "compression.h"
-#include "zip.h"
-#include "archive.h"
-#include "archive_builder.h"
+#include "archive/compression.h"
+#include "archive/zip.h"
+#include "archive/archive.h"
+#include "archive/archive_builder.h"
+#include "archive/trace.h"
+#include "archive/vfs_optimizer.h"
 
 #include "vfs.h"
 #include "vfs_mount.h"
 #include "vfs_tree.h"
 #include "vfs_redirector.h"
-
-#include "trace.h"
-#include "vfs_optimizer.h"
 
 const size_t AIO_SECTOR_SIZE = 512;
 

@@ -18,7 +18,7 @@ that of Atlas depending on commandline parameters.
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/sound/snd_mgr.h"
-#include "lib/res/file/vfs_optimizer.h"
+#include "lib/res/file/archive/vfs_optimizer.h"
 
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Atlas.h"

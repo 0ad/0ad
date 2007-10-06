@@ -5,7 +5,7 @@
 #include "ps/CStr.h"
 #include "ps/VFSUtil.h"
 #include "lib/res/res.h"
-#include "lib/res/file/vfs_optimizer.h"	// ArchiveBuilderCancel
+#include "lib/res/file/archive/vfs_optimizer.h"	// ArchiveBuilderCancel
 #include "lib/res/file/vfs_mount.h"	// TNODE_NOT_FOUND
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSConversions.h"

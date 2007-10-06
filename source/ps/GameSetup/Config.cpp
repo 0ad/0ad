@@ -6,9 +6,9 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "lib/timer.h"
 #include "lib/res/sound/snd_mgr.h"
-#include "lib/res/file/trace.h"
+#include "lib/res/file/archive/trace.h"
 #include "lib/res/file/vfs.h"
-#include "lib/res/file/vfs_optimizer.h"
+#include "lib/res/file/archive/vfs_optimizer.h"
 #include "Config.h"
 
 #define LOG_CATEGORY "config"

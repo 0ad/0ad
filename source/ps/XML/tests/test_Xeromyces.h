@@ -3,7 +3,6 @@
 #include "ps/XML/Xeromyces.h"
 #include "lib/res/file/vfs.h"
 #include "lib/res/file/path.h"
-#include "lib/res/file/trace.h"
 #include "lib/res/h_mgr.h"
 
 class TestXeromyces : public CxxTest::TestSuite 
