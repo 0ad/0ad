@@ -17,6 +17,18 @@
 
 	</Traits>
 
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Super_Cavalry />
+					<Super_Infantry />
+				</Train>
+				<Research>
+				</Research>
+			</List>
+		</Create>
+
 	<Actor>structures/persians/fortress.xml</Actor>
 
 </Entity>

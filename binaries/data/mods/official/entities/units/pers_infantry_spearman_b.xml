@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_infantry_melee_spearman"
->
+<Entity	Parent="template_unit_infantry_melee_spearman">
 	<Traits>
 	
 		<Id>
@@ -21,8 +19,40 @@
 			
 		</Promotion>
 		
+		<Creation>
+			<Resource>
+ 				<Food>50</Food>
+				<Wood>45</Wood>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>4.0</Hack>
+			<Pierce>3.0</Pierce>
+			<Crush>9.5</Crush>
+		</Armour>
+		
 	</Traits>
 
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>14.0</Hack>
+ 				<Pierce>5.0</Pierce>
+			</Melee>
+			<Charge>
+				<Hack>28.0</Hack>
+				<Pierce>10.0</Pierce>
+			</Charge>		
+ 		</Attack>
+
+		<Move>
+			<Speed>8.5</Speed>
+			<Run>
+				<Speed>16.0</Speed>
+			</Run>
+		</Move>
+	</Actions>	
+		
 	<Actor>units/persians/infantry_spearman_b.xml</Actor>
 
 </Entity>

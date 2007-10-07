@@ -8,10 +8,10 @@
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_gallop.psa" name="Walk" speed="17"/>
-        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="20"/>
-        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="20"/>
-        <animation file="quadraped/horse_attack_a.psa" name="idle" speed="20"/>
-        <animation file="quadraped/horse_attack_b.psa" name="idle" speed="20"/>
+        <animation file="quadraped/horse_attack_a.psa" name="melee" speed="40"/>
+        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="50"/>
+        <animation file="quadraped/horse_attack_a.psa" name="idle" speed="55"/>
+        <animation file="quadraped/horse_attack_b.psa" name="idle" speed="45"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>

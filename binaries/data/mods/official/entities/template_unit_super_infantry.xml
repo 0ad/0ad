@@ -33,6 +33,10 @@
 		<Population>
 			<Rem>1</Rem>
 		</Population>
+
+		<Vision>
+			<Los>13</Los>
+		</Vision>
 		
 	</Traits>
 
@@ -42,9 +46,13 @@
 				<Hack>30.0</Hack>
 				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
 			</Melee>
 			<Charge>
 				<Hack>75.0</Hack>
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
 			</Charge>		
  		</Attack>
 		<Move>

@@ -50,6 +50,10 @@
 			<Rem>2</Rem>
 		</Population>
 		
+		<Vision>
+			<Los>17</Los>
+		</Vision>
+		
 	</Traits>
 
 	<Actions>
@@ -58,11 +62,13 @@
 				<Hack>35.0</Hack>
 				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
 			</Melee>
 			<Charge>
 				<Hack>105.0</Hack>
-				<Pierce>0.0</Pierce>
-				<Crush>0.0</Crush>
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
 			</Charge>		
  		</Attack>
 		<Move>
