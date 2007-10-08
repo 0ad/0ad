@@ -3,9 +3,9 @@
 <Scenario>
 	<Environment>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="2.48242" g="2.48242" b="2.48242"/>
-		<SunElevation angle="1.09344"/>
-		<SunRotation angle="-1.24905"/>
+		<SunColour r="2.15234" g="2.15234" b="2.15234"/>
+		<SunElevation angle="0.93266"/>
+		<SunRotation angle="-0.582913"/>
 		<TerrainAmbientColour r="0.447059" g="0.458824" b="0.513726"/>
 		<UnitsAmbientColour r="0.447059" g="0.458824" b="0.513726"/>
 		<Water>
@@ -16,14 +16,14 @@
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.800781</Murkiness>
-				<Tint r="0.317647" g="0.290196" b="0.25098"/>
+				<Tint r="0.313726" g="0.286275" b="0.247059"/>
 				<ReflectionTint r="0.211765" g="0.211765" b="0.411765"/>
 				<ReflectionTintStrength>0.298828</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="704.942" y="119.973" z="298.042"/>
+		<Position x="694.163" y="115.751" z="308.396"/>
 		<Rotation angle="0.0313032"/>
 		<Declination angle="0.70816"/>
 	</Camera>
@@ -24272,7 +24272,7 @@
 			<Template>hele_infantry_javelinist_b</Template>
 			<Player>1</Player>
 			<Position x="720.546" y="19.9992" z="405.951"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="2.4769"/>
 		</Entity>
 		<Entity uid="99750">
 			<Template>hele_infantry_spearman_b</Template>
@@ -24291,30 +24291,6 @@
 			<Player>1</Player>
 			<Position x="694.553" y="19.9992" z="407.269"/>
 			<Orientation angle="2.67536"/>
-		</Entity>
-		<Entity uid="103378">
-			<Template>pers_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="687.59" y="19.9992" z="427.521"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="103380">
-			<Template>pers_cavalry_swordsman_b</Template>
-			<Player>1</Player>
-			<Position x="729.946" y="19.9992" z="423.068"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="103383">
-			<Template>pers_infantry_archer_b</Template>
-			<Player>1</Player>
-			<Position x="724.527" y="19.9992" z="409.611"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="103385">
-			<Template>pers_support_female_citizen</Template>
-			<Player>1</Player>
-			<Position x="696.251" y="19.9992" z="405.232"/>
-			<Orientation angle="2.42624"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -25150,8 +25126,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_med.xml</Actor>
-			<Position x="831.763" y="8.00139" z="653.6"/>
-			<Orientation angle="1.96209"/>
+			<Position x="802.898" y="8.80746" z="616.837"/>
+			<Orientation angle="-2.31434"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>geology/stone_granite_med.xml</Actor>
@@ -28985,8 +28961,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_lush_short.xml</Actor>
-			<Position x="258.313" y="8.70488" z="27.5638"/>
-			<Orientation angle="-0.203588"/>
+			<Position x="252.501" y="8.70488" z="30.8598"/>
+			<Orientation angle="-2.88609"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_lush_short.xml</Actor>
@@ -33512,11 +33488,6 @@
 			<Actor>props/flora/grass_field_lush_tall.xml</Actor>
 			<Position x="231.614" y="8.70489" z="35.2317"/>
 			<Orientation angle="-2.01587"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/grass_field_lush_tall.xml</Actor>
-			<Position x="258.392" y="8.70488" z="30.7231"/>
-			<Orientation angle="-3.05381"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_field_lush_short.xml</Actor>
