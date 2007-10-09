@@ -10,13 +10,198 @@
 #include "ps/World.h"
 
 
+#include "ps/GameSetup/Config.h"
+
+
+
+
+#define EPSILON 0.00001f
+
+bool initialized = false;
+
+
 CPathfindEngine::CPathfindEngine()
 {
+	
+}
+
+
+//Todo:
+// 1; the bouncing problem with the fortress
+// 2; update obstacles when things vanishes
+
+void CPathfindEngine::initBoundary()
+{
+	SrPolygon boundary ;
+	
+	
+	CTerrain* m_Terrain = g_Game->GetWorld()->GetTerrain();
+	int width = m_Terrain->GetVerticesPerSide() * CELL_SIZE 	;
+
+	boundary.push().set(0.0f, 0.0f);
+	boundary.push().set(width, 0.0f);
+	boundary.push().set(width, width);
+	boundary.push().set(0.0f, width);
+	dcdtPathfinder.init(boundary, EPSILON,1);
+	dcdtPathfinder.InitializeSectors();
+
+}
+
+void  CPathfindEngine::insertObstacles()
+{
+	
+	std::vector<CEntity*> results;
+	g_EntityManager.GetExtant(results);
+	SrPolygon poly;
+	
+	
+	for(int i =0 ; i < results.size(); i++)
+	{
+		poly.size(0);
+
+		
+		
+
+		CEntity* tempHandle = results[i];
+		//debug_printf("Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
+		
+
+		CVector2D p, q;
+			CVector2D u, v;
+			q.x = tempHandle->m_position.X;
+			q.y = tempHandle->m_position.Z;
+			float d = ((CBoundingBox*)tempHandle->m_bounds)->m_d;
+			float w = ((CBoundingBox*)tempHandle->m_bounds)->m_w;
+
+			u.x = sin( tempHandle->m_graphics_orientation.Y );
+			u.y = cos( tempHandle->m_graphics_orientation.Y );
+			v.x = u.y;
+			v.y = -u.x;
+
+		CBoundingObject* m_bounds = tempHandle->m_bounds;
+
+		switch( m_bounds->m_type )
+		{
+			case CBoundingObject::BOUND_CIRCLE:
+			{
+				if(tempHandle->m_speed == 0)
+				{
+				
+					poly.open(false);
+
+					w = 0.5;
+					d = 0.5;
+				
+					p = q + u * d + v * w;
+					poly.push().set((float)(p.x), (float)(p.y));
+
+					p = q - u * d + v * w ;
+					poly.push().set((float)(p.x), (float)(p.y));
+
+					p = q - u * d - v * w;
+					poly.push().set((float)(p.x), (float)(p.y));
+
+					p = q + u * d - v * w;
+					poly.push().set((float)(p.x), (float)(p.y));
+
+					int dcdtId = dcdtPathfinder.insert_polygon(poly);
+				
+				}
+				break;
+
+			}
+			case CBoundingObject::BOUND_OABB:
+			{
+
+				
+				poly.open(false);
+				
+				// Tighten the bound so the units will not get stuck near the buildings
+				//Note: the triangulation pathfinding code will not find a path for the unit if it is pushed into the bound of a unit.
+				//
+				w = w * 0.85;
+				d = d * 0.85;
+			
+				p = q + u * d + v * w;
+				poly.push().set((float)(p.x), (float)(p.y));
+
+				p = q - u * d + v * w ;
+				poly.push().set((float)(p.x), (float)(p.y));
+
+				p = q - u * d - v * w;
+				poly.push().set((float)(p.x), (float)(p.y));
+
+				p = q + u * d - v * w;
+				poly.push().set((float)(p.x), (float)(p.y));
+
+				int dcdtId = dcdtPathfinder.insert_polygon(poly);
+				break;
+			}
+
+				
+
+		}//end switch
+
+
+	}//end for loop
+	dcdtPathfinder.DeleteAbstraction();
+	dcdtPathfinder.Abstract();
+	
+
+
+
+
+
+}
+
+void CPathfindEngine::drawTrianulation()
+{
+
+	
+	int polyNum = dcdtPathfinder.num_polygons();
+
+	debug_printf("Number of polygons: %d",polyNum);
+	
+	if(polyNum)
+	{
+		SrArray<SrPnt2> constrainedEdges;
+		SrArray<SrPnt2> unconstrainedEdges;
+
+		dcdtPathfinder.get_mesh_edges(&constrainedEdges, &unconstrainedEdges);
+
+		triangulationOverlay.setConstrainedEdges(constrainedEdges);
+		triangulationOverlay.setUnconstrainedEdges(unconstrainedEdges);
+		
+	}
+
+	
 }
 
 void CPathfindEngine::RequestPath( HEntity entity, const CVector2D& destination,
 								  CEntityOrder::EOrderSource orderSource )
 {
+	/* TODO:1. add code to verify the triangulation. done.
+            2. add code to convert a path from dcdtpathfinder to world waypoints 
+	*/
+	if(!initialized)
+	{
+		initBoundary();
+		insertObstacles();
+		initialized =true;
+		
+
+		//switch on/off triangulation drawing by command line arg "-showOverlay"
+		//it's guarded here to stop setting constrainedEdges and unconstrainedEdges in triangulationOverlay.
+		//(efficiency issue)
+		//the drawing is disable in the render() function in TerraiOverlay.cpp
+		if(g_showOverlay)
+		{
+			drawTrianulation();
+		}
+	}
+
+
+
 	/* TODO: Add code to generate high level path
 	         For now, just the one high level waypoint to the final 
 			  destination is added
@@ -25,14 +210,134 @@ void CPathfindEngine::RequestPath( HEntity entity, const CVector2D& destination,
 	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT;
 	waypoint.m_source = orderSource;
 	waypoint.m_target_location = destination;
-	waypoint.m_pathfinder_radius = 0.0f;
+
+
+	//Kai: adding radius for pathfinding
+	CBoundingObject* m_bounds = entity->m_bounds;
+
+	waypoint.m_pathfinder_radius = m_bounds->m_radius +1.0f;
+	
+	//waypoint.m_pathfinder_radius = 0.0f;
 	entity->m_orderQueue.push_front( waypoint );
+}
+
+
+void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D& destination, bool UNUSED(contact),
+										  float radius, CEntityOrder::EOrderSource orderSource )
+{
+	PROFILE_START("Pathfinding");
+
+	
+	//Kai: added test for terrain information in entityManager
+	//mLowPathfinder.TAStarTest();
+	
+	CVector2D source( entity->m_position.X, entity->m_position.Z );
+
+	
+	
+	bool found = mTriangulationPathfinder.FindPath(source, destination, entity,dcdtPathfinder, radius);
+	
+	
+
+
+	//push the path onto the order process queue.
+		SrPolygon CurPath;
+		SrPolygon CurChannel;
+
+		
+	   if ( !found )
+		{ 
+			// If no path was found, then unsolvable
+			// TODO: Figure out what to do in this case
+	
+			CurPath.size(0);
+			CurChannel.size(0);
+		}
+	   else
+		{
+			CurChannel = dcdtPathfinder.GetChannelBoundary();
+
+			CurPath = dcdtPathfinder.GetPath();
+			
+
+			//set and draw the path on the terrain
+			triangulationOverlay.setCurrentPath(CurPath);
+			
+			// Make the path take as few steps as possible by collapsing steps in the same direction together.
+			std::vector<CVector2D> path;
+
+			debug_printf("waypoints: %d  channel size %d \n ",CurPath.size(),CurChannel.size());
+			
+			for (int i = 0; i < CurPath.size(); i++)
+   			{
+				CVector2D waypoint ;
+
+				waypoint.x = CurPath[i].x;
+				waypoint.y = CurPath[i].y;
+
+				debug_printf("waypoints: %f %f \n",waypoint.x, waypoint.y);
+				
+				
+					path.push_back(waypoint);
+
+				
+			}
+
+			if( path.size() > 0 )
+			{
+				// Push the path onto the front of our order queue in reverse order,
+				// so that we run through it before continuing other orders.
+
+				CEntityOrder node;
+				node.m_source = orderSource;
+
+				// Hack to make pathfinding slightly more precise:
+				// If the radius was 0, make the final node be exactly at the destination
+				// (otherwise, go to wherever the pathfinder tells us since we just want to be in range)
+				CVector2D finalDest = (radius==0 ? destination : path[path.size()-1]);
+				node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;	// push end marker (used as a sentinel when repathing)
+				node.m_target_location = finalDest;
+				entity->m_orderQueue.push_front(node);
+				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// push final goto step
+				node.m_target_location = finalDest;
+				entity->m_orderQueue.push_front(node);
+
+				for( int i = ((int) path.size()) - 2; i >= 0; i-- )
+				{
+					node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// TODO: For non-contact paths, do we want some other order type?
+					node.m_target_location = path[i];
+					entity->m_orderQueue.push_front(node);
+				}
+			}
+			else {
+				// Hack to make pathfinding slightly more precise:
+				// If radius = 0, we have an empty path but the user still wants us to move 
+				// within the same tile, so add a GOTO order anyway
+				if(radius == 0)
+				{
+					CEntityOrder node;
+					node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
+					node.m_target_location = destination;
+					entity->m_orderQueue.push_front(node);
+					node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+					node.m_target_location = destination;
+					entity->m_orderQueue.push_front(node);
+				}
+			}
+	
+	   }
+	
+	PROFILE_END("Pathfinding");
 }
 
 void CPathfindEngine::RequestLowLevelPath( HEntity entity, const CVector2D& destination, bool UNUSED(contact),
 										  float radius, CEntityOrder::EOrderSource orderSource )
 {
 	PROFILE_START("Pathfinding");
+
+	
+	//Kai: added test for terrain information in entityManager
+	//mLowPathfinder.TAStarTest();
 	
 	CVector2D source( entity->m_position.X, entity->m_position.Z );
 

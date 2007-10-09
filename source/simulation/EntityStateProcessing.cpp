@@ -663,7 +663,10 @@ bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 
 	ChooseMovementSpeed( Distance );
 
-	g_Pathfinder.RequestLowLevelPath( me, path_to, contact, pathfinder_radius, source );
+	//Kai: invoking triangulation pathfinding function instead
+	//g_Pathfinder.RequestLowLevelPath( me, path_to, contact, pathfinder_radius, source );
+
+	g_Pathfinder.RequestTriangulationPath( me, path_to, contact, pathfinder_radius, source );
 
 	return( true );
 }

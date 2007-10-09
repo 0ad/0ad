@@ -12,7 +12,11 @@
 #include "ps/Singleton.h"
 #include "EntityHandles.h"
 #include "ps/Vector2D.h"
-#include "AStarEngine.h"
+//#include "AStarEngine.h"
+#include "dcdt/se/se_dcdt.h"
+
+#include "TRAStarEngine.h"
+
 
 #define g_Pathfinder CPathfindEngine::GetSingleton()
 
@@ -28,6 +32,19 @@ enum EPathType
 class CPathfindEngine : public Singleton<CPathfindEngine>
 {
 public:
+
+	//Kai: added for dcdt 
+	static SrArray<SeBase*> processing;
+
+	SeDcdt dcdtPathfinder;
+	void initBoundary();
+	void insertObstacles();
+	void drawTrianulation();
+
+	//Kai:added tile overlay for pathfinding
+	TriangulationTerrainOverlay triangulationOverlay;
+
+
 	CPathfindEngine();
 
 	void RequestPath( HEntity entity, const CVector2D& destination, 
@@ -38,8 +55,14 @@ public:
 
 	void RequestContactPath( HEntity entity, CEntityOrder* current, float range );
 	bool RequestAvoidPath( HEntity entity, CEntityOrder* current, float avoidRange );
+
+	void RequestTriangulationPath( HEntity entity, const CVector2D& destination, bool contact, 
+		float radius, CEntityOrder::EOrderSource orderSource );
+
 private:
 	CAStarEngineLowLevel mLowPathfinder;
+
+	CTRAStarEngine mTriangulationPathfinder;
 };
 
 #endif

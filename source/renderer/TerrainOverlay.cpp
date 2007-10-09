@@ -10,6 +10,12 @@
 
 #include <algorithm>
 
+#include "ps/GameSetup/Config.h"
+
+
+
+
+
 // Handy things for STL:
 
 /// Functor for sorting pairs, using the &lt;-ordering of their second values.
@@ -68,6 +74,99 @@ TerrainOverlay::~TerrainOverlay()
 	g_TerrainOverlayList.erase(newEnd, g_TerrainOverlayList.end());
 }
 
+
+
+
+//initial test to draw out entity boundaries
+//it shows how to retrieve object boundary postions for triangulation 
+//NOTE: it's a test to see how to retrieve bounadry locations for static objects on the terrain.
+//disabled
+void TerrainOverlay::RenderEntityEdges()
+{
+	//Kai: added for line drawing
+	//use a function to encapsulate all the entity boundaries
+	std::vector<CEntity*> results;
+
+			
+	
+	g_EntityManager.GetExtant(results);
+
+	glColor3f( 1, 1, 1 );		// Colour outline with player colour
+
+	
+	
+	for(int i =0 ; i < results.size(); i++)
+	{
+		glBegin(GL_LINE_LOOP);
+
+		CEntity* tempHandle = results[i];
+		debug_printf("Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
+
+		CVector2D p, q;
+			CVector2D u, v;
+			q.x = tempHandle->m_position.X;
+			q.y = tempHandle->m_position.Z;
+			float d = ((CBoundingBox*)tempHandle->m_bounds)->m_d;
+			float w = ((CBoundingBox*)tempHandle->m_bounds)->m_w;
+
+			u.x = sin( tempHandle->m_graphics_orientation.Y );
+			u.y = cos( tempHandle->m_graphics_orientation.Y );
+			v.x = u.y;
+			v.y = -u.x;
+
+		CBoundingObject* m_bounds = tempHandle->m_bounds;
+
+		switch( m_bounds->m_type )
+		{
+			case CBoundingObject::BOUND_CIRCLE:
+			{
+				break;
+			}
+			case CBoundingObject::BOUND_OABB:
+			{
+				//glVertex3f( tempHandle->m_position.X, tempHandle->GetAnchorLevel( tempHandle->m_position.X, tempHandle->m_position.Z ) + 10.0f, tempHandle->m_position.Z );    // lower left vertex
+					
+				//glVertex3f( 5, tempHandle->GetAnchorLevel( 5, 5 ) + 0.25f, 5 );     // upper vertex
+
+				p = q + u * d + v * w;
+				glVertex3f( p.x, tempHandle->GetAnchorLevel( p.x, p.y ) + + 10.0f, p.y );
+
+				p = q - u * d + v * w ;
+				glVertex3f( p.x, tempHandle->GetAnchorLevel( p.x, p.y ) + + 10.0f, p.y );
+
+				p = q - u * d - v * w;
+				glVertex3f( p.x, tempHandle->GetAnchorLevel( p.x, p.y ) + + 10.0f, p.y );
+
+				p = q + u * d - v * w;
+				glVertex3f( p.x, tempHandle->GetAnchorLevel( p.x, p.y ) + + 10.0f, p.y );
+
+				
+				break;
+			}
+
+				
+
+		}//end switch
+
+	glEnd();
+	}//end for loop
+
+	CTerrain* m_Terrain = g_Game->GetWorld()->GetTerrain();
+	CEntity* tempHandle = results[0];
+	glBegin(GL_LINE_LOOP);
+
+	int width = m_Terrain->GetVerticesPerSide()*4;
+	glVertex3f( 0, tempHandle->GetAnchorLevel( 0, 0 ) + 0.25f, 0 );
+	glVertex3f( width, tempHandle->GetAnchorLevel( width, 0 ) + 0.25f, 0 );
+	glVertex3f( width, tempHandle->GetAnchorLevel(width,width ) + 0.25f,width );
+	glVertex3f( 0, tempHandle->GetAnchorLevel( 0, width ) + 0.25f, width );
+	glEnd();
+
+	//----------------------
+}
+
+
+
 void TerrainOverlay::RenderOverlays()
 {
 	if (g_TerrainOverlayList.size() == 0)
@@ -95,6 +194,11 @@ void TerrainOverlay::RenderOverlays()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
+
+
+	//Kai: invoking the auxiliary function to draw out entity edges
+	//RenderEntityEdges();
+	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -110,21 +214,24 @@ void TerrainOverlay::GetTileExtents(
 
 void TerrainOverlay::Render()
 {
-	m_Terrain = g_Game->GetWorld()->GetTerrain();
+	if(g_showOverlay)
+	{
+		m_Terrain = g_Game->GetWorld()->GetTerrain();
 
-	int min_i, min_j, max_i, max_j;
-	GetTileExtents(min_i, min_j, max_i, max_j);
-	// Clamp the min to 0, but the max to -1 - so tile -1 can never be rendered,
-	// but if unclamped_max<0 then no tiles at all will be rendered. And the same
-	// for the upper limit.
-	min_i = clamp(min_i, 0, (int)m_Terrain->GetTilesPerSide());
-	min_j = clamp(min_j, 0, (int)m_Terrain->GetTilesPerSide());
-	max_i = clamp(max_i, -1, (int)m_Terrain->GetTilesPerSide()-1);
-	max_j = clamp(max_j, -1, (int)m_Terrain->GetTilesPerSide()-1);
+		int min_i, min_j, max_i, max_j;
+		GetTileExtents(min_i, min_j, max_i, max_j);
+		// Clamp the min to 0, but the max to -1 - so tile -1 can never be rendered,
+		// but if unclamped_max<0 then no tiles at all will be rendered. And the same
+		// for the upper limit.
+		min_i = clamp(min_i, 0, (int)m_Terrain->GetTilesPerSide());
+		min_j = clamp(min_j, 0, (int)m_Terrain->GetTilesPerSide());
+		max_i = clamp(max_i, -1, (int)m_Terrain->GetTilesPerSide()-1);
+		max_j = clamp(max_j, -1, (int)m_Terrain->GetTilesPerSide()-1);
 
-	for (m_j = min_j; m_j <= max_j; ++m_j)
-		for (m_i = min_i; m_i <= max_i; ++m_i)
-			ProcessTile(m_i, m_j);
+		for (m_j = min_j; m_j <= max_j; ++m_j)
+			for (m_i = min_i; m_i <= max_i; ++m_i)
+				ProcessTile(m_i, m_j);
+	}
 }
 
 void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden)

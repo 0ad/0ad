@@ -15,6 +15,12 @@
 
 #include "ps/Profile.h"
 
+#include "lib/res/graphics/ogl_tex.h"
+
+#include "ps/GameSetup/Config.h"
+
+
+
 #define DEFAULT_SEARCH_LIMIT 1000
 #define DEFAULT_INIT_NODES 1000
 // TODO: do this for real
@@ -42,6 +48,10 @@ CAStarEngine::CAStarEngine()
 	mFlagArraySize = 300;
 	mFlags = new AStarNodeFlag[mFlagArraySize*mFlagArraySize];
 	memset(mFlags, 0, mFlagArraySize*mFlagArraySize*sizeof(AStarNodeFlag));
+	
+	
+	
+		
 }
 
 CAStarEngine::CAStarEngine(AStarGoalBase *goal)
@@ -65,6 +75,64 @@ CAStarEngine::~CAStarEngine()
 	}
 }
 
+/*
+void CAStarEngine::TAStarTest()
+{
+	//Kai: added for TA*
+	std::vector<CEntity*> results;
+	
+	g_EntityManager.GetExtant(results);
+
+	for(int i =0 ; i < results.size(); i++)
+	{
+		CEntity* tempHandle = results[i];
+
+		
+
+		debug_printf("Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
+
+		CBoundingObject* m_bounds = tempHandle->m_bounds;
+
+		switch( m_bounds->m_type )
+		{
+			case CBoundingObject::BOUND_CIRCLE:
+			{
+				break;
+			}
+			case CBoundingObject::BOUND_OABB:
+			{
+				
+				
+		glColor3f( 1, 1, 1 );		// Colour outline with player colour
+
+				glBegin(GL_LINES);
+
+					glVertex3f( 2, tempHandle->GetAnchorLevel( 2, 2 ) + 0.25f, 2 );    // lower left vertex
+					
+					glVertex3f( 5, tempHandle->GetAnchorLevel( 5, 5 ) + 0.25f, 5 );     // upper vertex
+
+				glEnd();
+
+				
+
+				break;
+			}
+		}
+
+
+		if(tempHandler->m_bound_type == CBoundingOjbect::BOUND_OABB)
+		{
+			debug_printf("Entity bound box: %f\n", tempHandler->m_bound_box.m_v);
+		}
+		
+
+		
+	}
+
+
+
+
+}*/
 
 bool CAStarEngine::FindPath( 
 	const CVector2D &src, const CVector2D &dest, HEntity entity, float radius )
@@ -114,13 +182,15 @@ bool CAStarEngine::FindPath(
 		std::vector<CVector2D>::iterator it;
 		for( it = neighbors.begin(); it != neighbors.end(); it++ )
 		{
+			
+			
 			AStarNode* N = GetFreeASNode();
 			PROFILE_START("initialize neighbor");
 			N->coord = *it;
 			// Assign f,g,h to neighbor
 			N->g = best->g + mGoal->GetTileCost(best->coord, N->coord);
 			N->h = mGoal->DistanceToGoal(*it);
-			N->f = N->g + N->h;
+			N->f = N->g +N->h;
 			N->parent = best;
 			PROFILE_END("initialize neighbor");
 
@@ -132,7 +202,7 @@ bool CAStarEngine::FindPath(
 			if( C!=NULL && (N->f < C->f) )
 			{
 				PROFILE_START("remove from closed");
-				/* N is on Closed and N->f is better */
+				// N is on Closed and N->f is better 
 				RemoveFromClosed(C);
 				update = true;
 				PROFILE_END("remove from closed");
@@ -140,7 +210,7 @@ bool CAStarEngine::FindPath(
 			if (C==NULL || update)
 			{
 				PROFILE_START("add to open");
-				/* N is not on Closed */
+				// N is not on Closed 
 				AddToOpen(N);
 				PROFILE_END("add to open");
 			}
@@ -152,7 +222,16 @@ bool CAStarEngine::FindPath(
 		//debug_printf("Number of nodes searched: %d\n", iterations);
 		ConstructPath(best);
 	}
-	
+
+	//switch on/off grid path drawing by command line arg "-showOverlay"
+	//it's guarded here to stop setting the drawing path in pathfindingOverlay.
+	//(efficiency issue)
+	//the drawing is disable in the render() function in TerraiOverlay.cpp
+	if(g_showOverlay)
+	{
+		pathfindingOverlay.setPath(mPath);
+	}
+
 	Cleanup();
 
 	return mSolved;

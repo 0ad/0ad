@@ -42,6 +42,10 @@ bool g_VSync = false;
 
 bool g_Quickstart = false;
 
+// flag to switch on drawing terrain overlays
+bool g_showOverlay = false;
+
+// If non-empty, specified map will be automatically loaded
 CStr g_AutostartMap = "";
 
 
@@ -156,6 +160,9 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 
 	if (args.Has("vsync"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
+
+	if (args.Has("showOverlay"))
+		g_showOverlay = true;
 }
 
 

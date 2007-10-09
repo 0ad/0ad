@@ -5,6 +5,13 @@
 #include "ps/Player.h"
 #include <queue>
 
+#include "renderer/TerrainOverlay.h"
+#include "ps/Game.h"
+#include "ps/World.h"
+#include "EntityManager.h"
+
+#include "dcdt/se/se_dcdt.h"
+
 class AStarNode
 {
 	public:
@@ -68,6 +75,15 @@ public:
 
 	// The maximum number of nodes that will be expanded before failure is declared
 	void SetSearchLimit( int limit );
+
+	//Kai:added tile overlay for pathfinding
+	PathFindingTerrainOverlay pathfindingOverlay;
+	
+	SrPolygon pol;
+    
+	//void TAStarTest();
+
+	
 
 protected:
 	AStarGoalBase* mGoal;

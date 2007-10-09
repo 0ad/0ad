@@ -304,7 +304,7 @@ function setup_all_libs ()
 	-- names of external libraries used (see libraries_dir comment)
 	local extern_libs = {}
 
-
+	
 	source_dirs = {
 		"network",
 	}
@@ -326,7 +326,8 @@ function setup_all_libs ()
 		"sound",
 		"scripting",
 		"maths",
-		"maths/scripting"
+		"maths/scripting",
+		"dcdt/se"
 	}
 	extern_libs = {
 		"spidermonkey",
@@ -343,12 +344,14 @@ function setup_all_libs ()
 		"graphics",
 		"graphics/scripting",
 		"renderer"
+		
 	}
 	extern_libs = {
 		"opengl",
 		"sdl",	-- key definitions
 		"spidermonkey",	-- for graphics/scripting
 		"boost"
+		
 	}
 	setup_static_lib_package("graphics", source_dirs, extern_libs, {})
 
@@ -369,12 +372,14 @@ function setup_all_libs ()
 	source_dirs = {
 		"tools/atlas/GameInterface",
 		"tools/atlas/GameInterface/Handlers"
+		
 	}
 	extern_libs = {
 		"boost",
 		"sdl",	-- key definitions
 		"opengl",
 		"spidermonkey"
+		
 	}
 	setup_static_lib_package("atlas", source_dirs, extern_libs, {})
 
