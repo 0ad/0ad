@@ -38,7 +38,7 @@ extern char* debug_stl_simplify_name(char* name);
 /**
  * abstraction of all STL iterators used by debug_stl.
  **/
-typedef const u8* (*DebugIterator)(void* internal, size_t el_size);
+typedef const u8* (*DebugStlIterator)(void* internal, size_t el_size);
 
 /**
  * no STL iterator is larger than this; see below.
@@ -64,6 +64,6 @@ const size_t DEBUG_STL_MAX_ITERATOR_SIZE = 64;
  * @return LibError (ERR::STL_*)
  **/
 extern LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t size,
-	size_t el_size, size_t* el_count, DebugIterator* el_iterator, void* it_mem);
+	size_t el_size, size_t* el_count, DebugStlIterator* el_iterator, void* it_mem);
 
 #endif	// #ifndef INCLUDED_DEBUG_STL

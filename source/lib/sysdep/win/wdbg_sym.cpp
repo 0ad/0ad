@@ -806,7 +806,7 @@ static void seq_determine_formatting(size_t el_size, size_t el_count,
 }
 
 
-static LibError dump_sequence(DebugIterator el_iterator, void* internal,
+static LibError dump_sequence(DebugStlIterator el_iterator, void* internal,
 	size_t el_count, DWORD el_type_id, size_t el_size, DumpState state)
 {
 	const u8* el_p = 0;	// avoid "uninitialized" warning
@@ -1452,7 +1452,7 @@ static LibError udt_dump_std(const wchar_t* wtype_name, const u8* p, size_t size
 		goto not_valid_container;
 	// .. get iterator and # elements
 	size_t el_count;
-	DebugIterator el_iterator;
+	DebugStlIterator el_iterator;
 	u8 it_mem[DEBUG_STL_MAX_ITERATOR_SIZE];
 	err = debug_stl_get_container_info(ctype_name, p, size, el_size, &el_count, &el_iterator, it_mem);
 	if(err != INFO::OK)
