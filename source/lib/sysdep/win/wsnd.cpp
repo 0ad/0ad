@@ -18,28 +18,26 @@
 
 #include "lib/path_util.h"
 #include "lib/res/file/file.h"
+#include "wposix/wfilesystem.h"	// see add_oal_dlls_in_dir
 #include "wdll_ver.h"
 #include "win.h"
 #include "wutil.h"
 #include "wmi.h"
 
 
-// indicate if this directory entry is an OpenAL DLL.
+// indicate if this filename corresponds to the OpenAL DLL name format.
 // (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
-static LibError IsOpenAlDll(const DirEnt* ent)
+static LibError IsOpenAlDllName(const char* name)
 {
-	// not a file
-	if(!DIRENT_IS_DIR(ent))
-		return false;
+	const size_t len = strlen(name);
 
-	// name doesn't match
-	const size_t len = strlen(ent->name);
-	const bool oal = len >= 7 && !strcasecmp(ent->name+len-7, "oal.dll");
-	const bool openal = strstr(ent->name, "OpenAL") != 0;
-	if(!oal && !openal)
-		return false;
+	if(len >= 7 && !strcasecmp(name+len-7, "oal.dll"))
+		return true;
 
-	return true;
+	if(strstr(name, "OpenAL") != 0)
+		return true;
+
+	return false;
 }
 
 // ensures each OpenAL DLL is only listed once (even if present in several
@@ -52,36 +50,41 @@ typedef std::set<std::string> StringSet;
 // same name in the system directory.
 //
 // <dir>: no trailing.
-static LibError add_oal_dlls_in_dir(const char* dir, StringSet* dlls)
+static LibError add_oal_dlls_in_dir(const char* path, StringSet* dlls)
 {
-	// note: wdll_ver_list_add requires the full DLL path but DirEnt only gives us
-	// the name. for efficiency, we append this via PathPackage.
+	// note: wdll_ver_list_add requires the full DLL path but readdir only
+	// gives us the name. for efficiency, we append this via PathPackage.
 	PathPackage pp;
-	RETURN_ERR(path_package_set_dir(&pp, dir));
+	RETURN_ERR(path_package_set_dir(&pp, path));
 
-	DirIterator d;
-	RETURN_ERR(dir_open(dir, &d));
+	// note: we can't use the dir_open/DirIterator interface because it
+	// expects a portable (relative) path and <path> is absolute. using
+	// POSIX opendir is slightly more complex but works.
+	errno = 0;
+	DIR* dir = opendir(path);
+	if(!dir)
+		return LibError_from_errno();
 
 	for(;;)	// instead of while to avoid warning
 	{
-		DirEnt ent;
-		LibError err = dir_next_ent(&d, &ent);
-		if(err != INFO::OK)
+		dirent* ent = readdir(dir);
+		if(!ent)
 			break;
 
-		if(!IsOpenAlDll(&ent))
+		if(!IsOpenAlDllName(ent->d_name))
 			continue;
 
 		// already in StringSet (i.e. has already been wdll_ver_list_add-ed)
-		std::pair<StringSet::iterator, bool> ret = dlls->insert(ent.name);
+		std::pair<StringSet::iterator, bool> ret = dlls->insert(ent->d_name);
 		if(!ret.second)	// insert failed - element already there
 			continue;
 
-		(void)path_package_append_file(&pp, ent.name);
+		(void)path_package_append_file(&pp, ent->d_name);
 		(void)wdll_ver_list_add(pp.path);
 	}
 
-	(void)dir_close(&d);
+	int ret = closedir(dir);
+	debug_assert(ret == 0);
 	return INFO::OK;
 }
 
