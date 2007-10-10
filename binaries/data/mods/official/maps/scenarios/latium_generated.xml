@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="206.631" y="114.96" z="75.2527"/>
-		<Rotation angle="-1.13167e-009"/>
-		<Declination angle="0.683486"/>
+		<Position x="206.567" y="70.214" z="125.856"/>
+		<Rotation angle="-0.0254075"/>
+		<Declination angle="0.668856"/>
 	</Camera>
 	<Entities>
 		<Entity uid="0">
@@ -67,8 +67,8 @@
 		<Entity uid="10">
 			<Template>geology_stone_greek</Template>
 			<Player>0</Player>
-			<Position x="202.969" y="23.6391" z="149.458"/>
-			<Orientation angle="-1.91204"/>
+			<Position x="203.479" y="23.6942" z="148.386"/>
+			<Orientation angle="0.00264617"/>
 		</Entity>
 		<Entity uid="11">
 			<Template>geology_stone_greek</Template>
@@ -86,7 +86,7 @@
 			<Template>geology_metal_greek</Template>
 			<Player>0</Player>
 			<Position x="232.453" y="25.2855" z="160.26"/>
-			<Orientation angle="1.95756"/>
+			<Orientation angle="-0.539558"/>
 		</Entity>
 		<Entity uid="14">
 			<Template>flora_tree_medit_fan_palm</Template>
@@ -7318,6 +7318,216 @@
 			<Position x="219.439" y="24.5025" z="197.682"/>
 			<Orientation angle="0.829398"/>
 		</Entity>
+		<Entity uid="3324">
+			<Template>fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="286.44" y="29.0584" z="167.112"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3325">
+			<Template>fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="281.647" y="28.4998" z="169.913"/>
+			<Orientation angle="-2.23771"/>
+		</Entity>
+		<Entity uid="3326">
+			<Template>fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="285.668" y="29.0391" z="161.569"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3327">
+			<Template>fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="280.566" y="28.6374" z="160.282"/>
+			<Orientation angle="-0.165631"/>
+		</Entity>
+		<Entity uid="3331">
+			<Template>fauna_pig</Template>
+			<Player>0</Player>
+			<Position x="329.356" y="28.6387" z="324.502"/>
+			<Orientation angle="-2.35854"/>
+		</Entity>
+		<Entity uid="3332">
+			<Template>fauna_pig</Template>
+			<Player>0</Player>
+			<Position x="325.004" y="28.1695" z="315.529"/>
+			<Orientation angle="0.696946"/>
+		</Entity>
+		<Entity uid="3333">
+			<Template>fauna_pig</Template>
+			<Player>0</Player>
+			<Position x="365.794" y="33.2789" z="133.711"/>
+			<Orientation angle="-2.58731"/>
+		</Entity>
+		<Entity uid="3334">
+			<Template>fauna_pig</Template>
+			<Player>0</Player>
+			<Position x="359.094" y="33.1745" z="125.264"/>
+			<Orientation angle="0.325538"/>
+		</Entity>
+		<Entity uid="3335">
+			<Template>fauna_pig</Template>
+			<Player>0</Player>
+			<Position x="358.921" y="33.1878" z="134.197"/>
+			<Orientation angle="-1.51059"/>
+		</Entity>
+		<Entity uid="3342">
+			<Template>fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="167.229" y="23.9407" z="119.203"/>
+			<Orientation angle="0.945019"/>
+		</Entity>
+		<Entity uid="3343">
+			<Template>fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="208.782" y="24.5819" z="342.952"/>
+			<Orientation angle="-2.7504"/>
+		</Entity>
+		<Entity uid="3344">
+			<Template>fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="200.703" y="23.8675" z="347.727"/>
+			<Orientation angle="0.868512"/>
+		</Entity>
+		<Entity uid="3346">
+			<Template>fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="173.323" y="21.8394" z="204.104"/>
+			<Orientation angle="-1.88347"/>
+		</Entity>
+		<Entity uid="3347">
+			<Template>fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="174.159" y="21.8863" z="201.172"/>
+			<Orientation angle="1.38553"/>
+		</Entity>
+		<Entity uid="3348">
+			<Template>fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="177.041" y="22.0566" z="202.93"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3349">
+			<Template>fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="175.404" y="21.9604" z="206.533"/>
+			<Orientation angle="-2.37559"/>
+		</Entity>
+		<Entity uid="3350">
+			<Template>fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="170.557" y="21.6811" z="203.579"/>
+			<Orientation angle="0.612504"/>
+		</Entity>
+		<Entity uid="3352">
+			<Template>fauna_goat</Template>
+			<Player>0</Player>
+			<Position x="364.331" y="50.0507" z="223.609"/>
+			<Orientation angle="-2.45322"/>
+		</Entity>
+		<Entity uid="3353">
+			<Template>fauna_goat</Template>
+			<Player>0</Player>
+			<Position x="359.68" y="49.6538" z="219.355"/>
+			<Orientation angle="0.812759"/>
+		</Entity>
+		<Entity uid="3354">
+			<Template>fauna_goat</Template>
+			<Player>0</Player>
+			<Position x="371.173" y="50.3352" z="217.215"/>
+			<Orientation angle="-2.90623"/>
+		</Entity>
+		<Entity uid="3355">
+			<Template>fauna_goat</Template>
+			<Player>0</Player>
+			<Position x="372.964" y="49.9202" z="228.265"/>
+			<Orientation angle="-1.80209"/>
+		</Entity>
+		<Entity uid="3356">
+			<Template>fauna_goat</Template>
+			<Player>0</Player>
+			<Position x="370.303" y="50.0819" z="222.183"/>
+			<Orientation angle="0.508466"/>
+		</Entity>
+		<Entity uid="3358">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="198.18" y="23.653" z="141.079"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3359">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="316.745" y="27.546" z="227.541"/>
+			<Orientation angle="-1.86632"/>
+		</Entity>
+		<Entity uid="3360">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="322.416" y="28.2241" z="219.334"/>
+			<Orientation angle="0.185335"/>
+		</Entity>
+		<Entity uid="3361">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="444.533" y="33.6446" z="195.737"/>
+			<Orientation angle="0.267937"/>
+		</Entity>
+		<Entity uid="3362">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="454.361" y="35.4371" z="206.225"/>
+			<Orientation angle="-2.84049"/>
+		</Entity>
+		<Entity uid="3363">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="453.255" y="32.0034" z="195.913"/>
+			<Orientation angle="0.641722"/>
+		</Entity>
+		<Entity uid="3364">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="463.639" y="33.4101" z="209.664"/>
+			<Orientation angle="-2.72878"/>
+		</Entity>
+		<Entity uid="3365">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="280.78" y="27.5405" z="40.0574"/>
+			<Orientation angle="-2.14929"/>
+		</Entity>
+		<Entity uid="3366">
+			<Template>geology_stone_greek</Template>
+			<Player>0</Player>
+			<Position x="281.896" y="27.4323" z="30.476"/>
+			<Orientation angle="0.429689"/>
+		</Entity>
+		<Entity uid="3369">
+			<Template>geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="264.802" y="28.6071" z="333.323"/>
+			<Orientation angle="-2.21532"/>
+		</Entity>
+		<Entity uid="3370">
+			<Template>geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="266.736" y="28.1773" z="324.956"/>
+			<Orientation angle="0.665621"/>
+		</Entity>
+		<Entity uid="3371">
+			<Template>geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="273.441" y="27.9443" z="321.474"/>
+			<Orientation angle="-2.08419"/>
+		</Entity>
+		<Entity uid="3372">
+			<Template>geology_metal_greek</Template>
+			<Player>0</Player>
+			<Position x="240.59" y="25.7657" z="157.704"/>
+			<Orientation angle="-1.82676"/>
+		</Entity>
 	</Entities>
 	<Nonentities>
 		<Nonentity>
@@ -7582,7 +7792,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="193.662" y="23.0442" z="157.582"/>
+			<Position x="203.288" y="23.8598" z="143.573"/>
 			<Orientation angle="2.60063"/>
 		</Nonentity>
 		<Nonentity>
@@ -7852,7 +8062,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="236.067" y="25.5145" z="161.565"/>
+			<Position x="238.072" y="25.6488" z="163.054"/>
 			<Orientation angle="-2.7054"/>
 		</Nonentity>
 		<Nonentity>
@@ -7957,7 +8167,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="229.297" y="25.1395" z="177.714"/>
+			<Position x="234.887" y="25.4072" z="155.61"/>
 			<Orientation angle="1.87649"/>
 		</Nonentity>
 		<Nonentity>
@@ -8023,7 +8233,7 @@
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
 			<Position x="247.716" y="27.9633" z="417.573"/>
-			<Orientation angle="-0.0306853"/>
+			<Orientation angle="-0.0306851"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
@@ -8152,12 +8362,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="258.641" y="28.6933" z="128.057"/>
-			<Orientation angle="2.82509"/>
+			<Position x="256.034" y="27.8254" z="136.991"/>
+			<Orientation angle="-0.0486411"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="258.253" y="28.3242" z="133.749"/>
+			<Position x="253.21" y="27.7714" z="133.282"/>
 			<Orientation angle="-1.79018"/>
 		</Nonentity>
 		<Nonentity>
@@ -8277,8 +8487,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
-			<Position x="269.683" y="27.3517" z="185.51"/>
-			<Orientation angle="-0.538615"/>
+			<Position x="251.444" y="26.5381" z="144.656"/>
+			<Orientation angle="-0.357339"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_medit_field.xml</Actor>
