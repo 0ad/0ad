@@ -227,7 +227,7 @@ bool CAStarEngine::FindPath(
 	//it's guarded here to stop setting the drawing path in pathfindingOverlay.
 	//(efficiency issue)
 	//the drawing is disable in the render() function in TerraiOverlay.cpp
-	if(g_showOverlay)
+	if(g_ShowOverlay)
 	{
 		pathfindingOverlay.setPath(mPath);
 	}

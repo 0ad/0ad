@@ -194,7 +194,7 @@ void CPathfindEngine::RequestPath( HEntity entity, const CVector2D& destination,
 		//it's guarded here to stop setting constrainedEdges and unconstrainedEdges in triangulationOverlay.
 		//(efficiency issue)
 		//the drawing is disable in the render() function in TerraiOverlay.cpp
-		if(g_showOverlay)
+		if(g_ShowOverlay)
 		{
 			drawTrianulation();
 		}

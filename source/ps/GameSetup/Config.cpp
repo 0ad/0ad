@@ -43,7 +43,11 @@ bool g_VSync = false;
 bool g_Quickstart = false;
 
 // flag to switch on drawing terrain overlays
-bool g_showOverlay = false;
+bool g_ShowOverlay = false;
+
+// flag to switch on triangulation pathfinding
+bool g_TriPathfind = false;
+
 
 // If non-empty, specified map will be automatically loaded
 CStr g_AutostartMap = "";
@@ -162,7 +166,10 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
 
 	if (args.Has("showOverlay"))
-		g_showOverlay = true;
+		g_ShowOverlay = true;
+
+	if (args.Has("triPathfind"))
+		g_TriPathfind = true;
 }
 
 

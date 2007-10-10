@@ -214,7 +214,7 @@ void TerrainOverlay::GetTileExtents(
 
 void TerrainOverlay::Render()
 {
-	if(g_showOverlay)
+	if(g_ShowOverlay)
 	{
 		m_Terrain = g_Game->GetWorld()->GetTerrain();
 

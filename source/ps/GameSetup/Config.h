@@ -53,4 +53,6 @@ extern CStr g_CursorName;
 class CmdLineArgs;
 extern void CONFIG_Init(const CmdLineArgs& args);
 
-extern bool g_showOverlay;
+extern bool g_ShowOverlay;
+
+extern bool g_TriPathfind;
