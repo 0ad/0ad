@@ -169,20 +169,20 @@ class SrSnSharedShape : public SrSnShape<X>
  { public :
     /*! Constructor receives a pointer to a shape. If the pointer is null,
         a new shape will be allocated and used. */
-    SrSnSharedShape ( X* pt=0 ) : SrSnShape<X> (pt) { _data->ref(); }
+    SrSnSharedShape ( X* pt=0 ) : SrSnShape<X> (pt) { this->_data->ref(); }
 
     /* Virtual Destructor .*/
     virtual ~SrSnSharedShape ()
-      { _data->unref();
-        _data=0; // to cope with base class destructor
+      { this->_data->unref();
+        this->_data=0; // to cope with base class destructor
       }
 
     /*! Reference a new shape, and unreference the old one. */
-    void shape ( X* pt ) { changed(true); _data->unref(); _data=pt; _data->ref(); }
+    void shape ( X* pt ) { this->changed(true); this->_data->unref(); this->_data=pt; this->_data->ref(); }
 
     /*! Get a reference to the shape data, and sets the state of the node
         as changed, implying that display lists should be regenerated. */
-    X& shape () { changed(true); return *_data; }
+    X& shape () { this->changed(true); return *this->_data; }
  };
 
 class SrModel;

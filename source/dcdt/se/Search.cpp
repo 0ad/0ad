@@ -625,14 +625,14 @@ bool SeDcdt::SearchPathFast(float x1, float y1, float x2, float y2, float r)//, 
 	//find the triangle containing the start point
 	SeTriangulator::LocateResult startResult = LocatePoint(x1, y1, start);
 	//if it wasn't found, return a path could not be found
-	if (startResult == SeTriangulator::LocateResult::NotFound)
+	if (startResult == SeTriangulator::NotFound)
 	{
 		return false;
 	}
 	//find the triangle containing the goal point
 	SeTriangulator::LocateResult goalResult = LocatePoint(x2, y2, goal);
 	//if it couldn't, return a failure
-	if (goalResult == SeTriangulator::LocateResult::NotFound)
+	if (goalResult == SeTriangulator::NotFound)
 	{
 		return false;
 	}
@@ -1793,7 +1793,7 @@ bool SeDcdt::SearchPathBaseFast(float x1, float y1, float x2, float y2, float r)
 	//find the triangle containing the start point
 	SeTriangulator::LocateResult startResult = LocatePoint(x1, y1, start);
 	//if it wasn't found, return a path could not be found
-	if (startResult == SeTriangulator::LocateResult::NotFound)
+	if (startResult == SeTriangulator::NotFound)
 	{
 		return false;
 	}
@@ -2179,14 +2179,14 @@ float SeDcdt::GetShortestPath(SrPolygon &path, SrArray<SeBase *> Channel, float 
 	SrPnt2 p;
 	p.set(((SeDcdtVertex *)s->vtx())->p);
 	//insert it into the deque
-	fd.Add(p, FunnelDeque::CornerType::LeftTangent, path);
+	fd.Add(p, FunnelDeque::LeftTangent, path);
 	SeVertex *right = s->vtx();
 	//get the point on the left side of that edge
 	s = s->nxt();
 	SeVertex *left = s->vtx();
 	p.set(((SeDcdtVertex *)s->vtx())->p);
 	//insert it into the deque
-	fd.Add(p, FunnelDeque::CornerType::RightTangent, path);
+	fd.Add(p, FunnelDeque::RightTangent, path);
 	//go through the other edges in the channel
 	for (int i = 1; i < Channel.size() - 1; i++)
 	{
@@ -2207,14 +2207,14 @@ float SeDcdt::GetShortestPath(SrPolygon &path, SrArray<SeBase *> Channel, float 
 		if (s->vtx() == right)
 		{
 			p.set(((SeDcdtVertex *)s->nxt()->vtx())->p);
-			fd.Add(p, FunnelDeque::CornerType::RightTangent, path);
+			fd.Add(p, FunnelDeque::RightTangent, path);
 			left = s->nxt()->vtx();
 		}
 		//otherwise, add it to the right side of the funnel
 		else //(s->nxt()->vtx() == left)
 		{
 			p.set(((SeDcdtVertex *)s->vtx())->p);
-			fd.Add(p, FunnelDeque::CornerType::LeftTangent, path);
+			fd.Add(p, FunnelDeque::LeftTangent, path);
 			right = s->vtx();
 		}
 	}
@@ -2235,16 +2235,16 @@ float SeDcdt::GetShortestPath(SrPolygon &path, SrArray<SeBase *> Channel, float 
 	if (s->vtx() == right)
 	{
 		p.set(((SeDcdtVertex *)s->nxt()->vtx())->p);
-		fd.Add(p, FunnelDeque::CornerType::RightTangent, path);
+		fd.Add(p, FunnelDeque::RightTangent, path);
 	}
 	else //(s->nxt()->vtx() == left)
 	{
 		p.set(((SeDcdtVertex *)s->vtx())->p);
-		fd.Add(p, FunnelDeque::CornerType::LeftTangent, path);
+		fd.Add(p, FunnelDeque::LeftTangent, path);
 	}
 	//finally, add the goal point to the funnel
 	p.set(x2, y2);
-	fd.Add(p, FunnelDeque::CornerType::Point, path);
+	fd.Add(p, FunnelDeque::Point, path);
 	//calculate the length of the path sand return it
 	return fd.Length(path);
 }

@@ -157,7 +157,7 @@ class SrGrid : public SrGridBase
 
     /*! Returns the cell of given n-D coordinates */
     X& operator() ( const SrArray<int>& coords )
-     { return _data[SrGridBase::cell_index(i,j)]; }
+     { return _data[SrGridBase::cell_index(coords)]; }
  };
 
 //============================== end of file ===============================

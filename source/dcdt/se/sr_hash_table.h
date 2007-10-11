@@ -6,6 +6,7 @@
 # define SR_HASH_TABLE_H
 
 # include "sr_array.h"
+# include "sr_shared_class.h"
 
 //================================ SrHashTableBase ===============================
 

@@ -245,9 +245,9 @@ void FunnelDeque::Add(const SrPnt2& p, CornerType type, SrPolygon& path)
 						//move the apex to the right and add the segment between
 						//the old and new apexes to the path so far
 						float angle = Angle(m_CApex->X(), m_CApex->Y(), m_tApexType,
-							m_CApex->Right()->X(), m_CApex->Right()->Y(), CornerType::LeftTangent);
+							m_CApex->Right()->X(), m_CApex->Right()->Y(), LeftTangent);
 						AddPoint(m_CApex->X(), m_CApex->Y(), m_tApexType, angle, path);
-						AddPoint(m_CApex->Right()->X(), m_CApex->Right()->Y(), CornerType::LeftTangent, angle, path);
+						AddPoint(m_CApex->Right()->X(), m_CApex->Right()->Y(), LeftTangent, angle, path);
 						m_CApex = m_CApex->Right();
 						m_tApexType = LeftTangent;
 					}
@@ -344,9 +344,9 @@ void FunnelDeque::Add(const SrPnt2& p, CornerType type, SrPolygon& path)
 					else
 					{
 						float angle = Angle(m_CApex->X(), m_CApex->Y(), m_tApexType,
-							m_CApex->Left()->X(), m_CApex->Left()->Y(), CornerType::RightTangent);
+							m_CApex->Left()->X(), m_CApex->Left()->Y(), RightTangent);
 						AddPoint(m_CApex->X(), m_CApex->Y(), m_tApexType, angle, path);
-						AddPoint(m_CApex->Left()->X(), m_CApex->Left()->Y(), CornerType::RightTangent, angle, path);
+						AddPoint(m_CApex->Left()->X(), m_CApex->Left()->Y(), RightTangent, angle, path);
 						m_CApex = m_CApex->Left();
 						m_tApexType = RightTangent;
 					}
@@ -375,8 +375,8 @@ void FunnelDeque::Add(const SrPnt2& p, CornerType type, SrPolygon& path)
 		{
 			float x_1, y_1, x_2, y_2, toPoint;
 			CornerType type_1, type_2;
-			type_1 = (Current == m_CApex) ? m_tApexType : CornerType::LeftTangent;
-			type_2 = (Current->Right() == m_CRight) ? CornerType::Point : CornerType::LeftTangent;
+			type_1 = (Current == m_CApex) ? m_tApexType : LeftTangent;
+			type_2 = (Current->Right() == m_CRight) ? Point : LeftTangent;
 			x_1 = Current->X();
 			y_1 = Current->Y();
 			Current = Current->Right();

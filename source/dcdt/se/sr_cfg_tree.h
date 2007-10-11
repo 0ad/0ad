@@ -27,7 +27,7 @@ class SrCfgNode
     int _parentlink;
     struct Link { SrCfgNode* node; float dist; int level; };
     SrArray<Link> _children;
-    friend SrCfgTreeBase;
+    friend class SrCfgTreeBase;
    public :
     SrCfgNode* parent () const { return _parent; }
     int parentlink () const { return _parentlink; } // -1 if root node

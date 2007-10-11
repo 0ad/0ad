@@ -15,7 +15,7 @@ class SrVtx
     double _x, _y;
     int _id;
    private :
-    friend SrTriangulation;
+    friend class SrTriangulation;
     void set ( double x, double y, int id ) { _x=x; _y=y; _id=id; }
    public :
     double x() const { return _x; }
@@ -34,8 +34,8 @@ class SrTri
     char   _mark[3]; // Used for marking traversal elements
     int    _id;
    private :
-    friend SrTravel;
-    friend SrTriangulation;
+    friend class SrTravel;
+    friend class SrTriangulation;
     void   set ( SrVtx* v0, SrVtx* v1, SrVtx* v2, SrTri* t0, SrTri* t1, SrTri* t2, int id );
     int    sideindex ( int i );
 
@@ -55,7 +55,7 @@ class SrTravel
  { private :
     SrTri* _t;  // the referenced triangle
     int    _v;  // the referenced vertex id of the triangle
-    friend SrTriangulation;
+    friend class SrTriangulation;
 
    public :
     SrTravel () : _t(0), _v(0) {}
