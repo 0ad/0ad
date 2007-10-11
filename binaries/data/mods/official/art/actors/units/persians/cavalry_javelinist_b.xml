@@ -17,4 +17,13 @@
     </variant>
   </group>
 
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Melee">
+      <props>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+      </props>
+    </variant>
+  </group>
+
 </actor>
