@@ -1,7 +1,7 @@
 #ifndef INCLUDED_TRASTARENGINE
 #define INCLUDED_TRASTARENGINE
 
-#include "simulation\astarengine.h"
+#include "AStarEngine.h"
 
 class CTRAStarEngine :
 	public CAStarEngine

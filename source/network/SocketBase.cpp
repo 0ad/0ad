@@ -106,31 +106,9 @@ CSocketAddress CSocketAddress::Loopback(int port, ESocketProtocol proto)
 
 PS_RESULT CSocketAddress::Resolve(const char *name, int port, CSocketAddress &addr)
 {
-	addrinfo *ai;
-	int res=getaddrinfo(name, NULL, NULL, &ai);
-	if (res == 0)
-	{
-		if (ai->ai_addrlen < sizeof(addr.m_Union))
-			cpu_memcpy(&addr.m_Union, ai->ai_addr, ai->ai_addrlen);
-		switch (addr.m_Union.m_Family)
-		{
-		case IPv4:
-			addr.m_Union.m_IPv4.sin_port=htons(port);
-			break;
-		case IPv6:
-			addr.m_Union.m_IPv6.sin6_port=htons(port);
-			break;
-		}
-		freeaddrinfo(ai);
-		return PS_OK;
-	}
-	// supported, but failed
-	if (errno != ENOSYS)
-		return NO_SUCH_HOST;
-	// else: IPv6 not supported, fall back to IPv4
-
+	// Use IPV4 by default, ignoring address type.
+	memset(&addr.m_Union, 0, sizeof(addr.m_Union));
 	hostent *he;
- 
 	addr.m_Union.m_IPv4.sin_family=AF_INET;
 	addr.m_Union.m_IPv4.sin_port=htons(port);
 	// Try to parse dot-notation IP
@@ -148,7 +126,7 @@ PS_RESULT CSocketAddress::Resolve(const char *name, int port, CSocketAddress &ad
 CStr CSocketAddress::GetString() const
 {
 	char convBuf[NI_MAXHOST];
-	int res=getnameinfo((sockaddr *)&m_Union, sizeof(m_Union), convBuf, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
+	int res=getnameinfo((sockaddr *)&m_Union, sizeof(sockaddr), convBuf, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
 	if (res == 0)
 		return CStr(convBuf);
 	// getnameinfo won't return a string for the IPv6 unspecified address
@@ -252,7 +230,8 @@ void *WaitLoopThreadMain(void *)
 
 PS_RESULT CSocketBase::Initialize(ESocketProtocol proto)
 {
-	int res=socket(proto, SOCK_STREAM, 0);
+	// Use IPV4 by default, ignoring address type.
+	int res=socket(AF_INET, SOCK_STREAM, 0);
 
 	NET_LOG("CSocketBase::Initialize(): socket() res: %d", res);
 
@@ -438,7 +417,7 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 
 PS_RESULT CSocketBase::Connect(const CSocketAddress &addr)
 {
-	int res = connect(m_pInternal->m_fd, (struct sockaddr *)(&addr.m_Union), sizeof(addr));
+	int res = connect(m_pInternal->m_fd, (struct sockaddr *)(&addr.m_Union), sizeof(struct sockaddr));
 	NET_LOG("connect returned %d [%d]", res, m_NonBlocking);
 
 	if (res != 0)
@@ -473,7 +452,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 
 	SetOpMask(READ);
 
-	res=bind(m_pInternal->m_fd, (struct sockaddr *)&address, sizeof(address));
+	res=bind(m_pInternal->m_fd, (struct sockaddr *)&address, sizeof(struct sockaddr));
 	if (res == -1)
 	{
 		PS_RESULT ret=PS_FAIL;
@@ -513,7 +492,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 
 PS_RESULT CSocketBase::PreAccept(CSocketAddress &addr)
 {
-	socklen_t addrLen=sizeof(addr.m_Union);
+	socklen_t addrLen=sizeof(struct sockaddr_in);
 	int fd=accept(m_pInternal->m_fd, (struct sockaddr *)&addr.m_Union, &addrLen);
 	m_pInternal->m_AcceptFd=fd;
 	m_pInternal->m_AcceptAddr=addr;
@@ -640,8 +619,7 @@ void CSocketBase::SocketReadable(CSocketBase *pSock)
 		int res=ioctl(pSock->m_pInternal->m_fd, FIONREAD, &nRead);
 		// failure, errno=EINVAL means server socket
 		// success, nRead != 0 means alive stream socket
-		if ((res == -1 && errno != EINVAL) ||
-			(res == 0 && nRead == 0))
+		if (res == -1 && errno != EINVAL)
 		{
 			NET_LOG("RunWaitLoop:ioctl: Connection broken [%d:%s]", errno, strerror(errno));
 			// Don't use API function - we both hold a lock and

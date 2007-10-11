@@ -15,11 +15,14 @@ MessagePasserImpl::MessagePasserImpl()
 	int tries = 0;
 	while (tries++ < 16) // some arbitrary cut-off point to avoid infinite loops
 	{
-		CStr name = "/wfg-atlas-msgpass-" + CStr(rand(100000, 1000000));
+		static char name[1024];
+		sprintf(name, "/wfg-atlas-msgpass-%d-%d",
+				rand(1, 1000), (int)(time(0)%1000));
 		sem_t* sem = sem_open(name, O_CREAT | O_EXCL, 0700, 0);
+
 		// This cast should not be necessary, but apparently SEM_FAILED is not
 		// a value of a pointer type
-		if (sem == (sem_t*)SEM_FAILED)
+		if (sem == (sem_t*)SEM_FAILED || !sem)
 		{
 			int err = errno;
 			if (err == EEXIST)
@@ -28,7 +31,6 @@ MessagePasserImpl::MessagePasserImpl()
 				continue;
 			}
 			// Otherwise, it's a probably-fatal error
-			debug_printf("errno: %d (%s)\n", err, strerror(err));
 			debug_warn("sem_open failed");
 			break;
 		}

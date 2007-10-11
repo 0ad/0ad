@@ -270,6 +270,7 @@ template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&)
 
 template bool ScriptInterface::FromJSVal<float>(JSContext*, jsval, float&);
 
+template jsval ScriptInterface::ToJSVal<wxString>(JSContext*, wxString const&);
 
 ////////////////////////////////////////////////////////////////
 
