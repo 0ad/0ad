@@ -197,7 +197,7 @@ struct ContainerBase : public Container
 
 	size_t NumElements(size_t UNUSED(el_size)) const
 	{
-		return size();
+		return this->size();
 	}
 
 	static const u8* DereferenceAndAdvance(typename Container::iterator& it, size_t UNUSED(el_size))
@@ -517,7 +517,8 @@ struct Any_slist: public Any_list
 // specific container iterator stored in it_mem.
 template<class T> const u8* stl_iterator(void* it_mem, size_t el_size)
 {
-	T::iterator& stl_it = *(T::iterator*)it_mem;
+	typedef typename T::iterator iterator;
+	iterator& stl_it = *(iterator*)it_mem;
 	return T::DereferenceAndAdvance(stl_it, el_size);
 }
 
@@ -547,7 +548,6 @@ static bool IsContainerValid(const T& t, size_t el_count)
 	return true;
 }
 
-
 // check if the container is IsValid and return # elements and an iterator;
 // this is instantiated once for each type of container.
 // we don't do this in the Any_* ctors because we need to return bool IsValid and
@@ -555,8 +555,11 @@ static bool IsContainerValid(const T& t, size_t el_count)
 template<class T> bool get_container_info(const T& t, size_t size, size_t el_size,
 	size_t& el_count, DebugStlIterator& el_iterator, void* it_mem)
 {
+	typedef typename T::iterator iterator;
+	typedef typename T::const_iterator const_iterator;
+	
 	debug_assert(sizeof(T) == size);
-	debug_assert(sizeof(T::iterator) < DEBUG_STL_MAX_ITERATOR_SIZE);
+	debug_assert(sizeof(iterator) < DEBUG_STL_MAX_ITERATOR_SIZE);
 
 	el_count = t.NumElements(el_size);
 
@@ -570,7 +573,7 @@ template<class T> bool get_container_info(const T& t, size_t size, size_t el_siz
 	// because VC8's secure copy ctor apparently otherwise complains about
 	// invalid values in the (uninitialized) destination memory.
 #include "lib/nommgr.h"
-	new(it_mem) T::const_iterator(t.begin());
+	new(it_mem) const_iterator(t.begin());
 #include "lib/mmgr.h"
 	return true;
 }
@@ -604,12 +607,14 @@ LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t
 	// standard containers
 	STD_CONTAINER(deque)
 	STD_CONTAINER(list)
+	STD_CONTAINER(vector)
+#if STL_DINKUMWARE
 	STD_CONTAINER(map)
 	STD_CONTAINER(multimap)
 	STD_CONTAINER(set)
 	STD_CONTAINER(multiset)
-	STD_CONTAINER(vector)
 	STD_CONTAINER(basic_string)
+#endif
 	// standard container adapters
 	// (note: Any_queue etc. assumes the underlying container is a deque.
 	// we make sure of that here and otherwise refuse to display it, because
