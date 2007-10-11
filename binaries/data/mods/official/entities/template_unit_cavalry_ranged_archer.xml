@@ -16,15 +16,18 @@
 		
 		<Creation>
 				<Resource>
- 				<Food>70</Food>
-				<Wood>40</Wood>
+ 				<Food>100</Food>
+				<Wood>85</Wood>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>0.0</Hack>
-			<Pierce>25.0</Pierce>
-			<Crush>0.0</Crush>
-		</Armour>		
+			<Hack>2.0</Hack>
+			<Pierce>5.0</Pierce>
+			<Crush>8.0</Crush>
+		</Armour>
+		<Health>
+ 			<Max>150</Max>
+		</Health>		
 	</Traits>
 
 	<Actions>
