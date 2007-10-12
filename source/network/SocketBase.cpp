@@ -126,7 +126,8 @@ PS_RESULT CSocketAddress::Resolve(const char *name, int port, CSocketAddress &ad
 CStr CSocketAddress::GetString() const
 {
 	char convBuf[NI_MAXHOST];
-	int res=getnameinfo((sockaddr *)&m_Union, sizeof(sockaddr), convBuf, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
+	int res=getnameinfo((struct sockaddr *)&m_Union, sizeof(struct sockaddr),
+			convBuf, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
 	if (res == 0)
 		return CStr(convBuf);
 	// getnameinfo won't return a string for the IPv6 unspecified address
