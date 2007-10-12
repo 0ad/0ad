@@ -30,9 +30,13 @@
   </group>
 
   <group>
-    <variant frequency="2" name="Dress-01">
+    <variant frequency="1" name="Dress-01">
       <mesh>skeletal/f_dress.pmd</mesh>
       <texture>skeletal/pers_fem_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="Dress-02">
+      <mesh>skeletal/f_dress.pmd</mesh>
+      <texture>skeletal/pers_fem_2.dds</texture>
     </variant>
   </group>
 
