@@ -994,17 +994,24 @@ void CNetLogger::GetStringDateTime( CStr &str )
 {
 	char		buffer[ 128 ] = { 0 };
 	time_t		tm;
-	struct tm	now;
+	struct tm       *now;
 
+#if OS_WIN
 	// Set timezone
 	_tzset();
 
 	// Get time and convert to tm structure
 	time( &tm );
-	localtime_s( &now, &tm );
-
+	struct tm nowBuf;
+	localtime_s( &nowBuf, &tm );
+	now = &nowBuf;
+#else
+	time ( &tm );
+	now = localtime( &tm );
+#endif
+	
 	// Build custom time string
-	strftime( buffer, 128, "%Y-%m-%d %H:%M:%S", &now );
+	strftime( buffer, 128, "%Y-%m-%d %H:%M:%S", now );
 
 	str = buffer;
 }
@@ -1017,17 +1024,24 @@ void CNetLogger::GetStringTime( CStr& str )
 {
 	char		buffer[ 128 ] = { 0 };
 	time_t		tm;
-	struct tm	now;
+	struct tm       *now;
 
+#if OS_WIN
 	// Set timezone
 	_tzset();
 
 	// Get time and convert to tm structure
 	time( &tm );
-	localtime_s( &now, &tm );
+	struct tm nowBuf;
+	localtime_s( &nowBuf, &tm );
+	now = &nowBuf;
+#else
+	time ( &tm );
+	now = localtime( &tm );
+#endif
 
 	// Build custom time string
-	strftime( buffer, 128, "%H%M%S", &now );
+	strftime( buffer, 128, "%H%M%S", now );
 
 	str = buffer;
 }

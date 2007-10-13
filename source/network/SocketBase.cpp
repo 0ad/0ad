@@ -126,7 +126,7 @@ PS_RESULT CSocketAddress::Resolve(const char *name, int port, CSocketAddress &ad
 CStr CSocketAddress::GetString() const
 {
 	char convBuf[NI_MAXHOST];
-	int res=getnameinfo((struct sockaddr *)&m_Union, sizeof(struct sockaddr),
+	int res=getnameinfo((struct sockaddr *)&m_Union, sizeof(struct sockaddr_in),
 			convBuf, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
 	if (res == 0)
 		return CStr(convBuf);
@@ -420,7 +420,7 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 
 PS_RESULT CSocketBase::Connect(const CSocketAddress &addr)
 {
-	int res = connect(m_pInternal->m_fd, (struct sockaddr *)(&addr.m_Union), sizeof(struct sockaddr));
+	int res = connect(m_pInternal->m_fd, (struct sockaddr *)(&addr.m_Union), sizeof(struct sockaddr_in));
 	NET_LOG3("connect returned %d [%d]", res, m_NonBlocking);
 
 	if (res != 0)
@@ -455,7 +455,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 
 	SetOpMask(READ);
 
-	res=bind(m_pInternal->m_fd, (struct sockaddr *)&address, sizeof(struct sockaddr));
+	res=bind(m_pInternal->m_fd, (struct sockaddr *)&address, sizeof(struct sockaddr_in));
 	if (res == -1)
 	{
 		PS_RESULT ret=PS_FAIL;
@@ -559,7 +559,7 @@ bool CSocketBase::ConnectError(CSocketBase *pSocket)
 		{
 			pSocket->m_State=SS_UNCONNECTED;
 			PS_RESULT connErr=GetPS_RESULT(errno);
-			NET_LOG("Connect error: %s [%d:%s]", connErr, errno, strerror(errno));
+			NET_LOG4("Connect error: %s [%d:%s]", connErr, errno, strerror(errno));
 			pSocket->m_Error=connErr;
 			return true;
 		}
@@ -624,7 +624,7 @@ void CSocketBase::SocketReadable(CSocketBase *pSock)
 		// success, nRead != 0 means alive stream socket
 		if (res == -1 && errno != EINVAL)
 		{
-			NET_LOG("RunWaitLoop:ioctl: Connection broken [%d:%s]", errno, strerror(errno));
+			NET_LOG3("RunWaitLoop:ioctl: Connection broken [%d:%s]", errno, strerror(errno));
 			// Don't use API function - we both hold a lock and
 			// it is unnecessary to SendWaitLoopUpdate at this
 			// stage
