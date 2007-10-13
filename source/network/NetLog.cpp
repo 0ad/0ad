@@ -251,7 +251,7 @@ CNetLogFileSink::CNetLogFileSink( void )
 
 	// Make full path
 	file_make_full_native_path( path.c_str(), filePath );
-
+	
 	m_FileName	= filePath;
 	m_Append	= true;
 }
@@ -362,8 +362,6 @@ void CNetLogFileSink::Write( char c )
 //-----------------------------------------------------------------------------
 void CNetLogFileSink::OpenFile( const CStr& fileName, bool append )
 {
-	CScopeLock lock( m_Mutex );
-
 	// Close any open file
 	if ( m_File.is_open() ) m_File.close();
 
