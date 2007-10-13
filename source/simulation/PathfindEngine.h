@@ -33,13 +33,22 @@ class CPathfindEngine : public Singleton<CPathfindEngine>
 {
 public:
 
+
+
 	//Kai: added for dcdt 
+	const float OABBBOUNDREDUCTION  ; 
+	const float CIRCLEBOUNDREDUCTION  ; 
+	const float RADIUSINCREMENT  ; 
+	
+	
+	
 	static SrArray<SeBase*> processing;
+	bool dcdtInitialized;
 
 	SeDcdt dcdtPathfinder;
 	void initBoundary();
 	void insertObstacles();
-	void drawTrianulation();
+	void drawTriangulation();
 
 	//Kai:added tile overlay for pathfinding
 	TriangulationTerrainOverlay triangulationOverlay;

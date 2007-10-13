@@ -223,6 +223,11 @@ public:
 	std::vector<bool> m_sectorValues;
 	//Slight optimization for aura rendering
 	std::vector< std::vector<CVector2D> > m_unsnappedPoints;
+	
+	//Kai: add id to identify the entity in the polygon soup
+	//	   needed for update/remove entities in the triangulation.
+	int m_dcdtId;
+	void removeObstacle();
 
 private:
 	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building = 0 );

@@ -13,6 +13,10 @@
 #include "Entity.h"
 #include "lib/timer.h"
 
+#include "dcdt/se/se_dcdt.h"
+#include "PathfindEngine.h"
+#include "ps/GameSetup/Config.h"
+
 int AURA_CIRCLE_POINTS;
 int SELECTION_CIRCLE_POINTS;
 int SELECTION_BOX_POINTS;
@@ -82,6 +86,107 @@ void CEntityManager::DeleteAll()
 	m_extant = true;
 }
 
+void CEntityManager::updateObstacle( CEntity* tempHandle )
+{
+	if(g_Pathfinder.dcdtInitialized)
+	{
+		SrPolygon poly;
+
+
+		poly.size(0);	
+
+		
+		CVector2D p, q;
+		CVector2D u, v;
+		q.x = tempHandle->m_position.X;
+		q.y = tempHandle->m_position.Z;
+		float d = ((CBoundingBox*)tempHandle->m_bounds)->m_d;
+		float w = ((CBoundingBox*)tempHandle->m_bounds)->m_w;
+
+		u.x = sin( tempHandle->m_graphics_orientation.Y );
+		u.y = cos( tempHandle->m_graphics_orientation.Y );
+		v.x = u.y;
+		v.y = -u.x;
+
+		CBoundingObject* m_bounds = tempHandle->m_bounds;
+
+		switch( m_bounds->m_type )
+		{
+			case CBoundingObject::BOUND_CIRCLE:
+			{
+				if(tempHandle->m_speed == 0)
+				{
+				
+					poly.open(false);
+
+					w = 0.5;
+					d = 0.5;
+				
+					p = q + u * d + v * w;
+					poly.push().set((float)(p.x), (float)(p.y));
+
+					p = q - u * d + v * w ;
+					poly.push().set((float)(p.x), (float)(p.y));
+
+					p = q - u * d - v * w;
+					poly.push().set((float)(p.x), (float)(p.y));
+
+					p = q + u * d - v * w;
+					poly.push().set((float)(p.x), (float)(p.y));
+
+					int dcdtId = g_Pathfinder.dcdtPathfinder.insert_polygon(poly);
+					tempHandle->m_dcdtId = dcdtId;
+
+				
+				}
+				break;
+
+			}
+			case CBoundingObject::BOUND_OABB:
+			{
+
+				
+				poly.open(false);
+				
+				// Tighten the bound so the units will not get stuck near the buildings
+				//Note: the triangulation pathfinding code will not find a path for the unit if it is pushed into the bound of a unit.
+				//
+				w = w * 0.8;
+				d = d * 0.8;
+			
+				p = q + u * d + v * w;
+				poly.push().set((float)(p.x), (float)(p.y));
+
+				p = q - u * d + v * w ;
+				poly.push().set((float)(p.x), (float)(p.y));
+
+				p = q - u * d - v * w;
+				poly.push().set((float)(p.x), (float)(p.y));
+
+				p = q + u * d - v * w;
+				poly.push().set((float)(p.x), (float)(p.y));
+
+				int dcdtId = g_Pathfinder.dcdtPathfinder.insert_polygon(poly);
+				tempHandle->m_dcdtId = dcdtId;
+				break;
+			}
+
+				
+
+		}//end switch
+
+		g_Pathfinder.dcdtPathfinder.DeleteAbstraction();
+		g_Pathfinder.dcdtPathfinder.Abstract();
+
+		if(g_ShowOverlay)
+		{
+			g_Pathfinder.drawTriangulation();
+		}
+	}
+
+}
+
+
 HEntity CEntityManager::Create(CEntityTemplate* base, CVector3D position, float orientation,
 	const std::set<CStr>& actorSelections, const CStrW* building)
 {
@@ -107,6 +212,12 @@ HEntity CEntityManager::Create(CEntityTemplate* base, CVector3D position, float 
 	if( m_collisionPatches)
 		m_entities[pos].m_entity->UpdateCollisionPatch();
 	m_entities[pos].m_entity->me = HEntity( pos );
+
+	//Kai: invoking triangulation update for new objects
+	updateObstacle(m_entities[pos].m_entity);
+
+		
+	
 	return( HEntity( pos ) );
 }
 

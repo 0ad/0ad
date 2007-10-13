@@ -17,18 +17,19 @@
 
 #define EPSILON 0.00001f
 
-bool initialized = false;
 
 
-CPathfindEngine::CPathfindEngine()
+CPathfindEngine::CPathfindEngine():OABBBOUNDREDUCTION(0.8),CIRCLEBOUNDREDUCTION(0.5),RADIUSINCREMENT(2.0)
 {
+	dcdtInitialized = false;
+	
 	
 }
 
 
 //Todo:
 // 1; the bouncing problem with the fortress
-// 2; update obstacles when things vanishes
+// 2; update obstacles when things vanishes. done
 
 void CPathfindEngine::initBoundary()
 {
@@ -89,8 +90,8 @@ void  CPathfindEngine::insertObstacles()
 				
 					poly.open(false);
 
-					w = 0.5;
-					d = 0.5;
+					w = CIRCLEBOUNDREDUCTION;
+					d = CIRCLEBOUNDREDUCTION;
 				
 					p = q + u * d + v * w;
 					poly.push().set((float)(p.x), (float)(p.y));
@@ -105,6 +106,8 @@ void  CPathfindEngine::insertObstacles()
 					poly.push().set((float)(p.x), (float)(p.y));
 
 					int dcdtId = dcdtPathfinder.insert_polygon(poly);
+					tempHandle->m_dcdtId = dcdtId;
+
 				
 				}
 				break;
@@ -119,8 +122,8 @@ void  CPathfindEngine::insertObstacles()
 				// Tighten the bound so the units will not get stuck near the buildings
 				//Note: the triangulation pathfinding code will not find a path for the unit if it is pushed into the bound of a unit.
 				//
-				w = w * 0.85;
-				d = d * 0.85;
+				w = w * OABBBOUNDREDUCTION;
+				d = d * OABBBOUNDREDUCTION;
 			
 				p = q + u * d + v * w;
 				poly.push().set((float)(p.x), (float)(p.y));
@@ -135,6 +138,7 @@ void  CPathfindEngine::insertObstacles()
 				poly.push().set((float)(p.x), (float)(p.y));
 
 				int dcdtId = dcdtPathfinder.insert_polygon(poly);
+				tempHandle->m_dcdtId = dcdtId;
 				break;
 			}
 
@@ -146,21 +150,17 @@ void  CPathfindEngine::insertObstacles()
 	}//end for loop
 	dcdtPathfinder.DeleteAbstraction();
 	dcdtPathfinder.Abstract();
-	
-
-
-
 
 
 }
 
-void CPathfindEngine::drawTrianulation()
+void CPathfindEngine::drawTriangulation()
 {
 
 	
 	int polyNum = dcdtPathfinder.num_polygons();
 
-	debug_printf("Number of polygons: %d",polyNum);
+	//debug_printf("Number of polygons: %d",polyNum);
 	
 	if(polyNum)
 	{
@@ -180,28 +180,8 @@ void CPathfindEngine::drawTrianulation()
 void CPathfindEngine::RequestPath( HEntity entity, const CVector2D& destination,
 								  CEntityOrder::EOrderSource orderSource )
 {
-	/* TODO:1. add code to verify the triangulation. done.
-            2. add code to convert a path from dcdtpathfinder to world waypoints 
-	*/
-	if(!initialized)
-	{
-		initBoundary();
-		insertObstacles();
-		initialized =true;
-		
 
-		//switch on/off triangulation drawing by command line arg "-showOverlay"
-		//it's guarded here to stop setting constrainedEdges and unconstrainedEdges in triangulationOverlay.
-		//(efficiency issue)
-		//the drawing is disable in the render() function in TerraiOverlay.cpp
-		if(g_ShowOverlay)
-		{
-			drawTrianulation();
-		}
-	}
-
-
-
+	
 	/* TODO: Add code to generate high level path
 	         For now, just the one high level waypoint to the final 
 			  destination is added
@@ -215,7 +195,7 @@ void CPathfindEngine::RequestPath( HEntity entity, const CVector2D& destination,
 	//Kai: adding radius for pathfinding
 	CBoundingObject* m_bounds = entity->m_bounds;
 
-	waypoint.m_pathfinder_radius = m_bounds->m_radius +1.0f;
+	waypoint.m_pathfinder_radius = m_bounds->m_radius + RADIUSINCREMENT;
 	
 	//waypoint.m_pathfinder_radius = 0.0f;
 	entity->m_orderQueue.push_front( waypoint );
@@ -226,6 +206,29 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 										  float radius, CEntityOrder::EOrderSource orderSource )
 {
 	PROFILE_START("Pathfinding");
+
+	if(g_TriPathfind)
+		{
+		/* TODO:1. add code to verify the triangulation. done.
+				2. add code to convert a path from dcdtpathfinder to world waypoints done
+		*/
+		if(!dcdtInitialized)
+		{
+			initBoundary();
+			insertObstacles();
+			dcdtInitialized =true;
+			
+
+			//switch on/off triangulation drawing by command line arg "-showOverlay"
+			//it's guarded here to stop setting constrainedEdges and unconstrainedEdges in triangulationOverlay.
+			//(efficiency issue)
+			//the drawing is disable in the render() function in TerraiOverlay.cpp
+			if(g_ShowOverlay)
+			{
+				drawTriangulation();
+			}
+		}
+	}
 
 	
 	//Kai: added test for terrain information in entityManager

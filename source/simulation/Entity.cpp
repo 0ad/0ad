@@ -33,6 +33,8 @@
 
 #include <algorithm>
 
+#include "ps/GameSetup/Config.h"
+
 const float MAX_ROTATION_RATE = 2*PI; // radians per second
 
 CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building )
@@ -222,6 +224,22 @@ void CEntity::initAuraData()
 	}
 }
 
+void CEntity::removeObstacle()
+{
+	if(g_Pathfinder.dcdtInitialized)
+	{
+		g_Pathfinder.dcdtPathfinder.remove_polygon(m_dcdtId);
+		g_Pathfinder.dcdtPathfinder.DeleteAbstraction();
+		g_Pathfinder.dcdtPathfinder.Abstract();
+
+		if(g_ShowOverlay)
+		{
+			g_Pathfinder.drawTriangulation();
+		}
+	}
+
+}
+
 void CEntity::Kill(bool keepActor)
 {
 	if( entf_get( ENTF_DESTROYED ) )
@@ -253,6 +271,10 @@ void CEntity::Kill(bool keepActor)
 	m_extant = false;
 
 	UpdateCollisionPatch();
+	
+	//Kai: added to remove the entity in the polygon soup (for triangulation)
+	removeObstacle();
+	
 
 	g_Selection.RemoveAll( me );
 

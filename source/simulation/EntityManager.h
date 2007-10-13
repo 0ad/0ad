@@ -102,6 +102,10 @@ public:
 	
 	bool GetDeath() { return m_death; }
 	void SetDeath(bool set) { m_death=set; }
+
+
+	//Kai: added function to update the triangulation when entities are created
+	void updateObstacle(CEntity* tempHandle);
 	
 	// Predicate functions
 	typedef bool (*EntityPredicate)( CEntity* target, void* userdata );
