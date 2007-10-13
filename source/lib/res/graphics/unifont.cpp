@@ -246,8 +246,10 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 	const int buf_size = 1024;
 	wchar_t buf[buf_size];
 
-	if(vswprintf(buf, buf_size-1, fmt, args) < 0)
-		debug_printf("glwprintf failed (buffer size exceeded?)\n");
+	int ret = vswprintf(buf, buf_size-1, fmt, args);
+	if(ret < 0) {
+		debug_printf("glwprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
+	}
 
 	// Make sure there's always null termination
 	buf[buf_size-1] = 0;

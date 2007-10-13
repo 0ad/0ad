@@ -242,7 +242,6 @@ void CMessageSocket::StartReadHeader()
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=false;
-	printf("CMessageSocket::StartReadHeader(): Trying to read %u\n", HEADER_LENGTH);
 	PS_RESULT res=Read(m_pRdBuffer, HEADER_LENGTH);
 	if (res != PS_OK)
 	{

@@ -322,9 +322,8 @@ void CConsole::DrawCursor(void)
 		// Slightly translucent yellow
 		glColor4f(1.0f, 1.0f, 0.0f, 0.8f);
 
-		// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
-		// (sort of like a | which is aligned to the left of most characters)
-		glwprintf(L"%lc", 0xFE33);
+		// Cursor character is chosen to be an underscore
+		glwprintf(L"_");
 
 		// Revert to the standard text colour
 		glColor3f(1.0f, 1.0f, 1.0f);

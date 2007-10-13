@@ -951,9 +951,9 @@ void CInput::Draw()
 					if (i != (int)it->m_ListOfX.size() &&
 						it->m_ListStart + i == m_iBufferPos)
 					{
-						// selecting only one, then we need only to draw a vertical line glyph.
+						// selecting only one, then we need only to draw a cursor.
 						glPushMatrix();
-						glwprintf(L"%lc", 0xFE33);
+						glwprintf(L"_");
 						glPopMatrix();
 					}
 
@@ -981,7 +981,7 @@ void CInput::Draw()
 				if (it->m_ListStart + (int)it->m_ListOfX.size() == m_iBufferPos)
 				{
 					glColor4f(color.r, color.g, color.b, color.a);
-					glwprintf(L"%lc", 0xFE33);
+					glwprintf(L"_");
 
 					if (using_selected_color)
 					{
