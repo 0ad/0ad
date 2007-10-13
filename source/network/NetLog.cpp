@@ -439,8 +439,6 @@ void CNetLogConsoleSink::Sink( const CNetLogEvent& event )
 //-----------------------------------------------------------------------------
 void CNetLogConsoleSink::Write( const CStr& message )
 {
-	assert( g_Console );
-
 	// Do we have a valid console?
 	if ( !g_Console ) return;
 
@@ -457,8 +455,6 @@ void CNetLogConsoleSink::Write( const CStr& message )
 //-----------------------------------------------------------------------------
 void CNetLogConsoleSink::Write( char c )
 {
-	assert( g_Console );
-
 	// Do we have a valid console?
 	if ( !g_Console ) return;
 
