@@ -1,92 +1,1105 @@
-#include "precompiled.h"
+/**
+ *-----------------------------------------------------------------------------
+ *	FILE			: NetLog.cpp
+ *	PROJECT			: 0 A.D.
+ *	DESCRIPTION		: Network subsystem logging classes implementation
+ *-----------------------------------------------------------------------------
+ */
 
+// INCLUDES
+#include "precompiled.h"
 #include "NetLog.h"
-#include "ps/ThreadUtil.h"
+#include "ps/CConsole.h"
+#include "lib/res/file/file.h"
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <time.h>
-#include "lib/timer.h"
-#include "lib/res/file/file.h"
 
-CNetLog g_NetLog;
-
-#define LOG_FORMAT "[%3u.%03u] %s\n"
-#define LOG_ARGS_PREFIX (uint)get_time(), ((uint)(get_time()*1000)) % 1000, 
-#define LOG_ARGS_SUFFIX 
-
-CNetLog::CNetLog():
-	m_Flush(true),
-	m_Initialized(false),
-	m_pFile(NULL)
-{}
-
-CNetLog::~CNetLog()
+//-----------------------------------------------------------------------------
+// Name: CNetLogEvent()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetLogEvent::CNetLogEvent( 
+						   LogLevel level, 
+						   const CStr& message, 
+						   const CStr& loggerName )
 {
-	if (m_Initialized)
+	m_Level			= level;
+	m_Message		= message;
+	m_LoggerName	= loggerName;
+}
+
+//-----------------------------------------------------------------------------
+// Name: ~CNetLogEvent()
+// Desc: Destructor
+//-----------------------------------------------------------------------------
+CNetLogEvent::~CNetLogEvent( void )
+{
+}
+
+//-----------------------------------------------------------------------------
+// Name: CNetLogSink()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetLogSink::CNetLogSink( void )
+{
+	m_Active = false;
+}
+
+//-----------------------------------------------------------------------------
+// Name: ~CNetLogSink()
+// Desc: Destructor
+//-----------------------------------------------------------------------------
+CNetLogSink::~CNetLogSink( void )
+{
+}
+
+//-----------------------------------------------------------------------------
+// Name: SetName()
+// Desc: Set the name for the sink
+//-----------------------------------------------------------------------------
+void CNetLogSink::SetName( const CStr& name )
+{
+	m_Name = name;
+}
+
+//-----------------------------------------------------------------------------
+// Name: SetLevel()
+// Desc: Set the level for the sink
+//-----------------------------------------------------------------------------
+void CNetLogSink::SetLevel( LogLevel level )
+{
+	m_Level = level;
+}
+
+//-----------------------------------------------------------------------------
+// Name: SetHeader()
+// Desc: Set new header text
+//-----------------------------------------------------------------------------
+void CNetLogSink::SetHeader( const CStr& header )
+{
+	m_Header = header;
+}
+
+//-----------------------------------------------------------------------------
+// Name: SetFooter()
+// Desc: Set new footer text
+//-----------------------------------------------------------------------------
+void CNetLogSink::SetFooter( const CStr& footer )
+{
+	m_Footer = footer;
+}
+
+//-----------------------------------------------------------------------------
+// Name: Activate()
+// Desc: Activates the sink
+//-----------------------------------------------------------------------------
+void CNetLogSink::Activate( void )
+{
+	CScopeLock lock( m_Mutex );
+
+	if ( !m_Active )
 	{
-		if(m_pFile)	// JW: avoid warning
-			fclose(m_pFile);
+		OnActivate();
+
+		m_Active = true;
 	}
 }
 
-void CNetLog::Initialize()
+//-----------------------------------------------------------------------------
+// Name: Close()
+// Desc: Closes the sink
+//-----------------------------------------------------------------------------
+void CNetLogSink::Close( void )
 {
-	CScopeLock scopeLock(m_Mutex);
+	CScopeLock lock( m_Mutex );
 
-	if (m_Initialized)
+	OnClose();
+}
+
+//-----------------------------------------------------------------------------
+// Name: DoSink()
+// Desc: Perform event logging
+//-----------------------------------------------------------------------------
+void CNetLogSink::DoSink( const CNetLogEvent& event )
+{
+	CScopeLock lock( m_Mutex );
+
+	// Not activated? Nothing to log
+	if ( !m_Active ) return;
+
+	if ( TestEvent( event ) )
+	{
+		Sink( event );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: DoBulkSink()
+// Desc: Perform logging for a list of events
+//-----------------------------------------------------------------------------
+void CNetLogSink::DoBulkSink( const CNetLogEvent* pEvents, uint eventCount )
+{
+	uint*	pIndices	= NULL;
+	uint	indexCount  = 0;
+	uint	i;
+
+	CScopeLock lock( m_Mutex );
+
+	// Validate parameters
+	if ( !pEvents ) return;
+
+	// Not activated? Nothing to log
+	if ( m_Closed ) return;
+
+	// Allocate new array which will store the events that will be logged
+	pIndices = new uint[ eventCount ];
+	if ( !pIndices ) 
+	{
+		throw std::bad_alloc();
 		return;
-	
-	char N_path[PATH_MAX];
-	(void)file_make_full_native_path("../logs/net_log.txt", N_path);
-	Open(N_path);
-	m_Initialized=true;
+	}
+
+	// Filter each event and store the index for
+	// those passing the filter test
+	for ( i = 0; i < eventCount; i++ )
+	{
+		if ( TestEvent( pEvents[ i ] ) )
+		{
+			pIndices[ indexCount++ ] = i;
+		}
+	}
+
+	// Log each event
+	for ( i = 0; i < indexCount; i++ )
+	{
+		Sink( pEvents[ pIndices[ i ] ] );
+	}
+
+	delete [] pIndices;
 }
 
-void CNetLog::Open(const char *N_filename)
+//-----------------------------------------------------------------------------
+// Name: CNetLogSink()
+// Desc: Test if the event can be logged
+//-----------------------------------------------------------------------------
+bool CNetLogSink::TestEvent( const CNetLogEvent& event )
 {
-	m_pFile=fopen(N_filename, "a");
-	if (m_pFile)
+	return ( event.GetLevel() >= m_Level );
+}
+
+//-----------------------------------------------------------------------------
+// Name: WriteHeader()
+// Desc: Writes a header
+//-----------------------------------------------------------------------------
+void CNetLogSink::WriteHeader( void )
+{
+	if ( !m_Header.empty() )
 	{
-		time_t t = time(NULL);
-		struct tm* now = localtime(&t);
-		
-		fprintf(m_pFile, "\n\n***************************************************\n");
-		fprintf(m_pFile, "LOG STARTED: %04d-%02d-%02d at %02d:%02d:%02d\n",
-			1900+now->tm_year, now->tm_mon+1, now->tm_mday, now->tm_hour,
-			now->tm_min, now->tm_sec);
-		fprintf(m_pFile, "Timestamps are in seconds since engine startup\n\n");
+		Write( m_Header );
 	}
 }
 
-void CNetLog::Flush()
+//-----------------------------------------------------------------------------
+// Name: WriteFooter()
+// Desc: Writes a footer
+//-----------------------------------------------------------------------------
+void CNetLogSink::WriteFooter( void )
 {
-	fflush(m_pFile);
+	if ( !m_Footer.empty() )
+	{
+		Write( m_Footer );
+	}
 }
 
-void CNetLog::Write(const char *format, ...)
+//-----------------------------------------------------------------------------
+// Name: OnActivate()
+// Desc: Called on activation
+//-----------------------------------------------------------------------------
+void CNetLogSink::OnActivate( void )
 {
-	Initialize();
-	if (!m_pFile) return;
+	// Does nothing by default
+}
 
-	char buf[512];
+//-----------------------------------------------------------------------------
+// Name: OnClose()
+// Desc: Called on sink closure
+//-----------------------------------------------------------------------------
+void CNetLogSink::OnClose( void )
+{
+	// Does nothing by default
+}
 
-	va_list	args;
-	va_start(args, format);
-	vsnprintf(buf, 512, format, args);
-	buf[511]=0;
-	va_end(args);
+//-----------------------------------------------------------------------------
+// Name: CNetLogFileSink()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetLogFileSink::CNetLogFileSink( void )
+{
+	char	filePath[ PATH_MAX ] = {0};
+	CStr	time;
+	CStr	path;
+
+	// Get string time
+	CNetLogger::GetStringTime( time );
 	
-	m_Mutex.Lock();
-	fprintf(m_pFile, LOG_FORMAT, LOG_ARGS_PREFIX buf LOG_ARGS_SUFFIX);
-	if (m_Flush)
-		Flush();
-	m_Mutex.Unlock();
+	// Make relative path
+	path = "../logs/net_log";
+	path += time;
+	path += ".txt";
+
+	// Make full path
+	file_make_full_native_path( path.c_str(), filePath );
+
+	m_FileName	= filePath;
+	m_Append	= true;
 }
 
-void CNetLog::SetFlush(bool flush)
+//-----------------------------------------------------------------------------
+// Name: CNetLogFileSink()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetLogFileSink::CNetLogFileSink( const CStr& filename )
 {
-	CScopeLock scopeLock(m_Mutex);
-	m_Flush=flush;
-	if (m_Flush)
-		Flush();
+	m_FileName	= filename;
+	m_Append	= true;
 }
+
+//-----------------------------------------------------------------------------
+// Name: CNetLogFileSink()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetLogFileSink::CNetLogFileSink( const CStr& filename, bool append )
+{
+	m_FileName	= filename;
+	m_Append	= append;
+}
+
+//-----------------------------------------------------------------------------
+// Name: ~CNetLogFileSink()
+// Desc: Destructor
+//-----------------------------------------------------------------------------
+CNetLogFileSink::~CNetLogFileSink( void )
+{
+}
+
+//-----------------------------------------------------------------------------
+// Name: Activate()
+// Desc: Open the file which will be used for logging
+//-----------------------------------------------------------------------------
+void CNetLogFileSink::OnActivate( void )
+{
+	OpenFile( m_FileName, m_Append );
+
+	WriteHeader();
+}
+
+//-----------------------------------------------------------------------------
+// Name: OnClose()
+// Desc: Closes the file used for logging
+//-----------------------------------------------------------------------------
+void CNetLogFileSink::OnClose( void )
+{
+	WriteFooter();
+
+	CloseFile();
+}
+
+//-----------------------------------------------------------------------------
+// Name: Sink()
+// Desc: Log the event to file
+//-----------------------------------------------------------------------------
+void CNetLogFileSink::Sink( const CNetLogEvent& event )
+{
+	Write( event.GetMessage() );
+}
+
+//-----------------------------------------------------------------------------
+// Name: Write()
+// Desc: Writes a message to log file
+//-----------------------------------------------------------------------------
+void CNetLogFileSink::Write( const CStr& message )
+{
+	// File not opened?
+	if ( !m_File.is_open() )
+	{
+		OpenFile( m_FileName, m_Append );
+
+		// If still not opened, ignore message
+		if ( !m_File.is_open() ) return;
+	}
+
+	// Write message
+	if ( !message.empty() )
+	{
+		m_File << message;
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Write()
+// Desc: Writes a character to the file
+//-----------------------------------------------------------------------------
+void CNetLogFileSink::Write( char c )
+{
+	// File not opened?
+	if ( !m_File.is_open() )
+	{
+		OpenFile( m_FileName, m_Append );
+
+		// If still not opened, ignore character
+		if ( !m_File.is_open() ) return;
+	}
+
+	// Write character
+	m_File << c;
+}
+
+//-----------------------------------------------------------------------------
+// Name: OpenFile()
+// Desc: Open the file where the logging will output
+//-----------------------------------------------------------------------------
+void CNetLogFileSink::OpenFile( const CStr& fileName, bool append )
+{
+	CScopeLock lock( m_Mutex );
+
+	// Close any open file
+	if ( m_File.is_open() ) m_File.close();
+
+	// Open the file and log start
+	m_File.open( fileName.c_str(), append ? std::ios::app : std::ios::out );
+	if ( !m_File.is_open() )
+	{
+		// throw std::ios_base::failure
+		return;
+	}
+
+	m_FileName	= fileName;
+	m_Append	= append;
+}
+
+//-----------------------------------------------------------------------------
+// Name: CloseFile()
+// Desc: Closes the opened file
+//-----------------------------------------------------------------------------
+void CNetLogFileSink::CloseFile( void )
+{
+	if ( m_File.is_open() ) 
+	{
+		m_File.flush();
+		m_File.close();
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: CNetLogConsoleSink()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetLogConsoleSink::CNetLogConsoleSink( void )
+{
+}
+
+//-----------------------------------------------------------------------------
+// Name: ~CNetLogConsoleSink()
+// Desc: Destructor
+//-----------------------------------------------------------------------------
+CNetLogConsoleSink::~CNetLogConsoleSink( void )
+{
+}
+
+//-----------------------------------------------------------------------------
+// Name: Activate()
+// Desc: Activates the game console
+//-----------------------------------------------------------------------------
+void CNetLogConsoleSink::OnActivate( void )
+{
+	WriteHeader();
+}
+
+//-----------------------------------------------------------------------------
+// Name: OnClose()
+// Desc: Toggles off game console
+//-----------------------------------------------------------------------------
+void CNetLogConsoleSink::OnClose( void )
+{
+	WriteFooter();
+}
+
+//-----------------------------------------------------------------------------
+// Name: Sink()
+// Desc: Log the event to file
+//-----------------------------------------------------------------------------
+void CNetLogConsoleSink::Sink( const CNetLogEvent& event )
+{
+	Write( event.GetMessage() );
+}
+
+//-----------------------------------------------------------------------------
+// Name: Write()
+// Desc: Writes a message to game console
+//-----------------------------------------------------------------------------
+void CNetLogConsoleSink::Write( const CStr& message )
+{
+	assert( g_Console );
+
+	// Do we have a valid console?
+	if ( !g_Console ) return;
+
+	// Write message
+	if ( !message.empty() )
+	{	
+		g_Console->InsertMessage( message.FromUTF8().c_str() );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Write()
+// Desc: Writes a character to the file
+//-----------------------------------------------------------------------------
+void CNetLogConsoleSink::Write( char c )
+{
+	assert( g_Console );
+
+	// Do we have a valid console?
+	if ( !g_Console ) return;
+
+	// Write character
+	Write( CStr( c ) );
+}
+
+//-----------------------------------------------------------------------------
+// Name: CNetLogger()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetLogger::CNetLogger( const CStr& name )
+{
+	m_Name = name;
+}
+
+//-----------------------------------------------------------------------------
+// Name: ~CNetLogger()
+// Desc: Destructor
+//-----------------------------------------------------------------------------
+CNetLogger::~CNetLogger( void )
+{
+}
+
+//-----------------------------------------------------------------------------
+// Name: SetLevel()
+// Desc: Set logger level
+//-----------------------------------------------------------------------------
+void CNetLogger::SetLevel( LogLevel level )
+{
+	m_Level = level;
+}
+
+//-----------------------------------------------------------------------------
+// Name: IsDebugEnabled()
+// Desc: Check if enabled for DEBUG level
+//-----------------------------------------------------------------------------
+bool CNetLogger::IsDebugEnabled( void ) const
+{
+	return ( LOG_LEVEL_DEBUG >= m_Level );
+}
+
+//-----------------------------------------------------------------------------
+// Name: IsErrorEnabled()
+// Desc: Check if enabled for ERROR level
+//-----------------------------------------------------------------------------
+bool CNetLogger::IsErrorEnabled( void ) const
+{
+	return ( LOG_LEVEL_ERROR >= m_Level );
+}
+
+//-----------------------------------------------------------------------------
+// Name: IsFatalEnabled()
+// Desc: Check if enabled for FATAL level
+//-----------------------------------------------------------------------------
+bool CNetLogger::IsFatalEnabled( void ) const
+{
+	return ( LOG_LEVEL_FATAL >= m_Level );
+}
+
+//-----------------------------------------------------------------------------
+// Name: IsInfoEnabled()
+// Desc: Check if enabled for INFO level
+//-----------------------------------------------------------------------------
+bool CNetLogger::IsInfoEnabled( void ) const
+{
+	return ( LOG_LEVEL_INFO >= m_Level );
+}
+
+//-----------------------------------------------------------------------------
+// Name: IsWarnEnabled()
+// Desc: Check if enabled for WARN level
+//-----------------------------------------------------------------------------
+bool CNetLogger::IsWarnEnabled( void ) const
+{
+	return ( LOG_LEVEL_WARN >= m_Level );
+}
+
+//-----------------------------------------------------------------------------
+// Name: Debug()
+// Desc: Log a message with DEBUG level
+//-----------------------------------------------------------------------------
+void CNetLogger::Debug( const CStr& message )
+{
+	if ( IsDebugEnabled() )
+	{
+		// Get timestamp as a string
+		CStr timer;
+		GetStringTimeStamp( timer );
+
+		CStr eventMessage	= "DEBUG";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= message;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_DEBUG, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Debug()
+// Desc: Log a formatted message with DEBUG level
+//-----------------------------------------------------------------------------
+void CNetLogger::DebugFormat( const char* pFormat, ... )
+{
+	if ( IsDebugEnabled() )
+	{
+		char	buffer[ 512 ] = { 0 };
+		CStr	timer;
+		va_list	args;
+
+		// Get timestamp as a string
+		GetStringTimeStamp( timer );
+
+		// Get arguments as a string
+		va_start	( args, pFormat );
+		vsnprintf	( buffer, 512, pFormat, args );
+		va_end		( args );
+
+		// Format message (e.g. ERROR - Hello World)
+		CStr eventMessage	= "DEBUG";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= buffer;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_DEBUG, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Error()
+// Desc: Log a message with ERROR level
+//-----------------------------------------------------------------------------
+void CNetLogger::Error( const CStr& message )
+{
+	if ( IsErrorEnabled() )
+	{
+		// Get timestamp as a string
+		CStr timer;
+		GetStringTimeStamp( timer );
+
+		CStr eventMessage	= "ERROR";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= message;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_ERROR, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Error()
+// Desc: Log a formatted message with ERROR level
+//-----------------------------------------------------------------------------
+void CNetLogger::ErrorFormat( const char* pFormat, ... )
+{
+	if ( IsErrorEnabled() )
+	{
+		char	buffer[ 512 ] = { 0 };
+		CStr	timer;
+		va_list	args;
+
+		// Get timestamp as a string
+		GetStringTimeStamp( timer );
+
+		// Get arguments as a string
+		va_start	( args, pFormat );
+		vsnprintf	( buffer, 512, pFormat, args );
+		va_end		( args );
+
+		// Format message (e.g. ERROR - Hello World)
+		CStr eventMessage	= "ERROR";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= buffer;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_ERROR, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Fatal()
+// Desc: Log a message with FATAL level
+//-----------------------------------------------------------------------------
+void CNetLogger::Fatal( const CStr& message )
+{
+	if ( IsFatalEnabled() )
+	{
+		// Get timestamp as a string
+		CStr timer;
+		GetStringTimeStamp( timer );
+
+		CStr eventMessage	= "FATAL";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= message;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_FATAL, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Fatal()
+// Desc: Log a formatted message with FATAL error
+//-----------------------------------------------------------------------------
+void CNetLogger::FatalFormat( const char* pFormat, ... )
+{
+	if ( IsFatalEnabled() )
+	{
+		char	buffer[ 512 ] = { 0 };
+		CStr	timer;
+		va_list	args;
+
+		// Get timestamp as a string
+		GetStringTimeStamp( timer );
+
+		// Get arguments as a string
+		va_start	( args, pFormat );
+		vsnprintf	( buffer, 512, pFormat, args );
+		va_end		( args );
+
+		// Format message (e.g. ERROR - Hello World)
+		CStr eventMessage	= "FATAL";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= buffer;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_FATAL, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Info()
+// Desc: Log a message with INFO level
+//-----------------------------------------------------------------------------
+void CNetLogger::Info( const CStr& message )
+{
+	if ( IsInfoEnabled() )
+	{
+		// Get timestamp as a string
+		CStr timer;
+		GetStringTimeStamp( timer );
+
+		CStr eventMessage	= "INFO";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= message;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_INFO, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Info()
+// Desc: Log a formatted message with INFO level
+//-----------------------------------------------------------------------------
+void CNetLogger::InfoFormat( const char* pFormat, ... )
+{
+	if ( IsInfoEnabled() )
+	{
+		char	buffer[ 512 ] = { 0 };
+		CStr	timer;
+		va_list	args;
+
+		// Get timestamp as a string
+		GetStringTimeStamp( timer );
+
+		// Get arguments as a string
+		va_start	( args, pFormat );
+		vsnprintf	( buffer, 512, pFormat, args );
+		va_end		( args );
+
+		// Format message (e.g. ERROR - Hello World)
+		CStr eventMessage	= "INFO";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= buffer;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_INFO, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Warn()
+// Desc: Log a message with WARN level
+//-----------------------------------------------------------------------------
+void CNetLogger::Warn( const CStr& message )
+{
+	if ( IsWarnEnabled() )
+	{
+		// Get timestamp as a string
+		CStr timer;
+		GetStringTimeStamp( timer );
+
+		CStr eventMessage	= "WARN";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= message;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_WARN, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: Warn()
+// Desc: Log a formatted message with WARN level
+//-----------------------------------------------------------------------------
+void CNetLogger::WarnFormat( const char* pFormat, ... )
+{
+	if ( IsWarnEnabled() )
+	{
+		char	buffer[ 512 ] = { 0 };
+		CStr	timer;
+		va_list	args;
+
+		// Get timestamp as a string
+		GetStringTimeStamp( timer );
+
+		// Get arguments as a string
+		va_start	( args, pFormat );
+		vsnprintf	( buffer, 512, pFormat, args );
+		va_end		( args );
+
+		// Format message (e.g. ERROR - Hello World)
+		CStr eventMessage	= "WARN";
+		eventMessage		+= " - ";
+		eventMessage		+= timer;
+		eventMessage		+= " ";
+		eventMessage		+= buffer;
+		eventMessage		+= "\n";
+
+		CNetLogEvent newEvent( LOG_LEVEL_WARN, eventMessage, m_Name );
+
+		CallSinks( newEvent );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: AddSink()
+// Desc: Attaches a new sink
+//-----------------------------------------------------------------------------
+void CNetLogger::AddSink( CNetLogSink* pSink )
+{
+	uint		i;
+	CScopeLock	lock( m_Mutex );
+
+	assert( pSink );
+
+	// Validate parameter
+	if ( !pSink ) return;
+
+	// Check if already exists
+	for ( i = 0; i < GetSinkCount(); i++ )
+	{
+		CNetLogSink* pCurrSink = GetSink( i );
+		if ( pCurrSink == pSink ) break;
+	}
+	
+	// Already exists?
+	if ( i >= GetSinkCount() )
+	{
+		// Activate new sink
+		pSink->Activate();
+
+		// Add new sink to list
+		m_Sinks.push_back( pSink );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: RemoveSink()
+// Desc: Removes the sink from the list of attached sinks
+//-----------------------------------------------------------------------------
+CNetLogSink* CNetLogger::RemoveSink( CNetLogSink* pSink )
+{
+	CScopeLock lock( m_Mutex );
+
+	// Validate parameter
+	if ( !pSink ) return NULL;
+
+	// Lookup the sink object
+	SinkList::iterator it = m_Sinks.begin();
+	for ( ; it != m_Sinks.end(); it++ )
+	{
+		CNetLogSink* pCurrSink = *it;
+		if ( pCurrSink == pSink )
+		{
+			m_Sinks.erase( it );
+
+			return pCurrSink;
+		}
+	}
+
+	return NULL;
+}
+
+//-----------------------------------------------------------------------------
+// Name: RemoveSink()
+// Desc: Removes the named sink
+//-----------------------------------------------------------------------------
+CNetLogSink* CNetLogger::RemoveSink( const CStr& name )
+{
+	CScopeLock lock( m_Mutex );
+
+	// Lookup sink by name
+	SinkList::iterator it = m_Sinks.begin();
+	for ( ; it != m_Sinks.end(); it++ )
+	{
+		CNetLogSink* pCurrSink = *it;
+		if ( !pCurrSink ) continue;
+
+		if ( pCurrSink->GetName() == name )
+		{
+			m_Sinks.erase( it );
+
+			return pCurrSink;
+		}
+	}
+
+	// Sink not found
+	return NULL;
+}
+
+//-----------------------------------------------------------------------------
+// Name: RemoveAllSinks()
+// Desc: Remove all attached sinks
+//-----------------------------------------------------------------------------
+void CNetLogger::RemoveAllSinks( void )
+{
+	CScopeLock lock( m_Mutex );
+
+	m_Sinks.clear();
+}
+
+//-----------------------------------------------------------------------------
+// Name: GetSinkCount()
+// Desc: Retrive the number of attached sinks
+//-----------------------------------------------------------------------------
+uint CNetLogger::GetSinkCount( void )
+{
+	return ( uint )m_Sinks.size();
+}
+
+//-----------------------------------------------------------------------------
+// Name: GetSink()
+// Desc: Retrieves the sink by index
+//-----------------------------------------------------------------------------
+CNetLogSink* CNetLogger::GetSink( uint index )
+{
+	// Validate parameter
+	if ( index > ( uint )m_Sinks.size() ) return NULL;
+
+	return m_Sinks[ index ];
+}
+
+//-----------------------------------------------------------------------------
+// Name: GetSink()
+// Desc: Retrieve the sink by name
+//-----------------------------------------------------------------------------
+CNetLogSink* CNetLogger::GetSink( const CStr& name )
+{
+	for ( uint i = 0; i < GetSinkCount(); i++ )
+	{
+		CNetLogSink* pCurrSink = GetSink( i );
+		if ( !pCurrSink ) continue;
+
+		if ( pCurrSink->GetName() == name )
+			return pCurrSink;
+	}
+
+	// Sink not found
+	return NULL;
+}
+
+//-----------------------------------------------------------------------------
+// Name: CallSinks()
+// Desc:
+//-----------------------------------------------------------------------------
+void CNetLogger::CallSinks( const CNetLogEvent& event )
+{
+	for ( uint i = 0; i < GetSinkCount(); i++ )
+	{
+		CNetLogSink* pCurrSink = GetSink( i );
+		if ( !pCurrSink ) continue;
+
+		pCurrSink->DoSink( event );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: GetStringLocalTime()
+// Desc: Returns the local date time into the passed in string
+//-----------------------------------------------------------------------------
+void CNetLogger::GetStringDateTime( CStr &str )
+{
+	char		buffer[ 128 ] = { 0 };
+	time_t		tm;
+	struct tm	now;
+
+	// Set timezone
+	_tzset();
+
+	// Get time and convert to tm structure
+	time( &tm );
+	localtime_s( &now, &tm );
+
+	// Build custom time string
+	strftime( buffer, 128, "%Y-%m-%d %H:%M:%S", &now );
+
+	str = buffer;
+}
+
+//-----------------------------------------------------------------------------
+// Name: GetStringTime()
+// Desc: Returns the local time into the passed string
+//-----------------------------------------------------------------------------
+void CNetLogger::GetStringTime( CStr& str )
+{
+	char		buffer[ 128 ] = { 0 };
+	time_t		tm;
+	struct tm	now;
+
+	// Set timezone
+	_tzset();
+
+	// Get time and convert to tm structure
+	time( &tm );
+	localtime_s( &now, &tm );
+
+	// Build custom time string
+	strftime( buffer, 128, "%H%M%S", &now );
+
+	str = buffer;
+}
+
+//-----------------------------------------------------------------------------
+// Name: GetStringTimeStamp()
+// Desc: Returns the formatted current time into the passed string
+//-----------------------------------------------------------------------------
+void CNetLogger::GetStringTimeStamp( CStr& str )
+{
+	char buffer[ 128 ] = { 0 };
+	sprintf( buffer, "[%3u.%03u]", ( uint )get_time(), ( ( uint )( get_time() * 1000 ) % 1000 ) );
+	str = buffer;
+}
+
+// List of loggers under log manager
+LoggerList CNetLogManager::m_Loggers;
+
+//-----------------------------------------------------------------------------
+// Name: Shutdown()
+// Desc: Shuts down the log manager
+//-----------------------------------------------------------------------------
+void CNetLogManager::Shutdown( void )
+{
+	// Remove all loggers
+	LoggerList::iterator it = m_Loggers.begin();
+	for ( ; it != m_Loggers.end(); it++ )
+	{
+		CNetLogger *pCurrLogger = *it;
+		if ( !pCurrLogger ) continue;
+
+		pCurrLogger->RemoveAllSinks();
+
+		delete pCurrLogger;
+	}
+
+	m_Loggers.clear();
+}
+
+//-----------------------------------------------------------------------------
+// Name: GetLogger()
+// Desc: Retrieve or create a named logger
+//-----------------------------------------------------------------------------
+CNetLogger* CNetLogManager::GetLogger( const CStr& name )
+{
+	LoggerList::const_iterator it = m_Loggers.begin();
+	for ( ; it != m_Loggers.end(); it++ )
+	{
+		CNetLogger* pCurrLogger = *it;
+		if ( !pCurrLogger ) continue;
+
+		if ( pCurrLogger->GetName() == name )
+			return pCurrLogger;
+	}
+
+	// Logger not found, create it
+	CNetLogger* pNewLogger = new CNetLogger( name );
+	if ( !pNewLogger ) return NULL;
+
+	// Add new logger to list
+	m_Loggers.push_back( pNewLogger );
+
+	return pNewLogger;
+}
+
+//-----------------------------------------------------------------------------
+// Name: GetAllLoggers()
+// Desc: Return the list of loggers
+//-----------------------------------------------------------------------------
+const LoggerList& CNetLogManager::GetAllLoggers( void )
+{
+	return m_Loggers;
+}
+
+

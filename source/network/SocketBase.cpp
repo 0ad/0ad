@@ -179,14 +179,16 @@ CSocketBase::CSocketBase(CSocketInternal *pInt)
 	m_Error=PS_OK;
 	SetNonBlocking(true);
 	
-	NET_LOG("CSocketBase::CSocketBase(): Created socket from fd %d", pInt->m_fd);
+	NET_LOG2( "CSocketBase::CSocketBase(): Created socket from fd %d", pInt->m_fd );
 }
 
 CSocketBase::~CSocketBase()
 {
-	NET_LOG("CSocketBase::~CSocketBase(): fd is %d. "
-		"Received: %lld bytes. Sent: %lld bytes.", m_pInternal->m_fd,
-		m_pInternal->m_RecvBytes, m_pInternal->m_SentBytes);
+	NET_LOG4( "CSocketBase::~CSocketBase(): fd is %d. "
+					"Received: %lld bytes. Sent: %lld bytes.", 
+					m_pInternal->m_fd,
+					m_pInternal->m_RecvBytes, 
+					m_pInternal->m_SentBytes );
 
 	Destroy();
 	delete m_pInternal;
@@ -198,14 +200,14 @@ void CSocketBase::Shutdown()
 	
 	if (g_SocketSetInternal.m_NumSockets)
 	{
-		NET_LOG("CSocketBase::Shutdown(): %d sockets still open! (forcing network shutdown)", g_SocketSetInternal.m_NumSockets);
+		NET_LOG2( "CSocketBase::Shutdown(): %d sockets still open! (forcing network shutdown)", g_SocketSetInternal.m_NumSockets );
 	}
 
 #if RECORD_GLOBAL_STATS
-	NET_LOG("GLOBAL SOCKET STATISTICS: "
-		"Received: %lld bytes. Sent: %lld bytes.",
-		g_SocketSetInternal.m_GlobalRecvBytes,
-		g_SocketSetInternal.m_GlobalSentBytes);
+	NET_LOG3( "GLOBAL SOCKET STATISTICS: "
+					"Received: %lld bytes. Sent: %lld bytes.",
+					g_SocketSetInternal.m_GlobalRecvBytes,
+					g_SocketSetInternal.m_GlobalSentBytes);
 #endif
 
 	GLOBAL_UNLOCK();
@@ -234,7 +236,7 @@ PS_RESULT CSocketBase::Initialize(ESocketProtocol proto)
 	// Use IPV4 by default, ignoring address type.
 	int res=socket(AF_INET, SOCK_STREAM, 0);
 
-	NET_LOG("CSocketBase::Initialize(): socket() res: %d", res);
+	NET_LOG2("CSocketBase::Initialize(): socket() res: %d", res);
 
 	if (res == -1)
 	{
@@ -303,7 +305,7 @@ void CSocketBase::SetNonBlocking(bool nonblocking)
 		SendWaitLoopUpdate();	// Need to call WSAAsyncSelect with event=0 before ioctlsocket
 	int res=ioctlsocket(m_pInternal->m_fd, FIONBIO, &nb);
 	if (res != 0)
-		NET_LOG("SetNonBlocking: res %d", res);
+		NET_LOG2("SetNonBlocking: res %d", res);
 #else
 	int oldflags=fcntl(m_pInternal->m_fd, F_GETFL, 0);
 	if (oldflags != -1)
@@ -347,7 +349,7 @@ PS_RESULT CSocketBase::Read(void *buf, uint len, uint *bytesRead)
 		case ETIMEDOUT:*/
 		default:
 			Network_GetErrorString(error, errbuf, sizeof(errbuf));
-			NET_LOG("Read error %s [%d]", errbuf, error);
+			NET_LOG3("Read error %s [%d]", errbuf, error);
 			m_State=SS_UNCONNECTED;
 			m_Error=GetPS_RESULT(error);
 			return m_Error;
@@ -398,7 +400,7 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 		case EHOSTUNREACH:*/
 		default:
 			Network_GetErrorString(err, errbuf, sizeof(errbuf));
-			NET_LOG("Write error %s [%d]", errbuf, err);
+			NET_LOG3("Write error %s [%d]", errbuf, err);
 			m_State=SS_UNCONNECTED;
 			return CONNECTION_BROKEN;
 		}
@@ -419,12 +421,12 @@ PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
 PS_RESULT CSocketBase::Connect(const CSocketAddress &addr)
 {
 	int res = connect(m_pInternal->m_fd, (struct sockaddr *)(&addr.m_Union), sizeof(struct sockaddr));
-	NET_LOG("connect returned %d [%d]", res, m_NonBlocking);
+	NET_LOG3("connect returned %d [%d]", res, m_NonBlocking);
 
 	if (res != 0)
 	{
 		int error=Network_LastError;
-		NET_LOG("last error was %d", error);
+		NET_LOG2("last error was %d", error);
 		if (m_NonBlocking && error == EWOULDBLOCK)
 		{
 			m_State=SS_CONNECT_STARTED;
@@ -843,7 +845,7 @@ LRESULT WINAPI WaitLoop_WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
 void CSocketBase::RunWaitLoop()
 {
 	int ret;
-	char errBuf[256];
+	char errBuf[256] = {0};
 	MSG msg;
 
 	WNDCLASS wc;
@@ -857,8 +859,8 @@ void CSocketBase::RunWaitLoop()
 	if (!atom)
 	{
 		ret=GetLastError();
-		Network_GetErrorString(ret, errBuf, sizeof(errBuf));
-		NET_LOG("RegisterClass: %s [%d]", errBuf, ret);
+		Network_GetErrorString(ret, (LPSTR)&errBuf, 256);
+		NET_LOG3("RegisterClass: %s [%d]", errBuf, ret);
 		return;
 	}
 
@@ -869,7 +871,7 @@ void CSocketBase::RunWaitLoop()
 	{
 		ret=GetLastError();
 		Network_GetErrorString(ret, errBuf, sizeof(errBuf));
-		NET_LOG("CreateWindowEx: %s [%d]", errBuf, ret);
+		NET_LOG3("CreateWindowEx: %s [%d]", errBuf, ret);
 		return;
 	}
 	
@@ -883,7 +885,7 @@ void CSocketBase::RunWaitLoop()
 		++it;
 	}
 
-	NET_LOG("Commencing message loop. hWnd %p", g_SocketSetInternal.m_hWnd);
+	NET_LOG2("Commencing message loop. hWnd %p", g_SocketSetInternal.m_hWnd);
 	GLOBAL_UNLOCK();
 	
 	while ((ret=GetMessage(&msg, g_SocketSetInternal.m_hWnd, 0, 0))!=0)
@@ -893,7 +895,7 @@ void CSocketBase::RunWaitLoop()
 		{
 			ret=GetLastError();
 			Network_GetErrorString(ret, errBuf, sizeof(errBuf));
-			NET_LOG("GetMessage: %s [%d]", errBuf, ret);
+			NET_LOG3("GetMessage: %s [%d]", errBuf, ret);
 		}
 		{
 			TranslateMessage(&msg);

@@ -102,7 +102,7 @@ CStr CCloseRequestMessage::GetString() const
 
 void CMessageSocket::Push(CNetMessage *msg)
 {
-	NET_LOG("CMessageSocket::Push(): %s", msg->GetString().c_str());
+	NET_LOG2( "CMessageSocket::Push(): %s", msg->GetString().c_str() );
 
 	m_OutQ.Lock();
 	m_OutQ.push_back(msg);
@@ -184,7 +184,8 @@ void CMessageSocket::StartWriteNextMessage()
 		PS_RESULT res=Write(m_pWrBuffer, hdr.m_MsgLength+HEADER_LENGTH);
 		if (res != PS_OK)
 		{
-			NET_LOG("CMessageSocket::StartWriteNextMessage(): %s", res);
+			NET_LOG2( "CMessageSocket::StartWriteNextMessage(): %s", res );
+
 			// Queue Error Message
 			m_InQ.Lock();
 			m_InQ.push_back(new CNetErrorMessage(res, GetState()));
@@ -194,16 +195,21 @@ void CMessageSocket::StartWriteNextMessage()
 	else
 	{
 		if (m_IsWriting)
-			NET_LOG("CMessageSocket::StartWriteNextMessage(): Already writing");
+		{
+			NET_LOG( "CMessageSocket::StartWriteNextMessage(): Already writing" );
+		}
 		else
+		{
 			NET_LOG("CMessageSocket::StartWriteNextMessage(): Nothing to write");
+		}
 		m_OutQ.Unlock();
 	}
 }
 
 void CMessageSocket::WriteComplete(PS_RESULT ec)
 {
-	NET_LOG("CMessageSocket::WriteComplete(): %s", ec);
+	NET_LOG2( "CMessageSocket::WriteComplete(): %s", ec );
+
 	if (ec == PS_OK)
 	{
 		if (m_IsWriting)
@@ -214,7 +220,9 @@ void CMessageSocket::WriteComplete(PS_RESULT ec)
 			StartWriteNextMessage();
 		}
 		else
-			NET_LOG("CMessageSocket::WriteComplete(): Was not writing");
+		{
+			NET_LOG( "CMessageSocket::WriteComplete(): Was not writing" );
+		}
 	}
 	else
 	{
@@ -238,7 +246,8 @@ void CMessageSocket::StartReadHeader()
 	PS_RESULT res=Read(m_pRdBuffer, HEADER_LENGTH);
 	if (res != PS_OK)
 	{
-		NET_LOG("CMessageSocket::StartReadHeader(): %s", res);
+		NET_LOG2( "CMessageSocket::StartReadHeader(): %s", res );
+
 		// Push an error message
 		CScopeLock scopeLock(m_InQ.m_Mutex);
 		m_InQ.push_back(new CNetErrorMessage(res, GetState()));
@@ -271,7 +280,8 @@ void CMessageSocket::StartReadMessage()
 		PS_RESULT res=Read(m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
 		if (res != PS_OK)
 		{
-			NET_LOG("CMessageSocket::StartReadMessage(): %s", res);
+			NET_LOG2( "CMessageSocket::StartReadMessage(): %s", res );
+
 			// Queue an error message
 			CScopeLock scopeLock(m_InQ);
 			m_InQ.push_back(new CNetErrorMessage(res, GetState()));
@@ -281,7 +291,8 @@ void CMessageSocket::StartReadMessage()
 
 void CMessageSocket::ReadComplete(PS_RESULT ec)
 {
-	NET_LOG("CMessageSocket::ReadComplete(%s): %s", m_ReadingData?"data":"header", ec);
+	NET_LOG3( "CMessageSocket::ReadComplete(%s): %s", m_ReadingData ? "data":"header", ec );
+
 	// Check if we were reading header or message
 	// If header:
 	if (!m_ReadingData)
@@ -300,13 +311,14 @@ void CMessageSocket::ReadComplete(PS_RESULT ec)
 		}
 		else
 		{
-			NET_LOG("CMessageSocket::ReadComplete(): Deserialization failed! (type %d, length %d)", hdr.m_MsgType, hdr.m_MsgLength);
-			NET_LOG("Data: {");
+			NET_LOG3( "CMessageSocket::ReadComplete(): Deserialization failed! (type %d, length %d)", hdr.m_MsgType, hdr.m_MsgLength );
+			NET_LOG( "Data: {" );
+
 			for (int i=HEADER_LENGTH;i<hdr.m_MsgLength+HEADER_LENGTH;i++)
 			{
-				NET_LOG("\t0x%x [%c]", m_pRdBuffer[i], isalnum(m_pRdBuffer[i])?m_pRdBuffer[i]:'.');
+				NET_LOG3( "\t0x%x [%c]", m_pRdBuffer[i], isalnum(m_pRdBuffer[i])?m_pRdBuffer[i]:'.' );
 			}
-			NET_LOG("};");
+			NET_LOG( "};" );
 		}
 		StartReadHeader();
 	}
@@ -316,8 +328,8 @@ void CMessageSocket::OnMessage(CNetMessage *pMsg)
 {
 	m_InQ.Lock();
 	m_InQ.push_back(pMsg);
-	NET_LOG("CMessageSocket::OnMessage(): %s", pMsg->GetString().c_str());
-	NET_LOG("CMessageSocket::OnMessage(): Queue size now %u", m_InQ.size());
+	NET_LOG2( "CMessageSocket::OnMessage(): %s", pMsg->GetString().c_str() );
+	NET_LOG2( "CMessageSocket::OnMessage(): Queue size now %u", m_InQ.size() );
 	m_InQ.Unlock();
 }
 
