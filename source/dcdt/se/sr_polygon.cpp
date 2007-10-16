@@ -455,7 +455,7 @@ int SrPolygon::pick_vertex ( const SrPnt2& p, float epsilon )
    if ( size()==0 ) return imin;
 
    for ( i=1; i<size(); i++ )
-    { dist = ::dist2(get(i),p);
+    { dist = dist2(get(i),p);
       if ( dist<distmin || imin<0 ) { distmin=dist; imin=i; }
     }
 

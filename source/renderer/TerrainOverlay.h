@@ -152,7 +152,7 @@ class TriangulationTerrainOverlay : public TerrainOverlay
 public:
 	
 
-	void TriangulationTerrainOverlay::RenderCurrentPath()
+	void RenderCurrentPath()
 	{
 		glColor3f(1,1,1);
 
@@ -180,7 +180,7 @@ public:
 	//
 	//Kai: added function to draw out constrained line segments in triangulation
 	//
-	void TriangulationTerrainOverlay::RenderConstrainedEdges()
+	void RenderConstrainedEdges()
 	{
 
 		std::vector<CEntity*> results;
@@ -215,7 +215,7 @@ public:
 	//
 	// Kai: added function to draw out unconstrained line segments in triangulation
 	//
-	void TriangulationTerrainOverlay::RenderUnconstrainedEdges()
+	void RenderUnconstrainedEdges()
 	{
 		std::vector<CEntity*> results;
 		g_EntityManager.GetExtant(results);
@@ -244,7 +244,7 @@ public:
 		
 	}
 
-	void TriangulationTerrainOverlay::setCurrentPath(SrPolygon _CurPath)
+	void setCurrentPath(SrPolygon _CurPath)
 	{
 		CurPath = _CurPath;
 
@@ -254,13 +254,13 @@ public:
 	
 	
 
-	void TriangulationTerrainOverlay::setConstrainedEdges(SrArray<SrPnt2> _constr)
+	void setConstrainedEdges(SrArray<SrPnt2> _constr)
 	{
 		constr = _constr;
 
 	}
 
-	void TriangulationTerrainOverlay::setUnconstrainedEdges(SrArray<SrPnt2> _unconstr)
+	void setUnconstrainedEdges(SrArray<SrPnt2> _unconstr)
 	{
 		unconstr = _unconstr;
 
@@ -272,7 +272,7 @@ public:
 	}
 	
 
-	TriangulationTerrainOverlay::TriangulationTerrainOverlay()
+	TriangulationTerrainOverlay()
 	{
 		
 	}

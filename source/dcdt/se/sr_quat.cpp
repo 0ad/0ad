@@ -1,5 +1,7 @@
 #include "precompiled.h"
+
 # include "sr_quat.h"
+# include "sr_vec.h"
 # include "sr_random.h"
 
 //============================== Static Data ====================================

@@ -147,11 +147,11 @@ bool SrBvNBody::insert_object ( int id, const SrModel& m )
 
   // The "radius" of the AABB is computed as the maximum distance of the AABB
   // center from any of the vertices of the object.
-  float dist2, distmax=0;
+  float dist2_, distmax=0;
   int i, mvsize=m.V.size();
   for ( i=0; i<mvsize; i++ )
-   { dist2 = ::dist2 ( boxc, m.V[i] );
-     if ( dist2>distmax ) distmax=dist2;
+   { dist2_ = dist2 ( boxc, m.V[i] );
+     if ( dist2_>distmax ) distmax=dist2_;
    }
   aabb->radius = (srbvreal) sqrt(double(distmax));
   aabb->radius *= (srbvreal)1.0001;  //add a 0.01% buffer.

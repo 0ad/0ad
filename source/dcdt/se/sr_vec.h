@@ -254,6 +254,8 @@ class SrVec
     friend SrInput& operator>> ( SrInput& in, SrVec& v );
  };
 
+float angle ( const SrVec& v1, const SrVec& v2 ); 
+
 //============================== end of file ===============================
 
 # endif // SR_VEC_H

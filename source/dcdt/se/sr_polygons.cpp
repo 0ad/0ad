@@ -99,7 +99,7 @@ bool SrPolygons::pick_vertex ( const SrVec2& p, float epsilon, int& pid, int& vi
    for ( i=0; i<size(); i++ )
     { s = const_get(i).size();
       for ( j=0; j<s; j++ )
-       { dist = ::dist2 ( const_get(i,j), p );
+       { dist = dist2 ( const_get(i,j), p );
          if ( dist<distmin || pid<0 ) { distmin=dist; pid=i; vid=j; }
        }
     }
