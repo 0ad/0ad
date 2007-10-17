@@ -61,6 +61,17 @@ const size_t GiB = 1ul << 30;
 // number of array elements
 //
 
+#if GCC_VERSION
+
+// The function trick below does not work in GCC. Instead use the old fashioned
+// divide-by-sizeof-element. This causes problems when the argument to
+// ARRAY_SIZE is a pointer and not an array, but we will catch those when we
+// compile on something other than GCC.
+
+#define ARRAY_SIZE(name) (sizeof(name) / (sizeof((name)[0])))
+
+#else
+
 // (function taking a reference to an array and returning a pointer to
 // an array of characters. it's only declared and never defined; we just
 // need it to determine n, the size of the array that was passed.)
@@ -71,6 +82,7 @@ template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
 // pointer is passed, which can easily happen under maintenance.)
 #define ARRAY_SIZE(name) (sizeof(*ArraySizeDeducer(name)))
 
+#endif // GCC_VERSION
 
 //-----------------------------------------------------------------------------
 // code-generating macros
