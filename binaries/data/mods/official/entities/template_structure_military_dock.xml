@@ -19,9 +19,8 @@
 		
 		</Id>
 		<Creation>
-				<Resource>
- 				<Wood>200</Wood>
-				<Stone>100</Stone>
+			<Resource>
+ 				<Wood>300</Wood>
  			</Resource>
 		</Creation>
 		<Creation>
@@ -36,9 +35,14 @@
  		</Footprint>
 
 		<Health>
- 			<Max>600</Max>
+ 			<Max>2500</Max>
 		</Health>
 
+		<Armour>
+			<Hack>25.0</Hack>
+			<Crush>20.0</Crush>
+		</Armour>		
+		
 		<Population>
 			<Add>15</Add>
 		</Population>

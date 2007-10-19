@@ -22,7 +22,7 @@
 		<Creation>
 			<Foundation>foundation_4x4</Foundation>
 			<Resource>
- 				<Wood>400</Wood>
+ 				<Wood>300</Wood>
  			</Resource>
 		</Creation>
 			
@@ -37,10 +37,13 @@
 		</Garrison>
 
 		<Health>
- 			<Max>600</Max>
+ 			<Max>1500</Max>
 		</Health>
 
-
+		<Armour>
+			<Hack>20.0</Hack>
+			<Crush>20.0</Crush>
+		</Armour>
 
 		<Population>
 			<Add>10</Add>

@@ -22,7 +22,7 @@
 		<Creation>
 			<Foundation>foundation_1x1</Foundation>
 			<Resource>
-				<Stone>75</Stone>
+				<Stone>150</Stone>
  			</Resource>
 		</Creation>
 		
@@ -37,10 +37,13 @@
 		</Garrison>
 
 		<Health>
- 			<Max>80</Max>
+ 			<Max>3500</Max>
 		</Health>
 
-
+		<Armour>
+			<Hack>30.0</Hack>
+			<Crush>20.0</Crush>
+		</Armour>
 
 	</Traits>
 

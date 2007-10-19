@@ -20,7 +20,6 @@
 		<Creation>
 			<Foundation>foundation_5x5</Foundation>
 			<Resource>
- 				<Metal>200</Metal>
 				<Stone>800</Stone>
  			</Resource>
 			<BuildingLimitCategory>Fortress</BuildingLimitCategory>
@@ -40,6 +39,11 @@
  			<Max>4000</Max>
 		</Health>
 
+		<Armour>
+			<Hack>35.0</Hack>
+			<Crush>25.0</Crush>
+		</Armour>
+		
 		<Population>
 			<Add>20</Add>
 		</Population>

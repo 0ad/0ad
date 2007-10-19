@@ -22,8 +22,7 @@
 		<Creation>
 			<Foundation>foundation_1x1</Foundation>
 			<Resource>
- 				<Stone>100</Stone>
-				<Wood>25</Wood>
+ 				<Stone>200</Stone>
  			</Resource>
 		</Creation>
 		
@@ -34,10 +33,13 @@
  		</Footprint>
 
 		<Health>
- 			<Max>100</Max>
+ 			<Max>3200</Max>
 		</Health>
 
-
+		<Armour>
+			<Hack>30.0</Hack>
+			<Crush>20.0</Crush>
+		</Armour>
 
 	</Traits>
 
