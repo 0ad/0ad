@@ -598,7 +598,10 @@ private:
 				header += "Timestamps are in seconds since engine startup\n";\
 				pSink->SetHeader( header );\
 				pSink->SetName( sinkName );\
-				pSink->SetLevel( LOG_LEVEL_INFO );\
+				if ( strcmp(sinkName, "sink.console") == 0 )\
+					pSink->SetLevel( LOG_LEVEL_ERROR );\
+				else\
+					pSink->SetLevel( LOG_LEVEL_INFO );\
 				pLogger->AddSink( pSink );\
 			}\
 		}
