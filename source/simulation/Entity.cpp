@@ -27,6 +27,7 @@
 #include "FormationManager.h"
 #include "PathfindEngine.h"
 #include "ProductionQueue.h"
+#include "Simulation.h"
 #include "Stance.h"
 #include "TechnologyCollection.h"
 #include "TerritoryManager.h"
@@ -459,7 +460,7 @@ void CEntity::UpdateOrders( size_t timestep )
 
 	if( entf_get(ENTF_IS_RUNNING) )
 	{
-		m_lastRunTime = g_Game->GetTime();
+		m_lastRunTime = g_Game->GetSimulation()->GetTime();
 	}
 
 	if( m_orderQueue.empty() )
@@ -1092,7 +1093,7 @@ void CEntity::CalculateRegen(float timestep)
 	// Health regen
 	if(entf_get(ENTF_HEALTH_DECAY))
 		m_healthCurr = decay(m_healthCurr, m_healthMax, timestep, m_healthDecayRate);
-	else if(g_Game->GetTime() - m_lastCombatTime > m_healthRegenStart)
+	else if(g_Game->GetSimulation()->GetTime() - m_lastCombatTime > m_healthRegenStart)
 		m_healthCurr = regen(m_healthCurr, m_healthMax, timestep, m_healthRegenRate);
 	
 	// Stamina regen

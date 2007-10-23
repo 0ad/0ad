@@ -60,10 +60,6 @@ class CGame : boost::noncopyable
 	 **/
 	bool m_GameStarted;
 	/**
-	 * total elapsed game time in seconds.
-	 **/
-	double m_Time; // needs to be double to get enough precision
-	/**
 	 * scale multiplier for simulation rate.
 	 **/
 	float m_SimRate;
@@ -172,14 +168,6 @@ public:
 	 **/
 	inline CSimulation *GetSimulation()
 	{	return m_Simulation; }
-	
-	/**
-	 * Get the current game elapsed time.
-	 *
-	 * @return double value of m_Time.
-	 **/
-	inline double GetTime() const
-	{	return m_Time; }
 
 	/**
 	 * Set the simulation scale multiplier.

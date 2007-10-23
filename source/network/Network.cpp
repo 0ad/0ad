@@ -268,8 +268,7 @@ void CMessageSocket::StartReadMessage()
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=true;
-	printf("CMessageSocket::StartReadMessage(): Got type %d, trying to read %u\n", hdr.m_MsgType, hdr.m_MsgLength);
-
+	
 	if (hdr.m_MsgLength == 0)
 	{
 		ReadComplete(PS_OK);

@@ -13,7 +13,7 @@ CSinglePlayerTurnManager *g_SinglePlayerTurnManager=NULL;
 CTurnManager::CTurnManager()
 {
 	for (int i=0;i<3;i++)
-		m_Batches[i].m_TurnLength=40;
+		m_Batches[i].m_TurnLength=DEFAULT_TURN_LENGTH;
 }
 
 void CTurnManager::ClearBatch(uint batch)

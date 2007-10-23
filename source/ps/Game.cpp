@@ -59,7 +59,6 @@ CGame::CGame():
 	m_pLocalPlayer(NULL),
 	m_GameStarted(false),
 	m_Paused(false),
-	m_Time(0),
 	m_SimRate(1.0f)
 {
 	// Need to set the CObjectManager references after various objects have
@@ -215,7 +214,6 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 		return true;
 
 	deltaTime *= m_SimRate;
-	m_Time += deltaTime;
 	
 	bool ok = m_Simulation->Update(deltaTime);
 	if (doInterpolate)

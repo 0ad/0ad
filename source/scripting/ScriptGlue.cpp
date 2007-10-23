@@ -1325,7 +1325,7 @@ JSBool GetGameTime( JSContext* cx, JSObject* UNUSED(globalObject), uint argc, js
 		return JS_FALSE;
 	}
 
-	*rval = ToJSVal(g_Game->GetTime());
+	*rval = ToJSVal(g_Game->GetSimulation()->GetTime());
 	return JS_TRUE;
 }
 

@@ -32,7 +32,8 @@ CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
 	m_pTurnManager((g_SinglePlayerTurnManager=new CSinglePlayerTurnManager())),
-	m_DeltaTime(0)
+	m_DeltaTime(0),
+	m_Time(0)
 {
 }
 
@@ -95,6 +96,7 @@ bool CSimulation::Update(double frameTime)
 			// cutting down on Interpolate and rendering, and call us a few times
 			// with frameTime == 0 to give us a chance to catch up.
 			ok = false;
+			debug_printf("WARNING: missing a simulation turn due to low FPS");
 		}
 	}
 
@@ -137,6 +139,9 @@ void CSimulation::Interpolate(double frameTime, double offset)
 void CSimulation::Simulate()
 {
 	uint time = m_pTurnManager->GetTurnLength();
+	
+	m_Time += time / 1000.0f;
+	//debug_printf("Simulation turn: %.3lf\n", m_Time);
 
 	PROFILE_START( "scheduler tick" );
 	g_Scheduler.Update(time);

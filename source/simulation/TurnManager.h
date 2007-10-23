@@ -12,6 +12,9 @@ class IMessagePipeEnd;
 class CTurnManager
 {
 public:
+	// Default turn length
+	static const uint DEFAULT_TURN_LENGTH = 150;
+	
 	// Used with IterateBatch() to iterate a command batch and set the sync mask
 	// for each message. If the iterating function doesn't wish to change the
 	// mask, it should return oldMask unchanged.

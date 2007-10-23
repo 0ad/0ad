@@ -15,6 +15,9 @@ class CSimulation
 	CWorld *m_pWorld;
 	CTurnManager *m_pTurnManager;
 	
+	// Current game time; store as double for precision
+	double m_Time;
+	
 	double m_DeltaTime;
 
 	// Random number generator
@@ -66,6 +69,9 @@ public:
 
 	// Get a random float in [0, 1) from the simulation's random number generator
 	float RandFloat();
+	
+	// Get game time
+	inline double GetTime() { return m_Time; }
 };
 
 #endif
