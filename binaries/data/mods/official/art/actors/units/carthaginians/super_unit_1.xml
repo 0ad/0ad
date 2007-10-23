@@ -13,7 +13,6 @@
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="death" speed="165"/>
         <animation file="infantry/general/death/inf_06.psa" name="death" speed="200"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/shields/kart_round_su1.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
@@ -25,9 +24,11 @@
 
   <group>
     <variant frequency="1" name="Carth-Sacred Band-ShortSleeve">
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <texture>skeletal/kart_su1_sacredband_1.dds</texture>
     </variant>
     <variant frequency="1" name="Carth-Sacred Band-LongSleeve">
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <texture>skeletal/kart_su1_sacredband_2.dds</texture>
     </variant>
   </group>
