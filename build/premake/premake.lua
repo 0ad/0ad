@@ -134,8 +134,8 @@ function package_set_build_flags()
 		tinsert(package.buildoptions, {
 			-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
 			-- Windows - they should be exported explicitly with __attribute__ ((visibility ("default")))
-			"-fvisibility=hidden",
-			"-fvisibility-inlines-hidden",
+			--"-fvisibility=hidden",
+			--"-fvisibility-inlines-hidden",
 		})
 
 		if OS == "macosx" then
