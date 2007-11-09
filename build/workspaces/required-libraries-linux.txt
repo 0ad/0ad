@@ -101,7 +101,7 @@ just add it as a prereq (i.e. leave it to the user to install).
 On Ubuntu 7.10, you can install the required packages with the following
 command:
 
-sudo apt-get install libsdl1.2-dev libxerces27-dev zlib1g-dev libpng12-dev libjpeg62-dev libgamin-dev nasm libwxgtk2.8-dev libboost-dev libboost-signals-dev libopenal-dev libalut-dev libvorbis-dev libogg-dev libcrypto++-dev binutils-dev
+sudo apt-get install libsdl1.2-dev libxerces27-dev zlib1g-dev libpng12-dev libjpeg62-dev libgamin-dev nasm libwxgtk2.8-dev libboost-dev libboost-signals-dev libopenal-dev libalut-dev libvorbis-dev libogg-dev libcrypto++-dev binutils-dev libnspr4-dev
 
 You also need build-essential for the make tools and g++.
 
@@ -110,13 +110,13 @@ You will also need to install SpiderMonkey manually. To do this, run:
 wget http://ftp.mozilla.org/pub/mozilla.org/js/
 tar -xzf js-1.60.tar.gz
 cd js/src
-make -f Makefile.ref
+JS_THREADSAFE=1 INCLUDES=-I/usr/include/nspr OTHER_LIBS=-L/usr/lib make -f Makefile.ref
 make -f Makefile.ref export
 cd ../../dist/Linux_All_DBG.OBJ
 sudo cp lib/* /usr/lib
 sudo mkdir /usr/include/js
 sudo cp include/* /usr/include/js
-ldconfig
+sudo ldconfig
 
 You should now be able to build premake and then build the game itself as per
 the instructions above.
