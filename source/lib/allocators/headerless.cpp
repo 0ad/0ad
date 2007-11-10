@@ -130,9 +130,9 @@ static bool IsValidSize(size_t size)
 
 struct AddressOrder
 {
-	static bool ShouldInsertAfter(FreedBlock* predecessor, FreedBlock* current)
+	static bool ShouldInsertBefore(FreedBlock* current, FreedBlock* successor)
 	{
-		return current > predecessor;
+		return current < successor;
 	}
 };
 
@@ -149,7 +149,6 @@ public:
 	{
 		m_sentinel.prev = &m_sentinel;
 		m_sentinel.next = &m_sentinel;
-		m_head = &m_sentinel;
 		m_freeBlocks = 0;
 		m_freeBytes = 0;
 	}
@@ -157,18 +156,18 @@ public:
 	template<class InsertPolicy>
 	void Insert(FreedBlock* freedBlock)
 	{
-		// find freedBlock after which to insert
-		FreedBlock* predecessor;
-		for(predecessor = m_head; predecessor != &m_sentinel; predecessor = predecessor->next)
+		// find freedBlock before which to insert
+		FreedBlock* successor;
+		for(successor = m_sentinel.next; successor != &m_sentinel; successor = successor->next)
 		{
-			if(InsertPolicy::ShouldInsertAfter(predecessor, freedBlock))
+			if(InsertPolicy::ShouldInsertBefore(freedBlock, successor))
 				break;
 		}
 
-		freedBlock->prev = predecessor;
-		freedBlock->next = predecessor->next;
-		predecessor->next->prev = freedBlock;
-		predecessor->next = freedBlock;
+		freedBlock->prev = successor->prev;
+		freedBlock->next = successor;
+		successor->prev->next = freedBlock;
+		successor->prev = freedBlock;
 
 		m_freeBlocks++;
 		m_freeBytes += freedBlock->Size();
@@ -179,7 +178,7 @@ public:
 	 **/
 	FreedBlock* Find(size_t minSize)
 	{
-		for(FreedBlock* freedBlock = m_head; freedBlock != &m_sentinel; freedBlock = freedBlock->next)
+		for(FreedBlock* freedBlock = m_sentinel.next; freedBlock != &m_sentinel; freedBlock = freedBlock->next)
 		{
 			if(freedBlock->Size() >= minSize)
 				return freedBlock;
@@ -207,14 +206,14 @@ public:
 
 		size_t freeBlocks = 0, freeBytes = 0;
 
-		for(FreedBlock* freedBlock = m_head; freedBlock != &m_sentinel; freedBlock = freedBlock->next)
+		for(FreedBlock* freedBlock = m_sentinel.next; freedBlock != &m_sentinel; freedBlock = freedBlock->next)
 		{
 			freedBlock->Validate(id);
 			freeBlocks++;
 			freeBytes += freedBlock->Size();
 		}
 
-		for(FreedBlock* freedBlock = m_head; freedBlock != &m_sentinel; freedBlock = freedBlock->prev)
+		for(FreedBlock* freedBlock = m_sentinel.prev; freedBlock != &m_sentinel; freedBlock = freedBlock->prev)
 		{
 			freedBlock->Validate(id);
 			freeBlocks++;
@@ -224,7 +223,7 @@ public:
 		// our idea of the number and size of free blocks is correct
 		debug_assert(freeBlocks == m_freeBlocks*2 && freeBytes == m_freeBytes*2);
 		// if empty, state must be as established by Reset
-		debug_assert(!IsEmpty() || (m_head->next == m_head->prev && m_head == &m_sentinel));
+		debug_assert(!IsEmpty() || (m_sentinel.next == &m_sentinel && m_sentinel.prev == &m_sentinel));
 	}
 
 	bool IsEmpty() const
@@ -246,8 +245,6 @@ private:
 	// a sentinel simplifies Insert and Remove. we store it here instead of
 	// in a separate array to improve locality (it is actually accessed).
 	mutable FreedBlock m_sentinel;
-
-	FreedBlock* m_head;
 
 	size_t m_freeBlocks;
 	size_t m_freeBytes;
@@ -408,12 +405,13 @@ public:
 		Validate(freedBlock);
 
 		debug_assert(m_freeBlocks != 0);
-		debug_assert(m_freeBytes > freedBlock->Size());
+		debug_assert(m_freeBytes >= freedBlock->Size());
 		m_freeBlocks--;
 		m_freeBytes -= freedBlock->Size();
 
+		FreedBlock* footer = Footer(freedBlock);
 		freedBlock->~FreedBlock();
-		Footer(freedBlock)->~FreedBlock();
+		footer->~FreedBlock();
 	}
 
 	FreedBlock* PrecedingBlock(u8* p, u8* beginningOfPool) const
