@@ -37,7 +37,6 @@
 #include "lib/ogl.h"
 #include "lib/path_util.h"
 #include "lib/res/res.h"
-#include "lib/res/file/file.h"
 #include "lib/res/graphics/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "ps/Loader.h"

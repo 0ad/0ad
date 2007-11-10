@@ -428,5 +428,5 @@ ssize_t mem_size(void* p)
 void mem_shutdown()
 {
 	// ptr2h_wrapper is currently freed at NLSO dtor time.
-	// if that's a problem, add a shutdown() method to OverrunProtector.
+	// if that's a problem, use OverrunProtector::shutdown.
 }
