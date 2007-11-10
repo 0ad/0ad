@@ -63,6 +63,14 @@
 # define CONFIG_OVERRUN_PROTECTION 0
 #endif
 
+// zero-copy IO means all clients share the cached buffer; changing their
+// contents is forbidden. this flag causes the buffers to be marked as
+// read-only via MMU (writes would cause an exception), which takes a
+// bit of extra time.
+#ifndef CONFIG_READ_ONLY_CACHE
+#define CONFIG_READ_ONLY_CACHE 1
+#endif
+
 // enable memory tracking (slow). see mmgr.cpp.
 #ifndef CONFIG_USE_MMGR
 # define CONFIG_USE_MMGR 0

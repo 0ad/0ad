@@ -592,6 +592,41 @@ private:
 };
 
 
+// this is applicable to all cache management policies and stores all
+// required information. a Divider functor is used to implement
+// division for credit_density.
+template<class Item, class Divider> struct CacheEntry
+{
+	Item item;
+	size_t size;
+	uint cost;
+	float credit;
+
+	Divider divider;
+
+	// needed for mgr.remove_least_valuable's entry_copy
+	CacheEntry()
+	{
+	}
+
+	CacheEntry(Item item_, size_t size_, uint cost_)
+		: item(item_), divider((float)size_)
+	{
+		size = size_;
+		cost = cost_;
+		credit = cost;
+
+		// else divider will fail
+		debug_assert(size != 0);
+	}
+
+	float credit_density() const
+	{
+		return divider(credit, (float)size);
+	}
+};
+
+
 //
 // Cache
 //
@@ -645,6 +680,11 @@ public:
 		return true;
 	}
 
+	bool peek(Key key, Item& item, size_t* psize = 0)
+	{
+		return retrieve(key, item, psize, false);
+	}
+
 	// toss out the least valuable entry. return false if cache is empty,
 	// otherwise true and (optionally) pass back its item and size.
 	bool remove_least_valuable(Item* pItem = 0, size_t* pSize = 0)
@@ -678,38 +718,7 @@ public:
 	}
 
 private:
-	// this is applicable to all cache management policies and stores all
-	// required information. a Divider functor is used to implement
-	// division for credit_density.
-	template<class InnerDivider> struct CacheEntry
-	{
-		Item item;
-		size_t size;
-		uint cost;
-		float credit;
-
-		InnerDivider divider;
-
-		// needed for mgr.remove_least_valuable's entry_copy
-		CacheEntry() {}
-
-		CacheEntry(Item item_, size_t size_, uint cost_)
-			: item(item_), divider((float)size_)
-		{
-			size = size_;
-			cost = cost_;
-			credit = cost;
-
-			// else divider will fail
-			debug_assert(size != 0);
-		}
-
-		float credit_density() const
-		{
-			return divider(credit, (float)size);
-		}
-	};
-	typedef CacheEntry<Divider> Entry;
+	typedef CacheEntry<Item, Divider> Entry;
 
 	// see note in remove_least_valuable().
 	std::list<Entry> entries_awaiting_eviction;

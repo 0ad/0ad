@@ -12,6 +12,7 @@
 #define INCLUDED_LOCKFREE
 
 #include "posix/posix_types.h"	// uintptr_t
+#include "lib/sysdep/cpu.h"		// cpu_CAS
 
 /*
 
@@ -154,5 +155,80 @@ extern void* lfh_insert(LFHash* hash, uintptr_t key, size_t additional_bytes, in
 // remove from hash; return -1 if not found, or 0 on success.
 extern LibError lfh_erase(LFHash* hash, uintptr_t key);
 
+
+
+/**
+* thread-safe (lock-free) reference counter with an extra 'exclusive' state.
+**/
+class LF_ReferenceCounter
+{
+public:
+	LF_ReferenceCounter()
+		: m_status(0)
+	{
+	}
+
+	/**
+	* @return true if successful or false if exclusive access has already
+	* been granted or reference count is non-zero.
+	**/
+	bool AcquireExclusiveAccess()
+	{
+		return cpu_CAS(&m_status, 0, S_EXCLUSIVE);
+	}
+
+	/**
+	* re-enables adding references.
+	**/
+	void RelinquishExclusiveAccess()
+	{
+		const bool ok = cpu_CAS(&m_status, S_EXCLUSIVE, 0);
+		debug_assert(ok);
+	}
+
+	/**
+	* increase the reference count (bounds-checked).
+	*
+	* @return true if successful or false if the item is currently locked.
+	**/
+	bool AddReference()
+	{
+		const uintptr_t oldRefCnt = ReferenceCount();
+		debug_assert(oldRefCnt < S_REFCNT);
+		// (returns false if S_EXCLUSIVE is set)
+		return cpu_CAS(&m_status, oldRefCnt, oldRefCnt+1);
+	}
+
+	/**
+	* decrease the reference count (bounds-checked).
+	**/
+	void Release()
+	{
+		const uintptr_t oldRefCnt = ReferenceCount();
+		debug_assert(oldRefCnt != 0);
+		// (fails if S_EXCLUSIVE is set)
+		const bool ok = cpu_CAS(&m_status, oldRefCnt, oldRefCnt+1);
+		debug_assert(ok);
+	}
+
+	uintptr_t ReferenceCount() const
+	{
+		return m_status & S_REFCNT;
+	}
+
+private:
+	static const uintptr_t S_REFCNT = (~0u) >> 1;		// 0x7F..F
+	static const uintptr_t S_EXCLUSIVE = S_REFCNT+1u;	// 0x80..0
+
+	volatile uintptr_t m_status;
+};
+
+
+struct LF_RefCountedMemRange
+{
+	void* mem;
+	size_t size;
+	LF_ReferenceCounter refs;
+};
 
 #endif	// #ifndef INCLUDED_LOCKFREE

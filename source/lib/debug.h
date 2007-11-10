@@ -516,7 +516,7 @@ namespace INFO
 	// one of the dump_sym* functions decided not to output anything at
 	// all (e.g. for member functions in UDTs - we don't want those).
 	// therefore, skip any post-symbol formatting (e.g. ) as well.
-	const LibError SYM_SUPPRESS_OUTPUT       = +100809;
+	const LibError SYM_SUPPRESS_OUTPUT       = +100409;
 }
 
 

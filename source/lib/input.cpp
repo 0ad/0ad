@@ -16,7 +16,6 @@
 #include <stdlib.h>
 
 #include "lib/external_libraries/sdl.h"
-#include "lib/res/file/file.h"
 
 const uint MAX_HANDLERS = 8;
 static InHandler handler_stack[MAX_HANDLERS];
@@ -93,7 +92,7 @@ LibError in_record(const char* fn)
 
 	f = fopen(fn, "wb");
 	if(!f)
-		WARN_RETURN(ERR::FILE_ACCESS);
+		WARN_RETURN(ERR::FAIL);
 
 	fwrite(&game_ticks, sizeof(u32), 1, f);
 
@@ -112,7 +111,7 @@ LibError in_playback(const char* fn)
 
 	f = fopen(fn, "rb");
 	if(!f)
-		WARN_RETURN(ERR::FILE_ACCESS);
+		WARN_RETURN(ERR::FAIL);
 
 	u32 rec_start_time;
 	fread(&rec_start_time, sizeof(u32), 1, f);
