@@ -17,7 +17,6 @@
 #include <set>
 
 #include "lib/path_util.h"
-#include "lib/res/file/file.h"
 #include "wposix/wfilesystem.h"	// see add_oal_dlls_in_dir
 #include "wdll_ver.h"
 #include "win.h"
@@ -44,12 +43,10 @@ static LibError IsOpenAlDllName(const char* name)
 // directories on our search path).
 typedef std::set<std::string> StringSet;
 
-// find all OpenAL DLLs in a dir (via file_enum and IsOpenAlDll).
+// find all OpenAL DLLs in a dir (via readdir and IsOpenAlDll).
 // call in library search order (exe dir, then win sys dir); otherwise,
 // DLLs in the executable's starting directory hide those of the
 // same name in the system directory.
-//
-// <dir>: no trailing.
 static LibError add_oal_dlls_in_dir(const char* path, StringSet* dlls)
 {
 	// note: wdll_ver_list_add requires the full DLL path but readdir only

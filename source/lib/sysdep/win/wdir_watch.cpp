@@ -17,7 +17,7 @@
 
 #include "lib/path_util.h"
 #include "lib/allocators.h"
-#include "lib/res/file/file.h"	// path_is_subpath
+#include "lib/path_util.h"	// path_is_subpath
 #include "win.h"
 #include "winit.h"
 #include "wutil.h"

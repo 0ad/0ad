@@ -24,25 +24,28 @@
 // if we fail, outputs are unchanged (assumed initialized to defaults)
 LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 {
-	// don't use EnumDisplaySettingsW - BoundsChecker reports it causes
-	// a memory overrun (even if called as the very first thing, before
-	// static CRT initialization).
-
 	DEVMODEA dm;
 	memset(&dm, 0, sizeof(dm));
 	dm.dmSize = sizeof(dm);
 	// dm.dmDriverExtra already set to 0 by memset
 
+	// (Win2k: don't use EnumDisplaySettingsW - BoundsChecker reports it causes
+	// a memory overrun, even if called as the very first thing before
+	// static CRT initialization.)
 	if(!EnumDisplaySettingsA(0, ENUM_CURRENT_SETTINGS, &dm))
 		WARN_RETURN(ERR::FAIL);
 
-	if(dm.dmFields & (DWORD)DM_PELSWIDTH && xres)
+	// EnumDisplaySettings is documented to set the values of the following:
+	const DWORD expectedFlags = DM_PELSWIDTH|DM_PELSHEIGHT|DM_BITSPERPEL|DM_DISPLAYFREQUENCY|DM_DISPLAYFLAGS;
+	debug_assert((dm.dmFields & expectedFlags) == expectedFlags);
+
+	if(xres)
 		*xres = (int)dm.dmPelsWidth;
-	if(dm.dmFields & (DWORD)DM_PELSHEIGHT && yres)
+	if(yres)
 		*yres = (int)dm.dmPelsHeight;
-	if(dm.dmFields & (DWORD)DM_BITSPERPEL && bpp)
+	if(bpp)
 		*bpp  = (int)dm.dmBitsPerPel;
-	if(dm.dmFields & (DWORD)DM_DISPLAYFREQUENCY && freq)
+	if(freq)
 		*freq = (int)dm.dmDisplayFrequency;
 
 	return INFO::OK;

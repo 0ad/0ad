@@ -50,7 +50,7 @@ extern int closedir(DIR*);
 // return status for the file returned by the last successful
 // readdir call from the given directory stream.
 // currently sets st_size, st_mode, and st_mtime; the rest are zeroed.
-// non-portable, but considerably faster than stat(). used by file_enum.
+// non-portable, but considerably faster than stat(). used by dir_ForEachSortedEntry.
 extern int readdir_stat_np(DIR*, struct stat*);
 
 
