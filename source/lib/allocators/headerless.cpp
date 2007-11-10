@@ -82,9 +82,8 @@ public:
 		// note: RangeList::Validate implicitly checks the prev and next
 		// fields by iterating over the list.
 
-		// the sentinel of empty lists has prev == next, but we're only
-		// called for actual blocks, so that should never happen.
-		debug_assert(prev != next);
+		// note: we can't check for prev != next because we're called for
+		// footers as well, and they don't have valid pointers.
 
 		debug_assert(IsValidSize(m_size));
 		debug_assert(IsFreedBlock(id));
@@ -396,10 +395,11 @@ public:
 		FreedBlock* freedBlock = new(p) FreedBlock(s_headerId, size);
 		(void)new(Footer(freedBlock)) FreedBlock(s_footerId, size);
 #include "lib/mmgr.h"
-		Validate(freedBlock);
 
 		m_freeBlocks++;
 		m_freeBytes += size;
+
+		Validate(freedBlock);
 		return freedBlock;
 	}
 
@@ -602,8 +602,6 @@ public:
 
 	void Reset()
 	{
-		Validate();
-
 		pool_free_all(&m_pool);
 		m_segregatedRangeLists.Reset();
 		m_stats.OnReset();

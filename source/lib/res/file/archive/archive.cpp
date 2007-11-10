@@ -495,7 +495,7 @@ LibError afile_io_discard(FileIo* io)
 {
 	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
 	LibError ret = file_io_discard(aio->io);
-	io_allocator.Deallocate(aio->io);
+	io_allocator.Free(aio->io);
 	return ret;
 }
 

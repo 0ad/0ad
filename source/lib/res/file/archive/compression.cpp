@@ -346,7 +346,7 @@ public:
 	void Destroy(ICodec* codec)
 	{
 		codec->~ICodec();
-		m_allocator.Deallocate((Allocator::value_type*)codec);
+		m_allocator.Free((Allocator::value_type*)codec);
 	}
 
 private:
@@ -620,7 +620,7 @@ public:
 	void Destroy(Stream* stream)
 	{
 		stream->~Stream();
-		m_allocator.Deallocate(stream);
+		m_allocator.Free(stream);
 	}
 
 private:

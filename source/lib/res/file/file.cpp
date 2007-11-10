@@ -161,7 +161,7 @@ get_another_entry:
 LibError dir_close(DirIterator* di)
 {
 	PosixDirIterator* pdi = (PosixDirIterator*)di->opaque;
-	pp_allocator.Deallocate(pdi->pp);
+	pp_allocator.Free(pdi->pp);
 
 	errno = 0;
 	if(closedir(pdi->os_dir) < 0)

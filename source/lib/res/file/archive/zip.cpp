@@ -635,6 +635,6 @@ LibError zip_archive_finish(ZipArchive* za)
 
 	(void)file_close(&za->f);
 	(void)pool_destroy(&za->cdfhs);
-	za_mgr.Deaallocate(za);
+	za_mgr.Free(za);
 	return INFO::OK;
 }
