@@ -346,13 +346,13 @@ public:
 	void Destroy(ICodec* codec)
 	{
 		codec->~ICodec();
-		m_allocator.release((Allocator::value_type*)codec);
+		m_allocator.Deallocate((Allocator::value_type*)codec);
 	}
 
 private:
 	void* AllocateMemory()
 	{
-		void* mem = m_allocator.alloc();
+		void* mem = m_allocator.Allocate();
 		if(!mem)
 			throw std::bad_alloc();
 		return mem;
@@ -611,7 +611,7 @@ class StreamFactory
 public:
 	Stream* Create(ContextType type, CompressionMethod method)
 	{
-		void* mem = m_allocator.alloc();
+		void* mem = m_allocator.Allocate();
 		if(!mem)
 			throw std::bad_alloc();
 		return new(mem) Stream(type, method);
@@ -620,7 +620,7 @@ public:
 	void Destroy(Stream* stream)
 	{
 		stream->~Stream();
-		m_allocator.release(stream);
+		m_allocator.Deallocate(stream);
 	}
 
 private:

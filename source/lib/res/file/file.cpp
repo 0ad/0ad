@@ -85,7 +85,7 @@ LibError dir_open(const char* P_path, DirIterator* di)
 	char n_path[PATH_MAX];
 	RETURN_ERR(file_make_full_native_path(P_path, n_path));
 
-	pdi->pp = pp_allocator.alloc();
+	pdi->pp = pp_allocator.Allocate();
 	if(!pdi->pp)
 		WARN_RETURN(ERR::NO_MEM);
 
@@ -161,7 +161,7 @@ get_another_entry:
 LibError dir_close(DirIterator* di)
 {
 	PosixDirIterator* pdi = (PosixDirIterator*)di->opaque;
-	pp_allocator.release(pdi->pp);
+	pp_allocator.Deallocate(pdi->pp);
 
 	errno = 0;
 	if(closedir(pdi->os_dir) < 0)

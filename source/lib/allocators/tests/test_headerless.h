@@ -2,6 +2,8 @@
 
 #include "lib/allocators/headerless.h"
 
+void* const null = 0;
+
 class TestHeaderless: public CxxTest::TestSuite 
 {
 public:
@@ -10,16 +12,16 @@ public:
 		HeaderlessAllocator a(8192);
 
 		// can't Allocate unaligned sizes
-		TS_ASSERT_EQUALS(a.Allocate(1), 0);
+		TS_ASSERT_EQUALS(a.Allocate(1), null);
 
 		// can't Allocate too small amounts
-		TS_ASSERT_EQUALS(a.Allocate(16), 0);
+		TS_ASSERT_EQUALS(a.Allocate(16), null);
 
 		// can Allocate the entire pool
 		char* p1 = (char*)a.Allocate(4096);
 		char* p2 = (char*)a.Allocate(4096);
-		TS_ASSERT_DIFFERS(p1, 0);
-		TS_ASSERT_DIFFERS(p2, 0);
+		TS_ASSERT_DIFFERS(p1, null);
+		TS_ASSERT_DIFFERS(p2, null);
 
 		// back-to-back (non-freelist) allocations should be contiguous
 		TS_ASSERT_EQUALS(p1+4096, p2);
@@ -47,16 +49,16 @@ public:
 		void* p1 = a.Allocate(0x5670);
 		void* p2 = a.Allocate(0x7890);
 		void* p3 = a.Allocate(0x1230);
-		TS_ASSERT_DIFFERS(p1, 0);
-		TS_ASSERT_DIFFERS(p2, 0);
-		TS_ASSERT_DIFFERS(p3, 0);
+		TS_ASSERT_DIFFERS(p1, null);
+		TS_ASSERT_DIFFERS(p2, null);
+		TS_ASSERT_DIFFERS(p3, null);
 
 		// must be able to allocate the entire range after freeing the items
 		a.Deallocate(p1, 0x5670);
 		a.Deallocate(p2, 0x7890);
 		a.Deallocate(p3, 0x1230);
 		void* p4 = a.Allocate(0x10000);
-		TS_ASSERT_DIFFERS(p4, 0);
+		TS_ASSERT_DIFFERS(p4, null);
 	}
 
 	void test_Reset()
@@ -100,7 +102,7 @@ public:
 					continue;
 				// find random allocation to deallocate
 				AllocMap::iterator it = allocs.begin();
-				const int numToSkip = rand() % allocs.size();
+				const int numToSkip = rand() % (int)allocs.size();
 				for(int skip = 0; skip < numToSkip; skip++)
 					++it;
 				void* p = (*it).first;

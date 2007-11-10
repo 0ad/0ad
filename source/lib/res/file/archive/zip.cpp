@@ -567,7 +567,7 @@ LibError zip_archive_create(const char* zip_filename, ZipArchive** pza)
 	RETURN_ERR(file_open(zip_filename, FILE_WRITE|FILE_NO_AIO, &za_copy.f));
 	RETURN_ERR(pool_create(&za_copy.cdfhs, 10*MiB, 0));
 
-	ZipArchive* za = za_mgr.alloc();
+	ZipArchive* za = za_mgr.Allocate();
 	if(!za)
 		WARN_RETURN(ERR::NO_MEM);
 	*za = za_copy;
@@ -635,6 +635,6 @@ LibError zip_archive_finish(ZipArchive* za)
 
 	(void)file_close(&za->f);
 	(void)pool_destroy(&za->cdfhs);
-	za_mgr.release(za);
+	za_mgr.Deaallocate(za);
 	return INFO::OK;
 }

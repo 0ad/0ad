@@ -399,6 +399,7 @@ function setup_all_libs ()
 
 	source_dirs = {
 		"lib",
+		"lib/allocators",
 		"lib/posix",
 		"lib/sysdep",
 		"lib/sysdep/ia32",

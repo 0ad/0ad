@@ -410,7 +410,7 @@ LibError afile_io_issue(File* f, off_t user_ofs, size_t max_output_size, u8* use
 	H_DEREF(af->ha, Archive, a);
 
 	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
-	aio->io = io_allocator.alloc();
+	aio->io = io_allocator.Allocate();
 	if(!aio->io)
 		WARN_RETURN(ERR::NO_MEM);
 
@@ -495,7 +495,7 @@ LibError afile_io_discard(FileIo* io)
 {
 	ArchiveFileIo* aio = (ArchiveFileIo*)io->opaque;
 	LibError ret = file_io_discard(aio->io);
-	io_allocator.release(aio->io);
+	io_allocator.Deallocate(aio->io);
 	return ret;
 }
 
