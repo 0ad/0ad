@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_cavalry_ranged_archer"
->
+<Entity	Parent="template_unit_cavalry_ranged_archer">
 	<Traits>
 	
 		<Id>
@@ -23,6 +21,6 @@
 		
 	</Traits>
 
-	<Actor>units/persians/cavalry_archer_b.xml</Actor>
+	<Actor>units/persians/cavalry_archer_b_r.xml</Actor>
 
 </Entity>

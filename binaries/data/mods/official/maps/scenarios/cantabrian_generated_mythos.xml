@@ -4,7 +4,7 @@
 	<Environment>
 		<SkySet>cirrus</SkySet>
 		<SunColour r="2.15234" g="2.15234" b="2.15234"/>
-		<SunElevation angle="0.93266"/>
+		<SunElevation angle="0.825282"/>
 		<SunRotation angle="-0.582913"/>
 		<TerrainAmbientColour r="0.447059" g="0.458824" b="0.513726"/>
 		<UnitsAmbientColour r="0.447059" g="0.458824" b="0.513726"/>
@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="703.672" y="81.297" z="348.214"/>
+		<Position x="707.88" y="85.815" z="343.531"/>
 		<Rotation angle="0.0313032"/>
 		<Declination angle="0.70816"/>
 	</Camera>
@@ -685,8 +685,8 @@
 		<Entity uid="198">
 			<Template>fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="195.84" y="18.8873" z="291.562"/>
-			<Orientation angle="4.14373"/>
+			<Position x="219.526" y="16.0527" z="275.798"/>
+			<Orientation angle="2.56376"/>
 		</Entity>
 		<Entity uid="199">
 			<Template>fauna_sheep</Template>
@@ -1231,7 +1231,7 @@
 		<Entity uid="294">
 			<Template>flora_tree_oak</Template>
 			<Player>0</Player>
-			<Position x="54.8234" y="5.41542" z="224.535"/>
+			<Position x="59.8974" y="5.24576" z="226.502"/>
 			<Orientation angle="1.47453"/>
 		</Entity>
 		<Entity uid="295">
@@ -20743,8 +20743,8 @@
 		<Entity uid="69715">
 			<Template>flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="55.5915" y="5.95235" z="228.162"/>
-			<Orientation angle="2.20832"/>
+			<Position x="59.8287" y="3.7485" z="220.437"/>
+			<Orientation angle="2.40917"/>
 		</Entity>
 		<Entity uid="69716">
 			<Template>flora_bush_temperate</Template>
@@ -20857,7 +20857,7 @@
 		<Entity uid="69734">
 			<Template>flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="76.5146" y="3.9762" z="218.674"/>
+			<Position x="76.7216" y="4.35107" z="219.899"/>
 			<Orientation angle="1.27382"/>
 		</Entity>
 		<Entity uid="69735">
@@ -20983,7 +20983,7 @@
 		<Entity uid="69755">
 			<Template>flora_bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="66.3349" y="5.14887" z="221.808"/>
+			<Position x="66.3107" y="5.35252" z="222.617"/>
 			<Orientation angle="-1.39799"/>
 		</Entity>
 		<Entity uid="69757">
@@ -24350,13 +24350,13 @@
 			<Template>cart_super_infantry</Template>
 			<Player>2</Player>
 			<Position x="556.098" y="7.99941" z="497.563"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="-2.73097"/>
 		</Entity>
 		<Entity uid="107016">
 			<Template>cart_super_infantry</Template>
 			<Player>2</Player>
-			<Position x="554.934" y="7.99941" z="501.09"/>
-			<Orientation angle="2.35619"/>
+			<Position x="553.896" y="7.99941" z="500.97"/>
+			<Orientation angle="2.54724"/>
 		</Entity>
 		<Entity uid="107017">
 			<Template>cart_super_infantry</Template>
@@ -24386,7 +24386,151 @@
 			<Template>cart_super_infantry</Template>
 			<Player>2</Player>
 			<Position x="558.426" y="8.02082" z="496.97"/>
+			<Orientation angle="-2.75232"/>
+		</Entity>
+		<Entity uid="110642">
+			<Template>cart_infantry_swordsman_b</Template>
+			<Player>5</Player>
+			<Position x="656.649" y="7.99941" z="212.312"/>
+			<Orientation angle="-2.89297"/>
+		</Entity>
+		<Entity uid="110643">
+			<Template>cart_infantry_swordsman_b</Template>
+			<Player>5</Player>
+			<Position x="659.012" y="7.99942" z="213.053"/>
 			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="110645">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="653.093" y="7.99941" z="211.949"/>
+			<Orientation angle="3.12965"/>
+		</Entity>
+		<Entity uid="110646">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="650.628" y="7.99941" z="211.02"/>
+			<Orientation angle="2.95063"/>
+		</Entity>
+		<Entity uid="110647">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="648.28" y="7.99941" z="208.969"/>
+			<Orientation angle="2.69212"/>
+		</Entity>
+		<Entity uid="110648">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="646.972" y="7.99941" z="213.562"/>
+			<Orientation angle="2.6932"/>
+		</Entity>
+		<Entity uid="110649">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="648.567" y="7.99941" z="214.844"/>
+			<Orientation angle="2.70531"/>
+		</Entity>
+		<Entity uid="110650">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="650.65" y="7.99941" z="216.588"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="110651">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="654.402" y="7.99941" z="216.086"/>
+			<Orientation angle="0.296792"/>
+		</Entity>
+		<Entity uid="110652">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="657.419" y="7.99941" z="216.822"/>
+			<Orientation angle="0.141419"/>
+		</Entity>
+		<Entity uid="110653">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>5</Player>
+			<Position x="649.462" y="7.99941" z="219.558"/>
+			<Orientation angle="1.82875"/>
+		</Entity>
+		<Entity uid="110655">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="660.435" y="7.99941" z="216.086"/>
+			<Orientation angle="2.61716"/>
+		</Entity>
+		<Entity uid="110656">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="663.057" y="7.99941" z="217.65"/>
+			<Orientation angle="-2.79614"/>
+		</Entity>
+		<Entity uid="110657">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="664.914" y="7.99941" z="216.583"/>
+			<Orientation angle="-2.94071"/>
+		</Entity>
+		<Entity uid="110658">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="663.276" y="8.05338" z="210.881"/>
+			<Orientation angle="-2.51736"/>
+		</Entity>
+		<Entity uid="110659">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="665.946" y="8.03561" z="213.742"/>
+			<Orientation angle="-2.7697"/>
+		</Entity>
+		<Entity uid="110660">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="667.11" y="7.99941" z="216.443"/>
+			<Orientation angle="-2.85607"/>
+		</Entity>
+		<Entity uid="110661">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="668.833" y="8.05316" z="214.172"/>
+			<Orientation angle="-2.51283"/>
+		</Entity>
+		<Entity uid="110662">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="666.664" y="8.38437" z="209.01"/>
+			<Orientation angle="-2.35797"/>
+		</Entity>
+		<Entity uid="110663">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="669.678" y="8.30684" z="210.978"/>
+			<Orientation angle="-2.82145"/>
+		</Entity>
+		<Entity uid="110664">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="670.004" y="7.99941" z="218.687"/>
+			<Orientation angle="-3.0678"/>
+		</Entity>
+		<Entity uid="110665">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="664.645" y="7.99942" z="222.178"/>
+			<Orientation angle="-2.62443"/>
+		</Entity>
+		<Entity uid="110666">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="659.87" y="7.99941" z="225.461"/>
+			<Orientation angle="-2.72348"/>
+		</Entity>
+		<Entity uid="110667">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>5</Player>
+			<Position x="657.104" y="7.99942" z="225.124"/>
+			<Orientation angle="3.119"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
