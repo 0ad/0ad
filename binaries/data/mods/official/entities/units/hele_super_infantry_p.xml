@@ -14,6 +14,13 @@
 			<History>The Spartans had a very peculiar form of government which enabled them to be professional soldiers. It not only enabled them, but actually forced them to be superior soldiers as a small group of Spartans had to dominate an enormous number of subjects and unwilling allies. The Spartan army was superior in Hellas, and in the rest of the known world. No other army was so well trained, and had such excellent equipment. They believed that traditional training was the key to success, and for centuries they were correct, as they never lost a battle in spite of their small numbers. Ironically enough, this concept ended the Spartan supremacy, as the Spartan phalanx could not resist the new sloped Theban phalanx and the invading integrated Macedonian forces. The end of the Spartan power marked the end of the domination of the phalanx.</History>
 		
 		</Id>
+		<Creation>
+			<Resource>
+ 				<Food>100</Food>
+				<Wood>64</Wood>
+				<Metal>100</Metal>
+ 			</Resource>
+		</Creation>
 
 		<Armour>
 			<Hack>8.0</Hack>
@@ -30,16 +37,15 @@
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>20.0</Hack>
- 				<Pierce>15.0</Pierce>
+ 				<Hack>25.0</Hack>
+ 				<Pierce>20.0</Pierce>
  				<Crush>2.0</Crush>
 			</Melee>
 
 			<Charge>
 				<Hack>50.0</Hack>
-				<Pierce>37.5</Pierce>
+				<Pierce>40.0</Pierce>
 				<Crush>5.0</Crush>
-				
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Charge>	
