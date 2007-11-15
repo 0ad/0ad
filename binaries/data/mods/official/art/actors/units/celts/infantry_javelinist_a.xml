@@ -31,6 +31,7 @@
         <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="projectile"/>
+        <prop actor="props/units/shields/celt_round_a.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
@@ -75,7 +76,6 @@
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
       <props>
-        <prop actor="props/units/shields/hele_pelta_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="" attachpoint="r_hand"/>
