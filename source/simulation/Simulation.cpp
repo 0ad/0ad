@@ -83,20 +83,30 @@ bool CSimulation::Update(double frameTime)
 	if (m_DeltaTime >= 0.0)
 	{
 		// A new simulation frame is required.
-
-		PROFILE( "simulation turn" );
-		Simulate();
-		double turnLength = m_pTurnManager->GetTurnLength() / 1000.0;
-		m_DeltaTime -= turnLength;
-		if (m_DeltaTime >= 0.0)
+		if (m_pTurnManager->NewTurnReady())
 		{
-			// The desired sim frame rate can't be achieved - we're being called
-			// with average(frameTime) > turnLength.
-			// Let the caller know we can't go fast enough - they should try
-			// cutting down on Interpolate and rendering, and call us a few times
-			// with frameTime == 0 to give us a chance to catch up.
-			ok = false;
-			debug_printf("WARNING: missing a simulation turn due to low FPS");
+			PROFILE( "simulation turn" );
+			Simulate();
+			double turnLength = m_pTurnManager->GetTurnLength() / 1000.0;
+			m_DeltaTime -= turnLength;
+			if (m_DeltaTime >= 0.0)
+			{
+				// The desired sim frame rate can't be achieved - we're being called
+				// with average(frameTime) > turnLength.
+				// Let the caller know we can't go fast enough - they should try
+				// cutting down on Interpolate and rendering, and call us a few times
+				// with frameTime == 0 to give us a chance to catch up.
+				ok = false;
+				debug_printf("WARNING: missing a simulation turn due to low FPS\n");
+			}
+		}
+		else
+		{
+			// The network is lagging behind the simulation rate. 
+			// Set delta time back to zero so we don't jump into the middle
+			// of the next simulation frame when we get the next turn.
+			// This creates "lag" on the client rather than just jumpiness.
+			m_DeltaTime = 0;
 		}
 	}
 
@@ -141,7 +151,9 @@ void CSimulation::Simulate()
 	uint time = m_pTurnManager->GetTurnLength();
 	
 	m_Time += time / 1000.0f;
-	//debug_printf("Simulation turn: %.3lf\n", m_Time);
+#ifdef DEBUG_SYNCHRONIZATION
+	debug_printf("Simulation turn: %.3lf\n", m_Time);
+#endif
 
 	PROFILE_START( "scheduler tick" );
 	g_Scheduler.Update(time);
@@ -167,6 +179,10 @@ void CSimulation::Simulate()
 	m_pTurnManager->NewTurn();
 	m_pTurnManager->IterateBatch(0, TranslateMessage, this);
 	PROFILE_END( "turn manager update" );
+	
+#ifdef DEBUG_SYNCHRONIZATION
+	debug_printf("End turn\n", m_Time);
+#endif
 }
 
 // Location randomizer, for group orders...

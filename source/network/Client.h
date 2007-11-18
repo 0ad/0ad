@@ -1,12 +1,13 @@
 #ifndef INCLUDED_NETWORK_CLIENT
 #define INCLUDED_NETWORK_CLIENT
 
-#include "ps/CStr.h"
 #include "Session.h"
 
 #include "simulation/TurnManager.h"
 #include "simulation/ScriptObject.h"
 #include "scripting/ScriptableObject.h"
+#include "ps/CStr.h"
+#include "ps/ThreadUtil.h"
 #include "ps/scripting/JSMap.h"
 
 #include <map>
@@ -51,12 +52,22 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 	void OnClientConnect(int sessionID, const CStrW& name);
 	void OnClientDisconnect(int sessionID);
 	void OnStartGameMessage();
+	void QueueIncomingMessage(CNetMessage *pMsg);
 
 	// JS Interface Functions
 	bool JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv);
 	static void ScriptingInit();
+	
+	// Are we currently in a locally-yet-unsimulated turn?
+	// This is set to true when we receive a command batch and cleared in NewTurn().
+	// The server also ensures that it does not send a new turn until we ack one.
+	bool m_TurnPending;
+	
+	// Mutex for accessing batches
+	CMutex m_Mutex;
 
 protected:
+	virtual bool NewTurnReady();
 	virtual void NewTurn();
 	virtual void QueueLocalCommand(CNetMessage *pMsg);
 

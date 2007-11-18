@@ -30,6 +30,7 @@
 #include "ProductionQueue.h"
 #include "TechnologyCollection.h"
 #include "TerritoryManager.h"
+#include "Simulation.h"
 #include "Stance.h"
 
 #include <algorithm>
@@ -134,7 +135,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsva
 	debug_assert( argc >= 2 );
 
 	CVector3D position;
-	float orientation = (float)( PI * ( (double)( rand() & 0x7fff ) / (double)0x4000 ) );
+	float orientation = g_Game->GetSimulation()->RandFloat() * 2 * PI;
 
 	JSObject* jsEntityTemplate = JSVAL_TO_OBJECT( argv[0] );
 	CStrW templateName;
@@ -398,7 +399,7 @@ jsval_t CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 
 		// Pick a start point
 
-		int edge = rand() & 3;
+		int edge = g_Game->GetSimulation()->RandInt( 4 );
 		int point;
 
 		double max_w = oabb->m_w + spawn_clearance + 1.0;
@@ -411,12 +412,12 @@ jsval_t CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 		CVector2D pos( m_position );
 		if( edge & 1 )
 		{
-			point = rand() % ( 2 * d_count ) - d_count;
+			point = g_Game->GetSimulation()->RandInt( 2 * d_count ) - d_count;
 			pos += ( oabb->m_v * (float)max_w + d_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
 		}
 		else
 		{
-			point = rand() % ( 2 * w_count ) - w_count;
+			point = g_Game->GetSimulation()->RandInt( 2 * w_count ) - w_count;
 			pos += ( oabb->m_u * (float)max_d + w_step * (float)point ) * ( ( edge & 2 ) ? -1.0f : 1.0f );
 		}
 
@@ -478,8 +479,7 @@ jsval_t CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
 	{
 		float ang;
-		ang = (float)( rand() & 0x7fff ) / (float)0x4000; /* 0...2 */
-		ang *= PI;
+		ang = g_Game->GetSimulation()->RandFloat() * 2 * PI;
 		float radius = m_bounds->m_radius + 1.0f + spawn_clearance;
 		float d_ang = spawn_clearance / ( 2.0f * radius );
 		float ang_end = ang + 2.0f * PI;

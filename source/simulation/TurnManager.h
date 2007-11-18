@@ -100,10 +100,14 @@ public:
 	// CSimulation will use this to determine when to perform the deterministic
 	// update and call NewTurn()
 	uint GetTurnLength();
-
+	
 	// Called by CSimulation when the current turn time has passed.
 	virtual void NewTurn()=0;
+	
+	// Used by CSimulation to ask whether it can call NewTurn.
+	virtual bool NewTurnReady() { return true; }
 
+	// Apply a function to all messages in a given batch.
 	void IterateBatch(uint batch, BatchIteratorFunc *func, void *userdata);
 
 	// Queue a command originating from the local player.

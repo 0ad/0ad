@@ -152,7 +152,7 @@ float SeDcdt::RandomY()
 //returns a random number between the values given
 float SeDcdt::RandomBetween(float min, float max)
 {
-	float base = (float)rand() / (float)RAND_MAX;
+	float base = (float)rand() / (float)RAND_MAX;	// TODO: Make net-safe
 	return (base * (max - min) + min);
 }
 

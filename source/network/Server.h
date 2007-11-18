@@ -81,6 +81,9 @@ private:
 	// JS Interface Methods
 	bool JSI_Open(JSContext *cx, uintN argc, jsval *argv);
 	static void ScriptingInit();
+	
+	// Synchronization object for batches
+	CMutex m_Mutex;
 
 protected:
 	friend class CNetServerSession;
@@ -108,6 +111,7 @@ protected:
 	virtual void OnAccept(const CSocketAddress &);
 
 	// OVERRIDES FROM CTurnManager
+	virtual bool NewTurnReady();
 	virtual void NewTurn();
 	virtual void QueueLocalCommand(CNetMessage *pMsg);
 

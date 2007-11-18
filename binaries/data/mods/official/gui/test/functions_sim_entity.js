@@ -85,8 +85,8 @@ function worldClickHandler(event)
 				if (!selection[i].actions)
 					continue;
 				//console.write("Requesting notification for " + event.entity);
-				selection[i].requestNotification( event.entity, action, true, false );
-				selection[i].order( ORDER_GOTO, event.entity.position.x, event.entity.position.z -							selection[i].actions.escort.distance, true);
+				//selection[i].requestNotification( event.entity, action, true, false );
+				//selection[i].order( ORDER_GOTO, event.entity.position.x, event.entity.position.z -							selection[i].actions.escort.distance, true);
 			}
 		}
 		else
@@ -96,7 +96,7 @@ function worldClickHandler(event)
 				if (!selection[i].actions)
 					continue;
 				//console.write("Requesting notification for " + event.entity);		
-				selection[i].requestNotification( event.entity, action, true, false );
+				//selection[i].requestNotification( event.entity, action, true, false );
 			}
 		}	
 		

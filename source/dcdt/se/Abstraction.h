@@ -10,7 +10,9 @@
 
 //defines an invalid entry, and "infinity", for our purposes
 #define INVALID -1
+#ifndef INFINITY
 #define INFINITY FLT_MAX
+#endif
 
 //prototypes for classes defined later
 template <class T> class SeLinkFace;

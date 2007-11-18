@@ -473,6 +473,11 @@ void CEntity::UpdateOrders( size_t timestep )
 	while( !m_orderQueue.empty() )
 	{
 		CEntityOrder* current = &m_orderQueue.front();
+		CStr name = me;
+#ifdef DEBUG_SYNCHRONIZATION
+		debug_printf("Order for %ls: %d (src %d)\n", 
+			m_base->m_Tag.c_str(), current->m_type, current->m_source);
+#endif
 
 		if( current->m_type != m_lastState )
 		{
@@ -877,6 +882,7 @@ void CEntity::DispatchFormationEvent( int type )
 }
 void CEntity::Repath()
 {
+	debug_printf("Repath\n");
 	CVector2D destination;
 	CEntityOrder::EOrderSource orderSource = CEntityOrder::SOURCE_PLAYER;
 

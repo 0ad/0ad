@@ -9,7 +9,9 @@
 #include "sr_polygon.h"
 
 //define a floating point value for pi
+#ifndef PI
 #define PI 3.1415926535897932384626433832795f
+#endif
 
 //a node in the funnel deque
 class FunnelNode

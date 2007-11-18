@@ -900,7 +900,7 @@ void EarlyInit()
 	timer_Init();
 
 	// Initialise the low-quality rand function
-	srand(time(NULL));
+	srand(time(NULL));	// NOTE: this rand should *not* be used for simulation!
 }
 
 void Init(const CmdLineArgs& args, uint flags)

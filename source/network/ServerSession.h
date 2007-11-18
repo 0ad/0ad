@@ -22,6 +22,7 @@ class CNetServerSession: public CNetSession, public CJSObject<CNetServerSession>
 	CPlayerSlot *m_pPlayerSlot;
 	bool m_IsObserver;
 	int m_ID;
+	bool m_ReadyForTurn;	// Is the last turn acknowledged?
 	
 	// JS INTERFACE
 	static void ScriptingInit();
@@ -51,6 +52,10 @@ public:
 	{	return m_pPlayerSlot; }
 	inline int GetID()
 	{	return m_ID; }
+	inline bool IsReadyForTurn()
+	{	return m_ReadyForTurn; }
+	inline void SetReadyForTurn(bool value)
+	{	m_ReadyForTurn = value; }
 
 	// Called by server when starting the game, after sending NMT_StartGame to
 	// all connected clients.

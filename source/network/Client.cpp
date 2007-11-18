@@ -37,7 +37,8 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	m_JSI_ServerSessions(&m_ServerSessions),
 	m_pLocalPlayerSlot(NULL),
 	m_pGame(pGame),
-	m_pGameAttributes(pGameAttribs)
+	m_pGameAttributes(pGameAttribs),
+	m_TurnPending(false)
 {
 	ONCE( ScriptingInit(); );
 
@@ -51,11 +52,10 @@ CNetClient::~CNetClient()
 	g_ScriptingHost.SetGlobal("g_NetClient", JSVAL_NULL);
 	
 	SessionMap::iterator it=m_ServerSessions.begin();
-	while (it != m_ServerSessions.end())
+	for (; it != m_ServerSessions.end(); ++it)
 	{
 		delete it->second;
 	}
-	// (Isn't this an infinite loop?)
 }
 
 void CNetClient::ScriptingInit()
@@ -333,7 +333,7 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 
 	if (msgType >= NMT_COMMAND_FIRST && msgType < NMT_COMMAND_LAST)
 	{
-		pClient->QueueMessage(1, pMsg);
+		pClient->QueueIncomingMessage(pMsg);
 		TAKEN(pMsg);
 	}
 
@@ -343,17 +343,10 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	{
 		CEndCommandBatch *msg=(CEndCommandBatch *)pMsg;
 		pClient->SetTurnLength(1, msg->m_TurnLength);
-	
-		// FIXME When the command batch has ended, we should start accepting
-		// commands for the next turn. This will be accomplished by calling
-		// NewTurn. *BUT* we shouldn't prematurely proceed game simulation
-		// since this will produce jerky playback (everything expects a sim
-		// turn to have a certain duration).
-
-		// We should make sure that any commands received after this message
-		// are queued in the next batch (#2 instead of #1). If we're already
-		// putting everything new in batch 2 - we should fast-forward a bit to
-		// catch up with the server.
+		
+		//debug_printf("Got end of batch, setting NewTurnPending\n");
+		pClient->m_TurnPending = true;
+		// We will ack the turn when our simulation calls NewTurn.
 
 		HANDLED(pMsg);
 	}
@@ -361,6 +354,13 @@ bool CNetClient::InGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 	default:
 		UNHANDLED(pMsg);
 	}
+}
+
+void CNetClient::QueueIncomingMessage(CNetMessage *pMsg)
+{
+	CScopeLock lock(m_Mutex);
+	debug_printf("Got a command! queueing it to 2 turns from now\n");
+	QueueMessage(2, pMsg);
 }
 
 bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)
@@ -437,10 +437,16 @@ int CNetClient::StartGame()
 {
 	if (m_pGame->StartGame(m_pGameAttributes) != PSRETURN_OK)
 	{
+		// TODO: Send a failed-to-launch-game message and drop out.
 		return -1;
 	}
 	else
 	{
+		debug_printf("Client StartGame - sending end-of-batch ack\n");
+		// Send an end-of-batch message for turn 0 to signal that we're ready.
+		CEndCommandBatch *pMsg=new CEndCommandBatch();
+		pMsg->m_TurnLength=1000/fps;
+		Push(pMsg);
 		return 0;
 	}
 }
@@ -450,11 +456,20 @@ CPlayer* CNetClient::GetLocalPlayer()
 	return m_pLocalPlayerSlot->GetPlayer();
 }
 
+bool CNetClient::NewTurnReady()
+{
+	return m_TurnPending;
+}
+
 void CNetClient::NewTurn()
 {
+	CScopeLock lock(m_Mutex);
+	
 	RotateBatches();
 	ClearBatch(2);
+	m_TurnPending = false;
 
+	//debug_printf("In NewTurn - sending ack\n");
 	CEndCommandBatch *pMsg=new CEndCommandBatch();
 	pMsg->m_TurnLength=1000/fps;
 	Push(pMsg);
@@ -463,5 +478,6 @@ void CNetClient::NewTurn()
 void CNetClient::QueueLocalCommand(CNetMessage *pMsg)
 {
 	// Don't save these locally, since they'll be bounced by the server anyway
+	//debug_printf("Sending command from client\n");
 	Push(pMsg);
 }

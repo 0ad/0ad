@@ -1,7 +1,5 @@
 #include "precompiled.h"
 
-#include <algorithm>
-
 #include "Server.h"
 #include "ServerSession.h"
 #include "Network.h"
@@ -14,6 +12,7 @@
 #include "ps/Player.h"
 #include "ps/CLogger.h"
 #include "ps/CConsole.h"
+#include "ps/ThreadUtil.h"
 
 #define LOG_CAT_NET "net"
 
@@ -346,8 +345,6 @@ void CNetServer::Broadcast(CNetMessage *pMsg)
 
 int CNetServer::StartGame()
 {
-	Broadcast(new CStartGame());
-	
 	if (m_pGame->StartGame(m_pGameAttributes) != PSRETURN_OK)
 	{
 		return -1;
@@ -370,8 +367,11 @@ int CNetServer::StartGame()
 			++it;
 		}
 		
+		debug_printf("Server StartGame\n");
+		Broadcast(new CStartGame());	
+		
 		// This is the signal for everyone to start their simulations.
-		SendBatch(1);
+		//SendBatch(1);
 
 		return 0;
 	}
@@ -382,26 +382,51 @@ void CNetServer::GetDefaultListenAddress(CSocketAddress &address)
 	address=CSocketAddress(PS_DEFAULT_PORT, IPv4);
 }
 
+bool CNetServer::NewTurnReady()
+{
+	// Wait for all clients to check in
+	SessionMap::iterator it = m_Sessions.begin();
+	for (; it != m_Sessions.end(); ++it)
+	{
+		if (!it->second->IsReadyForTurn())
+			return false;
+	}
+	return true;
+}
+
 void CNetServer::NewTurn()
 {
+	CScopeLock lock(m_Mutex);
+	
+	// Clear ready flags on clients
+	SessionMap::iterator it = m_Sessions.begin();
+	for (; it != m_Sessions.end(); ++it)
+	{
+		it->second->SetReadyForTurn(false);
+	}
+	
 	RecordBatch(2);
 
 	RotateBatches();
 	ClearBatch(2);
 
 	IterateBatch(1, CSimulation::GetMessageMask, m_pGame->GetSimulation());
+	//debug_printf("In NewTurn - sending batch\n");
 	SendBatch(1);
 	//IterateBatch(1, SendToObservers, this);
 }
 
 void CNetServer::QueueLocalCommand(CNetMessage *pMsg)
 {
+	//debug_printf("Queueing command from server\n");
 	QueueIncomingCommand(pMsg);
 }
 
 void CNetServer::QueueIncomingCommand(CNetMessage *pMsg)
 {
+	CScopeLock lock(m_Mutex);
 	LOG(NORMAL, LOG_CAT_NET, "CNetServer::QueueIncomingCommand(): %s.", pMsg->GetString().c_str());
+	debug_printf("Got a command! queueing it to 2 turns from now\n");
 	QueueMessage(2, pMsg);
 }
 

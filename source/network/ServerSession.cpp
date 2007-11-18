@@ -12,7 +12,8 @@ CNetServerSession::CNetServerSession(CNetServer *pServer, CSocketInternal *pInt,
 	m_pPlayer(NULL),
 	m_pPlayerSlot(NULL),
 	m_IsObserver(false),
-	m_ID(-1)
+	m_ID(-1),
+	m_ReadyForTurn(false)
 {
 	ONCE(
 		ScriptingInit();
@@ -193,7 +194,7 @@ bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSessio
 	switch (pMsg->GetType())
 	{
 	case NMT_EndCommandBatch:
-		// TODO Update client timing information and recalculate turn length
+		pSession->m_ReadyForTurn = true;
 		HANDLED(pMsg);
 
 	default:

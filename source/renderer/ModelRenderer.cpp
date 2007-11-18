@@ -388,7 +388,7 @@ void BatchModelRenderer::EndFrame()
 		if (mdeftracker->m_Slots > mostslots)
 		{
 			mostslots = mdeftracker->m_Slots;
-			debug_printf("BatchModelRenderer: SubmissionSlots maximum: %u\n", mostslots);
+			//debug_printf("BatchModelRenderer: SubmissionSlots maximum: %u\n", mostslots);
 		}
 		mdeftracker->m_Slots = 0;
 	}
