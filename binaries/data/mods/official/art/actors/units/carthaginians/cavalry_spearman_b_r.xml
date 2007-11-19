@@ -4,26 +4,34 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="0"/>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="20"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="infantry/general/dude/dudeattack.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="infantry/general/dude/dudeattack1.psa" name="Attack" speed="100"/>
+        <animation file="cavalry/rider_gallop.psa" name="run" speed="8"/>
+        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/temp/kart_sign_cavalry_spearman_b.xml" attachpoint="head_extra"/>
-        <prop actor="props/units/heads/placeholder_hele_kart.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/test_towershield.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/samnite_test.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
-      <texture>skeletal/plac_kart_b.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="1" name="tunic-1">
+      <texture>skeletal/kart_csp_b_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="tunic-2">
+      <texture>skeletal/kart_csp_b_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="tunic-3">
+      <texture>skeletal/kart_csp_b_3.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
