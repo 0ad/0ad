@@ -7,17 +7,31 @@
     <variant frequency="1" name="head_beard_small">
       <mesh>props/head_beard_small.pmd</mesh>
     </variant>
-    <variant frequency="1" name="head_beard_large">
+    <variant frequency="1" name="beard-large">
       <mesh>props/head_beard_large.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="pers-face-a">
+    <variant frequency="1" name="face-beard-small-a">
+      <mesh>props/head_beard_small.pmd</mesh>
       <texture>props/head/pers_face_a.dds</texture>
     </variant>
-    <variant frequency="1" name="pers-face-b">
+    <variant frequency="1" name="face-beard-small-b">
+      <mesh>props/head_beard_small.pmd</mesh>
       <texture>props/head/pers_face_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-beard-large-a">
+      <mesh>props/head_beard_large.pmd</mesh>
+      <texture>props/head/pers_face_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-beard-large-b">
+      <mesh>props/head_beard_large.pmd</mesh>
+      <texture>props/head/pers_face_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-scrubby-i">
+      <mesh>props/dude_head.pmd</mesh>
+      <texture>props/head/pers_face_i.dds</texture>
     </variant>
   </group>
 
