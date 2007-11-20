@@ -29,6 +29,8 @@ extern void stats_vfs_init_start();
 extern void stats_vfs_init_finish();
 
 // file
+
+// currently not called because string_pool is now in lib/allocators
 extern void stats_unique_name(size_t name_len);
 extern void stats_open(const char* atom_fn, size_t file_size);
 extern void stats_close();

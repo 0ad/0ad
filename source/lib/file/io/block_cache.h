@@ -11,7 +11,6 @@
 #ifndef INCLUDED_BLOCK_CACHE
 #define INCLUDED_BLOCK_CACHE
 
-#include <boost/shared_ptr.hpp>
 #include "io_buf.h"
 
 /**
@@ -82,12 +81,13 @@ public:
 	/**
 	 * Attempt to retrieve a block the file cache.
 	 *
-	 * @return 0 if not in cache or its IO is still pending, otherwise a
-	 * pointer to its (read-only) contents.
+	 * @return false if not in cache or its IO is still pending,
+	 * otherwise true.
 	 *
-	 * if successful, a reference is added to the block.
+	 * if successful, a reference is added to the block and its
+	 * buffer is returned.
 	 **/
-	IoBuf Retrieve(BlockId id);
+	bool Retrieve(BlockId id, IoBuf& buf);
 
 	/**
 	 * Indicate the block contents are no longer needed.
@@ -118,4 +118,4 @@ private:
 	boost::shared_ptr<Impl> impl;
 };
 
-#endif	 * #ifndef INCLUDED_BLOCK_CACHE
+#endif	// #ifndef INCLUDED_BLOCK_CACHE

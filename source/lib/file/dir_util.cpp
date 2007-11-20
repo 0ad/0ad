@@ -21,30 +21,30 @@
 
 bool dir_FileExists(IFilesystem* fs, const char* pathname)
 {
-	FilesystemEntry fsEntry;
-	if(fs->GetEntry(pathname, fsEntry) < 0)
+	FileInfo fileInfo;
+	if(fs->GetEntry(pathname, fileInfo) < 0)
 		return false;
-	debug_assert(!fsEntry.IsDirectory());
+	debug_assert(!fileInfo.IsDirectory());
 	return true;
 }
 
 
 bool dir_DirectoryExists(IFilesystem* fs, const char* dirPath)
 {
-	FilesystemEntry fsEntry;
-	if(fs->GetEntry(dirPath, fsEntry) < 0)
+	FileInfo fileInfo;
+	if(fs->GetEntry(dirPath, fileInfo) < 0)
 		return false;
-	debug_assert(fsEntry.IsDirectory());
+	debug_assert(fileInfo.IsDirectory());
 	return true;
 }
 
 
 
-struct FsEntryNameLess : public std::binary_function<const FilesystemEntry, const FilesystemEntry, bool>
+struct FsEntryNameLess : public std::binary_function<const FileInfo, const FileInfo, bool>
 {
-	bool operator()(const FilesystemEntry& fsEntry1, const FilesystemEntry& fsEntry2) const
+	bool operator()(const FileInfo& fileInfo1, const FileInfo& fileInfo2) const
 	{
-		return strcmp(fsEntry1.name, fsEntry2.name) < 0;
+		return strcmp(fileInfo1.name, fileInfo2.name) < 0;
 	}
 };
 
@@ -53,14 +53,14 @@ LibError dir_GatherSortedEntries(IFilesystem* fs, const char* dirPath, Filesyste
 	DirectoryIterator di(fs, dirPath);
 	fsEntries.reserve(50);	// preallocate for efficiency
 
-	FilesystemEntry fsEntry;
+	FileInfo fileInfo;
 	for(;;)
 	{
-		LibError ret = di.NextEntry(fsEntry);
+		LibError ret = di.NextEntry(fileInfo);
 		if(ret == ERR::DIR_END)
 			break;
 		RETURN_ERR(ret);
-		fsEntries.push_back(fsEntry);
+		fsEntries.push_back(fileInfo);
 	}
 
 	std::sort(fsEntries.begin(), fsEntries.end(), FsEntryNameLess());
@@ -79,10 +79,10 @@ LibError dir_ForEachSortedEntry(IFilesystem* fs, const char* dirPath, const DirC
 
 	for(FilesystemEntries::const_iterator it = fsEntries.begin(); it != fsEntries.end(); ++it)
 	{
-		const FilesystemEntry& fsEntry = *it;
-		path_package_append_file(&pp, fsEntry.name);
+		const FileInfo& fileInfo = *it;
+		path_package_append_file(&pp, fileInfo.name);
 
-		LibError ret = cb(pp.path, fsEntry, cbData);
+		LibError ret = cb(pp.path, fileInfo, cbData);
 		if(ret != INFO::CB_CONTINUE)
 			return ret;
 	}
@@ -91,7 +91,7 @@ LibError dir_ForEachSortedEntry(IFilesystem* fs, const char* dirPath, const DirC
 }
 
 
-LibError dir_filtered_next_ent(DirectoryIterator& di, FilesystemEntry& fsEntry, const char* filter)
+LibError dir_filtered_next_ent(DirectoryIterator& di, FileInfo& fileInfo, const char* filter)
 {
 	bool want_dir = true;
 	if(filter)
@@ -108,12 +108,12 @@ LibError dir_filtered_next_ent(DirectoryIterator& di, FilesystemEntry& fsEntry, 
 			want_dir = false;
 	}
 
-	// loop until fsEntry matches what is requested, or end of directory.
+	// loop until fileInfo matches what is requested, or end of directory.
 	for(;;)
 	{
-		RETURN_ERR(di.NextEntry(fsEntry));
+		RETURN_ERR(di.NextEntry(fileInfo));
 
-		if(fsEntry.IsDirectory())
+		if(fileInfo.IsDirectory())
 		{
 			if(want_dir)
 				break;
@@ -121,7 +121,7 @@ LibError dir_filtered_next_ent(DirectoryIterator& di, FilesystemEntry& fsEntry, 
 		else
 		{
 			// (note: filter = 0 matches anything)
-			if(match_wildcard(fsEntry.name, filter))
+			if(match_wildcard(fileInfo.name, filter))
 				break;
 		}
 	}
@@ -130,11 +130,11 @@ LibError dir_filtered_next_ent(DirectoryIterator& di, FilesystemEntry& fsEntry, 
 }
 
 
-// call <cb> for each fsEntry matching <user_filter> (see vfs_next_dirent) in
+// call <cb> for each fileInfo matching <user_filter> (see vfs_next_dirent) in
 // directory <path>; if flags & VFS_DIR_RECURSIVE, entries in
 // subdirectories are also returned.
 //
-// note: EnumDirEntsCB path and fsEntry are only valid during the callback.
+// note: EnumDirEntsCB path and fileInfo are only valid during the callback.
 LibError dir_FilteredForEachEntry(IFilesystem* fs, const char* dirPath, uint flags, const char* user_filter, DirCallback cb, uintptr_t cbData)
 {
 	debug_assert((flags & ~(VFS_DIR_RECURSIVE)) == 0);
@@ -162,7 +162,7 @@ LibError dir_FilteredForEachEntry(IFilesystem* fs, const char* dirPath, uint fla
 	// directory consecutively)
 
 	std::queue<const char*> dir_queue;
-	dir_queue.push(path_UniqueCopy(dirPath));
+	dir_queue.push(path_Pool()->UniqueCopy(dirPath));
 
 	// for each directory:
 	do
@@ -176,24 +176,24 @@ LibError dir_FilteredForEachEntry(IFilesystem* fs, const char* dirPath, uint fla
 
 		DirectoryIterator di(fs, pp.path);
 
-		// for each fsEntry (file, subdir) in directory:
-		FilesystemEntry fsEntry;
-		while(dir_filtered_next_ent(di, fsEntry, filter) == 0)
+		// for each fileInfo (file, subdir) in directory:
+		FileInfo fileInfo;
+		while(dir_filtered_next_ent(di, fileInfo, filter) == 0)
 		{
-			// build complete path (FilesystemEntry only stores fsEntry name)
-			(void)path_package_append_file(&pp, fsEntry.name);
-			const char* atom_path = path_UniqueCopy(pp.path);
+			// build complete path (FileInfo only stores fileInfo name)
+			(void)path_package_append_file(&pp, fileInfo.name);
+			const char* atom_path = path_Pool()->UniqueCopy(pp.path);
 
-			if(fsEntry.IsDirectory())
+			if(fileInfo.IsDirectory())
 			{
 				if(recursive)
 					dir_queue.push(atom_path);
 
 				if(user_filter_wants_dirs)
-					cb(atom_path, fsEntry, cbData);
+					cb(atom_path, fileInfo, cbData);
 			}
 			else
-				cb(atom_path, fsEntry, cbData);
+				cb(atom_path, fileInfo, cbData);
 		}
 	}
 	while(!dir_queue.empty());
@@ -207,9 +207,6 @@ LibError dir_FilteredForEachEntry(IFilesystem* fs, const char* dirPath, uint fla
 // the next numbered filename according to the pattern defined by V_fn_fmt.
 // <state> must be initially zeroed (e.g. by defining as static) and passed
 // each time.
-// if <use_vfs> (default), the paths are treated as VFS paths; otherwise,
-// file.cpp's functions are used. this is necessary because one of
-// our callers needs a filename for VFS archive files.
 //
 // this function is useful when creating new files which are not to
 // overwrite the previous ones, e.g. screenshots.
@@ -229,10 +226,10 @@ void dir_NextNumberedFilename(IFilesystem* fs, const char* fn_fmt, NextNumberedF
 
 		int max_num = -1; int num;
 		DirectoryIterator di(fs, dirPath);
-		FilesystemEntry fsEntry;
-		while(di.NextEntry(fsEntry) == INFO::OK)
+		FileInfo fileInfo;
+		while(di.NextEntry(fileInfo) == INFO::OK)
 		{
-			if(!fsEntry.IsDirectory() && sscanf(fsEntry.name, name_fmt, &num) == 1)
+			if(!fileInfo.IsDirectory() && sscanf(fileInfo.name, name_fmt, &num) == 1)
 				max_num = std::max(num, max_num);
 		}
 

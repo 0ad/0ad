@@ -30,31 +30,27 @@ public:
 
 	// file_make_full_*_path is left untested (hard to do so)
 
-	void test_atom()
+	void test_pool()
 	{
-		// file_make_unique_fn_copy
-
 		// .. return same address for same string?
-		const char* atom1 = file_make_unique_fn_copy("a/bc/def");
-		const char* atom2 = file_make_unique_fn_copy("a/bc/def");
+		const char* atom1 = path_Pool->UniqueCopy("a/bc/def");
+		const char* atom2 = path_Pool->UniqueCopy("a/bc/def");
 		TS_ASSERT_EQUALS(atom1, atom2);
 
 		// .. early out (already in pool) check works?
-		const char* atom3 = file_make_unique_fn_copy(atom1);
+		const char* atom3 = path_Pool->UniqueCopy(atom1);
 		TS_ASSERT_EQUALS(atom3, atom1);
 
-
-		// path_is_atom_fn
 		// is it reported as in pool?
-		TS_ASSERT(path_is_atom_fn(atom1));
+		TS_ASSERT(path_Pool()->Contains(atom1));
 
-		// file_get_random_name
+		// path_Pool()->RandomString
 		// see if the atom added above eventually comes out when a
 		// random one is returned from the pool.
 		int tries_left;
 		for(tries_left = 1000; tries_left != 0; tries_left--)
 		{
-			const char* random_name = file_get_random_name();
+			const char* random_name = path_Pool->RandomString();
 			if(random_name == atom1)
 				break;
 		}

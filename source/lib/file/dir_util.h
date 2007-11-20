@@ -17,7 +17,7 @@ extern bool dir_FileExists(IFilesystem* fs, const char* pathname);
 extern bool dir_DirectoryExists(IFilesystem* fs, const char* dirPath);
 
 
-typedef std::vector<FilesystemEntry> FilesystemEntries;
+typedef std::vector<FileInfo> FilesystemEntries;
 
 // enumerate all directory entries in <P_path>; add to container and
 // then sort it by filename.
@@ -27,7 +27,7 @@ extern LibError dir_GatherSortedEntries(IFilesystem* fs, const char* dirPath, Fi
 // called by dir_ForEachSortedEntry for each entry in the directory.
 // return INFO::CB_CONTINUE to continue calling; anything else will cause
 // dir_ForEachSortedEntry to abort and immediately return that value.
-typedef LibError (*DirCallback)(const char* pathname, const FilesystemEntry& fsEntry, const uintptr_t cbData);
+typedef LibError (*DirCallback)(const char* pathname, const FileInfo& fileInfo, const uintptr_t cbData);
 
 
 // call <cb> for each file and subdirectory in <dir> (alphabetical order),
@@ -49,6 +49,33 @@ typedef LibError (*DirCallback)(const char* pathname, const FilesystemEntry& fsE
 extern LibError dir_ForEachSortedEntry(IFilesystem* fs, const char* dirPath, DirCallback cb, uintptr_t cbData);
 
 
+
+/**
+ * (mostly) insulating concrete class providing iterator access to
+ * directory entries.
+ * this is usable for posix, VFS, etc.; instances are created via IFilesystem.
+ **/
+class DirectoryIterator
+{
+public:
+	DirectoryIterator(IFilesystem* fs, const char* dirPath)
+		: m_impl(fs->OpenDirectory(dirPath))
+	{
+	}
+
+	// return ERR::DIR_END if all entries have already been returned once,
+	// another negative error code, or INFO::OK on success, in which case <fileInfo>
+	// describes the next (order is unspecified) directory entry.
+	LibError NextEntry(FileInfo& fileInfo)
+	{
+		return m_impl.get()->NextEntry(fileInfo);
+	}
+
+private:
+	boost::shared_ptr<IDirectoryIterator> m_impl;
+};
+
+
 // retrieve the next (order is unspecified) dir entry matching <filter>.
 // return 0 on success, ERR::DIR_END if no matching entry was found,
 // or a negative error code on failure.
@@ -65,8 +92,8 @@ extern LibError dir_ForEachSortedEntry(IFilesystem* fs, const char* dirPath, Dir
 // rationale: we do not sort directory entries alphabetically here.
 // most callers don't need it and the overhead is considerable
 // (we'd have to store all entries in a vector). it is left up to
-// higher-level code such as VfsUtil.
-extern LibError dir_filtered_next_ent(DirectoryIterator& di, FilesystemEntry& fsEntry, const char* filter);
+// other routines.
+extern LibError dir_filtered_next_ent(DirectoryIterator& di, FileInfo& fileInfo, const char* filter);
 
 
 

@@ -11,91 +11,98 @@
 #ifndef INCLUDED_ARCHIVE
 #define INCLUDED_ARCHIVE
 
-struct ICodec;
+// rationale: this module doesn't build a directory tree of the entries
+// within an archive. that task is left to the VFS; here, we are only
+// concerned with enumerating all archive entries.
 
 namespace ERR
 {
-	const LibError UNKNOWN_FORMAT = -110400;
-	const LibError IS_COMPRESSED  = -110401;
+	const LibError ARCHIVE_UNKNOWN_FORMAT = -110400;
+	const LibError ARCHIVE_UNKNOWN_METHOD = -110401;
 }
 
-enum ArchiveEntryFlags
+// opaque 'memento' of an archive entry. the instances are stored by
+// the IArchiveReader implementation.
+struct ArchiveEntry;
+
+struct IArchiveReader
 {
-	// (this avoids having to interpret each archive's method values)
-	AEF_COMPRESSED = 1,
-
-	// indicates ArchiveEntry.ofs points to a "local file header" instead of
-	// the file data. a fixup routine is called upon file open; it skips
-	// past LFH and clears this flag.
-	// this is somewhat of a hack, but vital to archive open performance.
-	// without it, we'd have to scan through the entire archive file,
-	// which can take *seconds*.
-	// (we cannot use the information in CDFH, because its 'extra' field
-	// has been observed to differ from that of the LFH)
-	// by reading LFH when a file in archive is opened, the block cache
-	// absorbs the IO cost because the file will likely be read anyway.
-	AEF_NEEDS_FIXUP = 2
-};
-
-// holds all per-file information extracted from the header.
-// this is intended to work for all archive types.
-struct ArchiveEntry
-{
-	off_t ofs;
-	size_t usize;
-	size_t csize;
-	time_t mtime;
-	u32 checksum;
-	uint method;
-	uint flags;	// ArchiveEntryFlags
-
-	// note that size == usize isn't foolproof, and adding a flag to
-	// ofs or size is ugly and error-prone.
-	bool IsCompressed() const
-	{
-		return (flags & AEF_COMPRESSED) != 0;
-	}
-};
-
-
-// successively called for each archive entry.
-typedef LibError (*ArchiveCB)(const char* pathname, const ArchiveEntry& ae, uintptr_t cbData);
-
-
-struct IArchive
-{
-	IArchive(const char* pathname);
-	virtual ~IArchive();
-
-	virtual boost::shared_ptr<ICodec> CreateDecompressor() const = 0;
+	virtual ~IArchiveReader();
 
 	/**
-	 * call back for each file entry in the archive.
+	 * called for each archive entry.
+	 * @param pathname full pathname of entry (unique pointer)
 	 **/
-	virtual LibError ForEachEntry(ArchiveCB cb, uintptr_t cbData) const = 0;
+	typedef void (*ArchiveEntryCallback)(const char* pathname, const ArchiveEntry& archiveEntry, uintptr_t cbData);
+	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData) = 0;
 
-	virtual LibError LoadFile(ArchiveEntry& archiveEntry) const = 0;
+	virtual LibError LoadFile(ArchiveEntry& archiveEntry, u8* fileContents) const = 0;
 };
-
 
 // note: when creating an archive, any existing file with the given pathname
 // will be overwritten.
-struct IArchiveBuilder
+
+// rationale: don't support partial adding, i.e. updating archive with
+// only one file. this would require overwriting parts of the Zip archive,
+// which is annoying and slow. also, archives are usually built in
+// seek-optimal order, which would break if we start inserting files.
+// while testing, loose files can be used, so there's no loss.
+
+struct IArchiveWriter
 {
 	/**
 	 * write out the archive to disk; only hereafter is it valid.
 	 **/
-	virtual ~IArchiveBuilder();
-
-	virtual boost::shared_ptr<ICodec> CreateCompressor() const = 0;
+	virtual ~IArchiveWriter();
 
 	/**
 	 * add a file to the archive.
 	 *
-	 * @param fileContents the file data; its compression method is defined by
-	 * ae.method and can be CM_NONE.
+	 * rationale: passing in a filename instead of the compressed file
+	 * contents makes for better encapsulation because callers don't need
+	 * to know about the codec. one disadvantage is that loading the file
+	 * contents can no longer take advantage of the VFS cache nor previously
+	 * archived versions. however, the archive builder usually adds files
+	 * precisely because they aren't in archives, and the cache would
+	 * thrash anyway, so this is deemed acceptable.
 	 **/
-	virtual LibError AddFile(const ArchiveEntry& ae, const u8* fileContents) = 0;
+	virtual LibError AddFile(const char* pathname) = 0;
+};
+
+/**
+ * describes an archive entry (either file or directory).
+ **/
+struct ArchiveEntry
+{
+	ArchiveEntry()
+	{
+	}
+
+	ArchiveEntry(off_t ofs, off_t usize, off_t csize, time_t mtime, u32 checksum, uint method, uint flags)
+	{
+		this->ofs = ofs;
+		this->usize = usize;
+		this->csize = csize;
+		this->mtime = mtime;
+		this->checksum = checksum;
+		this->method = method;
+		this->flags = flags;
+	}
+
+	// this is needed by the VFS and stored here instead of in VfsFile to
+	// yield a nice 32-byte size.
+	IArchiveReader* archiveReader;
+
+	off_t ofs;
+	off_t usize;
+	off_t csize;
+	time_t mtime;
+
+	// the archive implementation establishes the meaning of the following:
+
+	u32 checksum;
+	uint method;
+	uint flags;
 };
 
 #endif	// #ifndef INCLUDED_ARCHIVE

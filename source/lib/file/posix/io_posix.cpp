@@ -30,34 +30,22 @@ File_Posix::~File_Posix()
 }
 
 
-LibError File_Posix::Open(const char* P_pathname, char mode, uint flags)
+LibError File_Posix::Open(const char* P_pathname, char mode)
 {
 	debug_assert(mode == 'w' || mode == 'r');
-	debug_assert(flags <= FILE_FLAG_ALL);
 
-	m_pathname = path_UniqueCopy(P_pathname);
+	m_pathname = path_Pool()->UniqueCopy(P_pathname);
 	m_mode = mode;
-	m_flags = flags;
 
 	char N_pathname[PATH_MAX];
-	(void)file_make_full_native_path(P_pathname, N_pathname);
+	(void)path_MakeAbsolute(P_pathname, N_pathname);
 
 	int oflag = (mode == 'r')? O_RDONLY : O_WRONLY|O_CREAT|O_TRUNC;
-
-#if OS_WIN
-	if(flags & FILE_TEXT)
-		oflag |= O_TEXT_NP;
-	else
-		oflag |= O_BINARY_NP;
-
-	// if AIO is disabled at user's behest, inform wposix.
-	if(flags & FILE_NO_AIO)
-		oflag |= O_NO_AIO_NP;
-#endif
-
 	m_fd = open(N_pathname, oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(m_fd < 0)
-		RETURN_ERR(ERR::FILE_ACCESS);
+		WARN_RETURN(ERR::FILE_ACCESS);
+
+	stats_open(m_pathname, Size());
 
 	return INFO::OK;
 }
@@ -72,15 +60,13 @@ void File_Posix::Close()
 
 LibError File_Posix::Validate() const
 {
-	if(path_UniqueCopy(m_pathname) != m_pathname)
+	if(path_Pool()->UniqueCopy(m_pathname) != m_pathname)
 		WARN_RETURN(ERR::_1);
 	if((m_mode != 'w' && m_mode != 'r'))
 		WARN_RETURN(ERR::_2);
-	if(m_flags > FILE_FLAG_ALL)
-		WARN_RETURN(ERR::_3);
 	// >= 0x100 is not necessarily bogus, but suspicious.
 	if(!(3 <= m_fd && m_fd < 0x100))
-		WARN_RETURN(ERR::_4);
+		WARN_RETURN(ERR::_3);
 
 	return INFO::OK;
 }

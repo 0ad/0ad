@@ -11,8 +11,6 @@
 #ifndef INCLUDED_IO_POSIX
 #define INCLUDED_IO_POSIX
 
-#include <boost/shared_ptr.hpp>
-
 #include "../io/io_buf.h"
 
 // rationale for using aio instead of mmap:
@@ -64,11 +62,17 @@
 //   idle time to satisfy potential future IOs) requires extra buffers;
 //   this is a bit more complicated than just using the cache as storage.
 
+namespace ERR
+{
+	const LibError FILE_ACCESS = -110200;
+	const LibError IO          = -110201;
+	const LibError IO_EOF      = -110202;
+}
 
 namespace INFO
 {
-	const LibError IO_PENDING  = +110200;
-	const LibError IO_COMPLETE = +110201;
+	const LibError IO_PENDING  = +110203;
+	const LibError IO_COMPLETE = +110204;
 }
 
 
@@ -80,7 +84,7 @@ public:
 	File_Posix();
 	~File_Posix();
 
-	LibError Open(const char* pathname, char mode, uint flags);
+	LibError Open(const char* pathname, char mode);
 	void Close();
 
 	const char* Pathname() const
@@ -93,11 +97,6 @@ public:
 		return m_mode;
 	}
 
-	uint Flags() const
-	{
-		return m_flags;
-	}
-
 	int Handle() const
 	{
 		return m_fd;
@@ -108,7 +107,6 @@ public:
 private:
 	const char* m_pathname;
 	char m_mode;
-	uint m_flags;
 	int m_fd;
 };
 

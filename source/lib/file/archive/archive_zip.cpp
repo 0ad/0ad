@@ -1,0 +1,588 @@
+/**
+ * =========================================================================
+ * File        : archive_zip.cpp
+ * Project     : 0 A.D.
+ * Description : archive backend for Zip files.
+ * =========================================================================
+ */
+
+// license: GPL; see lib/license.txt
+
+#include "precompiled.h"
+#include "archive_zip.h"
+
+#include <time.h>
+#include <limits>
+
+#include "lib/bits.h"
+#include "lib/byte_order.h"
+#include "lib/fat_time.h"
+#include "lib/allocators/pool.h"
+#include "lib/sysdep/cpu.h"		// cpu_memcpy
+#include "lib/file/path.h"
+#include "archive.h"
+#include "codec_zlib.h"
+#include "stream.h"
+#include "lib/file/filesystem.h"
+#include "lib/file/posix/fs_posix.h"
+#include "lib/file/posix/io_posix.h"
+#include "lib/file/io/io_manager.h"
+
+
+enum ArchiveZipFlags
+{
+	// indicates ArchiveEntry.ofs points to a "local file header" instead of
+	// the file data. a fixup routine is called when reading the file;
+	// it skips past the LFH and clears this flag.
+	// this is somewhat of a hack, but vital to archive open performance.
+	// without it, we'd have to scan through the entire archive file,
+	// which can take *seconds*.
+	// (we cannot use the information in CDFH, because its 'extra' field
+	// has been observed to differ from that of the LFH)
+	// since we read the LFH right before the rest of the file, the block
+	// cache will absorb the IO cost.
+	NEEDS_LFH_FIXUP = 1
+};
+
+//-----------------------------------------------------------------------------
+// Zip file data structures and signatures
+//-----------------------------------------------------------------------------
+
+enum ZipMethod
+{
+	ZIP_METHOD_NONE    = 0,
+	ZIP_METHOD_DEFLATE = 8
+};
+
+static const u32 cdfh_magic = FOURCC_LE('P','K','\1','\2');
+static const u32  lfh_magic = FOURCC_LE('P','K','\3','\4');
+static const u32 ecdr_magic = FOURCC_LE('P','K','\5','\6');
+
+#pragma pack(push, 1)
+
+class LFH
+{
+public:
+	void Init(const ArchiveEntry& archiveEntry, const char* pathname, size_t pathnameLength)
+	{
+		m_magic     = lfh_magic;
+		m_x1        = to_le16(0);
+		m_flags     = to_le16(0);
+		m_method    = to_le16(u16_from_larger(archiveEntry.method));
+		m_fat_mtime = to_le32(FAT_from_time_t(archiveEntry.mtime));
+		m_crc       = to_le32(archiveEntry.checksum);
+		m_csize     = to_le32(u32_from_larger(archiveEntry.csize));
+		m_usize     = to_le32(u32_from_larger(archiveEntry.usize));
+		m_fn_len    = to_le16(u16_from_larger((uint)pathnameLength));
+		m_e_len     = to_le16(0);
+
+		cpu_memcpy((char*)this + sizeof(LFH), pathname, pathnameLength);
+	}
+
+	size_t Size() const
+	{
+		debug_assert(m_magic == lfh_magic);
+		const size_t fn_len = read_le16(&m_fn_len);
+		const size_t  e_len = read_le16(&m_e_len);
+		// note: LFH doesn't have a comment field!
+
+		return sizeof(LFH) + fn_len + e_len;
+	}
+
+private:
+	u32 m_magic;
+	u16 m_x1;			// version needed
+	u16 m_flags;
+	u16 m_method;
+	u32 m_fat_mtime;	// last modified time (DOS FAT format)
+	u32 m_crc;
+	u32 m_csize;
+	u32 m_usize;
+	u16 m_fn_len;
+	u16 m_e_len;
+};
+
+cassert(sizeof(LFH) == 30);
+
+
+class CDFH
+{
+public:
+	void Init(const ArchiveEntry& archiveEntry, const char* pathname, size_t pathnameLength, size_t slack)
+	{
+		m_magic     = cdfh_magic;
+		m_x1        = to_le32(0);
+		m_flags     = to_le16(0);
+		m_method    = to_le16(u16_from_larger(archiveEntry.method));
+		m_fat_mtime = to_le32(FAT_from_time_t(archiveEntry.mtime));
+		m_crc       = to_le32(archiveEntry.checksum);
+		m_csize     = to_le32(u32_from_larger(archiveEntry.csize));
+		m_usize     = to_le32(u32_from_larger(archiveEntry.usize));
+		m_fn_len    = to_le16(u16_from_larger((uint)pathnameLength));
+		m_e_len     = to_le16(0);
+		m_c_len     = to_le16(u16_from_larger((uint)slack));
+		m_x2        = to_le32(0);
+		m_x3        = to_le32(0);
+		m_lfh_ofs   = to_le32(archiveEntry.ofs);
+
+		cpu_memcpy((char*)this + sizeof(CDFH), pathname, pathnameLength);
+	}
+
+	void Decompose(ArchiveEntry& archiveEntry, const char*& pathname, size_t& cdfhSize) const
+	{
+		const u16 zipMethod = read_le16(&m_method);
+		const u32 fat_mtime = read_le32(&m_fat_mtime);
+		const u32 crc       = read_le32(&m_crc);
+		const u32 csize     = read_le32(&m_csize);
+		const u32 usize     = read_le32(&m_usize);
+		const u16 fn_len    = read_le16(&m_fn_len);
+		const u16 e_len     = read_le16(&m_e_len);
+		const u16 c_len     = read_le16(&m_c_len);
+		const u32 lfh_ofs   = read_le32(&m_lfh_ofs);
+
+		archiveEntry.ofs = (off_t)lfh_ofs;
+		archiveEntry.usize = (off_t)usize;
+		archiveEntry.csize = (off_t)csize;
+		archiveEntry.mtime = time_t_from_FAT(fat_mtime);
+		archiveEntry.checksum = crc;
+		archiveEntry.method = (uint)zipMethod;
+		archiveEntry.flags = NEEDS_LFH_FIXUP;
+
+		// return 0-terminated copy of filename
+		const char* fn = (const char*)this + sizeof(CDFH); // not 0-terminated!
+		char buf[PATH_MAX];	// path_Pool()->UniqueCopy requires a 0-terminated string
+		cpu_memcpy(buf, fn, fn_len*sizeof(char));
+		buf[fn_len] = '\0';
+		pathname = path_Pool()->UniqueCopy(buf);
+
+		cdfhSize = sizeof(CDFH) + fn_len + e_len + c_len;
+	}
+
+private:
+	u32 m_magic;
+	u32 m_x1;			// versions
+	u16 m_flags;
+	u16 m_method;
+	u32 m_fat_mtime;	// last modified time (DOS FAT format)
+	u32 m_crc;
+	u32 m_csize;
+	u32 m_usize;
+	u16 m_fn_len;
+	u16 m_e_len;
+	u16 m_c_len;
+	u32 m_x2;			// spanning
+	u32 m_x3;			// attributes
+	u32 m_lfh_ofs;
+};
+
+cassert(sizeof(CDFH) == 46);
+
+
+class ECDR
+{
+public:
+	void Init(uint cd_numEntries, off_t cd_ofs, size_t cd_size)
+	{
+		m_magic         = ecdr_magic;
+		memset(m_x1, 0, sizeof(m_x1));
+		m_cd_numEntries = to_le16(u16_from_larger(cd_numEntries));
+		m_cd_size       = to_le32(u32_from_larger(cd_size));
+		m_cd_ofs        = to_le32(u32_from_larger(cd_ofs));
+		m_comment_len   = to_le16(0);
+	}
+
+	void Decompose(uint& cd_numEntries, off_t& cd_ofs, size_t& cd_size) const
+	{
+		cd_numEntries = (uint)read_le16(&m_cd_numEntries);
+		cd_ofs    = (off_t)read_le32(&m_cd_ofs);
+		cd_size  = (size_t)read_le32(&m_cd_size);
+	}
+
+private:
+	u32 m_magic;
+	u8 m_x1[6];	// multiple-disk support
+	u16 m_cd_numEntries;
+	u32 m_cd_size;
+	u32 m_cd_ofs;
+	u16 m_comment_len;
+};
+
+cassert(sizeof(ECDR) == 22);
+
+#pragma pack(pop)
+
+
+//-----------------------------------------------------------------------------
+
+/**
+ * scan buffer for a Zip file record.
+ *
+ * @param start position within buffer
+ * @param magic signature of record
+ * @param recordSize size of record (including signature)
+ * @return pointer to record within buffer or 0 if not found.
+ **/
+static const u8* zip_FindRecord(const u8* buf, size_t size, const u8* start, u32 magic, size_t recordSize)
+{
+	// (don't use <start> as the counter - otherwise we can't tell if
+	// scanning within the buffer was necessary.)
+	for(const u8* p = start; p <= buf+size-recordSize; p++)
+	{
+		// found it
+		if(*(u32*)p == magic)
+		{
+			debug_assert(p == start);	// otherwise, the archive is a bit broken
+			return p;
+		}
+	}
+
+	// passed EOF, didn't find it.
+	// note: do not warn - this happens in the initial ECDR search at
+	// EOF if the archive contains a comment field.
+	return 0;
+}
+
+
+// search for ECDR in the last <maxScanSize> bytes of the file.
+// if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
+// return INFO::OK, otherwise IO error or ERR::CORRUPTED.
+static LibError zip_ReadECDR(const File_Posix& file, off_t fileSize, IoBuf& buf, size_t maxScanSize, uint& cd_numEntries, off_t& cd_ofs, size_t& cd_size)
+{
+	// don't scan more than the entire file
+	const size_t scanSize = std::min(maxScanSize, (size_t)fileSize);
+
+	// read desired chunk of file into memory
+	const off_t ofs = fileSize - (off_t)scanSize;
+	RETURN_ERR(io_Read(file, ofs, buf, scanSize));
+
+	// look for ECDR in buffer
+	const u8* start = (const u8*)buf.get();
+	const ECDR* ecdr = (const ECDR*)zip_FindRecord(start, scanSize, start, ecdr_magic, sizeof(ECDR));
+	if(!ecdr)
+		WARN_RETURN(INFO::CANNOT_HANDLE);
+
+	ecdr->Decompose(cd_numEntries, cd_ofs, cd_size);
+	return INFO::OK;
+}
+
+
+static LibError zip_LocateCentralDirectory(const File_Posix& file, off_t fileSize, off_t& cd_ofs, uint& cd_numEntries, size_t& cd_size)
+{
+	const size_t maxScanSize = 66000u;	// see below
+	IoBuf buf = io_buf_Allocate(maxScanSize);
+
+	// expected case: ECDR at EOF; no file comment
+	LibError ret = zip_ReadECDR(file, fileSize, buf, sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
+	if(ret == INFO::OK)
+		return INFO::OK;
+	// worst case: ECDR precedes 64 KiB of file comment
+	ret = zip_ReadECDR(file, fileSize, buf, maxScanSize, cd_numEntries, cd_ofs, cd_size);
+	if(ret == INFO::OK)
+		return INFO::OK;
+
+	// both ECDR scans failed - this is not a valid Zip file.
+	RETURN_ERR(io_Read(file, 0, buf, sizeof(LFH)));
+	// the Zip file has an LFH but lacks an ECDR. this can happen if
+	// the user hard-exits while an archive is being written.
+	// notes:
+	// - return ERR::CORRUPTED so VFS will not include this file.
+	// - we could work around this by scanning all LFHs, but won't bother
+	//   because it'd be slow.
+	// - do not warn - the corrupt archive will be deleted on next
+	//   successful archive builder run anyway.
+	if(zip_FindRecord(buf.get(), sizeof(LFH), buf.get(), lfh_magic, sizeof(LFH)))
+		return ERR::CORRUPTED;	// NOWARN
+	// totally bogus
+	else
+		WARN_RETURN(ERR::ARCHIVE_UNKNOWN_FORMAT);
+}
+
+
+//-----------------------------------------------------------------------------
+// ArchiveReader_Zip
+//-----------------------------------------------------------------------------
+
+static Filesystem_Posix fsPosix;
+
+class ArchiveReader_Zip : public IArchiveReader
+{
+public:
+	ArchiveReader_Zip(const char* pathname)
+	{
+		m_file.Open(pathname, 'r');
+		
+		FileInfo fileInfo;
+		fsPosix.GetFileInfo(pathname, fileInfo);
+		m_fileSize = fileInfo.Size();
+		debug_assert(m_fileSize >= sizeof(LFH)+sizeof(CDFH)+sizeof(ECDR));
+	}
+
+	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData)
+	{
+		// locate and read Central Directory
+		off_t cd_ofs; uint cd_numEntries; size_t cd_size;
+		RETURN_ERR(zip_LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
+		IoBuf buf = io_buf_Allocate(cd_size);
+		RETURN_ERR(io_Read(m_file, cd_ofs, buf, cd_size));
+		const u8* cd = (const u8*)buf.get();
+
+		m_entries.reserve(cd_numEntries);
+
+		// iterate over Central Directory
+		const u8* pos = cd;
+		for(uint i = 0; i < cd_numEntries; i++)
+		{
+			// scan for next CDFH
+			CDFH* cdfh = (CDFH*)zip_FindRecord(cd, cd_size, pos, cdfh_magic, sizeof(CDFH));
+			if(!cdfh)
+				WARN_RETURN(ERR::CORRUPTED);
+
+			ArchiveEntry archiveEntry;
+			const char* pathname;
+			size_t cdfhSize;
+			cdfh->Decompose(archiveEntry, pathname, cdfhSize);
+
+			m_entries.push_back(archiveEntry);
+			cb(pathname, m_entries.back(), cbData);
+
+			pos += cdfhSize;
+		}
+
+		return INFO::OK;
+	}
+
+	virtual LibError LoadFile(ArchiveEntry& archiveEntry, u8* fileContents) const
+	{
+		if((archiveEntry.flags & NEEDS_LFH_FIXUP) != 0)
+		{
+			FixupEntry(archiveEntry);
+			archiveEntry.flags &= ~NEEDS_LFH_FIXUP;
+		}
+
+		boost::shared_ptr<ICodec> codec;
+		switch(archiveEntry.method)
+		{
+		case ZIP_METHOD_NONE:
+			codec = CreateCodec_ZLibNone();
+			break;
+		case ZIP_METHOD_DEFLATE:
+			codec = CreateDecompressor_ZLibDeflate();
+			break;
+		default:
+			WARN_RETURN(ERR::ARCHIVE_UNKNOWN_METHOD);
+		}
+
+		Stream stream(codec);
+		stream.SetOutputBuffer(fileContents, archiveEntry.usize);
+		RETURN_ERR(io_Read(m_file, archiveEntry.ofs, IO_BUF_TEMP, archiveEntry.csize, FeedStream, (uintptr_t)&stream));
+		RETURN_ERR(stream.Finish());
+		debug_assert(archiveEntry.checksum == stream.Checksum());
+
+		return INFO::OK;
+	}
+
+private:
+	struct LFH_Copier
+	{
+		u8* lfh_dst;
+		size_t lfh_bytes_remaining;
+	};
+
+	// this code grabs an LFH struct from file block(s) that are
+	// passed to the callback. usually, one call copies the whole thing,
+	// but the LFH may straddle a block boundary.
+	//
+	// rationale: this allows using temp buffers for zip_fixup_lfh,
+	// which avoids involving the file buffer manager and thus
+	// avoids cluttering the trace and cache contents.
+	static LibError lfh_copier_cb(uintptr_t cbData, const u8* block, size_t size, size_t& bytesProcessed)
+	{
+		LFH_Copier* p = (LFH_Copier*)cbData;
+
+		debug_assert(size <= p->lfh_bytes_remaining);
+		cpu_memcpy(p->lfh_dst, block, size);
+		p->lfh_dst += size;
+		p->lfh_bytes_remaining -= size;
+
+		bytesProcessed = size;
+		return INFO::CB_CONTINUE;
+	}
+
+	/**
+	 * fix up archiveEntry's offset within the archive.
+	 * called by archive_LoadFile iff NEEDS_LFH_FIXUP is set.
+	 * side effects: adjusts archiveEntry.ofs.
+	 *
+	 * ensures <ent.ofs> points to the actual file contents; it is initially
+	 * the offset of the LFH. we cannot use CDFH filename and extra field
+	 * lengths to skip past LFH since that may not mirror CDFH (has happened).
+	 *
+	 * this is called at file-open time instead of while mounting to
+	 * reduce seeks: since reading the file will typically follow, the
+	 * block cache entirely absorbs the IO cost.
+	 **/
+	void FixupEntry(ArchiveEntry& archiveEntry) const
+	{
+		// performance note: this ends up reading one file block, which is
+		// only in the block cache if the file starts in the same block as a
+		// previously read file (i.e. both are small).
+		LFH lfh;
+		LFH_Copier params = { (u8*)&lfh, sizeof(LFH) };
+		THROW_ERR(io_Read(m_file, archiveEntry.ofs, IO_BUF_TEMP, sizeof(LFH), lfh_copier_cb, (uintptr_t)&params));
+
+		archiveEntry.ofs += (off_t)lfh.Size();
+	}
+
+	File_Posix m_file;
+	off_t m_fileSize;
+	std::vector<ArchiveEntry> m_entries;
+};
+
+
+boost::shared_ptr<IArchiveReader> CreateArchiveReader_Zip(const char* archivePathname)
+{
+	return boost::shared_ptr<IArchiveReader>(new ArchiveReader_Zip(archivePathname));
+}
+
+
+//-----------------------------------------------------------------------------
+// ArchiveWriterZip
+//-----------------------------------------------------------------------------
+
+static bool IsFileTypeIncompressible(const char* extension)
+{
+	// file extensions that we don't want to compress
+	static const char* incompressibleExtensions[] =
+	{
+		"zip", "rar",
+		"jpg", "jpeg", "png", 
+		"ogg", "mp3"
+	};
+
+	for(uint i = 0; i < ARRAY_SIZE(incompressibleExtensions); i++)
+	{
+		if(!strcasecmp(extension, incompressibleExtensions[i]))
+			return true;
+	}
+
+	return false;
+}
+
+
+class ArchiveWriter_Zip : public IArchiveWriter
+{
+public:
+	ArchiveWriter_Zip(const char* archivePathname)
+		: m_fileSize(0)
+		, m_numEntries(0)
+	{
+		THROW_ERR(m_file.Open(archivePathname, 'w'));
+		THROW_ERR(pool_create(&m_cdfhPool, 10*MiB, 0));
+	}
+
+	~ArchiveWriter_Zip()
+	{
+		const size_t cd_size = m_cdfhPool.da.pos;
+
+		// append an ECDR to the CDFH list (this allows us to
+		// write out both to the archive file in one burst)
+		ECDR* ecdr = (ECDR*)pool_alloc(&m_cdfhPool, sizeof(ECDR));
+		if(ecdr)
+		{
+			ecdr->Init(m_numEntries, m_fileSize, cd_size);
+			io_Write(m_file, m_fileSize, m_cdfhPool.da.base, cd_size+sizeof(ECDR));
+		}
+
+		(void)pool_destroy(&m_cdfhPool);
+	}
+
+	LibError AddFile(const char* pathname)
+	{
+		FileInfo fileInfo;
+		RETURN_ERR(fsPosix.GetFileInfo(pathname, fileInfo));
+		const off_t usize = fileInfo.Size();
+		// skip 0-length files.
+		// rationale: zip.cpp needs to determine whether a CDFH entry is
+		// a file or directory (the latter are written by some programs but
+		// not needed - they'd only pollute the file table).
+		// it looks like checking for usize=csize=0 is the safest way -
+		// relying on file attributes (which are system-dependent!) is
+		// even less safe.
+		// we thus skip 0-length files to avoid confusing them with directories.
+		if(!usize)
+			return INFO::SKIPPED;
+
+		File_Posix file;
+		RETURN_ERR(file.Open(pathname, 'r'));
+
+		// choose method and the corresponding codec
+		ZipMethod zipMethod;
+		boost::shared_ptr<ICodec> codec;
+		if(IsFileTypeIncompressible(pathname))
+		{
+			zipMethod = ZIP_METHOD_NONE;
+			codec = CreateCodec_ZLibNone();
+		}
+		else
+		{
+			zipMethod = ZIP_METHOD_DEFLATE;
+			codec = CreateCompressor_ZLibDeflate();
+		}
+
+		// allocate memory
+		const size_t pathnameLength = strlen(pathname);
+		const size_t csizeMax = codec.get()->MaxOutputSize(usize);
+		IoBuf buf = io_buf_Allocate(sizeof(LFH) + pathnameLength + csizeMax);
+
+		// read and compress file contents
+		size_t csize; u32 checksum;
+		{
+			u8* cdata = (u8*)buf.get() + sizeof(LFH) + pathnameLength;
+			Stream stream(codec);
+			stream.SetOutputBuffer(cdata, csizeMax);
+			RETURN_ERR(io_Read(file, 0, IO_BUF_TEMP, usize, FeedStream, (uintptr_t)&stream));
+			RETURN_ERR(stream.Finish());
+			csize = stream.OutSize();
+			checksum = stream.Checksum();
+		}
+
+		ArchiveEntry archiveEntry(m_fileSize, usize, (off_t)csize, fileInfo.MTime(), checksum, zipMethod, 0);
+
+		// build LFH
+		{
+			LFH* lfh = (LFH*)buf.get();
+			lfh->Init(archiveEntry, pathname, pathnameLength);
+		}
+
+		// write to LFH, pathname and cdata to file
+		const size_t packageSize = sizeof(LFH) + pathnameLength + csize;
+		RETURN_ERR(io_Write(m_file, m_fileSize, buf, packageSize));
+		m_fileSize += (off_t)packageSize;
+
+		// append a CDFH to the central dir (in memory)
+		// .. note: pool_alloc may round size up for padding purposes.
+		const size_t prev_pos = m_cdfhPool.da.pos;
+		const size_t cdfhSize = sizeof(CDFH) + pathnameLength;
+		CDFH* cdfh = (CDFH*)pool_alloc(&m_cdfhPool, cdfhSize);
+		if(!cdfh)
+			WARN_RETURN(ERR::NO_MEM);
+		const size_t slack = m_cdfhPool.da.pos - prev_pos - cdfhSize;
+		cdfh->Init(archiveEntry, pathname, pathnameLength, slack);
+
+		m_numEntries++;
+
+		return INFO::OK;
+	}
+
+private:
+	File_Posix m_file;
+	off_t m_fileSize;
+
+	Pool m_cdfhPool;
+	uint m_numEntries;
+};
+
+boost::shared_ptr<IArchiveWriter> CreateArchiveWriter_Zip(const char* archivePathname)
+{
+	return boost::shared_ptr<IArchiveWriter>(new ArchiveWriter_Zip(archivePathname));
+}

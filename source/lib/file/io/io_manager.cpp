@@ -11,8 +11,6 @@
 #include "precompiled.h"
 #include "io_manager.h"
 
-#include <boost/shared_ptr.hpp>
-
 #include "../posix/io_posix.h"
 #include "../file_stats.h"
 #include "block_cache.h"
@@ -48,12 +46,17 @@
 // (apparently since NTFS files are sector-padded anyway?)
 
 
-LibError io_InvokeCallback(const u8* block, size_t size, IoCallback cb, uintptr_t cbData, size_t& bytesProcessed)
+// helper routine used by functions that call back to a IoCallback.
+//
+// bytesProcessed is 0 if return value != { INFO::OK, INFO::CB_CONTINUE }
+// note: don't abort if = 0: zip callback may not actually
+// output anything if passed very little data.
+static LibError InvokeCallback(const u8* block, size_t size, IoCallback cb, uintptr_t cbData, size_t& bytesProcessed)
 {
 	if(cb)
 	{
 		stats_cb_start();
-		LibError ret = cb(cbData, block, size, &bytesProcessed);
+		LibError ret = cb(cbData, block, size, bytesProcessed);
 		stats_cb_finish();
 
 		// failed - reset byte count in case callback didn't
@@ -78,7 +81,7 @@ class BlockIo
 {
 public:
 	BlockIo()
-		: m_blockId(), cachedBlock(0), tempBlock(0), m_posixIo()
+		: m_blockId(), m_cachedBlock(0), m_tempBlock(0), m_posixIo()
 	{
 	}
 
@@ -87,8 +90,7 @@ public:
 		m_blockId = BlockId(file.Pathname(), ofs);
 
 		// block already available in cache?
-		cachedBlock = s_blockCache.Retrieve(m_blockId);
-		if(cachedBlock)
+		if(s_blockCache.Retrieve(m_blockId, m_cachedBlock))
 		{
 			stats_block_cache(CR_HIT);
 			return INFO::OK;
@@ -99,16 +101,16 @@ public:
 
 		// use a temporary block if not writing to a preallocated buffer.
 		if(!buf)
-			buf = tempBlock = s_blockCache.Reserve(m_blockId);
+			buf = m_tempBlock = s_blockCache.Reserve(m_blockId);
 
 		return m_posixIo.Issue(file, ofs, buf, size);
 	}
 
 	LibError WaitUntilComplete(const u8*& block, size_t& blockSize)
 	{
-		if(cachedBlock)
+		block = m_cachedBlock.get();
+		if(block)
 		{
-			block = (u8*)cachedBlock;
 			blockSize = BLOCK_SIZE;
 			return INFO::OK;
 		}
@@ -118,17 +120,17 @@ public:
 
 	void Discard()
 	{
-		if(cachedBlock)
+		if(m_cachedBlock)
 		{
 			s_blockCache.Release(m_blockId);
-			cachedBlock = 0;
+			m_cachedBlock = 0;
 			return;
 		}
 
-		if(tempBlock)
+		if(m_tempBlock)
 		{
 			s_blockCache.MarkComplete(m_blockId);
-			tempBlock = 0;
+			m_tempBlock = 0;
 		}
 	}
 
@@ -136,9 +138,9 @@ private:
 	static BlockCache s_blockCache;
 
 	BlockId m_blockId;
-	IoBuf cachedBlock;
+	IoBuf m_cachedBlock;
 
-	IoBuf tempBlock;
+	IoBuf m_tempBlock;
 
 	Io_Posix m_posixIo;
 };
@@ -197,7 +199,7 @@ private:
 
 		// we have useable data from a previous temp buffer,
 		// but it needs to be copied into the user's buffer
-		if(blockIo.cachedBlock && pbuf != IO_BUF_TEMP)
+		if(blockIo.m_cachedBlock && pbuf != IO_BUF_TEMP)
 			cpu_memcpy((char*)*pbuf+ofs_misalign+m_totalTransferred, block, blockSize);
 
 		m_totalTransferred += blockSize;
@@ -350,3 +352,11 @@ size_t size;
 	//RingBuf<BlockIo, MAX_PENDING_IOS> queue;
 	std::deque<BlockIo> queue;
 };
+
+LibError io(File_Posix& file, off_t ofs, IoBuf buf, size_t size, IoCallback cb, uintptr_t cbData)
+{
+	debug_printf("IO| size=%d\n", size);
+
+
+	return ERR::NOT_IMPLEMENTED;
+}

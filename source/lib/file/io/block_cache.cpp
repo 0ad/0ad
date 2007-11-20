@@ -25,9 +25,9 @@ BlockId::BlockId()
 
 BlockId::BlockId(const char* atom_fn, off_t ofs)
 {
-	debug_assert(ofs <= (u64)blockSize * 0xFFFFFFFF);	// ensure value fits in m_blockIndex
+	debug_assert(ofs <= (u64)BLOCK_SIZE * 0xFFFFFFFF);	// ensure value fits in m_blockIndex
 	m_atom_fn = atom_fn;	// unique (by definition)
-	m_blockIndex = (u32)(ofs / blockSize);
+	m_blockIndex = (u32)(ofs / BLOCK_SIZE);
 }
 
 bool BlockId::operator==(const BlockId& rhs) const
@@ -43,7 +43,16 @@ bool BlockId::operator!=(const BlockId& rhs) const
 
 //-----------------------------------------------------------------------------
 
-typedef LF_RefCountedMemRange Block;
+struct Block
+{
+	Block()
+	{
+		buf = io_buf_Allocate(BLOCK_SIZE);
+	}
+
+	IoBuf buf;
+	LF_ReferenceCounter refs;
+};
 
 class BlockManager
 {
@@ -51,14 +60,6 @@ public:
 	BlockManager(size_t numBlocks)
 		: m_ids(numBlocks), m_blocks(numBlocks), m_oldestIndex(0)
 	{
-		for(size_t i = 0; i < m_blocks.size(); i++)
-			m_blocks[i].mem = (void*)io_buf_Allocate(blockSize);
-	}
-
-	~BlockManager()
-	{
-		for(size_t i = 0; i < m_blocks.size(); i++)
-			io_buf_Deallocate((IoBuf)m_blocks[i].mem, blockSize);
 	}
 
 	// (linear search is ok since we only expect to manage a few blocks)
@@ -123,7 +124,7 @@ class BlockCache::Impl
 {
 public:
 	Impl(size_t cacheSize)
-		: m_blockManager(cacheSize / blockSize)
+		: m_blockManager(cacheSize / BLOCK_SIZE)
 	{
 	}
 
@@ -134,10 +135,10 @@ public:
 		Block* block = m_blockManager.AcquireOldestAvailableBlock(id);
 
 #if CONFIG_READ_ONLY_CACHE
-		mprotect(block->mem, block->size, PROT_WRITE|PROT_READ);
+		mprotect((void*)block->buf.get(), BLOCK_SIZE, PROT_WRITE|PROT_READ);
 #endif
 
-		return (IoBuf)block->mem;
+		return block->buf;
 	}
 
 	void MarkComplete(BlockId id)
@@ -148,20 +149,21 @@ public:
 		block->refs.RelinquishExclusiveAccess();
 
 #if CONFIG_READ_ONLY_CACHE
-		mprotect(block.mem, block.size, PROT_READ);
+		mprotect((void*)block->buf.get(), BLOCK_SIZE, PROT_READ);
 #endif
 	}
 
-	IoBuf Retrieve(BlockId id)
+	bool Retrieve(BlockId id, IoBuf& buf)
 	{
 		Block* block = m_blockManager.Find(id);
 		if(!block)		// not found
-			return 0;
+			return false;
 
-		if(!block->refs.AddReference())	// contents are not yet valid
-			return 0;					// (this can happen due to multithreaded IOs)
+		if(!block->refs.AddReference())	// contents are not yet valid (can happen due to multithreaded IOs)
+			return false;
 
-		return (IoBuf)block->mem;
+		buf = block->buf;
+		return true;
 	}
 
 	void Release(BlockId id)
@@ -201,9 +203,9 @@ void BlockCache::MarkComplete(BlockId id)
 	impl.get()->Reserve(id);
 }
 
-IoBuf BlockCache::Retrieve(BlockId id)
+bool BlockCache::Retrieve(BlockId id, IoBuf& buf)
 {
-	return impl.get()->Retrieve(id);
+	return impl.get()->Retrieve(id, buf);
 }
 
 void BlockCache::Release(BlockId id)
