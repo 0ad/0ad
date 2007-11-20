@@ -97,7 +97,7 @@ extern void ah_override_gl_upload_caps(void);
  * if implementing via static storage, be sure to guarantee reentrancy
  * (e.g. by only filling the string once).
  * must be callable at any time - in particular, before VFS init.
- * this means file_make_full_native_path cannot be used; it is best
+ * this means path_MakeAbsolute cannot be used; it is best
  * to specify a path relative to sys_get_executable_name.
  *
  * @return full native path; must end with directory separator (e.g. '/').

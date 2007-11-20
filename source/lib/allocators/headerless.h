@@ -11,8 +11,6 @@
 #ifndef INCLUDED_HEADERLESS
 #define INCLUDED_HEADERLESS
 
-#include <boost/shared_ptr.hpp>
-
 /**
  * (header-less) pool-based heap allocator
  * provides Allocate and Deallocate without requiring in-band headers;

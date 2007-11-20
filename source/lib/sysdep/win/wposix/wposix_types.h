@@ -62,7 +62,7 @@ typedef long ssize_t;
 //
 
 // Win32 MAX_PATH is 260; our number may be a bit more efficient.
-#define PATH_MAX 256
+#define PATH_MAX 256u
 
 #if OS_WIN
 # ifndef SIZE_MAX // VC2005 already defines this in limits.h

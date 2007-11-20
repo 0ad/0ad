@@ -223,12 +223,4 @@ private:
 	volatile uintptr_t m_status;
 };
 
-
-struct LF_RefCountedMemRange
-{
-	void* mem;
-	size_t size;
-	LF_ReferenceCounter refs;
-};
-
 #endif	// #ifndef INCLUDED_LOCKFREE

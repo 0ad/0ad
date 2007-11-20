@@ -21,6 +21,8 @@
 #ifndef INCLUDED_PATH_UTIL
 #define INCLUDED_PATH_UTIL
 
+#include "lib/allocators/string_pool.h"
+
 #include "posix/posix_types.h"	// PATH_MAX
 
 
@@ -102,8 +104,10 @@ enum PathAppendFlags
  * @param flags see PathAppendFlags.
  * @return LibError
  **/
-extern LibError path_append(char* dst, const char* path1, const char* path2,
-	uint flags = 0);
+extern LibError path_append(char* dst, const char* path1, const char* path2, uint flags = 0);
+
+// same as path_append, but returns a unique pointer to the result
+extern const char* path_append2(const char* path1, const char* path2, uint flags);
 
 /**
  * at the start of a path, replace the given substring with another.
@@ -155,6 +159,8 @@ extern void path_strip_fn(char* path);
  * note: implementation via path_copy and path_strip_fn.
  **/
 extern void path_dir_only(const char* path, char* dir);
+
+extern const char* path_dir_only2(const char* path);
 
 /**
  * get filename's extension.
@@ -228,5 +234,13 @@ extern void path_package_copy(PathPackage* pp_dst, const PathPackage* pp_src);
  * @return LibError
  **/
 extern LibError path_package_append_file(PathPackage* pp, const char* path);
+
+
+//-----------------------------------------------------------------------------
+
+/**
+ * @return a shared instance of a StringPool (used to store pathnames).
+ **/
+extern StringPool* path_Pool();
 
 #endif	// #ifndef INCLUDED_PATH_UTIL

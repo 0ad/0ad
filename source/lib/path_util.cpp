@@ -11,8 +11,8 @@
 #include "precompiled.h"
 #include "path_util.h"
 
-#include <string.h>
-#include <errno.h>
+#include <cstring>
+#include <cerrno>
 
 
 ERROR_ASSOCIATE(ERR::PATH_LENGTH, "Path exceeds PATH_MAX characters", ENAMETOOLONG);
@@ -178,15 +178,24 @@ LibError path_append(char* dst, const char* path1, const char* path2, uint flags
 	if(total_len > PATH_MAX)
 		WARN_RETURN(ERR::PATH_LENGTH);
 
-	strcpy(dst, path1);	// safe
+	SAFE_STRCPY(dst, path1);
 	dst += len1;
 	if(need_separator)
 		*dst++ = '/';
-	strcpy(dst, path2);	// safe
+	SAFE_STRCPY(dst, path2);
 	if(need_terminator)
-		strcpy(dst+len2, "/");	// safe
+		SAFE_STRCPY(dst+len2, "/");
 
 	return INFO::OK;
+}
+
+
+const char* path_append2(const char* path1, const char* path2, uint flags)
+{
+	char dst[PATH_MAX];
+	LibError ret = path_append(dst, path1, path2, flags);
+	debug_assert(ret == INFO::OK);
+	return path_Pool()->UniqueCopy(dst);
 }
 
 
@@ -274,10 +283,17 @@ void path_strip_fn(char* path)
 // fill <dir> with the directory path portion of <path>
 // ("" if root dir, otherwise ending with '/').
 // note: copies to <dir> and proceeds to path_strip_fn it.
-void path_dir_only(const char* path, char* dir)
+void path_dir_only(const char* pathname, char* path)
 {
-	path_copy(dir, path);
-	path_strip_fn(dir);
+	path_copy(path, pathname);
+	path_strip_fn(path);
+}
+
+const char* path_dir_only2(const char* pathname)
+{
+	char path[PATH_MAX];
+	path_dir_only(pathname, path);
+	return path_Pool()->UniqueCopy(path);
 }
 
 
@@ -405,4 +421,15 @@ LibError path_package_append_file(PathPackage* pp, const char* path)
 {
 	CHECK_ERR(strcpy_s(pp->end, pp->chars_left, path));
 	return INFO::OK;
+}
+
+
+//-----------------------------------------------------------------------------
+
+StringPool* path_Pool()
+{
+	static StringPool* instance;
+	if(!instance)
+		instance = new StringPool(8*MiB);
+	return instance;
 }
