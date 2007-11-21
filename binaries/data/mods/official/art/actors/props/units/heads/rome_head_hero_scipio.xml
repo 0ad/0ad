@@ -4,10 +4,10 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
-      <colour>128 100 60</colour>
-      <mesh>props/helmet/head_vercingetorix.pmd</mesh>
-      <texture>props/head/celt_verc.dds</texture>
+    <variant frequency="100" name="base">
+      <colour>234 234 234</colour>
+      <mesh>props/head_hero_a.pmd</mesh>
+      <texture>props/head/rome_hero_scipio.dds</texture>
     </variant>
   </group>
 
