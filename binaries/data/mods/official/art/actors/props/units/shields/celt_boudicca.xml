@@ -4,12 +4,20 @@
   <castshadow/>
 
   <group>
-    <variant frequency="10" name="c">
-      <mesh>props/shield/oval_a_f.pmd</mesh>
+    <variant name="Base">
+      <mesh>props/shield/scutum_c_f.pmd</mesh>
       <props>
-        <prop actor="props/units/shields/oval_back.xml" attachpoint="back"/>
+        <prop actor="props/units/shields/scutum_back.xml" attachpoint="back"/>
       </props>
-      <texture>props/shield/celt_oval2_c.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="shield-a">
+      <texture>props/shield/celt_misc_a.dds</texture>
+    </variant>
+    <variant name="shield-b">
+      <texture>props/shield/celt_misc_b.dds</texture>
     </variant>
   </group>
 
