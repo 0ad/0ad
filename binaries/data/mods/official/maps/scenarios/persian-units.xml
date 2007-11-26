@@ -3,29 +3,29 @@
 <Scenario>
 	<Environment>
 		<SkySet>default</SkySet>
-		<SunColour r="1.59766" g="1.59766" b="1.59766"/>
+		<SunColour r="1.81445" g="1.81445" b="1.81445"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.785398"/>
-		<TerrainAmbientColour r="0.447059" g="0.462745" b="0.513726"/>
-		<UnitsAmbientColour r="0.533333" g="0.545098" b="0.592157"/>
+		<TerrainAmbientColour r="0.32549" g="0.337255" b="0.4"/>
+		<UnitsAmbientColour r="0.384314" g="0.396078" b="0.443137"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>5</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
-				<Tint r="0.278431" g="0.298039" b="0.588235"/>
-				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
 				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="84.6223" y="94.4523" z="34.8452"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.523599"/>
+		<Position x="74.3393" y="52.8522" z="68.3275"/>
+		<Rotation angle="0.090489"/>
+		<Declination angle="0.596843"/>
 	</Camera>
 	<Entities>
 		<Entity uid="1">
@@ -97,20 +97,20 @@
 		<Entity uid="16">
 			<Template>pers_infantry_archer_a</Template>
 			<Player>1</Player>
-			<Position x="90.915" y="22.4" z="124.411"/>
+			<Position x="91.933" y="22.5289" z="125.717"/>
 			<Orientation angle="2.47714"/>
 		</Entity>
 		<Entity uid="17">
 			<Template>pers_infantry_archer_a</Template>
 			<Player>1</Player>
-			<Position x="92.6827" y="22.4" z="124.732"/>
-			<Orientation angle="-0.36548"/>
+			<Position x="84.0763" y="23.1006" z="98.2951"/>
+			<Orientation angle="-1.27803"/>
 		</Entity>
 		<Entity uid="19">
 			<Template>pers_infantry_archer_e</Template>
 			<Player>1</Player>
-			<Position x="96.4493" y="22.4" z="120.944"/>
-			<Orientation angle="2.35619"/>
+			<Position x="85.3279" y="23.2564" z="103.13"/>
+			<Orientation angle="-0.314682"/>
 		</Entity>
 		<Entity uid="20">
 			<Template>pers_infantry_archer_e</Template>
@@ -121,26 +121,26 @@
 		<Entity uid="22">
 			<Template>pers_super_infantry</Template>
 			<Player>1</Player>
-			<Position x="79.7447" y="23.0458" z="112.745"/>
+			<Position x="76.9815" y="22.8074" z="103.778"/>
 			<Orientation angle="2.69085"/>
 		</Entity>
 		<Entity uid="23">
 			<Template>pers_super_infantry</Template>
 			<Player>1</Player>
-			<Position x="82.1809" y="22.7471" z="112.853"/>
-			<Orientation angle="-0.676494"/>
+			<Position x="80.6844" y="22.8785" z="104.559"/>
+			<Orientation angle="-2.21092"/>
 		</Entity>
 		<Entity uid="24">
 			<Template>pers_super_infantry</Template>
 			<Player>1</Player>
-			<Position x="80.1939" y="23.1844" z="114.551"/>
-			<Orientation angle="0.458927"/>
+			<Position x="81.4096" y="22.6767" z="114.814"/>
+			<Orientation angle="0.0123985"/>
 		</Entity>
 		<Entity uid="38">
 			<Template>pers_infantry_javelinist_b</Template>
 			<Player>1</Player>
-			<Position x="87.503" y="25.8007" z="103.094"/>
-			<Orientation angle="-2.35949"/>
+			<Position x="84.7838" y="23.223" z="107.724"/>
+			<Orientation angle="-2.54176"/>
 		</Entity>
 		<Entity uid="40">
 			<Template>pers_infantry_javelinist_a</Template>
@@ -152,25 +152,13 @@
 			<Template>pers_infantry_javelinist_a</Template>
 			<Player>1</Player>
 			<Position x="92.2931" y="23.3842" z="105.71"/>
-			<Orientation angle="0.64317"/>
+			<Orientation angle="0.116184"/>
 		</Entity>
 		<Entity uid="43">
 			<Template>pers_infantry_javelinist_b</Template>
 			<Player>1</Player>
-			<Position x="85.6641" y="25.9132" z="103.252"/>
+			<Position x="86.5794" y="23.223" z="108.688"/>
 			<Orientation angle="0.344439"/>
-		</Entity>
-		<Entity uid="47">
-			<Template>fauna_elephant</Template>
-			<Player>1</Player>
-			<Position x="91.3956" y="22.4332" z="136.481"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="48">
-			<Template>fauna_elephant</Template>
-			<Player>1</Player>
-			<Position x="105.28" y="22.4394" z="140.32"/>
-			<Orientation angle="-2.13756"/>
 		</Entity>
 		<Entity uid="62">
 			<Template>pers_barracks</Template>
@@ -303,6 +291,108 @@
 			<Player>2</Player>
 			<Position x="127.117" y="22.9947" z="219.135"/>
 			<Orientation angle="-2.31588"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>pers_super_cavalry</Template>
+			<Player>0</Player>
+			<Position x="70.299" y="22.4" z="113.648"/>
+			<Orientation angle="0.867207"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>pers_super_cavalry</Template>
+			<Player>2</Player>
+			<Position x="77.0472" y="22.473" z="118.901"/>
+			<Orientation angle="2.33324"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>pers_super_cavalry</Template>
+			<Player>1</Player>
+			<Position x="74.7928" y="22.8074" z="106.552"/>
+			<Orientation angle="-2.3995"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>pers_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="88.9178" y="23.5565" z="103.728"/>
+			<Orientation angle="-2.80438"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>pers_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="90.4212" y="23.8544" z="101.631"/>
+			<Orientation angle="0.275548"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>pers_cavalry_archer_a</Template>
+			<Player>1</Player>
+			<Position x="82.7318" y="23.028" z="100.762"/>
+			<Orientation angle="-0.92022"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>pers_cavalry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="83.8318" y="23.1766" z="102.929"/>
+			<Orientation angle="3.11607"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>pers_cavalry_archer_e</Template>
+			<Player>1</Player>
+			<Position x="82.3346" y="23.05" z="105.502"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>pers_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="101.601" y="22.5706" z="114.418"/>
+			<Orientation angle="-2.56564"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>pers_cavalry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="104.218" y="22.4" z="113.361"/>
+			<Orientation angle="-2.41016"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>pers_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="106.366" y="22.4" z="112.209"/>
+			<Orientation angle="-2.27666"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>pers_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="96.4471" y="23.0001" z="105.98"/>
+			<Orientation angle="-2.44267"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>pers_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="99.1126" y="22.5392" z="104.926"/>
+			<Orientation angle="-2.43904"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>pers_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="81.0771" y="22.7174" z="111.95"/>
+			<Orientation angle="-2.41385"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>pers_cavalry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="92.1091" y="23.2167" z="97.7652"/>
+			<Orientation angle="-2.40618"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>pers_cavalry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="94.5547" y="22.8488" z="96.6822"/>
+			<Orientation angle="-2.36568"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>pers_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="82.0163" y="23.1925" z="107.706"/>
+			<Orientation angle="-2.31006"/>
 		</Entity>
 	</Entities>
 	<Nonentities>

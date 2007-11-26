@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_super_cavalry"
->
+<Entity	Parent="template_unit_super_cavalry">
 	<Traits>
 	
 		<Id>
@@ -15,8 +13,42 @@
 		
 		</Id>
 		
+		<Creation>
+			<Resource>
+ 				<Food>300</Food>
+				<Metal>200</Metal>
+ 			</Resource>
+		</Creation>		
+		<Armour>
+			<Hack>10.0</Hack>
+			<Pierce>15.0</Pierce>
+			<Crush>20.0</Crush>
+		</Armour>
+		<Health>
+			<Max>500</Max>
+		</Health>
+		
 	</Traits>
 
+	<Actions>
+ 		<Attack>
+			<Melee>
+				<Hack>25.0</Hack>
+				<Crush>30.0</Crush>
+			</Melee>
+			<Charge>
+				<Hack>75.0</Hack>
+				<Crush>90.0</Crush>
+			</Charge>		
+ 		</Attack>
+		
+		<Move>
+			<Speed>7.0</Speed>
+			<Run>
+				<Speed>14.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	<Actor>units/persians/super_unit_2.xml</Actor>
 
 </Entity>

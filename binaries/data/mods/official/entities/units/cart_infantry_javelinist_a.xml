@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="cart_infantry_javelinist_b"
->
+<Entity	Parent="cart_infantry_javelinist_b">
 	<Traits>
 
 		<Promotion>
@@ -12,4 +10,7 @@
 		</Promotion>
 		
 	</Traits>
+	
+	<Actor>units/carthaginians/infantry_javelinist_a.xml</Actor>
+
 </Entity>
