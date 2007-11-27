@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
         <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
@@ -28,10 +28,10 @@
   </group>
 
   <group>
-    <variant frequency="10" name="1">
+    <variant frequency="1" name="chainmail-1">
       <texture>skeletal/celt_isw_e_01.dds</texture>
     </variant>
-    <variant frequency="10" name="2">
+    <variant frequency="1" name="chainmail-2">
       <texture>skeletal/celt_isw_e_02.dds</texture>
     </variant>
   </group>
