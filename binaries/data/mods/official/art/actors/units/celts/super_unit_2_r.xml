@@ -8,7 +8,8 @@
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
-        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="10"/>
+        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="100"/>
       </animations>
       <mesh>skeletal/m_pants_c.pmd</mesh>
       <props>
