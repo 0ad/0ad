@@ -214,24 +214,21 @@ void TerrainOverlay::GetTileExtents(
 
 void TerrainOverlay::Render()
 {
-	if(g_ShowOverlay)
-	{
-		m_Terrain = g_Game->GetWorld()->GetTerrain();
+	m_Terrain = g_Game->GetWorld()->GetTerrain();
 
-		int min_i, min_j, max_i, max_j;
-		GetTileExtents(min_i, min_j, max_i, max_j);
-		// Clamp the min to 0, but the max to -1 - so tile -1 can never be rendered,
-		// but if unclamped_max<0 then no tiles at all will be rendered. And the same
-		// for the upper limit.
-		min_i = clamp(min_i, 0, (int)m_Terrain->GetTilesPerSide());
-		min_j = clamp(min_j, 0, (int)m_Terrain->GetTilesPerSide());
-		max_i = clamp(max_i, -1, (int)m_Terrain->GetTilesPerSide()-1);
-		max_j = clamp(max_j, -1, (int)m_Terrain->GetTilesPerSide()-1);
+	int min_i, min_j, max_i, max_j;
+	GetTileExtents(min_i, min_j, max_i, max_j);
+	// Clamp the min to 0, but the max to -1 - so tile -1 can never be rendered,
+	// but if unclamped_max<0 then no tiles at all will be rendered. And the same
+	// for the upper limit.
+	min_i = clamp(min_i, 0, (int)m_Terrain->GetTilesPerSide());
+	min_j = clamp(min_j, 0, (int)m_Terrain->GetTilesPerSide());
+	max_i = clamp(max_i, -1, (int)m_Terrain->GetTilesPerSide()-1);
+	max_j = clamp(max_j, -1, (int)m_Terrain->GetTilesPerSide()-1);
 
-		for (m_j = min_j; m_j <= max_j; ++m_j)
-			for (m_i = min_i; m_i <= max_i; ++m_i)
-				ProcessTile(m_i, m_j);
-	}
+	for (m_j = min_j; m_j <= max_j; ++m_j)
+		for (m_i = min_i; m_i <= max_i; ++m_i)
+			ProcessTile(m_i, m_j);
 }
 
 void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden)

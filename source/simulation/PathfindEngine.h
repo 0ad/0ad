@@ -51,10 +51,11 @@ public:
 	void drawTriangulation();
 
 	//Kai:added tile overlay for pathfinding
-	TriangulationTerrainOverlay triangulationOverlay;
+	TriangulationTerrainOverlay* triangulationOverlay;
 
 
 	CPathfindEngine();
+	~CPathfindEngine();
 
 	void RequestPath( HEntity entity, const CVector2D& destination, 
 		CEntityOrder::EOrderSource orderSource );

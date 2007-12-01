@@ -19,13 +19,25 @@
 
 
 
-CPathfindEngine::CPathfindEngine():OABBBOUNDREDUCTION(0.8),CIRCLEBOUNDREDUCTION(0.5),RADIUSINCREMENT(2.0)
+CPathfindEngine::CPathfindEngine() : triangulationOverlay(0),
+									OABBBOUNDREDUCTION(0.8),
+									CIRCLEBOUNDREDUCTION(0.5),
+									RADIUSINCREMENT(2.0)
 {
 	dcdtInitialized = false;
 	
-	
+	if (g_ShowPathfindingOverlay)
+		triangulationOverlay = new TriangulationTerrainOverlay();
 }
 
+CPathfindEngine::~CPathfindEngine()
+{
+	if (triangulationOverlay)
+	{
+		delete triangulationOverlay;
+		triangulationOverlay = 0;
+	}
+}
 
 //Todo:
 // 1; the bouncing problem with the fortress
@@ -169,9 +181,11 @@ void CPathfindEngine::drawTriangulation()
 
 		dcdtPathfinder.get_mesh_edges(&constrainedEdges, &unconstrainedEdges);
 
-		triangulationOverlay.setConstrainedEdges(constrainedEdges);
-		triangulationOverlay.setUnconstrainedEdges(unconstrainedEdges);
-		
+		if (triangulationOverlay)
+		{
+			triangulationOverlay->setConstrainedEdges(constrainedEdges);
+			triangulationOverlay->setUnconstrainedEdges(unconstrainedEdges);
+		}
 	}
 
 	
@@ -220,10 +234,10 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 			
 
 			//switch on/off triangulation drawing by command line arg "-showOverlay"
-			//it's guarded here to stop setting constrainedEdges and unconstrainedEdges in triangulationOverlay.
+			//it's guarded here to stop setting constrainedEdges and unconstrainedEdges in triangulationOverlay->
 			//(efficiency issue)
 			//the drawing is disable in the render() function in TerraiOverlay.cpp
-			if(g_ShowOverlay)
+			if(g_ShowPathfindingOverlay)
 			{
 				drawTriangulation();
 			}
@@ -264,7 +278,10 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 			
 
 			//set and draw the path on the terrain
-			triangulationOverlay.setCurrentPath(CurPath);
+			if (triangulationOverlay)
+			{
+				triangulationOverlay->setCurrentPath(CurPath);
+			}
 			
 			// Make the path take as few steps as possible by collapsing steps in the same direction together.
 			std::vector<CVector2D> path;

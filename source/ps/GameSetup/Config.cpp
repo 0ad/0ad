@@ -43,7 +43,7 @@ bool g_VSync = false;
 bool g_Quickstart = false;
 
 // flag to switch on drawing terrain overlays
-bool g_ShowOverlay = false;
+bool g_ShowPathfindingOverlay = false;
 
 // flag to switch on triangulation pathfinding
 bool g_TriPathfind = false;
@@ -166,7 +166,7 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 		g_ConfigDB.CreateValue(CFG_COMMAND, "vsync")->m_String = "true";
 
 	if (args.Has("showOverlay"))
-		g_ShowOverlay = true;
+		g_ShowPathfindingOverlay = true;
 
 	if (args.Has("triPathfind"))
 		g_TriPathfind = true;

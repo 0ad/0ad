@@ -233,7 +233,7 @@ void CEntity::removeObstacle()
 		g_Pathfinder.dcdtPathfinder.DeleteAbstraction();
 		g_Pathfinder.dcdtPathfinder.Abstract();
 
-		if(g_ShowOverlay)
+		if(g_ShowPathfindingOverlay)
 		{
 			g_Pathfinder.drawTriangulation();
 		}
