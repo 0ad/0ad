@@ -65,6 +65,13 @@ extern LibError path_component_validate(const char* name);
 extern bool path_is_dir_sep(char c);
 
 /**
+ * is the given path(name) a directory?
+ *
+ * @return bool
+ **/
+extern bool path_IsDirectory(const char* path);
+
+/**
  * is s2 a subpath of s1, or vice versa? (equal counts as subpath)
  *
  * @param s1, s2 comparand strings
@@ -107,7 +114,7 @@ enum PathAppendFlags
 extern LibError path_append(char* dst, const char* path1, const char* path2, uint flags = 0);
 
 // same as path_append, but returns a unique pointer to the result
-extern const char* path_append2(const char* path1, const char* path2, uint flags);
+extern const char* path_append2(const char* path1, const char* path2, uint flags = 0);
 
 /**
  * at the start of a path, replace the given substring with another.
@@ -121,6 +128,12 @@ extern const char* path_append2(const char* path1, const char* path2, uint flags
  * match <remove>.
  **/
 extern LibError path_replace(char* dst, const char* src, const char* remove, const char* replace);
+
+/**
+ * combination of path_name_only and path_dir_only2
+ * (more efficient than calling them separately)
+ **/
+extern void path_split(const char* pathname, const char** path, const char** name);
 
 
 /**
@@ -192,6 +205,7 @@ typedef LibError (*PathComponentCb)(const char* component, bool is_dir, uintptr_
 
 /**
  * call <cb> with <cbData> for each component in <path>.
+ *
  * @return LibError
  **/
 extern LibError path_foreach_component(const char* path, PathComponentCb cb, uintptr_t cbData);

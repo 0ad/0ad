@@ -38,6 +38,19 @@ bool path_is_dir_sep(char c)
 }
 
 
+bool path_IsDirectory(const char* path)
+{
+	if(path[0] == '\0')	// root dir
+		return true;
+
+	const char lastChar = path[strlen(path)-1];
+	if(path_is_dir_sep(lastChar))
+		return true;
+
+	return false;
+}
+
+
 // is s2 a subpath of s1, or vice versa?
 // (equal counts as subpath)
 bool path_is_subpath(const char* s1, const char* s2)
@@ -228,6 +241,27 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 
 // split paths into specific parts
 
+void path_split(const char* pathname, const char** ppath, const char** pname)
+{
+	const char* name = path_name_only(pathname);
+	if(pname)
+	{
+		if(name[0] == '\0')
+			*pname = 0;
+		else
+			*pname = path_Pool()->UniqueCopy(name);
+	}
+
+	if(ppath)
+	{
+		char pathnameCopy[PATH_MAX];
+		path_copy(pathnameCopy, pathname);
+
+		pathnameCopy[name-pathname] = '\0';	// strip filename
+		*ppath = path_Pool()->UniqueCopy(pathnameCopy);
+	}
+}
+
 // return pointer to the name component within path (i.e. skips over all
 // characters up to the last dir separator, if any).
 const char* path_name_only(const char* path)
@@ -309,7 +343,6 @@ const char* path_extension(const char* fn)
 }
 
 
-// call <cb> with <cbData> for each component in <path>.
 LibError path_foreach_component(const char* path_org, PathComponentCb cb, uintptr_t cbData)
 {
 	CHECK_PATH(path_org);

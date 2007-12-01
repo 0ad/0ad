@@ -41,12 +41,12 @@ struct Bucket
 
 	void* freelist;
 
-	size_t el_size : 16;
+	size_t el_size;
 
 	/**
 	 * records # buckets allocated; verifies the list of buckets is correct.
 	 **/
-	uint num_buckets : 16;
+	uint num_buckets;
 };
 
 

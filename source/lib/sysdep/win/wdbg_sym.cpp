@@ -218,7 +218,7 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 // stack walk
 //----------------------------------------------------------------------------
 
-static VOID (*pRtlCaptureContext)(PCONTEXT*);
+static VOID (*pRtlCaptureContext)(PCONTEXT);
 
 /*
 Subroutine linkage example code:
@@ -362,9 +362,16 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		{
 			__try
 			{
-				RaiseException(0xF001, 0, 0, 0);
+				// note: RaiseException apparently runs our filter in its
+				// context; this (kernel) stack frame is invalidated when
+				// it returns. we either have to do the stack walk from
+				// within the filter expression (could be done via recursion,
+				// but a bit hard to understand), or trigger an SEH exception
+				// by different means. we prefer the latter, although it may
+				// run afoul of sufficiently clever static analysis.
+				*(char*)0 = 0;	// intentional access violation
 			}
-			__except(context = (GetExceptionInformation())->ContextRecord, EXCEPTION_CONTINUE_EXECUTION)
+			__except(context = *GetExceptionInformation()->ContextRecord, EXCEPTION_CONTINUE_EXECUTION)
 			{
 			}
 		}
@@ -413,8 +420,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		// so we have to reset it and check for 0. *sigh*
 		SetLastError(0);
 		const HANDLE hThread = GetCurrentThread();
-		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext,
-			0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
+		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, pcontext, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
 		// note: don't use LibError_from_win32 because it raises a warning,
 		// and this "fails" commonly (when no stack frames are left).
 		err = ok? INFO::OK : ERR::FAIL;
