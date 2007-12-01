@@ -11,7 +11,7 @@
 #ifndef INCLUDED_STREAM
 #define INCLUDED_STREAM
 
-struct ICodec;
+#include "codec.h"
 
 // note: this is similar in function to std::vector, but we don't need
 // iterators etc. and would prefer to avoid initializing each byte.
@@ -62,7 +62,7 @@ private:
 class Stream
 {
 public:
-	Stream(boost::shared_ptr<ICodec> codec);
+	Stream(PICodec codec);
 
 	void SetOutputBuffer(u8* out, size_t outSize);
 
@@ -90,7 +90,7 @@ public:
 	}
 
 private:
-	boost::shared_ptr<ICodec> m_codec;
+	PICodec m_codec;
 	OutputBufferManager m_outputBufferManager;
 
 	size_t m_inConsumed;

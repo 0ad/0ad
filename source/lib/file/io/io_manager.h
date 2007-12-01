@@ -11,7 +11,7 @@
 #ifndef INCLUDED_IO_MANAGER
 #define INCLUDED_IO_MANAGER
 
-class File_Posix;
+#include "lib/file/posix/io_posix.h"	// File_Posix, IoBuf
 
 // called by file_io after a block IO has completed.
 // bytesProcessed must be set; file_io will return the sum of these values.

@@ -92,7 +92,7 @@ void stats_vfs_file_remove(size_t file_size)
 	vfs_size_total -= file_size;
 }
 
-
+// stats_vfs_init_* are currently unused
 void stats_vfs_init_start()
 {
 	timer_start();

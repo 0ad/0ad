@@ -11,7 +11,7 @@
 #ifndef INCLUDED_IO_POSIX
 #define INCLUDED_IO_POSIX
 
-#include "../io/io_buf.h"
+#include "lib/file/io/io_buf.h"
 
 // rationale for using aio instead of mmap:
 // - parallelism: instead of just waiting for the transfer to complete,

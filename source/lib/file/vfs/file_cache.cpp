@@ -11,9 +11,7 @@
 #include "precompiled.h"
 #include "file_cache.h"
 
-#include "path.h"
-#include "file_stats.h"
-#include "archive/trace.h"
+#include "lib/file/file_stats.h"
 #include "lib/cache_adt.h"				// Cache
 #include "lib/bits.h"					// round_up
 #include "lib/allocators/allocators.h"
@@ -52,8 +50,8 @@ class Allocator;
 class Deleter
 {
 public:
-	Deleter(size_t size, Allocator* allocator, const char* owner)
-		: m_size(size), m_allocator(allocator), m_owner(owner)
+	Deleter(size_t size, Allocator* allocator)
+		: m_size(size), m_allocator(allocator)
 	{
 	}
 
@@ -63,7 +61,6 @@ public:
 private:
 	size_t m_size;
 	Allocator* m_allocator;
-	const char* m_owner;
 };
 
 // >= sys_max_sector_size or else waio will have to realign.
@@ -80,7 +77,7 @@ public:
 	{
 	}
 
-	FileCacheData Allocate(size_t size, const char* owner)
+	FileCacheData Allocate(size_t size)
 	{
 		const size_t alignedSize = round_up(size, alignment);
 		stats_buf_alloc(size, alignedSize);
@@ -90,10 +87,10 @@ public:
 		m_checker.notify_alloc((void*)data, alignedSize);
 #endif
 
-		return FileCacheData(data, Deleter(size, this, owner));
+		return FileCacheData(data, Deleter(size, this));
 	}
 
-	void Deallocate(const u8* data, size_t size, const char* owner)
+	void Deallocate(const u8* data, size_t size)
 	{
 		void* const p = (void*)data;
 		const size_t alignedSize = round_up(size, alignment);
@@ -108,7 +105,6 @@ public:
 		m_allocator.Deallocate(p, alignedSize);
 
 		stats_buf_free();
-		trace_notify_free(owner);
 	}
 
 private:
@@ -122,7 +118,7 @@ private:
 
 void Deleter::operator()(const u8* data) const
 {
-	m_allocator->Deallocate(data, m_size, m_owner);
+	m_allocator->Deallocate(data, m_size);
 }
 
 
@@ -144,7 +140,7 @@ public:
 	{
 	}
 
-	FileCacheData Reserve(const char* vfsPathname, size_t size)
+	FileCacheData Reserve(size_t size)
 	{
 		// (this probably indicates a bug; caching 0-length files would
 		// have no benefit, anyway)
@@ -154,7 +150,7 @@ public:
 		// of space in a full cache)
 		for(;;)
 		{
-			FileCacheData data = m_allocator.Allocate(size, vfsPathname);
+			FileCacheData data = m_allocator.Allocate(size);
 			if(data.get())
 				return data;
 
@@ -212,9 +208,9 @@ FileCache::FileCache(size_t size)
 {
 }
 
-FileCacheData FileCache::Reserve(const char* vfsPathname, size_t size)
+FileCacheData FileCache::Reserve(size_t size)
 {
-	return impl.get()->Reserve(vfsPathname, size);
+	return impl.get()->Reserve(size);
 }
 
 void FileCache::Add(const char* vfsPathname, FileCacheData data, size_t size, uint cost)

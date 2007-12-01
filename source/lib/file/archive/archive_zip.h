@@ -11,10 +11,9 @@
 #ifndef INCLUDED_ARCHIVE_ZIP
 #define INCLUDED_ARCHIVE_ZIP
 
-struct IArchiveReader;
-boost::shared_ptr<IArchiveReader> CreateArchiveReader_Zip(const char* archivePathname);
+#include "archive.h"
 
-struct IArchiveWriter;
-extern boost::shared_ptr<IArchiveWriter> CreateArchiveWriter_Zip(const char* archivePathname);
+PIArchiveReader CreateArchiveReader_Zip(const char* archivePathname);
+PIArchiveWriter CreateArchiveWriter_Zip(const char* archivePathname);
 
 #endif	// #ifndef INCLUDED_ARCHIVE_ZIP

@@ -46,34 +46,6 @@
 // (apparently since NTFS files are sector-padded anyway?)
 
 
-// helper routine used by functions that call back to a IoCallback.
-//
-// bytesProcessed is 0 if return value != { INFO::OK, INFO::CB_CONTINUE }
-// note: don't abort if = 0: zip callback may not actually
-// output anything if passed very little data.
-static LibError InvokeCallback(const u8* block, size_t size, IoCallback cb, uintptr_t cbData, size_t& bytesProcessed)
-{
-	if(cb)
-	{
-		stats_cb_start();
-		LibError ret = cb(cbData, block, size, bytesProcessed);
-		stats_cb_finish();
-
-		// failed - reset byte count in case callback didn't
-		if(ret != INFO::OK && ret != INFO::CB_CONTINUE)
-			bytesProcessed = 0;
-
-		CHECK_ERR(ret);	// user might not have raised a warning; make sure
-		return ret;
-	}
-	// no callback to process data: raw = actual
-	else
-	{
-		bytesProcessed = size;
-		return INFO::CB_CONTINUE;
-	}
-}
-
 
 //-----------------------------------------------------------------------------
 
@@ -180,6 +152,34 @@ public:
 
 
 private:
+	// helper routine used by functions that call back to a IoCallback.
+	//
+	// bytesProcessed is 0 if return value != { INFO::OK, INFO::CB_CONTINUE }
+	// note: don't abort if = 0: zip callback may not actually
+	// output anything if passed very little data.
+	static LibError InvokeCallback(const u8* block, size_t size, IoCallback cb, uintptr_t cbData, size_t& bytesProcessed)
+	{
+		if(cb)
+		{
+			stats_cb_start();
+			LibError ret = cb(cbData, block, size, bytesProcessed);
+			stats_cb_finish();
+
+			// failed - reset byte count in case callback didn't
+			if(ret != INFO::OK && ret != INFO::CB_CONTINUE)
+				bytesProcessed = 0;
+
+			CHECK_ERR(ret);	// user might not have raised a warning; make sure
+			return ret;
+		}
+		// no callback to process data: raw = actual
+		else
+		{
+			bytesProcessed = size;
+			return INFO::CB_CONTINUE;
+		}
+	}
+
 	void wait(BlockIo& blockIo, u8*& block, size_t& blockSize)
 	{
 		LibError ret = blockIo.WaitUntilComplete(block, blockSize);

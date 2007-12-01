@@ -38,11 +38,11 @@ static bool IsDummyDirectory(const char* name)
 	return (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'));
 }
 
-/*virtual*/ LibError Filesystem_Posix::GetDirectoryEntries(const char* path, std::vector<FileInfo>* files, std::vector<const char*>* subdirectories)
+/*virtual*/ LibError Filesystem_Posix::GetDirectoryEntries(const char* path, FileInfos* files, Directories* subdirectories) const
 {
 	// open directory
 	char osPath[PATH_MAX];
-	(void)path_MakeAbsolute(path, osPath);
+	path_MakeAbsolute(path, osPath);
 	errno = 0;
 	boost::shared_ptr<DIR> osDir(opendir(osPath), DirDeleter());
 	if(!osDir.get())
@@ -93,7 +93,7 @@ static bool IsDummyDirectory(const char* name)
 LibError Filesystem_Posix::GetFileInfo(const char* pathname, FileInfo& fileInfo) const
 {
 	char osPathname[PATH_MAX];
-	RETURN_ERR(path_MakeAbsolute(pathname, osPathname));
+	path_MakeAbsolute(pathname, osPathname);
 
 	// if path ends in slash, remove it (required by stat)
 	char* last_char = osPathname+strlen(osPathname)-1;
@@ -115,7 +115,7 @@ LibError Filesystem_Posix::GetFileInfo(const char* pathname, FileInfo& fileInfo)
 LibError Filesystem_Posix::DeleteFile(const char* pathname)
 {
 	char osPathname[PATH_MAX+1];
-	RETURN_ERR(path_MakeAbsolute(pathname, osPathname));
+	path_MakeAbsolute(pathname, osPathname);
 
 	errno = 0;
 	if(unlink(osPathname) != 0)
@@ -128,7 +128,7 @@ LibError Filesystem_Posix::DeleteFile(const char* pathname)
 LibError Filesystem_Posix::CreateDirectory(const char* path)
 {
 	char osPath[PATH_MAX];
-	RETURN_ERR(path_MakeAbsolute(path, osPath));
+	path_MakeAbsolute(path, osPath);
 
 	errno = 0;
 	struct stat s;
@@ -149,12 +149,11 @@ LibError Filesystem_Posix::DeleteDirectory(const char* path)
 	// be deleted (required by Windows and POSIX rmdir()).
 
 	char osPath[PATH_MAX];
-	RETURN_ERR(path_MakeAbsolute(path, osPath));
+	path_MakeAbsolute(path, osPath);
 	PathPackage pp;
 	RETURN_ERR(path_package_set_dir(&pp, osPath));
 
-	std::vector<FileInfo> files;
-	std::vector<const char*> subdirectories;
+	FileInfos files; Directories subdirectories;
 	RETURN_ERR(GetDirectoryEntries(path, &files, &subdirectories));
 
 	// delete files
@@ -178,5 +177,38 @@ LibError Filesystem_Posix::DeleteDirectory(const char* path)
 	if(rmdir(osPath) != 0)
 		return LibError_from_errno();
 
+	return INFO::OK;
+}
+
+
+//-----------------------------------------------------------------------------
+
+/*virtual*/ unsigned FileProvider_Posix::Precedence() const
+{
+	return 1u;
+}
+
+/*virtual*/ char FileProvider_Posix::LocationCode() const
+{
+	return 'F';
+}
+
+/*virtual*/ LibError FileProvider_Posix::LoadFile(const char* name, const void* location, u8* fileContents, size_t size) const
+{
+	const char* path = (const char*)location;
+	const char* pathname = path_append2(path, name);
+	File_Posix file;
+	RETURN_ERR(file.Open(pathname, 'r'));
+	RETURN_ERR(io_Read(file, 0, buf, size));
+	return INFO::OK;
+}
+
+/*virtual*/ LibError FileProvider_Posix::StoreFile(const char* name, const void* location, const u8* fileContents, size_t size) const
+{
+	const char* path = (const char*)location;
+	const char* pathname = path_append2(path, name);
+	File_Posix file;
+	RETURN_ERR(file.Open(pathname, 'r'));
+	RETURN_ERR(io_Write(file, 0, buf, size));
 	return INFO::OK;
 }

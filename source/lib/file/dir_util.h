@@ -2,7 +2,7 @@
  * =========================================================================
  * File        : dir_util.h
  * Project     : 0 A.D.
- * Description : 
+ * Description : helper functions for directory access
  * =========================================================================
  */
 
@@ -14,118 +14,54 @@
 #include "filesystem.h"
 
 extern bool dir_FileExists(IFilesystem* fs, const char* pathname);
-extern bool dir_DirectoryExists(IFilesystem* fs, const char* dirPath);
 
-
-typedef std::vector<FileInfo> FilesystemEntries;
-
-// enumerate all directory entries in <P_path>; add to container and
-// then sort it by filename.
-extern LibError dir_GatherSortedEntries(IFilesystem* fs, const char* dirPath, FilesystemEntries& fsEntries);
-
-
-// called by dir_ForEachSortedEntry for each entry in the directory.
-// return INFO::CB_CONTINUE to continue calling; anything else will cause
-// dir_ForEachSortedEntry to abort and immediately return that value.
-typedef LibError (*DirCallback)(const char* pathname, const FileInfo& fileInfo, const uintptr_t cbData);
-
-
-// call <cb> for each file and subdirectory in <dir> (alphabetical order),
-// passing the entry name (not full path!), stat info, and <user>.
-//
-// first builds a list of entries (sorted) and remembers if an error occurred.
-// if <cb> returns non-zero, abort immediately and return that; otherwise,
-// return first error encountered while listing files, or 0 on success.
-//
-// rationale:
-//   this makes dir_ForEachSortedEntry and zip_enum slightly incompatible, since zip_enum
-//   returns the full path. that's necessary because VFS zip_cb
-//   has no other way of determining what VFS dir a Zip file is in,
-//   since zip_enum enumerates all files in the archive (not only those
-//   in a given dir). no big deal though, since add_ent has to
-//   special-case Zip files anyway.
-//   the advantage here is simplicity, and sparing callbacks the trouble
-//   of converting from/to native path (we just give 'em the dirent name).
-extern LibError dir_ForEachSortedEntry(IFilesystem* fs, const char* dirPath, DirCallback cb, uintptr_t cbData);
-
-
+extern void dir_SortFiles(FileInfos& files);
+extern void dir_SortDirectories(Directories& directories);
 
 /**
- * (mostly) insulating concrete class providing iterator access to
- * directory entries.
- * this is usable for posix, VFS, etc.; instances are created via IFilesystem.
+ * called for files in a directory.
+ *
+ * @param pathname full pathname (since FileInfo only gives the name).
+ * @param fileInfo file information
+ * @param cbData user-specified context
+ * @return INFO::CB_CONTINUE on success; any other value will immediately
+ * be returned to the caller (no more calls will be forthcoming).
+ *
+ * CAVEAT: pathname and fileInfo are only valid until the function
+ * returns!
  **/
-class DirectoryIterator
+typedef LibError (*DirCallback)(const char* pathname, const FileInfo& fileInfo, const uintptr_t cbData);
+
+enum DirFlags
 {
-public:
-	DirectoryIterator(IFilesystem* fs, const char* dirPath)
-		: m_impl(fs->OpenDirectory(dirPath))
-	{
-	}
-
-	// return ERR::DIR_END if all entries have already been returned once,
-	// another negative error code, or INFO::OK on success, in which case <fileInfo>
-	// describes the next (order is unspecified) directory entry.
-	LibError NextEntry(FileInfo& fileInfo)
-	{
-		return m_impl.get()->NextEntry(fileInfo);
-	}
-
-private:
-	boost::shared_ptr<IDirectoryIterator> m_impl;
-};
-
-
-// retrieve the next (order is unspecified) dir entry matching <filter>.
-// return 0 on success, ERR::DIR_END if no matching entry was found,
-// or a negative error code on failure.
-// filter values:
-// - 0: anything;
-// - "/": any subdirectory;
-// - "/|<pattern>": any subdirectory, or as below with <pattern>;
-// - <pattern>: any file whose name matches; ? and * wildcards are allowed.
-//
-// note that the directory entries are only scanned once; after the
-// end is reached (-> ERR::DIR_END returned), no further entries can
-// be retrieved, even if filter changes (which shouldn't happen - see impl).
-//
-// rationale: we do not sort directory entries alphabetically here.
-// most callers don't need it and the overhead is considerable
-// (we'd have to store all entries in a vector). it is left up to
-// other routines.
-extern LibError dir_filtered_next_ent(DirectoryIterator& di, FileInfo& fileInfo, const char* filter);
-
-
-
-
-enum DirEnumFlags
-{
+	/// include files in subdirectories.
 	VFS_DIR_RECURSIVE = 1
 };
 
-// call <cb> for each entry matching <user_filter> (see vfs_next_dirent) in
-// directory <path>; if flags & VFS_DIR_RECURSIVE, entries in
-// subdirectories are also returned.
-extern LibError dir_FilteredForEachEntry(IFilesystem* fs, const char* dirPath, uint enum_flags, const char* filter, DirCallback cb, uintptr_t cbData);
+/**
+ * call back for each file in a directory (tree)
+ *
+ * @param cb see DirCallback
+ * @param pattern that file names must match. '*' and '&' wildcards
+ * are allowed. 0 matches everything.
+ * @param flags see DirFlags
+ * @param LibError
+ **/
+extern LibError dir_ForEachFile(IFilesystem* fs, const char* path, DirCallback cb, uintptr_t cbData, const char* pattern = 0, uint flags = 0);
 
 
-struct NextNumberedFilenameState
-{
-	int next_num;
-};
+/**
+ * determine the next available pathname with a given format.
+ * this is useful when creating new files without overwriting the previous
+ * ones (screenshots are a good example).
+ *
+ * @param pathnameFmt format string for the pathname; must contain one
+ * format specifier for an (unsigned) int.
+ * example: "screenshots/screenshot%04d.png"
+ * @param nextNumber in: the first number to try; out: the next number.
+ * if 0, numbers corresponding to existing files are skipped.
+ * @param receives the output; must hold at least PATH_MAX characters.
+ **/
+extern void dir_NextNumberedFilename(IFilesystem* fs, const char* pathnameFmt, unsigned& nextNumber, char* nextPathname);
 
-
-// fill V_next_fn (which must be big enough for PATH_MAX chars) with
-// the next numbered filename according to the pattern defined by V_fn_fmt.
-// <nnfs> must be initially zeroed (e.g. by defining as static) and passed
-// each time.
-// if <use_vfs> (default), the paths are treated as VFS paths; otherwise,
-// file.cpp's functions are used. this is necessary because one of
-// our callers needs a filename for VFS archive files.
-//
-// this function is useful when creating new files which are not to
-// overwrite the previous ones, e.g. screenshots.
-// example for V_fn_fmt: "screenshots/screenshot%04d.png".
-extern void dir_NextNumberedFilename(IFilesystem* fs, const char* V_fn_fmt, NextNumberedFilenameState* nnfs, char* V_next_fn);
-
-#endif	// #ifndef INCLUDED_DIR_UTIL
+#endif	 // #ifndef INCLUDED_DIR_UTIL

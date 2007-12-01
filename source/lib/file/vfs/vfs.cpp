@@ -13,48 +13,55 @@
 
 #include "lib/path_util.h"
 #include "lib/file/file_stats.h"
-#include "file_cache.h"
+#include "lib/file/trace.h"
+#include "lib/file/archive/archive.h"
+#include "lib/file/posix/fs_posix.h"
 #include "vfs_tree.h"
-#include "vfs_path.h"
-#include "vfs_mount.h"
+#include "vfs_lookup.h"
+#include "vfs_populate.h"
+#include "file_cache.h"
 
+
+PIFileProvider provider;
 
 class Filesystem_VFS::Impl : public IFilesystem
 {
 public:
 	Impl()
-		: m_fileCache(ChooseCacheSize())
+		: m_fileCache(ChooseCacheSize()), m_trace(CreateTrace(4*MiB))
 	{
-	}
-
-	~Impl()
-	{
-		trace_shutdown();
-		mount_shutdown();
 	}
 
 	LibError Mount(const char* vfsPath, const char* path, uint flags /* = 0 */, uint priority /* = 0 */)
 	{
+		// make sure caller didn't forget the required trailing '/'.
+		debug_assert(path_IsDirectory(vfsPath));
 
-	}
+		// note: we no longer need to check if mounting a subdirectory -
+		// the new RealDirectory scheme doesn't care.
 
-	void Unmount(const char* path)
-	{
+		// disallow "." because "./" isn't supported on Windows.
+		// "./" and "/." are caught by CHECK_PATH.
+		if(!strcmp(path, "."))
+			WARN_RETURN(ERR::PATH_NON_CANONICAL);
 
+		VfsDirectory* directory = vfs_LookupDirectory(vfsPath, &m_rootDirectory, VFS_LOOKUP_CREATE);
+		directory->Attach(RealDirectory(path, priority, flags));
+		return INFO::OK;
 	}
 
 	virtual LibError GetFileInfo(const char* vfsPathname, FileInfo& fileInfo) const
 	{
-		VfsFile* file = LookupFile(vfsPathname, &m_tree.Root());
+		VfsFile* file = vfs_LookupFile(vfsPathname, &m_rootDirectory);
 		if(!file)
 			return ERR::VFS_FILE_NOT_FOUND;	// NOWARN
 		file->GetFileInfo(fileInfo);
 		return INFO::OK;
 	}
 
-	virtual LibError GetDirectoryEntries(const char* vfsPath, std::vector<FileInfo>* files, std::vector<const char*>* subdirectories) const
+	virtual LibError GetDirectoryEntries(const char* vfsPath, FileInfos* files, Directories* subdirectories) const
 	{
-		VfsDirectory* directory = LookupDirectory(vfsPath, &m_tree.Root());
+		VfsDirectory* directory = vfs_LookupDirectory(vfsPath, &m_rootDirectory);
 		if(!directory)
 			WARN_RETURN(ERR::VFS_DIR_NOT_FOUND);
 		directory->GetEntries(files, subdirectories);
@@ -65,15 +72,23 @@ public:
 	// coherency (need only invalidate when closing a FILE_WRITE file).
 	LibError CreateFile(const char* vfsPathname, const u8* buf, size_t size)
 	{
-		VfsDirectory* directory = LookupDirectory(vfsPathname, &m_tree.Root());
+		VfsDirectory* directory = vfs_LookupDirectory(vfsPathname, &m_rootDirectory);
 		if(!directory)
 			WARN_RETURN(ERR::VFS_DIR_NOT_FOUND);
 		const char* name = path_name_only(vfsPathname);
-		directory->CreateFile(name, buf, size);
 
+		const RealDirectory& realDirectory = directory->AttachedDirectories().back();
+		const char* location = realDirectory.Path();
+		const VfsFile file(FileInfo(name, (off_t)size, time(0)), realDirectory.Priority(), provider, location);
+		file.Store(buf, size);
+		directory->AddFile(file);
+		
 		// wipe out any cached blocks. this is necessary to cover the (rare) case
 		// of file cache contents predating the file write.
 		m_fileCache.Remove(vfsPathname);
+
+		m_trace.get()->NotifyStore(vfsPathname, size);
+		return INFO::OK;
 	}
 
 	// read the entire file.
@@ -93,30 +108,50 @@ public:
 		const bool isCacheHit = m_fileCache.Retrieve(vfsPathname, contents, size);
 		if(!isCacheHit)
 		{
-			VfsFile* file = LookupFile(vfsPathname, &m_tree.Root());
+			VfsFile* file = vfs_LookupFile(vfsPathname, &m_rootDirectory);
 			if(!file)
 				WARN_RETURN(ERR::VFS_FILE_NOT_FOUND);
-			contents = m_fileCache.Reserve(vfsPathname, file->Size());
+			contents = m_fileCache.Reserve(file->Size());
 			RETURN_ERR(file->Load((u8*)contents.get()));
 			m_fileCache.Add(vfsPathname, contents, size);
 		}
 
 		stats_io_user_request(size);
 		stats_cache(isCacheHit? CR_HIT : CR_MISS, size, vfsPathname);
-		trace_notify_io(vfsPathname, size);
+		m_trace.get()->NotifyLoad(vfsPathname, size);
 
 		return INFO::OK;
 	}
 
 	void RefreshFileInfo(const char* pathname)
 	{
-		//VfsFile* file = LookupFile(vfsPathname, &m_tree.Root());
+		//VfsFile* file = LookupFile(vfsPathname, &m_rootDirectory);
+	}
+
+	// "backs off of" all archives - closes their files and allows them to
+	// be rewritten or deleted (required by archive builder).
+	// must call mount_rebuild when done with the rewrite/deletes,
+	// because this call leaves the VFS in limbo!!
+	void ReleaseArchives()
+	{
+	}
+
+		// rebuild the VFS, i.e. re-mount everything. open files are not affected.
+		// necessary after loose files or directories change, so that the VFS
+		// "notices" the changes and updates file locations. res calls this after
+		// dir_watch reports changes; can also be called from the console after a
+		// rebuild command. there is no provision for updating single VFS dirs -
+		// it's not worth the trouble.
+	void Clear()
+	{
+		m_rootDirectory.ClearR();
 	}
 
 	void Display()
 	{
-		m_tree.Display();
+		m_rootDirectory.DisplayR(0);
 	}
+
 
 private:
 	static size_t ChooseCacheSize()
@@ -124,14 +159,9 @@ private:
 		return 96*MiB;
 	}
 
-	void Rebuild()
-	{
-		m_tree.Clear();
-		m_mounts.RedoAll();
-	}
-
-	VfsTree m_tree;
+	VfsDirectory m_rootDirectory;
 	FileCache m_fileCache;
+	PITrace m_trace;
 };
 
 //-----------------------------------------------------------------------------
@@ -149,7 +179,7 @@ Filesystem_VFS::Filesystem_VFS(void* trace)
 	return impl.get()->GetFileInfo(vfsPathname, fileInfo);
 }
 
-/*virtual*/ LibError Filesystem_VFS::GetDirectoryEntries(const char* vfsPath, std::vector<FileInfo>* files, std::vector<const char*>* subdirectories) const
+/*virtual*/ LibError Filesystem_VFS::GetDirectoryEntries(const char* vfsPath, FileInfos* files, Directories* subdirectories) const
 {
 	return impl.get()->GetDirectoryEntries(vfsPath, files, subdirectories);
 }
@@ -169,11 +199,6 @@ LibError Filesystem_VFS::Mount(const char* vfsPath, const char* path, uint flags
 	return impl.get()->Mount(vfsPath, path, flags, priority);
 }
 
-void Filesystem_VFS::Unmount(const char* path)
-{
-	return impl.get()->Unmount(path);
-}
-
 void Filesystem_VFS::RefreshFileInfo(const char* pathname)
 {
 	impl.get()->RefreshFileInfo(pathname);
@@ -182,4 +207,9 @@ void Filesystem_VFS::RefreshFileInfo(const char* pathname)
 void Filesystem_VFS::Display() const
 {
 	impl.get()->Display();
+}
+
+void Filesystem_VFS::Clear()
+{
+	impl.get()->Clear();
 }

@@ -17,9 +17,9 @@
 #include "lib/bits.h"
 #include "lib/byte_order.h"
 #include "lib/fat_time.h"
+#include "lib/path_util.h"
 #include "lib/allocators/pool.h"
 #include "lib/sysdep/cpu.h"		// cpu_memcpy
-#include "lib/file/path.h"
 #include "archive.h"
 #include "codec_zlib.h"
 #include "stream.h"
@@ -29,9 +29,19 @@
 #include "lib/file/io/io_manager.h"
 
 
-enum ArchiveZipFlags
+//-----------------------------------------------------------------------------
+// Zip file data structures and signatures
+//-----------------------------------------------------------------------------
+
+enum ZipMethod
 {
-	// indicates ArchiveEntry.ofs points to a "local file header" instead of
+	ZIP_METHOD_NONE    = 0,
+	ZIP_METHOD_DEFLATE = 8
+};
+
+enum ZipFlags
+{
+	// indicates ZipEntry.ofs points to a "local file header" instead of
 	// the file data. a fixup routine is called when reading the file;
 	// it skips past the LFH and clears this flag.
 	// this is somewhat of a hack, but vital to archive open performance.
@@ -44,15 +54,30 @@ enum ArchiveZipFlags
 	NEEDS_LFH_FIXUP = 1
 };
 
-//-----------------------------------------------------------------------------
-// Zip file data structures and signatures
-//-----------------------------------------------------------------------------
-
-enum ZipMethod
+// all relevant LFH/CDFH fields not covered by FileInfo
+struct ZipEntry
 {
-	ZIP_METHOD_NONE    = 0,
-	ZIP_METHOD_DEFLATE = 8
+	ZipEntry()
+	{
+	}
+
+	ZipEntry(off_t ofs, off_t csize, u32 checksum, u16 method, u16 flags)
+	{
+		this->ofs = ofs;
+		this->csize = csize;
+		this->checksum = checksum;
+		this->method = method;
+		this->flags = flags;
+	}
+
+	off_t ofs;
+	off_t csize;
+
+	u32 checksum;
+	u16 method;
+	u16 flags;
 };
+
 
 static const u32 cdfh_magic = FOURCC_LE('P','K','\1','\2');
 static const u32  lfh_magic = FOURCC_LE('P','K','\3','\4');
@@ -63,16 +88,16 @@ static const u32 ecdr_magic = FOURCC_LE('P','K','\5','\6');
 class LFH
 {
 public:
-	void Init(const ArchiveEntry& archiveEntry, const char* pathname, size_t pathnameLength)
+	void Init(const FileInfo& fileInfo, const ZipEntry& zipEntry, const char* pathname, size_t pathnameLength)
 	{
 		m_magic     = lfh_magic;
 		m_x1        = to_le16(0);
 		m_flags     = to_le16(0);
-		m_method    = to_le16(u16_from_larger(archiveEntry.method));
-		m_fat_mtime = to_le32(FAT_from_time_t(archiveEntry.mtime));
-		m_crc       = to_le32(archiveEntry.checksum);
-		m_csize     = to_le32(u32_from_larger(archiveEntry.csize));
-		m_usize     = to_le32(u32_from_larger(archiveEntry.usize));
+		m_method    = to_le16(u16_from_larger(zipEntry.method));
+		m_fat_mtime = to_le32(FAT_from_time_t(fileInfo.MTime()));
+		m_crc       = to_le32(zipEntry.checksum);
+		m_csize     = to_le32(u32_from_larger(zipEntry.csize));
+		m_usize     = to_le32(u32_from_larger(fileInfo.Size()));
 		m_fn_len    = to_le16(u16_from_larger((uint)pathnameLength));
 		m_e_len     = to_le16(0);
 
@@ -108,27 +133,27 @@ cassert(sizeof(LFH) == 30);
 class CDFH
 {
 public:
-	void Init(const ArchiveEntry& archiveEntry, const char* pathname, size_t pathnameLength, size_t slack)
+	void Init(const FileInfo& fileInfo, const ZipEntry& zipEntry, const char* pathname, size_t pathnameLength, size_t slack)
 	{
 		m_magic     = cdfh_magic;
 		m_x1        = to_le32(0);
 		m_flags     = to_le16(0);
-		m_method    = to_le16(u16_from_larger(archiveEntry.method));
-		m_fat_mtime = to_le32(FAT_from_time_t(archiveEntry.mtime));
-		m_crc       = to_le32(archiveEntry.checksum);
-		m_csize     = to_le32(u32_from_larger(archiveEntry.csize));
-		m_usize     = to_le32(u32_from_larger(archiveEntry.usize));
+		m_method    = to_le16(u16_from_larger(zipEntry.method));
+		m_fat_mtime = to_le32(FAT_from_time_t(fileInfo.MTime()));
+		m_crc       = to_le32(zipEntry.checksum);
+		m_csize     = to_le32(u32_from_larger(zipEntry.csize));
+		m_usize     = to_le32(u32_from_larger(fileInfo.Size()));
 		m_fn_len    = to_le16(u16_from_larger((uint)pathnameLength));
 		m_e_len     = to_le16(0);
 		m_c_len     = to_le16(u16_from_larger((uint)slack));
 		m_x2        = to_le32(0);
 		m_x3        = to_le32(0);
-		m_lfh_ofs   = to_le32(archiveEntry.ofs);
+		m_lfh_ofs   = to_le32(zipEntry.ofs);
 
 		cpu_memcpy((char*)this + sizeof(CDFH), pathname, pathnameLength);
 	}
 
-	void Decompose(ArchiveEntry& archiveEntry, const char*& pathname, size_t& cdfhSize) const
+	void Decompose(FileInfo& fileInfo, ZipEntry& zipEntry, const char*& pathname, size_t& cdfhSize) const
 	{
 		const u16 zipMethod = read_le16(&m_method);
 		const u32 fat_mtime = read_le32(&m_fat_mtime);
@@ -140,20 +165,15 @@ public:
 		const u16 c_len     = read_le16(&m_c_len);
 		const u32 lfh_ofs   = read_le32(&m_lfh_ofs);
 
-		archiveEntry.ofs = (off_t)lfh_ofs;
-		archiveEntry.usize = (off_t)usize;
-		archiveEntry.csize = (off_t)csize;
-		archiveEntry.mtime = time_t_from_FAT(fat_mtime);
-		archiveEntry.checksum = crc;
-		archiveEntry.method = (uint)zipMethod;
-		archiveEntry.flags = NEEDS_LFH_FIXUP;
-
-		// return 0-terminated copy of filename
+		// get 0-terminated copy of pathname
 		const char* fn = (const char*)this + sizeof(CDFH); // not 0-terminated!
 		char buf[PATH_MAX];	// path_Pool()->UniqueCopy requires a 0-terminated string
 		cpu_memcpy(buf, fn, fn_len*sizeof(char));
 		buf[fn_len] = '\0';
 		pathname = path_Pool()->UniqueCopy(buf);
+
+		fileInfo = FileInfo(path_name_only(pathname), (off_t)usize, time_t_from_FAT(fat_mtime));
+		zipEntry = ZipEntry((off_t)lfh_ofs, (off_t)csize, crc, zipMethod, NEEDS_LFH_FIXUP);
 
 		cdfhSize = sizeof(CDFH) + fn_len + e_len + c_len;
 	}
@@ -337,13 +357,14 @@ public:
 			if(!cdfh)
 				WARN_RETURN(ERR::CORRUPTED);
 
-			ArchiveEntry archiveEntry;
+			FileInfo fileInfo;
+			ZipEntry zipEntry;
 			const char* pathname;
 			size_t cdfhSize;
-			cdfh->Decompose(archiveEntry, pathname, cdfhSize);
+			cdfh->Decompose(fileInfo, zipEntry, pathname, cdfhSize);
 
-			m_entries.push_back(archiveEntry);
-			cb(pathname, m_entries.back(), cbData);
+			m_entries.push_back(zipEntry);
+			cb(pathname, fileInfo, (ArchiveEntry*)&m_entries.back(), cbData);
 
 			pos += cdfhSize;
 		}
@@ -351,16 +372,28 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError LoadFile(ArchiveEntry& archiveEntry, u8* fileContents) const
+	virtual unsigned Precedence() const
 	{
-		if((archiveEntry.flags & NEEDS_LFH_FIXUP) != 0)
+		return 2u;
+	}
+
+	virtual char LocationCode() const
+	{
+		return 'A';
+	}
+
+	virtual LibError Load(const char* UNUSED(name), const void* location, u8* fileContents, size_t size) const
+	{
+		ZipEntry* zipEntry = (ZipEntry*)location;
+
+		if((zipEntry->flags & NEEDS_LFH_FIXUP) != 0)
 		{
-			FixupEntry(archiveEntry);
-			archiveEntry.flags &= ~NEEDS_LFH_FIXUP;
+			FixupEntry(*zipEntry);
+			zipEntry->flags &= ~NEEDS_LFH_FIXUP;
 		}
 
 		boost::shared_ptr<ICodec> codec;
-		switch(archiveEntry.method)
+		switch(zipEntry->method)
 		{
 		case ZIP_METHOD_NONE:
 			codec = CreateCodec_ZLibNone();
@@ -373,12 +406,17 @@ public:
 		}
 
 		Stream stream(codec);
-		stream.SetOutputBuffer(fileContents, archiveEntry.usize);
-		RETURN_ERR(io_Read(m_file, archiveEntry.ofs, IO_BUF_TEMP, archiveEntry.csize, FeedStream, (uintptr_t)&stream));
+		stream.SetOutputBuffer(fileContents, size);
+		RETURN_ERR(io_Read(m_file, zipEntry->ofs, IO_BUF_TEMP, zipEntry->csize, FeedStream, (uintptr_t)&stream));
 		RETURN_ERR(stream.Finish());
-		debug_assert(archiveEntry.checksum == stream.Checksum());
+		debug_assert(zipEntry->checksum == stream.Checksum());
 
 		return INFO::OK;
+	}
+
+	virtual LibError Store(const char* UNUSED(name), const void* UNUSED(location), const u8* UNUSED(fileContents), size_t UNUSED(size)) const
+	{
+		return ERR::NOT_SUPPORTED;
 	}
 
 private:
@@ -409,9 +447,9 @@ private:
 	}
 
 	/**
-	 * fix up archiveEntry's offset within the archive.
+	 * fix up zipEntry's offset within the archive.
 	 * called by archive_LoadFile iff NEEDS_LFH_FIXUP is set.
-	 * side effects: adjusts archiveEntry.ofs.
+	 * side effects: adjusts zipEntry.ofs.
 	 *
 	 * ensures <ent.ofs> points to the actual file contents; it is initially
 	 * the offset of the LFH. we cannot use CDFH filename and extra field
@@ -421,27 +459,27 @@ private:
 	 * reduce seeks: since reading the file will typically follow, the
 	 * block cache entirely absorbs the IO cost.
 	 **/
-	void FixupEntry(ArchiveEntry& archiveEntry) const
+	void FixupEntry(ZipEntry& zipEntry) const
 	{
 		// performance note: this ends up reading one file block, which is
 		// only in the block cache if the file starts in the same block as a
 		// previously read file (i.e. both are small).
 		LFH lfh;
 		LFH_Copier params = { (u8*)&lfh, sizeof(LFH) };
-		THROW_ERR(io_Read(m_file, archiveEntry.ofs, IO_BUF_TEMP, sizeof(LFH), lfh_copier_cb, (uintptr_t)&params));
+		THROW_ERR(io_Read(m_file, zipEntry.ofs, IO_BUF_TEMP, sizeof(LFH), lfh_copier_cb, (uintptr_t)&params));
 
-		archiveEntry.ofs += (off_t)lfh.Size();
+		zipEntry.ofs += (off_t)lfh.Size();
 	}
 
 	File_Posix m_file;
 	off_t m_fileSize;
-	std::vector<ArchiveEntry> m_entries;
+	std::vector<ZipEntry> m_entries;
 };
 
 
 boost::shared_ptr<IArchiveReader> CreateArchiveReader_Zip(const char* archivePathname)
 {
-	return boost::shared_ptr<IArchiveReader>(new ArchiveReader_Zip(archivePathname));
+	return PIArchiveReader(new ArchiveReader_Zip(archivePathname));
 }
 
 
@@ -517,7 +555,7 @@ public:
 
 		// choose method and the corresponding codec
 		ZipMethod zipMethod;
-		boost::shared_ptr<ICodec> codec;
+		PICodec codec;
 		if(IsFileTypeIncompressible(pathname))
 		{
 			zipMethod = ZIP_METHOD_NONE;
@@ -546,12 +584,12 @@ public:
 			checksum = stream.Checksum();
 		}
 
-		ArchiveEntry archiveEntry(m_fileSize, usize, (off_t)csize, fileInfo.MTime(), checksum, zipMethod, 0);
+		ZipEntry zipEntry(m_fileSize, (off_t)csize, checksum, zipMethod, 0);
 
 		// build LFH
 		{
 			LFH* lfh = (LFH*)buf.get();
-			lfh->Init(archiveEntry, pathname, pathnameLength);
+			lfh->Init(fileInfo, zipEntry, pathname, pathnameLength);
 		}
 
 		// write to LFH, pathname and cdata to file
@@ -559,7 +597,7 @@ public:
 		RETURN_ERR(io_Write(m_file, m_fileSize, buf, packageSize));
 		m_fileSize += (off_t)packageSize;
 
-		// append a CDFH to the central dir (in memory)
+		// append a CDFH to the central directory (in memory)
 		// .. note: pool_alloc may round size up for padding purposes.
 		const size_t prev_pos = m_cdfhPool.da.pos;
 		const size_t cdfhSize = sizeof(CDFH) + pathnameLength;
@@ -567,7 +605,7 @@ public:
 		if(!cdfh)
 			WARN_RETURN(ERR::NO_MEM);
 		const size_t slack = m_cdfhPool.da.pos - prev_pos - cdfhSize;
-		cdfh->Init(archiveEntry, pathname, pathnameLength, slack);
+		cdfh->Init(fileInfo, zipEntry, pathname, pathnameLength, slack);
 
 		m_numEntries++;
 
@@ -582,7 +620,7 @@ private:
 	uint m_numEntries;
 };
 
-boost::shared_ptr<IArchiveWriter> CreateArchiveWriter_Zip(const char* archivePathname)
+PIArchiveWriter CreateArchiveWriter_Zip(const char* archivePathname)
 {
-	return boost::shared_ptr<IArchiveWriter>(new ArchiveWriter_Zip(archivePathname));
+	return PIArchiveWriter(new ArchiveWriter_Zip(archivePathname));
 }

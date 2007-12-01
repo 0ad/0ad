@@ -78,7 +78,7 @@ bool OutputBufferManager::IsAllowableBuffer(u8* buffer, size_t size)
 //-----------------------------------------------------------------------------
 
 
-Stream::Stream(boost::shared_ptr<ICodec> codec)
+Stream::Stream(PICodec codec)
 	: m_codec(codec)
 	, m_inConsumed(0), m_outProduced(0)
 {

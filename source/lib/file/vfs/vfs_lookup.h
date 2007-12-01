@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * File        : vfs_path.h
+ * File        : vfs_lookup.h
  * Project     : 0 A.D.
  * Description : 
  * =========================================================================
@@ -8,8 +8,8 @@
 
 // license: GPL; see lib/license.txt
 
-#ifndef INCLUDED_VFS_PATH
-#define INCLUDED_VFS_PATH
+#ifndef INCLUDED_VFS_LOOKUP
+#define INCLUDED_VFS_LOOKUP
 
 // VFS paths are of the form: "(dir/)*file?"
 // in English: '/' as path separator; trailing '/' required for dir names;
@@ -32,27 +32,29 @@
 class VfsFile;
 class VfsDirectory;
 
+enum VfsLookupFlags
+{
+	// when encountering subdirectory components in the path(name) that
+	// don't (yet) exist, add them.
+	VFS_LOOKUP_CREATE = 1,
+
+	VFS_LOOKUP_NO_POPULATE = 2
+};
+
+extern LibError vfs_Lookup(const char* vfsPathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile*& file, unsigned flags = 0);
+
 /**
  * Find a file in the VFS by traversing pathname components.
  *
  * @param vfsPath must not end with a slash character.
  **/
-extern VfsFile* LookupFile(const char* vfsPathname, const VfsDirectory* startDirectory);
+extern VfsFile* vfs_LookupFile(const char* vfsPathname, const VfsDirectory* startDirectory, unsigned flags = 0);
 
 /**
  * Find a directory in the VFS by traversing path components.
  *
  * @param vfsPath must end with a slash character.
  **/
-extern VfsDirectory* LookupDirectory(const char* vfsPath, const VfsDirectory* startDirectory);
+extern VfsDirectory* vfs_LookupDirectory(const char* vfsPath, const VfsDirectory* startDirectory, unsigned flags = 0);
 
-/**
- * Traverse a path, creating subdirectories that didn't yet exist.
- *
- * @param lastDirectory receives the last directory that was encountered
- * @param file references the VFS file represented by vfsPath, or 0 if
- * it doesn't include a filename.
- **/
-extern void TraverseAndCreate(const char* vfsPath, VfsDirectory* startDirectory, VfsDirectory*& lastDirectory, VfsFile*& file);
-
-#endif	// #ifndef INCLUDED_VFS_PATH
+#endif	// #ifndef INCLUDED_VFS_LOOKUP

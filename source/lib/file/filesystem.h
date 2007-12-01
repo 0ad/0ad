@@ -56,6 +56,24 @@ private:
 	time_t m_mtime;
 };
 
+typedef std::vector<FileInfo> FileInfos;
+
+typedef std::vector<const char*> Directories;
+
+// 
+struct IFileProvider
+{
+	virtual ~IFileProvider();
+
+	virtual unsigned Precedence() const = 0;
+	virtual char LocationCode() const = 0;
+
+	virtual LibError Load(const char* name, const void* location, u8* fileContents, size_t size) const = 0;
+	virtual LibError Store(const char* name, const void* location, const u8* fileContents, size_t size) const = 0;
+};
+
+typedef boost::shared_ptr<IFileProvider> PIFileProvider;
+
 
 struct IFilesystem
 {
@@ -65,7 +83,9 @@ struct IFilesystem
 
 	// note: this interface avoids having to lock a directory while an
 	// iterator is extant.
-	virtual LibError GetDirectoryEntries(const char* path, std::vector<FileInfo>* files, std::vector<const char*>* subdirectories) const = 0;
+	// (don't split this into 2 functions because POSIX can't implement
+	// that efficiently)
+	virtual LibError GetDirectoryEntries(const char* path, FileInfos* files, Directories* subdirectories) const = 0;
 };
 
 #endif	// #ifndef INCLUDED_FILESYSTEM

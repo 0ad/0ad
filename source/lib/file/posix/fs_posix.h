@@ -14,10 +14,20 @@
 
 #include "lib/file/filesystem.h"
 
+struct FileProvider_Posix : public IFileProvider
+{
+	virtual unsigned Precedence() const;
+	virtual char LocationCode() const;
+
+	virtual LibError Load(const char* name, const void* location, u8* fileContents, size_t size) const;
+	virtual LibError Store(const char* name, const void* location, const u8* fileContents, size_t size) const;
+};
+
+
 struct Filesystem_Posix : public IFilesystem
 {
 	virtual LibError GetFileInfo(const char* pathname, FileInfo& fileInfo) const;
-	virtual LibError GetDirectoryEntries(const char* path, std::vector<FileInfo>* files, std::vector<const char*>* subdirectories) const;
+	virtual LibError GetDirectoryEntries(const char* path, FileInfos* files, Directories* subdirectories) const;
 
 	LibError DeleteFile(const char* pathname);
 	LibError CreateDirectory(const char* dirPath);

@@ -41,15 +41,13 @@ public:
 	/**
 	 * Reserve a chunk of the cache's memory region.
 	 *
-	 * @param vfsPathname pathname of the file that is to be read; this is
-	 * the key that will be used to Retrieve the file contents.
 	 * @param size required number of bytes (more may be allocated due to
 	 * alignment and/or internal fragmentation)
 	 * @return memory suitably aligned for IO; never fails.
 	 *
 	 * it is expected that this data will be Add()-ed once its IO completes.
 	 **/
-	FileCacheData Reserve(const char* vfsPathname, size_t size);
+	FileCacheData Reserve(size_t size);
 
 	/**
 	 * Add a file's contents to the cache.
@@ -59,6 +57,7 @@ public:
 	 * read-only. if need be and no references are currently attached to it,
 	 * the memory can also be commandeered by Reserve().
 	 *
+	 * @param vfsPathname key that will be used to Retrieve file contents.
 	 * @param cost is the expected cost of retrieving the file again and
 	 * influences how/when it is evicted from the cache.
 	 **/

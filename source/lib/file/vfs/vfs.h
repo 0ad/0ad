@@ -16,9 +16,24 @@
 
 namespace ERR
 {
-	const LibError VFS_DIR_NOT_FOUND  = -110100;
-	const LibError VFS_FILE_NOT_FOUND = -110101;
+	const LibError VFS_DIR_NOT_FOUND   = -110100;
+	const LibError VFS_FILE_NOT_FOUND  = -110101;
+	const LibError VFS_ALREADY_MOUNTED = -110102;
 }
+
+// (recursive mounting and mounting archives are no longer optional since they don't hurt)
+enum VfsMountFlags
+{
+	// all real directories mounted during this operation will be watched
+	// for changes. this flag is provided to avoid watches in output-only
+	// directories, e.g. screenshots/ (only causes unnecessary overhead).
+	VFS_WATCH = 1,
+
+	// anything mounted from here should be added to archive when
+	// building via vfs_optimizer.
+	VFS_ARCHIVABLE = 2
+};
+
 
 typedef boost::shared_ptr<const u8> FileContents;
 
@@ -26,6 +41,7 @@ class Filesystem_VFS : public IFilesystem
 {
 public:
 	Filesystem_VFS(void* trace);
+	~Filesystem_VFS();
 
 	/**
 	 * mount a directory into the VFS.
@@ -41,15 +57,9 @@ public:
 	 **/
 	LibError Mount(const char* vfsPath, const char* path, uint flags = 0, uint priority = 0);
 
-	/**
-	 * unmount a previously mounted path and rebuild the VFS afterwards.
-	 **/
-	void Unmount(const char* path);
-
 	// (see IFilesystem)
-	virtual ~Filesystem_VFS();
 	virtual LibError GetFileInfo(const char* vfsPathname, FileInfo& fileInfo) const;
-	virtual LibError GetDirectoryEntries(const char* vfsPath, std::vector<FileInfo>* files, std::vector<const char*>* subdirectories) const;
+	virtual LibError GetDirectoryEntries(const char* vfsPath, FileInfos* files, Directories* subdirectories) const;
 
 	// note: only allowing either reads or writes simplifies file cache
 	// coherency (need only invalidate when closing a FILE_WRITE file).
@@ -69,6 +79,7 @@ public:
 	void RefreshFileInfo(const char* pathname);
 
 	void Display() const;
+	void Clear();
 
 private:
 	class Impl;

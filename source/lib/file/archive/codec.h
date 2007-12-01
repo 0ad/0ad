@@ -67,4 +67,6 @@ public:
 	virtual u32 UpdateChecksum(u32 checksum, const u8* in, size_t inSize) const = 0;
 };
 
+typedef boost::shared_ptr<ICodec> PICodec;
+
 #endif	// #ifndef INCLUDED_CODEC

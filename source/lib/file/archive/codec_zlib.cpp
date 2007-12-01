@@ -257,17 +257,17 @@ public:
 
 //-----------------------------------------------------------------------------
 
-boost::shared_ptr<ICodec> CreateCodec_ZLibNone()
+PICodec CreateCodec_ZLibNone()
 {
-	return boost::shared_ptr<ICodec>(new Codec_ZLibNone);
+	return PICodec(new Codec_ZLibNone);
 }
 
-boost::shared_ptr<ICodec> CreateCompressor_ZLibDeflate()
+PICodec CreateCompressor_ZLibDeflate()
 {
-	return boost::shared_ptr<ICodec>(new Compressor_ZLib);
+	return PICodec(new Compressor_ZLib);
 }
 
-boost::shared_ptr<ICodec> CreateDecompressor_ZLibDeflate()
+PICodec CreateDecompressor_ZLibDeflate()
 {
-	return boost::shared_ptr<ICodec>(new Decompressor_ZLib);
+	return PICodec (new Decompressor_ZLib);
 }

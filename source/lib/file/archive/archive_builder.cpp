@@ -10,7 +10,7 @@
 // license: GPL; see lib/license.txt
 
 #include "precompiled.h"
-#include "vfs_optimizer.h"
+//#include "vfs_optimizer.h"
 
 #include <set>
 #include <map>
@@ -1017,7 +1017,7 @@ void trace_get(Trace* t)
 // whether this IO would be satisfied by the file cache.
 bool trace_entry_causes_io(FileCache& simulatedCache, const TraceEntry* ent)
 {
-	IoBuf buf;
+	FileCacheData buf;
 	const size_t size = ent->size;
 	const char* vfsPathname = ent->vfsPathname;
 	switch(ent->op)
@@ -1027,7 +1027,7 @@ bool trace_entry_causes_io(FileCache& simulatedCache, const TraceEntry* ent)
 
 	case TO_LOAD:
 		// cache miss
-		if(!simulatedCache.Find(vfsPathname, size))
+		if(!simulatedCache.Retrieve(vfsPathname, size))
 		{
 			// TODO: simulatedCache never evicts anything..
 			simulatedCache.Reserve();
@@ -1045,4 +1045,50 @@ bool trace_entry_causes_io(FileCache& simulatedCache, const TraceEntry* ent)
 	}
 
 	return false;
+}
+
+// one run per file
+
+
+
+// enabled by default. by the time we can decide whether a trace needs to
+// be generated (see should_rebuild_main_archive), file accesses will
+// already have occurred; hence default enabled and disable if not needed.
+
+
+
+
+
+{
+	// carry out this entry's operation
+	switch(ent->op)
+	{
+		// do not 'run' writes - we'd destroy the existing data.
+	case TO_STORE:
+		break;
+	case TO_LOAD:
+		{
+			IoBuf buf; size_t size;
+			(void)vfs_load(ent->vfsPathname, buf, size, ent->flags);
+			break;
+		}
+	case TO_FREE:
+		fileCache.Release(ent->vfsPathname);
+		break;
+	default:
+		debug_warn("unknown TraceOp");
+	}
+}
+
+
+
+
+
+LibError trace_run(const char* osPathname)
+{
+	Trace trace;
+	RETURN_ERR(trace.Load(osPathname));
+	for(uint i = 0; i < trace.NumEntries(); i++)
+		trace.Entries()[i]->Run();
+	return INFO::OK;
 }

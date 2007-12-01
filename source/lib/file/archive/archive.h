@@ -11,6 +11,8 @@
 #ifndef INCLUDED_ARCHIVE
 #define INCLUDED_ARCHIVE
 
+#include "lib/file/filesystem.h"
+
 // rationale: this module doesn't build a directory tree of the entries
 // within an archive. that task is left to the VFS; here, we are only
 // concerned with enumerating all archive entries.
@@ -25,7 +27,7 @@ namespace ERR
 // the IArchiveReader implementation.
 struct ArchiveEntry;
 
-struct IArchiveReader
+struct IArchiveReader : public IFileProvider
 {
 	virtual ~IArchiveReader();
 
@@ -33,11 +35,11 @@ struct IArchiveReader
 	 * called for each archive entry.
 	 * @param pathname full pathname of entry (unique pointer)
 	 **/
-	typedef void (*ArchiveEntryCallback)(const char* pathname, const ArchiveEntry& archiveEntry, uintptr_t cbData);
+	typedef void (*ArchiveEntryCallback)(const char* pathname, const FileInfo& fileInfo, const ArchiveEntry* archiveEntry, uintptr_t cbData);
 	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData) = 0;
-
-	virtual LibError LoadFile(ArchiveEntry& archiveEntry, u8* fileContents) const = 0;
 };
+
+typedef boost::shared_ptr<IArchiveReader> PIArchiveReader;
 
 // note: when creating an archive, any existing file with the given pathname
 // will be overwritten.
@@ -69,40 +71,6 @@ struct IArchiveWriter
 	virtual LibError AddFile(const char* pathname) = 0;
 };
 
-/**
- * describes an archive entry (either file or directory).
- **/
-struct ArchiveEntry
-{
-	ArchiveEntry()
-	{
-	}
-
-	ArchiveEntry(off_t ofs, off_t usize, off_t csize, time_t mtime, u32 checksum, uint method, uint flags)
-	{
-		this->ofs = ofs;
-		this->usize = usize;
-		this->csize = csize;
-		this->mtime = mtime;
-		this->checksum = checksum;
-		this->method = method;
-		this->flags = flags;
-	}
-
-	// this is needed by the VFS and stored here instead of in VfsFile to
-	// yield a nice 32-byte size.
-	IArchiveReader* archiveReader;
-
-	off_t ofs;
-	off_t usize;
-	off_t csize;
-	time_t mtime;
-
-	// the archive implementation establishes the meaning of the following:
-
-	u32 checksum;
-	uint method;
-	uint flags;
-};
+typedef boost::shared_ptr<IArchiveWriter> PIArchiveWriter;
 
 #endif	// #ifndef INCLUDED_ARCHIVE
