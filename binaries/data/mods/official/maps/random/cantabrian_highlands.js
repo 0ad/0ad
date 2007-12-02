@@ -4,30 +4,30 @@ const SIZE = 208;
 const NUM_PLAYERS = 4;
 
 
-const tGrass = ["grass1_a", "grass_highlands_a", "grass1_a"];
-const tGrassForest = "grass_forest_floor_oak";
-const tCliff = ["cliff_greekb", "cliff_greekb", "cliff_greekb_moss"];
-const tForest = "forrestfloor|flora_tree_oak";
-const tGrassDirt75 = "sand_grass_75";
-const tGrassDirt50 = "sand_grass_50";
-const tGrassDirt25 = "sand_grass_25";
-const tDirt = "sand_path";
-const tGrassPatch = "grass1_dense";
-const tShore = "sand_path";
-const tShoreBlend = "sand_grass_50";
-const tWater = "sand_path";
+const tGrass = ["grass_temperate_pasture_a", "grass_temperate_pasture_b"];
+const tGrassForest = "grass_temperate_a";
+const tCliff = ["cliff_temperate_granite", "cliff_temperate_brown"];
+const tForest = "forestfloor_temperate_a";
+const tGrassDirt75 = "grass_temperate_dirt_2";
+const tGrassDirt50 = "grass_temperate_dirt_b";
+const tGrassDirt25 = "grass_temperate_dry_dirt";
+const tDirt = "dirt_temperate_b_dry";
+const tGrassPatch = "grass_temperate_field_wild";
+const tShore = "shoreline_temperate_rocks";
+const tShoreBlend = "shoreline_temperate_rocks_dirt";
+const tWater = "sand_temperate_vegetation";
 
 const oTree = "flora_tree_oak";
-const oTreeLarge = "flora/trees/oak_large.xml";
+const oTreeLarge = "flora_tree_oak";
 const oBerryBush = "flora_bush_berry";
 const oSheep = "fauna_sheep";
 const oDeer = "fauna_deer";
-const oMine = "geology_stone_light";
-const oGrass = "props/flora/grass_field_lush_tall.xml";
+const oMine = "geology_stone_temperate";
+const oGrass = "props/flora/grass_temp_field.xml";
 const oGrassShort = "props/flora/grass_field_lush_short.xml";
-const oReeds = "props/flora/reeds_pond_dry.xml";
+const oReeds = "props/flora/grass_temp_field_dry.xml";
 const oRockLarge = "geology/stone_granite_large.xml";
-const oRockMedium = "geology/stone_granite_med.xml";
+const oRockMedium = "flora_bush_temperate";
 const oBushMedium = "props/flora/bush_tempe_me.xml";
 const oBushSmall = "props/flora/bush_tempe_sm.xml";
 
@@ -67,7 +67,7 @@ for(i=1; i<=NUM_PLAYERS; i++) {
 	// some constants
 	radius = 17;
 	cliffRadius = 2;
-	elevation = 15;
+	elevation = 20;
 	
 	// get the x and y in tiles
 	fx = fractionToTiles(playerX[i]);

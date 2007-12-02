@@ -28,6 +28,18 @@
 			<Max>500</Max>
 		</Health>
 		
+		<Footprint>
+			<Radius>2.8</Radius>
+			<Height>9.0</Height>
+		</Footprint>
+		<Auras>
+			<Trample>
+				<Radius>3.5</Radius>
+				<Crush>40.0</Crush>
+				<Hack>20.0</Hack>
+				<Pierce>30.0</Pierce>
+			</Trample>
+		</Auras>
 	</Traits>
 
 	<Actions>
