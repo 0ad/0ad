@@ -10,18 +10,20 @@
         <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
         <animation file="biped/cavalryidle.psa" name="Run" speed="8"/>
       </animations>
-      <mesh>skeletal/m_tights.pmd</mesh>
       <props>
-        <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/axe_single.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/shields/gerron_plain.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/shields/gerron_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/floppy_pers_e.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="Mahout-Texture-1">
-      <texture>skeletal/pers_su2_mahout_1.dds</texture>
+    <variant frequency="1" name="Raja-Texture-1">
+      <mesh>skeletal/m_pants_b.pmd</mesh>
+      <texture>skeletal/pers_su2_raja_2.dds</texture>
     </variant>
   </group>
 

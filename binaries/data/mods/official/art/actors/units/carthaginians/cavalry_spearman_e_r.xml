@@ -14,21 +14,15 @@
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/samnite_test.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="tunic-1">
-      <texture>skeletal/kart_csp_b_1.dds</texture>
-    </variant>
-    <variant frequency="1" name="tunic-2">
-      <texture>skeletal/kart_csp_b_2.dds</texture>
-    </variant>
-    <variant frequency="1" name="tunic-3">
-      <texture>skeletal/kart_csp_b_3.dds</texture>
+    <variant frequency="1" name="texture">
+      <texture>skeletal/kart_csp_e_1.dds</texture>
     </variant>
   </group>
 

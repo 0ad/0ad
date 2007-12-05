@@ -20,26 +20,31 @@
  			</Resource>
 		</Creation>		
 		<Armour>
-			<Hack>10.0</Hack>
-			<Pierce>15.0</Pierce>
-			<Crush>20.0</Crush>
+			<Hack>12.0</Hack>
+			<Pierce>25.0</Pierce>
+			<Crush>10.0</Crush>
 		</Armour>
 		<Health>
-			<Max>500</Max>
+			<Max>600</Max>
 		</Health>
-		
 		<Footprint>
 			<Radius>2.8</Radius>
 			<Height>9.0</Height>
 		</Footprint>
 		<Auras>
 			<Trample>
-				<Radius>3.5</Radius>
-				<Crush>40.0</Crush>
-				<Hack>20.0</Hack>
-				<Pierce>30.0</Pierce>
+				<Radius>4.25</Radius>
+				<Crush>10.0</Crush>
+				<Hack>10.0</Hack>
 			</Trample>
 		</Auras>
+		<Population>
+			<Rem>3</Rem>
+		</Population>
+		<Vision>
+			<Los>25</Los>
+		</Vision>		
+
 	</Traits>
 
 	<Actions>
@@ -55,7 +60,7 @@
  		</Attack>
 		
 		<Move>
-			<Speed>7.0</Speed>
+			<Speed>8.0</Speed>
 			<Run>
 				<Speed>14.0</Speed>
 			</Run>

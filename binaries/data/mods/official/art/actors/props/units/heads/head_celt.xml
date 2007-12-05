@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
 
+  <castshadow/>
+
   <group>
     <variant name="mesh">
       <mesh>props/head_longhair.pmd</mesh>
@@ -22,6 +24,9 @@
     </variant>
     <variant frequency="1" name="face-g">
       <texture>props/head/celt_g.dds</texture>
+    </variant>
+    <variant frequency="1" name="face-j">
+      <texture>props/head/celt_j.dds</texture>
     </variant>
   </group>
 
