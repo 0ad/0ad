@@ -16,13 +16,14 @@
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/cape_a.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>
 
   <group>
     <variant frequency="1" name="texture">
-      <texture>skeletal/kart_csp_e_1.dds</texture>
+      <texture>skeletal/kart_csp_e_3.dds</texture>
     </variant>
   </group>
 

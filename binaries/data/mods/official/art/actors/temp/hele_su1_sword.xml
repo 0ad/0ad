@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="200"/>
+        <animation file="infantry/sword/attack/isw_s_off_05.psa" name="Idle" speed="1"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="20"/>
         <animation file="biped/dudebuild.psa" name="Build" speed="150"/>
         <animation file="biped/dudechop.psa" name="Chop" speed="150"/>
@@ -21,8 +21,8 @@
       <props>
         <prop actor="props/units/heads/hele_su1.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/hele_round_spartiate_sp.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/hele_round_lamtha.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/xiphos.xml" attachpoint="r_hand"/>
       </props>
       <texture>skeletal/hele_spartitiate.dds</texture>
     </variant>
