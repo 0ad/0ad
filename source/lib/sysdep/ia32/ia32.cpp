@@ -22,9 +22,10 @@
 #include "lib/timer.h"
 #include "lib/sysdep/cpu.h"
 
-#if !HAVE_MS_ASM && !HAVE_GNU_ASM
+#if !MSC_VERSION && !GCC_VERSION
 #error ia32.cpp needs inline assembly support!
 #endif
+
 
 //-----------------------------------------------------------------------------
 // capability bits
@@ -118,18 +119,47 @@ static uint DetectGeneration()
 {
 	uint model, family;
 	DetectSignature(&model, &family);
-	switch(family)
+
+	switch(ia32_Vendor())
 	{
-	case 5:
-	case 6:
-	case 7:
-		return family;
-	case 0xF:
-		return 8;
-	default:
-		debug_assert(0);
-		return 0;
+	case IA32_VENDOR_AMD:
+		switch(family)
+		{
+		case 5:
+			if(model < 6)
+				return 5;	// K5
+			else
+				return 6;	// K6
+
+		case 6:
+			return 7;	// K7 (Athlon)
+
+		case 0xF:
+			return 8;	// K8 (Opteron)
+		}
+		break;
+
+	case IA32_VENDOR_INTEL:
+		switch(family)
+		{
+		case 5:
+			return 5;	// Pentium
+
+		case 6:
+			if(model <= 0xD)
+				return 6;	// Pentium Pro/II/III/M
+			else
+				return 8;	// Core2Duo
+
+		case 0xF:
+			if(model <= 6)
+				return 7;	// Pentium 4/D
+		}
+		break;
 	}
+
+	debug_assert(0);	// unknown CPU generation
+	return family;
 }
 
 uint ia32_Generation()
@@ -609,7 +639,7 @@ uint cpu_LogicalPerCore()
 u64 ia32_rdtsc_safe()
 {
 	u64 c;
-#if HAVE_MS_ASM
+#if MSC_VERSION
 	__asm
 	{
 		cpuid
@@ -617,7 +647,7 @@ u64 ia32_rdtsc_safe()
 		mov			dword ptr [c], eax
 		mov			dword ptr [c+4], edx
 	}
-#elif HAVE_GNU_ASM
+#elif GCC_VERSION
 	// note: we save+restore EBX to avoid xcode complaining about a
 	// "PIC register" being clobbered, whatever that means.
 	__asm__ __volatile__ (
@@ -632,12 +662,12 @@ u64 ia32_rdtsc_safe()
 
 void ia32_DebugBreak()
 {
-#if HAVE_MS_ASM
+#if MSC_VERSION
 	__asm int 3
 		// note: this probably isn't necessary, since unix_debug_break
-		// (SIGTRAP) is most probably available if HAVE_GNU_ASM.
+		// (SIGTRAP) is most probably available if GCC_VERSION.
 		// we include it for completeness, though.
-#elif HAVE_GNU_ASM
+#elif GCC_VERSION
 	__asm__ __volatile__ ("int $3");
 #endif
 }
@@ -648,9 +678,9 @@ void cpu_MemoryFence()
 {
 	// Pentium IV
 	if(ia32_cap(IA32_CAP_SSE2))
-#if HAVE_MS_ASM
+#if MSC_VERSION
 		__asm mfence
-#elif HAVE_GNU_ASM
+#elif GCC_VERSION
 		__asm__ __volatile__ ("mfence");
 #endif
 }
