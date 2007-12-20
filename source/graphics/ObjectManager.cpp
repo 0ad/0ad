@@ -6,7 +6,7 @@
 #include "graphics/ObjectEntry.h"
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
-#include "ps/VFSUtil.h"
+#include "ps/Filesystem.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -150,21 +150,20 @@ void CObjectManager::UnloadObjects()
 
 
 
-static void GetObjectName_ThunkCb(const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData)
+static LibError GetObjectName_ThunkCb(const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), uintptr_t cbData)
 {
 	std::vector<CStr>* names = (std::vector<CStr>*)cbData;
-	CStr name (path);
+	CStr name(pathname.string());
 	names->push_back(name.AfterFirst("actors/"));
+	return INFO::CB_CONTINUE;
 }
 
 void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 {
-	vfs_dir_enum("art/actors/", VFS_DIR_RECURSIVE, "*.xml",
-		GetObjectName_ThunkCb, (uintptr_t)&names);
+	fs_ForEachFile(g_VFS, "art/actors/", GetObjectName_ThunkCb, (uintptr_t)&names, "*.xml", DIR_RECURSIVE);
 }
 
 void CObjectManager::GetPropObjectNames(std::vector<CStr>& names)
 {
-	vfs_dir_enum("art/actors/props/", VFS_DIR_RECURSIVE, "*.xml",
-		GetObjectName_ThunkCb, (uintptr_t)&names);
+	fs_ForEachFile(g_VFS, "art/actors/props/", GetObjectName_ThunkCb, (uintptr_t)&names, "*.xml", DIR_RECURSIVE);
 }

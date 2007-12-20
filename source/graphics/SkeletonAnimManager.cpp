@@ -13,7 +13,6 @@
 #include "graphics/ColladaManager.h"
 #include "graphics/Model.h"
 #include "graphics/SkeletonAnimDef.h"
-#include "lib/res/res.h"
 #include "ps/CLogger.h"
 #include "ps/FileUnpacker.h"
 

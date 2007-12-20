@@ -7,8 +7,6 @@
 
 #include "scripting/ScriptingHost.h"
 
-// [KEEP IN SYNC WITH TDD AND WIKI]
-
 // these are registered in ScriptGlue.cpp, hence the need for a header.
 
 namespace JSI_VFS
@@ -18,7 +16,7 @@ namespace JSI_VFS
 	//
 	// pathnames = buildDirEntList(start_path [, filter_string [, recursive ] ]);
 	//   directory: VFS path
-	//   filter_string: default "" matches everything; otherwise, see vfs_next_dirent.
+	//   filter_string: see match_wildcard; "" matches everything.
 	//   recurse: should subdirectories be included in the search? default false.
 	//
 	// note: full pathnames of each file/subdirectory are returned,

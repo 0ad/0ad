@@ -10,7 +10,7 @@
 #define INCLUDED_PARTICLEENGINE
 
 #include "ParticleEmitter.h"
-#include "lib/res/graphics/tex.h"
+#include "lib/tex/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "graphics/Texture.h"
 

@@ -34,7 +34,7 @@ static enum
 	IDLE,
 	REGISTERING,
 	FIRST_LOAD,
-	LOADING,
+	LOADING
 }
 state = IDLE;
 
@@ -193,8 +193,7 @@ static bool HaveTimeForNextTask(double time_left, double time_budget, int estima
 // persistent, we can't just store a pointer. returning a pointer to
 // our copy of the description doesn't work either, since it's freed when
 // the request is de-queued. that leaves writing into caller's buffer.
-LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description,
-	size_t max_chars, int* progress_percent)
+LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t max_chars, int* progress_percent)
 {
 	LibError ret;	// single exit; this is returned
 	double progress = 0.0;	// used to set progress_percent

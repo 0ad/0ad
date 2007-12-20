@@ -1,10 +1,9 @@
 #include "lib/self_test.h"
 
-#include "lib/res/file/vfs.h"
-#include "lib/res/file/archive/vfs_optimizer.h"
-#include "lib/res/file/path.h"
-#include "lib/res/file/archive/trace.h"
-#include "lib/res/h_mgr.h"
+#include "lib/file/vfs/vfs.h"
+#include "lib/file/io/io.h"
+#include "lib/file/path.h"
+#include "lib/file/directory_posix.h"
 
 #include "graphics/ColladaManager.h"
 #include "graphics/MeshManager.h"
@@ -30,78 +29,59 @@ class TestMeshManager : public CxxTest::TestSuite
 	{
 		// Initialise VFS:
 
-		TS_ASSERT_OK(file_init());
-		TS_ASSERT_OK(file_set_root_dir(0, "../data"));
+		TS_ASSERT_OK(path_SetRoot(0, "../data"));
 
 		// Set up a mod directory to work in:
 
 		// Make sure the required directories doesn't exist when we start,
 		// in case the previous test aborted and left them full of junk
-		if (file_exists(MOD_PATH))
-			TS_ASSERT_OK(dir_delete(MOD_PATH));
+		directoryPosix.DeleteDirectory(MOD_PATH);
+		directoryPosix.DeleteDirectory(CACHE_PATH);
 
-		if (file_exists(CACHE_PATH))
-			TS_ASSERT_OK(dir_delete(CACHE_PATH));
+		TS_ASSERT_OK(directoryPosix.CreateDirectory(MOD_PATH));
+		TS_ASSERT_OK(directoryPosix.CreateDirectory(CACHE_PATH));
 
-		TS_ASSERT_OK(dir_create(MOD_PATH));
-		TS_ASSERT_OK(dir_create(CACHE_PATH));
-
-		vfs_init();
+		vfs = CreateVfs();
 
 		// Mount the mod on /
-		TS_ASSERT_OK(vfs_mount("", MOD_PATH, VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_ARCHIVABLE));
+		TS_ASSERT_OK(vfs->Mount("", MOD_PATH, VFS_MOUNT_ARCHIVABLE));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the
 		// proper game and takes a long time to load.
-		TS_ASSERT_OK(vfs_mount("cache/", CACHE_PATH, VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_ARCHIVABLE));
-
-		TS_ASSERT_OK(vfs_set_write_target(MOD_PATH));
+		TS_ASSERT_OK(vfs->Mount("cache/", CACHE_PATH, VFS_MOUNT_ARCHIVABLE));
 	}
 
 	void deinitVfs()
 	{
-		// (TODO: It'd be nice if this kind of code didn't have to be
-		// duplicated in each test suite that's using VFS things)
+		directoryPosix.DeleteDirectory(MOD_PATH);
+		directoryPosix.DeleteDirectory(CACHE_PATH);
 
-		vfs_shutdown();
-		TS_ASSERT_OK(file_shutdown());
-
-		TS_ASSERT_OK(dir_delete(MOD_PATH));
-		if (file_exists(CACHE_PATH))
-			TS_ASSERT_OK(dir_delete(CACHE_PATH));
-
-		path_reset_root_dir();
+		path_ResetRootDir();
 	}
 
 	void copyFile(const char* src, const char* dst)
 	{
 		// Copy a file into the mod directory, so we can work on it:
-
-		File f;
-		TS_ASSERT_OK(file_open(src, 0, &f));
-		FileIOBuf buf = FILE_BUF_ALLOC;
-		ssize_t read = file_io(&f, 0, f.size, &buf);
-		TS_ASSERT_EQUALS(read, f.size);
-		file_close(&f);
-
-		vfs_store(dst, buf, read, FILE_NO_AIO);
-
-		file_buf_free(buf);
+		shared_ptr<u8> data; size_t size = 0;
+		TS_ASSERT_OK(vfs->LoadFile(src, data, size));
+		TS_ASSERT_OK(vfs->CreateFile(dst, data, size));
 	}
 
 	void buildArchive()
 	{
 		// Create a junk trace file first, because vfs_opt_auto_build requires one
-		std::string trace = "000.000000: L \"-\" 0 0000\n";
-		vfs_store("trace.txt", (const u8*)trace.c_str(), trace.size(), FILE_NO_AIO);
+//		std::string trace = "000.000000: L \"-\" 0 0000\n";
+//		vfs_store("trace.txt", (const u8*)trace.c_str(), trace.size(), FILE_NO_AIO);
 
 		// then make the archive
-		TS_ASSERT_OK(vfs_opt_rebuild_main_archive(MOD_PATH"/trace.txt", MOD_PATH"/test%02d.zip"));
+//		TS_ASSERT_OK(vfs_opt_rebuild_main_archive(MOD_PATH"/trace.txt", MOD_PATH"/test%02d.zip"));
 	}
 
 	CColladaManager* colladaManager;
 	CMeshManager* meshManager;
+	PIVFS vfs;
+	FileSystem_Posix directoryPosix;
 
 public:
 
@@ -122,16 +102,10 @@ public:
 	void IRRELEVANT_test_archived()
 	{
 		copyFile(srcDAE, testDAE);
-
-		buildArchive();
-
-		// Have to specify FILE_WRITE_TO_TARGET in order to overwrite existent
-		// files when they might have been archived
-		vfs_store(testDAE, (const u8*)"Test", 4, FILE_NO_AIO | FILE_WRITE_TO_TARGET);
-
-		// We can't overwrite cache files because FILE_WRITE_TO_TARGET won't
-		// write into cache/ - it might be nice to fix that. For now we just
-		// use unique filenames.
+		//buildArchive();
+		shared_ptr<u8> buf = io_Allocate(100);
+		SAFE_STRCPY((char*)buf.get(), "Test");
+		vfs->CreateFile(testDAE, buf, 4);
 	}
 
 	void test_load_pmd_with_extension()
@@ -164,11 +138,6 @@ public:
 
 	void test_load_dae()
 	{
-		// TODO: I get
-		//  Assertion failed: "buf_in_cache == buf"
-		//  Location: file_cache.cpp:1094 (file_buf_free)
-		// when the order of these is swapped...
-
 		copyFile(srcDAE, testDAE);
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
@@ -196,8 +165,9 @@ public:
 		TestLogger logger;
 
 		copyFile(srcDAE, testDAE);
-		const char text[] = "Not valid XML";
-		vfs_store(testSkeletonDefs, (const u8*)text, strlen(text), FILE_NO_AIO);
+		shared_ptr<u8> buf = io_Allocate(100);
+		SAFE_STRCPY((char*)buf.get(), "Not valid XML");
+		vfs->CreateFile(testSkeletonDefs, buf, 13);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
@@ -209,8 +179,9 @@ public:
 		TestLogger logger;
 
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
-		const char text[] = "Not valid XML";
-		vfs_store(testDAE, (const u8*)text, strlen(text), FILE_NO_AIO);
+		shared_ptr<u8> buf = io_Allocate(100);
+		SAFE_STRCPY((char*)buf.get(), "Not valid XML");
+		vfs->CreateFile(testDAE, buf, 13);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);

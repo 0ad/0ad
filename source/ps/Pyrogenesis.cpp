@@ -3,9 +3,9 @@
 #include "Pyrogenesis.h"
 #include "ps/i18n.h"
 
-#include "lib/path_util.h"
-#include "lib/res/file/file.h"
 #include "lib/sysdep/sysdep.h"
+#include "lib/file/path.h"
+#include "lib/path_util.h"
 
 DEFINE_ERROR(PS_OK, "OK");
 DEFINE_ERROR(PS_FAIL, "Fail");
@@ -46,7 +46,7 @@ void psTranslateFree(const wchar_t* text)
 
 // convert contents of file <in_filename> from char to wchar_t and
 // append to <out> file.
-static void cat_atow(FILE* out, const char* in_filename)
+static void AppendAsciiFile(FILE* out, const char* in_filename)
 {
 	FILE* in = fopen(in_filename, "rb");
 	if(!in)
@@ -70,19 +70,17 @@ static void cat_atow(FILE* out, const char* in_filename)
 	fclose(in);
 }
 
+// for user convenience, bundle all logs into this file:
 void psBundleLogs(FILE* f)
 {
-	// for user convenience, bundle all logs into this file:
-	char N_path[PATH_MAX];
-
 	fwprintf(f, L"System info:\n\n");
-	(void)file_make_full_native_path("../logs/system_info.txt", N_path);
-	cat_atow(f, N_path);
+	Path path1("../logs/system_info.txt");
+	AppendAsciiFile(f, path1.external_file_string().c_str());
 	fwprintf(f, L"\n\n====================================\n\n");
 
 	fwprintf(f, L"Main log:\n\n");
-	(void)file_make_full_native_path("../logs/mainlog.html", N_path);
-	cat_atow(f, N_path);
+	Path path2("../logs/mainlog.html");
+	AppendAsciiFile(f, path2.external_file_string().c_str());
 	fwprintf(f, L"\n\n====================================\n\n");
 }
 

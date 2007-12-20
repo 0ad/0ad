@@ -4,8 +4,7 @@
 #include "Parser.h"
 #include "ConfigDB.h"
 #include "CLogger.h"
-#include "lib/res/file/vfs.h"
-#include "lib/res/mem.h"
+#include "Filesystem.h"
 #include "scripting/ScriptingHost.h"
 
 #define LOG_CATEGORY "config"
@@ -255,41 +254,20 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	parser.InputTaskType("Assignment", "_$ident_=<_[-$arg(_minus)]_$value_,>_[-$arg(_minus)]_$value[[;]$rest]");
 	parser.InputTaskType("CommentOrBlank", "_[;[$rest]]");
 
-	FileIOBuf buffer;
-	size_t buflen;
-	File f;
-	LibError ret;
-	if (m_UseVFS[ns])
+	// Open file with VFS
+	shared_ptr<u8> buffer; size_t buflen;
 	{
-		// Open file with VFS
-		ret = vfs_load(m_ConfigFile[ns], buffer, buflen);
+		LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 		if(ret != INFO::OK)
 		{
 			LOG(ERROR, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), ret);
 			return false;
 		}
 	}
-	else
-	{
-		if (file_open(m_ConfigFile[ns], 0, &f)!=INFO::OK)
-		{
-			LOG(ERROR, LOG_CATEGORY, "file_open for \"%s\" failed", m_ConfigFile[ns].c_str());
-			return false;
-		}
-		buffer = FILE_BUF_ALLOC;
-		buflen = f.size;
-		ssize_t ret = file_io(&f, 0, buflen, &buffer);
-		(void)file_close(&f);
-		if(ret != (ssize_t)buflen)
-		{
-			LOG(ERROR, LOG_CATEGORY, "file_io for \"%s\" failed", m_ConfigFile[ns].c_str());
-			return false;
-		}
-	}
 	
 	TConfigMap newMap;
 	
-	char *filebuf=(char *)buffer;
+	char *filebuf=(char *)buffer.get();
 	char *filebufend=filebuf+buflen;
 	
 	// Read file line by line
@@ -334,50 +312,36 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	
 	m_Map[ns].swap(newMap);
 
-	(void)file_buf_free(buffer);
 	return true;
 }
 
 bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStr& path)
 {
+	debug_assert(useVFS);
+
 	if (ns < 0 || ns >= CFG_LAST)
 	{
 		debug_warn("CConfigDB: Invalid ns value");
 		return false;
 	}
 
-	char realpath[PATH_MAX];
-	char nativepath[PATH_MAX];
 	const char *filepath=path.c_str();
-	int err;
-	FILE *fp;
 
-	if (useVFS)
+	shared_ptr<u8> buf = io_Allocate(1*MiB);
+	char* pos = (char*)buf.get();
+	TConfigMap &map=m_Map[ns];
+	for(TConfigMap::const_iterator it = it=map.begin(); it != map.end(); ++it)
 	{
-		if ((err=vfs_realpath(filepath, realpath))!=0)
-		{
-			LOG(ERROR, LOG_CATEGORY, "CConfigDB::WriteFile(): vfs_realpath for VFS path \"%s\" failed (error: %d)", filepath, err);
-			return false;
-		}
-		filepath=realpath;
+		pos += sprintf(pos, "%s = \"%s\"\n", it->first.c_str(), it->second[0].m_String.c_str());
 	}
-	file_make_full_native_path(filepath, nativepath);
-	if ((fp = fopen(nativepath, "w")) == NULL)
+	const size_t len = pos - (char*)buf.get();
+
+	LibError ret = g_VFS->CreateFile(filepath, buf, len);
+	if(ret < 0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CConfigDB::WriteFile(): fopen for path \"%s\" failed (error: %d)", filepath, errno);
+		LOG(ERROR, LOG_CATEGORY, "CConfigDB::WriteFile(): CreateFile \"%s\" failed (error: %d)", filepath, (int)ret);
 		return false;
 	}
-	
-	//uint offset=0;	// unused
 
-	TConfigMap &map=m_Map[ns];
-	TConfigMap::const_iterator it=map.begin();
-	while (it != map.end())
-	{
-		fprintf(fp, "%s = \"%s\"\n", it->first.c_str(), it->second[0].m_String.c_str());
-		++it;
-	}
-
-	fclose(fp);
 	return true;
 }

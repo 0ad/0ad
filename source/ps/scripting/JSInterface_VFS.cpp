@@ -3,10 +3,8 @@
 #include <sstream>
 
 #include "ps/CStr.h"
-#include "ps/VFSUtil.h"
-#include "lib/res/res.h"
-#include "lib/res/file/archive/vfs_optimizer.h"	// ArchiveBuilderCancel
-#include "lib/res/file/vfs_mount.h"	// TNODE_NOT_FOUND
+#include "ps/Filesystem.h"
+//#include "lib/res/file/archive/vfs_optimizer.h"	// ArchiveBuilderCancel
 #include "scripting/ScriptingHost.h"
 #include "scripting/JSConversions.h"
 #include "ps/scripting/JSInterface_VFS.h"
@@ -14,7 +12,7 @@
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\
 	/* this is liable to happen often, so don't complain */\
-	if(err == ERR::TNODE_NOT_FOUND)\
+	if(err == ERR::VFS_FILE_NOT_FOUND)\
 	{\
 		*rval = JSVAL_NULL;\
 		return( JS_TRUE );\
@@ -50,14 +48,13 @@ struct BuildDirEntListState
 };
 
 // called for each matching directory entry; add its full pathname to array.
-static void BuildDirEntListCB(const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData)
+static LibError BuildDirEntListCB(const VfsPath& pathname, const FileInfo& UNUSED(fileINfo), uintptr_t cbData)
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
 
-	jsval val = ToJSVal( CStr ( path ) );
-		// note: <path> is already directory + name!
-
+	jsval val = ToJSVal( CStr(pathname.string()) );
 	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, &val);
+	return INFO::CB_CONTINUE;
 }
 
 
@@ -100,12 +97,12 @@ JSBool JSI_VFS::BuildDirEntList( JSContext* cx, JSObject* UNUSED(obj), uintN arg
 		if( !ToPrimitive<bool>( cx, argv[2], recursive ) )
 			return( JS_FALSE );
 	}
-	int flags = recursive? VFS_DIR_RECURSIVE : 0;
+	int flags = recursive? DIR_RECURSIVE : 0;
 
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
-	vfs_dir_enum( path, flags, filter, BuildDirEntListCB, (uintptr_t)&state );
+	fs_ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
 	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );
@@ -123,11 +120,11 @@ JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* UNUSED(obj), uintN argc, 
 	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
 		return( JS_FALSE );
 
-	struct stat s;
-	LibError err = vfs_stat( filename.c_str(), &s );
+	FileInfo fileInfo;
+	LibError err = g_VFS->GetFileInfo(filename.c_str(), &fileInfo);
 	JS_CHECK_FILE_ERR( err );
 
-	*rval = ToJSVal( (double)s.st_mtime );
+	*rval = ToJSVal( (double)fileInfo.MTime() );
 	return( JS_TRUE );
 }
 
@@ -143,11 +140,11 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* UNUSED(obj), uintN argc, j
 	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
 		return( JS_FALSE );
 
-	struct stat s;
-	LibError err = vfs_stat( filename.c_str(), &s );
+	FileInfo fileInfo;
+	LibError err = g_VFS->GetFileInfo(filename.c_str(), &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
-	*rval = ToJSVal( (uint)s.st_size );
+	*rval = ToJSVal( (uint)fileInfo.Size() );
 	return( JS_TRUE );
 }
 
@@ -163,13 +160,11 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsva
 	if( !ToPrimitive<CStr>( cx, argv[0], filename ) )
 		return( JS_FALSE );
 
-	FileIOBuf buf;
-	size_t size;
-	LibError err = vfs_load( filename.c_str(), buf, size );
+	shared_ptr<u8> buf; size_t size;
+	LibError err = g_VFS->LoadFile( filename.c_str(), buf, size );
 	JS_CHECK_FILE_ERR( err );
 
-	CStr contents( (const char*)buf, size );
-	(void)file_buf_free(buf);
+	CStr contents( (const char*)buf.get(), size );
 
 	// Fix CRLF line endings. (This function will only ever be used on text files.)
 	contents.Replace("\r\n", "\n");
@@ -194,13 +189,11 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 	// read file
 	//
 
-	FileIOBuf buf;
-	size_t size;
-	LibError err = vfs_load( filename.c_str( ), buf, size );
+	shared_ptr<u8> buf; size_t size;
+	LibError err = g_VFS->LoadFile( filename.c_str( ), buf, size );
 	JS_CHECK_FILE_ERR( err );
 
-	CStr contents( (const char*)buf, size );
-	(void)file_buf_free( buf );
+	CStr contents( (const char*)buf.get(), size );
 
 	// Fix CRLF line endings. (This function will only ever be used on text files.)
 	contents.Replace("\r\n", "\n");
@@ -234,6 +227,6 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 JSBool JSI_VFS::ArchiveBuilderCancel(JSContext* UNUSED(cx), JSObject* UNUSED(obj), uintN argc, jsval* UNUSED(argv), jsval* UNUSED(rval) )
 {
 	debug_assert( argc == 0 );
-	vfs_opt_auto_build_cancel();
+//	vfs_opt_auto_build_cancel();
 	return( JS_TRUE );
 }

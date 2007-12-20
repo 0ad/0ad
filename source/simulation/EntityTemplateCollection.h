@@ -19,6 +19,7 @@
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 #include "ps/Game.h"
+#include "ps/Filesystem.h"
 
 #define g_EntityTemplateCollection CEntityTemplateCollection::GetSingleton()
 
@@ -43,7 +44,7 @@ public:
 
 	// Load list of template filenames
 	int LoadTemplates();
-	void LoadFile( const char* path );
+	void LoadFile( const VfsPath& path );
 
 	// Create a list of the names of all base entities, excluding template_*,
 	// for display in ScEd's entity-selection box.

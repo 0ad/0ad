@@ -13,6 +13,7 @@
 #include "CStr.h"
 
 #include "ps/Errors.h"
+#include "ps/Filesystem.h"	// WriteBuffer
 
 #ifndef ERROR_GROUP_FILE_DEFINED
 #define ERROR_GROUP_FILE_DEFINED
@@ -39,14 +40,14 @@ public:
 	void Write(const char* filename);
 
 	// PackRaw: pack given number of bytes onto the end of the data stream
-	void PackRaw(const void* rawdata, u32 rawdatalen);
+	void PackRaw(const void* rawdata, size_t rawdatalen);
 	// PackString: pack a string onto the end of the data stream
 	void PackString(const CStr& str);
 
 private:
 	// the output data stream built during pack operations.
 	// contains the header, so we can write this out in one go.
-	std::vector<u8> m_Data;
+	WriteBuffer m_writeBuffer;
 };
 
 #endif

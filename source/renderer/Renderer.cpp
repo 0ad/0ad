@@ -14,13 +14,8 @@
 #include <algorithm>
 #include "lib/bits.h"	// is_pow2
 #include "Renderer.h"
-#include "graphics/Terrain.h"
 #include "maths/Matrix3D.h"
 #include "maths/MathUtil.h"
-#include "graphics/Camera.h"
-#include "graphics/Texture.h"
-#include "graphics/LightEnv.h"
-#include "graphics/Terrain.h"
 #include "ps/Pyrogenesis.h"	// MICROLOG
 #include "ps/CLogger.h"
 #include "ps/Game.h"
@@ -28,20 +23,21 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "ps/Player.h"
+#include "ps/Loader.h"
+#include "ps/ProfileViewer.h"
 #include "simulation/LOSManager.h"
 #include "simulation/TerritoryManager.h"
 
+#include "lib/path_util.h"
+#include "lib/file/io/io.h"	// io_Allocate
+#include "lib/res/graphics/ogl_tex.h"
+
+#include "graphics/Camera.h"
+#include "graphics/Texture.h"
+#include "graphics/LightEnv.h"
+#include "graphics/Terrain.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
-
-#include "lib/ogl.h"
-#include "lib/path_util.h"
-#include "lib/res/res.h"
-#include "lib/res/graphics/tex.h"
-#include "lib/res/graphics/ogl_tex.h"
-#include "ps/Loader.h"
-#include "ps/ProfileViewer.h"
-
 #include "graphics/GameView.h"
 #include "graphics/ParticleEngine.h"
 #include "graphics/DefaultEmitter.h"
@@ -1561,7 +1557,7 @@ int CRenderer::LoadAlphaMaps()
 		(void)path_package_append_file(&pp, fnames[i]);
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
-		textures[i] = ogl_tex_load(pp.path, RES_NO_CACHE);
+		textures[i] = ogl_tex_load(pp.path);
 		RETURN_ERR(textures[i]);
 
 // quick hack: we require plain RGB(A) format, so convert to that.
@@ -1592,7 +1588,7 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 	uint tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
 	uint total_w = RoundUpToPowerOf2(tile_w * NumAlphaMaps);
 	uint total_h = base; debug_assert(is_pow2(total_h));
-	u8* data=new u8[total_w*total_h*3];
+	shared_ptr<u8> data = io_Allocate(total_w*total_h*3);
 	// for each tile on row
 	for(uint i=0;i<NumAlphaMaps;i++)
 	{
@@ -1603,7 +1599,7 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 		uint srcstep=bpp/8;
 
 		// get destination of copy
-		u8* dst=data+3*(i*tile_w);
+		u8* dst=data.get()+3*(i*tile_w);
 
 		// for each row of image
 		for (uint j=0;j<base;j++) {
@@ -1640,12 +1636,11 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 
 	// upload the composite texture
 	Tex t;
-	(void)tex_wrap(total_w, total_h, 24, 0, data, &t);
+	(void)tex_wrap(total_w, total_h, 24, 0, data, 0, &t);
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, key);
 	(void)ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
 	(void)ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE);
 	int ret = ogl_tex_upload(m_hCompositeAlphaMap, 0, 0, GL_INTENSITY);
-	delete[] data;
 
 	return ret;
 }

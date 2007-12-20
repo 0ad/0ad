@@ -7,7 +7,7 @@
 #include <boost/weak_ptr.hpp>
 
 class CModelDef;
-typedef boost::shared_ptr<CModelDef> CModelDefPtr;
+typedef shared_ptr<CModelDef> CModelDefPtr;
 
 class CColladaManager;
 

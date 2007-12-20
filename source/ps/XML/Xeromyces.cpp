@@ -7,7 +7,7 @@
 #include <algorithm>
 
 #include "ps/CLogger.h"
-#include "lib/res/file/vfs.h"
+#include "ps/Filesystem.h"
 #include "Xeromyces.h"
 
 #define LOG_CATEGORY "xml"
@@ -16,65 +16,6 @@
 
 
 int CXeromyces::XercesLoaded = 0; // for once-only initialisation
-
-
-// Slightly nasty fwrite/fseek/ftell style thing
-class membuffer
-{
-public:
-	membuffer()
-	{
-		buffer = (char*)malloc(bufferinc);
-		debug_assert(buffer);
-		allocated = bufferinc;
-		length = 0;
-	}
-
-	~membuffer()
-	{
-		free(buffer);
-	}
-
-	void write(const void* data, int size)
-	{
-		while (length + size >= allocated) grow();
-		cpu_memcpy(&buffer[length], data, size);
-		length += size;
-	}
-
-	void write(const void* data, int size, int offset)
-	{
-		debug_assert(offset >= 0 && offset+size < length);
-		cpu_memcpy(&buffer[offset], data, size);
-	}
-
-	int tell()
-	{
-		return length;
-	}
-
-	char* steal_buffer()
-	{
-		char* ret = buffer;
-		buffer = NULL;
-		return ret;
-	}
-
-	char* buffer;
-	int length;
-private:
-	int allocated;
-	static const int bufferinc = 1024;
-	void grow()
-	{
-		allocated += bufferinc;
-		char* newbuffer = (char*)realloc(buffer, allocated);
-		if (newbuffer)
-			buffer = newbuffer;
-		else
-			debug_warn("Xeromyces: realloc failed");
-	}
-};
 
 // Convenient storage for the internal tree
 typedef struct {
@@ -116,9 +57,9 @@ public:
 
 	// Non-SAX2 stuff, used for storing the
 	// parsed data and constructing the XMB:
-	
+
 	void CreateXMB();
-	membuffer buffer;
+	WriteBuffer writeBuffer;
 
 private:
 	std::set<std::string> ElementNames;
@@ -139,23 +80,11 @@ private:
 
 
 CXeromyces::CXeromyces()
-: XMBFileHandle(0), XMBBuffer(NULL)
 {
 }
 
-CXeromyces::~CXeromyces() {
-
-	if (XMBFileHandle)
-	{
-		// If it was read from a file, close it
-		delete XMBFileHandle;
-	}
-	else
-	{
-		// If it was converted from a XML directly into memory,
-		// free that memory buffer
-		free(XMBBuffer);
-	}
+CXeromyces::~CXeromyces()
+{
 }
 
 void CXeromyces::Terminate()
@@ -186,7 +115,7 @@ void CXeromyces::GetXMBPath(const char* xmlFilename, const char* xmbFilename,
 
 	// get real path of XML file (e.g. mods/official/entities/...)
 	char P_XMBRealPath[PATH_MAX];
-	vfs_realpath(xmlFilename, P_XMBRealPath);
+	g_VFS->GetRealPath(xmlFilename, P_XMBRealPath);
 
 	// extract mod name from that
 	char modName[PATH_MAX];
@@ -202,15 +131,15 @@ void CXeromyces::GetXMBPath(const char* xmlFilename, const char* xmbFilename,
 PSRETURN CXeromyces::Load(const char* filename)
 {
 	// Make sure the .xml actually exists
-	if (! vfs_exists(filename))
+	if (! FileExists(filename))
 	{
 		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to find XML file %s", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
 	// Get some data about the .xml file
-	struct stat xmlStat;
-	if (vfs_stat(filename, &xmlStat) < 0)
+	FileInfo fileInfo;
+	if (g_VFS->GetFileInfo(filename, &fileInfo) < 0)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to stat XML file %s", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;
@@ -246,9 +175,9 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 	const int bufLen = 22;
 	char buf[bufLen+1];
-	if (sprintf(buf, "_%08x%08xB.xmb", (int)xmlStat.st_mtime & ~1, (int)xmlStat.st_size) != bufLen)
+	if (sprintf(buf, "_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size()) != bufLen)
 	{
-		debug_warn("Failed to create filename (?!)");
+		debug_assert(0);	// Failed to create filename (?!)
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 	xmbFilename += buf;
@@ -258,7 +187,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 
 	// If the file exists, use it
-	if (vfs_exists(xmbPath))
+	if (FileExists(xmbPath))
 	{
 		if (ReadXMBFile(xmbPath))
 			return PSRETURN_OK;
@@ -277,10 +206,8 @@ PSRETURN CXeromyces::Load(const char* filename)
 	}
 
 	// Open the .xml file
-	// note: FILE_LONG_LIVED is necessary because we load XML, load DTD,
-	// and only then free XML.
 	CVFSInputSource source;
-	if (source.OpenFile(filename, FILE_LONG_LIVED) < 0)
+	if (source.OpenFile(filename) < 0)
 	{
 		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;
@@ -324,37 +251,26 @@ PSRETURN CXeromyces::Load(const char* filename)
 	handler.CreateXMB();
 
 	// Save the file to disk, so it can be loaded quickly next time
-	vfs_store(xmbPath, (const u8*)handler.buffer.buffer, handler.buffer.length, FILE_NO_AIO);
+	WriteBuffer& writeBuffer = handler.writeBuffer;
+	g_VFS->CreateFile(xmbPath, writeBuffer.Data(), writeBuffer.Size());
 
-	// Store the buffer so it can be freed later
-	XMBBuffer = handler.buffer.steal_buffer();
+	XMBBuffer = writeBuffer.Data();	// add a reference
 
 	// Set up the XMBFile
-	Initialise(XMBBuffer);
+	Initialise((const char*)XMBBuffer.get());
 
 	return PSRETURN_OK;
 }
 
 bool CXeromyces::ReadXMBFile(const char* filename)
 {
-	CVFSFile* file = new CVFSFile;
-	// note: an XMB file's buffer is held in memory across all load/free
-	// sequences of dependent files it references. that hurts the
-	// file cache allocator and incurs a warning unless we
-	// inform the file manager of this behavior via FILE_LONG_LIVED.
-	if (file->Load(filename, FILE_LONG_LIVED) != PSRETURN_OK)
+	size_t size;
+	if(g_VFS->LoadFile(filename, XMBBuffer, size) < 0)
 		return false;
-
-	const u8* buffer = file->GetBuffer();
-
-	debug_assert(file->GetBufferSize() >= 42 && "Invalid XMB file"); // 42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.)
-	debug_assert(*(u32*)buffer == HeaderMagic && "Invalid XMB file header");
-
-	// Store the Handle so it can be closed later
-	XMBFileHandle = file;
+	debug_assert(size >= 42);	// else: invalid XMB file size. (42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.))
 
 	// Set up the XMBFile
-	Initialise((const char*)buffer);
+	Initialise((const char*)XMBBuffer.get());
 
 	return true;
 }
@@ -447,7 +363,7 @@ void XeroHandler::characters(const XMLCh* const chars, const unsigned int UNUSED
 void XeroHandler::CreateXMB()
 {
 	// Header
-	buffer.write((void*)HeaderMagicStr, 4);
+	writeBuffer.Append((void*)HeaderMagicStr, 4);
 
 	std::set<std::string>::iterator it;
 	int i;
@@ -455,24 +371,24 @@ void XeroHandler::CreateXMB()
 	// Element names
 	i = 0;
 	int ElementCount = (int)ElementNames.size();
-	buffer.write(&ElementCount, 4);
+	writeBuffer.Append(&ElementCount, 4);
 	for (it = ElementNames.begin(); it != ElementNames.end(); ++it)
 	{
 		int TextLen = (int)it->length()+1;
-		buffer.write(&TextLen, 4);
-		buffer.write((void*)it->c_str(), TextLen);
+		writeBuffer.Append(&TextLen, 4);
+		writeBuffer.Append((void*)it->c_str(), TextLen);
 		ElementID[*it] = i++;
 	}
 
 	// Attribute names
 	i = 0;
 	int AttributeCount = (int)AttributeNames.size();
-	buffer.write(&AttributeCount, 4);
+	writeBuffer.Append(&AttributeCount, 4);
 	for (it = AttributeNames.begin(); it != AttributeNames.end(); ++it)
 	{
 		int TextLen = (int)it->length()+1;
-		buffer.write(&TextLen, 4);
-		buffer.write((void*)it->c_str(), TextLen);
+		writeBuffer.Append(&TextLen, 4);
+		writeBuffer.Append((void*)it->c_str(), TextLen);
 		AttributeID[*it] = i++;
 	}
 
@@ -490,21 +406,21 @@ void XeroHandler::CreateXMB()
 void XeroHandler::OutputElement(XMLElement* el)
 {
 	// Filled in later with the length of the element
-	int Pos_Length = buffer.tell();
-	buffer.write("????", 4);
+	int Pos_Length = (int)writeBuffer.Size();
+	writeBuffer.Append("????", 4);
 
 	int NameID = ElementID[el->name];
-	buffer.write(&NameID, 4);
+	writeBuffer.Append(&NameID, 4);
 
 	int AttrCount = (int)el->attrs.size();
-	buffer.write(&AttrCount, 4);
+	writeBuffer.Append(&AttrCount, 4);
 
 	int ChildCount = (int)el->childs.size();
-	buffer.write(&ChildCount, 4);
+	writeBuffer.Append(&ChildCount, 4);
 
 	// Filled in later with the offset to the list of child elements
-	int Pos_ChildrenOffset = buffer.tell();
-	buffer.write("????", 4);
+	int Pos_ChildrenOffset = (int)writeBuffer.Size();
+	writeBuffer.Append("????", 4);
 
 
 	// Trim excess whitespace in the entity's text, while counting
@@ -538,15 +454,15 @@ void XeroHandler::OutputElement(XMLElement* el)
 	if (el->text.length() == 0)
 	{
 		// No text; don't write much
-		buffer.write("\0\0\0\0", 4);
+		writeBuffer.Append("\0\0\0\0", 4);
 	}
 	else
 	{
 		// Write length and line number and null-terminated text
 		int NodeLen = 4 + 2*((int)el->text.length()+1);
-		buffer.write(&NodeLen, 4);
-		buffer.write(&el->linenum, 4);
-		buffer.write((void*)el->text.c_str(), NodeLen-4);
+		writeBuffer.Append(&NodeLen, 4);
+		writeBuffer.Append(&el->linenum, 4);
+		writeBuffer.Append((void*)el->text.c_str(), NodeLen-4);
 	}
 
 	// Output attributes
@@ -556,27 +472,27 @@ void XeroHandler::OutputElement(XMLElement* el)
 	for (i = 0; i < AttrCount; ++i)
 	{
 		int AttrName = AttributeID[el->attrs[i]->name];
-		buffer.write(&AttrName, 4);
+		writeBuffer.Append(&AttrName, 4);
 
 		int AttrLen = 2*((int)el->attrs[i]->value.length()+1);
-		buffer.write(&AttrLen, 4);
-		buffer.write((void*)el->attrs[i]->value.c_str(), AttrLen);
+		writeBuffer.Append(&AttrLen, 4);
+		writeBuffer.Append((void*)el->attrs[i]->value.c_str(), AttrLen);
 
 		// Free each attribute as soon as it's been dealt with
 		delete el->attrs[i];
 	}
 
 	// Go back and fill in the child-element offset
-	int ChildrenOffset = buffer.tell() - (Pos_ChildrenOffset+4);
-	buffer.write(&ChildrenOffset, 4, Pos_ChildrenOffset);
+	int ChildrenOffset = (int)writeBuffer.Size() - (Pos_ChildrenOffset+4);
+	writeBuffer.Overwrite(&ChildrenOffset, 4, Pos_ChildrenOffset);
 
 	// Output all child nodes
 	for (i = 0; i < ChildCount; ++i)
 		OutputElement(el->childs[i]);
 
 	// Go back and fill in the length
-	int Length = buffer.tell() - Pos_Length;
-	buffer.write(&Length, 4, Pos_Length);
+	int Length = (int)writeBuffer.Size() - Pos_Length;
+	writeBuffer.Overwrite(&Length, 4, Pos_Length);
 
 	// Tidy up the parser's mess
 	delete el;

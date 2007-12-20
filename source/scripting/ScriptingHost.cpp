@@ -6,8 +6,7 @@
 #include "ScriptGlue.h"
 #include "ps/Profile.h"
 #include "ps/CLogger.h"
-
-#include "lib/res/res.h"
+#include "ps/Filesystem.h"
 
 
 #if OS_WIN
@@ -116,15 +115,12 @@ void ScriptingHost::RunScript(const CStr& filename, JSObject* globalObject)
 {
 	const char* fn = filename.c_str();
 
-	FileIOBuf buf;
-	size_t size;
-	if(vfs_load(fn, buf, size) != INFO::OK)	// ERRTODO: translate/pass it on
+	shared_ptr<u8> buf; size_t size;
+	if(g_VFS->LoadFile(fn, buf, size) != INFO::OK)	// ERRTODO: translate/pass it on
 		throw PSERROR_Scripting_LoadFile_OpenFailed();
 
-	const char* script = (const char*)buf;
+	const char* script = (const char*)buf.get();
 	RunMemScript(script, size, fn, 1, globalObject);
-
-	(void)file_buf_free(buf);
 }
 
 jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * params, int numParams)

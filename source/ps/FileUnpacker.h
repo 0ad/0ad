@@ -10,7 +10,6 @@
 #define INCLUDED_FILEUNPACKER
 
 #include <vector>
-#include "lib/res/file/file_io.h"
 
 class CStr8;
 
@@ -46,16 +45,16 @@ public:
 	// UnpackRaw: unpack given number of bytes from the input stream into the given array
 	//	- throws PSERROR_File_UnexpectedEOF if the end of the data stream is reached before
 	// the given number of bytes have been read
-	void UnpackRaw(void* rawdata, u32 rawdatalen);
+	void UnpackRaw(void* rawdata, size_t rawdatalen);
 	// UnpackString: unpack a string from the raw data stream
 	void UnpackString(CStr8& result);
 
 private:
 	// the data read from file and used during unpack operations
-	FileIOBuf m_Buf;
+	shared_ptr<u8> m_Buf;
 	size_t m_Size;
 	// current unpack position in stream
-	u32 m_UnpackPos;
+	size_t m_UnpackPos;
 	// version of the file currently being read
 	u32 m_Version;
 };

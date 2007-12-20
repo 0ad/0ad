@@ -54,8 +54,6 @@
 
 #include "lib/mmgr.h"		// restore malloc/new macros
 
-#include "lib/res/handle.h"
-#include "lib/res/file/file.h"
 #include "XercesErrorHandler.h"
 #include "ps/CStr.h"
 
@@ -71,23 +69,23 @@ XMLCh *XMLTranscode(const char *);
 */
 class CVFSInputSource: public InputSource
 {
-	FileIOBuf m_pBuffer;
+	shared_ptr<u8> m_pBuffer;
 	size_t m_BufferSize;
 	
 	CVFSInputSource(const CVFSInputSource &);
 	CVFSInputSource &operator = (const CVFSInputSource &);
 	
 public:
-	CVFSInputSource():
-		m_pBuffer(NULL),
-		m_BufferSize(0)
-	{}
+	CVFSInputSource()
+		: m_BufferSize(0)
+	{
+	}
 	
 	virtual ~CVFSInputSource();
 	
 	// Open a VFS path for XML parsing
 	// returns 0 if successful, -1 on failure
-	int OpenFile(const char *path, uint flags);
+	int OpenFile(const char *path);
 
 	virtual BinInputStream *makeStream() const;
 };

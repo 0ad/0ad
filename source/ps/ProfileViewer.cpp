@@ -16,8 +16,7 @@
 #include "Profile.h"
 #include "renderer/Renderer.h"
 #include "lib/res/graphics/unifont.h"
-#include "lib/path_util.h"
-#include "lib/res/file/file.h"
+#include "Filesystem.h"
 #include "Hotkey.h"
 #include "ps/CLogger.h"
 #include "lib/external_libraries/sdl.h"
@@ -414,16 +413,10 @@ void CProfileViewer::SaveToFile()
 	// run.
 	if (! m->outputStream.is_open())
 	{
-		// Work out the filename
-		char N_path[PATH_MAX];
-		(void)file_make_full_native_path("../logs", N_path);
-		PathPackage pp;
-		(void)path_package_set_dir(&pp, N_path);
-		(void)path_package_append_file(&pp, "profile.txt");
-
 		// Open the file. (It will be closed when the CProfileViewer
 		// destructor is called.)
-		m->outputStream.open(pp.path, std::ofstream::out | std::ofstream::trunc);
+		Path path("../logs/profile.txt");
+		m->outputStream.open(path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
 		if (m->outputStream.fail())
 		{

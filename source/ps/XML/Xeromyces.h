@@ -13,7 +13,6 @@ ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);
 
 #include "XeroXMB.h"
-#include "ps/CVFSFile.h"
 
 class CXeromyces : public XMBFile
 {
@@ -31,14 +30,11 @@ public:
 private:
 
 	// Find out write location of the XMB file corresponding to xmlFilename
-	static void GetXMBPath(const char* xmlFilename, const char* xmbFilename,
-		char* xmbPath);
+	static void GetXMBPath(const char* xmlFilename, const char* xmbFilename, char* xmbPath);
 
 	bool ReadXMBFile(const char* filename);
 
-	XMBFile* XMB;
-	CVFSFile* XMBFileHandle; // if it's being read from disk
-	char* XMBBuffer; // if it's being read from RAM
+	shared_ptr<u8> XMBBuffer;
 
 	static int XercesLoaded; // for once-only initialisation
 };

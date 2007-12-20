@@ -1,7 +1,5 @@
 #include "precompiled.h"
 
-#include "lib/res/file/vfs.h"
-
 #include "Camera.h"
 #include "CinemaTrack.h"
 #include "LightEnv.h"
@@ -22,7 +20,7 @@
 #include "maths/NUSpline.h"
 #include "ps/Loader.h"
 #include "ps/Player.h"
-#include "ps/VFSUtil.h"
+#include "ps/Filesystem.h"
 #include "ps/XML/XMLWriter.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
@@ -163,13 +161,6 @@ void CMapWriter::WriteXML(const char* filename,
 						  CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
 						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
-	Handle h = vfs_open(filename, FILE_WRITE_TO_TARGET|FILE_NO_AIO);
-	if (h <= 0)
-	{
-		debug_warn("Failed to open map XML file");
-		return;
-	}
-
 	XML_Start();
 
 	{
@@ -408,11 +399,8 @@ void CMapWriter::WriteXML(const char* filename,
 			}
 		}
 	}
-	if (! XML_StoreVFS(h))
-	{
-		debug_warn("Failed to write map XML file");
-	}
-	(void)vfs_close(h);
+	if (! XML_StoreVFS(filename))
+		debug_assert(0);	// failed to write map XML file
 }
 
 void CMapWriter::WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group, const std::list<MapTriggerGroup>& groupList)
@@ -528,20 +516,20 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 								WaterManager* pWaterMan, SkyManager* pSkyMan,
 								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
-	VFSUtil::FileList files;
-	VFSUtil::FindFiles("maps/scenarios", "*.pmp", files);
-
-	for (VFSUtil::FileList::iterator it = files.begin(); it != files.end(); ++it)
+	VfsPaths pathnames;
+	fs_GetPathnames(g_VFS, "maps/scenarios", "*.pmp", pathnames);
+	for (size_t i = 0; i < pathnames.size(); i++)
 	{
+		const char* pathname = pathnames[i].string().c_str();
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(*it, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
+		reader->LoadMap(pathname, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 
-		CStr n (*it);
-		n.Replace("scenarios/", "scenarios/new/");
+		CStr newPathname(pathname);
+		newPathname.Replace("scenarios/", "scenarios/new/");
 		CMapWriter writer;
-		writer.SaveMap(n, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
+		writer.SaveMap(newPathname, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 	}
 }

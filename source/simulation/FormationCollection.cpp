@@ -4,34 +4,31 @@
 #include "graphics/ObjectManager.h"
 #include "graphics/Model.h"
 #include "ps/CLogger.h"
-#include "ps/VFSUtil.h"
 
 #define LOG_CATEGORY "formation"
 
 
-void CFormationCollection::LoadFile( const char* path )
+void CFormationCollection::LoadFile( const VfsPath& pathname )
 {
 	// Build the formation name -> filename mapping. This is done so that
 	// the formation 'x' can be in units/x.xml, structures/x.xml, etc, and
 	// we don't have to search every directory for x.xml.
 
-	// Extract the filename out of the path+name+extension.
-	// Equivalent to /.*\/(.*)\.xml/, but not as pretty. 
-	CStrW tag = CStr(path).AfterLast("/").BeforeLast(".xml");
-	m_templateFilenames[tag] = path;
+	CStrW basename(Basename(pathname));
+	m_templateFilenames[basename] = pathname.string();
 }
 
-static void LoadFormationThunk( const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData )
+static LibError LoadFormationThunk( const VfsPath& path, const FileInfo& UNUSED(fileInfo), uintptr_t cbData )
 {
 	CFormationCollection* this_ = (CFormationCollection*)cbData;
 	this_->LoadFile(path);
+	return INFO::CB_CONTINUE;
 }
 
 int CFormationCollection::LoadTemplates()
 {
 	// Load all files in formations and subdirectories.
-	THROW_ERR( vfs_dir_enum( "formations", VFS_DIR_RECURSIVE, "*.xml",
-		LoadFormationThunk, (uintptr_t)this ) );
+	THROW_ERR( fs_ForEachFile(g_VFS, "formations/", LoadFormationThunk, (uintptr_t)this, "*.xml", DIR_RECURSIVE));
 	return 0;
 }
 

@@ -6,9 +6,6 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "lib/timer.h"
 #include "lib/res/sound/snd_mgr.h"
-#include "lib/res/file/archive/trace.h"
-#include "lib/res/file/vfs.h"
-#include "lib/res/file/archive/vfs_optimizer.h"
 #include "Config.h"
 
 #define LOG_CATEGORY "config"
@@ -115,7 +112,7 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 		// note: VFS init is sure to have been completed by now
 		// (since CONFIG_Init reads from file); therefore,
 		// it is safe to call this from here directly.
-		vfs_opt_rebuild_main_archive("mods/official/official1.zip", "../logs/trace.txt");
+//		vfs_opt_rebuild_main_archive("mods/official/official1.zip", "../logs/trace.txt");
 	}
 
 	// Handle "-conf=key:value" (potentially multiple times)
@@ -144,8 +141,8 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 			g_Gamma = 1.0f;
 	}
 
-	if (args.Has("listfiles"))
-		trace_enable(true);
+//	if (args.Has("listfiles"))
+//		trace_enable(true);
 
 	if (args.Has("profile"))
 		g_ConfigDB.CreateValue(CFG_COMMAND, "profile")->m_String = args.Get("profile");

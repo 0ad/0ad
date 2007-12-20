@@ -16,7 +16,6 @@
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
 
-#include "lib/res/file/vfs.h"
 #include "lib/rand.h"
 
 #include <sstream>

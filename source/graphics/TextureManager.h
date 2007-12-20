@@ -17,7 +17,7 @@ class CXeromyces;
 class CTextureEntry;
 class CTerrainProperties;
 
-typedef boost::shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
+typedef shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
 
 class CTerrainGroup
 {

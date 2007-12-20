@@ -71,7 +71,7 @@ end of XMLWriter.cpp.
 // Add a 'setting': <name>value</name>
 #define XML_Setting(name, value) xml_element_.Setting(name, value)
 
-// Output the XML file to a VFS handle, which must be opened with FILE_WRITE|FILE_NO_AIO.
+// Create a VFS file from the XML data.
 // Returns true on success, false (and logs an error) on failure.
 #define XML_StoreVFS(handle) xml_file_.StoreVFS(handle)
 
@@ -81,7 +81,6 @@ end of XMLWriter.cpp.
 
 
 #include "ps/CStr.h"
-#include "lib/res/handle.h"
 
 class XMLWriter_Element;
 
@@ -94,7 +93,7 @@ public:
 
 	void Comment(const char* text);
 
-	bool StoreVFS(Handle h);
+	bool StoreVFS(const char* filename);
 	const CStr& GetOutput();
 
 private:

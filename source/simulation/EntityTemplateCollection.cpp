@@ -5,35 +5,32 @@
 #include "graphics/ObjectManager.h"
 #include "graphics/Model.h"
 #include "ps/CLogger.h"
-#include "ps/VFSUtil.h"
 #include "ps/Player.h"
 #include "ps/Game.h"
 
 #define LOG_CATEGORY "entity"
 
-void CEntityTemplateCollection::LoadFile( const char* path )
+void CEntityTemplateCollection::LoadFile( const VfsPath& pathname )
 {
 	// Build the entity name -> filename mapping. This is done so that
 	// the entity 'x' can be in units/x.xml, structures/x.xml, etc, and
 	// we don't have to search every directory for x.xml.
 
-	// Extract the filename out of the path+name+extension.
-	// Equivalent to /.*\/(.*)\.xml/, but not as pretty. 
-	CStrW tag = CStr(path).AfterLast("/").BeforeLast(".xml");
-	m_templateFilenames[tag] = path;
+	CStrW basename(Basename(pathname));
+	m_templateFilenames[basename] = pathname.string();
 }
 
-static void LoadFileThunk( const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData )
+static LibError LoadFileThunk( const VfsPath& path, const FileInfo& UNUSED(fileInfo), uintptr_t cbData )
 {
 	CEntityTemplateCollection* this_ = (CEntityTemplateCollection*)cbData;
 	this_->LoadFile(path);
+	return INFO::CB_CONTINUE;
 }
 
 int CEntityTemplateCollection::LoadTemplates()
 {
 	// List all files in entities/ and its subdirectories.
-	THROW_ERR( vfs_dir_enum( "entities/", VFS_DIR_RECURSIVE, "*.xml",
-		LoadFileThunk, (uintptr_t)this ) );
+	THROW_ERR( fs_ForEachFile(g_VFS, "entities/", LoadFileThunk, (uintptr_t)this, "*.xml", DIR_RECURSIVE));
 
 	/*// Load all the templates; this is necessary so that we can apply techs to them
 	// (otherwise a tech can't affect the template of a unit that doesn't yet exist)

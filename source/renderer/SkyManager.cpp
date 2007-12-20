@@ -11,15 +11,15 @@
 #include <algorithm>
 
 #include "lib/timer.h"
-#include "lib/res/file/vfs.h"
-#include "lib/res/graphics/tex.h"
+#include "lib/tex/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 #include "maths/MathUtil.h"
 
+#include "ps/CStr.h"
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
-#include "ps/VFSUtil.h"
+#include "ps/Filesystem.h"
 
 #include "renderer/SkyManager.h"
 #include "renderer/Renderer.h"
@@ -151,28 +151,15 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 	// Find all subdirectories in art/textures/skies
 
 	const char* dirname = "art/textures/skies/";
-	Handle dir = vfs_dir_open(dirname);
-	if (dir <= 0)
+	DirectoryNames subdirectories;
+	if(g_VFS->GetDirectoryEntries(dirname, 0, &subdirectories) < 0)
 	{
-		LOG(ERROR, "vfs", "Error opening directory '%s' (%lld)", dirname, dir);
+		LOG(ERROR, "vfs", "Error opening directory '%s'", dirname);
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
 	}
 
-	const char* filter = "/";
-	int err;
-	DirEnt entry;
-	while ((err = vfs_dir_next_ent(dir, &entry, filter)) == 0)
-	{
-		skies.push_back(CStr(entry.name));
-	}
-
-	if (err != ERR::DIR_END)
-	{
-		LOG(ERROR, "vfs", "Error reading files from directory '%s' (%d)", dirname, err);
-		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
-	}
-
-	vfs_dir_close(dir);
+	for(size_t i = 0; i < subdirectories.size(); i++)
+		skies.push_back(CStr(subdirectories[i]));
 
 	sort(skies.begin(), skies.end());
 

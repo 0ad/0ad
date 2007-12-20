@@ -4,7 +4,7 @@
 
 #include "lib/ogl.h"
 #include "lib/res/h_mgr.h"
-#include "lib/res/graphics/tex.h"
+#include "lib/tex/tex.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"

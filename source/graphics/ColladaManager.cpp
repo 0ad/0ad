@@ -4,12 +4,10 @@
 
 #include "graphics/ModelDef.h"
 #include "lib/fnv_hash.h"
-#include "lib/res/file/vfs.h"
-#include "lib/res/handle.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
-#include "ps/CVFSFile.h"
 #include "ps/DllLoader.h"
+#include "ps/Filesystem.h"
 
 namespace Collada
 {
@@ -18,19 +16,6 @@ namespace Collada
 
 namespace
 {
-	struct VFSOutputCB
-	{
-		VFSOutputCB(Handle hf) : hf(hf) {}
-		void operator() (const char* data, unsigned int length)
-		{
-			FileIOBuf buf = (FileIOBuf)data;
-			const ssize_t ret = vfs_io(hf, length, &buf);
-			WARN_ERR(ret);
-		}
-
-		Handle hf;
-	};
-
 	void ColladaLog(int severity, const char* text)
 	{
 		LOG(severity == LOG_INFO ? NORMAL :
@@ -40,8 +25,8 @@ namespace
 
 	void ColladaOutput(void* cb_data, const char* data, unsigned int length)
 	{
-		VFSOutputCB* cb = static_cast<VFSOutputCB*>(cb_data);
-		(*cb)(data, length);
+		WriteBuffer* writeBuffer = static_cast<WriteBuffer*>(cb_data);
+		writeBuffer->Append(data, (size_t)length);
 	}
 }
 
@@ -122,34 +107,22 @@ public:
 		// We need to null-terminate the buffer, so do it (possibly inefficiently)
 		// by converting to a CStr
 		CStr daeData;
-
 		{
 			CVFSFile daeFile;
 			if (daeFile.Load(daeFilename) != PSRETURN_OK)
 				return false;
-
 			daeData = daeFile.GetAsString();
-
-			// scope closes daeFile - necessary if we don't use FILE_LONG_LIVED
 		}
 
-		// Prepare the output file
-
-		Handle hf = vfs_open(pmdFilename, FILE_WRITE|FILE_NO_AIO);
-		if (hf < 0)
-			return false;
-
-		// Do the conversion
-
-		VFSOutputCB cb (hf);
-
+		// Do the conversion into a memory buffer
+		WriteBuffer writeBuffer;
 		switch (type)
 		{
-		case CColladaManager::PMD: convert_dae_to_pmd(daeData.c_str(), ColladaOutput, static_cast<void*>(&cb)); break;
-		case CColladaManager::PSA: convert_dae_to_psa(daeData.c_str(), ColladaOutput, static_cast<void*>(&cb)); break;
+		case CColladaManager::PMD: convert_dae_to_pmd(daeData.c_str(), ColladaOutput, &writeBuffer); break;
+		case CColladaManager::PSA: convert_dae_to_psa(daeData.c_str(), ColladaOutput, &writeBuffer); break;
 		}
-		
-		vfs_close(hf);
+
+		g_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
 
 		return true;
 	}
@@ -204,7 +177,7 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 	// be "psa" too.)
 
 	CStr dae = sourceName + ".dae";
-	if (! vfs_exists(dae))
+	if (! FileExists(dae))
 	{
 		// No .dae - got to use the .pmd, assuming there is one
 		return sourceName + extn;
@@ -212,8 +185,8 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 
 	// There is a .dae - see if there's an up-to-date cached copy
 
-	struct stat fileStat;
-	if (vfs_stat(dae, &fileStat) < 0)
+	FileInfo fileInfo;
+	if (g_VFS->GetFileInfo(dae, &fileInfo) < 0)
 	{
 		// This shouldn't occur for any sensible reasons
 		LOG(ERROR, "collada", "Failed to stat DAE file '%s'", dae.c_str());
@@ -226,7 +199,7 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 	// (Remove the lowest bit of mtime because some things round it to a
 	// resolution of 2 seconds)
 	struct { int version; int mtime; int size; } hashSource
-		= { COLLADA_CONVERTER_VERSION, (int)fileStat.st_mtime & ~1, (int)fileStat.st_size };
+		= { COLLADA_CONVERTER_VERSION, (int)fileInfo.MTime() & ~1, (int)fileInfo.Size() };
 	cassert(sizeof(hashSource) == sizeof(int) * 3); // no padding, because that would be bad
 
 	// Calculate the hash, convert to hex
@@ -236,7 +209,7 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 
 	// realDaePath is "mods/whatever/art/meshes/whatever.dae"
 	char realDaePath[PATH_MAX];
-	vfs_realpath(dae, realDaePath);
+	g_VFS->GetRealPath(dae, realDaePath);
 
 	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
 	CStr cachedPmdVfsPath = "cache/";
@@ -249,7 +222,7 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 	cachedPmdVfsPath += extn;
 
 	// If it's not in the cache, we'll have to create it first
-	if (! vfs_exists(cachedPmdVfsPath))
+	if (! FileExists(cachedPmdVfsPath))
 	{
 		if (! m->Convert(dae, cachedPmdVfsPath, type))
 			return ""; // failed to convert

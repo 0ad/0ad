@@ -10,7 +10,6 @@
 
 #include <float.h>
 
-#include "lib/res/res.h"
 #include "Model.h"
 #include "UnitManager.h"
 #include "Unit.h"

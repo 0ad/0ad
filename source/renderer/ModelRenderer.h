@@ -19,13 +19,13 @@
 #include "renderer/VertexArray.h"
 
 class RenderModifier;
-typedef boost::shared_ptr<RenderModifier> RenderModifierPtr;
+typedef shared_ptr<RenderModifier> RenderModifierPtr;
 
 class LitRenderModifier;
-typedef boost::shared_ptr<LitRenderModifier> LitRenderModifierPtr;
+typedef shared_ptr<LitRenderModifier> LitRenderModifierPtr;
 
 class ModelVertexRenderer;
-typedef boost::shared_ptr<ModelVertexRenderer> ModelVertexRendererPtr;
+typedef shared_ptr<ModelVertexRenderer> ModelVertexRendererPtr;
 
 class CModel;
 

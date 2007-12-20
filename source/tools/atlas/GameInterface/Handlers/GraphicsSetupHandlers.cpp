@@ -10,7 +10,6 @@
 #include "graphics/ObjectManager.h"
 #include "gui/CGUI.h"
 #include "gui/GUIbase.h"
-#include "lib/res/file/vfs.h"
 #include "lib/external_libraries/sdl.h"
 #include "maths/MathUtil.h"
 #include "ps/CConsole.h"
@@ -131,7 +130,7 @@ MESSAGEHANDLER(SetActorViewer)
 
 		View::GetView_Actor()->GetActorViewer().SetActor(L"", L"");
 		View::GetView_Actor()->GetActorViewer().UnloadObjects();
-		vfs_reload_changed_files();
+//		vfs_reload_changed_files();
 	}
 	View::GetView_Actor()->SetSpeedMultiplier(msg->speed);
 	View::GetView_Actor()->GetActorViewer().SetActor(*msg->id, *msg->animation);

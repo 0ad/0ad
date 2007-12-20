@@ -10,7 +10,7 @@
 #include "precompiled.h"
 #include "NetLog.h"
 #include "ps/CConsole.h"
-#include "lib/res/file/file.h"
+#include "lib/file/path.h"
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -237,23 +237,15 @@ void CNetLogSink::OnClose( void )
 //-----------------------------------------------------------------------------
 CNetLogFileSink::CNetLogFileSink( void )
 {
-	char	filePath[ PATH_MAX ] = {0};
-	CStr	time;
-	CStr	path;
-
 	// Get string time
+	CStr time;
 	CNetLogger::GetStringTime( time );
 	
 	// Make relative path
-	path = "../logs/net_log";
-	path += time;
-	path += ".txt";
-
-	// Make full path
-	file_make_full_native_path( path.c_str(), filePath );
-	
-	m_FileName	= filePath;
-	m_Append	= true;
+	Path path("../logs/net_log");
+	path /= time+".txt";
+	m_FileName = path.external_file_string();
+	m_Append = true;
 }
 
 //-----------------------------------------------------------------------------

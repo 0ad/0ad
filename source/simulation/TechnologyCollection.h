@@ -8,6 +8,7 @@
 #include "ps/Singleton.h"
 #include "Technology.h"
 #include "ps/Game.h"
+#include "ps/Filesystem.h"
 
 #define g_TechnologyCollection CTechnologyCollection::GetSingleton()
 
@@ -28,7 +29,7 @@ public:
 	int LoadTechnologies();
 
 	// called by non-member trampoline via LoadTechnologies
-	void LoadFile( const char* path );
+	void LoadFile( const VfsPath& path );
 };
 
 #endif

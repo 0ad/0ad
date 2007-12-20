@@ -37,7 +37,7 @@ enum InitFlags
 
 	// skip initializing the simulation.
 	// used by actor viewer because it doesn't need the simulation code.
-	INIT_NO_SIM = 4,
+	INIT_NO_SIM = 4
 };
 
 class CmdLineArgs;

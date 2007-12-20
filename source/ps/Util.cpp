@@ -2,19 +2,17 @@
 
 #include "lib/posix/posix_utsname.h"
 #include "lib/posix/posix_sock.h"
-#include "lib/res/file/path.h"
-#include "lib/res/file/vfs.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/snd.h"
 #include "lib/sysdep/cpu.h"
-#include "lib/res/res.h"
-#include "lib/res/graphics/tex.h"
+#include "lib/tex/tex.h"
 
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Game.h"
+#include "ps/Filesystem.h"
 #include "renderer/Renderer.h"
 #include "maths/MathUtil.h"
 #include "graphics/GameView.h"
@@ -52,9 +50,8 @@ void WriteSystemInfo()
 	struct utsname un;
 	uname(&un);
 
-	char N_path[PATH_MAX];
-	(void)file_make_full_native_path("../logs/system_info.txt", N_path);
-	FILE* f = fopen(N_path, "w");
+	Path pathname("../logs/system_info.txt");
+	FILE* f = fopen(pathname.external_file_string().c_str(), "w");
 	if(!f)
 		return;
 
@@ -166,7 +163,7 @@ const wchar_t* ErrorString(int err)
 }
 
 
-static NextNumberedFilenameInfo screenshot_nfi;
+static unsigned s_nextScreenshotNumber;
 
 // <extension> identifies the file format that is to be written
 // (case-insensitive). examples: "bmp", "png", "jpg".
@@ -180,8 +177,7 @@ void WriteScreenshot(const char* extension)
 	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
 	file_format_string[PATH_MAX-1] = '\0';
 	char fn[PATH_MAX];
-	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
-	const char* atom_fn = file_make_unique_fn_copy(fn);
+	fs_NextNumberedFilename(g_VFS, file_format_string, s_nextScreenshotNumber, fn);
 
 	const int w = g_xres, h = g_yres;
 	const int bpp = 24;
@@ -197,15 +193,14 @@ void WriteScreenshot(const char* extension)
 
 	const size_t img_size = w * h * bpp/8;
 	const size_t hdr_size = tex_hdr_size(fn);
-	FileIOBuf buf = file_buf_alloc(hdr_size+img_size, atom_fn, FB_FROM_HEAP);
-	GLvoid* img = (u8*)buf + hdr_size;
+	shared_ptr<u8> buf = io_Allocate(hdr_size+img_size);
+	GLvoid* img = buf.get() + hdr_size;
 	Tex t;
-	if(tex_wrap(w, h, bpp, flags, img, &t) < 0)
+	if(tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
 		return;
 	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
 	(void)tex_write(&t, fn);
-	(void)tex_free(&t);
-	(void)file_buf_free(buf, FB_FROM_HEAP);
+	tex_free(&t);
 }
 
 
@@ -220,8 +215,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
 	file_format_string[PATH_MAX-1] = '\0';
 	char fn[PATH_MAX];
-	next_numbered_filename(file_format_string, &screenshot_nfi, fn);
-	const char* atom_fn = file_make_unique_fn_copy(fn);
+	fs_NextNumberedFilename(g_VFS, file_format_string, s_nextScreenshotNumber, fn);
 
 	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
 	// hope the screen is actually large enough for that.
@@ -246,11 +240,11 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	void* tile_data = malloc(tile_size);
 	if(!tile_data)
 		WARN_ERR_RETURN(ERR::NO_MEM);
-	FileIOBuf img_buf = file_buf_alloc(hdr_size+img_size, atom_fn, FB_FROM_HEAP);
+	shared_ptr<u8> img_buf = io_Allocate(hdr_size+img_size);
 
 	Tex t;
-	GLvoid* img = (u8*)img_buf + hdr_size;
-	if(tex_wrap(img_w, img_h, bpp, flags, img, &t) < 0)
+	GLvoid* img = img_buf.get() + hdr_size;
+	if(tex_wrap(img_w, img_h, bpp, flags, img_buf, hdr_size, &t) < 0)
 		return;
 
 	ogl_WarnIfError();
@@ -309,7 +303,6 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	}
 
 	(void)tex_write(&t, fn);
-	(void)tex_free(&t);
+	tex_free(&t);
 	free(tile_data);
-	(void)file_buf_free(img_buf, FB_FROM_HEAP);
 }

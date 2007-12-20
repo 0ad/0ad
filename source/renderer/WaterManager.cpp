@@ -9,7 +9,7 @@
 #include "precompiled.h"
 
 #include "lib/timer.h"
-#include "lib/res/graphics/tex.h"
+#include "lib/tex/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 #include "maths/MathUtil.h"

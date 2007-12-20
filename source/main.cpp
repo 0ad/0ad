@@ -15,10 +15,9 @@ that of Atlas depending on commandline parameters.
 
 #include "lib/input.h"
 #include "lib/timer.h"
+#include "lib/frequency_filter.h"
 #include "lib/external_libraries/sdl.h"
-#include "lib/res/file/vfs.h"
 #include "lib/res/sound/snd_mgr.h"
-#include "lib/res/file/archive/vfs_optimizer.h"
 
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Atlas.h"
@@ -45,6 +44,8 @@ that of Atlas depending on commandline parameters.
 
 extern bool g_TerrainModified;
 extern bool g_GameRestarted;
+
+PIFrequencyFilter g_frequencyFilter;
 
 void kill_mainloop();
 
@@ -99,6 +100,9 @@ static void PumpEvents()
 // used to prevent reloading during that time (see call site).
 static bool ProgressiveBuildArchive()
 {
+ONCE(g_GUI.SendEventToAll("archivebuildercomplete"));
+return false;
+#if 0
 	int ret = vfs_opt_auto_build("../logs/trace.txt", "mods/official/official%02d.zip", "mods/official/mini%02d.zip");
 	if(ret == INFO::ALL_COMPLETE)
 	{
@@ -118,6 +122,7 @@ static bool ProgressiveBuildArchive()
 	}
 
 	return false;
+#endif
 }
 
 
@@ -162,7 +167,8 @@ static void Frame()
 	ogl_WarnIfError();
 
 	// get elapsed time
-	calc_fps();
+	const double time = get_time();
+	g_frequencyFilter->Update(time);
 	// .. old method - "exact" but contains jumps
 #if 0
 	static double last_time;
@@ -173,7 +179,7 @@ static void Frame()
 
 	// .. new method - filtered and more smooth, but errors may accumulate
 #else
-	const float TimeSinceLastFrame = spf;
+	const float TimeSinceLastFrame = 1.0 / g_frequencyFilter->SmoothedFrequency();
 #endif
 	debug_assert(TimeSinceLastFrame >= 0.0f);
 
@@ -215,7 +221,7 @@ static void Frame()
 	{
 		PROFILE_START("reload changed files");
 		MICROLOG(L"reload changed files");
-		vfs_reload_changed_files(); 
+//		vfs_reload_changed_files(); 
 		PROFILE_END( "reload changed files");
 	}
 
@@ -359,6 +365,7 @@ static void RunGameOrAtlas(int argc, char* argv[])
 
 	// run the game
 	Init(args, 0);
+	g_frequencyFilter = CreateFrequencyFilter(timer_res(), 30.0);
 	MainControllerInit();
 	while(!quit)
 		Frame();

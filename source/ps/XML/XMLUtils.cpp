@@ -1,12 +1,9 @@
 #include "precompiled.h"
 
 #include "XML.h"
+#include "ps/Filesystem.h"
 #include "ps/CStr.h"
 #include "ps/CLogger.h"
-#include "lib/posix/posix_types.h"		// ptrdiff_t
-
-#include "lib/res/file/vfs.h"
-#include "lib/res/mem.h"
 
 #define LOG_CATEGORY "xml"
 
@@ -49,12 +46,12 @@ XMLCh *XMLTranscode(const char *str)
 	return XMLString::transcode(str);
 }
 
-int CVFSInputSource::OpenFile(const char *path, uint flags = 0)
+int CVFSInputSource::OpenFile(const char *path)
 {
-	LibError ret = vfs_load(path, m_pBuffer, m_BufferSize, flags);
+	LibError ret = g_VFS->LoadFile(path, m_pBuffer, m_BufferSize);
 	if(ret != INFO::OK)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (vfs_load: %d)", path, ret);
+		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (LoadFile: %d)", path, ret);
 		return -1;
 	}
 
@@ -67,22 +64,16 @@ int CVFSInputSource::OpenFile(const char *path, uint flags = 0)
 
 CVFSInputSource::~CVFSInputSource()
 {
-	// our buffer was vfs_load-ed; free it now
-	(void)file_buf_free(m_pBuffer);
-	m_pBuffer = 0;
 }
 
 BinInputStream *CVFSInputSource::makeStream() const
 {
-	if (m_pBuffer != 0)
-	{
-#include "lib/nommgr.h"
-		return new BinMemInputStream((XMLByte *)m_pBuffer, (unsigned int)m_BufferSize,
-			BinMemInputStream::BufOpt_Reference);
+	if(!m_pBuffer)
+		return 0;
+
+#include "lib/nommgr.h"	// BinMemInputStream has its own operator new
+	return new BinMemInputStream((XMLByte *)m_pBuffer.get(), (unsigned int)m_BufferSize, BinMemInputStream::BufOpt_Reference);
 #include "lib/mmgr.h"
-	}
-	else
-		return NULL;
 }
 
 #define IS_PATH_SEP(_chr) (_chr == '/' || _chr == '\\')

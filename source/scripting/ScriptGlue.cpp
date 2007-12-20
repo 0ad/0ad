@@ -19,6 +19,7 @@
 #include "graphics/scripting/JSInterface_LightEnv.h"
 #include "gui/CGUI.h"
 #include "lib/timer.h"
+#include "lib/frequency_filter.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "network/Client.h"
 #include "network/Server.h"
@@ -913,7 +914,8 @@ JSBool GetFps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
-	*rval = INT_TO_JSVAL(fps);
+	extern PIFrequencyFilter g_frequencyFilter;
+	*rval = INT_TO_JSVAL(g_frequencyFilter->StableFrequency());
 	return JS_TRUE;
 }
 

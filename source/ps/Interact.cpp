@@ -20,7 +20,7 @@
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Player.h"
-#include "ps/VFSUtil.h"
+#include "ps/Filesystem.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "scripting/GameEvents.h"
@@ -954,27 +954,27 @@ void CMouseoverEntities::RenderRallyPoints()
 	glDisable( GL_BLEND );
 }
 // Helper function for CSelectedEntities::LoadUnitUiTextures
-static void LoadUnitUIThunk( const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData )
+static LibError LoadUnitUIThunk( const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), uintptr_t cbData )
 {
 	std::map<CStr, Handle>* textures = (std::map<CStr, Handle>*)cbData;
-	CStr name(path);
+	CStr name(pathname.string());
 
-	if ( !tex_is_known_extension(path) )
-		return;
-	Handle tmp = ogl_tex_load(path);
+	if ( !tex_is_known_extension(name.c_str()) )
+		return INFO::CB_CONTINUE;
+	Handle tmp = ogl_tex_load(name.c_str());
 	if (tmp <= 0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Rank Textures", "loadRankTextures failed on \"%s\"", path);
-		return;
+		LOG(ERROR, LOG_CATEGORY, "Rank Textures", "loadRankTextures failed on \"%s\"", name.c_str());
+		return INFO::CB_CONTINUE;
 	}
 	name.Remove("art/textures/ui/session/icons/");	//Names are relative to this directory
 	(*textures)[name] = tmp;
 	ogl_tex_upload(tmp);
+	return INFO::CB_CONTINUE;
 }
 int CSelectedEntities::LoadUnitUiTextures()
 {
-	THROW_ERR( vfs_dir_enum( "art/textures/ui/session/icons/", VFS_DIR_RECURSIVE,
-		NULL, LoadUnitUIThunk, (uintptr_t)&m_unitUITextures ) );
+	THROW_ERR( fs_ForEachFile(g_VFS, "art/textures/ui/session/icons/", LoadUnitUIThunk, (uintptr_t)&m_unitUITextures, 0, DIR_RECURSIVE));
 	return 0;
 }
 void CSelectedEntities::DestroyUnitUiTextures()

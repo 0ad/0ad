@@ -1,8 +1,9 @@
 #include "precompiled.h"
 
 #include "CPlayList.h"
+
 #include <stdio.h>	// sscanf
-#include "lib/res/res.h"
+#include "ps/Filesystem.h"
 
 CPlayList::CPlayList(void)
 {
@@ -19,21 +20,19 @@ CPlayList::~CPlayList(void)
 
 }
 
-void CPlayList::Load(const char* file)
+void CPlayList::Load(const char* filename)
 {
 	tracks.clear();
 
-	FileIOBuf buf; size_t size;
-	if(vfs_load(file, buf, size) < 0)
+	shared_ptr<u8> buf; size_t size;
+	if(g_VFS->LoadFile(filename, buf, size) < 0)
 		return;
 
-	const char* playlist = (const char*)buf;
+	const char* playlist = (const char*)buf.get();
 	char track[512];
 
 	while(sscanf(playlist, "%511s\n", track) == 1)
 		tracks.push_back(track);
-
-	(void)file_buf_free(buf);
 }
 
 

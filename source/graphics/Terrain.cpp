@@ -9,7 +9,6 @@
 #include "precompiled.h"
 
 #include "lib/res/graphics/ogl_tex.h"
-#include "lib/res/mem.h"
 
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"

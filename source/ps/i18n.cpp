@@ -1,10 +1,9 @@
 #include "precompiled.h"
 
 #include "ps/i18n.h"
-#include "ps/CVFSFile.h"
 #include "scripting/ScriptingHost.h"
 
-#include "ps/VFSUtil.h"
+#include "ps/Filesystem.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "i18n"
@@ -44,59 +43,51 @@ bool I18n::LoadLanguage(const char* name)
 
 	CStr dirname = CStr("language/")+name+"/";
 
-	VFSUtil::FileList files;
-	VFSUtil::FileList::iterator filename;
-
 	// Open *.lng with LoadStrings
-
-	if (! VFSUtil::FindFiles(dirname, "*.lng", files))
+	VfsPaths pathnames;
+	if(fs_GetPathnames(g_VFS, dirname, "*.lng", pathnames) < 0)
 		return false;
-
-	for (filename = files.begin(); filename != files.end(); ++filename)
+	for (size_t i = 0; i < pathnames.size(); i++)
 	{
+		const char* pathname = pathnames[i].string().c_str();
 		CVFSFile strings;
-
-		if (! (strings.Load(*filename) == PSRETURN_OK && locale->LoadStrings((const char*)strings.GetBuffer())))
+		if (! (strings.Load(pathname) == PSRETURN_OK && locale->LoadStrings((const char*)strings.GetBuffer())))
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", filename->c_str());
+			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", pathname);
 			return false;
 		}
 	}
 
 	// Open *.wrd with LoadDictionary
-
-	if (! VFSUtil::FindFiles(dirname, "*.wrd", files))
+	if(fs_GetPathnames(g_VFS, dirname, "*.wrd", pathnames) < 0)
 		return false;
-
-	for (filename = files.begin(); filename != files.end(); ++filename)
+	for (size_t i = 0; i < pathnames.size(); i++)
 	{
+		const char* pathname = pathnames[i].string().c_str();
 		CVFSFile strings;
-
-		if (! (strings.Load(*filename) == PSRETURN_OK && locale->LoadDictionary((const char*)strings.GetBuffer())))
+		if (! (strings.Load(pathname) == PSRETURN_OK && locale->LoadDictionary((const char*)strings.GetBuffer())))
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", filename->c_str());
+			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", pathname);
 			return false;
 		}
 	}
 
 	// Open *.js with LoadFunctions
-
-	if (! VFSUtil::FindFiles(dirname, "*.js", files))
+	if(fs_GetPathnames(g_VFS, dirname, "*.js", pathnames) < 0)
 		return false;
-
-	for (filename = files.begin(); filename != files.end(); ++filename)
+	for (size_t i = 0; i < pathnames.size(); i++)
 	{
+		const char* pathname = pathnames[i].string().c_str();
 		CVFSFile strings;
-
-		if (! (strings.Load(*filename) == PSRETURN_OK
+		if (! (strings.Load(pathname) == PSRETURN_OK
 			&& 
 			locale->LoadFunctions(
 				(const char*)strings.GetBuffer(),
 				strings.GetBufferSize(),
-				filename->c_str()
+				pathname
 			)))
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error opening language function file '%s'", filename->c_str());
+			LOG(ERROR, LOG_CATEGORY, "Error opening language function file '%s'", pathname);
 			return false;
 		}
 	}

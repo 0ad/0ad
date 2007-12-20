@@ -19,7 +19,7 @@ class CXeromyces;
 class CTerrainProperties;
 class HEntity;
 
-typedef boost::shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
+typedef shared_ptr<CTerrainProperties> CTerrainPropertiesPtr;
 
 struct STerrainPassability
 {

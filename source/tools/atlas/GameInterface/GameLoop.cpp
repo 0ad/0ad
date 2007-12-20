@@ -14,7 +14,6 @@
 #include "lib/app_hooks.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/timer.h"
-#include "lib/res/file/vfs.h"
 #include "ps/CLogger.h"
 #include "ps/DllLoader.h"
 #include "ps/Profile.h"
@@ -203,7 +202,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 
 		// Do per-frame processing:
 
-		vfs_reload_changed_files();
+//		vfs_reload_changed_files();
 
 		state.view->Update(state.frameLength);
 

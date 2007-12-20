@@ -12,8 +12,6 @@
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
 #include "maths/Quaternion.h"
-#include "lib/res/file/vfs.h"
-#include "lib/res/mem.h"
 
 CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline)
 	: CCinemaData(data), TNSpline(spline), m_TimeElapsed(0.f)

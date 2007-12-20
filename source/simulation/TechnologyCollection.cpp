@@ -2,29 +2,27 @@
 
 #include "TechnologyCollection.h"
 #include "ps/CLogger.h"
-#include "ps/VFSUtil.h"
 #include "ps/Player.h"
 
 #define LOG_CATEGORY "tech"
 
-void CTechnologyCollection::LoadFile( const char* path )
+void CTechnologyCollection::LoadFile( const VfsPath& pathname )
 {
-	//Make tech file reading
-	CStrW tag = CStr(path).AfterLast("/").BeforeLast(".xml");
-	m_techFilenames[tag] = path;
+	CStrW basename(Basename(pathname));
+	m_techFilenames[basename] = pathname.string();
 }
 
-static void LoadTechThunk( const char* path, const DirEnt* UNUSED(ent), uintptr_t cbData )
+static LibError LoadTechThunk( const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), uintptr_t cbData )
 {
 	CTechnologyCollection* this_ = (CTechnologyCollection*)cbData;
-	this_->LoadFile(path);
+	this_->LoadFile(pathname);
+	return INFO::CB_CONTINUE;
 }
 
 int CTechnologyCollection::LoadTechnologies()
 {
 	// Load all files in techs/ and subdirectories.
-	THROW_ERR( vfs_dir_enum( "technologies/", VFS_DIR_RECURSIVE, "*.xml",
-		LoadTechThunk, (uintptr_t)this ) );
+	THROW_ERR( fs_ForEachFile(g_VFS, "technologies/", LoadTechThunk, (uintptr_t)this, "*.xml", DIR_RECURSIVE));
 	return 0;
 }
 

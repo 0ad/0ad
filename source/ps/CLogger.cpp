@@ -4,7 +4,7 @@
 #include "CConsole.h"
 #include "ConfigDB.h"
 #include "lib/path_util.h"
-#include "lib/res/file/file.h"
+#include "lib/file/path.h"
 #include "lib/sysdep/sysdep.h"
 
 #include <time.h>
@@ -39,16 +39,11 @@ const char* html_footer = "";
 
 CLogger::CLogger()
 {
-	char N_path[PATH_MAX];
-	(void)file_make_full_native_path("../logs", N_path);
-	PathPackage pp;
-	(void)path_package_set_dir(&pp, N_path);
+	Path mainlogPath("../logs/mainlog.html");
+	m_MainLog = new std::ofstream(mainlogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
-	(void)path_package_append_file(&pp, "mainlog.html");
-	m_MainLog = new std::ofstream(pp.path, std::ofstream::out | std::ofstream::trunc);
-
-	(void)path_package_append_file(&pp, "interestinglog.html");
-	m_InterestingLog = new std::ofstream(pp.path, std::ofstream::out | std::ofstream::trunc);
+	Path interestinglogPath("../logs/interestinglog.html");
+	m_InterestingLog = new std::ofstream(interestinglogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;
 

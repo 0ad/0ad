@@ -8,15 +8,15 @@
 #include "lib/app_hooks.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
-#include "lib/res/res.h"
-#include "lib/res/file/archive/trace.h"
+#include "lib/res/h_mgr.h"
 #include "lib/res/sound/snd_mgr.h"
-#include "lib/res/graphics/tex.h"
+#include "lib/tex/tex.h"
 #include "lib/res/graphics/cursor.h"
 
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/Filesystem.h"
 #include "ps/Font.h"
 #include "ps/Game.h"
 #include "ps/Globals.h"
@@ -550,8 +550,6 @@ static void InitVfs(const CmdLineArgs& args)
 {
 	TIMER("InitVfs");
 
-	(void)file_init();
-
 	// set root directory to "$game_dir/data". all relative file paths
 	// passed to file.cpp will be based from this dir.
 	// (we don't set current directory because other libraries may
@@ -562,12 +560,13 @@ static void InitVfs(const CmdLineArgs& args)
 	// rationale for data/ being root: untrusted scripts must not be
 	// allowed to overwrite critical game (or worse, OS) files.
 	// the VFS prevents any accesses to files above this directory.
-	(void)file_set_root_dir(args.GetArg0(), "../data");
+	path_SetRoot(args.GetArg0(), "../data");
 
-	vfs_init();
+	g_VFS = CreateVfs();
 
-	vfs_mount("screenshots/", "screenshots");
-	vfs_mount("profiles/", "profiles", VFS_MOUNT_RECURSIVE);
+	g_VFS->Mount("screenshots/", "screenshots");
+	g_VFS->Mount("config/", "config");
+	g_VFS->Mount("profiles/", "profiles");
 
 	// rationale:
 	// - this is in a separate real directory so that it can later be moved
@@ -577,7 +576,7 @@ static void InitVfs(const CmdLineArgs& args)
 	//   so putting them in an archive boosts performance.
 	//
 	// [hot: 16ms]
-	vfs_mount("cache/", "cache", VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_ARCHIVABLE);
+	g_VFS->Mount("cache/", "cache", VFS_MOUNT_ARCHIVABLE);
 
 	std::vector<CStr> mods = args.GetMultiple("mod");
 	if (mods.empty())
@@ -587,7 +586,7 @@ static void InitVfs(const CmdLineArgs& args)
 	{
 		CStr path = "mods/" + mods[i];
 		uint priority = (uint)i;
-		uint flags = VFS_MOUNT_RECURSIVE|VFS_MOUNT_ARCHIVES|VFS_MOUNT_WATCH;
+		uint flags = VFS_MOUNT_WATCH;
 
 		// TODO: currently only archive 'official' - probably ought to archive
 		// all mods instead?
@@ -595,14 +594,10 @@ static void InitVfs(const CmdLineArgs& args)
 			flags |= VFS_MOUNT_ARCHIVABLE;
 
 		// [hot: 150ms for mods/official]
-		(void)vfs_mount("", path, flags, priority);
+		g_VFS->Mount("", path, flags, priority);
 	}
 
-	// set the top (last) mod to be the write target
-	CStr top_mod_path = "mods/" + mods.back(); // (mods is never empty)
-	vfs_set_write_target(top_mod_path);
-
-	// don't try vfs_display yet: SDL_Init hasn't yet redirected stdout
+	// don't try g_VFS->Display yet: SDL_Init hasn't yet redirected stdout
 }
 
 
@@ -851,21 +846,12 @@ void Shutdown(uint flags)
 	TIMER_BEGIN("resource modules");
 		snd_shutdown();
 
-		(void)trace_write_to_file("../logs/trace.txt");
-
-		vfs_shutdown();
-
-		// must come before h_mgr_shutdown - it frees IO buffers,
-		// which we don't want showing up as leaks.
-		file_shutdown();
+		g_VFS.reset();
 
 		// this forcibly frees all open handles (thus preventing real leaks),
 		// and makes further access to h_mgr impossible.
 		h_mgr_shutdown();
 
-		// must come after h_mgr_shutdown - it causes memory
-		// to be freed, which requires this module to still be active.
-		mem_shutdown();
 	TIMER_END("resource modules");
 
 	TIMER_BEGIN("shutdown misc");

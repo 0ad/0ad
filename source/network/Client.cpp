@@ -14,8 +14,11 @@
 
 #define LOG_CAT_NET "net"
 
+#include "lib/frequency_filter.h"
+extern PIFrequencyFilter g_frequencyFilter;
+
+
 CNetClient *g_NetClient=NULL;
-extern int fps;
 
 CNetClient::CServerSession::CServerSession(int sessionID, const CStrW& name):
 	m_SessionID(sessionID),
@@ -445,7 +448,7 @@ int CNetClient::StartGame()
 		debug_printf("Client StartGame - sending end-of-batch ack\n");
 		// Send an end-of-batch message for turn 0 to signal that we're ready.
 		CEndCommandBatch *pMsg=new CEndCommandBatch();
-		pMsg->m_TurnLength=1000/fps;
+		pMsg->m_TurnLength=1000/g_frequencyFilter->SmoothedFrequency();
 		Push(pMsg);
 		return 0;
 	}
@@ -471,7 +474,7 @@ void CNetClient::NewTurn()
 
 	//debug_printf("In NewTurn - sending ack\n");
 	CEndCommandBatch *pMsg=new CEndCommandBatch();
-	pMsg->m_TurnLength=1000/fps;
+	pMsg->m_TurnLength=1000/g_frequencyFilter->SmoothedFrequency();
 	Push(pMsg);
 }
 

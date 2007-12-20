@@ -31,6 +31,8 @@ CGUI
 #include "ps/Pyrogenesis.h"
 #include "lib/input.h"
 #include "lib/bits.h"
+#include "lib/timer.h"
+#include "lib/sysdep/sysdep.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
@@ -38,8 +40,7 @@ CGUI
 #include "scripting/ScriptingHost.h"
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
-#include "lib/timer.h"
-#include "lib/sysdep/sysdep.h"
+#include "ps/Filesystem.h"
 
 // namespaces used
 using namespace std;

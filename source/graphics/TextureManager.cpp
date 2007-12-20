@@ -7,13 +7,12 @@
 #include "TextureEntry.h"
 #include "TerrainProperties.h"
 
-#include "lib/res/res.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 
 #include "ps/CLogger.h"
-#include "ps/VFSUtil.h"
+#include "ps/Filesystem.h"
 
 #define LOG_CATEGORY "graphics"
 
@@ -96,14 +95,12 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 // typical maps. therefore, we'll leave it for now.
 void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 {
-	VFSUtil::FileList files;
-	if(!VFSUtil::FindFiles(dir, 0, files))
-		// FindFiles has already logged the failure
+	VfsPaths pathnames;
+	if(fs_GetPathnames(g_VFS, dir, 0, pathnames) < 0)
 		return;
-
-	for(VFSUtil::FileList::iterator it = files.begin(); it != files.end(); ++it)
+	for(size_t i = 0; i < pathnames.size(); i++)
 	{
-		const char* texture_name = it->c_str();
+		const char* texture_name = pathnames[i].string().c_str();
 
 		// skip files that obviously aren't textures.
 		// note: this loop runs for each file in dir, even .xml;
@@ -122,7 +119,7 @@ void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 
 		CTerrainPropertiesPtr myprops;
 		// Has XML file -> attempt to load properties
-		if (vfs_exists(xml_name))
+		if (FileExists(xml_name))
 		{
 			myprops = GetPropertiesFromFile(props, xml_name);
 			if (myprops)
@@ -147,7 +144,7 @@ void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const 
 	char fn[PATH_MAX];
 	snprintf(fn, PATH_MAX, "%s%s", cur_dir_path, "terrains.xml");
 	fn[PATH_MAX-1] = '\0';
-	if (vfs_exists(fn))
+	if (FileExists(fn))
 		props = GetPropertiesFromFile(parentProps, fn);
 	
 	// No terrains.xml, or read failures -> use parent props (i.e. 
@@ -159,11 +156,13 @@ void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const 
 	}
 
 	// Recurse once for each subdirectory
-	VFSUtil::FileList subdirs;
-	VFSUtil::FindFiles(cur_dir_path, "/", subdirs);
-	for (uint i=0;i<subdirs.size();i++)
+	DirectoryNames subdirectoryNames;
+	g_VFS->GetDirectoryEntries(cur_dir_path, 0, &subdirectoryNames);
+	for (uint i=0;i<subdirectoryNames.size();i++)
 	{
-		RecurseDirectory(props, subdirs[i].c_str());
+		char subdirectoryPath[PATH_MAX];
+		path_append(subdirectoryPath, cur_dir_path, subdirectoryNames[i].c_str(), PATH_APPEND_SLASH);
+		RecurseDirectory(props, subdirectoryPath);
 	}
 
 	LoadTextures(props, cur_dir_path);

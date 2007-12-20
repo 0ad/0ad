@@ -12,13 +12,13 @@
 #include "CConsole.h"
 
 #include "lib/ogl.h"
-#include "lib/res/file/vfs.h"
 #include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/clipboard.h"
 #include "maths/MathUtil.h"
 #include "network/Client.h"
 #include "network/Server.h"
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Interact.h"
@@ -47,20 +47,17 @@ CConsole::CConsole()
 	InsertMessage(L"[ 0 A.D. Console v0.12 ]   type \"\\info\" for help");
 	InsertMessage(L"");
 
-	if (vfs_exists("gui/text/help.txt"))
+	if (FileExists("gui/text/help.txt"))
 	{
-		FileIOBuf buf;
-		size_t size;
-		if ( vfs_load("gui/text/help.txt", buf, size) < 0 )
+		shared_ptr<u8> buf; size_t size;
+		if ( g_VFS->LoadFile("gui/text/help.txt", buf, size) < 0 )
 		{
 			LOG( ERROR,"Console", "Help file not found for console" );
-			file_buf_free(buf);
 			return;
 		}
 		// TODO: read in text mode, or at least get rid of the \r\n somehow
 		// TODO: maybe the help file should be UTF-8 - we assume it's iso-8859-1 here
-		m_helpText = CStrW(CStr( (const char*)buf ));
-		file_buf_free(buf);
+		m_helpText = CStrW(CStr( (const char*)buf.get() ));
 	}
 	else
 	{
@@ -713,16 +710,15 @@ void CConsole::LoadHistory()
 	// note: we don't care if this file doesn't exist or can't be read;
 	// just don't load anything in that case.
 
-	// do this before vfs_load to avoid an error message if file not found.
-	if (!vfs_exists(m_sHistoryFile))
+	// do this before LoadFile to avoid an error message if file not found.
+	if (!FileExists(m_sHistoryFile))
 		return;
 
-	FileIOBuf buf; size_t buflen;
-	if (vfs_load(m_sHistoryFile, buf, buflen) < 0)
+	shared_ptr<u8> buf; size_t buflen;
+	if (g_VFS->LoadFile(m_sHistoryFile, buf, buflen) < 0)
 		return;
 
-	CStr bytes ((char*)buf, buflen);
-	(void)file_buf_free(buf);
+	CStr bytes ((char*)buf.get(), buflen);
 
 	CStrW str (bytes.FromUTF8());
 	size_t pos = 0;
@@ -742,16 +738,19 @@ void CConsole::LoadHistory()
 
 void CConsole::SaveHistory()
 {
-	CStr buffer;
-	std::deque<std::wstring>::iterator it;
-	int line_count = 0;
-	for (it = m_deqBufHistory.begin(); it != m_deqBufHistory.end(); ++it)
+	WriteBuffer buffer;
+	const int linesToSkip = (int)m_deqBufHistory.size() - m_MaxHistoryLines;
+	std::deque<std::wstring>::const_reverse_iterator it = m_deqBufHistory.rbegin();
+	if(linesToSkip > 0)
+		std::advance(it, linesToSkip);
+	for (; it != m_deqBufHistory.rend(); ++it)
 	{
-		if (line_count++ >= m_MaxHistoryLines)
-			break;
-		buffer = CStrW(*it).ToUTF8() + "\n" + buffer;
+		CStr8 line = CStrW(*it).ToUTF8();
+		buffer.Append(line.data(), line.length());
+		static const char newline = '\n';
+		buffer.Append(&newline, 1);
 	}
-	vfs_store(m_sHistoryFile, (const u8*)buffer.c_str(), buffer.length(), FILE_NO_AIO);
+	g_VFS->CreateFile(m_sHistoryFile, buffer.Data(), buffer.Size());
 }
 
 void CConsole::SendChatMessage(const wchar_t *szMessage)
