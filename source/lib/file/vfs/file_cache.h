@@ -11,7 +11,7 @@
 #ifndef INCLUDED_FILE_CACHE
 #define INCLUDED_FILE_CACHE
 
-typedef boost::shared_ptr<const u8> FileCacheData;
+#include "vfs_path.h"
 
 /**
  * cache of file contents with support for zero-copy IO.
@@ -26,8 +26,8 @@ typedef boost::shared_ptr<const u8> FileCacheData;
  * process it, and only then start reading the next file.
  *
  * rationale: this is rather similar to BlockCache; however, the differences
- * (Reserve's size parameter, Add vs. MarkComplete, different eviction
- * policies) are enough to warrant separate implementations.
+ * (Reserve's size parameter, eviction policies) are enough to warrant
+ * separate implementations.
  **/
 class FileCache
 {
@@ -47,7 +47,7 @@ public:
 	 *
 	 * it is expected that this data will be Add()-ed once its IO completes.
 	 **/
-	FileCacheData Reserve(size_t size);
+	shared_ptr<u8> Reserve(size_t size);
 
 	/**
 	 * Add a file's contents to the cache.
@@ -57,11 +57,11 @@ public:
 	 * read-only. if need be and no references are currently attached to it,
 	 * the memory can also be commandeered by Reserve().
 	 *
-	 * @param vfsPathname key that will be used to Retrieve file contents.
+	 * @param pathname key that will be used to Retrieve file contents.
 	 * @param cost is the expected cost of retrieving the file again and
 	 * influences how/when it is evicted from the cache.
 	 **/
-	void Add(const char* vfsPathname, FileCacheData data, size_t size, uint cost = 1);
+	void Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, uint cost = 1);
 
 	/**
 	 * Remove a file's contents from the cache (if it exists).
@@ -72,7 +72,7 @@ public:
 	 * this would typically be called in response to a notification that a
 	 * file has changed.
 	 **/
-	void Remove(const char* vfsPathname);
+	void Remove(const VfsPath& pathname);
 
 	/**
 	 * Attempt to retrieve a file's contents from the file cache.
@@ -80,11 +80,11 @@ public:
 	 * @return whether the contents were successfully retrieved; if so,
 	 * data references the read-only file contents.
 	 **/
-	bool Retrieve(const char* vfsPathname, FileCacheData& data, size_t& size);
+	bool Retrieve(const VfsPath& pathname, shared_ptr<u8>& data, size_t& size);
 
 private:
 	class Impl;
-	boost::shared_ptr<Impl> impl;
+	shared_ptr<Impl> impl;
 };
 
 #endif	// #ifndef INCLUDED_FILE_CACHE

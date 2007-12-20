@@ -15,6 +15,8 @@
 // besides ZLib. it also simplifies the interface for user code and
 // does error checking, etc.
 
+#define CODEC_COMPUTE_CHECKSUM 1
+
 struct ICodec
 {
 public:
@@ -67,6 +69,6 @@ public:
 	virtual u32 UpdateChecksum(u32 checksum, const u8* in, size_t inSize) const = 0;
 };
 
-typedef boost::shared_ptr<ICodec> PICodec;
+typedef shared_ptr<ICodec> PICodec;
 
 #endif	// #ifndef INCLUDED_CODEC

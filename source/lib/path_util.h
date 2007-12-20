@@ -9,7 +9,7 @@
 // license: GPL; see lib/license.txt
 
 // notes:
-// - this module is split out of lib/res/file so that it can be used from
+// - this module is independent of lib/file so that it can be used from
 //   other code without pulling in the entire file manager.
 // - there is no restriction on buffer lengths except the underlying OS.
 //   input buffers must not exceed PATH_MAX chars, while outputs
@@ -22,8 +22,6 @@
 #define INCLUDED_PATH_UTIL
 
 #include "lib/allocators/string_pool.h"
-
-#include "posix/posix_types.h"	// PATH_MAX
 
 
 namespace ERR
@@ -42,7 +40,7 @@ namespace ERR
  *
  * @return LibError (ERR::PATH_* or INFO::OK)
  **/
-extern LibError path_validate(const char* path);
+LIB_API LibError path_validate(const char* path);
 
 /**
  * return appropriate code if path is invalid, otherwise continue.
@@ -54,7 +52,7 @@ extern LibError path_validate(const char* path);
  *
  * @return LibError (ERR::PATH_* or INFO::OK)
  **/
-extern LibError path_component_validate(const char* name);
+LIB_API LibError path_component_validate(const char* name);
 
 /**
  * is the given character a path separator character?
@@ -62,14 +60,14 @@ extern LibError path_component_validate(const char* name);
  * @param c character to test
  * @return bool
  **/
-extern bool path_is_dir_sep(char c);
+LIB_API bool path_is_dir_sep(char c);
 
 /**
  * is the given path(name) a directory?
  *
  * @return bool
  **/
-extern bool path_IsDirectory(const char* path);
+LIB_API bool path_IsDirectory(const char* path);
 
 /**
  * is s2 a subpath of s1, or vice versa? (equal counts as subpath)
@@ -77,7 +75,7 @@ extern bool path_IsDirectory(const char* path);
  * @param s1, s2 comparand strings
  * @return bool
  **/
-extern bool path_is_subpath(const char* s1, const char* s2);
+LIB_API bool path_is_subpath(const char* s1, const char* s2);
 
 
 /**
@@ -87,7 +85,7 @@ extern bool path_is_subpath(const char* s1, const char* s2);
  * and should hold PATH_MAX chars.
  * @param src source; should not exceed PATH_MAX chars
  **/
-extern void path_copy(char* dst, const char* src);
+LIB_API void path_copy(char* dst, const char* src);
 
 /**
  * flags controlling path_append behavior
@@ -111,10 +109,7 @@ enum PathAppendFlags
  * @param flags see PathAppendFlags.
  * @return LibError
  **/
-extern LibError path_append(char* dst, const char* path1, const char* path2, uint flags = 0);
-
-// same as path_append, but returns a unique pointer to the result
-extern const char* path_append2(const char* path1, const char* path2, uint flags = 0);
+LIB_API LibError path_append(char* dst, const char* path1, const char* path2, uint flags = 0);
 
 /**
  * at the start of a path, replace the given substring with another.
@@ -127,13 +122,13 @@ extern const char* path_append2(const char* path1, const char* path2, uint flags
  * @return LibError; ERR::FAIL (without warning!) if <src> doesn't
  * match <remove>.
  **/
-extern LibError path_replace(char* dst, const char* src, const char* remove, const char* replace);
+LIB_API LibError path_replace(char* dst, const char* src, const char* remove, const char* replace);
 
 /**
  * combination of path_name_only and path_dir_only2
  * (more efficient than calling them separately)
  **/
-extern void path_split(const char* pathname, const char** path, const char** name);
+LIB_API void path_split(const char* pathname, char* path, char* name);
 
 
 /**
@@ -143,7 +138,7 @@ extern void path_split(const char* pathname, const char** path, const char** nam
  * @param path input path.
  * @return pointer to name component within <path>.
  **/
-extern const char* path_name_only(const char* path);
+LIB_API const char* path_name_only(const char* path);
 
 /**
  * get the last component of a path.
@@ -153,15 +148,14 @@ extern const char* path_name_only(const char* path);
  * @param path input path.
  * @return pointer to last component within <path>.
  **/
-extern const char* path_last_component(const char* path);
+LIB_API const char* path_last_component(const char* path);
 
 /**
  * strip away the name component in a path.
  *
  * @param path input and output; chopped by inserting '\0'.
  **/
-
-extern void path_strip_fn(char* path);
+LIB_API void path_strip_fn(char* path);
 
 /**
  * retrieve only the directory path portion of a path.
@@ -171,9 +165,7 @@ extern void path_strip_fn(char* path);
  * otherwise it ends with '/').
  * note: implementation via path_copy and path_strip_fn.
  **/
-extern void path_dir_only(const char* path, char* dir);
-
-extern const char* path_dir_only2(const char* path);
+LIB_API void path_dir_only(const char* path, char* dir);
 
 /**
  * get filename's extension.
@@ -181,7 +173,7 @@ extern const char* path_dir_only2(const char* path);
  * @return pointer to extension within <fn>, or "" if there is none.
  * NOTE: does not include the period; e.g. "a.bmp" yields "bmp".
  **/
-extern const char* path_extension(const char* fn);
+LIB_API const char* path_extension(const char* fn);
 
 
 /**
@@ -208,7 +200,7 @@ typedef LibError (*PathComponentCb)(const char* component, bool is_dir, uintptr_
  *
  * @return LibError
  **/
-extern LibError path_foreach_component(const char* path, PathComponentCb cb, uintptr_t cbData);
+LIB_API LibError path_foreach_component(const char* path, PathComponentCb cb, uintptr_t cbData);
 
 
 //-----------------------------------------------------------------------------
@@ -235,26 +227,18 @@ struct PathPackage
  * does not care if paths are relative/portable/absolute.
  * @return LibError
  **/
-extern LibError path_package_set_dir(PathPackage* pp, const char* dir);
+LIB_API LibError path_package_set_dir(PathPackage* pp, const char* dir);
 
 /**
  * copy one PathPackage into another (doing so directly is incorrect!)
  **/
-extern void path_package_copy(PathPackage* pp_dst, const PathPackage* pp_src);
+LIB_API void path_package_copy(PathPackage* pp_dst, const PathPackage* pp_src);
 
 /**
  * append the given filename to the directory established by the last
  * path_package_set_dir on this package. the whole path is accessible at pp->path.
  * @return LibError
  **/
-extern LibError path_package_append_file(PathPackage* pp, const char* path);
-
-
-//-----------------------------------------------------------------------------
-
-/**
- * @return a shared instance of a StringPool (used to store pathnames).
- **/
-extern StringPool* path_Pool();
+LIB_API LibError path_package_append_file(PathPackage* pp, const char* path);
 
 #endif	// #ifndef INCLUDED_PATH_UTIL

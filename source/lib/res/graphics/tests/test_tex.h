@@ -1,6 +1,6 @@
 #include "lib/self_test.h"
 
-#include "lib/res/graphics/tex.h"
+#include "lib/tex/tex.h"
 #include "lib/res/graphics/tex_codec.h"
 #include "lib/res/graphics/tex_internal.h"	// tex_encode
 
@@ -35,7 +35,7 @@ class TestTex : public CxxTest::TestSuite
 		TS_ASSERT_SAME_DATA(tex_get_data(&t), img, size);
 
 		// cleanup
-		TS_ASSERT_OK(tex_free(&t));
+		tex_free(&t);
 		TS_ASSERT_OK(da_free(&da));
 		delete[] img;
 	}

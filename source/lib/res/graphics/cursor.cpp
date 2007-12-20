@@ -11,6 +11,10 @@
 #include "precompiled.h"
 #include "cursor.h"
 
+#include "../h_mgr.h"
+#include "lib/file/vfs/vfs.h"
+extern PIVFS g_VFS;
+
 #include <string.h>
 #include <sstream>
 
@@ -25,7 +29,6 @@
 
 #include "lib/ogl.h"
 #include "lib/sysdep/cursor.h"
-#include "lib/res/res.h"
 #include "ogl_tex.h"
 
 /*
@@ -36,16 +39,14 @@
 	Shouldn't be called when both hardware/software cursor fails (i.e. invalid
 	cursor file given) - in that case we'd rather use the default cursor.
 */ 
-static void *load_empty_sys_cursor()
+static void* load_empty_sys_cursor()
 {
-	void *sys_cursor = 0;
-
+	void* sys_cursor = 0;
 	if(sys_cursor_create_empty(&sys_cursor) < 0)
 	{
-		debug_warn("sys_cursor_create_empty failed");
-		return NULL;
+		debug_assert(0);
+		return 0;
 	}
-	
 	return sys_cursor;
 }
 
@@ -76,13 +77,13 @@ static void* load_sys_cursor(const char* filename, int hx, int hy)
 	if(sys_cursor_create(t.w, t.h, bgra_img, hx, hy, &sys_cursor) < 0)
 		goto fail;
 
-	(void)tex_free(&t);
+	tex_free(&t);
 	return sys_cursor;
 	}
 
 fail:
-	debug_warn("failed");
-	(void)tex_free(&t);
+	debug_assert(0);
+	tex_free(&t);
 	return 0;
 #endif
 }
@@ -186,11 +187,10 @@ static LibError Cursor_reload(Cursor* c, const char* name, Handle)
 	uint hotspotx = 0, hotspoty = 0;
 	{
 		snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.txt", name);
-		FileIOBuf buf; size_t size;
-		RETURN_ERR(vfs_load(filename, buf, size));
-		std::stringstream s(std::string((const char*)buf, size));
+		shared_ptr<u8> buf; size_t size;
+		RETURN_ERR(g_VFS->LoadFile(filename, buf, size));
+		std::stringstream s(std::string((const char*)buf.get(), size));
 		s >> hotspotx >> hotspoty;
-		(void)file_buf_free(buf);
 	}
 
 	// load actual cursor

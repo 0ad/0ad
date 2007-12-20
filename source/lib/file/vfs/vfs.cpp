@@ -12,82 +12,76 @@
 #include "vfs.h"
 
 #include "lib/path_util.h"
-#include "lib/file/file_stats.h"
-#include "lib/file/trace.h"
+#include "lib/file/common/file_stats.h"
+#include "lib/file/common/trace.h"
 #include "lib/file/archive/archive.h"
-#include "lib/file/posix/fs_posix.h"
+#include "lib/file/io/io.h"
 #include "vfs_tree.h"
 #include "vfs_lookup.h"
-#include "vfs_populate.h"
 #include "file_cache.h"
 
 
-PIFileProvider provider;
-
-class Filesystem_VFS::Impl : public IFilesystem
+class VFS : public IVFS
 {
 public:
-	Impl()
-		: m_fileCache(ChooseCacheSize()), m_trace(CreateTrace(4*MiB))
+	VFS()
+		: m_fileCache(ChooseCacheSize())
+		, m_trace(CreateTrace(4*MiB))
 	{
 	}
 
-	LibError Mount(const char* vfsPath, const char* path, uint flags /* = 0 */, uint priority /* = 0 */)
+	virtual LibError Mount(const VfsPath& mountPoint, const char* path, uint flags /* = 0 */, uint priority /* = 0 */)
 	{
-		// make sure caller didn't forget the required trailing '/'.
-		debug_assert(path_IsDirectory(vfsPath));
+		debug_assert(IsDirectory(mountPoint));
+		debug_assert(strcmp(path, ".") != 0);	// "./" isn't supported on Windows.
+		// note: mounting subdirectoryNames is now allowed.
 
-		// note: we no longer need to check if mounting a subdirectory -
-		// the new RealDirectory scheme doesn't care.
-
-		// disallow "." because "./" isn't supported on Windows.
-		// "./" and "/." are caught by CHECK_PATH.
-		if(!strcmp(path, "."))
-			WARN_RETURN(ERR::PATH_NON_CANONICAL);
-
-		VfsDirectory* directory = vfs_LookupDirectory(vfsPath, &m_rootDirectory, VFS_LOOKUP_CREATE);
-		directory->Attach(RealDirectory(path, priority, flags));
+		VfsDirectory* vfsDirectory;
+		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, vfsDirectory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
+		PRealDirectory realDirectory(new RealDirectory(std::string(path), priority, flags));
+		vfsDirectory->Attach(realDirectory);
 		return INFO::OK;
 	}
 
-	virtual LibError GetFileInfo(const char* vfsPathname, FileInfo& fileInfo) const
+	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const
 	{
-		VfsFile* file = vfs_LookupFile(vfsPathname, &m_rootDirectory);
-		if(!file)
-			return ERR::VFS_FILE_NOT_FOUND;	// NOWARN
-		file->GetFileInfo(fileInfo);
+		VfsDirectory* vfsDirectory; VfsFile* vfsFile;
+		LibError ret = vfs_Lookup(pathname, &m_rootDirectory, vfsDirectory, &vfsFile);
+		if(!pfileInfo)	// just indicate if the file exists without raising warnings.
+			return ret;
+		CHECK_ERR(ret);
+		vfsFile->GetFileInfo(pfileInfo);
 		return INFO::OK;
 	}
 
-	virtual LibError GetDirectoryEntries(const char* vfsPath, FileInfos* files, Directories* subdirectories) const
+	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames) const
 	{
-		VfsDirectory* directory = vfs_LookupDirectory(vfsPath, &m_rootDirectory);
-		if(!directory)
-			WARN_RETURN(ERR::VFS_DIR_NOT_FOUND);
-		directory->GetEntries(files, subdirectories);
+		debug_assert(IsDirectory(path));
+		VfsDirectory* vfsDirectory;
+		CHECK_ERR(vfs_Lookup(path, &m_rootDirectory, vfsDirectory, 0));
+		vfsDirectory->GetEntries(files, subdirectoryNames);
 		return INFO::OK;
 	}
 
 	// note: only allowing either reads or writes simplifies file cache
 	// coherency (need only invalidate when closing a FILE_WRITE file).
-	LibError CreateFile(const char* vfsPathname, const u8* buf, size_t size)
+	virtual LibError CreateFile(const VfsPath& pathname, shared_ptr<u8> fileContents, size_t size)
 	{
-		VfsDirectory* directory = vfs_LookupDirectory(vfsPathname, &m_rootDirectory);
-		if(!directory)
-			WARN_RETURN(ERR::VFS_DIR_NOT_FOUND);
-		const char* name = path_name_only(vfsPathname);
+		VfsDirectory* vfsDirectory;
+		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, vfsDirectory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 
-		const RealDirectory& realDirectory = directory->AttachedDirectories().back();
-		const char* location = realDirectory.Path();
-		const VfsFile file(FileInfo(name, (off_t)size, time(0)), realDirectory.Priority(), provider, location);
-		file.Store(buf, size);
-		directory->AddFile(file);
-		
+		PRealDirectory realDirectory = vfsDirectory->AssociatedDirectory();
+		const std::string& name = pathname.leaf();
+		RETURN_ERR(realDirectory->Store(name, fileContents, size));
+
+		const VfsFile file(FileInfo(name, (off_t)size, time(0)), realDirectory->Priority(), realDirectory);
+		vfsDirectory->AddFile(file);
+
 		// wipe out any cached blocks. this is necessary to cover the (rare) case
 		// of file cache contents predating the file write.
-		m_fileCache.Remove(vfsPathname);
+		m_fileCache.Remove(pathname);
 
-		m_trace.get()->NotifyStore(vfsPathname, size);
+		m_trace->NotifyStore(pathname.string().c_str(), size);
 		return INFO::OK;
 	}
 
@@ -100,40 +94,33 @@ public:
 	// the callback mechanism is useful for user progress notification or
 	// processing data while waiting for the next I/O to complete
 	// (quasi-parallel, without the complexity of threads).
-	LibError LoadFile(const char* vfsPathname, FileContents& contents, size_t& size)
+	virtual LibError LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size)
 	{
-		vfsPathname = path_Pool()->UniqueCopy(vfsPathname);
-		debug_printf("VFS| load %s\n", vfsPathname);
-
-		const bool isCacheHit = m_fileCache.Retrieve(vfsPathname, contents, size);
+		const bool isCacheHit = m_fileCache.Retrieve(pathname, fileContents, size);
 		if(!isCacheHit)
 		{
-			VfsFile* file = vfs_LookupFile(vfsPathname, &m_rootDirectory);
-			if(!file)
-				WARN_RETURN(ERR::VFS_FILE_NOT_FOUND);
-			contents = m_fileCache.Reserve(file->Size());
-			RETURN_ERR(file->Load((u8*)contents.get()));
-			m_fileCache.Add(vfsPathname, contents, size);
+			VfsDirectory* vfsDirectory; VfsFile* vfsFile;
+			CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, vfsDirectory, &vfsFile));
+
+			size = vfsFile->Size();
+			if(size > ChooseCacheSize())
+			{
+				fileContents = io_Allocate(size);
+				RETURN_ERR(vfsFile->Load(fileContents));
+			}
+			else
+			{
+				fileContents = m_fileCache.Reserve(size);
+				RETURN_ERR(vfsFile->Load(fileContents));
+				m_fileCache.Add(pathname, fileContents, size);
+			}
 		}
 
 		stats_io_user_request(size);
-		stats_cache(isCacheHit? CR_HIT : CR_MISS, size, vfsPathname);
-		m_trace.get()->NotifyLoad(vfsPathname, size);
+		stats_cache(isCacheHit? CR_HIT : CR_MISS, size);
+		m_trace->NotifyLoad(pathname.string().c_str(), size);
 
 		return INFO::OK;
-	}
-
-	void RefreshFileInfo(const char* pathname)
-	{
-		//VfsFile* file = LookupFile(vfsPathname, &m_rootDirectory);
-	}
-
-	// "backs off of" all archives - closes their files and allows them to
-	// be rewritten or deleted (required by archive builder).
-	// must call mount_rebuild when done with the rewrite/deletes,
-	// because this call leaves the VFS in limbo!!
-	void ReleaseArchives()
-	{
 	}
 
 		// rebuild the VFS, i.e. re-mount everything. open files are not affected.
@@ -142,16 +129,25 @@ public:
 		// dir_watch reports changes; can also be called from the console after a
 		// rebuild command. there is no provision for updating single VFS dirs -
 		// it's not worth the trouble.
-	void Clear()
+	virtual void Clear()
 	{
 		m_rootDirectory.ClearR();
 	}
 
-	void Display()
+	virtual void Display() const
 	{
 		m_rootDirectory.DisplayR(0);
 	}
 
+	virtual LibError GetRealPath(const VfsPath& pathname, char* realPathname)
+	{
+		VfsDirectory* vfsDirectory;
+		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, vfsDirectory, 0));
+		PRealDirectory realDirectory = vfsDirectory->AssociatedDirectory();
+		const std::string& name = pathname.leaf();
+		path_append(realPathname, realDirectory->GetPath().string().c_str(), name.c_str());
+		return INFO::OK;
+	}
 
 private:
 	static size_t ChooseCacheSize()
@@ -159,57 +155,14 @@ private:
 		return 96*MiB;
 	}
 
-	VfsDirectory m_rootDirectory;
+	mutable VfsDirectory m_rootDirectory;
 	FileCache m_fileCache;
 	PITrace m_trace;
 };
 
 //-----------------------------------------------------------------------------
 
-Filesystem_VFS::Filesystem_VFS(void* trace)
+PIVFS CreateVfs()
 {
-}
-
-/*virtual*/ Filesystem_VFS::~Filesystem_VFS()
-{
-}
-
-/*virtual*/ LibError Filesystem_VFS::GetFileInfo(const char* vfsPathname, FileInfo& fileInfo) const
-{
-	return impl.get()->GetFileInfo(vfsPathname, fileInfo);
-}
-
-/*virtual*/ LibError Filesystem_VFS::GetDirectoryEntries(const char* vfsPath, FileInfos* files, Directories* subdirectories) const
-{
-	return impl.get()->GetDirectoryEntries(vfsPath, files, subdirectories);
-}
-
-LibError Filesystem_VFS::CreateFile(const char* vfsPathname, const u8* data, size_t size)
-{
-	return impl.get()->CreateFile(vfsPathname, data, size);
-}
-
-LibError Filesystem_VFS::LoadFile(const char* vfsPathname, FileContents& contents, size_t& size)
-{
-	return impl.get()->LoadFile(vfsPathname, contents, size);
-}
-
-LibError Filesystem_VFS::Mount(const char* vfsPath, const char* path, uint flags, uint priority)
-{
-	return impl.get()->Mount(vfsPath, path, flags, priority);
-}
-
-void Filesystem_VFS::RefreshFileInfo(const char* pathname)
-{
-	impl.get()->RefreshFileInfo(pathname);
-}
-
-void Filesystem_VFS::Display() const
-{
-	impl.get()->Display();
-}
-
-void Filesystem_VFS::Clear()
-{
-	impl.get()->Clear();
+	return PIVFS(new VFS);
 }

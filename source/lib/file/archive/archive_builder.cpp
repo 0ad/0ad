@@ -12,6 +12,8 @@
 #include "precompiled.h"
 //#include "vfs_optimizer.h"
 
+#if 0
+
 #include <set>
 #include <map>
 #include <algorithm>
@@ -720,7 +722,7 @@ int archive_build_continue(ArchiveBuildState* ab)
 		if(!V_fn)
 			break;
 
-		ArchiveEntry ent; const u8* file_contents; IoBuf buf;
+		IArchiveFile ent; const u8* file_contents; IoBuf buf;
 		if(read_and_compress_file(V_fn, ab->codec, ent, file_contents, buf) == INFO::OK)
 		{
 			(void)ab->archiveBuilder->AddFile(&ent, file_contents);
@@ -1092,3 +1094,5 @@ LibError trace_run(const char* osPathname)
 		trace.Entries()[i]->Run();
 	return INFO::OK;
 }
+
+#endif

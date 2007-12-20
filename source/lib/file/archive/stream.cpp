@@ -46,7 +46,7 @@ void OutputBufferManager::AllocateBuffer(size_t size)
 	//   than the address space of 32-bit systems).
 
 	// no buffer or the previous one wasn't big enough: reallocate
-	if(!m_mem.get() || m_capacity < size)
+	if(!m_mem || m_capacity < size)
 	{
 		m_mem.reset((u8*)page_aligned_alloc(size), PageAlignedDeleter(size));
 		m_capacity = size;
@@ -97,31 +97,30 @@ void Stream::SetOutputBuffer(u8* out, size_t outSize)
 }
 
 
-LibError Stream::Feed(const u8* in, size_t inSize, size_t& bytesProcessed)
+LibError Stream::Feed(const u8* in, size_t inSize)
 {
 	if(m_outProduced == m_outputBufferManager.Size())	// output buffer full; must not call Process
 		return INFO::OK;
 
 	size_t inConsumed, outProduced;
-	u8* const out = m_outputBufferManager.Buffer();
+	u8* const out = m_outputBufferManager.Buffer() + m_outProduced;
 	const size_t outSize = m_outputBufferManager.Size() - m_outProduced;
-	RETURN_ERR(m_codec.get()->Process(in, inSize, out, outSize, inConsumed, outProduced));
+	RETURN_ERR(m_codec->Process(in, inSize, out, outSize, inConsumed, outProduced));
 
 	m_inConsumed += inConsumed;
 	m_outProduced += outProduced;
-	bytesProcessed = outProduced;
 	return INFO::CB_CONTINUE;
 }
 
 
 LibError Stream::Finish()
 {
-	return m_codec.get()->Finish(m_checksum);
+	return m_codec->Finish(m_checksum);
 }
 
 
-LibError FeedStream(uintptr_t cbData, const u8* in, size_t inSize, size_t& bytesProcessed)
+LibError FeedStream(uintptr_t cbData, const u8* in, size_t inSize)
 {
 	Stream& stream = *(Stream*)cbData;
-	return stream.Feed(in, inSize, bytesProcessed);
+	return stream.Feed(in, inSize);
 }

@@ -203,15 +203,6 @@ LibError path_append(char* dst, const char* path1, const char* path2, uint flags
 }
 
 
-const char* path_append2(const char* path1, const char* path2, uint flags)
-{
-	char dst[PATH_MAX];
-	LibError ret = path_append(dst, path1, path2, flags);
-	debug_assert(ret == INFO::OK);
-	return path_Pool()->UniqueCopy(dst);
-}
-
-
 // strip <remove> from the start of <src>, prepend <replace>,
 // and write to <dst>.
 // returns ERR::FAIL (without warning!) if the beginning of <src> doesn't
@@ -241,24 +232,23 @@ LibError path_replace(char* dst, const char* src, const char* remove, const char
 
 // split paths into specific parts
 
-void path_split(const char* pathname, const char** ppath, const char** pname)
+void path_split(const char* pathname, char* path, char* name)
 {
-	const char* name = path_name_only(pathname);
-	if(pname)
+	const char* namePos = path_name_only(pathname);
+
+	if(name)
 	{
-		if(name[0] == '\0')
-			*pname = 0;
-		else
-			*pname = path_Pool()->UniqueCopy(name);
+		path_copy(name, namePos);
+
+		path_component_validate(name);
 	}
 
-	if(ppath)
+	if(path)
 	{
-		char pathnameCopy[PATH_MAX];
-		path_copy(pathnameCopy, pathname);
+		path_copy(path, pathname);
+		path[namePos-pathname] = '\0';	// strip filename
 
-		pathnameCopy[name-pathname] = '\0';	// strip filename
-		*ppath = path_Pool()->UniqueCopy(pathnameCopy);
+		debug_assert(path_IsDirectory(path));
 	}
 }
 
@@ -273,7 +263,10 @@ const char* path_name_only(const char* path)
 		return path;
 
 	// return name, i.e. component after the last portable or platform slash
-	return std::max(slash1, slash2)+1;
+	const char* name = std::max(slash1, slash2)+1;
+	if(name[0] != '\0')	// else path_component_validate would complain
+		path_component_validate(name);
+	return name;
 }
 
 
@@ -302,6 +295,7 @@ const char* path_last_component(const char* path)
 		pos += component_len+1;	// +1 for separator
 	}
 
+	path_component_validate(last_component);
 	return last_component;
 }
 
@@ -311,6 +305,7 @@ void path_strip_fn(char* path)
 {
 	char* name = (char*)path_name_only(path);
 	*name = '\0';	// cut off string here
+	debug_assert(path_IsDirectory(path));
 }
 
 
@@ -321,13 +316,7 @@ void path_dir_only(const char* pathname, char* path)
 {
 	path_copy(path, pathname);
 	path_strip_fn(path);
-}
-
-const char* path_dir_only2(const char* pathname)
-{
-	char path[PATH_MAX];
-	path_dir_only(pathname, path);
-	return path_Pool()->UniqueCopy(path);
+	// (path_strip_fn already ensures its output is a directory path)
 }
 
 
@@ -376,6 +365,8 @@ LibError path_foreach_component(const char* path_org, PathComponentCb cb, uintpt
 		// .. directory
 		else
 			*slash = '\0';	// 0-terminate cur_component
+
+		path_component_validate(cur_component);
 
 		LibError ret = cb(cur_component, is_dir, cbData);
 		// callback wants to abort - return its value.
@@ -454,15 +445,4 @@ LibError path_package_append_file(PathPackage* pp, const char* path)
 {
 	CHECK_ERR(strcpy_s(pp->end, pp->chars_left, path));
 	return INFO::OK;
-}
-
-
-//-----------------------------------------------------------------------------
-
-StringPool* path_Pool()
-{
-	static StringPool* instance;
-	if(!instance)
-		instance = new StringPool(8*MiB);
-	return instance;
 }

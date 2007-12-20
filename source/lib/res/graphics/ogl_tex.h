@@ -133,7 +133,7 @@ the next function to fail, but real apps should check and report errors.
 
 #include "lib/res/handle.h"
 #include "lib/ogl.h"
-#include "tex.h"
+#include "lib/tex/tex.h"
 
 
 //

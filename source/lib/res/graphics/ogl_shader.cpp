@@ -9,11 +9,15 @@
 #include "precompiled.h"
 #include "ogl_shader.h"
 
-#include "lib/res/res.h"
 #include "lib/ogl.h"
 
+#include "ps/CStr.h"
 #include "ps/CLogger.h"
 #include "ps/XML/Xeromyces.h"
+
+#include "lib/res/h_mgr.h"
+#include "lib/file/vfs/vfs.h"
+extern PIVFS g_VFS;
 
 
 #define LOG_CATEGORY "shaders"
@@ -93,12 +97,8 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 	if (shdr->id)
 		return INFO::OK;
 
-	FileIOBuf file;
-	size_t file_size;
-	GLint log_length;
-	GLint compile_success;
-
-	RETURN_ERR(vfs_load(filename, file, file_size));
+	shared_ptr<u8> file; size_t file_size;
+	RETURN_ERR(g_VFS->LoadFile(filename, file, file_size));
 
 	ogl_WarnIfError();
 
@@ -110,16 +110,17 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 		// bad code.
 		ogl_WarnIfError();
 		
-		err = ERR::SHDR_CREATE;
-		goto fail_fileloaded;
+		WARN_RETURN(ERR::SHDR_CREATE);
 	}
 	
 	{
-		const GLchar* strings[] = { (const GLchar*)file };
+		const GLchar* strings[] = { (const GLchar*)file.get() };
 		pglShaderSourceARB(shdr->id, 1, strings, (const GLint*)&file_size);
 		pglCompileShaderARB(shdr->id);
 	}
 	
+	GLint log_length;
+	GLint compile_success;
 	pglGetObjectParameterivARB(shdr->id, GL_OBJECT_COMPILE_STATUS_ARB, &compile_success);
 	pglGetObjectParameterivARB(shdr->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
 	if (log_length > 1)
@@ -154,14 +155,11 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 		goto fail_shadercreated;
 	}
 
-	(void)file_buf_free(file);
 	return INFO::OK;
 
 fail_shadercreated:
 	pglDeleteObjectARB(shdr->id);
 	shdr->id = 0;
-fail_fileloaded:
-	(void)file_buf_free(file);
 	return err;
 }
 

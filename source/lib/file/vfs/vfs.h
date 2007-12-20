@@ -12,7 +12,25 @@
 #ifndef INCLUDED_VFS
 #define INCLUDED_VFS
 
-#include "lib/file/filesystem.h"
+#include "lib/file/file_system.h"	// FileInfo
+#include "lib/file/vfs/vfs_path.h"
+
+// VFS paths are of the form: "(dir/)*file?"
+// in English: '/' as path separator; trailing '/' required for dir names;
+// no leading '/', since "" is the root dir.
+
+// there is no restriction on path length; when dimensioning character
+// arrays, prefer PATH_MAX.
+
+// pathnames are case-insensitive.
+// implementation:
+//   when mounting, we get the exact filenames as reported by the OS;
+//   we allow open requests with mixed case to match those,
+//   but still use the correct case when passing to other libraries
+//   (e.g. the actual open() syscall).
+// rationale:
+//   necessary, because some exporters output .EXT uppercase extensions
+//   and it's unreasonable to expect that users will always get it right.
 
 namespace ERR
 {
@@ -27,43 +45,41 @@ enum VfsMountFlags
 	// all real directories mounted during this operation will be watched
 	// for changes. this flag is provided to avoid watches in output-only
 	// directories, e.g. screenshots/ (only causes unnecessary overhead).
-	VFS_WATCH = 1,
+	VFS_MOUNT_WATCH = 1,
 
 	// anything mounted from here should be added to archive when
 	// building via vfs_optimizer.
-	VFS_ARCHIVABLE = 2
+	VFS_MOUNT_ARCHIVABLE = 2
 };
 
-
-typedef boost::shared_ptr<const u8> FileContents;
-
-class Filesystem_VFS : public IFilesystem
+struct IVFS
 {
-public:
-	Filesystem_VFS(void* trace);
-	~Filesystem_VFS();
-
 	/**
 	 * mount a directory into the VFS.
 	 *
-	 * @param vfsPath mount point (created if it does not already exist)
+	 * @param mountPoint (will be created if it does not already exist)
 	 * @param path real directory path
 	 *
 	 * if files are encountered that already exist in the VFS (sub)directories,
 	 * the most recent / highest priority/precedence version is preferred.
 	 *
-	 * the contents of archives in this directory (but not its subdirectories!)
-	 * are added as well; they are processed in alphabetical order.
+	 * if files with archive extensions are seen, their contents are added
+	 * as well.
 	 **/
-	LibError Mount(const char* vfsPath, const char* path, uint flags = 0, uint priority = 0);
+	virtual LibError Mount(const VfsPath& mountPoint, const char* path, uint flags = 0, uint priority = 0) = 0;
 
-	// (see IFilesystem)
-	virtual LibError GetFileInfo(const char* vfsPathname, FileInfo& fileInfo) const;
-	virtual LibError GetDirectoryEntries(const char* vfsPath, FileInfos* files, Directories* subdirectories) const;
+	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const = 0;
+
+	// note: this interface avoids having to lock a directory while an
+	// iterator is extant.
+	// (don't split this into 2 functions because POSIX can't implement
+	// that efficiently)
+	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames) const = 0;
+
 
 	// note: only allowing either reads or writes simplifies file cache
 	// coherency (need only invalidate when closing a FILE_WRITE file).
-	LibError CreateFile(const char* vfsPathname, const u8* data, size_t size);
+	virtual LibError CreateFile(const VfsPath& pathname, shared_ptr<u8> fileContents, size_t size) = 0;
 
 	// read the entire file.
 	// return number of bytes transferred (see above), or a negative error code.
@@ -74,16 +90,15 @@ public:
 	// the callback mechanism is useful for user progress notification or
 	// processing data while waiting for the next I/O to complete
 	// (quasi-parallel, without the complexity of threads).
-	LibError LoadFile(const char* vfsPathname, FileContents& contents, size_t& size);
+	virtual LibError LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size) = 0;
 
-	void RefreshFileInfo(const char* pathname);
+	virtual void Display() const = 0;
+	virtual void Clear() = 0;
 
-	void Display() const;
-	void Clear();
-
-private:
-	class Impl;
-	boost::shared_ptr<Impl> impl;
+	virtual LibError GetRealPath(const VfsPath& pathname, char* path) = 0;
 };
+
+typedef shared_ptr<IVFS> PIVFS;
+LIB_API PIVFS CreateVfs();
 
 #endif	// #ifndef INCLUDED_VFS

@@ -13,7 +13,7 @@
 
 #include "archive.h"
 
-PIArchiveReader CreateArchiveReader_Zip(const char* archivePathname);
-PIArchiveWriter CreateArchiveWriter_Zip(const char* archivePathname);
+PIArchiveReader CreateArchiveReader_Zip(const Path& archivePathname);
+PIArchiveWriter CreateArchiveWriter_Zip(const Path& archivePathname);
 
 #endif	// #ifndef INCLUDED_ARCHIVE_ZIP

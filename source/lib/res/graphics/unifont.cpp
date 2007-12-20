@@ -14,9 +14,10 @@
 #include <sstream>
 #include <map>
 
-#include "lib/ogl.h"
-#include "lib/res/res.h"
 #include "ogl_tex.h"
+#include "../h_mgr.h"
+#include "lib/file/vfs/vfs.h"
+extern PIVFS g_VFS;
 
 // This isn't particularly efficient - it can be improved if we
 // (a) care enough, and (b) know about fixed ranges of characters
@@ -74,15 +75,14 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	// Read font definition file into a stringstream
 	const std::string FilenameFnt = FilenameBase+".fnt";
 	const char* fnt_fn = FilenameFnt.c_str();
-	FileIOBuf buf; size_t size;
-	RETURN_ERR(vfs_load(fnt_fn, buf, size));	// [cumulative for 12: 36ms]
-	std::istringstream FNTStream (std::string((const char*)buf, (int)size));
-	(void)file_buf_free(buf);
+	shared_ptr<u8> buf; size_t size;
+	RETURN_ERR(g_VFS->LoadFile(fnt_fn, buf, size));	// [cumulative for 12: 36ms]
+	std::istringstream FNTStream (std::string((const char*)buf.get(), (int)size));
 
 	int Version;
 	FNTStream >> Version;
 	if (Version != 100) // Make sure this is from a recent version of the font builder
-		WARN_RETURN(ERR::RES_UNKNOWN_FORMAT);
+		WARN_RETURN(ERR::FAIL);
 
 	int TextureWidth, TextureHeight;
 	FNTStream >> TextureWidth >> TextureHeight;
@@ -109,7 +109,7 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 
 		if (Codepoint > 0xFFFF)
 		{
-			debug_warn("Invalid codepoint");
+			debug_assert(0);	// Invalid codepoint
 			continue;
 		}
 
@@ -269,7 +269,7 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 		
 		if (it == BoundGlyphs->end()) // Missing the missing glyph symbol - give up
 		{
-			debug_warn("Missing the missing glyph in a unifont!\n");
+			debug_assert(0);	// Missing the missing glyph in a unifont!
 			return;
 		}
 
@@ -312,7 +312,7 @@ LibError unifont_stringsize(const Handle h, const wchar_t* text, int& width, int
 
 		if (it == f->glyphs_size->end()) // Missing the missing glyph symbol - give up
 		{
-			debug_warn("Missing the missing glyph in a unifont!\n");
+			debug_assert(0);	// Missing the missing glyph in a unifont!
 			return INFO::OK;
 		}
 

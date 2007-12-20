@@ -11,41 +11,42 @@
 #ifndef INCLUDED_VFS_TREE
 #define INCLUDED_VFS_TREE
 
-#include "lib/file/filesystem.h"		// FileInfo, PIFileProvider
-#include "real_directory.h"
-
+#include "lib/file/file_system.h"	// FileInfo
+#include "lib/file/common/file_loader.h"	// PIFileLoader
+#include "lib/file/common/real_directory.h"	// PRealDirectory
 
 class VfsFile
 {
 public:
-	VfsFile(const FileInfo& fileInfo, unsigned priority, PIFileProvider provider, const void* location);
+	VfsFile(const FileInfo& fileInfo, unsigned priority, PIFileLoader provider);
 
-	const char* Name() const
+	const std::string& Name() const
 	{
 		return m_fileInfo.Name();
 	}
+
 	off_t Size() const
 	{
 		return m_fileInfo.Size();
 	}
-	void GetFileInfo(FileInfo& fileInfo) const
+
+	void GetFileInfo(FileInfo* pfileInfo) const
 	{
-		fileInfo = m_fileInfo;
+		*pfileInfo = m_fileInfo;
 	}
 
-	bool IsSupersededBy(const VfsFile& file) const;
+	bool IsSupersededBy(const VfsFile& vfsFile) const;
+
 	void GenerateDescription(char* text, size_t maxChars) const;
 
-	LibError Store(const u8* fileContents, size_t size) const;
-	LibError Load(u8* fileContents) const;
+	LibError Load(shared_ptr<u8> buf) const;
 
 private:
 	mutable FileInfo m_fileInfo;
 
 	unsigned m_priority;
 
-	PIFileProvider m_provider;
-	const void* m_location;
+	PIFileLoader m_loader;
 };
 
 
@@ -58,36 +59,46 @@ public:
 	 * @return address of existing or newly inserted file; remains
 	 * valid until ClearR is called (i.e. VFS is rebuilt).
 	 **/
-	VfsFile* AddFile(const VfsFile& file);
+	VfsFile* AddFile(const VfsFile& vfsFile);
 
 	/**
 	 * @return address of existing or newly inserted subdirectory; remains
 	 * valid until ClearR is called (i.e. VFS is rebuilt).
 	 **/
-	VfsDirectory* AddSubdirectory(const char* name);
+	VfsDirectory* AddSubdirectory(const std::string& name);
 
-	VfsFile* GetFile(const char* name);
-	VfsDirectory* GetSubdirectory(const char* name);
+	VfsFile* GetFile(const std::string& name);
+	VfsDirectory* GetSubdirectory(const std::string& name);
 
-	void GetEntries(FileInfos* files, Directories* subdirectories) const;
+	void GetEntries(FileInfos* files, DirectoryNames* subdirectories) const;
 
 	void DisplayR(unsigned depth) const;
+
 	void ClearR();
 
-	void Attach(const RealDirectory& realDirectory);
-	const std::vector<RealDirectory>& AttachedDirectories() const
+	void Attach(PRealDirectory realDirectory);
+
+	PRealDirectory AssociatedDirectory() const
 	{
-		return m_attachedDirectories;
+		return m_realDirectory;
 	}
 
+	/**
+	 * @return whether this directory should be populated from its
+	 * AssociatedDirectory(). note that calling this is a promise to
+	 * do so if true is returned -- the flag is immediately reset.
+	 **/
+	bool ShouldPopulate();
+
 private:
-	typedef std::map<const char*, VfsFile> Files;
-	Files m_files;
+	typedef std::map<std::string, VfsFile> VfsFiles;
+	VfsFiles m_vfsFiles;
 
-	typedef std::map<const char*, VfsDirectory> Subdirectories;
-	Subdirectories m_subdirectories;
+	typedef std::map<std::string, VfsDirectory> VfsSubdirectories;
+	VfsSubdirectories m_vfsSubdirectories;
 
-	std::vector<RealDirectory> m_attachedDirectories;
+	PRealDirectory m_realDirectory;
+	volatile uintptr_t m_shouldPopulate;	// (cpu_CAS can't be used on bool)
 };
 
 #endif	// #ifndef INCLUDED_VFS_TREE

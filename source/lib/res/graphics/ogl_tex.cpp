@@ -16,9 +16,11 @@
 #include "lib/ogl.h"
 #include "lib/bits.h"
 #include "lib/sysdep/gfx.h"
-#include "lib/res/res.h"
-#include "tex.h"
+#include "lib/tex/tex.h"
 
+#include "../h_mgr.h"
+#include "lib/file/vfs/vfs.h"
+extern PIVFS g_VFS;
 
 
 //----------------------------------------------------------------------------
@@ -108,7 +110,7 @@ static GLint choose_fmt(uint bpp, uint flags)
 		case 5:
 			return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
 		default:
-			debug_warn("invalid DXT value");
+			debug_assert(0);	// invalid DXT value
 			return 0;
 		}
 	}
@@ -128,7 +130,7 @@ static GLint choose_fmt(uint bpp, uint flags)
 		debug_assert(alpha);
 		return bgr? GL_BGRA : GL_RGBA;
 	default:
-		debug_warn("invalid bpp");
+		debug_assert(0);	// invalid bpp
 		return 0;
 	}
 
@@ -221,7 +223,7 @@ static GLint choose_int_fmt(GLenum fmt, uint q_flags)
 		wchar_t buf[100];
 		swprintf(buf, ARRAY_SIZE(buf), L"choose_int_fmt: fmt 0x%x isn't covered! please add it", fmt);
 		DISPLAY_ERROR(buf);
-		debug_warn("given fmt isn't covered! please add it.");
+		debug_assert(0);	// given fmt isn't covered! please add it.
 		// fall back to a reasonable default
 		return half_bpp? GL_RGB4 : GL_RGB8;
 		}
@@ -383,7 +385,7 @@ static void OglTex_dtor(OglTex* ot)
 {
 	if(ot->flags & OT_TEX_VALID)
 	{
-		(void)tex_free(&ot->t);
+		tex_free(&ot->t);
 		ot->flags &= ~OT_TEX_VALID;
 	}
 
@@ -403,7 +405,7 @@ static LibError OglTex_reload(OglTex* ot, const char* fn, Handle h)
 	// if we don't already have the texture in memory (*), load from file.
 	// * this happens if the texture is "wrapped".
 	if(!(ot->flags & OT_TEX_VALID))
-		RETURN_ERR(tex_load(fn, &ot->t, FILE_CACHED_AT_HIGHER_LEVEL));
+		RETURN_ERR(tex_load(fn, &ot->t));
 	ot->flags |= OT_TEX_VALID;
 
 	glGenTextures(1, &ot->id);
@@ -548,7 +550,7 @@ static void warn_if_uploaded(Handle ht, const OglTex* ot)
 		return;	// don't complain
 
 	if(ot->flags & OT_IS_UPLOADED)
-		debug_warn("ogl_tex_set_*: texture already uploaded and shouldn't be changed");
+		debug_assert(0);	// ogl_tex_set_*: texture already uploaded and shouldn't be changed
 #else
 	// (prevent warnings; the alternative of wrapping all call sites in
 	// #ifndef is worse)
@@ -627,7 +629,7 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 		have_auto_mipmap_gen = enable;
 		break;
 	default:
-		debug_warn("invalid <what>");
+		debug_assert(0);	// invalid <what>
 		break;
 	}
 }
@@ -639,8 +641,7 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 static void detect_gl_upload_caps()
 {
 	// make sure us and the app hook have graphics card info available
-	if(gfx_card[0] == '\0')
-		debug_warn("gfx_detect must be called before ogl_tex_upload");
+	debug_assert(gfx_card[0] != '\0');	// gfx_detect must be called before ogl_tex_upload
 
 	// detect features, but only change the variables if they were at
 	// "undecided" (if overrides were set before this, they must remain).
@@ -856,7 +857,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 	if(refs == 1)
 	{
 		// note: we verify above that OT_TEX_VALID is set
-		(void)tex_free(t);
+		tex_free(t);
 		ot->flags &= ~OT_TEX_VALID;
 	}
 
@@ -895,8 +896,7 @@ LibError ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
 		*flags = ot->t.flags;
 	if(fmt)
 	{
-		if(!(ot->flags & OT_IS_UPLOADED))
-			debug_warn("hasn't been defined yet!");
+		debug_assert(ot->flags & OT_IS_UPLOADED);
 		*fmt = ot->fmt;
 	}
 	return INFO::OK;

@@ -11,31 +11,31 @@
 #include "precompiled.h"
 #include "vfs_tree.h"
 
-#include "lib/file/file_stats.h"
+#include "lib/file/common/file_stats.h"
+#include "lib/sysdep/cpu.h"
 
 
 //-----------------------------------------------------------------------------
 
-VfsFile::VfsFile(const FileInfo& fileInfo, unsigned priority, PIFileProvider provider, const void* location)
-: m_fileInfo(fileInfo), m_priority(priority)
-, m_provider(provider), m_location(location)
+VfsFile::VfsFile(const FileInfo& fileInfo, unsigned priority, PIFileLoader loader)
+	: m_fileInfo(fileInfo), m_priority(priority), m_loader(loader)
 {
 }
 
 
-bool VfsFile::IsSupersededBy(const VfsFile& file) const
+bool VfsFile::IsSupersededBy(const VfsFile& vfsFile) const
 {
 	// 1) priority is lower => no.
-	if(file.m_priority < m_priority)
+	if(vfsFile.m_priority < m_priority)
 		return false;
 
 	// 2) timestamp is older => no.
 	// (note: we need to account for FAT's 2 sec. resolution)
-	if(difftime(file.m_fileInfo.MTime(), m_fileInfo.MTime()) < -2.0)
+	if(difftime(vfsFile.m_fileInfo.MTime(), m_fileInfo.MTime()) < -2.0)
 		return false;
 
 	// 3) provider is less efficient => no.
-	if(file.m_provider.get()->Precedence() < m_provider.get()->Precedence())
+	if(vfsFile.m_loader->Precedence() < m_loader->Precedence())
 		return false;
 
 	return true;
@@ -51,149 +51,154 @@ void VfsFile::GenerateDescription(char* text, size_t maxChars) const
 	// build format string (set width of name field so that everything
 	// lines up correctly)
 	const char* fmt = "(%c; %6d; %s)\n";
-	sprintf_s(text, maxChars, fmt, m_provider.get()->LocationCode(), m_fileInfo.Size(), timestamp);
+	sprintf_s(text, maxChars, fmt, m_loader->LocationCode(), m_fileInfo.Size(), timestamp);
 }
 
 
-LibError VfsFile::Store(const u8* fileContents, size_t size) const
+LibError VfsFile::Load(shared_ptr<u8> buf) const
 {
-	RETURN_ERR(m_provider.get()->Store(m_fileInfo.Name(), m_location, fileContents, size));
-
-	// update size and mtime
-	m_fileInfo = FileInfo(m_fileInfo.Name(), (off_t)size, time(0));
-
-	return INFO::OK;
-}
-
-
-LibError VfsFile::Load(u8* fileContents) const
-{
-	return m_provider.get()->Load(m_fileInfo.Name(), m_location, fileContents, m_fileInfo.Size());
+	return m_loader->Load(m_fileInfo.Name(), buf, m_fileInfo.Size());
 }
 
 
 //-----------------------------------------------------------------------------
 
 VfsDirectory::VfsDirectory()
+: m_shouldPopulate(0)
 {
 }
 
 
-VfsFile* VfsDirectory::AddFile(const VfsFile& file)
+VfsFile* VfsDirectory::AddFile(const VfsFile& vfsFile)
 {
-	std::pair<const char*, VfsFile> value = std::make_pair(file.Name(), file);
-	std::pair<Files::iterator, bool> ret = m_files.insert(value);
+	std::pair<std::string, VfsFile> value = std::make_pair(vfsFile.Name(), vfsFile);
+	std::pair<VfsFiles::iterator, bool> ret = m_vfsFiles.insert(value);
 	if(!ret.second)	// already existed
 	{
-		VfsFile& previousFile = ret.first->second;
-		const VfsFile& newFile = value.second;
-		if(previousFile.IsSupersededBy(newFile))
-			previousFile = newFile;
+		VfsFile& vfsPreviousFile = ret.first->second;
+		const VfsFile& vfsNewFile = value.second;
+		if(vfsPreviousFile.IsSupersededBy(vfsNewFile))
+			vfsPreviousFile = vfsNewFile;
 	}
 	else
-		stats_vfs_file_add(file.Size());
+		stats_vfs_file_add(vfsFile.Size());
 
 	return &(*ret.first).second;
 }
 
 
 // rationale: passing in a pre-constructed VfsDirectory and copying that into
-// our map would be less efficient than this approach.
-VfsDirectory* VfsDirectory::AddSubdirectory(const char* name)
+// our map would be slower and less convenient for the caller.
+VfsDirectory* VfsDirectory::AddSubdirectory(const std::string& name)
 {
-	std::pair<const char*, VfsDirectory> value = std::make_pair(name, VfsDirectory());
-	std::pair<Subdirectories::iterator, bool> ret = m_subdirectories.insert(value);
+	std::pair<std::string, VfsDirectory> value = std::make_pair(name, VfsDirectory());
+	std::pair<VfsSubdirectories::iterator, bool> ret = m_vfsSubdirectories.insert(value);
 	return &(*ret.first).second;
 }
 
 
-VfsFile* VfsDirectory::GetFile(const char* name)
+VfsFile* VfsDirectory::GetFile(const std::string& name)
 {
-	Files::iterator it = m_files.find(name);
-	if(it == m_files.end())
+	VfsFiles::iterator it = m_vfsFiles.find(name);
+	if(it == m_vfsFiles.end())
 		return 0;
 	return &it->second;
 }
 
 
-VfsDirectory* VfsDirectory::GetSubdirectory(const char* name)
+VfsDirectory* VfsDirectory::GetSubdirectory(const std::string& name)
 {
-	Subdirectories::iterator it = m_subdirectories.find(name);
-	if(it == m_subdirectories.end())
+	VfsSubdirectories::iterator it = m_vfsSubdirectories.find(name);
+	if(it == m_vfsSubdirectories.end())
 		return 0;
 	return &it->second;
 }
 
 
-void VfsDirectory::GetEntries(FileInfos* files, Directories* subdirectories) const
+void VfsDirectory::GetEntries(FileInfos* files, DirectoryNames* subdirectoryNames) const
 {
 	if(files)
 	{
 		// (note: VfsFile doesn't return a pointer to FileInfo; instead,
 		// we have it write directly into the files container)
-		files->resize(m_files.size());
+		files->resize(m_vfsFiles.size());
 		size_t i = 0;
-		for(Files::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
-			it->second.GetFileInfo((*files)[i++]);
+		for(VfsFiles::const_iterator it = m_vfsFiles.begin(); it != m_vfsFiles.end(); ++it)
+			it->second.GetFileInfo(&(*files)[i++]);
 	}
 
-	if(subdirectories)
+	if(subdirectoryNames)
 	{
-		subdirectories->clear();
-		subdirectories->reserve(m_subdirectories.size());
-		for(Subdirectories::const_iterator it = m_subdirectories.begin(); it != m_subdirectories.end(); ++it)
-			subdirectories->push_back(it->first);
+		subdirectoryNames->clear();
+		subdirectoryNames->reserve(m_vfsSubdirectories.size());
+		for(VfsSubdirectories::const_iterator it = m_vfsSubdirectories.begin(); it != m_vfsSubdirectories.end(); ++it)
+			subdirectoryNames->push_back(it->first);
 	}
 }
 
 
 void VfsDirectory::DisplayR(unsigned depth) const
 {
-	const char indent[] = "    ";
+	static const char indent[] = "    ";
 
 	const int maxNameChars = 80 - depth*(sizeof(indent)-1);
 	char fmt[20];
-	sprintf_s(fmt, ARRAY_SIZE(fmt), "%%-%d.%ds %s", maxNameChars, maxNameChars);
+	sprintf_s(fmt, ARRAY_SIZE(fmt), "%%-%d.%ds %%s", maxNameChars, maxNameChars);
 
-	for(Files::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
+	for(VfsFiles::const_iterator it = m_vfsFiles.begin(); it != m_vfsFiles.end(); ++it)
 	{
-		const char* name = it->first;
-		const VfsFile& file = it->second;
+		const std::string& name = it->first;
+		const VfsFile& vfsFile = it->second;
 
 		char description[100];
-		file.GenerateDescription(description, ARRAY_SIZE(description));
-
-		for(unsigned i = 0; i < depth; i++)
-			printf(indent);
-		printf(fmt, name, description);
-	}
-
-	for(Subdirectories::const_iterator it = m_subdirectories.begin(); it != m_subdirectories.end(); ++it)
-	{
-		const char* name = it->first;
-		const VfsDirectory& directory = it->second;
+		vfsFile.GenerateDescription(description, ARRAY_SIZE(description));
 
 		for(unsigned i = 0; i < depth+1; i++)
 			printf(indent);
-		printf("[%s/]\n", name);
+		printf(fmt, name.c_str(), description);
+	}
 
-		directory.DisplayR(depth+1);
+	for(VfsSubdirectories::const_iterator it = m_vfsSubdirectories.begin(); it != m_vfsSubdirectories.end(); ++it)
+	{
+		const std::string& name = it->first;
+		const VfsDirectory& vfsDirectory = it->second;
+
+		for(unsigned i = 0; i < depth+1; i++)
+			printf(indent);
+		printf("[%s/]\n", name.c_str());
+
+		vfsDirectory.DisplayR(depth+1);
 	}
 }
 
 
 void VfsDirectory::ClearR()
 {
-	for(Subdirectories::iterator it = m_subdirectories.begin(); it != m_subdirectories.end(); ++it)
+	for(VfsSubdirectories::iterator it = m_vfsSubdirectories.begin(); it != m_vfsSubdirectories.end(); ++it)
 		it->second.ClearR();
 
-	m_files.clear();
-	m_subdirectories.clear();
-	m_attachedDirectories.clear();
+	m_vfsFiles.clear();
+	m_vfsSubdirectories.clear();
+	m_realDirectory.reset();
+	m_shouldPopulate = 0;
 }
 
 
-void VfsDirectory::Attach(const RealDirectory& realDirectory)
+void VfsDirectory::Attach(PRealDirectory realDirectory)
 {
-	m_attachedDirectories.push_back(realDirectory);
+debug_printf("ATTACH %s\n", realDirectory->GetPath().string().c_str());
+
+	if(!cpu_CAS(&m_shouldPopulate, 0, 1))
+	{
+		debug_assert(0);	// multiple Attach() calls without an intervening ShouldPopulate()
+		return;
+	}
+
+	m_realDirectory = realDirectory;
+}
+
+
+bool VfsDirectory::ShouldPopulate()
+{
+	return cpu_CAS(&m_shouldPopulate, 1, 0);	// test and reset
 }

@@ -19,14 +19,17 @@
 #include <deque>
 #include <math.h>
 
-#include "maths/MathUtil.h"	// PI
+#include "lib/path_util.h"
+#include "../h_mgr.h"
+#include "lib/file/vfs/vfs.h"
+extern PIVFS g_VFS;
+
 
 // for DLL-load hack in alc_init
 #if OS_WIN
 # include "lib/sysdep/win/win.h"
 #endif
 
-#include "lib/res/res.h"
 #include "lib/timer.h"
 #include "lib/app_hooks.h"
 #include "lib/external_libraries/openal.h"
@@ -120,7 +123,7 @@ static void al_check(const char* caller = "(unknown)")
 
 	const char* str = (const char*)alGetString(err);
 	debug_printf("OpenAL error: %s; called from %s (#%d)\n", str, caller, num_times_within_same_function);
-	debug_warn("OpenAL error");
+	debug_assert(0);
 }
 
 // convenience version that automatically passes in function name.
@@ -438,8 +441,7 @@ static void al_buf_free(ALuint al_buf)
  */
 static void al_buf_shutdown()
 {
-	if(al_bufs_outstanding != 0)
-		debug_warn("not all buffers freed!");
+	debug_assert(al_bufs_outstanding == 0);
 }
 
 
@@ -697,294 +699,6 @@ const char* snd_dev_next()
 
 
 //-----------------------------------------------------------------------------
-// stream: passes chunks of data (read via async I/O) to snd_data on request.
-//-----------------------------------------------------------------------------
-
-// one stream apiece for music and voiceover (narration during tutorial).
-// allowing more is possible, but would be inefficent due to seek overhead.
-// set this limit to catch questionable usage (e.g. streaming normal sounds).
-static const uint MAX_STREAMS = 2;
-
-// maximum IOs queued per stream.
-static const uint MAX_IOS = 4;
-
-static const size_t STREAM_BUF_SIZE = 32*KiB;
-
-
-//-----------------------------------------------------------------------------
-// I/O buffer suballocator: avoids frequent large alloc/frees
-// when streaming, and therefore heap fragmentation.
-
-static const int TOTAL_IOS = MAX_STREAMS * MAX_IOS;
-static const size_t TOTAL_BUF_SIZE = TOTAL_IOS * STREAM_BUF_SIZE;
-
-// one large allocation for all buffers
-static u8* io_bufs;
-	
-// list of free buffers. start of buffer holds pointer to next in list.
-static u8* io_buf_freelist;
-
-
-/**
- * Free an IO buffer.
- *
- * @param p IO buffer
- */
-static void io_buf_free(u8* p)
-{
-	debug_assert(io_bufs <= p && p <= io_bufs+TOTAL_BUF_SIZE);
-	*(u8**)p = io_buf_freelist;
-	io_buf_freelist = p;
-}
-
-
-/**
- * Allocate a memory pool for all IO buffers.
- * Called from first io_buf_alloc.
- */
-static void io_buf_init()
-{
-	// allocate 1 big aligned block for all buffers.
-	io_bufs = (u8*)mem_alloc(TOTAL_BUF_SIZE, 4*KiB);
-	// .. failed; io_buf_alloc calls will return 0
-	if(!io_bufs)
-		return;
-
-	// build freelist.
-	u8* p = io_bufs;
-	for(int i = 0; i < TOTAL_IOS; i++)
-	{
-		io_buf_free(p);
-		p += STREAM_BUF_SIZE;
-	}
-}
-
-
-/**
- * Allocate a fixed-size IO buffer.
- *
- * @return buffer, or 0 (and warning) if not enough memory.
- */
-static u8* io_buf_alloc()
-{
-	ONCE(io_buf_init());
-
-	u8* buf = io_buf_freelist;
-	// note: we have to bail now; can't update io_buf_freelist.
-	if(!buf)
-	{
-		// no buffer allocated
-		if(!io_bufs)
-			WARN_ERR(ERR::NO_MEM);
-		// too many streams - can't happen (tm) because
-		// stream_open enforces MAX_STREAMS.
-		else
-			WARN_ERR(ERR::LIMIT);
-
-		return 0;
-	}
-
-	io_buf_freelist = *(u8**)io_buf_freelist;
-	return buf;
-}
-
-
-/**
- * Free memory pool holding all IO buffers.
- * no-op if io_buf_alloc was never called.
- * called by snd_shutdown.
- */
-static void io_buf_shutdown()
-{
-	mem_free(io_bufs);
-}
-
-
-//-----------------------------------------------------------------------------
-// stream: owns queue and buffers; uses VFS async I/O
-
-// rationale: no need for a centralized queue - we have a suballocator,
-// so reallocs aren't a problem; central scheduling isn't necessary,
-// because we'll only have <= 2 streams active at a time.
-
-/**
- * Information for streaming sounds from file
- * (i.e. loading pieces of it in the background)
- */
-struct Stream
-{
-	Handle hf;
-	Handle ios[MAX_IOS];
-	uint active_ios;
-	/// set by stream_buf_get, used by stream_buf_discard to free buf.
-	u8* last_buf;
-};
-
-/**
- * Begin reading the next segment (asynchronously).
- * Called from SndData_reload and snd_data_buf_get.
- *
- * @param Stream*
- * @return LibError
- */
-static LibError stream_issue(Stream * s)
-{
-	if(s->active_ios >= MAX_IOS)
-		return INFO::OK;
-
-	u8* buf = io_buf_alloc();
-	if(!buf)
-		WARN_RETURN(ERR::NO_MEM);
-
-	Handle h = vfs_io_issue(s->hf, STREAM_BUF_SIZE, buf);
-	RETURN_ERR(h);
-	s->ios[s->active_ios++] = h;
-	return INFO::OK;
-}
-
-
-/**
- * Access the data most recently streamed in.
- *
- * @param Stream*
- * @param data pointer to buffer
- * @param size [bytes]
- * @return LibError; if the first pending IO hasn't completed,
- * ERR::AGAIN (not an error).
- */
-static LibError stream_buf_get(Stream * s, u8*& data, size_t& size)
-{
-	if(s->active_ios == 0)
-		WARN_RETURN(ERR::IO_EOF);
-	Handle hio = s->ios[0];
-
-	// has it finished? if not, bail.
-	int is_complete = vfs_io_has_completed(hio);
-	RETURN_ERR(is_complete);
-	if(is_complete == 0)
-		return ERR::AGAIN;	// NOWARN
-
-	// get its buffer.
-	// no delay, since vfs_io_has_completed == 1
-	RETURN_ERR(vfs_io_wait(hio, data, size));
-
-	// (next stream_buf_discard will free this buffer)
-	s->last_buf = data;
-	return INFO::OK;
-}
-
-
-/**
- * Free the buffer that was last returned by stream_buf_get,
- * and remove its IO slot from our queue.
- *
- * Must be called exactly once after every successful stream_buf_get;
- * call before calling any other stream_ * functions!
- *
- * @param Stream*
- * @return LibError
- */
-static LibError stream_buf_discard(Stream * s)
-{
-	Handle hio = s->ios[0];
-
-	LibError ret = vfs_io_discard(hio);
-
-	// we implement the required 'circular queue' as a stack;
-	// have to shift all items after this one down.
-	s->active_ios--;
-	for(uint i = 0; i < s->active_ios; i++)
-		s->ios[i] = s->ios[i+1];
-
-	io_buf_free(s->last_buf);	// can't fail
-	s->last_buf = 0;
-
-	return ret;
-}
-
-
-static uint active_streams;
-
-
-/**
- * open a stream and begin reading from disk.
- *
- * @param Stream*
- * @param fn VFS filename.
- * @return LibError
- */
-static LibError stream_open(Stream * s, const char* fn)
-{
-	// bail because we wouldn't have enough IO buffers for all
-	if(active_streams >= MAX_STREAMS)
-		WARN_RETURN(ERR::LIMIT);
-	active_streams++;
-
-	s->hf = vfs_open(fn);
-	RETURN_ERR(s->hf);
-
-	for(int i = 0; i < MAX_IOS; i++)
-		RETURN_ERR(stream_issue(s));
-
-	return INFO::OK;
-}
-
-
-/**
- * close a stream, which may currently be active.
- *
- * @param Stream*
- * @return LibError - the first error that occurred while waiting for
- * IOs / closing file.
- */
-static LibError stream_close(Stream * s)
-{
-	LibError ret = INFO::OK;
-	LibError err;
-
-	// for each pending IO:
-	for(uint i = 0; i < s->active_ios; i++)
-	{
-		// .. wait until complete,
-		u8* data; size_t size;	// unused
-		do
-			err = stream_buf_get(s, data, size);
-		while(err == ERR::AGAIN);
-		if(err < 0 && ret == 0)
-			ret = err;
-
-		// .. and discard.
-		err = stream_buf_discard(s);
-		if(err < 0 && ret == 0)
-			ret = err;
-	}
-
-	err = vfs_close(s->hf);
-	if(err < 0 && ret == 0)
-		ret = err;
-
-	active_streams--;
-
-	return ret;
-}
-
-
-/**
- * Make sure the given Stream is valid/self-consistent.
- *
- * @param const Stream*
- * @return LibError
- */
-static LibError stream_validate(const Stream * s)
-{
-	if(s->active_ios > MAX_IOS)
-		WARN_RETURN(ERR::_1);
-	// <last_buf> has no invariant we could check.
-	return INFO::OK;
-}
-
-
-//-----------------------------------------------------------------------------
 // sound data provider: holds audio data (clip or stream) and returns
 // OpenAL buffers on request.
 //-----------------------------------------------------------------------------
@@ -1010,15 +724,11 @@ static LibError stream_validate(const Stream * s)
  */
 struct SndData
 {
-	// stream
-	Stream s;
 	ALenum al_fmt;
 	ALsizei al_freq;
 
-	// clip
 	ALuint al_buf;
 
-	uint is_stream : 1;
 	uint is_valid : 1;
 
 #ifdef OGG_HACK
@@ -1029,10 +739,8 @@ void* o;
 
 H_TYPE_DEFINE(SndData);
 
-static void SndData_init(SndData * sd, va_list args)
+static void SndData_init(SndData * UNUSED(sd), va_list UNUSED(args))
 {
-	// olsner: pass as int instead of bool for GCC compat.
-	sd->is_stream = va_arg(args, int) != 0;
 }
 
 static void SndData_dtor(SndData * sd)
@@ -1042,10 +750,7 @@ static void SndData_dtor(SndData * sd)
 	if(!sd->is_valid)
 		return;
 
-	if(sd->is_stream)
-		stream_close(&sd->s);
-	else
-		al_buf_free(sd->al_buf);
+	al_buf_free(sd->al_buf);
 
 #ifdef OGG_HACK
 if(sd->o) ogg_release(sd->o);
@@ -1094,34 +799,17 @@ static LibError SndData_reload(SndData * sd, const char* fn, Handle hsd)
 	}
 	// .. unknown extension
 	else
-		WARN_RETURN(ERR::RES_UNKNOWN_FORMAT);
+		WARN_RETURN(ERR::FAIL);
 
 	// note: WAV is no longer supported. writing our own loader is infeasible
 	// due to a seriously watered down spec with many incompatible variants.
 	// pulling in an external library (e.g. freealut) is deemed not worth the
 	// effort - OGG should be better in all cases.
 
-	if(sd->is_stream)
-	{
-		// refuse to stream anything that cannot be passed directly to OpenAL -
-		// we'd have to extract the audio data ourselves (not worth it).
-		if(file_type != FT_OGG)
-			WARN_RETURN(ERR::NOT_SUPPORTED);
+	shared_ptr<u8> file; size_t file_size;
+	RETURN_ERR(g_VFS->LoadFile(fn, file, file_size));
 
-		RETURN_ERR(stream_open(&sd->s, fn));
-
-		sd->is_valid = 1;
-		hsd_list_add(hsd);
-		return INFO::OK;
-	}
-
-	// else: clip
-
-	FileIOBuf file;
-	size_t file_size;
-	RETURN_ERR(vfs_load(fn, file, file_size));
-
-	ALvoid* al_data = (ALvoid*)file;
+	ALvoid* al_data = (ALvoid*)file.get();
 	ALsizei al_size = (ALsizei)file_size;
 
 #ifdef OGG_HACK
@@ -1130,7 +818,7 @@ static LibError SndData_reload(SndData * sd, const char* fn, Handle hsd)
 	if(file_type == FT_OGG)
 	{
 		sd->o = ogg_create();
-		ogg_give_raw(sd->o, (void*)file, file_size);
+		ogg_give_raw(sd->o, file.get(), file_size);
 		ogg_open(sd->o, sd->al_fmt, sd->al_freq);
 		size_t datasize=0;
 		size_t bytes_read;
@@ -1152,8 +840,6 @@ static LibError SndData_reload(SndData * sd, const char* fn, Handle hsd)
 	}
 #endif
 
-	(void)file_buf_free(file);
-
 	sd->al_buf = al_buf_alloc(al_data, al_size, sd->al_fmt, sd->al_freq);
 
 	sd->is_valid = 1;
@@ -1170,15 +856,12 @@ static LibError SndData_validate(const SndData * sd)
 	if(sd->al_buf == 0)
 		WARN_RETURN(ERR::_13);
 
-	if(sd->is_stream)
-		RETURN_ERR(stream_validate(&sd->s));
-
 	return INFO::OK;
 }
 
 static LibError SndData_to_string(const SndData * sd, char * buf)
 {
-	const char* type = sd->is_stream? "stream" : "clip";
+	const char* type = "clip";
 	snprintf(buf, H_STRING_LEN, "%s; al_buf=%d", type, sd->al_buf);
 	return INFO::OK;
 }
@@ -1196,12 +879,9 @@ static LibError SndData_to_string(const SndData * sd, char * buf)
  */
 static Handle snd_data_load(const char* fn, bool is_stream)
 {
-	// don't allow reloading stream objects
-	// (both references would read from the same file handle).
-	const uint flags = is_stream? RES_UNIQUE : 0;
+	debug_assert(!is_stream);	// no longer supported
 
-	return h_alloc(H_SndData, fn, flags, (int)is_stream);
-		// (int) rationale: see SndData_init
+	return h_alloc(H_SndData, fn);
 }
 
 
@@ -1296,49 +976,16 @@ static void hsd_list_free_all()
  * @param hsd Handle to SndData.
  * @param al_buf buffer name.
  * @return LibError, most commonly:
- * INFO::OK    = buffer has been returned; more are expected to be available.
- * ERR::IO_EOF   = buffer has been returned but is the last one
- *             (end of file reached)
- * ERR::AGAIN = no buffer returned yet; still streaming in ATM.
- *             call back later.
+ * INFO::CB_CONTINUE = buffer has been returned; more are expected to be available.
+ * INFO::OK = buffer has been returned but is the last one (EOF).
+ * ERR::AGAIN = IO pending; call again later.
  */
 static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
 {
-	LibError err = INFO::OK;
-
-	// in case H_DEREF fails
-	al_buf = 0;
-
 	H_DEREF(hsd, SndData, sd);
 
 	// clip: just return buffer (which was created in snd_data_load)
-	if(!sd->is_stream)
-	{
-		al_buf = sd->al_buf;
-		return ERR::IO_EOF;	// NOWARN
-	}
-
-	// stream:
-
-	// .. check if IO finished.
-	u8* data; size_t size;
-	err = stream_buf_get(&sd->s, data, size);
-	if(err == ERR::AGAIN)
-		return ERR::AGAIN;	// NOWARN
-	RETURN_ERR(err);
-
-	// .. yes: pass to OpenAL and discard IO buffer.
-	al_buf = al_buf_alloc(data, (ALsizei)size, sd->al_fmt, sd->al_freq);
-	stream_buf_discard(&sd->s);
-
-	// .. try to issue the next IO.
-	// if EOF reached, indicate al_buf is the last that will be returned.
-	err = stream_issue(&sd->s);
-	if(err == ERR::IO_EOF)
-		return ERR::IO_EOF;	// NOWARN
-	RETURN_ERR(err);
-
-	// al_buf valid and next IO issued successfully.
+	al_buf = sd->al_buf;
 	return INFO::OK;
 }
 
@@ -1350,17 +997,12 @@ static LibError snd_data_buf_get(Handle hsd, ALuint& al_buf)
  * @param al_buf buffer name
  * @return LibError
  */
-static LibError snd_data_buf_free(Handle hsd, ALuint al_buf)
+static LibError snd_data_buf_free(Handle hsd, ALuint UNUSED(al_buf))
 {
 	H_DEREF(hsd, SndData, sd);
 
 	// clip: no-op (caller will later release hsd reference;
 	// when hsd actually unloads, sd->al_buf will be freed).
-	if(!sd->is_stream)
-		return INFO::OK;
-
-	// stream: we had allocated an additional buffer, so free it now.
-	al_buf_free(al_buf);
 	return INFO::OK;
 }
 
@@ -1395,7 +1037,8 @@ static float fade_factor_exponential(float t)
 static float fade_factor_s_curve(float t)
 {
 	// cosine curve
-	float y = cos(t*PI + PI);
+	const double pi = 3.14159265358979323846;
+	float y = cos(t*pi + pi);
 	// map [-1,1] to [0,1]
 	return (y + 1.0f) / 2.0f;
 }
@@ -1609,10 +1252,9 @@ static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	const char* ext = path_extension(fn);
 	if(!strcasecmp(ext, "txt"))
 	{
-		FileIOBuf buf; size_t size;
-		RETURN_ERR(vfs_load(fn, buf, size));
-		std::istringstream def(std::string((char*)buf, (int)size));
-		(void)file_buf_free(buf);
+		shared_ptr<u8> buf; size_t size;
+		RETURN_ERR(g_VFS->LoadFile(fn, buf, size));
+		std::istringstream def(std::string((char*)buf.get(), (int)size));
 
 		float gain_percent;
 		def >> snd_fn_s;
@@ -1788,7 +1430,7 @@ static void list_remove(VSrc* vs)
 		}
 	}
 
-	debug_warn("VSrc not found");
+	debug_assert(0);	// VSrc not found
 }
 
 
@@ -1941,7 +1583,8 @@ static LibError vsrc_update(VSrc* vs)
 	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
 	al_check("vsrc_update alGetSourcei");
 
-	int num_processed = vsrc_deque_finished_bufs(vs);
+	const int num_processed = vsrc_deque_finished_bufs(vs);
+	UNUSED2(num_processed);
 
 	if(vs->flags & VS_EOF)
 	{
@@ -1955,29 +1598,17 @@ static LibError vsrc_update(VSrc* vs)
 	// can still read from SndData
 	else
 	{
-		// decide how many buffers we are going to request
-		// (start off with MAX_IOS; after that, replace finished buffers).
-		int to_fill = MAX_IOS;
-		if(num_queued > 0)
-			to_fill = num_processed;
+		// request and queue a buffer.
+		ALuint al_buf;
+		LibError ret = snd_data_buf_get(vs->hsd, al_buf);
+		if(ret < 0 && ret != ERR::AGAIN)
+			return ret;
 
-		// request and queue each buffer.
-		int ret;
-		do
-		{
-			ALuint al_buf;
-			ret = snd_data_buf_get(vs->hsd, al_buf);
-			// these 2 are legit (see above); otherwise, bail.
-			if(ret != ERR::AGAIN && ret != ERR::IO_EOF)
-				RETURN_ERR(ret);
-
-			alSourceQueueBuffers(vs->al_src, 1, &al_buf);
-			al_check("vsrc_update alSourceQueueBuffers");
-		}
-		while(to_fill-- && ret == INFO::OK);
+		alSourceQueueBuffers(vs->al_src, 1, &al_buf);
+		al_check("vsrc_update alSourceQueueBuffers");
 
 		// SndData has reported that no further buffers are available.
-		if(ret == ERR::IO_EOF)
+		if(ret == INFO::OK)
 			vs->flags |= VS_EOF;
 	}
 
@@ -2448,35 +2079,17 @@ static LibError snd_init()
 }
 
 
-/**
- * (temporarily) disable all sound output. because it causes future snd_open
- * calls to immediately abort before they demand-initialize OpenAL,
- * startup is sped up considerably (500..1000ms). therefore, this must be
- * called before the first snd_open to have any effect; otherwise, the
- * cat will already be out of the bag and we debug_warn of it.
- *
- * rationale: this is a quick'n dirty way of speeding up startup during
- * development without having to change the game's sound code.
- *
- * can later be called to reactivate sound; all settings ever changed
- * will be applied and subsequent sound load / play requests will work.
- *
- * @param bool disabled
- * @return LibError
- */
 LibError snd_disable(bool disabled)
 {
 	snd_disabled = disabled;
 
 	if(snd_disabled)
 	{
-		if(al_initialized)
-			debug_warn("already initialized => disable is pointless");
+		debug_assert(!al_initialized);	// already initialized => disable is pointless
 		return INFO::OK;
 	}
 	else
-		return snd_init();
-			// note: won't return ERR::AGAIN, since snd_disabled == false
+		return snd_init();	// note: won't return ERR::AGAIN, since snd_disabled == false
 }
 
 
@@ -2486,8 +2099,5 @@ LibError snd_disable(bool disabled)
  */
 void snd_shutdown()
 {
-	io_buf_shutdown();
-
-	al_shutdown();
-		// calls list_free_all
+	al_shutdown();	// calls list_free_all
 }

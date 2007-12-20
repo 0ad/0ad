@@ -19,241 +19,72 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/bits.h"
 
+
 WINIT_REGISTER_MAIN_INIT(waio_Init);
 WINIT_REGISTER_MAIN_SHUTDOWN(waio_Shutdown);
 
-
-static void lock()
-{
-	win_lock(WAIO_CS);
-}
-
-static void unlock()
-{
-	win_unlock(WAIO_CS);
-}
-
-
-// return the largest sector size [bytes] of any storage medium
-// (HD, optical, etc.) in the system.
-//
-// this may be a bit slow to determine (iterates over all drives),
-// but caches the result so subsequent calls are free.
-// (caveat: device changes won't be noticed during this program run)
-//
+// note: we assume sector sizes no larger than a page.
+// (GetDiskFreeSpace allows querying the actual size, but we'd
+// have to do so for all drives, and that may change depending on whether
+// there is a DVD in the drive or not)
 // sector size is relevant because Windows aio requires all IO
 // buffers, offsets and lengths to be a multiple of it. this requirement
 // is also carried over into the vfs / file.cpp interfaces for efficiency
 // (avoids the need for copying to/from align buffers).
-//
-// waio uses the sector size to (in some cases) align IOs if
-// they aren't already, but it's also needed by user code when
-// aligning their buffers to meet the requirements.
-//
-// the largest size is used so that we can read from any drive. while this
-// is a bit wasteful (more padding) and requires iterating over all drives,
-// it is the only safe way: this may be called before we know which
-// drives will be needed, and hardlinks may confuse things.
-size_t sys_max_sector_size()
+const uintptr_t sectorSize = 0x1000;
+
+//-----------------------------------------------------------------------------
+
+// note: the Windows lowio file descriptor limit is currrently 2048.
+
+/**
+ * thread-safe association between POSIX file descriptor and Win32 HANDLE
+ **/
+class HandleManager
 {
-	// users may call us more than once, so cache the results.
-	static DWORD cached_sector_size;
-	if(cached_sector_size)
-		return static_cast<size_t>(cached_sector_size);
-	
-			// currently disabled: DVDs have 2..4KB, but this causes
-			// waio to unnecessarily align some file transfers (when at EOF)
-			// this means that we might not be able to read from CD/DVD drives
-			// (ReadFile will return error)
-	// reactivated for correctness.
-
-	// temporarily disable the "insert disk into drive" error box; we are
-	// only interested in fixed drives anyway.
-	//
-	// note: use SetErrorMode (crappy interface, grr) twice so as not to
-	// stomp on other flags (e.g. alignment exception).
-	const UINT old_err_mode = SetErrorMode(0);
-	SetErrorMode(old_err_mode|SEM_FAILCRITICALERRORS);
-
-	// find maximum of all drive's sector sizes.
-	const DWORD drives = GetLogicalDrives();
-	char drive_str[4] = "?:\\";
-	for(int drive = 2; drive <= 25; drive++)	// C: .. Z:
+public:
+	/**
+	 * associate an aio handle with a file descriptor.
+	 **/
+	void Associate(int fd, HANDLE hFile)
 	{
-		// avoid BoundsChecker warning by skipping invalid drives
-		if(!(drives & BIT(drive)))
-			continue;
+		debug_assert(fd > 2);
+		debug_assert(GetFileSize(hFile, 0) != INVALID_FILE_SIZE);
 
-		drive_str[0] = (char)('A'+drive);
-
-		DWORD spc, nfc, tnc;	// don't need these
-		DWORD cur_sector_size;
-		if(GetDiskFreeSpace(drive_str, &spc, &cur_sector_size, &nfc, &tnc))
-			cached_sector_size = std::max(cached_sector_size, cur_sector_size);
-		// otherwise, it's probably an empty CD drive. ignore the
-		// BoundsChecker error; GetDiskFreeSpace seems to be the
-		// only way of getting at the sector size.
+		WinScopedLock lock;
+		std::pair<Map::iterator, bool> ret = m_map.insert(std::make_pair(fd, hFile));
+		debug_assert(ret.second);	// fd better not already have been associated
 	}
 
-	SetErrorMode(old_err_mode);
-
-	// sanity check; believed to be the case for all drives.
-	debug_assert(cached_sector_size % 512 == 0);
-
-	return cached_sector_size;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////
-//
-// associate async-capable handle with POSIX file descriptor (int)
-//
-//////////////////////////////////////////////////////////////////////////////
-
-// current implementation: open file again for async access on each open();
-// wastes 1 HANDLE per file, but that's less overhead than storing the
-// filename/mode for every file and re-opening that on demand.
-//
-// note: current Windows lowio file descriptor limit is 2k
-
-static HANDLE* aio_hs;
-	// array; expanded when needed in aio_h_set
-
-static int aio_hs_size;
-	// often compared against fd => int
-
-
-// aio_h: no init needed.
-
-static void aio_h_cleanup()
-{
-	lock();
-
-	for(int i = 0; i < aio_hs_size; i++)
+	void Dissociate(int fd)
 	{
-		if(aio_hs[i] != INVALID_HANDLE_VALUE)
-		{
-			WARN_IF_FALSE(CloseHandle(aio_hs[i]));
-			aio_hs[i] = INVALID_HANDLE_VALUE;
-		}
+		WinScopedLock lock;
+		const size_t numRemoved = m_map.erase(fd);
+		debug_assert(numRemoved == 1);
 	}
 
-	SAFE_FREE(aio_hs);
-	aio_hs_size = 0;
-
-	unlock();
-}
-
-
-static bool is_valid_file_handle(const HANDLE h)
-{
-	const bool valid = (GetFileSize(h, 0) != INVALID_FILE_SIZE);
-	if(!valid)
-		debug_warn("waio: invalid file handle");
-	return valid;
-}
-
-
-// return true iff an aio-capable HANDLE has been attached to <fd>.
-// used by aio_close.
-static bool aio_h_is_set(const int fd)
-{
-	lock();
-	bool is_set = (0 <= fd && fd < aio_hs_size && aio_hs[fd] != INVALID_HANDLE_VALUE);
-	unlock();
-	return is_set;
-}
-
-
-// return async-capable handle associated with file <fd>
-static HANDLE aio_h_get(const int fd)
-{
-	HANDLE h = INVALID_HANDLE_VALUE;
-
-	lock();
-
-	if(0 <= fd && fd < aio_hs_size)
+	/**
+	 * @return aio handle associated with file descriptor or
+	 * INVALID_HANDLE_VALUE if there is none.
+	 **/
+	HANDLE Get(int fd) const
 	{
-		h = aio_hs[fd];
-		if(!is_valid_file_handle(h))
-			h = INVALID_HANDLE_VALUE;
-	}
-	else
-		debug_warn("aio_h_get: fd's aio handle not set");
-		// h is already INVALID_HANDLE_VALUE
-
-	unlock();
-
-	return h;
-}
-
-
-// associate h (an async-capable file handle) with fd;
-// returned by subsequent aio_h_get(fd) calls.
-// setting h = INVALID_HANDLE_VALUE removes the association.
-static LibError aio_h_set(const int fd, const HANDLE h)
-{
-	if(fd < 0)
-		WARN_RETURN(ERR::INVALID_PARAM);
-
-	lock();
-
-	LibError err;
-
-	// grow hs array to at least fd+1 entries
-	if(fd >= aio_hs_size)
-	{
-		const uint size2 = (uint)round_up(fd+8, 8);
-		HANDLE* hs2 = (HANDLE*)realloc(aio_hs, size2*sizeof(HANDLE));
-		if(!hs2)
-		{
-			err  = ERR::NO_MEM;
-			goto fail;
-		}
-		// don't assign directly from realloc -
-		// we'd leak the previous array if realloc fails.
-
-		for(uint i = aio_hs_size; i < size2; i++)
-			hs2[i] = INVALID_HANDLE_VALUE;
-		aio_hs = hs2;
-		aio_hs_size = size2;
+		WinScopedLock lock;
+		Map::const_iterator it = m_map.find(fd);
+		if(it == m_map.end())
+			return INVALID_HANDLE_VALUE;
+		return it->second;
 	}
 
+private:
+	typedef std::map<int, HANDLE> Map;
+	Map m_map;
+};
 
-	if(h == INVALID_HANDLE_VALUE)
-	{
-		// nothing to do; will set aio_hs[fd] to INVALID_HANDLE_VALUE below.
-	}
-	else
-	{
-		// already set
-		if(aio_hs[fd] != INVALID_HANDLE_VALUE)
-		{
-			err = ERR::LOGIC;
-			goto fail;
-		}
-		// setting invalid handle
-		if(!is_valid_file_handle(h))
-		{
-			err = ERR::INVALID_HANDLE;
-			goto fail;
-		}
-	}
-
-	aio_hs[fd] = h;
-
-	unlock();
-	return INFO::OK;
-
-fail:
-	unlock();
-	WARN_RETURN(err);
-}
+static HandleManager* handleManager;
 
 
-
-
-// open fn in async mode; associate with fd (retrieve via aio_h(fd))
+// open fn in async mode and associate handle with fd.
 int aio_reopen(int fd, const char* fn, int oflag, ...)
 {
 	// interpret oflag
@@ -276,50 +107,32 @@ int aio_reopen(int fd, const char* fn, int oflag, ...)
 	// open file
 	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
 WIN_SAVE_LAST_ERROR;	// CreateFile
-	HANDLE h = CreateFile(fn, access, share, 0, create, flags, 0);
+	HANDLE hFile = CreateFile(fn, access, share, 0, create, flags, 0);
 WIN_RESTORE_LAST_ERROR;
-	if(h == INVALID_HANDLE_VALUE)
-		goto fail;
+	if(hFile == INVALID_HANDLE_VALUE)
+		WARN_RETURN(-1);
 
-	if(aio_h_set(fd, h) < 0)
-	{
-		CloseHandle(h);
-		goto fail;
-	}
-
+	handleManager->Associate(fd, hFile);
 	return 0;
-
-fail:
-	debug_warn("failed");
-	return -1;
 }
 
 
 int aio_close(int fd)
 {
+	HANDLE hFile = handleManager->Get(fd);
 	// early out for files that were never re-opened for AIO.
 	// since there is no way for wposix close to know this, we mustn't
 	// return an error (which would cause it to WARN_ERR).
-	if(!aio_h_is_set(fd))
+	if(hFile == INVALID_HANDLE_VALUE)
 		return 0;
 
-	HANDLE h = aio_h_get(fd);
-	// out of bounds or already closed
-	if(h == INVALID_HANDLE_VALUE)
-		goto fail;
+	if(!CloseHandle(hFile))
+		WARN_RETURN(-1);
 
-	if(!CloseHandle(h))
-		goto fail;
-	RETURN_ERR(aio_h_set(fd, INVALID_HANDLE_VALUE));
+	handleManager->Dissociate(fd);
 
 	return 0;
-
-fail:
-	debug_warn("failed");
-	return -1;
 }
-
-
 
 
 // do we want to open a second AIO-capable handle?
@@ -420,398 +233,204 @@ off_t lseek(int fd, off_t ofs, int whence)
 	return _lseek(fd, ofs, whence);
 }
 
-
-//////////////////////////////////////////////////////////////////////////////
-//
-// Req
-//
-//////////////////////////////////////////////////////////////////////////////
-
-
-// information about active transfers (reused)
-struct Req
+int truncate(const char* path, off_t length)
 {
-	// used to identify this request; != 0 <==> request valid.
-	// set by req_alloc.
-	aiocb* cb;
-
-	OVERLAPPED ovl;
-		// hEvent signals when transfer complete
-
-	// align buffer - unaligned reads are padded to sector boundaries and
-	// go here; the desired data is then copied into the user's buffer.
-	// reused, since the Req has global lifetime; resized if too small.
-	void* buf;
-	size_t buf_size;
-
-	HANDLE hFile;
-		// needed to GetOverlappedResult in aio_return
-
-	size_t pad;		// offset from starting sector
-	bool read_into_align_buffer;
-};
-
-
-// an aiocb is used to pass the request from caller to aio,
-// and serves as a "token" identifying the IO - its address is unique.
-// Req holds some state needed for the Windows AIO calls (OVERLAPPED).
-//
-// cb -> req (e.g. in aio_return) is accomplished by searching reqs
-// for the given cb (no problem since MAX_REQS is small).
-// req stores a pointer to its associated cb.
-
-
-const int MAX_REQS = 8;
-static Req reqs[MAX_REQS];
-
-
-static void req_cleanup(void)
-{
-	Req* r = reqs;
-
-	for(int i = 0; i < MAX_REQS; i++, r++)
+	HANDLE hFile = CreateFile(path, GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
+	debug_assert(hFile != INVALID_HANDLE_VALUE);
+	LARGE_INTEGER ofs; ofs.QuadPart = length;
+	BOOL ok;
+	ok = SetFilePointerEx(hFile, ofs, 0, FILE_BEGIN);
+	debug_assert(ok);
+	ok = SetEndOfFile(hFile);
+	debug_assert(ok);
+	ok = CloseHandle(hFile);
+	debug_assert(ok);
 	{
-		HANDLE& h = r->ovl.hEvent;
-		debug_assert(h != INVALID_HANDLE_VALUE);
-		CloseHandle(h);
-		h = INVALID_HANDLE_VALUE;
-
-		_aligned_free(r->buf);
-		r->buf = 0;
+	//	LibError_set_errno(LibError_from_GLE());
+	//	WARN_RETURN(-1);
 	}
-}
-
-
-static void req_init()
-{
-	for(int i = 0; i < MAX_REQS; i++)
-		reqs[i].ovl.hEvent = CreateEvent(0,1,0,0);	// manual reset
-
-	// buffers are allocated on-demand.
-}
-
-
-// return first Req with given cb field
-// (0 if searching for a free Req)
-static Req* req_find(const aiocb* cb)
-{
-	Req* r = reqs;
-	for(int i = 0; i < MAX_REQS; i++, r++)
-		if(r->cb == cb)
-			return r;
-
-	// not found
 	return 0;
 }
 
 
-static Req* req_alloc(aiocb* cb)
+//-----------------------------------------------------------------------------
+
+class aiocb::Impl
 {
-	debug_assert(cb);
+public:
+	Impl()
+	{
+		m_hFile = INVALID_HANDLE_VALUE;
+		const BOOL manualReset = TRUE;
+		const BOOL initialState = FALSE;
+		m_overlapped.hEvent = CreateEvent(0, manualReset, initialState, 0);
+	}
 
-	// first free Req, or 0
-	Req* r = req_find(0);
-	// .. found one: mark it in-use
-	if(r)
-		r->cb = cb;
+	~Impl()
+	{
+		CloseHandle(m_overlapped.hEvent);
+	}
 
-	return r;
-}
+	LibError Issue(HANDLE hFile, off_t ofs, void* buf, size_t size, bool isWrite)
+	{
+		m_hFile = hFile;
 
+		// note: Read-/WriteFile reset m_overlapped.hEvent, so we don't have to.
+		m_overlapped.Internal = m_overlapped.InternalHigh = 0;
+		m_overlapped.Offset     = u64_lo(ofs);
+		m_overlapped.OffsetHigh = u64_hi(ofs);
 
-static LibError req_free(Req* r)
-{
-	debug_assert(r->cb != 0 && "req_free: not currently in use");
-	r->cb = 0;
-	return INFO::OK;
-}
+		DWORD bytesTransferred;
+		BOOL ok;
+		WIN_SAVE_LAST_ERROR;
+		if(isWrite)
+			ok = WriteFile(hFile, buf, u64_lo(size), &bytesTransferred, &m_overlapped);
+		else
+			ok =  ReadFile(hFile, buf, u64_lo(size), &bytesTransferred, &m_overlapped);		
+		if(!ok && GetLastError() == ERROR_IO_PENDING)	// "pending" isn't an error
+		{
+			ok = TRUE;
+			SetLastError(0);
+		}
+		WIN_RESTORE_LAST_ERROR;
+		return LibError_from_win32(ok);
+	}
 
+	bool HasCompleted() const
+	{
+		debug_assert(m_overlapped.Internal == 0 || m_overlapped.Internal == STATUS_PENDING);
+		return HasOverlappedIoCompleted(&m_overlapped);
+	}
 
+	// required for WaitForMultipleObjects
+	HANDLE Event() const
+	{
+		return m_overlapped.hEvent;
+	}
+
+	LibError GetResult(size_t* pBytesTransferred)
+	{
+		DWORD bytesTransferred;
+		const BOOL wait = FALSE;	// callers should wait until HasCompleted
+		if(!GetOverlappedResult(m_hFile, &m_overlapped, &bytesTransferred, wait))
+		{
+			*pBytesTransferred = 0;
+			return LibError_from_GLE();
+		}
+		else
+		{
+			*pBytesTransferred = bytesTransferred;
+			return INFO::OK;
+		}
+	}
+
+private:
+	OVERLAPPED m_overlapped;
+	HANDLE m_hFile;
+};
 
 
 // called by aio_read, aio_write, and lio_listio
 // cb->aio_lio_opcode specifies desired operation
-//
-// if cb->aio_fildes doesn't support seeking (e.g. a socket),
-// cb->aio_offset must be 0.
-static int aio_rw(struct aiocb* cb)
+static int aio_issue(struct aiocb* cb)
 {
-	int ret = -1;
-	Req* r = 0;
-
-	WIN_SAVE_LAST_ERROR;
-
 	// no-op from lio_listio
 	if(!cb || cb->aio_lio_opcode == LIO_NOP)
 		return 0;
 
-	// fail if aiocb is already in use (forbidden by SUSv3)
-	if(req_find(cb))
-	{
-		debug_warn("aiocb is already in use");
-		goto fail;
-	}
-
 	// extract aiocb fields for convenience
-	const bool is_write = (cb->aio_lio_opcode == LIO_WRITE);
-	const int fd        = cb->aio_fildes;
-	const size_t size   = cb->aio_nbytes;
-	const off_t ofs     = cb->aio_offset;
-	void* buf     = (void*)cb->aio_buf; // from volatile void*
-	debug_assert(buf);
+	const bool isWrite = (cb->aio_lio_opcode == LIO_WRITE);
+	const int fd       = cb->aio_fildes;
+	const size_t size  = cb->aio_nbytes;
+	const off_t ofs    = cb->aio_offset;
+	void* const buf    = (void*)cb->aio_buf; // from volatile void*
 
-	// allocate IO request
-	r = req_alloc(cb);
-	if(!r)
+	// Win32 requires transfers to be sector-aligned.
+	if(!IsAligned(ofs, sectorSize) || !IsAligned(buf, sectorSize) || !IsAligned(size, sectorSize))
+		WARN_RETURN(-EINVAL);
+
+	const HANDLE hFile = handleManager->Get(fd);
+	if(hFile == INVALID_HANDLE_VALUE)
 	{
-		debug_warn("cannot allocate a Req (too many concurrent IOs)");
-		goto fail;
+		errno = -EINVAL;
+		WARN_RETURN(-1);
 	}
 
-	HANDLE h = aio_h_get(fd);
-	if(h == INVALID_HANDLE_VALUE)
+	debug_assert(!cb->impl);	// fail if aiocb is already in use (forbidden by SUSv3)
+	cb->impl.reset(new aiocb::Impl);
+	LibError ret = cb->impl->Issue(hFile, ofs, buf, size, isWrite);
+	if(ret < 0)
 	{
-		debug_warn("associated handle is invalid");
-		ret = -EINVAL;
-		goto fail;
+		LibError_set_errno(ret);
+		WARN_RETURN(-1);
 	}
-
-
-	r->hFile = h;
-	r->pad = 0;
-	r->read_into_align_buffer = false;
-
-
-	//
-	// align
-	//
-
-	// Win32 requires transfers to be sector aligned.
-	// we check if the transfer is aligned to sector size (the max of
-	// all drives in the system) and copy to/from align buffer if not.
-
-	// actual transfer parameters (possibly rounded up/down)
-	size_t actual_ofs = 0;
-		// assume socket; if file, set below
-	size_t actual_size = size;
-	void* actual_buf = buf;
-
-	const size_t sector_size = sys_max_sector_size();
-
-	// leave offset 0 if h is a socket (don't support seeking);
-	// otherwise, calculate aligned offset/size
-	const bool is_file = (GetFileType(h) == FILE_TYPE_DISK);
-	if(is_file)
-	{
-		// round offset down to start of previous sector, and total
-		// transfer size up to an integral multiple of sector_size.
-		r->pad = ofs % sector_size;
-		actual_ofs = ofs - r->pad;
-		actual_size = round_up(size + r->pad, sector_size);
-
-		// and whether it was ofs or buf in particular
-		// (needed for unaligned write handling below).
-		const bool ofs_misaligned = r->pad != 0;
-		const bool buf_misaligned = (uintptr_t)buf % sector_size != 0;
-		const bool misaligned = ofs_misaligned || buf_misaligned || actual_size != size;
-			// note: actual_size != size if ofs OR size is unaligned
-
-		// misaligned => will need to go through align buffer
-		// (we fail some types of misalignment for convenience; see below).
-		if(misaligned)
-		{
-			// expand current align buffer if too small
-			if(r->buf_size < actual_size)
-			{
-				void* buf2 = _aligned_realloc(r->buf, actual_size, sector_size);
-				if(!buf2)
-				{
-					ret = -ENOMEM;
-					goto fail;
-				}
-				r->buf = buf2;
-				r->buf_size = actual_size;
-			}
-
-			if(!is_write)
-			{
-				actual_buf = r->buf;
-				r->read_into_align_buffer = true;
-			}
-			else
-			{
-				// unaligned write offset: not supported.
-				// (we'd have to read padding, then write our data. ugh.)
-				if(ofs_misaligned)
-				{
-					ret = -EINVAL;
-					goto fail;
-				}
-
-				// unaligned buffer: copy to align buffer and write from there.
-				if(buf_misaligned)
-				{
-					cpu_memcpy(r->buf, buf, size);
-					actual_buf = r->buf;
-					// clear previous contents at end of align buf
-					memset((char*)r->buf + size, 0, actual_size - size);
-				}
-
-				// unaligned size: already taken care of (we round up)
-			}
-		}	// misaligned
-	}	// is_file
-
-	// set OVERLAPPED fields
-	// note: Read-/WriteFile reset ovl.hEvent - no need to do that.
-	r->ovl.Internal = r->ovl.InternalHigh = 0;
-	// note: OVERLAPPED.Pointer is more convenient but not defined on VC6.
-	r->ovl.Offset     = u64_lo(actual_ofs);
-	r->ovl.OffsetHigh = u64_hi(actual_ofs);
-
-	DWORD size32 = (DWORD)(actual_size & 0xFFFFFFFF);
-	BOOL ok;
-
-	DWORD bytes_transferred;
-	if(is_write)
-		ok = WriteFile(h, actual_buf, size32, &bytes_transferred, &r->ovl);
-	else
-		ok =  ReadFile(h, actual_buf, size32, &bytes_transferred, &r->ovl);		
-
-	// check result.
-	// .. "pending" isn't an error
-	if(!ok && GetLastError() == ERROR_IO_PENDING)
-		ok = TRUE;
-	// .. translate from Win32 result code to POSIX
-	LibError err = LibError_from_win32(ok);
-	if(err == INFO::OK)
-		ret = 0;
-	LibError_set_errno(err);
-
-done:
-	WIN_RESTORE_LAST_ERROR;
-
-	return ret;
-
-fail:
-	debug_warn("waio failure");
-	req_free(r);
-	goto done;
+	return 0;
 }
 
 
 // return status of transfer
 int aio_error(const struct aiocb* cb)
 {
-	// must not pass 0 to req_find - we'd look for a free cb!
-	if(!cb)
-	{
-		debug_warn("invalid cb");
-		return -1;
-	}
-
-	Req* r = req_find(cb);
-	if(!r)
-		return -1;
-
-	switch(r->ovl.Internal)	// I/O status
-	{
-	case 0:
-		return 0;
-	case STATUS_PENDING:
-		return EINPROGRESS;
-	default:
-		return -1;
-	}
+	return cb->impl->HasCompleted()? 0 : EINPROGRESS;
 }
 
 
 // get bytes transferred. call exactly once for each op.
 ssize_t aio_return(struct aiocb* cb)
 {
-	// must not pass 0 to req_find - we'd look for a free cb!
-	if(!cb)
+	debug_assert(cb->impl->HasCompleted());	// SUSv3 says we mustn't be callable before IO completes
+	size_t bytesTransferred;
+	LibError ret = cb->impl->GetResult(&bytesTransferred);
+	cb->impl.reset();	// disallow calling again, as required by SUSv3
+	if(ret < 0)
 	{
-		debug_warn("invalid cb");
-		return -1;
+		LibError_set_errno(ret);
+		WARN_RETURN(-1);
 	}
-
-	Req* r = req_find(cb);
-	if(!r)
-	{
-		debug_warn("cb not found (already called aio_return?)");
-		return -1;
-	}
-
-	debug_assert(r->ovl.Internal == 0 && "aio_return with transfer in progress");
-
-	const BOOL wait = FALSE;	// should already be done!
-	DWORD bytes_transferred;
-	if(!GetOverlappedResult(r->hFile, &r->ovl, &bytes_transferred, wait))
-	{
-		debug_warn("GetOverlappedResult failed");
-		return -1;
-	}
-
-	// we read into align buffer - copy to user's buffer
-	if(r->read_into_align_buffer)
-		cpu_memcpy((void*)cb->aio_buf, (u8*)r->buf + r->pad, cb->aio_nbytes);
-
-	// TODO: this copies data back into original buffer from align buffer
-	// when writing from unaligned buffer. unnecessarily slow.
-
-	req_free(r);
-
-	return (ssize_t)bytes_transferred;
+	return (ssize_t)bytesTransferred;
 }
 
 
 int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* ts)
 {
-	int i;
-
 	if(n <= 0 || n > MAXIMUM_WAIT_OBJECTS)
-		return -1;
+		WARN_RETURN(-1);
 
-	int cnt = 0;	// actual number of valid cbs
-	HANDLE hs[MAXIMUM_WAIT_OBJECTS];
-
-	for(i = 0; i < n; i++)
+	// build array of event handles
+	HANDLE hEvents[MAXIMUM_WAIT_OBJECTS];
+	unsigned numPendingIos = 0;
+	for(int i = 0; i < n; i++)
 	{
-		// ignore NULL list entries
-		if(!cbs[i])
+		if(!cbs[i])	// SUSv3 says NULL entries are to be ignored
 			continue;
 
-		Req* r = req_find(cbs[i]);
-		if(r)
-		{
-			if(r->ovl.Internal == STATUS_PENDING)
-				hs[cnt++] = r->ovl.hEvent;
-		}
+		aiocb::Impl* impl = cbs[i]->impl.get();
+		if(!impl->HasCompleted())
+			hEvents[numPendingIos++] = impl->Event();
 	}
-
-	// no valid, pending transfers - done
-	if(!cnt)
+	if(!numPendingIos)	// done, don't need to suspend.
 		return 0;
 
-	// timeout: convert timespec to ms (NULL ptr -> no timeout)
-	DWORD timeout = INFINITE;
-	if(ts)
-		timeout = (DWORD)(ts->tv_sec*1000 + ts->tv_nsec/1000000);
+	const BOOL waitAll = FALSE;
+	// convert timespec to milliseconds (ts == 0 => no timeout)
+	const DWORD timeout = ts? (DWORD)(ts->tv_sec*1000 + ts->tv_nsec/1000000) : INFINITE;
+	DWORD result = WaitForMultipleObjects(numPendingIos, hEvents, waitAll, timeout);
 
-	const BOOL wait_all = FALSE;
-	DWORD result = WaitForMultipleObjects(cnt, hs, wait_all, timeout);
+	for(unsigned i = 0; i < numPendingIos; i++)
+		ResetEvent(hEvents[i]);
 
-	for(i = 0; i < cnt; i++)
-		ResetEvent(hs[i]);
-
-	if(result == WAIT_TIMEOUT)
+	switch(result)
 	{
-		//errno = -EAGAIN;
+	case WAIT_FAILED:
+		WARN_RETURN(-1);
+
+	case WAIT_TIMEOUT:
+		errno = -EAGAIN;
 		return -1;
+
+	default:
+		return 0;
 	}
-	else
-		return (result == WAIT_FAILED)? -1 : 0;
 }
 
 
@@ -821,49 +440,36 @@ int aio_cancel(int fd, struct aiocb* cb)
 	// all pending reads on this file are cancelled.
 	UNUSED2(cb);
 
-	const HANDLE h = aio_h_get(fd);
-	if(h == INVALID_HANDLE_VALUE)
-		return -1;
+	const HANDLE hFile = handleManager->Get(fd);
+	if(hFile == INVALID_HANDLE_VALUE)
+		WARN_RETURN(-1);
 
-	CancelIo(h);
+	CancelIo(hFile);
 	return AIO_CANCELED;
 }
-
-
 
 
 int aio_read(struct aiocb* cb)
 {
 	cb->aio_lio_opcode = LIO_READ;
-	return aio_rw(cb);	// checks for cb == 0
+	return aio_issue(cb);
 }
 
 
 int aio_write(struct aiocb* cb)
 {
 	cb->aio_lio_opcode = LIO_WRITE;
-	return aio_rw(cb);	// checks for cb == 0
+	return aio_issue(cb);
 }
 
 
-int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
+int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* UNUSED(se))
 {
-	UNUSED2(se);
-
-	int err = 0;
-
 	for(int i = 0; i < n; i++)
-	{
-		int ret = aio_rw(cbs[i]);		// checks for cbs[i] == 0
-		// don't RETURN_ERR yet - we want to try to issue each one
-		if(ret < 0 && !err)
-			err = ret;
-	}
-
-	RETURN_ERR(err);
+		RETURN_ERR(aio_issue(cbs[i]));
 
 	if(mode == LIO_WAIT)
-		return aio_suspend(cbs, n, 0);
+		RETURN_ERR(aio_suspend(cbs, n, 0));
 
 	return 0;
 }
@@ -871,27 +477,20 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 
 int aio_fsync(int, struct aiocb*)
 {
-	return -ENOSYS;
+	WARN_RETURN(-ENOSYS);
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
-// init / cleanup
-//
-//////////////////////////////////////////////////////////////////////////////
-
+//-----------------------------------------------------------------------------
 
 static LibError waio_Init()
 {
-	req_init();
+	handleManager = new HandleManager;
 	return INFO::OK;
 }
 
-
 static LibError waio_Shutdown()
 {
-	req_cleanup();
-	aio_h_cleanup();
+	delete handleManager;
 	return INFO::OK;
 }

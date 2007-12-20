@@ -11,7 +11,10 @@
 #ifndef INCLUDED_ARCHIVE
 #define INCLUDED_ARCHIVE
 
-#include "lib/file/filesystem.h"
+#include "lib/file/path.h"
+#include "lib/file/file_system.h"	// FileInfo
+#include "lib/file/common/file_loader.h"
+#include "lib/file/vfs/vfs_path.h"
 
 // rationale: this module doesn't build a directory tree of the entries
 // within an archive. that task is left to the VFS; here, we are only
@@ -23,23 +26,25 @@ namespace ERR
 	const LibError ARCHIVE_UNKNOWN_METHOD = -110401;
 }
 
-// opaque 'memento' of an archive entry. the instances are stored by
-// the IArchiveReader implementation.
-struct ArchiveEntry;
+struct IArchiveFile : public IFileLoader
+{
+};
 
-struct IArchiveReader : public IFileProvider
+typedef shared_ptr<IArchiveFile> PIArchiveFile;
+
+struct IArchiveReader
 {
 	virtual ~IArchiveReader();
 
 	/**
 	 * called for each archive entry.
-	 * @param pathname full pathname of entry (unique pointer)
+	 * @param pathname full pathname of entry; only valid during the callback.
 	 **/
-	typedef void (*ArchiveEntryCallback)(const char* pathname, const FileInfo& fileInfo, const ArchiveEntry* archiveEntry, uintptr_t cbData);
+	typedef void (*ArchiveEntryCallback)(const VfsPath& pathname, const FileInfo& fileInfo, PIArchiveFile archiveFile, uintptr_t cbData);
 	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData) = 0;
 };
 
-typedef boost::shared_ptr<IArchiveReader> PIArchiveReader;
+typedef shared_ptr<IArchiveReader> PIArchiveReader;
 
 // note: when creating an archive, any existing file with the given pathname
 // will be overwritten.
@@ -68,9 +73,9 @@ struct IArchiveWriter
 	 * precisely because they aren't in archives, and the cache would
 	 * thrash anyway, so this is deemed acceptable.
 	 **/
-	virtual LibError AddFile(const char* pathname) = 0;
+	virtual LibError AddFile(const Path& pathname) = 0;
 };
 
-typedef boost::shared_ptr<IArchiveWriter> PIArchiveWriter;
+typedef shared_ptr<IArchiveWriter> PIArchiveWriter;
 
 #endif	// #ifndef INCLUDED_ARCHIVE

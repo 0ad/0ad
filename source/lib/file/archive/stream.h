@@ -51,7 +51,7 @@ private:
 	u8* m_buffer;
 	size_t m_size;
 
-	boost::shared_array<u8> m_mem;
+	shared_ptr<u8> m_mem;
 	// size of m_mem. allows reusing previously allocated buffers
 	// (user-specified buffers can't be reused because we have no control
 	// over their lifetime)
@@ -70,12 +70,8 @@ public:
 
 	/**
 	 * 'feed' the codec with a data block.
-	 *
-	 * @param bytesProcessed receives the number of output bytes produced.
-	 * it can legitimately be 0 - this happens if the input buffer is small
-	 * and the codec hasn't produced any output.
 	 **/
-	LibError Feed(const u8* in, size_t inSize, size_t& bytesProcessed);
+	LibError Feed(const u8* in, size_t inSize);
 
 	LibError Finish();
 
@@ -98,6 +94,6 @@ private:
 	u32 m_checksum;
 };
 
-extern LibError FeedStream(uintptr_t cbData, const u8* in, size_t inSize, size_t& bytesProcessed);
+extern LibError FeedStream(uintptr_t cbData, const u8* in, size_t inSize);
 
 #endif	// #ifndef INCLUDED_STREAM

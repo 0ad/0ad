@@ -12,13 +12,24 @@ class Codec_ZLib : public ICodec
 public:
 	u32 UpdateChecksum(u32 checksum, const u8* in, size_t inSize) const
 	{
+#if CODEC_COMPUTE_CHECKSUM
 		return (u32)crc32(checksum, in, (uInt)inSize);
+#else
+		UNUSED2(checksum);
+		UNUSED2(in);
+		UNUSED2(inSize);
+		return 0;
+#endif
 	}
 
 protected:
 	u32 InitializeChecksum()
 	{
+#if CODEC_COMPUTE_CHECKSUM
 		return crc32(0, 0, 0);
+#else
+		return 0;
+#endif
 	}
 };
 
@@ -48,12 +59,12 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outConsumed)
+	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		const size_t transferSize = std::min(inSize, outSize);
 		cpu_memcpy(out, in, transferSize);
-		inConsumed = outConsumed = transferSize;
-		m_checksum = UpdateChecksum(m_checksum, in, inSize);
+		inConsumed = outProduced = transferSize;
+		m_checksum = UpdateChecksum(m_checksum, out, outProduced);
 		return INFO::OK;
 	}
 
@@ -105,7 +116,7 @@ protected:
 
 	typedef int ZEXPORT (*ZLibFunc)(z_streamp strm, int flush);
 
-	LibError Process(ZLibFunc func, int flush, const u8* in, const size_t inSize, u8* out, const size_t outSize, size_t& inConsumed, size_t& outConsumed)
+	LibError Process(ZLibFunc func, int flush, const u8* in, const size_t inSize, u8* out, const size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		m_zs.next_in  = (Byte*)in;
 		m_zs.avail_in = (uInt)inSize;
@@ -123,7 +134,7 @@ protected:
 
 		debug_assert(inSize >= m_zs.avail_in && outSize >= m_zs.avail_out);
 		inConsumed  = inSize  - m_zs.avail_in;
-		outConsumed = outSize - m_zs.avail_out;
+		outProduced = outSize - m_zs.avail_out;
 
 		return LibError_from_zlib(ret);
 	}
@@ -182,10 +193,10 @@ public:
 		return LibError_from_zlib(ret);
 	}
 
-	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outConsumed)
+	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		m_checksum = UpdateChecksum(m_checksum, in, inSize);
-		return CodecZLibStream::Process(deflate, 0, in, inSize, out, outSize, inConsumed, outConsumed);
+		return CodecZLibStream::Process(deflate, 0, in, inSize, out, outSize, inConsumed, outProduced);
 	}
 
 	virtual LibError Finish(u32& checksum)
@@ -227,8 +238,7 @@ public:
 		// so callers should use that when allocating the output buffer.
 		debug_assert(inSize < 1*MiB);
 
-		// http://www.zlib.org/zlib_tech.html
-		return inSize*1032;
+		return inSize*1032;	// see http://www.zlib.org/zlib_tech.html
 	}
 
 	virtual LibError Reset()
@@ -238,10 +248,10 @@ public:
 		return LibError_from_zlib(ret);
 	}
 
-	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outConsumed)
+	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
-		const LibError ret = CodecZLibStream::Process(inflate, Z_SYNC_FLUSH, in, inSize, out, outSize, inConsumed, outConsumed);
-		m_checksum = UpdateChecksum(m_checksum, in, inSize);
+		const LibError ret = CodecZLibStream::Process(inflate, Z_SYNC_FLUSH, in, inSize, out, outSize, inConsumed, outProduced);
+		m_checksum = UpdateChecksum(m_checksum, out, outProduced);
 		return ret;
 	}
 

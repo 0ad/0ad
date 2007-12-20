@@ -20,6 +20,19 @@
 #ifndef INCLUDED_PATH
 #define INCLUDED_PATH
 
+struct PathTraits;
+typedef fs::basic_path<std::string, PathTraits> Path;
+
+struct PathTraits
+{
+	typedef std::string internal_string_type;
+	typedef std::string external_string_type;
+
+	static external_string_type to_external(const Path&, const internal_string_type& src);
+	static internal_string_type to_internal(const external_string_type& src);
+};
+
+
 namespace ERR
 {
 	const LibError PATH_ROOT_DIR_ALREADY_SET = -110200;
@@ -33,7 +46,7 @@ namespace ERR
  * of the executable in case sys_get_executable_path fails). note that
  * the current directory cannot be used because it's not set when
  * starting via batch file.
- * @param rel_path root directory relative to the executable's directory.
+ * @param relativePath root directory relative to the executable's directory.
  * the value is considered trusted since it will typically be hard-coded.
  *
  * example: executable in "$install_dir/system"; desired root dir is
@@ -41,7 +54,7 @@ namespace ERR
  *
  * can only be called once unless path_ResetRootDir is called.
  **/
-extern LibError path_SetRoot(const char* argv0, const char* rel_path);
+LIB_API LibError path_SetRoot(const char* argv0, const char* relativePath);
 
 /**
  * reset root directory that was previously established via path_SetRoot.
@@ -50,21 +63,8 @@ extern LibError path_SetRoot(const char* argv0, const char* rel_path);
  * path_SetRoot is called twice; it is provided for the
  * legitimate application of a self-test setUp()/tearDown().
  **/
-extern void path_ResetRootDir();
+LIB_API void path_ResetRootDir();
 
-
-/**
- * return the absolute OS path for a given relative portable path.
- *
- * this is useful for external libraries that require the real filename.
- **/
-extern void path_MakeAbsolute(const char* path, char* osPath);
-
-/**
- * return the relative portable path for a given absolute OS path.
- *
- * this is useful when receiving paths from external libraries (e.g. FAM).
- **/
-extern void path_MakeRelative(const char* osPath, char* path);
+// note: path_MakeAbsolute has been replaced by Path::external_directory_string.
 
 #endif	// #ifndef INCLUDED_PATH

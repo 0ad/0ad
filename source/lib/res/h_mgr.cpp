@@ -483,8 +483,7 @@ static void warn_if_invalid(HDATA* hd)
 		const u8* start = hd->user + vtbl->user_size;
 		const u8* end   = hd->user + HDATA_USER_SIZE;
 		for(const u8* p = start; p < end; p++)
-			if(*p != 0)
-				debug_warn("handle user data was overrun!");
+			debug_assert(*p == 0);	// else: handle user data was overrun!
 	}
 #else
 	UNUSED2(hd);
@@ -763,7 +762,7 @@ void* h_user_data(const Handle h, const H_Type type)
 	if(!hd->refs)
 	{
 		// note: resetting the tag is not enough (user might pass in its value)
-		debug_warn("no references to resource (it's cached, but someone is accessing it directly)");
+		debug_assert(0);	// no references to resource (it's cached, but someone is accessing it directly)
 		return 0;
 	}
 
@@ -779,7 +778,7 @@ const char* h_filename(const Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		debug_warn("failed");
+		debug_assert(0);
 		return 0;
 	}
 	return hd->fn;
@@ -872,14 +871,11 @@ void h_add_ref(Handle h)
 	HDATA* hd = h_data_tag(h);
 	if(!hd)
 	{
-		debug_warn("invalid handle");
+		debug_assert(0);	// invalid handle
 		return;
 	}
 
-	// if there are no refs, how did the caller manage to keep a Handle?!
-	if(!hd->refs)
-		debug_warn("no refs open - resource is cached");
-
+	debug_assert(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
 	hd->refs++;
 }
 
@@ -896,10 +892,7 @@ int h_get_refcnt(Handle h)
 	if(!hd)
 		WARN_RETURN(ERR::INVALID_PARAM);
 
-	// if there are no refs, how did the caller manage to keep a Handle?!
-	if(!hd->refs)
-		debug_warn("no refs open - resource is cached");
-
+	debug_assert(hd->refs);	// if there are no refs, how did the caller manage to keep a Handle?!
 	return hd->refs;
 }
 
@@ -930,7 +923,7 @@ void h_mgr_shutdown()
 		// each HDATA entry has already been allocated.
 		if(!hd)
 		{
-			debug_warn("h_data_from_idx failed - why?!");
+			debug_assert(0);	// h_data_from_idx failed - why?!
 			continue;
 		}
 

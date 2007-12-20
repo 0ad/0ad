@@ -71,6 +71,7 @@ extern int close(int);
 extern int read (int fd, void* buf, size_t nbytes);	// thunk
 extern int write(int fd, void* buf, size_t nbytes);	// thunk
 extern off_t lseek(int fd, off_t ofs, int whence);  // thunk
+extern int truncate(const char* path, off_t length);
 
 
 //
@@ -86,6 +87,9 @@ struct aiocb
 	int             aio_reqprio;    // Request priority offset.
 	struct sigevent aio_sigevent;   // Signal number and value.
 	int             aio_lio_opcode; // Operation to be performed.
+
+	class Impl;
+	shared_ptr<Impl> impl;
 };
 
 enum

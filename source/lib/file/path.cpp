@@ -22,10 +22,6 @@ ERROR_ASSOCIATE(ERR::PATH_ROOT_DIR_ALREADY_SET, "Attempting to set FS root dir m
 ERROR_ASSOCIATE(ERR::PATH_NOT_IN_ROOT_DIR, "Accessing a file that's outside of the root dir", -1);
 
 
-// set by path_SetRoot
-static char osRootPath[PATH_MAX];
-static size_t osRootPathLength;
-
 // security check: only allow path_SetRoot once so that malicious code
 // cannot circumvent the VFS checks that disallow access to anything above
 // the current directory (set here).
@@ -33,14 +29,33 @@ static size_t osRootPathLength;
 // are likely bogus.
 // we provide for resetting this from the self-test to allow clean
 // re-init of the individual tests.
-static bool isRootDirEstablished;
+static bool s_isRootPathEstablished;
+
+static std::string s_rootPath;
 
 
-LibError path_SetRoot(const char* argv0, const char* rel_path)
+/*static*/ PathTraits::external_string_type PathTraits::to_external(const Path&, const PathTraits::internal_string_type& src)
 {
-	if(isRootDirEstablished)
+	std::string absolutePath = s_rootPath + src;
+	std::replace(absolutePath.begin(), absolutePath.end(), '/', SYS_DIR_SEP);
+	return absolutePath;
+}
+
+/*static*/ PathTraits::internal_string_type PathTraits::to_internal(const PathTraits::external_string_type& src)
+{
+	if(s_rootPath.compare(0, s_rootPath.length(), src) != 0)
+		DEBUG_WARN_ERR(ERR::PATH_NOT_IN_ROOT_DIR);
+	std::string relativePath = src.substr(s_rootPath.length(), src.length()-s_rootPath.length());
+	std::replace(relativePath.begin(), relativePath.end(), SYS_DIR_SEP, '/');
+	return relativePath;
+}
+
+
+LibError path_SetRoot(const char* argv0, const char* relativePath)
+{
+	if(s_isRootPathEstablished)
 		WARN_RETURN(ERR::PATH_ROOT_DIR_ALREADY_SET);
-	isRootDirEstablished = true;
+	s_isRootPathEstablished = true;
 
 	// get full path to executable
 	char osPathname[PATH_MAX];
@@ -62,21 +77,17 @@ LibError path_SetRoot(const char* argv0, const char* rel_path)
 	char* name = (char*)path_name_only(osPathname);
 	*name = '\0';
 
-	strcat_s(osPathname, ARRAY_SIZE(osRootPath), rel_path);
+	strcat_s(osPathname, PATH_MAX, relativePath);
 
 	// get actual root dir - previous osPathname may include ".."
 	// (slight optimization, speeds up path lookup)
 	errno = 0;
+	char osRootPath[PATH_MAX];
 	if(!realpath(osPathname, osRootPath))
 		return LibError_from_errno();
 
-	// .. append SYS_DIR_SEP to simplify code that uses osRootPath
-	osRootPathLength = strlen(osRootPath)+1;	// +1 for trailing SYS_DIR_SEP
-	debug_assert((osRootPathLength+1) < sizeof(osRootPath)); // Just checking
-	osRootPath[osRootPathLength-1] = SYS_DIR_SEP;
-	// You might think that osRootPath is already 0-terminated, since it's
-	// static - but that might not be true after calling path_ResetRootDir!
-	osRootPath[osRootPathLength] = 0;
+	s_rootPath = osRootPath;
+	s_rootPath.append(1, SYS_DIR_SEP);	// simplifies to_external
 
 	return INFO::OK;
 }
@@ -84,47 +95,7 @@ LibError path_SetRoot(const char* argv0, const char* rel_path)
 
 void path_ResetRootDir()
 {
-	// see comment at isRootDirEstablished.
-	debug_assert(isRootDirEstablished);
-	osRootPath[0] = '\0';
-	osRootPathLength = 0;
-	isRootDirEstablished = false;
-}
-
-
-// (this assumes SYS_DIR_SEP is a single character)
-static void ConvertSlashCharacters(char* dst, const char* src, char from, char to)
-{
-	for(size_t len = 0; len < PATH_MAX; len++)
-	{
-		char c = *src++;
-		if(c == from)
-			c = to;
-		*dst++ = c;
-
-		// end of string - done
-		if(c == '\0')
-			return;
-	}
-
-	DEBUG_WARN_ERR(ERR::PATH_LENGTH);
-}
-
-
-void path_MakeAbsolute(const char* path, char* osPath)
-{
-	debug_assert(path != osPath);	// doesn't work in-place
-
-	strcpy_s(osPath, PATH_MAX, osRootPath);
-	ConvertSlashCharacters(osPath+osRootPathLength, path, '/', SYS_DIR_SEP);
-}
-
-
-void path_MakeRelative(const char* osPath, char* path)
-{
-	debug_assert(path != osPath);	// doesn't work in-place
-
-	if(strncmp(osPath, osRootPath, osRootPathLength) != 0)
-		DEBUG_WARN_ERR(ERR::PATH_NOT_IN_ROOT_DIR);
-	ConvertSlashCharacters(path, osPath+osRootPathLength, SYS_DIR_SEP, '/');
+	debug_assert(s_isRootPathEstablished);	// see comment at s_isRootPathEstablished.
+	s_rootPath.clear();
+	s_isRootPathEstablished = false;
 }

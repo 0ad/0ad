@@ -11,7 +11,8 @@
 #include "precompiled.h"
 #include "file_cache.h"
 
-#include "lib/file/file_stats.h"
+#include "lib/file/common/file_stats.h"
+#include "lib/file/io/io_internal.h"	// sectorSize
 #include "lib/cache_adt.h"				// Cache
 #include "lib/bits.h"					// round_up
 #include "lib/allocators/allocators.h"
@@ -45,30 +46,29 @@ references:
 "Dynamic Storage Allocation - A Survey and Critical Review" (Johnstone and Wilson)
 */
 
+// shared_ptr<u8>s must own a reference to their allocator to ensure it's extant when
+// they are freed. it is stored in the shared_ptr deleter.
 class Allocator;
+typedef shared_ptr<Allocator> PAllocator;
 
-class Deleter
+class FileCacheDeleter
 {
 public:
-	Deleter(size_t size, Allocator* allocator)
+	FileCacheDeleter(size_t size, PAllocator allocator)
 		: m_size(size), m_allocator(allocator)
 	{
 	}
 
-	// (this must come after Allocator because it calls Deallocate())
-	void operator()(const u8* data) const;
+	// (this uses Allocator and must come after its definition)
+	void operator()(u8* mem) const;
 
 private:
 	size_t m_size;
-	Allocator* m_allocator;
+	PAllocator m_allocator;
 };
 
-// >= sys_max_sector_size or else waio will have to realign.
-// chosen as exactly 1 page: this allows write-protecting file buffers
-// without worrying about their (non-page-aligned) borders.
-// internal fragmentation is considerable but acceptable.
-static const size_t alignment = mem_PageSize();
 
+// adds statistics and AllocatorChecker to a HeaderlessAllocator
 class Allocator
 {
 public:
@@ -77,32 +77,32 @@ public:
 	{
 	}
 
-	FileCacheData Allocate(size_t size)
+	shared_ptr<u8> Allocate(size_t size, PAllocator pthis)
 	{
-		const size_t alignedSize = round_up(size, alignment);
+		const size_t alignedSize = round_up(size, BLOCK_SIZE);
 		stats_buf_alloc(size, alignedSize);
 
-		const u8* data = (const u8*)m_allocator.Allocate(alignedSize);
+		u8* mem = (u8*)m_allocator.Allocate(alignedSize);
 #ifndef NDEBUG
-		m_checker.notify_alloc((void*)data, alignedSize);
+		m_checker.notify_alloc(mem, alignedSize);
 #endif
 
-		return FileCacheData(data, Deleter(size, this));
+		return shared_ptr<u8>(mem, FileCacheDeleter(size, pthis));
 	}
 
-	void Deallocate(const u8* data, size_t size)
+	void Deallocate(u8* mem, size_t size)
 	{
-		void* const p = (void*)data;
-		const size_t alignedSize = round_up(size, alignment);
+		const size_t alignedSize = round_up(size, BLOCK_SIZE);
 
-		// (re)allow writes. it would be nice to un-map the buffer, but this is
-		// not possible because HeaderlessAllocator needs to affix boundary tags.
-		(void)mprotect(p, size, PROT_READ|PROT_WRITE);
+		// (re)allow writes in case the buffer was made read-only. it would
+		// be nice to unmap the buffer, but this is not possible because
+		// HeaderlessAllocator needs to affix boundary tags.
+		(void)mprotect(mem, size, PROT_READ|PROT_WRITE);
 
 #ifndef NDEBUG
-		m_checker.notify_free(p, alignedSize);
+		m_checker.notify_free(mem, alignedSize);
 #endif
-		m_allocator.Deallocate(p, alignedSize);
+		m_allocator.Deallocate(mem, alignedSize);
 
 		stats_buf_free();
 	}
@@ -116,9 +116,9 @@ private:
 };
 
 
-void Deleter::operator()(const u8* data) const
+void FileCacheDeleter::operator()(u8* mem) const
 {
-	m_allocator->Deallocate(data, m_size);
+	m_allocator->Deallocate(mem, m_size);
 }
 
 
@@ -135,12 +135,12 @@ void Deleter::operator()(const u8* data) const
 class FileCache::Impl
 {
 public:
-	Impl(size_t size)
-		: m_allocator(size)
+	Impl(size_t maxSize)
+		: m_allocator(new Allocator(maxSize))
 	{
 	}
 
-	FileCacheData Reserve(size_t size)
+	shared_ptr<u8> Reserve(size_t size)
 	{
 		// (this probably indicates a bug; caching 0-length files would
 		// have no benefit, anyway)
@@ -150,13 +150,13 @@ public:
 		// of space in a full cache)
 		for(;;)
 		{
-			FileCacheData data = m_allocator.Allocate(size);
-			if(data.get())
+			shared_ptr<u8> data = m_allocator->Allocate(size, m_allocator);
+			if(data)
 				return data;
 
 			// remove least valuable entry from cache (if users are holding
 			// references, the contents won't actually be deallocated)
-			FileCacheData discardedData; size_t discardedSize;
+			shared_ptr<u8> discardedData; size_t discardedSize;
 			bool removed = m_cache.remove_least_valuable(&discardedData, &discardedSize);
 			// only false if cache is empty, which can't be the case because
 			// allocation failed.
@@ -164,40 +164,37 @@ public:
 		}
 	}
 
-	void Add(const char* vfsPathname, FileCacheData data, size_t size, uint cost)
+	void Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, uint cost)
 	{
 		// zero-copy cache => all users share the contents => must not
 		// allow changes. this will be reverted when deallocating.
 		(void)mprotect((void*)data.get(), size, PROT_READ);
 
-		m_cache.add(vfsPathname, data, size, cost);
+		m_cache.add(pathname, data, size, cost);
 	}
 
-	bool Retrieve(const char* vfsPathname, FileCacheData& data, size_t& size)
+	bool Retrieve(const VfsPath& pathname, shared_ptr<u8>& data, size_t& size)
 	{
 		// (note: don't call stats_cache because we don't know the file size
 		// in case of a cache miss; doing so is left to the caller.)
 		stats_buf_ref();
 
-		return m_cache.retrieve(vfsPathname, data, &size);
+		return m_cache.retrieve(pathname, data, &size);
 	}
 
-	void Remove(const char* vfsPathname)
+	void Remove(const VfsPath& pathname)
 	{
-		m_cache.remove(vfsPathname);
+		m_cache.remove(pathname);
 
 		// note: we could check if someone is still holding a reference
 		// to the contents, but that currently doesn't matter.
 	}
 
 private:
-	// HACK: due to vfsPathname, we are assured that strings are equal iff their
-	// addresses match. however, Cache's STL (hash_)map stupidly assumes that
-	// const char* keys are "strings". to avoid this behavior, we specify the
-	// key as const void*.
-	static Cache<const void*, FileCacheData> m_cache;
+	typedef Cache< VfsPath, shared_ptr<u8> > Cache;
+	Cache m_cache;
 
-	Allocator m_allocator;
+	PAllocator m_allocator;
 };
 
 
@@ -208,22 +205,22 @@ FileCache::FileCache(size_t size)
 {
 }
 
-FileCacheData FileCache::Reserve(size_t size)
+shared_ptr<u8> FileCache::Reserve(size_t size)
 {
-	return impl.get()->Reserve(size);
+	return impl->Reserve(size);
 }
 
-void FileCache::Add(const char* vfsPathname, FileCacheData data, size_t size, uint cost)
+void FileCache::Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, uint cost)
 {
-	impl.get()->Add(vfsPathname, data, size, cost);
+	impl->Add(pathname, data, size, cost);
 }
 
-void FileCache::Remove(const char* vfsPathname)
+void FileCache::Remove(const VfsPath& pathname)
 {
-	impl.get()->Remove(vfsPathname);
+	impl->Remove(pathname);
 }
 
-bool FileCache::Retrieve(const char* vfsPathname, FileCacheData& data, size_t& size)
+bool FileCache::Retrieve(const VfsPath& pathname, shared_ptr<u8>& data, size_t& size)
 {
-	return impl.get()->Retrieve(vfsPathname, data, size);
+	return impl->Retrieve(pathname, data, size);
 }
