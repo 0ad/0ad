@@ -8,19 +8,19 @@
 #ifndef BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 #define BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 
-#include "boost/mpl/if.hpp"
-#include "boost/preprocessor/list/for_each_i.hpp"
-#include "boost/preprocessor/tuple/to_list.hpp"
-#include "boost/preprocessor/cat.hpp"
-#include "boost/preprocessor/list/transform.hpp"
-#include "boost/preprocessor/list/append.hpp"
-#include "boost/type_traits/alignment_of.hpp"
-#include "boost/type_traits/is_pod.hpp"
-#include "boost/static_assert.hpp"
-#include "boost/config.hpp"
+#include <boost/mpl/if.hpp>
+#include <boost/preprocessor/list/for_each_i.hpp>
+#include <boost/preprocessor/tuple/to_list.hpp>
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/list/transform.hpp>
+#include <boost/preprocessor/list/append.hpp>
+#include <boost/type_traits/alignment_of.hpp>
+#include <boost/type_traits/is_pod.hpp>
+#include <boost/static_assert.hpp>
+#include <boost/config.hpp>
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 #include <cstddef>
 
@@ -192,11 +192,11 @@ struct is_pod< ::boost::detail::lower_alignment<Align> >
 template <std::size_t Align>
 class type_with_alignment
 {
-    typedef detail::lower_alignment<Align> t1;
+    typedef ::boost::detail::lower_alignment<Align> t1;
     typedef typename mpl::if_c<
           ::boost::detail::is_aligned< ::boost::alignment_of<t1>::value,Align >::value
         , t1
-        , detail::max_align
+        , ::boost::detail::max_align
         >::type align_t;
 
     BOOST_STATIC_CONSTANT(std::size_t, found = alignment_of<align_t>::value);
@@ -281,7 +281,7 @@ template <> struct type_with_alignment<16>{ typedef align::a16 type; };
 #   pragma warning(pop)
 #endif
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 

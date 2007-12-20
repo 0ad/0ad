@@ -9,27 +9,27 @@
 #ifndef BOOST_TT_IS_EMPTY_HPP_INCLUDED
 #define BOOST_TT_IS_EMPTY_HPP_INCLUDED
 
-#include "boost/type_traits/is_convertible.hpp"
-#include "boost/type_traits/detail/ice_or.hpp"
-#include "boost/type_traits/config.hpp"
-#include "boost/type_traits/intrinsics.hpp"
+#include <boost/type_traits/is_convertible.hpp>
+#include <boost/type_traits/detail/ice_or.hpp>
+#include <boost/type_traits/config.hpp>
+#include <boost/type_traits/intrinsics.hpp>
 
 #ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include "boost/type_traits/remove_cv.hpp"
-#   include "boost/type_traits/is_class.hpp"
-#   include "boost/type_traits/add_reference.hpp"
+#   include <boost/type_traits/remove_cv.hpp>
+#   include <boost/type_traits/is_class.hpp>
+#   include <boost/type_traits/add_reference.hpp>
 #else
-#   include "boost/type_traits/is_reference.hpp"
-#   include "boost/type_traits/is_pointer.hpp"
-#   include "boost/type_traits/is_member_pointer.hpp"
-#   include "boost/type_traits/is_array.hpp"
-#   include "boost/type_traits/is_void.hpp"
-#   include "boost/type_traits/detail/ice_and.hpp"
-#   include "boost/type_traits/detail/ice_not.hpp"
+#   include <boost/type_traits/is_reference.hpp>
+#   include <boost/type_traits/is_pointer.hpp>
+#   include <boost/type_traits/is_member_pointer.hpp>
+#   include <boost/type_traits/is_array.hpp>
+#   include <boost/type_traits/is_void.hpp>
+#   include <boost/type_traits/detail/ice_and.hpp>
+#   include <boost/type_traits/detail/ice_not.hpp>
 #endif
 
 // should be always the last #include directive
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -41,6 +41,10 @@ struct empty_helper_t1 : public T
 {
     empty_helper_t1();  // hh compiler bug workaround
     int i[256];
+private:
+   // suppress compiler warnings:
+   empty_helper_t1(const empty_helper_t1&);
+   empty_helper_t1& operator=(const empty_helper_t1&);
 };
 
 struct empty_helper_t2 { int i[256]; };
@@ -201,7 +205,7 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_empty,T,::boost::detail::is_empty_impl<T>::value
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_EMPTY_HPP_INCLUDED
 

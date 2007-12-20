@@ -173,6 +173,7 @@ namespace boost {
 #else  // BOOST_HAS_STDINT_H
 
 # include <boost/limits.hpp> // implementation artifact; not part of interface
+# include <limits.h>         // needed for limits macros
 
 
 namespace boost

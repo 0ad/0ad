@@ -10,7 +10,7 @@
 #define BOOST_TYPE_TRAITS_IS_FLOAT_HPP_INCLUDED
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -22,6 +22,6 @@ BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_float,long double,true)
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TYPE_TRAITS_IS_FLOAT_HPP_INCLUDED

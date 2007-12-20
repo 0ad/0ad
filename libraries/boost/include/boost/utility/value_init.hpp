@@ -1,4 +1,4 @@
-// (C) 2002, Fernando Luis Cacciola Carballal.
+// Copyright 2002, Fernando Luis Cacciola Carballal.
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -40,7 +40,7 @@ template<class T>
 struct select_base
 {
   typedef typename
-    detail::if_true< ::boost::is_const<T>::value >
+    boost::detail::if_true< ::boost::is_const<T>::value >
       ::template then< const_T_base<T>, non_const_T_base<T> >::type type ;
 } ;
 

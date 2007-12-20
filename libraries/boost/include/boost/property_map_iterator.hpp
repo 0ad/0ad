@@ -63,7 +63,7 @@ namespace boost {
 
 
     {
-      friend class iterator_core_access;
+      friend class boost::iterator_core_access;
 
       typedef iterator_adaptor< readable_pmap_iter< Iterator, ReadablePropertyMap >,
                                 Iterator,

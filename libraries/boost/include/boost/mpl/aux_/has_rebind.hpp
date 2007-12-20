@@ -11,8 +11,8 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/aux_/has_rebind.hpp,v $
-// $Date: 2004/11/28 01:33:58 $
-// $Revision: 1.13 $
+// $Date: 2005/08/25 16:27:21 $
+// $Revision: 1.14 $
 
 #include <boost/mpl/aux_/config/msvc.hpp>
 #include <boost/mpl/aux_/config/intel.hpp>
@@ -20,7 +20,7 @@
 
 #if BOOST_WORKAROUND(__EDG_VERSION__, <= 244) && !defined(BOOST_INTEL_CXX_VERSION)
 #   include <boost/mpl/has_xxx.hpp>
-#elif BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+#elif BOOST_WORKAROUND(BOOST_MSVC, < 1300)
 #   include <boost/mpl/has_xxx.hpp>
 #   include <boost/mpl/if.hpp>
 #   include <boost/mpl/bool.hpp>
@@ -43,7 +43,7 @@ namespace boost { namespace mpl { namespace aux {
 
 BOOST_MPL_HAS_XXX_TRAIT_NAMED_DEF(has_rebind, rebind, false)
 
-#elif BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+#elif BOOST_WORKAROUND(BOOST_MSVC, < 1300)
 
 BOOST_MPL_HAS_XXX_TRAIT_NAMED_DEF(has_rebind_impl, rebind, false)
 

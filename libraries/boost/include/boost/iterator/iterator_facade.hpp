@@ -293,17 +293,17 @@ namespace boost
 
     // operator->() needs special support for input iterators to strictly meet the
     // standard's requirements. If *i is not a reference type, we must still
-    // produce a (constant) lvalue to which a pointer can be formed. We do that by
+    // produce a lvalue to which a pointer can be formed. We do that by
     // returning an instantiation of this special proxy class template.
     template <class T>
     struct operator_arrow_proxy
     {
         operator_arrow_proxy(T const* px) : m_value(*px) {}
-        const T* operator->() const { return &m_value; }
+        T* operator->() const { return &m_value; }
         // This function is needed for MWCW and BCC, which won't call operator->
         // again automatically per 13.3.1.2 para 8
-        operator const T*() const { return &m_value; }
-        T m_value;
+        operator T*() const { return &m_value; }
+        mutable T m_value;
     };
 
     // A metafunction that gets the result type for operator->.  Also
@@ -327,7 +327,7 @@ namespace boost
         }
     };
 
-# if BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
     // Deal with ETI
     template<>
     struct operator_arrow_result<int, int, int>
@@ -410,7 +410,7 @@ namespace boost
           :
 # ifdef BOOST_NO_ONE_WAY_ITERATOR_INTEROP
           iterator_difference<I1>
-# elif BOOST_WORKAROUND(BOOST_MSVC, == 1200)
+# elif BOOST_WORKAROUND(BOOST_MSVC, < 1300)
           mpl::if_<
               is_convertible<I2,I1>
             , typename I1::difference_type
@@ -431,14 +431,14 @@ namespace boost
 
   // Macros which describe the declarations of binary operators
 # ifdef BOOST_NO_STRICT_ITERATOR_INTEROPERABILITY
-#  define BOOST_ITERATOR_FACADE_INTEROP_HEAD(prefix, op, result_type)   \
-    template <                                                          \
-        class Derived1, class V1, class TC1, class R1, class D1         \
-      , class Derived2, class V2, class TC2, class R2, class D2         \
-    >                                                                   \
-    prefix typename mpl::apply2<result_type,Derived1,Derived2>::type    \
-    operator op(                                                        \
-        iterator_facade<Derived1, V1, TC1, R1, D1> const& lhs           \
+#  define BOOST_ITERATOR_FACADE_INTEROP_HEAD(prefix, op, result_type)       \
+    template <                                                              \
+        class Derived1, class V1, class TC1, class R1, class D1             \
+      , class Derived2, class V2, class TC2, class R2, class D2             \
+    >                                                                       \
+    prefix typename mpl::apply2<result_type,Derived1,Derived2>::type \
+    operator op(                                                            \
+        iterator_facade<Derived1, V1, TC1, R1, D1> const& lhs               \
       , iterator_facade<Derived2, V2, TC2, R2, D2> const& rhs)
 # else 
 #  define BOOST_ITERATOR_FACADE_INTEROP_HEAD(prefix, op, result_type)   \
@@ -446,7 +446,7 @@ namespace boost
         class Derived1, class V1, class TC1, class R1, class D1         \
       , class Derived2, class V2, class TC2, class R2, class D2         \
     >                                                                   \
-    prefix typename detail::enable_if_interoperable<                    \
+    prefix typename detail::enable_if_interoperable<             \
         Derived1, Derived2                                              \
       , typename mpl::apply2<result_type,Derived1,Derived2>::type       \
     >::type                                                             \
@@ -496,14 +496,14 @@ namespace boost
       ;
 
       BOOST_ITERATOR_FACADE_PLUS_HEAD(
-          friend                                
+          friend inline
           , (iterator_facade<Derived, V, TC, R, D> const&
            , typename Derived::difference_type)
       )
       ;
 
       BOOST_ITERATOR_FACADE_PLUS_HEAD(
-          friend
+          friend inline
         , (typename Derived::difference_type
            , iterator_facade<Derived, V, TC, R, D> const&)
       )
@@ -620,7 +620,7 @@ namespace boost
 
    protected:
       // For use by derived classes
-      typedef iterator_facade<Derived,Value,Reference,Difference> iterator_facade_;
+      typedef iterator_facade<Derived,Value,CategoryOrTraversal,Reference,Difference> iterator_facade_;
       
    public:
 
@@ -666,7 +666,7 @@ namespace boost
           return this->derived();
       }
 
-# if BOOST_WORKAROUND(BOOST_MSVC, == 1200)
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
       typename detail::postfix_increment_result<Derived,Value,Reference,CategoryOrTraversal>::type
       operator++(int)
       {
@@ -708,7 +708,7 @@ namespace boost
           return result -= x;
       }
 
-# if BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
       // There appears to be a bug which trashes the data of classes
       // derived from iterator_facade when they are assigned unless we
       // define this assignment operator.  This bug is only revealed
@@ -721,9 +721,9 @@ namespace boost
 # endif
   };
 
-# if !BOOST_WORKAROUND(BOOST_MSVC, == 1200)
+# if !BOOST_WORKAROUND(BOOST_MSVC, < 1300)
   template <class I, class V, class TC, class R, class D>
-  typename detail::postfix_increment_result<I,V,R,TC>::type
+  inline typename detail::postfix_increment_result<I,V,R,TC>::type
   operator++(
       iterator_facade<I,V,TC,R,D>& i
     , int

@@ -388,27 +388,27 @@ typename is_pointer_help<V>::type reference_to_pointer_helper(V&);
 outer_no_type reference_to_pointer_helper(...);
 
 template <class T>
-struct is_reference_to_pointer
+struct reference_to_pointer_impl
 {
     static T t;
     BOOST_STATIC_CONSTANT(
         bool, value
-        = (is_reference<T>::value
-           && sizeof((reference_to_pointer_helper)(t)) == sizeof(inner_yes_type))
+        = (sizeof((reference_to_pointer_helper)(t)) == sizeof(inner_yes_type))
         );
     
     typedef mpl::bool_<value> type;
-    
+};
+   
+template <class T>
+struct is_reference_to_pointer
+  : mpl::eval_if<is_reference<T>, reference_to_pointer_impl<T>, mpl::false_>::type
+{   
     BOOST_MPL_AUX_LAMBDA_SUPPORT(1,is_reference_to_pointer,(T))
 };
 
 template <class T>
 struct is_reference_to_function_pointer
-    : mpl::if_<
-          is_reference<T>
-        , is_pointer_to_function_aux<T>
-        , mpl::bool_<false>
-     >::type
+  : mpl::eval_if<is_reference<T>, is_pointer_to_function_aux<T>, mpl::false_>::type
 {
     BOOST_MPL_AUX_LAMBDA_SUPPORT(1,is_reference_to_function_pointer,(T))
 };

@@ -12,7 +12,7 @@
 
 #include <boost/type_traits/intrinsics.hpp>
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -20,6 +20,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(has_virtual_destructor,T,BOOST_HAS_VIRTUAL_DESTRUCT
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_MEMBER_FUNCTION_POINTER_HPP_INCLUDED

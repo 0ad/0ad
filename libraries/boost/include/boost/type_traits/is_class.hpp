@@ -10,27 +10,27 @@
 #ifndef BOOST_TT_IS_CLASS_HPP_INCLUDED
 #define BOOST_TT_IS_CLASS_HPP_INCLUDED
 
-#include "boost/type_traits/config.hpp"
-#   include "boost/type_traits/is_union.hpp"
-#   include "boost/type_traits/detail/ice_and.hpp"
-#   include "boost/type_traits/detail/ice_not.hpp"
+#include <boost/type_traits/config.hpp>
+#   include <boost/type_traits/is_union.hpp>
+#   include <boost/type_traits/detail/ice_and.hpp>
+#   include <boost/type_traits/detail/ice_not.hpp>
 
 #ifdef BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION
-#   include "boost/type_traits/detail/yes_no_type.hpp"
+#   include <boost/type_traits/detail/yes_no_type.hpp>
 #else
-#   include "boost/type_traits/is_scalar.hpp"
-#   include "boost/type_traits/is_array.hpp"
-#   include "boost/type_traits/is_reference.hpp"
-#   include "boost/type_traits/is_void.hpp"
-#   include "boost/type_traits/is_function.hpp"
+#   include <boost/type_traits/is_scalar.hpp>
+#   include <boost/type_traits/is_array.hpp>
+#   include <boost/type_traits/is_reference.hpp>
+#   include <boost/type_traits/is_void.hpp>
+#   include <boost/type_traits/is_function.hpp>
 #endif
 
 #ifdef __EDG_VERSION__
-#   include "boost/type_traits/remove_cv.hpp"
+#   include <boost/type_traits/remove_cv.hpp>
 #endif
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -116,13 +116,13 @@ struct is_class_impl
 
 # ifdef __EDG_VERSION__
 BOOST_TT_AUX_BOOL_TRAIT_DEF1(
-    is_class,T, detail::is_class_impl<typename remove_cv<T>::type>::value)
+    is_class,T, detail::is_class_impl<typename boost::remove_cv<T>::type>::value)
 # else 
 BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_class,T,::boost::detail::is_class_impl<T>::value)
 # endif
     
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_CLASS_HPP_INCLUDED

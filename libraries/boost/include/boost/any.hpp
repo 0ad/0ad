@@ -217,15 +217,15 @@ namespace boost
     // use typeid() comparison, e.g., when our types may travel across
     // different shared libraries.
     template<typename ValueType>
-    ValueType * unsafe_any_cast(any * operand)
+    inline ValueType * unsafe_any_cast(any * operand)
     {
         return &static_cast<any::holder<ValueType> *>(operand->content)->held;
     }
 
     template<typename ValueType>
-    const ValueType * unsafe_any_cast(const any * operand)
+    inline const ValueType * unsafe_any_cast(const any * operand)
     {
-        return any_cast<ValueType>(const_cast<any *>(operand));
+        return unsafe_any_cast<ValueType>(const_cast<any *>(operand));
     }
 }
 

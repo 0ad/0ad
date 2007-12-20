@@ -30,18 +30,12 @@
 // remember that since these just declare a bunch of macros, there should be
 // no namespace issues from this.
 //
-#include <limits.h>
-# if !defined(BOOST_HAS_LONG_LONG)                                              \
-   && !defined(BOOST_MSVC) && !defined(__BORLANDC__)     \
-   && (defined(ULLONG_MAX) || defined(ULONG_LONG_MAX) || defined(ULONGLONG_MAX))
-#  define BOOST_HAS_LONG_LONG
-#endif
-
-// TODO: Remove the following lines after the 1.33 release because the presence
-// of an integral 64 bit type has nothing to do with support for long long.
-
-#if !defined(BOOST_HAS_LONG_LONG) && !defined(BOOST_NO_INTEGRAL_INT64_T) && !defined(__DECCXX_VER)
-#  define BOOST_NO_INTEGRAL_INT64_T
+#if !defined(BOOST_HAS_LONG_LONG)                                               \
+   && !defined(BOOST_MSVC) && !defined(__BORLANDC__)
+# include <limits.h>
+# if (defined(ULLONG_MAX) || defined(ULONG_LONG_MAX) || defined(ULONGLONG_MAX))
+#   define BOOST_HAS_LONG_LONG
+# endif
 #endif
 
 // GCC 3.x will clean up all of those nasty macro definitions that
@@ -250,6 +244,12 @@
 //
 #  if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901)
 #     define BOOST_HAS_STDINT_H
+#     ifndef BOOST_HAS_LOG1P
+#        define BOOST_HAS_LOG1P
+#     endif
+#     ifndef BOOST_HAS_EXPM1
+#        define BOOST_HAS_EXPM1
+#     endif
 #  endif
 
 //
@@ -263,6 +263,27 @@
 #  ifndef BOOST_HAS_HASH
 #     define BOOST_NO_HASH
 #  endif
+
+//
+// Set BOOST_SLIST_HEADER if not set already:
+//
+#if defined(BOOST_HAS_SLIST) && !defined(BOOST_SLIST_HEADER)
+#  define BOOST_SLIST_HEADER <slist>
+#endif
+
+//
+// Set BOOST_HASH_SET_HEADER if not set already:
+//
+#if defined(BOOST_HAS_HASH) && !defined(BOOST_HASH_SET_HEADER)
+#  define BOOST_HASH_SET_HEADER <hash_set>
+#endif
+
+//
+// Set BOOST_HASH_MAP_HEADER if not set already:
+//
+#if defined(BOOST_HAS_HASH) && !defined(BOOST_HASH_MAP_HEADER)
+#  define BOOST_HASH_MAP_HEADER <hash_map>
+#endif
 
 //  BOOST_HAS_ABI_HEADERS
 //  This macro gets set if we have headers that fix the ABI,
@@ -542,6 +563,7 @@ namespace boost{
 #  endif
 
 #endif
+
 
 
 

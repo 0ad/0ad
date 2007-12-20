@@ -9,16 +9,16 @@
 #ifndef BOOST_TT_IS_POD_HPP_INCLUDED
 #define BOOST_TT_IS_POD_HPP_INCLUDED
 
-#include "boost/type_traits/config.hpp"
-#include "boost/type_traits/is_void.hpp"
-#include "boost/type_traits/is_scalar.hpp"
-#include "boost/type_traits/detail/ice_or.hpp"
-#include "boost/type_traits/intrinsics.hpp"
+#include <boost/type_traits/config.hpp>
+#include <boost/type_traits/is_void.hpp>
+#include <boost/type_traits/is_scalar.hpp>
+#include <boost/type_traits/detail/ice_or.hpp>
+#include <boost/type_traits/intrinsics.hpp>
 
 #include <cstddef>
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -130,6 +130,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_pod,T,::boost::detail::is_pod_impl<T>::value)
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_POD_HPP_INCLUDED

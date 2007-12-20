@@ -9,22 +9,22 @@
 #ifndef BOOST_TT_IS_BASE_AND_DERIVED_HPP_INCLUDED
 #define BOOST_TT_IS_BASE_AND_DERIVED_HPP_INCLUDED
 
-#include "boost/type_traits/is_class.hpp"
-#include "boost/type_traits/is_same.hpp"
-#include "boost/type_traits/is_convertible.hpp"
-#include "boost/type_traits/detail/ice_and.hpp"
-#include "boost/type_traits/remove_cv.hpp"
-#include "boost/config.hpp"
+#include <boost/type_traits/is_class.hpp>
+#include <boost/type_traits/is_same.hpp>
+#include <boost/type_traits/is_convertible.hpp>
+#include <boost/type_traits/detail/ice_and.hpp>
+#include <boost/type_traits/remove_cv.hpp>
+#include <boost/config.hpp>
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
 namespace detail {
 
-#if !BOOST_WORKAROUND(__BORLANDC__, <= 0x570) \
- && !BOOST_WORKAROUND(__SUNPRO_CC , BOOST_TESTED_AT(0x540)) \
+#if !BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x581)) \
+ && !BOOST_WORKAROUND(__SUNPRO_CC , <= 0x540) \
  && !BOOST_WORKAROUND(__EDG_VERSION__, <= 243) \
  && !BOOST_WORKAROUND(__DMC__, BOOST_TESTED_AT(0x840))
 
@@ -37,7 +37,7 @@ namespace detail {
 This version detects ambiguous base classes and private base classes
 correctly, and was devised by Rani Sharoni.
 
-Explanation by Terje Slettebø and Rani Sharoni.
+Explanation by Terje Slettebo and Rani Sharoni.
 
 Let's take the multiple base class below as an example, and the following
 will also show why there's not a problem with private or ambiguous base
@@ -217,6 +217,7 @@ BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC2_2(typename Base,typename Derived,is_base_a
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_BASE_AND_DERIVED_HPP_INCLUDED
+

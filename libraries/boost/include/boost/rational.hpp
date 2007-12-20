@@ -17,6 +17,10 @@
 //    Nickolay Mladenov, for the implementation of operator+=
 
 //  Revision History
+//  20 Oct 06  Fix operator bool_type for CW 8.3 (Joaquín M López Muñoz)
+//  18 Oct 06  Use EXPLICIT_TEMPLATE_TYPE helper macros from Boost.Config
+//             (Joaquín M López Muñoz)
+//  27 Dec 05  Add Boolean conversion operator (Daryle Walker)
 //  28 Sep 02  Use _left versions of operators from operators.hpp
 //  05 Jul 01  Recode gcd(), avoiding std::swap (Helmut Zeisel)
 //  03 Mar 01  Workarounds for Intel C++ 5.0 (David Abrahams)
@@ -47,6 +51,7 @@
 #include <cstdlib>               // for std::abs
 #include <boost/call_traits.hpp> // for boost::call_traits
 #include <boost/config.hpp>      // for BOOST_NO_STDC_NAMESPACE, BOOST_MSVC
+#include <boost/detail/workaround.hpp> // for BOOST_WORKAROUND
 
 namespace boost {
 
@@ -129,6 +134,10 @@ class rational :
     > > > > > > > > > > > > > > > >
 {
     typedef typename boost::call_traits<IntType>::param_type param_type;
+
+    struct helper { IntType parts[2]; };
+    typedef IntType (helper::* bool_type)[2];
+
 public:
     typedef IntType int_type;
     rational() : num(0), den(1) {}
@@ -164,6 +173,21 @@ public:
 
     // Operator not
     bool operator!() const { return !num; }
+
+    // Boolean conversion
+    
+#if BOOST_WORKAROUND(__MWERKS__,<=0x3003)
+    // The "ISO C++ Template Parser" option in CW 8.3 chokes on the
+    // following, hence we selectively disable that option for the
+    // offending memfun.
+#pragma parse_mfunc_templ off
+#endif
+
+    operator bool_type() const { return operator !() ? 0 : &helper::parts; }
+
+#if BOOST_WORKAROUND(__MWERKS__,<=0x3003)
+#pragma parse_mfunc_templ reset
+#endif
 
     // Comparison operators
     bool operator< (const rational& r) const;
@@ -500,7 +524,8 @@ std::ostream& operator<< (std::ostream& os, const rational<IntType>& r)
 
 // Type conversion
 template <typename T, typename IntType>
-inline T rational_cast(const rational<IntType>& src)
+inline T rational_cast(
+    const rational<IntType>& src BOOST_APPEND_EXPLICIT_TEMPLATE_TYPE(T))
 {
     return static_cast<T>(src.numerator())/src.denominator();
 }

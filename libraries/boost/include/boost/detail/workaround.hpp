@@ -9,7 +9,8 @@
 //
 // Usage:
 //
-//     #if BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+//     #if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
+//        // workaround for eVC4 and VC6
 //        ... // workaround code here
 //     #endif
 //
@@ -17,7 +18,7 @@
 // first argument must be undefined or expand to a numeric
 // value. The above expands to:
 //
-//     (BOOST_MSVC) != 0 && (BOOST_MSVC) <= 1200
+//     (BOOST_MSVC) != 0 && (BOOST_MSVC) < 1300
 //
 // When used for workarounds that apply to the latest known version 
 // and all earlier versions of a compiler, the following convention 

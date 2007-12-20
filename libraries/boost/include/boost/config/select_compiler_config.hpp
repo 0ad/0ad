@@ -12,7 +12,11 @@
 // locate which compiler we are using and define
 // BOOST_COMPILER_CONFIG as needed: 
 
-# if defined __COMO__
+#if defined(__GCCXML__)
+// GCC-XML emulates other compilers, it has to appear first here!
+#   define BOOST_COMPILER_CONFIG "boost/config/compiler/gcc_xml.hpp"
+
+#elif defined __COMO__
 //  Comeau C++
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/comeau.hpp"
 

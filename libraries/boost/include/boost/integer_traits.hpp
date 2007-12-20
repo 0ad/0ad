@@ -5,7 +5,7 @@
  * accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
  *
- * $Id: integer_traits.hpp,v 1.27.2.1 2005/08/24 15:45:17 johnmaddock Exp $
+ * $Id: integer_traits.hpp,v 1.30 2006/02/05 10:19:42 johnmaddock Exp $
  *
  * Idea by Beman Dawes, Ed Brey, Steve Cleary, and Nathan Myers
  */
@@ -21,9 +21,9 @@
 
 // These are an implementation detail and not part of the interface
 #include <limits.h>
-// we need wchar.h for WCHAR_MAX/MIN but not all platforms provide it, 
+// we need wchar.h for WCHAR_MAX/MIN but not all platforms provide it,
 // and some may have <wchar.h> but not <cwchar> ...
-#if !defined(BOOST_NO_INTRINSIC_WCHAR_T) && (!defined(BOOST_NO_CWCHAR) || defined(sun) || defined(__sun))
+#if !defined(BOOST_NO_INTRINSIC_WCHAR_T) && (!defined(BOOST_NO_CWCHAR) || defined(sun) || defined(__sun) || defined(__QNX__))
 #include <wchar.h>
 #endif
 

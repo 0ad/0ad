@@ -21,29 +21,37 @@
 #ifndef BOOST_TT_IS_CONST_HPP_INCLUDED
 #define BOOST_TT_IS_CONST_HPP_INCLUDED
 
-#include "boost/config.hpp"
+#include <boost/config.hpp>
+#include <boost/detail/workaround.hpp>
 
 #ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include "boost/type_traits/detail/cv_traits_impl.hpp"
+#   include <boost/type_traits/detail/cv_traits_impl.hpp>
 #   ifdef __GNUC__
 #       include <boost/type_traits/is_reference.hpp>
 #   endif
+#   if BOOST_WORKAROUND(BOOST_MSVC, < 1400)
+#       include <boost/type_traits/remove_bounds.hpp>
+#   endif
 #else
-#   include "boost/type_traits/is_reference.hpp"
-#   include "boost/type_traits/is_array.hpp"
-#   include "boost/type_traits/detail/yes_no_type.hpp"
-#   include "boost/type_traits/detail/false_result.hpp"
+#   include <boost/type_traits/is_reference.hpp>
+#   include <boost/type_traits/is_array.hpp>
+#   include <boost/type_traits/detail/yes_no_type.hpp>
+#   include <boost/type_traits/detail/false_result.hpp>
 #endif
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
 #ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 //* is a type T  declared const - is_const<T>
-BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_const,T,::boost::detail::cv_traits_imp<T*>::is_const)
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1400)
+   BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_const,T,::boost::detail::cv_traits_imp<typename remove_bounds<T>::type*>::is_const)
+#else
+   BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_const,T,::boost::detail::cv_traits_imp<T*>::is_const)
+#endif
 BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC1_1(typename T,is_const,T&,false)
 
 #if defined(__BORLANDC__) && (__BORLANDC__ < 0x600)
@@ -128,7 +136,7 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_const,T,::boost::detail::is_const_impl<T>::value
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_CONST_HPP_INCLUDED
 

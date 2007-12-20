@@ -17,7 +17,7 @@
 // users can short-circuit this header if they know whose std lib
 // they are using.
 
-#include <utility>
+#include <boost/config/no_tr1/utility.hpp>
 
 #if defined(__SGI_STL_PORT) || defined(_STLPORT_VERSION)
 // STLPort library; this _must_ come first, otherwise since

@@ -31,7 +31,10 @@
 #include <boost/detail/quick_allocator.hpp>
 #endif
 
+#if defined(BOOST_SP_USE_STD_ALLOCATOR)
 #include <memory>           // std::allocator
+#endif
+
 #include <typeinfo>         // std::type_info in get_deleter
 #include <cstddef>          // std::size_t
 
@@ -174,6 +177,48 @@ public:
     }
 
 #endif
+};
+
+template<class P, class D, class A> class sp_counted_impl_pda: public sp_counted_base
+{
+private:
+
+    P p_; // copy constructor must not throw
+    D d_; // copy constructor must not throw
+    A a_; // copy constructor must not throw
+
+    sp_counted_impl_pda( sp_counted_impl_pda const & );
+    sp_counted_impl_pda & operator= ( sp_counted_impl_pda const & );
+
+    typedef sp_counted_impl_pda<P, D, A> this_type;
+
+public:
+
+    // pre: d( p ) must not throw
+
+    sp_counted_impl_pda( P p, D d, A a ): p_( p ), d_( d ), a_( a )
+    {
+    }
+
+    virtual void dispose() // nothrow
+    {
+        d_( p_ );
+    }
+
+    virtual void destroy() // nothrow
+    {
+        typedef typename A::template rebind< this_type >::other A2;
+
+        A2 a2( a_ );
+
+        this->~this_type();
+        a2.deallocate( this, 1 );
+    }
+
+    virtual void * get_deleter( std::type_info const & ti )
+    {
+        return ti == typeid( D )? &d_: 0;
+    }
 };
 
 #ifdef __CODEGUARD__

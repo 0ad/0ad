@@ -58,7 +58,27 @@ inline bool operator==(const blank&, const blank&)
     return true;
 }
 
+inline bool operator<=(const blank&, const blank&)
+{
+    return true;
+}
+
+inline bool operator>=(const blank&, const blank&)
+{
+    return true;
+}
+
+inline bool operator!=(const blank&, const blank&)
+{
+    return false;
+}
+
 inline bool operator<(const blank&, const blank&)
+{
+    return false;
+}
+
+inline bool operator>(const blank&, const blank&)
 {
     return false;
 }

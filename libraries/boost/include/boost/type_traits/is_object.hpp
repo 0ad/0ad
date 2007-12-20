@@ -9,15 +9,15 @@
 #ifndef BOOST_TT_IS_OBJECT_HPP_INCLUDED
 #define BOOST_TT_IS_OBJECT_HPP_INCLUDED
 
-#include "boost/type_traits/is_reference.hpp"
-#include "boost/type_traits/is_void.hpp"
-#include "boost/type_traits/is_function.hpp"
-#include "boost/type_traits/detail/ice_and.hpp"
-#include "boost/type_traits/detail/ice_not.hpp"
-#include "boost/config.hpp"
+#include <boost/type_traits/is_reference.hpp>
+#include <boost/type_traits/is_void.hpp>
+#include <boost/type_traits/is_function.hpp>
+#include <boost/type_traits/detail/ice_and.hpp>
+#include <boost/type_traits/detail/ice_not.hpp>
+#include <boost/config.hpp>
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -48,6 +48,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_object,T,::boost::detail::is_object_impl<T>::val
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_OBJECT_HPP_INCLUDED

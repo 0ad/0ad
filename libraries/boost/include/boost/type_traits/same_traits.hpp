@@ -10,6 +10,6 @@
 #ifndef BOOST_TT_SAME_TRAITS_HPP_INCLUDED
 #define BOOST_TT_SAME_TRAITS_HPP_INCLUDED
 
-#include "boost/type_traits/is_same.hpp"
+#include <boost/type_traits/is_same.hpp>
 
 #endif  // BOOST_TT_SAME_TRAITS_HPP_INCLUDED

@@ -12,6 +12,10 @@
 //  See http://www.boost.org/libs/bind/mem_fn.html for documentation.
 //
 
+#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING)
+# define BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+#endif
+
 // mf0
 
 template<class R, class T BOOST_MEM_FN_CLASS_F> class BOOST_MEM_FN_NAME(mf0)
@@ -49,6 +53,15 @@ public:
     {
         BOOST_MEM_FN_RETURN call(u, &u);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u);
+    }
+
+#endif
 
     R operator()(T & t) const
     {
@@ -154,6 +167,15 @@ public:
         BOOST_MEM_FN_RETURN call(u, &u, a1);
     }
 
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u, a1);
+    }
+
+#endif
+
     R operator()(T & t, A1 a1) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1);
@@ -257,6 +279,15 @@ public:
         BOOST_MEM_FN_RETURN call(u, &u, a1, a2);
     }
 
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u, a1, a2);
+    }
+
+#endif
+
     R operator()(T & t, A1 a1, A2 a2) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2);
@@ -357,6 +388,15 @@ public:
     {
         BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3) const
     {
@@ -459,6 +499,15 @@ public:
         BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4);
     }
 
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4);
+    }
+
+#endif
+
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4);
@@ -559,6 +608,15 @@ public:
     {
         BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) const
     {
@@ -661,6 +719,15 @@ public:
         BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6);
     }
 
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6);
+    }
+
+#endif
+
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5, a6);
@@ -761,6 +828,15 @@ public:
     {
         BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6, a7);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6, a7);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) const
     {
@@ -863,6 +939,15 @@ public:
         BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6, a7, a8);
     }
 
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) const
+    {
+        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6, a7, a8);
+    }
+
+#endif
+
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5, a6, a7, a8);
@@ -932,3 +1017,4 @@ public:
     }
 };
 
+#undef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS

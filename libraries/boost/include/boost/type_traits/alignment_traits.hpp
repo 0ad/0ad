@@ -9,7 +9,7 @@
 #ifndef BOOST_TT_ALIGNMENT_TRAITS_HPP_INCLUDED
 #define BOOST_TT_ALIGNMENT_TRAITS_HPP_INCLUDED
 
-#include "boost/type_traits/alignment_of.hpp"
-#include "boost/type_traits/type_with_alignment.hpp"
+#include <boost/type_traits/alignment_of.hpp>
+#include <boost/type_traits/type_with_alignment.hpp>
 
 #endif // BOOST_TT_ALIGNMENT_TRAITS_HPP_INCLUDED

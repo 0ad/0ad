@@ -328,11 +328,6 @@ private:
         return (u.*f_);
     }
 
-    template<class U> R & call(U & u, T *) const
-    {
-        return (u.*f_);
-    }
-
     template<class U> R const & call(U & u, void const *) const
     {
         return (get_pointer(u)->*f_);
@@ -352,7 +347,7 @@ public:
         return (p->*f_);
     }
 
-    template<class U> R const & operator()(U & u) const
+    template<class U> R const & operator()(U const & u) const
     {
         return call(u, &u);
     }
@@ -364,12 +359,12 @@ public:
         return (t.*f_);
     }
 
-#endif
-
     R const & operator()(T const & t) const
     {
         return (t.*f_);
     }
+
+#endif
 
     bool operator==(dm const & rhs) const
     {

@@ -21,21 +21,21 @@
 #ifndef BOOST_TT_IS_POINTER_HPP_INCLUDED
 #define BOOST_TT_IS_POINTER_HPP_INCLUDED
 
-#include "boost/type_traits/is_member_pointer.hpp"
-#include "boost/type_traits/detail/ice_and.hpp"
-#include "boost/type_traits/detail/ice_not.hpp"
-#include "boost/type_traits/config.hpp"
+#include <boost/type_traits/is_member_pointer.hpp>
+#include <boost/type_traits/detail/ice_and.hpp>
+#include <boost/type_traits/detail/ice_not.hpp>
+#include <boost/type_traits/config.hpp>
 
 #ifdef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include "boost/type_traits/is_reference.hpp"
-#   include "boost/type_traits/is_array.hpp"
-#   include "boost/type_traits/detail/is_function_ptr_tester.hpp"
-#   include "boost/type_traits/detail/false_result.hpp"
-#   include "boost/type_traits/detail/ice_or.hpp"
+#   include <boost/type_traits/is_reference.hpp>
+#   include <boost/type_traits/is_array.hpp>
+#   include <boost/type_traits/detail/is_function_ptr_tester.hpp>
+#   include <boost/type_traits/detail/false_result.hpp>
+#   include <boost/type_traits/detail/ice_or.hpp>
 #endif
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -144,6 +144,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_pointer,T,::boost::detail::is_pointer_impl<T>::v
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_POINTER_HPP_INCLUDED

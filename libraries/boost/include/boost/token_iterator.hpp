@@ -18,12 +18,11 @@
 #ifndef BOOST_TOKENIZER_POLICY_JRB070303_HPP_
 #define BOOST_TOKENIZER_POLICY_JRB070303_HPP_
 
+#include<boost/assert.hpp>
 #include<boost/iterator/iterator_adaptor.hpp>
 #include<boost/iterator/detail/minimum_category.hpp>
 #include<boost/token_functions.hpp>
 #include<utility>
-#include<cassert>
-
 
 namespace boost
 {
@@ -49,12 +48,12 @@ namespace boost
       Type tok_;
 
       void increment(){
-          assert(valid_);
+          BOOST_ASSERT(valid_);
           valid_ = f_(begin_,end_,tok_);
       }
 
       const Type&  dereference() const {
-          assert(valid_);
+          BOOST_ASSERT(valid_);
           return tok_;
       }
       template<class Other>

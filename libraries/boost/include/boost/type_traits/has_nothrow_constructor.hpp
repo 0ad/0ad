@@ -9,10 +9,10 @@
 #ifndef BOOST_TT_HAS_NOTHROW_CONSTRUCTOR_HPP_INCLUDED
 #define BOOST_TT_HAS_NOTHROW_CONSTRUCTOR_HPP_INCLUDED
 
-#include "boost/type_traits/has_trivial_constructor.hpp"
+#include <boost/type_traits/has_trivial_constructor.hpp>
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -33,6 +33,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(has_nothrow_constructor,T,::boost::detail::has_noth
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_HAS_NOTHROW_CONSTRUCTOR_HPP_INCLUDED

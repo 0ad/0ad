@@ -29,7 +29,6 @@
 //              (David Abrahams)
 
 # include <iterator>
-# include <assert.h>
 # include <boost/type_traits.hpp>
 # include <boost/static_assert.hpp>
 # include <boost/concept_archetype.hpp> // for detail::dummy_constructor
@@ -40,6 +39,7 @@
 
 # include <boost/iterator/detail/config_def.hpp>
 # include <boost/detail/is_incrementable.hpp>
+# include <boost/detail/lightweight_test.hpp>
 
 namespace boost {
 
@@ -50,7 +50,7 @@ template <class Iterator, class T>
 void readable_iterator_traversal_test(Iterator i1, T v, mpl::true_)
 {
     T v2(*i1++);
-    assert(v == v2);
+    BOOST_TEST(v == v2);
 }
 
 template <class Iterator, class T>
@@ -81,8 +81,8 @@ void readable_iterator_test(const Iterator i1, T v)
   ref_t r2 = *i2;
   T v1 = r1;
   T v2 = r2;
-  assert(v1 == v);
-  assert(v2 == v);
+  BOOST_TEST(v1 == v);
+  BOOST_TEST(v2 == v);
 
 # if !BOOST_WORKAROUND(__MWERKS__, <= 0x2407)
   readable_iterator_traversal_test(i1, v, detail::is_postfix_incrementable<Iterator>());
@@ -115,7 +115,7 @@ void swappable_iterator_test(Iterator i, Iterator j)
   typename detail::iterator_traits<Iterator>::value_type bi = *i, bj = *j;
   iter_swap(i2, j2);
   typename detail::iterator_traits<Iterator>::value_type ai = *i, aj = *j;
-  assert(bi == aj && bj == ai);
+  BOOST_TEST(bi == aj && bj == ai);
 }
 
 template <class Iterator, class T>
@@ -126,7 +126,7 @@ void constant_lvalue_iterator_test(Iterator i, T v1)
   typedef typename detail::iterator_traits<Iterator>::reference reference;
   BOOST_STATIC_ASSERT((is_same<const value_type&, reference>::value));
   const T& v2 = *i2;
-  assert(v1 == v2);
+  BOOST_TEST(v1 == v2);
 # ifndef BOOST_NO_LVALUE_RETURN_DETECTION
   BOOST_STATIC_ASSERT(is_lvalue_iterator<Iterator>::value);
   BOOST_STATIC_ASSERT(!is_non_const_lvalue_iterator<Iterator>::value);
@@ -141,14 +141,14 @@ void non_const_lvalue_iterator_test(Iterator i, T v1, T v2)
   typedef typename detail::iterator_traits<Iterator>::reference reference;
   BOOST_STATIC_ASSERT((is_same<value_type&, reference>::value));
   T& v3 = *i2;
-  assert(v1 == v3);
+  BOOST_TEST(v1 == v3);
   
   // A non-const lvalue iterator is not neccessarily writable, but we
   // are assuming the value_type is assignable here
   *i = v2;
   
   T& v4 = *i2;
-  assert(v2 == v4);
+  BOOST_TEST(v2 == v4);
 # ifndef BOOST_NO_LVALUE_RETURN_DETECTION
   BOOST_STATIC_ASSERT(is_lvalue_iterator<Iterator>::value);
   BOOST_STATIC_ASSERT(is_non_const_lvalue_iterator<Iterator>::value);
@@ -161,15 +161,15 @@ void forward_readable_iterator_test(Iterator i, Iterator j, T val1, T val2)
   Iterator i2;
   Iterator i3(i);
   i2 = i;
-  assert(i2 == i3);
-  assert(i != j);
-  assert(i2 != j);
+  BOOST_TEST(i2 == i3);
+  BOOST_TEST(i != j);
+  BOOST_TEST(i2 != j);
   readable_iterator_test(i, val1);
   readable_iterator_test(i2, val1);
   readable_iterator_test(i3, val1);
 
-  assert(i == i2++);
-  assert(i != ++i3);
+  BOOST_TEST(i == i2++);
+  BOOST_TEST(i != ++i3);
 
   readable_iterator_test(i2, val2);
   readable_iterator_test(i3, val2);
@@ -198,16 +198,16 @@ void bidirectional_readable_iterator_test(Iterator i, T v1, T v2)
 
   Iterator i1 = i, i2 = i;
 
-  assert(i == i1--);
-  assert(i != --i2);
+  BOOST_TEST(i == i1--);
+  BOOST_TEST(i != --i2);
 
   readable_iterator_test(i, v2);
   readable_iterator_test(i1, v1);
   readable_iterator_test(i2, v1);
 
   --i;
-  assert(i == i1);
-  assert(i == i2);
+  BOOST_TEST(i == i1);
+  BOOST_TEST(i == i2);
   ++i1;
   ++i2;
 
@@ -227,32 +227,32 @@ void random_access_readable_iterator_test(Iterator i, int N, TrueVals vals)
 
   for (c = 0; c < N-1; ++c)
   {
-    assert(i == j + c);
-    assert(*i == vals[c]);
+    BOOST_TEST(i == j + c);
+    BOOST_TEST(*i == vals[c]);
     typename detail::iterator_traits<Iterator>::value_type x = j[c];
-    assert(*i == x);
-    assert(*i == *(j + c));
-    assert(*i == *(c + j));
+    BOOST_TEST(*i == x);
+    BOOST_TEST(*i == *(j + c));
+    BOOST_TEST(*i == *(c + j));
     ++i;
-    assert(i > j);
-    assert(i >= j);
-    assert(j <= i);
-    assert(j < i);
+    BOOST_TEST(i > j);
+    BOOST_TEST(i >= j);
+    BOOST_TEST(j <= i);
+    BOOST_TEST(j < i);
   }
 
   Iterator k = j + N - 1;
   for (c = 0; c < N-1; ++c)
   {
-    assert(i == k - c);
-    assert(*i == vals[N - 1 - c]);
+    BOOST_TEST(i == k - c);
+    BOOST_TEST(*i == vals[N - 1 - c]);
     typename detail::iterator_traits<Iterator>::value_type x = j[N - 1 - c];
-    assert(*i == x);
+    BOOST_TEST(*i == x);
     Iterator q = k - c; 
-    assert(*i == *q);
-    assert(i > j);
-    assert(i >= j);
-    assert(j <= i);
-    assert(j < i);
+    BOOST_TEST(*i == *q);
+    BOOST_TEST(i > j);
+    BOOST_TEST(i >= j);
+    BOOST_TEST(j <= i);
+    BOOST_TEST(j < i);
     --i;
   }
 }

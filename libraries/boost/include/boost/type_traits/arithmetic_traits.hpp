@@ -11,10 +11,10 @@
 #ifndef BOOST_TT_ARITHMETIC_TRAITS_HPP_INCLUDED
 #define BOOST_TT_ARITHMETIC_TRAITS_HPP_INCLUDED
 
-#include "boost/type_traits/is_arithmetic.hpp"
-#include "boost/type_traits/is_float.hpp"
-#include "boost/type_traits/is_fundamental.hpp"
-#include "boost/type_traits/is_integral.hpp"
-#include "boost/type_traits/is_void.hpp"
+#include <boost/type_traits/is_arithmetic.hpp>
+#include <boost/type_traits/is_float.hpp>
+#include <boost/type_traits/is_fundamental.hpp>
+#include <boost/type_traits/is_integral.hpp>
+#include <boost/type_traits/is_void.hpp>
 
 #endif // BOOST_TT_ARITHMETIC_TRAITS_HPP_INCLUDED

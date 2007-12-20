@@ -20,6 +20,8 @@
 #include <boost/detail/shared_array_nmt.hpp>
 #else
 
+#include <memory>             // TR1 cyclic inclusion fix
+
 #include <boost/assert.hpp>
 #include <boost/checked_delete.hpp>
 

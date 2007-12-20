@@ -12,29 +12,37 @@
 # ifndef BOOST_PREPROCESSOR_SEQ_CAT_HPP
 # define BOOST_PREPROCESSOR_SEQ_CAT_HPP
 #
+# include <boost/preprocessor/arithmetic/dec.hpp>
 # include <boost/preprocessor/config/config.hpp>
+# include <boost/preprocessor/control/if.hpp>
 # include <boost/preprocessor/seq/fold_left.hpp>
 # include <boost/preprocessor/seq/seq.hpp>
+# include <boost/preprocessor/seq/size.hpp>
+# include <boost/preprocessor/tuple/eat.hpp>
 #
 # /* BOOST_PP_SEQ_CAT */
 #
-# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_EDG()
-#    define BOOST_PP_SEQ_CAT(seq) BOOST_PP_SEQ_FOLD_LEFT(BOOST_PP_SEQ_CAT_O, BOOST_PP_SEQ_HEAD(seq), BOOST_PP_SEQ_TAIL(seq))
-# else
-#    define BOOST_PP_SEQ_CAT(seq) BOOST_PP_SEQ_CAT_I(seq)
-#    define BOOST_PP_SEQ_CAT_I(seq) BOOST_PP_SEQ_FOLD_LEFT(BOOST_PP_SEQ_CAT_O, BOOST_PP_SEQ_HEAD(seq), BOOST_PP_SEQ_TAIL(seq))
-# endif
+# define BOOST_PP_SEQ_CAT(seq) \
+    BOOST_PP_IF( \
+        BOOST_PP_DEC(BOOST_PP_SEQ_SIZE(seq)), \
+        BOOST_PP_SEQ_CAT_I, \
+        BOOST_PP_SEQ_HEAD(seq) BOOST_PP_TUPLE_EAT_1 \
+    )(seq) \
+    /**/
+# define BOOST_PP_SEQ_CAT_I(seq) BOOST_PP_SEQ_FOLD_LEFT(BOOST_PP_SEQ_CAT_O, BOOST_PP_SEQ_HEAD(seq), BOOST_PP_SEQ_TAIL(seq))
 #
 # define BOOST_PP_SEQ_CAT_O(s, st, elem) BOOST_PP_SEQ_CAT_O_I(st, elem)
 # define BOOST_PP_SEQ_CAT_O_I(a, b) a ## b
 #
 # /* BOOST_PP_SEQ_CAT_S */
 #
-# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_EDG()
-#    define BOOST_PP_SEQ_CAT_S(s, seq) BOOST_PP_SEQ_FOLD_LEFT_ ## s(BOOST_PP_SEQ_CAT_O, BOOST_PP_SEQ_HEAD(seq), BOOST_PP_SEQ_TAIL(seq))
-# else
-#    define BOOST_PP_SEQ_CAT_S(s, seq) BOOST_PP_SEQ_CAT_S_I(s, seq)
-#    define BOOST_PP_SEQ_CAT_S_I(s, seq) BOOST_PP_SEQ_FOLD_LEFT_ ## s(BOOST_PP_SEQ_CAT_O, BOOST_PP_SEQ_HEAD(seq), BOOST_PP_SEQ_TAIL(seq))
-# endif
+# define BOOST_PP_SEQ_CAT_S(s, seq) \
+    BOOST_PP_IF( \
+        BOOST_PP_DEC(BOOST_PP_SEQ_SIZE(seq)), \
+        BOOST_PP_SEQ_CAT_S_I, \
+        BOOST_PP_SEQ_HEAD(seq) BOOST_PP_TUPLE_EAT_2 \
+    )(s, seq) \
+    /**/
+# define BOOST_PP_SEQ_CAT_S_I(s, seq) BOOST_PP_SEQ_FOLD_LEFT_ ## s(BOOST_PP_SEQ_CAT_O, BOOST_PP_SEQ_HEAD(seq), BOOST_PP_SEQ_TAIL(seq))
 #
 # endif

@@ -10,6 +10,6 @@
 #ifndef BOOST_TT_REFERENCE_TRAITS_HPP_INCLUDED
 #define BOOST_TT_REFERENCE_TRAITS_HPP_INCLUDED
 
-#include "boost/type_traits/is_reference.hpp"
+#include <boost/type_traits/is_reference.hpp>
 
 #endif // BOOST_TT_REFERENCE_TRAITS_HPP_INCLUDED

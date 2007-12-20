@@ -11,17 +11,34 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/aux_/begin_end_impl.hpp,v $
-// $Date: 2004/09/02 15:40:43 $
-// $Revision: 1.8 $
+// $Date: 2006/07/22 15:08:37 $
+// $Revision: 1.8.14.1 $
 
 #include <boost/mpl/begin_end_fwd.hpp>
 #include <boost/mpl/sequence_tag_fwd.hpp>
 #include <boost/mpl/void.hpp>
+#include <boost/mpl/eval_if.hpp>
+#include <boost/mpl/aux_/has_begin.hpp>
 #include <boost/mpl/aux_/na.hpp>
 #include <boost/mpl/aux_/traits_lambda_spec.hpp>
 #include <boost/mpl/aux_/config/eti.hpp>
 
 namespace boost { namespace mpl {
+
+namespace aux { 
+
+template< typename Sequence > 
+struct begin_type 
+{ 
+    typedef typename Sequence::begin type; 
+};
+template< typename Sequence > 
+struct end_type
+{ 
+    typedef typename Sequence::end type; 
+};
+
+}
 
 // default implementation; conrete sequences might override it by 
 // specializing either the 'begin_impl/end_impl' or the primary 
@@ -32,7 +49,8 @@ struct begin_impl
 {
     template< typename Sequence > struct apply
     {
-        typedef typename Sequence::begin type;
+        typedef typename eval_if<aux::has_begin<Sequence, true_>,
+                                 aux::begin_type<Sequence>, void_>::type type;
     };
 };
 
@@ -41,7 +59,8 @@ struct end_impl
 {
     template< typename Sequence > struct apply
     {
-        typedef typename Sequence::end type;
+        typedef typename eval_if<aux::has_begin<Sequence, true_>,
+                                 aux::end_type<Sequence>, void_>::type type;
     };
 };
 

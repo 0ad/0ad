@@ -58,7 +58,7 @@ struct ct_imp<T, isp, true>
 template <typename T, bool b1>
 struct ct_imp<T, true, b1>
 {
-   typedef T const param_type;
+   typedef const T param_type;
 };
 
 }
@@ -76,7 +76,7 @@ public:
    // however compiler bugs prevent this - instead pass three bool's to
    // ct_imp<T,bool,bool,bool> and add an extra partial specialisation
    // of ct_imp to handle the logic. (JM)
-   typedef typename detail::ct_imp<
+   typedef typename boost::detail::ct_imp<
       T,
       ::boost::is_pointer<T>::value,
       ::boost::is_arithmetic<T>::value
@@ -92,7 +92,7 @@ struct call_traits<T&>
    typedef T& param_type;  // hh removed const
 };
 
-#if BOOST_WORKAROUND( __BORLANDC__,  BOOST_TESTED_AT( 0x570 ) )
+#if BOOST_WORKAROUND( __BORLANDC__,  BOOST_TESTED_AT( 0x581 ) )
 // these are illegal specialisations; cv-qualifies applied to
 // references have no effect according to [8.3.2p1],
 // C++ Builder requires them though as it treats cv-qualified
@@ -120,6 +120,15 @@ struct call_traits<T&const volatile>
    typedef T& reference;
    typedef const T& const_reference;
    typedef T& param_type;  // hh removed const
+};
+
+template <typename T>
+struct call_traits< T * >
+{
+   typedef T * value_type;
+   typedef T * & reference;
+   typedef T * const & const_reference;
+   typedef T * const param_type;  // hh removed const
 };
 #endif
 #if !defined(BOOST_NO_ARRAY_TYPE_SPECIALIZATIONS)

@@ -52,7 +52,7 @@ namespace boost
 
   template <class Category, class T, class Distance = std::ptrdiff_t,
             class Pointer = T*, class Reference = T&>
-   struct iterator : detail::iterator_base<Category, T, Distance, Pointer, Reference> {};
+  struct iterator : boost::detail::iterator_base<Category, T, Distance, Pointer, Reference> {};
 # endif
 } // namespace boost
 

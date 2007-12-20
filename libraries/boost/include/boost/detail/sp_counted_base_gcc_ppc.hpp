@@ -47,7 +47,7 @@ inline void atomic_increment( int * pw )
         "bne- 0b":
 
         "=m"( *pw ), "=&b"( tmp ):
-        "r"( pw ):
+        "r"( pw ), "m"( *pw ):
         "cc"
     );
 }
@@ -69,7 +69,7 @@ inline int atomic_decrement( int * pw )
         "isync":
 
         "=m"( *pw ), "=&b"( rv ):
-        "r"( pw ):
+        "r"( pw ), "m"( *pw ):
         "memory", "cc"
     );
 
@@ -95,7 +95,7 @@ inline int atomic_conditional_increment( int * pw )
         "bne- 0b":
 
         "=m"( *pw ), "=&b"( rv ):
-        "r"( pw ):
+        "r"( pw ), "m"( *pw ):
         "cc"
     );
 

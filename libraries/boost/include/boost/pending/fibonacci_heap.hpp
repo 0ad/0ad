@@ -140,6 +140,7 @@ public:
       _right[t] = u;
       _left[_right[u]] = u;
     }
+    _p[u] = v;
   }
   // 41
   inline void rebuild_root_list(LinkIter new_roots, int& h)

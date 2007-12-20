@@ -22,14 +22,17 @@
 # include <boost/python/def.hpp>
 # include <boost/python/default_call_policies.hpp>
 # include <boost/python/dict.hpp>
+# include <boost/python/docstring_options.hpp>
 # include <boost/python/enum.hpp>
 # include <boost/python/errors.hpp>
 # include <boost/python/exception_translator.hpp>
+# include <boost/python/exec.hpp>
 # include <boost/python/extract.hpp>
 # include <boost/python/handle.hpp>
 # include <boost/python/has_back_reference.hpp>
 # include <boost/python/implicit.hpp>
 # include <boost/python/init.hpp>
+# include <boost/python/import.hpp>
 # include <boost/python/instance_holder.hpp>
 # include <boost/python/iterator.hpp>
 # include <boost/python/list.hpp>

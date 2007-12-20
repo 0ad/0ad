@@ -11,8 +11,8 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/aux_/lambda_support.hpp,v $
-// $Date: 2004/11/28 01:37:05 $
-// $Revision: 1.12 $
+// $Date: 2005/08/25 16:27:21 $
+// $Revision: 1.13 $
 
 #include <boost/mpl/aux_/config/lambda.hpp>
 
@@ -122,7 +122,7 @@ template< BOOST_MPL_PP_PARAMS(i,typename T) > \
     , name< BOOST_MPL_PP_ENUM(i,::boost::mpl::na) >* \
     ); \
 /**/
-#elif !BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+#elif !BOOST_WORKAROUND(BOOST_MSVC, < 1300)
 #   define BOOST_MPL_AUX_LAMBDA_SUPPORT_HAS_REBIND(i, name, params) \
 template< BOOST_MPL_PP_PARAMS(i,typename T) > \
 ::boost::mpl::aux::yes_tag operator|( \

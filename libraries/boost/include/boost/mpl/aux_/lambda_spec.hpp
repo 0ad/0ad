@@ -2,7 +2,7 @@
 #ifndef BOOST_MPL_AUX_LAMBDA_SPEC_HPP_INCLUDED
 #define BOOST_MPL_AUX_LAMBDA_SPEC_HPP_INCLUDED
 
-// Copyright Aleksey Gurtovoy 2001-2004
+// Copyright Aleksey Gurtovoy 2001-2007
 //
 // Distributed under the Boost Software License, Version 1.0. 
 // (See accompanying file LICENSE_1_0.txt or copy at 
@@ -11,8 +11,8 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/aux_/lambda_spec.hpp,v $
-// $Date: 2004/09/02 15:40:43 $
-// $Revision: 1.8 $
+// $Date: 2007/01/29 07:28:45 $
+// $Revision: 1.8.14.1 $
 
 #include <boost/mpl/void.hpp>
 #include <boost/mpl/lambda_fwd.hpp>
@@ -35,7 +35,8 @@ struct lambda< \
     > \
 { \
     typedef false_ is_le; \
-    typedef name< BOOST_MPL_PP_PARAMS(i, T) > type; \
+    typedef name< BOOST_MPL_PP_PARAMS(i, T) > result_; \
+    typedef result_ type; \
 }; \
 /**/
 

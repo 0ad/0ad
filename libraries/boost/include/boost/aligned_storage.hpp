@@ -121,7 +121,7 @@ public: // accessors
         return this;
     }
 
-#if !BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+#if !BOOST_WORKAROUND(BOOST_MSVC, < 1300)
 
     const void* address() const
     {
@@ -136,7 +136,7 @@ public: // accessors
 
 };
 
-#if BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
 
 // MSVC6 seems not to like inline functions with const void* returns, so we
 // declare the following here:

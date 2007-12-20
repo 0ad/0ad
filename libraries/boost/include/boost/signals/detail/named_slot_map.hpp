@@ -60,7 +60,8 @@ public:
   typedef const stored_group& first_argument_type;
   typedef const stored_group& second_argument_type;
 
-  group_bridge_compare(const Compare& c) : comp(c) {}
+  group_bridge_compare(const Compare& c) : comp(c) 
+  { }
 
   bool operator()(const stored_group& k1, const stored_group& k2) const
   {
@@ -92,13 +93,39 @@ class BOOST_SIGNALS_DECL named_slot_map_iterator :
                           connection_slot_pair,
                           forward_traversal_tag> inherited;
 public:
-  named_slot_map_iterator();
-  named_slot_map_iterator(const named_slot_map_iterator&);
-  named_slot_map_iterator& operator=(const named_slot_map_iterator&);
-
-  connection_slot_pair& dereference() const;
-  void increment();
-  bool equal(const named_slot_map_iterator& other) const;
+  named_slot_map_iterator() : slot_assigned(false) 
+  { }
+  named_slot_map_iterator(const named_slot_map_iterator& other) 
+    : group(other.group), last_group(other.last_group),
+    slot_assigned(other.slot_assigned)
+  {
+    if (slot_assigned) slot_ = other.slot_;
+  }
+  named_slot_map_iterator& operator=(const named_slot_map_iterator& other) 
+  {
+    slot_assigned = other.slot_assigned;
+    group = other.group;
+    last_group = other.last_group;
+    if (slot_assigned) slot_ = other.slot_;
+    return *this;
+  }
+  connection_slot_pair& dereference() const 
+  {
+    return *slot_;
+  }
+  void increment() 
+  {
+    ++slot_;
+    if (slot_ == group->second.end()) {
+      ++group;
+      init_next_group();
+    }
+  }
+  bool equal(const named_slot_map_iterator& other) const {
+    return (group == other.group
+        && (group == last_group
+        || slot_ == other.slot_));
+  }
 
 #if BOOST_WORKAROUND(_MSC_VER, <= 1400)
   void decrement();

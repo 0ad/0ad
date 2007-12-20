@@ -10,7 +10,7 @@
 #define BOOST_TT_INTRINSICS_HPP_INCLUDED
 
 #ifndef BOOST_TT_CONFIG_HPP_INCLUDED
-#include "boost/type_traits/config.hpp"
+#include <boost/type_traits/config.hpp>
 #endif
 
 //
@@ -35,8 +35,15 @@
 #ifdef BOOST_HAS_SGI_TYPE_TRAITS
     // Hook into SGI's __type_traits class, this will pick up user supplied
     // specializations as well as SGI - compiler supplied specializations.
-#   include "boost/type_traits/is_same.hpp"
-#   include <type_traits.h>
+#   include <boost/type_traits/is_same.hpp>
+#   ifdef __NetBSD__
+      // There are two different versions of type_traits.h on NetBSD on Spark
+      // use an implicit include via algorithm instead, to make sure we get
+      // the same version as the std lib:
+#     include <algorithm>
+#   else
+#    include <type_traits.h>
+#   endif
 #   define BOOST_IS_POD(T) ::boost::is_same< typename ::__type_traits<T>::is_POD_type, ::__true_type>::value
 #   define BOOST_HAS_TRIVIAL_CONSTRUCTOR(T) ::boost::is_same< typename ::__type_traits<T>::has_trivial_default_constructor, ::__true_type>::value
 #   define BOOST_HAS_TRIVIAL_COPY(T) ::boost::is_same< typename ::__type_traits<T>::has_trivial_copy_constructor, ::__true_type>::value
@@ -65,7 +72,7 @@
 
 #if defined(BOOST_MSVC) && defined(_MSC_FULL_VER) && (_MSC_FULL_VER >=140050215)
 #   define BOOST_IS_UNION(T) __is_union(T)
-#   define BOOST_IS_POD(T) __is_pod(T)
+#   define BOOST_IS_POD(T) (__is_pod(T) && __has_trivial_constructor(T))
 #   define BOOST_IS_EMPTY(T) __is_empty(T)
 #   define BOOST_HAS_TRIVIAL_CONSTRUCTOR(T) __has_trivial_constructor(T)
 #   define BOOST_HAS_TRIVIAL_COPY(T) __has_trivial_copy(T)

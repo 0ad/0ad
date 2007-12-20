@@ -10,8 +10,10 @@
 #define BOOST_TT_CONFIG_HPP_INCLUDED
 
 #ifndef BOOST_CONFIG_HPP
-#include "boost/config.hpp"
+#include <boost/config.hpp>
 #endif
+
+#include <boost/detail/workaround.hpp>
 
 //
 // whenever we have a conversion function with elipses
@@ -24,15 +26,30 @@
 #   define BOOST_TT_DECL /**/
 #endif
 
-# if (defined(__MWERKS__) && __MWERKS__ >= 0x3000) || (defined(BOOST_MSVC) && (BOOST_MSVC > 1301)) || defined(__EDG_VERSION__) || (defined(__GNUC__) && (__GNUC__ >= 3)) || defined(__DMC__) || ( defined(__IBMCPP__) && (__IBMCPP__ >= 600 ) ) || defined(BOOST_NO_COMPILER_CONFIG)
-#   define BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION
+# if (BOOST_WORKAROUND(__MWERKS__, < 0x3000)                         \
+    || BOOST_WORKAROUND(BOOST_MSVC, <= 1301)                        \
+    || !defined(__EDG_VERSION__) && BOOST_WORKAROUND(__GNUC__, < 3) \
+    || BOOST_WORKAROUND(__IBMCPP__, < 600 )                         \
+    || BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))       \
+    || defined(__ghs)                                               \
+    || BOOST_WORKAROUND(__HP_aCC, BOOST_TESTED_AT(53800))           \
+    || BOOST_WORKAROUND(MPW_CPLUS, BOOST_TESTED_AT(0x890))          \
+    || BOOST_WORKAROUND(__SUNPRO_CC, BOOST_TESTED_AT(0x580)) )      \
+    && defined(BOOST_NO_IS_ABSTRACT)
+
+#   define BOOST_TT_NO_CONFORMING_IS_CLASS_IMPLEMENTATION 1
+
+#endif
+
+#ifndef BOOST_TT_NO_CONFORMING_IS_CLASS_IMPLEMENTATION
+# define BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION 1
 #endif
 
 //
 // Define BOOST_TT_NO_ELLIPSIS_IN_FUNC_TESTING 
 // when we can't test for function types with elipsis:
 //
-#if defined(__GNUC__) && (__GNUC__ < 3)
+#if BOOST_WORKAROUND(__GNUC__, < 3)
 #  define BOOST_TT_NO_ELLIPSIS_IN_FUNC_TESTING
 #endif
 
@@ -50,7 +67,7 @@
 // if tests for cv-qualified member functions don't 
 // work in is_member_function_pointer
 //
-#if (defined(__MWERKS__) && __MWERKS__ < 0x3000) || (defined(__IBMCPP__) && __IBMCPP__ <= 600)
+#if BOOST_WORKAROUND(__MWERKS__, < 0x3000) || BOOST_WORKAROUND(__IBMCPP__, <= 600)
 #  define BOOST_TT_NO_CV_FUNC_TEST
 #endif
 

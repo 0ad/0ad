@@ -12,6 +12,6 @@
 #ifndef BOOST_TT_CONVERSION_TRAITS_HPP_INCLUDED
 #define BOOST_TT_CONVERSION_TRAITS_HPP_INCLUDED
 
-#include "boost/type_traits/is_convertible.hpp"
+#include <boost/type_traits/is_convertible.hpp>
 
 #endif // BOOST_TT_CONVERSION_TRAITS_HPP_INCLUDED

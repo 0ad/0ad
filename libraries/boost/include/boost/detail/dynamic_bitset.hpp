@@ -151,7 +151,7 @@ namespace boost {
     // for static_asserts
     template <typename T>
     struct dynamic_bitset_allowed_block_type {
-        enum { value = T(-1) > 0 }; // ensure T has no sign
+        enum { value = (T(-1) > 0) }; // ensure T has no sign
     };
 
     template <>

@@ -13,6 +13,8 @@
 //  See http://www.boost.org/libs/smart_ptr/weak_ptr.htm for documentation.
 //
 
+#include <memory> // boost.TR1 include order fix
+#include <boost/detail/shared_count.hpp>
 #include <boost/shared_ptr.hpp>
 
 #ifdef BOOST_MSVC  // moved here to work around VC++ compiler crash
@@ -69,7 +71,7 @@ public:
     {
     }
 
-#if !defined(BOOST_MSVC) || (BOOST_MSVC > 1200)
+#if !defined(BOOST_MSVC) || (BOOST_MSVC >= 1300)
 
     template<class Y>
     weak_ptr & operator=(weak_ptr<Y> const & r) // never throws
@@ -139,7 +141,7 @@ public:
         pn.swap(other.pn);
     }
 
-    void _internal_assign(T * px2, detail::shared_count const & pn2)
+    void _internal_assign(T * px2, boost::detail::shared_count const & pn2)
     {
         px = px2;
         pn = pn2;
@@ -162,8 +164,8 @@ private:
 
 #endif
 
-    T * px;                     // contained pointer
-    detail::weak_count pn;      // reference counter
+    T * px;                       // contained pointer
+    boost::detail::weak_count pn; // reference counter
 
 };  // weak_ptr
 

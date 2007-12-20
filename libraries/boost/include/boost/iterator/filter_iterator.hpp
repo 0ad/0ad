@@ -53,14 +53,14 @@ namespace boost
    public:
       filter_iterator() { }
 
-      filter_iterator(Predicate f, Iterator x, Iterator end = Iterator())
-          : super_t(x), m_predicate(f), m_end(end)
+      filter_iterator(Predicate f, Iterator x, Iterator end_ = Iterator())
+          : super_t(x), m_predicate(f), m_end(end_)
       {
           satisfy_predicate();
       }
 
-      filter_iterator(Iterator x, Iterator end = Iterator())
-        : super_t(x), m_predicate(), m_end(end)
+      filter_iterator(Iterator x, Iterator end_ = Iterator())
+        : super_t(x), m_predicate(), m_end(end_)
       {
         // Pro8 is a little too aggressive about instantiating the
         // body of this function.
@@ -122,7 +122,7 @@ namespace boost
         , Iterator
       >::type x
     , Iterator end = Iterator()
-#if BOOST_WORKAROUND(BOOST_MSVC, == 1200)
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
     , Predicate* = 0
 #endif 
   )

@@ -42,9 +42,10 @@ namespace boost {
 
       struct populate_index_ranges {
         multi_array_types::index_range
+        // RG: underscore on extent_ to stifle strange MSVC warning.
         operator()(multi_array_types::index base,
-                   multi_array_types::size_type extent) {
-          return multi_array_types::index_range(base,base+extent);
+                   multi_array_types::size_type extent_) {
+          return multi_array_types::index_range(base,base+extent_);
         }
       };
 
@@ -379,12 +380,30 @@ public:
   }
 
 
+  template <typename ExtentList>
+  multi_array& resize(const ExtentList& extents) {
+    boost::function_requires<
+      detail::multi_array::CollectionConcept<ExtentList> >();
+
+    typedef detail::multi_array::extent_gen<NumDims> gen_type;
+    gen_type ranges;
+
+    for (int i=0; i != NumDims; ++i) {
+      typedef typename gen_type::range range_type;
+      ranges.ranges_[i] = range_type(0,extents[i]);
+    }
+    
+    return this->resize(ranges);
+  }
+
+
+
   multi_array& resize(const detail::multi_array
                       ::extent_gen<NumDims>& ranges) {
 
 
     // build a multi_array with the specs given
-    multi_array new_array(ranges);
+    multi_array new_array(ranges,this->storage_order());
 
 
     // build a view of tmp with the minimum extents

@@ -8,14 +8,36 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 
 // $Source: /cvsroot/boost/boost/boost/type_traits/detail/bool_trait_def.hpp,v $
-// $Date: 2005/03/16 12:22:22 $
-// $Revision: 1.18 $
+// $Date: 2006/07/12 11:10:22 $
+// $Revision: 1.19.4.1 $
 
 #include <boost/type_traits/detail/template_arity_spec.hpp>
 #include <boost/type_traits/integral_constant.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/aux_/lambda_support.hpp>
 #include <boost/config.hpp>
+
+//
+// Unfortunately some libraries have started using this header without
+// cleaning up afterwards: so we'd better undef the macros just in case 
+// they've been defined already....
+//
+#ifdef BOOST_TT_AUX_BOOL_TRAIT_VALUE_DECL
+#undef BOOST_TT_AUX_BOOL_TRAIT_VALUE_DECL
+#undef BOOST_TT_AUX_BOOL_C_BASE
+#undef BOOST_TT_AUX_BOOL_TRAIT_DEF1
+#undef BOOST_TT_AUX_BOOL_TRAIT_DEF2
+#undef BOOST_TT_AUX_BOOL_TRAIT_SPEC1
+#undef BOOST_TT_AUX_BOOL_TRAIT_SPEC2
+#undef BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC1
+#undef BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC2
+#undef BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC1_1
+#undef BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC1_2
+#undef BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC2_1
+#undef BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC2_2
+#undef BOOST_TT_AUX_BOOL_TRAIT_IMPL_PARTIAL_SPEC2_1
+#undef BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1
+#endif
 
 #if defined(__SUNPRO_CC) && (__SUNPRO_CC < 0x570)
 #   define BOOST_TT_AUX_BOOL_TRAIT_VALUE_DECL(C) \
@@ -24,7 +46,7 @@
     /**/
 #   define BOOST_TT_AUX_BOOL_C_BASE(C)
 
-#elif defined(BOOST_MSVC) && BOOST_MSVC <= 1200
+#elif defined(BOOST_MSVC) && BOOST_MSVC < 1300
 
 #   define BOOST_TT_AUX_BOOL_TRAIT_VALUE_DECL(C) \
     typedef ::boost::integral_constant<bool,C> base_; \

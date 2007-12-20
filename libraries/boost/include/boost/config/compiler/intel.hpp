@@ -1,13 +1,13 @@
-//  (C) Copyright John Maddock 2001. 
-//  (C) Copyright Peter Dimov 2001. 
-//  (C) Copyright Jens Maurer 2001. 
-//  (C) Copyright David Abrahams 2002 - 2003. 
-//  (C) Copyright Aleksey Gurtovoy 2002 - 2003. 
-//  (C) Copyright Guillaume Melquiond 2002 - 2003. 
-//  (C) Copyright Beman Dawes 2003. 
-//  (C) Copyright Martin Wille 2003. 
-//  Use, modification and distribution are subject to the 
-//  Boost Software License, Version 1.0. (See accompanying file 
+//  (C) Copyright John Maddock 2001.
+//  (C) Copyright Peter Dimov 2001.
+//  (C) Copyright Jens Maurer 2001.
+//  (C) Copyright David Abrahams 2002 - 2003.
+//  (C) Copyright Aleksey Gurtovoy 2002 - 2003.
+//  (C) Copyright Guillaume Melquiond 2002 - 2003.
+//  (C) Copyright Beman Dawes 2003.
+//  (C) Copyright Martin Wille 2003.
+//  Use, modification and distribution are subject to the
+//  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 //  See http://www.boost.org for most recent version.
@@ -79,9 +79,9 @@
 // supports wchar_t natively. *BUT* there is a problem here: the standard
 // headers define this macro if they typedef wchar_t. Anyway, we're lucky
 // because they define it without a value, while Intel C++ defines it
-// to 1. So we can check its value to see if the macro was defined natively 
-// or not. 
-// Under UNIX, the situation is exactly the same, but the macro _WCHAR_T 
+// to 1. So we can check its value to see if the macro was defined natively
+// or not.
+// Under UNIX, the situation is exactly the same, but the macro _WCHAR_T
 // is used instead.
 #  if ((_WCHAR_T_DEFINED + 0) == 0) && ((_WCHAR_T + 0) == 0)
 #    define BOOST_NO_INTRINSIC_WCHAR_T
@@ -90,9 +90,12 @@
 
 #if defined(__GNUC__) && !defined(BOOST_FUNCTION_SCOPE_USING_DECLARATION_BREAKS_ADL)
 //
-// Figure out when Intel is emulating this gcc bug:
+// Figure out when Intel is emulating this gcc bug
+// (All Intel versions prior to 9.0.26, and versions
+// later than that if they are set up to emulate gcc 3.2
+// or earlier):
 //
-#  if ((__GNUC__ == 3) && (__GNUC_MINOR__ <= 2)) || (BOOST_INTEL <= 900)
+#  if ((__GNUC__ == 3) && (__GNUC_MINOR__ <= 2)) || (BOOST_INTEL < 900) || (__INTEL_COMPILER_BUILD_DATE < 20050912)
 #     define BOOST_FUNCTION_SCOPE_USING_DECLARATION_BREAKS_ADL
 #  endif
 #endif
@@ -141,7 +144,7 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 #endif
 //
 // last known and checked version:
-#if (BOOST_INTEL_CXX_VERSION > 900)
+#if (BOOST_INTEL_CXX_VERSION > 910)
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  elif defined(_MSC_VER)

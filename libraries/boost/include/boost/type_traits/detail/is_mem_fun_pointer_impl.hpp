@@ -14,12 +14,12 @@
 #ifndef BOOST_TT_DETAIL_IS_MEM_FUN_POINTER_IMPL_HPP_INCLUDED
 #define BOOST_TT_DETAIL_IS_MEM_FUN_POINTER_IMPL_HPP_INCLUDED
 
-#include "boost/config.hpp"
+#include <boost/config.hpp>
 
 #if defined(BOOST_TT_PREPROCESSING_MODE)
-#   include "boost/preprocessor/iterate.hpp"
-#   include "boost/preprocessor/enum_params.hpp"
-#   include "boost/preprocessor/comma_if.hpp"
+#   include <boost/preprocessor/iterate.hpp>
+#   include <boost/preprocessor/enum_params.hpp>
+#   include <boost/preprocessor/comma_if.hpp>
 #endif
 
 namespace boost {

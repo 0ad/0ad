@@ -63,14 +63,14 @@
  * This is the only part of the implementation that I don't like.
  * It can probably be improved upon by the reader...
 */
-namespace {
+
     inline bool
     isws (char c, char const * const wstr)
     {
         using namespace std;
         return (strchr(wstr,c) != NULL);
     }
-}
+
 
 namespace boost {
 

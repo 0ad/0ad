@@ -55,7 +55,7 @@ struct BOOST_ITERATOR_CATEGORY
     typedef typename detail::iterator_traits<Iterator>::iterator_category type;
 };
 
-# if BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
 template <>
 struct iterator_value<int>
 {

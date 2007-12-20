@@ -1,6 +1,6 @@
 // Boost.Function library
 
-//  Copyright Douglas Gregor 2001-2004. Use, modification and
+//  Copyright Douglas Gregor 2001-2006. Use, modification and
 //  distribution is subject to the Boost Software License, Version
 //  1.0. (See accompanying file LICENSE_1_0.txt or copy at
 //  http://www.boost.org/LICENSE_1_0.txt)
@@ -19,10 +19,10 @@
 #include <boost/assert.hpp>
 #include <boost/type_traits/is_integral.hpp>
 #include <boost/type_traits/composite_traits.hpp>
-#include <boost/type_traits/is_stateless.hpp>
 #include <boost/ref.hpp>
-#include <boost/pending/ct_if.hpp>
+#include <boost/mpl/if.hpp>
 #include <boost/detail/workaround.hpp>
+#include <boost/type_traits/alignment_of.hpp>
 #ifndef BOOST_NO_SFINAE
 #  include "boost/utility/enable_if.hpp"
 #else
@@ -105,41 +105,35 @@ inline void swap(function<Signature, Allocator>& f1,
 namespace boost {
   namespace detail {
     namespace function {
+      class X;
+
       /**
-       * A union of a function pointer and a void pointer. This is necessary
-       * because 5.2.10/6 allows reinterpret_cast<> to safely cast between
-       * function pointer types and 5.2.9/10 allows static_cast<> to safely
-       * cast between a void pointer and an object pointer. But it is not legal
-       * to cast between a function pointer and a void* (in either direction),
-       * so function requires a union of the two. */
-      union any_pointer
+       * A buffer used to store small function objects in
+       * boost::function. It is a union containing function pointers,
+       * object pointers, and a structure that resembles a bound
+       * member function pointer.
+       */
+      union function_buffer
       {
+        // For pointers to function objects
         void* obj_ptr;
+
+        // For pointers to std::type_info objects
+        // (get_functor_type_tag, check_functor_type_tag).
         const void* const_obj_ptr;
-        void (*func_ptr)();
-        char data[1];
+
+        // For function pointers of all kinds
+        mutable void (*func_ptr)();
+
+        // For bound member pointers
+        struct bound_memfunc_ptr_t {
+          void (X::*memfunc_ptr)(int);
+          void* obj_ptr;
+        } bound_memfunc_ptr;
+
+        // To relax aliasing constraints
+        mutable char data;
       };
-
-      inline any_pointer make_any_pointer(void* o)
-      {
-        any_pointer p;
-        p.obj_ptr = o;
-        return p;
-      }
-
-      inline any_pointer make_any_pointer(const void* o)
-      {
-        any_pointer p;
-        p.const_obj_ptr = o;
-        return p;
-      }
-
-      inline any_pointer make_any_pointer(void (*f)())
-      {
-        any_pointer p;
-        p.func_ptr = f;
-        return p;
-      }
 
       /**
        * The unusable class is a placeholder for unused function arguments
@@ -169,7 +163,8 @@ namespace boost {
       enum functor_manager_operation_type {
         clone_functor_tag,
         destroy_functor_tag,
-        check_functor_type_tag
+        check_functor_type_tag,
+        get_functor_type_tag
       };
 
       // Tags used to decide between different types of functions
@@ -177,55 +172,77 @@ namespace boost {
       struct function_obj_tag {};
       struct member_ptr_tag {};
       struct function_obj_ref_tag {};
-      struct stateless_function_obj_tag {};
 
       template<typename F>
       class get_function_tag
       {
-        typedef typename ct_if<(is_pointer<F>::value),
-                            function_ptr_tag,
-                            function_obj_tag>::type ptr_or_obj_tag;
+        typedef typename mpl::if_c<(is_pointer<F>::value),
+                                   function_ptr_tag,
+                                   function_obj_tag>::type ptr_or_obj_tag;
 
-        typedef typename ct_if<(is_member_pointer<F>::value),
-                            member_ptr_tag,
-                            ptr_or_obj_tag>::type ptr_or_obj_or_mem_tag;
+        typedef typename mpl::if_c<(is_member_pointer<F>::value),
+                                   member_ptr_tag,
+                                   ptr_or_obj_tag>::type ptr_or_obj_or_mem_tag;
 
-        typedef typename ct_if<(is_reference_wrapper<F>::value),
-                             function_obj_ref_tag,
-                             ptr_or_obj_or_mem_tag>::type or_ref_tag;
+        typedef typename mpl::if_c<(is_reference_wrapper<F>::value),
+                                   function_obj_ref_tag,
+                                   ptr_or_obj_or_mem_tag>::type or_ref_tag;
 
       public:
-        typedef typename ct_if<(is_stateless<F>::value),
-                            stateless_function_obj_tag,
-                            or_ref_tag>::type type;
+        typedef or_ref_tag type;
       };
 
       // The trivial manager does nothing but return the same pointer (if we
       // are cloning) or return the null pointer (if we are deleting).
       template<typename F>
-      struct trivial_manager
+      struct reference_manager
       {
-        static inline any_pointer
-        get(any_pointer f, functor_manager_operation_type op)
+        static inline void
+        get(const function_buffer& in_buffer, function_buffer& out_buffer, 
+            functor_manager_operation_type op)
         {
           switch (op) {
-          case clone_functor_tag: return f;
+          case clone_functor_tag: 
+            out_buffer.obj_ptr = in_buffer.obj_ptr;
+            return;
 
           case destroy_functor_tag:
-            return make_any_pointer(reinterpret_cast<void*>(0));
+            out_buffer.obj_ptr = 0;
+            return;
 
           case check_functor_type_tag:
             {
-              std::type_info* t = static_cast<std::type_info*>(f.obj_ptr);
-              return BOOST_FUNCTION_COMPARE_TYPE_ID(typeid(F), *t)?
-                f
-                : make_any_pointer(reinterpret_cast<void*>(0));
+              // DPG TBD: Since we're only storing a pointer, it's
+              // possible that the user could ask for a base class or
+              // derived class. Is that okay?
+              const std::type_info& check_type = 
+                *static_cast<const std::type_info*>(out_buffer.const_obj_ptr);
+              if (BOOST_FUNCTION_COMPARE_TYPE_ID(check_type, typeid(F)))
+                out_buffer.obj_ptr = in_buffer.obj_ptr;
+              else
+                out_buffer.obj_ptr = 0;
             }
-          }
+            return;
 
-          // Clears up a warning with GCC 3.2.3
-          return make_any_pointer(reinterpret_cast<void*>(0));
+          case get_functor_type_tag:
+            out_buffer.const_obj_ptr = &typeid(F);
+            return;
+          }
         }
+      };
+
+      /**
+       * Determine if boost::function can use the small-object
+       * optimization with the function object type F.
+       */
+      template<typename F>
+      struct function_allows_small_object_optimization
+      {
+        BOOST_STATIC_CONSTANT
+          (bool, 
+           value = ((sizeof(F) <= sizeof(function_buffer) &&
+                     (alignment_of<function_buffer>::value 
+                      % alignment_of<F>::value == 0))));
       };
 
       /**
@@ -239,30 +256,57 @@ namespace boost {
         typedef Functor functor_type;
 
         // For function pointers, the manager is trivial
-        static inline any_pointer
-        manager(any_pointer function_ptr,
-                functor_manager_operation_type op,
-                function_ptr_tag)
+        static inline void
+        manager(const function_buffer& in_buffer, function_buffer& out_buffer, 
+                functor_manager_operation_type op, function_ptr_tag)
         {
           if (op == clone_functor_tag)
-            return function_ptr;
-          else
-            return make_any_pointer(static_cast<void (*)()>(0));
+            out_buffer.func_ptr = in_buffer.func_ptr;
+          else if (op == destroy_functor_tag)
+            out_buffer.func_ptr = 0;
+          else /* op == check_functor_type_tag */ {
+            const std::type_info& check_type = 
+              *static_cast<const std::type_info*>(out_buffer.const_obj_ptr);
+            if (BOOST_FUNCTION_COMPARE_TYPE_ID(check_type, typeid(Functor)))
+              out_buffer.obj_ptr = &in_buffer.func_ptr;
+            else
+              out_buffer.obj_ptr = 0;
+          }
         }
 
-        // For function object pointers, we clone the pointer to each
-        // function has its own version.
-        static inline any_pointer
-        manager(any_pointer function_obj_ptr,
-                functor_manager_operation_type op,
-                function_obj_tag)
+        // Function objects that fit in the small-object buffer.
+        static inline void
+        manager(const function_buffer& in_buffer, function_buffer& out_buffer, 
+                functor_manager_operation_type op, mpl::true_)
+        {
+          if (op == clone_functor_tag) {
+            const functor_type* in_functor = 
+              reinterpret_cast<const functor_type*>(&in_buffer.data);
+            new ((void*)&out_buffer.data) functor_type(*in_functor);
+          } else if (op == destroy_functor_tag) {
+            // Some compilers (Borland, vc6, ...) are unhappy with ~functor_type.
+            reinterpret_cast<functor_type*>(&out_buffer.data)->~Functor();
+          } else /* op == check_functor_type_tag */ {
+            const std::type_info& check_type = 
+              *static_cast<const std::type_info*>(out_buffer.const_obj_ptr);
+            if (BOOST_FUNCTION_COMPARE_TYPE_ID(check_type, typeid(Functor)))
+              out_buffer.obj_ptr = &in_buffer.data;
+            else
+              out_buffer.obj_ptr = 0;
+          }
+        }
+        
+        // Function objects that require heap allocation
+        static inline void
+        manager(const function_buffer& in_buffer, function_buffer& out_buffer, 
+                functor_manager_operation_type op, mpl::false_)
         {
 #ifndef BOOST_NO_STD_ALLOCATOR
-        typedef typename Allocator::template rebind<functor_type>::other
-          allocator_type;
-        typedef typename allocator_type::pointer pointer_type;
+          typedef typename Allocator::template rebind<functor_type>::other
+            allocator_type;
+          typedef typename allocator_type::pointer pointer_type;
 #else
-        typedef functor_type* pointer_type;
+          typedef functor_type* pointer_type;
 #endif // BOOST_NO_STD_ALLOCATOR
 
 #  ifndef BOOST_NO_STD_ALLOCATOR
@@ -270,8 +314,10 @@ namespace boost {
 #  endif // BOOST_NO_STD_ALLOCATOR
 
           if (op == clone_functor_tag) {
-            functor_type* f =
-              static_cast<functor_type*>(function_obj_ptr.obj_ptr);
+            // GCC 2.95.3 gets the CV qualifiers wrong here, so we
+            // can't do the static_cast that we should do.
+            const functor_type* f =
+              (const functor_type*)(in_buffer.obj_ptr);
 
             // Clone the functor
 #  ifndef BOOST_NO_STD_ALLOCATOR
@@ -283,12 +329,11 @@ namespace boost {
 #  else
             functor_type* new_f = new functor_type(*f);
 #  endif // BOOST_NO_STD_ALLOCATOR
-            return make_any_pointer(static_cast<void*>(new_f));
-          }
-          else {
+            out_buffer.obj_ptr = new_f;
+          } else if (op == destroy_functor_tag) {
             /* Cast from the void pointer to the functor pointer type */
             functor_type* f =
-              reinterpret_cast<functor_type*>(function_obj_ptr.obj_ptr);
+              static_cast<functor_type*>(out_buffer.obj_ptr);
 
 #  ifndef BOOST_NO_STD_ALLOCATOR
             /* Cast from the functor pointer type to the allocator's pointer
@@ -301,26 +346,44 @@ namespace boost {
 #  else
             delete f;
 #  endif // BOOST_NO_STD_ALLOCATOR
-
-            return make_any_pointer(static_cast<void*>(0));
+            out_buffer.obj_ptr = 0;
+          } else /* op == check_functor_type_tag */ {
+            const std::type_info& check_type = 
+              *static_cast<const std::type_info*>(out_buffer.const_obj_ptr);
+            if (BOOST_FUNCTION_COMPARE_TYPE_ID(check_type, typeid(Functor)))
+              out_buffer.obj_ptr = in_buffer.obj_ptr;
+            else
+              out_buffer.obj_ptr = 0;
           }
         }
+
+        // For function objects, we determine whether the function
+        // object can use the small-object optimization buffer or
+        // whether we need to allocate it on the heap.
+        static inline void
+        manager(const function_buffer& in_buffer, function_buffer& out_buffer, 
+                functor_manager_operation_type op, function_obj_tag)
+        {
+          manager(in_buffer, out_buffer, op,
+                  mpl::bool_<(function_allows_small_object_optimization<functor_type>::value)>());
+        }
+
       public:
         /* Dispatch to an appropriate manager based on whether we have a
            function pointer or a function object pointer. */
-        static any_pointer
-        manage(any_pointer functor_ptr, functor_manager_operation_type op)
+        static inline void
+        manage(const function_buffer& in_buffer, function_buffer& out_buffer, 
+               functor_manager_operation_type op)
         {
-          if (op == check_functor_type_tag) {
-            std::type_info* type =
-              static_cast<std::type_info*>(functor_ptr.obj_ptr);
-            return (BOOST_FUNCTION_COMPARE_TYPE_ID(typeid(Functor), *type)?
-                    functor_ptr
-                    : make_any_pointer(reinterpret_cast<void*>(0)));
-          }
-          else {
-            typedef typename get_function_tag<functor_type>::type tag_type;
-            return manager(functor_ptr, op, tag_type());
+          typedef typename get_function_tag<functor_type>::type tag_type;
+          switch (op) {
+          case get_functor_type_tag:
+            out_buffer.const_obj_ptr = &typeid(functor_type);
+            return;
+
+          default:
+            manager(in_buffer, out_buffer, op, tag_type());
+            return;
           }
         }
       };
@@ -386,6 +449,18 @@ namespace boost {
           else return true;
         }
 #endif // BOOST_NO_SFINAE
+
+      /**
+       * Stores the "manager" portion of the vtable for a
+       * boost::function object.
+       */
+      struct vtable_base
+      {
+        vtable_base() : manager(0) { }
+        void (*manager)(const function_buffer& in_buffer, 
+                        function_buffer& out_buffer, 
+                        functor_manager_operation_type op);
+      };
     } // end namespace function
   } // end namespace detail
 
@@ -398,62 +473,61 @@ namespace boost {
 class function_base
 {
 public:
-  function_base() : manager(0)
-  {
-    functor.obj_ptr = 0;
-  }
+  function_base() : vtable(0) { }
 
-  // Is this function empty?
-  bool empty() const { return !manager; }
+  /** Determine if the function is empty (i.e., has no target). */
+  bool empty() const { return !vtable; }
+
+  /** Retrieve the type of the stored function object, or typeid(void)
+      if this is empty. */
+  const std::type_info& target_type() const
+  {
+    if (!vtable) return typeid(void);
+
+    detail::function::function_buffer type;
+    vtable->manager(functor, type, detail::function::get_functor_type_tag);
+    return *static_cast<const std::type_info*>(type.const_obj_ptr);
+  }
 
   template<typename Functor>
     Functor* target()
     {
-      if (!manager) return 0;
+      if (!vtable) return 0;
 
-      detail::function::any_pointer result =
-        manager(detail::function::make_any_pointer(&typeid(Functor)),
-                detail::function::check_functor_type_tag);
-      if (!result.obj_ptr) return 0;
-      else {
-        typedef typename detail::function::get_function_tag<Functor>::type tag;
-        return get_functor_pointer<Functor>(tag(), 0);
-      }
+      detail::function::function_buffer type_result;
+      type_result.const_obj_ptr = &typeid(Functor);
+      vtable->manager(functor, type_result, 
+                      detail::function::check_functor_type_tag);
+      return static_cast<Functor*>(type_result.obj_ptr);
     }
 
   template<typename Functor>
-
 #if defined(BOOST_MSVC) && BOOST_WORKAROUND(BOOST_MSVC, < 1300)
     const Functor* target( Functor * = 0 ) const
 #else
     const Functor* target() const
 #endif
     {
-      if (!manager) return 0;
+      if (!vtable) return 0;
 
-      detail::function::any_pointer result =
-        manager(detail::function::make_any_pointer(&typeid(Functor)),
-                detail::function::check_functor_type_tag);
-      if (!result.obj_ptr) return 0;
-      else {
-        typedef typename detail::function::get_function_tag<Functor>::type tag;
-
-#if defined(BOOST_MSVC) && BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-        return get_functor_pointer(tag(), 0, (Functor*)0);
-#else
-        return get_functor_pointer<Functor>(tag(), 0);
-#endif
-      }
+      detail::function::function_buffer type_result;
+      type_result.const_obj_ptr = &typeid(Functor);
+      vtable->manager(functor, type_result, 
+                      detail::function::check_functor_type_tag);
+      // GCC 2.95.3 gets the CV qualifiers wrong here, so we
+      // can't do the static_cast that we should do.
+      return (const Functor*)(type_result.obj_ptr);
     }
 
   template<typename F>
     bool contains(const F& f) const
     {
 #if defined(BOOST_MSVC) && BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-      if (const F* fp = this->target( (F*)0 )) {
+      if (const F* fp = this->target( (F*)0 ))
 #else
-      if (const F* fp = this->template target<F>()) {
+      if (const F* fp = this->template target<F>())
 #endif
+      {
         return function_equal(*fp, f);
       } else {
         return false;
@@ -484,44 +558,8 @@ public:
 #endif
 
 public: // should be protected, but GCC 2.95.3 will fail to allow access
-  detail::function::any_pointer (*manager)(
-    detail::function::any_pointer,
-    detail::function::functor_manager_operation_type);
-  detail::function::any_pointer functor;
-
-private:
-  template<typename Functor>
-#if defined(BOOST_MSVC) && BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-    Functor* get_functor_pointer(detail::function::function_ptr_tag, int, Functor * = 0)
-#else
-    Functor* get_functor_pointer(detail::function::function_ptr_tag, int)
-#endif
-    { return reinterpret_cast<Functor*>(&functor.func_ptr); }
-
-  template<typename Functor, typename Tag>
-#if defined(BOOST_MSVC) && BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-    Functor* get_functor_pointer(Tag, long, Functor * = 0)
-#else
-    Functor* get_functor_pointer(Tag, long)
-#endif
-    { return static_cast<Functor*>(functor.obj_ptr); }
-
-  template<typename Functor>
-    const Functor*
-#if defined(BOOST_MSVC) && BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-    get_functor_pointer(detail::function::function_ptr_tag, int, Functor * = 0) const
-#else
-    get_functor_pointer(detail::function::function_ptr_tag, int) const
-#endif
-    { return reinterpret_cast<const Functor*>(&functor.func_ptr); }
-
-  template<typename Functor, typename Tag>
-#if defined(BOOST_MSVC) && BOOST_WORKAROUND(BOOST_MSVC, < 1300)
-    const Functor* get_functor_pointer(Tag, long, Functor * = 0) const
-#else
-    const Functor* get_functor_pointer(Tag, long) const
-#endif
-    { return static_cast<const Functor*>(functor.const_obj_ptr); }
+  detail::function::vtable_base* vtable;
+  mutable detail::function::function_buffer functor;
 };
 
 /**

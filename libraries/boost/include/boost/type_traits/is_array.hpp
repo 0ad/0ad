@@ -14,17 +14,17 @@
 #ifndef BOOST_TT_IS_ARRAY_HPP_INCLUDED
 #define BOOST_TT_IS_ARRAY_HPP_INCLUDED
 
-#include "boost/type_traits/config.hpp"
+#include <boost/type_traits/config.hpp>
 
 #ifdef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-#   include "boost/type_traits/detail/yes_no_type.hpp"
-#   include "boost/type_traits/detail/wrap.hpp"
+#   include <boost/type_traits/detail/yes_no_type.hpp>
+#   include <boost/type_traits/detail/wrap.hpp>
 #endif
 
 #include <cstddef>
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -85,6 +85,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_array,T,::boost::detail::is_array_impl<T>::value
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_ARRAY_HPP_INCLUDED

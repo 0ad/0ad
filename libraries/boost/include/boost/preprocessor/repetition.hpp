@@ -20,6 +20,7 @@
 # include <boost/preprocessor/repetition/enum_params_with_a_default.hpp>
 # include <boost/preprocessor/repetition/enum_params_with_defaults.hpp>
 # include <boost/preprocessor/repetition/enum_shifted.hpp>
+# include <boost/preprocessor/repetition/enum_shifted_binary_params.hpp>
 # include <boost/preprocessor/repetition/enum_shifted_params.hpp>
 # include <boost/preprocessor/repetition/enum_trailing.hpp>
 # include <boost/preprocessor/repetition/enum_trailing_binary_params.hpp>

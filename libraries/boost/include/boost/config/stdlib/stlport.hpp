@@ -10,7 +10,7 @@
 //  STLPort standard library config:
 
 #if !defined(__SGI_STL_PORT) && !defined(_STLPORT_VERSION)
-#  include <utility>
+#  include <boost/config/no_tr1/utility.hpp>
 #  if !defined(__SGI_STL_PORT) && !defined(_STLPORT_VERSION)
 #      error "This is not STLPort!"
 #  endif

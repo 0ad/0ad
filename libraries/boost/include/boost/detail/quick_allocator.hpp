@@ -71,7 +71,15 @@ template<unsigned size, unsigned align_> struct allocator_impl
 #endif
 
 #ifdef BOOST_HAS_THREADS
-    static lightweight_mutex mutex;
+
+    static lightweight_mutex & mutex()
+    {
+        static lightweight_mutex m;
+        return m;
+    }
+
+    static lightweight_mutex * mutex_init;
+
 #endif
 
     static block * free;
@@ -81,7 +89,7 @@ template<unsigned size, unsigned align_> struct allocator_impl
     static inline void * alloc()
     {
 #ifdef BOOST_HAS_THREADS
-        lightweight_mutex::scoped_lock lock(mutex);
+        lightweight_mutex::scoped_lock lock( mutex() );
 #endif
         if(block * x = free)
         {
@@ -111,7 +119,7 @@ template<unsigned size, unsigned align_> struct allocator_impl
         else
         {
 #ifdef BOOST_HAS_THREADS
-            lightweight_mutex::scoped_lock lock(mutex);
+            lightweight_mutex::scoped_lock lock( mutex() );
 #endif
             if(block * x = free)
             {
@@ -136,7 +144,7 @@ template<unsigned size, unsigned align_> struct allocator_impl
         if(pv != 0) // 18.4.1.1/13
         {
 #ifdef BOOST_HAS_THREADS
-            lightweight_mutex::scoped_lock lock(mutex);
+            lightweight_mutex::scoped_lock lock( mutex() );
 #endif
             block * pb = static_cast<block *>(pv);
             pb->next = free;
@@ -153,7 +161,7 @@ template<unsigned size, unsigned align_> struct allocator_impl
         else if(pv != 0) // 18.4.1.1/13
         {
 #ifdef BOOST_HAS_THREADS
-            lightweight_mutex::scoped_lock lock(mutex);
+            lightweight_mutex::scoped_lock lock( mutex() );
 #endif
             block * pb = static_cast<block *>(pv);
             pb->next = free;
@@ -163,8 +171,10 @@ template<unsigned size, unsigned align_> struct allocator_impl
 };
 
 #ifdef BOOST_HAS_THREADS
+
 template<unsigned size, unsigned align_>
-  lightweight_mutex allocator_impl<size, align_>::mutex;
+  lightweight_mutex * allocator_impl<size, align_>::mutex_init = &allocator_impl<size, align_>::mutex();
+
 #endif
 
 template<unsigned size, unsigned align_>

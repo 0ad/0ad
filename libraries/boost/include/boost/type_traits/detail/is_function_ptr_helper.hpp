@@ -15,12 +15,12 @@
 #ifndef BOOST_TT_DETAIL_IS_FUNCTION_PTR_HELPER_HPP_INCLUDED
 #define BOOST_TT_DETAIL_IS_FUNCTION_PTR_HELPER_HPP_INCLUDED
 
-#include "boost/type_traits/config.hpp"
+#include <boost/type_traits/config.hpp>
 
 #if defined(BOOST_TT_PREPROCESSING_MODE)
-#   include "boost/preprocessor/iterate.hpp"
-#   include "boost/preprocessor/enum_params.hpp"
-#   include "boost/preprocessor/comma_if.hpp"
+#   include <boost/preprocessor/iterate.hpp>
+#   include <boost/preprocessor/enum_params.hpp>
+#   include <boost/preprocessor/comma_if.hpp>
 #endif
 
 namespace boost {

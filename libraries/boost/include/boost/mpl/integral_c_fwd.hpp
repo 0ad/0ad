@@ -2,7 +2,7 @@
 #ifndef BOOST_MPL_INTEGRAL_C_FWD_HPP_INCLUDED
 #define BOOST_MPL_INTEGRAL_C_FWD_HPP_INCLUDED
 
-// Copyright Aleksey Gurtovoy 2000-2004
+// Copyright Aleksey Gurtovoy 2000-2006
 //
 // Distributed under the Boost Software License, Version 1.0. 
 // (See accompanying file LICENSE_1_0.txt or copy at 
@@ -11,15 +11,15 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/integral_c_fwd.hpp,v $
-// $Date: 2004/09/28 13:56:58 $
-// $Revision: 1.4 $
+// $Date: 2006/11/08 21:44:27 $
+// $Revision: 1.4.14.1 $
 
 #include <boost/mpl/aux_/config/workaround.hpp>
 #include <boost/mpl/aux_/adl_barrier.hpp>
 
 BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_OPEN
 
-#if BOOST_WORKAROUND(__HP_aCC, BOOST_TESTED_AT(53800))
+#if BOOST_WORKAROUND(__HP_aCC, <= 53800)
 // the type of non-type template arguments may not depend on template arguments
 template< typename T, long N > struct integral_c;
 #else

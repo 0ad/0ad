@@ -13,8 +13,8 @@ namespace boost { namespace mpl {
 
 template< typename T, bool has_type_ >
 struct quote_impl
-    : T
 {
+    typedef typename T::type type;
 };
 
 template< typename T >

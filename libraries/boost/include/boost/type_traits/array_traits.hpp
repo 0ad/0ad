@@ -10,6 +10,6 @@
 #ifndef BOOST_TT_ARRAY_TRAITS_HPP_INCLUDED
 #define BOOST_TT_ARRAY_TRAITS_HPP_INCLUDED
 
-#include "boost/type_traits/is_array.hpp"
+#include <boost/type_traits/is_array.hpp>
 
 #endif // BOOST_TT_ARRAY_TRAITS_HPP_INCLUDED

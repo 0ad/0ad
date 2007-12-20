@@ -2,7 +2,7 @@
 #ifndef BOOST_MPL_HAS_XXX_HPP_INCLUDED
 #define BOOST_MPL_HAS_XXX_HPP_INCLUDED
 
-// Copyright Aleksey Gurtovoy 2002-2004
+// Copyright Aleksey Gurtovoy 2002-2006
 // Copyright David Abrahams 2002-2003
 //
 // Distributed under the Boost Software License, Version 1.0. 
@@ -12,8 +12,8 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/has_xxx.hpp,v $
-// $Date: 2005/06/15 10:43:23 $
-// $Revision: 1.4 $
+// $Date: 2006/11/09 01:05:31 $
+// $Revision: 1.4.6.1 $
 
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/aux_/type_wrapper.hpp>
@@ -144,9 +144,10 @@ template<> struct trait<T> \
 // SFINAE-based implementations below are derived from a USENET newsgroup's 
 // posting by Rani Sharoni (comp.lang.c++.moderated, 2002-03-17 07:45:09 PST)
 
-#   elif BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1400))
+#   elif BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1400)) \
+      || BOOST_WORKAROUND(__IBMCPP__, <= 700)
 
-// MSVC 7.1+
+// MSVC 7.1+ & VACPP
 
 // agurt, 15/jun/05: replace overload-based SFINAE implementation with SFINAE
 // applied to partial specialization to fix some apparently random failures 

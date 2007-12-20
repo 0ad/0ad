@@ -9,17 +9,17 @@
 #ifndef BOOST_TT_HAS_TRIVIAL_ASSIGN_HPP_INCLUDED
 #define BOOST_TT_HAS_TRIVIAL_ASSIGN_HPP_INCLUDED
 
-#include "boost/type_traits/config.hpp"
-#include "boost/type_traits/intrinsics.hpp"
-#include "boost/type_traits/is_pod.hpp"
-#include "boost/type_traits/is_const.hpp"
-#include "boost/type_traits/is_volatile.hpp"
-#include "boost/type_traits/detail/ice_and.hpp"
-#include "boost/type_traits/detail/ice_or.hpp"
-#include "boost/type_traits/detail/ice_not.hpp"
+#include <boost/type_traits/config.hpp>
+#include <boost/type_traits/intrinsics.hpp>
+#include <boost/type_traits/is_pod.hpp>
+#include <boost/type_traits/is_const.hpp>
+#include <boost/type_traits/is_volatile.hpp>
+#include <boost/type_traits/detail/ice_and.hpp>
+#include <boost/type_traits/detail/ice_or.hpp>
+#include <boost/type_traits/detail/ice_not.hpp>
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -45,6 +45,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(has_trivial_assign,T,::boost::detail::has_trivial_a
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_HAS_TRIVIAL_ASSIGN_HPP_INCLUDED

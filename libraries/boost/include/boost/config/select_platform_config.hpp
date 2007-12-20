@@ -57,6 +57,10 @@
 // AmigaOS
 #  define BOOST_PLATFORM_CONFIG "boost/config/platform/amigaos.hpp"
 
+#elif defined(__QNXNTO__)
+// QNX:
+#  define BOOST_PLATFORM_CONFIG "boost/config/platform/qnxnto.hpp"
+
 #else
 
 #  if defined(unix) \

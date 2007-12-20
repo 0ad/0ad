@@ -51,12 +51,12 @@
 #include <boost/static_assert.hpp>
 #include <boost/type_traits/detail/yes_no_type.hpp>
 #include <boost/type_traits/is_class.hpp>
-#include "boost/type_traits/detail/ice_and.hpp"
+#include <boost/type_traits/detail/ice_and.hpp>
 #ifdef BOOST_NO_IS_ABSTRACT
 #include <boost/type_traits/is_polymorphic.hpp>
 #endif
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 
 namespace boost {
@@ -132,6 +132,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_abstract,T,::boost::detail::is_polymorphic_imp<T
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif //BOOST_TT_IS_ABSTRACT_CLASS_HPP

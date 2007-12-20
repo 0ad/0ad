@@ -22,7 +22,7 @@ namespace boost { namespace detail {
 //
 template <bool GreaterEqual, bool LessEqual>
 struct minimum_category_impl
-# if BOOST_WORKAROUND(BOOST_MSVC, == 1200)
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
 {
     template <class T1, class T2> struct apply
     {
@@ -77,12 +77,12 @@ template <class T1 = mpl::_1, class T2 = mpl::_2>
 struct minimum_category
 {
     typedef minimum_category_impl< 
-# if BOOST_WORKAROUND(BOOST_MSVC, == 1200) // ETI workaround
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300) // ETI workaround
         is_same<T2,int>::value ||
 # endif 
         ::boost::is_convertible<T1,T2>::value
       , ::boost::is_convertible<T2,T1>::value
-# if BOOST_WORKAROUND(BOOST_MSVC, == 1200) // ETI workaround
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300) // ETI workaround
         || is_same<T1,int>::value
 # endif 
     > outer;
@@ -103,7 +103,7 @@ struct minimum_category<mpl::_1,mpl::_2>
     BOOST_MPL_AUX_LAMBDA_SUPPORT_SPEC(2,minimum_category,(mpl::_1,mpl::_2))
 };
 
-# if BOOST_WORKAROUND(BOOST_MSVC, == 1200) // ETI workaround
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300) // ETI workaround
 template <>
 struct minimum_category<int,int>
 {

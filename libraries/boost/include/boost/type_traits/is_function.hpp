@@ -11,19 +11,19 @@
 #ifndef BOOST_TT_IS_FUNCTION_HPP_INCLUDED
 #define BOOST_TT_IS_FUNCTION_HPP_INCLUDED
 
-#include "boost/type_traits/is_reference.hpp"
-#include "boost/type_traits/detail/false_result.hpp"
-#include "boost/config.hpp"
+#include <boost/type_traits/is_reference.hpp>
+#include <boost/type_traits/detail/false_result.hpp>
+#include <boost/config.hpp>
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
-#   include "boost/type_traits/detail/is_function_ptr_helper.hpp"
+#   include <boost/type_traits/detail/is_function_ptr_helper.hpp>
 #else
-#   include "boost/type_traits/detail/is_function_ptr_tester.hpp"
-#   include "boost/type_traits/detail/yes_no_type.hpp"
+#   include <boost/type_traits/detail/is_function_ptr_tester.hpp>
+#   include <boost/type_traits/detail/yes_no_type.hpp>
 #endif
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 // is a type a function?
 // Please note that this implementation is unnecessarily complex:
@@ -83,6 +83,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_function,T,::boost::detail::is_function_impl<T>:
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_FUNCTION_HPP_INCLUDED

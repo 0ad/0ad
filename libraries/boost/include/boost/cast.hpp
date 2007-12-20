@@ -44,7 +44,7 @@
 #define BOOST_CAST_HPP
 
 # include <boost/config.hpp>
-# include <cassert>
+# include <boost/assert.hpp>
 # include <typeinfo>
 # include <boost/type.hpp>
 # include <boost/limits.hpp>
@@ -55,7 +55,7 @@
 //  appear in the function's argument list.
 //
 //  TODO: Add this to config.hpp?
-# if defined(BOOST_MSVC) && BOOST_MSVC <= 1200 // 1200 = VC6
+# if defined(BOOST_MSVC) && BOOST_MSVC < 1300
 #  define BOOST_EXPLICIT_DEFAULT_TARGET , ::boost::type<Target>* = 0
 # else
 #  define BOOST_EXPLICIT_DEFAULT_TARGET
@@ -82,17 +82,19 @@ namespace boost
 
 //  polymorphic_downcast  ----------------------------------------------------//
 
-    //  assert() checked polymorphic downcast.  Crosscasts prohibited.
+    //  BOOST_ASSERT() checked polymorphic downcast.  Crosscasts prohibited.
 
-    //  WARNING: Because this cast uses assert(), it violates the One Definition
-    //  Rule if NDEBUG is inconsistently defined across translation units.
+    //  WARNING: Because this cast uses BOOST_ASSERT(), it violates
+    //  the One Definition Rule if used in multiple translation units
+    //  where BOOST_DISABLE_ASSERTS, BOOST_ENABLE_ASSERT_HANDLER
+    //  NDEBUG are defined inconsistently.
 
     //  Contributed by Dave Abrahams
 
     template <class Target, class Source>
     inline Target polymorphic_downcast(Source* x BOOST_EXPLICIT_DEFAULT_TARGET)
     {
-        assert( dynamic_cast<Target>(x) == x );  // detect logic error
+        BOOST_ASSERT( dynamic_cast<Target>(x) == x );  // detect logic error
         return static_cast<Target>(x);
     }
 

@@ -50,6 +50,11 @@ private:
     typename super_t::reference dereference() const
         { return *(m_elt_iter + *this->base()); }
 
+#ifndef BOOST_NO_MEMBER_TEMPLATE_FRIENDS
+    template <class,class> friend class permutation_iterator;
+#else
+ public:
+#endif 
     ElementIterator m_elt_iter;
 };
 

@@ -1,7 +1,7 @@
 
 // NO INCLUDE GUARDS, THE HEADER IS INTENDED FOR MULTIPLE INCLUSION
 
-// Copyright Aleksey Gurtovoy 2000-2004
+// Copyright Aleksey Gurtovoy 2000-2006
 //
 // Distributed under the Boost Software License, Version 1.0. 
 // (See accompanying file LICENSE_1_0.txt or copy at 
@@ -10,12 +10,13 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/vector/aux_/include_preprocessed.hpp,v $
-// $Date: 2004/11/28 01:52:12 $
-// $Revision: 1.4 $
+// $Date: 2006/11/09 01:21:03 $
+// $Revision: 1.4.8.1 $
 
 #include <boost/mpl/aux_/config/typeof.hpp>
 #include <boost/mpl/aux_/config/ctps.hpp>
 #include <boost/mpl/aux_/config/preprocessor.hpp>
+#include <boost/mpl/aux_/config/workaround.hpp>
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/stringize.hpp>
@@ -40,7 +41,13 @@
 #endif
 
 
+#if BOOST_WORKAROUND(__IBMCPP__, BOOST_TESTED_AT(700))
+#   define AUX778076_INCLUDE_STRING BOOST_PP_STRINGIZE(boost/mpl/vector/aux_/preprocessed/AUX778076_HEADER)
+#   include AUX778076_INCLUDE_STRING
+#   undef AUX778076_INCLUDE_STRING
+#else
 #   include BOOST_PP_STRINGIZE(boost/mpl/vector/aux_/preprocessed/AUX778076_HEADER)
+#endif
 
 #   undef AUX778076_HEADER
 #   undef AUX778076_INCLUDE_DIR

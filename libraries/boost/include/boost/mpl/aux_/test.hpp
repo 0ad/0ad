@@ -11,18 +11,19 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/aux_/test.hpp,v $
-// $Date: 2004/09/02 15:40:44 $
-// $Revision: 1.3 $
+// $Date: 2006/02/28 22:56:33 $
+// $Revision: 1.4 $
 
 #include <boost/mpl/aux_/test/test_case.hpp>
 #include <boost/mpl/aux_/test/data.hpp>
 #include <boost/mpl/aux_/test/assert.hpp>
+#include <boost/detail/lightweight_test.hpp>
 
 #include <boost/type_traits/is_same.hpp>
 
 int main()
 {
-    return 0;
+    return boost::report_errors();
 }
 
 using namespace boost;

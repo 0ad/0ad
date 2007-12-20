@@ -9,11 +9,11 @@
 #ifndef BOOST_TT_ALIGNMENT_OF_HPP_INCLUDED
 #define BOOST_TT_ALIGNMENT_OF_HPP_INCLUDED
 
-#include "boost/config.hpp"
+#include <boost/config.hpp>
 #include <cstddef>
 
 // should be the last #include
-#include "boost/type_traits/detail/size_t_trait_def.hpp"
+#include <boost/type_traits/detail/size_t_trait_def.hpp>
 
 #ifdef BOOST_MSVC
 #   pragma warning(push)
@@ -51,7 +51,7 @@ struct alignment_of_impl
 {
     BOOST_STATIC_CONSTANT(std::size_t, value =
         (::boost::detail::alignment_logic<
-            sizeof(detail::alignment_of_hack<T>) - sizeof(T),
+            sizeof(::boost::detail::alignment_of_hack<T>) - sizeof(T),
             sizeof(T)
         >::value));
 };
@@ -94,7 +94,7 @@ BOOST_TT_AUX_SIZE_T_TRAIT_SPEC1(alignment_of,void const volatile,0)
 #   pragma warning(pop)
 #endif
 
-#include "boost/type_traits/detail/size_t_trait_undef.hpp"
+#include <boost/type_traits/detail/size_t_trait_undef.hpp>
 
 #endif // BOOST_TT_ALIGNMENT_OF_HPP_INCLUDED
 

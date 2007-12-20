@@ -14,8 +14,8 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/aux_/numeric_op.hpp,v $
-// $Date: 2004/12/20 19:17:06 $
-// $Revision: 1.9 $
+// $Date: 2005/08/25 16:27:21 $
+// $Revision: 1.10 $
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
 #   include <boost/mpl/numeric_cast.hpp>
@@ -145,7 +145,7 @@ template<> struct AUX778076_OP_IMPL_NAME<integral_c_tag,na>
 
 
 #if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION) \
-    && BOOST_WORKAROUND(BOOST_MSVC, != 1200)
+    && BOOST_WORKAROUND(BOOST_MSVC, >= 1300)
 template< typename T > struct AUX778076_OP_TAG_NAME
     : tag<T,na>
 {

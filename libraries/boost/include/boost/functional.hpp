@@ -1,20 +1,12 @@
 // ------------------------------------------------------------------------------
+// Copyright (c) 2000 Cadenza New Zealand Ltd
+// Distributed under the Boost Software License, Version 1.0. (See accompany-
+// ing file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+// ------------------------------------------------------------------------------
 // Boost functional.hpp header file
 // See http://www.boost.org/libs/functional for documentation.
 // ------------------------------------------------------------------------------
-// Copyright (c) 2000
-// Cadenza New Zealand Ltd
-//
-// Permission to use, copy, modify, distribute and sell this software
-// and its documentation for any purpose is hereby granted without
-// fee, provided that the above copyright notice appears in all copies
-// and that both the copyright notice and this permission notice
-// appear in supporting documentation.  Cadenza New Zealand Ltd makes
-// no representations about the suitability of this software for any
-// purpose.  It is provided "as is" without express or implied
-// warranty.
-// ------------------------------------------------------------------------------
-// $Id: functional.hpp,v 1.4 2002/12/27 16:51:52 beman_dawes Exp $
+// $Id: functional.hpp,v 1.4.20.1 2006/12/02 14:17:26 andreas_huber69 Exp $
 // ------------------------------------------------------------------------------
 
 #ifndef BOOST_FUNCTIONAL_HPP

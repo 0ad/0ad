@@ -58,6 +58,12 @@ public:
         return p;
     }
 
+//  Note: No, you don't need to initialize _internal_weak_this
+//
+//  Please read the documentation, not the code
+//
+//  http://www.boost.org/libs/smart_ptr/enable_shared_from_this.html
+
     typedef T _internal_element_type; // for bcc 5.5.1
     mutable weak_ptr<_internal_element_type> _internal_weak_this;
 };

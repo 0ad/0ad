@@ -1,8 +1,11 @@
 //  (C) Copyright John Maddock 2001 - 2003. 
 //  (C) Copyright Jens Maurer 2001 - 2003. 
+//  (C) Copyright John Maddock 2001 - 2003. 
+//  (C) Copyright Jens Maurer 2001 - 2003. 
 //  (C) Copyright Aleksey Gurtovoy 2002. 
 //  (C) Copyright David Abrahams 2002 - 2003. 
 //  (C) Copyright Toon Knapen 2003. 
+//  (C) Copyright Boris Gubenko 2006.
 //  Use, modification and distribution are subject to the 
 //  Boost Software License, Version 1.0. (See accompanying file 
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -10,6 +13,10 @@
 //  See http://www.boost.org for most recent version.
 
 //  HP aCC C++ compiler setup:
+
+#if (__HP_aCC >= 61200) && defined(__EDG__)
+#include "boost/config/compiler/common_edg.hpp"
+#endif
 
 #if (__HP_aCC <= 33100)
 #    define BOOST_NO_INTEGRAL_INT64_T
@@ -27,14 +34,13 @@
 #    define BOOST_NO_USING_DECLARATION_OVERLOADS_FROM_TYPENAME_BASE
 #endif
 
-#if (__HP_aCC <= 33900) || !defined(BOOST_STRICT_CONFIG)
+#if (__HP_aCC < 60000) 
 #    define BOOST_NO_UNREACHABLE_RETURN_DETECTION
 #    define BOOST_NO_TEMPLATE_TEMPLATES
 #    define BOOST_NO_SWPRINTF
 #    define BOOST_NO_DEPENDENT_TYPES_IN_TEMPLATE_VALUE_PARAMETERS
 #    define BOOST_NO_IS_ABSTRACT
-//     std lib config should set this one already:
-//#    define BOOST_NO_STD_ALLOCATOR
+#    define BOOST_NO_MEMBER_TEMPLATE_FRIENDS
 #endif 
 
 // optional features rather than defects:
@@ -47,24 +53,20 @@
 #    define BOOST_NO_MEMBER_TEMPLATE_KEYWORD
 #endif
 
-#define BOOST_NO_MEMBER_TEMPLATE_FRIENDS
-
 #define BOOST_COMPILER "HP aCC version " BOOST_STRINGIZE(__HP_aCC)
 
 //
 // versions check:
-// we don't support HP aCC prior to version 0:
+// we don't support HP aCC prior to version 33000:
 #if __HP_aCC < 33000
 #  error "Compiler not supported or configured - please reconfigure"
 #endif
 //
-// last known and checked version is 0:
-#if (__HP_aCC > 53800)
+// last known and checked version is 61300:
+#if (__HP_aCC > 61300)
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  endif
 #endif
-
-
 
 

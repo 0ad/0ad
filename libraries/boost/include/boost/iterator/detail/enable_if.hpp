@@ -72,7 +72,7 @@ namespace boost
       : mpl::identity<Return>
 # endif 
     {
-# if BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
+# if BOOST_WORKAROUND(BOOST_MSVC, < 1300)
         typedef Return type;
 # endif 
     };

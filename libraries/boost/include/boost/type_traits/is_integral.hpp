@@ -9,10 +9,10 @@
 #ifndef BOOST_TT_IS_INTEGRAL_HPP_INCLUDED
 #define BOOST_TT_IS_INTEGRAL_HPP_INCLUDED
 
-#include "boost/config.hpp"
+#include <boost/config.hpp>
 
 // should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/bool_trait_def.hpp>
 
 namespace boost {
 
@@ -41,9 +41,9 @@ BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_integral,char,true)
 BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_integral,wchar_t,true)
 #endif
 
-#if (defined(BOOST_MSVC) && (BOOST_MSVC == 1200)) \
+#if (defined(BOOST_MSVC) && (BOOST_MSVC < 1300)) \
     || (defined(BOOST_INTEL_CXX_VERSION) && defined(_MSC_VER) && (BOOST_INTEL_CXX_VERSION <= 600)) \
-    || (defined(__BORLANDC__) && (__BORLANDC__ == 0x600) && (_MSC_VER == 1200))
+    || (defined(__BORLANDC__) && (__BORLANDC__ == 0x600) && (_MSC_VER < 1300))
 BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_integral,unsigned __int8,true)
 BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_integral,__int8,true)
 BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_integral,unsigned __int16,true)
@@ -66,6 +66,6 @@ BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_integral,__int64,true)
 
 } // namespace boost
 
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
 
 #endif // BOOST_TT_IS_INTEGRAL_HPP_INCLUDED

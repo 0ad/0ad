@@ -74,14 +74,22 @@
       // BOOST_HAS_PTHREAD_MUTEXATTR_SETTYPE:
       // These are predicated on _XOPEN_VERSION, and appears to be first released
       // in issue 4, version 2 (_XOPEN_VERSION > 500).
+      // Likewise for the functions log1p and expm1.
 #     if defined(_XOPEN_VERSION) && (_XOPEN_VERSION+0 >= 500)
 #        define BOOST_HAS_GETTIMEOFDAY
 #        if defined(_XOPEN_SOURCE) && (_XOPEN_SOURCE+0 >= 500)
 #           define BOOST_HAS_PTHREAD_MUTEXATTR_SETTYPE
 #        endif
+#        ifndef BOOST_HAS_LOG1P
+#           define BOOST_HAS_LOG1P
+#        endif
+#        ifndef BOOST_HAS_EXPM1
+#           define BOOST_HAS_EXPM1
+#        endif
 #     endif
 
 #  endif
+
 
 
 

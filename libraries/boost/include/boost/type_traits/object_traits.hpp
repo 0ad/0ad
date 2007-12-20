@@ -14,20 +14,20 @@
 #ifndef BOOST_TT_OBJECT_TRAITS_HPP_INLCUDED
 #define BOOST_TT_OBJECT_TRAITS_HPP_INLCUDED
 
-#include "boost/type_traits/has_trivial_assign.hpp"
-#include "boost/type_traits/has_trivial_constructor.hpp"
-#include "boost/type_traits/has_trivial_copy.hpp"
-#include "boost/type_traits/has_trivial_destructor.hpp"
-#include "boost/type_traits/has_nothrow_constructor.hpp"
-#include "boost/type_traits/has_nothrow_copy.hpp"
-#include "boost/type_traits/has_nothrow_assign.hpp"
-#include "boost/type_traits/is_base_and_derived.hpp"
-#include "boost/type_traits/is_class.hpp"
-#include "boost/type_traits/is_compound.hpp"
-#include "boost/type_traits/is_empty.hpp"
-#include "boost/type_traits/is_object.hpp"
-#include "boost/type_traits/is_pod.hpp"
-#include "boost/type_traits/is_scalar.hpp"
-#include "boost/type_traits/is_stateless.hpp"
+#include <boost/type_traits/has_trivial_assign.hpp>
+#include <boost/type_traits/has_trivial_constructor.hpp>
+#include <boost/type_traits/has_trivial_copy.hpp>
+#include <boost/type_traits/has_trivial_destructor.hpp>
+#include <boost/type_traits/has_nothrow_constructor.hpp>
+#include <boost/type_traits/has_nothrow_copy.hpp>
+#include <boost/type_traits/has_nothrow_assign.hpp>
+#include <boost/type_traits/is_base_and_derived.hpp>
+#include <boost/type_traits/is_class.hpp>
+#include <boost/type_traits/is_compound.hpp>
+#include <boost/type_traits/is_empty.hpp>
+#include <boost/type_traits/is_object.hpp>
+#include <boost/type_traits/is_pod.hpp>
+#include <boost/type_traits/is_scalar.hpp>
+#include <boost/type_traits/is_stateless.hpp>
 
 #endif // BOOST_TT_OBJECT_TRAITS_HPP_INLCUDED

@@ -10,6 +10,7 @@
 #include <boost/config.hpp>
 #include <boost/utility/addressof.hpp>
 #include <boost/mpl/bool.hpp>
+#include <boost/detail/workaround.hpp>
 
 //
 //  ref.hpp - ref/cref, useful helper functions
@@ -33,7 +34,7 @@ template<class T> class reference_wrapper
 public:
     typedef T type;
 
-#if defined(BOOST_MSVC) && (BOOST_MSVC < 1300)
+#if defined( BOOST_MSVC ) && BOOST_WORKAROUND( BOOST_MSVC, < 1300 )
 
     explicit reference_wrapper(T& t): t_(&t) {}
 
@@ -54,7 +55,7 @@ private:
     T* t_;
 };
 
-# if defined(__BORLANDC__) && (__BORLANDC__ <= 0x570)
+# if defined( __BORLANDC__ ) && BOOST_WORKAROUND( __BORLANDC__, BOOST_TESTED_AT(0x581) )
 #  define BOOST_REF_CONST
 # else
 #  define BOOST_REF_CONST const

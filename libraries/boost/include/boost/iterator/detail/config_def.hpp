@@ -109,11 +109,6 @@
 
 #endif
 
-#if BOOST_WORKAROUND(__GNUC__, == 2 && __GNUC_MINOR__ == 95)    \
-  || BOOST_WORKAROUND(__MWERKS__, <= 0x2407)                    \
-  || BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x551))
-# define BOOST_ITERATOR_NO_MPL_AUX_HAS_XXX  // "MPL's has_xxx facility doesn't work"
-#endif 
 
 #if !defined(BOOST_MSVC) && (defined(BOOST_NO_SFINAE) || defined(BOOST_NO_IS_CONVERTIBLE) || defined(BOOST_NO_IS_CONVERTIBLE_TEMPLATE))
 # define BOOST_NO_STRICT_ITERATOR_INTEROPERABILITY

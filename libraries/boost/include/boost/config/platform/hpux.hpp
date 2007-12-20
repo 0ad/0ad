@@ -2,6 +2,7 @@
 //  (C) Copyright Jens Maurer 2001 - 2003. 
 //  (C) Copyright David Abrahams 2002. 
 //  (C) Copyright Toon Knapen 2003. 
+//  (C) Copyright Boris Gubenko 2006.
 //  Use, modification and distribution are subject to the 
 //  Boost Software License, Version 1.0. (See accompanying file 
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -15,11 +16,15 @@
 // In principle, HP-UX has a nice <stdint.h> under the name <inttypes.h>
 // However, it has the following problem:
 // Use of UINT32_C(0) results in "0u l" for the preprocessed source
-// (verifyable with gcc 2.95.3, assumed for HP aCC)
-// #define BOOST_HAS_STDINT_H
+// (verifyable with gcc 2.95.3)
+#if (defined(__GNUC__) && (__GNUC__ >= 3)) || defined(__HP_aCC)
+#  define BOOST_HAS_STDINT_H
+#endif
 
-#define BOOST_NO_SWPRINTF 
-#define BOOST_NO_CWCTYPE
+#if !(defined(__HP_aCC) || !defined(_INCLUDE__STDC_A1_SOURCE))
+#  define BOOST_NO_SWPRINTF
+#  define BOOST_NO_CWCTYPE
+#endif
 
 #if defined(__GNUC__)
 #  if (__GNUC__ < 3) || ((__GNUC__ == 3) && (__GNUC_MINOR__ < 3))
@@ -30,6 +35,8 @@
 #     define BOOST_HAS_THREADS
 #     define BOOST_HAS_PTHREADS
 #  endif
+#elif defined(__HP_aCC) && !defined(BOOST_DISABLE_THREADS)
+#  define BOOST_HAS_PTHREADS
 #endif
 
 // boilerplate code:
@@ -64,5 +71,15 @@
 #ifndef BOOST_HAS_SIGACTION
 #  define BOOST_HAS_SIGACTION
 #endif
+#ifndef BOOST_HAS_NRVO 
+#  define BOOST_HAS_NRVO
+#endif
+#ifndef BOOST_HAS_LOG1P 
+#  define BOOST_HAS_LOG1P
+#endif
+#ifndef BOOST_HAS_EXPM1
+#  define BOOST_HAS_EXPM1
+#endif
+
 
 

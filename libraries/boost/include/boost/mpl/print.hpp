@@ -12,8 +12,8 @@
 // See http://www.boost.org/libs/mpl for documentation.
 
 // $Source: /cvsroot/boost/boost/boost/mpl/print.hpp,v $
-// $Date: 2004/09/02 15:40:42 $
-// $Revision: 1.2 $
+// $Date: 2006/11/10 23:15:49 $
+// $Revision: 1.2.14.1 $
 
 #include <boost/mpl/aux_/config/msvc.hpp>
 #include <boost/mpl/identity.hpp>
@@ -57,7 +57,7 @@ struct print
 # if defined(__EDG_VERSION__)
            aux::dependent_unsigned<T>::value > -1
 # else 
-           sizeof(T) > -1, 
+           sizeof(T) > -1
 # endif 
         };
 #endif 
