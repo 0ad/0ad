@@ -6,6 +6,8 @@
  * Dynamic Constrained Delaunay Triangulaiton
  */
 
+#pragma warning(push, 3)
+
 # include "sr_set.h"
 # include "sr_vec2.h"
 # include "sr_polygon.h"
@@ -489,5 +491,7 @@ private:
  };
 
 //================================== End of File =========================================
+
+#pragma warning(pop)
 
 # endif // SE_DCDT_H
