@@ -332,7 +332,7 @@ public:
 			head = (head + 1) % n;
 		}
 		else
-			debug_warn("underflow");
+			debug_assert(0);	// underflow
 	}
 
 	class iterator

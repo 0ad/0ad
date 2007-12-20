@@ -81,7 +81,7 @@ u8 u8_from_double(double in)
 {
 	if(!(0.0 <= in && in < 1.0))
 	{
-		debug_warn("clampf not in [0,1)");
+		debug_assert(0);	// clampf not in [0,1)
 		return 255;
 	}
 
@@ -95,7 +95,7 @@ u16 u16_from_double(double in)
 {
 	if(!(0.0 <= in && in < 1.0))
 	{
-		debug_warn("clampf not in [0,1)");
+		debug_assert(0);	// clampf not in [0,1)
 		return 65535;
 	}
 

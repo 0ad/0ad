@@ -233,8 +233,11 @@ public:
 	void remove(Key key)
 	{
 		MapIt it = map.find(key);
-		debug_assert(it != map.end());
-		remove_(it);
+		// note: don't complain if not in the cache: this happens after
+		// writing a file and invalidating its cache entry, which may
+		// or may not exist.
+		if(it != map.end())
+			remove_(it);
 	}
 
 	void on_access(Entry& entry)
@@ -287,9 +290,10 @@ again:
 	}
 
 protected:
-	// note: use hash_map instead of map for better locality
-	// (relevant when iterating over all items in remove_least_valuable)
-	class Map : public STL_HASH_MAP<Key, Entry>
+	// note: hash_map is probably better in terms of locality
+	// (relevant when iterating over all items in remove_least_valuable),
+	// but would require a hash comparator for VfsPath.
+	class Map : public std::map<Key, Entry>
 	{
 	public:
 		static Entry& entry_from_it(typename Map::iterator it) { return it->second; }
@@ -557,7 +561,7 @@ public:
 				return;
 			}
 		}
-		debug_warn("entry not found in list");
+		debug_assert(0);	// entry not found in list
 	}
 
 	void remove_least_valuable(std::list<Entry>& entry_list)

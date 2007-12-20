@@ -74,7 +74,7 @@ checking, but does not cause any compiler warnings.
 # if !MSC_VERSION || CONFIG_PARANOIA
 #  define UNREACHABLE\
 	STMT(\
-		debug_warn("hit supposedly unreachable code");\
+		debug_assert(0);	/* hit supposedly unreachable code */\
 		abort();\
 	)
 //    b) VC only: don't generate any code; squelch the warning and optimize.
@@ -125,15 +125,17 @@ switch(x % 2)
  * no runtime overhead; may be used anywhere, including file scope.
  * especially useful for testing sizeof types.
  *
- * this version has a more descriptive error message, but may cause a
- * struct redefinition warning if used from the same line in different files.
- *
- * note: alternative method in C++: specialize a struct only for true;
- * using it will raise 'incomplete type' errors if instantiated with false.
- *
  * @param expression that is expected to evaluate to non-zero at compile-time.
  **/
-#define cassert(expr) struct UID__ { unsigned int CASSERT_FAILURE: (expr); }
+#define cassert(expr) typedef detail::static_assert<(expr)>::type UID__;
+namespace detail
+{
+	template<bool> struct static_assert;
+	template<> struct static_assert<true>
+	{
+		typedef int type;
+	};
+}
 
 /**
  * compile-time debug_assert. causes a compile error if the expression

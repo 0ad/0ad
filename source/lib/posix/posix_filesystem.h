@@ -7,7 +7,3 @@
 #endif
 
 #include "posix_errno.h"	// for user convenience
-
-#if !HAVE_MKDIR
-extern int mkdir(const char* path, mode_t mode);
-#endif

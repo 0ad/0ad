@@ -2,7 +2,7 @@
  * =========================================================================
  * File        : hpet.h
  * Project     : 0 A.D.
- * Description : Timer implementation using timeGetTime
+ * Description : Timer implementation using High Precision Event Timer
  * =========================================================================
  */
 

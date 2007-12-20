@@ -17,7 +17,6 @@
 #include <algorithm>
 
 #include "win.h"
-#include <ddraw.h>
 #include <process.h>	// _beginthreadex
 #include <WindowsX.h>	// message crackers
 
@@ -28,7 +27,7 @@
 #include "winit.h"
 
 // for easy removal of DirectDraw dependency (used to query total video mem)
-#define DDRAW
+//#define DDRAW
 
 #if MSC_VERSION
 #pragma comment(lib, "user32.lib")
@@ -37,6 +36,7 @@
 // don't bother with dynamic linking -
 // DirectX is present in all Windows versions since Win95.
 #ifdef DDRAW
+#include <ddraw.h>
 # pragma comment(lib, "ddraw.lib")
 #endif
 
@@ -234,7 +234,7 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	ATOM class_atom = RegisterClass(&wc);
 	if(!class_atom)
 	{
-		debug_warn("SDL_SetVideoMode: RegisterClass failed");
+		debug_assert(0);	// SDL_SetVideoMode: RegisterClass failed
 		return 0;
 	}
 
@@ -319,8 +319,10 @@ fail:
 static void video_shutdown()
 {
 	if(fullscreen)
-		if(ChangeDisplaySettings(0, 0) != DISP_CHANGE_SUCCESSFUL)
-			debug_warn("ChangeDisplaySettings failed");
+	{
+		LONG status = ChangeDisplaySettings(0, 0);
+		debug_assert(status == DISP_CHANGE_SUCCESSFUL);
+	}
 
 	if(hGLRC != INVALID_HANDLE_VALUE)
 	{
@@ -653,7 +655,7 @@ inline SDLKey vkmap(int vk)
 
 	if(!(0 <= vk && vk < 256))
 	{
-		debug_warn("vkmap: invalid vk");
+		debug_assert(0);	// invalid vk
 		return SDLK_UNKNOWN;
 	}
 	return VK_SDLKMap[vk];

@@ -66,7 +66,7 @@ public:
 
 private:
 	class Impl;
-	boost::shared_ptr<Impl> impl;
+	shared_ptr<Impl> impl;
 };
 
 #endif	// #ifndef INCLUDED_HEADERLESS

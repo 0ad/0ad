@@ -105,7 +105,7 @@ static void ShutdownLocks()
 // only call after a Win32 function indicates failure.
 LibError LibError_from_GLE(bool warn_if_failed)
 {
-	LibError err;
+	LibError err = ERR::FAIL;
 	switch(GetLastError())
 	{
 	case ERROR_OUTOFMEMORY:
@@ -123,8 +123,6 @@ LibError LibError_from_GLE(bool warn_if_failed)
 	case ERROR_PATH_NOT_FOUND:
 		err = ERR::TNODE_NOT_FOUND; break;
 */
-	default:
-		err = ERR::FAIL; break;
 	}
 
 	if(warn_if_failed)
@@ -285,7 +283,7 @@ static void EnableMemoryTracking()
 static void EnableLowFragmentationHeap()
 {
 #if WINVER >= 0x0501
-	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
+	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
 	BOOL (WINAPI* pHeapSetInformation)(HANDLE, HEAP_INFORMATION_CLASS, void*, size_t);
 	*(void**)&pHeapSetInformation = GetProcAddress(hKernel32Dll, "HeapSetInformation");
 	if(!pHeapSetInformation)
@@ -293,8 +291,6 @@ static void EnableLowFragmentationHeap()
 
 	ULONG flags = 2;	// enable LFH
 	pHeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
-
-	FreeLibrary(hKernel32Dll);
 #endif	// #if WINVER >= 0x0501
 }
 
@@ -376,11 +372,10 @@ static bool isWow64;
 
 static void ImportWow64Functions()
 {
-	HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");
+	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
 	*(void**)&pIsWow64Process = GetProcAddress(hKernel32Dll, "IsWow64Process"); 
 	*(void**)&pWow64DisableWow64FsRedirection = GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
 	*(void**)&pWow64RevertWow64FsRedirection  = GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");
-	FreeLibrary(hKernel32Dll);
 }
 
 static void DetectWow64()
@@ -422,6 +417,27 @@ void wutil_RevertWow64Redirection(void* wasRedirectionEnabled)
 	BOOL ok = pWow64RevertWow64FsRedirection(wasRedirectionEnabled);
 	WARN_IF_FALSE(ok);
 }
+
+
+//-----------------------------------------------------------------------------
+// module handle
+
+#ifdef LIB_DLL
+
+HMODULE wutil_LibModuleHandle;
+
+BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD reason, LPVOID reserved)
+{
+	DisableThreadLibraryCalls(hInstance);
+	wutil_LibModuleHandle = hInstance;
+	return TRUE;	// success (ignored unless reason == DLL_PROCESS_ATTACH)
+}
+
+#else
+
+HMODULE wutil_LibModuleHandle = GetModuleHandle(0);
+
+#endif
 
 
 //-----------------------------------------------------------------------------

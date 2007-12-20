@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "posix.h"
 
-#if CPU_IA32
+#if ARCH_IA32
 # include "lib/sysdep/ia32/ia32_asm.h"
 #endif
 
@@ -10,7 +10,7 @@
 
 float rintf(float f)
 {
-#if CPU_IA32
+#if ARCH_IA32
 	return ia32_asm_rintf(f);
 #else
 	return (float)(int)f;
@@ -19,7 +19,7 @@ float rintf(float f)
 
 double rint(double d)
 {
-#if CPU_IA32
+#if ARCH_IA32
 	return ia32_asm_rint(d);
 #else
 	return (double)(int)d;
@@ -29,7 +29,7 @@ double rint(double d)
 
 float fminf(float a, float b)
 {
-#if CPU_IA32
+#if ARCH_IA32
 	return ia32_asm_fminf(a, b);
 #else
 	return (a < b)? a : b;
@@ -38,7 +38,7 @@ float fminf(float a, float b)
 
 float fmaxf(float a, float b)
 {
-#if CPU_IA32
+#if ARCH_IA32
 	return ia32_asm_fmaxf(a, b);
 #else
 	return (a > b)? a : b;
@@ -48,7 +48,7 @@ float fmaxf(float a, float b)
 
 uint fpclassifyd(double d)
 {
-#if CPU_IA32
+#if ARCH_IA32
 	return ia32_asm_fpclassifyd(d);
 #else
 	// really sucky stub implementation; doesn't attempt to cover all cases.
@@ -62,7 +62,7 @@ uint fpclassifyd(double d)
 
 uint fpclassifyf(float f)
 {
-#if CPU_IA32
+#if ARCH_IA32
 	return ia32_asm_fpclassifyf(f);
 #else
 	const double d = (double)f;
@@ -73,19 +73,7 @@ uint fpclassifyf(float f)
 #endif	// #if !HAVE_C99_MATH
 
 
-#if !HAVE_STRDUP
-char* strdup(const char* str)
-{
-	const size_t num_chars = strlen(str);
-	char* dst = (char*)malloc((num_chars+1)*sizeof(char));	// note: strdup is required to use malloc
-	if(!dst)
-		return 0;
-	SAFE_STRCPY(dst, str);
-	return dst;
-}
-#endif
-
-#if !HAVE_WCSDUP
+#if EMULATE_WCSDUP
 wchar_t* wcsdup(const wchar_t* str)
 {
 	const size_t num_chars = wcslen(str);
@@ -95,4 +83,4 @@ wchar_t* wcsdup(const wchar_t* str)
 	SAFE_WCSCPY(dst, str);
 	return dst;
 }
-#endif	// #if !HAVE_WCSDUP
+#endif

@@ -11,7 +11,7 @@
 #ifndef INCLUDED_WDBG
 #define INCLUDED_WDBG
 
-#if HAVE_MS_ASM
+#if MSC_VERSION
 # define debug_break() __asm { int 3 }
 #else
 # error "port this or define to implementation function"

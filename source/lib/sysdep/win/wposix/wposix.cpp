@@ -34,9 +34,8 @@ static void InitSysconf()
 
 	// import GlobalMemoryStatusEx - it's not defined by the VC6 PSDK.
 	// used by _SC_*_PAGES if available (provides better results).
-	const HMODULE hKernel32Dll = LoadLibrary("kernel32.dll");  
+	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");  
 	*(void**)&pGlobalMemoryStatusEx = GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
-	FreeLibrary(hKernel32Dll);
 }
 
 long sysconf(int name)

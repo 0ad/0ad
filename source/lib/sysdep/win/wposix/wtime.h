@@ -11,13 +11,6 @@
 #ifndef INCLUDED_WTIME
 #define INCLUDED_WTIME
 
-// advertise support for the timer routines we emulate; used by timer.cpp.
-// #undef to avoid macro redefinition warning.
-#undef HAVE_CLOCK_GETTIME
-#define HAVE_CLOCK_GETTIME 1
-#undef HAVE_GETTIMEOFDAY
-#define HAVE_GETTIMEOFDAY 1
-
 
 //
 // <sys/types.h>

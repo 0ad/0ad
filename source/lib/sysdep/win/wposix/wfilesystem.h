@@ -18,8 +18,6 @@
 typedef unsigned int mode_t;
 #endif
 
-// mkdir is defined by posix_filesystem #if !HAVE_MKDIR
-
 // (christmas-tree values because mkdir mode is ignored anyway)
 #define S_IRWXO 0xFFFF
 #define S_IRWXU 0xFFFF
@@ -27,6 +25,17 @@ typedef unsigned int mode_t;
 
 #define S_ISDIR(m) (m & S_IFDIR)
 #define S_ISREG(m) (m & S_IFREG)
+
+// we need to emulate this on VC7 (not included) and VC8 (deprecated)
+#if MSC_VERSION
+# define EMULATE_MKDIR 1
+#else
+# define EMULATE_MKDIR 0
+#endif
+
+#if EMULATE_MKDIR
+extern int mkdir(const char* path, mode_t mode);
+#endif
 
 
 //

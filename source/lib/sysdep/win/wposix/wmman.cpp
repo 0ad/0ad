@@ -35,8 +35,10 @@ static DWORD win32_prot(int prot)
 		return PAGE_EXECUTE_READWRITE;
 	case PROT_READ|PROT_WRITE|PROT_EXEC:
 		return PAGE_EXECUTE_READWRITE;
-		NODEFAULT;
+	NODEFAULT;
 	}
+
+	UNREACHABLE;
 }
 
 
@@ -74,7 +76,7 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 			WARN_IF_FALSE(VirtualFree(start, len, MEM_DECOMMIT));
 			*pp = 0;
 			// make sure *pp won't be misinterpreted as an error
-			cassert(MAP_FAILED != 0);
+			cassert(MAP_FAILED);
 			return INFO::OK;
 		}
 	}
@@ -126,8 +128,7 @@ static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& d
 }
 
 
-static LibError mmap_file(void* start, size_t len, int prot, int flags,
-						  int fd, off_t ofs, void** pp)
+static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, off_t ofs, void** pp)
 {
 	debug_assert(fd != -1);	// handled by mmap_mem
 

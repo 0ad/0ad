@@ -113,4 +113,11 @@ extern uint round_up_to_pow2(uint x);
 extern uintptr_t round_up  (uintptr_t n, uintptr_t multiple);
 extern uintptr_t round_down(uintptr_t n, uintptr_t multiple);
 
+template<typename T>
+bool IsAligned(T t, uintptr_t multiple)
+{
+	return ((uintptr_t)t % multiple) == 0;
+
+}
+
 #endif	// #ifndef INCLUDED_BITS

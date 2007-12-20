@@ -10,7 +10,7 @@
 
 #include "precompiled.h"
 
-#if CPU_IA32
+#if ARCH_IA32
 # include "lib/sysdep/ia32/ia32_asm.h"	// ia32_asm_log2_of_pow2
 #endif
 
@@ -28,7 +28,7 @@ int log2_of_pow2(uint n)
 {
 	int bit_index;
 
-#if CPU_IA32
+#if ARCH_IA32
 	bit_index = ia32_asm_log2_of_pow2(n);
 #else
 	if(!is_pow2(n))

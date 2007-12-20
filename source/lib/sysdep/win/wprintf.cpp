@@ -285,7 +285,7 @@ int sys_vsnprintf(TCHAR* buffer, size_t count, const TCHAR* format, va_list argp
 
 					if (chr == _T('I'))
 					{
-						debug_warn("MSVC-style \"%I64\" is not allowed!");
+						debug_assert(0);	// MSVC-style \"%I64\" is not allowed!
 					}
 
 					if (is_lengthmod(chr))
@@ -413,7 +413,7 @@ finished_reading:
 */
 
 // Because of those dangerous assumptions about varargs:
-#if !CPU_IA32
+#if !ARCH_IA32
 #error SLIGHTLY FATAL ERROR: Only x86 is supported!
 #endif
 
@@ -434,7 +434,7 @@ finished_reading:
 		{
 			if (varsizes[i] <= 0)
 			{
-				debug_warn("Invalid variable type somewhere - make sure all variable things are positional and defined");
+				debug_assert(0);	// Invalid variable type somewhere - make sure all variable things are positional and defined
 				return -1;
 			}
 
@@ -456,7 +456,7 @@ finished_reading:
 				FormatVariable* s = static_cast<FormatVariable*>(*it);
 				if (s->position <= 0)
 				{
-					debug_warn("Invalid use of positional elements - make sure all variable things are positional and defined");
+					debug_assert(0);	// Invalid use of positional elements - make sure all variable things are positional and defined
 					return -1;
 				}
 				newstack += std::string( stackitems[s->position-1].first, stackitems[s->position-1].second );

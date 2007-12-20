@@ -19,7 +19,6 @@
 #include "debug.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/h_mgr.h"
-#include "lib/res/graphics/tex.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "opengl32.lib")
@@ -164,7 +163,7 @@ bool ogl_HaveVersion(const char* desired_version)
 	int desired_major, desired_minor;
 	if(sscanf(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
 	{
-		debug_warn("invalid version string");
+		debug_assert(0);	// invalid version string
 		return false;
 	}
 
@@ -172,7 +171,7 @@ bool ogl_HaveVersion(const char* desired_version)
 	const char* version = (const char*)glGetString(GL_VERSION);
 	if(!version || sscanf(version, "%d.%d", &major, &minor) != 2)
 	{
-		debug_warn("GL_VERSION invalid");
+		debug_assert(0);	// GL_VERSION invalid
 		return false;
 	}
 
@@ -267,7 +266,7 @@ static void dump_gl_error(GLenum err)
 void ogl_WarnIfError()
 {
 	// glGetError may return multiple errors, so we poll it in a loop.
-	// the debug_warn should only happen once (if this is set), though.
+	// the debug_printf should only happen once (if this is set), though.
 	bool error_enountered = false;
 	GLenum first_error = 0;
 
@@ -288,7 +287,7 @@ void ogl_WarnIfError()
 	{
 		char msg[64];
 		snprintf(msg, ARRAY_SIZE(msg), "OpenGL error(s) occurred: %04x", (int)first_error);
-		debug_warn(msg);
+		debug_printf(msg);
 	}
 }
 #endif
@@ -303,7 +302,7 @@ void ogl_WarnIfError()
 void ogl_SquelchError(GLenum err_to_ignore)
 {
 	// glGetError may return multiple errors, so we poll it in a loop.
-	// the debug_warn should only happen once (if this is set), though.
+	// the debug_printf should only happen once (if this is set), though.
 	bool error_enountered = false;
 	GLenum first_error = 0;
 
@@ -327,7 +326,7 @@ void ogl_SquelchError(GLenum err_to_ignore)
 	{
 		char msg[64];
 		snprintf(msg, ARRAY_SIZE(msg), "OpenGL error(s) occurred: %04x", (int)first_error);
-		debug_warn(msg);
+		debug_printf(msg);
 	}
 }
 
@@ -371,8 +370,7 @@ void ogl_Init()
 	// note: this is less about performance (since the above are not
 	// time-critical) than centralizing the 'OpenGL is ready' check.
 	exts = (const char*)glGetString(GL_EXTENSIONS);
-	if(!exts)
-		debug_warn("called before OpenGL is ready for use");
+	debug_assert(exts);	// else: called before OpenGL is ready for use
 	have_12 = ogl_HaveVersion("1.2");
 	have_13 = ogl_HaveVersion("1.3");
 	have_14 = ogl_HaveVersion("1.4");

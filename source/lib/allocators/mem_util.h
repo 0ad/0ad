@@ -38,7 +38,7 @@ extern LibError mem_Protect(u8* p, size_t size, int prot);
 // rationale for the function-based interface: a class encapsulating the
 // freelist pointer would force each header to include mem_util.h;
 // instead, implementations need only declare a void* pointer.
-void mem_freelist_AddToFront(void*& freelist, void* el);
-void* mem_freelist_Detach(void*& freelist);
+extern void mem_freelist_AddToFront(void*& freelist, void* el);
+extern void* mem_freelist_Detach(void*& freelist);
 
 #endif	// #ifndef INCLUDED_MEM_UTIL

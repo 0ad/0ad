@@ -498,7 +498,7 @@ return pool;
 debug_assert(0 <= num_pools && num_pools <= MAX_POOLS);
 if(num_pools >= MAX_POOLS)
 {
-debug_warn("increase MAX_POOLS");
+debug_assert(0);	// increase MAX_POOLS
 return 0;
 }
 
@@ -516,7 +516,7 @@ size = round_up(size, 8);
 // would overflow a bucket
 if(size > BUCKET_SIZE-sizeof(u8*))
 {
-debug_warn("sbh_alloc: size doesn't fit in a bucket");
+debug_assert(0);	// size doesn't fit in a bucket
 return 0;
 }
 
@@ -533,7 +533,7 @@ TNode* node_alloc(size_t size)
 // would overflow a bucket
 if(size > BUCKET_SIZE-sizeof(u8*))
 {
-debug_warn("node_alloc: size doesn't fit in a bucket");
+debug_assert(0);	// size doesn't fit in a bucket
 return 0;
 }
 

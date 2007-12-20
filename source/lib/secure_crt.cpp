@@ -79,16 +79,13 @@ ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, "Invalid string (no 0 terminator fou
 // currently disabled due to high risk of false positives.
 #define WARN_IF_PTR_LEN(len)\
 /*
-STMT(                                                         \
-	if(len == sizeof(char*))                                  \
-		debug_warn("make sure string buffer size is correct");\
-)*/
+	debug_assert(len != sizeof(char*));
+*/
 
 
 // skip our implementation if already available, but not the
 // self-test and the t* defines (needed for test).
-#if !HAVE_SECURE_CRT
-
+#if EMULATE_SECURE_CRT
 
 #if !OS_UNIX || OS_MACOSX
 // return length [in characters] of a string, not including the trailing
@@ -237,4 +234,4 @@ errno_t tfopen_s(FILE** pfile, const tchar* filename, const tchar* mode)
 }
 #endif
 
-#endif // #if !HAVE_SECURE_CRT
+#endif // #if EMULATE_SECURE_CRT

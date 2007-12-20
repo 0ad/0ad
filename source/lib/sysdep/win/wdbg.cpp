@@ -30,8 +30,10 @@ static void unlock()
 
 static NT_TIB* get_tib()
 {
-#if CPU_IA32
+#if ARCH_IA32
 	NT_TIB* tib;
+	// ICC 10 doesn't support the NT_TIB.Self syntax, so we have to use
+	// a constant (asm code isn't 64-bit safe anyway).
 	__asm
 	{
 		mov		eax, fs:[NT_TIB.Self]
@@ -126,7 +128,7 @@ static void* while_suspended_thread_func(void* user_arg)
 	// abort, since GetThreadContext only works if the target is suspended.
 	if(err == (DWORD)-1)
 	{
-		debug_warn("while_suspended_thread_func: SuspendThread failed");
+		debug_assert(0);	// while_suspended_thread_func: SuspendThread failed
 		return (void*)(intptr_t)-1;
 	}
 	// target is now guaranteed to be suspended,
@@ -251,8 +253,7 @@ have_reg:
 		rw = 1; break;
 	case DBG_BREAK_DATA_WRITE:
 		rw = 3; break;
-	default:
-		debug_warn("invalid type");
+	NODEFAULT;
 	}
 	// .. length (determine from addr's alignment).
 	//    note: IA-32 requires len=0 for code breakpoints.
@@ -296,7 +297,7 @@ static LibError brk_do_request(HANDLE hThread, void* arg)
 	if(!GetThreadContext(hThread, &context))
 		WARN_RETURN(ERR::FAIL);
 
-#if CPU_IA32
+#if ARCH_IA32
 	if(bi->want_all_disabled)
 		ret = brk_disable_all_in_ctx(bi, &context);
 	else
@@ -354,7 +355,7 @@ LibError debug_remove_all_breaks()
 // but can be used to filter out obviously wrong values in a portable manner.
 int debug_is_pointer_bogus(const void* p)
 {
-#if CPU_IA32
+#if ARCH_IA32
 	if(p < (void*)0x10000)
 		return true;
 	if(p >= (void*)(uintptr_t)0x80000000)
@@ -440,6 +441,6 @@ void wdbg_set_thread_name(const char* name)
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
 		// if we get here, the debugger didn't handle the exception.
-		debug_warn("thread name hack doesn't work under this debugger");
+		debug_assert(0);	// thread name hack doesn't work under this debugger
 	}
 }

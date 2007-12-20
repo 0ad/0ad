@@ -90,6 +90,47 @@ good luck!
 
 */
 
+
+//
+// memory headers
+//
+
+// these are all system headers that contain "new", "malloc" etc.; they must
+// come before the memory tracker headers to avoid conflicts with their
+// macros. therefore, they are always included, even if !CONFIG_PCH.
+
+#if OS_WIN
+# include <malloc.h>
+# include <xdebug>
+# include <xtree>
+#endif
+
+#include <new>
+#include <memory>
+#include <locale>	// operator new
+#include <valarray>	// free() member function
+
+
+// VC debug memory allocator / leak detector
+// notes:
+// - PCH is required because it makes sure system headers are included
+//   before redefining new (otherwise, tons of errors result);
+// - disabled on ICC9 because the ICC 9.0.006 beta appears to generate
+//   incorrect code when we redefine new.
+//   TODO: remove when no longer necessary
+#if MSC_VERSION && \
+	(!defined(NDEBUG) || defined(TESTING)) && \
+	HAVE_PCH && \
+	ICC_VERSION != 900
+# define HAVE_VC_DEBUG_ALLOC 1
+#else
+# define HAVE_VC_DEBUG_ALLOC 0
+#endif
+
+
+
+
+
 #ifndef	INCLUDED_MMGR
 #define	INCLUDED_MMGR
 

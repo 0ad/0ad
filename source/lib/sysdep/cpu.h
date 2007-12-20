@@ -151,7 +151,9 @@ extern void cpu_ConfigureFloatingPoint();
 
 // convert float to int much faster than _ftol2, which would normally be
 // used by (int) casts.
-#if !USE_IA32_FLOAT_TO_INT
+// should we use our float->int code? newer GCC versions with -ffast-math and
+// VC8 can use SSE, so skip it there.
+#if ARCH_IA32 && MSC_VERSION && MSC_VERSION < 1400
 #define cpu_i32FromFloat(f) ((i32)f)
 #define cpu_i32FromDouble(d) ((i32)d)
 #define cpu_i64FromDouble(d) ((i64)d)
@@ -172,7 +174,7 @@ extern i64 cpu_i64FromDouble(double d);
  * casting in user code.
  **/
 template<typename T>
-extern bool cpu_CAS(volatile T* location, T expected, T new_value)
+bool cpu_CAS(volatile T* location, T expected, T new_value)
 {
 	return cpu_CAS((volatile uintptr_t*)location, (uintptr_t)expected, (uintptr_t)new_value);
 }

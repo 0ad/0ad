@@ -45,7 +45,7 @@ struct DynArray
  * (* rounded up to next page size multiple)
  * @return LibError.
  **/
-extern LibError da_alloc(DynArray* da, size_t max_size);
+LIB_API LibError da_alloc(DynArray* da, size_t max_size);
 
 /**
  * free all memory (address space + physical) that constitutes the
@@ -56,7 +56,7 @@ extern LibError da_alloc(DynArray* da, size_t max_size);
  * @param DynArray* da; zeroed afterwards.
  * @return LibError
  **/
-extern LibError da_free(DynArray* da);
+LIB_API LibError da_free(DynArray* da);
 
 /**
  * expand or shrink the array: changes the amount of currently committed
@@ -67,7 +67,7 @@ extern LibError da_free(DynArray* da);
  * pages are added/removed until this is met.
  * @return LibError.
  **/
-extern LibError da_set_size(DynArray* da, size_t new_size);
+LIB_API LibError da_set_size(DynArray* da, size_t new_size);
 
 /**
  * Make sure at least <size> bytes starting at da->pos are committed and
@@ -77,7 +77,7 @@ extern LibError da_set_size(DynArray* da, size_t new_size);
  * @param size Minimum amount to guarantee [bytes]
  * @return LibError
  **/
-extern LibError da_reserve(DynArray* da, size_t size);
+LIB_API LibError da_reserve(DynArray* da, size_t size);
 
 /**
  * change access rights of the array memory.
@@ -89,7 +89,7 @@ extern LibError da_reserve(DynArray* da, size_t size);
  * @param prot a combination of the PROT_* values used with mprotect.
  * @return LibError.
  **/
-extern LibError da_set_prot(DynArray* da, int prot);
+LIB_API LibError da_set_prot(DynArray* da, int prot);
 
 /**
  * "wrap" (i.e. store information about) the given buffer in a DynArray.
@@ -104,7 +104,7 @@ extern LibError da_set_prot(DynArray* da, int prot);
  * @param size maximum size (no alignment requirements)
  * @return LibError.
  **/
-extern LibError da_wrap_fixed(DynArray* da, u8* p, size_t size);
+LIB_API LibError da_wrap_fixed(DynArray* da, u8* p, size_t size);
 
 /**
  * "read" from array, i.e. copy into the given buffer.
@@ -116,7 +116,7 @@ extern LibError da_wrap_fixed(DynArray* da, u8* p, size_t size);
  * @param size [bytes] to copy
  * @return LibError.
  **/
-extern LibError da_read(DynArray* da, void* data_dst, size_t size);
+LIB_API LibError da_read(DynArray* da, void* data_dst, size_t size);
 
 /**
  * "write" to array, i.e. copy from the given buffer.
@@ -128,6 +128,6 @@ extern LibError da_read(DynArray* da, void* data_dst, size_t size);
  * @param size [bytes] to copy
  * @return LibError.
  **/
-extern LibError da_append(DynArray* da, const void* data_src, size_t size);
+LIB_API LibError da_append(DynArray* da, const void* data_src, size_t size);
 
 #endif	// #ifndef INCLUDED_DYNARRAY

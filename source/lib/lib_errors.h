@@ -259,7 +259,7 @@ STMT(\
 )
 
 // just pass on errors without any kind of annoying warning
-// (useful for functions that can legitimately fail, e.g. vfs_exists).
+// (useful for functions that can legitimately fail).
 #define RETURN_ERR(expression)\
 STMT(\
 	i64 err64__ = (i64)(expression);\

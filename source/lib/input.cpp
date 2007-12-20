@@ -47,7 +47,7 @@ static void dispatch_ev(const SDL_Event_* ev)
 			continue;
 		// .. invalid return value
 		else
-			debug_warn("invalid handler return value");
+			debug_assert(0);	// invalid handler return value
 	}
 }
 

@@ -122,7 +122,7 @@ void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
 			// ok, flag has been reset to 0
 		}
 		else
-			debug_warn("in_use_flag out of sync (double free?)");
+			debug_assert(0);	// in_use_flag out of sync (double free?)
 	}
 	// was allocated from heap
 	else

@@ -730,20 +730,20 @@ HeaderlessAllocator::HeaderlessAllocator(size_t poolSize)
 
 void HeaderlessAllocator::Reset()
 {
-	return impl.get()->Reset();
+	return impl->Reset();
 }
 
 void* HeaderlessAllocator::Allocate(size_t size) throw()
 {
-	return impl.get()->Allocate(size);
+	return impl->Allocate(size);
 }
 
 void HeaderlessAllocator::Deallocate(void* p, size_t size)
 {
-	return impl.get()->Deallocate((u8*)p, size);
+	return impl->Deallocate((u8*)p, size);
 }
 
 void HeaderlessAllocator::Validate() const
 {
-	return impl.get()->Validate();
+	return impl->Validate();
 }

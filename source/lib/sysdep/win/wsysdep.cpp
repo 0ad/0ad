@@ -249,7 +249,7 @@ ErrorReaction sys_display_error(const wchar_t* text, uint flags)
 	MSG msg;
 	BOOL quit_pending = PeekMessage(&msg, 0, WM_QUIT, WM_QUIT, PM_REMOVE);
 
-	const HINSTANCE hInstance = GetModuleHandle(0);
+	const HINSTANCE hInstance = wutil_LibModuleHandle;
 	LPCSTR lpTemplateName = MAKEINTRESOURCE(IDD_DIALOG1);
 	const DialogParams params = { text, flags };
 	// get the enclosing app's window handle. we can't just pass 0 or

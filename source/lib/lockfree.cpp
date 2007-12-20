@@ -268,7 +268,7 @@ retry:
 			// start over. this won't realistically happen, though.
 			if(num_hps >= max_hps)
 			{
-				debug_warn("max_hps overrun - why?");
+				debug_assert(0);	// max_hps overrun - why?
 				goto retry;
 			}
 
@@ -624,7 +624,7 @@ LibError lfh_init(LFHash* hash, size_t num_entries)
 
 	if(!is_pow2((long)num_entries))
 	{
-		debug_warn("lfh_init: size must be power of 2");
+		debug_assert(0);	// lfh_init: size must be power of 2
 		return ERR::INVALID_PARAM;
 	}
 

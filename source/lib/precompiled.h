@@ -3,21 +3,20 @@
  * File        : precompiled.h
  * Project     : 0 A.D.
  * Description : precompiled header. must be the first non-comment part
- *             : of every source file (VC6/7 requirement).
+ *             : of every source file (VC6..8 requirement).
  * =========================================================================
  */
 
 // license: GPL; see lib/license.txt
 
-// if the compiler supports PCH (i.e. HAVE_PCH is defined), this
-// tries to include all headers that may be needed. otherwise, all source
-// files will still need to include this (for various global fixes and the
-// memory trackers), but additionally include all required headers.
-//
-// this policy yields the best compile performance with or without PCH.
+// if PCHs are supported and enabled, we make an effort to include all
+// system headers. otherwise, only a few headers (e.g. memory tracker)
+// are pulled in and source files must include all the system headers
+// they use. this policy ensures good compile performance whether or not
+// PCHs are being used.
 
-// must come before warning disables.
-#include "lib/config.h"
+#include "lib/config.h"	// CONFIG_ENABLE_PCH
+#include "lib/sysdep/compiler.h"	// HAVE_PCH
 
 // disable some common and annoying warnings
 // (done as soon as possible so that headers below are covered)
@@ -39,9 +38,17 @@
 # endif
 #endif
 
+
 //
 // headers made available everywhere for convenience
 //
+
+#include "lib/sysdep/compiler.h"
+#include "lib/sysdep/stl.h"
+#include "lib/sysdep/os.h"
+#include "lib/sysdep/arch.h"
+
+#include "lib/lib_api.h"
 
 #include "lib/types.h"
 #include "lib/lib.h"
@@ -49,43 +56,30 @@
 #include "lib/secure_crt.h"
 #include "lib/debug.h"
 #include "lib/code_annotation.h"
-#include "lib/sysdep/compiler.h"
-#include "lib/sysdep/stl.h"
+
+// Boost
+#include <boost/utility.hpp>	// noncopyable
+#include <boost/shared_array.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/scoped_ptr.hpp>
+#pragma warning(push, 3)	// filesystem isn't W4-clean
+#include <boost/filesystem.hpp>
+#pragma warning(pop)
+using boost::shared_ptr;	// has been added to TR1
+namespace fs = boost::filesystem;
+
+// (this must come after boost and common lib headers)
 #include "lib/posix/posix.h"
 
 
 //
-// memory headers
+// precompiled headers
 //
 
-// these are all system headers that contain "new", "malloc" etc.; they must
-// come before the memory tracker headers to avoid conflicts with their
-// macros. therefore, they are always included, even if !HAVE_PCH.
+#if CONFIG_ENABLE_PCH && HAVE_PCH
 
-#if OS_WIN
-# include <malloc.h>
-#endif
-
-#include <new>
-#include <memory>
-#include <valarray>	// free() member function
-
-
-//
-// headers to be precompiled
-//
-
-// candidates are all system headers we may possibly need or large/rarely
-// changed project headers; everything placed in here will not need to be
-// compiled every time. however, if they change, the project will have to be
-// completely rebuilt. (slow!)
-//
-// if the compiler doesn't support precompiled headers (i.e. !HAVE_PCH),
-// including anything here would actually slow things down, because we might
-// not otherwise need some of these headers. therefore, do nothing and rely
-// on all source files (additionally) including everything they need.
-
-#if HAVE_PCH
+// anything placed here won't need to be compiled in each translation unit,
+// but will cause a complete rebuild if they change.
 
 // all new-form C library headers
 #include <cassert>
@@ -96,8 +90,7 @@
 #include <climits>
 #include <clocale>
 #include <cmath>
-// Including setjmp.h here causes incompatibilities with libpng on Debian/Ubuntu
-//#include <csetjmp>
+//#include <csetjmp>	// incompatible with libpng on Debian/Ubuntu
 #include <csignal>
 #include <cstdarg>
 #include <cstddef>
@@ -154,32 +147,13 @@
 # include <hash_set>
 #endif
 
-// (further headers to be precompiled go here)
-
-#endif // #if HAVE_PCH
+#endif // #if CONFIG_PCH
 
 // restore temporarily-disabled warnings
 #if MSC_VERSION
 # pragma warning(default:4702)
 #endif
 
-
-//
-// memory trackers
-//
-
-// these must be included from every file to make sure all allocations
-// are hooked. placing in the precompiled header is more convenient than
-// manually #including from every file, but requires that all system
-// headers containing "new", "malloc" etc. come before this (see above).
-//
-// note: mmgr.h activates mmgr or the VC debug heap or nothing depending
-// on CONFIG_USE_MMGR and HAVE_VC_DEBUG_ALLOC settings.
-# include "mmgr.h"
-
-
-// Boost
-#include <boost/utility.hpp>	// noncopyable
-#include <boost/shared_array.hpp>
-#include <boost/shared_ptr.hpp>
-#include <boost/scoped_ptr.hpp>
+// (this must be included from every file to make sure all allocations
+// are tracked; placing it in the PCH is a convenient means of doing so)
+#include "mmgr.h"

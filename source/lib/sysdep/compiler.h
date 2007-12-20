@@ -11,6 +11,38 @@
 #ifndef INCLUDED_COMPILER
 #define INCLUDED_COMPILER
 
+#include "config.h"	// CONFIG_OMIT_FP
+
+
+// detect compiler and its version (0 if not present, otherwise
+// major*100 + minor). note that more than one *_VERSION may be
+// non-zero due to interoperability (e.g. ICC with MSC).
+// .. VC
+#ifdef _MSC_VER
+# define MSC_VERSION _MSC_VER
+#else
+# define MSC_VERSION 0
+#endif
+// .. ICC (VC-compatible)
+#if defined(__INTEL_COMPILER)
+# define ICC_VERSION __INTEL_COMPILER
+#else
+# define ICC_VERSION 0
+#endif
+// .. LCC (VC-compatible)
+#if defined(__LCC__)
+# define LCC_VERSION __LCC__
+#else
+# define LCC_VERSION 0
+#endif
+// .. GCC
+#ifdef __GNUC__
+# define GCC_VERSION (__GNUC__*100 + __GNUC_MINOR__)
+#else
+# define GCC_VERSION 0
+#endif
+
+
 // pass "omit frame pointer" setting on to the compiler
 #if MSC_VERSION
 # if CONFIG_OMIT_FP
@@ -23,6 +55,16 @@
 #endif
 
 
+// are PreCompiled Headers supported?
+#if MSC_VERSION
+# define  HAVE_PCH 1
+#elif defined(USING_PCH)
+# define HAVE_PCH 1
+#else
+# define HAVE_PCH 0
+#endif
+
+
 // try to define _W64, if not already done
 // (this is useful for catching pointer size bugs)
 #ifndef _W64
@@ -32,6 +74,29 @@
 #  define _W64 __attribute__((mode (__pointer__)))
 # else
 #  define _W64
+# endif
+#endif
+
+
+// check if compiling in pure C mode (not C++) with support for C99.
+// (this is more convenient than testing __STDC_VERSION__ directly)
+//
+// note: C99 provides several useful but disjunct bits of functionality.
+// unfortunately, most C++ compilers do not offer a complete implementation.
+// however, many of these features are likely to be added to C++, and/or are
+// already available as extensions. what we'll do is add a HAVE_ macro for
+// each feature and test those instead. they are set if HAVE_C99, or also if
+// the compiler happens to support something compatible.
+//
+// rationale: lying about __STDC_VERSION__ via Premake so as to enable support
+// for some C99 functions doesn't work. Mac OS X headers would then use the
+// restrict keyword, which is never supported by g++ (because that might
+// end up breaking valid C++98 programs).
+#define HAVE_C99 0
+#ifdef __STDC_VERSION__
+# if __STDC_VERSION__ >= 199901L
+#  undef  HAVE_C99
+#  define HAVE_C99 1
 # endif
 #endif
 
@@ -98,6 +163,7 @@
 #else
 # define ASSUME_UNREACHABLE
 #endif
+
 
 // extern "C", but does the right thing in pure-C mode
 #if defined(__cplusplus)

@@ -11,7 +11,6 @@
 #ifndef INCLUDED_LOCKFREE
 #define INCLUDED_LOCKFREE
 
-#include "posix/posix_types.h"	// uintptr_t
 #include "lib/sysdep/cpu.h"		// cpu_CAS
 
 /*

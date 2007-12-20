@@ -326,7 +326,7 @@ enum DataKind
 
 
 
-#if CPU_IA32
+#if ARCH_IA32
 // the official version causes pointer truncation warnings.
 # undef InterlockedExchangePointer
 # define InterlockedExchangePointer(Target, Value) (PVOID)(uintptr_t)InterlockedExchange((PLONG)(Target), (LONG)(uintptr_t)(Value))

@@ -21,7 +21,7 @@
 #include "lib/debug_stl.h"
 #include "lib/app_hooks.h"
 #include "lib/path_util.h"
-#if CPU_IA32
+#if ARCH_IA32
 # include "lib/sysdep/ia32/ia32.h"
 #endif
 #include "win.h"
@@ -261,7 +261,7 @@ func2:
 
 	*/
 
-#if CPU_IA32 && !CONFIG_OMIT_FP
+#if ARCH_IA32 && !CONFIG_OMIT_FP
 
 static LibError ia32_walk_stack(STACKFRAME64* sf)
 {
@@ -299,7 +299,7 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 	return INFO::OK;
 }
 
-#endif	// #if CPU_IA32 && !CONFIG_OMIT_FP
+#endif	// #if ARCH_IA32 && !CONFIG_OMIT_FP
 
 
 // called for each stack frame found by walk_stack, passing information
@@ -351,7 +351,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		// this MUST be done inline and not in an external function because
 		// compiler-generated prolog code trashes some registers.
 
-#if CPU_IA32
+#if ARCH_IA32
 		ia32_asm_GetCurrentContext(&context);
 #else
 		// preferred implementation (was imported during module init)
@@ -384,7 +384,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 	sf.AddrPC.Mode      = AddrModeFlat;
 	sf.AddrFrame.Mode   = AddrModeFlat;
 	sf.AddrStack.Mode   = AddrModeFlat;
-#if CPU_AMD64
+#if ARCH_AMD64
 	sf.AddrPC.Offset    = pcontext->Rip;
 	sf.AddrFrame.Offset = pcontext->Rbp;
 	sf.AddrStack.Offset = pcontext->Rsp;
@@ -412,7 +412,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		//   code is authoritative provided its prerequisite (FP not omitted)
 		//   is met, otherwise totally unusable.
 		LibError err;
-#if CPU_IA32 && !CONFIG_OMIT_FP
+#if ARCH_IA32 && !CONFIG_OMIT_FP
 		err = ia32_walk_stack(&sf);
 #else
 		sym_init();
@@ -420,7 +420,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 		// so we have to reset it and check for 0. *sigh*
 		SetLastError(0);
 		const HANDLE hThread = GetCurrentThread();
-		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, pcontext, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
+		BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0);
 		// note: don't use LibError_from_win32 because it raises a warning,
 		// and this "fails" commonly (when no stack frames are left).
 		err = ok? INFO::OK : ERR::FAIL;
@@ -561,7 +561,7 @@ static void out(const wchar_t* fmt, ...)
 		// make sure out_chars_left remains nonnegative
 		if((size_t)len > out_chars_left)
 		{
-			debug_warn("apparently wrote more than out_chars_left");
+			debug_assert(0);	// apparently wrote more than out_chars_left
 			len = (int)out_chars_left;
 		}
 		out_chars_left -= len;
@@ -926,11 +926,7 @@ static LibError determine_symbol_address(DWORD id, DWORD UNUSED(type_id), const 
 	case DataIsGlobal:
 		break;
 
-	default:
-		debug_warn("unexpected data_kind");
-
-	//case DataIsConstant
-
+	NODEFAULT;
 	}
 
 	// get SYMBOL_INFO (we need .Flags)
@@ -1069,7 +1065,7 @@ static LibError dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 			if(size == sizeof(float))
 				*(double*)&data = (double)*(float*)&data;
 			else if(size != sizeof(double))
-				debug_warn("dump_sym_base_type: invalid float size");
+				debug_assert(0);	// invalid float size
 			fmt = L"%g";
 			break;
 
@@ -1077,7 +1073,7 @@ static LibError dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 		case btInt:
 		case btLong:
 			if(size != 1 && size != 2 && size != 4 && size != 8)
-				debug_warn("dump_sym_base_type: invalid int size");
+				debug_assert(0);	// invalid int size
 			// need to re-load and sign-extend, because we output 64 bits.
 			data = movsx_le64(p, size);
 			fmt = L"%I64d";
@@ -1107,7 +1103,7 @@ display_as_hex:
 			else if(size == 8)
 				fmt = L"0x%016I64X";
 			else
-				debug_warn("dump_sym_base_type: invalid uint size");
+				debug_assert(0);	// invalid uint size
 			break;
 
 		// character
@@ -1135,7 +1131,7 @@ display_as_hex:
 				fmt = L"";
 			}
 			else
-				debug_warn("dump_sym_base_type: non-pointer btVoid or btNoType");
+				debug_assert(0);	// non-pointer btVoid or btNoType
 			break;
 
 		default:
@@ -1866,6 +1862,9 @@ static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 
 LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
 {
+buf='\0';
+return INFO::OK;
+
 	static uintptr_t already_in_progress;
 	if(!cpu_CAS(&already_in_progress, 0, 1))
 		return ERR::REENTERED;	// NOWARN

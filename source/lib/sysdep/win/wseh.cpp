@@ -330,6 +330,8 @@ C++ classes. this way is more reliable/documented, but has several drawbacks:
 
 */
 
+#ifndef LIB_DLL
+
 EXTERN_C int mainCRTStartup();
 
 static int CallStartupWithinTryBlock()
@@ -366,3 +368,5 @@ EXTERN_C int wseh_EntryPoint()
 #endif
 	return CallStartupWithinTryBlock();
 }
+
+#endif

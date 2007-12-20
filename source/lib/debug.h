@@ -65,7 +65,7 @@ even if debug information is present and assert dialogs are useless.
  * check heap integrity (independently of mmgr).
  * errors are reported by the CRT or via debug_display_error.
  **/
-extern void debug_heap_check(void);
+LIB_API void debug_heap_check(void);
 
 enum DebugHeapChecks
 {
@@ -90,7 +90,7 @@ enum DebugHeapChecks
  * call at any time; from then on, the specified checks will be performed.
  * if not called, the default is DEBUG_HEAP_NONE, i.e. do nothing.
  **/
-extern void debug_heap_enable(DebugHeapChecks what);
+LIB_API void debug_heap_enable(DebugHeapChecks what);
 
 
 //-----------------------------------------------------------------------------
@@ -102,7 +102,7 @@ enum DebugLevel
 	DEBUG_LEVEL_NONE = 0,
 	DEBUG_LEVEL_BRIEF = 2,
 	DEBUG_LEVEL_DETAILED = 5,
-	DEBUG_LEVEL_FULL = 9,
+	DEBUG_LEVEL_FULL = 9
 };
 #define DEBUG_PRINTF_BRIEF    if(debug_level >= DEBUG_LEVEL_BRIEF)    debug_printf
 #define DEBUG_PRINTF_DETAILED if(debug_level >= DEBUG_LEVEL_DETAILED) debug_printf
@@ -114,10 +114,10 @@ enum DebugLevel
  *
  * @param format string and varargs; see printf.
  **/
-extern void debug_printf(const char* fmt, ...);
+LIB_API void debug_printf(const char* fmt, ...);
 
 /// note: this merely converts to a MBS and calls debug_printf.
-extern void debug_wprintf(const wchar_t* fmt, ...);
+LIB_API void debug_wprintf(const wchar_t* fmt, ...);
 
 
 /**
@@ -126,7 +126,7 @@ extern void debug_wprintf(const wchar_t* fmt, ...);
  * is unavailable because that function is much more capable.
  * implemented via sys_display_msgw; see documentation there.
  **/
-extern void debug_display_msgw(const wchar_t* caption, const wchar_t* msg);
+LIB_API void debug_display_msgw(const wchar_t* caption, const wchar_t* msg);
 
 /// flags to customize debug_display_error behavior
 enum DebugDisplayErrorFlags
@@ -219,7 +219,7 @@ enum ErrorReaction
  * provides the storage. values: see DEBUG_SUPPRESS above.
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-extern ErrorReaction debug_display_error(const wchar_t* description,
+LIB_API ErrorReaction debug_display_error(const wchar_t* description,
 	uint flags, uint skip, void* context,
 	const char* file, int line, const char* func,
 	u8* suppress);
@@ -258,26 +258,26 @@ extern ErrorReaction debug_display_error(const wchar_t* description,
  * in future, allow output with the given tag to proceed.
  * no effect if already added.
  **/
-extern void debug_filter_add(const char* tag);
+LIB_API void debug_filter_add(const char* tag);
 
 /**
  * in future, discard output with the given tag.
  * no effect if not currently added.
  **/
-extern void debug_filter_remove(const char* tag);
+LIB_API void debug_filter_remove(const char* tag);
 
 /**
  * clear all filter state; equivalent to debug_filter_remove for
  * each tag that was debug_filter_add-ed.
  **/
-extern void debug_filter_clear();
+LIB_API void debug_filter_clear();
 
 /**
  * indicate if the given text would be printed.
  * useful for a series of debug_printfs - avoids needing to add a tag to
  * each of their format strings.
  **/
-extern bool debug_filter_allows(const char* text);
+LIB_API bool debug_filter_allows(const char* text);
 
 
 /**
@@ -286,7 +286,7 @@ extern bool debug_filter_allows(const char* text);
  *
  * @param format string and varags; see printf.
  **/
-extern void debug_wprintf_mem(const wchar_t* fmt, ...);
+LIB_API void debug_wprintf_mem(const wchar_t* fmt, ...);
 
 /**
  * write an error description and all logs into crashlog.txt
@@ -298,7 +298,7 @@ extern void debug_wprintf_mem(const wchar_t* fmt, ...);
  * @return LibError; ERR::REENTERED if reentered via recursion or
  * multithreading (not allowed since an infinite loop may result).
  **/
-extern LibError debug_write_crashlog(const wchar_t* text);
+LIB_API LibError debug_write_crashlog(const wchar_t* text);
 
 
 //-----------------------------------------------------------------------------
@@ -343,7 +343,7 @@ STMT(\
  * show a dialog to make sure unexpected states in the program are noticed.
  * this is less error-prone than "debug_assert(0 && "text");" and avoids
  * "conditional expression is constant" warnings. we'd really like to
- * completely eliminate the problem; replacing 0 literals with extern
+ * completely eliminate the problem; replacing 0 literals with LIB_API
  * volatile variables fools VC7 but isn't guaranteed to be free of overhead.
  * we therefore just squelch the warning (unfortunately non-portable).
  * this duplicates the code from debug_assert to avoid compiler warnings about
@@ -393,7 +393,7 @@ STMT(\
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-extern ErrorReaction debug_assert_failed(const char* assert_expr,
+LIB_API ErrorReaction debug_assert_failed(const char* assert_expr,
 	u8* suppress,
 	const char* file, int line, const char* func);
 
@@ -407,7 +407,7 @@ extern ErrorReaction debug_assert_failed(const char* assert_expr,
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-extern ErrorReaction debug_warn_err(LibError err,
+LIB_API ErrorReaction debug_warn_err(LibError err,
 	u8* suppress,
 	const char* file, int line, const char* func);
 
@@ -428,14 +428,14 @@ extern ErrorReaction debug_warn_err(LibError err,
  * note: this is thread-safe, but to prevent confusion, only one
  * concurrent skip request is allowed.
  */
-extern void debug_skip_next_err(LibError err);
+LIB_API void debug_skip_next_err(LibError err);
 
 /**
  * same as debug_skip_next_err, but for asserts.
  * note that this is implemented in terms of it, so only one assert or
  * error skip request may be active at a time.
  */
-extern void debug_skip_assert();
+LIB_API void debug_skip_assert();
 
 
 //-----------------------------------------------------------------------------
@@ -482,13 +482,13 @@ enum DbgBreakType
  * @return LibError; ERR::LIMIT if no more breakpoints are available
  * (they are a limited resource - only 4 on IA-32).
  **/
-extern LibError debug_set_break(void* addr, DbgBreakType type);
+LIB_API LibError debug_set_break(void* addr, DbgBreakType type);
 
 /**
  * remove all breakpoints that were set by debug_set_break.
  * important, since these are a limited resource.
  **/
-extern LibError debug_remove_all_breaks();
+LIB_API LibError debug_remove_all_breaks();
 
 
 //-----------------------------------------------------------------------------
@@ -545,7 +545,7 @@ const size_t DBG_FILE_LEN = 100;
  * @return LibError; INFO::OK iff any information was successfully
  * retrieved and stored.
  **/
-extern LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
+LIB_API LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
 
 /**
  * write a complete stack trace (including values of local variables) into
@@ -562,9 +562,9 @@ extern LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char
  * @return LibError; ERR::REENTERED if reentered via recursion or
  * multithreading (not allowed since static data is used).
  **/
-extern LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
+LIB_API LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
 
-extern const char* debug_get_symbol_string(void* symbol, const char* name, const char* file, int line);
+LIB_API const char* debug_get_symbol_string(void* symbol, const char* name, const char* file, int line);
 
 
 //-----------------------------------------------------------------------------
@@ -576,7 +576,7 @@ extern const char* debug_get_symbol_string(void* symbol, const char* name, const
  * this can be quite slow (~1 ms)! On Windows, it uses OutputDebugString
  * (entails context switch), otherwise stdout+fflush (waits for IO).
  **/
-extern void debug_puts(const char* text);
+LIB_API void debug_puts(const char* text);
 
 /**
  * return address of the Nth function on the call stack.
@@ -590,7 +590,7 @@ extern void debug_puts(const char* text);
  * for exceptions. otherwise, tracing starts from the current call stack.
  * @return address of Nth function
  **/
-extern void* debug_get_nth_caller(uint skip, void* context);
+LIB_API void* debug_get_nth_caller(uint skip, void* context);
 
 /**
  * check if a pointer appears to be totally invalid.
@@ -601,13 +601,13 @@ extern void* debug_get_nth_caller(uint skip, void* context);
  * @param p pointer
  * @return 1 if totally bogus, otherwise 0.
  **/
-extern int debug_is_pointer_bogus(const void* p);
+LIB_API int debug_is_pointer_bogus(const void* p);
 
 /// does the given pointer appear to point to code?
-extern bool debug_is_code_ptr(void* p);
+LIB_API bool debug_is_code_ptr(void* p);
 
 /// does the given pointer appear to point to the stack?
-extern bool debug_is_stack_ptr(void* p);
+LIB_API bool debug_is_stack_ptr(void* p);
 
 
 /**
@@ -621,7 +621,7 @@ extern bool debug_is_stack_ptr(void* p);
  * the entire program; best to pass a string literal. allocating a copy
  * would be quite a bit more work due to cleanup issues.
  **/
-extern void debug_set_thread_name(const char* name);
+LIB_API void debug_set_thread_name(const char* name);
 
 /**
  * return current thread's name.
@@ -629,7 +629,7 @@ extern void debug_set_thread_name(const char* name);
  * @return thread name, or NULL if one hasn't been assigned yet
  * via debug_set_thread_name.
  **/
-extern const char* debug_get_thread_name();
+LIB_API const char* debug_get_thread_name();
 
 
 /**
@@ -654,7 +654,7 @@ struct ErrorMessageMem
  *
  * @param ErrorMessageMem*
  **/
-extern void debug_error_message_free(ErrorMessageMem* emm);
+LIB_API void debug_error_message_free(ErrorMessageMem* emm);
 
 /**
  * build a string describing the given error.
@@ -671,7 +671,7 @@ extern void debug_error_message_free(ErrorMessageMem* emm);
  * fallback in case heap alloc fails. should be freed via
  * debug_error_message_free when no longer needed.
  **/
-extern const wchar_t* debug_error_message_build(
+LIB_API const wchar_t* debug_error_message_build(
 	const wchar_t* description,
 	const char* fn_only, int line, const char* func,
 	uint skip, void* context,
@@ -682,6 +682,6 @@ extern const wchar_t* debug_error_message_build(
  * call at exit to avoid some leaks.
  * not strictly necessary.
  **/
-extern void debug_shutdown();
+LIB_API void debug_shutdown();
 
 #endif	// #ifndef INCLUDED_DEBUG

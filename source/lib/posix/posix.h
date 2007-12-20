@@ -81,14 +81,23 @@ need only be renamed (e.g. _open, _stat).
 #define strncasecmp strnicmp
 #endif
 
-
-#if !HAVE_STRDUP
-extern char* strdup(const char* str);
+#if OS_MACOSX
+# define EMULATE_WCSDUP 1
+#else
+# define EMULATE_WCSDUP 0
 #endif
-#if !HAVE_WCSDUP
+
+#if EMULATE_WCSDUP
 extern wchar_t* wcsdup(const wchar_t* str);
 #endif
 
+
+// rint*, fminf, fpclassify (too few/diverse to make separate HAVE_ for each)
+#if HAVE_C99 || GCC_VERSION
+# define HAVE_C99_MATH 1
+#else
+# define HAVE_C99_MATH 0
+#endif
 
 #if !HAVE_C99_MATH
 // round float to nearest integral value, according to

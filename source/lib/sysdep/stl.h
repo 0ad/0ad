@@ -11,10 +11,44 @@
 #ifndef INCLUDED_STL
 #define INCLUDED_STL
 
-// compiling without exceptions (usually for performance reasons);
-// tell STL not to generate any.
+#include "config.h"
+#include "compiler.h"
+
+// detect STL version
+// .. Dinkumware
+#if MSC_VERSION
+# include <yvals.h>	// defines _CPPLIB_VER
+#endif
+#if defined(_CPPLIB_VER)
+# define STL_DINKUMWARE _CPPLIB_VER
+#else
+# define STL_DINKUMWARE 0
+#endif
+// .. GCC
+#if defined(__GLIBCPP__)
+# define STL_GCC __GLIBCPP__
+#elif defined(__GLIBCXX__)
+# define STL_GCC __GLIBCXX__
+#else
+# define STL_GCC 0
+#endif
+// .. ICC
+#if defined(__INTEL_CXXLIB_ICC)
+# define STL_ICC __INTEL_CXXLIB_ICC
+#else
+# define STL_ICC 0
+#endif
+
+
+// disable (slow!) iterator checks in release builds (unless someone already defined this)
+#if STL_DINKUMWARE && defined(NDEBUG) && !defined(_SECURE_SCL)
+# define _SECURE_SCL 0
+#endif
+
+
+// pass "disable exceptions" setting on to the STL
 #if CONFIG_DISABLE_EXCEPTIONS
-# if OS_WIN
+# if STL_DINKUMWARE
 #  define _HAS_EXCEPTIONS 0
 # else
 #  define STL_NO_EXCEPTIONS
@@ -26,7 +60,8 @@
 // these containers are useful but not part of C++98. most STL vendors
 // provide them in some form; we hide their differences behind macros.
 
-#if GCC_VERSION
+#if STL_GCC
+
 # include <ext/hash_map>
 # include <ext/hash_set>
 
@@ -76,7 +111,7 @@ namespace __gnu_cxx
 	};
 }
 
-#else	// !__GNUC__
+#elif STL_DINKUMWARE
 
 # include <hash_map>
 # include <hash_set>
@@ -96,6 +131,15 @@ namespace __gnu_cxx
 #  define STL_HASH_VALUE std::hash_value
 # endif	// MSC_VERSION >= 1300
 
-#endif	// !__GNUC__
+#endif
+
+
+// nonstandard STL containers
+#define HAVE_STL_SLIST 0
+#if STL_DINKUMWARE
+# define HAVE_STL_HASH 1
+#else
+# define HAVE_STL_HASH 0
+#endif
 
 #endif	// #ifndef INCLUDED_STL

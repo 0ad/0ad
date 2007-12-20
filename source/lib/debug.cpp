@@ -70,7 +70,7 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 	va_end(args);
 	if(len < 0)
 	{
-		debug_warn("vswprintf failed");
+		debug_assert(0);	// vswprintf failed
 		return;
 	}
 	debug_log_pos += len+2;
@@ -112,7 +112,7 @@ void debug_filter_add(const char* tag)
 	// too many already?
 	if(num_tags == MAX_TAGS)
 	{
-		debug_warn("increase MAX_TAGS");
+		debug_assert(0);	// increase MAX_TAGS
 		return;
 	}
 
@@ -204,14 +204,11 @@ void debug_wprintf(const wchar_t* fmt, ...)
 	const size_t MAX_BYTES = MAX_CHARS*2;
 	char mbs_buf[MAX_BYTES]; mbs_buf[MAX_BYTES-1] = '\0';
 	size_t bytes_written = wcstombs(mbs_buf, wcs_buf, MAX_BYTES);
-	// .. error
-	if(bytes_written == (size_t)-1)
-		debug_warn("invalid wcs character encountered");
-	// .. exact fit, make sure it's 0-terminated
+	debug_assert(bytes_written != (size_t)-1);	// else: invalid wcs character encountered
+	debug_assert(bytes_written <= MAX_BYTES);	// else: overflow (should be impossible)
+	// exact fit, ensure it's 0-terminated
 	if(bytes_written == MAX_BYTES)
 		mbs_buf[MAX_BYTES-1] = '\0';
-	// .. paranoia: overflow is impossible
-	debug_assert(bytes_written <= MAX_BYTES);
 
 	if(debug_filter_allows(mbs_buf))
 		debug_puts(mbs_buf);
@@ -396,8 +393,7 @@ static void symbol_string_add_to_cache(const char* string, void* symbol)
 	{
 		// note: must be zeroed to set each Symbol to "invalid"
 		symbols = (Symbol*)calloc(MAX_SYMBOLS, sizeof(Symbol));
-		if(!symbols)
-			debug_warn("failed to allocate symbols");
+		debug_assert(symbols);
 	}
 
 	// hash table is completely full (guard against infinite loop below).
@@ -680,7 +676,7 @@ void debug_skip_next_err(LibError err)
 	if(cpu_CAS(&expected_err_valid, 0, 1))
 		expected_err = err;
 	else
-		debug_warn("internal error: concurrent attempt to skip assert/error");
+		debug_assert(0);	// internal error: concurrent attempt to skip assert/error
 
 }
 
@@ -691,8 +687,7 @@ static bool should_skip_this_error(LibError err)
 	// (use cpu_CAS to ensure only one error is skipped)
 	if(cpu_CAS(&expected_err_valid, 1, 0))
 	{
-		if(!was_expected_err)
-			debug_warn("anticipated error was not raised");
+		debug_assert(was_expected_err);
 		return was_expected_err;
 	}
 

@@ -15,26 +15,18 @@
 #include <string>
 
 #include "debug.h"	// debug_printf
+#include "lib/sysdep/cpu.h"
 
 
-extern void timer_Init();
-extern void timer_Shutdown();
+LIB_API void timer_Init();
+LIB_API void timer_Shutdown();
 
 // high resolution (> 1 us) timestamp [s], starting at or near 0 s.
-extern double get_time(void);
+LIB_API double get_time(void);
 
 // return resolution (expressed in [s]) of the time source underlying
 // get_time.
-extern double timer_res(void);
-
-// calculate fps (call once per frame)
-// several smooth filters (tuned for ~100 FPS)
-// => less fluctuation, but rapid tracking
-
-extern int fps;	// for user display
-extern float spf;	// for time-since-last-frame use
-
-extern void calc_fps(void);
+LIB_API double timer_res(void);
 
 
 //-----------------------------------------------------------------------------
@@ -57,7 +49,7 @@ extern void calc_fps(void);
 // note that overflow isn't an issue either way (63 bit cycle counts
 // at 10 GHz cover intervals of 29 years).
 
-#if CONFIG_TIMER_ALLOW_RDTSC
+#if ARCH_IA32 && CONFIG_TIMER_ALLOW_RDTSC
 
 // fast, IA-32 specific, not usable as wall-clock
 // (see http://www.gamedev.net/reference/programming/features/timing)
@@ -66,6 +58,10 @@ class TimerRdtsc
 public:
 	typedef i64 unit;
 	unit get_timestamp() const;
+	static double ToSeconds(unit value)
+	{
+		return value / cpu_ClockFrequency();
+	}
 };
 
 #endif
@@ -78,9 +74,13 @@ public:
 	{
 		return get_time();
 	}
+	static double ToSeconds(unit value)
+	{
+		return value;
+	}
 };
 
-#if CONFIG_TIMER_ALLOW_RDTSC
+#if ARCH_IA32 && CONFIG_TIMER_ALLOW_RDTSC
 typedef TimerRdtsc Timer;
 #else
 typedef TimerSafe Timer;
@@ -122,14 +122,14 @@ struct TimerClient
 // - always succeeds (there's no fixed limit);
 // - free() is not needed nor possible.
 // - description must remain valid until exit; a string literal is safest.
-extern TimerClient* timer_add_client(TimerClient* tc, const char* description);
+LIB_API TimerClient* timer_add_client(TimerClient* tc, const char* description);
 
 // add <dt> to the client's total.
-extern void timer_bill_client(TimerClient* tc, TimerUnit dt);
+LIB_API void timer_bill_client(TimerClient* tc, TimerUnit dt);
 
 // display all clients' totals; does not reset them.
 // typically called at exit.
-extern void timer_display_client_totals();
+LIB_API void timer_display_client_totals();
 
 
 //-----------------------------------------------------------------------------

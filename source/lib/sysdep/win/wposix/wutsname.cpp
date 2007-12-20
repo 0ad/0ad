@@ -32,7 +32,7 @@ int uname(struct utsname* un)
 	if(ok)
 		SetLastError(last_err);
 	else
-		debug_warn("GetComputerName failed");
+		debug_assert(0);	// GetComputerName failed
 
 	// hardware type
 	static SYSTEM_INFO si;

@@ -57,7 +57,7 @@ const size_t POOL_VARIABLE_ALLOCS = ~0u;
  * allow variable-sized allocations, but pool_free is then unusable.
  * @return LibError
  **/
-extern LibError pool_create(Pool* p, size_t max_size, size_t el_size);
+LIB_API LibError pool_create(Pool* p, size_t max_size, size_t el_size);
 
 /**
  * free all memory (address space + physical) that constitutes the
@@ -71,7 +71,7 @@ extern LibError pool_create(Pool* p, size_t max_size, size_t el_size);
  * @param Pool*
  * @return LibError.
  **/
-extern LibError pool_destroy(Pool* p);
+LIB_API LibError pool_destroy(Pool* p);
 
 /**
  * indicate whether a pointer was allocated from the given pool.
@@ -81,7 +81,7 @@ extern LibError pool_destroy(Pool* p);
  * @param Pool*
  * @return bool.
  **/
-extern bool pool_contains(const Pool* p, void* el);
+LIB_API bool pool_contains(const Pool* p, void* el);
 
 /**
  * Dole out memory from the pool.
@@ -92,7 +92,7 @@ extern bool pool_contains(const Pool* p, void* el);
  * @return allocated memory, or 0 if the Pool would have to be expanded and
  * there isn't enough memory to do so.
  **/
-extern void* pool_alloc(Pool* p, size_t size);
+LIB_API void* pool_alloc(Pool* p, size_t size);
 
 /**
  * Make a fixed-size element available for reuse in the given Pool.
@@ -104,7 +104,7 @@ extern void* pool_alloc(Pool* p, size_t size);
  * @param Pool*
  * @param el Element returned by pool_alloc.
  **/
-extern void pool_free(Pool* p, void* el);
+LIB_API void pool_free(Pool* p, void* el);
 
 /**
  * "free" all user allocations that ensued from the given Pool.
@@ -114,7 +114,7 @@ extern void pool_free(Pool* p, void* el);
  *
  * @param Pool*
  **/
-extern void pool_free_all(Pool* p);
+LIB_API void pool_free_all(Pool* p);
 
 
 #ifdef __cplusplus

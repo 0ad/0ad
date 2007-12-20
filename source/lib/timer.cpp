@@ -24,19 +24,34 @@
 #if OS_WIN
 #include "lib/sysdep/win/whrt/whrt.h"
 #endif
-
-#if CONFIG_TIMER_ALLOW_RDTSC
+#if OS_UNIX
+# include <unistd.h>
+#endif
+#if ARCH_IA32 && CONFIG_TIMER_ALLOW_RDTSC
 # include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
 #endif
 
-// rationale for wrapping gettimeofday and clock_gettime, instead of emulating
-// them where not available: allows returning higher-resolution timer values
-// than their us / ns interface, via double [seconds]. they're also not
-// guaranteed to be monotonic.
 
-#if HAVE_CLOCK_GETTIME
+#if OS_UNIX || OS_WIN
+# define HAVE_GETTIMEOFDAY 1
+#else
+# define HAVE_GETTIMEOFDAY 0
+#endif
+
+#if (defined(_POSIX_TIMERS) && _POSIX_TIMERS > 0) || OS_WIN
+# define HAVE_CLOCK_GETTIME 1
+#else
+# define HAVE_CLOCK_GETTIME 0
+#endif
+
+// rationale for wrapping gettimeofday and clock_gettime, instead of just
+// emulating them where not available: allows returning higher-resolution
+// timer values than their us / ns interface, via double [seconds].
+// they're also not guaranteed to be monotonic.
+
+#if HAVE_GETTIMEOFDAY
 static struct timespec start;
-#elif HAVE_GETTIMEOFDAY
+#elif HAVE_CLOCK_GETTIME
 static struct timeval start;
 #endif
 
@@ -107,141 +122,6 @@ double timer_res()
 }
 
 
-// calculate fps (call once per frame).
-// algorithm: variable-gain IIR filter.
-// less fluctuation, but rapid tracking.
-// filter values are tuned for 100 FPS.
-
-int fps;
-float spf;
-
-void calc_fps()
-{
-	static double avg_fps = 60.0;
-	double cur_fps = avg_fps;
-
-	// get elapsed time [s] since last update
-	static double last_t;
-	const double t = get_time();
-	ONCE(last_t = t - 1.0/60.0);	// first call: 60 FPS
-	const double dt = t - last_t;
-
-	// (in case timer resolution is low): count frames until
-	// timer value has changed "enough".
-	static double min_dt;
-	ONCE(min_dt = timer_res() * 4.0);
-		// chosen to reduce error but still yield rapid updates.
-	static uint num_frames = 1;
-	if(dt < min_dt)
-	{
-		num_frames++;
-		return;
-	}
-
-	// dt is big enough => we will update.
-	// calculate approximate current FPS (= 1 / elapsed time per frame).
-	last_t = t;
-	cur_fps = (1.0 / dt) * num_frames;
-	num_frames = 1;	// reset for next time
-
-
-	// average and smooth cur_fps.
-	//
-	// filter design goals: steady output, but rapid signal tracking.
-	//
-	// implemented as a variable-gain IIR filter with knowledge of typical
-	// function characteristics. this is easier to stabilize than a PID
-	// scheme, since it is based on averaging actual function values,
-	// instead of trying to minimize output-vs-input error.
-	// there are some similarities, though: same_side ~= I, and
-	// bounced ~= D.
-
-	//
-	// check cur_fps function for several characteristics that
-	// help decide if it's actually changing or just jittering.
-	//
-
-#define REL_ERR(correct, measured) (fabs((correct) - (measured)) / (correct))
-#define SIGN_EQ(x0, x1, x2) ( ((x0) * (x1)) > 0.0 && ((x1) * (x2)) > 0.0 )
-#define ONE_SIDE(x, x0, x1, x2) SIGN_EQ(x-x0, x-x1, x-x2)
-
-	// cur_fps history and changes over past few frames
-	static double h2, h1 = 30.0, h0 = 30.0;
-	h2 = h1; h1 = h0; h0 = cur_fps;
-	const double d21 = h1 - h2, d10 = h0 - h1;
-	const double e20 = REL_ERR(h2, h0), e10 = REL_ERR(h1, h0);
-	const double e0 = REL_ERR(avg_fps, h0);
-
-	// indicators that the function is jittering
-	const bool bounced = d21 * d10 < 0.0 && e20 < 0.05 && e10 > 0.10;
-		// /\ or \/
-	const bool jumped = e10 > 0.30;
-		// large change (have seen semi-legitimate changes of 25%)
-	const bool is_close = e0 < 0.02;
-		// cur_fps - avg_fps is "small"
-
-	// "same-side" check for rapid tracking of the function.
-	// if the past few samples have been consistently above/below the average,
-	// the function is moving up/down and we need to catch up.
-	static int same_side;
-		// consecutive times the last 3 samples have been on the same side.
-	if(!ONE_SIDE(avg_fps, h0, h1, h2))	// not all on same side:
-		same_side = 0;					// reset counter
-	// (only increase if not too close to average,
-	// so that this isn't triggered by jitter alone)
-	if(!is_close)
-		same_side++;
-
-
-	//
-	// determine filter gain, based on above characteristics.
-	//
-
-	static double gain;	// sensitivity to changes in cur_fps ([0,1])
-	double bias = 0.0;	// (unlimited) exponential change to gain
-
-	// ignore (gain -> 0) large jumps.
-	if(jumped)
-		bias -= 4.0;
-	// don't let a "bounce" affect things too much.
-	else if(bounced)
-		bias -= 1.0;
-	// otherwise, function is normal here.
-	else
-	{
-		// function is changing, we need to track it rapidly.
-		// note: check close again so we aren't too loose if the function
-		// comes closer to the average again (meaning it probably
-		// wasn't really changing).
-		if(same_side >= 2 && !is_close)
-			bias += std::min(same_side, 4);
-	}
-
-	// bias = 0: no change. > 0: increase (n-th root). < 0: decrease (^n)
-	double e = (bias > 0)? 1.0 / bias : -bias;
-	if(e == 0.0) e = 1.0;
-	gain = pow(0.08, e);
-		// default: fairly insensitive to changes (~= 16 sample average)
-
-
-	// IIR filter
-	static double old = 30.0;
-	old = cur_fps*gain + old*(1.0-gain);
-	avg_fps = old;
-
-	spf = 1.0 / avg_fps;
-
-	// update fps counter if it differs "enough"
-	// currently, that means off by more than 5 FPS or 5%.
-	const double difference = fabs(avg_fps-fps);
-	const double threshold = fminf(5.f, 0.05f*fps);
-	if(difference > threshold)
-		fps = (int)(avg_fps + 0.99);
-			// C float -> int rounds down; we want to round up to
-			// hit vsync-locked framerates exactly.
-}
-
-
 //-----------------------------------------------------------------------------
 
 // cumulative timer API, useful for profiling.
@@ -304,17 +184,7 @@ void timer_display_client_totals()
 		clients = tc->next;
 		num_clients--;
 
-		// convert raw ticks into seconds, if necessary
-		double sum;
-#if TIMER_USE_RAW_TICKS
-# if CPU_IA32
-		sum = tc->sum / cpu_ClockFrequency();
-# else
-#  error "port"
-# endif
-#else
-		sum = tc->sum;
-#endif
+		const double sum = Timer::ToSeconds(tc->sum);
 
 		// determine scale factor for pretty display
 		double scale = 1e6;
@@ -331,7 +201,7 @@ void timer_display_client_totals()
 }
 
 
-#if CONFIG_TIMER_ALLOW_RDTSC
+#if ARCH_IA32 && CONFIG_TIMER_ALLOW_RDTSC
 
 TimerRdtsc::unit TimerRdtsc::get_timestamp() const
 {

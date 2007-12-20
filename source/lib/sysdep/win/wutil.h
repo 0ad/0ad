@@ -60,6 +60,19 @@ extern int win_is_locked(uint idx);
 	win_unlock(ONCE_CS);\
 }
 
+struct WinScopedLock
+{
+	WinScopedLock()
+	{
+		win_lock(WAIO_CS);
+	}
+
+	~WinScopedLock()
+	{
+		win_unlock(WAIO_CS);
+	}
+};
+
 
 //
 // error codes
@@ -131,6 +144,14 @@ extern uint wutil_WindowsVersion();
 extern bool wutil_IsWow64();
 extern void wutil_DisableWow64Redirection(void*& wasRedirectionEnabled);
 extern void wutil_RevertWow64Redirection(void* wasRedirectionEnabled);
+
+
+/**
+ * module handle of lib code (that of the main EXE if linked statically,
+ * otherwise the DLL).
+ * this is necessary for the error dialog.
+ **/
+extern HMODULE wutil_LibModuleHandle;
 
 
 /**

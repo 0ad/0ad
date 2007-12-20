@@ -127,8 +127,8 @@ static const char* GetDirectSoundDriverPath()
 	*(void**)&pDirectSoundEnumerateA = GetProcAddress(hDsoundDll, "DirectSoundEnumerateA");
 	if(pDirectSoundEnumerateA)
 	{
-		if(pDirectSoundEnumerateA(DirectSoundCallback, (void*)0) != DS_OK)
-			debug_warn("DirectSoundEnumerate failed");
+		HRESULT ret = pDirectSoundEnumerateA(DirectSoundCallback, (void*)0);
+		debug_assert(ret == DS_OK);
 	}
 	FreeLibrary(hDsoundDll);
 

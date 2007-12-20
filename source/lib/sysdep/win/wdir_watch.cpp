@@ -232,7 +232,7 @@ LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 	// need it before binding dir to IOCP because it is our "key".
 	if(last_reqnum == INT_MAX)
 	{
-		debug_warn("request numbers are no longer unique");
+		debug_assert(0);	// request numbers are no longer unique
 		CloseHandle(hDir);
 		goto fail;
 	}

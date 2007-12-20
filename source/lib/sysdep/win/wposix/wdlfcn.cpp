@@ -32,8 +32,7 @@ char* dlerror(void)
 
 void* dlopen(const char* so_name, int flags)
 {
-	if(flags & RTLD_GLOBAL)
-		debug_warn("dlopen: unsupported flag(s)");
+	debug_assert(!(flags & RTLD_GLOBAL));
 
 	// if present, strip .so extension; add .dll extension
 	char dll_name[MAX_PATH];
@@ -45,8 +44,7 @@ void* dlopen(const char* so_name, int flags)
 		SAFE_STRCPY(ext, "dll");
 
 	HMODULE hModule = LoadLibrary(dll_name);
-	if(!hModule)
-		debug_warn("dlopen failed");
+	debug_assert(hModule);
 	return void_from_HMODULE(hModule);
 }
 
@@ -55,8 +53,6 @@ void* dlsym(void* handle, const char* sym_name)
 {
 	HMODULE hModule = HMODULE_from_void(handle);
 	void* sym = GetProcAddress(hModule, sym_name);
-	if(!sym)
-		debug_warn("dlsym failed");
+	debug_assert(sym);
 	return sym;
 }
-

@@ -11,16 +11,20 @@
 #ifndef INCLUDED_SECURE_CRT
 #define INCLUDED_SECURE_CRT
 
-#include "posix/posix_types.h"	// size_t
-
 namespace ERR
 {
 	const LibError STRING_NOT_TERMINATED = -100600;
 }
 
-// only declare these functions if using our implementation
-// (otherwise, we risk incompatibilities)
-#if !HAVE_SECURE_CRT
+// if the platform lacks a secure CRT implementation, we'll provide one.
+#if MSC_VERSION >= 1400
+# define EMULATE_SECURE_CRT 0
+#else
+# define EMULATE_SECURE_CRT 1
+#endif
+
+
+#if EMULATE_SECURE_CRT
 
 // (conflicts with glibc definitions)
 #if !OS_UNIX
@@ -78,5 +82,5 @@ extern errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* m
 
 #define fscanf_s fscanf
 
-#endif	// #if !HAVE_SECURE_CRT
+#endif	// #if EMULATE_SECURE_CRT
 #endif	// #ifndef INCLUDED_SECURE_CRT

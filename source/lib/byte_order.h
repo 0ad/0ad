@@ -11,7 +11,18 @@
 #ifndef INCLUDED_BYTE_ORDER
 #define INCLUDED_BYTE_ORDER
 
-#include "config.h"
+#include "lib/sysdep/cpu.h"
+
+// detect byte order via predefined macros.
+#ifndef BYTE_ORDER
+# define LITTLE_ENDIAN 0x4321
+# define BIG_ENDIAN    0x1234
+# if ARCH_IA32 || ARCH_IA64 || ARCH_AMD64 || ARCH_ALPHA || ARCH_ARM || ARCH_MIPS || defined(__LITTLE_ENDIAN__)
+#  define BYTE_ORDER LITTLE_ENDIAN
+# else
+#  define BYTE_ORDER BIG_ENDIAN
+# endif
+#endif
 
 
 /**

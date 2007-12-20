@@ -244,7 +244,7 @@ DIR* opendir(const char* path)
 	{
 		errno = ENOENT;
 fail:
-		debug_warn("opendir failed");
+		debug_assert(0);
 		return 0;
 	}
 
@@ -329,7 +329,7 @@ fail:
 	if(GetLastError() == ERROR_NO_MORE_FILES)
 		SetLastError(prev_err);
 	else
-		debug_warn("readdir: FindNextFile failed");
+		debug_assert(0);	// readdir: FindNextFile failed
 	return 0;
 }
 

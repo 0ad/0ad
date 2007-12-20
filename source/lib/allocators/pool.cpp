@@ -83,14 +83,14 @@ void pool_free(Pool* p, void* el)
 	// check if requested_size matches that when allocating)
 	if(p->el_size == 0)
 	{
-		debug_warn("cannot free variable-size items");
+		debug_assert(0);	// cannot free variable-size items
 		return;
 	}
 
 	if(pool_contains(p, el))
 		mem_freelist_AddToFront(p->freelist, el);
 	else
-		debug_warn("invalid pointer (not in pool)");
+		debug_assert(0);	// invalid pointer (not in pool)
 }
 
 

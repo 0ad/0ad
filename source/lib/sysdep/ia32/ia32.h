@@ -11,8 +11,8 @@
 #ifndef INCLUDED_IA32
 #define INCLUDED_IA32
 
-#if !CPU_IA32
-#error "including ia32.h without CPU_IA32=1"
+#if !ARCH_IA32
+#error "including ia32.h without ARCH_IA32=1"
 #endif
 
 #include "ia32_asm.h"
@@ -35,7 +35,7 @@ extern Ia32Vendor ia32_Vendor();
 
 /**
  * @return the colloquial processor generation
- * (6 = Pentium II / K6, 7 = Pentium III / Athlon, 8 = Opteron)
+ * (5 = Pentium, 6 = Pentium Pro/II/III / K6, 7 = Pentium4 / Athlon, 8 = Core / Opteron)
  **/
 extern uint ia32_Generation();
 

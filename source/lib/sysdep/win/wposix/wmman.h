@@ -27,7 +27,7 @@
 // doesn't commit mmap-ed regions anyway, but we specify this flag to
 // make sure of that in the future.
 
-#define MAP_FAILED ((void*)-1L)
+#define MAP_FAILED ((void*)(intptr_t)-1L)
 
 extern void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t offset);
 extern int munmap(void* start, size_t len);

@@ -4,6 +4,12 @@
 
 #include "precompiled.h"
 
+#if OS_LINUX
+# define HAVE_X 1
+#else
+# define HAVE_X 0
+#endif
+
 #if HAVE_X
 
 #include <Xlib.h>

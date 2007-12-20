@@ -53,7 +53,7 @@ static uintptr_t get_target_pc()
 	ret = SuspendThread(hThread);
 	if(ret == (DWORD)-1)
 	{
-		debug_warn("get_target_pc: SuspendThread failed");
+		debug_assert(0);	// get_target_pc: SuspendThread failed
 		return 0;
 	}
 	// note: we don't need to call more than once: this increments a DWORD
@@ -114,7 +114,7 @@ static void* prof_thread_func(void* UNUSED(data))
 			break;
 		// actual error: warn
 		if(errno != ETIMEDOUT)
-			debug_warn("wpcu prof_thread_func: sem_timedwait failed");
+			debug_assert(0);	// wpcu prof_thread_func: sem_timedwait failed
 
 		uintptr_t pc = get_target_pc();
 		UNUSED2(pc);
