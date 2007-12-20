@@ -20,9 +20,9 @@
 
 
 CPathfindEngine::CPathfindEngine() : triangulationOverlay(0),
-									OABBBOUNDREDUCTION(0.8),
-									CIRCLEBOUNDREDUCTION(0.5),
-									RADIUSINCREMENT(2.0)
+									OABBBOUNDREDUCTION(0.8f),
+									CIRCLEBOUNDREDUCTION(0.5f),
+									RADIUSINCREMENT(2.0f)
 {
 	dcdtInitialized = false;
 	
@@ -68,7 +68,7 @@ void  CPathfindEngine::insertObstacles()
 	SrPolygon poly;
 	
 	
-	for(int i =0 ; i < results.size(); i++)
+	for(size_t i =0 ; i < results.size(); i++)
 	{
 		poly.size(0);
 

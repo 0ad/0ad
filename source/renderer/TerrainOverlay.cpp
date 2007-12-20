@@ -95,7 +95,7 @@ void TerrainOverlay::RenderEntityEdges()
 
 	
 	
-	for(int i =0 ; i < results.size(); i++)
+	for(size_t i =0 ; i < results.size(); i++)
 	{
 		glBegin(GL_LINE_LOOP);
 

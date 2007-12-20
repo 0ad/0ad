@@ -115,8 +115,8 @@ void CTrigger::Deactivate(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* UNUSE
 
 void TriggerParameter::SetWindowData(const CStrW& _windowType, CStrW& windowPosition, CStrW& windowSize)
 {
-	windowPosition.Remove( CStr(L" ") );
-	windowSize.Remove( CStr(L" ") );
+	windowPosition.Remove( CStrW(L" ") );
+	windowSize.Remove( CStrW(L" ") );
 
 	xPos = windowPosition.BeforeFirst( CStrW(L",") ).ToInt();
 	yPos = windowPosition.AfterFirst( CStrW(L",") ).ToInt();

@@ -287,7 +287,7 @@ public:
 		max_j_inclusive = 2;
 	}
 
-	virtual void ProcessTile(int i, int j)
+	virtual void ProcessTile(int UNUSED(i), int UNUSED(j))
 	{
 		
 		RenderConstrainedEdges();
