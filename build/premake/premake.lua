@@ -403,11 +403,15 @@ function setup_all_libs ()
 		"lib/posix",
 		"lib/sysdep",
 		"lib/sysdep/ia32",
+		"lib/file",
+		"lib/file/archive",
+		"lib/file/common",
+		"lib/file/io",
+		"lib/file/vfs",
 		"lib/res",
-		"lib/res/file",
-		"lib/res/file/archive",
 		"lib/res/graphics",
 		"lib/res/sound",
+		"lib/tex",
 		"lib/external_libraries"
 	}
 	extern_libs = {
