@@ -6,12 +6,12 @@
   <group>
     <variant frequency="100" name="Mesh">
       <animations>
-        <animation file="quadraped/horseidle.psa" name="Idle" speed="100"/>
-        <animation file="quadraped/horse_walk.psa" name="walk" speed="100"/>
-        <animation file="quadraped/horse_walk.psa" name="run " speed="100"/>
-        <animation file="quadraped/horse_attack_b.psa" name="melee" speed="100"/>
+        <animation file="quadraped/elephant_idle.psa" name="Idle" speed="100"/>
+        <animation file="quadraped/elephant_walk.psa" name="walk" speed="15"/>
+        <animation file="quadraped/elephant_walk.psa" name="run " speed="20"/>
+        <animation file="quadraped/elephant_idle.psa" name="melee" speed="100"/>
       </animations>
-      <mesh>test/elephaunt propped.pmd</mesh>
+      <mesh>skeletal/elephant_propped.pmd</mesh>
       <props>
         <prop actor="units/persians/super_unit_2_mahout.xml" attachpoint="rider1"/>
         <prop actor="units/persians/super_unit_2_raja.xml" attachpoint="rider2"/>

@@ -6,9 +6,10 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
-        <animation file="biped/cavalryidle.psa" name="Run" speed="8"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Walk" speed="18"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="Run" speed="8"/>
+        <animation file="quadraped/elephant_rider_idle.psa" name="melee" speed="50"/>
       </animations>
       <mesh>skeletal/m_tights.pmd</mesh>
       <props>
