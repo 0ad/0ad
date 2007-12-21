@@ -11,7 +11,7 @@
 #ifndef INCLUDED_COMPILER
 #define INCLUDED_COMPILER
 
-#include "config.h"	// CONFIG_OMIT_FP
+#include "lib/config.h"	// CONFIG_OMIT_FP
 
 
 // detect compiler and its version (0 if not present, otherwise

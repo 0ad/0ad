@@ -11,7 +11,7 @@
 #ifndef INCLUDED_STL
 #define INCLUDED_STL
 
-#include "config.h"
+#include "lib/config.h"
 #include "compiler.h"
 
 // detect STL version
