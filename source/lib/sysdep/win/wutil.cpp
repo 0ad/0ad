@@ -398,7 +398,8 @@ bool wutil_IsWow64()
 	return isWow64;
 }
 
-void wutil_DisableWow64Redirection(void*& wasRedirectionEnabled)
+
+WinScopedDisableWow64Redirection::WinScopedDisableWow64Redirection()
 {
 	// note: don't just check if the function pointers are valid. 32-bit
 	// Vista includes them but isn't running Wow64, so calling the functions
@@ -406,15 +407,15 @@ void wutil_DisableWow64Redirection(void*& wasRedirectionEnabled)
 	// more need to verify the pointers (their existence is implied).
 	if(!wutil_IsWow64())
 		return;
-	BOOL ok = pWow64DisableWow64FsRedirection(&wasRedirectionEnabled);
+	BOOL ok = pWow64DisableWow64FsRedirection(&m_wasRedirectionEnabled);
 	WARN_IF_FALSE(ok);
 }
 
-void wutil_RevertWow64Redirection(void* wasRedirectionEnabled)
+WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 {
 	if(!wutil_IsWow64())
 		return;
-	BOOL ok = pWow64RevertWow64FsRedirection(wasRedirectionEnabled);
+	BOOL ok = pWow64RevertWow64FsRedirection(m_wasRedirectionEnabled);
 	WARN_IF_FALSE(ok);
 }
 

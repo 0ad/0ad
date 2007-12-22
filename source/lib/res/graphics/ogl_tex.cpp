@@ -20,6 +20,7 @@
 
 #include "../h_mgr.h"
 #include "lib/file/vfs/vfs.h"
+#include "lib/fnv_hash.h"
 extern PIVFS g_VFS;
 
 
@@ -396,7 +397,7 @@ static void OglTex_dtor(OglTex* ot)
 	ot->flags &= ~OT_IS_UPLOADED;
 }
 
-static LibError OglTex_reload(OglTex* ot, const char* fn, Handle h)
+static LibError OglTex_reload(OglTex* ot, const VfsPath& pathname, Handle h)
 {
 	// we're reusing a freed but still in-memory OglTex object
 	if(ot->flags & OT_IS_UPLOADED)
@@ -405,7 +406,12 @@ static LibError OglTex_reload(OglTex* ot, const char* fn, Handle h)
 	// if we don't already have the texture in memory (*), load from file.
 	// * this happens if the texture is "wrapped".
 	if(!(ot->flags & OT_TEX_VALID))
-		RETURN_ERR(tex_load(fn, &ot->t));
+	{
+		shared_ptr<u8> file; size_t fileSize;
+		RETURN_ERR(g_VFS->LoadFile(pathname, file, fileSize));
+		if(tex_decode(file, fileSize, &ot->t) < 0)
+			return 0;
+	}
 	ot->flags |= OT_TEX_VALID;
 
 	glGenTextures(1, &ot->id);
@@ -467,20 +473,21 @@ static LibError OglTex_to_string(const OglTex* ot, char* buf)
 }
 
 
-// load and return a handle to the texture given in <fn>.
+// load and return a handle to the texture given in <pathname>.
 // for a list of supported formats, see tex.h's tex_load.
-Handle ogl_tex_load(const char* fn, uint flags)
+Handle ogl_tex_load(const VfsPath& pathname, uint flags)
 {
 	Tex* wrapped_tex = 0;	// we're loading from file
-	return h_alloc(H_OglTex, fn, flags, wrapped_tex);
+	return h_alloc(H_OglTex, pathname, flags, wrapped_tex);
 }
 
 
 // return Handle to an existing object, if it has been loaded and
 // is still in memory; otherwise, a negative error code.
-Handle ogl_tex_find(const char* fn)
+Handle ogl_tex_find(const VfsPath& pathname)
 {
-	return h_find(H_OglTex, (uintptr_t)fn);
+	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length());
+	return h_find(H_OglTex, key);
 }
 
 
@@ -757,16 +764,14 @@ struct UploadParams
 	GLint int_fmt;
 };
 
-static void upload_level(uint level, uint level_w, uint level_h,
-	const u8* RESTRICT level_data, size_t UNUSED(level_data_size), void* RESTRICT cbData)
+static void upload_level(uint level, uint level_w, uint level_h, const u8* RESTRICT level_data, size_t UNUSED(level_data_size), void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
 	glTexImage2D(GL_TEXTURE_2D, level, up->int_fmt, level_w, level_h, 0,
 		up->fmt, GL_UNSIGNED_BYTE, level_data);
 }
 
-static void upload_compressed_level(uint level, uint level_w, uint level_h,
-	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
+static void upload_compressed_level(uint level, uint level_w, uint level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
 	pglCompressedTexImage2DARB(GL_TEXTURE_2D, level, up->fmt,
@@ -807,9 +812,6 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 
 	H_DEREF(ht, OglTex, ot);
 	Tex* t = &ot->t;
-	const char* fn = h_filename(ht);
-	if(!fn)
-		fn = "(could not determine filename)";
 	debug_assert(q_flags_valid(q_flags_ovr));
 	// we don't bother verifying *fmt_ovr - there are too many values
 

@@ -2,10 +2,10 @@
 #define INCLUDED_FILESYSTEM
 
 #include "lib/path_util.h"
-#include "lib/file/path.h"
+#include "lib/file/file.h"
+#include "lib/file/io/io.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/file/file_system_util.h"
-#include "lib/file/io/io.h"
 #include "lib/file/io/write_buffer.h"
 
 #include "ps/CStr.h"

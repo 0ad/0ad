@@ -50,7 +50,7 @@ static void* load_empty_sys_cursor()
 	return sys_cursor;
 }
 
-static void* load_sys_cursor(const char* filename, int hx, int hy)
+static void* load_sys_cursor(const VfsPath& pathname, int hx, int hy)
 {
 #if !ALLOW_SYS_CURSOR
 	UNUSED2(filename);
@@ -59,8 +59,12 @@ static void* load_sys_cursor(const char* filename, int hx, int hy)
 
 	return 0;
 #else
+	shared_ptr<u8> file; size_t fileSize;
+	if(g_VFS->LoadFile(pathname, file, fileSize) < 0)
+		return 0;
+
 	Tex t;
-	if(tex_load(filename, &t) < 0)
+	if(tex_decode(file, fileSize, &t) < 0)
 		return 0;
 
 	{
@@ -99,9 +103,9 @@ class GLCursor
 	uint hotspotx, hotspoty;
 
 public:
-	LibError create(const char* filename, uint hotspotx_, uint hotspoty_)
+	LibError create(const VfsPath& pathname, uint hotspotx_, uint hotspoty_)
 	{
-		ht = ogl_tex_load(filename);
+		ht = ogl_tex_load(pathname);
 		RETURN_ERR(ht);
 
 		(void)ogl_tex_get_size(ht, &w, &h, 0);
@@ -178,29 +182,30 @@ static void Cursor_dtor(Cursor* c)
 		c->gl_cursor.destroy();
 }
 
-static LibError Cursor_reload(Cursor* c, const char* name, Handle)
+static LibError Cursor_reload(Cursor* c, const VfsPath& name, Handle)
 {
-	char filename[PATH_MAX];
+	const VfsPath path("art/textures/cursors");
+	const std::string basename = name.string();
 
 	// read pixel offset of the cursor's hotspot [the bit of it that's
 	// drawn at (g_mouse_x,g_mouse_y)] from file.
 	uint hotspotx = 0, hotspoty = 0;
 	{
-		snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.txt", name);
+		const VfsPath pathname(path / (basename + ".txt"));
 		shared_ptr<u8> buf; size_t size;
-		RETURN_ERR(g_VFS->LoadFile(filename, buf, size));
+		RETURN_ERR(g_VFS->LoadFile(pathname, buf, size));
 		std::stringstream s(std::string((const char*)buf.get(), size));
 		s >> hotspotx >> hotspoty;
 	}
 
 	// load actual cursor
-	snprintf(filename, ARRAY_SIZE(filename), "art/textures/cursors/%s.dds", name);
+	const VfsPath pathname(path / (basename + ".dds"));
 	// .. try loading as system cursor (2d, hardware accelerated)
-	c->sys_cursor = load_sys_cursor(filename, hotspotx, hotspoty);
+	c->sys_cursor = load_sys_cursor(pathname, hotspotx, hotspoty);
 	// .. fall back to GLCursor (system cursor code is disabled or failed)
 	if(!c->sys_cursor)
 	{
-		LibError err=c->gl_cursor.create(filename, hotspotx, hotspoty);
+		LibError err=c->gl_cursor.create(pathname, hotspotx, hotspoty);
 		
 		if (err == INFO::OK)
 			c->gl_sys_cursor = load_empty_sys_cursor();

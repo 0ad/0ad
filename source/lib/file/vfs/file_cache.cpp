@@ -84,7 +84,7 @@ public:
 
 		u8* mem = (u8*)m_allocator.Allocate(alignedSize);
 #ifndef NDEBUG
-		m_checker.notify_alloc(mem, alignedSize);
+		m_checker.OnAllocate(mem, alignedSize);
 #endif
 
 		return shared_ptr<u8>(mem, FileCacheDeleter(size, pthis));
@@ -100,7 +100,7 @@ public:
 		(void)mprotect(mem, size, PROT_READ|PROT_WRITE);
 
 #ifndef NDEBUG
-		m_checker.notify_free(mem, alignedSize);
+		m_checker.OnDeallocate(mem, alignedSize);
 #endif
 		m_allocator.Deallocate(mem, alignedSize);
 

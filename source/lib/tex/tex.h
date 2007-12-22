@@ -233,10 +233,6 @@ extern LibError tex_validate(const Tex* t);
 extern void tex_set_global_orientation(int orientation);
 
 
-//
-// open/close
-//
-
 /**
  * manually register codecs. must be called before first use of a
  * codec (e.g. loading a texture).
@@ -249,16 +245,28 @@ extern void tex_set_global_orientation(int orientation);
 extern void tex_codec_register_all();
 
 /**
- * load the specified image from file into a Tex object.
+ * decode an in-memory texture file into texture object.
  *
  * FYI, currently BMP, TGA, JPG, JP2, PNG, DDS are supported - but don't
  * rely on this (not all codecs may be included).
  *
- * @param fn filename
- * @param t output texture object
+ * @param data input data
+ * @param data_size its size [bytes]
+ * @param t output texture object.
+ * @return LibError.
+ **/
+extern LibError tex_decode(shared_ptr<u8> data, size_t data_size, Tex* t);
+
+/**
+ * encode a texture into a memory buffer in the desired file format.
+ *
+ * @param t input texture object
+ * @param extension (including '.')
+ * @param da output memory array. allocated here; caller must free it
+ * when no longer needed. invalid unless function succeeds.
  * @return LibError
  **/
-extern LibError tex_load(const char* fn, Tex* t);
+extern LibError tex_encode(Tex* t, const std::string& extension, DynArray* da);
 
 /**
  * store the given image data into a Tex object; this will be as if
@@ -419,15 +427,5 @@ extern bool tex_is_known_extension(const char* filename);
  * @return size [bytes] or 0 on error (i.e. no codec found).
  **/
 extern size_t tex_hdr_size(const char* fn);
-
-/**
- * write the specified texture to disk.
- *
- * @param t input texture object. note: cannot be made const because the
- * image may have to be transformed to write it out in the format
- * determined by <fn>'s extension.
- * @return LibError
- **/
-extern LibError tex_write(Tex* t, const char* fn);
 
 #endif	 // INCLUDED_TEX

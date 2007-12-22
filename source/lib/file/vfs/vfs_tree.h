@@ -18,31 +18,33 @@
 class VfsFile
 {
 public:
-	VfsFile(const FileInfo& fileInfo, unsigned priority, PIFileLoader provider);
+	VfsFile(const std::string& name, off_t size, time_t mtime, unsigned priority, PIFileLoader provider);
 
 	const std::string& Name() const
 	{
-		return m_fileInfo.Name();
+		return m_name;
 	}
 
 	off_t Size() const
 	{
-		return m_fileInfo.Size();
+		return m_size;
 	}
 
-	void GetFileInfo(FileInfo* pfileInfo) const
+	time_t MTime() const
 	{
-		*pfileInfo = m_fileInfo;
+		return m_mtime;
 	}
 
-	bool IsSupersededBy(const VfsFile& vfsFile) const;
+	bool IsSupersededBy(const VfsFile& file) const;
 
 	void GenerateDescription(char* text, size_t maxChars) const;
 
 	LibError Load(shared_ptr<u8> buf) const;
 
 private:
-	mutable FileInfo m_fileInfo;
+	std::string m_name;
+	off_t m_size;
+	time_t m_mtime;
 
 	unsigned m_priority;
 
@@ -59,7 +61,7 @@ public:
 	 * @return address of existing or newly inserted file; remains
 	 * valid until ClearR is called (i.e. VFS is rebuilt).
 	 **/
-	VfsFile* AddFile(const VfsFile& vfsFile);
+	VfsFile* AddFile(const VfsFile& file);
 
 	/**
 	 * @return address of existing or newly inserted subdirectory; remains
@@ -92,10 +94,10 @@ public:
 
 private:
 	typedef std::map<std::string, VfsFile> VfsFiles;
-	VfsFiles m_vfsFiles;
+	VfsFiles m_files;
 
 	typedef std::map<std::string, VfsDirectory> VfsSubdirectories;
-	VfsSubdirectories m_vfsSubdirectories;
+	VfsSubdirectories m_subdirectories;
 
 	PRealDirectory m_realDirectory;
 	volatile uintptr_t m_shouldPopulate;	// (cpu_CAS can't be used on bool)

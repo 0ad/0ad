@@ -765,49 +765,29 @@ if(sd->o) ogg_release(sd->o);
 // but that load failed).
 static void hsd_list_add(Handle hsd);
 
-static LibError SndData_reload(SndData * sd, const char* fn, Handle hsd)
+static LibError SndData_reload(SndData* sd, const VfsPath& pathname, Handle hsd)
 {
-	//
-	// detect sound format by checking file extension
-	//
-
-	enum FileType
-	{
-		FT_OGG
-	}
-	file_type;
-
-	const char* ext = path_extension(fn);
-	// .. OGG (data will be passed directly to OpenAL)
-	if(!strcasecmp(ext, "ogg"))
-	{
-#ifdef OGG_HACK
-#else
-		// first use of OGG: check if OpenAL extension is available.
-		// note: this is required! OpenAL does its init here.
-		static int ogg_supported = -1;
-		if(ogg_supported == -1)
-			ogg_supported = alIsExtensionPresent((ALubyte*)"AL_EXT_vorbis")? 1 : 0;
-		if(!ogg_supported)
-			WARN_RETURN(ERR::NO_SYS);
-
-		sd->al_fmt  = AL_FORMAT_VORBIS_EXT;
-		sd->al_freq = 0;
-#endif
-
-		file_type = FT_OGG;
-	}
-	// .. unknown extension
-	else
-		WARN_RETURN(ERR::FAIL);
-
-	// note: WAV is no longer supported. writing our own loader is infeasible
+	// currently only supports OGG; WAV is no longer supported. writing our own loader is infeasible
 	// due to a seriously watered down spec with many incompatible variants.
 	// pulling in an external library (e.g. freealut) is deemed not worth the
 	// effort - OGG should be better in all cases.
 
+#ifdef OGG_HACK
+#else
+	// first use of OGG: check if OpenAL extension is available.
+	// note: this is required! OpenAL does its init here.
+	static int ogg_supported = -1;
+	if(ogg_supported == -1)
+		ogg_supported = alIsExtensionPresent((ALubyte*)"AL_EXT_vorbis")? 1 : 0;
+	if(!ogg_supported)
+		WARN_RETURN(ERR::NO_SYS);
+
+	sd->al_fmt  = AL_FORMAT_VORBIS_EXT;
+	sd->al_freq = 0;
+#endif
+
 	shared_ptr<u8> file; size_t file_size;
-	RETURN_ERR(g_VFS->LoadFile(fn, file, file_size));
+	RETURN_ERR(g_VFS->LoadFile(pathname, file, file_size));
 
 	ALvoid* al_data = (ALvoid*)file.get();
 	ALsizei al_size = (ALsizei)file_size;
@@ -815,29 +795,22 @@ static LibError SndData_reload(SndData * sd, const char* fn, Handle hsd)
 #ifdef OGG_HACK
 	std::vector<u8> data;
 	data.reserve(500000);
-	if(file_type == FT_OGG)
+	sd->o = ogg_create();
+	ogg_give_raw(sd->o, file.get(), file_size);
+	ogg_open(sd->o, sd->al_fmt, sd->al_freq);
+	size_t datasize=0;
+	size_t bytes_read;
+	do
 	{
-		sd->o = ogg_create();
-		ogg_give_raw(sd->o, file.get(), file_size);
-		ogg_open(sd->o, sd->al_fmt, sd->al_freq);
-		size_t datasize=0;
-		size_t bytes_read;
-		do
-		{
-			const size_t bufsize = 32*KiB;
-			char buf[bufsize];
-			bytes_read = ogg_read(sd->o, buf, bufsize);
-			data.insert(data.end(), &buf[0], &buf[bytes_read]);
-			datasize += bytes_read;
-		}
-		while(bytes_read > 0);
-		al_data = &data[0];
-		al_size = (ALsizei)datasize;
+		const size_t bufsize = 32*KiB;
+		char buf[bufsize];
+		bytes_read = ogg_read(sd->o, buf, bufsize);
+		data.insert(data.end(), &buf[0], &buf[bytes_read]);
+		datasize += bytes_read;
 	}
-	else
-	{
-		sd->o = NULL;
-	}
+	while(bytes_read > 0);
+	al_data = &data[0];
+	al_size = (ALsizei)datasize;
 #endif
 
 	sd->al_buf = al_buf_alloc(al_data, al_size, sd->al_fmt, sd->al_freq);
@@ -859,7 +832,7 @@ static LibError SndData_validate(const SndData * sd)
 	return INFO::OK;
 }
 
-static LibError SndData_to_string(const SndData * sd, char * buf)
+static LibError SndData_to_string(const SndData* sd, char* buf)
 {
 	const char* type = "clip";
 	snprintf(buf, H_STRING_LEN, "%s; al_buf=%d", type, sd->al_buf);
@@ -870,18 +843,17 @@ static LibError SndData_to_string(const SndData * sd, char * buf)
 /**
  * open and return a handle to a sound file's data.
  *
- * @param fn VFS filename
  * @param is_stream (default false) indicates whether this file should be
  * streamed in (opening is faster, it won't be kept in memory, but
  * only one instance can be open at a time; makes sense for large music files)
  * or loaded immediately.
  * @return Handle or LibError on failure
  */
-static Handle snd_data_load(const char* fn, bool is_stream)
+static Handle snd_data_load(const VfsPath& pathname, bool is_stream)
 {
 	debug_assert(!is_stream);	// no longer supported
 
-	return h_alloc(H_SndData, fn);
+	return h_alloc(H_SndData, pathname);
 }
 
 
@@ -1227,7 +1199,7 @@ static void VSrc_dtor(VSrc* vs)
 	(void)snd_data_free(vs->hsd);
 }
 
-static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
+static LibError VSrc_reload(VSrc* vs, const VfsPath& pathname, Handle hvs)
 {
 	// cannot wait till play(), need to init here:
 	// must load OpenAL so that snd_data_load can check for OGG extension.
@@ -1238,34 +1210,24 @@ static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	// .. catch genuine errors during init.
 	RETURN_ERR(err);
 
-	//
-	// if extension is "txt", fn is a definition file containing the
-	// sound file name and its gain; otherwise, read directly from fn
-	// and assume default gain (1.0).
-	//
+	VfsPath dataPathname;
 
-	const char* snd_fn;		// actual sound file name
-	std::string snd_fn_s;
-	// extracted from stringstream;
-	// declare here so that it doesn't go out of scope below.
-
-	const char* ext = path_extension(fn);
-	if(!strcasecmp(ext, "txt"))
+	// pathname is a definition file containing the data file name and
+	// its gain.
+	if(fs::extension((const fs::path&)pathname) == ".txt")
 	{
 		shared_ptr<u8> buf; size_t size;
-		RETURN_ERR(g_VFS->LoadFile(fn, buf, size));
+		RETURN_ERR(g_VFS->LoadFile(pathname, buf, size));
 		std::istringstream def(std::string((char*)buf.get(), (int)size));
 
-		float gain_percent;
-		def >> snd_fn_s;
-		def >> gain_percent;
-
-		snd_fn = snd_fn_s.c_str();
-		vs->gain = gain_percent / 100.0f;
+		def >> dataPathname;
+		def >> vs->gain;
+		vs->gain /= 100.0f;	// is stored as percent
 	}
+	// read the sound file directly and assume default gain (1.0).
 	else
 	{
-		snd_fn = fn;
+		dataPathname = pathname;
 		vs->gain = 1.0f;
 	}
 
@@ -1277,7 +1239,7 @@ static LibError VSrc_reload(VSrc* vs, const char* fn, Handle hvs)
 	// needed so we can snd_free ourselves when done playing.
 
 	bool is_stream = (vs->flags & VS_IS_STREAM) != 0;
-	vs->hsd = snd_data_load(snd_fn, is_stream);
+	vs->hsd = snd_data_load(dataPathname, is_stream);
 	RETURN_ERR(vs->hsd);
 
 	return INFO::OK;
@@ -1309,7 +1271,7 @@ static LibError VSrc_to_string(const VSrc* vs, char * buf)
 /**
  * open and return a handle to a sound instance.
  *
- * @param snd_fn VFS filename. if a text file (extension ".txt"),
+ * @param pathname. if a text file (extension ".txt"),
  * it is assumed to be a definition file containing the
  * sound file name and its gain (0.0 .. 1.0).
  * otherwise, it is taken to be the sound file name and
@@ -1320,14 +1282,14 @@ static LibError VSrc_to_string(const VSrc* vs, char * buf)
  * or loaded immediately.
  * @return Handle or LibError on failure
  */
-Handle snd_open(const char* snd_fn, bool is_stream)
+Handle snd_open(const VfsPath& pathname, bool is_stream)
 {
 	uint flags = 0;
 	if(is_stream)
 		flags |= VS_IS_STREAM;
 	// note: RES_UNIQUE forces each instance to get a new resource
 	// (which is of course what we want).
-	return h_alloc(H_VSrc, snd_fn, RES_UNIQUE, flags);
+	return h_alloc(H_VSrc, pathname, RES_UNIQUE, flags);
 }
 
 

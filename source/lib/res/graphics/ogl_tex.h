@@ -199,12 +199,11 @@ extern void ogl_tex_set_defaults(uint q_flags, GLint filter);
 /**
 * Load and return a handle to the texture.
 *
-* @param fn VFS filename of texture.
 * @param flags h_alloc flags.
 * @return Handle to texture or negative LibError
 * for a list of supported formats, see tex.h's tex_load.
 */
-extern Handle ogl_tex_load(const char* fn, uint flags = 0);
+extern Handle ogl_tex_load(const VfsPath& pathname, uint flags = 0);
 
 /**
 * Find and return an existing texture object, if it has already been
@@ -213,7 +212,7 @@ extern Handle ogl_tex_load(const char* fn, uint flags = 0);
 * @param fn VFS filename of texture.
 * @return Handle to texture or negative LibError
 */
-extern Handle ogl_tex_find(const char* fn);
+extern Handle ogl_tex_find(const VfsPath& pathname);
 
 /**
 * Make the Tex object ready for use as an OpenGL texture

@@ -142,8 +142,16 @@ extern uint wutil_WindowsVersion();
 //
 
 extern bool wutil_IsWow64();
-extern void wutil_DisableWow64Redirection(void*& wasRedirectionEnabled);
-extern void wutil_RevertWow64Redirection(void* wasRedirectionEnabled);
+
+class WinScopedDisableWow64Redirection
+{
+public:
+	WinScopedDisableWow64Redirection();
+	~WinScopedDisableWow64Redirection();
+
+private:
+	void* m_wasRedirectionEnabled;
+};
 
 
 /**

@@ -38,8 +38,8 @@ class TestMeshManager : public CxxTest::TestSuite
 		directoryPosix.DeleteDirectory(MOD_PATH);
 		directoryPosix.DeleteDirectory(CACHE_PATH);
 
-		TS_ASSERT_OK(directoryPosix.CreateDirectory(MOD_PATH));
-		TS_ASSERT_OK(directoryPosix.CreateDirectory(CACHE_PATH));
+		TS_ASSERT_OK(fs::create_directory(MOD_PATH));
+		TS_ASSERT_OK(fs::create_directory(CACHE_PATH));
 
 		vfs = CreateVfs();
 

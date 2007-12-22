@@ -2,6 +2,7 @@
 #include "real_directory.h"
 
 #include "lib/path_util.h"
+#include "lib/file/file.h"
 #include "lib/file/io/io.h"
 
 

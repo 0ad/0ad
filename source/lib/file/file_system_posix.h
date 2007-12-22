@@ -15,13 +15,16 @@
 #include "lib/file/path.h"
 #include "lib/file/file_system.h"
 
+// jw 2007-12-20: we'd love to replace this with boost::filesystem,
+// but basic_directory_iterator does not yet cache file_size and
+// last_write_time in file_status. (they each entail a stat() call,
+// which is unacceptably slow.)
+
 struct FileSystem_Posix
 {
 	virtual LibError GetFileInfo(const Path& pathname, FileInfo* fileInfo) const;
 	virtual LibError GetDirectoryEntries(const Path& path, FileInfos* files, DirectoryNames* subdirectoryNames) const;
 
-	LibError DeleteFile(const Path& pathname);
-	LibError CreateDirectory(const Path& dirPath);
 	LibError DeleteDirectory(const Path& dirPath);
 };
 

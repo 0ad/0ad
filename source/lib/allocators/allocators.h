@@ -311,21 +311,21 @@ private:
 class AllocatorChecker
 {
 public:
-	void notify_alloc(void* p, size_t size)
+	void OnAllocate(void* p, size_t size)
 	{
 		const Allocs::value_type item = std::make_pair(p, size);
 		std::pair<Allocs::iterator, bool> ret = allocs.insert(item);
 		debug_assert(ret.second == true);	// wasn't already in map
 	}
 
-	void notify_free(void* p, size_t size)
+	void OnDeallocate(void* p, size_t size)
 	{
 		Allocs::iterator it = allocs.find(p);
 		if(it == allocs.end())
 			debug_assert(0);	// freeing invalid pointer
 		else
 		{
-			// size must match what was passed to notify_alloc
+			// size must match what was passed to OnAllocate
 			const size_t allocated_size = it->second;
 			debug_assert(size == allocated_size);
 
@@ -336,7 +336,7 @@ public:
 	/**
 	 * allocator is resetting itself, i.e. wiping out all allocs.
 	 **/
-	void notify_clear()
+	void OnClear()
 	{
 		allocs.clear();
 	}

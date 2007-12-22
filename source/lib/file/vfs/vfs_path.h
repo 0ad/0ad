@@ -22,8 +22,6 @@ struct VfsPathTraits
 	}
 };
 
-extern bool IsDirectory(const VfsPath& pathname);
-extern std::string Basename(const VfsPath& pathname);
-extern std::string Extension(const VfsPath& pathname);
+extern bool vfs_path_IsDirectory(const VfsPath& pathname);
 
 #endif	//	#ifndef INCLUDED_VFS_PATH

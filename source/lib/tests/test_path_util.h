@@ -49,16 +49,6 @@ class TestPathUtil : public CxxTest::TestSuite
 		TS_ASSERT_STR_EQUALS(result, correct_result);
 	}
 
-	void TEST_PATH_PACKAGE(const char* path, const char* fn,
-		const char* correct_result)
-	{
-		PathPackage pp;
-		TS_ASSERT_OK(path_package_set_dir(&pp, path));
-		TS_ASSERT_OK(path_package_append_file(&pp, fn));
-		TS_ASSERT_STR_EQUALS(pp.path, correct_result);
-	}
-
-
 public:
 
 	void test_subpath()
@@ -194,23 +184,5 @@ public:
 		TEST_PATH_EXT("a.BmP", "BmP");	// case sensitive
 		TEST_PATH_EXT("c", "");	// no extension
 		TEST_PATH_EXT("", "");	// empty
-	}
-
-	// testing path_foreach_component is difficult; currently skipped.
-
-	void test_path_package()
-	{
-		// normal
-		TEST_PATH_PACKAGE("a/b", "c", "a/b/c");
-		// nonportable slash
-		TEST_PATH_PACKAGE("a\\b", "c", "a\\b/c");
-		// slash already present
-		TEST_PATH_PACKAGE("a/b/", "c", "a/b/c");
-		// nonportable slash already present
-		TEST_PATH_PACKAGE("a\\b\\", "c", "a\\b\\c");
-		// mixed slashes
-		TEST_PATH_PACKAGE("a/b\\c", "d", "a/b\\c/d");
-		// mixed slashes (2)
-		TEST_PATH_PACKAGE("a\\b/c", "d", "a\\b/c/d");
 	}
 };

@@ -1,31 +1,15 @@
 #ifndef INCLUDED_WRITE_BUFFER
 #define INCLUDED_WRITE_BUFFER
 
+class File;
+
 class LIB_API WriteBuffer
 {
 public:
-	WriteBuffer()
-	: m_capacity(4096), m_data(io_Allocate(m_capacity)), m_size(0)
-	{
-	}
+	WriteBuffer();
 
-	void Append(const void* data, size_t size)
-	{
-		while(m_size + size > m_capacity)
-			m_capacity *= 2;
-		shared_ptr<u8> newData = io_Allocate(m_capacity);
-		cpu_memcpy(newData.get(), m_data.get(), m_size);
-		m_data = newData;
-
-		cpu_memcpy(m_data.get() + m_size, data, size);
-		m_size += size;
-	}
-
-	void Overwrite(const void* data, size_t size, size_t offset)
-	{
-		debug_assert(offset+size < m_size);
-		cpu_memcpy(m_data.get()+offset, data, size);
-	}
+	void Append(const void* data, size_t size);
+	void Overwrite(const void* data, size_t size, size_t offset);
 
 	shared_ptr<u8> Data() const
 	{
@@ -42,6 +26,33 @@ private:
 
 	shared_ptr<u8> m_data;
 	size_t m_size;
+};
+
+
+class LIB_API UnalignedWriter : public boost::noncopyable
+{
+public:
+	UnalignedWriter(const File& file, off_t ofs);
+	~UnalignedWriter();
+
+	/**
+	* add data to the align buffer, writing it out to disk if full.
+	**/
+	LibError Append(const u8* data, size_t size) const;
+
+	/**
+	* zero-initialize any remaining space in the align buffer and write
+	* it to the file. this is called by the destructor.
+	**/
+	void Flush() const;
+
+private:
+	LibError WriteBlock() const;
+
+	const File& m_file;
+	shared_ptr<u8> m_alignedBuf;
+	mutable off_t m_alignedOfs;
+	mutable size_t m_bytesUsed;
 };
 
 #endif	// #ifndef INCLUDED_WRITE_BUFFER

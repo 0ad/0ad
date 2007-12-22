@@ -20,10 +20,6 @@
 
 #include "tex_codec.h"
 
-#include "lib/file/vfs/vfs.h"
-#include "lib/file/io/io_internal.h"
-extern PIVFS g_VFS;
-
 
 ERROR_ASSOCIATE(ERR::TEX_FMT_INVALID, "Invalid/unsupported texture format", -1);
 ERROR_ASSOCIATE(ERR::TEX_INVALID_COLOR_TYPE, "Invalid color type", -1);
@@ -479,7 +475,8 @@ bool tex_is_known_extension(const char* filename)
 {
 	const TexCodecVTbl* dummy;
 	// found codec for it => known extension
-	if(tex_codec_for_filename(filename, &dummy) == INFO::OK)
+	const std::string extension = fs::extension(filename);
+	if(tex_codec_for_filename(extension, &dummy) == INFO::OK)
 		return true;
 
 	return false;
@@ -504,7 +501,7 @@ LibError tex_wrap(uint w, uint h, uint bpp, uint flags, shared_ptr<u8> data, siz
 	t->bpp   = bpp;
 	t->flags = flags;
 	t->data  = data;
-	t->dataSize = w * h * bpp / 8;
+	t->dataSize = ofs + w*h*bpp/8;
 	t->ofs   = ofs;
 
 	CHECK_TEX(t);
@@ -577,7 +574,9 @@ size_t tex_img_size(const Tex* t)
 size_t tex_hdr_size(const char* fn)
 {
 	const TexCodecVTbl* c;
-	CHECK_ERR(tex_codec_for_filename(fn, &c));
+	
+	const std::string extension = fs::extension(fn);
+	CHECK_ERR(tex_codec_for_filename(extension, &c));
 	return c->hdr_size(0);
 }
 
@@ -622,11 +621,13 @@ LibError tex_decode(shared_ptr<u8> data, size_t data_size, Tex* t)
 
 	flip_to_global_orientation(t);
 
+	CHECK_TEX(t);
+
 	return INFO::OK;
 }
 
 
-LibError tex_encode(Tex* t, const char* fn, DynArray* da)
+LibError tex_encode(Tex* t, const std::string& extension, DynArray* da)
 {
 	CHECK_TEX(t);
 	CHECK_ERR(tex_validate_plain_format(t->bpp, t->flags));
@@ -640,7 +641,7 @@ LibError tex_encode(Tex* t, const char* fn, DynArray* da)
 	RETURN_ERR(da_alloc(da, max_out_size));
 
 	const TexCodecVTbl* c;
-	CHECK_ERR(tex_codec_for_filename(fn, &c));
+	CHECK_ERR(tex_codec_for_filename(extension, &c));
 
 	// encode into <da>
 	LibError err = c->encode(t, da);
@@ -651,52 +652,4 @@ LibError tex_encode(Tex* t, const char* fn, DynArray* da)
 	}
 
 	return INFO::OK;
-}
-
-
-// load the specified image from file into the given Tex object.
-// currently supports BMP, TGA, JPG, JP2, PNG, DDS.
-LibError tex_load(const char* fn, Tex* t)
-{
-	// load file
-	shared_ptr<u8> file; size_t file_size;
-	RETURN_ERR(g_VFS->LoadFile(fn, file, file_size));
-
-	LibError ret = tex_decode(file, file_size, t);
-	if(ret < 0)
-	{
-		tex_free(t);
-		RETURN_ERR(ret);
-	}
-
-	// do not free data! it either still holds the image data (i.e. texture
-	// wasn't compressed) or was replaced by a new buffer for the image data.
-
-	CHECK_TEX(t);
-	return INFO::OK;
-}
-
-
-// write the specified texture to disk.
-// note: <t> cannot be made const because the image may have to be
-// transformed to write it out in the format determined by <fn>'s extension.
-LibError tex_write(Tex* t, const char* fn)
-{
-	DynArray da;
-	RETURN_ERR(tex_encode(t, fn, &da));
-
-	// write to disk
-	LibError ret = INFO::OK;
-	{
-	(void)da_set_size(&da, round_up(da.cur_size, BLOCK_SIZE));
-	shared_ptr<u8> file(da.base, DummyDeleter<u8>());
-	const ssize_t bytes_written = g_VFS->CreateFile(fn, file, da.pos);
-	if(bytes_written > 0)
-		debug_assert(bytes_written == (ssize_t)da.pos);
-	else
-		ret = (LibError)bytes_written;
-	}
-
-	(void)da_free(&da);
-	return ret;
 }

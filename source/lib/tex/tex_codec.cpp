@@ -41,13 +41,12 @@ int tex_codec_register(TexCodecVTbl* c)
 // or return ERR::TEX_UNKNOWN_FORMAT if unknown.
 // note: does not raise a warning because it is used by
 // tex_is_known_extension.
-LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c)
+LibError tex_codec_for_filename(const std::string& extension, const TexCodecVTbl** c)
 {
-	const char* ext = path_extension(fn);
 	for(*c = codecs; *c; *c = (*c)->next)
 	{
 		// we found it
-		if((*c)->is_ext(ext))
+		if((*c)->is_ext(extension))
 			return INFO::OK;
 	}
 
@@ -131,12 +130,11 @@ void tex_codec_register_all()
 //
 // note: we don't allocate the data param ourselves because this function is
 // needed for encoding, too (where data is already present).
-LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
-	uint src_flags, uint dst_orientation, RowArray& rows)
+shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, uint src_flags, uint dst_orientation)
 {
 	const bool flip = !tex_orientations_match(src_flags, dst_orientation);
 
-	rows = new RowPtr[h];
+	shared_ptr<RowPtr> rows(new RowPtr[h]);
 
 	// determine start position and direction
 	RowPtr pos        = flip? data+pitch*(h-1) : data;
@@ -145,12 +143,12 @@ LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
 
 	for(size_t i = 0; i < h; i++)
 	{
-		rows[i] = pos;
+		rows.get()[i] = pos;
 		pos += add;
 	}
 
 	debug_assert(pos == end);
-	return INFO::OK;
+	return rows;
 }
 
 

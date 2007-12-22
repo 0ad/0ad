@@ -90,7 +90,7 @@ static void Ogl_Shader_init(Ogl_Shader* shdr, va_list args)
 // have absolutely no effect on a program object that contains these shaders
 // when the program object is already linked.
 // So, how can we inform the "parent object" (i.e. the program object) of our change?
-static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle UNUSED(h))
+static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Handle UNUSED(h))
 {
 	LibError err  = ERR::FAIL;
 
@@ -98,7 +98,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 		return INFO::OK;
 
 	shared_ptr<u8> file; size_t file_size;
-	RETURN_ERR(g_VFS->LoadFile(filename, file, file_size));
+	RETURN_ERR(g_VFS->LoadFile(pathname, file, file_size));
 
 	ogl_WarnIfError();
 
@@ -131,7 +131,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 		pglGetInfoLogARB(shdr->id, log_length, 0, infolog);
 	
 		debug_printf("Compile log for shader %hs (type %hs):\n%hs",
-			     filename,
+			     pathname.string().c_str(),
 			     shader_type_to_string(shdr->type, typenamebuf, ARRAY_SIZE(typenamebuf)),
 			     infolog);
 		
@@ -148,7 +148,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const char* filename, Handle
 	
 		char typenamebuf[32];
 		debug_printf("Failed to compile shader %hs (type %hs)\n",
-			     filename,
+			     pathname.string().c_str(),
 			     shader_type_to_string(shdr->type, typenamebuf, ARRAY_SIZE(typenamebuf)));
 		
 		err  = ERR::SHDR_COMPILE;
@@ -194,9 +194,9 @@ static LibError Ogl_Shader_to_string(const Ogl_Shader* UNUSED(shdr), char* buf)
 // Create, load and compile a shader object of the given type
 // (e.g. GL_VERTEX_SHADER_ARB). The given file will be used as
 // source code for the shader.
-Handle ogl_shader_load(const char* fn, GLenum type)
+Handle ogl_shader_load(const VfsPath& pathname, GLenum type)
 {
-	return h_alloc(H_Ogl_Shader, fn, 0, type);
+	return h_alloc(H_Ogl_Shader, pathname, 0, type);
 }
 
 
@@ -244,7 +244,7 @@ static void Ogl_Program_init(Ogl_Program* UNUSED(p), va_list UNUSED(args))
 // Load the shader associated with one Shader element,
 // and attach it to our program object.
 static LibError do_load_shader(
-		Ogl_Program* p, const char* filename, Handle UNUSED(h),
+		Ogl_Program* p, const VfsPath& pathname, Handle UNUSED(h),
 		const CXeromyces& XeroFile, const XMBElement& Shader)
 {
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
@@ -255,8 +255,7 @@ static LibError do_load_shader(
 
 	if (Type.empty())
 	{
-		LOG(ERROR, LOG_CATEGORY, "%hs: Missing attribute \"type\" in element \"Shader\".",
-		    filename);
+		LOG(ERROR, LOG_CATEGORY, "%hs: Missing attribute \"type\" in element \"Shader\".", pathname);
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -264,8 +263,7 @@ static LibError do_load_shader(
 	
 	if (!shadertype)
 	{
-		LOG(ERROR, LOG_CATEGORY, "%hs: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).",
-		    filename, Type.c_str());
+		LOG(ERROR, LOG_CATEGORY, "%hs: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname, Type.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -273,11 +271,11 @@ static LibError do_load_shader(
 	
 	if (Name.empty())
 	{
-		LOG(ERROR, LOG_CATEGORY, "%hs: Missing shader name.", filename);
+		LOG(ERROR, LOG_CATEGORY, "%hs: Missing shader name.", pathname);
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 	
-	Handle hshader = ogl_shader_load(Name.c_str(), shadertype);
+	Handle hshader = ogl_shader_load(Name, shadertype);
 	RETURN_ERR(hshader);
 
 	ogl_shader_attach(p->id, hshader);
@@ -293,7 +291,7 @@ static LibError do_load_shader(
 
 
 // Reload the program object from the source file.
-static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle h)
+static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Handle h)
 {
 	if (p->id)
 		return INFO::OK;
@@ -310,8 +308,9 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 		WARN_RETURN(ERR::SHDR_CREATE);
 	}
 	
+	const char* pathname = pathname_.string().c_str();
 	CXeromyces XeroFile;
-	if (XeroFile.Load(filename) != PSRETURN_OK)
+	if (XeroFile.Load(pathname) != PSRETURN_OK)
 		WARN_RETURN(ERR::CORRUPTED); // more informative error message?
 
 	// Define all the elements and attributes used in the XML file
@@ -325,7 +324,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 
 	if (Root.GetNodeName() != el_program)
 	{
-		LOG(ERROR, LOG_CATEGORY, "%hs: XML root was not \"Program\".", filename);
+		LOG(ERROR, LOG_CATEGORY, "%hs: XML root was not \"Program\".", pathname);
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -346,17 +345,16 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 				
 				if (Shader.GetNodeName() != el_shader)
 				{
-					LOG(ERROR, LOG_CATEGORY, "%hs: Only \"Shader\" may be child of \"Shaders\".",
-					    filename);
+					LOG(ERROR, LOG_CATEGORY, "%hs: Only \"Shader\" may be child of \"Shaders\".", pathname);
 					WARN_RETURN(ERR::CORRUPTED);
 				}
 				
-				RETURN_ERR(do_load_shader(p, filename, h, XeroFile, Shader));
+				RETURN_ERR(do_load_shader(p, pathname, h, XeroFile, Shader));
 			}
 		}
 		else
 		{
-			LOG(WARNING, LOG_CATEGORY, "%hs: Unknown child of \"Program\".", filename);
+			LOG(WARNING, LOG_CATEGORY, "%hs: Unknown child of \"Program\".", pathname);
 		}
 	}
 
@@ -372,13 +370,13 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const char* filename, Handle 
 		char* infolog = new char[log_length];
 		pglGetInfoLogARB(p->id, log_length, 0, infolog);
 
-		debug_printf("Linker log for %hs:\n%hs\n", filename, infolog);
+		debug_printf("Linker log for %hs:\n%hs\n", pathname, infolog);
 		delete[] infolog;
 	}
 
 	if (!linked)
 	{
-		debug_printf("Link failed for %hs\n", filename);
+		debug_printf("Link failed for %hs\n", pathname);
 		WARN_RETURN(ERR::SHDR_LINK);
 	}
 

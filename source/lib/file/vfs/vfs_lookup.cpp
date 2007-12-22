@@ -32,8 +32,8 @@ static size_t s_numArchivedFiles;
 class PopulateHelper : boost::noncopyable
 {
 public:
-	PopulateHelper(VfsDirectory* vfsDirectory, PRealDirectory realDirectory)
-		: m_vfsDirectory(vfsDirectory), m_realDirectory(realDirectory)
+	PopulateHelper(VfsDirectory* directory, PRealDirectory realDirectory)
+		: m_directory(directory), m_realDirectory(realDirectory)
 	{
 	}
 
@@ -50,8 +50,8 @@ public:
 private:
 	void AddFile(const FileInfo& fileInfo) const
 	{
-		const VfsFile file(fileInfo, m_realDirectory->Priority(), m_realDirectory);
-		const VfsFile* pfile = m_vfsDirectory->AddFile(file);
+		const VfsFile file(fileInfo.Name(), fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
+		const VfsFile* pfile = m_directory->AddFile(file);
 
 		// notify archive builder that this file could be archived but
 		// currently isn't; if there are too many of these, archive will
@@ -69,10 +69,10 @@ private:
 		// (we have to create missing subdirectoryNames because archivers
 		// don't always place directory entries before their files)
 		const unsigned flags = VFS_LOOKUP_ADD;
-		VfsDirectory* vfsDirectory;
-		WARN_ERR(vfs_Lookup(pathname, this_->m_vfsDirectory, vfsDirectory, 0, flags));
-		const VfsFile vfsFile(fileInfo, this_->m_realDirectory->Priority(), archiveFile);
-		vfsDirectory->AddFile(vfsFile);
+		VfsDirectory* directory;
+		WARN_ERR(vfs_Lookup(pathname, this_->m_directory, directory, 0, flags));
+		const VfsFile file(fileInfo.Name(), fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
+		directory->AddFile(file);
 		s_numArchivedFiles++;
 	}
 
@@ -106,27 +106,27 @@ private:
 			if(strcasecmp(subdirectoryNames[i].c_str(), ".svn") == 0)
 				continue;
 
-			VfsDirectory* subdirectory = m_vfsDirectory->AddSubdirectory(subdirectoryNames[i]);
+			VfsDirectory* subdirectory = m_directory->AddSubdirectory(subdirectoryNames[i]);
 			subdirectory->Attach(CreateRealSubdirectory(m_realDirectory, subdirectoryNames[i]));
 		}
 	}
 
-	VfsDirectory* const m_vfsDirectory;
+	VfsDirectory* const m_directory;
 	PRealDirectory m_realDirectory;
 };
 
 
-static LibError Populate(VfsDirectory* vfsDirectory)
+static LibError Populate(VfsDirectory* directory)
 {
-	if(!vfsDirectory->ShouldPopulate())
+	if(!directory->ShouldPopulate())
 		return INFO::OK;
 
-	PRealDirectory realDirectory = vfsDirectory->AssociatedDirectory();
+	PRealDirectory realDirectory = directory->AssociatedDirectory();
 
 	if(realDirectory->Flags() & VFS_MOUNT_WATCH)
 		realDirectory->Watch();
 
-	PopulateHelper helper(vfsDirectory, realDirectory);
+	PopulateHelper helper(directory, realDirectory);
 	RETURN_ERR(helper.AddEntries());
 
 	return INFO::OK;
@@ -135,14 +135,14 @@ static LibError Populate(VfsDirectory* vfsDirectory)
 
 //-----------------------------------------------------------------------------
 
-LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* vfsStartDirectory, VfsDirectory*& vfsDirectory, VfsFile** pvfsFile, unsigned flags)
+LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, unsigned flags)
 {
 TIMER_ACCRUE(tc_lookup);
 
-	vfsDirectory = vfsStartDirectory;
-	if(pvfsFile)
-		*pvfsFile = 0;
-	RETURN_ERR(Populate(vfsDirectory));
+	directory = startDirectory;
+	if(pfile)
+		*pfile = 0;
+	RETURN_ERR(Populate(directory));
 
 	if(pathname.empty())	// early out for root directory
 		return INFO::OK;	// (prevents iterator error below)
@@ -155,13 +155,13 @@ TIMER_ACCRUE(tc_lookup);
 	{
 		const std::string& subdirectoryName = *it;
 
-		VfsDirectory* vfsSubdirectory = vfsDirectory->GetSubdirectory(subdirectoryName);
-		if(!vfsSubdirectory)
+		VfsDirectory* subdirectory = directory->GetSubdirectory(subdirectoryName);
+		if(!subdirectory)
 		{
 			if(!(flags & VFS_LOOKUP_ADD))
 				return ERR::VFS_DIR_NOT_FOUND;	// NOWARN
 
-			vfsSubdirectory = vfsDirectory->AddSubdirectory(subdirectoryName);
+			subdirectory = directory->AddSubdirectory(subdirectoryName);
 
 			if(flags & VFS_LOOKUP_CREATE)
 			{
@@ -171,21 +171,21 @@ TIMER_ACCRUE(tc_lookup);
 				(void)mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG);
 
 				PRealDirectory realDirectory(new RealDirectory(currentPath.string(), 0, 0));
-				vfsSubdirectory->Attach(realDirectory);
+				subdirectory->Attach(realDirectory);
 #endif
 			}
 		}
 
-		vfsDirectory = vfsSubdirectory;
-		RETURN_ERR(Populate(vfsDirectory));
+		directory = subdirectory;
+		RETURN_ERR(Populate(directory));
 	}
 
-	if(pvfsFile)
+	if(pfile)
 	{
 		const std::string& filename = *it;
 		debug_assert(filename != ".");	// asked for file but specified directory path
-		*pvfsFile = vfsDirectory->GetFile(filename);
-		if(!*pvfsFile)
+		*pfile = directory->GetFile(filename);
+		if(!*pfile)
 			return ERR::VFS_FILE_NOT_FOUND;	// NOWARN
 	}
 

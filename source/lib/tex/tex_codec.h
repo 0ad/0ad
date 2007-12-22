@@ -77,11 +77,10 @@ struct TexCodecVTbl
 	 * caller compare it (-> smaller code) because a codec's file format
 	 * may have several valid extensions (e.g. jpg and jpeg).
 	 *
-	 * @param ext non-NULL extension string; does not contain '.'.
-	 * must be compared as case-insensitive.
+	 * @param extension (including '.')
 	 * @return bool
 	 **/
-	bool (*is_ext)(const char* ext);
+	bool (*is_ext)(const std::string& extension);
 
 	/**
 	 * return size of the file header supported by this codec.
@@ -149,14 +148,12 @@ extern int tex_codec_register(TexCodecVTbl* c);
 /**
  * find codec that recognizes the desired output file extension.
  *
- * @param fn filename; only the extension (that after '.') is used.
- * case-insensitive.
  * @param c (out) vtbl of responsible codec
  * @return LibError; ERR::RES_UNKNOWN_FORMAT (without warning, because this is
  * called by tex_is_known_extension) if no codec indicates they can
  * handle the given extension.
  **/
-extern LibError tex_codec_for_filename(const char* fn, const TexCodecVTbl** c);
+extern LibError tex_codec_for_filename(const std::string& extension, const TexCodecVTbl** c);
 
 /**
  * find codec that recognizes the header's magic field.
@@ -215,9 +212,7 @@ extern LibError tex_codec_transform(Tex* t, uint transforms);
  * @return LibError
  **/
 typedef const u8* RowPtr;
-typedef RowPtr* RowArray;
-extern LibError tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch,
-	uint src_flags, uint dst_orientation, RowArray& rows);
+extern shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, uint src_flags, uint dst_orientation);
 
 /**
  * apply transforms and then copy header and image into output buffer.

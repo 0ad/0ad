@@ -71,7 +71,7 @@ static u16 cur_ramp[3][256];
 
 
 // ramp: 8.8 fixed point
-static LibError calc_gamma_ramp(float gamma, u16* ramp)
+static void calc_gamma_ramp(float gamma, u16* ramp)
 {
 	// assume identity if invalid
 	if(gamma <= 0.0f)
@@ -82,7 +82,7 @@ static LibError calc_gamma_ramp(float gamma, u16* ramp)
 	{
 		for(u16 i = 0; i < 256; i++)
 			ramp[i] = (i << 8);
-		return INFO::OK;
+		return;
 	}
 
 	const double inv_gamma = 1.0 / gamma;
@@ -94,8 +94,6 @@ static LibError calc_gamma_ramp(float gamma, u16* ramp)
 		// need a temp variable to disambiguate pow() argument type.
 		ramp[i] = u16_from_double(pow(frac, inv_gamma));
 	}
-
-	return INFO::OK;
 }
 
 
@@ -124,11 +122,9 @@ int SDL_SetGamma(float r, float g, float b)
 		if(!GetDeviceGammaRamp(hDC, org_ramp))
 			return -1;
 
-	LibError err1 = calc_gamma_ramp(r, cur_ramp[0]);
-	LibError err2 = calc_gamma_ramp(g, cur_ramp[1]);
-	LibError err3 = calc_gamma_ramp(b, cur_ramp[2]);
-	if(err1 != INFO::OK || err2 != INFO::OK || err3 != INFO::OK)
-		return -1;
+	calc_gamma_ramp(r, cur_ramp[0]);
+	calc_gamma_ramp(g, cur_ramp[1]);
+	calc_gamma_ramp(b, cur_ramp[2]);
 
 	if(!SetDeviceGammaRamp(hDC, cur_ramp))
 		return -1;

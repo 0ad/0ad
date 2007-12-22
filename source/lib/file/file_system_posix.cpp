@@ -47,11 +47,6 @@ static bool IsDummyDirectory(const char* name)
 		return LibError_from_errno();
 	shared_ptr<DIR> osDir(pDir, DirDeleter());
 
-	// (we need absolute paths below; using this instead of path_append avoids
-	// a strlen call for each entry.)
-	PathPackage pp;
-	(void)path_package_set_dir(&pp, path.external_directory_string().c_str());
-
 	for(;;)
 	{
 		errno = 0;
@@ -76,8 +71,8 @@ static bool IsDummyDirectory(const char* name)
 #else
 		// .. call regular stat().
 		errno = 0;
-		path_package_append_file(&pp, name);
-		if(stat(pp->path, &s) != 0)
+		const Path pathname(path/name);
+		if(stat(pathname.external_directory_string().c_str(), &s) != 0)
 			return LibError_from_errno();
 #endif
 
@@ -111,35 +106,10 @@ LibError FileSystem_Posix::GetFileInfo(const Path& pathname, FileInfo* pfileInfo
 }
 
 
-LibError FileSystem_Posix::DeleteFile(const Path& pathname)
-{
-	errno = 0;
-	if(unlink(pathname.external_file_string().c_str()) != 0)
-		return LibError_from_errno();
-
-	return INFO::OK;
-}
-
-
-LibError FileSystem_Posix::CreateDirectory(const Path& path)
-{
-	errno = 0;
-	if(mkdir(path.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG) != 0)
-		return LibError_from_errno();
-
-	return INFO::OK;
-}
-
-
 LibError FileSystem_Posix::DeleteDirectory(const Path& path)
 {
 	// note: we have to recursively empty the directory before it can
 	// be deleted (required by Windows and POSIX rmdir()).
-
-	const char* osPath = path.external_directory_string().c_str();
-
-	PathPackage pp;
-	RETURN_ERR(path_package_set_dir(&pp, osPath));
 
 	FileInfos files; DirectoryNames subdirectoryNames;
 	RETURN_ERR(GetDirectoryEntries(path, &files, &subdirectoryNames));
@@ -147,9 +117,9 @@ LibError FileSystem_Posix::DeleteDirectory(const Path& path)
 	// delete files
 	for(size_t i = 0; i < files.size(); i++)
 	{
-		RETURN_ERR(path_package_append_file(&pp, files[i].Name().c_str()));
+		const Path pathname(path/files[i].Name());
 		errno = 0;
-		if(unlink(pp.path) != 0)
+		if(unlink(pathname.external_file_string().c_str()) != 0)
 			return LibError_from_errno();
 	}
 
@@ -158,7 +128,7 @@ LibError FileSystem_Posix::DeleteDirectory(const Path& path)
 		RETURN_ERR(DeleteDirectory(path/subdirectoryNames[i]));
 
 	errno = 0;
-	if(rmdir(osPath) != 0)
+	if(rmdir(path.external_directory_string().c_str()) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;

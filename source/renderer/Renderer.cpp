@@ -13,6 +13,7 @@
 #include <set>
 #include <algorithm>
 #include "lib/bits.h"	// is_pow2
+#include "lib/res/graphics/ogl_tex.h"
 #include "Renderer.h"
 #include "maths/Matrix3D.h"
 #include "maths/MathUtil.h"
@@ -20,6 +21,7 @@
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
+#include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "ps/Player.h"
@@ -27,11 +29,6 @@
 #include "ps/ProfileViewer.h"
 #include "simulation/LOSManager.h"
 #include "simulation/TerritoryManager.h"
-
-#include "lib/path_util.h"
-#include "lib/file/io/io.h"	// io_Allocate
-#include "lib/res/graphics/ogl_tex.h"
-
 #include "graphics/Camera.h"
 #include "graphics/Texture.h"
 #include "graphics/LightEnv.h"
@@ -1530,8 +1527,7 @@ int CRenderer::LoadAlphaMaps()
 	// load all textures and store Handle in array
 	//
 	Handle textures[NumAlphaMaps] = {0};
-	PathPackage pp;
-	(void)path_package_set_dir(&pp, "art/textures/terrain/alphamaps/special");
+	VfsPath path("art/textures/terrain/alphamaps/special");
 	const char* fnames[NumAlphaMaps] = {
 		"blendcircle.dds",
 		"blendlshape.dds",
@@ -1554,10 +1550,9 @@ int CRenderer::LoadAlphaMaps()
 	uint bpp = 0;
 	for(uint i=0;i<NumAlphaMaps;i++)
 	{
-		(void)path_package_append_file(&pp, fnames[i]);
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
-		textures[i] = ogl_tex_load(pp.path);
+		textures[i] = ogl_tex_load(path/fnames[i]);
 		RETURN_ERR(textures[i]);
 
 // quick hack: we require plain RGB(A) format, so convert to that.

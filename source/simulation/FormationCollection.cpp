@@ -14,7 +14,7 @@ void CFormationCollection::LoadFile( const VfsPath& pathname )
 	// the formation 'x' can be in units/x.xml, structures/x.xml, etc, and
 	// we don't have to search every directory for x.xml.
 
-	CStrW basename(Basename(pathname));
+	const CStrW basename(fs::basename((const fs::path&)pathname));
 	m_templateFilenames[basename] = pathname.string();
 }
 

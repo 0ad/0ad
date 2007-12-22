@@ -113,14 +113,12 @@ void ScriptingHost::RunMemScript(const char* script, size_t size, const char* fi
 // globalObject defaults to 0 (in which case we use our m_GlobalObject).
 void ScriptingHost::RunScript(const CStr& filename, JSObject* globalObject)
 {
-	const char* fn = filename.c_str();
-
 	shared_ptr<u8> buf; size_t size;
-	if(g_VFS->LoadFile(fn, buf, size) != INFO::OK)	// ERRTODO: translate/pass it on
+	if(g_VFS->LoadFile(filename, buf, size) != INFO::OK)	// ERRTODO: translate/pass it on
 		throw PSERROR_Scripting_LoadFile_OpenFailed();
 
 	const char* script = (const char*)buf.get();
-	RunMemScript(script, size, fn, 1, globalObject);
+	RunMemScript(script, size, filename.c_str(), 1, globalObject);
 }
 
 jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * params, int numParams)

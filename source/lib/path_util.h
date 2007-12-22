@@ -21,9 +21,6 @@
 #ifndef INCLUDED_PATH_UTIL
 #define INCLUDED_PATH_UTIL
 
-#include "lib/allocators/string_pool.h"
-
-
 namespace ERR
 {
 	const LibError PATH_LENGTH              = -100300;
@@ -174,71 +171,5 @@ LIB_API void path_dir_only(const char* path, char* dir);
  * NOTE: does not include the period; e.g. "a.bmp" yields "bmp".
  **/
 LIB_API const char* path_extension(const char* fn);
-
-
-/**
- * callback for each component in a path string.
- *
- * if path is empty (i.e. ""), this is not called.
- *
- * @param component: 0-terminated name of the component (does not
- * include any trailing slash!)
- * @param is_dir indicates if it's a directory (i.e. <component> is
- * followed by a slash in the original path).
- * rationale: a bool isn't as nice as a flag or enum, but vfs_tree already
- *   has TNodeType and we don't want to expose that or create a new one.
- * @param cbData: context parameter that was passed to path_foreach_component.
- * @return LibError; INFO::CB_CONTINUE to continue operation normally;
- * anything else will cause path_foreach_component to abort immediately and
- * return that. no need to 'abort' (e.g. return INFO::OK) after a filename is
- * encountered - that's taken care of automatically.
- **/
-typedef LibError (*PathComponentCb)(const char* component, bool is_dir, uintptr_t cbData);
-
-/**
- * call <cb> with <cbData> for each component in <path>.
- *
- * @return LibError
- **/
-LIB_API LibError path_foreach_component(const char* path, PathComponentCb cb, uintptr_t cbData);
-
-
-//-----------------------------------------------------------------------------
-
-/**
- * convenience "class" that simplifies successively appending a filename to
- * its parent directory. this avoids needing to allocate memory and calling
- * strlen/strcat. used by wdll_ver and dir_next_ent.
- * we want to maintain C compatibility, so this isn't a C++ class.
- **/
-struct PathPackage
-{
-	char* end;
-	size_t chars_left;
-	char path[PATH_MAX];
-};
-
-/**
- * write the given directory path into our buffer and set end/chars_left
- * accordingly. <dir> need not but can end with a directory separator.
- * 
- * note: <dir> and the filename set via path_package_append_file are separated by
- * '/'. this is to allow use on portable paths; the function otherwise
- * does not care if paths are relative/portable/absolute.
- * @return LibError
- **/
-LIB_API LibError path_package_set_dir(PathPackage* pp, const char* dir);
-
-/**
- * copy one PathPackage into another (doing so directly is incorrect!)
- **/
-LIB_API void path_package_copy(PathPackage* pp_dst, const PathPackage* pp_src);
-
-/**
- * append the given filename to the directory established by the last
- * path_package_set_dir on this package. the whole path is accessible at pp->path.
- * @return LibError
- **/
-LIB_API LibError path_package_append_file(PathPackage* pp, const char* path);
 
 #endif	// #ifndef INCLUDED_PATH_UTIL

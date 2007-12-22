@@ -14,15 +14,10 @@
 #include "lib/allocators/allocators.h"	// AllocatorChecker
 #include "lib/bits.h"	// IsAligned, round_up
 #include "lib/sysdep/cpu.h"	// cpu_memcpy
+#include "lib/file/file.h"
 #include "lib/file/common/file_stats.h"
-#include "lib/file/path.h"
 #include "block_cache.h"
 #include "io_internal.h"
-
-
-ERROR_ASSOCIATE(ERR::FILE_ACCESS, "Insufficient access rights to open file", EACCES);
-ERROR_ASSOCIATE(ERR::IO, "Error during IO", EIO);
-ERROR_ASSOCIATE(ERR::IO_EOF, "Reading beyond end of file", -1);
 
 
 // the underlying aio implementation likes buffer and offset to be
@@ -83,7 +78,7 @@ public:
 	{
 		debug_assert(m_paddedSize != 0);
 #ifndef NDEBUG
-		allocatorChecker.notify_free(mem, m_paddedSize);
+		allocatorChecker.OnDeallocate(mem, m_paddedSize);
 #endif
 		page_aligned_free(mem, m_paddedSize);
 		m_paddedSize = 0;
@@ -106,121 +101,10 @@ shared_ptr<u8> io_Allocate(size_t size, off_t ofs)
 		throw std::bad_alloc();
 
 #ifndef NDEBUG
-	allocatorChecker.notify_alloc(mem, paddedSize);
+	allocatorChecker.OnAllocate(mem, paddedSize);
 #endif
 
 	return shared_ptr<u8>(mem, IoDeleter(paddedSize));
-}
-
-
-//-----------------------------------------------------------------------------
-// File
-//-----------------------------------------------------------------------------
-
-File::File()
-{
-}
-
-
-File::~File()
-{
-	Close();
-}
-
-
-LibError File::Open(const Path& pathname, char mode)
-{
-	debug_assert(mode == 'w' || mode == 'r');
-
-	m_pathname = pathname;
-	m_mode = mode;
-
-	int oflag = (mode == 'r')? O_RDONLY : O_WRONLY|O_CREAT|O_TRUNC;
-#if OS_WIN
-	oflag |= O_BINARY_NP;
-#endif
-	m_fd = open(m_pathname.external_file_string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
-	if(m_fd < 0)
-		WARN_RETURN(ERR::FILE_ACCESS);
-
-	stats_open();
-	return INFO::OK;
-}
-
-
-void File::Close()
-{
-	m_mode = '\0';
-
-	close(m_fd);
-	m_fd = 0;
-}
-
-
-LibError File::Issue(aiocb& req, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const
-{
-	memset(&req, 0, sizeof(req));
-	req.aio_lio_opcode = (m_mode == 'w')? LIO_WRITE : LIO_READ;
-	req.aio_buf        = (volatile void*)alignedBuf;
-	req.aio_fildes     = m_fd;
-	req.aio_offset     = alignedOfs;
-	req.aio_nbytes     = alignedSize;
-	struct sigevent* sig = 0;	// no notification signal
-	aiocb* const reqs = &req;
-	if(lio_listio(LIO_NOWAIT, &reqs, 1, sig) != 0)
-		return LibError_from_errno();
-	return INFO::OK;
-}
-
-
-/*static*/ LibError File::WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize)
-{
-	// wait for transfer to complete.
-	while(aio_error(&req) == EINPROGRESS)
-	{
-		aiocb* const reqs = &req;
-		aio_suspend(&reqs, 1, (timespec*)0);	// wait indefinitely
-	}
-
-	const ssize_t bytesTransferred = aio_return(&req);
-	if(bytesTransferred == -1)	// transfer failed
-		WARN_RETURN(ERR::IO);
-
-	alignedBuf = (u8*)req.aio_buf;	// cast from volatile void*
-	alignedSize = bytesTransferred;
-	return INFO::OK;
-}
-
-
-LibError File::IO(off_t ofs, u8* buf, size_t size) const
-{
-	ScopedIoMonitor monitor;
-
-	lseek(m_fd, ofs, SEEK_SET);
-
-	errno = 0;
-	const ssize_t ret = (m_mode == 'w')? write(m_fd, buf, size) : read(m_fd, buf, size);
-	if(ret < 0)
-		return LibError_from_errno();
-
-	const size_t totalTransferred = (size_t)ret;
-	if(totalTransferred != size)
-		WARN_RETURN(ERR::IO);
-
-	monitor.NotifyOfSuccess(FI_LOWIO, m_mode, totalTransferred);
-	return INFO::OK;
-}
-
-
-LibError File::Write(off_t ofs, const u8* buf, size_t size) const
-{
-	return IO(ofs, const_cast<u8*>(buf), size);
-}
-
-
-LibError File::Read(off_t ofs, u8* buf, size_t size) const
-{
-	return IO(ofs, buf, size);
 }
 
 
@@ -437,94 +321,4 @@ LibError io_ReadAligned(const File& file, off_t alignedOfs, u8* alignedBuf, size
 
 	IoSplitter splitter(alignedOfs, alignedBuf, (off_t)size);
 	return splitter.Run(file);
-}
-
-
-//-----------------------------------------------------------------------------
-// UnalignedWriter
-//-----------------------------------------------------------------------------
-
-class UnalignedWriter::Impl : boost::noncopyable
-{
-public:
-	Impl(const File& file, off_t ofs)
-		: m_file(file), m_alignedBuf(io_Allocate(BLOCK_SIZE))
-	{
-		const size_t misalignment = (size_t)ofs % BLOCK_SIZE;
-		m_alignedOfs = ofs - (off_t)misalignment;
-		if(misalignment)
-			io_ReadAligned(m_file, m_alignedOfs, m_alignedBuf.get(), BLOCK_SIZE);
-		m_bytesUsed = misalignment;
-	}
-
-	~Impl()
-	{
-		Flush();
-	}
-
-	LibError Append(const u8* data, size_t size) const
-	{
-		while(size != 0)
-		{
-			// optimization: write directly from the input buffer, if possible
-			const size_t alignedSize = (size / BLOCK_SIZE) * BLOCK_SIZE;
-			if(m_bytesUsed == 0 && IsAligned(data, BLOCK_SIZE) && alignedSize != 0)
-			{
-				RETURN_ERR(io_WriteAligned(m_file, m_alignedOfs, data, alignedSize));
-				m_alignedOfs += (off_t)alignedSize;
-				data += alignedSize;
-				size -= alignedSize;
-			}
-
-			const size_t chunkSize = std::min(size, BLOCK_SIZE-m_bytesUsed);
-			cpu_memcpy(m_alignedBuf.get()+m_bytesUsed, data, chunkSize);
-			m_bytesUsed += chunkSize;
-			data += chunkSize;
-			size -= chunkSize;
-
-			if(m_bytesUsed == BLOCK_SIZE)
-				RETURN_ERR(WriteBlock());
-		}
-
-		return INFO::OK;
-	}
-
-	void Flush() const
-	{
-		if(m_bytesUsed)
-		{
-			memset(m_alignedBuf.get()+m_bytesUsed, 0, BLOCK_SIZE-m_bytesUsed);
-			(void)WriteBlock();
-		}
-	}
-
-private:
-	LibError WriteBlock() const
-	{
-		RETURN_ERR(io_WriteAligned(m_file, m_alignedOfs, m_alignedBuf.get(), BLOCK_SIZE));
-		m_alignedOfs += BLOCK_SIZE;
-		m_bytesUsed = 0;
-		return INFO::OK;
-	}
-
-	const File& m_file;
-	mutable off_t m_alignedOfs;
-	shared_ptr<u8> m_alignedBuf;
-	mutable size_t m_bytesUsed;
-};
-
-
-UnalignedWriter::UnalignedWriter(const File& file, off_t ofs)
-: impl(new Impl(file, ofs))
-{
-}
-
-LibError UnalignedWriter::Append(const u8* data, size_t size) const
-{
-	return impl->Append(data, size);
-}
-
-void UnalignedWriter::Flush() const
-{
-	impl->Flush();
 }

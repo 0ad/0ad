@@ -4,10 +4,13 @@
 #include "lib/posix/posix_sock.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
+#include "lib/bits.h"	// round_up
+#include "lib/allocators/allocators.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/snd.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/tex/tex.h"
+#include "lib/file/io/io_internal.h"	// BLOCK_SIZE
 
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -160,6 +163,34 @@ const wchar_t* ErrorString(int err)
 	return HardcodedErrorString(err);
 
 	// TODO: load from language file
+}
+
+
+
+// write the specified texture to disk.
+// note: <t> cannot be made const because the image may have to be
+// transformed to write it out in the format determined by <fn>'s extension.
+static LibError tex_write(Tex* t, const char* fn)
+{
+	const std::string extension = fs::extension(fn);
+
+	DynArray da;
+	RETURN_ERR(tex_encode(t, extension, &da));
+
+	// write to disk
+	LibError ret = INFO::OK;
+	{
+		(void)da_set_size(&da, round_up(da.cur_size, BLOCK_SIZE));
+		shared_ptr<u8> file(da.base, DummyDeleter<u8>());
+		const ssize_t bytes_written = g_VFS->CreateFile(fn, file, da.pos);
+		if(bytes_written > 0)
+			debug_assert(bytes_written == (ssize_t)da.pos);
+		else
+			ret = (LibError)bytes_written;
+	}
+
+	(void)da_free(&da);
+	return ret;
 }
 
 

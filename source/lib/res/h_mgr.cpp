@@ -139,7 +139,7 @@ struct HDATA
 	// for statistics
 	uint num_derefs;
 	
-	const char* fn;
+	VfsPath pathname;
 
 	u8 user[HDATA_USER_SIZE];
 };
@@ -390,78 +390,9 @@ static void key_remove(uintptr_t key, H_Type type)
 }
 
 
-//-----------------------------------------------------------------------------
-
-//
-// path string suballocator (they're stored in HDATA)
-//
-
-static Pool fn_pool;
-
-// if fn is longer than this, it has to be allocated from the heap.
-// choose this to balance internal fragmentation and accessing the heap.
-static const size_t FN_POOL_EL_SIZE = 64;
-
-static void fn_init()
-{
-	// (if this fails, so will subsequent fn_stores - no need to complain here)
-	(void)pool_create(&fn_pool, MAX_EXTANT_HANDLES*FN_POOL_EL_SIZE, FN_POOL_EL_SIZE);
-}
-
-static void fn_store(HDATA* hd, const char* fn)
-{
-	const size_t size = strlen(fn)+1;
-
-	hd->fn = 0;
-	// stuff it in unused space at the end of HDATA
-	if(hd->type->user_size+size <= HDATA_USER_SIZE)
-		hd->fn = (const char*)hd->user + hd->type->user_size;
-	else if(size <= FN_POOL_EL_SIZE)
-		hd->fn = (const char*)pool_alloc(&fn_pool, 0);
-
-	// in case none of the above applied and/or were successful:
-	// fall back to heap alloc.
-	if(!hd->fn)
-	{
-		debug_printf("H_MGR| very long filename (%d) %s\n", size, fn);
-		hd->fn = (const char*)malloc(size);
-		// still failed - bail (avoid strcpy to 0)
-		if(!hd->fn)
-			WARN_ERR_RETURN(ERR::NO_MEM);
-	}
-
-	cpu_memcpy((void*)hd->fn, fn, size);	// faster than strcpy
-}
-
-// TODO: store this in a flag - faster.
-static bool fn_is_in_HDATA(HDATA* hd)
-{
-	u8* p = (u8*)hd->fn;	// needed for type-correct comparison
-	return (hd->user+hd->type->user_size <= p && p <= hd->user+HDATA_USER_SIZE);
-}
-
-static void fn_free(HDATA* hd)
-{
-	void* el = (void*)hd->fn;
-	if(fn_is_in_HDATA(hd))
-	{
-	}
-	else if(pool_contains(&fn_pool, el))
-		pool_free(&fn_pool, el);
-	else
-		free(el);
-}
-
-static void fn_shutdown()
-{
-	pool_destroy(&fn_pool);
-}
-
-
 //----------------------------------------------------------------------------
 // h_alloc
 //----------------------------------------------------------------------------
-
 
 static void warn_if_invalid(HDATA* hd)
 {
@@ -478,13 +409,10 @@ static void warn_if_invalid(HDATA* hd)
 
 	// make sure empty space in control block isn't touched
 	// .. but only if we're not storing a filename there
-	if(!fn_is_in_HDATA(hd))
-	{
-		const u8* start = hd->user + vtbl->user_size;
-		const u8* end   = hd->user + HDATA_USER_SIZE;
-		for(const u8* p = start; p < end; p++)
-			debug_assert(*p == 0);	// else: handle user data was overrun!
-	}
+	const u8* start = hd->user + vtbl->user_size;
+	const u8* end   = hd->user + HDATA_USER_SIZE;
+	for(const u8* p = start; p < end; p++)
+		debug_assert(*p == 0);	// else: handle user data was overrun!
 #else
 	UNUSED2(hd);
 #endif
@@ -550,7 +478,7 @@ static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
 }
 
 
-static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const char* fn, va_list* init_args)
+static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const VfsPath& pathname, va_list* init_args)
 {
 	LibError err = INFO::OK;
 	H_VTbl* vtbl = type;	// exact same thing but for clarity
@@ -565,7 +493,7 @@ static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const cha
 		// catch exception to simplify reload funcs - let them use new()
 		try
 		{
-			err = vtbl->reload(hd->user, fn, h);
+			err = vtbl->reload(hd->user, pathname, h);
 			if(err == INFO::OK)
 				warn_if_invalid(hd);
 		}
@@ -579,8 +507,7 @@ static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const cha
 }
 
 
-static Handle alloc_new_handle(H_Type type, const char* fn, uintptr_t key,
-	uint flags, va_list* init_args)
+static Handle alloc_new_handle(H_Type type, const VfsPath& pathname, uintptr_t key, uint flags, va_list* init_args)
 {
 	i32 idx;
 	HDATA* hd;
@@ -600,16 +527,12 @@ static Handle alloc_new_handle(H_Type type, const char* fn, uintptr_t key,
 	if(flags & RES_DISALLOW_RELOAD)
 		hd->disallow_reload = 1;
 	hd->unique = (flags & RES_UNIQUE) != 0;
-	hd->fn = 0;
-	// .. filename is valid - store in hd
-	// note: if the original fn param was a key, it was reset to 0 above.
-	if(fn)
-		fn_store(hd, fn);
+	hd->pathname = pathname;
 
 	if(key && !hd->unique)
 		key_add(key, h);
 
-	LibError err = call_init_and_reload(h, type, hd, fn, init_args);
+	LibError err = call_init_and_reload(h, type, hd, pathname, init_args);
 	if(err < 0)
 		goto fail;
 
@@ -627,29 +550,13 @@ fail:
 
 
 // any further params are passed to type's init routine
-Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
+Handle h_alloc(H_Type type, const VfsPath& pathname, uint flags, ...)
 {
 	RETURN_ERR(type_validate(type));
 
-	// get key (either hash of filename, or fn param)
-	uintptr_t key = 0;
-	// not backed by file; fn is the key
-	if(flags & RES_KEY)
-	{
-		key = (uintptr_t)fn;
-		fn = 0;
-	}
-	else
-	{
-		if(fn)
-			key = fnv_hash(fn);
-	}
+	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length());
 
 //debug_printf("alloc %s %s\n", type->name, fn);
-
-	// no key => can never be found. disallow caching
-	if(!key)
-		flags |= RES_NO_CACHE;
 
 	// see if we can reuse an existing handle
 	Handle h = reuse_existing_handle(key, type, flags);
@@ -660,7 +567,7 @@ Handle h_alloc(H_Type type, const char* fn, uint flags, ...)
 	// .. need to allocate a new one:
 	va_list args;
 	va_start(args, flags);
-	h = alloc_new_handle(type, fn, key, flags, &args);
+	h = alloc_new_handle(type, pathname, key, flags, &args);
 	va_end(args);
 	return h;	// alloc_new_handle already does CHECK_ERR
 }
@@ -694,16 +601,6 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 	if(hd->key && !hd->unique)
 		key_remove(hd->key, hd->type);
 
-	// get pretty version of filename: start with "not applicable"
-	const char* fn = "(0)";
-	if(hd->fn)
-	{
-		// if hd->fn is a filename, strip the path. note: some paths end
-		// with '/', so display those unaltered.
-		const char* slash = strrchr(hd->fn, '/');
-		fn = (slash && slash[1] != '\0')? slash+1 : hd->fn;
-	}
-
 #ifndef NDEBUG
 	// to_string is slow for some handles, so avoid calling it if unnecessary
 	if(debug_filter_allows("H_MGR|"))
@@ -711,11 +608,11 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 		char buf[H_STRING_LEN];
 		if(vtbl->to_string(hd->user, buf) < 0)
 			strcpy(buf, "(error)");	// safe
-		debug_printf("H_MGR| free %s %s accesses=%d %s\n", hd->type->name, fn, hd->num_derefs, buf);
+		debug_printf("H_MGR| free %s %s accesses=%d %s\n", hd->type->name, hd->pathname.string().c_str(), hd->num_derefs, buf);
 	}
 #endif
 
-	fn_free(hd);
+	hd->pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::string memory
 
 	memset(hd, 0, sizeof(*hd));
 
@@ -771,7 +668,7 @@ void* h_user_data(const Handle h, const H_Type type)
 }
 
 
-const char* h_filename(const Handle h)
+VfsPath h_filename(const Handle h)
 {
 	// don't require type check: should be useable for any handle,
 	// even if the caller doesn't know its type.
@@ -781,19 +678,14 @@ const char* h_filename(const Handle h)
 		debug_assert(0);
 		return 0;
 	}
-	return hd->fn;
+	return hd->pathname;
 }
 
 
 // TODO: what if iterating through all handles is too slow?
-LibError h_reload(const char* fn)
+LibError h_reload(const VfsPath& pathname)
 {
-	// must not continue - some resources not backed by files have
-	// key = 0 and reloading those would be disastrous.
-	if(!fn)
-		WARN_RETURN(ERR::INVALID_PARAM);
-
-	const u32 key = fnv_hash(fn);
+	const u32 key = fnv_hash(pathname.string().c_str(), pathname.string().length());
 
 	// destroy (note: not free!) all handles backed by this file.
 	// do this before reloading any of them, because we don't specify reload
@@ -818,7 +710,7 @@ LibError h_reload(const char* fn)
 
 		Handle h = handle(i, hd->tag);
 
-		LibError err = hd->type->reload(hd->user, hd->fn, h);
+		LibError err = hd->type->reload(hd->user, hd->pathname, h);
 		// don't stop if an error is encountered - try to reload them all.
 		if(err < 0)
 		{
@@ -901,10 +793,6 @@ static ModuleInitState initState;
 
 void h_mgr_init()
 {
-	if(!ModuleShouldInitialize(&initState))
-		return;
-
-	fn_init();
 }
 
 
@@ -945,6 +833,4 @@ void h_mgr_shutdown()
 		free(pages[j]);
 		pages[j] = 0;
 	}
-
-	fn_shutdown();
 }

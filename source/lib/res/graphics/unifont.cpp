@@ -58,8 +58,9 @@ static void UniFont_dtor(UniFont* f)
 	SAFE_DELETE(f->glyphs_size);
 }
 
+// basename is e.g. "console"; the files are "fonts/console.fnt" and "fonts/console.tga"
 // [10..70ms]
-static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
+static LibError UniFont_reload(UniFont* f, const VfsPath& basename, Handle UNUSED(h))
 {
 	// already loaded
 	if(f->ht > 0)
@@ -68,16 +69,13 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 	f->glyphs_id = new glyphmap_id();
 	f->glyphs_size = new glyphmap_size();
 
-	// fn is the base filename, e.g. "console"
-	// The font definition file is "fonts/"+fn+".fnt" and the texture is "fonts/"+fn+".tga"
-	std::string FilenameBase = "fonts/"; FilenameBase += fn;
+	const VfsPath path("fonts/");
 
 	// Read font definition file into a stringstream
-	const std::string FilenameFnt = FilenameBase+".fnt";
-	const char* fnt_fn = FilenameFnt.c_str();
 	shared_ptr<u8> buf; size_t size;
-	RETURN_ERR(g_VFS->LoadFile(fnt_fn, buf, size));	// [cumulative for 12: 36ms]
-	std::istringstream FNTStream (std::string((const char*)buf.get(), (int)size));
+	const VfsPath fntName(basename.string() + ".fnt");
+	RETURN_ERR(g_VFS->LoadFile(path/fntName, buf, size));	// [cumulative for 12: 36ms]
+	std::istringstream FNTStream (std::string((const char*)buf.get(), size));
 
 	int Version;
 	FNTStream >> Version;
@@ -145,9 +143,8 @@ static LibError UniFont_reload(UniFont* f, const char* fn, Handle UNUSED(h))
 
 	// Load glyph texture
 	// [cumulative for 12: 20ms]
-	std::string FilenameTex = FilenameBase+".tga";  
-	const char* tex_fn = FilenameTex.c_str();   
-	Handle ht = ogl_tex_load(tex_fn);
+	const VfsPath tgaName(basename.string() + ".tga");
+	Handle ht = ogl_tex_load(path/tgaName);
 	RETURN_ERR(ht);
 	(void)ogl_tex_set_filter(ht, GL_NEAREST);
 	// override is necessary because the GL format is chosen as LUMINANCE,
@@ -191,9 +188,9 @@ static LibError UniFont_to_string(const UniFont* f, char* buf)
 }
 
 
-Handle unifont_load(const char* fn, uint flags)
+Handle unifont_load(const VfsPath& pathname, uint flags)
 {
-	return h_alloc(H_UniFont, fn, flags);
+	return h_alloc(H_UniFont, pathname, flags);
 }
 
 

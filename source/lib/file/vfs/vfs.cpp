@@ -32,34 +32,34 @@ public:
 
 	virtual LibError Mount(const VfsPath& mountPoint, const char* path, uint flags /* = 0 */, uint priority /* = 0 */)
 	{
-		debug_assert(IsDirectory(mountPoint));
+		debug_assert(vfs_path_IsDirectory(mountPoint));
 		debug_assert(strcmp(path, ".") != 0);	// "./" isn't supported on Windows.
 		// note: mounting subdirectoryNames is now allowed.
 
-		VfsDirectory* vfsDirectory;
-		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, vfsDirectory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
+		VfsDirectory* directory;
+		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 		PRealDirectory realDirectory(new RealDirectory(std::string(path), priority, flags));
-		vfsDirectory->Attach(realDirectory);
+		directory->Attach(realDirectory);
 		return INFO::OK;
 	}
 
 	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const
 	{
-		VfsDirectory* vfsDirectory; VfsFile* vfsFile;
-		LibError ret = vfs_Lookup(pathname, &m_rootDirectory, vfsDirectory, &vfsFile);
+		VfsDirectory* directory; VfsFile* file;
+		LibError ret = vfs_Lookup(pathname, &m_rootDirectory, directory, &file);
 		if(!pfileInfo)	// just indicate if the file exists without raising warnings.
 			return ret;
 		CHECK_ERR(ret);
-		vfsFile->GetFileInfo(pfileInfo);
+		*pfileInfo = FileInfo(file->Name(), file->Size(), file->MTime());
 		return INFO::OK;
 	}
 
 	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames) const
 	{
-		debug_assert(IsDirectory(path));
-		VfsDirectory* vfsDirectory;
-		CHECK_ERR(vfs_Lookup(path, &m_rootDirectory, vfsDirectory, 0));
-		vfsDirectory->GetEntries(files, subdirectoryNames);
+		debug_assert(vfs_path_IsDirectory(path));
+		VfsDirectory* directory;
+		CHECK_ERR(vfs_Lookup(path, &m_rootDirectory, directory, 0));
+		directory->GetEntries(files, subdirectoryNames);
 		return INFO::OK;
 	}
 
@@ -67,15 +67,15 @@ public:
 	// coherency (need only invalidate when closing a FILE_WRITE file).
 	virtual LibError CreateFile(const VfsPath& pathname, shared_ptr<u8> fileContents, size_t size)
 	{
-		VfsDirectory* vfsDirectory;
-		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, vfsDirectory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
+		VfsDirectory* directory;
+		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 
-		PRealDirectory realDirectory = vfsDirectory->AssociatedDirectory();
+		PRealDirectory realDirectory = directory->AssociatedDirectory();
 		const std::string& name = pathname.leaf();
 		RETURN_ERR(realDirectory->Store(name, fileContents, size));
 
-		const VfsFile file(FileInfo(name, (off_t)size, time(0)), realDirectory->Priority(), realDirectory);
-		vfsDirectory->AddFile(file);
+		const VfsFile file(name, (off_t)size, time(0), realDirectory->Priority(), realDirectory);
+		directory->AddFile(file);
 
 		// wipe out any cached blocks. this is necessary to cover the (rare) case
 		// of file cache contents predating the file write.
@@ -99,19 +99,19 @@ public:
 		const bool isCacheHit = m_fileCache.Retrieve(pathname, fileContents, size);
 		if(!isCacheHit)
 		{
-			VfsDirectory* vfsDirectory; VfsFile* vfsFile;
-			CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, vfsDirectory, &vfsFile));
+			VfsDirectory* directory; VfsFile* file;
+			CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
 
-			size = vfsFile->Size();
+			size = file->Size();
 			if(size > ChooseCacheSize())
 			{
 				fileContents = io_Allocate(size);
-				RETURN_ERR(vfsFile->Load(fileContents));
+				RETURN_ERR(file->Load(fileContents));
 			}
 			else
 			{
 				fileContents = m_fileCache.Reserve(size);
-				RETURN_ERR(vfsFile->Load(fileContents));
+				RETURN_ERR(file->Load(fileContents));
 				m_fileCache.Add(pathname, fileContents, size);
 			}
 		}
@@ -141,9 +141,9 @@ public:
 
 	virtual LibError GetRealPath(const VfsPath& pathname, char* realPathname)
 	{
-		VfsDirectory* vfsDirectory;
-		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, vfsDirectory, 0));
-		PRealDirectory realDirectory = vfsDirectory->AssociatedDirectory();
+		VfsDirectory* directory;
+		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
+		PRealDirectory realDirectory = directory->AssociatedDirectory();
 		const std::string& name = pathname.leaf();
 		path_append(realPathname, realDirectory->GetPath().string().c_str(), name.c_str());
 		return INFO::OK;

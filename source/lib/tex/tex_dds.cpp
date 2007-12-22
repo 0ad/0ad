@@ -589,9 +589,9 @@ static bool dds_is_hdr(const u8* file)
 }
 
 
-static bool dds_is_ext(const char* ext)
+static bool dds_is_ext(const std::string& extension)
 {
-	return !strcasecmp(ext, "dds");
+	return !strcasecmp(extension.c_str(), ".dds");
 }
 
 

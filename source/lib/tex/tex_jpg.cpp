@@ -409,7 +409,7 @@ static LibError jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 // due to less copying.
 
 
-static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, RowArray& rows, Tex* t)
+static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex* t)
 {
 	src_prepare(cinfo, da);
 
@@ -449,10 +449,10 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Row
 	shared_ptr<u8> data = io_Allocate(img_size);
 
 	// read rows
-	RETURN_ERR(tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0, rows));
+	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
-	JSAMPARRAY row = (JSAMPARRAY)rows;
+	JSAMPARRAY row = (JSAMPARRAY)rows.get();
 	JDIMENSION lines_left = h;
 	while(lines_left != 0)
 	{
@@ -466,8 +466,6 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Row
 	// ignore return value since suspension is not possible with the
 	// mem data source.
 	(void)jpeg_finish_decompress(cinfo);
-
-	delete[] rows;
 
 	LibError ret = INFO::OK;
 	if(cinfo->err->num_warnings != 0)
@@ -486,7 +484,7 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Row
 }
 
 
-static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, RowArray& rows, DynArray* da)
+static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* da)
 {
 	dst_prepare(cinfo, da);
 
@@ -509,11 +507,11 @@ static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, RowArray& r
 
 	const size_t pitch = t->w * t->bpp / 8;
 	u8* data = tex_get_data(t);
-	RETURN_ERR(tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN, rows));
+	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data, t->h, pitch, t->flags, TEX_TOP_DOWN);
 
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
-	JSAMPARRAY row = (JSAMPARRAY)rows;
+	JSAMPARRAY row = (JSAMPARRAY)rows.get();
 	JDIMENSION lines_left = t->h;
 	while(lines_left != 0)
 	{
@@ -525,8 +523,6 @@ static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, RowArray& r
 	}
 
 	jpeg_finish_compress(cinfo);
-
-	delete[] rows;
 
 	LibError ret = INFO::OK;
 	if(cinfo->err->num_warnings != 0)
@@ -545,9 +541,9 @@ static bool jpg_is_hdr(const u8* file)
 }
 
 
-static bool jpg_is_ext(const char* ext)
+static bool jpg_is_ext(const std::string& extension)
 {
-	return !strcasecmp(ext, "jpg") || !strcasecmp(ext, "jpeg");
+	return !strcasecmp(extension.c_str(), ".jpg") || !strcasecmp(extension.c_str(), ".jpeg");
 }
 
 
@@ -569,10 +565,7 @@ static LibError jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 	jpeg_create_decompress(&cinfo);
 
-	// array of pointers to scanlines (see rationale above)
-	RowArray rows = 0;
-	LibError ret = jpg_decode_impl(da, &cinfo, rows, t);
-	free(rows);
+	LibError ret = jpg_decode_impl(da, &cinfo, t);
 
 	jpeg_destroy_decompress(&cinfo); // releases a "good deal" of memory
 
@@ -593,10 +586,7 @@ static LibError jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 
 	jpeg_create_compress(&cinfo);
 
-	// array of pointers to scanlines (see rationale above)
-	RowArray rows = 0;
-	LibError ret = jpg_encode_impl(t, &cinfo, rows, da);
-	free(rows);
+	LibError ret = jpg_encode_impl(t, &cinfo, da);
 
 	jpeg_destroy_compress(&cinfo); // releases a "good deal" of memory
 

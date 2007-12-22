@@ -10,13 +10,16 @@
 
 #define LOG_CATEGORY "entity"
 
+
+#include <boost/filesystem.hpp>
+
 void CEntityTemplateCollection::LoadFile( const VfsPath& pathname )
 {
 	// Build the entity name -> filename mapping. This is done so that
 	// the entity 'x' can be in units/x.xml, structures/x.xml, etc, and
 	// we don't have to search every directory for x.xml.
 
-	CStrW basename(Basename(pathname));
+	const CStrW basename(fs::basename((const fs::path&)pathname));
 	m_templateFilenames[basename] = pathname.string();
 }
 

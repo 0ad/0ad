@@ -77,9 +77,9 @@ static bool tga_is_hdr(const u8* file)
 }
 
 
-static bool tga_is_ext(const char* ext)
+static bool tga_is_ext(const std::string& extension)
 {
-	return !strcasecmp(ext, "tga");
+	return !strcasecmp(extension.c_str(), ".tga");
 }
 
 

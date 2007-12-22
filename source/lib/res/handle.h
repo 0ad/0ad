@@ -11,6 +11,8 @@
 #ifndef INCLUDED_HANDLE
 #define INCLUDED_HANDLE
 
+#include "lib/file/vfs/vfs_path.h"
+
 // 0 = invalid handle value; < 0 is an error code.
 // 64 bits, because we want tags to remain unique: tag overflow may
 // let handle use errors slip through, or worse, cause spurious errors.

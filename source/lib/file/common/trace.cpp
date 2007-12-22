@@ -39,7 +39,7 @@ TraceEntry::TraceEntry(const char* text)
 	const char* fmt = "%f: %c \"" STRINGIZE(PATH_MAX) "[^\"]\" %d\n";
 	char pathname[PATH_MAX];
 	char action;
-	const int fieldsRead = sscanf_s(text, fmt, &m_timestamp, &m_action, pathname, &m_size);
+	const int fieldsRead = sscanf_s(text, fmt, &m_timestamp, &action, pathname, &m_size);
 	debug_assert(fieldsRead == 4);
 	debug_assert(action == 'L' || action == 'S');
 	m_action = (EAction)action;

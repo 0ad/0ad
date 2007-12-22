@@ -70,7 +70,7 @@ static LibError png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
 
 // split out of png_decode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop info_ptr, RowArray& rows, Tex* t)
+static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop info_ptr, Tex* t)
 {
 	png_set_read_fn(png_ptr, da, io_read);
 
@@ -97,11 +97,9 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 	const size_t img_size = pitch * h;
 	shared_ptr<u8> data = io_Allocate(img_size);
 
-	RETURN_ERR(tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0, rows));
-
-	png_read_image(png_ptr, (png_bytepp)rows);
+	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data.get(), h, pitch, TEX_TOP_DOWN, 0);
+	png_read_image(png_ptr, (png_bytepp)rows.get());
 	png_read_end(png_ptr, info_ptr);
-	delete[] rows;
 
 	// success; make sure all data was consumed.
 	debug_assert(da->pos == da->cur_size);
@@ -121,7 +119,7 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 
 // split out of png_encode to simplify resource cleanup and avoid
 // "dtor / setjmp interaction" warning.
-static LibError png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, RowArray& rows, DynArray* da)
+static LibError png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, DynArray* da)
 {
 	const png_uint_32 w = t->w, h = t->h;
 	const size_t pitch = w * t->bpp / 8;
@@ -148,14 +146,13 @@ static LibError png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr,
 		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
 	u8* data = tex_get_data(t);
-	RETURN_ERR(tex_codec_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN, rows));
+	shared_ptr<RowPtr> rows = tex_codec_alloc_rows(data, h, pitch, t->flags, TEX_TOP_DOWN);
 
 	// PNG is native RGB.
 	const int png_transforms = (t->flags & TEX_BGR)? PNG_TRANSFORM_BGR : PNG_TRANSFORM_IDENTITY;
 
-	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows);
+	png_set_rows(png_ptr, info_ptr, (png_bytepp)rows.get());
 	png_write_png(png_ptr, info_ptr, png_transforms, 0);
-	delete[] rows;
 
 	return INFO::OK;
 }
@@ -170,9 +167,9 @@ static bool png_is_hdr(const u8* file)
 }
 
 
-static bool png_is_ext(const char* ext)
+static bool png_is_ext(const std::string& extension)
 {
-	return !strcasecmp(ext, "png");
+	return !strcasecmp(extension.c_str(), ".png");
 }
 
 
@@ -206,9 +203,7 @@ TIMER_ACCRUE(tc_png_decode);
 		goto fail;
 	}
 
-	RowArray rows = 0;
-	ret = png_decode_impl(da, png_ptr, info_ptr, rows, t);
-	free(rows);
+	ret = png_decode_impl(da, png_ptr, info_ptr, t);
 
 fail:
 	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
@@ -238,9 +233,7 @@ static LibError png_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 		goto fail;
 	}
 
-	RowArray rows = 0;
-	ret = png_encode_impl(t, png_ptr, info_ptr, rows, da);
-	free(rows);
+	ret = png_encode_impl(t, png_ptr, info_ptr, da);
 
 	// shared cleanup
 fail:

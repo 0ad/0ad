@@ -168,7 +168,7 @@ void JSI_Sound::ScriptingInit()
 
 CStr JSI_Sound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	return "[object Sound: " + CStr(h_filename(m_Handle)) + "]";
+	return "[object Sound: " + h_filename(m_Handle).string() + "]";
 }
 
 JSBool JSI_Sound::Construct(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)

@@ -117,7 +117,7 @@ reload:
 does all initialization of the resource that requires its source file.
 called after init; also after dtor every time the file is reloaded.
 
-static LibError Type_reload(Res1* r, const char* filename, Handle);
+static LibError Type_reload(Res1* r, const VfsPath& pathname, Handle);
 {
 	// already loaded; done
 	if(r->data)
@@ -126,7 +126,7 @@ static LibError Type_reload(Res1* r, const char* filename, Handle);
 	r->data = malloc(100);
 	if(!r->data)
 		WARN_RETURN(ERR::NO_MEM);
-	// (read contents of <filename> into r->data)
+	// (read contents of <pathname> into r->data)
 	return 0;
 }
 
@@ -187,10 +187,10 @@ static LibError Type_validate(const Res1* r);
 
 
 5) provide your layer on top of the handle manager:
-Handle res1_load(const char* filename, int my_flags)
+Handle res1_load(const VfsPath& pathname, int my_flags)
 {
 	// passes my_flags to init
-	return h_alloc(H_Res1, filename, 0, my_flags);
+	return h_alloc(H_Res1, pathname, 0, my_flags);
 }
 
 LibError res1_free(Handle& h)
@@ -242,33 +242,10 @@ extern void h_mgr_shutdown();
 
 // handle type (for 'type safety' - can't use a texture handle as a sound)
 
-	
-//
-// rationale: we could use the destructor passed to h_alloc to identify
-// the handle, but it's good to have a list of all types, and we avoid having
-// to create empty destructors for handle types that wouldn't need them.
-// finally, we save memory - this fits in a few bits, vs. needing a pointer.
-
 // registering extension for each module is bad - some may use many
 // (e.g. texture - many formats).
 // handle manager shouldn't know about handle types
 
-/*
-enum H_Type
-{
-	H_Mem      = 1,
-	H_ZArchive = 2,
-	H_ZFile    = 3,
-	H_VFile    = 4,
-	H_VRead    = 5,
-
-	H_Tex      = 6,
-	H_Font     = 7,
-	H_Sound    = 8,
-
-	NUM_HANDLE_TYPES
-};
-*/
 
 /*
 ///xxx advantage of manual vtbl:
@@ -301,7 +278,7 @@ but- has to handle variable params, a bit ugly
 struct H_VTbl
 {
 	void (*init)(void* user, va_list);
-	LibError (*reload)(void* user, const char* fn, Handle);
+	LibError (*reload)(void* user, const VfsPath& pathname, Handle);
 	void (*dtor)(void* user);
 	LibError (*validate)(const void* user);
 	LibError (*to_string)(const void* user, char* buf);
@@ -314,14 +291,14 @@ typedef H_VTbl* H_Type;
 #define H_TYPE_DEFINE(type)\
 	/* forward decls */\
 	static void type##_init(type*, va_list);\
-	static LibError type##_reload(type*, const char*, Handle);\
+	static LibError type##_reload(type*, const VfsPath&, Handle);\
 	static void type##_dtor(type*);\
 	static LibError type##_validate(const type*);\
 	static LibError type##_to_string(const type*, char* buf);\
 	static H_VTbl V_##type =\
 	{\
 		(void (*)(void*, va_list))type##_init,\
-		(LibError (*)(void*, const char*, Handle))type##_reload,\
+		(LibError (*)(void*, const VfsPath&, Handle))type##_reload,\
 		(void (*)(void*))type##_dtor,\
 		(LibError (*)(const void*))type##_validate,\
 		(LibError (*)(const void*, char*))type##_to_string,\
@@ -382,10 +359,6 @@ enum
 	// not cached, and will never reuse a previous instance
 	RES_UNIQUE = RES_NO_CACHE|0x10,
 
-	// the resource isn't backed by a file. the fn parameter is treated as the search key (uintptr_t)
-	// currently only used by mem manager
-	RES_KEY = 0x08,
-
 	// object is requesting it never be reloaded (e.g. because it's not
 	// backed by a file)
 	RES_DISALLOW_RELOAD = 0x20
@@ -403,7 +376,7 @@ const size_t H_STRING_LEN = 256;
 //// user_size is checked to make sure the user data fits in the handle data space.
 // dtor is associated with type and called when the object is freed.
 // handle data is initialized to 0; optionally, a pointer to it is returned.
-extern Handle h_alloc(H_Type type, const char* fn, uint flags = 0, ...);
+extern Handle h_alloc(H_Type type, const VfsPath& pathname, uint flags = 0, ...);
 extern LibError h_free(Handle& h, H_Type type);
 
 
@@ -419,10 +392,10 @@ extern Handle h_find(H_Type type, uintptr_t key);
 // prefer using H_DEREF or H_USER_DATA.
 extern void* h_user_data(Handle h, H_Type type);
 
-extern const char* h_filename(Handle h);
+extern VfsPath h_filename(Handle h);
 
 
-extern LibError h_reload(const char* fn);
+extern LibError h_reload(const VfsPath& pathname);
 
 // force the resource to be freed immediately, even if cached.
 // tag is not checked - this allows the first Handle returned

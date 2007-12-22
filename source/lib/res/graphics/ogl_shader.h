@@ -35,7 +35,7 @@ extensions are available, or all bets are off.
 // Create, load and compile a shader object of the given type
 // (e.g. GL_VERTEX_SHADER_ARB). The given file will be used as
 // source code for the shader.
-Handle ogl_shader_load(const char* fn, GLenum type);
+Handle ogl_shader_load(const VfsPath& pathname, GLenum type);
 
 // Free all resources associated with the given handle (subject
 // to refcounting).

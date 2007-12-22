@@ -17,72 +17,45 @@
 #include <set>
 
 #include "lib/path_util.h"
-#include "wposix/wfilesystem.h"	// see add_oal_dlls_in_dir
 #include "wdll_ver.h"
 #include "win.h"
 #include "wutil.h"
 #include "wmi.h"
 
 
-// indicate if this filename corresponds to the OpenAL DLL name format.
-// (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
-static LibError IsOpenAlDllName(const char* name)
+static LibError IsOpenAlDllName(const std::string& name)
 {
-	const size_t len = strlen(name);
-
-	if(len >= 7 && !strcasecmp(name+len-7, "oal.dll"))
-		return true;
-
-	if(strstr(name, "OpenAL") != 0)
-		return true;
-
-	return false;
+	// (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
+	return name.find("oal.dll") != std::string::npos || name.find("OpenAL") != std::string::npos;
 }
 
 // ensures each OpenAL DLL is only listed once (even if present in several
 // directories on our search path).
 typedef std::set<std::string> StringSet;
 
-// find all OpenAL DLLs in a dir (via readdir and IsOpenAlDll).
+// find all OpenAL DLLs in a dir.
 // call in library search order (exe dir, then win sys dir); otherwise,
 // DLLs in the executable's starting directory hide those of the
 // same name in the system directory.
-static LibError add_oal_dlls_in_dir(const char* path, StringSet* dlls)
+static void add_oal_dlls_in_dir(const OsPath& path, StringSet& dlls)
 {
-	// note: wdll_ver_list_add requires the full DLL path but readdir only
-	// gives us the name. for efficiency, we append this via PathPackage.
-	PathPackage pp;
-	RETURN_ERR(path_package_set_dir(&pp, path));
-
-	// note: we can't use the dir_open/DirIterator interface because it
-	// expects a portable (relative) path and <path> is absolute. using
-	// POSIX opendir is slightly more complex but works.
-	errno = 0;
-	DIR* dir = opendir(path);
-	if(!dir)
-		return LibError_from_errno();
-
-	for(;;)	// instead of while to avoid warning
+	for(OsDirectoryIterator it(path); it != OsDirectoryIterator(); ++it)
 	{
-		dirent* ent = readdir(dir);
-		if(!ent)
-			break;
+		if(!fs::is_regular(it->status()))
+			continue;
 
-		if(!IsOpenAlDllName(ent->d_name))
+		const OsPath& pathname = it->path();
+		const std::string& name = pathname.leaf();
+		if(!IsOpenAlDllName(name))
 			continue;
 
 		// already in StringSet (i.e. has already been wdll_ver_list_add-ed)
-		std::pair<StringSet::iterator, bool> ret = dlls->insert(ent->d_name);
+		std::pair<StringSet::iterator, bool> ret = dlls.insert(name);
 		if(!ret.second)	// insert failed - element already there
 			continue;
 
-		(void)path_package_append_file(&pp, ent->d_name);
-		(void)wdll_ver_list_add(pp.path);
+		(void)wdll_ver_list_add(pathname);
 	}
-
-	int ret = closedir(dir);
-	debug_assert(ret == 0);
-	return INFO::OK;
 }
 
 
@@ -149,7 +122,7 @@ LibError win_get_snd_info()
 	if(wutil_WindowsVersion() < WUTIL_VERSION_VISTA)
 		(void)wdll_ver_list_add(GetDirectSoundDriverPath());
 	StringSet dlls;	// ensures uniqueness
-	(void)add_oal_dlls_in_dir(win_exe_dir, &dlls);
-	(void)add_oal_dlls_in_dir(win_sys_dir, &dlls);
+	(void)add_oal_dlls_in_dir(win_exe_dir, dlls);
+	(void)add_oal_dlls_in_dir(win_sys_dir, dlls);
 	return INFO::OK;
 }

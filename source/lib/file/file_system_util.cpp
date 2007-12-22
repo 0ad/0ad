@@ -65,7 +65,7 @@ void fs_SortDirectories(DirectoryNames& directories)
 
 LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern, unsigned flags)
 {
-	debug_assert(IsDirectory(path));
+	debug_assert(vfs_path_IsDirectory(path));
 
 	// (declare here to avoid reallocations)
 	FileInfos files; DirectoryNames subdirectoryNames;

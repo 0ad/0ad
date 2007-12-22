@@ -57,7 +57,7 @@ void CMusicPlayer::Open(char* UNUSED(filename))
 	for(int i = 0; i < NUM_BUFS; i++)
 	{
 		alGenBuffers(1, &bufs[i].al_buffer);
-		bufs[i].raw_buf = mem_alloc(RAW_BUF_SIZE, 4096);
+		bufs[i].raw_buf = malloc(RAW_BUF_SIZE);
 	}
 	
 	alGenSources(1, &source);

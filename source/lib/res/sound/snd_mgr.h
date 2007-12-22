@@ -153,7 +153,7 @@ extern LibError snd_set_master_gain(float gain);
  * open and return a handle to a sound instance.
  * this loads the sound data and makes it ready for other snd_* APIs.
  *
- * @param snd_fn input filename. if a text file (extension "txt"), it is
+ * @param pathname. if a text file (extension ".txt"), it is
  *   assumed to be a definition file containing the sound file name and
  *   its gain (0.0 .. 1.0).
  * otherwise, it is taken to be the sound file name and
@@ -164,7 +164,7 @@ extern LibError snd_set_master_gain(float gain);
  * only one instance can be open at a time.
  * @return Handle or LibError
  **/
-extern Handle snd_open(const char* snd_fn, bool stream = false);
+extern Handle snd_open(const VfsPath& name, bool stream = false);
 
 /**
  * close the sound instance. if it was playing, it will be stopped.

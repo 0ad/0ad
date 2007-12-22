@@ -6,8 +6,7 @@
 
 class TestTex : public CxxTest::TestSuite 
 {
-	void generate_encode_decode_compare(uint w, uint h, uint flags, uint bpp,
-		const char* filename)
+	void generate_encode_decode_compare(uint w, uint h, uint flags, uint bpp, const std::string& extension)
 	{
 		// generate test data
 		const size_t size = w*h*bpp/8;
@@ -21,12 +20,12 @@ class TestTex : public CxxTest::TestSuite
 
 		// encode to file format
 		DynArray da;
-		TS_ASSERT_OK(tex_encode(&t, filename, &da));
+		TS_ASSERT_OK(tex_encode(&t, extension, &da));
 		memset(&t, 0, sizeof(t));
 
 		// decode from file format
-		MEM_DTOR dtor = 0;	// we'll free da manually
-		TS_ASSERT_OK(tex_decode(da.base, da.cur_size, dtor, &t));
+		shared_ptr<u8> ptr(&da.base, DummyDeleter());
+		TS_ASSERT_OK(tex_decode(ptr, da.cur_size, 0, &t));
 
 		// make sure pixel format gets converted completely to plain
 		TS_ASSERT_OK(tex_transform_to(&t, 0));
