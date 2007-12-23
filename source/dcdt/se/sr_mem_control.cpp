@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include <stdlib.h>
 # include <string.h>
 # include <ctype.h>
@@ -54,7 +55,7 @@ void *sr_mem_control_alloc ( const char* type, char* file, int line, int size, v
    if ( !addr ) 
     { //lineout ();
       output<<"\nsr_control_malloc: Zero Pointer Allocated!\n" << 
-              "File:"<<file<<" Line:"<<line<<" Elem Size:"<<size<<" Address:"<<(int)addr<<'\n';
+              "File:"<<file<<" Line:"<<line<<" Elem Size:"<<size<<" Address:"<<(intptr_t)addr<<'\n';
       //lineout ();
     }
 
@@ -64,7 +65,7 @@ void *sr_mem_control_alloc ( const char* type, char* file, int line, int size, v
     }
 
    // the following is to get rid of the full path of files (in visualc++):
-   int i = strlen(file);
+   int i = (int)strlen(file);
    file += (i-1);
    while ( i>0 && *file!='\\' && *file!='/' ) { file--; i--; }
    if ( i>0 ) file++;
@@ -110,7 +111,7 @@ void sr_memory_report ()
 
    for ( int i=0; i<mem_data_size; i++ )
     { srMemData &m = mem_data[i];
-      output.putf ( "%3d: %-25s %-15s %-6d %-8d %d\n", i+1, m.file, m.type, m.line, m.size, (int)m.addr );
+      output.putf ( "%3d: %-25s %-15s %-6d %-8d %d\n", i+1, m.file, m.type, m.line, m.size, (intptr_t)m.addr );
     }
 
    output << srnl;

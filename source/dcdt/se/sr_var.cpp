@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include <ctype.h>
 # include <string.h>
 # include <stdlib.h>
@@ -378,7 +379,7 @@ SrOutput& operator<< ( SrOutput& o, const SrVar& v )
 
       case 's': for ( i=0; i<s; i++ ) 
                  { outs(o,i,v._data[i].s,buf);
-                   len += strlen(v._data[i].s);
+                   len += (int)strlen(v._data[i].s);
                    if (i<e)
                     { if ( len>80 ) { o<<srnl<<srtab; len=0; }
                        else o<<srspc;

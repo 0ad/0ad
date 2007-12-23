@@ -1,4 +1,6 @@
-#include "precompiled.h"//***************************************************************************
+#include "precompiled.h"
+#include "0ad_warning_disable.h"
+//***************************************************************************
 //
 //  SrExpTABLE.H
 //  By Marcelo Kallmann 08/98 - Brazil
@@ -60,7 +62,7 @@ static srFunc func_code ( const char *st )
                             compfunc                 // compare function
                           );
    if (!result) return srFuncUndefined;
-   return (srFunc) ( ((int)result-(int)Functions)/sizeof(int) );
+   return (srFunc) ( ((intptr_t)result-(intptr_t)Functions)/sizeof(int) );
  }
 
 const char *SrExpTable::function_name ( int index )

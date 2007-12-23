@@ -3,6 +3,7 @@
 //DJD: definition of FunnelNode functions {
 
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 
 #include "FunnelDeque.h"
 #include <float.h>

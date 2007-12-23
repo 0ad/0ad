@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include "sr_array_pt.h"
 
 //====================== SrArrayPtBase ==========================
@@ -134,7 +135,7 @@ static SrClassManagerBase* StaticManager = 0; // This is not thread safe...
 
 static int fcmp ( const void* pt1, const void* pt2 )
  {
-   typedef const int* cint;
+   typedef const intptr_t* cint;
    return StaticManager->compare( (const void*)*cint(pt1), (const void*)*cint(pt2) );
  }
 

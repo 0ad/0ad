@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 /* Note: this code was adapted from the PQP library; 
    their copyright notice can be found at the end of this file. */
 

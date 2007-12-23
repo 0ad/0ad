@@ -1,6 +1,7 @@
 //Location.cpp
 
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 
 #include <cstdlib>
 #include <math.h>

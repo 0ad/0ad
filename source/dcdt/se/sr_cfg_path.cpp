@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include "sr_cfg_path.h"
 # include "sr_random.h"
 
@@ -381,6 +382,7 @@ bool SrCfgPathBase::smooth_step ()
  {
    smooth_random ( _sprec, _slen );
 return false;
+#if 0
    int i, imax=1;
    int lasti = size()-2;
    float d;
@@ -425,6 +427,7 @@ return false;
     
    if ( _sbads>6 ) return true; // no more easy improvements
    return false;
+#endif
  }
 
 SrOutput& operator<< ( SrOutput& o, const SrCfgPathBase& p )

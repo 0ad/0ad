@@ -2,6 +2,7 @@
 
 //DJD: Width function definitions {
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 
 #include "se_dcdt.h"
 #include <math.h>

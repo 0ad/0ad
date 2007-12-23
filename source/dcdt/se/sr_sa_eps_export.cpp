@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include "sr_sa_eps_export.h"
 # include "sr_sa_bbox.h"
 # include "sr_sn_shape.h"

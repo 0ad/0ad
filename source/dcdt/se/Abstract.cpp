@@ -2,6 +2,7 @@
 
 //DJD: Abstract function definitions {
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 
 #include <math.h>
 #include <fstream>

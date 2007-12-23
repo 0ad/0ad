@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include "sr_grid.h"
 
 //============================ SrGridBase =================================

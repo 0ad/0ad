@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include <math.h>
 # include "sr_box.h"
 # include "sr_line.h"

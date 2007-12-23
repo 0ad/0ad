@@ -3,6 +3,7 @@
 //DJD: Helper function definitions {
 
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 
 #include <math.h>
 

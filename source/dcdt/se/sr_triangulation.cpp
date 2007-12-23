@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include "sr_random.h"
 # include "sr_geo2.h"
 # include "sr_triangulation.h"

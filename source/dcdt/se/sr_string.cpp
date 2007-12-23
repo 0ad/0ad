@@ -1,4 +1,5 @@
 #include "precompiled.h" 
+#include "0ad_warning_disable.h"
 # include <ctype.h>
 # include <string.h>
 # include <stdlib.h>
@@ -77,7 +78,7 @@ SrString& SrString::set ( const char *st )
     { if ( _capacity ) _data[0]=0;
     }
    else 
-    { int size = strlen(st)+1;
+    { int size = (int)strlen(st)+1;
       if ( _capacity<size )
        { if ( _data!=_empty ) delete[] _data;
          _capacity = size;
@@ -140,7 +141,7 @@ void SrString::compress ()
  {
    if ( !_capacity ) return;
 
-   int len = strlen(_data);
+   int len = (int)strlen(_data);
 
    if ( len+1==_capacity ) return; // is compressed
 
@@ -194,7 +195,7 @@ void SrString::bounds ( int &xi, int &xf ) const
 void SrString::substring ( int inf, int sup )
  {
    int n=0;
-   int max=strlen(_data)-1;
+   int max=(int)strlen(_data)-1;
    
    if ( max<0 ) return;
    if ( inf<0 ) inf=0;
@@ -206,21 +207,21 @@ void SrString::substring ( int inf, int sup )
 
 char SrString::last_char () const
  {
-   int len = strlen(_data);
+   int len = (int)strlen(_data);
    if ( len==0 ) return 0;
    return _data[len-1];
  }
 
 void SrString::last_char ( char c )
  {
-   int len = strlen(_data);
+   int len = (int)strlen(_data);
    if ( len==0 ) return;
    _data[len-1] = c;
  }
 
 void SrString::get_substring ( SrString& s, int inf, int sup ) const
  {
-   int max=strlen(_data)-1;
+   int max=(int)strlen(_data)-1;
    if ( max<0 ) return;
    if ( sup<0 || sup>max ) sup=max;
    if ( inf<0 ) inf=0;
@@ -234,7 +235,7 @@ void SrString::get_substring ( SrString& s, int inf, int sup ) const
 int SrString::get_next_string ( SrString& s, int i ) const
  {
    int i1, i2;
-   int max=strlen(_data)-1;
+   int max=(int)strlen(_data)-1;
 
    if ( max<0 ) return -1;
    if ( i<0 ) i=0;
@@ -267,7 +268,7 @@ void SrString::upper ()
 
 int SrString::search ( char c ) const
  {
-   int len = strlen(_data);
+   int len = (int)strlen(_data);
    for ( int i=0; i<len; i++ ) if (_data[i]==c) return i;
    return -1;
  }
@@ -275,10 +276,10 @@ int SrString::search ( char c ) const
 int SrString::search ( const char *st, bool ci ) const
  {
    int cmp;
-   int len = strlen(st);
+   int len = (int)strlen(st);
    if ( len==0 ) return -1;
 
-   int last_index = strlen(_data)-len;
+   int last_index = (int)strlen(_data)-len;
    for ( int i=0; i<=last_index; i++ )
     { cmp = ci? sr_compare ( _data+i, st, len ) :
                 sr_compare_cs ( _data+i, st, len );
@@ -414,7 +415,7 @@ bool SrString::make_valid_string ( const char* s )
    bool need_slash = false;
 
    int i;
-   int len = strlen ( s );
+   int len = (int)strlen ( s );
 
    if ( len==0 )
      need_quotes = true;
@@ -471,7 +472,7 @@ void SrString::append ( const char* st )
    char *tmp = 0;
    if ( st==_data ) { tmp=sr_string_new(st); st=tmp; }
 
-   int newlen = strlen(_data)+strlen(st);
+   int newlen = (int)strlen(_data)+(int)strlen(st);
 
    if ( newlen<_capacity )
     { strcat(_data,st);
@@ -491,10 +492,10 @@ void SrString::insert ( int i, const char *st )
    if ( !st ) return;
    if ( i<0 ) i=0;
    
-   int len = strlen(_data);
+   int len = (int)strlen(_data);
    if ( i>=len ) { append(st); return; }
 
-   int dp = strlen ( st );
+   int dp = (int)strlen ( st );
    if ( !dp ) return;
 
    int ns = len+dp+1;
@@ -516,7 +517,7 @@ void SrString::insert ( int i, const char *st )
 void SrString::remove ( int i, int dp )
  {
    if ( _data==_empty || dp<=0 ) return;
-   int len = strlen(_data);
+   int len = (int)strlen(_data);
    if ( i>=len || i<0 ) return;
    if ( i+dp>=len ) { _data[i]=0; return; }
 
@@ -531,8 +532,8 @@ int SrString::replace ( const char* oldst, const char* newst, bool ci )
 
    if ( i<0 ) return i; // not found
 
-   int oldlen = strlen(oldst);
-   int newlen = newst? strlen(newst):0;
+   int oldlen = (int)strlen(oldst);
+   int newlen = newst? (int)strlen(newst):0;
    
    if ( oldlen<newlen ) // open space
     { SrString dif ( ' ', newlen-oldlen );

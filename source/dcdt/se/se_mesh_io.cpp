@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 
 # include <string.h>
 # include "se_mesh.h"
@@ -8,7 +9,7 @@
 
 //================================ IO =========================================
 
-# define ID(se) int(se->_edge)
+# define ID(se) intptr_t(se->_edge)
 
 void SeMeshBase::_elemsave ( SrOutput& out, SeMeshBase::ElemType type, SeElement* first )
  {
@@ -44,7 +45,8 @@ bool SeMeshBase::save ( SrOutput& out )
  {
    SeBase *se;
    SeElement *el, *eli;
-   int symedges, i, j;
+   int symedges, j;
+   intptr_t i;
 
    out << "SYMEDGE MESH DESCRIPTION\n\n";
    //fprintf ( f, "SYMEDGE MESH DESCRIPTION\n\n" );
@@ -159,7 +161,8 @@ void SeMeshBase::_elemload ( SrInput& inp, SrArray<SeElement*>& E,
 bool SeMeshBase::load ( SrInput& inp )
  {
    //char buf[64];
-   int i, x;
+   int i;
+   intptr_t x;
 
    //fscanf ( f, "%s", buf ); if ( strcmp(buf,"SYMEDGE") ) return false;
    //fscanf ( f, "%s", buf ); if ( strcmp(buf,"MESH") ) return false;
@@ -197,11 +200,11 @@ bool SeMeshBase::load ( SrInput& inp )
 
    // convert indices to pointers:
    for ( i=0; i<S.size(); i++ )
-    { S[i]->_next   = S[(int)(S[i]->_next)];
-      S[i]->_rotate = S[(int)(S[i]->_rotate)];
-      S[i]->_vertex = V[(int)(S[i]->_vertex)];
-      S[i]->_edge   = E[(int)(S[i]->_edge)];
-      S[i]->_face   = F[(int)(S[i]->_face)];
+    { S[i]->_next   = S[(intptr_t)(S[i]->_next)];
+      S[i]->_rotate = S[(intptr_t)(S[i]->_rotate)];
+      S[i]->_vertex = V[(intptr_t)(S[i]->_vertex)];
+      S[i]->_edge   = E[(intptr_t)(S[i]->_edge)];
+      S[i]->_face   = F[(intptr_t)(S[i]->_face)];
     }
 
    // adjust internal variables:

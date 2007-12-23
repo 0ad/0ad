@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include <stdarg.h> 
 # include <stdlib.h> 
 # include <stdio.h>

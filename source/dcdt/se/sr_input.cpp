@@ -1,4 +1,5 @@
 #include "precompiled.h"
+#include "0ad_warning_disable.h"
 # include <stdlib.h>
 # include <string.h>
 # include <ctype.h>
@@ -58,7 +59,7 @@ SrInput::SrInput ( const char *buff, char com )
    if ( buff )
     { _cur.s = buff;
       _ini.s = buff;
-      _size = strlen ( buff );
+      _size = (int)strlen ( buff );
       _curline = 1;
       _type = (srbyte) TypeString;
     }
@@ -112,7 +113,7 @@ void SrInput::init ( const char *buff )
    if ( buff )
     { _cur.s = buff;
       _ini.s = buff;
-      _size = strlen ( buff );
+      _size = (int)strlen ( buff );
       _curline = 1;
       _type = (srbyte) TypeString;
     }
@@ -284,7 +285,7 @@ void SrInput::rewind ()
 int SrInput::pos ()
  {
    if ( ISFILE ) return ((int)ftell(_cur.f)) - _ini.f;
-    else if ( ISSTRING ) return ((sruint)_cur.s) - ((sruint)_ini.s);
+    else if ( ISSTRING ) return _cur.s - _ini.s;
      else return 0;
  }
 
