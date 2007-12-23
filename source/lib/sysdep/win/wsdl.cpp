@@ -190,8 +190,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 // w = h = bpp = 0 => no change.
 int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 {
-	int ret = 0;	// assume failure
-	WIN_SAVE_LAST_ERROR;	// OpenGL and GDI
+	WinScopedPreserveLastError s;	// OpenGL and GDI
 
 	fullscreen = (flags & SDL_FULLSCREEN) != 0;
 
@@ -199,7 +198,7 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	memset(&dm, 0, sizeof(dm));
 	dm.dmSize = sizeof(dm);
 	EnumDisplaySettings(0, ENUM_CURRENT_SETTINGS, &dm);
-	int cur_w = (int)dm.dmPelsWidth, cur_h = (int)dm.dmPelsHeight;
+	const int cur_w = (int)dm.dmPelsWidth, cur_h = (int)dm.dmPelsHeight;
 
 	// independent of resolution; app must always get bpp it wants
 	dm.dmBitsPerPel = bpp;
@@ -234,7 +233,7 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 		return 0;
 	}
 
-	DWORD windowStyle = fullscreen ? (WS_POPUP|WS_VISIBLE) : WS_VISIBLE | WS_CAPTION|WS_POPUPWINDOW|WS_MINIMIZEBOX;
+	const DWORD windowStyle = fullscreen ? (WS_POPUP|WS_VISIBLE) : WS_VISIBLE | WS_CAPTION|WS_POPUPWINDOW|WS_MINIMIZEBOX;
 
 	// Calculate the size of the outer window, so that the client area has
 	// the desired dimensions.
@@ -295,20 +294,16 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 
 	int pf = ChoosePixelFormat(hDC, &pfd);
 	if(!SetPixelFormat(hDC, pf, &pfd))
-		goto fail;
+		return 0;
 
 	hGLRC = wglCreateContext(hDC);
 	if(!hGLRC)
-		goto fail;
+		return 0;
 
 	if(!wglMakeCurrent(hDC, hGLRC))
-		goto fail;
+		return 0;
 
-	ret = 1;
-
-fail:
-	WIN_RESTORE_LAST_ERROR;
-	return ret;
+	return 1;
 }
 
 
@@ -357,7 +352,7 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 
 #ifdef DDRAW
 
-	WIN_SAVE_LAST_ERROR;	// DirectDraw
+	WinScopedPreserveLastError s;	// DirectDraw
 
 	ONCE({
 		IDirectDraw* dd = 0;
@@ -373,8 +368,6 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 			dd->Release();
 		}
 	});
-
-	WIN_RESTORE_LAST_ERROR;
 
 #endif
 
@@ -392,7 +385,7 @@ int GetVRAMInfo(int& remaining, int& total)
 	int ok = 0;
 #ifdef DDRAW
 
-	WIN_SAVE_LAST_ERROR;	// DirectDraw
+	WinScopedPreserveLastError s;	// DirectDraw
 
 	IDirectDraw* dd = 0;
 	HRESULT hr = DirectDrawCreate(0, &dd, 0);
@@ -409,8 +402,6 @@ int GetVRAMInfo(int& remaining, int& total)
 		}
 		dd->Release();
 	}
-
-	WIN_RESTORE_LAST_ERROR;
 
 #endif
 

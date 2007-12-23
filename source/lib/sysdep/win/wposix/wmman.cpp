@@ -130,9 +130,9 @@ static LibError mmap_file_access(int prot, int flags, DWORD& flProtect, DWORD& d
 
 static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, off_t ofs, void** pp)
 {
-	debug_assert(fd != -1);	// handled by mmap_mem
+	WinScopedPreserveLastError s;
 
-	WIN_SAVE_LAST_ERROR;
+	debug_assert(fd != -1);	// handled by mmap_mem
 
 	HANDLE hFile = HANDLE_from_intptr(_get_osfhandle(fd));
 	if(hFile == INVALID_HANDLE_VALUE)
@@ -169,7 +169,6 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, 
 	// slap on correct (more restrictive) permissions. 
 	(void)mprotect(p, len, prot);
 
-	WIN_RESTORE_LAST_ERROR;
 	*pp = p;
 	return INFO::OK;
 }

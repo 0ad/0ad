@@ -296,6 +296,8 @@ static HANDLE HANDLE_from_sem_t(sem_t* sem)
 
 sem_t* sem_open(const char* name, int oflag, ...)
 {
+	WinScopedPreserveLastError s;
+
 	const bool create = (oflag & O_CREAT) != 0;
 	const bool exclusive = (oflag & O_EXCL) != 0;
 
@@ -317,14 +319,12 @@ sem_t* sem_open(const char* name, int oflag, ...)
 	}
 
 	// create or open
-	WIN_SAVE_LAST_ERROR;
 	SetLastError(0);
 	const LONG maxValue = 0x7fffffff;
 	const HANDLE hSemaphore = CreateSemaphore(0, (LONG)initialValue, maxValue, 0);
 	if(hSemaphore == 0)
 		return SEM_FAILED;
 	const bool existed = (GetLastError() == ERROR_ALREADY_EXISTS);
-	WIN_RESTORE_LAST_ERROR;
 
 	// caller insisted on creating anew, but it already existed
 	if(exclusive && existed)

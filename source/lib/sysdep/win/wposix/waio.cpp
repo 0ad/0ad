@@ -87,6 +87,8 @@ static HandleManager* handleManager;
 // open fn in async mode and associate handle with fd.
 int aio_reopen(int fd, const char* fn, int oflag, ...)
 {
+	WinScopedPreserveLastError s;	// CreateFile
+
 	// interpret oflag
 	DWORD access = GENERIC_READ;	// assume O_RDONLY
 	DWORD share = FILE_SHARE_READ;
@@ -105,10 +107,8 @@ int aio_reopen(int fd, const char* fn, int oflag, ...)
 		create = (oflag & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
 
 	// open file
-	DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
-WIN_SAVE_LAST_ERROR;	// CreateFile
-	HANDLE hFile = CreateFile(fn, access, share, 0, create, flags, 0);
-WIN_RESTORE_LAST_ERROR;
+	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
+	const HANDLE hFile = CreateFile(fn, access, share, 0, create, flags, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 		WARN_RETURN(-1);
 
@@ -180,9 +180,8 @@ int open(const char* fn, int oflag, ...)
 		va_end(args);
 	}
 
-	WIN_SAVE_LAST_ERROR;	// CreateFile
+	WinScopedPreserveLastError s;	// _open's CreateFile
 	int fd = _open(fn, oflag, mode);
-	WIN_RESTORE_LAST_ERROR;
 
 	// none of the above apply; now re-open the file.
 	// note: this is possible because _open defaults to DENY_NONE sharing.
@@ -273,6 +272,8 @@ public:
 
 	LibError Issue(HANDLE hFile, off_t ofs, void* buf, size_t size, bool isWrite)
 	{
+		WinScopedPreserveLastError s;
+
 		m_hFile = hFile;
 
 		// note: Read-/WriteFile reset m_overlapped.hEvent, so we don't have to.
@@ -282,7 +283,6 @@ public:
 
 		DWORD bytesTransferred;
 		BOOL ok;
-		WIN_SAVE_LAST_ERROR;
 		if(isWrite)
 			ok = WriteFile(hFile, buf, u64_lo(size), &bytesTransferred, &m_overlapped);
 		else
@@ -292,7 +292,6 @@ public:
 			ok = TRUE;
 			SetLastError(0);
 		}
-		WIN_RESTORE_LAST_ERROR;
 		return LibError_from_win32(ok);
 	}
 

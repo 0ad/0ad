@@ -793,6 +793,8 @@ static ModuleInitState initState;
 
 void h_mgr_init()
 {
+	if(!ModuleShouldInitialize(&initState))
+		return;
 }
 
 

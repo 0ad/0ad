@@ -28,7 +28,7 @@
 
 static LibError ReadVersionString(const OsPath& modulePathname_, char* out_ver, size_t out_ver_len)
 {
-	WIN_SAVE_LAST_ERROR;	// GetFileVersion*, Ver*
+	WinScopedPreserveLastError s;	// GetFileVersion*, Ver*
 	WinScopedDisableWow64Redirection noRedirect;
 
 	const std::string modulePathname = modulePathname_.external_file_string();
@@ -65,8 +65,6 @@ static LibError ReadVersionString(const OsPath& modulePathname_, char* out_ver, 
 		WARN_RETURN(ERR::FAIL);
 
 	strcpy_s(out_ver, out_ver_len, in_ver);
-
-	WIN_RESTORE_LAST_ERROR;
 	return INFO::OK;
 }
 

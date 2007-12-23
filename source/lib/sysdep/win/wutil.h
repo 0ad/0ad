@@ -75,11 +75,32 @@ struct WinScopedLock
 
 
 //
-// error codes
+// errors
 //
 
-#define WIN_SAVE_LAST_ERROR DWORD last_err__ = GetLastError();
-#define WIN_RESTORE_LAST_ERROR STMT(if(last_err__ != 0 && GetLastError() == 0) SetLastError(last_err__););
+/**
+ * some WinAPI functions SetLastError(0) on success, which is bad because
+ * it can hide previous errors. this class takes care of restoring the
+ * previous value.
+ **/
+class WinScopedPreserveLastError
+{
+public:
+	WinScopedPreserveLastError()
+		: m_lastError(GetLastError())
+	{
+	}
+	
+	~WinScopedPreserveLastError()
+	{
+		if(m_lastError != 0 && GetLastError() == 0)
+			SetLastError(m_lastError);
+	}
+
+private:
+	DWORD m_lastError;
+};
+
 
 /**
  * @return the LibError equivalent of GetLastError(), or ERR::FAIL if

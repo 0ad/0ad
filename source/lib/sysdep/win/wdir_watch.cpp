@@ -194,8 +194,9 @@ static void get_packet();
 // better to use a cached string from rel_chdir - secure
 LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 {
+	WinScopedPreserveLastError s;	// Create*
+
 	LibError err = ERR::FAIL;
-	WIN_SAVE_LAST_ERROR;	// Create*
 
 	intptr_t reqnum;
 	*preqnum = 0;
@@ -214,9 +215,9 @@ LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 		const char* old_dir = w->dir_name.c_str();
 		if(path_is_subpath(dir, old_dir))
 		{
-			reqnum = w->reqnum;
+			*preqnum = w->reqnum;
 			w->refs++;
-			goto done;
+			return INFO::OK;
 		}
 	}
 
@@ -225,7 +226,7 @@ LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 	const DWORD flags = FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED;
 	const HANDLE hDir = CreateFile(dir, FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
 	if(hDir == INVALID_HANDLE_VALUE)
-		goto fail;
+		WARN_RETURN(ERR::FAIL);
 
 	// assign a new (unique) request number. don't do this earlier - prevents
 	// DOS via wasting reqnums due to invalid directory parameters.
@@ -234,7 +235,7 @@ LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 	{
 		debug_assert(0);	// request numbers are no longer unique
 		CloseHandle(hDir);
-		goto fail;
+		WARN_RETURN(ERR::LIMIT);
 	}
 	reqnum = ++last_reqnum;
 
@@ -247,24 +248,17 @@ LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 	if(hIOCP == 0 || hIOCP == INVALID_HANDLE_VALUE)
 	{
 		CloseHandle(hDir);
-		goto fail;
+		WARN_RETURN(ERR::FAIL);
 	}
 
 	// allocate watch, add to list, associate with reqnum
 	// note: can't use SAFE_NEW due to ctor params.
-	try
-	{
-		Watch* w = new Watch(reqnum, dir_s, hDir);
-		(*watches)[reqnum] = w;
+	Watch* w = new Watch(reqnum, dir_s, hDir);
+	(*watches)[reqnum] = w;
 
-		// add trailing \ if not already there
-		if(dir_s[dir_s.length()-1] != '\\')
-			w->dir_name += '\\';
-	}
-	catch(std::bad_alloc)
-	{
-		goto fail;
-	}
+	// add trailing \ if not already there
+	if(dir_s[dir_s.length()-1] != '\\')
+		w->dir_name += '\\';
 
 
 	// post a dummy kickoff packet; the IOCP polling code will "re"issue
@@ -277,13 +271,8 @@ LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 	get_packet();
 	}
 
-done:
-	err = INFO::OK;
 	*preqnum = reqnum;
-
-fail:
-	WIN_RESTORE_LAST_ERROR;
-	return err;
+	return INFO::OK;
 }
 
 
