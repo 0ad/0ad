@@ -87,7 +87,7 @@ int SkyManager::LoadSkyTextures()
 		Handle ht = ogl_tex_load(filename);
 		if (ht <= 0)
 		{
-			LOG(ERROR, LOG_CATEGORY, "SkyManager::LoadSkyTextures failed on \"%s\"", filename);
+			LOG(CLogger::Error, LOG_CATEGORY, "SkyManager::LoadSkyTextures failed on \"%s\"", filename);
 			return ht;
 		}
 		ogl_tex_set_wrap(ht, GL_CLAMP_TO_EDGE);
@@ -132,7 +132,7 @@ void SkyManager::SetSkySet( const CStrW& newSet )
 			Handle ht = ogl_tex_load(filename);
 			if (ht <= 0)
 			{
-				LOG(ERROR, LOG_CATEGORY, "SkyManager::SetSkySet failed on \"%s\"", filename);
+				LOG(CLogger::Error, LOG_CATEGORY, "SkyManager::SetSkySet failed on \"%s\"", filename);
 				return;
 			}
 			ogl_tex_set_wrap(ht, GL_CLAMP_TO_EDGE);
@@ -154,7 +154,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 	DirectoryNames subdirectories;
 	if(g_VFS->GetDirectoryEntries(dirname, 0, &subdirectories) < 0)
 	{
-		LOG(ERROR, "vfs", "Error opening directory '%s'", dirname);
+		LOG(CLogger::Error, "vfs", "Error opening directory '%s'", dirname);
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
 	}
 

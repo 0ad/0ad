@@ -82,7 +82,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 				// fails immediately, or registers for delay loading
 		} catch (PSERROR_File&) {
 			delete reader;
-			LOG(ERROR, LOG_CATEGORY, "Failed to load map %s", mapfilename.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, "Failed to load map %s", mapfilename.c_str());
 			throw PSERROR_Game_World_MapLoadFailed();
 		}
 	}

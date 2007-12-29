@@ -348,7 +348,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 				}
 				if (order.m_type == CEntityOrder::ORDER_LAST)
 				{
-					LOG(ERROR, "simulation", "Got an AddWaypoint message for an entity that isn't moving.");
+					LOG(CLogger::Error, "simulation", "Got an AddWaypoint message for an entity that isn't moving.");
 				}
 			}
 			break;

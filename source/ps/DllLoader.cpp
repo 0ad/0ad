@@ -69,7 +69,7 @@ bool DllLoader::LoadDLL()
 		{
 			char* error = dlerror();
 			if (error)
-				LOG(ERROR, "", "dlopen error: %s", error);
+				LOG(CLogger::Error, "", "dlopen error: %s", error);
 			m_Handle = HANDLE_UNAVAILABLE;
 		}
 	}

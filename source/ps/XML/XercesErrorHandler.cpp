@@ -26,7 +26,7 @@ void CXercesErrorHandler::warning(const SAXParseException &toCatch)
 	CStr systemId=XMLTranscode(toCatch.getSystemId());
 	CStr message=XMLTranscode(toCatch.getMessage());
 	
-	LOG(WARNING, LOG_CATEGORY, "XML Parse Warning: %s:%d:%d: %s",
+	LOG(CLogger::Warning, LOG_CATEGORY, "XML Parse Warning: %s:%d:%d: %s",
 		systemId.c_str(),
 		toCatch.getLineNumber(),
 		toCatch.getColumnNumber(),
@@ -39,7 +39,7 @@ void CXercesErrorHandler::error(const SAXParseException& toCatch)
 	CStr message=XMLTranscode(toCatch.getMessage());
 	fSawErrors = true;
 
-	LOG(ERROR, LOG_CATEGORY, "XML Parse Error: %s:%d:%d: %s",
+	LOG(CLogger::Error, LOG_CATEGORY, "XML Parse Error: %s:%d:%d: %s",
 		systemId.c_str(),
 		toCatch.getLineNumber(),
 		toCatch.getColumnNumber(),
@@ -52,7 +52,7 @@ void CXercesErrorHandler::fatalError(const SAXParseException& toCatch)
 	CStr message=XMLTranscode(toCatch.getMessage());
 	fSawErrors = true;
 
-	LOG(ERROR, LOG_CATEGORY, "XML Parse Error (Fatal): %s:%d:%d: %s",
+	LOG(CLogger::Error, LOG_CATEGORY, "XML Parse Error (Fatal): %s:%d:%d: %s",
 		systemId.c_str(),
 		toCatch.getLineNumber(),
 		toCatch.getColumnNumber(),

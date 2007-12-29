@@ -69,7 +69,7 @@ bool CObjectBase::Load(const char* filename)
 
 	if (root.GetNodeName() != el_actor)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 
@@ -198,7 +198,7 @@ bool CObjectBase::Load(const char* filename)
 
 			if (currentGroup->size() == 0)
 			{
-				LOG(ERROR, LOG_CATEGORY, "Actor group has zero variants ('%s')", filename);
+				LOG(CLogger::Error, LOG_CATEGORY, "Actor group has zero variants ('%s')", filename);
 			}
 
 			++currentGroup;

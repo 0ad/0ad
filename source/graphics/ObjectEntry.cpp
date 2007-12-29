@@ -55,7 +55,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		str << variation.color;
 		int r, g, b;
 		if (! (str >> r >> g >> b)) // Any trailing data is ignored
-			LOG(ERROR, LOG_CATEGORY, "Invalid RGB colour '%s'", variation.color.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, "Invalid RGB colour '%s'", variation.color.c_str());
 		else
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
@@ -76,7 +76,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	CModelDefPtr modeldef (objectManager.GetMeshManager().GetMesh(m_ModelName));
 	if (!modeldef)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", m_ModelName.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", m_ModelName.c_str());
 		return false;
 	}
 
@@ -128,7 +128,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		// start up idling
 		if (! m_Model->SetAnimation(GetRandomAnimation("idle")))
-			LOG(ERROR, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", m_ModelName.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", m_ModelName.c_str());
 	}
 
 	// build props - TODO, RC - need to fix up bounds here
@@ -140,7 +140,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		CObjectEntry* oe = objectManager.FindObjectVariation(prop.m_ModelName, selections);
 		if (!oe)
 		{
-			LOG(ERROR, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
+			LOG(CLogger::Error, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
 			continue;
 		}
 
@@ -156,7 +156,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			m_AmmunitionModel = oe->m_Model;
 			m_AmmunitionPoint = modeldef->FindPropPoint((const char*)ppn );
 			if (! m_AmmunitionPoint)
-				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)ppn, (const char*)m_ModelName, (const char*)prop.m_ModelName);
+				LOG(CLogger::Error, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)ppn, (const char*)m_ModelName, (const char*)prop.m_ModelName);
 		}
 		else
 		{
@@ -168,7 +168,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 				propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
 			}
 			else
-				LOG(ERROR, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, (const char*)m_ModelName, (const char*)prop.m_ModelName);
+				LOG(CLogger::Error, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" on actor \"%s\"", (const char*)prop.m_PropPointName, (const char*)m_ModelName, (const char*)prop.m_ModelName);
 		}
 	}
 
@@ -223,7 +223,7 @@ CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName)
 	size_t count = std::distance(lower, upper);
 	if (count == 0)
 	{
-//		LOG(WARNING, LOG_CATEGORY, "Failed to find animation '%s' for actor '%s'", animationName.c_str(), m_ModelName.c_str());
+//		LOG(CLogger::Warning, LOG_CATEGORY, "Failed to find animation '%s' for actor '%s'", animationName.c_str(), m_ModelName.c_str());
 		return NULL;
 	}
 	else

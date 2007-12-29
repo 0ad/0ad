@@ -58,7 +58,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const CStr& filename)
 
 	if (psaFilename.empty())
 	{
-		LOG(ERROR, LOG_CATEGORY, "Could not load animation '%s'", filename.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "Could not load animation '%s'", filename.c_str());
 		def = NULL;
 	}
 	else
@@ -74,9 +74,9 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const CStr& filename)
 	}
 
 	if (def)
-		LOG(NORMAL, LOG_CATEGORY, "CSkeletonAnimManager::GetAnimation(%s): Loaded successfully", filename.c_str());
+		LOG(CLogger::Normal,  LOG_CATEGORY, "CSkeletonAnimManager::GetAnimation(%s): Loaded successfully", filename.c_str());
 	else
-		LOG(ERROR, LOG_CATEGORY, "CSkeletonAnimManager::GetAnimation(%s): Failed loading, marked file as bad", filename.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "CSkeletonAnimManager::GetAnimation(%s): Failed loading, marked file as bad", filename.c_str());
 
 	// Add to map
 	m_Animations[name] = def; // NULL if failed to load - we won't try loading it again

@@ -73,12 +73,12 @@ CEntityTemplate* CEntityTemplateCollection::GetTemplate( const CStrW& name, CPla
 	CEntityTemplate* newTemplate = new CEntityTemplate( player );
 	if( !newTemplate->LoadXml( path ) )
 	{
-		LOG(ERROR, LOG_CATEGORY, "CEntityTemplateCollection::GetTemplate(): Couldn't load template \"%s\"", path.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "CEntityTemplateCollection::GetTemplate(): Couldn't load template \"%s\"", path.c_str());
 		delete newTemplate;
 		return( NULL );
 	}
 
-	LOG(NORMAL, LOG_CATEGORY, "CEntityTemplateCollection::GetTemplate(): Loaded template \"%s\"", path.c_str());
+	LOG(CLogger::Normal,  LOG_CATEGORY, "CEntityTemplateCollection::GetTemplate(): Loaded template \"%s\"", path.c_str());
 	m_templates[id][name] = newTemplate;
 
 	return newTemplate;

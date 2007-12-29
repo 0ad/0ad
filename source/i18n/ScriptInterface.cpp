@@ -323,7 +323,7 @@ const StrImW ScriptObject::CallFunction(const char* name, const std::vector<Buff
 
 	if (! called)
 	{
-		LOG(ERROR, LOG_CATEGORY, "I18n: Error executing JS function '%s'", name);
+		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Error executing JS function '%s'", name);
 		return L"(JS error)";
 	}
 

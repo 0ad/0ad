@@ -58,7 +58,7 @@ void CList::SetupText()
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
-	//LOG(ERROR, LOG_CATEGORY, "SetupText() %s", GetPresentableName().c_str());
+	//LOG(CLogger::Error, LOG_CATEGORY, "SetupText() %s", GetPresentableName().c_str());
 
 	//debug_assert(m_GeneratedTexts.size()>=1);
 

@@ -56,7 +56,7 @@ CTextureEntry* CTextureManager::FindTexture(CStr tag)
 			return m_TextureEntries[i];
 	}
 
-	LOG(WARNING, LOG_CATEGORY, "TextureManager: Couldn't find terrain %s", tag.c_str());
+	LOG(CLogger::Warning, LOG_CATEGORY, "TextureManager: Couldn't find terrain %s", tag.c_str());
 	return 0;
 }
 
@@ -123,7 +123,7 @@ void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 		{
 			myprops = GetPropertiesFromFile(props, xml_name);
 			if (myprops)
-				LOG(NORMAL, LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s", xml_name, texture_name);
+				LOG(CLogger::Normal,  LOG_CATEGORY, "CTextureManager: Successfully loaded override xml %s for texture %s", xml_name, texture_name);
 		}
 
 		// Error or non-existant xml file -> use parent props
@@ -136,7 +136,7 @@ void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 
 void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const char* cur_dir_path)
 {
-	//LOG(NORMAL, LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
+	//LOG(CLogger::Normal,  LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
 
 	CTerrainPropertiesPtr props;
 
@@ -150,7 +150,7 @@ void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const 
 	// No terrains.xml, or read failures -> use parent props (i.e. 
 	if (!props)
 	{
-		LOG(NORMAL, LOG_CATEGORY,
+		LOG(CLogger::Normal,  LOG_CATEGORY,
 			"CTextureManager::RecurseDirectory(%s): no terrains.xml (or errors while loading) - using parent properties", cur_dir_path);
 		props = parentProps;
 	}

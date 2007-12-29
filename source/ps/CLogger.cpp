@@ -148,11 +148,11 @@ void CLogger::WriteWarning(const char *message, int interestedness)
 // Sends the message to the appropriate piece of code
 void CLogger::LogUsingMethod(ELogMethod method, const char* category, const char* message)
 {
-	if(method == NORMAL)
+	if(method == Normal)
 		WriteMessage(message, Interestedness(category));
-	else if(method == ERROR)
+	else if(method == Error)
 		WriteError(message, Interestedness(category));
-	else if(method == WARNING)
+	else if(method == Warning)
 		WriteWarning(message, Interestedness(category));
 	else
 		WriteMessage(message, Interestedness(category));

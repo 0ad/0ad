@@ -58,7 +58,7 @@ PS_RESULT GetPS_RESULT(int error)
 	default:
 		char buf[256];
 		Network_GetErrorString(error, buf, sizeof(buf));
-		LOG(ERROR, LOG_CAT_NET, "SocketBase.cpp::GetPS_RESULT(): Unrecognized error %s[%d]", buf, error);
+		LOG(CLogger::Error, LOG_CAT_NET, "SocketBase.cpp::GetPS_RESULT(): Unrecognized error %s[%d]", buf, error);
 		return PS_FAIL;
 	}
 }
@@ -471,7 +471,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 				break;
 			default:
 				Network_GetErrorString(err, errBuf, sizeof(errBuf));
-				LOG(ERROR, LOG_CAT_NET, "CServerSocket::Bind(): bind: %s [%d] => PS_FAIL", errBuf, err);
+				LOG(CLogger::Error, LOG_CAT_NET, "CServerSocket::Bind(): bind: %s [%d] => PS_FAIL", errBuf, err);
 		}
 		m_State=SS_UNCONNECTED;
 		m_Error=ret;
@@ -483,7 +483,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 	{
 		int err=Network_LastError;
 		Network_GetErrorString(err, errBuf, sizeof(errBuf));
-		LOG(ERROR, LOG_CAT_NET, "CServerSocket::Bind(): listen: %s [%d] => PS_FAIL", errBuf, err);
+		LOG(CLogger::Error, LOG_CAT_NET, "CServerSocket::Bind(): listen: %s [%d] => PS_FAIL", errBuf, err);
 		m_State=SS_UNCONNECTED;
 		return PS_FAIL;
 	}

@@ -355,7 +355,7 @@ bool CTriggerManager::LoadXml( const CStr& filename )
 		{
 			if ( !LoadTriggerSpec(rootChild, XeroFile, true) )
 			{
-				LOG(ERROR, LOG_CATEGORY, "Error detected in Trigger XML <condition> tag. File: %s", filename.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, "Error detected in Trigger XML <condition> tag. File: %s", filename.c_str());
 				return false;
 			}
 		}
@@ -363,13 +363,13 @@ bool CTriggerManager::LoadXml( const CStr& filename )
 		{
 			if ( !LoadTriggerSpec(rootChild, XeroFile, false) )
 			{
-				LOG(ERROR, LOG_CATEGORY, "Error detected in Trigger XML <effect> tag. File: %s", filename.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, "Error detected in Trigger XML <effect> tag. File: %s", filename.c_str());
 				return false;
 			}
 		}
 		else 
 		{
-			LOG(ERROR, LOG_CATEGORY, "Invalid tag in trigger XML. File: %s", filename.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, "Invalid tag in trigger XML. File: %s", filename.c_str());
 			return false;
 		}
 	}

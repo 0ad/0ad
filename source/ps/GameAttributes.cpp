@@ -214,7 +214,7 @@ CGameAttributes::CGameAttributes():
 	CXeromyces XeroFile;
 	if (XeroFile.Load("temp/players.xml") != PSRETURN_OK)
 	{
-		LOG(ERROR, "", "Failed to load players list (temp/players.xml)");
+		LOG(CLogger::Error, "", "Failed to load players list (temp/players.xml)");
 
 		// Basic default players
 
@@ -343,7 +343,7 @@ CPlayer *CGameAttributes::GetPlayer(int id)
 	}
 	else
 	{
-		LOG(ERROR, "", "CGameAttributes::GetPlayer(): Attempt to get player %d (while there only are %d players)", id, m_Players.size());
+		LOG(CLogger::Error, "", "CGameAttributes::GetPlayer(): Attempt to get player %d (while there only are %d players)", id, m_Players.size());
 		return m_Players[0];
 	}
 }
@@ -354,7 +354,7 @@ CPlayerSlot *CGameAttributes::GetSlot(int index)
 		return m_PlayerSlots[index];
 	else
 	{
-		LOG(ERROR, "", "CGameAttributes::GetSlot(): Attempt to get slot %d (while there only are %d slots)", index, m_PlayerSlots.size());
+		LOG(CLogger::Error, "", "CGameAttributes::GetSlot(): Attempt to get slot %d (while there only are %d slots)", index, m_PlayerSlots.size());
 		return m_PlayerSlots[0];
 	}
 }
@@ -384,7 +384,7 @@ void CGameAttributes::FinalizeSlots()
 		}
 		else
 		{
-			LOG(ERROR, "", "CGameAttributes::FinalizeSlots(): slot %d deleted", i);
+			LOG(CLogger::Error, "", "CGameAttributes::FinalizeSlots(): slot %d deleted", i);
 			delete slot->GetPlayer();
 			delete slot;
 		}

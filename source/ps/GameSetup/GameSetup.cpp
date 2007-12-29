@@ -735,7 +735,7 @@ static void InitSDL()
 	MICROLOG(L"init sdl");
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
+		LOG(CLogger::Error, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
 		throw PSERROR_System_SDLInitFailed();
 	}
 	atexit(SDL_Quit);
@@ -963,7 +963,7 @@ void Init(const CmdLineArgs& args, uint flags)
 		MICROLOG(L"SetVideoMode");
 		if(SetVideoMode(g_xres, g_yres, 32, !windowed) < 0)
 		{
-			LOG(ERROR, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
+			LOG(CLogger::Error, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
 			throw PSERROR_System_VmodeFailed();
 		}
 

@@ -45,7 +45,7 @@ const u8 *CNetMessage::Deserialize(const u8* pos, const u8* UNUSED(end))
 
 CNetMessage *CNetMessage::Copy() const
 {
-	LOG(ERROR, LOG_CAT_NET, "CNetMessage::Copy(): Attempting to copy non-copyable message!");
+	LOG(CLogger::Error, LOG_CAT_NET, "CNetMessage::Copy(): Attempting to copy non-copyable message!");
 	return new CNetMessage(NMT_NONE);
 }
 
@@ -64,7 +64,7 @@ CNetMessage *CNetMessage::DeserializeMessage(ENetMessageType type, u8 *buffer, u
 	MessageDeserializerMap::const_iterator dEntry=g_DeserializerMap.find(type);
 	if (dEntry == g_DeserializerMap.end())
 	{
-		LOG(WARNING, LOG_CAT_NET, "Unknown message received on socket: type 0x%04x, length %u", type, length);
+		LOG(CLogger::Warning, LOG_CAT_NET, "Unknown message received on socket: type 0x%04x, length %u", type, length);
 		return NULL;
 	}
 	NetMessageDeserializer pDes=dEntry->second;

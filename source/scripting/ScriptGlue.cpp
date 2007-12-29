@@ -99,7 +99,7 @@ JSBool WriteLog(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 
 	// We should perhaps unicodify (?) the logger at some point.
 
-	LOG( NORMAL, "script", logMessage );
+	LOG(CLogger::Normal, "script", logMessage );
 
 	*rval = JSVAL_TRUE;
 	return JS_TRUE;
@@ -935,26 +935,19 @@ JSBool ExitProgram( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 }
 
 
-// Write an indication of total/available video RAM to console.
+// Write an indication of total video RAM to console.
 // params:
 // returns:
 // notes:
-// - Not supported on all platforms.
+// - May not be supported on all platforms.
 // - Only a rough approximation; do not base low-level decisions
 //   ("should I allocate one more texture?") on this.
 JSBool WriteVideoMemToConsole( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
 
-#if OS_WIN
-	int left, total;
-	if (GetVRAMInfo(left, total))
-		g_Console->InsertMessage(L"VRAM: used %d, total %d, free %d", total-left, total, left);
-	else
-		g_Console->InsertMessage(L"VRAM: failed to detect");
-#else
-	g_Console->InsertMessage(L"VRAM: [not available on non-Windows]");
-#endif
+	SDL_VideoInfo* videoInfo = SDL_GetVideoInfo();
+	g_Console->InsertMessage(L"VRAM: total %d", videoInfo->video_mem);
 	return JS_TRUE;
 }
 
@@ -1597,23 +1590,19 @@ enum ScriptGlobalTinyIDs
 	GLOBAL_LIGHTENV
 };
 
-// shorthand
-#define PERM  JSPROP_PERMANENT
-#define CONST JSPROP_READONLY
-
 JSPropertySpec ScriptGlobalTable[] =
 {
-	{ "selection"  , GLOBAL_SELECTION,   PERM,         JSI_Selection::getSelection, JSI_Selection::SetSelection },
-	{ "groups"     , GLOBAL_GROUPSARRAY, PERM,         JSI_Selection::getGroups,    JSI_Selection::setGroups },
-	{ "camera"     , GLOBAL_CAMERA,      PERM,         JSI_Camera::getCamera,       JSI_Camera::setCamera },
-	{ "console"    , GLOBAL_CONSOLE,     PERM | CONST, JSI_Console::getConsole,     0 },
-	{ "lightenv"   , GLOBAL_LIGHTENV,    PERM,         JSI_LightEnv::getLightEnv,   JSI_LightEnv::setLightEnv },
-	{ "entities"   , 0,                  PERM | CONST, GetEntitySet,                0 },
-	{ "players"    , 0,                  PERM | CONST, GetPlayerSet,                0 },
-	{ "localPlayer", 0,                  PERM        , GetLocalPlayer,              SetLocalPlayer },
-	{ "gaiaPlayer" , 0,                  PERM | CONST, GetGaiaPlayer,               0 },
-	{ "gameView"   , 0,                  PERM | CONST, GetGameView,                 0 },
-	{ "renderer"   , 0,                  PERM | CONST, GetRenderer,                 0 },
+	{ "selection"  , GLOBAL_SELECTION,   JSPROP_PERMANENT, JSI_Selection::getSelection, JSI_Selection::SetSelection },
+	{ "groups"     , GLOBAL_GROUPSARRAY, JSPROP_PERMANENT, JSI_Selection::getGroups, JSI_Selection::setGroups },
+	{ "camera"     , GLOBAL_CAMERA,      JSPROP_PERMANENT, JSI_Camera::getCamera, JSI_Camera::setCamera },
+	{ "console"    , GLOBAL_CONSOLE,     JSPROP_PERMANENT|JSPROP_READONLY, JSI_Console::getConsole, 0 },
+	{ "lightenv"   , GLOBAL_LIGHTENV,    JSPROP_PERMANENT, JSI_LightEnv::getLightEnv, JSI_LightEnv::setLightEnv },
+	{ "entities"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetEntitySet, 0 },
+	{ "players"    , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetPlayerSet, 0 },
+	{ "localPlayer", 0,                  JSPROP_PERMANENT, GetLocalPlayer, SetLocalPlayer },
+	{ "gaiaPlayer" , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetGaiaPlayer, 0 },
+	{ "gameView"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetGameView, 0 },
+	{ "renderer"   , 0,                  JSPROP_PERMANENT|JSPROP_READONLY, GetRenderer, 0 },
 
 	// end of table marker
 	{ 0, 0, 0, 0, 0 },

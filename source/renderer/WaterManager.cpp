@@ -101,7 +101,7 @@ int WaterManager::LoadWaterTextures()
 		Handle ht = ogl_tex_load(filename);
 		if (ht <= 0)
 		{
-			LOG(ERROR, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", filename);
+			LOG(CLogger::Error, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", filename);
 			return ht;
 		}
 		m_WaterTexture[cur_loading_water_tex] = ht;
@@ -118,7 +118,7 @@ int WaterManager::LoadWaterTextures()
 		Handle ht = ogl_tex_load(filename);
 		if (ht <= 0)
 		{
-			LOG(ERROR, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", filename);
+			LOG(CLogger::Error, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", filename);
 			return ht;
 		}
 		m_NormalMap[cur_loading_normal_map] = ht;

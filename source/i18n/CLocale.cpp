@@ -165,19 +165,19 @@ bool CLocale::LoadFunctions(const char* data, size_t len, const char* filename)
 
 	if (len < 2)
 	{
-		LOG(ERROR, LOG_CATEGORY, "I18n: Functions file '%s' is too short", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Functions file '%s' is too short", filename);
 		return false;
 	}
 
 	if (*(jschar*)data != 0xFEFF)
 	{
-		LOG(ERROR, LOG_CATEGORY, "I18n: Functions file '%s' has invalid Unicode format (lacking little-endian BOM)", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Functions file '%s' has invalid Unicode format (lacking little-endian BOM)", filename);
 		return false;
 	}
 
 	if (! Script.ExecuteCode((jschar*)(data+2), len/2, filename))
 	{
-		LOG(ERROR, LOG_CATEGORY, "I18n: JS errors in functions file '%s'", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "I18n: JS errors in functions file '%s'", filename);
 		return false;
 	}
 
@@ -196,7 +196,7 @@ bool CLocale::LoadDictionary(const char* data)
 
 	if (dict.DictProperties.size() && PropertyCount != dict.DictProperties.size())
 	{
-		LOG(ERROR, LOG_CATEGORY, "I18n: Multiple dictionary files loaded with the name ('%ls') and different properties", DictName.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Multiple dictionary files loaded with the name ('%ls') and different properties", DictName.c_str());
 		return false;
 		// TODO: Check headings to make sure they're identical (or handle them more cleverly)
 	}
@@ -243,7 +243,7 @@ const CLocale::LookupType* CLocale::LookupWord(const Str& dictname, const Str& w
 	std::map<Str, DictData>::const_iterator dictit = Dictionaries.find(dictname);
 	if (dictit == Dictionaries.end())
 	{
-		LOG(WARNING, LOG_CATEGORY, "I18n: Non-loaded dictionary '%ls' accessed", dictname.c_str());
+		LOG(CLogger::Warning, LOG_CATEGORY, "I18n: Non-loaded dictionary '%ls' accessed", dictname.c_str());
 		return NULL;
 	}
 	std::map<Str, std::vector<Str> >::const_iterator wordit = dictit->second.DictWords.find(word);
@@ -290,7 +290,7 @@ StringBuffer CLocale::Translate(const wchar_t* id)
 	StringsType::iterator TransStr = Strings.find(Str(id));
 	if (TransStr == Strings.end())
 	{
-		LOG(WARNING, LOG_CATEGORY, "I18n: No translation found for string '%ls'", id);
+		LOG(CLogger::Warning, LOG_CATEGORY, "I18n: No translation found for string '%ls'", id);
 
 		// Just use the ID string directly, and remember it for the future
 		return StringBuffer(&AddDefaultString(id), this);

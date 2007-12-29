@@ -94,8 +94,8 @@ static void LoadGlobals()
 	if(gain > 0.0f)
 		WARN_ERR(snd_set_master_gain(gain));
 
-	LOG(NORMAL, LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
-	LOG(NORMAL, LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
+	LOG(CLogger::Normal,  LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
+	LOG(CLogger::Normal,  LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
 }
 
 

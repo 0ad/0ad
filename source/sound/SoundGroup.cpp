@@ -206,7 +206,7 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 
 	if (root.GetNodeName() != el_soundgroup)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 	

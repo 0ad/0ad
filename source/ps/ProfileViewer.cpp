@@ -420,7 +420,7 @@ void CProfileViewer::SaveToFile()
 
 		if (m->outputStream.fail())
 		{
-			LOG(ERROR, "profiler", "Failed to open profile log file");
+			LOG(CLogger::Error, "profiler", "Failed to open profile log file");
 			return;
 		}
 	}

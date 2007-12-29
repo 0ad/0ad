@@ -860,7 +860,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 
 		CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(TemplateName, g_Game->GetPlayer(PlayerID));
 		if (! base)
-			LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
 		else
 		{
 			std::set<CStr> selections; // TODO: read from file
@@ -868,7 +868,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			HEntity ent = g_EntityManager.Create(base, Position, Orientation, selections);
 
 			if (! ent)
-				LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
 			else
 			{
 				ent->m_actor->SetPlayerID(PlayerID);

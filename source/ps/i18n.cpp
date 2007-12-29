@@ -53,7 +53,7 @@ bool I18n::LoadLanguage(const char* name)
 		CVFSFile strings;
 		if (! (strings.Load(pathname) == PSRETURN_OK && locale->LoadStrings((const char*)strings.GetBuffer())))
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", pathname);
+			LOG(CLogger::Error, LOG_CATEGORY, "Error opening language string file '%s'", pathname);
 			return false;
 		}
 	}
@@ -67,7 +67,7 @@ bool I18n::LoadLanguage(const char* name)
 		CVFSFile strings;
 		if (! (strings.Load(pathname) == PSRETURN_OK && locale->LoadDictionary((const char*)strings.GetBuffer())))
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error opening language string file '%s'", pathname);
+			LOG(CLogger::Error, LOG_CATEGORY, "Error opening language string file '%s'", pathname);
 			return false;
 		}
 	}
@@ -87,7 +87,7 @@ bool I18n::LoadLanguage(const char* name)
 				pathname
 			)))
 		{
-			LOG(ERROR, LOG_CATEGORY, "Error opening language function file '%s'", pathname);
+			LOG(CLogger::Error, LOG_CATEGORY, "Error opening language function file '%s'", pathname);
 			return false;
 		}
 	}

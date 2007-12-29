@@ -97,7 +97,7 @@ bool CNetClient::JSI_BeginConnect(JSContext* UNUSED(cx), uintN argc, jsval *argv
 	PS_RESULT res=BeginConnect(connectHostName.c_str(), connectPort);
 	if (res != PS_OK)
 	{
-		LOG(ERROR, LOG_CAT_NET, "CNetClient::JSI_Connect(): BeginConnect error: %s", res);
+		LOG(CLogger::Error, LOG_CAT_NET, "CNetClient::JSI_Connect(): BeginConnect error: %s", res);
 		return false;
 	}
 	else
@@ -144,7 +144,7 @@ bool CNetClient::ConnectHandler(CNetMessage *pMsg, CNetSession *pSession)
 	case NMT_ERROR:
 	{
 		CNetErrorMessage *msg=(CNetErrorMessage *)pMsg;
-		LOG(ERROR, LOG_CAT_NET, "CNetClient::ConnectHandler(): Connect Failed: %s", msg->m_Error);
+		LOG(CLogger::Error, LOG_CAT_NET, "CNetClient::ConnectHandler(): Connect Failed: %s", msg->m_Error);
 		if (pClient->m_OnConnectComplete.Defined())
 		{
 			CConnectCompleteEvent evt(CStr(msg->m_Error), false);
@@ -228,11 +228,11 @@ bool CNetClient::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pSession)
 			CAuthenticationResult *msg=(CAuthenticationResult *)pMsg;
 			if (msg->m_Code != NRC_OK)
 			{
-				LOG(ERROR, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authentication failed: %ls", msg->m_Message.c_str());
+				LOG(CLogger::Error, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authentication failed: %ls", msg->m_Message.c_str());
 			}
 			else
 			{
-				LOG(NORMAL, LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authenticated!");
+				LOG(CLogger::Normal,  LOG_CAT_NET, "CNetClient::AuthenticateHandler(): Authenticated!");
 				pClient->m_SessionID=msg->m_SessionID;
 				pClient->m_pMessageHandler=PreGameHandler;
 			}
@@ -304,7 +304,7 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 					pSlot->AssignOpen();
 					break;
 				default:
-					LOG(WARNING, LOG_CAT_NET, "CNetClient::PreGameHandler(): Received an invalid slot assignment %s", msg->GetString().c_str());
+					LOG(CLogger::Warning, LOG_CAT_NET, "CNetClient::PreGameHandler(): Received an invalid slot assignment %s", msg->GetString().c_str());
 			}
 			HANDLED(pMsg);
 		}
@@ -413,7 +413,7 @@ void CNetClient::OnClientDisconnect(int sessionID)
 	SessionMap::iterator it=m_ServerSessions.find(sessionID);
 	if (it == m_ServerSessions.end())
 	{
-		LOG(WARNING, LOG_CAT_NET, "Server said session %d disconnected. I don't know of such a session.");
+		LOG(CLogger::Warning, LOG_CAT_NET, "Server said session %d disconnected. I don't know of such a session.");
 	}
 	
 	// Call JS Callback

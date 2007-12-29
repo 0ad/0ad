@@ -37,7 +37,7 @@ CNetServerSession *CNetServer::CreateSession(CSocketInternal *pInt)
 // NOTE: Called in network thread
 void CNetServer::OnAccept(const CSocketAddress &addr)
 {
-	LOG(NORMAL, LOG_CAT_NET, "CNetServer::OnAccept(): Accepted connection from %s port %d", addr.GetString().c_str(), addr.GetPort());
+	LOG(CLogger::Normal,  LOG_CAT_NET, "CNetServer::OnAccept(): Accepted connection from %s port %d", addr.GetString().c_str(), addr.GetPort());
 
 	CSocketInternal *pInt=Accept();
 	CNetServerSession *pSession=CreateSession(pInt);
@@ -116,7 +116,7 @@ bool CNetServer::JSI_Open(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUS
 	PS_RESULT res=Bind(addr);
 	if (res != PS_OK)
 	{
-		LOG(ERROR, LOG_CAT_NET, "CNetServer::JSI_Open(): Bind error: %s", res);
+		LOG(CLogger::Error, LOG_CAT_NET, "CNetServer::JSI_Open(): Bind error: %s", res);
 		return false;
 	}
 
@@ -425,7 +425,7 @@ void CNetServer::QueueLocalCommand(CNetMessage *pMsg)
 void CNetServer::QueueIncomingCommand(CNetMessage *pMsg)
 {
 	CScopeLock lock(m_Mutex);
-	LOG(NORMAL, LOG_CAT_NET, "CNetServer::QueueIncomingCommand(): %s.", pMsg->GetString().c_str());
+	LOG(CLogger::Normal,  LOG_CAT_NET, "CNetServer::QueueIncomingCommand(): %s.", pMsg->GetString().c_str());
 	debug_printf("Got a command! queueing it to 2 turns from now\n");
 	QueueMessage(2, pMsg);
 }

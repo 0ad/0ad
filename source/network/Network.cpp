@@ -150,7 +150,7 @@ void CMessageSocket::StartWriteNextMessage()
 			}
 			else if (pMsg->GetType() < 0)
 			{
-				LOG(WARNING, LOG_CAT_NET, "CMessageSocket::StartWriteNextMessage(): Non-network message");
+				LOG(CLogger::Warning, LOG_CAT_NET, "CMessageSocket::StartWriteNextMessage(): Non-network message");
 				delete pMsg;
 				pMsg=NULL;
 			}

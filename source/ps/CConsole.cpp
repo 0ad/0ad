@@ -52,7 +52,7 @@ CConsole::CConsole()
 		shared_ptr<u8> buf; size_t size;
 		if ( g_VFS->LoadFile("gui/text/help.txt", buf, size) < 0 )
 		{
-			LOG( ERROR,"Console", "Help file not found for console" );
+			LOG(CLogger::Error, "Console", "Help file not found for console");
 			return;
 		}
 		// TODO: read in text mode, or at least get rid of the \r\n somehow

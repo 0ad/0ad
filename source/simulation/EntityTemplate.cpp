@@ -170,7 +170,7 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 
 	if( Root.GetNodeName() != el_Entity )
 	{
-		LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXml: XML root was not \"Entity\" in file %s. Load failed.", filename.c_str() );
+		LOG(CLogger::Error, LOG_CATEGORY, "CEntityTemplate::LoadXml: XML root was not \"Entity\" in file %s. Load failed.", filename.c_str() );
 		return( false );
 	}
 
@@ -191,7 +191,7 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 		}
 		else
 		{
-			LOG( WARNING, LOG_CATEGORY, "Parent template \"%ls\" does not exist in template \"%ls\"", m_Base_Name.c_str(), m_Tag.c_str() );
+			LOG(CLogger::Warning, LOG_CATEGORY, "Parent template \"%ls\" does not exist in template \"%ls\"", m_Base_Name.c_str(), m_Tag.c_str() );
 			// (The requested entity will still be returned, but with no parent.
 			// Is this a reasonable thing to do?)
 		}
@@ -299,7 +299,7 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 						JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 						if( !fn )
 						{
-							LOG( ERROR, LOG_CATEGORY, "CEntityTemplate::LoadXml: Function does not exist for event %hs in file %s. Load failed.", EventName.c_str(), filename.c_str() );
+							LOG(CLogger::Error, LOG_CATEGORY, "CEntityTemplate::LoadXml: Function does not exist for event %hs in file %s. Load failed.", EventName.c_str(), filename.c_str() );
 							break;
 						}
 						m_EventHandlers[eventID].SetFunction( fn );
@@ -351,7 +351,7 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 	if( Existing )
 	{	
 		if( !Existing->m_Intrinsic )
-			LOG( WARNING, LOG_CATEGORY, "CEntityTemplate::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
+			LOG(CLogger::Warning, LOG_CATEGORY, "CEntityTemplate::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
 		Existing->Set( this, JSParseString( Source.GetText() ) );
 		//Existing->m_Inherited = false;
 	}

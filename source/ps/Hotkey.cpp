@@ -224,7 +224,7 @@ static void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 						if( !mapping )
 							if( !it->GetInt( mapping ) )	// Attempt decode as key code
 							{
-								LOG( WARNING, "hotkey", "Couldn't map '%s'", hotkey.c_str() );
+								LOG(CLogger::Warning, "hotkey", "Couldn't map '%s'", hotkey.c_str() );
 								continue;
 							}
 

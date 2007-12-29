@@ -101,7 +101,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
-		LOG_ONCE(ERROR, "gui", "Cannot find tooltip named '%s'", (const char*)style);
+		LOG_ONCE(CLogger::Error, "gui", "Cannot find tooltip named '%s'", (const char*)style);
 		return;
 	}
 
@@ -114,7 +114,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 		usedobj = gui->FindObjectByName(usedObjectName);
 		if (! usedobj)
 		{
-			LOG_ONCE(ERROR, "gui", "Cannot find object named '%s' used by tooltip '%s'", (const char*)usedObjectName, (const char*)style);
+			LOG_ONCE(CLogger::Error, "gui", "Cannot find object named '%s' used by tooltip '%s'", (const char*)usedObjectName, (const char*)style);
 			return;
 		}
 
@@ -157,7 +157,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
-		LOG_ONCE(ERROR, "gui", "Cannot find tooltip named '%s'", (const char*)style);
+		LOG_ONCE(CLogger::Error, "gui", "Cannot find tooltip named '%s'", (const char*)style);
 		return;
 	}
 
@@ -168,7 +168,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);
 		if (! usedobj)
 		{
-			LOG_ONCE(ERROR, "gui", "Cannot find object named '%s' used by tooltip '%s'", (const char*)usedObjectName, (const char*)style);
+			LOG_ONCE(CLogger::Error, "gui", "Cannot find object named '%s' used by tooltip '%s'", (const char*)usedObjectName, (const char*)style);
 			return;
 		}
 
@@ -198,7 +198,7 @@ static int GetTooltipDelay(CStr& style, CGUI* gui)
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
-		LOG_ONCE(ERROR, "gui", "Cannot find tooltip object named '%s'", (const char*)style);
+		LOG_ONCE(CLogger::Error, "gui", "Cannot find tooltip object named '%s'", (const char*)style);
 		return delay;
 	}
 	GUI<int>::GetSetting(tooltipobj, "delay", delay);

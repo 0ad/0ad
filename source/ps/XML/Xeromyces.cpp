@@ -133,7 +133,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	// Make sure the .xml actually exists
 	if (! FileExists(filename))
 	{
-		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to find XML file %s", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to find XML file %s", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -141,7 +141,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	FileInfo fileInfo;
 	if (g_VFS->GetFileInfo(filename, &fileInfo) < 0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to stat XML file %s", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to stat XML file %s", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -209,7 +209,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	CVFSInputSource source;
 	if (source.OpenFile(filename) < 0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename);
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -242,7 +242,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 
 	if (errorHandler.GetSawErrors())
 	{
-		LOG(ERROR, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename);
 		return PSRETURN_Xeromyces_XMLParseError;
 		// The internal tree of the XeroHandler will be cleaned up automatically
 	}

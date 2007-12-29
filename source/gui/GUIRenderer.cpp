@@ -81,7 +81,7 @@ public:
 		// Otherwise, complain.
 		else
 		{
-			LOG(WARNING, "gui", "add_color effect has some components above 127 and some below -127 - colours will be clamped");
+			LOG(CLogger::Warning, "gui", "add_color effect has some components above 127 and some below -127 - colours will be clamped");
 			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
 			m_Method = ADD_SIGNED;
 		}
@@ -160,7 +160,7 @@ public:
 				;
 			else
 				// Oops - trying to multiply by >4
-				LOG(WARNING, "gui", "multiply_color effect has a component >1020 - colours will be clamped");
+				LOG(CLogger::Warning, "gui", "multiply_color effect has a component >1020 - colours will be clamped");
 
 			m_Color = CColor(c.r/4.f, c.g/4.f, c.b/4.f, c.a);
 			m_Scale = 4;
@@ -362,7 +362,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr& SpriteName, CRect 
 		else
 		{
 			// Otherwise, just complain and give up:
-			LOG(ERROR, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", (const char*)SpriteName);
+			LOG(CLogger::Error, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", (const char*)SpriteName);
 			return;
 		}
 	}
@@ -391,7 +391,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr& SpriteName, CRect 
 			Handle h = ogl_tex_load(cit->m_TextureName);
 			if (h <= 0)
 			{
-				LOG(ERROR, LOG_CATEGORY, "Error reading texture '%s': %lld", (const char*)cit->m_TextureName, h);
+				LOG(CLogger::Error, LOG_CATEGORY, "Error reading texture '%s': %lld", (const char*)cit->m_TextureName, h);
 				return;
 			}
 
@@ -400,7 +400,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr& SpriteName, CRect 
 			int err = ogl_tex_upload(h);
 			if (err < 0)
 			{
-				LOG(ERROR, LOG_CATEGORY, "Error uploading texture '%s': %d", (const char*)cit->m_TextureName, err);
+				LOG(CLogger::Error, LOG_CATEGORY, "Error uploading texture '%s': %d", (const char*)cit->m_TextureName, err);
 				return;
 			}
 

@@ -43,7 +43,7 @@ CModelDefPtr CMeshManager::GetMesh(const CStr& filename)
 
 	if (pmdFilename.empty())
 	{
-		LOG(ERROR, LOG_CATEGORY, "Could not load mesh '%s'", filename.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "Could not load mesh '%s'", filename.c_str());
 		return CModelDefPtr();
 	}
 
@@ -55,7 +55,7 @@ CModelDefPtr CMeshManager::GetMesh(const CStr& filename)
 	}
 	catch (PSERROR_File&)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Could not load mesh '%s'", filename.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "Could not load mesh '%s'", filename.c_str());
 		return CModelDefPtr();
 	}
 }

@@ -67,7 +67,7 @@ CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 	else
 		delete obj;
 
-	LOG(ERROR, LOG_CATEGORY, "CObjectManager::FindObjectBase(): Cannot find object '%s'", objectname);
+	LOG(CLogger::Error, LOG_CATEGORY, "CObjectManager::FindObjectBase(): Cannot find object '%s'", objectname);
 
 	return 0;
 }

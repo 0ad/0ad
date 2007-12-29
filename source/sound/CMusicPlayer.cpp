@@ -42,11 +42,11 @@ void CMusicPlayer::Open(char* UNUSED(filename))
 	size_t sizeOfFile;
 	if(vfs_load(filename, p, sizeOfFile) != INFO::OK)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
 		return;
 	}
 	else
-		LOG(NORMAL, LOG_CATEGORY, "CMusicPlayer::open(): file %s loaded successfully\n", filename);
+		LOG(CLogger::Normal,  LOG_CATEGORY, "CMusicPlayer::open(): file %s loaded successfully\n", filename);
 	memFile.dataPtr = (char*)p;
 	memFile.dataRead = 0;
 	memFile.dataSize = sizeOfFile;	
@@ -216,7 +216,7 @@ void CMusicPlayer::Check()
 	if(error != AL_NO_ERROR)
 	{
 		std::string str = errorString(error);
-		LOG(ERROR, LOG_CATEGORY, "OpenAL error: %s\n", str.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "OpenAL error: %s\n", str.c_str());
 	}
 */
 }

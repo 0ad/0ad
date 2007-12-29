@@ -18,9 +18,8 @@ namespace
 {
 	void ColladaLog(int severity, const char* text)
 	{
-		LOG(severity == LOG_INFO ? NORMAL :
-			severity == LOG_WARNING ? WARNING : ERROR,
-			"collada", "%s", text);
+		const CLogger::ELogMethod method = severity == LOG_INFO ? CLogger::Normal : severity == LOG_WARNING ? CLogger::Warning : CLogger::Error;
+		LOG(method, "collada", "%s", text);
 	}
 
 	void ColladaOutput(void* cb_data, const char* data, unsigned int length)
@@ -63,7 +62,7 @@ public:
 		{
 			if (! dll.LoadDLL())
 			{
-				LOG_ONCE(ERROR, "collada", "Failed to load COLLADA conversion DLL");
+				LOG_ONCE(CLogger::Error, "collada", "Failed to load COLLADA conversion DLL");
 				return false;
 			}
 
@@ -76,7 +75,7 @@ public:
 			}
 			catch (PSERROR_DllLoader&)
 			{
-				LOG(ERROR, "collada", "Failed to load symbols from COLLADA conversion DLL");
+				LOG(CLogger::Error, "collada", "Failed to load symbols from COLLADA conversion DLL");
 				dll.Unload();
 				return false;
 			}
@@ -86,7 +85,7 @@ public:
 			CVFSFile skeletonFile;
 			if (skeletonFile.Load("art/skeletons/skeletons.xml") != PSRETURN_OK)
 			{
-				LOG(ERROR, "collada", "Failed to read skeleton definitions");
+				LOG(CLogger::Error, "collada", "Failed to read skeleton definitions");
 				dll.Unload();
 				return false;
 			}
@@ -94,7 +93,7 @@ public:
 			int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
 			if (ok < 0)
 			{
-				LOG(ERROR, "collada", "Failed to load skeleton definitions");
+				LOG(CLogger::Error, "collada", "Failed to load skeleton definitions");
 				dll.Unload();
 				return false;
 			}
@@ -189,7 +188,7 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 	if (g_VFS->GetFileInfo(dae, &fileInfo) < 0)
 	{
 		// This shouldn't occur for any sensible reasons
-		LOG(ERROR, "collada", "Failed to stat DAE file '%s'", dae.c_str());
+		LOG(CLogger::Error, "collada", "Failed to stat DAE file '%s'", dae.c_str());
 		return "";
 	}
 

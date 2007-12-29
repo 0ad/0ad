@@ -38,7 +38,7 @@ CFont::CFont(const char* name)
 			return;
 
 		// Not found as a font -- give up and use the default.
-		LOG_ONCE(ERROR, LOG_CATEGORY, "Failed to find font '%s'", name);
+		LOG_ONCE(CLogger::Error, LOG_CATEGORY, "Failed to find font '%s'", name);
 		h = unifont_load(DefaultFont);
 		// Assume this worked
 	}

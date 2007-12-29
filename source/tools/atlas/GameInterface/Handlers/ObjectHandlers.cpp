@@ -426,20 +426,20 @@ BEGIN_COMMAND(CreateObject)
 			{
 				CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(name);
 				if (! base)
-					LOG(ERROR, LOG_CATEGORY, "Failed to load entity template '%ls'", name.c_str());
+					LOG(CLogger::Error, LOG_CATEGORY, "Failed to load entity template '%ls'", name.c_str());
 				else
 				{
 					HEntity ent = g_EntityManager.Create(base, m_Pos, m_Angle, selections);
 
 					if (! ent)
 					{
-						LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
+						LOG(CLogger::Error, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
 					}
 					else if (! ent->m_actor)
 					{
 						// We don't want to allow entities with no actors, because
 						// they'll be be invisible and will confuse scenario designers
-						LOG(ERROR, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
+						LOG(CLogger::Error, LOG_CATEGORY, "Failed to create entity of type '%ls'", name.c_str());
 						ent->Kill();
 					}
 					else
@@ -459,7 +459,7 @@ BEGIN_COMMAND(CreateObject)
 				CUnit* unit = GetUnitManager().CreateUnit(CStr(name), NULL, selections);
 				if (! unit)
 				{
-					LOG(ERROR, LOG_CATEGORY, "Failed to load nonentity actor '%ls'", name.c_str());
+					LOG(CLogger::Error, LOG_CATEGORY, "Failed to load nonentity actor '%ls'", name.c_str());
 				}
 				else
 				{

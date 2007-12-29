@@ -39,7 +39,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 	// Check that we've got the right kind of xml document
 	if (rootName != "Terrains")
 	{
-		LOG(ERROR,
+		LOG(CLogger::Error,
 			LOG_CATEGORY,
 			"TextureManager: Loading %s: Root node is not terrains (found \"%s\")",
 			path,
@@ -71,7 +71,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, 
 		}
 		else
 		{
-			LOG(WARNING, LOG_CATEGORY, 
+			LOG(CLogger::Warning, LOG_CATEGORY, 
 				"TerrainProperties: Loading %s: Unexpected node %s\n",
 				path,
 				XeroFile.GetElementString(child.GetNodeName()).c_str());

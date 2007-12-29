@@ -260,7 +260,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 		if(ret != INFO::OK)
 		{
-			LOG(ERROR, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), ret);
+			LOG(CLogger::Error, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), ret);
 			return false;
 		}
 	}
@@ -304,7 +304,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 				CConfigValue argument;
 				argument.m_String = value;
 				newMap[name].push_back( argument );
-				LOG(NORMAL, LOG_CATEGORY, "Loaded config string \"%s\" = \"%s\"", name.c_str(), value.c_str());
+				LOG(CLogger::Normal,  LOG_CATEGORY, "Loaded config string \"%s\" = \"%s\"", name.c_str(), value.c_str());
 			}
 		}
 	}
@@ -339,7 +339,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStr& path)
 	LibError ret = g_VFS->CreateFile(filepath, buf, len);
 	if(ret < 0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CConfigDB::WriteFile(): CreateFile \"%s\" failed (error: %d)", filepath, (int)ret);
+		LOG(CLogger::Error, LOG_CATEGORY, "CConfigDB::WriteFile(): CreateFile \"%s\" failed (error: %d)", filepath, (int)ret);
 		return false;
 	}
 

@@ -405,7 +405,7 @@ void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* message, JS
 	// note: CLogger's LOG already takes care of writing to the console,
 	// so don't do that here.
 
-	LOG(ERROR, LOG_CATEGORY, "JavaScript Error (%s, line %d): %s", file, line, message);
+	LOG(CLogger::Error, LOG_CATEGORY, "JavaScript Error (%s, line %d): %s", file, line, message);
 }
 
 #ifndef NDEBUG

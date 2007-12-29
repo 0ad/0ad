@@ -50,12 +50,12 @@ CFormation* CFormationCollection::GetTemplate( const CStrW& name )
 	CFormation* newTemplate = new CFormation();
 	if( !newTemplate->LoadXml( path ) )
 	{
-		LOG(ERROR, LOG_CATEGORY, "CFormationCollection::LoadTemplates(): Couldn't load template \"%s\"", path.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "CFormationCollection::LoadTemplates(): Couldn't load template \"%s\"", path.c_str());
 		delete newTemplate;
 		return( NULL );
 	}
 
-	LOG(NORMAL, LOG_CATEGORY, "CFormationCollection::LoadTemplates(): Loaded template \"%s\"", path.c_str());
+	LOG(CLogger::Normal,  LOG_CATEGORY, "CFormationCollection::LoadTemplates(): Loaded template \"%s\"", path.c_str());
 	m_templates[name] = newTemplate;
 
 	return newTemplate;

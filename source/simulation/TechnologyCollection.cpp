@@ -49,14 +49,14 @@ CTechnology* CTechnologyCollection::GetTechnology( const CStrW& name, CPlayer* p
 	CTechnology* newTemplate = new CTechnology( name, player );
 	if( !newTemplate->LoadXml( path ) )
 	{
-		LOG(ERROR, LOG_CATEGORY, "CTechnologyCollection::GetTechnology(): Couldn't load tech \"%s\"", path.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "CTechnologyCollection::GetTechnology(): Couldn't load tech \"%s\"", path.c_str());
 		delete newTemplate;
 		return( NULL );
 
 	}
 	m_techs[id][name] = newTemplate;
 	
-	LOG(NORMAL, LOG_CATEGORY, "CTechnologyCollection::GetTechnology(): Loaded tech \"%s\"", path.c_str());
+	LOG(CLogger::Normal,  LOG_CATEGORY, "CTechnologyCollection::GetTechnology(): Loaded tech \"%s\"", path.c_str());
 	return newTemplate;
 }
 

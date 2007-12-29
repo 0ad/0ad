@@ -79,7 +79,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		IGUIObject* object = FindObjectByName(objectName);
 		if (! object)
 		{
-			LOG(ERROR, LOG_CATEGORY, "Cannot find hotkeyed object '%s'", objectName.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, "Cannot find hotkeyed object '%s'", objectName.c_str());
 		}
 		else
 		{
@@ -1031,13 +1031,13 @@ void CGUI::ReportParseError(const char *str, ...)
 	// Print header
 	if (m_Errors==0)
 	{
-		LOG(ERROR, LOG_CATEGORY, "*** GUI Tree Creation Errors:");
+		LOG(CLogger::Error, LOG_CATEGORY, "*** GUI Tree Creation Errors:");
 	}
 
 	// Important, set ParseError to true
 	++m_Errors;
 
-	LOG(ERROR, LOG_CATEGORY, buffer);
+	LOG(CLogger::Error, LOG_CATEGORY, buffer);
 }
 
 /**
@@ -1093,7 +1093,7 @@ void CGUI::LoadXmlFile(const string &Filename)
 	}
 	catch (PSERROR_GUI& e)
 	{
-		LOG(ERROR, LOG_CATEGORY, "Errors loading GUI file %s (%s)", Filename.c_str(), e.getCode());
+		LOG(CLogger::Error, LOG_CATEGORY, "Errors loading GUI file %s (%s)", Filename.c_str(), e.getCode());
 		return;
 	}
 
@@ -1360,7 +1360,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				CVFSFile scriptfile;
 				if (scriptfile.Load(file) != PSRETURN_OK)
 				{
-					LOG(ERROR, LOG_CATEGORY, "Error opening action file '%s'", file.c_str());
+					LOG(CLogger::Error, LOG_CATEGORY, "Error opening action file '%s'", file.c_str());
 					throw PSERROR_GUI_JSOpenFailed();
 				}
 
@@ -1378,7 +1378,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// Try making the object read the tag.
 			if (!object->HandleAdditionalChildren(child, pFile))
 			{
-				LOG(ERROR, LOG_CATEGORY, "(object: %s) Reading unknown children for its type");
+				LOG(CLogger::Error, LOG_CATEGORY, "(object: %s) Reading unknown children for its type");
 			}
 		}
 	} 
@@ -1463,7 +1463,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	name = Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("name") );
 
 	if (m_Sprites.find(name) != m_Sprites.end())
-		LOG(WARNING, LOG_CATEGORY, "Sprite name '%s' used more than once; first definition will be discarded", (const char*)name);
+		LOG(CLogger::Warning, LOG_CATEGORY, "Sprite name '%s' used more than once; first definition will be discarded", (const char*)name);
 
 	//
 	//	Read Children (the images)

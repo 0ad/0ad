@@ -12,18 +12,16 @@ extern CLogger* g_Logger;
 #define LOG (g_Logger->Log)
 #define LOG_ONCE (g_Logger->LogOnce)
 
-enum ELogMethod
-{
-	NORMAL,
-	MESSAGE = NORMAL,
-	ERROR,
-	WARNING
-};
-
 class CLogger : boost::noncopyable
 {
 public:
-	
+	enum ELogMethod
+	{
+		Normal,
+		Error,
+		Warning
+	};
+
 	// Default constructor - outputs to normal log files
 	CLogger();
 

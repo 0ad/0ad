@@ -49,7 +49,7 @@ bool CNetServerSession::BaseHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 				delete pSession;
 			}
 			else // error, but not disconnected? something weird is up...
-				LOG(WARNING, LOG_CAT_NET, "CNetServerSession::BaseHandler(): NMT_ERROR: %s", msg->GetString().c_str());
+				LOG(CLogger::Warning, LOG_CAT_NET, "CNetServerSession::BaseHandler(): NMT_ERROR: %s", msg->GetString().c_str());
 			HANDLED(pMsg);
 		}
 		
@@ -61,7 +61,7 @@ bool CNetServerSession::BaseHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 bool CNetServerSession::HandshakeHandler(CNetMessage *pMsg, CNetSession *pNetSession)
 {
 	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
-	LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::HandshakeHandler(): %s.", pMsg->GetString().c_str());
+	LOG(CLogger::Normal,  LOG_CAT_NET, "CNetServerSession::HandshakeHandler(): %s.", pMsg->GetString().c_str());
 	switch (pMsg->GetType())
 	{
 	case NMT_ClientHandshake:
@@ -94,14 +94,14 @@ bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNet
 {
 	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
 	CNetServer *pServer=pSession->m_pServer;
-	LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): %s.", pMsg->GetString().c_str());
+	LOG(CLogger::Normal,  LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): %s.", pMsg->GetString().c_str());
 	if (pMsg->GetType() == NMT_Authenticate)
 	{
 		CAuthenticate *msg=(CAuthenticate *)pMsg;
 
 		if (msg->m_Password == pSession->m_pServer->m_Password)
 		{
-			LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): Login Successful");
+			LOG(CLogger::Normal,  LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): Login Successful");
 			pSession->m_Name=msg->m_Name;
 
 			pServer->AssignSessionID(pSession);
@@ -124,7 +124,7 @@ bool CNetServerSession::AuthenticateHandler(CNetMessage *pMsg, CNetSession *pNet
 		}
 		else
 		{
-			LOG(WARNING, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): Login Failed");
+			LOG(CLogger::Warning, LOG_CAT_NET, "CNetServerSession::AuthenticateHandler(): Login Failed");
 			CAuthenticationResult *msg=new CAuthenticationResult();
 			msg->m_Code=NRC_PasswordInvalid;
 			msg->m_SessionID=0;
@@ -175,7 +175,7 @@ bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSessio
 {
 	CNetServerSession *pSession=(CNetServerSession *)pNetSession;
 	if (pMsg->GetType() != NMT_EndCommandBatch)
-		LOG(NORMAL, LOG_CAT_NET, "CNetServerSession::InGameHandler(): %s.", pMsg->GetString().c_str());
+		LOG(CLogger::Normal,  LOG_CAT_NET, "CNetServerSession::InGameHandler(): %s.", pMsg->GetString().c_str());
 
 	if (BaseHandler(pMsg, pNetSession))
 		return true;

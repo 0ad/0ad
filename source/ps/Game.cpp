@@ -312,14 +312,14 @@ CPlayer *CGame::GetPlayer(uint idx)
 	if (idx > m_NumPlayers)
 	{
 //		debug_warn("Invalid player ID");
-//		LOG(ERROR, "", "Invalid player ID %d (outside 0..%d)", idx, m_NumPlayers);
+//		LOG(CLogger::Error, "", "Invalid player ID %d (outside 0..%d)", idx, m_NumPlayers);
 		return m_Players[0];
 	}
 	// Be a bit more paranoid - maybe m_Players hasn't been set large enough
 	else if (idx >= m_Players.size())
 	{
 		debug_warn("Invalid player ID");
-		LOG(ERROR, "", "Invalid player ID %d (not <=%d - internal error?)", idx, m_Players.size());
+		LOG(CLogger::Error, "", "Invalid player ID %d (not <=%d - internal error?)", idx, m_Players.size());
 
 		if (m_Players.size() != 0)
 			return m_Players[0];

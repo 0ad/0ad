@@ -51,7 +51,7 @@ int CVFSInputSource::OpenFile(const char *path)
 	LibError ret = g_VFS->LoadFile(path, m_pBuffer, m_BufferSize);
 	if(ret != INFO::OK)
 	{
-		LOG(ERROR, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (LoadFile: %d)", path, ret);
+		LOG(CLogger::Error, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (LoadFile: %d)", path, ret);
 		return -1;
 	}
 
@@ -139,13 +139,13 @@ InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicI
 	}
 
 	// janwas: removed for less spew
-//	LOG(NORMAL, LOG_CATEGORY, "EntityResolver: path \"%s\" translated to \"%s\"", orgpath, path);
+//	LOG(CLogger::Normal,  LOG_CATEGORY, "EntityResolver: path \"%s\" translated to \"%s\"", orgpath, path);
 
 
 	char *pos=path;		
 	if ((pos=strchr(pos, '\\')) != NULL)
 	{
-		LOG(WARNING, LOG_CATEGORY, "While resolving XML entities for %s: path %s [%s] contains non-portable path separator \\", m_DocName, orgpath, path);
+		LOG(CLogger::Warning, LOG_CATEGORY, "While resolving XML entities for %s: path %s [%s] contains non-portable path separator \\", m_DocName, orgpath, path);
 		do
 			*pos='/';
 		while ((pos=strchr(pos+1, '\\')) != NULL);
