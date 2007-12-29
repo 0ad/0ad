@@ -316,6 +316,7 @@ function setup_all_libs ()
 	setup_static_lib_package("network", source_dirs, extern_libs, {})
 
 	source_dirs = {
+		"dcdt/se",
 		"ps",
 		"ps/scripting",
 		"ps/Network",
@@ -326,8 +327,7 @@ function setup_all_libs ()
 		"sound",
 		"scripting",
 		"maths",
-		"maths/scripting",
-		"dcdt/se"
+		"maths/scripting"
 	}
 	extern_libs = {
 		"spidermonkey",
@@ -400,19 +400,19 @@ function setup_all_libs ()
 	source_dirs = {
 		"lib",
 		"lib/allocators",
-		"lib/posix",
-		"lib/sysdep",
-		"lib/sysdep/ia32",
+		"lib/external_libraries",
 		"lib/file",
 		"lib/file/archive",
 		"lib/file/common",
 		"lib/file/io",
 		"lib/file/vfs",
+		"lib/posix",
 		"lib/res",
 		"lib/res/graphics",
 		"lib/res/sound",
-		"lib/tex",
-		"lib/external_libraries"
+		"lib/sysdep",
+		"lib/sysdep/ia32",
+		"lib/tex"
 	}
 	extern_libs = {
 		"boost",
