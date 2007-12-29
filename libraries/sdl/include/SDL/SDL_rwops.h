@@ -62,10 +62,15 @@ typedef struct SDL_RWops {
 
 	Uint32 type;
 	union {
-#ifdef __WIN32__
+#if defined(__WIN32__) && !defined(__SYMBIAN32__)
 	    struct {
-		int    append;
-		void*  h;
+		int   append;
+		void *h;
+		struct {
+		    void *data;
+		    int size;
+		    int left;
+		} buffer;
 	    } win32io;
 #endif
 #ifdef HAVE_STDIO_H 

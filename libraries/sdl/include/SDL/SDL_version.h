@@ -37,7 +37,7 @@ extern "C" {
 */
 #define SDL_MAJOR_VERSION	1
 #define SDL_MINOR_VERSION	2
-#define SDL_PATCHLEVEL		10
+#define SDL_PATCHLEVEL		12
 
 typedef struct SDL_version {
 	Uint8 major;

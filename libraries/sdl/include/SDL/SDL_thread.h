@@ -45,7 +45,7 @@ struct SDL_Thread;
 typedef struct SDL_Thread SDL_Thread;
 
 /* Create a thread */
-#if (defined(__WIN32__) && !defined(HAVE_LIBC)) || defined(__OS2__)
+#if ((defined(__WIN32__) && !defined(HAVE_LIBC)) || defined(__OS2__)) &&  !defined(__SYMBIAN32__)
 /*
    We compile SDL into a DLL on OS/2. This means, that it's the DLL which
    creates a new thread for the calling process with the SDL_CreateThread()
@@ -79,7 +79,7 @@ typedef uintptr_t (__cdecl *pfnSDL_CurrentBeginThread) (void *, unsigned,
 typedef void (__cdecl *pfnSDL_CurrentEndThread)(unsigned code);
 #endif
 
-extern DECLSPEC SDL_Thread * SDLCALL SDL_CreateThread(int (*fn)(void *), void *data, pfnSDL_CurrentBeginThread pfnBeginThread, pfnSDL_CurrentEndThread pfnEndThread);
+extern DECLSPEC SDL_Thread * SDLCALL SDL_CreateThread(int (SDLCALL *fn)(void *), void *data, pfnSDL_CurrentBeginThread pfnBeginThread, pfnSDL_CurrentEndThread pfnEndThread);
 
 #ifdef __OS2__
 #define SDL_CreateThread(fn, data) SDL_CreateThread(fn, data, _beginthread, _endthread)

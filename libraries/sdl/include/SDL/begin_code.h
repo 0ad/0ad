@@ -83,11 +83,15 @@
 #endif
 #endif /* SDLCALL */
 
-/* Removed DECLSPEC on Symbian OS because SDL cannot be a DLL in EPOC */
 #ifdef __SYMBIAN32__ 
+#ifndef EKA2 
 #undef DECLSPEC
 #define DECLSPEC
-#endif /* __SYMBIAN32__ */
+#elif !defined(__WINS__)
+#undef DECLSPEC
+#define DECLSPEC __declspec(dllexport)
+#endif //EKA2
+#endif //__SYMBIAN32__
 
 /* Force structure packing at 4 byte alignment.
    This is necessary if the header is included in code which has structure
@@ -116,14 +120,16 @@
 #if defined(_MSC_VER) || defined(__BORLANDC__) || \
     defined(__DMC__) || defined(__SC__) || \
     defined(__WATCOMC__) || defined(__LCC__) || \
-    defined(__DECC)
+    defined(__DECC) || defined(__EABI__)
 #ifndef __inline__
 #define __inline__	__inline
 #endif
 #define SDL_INLINE_OKAY
 #else
 #if !defined(__MRC__) && !defined(_SGI_SOURCE)
+#ifndef __inline__
 #define __inline__ inline
+#endif
 #define SDL_INLINE_OKAY
 #endif /* Not a funky compiler */
 #endif /* Visual C++ */

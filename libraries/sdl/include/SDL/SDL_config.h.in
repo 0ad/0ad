@@ -28,6 +28,11 @@
 /* General platform specific identifiers */
 #include "SDL_platform.h"
 
+/* Make sure that this isn't included by Visual C++ */
+#ifdef _MSC_VER
+#error You should copy include/SDL_config.h.default to include/SDL_config.h
+#endif
+
 /* C language features */
 #undef const
 #undef inline
@@ -130,6 +135,7 @@
 #undef HAVE_NANOSLEEP
 #undef HAVE_CLOCK_GETTIME
 #undef HAVE_DLVSYM
+#undef HAVE_GETPAGESIZE
 
 #else
 /* We may need some replacement for stdarg.h here */
@@ -149,7 +155,6 @@
 #undef SDL_VIDEO_DISABLED
 
 /* Enable various audio drivers */
-#undef SDL_AUDIO_DRIVER_AHI
 #undef SDL_AUDIO_DRIVER_ALSA
 #undef SDL_AUDIO_DRIVER_ALSA_DYNAMIC
 #undef SDL_AUDIO_DRIVER_ARTS
@@ -163,6 +168,8 @@
 #undef SDL_AUDIO_DRIVER_DUMMY
 #undef SDL_AUDIO_DRIVER_DMEDIA
 #undef SDL_AUDIO_DRIVER_DSOUND
+#undef SDL_AUDIO_DRIVER_PULSE
+#undef SDL_AUDIO_DRIVER_PULSE_DYNAMIC
 #undef SDL_AUDIO_DRIVER_ESD
 #undef SDL_AUDIO_DRIVER_ESD_DYNAMIC
 #undef SDL_AUDIO_DRIVER_MINT
@@ -195,7 +202,6 @@
 
 /* Enable various input drivers */
 #undef SDL_INPUT_TSLIB
-#undef SDL_JOYSTICK_AMIGA
 #undef SDL_JOYSTICK_BEOS
 #undef SDL_JOYSTICK_DC
 #undef SDL_JOYSTICK_DUMMY
@@ -221,10 +227,8 @@
 #undef SDL_LOADSO_WIN32
 
 /* Enable various threading systems */
-#undef SDL_THREAD_AMIGA
 #undef SDL_THREAD_BEOS
 #undef SDL_THREAD_DC
-#undef SDL_THREAD_EPOC
 #undef SDL_THREAD_OS2
 #undef SDL_THREAD_PTH
 #undef SDL_THREAD_PTHREAD
@@ -234,11 +238,9 @@
 #undef SDL_THREAD_WIN32
 
 /* Enable various timer systems */
-#undef SDL_TIMER_AMIGA
 #undef SDL_TIMER_BEOS
 #undef SDL_TIMER_DC
 #undef SDL_TIMER_DUMMY
-#undef SDL_TIMER_EPOC
 #undef SDL_TIMER_MACOS
 #undef SDL_TIMER_MINT
 #undef SDL_TIMER_OS2
@@ -250,14 +252,12 @@
 /* Enable various video drivers */
 #undef SDL_VIDEO_DRIVER_AALIB
 #undef SDL_VIDEO_DRIVER_BWINDOW
-#undef SDL_VIDEO_DRIVER_CYBERGRAPHICS
 #undef SDL_VIDEO_DRIVER_DC
 #undef SDL_VIDEO_DRIVER_DDRAW
 #undef SDL_VIDEO_DRIVER_DGA
 #undef SDL_VIDEO_DRIVER_DIRECTFB
 #undef SDL_VIDEO_DRIVER_DRAWSPROCKET
 #undef SDL_VIDEO_DRIVER_DUMMY
-#undef SDL_VIDEO_DRIVER_EPOC
 #undef SDL_VIDEO_DRIVER_FBCON
 #undef SDL_VIDEO_DRIVER_GAPI
 #undef SDL_VIDEO_DRIVER_GEM

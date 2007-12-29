@@ -86,7 +86,8 @@ typedef struct SDL_SysWMinfo {
 	    	Display *display;	/* The X11 display */
 	    	Window window;		/* The X11 display window */
 		/* These locking functions should be called around
-                   any X11 functions using the display variable.
+                   any X11 functions using the display variable, 
+                   but not the gfxdisplay variable.
                    They lock the event thread, so should not be
 		   called around event functions or from event filters.
 		 */
@@ -96,6 +97,9 @@ typedef struct SDL_SysWMinfo {
 		/* Introduced in SDL 1.0.2 */
 	    	Window fswindow;	/* The X11 fullscreen window */
 	    	Window wmwindow;	/* The X11 managed input window */
+
+		/* Introduced in SDL 1.2.12 */
+		Display *gfxdisplay;	/* The X11 display to which rendering is done */
 	    } x11;
 	} info;
 } SDL_SysWMinfo;

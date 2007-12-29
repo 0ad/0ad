@@ -29,10 +29,6 @@
 #undef __AIX__
 #define __AIX__		1
 #endif
-#if defined(AMIGA) || defined(__AMIGA) || defined(__amigados__)
-#undef __AMIGA__
-#define __AMIGA__	1
-#endif
 #if defined(__BEOS__)
 #undef __BEOS__
 #define __BEOS__	1
