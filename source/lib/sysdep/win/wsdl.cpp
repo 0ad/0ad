@@ -11,6 +11,8 @@
 #include "precompiled.h"
 #include "lib/external_libraries/sdl.h"
 
+#if CONFIG_USE_WSDL
+
 #include <stdio.h>
 #include <math.h>
 #include <queue>
@@ -25,21 +27,11 @@
 #include "lib/module_init.h"
 #include "wutil.h"
 #include "winit.h"
-
-// for easy removal of DirectDraw dependency (used to query total video mem)
-//#define DDRAW
+#include "lib/sysdep/win/wmi.h"	// for SDL_GetVideoInfo
 
 #if MSC_VERSION
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "gdi32.lib")
-
-// don't bother with dynamic linking -
-// DirectX is present in all Windows versions since Win95.
-#ifdef DDRAW
-#include <ddraw.h>
-# pragma comment(lib, "ddraw.lib")
-#endif
-
 #endif
 
 WINIT_REGISTER_LATE_INIT(wsdl_Init);
@@ -58,8 +50,8 @@ static bool is_quitting;
 // returned by GetModuleHandle and used in kbd hook and window creation. 
 static HINSTANCE hInst = 0;
 
-HWND hWnd = (HWND)INVALID_HANDLE_VALUE;
-static HDC hDC = (HDC)INVALID_HANDLE_VALUE;	// needed by gamma code
+static HWND g_hWnd = (HWND)INVALID_HANDLE_VALUE;
+static HDC g_hDC = (HDC)INVALID_HANDLE_VALUE;	// needed by gamma code
 
 
 //----------------------------------------------------------------------------
@@ -108,7 +100,7 @@ static void gamma_swap(GammaAction action)
 	if(gamma_changed)
 	{
 		void* ramp = (action == GAMMA_LATCH_NEW_RAMP)? cur_ramp : org_ramp;
-		SetDeviceGammaRamp(hDC, ramp);
+		SetDeviceGammaRamp(g_hDC, ramp);
 	}
 }
 
@@ -119,14 +111,14 @@ int SDL_SetGamma(float r, float g, float b)
 	// if we haven't successfully changed gamma yet,
 	// get current ramp so we can later restore it.
 	if(!gamma_changed)
-		if(!GetDeviceGammaRamp(hDC, org_ramp))
+		if(!GetDeviceGammaRamp(g_hDC, org_ramp))
 			return -1;
 
 	calc_gamma_ramp(r, cur_ramp[0]);
 	calc_gamma_ramp(g, cur_ramp[1]);
 	calc_gamma_ramp(b, cur_ramp[2]);
 
-	if(!SetDeviceGammaRamp(hDC, cur_ramp))
+	if(!SetDeviceGammaRamp(g_hDC, cur_ramp))
 		return -1;
 
 	gamma_changed = true;
@@ -164,14 +156,14 @@ static bool video_need_change(int w, int h, int cur_w, int cur_h, bool fullscree
 
 static inline void video_enter_game_mode()
 {
-	ShowWindow(hWnd, SW_RESTORE);
+	ShowWindow(g_hWnd, SW_RESTORE);
 	ChangeDisplaySettings(&dm, CDS_FULLSCREEN);
 }
 
 static inline void video_leave_game_mode()
 {
 	ChangeDisplaySettings(0, 0);
-	ShowWindow(hWnd, SW_MINIMIZE);
+	ShowWindow(g_hWnd, SW_MINIMIZE);
 }
 
 
@@ -185,6 +177,84 @@ int SDL_GL_SetAttribute(SDL_GLattr attr, int value)
 
 
 static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+static HWND wsdl_CreateWindow(int w, int h)
+{
+	// (create new window every time (instead of once at startup), because
+	// pixel format isn't supposed to be changed more than once)
+
+	// register window class
+	WNDCLASS wc;
+	memset(&wc, 0, sizeof(wc));
+	wc.style = 0;
+	wc.lpfnWndProc = wndproc;
+	wc.lpszClassName = "WSDL";
+	wc.hInstance = hInst;
+	ATOM class_atom = RegisterClass(&wc);
+	if(!class_atom)
+	{
+		debug_assert(0);	// SDL_SetVideoMode: RegisterClass failed
+		return 0;
+	}
+
+	const DWORD windowStyle = fullscreen? WS_POPUP|WS_VISIBLE : WS_POPUPWINDOW|WS_VISIBLE|WS_CAPTION|WS_MINIMIZEBOX;
+
+	// Calculate the size of the outer window, so that the client area has
+	// the desired dimensions.
+	RECT r;
+	r.left = r.top = 0;
+	r.right = w; r.bottom = h;
+	if (AdjustWindowRectEx(&r, windowStyle, FALSE, 0))
+	{
+		w = r.right - r.left;
+		h = r.bottom - r.top;
+	}
+
+	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
+	return CreateWindowEx(WS_EX_APPWINDOW, (LPCSTR)class_atom, "wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
+}
+
+
+static void SetPixelFormat(HDC g_hDC, int bpp)
+{
+	const DWORD dwFlags = PFD_SUPPORT_OPENGL|PFD_DRAW_TO_WINDOW|PFD_DOUBLEBUFFER;
+	BYTE cColourBits = (BYTE)bpp;
+	BYTE cAlphaBits = 0;
+	if(bpp == 32)
+	{
+		cColourBits = 24;
+		cAlphaBits = 8;
+	}
+	const BYTE cAccumBits   = 0;
+	const BYTE cDepthBits   = (BYTE)depth_bits;
+	const BYTE cStencilBits = 0;
+	const BYTE cAuxBuffers  = 0;
+
+	PIXELFORMATDESCRIPTOR pfd =
+	{
+		sizeof(PIXELFORMATDESCRIPTOR),
+		1,								// version
+		dwFlags,
+		PFD_TYPE_RGBA,
+		cColourBits, 0, 0, 0, 0, 0, 0,	// c*Bits, c*Shift are unused
+		cAlphaBits, 0,					// cAlphaShift is unused
+		cAccumBits,	0, 0, 0, 0,			// cAccum*Bits are unused
+		cDepthBits,
+		cStencilBits,
+		cAuxBuffers,
+		PFD_MAIN_PLANE,
+		0, 0, 0, 0						// bReserved, dw*Mask are unused
+	};
+
+	// GDI pixel format functions apparently require opengl to be loaded
+	// (may not have been done yet, if delay-loaded). call a gl function
+	// (no-op) to make sure.
+	(void)glGetError();
+
+	const int pf = ChoosePixelFormat(g_hDC, &pfd);
+	WARN_IF_FALSE(SetPixelFormat(g_hDC, pf, &pfd));
+}
+
 
 // set video mode wxh:bpp if necessary.
 // w = h = bpp = 0 => no change.
@@ -210,97 +280,20 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 		dm.dmPelsHeight = (DWORD)h;
 		dm.dmFields |= DM_PELSWIDTH|DM_PELSHEIGHT;
 	}
-
-
 	// the (possibly changed) mode will be (re)set at next WM_ACTIVATE
 
-	//
-	// window init
-	// create new window every time (instead of once at startup), because
-	// pixel format isn't supposed to be changed more than once
-	//
-
-	// register window class
-	WNDCLASS wc;
-	memset(&wc, 0, sizeof(wc));
-	wc.lpfnWndProc = wndproc;
-	wc.lpszClassName = "WSDL";
-	wc.hInstance = hInst;
-	ATOM class_atom = RegisterClass(&wc);
-	if(!class_atom)
-	{
-		debug_assert(0);	// SDL_SetVideoMode: RegisterClass failed
+	g_hWnd = wsdl_CreateWindow(w, h);
+	if(!g_hWnd || g_hWnd == INVALID_HANDLE_VALUE)
 		return 0;
-	}
+	g_hDC = GetDC(g_hWnd);
 
-	const DWORD windowStyle = fullscreen ? (WS_POPUP|WS_VISIBLE) : WS_VISIBLE | WS_CAPTION|WS_POPUPWINDOW|WS_MINIMIZEBOX;
+	SetPixelFormat(g_hDC, bpp);
 
-	// Calculate the size of the outer window, so that the client area has
-	// the desired dimensions.
-	RECT r;
-	r.left = r.top = 0;
-	r.right = w; r.bottom = h;
-	if (AdjustWindowRectEx(&r, windowStyle, FALSE, 0))
-	{
-		w = r.right - r.left;
-		h = r.bottom - r.top;
-	}
-
-	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
-	hWnd = CreateWindowEx(0, (LPCSTR)class_atom, "wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
-	if(!hWnd)
-		return 0;
-
-	hDC = GetDC(hWnd);
-
-
-	//
-	// pixel format
-	//
-
-	const DWORD dwFlags = PFD_SUPPORT_OPENGL|PFD_DRAW_TO_WINDOW|PFD_DOUBLEBUFFER;
-	BYTE cColourBits = (BYTE)bpp;
-	BYTE cAlphaBits = 0;
-	if(bpp == 32)
-	{
-		cColourBits = 24;
-		cAlphaBits = 8;
-	}
-	const BYTE cAccumBits   = 0;
-	const BYTE cDepthBits   = (BYTE)depth_bits;
-	const BYTE cStencilBits = 0;
-	const BYTE cAuxBuffers  = 0;
-
-	PIXELFORMATDESCRIPTOR pfd =
-	{
-		sizeof(PIXELFORMATDESCRIPTOR),
-			1,								// version
-			dwFlags,
-			PFD_TYPE_RGBA,
-			cColourBits, 0, 0, 0, 0, 0, 0,	// c*Bits, c*Shift are unused
-			cAlphaBits, 0,					// cAlphaShift is unused
-			cAccumBits,	0, 0, 0, 0,			// cAccum*Bits are unused
-			cDepthBits,
-			cStencilBits,
-			cAuxBuffers,
-			PFD_MAIN_PLANE,
-			0, 0, 0, 0						// bReserved, dw*Mask are unused
-	};
-
-	// GDI pixel format functions apparently require opengl to be loaded
-	// (may not have been done yet, if delay-loaded). call a gl function
-	// (no-op) to make sure.
-	(void)glGetError();
-
-	int pf = ChoosePixelFormat(hDC, &pfd);
-	if(!SetPixelFormat(hDC, pf, &pfd))
-		return 0;
-
-	hGLRC = wglCreateContext(hDC);
+	hGLRC = wglCreateContext(g_hDC);
 	if(!hGLRC)
 		return 0;
 
-	if(!wglMakeCurrent(hDC, hGLRC))
+	if(!wglMakeCurrent(g_hDC, hGLRC))
 		return 0;
 
 	return 1;
@@ -321,28 +314,12 @@ static void video_shutdown()
 		WARN_IF_FALSE(wglDeleteContext(hGLRC));
 		hGLRC = (HGLRC)INVALID_HANDLE_VALUE;
 	}
-
-	if(hDC != INVALID_HANDLE_VALUE)
-	{
-		// return value is whether the DC was actually freed.
-		// this seems to sometimes be 0, so don't warn.
-		(void)ReleaseDC(hWnd, hDC);
-		hDC = (HDC)INVALID_HANDLE_VALUE;
-	}
-
-	if(hWnd != INVALID_HANDLE_VALUE)
-	{
-		// this also seems to fail spuriously with GetLastError == 0,
-		// so don't complain.
-		(void)DestroyWindow(hWnd);
-		hWnd = (HWND)INVALID_HANDLE_VALUE;
-	}
 }
 
 
 void SDL_GL_SwapBuffers()
 {
-	SwapBuffers(hDC);
+	SwapBuffers(g_hDC);
 }
 
 
@@ -350,62 +327,15 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 {
 	static SDL_VideoInfo video_info;
 
-#ifdef DDRAW
-
-	WinScopedPreserveLastError s;	// DirectDraw
-
-	ONCE({
-		IDirectDraw* dd = 0;
-		HRESULT hr = DirectDrawCreate(0, &dd, 0);
-		if(SUCCEEDED(hr) && dd != 0)
-		{
-			DDCAPS caps;
-			memset(&caps, 0, sizeof(caps));
-			caps.dwSize = sizeof(caps);
-			hr = dd->GetCaps(&caps, 0);
-			if(SUCCEEDED(hr))
-				video_info.video_mem = caps.dwVidMemTotal;
-			dd->Release();
-		}
-	});
-
-#endif
-
-	return &video_info;
-}
-
-
-// For very [very] basic memory-usage information.
-// Should be replaced by a decent memory profiler.
-//
-// copied from SDL_GetVideoInfo but cannot be implemented in terms of it:
-// SDL_VideoInfo doesn't provide for returning "remaining video memory".
-int GetVRAMInfo(int& remaining, int& total)
-{
-	int ok = 0;
-#ifdef DDRAW
-
-	WinScopedPreserveLastError s;	// DirectDraw
-
-	IDirectDraw* dd = 0;
-	HRESULT hr = DirectDrawCreate(0, &dd, 0);
-	if(SUCCEEDED(hr) && dd != 0)
+	if(video_info.video_mem == 0)
 	{
-		static DDCAPS caps;
-		caps.dwSize = sizeof(caps);
-		hr = dd->GetCaps(&caps, 0);
-		if(SUCCEEDED(hr))
-		{
-			ok = 1;
-			remaining = caps.dwVidMemFree;
-			total = caps.dwVidMemTotal;
-		}
-		dd->Release();
+		WmiMap videoAdapter;
+		wmi_GetClass("Win32_VideoController", videoAdapter);
+		VARIANT vTotalMemory = videoAdapter[L"AdapterRAM"];
+		video_info.video_mem = vTotalMemory.lVal;
 	}
 
-#endif
-
-	return ok;
+	return &video_info;
 }
 
 
@@ -418,7 +348,8 @@ SDL_Surface* SDL_GetVideoSurface()
 //----------------------------------------------------------------------------
 // event queue
 
-// note: we aren't using winit at all, so static objects are safe.
+// note: we only use winit to redirect stdout; this queue won't be used
+// before _cinit.
 typedef std::queue<SDL_Event> Queue;
 static Queue queue;
 
@@ -490,7 +421,6 @@ static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL
 	{
 		type = GAIN;
 		changed_app_state = SDL_APPINPUTFOCUS|SDL_APPACTIVE;
-
 
 		// grab keyboard focus (we previously had DefWindowProc do this).
 		SetFocus(hWnd);
@@ -785,10 +715,7 @@ static void screen_to_client(int screen_x, int screen_y, int& client_x, int& cli
 	POINT pt;
 	pt.x = (LONG) screen_x;
 	pt.y = (LONG) screen_y;
-	// this can fail for unknown reasons even if hWnd is still
-	// valid and !is_quitting. don't WARN_IF_FALSE.
-	if(!ScreenToClient(hWnd, &pt))
-		pt.x = pt.y = 0;
+	WARN_IF_FALSE(ScreenToClient(g_hWnd, &pt));
 	client_x = (int)pt.x;
 	client_y = (int)pt.y;
 }
@@ -800,11 +727,13 @@ static void screen_to_client(int screen_x, int screen_y, int& client_x, int& cli
 static bool is_in_window(int client_x, int client_y)
 {
 	RECT client_rect;
-	WARN_IF_FALSE(GetClientRect(hWnd, &client_rect));
+	WARN_IF_FALSE(GetClientRect(g_hWnd, &client_rect));
 	POINT pt;
 	pt.x = (LONG)client_x;
 	pt.y = (LONG)client_y;
-	if(!PtInRect(&client_rect, pt) || WindowFromPoint(pt) != hWnd)
+	if(!PtInRect(&client_rect, pt))
+		return false;
+	if(WindowFromPoint(pt) != g_hWnd)
 		return false;
 
 	debug_assert(client_x >= 0 && client_y >= 0);
@@ -816,7 +745,7 @@ static void mouse_update()
 {
 	// window not created yet or already shut down. no sense reporting
 	// mouse position, and bail now to avoid ScreenToClient failing.
-	if(hWnd == INVALID_HANDLE_VALUE)
+	if(g_hWnd == INVALID_HANDLE_VALUE)
 		return;
 
 	// don't use DirectInput, because we want to respect the user's mouse
@@ -882,7 +811,7 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int scr
 	{
 		// grab mouse to ensure we get up events
 		if(++outstanding_press_events > 0)
-			SetCapture(hWnd);
+			SetCapture(g_hWnd);
 	}
 	else
 	{
@@ -953,7 +882,7 @@ inline void SDL_WarpMouse(int x, int y)
 	POINT screen_pt;
 	screen_pt.x = x;
 	screen_pt.y = y;
-	WARN_IF_FALSE(ClientToScreen(hWnd, &screen_pt));
+	WARN_IF_FALSE(ClientToScreen(g_hWnd, &screen_pt));
 	WARN_IF_FALSE(SetCursorPos(screen_pt.x, screen_pt.y));
 }
 
@@ -1006,7 +935,11 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	HANDLE_MSG(hWnd, WM_ACTIVATE, OnActivate);
 
 	case WM_DESTROY:
+		WARN_IF_FALSE(ReleaseDC(g_hWnd, g_hDC));
+		g_hDC = (HDC)INVALID_HANDLE_VALUE;
+		g_hWnd = (HWND)INVALID_HANDLE_VALUE;
 		queue_quit_event();
+		PostQuitMessage(0);
 		break;
 
 	case WM_SYSCOMMAND:
@@ -1091,67 +1024,6 @@ int SDL_PushEvent(SDL_Event* ev)
 }
 
 
-//----------------------------------------------------------------------------
-// keyboard hook (intercepts PrintScreen and system keys, e.g. Alt+Tab)
-
-// note: the LowLevel hooks are global, but a DLL isn't actually required
-// as stated in the docs. Windows apparently calls the handler in its original
-// context. see http://www.gamedev.net/community/forums/topic.asp?topic_id=255399 .
-
-static HHOOK hKeyboard_LL_Hook = (HHOOK)0;
-
-static LRESULT CALLBACK keyboard_ll_hook(int nCode, WPARAM wParam, LPARAM lParam)
-{
-	if(nCode == HC_ACTION)
-	{
-		PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lParam;
-		DWORD vk = p->vkCode;
-
-		// replace Windows PrintScreen handler
-		if(vk == VK_SNAPSHOT)
-		{
-// disabled - we want the normal Windows printscreen handling to
-// remain so as not to confuse artists.
-#if 0
-			// check whether PrintScreen should be taking screenshots -- if
-			// not, allow the standard Windows clipboard to work
-			if(app_state & SDL_APPINPUTFOCUS)
-			{
-				// send to wndproc
-				UINT msg = (UINT)wParam;
-				PostMessage(hWnd, msg, vk, 0);
-					// specify hWnd to be safe.
-					// if window not yet created, it's INVALID_HANDLE_VALUE.
-
-				// don't pass it on to other handlers
-				return 1;
-			}
-#endif
-		}	// vk == VK_SNAPSHOT
-	}
-
-	// pass it on to other hook handlers
-	return CallNextHookEx(hKeyboard_LL_Hook, nCode, wParam, lParam);
-}
-
-
-static void enable_kbd_hook(bool enable)
-{
-	if(enable)
-	{
-		debug_assert(hKeyboard_LL_Hook == 0);
-		hKeyboard_LL_Hook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboard_ll_hook, hInst, 0);
-		debug_assert(hKeyboard_LL_Hook != 0);
-	}
-	else
-	{
-		debug_assert(hKeyboard_LL_Hook != 0);
-		UnhookWindowsHookEx(hKeyboard_LL_Hook);
-		hKeyboard_LL_Hook = 0;
-	}
-}
-
-
 //-----------------------------------------------------------------------------
 // byte swapping
 
@@ -1195,38 +1067,38 @@ u64 SDL_Swap64(const u64 x)
 // note: implementing these in terms of pthread sem_t doesn't help;
 // this wrapper is very close to the Win32 routines.
 
-union HANDLE_sem
+static HANDLE HANDLE_from_sem(SDL_sem* s)
 {
-	HANDLE h;
-	SDL_sem* s;
-};
+	return (HANDLE)s;
+}
+
+static SDL_sem* sem_from_HANDLE(HANDLE h)
+{
+	return (SDL_sem*)h;
+}
 
 SDL_sem* SDL_CreateSemaphore(int cnt)
 {
-	HANDLE_sem u;
-	u.h = CreateSemaphore(0, cnt, 0x7fffffff, 0);
-	return u.s;
+	HANDLE h = CreateSemaphore(0, cnt, 0x7fffffff, 0);
+	return sem_from_HANDLE(h);
 }
 
 inline void SDL_DestroySemaphore(SDL_sem* sem)
 {
-	HANDLE_sem u;
-	u.s = sem;
-	CloseHandle(u.h);
+	HANDLE h = HANDLE_from_sem(sem);
+	CloseHandle(h);
 }
 
 int SDL_SemPost(SDL_sem* sem)
 {
-	HANDLE_sem u;
-	u.s = sem;
-	return ReleaseSemaphore(u.h, 1, 0);
+	HANDLE h = HANDLE_from_sem(sem);
+	return ReleaseSemaphore(h, 1, 0);
 }
 
 int SDL_SemWait(SDL_sem* sem)
 {
-	HANDLE_sem u;
-	u.s = sem;
-	return WaitForSingleObject(u.h, INFINITE);
+	HANDLE h = HANDLE_from_sem(sem);
+	return WaitForSingleObject(h, INFINITE);
 }
 
 
@@ -1259,7 +1131,7 @@ int SDL_KillThread(SDL_Thread* thread)
 
 void SDL_WM_SetCaption(const char* title, const char* icon)
 {
-	WARN_IF_FALSE(SetWindowText(hWnd, title));
+	WARN_IF_FALSE(SetWindowText(g_hWnd, title));
 
 	// real SDL ignores this parameter, so we will follow suit.
 	UNUSED2(icon);
@@ -1298,8 +1170,6 @@ int SDL_Init(Uint32 UNUSED(flags))
 
 	hInst = GetModuleHandle(0);
 
-	enable_kbd_hook(true);
-
 	return 0;
 }
 
@@ -1312,9 +1182,10 @@ void SDL_Quit()
 
 	gamma_swap(GAMMA_RESTORE_ORIGINAL);
 
-	video_shutdown();
+	if(g_hWnd != INVALID_HANDLE_VALUE)
+		WARN_IF_FALSE(DestroyWindow(g_hWnd));
 
-	enable_kbd_hook(false);
+	video_shutdown();
 }
 
 
@@ -1355,3 +1226,5 @@ static LibError wsdl_Shutdown()
 
 	return INFO::OK;
 }
+
+#endif	// #if CONFIG_USE_WSDL

@@ -255,7 +255,7 @@ static LibError do_load_shader(
 
 	if (Type.empty())
 	{
-		LOG(ERROR, LOG_CATEGORY, "%hs: Missing attribute \"type\" in element \"Shader\".", pathname);
+		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Missing attribute \"type\" in element \"Shader\".", pathname);
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -263,7 +263,7 @@ static LibError do_load_shader(
 	
 	if (!shadertype)
 	{
-		LOG(ERROR, LOG_CATEGORY, "%hs: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname, Type.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname, Type.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -271,7 +271,7 @@ static LibError do_load_shader(
 	
 	if (Name.empty())
 	{
-		LOG(ERROR, LOG_CATEGORY, "%hs: Missing shader name.", pathname);
+		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Missing shader name.", pathname);
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 	
@@ -324,7 +324,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 
 	if (Root.GetNodeName() != el_program)
 	{
-		LOG(ERROR, LOG_CATEGORY, "%hs: XML root was not \"Program\".", pathname);
+		LOG(CLogger::Error, LOG_CATEGORY, "%hs: XML root was not \"Program\".", pathname);
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -345,7 +345,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 				
 				if (Shader.GetNodeName() != el_shader)
 				{
-					LOG(ERROR, LOG_CATEGORY, "%hs: Only \"Shader\" may be child of \"Shaders\".", pathname);
+					LOG(CLogger::Error, LOG_CATEGORY, "%hs: Only \"Shader\" may be child of \"Shaders\".", pathname);
 					WARN_RETURN(ERR::CORRUPTED);
 				}
 				
@@ -354,7 +354,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 		}
 		else
 		{
-			LOG(WARNING, LOG_CATEGORY, "%hs: Unknown child of \"Program\".", pathname);
+			LOG(CLogger::Warning, LOG_CATEGORY, "%hs: Unknown child of \"Program\".", pathname);
 		}
 	}
 

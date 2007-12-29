@@ -196,8 +196,6 @@ LibError dir_add_watch(const char* dir, intptr_t* preqnum)
 {
 	WinScopedPreserveLastError s;	// Create*
 
-	LibError err = ERR::FAIL;
-
 	intptr_t reqnum;
 	*preqnum = 0;
 

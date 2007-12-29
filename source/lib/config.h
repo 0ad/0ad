@@ -67,6 +67,20 @@
 # define CONFIG_USE_MMGR 0
 #endif
 
+// enable the wsdl emulator in Windows builds.
+//
+// NOTE: the official SDL distribution has two problems on Windows:
+// - it specifies "/defaultlib:msvcrt.lib". this is troublesome because
+//   multiple heaps are active; errors result when allocated blocks are
+//   (for reasons unknown) passed to a different heap to be freed.
+//   one workaround is to add "/nodefaultlib:msvcrt.lib" to the linker
+//   command line in debug configurations.
+// - it doesn't support color hardware mouse cursors and clashes with
+//   cursor.cpp's efforts by resetting the mouse cursor after movement.
+#ifndef CONFIG_USE_WSDL
+# define CONFIG_USE_WSDL 1
+#endif
+
 // enable additional debug checks (very slow).
 #ifndef CONFIG_PARANOIA
 # define CONFIG_PARANOIA 0

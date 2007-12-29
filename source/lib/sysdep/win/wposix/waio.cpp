@@ -237,17 +237,9 @@ int truncate(const char* path, off_t length)
 	HANDLE hFile = CreateFile(path, GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
 	debug_assert(hFile != INVALID_HANDLE_VALUE);
 	LARGE_INTEGER ofs; ofs.QuadPart = length;
-	BOOL ok;
-	ok = SetFilePointerEx(hFile, ofs, 0, FILE_BEGIN);
-	debug_assert(ok);
-	ok = SetEndOfFile(hFile);
-	debug_assert(ok);
-	ok = CloseHandle(hFile);
-	debug_assert(ok);
-	{
-	//	LibError_set_errno(LibError_from_GLE());
-	//	WARN_RETURN(-1);
-	}
+	WARN_IF_FALSE(SetFilePointerEx(hFile, ofs, 0, FILE_BEGIN));
+	WARN_IF_FALSE(SetEndOfFile(hFile));
+	WARN_IF_FALSE(CloseHandle(hFile));
 	return 0;
 }
 
