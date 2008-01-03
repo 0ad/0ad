@@ -45,8 +45,6 @@ that of Atlas depending on commandline parameters.
 extern bool g_TerrainModified;
 extern bool g_GameRestarted;
 
-PIFrequencyFilter g_frequencyFilter;
-
 void kill_mainloop();
 
 

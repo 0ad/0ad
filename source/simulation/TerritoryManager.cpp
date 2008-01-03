@@ -8,7 +8,7 @@
 #include "graphics/Model.h"
 #include "graphics/Terrain.h"
 #include "graphics/Unit.h"
-#include "lib/allocators.h"
+#include "lib/allocators/allocators.h"	// matrix_alloc
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "maths/Bound.h"

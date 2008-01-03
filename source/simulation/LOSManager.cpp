@@ -11,7 +11,7 @@
 #include "graphics/Unit.h"
 #include "maths/Bound.h"
 #include "graphics/Model.h"
-#include "lib/allocators.h"
+#include "lib/allocators/allocators.h"	// matrix_alloc
 #include "lib/timer.h"
 
 

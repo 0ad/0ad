@@ -1,5 +1,5 @@
 #include "lib/input.h"
-#include "lib/external_libraries/sdl.h"
+#include "lib/frequency_filter.h"
 
 // thin abstraction layer on top of SDL.
 // game code should use it instead of SDL_GetMouseState etc. because
@@ -15,7 +15,7 @@ extern int g_mouse_x, g_mouse_y;
  * it represents a pressed key.
  * Updated by GlobalsInputHandler in response to key press/release events.
  */
-extern bool g_keys[SDLK_LAST];
+extern bool g_keys[];
 
 /**
  * g_mouse_buttons: Mouse buttons states, indexed by SDL_BUTTON_* constants.
@@ -29,3 +29,5 @@ extern bool g_keys[SDLK_LAST];
 extern bool g_mouse_buttons[6];
 
 extern InReaction GlobalsInputHandler(const SDL_Event_* ev);
+
+extern PIFrequencyFilter g_frequencyFilter;

@@ -21,6 +21,12 @@
 ERROR_ASSOCIATE(ERR::PATH_ROOT_DIR_ALREADY_SET, "Attempting to set FS root dir more than once", -1);
 ERROR_ASSOCIATE(ERR::PATH_NOT_IN_ROOT_DIR, "Accessing a file that's outside of the root dir", -1);
 
+bool exists(const Path& path)
+{
+	return fs::exists(path.external_directory_string());
+}
+
+
 
 // security check: only allow path_SetRoot once so that malicious code
 // cannot circumvent the VFS checks that disallow access to anything above

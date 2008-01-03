@@ -27,6 +27,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Game.h"
+#include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Hotkey.h"
 #include "ps/Interact.h"
@@ -913,8 +914,6 @@ JSBool ResetGui(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 JSBool GetFps( JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_NO_PARAMS();
-
-	extern PIFrequencyFilter g_frequencyFilter;
 	*rval = INT_TO_JSVAL(g_frequencyFilter->StableFrequency());
 	return JS_TRUE;
 }

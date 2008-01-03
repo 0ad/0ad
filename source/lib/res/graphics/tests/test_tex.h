@@ -1,8 +1,8 @@
 #include "lib/self_test.h"
 
 #include "lib/tex/tex.h"
-#include "lib/res/graphics/tex_codec.h"
-#include "lib/res/graphics/tex_internal.h"	// tex_encode
+#include "lib/tex/tex_codec.h"
+#include "lib/allocators/allocators.h"	// DummyDeleter
 
 class TestTex : public CxxTest::TestSuite 
 {
@@ -10,13 +10,12 @@ class TestTex : public CxxTest::TestSuite
 	{
 		// generate test data
 		const size_t size = w*h*bpp/8;
-		u8* img = new u8[size];
-		for(size_t i = 0; i < size; i++)
-			img[i] = rand() & 0xFF;
+		shared_ptr<u8> img(new u8[size]);
+		std::generate(img.get(), img.get()+size, rand);
 
 		// wrap in Tex
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(w, h, bpp, flags, img, &t));
+		TS_ASSERT_OK(tex_wrap(w, h, bpp, flags, img, 0, &t));
 
 		// encode to file format
 		DynArray da;
@@ -24,19 +23,18 @@ class TestTex : public CxxTest::TestSuite
 		memset(&t, 0, sizeof(t));
 
 		// decode from file format
-		shared_ptr<u8> ptr(&da.base, DummyDeleter());
-		TS_ASSERT_OK(tex_decode(ptr, da.cur_size, 0, &t));
+		shared_ptr<u8> ptr(da.base, DummyDeleter<u8>());
+		TS_ASSERT_OK(tex_decode(ptr, da.cur_size, &t));
 
 		// make sure pixel format gets converted completely to plain
 		TS_ASSERT_OK(tex_transform_to(&t, 0));
 
 		// compare img
-		TS_ASSERT_SAME_DATA(tex_get_data(&t), img, size);
+		TS_ASSERT_SAME_DATA(tex_get_data(&t), img.get(), size);
 
 		// cleanup
 		tex_free(&t);
 		TS_ASSERT_OK(da_free(&da));
-		delete[] img;
 	}
 
 public:
@@ -57,7 +55,7 @@ public:
 			char extension[30] = {'.'};
 			strcpy_s(extension+1, 29, c->name);
 			// .. make sure the c->name hack worked
-			const TexCodecVTbl* correct_c;
+			const TexCodecVTbl* correct_c = 0;
 			TS_ASSERT_OK(tex_codec_for_filename(extension, &correct_c));
 			TS_ASSERT_EQUALS(c, correct_c);
 
@@ -105,29 +103,31 @@ public:
 	// have mipmaps be created for a test image; check resulting size and pixels
 	void test_mipmap_create()
 	{
-		u8 img[] = { 0x10,0x20,0x30, 0x40,0x60,0x80, 0xA0,0xA4,0xA8, 0xC0,0xC1,0xC2 };
+		u8 imgData[] = { 0x10,0x20,0x30, 0x40,0x60,0x80, 0xA0,0xA4,0xA8, 0xC0,0xC1,0xC2 };
+		shared_ptr<u8> img(imgData, DummyDeleter<u8>());
 		// assumes 2x2 box filter algorithm with rounding
-		const u8 mipmap[] = { 0x6C,0x79,0x87 };
+		static const u8 mipmap[] = { 0x6C,0x79,0x87 };
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(2, 2, 24, 0, img, &t));
+		TS_ASSERT_OK(tex_wrap(2, 2, 24, 0, img, 0, &t));
 		TS_ASSERT_OK(tex_transform_to(&t, TEX_MIPMAPS));
 		const u8* const out_img = tex_get_data(&t);
 		TS_ASSERT_EQUALS((int)tex_img_size(&t), 12+3);
-		TS_ASSERT_SAME_DATA(out_img, img, 12);
+		TS_ASSERT_SAME_DATA(out_img, imgData, 12);
 		TS_ASSERT_SAME_DATA(out_img+12, mipmap, 3);
 	}
 
 	void test_img_size()
 	{
-		char dummy_img[100*100*4];	// required
+		u8 imgStorage[100*100*4];	// (prevent a needless heap alloc)
+		shared_ptr<u8> img(imgStorage, DummyDeleter<u8>());
 
 		Tex t;
-		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, dummy_img, &t));
+		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, img, 0, &t));
 		TS_ASSERT_EQUALS((int)tex_img_size(&t), 40000);
 
 		// DXT rounds up to 4x4 blocks; DXT1a is 4bpp
 		Tex t2;
-		TS_ASSERT_OK(tex_wrap(97, 97, 4, DXT1A, dummy_img, &t2));
+		TS_ASSERT_OK(tex_wrap(97, 97, 4, DXT1A, img, 0, &t2));
 		TS_ASSERT_EQUALS((int)tex_img_size(&t2),  5000);
 	}
 };

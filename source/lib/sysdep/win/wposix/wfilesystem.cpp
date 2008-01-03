@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "wfilesystem.h"
 
-#include "lib/allocators.h"		// single_calloc
+#include "lib/allocators/allocators.h"		// single_calloc
 #include "wposix_internal.h"
 #include "wtime_internal.h"		// wtime_utc_filetime_to_time_t
 #include "crt_posix.h"			// _rmdir, _access

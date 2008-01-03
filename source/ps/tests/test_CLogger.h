@@ -7,8 +7,8 @@ class TestCLogger : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
-		logger->Log(NORMAL, "", "Test 1");
-		logger->Log(NORMAL, "", "Test 2");
+		logger->Log(CLogger::Normal, "", "Test 1");
+		logger->Log(CLogger::Normal, "", "Test 2");
 
 		ParseOutput();
 
@@ -29,15 +29,15 @@ public:
 		std::string clipped (buflen-4, '*');
 		clipped += "...";
 
-		logger->Log(NORMAL, "", msg0.c_str());
-		logger->Log(NORMAL, "", msg1.c_str());
-		logger->Log(NORMAL, "", msg2.c_str());
-		logger->Log(NORMAL, "", msg3.c_str());
+		logger->Log(CLogger::Normal, "", msg0.c_str());
+		logger->Log(CLogger::Normal, "", msg1.c_str());
+		logger->Log(CLogger::Normal, "", msg2.c_str());
+		logger->Log(CLogger::Normal, "", msg3.c_str());
 
-		logger->LogOnce(NORMAL, "", msg0.c_str());
-		logger->LogOnce(NORMAL, "", msg1.c_str());
-		logger->LogOnce(NORMAL, "", msg2.c_str());
-		logger->LogOnce(NORMAL, "", msg3.c_str());
+		logger->LogOnce(CLogger::Normal, "", msg0.c_str());
+		logger->LogOnce(CLogger::Normal, "", msg1.c_str());
+		logger->LogOnce(CLogger::Normal, "", msg2.c_str());
+		logger->LogOnce(CLogger::Normal, "", msg3.c_str());
 
 		ParseOutput();
 

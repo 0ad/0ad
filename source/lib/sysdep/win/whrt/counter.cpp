@@ -12,7 +12,7 @@
 #include "counter.h"
 
 #include "lib/bits.h"
-#include "lib/allocators.h"
+#include "lib/sysdep/cpu.h"	// cpu_CAS
 
 #include "tsc.h"
 #include "hpet.h"

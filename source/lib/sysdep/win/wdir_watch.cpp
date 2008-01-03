@@ -16,7 +16,7 @@
 #include <list>
 
 #include "lib/path_util.h"
-#include "lib/allocators.h"
+#include "lib/allocators/allocators.h"	// HACK, get rid of STATIC_STORAGE
 #include "lib/path_util.h"	// path_is_subpath
 #include "win.h"
 #include "winit.h"

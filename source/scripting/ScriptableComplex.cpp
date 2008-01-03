@@ -2,7 +2,7 @@
 #include "ScriptableComplex.h"
 #include "ScriptableComplex.inl"
 
-#include "lib/allocators.h"
+#include "lib/allocators/bucket.h"
 
 //-----------------------------------------------------------------------------
 // suballocator for CJSComplex.m_Properties elements

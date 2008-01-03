@@ -32,6 +32,8 @@ struct PathTraits
 	static internal_string_type to_internal(const external_string_type& src);
 };
 
+extern bool exists(const Path& path);
+
 
 namespace ERR
 {

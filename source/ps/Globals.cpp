@@ -1,7 +1,7 @@
 #include "precompiled.h"
-
-#include "lib/input.h"
 #include "Globals.h"
+
+#include "lib/external_libraries/sdl.h"
 
 
 bool g_app_minimized = false;
@@ -14,6 +14,7 @@ int g_mouse_x = 50, g_mouse_y = 50;
 // (order is given by SDL_BUTTON_* constants).
 bool g_mouse_buttons[6] = {0};
 
+PIFrequencyFilter g_frequencyFilter;
 
 // updates the state of the above; never swallows messages.
 InReaction GlobalsInputHandler(const SDL_Event_* ev)

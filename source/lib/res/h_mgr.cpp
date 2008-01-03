@@ -17,7 +17,7 @@
 #include <new>		// std::bad_alloc
 
 #include "lib/fnv_hash.h"
-#include "lib/allocators.h"
+#include "lib/allocators/allocators.h"	// OverrunProtector
 #include "lib/module_init.h"
 
 

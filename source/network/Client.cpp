@@ -9,14 +9,11 @@
 #include "ps/CLogger.h"
 #include "ps/CConsole.h"
 #include "ps/Game.h"
+#include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/GameAttributes.h"
 #include "simulation/Simulation.h"
 
 #define LOG_CAT_NET "net"
-
-#include "lib/frequency_filter.h"
-extern PIFrequencyFilter g_frequencyFilter;
-
 
 CNetClient *g_NetClient=NULL;
 
@@ -448,7 +445,7 @@ int CNetClient::StartGame()
 		debug_printf("Client StartGame - sending end-of-batch ack\n");
 		// Send an end-of-batch message for turn 0 to signal that we're ready.
 		CEndCommandBatch *pMsg=new CEndCommandBatch();
-		pMsg->m_TurnLength=1000/g_frequencyFilter->SmoothedFrequency();
+		pMsg->m_TurnLength=1000/g_frequencyFilter->StableFrequency();
 		Push(pMsg);
 		return 0;
 	}
@@ -474,7 +471,7 @@ void CNetClient::NewTurn()
 
 	//debug_printf("In NewTurn - sending ack\n");
 	CEndCommandBatch *pMsg=new CEndCommandBatch();
-	pMsg->m_TurnLength=1000/g_frequencyFilter->SmoothedFrequency();
+	pMsg->m_TurnLength=1000/g_frequencyFilter->StableFrequency();	// JW: it'd probably be nicer to get the FPS as a parameter
 	Push(pMsg);
 }
 
