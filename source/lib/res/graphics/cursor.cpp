@@ -53,7 +53,7 @@ static void* load_empty_sys_cursor()
 static void* load_sys_cursor(const VfsPath& pathname, int hx, int hy)
 {
 #if !ALLOW_SYS_CURSOR
-	UNUSED2(filename);
+	UNUSED2(pathname);
 	UNUSED2(hx);
 	UNUSED2(hy);
 

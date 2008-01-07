@@ -3,7 +3,6 @@
 #include <map>
 #include <string>
 
-#include "lib/res/file/file.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/dir_watch.h"
 #include "ps/CLogger.h"
@@ -42,7 +41,7 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 		else
 		{
 			initialized = -1;
-			LOG(ERROR, "", "Error initializing FAM; hotloading will be disabled");
+			LOG(CLogger::Error, "", "Error initializing FAM; hotloading will be disabled");
 			return ERR::FAIL;	// NOWARN
 		}
 	}

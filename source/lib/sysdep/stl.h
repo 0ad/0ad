@@ -13,6 +13,7 @@
 
 #include "lib/config.h"
 #include "compiler.h"
+#include <cstdlib> // indirectly pull in bits/c++config.h on Linux, so __GLIBCXX__ is defined
 
 // detect STL version
 // .. Dinkumware
