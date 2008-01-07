@@ -15,7 +15,7 @@
 // besides ZLib. it also simplifies the interface for user code and
 // does error checking, etc.
 
-#define CODEC_COMPUTE_CHECKSUM 1
+#define CODEC_COMPUTE_CHECKSUM 0
 
 struct ICodec
 {

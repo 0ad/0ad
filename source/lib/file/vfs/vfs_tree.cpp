@@ -184,8 +184,6 @@ void VfsDirectory::ClearR()
 
 void VfsDirectory::Attach(PRealDirectory realDirectory)
 {
-debug_printf("ATTACH %s\n", realDirectory->GetPath().string().c_str());
-
 	if(!cpu_CAS(&m_shouldPopulate, 0, 1))
 	{
 		debug_assert(0);	// multiple Attach() calls without an intervening ShouldPopulate()

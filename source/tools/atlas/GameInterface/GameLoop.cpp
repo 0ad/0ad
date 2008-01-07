@@ -122,7 +122,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	state.view = View::GetView_None();
 	state.glCanvas = NULL;
 
-	double last_activity = get_time();
+	double last_activity = timer_Time();
 
 	while (state.running)
 	{
@@ -134,7 +134,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 
 		// Calculate frame length
 		{
-			double time = get_time();
+			double time = timer_Time();
 			static double last_time = time;
 			float length = (float)(time-last_time);
 			last_time = time;
@@ -212,7 +212,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 			g_Profiler.Frame();
 
 
-		double time = get_time();
+		double time = timer_Time();
 		if (recent_activity)
 			last_activity = time;
 
@@ -239,7 +239,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 				SDL_Delay(50);
 				if (!msgPasser.IsEmpty())
 					break;
-				time = get_time();
+				time = timer_Time();
 			}
 		}
 		else

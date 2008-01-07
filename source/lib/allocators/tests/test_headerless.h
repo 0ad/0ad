@@ -36,8 +36,6 @@ public:
 
 	void test_Free()
 	{
-return;
-
 		// Deallocate allows immediate reuse of the freed pointer
 		HeaderlessAllocator a(4096);
 		void* p1 = a.Allocate(1024);

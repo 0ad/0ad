@@ -77,7 +77,7 @@ int SkyManager::LoadSkyTextures()
 
 	// yield after this time is reached. balances increased progress bar
 	// smoothness vs. slowing down loading.
-	const double end_time = get_time() + 100e-3;
+	const double end_time = timer_Time() + 100e-3;
 
 	while (cur_loading_tex < num_textures)
 	{

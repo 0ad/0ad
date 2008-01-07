@@ -714,7 +714,7 @@ LibError archive_build_init(const char* P_archive_filename, Filenames V_fns, Arc
 
 int archive_build_continue(ArchiveBuildState* ab)
 {
-	const double end_time = get_time() + 200e-3;
+	const double end_time = timer_Time() + 200e-3;
 
 	for(;;)
 	{
@@ -731,7 +731,7 @@ int archive_build_continue(ArchiveBuildState* ab)
 
 		ab->i++;
 
-		if(get_time() > end_time)
+		if(timer_Time() > end_time)
 		{
 			int progress_percent = (ab->i*100 / ab->num_files);
 			// 0 means "finished", so don't return that!

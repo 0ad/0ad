@@ -26,8 +26,8 @@ RealDirectory::RealDirectory(const Path& path, unsigned priority, unsigned flags
 
 /*virtual*/ LibError RealDirectory::Load(const std::string& name, shared_ptr<u8> buf, size_t size) const
 {
-	File file;
-	RETURN_ERR(file.Open(m_path/name, 'r'));
+	PIFile file = CreateFile_Posix();
+	RETURN_ERR(file->Open(m_path/name, 'r'));
 
 	RETURN_ERR(io_ReadAligned(file, 0, buf.get(), size));
 	return INFO::OK;
@@ -39,8 +39,8 @@ LibError RealDirectory::Store(const std::string& name, shared_ptr<u8> fileConten
 	const Path pathname(m_path/name);
 
 	{
-		File file;
-		RETURN_ERR(file.Open(pathname, 'w'));
+		PIFile file = CreateFile_Posix();
+		RETURN_ERR(file->Open(pathname, 'w'));
 		RETURN_ERR(io_WriteAligned(file, 0, fileContents.get(), size));
 	}
 

@@ -39,7 +39,7 @@ CModelDefPtr CMeshManager::GetMesh(const CStr& filename)
 
 	PROFILE( "load mesh" );
 
-	CStr pmdFilename = m_ColladaManager.GetLoadableFilename(name, CColladaManager::PMD);
+	VfsPath pmdFilename = m_ColladaManager.GetLoadableFilename(name, CColladaManager::PMD);
 
 	if (pmdFilename.empty())
 	{

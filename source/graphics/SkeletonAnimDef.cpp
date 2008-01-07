@@ -75,7 +75,7 @@ void CSkeletonAnimDef::BuildBoneMatrices(float time, CMatrix3D* matrices, bool l
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Load: try to load the anim from given file; return a new anim if successful
-CSkeletonAnimDef* CSkeletonAnimDef::Load(const char* filename)
+CSkeletonAnimDef* CSkeletonAnimDef::Load(const VfsPath& filename)
 {
 	CFileUnpacker unpacker;
 	unpacker.Read(filename,"PSSA");

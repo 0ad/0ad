@@ -599,7 +599,7 @@ void CConsole::SetBuffer(const wchar_t* szMessage, ...)
 	m_iBufferPos = std::min(oldBufferPos, m_iBufferLength);
 }
 
-void CConsole::UseHistoryFile(const CStr& filename, int max_history_lines)
+void CConsole::UseHistoryFile(const VfsPath& filename, int max_history_lines)
 {
 	m_MaxHistoryLines = max_history_lines;
 

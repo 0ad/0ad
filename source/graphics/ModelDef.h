@@ -12,6 +12,7 @@
 #include "ps/CStr.h"
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
+#include "lib/file/vfs/vfs_path.h"
 #include <map>
 
 class CBoneState;
@@ -96,7 +97,7 @@ public:
 
 	// model I/O functions
 
-	static void Save(const char* filename,const CModelDef* mdef);
+	static void Save(const VfsPath& filename,const CModelDef* mdef);
 
 	/**
 	 * Loads a PMD file.
@@ -105,7 +106,7 @@ public:
 	 * @return the model - always non-NULL
 	 * @throw PSERROR_File if it can't load the model
 	 */
-	static CModelDef* Load(const char* filename, const char* name);
+	static CModelDef* Load(const VfsPath& filename, const char* name);
 	
 public:
 	// accessor: get vertex data

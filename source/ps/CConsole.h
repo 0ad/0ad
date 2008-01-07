@@ -14,6 +14,7 @@
 #include "CStr.h"
 
 #include "lib/input.h"
+#include "lib/file/vfs/vfs_path.h"
 
 #ifndef INCLUDED_CCONSOLE
 #define INCLUDED_CCONSOLE
@@ -27,6 +28,43 @@ typedef void(*fptr)(void);
 
 class CConsole
 {
+public:
+	CConsole();
+	~CConsole();
+
+	void SetSize(float X = 300, float Y = 0, float W = 800, float H = 600);
+	void UpdateScreenSize(int w, int h);
+
+	void ToggleVisible();
+	void SetVisible( bool visible );
+
+	void Update(float DeltaTime);
+
+	void Render();
+
+	void InsertMessage(const wchar_t* szMessage, ...);
+	void InsertChar(const int szChar, const wchar_t cooked);
+
+	void SendChatMessage(const wchar_t *szMessage);
+	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
+
+	void SetBuffer(const wchar_t* szMessage, ...);
+
+	void UseHistoryFile( const VfsPath& filename, int historysize );
+
+	// Only returns a pointer to the buffer; copy out of here if you want to keep it.
+	const wchar_t* GetBuffer();
+	void FlushBuffer();
+
+	void RegisterFunc(fptr F, const wchar_t* szName);
+
+	bool IsActive() { return m_bVisible; }
+
+	int m_iFontHeight;
+	int m_iFontWidth;
+	int m_iFontOffset; // distance to move up before drawing
+	size_t m_charsPerPage;
+
 private:
 	float m_fX;
 	float m_fY;
@@ -50,7 +88,7 @@ private:
 	int	m_iBufferPos;
 	int	m_iBufferLength;
 
-	CStr m_sHistoryFile;
+	VfsPath m_sHistoryFile;
 	int m_MaxHistoryLines;
 
     bool m_bFocus;
@@ -81,43 +119,6 @@ private:
 	void SaveHistory();
 	
 	JSObject* m_ScriptObject; // to run scripts in, so they can define variables that are retained between commands
-
-public:
-    CConsole();
-	~CConsole();
-
-	void SetSize(float X = 300, float Y = 0, float W = 800, float H = 600);
-	void UpdateScreenSize(int w, int h);
-
-	void ToggleVisible();
-	void SetVisible( bool visible );
-
-	void Update(float DeltaTime);
-
-    void Render();
-
-    void InsertMessage(const wchar_t* szMessage, ...);
-	void InsertChar(const int szChar, const wchar_t cooked);
-
-	void SendChatMessage(const wchar_t *szMessage);
-	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
-
-	void SetBuffer(const wchar_t* szMessage, ...);
-
-	void UseHistoryFile( const CStr& filename, int historysize );
-
-	// Only returns a pointer to the buffer; copy out of here if you want to keep it.
-	const wchar_t* GetBuffer();
-	void FlushBuffer();
-
-	void RegisterFunc(fptr F, const wchar_t* szName);
-
-	bool IsActive() { return m_bVisible; }
-
-	int m_iFontHeight;
-	int m_iFontWidth;
-	int m_iFontOffset; // distance to move up before drawing
-	size_t m_charsPerPage;
 };
 
 extern CConsole* g_Console;

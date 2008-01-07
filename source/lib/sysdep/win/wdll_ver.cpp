@@ -17,7 +17,7 @@
 #include "win.h"
 #include "wutil.h"
 
-#include "lib/file/io/io.h"	// io_Allocate
+#include "lib/allocators/shared_ptr.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "version.lib")		// DLL version
@@ -47,7 +47,7 @@ static LibError ReadVersionString(const OsPath& modulePathname_, char* out_ver, 
 	if(!ver_size)
 		WARN_RETURN(ERR::FAIL);
 
-	shared_ptr<u8> mem = io_Allocate(ver_size);
+	shared_ptr<u8> mem = Allocate(ver_size);
 	if(!GetFileVersionInfo(modulePathname.c_str(), 0, ver_size, mem.get()))
 		WARN_RETURN(ERR::FAIL);
 

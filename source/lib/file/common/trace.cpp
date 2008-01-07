@@ -12,7 +12,7 @@
 #include "trace.h"
 
 #include "lib/allocators/pool.h"
-#include "lib/timer.h"	// get_time
+#include "lib/timer.h"	// timer_Time
 #include "lib/nommgr.h"	// placement new
 
 /*virtual*/ ITrace::~ITrace()
@@ -24,7 +24,7 @@
 //-----------------------------------------------------------------------------
 
 TraceEntry::TraceEntry(EAction action, const char* pathname, size_t size)
-: m_timestamp(get_time())
+: m_timestamp(timer_Time())
 , m_action(action)
 , m_pathname(strdup(pathname))
 , m_size(size)

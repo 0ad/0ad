@@ -28,12 +28,20 @@ struct PathTraits
 	typedef std::string internal_string_type;
 	typedef std::string external_string_type;
 
-	static external_string_type to_external(const Path&, const internal_string_type& src);
-	static internal_string_type to_internal(const external_string_type& src);
+	LIB_API static external_string_type to_external(const Path&, const internal_string_type& src);
+	LIB_API static internal_string_type to_internal(const external_string_type& src);
 };
 
-extern bool exists(const Path& path);
-
+namespace boost
+{
+	namespace filesystem
+	{
+		template<> struct is_basic_path<Path>
+		{
+			BOOST_STATIC_CONSTANT(bool, value = true);
+		};
+	}
+}
 
 namespace ERR
 {

@@ -102,7 +102,7 @@ LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_
 }
 
 
-void fs_NextNumberedFilename(PIVFS fs, const char* pathnameFmt, unsigned& nextNumber, char* nextPathname)
+void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, unsigned& nextNumber, VfsPath& nextPathname)
 {
 	// (first call only:) scan directory and set nextNumber according to
 	// highest matching filename found. this avoids filling "holes" in
@@ -111,8 +111,8 @@ void fs_NextNumberedFilename(PIVFS fs, const char* pathnameFmt, unsigned& nextNu
 	// add 3rd -> without this measure it would get number 1, not 3. 
 	if(nextNumber == 0)
 	{
-		char path[PATH_MAX]; char nameFmt[PATH_MAX];
-		path_split(pathnameFmt, path, nameFmt);
+		const std::string nameFormat = pathnameFormat.leaf();
+		const VfsPath path = pathnameFormat.branch_path();
 
 		unsigned maxNumber = 0;
 		FileInfos files;
@@ -120,7 +120,7 @@ void fs_NextNumberedFilename(PIVFS fs, const char* pathnameFmt, unsigned& nextNu
 		for(size_t i = 0; i < files.size(); i++)
 		{
 			unsigned number;
-			if(sscanf(files[i].Name().c_str(), nameFmt, &number) == 1)
+			if(sscanf(files[i].Name().c_str(), nameFormat.c_str(), &number) == 1)
 				maxNumber = std::max(number, maxNumber);
 		}
 
@@ -133,6 +133,10 @@ void fs_NextNumberedFilename(PIVFS fs, const char* pathnameFmt, unsigned& nextNu
 	// someone may have added files in the meantime)
 	// we don't bother with binary search - this isn't a bottleneck.
 	do
-		snprintf(nextPathname, PATH_MAX, pathnameFmt, nextNumber++);
+	{
+		char pathnameBuf[PATH_MAX];
+		snprintf(pathnameBuf, PATH_MAX, pathnameFormat.string().c_str(), nextNumber++);
+		nextPathname = VfsPath(pathnameBuf);
+	}
 	while(fs->GetFileInfo(nextPathname, 0) == INFO::OK);
 }

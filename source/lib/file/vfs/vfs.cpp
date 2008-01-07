@@ -30,15 +30,14 @@ public:
 	{
 	}
 
-	virtual LibError Mount(const VfsPath& mountPoint, const char* path, uint flags /* = 0 */, uint priority /* = 0 */)
+	virtual LibError Mount(const VfsPath& mountPoint, const Path& path, uint flags /* = 0 */, uint priority /* = 0 */)
 	{
 		debug_assert(vfs_path_IsDirectory(mountPoint));
-		debug_assert(strcmp(path, ".") != 0);	// "./" isn't supported on Windows.
-		// note: mounting subdirectoryNames is now allowed.
+		// note: mounting subdirectories is now allowed.
 
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
-		PRealDirectory realDirectory(new RealDirectory(std::string(path), priority, flags));
+		PRealDirectory realDirectory(new RealDirectory(path, priority, flags));
 		directory->Attach(realDirectory);
 		return INFO::OK;
 	}
@@ -71,6 +70,7 @@ public:
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 
 		PRealDirectory realDirectory = directory->AssociatedDirectory();
+if(!realDirectory) return ERR::FAIL;	// WORKAROUND: vfs doesn't create real dirs by itself
 		const std::string& name = pathname.leaf();
 		RETURN_ERR(realDirectory->Store(name, fileContents, size));
 
@@ -139,13 +139,12 @@ public:
 		m_rootDirectory.DisplayR(0);
 	}
 
-	virtual LibError GetRealPath(const VfsPath& pathname, char* realPathname)
+	virtual LibError GetRealPath(const VfsPath& pathname, Path& realPathname)
 	{
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
 		PRealDirectory realDirectory = directory->AssociatedDirectory();
-		const std::string& name = pathname.leaf();
-		path_append(realPathname, realDirectory->GetPath().string().c_str(), name.c_str());
+		realPathname = realDirectory->GetPath() / pathname.leaf();
 		return INFO::OK;
 	}
 

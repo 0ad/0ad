@@ -29,7 +29,7 @@ CFileUnpacker::~CFileUnpacker()
 ////////////////////////////////////////////////////////////////////////////////////////
 // Read: open and read in given file, check magic bits against those given; throw 
 // variety of exceptions for missing files etc
-void CFileUnpacker::Read(const char* filename, const char magicstr[4])
+void CFileUnpacker::Read(const VfsPath& filename, const char magicstr[4])
 {
 	// avoid vfs_load complaining about missing data files (which happens
 	// too often). better to check here than squelch internal VFS error

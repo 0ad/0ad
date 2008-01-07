@@ -2,8 +2,7 @@
  * =========================================================================
  * File        : timer.h
  * Project     : 0 A.D.
- * Description : platform-independent high resolution timer and
- *             : FPS measuring code.
+ * Description : platform-independent high resolution timer
  * =========================================================================
  */
 
@@ -12,88 +11,99 @@
 #ifndef INCLUDED_TIMER
 #define INCLUDED_TIMER
 
-#include <string>
+/**
+ * timer_Time will subsequently return values relative to the current time.
+ **/
+LIB_API void timer_LatchStartTime();
 
-#include "debug.h"	// debug_printf
-#include "lib/sysdep/cpu.h"
+/**
+ * @return high resolution (> 1 us) timestamp [s].
+ **/
+LIB_API double timer_Time(void);
 
-
-LIB_API void timer_Init();
-LIB_API void timer_Shutdown();
-
-// high resolution (> 1 us) timestamp [s], starting at or near 0 s.
-LIB_API double get_time(void);
-
-// return resolution (expressed in [s]) of the time source underlying
-// get_time.
-LIB_API double timer_res(void);
+/**
+ * @return resolution [s] of the timer.
+ **/
+LIB_API double timer_Resolution(void);
 
 
 //-----------------------------------------------------------------------------
-// timestamp sources
+// scope timing
 
-// since TIMER_ACCRUE et al. are called so often, we try to keep
-// overhead to an absolute minimum. storing raw tick counts (e.g. CPU cycles
-// returned by ia32_rdtsc) instead of absolute time has two benefits:
-// - no need to convert from raw->time on every call
-//   (instead, it's only done once when displaying the totals)
-// - possibly less overhead to querying the time itself
-//   (get_time may be using slower time sources with ~3us overhead)
-//
-// however, the cycle count is not necessarily a measure of wall-clock time.
-// therefore, on systems with SpeedStep active, measurements of I/O or other
-// non-CPU bound activity may be skewed. this is ok because the timer is
-// only used for profiling; just be aware of the issue.
-// if this is a problem, disable CONFIG_TIMER_ALLOW_RDTSC.
-// 
-// note that overflow isn't an issue either way (63 bit cycle counts
-// at 10 GHz cover intervals of 29 years).
-
-#if ARCH_IA32 && CONFIG_TIMER_ALLOW_RDTSC
-
-// fast, IA-32 specific, not usable as wall-clock
-// (see http://www.gamedev.net/reference/programming/features/timing)
-class TimerRdtsc
+/// used by TIMER
+class ScopeTimer : boost::noncopyable
 {
 public:
-	typedef i64 unit;
-	unit get_timestamp() const;
-	static double ToSeconds(unit value)
-	{
-		return value / cpu_ClockFrequency();
-	}
+	LIB_API ScopeTimer(const char* description);
+	LIB_API ~ScopeTimer();
+
+private:
+	double m_t0;
+	const char* m_description;
 };
 
-#endif
+/**
+ * Measures the time taken to execute code up until end of the current scope; 
+ * displays it via debug_printf. Can safely be nested.
+ * Useful for measuring time spent in a function or basic block.
+ * <description> must remain valid over the lifetime of this object;
+ * a string literal is safest.
+ * 
+ * Example usage:
+ * 	void func()
+ * 	{
+ * 		TIMER("description");
+ * 		// code to be measured
+ * 	}
+ **/
+#define TIMER(description) ScopeTimer UID__(description)
 
-class TimerSafe
-{
-public:
-	typedef double unit;
-	unit get_timestamp() const
-	{
-		return get_time();
-	}
-	static double ToSeconds(unit value)
-	{
-		return value;
-	}
-};
-
-#if ARCH_IA32 && CONFIG_TIMER_ALLOW_RDTSC
-typedef TimerRdtsc Timer;
-#else
-typedef TimerSafe Timer;
-#endif
-
-typedef Timer::unit TimerUnit;	// convenience
+/**
+ * Measures the time taken to execute code between BEGIN and END markers;
+ * displays it via debug_printf. Can safely be nested.
+ * Useful for measuring several pieces of code within the same function/block.
+ * <description> must remain valid over the lifetime of this object;
+ * a string literal is safest.
+ * 
+ * Caveats:
+ * - this wraps the code to be measured in a basic block, so any
+ *   variables defined there are invisible to surrounding code.
+ * - the description passed to END isn't inspected; you are responsible for
+ *   ensuring correct nesting!
+ * 
+ * Example usage:
+ * 	void func2()
+ * 	{
+ * 		// uninteresting code
+ * 		TIMER_BEGIN("description2");
+ * 		// code to be measured
+ * 		TIMER_END("description2");
+ * 		// uninteresting code
+ * 	}
+ **/
+#define TIMER_BEGIN(description) { ScopeTimer UID__(description)
+#define TIMER_END(description) }
 
 
 //-----------------------------------------------------------------------------
 // cumulative timer API
 
 // this supplements in-game profiling by providing low-overhead,
-// high resolution time accounting.
+// high resolution time accounting of specific areas.
+
+union LIB_API TimerUnit
+{
+public:
+	void SetToZero();
+	void SetFromTimer();
+	void AddDifference(TimerUnit t0, TimerUnit t1);
+	void Subtract(TimerUnit t);
+	double Seconds() const;
+
+private:
+	u64 m_ticks;
+	double m_seconds;
+};
 
 // opaque - do not access its fields!
 // note: must be defined here because clients instantiate them;
@@ -107,165 +117,78 @@ struct TimerClient
 
 	TimerClient* next;
 
-	// how often timer_bill_client was called (helps measure relative
+	// how often timer_BillClient was called (helps measure relative
 	// performance of something that is done indeterminately often).
 	uint num_calls;
 };
 
+/**
+ * make the given TimerClient (usually instantiated as static data)
+ * ready for use. returns its address for TIMER_ADD_CLIENT's convenience.
+ * this client's total (added to by timer_BillClient) will be
+ * displayed by timer_DisplayClientTotals.
+ * notes:
+ * - may be called at any time;
+ * - always succeeds (there's no fixed limit);
+ * - free() is not needed nor possible.
+ * - description must remain valid until exit; a string literal is safest.
+ **/
+LIB_API TimerClient* timer_AddClient(TimerClient* tc, const char* description);
 
-// make the given TimerClient (usually instantiated as static data)
-// ready for use. returns its address for TIMER_ADD_CLIENT's convenience.
-// this client's total (added to by timer_bill_client) will be
-// displayed by timer_display_client_totals.
-// notes:
-// - may be called at any time;
-// - always succeeds (there's no fixed limit);
-// - free() is not needed nor possible.
-// - description must remain valid until exit; a string literal is safest.
-LIB_API TimerClient* timer_add_client(TimerClient* tc, const char* description);
-
-// add <dt> to the client's total.
-LIB_API void timer_bill_client(TimerClient* tc, TimerUnit dt);
-
-// display all clients' totals; does not reset them.
-// typically called at exit.
-LIB_API void timer_display_client_totals();
-
-
-//-----------------------------------------------------------------------------
-// scoped-based timers
-
-// used via TIMER* macros below.
-class ScopeTimer
-{
-	double t0;
-	const char* description;
-
-public:
-	ScopeTimer(const char* _description)
-	{
-		t0 = get_time();
-		description = _description;
-	}
-
-	~ScopeTimer()
-	{
-		double t1 = get_time();
-		double dt = t1-t0;
-
-		// determine scale factor for pretty display
-		double scale = 1e6;
-		const char* unit = "us";
-		if(dt > 1.0)
-			scale = 1, unit = "s";
-		else if(dt > 1e-3)
-			scale = 1e3, unit = "ms";
-
-		debug_printf("TIMER| %s: %g %s\n", description, dt*scale, unit);
-	}
-
-	// disallow copying (makes no sense)
-private:
-	ScopeTimer& operator=(const ScopeTimer&);
-};
-
-/*
-Measure the time taken to execute code up until end of the current scope; 
-display it via debug_printf. Can safely be nested.
-Useful for measuring time spent in a function or basic block.
-<description> must remain valid over the lifetime of this object;
-a string literal is safest.
-
-Example usage:
-	void func()
-	{
-		TIMER("description");
-		// code to be measured
-	}
-*/
-#define TIMER(description) ScopeTimer UID__(description)
-
-/*
-Measure the time taken to execute code between BEGIN and END markers;
-display it via debug_printf. Can safely be nested.
-Useful for measuring several pieces of code within the same function/block.
-<description> must remain valid over the lifetime of this object;
-a string literal is safest.
-
-Caveats:
-- this wraps the code to be measured in a basic block, so any
-  variables defined there are invisible to surrounding code.
-- the description passed to END isn't inspected; you are responsible for
-  ensuring correct nesting!
-
-Example usage:
-	void func2()
-	{
-		// uninteresting code
-		TIMER_BEGIN("description2");
-		// code to be measured
-		TIMER_END("description2");
-		// uninteresting code
-	}
-*/
-#define TIMER_BEGIN(description) { ScopeTimer UID__(description)
-#define TIMER_END(description) }
-
-
-// used via TIMER_ACCRUE
-template<class TimerImpl = Timer> class ScopeTimerAccrue
-{
-	TimerImpl impl;
-	typename TimerImpl::unit t0;
-	TimerClient* tc;
-
-public:
-	ScopeTimerAccrue<TimerImpl>(TimerClient* tc_)
-	{
-		t0 = impl.get_timestamp();
-		tc = tc_;
-	}
-	~ScopeTimerAccrue<TimerImpl>()
-	{
-		typename TimerImpl::unit dt = impl.get_timestamp() - t0;
-		timer_bill_client(tc, dt);
-	}
-
-	// disallow copying (makes no sense)
-private:
-	ScopeTimerAccrue<TimerImpl>& operator=(const ScopeTimerAccrue<TimerImpl>&);
-};
-
-
-// "allocate" a new TimerClient that will keep track of the total time
-// billed to it, along with a description string. These are displayed when
-// timer_display_client_totals is called.
-// Invoke this at file or function scope; a (static) TimerClient pointer of
-// name <id> will be defined, which should be passed to TIMER_ACCRUE.
+/**
+ * "allocate" a new TimerClient that will keep track of the total time
+ * billed to it, along with a description string. These are displayed when
+ * timer_DisplayClientTotals is called.
+ * Invoke this at file or function scope; a (static) TimerClient pointer of
+ * name <id> will be defined, which should be passed to TIMER_ACCRUE.
+ **/
 #define TIMER_ADD_CLIENT(id)\
 	static TimerClient UID__;\
-	static TimerClient* id = timer_add_client(&UID__, #id);
+	static TimerClient* id = timer_AddClient(&UID__, #id);
 
-/*
-Measure the time taken to execute code up until end of the current scope; 
-bill it to the given TimerClient object. Can safely be nested.
-Useful for measuring total time spent in a function or basic block over the
-entire program.
-<description> must remain valid over the lifetime of this object;
-a string literal is safest.
+/**
+ * bill the difference between t0 and t1 to the client's total.
+ **/
+LIB_API void timer_BillClient(TimerClient* tc, TimerUnit t0, TimerUnit t1);
 
-Example usage:
-	TIMER_ADD_CLIENT(identifier)
+/**
+ * display all clients' totals; does not reset them.
+ * typically called at exit.
+ **/
+LIB_API void timer_DisplayClientTotals();
 
-	void func()
-	{
-		TIMER_ACCRUE(name_of_pointer_to_client);
-		// code to be measured
-	}
+/// used by TIMER_ACCRUE
+class ScopeTimerAccrue
+{
+public:
+	LIB_API ScopeTimerAccrue(TimerClient* tc);
+	LIB_API ~ScopeTimerAccrue();
 
-	[at exit]
-	timer_display_client_totals();
-*/
-#define TIMER_ACCRUE(client) ScopeTimerAccrue<> UID__(client)
+private:
+	TimerUnit m_t0;
+	TimerClient* m_tc;
+};
+
+/**
+ * Measure the time taken to execute code up until end of the current scope; 
+ * bill it to the given TimerClient object. Can safely be nested.
+ * Useful for measuring total time spent in a function or basic block over the
+ * entire program.
+ * <description> must remain valid over the lifetime of this object;
+ * a string literal is safest.
+ * 
+ * Example usage:
+ * 	TIMER_ADD_CLIENT(identifier)
+ * 
+ * 	void func()
+ * 	{
+ * 		TIMER_ACCRUE(name_of_pointer_to_client);
+ * 		// code to be measured
+ * 	}
+ * 
+ * 	[at exit]
+ * 	timer_DisplayClientTotals();
+ **/
+#define TIMER_ACCRUE(client) ScopeTimerAccrue UID__(client)
 
 #endif	// #ifndef INCLUDED_TIMER

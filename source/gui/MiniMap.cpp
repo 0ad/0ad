@@ -263,7 +263,7 @@ void CMiniMap::Draw()
 	// (note: since units only move a few pixels per second on the minimap,
 	// we can get away with infrequent updates; this is slow, ~20ms)
 	static double last_time;
-	const double cur_time = get_time();
+	const double cur_time = timer_Time();
 	if(cur_time - last_time > 100e-3)	// 10 updates/sec
 	{
 		last_time = cur_time;

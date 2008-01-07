@@ -5,7 +5,7 @@
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/bits.h"	// round_up
-#include "lib/allocators/allocators.h"
+#include "lib/allocators/shared_ptr.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/snd.h"
 #include "lib/sysdep/cpu.h"
@@ -170,9 +170,9 @@ const wchar_t* ErrorString(int err)
 // write the specified texture to disk.
 // note: <t> cannot be made const because the image may have to be
 // transformed to write it out in the format determined by <fn>'s extension.
-static LibError tex_write(Tex* t, const char* fn)
+static LibError tex_write(Tex* t, const VfsPath& filename)
 {
-	const std::string extension = fs::extension(fn);
+	const std::string extension = fs::extension(filename);
 
 	DynArray da;
 	RETURN_ERR(tex_encode(t, extension, &da));
@@ -182,7 +182,7 @@ static LibError tex_write(Tex* t, const char* fn)
 	{
 		(void)da_set_size(&da, round_up(da.cur_size, BLOCK_SIZE));
 		shared_ptr<u8> file(da.base, DummyDeleter<u8>());
-		const ssize_t bytes_written = g_VFS->CreateFile(fn, file, da.pos);
+		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
 		if(bytes_written > 0)
 			debug_assert(bytes_written == (ssize_t)da.pos);
 		else
@@ -202,13 +202,11 @@ static unsigned s_nextScreenshotNumber;
 void WriteScreenshot(const char* extension)
 {
 	// get next available numbered filename
-	// .. bake extension into format string.
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
-	char file_format_string[PATH_MAX];
-	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
-	file_format_string[PATH_MAX-1] = '\0';
-	char fn[PATH_MAX];
-	fs_NextNumberedFilename(g_VFS, file_format_string, s_nextScreenshotNumber, fn);
+	const VfsPath basenameFormat("screenshots/screenshot%%04d");
+	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
+	VfsPath filename;
+	fs_NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
 
 	const int w = g_xres, h = g_yres;
 	const int bpp = 24;
@@ -223,14 +221,14 @@ void WriteScreenshot(const char* extension)
 	}
 
 	const size_t img_size = w * h * bpp/8;
-	const size_t hdr_size = tex_hdr_size(fn);
+	const size_t hdr_size = tex_hdr_size(filename);
 	shared_ptr<u8> buf = io_Allocate(hdr_size+img_size);
 	GLvoid* img = buf.get() + hdr_size;
 	Tex t;
 	if(tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
 		return;
 	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
-	(void)tex_write(&t, fn);
+	(void)tex_write(&t, filename);
 	tex_free(&t);
 }
 
@@ -240,13 +238,11 @@ void WriteScreenshot(const char* extension)
 void WriteBigScreenshot(const char* extension, int tiles)
 {
 	// get next available numbered filename
-	// .. bake extension into format string.
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
-	char file_format_string[PATH_MAX];
-	snprintf(file_format_string, PATH_MAX, "screenshots/screenshot%%04d.%s", extension);
-	file_format_string[PATH_MAX-1] = '\0';
-	char fn[PATH_MAX];
-	fs_NextNumberedFilename(g_VFS, file_format_string, s_nextScreenshotNumber, fn);
+	const VfsPath basenameFormat("screenshots/screenshot%%04d");
+	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
+	VfsPath filename;
+	fs_NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
 
 	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
 	// hope the screen is actually large enough for that.
@@ -267,7 +263,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 
 	const size_t img_size = img_w * img_h * bpp/8;
 	const size_t tile_size = tile_w * tile_h * bpp/8;
-	const size_t hdr_size = tex_hdr_size(fn);
+	const size_t hdr_size = tex_hdr_size(filename);
 	void* tile_data = malloc(tile_size);
 	if(!tile_data)
 		WARN_ERR_RETURN(ERR::NO_MEM);
@@ -333,7 +329,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 		g_Game->GetView()->GetCamera()->SetProjectionTile(1, 0, 0);
 	}
 
-	(void)tex_write(&t, fn);
+	(void)tex_write(&t, filename);
 	tex_free(&t);
 	free(tile_data);
 }

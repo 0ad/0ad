@@ -11,6 +11,7 @@
 
 #include "maths/Vector3D.h"
 #include "maths/Quaternion.h"
+#include "lib/file/vfs/vfs_path.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // CBoneState: structure describing state of a bone at some point
@@ -64,7 +65,7 @@ public:
 	void BuildBoneMatrices(float time, CMatrix3D* matrices, bool loop) const;
 
 	// anim I/O functions
-	static CSkeletonAnimDef* Load(const char* filename);
+	static CSkeletonAnimDef* Load(const VfsPath& filename);
 	static void Save(const char* filename, const CSkeletonAnimDef* anim);
 
 public:

@@ -15,10 +15,11 @@
 #include <string.h>
 
 #include "app_hooks.h"
+#include "os_path.h"
 #include "path_util.h"
 #include "debug_stl.h"
+#include "lib/allocators/allocators.h"	// page_aligned_alloc
 #include "fnv_hash.h"
-#include "lib/allocators/allocators.h"
 #include "lib/posix/posix_pthread.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/sysdep/sysdep.h"
@@ -224,12 +225,8 @@ LibError debug_write_crashlog(const wchar_t* text)
 	if(!cpu_CAS(&in_progress, 0, 1))
 		return ERR::REENTERED;	// NOWARN
 
-	// note: we go through some gyrations here (strcpy+strcat) to avoid
-	// dependency on file code (path_append).
-	char N_path[PATH_MAX];
-	strcpy_s(N_path, ARRAY_SIZE(N_path), ah_get_log_dir());
-	strcat_s(N_path, ARRAY_SIZE(N_path), "crashlog.txt");
-	FILE* f = fopen(N_path, "w");
+	OsPath path = OsPath(ah_get_log_dir())/"crashlog.txt";
+	FILE* f = fopen(path.string().c_str(), "w");
 	if(!f)
 	{
 		in_progress = 0;

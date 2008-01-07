@@ -13,6 +13,7 @@
 #define INCLUDED_VFS
 
 #include "lib/file/file_system.h"	// FileInfo
+#include "lib/file/path.h"
 #include "lib/file/vfs/vfs_path.h"
 
 // VFS paths are of the form: "(dir/)*file?"
@@ -66,7 +67,7 @@ struct IVFS
 	 * if files with archive extensions are seen, their contents are added
 	 * as well.
 	 **/
-	virtual LibError Mount(const VfsPath& mountPoint, const char* path, uint flags = 0, uint priority = 0) = 0;
+	virtual LibError Mount(const VfsPath& mountPoint, const Path& path, uint flags = 0, uint priority = 0) = 0;
 
 	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const = 0;
 
@@ -95,7 +96,7 @@ struct IVFS
 	virtual void Display() const = 0;
 	virtual void Clear() = 0;
 
-	virtual LibError GetRealPath(const VfsPath& pathname, char* path) = 0;
+	virtual LibError GetRealPath(const VfsPath& pathname, Path& path) = 0;
 };
 
 typedef shared_ptr<IVFS> PIVFS;

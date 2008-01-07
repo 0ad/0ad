@@ -50,7 +50,7 @@ public:
 			set_logger(NULL); // unregister the log handler
 	}
 
-	bool Convert(const CStr& daeFilename, const CStr& pmdFilename, CColladaManager::FileType type)
+	bool Convert(const VfsPath& daeFilename, const VfsPath& pmdFilename, CColladaManager::FileType type)
 	{
 		// To avoid always loading the DLL when it's usually not going to be
 		// used (and to do the same on Linux where delay-loading won't help),
@@ -137,7 +137,7 @@ CColladaManager::~CColladaManager()
 	delete m;
 }
 
-CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
+VfsPath CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 {
 	const char* extn = NULL;
 	switch (type)
@@ -175,11 +175,11 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 	// (TODO: the comments and variable names say "pmd" but actually they can
 	// be "psa" too.)
 
-	CStr dae = sourceName + ".dae";
+	VfsPath dae(sourceName + ".dae");
 	if (! FileExists(dae))
 	{
 		// No .dae - got to use the .pmd, assuming there is one
-		return sourceName + extn;
+		return VfsPath(sourceName + extn);
 	}
 
 	// There is a .dae - see if there's an up-to-date cached copy
@@ -188,8 +188,8 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 	if (g_VFS->GetFileInfo(dae, &fileInfo) < 0)
 	{
 		// This shouldn't occur for any sensible reasons
-		LOG(CLogger::Error, "collada", "Failed to stat DAE file '%s'", dae.c_str());
-		return "";
+		LOG(CLogger::Error, "collada", "Failed to stat DAE file '%s'", dae.string().c_str());
+		return VfsPath();
 	}
 
 	// Build a struct of all the data we want to hash.
@@ -205,20 +205,17 @@ CStr CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
 	u32 hash = fnv_hash(static_cast<void*>(&hashSource), sizeof(hashSource));
 	char hashString[9];
 	sprintf(hashString, "%08x", hash);
+	std::string extension("_");
+	extension += hashString;
+	extension += extn;
 
 	// realDaePath is "mods/whatever/art/meshes/whatever.dae"
-	char realDaePath[PATH_MAX];
+	Path realDaePath;
 	g_VFS->GetRealPath(dae, realDaePath);
 
 	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
-	CStr cachedPmdVfsPath = "cache/";
-	cachedPmdVfsPath += realDaePath;
-	// Remove the .dae extension (which will certainly be there)
-	cachedPmdVfsPath = cachedPmdVfsPath.substr(0, cachedPmdVfsPath.length()-4);
-	// Add a _hash.pmd extension
-	cachedPmdVfsPath += "_";
-	cachedPmdVfsPath += hashString;
-	cachedPmdVfsPath += extn;
+	VfsPath cachedPmdVfsPath = VfsPath("cache/") / realDaePath.string();
+	cachedPmdVfsPath = change_extension(cachedPmdVfsPath, extension);
 
 	// If it's not in the cache, we'll have to create it first
 	if (! FileExists(cachedPmdVfsPath))

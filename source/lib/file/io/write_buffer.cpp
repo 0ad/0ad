@@ -37,10 +37,10 @@ void WriteBuffer::Overwrite(const void* data, size_t size, size_t offset)
 // UnalignedWriter
 //-----------------------------------------------------------------------------
 
-UnalignedWriter::UnalignedWriter(const File& file, off_t ofs)
+UnalignedWriter::UnalignedWriter(PIFile file, off_t ofs)
 	: m_file(file), m_alignedBuf(io_Allocate(BLOCK_SIZE))
 {
-	const size_t misalignment = (size_t)ofs % BLOCK_SIZE;
+	const size_t misalignment = (size_t)ofs % SECTOR_SIZE;
 	m_alignedOfs = ofs - (off_t)misalignment;
 	if(misalignment)
 		io_ReadAligned(m_file, m_alignedOfs, m_alignedBuf.get(), BLOCK_SIZE);
@@ -60,7 +60,7 @@ LibError UnalignedWriter::Append(const u8* data, size_t size) const
 	{
 		// optimization: write directly from the input buffer, if possible
 		const size_t alignedSize = (size / BLOCK_SIZE) * BLOCK_SIZE;
-		if(m_bytesUsed == 0 && IsAligned(data, BLOCK_SIZE) && alignedSize != 0)
+		if(m_bytesUsed == 0 && IsAligned(data, SECTOR_SIZE) && alignedSize != 0)
 		{
 			RETURN_ERR(io_WriteAligned(m_file, m_alignedOfs, data, alignedSize));
 			m_alignedOfs += (off_t)alignedSize;

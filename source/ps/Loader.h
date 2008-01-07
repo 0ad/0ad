@@ -151,9 +151,9 @@ extern LibError LDR_NonprogressiveLoad();
 // boilerplate check-if-timed-out and return-progress-percent code.
 // completed_jobs and total_jobs are ints and must be updated by caller.
 // assumes presence of a local variable (double)<end_time>
-// (as returned by get_time()) that indicates the time at which to abort.
+// (as returned by timer_Time()) that indicates the time at which to abort.
 #define LDR_CHECK_TIMEOUT(completed_jobs, total_jobs)\
-	if(get_time() > end_time)\
+	if(timer_Time() > end_time)\
 	{\
 		int progress_percent = ((completed_jobs)*100 / (total_jobs));\
 		/* 0 means "finished", so don't return that! */\

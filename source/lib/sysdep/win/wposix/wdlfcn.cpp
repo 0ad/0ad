@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "wdlfcn.h"
 
-#include "lib/path_util.h"
+#include "lib/os_path.h"
 #include "wposix_internal.h"
 
 
@@ -34,16 +34,8 @@ void* dlopen(const char* so_name, int flags)
 {
 	debug_assert(!(flags & RTLD_GLOBAL));
 
-	// if present, strip .so extension; add .dll extension
-	char dll_name[MAX_PATH];
-	strcpy_s(dll_name, ARRAY_SIZE(dll_name)-5, so_name);
-	char* ext = (char*)path_extension(dll_name);
-	if(ext[0] == '\0')	// no extension
-		strcat(dll_name, ".dll");	// safe
-	else	// need to replace extension
-		SAFE_STRCPY(ext, "dll");
-
-	HMODULE hModule = LoadLibrary(dll_name);
+	OsPath path = fs::change_extension(so_name, ".dll");
+	HMODULE hModule = LoadLibrary(path.external_directory_string().c_str());
 	debug_assert(hModule);
 	return void_from_HMODULE(hModule);
 }

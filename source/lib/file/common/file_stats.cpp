@@ -59,11 +59,11 @@ static void timer_start(double* start_time_storage = &start_time)
 	// make sure no measurement is currently active
 	// (since start_time is shared static storage)
 	debug_assert(*start_time_storage == 0.0);
-	*start_time_storage = get_time();
+	*start_time_storage = timer_Time();
 }
 static double timer_reset(double* start_time_storage = &start_time)
 {
-	double elapsed = get_time() - *start_time_storage;
+	double elapsed = timer_Time() - *start_time_storage;
 	*start_time_storage = 0.0;
 	return elapsed;
 }

@@ -172,4 +172,10 @@
 # define EXTERN_C extern
 #endif
 
+#if MSC_VERSION
+# define INLINE __forceinline
+#else
+# define INLINE inline
+#endif
+
 #endif	// #ifndef INCLUDED_COMPILER

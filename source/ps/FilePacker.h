@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "CStr.h"
+#include "lib/file/vfs/vfs_path.h"
 
 #include "ps/Errors.h"
 #include "ps/Filesystem.h"	// WriteBuffer
@@ -37,7 +38,7 @@ public:
 	CFilePacker(u32 version, const char magicstr[4]);
 
 	// Write: write out to file all packed data added so far
-	void Write(const char* filename);
+	void Write(const VfsPath& filename);
 
 	// PackRaw: pack given number of bytes onto the end of the data stream
 	void PackRaw(const void* rawdata, size_t rawdatalen);

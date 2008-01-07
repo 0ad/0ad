@@ -16,6 +16,7 @@
 #include "lib/cache_adt.h"				// Cache
 #include "lib/bits.h"					// round_up
 #include "lib/allocators/allocators.h"
+#include "lib/allocators/shared_ptr.h"
 #include "lib/allocators/headerless.h"
 #include "lib/allocators/mem_util.h"	// mem_PageSize
 
@@ -80,13 +81,16 @@ public:
 	shared_ptr<u8> Allocate(size_t size, PAllocator pthis)
 	{
 		const size_t alignedSize = round_up(size, BLOCK_SIZE);
-		stats_buf_alloc(size, alignedSize);
 
 		u8* mem = (u8*)m_allocator.Allocate(alignedSize);
+		if(!mem)
+			return DummySharedPtr<u8>(0);	// (prevent FileCacheDeleter from seeing a null pointer)
+
 #ifndef NDEBUG
 		m_checker.OnAllocate(mem, alignedSize);
 #endif
 
+		stats_buf_alloc(size, alignedSize);
 		return shared_ptr<u8>(mem, FileCacheDeleter(size, pthis));
 	}
 
@@ -150,17 +154,21 @@ public:
 		// of space in a full cache)
 		for(;;)
 		{
-			shared_ptr<u8> data = m_allocator->Allocate(size, m_allocator);
-			if(data)
-				return data;
+			{
+				shared_ptr<u8> data = m_allocator->Allocate(size, m_allocator);
+				if(data)
+					return data;
+			}
 
 			// remove least valuable entry from cache (if users are holding
 			// references, the contents won't actually be deallocated)
-			shared_ptr<u8> discardedData; size_t discardedSize;
-			bool removed = m_cache.remove_least_valuable(&discardedData, &discardedSize);
-			// only false if cache is empty, which can't be the case because
-			// allocation failed.
-			debug_assert(removed);
+			{
+				shared_ptr<u8> discardedData; size_t discardedSize;
+				bool removed = m_cache.remove_least_valuable(&discardedData, &discardedSize);
+				// only false if cache is empty, which can't be the case because
+				// allocation failed.
+				debug_assert(removed);
+			}
 		}
 	}
 

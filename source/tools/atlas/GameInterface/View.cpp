@@ -156,8 +156,8 @@ void ViewGame::Update(float frameLength)
 			// Whoops, we're trying to go faster than the simulation can manage.
 			// It's probably better to run at the right sim rate, at the expense
 			// of framerate, so let's try simulating a few more times.
-			double t = get_time();
-			while (!ok && get_time() < t + 0.1) // don't go much worse than 10fps
+			double t = timer_Time();
+			while (!ok && timer_Time() < t + 0.1) // don't go much worse than 10fps
 			{
 				ok = g_Game->Update(0.0, false); // don't add on any extra sim time
 			}

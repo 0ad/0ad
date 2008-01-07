@@ -227,10 +227,10 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t ma
 		}
 
 		// call this task's function and bill elapsed time.
-		const double t0 = get_time();
+		const double t0 = timer_Time();
 		int status = lr.func(lr.param, time_left);
 		const bool timed_out = ldr_was_interrupted(status);
-		const double elapsed_time = get_time() - t0;
+		const double elapsed_time = timer_Time() - t0;
 		time_left -= elapsed_time;
 		task_elapsed_time += elapsed_time;
 

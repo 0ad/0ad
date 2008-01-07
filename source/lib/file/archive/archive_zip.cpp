@@ -52,7 +52,7 @@ class LFH
 public:
 	void Init(const FileInfo& fileInfo, off_t csize, ZipMethod method, u32 checksum, const VfsPath& pathname_)
 	{
-		const std::string& pathname = pathname_.string();
+		const std::string& pathnameString = pathname_.string();
 
 		m_magic     = lfh_magic;
 		m_x1        = to_le16(0);
@@ -62,10 +62,10 @@ public:
 		m_crc       = to_le32(checksum);
 		m_csize     = to_le32(u32_from_larger(csize));
 		m_usize     = to_le32(u32_from_larger(fileInfo.Size()));
-		m_fn_len    = to_le16(u16_from_larger(pathname.length()));
+		m_fn_len    = to_le16(u16_from_larger(pathnameString.length()));
 		m_e_len     = to_le16(0);
 
-		cpu_memcpy((char*)this + sizeof(LFH), pathname.c_str(), pathname.length());
+		cpu_memcpy((char*)this + sizeof(LFH), pathnameString.c_str(), pathnameString.length());
 	}
 
 	size_t Size() const
@@ -99,7 +99,7 @@ class CDFH
 public:
 	void Init(const FileInfo& fileInfo, off_t ofs, off_t csize, ZipMethod method, u32 checksum, const VfsPath& pathname_, size_t slack)
 	{
-		const std::string& pathname = pathname_.string();
+		const std::string& pathnameString = pathname_.string();
 		m_magic     = cdfh_magic;
 		m_x1        = to_le32(0);
 		m_flags     = to_le16(0);
@@ -108,21 +108,21 @@ public:
 		m_crc       = to_le32(checksum);
 		m_csize     = to_le32(u32_from_larger(csize));
 		m_usize     = to_le32(u32_from_larger(fileInfo.Size()));
-		m_fn_len    = to_le16(u16_from_larger(pathname.length()));
+		m_fn_len    = to_le16(u16_from_larger(pathnameString.length()));
 		m_e_len     = to_le16(0);
 		m_c_len     = to_le16(u16_from_larger((uint)slack));
 		m_x2        = to_le32(0);
 		m_x3        = to_le32(0);
 		m_lfh_ofs   = to_le32(ofs);
 
-		cpu_memcpy((char*)this + sizeof(CDFH), pathname.c_str(), pathname.length());
+		cpu_memcpy((char*)this + sizeof(CDFH), pathnameString.c_str(), pathnameString.length());
 	}
 
-	VfsPath GetPathname() const
+	void GetPathname(std::string& pathname) const
 	{
 		const size_t length = (size_t)read_le16(&m_fn_len);
 		const char* fn = (const char*)this + sizeof(CDFH); // not 0-terminated!
-		return VfsPath(std::string(fn, length));
+		pathname = std::string(fn, length);
 	}
 
 	off_t HeaderOffset() const
@@ -226,7 +226,7 @@ cassert(sizeof(ECDR) == 22);
 class ArchiveFile_Zip : public IArchiveFile
 {
 public:
-	ArchiveFile_Zip(PFile file, off_t ofs, off_t csize, u32 checksum, ZipMethod method)
+	ArchiveFile_Zip(PIFile file, off_t ofs, off_t csize, u32 checksum, ZipMethod method)
 		: m_file(file), m_ofs(ofs)
 		, m_csize(csize), m_checksum(checksum), m_method((u16)method)
 		, m_flags(NeedsFixup)
@@ -262,7 +262,7 @@ public:
 
 		Stream stream(codec);
 		stream.SetOutputBuffer(buf.get(), size);
-		RETURN_ERR(io_Scan(*m_file, m_ofs, m_csize, FeedStream, (uintptr_t)&stream));
+		RETURN_ERR(io_Scan(m_file, m_ofs, m_csize, FeedStream, (uintptr_t)&stream));
 		RETURN_ERR(stream.Finish());
 #if CODEC_COMPUTE_CHECKSUM
 		debug_assert(m_checksum == stream.Checksum());
@@ -333,11 +333,11 @@ private:
 		// previously read file (i.e. both are small).
 		LFH lfh;
 		LFH_Copier params = { (u8*)&lfh, sizeof(LFH) };
-		if(io_Scan(*m_file, m_ofs, sizeof(LFH), lfh_copier_cb, (uintptr_t)&params) == INFO::OK)
+		if(io_Scan(m_file, m_ofs, sizeof(LFH), lfh_copier_cb, (uintptr_t)&params) == INFO::OK)
 			m_ofs += (off_t)lfh.Size();
 	}
 
-	PFile m_file;
+	PIFile m_file;
 
 	// all relevant LFH/CDFH fields not covered by FileInfo
 	mutable off_t m_ofs;
@@ -356,7 +356,7 @@ class ArchiveReader_Zip : public IArchiveReader
 {
 public:
 	ArchiveReader_Zip(const Path& pathname)
-		: m_file(new File)
+		: m_file(CreateFile_Posix())
 	{
 		m_file->Open(pathname, 'r');
 		
@@ -370,10 +370,10 @@ public:
 	{
 		// locate and read Central Directory
 		off_t cd_ofs; uint cd_numEntries; off_t cd_size;
-		RETURN_ERR(LocateCentralDirectory(*m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
+		RETURN_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
 		shared_ptr<u8> buf = io_Allocate(cd_size, cd_ofs);
 		u8* cd;
-		RETURN_ERR(io_Read(*m_file, cd_ofs, buf.get(), cd_size, cd));
+		RETURN_ERR(io_Read(m_file, cd_ofs, buf.get(), cd_size, cd));
 
 		// iterate over Central Directory
 		const u8* pos = cd;
@@ -384,14 +384,21 @@ public:
 			if(!cdfh)
 				WARN_RETURN(ERR::CORRUPTED);
 
-			const std::string& pathname = cdfh->GetPathname().string();
-			const size_t lastSlash = pathname.find_last_of('/');
-			if(lastSlash != pathname.length()-1)	// we only want files
+			std::string zipPathname;
+			cdfh->GetPathname(zipPathname);
+			const size_t lastSlash = zipPathname.find_last_of('/');
+			if(lastSlash != zipPathname.length()-1)	// we only want files
 			{
-				const std::string name(pathname.begin()+lastSlash+1, pathname.end());
-				FileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
+				std::string name;
+				std::string* pname = &zipPathname;	// assume zipPathname only has a name component
+				if(lastSlash != std::string::npos)
+				{
+					name = zipPathname.substr(lastSlash, zipPathname.length()-lastSlash);
+					pname = &name;
+				}
+				FileInfo fileInfo(*pname, cdfh->USize(), cdfh->MTime());
 				shared_ptr<ArchiveFile_Zip> archiveFile(new ArchiveFile_Zip(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method()));
-				cb(pathname, fileInfo, archiveFile, cbData);
+				cb(zipPathname, fileInfo, archiveFile, cbData);
 			}
 
 			pos += cdfh->Size();
@@ -432,7 +439,7 @@ private:
 	// search for ECDR in the last <maxScanSize> bytes of the file.
 	// if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
 	// return INFO::OK, otherwise IO error or ERR::CORRUPTED.
-	static LibError ScanForEcdr(const File& file, off_t fileSize, u8* buf, off_t maxScanSize, uint& cd_numEntries, off_t& cd_ofs, off_t& cd_size)
+	static LibError ScanForEcdr(PIFile file, off_t fileSize, u8* buf, off_t maxScanSize, uint& cd_numEntries, off_t& cd_ofs, off_t& cd_size)
 	{
 		// don't scan more than the entire file
 		const off_t scanSize = std::min(maxScanSize, fileSize);
@@ -451,7 +458,7 @@ private:
 		return INFO::OK;
 	}
 
-	static LibError LocateCentralDirectory(const File& file, off_t fileSize, off_t& cd_ofs, uint& cd_numEntries, off_t& cd_size)
+	static LibError LocateCentralDirectory(PIFile file, off_t fileSize, off_t& cd_ofs, uint& cd_numEntries, off_t& cd_size)
 	{
 		const off_t maxScanSize = 66000u;	// see below
 		shared_ptr<u8> buf = io_Allocate(maxScanSize, ~0);	// assume worst-case for alignment
@@ -482,7 +489,7 @@ private:
 			WARN_RETURN(ERR::ARCHIVE_UNKNOWN_FORMAT);
 	}
 
-	PFile m_file;
+	PIFile m_file;
 	off_t m_fileSize;
 };
 
@@ -503,7 +510,7 @@ public:
 		: m_fileSize(0), m_unalignedWriter(m_file, 0)
 		, m_numEntries(0)
 	{
-		THROW_ERR(m_file.Open(archivePathname, 'w'));
+		THROW_ERR(m_file->Open(archivePathname, 'w'));
 		THROW_ERR(pool_create(&m_cdfhPool, 10*MiB, 0));
 	}
 
@@ -539,8 +546,8 @@ public:
 		if(!usize)
 			return INFO::SKIPPED;
 
-		File file;
-		RETURN_ERR(file.Open(pathname, 'r'));
+		PIFile file = CreateFile_Posix();
+		RETURN_ERR(file->Open(pathname, 'r'));
 
 		const size_t pathnameLength = pathname.string().length();
 		const VfsPath vfsPathname(pathname.string());
@@ -622,7 +629,7 @@ private:
 		return false;
 	}
 
-	File m_file;
+	PIFile m_file;
 	off_t m_fileSize;
 	UnalignedWriter m_unalignedWriter;
 

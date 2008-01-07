@@ -56,13 +56,15 @@ CStr g_AutostartMap = "";
 
 static void LoadProfile( const CStr& profile )
 {
-	CStr base = CStr( "profiles/" ) + profile;
-	g_ConfigDB.SetConfigFile(CFG_USER, true, base +  "/settings/user.cfg");
+	VfsPath path = VfsPath("profiles") / profile;
+
+	VfsPath configFilename = path / "settings/user.cfg";
+	g_ConfigDB.SetConfigFile(CFG_USER, true, configFilename.string().c_str());
 	g_ConfigDB.Reload(CFG_USER);
 
 	int max_history_lines = 200;
 	CFG_GET_USER_VAL("console.history.size", Int, max_history_lines);
-	g_Console->UseHistoryFile(base+"/settings/history", max_history_lines);
+	g_Console->UseHistoryFile(path / "settings/history", max_history_lines);
 }
 
 

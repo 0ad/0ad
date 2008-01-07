@@ -13,6 +13,7 @@ ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);
 
 #include "XeroXMB.h"
+#include "ps/Filesystem.h"
 
 class CXeromyces : public XMBFile
 {
@@ -22,7 +23,7 @@ public:
 	~CXeromyces();
 
 	// Load from an XML file (with invisible XMB caching).
-	PSRETURN Load(const char* filename);
+	PSRETURN Load(const VfsPath& filename);
 
 	// Call once when shutting down the program, to unload Xerces.
 	static void Terminate();
@@ -30,9 +31,9 @@ public:
 private:
 
 	// Find out write location of the XMB file corresponding to xmlFilename
-	static void GetXMBPath(const char* xmlFilename, const char* xmbFilename, char* xmbPath);
+	static void GetXMBPath(PIVFS vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath);
 
-	bool ReadXMBFile(const char* filename);
+	bool ReadXMBFile(const VfsPath& filename);
 
 	shared_ptr<u8> XMBBuffer;
 

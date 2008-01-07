@@ -613,7 +613,6 @@ JSBool SimRandInt(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
 // when the game exits.
 
 static const uint MAX_JS_TIMERS = 20;
-static Timer js_timer;
 static TimerUnit js_start_times[MAX_JS_TIMERS];
 static TimerUnit js_timer_overhead;
 static TimerClient js_timer_clients[MAX_JS_TIMERS];
@@ -626,7 +625,7 @@ static void InitJsTimers()
 	{
 		const char* description = pos;
 		pos += sprintf(pos, "js_timer %d", i)+1;
-		timer_add_client(&js_timer_clients[i], description);
+		timer_AddClient(&js_timer_clients[i], description);
 	}
 
 	// call several times to get a good approximation of 'hot' performance.
@@ -636,15 +635,14 @@ static void InitJsTimers()
 	static const char* calibration_script =
 		"startXTimer(0);\n"
 		"stopXTimer (0);\n"
-		"startXTimer(0);\n"
-		"stopXTimer (0);\n"
-		"startXTimer(0);\n"
-		"stopXTimer (0);\n"
-		"startXTimer(0);\n"
-		"stopXTimer (0);\n"
 		"\n";
 	g_ScriptingHost.RunMemScript(calibration_script, strlen(calibration_script));
-	js_timer_overhead = js_timer_clients[0].sum/4;
+	// slight hack: call RunMemScript twice because we can't average several
+	// TimerUnit values because there's no operator/. this way is better anyway
+	// because it hopefully avoids the one-time JS init overhead.
+	g_ScriptingHost.RunMemScript(calibration_script, strlen(calibration_script));
+	js_timer_overhead = js_timer_clients[0].sum;
+	js_timer_clients[0].sum.SetToZero();
 }
 
 JSBool StartJsTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval)
@@ -655,9 +653,9 @@ JSBool StartJsTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 	uint slot = ToPrimitive<uint>(argv[0]);
 	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
+	debug_assert(js_start_times[slot].Seconds() == 0.0);
 
-	debug_assert(js_start_times[slot] == 0);
-	js_start_times[slot] = js_timer.get_timestamp();
+	js_start_times[slot].SetFromTimer();
 	return JS_TRUE;
 }
 
@@ -668,11 +666,13 @@ JSBool StopJsTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval
 	uint slot = ToPrimitive<uint>(argv[0]);
 	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
+	debug_assert(js_start_times[slot].Seconds() != 0.0);
 
-	debug_assert(js_start_times[slot] != 0);
-	TimerUnit dt = js_timer.get_timestamp() - js_start_times[slot] - js_timer_overhead;
-	js_start_times[slot] = 0;
-	timer_bill_client(&js_timer_clients[slot], dt);
+	TimerUnit now;
+	now.SetFromTimer();
+	now.Subtract(js_timer_overhead);
+	timer_BillClient(&js_timer_clients[slot], js_start_times[slot], now);
+	js_start_times[slot].SetToZero();
 	return JS_TRUE;
 }
 
@@ -855,9 +855,9 @@ JSBool ForceGarbageCollection(JSContext* cx, JSObject* UNUSED(obj), uint argc, j
 {
 	JSU_REQUIRE_NO_PARAMS();
 
-	double time = get_time();
+	double time = timer_Time();
 	JS_GC(cx);
-	time = get_time() - time;
+	time = timer_Time() - time;
 	g_Console->InsertMessage(L"Garbage collection completed in: %f", time);
 	*rval = JSVAL_TRUE;
 	return JS_TRUE ;

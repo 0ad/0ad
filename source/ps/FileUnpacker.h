@@ -11,6 +11,7 @@
 
 #include <vector>
 
+#include "lib/file/vfs/vfs_path.h"
 class CStr8;
 
 #include "ps/Errors.h"
@@ -37,7 +38,7 @@ public:
 	
 	// Read: open and read in given file, check magic bits against those given; throw 
 	// variety of exceptions for missing files etc
-	void Read(const char* filename, const char magicstr[4]);
+	void Read(const VfsPath& filename, const char magicstr[4]);
 	
 	// GetVersion: return stored file version
 	u32 GetVersion() const { return m_Version; }

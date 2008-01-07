@@ -315,7 +315,7 @@ public:
 	}
 };
 
-// note: this function uses timer.cpp!get_time, which is implemented via
+// note: this function uses timer.cpp!timer_Time, which is implemented via
 // whrt.cpp on Windows, which again calls ia32_Init. be careful that
 // this function isn't called from there as well, else WHRT will be used
 // before its init completes.
@@ -341,7 +341,7 @@ double ia32_ClockFrequency()
 	// if clock is low-res, do less samples so it doesn't take too long.
 	// balance measuring time (~ 10 ms) and accuracy (< 1 0/00 error -
 	// ok for using the TSC as a time reference)
-	if(timer_res() >= 1e-3)
+	if(timer_Resolution() >= 1e-3)
 		num_samples = 8;
 	std::vector<double> samples(num_samples);
 
@@ -353,24 +353,24 @@ double ia32_ClockFrequency()
 
 		// count # of clocks in max{1 tick, 1 ms}:
 		// .. wait for start of tick.
-		const double t0 = get_time();
+		const double t0 = timer_Time();
 		u64 c1; double t1;
 		do
 		{
-			// note: get_time effectively has a long delay (up to 5 us)
+			// note: timer_Time effectively has a long delay (up to 5 us)
 			// before returning the time. we call it before ia32_rdtsc to
 			// minimize the delay between actually sampling time / TSC,
 			// thus decreasing the chance for interference.
 			// (if unavoidable background activity, e.g. interrupts,
 			// delays the second reading, inaccuracy is introduced).
-			t1 = get_time();
+			t1 = timer_Time();
 			c1 = ia32_rdtsc();
 		}
 		while(t1 == t0);
 		// .. wait until start of next tick and at least 1 ms elapsed.
 		do
 		{
-			const double t2 = get_time();
+			const double t2 = timer_Time();
 			const u64 c2 = ia32_rdtsc();
 			dc = (i64)(c2 - c1);
 			dt = t2 - t1;

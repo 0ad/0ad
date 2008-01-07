@@ -47,28 +47,6 @@ LIB_API void* page_aligned_alloc(size_t unaligned_size);
 LIB_API void page_aligned_free(void* p, size_t unaligned_size);
 
 
-// adapter that allows calling page_aligned_free as a shared_ptr deleter.
-class PageAlignedDeleter
-{
-public:
-	PageAlignedDeleter(size_t size)
-		: m_size(size)
-	{
-		debug_assert(m_size != 0);
-	}
-
-	void operator()(u8* p)
-	{
-		debug_assert(m_size != 0);
-		page_aligned_free(p, m_size);
-		m_size = 0;
-	}
-
-private:
-	size_t m_size;
-};
-
-
 //
 // matrix allocator
 //
@@ -86,7 +64,7 @@ private:
  * @return 0 if out of memory, otherwise matrix that should be cast to
  * type** (sizeof(type) == el_size). must be freed via matrix_free.
  **/
-LIB_API void** matrix_alloc(uint cols, uint rows, size_t el_size);
+extern void** matrix_alloc(uint cols, uint rows, size_t el_size);
 
 /**
  * free the given matrix.
@@ -95,7 +73,7 @@ LIB_API void** matrix_alloc(uint cols, uint rows, size_t el_size);
  * callers will likely want to pass variables of a different type
  * (e.g. int**); they must be cast to void**.
  **/
-LIB_API void matrix_free(void** matrix);
+extern void matrix_free(void** matrix);
 
 
 //-----------------------------------------------------------------------------
@@ -120,7 +98,7 @@ LIB_API void matrix_free(void** matrix);
  * @return allocated memory (typically = <storage>, but falls back to
  * malloc if that's in-use), or 0 (with warning) if out of memory.
  **/
-LIB_API void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size);
+extern void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size_t size);
 
 /**
  * Free a memory block that had been allocated by single_calloc.
@@ -129,7 +107,7 @@ LIB_API void* single_calloc(void* storage, volatile uintptr_t* in_use_flag, size
  * @param in_use_flag Exact value passed to single_calloc.
  * @param Exact value returned by single_calloc.
  **/
-LIB_API void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p);
+extern void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p);
 
 #ifdef __cplusplus
 
@@ -219,7 +197,7 @@ void InitObject()
  *
  * raises a warning if there's not enough room (indicates incorrect usage)
  **/
-LIB_API void* static_calloc(StaticStorage* ss, size_t size);
+extern void* static_calloc(StaticStorage* ss, size_t size);
 
 // (no need to free static_calloc-ed memory since it's in the BSS)
 
@@ -344,15 +322,6 @@ public:
 private:
 	typedef std::map<void*, size_t> Allocs;
 	Allocs allocs;
-};
-
-
-template<class T>
-struct DummyDeleter
-{
-	void operator()(T* UNUSED(t))
-	{
-	}
 };
 
 #endif	// #ifndef INCLUDED_ALLOCATORS

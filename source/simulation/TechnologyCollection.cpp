@@ -8,7 +8,7 @@
 
 void CTechnologyCollection::LoadFile( const VfsPath& pathname )
 {
-	const CStrW basename(fs::basename((const fs::path&)pathname));
+	const CStrW basename(fs::basename(pathname));
 	m_techFilenames[basename] = pathname.string();
 }
 

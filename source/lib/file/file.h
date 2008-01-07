@@ -19,39 +19,23 @@ namespace ERR
 	const LibError IO          = -110201;
 }
 
-class LIB_API File
+struct IFile
 {
-public:
-	File();
-	~File();
+	virtual LibError Open(const Path& pathname, char mode) = 0;
+	virtual void Close() = 0;
 
-	LibError Open(const Path& pathname, char mode);
-	void Close();
+	virtual const Path& Pathname() const = 0;
+	virtual char Mode() const = 0;
 
-	const Path& Pathname() const
-	{
-		return m_pathname;
-	}
+	virtual LibError Issue(aiocb& req, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const = 0;
+	virtual LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize) = 0;
 
-	char Mode() const
-	{
-		return m_mode;
-	}
-
-	LibError Issue(aiocb& req, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const;
-	static LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize);
-
-	LibError Read(off_t ofs, u8* buf, size_t size) const;
-	LibError Write(off_t ofs, const u8* buf, size_t size) const;
-
-private:
-	LibError IO(off_t ofs, u8* buf, size_t size) const;
-
-	Path m_pathname;
-	char m_mode;
-	int m_fd;
+	virtual LibError Read(off_t ofs, u8* buf, size_t size) const = 0;
+	virtual LibError Write(off_t ofs, const u8* buf, size_t size) const = 0;
 };
 
-typedef shared_ptr<File> PFile;
+typedef shared_ptr<IFile> PIFile;
+
+LIB_API PIFile CreateFile_Posix();
 
 #endif	// #ifndef INCLUDED_FILE

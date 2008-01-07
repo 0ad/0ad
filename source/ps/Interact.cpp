@@ -1264,7 +1264,7 @@ InReaction InteractInputHandler( const SDL_Event_* ev )
 		// arrays above.
 		if (button >= 0 && button < SDL_BUTTON_INDEX_COUNT)
 		{
-			double time = get_time();
+			double time = timer_Time();
 			// Reset clicks counter if too slow or if the cursor's
 			// hovering over something else now.
 
@@ -1293,7 +1293,7 @@ InReaction InteractInputHandler( const SDL_Event_* ev )
 			button_down = true;
 			button_down_x = ev->ev.button.x;
 			button_down_y = ev->ev.button.y;
-			button_down_time = get_time();
+			button_down_time = timer_Time();
 			if( g_BuildingPlacer.m_active )
 			{
 				g_BuildingPlacer.MousePressed();

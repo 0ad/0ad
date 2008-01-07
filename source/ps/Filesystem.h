@@ -14,6 +14,7 @@
 extern PIVFS g_VFS;
 
 extern bool FileExists(const char* pathname);
+extern bool FileExists(const VfsPath& pathname);
 
 ERROR_GROUP(CVFSFile);
 ERROR_TYPE(CVFSFile, LoadFailed);
@@ -29,7 +30,7 @@ public:
 
 	// Returns either PSRETURN_OK or PSRETURN_CVFSFile_LoadFailed.
 	// Dies if a file has already been successfully loaded.
-	PSRETURN Load(const char* filename);
+	PSRETURN Load(const VfsPath& filename);
 
 	// These die if called when no file has been successfully loaded.
 	const u8* GetBuffer() const;

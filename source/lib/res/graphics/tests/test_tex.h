@@ -2,7 +2,7 @@
 
 #include "lib/tex/tex.h"
 #include "lib/tex/tex_codec.h"
-#include "lib/allocators/allocators.h"	// DummyDeleter
+#include "lib/allocators/shared_ptr.h"
 
 class TestTex : public CxxTest::TestSuite 
 {
@@ -103,7 +103,7 @@ public:
 	// have mipmaps be created for a test image; check resulting size and pixels
 	void test_mipmap_create()
 	{
-		u8 imgData[] = { 0x10,0x20,0x30, 0x40,0x60,0x80, 0xA0,0xA4,0xA8, 0xC0,0xC1,0xC2 };
+		static u8 imgData[] = { 0x10,0x20,0x30, 0x40,0x60,0x80, 0xA0,0xA4,0xA8, 0xC0,0xC1,0xC2 };
 		shared_ptr<u8> img(imgData, DummyDeleter<u8>());
 		// assumes 2x2 box filter algorithm with rounding
 		static const u8 mipmap[] = { 0x6C,0x79,0x87 };
@@ -118,8 +118,7 @@ public:
 
 	void test_img_size()
 	{
-		u8 imgStorage[100*100*4];	// (prevent a needless heap alloc)
-		shared_ptr<u8> img(imgStorage, DummyDeleter<u8>());
+		shared_ptr<u8> img(new u8[100*100*4]);
 
 		Tex t;
 		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, img, 0, &t));

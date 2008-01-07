@@ -217,7 +217,7 @@ public:
 		srand(1);
 
 		static const double TEST_LENGTH = 30.;	// [seconds]
-		const double end_time = get_time() + TEST_LENGTH;
+		const double end_time = timer_Time() + TEST_LENGTH;
 		is_complete = false;
 
 		TS_ASSERT_OK(lfl_init(&list));
@@ -234,7 +234,7 @@ public:
 		}
 
 		// wait until time interval elapsed (if we get that far, all is well).
-		while(get_time() < end_time)
+		while(timer_Time() < end_time)
 			usleep(10*1000);
 
 		// signal and wait for all threads to complete (poor man's barrier -

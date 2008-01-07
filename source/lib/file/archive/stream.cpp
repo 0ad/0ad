@@ -12,7 +12,11 @@
 #include "stream.h"
 
 #include "lib/allocators/allocators.h"	// page_aligned_alloc
+#include "lib/allocators/shared_ptr.h"
 #include "codec.h"
+//#include "lib/timer.h"
+
+//TIMER_ADD_CLIENT(tc_stream);
 
 
 OutputBufferManager::OutputBufferManager()
@@ -121,6 +125,8 @@ LibError Stream::Finish()
 
 LibError FeedStream(uintptr_t cbData, const u8* in, size_t inSize)
 {
+//	TIMER_ACCRUE(tc_stream);
+
 	Stream& stream = *(Stream*)cbData;
 	return stream.Feed(in, inSize);
 }

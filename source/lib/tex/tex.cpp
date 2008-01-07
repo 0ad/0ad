@@ -17,6 +17,7 @@
 
 #include "lib/timer.h"
 #include "lib/bits.h"
+#include "lib/sysdep/cpu.h"
 
 #include "tex_codec.h"
 
@@ -571,11 +572,11 @@ size_t tex_img_size(const Tex* t)
 // buffer that will hold the image, allocate this much extra and
 // pass the pointer as base+hdr_size. this allows writing the header
 // directly into the output buffer and makes for zero-copy IO.
-size_t tex_hdr_size(const char* fn)
+size_t tex_hdr_size(const VfsPath& filename)
 {
 	const TexCodecVTbl* c;
 	
-	const std::string extension = fs::extension(fn);
+	const std::string extension = fs::extension(filename);
 	CHECK_ERR(tex_codec_for_filename(extension, &c));
 	return c->hdr_size(0);
 }

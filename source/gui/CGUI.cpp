@@ -206,8 +206,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			case SDL_BUTTON_LEFT:
 				if (pNearest)
 				{
-					double timeElapsed = get_time() - pNearest->m_LastClickTime[SDL_BUTTON_LEFT];
-					pNearest->m_LastClickTime[SDL_BUTTON_LEFT] = get_time();
+					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_LEFT];
+					pNearest->m_LastClickTime[SDL_BUTTON_LEFT] = timer_Time();
 					
 					//Double click?
 					if (timeElapsed < SELECT_DBLCLICK_RATE)
@@ -227,8 +227,8 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			case SDL_BUTTON_RIGHT:
 				if (pNearest)
 				{
-					double timeElapsed = get_time() - pNearest->m_LastClickTime[SDL_BUTTON_RIGHT];
-					pNearest->m_LastClickTime[SDL_BUTTON_RIGHT] = get_time();
+					double timeElapsed = timer_Time() - pNearest->m_LastClickTime[SDL_BUTTON_RIGHT];
+					pNearest->m_LastClickTime[SDL_BUTTON_RIGHT] = timer_Time();
 					
 					//Double click?
 					if (timeElapsed < SELECT_DBLCLICK_RATE)

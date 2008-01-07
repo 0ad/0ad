@@ -56,6 +56,7 @@
 
 #include "XercesErrorHandler.h"
 #include "ps/CStr.h"
+#include "lib/file/vfs/vfs_path.h"
 
 XERCES_CPP_NAMESPACE_USE
 
@@ -85,7 +86,7 @@ public:
 	
 	// Open a VFS path for XML parsing
 	// returns 0 if successful, -1 on failure
-	int OpenFile(const char *path);
+	int OpenFile(const VfsPath& path);
 
 	virtual BinInputStream *makeStream() const;
 };

@@ -165,12 +165,12 @@ static void Frame()
 	ogl_WarnIfError();
 
 	// get elapsed time
-	const double time = get_time();
+	const double time = timer_Time();
 	g_frequencyFilter->Update(time);
 	// .. old method - "exact" but contains jumps
 #if 0
 	static double last_time;
-	const double time = get_time();
+	const double time = timer_Time();
 	const float TimeSinceLastFrame = (float)(time-last_time);
 	last_time = time;
 	ONCE(return);	// first call: set last_time and return
@@ -363,7 +363,7 @@ static void RunGameOrAtlas(int argc, char* argv[])
 
 	// run the game
 	Init(args, 0);
-	g_frequencyFilter = CreateFrequencyFilter(timer_res(), 30.0);
+	g_frequencyFilter = CreateFrequencyFilter(timer_Resolution(), 30.0);
 	MainControllerInit();
 	while(!quit)
 		Frame();

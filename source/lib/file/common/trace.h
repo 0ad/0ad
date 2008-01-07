@@ -54,7 +54,7 @@ private:
 	// note: keep an eye on the class size because all instances are kept
 	// in memory (see ITrace)
 
-	// time (as returned by get_time) after the operation completes.
+	// time (as returned by timer_Time) after the operation completes.
 	// rationale: when loading, the VFS doesn't know file size until
 	// querying the cache or retrieving file information.
 	float m_timestamp;

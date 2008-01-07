@@ -54,7 +54,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const CStr& filename)
 	CSkeletonAnimDef* def = NULL;
 
 	// Find the file to load
-	CStr psaFilename = m_ColladaManager.GetLoadableFilename(name, CColladaManager::PSA);
+	VfsPath psaFilename = m_ColladaManager.GetLoadableFilename(name, CColladaManager::PSA);
 
 	if (psaFilename.empty())
 	{

@@ -1,8 +1,9 @@
 #ifndef INCLUDED_COLLADAMANAGER
 #define INCLUDED_COLLADAMANAGER
 
-class CStr8;
+#include "lib/file/vfs/vfs_path.h"
 
+class CStr8;
 class CColladaManagerImpl;
 
 class CColladaManager
@@ -23,7 +24,7 @@ public:
 	 * @return full VFS path (including extension) of file to load; or empty
 	 * string if there was a problem and it could not be loaded.
 	 */
-	CStr8 GetLoadableFilename(const CStr8& sourceName, FileType type);
+	VfsPath GetLoadableFilename(const CStr8& sourceName, FileType type);
 
 private:
 	CColladaManagerImpl* m;

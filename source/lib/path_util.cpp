@@ -203,54 +203,7 @@ LibError path_append(char* dst, const char* path1, const char* path2, uint flags
 }
 
 
-// strip <remove> from the start of <src>, prepend <replace>,
-// and write to <dst>.
-// returns ERR::FAIL (without warning!) if the beginning of <src> doesn't
-// match <remove>.
-LibError path_replace(char* dst, const char* src, const char* remove, const char* replace)
-{
-	// remove doesn't match start of <src>
-	const size_t remove_len = strlen(remove);
-	if(strncmp(src, remove, remove_len) != 0)
-		return ERR::FAIL;	// NOWARN
-
-	// if removing will leave a separator at beginning of src, remove it
-	// (example: "a/b"; removing "a" would yield "/b")
-	const char* start = src+remove_len;
-	if(path_is_dir_sep(*start))
-		start++;
-
-	// prepend replace.
-	RETURN_ERR(path_append(dst, replace, start));
-	return INFO::OK;
-}
-
-
-
-
 //-----------------------------------------------------------------------------
-
-// split paths into specific parts
-
-void path_split(const char* pathname, char* path, char* name)
-{
-	const char* namePos = path_name_only(pathname);
-
-	if(name)
-	{
-		path_copy(name, namePos);
-
-		path_component_validate(name);
-	}
-
-	if(path)
-	{
-		path_copy(path, pathname);
-		path[namePos-pathname] = '\0';	// strip filename
-
-		debug_assert(path_IsDirectory(path));
-	}
-}
 
 // return pointer to the name component within path (i.e. skips over all
 // characters up to the last dir separator, if any).
@@ -269,54 +222,12 @@ const char* path_name_only(const char* path)
 	return name;
 }
 
-
-// return last component within path. this is similar to path_name_only,
-// but correctly handles VFS paths, which must end with '/'.
-// (path_name_only would return "")
-const char* path_last_component(const char* path)
-{
-	// ('\0' is end of set string)
-	static const char separators[3] = { '/', '\\', '\0' };
-
-	const char* pos = path;
-	const char* last_component = path;
-
-	for(;;)
-	{
-		// catches empty path and those with trailing separator
-		if(*pos == '\0')
-			break;
-		last_component = pos;
-		const size_t component_len = strcspn(pos, separators);
-		// catches paths without trailing separator
-		// (the 'pos +=' would skip their 0-terminator)
-		if(pos[component_len] == '\0')
-			break;
-		pos += component_len+1;	// +1 for separator
-	}
-
-	path_component_validate(last_component);
-	return last_component;
-}
-
-
 // if <path> contains a name component, it is stripped away.
 void path_strip_fn(char* path)
 {
 	char* name = (char*)path_name_only(path);
 	*name = '\0';	// cut off string here
 	debug_assert(path_IsDirectory(path));
-}
-
-
-// fill <dir> with the directory path portion of <path>
-// ("" if root dir, otherwise ending with '/').
-// note: copies to <dir> and proceeds to path_strip_fn it.
-void path_dir_only(const char* pathname, char* path)
-{
-	path_copy(path, pathname);
-	path_strip_fn(path);
-	// (path_strip_fn already ensures its output is a directory path)
 }
 
 

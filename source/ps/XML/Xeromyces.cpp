@@ -98,8 +98,7 @@ void CXeromyces::Terminate()
 
 
 // Find out write location of the XMB file corresponding to xmlFilename
-void CXeromyces::GetXMBPath(const char* xmlFilename, const char* xmbFilename,
-	char* xmbPath)
+void CXeromyces::GetXMBPath(PIVFS vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath)
 {
 	// rationale:
 	// - it is necessary to write out XMB files into a subdirectory
@@ -114,21 +113,20 @@ void CXeromyces::GetXMBPath(const char* xmlFilename, const char* xmbFilename,
 	//   a subdirectory (which would make manually deleting all harder).
 
 	// get real path of XML file (e.g. mods/official/entities/...)
-	char P_XMBRealPath[PATH_MAX];
-	g_VFS->GetRealPath(xmlFilename, P_XMBRealPath);
+	Path P_XMBRealPath;
+	vfs->GetRealPath(xmlFilename, P_XMBRealPath);
 
 	// extract mod name from that
 	char modName[PATH_MAX];
 	// .. NOTE: can't use %s, of course (keeps going beyond '/')
-	int matches = sscanf(P_XMBRealPath, "mods/%[^/]", modName);
+	int matches = sscanf(P_XMBRealPath.string().c_str(), "mods/%[^/]", modName);
 	debug_assert(matches == 1);
 
 	// build full name: cache, then mod name, XMB subdir, original XMB path
-	snprintf(xmbPath, PATH_MAX, "cache/mods/%s/xmb/%s", modName, xmbFilename);
-	xmbPath[PATH_MAX-1] = '\0';
+	xmbActualPath = VfsPath("cache/mods") / modName / "xmb" / xmbFilename;
 }
 
-PSRETURN CXeromyces::Load(const char* filename)
+PSRETURN CXeromyces::Load(const VfsPath& filename)
 {
 	// Make sure the .xml actually exists
 	if (! FileExists(filename))
@@ -165,26 +163,14 @@ PSRETURN CXeromyces::Load(const char* filename)
 	//     <xml filename>_<mtime><size><format version>.xmb
 	// with mtime/size as 8-digit hex, where mtime's lowest bit is
 	// zeroed because zip files only have 2 second resolution.
+	const int suffixLength = 22;
+	char suffix[suffixLength+1];
+	int ret = sprintf(suffix, "_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size());
+	debug_assert(ret == suffixLength);
+	VfsPath xmbFilename = change_extension(filename, suffix);
 
-	CStr xmbFilename = filename;
-
-	// Strip the .xml suffix
-	int pos;
-	if ((pos = xmbFilename.FindInsensitive(".xml")) != -1)
-		xmbFilename = xmbFilename.Left(pos);
-
-	const int bufLen = 22;
-	char buf[bufLen+1];
-	if (sprintf(buf, "_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size()) != bufLen)
-	{
-		debug_assert(0);	// Failed to create filename (?!)
-		return PSRETURN_Xeromyces_XMLOpenFailed;
-	}
-	xmbFilename += buf;
-
-	char xmbPath[PATH_MAX];
-	GetXMBPath(filename, xmbFilename, xmbPath);
-
+	VfsPath xmbPath;
+	GetXMBPath(g_VFS, filename, xmbFilename, xmbPath);
 
 	// If the file exists, use it
 	if (FileExists(xmbPath))
@@ -226,7 +212,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	CXercesErrorHandler errorHandler;
 	Parser->setErrorHandler(&errorHandler);
 
-	CVFSEntityResolver entityResolver(filename);
+	CVFSEntityResolver entityResolver(filename.string().c_str());
 	Parser->setEntityResolver(&entityResolver);
 
 	// Build a tree inside handler
@@ -262,7 +248,7 @@ PSRETURN CXeromyces::Load(const char* filename)
 	return PSRETURN_OK;
 }
 
-bool CXeromyces::ReadXMBFile(const char* filename)
+bool CXeromyces::ReadXMBFile(const VfsPath& filename)
 {
 	size_t size;
 	if(g_VFS->LoadFile(filename, XMBBuffer, size) < 0)

@@ -55,13 +55,13 @@ extern LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, u
  * this is useful when creating new files without overwriting the previous
  * ones (screenshots are a good example).
  *
- * @param pathnameFmt format string for the pathname; must contain one
+ * @param pathnameFormat format string for the pathname; must contain one
  * format specifier for an (unsigned) int.
  * example: "screenshots/screenshot%04d.png"
  * @param nextNumber in: the first number to try; out: the next number.
  * if 0, numbers corresponding to existing files are skipped.
- * @param receives the output; must hold at least PATH_MAX characters.
+ * @param nextPathname receives the output.
  **/
-extern void fs_NextNumberedFilename(PIVFS fs, const char* pathnameFmt, unsigned& nextNumber, char* nextPathname);
+extern void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, unsigned& nextNumber, VfsPath& nextPathname);
 
 #endif	 // #ifndef INCLUDED_FILE_SYSTEM_UTIL

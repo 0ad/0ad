@@ -210,7 +210,7 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 	// Called once per frame, so efficiency isn't vital
 
 
-	double now = get_time();
+	double now = timer_Time();
 
 	CStr style;
 

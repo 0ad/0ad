@@ -107,7 +107,7 @@ SPropPoint* CModelDef::FindPropPoint(const char* name) const
 }
 
 // Load: read and return a new CModelDef initialised with data from given file
-CModelDef* CModelDef::Load(const char* filename, const char* name)
+CModelDef* CModelDef::Load(const VfsPath& filename, const char* name)
 {
 	CFileUnpacker unpacker;
 
@@ -192,7 +192,7 @@ CModelDef* CModelDef::Load(const char* filename, const char* name)
 }
 
 // Save: write the given CModelDef to the given file
-void CModelDef::Save(const char* filename,const CModelDef* mdef)
+void CModelDef::Save(const VfsPath& filename,const CModelDef* mdef)
 {
 	CFilePacker packer(FILE_VERSION, "PSMD");
 

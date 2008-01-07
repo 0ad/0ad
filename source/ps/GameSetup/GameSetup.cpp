@@ -855,7 +855,7 @@ void Shutdown(uint flags)
 	TIMER_END("resource modules");
 
 	TIMER_BEGIN("shutdown misc");
-		timer_display_client_totals();
+		timer_DisplayClientTotals();
 
 		// should be last, since the above use them
 		debug_shutdown();
@@ -863,7 +863,6 @@ void Shutdown(uint flags)
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
 
-		timer_Shutdown();
 		lockfree_Shutdown();
 	TIMER_END("shutdown misc");
 }
@@ -883,7 +882,7 @@ void EarlyInit()
 
 	cpu_ConfigureFloatingPoint();
 
-	timer_Init();
+	timer_LatchStartTime();
 
 	// Initialise the low-quality rand function
 	srand(time(NULL));	// NOTE: this rand should *not* be used for simulation!

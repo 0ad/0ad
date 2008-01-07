@@ -22,6 +22,17 @@ struct VfsPathTraits
 	}
 };
 
+namespace boost
+{
+	namespace filesystem
+	{
+		template<> struct is_basic_path<VfsPath>
+		{
+			BOOST_STATIC_CONSTANT(bool, value = true);
+		};
+	}
+}
+
 extern bool vfs_path_IsDirectory(const VfsPath& pathname);
 
 #endif	//	#ifndef INCLUDED_VFS_PATH

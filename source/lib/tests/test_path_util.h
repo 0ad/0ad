@@ -17,12 +17,6 @@
 	TS_ASSERT_STR_EQUALS(result, correct_result); \
 }
 
-#define TEST_LAST_COMPONENT(path, correct_result) \
-{ \
-	const char* result = path_last_component(path); \
-	TS_ASSERT_STR_EQUALS(result, correct_result); \
-}
-
 #define TEST_STRIP_FN(path_readonly, correct_result) \
 { \
 	char path[PATH_MAX]; \
@@ -33,16 +27,6 @@
 
 class TestPathUtil : public CxxTest::TestSuite 
 {
-	// if correct_ret is ERR::FAIL, ignore correct_result.
-	void TEST_REPLACE(const char* src, const char* remove, const char* replace,
-		LibError correct_ret, const char* correct_result)
-	{
-		char dst[PATH_MAX] = {0};
-		TS_ASSERT_EQUALS(path_replace(dst, src, remove, replace), correct_ret);
-		if(correct_ret != ERR::FAIL)
-			TS_ASSERT_STR_EQUALS(dst, correct_result);
-	}
-
 	void TEST_PATH_EXT(const char* path, const char* correct_result)
 	{
 		const char* result = path_extension(path);
@@ -96,22 +80,6 @@ public:
 		TEST_APPEND("abc/", "def/", PATH_APPEND_SLASH, "abc/def/");
 	}
 
-	void test_replace()
-	{
-		// no match
-		TEST_REPLACE("abc/def", "/def", "xx", ERR::FAIL, 0);
-		// normal case: match and remove
-		TEST_REPLACE("abc/def", "abc", "ok", INFO::OK, "ok/def");
-		// caller also stripping /
-		TEST_REPLACE("abc/def", "abc/", "ok", INFO::OK, "ok/def");
-		// empty remove
-		TEST_REPLACE("abc/def", "", "ok", INFO::OK, "ok/abc/def");
-		// empty replace
-		TEST_REPLACE("abc/def", "abc", "", INFO::OK, "def");
-		// remove entire string
-		TEST_REPLACE("abc/def", "abc/def", "", INFO::OK, "");
-	}
-
 	void test_name_only()
 	{
 		// path with filename
@@ -126,33 +94,6 @@ public:
 		TEST_NAME_ONLY("abc", "abc");
 		// empty
 		TEST_NAME_ONLY("", "");
-	}
-
-	void test_last_component()
-	{
-		// path with filename
-		TEST_LAST_COMPONENT("abc/def", "def");
-		// nonportable path with filename
-		TEST_LAST_COMPONENT("abc\\def\\ghi", "ghi");
-		// mixed path with filename
-		TEST_LAST_COMPONENT("abc/def\\ghi", "ghi");
-		// mixed path with filename (2)
-		TEST_LAST_COMPONENT("abc\\def/ghi", "ghi");
-		// filename only
-		TEST_LAST_COMPONENT("abc", "abc");
-		// empty
-		TEST_LAST_COMPONENT("", "");
-
-		// now paths (mostly copied from above test series)
-
-		// path
-		TEST_LAST_COMPONENT("abc/def/", "def/");
-		// nonportable path
-		TEST_LAST_COMPONENT("abc\\def\\ghi\\", "ghi\\");
-		// mixed path
-		TEST_LAST_COMPONENT("abc/def\\ghi/", "ghi/");
-		// mixed path (2)
-		TEST_LAST_COMPONENT("abc\\def/ghi\\", "ghi\\");
 	}
 
 	void test_strip_fn()
@@ -174,9 +115,6 @@ public:
 		// nonportable path
 		TEST_STRIP_FN("abc\\def\\ghi\\", "abc\\def\\ghi\\");
 	}
-
-	// note: no need to test path_dir_only - it is implemented exactly as
-	// done in TEST_STRIP_FN.
 
 	void test_path_ext()
 	{

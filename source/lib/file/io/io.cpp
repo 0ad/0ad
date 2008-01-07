@@ -93,7 +93,7 @@ shared_ptr<u8> io_Allocate(size_t size, off_t ofs)
 {
 	debug_assert(size != 0);
 
-	const size_t misalignment = ofs % BLOCK_SIZE;
+	const size_t misalignment = ofs % SECTOR_SIZE;
 	const size_t paddedSize = (size_t)round_up(size+misalignment, BLOCK_SIZE);
 
 	u8* mem = (u8*)page_aligned_alloc(paddedSize);
@@ -115,10 +115,11 @@ shared_ptr<u8> io_Allocate(size_t size, off_t ofs)
 class BlockIo
 {
 public:
-	LibError Issue(const File& file, off_t alignedOfs, u8* alignedBuf)
+	LibError Issue(PIFile file, off_t alignedOfs, u8* alignedBuf)
 	{
-		m_blockId = BlockId(file.Pathname(), alignedOfs);
-		if(file.Mode() == 'r' && s_blockCache.Retrieve(m_blockId, m_cachedBlock))
+		m_file = file;
+		m_blockId = BlockId(file->Pathname(), alignedOfs);
+		if(file->Mode() == 'r' && s_blockCache.Retrieve(m_blockId, m_cachedBlock))
 		{
 			stats_block_cache(CR_HIT);
 
@@ -153,7 +154,7 @@ public:
 				m_alignedBuf = const_cast<u8*>(m_tempBlock.get());
 			}
 
-			return file.Issue(m_req, alignedOfs, m_alignedBuf, BLOCK_SIZE);
+			return file->Issue(m_req, alignedOfs, m_alignedBuf, BLOCK_SIZE);
 		}
 	}
 
@@ -166,7 +167,7 @@ public:
 			return INFO::OK;
 		}
 
-		RETURN_ERR(File::WaitUntilComplete(m_req, const_cast<u8*&>(block), blockSize));
+		RETURN_ERR(m_file->WaitUntilComplete(m_req, const_cast<u8*&>(block), blockSize));
 
 		if(m_tempBlock)
 			s_blockCache.Add(m_blockId, m_tempBlock);
@@ -176,6 +177,8 @@ public:
 
 private:
 	static BlockCache s_blockCache;
+
+	PIFile m_file;
 
 	BlockId m_blockId;
 
@@ -203,12 +206,12 @@ public:
 		: m_ofs(ofs), m_alignedBuf(alignedBuf), m_size(size)
 		, m_totalIssued(0), m_totalTransferred(0)
 	{
-		m_misalignment = ofs % BLOCK_SIZE;
+		m_misalignment = ofs % SECTOR_SIZE;
 		m_alignedOfs = ofs - (off_t)m_misalignment;
 		m_alignedSize = round_up(m_misalignment+size, BLOCK_SIZE);
 	}
 
-	LibError Run(const File& file, IoCallback cb = 0, uintptr_t cbData = 0)
+	LibError Run(PIFile file, IoCallback cb = 0, uintptr_t cbData = 0)
 	{
 		ScopedIoMonitor monitor;
 
@@ -234,7 +237,7 @@ public:
 
 		debug_assert(m_totalIssued >= m_totalTransferred && m_totalTransferred >= m_size);
 
-		monitor.NotifyOfSuccess(FI_AIO, file.Mode(), m_totalTransferred);
+		monitor.NotifyOfSuccess(FI_AIO, file->Mode(), m_totalTransferred);
 		return INFO::OK;
 	}
 
@@ -287,7 +290,7 @@ private:
 };
 
 
-LibError io_Scan(const File& file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData)
+LibError io_Scan(PIFile file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData)
 {
 	u8* alignedBuf = 0;	// use temporary block buffers
 	IoSplitter splitter(ofs, alignedBuf, size);
@@ -295,7 +298,7 @@ LibError io_Scan(const File& file, off_t ofs, off_t size, IoCallback cb, uintptr
 }
 
 
-LibError io_Read(const File& file, off_t ofs, u8* alignedBuf, size_t size, u8*& data)
+LibError io_Read(PIFile file, off_t ofs, u8* alignedBuf, size_t size, u8*& data)
 {
 	IoSplitter splitter(ofs, alignedBuf, (off_t)size);
 	RETURN_ERR(splitter.Run(file));
@@ -304,20 +307,20 @@ LibError io_Read(const File& file, off_t ofs, u8* alignedBuf, size_t size, u8*& 
 }
 
 
-LibError io_WriteAligned(const File& file, off_t alignedOfs, const u8* alignedData, size_t size)
+LibError io_WriteAligned(PIFile file, off_t alignedOfs, const u8* alignedData, size_t size)
 {
-	debug_assert(IsAligned(alignedOfs, BLOCK_SIZE));
-	debug_assert(IsAligned(alignedData, BLOCK_SIZE));
+	debug_assert(IsAligned(alignedOfs, SECTOR_SIZE));
+	debug_assert(IsAligned(alignedData, SECTOR_SIZE));
 
 	IoSplitter splitter(alignedOfs, const_cast<u8*>(alignedData), (off_t)size);
 	return splitter.Run(file);
 }
 
 
-LibError io_ReadAligned(const File& file, off_t alignedOfs, u8* alignedBuf, size_t size)
+LibError io_ReadAligned(PIFile file, off_t alignedOfs, u8* alignedBuf, size_t size)
 {
-	debug_assert(IsAligned(alignedOfs, BLOCK_SIZE));
-	debug_assert(IsAligned(alignedBuf, BLOCK_SIZE));
+	debug_assert(IsAligned(alignedOfs, SECTOR_SIZE));
+	debug_assert(IsAligned(alignedBuf, SECTOR_SIZE));
 
 	IoSplitter splitter(alignedOfs, alignedBuf, (off_t)size);
 	return splitter.Run(file);

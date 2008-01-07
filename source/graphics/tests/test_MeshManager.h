@@ -1,9 +1,9 @@
 #include "lib/self_test.h"
 
-#include "lib/file/vfs/vfs.h"
+#include "lib/file/VFS/VFS.h"
 #include "lib/file/io/io.h"
 #include "lib/file/path.h"
-#include "lib/file/directory_posix.h"
+#include "lib/file/file_system_posix.h"
 
 #include "graphics/ColladaManager.h"
 #include "graphics/MeshManager.h"
@@ -11,17 +11,19 @@
 
 #include "ps/CLogger.h"
 
-#define MOD_PATH "mods/_test.mesh"
-#define CACHE_PATH "_testcache"
+static Path MOD_PATH("mods/_test.mesh");
+static Path CACHE_PATH("_testcache");
 
-const char* srcDAE = "tests/collada/sphere.dae";
-const char* srcPMD = "tests/collada/sphere.pmd";
-const char* testDAE = "art/meshes/skeletal/test.dae";
-const char* testPMD = "art/meshes/skeletal/test.pmd";
-const char* testBase = "art/meshes/skeletal/test";
+const char* srcDAE = "collada/sphere.dae";
+const char* srcPMD = "collada/sphere.pmd";
+const char* testDAE = "art/skeletons/test.dae";
+const char* testPMD = "art/skeletons/test.pmd";
+const char* testBase = "art/skeletons/test";
 
-const char* srcSkeletonDefs = "tests/collada/skeletons.xml";
+const char* srcSkeletonDefs = "collada/skeletons.xml";
 const char* testSkeletonDefs = "art/skeletons/skeletons.xml";
+
+extern PIVFS g_VFS;
 
 class TestMeshManager : public CxxTest::TestSuite 
 {
@@ -35,37 +37,41 @@ class TestMeshManager : public CxxTest::TestSuite
 
 		// Make sure the required directories doesn't exist when we start,
 		// in case the previous test aborted and left them full of junk
-		directoryPosix.DeleteDirectory(MOD_PATH);
-		directoryPosix.DeleteDirectory(CACHE_PATH);
+//		if(exists(MOD_PATH))
+//			fsPosix.DeleteDirectory(MOD_PATH);
+//		if(exists(MOD_PATH))
+//			fsPosix.DeleteDirectory(CACHE_PATH);
 
-		TS_ASSERT_OK(fs::create_directory(MOD_PATH));
-		TS_ASSERT_OK(fs::create_directory(CACHE_PATH));
+		TS_ASSERT(fs::create_directory(MOD_PATH.external_directory_string()));
+		TS_ASSERT(fs::create_directory(CACHE_PATH.external_directory_string()));
 
-		vfs = CreateVfs();
+		g_VFS = CreateVfs();
 
-		// Mount the mod on /
-		TS_ASSERT_OK(vfs->Mount("", MOD_PATH, VFS_MOUNT_ARCHIVABLE));
+		TS_ASSERT_OK(g_VFS->Mount("", MOD_PATH));
+		TS_ASSERT_OK(g_VFS->Mount("collada/", "tests/collada"));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the
 		// proper game and takes a long time to load.
-		TS_ASSERT_OK(vfs->Mount("cache/", CACHE_PATH, VFS_MOUNT_ARCHIVABLE));
+		TS_ASSERT_OK(g_VFS->Mount("cache/", CACHE_PATH));
 	}
 
 	void deinitVfs()
 	{
-		directoryPosix.DeleteDirectory(MOD_PATH);
-		directoryPosix.DeleteDirectory(CACHE_PATH);
+//		fsPosix.DeleteDirectory(MOD_PATH);
+//		fsPosix.DeleteDirectory(CACHE_PATH);
 
 		path_ResetRootDir();
+
+		g_VFS.reset();
 	}
 
 	void copyFile(const char* src, const char* dst)
 	{
 		// Copy a file into the mod directory, so we can work on it:
 		shared_ptr<u8> data; size_t size = 0;
-		TS_ASSERT_OK(vfs->LoadFile(src, data, size));
-		TS_ASSERT_OK(vfs->CreateFile(dst, data, size));
+		TS_ASSERT_OK(g_VFS->LoadFile(src, data, size));
+		TS_ASSERT_OK(g_VFS->CreateFile(dst, data, size));
 	}
 
 	void buildArchive()
@@ -80,8 +86,7 @@ class TestMeshManager : public CxxTest::TestSuite
 
 	CColladaManager* colladaManager;
 	CMeshManager* meshManager;
-	PIVFS vfs;
-	FileSystem_Posix directoryPosix;
+	FileSystem_Posix fsPosix;
 
 public:
 
@@ -105,7 +110,7 @@ public:
 		//buildArchive();
 		shared_ptr<u8> buf = io_Allocate(100);
 		SAFE_STRCPY((char*)buf.get(), "Test");
-		vfs->CreateFile(testDAE, buf, 4);
+		g_VFS->CreateFile(testDAE, buf, 4);
 	}
 
 	void test_load_pmd_with_extension()
@@ -151,10 +156,10 @@ public:
 		copyFile(srcDAE, testDAE);
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
-		CStr daeName1 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
-		CStr daeName2 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
-		TS_ASSERT(daeName1.length());
-		TS_ASSERT_STR_EQUALS(daeName1, daeName2);
+		VfsPath daeName1 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
+		VfsPath daeName2 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
+		TS_ASSERT(!daeName1.empty());
+		TS_ASSERT_STR_EQUALS(daeName1.string(), daeName2.string());
 		// TODO: it'd be nice to test that it really isn't doing the DAE->PMD
 		// conversion a second time, but there doesn't seem to be an easy way
 		// to check that
@@ -167,7 +172,7 @@ public:
 		copyFile(srcDAE, testDAE);
 		shared_ptr<u8> buf = io_Allocate(100);
 		SAFE_STRCPY((char*)buf.get(), "Not valid XML");
-		vfs->CreateFile(testSkeletonDefs, buf, 13);
+		g_VFS->CreateFile(testSkeletonDefs, buf, 13);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
@@ -181,7 +186,7 @@ public:
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 		shared_ptr<u8> buf = io_Allocate(100);
 		SAFE_STRCPY((char*)buf.get(), "Not valid XML");
-		vfs->CreateFile(testDAE, buf, 13);
+		g_VFS->CreateFile(testDAE, buf, 13);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);

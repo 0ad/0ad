@@ -1035,7 +1035,7 @@ enum FadeRet
  * not yet necessary, though.
  *
  * @param fi Describes the fade operation
- * @param cur_time typically returned via get_time()
+ * @param cur_time typically returned via timer_Time()
  * @param out_val Output gain value, i.e. the current result of the fade.
  * @return FadeRet
  */
@@ -1214,7 +1214,7 @@ static LibError VSrc_reload(VSrc* vs, const VfsPath& pathname, Handle hvs)
 
 	// pathname is a definition file containing the data file name and
 	// its gain.
-	if(fs::extension((const fs::path&)pathname) == ".txt")
+	if(fs::extension(pathname) == ".txt")
 	{
 		shared_ptr<u8> buf; size_t size;
 		RETURN_ERR(g_VFS->LoadFile(pathname, buf, size));
@@ -1828,7 +1828,7 @@ LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
 	if(initial_gain < 0.0f)
 		initial_gain = vs->gain;
 
-	const double cur_time = get_time();
+	const double cur_time = timer_Time();
 
 	FadeInfo& fi = vs->fade;
 	fi.type        = type;
@@ -2015,7 +2015,7 @@ LibError snd_update(const float * pos, const float * dir, const float * up)
 	vm_update();
 
 	// for each source: add / remove buffers; carry out fading.
-	snd_update_time = get_time();	// see decl
+	snd_update_time = timer_Time();	// see decl
 	list_foreach((void (*)(VSrc*))vsrc_update);
 
 	return INFO::OK;

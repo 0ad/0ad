@@ -30,14 +30,14 @@ enum Ia32Vendor
 	IA32_VENDOR_AMD,
 };
 
-extern Ia32Vendor ia32_Vendor();
+LIB_API Ia32Vendor ia32_Vendor();
 
 
 /**
  * @return the colloquial processor generation
  * (5 = Pentium, 6 = Pentium Pro/II/III / K6, 7 = Pentium4 / Athlon, 8 = Core / Opteron)
  **/
-extern uint ia32_Generation();
+LIB_API uint ia32_Generation();
 
 
 /**
@@ -73,7 +73,7 @@ enum IA32Cap
 /**
  * @return whether the CPU supports the indicated IA32Cap / feature flag.
  **/
-extern bool ia32_cap(IA32Cap cap);
+LIB_API bool ia32_cap(IA32Cap cap);
 
 
 //-----------------------------------------------------------------------------
@@ -88,7 +88,7 @@ extern bool ia32_cap(IA32Cap cap);
  * reliably on WinXP. also, the OS already has the APIC registers mapped and
  * in constant use, and we don't want to interfere.
  **/
-extern uint ia32_ApicId();
+LIB_API uint ia32_ApicId();
 
 
 /**
@@ -101,18 +101,18 @@ extern uint ia32_ApicId();
  *
  * this function is used for walking the call stack.
  **/
-extern LibError ia32_GetCallTarget(void* ret_addr, void** target);
+LIB_API LibError ia32_GetCallTarget(void* ret_addr, void** target);
 
 
 /// safe but slow inline-asm version
-extern u64 ia32_rdtsc_safe(void);
+LIB_API u64 ia32_rdtsc_safe(void);
 
 /**
  * @return the current value of the TimeStampCounter (a counter of
  * CPU cycles since power-on, which is useful for high-resolution timing
  * but potentially differs between multiple CPUs)
  **/
-extern u64 ia32_rdtsc();	// only for CppDoc's benefit
+LIB_API u64 ia32_rdtsc();	// only for CppDoc's benefit
 #if CONFIG_RETURN64_EDX_EAX
 # define ia32_rdtsc ia32_asm_rdtsc_edx_eax
 #else
@@ -122,7 +122,7 @@ extern u64 ia32_rdtsc();	// only for CppDoc's benefit
 /**
  * trigger a breakpoint inside this function when it is called.
  **/
-extern void ia32_DebugBreak(void);
+LIB_API void ia32_DebugBreak(void);
 
 
 

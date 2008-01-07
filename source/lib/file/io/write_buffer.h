@@ -1,9 +1,9 @@
 #ifndef INCLUDED_WRITE_BUFFER
 #define INCLUDED_WRITE_BUFFER
 
-class File;
+#include "lib/file/file.h"
 
-class LIB_API WriteBuffer
+class WriteBuffer
 {
 public:
 	WriteBuffer();
@@ -29,10 +29,10 @@ private:
 };
 
 
-class LIB_API UnalignedWriter : public boost::noncopyable
+class UnalignedWriter : public boost::noncopyable
 {
 public:
-	UnalignedWriter(const File& file, off_t ofs);
+	UnalignedWriter(PIFile file, off_t ofs);
 	~UnalignedWriter();
 
 	/**
@@ -49,7 +49,7 @@ public:
 private:
 	LibError WriteBlock() const;
 
-	const File& m_file;
+	PIFile m_file;
 	shared_ptr<u8> m_alignedBuf;
 	mutable off_t m_alignedOfs;
 	mutable size_t m_bytesUsed;

@@ -31,7 +31,7 @@ CFilePacker::CFilePacker(u32 version, const char magicstr[4])
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // Write: write out to file all packed data added so far
-void CFilePacker::Write(const char* filename)
+void CFilePacker::Write(const VfsPath& filename)
 {
 	const u32 size_le = to_le32(u32_from_larger(m_writeBuffer.Size()));
 	m_writeBuffer.Overwrite(&size_le, sizeof(size_le), 8);

@@ -426,6 +426,6 @@ extern bool tex_is_known_extension(const char* filename);
  * case-insensitive.
  * @return size [bytes] or 0 on error (i.e. no codec found).
  **/
-extern size_t tex_hdr_size(const char* fn);
+extern size_t tex_hdr_size(const VfsPath& filename);
 
 #endif	 // INCLUDED_TEX

@@ -443,7 +443,7 @@ void CProfileNode::Call()
 	calls_frame_current++;
 	if( recursion++ == 0 )
 	{
-		start = get_time();
+		start = timer_Time();
 		start_mallocs = get_memory_alloc_count();
 	}
 }
@@ -454,7 +454,7 @@ bool CProfileNode::Return()
 
 	if( ( --recursion == 0 ) && ( calls_frame_current != 0 ) )
 	{
-		time_frame_current += ( get_time() - start );
+		time_frame_current += ( timer_Time() - start );
 		mallocs_frame_current += ( get_memory_alloc_count() - start_mallocs );
 	}
 	return( recursion == 0 );
@@ -527,7 +527,7 @@ void CProfileManager::Stop()
 void CProfileManager::Reset()
 {
 	root->Reset();
-	start = frame_start = get_time();
+	start = frame_start = timer_Time();
 	start_mallocs = frame_start_mallocs = get_memory_alloc_count();
 }
 
@@ -537,11 +537,11 @@ void CProfileManager::Frame()
 	ONCE(malloc_initialize_hook());
 #endif
 	
-	root->time_frame_current = ( get_time() - frame_start );
+	root->time_frame_current = ( timer_Time() - frame_start );
 	root->mallocs_frame_current = ( get_memory_alloc_count() - frame_start_mallocs );
 	root->Frame();
 	
-	frame_start = get_time();
+	frame_start = timer_Time();
 	frame_start_mallocs = get_memory_alloc_count();
 }
 

@@ -20,6 +20,7 @@
 
 #include "lib/debug_stl.h"
 #include "lib/app_hooks.h"
+#include "lib/os_path.h"
 #include "lib/path_util.h"
 #if ARCH_IA32
 # include "lib/sysdep/ia32/ia32.h"
@@ -1894,12 +1895,8 @@ void wdbg_sym_write_minidump(EXCEPTION_POINTERS* exception_pointers)
 {
 	lock();
 
-	// note: we go through some gyrations here (strcpy+strcat) to avoid
-	// dependency on file code (path_append).
-	char N_path[PATH_MAX];
-	strcpy_s(N_path, ARRAY_SIZE(N_path), ah_get_log_dir());
-	strcat_s(N_path, ARRAY_SIZE(N_path), "crashlog.dmp");
-	HANDLE hFile = CreateFile(N_path, GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+	OsPath path = OsPath(ah_get_log_dir())/"crashlog.dmp";
+	HANDLE hFile = CreateFile(path.string().c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 		goto fail;
 

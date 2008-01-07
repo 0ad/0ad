@@ -13,6 +13,12 @@ bool FileExists(const char* pathname)
 	return g_VFS->GetFileInfo(pathname, 0) == INFO::OK;
 }
 
+bool FileExists(const VfsPath& pathname)
+{
+	return g_VFS->GetFileInfo(pathname, 0) == INFO::OK;
+}
+
+
 
 CVFSFile::CVFSFile()
 {
@@ -22,7 +28,7 @@ CVFSFile::~CVFSFile()
 {
 }
 
-PSRETURN CVFSFile::Load(const char* filename)
+PSRETURN CVFSFile::Load(const VfsPath& filename)
 {
 	// Load should never be called more than once, so complain
 	if (m_Buffer)
@@ -34,7 +40,7 @@ PSRETURN CVFSFile::Load(const char* filename)
 	LibError ret = g_VFS->LoadFile(filename, m_Buffer, m_BufferSize);
 	if (ret != INFO::OK)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CVFSFile: file %s couldn't be opened (vfs_load: %d)", filename, ret);
+		LOG(CLogger::Error, LOG_CATEGORY, "CVFSFile: file %s couldn't be opened (vfs_load: %d)", filename.string().c_str(), ret);
 		return PSRETURN_CVFSFile_LoadFailed;
 	}
 

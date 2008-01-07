@@ -67,7 +67,7 @@ public:
 	 *
 	 * @return					Event time
 	 */
-	inline Timer GetTimeStamp( void ) const	{ return m_TimeStamp; }
+	inline TimerUnit GetTimeStamp( void ) const	{ return m_TimeStamp; }
 
 	/**
 	 * Returns the name of the logger which logged the event
@@ -94,7 +94,7 @@ private:
 	LogLevel		m_Level;			// Current level
 	CStr			m_LoggerName;		// Logger which processed the event
 	CStr			m_Message;			// Application message for the event
-	Timer			m_TimeStamp;		// Event logging time
+	TimerUnit		m_TimeStamp;		// Event logging time
 };
 
 /*

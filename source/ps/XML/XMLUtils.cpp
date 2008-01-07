@@ -46,7 +46,7 @@ XMLCh *XMLTranscode(const char *str)
 	return XMLString::transcode(str);
 }
 
-int CVFSInputSource::OpenFile(const char *path)
+int CVFSInputSource::OpenFile(const VfsPath& path)
 {
 	LibError ret = g_VFS->LoadFile(path, m_pBuffer, m_BufferSize);
 	if(ret != INFO::OK)
@@ -55,7 +55,7 @@ int CVFSInputSource::OpenFile(const char *path)
 		return -1;
 	}
 
-	XMLCh *sysId=XMLString::transcode(path);
+	XMLCh *sysId=XMLString::transcode(path.string().c_str());
 	setSystemId(sysId);
 	XMLString::release(&sysId);
 	
