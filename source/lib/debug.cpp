@@ -17,8 +17,8 @@
 #include "app_hooks.h"
 #include "path_util.h"
 #include "debug_stl.h"
-#include "allocators.h"
 #include "fnv_hash.h"
+#include "lib/allocators/allocators.h"
 #include "lib/posix/posix_pthread.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/sysdep/sysdep.h"

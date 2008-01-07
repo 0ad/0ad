@@ -62,9 +62,13 @@
 #include <boost/shared_array.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
-#pragma warning(push, 3)	// filesystem isn't W4-clean
+#if MSC_VERSION
+# pragma warning(push, 3)	// filesystem isn't W4-clean
+#endif
 #include <boost/filesystem.hpp>
-#pragma warning(pop)
+#if MSC_VERSION
+# pragma warning(pop)
+#endif
 using boost::shared_ptr;	// has been added to TR1
 namespace fs = boost::filesystem;
 
