@@ -81,6 +81,7 @@ extern errno_t fopen_s(FILE** pfile, const char* filename, const char* mode);
 extern errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode);
 
 #define fscanf_s fscanf
+#define sscanf_s sscanf
 
 #endif	// #if EMULATE_SECURE_CRT
 #endif	// #ifndef INCLUDED_SECURE_CRT
