@@ -56,7 +56,7 @@ end
 --   library installation rules.
 extern_lib_defs = {
 	boost = {
-		unix_names = { "boost_signals" }
+		unix_names = { "boost_signals", "boost_filesystem" }
 	},
 	cryptopp = {
 	},

@@ -17,7 +17,7 @@ class LeakReporter : public CxxTest::GlobalFixture
 		// (This is done in tearDownWorld so that it doesn't report 'leaks'
 		// if the program is aborted before finishing cleanly.)
 
-#ifdef HAVE_VC_DEBUG_ALLOC
+#if HAVE_VC_DEBUG_ALLOC
 		int flags = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
 		flags |= _CRTDBG_LEAK_CHECK_DF; // check for memory leaks
 		flags |= _CRTDBG_ALLOC_MEM_DF; // also check allocs using the non-debug version of new
@@ -34,7 +34,7 @@ class LeakReporter : public CxxTest::GlobalFixture
 
 	virtual bool setUpWorld()
 	{
-#ifdef _MSC_VER
+#if MSC_VERSION
 		// (Warning: the allocation numbers seem to differ by 3 when you
 		// run in the build process vs the debugger)
 		// _CrtSetBreakAlloc(1952);

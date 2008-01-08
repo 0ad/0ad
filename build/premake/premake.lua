@@ -677,7 +677,7 @@ function setup_atlas_packages()
 	},{	-- extern_libs
 		"boost",
 		"devil",
-		"ffmpeg",
+		--"ffmpeg", -- disabled for now because it causes too many build difficulties
 		"spidermonkey",
 		"wxwidgets",
 		"xerces",

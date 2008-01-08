@@ -945,7 +945,7 @@ JSBool WriteVideoMemToConsole( JSContext* cx, JSObject*, uint argc, jsval* argv,
 {
 	JSU_REQUIRE_NO_PARAMS();
 
-	SDL_VideoInfo* videoInfo = SDL_GetVideoInfo();
+	const SDL_VideoInfo* videoInfo = SDL_GetVideoInfo();
 	g_Console->InsertMessage(L"VRAM: total %d", videoInfo->video_mem);
 	return JS_TRUE;
 }

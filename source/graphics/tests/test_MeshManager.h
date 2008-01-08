@@ -1,6 +1,6 @@
 #include "lib/self_test.h"
 
-#include "lib/file/VFS/VFS.h"
+#include "lib/file/vfs/vfs.h"
 #include "lib/file/io/io.h"
 #include "lib/file/path.h"
 #include "lib/file/file_system_posix.h"
