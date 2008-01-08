@@ -10,7 +10,7 @@ class TestTex : public CxxTest::TestSuite
 	{
 		// generate test data
 		const size_t size = w*h*bpp/8;
-		shared_ptr<u8> img(new u8[size]);
+		shared_ptr<u8> img(new u8[size], ArrayDeleter());
 		std::generate(img.get(), img.get()+size, rand);
 
 		// wrap in Tex
@@ -118,7 +118,7 @@ public:
 
 	void test_img_size()
 	{
-		shared_ptr<u8> img(new u8[100*100*4]);
+		shared_ptr<u8> img(new u8[100*100*4], ArrayDeleter());
 
 		Tex t;
 		TS_ASSERT_OK(tex_wrap(100, 100, 32, TEX_ALPHA, img, 0, &t));

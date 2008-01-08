@@ -26,6 +26,16 @@ shared_ptr<T> DummySharedPtr(T* ptr)
 	return shared_ptr<T>(ptr, DummyDeleter<T>());
 }
 
+struct ArrayDeleter
+{
+	template <typename T>
+	void operator()(T* p)
+	{
+		delete[] p;
+	}
+};
+
+
 LIB_API shared_ptr<u8> Allocate(size_t size);
 
 #endif	// #ifndef INCLUDED_SHARED_PTR

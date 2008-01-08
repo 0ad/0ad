@@ -134,7 +134,7 @@ shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, 
 {
 	const bool flip = !tex_orientations_match(src_flags, dst_orientation);
 
-	shared_ptr<RowPtr> rows(new RowPtr[h]);
+	shared_ptr<RowPtr> rows(new RowPtr[h], ArrayDeleter());
 
 	// determine start position and direction
 	RowPtr pos        = flip? data+pitch*(h-1) : data;
