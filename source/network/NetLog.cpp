@@ -461,6 +461,7 @@ void CNetLogConsoleSink::Write( char c )
 CNetLogger::CNetLogger( const CStr& name )
 {
 	m_Name = name;
+	m_Level = LOG_LEVEL_ALL;
 }
 
 //-----------------------------------------------------------------------------

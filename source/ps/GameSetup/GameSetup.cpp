@@ -78,9 +78,10 @@
 #include "sound/CMusicPlayer.h"
 #include "sound/JSI_Sound.h"
 
-#include "network/SessionManager.h"
-#include "network/Server.h"
 #include "network/Client.h"
+#include "network/NetLog.h"
+#include "network/Server.h"
+#include "network/SessionManager.h"
 
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -834,6 +835,10 @@ void Shutdown(uint flags)
 	TIMER_BEGIN("shutdown CSocketBase");
 	CSocketBase::Shutdown();
 	TIMER_END("shutdown CSocketBase");
+
+	TIMER_BEGIN("shutdown CNetLogManager");
+	CNetLogManager::Shutdown();
+	TIMER_END("shutdown CNetLogManager");
 
 	// Really shut down the i18n system. Any future calls
 	// to translate() will crash.
