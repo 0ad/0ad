@@ -6,23 +6,22 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="0"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="infantry/general/dude/dudeattack.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="infantry/general/dude/dudeattack1.psa" name="Attack" speed="100"/>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="50"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation event=".5" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="50"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/temp/kart_sign_cavalry_javelinist_b.xml" attachpoint="head_extra"/>
-        <prop actor="props/units/heads/placeholder_hele_kart.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_numid_basic.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/shields/numidian_round_1.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/plac_kart_b.dds</texture>
+      <texture>skeletal/kart_cjv_b_1.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
