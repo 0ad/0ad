@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "lib/allocators/shared_ptr.h" // ArrayDeleter
 #include "lib/path_util.h"
 #include "tex.h"
 

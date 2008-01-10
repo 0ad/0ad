@@ -190,6 +190,9 @@ static HDATA* h_data_from_idx(const i32 idx)
 		page = (HDATA*)calloc(1, PAGE_SIZE);
 		if(!page)
 			return 0;
+		// Initialise all the VfsPath members
+		for(uint i = 0; i < hdata_per_page; ++i)
+			new (&page[i].pathname) VfsPath;
 	}
 
 	// note: VC7.1 optimizes the divides to shift and mask.
@@ -613,8 +616,8 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 #endif
 
 	hd->pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::string memory
-
 	memset(hd, 0, sizeof(*hd));
+	new (&hd->pathname) VfsPath;	// FIXME too: necessary because otherwise it'll break if we reuse this page
 
 	free_idx(idx);
 
@@ -832,6 +835,9 @@ void h_mgr_shutdown()
 	// free HDATA array
 	for(uint j = 0; j < num_pages; j++)
 	{
+		if (pages[j])
+			for(uint k = 0; k < hdata_per_page; ++k)
+				pages[j][k].pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::string memory
 		free(pages[j]);
 		pages[j] = 0;
 	}
