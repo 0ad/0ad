@@ -273,6 +273,7 @@ void timer_DisplayClientTotals()
 		num_clients--;
 
 		const double sum = tc->sum.Seconds();
+		debug_assert(sum >= 0.0);
 
 		// determine scale factor for pretty display
 		double scale = 1e6;

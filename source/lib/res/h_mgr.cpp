@@ -190,9 +190,12 @@ static HDATA* h_data_from_idx(const i32 idx)
 		page = (HDATA*)calloc(1, PAGE_SIZE);
 		if(!page)
 			return 0;
+
+#include "lib/nommgr.h"	// placement new
 		// Initialise all the VfsPath members
 		for(uint i = 0; i < hdata_per_page; ++i)
 			new (&page[i].pathname) VfsPath;
+#include "lib/mmgr.h"
 	}
 
 	// note: VC7.1 optimizes the divides to shift and mask.
@@ -617,7 +620,9 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 
 	hd->pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::string memory
 	memset(hd, 0, sizeof(*hd));
+#include "lib/nommgr.h"	// placement new
 	new (&hd->pathname) VfsPath;	// FIXME too: necessary because otherwise it'll break if we reuse this page
+#include "lib/mmgr.h"
 
 	free_idx(idx);
 

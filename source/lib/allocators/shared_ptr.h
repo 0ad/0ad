@@ -12,9 +12,9 @@ private:
 	size_t m_size;
 };
 
-template<class T>
 struct DummyDeleter
 {
+	template<class T>
 	void operator()(T*)
 	{
 	}
@@ -23,19 +23,19 @@ struct DummyDeleter
 template<class T>
 shared_ptr<T> DummySharedPtr(T* ptr)
 {
-	return shared_ptr<T>(ptr, DummyDeleter<T>());
+	return shared_ptr<T>(ptr, DummyDeleter());
 }
 
 struct ArrayDeleter
 {
-	template <typename T>
+	template<class T>
 	void operator()(T* p)
 	{
 		delete[] p;
 	}
 };
 
-
+// (note: uses CheckedArrayDeleter)
 LIB_API shared_ptr<u8> Allocate(size_t size);
 
 #endif	// #ifndef INCLUDED_SHARED_PTR

@@ -23,7 +23,7 @@ class TestTex : public CxxTest::TestSuite
 		memset(&t, 0, sizeof(t));
 
 		// decode from file format
-		shared_ptr<u8> ptr(da.base, DummyDeleter<u8>());
+		shared_ptr<u8> ptr = DummySharedPtr(da.base);
 		TS_ASSERT_OK(tex_decode(ptr, da.cur_size, &t));
 
 		// make sure pixel format gets converted completely to plain
@@ -104,7 +104,7 @@ public:
 	void test_mipmap_create()
 	{
 		static u8 imgData[] = { 0x10,0x20,0x30, 0x40,0x60,0x80, 0xA0,0xA4,0xA8, 0xC0,0xC1,0xC2 };
-		shared_ptr<u8> img(imgData, DummyDeleter<u8>());
+		shared_ptr<u8> img = DummySharedPtr(imgData);
 		// assumes 2x2 box filter algorithm with rounding
 		static const u8 mipmap[] = { 0x6C,0x79,0x87 };
 		Tex t;

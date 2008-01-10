@@ -22,10 +22,10 @@ void PageAlignedDeleter::operator()(u8* p)
 static AllocatorChecker s_allocatorChecker;
 #endif
 
-class CheckedDeleter
+class CheckedArrayDeleter
 {
 public:
-	CheckedDeleter(size_t size)
+	CheckedArrayDeleter(size_t size)
 		: m_size(size)
 	{
 	}
@@ -53,5 +53,5 @@ shared_ptr<u8> Allocate(size_t size)
 	s_allocatorChecker.OnAllocate(p, size);
 #endif
 
-	return shared_ptr<u8>(p, CheckedDeleter(size));
+	return shared_ptr<u8>(p, CheckedArrayDeleter(size));
 }

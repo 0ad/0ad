@@ -181,7 +181,7 @@ static LibError tex_write(Tex* t, const VfsPath& filename)
 	LibError ret = INFO::OK;
 	{
 		(void)da_set_size(&da, round_up(da.cur_size, BLOCK_SIZE));
-		shared_ptr<u8> file(da.base, DummyDeleter<u8>());
+		shared_ptr<u8> file = DummySharedPtr(da.base);
 		const ssize_t bytes_written = g_VFS->CreateFile(filename, file, da.pos);
 		if(bytes_written > 0)
 			debug_assert(bytes_written == (ssize_t)da.pos);
