@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_cavalry_ranged_javelinist"
->
+<Entity	Parent="template_unit_cavalry_ranged_javelinist">
+
 	<Traits>
 	
 		<Id>
@@ -24,4 +23,5 @@
 	</Traits>
 
 	<Actor>units/carthaginians/cavalry_javelinist_b.xml</Actor>
+	
 </Entity>

@@ -13,10 +13,9 @@
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/units/heads/head_numid_basic.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_numid_all.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/shields/numidian_round_1.xml" attachpoint="shield"/>
       </props>
       <texture>skeletal/kart_cjv_b_1.dds</texture>
     </variant>
