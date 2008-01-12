@@ -97,7 +97,7 @@ bool CSimulation::Update(double frameTime)
 				// cutting down on Interpolate and rendering, and call us a few times
 				// with frameTime == 0 to give us a chance to catch up.
 				ok = false;
-				debug_printf("WARNING: missing a simulation turn due to low FPS\n");
+				LOG(CLogger::Warning, "simulation", "Missing a simulation turn due to low FPS");
 			}
 		}
 		else

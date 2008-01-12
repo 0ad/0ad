@@ -374,21 +374,25 @@ void CProfileNode::Frame()
 
 // TODO: these should probably only count allocations that occur in the thread being profiled
 #if HAVE_VC_DEBUG_ALLOC
-static intptr_t memory_alloc_bias = 0; // so we can subtract the allocations caused by this function
+static intptr_t memory_alloc_count = 0;
+static int (*old_alloc_hook) (int, void*, size_t, int, long, const unsigned char*, int);
+static int alloc_hook(int allocType, void* userData, size_t size, int blockType,
+					  long requestNumber, const unsigned char* filename, int lineNumber)
+{
+	if (allocType == _HOOK_ALLOC || allocType == _HOOK_REALLOC)
+		cpu_AtomicAdd(&memory_alloc_count, 1);
+	if (old_alloc_hook)
+		return old_alloc_hook(allocType, userData, size, blockType, requestNumber, filename, lineNumber);
+	else
+		return 1;
+}
+static void alloc_hook_initialize()
+{
+	old_alloc_hook = _CrtSetAllocHook(&alloc_hook);
+}
 static long get_memory_alloc_count()
 {
-	// TODO: it's probably better to use _CrtSetAllocHook to increment a
-	// user-visible counter. (I didn't know that existed when I wrote this.)
-
-	// Find the number of allocations that have ever occurred, by doing a dummy
-	// allocation and checking its request number
-	void* p = malloc(1);
-	long requestNumber = 0;
-	int ok = _CrtIsMemoryBlock(p, 1, &requestNumber, NULL, NULL);
-	UNUSED2(ok);
-	free(p);
-	cpu_AtomicAdd(&memory_alloc_bias, 1);
-	return requestNumber - memory_alloc_bias;
+	return memory_alloc_count;
 }
 #elif defined(GLIBC_MALLOC_HOOK)
 // Set up malloc hooks to count allocations - see
@@ -410,7 +414,7 @@ static void *malloc_hook(size_t size, const void* caller)
 	__malloc_hook = malloc_hook;
 	return result;
 }
-static void malloc_initialize_hook()
+static void alloc_hook_initialize()
 {
 	CScopeLock lock(malloc_mutex);
 	
@@ -430,6 +434,9 @@ static long get_memory_alloc_count()
 	return malloc_count;
 }
 #else
+static void alloc_hook_initialize()
+{
+}
 static long get_memory_alloc_count()
 {
 	// TODO: don't show this column of data when we don't have sensible values
@@ -533,9 +540,7 @@ void CProfileManager::Reset()
 
 void CProfileManager::Frame()
 {
-#ifdef GLIBC_MALLOC_HOOK
-	ONCE(malloc_initialize_hook());
-#endif
+	ONCE(alloc_hook_initialize());
 	
 	root->time_frame_current = ( timer_Time() - frame_start );
 	root->mallocs_frame_current = ( get_memory_alloc_count() - frame_start_mallocs );
