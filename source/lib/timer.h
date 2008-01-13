@@ -98,7 +98,7 @@ public:
 	void SetFromTimer();
 	void AddDifference(TimerUnit t0, TimerUnit t1);
 	void Subtract(TimerUnit t);
-	double Seconds() const;
+	std::string ToString() const;
 
 private:
 	u64 m_ticks;

@@ -81,7 +81,7 @@ static size_t bmp_hdr_size(const u8* file)
 // requirements: uncompressed, direct colour, bottom up
 static LibError bmp_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
-	u8* file         = da->base;
+	u8* file = da->base;
 
 	const BmpHeader* hdr = (const BmpHeader*)file;
 	const long w       = (long)read_le32(&hdr->biWidth);
@@ -124,7 +124,7 @@ static LibError bmp_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 	const BmpHeader hdr =
 	{
 		// BITMAPFILEHEADER
-		0x4d42,				// bfType = 'B','M'
+		0x4D42,				// bfType = 'B','M'
 		(u32)file_size,		// bfSize
 		0, 0,				// bfReserved1,2
 		hdr_size,			// bfOffBits

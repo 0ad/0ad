@@ -189,9 +189,24 @@ void TimerUnit::Subtract(TimerUnit t)
 	m_ticks -= t.m_ticks;
 }
 
-double TimerUnit::Seconds() const
+std::string TimerUnit::ToString() const
 {
-	return m_ticks / cpu_ClockFrequency();
+	debug_assert(m_ticks >= 0.0);
+
+	// determine scale factor for pretty display
+	double scale = 1.0;
+	const char* unit = " c";
+	if(m_ticks > 10000000000)	// 10 Gc
+		scale = 1e-9, unit = " Gc";
+	else if(m_ticks > 10000000)	// 10 Mc
+		scale = 1e-6, unit = " Mc";
+	else if(m_ticks > 10000)	// 10 kc
+		scale = 1e-3, unit = " kc";
+
+	std::stringstream ss;
+	ss << m_ticks*scale;
+	ss << unit;
+	return ss.str();
 }
 
 #else
@@ -216,9 +231,22 @@ void TimerUnit::Subtract(TimerUnit t)
 	m_seconds -= t.m_seconds;
 }
 
-double TimerUnit::Seconds() const
+std::string TimerUnit::ToString() const
 {
-	return m_seconds;
+	debug_assert(m_seconds >= 0.0);
+
+	// determine scale factor for pretty display
+	double scale = 1e6;
+	const char* unit = " us";
+	if(m_seconds > 1.0)
+		scale = 1, unit = " s";
+	else if(m_seconds > 1e-3)
+		scale = 1e3, unit = " ms";
+
+	std::stringstream ss;
+	ss << m_seconds*scale;
+	ss << unit;
+	return ss.str();
 }
 
 #endif
@@ -272,18 +300,8 @@ void timer_DisplayClientTotals()
 		clients = tc->next;
 		num_clients--;
 
-		const double sum = tc->sum.Seconds();
-		debug_assert(sum >= 0.0);
-
-		// determine scale factor for pretty display
-		double scale = 1e6;
-		const char* unit = "us";
-		if(sum > 1.0)
-			scale = 1, unit = "s";
-		else if(sum > 1e-3)
-			scale = 1e3, unit = "ms";
-
-		debug_printf("  %s: %g %s (%dx)\n", tc->description, sum*scale, unit, tc->num_calls);
+		const std::string duration = tc->sum.ToString();
+		debug_printf("  %s: %s (%dx)\n", tc->description, duration.c_str(), tc->num_calls);
 	}
 
 	debug_printf("-----------------------------------------------------\n");

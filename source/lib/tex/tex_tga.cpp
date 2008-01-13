@@ -98,7 +98,7 @@ static size_t tga_hdr_size(const u8* file)
 // requirements: uncompressed, direct colour, bottom up
 static LibError tga_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
-	u8* file         = da->base;
+	u8* file = da->base;
 
 	TgaHeader* hdr = (TgaHeader*)file;
 	const u8 type  = hdr->img_type;
@@ -109,7 +109,7 @@ static LibError tga_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 	uint flags = 0;
 	flags |= (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
-	if(desc & 0x0f)	// alpha bits
+	if(desc & 0x0F)	// alpha bits
 		flags |= TEX_ALPHA;
 	if(bpp == 8)
 		flags |= TEX_GREY;
