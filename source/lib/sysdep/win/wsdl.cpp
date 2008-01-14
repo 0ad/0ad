@@ -23,7 +23,6 @@
 #include <WindowsX.h>	// message crackers
 
 #include "lib/posix/posix_pthread.h"
-#include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
 #include "lib/module_init.h"
 #include "wutil.h"
 #include "winit.h"
@@ -33,6 +32,8 @@
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "gdi32.lib")
 #endif
+
+#include "lib/ogl.h"		// needed to pull in the delay-loaded opengl32.dll
 
 WINIT_REGISTER_LATE_INIT(wsdl_Init);
 WINIT_REGISTER_EARLY_SHUTDOWN(wsdl_Shutdown);
@@ -197,7 +198,9 @@ static HWND wsdl_CreateWindow(int w, int h)
 		return 0;
 	}
 
-	const DWORD windowStyle = fullscreen? WS_POPUP|WS_VISIBLE : WS_POPUPWINDOW|WS_VISIBLE|WS_CAPTION|WS_MINIMIZEBOX;
+	DWORD windowStyle = fullscreen? WS_POPUP : WS_POPUPWINDOW|WS_CAPTION|WS_MINIMIZEBOX;
+	windowStyle |= WS_VISIBLE;
+	windowStyle |= WS_CLIPCHILDREN|WS_CLIPSIBLINGS;	// MSDN SetPixelFormat says this is required
 
 	// Calculate the size of the outer window, so that the client area has
 	// the desired dimensions.
@@ -246,12 +249,11 @@ static void SetPixelFormat(HDC g_hDC, int bpp)
 		0, 0, 0, 0						// bReserved, dw*Mask are unused
 	};
 
-	// GDI pixel format functions apparently require opengl to be loaded
-	// (may not have been done yet, if delay-loaded). call a gl function
-	// (no-op) to make sure.
-	(void)glGetError();
+	// note: the GDI pixel format functions require opengl32.dll to be loaded.
+	// a deadlock on the next line is probably due to VLD's LdrLoadDll hook.
 
 	const int pf = ChoosePixelFormat(g_hDC, &pfd);
+	debug_assert(pf >= 1);
 	WARN_IF_FALSE(SetPixelFormat(g_hDC, pf, &pfd));
 }
 
@@ -285,6 +287,7 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	g_hWnd = wsdl_CreateWindow(w, h);
 	if(!g_hWnd || g_hWnd == INVALID_HANDLE_VALUE)
 		return 0;
+
 	g_hDC = GetDC(g_hWnd);
 
 	SetPixelFormat(g_hDC, bpp);

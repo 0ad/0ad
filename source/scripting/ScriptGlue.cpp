@@ -653,7 +653,6 @@ JSBool StartJsTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rva
 	uint slot = ToPrimitive<uint>(argv[0]);
 	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
-	debug_assert(js_start_times[slot].Seconds() == 0.0);
 
 	js_start_times[slot].SetFromTimer();
 	return JS_TRUE;
@@ -666,7 +665,6 @@ JSBool StopJsTimer(JSContext* cx, JSObject*, uint argc, jsval* argv, jsval* rval
 	uint slot = ToPrimitive<uint>(argv[0]);
 	if (slot >= MAX_JS_TIMERS)
 		return JS_FALSE;
-	debug_assert(js_start_times[slot].Seconds() != 0.0);
 
 	TimerUnit now;
 	now.SetFromTimer();
