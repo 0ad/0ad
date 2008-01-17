@@ -25,6 +25,8 @@ public:
 
 		CStr ActorName;
 		std::vector<u8> ActorVariation;
+
+		bool operator< (const CObjectManager::ObjectKey& a) const;
 	};
 
 public:
@@ -60,9 +62,5 @@ private:
 	std::map<ObjectKey, CObjectEntry*> m_Objects;
 	std::map<CStr, CObjectBase*> m_ObjectBases;
 };
-
-
-// Global comparison operator
-bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::ObjectKey& b);
 
 #endif

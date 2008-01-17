@@ -24,14 +24,14 @@ struct second_equals
 	template<typename S> bool operator()(const S& v) { return v.second == x; }
 };
 
-bool operator< (const CObjectManager::ObjectKey& a, const CObjectManager::ObjectKey& b)
+bool CObjectManager::ObjectKey::operator< (const CObjectManager::ObjectKey& a) const
 {
-	if (a.ActorName < b.ActorName)
+	if (ActorName < a.ActorName)
 		return true;
-	else if (a.ActorName > b.ActorName)
+	else if (ActorName > a.ActorName)
 		return false;
 	else
-		return a.ActorVariation < b.ActorVariation;
+		return ActorVariation < a.ActorVariation;
 }
 
 CObjectManager::CObjectManager(CMeshManager& meshManager, CSkeletonAnimManager& skeletonAnimManager)
