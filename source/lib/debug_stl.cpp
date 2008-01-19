@@ -572,9 +572,7 @@ template<class T> bool get_container_info(const T& t, size_t size, size_t el_siz
 	// construct a copy of begin() at it_mem. placement new is necessary
 	// because VC8's secure copy ctor apparently otherwise complains about
 	// invalid values in the (uninitialized) destination memory.
-#include "lib/nommgr.h"
 	new(it_mem) const_iterator(t.begin());
-#include "lib/mmgr.h"
 	return true;
 }
 

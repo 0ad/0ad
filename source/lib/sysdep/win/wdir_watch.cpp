@@ -159,13 +159,11 @@ static Events* pending_events;
 static void AllocStaticObjects()
 {
 	STATIC_STORAGE(ss, 200);
-#include "lib/nommgr.h"
 	void* addr1 = static_calloc(&ss, sizeof(Watches));
 	watches = new(addr1) Watches;
 
 	void* addr2 = static_calloc(&ss, sizeof(Events));
 	pending_events = new(addr2) Events;
-#include "lib/mmgr.h"
 }
 
 static void FreeStaticObjects()

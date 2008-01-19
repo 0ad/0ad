@@ -107,7 +107,7 @@ return false;
 		// nothing to do; will return false below
 	}
 	else if(ret < 0)
-		DISPLAY_ERROR(L"Archive build failed");
+		DEBUG_DISPLAY_ERROR(L"Archive build failed");
 	else if(ret == INFO::OK)
 		g_GUI.SendEventToAll("archivebuildercomplete");
 	// in progress

@@ -47,7 +47,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		// note: prefer simple error (which also generates stack trace) to
 		// exception, because it is guaranteed to work (no issues with the
 		// debugger swallowing exceptions).
-		//DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
+		//DEBUG_DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
 		//RaiseException(0xf001,0,0,0);
 
 		// note: we don't want any kind of dialog to be raised, because

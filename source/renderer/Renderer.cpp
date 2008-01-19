@@ -1574,7 +1574,7 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 		}
 		// .. not first: make sure texture size matches
 		else if(base != this_width || bpp != this_bpp)
-			DISPLAY_ERROR(L"Alpha maps are not identically sized (including pixel depth)");
+			DEBUG_DISPLAY_ERROR(L"Alpha maps are not identically sized (including pixel depth)");
 	}
 
 	//

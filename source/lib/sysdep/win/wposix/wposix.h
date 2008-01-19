@@ -35,8 +35,6 @@
 
 // misc routines
 
-extern char* getcwd(char*, size_t);
-
 // user tests if available via #ifdef; can't use enum.
 #define _SC_PAGESIZE                   1
 #define _SC_PAGE_SIZE                  1

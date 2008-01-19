@@ -7,7 +7,6 @@ Xerces Error Handler for Pyrogenesis (and the GUI)
 // ---------------------------------------------------------------------------
 
 #include "precompiled.h"
-#include "lib/nommgr.h"
 
 #include "XercesErrorHandler.h"
 #include <iostream>

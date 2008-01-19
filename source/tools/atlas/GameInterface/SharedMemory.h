@@ -1,17 +1,9 @@
 #ifndef INCLUDED_SHAREDMEMORY
 #define INCLUDED_SHAREDMEMORY
 
-// We want to use placement new, which breaks when compiling Debug configurations
-// in the game and in wx, and they both need different workarounds.
+// we want to use placement new without grief
 // (Duplicated in Shareable.h)
-#ifdef new
-# define SHAREABLE_USED_NOMMGR
-# ifdef __WXWINDOWS__
-#  undef new
-# else
-#  include "lib/nommgr.h"
-# endif
-#endif
+#undef new
 
 namespace AtlasMessage
 {
@@ -39,26 +31,5 @@ template<typename T> void ShareableDelete(T* p)
 #define SHAREABLE_NEW(T, data) (new ( (T*)AtlasMessage::ShareableMallocFptr(sizeof(T)) ) T data)
 
 }
-
-
-#ifdef SHAREABLE_USED_NOMMGR
-// # ifdef __WXWINDOWS__ // TODO: portability to non-Windows wx
-// #  define new  new( _NORMAL_BLOCK, __FILE__, __LINE__)
-// # else
-// #  include "mmgr.h"
-// # endif
-// Actually, we don't want to redefine 'new', because it conflicts with all users
-// of SHAREABLE_NEW. So just leave it undefined, and put up with the less
-// informative leak messages.
-# undef SHAREABLE_USED_NOMMGR
-// Oh, but we don't want other game headers to include mmgr.h again.
-// So let's just cheat horribly and remove the options which cause it to
-// redefine new.
-# undef  HAVE_VC_DEBUG_ALLOC
-# define HAVE_VC_DEBUG_ALLOC 0
-# undef  CONFIG_USE_MMGR
-# define CONFIG_USE_MMGR 0
-#endif
-
 
 #endif // INCLUDED_SHAREDMEMORY

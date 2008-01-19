@@ -10,6 +10,7 @@
 
 #include "precompiled.h"
 
+#if 0
 
 ERROR_ASSOCIATE(ERR::MEM_ALLOC_NOT_FOUND, "Not a valid allocated address", -1);
 ERROR_ASSOCIATE(ERR::MEM_OVERWRITTEN, "Wrote to memory outside valid allocation", -1);
@@ -1418,3 +1419,5 @@ void operator delete[](void* p, const char* file, int line, const char* func) th
 }
 
 #endif	// #if CONFIG_USE_MMGR
+
+#endif

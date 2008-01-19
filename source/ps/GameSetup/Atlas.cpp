@@ -14,7 +14,7 @@ DllLoader atlas_dll("AtlasUI");
 enum AtlasRunFlags
 {
 	// used by ATLAS_RunIfOnCmdLine; makes any error output go through
-	// DISPLAY_ERROR rather than a GUI dialog box (because GUI init was
+	// DEBUG_DISPLAY_ERROR rather than a GUI dialog box (because GUI init was
 	// skipped to reduce load time).
 	ATLAS_NO_GUI = 1
 };
@@ -26,9 +26,9 @@ static void ATLAS_Run(const CmdLineArgs& args, int flags = 0)
 	if(!atlas_dll.LoadDLL())
 	{
 		if(flags & ATLAS_NO_GUI)
-			DISPLAY_ERROR(L"The Atlas UI was not successfully loaded and therefore cannot be started as requested.");
+			DEBUG_DISPLAY_ERROR(L"The Atlas UI was not successfully loaded and therefore cannot be started as requested.");
 		else
-			DISPLAY_ERROR(L"The Atlas UI was not successfully loaded and therefore cannot be started as requested.");// TODO: implement GUI error message
+			DEBUG_DISPLAY_ERROR(L"The Atlas UI was not successfully loaded and therefore cannot be started as requested.");// TODO: implement GUI error message
 		return;
 	}
 

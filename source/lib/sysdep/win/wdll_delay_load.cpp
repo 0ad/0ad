@@ -181,8 +181,6 @@ CountOfImports(PCImgThunkData pitdBase) {
 
 extern "C" PUnloadInfo __puiHead = 0;
 
-#include "lib/nommgr.h"
-
 struct ULI : public UnloadInfo
 {
 	ULI(PCImgDelayDescr pidd_)
@@ -212,8 +210,6 @@ struct ULI : public UnloadInfo
 		__puiHead = this;
 	}
 };
-
-#include "lib/mmgr.h"
 
 
 // For our own internal use, we convert to the old
@@ -354,9 +350,7 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
         if (hmodT != hmod) {
             // add lib to unload list if we have unload data
             if (pidd->rvaUnloadIAT) {
-#include "lib/nommgr.h"
                 new ULI(pidd);
-#include "lib/mmgr.h"
                 }
             }
         else {

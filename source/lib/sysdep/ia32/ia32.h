@@ -16,6 +16,7 @@
 #endif
 
 #include "ia32_asm.h"
+#include "lib/config2.h"	// CONFIG2_IA32_RETURN64_EDX_EAX
 
 
 /**
@@ -113,7 +114,7 @@ LIB_API u64 ia32_rdtsc_safe(void);
  * but potentially differs between multiple CPUs)
  **/
 LIB_API u64 ia32_rdtsc();	// only for CppDoc's benefit
-#if CONFIG_RETURN64_EDX_EAX
+#if CONFIG2_IA32_RETURN64_EDX_EAX
 # define ia32_rdtsc ia32_asm_rdtsc_edx_eax
 #else
 # define ia32_rdtsc ia32_rdtsc_safe

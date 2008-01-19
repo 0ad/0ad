@@ -45,17 +45,9 @@ after their definition.
 #include <vector>
 #include <string>
 
-// We want to use placement new, which breaks when compiling Debug configurations
-// in the game and in wx, and they both need different workarounds.
+// we want to use placement new without grief
 // (Duplicated in SharedMemory.h)
-#ifdef new
-# define SHAREABLE_USED_NOMMGR
-# ifdef __WXWINDOWS__
-#  undef new
-# else
-#  include "lib/nommgr.h"
-# endif
-#endif
+#undef new
 
 namespace AtlasMessage
 {
@@ -294,14 +286,5 @@ public:
 
 
 }
-
-#ifdef SHAREABLE_USED_NOMMGR
-# ifdef __WXWINDOWS__ // TODO: portability to non-Windows wx
-#  define new  new( _NORMAL_BLOCK, __FILE__, __LINE__)
-# else
-#  include "mmgr.h"
-# endif
-# undef SHAREABLE_USED_NOMMGR
-#endif
 
 #endif // INCLUDED_SHAREABLE

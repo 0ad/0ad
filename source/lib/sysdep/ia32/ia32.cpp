@@ -202,7 +202,7 @@ public:
 	}
 };
 
-static void DetectIdentifierString(char* identifierString)
+static void DetectIdentifierString(char* identifierString, size_t maxChars)
 {
 	// get brand string (if available)
 	// note: ia32_asm_cpuid writes 4 u32s directly to identifierString -
@@ -213,9 +213,6 @@ static void DetectIdentifierString(char* identifierString)
 	   ia32_asm_cpuid(0x80000003, u32_string+4) &&
 	   ia32_asm_cpuid(0x80000004, u32_string+8))
 		have_brand_string = true;
-
-	// note: we previously verified max_chars is long enough, so copying
-	// short literals into it is safe.
 
 	// fall back to manual detect of CPU type because either:
 	// - CPU doesn't support brand string (we use a flag to indicate this
@@ -235,15 +232,15 @@ static void DetectIdentifierString(char* identifierString)
 			if(family == 6)
 			{
 				if(model == 3 || model == 7)
-					SAFE_STRCPY(identifierString, "AMD Duron");
+					strcpy_s(identifierString, maxChars, "AMD Duron");
 				else if(model <= 5)
-					SAFE_STRCPY(identifierString, "AMD Athlon");
+					strcpy_s(identifierString, maxChars, "AMD Athlon");
 				else
 				{
 					if(ia32_cap(IA32_CAP_AMD_MP))
-						SAFE_STRCPY(identifierString, "AMD Athlon MP");
+						strcpy_s(identifierString, maxChars, "AMD Athlon MP");
 					else
-						SAFE_STRCPY(identifierString, "AMD Athlon XP");
+						strcpy_s(identifierString, maxChars, "AMD Athlon XP");
 				}
 			}
 			break;
@@ -253,13 +250,13 @@ static void DetectIdentifierString(char* identifierString)
 			if(family == 6)
 			{
 				if(model == 1)
-					SAFE_STRCPY(identifierString, "Intel Pentium Pro");
+					strcpy_s(identifierString, maxChars, "Intel Pentium Pro");
 				else if(model == 3 || model == 5)
-					SAFE_STRCPY(identifierString, "Intel Pentium II");
+					strcpy_s(identifierString, maxChars, "Intel Pentium II");
 				else if(model == 6)
-					SAFE_STRCPY(identifierString, "Intel Celeron");	
+					strcpy_s(identifierString, maxChars, "Intel Celeron");	
 				else
-					SAFE_STRCPY(identifierString, "Intel Pentium III");
+					strcpy_s(identifierString, maxChars, "Intel Pentium III");
 			}
 			break;
 		}
@@ -282,7 +279,7 @@ const char* cpu_IdentifierString()
 	// 3 calls x 4 registers x 4 bytes = 48
 	static char identifierString[48+1] = {'\0'};
 	if(identifierString[0] == '\0')
-		DetectIdentifierString(identifierString);
+		DetectIdentifierString(identifierString, ARRAY_SIZE(identifierString));
 	return identifierString;
 }
 

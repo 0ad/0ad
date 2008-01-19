@@ -46,18 +46,6 @@ WINIT_REGISTER_MAIN_SHUTDOWN(wdbg_sym_Shutdown);
 // nested stack traces are ignored and only the error is displayed.
 
 
-// protects the non-reentrant dbghelp library.
-static void lock()
-{
-	win_lock(WDBG_SYM_CS);
-}
-
-static void unlock()
-{
-	win_unlock(WDBG_SYM_CS);
-}
-
-
 //----------------------------------------------------------------------------
 // dbghelp
 //----------------------------------------------------------------------------
@@ -162,7 +150,7 @@ static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, c
 		SYMBOL_INFOW* sym = &sp.si;
 		if(SymFromAddrW(hProcess, addr, 0, sym))
 		{
-			snprintf(sym_name, DBG_SYMBOL_LEN, "%ws", sym->Name);
+			sprintf_s(sym_name, DBG_SYMBOL_LEN, "%ws", sym->Name);
 			successes++;
 		}
 	}
@@ -184,7 +172,7 @@ static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, c
 				// problem and is balanced by not having to do this from every
 				// call site (full path is too long to display nicely).
 				const char* base_name = path_name_only(line_info.FileName);
-				snprintf(file, DBG_FILE_LEN, "%s", base_name);
+				sprintf_s(file, DBG_FILE_LEN, "%s", base_name);
 				successes++;
 			}
 
@@ -208,10 +196,8 @@ static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, c
 // the PDB implementation is rather slow (~500µs).
 LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
-	lock();
-	LibError ret = debug_resolve_symbol_lk(ptr_of_interest, sym_name, file, line);
-	unlock();
-	return ret;
+	WinScopedLock lock(WDBG_SYM_CS);
+	return debug_resolve_symbol_lk(ptr_of_interest, sym_name, file, line);
 }
 
 
@@ -468,34 +454,20 @@ static LibError nth_caller_cb(const STACKFRAME64* sf, void* user_arg)
 	return INFO::OK;
 }
 
-
-// return address of the Nth function on the call stack.
-// if <context> is nonzero, it is assumed to be a platform-specific
-// representation of execution state (e.g. Win32 CONTEXT) and tracing
-// starts there; this is useful for exceptions.
-// otherwise, tracing starts at the current stack position, and the given
-// number of stack frames (i.e. functions) above the caller are skipped.
-// used by mmgr to determine what function requested each allocation;
-// this is fast enough to allow that.
 void* debug_get_nth_caller(uint skip, void* pcontext)
 {
-	lock();
-
+	WinScopedLock lock(WDBG_SYM_CS);
 	void* func;
 	skip_this_frame(skip, pcontext);
-	LibError err = walk_stack(nth_caller_cb, &func, skip, (const CONTEXT*)pcontext);
-
-	unlock();
-	return (err == INFO::OK)? func : 0;
+	LibError ret = walk_stack(nth_caller_cb, &func, skip, (const CONTEXT*)pcontext);
+	return (ret == INFO::OK)? func : 0;
 }
 
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // helper routines for symbol value dump
-//
-//////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 
 // overflow is impossible in practice, but check for robustness.
 // keep in sync with DumpState.
@@ -1444,7 +1416,7 @@ static LibError udt_dump_std(const wchar_t* wtype_name, const u8* p, size_t size
 
 	// convert to char since debug_stl doesn't support wchar_t.
 	char ctype_name[DBG_SYMBOL_LEN];
-	snprintf(ctype_name, ARRAY_SIZE(ctype_name), "%ws", wtype_name);
+	sprintf_s(ctype_name, ARRAY_SIZE(ctype_name), "%ws", wtype_name);
 
 	// display contents of STL containers
 	// .. get element type
@@ -1481,7 +1453,7 @@ not_valid_container:
 	// .. some other error encountered
 	else
 	{
-		snprintf(buf, ARRAY_SIZE(buf), "error %d while analyzing ", err);
+		sprintf_s(buf, ARRAY_SIZE(buf), "error %d while analyzing ", err);
 		text = buf;
 	}
 	out(L"(%hs%hs)", text, debug_stl_simplify_name(ctype_name));
@@ -1771,35 +1743,9 @@ static LibError dump_sym(DWORD type_id, const u8* p, DumpState state)
 }
 
 
-//////////////////////////////////////////////////////////////////////////////
-//
+//-----------------------------------------------------------------------------
 // stack trace
-//
-//////////////////////////////////////////////////////////////////////////////
-
-// output the symbol's name and value via dump_sym*.
-// called from dump_frame_cb for each local symbol; lock is held.
-static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG UNUSED(size), void* UNUSED(ctx))
-{
-	out_latch_pos();	// see decl
-	mod_base = sym->ModBase;
-	const u8* p = (const u8*)sym->Address;
-	DumpState state;
-
-	INDENT;
-	LibError err = dump_sym(sym->Index, p, state);
-	dump_error(err, p);
-	if(err == INFO::SYM_SUPPRESS_OUTPUT)
-		UNINDENT;
-	else
-		out(L"\r\n");
-
-	return TRUE;	// continue
-}
-
-
-//////////////////////////////////////////////////////////////////////////////
-
+//-----------------------------------------------------------------------------
 
 struct IMAGEHLP_STACK_FRAME2 : public IMAGEHLP_STACK_FRAME
 {
@@ -1820,6 +1766,26 @@ struct IMAGEHLP_STACK_FRAME2 : public IMAGEHLP_STACK_FRAME
 			Params[i] = sf->Params[i];
 	}
 };
+
+// output the symbol's name and value via dump_sym*.
+// called from dump_frame_cb for each local symbol; lock is held.
+static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG UNUSED(size), void* UNUSED(ctx))
+{
+	out_latch_pos();	// see decl
+	mod_base = sym->ModBase;
+	const u8* p = (const u8*)sym->Address;
+	DumpState state;
+
+	INDENT;
+	LibError err = dump_sym(sym->Index, p, state);
+	dump_error(err, p);
+	if(err == INFO::SYM_SUPPRESS_OUTPUT)
+		UNINDENT;
+	else
+		out(L"\r\n");
+
+	return TRUE;	// continue
+}
 
 // called by walk_stack for each stack frame
 static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
@@ -1869,23 +1835,21 @@ return INFO::OK;
 	static uintptr_t already_in_progress;
 	if(!cpu_CAS(&already_in_progress, 0, 1))
 		return ERR::REENTERED;	// NOWARN
-	lock();
 
 	out_init(buf, max_chars);
 	ptr_reset_visited();
 
+	WinScopedLock lock(WDBG_SYM_CS);
 	skip_this_frame(skip, pcontext);
 	LibError ret = walk_stack(dump_frame_cb, 0, skip, (const CONTEXT*)pcontext);
 
-	unlock();
 	already_in_progress = 0;
 
 	return ret;
 }
 
 
-
-
+//-----------------------------------------------------------------------------
 
 // write out a "minidump" containing register and stack state; this enables
 // examining the crash in a debugger. called by wdbg_exception_filter.
@@ -1893,12 +1857,15 @@ return INFO::OK;
 // lock must be held.
 void wdbg_sym_write_minidump(EXCEPTION_POINTERS* exception_pointers)
 {
-	lock();
+	WinScopedLock lock(WDBG_SYM_CS);
 
 	OsPath path = OsPath(ah_get_log_dir())/"crashlog.dmp";
 	HANDLE hFile = CreateFile(path.string().c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
-		goto fail;
+	{
+		DEBUG_DISPLAY_ERROR(L"wdbg_sym_write_minidump: unable to create crashlog.dmp.");
+		return;
+	}
 
 	MINIDUMP_EXCEPTION_INFORMATION mei;
 	mei.ThreadId = GetCurrentThreadId();
@@ -1912,16 +1879,13 @@ void wdbg_sym_write_minidump(EXCEPTION_POINTERS* exception_pointers)
 
 	HANDLE hProcess = GetCurrentProcess(); DWORD pid = GetCurrentProcessId();
 	if(!MiniDumpWriteDump(hProcess, pid, hFile, MiniDumpNormal, &mei, 0, 0))
-	{
-fail:
-		DISPLAY_ERROR(L"Unable to generate minidump.");
-	}
+		DEBUG_DISPLAY_ERROR(L"wdbg_sym_write_minidump: unable to generate minidump.");
 
 	CloseHandle(hFile);
-	unlock();
 }
 
 
+//-----------------------------------------------------------------------------
 
 static LibError wdbg_sym_Init()
 {

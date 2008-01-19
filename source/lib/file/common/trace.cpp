@@ -13,7 +13,6 @@
 
 #include "lib/allocators/pool.h"
 #include "lib/timer.h"	// timer_Time
-#include "lib/nommgr.h"	// placement new
 
 /*virtual*/ ITrace::~ITrace()
 {

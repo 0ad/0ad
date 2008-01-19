@@ -20,9 +20,6 @@
 #ifndef INCLUDED_XML
 #define INCLUDED_XML
 
-// Temporarily undefine new, because the Xerces headers don't like it
-#include "lib/nommgr.h"
-
 // temporarily go down to W3 because Xerces (in addition to all its other
 // failings) isn't W4-clean.
 #if MSC_VERSION
@@ -51,8 +48,6 @@
 #if MSC_VERSION
 #pragma warning(pop)	// back to W4
 #endif
-
-#include "lib/mmgr.h"		// restore malloc/new macros
 
 #include "XercesErrorHandler.h"
 #include "ps/CStr.h"

@@ -55,29 +55,29 @@ void win_free(void* p)
 static CRITICAL_SECTION cs[NUM_CS];
 static bool cs_valid;
 
-void win_lock(uint idx)
+void win_lock(WinLockId id)
 {
-	debug_assert(idx < NUM_CS && "win_lock: invalid critical section index");
-	if(cs_valid)
-		EnterCriticalSection(&cs[idx]);
-}
-
-void win_unlock(uint idx)
-{
-	debug_assert(idx < NUM_CS && "win_unlock: invalid critical section index");
-	if(cs_valid)
-		LeaveCriticalSection(&cs[idx]);
-}
-
-int win_is_locked(uint idx)
-{
-	debug_assert(idx < NUM_CS && "win_is_locked: invalid critical section index");
 	if(!cs_valid)
-		return -1;
-	BOOL got_it = TryEnterCriticalSection(&cs[idx]);
-	if(got_it)
-		LeaveCriticalSection(&cs[idx]);
-	return !got_it;
+		return;
+	EnterCriticalSection(&cs[id]);
+}
+
+void win_unlock(WinLockId id)
+{
+	if(!cs_valid)
+		return;
+	LeaveCriticalSection(&cs[id]);
+}
+
+bool win_is_locked(WinLockId id)
+{
+	if(!cs_valid)
+		return false;
+	const BOOL successfullyEntered = TryEnterCriticalSection(&cs[id]);
+	if(!successfullyEntered)
+		return true;	// still locked
+	LeaveCriticalSection(&cs[id]);
+	return false;	// probably not locked
 }
 
 
@@ -269,16 +269,6 @@ static void FreeUser32Dll()
 
 //-----------------------------------------------------------------------------
 // memory
-
-// note: has no effect if config.h's HAVE_VC_DEBUG_ALLOC is 0.
-static void EnableMemoryTracking()
-{
-#if CONFIG_PARANOIA
-	debug_heap_enable(DEBUG_HEAP_ALL);
-#elif !defined(NDEBUG)
-	debug_heap_enable(DEBUG_HEAP_NORMAL);
-#endif
-}
 
 static void EnableLowFragmentationHeap()
 {
@@ -487,8 +477,6 @@ static LibError wutil_Init()
 	InitLocks();
 
 	ForciblyLoadUser32Dll();
-
-	EnableMemoryTracking();
 
 	EnableLowFragmentationHeap();
 

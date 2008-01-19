@@ -13,6 +13,7 @@
 
 #include <map>
 
+#include "lib/config2.h"	// CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
 #include "lib/posix/posix_mman.h"	// PROT_*
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 
@@ -215,7 +216,7 @@ notify us when done; memory access permission is temporarily granted.
 (similar in principle to Software Transaction Memory).
 
 since this is quite slow, the protection is disabled unless
-CONFIG_OVERRUN_PROTECTION == 1; this avoids having to remove the
+CONFIG2_ALLOCATORS_OVERRUN_PROTECTION == 1; this avoids having to remove the
 wrapper code in release builds and re-write when looking for overruns.
 
 example usage:
@@ -228,9 +229,6 @@ doSomethingWith(yc);	// read/write access
 your_class_wrapper.lock();	// disallow further access until next .get()
 ..
 **/
-#ifdef REDEFINED_NEW
-# include "lib/nommgr.h"
-#endif
 template<class T> class OverrunProtector
 {
 public:
@@ -257,7 +255,7 @@ public:
 
 	void lock()
 	{
-#if CONFIG_OVERRUN_PROTECTION
+#if CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
 		mprotect(object, sizeof(T), PROT_NONE);
 #endif
 	}
@@ -265,16 +263,13 @@ public:
 private:
 	void unlock()
 	{
-#if CONFIG_OVERRUN_PROTECTION
+#if CONFIG2_ALLOCATORS_OVERRUN_PROTECTION
 		mprotect(object, sizeof(T), PROT_READ|PROT_WRITE);
 #endif
 	}
 
 	T* object;
 };
-#ifdef REDEFINED_NEW
-# include "lib/mmgr.h"
-#endif
 
 
 //-----------------------------------------------------------------------------

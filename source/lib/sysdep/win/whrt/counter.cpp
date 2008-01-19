@@ -35,8 +35,6 @@ static ICounter* ConstructCounterAt(uint id, void* address, size_t size)
 {
 	// rationale for placement new: see call site.
 
-#include "lib/nommgr.h"	// MMGR interferes with placement new
-
 	// counters are chosen according to the following order. rationale:
 	// - TSC must come before QPC and PMT to make sure a bug in the latter on
 	//   Pentium systems doesn't come up.
@@ -63,8 +61,6 @@ static ICounter* ConstructCounterAt(uint id, void* address, size_t size)
 	default:
 		return 0;
 	}
-
-#include "lib/mmgr.h"
 }
 
 

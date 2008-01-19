@@ -30,7 +30,7 @@ LibError udbg_resolve_symbol(void* UNUSED(ptr_of_interest), char* UNUSED(sym_nam
 }
 
 
-void unix_debug_break()
+void debug_break()
 {
 	kill(getpid(), SIGTRAP);
 }

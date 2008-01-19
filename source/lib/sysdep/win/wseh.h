@@ -11,7 +11,8 @@
 #ifndef INCLUDED_WSEH
 #define INCLUDED_WSEH
 
-extern LONG WINAPI wseh_ExceptionFilter(EXCEPTION_POINTERS* ep);
+struct _EXCEPTION_POINTERS;
+extern long __stdcall wseh_ExceptionFilter(_EXCEPTION_POINTERS* ep);
 
 EXTERN_C int wseh_EntryPoint();
 

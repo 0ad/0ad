@@ -12,7 +12,6 @@
 #include "wposix.h"
 
 #include "wposix_internal.h"
-#include "crt_posix.h"		// _getcwd
 #include "lib/bits.h"
 
 WINIT_REGISTER_CRITICAL_INIT(wposix_Init);	// wposix -> error handling
@@ -102,20 +101,6 @@ long sysconf(int name)
 		return -1;
 	}
 }
-
-
-//-----------------------------------------------------------------------------
-
-#ifdef REDEFINED_NEW
-# include "lib/nommgr.h"
-#endif
-char* getcwd(char* buf, size_t buf_size)
-{
-	return _getcwd(buf, (int)buf_size);
-}
-#ifdef REDEFINED_NEW
-# include "lib/mmgr.h"
-#endif
 
 
 //-----------------------------------------------------------------------------

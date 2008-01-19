@@ -53,7 +53,7 @@ public:
 	 * Add a file's contents to the cache.
 	 *
 	 * the cache will be able to satisfy subsequent Retrieve() calls by
-	 * returning this data; if CONFIG_READ_ONLY_CACHE, the buffer is made
+	 * returning this data; if CONFIG2_CACHE_READ_ONLY, the buffer is made
 	 * read-only. if need be and no references are currently attached to it,
 	 * the memory can also be commandeered by Reserve().
 	 *

@@ -24,7 +24,8 @@
 #if OS_UNIX
 # include <unistd.h>
 #endif
-#if ARCH_IA32 && CONFIG_TIMER_ALLOW_RDTSC
+#include "lib/config2.h"	// CONFIG2_TIMER_ALLOW_RDTSC
+#if ARCH_IA32 && CONFIG2_TIMER_ALLOW_RDTSC
 # include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
 #endif
 
@@ -162,12 +163,12 @@ ScopeTimer::~ScopeTimer()
 // therefore, on systems with SpeedStep active, measurements of I/O or other
 // non-CPU bound activity may be skewed. this is ok because the timer is
 // only used for profiling; just be aware of the issue.
-// if this is a problem, disable CONFIG_TIMER_ALLOW_RDTSC.
+// if this is a problem, disable CONFIG2_TIMER_ALLOW_RDTSC.
 // 
 // note that overflow isn't an issue either way (63 bit cycle counts
 // at 10 GHz cover intervals of 29 years).
 
-#if ARCH_IA32 && CONFIG_TIMER_ALLOW_RDTSC
+#if ARCH_IA32 && CONFIG2_TIMER_ALLOW_RDTSC
 
 void TimerUnit::SetToZero()
 {

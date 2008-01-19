@@ -51,7 +51,7 @@ static inline void* CallWithSafetyBlanket(UnsafeFunction func, PCV_u8 mem, size_
 #endif
 }
 
-static void* TransactPhysicalMemory(u64 physicalAddress, size_t numBytes, UnsafeFunction func, void* arg = 0)
+static void* TransactPhysicalMemory(uintptr_t physicalAddress, size_t numBytes, UnsafeFunction func, void* arg = 0)
 {
 	PCV_u8 mem = (PCV_u8)mahaf_MapPhysicalMemory(physicalAddress, numBytes);
 	if(!mem)
@@ -168,7 +168,7 @@ static inline void* UnsafeAllocateCopyOfTable(PCV_u8 mem, size_t numBytes, void*
 
 // caller is responsible for verifying the table is valid and using
 // DeallocateTable to free it.
-static const AcpiTable* AllocateCopyOfTable(u64 physicalAddress)
+static const AcpiTable* AllocateCopyOfTable(uintptr_t physicalAddress)
 {
 	// ACPI table sizes are not known until they've been mapped. since that
 	// is slow, we don't always want to do it twice. the solution is to map
@@ -229,7 +229,7 @@ static bool VerifyTable(const AcpiTable* table, const char* signature = 0)
 }
 
 
-static const AcpiTable* GetTable(u64 physicalAddress, const char* signature = 0)
+static const AcpiTable* GetTable(uintptr_t physicalAddress, const char* signature = 0)
 {
 	const AcpiTable* table = AllocateCopyOfTable(physicalAddress);
 	if(VerifyTable(table, signature))

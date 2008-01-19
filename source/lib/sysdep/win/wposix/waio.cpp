@@ -51,14 +51,14 @@ public:
 		debug_assert(fd > 2);
 		debug_assert(GetFileSize(hFile, 0) != INVALID_FILE_SIZE);
 
-		WinScopedLock lock;
+		WinScopedLock lock(WAIO_CS);
 		std::pair<Map::iterator, bool> ret = m_map.insert(std::make_pair(fd, hFile));
 		debug_assert(ret.second);	// fd better not already have been associated
 	}
 
 	void Dissociate(int fd)
 	{
-		WinScopedLock lock;
+		WinScopedLock lock(WAIO_CS);
 		const size_t numRemoved = m_map.erase(fd);
 		debug_assert(numRemoved == 1);
 	}
@@ -69,7 +69,7 @@ public:
 	 **/
 	HANDLE Get(int fd) const
 	{
-		WinScopedLock lock;
+		WinScopedLock lock(WAIO_CS);
 		Map::const_iterator it = m_map.find(fd);
 		if(it == m_map.end())
 			return INVALID_HANDLE_VALUE;

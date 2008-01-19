@@ -9,7 +9,7 @@
 // license: GPL; see lib/license.txt
 
 #include "precompiled.h"
-#include "wdbg.h"
+#include "wseh.h"
 
 #include "lib/byte_order.h"		// FOURCC
 #include "lib/sysdep/cpu.h"
@@ -217,7 +217,7 @@ static void GetExceptionLocus(const EXCEPTION_POINTERS* ep,
 //
 // note: keep memory allocs and locking to an absolute minimum, because
 // they may deadlock the process!
-LONG WINAPI wseh_ExceptionFilter(EXCEPTION_POINTERS* ep)
+long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 {
 	// OutputDebugString raises an exception, which OUGHT to be swallowed
 	// by WaitForDebugEvent but sometimes isn't. if we see it, ignore it.
@@ -241,7 +241,7 @@ LONG WINAPI wseh_ExceptionFilter(EXCEPTION_POINTERS* ep)
 	// we'll report this problem first and then try to display the
 	// exception info regardless (maybe dbghelp won't blow up).
 	if(win_is_locked(WDBG_SYM_CS) == 1)
-		DISPLAY_ERROR(L"Exception raised while critical section is held - may deadlock..");
+		DEBUG_DISPLAY_ERROR(L"Exception raised while critical section is held - may deadlock..");
 
 	// extract details from ExceptionRecord.
 	wchar_t descriptionBuf[150];

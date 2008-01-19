@@ -11,102 +11,44 @@
 #ifndef INCLUDED_DEBUG
 #define INCLUDED_DEBUG
 
-#if OS_WIN
-# include "lib/sysdep/win/wdbg.h"
-#else
-# include "lib/sysdep/unix/udbg.h"
-#endif
+// this module provides platform-independent debug facilities, useful for
+// diagnosing and reporting program errors.
+// - a symbol engine provides access to compiler-generated debug information and
+//   can also give a stack trace including local variables;
+// - hooks into the memory allocator improve its leak detection;
+// - our more powerful assert() replacement gives a stack trace so
+//   that the underlying problem becomes apparent;
+// - the output routines make for platform-independent logging and
+//   crashlogs with "last-known activity" reporting.
+
 
 /**
+ * trigger a breakpoint when reached/"called".
+ * if defined as a macro, the debugger can break directly into the
+ * target function instead of one frame below it as with a conventional
+ * call-based implementation.
+ **/
+#if MSC_VERSION
+# define debug_break() __asm { int 3 }
+#else
+extern void debug_break();
+#endif
 
-overview
---------
-
-this module provides platform-independent debug facilities, useful for
-diagnosing and reporting program errors.
-- a symbol engine provides access to compiler-generated debug information and
-  can also give a stack trace including local variables;
-- the breakpoint API enables stopping when a given address is
-  executed, read or written to (as specified);
-- a hook into the system's memory allocator can optionally check for and
-  report heap corruption;
-- our more powerful assert() replacement gives a stack trace so
-  that the underlying problem becomes apparent;
-- the output routines make for platform-independent logging and
-  crashlogs with "last-known activity" reporting.
-
-
-usage
------
-
-please see the detailed comments below on how to use the individual features.
-much of this is only helpful if you explicity ask for it!
-
-
-rationale
----------
-
-much of this functionality already exists within the VC7 IDE/debugger.
-motivation for this code is as follows:
-- we want a consistent interface for all platforms;
-- limitations(*) in the VC variants should be fixed;
-- make debugging as easy as possible.
-
-* mostly pertaining to Release mode - e.g. symbols cannot be resolved
-even if debug information is present and assert dialogs are useless.
-
-**/
 
 //-----------------------------------------------------------------------------
 // debug memory allocator
 //-----------------------------------------------------------------------------
 
 /**
- * check heap integrity (independently of mmgr).
+ * check heap integrity.
  * errors are reported by the CRT or via debug_display_error.
  **/
 LIB_API void debug_heap_check(void);
-
-enum DebugHeapChecks
-{
-	/**
-	 * no automatic checks. (default)
-	 **/
-	DEBUG_HEAP_NONE   = 0,
-
-	/**
-	 * basic automatic checks when deallocating.
-	 **/
-	DEBUG_HEAP_NORMAL = 1,
-
-	/**
-	 * all automatic checks on every memory API call. this is really
-	 * slow (x100), but reports errors closer to where they occurred.
-	 **/
-	DEBUG_HEAP_ALL    = 2
-};
-
-/**
- * call at any time; from then on, the specified checks will be performed.
- * if not called, the default is DEBUG_HEAP_NONE, i.e. do nothing.
- **/
-LIB_API void debug_heap_enable(DebugHeapChecks what);
 
 
 //-----------------------------------------------------------------------------
 // output
 //-----------------------------------------------------------------------------
-
-enum DebugLevel
-{
-	DEBUG_LEVEL_NONE = 0,
-	DEBUG_LEVEL_BRIEF = 2,
-	DEBUG_LEVEL_DETAILED = 5,
-	DEBUG_LEVEL_FULL = 9
-};
-#define DEBUG_PRINTF_BRIEF    if(debug_level >= DEBUG_LEVEL_BRIEF)    debug_printf
-#define DEBUG_PRINTF_DETAILED if(debug_level >= DEBUG_LEVEL_DETAILED) debug_printf
-#define DEBUG_PRINTF_FULL     if(debug_level >= DEBUG_LEVEL_FULL    ) debug_printf
 
 /**
  * write a formatted string to the debug channel, subject to filtering
@@ -228,7 +170,7 @@ LIB_API ErrorReaction debug_display_error(const wchar_t* description,
  * convenience version, in case the advanced parameters aren't needed.
  * macro instead of providing overload/default values for C compatibility.
  **/
-#define DISPLAY_ERROR(text) debug_display_error(text, 0, 0,0, __FILE__,__LINE__,__func__, 0)
+#define DEBUG_DISPLAY_ERROR(text) debug_display_error(text, 0, 0,0, __FILE__,__LINE__,__func__, 0)
 
 
 //
@@ -439,59 +381,6 @@ LIB_API void debug_skip_assert();
 
 
 //-----------------------------------------------------------------------------
-// breakpoints
-//-----------------------------------------------------------------------------
-
-/**
- * trigger a breakpoint when reached/"called".
- * defined as a macro by the platform-specific header above; this allows
- * breaking directly into the target function, instead of one frame
- * below it as with a conventional call-based implementation.
- **/
-//#define debug_break()	// not defined here; see above
-
-
-/**
- * sometimes mmgr's 'fences' (making sure padding before and after the
- * allocation remains intact) aren't enough to catch hard-to-find
- * memory corruption bugs. another tool is to trigger a debug exception
- * when the later to be corrupted variable is accessed; the problem should
- * then become apparent.
- * the VC++ IDE provides such 'breakpoints', but can only detect write access.
- * additionally, it can't resolve symbols in Release mode (where this would
- * be most useful), so we provide a breakpoint API.
-
- * (values chosen to match IA-32 bit defs, so compiler can optimize.
- * this isn't required; it'll work regardless.)
- **/
-enum DbgBreakType
-{
-	DBG_BREAK_CODE       = 0,	/// execute
-	DBG_BREAK_DATA_WRITE = 1,	/// write
-	DBG_BREAK_DATA       = 3	/// read or write
-};
-
-/**
- * arrange for a debug exception to be raised when the
- * indicated memory is accessed.
- *
- * @param addr memory address
- * for simplicity, the length (range of bytes to be checked) is derived
- * from addr's alignment, and is typically 1 machine word.
- * @param type the type of access to watch for (see DbgBreakType)
- * @return LibError; ERR::LIMIT if no more breakpoints are available
- * (they are a limited resource - only 4 on IA-32).
- **/
-LIB_API LibError debug_set_break(void* addr, DbgBreakType type);
-
-/**
- * remove all breakpoints that were set by debug_set_break.
- * important, since these are a limited resource.
- **/
-LIB_API LibError debug_remove_all_breaks();
-
-
-//-----------------------------------------------------------------------------
 // symbol access
 //-----------------------------------------------------------------------------
 
@@ -564,8 +453,6 @@ LIB_API LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, cha
  **/
 LIB_API LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
 
-LIB_API const char* debug_get_symbol_string(void* symbol, const char* name, const char* file, int line);
-
 
 //-----------------------------------------------------------------------------
 // helper functions (used by implementation)
@@ -581,14 +468,13 @@ LIB_API void debug_puts(const char* text);
 /**
  * return address of the Nth function on the call stack.
  *
- * used by mmgr to determine what function requested each allocation;
- * this is fast enough to allow that.
- *
  * @param skip number of stack frames (i.e. functions on call stack) to skip.
  * @param context platform-specific representation of execution state
  * (e.g. Win32 CONTEXT). if not NULL, tracing starts there; this is useful
  * for exceptions. otherwise, tracing starts from the current call stack.
  * @return address of Nth function
+ *
+ * note: this does not access debug symbols and is therefore quite fast.
  **/
 LIB_API void* debug_get_nth_caller(uint skip, void* context);
 
@@ -611,25 +497,12 @@ LIB_API bool debug_is_stack_ptr(void* p);
 
 
 /**
- * set the current thread's name; it will be returned by subsequent calls to
- * debug_get_thread_name.
+ * inform the debugger of the current thread's name.
  *
- * if supported on this platform, the debugger is notified of the new name;
- * it will be displayed there instead of just the handle.
- *
- * @param name identifier string for thread. MUST remain valid throughout
- * the entire program; best to pass a string literal. allocating a copy
- * would be quite a bit more work due to cleanup issues.
+ * (threads are easier to keep apart when they are identified by
+ * name rather than TID.)
  **/
 LIB_API void debug_set_thread_name(const char* name);
-
-/**
- * return current thread's name.
- *
- * @return thread name, or NULL if one hasn't been assigned yet
- * via debug_set_thread_name.
- **/
-LIB_API const char* debug_get_thread_name();
 
 
 /**
@@ -676,12 +549,5 @@ LIB_API const wchar_t* debug_error_message_build(
 	const char* fn_only, int line, const char* func,
 	uint skip, void* context,
 	ErrorMessageMem* emm);
-
-
-/**
- * call at exit to avoid some leaks.
- * not strictly necessary.
- **/
-LIB_API void debug_shutdown();
 
 #endif	// #ifndef INCLUDED_DEBUG

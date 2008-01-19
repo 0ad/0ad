@@ -9,14 +9,7 @@
 
 // license: GPL; see lib/license.txt
 
-// if PCHs are supported and enabled, we make an effort to include all
-// system headers. otherwise, only a few headers (e.g. memory tracker)
-// are pulled in and source files must include all the system headers
-// they use. this policy ensures good compile performance whether or not
-// PCHs are being used.
-
-#include "lib/config.h"	// CONFIG_ENABLE_PCH
-#include "lib/sysdep/compiler.h"	// HAVE_PCH
+#include "lib/sysdep/compiler.h"	// MSC_VERSION, HAVE_PCH
 
 // disable some common and annoying warnings
 // (done as soon as possible so that headers below are covered)
@@ -43,9 +36,8 @@
 // headers made available everywhere for convenience
 //
 
-#include "lib/sysdep/compiler.h"
-#include "lib/sysdep/stl.h"
 #include "lib/sysdep/os.h"
+#include "lib/sysdep/stl.h"
 #include "lib/sysdep/arch.h"
 
 #include "lib/lib_api.h"
@@ -79,6 +71,15 @@ namespace fs = boost::filesystem;
 //
 // precompiled headers
 //
+
+// if PCHs are supported and enabled, we make an effort to include all
+// system headers. otherwise, only a few central headers (e.g. types)
+// are pulled in and source files must include all the system headers
+// they use. this policy ensures good compile performance whether or not
+// PCHs are being used.
+
+#include "lib/config.h"	// CONFIG_ENABLE_PCH
+#include "lib/sysdep/compiler.h"	// HAVE_PCH
 
 #if CONFIG_ENABLE_PCH && HAVE_PCH
 
@@ -140,7 +141,7 @@ namespace fs = boost::filesystem;
 #include <string>
 #include <sstream>
 #include <typeinfo>
-#include <valarray>
+#include <valarray>	
 
 // STL extensions
 #if GCC_VERSION
@@ -157,7 +158,3 @@ namespace fs = boost::filesystem;
 #if MSC_VERSION
 # pragma warning(default:4702)
 #endif
-
-// (this must be included from every file to make sure all allocations
-// are tracked; placing it in the PCH is a convenient means of doing so)
-#include "mmgr.h"

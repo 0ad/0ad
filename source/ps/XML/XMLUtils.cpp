@@ -71,9 +71,7 @@ BinInputStream *CVFSInputSource::makeStream() const
 	if(!m_pBuffer)
 		return 0;
 
-#include "lib/nommgr.h"	// BinMemInputStream has its own operator new
 	return new BinMemInputStream((XMLByte *)m_pBuffer.get(), (unsigned int)m_BufferSize, BinMemInputStream::BufOpt_Reference);
-#include "lib/mmgr.h"
 }
 
 #define IS_PATH_SEP(_chr) (_chr == '/' || _chr == '\\')
@@ -91,9 +89,7 @@ const char *prevpathcomp(const char *end, const char *beginning)
 InputSource *CVFSEntityResolver::resolveEntity(const XMLCh *const UNUSED(publicId),
 	const XMLCh *const systemId)
 {
-#include "lib/nommgr.h"
 	CVFSInputSource *ret=new CVFSInputSource();
-#include "lib/mmgr.h"
 	char *path=XMLString::transcode(systemId);
 	char *orgpath=path;
 	

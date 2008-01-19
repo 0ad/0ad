@@ -223,7 +223,7 @@ static GLint choose_int_fmt(GLenum fmt, uint q_flags)
 		{
 		wchar_t buf[100];
 		swprintf(buf, ARRAY_SIZE(buf), L"choose_int_fmt: fmt 0x%x isn't covered! please add it", fmt);
-		DISPLAY_ERROR(buf);
+		DEBUG_DISPLAY_ERROR(buf);
 		debug_assert(0);	// given fmt isn't covered! please add it.
 		// fall back to a reasonable default
 		return half_bpp? GL_RGB4 : GL_RGB8;
@@ -683,7 +683,7 @@ static void detect_gl_upload_caps()
 
 	// warn if more-or-less essential features are missing
 	if(!have_s3tc)
-		DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.");
+		DEBUG_DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.");
 }
 
 

@@ -11,6 +11,7 @@
 #include "precompiled.h"
 #include "block_cache.h"
 
+#include "lib/config2.h"	// CONFIG2_CACHE_READ_ONLY
 #include "lib/file/common/file_stats.h"
 #include "lib/lockfree.h"
 #include "lib/allocators/pool.h"
@@ -79,13 +80,13 @@ public:
 	{
 		if(m_blocks.size() > m_maxBlocks)
 		{
-#if CONFIG_READ_ONLY_CACHE
+#if CONFIG2_CACHE_READ_ONLY
 			mprotect((void*)m_blocks.front().buf.get(), BLOCK_SIZE, PROT_READ);
 #endif
 			m_blocks.pop_front();	// evict oldest block
 		}
 
-#if CONFIG_READ_ONLY_CACHE
+#if CONFIG2_CACHE_READ_ONLY
 		mprotect((void*)buf.get(), BLOCK_SIZE, PROT_WRITE|PROT_READ);
 #endif
 		m_blocks.push_back(Block(id, buf));

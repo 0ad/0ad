@@ -115,7 +115,7 @@ For further details, see below.
 // macro magic (stringize+prepend L) and we already display file+line.
 #define TEST(condition) STMT(\
 	if(!(condition))\
-		DISPLAY_ERROR(L"Self-test failed");\
+		debug_display_error(L"Self-test failed");\
 )
 
 

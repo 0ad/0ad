@@ -54,7 +54,7 @@ public:
 	 *
 	 * call this when the block's IO has completed; its data will
 	 * satisfy subsequent Retrieve calls for the same id.
-	 * if CONFIG_READ_ONLY_CACHE, the memory is made read-only.
+	 * if CONFIG2_CACHE_READ_ONLY, the memory is made read-only.
 	 **/
 	void Add(BlockId id, shared_ptr<u8> buf);
 

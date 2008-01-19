@@ -388,10 +388,8 @@ public:
 
 	FreedBlock* WriteTags(u8* p, size_t size)
 	{
-#include "lib/nommgr.h"
 		FreedBlock* freedBlock = new(p) FreedBlock(s_headerId, size);
 		(void)new(Footer(freedBlock)) FreedBlock(s_footerId, size);
-#include "lib/mmgr.h"
 
 		m_freeBlocks++;
 		m_freeBytes += size;

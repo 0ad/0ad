@@ -31,46 +31,36 @@ extern void win_free(void* p);
 //
 
 // critical sections used by win-specific code
-enum
+enum WinLockId
 {
-	ONCE_CS,
 	WAIO_CS,
-	WDBG_CS,
-	WDBG_SYM_CS,
+	WDBG_SYM_CS,	// protects (non-reentrant) dbghelp.dll
 
 	NUM_CS
 };
 
-extern void win_lock(uint idx);
-extern void win_unlock(uint idx);
+extern void win_lock(WinLockId id);
+extern void win_unlock(WinLockId id);
 
-// used in a desperate attempt to avoid deadlock in wdbg_exception_handler.
-extern int win_is_locked(uint idx);
+// used in a desperate attempt to avoid deadlock in wseh.
+extern bool win_is_locked(WinLockId id);
 
-// thread safe, usable in constructors
-#define WIN_ONCE(code)\
-{\
-	win_lock(ONCE_CS);\
-	static bool ONCE_init_;	/* avoid name conflict */\
-	if(!ONCE_init_)\
-	{\
-		ONCE_init_ = true;\
-		code;\
-	}\
-	win_unlock(ONCE_CS);\
-}
-
-struct WinScopedLock
+class WinScopedLock
 {
-	WinScopedLock()
+public:
+	WinScopedLock(WinLockId id)
+		: m_id(id)
 	{
-		win_lock(WAIO_CS);
+		win_lock(m_id);
 	}
 
 	~WinScopedLock()
 	{
-		win_unlock(WAIO_CS);
+		win_unlock(m_id);
 	}
+
+private:
+	WinLockId m_id;
 };
 
 

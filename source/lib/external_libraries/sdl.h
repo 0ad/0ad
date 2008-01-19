@@ -12,8 +12,9 @@
 #define INCLUDED_SDL
 
 #include "sdl_fwd.h"
+#include "lib/config2.h"	// CONFIG2_WSDL
 
-#if OS_WIN && CONFIG_USE_WSDL
+#if OS_WIN && CONFIG2_WSDL
 # include "lib/sysdep/win/wsdl.h"
 #else
 

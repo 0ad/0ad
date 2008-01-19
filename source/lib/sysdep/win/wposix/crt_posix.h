@@ -22,7 +22,7 @@
 #define __STDC__ 1
 
 #include <io.h>             // _open etc.
-#include <direct.h>			// _getcwd, _rmdir
+#include <direct.h>			// _rmdir
 
 #undef __STDC__
 #define __STDC__ 0

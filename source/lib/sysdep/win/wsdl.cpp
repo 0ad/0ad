@@ -11,7 +11,7 @@
 #include "precompiled.h"
 #include "lib/external_libraries/sdl.h"
 
-#if CONFIG_USE_WSDL
+#if CONFIG2_WSDL
 
 #include <stdio.h>
 #include <math.h>
@@ -1230,4 +1230,4 @@ static LibError wsdl_Shutdown()
 	return INFO::OK;
 }
 
-#endif	// #if CONFIG_USE_WSDL
+#endif	// #if CONFIG2_WSDL

@@ -863,7 +863,6 @@ void Shutdown(uint flags)
 		timer_DisplayClientTotals();
 
 		// should be last, since the above use them
-		debug_shutdown();
 		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
@@ -1013,13 +1012,13 @@ void Init(const CmdLineArgs& args, uint flags)
 			L" The game may still work, though - you are welcome to try at your own risk."
 			L" If not or it doesn't look right, upgrade your graphics card.";
 		swprintf(buf, ARRAY_SIZE(buf), fmt, missing);
-		DISPLAY_ERROR(buf);
+		DEBUG_DISPLAY_ERROR(buf);
 		// TODO: i18n
 	}
 
 	if (!ogl_HaveExtension("GL_ARB_texture_env_crossbar"))
 	{
-		DISPLAY_ERROR(
+		DEBUG_DISPLAY_ERROR(
 			L"The GL_ARB_texture_env_crossbar extension doesn't appear to be available on your computer."
 			L" Shadows are not available and overall graphics quality might suffer."
 			L" You are advised to try installing newer drivers and/or upgrade your graphics card.");
@@ -1071,12 +1070,6 @@ void Init(const CmdLineArgs& args, uint flags)
 		// Register a few Game/Network JS globals
 		g_ScriptingHost.SetGlobal("g_GameAttributes", OBJECT_TO_JSVAL(g_GameAttributes.GetScript()));
 	}
-	
-	
-	// Check for heap corruption after every allocation. Very, very slowly.
-	// (And it highlights the allocation just after the one you care about,
-	// so you need to run it again and tell it to break on the one before.)
-//	debug_heap_enable(DEBUG_HEAP_ALL);
 
 	InitInput();
 

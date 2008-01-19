@@ -231,9 +231,8 @@ again:
 // initializer returns pthread_mutex_t directly and CRITICAL_SECTIONS
 // shouldn't be copied.
 //
-// note: must not use new/malloc to allocate the critical section
-// because mmgr.cpp uses a mutex and must not be called to allocate
-// anything before it is initialized.
+// note: we use win_alloc instead of new because the (no longer extant)
+// memory manager used a pthread_mutex.
 
 pthread_mutex_t pthread_mutex_initializer()
 {
