@@ -23,8 +23,8 @@
 #define VC_EXTRALEAN
 
 
-// the public header, win.h, has defined _WINDOWS_ so that
-// other code doesn't include <windows.h> when it shouldn't (e.g. zconf.h)
+// other headers may have defined <windows.h>'s include guard to prevent
+// external libraries from pulling it in (which would cause conflicts).
 #undef _WINDOWS_
 
 // set version; needed for EnumDisplayDevices
@@ -76,57 +76,11 @@
 
 
 //-----------------------------------------------------------------------------
-// fixes for VC6 platform SDK
-//-----------------------------------------------------------------------------
-
-// VC6 windows.h doesn't define these
-#ifndef DWORD_PTR
-#define DWORD_PTR DWORD
-#endif
-
-#ifndef INVALID_FILE_ATTRIBUTES
-#define INVALID_FILE_ATTRIBUTES ((DWORD)-1)
-#endif
-
-#ifndef PROCESSOR_ARCHITECTURE_AMD64
-#define PROCESSOR_ARCHITECTURE_AMD64 9
-#endif
-
-#if WINVER < 0x500
-
-// can't test for macro definition -
-// actual definitions in winnt.h are typedefs.
-typedef unsigned __int64 DWORDLONG;
-typedef DWORD ULONG_PTR;
-
-#if MSC_VERSION >= 1300
-typedef __w64 unsigned long* PULONG_PTR;
-#else
-typedef unsigned long* PULONG_PTR;
-#endif
-
-typedef struct _MEMORYSTATUSEX
-{ 
-	DWORD dwLength;
-	DWORD dwMemoryLoad;
-	DWORDLONG ullTotalPhys;
-	DWORDLONG ullAvailPhys;
-	DWORDLONG ullTotalPageFile;
-	DWORDLONG ullAvailPageFile;
-	DWORDLONG ullTotalVirtual;
-	DWORDLONG ullAvailVirtual;
-	DWORDLONG ullAvailExtendedVirtual;
-} MEMORYSTATUSEX, *LPMEMORYSTATUSEX;
-
-#endif	// #if WINVER < 0x500
-
-
-//-----------------------------------------------------------------------------
-// powrprof.h (not there at all in VC6, missing some parts in VC7)
+// powrprof.h (missing some parts in VC7)
 //-----------------------------------------------------------------------------
 
 // MinGW headers are already correct; only change on VC
-#if MSC_VERSION
+#if MSC_VERSION && MSC_VERSION < 1400
 
 #ifndef NTSTATUS
 #define NTSTATUS long
@@ -280,7 +234,9 @@ typedef struct _PROCESSOR_POWER_INFORMATION
 // so this is not inside the above #ifndef section)
 //
 // missing from dbghelp's list
+#ifndef __out_xcount
 # define __out_xcount(s)
+#endif
 
 
 //
