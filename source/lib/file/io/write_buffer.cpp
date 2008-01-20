@@ -4,7 +4,7 @@
 #include "lib/bits.h"	// IsAligned
 #include "lib/sysdep/cpu.h"
 #include "io.h"
-#include "io_internal.h"
+#include "io_align.h"
 
 
 WriteBuffer::WriteBuffer()
@@ -40,8 +40,8 @@ void WriteBuffer::Overwrite(const void* data, size_t size, size_t offset)
 UnalignedWriter::UnalignedWriter(PIFile file, off_t ofs)
 	: m_file(file), m_alignedBuf(io_Allocate(BLOCK_SIZE))
 {
-	const size_t misalignment = (size_t)ofs % SECTOR_SIZE;
-	m_alignedOfs = ofs - (off_t)misalignment;
+	m_alignedOfs = AlignedOffset(ofs);
+	const size_t misalignment = (size_t)(ofs - m_alignedOfs);
 	if(misalignment)
 		io_ReadAligned(m_file, m_alignedOfs, m_alignedBuf.get(), BLOCK_SIZE);
 	m_bytesUsed = misalignment;

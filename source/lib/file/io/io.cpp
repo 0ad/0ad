@@ -12,12 +12,13 @@
 #include "io.h"
 
 #include "lib/allocators/allocators.h"	// AllocatorChecker
-#include "lib/bits.h"	// IsAligned, round_up
 #include "lib/sysdep/cpu.h"	// cpu_memcpy
 #include "lib/file/file.h"
 #include "lib/file/common/file_stats.h"
 #include "block_cache.h"
-#include "io_internal.h"
+#include "io_align.h"
+
+static const unsigned ioDepth = 8;
 
 
 // the underlying aio implementation likes buffer and offset to be
@@ -93,9 +94,7 @@ shared_ptr<u8> io_Allocate(size_t size, off_t ofs)
 {
 	debug_assert(size != 0);
 
-	const size_t misalignment = ofs % SECTOR_SIZE;
-	const size_t paddedSize = (size_t)round_up(size+misalignment, BLOCK_SIZE);
-
+	const size_t paddedSize = PaddedSize((off_t)size, ofs);
 	u8* mem = (u8*)page_aligned_alloc(paddedSize);
 	if(!mem)
 		throw std::bad_alloc();
@@ -119,7 +118,7 @@ public:
 	{
 		m_file = file;
 		m_blockId = BlockId(file->Pathname(), alignedOfs);
-		if(false &&                         file->Mode() == 'r' && s_blockCache.Retrieve(m_blockId, m_cachedBlock))
+		if(file->Mode() == 'r' && s_blockCache.Retrieve(m_blockId, m_cachedBlock))
 		{
 			stats_block_cache(CR_HIT);
 
@@ -206,9 +205,9 @@ public:
 		: m_ofs(ofs), m_alignedBuf(alignedBuf), m_size(size)
 		, m_totalIssued(0), m_totalTransferred(0)
 	{
-		m_misalignment = ofs % SECTOR_SIZE;
-		m_alignedOfs = ofs - (off_t)m_misalignment;
-		m_alignedSize = round_up(m_misalignment+size, BLOCK_SIZE);
+		m_alignedOfs = AlignedOffset(ofs);
+		m_alignedSize = PaddedSize(size, ofs);
+		m_misalignment = ofs - m_alignedOfs;
 	}
 
 	LibError Run(PIFile file, IoCallback cb = 0, uintptr_t cbData = 0)
@@ -241,9 +240,9 @@ public:
 		return INFO::OK;
 	}
 
-	size_t Misalignment() const
+	off_t AlignedOfs() const
 	{
-		return m_misalignment;
+		return m_alignedOfs;
 	}
 
 private:
@@ -302,15 +301,15 @@ LibError io_Read(PIFile file, off_t ofs, u8* alignedBuf, size_t size, u8*& data)
 {
 	IoSplitter splitter(ofs, alignedBuf, (off_t)size);
 	RETURN_ERR(splitter.Run(file));
-	data = alignedBuf + splitter.Misalignment();
+	data = alignedBuf + ofs - splitter.AlignedOfs();
 	return INFO::OK;
 }
 
 
 LibError io_WriteAligned(PIFile file, off_t alignedOfs, const u8* alignedData, size_t size)
 {
-	debug_assert(IsAligned(alignedOfs, SECTOR_SIZE));
-	debug_assert(IsAligned(alignedData, SECTOR_SIZE));
+	debug_assert(IsAligned_Offset(alignedOfs));
+	debug_assert(IsAligned_Data(alignedData));
 
 	IoSplitter splitter(alignedOfs, const_cast<u8*>(alignedData), (off_t)size);
 	return splitter.Run(file);
@@ -319,8 +318,8 @@ LibError io_WriteAligned(PIFile file, off_t alignedOfs, const u8* alignedData, s
 
 LibError io_ReadAligned(PIFile file, off_t alignedOfs, u8* alignedBuf, size_t size)
 {
-	debug_assert(IsAligned(alignedOfs, SECTOR_SIZE));
-	debug_assert(IsAligned(alignedBuf, SECTOR_SIZE));
+	debug_assert(IsAligned_Offset(alignedOfs));
+	debug_assert(IsAligned_Data(alignedBuf));
 
 	IoSplitter splitter(alignedOfs, alignedBuf, (off_t)size);
 	return splitter.Run(file);

@@ -13,12 +13,9 @@
 
 #include <wbemidl.h>
 
-#include "winit.h"
+#include "lib/module_init.h"
 
 #pragma comment(lib, "wbemuuid.lib")
-
-WINIT_REGISTER_EARLY_INIT(wmi_Init);
-WINIT_REGISTER_EARLY_SHUTDOWN(wmi_Shutdown);
 
 
 static IWbemServices* pSvc;
@@ -27,9 +24,13 @@ _COM_SMARTPTR_TYPEDEF(IWbemLocator, __uuidof(IWbemLocator));
 _COM_SMARTPTR_TYPEDEF(IWbemClassObject, __uuidof(IWbemClassObject));
 _COM_SMARTPTR_TYPEDEF(IEnumWbemClassObject, __uuidof(IEnumWbemClassObject));
 
+static ModuleInitState initState;
 
-static LibError wmi_Init()
+static LibError Init()
 {
+	if(!ModuleShouldInitialize(&initState))
+		return INFO::SKIPPED;
+
 	HRESULT hr;
 
 	hr = CoInitializeEx(0, COINIT_MULTITHREADED);
@@ -59,24 +60,26 @@ static LibError wmi_Init()
 }
 
 
-static LibError wmi_Shutdown()
+void wmi_Shutdown()
 {
-	// the memory pointed to by pSvc is already invalidated at this point;
-	// maybe some other module has already wiped out COM?
-	//pSvc->Release();
+	if(!ModuleShouldShutdown(&initState))
+		return;
+
+	pSvc->Release();
+
+	// note: don't shut down COM because other modules may still be using it.
 	//CoUninitialize();
-	return INFO::OK;
 }
 
 
 LibError wmi_GetClass(const char* className, WmiMap& wmiMap)
 {
-	HRESULT hr;
+	Init();
 
 	IEnumWbemClassObjectPtr pEnum = 0;
 	char query[200];
 	sprintf_s(query, ARRAY_SIZE(query), "SELECT * FROM %s", className);
-	hr = pSvc->ExecQuery(L"WQL", _bstr_t(query), WBEM_FLAG_FORWARD_ONLY|WBEM_FLAG_RETURN_IMMEDIATELY, 0, &pEnum);
+	HRESULT hr = pSvc->ExecQuery(L"WQL", _bstr_t(query), WBEM_FLAG_FORWARD_ONLY|WBEM_FLAG_RETURN_IMMEDIATELY, 0, &pEnum);
 	if(FAILED(hr))
 		WARN_RETURN(ERR::FAIL);
 	debug_assert(pEnum);

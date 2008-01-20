@@ -278,7 +278,7 @@ public:
 		if(isWrite)
 			ok = WriteFile(hFile, buf, u64_lo(size), &bytesTransferred, &m_overlapped);
 		else
-			ok =  ReadFile(hFile, buf, u64_lo(size), &bytesTransferred, &m_overlapped);		
+			ok =  ReadFile(hFile, buf, u64_lo(size), &bytesTransferred, &m_overlapped);
 		if(!ok && GetLastError() == ERROR_IO_PENDING)	// "pending" isn't an error
 		{
 			ok = TRUE;

@@ -26,4 +26,6 @@ typedef std::map<std::wstring, VARIANT> WmiMap;
  **/
 extern LibError wmi_GetClass(const char* className, WmiMap& wmiMap);
 
+extern void wmi_Shutdown();
+
 #endif	// #ifndef INCLUDED_WMI

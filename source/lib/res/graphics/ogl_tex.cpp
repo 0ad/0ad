@@ -647,8 +647,8 @@ void ogl_tex_override(OglTexOverrides what, OglTexAllow allow)
 // called once from the first ogl_tex_upload.
 static void detect_gl_upload_caps()
 {
-	// make sure us and the app hook have graphics card info available
-	debug_assert(gfx_card[0] != '\0');	// gfx_detect must be called before ogl_tex_upload
+	// note: gfx_card will be empty if running in quickstart mode;
+	// in that case, we won't be able to check for known faulty cards.
 
 	// detect features, but only change the variables if they were at
 	// "undecided" (if overrides were set before this, they must remain).

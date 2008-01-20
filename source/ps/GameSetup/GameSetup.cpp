@@ -978,8 +978,10 @@ void Init(const CmdLineArgs& args, uint flags)
 	uint quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
 	SetTextureQuality(quality);
 
-	// required by ogl_tex to detect broken gfx card/driver combos
-	gfx_detect();
+	// needed by ogl_tex to detect broken gfx card/driver combos,
+	// but takes a while due to WMI startup, so make it optional.
+	if(!g_Quickstart)
+		gfx_detect();
 
 	ogl_WarnIfError();
 

@@ -12,13 +12,13 @@
 #include "file_cache.h"
 
 #include "lib/file/common/file_stats.h"
-#include "lib/file/io/io_internal.h"	// sectorSize
-#include "lib/cache_adt.h"				// Cache
-#include "lib/bits.h"					// round_up
+#include "lib/file/io/io_align.h"       // BLOCK_SIZE
+#include "lib/cache_adt.h"              // Cache
+#include "lib/bits.h"                   // round_up
 #include "lib/allocators/allocators.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/allocators/headerless.h"
-#include "lib/allocators/mem_util.h"	// mem_PageSize
+#include "lib/allocators/mem_util.h"    // mem_PageSize
 
 
 //-----------------------------------------------------------------------------

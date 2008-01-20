@@ -10,7 +10,7 @@
 #include "lib/sysdep/snd.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/tex/tex.h"
-#include "lib/file/io/io_internal.h"	// BLOCK_SIZE
+#include "lib/file/io/io_align.h"	// BLOCK_SIZE
 
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"

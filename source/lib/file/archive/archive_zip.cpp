@@ -26,6 +26,7 @@
 #include "lib/file/file.h"
 #include "lib/file/file_system_posix.h"
 #include "lib/file/io/io.h"
+#include "lib/file/io/io_align.h"	// BLOCK_SIZE
 #include "lib/file/io/write_buffer.h"
 
 static FileSystem_Posix s_fileSystemPosix;
@@ -243,7 +244,7 @@ public:
 		return 'A';
 	}
 
-	virtual LibError Load(const std::string& UNUSED(name), shared_ptr<u8> buf, size_t size) const
+	virtual LibError Load(const std::string& name, shared_ptr<u8> buf, size_t size) const
 	{
 		AdjustOffset();
 
@@ -456,7 +457,7 @@ private:
 	static LibError LocateCentralDirectory(PIFile file, off_t fileSize, off_t& cd_ofs, uint& cd_numEntries, off_t& cd_size)
 	{
 		const off_t maxScanSize = 66000u;	// see below
-		shared_ptr<u8> buf = io_Allocate(maxScanSize, ~0);	// assume worst-case for alignment
+		shared_ptr<u8> buf = io_Allocate(maxScanSize, BLOCK_SIZE-1);	// assume worst-case for alignment
 
 		// expected case: ECDR at EOF; no file comment
 		LibError ret = ScanForEcdr(file, fileSize, const_cast<u8*>(buf.get()), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
