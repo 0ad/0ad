@@ -22,6 +22,10 @@
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/sysdep/sysdep.h"
 
+#if OS_WIN
+#include "lib/sysdep/win/wdbg_heap.h"
+#endif
+
 
 ERROR_ASSOCIATE(ERR::SYM_NO_STACK_FRAMES_FOUND, "No stack frames found", -1);
 ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE_STATIC, "Value unretrievable (stored in external module)", -1);
@@ -396,7 +400,13 @@ static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, uint flags, u8* s
 	case ER_EXIT:
 		exit_requested = true;	// see declaration
 
-		abort();
+#if OS_WIN
+		// prevent (slow) heap reporting since we're exiting abnormally and
+		// thus probably leaking like a sieve.
+		wdbg_heap_Enable(false);
+#endif
+
+		exit(EXIT_FAILURE);
 	}
 
 	return er;

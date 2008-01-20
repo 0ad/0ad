@@ -14,64 +14,7 @@
 #include "lib/bits.h"
 #include "win.h"
 #include "wutil.h"
-#include "winit.h"
 
-WINIT_REGISTER_CRITICAL_INIT(wdbg_Init);
-
-
-static NT_TIB* get_tib()
-{
-#if ARCH_IA32
-	NT_TIB* tib;
-	// ICC 10 doesn't support the NT_TIB.Self syntax, so we have to use
-	// a constant (asm code isn't 64-bit safe anyway).
-	__asm
-	{
-		mov		eax, fs:[NT_TIB.Self]
-		mov		[tib], eax
-	}
-	return tib;
-#endif
-}
-
-
-//-----------------------------------------------------------------------------
-// debug heap
-//-----------------------------------------------------------------------------
-
-static void debug_heap_init()
-{
-	uint flags = 0;
-	flags |= _CRTDBG_ALLOC_MEM_DF;	// enable checks at deallocation time
-	flags |= _CRTDBG_LEAK_CHECK_DF;	// report leaks at exit
-#if CONFIG_PARANOIA
-	flags |= _CRTDBG_CHECK_ALWAYS_DF;	// check during every heap operation (slow!)
-	flags |= _CRTDBG_DELAY_FREE_MEM_DF;	// blocks cannot be reused
-#endif
-	_CrtSetDbgFlag(flags);
-}
-
-
-void debug_heap_check()
-{
-	int ret;
-	__try
-	{
-		// NB: this is a no-op if !_CRTDBG_ALLOC_MEM_DF.
-		// we could call _heapchk but that would catch fewer errors.
-		ret = _CrtCheckMemory();
-	}
-	__except(EXCEPTION_EXECUTE_HANDLER)
-	{
-		ret = _HEAPBADNODE;
-	}
-
-	if(ret != _HEAPOK)
-		DEBUG_DISPLAY_ERROR(L"debug_heap_check: heap is corrupt");
-}
-
-
-//-----------------------------------------------------------------------------
 
 // return 1 if the pointer appears to be totally bogus, otherwise 0.
 // this check is not authoritative (the pointer may be "valid" but incorrect)
@@ -111,6 +54,21 @@ bool debug_is_code_ptr(void* p)
 	return true;
 }
 
+
+static NT_TIB* get_tib()
+{
+#if ARCH_IA32
+	NT_TIB* tib;
+	// ICC 10 doesn't support the NT_TIB.Self syntax, so we have to use
+	// a constant (asm code isn't 64-bit safe anyway).
+	__asm
+	{
+		mov		eax, fs:[NT_TIB.Self]
+		mov		[tib], eax
+	}
+	return tib;
+#endif
+}
 
 bool debug_is_stack_ptr(void* p)
 {
@@ -166,11 +124,4 @@ void debug_set_thread_name(const char* name)
 		// if we get here, the debugger didn't handle the exception.
 		debug_assert(0);	// thread name hack doesn't work under this debugger
 	}
-}
-
-
-static LibError wdbg_Init()
-{
-	debug_heap_init();
-	return INFO::OK;
 }

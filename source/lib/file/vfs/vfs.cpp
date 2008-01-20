@@ -70,7 +70,6 @@ public:
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 
 		PRealDirectory realDirectory = directory->AssociatedDirectory();
-if(!realDirectory) return ERR::FAIL;	// WORKAROUND: vfs doesn't create real dirs by itself
 		const std::string& name = pathname.leaf();
 		RETURN_ERR(realDirectory->Store(name, fileContents, size));
 

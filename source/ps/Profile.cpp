@@ -373,7 +373,7 @@ void CProfileNode::Frame()
 }
 
 // TODO: these should probably only count allocations that occur in the thread being profiled
-#if HAVE_VC_DEBUG_ALLOC
+#if MSC_VERSION
 static intptr_t memory_alloc_count = 0;
 static int (*old_alloc_hook) (int, void*, size_t, int, long, const unsigned char*, int);
 static int alloc_hook(int allocType, void* userData, size_t size, int blockType,

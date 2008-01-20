@@ -71,11 +71,11 @@ public:
 	size_t Size() const
 	{
 		debug_assert(m_magic == lfh_magic);
-		const size_t fn_len = read_le16(&m_fn_len);
-		const size_t  e_len = read_le16(&m_e_len);
+		size_t size = sizeof(LFH);
+		size += read_le16(&m_fn_len);
+		size += read_le16(&m_e_len);
 		// note: LFH doesn't have a comment field!
-
-		return sizeof(LFH) + fn_len + e_len;
+		return size;
 	}
 
 private:
@@ -386,17 +386,12 @@ public:
 
 			std::string zipPathname;
 			cdfh->GetPathname(zipPathname);
-			const size_t lastSlash = zipPathname.find_last_of('/');
-			if(lastSlash != zipPathname.length()-1)	// we only want files
+			const size_t lastSlashOfs = zipPathname.find_last_of('/');
+			const size_t nameOfs = (lastSlashOfs == std::string::npos)? 0 : lastSlashOfs+1;
+			if(nameOfs != zipPathname.length())	// ignore paths ending in slash (i.e. representing a directory)
 			{
-				std::string name;
-				std::string* pname = &zipPathname;	// assume zipPathname only has a name component
-				if(lastSlash != std::string::npos)
-				{
-					name = zipPathname.substr(lastSlash, zipPathname.length()-lastSlash);
-					pname = &name;
-				}
-				FileInfo fileInfo(*pname, cdfh->USize(), cdfh->MTime());
+				const std::string name = zipPathname.substr(nameOfs, zipPathname.length()-nameOfs);
+				FileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
 				shared_ptr<ArchiveFile_Zip> archiveFile(new ArchiveFile_Zip(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method()));
 				cb(zipPathname, fileInfo, archiveFile, cbData);
 			}

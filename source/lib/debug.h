@@ -15,7 +15,6 @@
 // diagnosing and reporting program errors.
 // - a symbol engine provides access to compiler-generated debug information and
 //   can also give a stack trace including local variables;
-// - hooks into the memory allocator improve its leak detection;
 // - our more powerful assert() replacement gives a stack trace so
 //   that the underlying problem becomes apparent;
 // - the output routines make for platform-independent logging and
@@ -33,17 +32,6 @@
 #else
 extern void debug_break();
 #endif
-
-
-//-----------------------------------------------------------------------------
-// debug memory allocator
-//-----------------------------------------------------------------------------
-
-/**
- * check heap integrity.
- * errors are reported by the CRT or via debug_display_error.
- **/
-LIB_API void debug_heap_check(void);
 
 
 //-----------------------------------------------------------------------------

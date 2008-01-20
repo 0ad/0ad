@@ -139,18 +139,25 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 {
 TIMER_ACCRUE(tc_lookup);
 
-	directory = startDirectory;
+	// extract and validate flags (ensure no unknown bits are set)
+	const bool addMissingDirectories    = (flags & VFS_LOOKUP_ADD) != 0;
+	const bool createMissingDirectories = (flags & VFS_LOOKUP_CREATE) != 0;
+	debug_assert((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE)) == 0);
+
 	if(pfile)
 		*pfile = 0;
+
+	directory = startDirectory;
 	RETURN_ERR(Populate(directory));
 
-	if(pathname.empty())	// early out for root directory
-		return INFO::OK;	// (prevents iterator error below)
+	// early-out for pathname == "" when mounting into VFS root
+	if(pathname.empty())	// (prevent iterator error in loop end condition)
+		return INFO::OK;
 
-	VfsPath currentPath;	// only used if flags & VFS_LOOKUP_CREATE
-	VfsPath::iterator it;
+	Path currentPath;	// (.. thus far; used when createMissingDirectories)
 
 	// for each directory component:
+	VfsPath::iterator it;	// (used outside of loop to get filename)
 	for(it = pathname.begin(); it != --pathname.end(); ++it)
 	{
 		const std::string& subdirectoryName = *it;
@@ -158,26 +165,29 @@ TIMER_ACCRUE(tc_lookup);
 		VfsDirectory* subdirectory = directory->GetSubdirectory(subdirectoryName);
 		if(!subdirectory)
 		{
-			if(!(flags & VFS_LOOKUP_ADD))
+			if(addMissingDirectories)
+				subdirectory = directory->AddSubdirectory(subdirectoryName);
+			else
 				return ERR::VFS_DIR_NOT_FOUND;	// NOWARN
+		}
 
-			subdirectory = directory->AddSubdirectory(subdirectoryName);
-
-			if(flags & VFS_LOOKUP_CREATE)
+		if(createMissingDirectories)
+		{
+			if(subdirectory->AssociatedDirectory())
+				currentPath /= subdirectory->AssociatedDirectory()->GetPath().leaf();
+			else
 			{
 				currentPath /= subdirectoryName;
-
-#if 0
-				(void)mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG);
-
-				PRealDirectory realDirectory(new RealDirectory(currentPath.string(), 0, 0));
-				subdirectory->Attach(realDirectory);
-#endif
+				if(mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG) == 0)
+				{
+					PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
+					subdirectory->Attach(realDirectory);
+				}
 			}
 		}
 
+		RETURN_ERR(Populate(subdirectory));
 		directory = subdirectory;
-		RETURN_ERR(Populate(directory));
 	}
 
 	if(pfile)

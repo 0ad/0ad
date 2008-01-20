@@ -119,7 +119,7 @@ public:
 	{
 		m_file = file;
 		m_blockId = BlockId(file->Pathname(), alignedOfs);
-		if(file->Mode() == 'r' && s_blockCache.Retrieve(m_blockId, m_cachedBlock))
+		if(false &&                         file->Mode() == 'r' && s_blockCache.Retrieve(m_blockId, m_cachedBlock))
 		{
 			stats_block_cache(CR_HIT);
 

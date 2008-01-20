@@ -174,11 +174,6 @@ static i32 last_in_use = -1;	// don't search unused entries
 // also used by h_data, and alloc_idx to find a free entry.
 static HDATA* h_data_from_idx(const i32 idx)
 {
-	// makes things *crawl*!
-#if CONFIG_PARANOIA
-	debug_heap_check();
-#endif
-
 	// don't compare against last_in_use - this is called before allocating
 	// new entries, and to check if the next (but possibly not yet valid)
 	// entry is free. tag check protects against using unallocated entries.
