@@ -254,7 +254,6 @@ static void find_address_in_section (bfd *abfd, asection *section, void *data)
 }
 
 // BFD functions perform allocs with real malloc - we need to free that data
-#include "lib/nommgr.h"
 void demangle_buf(char *buf, const char *symbol, size_t n)
 {
 	int status=0;
@@ -373,4 +372,9 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 	}
 	
 	return INFO::OK;
+}
+
+void debug_set_thread_name(char const* UNUSED(name))
+{
+    // Currently unimplemented
 }

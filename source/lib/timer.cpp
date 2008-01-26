@@ -197,7 +197,7 @@ std::string TimerUnit::ToString() const
 	// determine scale factor for pretty display
 	double scale = 1.0;
 	const char* unit = " c";
-	if(m_ticks > 10000000000)	// 10 Gc
+	if(m_ticks > 10000000000LL)	// 10 Gc
 		scale = 1e-9, unit = " Gc";
 	else if(m_ticks > 10000000)	// 10 Mc
 		scale = 1e-6, unit = " Mc";

@@ -100,7 +100,7 @@ void debug_heap_check()
 // if <full_monty> is true or PARANOIA #defined, all possible checks are
 // performed as often as possible. this is really slow (we are talking x100),
 // but reports errors closer to where they occurred.
-void debug_heap_enable(DebugHeapChecks UNUSED(what))
+void debug_heap_enable(int UNUSED(heapChecks))
 {
 	// No-op until we find out if glibc has heap debugging
 }
