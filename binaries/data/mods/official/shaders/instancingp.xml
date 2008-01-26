@@ -2,8 +2,8 @@
 
 <Program>
 	<Shaders>
-		<Shader type="VERTEX_SHADER">shaders/instancingp.vs</Shader>
-		<Shader type="VERTEX_SHADER">shaders/instancing_base.vs</Shader>
 		<Shader type="VERTEX_SHADER">shaders/postouv1.vs</Shader>
+		<Shader type="VERTEX_SHADER">shaders/instancing_base.vs</Shader>
+		<Shader type="VERTEX_SHADER">shaders/instancingp.vs</Shader>
 	</Shaders>
 </Program>
