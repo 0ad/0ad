@@ -33,6 +33,7 @@ class CProjectile : public CJSObject<CProjectile>, public IEventTarget
 	// Horizontal and vertical velocities
 	float m_Speed_H;
 	float m_Speed_V;
+	float m_Speed_V_Previous;
 
 	CEntity* m_Originator;
 
@@ -89,7 +90,7 @@ public:
 	void UpdateAll( size_t timestep );
 	void InterpolateAll( double frametime );
 
-	inline const std::vector<CProjectile*>& GetProjectiles() { return m_Projectiles; }
+	inline const std::list<CProjectile*>& GetProjectiles() { return m_Projectiles; }
 
 	CProjectile* AddProjectile( const CModel* Actor, const CVector3D& Position, const CVector3D& Target, float Speed, CEntity* Originator, const CScriptObject& ImpactScript, const CScriptObject& MissScript );
 	// Only if you have some reason to prematurely get rid of a projectile.
@@ -100,7 +101,7 @@ private:
 	size_t m_LastTurnLength;
 
 	// Maintain a list of the projectiles in the world
-	std::vector<CProjectile*> m_Projectiles;
+	std::list<CProjectile*> m_Projectiles;
 };
 
 #endif

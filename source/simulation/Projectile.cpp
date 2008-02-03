@@ -43,18 +43,12 @@ CProjectile::CProjectile( const CModel* Actor, const CVector3D& Position, const 
 	double t = s / m_Speed_H;
 	// Required vertical velocity at launch:
 	m_Speed_V = (float)( d_h / t + GRAVITY_2 * t );
+	m_Speed_V_Previous = m_Speed_V;
 }
 
 CProjectile::~CProjectile()
 {
 	CProjectileManager& projectileManager = g_Game->GetWorld()->GetProjectileManager();
-	std::vector<CProjectile*>::iterator it;
-	for( it = projectileManager.m_Projectiles.begin(); it != projectileManager.m_Projectiles.end(); ++it )
-		if( *it == this )
-		{
-			projectileManager.m_Projectiles.erase( it );
-			break;
-		}
 	delete( m_Actor );
 }
 
@@ -63,10 +57,10 @@ bool CProjectile::Update( size_t timestep_millis )
 	m_Position_Previous = m_Position;
 	m_Position.X += timestep_millis * m_Axis.x * m_Speed_H;
 	m_Position.Z += timestep_millis * m_Axis.y * m_Speed_H;
-	
 	m_Position.Y += (float)( timestep_millis * ( m_Speed_V - timestep_millis * GRAVITY_2 ) );
+	m_Speed_V_Previous = m_Speed_V;
 	m_Speed_V -= (float)( timestep_millis * GRAVITY );
-
+	
 	float height = m_Position.Y - g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel( m_Position.X, m_Position.Z );
 	
 	if( height < 0.0f )
@@ -100,8 +94,8 @@ void CProjectile::Interpolate( size_t timestep_millis )
 {
 	m_Position_Graphics.X = m_Position_Previous.X + timestep_millis * m_Speed_H * m_Axis.x;
 	m_Position_Graphics.Z = m_Position_Previous.Z + timestep_millis * m_Speed_H * m_Axis.y;
-	m_Position_Graphics.Y = (float)( m_Position_Previous.Y + timestep_millis * ( m_Speed_V - timestep_millis * GRAVITY_2 ) );
-	float dh_dt = (float)( m_Speed_V - timestep_millis * GRAVITY );
+	m_Position_Graphics.Y = (float)( m_Position_Previous.Y + timestep_millis * ( m_Speed_V_Previous - timestep_millis * GRAVITY_2 ) );
+	float dh_dt = (float)( m_Speed_V_Previous - timestep_millis * GRAVITY );
 	float scale = 1 / sqrt( m_Speed_H * m_Speed_H + dh_dt * dh_dt );
 	float scale2 = m_Speed_H * scale;
 	
@@ -248,8 +242,12 @@ CProjectileManager::~CProjectileManager()
 	
 void CProjectileManager::DeleteAll()
 {
-	while( !( m_Projectiles.empty() ) )
-		delete( m_Projectiles[0] ); // removes itself from m_Projectiles
+	std::list<CProjectile*>::iterator it;
+	for (it = m_Projectiles.begin(); it != m_Projectiles.end(); ++it)
+	{
+		delete *it;
+	}
+	m_Projectiles.clear();
 }
 
 CProjectile* CProjectileManager::AddProjectile( const CModel* Actor, const CVector3D& Position, const CVector3D& Target, float Speed, CEntity* Originator, const CScriptObject& ImpactScript, const CScriptObject& MissScript )
@@ -261,23 +259,38 @@ CProjectile* CProjectileManager::AddProjectile( const CModel* Actor, const CVect
 
 void CProjectileManager::DeleteProjectile( CProjectile* p )
 {
-	delete( p );
+	m_Projectiles.erase( std::find(m_Projectiles.begin(), m_Projectiles.end(), p) );
+	delete p;
 }
 
 void CProjectileManager::UpdateAll( size_t timestep )
 {
 	m_LastTurnLength = timestep;
-	for( size_t i = 0; i < m_Projectiles.size(); )
-		if( !( m_Projectiles[i]->Update( timestep ) ) )
-			delete( m_Projectiles[i] ); // removes itself from m_Projectiles
+	
+	std::list<CProjectile*>::iterator it;
+	for (it = m_Projectiles.begin(); it != m_Projectiles.end();)
+	{
+		CProjectile* p = *it;
+		if (!p->Update(timestep))
+		{
+			// Projectile is dead due to having hit the ground or something
+			std::list<CProjectile*>::iterator old = it;
+			it++;
+			m_Projectiles.erase(old);
+			delete p;
+		}
 		else
-			i++;
+		{
+			// Update completed successfully
+			it++;
+		}
+	}
 }
 
 void CProjectileManager::InterpolateAll( double relativeOffset )
 {
 	size_t absoluteOffset = (size_t)( (double)m_LastTurnLength * relativeOffset );
-	std::vector<CProjectile*>::iterator it;
+	std::list<CProjectile*>::iterator it;
 	for( it = m_Projectiles.begin(); it != m_Projectiles.end(); ++it )
 		(*it)->Interpolate( absoluteOffset );
 }

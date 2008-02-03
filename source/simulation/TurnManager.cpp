@@ -12,8 +12,8 @@ CSinglePlayerTurnManager *g_SinglePlayerTurnManager=NULL;
 
 CTurnManager::CTurnManager()
 {
-	for (int i=0;i<3;i++)
-		m_Batches[i].m_TurnLength=DEFAULT_TURN_LENGTH;
+	for (int i=0; i<3; i++)
+		m_Batches[i].m_TurnLength = DEFAULT_TURN_LENGTH;
 }
 
 void CTurnManager::ClearBatch(uint batch)
@@ -143,4 +143,9 @@ void CSinglePlayerTurnManager::NewTurn()
 void CSinglePlayerTurnManager::QueueLocalCommand(CNetMessage *pMsg)
 {
 	QueueMessage(2, pMsg);
+}
+
+bool CSinglePlayerTurnManager::NewTurnReady()
+{
+	return true;
 }

@@ -410,10 +410,11 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 		}
 	}
 
-	const std::vector<CProjectile*>& projectiles = pProjectileMan.GetProjectiles();
-	for (uint i = 0; i < projectiles.size(); ++i)
+	const std::list<CProjectile*>& projectiles = pProjectileMan.GetProjectiles();
+	std::list<CProjectile*>::const_iterator it = projectiles.begin();
+	for (; it != projectiles.end(); ++it)
 	{
-		CModel* model = projectiles[i]->GetModel();
+		CModel* model = (*it)->GetModel();
 
 		model->ValidatePosition();
 
@@ -425,7 +426,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			&& losMgr->GetStatus(centre.X, centre.Z, g_Game->GetLocalPlayer()) & LOS_VISIBLE)
 		{
 			PROFILE( "submit projectiles" );
-			c->SubmitRecursive(projectiles[i]->GetModel());
+			c->SubmitRecursive((*it)->GetModel());
 		}
 	}
 	PROFILE_END( "submit models" );

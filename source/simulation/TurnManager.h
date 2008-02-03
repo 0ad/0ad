@@ -102,16 +102,16 @@ public:
 	uint GetTurnLength();
 	
 	// Called by CSimulation when the current turn time has passed.
-	virtual void NewTurn()=0;
+	virtual void NewTurn() = 0;
 	
 	// Used by CSimulation to ask whether it can call NewTurn.
-	virtual bool NewTurnReady() { return true; }
+	virtual bool NewTurnReady() = 0;
 
 	// Apply a function to all messages in a given batch.
 	void IterateBatch(uint batch, BatchIteratorFunc *func, void *userdata);
 
 	// Queue a command originating from the local player.
-	virtual void QueueLocalCommand(CNetMessage *pMsg)=0;
+	virtual void QueueLocalCommand(CNetMessage *pMsg) = 0;
 };
 
 class CSinglePlayerTurnManager: public CTurnManager
@@ -121,6 +121,7 @@ public:
 
 	virtual void NewTurn();
 	virtual void QueueLocalCommand(CNetMessage *pMsg);
+	virtual bool NewTurnReady();
 };
 
 extern CSinglePlayerTurnManager *g_SinglePlayerTurnManager;
