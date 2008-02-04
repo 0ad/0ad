@@ -10,8 +10,7 @@
 
 #include "SkeletonAnimDef.h"
 #include "maths/MathUtil.h"
-#include "ps/FilePacker.h"
-#include "ps/FileUnpacker.h"
+#include "ps/FileIo.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////

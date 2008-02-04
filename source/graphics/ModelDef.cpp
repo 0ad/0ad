@@ -10,8 +10,7 @@
 
 #include "ModelDef.h"
 #include "graphics/SkeletonAnimDef.h"
-#include "ps/FilePacker.h"
-#include "ps/FileUnpacker.h"
+#include "ps/FileIo.h"
 #include "maths/Vector4D.h"
 
 CVector3D CModelDef::SkinPoint(const SModelVertex& vtx,

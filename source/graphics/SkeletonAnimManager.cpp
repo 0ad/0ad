@@ -14,7 +14,7 @@
 #include "graphics/Model.h"
 #include "graphics/SkeletonAnimDef.h"
 #include "ps/CLogger.h"
-#include "ps/FileUnpacker.h"
+#include "ps/FileIo.h"
 
 #define LOG_CATEGORY "graphics"
 

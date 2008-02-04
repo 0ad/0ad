@@ -5,7 +5,7 @@
 #include "graphics/ColladaManager.h"
 #include "graphics/ModelDef.h"
 #include "ps/CLogger.h"
-#include "ps/FileUnpacker.h" // to get access to its CError
+#include "ps/FileIo.h" // to get access to its CError
 #include "ps/Profile.h"
 
 #define LOG_CATEGORY "mesh"

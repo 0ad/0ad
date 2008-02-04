@@ -5,7 +5,7 @@
 #include <list>
 #include "MapIO.h"
 #include "ps/CStr.h"
-#include "ps/FilePacker.h"
+#include "ps/FileIo.h"
 
 
 class CLightEnv;
