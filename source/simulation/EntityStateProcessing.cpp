@@ -287,7 +287,7 @@ bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 				case CEntityOrder::ORDER_GOTO_COLLISION:
 				case CEntityOrder::ORDER_GOTO_SMOOTHED:
 					size_t newTimestep = cpu_i32FromFloat(timeLeft * 1000.0f);
-					return( ProcessGotoNoPathing( current, newTimestep ) );
+					return( ProcessGotoNoPathing( newOrder, newTimestep ) );
 			}
 		}
 		return( false );
@@ -366,7 +366,9 @@ bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 		return( false );
 	}
 	case STANCE_DISALLOWS:
+	{
 		return( false );		// The stance will have cleared our order queue already
+	}
 	default:	
 		return( false );
 	}

@@ -33,7 +33,7 @@ void CAura::Update( size_t timestep )
 	for( std::vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
 	{
 		CEntity* ent = *it;
-		if( ent->m_extant )
+		if( ent && ent->m_extant )
 		{
 			prevInfluenced.push_back(ent);
 		}
@@ -124,7 +124,7 @@ void CAura::RemoveAll()
 		for( std::vector<HEntity>::iterator it = m_influenced.begin(); it != m_influenced.end(); it++ )
 		{
 			CEntity* ent = *it;
-			if( ent->m_extant )
+			if( ent && ent->m_extant )
 			{
 				argv[0] = OBJECT_TO_JSVAL( ent->GetScript() );
 				JS_CallFunctionValue( m_cx, m_handler, exitFunction, 1, argv, &rval );

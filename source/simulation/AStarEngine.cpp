@@ -431,7 +431,7 @@ bool AStarGoalLowLevel::IsAtGoal( const CVector2D &loc )
 {
 	float dx = coord.x - loc.x;
 	float dy = coord.y - loc.y;
-	return dx*dx + dy*dy <= radius*radius;
+	return dx*dx + dy*dy <= radius*radius / (CELL_SIZE*CELL_SIZE); // Scale down radius to tilespace
 }
 
 float AStarGoalLowLevel::GetTileCost( const CVector2D& loc1, const CVector2D& loc2 )
