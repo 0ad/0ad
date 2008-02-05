@@ -112,7 +112,7 @@ void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, unsigned& 
 	if(nextNumber == 0)
 	{
 		const std::string nameFormat = pathnameFormat.leaf();
-		const VfsPath path = pathnameFormat.branch_path();
+		const VfsPath path = pathnameFormat.branch_path()/"/";
 
 		unsigned maxNumber = 0;
 		FileInfos files;

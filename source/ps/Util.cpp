@@ -203,7 +203,7 @@ void WriteScreenshot(const char* extension)
 {
 	// get next available numbered filename
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
-	const VfsPath basenameFormat("screenshots/screenshot%%04d");
+	const VfsPath basenameFormat("screenshots/screenshot%04d");
 	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
 	VfsPath filename;
 	fs_NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
@@ -239,7 +239,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 {
 	// get next available numbered filename
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
-	const VfsPath basenameFormat("screenshots/screenshot%%04d");
+	const VfsPath basenameFormat("screenshots/screenshot%04d");
 	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
 	VfsPath filename;
 	fs_NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
