@@ -15,11 +15,13 @@ WriteBuffer::WriteBuffer()
 
 void WriteBuffer::Append(const void* data, size_t size)
 {
-	while(m_size + size > m_capacity)
-		m_capacity *= 2;
-	shared_ptr<u8> newData = io_Allocate(m_capacity);
-	cpu_memcpy(newData.get(), m_data.get(), m_size);
-	m_data = newData;
+	if(m_size + size > m_capacity)
+	{
+		m_capacity = round_up_to_pow2(m_size + size);
+		shared_ptr<u8> newData = io_Allocate(m_capacity);
+		cpu_memcpy(newData.get(), m_data.get(), m_size);
+		m_data = newData;
+	}
 
 	cpu_memcpy(m_data.get() + m_size, data, size);
 	m_size += size;
