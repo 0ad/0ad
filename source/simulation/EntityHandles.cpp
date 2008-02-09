@@ -155,9 +155,8 @@ const u8 *CEntityList::Deserialize(const u8* buffer, const u8* UNUSED(end))
 		handle = n & ~HANDLE_SENTINEL_BIT;
 		// We have to validate the data, or the HEntity constructor will debug_assert
 		// on us.
-		// FIXME 4096 shouldn't be hard-coded
 		// FIXME We should also check that the entity actually exists
-		if (handle < 4096 && handle != INVALID_HANDLE)
+		if (handle < MAX_HANDLES)
 			push_back(HEntity(handle));
 	}
 	return buffer;

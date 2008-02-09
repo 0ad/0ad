@@ -30,7 +30,8 @@ class CStrW;
 class CStr8;
 class CVector3D;
 
-#define MAX_HANDLES 4096
+const size_t MAX_HANDLES = 16384;
+cassert(MAX_HANDLES <= MAX_HANDLE+1);
 
 // collision patch size, in graphics units, not tiles (1 tile = 4 units)
 #define COLLISION_PATCH_SIZE 8
