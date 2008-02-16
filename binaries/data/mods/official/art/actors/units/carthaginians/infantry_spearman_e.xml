@@ -47,7 +47,7 @@
     <variant frequency="1" name="Idle"/>
     <variant name="Melee">
       <props>
-        <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/kart_round_isp_e.xml" attachpoint="shield"/>
       </props>
     </variant>
