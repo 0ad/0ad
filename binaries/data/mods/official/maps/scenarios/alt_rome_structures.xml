@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="2.55859" g="2.55859" b="2.55859"/>
+		<SunElevation angle="0.759562"/>
+		<SunRotation angle="-0.666908"/>
+		<TerrainAmbientColour r="0.439216" g="0.439216" b="0.505882"/>
+		<UnitsAmbientColour r="0.478431" g="0.478431" b="0.478431"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="158.686" y="103.995" z="-3.26416"/>
+		<Rotation angle="-0.0305337"/>
+		<Declination angle="0.49799"/>
+	</Camera>
+	<Entities>
+		<Entity uid="28">
+			<Template>rome_farmstead</Template>
+			<Player>2</Player>
+			<Position x="89.2892" y="22.4" z="126.468"/>
+			<Orientation angle="-2.72702"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>rome_house</Template>
+			<Player>2</Player>
+			<Position x="155.479" y="22.4" z="168.559"/>
+			<Orientation angle="-1.15122"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>rome_house</Template>
+			<Player>2</Player>
+			<Position x="159.016" y="22.4" z="151.212"/>
+			<Orientation angle="2.12588"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>rome_house</Template>
+			<Player>2</Player>
+			<Position x="161.797" y="22.4" z="176"/>
+			<Orientation angle="-0.964706"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>rome_house</Template>
+			<Player>2</Player>
+			<Position x="145.578" y="22.4" z="156.331"/>
+			<Orientation angle="-1.11901"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>rome_cavalry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="118.709" y="22.4" z="158.081"/>
+			<Orientation angle="-1.47409"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>rome_cavalry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="164.774" y="22.4" z="147.468"/>
+			<Orientation angle="-2.36151"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>rome_cavalry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="171.144" y="22.4" z="108.702"/>
+			<Orientation angle="-0.90767"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>rome_cavalry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="138.531" y="22.4" z="150.909"/>
+			<Orientation angle="-1.4661"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>rome_cavalry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="149.48" y="22.4" z="102.377"/>
+			<Orientation angle="-2.26419"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>rome_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="175.619" y="22.4" z="141.951"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>rome_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="188.046" y="22.4" z="163.267"/>
+			<Orientation angle="-2.60281"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>rome_temple</Template>
+			<Player>2</Player>
+			<Position x="181.381" y="22.4" z="114.675"/>
+			<Orientation angle="-2.17447"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="197.587" y="22.4" z="165.222"/>
+			<Orientation angle="-0.538532"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="195.849" y="22.4" z="166.934"/>
+			<Orientation angle="-2.25885"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="195.934" y="22.4" z="157.077"/>
+			<Orientation angle="0.612716"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="204.347" y="22.4" z="169.226"/>
+			<Orientation angle="2.86621"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="202.217" y="22.4" z="157.664"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="194.553" y="22.4" z="177.323"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="154.443" y="22.4" z="181.707"/>
+			<Orientation angle="2.07647"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="152.165" y="22.4" z="189.141"/>
+			<Orientation angle="-1.83783"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="138.785" y="22.4" z="202.516"/>
+			<Orientation angle="2.83791"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="155.457" y="22.4" z="182.773"/>
+			<Orientation angle="1.54027"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="159.218" y="22.4" z="183.672"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="161.822" y="22.4" z="197.895"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="161.497" y="22.4" z="195.179"/>
+			<Orientation angle="-2.3345"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="148.584" y="22.4" z="201.855"/>
+			<Orientation angle="-1.60133"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="144.096" y="22.4" z="202.037"/>
+			<Orientation angle="3.12384"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="142.842" y="22.4" z="190.83"/>
+			<Orientation angle="-1.62044"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="124.548" y="22.4" z="193.755"/>
+			<Orientation angle="2.49098"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="133.435" y="22.4" z="188.568"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="134.12" y="22.4" z="179.556"/>
+			<Orientation angle="-2.55586"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="130.565" y="22.4" z="176.22"/>
+			<Orientation angle="1.21605"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>flora_tree_euro_beech</Template>
+			<Player>2</Player>
+			<Position x="137.24" y="22.4" z="185.934"/>
+			<Orientation angle="-0.752044"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="116.024" y="22.4" z="138.358"/>
+			<Orientation angle="0.215718"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="117.881" y="22.4" z="146.036"/>
+			<Orientation angle="-1.37157"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="150.304" y="22.4" z="139.205"/>
+			<Orientation angle="3.0963"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="197.922" y="22.4" z="143.312"/>
+			<Orientation angle="0.81481"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="192.967" y="22.4" z="118.465"/>
+			<Orientation angle="-0.744407"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="131.199" y="22.4" z="98.7462"/>
+			<Orientation angle="-0.305594"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="126.826" y="22.4" z="106.496"/>
+			<Orientation angle="0.3322"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="164.549" y="22.4" z="183.014"/>
+			<Orientation angle="-0.889395"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="184.31" y="22.4" z="187.5"/>
+			<Orientation angle="2.83039"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="181.143" y="22.4" z="180.019"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="175.986" y="22.4" z="200.005"/>
+			<Orientation angle="-0.235339"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="168.619" y="22.4" z="210.245"/>
+			<Orientation angle="-2.70717"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="162.451" y="22.4" z="198.525"/>
+			<Orientation angle="0.724643"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="178.604" y="22.4" z="218.295"/>
+			<Orientation angle="2.82554"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="183.868" y="22.4" z="206.619"/>
+			<Orientation angle="1.47996"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="200.66" y="22.4" z="207.994"/>
+			<Orientation angle="1.54027"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="121.628" y="22.4" z="183.015"/>
+			<Orientation angle="2.03351"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="130.393" y="22.4" z="178.792"/>
+			<Orientation angle="2.69006"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>flora_tree_carob</Template>
+			<Player>2</Player>
+			<Position x="134.541" y="22.4" z="168.648"/>
+			<Orientation angle="-0.0703976"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>special_settlement</Template>
+			<Player>2</Player>
+			<Position x="159.446" y="22.4" z="139.497"/>
+			<Orientation angle="-2.66883"/>
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_01.xml</Actor>
+			<Position x="188.84" y="22.4" z="145.824"/>
+			<Orientation angle="-2.3812"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_02.xml</Actor>
+			<Position x="137.968" y="22.4" z="103.486"/>
+			<Orientation angle="-2.46868"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_03.xml</Actor>
+			<Position x="128.515" y="22.4" z="161.046"/>
+			<Orientation angle="2.24307"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_04.xml</Actor>
+			<Position x="142.814" y="22.4" z="119.366"/>
+			<Orientation angle="1.1488"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_05.xml</Actor>
+			<Position x="175.773" y="22.4" z="125.84"/>
+			<Orientation angle="-2.21264"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_06.xml</Actor>
+			<Position x="159.929" y="22.4" z="114.461"/>
+			<Orientation angle="1.64879"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_07.xml</Actor>
+			<Position x="128.257" y="22.4" z="135.569"/>
+			<Orientation angle="-2.43799"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_08.xml</Actor>
+			<Position x="187.444" y="22.4" z="170.518"/>
+			<Orientation angle="0.537986"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_09.xml</Actor>
+			<Position x="172.24" y="22.4" z="184.683"/>
+			<Orientation angle="-2.70188"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_09.xml</Actor>
+			<Position x="98.8127" y="22.4" z="160.85"/>
+			<Orientation angle="2.78536"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_09.xml</Actor>
+			<Position x="93.5835" y="22.4" z="174.672"/>
+			<Orientation angle="-0.357256"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_09.xml</Actor>
+			<Position x="113.117" y="22.4" z="168.179"/>
+			<Orientation angle="2.82534"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_09.xml</Actor>
+			<Position x="172.888" y="22.4" z="148.336"/>
+			<Orientation angle="2.74744"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/structures/romans/alt_09.xml</Actor>
+			<Position x="144.129" y="22.4" z="172.744"/>
+			<Orientation angle="-2.56803"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="135.07" y="22.4" z="108.594"/>
+			<Orientation angle="2.43202"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="145.995" y="22.4" z="97.8231"/>
+			<Orientation angle="2.48798"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="146.644" y="22.4" z="96.717"/>
+			<Orientation angle="1.46376"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="155.06" y="22.4" z="99.172"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="156.05" y="22.4" z="98.9525"/>
+			<Orientation angle="2.9198"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="150.939" y="22.4" z="102.425"/>
+			<Orientation angle="-1.46211"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="144.606" y="22.4" z="103.14"/>
+			<Orientation angle="-2.96649"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="140.382" y="22.4" z="98.698"/>
+			<Orientation angle="-1.98744"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="140.575" y="22.4" z="90.6415"/>
+			<Orientation angle="2.93494"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="153.828" y="22.4" z="92.35"/>
+			<Orientation angle="0.467931"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="167.526" y="22.4" z="95.1587"/>
+			<Orientation angle="-0.450723"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="166.839" y="22.4" z="100.199"/>
+			<Orientation angle="-1.68694"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="160.582" y="22.4" z="101.613"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="155.32" y="22.4" z="103.625"/>
+			<Orientation angle="-0.517765"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="149.404" y="22.4" z="108.888"/>
+			<Orientation angle="-1.9246"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="137.661" y="22.4" z="110.644"/>
+			<Orientation angle="1.78526"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="132.791" y="22.4" z="114.094"/>
+			<Orientation angle="0.311729"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="135.543" y="22.4" z="117.397"/>
+			<Orientation angle="-0.0950554"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="130.997" y="22.4" z="118.013"/>
+			<Orientation angle="0.314749"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="143.061" y="22.4" z="108.965"/>
+			<Orientation angle="0.461338"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="145.087" y="22.4" z="111.819"/>
+			<Orientation angle="0.773901"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="143.777" y="22.4" z="111.594"/>
+			<Orientation angle="1.066"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="170.164" y="22.4" z="145.467"/>
+			<Orientation angle="0.281964"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="181.754" y="22.4" z="164.597"/>
+			<Orientation angle="0.254213"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="194.079" y="22.4" z="168.969"/>
+			<Orientation angle="0.879731"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="179.832" y="22.4" z="170.192"/>
+			<Orientation angle="0.145995"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="178.536" y="22.4" z="181.135"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="177.087" y="22.4" z="177.11"/>
+			<Orientation angle="1.91347"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="159.883" y="22.4" z="169.272"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="185.039" y="22.4" z="110.642"/>
+			<Orientation angle="-1.81284"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="180.708" y="22.4" z="105.734"/>
+			<Orientation angle="2.12927"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="185.855" y="22.4" z="105.296"/>
+			<Orientation angle="0.587937"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="191.008" y="22.4" z="116.225"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="189.659" y="22.4" z="123.055"/>
+			<Orientation angle="1.258"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="185.313" y="22.4" z="100.169"/>
+			<Orientation angle="0.175534"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="170.892" y="22.4" z="103.232"/>
+			<Orientation angle="1.15054"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="173.951" y="22.4" z="95.7914"/>
+			<Orientation angle="2.96073"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="174.327" y="22.4" z="88.8061"/>
+			<Orientation angle="3.13302"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="163" y="22.4" z="106.266"/>
+			<Orientation angle="1.73909"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="91.1743" y="22.4" z="160.489"/>
+			<Orientation angle="1.54026"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="95.2721" y="22.4" z="164.957"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="90.5393" y="22.4" z="175.08"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="87.8842" y="22.4" z="178.65"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="86.5955" y="22.4" z="173.444"/>
+			<Orientation angle="2.67335"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="92.3592" y="22.4" z="137.861"/>
+			<Orientation angle="2.64112"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="97.1339" y="22.4" z="129.525"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="98.914" y="22.4" z="129.421"/>
+			<Orientation angle="1.54026"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="95.8812" y="22.4" z="106.411"/>
+			<Orientation angle="-3.05294"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="95.4026" y="22.4" z="95.7334"/>
+			<Orientation angle="-2.84288"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="86.98" y="22.4" z="90.2205"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="86.3386" y="22.4" z="90.6886"/>
+			<Orientation angle="3.06709"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="107.09" y="22.4" z="99.1101"/>
+			<Orientation angle="1.08311"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="90.3916" y="22.4" z="99.4238"/>
+			<Orientation angle="2.22469"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="111.232" y="22.4" z="100.667"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="115.14" y="22.4" z="114.555"/>
+			<Orientation angle="0.078567"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="115.225" y="22.4" z="131.695"/>
+			<Orientation angle="2.68967"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="116.898" y="22.4" z="103.032"/>
+			<Orientation angle="-1.978"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="101.03" y="22.4" z="101.49"/>
+			<Orientation angle="3.08049"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="102.547" y="22.4" z="85.6307"/>
+			<Orientation angle="2.06221"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="109.576" y="22.4" z="87.1321"/>
+			<Orientation angle="2.02229"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="113.636" y="22.4" z="82.547"/>
+			<Orientation angle="3.06611"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="118.994" y="22.4" z="79.0992"/>
+			<Orientation angle="0.781168"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="126.615" y="22.4" z="89.4226"/>
+			<Orientation angle="-0.0325573"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="121.362" y="22.4" z="107.262"/>
+			<Orientation angle="-2.68481"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="117.341" y="22.4" z="97.3653"/>
+			<Orientation angle="1.6664"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="131.429" y="22.4" z="81.9272"/>
+			<Orientation angle="-1.95096"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="120.434" y="22.4" z="88.7638"/>
+			<Orientation angle="0.837872"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="126.325" y="22.4" z="99.7875"/>
+			<Orientation angle="0.434123"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="126.23" y="22.4" z="102.892"/>
+			<Orientation angle="0.731685"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="109.731" y="22.4" z="121.433"/>
+			<Orientation angle="0.665771"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="103.946" y="22.4" z="136.989"/>
+			<Orientation angle="-0.334233"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="103.498" y="22.4" z="124.121"/>
+			<Orientation angle="3.0726"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="96.9704" y="22.4" z="144.18"/>
+			<Orientation angle="2.78437"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="104.769" y="22.4" z="145.941"/>
+			<Orientation angle="1.17932"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="109.738" y="22.4" z="138.516"/>
+			<Orientation angle="0.974209"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_medit_field.xml</Actor>
+			<Position x="133.632" y="22.4" z="120.957"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+	</Nonentities>
+	<Paths/>
+	<Triggers/>
+</Scenario>
