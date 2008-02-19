@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/rome_alt_08.pmd</mesh>
+      <props>
+        <prop actor="props/structures/romans/alt_08_props.xml" attachpoint="props_main"/>
+      </props>
+      <texture>structural/rome_struct_1.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
