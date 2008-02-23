@@ -27,6 +27,7 @@
         <animation file="infantry/general/death/inf_07.psa" name="death" speed="300"/>
         <animation file=""/>
       </animations>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/shields/iber_scutum_isp.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
@@ -36,9 +37,8 @@
   </group>
 
   <group>
-    <variant frequency="1" name="Iberian-Tunic">
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
-      <texture>skeletal/iber_isw_a_1.dds</texture>
+    <variant frequency="1" name="Scutarius-Body-Texture">
+      <texture>skeletal/iber_isp_a_1.dds</texture>
     </variant>
   </group>
 
