@@ -26,7 +26,7 @@ MESSAGEHANDLER(MessageTrace)
 MESSAGEHANDLER(Screenshot)
 {
 	// TODO: allow non-big screenshots too
-	WriteBigScreenshot("bmp", msg->tiles);
+	WriteBigScreenshot(".bmp", msg->tiles);
 }
 
 QUERYHANDLER(CinemaRecord)
