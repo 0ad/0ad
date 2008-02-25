@@ -29,7 +29,7 @@ static size_t s_numArchivedFiles;
 
 // helper class that allows breaking up the logic into sub-functions without
 // always having to pass directory/realDirectory as parameters.
-class PopulateHelper : boost::noncopyable
+class PopulateHelper : noncopyable
 {
 public:
 	PopulateHelper(VfsDirectory* directory, PRealDirectory realDirectory)

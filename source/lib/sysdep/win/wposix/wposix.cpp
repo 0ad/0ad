@@ -24,6 +24,7 @@ static DWORD pageSize;
 static DWORD numProcessors;
 static BOOL (WINAPI *pGlobalMemoryStatusEx)(MEMORYSTATUSEX*);  
 
+// NB: called from critical init
 static void InitSysconf()
 {
 	SYSTEM_INFO si;

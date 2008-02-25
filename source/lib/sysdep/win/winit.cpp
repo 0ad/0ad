@@ -20,6 +20,13 @@
 // to insulate against changes there. another advantage is that callbacks
 // can return LibError instead of int.
 
+// currently (2008-02-17) the init groups are populated as follows:
+//   critical : wposix
+//   early    : wutil
+//   early2   : whrt, wdbg_heap
+//   main     : waio, wsock, wtime, wdir_watch
+//   late     : wsdl
+
 typedef LibError (*PfnLibErrorVoid)(void);
 
 // pointers to start and end of function tables.

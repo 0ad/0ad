@@ -12,6 +12,9 @@
 #include "ProfileViewer.h"
 #include "lib/timer.h"
 
+#if OS_WIN
+#include "lib/sysdep/win/wdbg_heap.h"
+#endif
 #if defined(__GLIBC__) && !defined(NDEBUG)
 # define GLIBC_MALLOC_HOOK
 # include <malloc.h>
@@ -373,26 +376,13 @@ void CProfileNode::Frame()
 }
 
 // TODO: these should probably only count allocations that occur in the thread being profiled
-#if MSC_VERSION
-static intptr_t memory_alloc_count = 0;
-static int (*old_alloc_hook) (int, void*, size_t, int, long, const unsigned char*, int);
-static int alloc_hook(int allocType, void* userData, size_t size, int blockType,
-					  long requestNumber, const unsigned char* filename, int lineNumber)
-{
-	if (allocType == _HOOK_ALLOC || allocType == _HOOK_REALLOC)
-		cpu_AtomicAdd(&memory_alloc_count, 1);
-	if (old_alloc_hook)
-		return old_alloc_hook(allocType, userData, size, blockType, requestNumber, filename, lineNumber);
-	else
-		return 1;
-}
+#if OS_WIN
 static void alloc_hook_initialize()
 {
-	old_alloc_hook = _CrtSetAllocHook(&alloc_hook);
 }
 static long get_memory_alloc_count()
 {
-	return memory_alloc_count;
+	return (long)wdbg_heap_NumberOfAllocations();
 }
 #elif defined(GLIBC_MALLOC_HOOK)
 // Set up malloc hooks to count allocations - see

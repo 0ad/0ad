@@ -30,4 +30,10 @@ LIB_API void wdbg_heap_Enable(bool);
  **/
 LIB_API void wdbg_heap_Validate(void);
 
+/**
+ * @return the total number of alloc and realloc operations thus far.
+ * used by the in-game profiler.
+ **/
+LIB_API intptr_t wdbg_heap_NumberOfAllocations();
+
 #endif	// #ifndef INCLUDED_WDBG_HEAP

@@ -240,9 +240,12 @@ static void StartDriver(const char* driverPathname)
 		BOOL ok = StartService(hService, numArgs, 0);
 		if(!ok)
 		{
-			// if it wasn't already running, starting failed
 			if(GetLastError() != ERROR_SERVICE_ALREADY_RUNNING)
+			{
+				// starting failed. don't raise a warning because this
+				// always happens on least-permission user accounts.
 				WARN_IF_FALSE(0);
+			}
 		}
 	}
 

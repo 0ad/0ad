@@ -29,7 +29,7 @@ private:
 };
 
 
-class UnalignedWriter : public boost::noncopyable
+class UnalignedWriter : public noncopyable
 {
 public:
 	UnalignedWriter(PIFile file, off_t ofs);

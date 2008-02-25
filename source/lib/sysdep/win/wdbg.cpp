@@ -94,6 +94,18 @@ void debug_puts(const char* text)
 }
 
 
+void wdbg_printf(const char* fmt, ...)
+{
+	char buf[1024];	// as required by wvsprintf
+	va_list ap;
+	va_start(ap, fmt);
+	wvsprintf(buf, fmt, ap);
+	va_end(ap);
+
+	debug_puts(buf);
+}
+
+
 // inform the debugger of the current thread's description, which it then
 // displays instead of just the thread handle.
 //

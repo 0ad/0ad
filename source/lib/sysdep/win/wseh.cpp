@@ -15,7 +15,7 @@
 #include "lib/sysdep/cpu.h"
 #include "win.h"
 #include "wutil.h"
-#include "wdbg_sym.h"			// wdbg_sym_write_minidump
+#include "wdbg_sym.h"			// wdbg_sym_WriteMinidump
 
 #if MSC_VERSION >= 1400
 # include <process.h>			// __security_init_cookie
@@ -253,7 +253,7 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 
 	// this must happen before the error dialog because user could choose to
 	// exit immediately there.
-	wdbg_sym_write_minidump(ep);
+	wdbg_sym_WriteMinidump(ep);
 
 	wchar_t message[500];
 	const wchar_t* messageFormat =

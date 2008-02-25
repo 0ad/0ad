@@ -65,14 +65,10 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 	va_list args;
 	va_start(args, fmt);
 	int len = vswprintf(debug_log_pos, chars_left-2, fmt, args);
+
 	va_end(args);
-	if(len < 0)
-	{
-		debug_assert(0);	// vswprintf failed
-		return;
-	}
 	debug_log_pos += len+2;
-	wcscpy(debug_log_pos-2, L"\r\n");	// safe
+	wcscpy_s(debug_log_pos-2, 3, L"\r\n");
 }
 
 
@@ -86,10 +82,6 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 // - fixed size buffers aren't nice, but much simpler than vasprintf-style
 //   allocate+expand_until_it_fits. these calls are for quick debug output,
 //   not loads of data, anyway.
-
-// max # characters (including \0) output by debug_(w)printf in one call.
-static const int MAX_CHARS = 512;
-
 
 // rationale: static data instead of std::set to allow setting at any time.
 // we store FNV hash of tag strings for fast comparison; collisions are
@@ -161,54 +153,22 @@ bool debug_filter_allows(const char* text)
 	return false;
 }
 
+// max # characters (including \0) output by debug_printf in one call.
+const size_t DEBUG_PRINTF_MAX_CHARS = 1024;	// refer to wdbg.cpp!debug_vsprintf before changing this
 
 #undef debug_printf	// allowing #defining it out
 void debug_printf(const char* fmt, ...)
 {
-	char buf[MAX_CHARS]; buf[ARRAY_SIZE(buf)-1] = '\0';
+	char buf[DEBUG_PRINTF_MAX_CHARS]; buf[ARRAY_SIZE(buf)-1] = '\0';
 
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, MAX_CHARS-1, fmt, ap);
+	const int len = vsnprintf(buf, DEBUG_PRINTF_MAX_CHARS, fmt, ap);
+	debug_assert(len >= 0);
 	va_end(ap);
 
 	if(debug_filter_allows(buf))
 		debug_puts(buf);
-}
-
-#undef debug_wprintf	// allowing #defining it out
-void debug_wprintf(const wchar_t* fmt, ...)
-{
-	wchar_t wcs_buf[MAX_CHARS]; wcs_buf[ARRAY_SIZE(wcs_buf)-1] = '\0';
-
-	va_list ap;
-	va_start(ap, fmt);
-	vswprintf(wcs_buf, MAX_CHARS-1, fmt, ap);
-	va_end(ap);
-
-	// convert wchar_t to UTF-8.
-	//
-	// rationale: according to fwide(3) and assorted manpage, FILEs are in
-	// single character or in wide character mode. When a FILE is in
-	// single character mode, wide character writes will fail, and no
-	// conversion is done automatically. Thus the manual conversion.
-	//
-	// it's done here (instead of in OS-specific debug_putws) because
-	// filter_allow requires the conversion also.
-	//
-	// jw: MSDN wcstombs dox say 2 bytes per wchar is enough.
-	// not sure about this; to be on the safe side, we check for overflow.
-	const size_t MAX_BYTES = MAX_CHARS*2;
-	char mbs_buf[MAX_BYTES]; mbs_buf[MAX_BYTES-1] = '\0';
-	size_t bytes_written = wcstombs(mbs_buf, wcs_buf, MAX_BYTES);
-	debug_assert(bytes_written != (size_t)-1);	// else: invalid wcs character encountered
-	debug_assert(bytes_written <= MAX_BYTES);	// else: overflow (should be impossible)
-	// exact fit, ensure it's 0-terminated
-	if(bytes_written == MAX_BYTES)
-		mbs_buf[MAX_BYTES-1] = '\0';
-
-	if(debug_filter_allows(mbs_buf))
-		debug_puts(mbs_buf);
 }
 
 
@@ -440,7 +400,7 @@ ErrorReaction debug_display_error(const wchar_t* description,
 	const char* fn_only = path_name_only(file);
 
 	// display in output window; double-click will navigate to error location.
-	debug_wprintf(L"%hs(%d): %ls\n", fn_only, line, description);
+	debug_printf("%s(%d): %ls\n", fn_only, line, description);
 
 
 	ErrorMessageMem emm;

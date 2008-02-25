@@ -244,7 +244,7 @@ public:
 		return 'A';
 	}
 
-	virtual LibError Load(const std::string& name, shared_ptr<u8> buf, size_t size) const
+	virtual LibError Load(const std::string& UNUSED(name), shared_ptr<u8> buf, size_t size) const
 	{
 		AdjustOffset();
 

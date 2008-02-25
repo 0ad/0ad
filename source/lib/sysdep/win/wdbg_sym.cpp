@@ -26,11 +26,10 @@
 # include "lib/sysdep/ia32/ia32.h"
 #endif
 #include "win.h"
-#include "winit.h"
 #include "wutil.h"
 
 #define _NO_CVCONST_H	// request SymTagEnum be defined
-#include <dbghelp.h>	// must come after win_internal
+#include <dbghelp.h>	// must come after win.h
 #include <OAIdl.h>	// VARIANT
 
 #if MSC_VERSION
@@ -38,12 +37,11 @@
 #pragma comment(lib, "oleaut32.lib")	// VariantChangeType
 #endif
 
-WINIT_REGISTER_MAIN_INIT(wdbg_sym_Init);
-WINIT_REGISTER_MAIN_SHUTDOWN(wdbg_sym_Shutdown);
 
 // note: it is safe to use debug_assert/debug_warn/CHECK_ERR even during a
 // stack trace (which is triggered by debug_assert et al. in app code) because
 // nested stack traces are ignored and only the error is displayed.
+
 
 
 //----------------------------------------------------------------------------
@@ -60,7 +58,7 @@ static ULONG64 mod_base;
 // for StackWalk64; taken from PE header by wdbg_init.
 static WORD machine;
 
-// call on-demand (allows handling exceptions raised before win.cpp
+// call on-demand (allows handling exceptions raised before winit.cpp
 // init functions are called); no effect if already initialized.
 static LibError sym_init()
 {
@@ -80,6 +78,7 @@ static LibError sym_init()
 	DWORD opts = SymGetOptions();
 	opts |= SYMOPT_DEFERRED_LOADS;	// the "fastest, most efficient way"
 	//opts |= SYMOPT_DEBUG;	// lots of debug spew in output window
+	opts |= SYMOPT_UNDNAME;
 	SymSetOptions(opts);
 
 	// initialize dbghelp.
@@ -95,14 +94,6 @@ static LibError sym_init()
 	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
 	machine = header->FileHeader.Machine;
 
-	return INFO::OK;
-}
-
-
-// called from wdbg_sym_Shutdown.
-static LibError sym_shutdown()
-{
-	SymCleanup(hProcess);
 	return INFO::OK;
 }
 
@@ -150,7 +141,7 @@ static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, c
 		SYMBOL_INFOW* sym = &sp.si;
 		if(SymFromAddrW(hProcess, addr, 0, sym))
 		{
-			sprintf_s(sym_name, DBG_SYMBOL_LEN, "%ws", sym->Name);
+			wsprintfA(sym_name, "%ws", sym->Name);
 			successes++;
 		}
 	}
@@ -172,7 +163,7 @@ static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, c
 				// problem and is balanced by not having to do this from every
 				// call site (full path is too long to display nicely).
 				const char* base_name = path_name_only(line_info.FileName);
-				sprintf_s(file, DBG_FILE_LEN, "%s", base_name);
+				wsprintf(file, "%s", base_name);
 				successes++;
 			}
 
@@ -204,8 +195,6 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 //----------------------------------------------------------------------------
 // stack walk
 //----------------------------------------------------------------------------
-
-static VOID (*pRtlCaptureContext)(PCONTEXT);
 
 /*
 Subroutine linkage example code:
@@ -250,9 +239,9 @@ func2:
 
 #if ARCH_IA32 && !CONFIG_OMIT_FP
 
-static LibError ia32_walk_stack(STACKFRAME64* sf)
+static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 {
-	// read previous values from STACKFRAME64
+	// read previous values from _tagSTACKFRAME64
 	void* prev_fp  = (void*)sf->AddrFrame .Offset;
 	void* prev_ip  = (void*)sf->AddrPC    .Offset;
 	void* prev_ret = (void*)sf->AddrReturn.Offset;
@@ -277,7 +266,10 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 	LibError err = ia32_GetCallTarget(ret_addr, &target);
 	RETURN_ERR(err);
 	if(target)	// were able to determine it from the call instruction
-		debug_assert(debug_is_code_ptr(target));
+	{
+		if(!debug_is_code_ptr(target))
+			return ERR::FAIL;	// NOWARN (invalid address)
+	}
 
 	sf->AddrFrame .Offset = (DWORD64)fp;
 	sf->AddrPC    .Offset = (DWORD64)target;
@@ -289,31 +281,17 @@ static LibError ia32_walk_stack(STACKFRAME64* sf)
 #endif	// #if ARCH_IA32 && !CONFIG_OMIT_FP
 
 
-// called for each stack frame found by walk_stack, passing information
-// about the frame and <user_arg>.
-// return INFO::CB_CONTINUE to continue, anything else to stop immediately
-// and return that value to walk_stack's caller.
-//
-// rationale: we can't just pass function's address to the callback -
-// dump_frame_cb needs the frame pointer for reg-relative variables.
-typedef LibError (*StackFrameCallback)(const STACKFRAME64*, void*);
-
 static void skip_this_frame(uint& skip, void* context)
 {
 	if(!context)
 		skip++;
 }
 
-// iterate over a call stack, calling back for each frame encountered.
-// if <pcontext> != 0, we start there; otherwise, at the current context.
-// return an error if callback never succeeded (returned 0).
-//
-// lock must be held.
-static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip = 0, const CONTEXT* pcontext = 0)
+LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, uint skip, const CONTEXT* pcontext)
 {
 	// to function properly, StackWalk64 requires a CONTEXT on
 	// non-x86 systems (documented) or when in release mode (observed).
-	// exception handlers can call walk_stack with their context record;
+	// exception handlers can call wdbg_sym_WalkStack with their context record;
 	// otherwise (e.g. dump_stack from debug_assert), we need to query it.
 	CONTEXT context;
 	// .. caller knows the context (most likely from an exception);
@@ -341,7 +319,13 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 #if ARCH_IA32
 		ia32_asm_GetCurrentContext(&context);
 #else
-		// preferred implementation (was imported during module init)
+		// RtlCaptureContext is preferable if available (on WinXP and later)
+		typedef VOID (*PRtlCaptureContext)(PCONTEXT);
+		static PRtlCaptureContext pRtlCaptureContext;
+		ONCE(\
+			HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");\
+			pRtlCaptureContext = (PRtlCaptureContext)GetProcAddress(hKernel32Dll, "RtlCaptureContext");\
+		);
 		if(pRtlCaptureContext)
 			pRtlCaptureContext(&context);
 		// not available: raise+handle an exception; grab the reported context.
@@ -366,7 +350,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 	}
 	pcontext = &context;
 
-	STACKFRAME64 sf;
+	_tagSTACKFRAME64 sf;
 	memset(&sf, 0, sizeof(sf));
 	sf.AddrPC.Mode      = AddrModeFlat;
 	sf.AddrFrame.Mode   = AddrModeFlat;
@@ -402,6 +386,7 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 #if ARCH_IA32 && !CONFIG_OMIT_FP
 		err = ia32_walk_stack(&sf);
 #else
+		WinScopedLock lock(WDBG_SYM_CS);
 		sym_init();
 		// note: unfortunately StackWalk64 doesn't always SetLastError,
 		// so we have to reset it and check for 0. *sigh*
@@ -425,10 +410,10 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 			continue;
 		}
 
-		ret = cb(&sf, user_arg);
+		ret = cb(&sf, cbData);
 		// callback is allowing us to continue
 		if(ret == INFO::CB_CONTINUE)
-			ret = INFO::OK;	//  make sure this is never returned
+			ret = INFO::OK;
 		// callback reports it's done; stop calling it and return that value.
 		// (can be either success or failure)
 		else
@@ -441,13 +426,13 @@ static LibError walk_stack(StackFrameCallback cb, void* user_arg = 0, uint skip 
 
 
 //
-// get address of Nth function above us on the call stack (uses walk_stack)
+// get address of Nth function above us on the call stack (uses wdbg_sym_WalkStack)
 //
 
-// called by walk_stack for each stack frame
-static LibError nth_caller_cb(const STACKFRAME64* sf, void* user_arg)
+// called by wdbg_sym_WalkStack for each stack frame
+static LibError nth_caller_cb(const _tagSTACKFRAME64* sf, uintptr_t cbData)
 {
-	void** pfunc = (void**)user_arg;
+	void** pfunc = (void**)cbData;
 
 	// return its address
 	*pfunc = (void*)sf->AddrPC.Offset;
@@ -456,10 +441,9 @@ static LibError nth_caller_cb(const STACKFRAME64* sf, void* user_arg)
 
 void* debug_get_nth_caller(uint skip, void* pcontext)
 {
-	WinScopedLock lock(WDBG_SYM_CS);
 	void* func;
 	skip_this_frame(skip, pcontext);
-	LibError ret = walk_stack(nth_caller_cb, &func, skip, (const CONTEXT*)pcontext);
+	LibError ret = wdbg_sym_WalkStack(nth_caller_cb, (uintptr_t)&func, skip, (const CONTEXT*)pcontext);
 	return (ret == INFO::OK)? func : 0;
 }
 
@@ -649,7 +633,7 @@ static LibError dump_sym(DWORD id, const u8* p, DumpState state);
 // from cvconst.h
 //
 // rationale: we don't provide a get_register routine, since only the
-// value of FP is known to dump_frame_cb (via STACKFRAME64).
+// value of FP is known to dump_frame_cb (via _tagSTACKFRAME64).
 // displaying variables stored in registers is out of the question;
 // all we can do is display FP-relative variables.
 enum CV_HREG_e
@@ -867,11 +851,11 @@ static LibError dump_array(const u8* p,
 }
 
 
-static const STACKFRAME64* current_stackframe64;
+static const _tagSTACKFRAME64* current_stackframe64;
 
 static LibError determine_symbol_address(DWORD id, DWORD UNUSED(type_id), const u8** pp)
 {
-	const STACKFRAME64* sf = current_stackframe64;
+	const _tagSTACKFRAME64* sf = current_stackframe64;
 
 	DWORD data_kind;
 	if(!SymGetTypeInfo(hProcess, mod_base, id, TI_GET_DATAKIND, &data_kind))
@@ -1286,7 +1270,8 @@ static PtrSet* already_visited_ptrs;
 	// if we put it in a function, construction still fails on VC7 because
 	// the atexit table will not have been initialized yet.
 
-// called by debug_dump_stack and wdbg_sym_Shutdown
+// called by debug_dump_stack but not during shutdown (this must remain valid
+// until the very end to allow crash reports)
 static void ptr_reset_visited()
 {
 	delete already_visited_ptrs;
@@ -1749,7 +1734,7 @@ static LibError dump_sym(DWORD type_id, const u8* p, DumpState state)
 
 struct IMAGEHLP_STACK_FRAME2 : public IMAGEHLP_STACK_FRAME
 {
-	IMAGEHLP_STACK_FRAME2(const STACKFRAME64* sf)
+	IMAGEHLP_STACK_FRAME2(const _tagSTACKFRAME64* sf)
 	{
 		// apparently only PC, FP and SP are necessary, but
 		// we go whole-hog to be safe.
@@ -1787,8 +1772,8 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG UNUSED(size), void* UNU
 	return TRUE;	// continue
 }
 
-// called by walk_stack for each stack frame
-static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
+// called by wdbg_sym_WalkStack for each stack frame
+static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbData))
 {
 	current_stackframe64 = sf;
 	void* func = (void*)sf->AddrPC.Offset;
@@ -1818,9 +1803,8 @@ static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 	IMAGEHLP_STACK_FRAME2 imghlp_frame(sf);
 	SymSetContext(hProcess, &imghlp_frame, 0);	// last param is ignored
 
-	SymEnumSymbols(hProcess, 0, 0, dump_sym_cb, 0);
-		// 2nd and 3rd params indicate scope set by SymSetContext
-		// should be used.
+	const ULONG64 base = 0; const char* const mask = 0;	// use scope set by SymSetContext
+	SymEnumSymbols(hProcess, base, mask, dump_sym_cb, 0);
 
 	out(L"\r\n");
 	return INFO::CB_CONTINUE;
@@ -1829,9 +1813,6 @@ static LibError dump_frame_cb(const STACKFRAME64* sf, void* UNUSED(user_arg))
 
 LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
 {
-buf='\0';
-return INFO::OK;
-
 	static uintptr_t already_in_progress;
 	if(!cpu_CAS(&already_in_progress, 0, 1))
 		return ERR::REENTERED;	// NOWARN
@@ -1839,9 +1820,8 @@ return INFO::OK;
 	out_init(buf, max_chars);
 	ptr_reset_visited();
 
-	WinScopedLock lock(WDBG_SYM_CS);
 	skip_this_frame(skip, pcontext);
-	LibError ret = walk_stack(dump_frame_cb, 0, skip, (const CONTEXT*)pcontext);
+	LibError ret = wdbg_sym_WalkStack(dump_frame_cb, 0, skip, (const CONTEXT*)pcontext);
 
 	already_in_progress = 0;
 
@@ -1855,7 +1835,7 @@ return INFO::OK;
 // examining the crash in a debugger. called by wdbg_exception_filter.
 // heavily modified from http://www.codeproject.com/debug/XCrashReportPt3.asp
 // lock must be held.
-void wdbg_sym_write_minidump(EXCEPTION_POINTERS* exception_pointers)
+void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* exception_pointers)
 {
 	WinScopedLock lock(WDBG_SYM_CS);
 
@@ -1863,7 +1843,7 @@ void wdbg_sym_write_minidump(EXCEPTION_POINTERS* exception_pointers)
 	HANDLE hFile = CreateFile(path.string().c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 	{
-		DEBUG_DISPLAY_ERROR(L"wdbg_sym_write_minidump: unable to create crashlog.dmp.");
+		DEBUG_DISPLAY_ERROR(L"wdbg_sym_WriteMinidump: unable to create crashlog.dmp.");
 		return;
 	}
 
@@ -1879,31 +1859,7 @@ void wdbg_sym_write_minidump(EXCEPTION_POINTERS* exception_pointers)
 
 	HANDLE hProcess = GetCurrentProcess(); DWORD pid = GetCurrentProcessId();
 	if(!MiniDumpWriteDump(hProcess, pid, hFile, MiniDumpNormal, &mei, 0, 0))
-		DEBUG_DISPLAY_ERROR(L"wdbg_sym_write_minidump: unable to generate minidump.");
+		DEBUG_DISPLAY_ERROR(L"wdbg_sym_WriteMinidump: unable to generate minidump.");
 
 	CloseHandle(hFile);
-}
-
-
-//-----------------------------------------------------------------------------
-
-static LibError wdbg_sym_Init()
-{
-	// try to import RtlCaptureContext (available on WinXP and later).
-	// it's used in walk_stack; import here to avoid overhead of doing so
-	// on every call. if not available, walk_stack emulates it.
-	//
-	// note: kernel32 is always loaded into every process, so we
-	// don't need LoadLibrary/FreeLibrary.
-	HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
-	*(void**)&pRtlCaptureContext = GetProcAddress(hKernel32Dll, "RtlCaptureContext");
-
-	return INFO::OK;
-}
-
-
-static LibError wdbg_sym_Shutdown()
-{
-	ptr_reset_visited();
-	return sym_shutdown();
 }

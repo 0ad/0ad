@@ -13,7 +13,7 @@
 
 // derived implementations must be called CounterIMPL,
 // where IMPL matches the WHRT_IMPL identifier. (see CREATE)
-class ICounter : boost::noncopyable
+class ICounter : noncopyable
 {
 public:
 	// (compiled-generated) ctor only sets up the vptr

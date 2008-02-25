@@ -46,9 +46,6 @@ extern void debug_break();
  **/
 LIB_API void debug_printf(const char* fmt, ...);
 
-/// note: this merely converts to a MBS and calls debug_printf.
-LIB_API void debug_wprintf(const wchar_t* fmt, ...);
-
 
 /**
  * translates and displays the given strings in a dialog.

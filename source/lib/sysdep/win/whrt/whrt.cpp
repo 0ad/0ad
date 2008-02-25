@@ -62,13 +62,13 @@ static ICounter* GetNextBestSafeCounter()
 		LibError err = ActivateCounter(counter);
 		if(err == INFO::OK)
 		{
-			debug_printf("HRT/ using name=%s freq=%f\n", counter->Name(), counter->NominalFrequency());
+			debug_printf("HRT| using name=%s freq=%f\n", counter->Name(), counter->NominalFrequency());
 			return counter;	// found a safe counter
 		}
 		else
 		{
 			char buf[100];
-			debug_printf("HRT/ activating %s failed: %s\n", counter->Name(), error_description_r(err, buf, ARRAY_SIZE(buf)));
+			debug_printf("HRT| activating %s failed: %s\n", counter->Name(), error_description_r(err, buf, ARRAY_SIZE(buf)));
 			DestroyCounter(counter);
 		}
 	}

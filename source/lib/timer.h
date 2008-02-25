@@ -31,11 +31,11 @@ LIB_API double timer_Resolution(void);
 // scope timing
 
 /// used by TIMER
-class ScopeTimer : boost::noncopyable
+class LIB_API ScopeTimer : noncopyable
 {
 public:
-	LIB_API ScopeTimer(const char* description);
-	LIB_API ~ScopeTimer();
+	ScopeTimer(const char* description);
+	~ScopeTimer();
 
 private:
 	double m_t0;
@@ -91,7 +91,7 @@ private:
 // this supplements in-game profiling by providing low-overhead,
 // high resolution time accounting of specific areas.
 
-union LIB_API TimerUnit
+LIB_API union TimerUnit
 {
 public:
 	void SetToZero();
@@ -158,11 +158,11 @@ LIB_API void timer_BillClient(TimerClient* tc, TimerUnit t0, TimerUnit t1);
 LIB_API void timer_DisplayClientTotals();
 
 /// used by TIMER_ACCRUE
-class ScopeTimerAccrue
+class LIB_API ScopeTimerAccrue
 {
 public:
-	LIB_API ScopeTimerAccrue(TimerClient* tc);
-	LIB_API ~ScopeTimerAccrue();
+	ScopeTimerAccrue(TimerClient* tc);
+	~ScopeTimerAccrue();
 
 private:
 	TimerUnit m_t0;

@@ -585,6 +585,10 @@ template<class T> bool get_container_info(const T& t, size_t size, size_t el_siz
 LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugStlIterator* el_iterator, void* it_mem)
 {
+#if MSC_VERSION >= 1400
+	return ERR::STL_CNT_UNKNOWN;	// NOWARN
+#endif
+
 	bool handled = false, IsValid = false;
 #define CONTAINER(name, type_name_pattern)\
 	else if(match_wildcard(type_name, type_name_pattern))\

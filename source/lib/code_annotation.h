@@ -151,4 +151,23 @@ namespace detail
  **/
 #define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)]
 
+
+// copied from boost::noncopyable; this definition avoids warnings when
+// an exported class derives from noncopyable.
+
+namespace noncopyable_  // protection from unintended ADL
+{
+	class LIB_API noncopyable
+	{
+	protected:
+		noncopyable() {}
+		~noncopyable() {}
+	private:  // emphasize the following members are private
+		noncopyable(const noncopyable&);
+		const noncopyable& operator=(const noncopyable&);
+	};
+}
+
+typedef noncopyable_::noncopyable noncopyable;
+
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION
