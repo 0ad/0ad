@@ -2,28 +2,28 @@
 
 <Scenario>
 	<Environment>
-		<SkySet>cumulus</SkySet>
-		<SunColour r="1.84766" g="1.84766" b="1.84766"/>
-		<SunElevation angle="0.710021"/>
-		<SunRotation angle="0.785398"/>
-		<TerrainAmbientColour r="0.321569" g="0.337255" b="0.4"/>
-		<UnitsAmbientColour r="0.384314" g="0.392157" b="0.439216"/>
+		<SkySet>sunset</SkySet>
+		<SunColour r="1.27148" g="0.638235" b="0.319118"/>
+		<SunElevation angle="0.36388"/>
+		<SunRotation angle="0.723937"/>
+		<TerrainAmbientColour r="0.2" g="0.192157" b="0.168627"/>
+		<UnitsAmbientColour r="0.2" g="0.192157" b="0.168627"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
 				<Height>23.1</Height>
 				<Shininess>150</Shininess>
-				<Waviness>0.9375</Waviness>
-				<Murkiness>0.541992</Murkiness>
-				<Tint r="0.556863" g="0.513726" b="0.439216"/>
-				<ReflectionTint r="0.556863" g="0.513726" b="0.439216"/>
-				<ReflectionTintStrength>0.135742</ReflectionTintStrength>
+				<Waviness>8</Waviness>
+				<Murkiness>1</Murkiness>
+				<Tint r="0.470588" g="0.45098" b="0.305882"/>
+				<ReflectionTint r="1" g="0.501961" b="0"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="246.903" y="158.758" z="-103.517"/>
+		<Position x="247.232" y="126.216" z="-77.4915"/>
 		<Rotation angle="-0.0512848"/>
 		<Declination angle="0.51173"/>
 	</Camera>
@@ -710,8 +710,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob_top.xml</Actor>
-			<Position x="190.94" y="31.8788" z="143.65"/>
-			<Orientation angle="1.45146"/>
+			<Position x="187.902" y="34.3796" z="150.247"/>
+			<Orientation angle="-2.16154"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob_top.xml</Actor>
@@ -726,12 +726,12 @@
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
 			<Position x="201.826" y="28.5387" z="123.713"/>
-			<Orientation angle="0.779364"/>
+			<Orientation angle="-0.313383"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
-			<Position x="198.783" y="29.3968" z="137.148"/>
-			<Orientation angle="0.403406"/>
+			<Position x="193.988" y="30.7455" z="155.133"/>
+			<Orientation angle="2.65291"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
@@ -750,7 +750,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
-			<Position x="202.693" y="28.3932" z="131.913"/>
+			<Position x="253.848" y="27.9565" z="138.139"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -880,8 +880,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/european_beech.xml</Actor>
-			<Position x="255.686" y="29.0214" z="156.692"/>
-			<Orientation angle="2.35619"/>
+			<Position x="196.944" y="29.9576" z="141.967"/>
+			<Orientation angle="-0.481744"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/european_beech.xml</Actor>
@@ -1005,7 +1005,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_a.xml</Actor>
-			<Position x="202.375" y="28.7957" z="107.577"/>
+			<Position x="210.2" y="26.3423" z="104.886"/>
 			<Orientation angle="0.121619"/>
 		</Nonentity>
 		<Nonentity>
@@ -1100,7 +1100,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_tempe_a.xml</Actor>
-			<Position x="208.408" y="26.0704" z="91.085"/>
+			<Position x="215.975" y="24.4622" z="92.824"/>
 			<Orientation angle="-0.458387"/>
 		</Nonentity>
 		<Nonentity>
@@ -1180,7 +1180,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/grass_temp_field.xml</Actor>
-			<Position x="203.618" y="28.316" z="91.9679"/>
+			<Position x="212.194" y="25.5296" z="96.7676"/>
 			<Orientation angle="-0.94415"/>
 		</Nonentity>
 		<Nonentity>
@@ -1955,18 +1955,18 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
-			<Position x="211.734" y="25.5475" z="85.1513"/>
-			<Orientation angle="-0.354159"/>
+			<Position x="217.342" y="23.8776" z="88.3291"/>
+			<Orientation angle="-1.72227"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
-			<Position x="204.464" y="27.5818" z="100.323"/>
-			<Orientation angle="2.35619"/>
+			<Position x="213.843" y="24.8908" z="108.769"/>
+			<Orientation angle="-0.509072"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
-			<Position x="206.325" y="26.8457" z="91.5115"/>
-			<Orientation angle="2.0169"/>
+			<Position x="214.375" y="24.8943" z="94.4819"/>
+			<Orientation angle="-1.36012"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/carob.xml</Actor>
@@ -2345,7 +2345,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="230.53" y="23.1" z="56.1311"/>
+			<Position x="231.96" y="23.1" z="57.3837"/>
 			<Orientation angle="-0.337276"/>
 		</Nonentity>
 		<Nonentity>
@@ -2570,17 +2570,17 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="229.089" y="23.1" z="58.225"/>
+			<Position x="229.818" y="23.1" z="59.1574"/>
 			<Orientation angle="-2.84451"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="229.613" y="23.1" z="55.5135"/>
+			<Position x="229.549" y="23.1" z="55.8334"/>
 			<Orientation angle="-2.61565"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/water_lillies.xml</Actor>
-			<Position x="227.523" y="23.1" z="50.8152"/>
+			<Position x="228.289" y="23.1" z="51.7983"/>
 			<Orientation angle="-2.24986"/>
 		</Nonentity>
 		<Nonentity>
