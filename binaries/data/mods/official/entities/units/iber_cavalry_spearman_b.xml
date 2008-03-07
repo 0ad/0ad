@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity	Parent="template_unit_cavalry_melee_swordsman">
+<Entity	Parent="template_unit_cavalry_melee_spearman">
 	<Traits>
 	
 		<Id>
@@ -15,11 +15,11 @@
 		
 		<Promotion>
 				
-			<Entity>iber_cavalry_swordsman_a</Entity>
+			<Entity>iber_cavalry_spearman_a</Entity>
 			
 		</Promotion>
 		
 	</Traits>
 
-	<Actor>units/iberians/cavalry_swordsman_b.xml</Actor>
+	<Actor>units/iberians/cavalry_spearman_b.xml</Actor>
 </Entity>

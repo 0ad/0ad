@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="2.11914" g="2.11914" b="2.11914"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.439216" g="0.439216" b="0.505882"/>
+		<UnitsAmbientColour r="0.478431" g="0.478431" b="0.478431"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="110.139" y="44.094" z="80.8272"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity uid="10">
+			<Template>camp_rome_legionnaire</Template>
+			<Player>2</Player>
+			<Position x="114.303" y="22.4" z="112.808"/>
+			<Orientation angle="2.39581"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>camp_rome_legionnaire</Template>
+			<Player>2</Player>
+			<Position x="112.12" y="22.4" z="111.771"/>
+			<Orientation angle="-3.07604"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>camp_rome_legionnaire</Template>
+			<Player>2</Player>
+			<Position x="110.224" y="22.4" z="112.283"/>
+			<Orientation angle="-2.34821"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>camp_rome_legionnaire</Template>
+			<Player>2</Player>
+			<Position x="106.546" y="22.4" z="117.779"/>
+			<Orientation angle="2.78325"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>rome_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="104.918" y="22.4" z="116.24"/>
+			<Orientation angle="2.53237"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>rome_infantry_swordsman_a</Template>
+			<Player>2</Player>
+			<Position x="102.953" y="22.4" z="114.941"/>
+			<Orientation angle="2.67621"/>
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>units/romans/super_unit_4_imp_legion.xml</Actor>
+			<Position x="107.935" y="22.4" z="119.597"/>
+			<Orientation angle="2.68261"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/romans/super_unit_4_imp_legion.xml</Actor>
+			<Position x="116.516" y="22.4" z="115.185"/>
+			<Orientation angle="3.00288"/>
+		</Nonentity>
+	</Nonentities>
+	<Paths/>
+	<Triggers/>
+</Scenario>
