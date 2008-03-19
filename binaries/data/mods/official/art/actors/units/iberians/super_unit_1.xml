@@ -18,11 +18,19 @@
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/units/heads/placeholder_head_iber.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/iber_round_su1.xml" attachpoint="shield"/>
       </props>
-      <texture>skeletal/high/256_iber_su_inf_1.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="chainmail">
+      <texture>skeletal/iber_su_inf_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="pectoral">
+      <texture>skeletal/high/256_iber_su2.dds</texture>
     </variant>
   </group>
 

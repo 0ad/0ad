@@ -14,20 +14,16 @@
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/units/heads/placeholder_head_iber.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/shields/iberian_buckler_elite.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/iber_round_su1.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
 
   <group>
     <variant frequency="1" name="rider-chainmail">
-      <texture>skeletal/iber_csp_e_1.dds</texture>
-    </variant>
-    <variant frequency="1" name="rider-scalemail">
-      <texture>skeletal/iber_csp_e_2.dds</texture>
+      <texture>skeletal/iber_su_inf_1.dds</texture>
     </variant>
   </group>
 
