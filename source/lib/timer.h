@@ -91,7 +91,7 @@ private:
 // this supplements in-game profiling by providing low-overhead,
 // high resolution time accounting of specific areas.
 
-LIB_API union TimerUnit
+union LIB_API TimerUnit
 {
 public:
 	void SetToZero();

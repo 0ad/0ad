@@ -161,8 +161,7 @@ static SC_HANDLE OpenServiceControlManager()
 		// thus out of the question.
 
 		// make sure the error is as expected, otherwise something is afoot.
-		if(GetLastError() != ERROR_ACCESS_DENIED)
-			debug_assert(0);
+		debug_assert(GetLastError() == ERROR_ACCESS_DENIED);
 
 		return 0;
 	}
@@ -187,8 +186,7 @@ static void UninstallDriver()
 		// if the problem wasn't that the service is already stopped,
 		// something actually went wrong.
 		const DWORD err = GetLastError();
-		if(err != ERROR_SERVICE_NOT_ACTIVE && err != ERROR_SERVICE_CANNOT_ACCEPT_CTRL)
-			debug_assert(0);
+		debug_assert(err == ERROR_SERVICE_NOT_ACTIVE || err == ERROR_SERVICE_CANNOT_ACCEPT_CTRL);
 	}
 
 	// delete service
@@ -211,9 +209,11 @@ static void StartDriver(const char* driverPathname)
 
 	SC_HANDLE hService = OpenService(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
 
-#if 1
 	// during development, we want to ensure the newest build is used, so
 	// unload and re-create the service if it's running/installed.
+	// as of 2008-03-24 no further changes to Aken are pending, so this is
+	// disabled (thus also avoiding trouble when running multiple instances)
+#if 0
 	if(hService)
 	{
 		BOOL ok = CloseServiceHandle(hService);
@@ -244,7 +244,7 @@ static void StartDriver(const char* driverPathname)
 			{
 				// starting failed. don't raise a warning because this
 				// always happens on least-permission user accounts.
-				WARN_IF_FALSE(0);
+				//WARN_IF_FALSE(0);
 			}
 		}
 	}

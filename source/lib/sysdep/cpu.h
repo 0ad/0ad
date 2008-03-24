@@ -132,6 +132,8 @@ extern void cpu_MemoryFence();
  **/
 extern void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size);
 
+LIB_API void* cpu_memcpy_thunk(void* RESTRICT dst, const void* RESTRICT src, size_t size);
+
 /**
  * execute the specified function once on each CPU.
  * this includes logical HT units and proceeds serially (function
