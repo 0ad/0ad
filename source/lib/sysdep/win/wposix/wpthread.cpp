@@ -234,6 +234,16 @@ again:
 // note: we use win_alloc instead of new because the (no longer extant)
 // memory manager used a pthread_mutex.
 
+static CRITICAL_SECTION* CRITICAL_SECTION_from_pthread_mutex_t(pthread_mutex_t* m)
+{
+	if(!m)
+	{
+		debug_assert(0);
+		return 0;
+	}
+	return (CRITICAL_SECTION*)*m;
+}
+
 pthread_mutex_t pthread_mutex_initializer()
 {
 	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)win_alloc(sizeof(CRITICAL_SECTION));
@@ -243,9 +253,12 @@ pthread_mutex_t pthread_mutex_initializer()
 
 int pthread_mutex_destroy(pthread_mutex_t* m)
 {
-	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
+	CRITICAL_SECTION* cs = CRITICAL_SECTION_from_pthread_mutex_t(m);
+	if(!cs)
+		return -1;
 	DeleteCriticalSection(cs);
 	win_free(cs);
+	*m = 0;	// cause double-frees to be noticed
 	return 0;
 }
 
@@ -257,21 +270,27 @@ int pthread_mutex_init(pthread_mutex_t* m, const pthread_mutexattr_t*)
 
 int pthread_mutex_lock(pthread_mutex_t* m)
 {
-	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
+	CRITICAL_SECTION* cs = CRITICAL_SECTION_from_pthread_mutex_t(m);
+	if(!cs)
+		return -1;
 	EnterCriticalSection(cs);
 	return 0;
 }
 
 int pthread_mutex_trylock(pthread_mutex_t* m)
 {
-	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
-	BOOL got_it = TryEnterCriticalSection(cs);
-	return got_it? 0 : -1;
+	CRITICAL_SECTION* cs = CRITICAL_SECTION_from_pthread_mutex_t(m);
+	if(!cs)
+		return -1;
+	const BOOL successfullyEnteredOrAlreadyOwns = TryEnterCriticalSection(cs);
+	return successfullyEnteredOrAlreadyOwns? 0 : -1;
 }
 
 int pthread_mutex_unlock(pthread_mutex_t* m)
 {
-	CRITICAL_SECTION* cs = (CRITICAL_SECTION*)(*m);
+	CRITICAL_SECTION* cs = CRITICAL_SECTION_from_pthread_mutex_t(m);
+	if(!cs)
+		return -1;
 	LeaveCriticalSection(cs);
 	return 0;
 }
