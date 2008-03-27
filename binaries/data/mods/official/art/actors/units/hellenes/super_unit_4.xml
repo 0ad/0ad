@@ -38,6 +38,18 @@
   </group>
 
   <group>
+    <variant frequency="4" name="saddle-leopard-1">
+      <props>
+        <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
+      </props>
+      <texture>skeletal/horse_mace_su2_1.dds</texture>
+    </variant>
+    <variant frequency="4" name="saddle-lion-1">
+      <props>
+        <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
+      </props>
+      <texture>skeletal/horse_hele_g.dds</texture>
+    </variant>
     <variant frequency="1" name="saddle-leopard-a">
       <props>
         <prop actor="units/hellenes/super_unit_4_r.xml" attachpoint="rider"/>
