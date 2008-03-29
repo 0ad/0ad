@@ -16,7 +16,7 @@
 // memory will be allocated from the heap, not the (limited) file cache.
 // this makes sense for write buffers that are never used again,
 // because we avoid having to displace some other cached items.
-shared_ptr<u8> io_Allocate(size_t size, off_t ofs = 0);
+LIB_API shared_ptr<u8> io_Allocate(size_t size, off_t ofs = 0);
 
 /**
  * called after a block IO has completed.

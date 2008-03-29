@@ -260,7 +260,7 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 	if(!debug_is_stack_ptr(fp))
 		WARN_RETURN(ERR::_14);
 	if(!debug_is_code_ptr(ret_addr))
-		WARN_RETURN(ERR::_15);
+		return ERR::FAIL;	// NOWARN (invalid address)
 
 	void* target;
 	LibError err = ia32_GetCallTarget(ret_addr, &target);

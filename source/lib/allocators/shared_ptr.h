@@ -2,11 +2,11 @@
 #define INCLUDED_SHARED_PTR
 
 // adapter that allows calling page_aligned_free as a shared_ptr deleter.
-class PageAlignedDeleter
+class LIB_API PageAlignedDeleter
 {
 public:
 	PageAlignedDeleter(size_t size);
-	void operator()(u8* p);
+	void operator()(void* p);
 
 private:
 	size_t m_size;

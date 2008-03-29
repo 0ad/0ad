@@ -10,7 +10,7 @@ PageAlignedDeleter::PageAlignedDeleter(size_t size)
 	debug_assert(m_size != 0);
 }
 
-void PageAlignedDeleter::operator()(u8* p)
+void PageAlignedDeleter::operator()(void* p)
 {
 	debug_assert(m_size != 0);
 	page_aligned_free(p, m_size);

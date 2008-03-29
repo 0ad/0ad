@@ -134,6 +134,7 @@ void debug_set_thread_name(const char* name)
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
 		// if we get here, the debugger didn't handle the exception.
-		debug_assert(0);	// thread name hack doesn't work under this debugger
+		// this happens if profiling with Dependency Walker; debug_assert
+		// must not be called because we may be in critical init.
 	}
 }

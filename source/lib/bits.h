@@ -75,7 +75,14 @@ inline u64 bits64(u64 num, uint lo_idx, uint hi_idx)
 /**
  * @return whether the given number is a power of two.
  **/
-extern bool is_pow2(uint n);
+inline bool is_pow2(uint n)
+{
+	// 0 would pass the test below but isn't a POT.
+	if(n == 0)
+		return false;
+	return (n & (n-1ul)) == 0;
+}
+
 
 /**
  * @return the (integral) base 2 logarithm, or -1 if the number
@@ -89,7 +96,19 @@ extern int log2_of_pow2(uint n);
  * @param n (integer) input; MUST be > 0, else results are undefined.
  * @return ceiling of the base-2 logarithm (i.e. rounded up).
  **/
-extern uint ceil_log2(uint x);
+inline uint ceil_log2(uint x)
+{
+	uint bit = 1;
+	uint l = 0;
+	while(bit < x && bit != 0)	// must detect overflow
+	{
+		l++;
+		bit += bit;
+	}
+
+	return l;
+}
+
 
 /**
  * floor(log2(f))

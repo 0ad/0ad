@@ -9,19 +9,11 @@
 // license: GPL; see lib/license.txt
 
 #include "precompiled.h"
+#include "bits.h"
 
 #if ARCH_IA32
 # include "lib/sysdep/ia32/ia32_asm.h"	// ia32_asm_log2_of_pow2
 #endif
-
-
-bool is_pow2(uint n)
-{
-	// 0 would pass the test below but isn't a POT.
-	if(n == 0)
-		return false;
-	return (n & (n-1ul)) == 0;
-}
 
 
 int log2_of_pow2(uint n)
@@ -48,20 +40,6 @@ int log2_of_pow2(uint n)
 }
 
 
-uint ceil_log2(uint x)
-{
-	uint bit = 1;
-	uint l = 0;
-	while(bit < x && bit != 0)	// must detect overflow
-	{
-		l++;
-		bit += bit;
-	}
-
-	return l;
-}
-
-
 int floor_log2(const float x)
 {
 	const u32 i = *(u32*)&x;
@@ -69,10 +47,6 @@ int floor_log2(const float x)
 	return (int)biased_exp - 127;
 }
 
-
-// round_up_to_pow2 implementation assumes 32-bit int.
-// if 64, add "x |= (x >> 32);"
-cassert(sizeof(int)*CHAR_BIT == 32);
 
 uint round_up_to_pow2(uint x)
 {
@@ -83,6 +57,9 @@ uint round_up_to_pow2(uint x)
 	x |= (x >> 4);
 	x |= (x >> 8);
 	x |= (x >> 16);
+	// if ints are 64 bits, add "x |= (x >> 32);"
+	cassert(sizeof(int)*CHAR_BIT == 32);
+
 	return x+1;
 }
 
