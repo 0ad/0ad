@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/shield/round_t_b.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/iberian_buckler_adv_reverse_front.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_round_back.dds</texture>
+    </variant>
+  </group>
+
+</actor>

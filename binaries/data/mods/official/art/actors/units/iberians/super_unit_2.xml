@@ -23,7 +23,10 @@
 
   <group>
     <variant frequency="1" name="horse-texture-1">
-      <texture>skeletal/horse_iber_csp_e_1.dds</texture>
+      <texture>skeletal/horse_iber_su2_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse-texture-legs">
+      <texture>skeletal/horse_iber_su2_2.dds</texture>
     </variant>
   </group>
 
@@ -35,10 +38,13 @@
       <colour>247 213 111</colour>
     </variant>
     <variant frequency="1" name="horse-color-gray">
-      <colour>253 253 253</colour>
+      <colour>181 181 181</colour>
     </variant>
     <variant frequency="1" name="horse-color-brown">
       <colour>211 123 44</colour>
+    </variant>
+    <variant frequency="1" name="horse-color-white">
+      <colour>255 255 255</colour>
     </variant>
   </group>
 
