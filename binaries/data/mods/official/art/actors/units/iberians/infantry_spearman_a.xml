@@ -38,7 +38,8 @@
   <group>
     <variant frequency="1" name="Scutarius-Body-Texture-1">
       <props>
-        <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/iber_helmet_04.xml" attachpoint="helmet"/>
       </props>
       <texture>skeletal/iber_isp_a_1.dds</texture>
     </variant>
