@@ -103,6 +103,9 @@ void CNetServer::ScriptingInit()
 	AddProperty(L"onClientDisconnect", &CNetServer::m_OnClientDisconnect);
 
 	CJSObject<CNetServer>::ScriptingInit("NetServer");
+	
+	// Also initialize CNetServerSession
+	CNetServerSession::ScriptingInit();
 }
 
 bool CNetServer::JSI_Open(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))

@@ -15,9 +15,6 @@ CNetServerSession::CNetServerSession(CNetServer *pServer, CSocketInternal *pInt,
 	m_ID(-1),
 	m_ReadyForTurn(false)
 {
-	ONCE(
-		ScriptingInit();
-	);
 }
 
 CNetServerSession::~CNetServerSession()
@@ -204,12 +201,11 @@ bool CNetServerSession::InGameHandler(CNetMessage *pMsg, CNetSession *pNetSessio
 
 void CNetServerSession::ScriptingInit()
 {
+	AddProperty( L"id", &CNetServerSession::m_ID );
+	AddProperty( L"name", (CStrW CNetServerSession::*)&CNetServerSession::m_Name );
 	AddMethod<bool, &CNetServerSession::JSI_Close>("close", 0);
 
 	CJSObject<CNetServerSession>::ScriptingInit("NetSession");
-	// Hope this doesn't break anything...
-	AddProperty( L"id", &CNetServerSession::m_ID );
-	AddProperty( L"name", (CStrW CNetServerSession::*)&CNetServerSession::m_Name );
 }
 
 bool CNetServerSession::JSI_Close(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))

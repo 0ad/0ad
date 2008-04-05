@@ -21,13 +21,13 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 {
 	class CServerSession: public CJSObject<CServerSession>
 	{
-		static void ScriptingInit();
-		
 	public:
 		CServerSession(int sessionID, const CStrW& name);
 	
 		int m_SessionID;
 		CStrW m_Name;
+		
+		static void ScriptingInit();
 	};
 	typedef std::map<int, CServerSession *> SessionMap;
 	

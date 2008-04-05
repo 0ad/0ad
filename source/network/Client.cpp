@@ -21,7 +21,6 @@ CNetClient::CServerSession::CServerSession(int sessionID, const CStrW& name):
 	m_SessionID(sessionID),
 	m_Name(name)
 {
-	ONCE( ScriptingInit(); );
 }
 
 void CNetClient::CServerSession::ScriptingInit()
@@ -76,6 +75,9 @@ void CNetClient::ScriptingInit()
 	AddProperty(L"sessions", &CNetClient::m_JSI_ServerSessions);
 	CJSMap<SessionMap>::ScriptingInit("NetClient_SessionMap");
 	CJSObject<CNetClient>::ScriptingInit("NetClient");
+
+	// Also initialize session objects
+	CNetClient::CServerSession::ScriptingInit();
 }
 
 bool CNetClient::JSI_BeginConnect(JSContext* UNUSED(cx), uintN argc, jsval *argv)
