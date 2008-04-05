@@ -121,7 +121,11 @@ public:
 		case CColladaManager::PSA: convert_dae_to_psa(daeData.c_str(), ColladaOutput, &writeBuffer); break;
 		}
 
-		g_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
+		// don't create zero-length files (as happens in test_invalid_dae when
+		// we deliberately pass invalid XML data) because the VFS caching
+		// logic warns when asked to load such.
+		if(writeBuffer.Size())
+			g_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
 
 		return true;
 	}

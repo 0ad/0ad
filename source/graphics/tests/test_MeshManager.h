@@ -37,10 +37,10 @@ class TestMeshManager : public CxxTest::TestSuite
 
 		// Make sure the required directories doesn't exist when we start,
 		// in case the previous test aborted and left them full of junk
-//		if(exists(MOD_PATH))
-//			fsPosix.DeleteDirectory(MOD_PATH);
-//		if(exists(MOD_PATH))
-//			fsPosix.DeleteDirectory(CACHE_PATH);
+		if(exists(MOD_PATH))
+			fsPosix.DeleteDirectory(MOD_PATH);
+		if(exists(CACHE_PATH))
+			fsPosix.DeleteDirectory(CACHE_PATH);
 
 		TS_ASSERT(fs::create_directory(MOD_PATH.external_directory_string()));
 		TS_ASSERT(fs::create_directory(CACHE_PATH.external_directory_string()));

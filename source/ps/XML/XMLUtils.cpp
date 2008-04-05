@@ -51,7 +51,7 @@ int CVFSInputSource::OpenFile(const VfsPath& path)
 	LibError ret = g_VFS->LoadFile(path, m_pBuffer, m_BufferSize);
 	if(ret != INFO::OK)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (LoadFile: %d)", path, ret);
+		LOG(CLogger::Error, LOG_CATEGORY, "CVFSInputSource: file %s couldn't be loaded (LoadFile: %d)", path.string().c_str(), ret);
 		return -1;
 	}
 

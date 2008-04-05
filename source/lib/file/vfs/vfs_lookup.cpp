@@ -154,8 +154,6 @@ TIMER_ACCRUE(tc_lookup);
 	if(pathname.empty())	// (prevent iterator error in loop end condition)
 		return INFO::OK;
 
-	Path currentPath;	// (.. thus far; used when createMissingDirectories)
-
 	// for each directory component:
 	VfsPath::iterator it;	// (used outside of loop to get filename)
 	for(it = pathname.begin(); it != --pathname.end(); ++it)
@@ -171,18 +169,16 @@ TIMER_ACCRUE(tc_lookup);
 				return ERR::VFS_DIR_NOT_FOUND;	// NOWARN
 		}
 
-		if(createMissingDirectories)
+		if(createMissingDirectories && !subdirectory->AssociatedDirectory())
 		{
-			if(subdirectory->AssociatedDirectory())
-				currentPath /= subdirectory->AssociatedDirectory()->GetPath().leaf();
-			else
+			Path currentPath;
+			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
+				currentPath = directory->AssociatedDirectory()->GetPath()/subdirectoryName;
+
+			if(mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG) == 0)
 			{
-				currentPath /= subdirectoryName;
-				if(mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG) == 0)
-				{
-					PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
-					subdirectory->Attach(realDirectory);
-				}
+				PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
+				subdirectory->Attach(realDirectory);
 			}
 		}
 
