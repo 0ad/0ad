@@ -88,6 +88,7 @@ public:
 	CCinemaManager* GetCinema();
 
 	JSObject* GetScript();
+	static void ScriptingInit();
 };
 extern InReaction game_view_handler(const SDL_Event_* ev);
 

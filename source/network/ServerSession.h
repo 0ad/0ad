@@ -25,7 +25,6 @@ class CNetServerSession: public CNetSession, public CJSObject<CNetServerSession>
 	bool m_ReadyForTurn;	// Is the last turn acknowledged?
 	
 	// JS INTERFACE
-	static void ScriptingInit();
 	bool JSI_Close(JSContext *cx, uintN argc, jsval *argv);
 	
 protected:
@@ -43,6 +42,8 @@ protected:
 public:
 	CNetServerSession(CNetServer *pServer, CSocketInternal *pInt, MessageHandler *pMsgHandler=HandshakeHandler);
 	virtual ~CNetServerSession();
+
+	static void ScriptingInit();
 
 	inline bool IsObserver()
 	{	return m_IsObserver; }

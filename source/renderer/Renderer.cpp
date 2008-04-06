@@ -361,8 +361,6 @@ CRenderer::CRenderer()
 		m_ActiveTextures[i]=0;
 	}
 
-	ONCE( ScriptingInit(); );
-
 	AddLocalProperty(L"fancyWater", &m_Options.m_FancyWater, false);
 	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);
 	AddLocalProperty(L"waterMurkiness", &m->waterManager.m_Murkiness, false);

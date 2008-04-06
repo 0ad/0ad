@@ -296,6 +296,8 @@ public:
 
 	bool GetDisableCopyShadow() const { return m_DisableCopyShadow; }
 
+	static void ScriptingInit();
+
 protected:
 	friend struct CRendererInternals;
 	friend class CVertexBuffer;
@@ -312,7 +314,6 @@ protected:
 	// scripting
 	// TODO: Perhaps we could have a version of AddLocalProperty for function-driven
 	// properties? Then we could hide these function in the private implementation class.
-	static void ScriptingInit();
 	jsval JSI_GetFastPlayerColor(JSContext*);
 	void JSI_SetFastPlayerColor(JSContext* ctx, jsval newval);
 	jsval JSI_GetRenderPath(JSContext*);

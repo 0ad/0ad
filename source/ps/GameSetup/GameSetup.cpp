@@ -74,6 +74,7 @@
 # include "gui/scripting/JSInterface_GUITypes.h"
 # include "gui/GUI.h"
 #endif
+#include "network/ServerSession.h"
 
 #include "sound/CMusicPlayer.h"
 #include "sound/JSI_Sound.h"
@@ -462,6 +463,57 @@ void Render()
 }
 
 
+static void RegisterJavascriptInterfaces()
+{
+	// maths
+	JSI_Vector3D::init();
+
+	// graphics
+	JSI_Camera::init();
+	JSI_LightEnv::init();
+	CGameView::ScriptingInit();
+
+	// renderer
+	CRenderer::ScriptingInit();
+
+	// sound
+	JSI_Sound::ScriptingInit();
+
+	// ps
+	JSI_Console::init();
+	CProfileNode::ScriptingInit();
+	CGameAttributes::ScriptingInit();
+	CPlayerSlot::ScriptingInit();
+	CPlayer::ScriptingInit();
+
+	// network
+	CNetMessage::ScriptingInit();
+	CNetServerSession::ScriptingInit();
+
+	// simulation
+	CJSProgressTimer::ScriptingInit();
+	CEntityTemplate::ScriptingInit();
+	CEntity::ScriptingInit();
+	CProjectile::ScriptingInit();
+	CTrigger::ScriptingInit();
+
+	// scripting
+	SColour::ScriptingInit();
+	CScriptEvent::ScriptingInit();
+	EntityCollection::Init( "EntityCollection" );
+	PlayerCollection::Init( "PlayerCollection" );
+	// call CJSComplexPropertyAccessor's ScriptingInit. doesn't really
+	// matter which <T> we use, but we know CJSPropertyAccessor<T> is
+	// already being compiled for T = CEntity.
+	ScriptableComplex_InitComplexPropertyAccessor<CEntity>();
+
+	// GUI
+#ifndef NO_GUI
+	JSI_IGUIObject::init();
+	JSI_GUITypes::init();
+#endif
+}
+
 
 static void InitScripting()
 {
@@ -474,33 +526,7 @@ static void InitScripting()
 	// It would be nice for onLoad code to be able to access the setTimeout() calls.
 	new CScheduler;
 
-	// Register the JavaScript interfaces with the runtime
-	SColour::ScriptingInit();
-	CEntity::ScriptingInit();
-	CTrigger::ScriptingInit();
-	CEntityTemplate::ScriptingInit();
-
-	JSI_Sound::ScriptingInit();
-	CProfileNode::ScriptingInit();
-
-#ifndef NO_GUI
-	JSI_IGUIObject::init();
-	JSI_GUITypes::init();
-#endif
-	JSI_Vector3D::init();
-	EntityCollection::Init( "EntityCollection" );
-	CPlayer::ScriptingInit();
-
-	PlayerCollection::Init( "PlayerCollection" );
-
-	// call CJSComplexPropertyAccessor's ScriptingInit. doesn't really
-	// matter which <T> we use, but we know CJSPropertyAccessor<T> is
-	// already being compiled for T = CEntity.
-	ScriptableComplex_InitComplexPropertyAccessor<CEntity>();
-
-	CScriptEvent::ScriptingInit();
-	CJSProgressTimer::ScriptingInit();
-	CProjectile::ScriptingInit();
+	RegisterJavascriptInterfaces();
 
 	g_ScriptingHost.DefineConstant( "FORMATION_ENTER", CFormationEvent::FORMATION_ENTER );
 	g_ScriptingHost.DefineConstant( "FORMATION_LEAVE", CFormationEvent::FORMATION_LEAVE );
@@ -536,12 +562,6 @@ static void InitScripting()
 	REG_JS_CONSTANT(SDL_BUTTON_WHEELUP);
 	REG_JS_CONSTANT(SDL_BUTTON_WHEELDOWN);
 #undef REG_JS_CONSTANT
-
-	CNetMessage::ScriptingInit();
-
-	JSI_Camera::init();
-	JSI_Console::init();
-	JSI_LightEnv::init();
 
 	new CGameEvents;
 }

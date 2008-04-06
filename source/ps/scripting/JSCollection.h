@@ -427,7 +427,4 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::R
 	return( JS_TRUE );
 }
 
-#define EntityCollection CJSCollection<HEntity, &CEntity::JSI_class>
-#define PlayerCollection CJSCollection<CPlayer*, &CPlayer::JSI_class>
-#define JSObjectCollection
 #endif

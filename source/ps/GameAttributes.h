@@ -49,8 +49,6 @@ class CPlayerSlot: public CJSObject<CPlayerSlot>
 	void CallCallback();
 	void SetAssignment(EPlayerSlotAssignment, CNetServerSession *pSession, int sessionID);
 	
-	static void ScriptingInit();
-
 protected:
 	friend class CGameAttributes;
 	inline void SetSlotID(int slotID)
@@ -101,6 +99,8 @@ public:
 
 // TODO This will wait until there actually is AI to set up
 //	void AssignAI();
+
+	static void ScriptingInit();
 };
 
 namespace PlayerSlotArray_JS
@@ -151,7 +151,6 @@ private:
 
 	jsval JSI_GetPlayerSlots(JSContext* cx);
 	jsval_t JSI_GetOpenSlot(JSContext *cx, uintN argc, jsval *argv);
-	static void ScriptingInit();
 
 public:
 	CGameAttributes();
@@ -183,6 +182,8 @@ public:
 	
 	void SetPlayerUpdateCallback(CPlayer::UpdateCallback *cb, void *userdata);
 	void SetPlayerSlotAssignmentCallback(PlayerSlotAssignmentCB *cb, void *userdata);
+
+	static void ScriptingInit();
 };
 #define g_GameAttributes CGameAttributes::GetSingleton()
 

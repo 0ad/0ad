@@ -181,8 +181,6 @@ CGameView::CGameView(CGame *pGame):
 
 	m->UnitView=NULL;
 	m->UnitAttach=NULL;
-
-	ONCE( m->ScriptingInit(); );
 }
 
 CGameView::~CGameView()
@@ -203,6 +201,11 @@ CObjectManager& CGameView::GetObjectManager() const
 JSObject* CGameView::GetScript()
 {
 	return m->GetScript();
+}
+
+/*static*/ void CGameView::ScriptingInit()
+{
+	return CGameViewImpl::ScriptingInit();
 }
 
 CCamera* CGameView::GetCamera()

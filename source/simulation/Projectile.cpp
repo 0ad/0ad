@@ -48,7 +48,7 @@ CProjectile::CProjectile( const CModel* Actor, const CVector3D& Position, const 
 
 CProjectile::~CProjectile()
 {
-	CProjectileManager& projectileManager = g_Game->GetWorld()->GetProjectileManager();
+	//CProjectileManager& projectileManager = g_Game->GetWorld()->GetProjectileManager();
 	delete( m_Actor );
 }
 

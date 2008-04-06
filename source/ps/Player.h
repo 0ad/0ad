@@ -5,6 +5,7 @@
 #include "scripting/SynchedJSObject.h"
 #include "scripting/ScriptableObject.h"
 #include "scripting/ScriptCustomTypes.h" 
+#include "ps/scripting/JSCollection.h" 
 #include "Game.h"
 
 class CNetMessage;
@@ -97,5 +98,7 @@ public:
 
 	static void ScriptingInit();
 };
+
+typedef CJSCollection<CPlayer*, &CPlayer::JSI_class> PlayerCollection;
 
 #endif

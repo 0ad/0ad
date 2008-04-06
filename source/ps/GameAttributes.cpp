@@ -19,10 +19,6 @@ CPlayerSlot::CPlayerSlot(int slotID, CPlayer *pPlayer):
 	m_pPlayer(pPlayer),
 	m_Callback(NULL)
 {
-	ONCE(
-		ScriptingInit();
-	);
-	
 	//AddProperty(L"session", (GetFn)&CPlayerSlot::JSI_GetSession);
 	AddLocalProperty(L"session", &m_pSession, true );
 	AddLocalProperty(L"player", &m_pPlayer, true );
@@ -194,10 +190,6 @@ CGameAttributes::CGameAttributes():
 	m_PlayerUpdateCB(NULL),
 	m_PlayerSlotAssignmentCB(NULL)
 {
-	ONCE(
-		ScriptingInit();
-	);
-
 	m_PlayerSlotArrayJS=g_ScriptingHost.CreateCustomObject("PlayerSlotArray");
 	JS_AddRoot(g_ScriptingHost.GetContext(), &m_PlayerSlotArrayJS);
 	JS_SetPrivate(g_ScriptingHost.GetContext(), m_PlayerSlotArrayJS, this);
