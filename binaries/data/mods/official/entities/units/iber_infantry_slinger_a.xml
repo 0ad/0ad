@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="iber_infantry_slinger_b"
->
+<Entity	Parent="iber_infantry_slinger_b">
 
 	<Traits>
 	
@@ -13,5 +11,7 @@
 		</Promotion>
 	
 	</Traits>
+	
+	<Actor>units/iberians/infantry_slinger_a.xml</Actor>
 
 </Entity>
