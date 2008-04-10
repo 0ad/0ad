@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="base">
+    <variant name="base">
       <colour>234 234 234</colour>
       <mesh>props/dude_head.pmd</mesh>
       <texture>props/head/rome_veteran.dds</texture>
@@ -26,6 +26,13 @@
     </variant>
     <variant name="hair-color-red">
       <colour>250 130 78</colour>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="death">
+      <texture>props/head/bloodied/rome_veteran.dds</texture>
     </variant>
   </group>
 
