@@ -25,14 +25,14 @@
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="300"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="300"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
         <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/kart_ijv_e_1.dds</texture>
+      <texture>skeletal/kart_ijv_e_2.dds</texture>
     </variant>
   </group>
 
