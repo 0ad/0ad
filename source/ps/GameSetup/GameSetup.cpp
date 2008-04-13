@@ -43,20 +43,17 @@
 
 #include "maths/MathUtil.h"
 
+#include "simulation/scripting/SimulationScriptInit.h"
 #include "simulation/Entity.h"
-#include "simulation/EntityHandles.h"
-#include "simulation/EntityManager.h"
-#include "simulation/EntityTemplate.h"
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/EventHandlers.h"
-#include "simulation/FormationCollection.h"
 #include "simulation/FormationManager.h"
-#include "simulation/TerritoryManager.h"
 #include "simulation/TriggerManager.h"
-#include "simulation/PathfindEngine.h"
-#include "simulation/Projectile.h"
-#include "simulation/Scheduler.h"
+#include "simulation/FormationCollection.h"
 #include "simulation/TechnologyCollection.h"
+#include "simulation/EntityManager.h"
+#include "simulation/EntityTemplateCollection.h"
+#include "simulation/Scheduler.h"
+#include "simulation/EventHandlers.h"
+#include "simulation/PathfindEngine.h"
 
 #include "scripting/ScriptableComplex.inl"
 #include "scripting/ScriptingHost.h"
@@ -479,33 +476,30 @@ static void RegisterJavascriptInterfaces()
 	// sound
 	JSI_Sound::ScriptingInit();
 
+	// scripting
+	SColour::ScriptingInit();
+	CScriptEvent::ScriptingInit();
+	// call CJSComplexPropertyAccessor's ScriptingInit. doesn't really
+	// matter which <T> we use, but we know CJSPropertyAccessor<T> is
+	// already being compiled for T = CEntity.
+	ScriptableComplex_InitComplexPropertyAccessor<CEntity>();
+
 	// ps
 	JSI_Console::init();
 	CProfileNode::ScriptingInit();
 	CGameAttributes::ScriptingInit();
 	CPlayerSlot::ScriptingInit();
 	CPlayer::ScriptingInit();
+	PlayerCollection::Init( "PlayerCollection" );
 
 	// network
 	CNetMessage::ScriptingInit();
+	CNetClient::ScriptingInit();
+	CNetServer::ScriptingInit();
 	CNetServerSession::ScriptingInit();
 
 	// simulation
-	CJSProgressTimer::ScriptingInit();
-	CEntityTemplate::ScriptingInit();
-	CEntity::ScriptingInit();
-	CProjectile::ScriptingInit();
-	CTrigger::ScriptingInit();
-
-	// scripting
-	SColour::ScriptingInit();
-	CScriptEvent::ScriptingInit();
-	EntityCollection::Init( "EntityCollection" );
-	PlayerCollection::Init( "PlayerCollection" );
-	// call CJSComplexPropertyAccessor's ScriptingInit. doesn't really
-	// matter which <T> we use, but we know CJSPropertyAccessor<T> is
-	// already being compiled for T = CEntity.
-	ScriptableComplex_InitComplexPropertyAccessor<CEntity>();
+	SimulationScriptInit();
 
 	// GUI
 #ifndef NO_GUI

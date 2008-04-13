@@ -80,7 +80,6 @@ private:
 	
 	// JS Interface Methods
 	bool JSI_Open(JSContext *cx, uintN argc, jsval *argv);
-	static void ScriptingInit();
 	
 	// Synchronization object for batches
 	CMutex m_Mutex;
@@ -145,6 +144,8 @@ public:
 	int StartGame();
 
 	void Broadcast(CNetMessage *);
+
+	static void ScriptingInit();
 };
 
 extern CNetServer *g_NetServer;

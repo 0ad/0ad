@@ -20,8 +20,6 @@ STL_HASH_SET<CStr, CStr_hash_compare> CTechnology::m_scriptsLoaded;
 CTechnology::CTechnology( const CStrW& name, CPlayer* player )
 : m_Name(name), m_player(player)
 {
-	ONCE( ScriptingInit(); );
-
 	m_researched = false;
 	m_excluded = false;
 	m_inProgress = false;

@@ -56,7 +56,6 @@ class CNetClient: public CNetSession, protected CTurnManager, public CJSObject<C
 
 	// JS Interface Functions
 	bool JSI_BeginConnect(JSContext *cx, uintN argc, jsval *argv);
-	static void ScriptingInit();
 	
 	// Are we currently in a locally-yet-unsimulated turn?
 	// This is set to true when we receive a command batch and cleared in NewTurn().
@@ -90,6 +89,8 @@ public:
 	static MessageHandler ChatHandler; // Common to pre-game and later
 	static MessageHandler PreGameHandler;
 	static MessageHandler InGameHandler;
+
+	static void ScriptingInit();
 };
 
 extern CNetClient *g_NetClient;

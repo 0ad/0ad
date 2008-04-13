@@ -39,8 +39,6 @@ CNetClient::CNetClient(CGame *pGame, CGameAttributes *pGameAttribs):
 	m_pGameAttributes(pGameAttribs),
 	m_TurnPending(false)
 {
-	ONCE( ScriptingInit(); );
-
 	m_pGame->GetSimulation()->SetTurnManager(this);
 	
 	g_ScriptingHost.SetGlobal("g_NetClient", OBJECT_TO_JSVAL(GetScript()));

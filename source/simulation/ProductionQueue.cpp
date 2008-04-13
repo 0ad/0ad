@@ -10,7 +10,6 @@
 CProductionItem::CProductionItem( int type, const CStrW& name, float totalTime )
 		: m_type(type), m_name(name), m_totalTime(totalTime), m_elapsedTime(0)
 {
-	ONCE( ScriptingInit(); );
 }
 
 CProductionItem::~CProductionItem()
@@ -52,7 +51,6 @@ void CProductionItem::ScriptingInit()
 CProductionQueue::CProductionQueue( CEntity* owner  )
 		: m_owner(owner)
 {
-	ONCE( ScriptingInit(); );
 }
 
 CProductionQueue::~CProductionQueue()

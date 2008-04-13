@@ -55,10 +55,6 @@ CNetServer::CNetServer(CGame *pGame, CGameAttributes *pGameAttribs):
 	m_WelcomeMessage(L"Noname Server Welcome Message"),
 	m_Port(-1)
 {
-	ONCE(
-		ScriptingInit();
-	);
-
 	m_pGameAttributes->SetUpdateCallback(AttributeUpdate, this);
 	m_pGameAttributes->SetPlayerUpdateCallback(PlayerAttributeUpdate, this);
 	m_pGameAttributes->SetPlayerSlotAssignmentCallback(PlayerSlotAssignmentCallback, this);
@@ -103,9 +99,6 @@ void CNetServer::ScriptingInit()
 	AddProperty(L"onClientDisconnect", &CNetServer::m_OnClientDisconnect);
 
 	CJSObject<CNetServer>::ScriptingInit("NetServer");
-	
-	// Also initialize CNetServerSession
-	CNetServerSession::ScriptingInit();
 }
 
 bool CNetServer::JSI_Open(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
