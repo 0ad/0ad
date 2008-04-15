@@ -59,7 +59,7 @@ XMLWriter_File::XMLWriter_File()
 	// Encoding is always UTF-8 - that's one of the only two guaranteed to be
 	// supported by XML parsers (along with UTF-16), and there's not much need
 	// to let people choose another.
-	m_Data = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
+	m_Data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 }
 
 bool XMLWriter_File::StoreVFS(const char* filename)

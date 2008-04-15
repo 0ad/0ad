@@ -53,7 +53,7 @@ public:
 
 		CStr output = XML_GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			"\n"
 			"<Root>\n"
 			"\t<!-- Comment test. -->\n"
@@ -68,7 +68,7 @@ public:
 			"\t\t\t<k l=\"2.34\">m</k>\n"
 			"\t\t</i>\n"
 			"\t</e>\n"
-			"</Root>"		
+			"</Root>"
 			);
 	}
 
@@ -89,7 +89,7 @@ public:
 
 		CStr output = XML_GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			"\n"
 			"<Test>\n"
 			"\t<example>\n"
@@ -117,7 +117,7 @@ public:
 
 		CStr output = XML_GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			"<Test><example><content>text</content></example></Test>"
 			);
 	}
@@ -134,7 +134,7 @@ public:
 
 		CStr output = XML_GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 			"\n"
 			"<Test>ab</Test>"
 			);
@@ -155,7 +155,7 @@ public:
 
 		CStr output = XML_GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n\n"
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test>\xC9\x91</Test>"
 			);
 	}
@@ -171,7 +171,7 @@ public:
 
 		CStr output = XML_GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n\n"
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test example=\"abc > ]]> &lt; &amp; &quot;&quot; \"/>"
 			);
 	}
@@ -187,7 +187,7 @@ public:
 
 		CStr output = XML_GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n\n"
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test>abc > ]]&gt; &lt; &amp; \"\" </Test>"
 			);
 	}
@@ -203,7 +203,7 @@ public:
 
 		CStr output = XML_GetOutput();
 		TS_ASSERT_STR_EQUALS(output,
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n\n"
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
 			"<Test>\n"
 			"\t<!-- test - \xE2\x80\x90\xE2\x80\x90 \xE2\x80\x90\xE2\x80\x90- \xE2\x80\x90\xE2\x80\x90\xE2\x80\x90\xE2\x80\x90 test -->\n"
 			"</Test>"

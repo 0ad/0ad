@@ -50,7 +50,7 @@ end of XMLWriter.cpp.
 
 */
 
-// Encoding should usually be "utf-8" (or "iso-8859-1" to limit it to ASCII).
+// Starts generating a new XML file.
 #define XML_Start() XMLWriter_File xml_file_
 
 // Set pretty printing (newlines, tabs). Defaults to true.
@@ -62,7 +62,7 @@ end of XMLWriter.cpp.
 // Start a new element: <name ...>
 #define XML_Element(name) XMLWriter_Element xml_element_ (xml_file_, name)
 
-// Add text to the interior of the current element: ...>text</...>
+// Add text to the interior of the current element: <...>text</...>
 #define XML_Text(text) xml_element_.Text(text)
 
 // Add an attribute to the current element: <... name="value" ...>
