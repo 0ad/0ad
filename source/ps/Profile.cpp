@@ -390,7 +390,7 @@ static long get_memory_alloc_count()
 static int malloc_count = 0;
 static void *(*old_malloc_hook) (size_t, const void*);
 static CMutex malloc_mutex;
-static void *malloc_hook(size_t size, const void* caller)
+static void *malloc_hook(size_t size, const void* UNUSED(caller))
 {
 	// TODO: this is totally not nicely thread-safe - glibc's hook system seems to
 	// not make threading easy, and I don't want to think too hard, so this is
