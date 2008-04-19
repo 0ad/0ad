@@ -92,6 +92,31 @@ void* bucket_alloc(Bucket* b, size_t size)
 }
 
 
+void* bucket_fast_alloc(Bucket* b)
+{
+	// try to satisfy alloc from freelist
+	void* el = mem_freelist_Detach(b->freelist);
+	if(el)
+		return el;
+
+	// if there's not enough space left, close current bucket and
+	// allocate another.
+	if(b->pos+b->el_size > bucketSize)
+	{
+		u8* bucket = (u8*)malloc(bucketSize);
+		*(u8**)bucket = b->bucket;
+		b->bucket = bucket;
+		// skip bucket list field (alignment is only pointer-size)
+		b->pos = sizeof(u8*);
+		b->num_buckets++;
+	}
+
+	void* ret = b->bucket+b->pos;
+	b->pos += b->el_size;
+	return ret;
+}
+
+
 void bucket_free(Bucket* b, void* el)
 {
 	if(b->el_size == 0)

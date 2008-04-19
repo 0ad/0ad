@@ -27,7 +27,7 @@
  *
  * opaque! do not read/write any fields!
  **/
-struct Bucket
+struct LIB_API Bucket
 {
 	/**
 	 * currently open bucket.
@@ -59,7 +59,7 @@ struct Bucket
  * will be returned by bucket_alloc (whose size parameter is then ignored).
  * @return LibError.
  **/
-extern LibError bucket_create(Bucket* b, size_t el_size);
+LIB_API LibError bucket_create(Bucket* b, size_t el_size);
 
 /**
  * free all memory that ensued from <b>.
@@ -68,7 +68,7 @@ extern LibError bucket_create(Bucket* b, size_t el_size);
  *
  * @param Bucket*
  **/
-extern void bucket_destroy(Bucket* b);
+LIB_API void bucket_destroy(Bucket* b);
 
 /**
  * Dole out memory from the Bucket.
@@ -79,7 +79,9 @@ extern void bucket_destroy(Bucket* b);
  * @return allocated memory, or 0 if the Bucket would have to be expanded and
  * there isn't enough memory to do so.
  **/
-extern void* bucket_alloc(Bucket* b, size_t size);
+LIB_API void* bucket_alloc(Bucket* b, size_t size);
+
+LIB_API void* bucket_fast_alloc(Bucket* b);
 
 /**
  * make an entry available for reuse in the given Bucket.
@@ -91,6 +93,6 @@ extern void* bucket_alloc(Bucket* b, size_t size);
  * @param Bucket*
  * @param el entry allocated via bucket_alloc.
  **/
-extern void bucket_free(Bucket* b, void* el);
+LIB_API void bucket_free(Bucket* b, void* el);
 
 #endif	// #ifndef INCLUDED_BUCKET
