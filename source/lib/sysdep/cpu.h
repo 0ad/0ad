@@ -131,6 +131,7 @@ extern void cpu_MemoryFence();
  * memcpy_amd. for details, see accompanying article.
  **/
 extern void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size);
+LIB_API void* cpu_memcpy_thunk(void* RESTRICT dst, const void* RESTRICT src, size_t size);
 
 LIB_API void* cpu_memcpy_thunk(void* RESTRICT dst, const void* RESTRICT src, size_t size);
 
@@ -153,18 +154,11 @@ extern void cpu_ConfigureFloatingPoint();
 
 // convert float to int much faster than _ftol2, which would normally be
 // used by (int) casts.
-// should we use our float->int code? newer GCC versions with -ffast-math and
-// VC8 can use SSE, so skip it there.
-#if ARCH_IA32 && MSC_VERSION && MSC_VERSION < 1400
+// VC8 and GCC with -ffast-math now manage to generate SSE instructions,
+// so our implementation is no longer needed.
 #define cpu_i32FromFloat(f) ((i32)f)
 #define cpu_i32FromDouble(d) ((i32)d)
 #define cpu_i64FromDouble(d) ((i64)d)
-#else
-extern i32 cpu_i32FromFloat(float f);
-extern i32 cpu_i32FromDouble(double d);
-extern i64 cpu_i64FromDouble(double d);
-#endif
-
 
 #ifdef __cplusplus
 }

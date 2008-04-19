@@ -25,23 +25,12 @@
 #if ARCH_IA32
 # include "lib/sysdep/ia32/ia32.h"
 #endif
-#include "win.h"
+#include "lib/external_libraries/dbghelp.h"
+#include "winit.h"
 #include "wutil.h"
 
-#define _NO_CVCONST_H	// request SymTagEnum be defined
-#include <dbghelp.h>	// must come after win.h
-#include <OAIdl.h>	// VARIANT
 
-#if MSC_VERSION
-#pragma comment(lib, "dbghelp.lib")
-#pragma comment(lib, "oleaut32.lib")	// VariantChangeType
-#endif
-
-
-// note: it is safe to use debug_assert/debug_warn/CHECK_ERR even during a
-// stack trace (which is triggered by debug_assert et al. in app code) because
-// nested stack traces are ignored and only the error is displayed.
-
+WINIT_REGISTER_CRITICAL_INIT(wdbg_sym_Init);
 
 
 //----------------------------------------------------------------------------
@@ -287,6 +276,10 @@ static void skip_this_frame(uint& skip, void* context)
 		skip++;
 }
 
+
+typedef VOID (*PRtlCaptureContext)(PCONTEXT);
+static PRtlCaptureContext s_RtlCaptureContext;
+
 LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, uint skip, const CONTEXT* pcontext)
 {
 	// to function properly, StackWalk64 requires a CONTEXT on
@@ -319,33 +312,14 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, uint skip, 
 #if ARCH_IA32
 		ia32_asm_GetCurrentContext(&context);
 #else
-		// RtlCaptureContext is preferable if available (on WinXP and later)
-		typedef VOID (*PRtlCaptureContext)(PCONTEXT);
-		static PRtlCaptureContext pRtlCaptureContext;
-		ONCE(\
-			HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");\
-			pRtlCaptureContext = (PRtlCaptureContext)GetProcAddress(hKernel32Dll, "RtlCaptureContext");\
-		);
-		if(pRtlCaptureContext)
-			pRtlCaptureContext(&context);
-		// not available: raise+handle an exception; grab the reported context.
-		else
-		{
-			__try
-			{
-				// note: RaiseException apparently runs our filter in its
-				// context; this (kernel) stack frame is invalidated when
-				// it returns. we either have to do the stack walk from
-				// within the filter expression (could be done via recursion,
-				// but a bit hard to understand), or trigger an SEH exception
-				// by different means. we prefer the latter, although it may
-				// run afoul of sufficiently clever static analysis.
-				*(char*)0 = 0;	// intentional access violation
-			}
-			__except(context = *GetExceptionInformation()->ContextRecord, EXCEPTION_CONTINUE_EXECUTION)
-			{
-			}
-		}
+		// we no longer bother supporting stack walks on pre-WinXP systems
+		// that lack RtlCaptureContext. at least importing dynamically does
+		// allow the application to run on such systems.
+		// (note: the RaiseException method is annoying due to output in
+		// the debugger window and interaction with WinScopedLock's dtor)
+		if(!s_RtlCaptureContext)
+			return ERR::SYM_UNSUPPORTED;	// NOWARN
+		s_RtlCaptureContext(&context);
 #endif
 	}
 	pcontext = &context;
@@ -749,17 +723,17 @@ static void seq_determine_formatting(size_t el_size, size_t el_count,
 	if(el_size == sizeof(char))
 	{
 		*fits_on_one_line = el_count <= 16;
-		*num_elements_to_show = std::min(16u, el_count);
+		*num_elements_to_show = std::min((size_t)16u, el_count);
 	}
 	else if(el_size <= sizeof(int))
 	{
 		*fits_on_one_line = el_count <= 8;
-		*num_elements_to_show = std::min(12u, el_count);
+		*num_elements_to_show = std::min((size_t)12u, el_count);
 	}
 	else
 	{
 		*fits_on_one_line = false;
-		*num_elements_to_show = std::min(8u, el_count);
+		*num_elements_to_show = std::min((size_t)8u, el_count);
 	}
 
 	// make sure empty containers are displayed with [0] {}, otherwise
@@ -1862,4 +1836,15 @@ void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* exception_pointers)
 		DEBUG_DISPLAY_ERROR(L"wdbg_sym_WriteMinidump: unable to generate minidump.");
 
 	CloseHandle(hFile);
+}
+
+
+//-----------------------------------------------------------------------------
+
+static LibError wdbg_sym_Init()
+{
+	HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
+	s_RtlCaptureContext = (PRtlCaptureContext)GetProcAddress(hKernel32Dll, "RtlCaptureContext");
+
+	return INFO::OK;
 }

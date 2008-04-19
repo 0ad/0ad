@@ -93,7 +93,7 @@ size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
 LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
 {
 	const HANDLE hProcess = GetCurrentProcess();
-	DWORD process_affinity, system_affinity;
+	DWORD_PTR process_affinity, system_affinity;
 	if(!GetProcessAffinityMask(hProcess, &process_affinity, &system_affinity))
 		WARN_RETURN(ERR::FAIL);
 	// our affinity != system affinity: OS is limiting the CPUs that

@@ -463,7 +463,7 @@ public:
 	void Write(const uint numOutputBits, uintptr_t outputValue)
 	{
 		wdbg_assert(numOutputBits <= m_bitsLeft);
-		wdbg_assert(outputValue < (1u << numOutputBits));
+		wdbg_assert(outputValue < ((uintptr_t)1u << numOutputBits));
 
 		uint outputBitsLeft = numOutputBits;
 		while(outputBitsLeft > 0)
@@ -544,7 +544,7 @@ public:
 	}
 
 private:
-	uint m_remainderBits;
+	uintptr_t m_remainderBits;
 	uint m_numRemainderBits;
 	u8* m_pos;
 	uint m_bitsLeft;

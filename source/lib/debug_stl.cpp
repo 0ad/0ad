@@ -252,7 +252,7 @@ struct Any_deque : public ContainerBase<std::deque<int> >
 private:
 	static size_t ElementsPerBucket(size_t el_size)
 	{
-		return std::max(16u / el_size, 1u);	// see _DEQUESIZ
+		return std::max(16u / el_size, (size_t)1u);	// see _DEQUESIZ
 	}
 
 	const u8* GetNthElement(size_t i, size_t el_size) const

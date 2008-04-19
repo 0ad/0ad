@@ -32,6 +32,10 @@ typedef LibError (*StackFrameCallback)(const _tagSTACKFRAME64* frame, uintptr_t 
  *
  * @param pcontext processor context from which to start (usually taken from
  * an exception record), or 0 to walk the current stack.
+ *
+ * note: it is safe to use debug_assert/debug_warn/CHECK_ERR even during a
+ * stack trace (which is triggered by debug_assert et al. in app code) because
+ * nested stack traces are ignored and only the error is displayed.
  **/
 extern LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData = 0, uint skip = 0, const _CONTEXT* pcontext = 0);
 

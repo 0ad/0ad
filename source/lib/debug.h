@@ -28,7 +28,7 @@
  * call-based implementation.
  **/
 #if MSC_VERSION
-# define debug_break() __asm { int 3 }
+# define debug_break __debugbreak	// intrinsic "function"
 #else
 extern void debug_break();
 #endif

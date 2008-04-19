@@ -44,7 +44,7 @@ typedef uintptr_t pthread_once_t;
 extern int pthread_once(pthread_once_t*, void (*init_routine)(void));
 
 // thread
-typedef unsigned int pthread_t;
+typedef uintptr_t pthread_t;
 
 extern pthread_t pthread_self(void);
 extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);

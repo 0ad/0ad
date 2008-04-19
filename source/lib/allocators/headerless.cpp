@@ -360,7 +360,7 @@ private:
 
 	// bit i set <==> size class i's freelist is not empty.
 	// this allows finding a non-empty list in O(1).
-	uintptr_t m_bitmap;
+	u32 m_bitmap;
 };
 
 

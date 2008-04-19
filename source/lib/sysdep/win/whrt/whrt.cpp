@@ -183,7 +183,7 @@ static void UpdateTimerState()
 	const u64 deltaTicks = CounterDelta(ts->counter, counter);
 	ts2->counter = counter;
 	ts2->time = ts->time + deltaTicks/nominalFrequency;
-	ts = (TimerState*)InterlockedExchangePointer(&ts2, ts);
+	ts = (TimerState*)InterlockedExchangePointer((volatile PVOID*)&ts2, ts);
 }
 
 double whrt_Time()

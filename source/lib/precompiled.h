@@ -9,6 +9,8 @@
 
 // license: GPL; see lib/license.txt
 
+#define _SECURE_SCL 0
+
 #include "lib/sysdep/compiler.h"	// MSC_VERSION, HAVE_PCH
 
 // disable some common and annoying warnings
@@ -28,6 +30,9 @@
 # if MSC_VERSION >= 1400
 #  pragma warning(disable:6011)	// dereferencing NULL pointer
 #  pragma warning(disable:6246)	// local declaration hides declaration of the same name in outer scope
+# endif
+# if ICC_VERSION
+#  pragma warning(disable:1786)	// function is deprecated (disabling 4996 isn't sufficient)
 # endif
 #endif
 

@@ -94,7 +94,8 @@ EXTERN_C int wstartup_InitAndRegisterShutdown()
 	return 0;
 }
 
+#pragma section(".CRT$XIV", long,read)
 #pragma data_seg(".CRT$XIV")	// after C init, after XIU ("User") block
 EXTERN_C int(*wstartup_pInitAndRegisterShutdown)() = wstartup_InitAndRegisterShutdown;
 #pragma data_seg()
-#pragma comment(linker, "/include:_wstartup_pInitAndRegisterShutdown")
+//#pragma comment(linker, "/include:_wstartup_pInitAndRegisterShutdown")

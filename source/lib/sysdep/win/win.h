@@ -51,7 +51,7 @@
 //#define NOGDI             // All GDI defines and routines
 //#define NOKERNEL          // All KERNEL defines and routines
 //#define NOUSER            // All USER defines and routines
-#define NONLS               // All NLS defines and routines
+//#define NONLS               // All NLS defines and routines
 //#define NOMB              // MB_* and MessageBox()
 #define NOMEMMGR            // GMEM_*, LMEM_*, GHND, LHND, associated routines
 #define NOMETAFILE          // typedef METAFILEPICT

@@ -55,21 +55,6 @@ bool debug_is_code_ptr(void* p)
 }
 
 
-static NT_TIB* get_tib()
-{
-#if ARCH_IA32
-	NT_TIB* tib;
-	// ICC 10 doesn't support the NT_TIB.Self syntax, so we have to use
-	// a constant (asm code isn't 64-bit safe anyway).
-	__asm
-	{
-		mov		eax, fs:[NT_TIB.Self]
-		mov		[tib], eax
-	}
-	return tib;
-#endif
-}
-
 bool debug_is_stack_ptr(void* p)
 {
 	uintptr_t addr = (uintptr_t)p;
@@ -80,7 +65,7 @@ bool debug_is_stack_ptr(void* p)
 	if(addr % sizeof(void*))
 		return false;
 	// out of bounds (note: IA-32 stack grows downwards)
-	NT_TIB* tib = get_tib();
+	NT_TIB* tib = (NT_TIB*)NtCurrentTeb();
 	if(!(tib->StackLimit < p && p < tib->StackBase))
 		return false;
 
@@ -129,7 +114,7 @@ void debug_set_thread_name(const char* name)
 	info = { 0x1000, name, (DWORD)-1, 0 };
 	__try
 	{
-		RaiseException(0x406D1388, 0, sizeof(info)/sizeof(DWORD), (DWORD*)&info);
+		RaiseException(0x406D1388, 0, sizeof(info)/sizeof(DWORD), (ULONG_PTR*)&info);
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{

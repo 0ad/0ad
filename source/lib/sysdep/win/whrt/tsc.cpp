@@ -13,8 +13,15 @@
 
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/win/win.h"
-#include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
 #include "lib/bits.h"
+
+#if MSC_VERSION
+# include <intrin.h>
+# pragma intrinsic(__rdtsc)
+#endif
+#if ARCH_IA32
+# include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
+#endif
 
 
 //-----------------------------------------------------------------------------
@@ -29,8 +36,8 @@ enum AmdPowerNowFlags
 
 static bool IsThrottlingPossible()
 {
+#if ARCH_IA32
 	u32 regs[4];
-
 	switch(ia32_Vendor())
 	{
 	case IA32_VENDOR_INTEL:
@@ -46,8 +53,11 @@ static bool IsThrottlingPossible()
 		}
 		break;
 	}
-
 	return false;
+#elif ARCH_AMD64
+	// not yet implemented - consider it unsafe.
+	return true;
+#endif
 }
 
 
@@ -55,8 +65,10 @@ static bool IsThrottlingPossible()
 
 LibError CounterTSC::Activate()
 {
+#if ARCH_IA32
 	if(!ia32_cap(IA32_CAP_TSC))
 		return ERR::NO_SYS;		// NOWARN (CPU doesn't support RDTSC)
+#endif
 
 	return INFO::OK;
 }
@@ -92,6 +104,7 @@ bool CounterTSC::IsSafe() const
 	if(cpu_NumPackages() != 1 || cpu_CoresPerPackage() != 1)
 		return false;
 
+#if ARCH_IA32
 	// recent CPU:
 	if(ia32_Generation() >= 7)
 	{
@@ -116,6 +129,7 @@ bool CounterTSC::IsSafe() const
 		// the TSC isn't incremented. that's not nice, but irrelevant
 		// since STPCLK dooms the TSC on those systems anyway.
 	}
+#endif
 
 	// we're dealing with a single older CPU; the only problem there is
 	// throttling, i.e. changes to the TSC frequency. we don't want to
@@ -130,7 +144,11 @@ bool CounterTSC::IsSafe() const
 
 u64 CounterTSC::Counter() const
 {
+#if MSC_VERSION
+	return __rdtsc();
+#else
 	return ia32_rdtsc();
+#endif
 }
 
 /**

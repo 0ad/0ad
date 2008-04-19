@@ -357,7 +357,7 @@ LibError sys_pick_directory(char* path, size_t buf_size)
 	bi.ulFlags = BIF_RETURNONLYFSDIRS;
 	bi.lpfn = (BFFCALLBACK)browse_cb;
 	bi.lParam = (LPARAM)path;
-	ITEMIDLIST* pidl = SHBrowseForFolderA(&bi);
+	LPITEMIDLIST pidl = SHBrowseForFolderA(&bi);
 
 	// translate ITEMIDLIST to string. note: SHGetPathFromIDList doesn't
 	// support a user-specified char limit *sigh*
