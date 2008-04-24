@@ -46,17 +46,9 @@
   </group>
 
   <group>
-    <variant frequency="1" name="armour-var-x">
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
-      <texture>skeletal/hele_isp_e.dds</texture>
-    </variant>
     <variant frequency="2" name="armour-var-a">
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <texture>skeletal/hele_isp_e_a.dds</texture>
-    </variant>
-    <variant frequency="1" name="armour-var-b">
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
-      <texture>skeletal/hele_isp_e_b.dds</texture>
     </variant>
     <variant frequency="1" name="armour-var-c">
       <mesh>skeletal/m_tunic_a.pmd</mesh>
@@ -65,10 +57,6 @@
     <variant frequency="1" name="armour-var-d">
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <texture>skeletal/hele_isp_e_d.dds</texture>
-    </variant>
-    <variant frequency="2" name="armour-var-e">
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
-      <texture>skeletal/hele_isp_e_e.dds</texture>
     </variant>
     <variant frequency="4" name="armour-var-f">
       <mesh>skeletal/m_tunic_a.pmd</mesh>

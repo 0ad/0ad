@@ -25,7 +25,7 @@
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="250"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="250"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/rome_head_veteran.xml" attachpoint="head"/>
         <prop actor="props/units/shields/rome_scutum_e.xml" attachpoint="shield"/>
@@ -33,7 +33,7 @@
         <prop actor="props/units/weapons/pillum.xml" attachpoint="l_hand"/>
         <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/rome_ijv_e.dds</texture>
+      <texture>skeletal/rome_ijv_e_1.dds</texture>
     </variant>
   </group>
 

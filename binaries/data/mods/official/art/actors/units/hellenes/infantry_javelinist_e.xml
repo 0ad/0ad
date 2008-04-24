@@ -27,10 +27,10 @@
       </animations>
       <mesh>skeletal/m_tunic_b.pmd</mesh>
       <props>
-        <prop actor="props/units/heads/hele_hoplite_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/thracian_cap_01.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/thrac_a.xml" attachpoint="head"/>
         <prop actor="props/units/shields/hele_pelta_e.xml" attachpoint="shield"/>
-        <prop actor="props/units/cape_a.xml" attachpoint="back"/>
+        <prop actor="props/units/cape_hele_ijv_e_1.xml" attachpoint="back"/>
         <prop actor="props/units/hele_ijv_lboot.xml" attachpoint="l_leg"/>
         <prop actor="props/units/hele_ijv_rboot.xml" attachpoint="r_leg"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
@@ -38,7 +38,15 @@
         <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="projectile"/>
       </props>
-      <texture>skeletal/hele_ijv_e.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="tunic-white">
+      <texture>skeletal/hele_ijv_e_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="tunic-brown">
+      <texture>skeletal/hele_ijv_e_3.dds</texture>
     </variant>
   </group>
 
@@ -46,7 +54,6 @@
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
       <props>
-        <prop actor="props/units/shields/hele_pelta_b.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
         <prop actor="" attachpoint="r_hand"/>
