@@ -125,7 +125,7 @@ volatile void* mahaf_MapPhysicalMemory(uintptr_t physicalAddress, size_t numByte
 	}
 
 	debug_assert(bytesReturned == sizeof(out));
-	volatile void* virtualAddress = (volatile void*)out.virtualAddress;
+	volatile void* virtualAddress = (volatile void*)(uintptr_t)out.virtualAddress;
 	return virtualAddress;
 }
 

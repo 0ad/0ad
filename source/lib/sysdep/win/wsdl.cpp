@@ -214,7 +214,7 @@ static HWND wsdl_CreateWindow(int w, int h)
 	}
 
 	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
-	return CreateWindowEx(WS_EX_APPWINDOW, (LPCSTR)class_atom, "wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
+	return CreateWindowEx(WS_EX_APPWINDOW, (LPCSTR)(uintptr_t)class_atom, "wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
 }
 
 

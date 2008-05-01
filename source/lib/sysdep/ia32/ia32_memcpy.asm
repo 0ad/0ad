@@ -297,10 +297,10 @@ align 16
 ;------------------------------------------------------------------------------
 
 ; drop-in replacement for libc memcpy() (returns dst)
-; void* __declspec(naked) cpu_memcpy(void* dst, const void* src, size_t nbytes)
-global sym(cpu_memcpy)
+; extern void* ia32_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size);
+global sym(ia32_memcpy)
 align 64
-sym(cpu_memcpy):
+sym(ia32_memcpy):
 	push	edi
 	push	esi
 

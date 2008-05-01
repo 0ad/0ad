@@ -94,8 +94,14 @@ EXTERN_C int wstartup_InitAndRegisterShutdown()
 	return 0;
 }
 
-#pragma section(".CRT$XIV", long,read)
-#pragma data_seg(".CRT$XIV")	// after C init, after XIU ("User") block
-EXTERN_C int(*wstartup_pInitAndRegisterShutdown)() = wstartup_InitAndRegisterShutdown;
-#pragma data_seg()
-//#pragma comment(linker, "/include:_wstartup_pInitAndRegisterShutdown")
+
+// insert our initialization function after _cinit and XIU ("User") block
+#if ARCH_AMD64
+# define SECTION_ATTRIBUTES read
+#else
+# define SECTION_ATTRIBUTES read,write
+#endif
+#pragma section(".CRT$XIV", long,SECTION_ATTRIBUTES)
+#undef SECTION_ATTRIBUTES
+EXTERN_C __declspec(allocate(".CRT$XIV")) int(*wstartup_pInitAndRegisterShutdown)() = wstartup_InitAndRegisterShutdown;
+#pragma comment(linker, "/include:_wstartup_pInitAndRegisterShutdown")

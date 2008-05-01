@@ -17,7 +17,9 @@
 
 #if MSC_VERSION
 # include <intrin.h>
-# pragma intrinsic(__rdtsc)
+# if !ICC_VERSION
+#  pragma intrinsic(__rdtsc)
+# endif
 #endif
 #if ARCH_IA32
 # include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc

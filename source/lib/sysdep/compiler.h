@@ -178,4 +178,10 @@
 # define INLINE inline
 #endif
 
+#if MSC_VERSION
+# define CALL_CONV __cdecl
+#else
+# define CALL_CONV
+#endif
+
 #endif	// #ifndef INCLUDED_COMPILER

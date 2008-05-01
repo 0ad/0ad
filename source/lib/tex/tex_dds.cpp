@@ -229,8 +229,8 @@ static void s3tc_decompress_level(uint UNUSED(level), uint level_w, uint level_h
 	// note: 1x1 images are legitimate (e.g. in mipmaps). they report their
 	// width as such for glTexImage, but the S3TC data is padded to
 	// 4x4 pixel block boundaries.
-	const uint blocks_w = (uint)round_up(level_w, 4) / 4;
-	const uint blocks_h = (uint)round_up(level_h, 4) / 4;
+	const uint blocks_w = round_up(level_w, 4u) / 4u;
+	const uint blocks_h = round_up(level_h, 4u) / 4u;
 	const u8* s3tc_data = level_data;
 	debug_assert(level_data_size % s3tc_block_size == 0);
 
@@ -404,15 +404,15 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 
 	// determine type
-	const u32 pf_flags = read_le32(&pf->dwFlags);
+	const size_t pf_flags = (size_t)read_le32(&pf->dwFlags);
 	// .. uncompressed
 	if(pf_flags & DDPF_RGB)
 	{
-		const u32 pf_bpp    = read_le32(&pf->dwRGBBitCount);
-		const u32 pf_r_mask = read_le32(&pf->dwRBitMask);
-		const u32 pf_g_mask = read_le32(&pf->dwGBitMask);
-		const u32 pf_b_mask = read_le32(&pf->dwBBitMask);
-		const u32 pf_a_mask = read_le32(&pf->dwRGBAlphaBitMask);
+		const size_t pf_bpp    = (size_t)read_le32(&pf->dwRGBBitCount);
+		const size_t pf_r_mask = (size_t)read_le32(&pf->dwRBitMask);
+		const size_t pf_g_mask = (size_t)read_le32(&pf->dwGBitMask);
+		const size_t pf_b_mask = (size_t)read_le32(&pf->dwBBitMask);
+		const size_t pf_a_mask = (size_t)read_le32(&pf->dwRGBAlphaBitMask);
 
 		// (checked below; must be set in case below warning is to be
 		// skipped)
@@ -493,16 +493,16 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 		WARN_RETURN(ERR::CORRUPTED);
 
 	// flags (indicate which fields are valid)
-	const u32 sd_flags = read_le32(&sd->dwFlags);
+	const size_t sd_flags = (size_t)read_le32(&sd->dwFlags);
 	// .. not all required fields are present
 	// note: we can't guess dimensions - the image may not be square.
-	const u32 sd_req_flags = DDSD_CAPS|DDSD_HEIGHT|DDSD_WIDTH|DDSD_PIXELFORMAT;
+	const size_t sd_req_flags = DDSD_CAPS|DDSD_HEIGHT|DDSD_WIDTH|DDSD_PIXELFORMAT;
 	if((sd_flags & sd_req_flags) != sd_req_flags)
 		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
 
 	// image dimensions
-	const u32 h = read_le32(&sd->dwHeight);
-	const u32 w = read_le32(&sd->dwWidth);
+	const size_t h = (size_t)read_le32(&sd->dwHeight);
+	const size_t w = (size_t)read_le32(&sd->dwWidth);
 
 	// pixel format
 	uint bpp, flags;
@@ -511,11 +511,11 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	// if the image is not aligned with the S3TC block size, it is stored
 	// with extra pixels on the bottom left to fill up the space, so we need
 	// to account for those when calculating how big it should be
-	u32 stored_h, stored_w;
+	size_t stored_h, stored_w;
 	if(flags & TEX_DXT)
 	{
-		stored_h = round_up(h, 4);
-		stored_w = round_up(w, 4);
+		stored_h = round_up(h, 4u);
+		stored_w = round_up(w, 4u);
 	}
 	else
 	{
@@ -525,10 +525,10 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 
 	// verify pitch or linear size, if given
 	const size_t pitch = stored_w*bpp/8;
-	const u32 sd_pitch_or_size = read_le32(&sd->dwPitchOrLinearSize);
+	const size_t sd_pitch_or_size = (size_t)read_le32(&sd->dwPitchOrLinearSize);
 	if(sd_flags & DDSD_PITCH)
 	{
-		if(sd_pitch_or_size != round_up(pitch, 4))
+		if(sd_pitch_or_size != round_up(pitch, 4u))
 			WARN_RETURN(ERR::CORRUPTED);
 	}
 	if(sd_flags & DDSD_LINEARSIZE)
@@ -542,7 +542,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	// mipmaps
 	if(sd_flags & DDSD_MIPMAPCOUNT)
 	{
-		const u32 mipmap_count = read_le32(&sd->dwMipMapCount);
+		const size_t mipmap_count = (size_t)read_le32(&sd->dwMipMapCount);
 		if(mipmap_count)
 		{
 			// mipmap chain is incomplete
@@ -556,7 +556,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	// check for volume textures
 	if(sd_flags & DDSD_DEPTH)
 	{
-		const u32 depth = read_le32(&sd->dwDepth);
+		const size_t depth = (size_t)read_le32(&sd->dwDepth);
 		if(depth)
 			WARN_RETURN(ERR::NOT_IMPLEMENTED);
 	}

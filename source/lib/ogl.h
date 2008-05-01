@@ -110,16 +110,16 @@ extern const char* ogl_ExtensionString(void);
 
 // declare extension function pointers
 #if OS_WIN
-# define CALL_CONV __stdcall
+# define GL_CALL_CONV __stdcall
 #else
-# define CALL_CONV
+# define GL_CALL_CONV
 #endif
-#define FUNC(ret, name, params) EXTERN_C ret (CALL_CONV *p##name) params;
-#define FUNC2(ret, nameARB, nameCore, version, params) EXTERN_C ret (CALL_CONV *p##nameARB) params;
+#define FUNC(ret, name, params) EXTERN_C ret (GL_CALL_CONV *p##name) params;
+#define FUNC2(ret, nameARB, nameCore, version, params) EXTERN_C ret (GL_CALL_CONV *p##nameARB) params;
 #include "glext_funcs.h"
 #undef FUNC2
 #undef FUNC
-// leave CALL_CONV defined for ogl.cpp
+// leave GL_CALL_CONV defined for ogl.cpp
 
 
 //-----------------------------------------------------------------------------

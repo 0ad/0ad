@@ -50,7 +50,7 @@ public:
 		// clear all fields to prevent accidental reuse
 		prev = next = 0;
 		m_id = 0;
-		m_size = ~0u;
+		m_size = ~(size_t)0u;
 		m_magic = 0;
 	}
 

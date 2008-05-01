@@ -88,7 +88,7 @@ LibError wmi_GetClass(const char* className, WmiMap& wmiMap)
 	{
 		IWbemClassObjectPtr pObj = 0;
 		ULONG numReturned = 0;
-		hr = pEnum->Next(WBEM_INFINITE, 1, &pObj, &numReturned);
+		hr = pEnum->Next((LONG)WBEM_INFINITE, 1, &pObj, &numReturned);
 		if(FAILED(hr))
 			WARN_RETURN(ERR::FAIL);
 		if(numReturned == 0)

@@ -33,6 +33,7 @@
 # endif
 # if ICC_VERSION
 #  pragma warning(disable:1786)	// function is deprecated (disabling 4996 isn't sufficient)
+#  pragma warning(disable:1684)	// conversion from pointer to same-sized integral type
 # endif
 #endif
 

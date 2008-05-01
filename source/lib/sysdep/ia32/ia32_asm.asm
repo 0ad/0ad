@@ -80,9 +80,9 @@ sym(ia32_asm_cpuid):
 ; lock-free support routines
 ;-------------------------------------------------------------------------------
 
-; extern "C" void __cdecl cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
-global sym(cpu_AtomicAdd)
-sym(cpu_AtomicAdd):
+; extern "C" void __cdecl ia32_asm_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+global sym(ia32_asm_AtomicAdd)
+sym(ia32_asm_AtomicAdd):
 	mov		edx, [esp+4]				; location
 	mov		eax, [esp+8]				; increment
 db		0xf0							; LOCK prefix
@@ -99,9 +99,9 @@ db		0xf0							; LOCK prefix
 ; - nor do we bother skipping the LOCK prefix on single-processor systems.
 ;   the branch may be well-predicted, but difference in performance still
 ;   isn't expected to be enough to justify the effort.
-; extern "C" bool __cdecl cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
-global sym(cpu_CAS)
-sym(cpu_CAS):
+; extern "C" bool __cdecl ia32_asm_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value);
+global sym(ia32_asm_CAS)
+sym(ia32_asm_CAS):
 	mov		edx, [esp+4]				; location
 	mov		eax, [esp+8]				; expected
 	mov		ecx, [esp+12]				; new_value
@@ -112,9 +112,9 @@ db		0xf0							; LOCK prefix
 	ret
 
 
-; extern "C" bool __cdecl cpu_Serialize();
-global sym(cpu_Serialize)
-sym(cpu_Serialize):
+; extern "C" bool __cdecl ia32_asm_Serialize();
+global sym(ia32_asm_Serialize)
+sym(ia32_asm_Serialize):
 	cpuid
 	ret
 
@@ -175,14 +175,14 @@ sym(ia32_asm_fpclassifyf):
 	ret
 
 
-; extern "C" float __cdecl cpu_rintf(float)
+; extern "C" float __cdecl ia32_asm_rintf(float);
 global sym(ia32_asm_rintf)
 sym(ia32_asm_rintf):
 	fld		dword [esp+4]
 	frndint
 	ret
 
-; extern "C" double __cdecl ia32_asm_rint(double)
+; extern "C" double __cdecl ia32_asm_rint(double);
 global sym(ia32_asm_rint)
 sym(ia32_asm_rint):
 	fld		qword [esp+4]
@@ -190,7 +190,7 @@ sym(ia32_asm_rint):
 	ret
 
 
-; extern "C" float __cdecl ia32_asm_fminf(float, float)
+; extern "C" float __cdecl ia32_asm_fminf(float, float);
 global sym(ia32_asm_fminf)
 sym(ia32_asm_fminf):
 	fld		dword [esp+4]
@@ -201,7 +201,7 @@ sym(ia32_asm_fminf):
 	fstp	st0
 	ret
 
-; extern "C" float __cdecl ia32_asm_fmaxf(float, float)
+; extern "C" float __cdecl ia32_asm_fmaxf(float, float);
 global sym(ia32_asm_fmaxf)
 sym(ia32_asm_fmaxf):
 	fld		dword [esp+4]
@@ -213,9 +213,9 @@ sym(ia32_asm_fmaxf):
 	ret
 
 
-; extern "C" i32 __cdecl cpu_i32FromFloat(float f)
-global sym(cpu_i32FromFloat)
-sym(cpu_i32FromFloat):
+; extern "C" i32 __cdecl ia32_asm_i32FromFloat(float f);
+global sym(ia32_asm_i32FromFloat)
+sym(ia32_asm_i32FromFloat):
 	push		eax
 	fld			dword [esp+8]
 	fsub		dword [round_bias]
@@ -223,9 +223,9 @@ sym(cpu_i32FromFloat):
 	pop			eax
 	ret
 
-; extern "C" i32 __cdecl cpu_i32FromDouble(double d)
-global sym(cpu_i32FromDouble)
-sym(cpu_i32FromDouble):
+; extern "C" i32 __cdecl ia32_asm_i32FromDouble(double d);
+global sym(ia32_asm_i32FromDouble)
+sym(ia32_asm_i32FromDouble):
 	push		eax
 	fld			qword [esp+8]
 	fsub		dword [round_bias]
@@ -233,9 +233,9 @@ sym(cpu_i32FromDouble):
 	pop			eax
 	ret
 
-; extern "C" i64 __cdecl cpu_i64FromDouble(double d)
-global sym(cpu_i64FromDouble)
-sym(cpu_i64FromDouble):
+; extern "C" i64 __cdecl ia32_asm_i64FromDouble(double d);
+global sym(ia32_asm_i64FromDouble)
+sym(ia32_asm_i64FromDouble):
 	push		edx
 	push		eax
 	fld			qword [esp+12]
@@ -259,7 +259,7 @@ sym(cpu_i64FromDouble):
 ; xcode complains about CPUID clobbering ebx, so we use external asm
 ; where possible (IA-32 CPUs).
 ;
-; extern "C" u64 ia32_asm_rdtsc_edx_eax()
+; extern "C" u64 ia32_asm_rdtsc_edx_eax();
 global sym(ia32_asm_rdtsc_edx_eax)
 sym(ia32_asm_rdtsc_edx_eax):
 	push	ebx
@@ -269,7 +269,7 @@ sym(ia32_asm_rdtsc_edx_eax):
 	ret
 
 
-; extern "C" int ia32_asm_log2_of_pow2(uint n)
+; extern "C" int ia32_asm_log2_of_pow2(uint n);
 global sym(ia32_asm_log2_of_pow2)
 sym(ia32_asm_log2_of_pow2):
 	mov		ecx, [esp+4]	; n
@@ -289,7 +289,7 @@ sym(ia32_asm_log2_of_pow2):
 ; optimized for size; this must be straight asm because ; extern "C"
 ; is compiler-specific and compiler-generated prolog code inserted before
 ; inline asm trashes EBP and ESP (unacceptable).
-; extern "C" void ia32_asm_GetCurrentContext(void* pcontext)
+; extern "C" void ia32_asm_GetCurrentContext(void* pcontext);
 global sym(ia32_asm_GetCurrentContext)
 sym(ia32_asm_GetCurrentContext):
 	pushad

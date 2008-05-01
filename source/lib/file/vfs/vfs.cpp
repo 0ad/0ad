@@ -11,6 +11,7 @@
 #include "precompiled.h"
 #include "vfs.h"
 
+#include "lib/allocators/shared_ptr.h"
 #include "lib/path_util.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/file/common/trace.h"
@@ -102,7 +103,10 @@ public:
 			CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
 
 			size = file->Size();
-			if(size > ChooseCacheSize())
+			// safely handle zero-length files
+			if(!size)
+				fileContents = DummySharedPtr((u8*)0);
+			else if(size > ChooseCacheSize())
 			{
 				fileContents = io_Allocate(size);
 				RETURN_ERR(file->Load(fileContents));

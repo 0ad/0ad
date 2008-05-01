@@ -32,7 +32,7 @@ extern "C" {
  * @return string identifying the CPU (usually a cleaned-up version of the
  * brand string)
  **/
-extern const char* cpu_IdentifierString();
+LIB_API const char* cpu_IdentifierString();
 
 /**
  * @return a rough estimate of the CPU clock frequency.
@@ -42,7 +42,7 @@ extern const char* cpu_IdentifierString();
  * continual recalibration anyway, which makes the initial accuracy moot.
  * querying frequency via OS is also much faster than ia32's measurement loop.
  **/
-extern double cpu_ClockFrequency();
+LIB_API double cpu_ClockFrequency();
 
 /**
  * @return the number of what the OS deems "processors" or -1 on failure.
@@ -54,30 +54,30 @@ extern double cpu_ClockFrequency();
  * note: this function is necessary because POSIX sysconf _SC_NPROCESSORS_CONF
  * is not suppored on MacOSX, else we would use that.
  **/
-extern uint cpu_NumProcessors();
+LIB_API uint cpu_NumProcessors();
 
 /**
  * @return number of *enabled* CPU packages / sockets.
  **/
-extern uint cpu_NumPackages();
+LIB_API uint cpu_NumPackages();
 
 /**
  * @return number of *enabled* CPU cores per package.
  * (2 on dual-core systems)
  **/
-extern uint cpu_CoresPerPackage();
+LIB_API uint cpu_CoresPerPackage();
 
 /**
  * @return number of *enabled* hyperthreading units per core.
  * (2 on P4 EE)
  **/
-extern uint cpu_LogicalPerCore();
+LIB_API uint cpu_LogicalPerCore();
 
 /**
  * @return the size [bytes] of a MMU page.
  * (4096 on most IA-32 systems)
  **/
-extern size_t cpu_PageSize();
+LIB_API size_t cpu_PageSize();
 
 enum CpuMemoryIndicators
 {
@@ -88,7 +88,7 @@ enum CpuMemoryIndicators
 /**
  * @return the amount [bytes] of available or total physical memory.
  **/
-extern size_t cpu_MemorySize(CpuMemoryIndicators mem_type);
+LIB_API size_t cpu_MemorySize(CpuMemoryIndicators mem_type);
 
 
 //-----------------------------------------------------------------------------
@@ -103,37 +103,32 @@ extern size_t cpu_MemorySize(CpuMemoryIndicators mem_type);
  * @return false if the target word doesn't match the expected value,
  * otherwise true (also overwriting the contents of location)
  **/
-extern bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t newValue);
+LIB_API bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t newValue);
 
 /**
  * add a signed value to a variable without the possibility of interference
  * from other threads/CPUs.
  **/
-extern void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+LIB_API void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 
 /**
  * enforce strict instruction ordering in the CPU pipeline.
  **/
-extern void cpu_Serialize();
+LIB_API void cpu_Serialize();
 
 /**
  * enforce strong memory ordering.
  **/
-extern void cpu_MemoryFence();
+LIB_API void cpu_MemoryFence();
 
 
 //-----------------------------------------------------------------------------
 // misc
 
 /**
- * drop-in replacement for libc memcpy(). highly optimized for Athlon and
- * Pentium III microarchitectures; significantly outperforms VC7.1 memcpy and
- * memcpy_amd. for details, see accompanying article.
+ * drop-in replacement for POSIX memcpy().
  **/
-extern void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size);
-LIB_API void* cpu_memcpy_thunk(void* RESTRICT dst, const void* RESTRICT src, size_t size);
-
-LIB_API void* cpu_memcpy_thunk(void* RESTRICT dst, const void* RESTRICT src, size_t size);
+LIB_API void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size);
 
 /**
  * execute the specified function once on each CPU.
@@ -145,12 +140,12 @@ LIB_API void* cpu_memcpy_thunk(void* RESTRICT dst, const void* RESTRICT src, siz
  * may fail if e.g. OS is preventing us from running on some CPUs.
  **/
 typedef void (*CpuCallback)(void* param);
-extern LibError cpu_CallByEachCPU(CpuCallback cb, void* param);
+LIB_API LibError cpu_CallByEachCPU(CpuCallback cb, void* param);
 
 /**
  * set the FPU control word to "desirable" values (see implementation)
  **/
-extern void cpu_ConfigureFloatingPoint();
+LIB_API void cpu_ConfigureFloatingPoint();
 
 // convert float to int much faster than _ftol2, which would normally be
 // used by (int) casts.

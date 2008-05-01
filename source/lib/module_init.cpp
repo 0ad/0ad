@@ -24,7 +24,7 @@ static const ModuleInitState MODULE_UNINITIALIZED = 0u;
 
 // (1..N = reference count)
 
-static const ModuleInitState MODULE_ERROR = ~1u;
+static const ModuleInitState MODULE_ERROR = ~(uintptr_t)1u;
 
 
 bool ModuleShouldInitialize(volatile ModuleInitState* pInitState)

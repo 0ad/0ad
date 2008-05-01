@@ -21,6 +21,7 @@
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/sysdep/cpu.h"
+#include "ia32_memcpy.h"
 
 #if !MSC_VERSION && !GCC_VERSION
 #error ia32.cpp needs inline assembly support!
@@ -766,4 +767,28 @@ void cpu_ConfigureFloatingPoint()
 	// the result as required by ANSI C. however, FPU calculation
 	// results were changed significantly, so it had to be disabled.
 	//ia32_asm_control87(IA32_RC_CHOP, IA32_MCW_RC);
+}
+
+
+//-----------------------------------------------------------------------------
+// thunk functions for ia32_asm to allow DLL export
+
+void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
+{
+	ia32_asm_AtomicAdd(location, increment);
+}
+
+bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_value)
+{
+	return ia32_asm_CAS(location, expected, new_value);
+}
+
+void cpu_Serialize()
+{
+	return ia32_asm_Serialize();
+}
+
+void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
+{
+	return ia32_memcpy(dst, src, size);
 }

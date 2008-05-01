@@ -85,7 +85,7 @@ ICounter* CreateCounter(uint id)
 
 	static const size_t memSize = 200;
 	static u8 mem[memSize];
-	u8* alignedMem = (u8*)round_up((uintptr_t)mem, 16);
+	u8* alignedMem = (u8*)round_up((uintptr_t)mem, (uintptr_t)16u);
 	const size_t bytesLeft = mem+memSize - alignedMem;
 	ICounter* counter = ConstructCounterAt(id, alignedMem, bytesLeft);
 

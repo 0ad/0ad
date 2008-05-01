@@ -429,6 +429,7 @@ static uint EncodedLength(uintptr_t quantizedOffset)
 	}
 
 	wdbg_assert(0);	// unreachable
+	return 0;
 }
 
 
@@ -873,6 +874,7 @@ static int __cdecl ReportHook(int reportType, char* message, int* out)
 	}
 
 	wdbg_assert(0);	// unreachable
+	return 0;
 }
 
 //-----------------------------------------------------------------------------

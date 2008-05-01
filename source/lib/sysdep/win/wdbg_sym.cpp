@@ -42,7 +42,7 @@ WINIT_REGISTER_CRITICAL_INIT(wdbg_sym_Init);
 // generate a stack trace. if that changes, we need to init a local copy
 // of these in dump_sym_cb and pass them to all subsequent dump_*.
 static HANDLE hProcess;
-static ULONG64 mod_base;
+static uintptr_t mod_base;
 
 // for StackWalk64; taken from PE header by wdbg_init.
 static WORD machine;
@@ -80,7 +80,7 @@ static LibError sym_init()
 	WARN_IF_FALSE(ok);
 
 	mod_base = SymGetModuleBase64(hProcess, (u64)&sym_init);
-	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)mod_base);
+	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)(uintptr_t)mod_base);
 	machine = header->FileHeader.Machine;
 
 	return INFO::OK;
@@ -231,9 +231,9 @@ func2:
 static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 {
 	// read previous values from _tagSTACKFRAME64
-	void* prev_fp  = (void*)sf->AddrFrame .Offset;
-	void* prev_ip  = (void*)sf->AddrPC    .Offset;
-	void* prev_ret = (void*)sf->AddrReturn.Offset;
+	void* prev_fp  = (void*)(uintptr_t)sf->AddrFrame .Offset;
+	void* prev_ip  = (void*)(uintptr_t)sf->AddrPC    .Offset;
+	void* prev_ret = (void*)(uintptr_t)sf->AddrReturn.Offset;
 	if(!debug_is_stack_ptr(prev_fp))
 		WARN_RETURN(ERR::_11);
 	if(prev_ip && !debug_is_code_ptr(prev_ip))
@@ -409,7 +409,7 @@ static LibError nth_caller_cb(const _tagSTACKFRAME64* sf, uintptr_t cbData)
 	void** pfunc = (void**)cbData;
 
 	// return its address
-	*pfunc = (void*)sf->AddrPC.Offset;
+	*pfunc = (void*)(uintptr_t)sf->AddrPC.Offset;
 	return INFO::OK;
 }
 
@@ -876,7 +876,7 @@ SymGetTypeInfo(hProcess, mod_base, id, TI_GET_OFFSET, &ofs2);
 
 
 	// get address
-	ULONG64 addr = sym->Address;
+	uintptr_t addr = sym->Address;
 	// .. relative to a register
 	//    note: we only have the FP (not SP)
 	if(sym->Flags & SYMFLAG_REGREL)
@@ -908,7 +908,7 @@ in_register:
 		return ERR::SYM_UNRETRIEVABLE_REG;	// NOWARN
 	}
 
-	*pp = (const u8*)addr;
+	*pp = (const u8*)(uintptr_t)addr;
 
 debug_printf("SYM| %ws at %p  flags=%X dk=%d sym->addr=%I64X addrofs=%X addr2=%I64X ofs2=%X\n", sym->Name, *pp, sym->Flags, data_kind, sym->Address, addrofs, addr2, ofs2);
 
@@ -1270,7 +1270,7 @@ static LibError dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 	const size_t size = (size_t)size_;
 
 	// read+output pointer's value.
-	p = (const u8*)movzx_le64(p, size);
+	p = (const u8*)(uintptr_t)movzx_le64(p, size);
 	out(L"0x%p", p);
 
 	// bail if it's obvious the pointer is bogus
@@ -1732,7 +1732,7 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG UNUSED(size), void* UNU
 {
 	out_latch_pos();	// see decl
 	mod_base = sym->ModBase;
-	const u8* p = (const u8*)sym->Address;
+	const u8* p = (const u8*)(uintptr_t)sym->Address;
 	DumpState state;
 
 	INDENT;
@@ -1750,7 +1750,7 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG UNUSED(size), void* UNU
 static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbData))
 {
 	current_stackframe64 = sf;
-	void* func = (void*)sf->AddrPC.Offset;
+	void* func = (void*)(uintptr_t)sf->AddrPC.Offset;
 
 	char func_name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN]; int line;
 	LibError ret = debug_resolve_symbol_lk(func, func_name, file, &line);

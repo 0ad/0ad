@@ -62,22 +62,3 @@ uint round_up_to_pow2(uint x)
 
 	return x+1;
 }
-
-
-// multiple must be a power of two.
-uintptr_t round_up(const uintptr_t n, const uintptr_t multiple)
-{
-	debug_assert(is_pow2((long)multiple));
-	const uintptr_t result = (n + multiple-1) & ~(multiple-1);
-	debug_assert(n <= result && result < n+multiple);
-	return result;
-}
-
-// multiple must be a power of two.
-uintptr_t round_down(const uintptr_t n, const uintptr_t multiple)
-{
-	debug_assert(is_pow2((long)multiple));
-	const uintptr_t result = n & ~(multiple-1);
-	debug_assert(result <= n && n < result+multiple);
-	return result;
-}

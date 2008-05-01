@@ -140,8 +140,9 @@ EXTERN_C PfnDliHook __pfnDliFailureHook2 = 0;
 
 
 
-
+#if !ICC_VERSION
 #pragma intrinsic(strlen,memcmp,memcpy)
+#endif
 
 // utility function for calculating the index of the current import
 // for all the tables (INT, BIAT, UIAT, and IAT).

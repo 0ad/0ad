@@ -101,23 +101,39 @@ extern i64 movsx_le64(const u8* p, size_t size);
 extern i64 movsx_be64(const u8* p, size_t size);
 
 
-// Debug-mode ICC doesn't like the intrinsics, so only use them
-// for MSVC and non-debug ICC.
-#if MSC_VERSION && !( defined(__INTEL_COMPILER) && !defined(NDEBUG) )
+#if MSC_VERSION
 extern unsigned short _byteswap_ushort(unsigned short);
 extern unsigned long _byteswap_ulong(unsigned long);
 extern unsigned __int64 _byteswap_uint64(unsigned __int64);
-#pragma intrinsic(_byteswap_ushort)
-#pragma intrinsic(_byteswap_ulong)
-#pragma intrinsic(_byteswap_uint64)
+# if !ICC_VERSION	// ICC doesn't need (and warns about) the pragmas
+#  pragma intrinsic(_byteswap_ushort)
+#  pragma intrinsic(_byteswap_ulong)
+#  pragma intrinsic(_byteswap_uint64)
+# endif
 # define swap16 _byteswap_ushort
 # define swap32 _byteswap_ulong
 # define swap64 _byteswap_uint64
-#else
-extern u16 swap16(const u16 x);
-extern u32 swap32(const u32 x);
-extern u64 swap64(const u64 x);
-#endif	// no swap intrinsics
+#elif defined(linux)
+# include <asm/byteorder.h>
+# ifdef __arch__swab16
+#  define swap16 __arch__swab16
+# endif
+# ifdef __arch__swab32
+#  define swap32 __arch__swab32
+# endif
+# ifdef __arch__swab64
+#  define swap64 __arch__swab64
+# endif
+#endif
 
+#ifndef swap16
+extern u16 swap16(const u16 x);
+#endif
+#ifndef swap32
+extern u32 swap32(const u32 x);
+#endif
+#ifndef swap64
+extern u64 swap64(const u64 x);
+#endif
 
 #endif	// #ifndef INCLUDED_BYTE_ORDER

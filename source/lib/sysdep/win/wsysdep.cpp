@@ -279,19 +279,24 @@ ErrorReaction sys_display_error(const wchar_t* text, uint flags)
 
 LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
 {
-	DWORD err = (DWORD)user_err;
-	// not in our range (Win32 error numbers are positive)
+	// validate user_err - Win32 doesn't have negative error numbers
 	if(user_err < 0)
 		return ERR::FAIL;	// NOWARN
-	// user doesn't know error code; get current error state
-	if(!user_err)
-		err = GetLastError();
+
+	const DWORD err = user_err? (DWORD)user_err : GetLastError();
+
+	// no one likes to see "The operation completed successfully" in
+	// error messages, so return more descriptive text instead.
+	if(err == 0)
+	{
+		strcpy_s(buf, max_chars, "0 (no error code was set)");
+		return INFO::OK;
+	}
 
 	const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
 	const DWORD lang_id = 0;	// look for neutral, then current locale
 	va_list* args = 0;			// we don't care about "inserts"
-	DWORD chars_output = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, err,
-		lang_id, buf, (DWORD)max_chars, args);
+	const DWORD chars_output = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, err, lang_id, buf, (DWORD)max_chars, args);
 	if(!chars_output)
 		WARN_RETURN(ERR::FAIL);
 	debug_assert(chars_output < max_chars);

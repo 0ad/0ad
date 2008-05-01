@@ -146,8 +146,7 @@ public:
 
 	shared_ptr<u8> Reserve(size_t size)
 	{
-		// (this probably indicates a bug; caching 0-length files would
-		// have no benefit, anyway)
+		// (should never happen because the VFS ensures size != 0.)
 		debug_assert(size != 0);
 
 		// (300 iterations have been observed when reserving several MB

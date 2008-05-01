@@ -141,7 +141,7 @@ void single_free(void* storage, volatile uintptr_t* in_use_flag, void* p)
 
 void* static_calloc(StaticStorage* ss, size_t size)
 {
-	void* p = (void*)round_up((uintptr_t)ss->pos, 16);
+	void* p = (void*)round_up((uintptr_t)ss->pos, (uintptr_t)16u);
 	ss->pos = (u8*)p+size;
 	debug_assert(ss->pos <= ss->end);
 	return p;

@@ -307,13 +307,12 @@ fail:
 
 	// append OS error (just in case it happens to be relevant -
 	// it's usually still set from unrelated operations)
-	char description_buf[100] = { '?' };
+	char description_buf[100] = "?";
 	LibError errno_equiv = LibError_from_errno(false);
 	if(errno_equiv != ERR::FAIL)	// meaningful translation
 		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
-	char os_error[100];
-	if(sys_error_description_r(0, os_error, ARRAY_SIZE(os_error)) != INFO::OK)
-		strcpy_s(os_error, ARRAY_SIZE(os_error), "?");
+	char os_error[100] = "?";
+	sys_error_description_r(0, os_error, ARRAY_SIZE(os_error));
 	len = swprintf(pos, chars_left,
 		L"\r\n"
 		L"errno = %d (%hs)\r\n"

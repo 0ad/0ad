@@ -11,6 +11,7 @@
 #ifndef INCLUDED_WSDL
 #define INCLUDED_WSDL
 
+#include "lib/byte_order.h"
 #include "SDL/SDL_keysym.h"
 
 typedef u8  Uint8;
@@ -106,47 +107,15 @@ extern int SDL_SetGamma(float r, float g, float b);
 // byte swapping
 //
 
-
-#ifdef linux
-# include <asm/byteorder.h>
-# ifdef __arch__swab16
-#  define SDL_Swap16  __arch__swab16
-# endif
-# ifdef __arch__swab32
-#  define SDL_Swap32  __arch__swab32
-# endif
-#endif
-
-// Debug-mode ICC doesn't like the intrinsics, so only use them
-// for MSVC and non-debug ICC.
-#if MSC_VERSION && !( defined(__INTEL_COMPILER) && !defined(NDEBUG) )
-extern unsigned short _byteswap_ushort(unsigned short);
-extern unsigned long _byteswap_ulong(unsigned long);
-extern unsigned __int64 _byteswap_uint64(unsigned __int64);
-#pragma intrinsic(_byteswap_ushort)
-#pragma intrinsic(_byteswap_ulong)
-#pragma intrinsic(_byteswap_uint64)
-# define SDL_Swap16 _byteswap_ushort
-# define SDL_Swap32 _byteswap_ulong
-# define SDL_Swap64 _byteswap_uint64
-#endif
-
-#ifndef SDL_Swap16
-extern u16 SDL_Swap16(u16);
-#endif
-
-#ifndef SDL_Swap32
-extern u32 SDL_Swap32(u32);
-#endif
-
-#ifndef SDL_Swap64
-extern u64 SDL_Swap64(u64);
-#endif
-
 #define SDL_LIL_ENDIAN 1234
 #define SDL_BIG_ENDIAN 4321
 
 #define SDL_BYTEORDER SDL_LIL_ENDIAN
+
+#define SDL_Swap16 swap16
+#define SDL_Swap32 swap32
+#define SDL_Swap64 swap64
+
 
 //////////////////////////////////////////////////////////////////////////////
 //

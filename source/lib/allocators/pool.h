@@ -43,7 +43,7 @@ struct Pool
  * pass as pool_create's <el_size> param to indicate variable-sized allocs
  * are required (see below).
  **/
-const size_t POOL_VARIABLE_ALLOCS = ~0u;
+const size_t POOL_VARIABLE_ALLOCS = ~(size_t)0u;
 
 /**
  * Ready Pool for use.

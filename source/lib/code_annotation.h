@@ -71,7 +71,7 @@ checking, but does not cause any compiler warnings.
 //    a) normal implementation: includes "abort", which is declared with
 //       noreturn attribute and therefore avoids GCC's "execution reaches
 //       end of non-void function" warning.
-# if !MSC_VERSION || CONFIG_PARANOIA
+# if !MSC_VERSION || ICC_VERSION || CONFIG_PARANOIA
 #  define UNREACHABLE\
 	STMT(\
 		debug_assert(0);	/* hit supposedly unreachable code */\

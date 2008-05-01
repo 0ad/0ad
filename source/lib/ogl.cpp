@@ -35,8 +35,8 @@
 // define extension function pointers
 extern "C"
 {
-#define FUNC(ret, name, params) ret (CALL_CONV *p##name) params;
-#define FUNC2(ret, nameARB, nameCore, version, params) ret (CALL_CONV *p##nameARB) params;
+#define FUNC(ret, name, params) ret (GL_CALL_CONV *p##name) params;
+#define FUNC2(ret, nameARB, nameCore, version, params) ret (GL_CALL_CONV *p##nameARB) params;
 #include "glext_funcs.h"
 #undef FUNC2
 #undef FUNC

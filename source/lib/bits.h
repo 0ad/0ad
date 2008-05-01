@@ -129,14 +129,29 @@ extern uint round_up_to_pow2(uint x);
  *
  * @param multiple: must be a power of two.
  **/
-extern uintptr_t round_up  (uintptr_t n, uintptr_t multiple);
-extern uintptr_t round_down(uintptr_t n, uintptr_t multiple);
+template<typename T>
+T round_up(T n, T multiple)
+{
+	debug_assert(is_pow2((uint)multiple));
+	const T result = (n + multiple-1) & ~(multiple-1);
+	debug_assert(n <= result && result < n+multiple);
+	return result;
+}
+
+template<typename T>
+T round_down(T n, T multiple)
+{
+	debug_assert(is_pow2((uint)multiple));
+	const T result = n & ~(multiple-1);
+	debug_assert(result <= n && n < result+multiple);
+	return result;
+}
+
 
 template<typename T>
 bool IsAligned(T t, uintptr_t multiple)
 {
 	return ((uintptr_t)t % multiple) == 0;
-
 }
 
 #endif	// #ifndef INCLUDED_BITS

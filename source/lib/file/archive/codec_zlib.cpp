@@ -116,7 +116,7 @@ protected:
 
 	typedef int ZEXPORT (*ZLibFunc)(z_streamp strm, int flush);
 
-	LibError Process(ZLibFunc func, int flush, const u8* in, const size_t inSize, u8* out, const size_t outSize, size_t& inConsumed, size_t& outProduced)
+	LibError CallStreamFunc(ZLibFunc func, int flush, const u8* in, const size_t inSize, u8* out, const size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		m_zs.next_in  = (Byte*)in;
 		m_zs.avail_in = (uInt)inSize;
@@ -196,7 +196,7 @@ public:
 	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
 		m_checksum = UpdateChecksum(m_checksum, in, inSize);
-		return CodecZLibStream::Process(deflate, 0, in, inSize, out, outSize, inConsumed, outProduced);
+		return CodecZLibStream::CallStreamFunc(deflate, 0, in, inSize, out, outSize, inConsumed, outProduced);
 	}
 
 	virtual LibError Finish(u32& checksum)
@@ -250,7 +250,7 @@ public:
 
 	virtual LibError Process(const u8* in, size_t inSize, u8* out, size_t outSize, size_t& inConsumed, size_t& outProduced)
 	{
-		const LibError ret = CodecZLibStream::Process(inflate, Z_SYNC_FLUSH, in, inSize, out, outSize, inConsumed, outProduced);
+		const LibError ret = CodecZLibStream::CallStreamFunc(inflate, Z_SYNC_FLUSH, in, inSize, out, outSize, inConsumed, outProduced);
 		m_checksum = UpdateChecksum(m_checksum, out, outProduced);
 		return ret;
 	}
