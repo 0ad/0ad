@@ -110,9 +110,9 @@ bool CFormation::LoadXml(const CStr& filename)
 	}
 
     XMBElementList RootChildren = Root.GetChildNodes();
-	int file=0;
-	int rank=0;
-	int maxrank=0;
+	size_t file=0;
+	size_t rank=0;
+	size_t maxrank=0;
 
 	//Read in files and ranks
     for (int i = 0; i < RootChildren.Count; ++i)
@@ -142,7 +142,7 @@ bool CFormation::LoadXml(const CStr& filename)
 					//error
 
 				XMBAttributeList RankAttribList = Rank.GetAttributes();
-				int order = CStr( RankAttribList.GetNamedItem(at_order) ).ToInt();
+				size_t order = CStr( RankAttribList.GetNamedItem(at_order) ).ToInt();
 				CStr category = CStr( RankAttribList.GetNamedItem(at_category) );
 
 				if( order <= 0 )
@@ -175,7 +175,7 @@ bool CFormation::LoadXml(const CStr& filename)
 
 	//Here we check to make sure no order was skipped over.  If so, failure, because we rely
 	//on a linearly accessible slots in entityformation.cpp.
-	for ( int i=0; i<m_numSlots; ++i )
+	for ( size_t i=0; i<m_numSlots; ++i )
 	{
 		if ( m_slots.find(i) == m_slots.end() )
 		{
@@ -192,7 +192,7 @@ bool CFormation::LoadXml(const CStr& filename)
 	return true;
 }
 
-void CFormation::AssignCategory(int order, CStr category)
+void CFormation::AssignCategory(size_t order, CStr category)
 {
 	category.Remove( CStr(",") );
 	category = category + " ";	//So the final word will be pushed as well

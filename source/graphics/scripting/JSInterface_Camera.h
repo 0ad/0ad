@@ -72,11 +72,11 @@ namespace JSI_Camera
 	JSBool getCamera( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 	JSBool setCamera( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 
-	JSBool construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
+	JSBool construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 	void finalize( JSContext* cx, JSObject* obj );
 
-	JSBool lookAt( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
-	JSBool getFocus( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
+	JSBool lookAt( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
+	JSBool getFocus( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 
     void init();
 }

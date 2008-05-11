@@ -11,7 +11,8 @@
 // so marked.
 // all > 8-bit integers are stored in little-endian format
 // (hence the _le suffix). however, the caller is responsible for
-// swapping their raw data before passing it to PackRaw.
+// swapping their raw data before passing it to PackRaw. a convenience
+// routine is provided for the common case of storing size_t.
 
 #ifndef INCLUDED_FILEPACKER
 #define INCLUDED_FILEPACKER
@@ -60,6 +61,12 @@ public:
 	void PackRaw(const void* rawData, size_t rawDataSize);
 
 	/**
+	 * convenience: convert a number (almost always a size type) to
+	 * little-endian u32 and pack that.
+	 **/
+	void PackSize(size_t value);
+
+	/**
 	 * pack a string onto the end of the data stream
 	 * (encoded as a 32-bit length followed by the characters)
 	 **/
@@ -103,6 +110,12 @@ public:
 	 * reached before the given number of bytes have been read.
 	 **/
 	void UnpackRaw(void* rawData, size_t rawDataSize);
+
+	/**
+	 * use UnpackRaw to retrieve 32-bits; returns their value as size_t
+	 * after converting from little endian to native byte order.
+	 **/
+	size_t UnpackSize();
 
 	/**
 	 * unpack a string from the raw data stream.

@@ -421,7 +421,7 @@ void CTechnology::ScriptingInit()
 	AddMethod<bool, &CTechnology::IsExcluded>( "isExcluded", 0 );
 	AddMethod<bool, &CTechnology::IsValid>( "isValid", 0 );
 	AddMethod<bool, &CTechnology::IsResearched>( "isResearched", 0 );
-	AddMethod<int, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
+	AddMethod<size_t, &CTechnology::GetPlayerID>( "getPlayerID", 0 );
 
 	CJSComplex<CTechnology>::ScriptingInit("Technology");
 }
@@ -483,7 +483,7 @@ bool CTechnology::IsResearched( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval
 	return IsResearched();
 }
 
-int CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+size_t CTechnology::GetPlayerID( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return m_player->GetPlayerID();
 }

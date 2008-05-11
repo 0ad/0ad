@@ -141,7 +141,7 @@ void* HWLightingModelRenderer::CreateModelData(CModel* model)
 
 
 // Fill in and upload dynamic vertex array
-void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, u32 updateflags)
+void HWLightingModelRenderer::UpdateModelData(CModel* model, void* data, int updateflags)
 {
 	HWLModel* hwlmodel = (HWLModel*)data;
 
@@ -170,7 +170,7 @@ void HWLightingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* data
 
 
 // Setup one rendering pass
-void HWLightingModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
+void HWLightingModelRenderer::BeginPass(int streamflags, const CMatrix3D* texturematrix)
 {
 	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1)));
 
@@ -244,7 +244,7 @@ void HWLightingModelRenderer::BeginPass(uint streamflags, const CMatrix3D* textu
 
 
 // Cleanup one rendering pass
-void HWLightingModelRenderer::EndPass(uint streamflags)
+void HWLightingModelRenderer::EndPass(int streamflags)
 {
 	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR)
@@ -272,7 +272,7 @@ void HWLightingModelRenderer::EndPass(uint streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void HWLightingModelRenderer::PrepareModelDef(uint UNUSED(streamflags), CModelDefPtr def)
+void HWLightingModelRenderer::PrepareModelDef(int UNUSED(streamflags), CModelDefPtr def)
 {
 	m->hwlmodeldef = (HWLModelDef*)def->GetRenderData(m);
 
@@ -281,7 +281,7 @@ void HWLightingModelRenderer::PrepareModelDef(uint UNUSED(streamflags), CModelDe
 
 
 // Render one model
-void HWLightingModelRenderer::RenderModel(uint streamflags, CModel* model, void* data)
+void HWLightingModelRenderer::RenderModel(int streamflags, CModel* model, void* data)
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 	HWLModel* hwlmodel = (HWLModel*)data;

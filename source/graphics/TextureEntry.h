@@ -79,7 +79,7 @@ public:
 	}
 	
 	// ScEd wants to sort textures by their group's index. 
-	int GetType() const
+	size_t GetType() const
 	{ return m_Groups[0]->GetIndex(); }
 	const GroupVector &GetGroups() const
 	{ return m_Groups; }

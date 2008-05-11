@@ -98,7 +98,7 @@ CModelDef::~CModelDef()
 // return null if no match (case insensitive search)
 SPropPoint* CModelDef::FindPropPoint(const char* name) const
 {
-	for (u32 i = 0; i < m_NumPropPoints; ++i)
+	for (size_t i = 0; i < m_NumPropPoints; ++i)
 		if (m_PropPoints[i].m_Name == name)
 			return &m_PropPoints[i];
 
@@ -122,15 +122,15 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const char* name)
 	mdef->m_Name = name;
 
 	// now unpack everything 
-	unpacker.UnpackRaw(&mdef->m_NumVertices,sizeof(mdef->m_NumVertices));	
+	mdef->m_NumVertices = unpacker.UnpackSize();
 	mdef->m_pVertices=new SModelVertex[mdef->m_NumVertices];
 	unpacker.UnpackRaw(mdef->m_pVertices,sizeof(SModelVertex)*mdef->m_NumVertices);
 	
-	unpacker.UnpackRaw(&mdef->m_NumFaces,sizeof(mdef->m_NumFaces));
+	mdef->m_NumFaces = unpacker.UnpackSize();
 	mdef->m_pFaces=new SModelFace[mdef->m_NumFaces];
 	unpacker.UnpackRaw(mdef->m_pFaces,sizeof(SModelFace)*mdef->m_NumFaces);
 	
-	unpacker.UnpackRaw(&mdef->m_NumBones,sizeof(mdef->m_NumBones));
+	mdef->m_NumBones = unpacker.UnpackSize();
 	if (mdef->m_NumBones)
 	{
 		mdef->m_Bones=new CBoneState[mdef->m_NumBones];
@@ -140,10 +140,10 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const char* name)
 	if (unpacker.GetVersion() >= 2)
 	{
 		// versions >=2 also have prop point data
-		unpacker.UnpackRaw(&mdef->m_NumPropPoints,sizeof(mdef->m_NumPropPoints));
+		mdef->m_NumPropPoints = unpacker.UnpackSize();
 		if (mdef->m_NumPropPoints) {
 			mdef->m_PropPoints=new SPropPoint[mdef->m_NumPropPoints];
-			for (u32 i=0;i<mdef->m_NumPropPoints;i++) {
+			for (size_t i=0;i<mdef->m_NumPropPoints;i++) {
 				unpacker.UnpackString(mdef->m_PropPoints[i].m_Name);
 				unpacker.UnpackRaw(&mdef->m_PropPoints[i].m_Position.X,sizeof(mdef->m_PropPoints[i].m_Position));
 				unpacker.UnpackRaw(&mdef->m_PropPoints[i].m_Rotation.m_V.X,sizeof(mdef->m_PropPoints[i].m_Rotation));
@@ -172,14 +172,14 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const char* name)
 
 			std::vector<CMatrix3D> bindPose (mdef->m_NumBones);
 
-			for (u32 i = 0; i < mdef->m_NumBones; ++i)
+			for (size_t i = 0; i < mdef->m_NumBones; ++i)
 			{
 				bindPose[i].SetIdentity();
 				bindPose[i].Rotate(mdef->m_Bones[i].m_Rotation);
 				bindPose[i].Translate(mdef->m_Bones[i].m_Translation);
 			}
 
-			for (u32 i = 0; i < mdef->m_NumVertices; ++i)
+			for (size_t i = 0; i < mdef->m_NumVertices; ++i)
 			{
 				mdef->m_pVertices[i].m_Coords = SkinPoint(mdef->m_pVertices[i], &bindPose[0], &identityBones[0]);
 				mdef->m_pVertices[i].m_Norm = SkinNormal(mdef->m_pVertices[i], &bindPose[0], &identityBones[0]);
@@ -196,21 +196,22 @@ void CModelDef::Save(const VfsPath& filename,const CModelDef* mdef)
 	CFilePacker packer(FILE_VERSION, "PSMD");
 
 	// pack everything up
-	u32 numVertices=(u32)mdef->GetNumVertices();
-	packer.PackRaw(&numVertices,sizeof(numVertices));
+	const size_t numVertices = mdef->GetNumVertices();
+	packer.PackSize(numVertices);
 	packer.PackRaw(mdef->GetVertices(),sizeof(SModelVertex)*numVertices);
 	
-	u32 numFaces=(u32)mdef->GetNumFaces();
-	packer.PackRaw(&numFaces,sizeof(numFaces));
+	const size_t numFaces = mdef->GetNumFaces();
+	packer.PackSize(numFaces);
 	packer.PackRaw(mdef->GetFaces(),sizeof(SModelFace)*numFaces);
 	
-	packer.PackRaw(&mdef->m_NumBones,sizeof(mdef->m_NumBones));
-	if (mdef->m_NumBones) {
-		packer.PackRaw(mdef->m_Bones,sizeof(CBoneState)*mdef->m_NumBones);
-	}
+	const size_t numBones = mdef->m_NumBones;
+	packer.PackSize(numBones);
+	if (numBones)
+		packer.PackRaw(mdef->m_Bones,sizeof(CBoneState)*numBones);
 
-	packer.PackRaw(&mdef->m_NumPropPoints,sizeof(mdef->m_NumPropPoints));
-	for (u32 i=0;i<mdef->m_NumPropPoints;i++) {
+	const size_t numPropPoints = mdef->m_NumPropPoints;
+	packer.PackSize(numPropPoints);
+	for (size_t i=0;i<mdef->m_NumPropPoints;i++) {
 		packer.PackString(mdef->m_PropPoints[i].m_Name);
 		packer.PackRaw(&mdef->m_PropPoints[i].m_Position.X,sizeof(mdef->m_PropPoints[i].m_Position));
 		packer.PackRaw(&mdef->m_PropPoints[i].m_Rotation.m_V.X,sizeof(mdef->m_PropPoints[i].m_Rotation));

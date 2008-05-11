@@ -86,16 +86,16 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 // rationale: static data instead of std::set to allow setting at any time.
 // we store FNV hash of tag strings for fast comparison; collisions are
 // extremely unlikely and can only result in displaying more/less text.
-static const uint MAX_TAGS = 20;
+static const size_t MAX_TAGS = 20;
 static u32 tags[MAX_TAGS];
-static uint num_tags;
+static size_t num_tags;
 
 void debug_filter_add(const char* tag)
 {
 	const u32 hash = fnv_hash(tag);
 
 	// make sure it isn't already in the list
-	for(uint i = 0; i < MAX_TAGS; i++)
+	for(size_t i = 0; i < MAX_TAGS; i++)
 		if(tags[i] == hash)
 			return;
 
@@ -113,7 +113,7 @@ void debug_filter_remove(const char* tag)
 {
 	const u32 hash = fnv_hash(tag);
 
-	for(uint i = 0; i < MAX_TAGS; i++)
+	for(size_t i = 0; i < MAX_TAGS; i++)
 		// found it
 		if(tags[i] == hash)
 		{
@@ -133,7 +133,7 @@ void debug_filter_clear()
 
 bool debug_filter_allows(const char* text)
 {
-	uint i;
+	size_t i;
 	for(i = 0; ; i++)
 	{
 		// no | found => no tag => should always be displayed
@@ -252,7 +252,7 @@ void debug_error_message_free(ErrorMessageMem* emm)
 const wchar_t* debug_error_message_build(
 	const wchar_t* description,
 	const char* fn_only, int line, const char* func,
-	uint skip, void* context,
+	size_t skip, void* context,
 	ErrorMessageMem* emm)
 {
 	// rationale: see ErrorMessageMem
@@ -324,7 +324,7 @@ fail:
 	return buf;
 }
 
-static ErrorReaction call_display_error(const wchar_t* text, uint flags)
+static ErrorReaction call_display_error(const wchar_t* text, int flags)
 {
 	// first try app hook implementation
 	ErrorReaction er = ah_display_error(text, flags);
@@ -335,7 +335,7 @@ static ErrorReaction call_display_error(const wchar_t* text, uint flags)
 	return er;
 }
 
-static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, uint flags, u8* suppress)
+static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, int flags, u8* suppress)
 {
 	const bool manual_break = (flags & DE_MANUAL_BREAK) != 0;
 
@@ -372,7 +372,7 @@ static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, uint flags, u8* s
 }
 
 ErrorReaction debug_display_error(const wchar_t* description,
-	uint flags, uint skip, void* context,
+	int flags, size_t skip, void* context,
 	const char* file, int line, const char* func,
 	u8* suppress)
 {
@@ -471,7 +471,7 @@ ErrorReaction debug_assert_failed(const char* expr, u8* suppress,
 {
 	if(should_skip_this_assert())
 		return ER_CONTINUE;
-	uint skip = 1; void* context = 0;
+	size_t skip = 1; void* context = 0;
 	wchar_t buf[400];
 	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%hs\"", expr);
 	return debug_display_error(buf, DE_MANUAL_BREAK, skip,context, file,line,func, suppress);
@@ -484,7 +484,7 @@ ErrorReaction debug_warn_err(LibError err, u8* suppress,
 	if(should_skip_this_error(err))
 		return ER_CONTINUE;
 
-	uint skip = 1; void* context = 0;
+	size_t skip = 1; void* context = 0;
 	wchar_t buf[400];
 	char err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
 	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %d (%hs)", err, err_buf);

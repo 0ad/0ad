@@ -7,7 +7,7 @@
 
 #include <algorithm>
 
-CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, size_t tickRate, const CVector4D& color, JSObject* handler )
+CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, int tickRate, const CVector4D& color, JSObject* handler )
 		: m_cx(cx), m_source(source), m_name(name), m_radius(radius), m_handler(handler),
 		m_tickRate(tickRate), m_tickCyclePos(0), m_color(color)
 {
@@ -19,7 +19,7 @@ CAura::~CAura()
 	JS_RemoveRoot( m_cx, &m_handler );
 }
 
-void CAura::Update( size_t timestep )
+void CAura::Update( int timestep )
 {
 	std::vector<CEntity*> inRange;
 	CVector3D pos = m_source->m_position;

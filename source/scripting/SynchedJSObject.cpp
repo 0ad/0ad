@@ -5,13 +5,13 @@
 #include "ScriptCustomTypes.h"
 
 template <>
-CStrW ToNetString(const uint &val)
+CStrW ToNetString(const unsigned &val)
 {
 	return CStrW(val);
 }
 
 template <>
-void SetFromNetString(uint &val, const CStrW& string)
+void SetFromNetString(unsigned &val, const CStrW& string)
 {
 	val=string.ToUInt();
 }
@@ -71,7 +71,7 @@ void SetFromNetString(SColour &data, const CStrW& wstring)
 	
 	float values[4];
 	if (line.GetArgCount() != 4) return;
-	for (uint i=0; i<4; ++i)
+	for (size_t i=0; i<4; ++i)
 	{
 		if (!line.GetArgFloat(i, values[i]))
 		{

@@ -8,10 +8,11 @@
 #include "network/ServerSession.h"
 #include "CLogger.h"
 #include "ps/XML/Xeromyces.h"
+#include "simulation/LOSManager.h"
 
 using namespace std;
 
-CPlayerSlot::CPlayerSlot(int slotID, CPlayer *pPlayer):
+CPlayerSlot::CPlayerSlot(size_t slotID, CPlayer *pPlayer):
 	m_SlotID(slotID),
 	m_Assignment(SLOT_OPEN),
 	m_pSession(NULL),
@@ -144,7 +145,7 @@ namespace PlayerSlotArray_JS
 		CGameAttributes *pInstance=(CGameAttributes *)JS_GetPrivate(cx, obj);
 		if (!JSVAL_IS_INT(id))
 			return JS_FALSE;
-		uint index=ToPrimitive<uint>(id);
+		size_t index=ToPrimitive<size_t>(id);
 		
 		if (index >= pInstance->m_NumSlots)
 			return JS_FALSE;
@@ -166,7 +167,7 @@ namespace PlayerSlotArray_JS
 		JS_ConvertStub, JS_FinalizeStub
 	};
 
-	JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* UNUSED(argv), jsval* rval )
+	JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* UNUSED(argv), jsval* rval )
 	{
 		if (argc != 0)
 			return JS_FALSE;
@@ -181,7 +182,7 @@ CGameAttributes::CGameAttributes():
 	m_MapFile("test01.pmp"),
 	m_ResourceLevel("default"),
 	m_StartingPhase("default"),
-	m_LOSSetting(0),
+	m_LOSSetting(LOS_SETTING_NORMAL),
 	m_FogOfWar(true),
 	m_GameMode("default"),
 	m_ScreenshotMode(false),
@@ -198,7 +199,8 @@ CGameAttributes::CGameAttributes():
 	AddSynchedProperty(L"resourceLevel", &m_ResourceLevel);
 	AddSynchedProperty(L"startingPhase", &m_StartingPhase);
 	AddSynchedProperty(L"numSlots", &m_NumSlots, &CGameAttributes::OnNumSlotsUpdate);
-	AddSynchedProperty(L"losSetting", &m_LOSSetting);
+	cassert(sizeof(int) == sizeof(ELOSSetting));
+	AddSynchedProperty(L"losSetting", (int*)&m_LOSSetting);
 	AddSynchedProperty(L"fogOfWar", &m_FogOfWar);
 	AddSynchedProperty(L"gameMode", &m_GameMode);
 	AddSynchedProperty(L"screenshotMode", &m_ScreenshotMode);
@@ -300,7 +302,7 @@ void CGameAttributes::OnNumSlotsUpdate(CSynchedJSObjectBase *owner)
 	
 	// Clamp to a preset upper bound.
 	CConfigValue *val=g_ConfigDB.GetValue(CFG_MOD, "max_players");
-	uint maxPlayers=PS_MAX_PLAYERS;
+	size_t maxPlayers=PS_MAX_PLAYERS;
 	if (val)
 		val->GetUnsignedInt(maxPlayers);
 	if (pInstance->m_NumSlots > maxPlayers)
@@ -314,12 +316,12 @@ void CGameAttributes::OnNumSlotsUpdate(CSynchedJSObjectBase *owner)
 	{
 		for (size_t i=pInstance->m_PlayerSlots.size();i<=pInstance->m_NumSlots;i++)
 		{
-			CPlayer *pNewPlayer=new CPlayer((uint)i+1);
+			CPlayer *pNewPlayer=new CPlayer(i+1);
 			pNewPlayer->SetUpdateCallback(pInstance->m_PlayerUpdateCB,
 										  pInstance->m_PlayerUpdateCBData);
 			pInstance->m_Players.push_back(pNewPlayer);
 
-			CPlayerSlot *pNewSlot=new CPlayerSlot((uint)i, pNewPlayer);
+			CPlayerSlot *pNewSlot=new CPlayerSlot(i, pNewPlayer);
 			pNewSlot->SetCallback(pInstance->m_PlayerSlotAssignmentCB,
 								  pInstance->m_PlayerSlotAssignmentCBData);
 			pInstance->m_PlayerSlots.push_back(pNewSlot);
@@ -327,12 +329,10 @@ void CGameAttributes::OnNumSlotsUpdate(CSynchedJSObjectBase *owner)
 	}
 }
 
-CPlayer *CGameAttributes::GetPlayer(int id)
+CPlayer *CGameAttributes::GetPlayer(size_t id)
 {
-	if (id >= 0 && id < (int)m_Players.size())
-	{
+	if (id < m_Players.size())
 		return m_Players[id];
-	}
 	else
 	{
 		LOG(CLogger::Error, "", "CGameAttributes::GetPlayer(): Attempt to get player %d (while there only are %d players)", id, m_Players.size());
@@ -340,9 +340,9 @@ CPlayer *CGameAttributes::GetPlayer(int id)
 	}
 }
 
-CPlayerSlot *CGameAttributes::GetSlot(int index)
+CPlayerSlot *CGameAttributes::GetSlot(size_t index)
 {
-	if (index >= 0 && index < (int)m_PlayerSlots.size())
+	if (index < m_PlayerSlots.size())
 		return m_PlayerSlots[index];
 	else
 	{
@@ -361,7 +361,7 @@ void CGameAttributes::FinalizeSlots()
 	m_Players.push_back(oldPlayers[0]); // Gaia
 	
 	// Copy over the slots we want
-	uint assignedSlots=0;
+	size_t assignedSlots=0;
 	for (size_t i=0;i<oldSlots.size();i++)
 	{
 		CPlayerSlot *slot=oldSlots[i];

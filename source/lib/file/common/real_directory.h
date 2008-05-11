@@ -7,25 +7,25 @@
 class RealDirectory : public IFileLoader
 {
 public:
-	RealDirectory(const Path& path, unsigned priority, unsigned flags);
+	RealDirectory(const Path& path, size_t priority, int flags);
 
 	const Path& GetPath() const
 	{
 		return m_path;
 	}
 
-	unsigned Priority() const
+	size_t Priority() const
 	{
 		return m_priority;
 	}
 
-	unsigned Flags() const
+	int Flags() const
 	{
 		return m_flags;
 	}
 
 	// IFileLoader
-	virtual unsigned Precedence() const;
+	virtual size_t Precedence() const;
 	virtual char LocationCode() const;
 	virtual LibError Load(const std::string& name, shared_ptr<u8> buf, size_t size) const;
 
@@ -42,9 +42,9 @@ private:
 	// is not all too wasteful.
 	const Path m_path;
 
-	const unsigned m_priority;
+	const size_t m_priority;
 
-	const unsigned m_flags;
+	const int m_flags;
 
 	// note: watches are needed in each directory because some APIs
 	// (e.g. FAM) cannot watch entire trees with one call.

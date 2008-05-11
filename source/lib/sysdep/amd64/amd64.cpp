@@ -30,12 +30,12 @@ void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 // note: ACPI processor detection not yet implemented here, so we treat
 // dual-core systems as multiprocessors.
 
-uint cpu_NumPackages()
+size_t cpu_NumPackages()
 {
 	return cpu_NumProcessors();
 }
 
-uint cpu_CoresPerPackage()
+size_t cpu_CoresPerPackage()
 {
 	return 1;
 }

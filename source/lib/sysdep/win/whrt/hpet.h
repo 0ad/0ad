@@ -38,7 +38,7 @@ public:
 	 * WHRT uses this to ensure the counter (running at nominal frequency)
 	 * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
 	 **/
-	virtual uint CounterBits() const;
+	virtual size_t CounterBits() const;
 
 	/**
 	 * initial measurement of the tick rate. not necessarily correct

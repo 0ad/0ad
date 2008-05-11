@@ -116,18 +116,18 @@ public:
 	ActionTable m_actions;
 
 	bool m_selected;
-	i32 m_grouped;
-	int m_formation;	// Index of which formation we're in
-	int m_formationSlot;	// The slot of the above formation
+	ssize_t m_grouped;	// group index or -1 if not grouped
+	ssize_t m_formation;	// Index of which formation we're in or -1
+	ssize_t m_formationSlot;	// The slot of the above formation
 
-	uint ent_flags;
-	bool entf_get(uint desired_flag) const { return (ent_flags & desired_flag) != 0; }
-	void entf_set(uint desired_flag) { ent_flags |= desired_flag; }
-	void entf_clear(uint desired_flag) { ent_flags &= ~desired_flag; }
-	void entf_set_to(uint desired_flag, bool value)
+	int ent_flags;
+	bool entf_get(int desired_flag) const { return (ent_flags & desired_flag) != 0; }
+	void entf_set(int desired_flag) { ent_flags |= desired_flag; }
+	void entf_clear(int desired_flag) { ent_flags &= ~desired_flag; }
+	void entf_set_to(int desired_flag, bool value)
 	{
 		ent_flags &= ~desired_flag;
-		const uint mask = value? ~0u : 0;
+		const int mask = value? ~0u : 0;
 		ent_flags |= desired_flag & mask;
 	}
 
@@ -159,8 +159,8 @@ public:
 	// Stance name
 	CStr m_stanceName;
 
-	// LOS
-	int m_los;
+	// LOS distance/range
+	ssize_t m_los;
 
 	// If the object is a territory centre, this points to its territory
 	CTerritory* m_associatedTerritory;
@@ -211,8 +211,8 @@ public:
 	int m_lastState;	// used in animation FSM
 
 	// Position in the current state's cycle
-	static const size_t NOT_IN_CYCLE = (size_t)-1;
-	size_t m_fsm_cyclepos; // -cycle_length....cycle_length
+	static const int NOT_IN_CYCLE = -1;
+	int m_fsm_cyclepos; // -cycle_length....cycle_length
 
 	CEntityOrders m_orderQueue;
 	std::deque<CEntityListener> m_listeners;
@@ -233,27 +233,28 @@ public:
 private:
 	CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building = 0 );
 
-	uint ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide, float& timeLeft );
+	// (returns EGotoSituation, but we don't want to expose that)
+	int ProcessGotoHelper( CEntityOrder* current, int timestep_millis, HEntity& collide, float& timeLeft );
 
-	bool ProcessContactAction( CEntityOrder* current, size_t timestep_millis, CEntityOrder::EOrderType transition, SEntityAction* action );
-	bool ProcessContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
+	bool ProcessContactAction( CEntityOrder* current, int timestep_millis, CEntityOrder::EOrderType transition, SEntityAction* action );
+	bool ProcessContactActionNoPathing( CEntityOrder* current, int timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
 
-	bool ProcessGeneric( CEntityOrder* current, size_t timestep_millis );
-	bool ProcessGenericNoPathing( CEntityOrder* current, size_t timestep_millis );
+	bool ProcessGeneric( CEntityOrder* current, int timestep_millis );
+	bool ProcessGenericNoPathing( CEntityOrder* current, int timestep_millis );
 
 	bool ProcessProduce( CEntityOrder* order );
 
-	bool ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_millis );
-	bool ProcessGoto( CEntityOrder* current, size_t timestep_millis );
-	bool ProcessGotoWaypoint( CEntityOrder* current, size_t timestep_millis, bool contact );
+	bool ProcessGotoNoPathing( CEntityOrder* current, int timestep_millis );
+	bool ProcessGoto( CEntityOrder* current, int timestep_millis );
+	bool ProcessGotoWaypoint( CEntityOrder* current, int timestep_millis, bool contact );
 
-	bool ProcessPatrol( CEntityOrder* current, size_t timestep_millis );
+	bool ProcessPatrol( CEntityOrder* current, int timestep_millis );
 
 	float ChooseMovementSpeed( float distance );
 	
 	bool ShouldRun( float distance );		// Given our distance to a target, can we be running?
 
-	void UpdateOrders( size_t timestep_millis );
+	void UpdateOrders( int timestep_millis );
 
 public:
 	~CEntity();
@@ -262,7 +263,7 @@ public:
 	HEntity me;
 
 	// Updates gameplay information for the specified timestep
-	void Update( size_t timestep_millis );
+	void Update( int timestep_millis );
 	// Updates graphical information for a point between the last and current
 	// simulation frame; should be 0 <= relativeoffset <= 1 (else it'll be
 	// clamped)
@@ -273,7 +274,7 @@ public:
 	void InvalidateActor();
 
 	// Updates auras
-	void UpdateAuras( size_t timestep_millis );
+	void UpdateAuras( int timestep_millis );
 
 	// Exit auras we're currently in (useful for example when we change state)
 	void ExitAuras();
@@ -402,7 +403,7 @@ public:
 	jsval_t FindSector( JSContext* cx, uintN argc, jsval* argv );
 
 	// Script constructor
-	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
+	static JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 
 	// Script-bound functions
 

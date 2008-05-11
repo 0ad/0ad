@@ -191,7 +191,7 @@ public:
 	 * @param pEvents			List of events to log
 	 * @param eventCount		The number of events in pEvents list
 	 */
-	void DoBulkSink( const CNetLogEvent* pEvents, uint eventCount );
+	void DoBulkSink( const CNetLogEvent* pEvents, size_t eventCount );
 
 	/**
 	 * Check if the sink can log the specified event
@@ -480,7 +480,7 @@ public:
 	 *
 	 * @return					The number of sink objects
 	 */
-	uint GetSinkCount( void );
+	size_t GetSinkCount( void );
 
 	/**
 	 * Retrieves the sink by its index
@@ -489,7 +489,7 @@ public:
 	 * @return					NULL if index is out of boundaries or
 	 *							the sink at the specified index
 	 */
-	CNetLogSink* GetSink( uint index );
+	CNetLogSink* GetSink( size_t index );
 
 	/**
 	 * Retrieves a sink by its name

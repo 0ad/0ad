@@ -93,13 +93,13 @@ int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param
 
 // minimum amount of TLS slots every Windows version provides;
 // used to validate indices.
-static const uint TLS_LIMIT = 64;
+static const size_t TLS_LIMIT = 64;
 
 // rationale: don't use an array of dtors for every possible TLS slot.
 // other DLLs may allocate any number of them in their DllMain, so the
 // array would have to be quite large. instead, store both key and dtor -
 // we are thus limited only by pthread_key_create calls (which we control).
-static const uint MAX_DTORS = 4;
+static const size_t MAX_DTORS = 4;
 static struct
 {
 	pthread_key_t key;
@@ -118,7 +118,7 @@ int pthread_key_create(pthread_key_t* key, void (*dtor)(void*))
 	*key = (pthread_key_t)idx;
 
 	// acquire a free dtor slot
-	uint i;
+	size_t i;
 	for(i = 0; i < MAX_DTORS; i++)
 	{
 		if(cpu_CAS((volatile uintptr_t*)&dtors[i].dtor, 0, (uintptr_t)dtor))
@@ -189,7 +189,7 @@ again:
 	bool had_valid_tls = false;
 
 	// for each registered dtor: (call order unspecified by SUSv3)
-	for(uint i = 0; i < MAX_DTORS; i++)
+	for(size_t i = 0; i < MAX_DTORS; i++)
 	{
 		// is slot #i in use?
 		void (*dtor)(void*) = dtors[i].dtor;

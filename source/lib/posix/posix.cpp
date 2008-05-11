@@ -46,7 +46,7 @@ float fmaxf(float a, float b)
 }
 
 
-uint fpclassifyd(double d)
+size_t fpclassifyd(double d)
 {
 #if ARCH_IA32
 	return ia32_asm_fpclassifyd(d);
@@ -60,7 +60,7 @@ uint fpclassifyd(double d)
 #endif
 }
 
-uint fpclassifyf(float f)
+size_t fpclassifyf(float f)
 {
 #if ARCH_IA32
 	return ia32_asm_fpclassifyf(f);

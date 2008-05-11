@@ -2,16 +2,16 @@
 #include "Scheduler.h"
 #include "Entity.h"
 
-size_t simulationTime;
-size_t frameCount;
+int simulationTime;
+int frameCount;
 
 /*
-void CScheduler::PushTime( size_t delay, const HEntity& destination, const CMessage* message )
+void CScheduler::PushTime( int delay, const HEntity& destination, const CMessage* message )
 {
 	timeMessage.push( SDispatchObjectMessage( destination, simulationTime + delay, message ) );
 }
 
-void CScheduler::PushFrame( size_t delay, const HEntity& destination, const CMessage* message )
+void CScheduler::PushFrame( int delay, const HEntity& destination, const CMessage* message )
 {
 	frameMessage.push( SDispatchObjectMessage( destination, frameCount + delay, message ) );
 }
@@ -22,19 +22,19 @@ CScheduler::CScheduler()
 	m_nextTaskId = 1;
 }
 
-int CScheduler::PushTime( size_t delay, const CStrW& fragment, JSObject* operateOn )
+int CScheduler::PushTime( int delay, const CStrW& fragment, JSObject* operateOn )
 {
 	timeScript.push( SDispatchObjectScript( m_nextTaskId, fragment, simulationTime + delay, operateOn ) );
 	return m_nextTaskId++;
 }
 
-int CScheduler::PushFrame( size_t delay, const CStrW& fragment, JSObject* operateOn )
+int CScheduler::PushFrame( int delay, const CStrW& fragment, JSObject* operateOn )
 {
 	frameScript.push( SDispatchObjectScript( m_nextTaskId, fragment, frameCount + delay, operateOn ) );
 	return m_nextTaskId++;
 }
 
-int CScheduler::PushInterval( size_t first, size_t interval, const CStrW& fragment, JSObject* operateOn, int id )
+int CScheduler::PushInterval( int first, int interval, const CStrW& fragment, JSObject* operateOn, int id )
 {
 	if( !id )
 		id = m_nextTaskId++;
@@ -42,19 +42,19 @@ int CScheduler::PushInterval( size_t first, size_t interval, const CStrW& fragme
 	return id++;
 }
 
-int CScheduler::PushTime( size_t delay, JSFunction* script, JSObject* operateOn )
+int CScheduler::PushTime( int delay, JSFunction* script, JSObject* operateOn )
 {
 	timeFunction.push( SDispatchObjectFunction( m_nextTaskId, script, simulationTime + delay, operateOn ) );
 	return m_nextTaskId++;
 }
 
-int CScheduler::PushFrame( size_t delay, JSFunction* script, JSObject* operateOn )
+int CScheduler::PushFrame( int delay, JSFunction* script, JSObject* operateOn )
 {
 	frameFunction.push( SDispatchObjectFunction( m_nextTaskId, script, frameCount + delay, operateOn ) );
 	return m_nextTaskId++;
 }
 
-int CScheduler::PushInterval( size_t first, size_t interval, JSFunction* function, JSObject* operateOn, int id )
+int CScheduler::PushInterval( int first, int interval, JSFunction* function, JSObject* operateOn, int id )
 {
 	if( !id )
 		id = m_nextTaskId++;
@@ -72,7 +72,7 @@ void CScheduler::CancelTask( int id )
 	tasksToCancel.insert( id );
 }
 
-void CScheduler::Update(size_t simElapsed)
+void CScheduler::Update(int simElapsed)
 {
 	simulationTime += simElapsed;
     frameCount++;
@@ -174,7 +174,7 @@ void CJSProgressTimer::ScriptingInit()
 	CJSObject<CJSProgressTimer>::ScriptingInit( "ProgressTimer", Construct, 2 );
 }
 
-JSBool CJSProgressTimer::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool CJSProgressTimer::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 2 );
 	double max = ToPrimitive<double>( argv[0] );

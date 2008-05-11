@@ -19,8 +19,8 @@ class CStreamSocket: public CSocketBase
 	{
 		bool m_Valid;
 		void *m_pBuffer;
-		uint m_Length;
-		uint m_Completed;
+		size_t m_Length;
+		size_t m_Completed;
 
 		inline SOperationContext():
 			m_Valid(false)
@@ -94,7 +94,7 @@ public:
 	 *	CONFLICTING_OP_IN_PROGRESS Another Read operation is alread in progress
 	 *	CONNECTION_BROKEN	The socket is not connected or a server socket
 	 */	
-	PS_RESULT Read(void *buf, uint len);
+	PS_RESULT Read(void *buf, size_t len);
 	
 	/**
 	 * Start a Write operation. The function call will return immediately and
@@ -110,7 +110,7 @@ public:
 	 *	CONFLICTING_OP_IN_PROGRESS	Another Write operation is in progress
 	 *	CONNECTION_BROKEN	The socket is not connected or a server socket
 	 */	
-	PS_RESULT Write(void *buf, uint len);
+	PS_RESULT Write(void *buf, size_t len);
 	
 	// The default implementation of these methods are no-ops
 	virtual void ConnectComplete(PS_RESULT errorCode);

@@ -54,24 +54,24 @@ LIB_API double cpu_ClockFrequency();
  * note: this function is necessary because POSIX sysconf _SC_NPROCESSORS_CONF
  * is not suppored on MacOSX, else we would use that.
  **/
-LIB_API uint cpu_NumProcessors();
+LIB_API size_t cpu_NumProcessors();
 
 /**
  * @return number of *enabled* CPU packages / sockets.
  **/
-LIB_API uint cpu_NumPackages();
+LIB_API size_t cpu_NumPackages();
 
 /**
  * @return number of *enabled* CPU cores per package.
  * (2 on dual-core systems)
  **/
-LIB_API uint cpu_CoresPerPackage();
+LIB_API size_t cpu_CoresPerPackage();
 
 /**
  * @return number of *enabled* hyperthreading units per core.
  * (2 on P4 EE)
  **/
-LIB_API uint cpu_LogicalPerCore();
+LIB_API size_t cpu_LogicalPerCore();
 
 /**
  * @return the size [bytes] of a MMU page.

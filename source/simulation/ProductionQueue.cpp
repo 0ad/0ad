@@ -16,7 +16,7 @@ CProductionItem::~CProductionItem()
 {
 }
 
-void CProductionItem::Update( size_t timestep )
+void CProductionItem::Update( int timestep )
 {
 	m_elapsedTime = std::min( m_totalTime, m_elapsedTime + timestep/1000.0f );
 }
@@ -78,7 +78,7 @@ void CProductionQueue::CancelAll()
 	m_items.clear();
 }
 
-void CProductionQueue::Update( size_t timestep )
+void CProductionQueue::Update( int timestep )
 {	
 	if( !m_items.empty() )
 	{

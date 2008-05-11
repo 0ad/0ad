@@ -233,7 +233,7 @@ public:
 	ERenderMode GetModelRenderMode() const { return m_ModelRenderMode; }
 
 	// try and load the given texture
-	bool LoadTexture(CTexture* texture,u32 wrapflags);
+	bool LoadTexture(CTexture* texture,int wrapflags);
 	// set the given unit to reference the given texture; pass a null texture to disable texturing on any unit;
 	// active texture unit always set to given unit on exit
 	void SetTexture(int unit,CTexture* texture);

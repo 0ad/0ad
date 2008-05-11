@@ -262,7 +262,7 @@ std::string TimerUnit::ToString() const
 //
 // do not use std::list et al. for this! we must be callable at any time,
 // especially before NLSO ctors run or before heap init.
-static uint num_clients;
+static size_t num_clients;
 static TimerClient* clients;
 
 

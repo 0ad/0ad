@@ -46,13 +46,13 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 static POINTS dlg_client_origin;
 static POINTS dlg_prev_client_size;
 
-static const uint ANCHOR_LEFT   = 0x01;
-static const uint ANCHOR_RIGHT  = 0x02;
-static const uint ANCHOR_TOP    = 0x04;
-static const uint ANCHOR_BOTTOM = 0x08;
-static const uint ANCHOR_ALL    = 0x0f;
+static const size_t ANCHOR_LEFT   = 0x01;
+static const size_t ANCHOR_RIGHT  = 0x02;
+static const size_t ANCHOR_TOP    = 0x04;
+static const size_t ANCHOR_BOTTOM = 0x08;
+static const size_t ANCHOR_ALL    = 0x0f;
 
-static void dlg_resize_control(HWND hDlg, int dlg_item, int dx,int dy, uint anchors)
+static void dlg_resize_control(HWND hDlg, int dlg_item, int dx,int dy, size_t anchors)
 {
 	HWND hControl = GetDlgItem(hDlg, dlg_item);
 	RECT r;
@@ -120,7 +120,7 @@ static void dlg_resize(HWND hDlg, WPARAM wParam, LPARAM lParam)
 struct DialogParams
 {
 	const wchar_t* text;
-	uint flags;
+	int flags;
 };
 
 
@@ -227,7 +227,7 @@ static INT_PTR CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wP
 
 // show error dialog with the given text and return user's reaction.
 // exits directly if 'exit' is clicked.
-ErrorReaction sys_display_error(const wchar_t* text, uint flags)
+ErrorReaction sys_display_error(const wchar_t* text, int flags)
 {
 	// note: other threads might still be running, crash and take down the
 	// process before we have a chance to display this error message.

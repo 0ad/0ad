@@ -278,9 +278,9 @@ void XeroHandler::endDocument()
 std::string lowercase_ascii(const XMLCh *a)
 {
 	std::string b;
-	uint len=XMLString::stringLen(a);
+	size_t len=XMLString::stringLen(a);
 	b.resize(len);
-	for (uint i = 0; i < len; ++i)
+	for (size_t i = 0; i < len; ++i)
 		b[i] = (char)towlower(a[i]);
 	return b;
 }
@@ -296,9 +296,9 @@ std::string lowercase_ascii(const XMLCh *a)
 std::string toAscii( const XMLCh* a )
 {
 	std::string b;
-	uint len=XMLString::stringLen(a);
+	size_t len=XMLString::stringLen(a);
 	b.reserve(len);
-	for (uint i = 0; i < len; ++i)
+	for (size_t i = 0; i < len; ++i)
 	{
 		if(a[i] < 0x80)
 			b += (char) a[i];

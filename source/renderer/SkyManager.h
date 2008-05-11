@@ -80,7 +80,7 @@ private:
 	static const char* IMAGE_NAMES[5];
 
 	/// State of progressive loading (in # of loaded textures)
-	uint cur_loading_tex;
+	size_t cur_loading_tex;
 };
 
 

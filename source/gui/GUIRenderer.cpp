@@ -406,11 +406,11 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr& SpriteName, CRect 
 
 			Call.m_TexHandle = h;
 
-			uint t_w = 0, t_h = 0;
+			size_t t_w = 0, t_h = 0;
 			(void)ogl_tex_get_size(h, &t_w, &t_h, 0);
 			float TexWidth = t_w, TexHeight = t_h;
 
-			uint flags = 0;	// assume no alpha on failure
+			int flags = 0;	// assume no alpha on failure
 			(void)ogl_tex_get_format(h, &flags, 0);
 			Call.m_EnableBlending = (flags & TEX_ALPHA) != 0;
 
@@ -434,7 +434,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr& SpriteName, CRect 
 			// Check whether this sprite has "cell_size" set
 			else if (cit->m_CellSize != CSize())
 			{
-				int cols = t_w / (int)cit->m_CellSize.cx;
+				int cols = (int)t_w / (int)cit->m_CellSize.cx;
 				int col = CellID % cols;
 				int row = CellID / cols;
 				BlockTex = CRect(cit->m_CellSize.cx*col, cit->m_CellSize.cy*row,

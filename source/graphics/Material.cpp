@@ -34,7 +34,7 @@ CMaterial::CMaterial()
 	m_Emissive(IdentityEmissive),
 	m_SpecularPower(0.0f),
 	m_Alpha(false),
-	m_PlayerID(PLAYER_NONE),
+	m_PlayerID(PLAYER_ID_NONE),
 	m_TextureColor(BrokenColor)
 {
 	ComputeHash();
@@ -115,13 +115,13 @@ SMaterialColor CMaterial::GetEmissive()
 
 SMaterialColor CMaterial::GetPlayerColor()
 {
-	debug_assert(m_PlayerID != PLAYER_NONE);
+	debug_assert(m_PlayerID != PLAYER_ID_NONE);
 		// because this should never be called unless IsPlayer returned true
 
-	if (m_PlayerID == PLAYER_OTHER /* TODO: or if player-colour is globally disabled */ )
+	if (m_PlayerID == PLAYER_ID_OTHER /* TODO: or if player-colour is globally disabled */ )
 		return m_TextureColor;
 
-	if (m_PlayerID >= 0)
+	if (m_PlayerID <= PLAYER_ID_LAST_VALID)
 	{
 		CPlayer* player = g_Game->GetPlayer(m_PlayerID);
 		if (player)
@@ -135,9 +135,9 @@ SMaterialColor CMaterial::GetPlayerColor()
 	return BrokenColor;
 }
 
-void CMaterial::SetPlayerColor(int id)
+void CMaterial::SetPlayerColor(size_t id)
 {
-	if (m_PlayerID == PLAYER_COMINGSOON || m_PlayerID >= 0)
+	if (m_PlayerID == PLAYER_ID_COMING_SOON || m_PlayerID <= PLAYER_ID_LAST_VALID)
 		m_PlayerID = id;
 }
 

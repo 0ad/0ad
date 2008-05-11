@@ -205,7 +205,7 @@ private:
 	/**
 	 * Used by the winsock AsyncSelect windowproc
 	 */
-	friend void WaitLoop_SocketUpdateProc(int fd, int error, uint eventmask);
+	friend void WaitLoop_SocketUpdateProc(int fd, int error, int eventmask);
 
 #else
 	// These are utility functions for the unix select loop. Dox can be found in
@@ -239,7 +239,7 @@ protected:
 	/**
 	 * Get the op mask for the socket.
 	 */
-	uint GetOpMask();
+	int GetOpMask();
 	
 	/**
 	 * Set the op mask for the socket, specifying which callbacks should be
@@ -254,7 +254,7 @@ protected:
 	 * called when appropriate, but does not make the opposite guarantee for 
 	 * unset bits; i.e. any callback may be called even with a zero op mask.
 	 */
-	void SetOpMask(uint ops);
+	void SetOpMask(int ops);
 
 public:
 	/**
@@ -437,7 +437,7 @@ public:
 	 * @retval PS_OK Some or all data was successfully read.
 	 * @retval CONNECTION_BROKEN The socket is not connected or a server socket
 	 */
-	PS_RESULT Read(void *buf, uint len, uint *bytesRead);
+	PS_RESULT Read(void *buf, size_t len, size_t *bytesRead);
 	
 	/**
 	 * Attempt to write data to the socket. All data that can be sent without
@@ -451,7 +451,7 @@ public:
 	 * @retval PS_OK Some or all data was successfully read.
 	 * @retval CONNECTION_BROKEN The socket is not connected or a server socket
 	 */	
-	PS_RESULT Write(void *buf, uint len, uint *bytesWritten);
+	PS_RESULT Write(void *buf, size_t len, size_t *bytesWritten);
 
 	//@}
 	/** @name Callbacks */

@@ -32,12 +32,12 @@ CSkeletonAnimDef::~CSkeletonAnimDef()
 void CSkeletonAnimDef::BuildBoneMatrices(float time, CMatrix3D* matrices, bool loop) const
 {
 	float fstartframe = time/m_FrameTime;
-	u32 startframe = u32(time/m_FrameTime);
+	size_t startframe = (size_t)(int)(time/m_FrameTime);
 	float deltatime = fstartframe-startframe;
 
 	startframe %= m_NumFrames; 
 
-	u32 endframe = startframe + 1;
+	size_t endframe = startframe + 1;
 	endframe %= m_NumFrames; 
 
 	if (!loop && endframe == 0)
@@ -46,7 +46,7 @@ void CSkeletonAnimDef::BuildBoneMatrices(float time, CMatrix3D* matrices, bool l
 		// between the final frame and the initial frame is wrong, because they're
 		// totally different. So if we've looped around to endframe==0, just display
 		// the animation's final frame with no interpolation.
-		for (u32 i = 0; i < m_NumKeys; i++)
+		for (size_t i = 0; i < m_NumKeys; i++)
 		{
 			const Key& key = GetKey(startframe, i);
 			matrices[i].SetIdentity();
@@ -56,7 +56,7 @@ void CSkeletonAnimDef::BuildBoneMatrices(float time, CMatrix3D* matrices, bool l
 	}
 	else
 	{
-		for (u32 i = 0; i < m_NumKeys; i++)
+		for (size_t i = 0; i < m_NumKeys; i++)
 		{
 			const Key& startkey = GetKey(startframe, i);
 			const Key& endkey = GetKey(endframe, i);
@@ -90,8 +90,8 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const VfsPath& filename)
 		CStr name; // unused - just here to maintain compatibility with the animation files
 		unpacker.UnpackString(name);
 		unpacker.UnpackRaw(&anim->m_FrameTime,sizeof(anim->m_FrameTime));
-		unpacker.UnpackRaw(&anim->m_NumKeys,sizeof(anim->m_NumKeys));
-		unpacker.UnpackRaw(&anim->m_NumFrames,sizeof(anim->m_NumFrames));
+		anim->m_NumKeys = unpacker.UnpackSize();
+		anim->m_NumFrames = unpacker.UnpackSize();
 		anim->m_Keys=new Key[anim->m_NumKeys*anim->m_NumFrames];
 		unpacker.UnpackRaw(anim->m_Keys,anim->m_NumKeys*anim->m_NumFrames*sizeof(Key));
 	} catch (PSERROR_File&) {
@@ -111,12 +111,12 @@ void CSkeletonAnimDef::Save(const char* filename,const CSkeletonAnimDef* anim)
 	// pack up all the data
 	packer.PackString("");
 	packer.PackRaw(&anim->m_FrameTime,sizeof(anim->m_FrameTime));
-	packer.PackRaw(&anim->m_NumKeys,sizeof(anim->m_NumKeys));
-	packer.PackRaw(&anim->m_NumFrames,sizeof(anim->m_NumFrames));
-	packer.PackRaw(anim->m_Keys,anim->m_NumKeys*anim->m_NumFrames*sizeof(Key));
+	const size_t numKeys = anim->m_NumKeys;
+	packer.PackSize(numKeys);
+	const size_t numFrames = anim->m_NumFrames;
+	packer.PackSize(numFrames);
+	packer.PackRaw(anim->m_Keys,numKeys*numFrames*sizeof(Key));
 
 	// now write it
 	packer.Write(filename);
 }
-
-

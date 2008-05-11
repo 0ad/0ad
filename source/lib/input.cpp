@@ -17,9 +17,9 @@
 
 #include "lib/external_libraries/sdl.h"
 
-const uint MAX_HANDLERS = 8;
+const size_t MAX_HANDLERS = 8;
 static InHandler handler_stack[MAX_HANDLERS];
-static uint handler_stack_top = 0;
+static size_t handler_stack_top = 0;
 
 void in_add_handler(InHandler handler)
 {

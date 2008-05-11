@@ -91,7 +91,7 @@ public:
 	void RemoveUnitCount(CEntity* ent);	//Removes unit from population count
 	void AddEntityClassData(const HEntity& handle);
 
-	void UpdateAll( size_t timestep );
+	void UpdateAll( int timestep );
 	void InterpolateAll( float relativeoffset );
 	void InitializeAll();
 // 	void TickAll();

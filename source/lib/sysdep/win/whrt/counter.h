@@ -42,7 +42,7 @@ public:
 	 * WHRT uses this to ensure the counter (running at nominal frequency)
 	 * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
 	 **/
-	virtual uint CounterBits() const = 0;
+	virtual size_t CounterBits() const = 0;
 
 	/**
 	 * initial measurement of the tick rate. not necessarily correct
@@ -68,7 +68,7 @@ public:
  * there can only be one active counter at a time; the previous one must
  * have been destroyed before creating another!
  **/
-extern ICounter* CreateCounter(uint id);
+extern ICounter* CreateCounter(size_t id);
 
 /**
  * shut down the counter, free its resources and zero its pointer.

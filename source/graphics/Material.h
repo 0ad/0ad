@@ -67,15 +67,15 @@ public:
 	bool UsesAlpha() { return m_Alpha; }
 
 	// Determines whether or not the model goes into the PlayerRenderer
-	bool IsPlayer() { return (m_PlayerID != PLAYER_NONE); }
+	bool IsPlayer() { return (m_PlayerID != PLAYER_ID_NONE); }
 	// Get the player colour (in a non-zero amount of time, so don't call it
 	// an unreasonable number of times. But it's fairly close to zero, so
 	// don't worry too much about it.)
 	SMaterialColor GetPlayerColor();
 
-	void SetPlayerColor_PerPlayer() { m_PlayerID = PLAYER_COMINGSOON; }
-	void SetPlayerColor_PerObject() { m_PlayerID = PLAYER_OTHER; }
-	void SetPlayerColor(int id);
+	void SetPlayerColor_PerPlayer() { m_PlayerID = PLAYER_ID_COMING_SOON; }
+	void SetPlayerColor_PerObject() { m_PlayerID = PLAYER_ID_OTHER; }
+	void SetPlayerColor(size_t id);
 	void SetPlayerColor(CColor &colour);
 
 	void SetTexture(const CStr& texture);
@@ -113,16 +113,20 @@ protected:
 	bool m_Alpha;
 
 	// Player-colour settings.
-	// If m_PlayerID >= 0, the colour is retrieved from g_Game whenever it's needed.
+	// If m_PlayerID <= PLAYER_ID_LAST_VALID, the colour is retrieved from
+	//  g_Game whenever it's needed.
 	//  (It's not cached, because the player might change colour.)
-	// If m_PlayerID == PLAYER_OTHER, or if player-colouring has been globally
+	// If m_PlayerID == PLAYER_ID_OTHER, or if player-colouring has been globally
 	//  disabled, m_TextureColor is used instead. This allows per-model colours to
 	//  be specified, instead of only a single colour per player.
-	// If m_PlayerID == PLAYER_NONE, there's no player colour at all.
-	// If m_PlayerID == PLAYER_COMINGSOON, it's going to be linked to a player,
+	// If m_PlayerID == PLAYER_ID_NONE, there's no player colour at all.
+	// If m_PlayerID == PLAYER_ID_COMING_SOON, it's going to be linked to a player,
 	//  but hasn't yet.
-	enum { PLAYER_NONE = -1, PLAYER_OTHER = -2, PLAYER_COMINGSOON = -3 };
-	int m_PlayerID;
+	static const size_t PLAYER_ID_NONE = SIZE_MAX-1;
+	static const size_t PLAYER_ID_OTHER = SIZE_MAX-2;
+	static const size_t PLAYER_ID_COMING_SOON = SIZE_MAX-3;
+	static const size_t PLAYER_ID_LAST_VALID = SIZE_MAX-4;
+	size_t m_PlayerID;
 	SMaterialColor m_TextureColor; // used as an alternative to the per-player colour
 };
 

@@ -326,7 +326,7 @@ void CSocketBase::SetTcpNoDelay(bool tcpNoDelay)
 	setsockopt(m_pInternal->m_fd, SOL_SOCKET, TCP_NODELAY, (const char *)&data, sizeof(data));
 }
 
-PS_RESULT CSocketBase::Read(void *buf, uint len, uint *bytesRead)
+PS_RESULT CSocketBase::Read(void *buf, size_t len, size_t *bytesRead)
 {
 	int res;
 	char errbuf[256];
@@ -376,7 +376,7 @@ PS_RESULT CSocketBase::Read(void *buf, uint len, uint *bytesRead)
 	return PS_OK;
 }
 
-PS_RESULT CSocketBase::Write(void *buf, uint len, uint *bytesWritten)
+PS_RESULT CSocketBase::Write(void *buf, size_t len, size_t *bytesWritten)
 {
 	int res;
 	char errbuf[256];
@@ -547,7 +547,7 @@ void CSocketBase::Reject()
 bool CSocketBase::ConnectError(CSocketBase *pSocket)
 {
 	CSocketInternal *pInt=pSocket->m_pInternal;
-	uint buf;
+	size_t buf;
 	int res;
 	
 	if (pSocket->m_State==SS_CONNECT_STARTED)
@@ -617,7 +617,7 @@ void CSocketBase::SocketReadable(CSocketBase *pSock)
 	}
 	else if (pSock->m_State != SS_UNCONNECTED)
 	{
-		uint nRead;
+		size_t nRead;
 		errno=0;
 		int res=ioctl(pSock->m_pInternal->m_fd, FIONREAD, &nRead);
 		// failure, errno=EINVAL means server socket
@@ -679,7 +679,7 @@ void CSocketBase::RunWaitLoop()
 		it=g_SocketSetInternal.m_HandleMap.begin();
 		while (it != g_SocketSetInternal.m_HandleMap.end())
 		{
-			uint ops=it->second->m_pInternal->m_Ops;
+			size_t ops=it->second->m_pInternal->m_Ops;
 
 			if (ops && it->first > fd_max)
 				fd_max=it->first;
@@ -780,7 +780,7 @@ void CSocketBase::SendWaitLoopUpdate()
 // Windows WindowProc for async event notification
 #else	// i.e. #if OS_WIN
 
-void WaitLoop_SocketUpdateProc(int fd, int error, uint event)
+void WaitLoop_SocketUpdateProc(int fd, int error, int event)
 {
 	GLOBAL_LOCK();
 	CSocketBase *pSock=g_SocketSetInternal.m_HandleMap[fd];
@@ -957,12 +957,12 @@ void CSocketBase::AbortWaitLoop()
 //	pthread_join(g_SocketSetInternal.m_Thread);
 }
 
-uint CSocketBase::GetOpMask()
+int CSocketBase::GetOpMask()
 {
 	return m_pInternal->m_Ops;
 }
 
-void CSocketBase::SetOpMask(uint ops)
+void CSocketBase::SetOpMask(int ops)
 {
 	GLOBAL_LOCK();
 	g_SocketSetInternal.m_HandleMap[m_pInternal->m_fd]=this;

@@ -104,10 +104,10 @@ u64 CounterHPET::Counter() const
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint CounterHPET::CounterBits() const
+size_t CounterHPET::CounterBits() const
 {
 	const u64 caps = m_hpetRegisters->capabilities;
-	const uint counterBits = (caps & CAP_SIZE64)? 64 : 32;
+	const size_t counterBits = (caps & CAP_SIZE64)? 64 : 32;
 	return counterBits;
 }
 
@@ -118,7 +118,7 @@ uint CounterHPET::CounterBits() const
 double CounterHPET::NominalFrequency() const
 {
 	const u64 caps = m_hpetRegisters->capabilities;
-	const u32 timerPeriod_fs = bits64(caps, 32, 63);
+	const u32 timerPeriod_fs = (u32)bits(caps, 32, 63);
 	const double frequency = 1e15 / timerPeriod_fs;
 	return frequency;
 }

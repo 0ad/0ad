@@ -6,12 +6,12 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
 
-void* debug_get_nth_caller(uint UNUSED(n), void *UNUSED(context))
+void* debug_get_nth_caller(size_t UNUSED(n), void *UNUSED(context))
 {
 	return NULL;
 }
 
-LibError debug_dump_stack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), uint UNUSED(skip), void* UNUSED(context))
+LibError debug_dump_stack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), size_t UNUSED(skip), void* UNUSED(context))
 {
 	return ERR::NOT_IMPLEMENTED;
 }

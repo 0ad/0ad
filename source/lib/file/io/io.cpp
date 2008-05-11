@@ -18,7 +18,7 @@
 #include "block_cache.h"
 #include "io_align.h"
 
-static const unsigned ioDepth = 8;
+static const size_t ioDepth = 8;
 
 
 // the underlying aio implementation likes buffer and offset to be

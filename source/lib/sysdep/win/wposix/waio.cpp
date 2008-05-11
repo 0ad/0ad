@@ -389,7 +389,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 
 	// build array of event handles
 	HANDLE hEvents[MAXIMUM_WAIT_OBJECTS];
-	unsigned numPendingIos = 0;
+	size_t numPendingIos = 0;
 	for(int i = 0; i < n; i++)
 	{
 		if(!cbs[i])	// SUSv3 says NULL entries are to be ignored
@@ -407,7 +407,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 	const DWORD timeout = ts? (DWORD)(ts->tv_sec*1000 + ts->tv_nsec/1000000) : INFINITE;
 	DWORD result = WaitForMultipleObjects(numPendingIos, hEvents, waitAll, timeout);
 
-	for(unsigned i = 0; i < numPendingIos; i++)
+	for(size_t i = 0; i < numPendingIos; i++)
 		ResetEvent(hEvents[i]);
 
 	switch(result)

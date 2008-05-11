@@ -66,7 +66,7 @@ void CFormationManager::DestroyFormation( size_t form )
 	m_formations.erase( it );
 	UpdateIndexes( form );
 }
-bool CFormationManager::AddUnit( CEntity* entity, int& form )
+bool CFormationManager::AddUnit( CEntity* entity, size_t& form )
 {
 	if ( !IsValidFormation(form) )
 		return false;
@@ -91,7 +91,7 @@ bool CFormationManager::AddUnit( CEntity* entity, int& form )
 	}
 	return false;
 }
-CEntityList CFormationManager::AddUnitList( CEntityList& entities, int form )
+CEntityList CFormationManager::AddUnitList( CEntityList& entities, size_t form )
 {
 	CEntityList accepted;
 	for ( CEntityList::iterator it=entities.begin(); it != entities.end(); it++ )
@@ -132,7 +132,7 @@ bool CFormationManager::RemoveUnitList( CEntityList& entities )
 	}
 	return true;
 }
-CEntityFormation* CFormationManager::GetFormation(int form)
+CEntityFormation* CFormationManager::GetFormation(size_t form)
 {
 	if ( IsValidFormation(form) )
 		return m_formations[form];

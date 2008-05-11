@@ -15,13 +15,6 @@
 
 // defines instead of typedefs so we can #undef conflicting decls
 
-// Workaround: GCC won't parse constructor-casts with multi-word types, while
-// visual studio will. Define uint/long to a namespaced one-word typedef.
-typedef unsigned long PS_ulong;
-typedef unsigned int PS_uint;
-#define ulong PS_ulong
-#define uint PS_uint
-
 #define i8 int8_t
 #define i16 int16_t
 #define i32 int32_t

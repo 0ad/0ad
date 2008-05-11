@@ -25,10 +25,10 @@ public:
 	~FastPlayerColorRender();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 
 	/**
 	 * IsAvailable: Determines whether this RenderModifier can be used
@@ -58,10 +58,10 @@ public:
 	~SlowPlayerColorRender();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 };
 
 
@@ -79,11 +79,11 @@ public:
 	~LitPlayerColorRender();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	const CMatrix3D* GetTexGenMatrix(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	const CMatrix3D* GetTexGenMatrix(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 };
 
 

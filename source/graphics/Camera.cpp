@@ -316,7 +316,7 @@ void CCamera::LookAlong( CVector3D camera, CVector3D orientation, CVector3D up )
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Render the camera's frustum
-void CCamera::Render(uint intermediates) const
+void CCamera::Render(int intermediates) const
 {
 	CVector3D nearPoints[4];
 	CVector3D farPoints[4];
@@ -361,7 +361,7 @@ void CCamera::Render(uint intermediates) const
 
 	// intermediate planes
 	CVector3D intermediatePoints[4];
-	for(uint i = 0; i < intermediates; ++i)
+	for(int i = 0; i < intermediates; ++i)
 	{
 		float t = (i+1.0)/(intermediates+1.0);
 

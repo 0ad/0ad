@@ -67,7 +67,7 @@ public:
 	 * the frame. The value is the same as the value of the model's
 	 * CRenderData::m_UpdateFlags.
 	 */
-	virtual void UpdateModelData(CModel* model, void* data, u32 updateflags) = 0;
+	virtual void UpdateModelData(CModel* model, void* data, int updateflags) = 0;
 
 
 	/**
@@ -107,7 +107,7 @@ public:
 	 * texture matrix that must be used to transform vertex positions into texture
 	 * coordinates
 	 */
-	virtual void BeginPass(uint streamflags, const CMatrix3D* texturematrix) = 0;
+	virtual void BeginPass(int streamflags, const CMatrix3D* texturematrix) = 0;
 
 
 	/**
@@ -120,7 +120,7 @@ public:
 	 * This equals the streamflags parameter passed on the last call to
 	 * BeginPass.
 	 */
-	virtual void EndPass(uint streamflags) = 0;
+	virtual void EndPass(int streamflags) = 0;
 
 
 	/**
@@ -137,7 +137,7 @@ public:
 	 * BeginPass.
 	 * @param def The model definition.
 	 */
-	virtual void PrepareModelDef(uint streamflags, CModelDefPtr def) = 0;
+	virtual void PrepareModelDef(int streamflags, CModelDefPtr def) = 0;
 
 
 	/**
@@ -159,7 +159,7 @@ public:
 	 * that use the same CModelDef object and the same texture must
 	 * succeed.
 	 */
-	virtual void RenderModel(uint streamflags, CModel* model, void* data) = 0;
+	virtual void RenderModel(int streamflags, CModel* model, void* data) = 0;
 };
 
 

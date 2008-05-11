@@ -27,6 +27,14 @@ enum ELOSStatus
 	LOS_UNEXPLORED = 0		// tile is unexplored and therefore in Shroud of Darkness
 };
 
+// if changing these values, adapt ScriptGlue!RevealMap
+enum ELOSSetting
+{
+	LOS_SETTING_NORMAL,
+	LOS_SETTING_EXPLORED,
+	LOS_SETTING_ALL_VISIBLE
+};
+
 enum EUnitLOSStatus 
 {
 	UNIT_VISIBLE = 2,		// unit is in LOS of one of the player's units
@@ -34,7 +42,7 @@ enum EUnitLOSStatus
 	UNIT_HIDDEN = 0			// unit is either not permanent or was never seen before
 };
 
-extern uint LOS_GetTokenFor(uint player_id);
+extern size_t LOS_GetTokenFor(size_t player_id);
 
 class CLOSManager
 {
@@ -48,25 +56,23 @@ class CLOSManager
 	u16** m_VisibilityMatrix;
 #endif
 
-	uint m_TilesPerSide;
-	uint m_TilesPerSide_1;	// as above, -1
+	size_t m_TilesPerSide;
+	size_t m_TilesPerSide_1;	// as above, -1
 
 public:
-	static const int NORMAL = 0;
-	static const int EXPLORED = 1;
-	static const int ALL_VISIBLE = 2;
 
-	int m_LOSSetting;
+
+	ELOSSetting m_LOSSetting;
 	bool m_FogOfWar;
 
 	CLOSManager();
 	~CLOSManager();
 
-	void Initialize(uint losSetting, bool fogOfWar);	// 0 = normal, 1 = explored, 2 = all visible
+	void Initialize(ELOSSetting losSetting, bool fogOfWar);
 	void Update();
 
 	// Get LOS status for a tile (in tile coordinates)
-	ELOSStatus GetStatus(int tx, int tz, CPlayer* player);
+	ELOSStatus GetStatus(ssize_t tx, ssize_t tz, CPlayer* player);
 
 	// Get LOS status for a point (in game coordinates)
 	ELOSStatus GetStatus(float fx, float fz, CPlayer* player);

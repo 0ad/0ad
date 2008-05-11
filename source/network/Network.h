@@ -235,10 +235,10 @@ class CMessageSocket: protected CStreamSocket, public IMessagePipeEnd
 {
 	bool m_IsWriting;
 	u8 *m_pWrBuffer;
-	uint m_WrBufferSize;
+	size_t m_WrBufferSize;
 	bool m_ReadingData;
 	u8 *m_pRdBuffer;
-	uint m_RdBufferSize;
+	size_t m_RdBufferSize;
 
 	CLockedMessageDeque m_InQ; // Messages read from socket
 	CLockedMessageDeque m_OutQ;// Messages to write to socket

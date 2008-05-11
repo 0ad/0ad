@@ -62,7 +62,7 @@ u64 CounterTGT::Counter() const
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint CounterTGT::CounterBits() const
+size_t CounterTGT::CounterBits() const
 {
 	return 32;
 }

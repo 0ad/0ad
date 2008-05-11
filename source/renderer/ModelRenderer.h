@@ -153,7 +153,7 @@ public:
 	 * If flags is non-zero, only models that contain flags in their
 	 * CModel::GetFlags() are rendered.
 	 */
-	virtual void Render(RenderModifierPtr modifier, u32 flags) = 0;
+	virtual void Render(RenderModifierPtr modifier, int flags) = 0;
 
 	/**
 	 * CopyPositionAndNormals: Copy unanimated object-space vertices and
@@ -257,7 +257,7 @@ public:
 	virtual void PrepareModels();
 	virtual void EndFrame();
 	virtual bool HaveSubmissions();
-	virtual void Render(RenderModifierPtr modifier, u32 flags);
+	virtual void Render(RenderModifierPtr modifier, int flags);
 
 private:
 	BatchModelRendererInternals* m;

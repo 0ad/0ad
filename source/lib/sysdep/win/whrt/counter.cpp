@@ -31,7 +31,7 @@
  * the given address, or 0 iff the ID is invalid.
  * @param size maximum allowable size [bytes] of the subclass instance
  **/
-static ICounter* ConstructCounterAt(uint id, void* address, size_t size)
+static ICounter* ConstructCounterAt(size_t id, void* address, size_t size)
 {
 	// rationale for placement new: see call site.
 
@@ -66,7 +66,7 @@ static ICounter* ConstructCounterAt(uint id, void* address, size_t size)
 
 static volatile uintptr_t isCounterAllocated;
 
-ICounter* CreateCounter(uint id)
+ICounter* CreateCounter(size_t id)
 {
 	// we placement-new the Counter classes in a static buffer.
 	// this is dangerous, but we are careful to ensure alignment. it is

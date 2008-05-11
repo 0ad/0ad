@@ -84,7 +84,7 @@ const TexCodecVTbl* tex_codec_next(const TexCodecVTbl* prev_codec)
 }
 
 
-LibError tex_codec_transform(Tex* t, uint transforms)
+LibError tex_codec_transform(Tex* t, size_t transforms)
 {
 	LibError ret = INFO::TEX_CODEC_CANNOT_HANDLE;
 
@@ -131,7 +131,7 @@ void tex_codec_register_all()
 //
 // note: we don't allocate the data param ourselves because this function is
 // needed for encoding, too (where data is already present).
-shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, uint src_flags, uint dst_orientation)
+shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, size_t src_flags, size_t dst_orientation)
 {
 	const bool flip = !tex_orientations_match(src_flags, dst_orientation);
 
@@ -153,7 +153,7 @@ shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, 
 }
 
 
-LibError tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da)
+LibError tex_codec_write(Tex* t, size_t transforms, const void* hdr, size_t hdr_size, DynArray* da)
 {
 	RETURN_ERR(tex_transform(t, transforms));
 

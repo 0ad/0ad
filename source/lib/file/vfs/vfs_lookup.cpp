@@ -68,7 +68,7 @@ private:
 
 		// (we have to create missing subdirectoryNames because archivers
 		// don't always place directory entries before their files)
-		const unsigned flags = VFS_LOOKUP_ADD;
+		const int flags = VFS_LOOKUP_ADD;
 		VfsDirectory* directory;
 		WARN_ERR(vfs_Lookup(pathname, this_->m_directory, directory, 0, flags));
 		const VfsFile file(fileInfo.Name(), fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
@@ -135,7 +135,7 @@ static LibError Populate(VfsDirectory* directory)
 
 //-----------------------------------------------------------------------------
 
-LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, unsigned flags)
+LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, int flags)
 {
 TIMER_ACCRUE(tc_lookup);
 

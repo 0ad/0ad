@@ -50,8 +50,8 @@ public:
 	size_t GetNumKeys() const { return (size_t)m_NumKeys; }
 
 	// accessors: get a key for given bone at given time
-	Key& GetKey(u32 frame, u32 bone) { return m_Keys[frame*m_NumKeys+bone]; }
-	const Key& GetKey(u32 frame, u32 bone) const { return m_Keys[frame*m_NumKeys+bone]; }	
+	Key& GetKey(size_t frame, size_t bone) { return m_Keys[frame*m_NumKeys+bone]; }
+	const Key& GetKey(size_t frame, size_t bone) const { return m_Keys[frame*m_NumKeys+bone]; }	
 
 	// get duration of this anim, in ms
 	float GetDuration() const { return m_NumFrames*m_FrameTime; }
@@ -72,9 +72,9 @@ public:
 	// frame time - time between successive frames, in ms
 	float m_FrameTime;
 	// number of keys in each frame - should match number of bones in the skeleton
-	u32 m_NumKeys;
+	size_t m_NumKeys;
 	// number of frames in the animation
-	u32 m_NumFrames;
+	size_t m_NumFrames;
 	// animation data - m_NumKeys*m_NumFrames total keys
 	Key* m_Keys;
 };

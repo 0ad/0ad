@@ -71,7 +71,7 @@ static void* load_sys_cursor(const VfsPath& pathname, int hx, int hy)
 	void* sys_cursor = 0;	// return value
 
 	// convert to required BGRA format.
-	const uint flags = (t.flags | TEX_BGR) & ~TEX_DXT;
+	const int flags = (t.flags | TEX_BGR) & ~TEX_DXT;
 	if(tex_transform_to(&t, flags) < 0)
 		goto fail;
 	void* bgra_img = tex_get_data(&t);
@@ -99,16 +99,19 @@ class GLCursor
 {
 	Handle ht;
 
-	uint w, h;
-	uint hotspotx, hotspoty;
+	GLint w, h;
+	int hotspotx, hotspoty;
 
 public:
-	LibError create(const VfsPath& pathname, uint hotspotx_, uint hotspoty_)
+	LibError create(const VfsPath& pathname, int hotspotx_, int hotspoty_)
 	{
 		ht = ogl_tex_load(pathname);
 		RETURN_ERR(ht);
 
-		(void)ogl_tex_get_size(ht, &w, &h, 0);
+		size_t width, height;
+		(void)ogl_tex_get_size(ht, &width, &height, 0);
+		w = (GLint)width;
+		h = (GLint)height;
 
 		hotspotx = hotspotx_; hotspoty = hotspoty_;
 
@@ -124,7 +127,7 @@ public:
 		(void)ogl_tex_free(ht);
 	}
 
-	void draw(uint x, uint y) const
+	void draw(int x, int y) const
 	{
 		(void)ogl_tex_bind(ht);
 		glEnable(GL_TEXTURE_2D);
@@ -146,7 +149,7 @@ public:
 
 	LibError validate() const
 	{
-		const uint A = 128;	// no cursor is expected to get this big
+		const size_t A = 128;	// no cursor is expected to get this big
 		if(w > A || h > A || hotspotx > A || hotspoty > A)
 			WARN_RETURN(ERR::_1);
 		if(ht < 0)
@@ -189,7 +192,7 @@ static LibError Cursor_reload(Cursor* c, const VfsPath& name, Handle)
 
 	// read pixel offset of the cursor's hotspot [the bit of it that's
 	// drawn at (g_mouse_x,g_mouse_y)] from file.
-	uint hotspotx = 0, hotspoty = 0;
+	int hotspotx = 0, hotspoty = 0;
 	{
 		const VfsPath pathname(path / (basename + ".txt"));
 		shared_ptr<u8> buf; size_t size;

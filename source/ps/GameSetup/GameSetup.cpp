@@ -99,7 +99,7 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	ulong flags = SDL_OPENGL;
+	Uint32 flags = SDL_OPENGL;
 	if(fullscreen)
 		flags |= SDL_FULLSCREEN;
 	if(!SDL_SetVideoMode(w, h, bpp, flags))
@@ -129,11 +129,11 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	return 0;
 }
 
-static const uint SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
+static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
 
-static void SetTextureQuality(uint quality)
+static void SetTextureQuality(int quality)
 {
-	uint q_flags;
+	int q_flags;
 	GLint filter;
 
 retry:
@@ -600,8 +600,8 @@ static void InitVfs(const CmdLineArgs& args)
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		CStr path = "mods/" + mods[i];
-		uint priority = (uint)i;
-		uint flags = VFS_MOUNT_WATCH;
+		size_t priority = i;
+		int flags = VFS_MOUNT_WATCH;
 
 		// TODO: currently only archive 'official' - probably ought to archive
 		// all mods instead?
@@ -776,7 +776,7 @@ void EndGame()
 }
 
 
-void Shutdown(uint flags)
+void Shutdown(int flags)
 {
 	MICROLOG(L"Shutdown");
 
@@ -906,7 +906,7 @@ void EarlyInit()
 	srand(time(NULL));	// NOTE: this rand should *not* be used for simulation!
 }
 
-void Init(const CmdLineArgs& args, uint flags)
+void Init(const CmdLineArgs& args, int flags)
 {
 	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
 
@@ -989,7 +989,7 @@ void Init(const CmdLineArgs& args, uint flags)
 
 	tex_codec_register_all();
 
-	uint quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
+	const int quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
 	SetTextureQuality(quality);
 
 	// needed by ogl_tex to detect broken gfx card/driver combos,

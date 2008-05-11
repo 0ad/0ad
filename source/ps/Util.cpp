@@ -122,7 +122,7 @@ void WriteSystemInfo()
 
 		// output all IPs (> 1 if using VMware or dual ethernet)
 		fprintf(f, " (");
-		for(uint i = 0; i < 256 && ips[i]; i++)	// safety
+		for(size_t i = 0; i < 256 && ips[i]; i++)	// safety
 		{
 			// separate entries but avoid trailing comma
 			if(i != 0)
@@ -194,7 +194,7 @@ static LibError tex_write(Tex* t, const VfsPath& filename)
 }
 
 
-static unsigned s_nextScreenshotNumber;
+static size_t s_nextScreenshotNumber;
 
 // <extension> identifies the file format that is to be written
 // (case-insensitive). examples: "bmp", "png", "jpg".
@@ -208,8 +208,8 @@ void WriteScreenshot(const char* extension)
 	VfsPath filename;
 	fs_NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
 
-	const int w = g_xres, h = g_yres;
-	const int bpp = 24;
+	const size_t w = (size_t)g_xres, h = (size_t)g_yres;
+	const size_t bpp = 24;
 	GLenum fmt = GL_RGB;
 	int flags = TEX_BOTTOM_UP;
 	// we want writing BMP to be as fast as possible,
@@ -227,7 +227,7 @@ void WriteScreenshot(const char* extension)
 	Tex t;
 	if(tex_wrap(w, h, bpp, flags, buf, hdr_size, &t) < 0)
 		return;
-	glReadPixels(0, 0, w, h, fmt, GL_UNSIGNED_BYTE, img);
+	glReadPixels(0, 0, (GLsizei)w, (GLsizei)h, fmt, GL_UNSIGNED_BYTE, img);
 	(void)tex_write(&t, filename);
 	tex_free(&t);
 }

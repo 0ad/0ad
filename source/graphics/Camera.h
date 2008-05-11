@@ -18,10 +18,10 @@ extern int g_mouse_x, g_mouse_y;
 // view port
 struct SViewPort
 {
-	unsigned int m_X;
-	unsigned int m_Y;
-	unsigned int m_Width;
-	unsigned int m_Height;
+	size_t m_X;
+	size_t m_Y;
+	size_t m_Width;
+	size_t m_Height;
 };
 
 
@@ -97,7 +97,7 @@ class CCamera
 		 * @param intermediates determines how many intermediate distance planes should
 		 * be hinted at between the near and far planes
 		 */
-		void Render(uint intermediates = 0) const;
+		void Render(int intermediates = 0) const;
 		
 	public:
 		// This is the orientation matrix. The inverse of this

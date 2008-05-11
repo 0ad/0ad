@@ -62,12 +62,16 @@ void CFilePacker::PackRaw(const void* rawData, size_t rawSize)
 	m_writeBuffer.Append(rawData, rawSize);
 }
 
+void CFilePacker::PackSize(size_t value)
+{
+	const u32 value_le32 = to_le32(u32_from_larger(value));
+	PackRaw(&value_le32, sizeof(value_le32));
+}
 
 void CFilePacker::PackString(const CStr& str)
 {
 	const size_t length = str.length();
-	const u32 length_le = to_le32(u32_from_larger(length));
-	PackRaw(&length_le, sizeof(length_le));
+	PackSize(length);
 	PackRaw((const char*)str, length);
 }
 
@@ -137,12 +141,17 @@ void CFileUnpacker::UnpackRaw(void* rawData, size_t rawDataSize)
 }
 
 
+size_t CFileUnpacker::UnpackSize()
+{
+	u32 value_le32;
+	UnpackRaw(&value_le32, sizeof(value_le32));
+	return (size_t)to_le32(value_le32);
+}
+
+
 void CFileUnpacker::UnpackString(CStr& result)
 {
-	// get string length
-	u32 length_le;
-	UnpackRaw(&length_le, sizeof(length_le));
-	const size_t length = (size_t)to_le32(length_le);
+	const size_t length = UnpackSize();
 
 	// fail if reading past end of stream
 	if (m_unpackPos+length > m_bufSize)

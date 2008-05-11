@@ -295,7 +295,7 @@ void CModel::InvalidatePosition()
 {
 	m_PositionValid = false;
 
-	for (uint i = 0; i < m_Props.size(); ++i)
+	for (size_t i = 0; i < m_Props.size(); ++i)
 		m_Props[i].m_Model->InvalidatePosition();
 }
 
@@ -430,8 +430,7 @@ void CModel::AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry
 
 	// check if we're already using this point, and remove it if so
 	// (when a prop is removed it will also remove the prop point)
-	uint i;
-	for (i = 0; i < m_Props.size(); i++) {
+	for (size_t i = 0; i < m_Props.size(); i++) {
 		if (m_Props[i].m_Point == point) {
 			delete m_Props[i].m_Model;
 			break;
@@ -450,8 +449,7 @@ void CModel::AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry
 // RemoveProp: remove a prop from the given point
 void CModel::RemoveProp(SPropPoint* point)
 {
-	uint i;
-	for (i=0;i<m_Props.size();i++) {
+	for (size_t i=0;i<m_Props.size();i++) {
 		if (m_Props[i].m_Point==point) {
 			delete m_Props[i].m_Model;
 			// (when a prop is removed it will automatically remove its prop point)
@@ -473,7 +471,7 @@ CModel* CModel::Clone() const
 	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	clone->SetFlags(m_Flags);
-	for (uint i=0;i<m_Props.size();i++) {
+	for (size_t i=0;i<m_Props.size();i++) {
 		// eek!  TODO, RC - need to investigate shallow clone here
 		clone->AddProp(m_Props[i].m_Point, m_Props[i].m_Model->Clone(), m_Props[i].m_ObjectEntry);
 	}
@@ -502,7 +500,7 @@ void CModel::SetMaterial(const CMaterial &material)
 	}
 }
 
-void CModel::SetPlayerID(int id)
+void CModel::SetPlayerID(size_t id)
 {
 	m_Material.SetPlayerColor(id);
 	for (std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it)

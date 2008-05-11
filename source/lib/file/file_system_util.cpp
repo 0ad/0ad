@@ -63,7 +63,7 @@ void fs_SortDirectories(DirectoryNames& directories)
 }
 
 
-LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern, unsigned flags)
+LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern, int flags)
 {
 	debug_assert(vfs_path_IsDirectory(path));
 
@@ -102,7 +102,7 @@ LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_
 }
 
 
-void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, unsigned& nextNumber, VfsPath& nextPathname)
+void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname)
 {
 	// (first call only:) scan directory and set nextNumber according to
 	// highest matching filename found. this avoids filling "holes" in
@@ -114,12 +114,12 @@ void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, unsigned& 
 		const std::string nameFormat = pathnameFormat.leaf();
 		const VfsPath path = pathnameFormat.branch_path()/"/";
 
-		unsigned maxNumber = 0;
+		size_t maxNumber = 0;
 		FileInfos files;
 		fs->GetDirectoryEntries(path, &files, 0);
 		for(size_t i = 0; i < files.size(); i++)
 		{
-			unsigned number;
+			size_t number;
 			if(sscanf(files[i].Name().c_str(), nameFormat.c_str(), &number) == 1)
 				maxNumber = std::max(number, maxNumber);
 		}

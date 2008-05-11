@@ -18,7 +18,7 @@
 class VfsFile
 {
 public:
-	VfsFile(const std::string& name, off_t size, time_t mtime, unsigned priority, PIFileLoader provider);
+	VfsFile(const std::string& name, off_t size, time_t mtime, size_t priority, PIFileLoader provider);
 
 	const std::string& Name() const
 	{
@@ -74,7 +74,7 @@ public:
 
 	void GetEntries(FileInfos* files, DirectoryNames* subdirectories) const;
 
-	void DisplayR(unsigned depth) const;
+	void DisplayR(size_t depth) const;
 
 	void ClearR();
 

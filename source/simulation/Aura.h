@@ -16,12 +16,12 @@ public:
 	CStrW m_name;
 	CVector4D m_color;
 	float m_radius;			// In graphics units
-	size_t m_tickRate;		// In milliseconds
+	int m_tickRate;		// In milliseconds
 	JSObject* m_handler;
 	std::vector<HEntity> m_influenced;
-	size_t m_tickCyclePos;	// Add time to this until it's time to tick again
+	int m_tickCyclePos;	// Add time to this until it's time to tick again
 
-	CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, size_t tickRate, const CVector4D& color, JSObject* handler );
+	CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, int tickRate, const CVector4D& color, JSObject* handler );
 	~CAura();
 	
 	// Remove all entities from under our influence; this isn't done in the destructor since
@@ -35,7 +35,7 @@ public:
 	void Remove( CEntity* ent );
 
 	// Called to update the aura each simulation frame.
-	void Update( size_t timestep );
+	void Update( int timestep );
 };
 
 #endif

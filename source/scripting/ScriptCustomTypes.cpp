@@ -62,7 +62,7 @@ CStr SColour::ToString( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED
 }
 
 
-JSBool SColour::Construct( JSContext* UNUSED(cx), JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool SColour::Construct( JSContext* UNUSED(cx), JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 3 );
 	float alpha = 1.0;

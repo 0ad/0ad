@@ -397,7 +397,7 @@ void CEntityManager::TickAll()
 }
 */
 
-void CEntityManager::UpdateAll( size_t timestep )
+void CEntityManager::UpdateAll( int timestep )
 {
 	PROFILE_START( "reaper" );
 	std::vector<CEntity*>::iterator it;
@@ -467,7 +467,7 @@ void CEntityManager::InvalidateAll()
 
 void CEntityManager::RemoveUnitCount(CEntity* ent)
 {
-	size_t playerID = (size_t)ent->GetPlayer()->GetPlayerID();
+	size_t playerID = ent->GetPlayer()->GetPlayerID();
 	CStrW className, classList = ent->m_classes.GetMemberList();
 
 	while ( (className = classList.BeforeFirst(L" ")) != classList )

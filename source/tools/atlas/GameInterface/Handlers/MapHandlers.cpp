@@ -35,7 +35,7 @@ namespace
 			g_GameAttributes.GetSlot(i)->AssignLocal();
 
 		// Make the whole world visible
-		g_GameAttributes.m_LOSSetting = 2;
+		g_GameAttributes.m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
 		g_GameAttributes.m_FogOfWar = false;
 
 		// Don't use screenshot mode, because we want working AI for the

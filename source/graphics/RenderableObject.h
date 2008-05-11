@@ -31,7 +31,7 @@ public:
 	CRenderData() : m_UpdateFlags(0) {}
 	virtual ~CRenderData() {}
 
-	u32 m_UpdateFlags;
+	int m_UpdateFlags;
 };
 
 ///////////////////////////////////////////////////////////////////////////////

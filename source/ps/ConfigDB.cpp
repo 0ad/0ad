@@ -60,7 +60,7 @@ namespace ConfigNamespace_JS
 		JS_ConvertStub, JS_FinalizeStub
 	};
 
-	JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* UNUSED(argv), jsval* rval )
+	JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* UNUSED(argv), jsval* rval )
 	{
 		if (argc != 0)
 			return JS_FALSE;
@@ -75,7 +75,7 @@ namespace ConfigNamespace_JS
 		JS_SetPrivate(cx, obj, (void *)cfgNs);
 	}
 
-	JSBool WriteFile( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )
+	JSBool WriteFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 	{
 		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
@@ -96,7 +96,7 @@ namespace ConfigNamespace_JS
 			return JS_FALSE;
 	}
 
-	JSBool Reload( JSContext* cx, JSObject* obj, uint argc, jsval* UNUSED(argv), jsval* rval )
+	JSBool Reload( JSContext* cx, JSObject* obj, uintN argc, jsval* UNUSED(argv), jsval* rval )
 	{
 		if (argc != 0)
 			return JS_FALSE;
@@ -110,7 +110,7 @@ namespace ConfigNamespace_JS
 		return JS_TRUE;
 	}
 
-	JSBool SetFile( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval) )
+	JSBool SetFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval) )
 	{
 		if (argc != 0)
 			return JS_FALSE;
@@ -156,7 +156,7 @@ namespace ConfigDB_JS
 		{0}
 	};
 
-	JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* UNUSED(argv), jsval* rval )
+	JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* UNUSED(argv), jsval* rval )
 	{
 		if (argc != 0)
 			return JS_FALSE;

@@ -20,9 +20,9 @@ public:
 		CEntity* Thaw();
 	private:
 		CStrW templateName;
-		int unitID;
+		size_t unitID;
 		std::set<CStr> selections;
-		int playerID;
+		size_t playerID;
 		CVector3D position;
 		float angle;
 	};
@@ -34,7 +34,7 @@ public:
 		CUnit* Thaw();
 	private:
 		CStrW actorName;
-		int unitID;
+		size_t unitID;
 		std::set<CStr> selections;
 		CVector3D position;
 		float angle;

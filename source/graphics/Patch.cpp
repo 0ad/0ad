@@ -28,7 +28,7 @@ CPatch::~CPatch()
 
 ///////////////////////////////////////////////////////////////////////////////
 // Initialize: setup patch data
-void CPatch::Initialize(CTerrain* parent,u32 x,u32 z)
+void CPatch::Initialize(CTerrain* parent,ssize_t x,ssize_t z)
 {
 	delete m_RenderData;
 	m_RenderData=0;
@@ -38,9 +38,9 @@ void CPatch::Initialize(CTerrain* parent,u32 x,u32 z)
 	m_Z=z;
 
 	// set parent of each patch	
-	for (int j=0;j<PATCH_SIZE;j++)
+	for (size_t j=0;j<PATCH_SIZE;j++)
 	{
-		for (int i=0;i<PATCH_SIZE;i++)
+		for (size_t i=0;i<PATCH_SIZE;i++)
 		{
 			m_MiniPatches[j][i].m_Parent=this;
 		}
@@ -55,9 +55,9 @@ void CPatch::CalcBounds()
 {
 	m_Bounds.SetEmpty();
 
-	for (int j=0;j<PATCH_SIZE+1;j++)
+	for (ssize_t j=0;j<PATCH_SIZE+1;j++)
 	{
-		for (int i=0;i<PATCH_SIZE+1;i++)
+		for (ssize_t i=0;i<PATCH_SIZE+1;i++)
 		{
 			CVector3D pos;
 			m_Parent->CalcPosition(m_X*PATCH_SIZE+i,m_Z*PATCH_SIZE+j,pos);

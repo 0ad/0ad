@@ -603,7 +603,7 @@ template<class Item, class Divider> struct CacheEntry
 {
 	Item item;
 	size_t size;
-	uint cost;
+	size_t cost;
 	float credit;
 
 	Divider divider;
@@ -613,7 +613,7 @@ template<class Item, class Divider> struct CacheEntry
 	{
 	}
 
-	CacheEntry(Item item_, size_t size_, uint cost_)
+	CacheEntry(Item item_, size_t size_, size_t cost_)
 		: item(item_), divider((float)size_)
 	{
 		size = size_;
@@ -647,7 +647,7 @@ class Cache
 public:
 	Cache() : mgr() {}
 
-	void add(Key key, Item item, size_t size, uint cost)
+	void add(Key key, Item item, size_t size, size_t cost)
 	{
 		return mgr.add(key, Entry(item, size, cost));
 	}

@@ -39,7 +39,7 @@ enum AmdPowerNowFlags
 static bool IsThrottlingPossible()
 {
 #if ARCH_IA32
-	u32 regs[4];
+	Ia32CpuidRegs regs;
 	switch(ia32_Vendor())
 	{
 	case IA32_VENDOR_INTEL:
@@ -48,9 +48,10 @@ static bool IsThrottlingPossible()
 		break;
 
 	case IA32_VENDOR_AMD:
-		if(ia32_asm_cpuid(0x80000007, regs))
+		regs.eax = 0x80000007;
+		if(ia32_cpuid(&regs))
 		{
-			if(regs[EDX] & (PN_FREQ_ID_CTRL|PN_SW_THERMAL_CTRL))
+			if(regs.edx & (PN_FREQ_ID_CTRL|PN_SW_THERMAL_CTRL))
 				return true;
 		}
 		break;
@@ -113,11 +114,12 @@ bool CounterTSC::IsSafe() const
 		// note: 8th generation CPUs support C1-clock ramping, which causes
 		// drift on multi-core systems, but those were excluded above.
 
-		u32 regs[4];
-		if(ia32_asm_cpuid(0x80000007, regs))
+		Ia32CpuidRegs regs;
+		regs.eax = 0x80000007;
+		if(ia32_cpuid(&regs))
 		{
 			// TSC is invariant WRT P-state, C-state and STPCLK => safe.
-			if(regs[EDX] & PN_INVARIANT_TSC)
+			if(regs.edx & PN_INVARIANT_TSC)
 				return true;
 		}
 
@@ -157,7 +159,7 @@ u64 CounterTSC::Counter() const
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint CounterTSC::CounterBits() const
+size_t CounterTSC::CounterBits() const
 {
 	return 64;
 }

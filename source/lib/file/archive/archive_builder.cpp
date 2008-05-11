@@ -187,7 +187,7 @@ struct Connection
 	// repeated edges ("connections") are reflected in
 	// the 'occurrences' count; we optimize the ordering so that
 	// files with frequent connections are nearby.
-	uint occurrences;
+	size_t occurrences;
 
 	Connection(ConnectionId id_)
 		: id(id_), occurrences(1) {}
@@ -267,7 +267,7 @@ class ConnectionBuilder
 		for(size_t r = 0; r < t.num_runs; r++)
 		{
 			const TraceRun& run = t.runs[r];
-			for(uint i = 0; i < run.num_ents; i++)
+			for(size_t i = 0; i < run.num_ents; i++)
 			{
 				const TraceEntry* te = &run.ents[i];
 				// improvement: postprocess the trace and remove all IOs that would be
@@ -1090,7 +1090,7 @@ LibError trace_run(const char* osPathname)
 {
 	Trace trace;
 	RETURN_ERR(trace.Load(osPathname));
-	for(uint i = 0; i < trace.NumEntries(); i++)
+	for(size_t i = 0; i < trace.NumEntries(); i++)
 		trace.Entries()[i]->Run();
 	return INFO::OK;
 }

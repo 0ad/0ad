@@ -317,7 +317,7 @@ struct CRendererInternals : public boost::noncopyable
 		glLoadMatrixf(&view._11);
 
 		const SViewPort &vp = camera.GetViewPort();
-		glViewport(vp.m_X,vp.m_Y,vp.m_Width,vp.m_Height);
+		glViewport((GLint)vp.m_X,(GLint)vp.m_Y,(GLsizei)vp.m_Width,(GLsizei)vp.m_Height);
 	}
 };
 
@@ -357,7 +357,7 @@ CRenderer::CRenderer()
 	m_ShadowZBias = 0.02f;
 	m_ShadowMapSize = 0;
 
-	for (uint i=0;i<MaxTextureUnits;i++) {
+	for (size_t i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
 	}
 
@@ -1092,7 +1092,7 @@ void CRenderer::RenderReflections()
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, wm.m_ReflectionTexture);
 	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0,
-		wm.m_ReflectionTextureSize, wm.m_ReflectionTextureSize);
+		(GLsizei)wm.m_ReflectionTextureSize, (GLsizei)wm.m_ReflectionTextureSize);
 
 	//Reset old camera and re-enable backface culling
 	m_ViewCamera = normalCamera;
@@ -1158,7 +1158,7 @@ void CRenderer::RenderRefractions()
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, wm.m_RefractionTexture);
 	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0,
-		wm.m_RefractionTextureSize, wm.m_RefractionTextureSize);
+		(GLsizei)wm.m_RefractionTextureSize, (GLsizei)wm.m_RefractionTextureSize);
 
 	//Reset old camera and re-enable backface culling
 	m_ViewCamera = normalCamera;
@@ -1356,7 +1356,7 @@ void CRenderer::SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCam
 
 void CRenderer::SetViewport(const SViewPort &vp)
 {
-	glViewport(vp.m_X,vp.m_Y,vp.m_Width,vp.m_Height);
+	glViewport((GLint)vp.m_X,(GLint)vp.m_Y,(GLsizei)vp.m_Width,(GLsizei)vp.m_Height);
 }
 
 void CRenderer::Submit(CPatch* patch)
@@ -1418,7 +1418,7 @@ void CRenderer::RenderScene(Scene *scene)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LoadTexture: try and load the given texture; set clamp/repeat flags on texture object if necessary
-bool CRenderer::LoadTexture(CTexture* texture,u32 wrapflags)
+bool CRenderer::LoadTexture(CTexture* texture,int wrapflags)
 {
 	const Handle errorhandle = -1;
 
@@ -1494,7 +1494,7 @@ bool CRenderer::IsTextureTransparent(CTexture* texture)
 	if (!texture) return false;
 	Handle h=texture->GetHandle();
 
-	uint flags = 0;	// assume no alpha on failure
+	int flags = 0;	// assume no alpha on failure
 	(void)ogl_tex_get_format(h, &flags, 0);
 	return (flags & TEX_ALPHA) != 0;
 }
@@ -1542,11 +1542,11 @@ int CRenderer::LoadAlphaMaps()
 		"blendushape.dds",
 		"blendbad.dds"
 	};
-	uint base = 0;	// texture width/height (see below)
+	size_t base = 0;	// texture width/height (see below)
 	// for convenience, we require all alpha maps to be of the same BPP
 	// (avoids another ogl_tex_get_size call, and doesn't hurt)
-	uint bpp = 0;
-	for(uint i=0;i<NumAlphaMaps;i++)
+	size_t bpp = 0;
+	for(size_t i=0;i<NumAlphaMaps;i++)
 	{
 		// note: these individual textures can be discarded afterwards;
 		// we cache the composite.
@@ -1556,13 +1556,13 @@ int CRenderer::LoadAlphaMaps()
 // quick hack: we require plain RGB(A) format, so convert to that.
 // ideally the texture would be in uncompressed form; then this wouldn't
 // be necessary.
-uint flags;
+int flags;
 ogl_tex_get_format(textures[i], &flags, 0);
 ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
-		uint this_width = 0, this_bpp = 0;	// fail-safe
+		size_t this_width = 0, this_bpp = 0;	// fail-safe
 		(void)ogl_tex_get_size(textures[i], &this_width, 0, &this_bpp);
 		// .. first iteration: establish size
 		if(i == 0)
@@ -1578,24 +1578,24 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 	//
 	// copy each alpha map (tile) into one buffer, arrayed horizontally.
 	//
-	uint tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
-	uint total_w = RoundUpToPowerOf2(tile_w * NumAlphaMaps);
-	uint total_h = base; debug_assert(is_pow2(total_h));
+	size_t tile_w = 2+base+2;	// 2 pixel border (avoids bilinear filtering artifacts)
+	size_t total_w = round_up_to_pow2(tile_w * NumAlphaMaps);
+	size_t total_h = base; debug_assert(is_pow2(total_h));
 	shared_ptr<u8> data = io_Allocate(total_w*total_h*3);
 	// for each tile on row
-	for(uint i=0;i<NumAlphaMaps;i++)
+	for(size_t i=0;i<NumAlphaMaps;i++)
 	{
 		// get src of copy
 		const u8* src = 0;
 		(void)ogl_tex_get_data(textures[i], (void**)&src);
 
-		uint srcstep=bpp/8;
+		size_t srcstep=bpp/8;
 
 		// get destination of copy
 		u8* dst=data.get()+3*(i*tile_w);
 
 		// for each row of image
-		for (uint j=0;j<base;j++) {
+		for (size_t j=0;j<base;j++) {
 			// duplicate first pixel
 			CopyTriple(dst,src);
 			dst+=3;
@@ -1603,7 +1603,7 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 			dst+=3;
 
 			// copy a row
-			for (uint k=0;k<base;k++) {
+			for (size_t k=0;k<base;k++) {
 				CopyTriple(dst,src);
 				dst+=3;
 				src+=srcstep;
@@ -1624,7 +1624,7 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 		m_AlphaMapCoords[i].v1=1.0f;
 	}
 
-	for (uint i=0;i<NumAlphaMaps;i++)
+	for (size_t i=0;i<NumAlphaMaps;i++)
 		(void)ogl_tex_free(textures[i]);
 
 	// upload the composite texture

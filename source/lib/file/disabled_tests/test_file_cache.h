@@ -30,7 +30,7 @@ public:
 					break;
 				// out of room - remove a previous allocation
 				// .. choose one at random
-				size_t chosen_idx = (size_t)rand(0, (uint)allocations.size());
+				size_t chosen_idx = (size_t)rand(0, (size_t)allocations.size());
 				AllocMap::iterator it = allocations.begin();
 				for(; chosen_idx != 0; chosen_idx--)
 					++it;

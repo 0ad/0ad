@@ -26,18 +26,18 @@ public:
 		m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 	}
 
-	void RaiseVertex(int x, int y, int amount)
+	void RaiseVertex(ssize_t x, ssize_t y, int amount)
 	{
 		// Ignore out-of-bounds vertices
-		if ((unsigned)x >= m_VertsPerSide || (unsigned)y >= m_VertsPerSide)
+		if (size_t(x) >= size_t(m_VertsPerSide) || size_t(y) >= size_t(m_VertsPerSide))
 			return;
 
 		set(x,y, (u16)clamp(get(x,y) + amount, 0, 65535));
 	}
 
-	void MoveVertexTowards(int x, int y, int target, int amount)
+	void MoveVertexTowards(ssize_t x, ssize_t y, int target, int amount)
 	{
-		if ((unsigned)x >= m_VertsPerSide || (unsigned)y >= m_VertsPerSide)
+		if (size_t(x) >= size_t(m_VertsPerSide) || size_t(y) >= size_t(m_VertsPerSide))
 			return;
 
 		int h = get(x,y);
@@ -51,31 +51,31 @@ public:
 		set(x,y, (u16)clamp(h, 0, 65535));
 	}
 
-	void SetVertex(int x, int y, u16 value)
+	void SetVertex(ssize_t x, ssize_t y, u16 value)
 	{
-		if ((unsigned)x >= m_VertsPerSide || (unsigned)y >= m_VertsPerSide)
+		if (size_t(x) >= size_t(m_VertsPerSide) || size_t(y) >= size_t(m_VertsPerSide))
 			return;
 
 		set(x,y, value);
 	}
 
-	u16 GetVertex(int x, int y)
+	u16 GetVertex(ssize_t x, ssize_t y)
 	{
-		return get(clamp(x, 0, (int)m_VertsPerSide-1), clamp(y, 0, (int)m_VertsPerSide-1));
+		return get(clamp(x, ssize_t(0), ssize_t(m_VertsPerSide-1)), clamp(y, ssize_t(0), ssize_t(m_VertsPerSide-1)));
 	}
 
 protected:
-	u16 getOld(int x, int y)
+	u16 getOld(ssize_t x, ssize_t y)
 	{
 		return m_Heightmap[y*m_VertsPerSide + x];
 	}
-	void setNew(int x, int y, const u16& val)
+	void setNew(ssize_t x, ssize_t y, const u16& val)
 	{
 		m_Heightmap[y*m_VertsPerSide + x] = val;
 	}
 
 	u16* m_Heightmap;
-	size_t m_VertsPerSide;
+	ssize_t m_VertsPerSide;
 };
 
 	
@@ -106,11 +106,11 @@ BEGIN_COMMAND(AlterElevation)
 		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace(previousPosition);
 		previousPosition = g_CurrentBrush.m_Centre;
 
-		int x0, y0;
+		ssize_t x0, y0;
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
-		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
-			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
+		for (ssize_t dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+			for (ssize_t dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				// TODO: proper variable raise amount (store floats in terrain delta array?)
 				float b = g_CurrentBrush.Get(dx, dy);
@@ -162,15 +162,15 @@ BEGIN_COMMAND(FlattenElevation)
 		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace(previousPosition);
 		previousPosition = g_CurrentBrush.m_Centre;
 
-		int xc, yc;
+		ssize_t xc, yc;
 		g_CurrentBrush.GetCentre(xc, yc);
 		u16 height = m_TerrainDelta.GetVertex(xc, yc);
 
-		int x0, y0;
+		ssize_t x0, y0;
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
-		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
-			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
+		for (ssize_t dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+			for (ssize_t dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				float b = g_CurrentBrush.Get(dx, dy);
 				if (b)

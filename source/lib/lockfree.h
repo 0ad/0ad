@@ -131,7 +131,7 @@ extern LibError lfl_erase(LFList* list, uintptr_t key);
 struct LFHash
 {
 	LFList* tbl;
-	uint mask;
+	size_t mask;
 };
 
 // make ready a previously unused(!) hash object. table size will be

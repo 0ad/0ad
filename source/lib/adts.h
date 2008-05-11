@@ -12,6 +12,7 @@
 #define INCLUDED_ADTS
 
 #include "lib/fnv_hash.h"
+#include "lib/bits.h"
 
 
 //-----------------------------------------------------------------------------
@@ -59,7 +60,7 @@ class DynHashTbl
 	{
 		size_t hash = tr.hash(key);
 		debug_assert(max_entries != 0);	// otherwise, mask will be incorrect
-		const uint mask = max_entries-1;
+		const size_t mask = max_entries-1;
 		for(;;)
 		{
 			T& t = tbl[hash & mask];
@@ -228,9 +229,9 @@ public:
 
 struct BitBuf
 {
-	ulong buf;
-	ulong cur;	// bit to be appended (toggled by add())
-	ulong len;	// |buf| [bits]
+	uintptr_t buf;
+	uintptr_t cur;	// bit to be appended (toggled by add())
+	size_t len;	// |buf| [bits]
 
 	void reset()
 	{
@@ -240,7 +241,7 @@ struct BitBuf
 	}
 
 	// toggle current bit if desired, and add to buffer (new bit is LSB)
-	void add(ulong toggle)
+	void add(uintptr_t toggle)
 	{
 		cur ^= toggle;
 		buf <<= 1;
@@ -249,12 +250,12 @@ struct BitBuf
 	}
 
 	// extract LS n bits
-	uint extract(ulong n)
+	size_t extract(uintptr_t n)
 	{
-		ulong i = buf & ((1ul << n) - 1);
+		const uintptr_t bits = buf & bit_mask<uintptr_t>(n);
 		buf >>= n;
 
-		return i;
+		return bits;
 	}
 };
 
@@ -475,7 +476,7 @@ class MateiHashTbl
 	{
 		size_t hash = hashFunc(key);
 		//debug_assert(max_entries != 0);	// otherwise, mask will be incorrect
-		const uint mask = max_entries-1;
+		const size_t mask = max_entries-1;
 		int stride = 1;	// for quadratic probing
 		for(;;)
 		{

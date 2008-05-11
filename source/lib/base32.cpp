@@ -15,7 +15,7 @@
 void base32(const size_t in_len, const u8* in, u8* out)
 {
 	u32 pool = 0;	// of bits from buffer
-	uint pool_bits = 0;	// # bits currently in buffer
+	size_t pool_bits = 0;	// # bits currently in buffer
 
 	static const u8 tbl[33] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
@@ -32,7 +32,7 @@ void base32(const size_t in_len, const u8* in, u8* out)
 		}
 
 		pool_bits -= 5;
-		const uint c = (pool >> pool_bits) & 31;
+		const size_t c = (pool >> pool_bits) & 31;
 		*out++ = tbl[c];
 	}
 

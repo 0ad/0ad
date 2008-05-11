@@ -25,33 +25,33 @@
 // emulate hardware S3TC support - if that isn't available, everything will
 // be dog-slow anyway due to increased vmem usage.
 
-// pixel colors are stored as uint[4]. uint rather than u8 protects from
+// pixel colors are stored as size_t[4]. size_t rather than u8 protects from
 // overflow during calculations, and padding to an even size is a bit
 // more efficient (even though we don't need the alpha component).
 enum RGBA {	R, G, B, A };
 
 
-static inline void mix_2_3(uint dst[4], uint c0[4], uint c1[4])
+static inline void mix_2_3(size_t dst[4], size_t c0[4], size_t c1[4])
 {
 	for(int i = 0; i < 3; i++) dst[i] = (c0[i]*2 + c1[i] + 1)/3;
 }
 
-static inline void mix_avg(uint dst[4], uint c0[4], uint c1[4])
+static inline void mix_avg(size_t dst[4], size_t c0[4], size_t c1[4])
 {
 	for(int i = 0; i < 3; i++) dst[i] = (c0[i]+c1[i])/2;
 }
 
-static inline uint access_bit_tbl(u32 tbl, uint idx, uint bit_width)
+static inline size_t access_bit_tbl(u32 tbl, size_t idx, size_t bit_width)
 {
-	uint val = tbl >> (idx*bit_width);
-	val &= (1u << bit_width)-1;
+	size_t val = tbl >> (idx*bit_width);
+	val &= bit_mask<u32>(bit_width);
 	return val;
 }
 
-static inline uint access_bit_tbl64(u64 tbl, uint idx, uint bit_width)
+static inline size_t access_bit_tbl64(u64 tbl, size_t idx, size_t bit_width)
 {
-	uint val = (uint)(tbl >> (idx*bit_width));
-	val &= (1u << bit_width)-1;
+	size_t val = (size_t)(tbl >> (idx*bit_width));
+	val &= bit_mask<u64>(bit_width);
 	return val;
 }
 
@@ -59,11 +59,11 @@ static inline uint access_bit_tbl64(u64 tbl, uint idx, uint bit_width)
 // MS bits - see http://www.mindcontrol.org/~hplus/graphics/expand-bits.html ;
 // this is also the algorithm used by graphics cards when decompressing S3TC).
 // used to convert 565 to 32bpp RGB.
-static inline uint unpack_to_8(u16 c, uint bits_below, uint num_bits)
+static inline size_t unpack_to_8(u16 c, size_t bits_below, size_t num_bits)
 {
-	const uint num_filler_bits = 8-num_bits;
-	const uint field = bits(c, bits_below, bits_below+num_bits-1);
-	const uint filler = field >> (8-num_bits);
+	const size_t num_filler_bits = 8-num_bits;
+	const size_t field = (size_t)bits(c, bits_below, bits_below+num_bits-1);
+	const size_t filler = field >> (8-num_bits);
 	return (field << num_filler_bits) | filler;
 }
 
@@ -73,7 +73,7 @@ static inline uint unpack_to_8(u16 c, uint bits_below, uint num_bits)
 struct S3tcBlock
 {
 	// the 4 color choices for each pixel (RGBA)
-	uint c[4][4];	// c[i][RGBA_component]
+	size_t c[4][4];	// c[i][RGBA_component]
 
 	// (DXT5 only) the 8 alpha choices
 	u8 dxt5_a_tbl[8];
@@ -84,14 +84,14 @@ struct S3tcBlock
 	// table of 2-bit color selectors
 	u32 c_selectors;
 
-	uint dxt;
+	size_t dxt;
 };
 
 
-static void s3tc_precalc_alpha(uint dxt, const u8* RESTRICT a_block, S3tcBlock* RESTRICT b)
+static void s3tc_precalc_alpha(size_t dxt, const u8* RESTRICT a_block, S3tcBlock* RESTRICT b)
 {
 	// read block contents
-	const uint a0 = a_block[0], a1 = a_block[1];
+	const u8 a0 = a_block[0], a1 = a_block[1];
 	b->a_bits = read_le64(a_block);	// see below
 
 	if(dxt == 5)
@@ -127,7 +127,7 @@ static void s3tc_precalc_alpha(uint dxt, const u8* RESTRICT a_block, S3tcBlock* 
 }
 
 
-static void s3tc_precalc_color(uint dxt, const u8* RESTRICT c_block, S3tcBlock* RESTRICT b)
+static void s3tc_precalc_color(size_t dxt, const u8* RESTRICT c_block, S3tcBlock* RESTRICT b)
 {
 	// read block contents
 	// .. S3TC reference colors (565 format). the color table is generated
@@ -164,7 +164,7 @@ static void s3tc_precalc_color(uint dxt, const u8* RESTRICT c_block, S3tcBlock* 
 }
 
 
-static void s3tc_precalc_block(uint dxt, const u8* RESTRICT block, S3tcBlock* RESTRICT b)
+static void s3tc_precalc_block(size_t dxt, const u8* RESTRICT block, S3tcBlock* RESTRICT b)
 {
 	b->dxt = dxt;
 
@@ -177,21 +177,21 @@ static void s3tc_precalc_block(uint dxt, const u8* RESTRICT block, S3tcBlock* RE
 }
 
 
-static void s3tc_write_pixel(const S3tcBlock* RESTRICT b, uint pixel_idx, u8* RESTRICT out)
+static void s3tc_write_pixel(const S3tcBlock* RESTRICT b, size_t pixel_idx, u8* RESTRICT out)
 {
 	debug_assert(pixel_idx < 16);
 
 	// pixel index -> color selector (2 bit) -> color
-	const uint c_selector = access_bit_tbl(b->c_selectors, pixel_idx, 2);
-	const uint* c = b->c[c_selector];
+	const size_t c_selector = access_bit_tbl(b->c_selectors, pixel_idx, 2);
+	const size_t* c = b->c[c_selector];
 	for(int i = 0; i < 3; i++)
-		out[i] = c[i];
+		out[i] = (u8)c[i];
 
 	// if no alpha, done
 	if(b->dxt == 1)
 		return;
 
-	uint a;
+	size_t a;
 	if(b->dxt == 3)
 	{
 		// table of 4-bit alpha entries
@@ -201,47 +201,47 @@ static void s3tc_write_pixel(const S3tcBlock* RESTRICT b, uint pixel_idx, u8* RE
 	else if(b->dxt == 5)
 	{
 		// pixel index -> alpha selector (3 bit) -> alpha
-		const uint a_selector = access_bit_tbl64(b->a_bits, pixel_idx, 3);
+		const size_t a_selector = access_bit_tbl64(b->a_bits, pixel_idx, 3);
 		a = b->dxt5_a_tbl[a_selector];
 	}
 	// (dxt == DXT1A)
 	else
 		a = c[A];
-	out[A] = a;
+	out[A] = (u8)a;
 }
 
 
 struct S3tcDecompressInfo
 {
-	uint dxt;
-	uint s3tc_block_size;
-	uint out_Bpp;
+	size_t dxt;
+	size_t s3tc_block_size;
+	size_t out_Bpp;
 	u8* out;
 };
 
-static void s3tc_decompress_level(uint UNUSED(level), uint level_w, uint level_h,
+static void s3tc_decompress_level(size_t UNUSED(level), size_t level_w, size_t level_h,
 	const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	S3tcDecompressInfo* di = (S3tcDecompressInfo*)cbData;
-	const uint dxt             = di->dxt;
-	const uint s3tc_block_size = di->s3tc_block_size;
+	const size_t dxt             = di->dxt;
+	const size_t s3tc_block_size = di->s3tc_block_size;
 
 	// note: 1x1 images are legitimate (e.g. in mipmaps). they report their
 	// width as such for glTexImage, but the S3TC data is padded to
 	// 4x4 pixel block boundaries.
-	const uint blocks_w = round_up(level_w, 4u) / 4u;
-	const uint blocks_h = round_up(level_h, 4u) / 4u;
+	const size_t blocks_w = round_up(level_w, 4u) / 4u;
+	const size_t blocks_h = round_up(level_h, 4u) / 4u;
 	const u8* s3tc_data = level_data;
 	debug_assert(level_data_size % s3tc_block_size == 0);
 
-	for(uint block_y = 0; block_y < blocks_h; block_y++)
-		for(uint block_x = 0; block_x < blocks_w; block_x++)
+	for(size_t block_y = 0; block_y < blocks_h; block_y++)
+		for(size_t block_x = 0; block_x < blocks_w; block_x++)
 		{
 			S3tcBlock b;
 			s3tc_precalc_block(dxt, s3tc_data, &b);
 			s3tc_data += s3tc_block_size;
 
-			uint pixel_idx = 0;
+			size_t pixel_idx = 0;
 			for(int y = 0; y < 4; y++)
 			{
 				// this is ugly, but advancing after x, y and block_y loops
@@ -271,12 +271,12 @@ static LibError s3tc_decompress(Tex* t)
 	// - adding or stripping alpha channels during transform is not
 	//   our job; we merely output the same pixel format as given
 	//   (tex.cpp's plain transform could cover it, if ever needed).
-	const uint dxt = t->flags & TEX_DXT;
-	const uint out_bpp = (dxt != 1)? 32 : 24;
+	const size_t dxt = t->flags & TEX_DXT;
+	const size_t out_bpp = (dxt != 1)? 32 : 24;
 	const size_t out_size = tex_img_size(t) * out_bpp / t->bpp;
 	shared_ptr<u8> decompressedData = io_Allocate(out_size);
 
-	const uint s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
+	const size_t s3tc_block_size = (dxt == 3 || dxt == 5)? 16 : 8;
 	S3tcDecompressInfo di = { dxt, s3tc_block_size, out_bpp/8, decompressedData.get() };
 	const u8* s3tc_data = tex_get_data(t);
 	const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
@@ -374,7 +374,7 @@ DDSURFACEDESC2;
 #pragma pack(pop)
 
 
-static bool is_valid_dxt(uint dxt)
+static bool is_valid_dxt(size_t dxt)
 {
 	switch(dxt)
 	{
@@ -394,10 +394,10 @@ static bool is_valid_dxt(uint dxt)
 // pf points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
+static LibError decode_pf(const DDPIXELFORMAT* pf, size_t& bpp, size_t& flags)
 {
-	uint bpp = 0;
-	uint flags = 0;
+	bpp = 0;
+	flags = 0;
 
 	// check struct size
 	if(read_le32(&pf->dwSize) != sizeof(DDPIXELFORMAT))
@@ -475,8 +475,6 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 	else
 		WARN_RETURN(ERR::TEX_FMT_INVALID);
 
-	*bpp_ = bpp;
-	*flags_ = flags;
 	return INFO::OK;
 }
 
@@ -485,8 +483,8 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, uint* bpp_, uint* flags_)
 // sd points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
-	uint* bpp_, uint* flags_)
+static LibError decode_sd(const DDSURFACEDESC2* sd, size_t* w_, size_t* h_,
+	size_t* bpp_, size_t* flags_)
 {
 	// check header size
 	if(read_le32(&sd->dwSize) != sizeof(*sd))
@@ -505,8 +503,8 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	const size_t w = (size_t)read_le32(&sd->dwWidth);
 
 	// pixel format
-	uint bpp, flags;
-	RETURN_ERR(decode_pf(&sd->ddpfPixelFormat, &bpp, &flags));
+	size_t bpp, flags;
+	RETURN_ERR(decode_pf(&sd->ddpfPixelFormat, bpp, flags));
 
 	// if the image is not aligned with the S3TC block size, it is stored
 	// with extra pixels on the bottom left to fill up the space, so we need
@@ -514,8 +512,8 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, uint* w_, uint* h_,
 	size_t stored_h, stored_w;
 	if(flags & TEX_DXT)
 	{
-		stored_h = round_up(h, 4u);
-		stored_w = round_up(w, 4u);
+		stored_h = round_up(h, size_t(4));
+		stored_w = round_up(w, size_t(4));
 	}
 	else
 	{
@@ -606,8 +604,8 @@ static LibError dds_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 	u8* file         = da->base;
 	const DDSURFACEDESC2* sd = (const DDSURFACEDESC2*)(file+4);
 
-	uint w, h;
-	uint bpp, flags;
+	size_t w, h;
+	size_t bpp, flags;
 	RETURN_ERR(decode_sd(sd, &w, &h, &bpp, &flags));
 	// note: cannot pass address of these directly to decode_sd because
 	// they are bitfields.
@@ -627,12 +625,12 @@ static LibError dds_encode(Tex* RESTRICT UNUSED(t), DynArray* RESTRICT UNUSED(da
 }
 
 
-static LibError dds_transform(Tex* t, uint transforms)
+static LibError dds_transform(Tex* t, size_t transforms)
 {
-	uint dxt = t->flags & TEX_DXT;
+	size_t dxt = t->flags & TEX_DXT;
 	debug_assert(is_valid_dxt(dxt));
 
-	const uint transform_dxt = transforms & TEX_DXT;
+	const size_t transform_dxt = transforms & TEX_DXT;
 	// requesting decompression
 	if(dxt && transform_dxt)
 	{

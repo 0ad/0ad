@@ -270,7 +270,7 @@ public:
 
 	void Insert(FreedBlock* freedBlock)
 	{
-		const uint sizeClass = SizeClass(freedBlock->Size());
+		const size_t sizeClass = SizeClass(freedBlock->Size());
 		m_rangeLists[sizeClass].Insert<AddressOrder>(freedBlock);
 
 		m_bitmap |= BIT(sizeClass);
@@ -283,13 +283,13 @@ public:
 	{
 		// iterate over all large enough, non-empty size classes
 		// (zero overhead for empty size classes)
-		const uint minSizeClass = SizeClass(minSize);
-		uint sizeClassBits = m_bitmap & (~0u << minSizeClass);
+		const size_t minSizeClass = SizeClass(minSize);
+		size_t sizeClassBits = m_bitmap & (~0u << minSizeClass);
 		while(sizeClassBits)
 		{
-			const uint size = ValueOfLeastSignificantOneBit(sizeClassBits);
+			const size_t size = ValueOfLeastSignificantOneBit(sizeClassBits);
 			sizeClassBits &= ~size;	// remove from sizeClassBits
-			const uint sizeClass = SizeClass(size);
+			const size_t sizeClass = SizeClass(size);
 
 			FreedBlock* freedBlock = m_rangeLists[sizeClass].Find(minSize);
 			if(freedBlock)
@@ -304,7 +304,7 @@ public:
 
 	void Remove(FreedBlock* freedBlock)
 	{
-		const uint sizeClass = SizeClass(freedBlock->Size());
+		const size_t sizeClass = SizeClass(freedBlock->Size());
 		m_rangeLists[sizeClass].Remove(freedBlock);
 
 		// (masking with !IsEmpty() << sizeClass would probably be faster)
@@ -344,9 +344,9 @@ private:
 	 * @return "size class" of a given size.
 	 * class i > 0 contains blocks of size (2**(i-1), 2**i].
 	 **/
-	static uint SizeClass(size_t size)
+	static size_t SizeClass(size_t size)
 	{
-		return ceil_log2((uint)size);
+		return ceil_log2((size_t)size);
 	}
 
 	static uintptr_t ValueOfLeastSignificantOneBit(uintptr_t x)

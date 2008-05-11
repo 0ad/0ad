@@ -25,12 +25,12 @@ class CTerrainGroup
 	CStr m_Name;
 	// "index".. basically a bogus integer that can be used by ScEd to set texture
 	// priorities
-	int m_Index;
+	size_t m_Index;
 	// list of textures of this type (found from the texture directory)
 	std::vector<CTextureEntry*> m_Terrains;
 
 public:
-	CTerrainGroup(CStr name, int index):
+	CTerrainGroup(CStr name, size_t index):
 		m_Name(name),
 		m_Index(index)
 	{}
@@ -40,7 +40,7 @@ public:
 	// Remove a texture entry
 	void RemoveTerrain(CTextureEntry *);
 
-	int GetIndex() const
+	size_t GetIndex() const
 	{ return m_Index; }
 	CStr GetName() const
 	{ return m_Name; }
@@ -63,7 +63,7 @@ private:
 
 	TerrainGroupMap m_TerrainGroups;
 
-	uint m_LastGroupIndex;
+	size_t m_LastGroupIndex;
 
 	// Find+load all textures in directory; check if
 	// there's an override XML with the same basename (if there is, load it)

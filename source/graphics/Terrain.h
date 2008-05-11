@@ -24,7 +24,7 @@ class CVector2D;
 // Terrain Constants:
 //
 // CELL_SIZE: size of each tile in x and z
-const int	CELL_SIZE = 4;	
+const ssize_t CELL_SIZE = 4;	
 // HEIGHT_SCALE: vertical scale of terrain - terrain has a coordinate range of 
 // 0 to 65536*HEIGHT_SCALE
 const float HEIGHT_SCALE = 0.35f/256.0f;
@@ -39,16 +39,18 @@ public:
 	~CTerrain();
 
 	// Coordinate naming convention: world-space coordinates are float x,z;
-	// tile-space coordinates are int i,j.
+	// tile-space coordinates are ssize_t i,j. rationale: signed types can
+	// more efficiently be converted to/from floating point. use ssize_t
+	// instead of int/long because these are sizes.
 
-	bool Initialize(u32 size, const u16* ptr);
+	bool Initialize(ssize_t size, const u16* ptr);
 
 	// return number of vertices along edge of the terrain
-	u32 GetVerticesPerSide() const { return m_MapSize; }
+	ssize_t GetVerticesPerSide() const { return m_MapSize; }
 	// return number of tiles along edge of the terrain
-	u32 GetTilesPerSide() const { return GetVerticesPerSide()-1; }
+	ssize_t GetTilesPerSide() const { return GetVerticesPerSide()-1; }
 	// return number of patches along edge of the terrain
-	u32 GetPatchesPerSide() const { return m_MapSizePatches; }
+	ssize_t GetPatchesPerSide() const { return m_MapSizePatches; }
 
 	bool IsOnMap(float x, float z) const
 	{
@@ -68,7 +70,7 @@ public:
 			index = m_MapSize - 2;
 	}
 
-	float GetVertexGroundLevel(int i, int j) const;
+	float GetVertexGroundLevel(ssize_t i, ssize_t j) const;
 	float GetExactGroundLevel(float x, float z) const;
 	float GetExactGroundLevel(const CVector2D& v) const;
 
@@ -76,7 +78,7 @@ public:
 	//Find the slope of in X and Z axes depending on the way the entity is facing
 	CVector2D GetSlopeAngleFace(CEntity* entity) const;	
 	// resize this terrain such that each side has given number of patches
-	void Resize(u32 size);
+	void Resize(ssize_t size);
 
 	// set up a new heightmap from 16 bit data; assumes heightmap matches current terrain size
 	void SetHeightMap(u16* heightmap);
@@ -85,34 +87,34 @@ public:
 
 	// get patch at given coordinates, expressed in patch-space; return 0 if
 	// coordinates represent patch off the edge of the map
-	CPatch* GetPatch(i32 i, i32 j) const; 
+	CPatch* GetPatch(ssize_t i, ssize_t j) const; 
 	// get tile at given coordinates, expressed in tile-space; return 0 if
 	// coordinates represent tile off the edge of the map
-	CMiniPatch* GetTile(i32 i, i32 j) const;
+	CMiniPatch* GetTile(ssize_t i, ssize_t j) const;
 
 	// calculate the position of a given vertex
-	void CalcPosition(i32 i, i32 j, CVector3D& pos) const;
+	void CalcPosition(ssize_t i, ssize_t j, CVector3D& pos) const;
 	// calculate the vertex under a given position (rounding down coordinates)
-	static void CalcFromPosition(const CVector3D& pos, i32& i, i32& j)
+	static void CalcFromPosition(const CVector3D& pos, ssize_t& i, ssize_t& j)
 	{
-		i = cpu_i32FromFloat(pos.X/CELL_SIZE);
-		j = cpu_i32FromFloat(pos.Z/CELL_SIZE);
+		i = (ssize_t)(pos.X/CELL_SIZE);
+		j = (ssize_t)(pos.Z/CELL_SIZE);
 	}
 	// calculate the vertex under a given position (rounding down coordinates)
-	static void CalcFromPosition(float x, float z, i32& i, i32& j)
+	static void CalcFromPosition(float x, float z, ssize_t& i, ssize_t& j)
 	{
-		i = cpu_i32FromFloat(x/CELL_SIZE);
-		j = cpu_i32FromFloat(z/CELL_SIZE);
+		i = (ssize_t)(x/CELL_SIZE);
+		j = (ssize_t)(z/CELL_SIZE);
 	}
 	// calculate the normal at a given vertex
-	void CalcNormal(u32 i, u32 j, CVector3D& normal) const;
+	void CalcNormal(ssize_t i, ssize_t j, CVector3D& normal) const;
 
 	// flatten out an area of terrain (specified in world space coords); return
 	// the average height of the flattened area
 	float FlattenArea(float x0, float x1, float z0, float z1);
 
 	// mark a specific square of tiles as dirty - use this after modifying the heightmap
-	void MakeDirty(int i0, int j0, int i1, int j1, int dirtyFlags);
+	void MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags);
 	// mark the entire map as dirty
 	void MakeDirty(int dirtyFlags);
 
@@ -129,9 +131,9 @@ private:
 	void InitialisePatches();
 
 	// size of this map in each direction, in vertices; ie. total tiles = sqr(m_MapSize-1)
-	u32 m_MapSize;
+	ssize_t m_MapSize;
 	// size of this map in each direction, in patches; total patches = sqr(m_MapSizePatches)
-	u32 m_MapSizePatches;
+	ssize_t m_MapSizePatches;
 	// the patches comprising this terrain
 	CPatch*	m_Patches;
 	// 16-bit heightmap data

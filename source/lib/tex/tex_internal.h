@@ -23,7 +23,7 @@
  * @param flags TexFlags
  * @return LibError
  **/
-extern LibError tex_validate_plain_format(uint bpp, uint flags);
+extern LibError tex_validate_plain_format(size_t bpp, int flags);
 
 
 /**
@@ -39,6 +39,6 @@ extern LibError tex_validate_plain_format(uint bpp, uint flags);
  * "global orientation".
  * @return bool
  **/
-extern bool tex_orientations_match(uint src_flags, uint dst_orientation);
+extern bool tex_orientations_match(size_t src_flags, size_t dst_orientation);
 
 #endif	// #ifndef INCLUDED_TEX_INTERNAL

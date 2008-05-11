@@ -101,40 +101,81 @@ template<> jsval ToJSVal<int>( int& Native )
 	return( INT_TO_JSVAL( Native ) );
 }
 
-
-
-
-
-
-
 template<> bool ToPrimitive<int>( JSContext* cx, jsval v, int& Storage )
 {
 	JSBool ok = JS_ValueToInt32(cx, v, (int32*)&Storage);
 	return ok == JS_TRUE;
 }
 
-// uint
+// unsigned
 
-template<> jsval ToJSVal<uint>( const uint& Native )
+template<> jsval ToJSVal<unsigned>( const unsigned& Native )
 {
 	return( INT_TO_JSVAL( Native ) );
 }
 
-template<> jsval ToJSVal<uint>( uint& Native )
+template<> jsval ToJSVal<unsigned>( unsigned& Native )
 {
 	return( INT_TO_JSVAL( Native ) );
 }
 
-template<> bool ToPrimitive<uint>( JSContext* cx, jsval v, uint& Storage )
+template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, unsigned& Storage )
 {
 	int temp;
 	if(!ToPrimitive<int>(cx, v, temp))
 		return false;
 	if(temp < 0)
 		return false;
-	Storage = temp;
+	Storage = (unsigned)temp;
 	return true;
 }
+
+// ssize_t
+
+template<> jsval ToJSVal<ssize_t>( const ssize_t& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> jsval ToJSVal<ssize_t>( ssize_t& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage )
+{
+	int32 tmp;
+	JSBool ok = JS_ValueToInt32(cx, v, &tmp);
+	Storage = (ssize_t)tmp;
+	return ok == JS_TRUE;
+}
+
+#if ARCH_AMD64
+
+// size_t (= unsigned int on IA32)
+
+template<> jsval ToJSVal<size_t>( const size_t& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> jsval ToJSVal<size_t>( size_t& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, size_t& Storage )
+{
+	int temp;
+	if(!ToPrimitive<int>(cx, v, temp))
+		return false;
+	if(temp < 0)
+		return false;
+	Storage = (size_t)temp;
+	return true;
+}
+
+#endif
 
 // double
 

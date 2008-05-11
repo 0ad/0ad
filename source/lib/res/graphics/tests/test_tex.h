@@ -6,7 +6,7 @@
 
 class TestTex : public CxxTest::TestSuite 
 {
-	void generate_encode_decode_compare(uint w, uint h, uint flags, uint bpp, const std::string& extension)
+	void generate_encode_decode_compare(size_t w, size_t h, int flags, size_t bpp, const std::string& extension)
 	{
 		// generate test data
 		const size_t size = w*h*bpp/8;
@@ -60,14 +60,14 @@ public:
 			TS_ASSERT_EQUALS(c, correct_c);
 
 			// for each test width/height combination
-			const uint widths [] = { 4, 5, 4, 256, 384 };
-			const uint heights[] = { 4, 4, 5, 256, 256 };
+			const size_t widths [] = { 4, 5, 4, 256, 384 };
+			const size_t heights[] = { 4, 4, 5, 256, 256 };
 			for(size_t i = 0; i < ARRAY_SIZE(widths); i++)
 			{
 				// for each bit depth
-				for(uint bpp = 8; bpp <= 32; bpp += 8)
+				for(size_t bpp = 8; bpp <= 32; bpp += 8)
 				{
-					uint flags = 0;
+					int flags = 0;
 					if(!strcmp(extension, ".dds"))
 						flags |= (TEX_DXT&3);	// DXT3
 					if(bpp == 8)

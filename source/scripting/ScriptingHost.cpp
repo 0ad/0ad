@@ -103,8 +103,7 @@ void ScriptingHost::RunMemScript(const char* script, size_t size, const char* fi
 	// Maybe TODO: support Unicode input formats?
 
 	jsval rval;
-	JSBool ok = JS_EvaluateScript(m_Context, globalObject, script,
-		(uint)size, filename, line, &rval); 
+	JSBool ok = JS_EvaluateScript(m_Context, globalObject, script, (uintN)size, filename, line, &rval); 
 
 	if (ok == JS_FALSE)
 		throw PSERROR_Scripting_LoadFile_EvalErrors();

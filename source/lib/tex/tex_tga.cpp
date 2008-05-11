@@ -51,7 +51,7 @@ TgaHeader;
 #pragma pack(pop)
 
 
-static LibError tga_transform(Tex* UNUSED(t), uint UNUSED(transforms))
+static LibError tga_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -102,12 +102,12 @@ static LibError tga_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 	TgaHeader* hdr = (TgaHeader*)file;
 	const u8 type  = hdr->img_type;
-	const uint w   = read_le16(&hdr->w);
-	const uint h   = read_le16(&hdr->h);
-	const uint bpp = hdr->bpp;
+	const size_t w   = read_le16(&hdr->w);
+	const size_t h   = read_le16(&hdr->h);
+	const size_t bpp = hdr->bpp;
 	const u8 desc  = hdr->img_desc;
 
-	uint flags = 0;
+	int flags = 0;
 	flags |= (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	if(desc & 0x0F)	// alpha bits
 		flags |= TEX_ALPHA;

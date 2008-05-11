@@ -42,7 +42,7 @@ int CEntityTemplateCollection::LoadTemplates()
 		// Load the no-player version of this template (used by techs for base values)
 		GetTemplate( it->first, 0 );
 
-		for( uint i=0; i<=g_Game->GetNumPlayers(); i++ )
+		for( size_t i=0; i<=g_Game->GetNumPlayers(); i++ )
 		{
 			// TODO: Load the template just once and clone it to get these player templates
 			GetTemplate( it->first, g_Game->GetPlayer(i) );
@@ -55,7 +55,7 @@ int CEntityTemplateCollection::LoadTemplates()
 CEntityTemplate* CEntityTemplateCollection::GetTemplate( const CStrW& name, CPlayer* player )
 {
 	// Find player ID
-	int id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
+	size_t id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
 
 	// Check whether this template has already been loaded
 	TemplateMap::iterator it = m_templates[id].find( name );
@@ -93,7 +93,7 @@ void CEntityTemplateCollection::GetEntityTemplateNames( std::vector<CStrW>& name
 
 void CEntityTemplateCollection::GetPlayerTemplates( CPlayer* player, std::vector<CEntityTemplate*>& dest )
 {
-	int id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
+	size_t id = ( player == 0 ? NULL_PLAYER : player->GetPlayerID() );
 
 	for( TemplateMap::iterator it = m_templates[id].begin(); it != m_templates[id].end(); ++it )
 	{

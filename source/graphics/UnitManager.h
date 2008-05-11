@@ -47,11 +47,11 @@ public:
 	// return the closest unit, or null if everything missed
 	CUnit* PickUnit(const CVector3D& origin, const CVector3D& dir, bool entitiesOnly) const;
 
-	CUnit* FindByID(int id) const;
+	CUnit* FindByID(size_t id) const;
 
-	int GetNewID() { return m_NextID++; }
+	size_t GetNewID() { return m_NextID++; }
 
-	void SetNextID(int n) { m_NextID = n; }
+	void SetNextID(size_t n) { m_NextID = n; }
 
 	void SetObjectManager(CObjectManager& objectManager) { m_ObjectManager = &objectManager; }
 
@@ -59,7 +59,7 @@ private:
 	// list of all known units
 	std::vector<CUnit*> m_Units;
 	// next ID number to be assigned to a unit created in the editor
-	int m_NextID;
+	size_t m_NextID;
 	// graphical object manager; may be NULL if not set up
 	CObjectManager* m_ObjectManager;
 };

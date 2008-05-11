@@ -73,8 +73,8 @@ public:
 		m_Data[4]=e; m_Data[5]=f; m_Data[6]=g; m_Data[7]=h;
 	}
 
-	int& operator[](int index) { return m_Data[index]; }
-	const int& operator[](int index) const { return m_Data[index]; }
+	int& operator[](size_t index) { return m_Data[index]; }
+	const int& operator[](size_t index) const { return m_Data[index]; }
 
 	bool operator==(const BlendShape8& lhs) const {
 		return memcmp(m_Data,lhs.m_Data,sizeof(BlendShape8))==0;

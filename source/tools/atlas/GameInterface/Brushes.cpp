@@ -20,8 +20,8 @@ public:
 	}
 
 	void GetTileExtents(
-		int& min_i_inclusive, int& min_j_inclusive,
-		int& max_i_inclusive, int& max_j_inclusive)
+		ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
+		ssize_t& max_i_inclusive, ssize_t& max_j_inclusive)
 	{
 		m_Brush->GetBottomLeft(min_i_inclusive, min_j_inclusive);
 		m_Brush->GetTopRight(max_i_inclusive, max_j_inclusive);
@@ -32,9 +32,9 @@ public:
 		--max_j_inclusive;
 	}
 
-	void ProcessTile(int i, int j)
+	void ProcessTile(ssize_t i, ssize_t j)
 	{
-		int i0, j0;
+		ssize_t i0, j0;
 		m_Brush->GetBottomLeft(i0, j0);
 		// Colour this tile based on the average of the surrounding vertices
 		float avg = (
@@ -59,7 +59,7 @@ Brush::~Brush()
 	delete m_TerrainOverlay;
 }
 
-void Brush::SetData(int w, int h, const std::vector<float>& data)
+void Brush::SetData(ssize_t w, ssize_t h, const std::vector<float>& data)
 {
 	m_W = w;
 	m_H = h;
@@ -69,26 +69,26 @@ void Brush::SetData(int w, int h, const std::vector<float>& data)
 	debug_assert(data.size() == (size_t)(w*h));
 }
 
-void Brush::GetCentre(int& x, int& y) const
+void Brush::GetCentre(ssize_t& x, ssize_t& y) const
 {
 	CVector3D c = m_Centre;
 	if (m_W % 2) c.X += CELL_SIZE/2.f;
 	if (m_H % 2) c.Z += CELL_SIZE/2.f;
-	i32 cx, cy;
+	ssize_t cx, cy;
 	CTerrain::CalcFromPosition(c, cx, cy);
 
 	x = cx;
 	y = cy;
 }
 
-void Brush::GetBottomLeft(int& x, int& y) const
+void Brush::GetBottomLeft(ssize_t& x, ssize_t& y) const
 {
 	GetCentre(x, y);
 	x -= (m_W-1)/2;
 	y -= (m_H-1)/2;
 }
 
-void Brush::GetTopRight(int& x, int& y) const
+void Brush::GetTopRight(ssize_t& x, ssize_t& y) const
 {
 	GetBottomLeft(x, y);
 	x += m_W-1;

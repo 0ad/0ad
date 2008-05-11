@@ -380,7 +380,7 @@ static bool dequeue_event(SDL_Event* ev)
 
 enum SdlActivationType { LOSE = 0, GAIN = 1 };
 
-static inline void queue_active_event(SdlActivationType type, uint changed_app_state)
+static inline void queue_active_event(SdlActivationType type, size_t changed_app_state)
 {
 	// SDL says this event is not generated when the window is created,
 	// but skipping the first event may confuse things.
@@ -396,11 +396,11 @@ static inline void queue_active_event(SdlActivationType type, uint changed_app_s
 // SDL_APP* bitflags indicating whether we are active.
 // note: responsibility for yielding lies with SDL apps -
 // they control the main loop.
-static uint app_state;
+static Uint8 app_state;
 
-static void active_change_state(SdlActivationType type, uint changed_app_state)
+static void active_change_state(SdlActivationType type, size_t changed_app_state)
 {
-	uint old_app_state = app_state;
+	size_t old_app_state = app_state;
 
 	if(type == GAIN)
 		app_state |= changed_app_state;
@@ -417,7 +417,7 @@ static void reset_all_keys();
 static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL fMinimized)
 {
 	SdlActivationType type;
-	uint changed_app_state;
+	size_t changed_app_state;
 
 	// went active and not minimized
 	if(state != WA_INACTIVE && !fMinimized)
@@ -471,12 +471,12 @@ static void queue_quit_event()
 // keyboard
 
 // note: keysym.unicode is only returned for SDL_KEYDOWN, and is otherwise 0.
-static void queue_key_event(uint type, uint sdlk, WCHAR unicode_char)
+static void queue_key_event(Uint8 type, SDLKey sdlk, WCHAR unicode_char)
 {
 	SDL_Event ev;
 	ev.type = type;
-	ev.key.keysym.sym     = (SDLKey)sdlk;
-	ev.key.keysym.unicode = (u16)unicode_char;
+	ev.key.keysym.sym     = sdlk;
+	ev.key.keysym.unicode = (Uint16)unicode_char;
 	queue_event(ev);
 }
 
@@ -602,7 +602,7 @@ static LRESULT OnKey(HWND UNUSED(hWnd), UINT vk, BOOL fDown, int UNUSED(cRepeat)
 	// TODO Mappings for left/right modifier keys
 	// TODO Modifier statekeeping
 
-	const uint sdlk = vkmap(vk);
+	const SDLKey sdlk = vkmap(vk);
 	if(sdlk != SDLK_UNKNOWN)
 		keys[sdlk] = (Uint8)fDown;
 
@@ -667,10 +667,10 @@ int SDL_EnableUNICODE(int UNUSED(enable))
 // - "idealized" client coords are what the app sees. these are from
 //   0..window dimensions-1. they are derived from client coords that
 //   pass the is_in_window() test. unfortunately, these carry different
-//   types: we treat them exclusively as uint, while SDL API provides for
+//   types: we treat them exclusively as size_t, while SDL API provides for
 //   passing them around as int and packages them into Uint16 in events.
 
-static void queue_mouse_event(uint x, uint y)
+static void queue_mouse_event(int x, int y)
 {
 	SDL_Event ev;
 	ev.type = SDL_MOUSEMOTION;
@@ -680,7 +680,7 @@ static void queue_mouse_event(uint x, uint y)
 	queue_event(ev);
 }
 
-static void queue_button_event(uint button, uint state, uint x, uint y)
+static void queue_button_event(int button, int state, int x, int y)
 {
 	SDL_Event ev;
 	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
@@ -693,14 +693,14 @@ static void queue_button_event(uint button, uint state, uint x, uint y)
 }
 
 
-static uint mouse_x, mouse_y;
+static int mouse_x, mouse_y;
 
 // generate a mouse move message and update our notion of the mouse position.
 // x, y are client pixel coordinates.
 // notes:
 // - does not actually move the OS cursor;
 // - called from mouse_update and SDL_WarpMouse.
-static void mouse_moved(uint x, uint y)
+static void mouse_moved(int x, int y)
 {
 	// nothing to do if it hasn't changed since last time
 	if(mouse_x == x && mouse_y == y)
@@ -725,7 +725,7 @@ static void screen_to_client(int screen_x, int screen_y, int& client_x, int& cli
 
 // are the given coords in our window?
 // parameters are client coords as returned by screen_to_client.
-// postcondition: it is safe to cast coords to uint and treat them
+// postcondition: it is safe to cast coords to size_t and treat them
 // as idealized client coords.
 static bool is_in_window(int client_x, int client_y)
 {
@@ -761,7 +761,7 @@ static void mouse_update()
 
 	if(is_in_window(client_x, client_y))
 	{
-		const uint x = (uint)client_x, y = (uint)client_y;
+		const int x = client_x, y = client_y;
 
 		active_change_state(GAIN, SDL_APPMOUSEFOCUS);
 		mouse_moved(x, y);
@@ -771,14 +771,14 @@ static void mouse_update()
 		active_change_state(LOSE, SDL_APPMOUSEFOCUS);
 }
 
-static uint mouse_buttons;
+static size_t mouse_buttons;
 
 // (we define a new function signature since the windowsx.h message crackers
 // don't provide for passing uMsg)
 static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int screen_y, UINT UNUSED(flags))
 {
-	uint button;
-	uint state;
+	int button;
+	int state;
 	switch(uMsg)
 	{
 	case WM_LBUTTONDOWN:
@@ -839,7 +839,7 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int scr
 	// false due to its window-on-top check, so we better not
 	// ignore messages based on that. it is safest to clamp coords to
 	// what the app can handle.
-	uint x = std::max(client_x, 0), y = std::max(client_y, 0);
+	int x = std::max(client_x, 0), y = std::max(client_y, 0);
 	queue_button_event(button, state, x, y);
 	return 0;
 }
@@ -854,9 +854,9 @@ static LRESULT OnMouseWheel(HWND UNUSED(hWnd), int screen_x, int screen_y, int z
 	// to prevent the app from seeing invalid coords, we ignore such messages.
 	if(is_in_window(client_x, client_y))
 	{
-		const uint x = (uint)client_x, y = (uint)client_y;
+		const int x = client_x, y = client_y;
 
-		uint button = (zDelta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
+		int button = (zDelta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
 		// SDL says this sends a down message followed by up.
 		queue_button_event(button, SDL_PRESSED , x, y);
 		queue_button_event(button, SDL_RELEASED, x, y);
@@ -880,7 +880,7 @@ inline void SDL_WarpMouse(int x, int y)
 	// SDL interface provides for int, but the values should be
 	// idealized client coords (>= 0)
 	debug_assert(x >= 0 && y >= 0);
-	mouse_moved((uint)x, (uint)y);
+	mouse_moved(x, y);
 
 	POINT screen_pt;
 	screen_pt.x = x;

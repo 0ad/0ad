@@ -287,7 +287,7 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 
 			// Does a property with this name already exist?
 
-			for( uint eventID = 0; eventID < EVENT_LAST; eventID++ )
+			for( size_t eventID = 0; eventID < EVENT_LAST; eventID++ )
 			{
 				if( CStrW( EventNames[eventID] ) == EventName )
 				{
@@ -374,7 +374,7 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 
 	// Retrieve any attributes it has and add them as subproperties.
 	XMBAttributeList AttributeSet = Source.GetAttributes();
-	for( unsigned int AttributeID = 0; AttributeID < (unsigned int)AttributeSet.Count; AttributeID++ )
+	for( int AttributeID = 0; AttributeID < AttributeSet.Count; AttributeID++ )
 	{
 		XMBAttribute Attribute = AttributeSet.Item( AttributeID );
 		CStrW AttributeName = PropertyName + CStr8( toCamelCase( XeroFile.GetAttributeString( Attribute.Name ) ) );
@@ -391,7 +391,7 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 
 	// Retrieve any child nodes the property has and, similarly, add them as subproperties.
 	XMBElementList NodeSet = Source.GetChildNodes();
-	for( unsigned int NodeID = 0; NodeID < (unsigned int)NodeSet.Count; NodeID++ )
+	for( int NodeID = 0; NodeID < NodeSet.Count; NodeID++ )
 	{
 		XMBElement Node = NodeSet.Item( NodeID );
 		XMLLoadProperty( XeroFile, Node, PropertyName );
@@ -485,5 +485,5 @@ CStr CEntityTemplate::ToString( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval
 	if( m_player == 0 )
 		return "[object EntityTemplate: " + CStr(m_Tag) + " base]";
 	else
-		return "[object EntityTemplate: " + CStr(m_Tag) + " for player " + CStr(m_player->GetPlayerID()) + "]";
+		return "[object EntityTemplate: " + CStr(m_Tag) + " for player " + CStr((unsigned)m_player->GetPlayerID()) + "]";
 }

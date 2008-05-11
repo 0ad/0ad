@@ -208,12 +208,12 @@ struct Tex
 	 **/
 	size_t ofs;
 
-	uint w : 16;
-	uint h : 16;
-	uint bpp : 16;
+	size_t w : 16;
+	size_t h : 16;
+	size_t bpp : 16;
 
 	/// see TexFlags and "Format Conversion" in docs.
-	uint flags : 16;
+	int flags : 16;
 };
 
 
@@ -291,7 +291,7 @@ extern LibError tex_encode(Tex* t, const std::string& extension, DynArray* da);
  * @param t output texture object.
  * @return LibError
  **/
-extern LibError tex_wrap(uint w, uint h, uint bpp, uint flags, shared_ptr<u8> data, size_t ofs, Tex* t);
+extern LibError tex_wrap(size_t w, size_t h, size_t bpp, int flags, shared_ptr<u8> data, size_t ofs, Tex* t);
 
 /**
  * free all resources associated with the image and make further
@@ -313,7 +313,7 @@ extern void tex_free(Tex* t);
  * @param transforms TexFlags that are to be flipped.
  * @return LibError
  **/
-extern LibError tex_transform(Tex* t, uint transforms);
+extern LibError tex_transform(Tex* t, size_t transforms);
 
 /**
  * change <t>'s pixel format (2nd version)
@@ -322,7 +322,7 @@ extern LibError tex_transform(Tex* t, uint transforms);
  * @param new_flags desired new value of TexFlags.
  * @return LibError
  **/
-extern LibError tex_transform_to(Tex* t, uint new_flags);
+extern LibError tex_transform_to(Tex* t, size_t new_flags);
 
 
 //
@@ -372,7 +372,7 @@ const int TEX_BASE_LEVEL_ONLY = -1;
  * @param level_data_size [bytes]
  * @param cbData passed through from tex_util_foreach_mipmap.
  **/
-typedef void (*MipmapCB)(uint level, uint level_w, uint level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData);
+typedef void (*MipmapCB)(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData);
 
 /**
  * for a series of mipmaps stored from base to highest, call back for
@@ -391,7 +391,7 @@ typedef void (*MipmapCB)(uint level, uint level_w, uint level_h, const u8* RESTR
  * @param cb MipmapCB to call
  * @param cbData extra data to pass to cb
  **/
-extern void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* data, int levels_to_skip, uint data_padding, MipmapCB cb, void* RESTRICT cbData);
+extern void tex_util_foreach_mipmap(size_t w, size_t h, size_t bpp, const u8* data, int levels_to_skip, size_t data_padding, MipmapCB cb, void* RESTRICT cbData);
 
 
 //

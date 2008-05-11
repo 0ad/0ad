@@ -59,8 +59,8 @@ void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
 // handle isn't in list
 static u16 GetHandleIndex(const Handle handle, const std::vector<Handle>& handles)
 {
-	const uint limit = std::min((uint)handles.size(), 0xFFFEu);	// paranoia
-	for (uint i=0;i<limit;i++) {
+	const size_t limit = std::min(handles.size(), size_t(0xFFFEu));	// paranoia
+	for (size_t i=0;i<limit;i++) {
 		if (handles[i]==handle) {
 			return (u16)i;
 		}
@@ -84,9 +84,9 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 	STileDesc* tileptr=&tiles[0];
 
 	// now iterate through all the tiles
-	u32 mapsize=pTerrain->GetPatchesPerSide();
-	for (u32 j=0;j<mapsize;j++) {
-		for (u32 i=0;i<mapsize;i++) {
+	ssize_t mapsize=pTerrain->GetPatchesPerSide();
+	for (ssize_t j=0;j<mapsize;j++) {
+		for (ssize_t i=0;i<mapsize;i++) {
 			for (u32 m=0;m<(u32)PATCH_SIZE;m++) {
 				for (u32 k=0;k<(u32)PATCH_SIZE;k++) {
 					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
@@ -106,7 +106,7 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 	}
 
 	// now find the texture names for each handle
-	for (uint i=0;i<(uint)handles.size();i++) {
+	for (size_t i=0;i<handles.size();i++) {
 		CStr texturename;
 		CTextureEntry* texentry=g_TexMan.FindTexture(handles[i]);
 		if (!texentry) {
@@ -133,8 +133,8 @@ void CMapWriter::PackMap(CFilePacker& packer, CTerrain* pTerrain)
 void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 {
 	// pack map size
-	u32 mapsize=pTerrain->GetPatchesPerSide();
-	packer.PackRaw(&mapsize,sizeof(mapsize));	
+	const ssize_t mapsize = pTerrain->GetPatchesPerSide();
+	packer.PackSize(mapsize);
 	
 	// pack heightmap
 	packer.PackRaw(pTerrain->GetHeightMap(),sizeof(u16)*SQR(pTerrain->GetVerticesPerSide()));	
@@ -148,14 +148,13 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 	EnumTerrainTextures(pTerrain, terrainTextures, tiles);
 	
 	// pack texture names
-	u32 numTextures=(u32)terrainTextures.size();
-	packer.PackRaw(&numTextures,sizeof(numTextures));	
-	for (uint i=0;i<numTextures;i++) {
+	const size_t numTextures = terrainTextures.size();
+	packer.PackSize(numTextures);
+	for (size_t i=0;i<numTextures;i++)
 		packer.PackString(terrainTextures[i]);
-	}
 	
 	// pack tile data
-	packer.PackRaw(&tiles[0],(u32)(sizeof(STileDesc)*tiles.size()));	
+	packer.PackRaw(&tiles[0],sizeof(STileDesc)*tiles.size());	
 }
 void CMapWriter::WriteXML(const char* filename,
 						  CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
@@ -350,7 +349,7 @@ void CMapWriter::WriteXML(const char* filename,
 					XML_Attribute("switch", data->m_Switch);
 				}
 
-				for ( int j=(int)nodes.size()-1; j >= 0; --j )
+				for ( size_t j=nodes.size()-1; j >= 0; --j )
 				{
 					XML_Element("Node");
 					

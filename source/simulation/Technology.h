@@ -46,7 +46,7 @@ public:
 	bool IsValid( JSContext* cx, uintN argc, jsval* argv );
 	bool IsResearched( JSContext* cx, uintN argc, jsval* argv );
 	bool IsExcluded( JSContext* cx, uintN argc, jsval* argv );
-	int GetPlayerID( JSContext* cx, uintN argc, jsval* argv );
+	size_t GetPlayerID( JSContext* cx, uintN argc, jsval* argv );
 	
 	void Apply( CEntity* entity );
 

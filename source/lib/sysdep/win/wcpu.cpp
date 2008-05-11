@@ -43,11 +43,11 @@ double cpu_ClockFrequency()
 }
 
 
-uint cpu_NumProcessors()
+size_t cpu_NumProcessors()
 {
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);	// can't fail
-	const uint numProcessors = (uint)si.dwNumberOfProcessors;
+	const size_t numProcessors = (size_t)si.dwNumberOfProcessors;
 	return numProcessors;
 }
 

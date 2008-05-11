@@ -66,8 +66,8 @@ struct Colour
 SHAREABLE_STRUCT(Colour);
 
 
-typedef int ObjectID;
-inline bool ObjectIDIsValid(ObjectID id) { return (id >= 0); }
+typedef size_t ObjectID;
+inline bool ObjectIDIsValid(ObjectID id) { return (id != ~(size_t)0); }
 
 
 struct sCinemaSplineNode

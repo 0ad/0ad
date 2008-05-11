@@ -45,7 +45,7 @@
  * have several classes with the same value of _tp in the same executable
  */
 #define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
-CNetMessage *Deserialize##_nm(const u8 *, uint); \
+CNetMessage *Deserialize##_nm(const u8 *, size_t); \
 class _nm: public _base \
 { \
 protected: \
@@ -56,7 +56,7 @@ protected: \
 	CStr GetStringRaw() const;\
 public: \
 	_nm(): _base(_tp) {} \
-	virtual uint GetSerializedLength() const; \
+	virtual size_t GetSerializedLength() const; \
 	virtual u8 *Serialize(u8 *buffer) const; \
 	virtual const u8 *Deserialize(const u8 *pos, const u8 *end); \
 	virtual CStr GetString() const; \
@@ -117,9 +117,9 @@ public: \
 #define START_NMT_CLASS(_nm, _tp) \
 	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
 #define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
-uint _nm::GetSerializedLength() const \
+size_t _nm::GetSerializedLength() const \
 { \
-	uint ret=_base::GetSerializedLength(); \
+	size_t ret=_base::GetSerializedLength(); \
 	const _nm *thiz=this;\
 	UNUSED2(thiz);	// preempt any "unused" warning
 
@@ -203,7 +203,7 @@ u8 *_nm::Serialize(u8 *buffer) const \
 #define START_NMT_CLASS(_nm, _tp) \
 	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
 #define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
-CNetMessage *Deserialize##_nm(const u8 *buffer, uint length) \
+CNetMessage *Deserialize##_nm(const u8 *buffer, size_t length) \
 { \
 	_nm *ret=new _nm(); \
 	if (ret->Deserialize(buffer, buffer+length)) \

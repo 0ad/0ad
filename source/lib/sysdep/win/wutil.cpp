@@ -289,7 +289,7 @@ static void EnableLowFragmentationHeap()
 // version
 
 static char windowsVersionString[20];
-static uint windowsVersion;	// see WUTIL_VERSION_*
+static size_t windowsVersion;	// see WUTIL_VERSION_*
 
 static void DetectWindowsVersion()
 {
@@ -301,7 +301,7 @@ static void DetectWindowsVersion()
 		DWORD size = ARRAY_SIZE(windowsVersionString);
 		(void)RegQueryValueEx(hKey, "CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
 
-		uint major = 0, minor = 0;
+		size_t major = 0, minor = 0;
 		int ret = sscanf(windowsVersionString, "%d.%d", &major, &minor);
 		debug_assert(ret == 2);
 		debug_assert(major <= 0xFF && minor <= 0xFF);
@@ -339,7 +339,7 @@ const char* wutil_WindowsVersionString()
 	return windowsVersionString;
 }
 
-uint wutil_WindowsVersion()
+size_t wutil_WindowsVersion()
 {
 	debug_assert(windowsVersion != 0);
 	return windowsVersion;

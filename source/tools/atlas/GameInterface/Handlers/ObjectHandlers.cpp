@@ -144,7 +144,7 @@ QUERYHANDLER(GetObjectSettings)
 	if (! unit) return;
 
 	sObjectSettings settings;
-	settings.player = unit->GetPlayerID();
+	settings.player = (int)unit->GetPlayerID();
 
 	// Get the unit's possible variants and selected variants
 	std::vector<std::vector<CStr> > groups = unit->GetObject()->m_Base->GetVariantGroups();
@@ -188,7 +188,7 @@ QUERYHANDLER(GetObjectSettings)
 
 BEGIN_COMMAND(SetObjectSettings)
 {
-	int m_PlayerOld, m_PlayerNew;
+	size_t m_PlayerOld, m_PlayerNew;
 	std::set<CStr> m_SelectionsOld, m_SelectionsNew;
 
 	void Do()
@@ -199,7 +199,7 @@ BEGIN_COMMAND(SetObjectSettings)
 		sObjectSettings settings = msg->settings;
 
 		m_PlayerOld = unit->GetPlayerID();
-		m_PlayerNew = settings.player;
+		m_PlayerNew = (size_t)settings.player;
 
 		m_SelectionsOld = unit->GetActorSelections();
 
@@ -223,7 +223,7 @@ BEGIN_COMMAND(SetObjectSettings)
 	}
 
 private:
-	void Set(int player, const std::set<CStr>& selections)
+	void Set(size_t player, const std::set<CStr>& selections)
 	{
 		CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
 		if (! unit) return;
@@ -241,7 +241,7 @@ END_COMMAND(SetObjectSettings);
 //////////////////////////////////////////////////////////////////////////
 
 
-static int g_PreviewUnitID = -1;
+static size_t g_PreviewUnitID = CUnit::invalidId;
 static CStrW g_PreviewUnitName;
 static bool g_PreviewUnitFloating;
 
@@ -306,7 +306,7 @@ MESSAGEHANDLER(ObjectPreview)
 			previewUnit = NULL;
 		}
 
-		g_PreviewUnitID = -1;
+		g_PreviewUnitID = CUnit::invalidId;
 
 		bool isEntity;
 		CStrW name;
@@ -384,8 +384,8 @@ BEGIN_COMMAND(CreateObject)
 {
 	CVector3D m_Pos;
 	float m_Angle;
-	int m_ID;
-	int m_Player;
+	size_t m_ID;
+	size_t m_Player;
 
 	void Do()
 	{
@@ -519,7 +519,7 @@ QUERYHANDLER(PickObject)
 	if (target)
 		msg->id = target->GetID();
 	else
-		msg->id = -1;
+		msg->id = CUnit::invalidId;
 
 	if (target)
 	{

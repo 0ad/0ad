@@ -147,7 +147,7 @@ enum ErrorReaction
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
 LIB_API ErrorReaction debug_display_error(const wchar_t* description,
-	uint flags, uint skip, void* context,
+	int flags, size_t skip, void* context,
 	const char* file, int line, const char* func,
 	u8* suppress);
 
@@ -436,7 +436,7 @@ LIB_API LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, cha
  * @return LibError; ERR::REENTERED if reentered via recursion or
  * multithreading (not allowed since static data is used).
  **/
-LIB_API LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* context);
+LIB_API LibError debug_dump_stack(wchar_t* buf, size_t max_chars, size_t skip, void* context);
 
 
 //-----------------------------------------------------------------------------
@@ -461,7 +461,7 @@ LIB_API void debug_puts(const char* text);
  *
  * note: this does not access debug symbols and is therefore quite fast.
  **/
-LIB_API void* debug_get_nth_caller(uint skip, void* context);
+LIB_API void* debug_get_nth_caller(size_t skip, void* context);
 
 /**
  * check if a pointer appears to be totally invalid.
@@ -532,7 +532,7 @@ LIB_API void debug_error_message_free(ErrorMessageMem* emm);
 LIB_API const wchar_t* debug_error_message_build(
 	const wchar_t* description,
 	const char* fn_only, int line, const char* func,
-	uint skip, void* context,
+	size_t skip, void* context,
 	ErrorMessageMem* emm);
 
 #endif	// #ifndef INCLUDED_DEBUG

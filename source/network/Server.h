@@ -54,7 +54,7 @@ private:
 	CGame *m_pGame;
 	CGameAttributes *m_pGameAttributes;
 
-	uint m_MaxObservers;
+	size_t m_MaxObservers;
 	int m_LastSessionID;
 
 	CPlayer *m_pServerPlayer;

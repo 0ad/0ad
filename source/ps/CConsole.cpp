@@ -113,20 +113,20 @@ void CConsole::FlushBuffer(void)
 }
 
 
-void CConsole::ToLower(wchar_t* szMessage, uint iSize)
+void CConsole::ToLower(wchar_t* szMessage, size_t iSize)
 {
-	uint L = (uint)wcslen(szMessage);
+	size_t L = (size_t)wcslen(szMessage);
 
 	if (L <= 0) return;
 
 	if (iSize && iSize < L) L = iSize;
 
-	for(uint i = 0; i < L; i++)
+	for(size_t i = 0; i < L; i++)
 		szMessage[i] = towlower(szMessage[i]);
 }
 
 
-void CConsole::Trim(wchar_t* szMessage, const wchar_t cChar, uint iSize)
+void CConsole::Trim(wchar_t* szMessage, const wchar_t cChar, size_t iSize)
 {
 	size_t L = wcslen(szMessage);
 	if(!L)

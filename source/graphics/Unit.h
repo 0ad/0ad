@@ -66,16 +66,17 @@ public:
 	bool IsPlayingAnimation(const CStr& name);
 
 	// Set player ID of this unit (and the attached entity and actor)
-	void SetPlayerID(int id);
+	void SetPlayerID(size_t id);
 
 	// Get player ID of this unit
-	int GetPlayerID() { return m_PlayerID; }
+	size_t GetPlayerID() { return m_PlayerID; }
 
 	// Most units have a hopefully-unique ID number, so they can be referred to
 	// persistently despite saving/loading maps. Default for new units is -1; should
 	// usually be set to CUnitManager::GetNewID() after creation.
-	int GetID() const { return m_ID; }
-	void SetID(int id) { m_ID = id; }
+	static const size_t invalidId = ~(size_t)0;
+	size_t GetID() const { return m_ID; }
+	void SetID(size_t id) { m_ID = id; }
 
 	const std::set<CStr>& GetActorSelections() const { return m_ActorSelections; }
 	
@@ -88,14 +89,14 @@ private:
 	CModel* m_Model;
 	// the entity that this actor represents, if any
 	CEntity* m_Entity;
-	// player id of this unit (only read for graphical effects), or -1 if unspecified
-	int m_PlayerID;
+	// player id of this unit (only read for graphical effects), or ~0 if unspecified
+	size_t m_PlayerID;
 
 	CUnitAnimation* m_Animation;
 
 	// unique (per map) ID number for units created in the editor, as a
-	// permanent way of referencing them. -1 for non-editor units.
-	int m_ID;
+	// permanent way of referencing them. ~0 for non-editor units.
+	size_t m_ID;
 
 	// actor-level selections for this unit
 	std::set<CStr> m_ActorSelections;

@@ -46,7 +46,7 @@ CStrW ToNetString(const T &data);
 	template <> CStrW ToNetString(const type &data); \
 	template <> void SetFromNetString(type &data, const CStrW& string);
 
-TYPE(uint)
+TYPE(size_t)
 TYPE(CStrW)
 	
 #undef TYPE

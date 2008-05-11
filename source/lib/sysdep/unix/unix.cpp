@@ -25,7 +25,7 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 	fwprintf(stderr, L"%ls: %ls\n", caption, msg);
 }
 
-ErrorReaction sys_display_error(const wchar_t* text, uint flags)
+ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 {
 	printf("%ls\n\n", text);
 
@@ -95,8 +95,8 @@ LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 
 // note: do not return ERR_NOT_IMPLEMENTED or similar because that
 // would result in WARN_ERRs.
-LibError sys_cursor_create(uint w, uint h, void* bgra_img,
-	uint hx, uint hy, void** cursor)
+LibError sys_cursor_create(size_t w, size_t h, void* bgra_img,
+	size_t hx, size_t hy, void** cursor)
 {
 	UNUSED2(w);
 	UNUSED2(h);

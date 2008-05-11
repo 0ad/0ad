@@ -10,12 +10,13 @@
 #include "UnitAnimation.h"
 
 #include "ps/Game.h"
+#include "ps/Player.h"
 #include "simulation/Entity.h"
 
 CUnit::CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
 			 const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()), m_Entity(entity),
-  m_ID(-1), m_ActorSelections(actorSelections), m_PlayerID(-1),
+m_ID(invalidId), m_ActorSelections(actorSelections), m_PlayerID(CPlayer::invalidId),
   m_ObjectManager(objectManager)
 {
 	m_Animation = new CUnitAnimation(*this);
@@ -158,7 +159,7 @@ void CUnit::UpdateModel(float frameTime)
 }
 
 
-void CUnit::SetPlayerID(int id)
+void CUnit::SetPlayerID(size_t id)
 {
 	m_PlayerID = id;
 	m_Model->SetPlayerID(m_PlayerID);
@@ -204,7 +205,7 @@ void CUnit::ReloadObject()
 
 		// Copy the old instance-specific settings from the old model to the new instance
 		newModel->SetTransform(m_Model->GetTransform());
-		if (m_PlayerID != -1)
+		if (m_PlayerID != CPlayer::invalidId)
 			newModel->SetPlayerID(m_PlayerID);
 		newModel->CopyAnimationFrom(m_Model);
 

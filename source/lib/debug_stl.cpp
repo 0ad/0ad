@@ -109,7 +109,7 @@ char* debug_stl_simplify_name(char* name)
 			src += 7;
 		}
 		REPLACE("unsigned short", "u16")
-		REPLACE("unsigned int", "uint")
+		REPLACE("unsigned int", "size_t")
 		REPLACE("unsigned __int64", "u64")
 		STRIP(",0> ")
 		// early out: all tests after this start with s, so skip them

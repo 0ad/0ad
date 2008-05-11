@@ -46,7 +46,7 @@ struct LIB_API Bucket
 	/**
 	 * records # buckets allocated; verifies the list of buckets is correct.
 	 **/
-	uint num_buckets;
+	size_t num_buckets;
 };
 
 

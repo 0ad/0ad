@@ -135,17 +135,17 @@ extern char win_exe_dir[MAX_PATH+1];
 extern const char* wutil_WindowsVersionString();
 
 // (same format as WINVER)
-const uint WUTIL_VERSION_2K    = 0x0500;
-const uint WUTIL_VERSION_XP    = 0x0501;
-const uint WUTIL_VERSION_XP64  = 0x0502;
-const uint WUTIL_VERSION_VISTA = 0x0600;
+const size_t WUTIL_VERSION_2K    = 0x0500;
+const size_t WUTIL_VERSION_XP    = 0x0501;
+const size_t WUTIL_VERSION_XP64  = 0x0502;
+const size_t WUTIL_VERSION_VISTA = 0x0600;
 
 /**
  * @return short textual representation of the appropriate WUTIL_VERSION
  **/
 extern const char* wutil_WindowsFamily();
 
-extern uint wutil_WindowsVersion();
+extern size_t wutil_WindowsVersion();
 
 
 //

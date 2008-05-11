@@ -60,23 +60,21 @@ private:
 	CStr m_anglePenaltyType;
 	float m_anglePenaltyVal;
 
-	int m_required;
+	size_t m_required;
 	CStr m_next;
 	CStr m_prior;
 	CStr m_movement;
 	float m_fileSpacing;
 	float m_rankSpacing;
 
-	int m_numSlots;	//how many possible slots in this formation
-	int m_numRanks;
-	int m_numFiles;
+	size_t m_numSlots;	//how many possible slots in this formation
+	size_t m_numRanks;
+	size_t m_numFiles;
 
 	//The key is the "order" of the slot
-	std::map<int, FormationSlot> m_slots;
+	std::map<size_t, FormationSlot> m_slots;
 
 	bool LoadXml(const CStr& filename);
-	void AssignCategory(int order, CStr category);	//takes care of formatting strings
+	void AssignCategory(size_t order, CStr category);	//takes care of formatting strings
 };
 #endif
-
-

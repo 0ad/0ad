@@ -29,7 +29,7 @@ extern void sys_display_msgw(const wchar_t* caption, const wchar_t* msg);
 // show the error dialog. flags: see DebugDisplayErrorFlags.
 // called from debug_display_error.
 // can be overridden by means of ah_display_error.
-extern ErrorReaction sys_display_error(const wchar_t* text, uint flags);
+extern ErrorReaction sys_display_error(const wchar_t* text, int flags);
 
 
 //

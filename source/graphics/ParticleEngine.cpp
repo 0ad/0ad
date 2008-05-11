@@ -66,7 +66,7 @@ bool CParticleEngine::InitParticleSystem()
 	CTexture pTex;
 	pTex.SetName("art/textures/particles/sprite.tga");
 
-	u32 flags = 0;
+	int flags = 0;
 	if(!(g_Renderer.LoadTexture(&pTex, flags)))
 		return false;
 

@@ -23,7 +23,7 @@ CBrush::CBrush(const CBound& bounds)
 {
 	m_Vertices.resize(8);
 
-	for(uint i = 0; i < 8; ++i)
+	for(size_t i = 0; i < 8; ++i)
 	{
 		m_Vertices[i][0] = bounds[(i & 1) ? 1 : 0][0];
 		m_Vertices[i][1] = bounds[(i & 2) ? 1 : 0][1];
@@ -49,7 +49,7 @@ void CBrush::Bounds(CBound& result) const
 {
 	result.SetEmpty();
 
-	for(uint i = 0; i < m_Vertices.size(); ++i)
+	for(size_t i = 0; i < m_Vertices.size(); ++i)
 		result += m_Vertices[i];
 }
 
@@ -58,34 +58,34 @@ void CBrush::Bounds(CBound& result) const
 // Cut the brush according to a given plane
 struct SliceVertexInfo {
 	float d; // distance
-	uint res; // index in result brush (or no_vertex if cut away)
+	size_t res; // index in result brush (or no_vertex if cut away)
 };
 
 struct NewVertexInfo {
-	uint v1, v2; // adjacent vertices in original brush
-	uint res; // index in result brush
+	size_t v1, v2; // adjacent vertices in original brush
+	size_t res; // index in result brush
 
-	uint neighb1, neighb2; // index into newv
+	size_t neighb1, neighb2; // index into newv
 };
 
 struct SliceInfo {
 	std::vector<SliceVertexInfo> v;
 	std::vector<NewVertexInfo> newv;
-	uint thisFaceNewVertex; // index into newv
+	size_t thisFaceNewVertex; // index into newv
 	const CBrush* original;
 	CBrush* result;
 };
 
 struct CBrush::Helper
 {
-	static uint SliceNewVertex(SliceInfo& si, uint v1, uint v2);
+	static size_t SliceNewVertex(SliceInfo& si, size_t v1, size_t v2);
 };
 
 // create a new vertex between the given two vertices (index into original brush)
 // returns the index of the new vertex in the resulting brush
-uint CBrush::Helper::SliceNewVertex(SliceInfo& si, uint v1, uint v2)
+size_t CBrush::Helper::SliceNewVertex(SliceInfo& si, size_t v1, size_t v2)
 {
-	uint idx;
+	size_t idx;
 
 	for(idx = 0; idx < si.newv.size(); ++idx)
 	{
@@ -105,7 +105,7 @@ uint CBrush::Helper::SliceNewVertex(SliceInfo& si, uint v1, uint v2)
 
 		nvi.v1 = v1;
 		nvi.v2 = v2;
-		nvi.res = (uint)si.result->m_Vertices.size();
+		nvi.res = si.result->m_Vertices.size();
 		nvi.neighb1 = no_vertex;
 		nvi.neighb2 = no_vertex;
 		si.result->m_Vertices.push_back(newpos);
@@ -153,12 +153,12 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 	// Classify and copy vertices
 	si.v.resize(m_Vertices.size());
 
-	for(uint i = 0; i < m_Vertices.size(); ++i)
+	for(size_t i = 0; i < m_Vertices.size(); ++i)
 	{
 		si.v[i].d = plane.DistanceToPlane(m_Vertices[i]);
 		if (si.v[i].d >= 0.0)
 		{
-			si.v[i].res = (uint)result.m_Vertices.size();
+			si.v[i].res = result.m_Vertices.size();
 			result.m_Vertices.push_back(m_Vertices[i]);
 		}
 		else
@@ -168,22 +168,22 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 	}
 
 	// Transfer faces
-	uint firstInFace = no_vertex; // in original brush
-	uint startInResultFaceArray = ~0u;
+	size_t firstInFace = no_vertex; // in original brush
+	size_t startInResultFaceArray = ~0u;
 
-	for(uint i = 0; i < m_Faces.size(); ++i)
+	for(size_t i = 0; i < m_Faces.size(); ++i)
 	{
 		if (firstInFace == no_vertex)
 		{
 			debug_assert(si.thisFaceNewVertex == no_vertex);
 
 			firstInFace = m_Faces[i];
-			startInResultFaceArray = (uint)result.m_Faces.size();
+			startInResultFaceArray = result.m_Faces.size();
 			continue;
 		}
 
-		uint prev = m_Faces[i-1];
-		uint cur = m_Faces[i];
+		size_t prev = m_Faces[i-1];
+		size_t cur = m_Faces[i];
 
 		if (si.v[prev].res == no_vertex)
 		{
@@ -221,8 +221,8 @@ void CBrush::Slice(const CPlane& plane, CBrush& result) const
 	// Create the face that lies in the slicing plane
 	if (si.newv.size())
 	{
-		uint prev = 0;
-		uint idx;
+		size_t prev = 0;
+		size_t idx;
 
 		result.m_Faces.push_back(si.newv[0].res);
 		idx = si.newv[0].neighb2;
@@ -277,7 +277,7 @@ void CBrush::Intersect(const CFrustum& frustum, CBrush& result) const
 	else
 		next = &buf;
 
-	for(uint i = 0; i < frustum.GetNumPlanes(); ++i)
+	for(size_t i = 0; i < frustum.GetNumPlanes(); ++i)
 	{
 		prev->Slice(frustum[i], *next);
 		prev = next;
@@ -295,9 +295,9 @@ void CBrush::Intersect(const CFrustum& frustum, CBrush& result) const
 // Dump the faces to OpenGL
 void CBrush::Render() const
 {
-	uint firstInFace = no_vertex;
+	size_t firstInFace = no_vertex;
 
-	for(uint i = 0; i < m_Faces.size(); ++i)
+	for(size_t i = 0; i < m_Faces.size(); ++i)
 	{
 		if (firstInFace == no_vertex)
 		{

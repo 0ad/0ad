@@ -167,7 +167,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		std::list<Nested> l_nested_empty;
 		std::map<double,double> m_double_empty;
 		std::multimap<int,u8> mm_int_empty;
-		std::set<uint> s_uint_empty;
+		std::set<size_t> s_uint_empty;
 		std::multiset<char> ms_char_empty;
 		std::vector<double> v_double_empty;
 		std::queue<double> q_double_empty;
@@ -191,7 +191,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		std::list<Nested> l_nested_uninit;
 		std::map<double,double> m_double_uninit;
 		std::multimap<int,u8> mm_int_uninit;
-		std::set<uint> s_uint_uninit;
+		std::set<size_t> s_uint_uninit;
 		std::multiset<char> ms_char_uninit;
 		std::vector<double> v_double_uninit;
 		std::queue<double> q_double_uninit;
@@ -216,7 +216,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 	{
 		debug_printf("\nTEST_ADDRS\n");
 
-		uint l_uint = 0x1234;
+		size_t l_uint = 0x1234;
 		bool l_bool = true; UNUSED2(l_bool);
 		wchar_t l_wchars[] = L"wchar string";
 		enum TestEnum { VAL1=1, VAL2=2 } l_enum = VAL1;

@@ -6,16 +6,16 @@ template<typename T> class DeltaArray2D
 public:
 	virtual ~DeltaArray2D() {}
 
-	T get(int x, int y);
-	void set(int x, int y, const T& val);
+	T get(ssize_t x, ssize_t y);
+	void set(ssize_t x, ssize_t y, const T& val);
 
 	void OverlayWith(const DeltaArray2D<T>& overlayer);
 	void Undo();
 	void Redo();
 
 protected:
-	virtual T getOld(int x, int y) = 0;
-	virtual void setNew(int x, int y, const T& val) = 0;
+	virtual T getOld(ssize_t x, ssize_t y) = 0;
+	virtual void setNew(ssize_t x, ssize_t y, const T& val) = 0;
 
 private:
 	struct hashfunc {
@@ -23,22 +23,22 @@ private:
 			bucket_size = 4,
 			min_buckets = 8
 		};
-		size_t operator()(const std::pair<int, int>& p) const {
+		size_t operator()(const std::pair<ssize_t, ssize_t>& p) const {
 			return STL_HASH_VALUE(p.first << 16) + STL_HASH_VALUE(p.second);
 		}
-		bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) const {
+		bool operator()(const std::pair<ssize_t, ssize_t>& a, const std::pair<ssize_t, ssize_t>& b) const {
 			return (a < b);
 		}
 	};
 	// TODO: more efficient representation
-	typedef STL_HASH_MAP<std::pair<int, int>, std::pair<T, T>, hashfunc> Data; // map of <x,y> -> <old_val, new_val>
+	typedef STL_HASH_MAP<std::pair<ssize_t, ssize_t>, std::pair<T, T>, hashfunc> Data; // map of <x,y> -> <old_val, new_val>
 	Data m_Data;
 };
 
 //////////////////////////////////////////////////////////////////////////
 
 template<typename T>
-T DeltaArray2D<T>::get(int x, int y)
+T DeltaArray2D<T>::get(ssize_t x, ssize_t y)
 {
 	typename Data::iterator it = m_Data.find(std::make_pair(x, y));
 	if (it == m_Data.end())
@@ -48,7 +48,7 @@ T DeltaArray2D<T>::get(int x, int y)
 }
 
 template<typename T>
-void DeltaArray2D<T>::set(int x, int y, const T& val)
+void DeltaArray2D<T>::set(ssize_t x, ssize_t y, const T& val)
 {
 	typename Data::iterator it = m_Data.find(std::make_pair(x, y));
 	if (it == m_Data.end())

@@ -7,7 +7,6 @@ Standard declarations which are included in all projects.
 #ifndef INCLUDED_PYROGENESIS
 #define INCLUDED_PYROGENESIS
 
-
 typedef const char * PS_RESULT;
 
 #define DEFINE_ERROR(x, y)  PS_RESULT x=y

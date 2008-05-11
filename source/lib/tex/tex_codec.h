@@ -58,7 +58,7 @@ struct TexCodecVTbl
 	 * to its format; generic pixel format transforms are handled by
 	 * the caller.
 	 **/
-	LibError (*transform)(Tex* t, uint transforms);
+	LibError (*transform)(Tex* t, size_t transforms);
 
 	/**
 	 * indicate if the data appears to be an instance of this codec's header,
@@ -188,7 +188,7 @@ extern const TexCodecVTbl* tex_codec_next(const TexCodecVTbl* prev_codec);
  * be changed.
  * @return LibError
  **/
-extern LibError tex_codec_transform(Tex* t, uint transforms);
+extern LibError tex_codec_transform(Tex* t, size_t transforms);
 
 /**
  * allocate an array of row pointers that point into the given texture data.
@@ -212,7 +212,7 @@ extern LibError tex_codec_transform(Tex* t, uint transforms);
  * @return LibError
  **/
 typedef const u8* RowPtr;
-extern shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, uint src_flags, uint dst_orientation);
+extern shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t pitch, size_t src_flags, size_t dst_orientation);
 
 /**
  * apply transforms and then copy header and image into output buffer.
@@ -224,6 +224,6 @@ extern shared_ptr<RowPtr> tex_codec_alloc_rows(const u8* data, size_t h, size_t 
  * @param da output data array (will be expanded as necessary)
  * @return LibError
  **/
-extern LibError tex_codec_write(Tex* t, uint transforms, const void* hdr, size_t hdr_size, DynArray* da);
+extern LibError tex_codec_write(Tex* t, size_t transforms, const void* hdr, size_t hdr_size, DynArray* da);
 
 #endif	 // #ifndef INCLUDED_TEX_CODEC

@@ -160,7 +160,7 @@ void path_copy(char* dst, const char* src)
 // if necessary, a directory separator is added between the paths.
 // each may be empty, filenames, or full paths.
 // total path length (including '\0') must not exceed PATH_MAX.
-LibError path_append(char* dst, const char* path1, const char* path2, uint flags)
+LibError path_append(char* dst, const char* path1, const char* path2, int flags)
 {
 	const size_t len1 = strlen(path1);
 	const size_t len2 = strlen(path2);

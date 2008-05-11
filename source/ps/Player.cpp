@@ -7,9 +7,9 @@
 #include "ps/scripting/JSCollection.h"
 #include "simulation/LOSManager.h"
 
-CPlayer::CPlayer(uint playerID):
+CPlayer::CPlayer(size_t playerID):
 	m_PlayerID(playerID),
-	m_Name(CStrW(L"Player #")+CStrW(playerID)),
+	m_Name(CStrW(L"Player #")+CStrW((unsigned)playerID)),
 	m_Civilization(L""),
 	m_Colour(0.7f, 0.7f, 0.7f),
 	m_UpdateCB(0)
@@ -154,7 +154,7 @@ void CPlayer::JSI_SetDiplomaticStance(JSContext *cx, uintN UNUSED(argc), jsval *
 
 		m_DiplomaticStance[player->m_PlayerID] = (EDiplomaticStance) stance;
 		
-		CStrW name = CStrW(L"diplomaticStance_") + CStrW(player->m_PlayerID);
+		CStrW name = CStrW(L"diplomaticStance_") + CStrW((unsigned)player->m_PlayerID);
 		ISynchedJSProperty *prop=GetSynchedProperty(name);
 		Update(name, prop);
 	}

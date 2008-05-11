@@ -17,37 +17,37 @@
 
 
 // vfs
-static uint vfs_files;
+static size_t vfs_files;
 static size_t vfs_size_total;
 static double vfs_init_elapsed_time;
 
 // file
-static uint unique_names;
+static size_t unique_names;
 static size_t unique_name_len_total;
-static uint open_files_cur, open_files_max;	// total = opened_files.size()
+static size_t open_files_cur, open_files_max;	// total = opened_files.size()
 
 // file_buf
-static uint extant_bufs_cur, extant_bufs_max, extant_bufs_total;
+static size_t extant_bufs_cur, extant_bufs_max, extant_bufs_total;
 static double buf_size_total, buf_aligned_size_total;
 
 // file_io
-static uint user_ios;
+static size_t user_ios;
 static double user_io_size_total;
 static double io_actual_size_total[FI_MAX_IDX][2];
 static double io_elapsed_time[FI_MAX_IDX][2];
 static double io_process_time_total;
-static uint io_seeks;
+static size_t io_seeks;
 
 // file_cache
-static uint cache_count[2];
+static size_t cache_count[2];
 static double cache_size_total[2];
-static uint conflict_misses;
+static size_t conflict_misses;
 static double conflict_miss_size_total;
-static uint block_cache_count[2];
+static size_t block_cache_count[2];
 
 // archive builder
-static uint ab_connection_attempts;	// total number of trace entries
-static uint ab_repeated_connections;	// how many of these were not unique
+static size_t ab_connection_attempts;	// total number of trace entries
+static size_t ab_repeated_connections;	// how many of these were not unique
 
 
 // convenience functions for measuring elapsed time in an interval.

@@ -95,8 +95,8 @@ private:
 	bool m_bVisible;	// console is to be drawn
 	bool m_bToggle;		// show/hide animation is currently active
 
-	void ToLower(wchar_t* szMessage, uint iSize = 0);
-	void Trim(wchar_t* szMessage, const wchar_t cChar = 32, uint iSize = 0);
+	void ToLower(wchar_t* szMessage, size_t iSize = 0);
+	void Trim(wchar_t* szMessage, const wchar_t cChar = 32, size_t iSize = 0);
 
     void DrawHistory(void);
     void DrawWindow(void);

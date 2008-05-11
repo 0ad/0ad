@@ -68,7 +68,7 @@ const char* StringPool::RandomString() const
 	debug_assert(m_pool.da.pos != 0);
 
 again:
-	const size_t start_ofs = (size_t)rand(0, (uint)m_pool.da.pos);
+	const size_t start_ofs = (size_t)rand(0, (size_t)m_pool.da.pos);
 
 	// scan back to start of string (don't scan ahead; this must
 	// work even if m_pool only contains one entry).

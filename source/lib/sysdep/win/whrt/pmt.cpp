@@ -73,12 +73,12 @@ u64 CounterPMT::Counter() const
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint CounterPMT::CounterBits() const
+size_t CounterPMT::CounterBits() const
 {
 	// (see previous acpi_GetTable call)
 	const FADT* fadt = (const FADT*)acpi_GetTable("FACP");
 	debug_assert(fadt);	// Activate made sure FADT is available
-	const uint counterBits = (fadt->flags & TMR_VAL_EXT)? 32 : 24;
+	const size_t counterBits = (fadt->flags & TMR_VAL_EXT)? 32 : 24;
 	return counterBits;
 }
 

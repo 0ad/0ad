@@ -35,7 +35,7 @@ struct UniFont
 	glyphmap_id* glyphs_id; // Stored as pointers to keep the struct's size down. (sizeof(std::map)==12, though that's probably not enough to matter)
 	glyphmap_size* glyphs_size;
 
-	uint ListBase;
+	GLuint ListBase;
 	int LineSpacing;
 	int Height; // of a capital letter, roughly
 };
@@ -188,7 +188,7 @@ static LibError UniFont_to_string(const UniFont* f, char* buf)
 }
 
 
-Handle unifont_load(const VfsPath& pathname, uint flags)
+Handle unifont_load(const VfsPath& pathname, int flags)
 {
 	return h_alloc(H_UniFont, pathname, flags);
 }

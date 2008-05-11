@@ -487,7 +487,7 @@ public:
 	// Serialization functions
 	// (These are not virtual or inherited from ISerializable, to avoid
 	// adding a vtable and making the strings larger than std::string)
-	uint GetSerializedLength() const;
+	size_t GetSerializedLength() const;
 	u8* Serialize(u8* buffer) const;
 	const u8* Deserialize(const u8* buffer, const u8* bufferend);
 };

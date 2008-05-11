@@ -122,7 +122,7 @@ public:
 	CBoneState* GetBones() const { return m_Bones; }
 
 	// accessor: get prop data
-	int GetNumPropPoints() const { return m_NumPropPoints; }
+	size_t GetNumPropPoints() const { return m_NumPropPoints; }
 	SPropPoint* GetPropPoints() const { return m_PropPoints; }
 
 	// find and return pointer to prop point matching given name; return
@@ -169,16 +169,16 @@ public:
 
 public:
 	// vertex data
-	u32 m_NumVertices;
+	size_t m_NumVertices;
 	SModelVertex* m_pVertices;
 	// face data
-	u32	m_NumFaces;
+	size_t m_NumFaces;
 	SModelFace* m_pFaces;
 	// bone data - default model pose
-	u32 m_NumBones;
+	size_t m_NumBones;
 	CBoneState* m_Bones;
 	// prop point data
-	u32 m_NumPropPoints;
+	size_t m_NumPropPoints;
 	SPropPoint* m_PropPoints;
 
 private:

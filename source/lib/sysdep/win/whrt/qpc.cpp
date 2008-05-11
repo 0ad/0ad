@@ -97,7 +97,7 @@ u64 CounterQPC::Counter() const
  * WHRT uses this to ensure the counter (running at nominal frequency)
  * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
  **/
-uint CounterQPC::CounterBits() const
+size_t CounterQPC::CounterBits() const
 {
 	// there are reports of incorrect rollover handling in the PMT
 	// implementation of QPC (see CounterPMT::IsSafe). however, other

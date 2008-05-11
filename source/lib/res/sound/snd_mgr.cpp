@@ -454,15 +454,15 @@ static void al_buf_shutdown()
 
 // regardless of sound card caps, we won't use more than this ("enough").
 // necessary in case OpenAL doesn't limit #sources (e.g. if SW mixing).
-static const uint AL_SRC_MAX = 64;
+static const size_t AL_SRC_MAX = 64;
 // stack of sources (first allocated is [0])
 static ALuint al_srcs[AL_SRC_MAX];
 // number of valid sources in al_srcs[] (set by al_src_init)
-static uint al_src_allocated;
+static size_t al_src_allocated;
 // number of sources currently in use
-static uint al_src_used = 0;
+static size_t al_src_used = 0;
 // user-set limit on how many sources may be used
-static uint al_src_cap = AL_SRC_MAX;
+static size_t al_src_cap = AL_SRC_MAX;
 
 
 /**
@@ -472,7 +472,7 @@ static uint al_src_cap = AL_SRC_MAX;
 static void al_src_init()
 {
 	// grab as many sources as possible and count how many we get.
-	for(uint i = 0; i < AL_SRC_MAX; i++)
+	for(size_t i = 0; i < AL_SRC_MAX; i++)
 	{
 		alGenSources(1, &al_srcs[i]);
 		// we've reached the limit, no more are available.
@@ -503,7 +503,7 @@ static void al_src_shutdown()
 
 	AL_CHECK;
 
-	alDeleteSources(al_src_allocated, al_srcs);
+	alDeleteSources((ALsizei)al_src_allocated, al_srcs);
 
 	AL_CHECK;
 
@@ -551,7 +551,7 @@ static void al_src_free(ALuint al_src)
  * @param limit max. number of sources
  * @return LibError
  */
-LibError snd_set_max_voices(uint limit)
+LibError snd_set_max_voices(size_t limit)
 {
 	// valid if cap is legit (less than what we allocated in al_src_init),
 	// or if al_src_init hasn't been called yet. note: we accept anything
@@ -729,7 +729,7 @@ struct SndData
 
 	ALuint al_buf;
 
-	uint is_valid : 1;
+	size_t is_valid : 1;
 
 #ifdef OGG_HACK
 // pointer to Ogg instance
@@ -824,7 +824,7 @@ static LibError SndData_validate(const SndData * sd)
 {
 	if(sd->al_fmt == 0)
 		WARN_RETURN(ERR::_11);
-	if((uint)sd->al_freq > 100000)	// suspicious
+	if((size_t)sd->al_freq > 100000)	// suspicious
 		WARN_RETURN(ERR::_12);
 	if(sd->al_buf == 0)
 		WARN_RETURN(ERR::_13);
@@ -1163,7 +1163,7 @@ struct VSrc
 	ALfloat cone_gain;
 
 	/// controls vsrc_update behavior (VSrcFlags)
-	uint flags;
+	int flags;
 
 	ALuint al_src;
 
@@ -1178,7 +1178,7 @@ H_TYPE_DEFINE(VSrc);
 
 static void VSrc_init(VSrc* vs, va_list args)
 {
-	vs->flags = va_arg(args, uint);
+	vs->flags = va_arg(args, int);
 	vs->fade.type = FT_NONE;
 }
 
@@ -1284,7 +1284,7 @@ static LibError VSrc_to_string(const VSrc* vs, char * buf)
  */
 Handle snd_open(const VfsPath& pathname, bool is_stream)
 {
-	uint flags = 0;
+	int flags = 0;
 	if(is_stream)
 		flags |= VS_IS_STREAM;
 	// note: RES_UNIQUE forces each instance to get a new resource
@@ -1338,7 +1338,7 @@ static void list_add(VSrc* vs)
  * @param skip number of entries to skip (default 0)
  * @param end_idx if not the default value of 0, stop before that entry.
  */
-static void list_foreach(void (*cb)(VSrc*), uint skip = 0, uint end_idx = 0)
+static void list_foreach(void (*cb)(VSrc*), size_t skip = 0, size_t end_idx = 0)
 {
 	It begin = vsrcs.begin() + skip;
 	It end = vsrcs.end();
@@ -1979,7 +1979,7 @@ static LibError vm_update()
 	// partition list; the first al_src_cap will be granted a source
 	// (if they don't have one already), after reclaiming all sources from
 	// the remainder of the VSrc list entries.
-	uint first_unimportant = std::min((uint)vsrcs.size(), al_src_cap); 
+	size_t first_unimportant = std::min((size_t)vsrcs.size(), al_src_cap); 
 	list_foreach(reclaim, first_unimportant, 0);
 	list_foreach(grant, 0, first_unimportant);
 

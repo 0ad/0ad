@@ -50,7 +50,7 @@ CTextureEntry* CTextureManager::FindTexture(CStr tag)
 	{
 		tag = tag.substr(0, pos);
 	}
-	for (uint i=0;i<m_TextureEntries.size();i++)
+	for (size_t i=0;i<m_TextureEntries.size();i++)
 	{
 		if (m_TextureEntries[i]->GetTag() == tag)
 			return m_TextureEntries[i];
@@ -158,7 +158,7 @@ void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const 
 	// Recurse once for each subdirectory
 	DirectoryNames subdirectoryNames;
 	g_VFS->GetDirectoryEntries(cur_dir_path, 0, &subdirectoryNames);
-	for (uint i=0;i<subdirectoryNames.size();i++)
+	for (size_t i=0;i<subdirectoryNames.size();i++)
 	{
 		char subdirectoryPath[PATH_MAX];
 		path_append(subdirectoryPath, cur_dir_path, subdirectoryNames[i].c_str(), PATH_APPEND_SLASH);

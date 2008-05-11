@@ -24,23 +24,23 @@ CEntityFormation::CEntityFormation( CFormation*& base, size_t index )
 	m_duplication=false;
 	m_entities.resize(m_base->m_numSlots);
 
-	m_index = (int)index;
+	m_index = index;
 }
 
 CEntityFormation::~CEntityFormation()
 {
-	for ( int i=0; i<m_base->m_numSlots; ++i )
+	for ( size_t i=0; i<m_base->m_numSlots; ++i )
 	{
 		if ( m_entities[i] )
 		{
 			m_entities[i]->m_formation = -1;
-			m_entities[i]->m_formationSlot = -1;
+			m_entities[i]->m_formationSlot = (size_t)-1;
 			m_entities[i] = NULL;
 		}
 	}
 }
 
-int CEntityFormation::GetSlotCount()
+size_t CEntityFormation::GetSlotCount()
 {
 	return m_base->m_numSlots;
 }
@@ -49,7 +49,7 @@ void CEntityFormation::SwitchBase( CFormation*& base )
 {
 	std::vector<CEntity*> copy;
 	copy.resize( m_base->m_numSlots );
-	for ( int i=0; i < m_base->m_numSlots; ++i )
+	for ( size_t i=0; i < m_base->m_numSlots; ++i )
 	{
 		if ( !m_entities[i] )
 			continue;
@@ -68,7 +68,7 @@ bool CEntityFormation::AddUnit( CEntity* entity )
 {
 	debug_assert( entity );
 	//Add the unit to the most appropriate slot
-	for (int i=0; i<m_base->m_numSlots; ++i)
+	for (size_t i=0; i<m_base->m_numSlots; ++i)
 	{
 		if ( IsBetterUnit( i, entity ) )
 		{
@@ -82,8 +82,8 @@ bool CEntityFormation::AddUnit( CEntity* entity )
 
 			m_entities[i] = entity;
 			++m_numEntities;
-			entity->m_formation = m_index;
-			entity->m_formationSlot = i;
+			entity->m_formation = (ssize_t)m_index;
+			entity->m_formationSlot = (ssize_t)i;
 
 			return true;
 		}
@@ -98,13 +98,13 @@ void CEntityFormation::RemoveUnit( CEntity* entity )
 
 	m_entities[entity->m_formationSlot] = NULL;
 	entity->m_formation = -1;
-	entity->m_formationSlot = -1;
+	entity->m_formationSlot = (size_t)-1;
 
 	--m_numEntities;
 	//UpdateFormation();
 }
 
-bool CEntityFormation::IsSlotAppropriate( int order, CEntity* entity )
+bool CEntityFormation::IsSlotAppropriate( size_t order, CEntity* entity )
 {
 	debug_assert( entity );
 	if ( !IsValidOrder(order) )
@@ -119,7 +119,7 @@ bool CEntityFormation::IsSlotAppropriate( int order, CEntity* entity )
 	return false;
 }
 
-bool CEntityFormation::IsBetterUnit( int order, CEntity* entity )
+bool CEntityFormation::IsBetterUnit( size_t order, CEntity* entity )
 {
 	if ( !( IsValidOrder(order) && entity ) )
 		return false;
@@ -147,13 +147,13 @@ bool CEntityFormation::IsBetterUnit( int order, CEntity* entity )
 void CEntityFormation::UpdateFormation()
 {
 	//Get the entities in the right order (as in, ordered correctly and in the right order/slot)
-	for ( int i=1; i<m_base->m_numSlots; ++i )
+	for ( size_t i=1; i<m_base->m_numSlots; ++i )
 	{
 		if ( !m_entities[i] )
 			continue;
 
 		//Go through slots with higher order
-		for ( int j=i-1; j > 0; --j )
+		for ( size_t j=i-1; j != 0; --j )
 		{
 			if ( IsBetterUnit( j, m_entities[i] ) )
 			{
@@ -161,7 +161,7 @@ void CEntityFormation::UpdateFormation()
 				m_entities[j] = m_entities[i];
 				m_entities[i] = temp;
 
-				int tmpSlot = m_entities[i]->m_formationSlot;
+				ssize_t tmpSlot = m_entities[i]->m_formationSlot;
 				m_entities[i]->m_formationSlot = m_entities[j]->m_formationSlot;
 				m_entities[j]->m_formationSlot = tmpSlot;
 				--i;
@@ -176,7 +176,7 @@ void CEntityFormation::UpdateFormation()
 
 void CEntityFormation::ResetAllEntities()
 {
-	for ( int i=0; i<m_base->m_numSlots; ++i )
+	for ( size_t i=0; i<m_base->m_numSlots; ++i )
 		m_entities[i] = NULL;
 }
 
@@ -188,7 +188,7 @@ void CEntityFormation::ResetAngleDivs()
 
 void CEntityFormation::SelectAllUnits()
 {
-	for ( int i=0; i<m_base->m_numSlots; ++i )
+	for ( size_t i=0; i<m_base->m_numSlots; ++i )
 	{
 		if ( m_entities[i] && !g_Selection.IsSelected(m_entities[i]->me) )
 			g_Selection.AddSelection( m_entities[i]->me );
@@ -198,7 +198,7 @@ void CEntityFormation::SelectAllUnits()
 CEntityList CEntityFormation::GetEntityList()
 {
 	CEntityList ret;
-	for ( int i=0; i<m_base->m_numSlots; i++ )
+	for ( size_t i=0; i<m_base->m_numSlots; i++ )
 	{
 		if ( m_entities[i] )
 			ret.push_back( m_entities[i]->me);
@@ -206,7 +206,7 @@ CEntityList CEntityFormation::GetEntityList()
 	return ret;
 }
 
-CVector2D CEntityFormation::GetSlotPosition( int order )
+CVector2D CEntityFormation::GetSlotPosition( size_t order )
 {
 	if ( IsValidOrder(order) )
 		return CVector2D ( m_base->m_slots[order].rankOff, m_base->m_slots[order].fileOff );
@@ -226,12 +226,12 @@ void CEntityFormation::BaseToMovement()
 
 void CEntityFormation::ResetIndex( size_t index )
 {
-	m_index = (int)index;
+	m_index = index;
 
 	for ( size_t i=0; i< m_entities.size(); ++i )
 	{
 		if ( m_entities[i] )
-			m_entities[i]->m_formation = m_index;
+			m_entities[i]->m_formation = (ssize_t)m_index;
 	}
 }
 

@@ -151,14 +151,14 @@ void CProfileViewer::RenderProfile()
 	size_t numrows = table->GetNumberRows();
 
 	// Render background
-	uint estimate_height;
-	uint estimate_width;
+	GLint estimate_height;
+	GLint estimate_width;
 
 	estimate_width = 50;
-	for(uint i = 0; i < columns.size(); ++i)
-		estimate_width += columns[i].width;
+	for(size_t i = 0; i < columns.size(); ++i)
+		estimate_width += (GLint)columns[i].width;
 
-	estimate_height = 3 + (uint)numrows;
+	estimate_height = 3 + (GLint)numrows;
 	if (m->path.size() > 1)
 		estimate_height += 2;
 	estimate_height = 20*estimate_height;
@@ -185,7 +185,7 @@ void CProfileViewer::RenderProfile()
 	glTranslatef( 20.0f, 20.0f, 0.0f );
 
 	glPushMatrix();
-	for(uint col = 0; col < columns.size(); ++col)
+	for(size_t col = 0; col < columns.size(); ++col)
 	{
 		glPushMatrix();
 		glwprintf(L"%hs", columns[col].title.c_str());
@@ -198,7 +198,7 @@ void CProfileViewer::RenderProfile()
 	// Print rows
 	int currentExpandId = 1;
 
-	for(uint row = 0; row < numrows; ++row)
+	for(size_t row = 0; row < numrows; ++row)
 	{
 		glPushMatrix();
 
@@ -216,7 +216,7 @@ void CProfileViewer::RenderProfile()
 			currentExpandId++;
 		}
 
-		for(uint col = 0; col < columns.size(); ++col)
+		for(size_t col = 0; col < columns.size(); ++col)
 		{
 			glPushMatrix();
 			glwprintf(L"%hs", table->GetCellText(row, col).c_str());
@@ -278,7 +278,7 @@ InReaction CProfileViewer::Input(const SDL_Event_* ev)
 			}
 			else
 			{
-				uint i;
+				size_t i;
 
 				for(i = 0; i < m->rootTables.size(); ++i)
 				{

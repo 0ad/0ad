@@ -36,7 +36,7 @@ protected:
 
 	void SetCameraPos();
 
-	void FireWorldClickEvent(uint button, int clicks);
+	void FireWorldClickEvent(int button, int clicks);
 
     // calculate the relative heightmap space coordinates
     // for a units world position
@@ -55,20 +55,20 @@ protected:
 	bool m_Clicking;	
 
     // minimap texture handles
-    u32 m_TerrainTexture;
-    u32 m_LOSTexture;
+    GLuint m_TerrainTexture;
+    GLuint m_LOSTexture;
     
     // texture data
-    u32 *m_TerrainData;
-    u8 *m_LOSData;
+    u32* m_TerrainData;
+    u8* m_LOSData;
 
-    u32 m_Width, m_Height;
+    ssize_t m_Width, m_Height;
 
     // map size
-    u32 m_MapSize;
+    ssize_t m_MapSize;
 
     // texture size
-    u32 m_TextureSize;
+    GLsizei m_TextureSize;
 
 	void DrawViewRect();	// split out of Draw
 };

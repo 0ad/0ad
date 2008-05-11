@@ -23,16 +23,6 @@ inline T clamp(T value, T min, T max)
 	else return value;
 }
 
-static inline int RoundUpToPowerOf2(int x)
-{
-	if ((x & (x-1)) == 0)
-		return x;
-	int d = x;
-	while (d & (d-1))
-		d &= (d-1);
-	return d << 1;
-}
-
 inline float sgn(float a)
 {
     if (a > 0.0f) return 1.0f;

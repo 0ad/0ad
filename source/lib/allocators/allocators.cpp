@@ -45,7 +45,7 @@ void page_aligned_free(void* p, size_t unaligned_size)
 // matrix allocator
 //-----------------------------------------------------------------------------
 
-void** matrix_alloc(uint cols, uint rows, size_t el_size)
+void** matrix_alloc(size_t cols, size_t rows, size_t el_size)
 {
 	const size_t initial_align = 64;
 	// note: no provision for padding rows. this is a bit more work and
@@ -68,7 +68,7 @@ void** matrix_alloc(uint cols, uint rows, size_t el_size)
 	debug_assert(data_addr >= (uintptr_t)p+ptr_array_size);
 
 	void** ptr_array = (void**)p;
-	for(uint i = 0; i < cols; i++)
+	for(size_t i = 0; i < cols; i++)
 	{
 		ptr_array[i] = (void*)data_addr;
 		data_addr += row_size;

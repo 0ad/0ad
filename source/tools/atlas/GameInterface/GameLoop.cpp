@@ -68,7 +68,7 @@ static const wchar_t* FindWindowName(const CmdLineArgs& args)
 		return L"ScenarioEditor";
 }
 
-static ErrorReaction AtlasDisplayError(const wchar_t* text, uint flags)
+static ErrorReaction AtlasDisplayError(const wchar_t* text, int flags)
 {
 	// TODO: after Atlas has been unloaded, don't do this
 	Atlas_DisplayError(text, flags);

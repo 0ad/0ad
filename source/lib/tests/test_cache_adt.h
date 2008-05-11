@@ -37,7 +37,7 @@ public:
 				int key = cnt++;\
 				int val = cnt++;\
 				size_t size = (size_t)rand(1,100);\
-				uint cost = (uint)rand(1,100);\
+				size_t cost = (size_t)rand(1,100);\
 				c.add(key, val, size, cost);\
 			}\
 			else\
@@ -81,7 +81,7 @@ public:
 				int key = cnt++;
 				int val = cnt++;
 				size_t size = (size_t)rand(1,100);
-				uint cost = (uint)rand(1,100);
+				size_t cost = (size_t)rand(1,100);
 				c1.add(key, val, size, cost);
 				c2.add(key, val, size, cost);
 				c3.add(key, val, size, cost);

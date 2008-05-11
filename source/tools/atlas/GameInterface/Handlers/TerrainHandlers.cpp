@@ -52,7 +52,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 		// Read the size of the texture. (Usually loads the texture from
 		// disk, which is slow.)
 		GLint w, h;
-		int level = 1; // level 0 is the original size
+		ssize_t level = 1; // level 0 is the original size
 		ogl_tex_bind((*it)->GetHandle());
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_WIDTH,  &w);
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, level, GL_TEXTURE_HEIGHT, &h);
@@ -61,7 +61,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 		{
 			// Oops, too small to preview - just use a flat colour
 			u32 c = (*it)->GetBaseColor();
-			for (int i = 0; i < msg->imagewidth*msg->imageheight; ++i)
+			for (ssize_t i = 0; i < msg->imagewidth*msg->imageheight; ++i)
 			{
 				buf[i*3+0] = (c>>16) & 0xff;
 				buf[i*3+1] = (c>>8) & 0xff;
@@ -78,7 +78,7 @@ QUERYHANDLER(GetTerrainGroupPreviews)
 			// and copy into buf
 			unsigned char* texdata_ptr = texdata + (w*(h - msg->imageheight)/2 + (w - msg->imagewidth)/2) * 3;
 			unsigned char* buf_ptr = &buf[0];
-			for (int y = 0; y < msg->imageheight; ++y)
+			for (ssize_t y = 0; y < msg->imageheight; ++y)
 			{
 				memcpy(buf_ptr, texdata_ptr, msg->imagewidth*3);
 				buf_ptr += msg->imagewidth*3;
@@ -104,9 +104,9 @@ BEGIN_COMMAND(PaintTerrain)
 {
 	struct TerrainTile
 	{
-		TerrainTile(Handle t, int p) : tex(t), priority(p) {}
+		TerrainTile(Handle t, ssize_t p) : tex(t), priority(p) {}
 		Handle tex;
-		int priority;
+		ssize_t priority;
 	};
 	class TerrainArray : public DeltaArray2D<TerrainTile>
 	{
@@ -117,18 +117,18 @@ BEGIN_COMMAND(PaintTerrain)
 			m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
 		}
 
-		void PaintTile(int x, int y, Handle tex, int priority)
+		void PaintTile(ssize_t x, ssize_t y, Handle tex, ssize_t priority)
 		{
 			// Ignore out-of-bounds tiles
-			if ((unsigned)x >= m_VertsPerSide-1 || (unsigned)y >= m_VertsPerSide-1)
+			if (size_t(x) >= size_t(m_VertsPerSide-1) || size_t(y) >= size_t(m_VertsPerSide-1))
 				return;
 
 			// Priority system: If the new tile should have a high priority,
 			// set it to one plus the maximum priority of all surrounding tiles
 			// (so that it's definitely the highest).
 			// Similar for low priority.
-			int greatest = 0;
-			int scale = (priority == ePaintTerrainPriority::HIGH ? +1 : -1);
+			ssize_t greatest = 0;
+			ssize_t scale = (priority == ePaintTerrainPriority::HIGH ? +1 : -1);
 			CMiniPatch* tile;
 #define TILE(dx, dy) tile = m_Terrain->GetTile(x dx, y dy); if (tile && tile->Tex1Priority*scale > greatest) greatest = tile->Tex1Priority*scale;
 			TILE(-1, -1) TILE(+0, -1) TILE(+1, -1)
@@ -139,12 +139,12 @@ BEGIN_COMMAND(PaintTerrain)
 		}
 
 	protected:
-		TerrainTile getOld(int x, int y)
+		TerrainTile getOld(ssize_t x, ssize_t y)
 		{
 			CMiniPatch* mp = m_Terrain->GetTile(x, y);
 			return TerrainTile(mp->Tex1, mp->Tex1Priority);
 		}
-		void setNew(int x, int y, const TerrainTile& val)
+		void setNew(ssize_t x, ssize_t y, const TerrainTile& val)
 		{
 			CMiniPatch* mp = m_Terrain->GetTile(x, y);
 			mp->Tex1 = val.tex;
@@ -152,7 +152,7 @@ BEGIN_COMMAND(PaintTerrain)
 		}
 
 		CTerrain* m_Terrain;
-		size_t m_VertsPerSide;
+		ssize_t m_VertsPerSide;
 	};
 
 	TerrainArray m_TerrainDelta;
@@ -167,7 +167,7 @@ BEGIN_COMMAND(PaintTerrain)
 
 		g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace();
 
-		int x0, y0;
+		ssize_t x0, y0;
 		g_CurrentBrush.GetBottomLeft(x0, y0);
 
 		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture));
@@ -178,9 +178,9 @@ BEGIN_COMMAND(PaintTerrain)
 		}
 		Handle texture = texentry->GetHandle();
 
-		for (int dy = 0; dy < g_CurrentBrush.m_H; ++dy)
+		for (ssize_t dy = 0; dy < g_CurrentBrush.m_H; ++dy)
 		{
-			for (int dx = 0; dx < g_CurrentBrush.m_W; ++dx)
+			for (ssize_t dx = 0; dx < g_CurrentBrush.m_W; ++dx)
 			{
 				if (g_CurrentBrush.Get(dx, dy) > 0.5f) // TODO: proper solid brushes
 					m_TerrainDelta.PaintTile(x0+dx, y0+dy, texture, msg->priority);

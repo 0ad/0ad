@@ -28,12 +28,10 @@ CMiniPatch::~CMiniPatch()
 ///////////////////////////////////////////////////////////////////////////////
 // GetTileIndex: get the index of this tile in the root terrain object; 
 // on return, parameters x,y contain index in [0,MapSize)
-void CMiniPatch::GetTileIndex(u32& x,u32& z)
+void CMiniPatch::GetTileIndex(ssize_t& x,ssize_t& z)
 {
 	const ptrdiff_t tindex = this - &m_Parent->m_MiniPatches[0][0];
 	x=(m_Parent->m_X*PATCH_SIZE)+tindex%PATCH_SIZE;
 	z=(m_Parent->m_Z*PATCH_SIZE)+tindex/PATCH_SIZE;
 }
-
-
 

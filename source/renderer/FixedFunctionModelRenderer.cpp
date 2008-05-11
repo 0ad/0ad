@@ -141,7 +141,7 @@ void* FixedFunctionModelRenderer::CreateModelData(CModel* model)
 
 
 // Fill in and upload dynamic vertex array
-void FixedFunctionModelRenderer::UpdateModelData(CModel* model, void* data, u32 updateflags)
+void FixedFunctionModelRenderer::UpdateModelData(CModel* model, void* data, int updateflags)
 {
 	FFModel* ffmodel = (FFModel*)data;
 
@@ -180,7 +180,7 @@ void FixedFunctionModelRenderer::DestroyModelData(CModel* UNUSED(model), void* d
 
 
 // Setup one rendering pass
-void FixedFunctionModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
+void FixedFunctionModelRenderer::BeginPass(int streamflags, const CMatrix3D* texturematrix)
 {
 	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1)));
 
@@ -206,7 +206,7 @@ void FixedFunctionModelRenderer::BeginPass(uint streamflags, const CMatrix3D* te
 
 
 // Cleanup one rendering pass
-void FixedFunctionModelRenderer::EndPass(uint streamflags)
+void FixedFunctionModelRenderer::EndPass(int streamflags)
 {
 	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
@@ -230,7 +230,7 @@ void FixedFunctionModelRenderer::EndPass(uint streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void FixedFunctionModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr def)
+void FixedFunctionModelRenderer::PrepareModelDef(int streamflags, CModelDefPtr def)
 {
 	m->ffmodeldef = (FFModelDef*)def->GetRenderData(m);
 
@@ -247,7 +247,7 @@ void FixedFunctionModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr 
 
 
 // Render one model
-void FixedFunctionModelRenderer::RenderModel(uint streamflags, CModel* model, void* data)
+void FixedFunctionModelRenderer::RenderModel(int streamflags, CModel* model, void* data)
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 	FFModel* ffmodel = (FFModel*)data;

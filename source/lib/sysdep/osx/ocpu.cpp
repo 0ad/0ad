@@ -11,7 +11,7 @@ double cpu_ClockFrequency()
 }
 
 
-uint cpu_NumProcessors()
+size_t cpu_NumProcessors()
 {
 	// Mac OS X doesn't have sysconf(_SC_NPROCESSORS_CONF)
 	int mib[]={CTL_HW, HW_NCPU};

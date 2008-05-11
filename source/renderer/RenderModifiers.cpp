@@ -30,13 +30,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // RenderModifier implementation
 
-const CMatrix3D* RenderModifier::GetTexGenMatrix(uint UNUSED(pass))
+const CMatrix3D* RenderModifier::GetTexGenMatrix(int UNUSED(pass))
 {
 	debug_warn("GetTexGenMatrix not implemented by a derived RenderModifier");
 	return 0;
 }
 
-void RenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+void RenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 }
 
@@ -77,7 +77,7 @@ PlainRenderModifier::~PlainRenderModifier()
 {
 }
 
-u32 PlainRenderModifier::BeginPass(uint pass)
+int PlainRenderModifier::BeginPass(int pass)
 {
 	debug_assert(pass == 0);
 
@@ -105,7 +105,7 @@ u32 PlainRenderModifier::BeginPass(uint pass)
 	return STREAM_POS|STREAM_COLOR|STREAM_UV0;
 }
 
-bool PlainRenderModifier::EndPass(uint UNUSED(pass))
+bool PlainRenderModifier::EndPass(int UNUSED(pass))
 {
 	// We didn't modify blend state or higher texenvs, so we don't have
 	// to reset OpenGL state here.
@@ -113,7 +113,7 @@ bool PlainRenderModifier::EndPass(uint UNUSED(pass))
 	return true;
 }
 
-void PlainRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+void PlainRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
@@ -130,7 +130,7 @@ PlainLitRenderModifier::~PlainLitRenderModifier()
 {
 }
 
-u32 PlainLitRenderModifier::BeginPass(uint pass)
+int PlainLitRenderModifier::BeginPass(int pass)
 {
 	debug_assert(pass == 0);
 	debug_assert(GetShadowMap() && GetShadowMap()->GetUseDepthTexture());
@@ -181,12 +181,12 @@ u32 PlainLitRenderModifier::BeginPass(uint pass)
 	return STREAM_POS|STREAM_COLOR|STREAM_UV0|STREAM_TEXGENTOUV1;
 }
 
-const CMatrix3D* PlainLitRenderModifier::GetTexGenMatrix(uint UNUSED(pass))
+const CMatrix3D* PlainLitRenderModifier::GetTexGenMatrix(int UNUSED(pass))
 {
 	return &GetShadowMap()->GetTextureMatrix();
 }
 
-bool PlainLitRenderModifier::EndPass(uint UNUSED(pass))
+bool PlainLitRenderModifier::EndPass(int UNUSED(pass))
 {
 	g_Renderer.BindTexture(1, 0);
 	g_Renderer.BindTexture(2, 0);
@@ -196,7 +196,7 @@ bool PlainLitRenderModifier::EndPass(uint UNUSED(pass))
 	return true;
 }
 
-void PlainLitRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+void PlainLitRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
@@ -215,7 +215,7 @@ WireframeRenderModifier::~WireframeRenderModifier()
 {
 }
 
-u32 WireframeRenderModifier::BeginPass(uint pass)
+int WireframeRenderModifier::BeginPass(int pass)
 {
 	debug_assert(pass == 0);
 
@@ -235,7 +235,7 @@ u32 WireframeRenderModifier::BeginPass(uint pass)
 }
 
 
-bool WireframeRenderModifier::EndPass(uint UNUSED(pass))
+bool WireframeRenderModifier::EndPass(int UNUSED(pass))
 {
 	// .. restore the renderstates
 	glDisable(GL_BLEND);
@@ -248,12 +248,12 @@ bool WireframeRenderModifier::EndPass(uint UNUSED(pass))
 }
 
 
-void WireframeRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* UNUSED(texture))
+void WireframeRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* UNUSED(texture))
 {
 }
 
 
-void WireframeRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+void WireframeRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 }
 
@@ -270,22 +270,22 @@ SolidColorRenderModifier::~SolidColorRenderModifier()
 {
 }
 
-u32 SolidColorRenderModifier::BeginPass(uint UNUSED(pass))
+int SolidColorRenderModifier::BeginPass(int UNUSED(pass))
 {
 	g_Renderer.SetTexture(0,0);
 
 	return STREAM_POS;
 }
 
-bool SolidColorRenderModifier::EndPass(uint UNUSED(pass))
+bool SolidColorRenderModifier::EndPass(int UNUSED(pass))
 {
 	return true;
 }
 
-void SolidColorRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* UNUSED(texture))
+void SolidColorRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* UNUSED(texture))
 {
 }
 
-void SolidColorRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+void SolidColorRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 }

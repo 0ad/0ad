@@ -52,9 +52,9 @@ scope
 #include "config.h"
 
 
-const size_t KiB = 1ul << 10;
-const size_t MiB = 1ul << 20;
-const size_t GiB = 1ul << 30;
+const size_t KiB = size_t(1) << 10;
+const size_t MiB = size_t(1) << 20;
+const size_t GiB = size_t(1) << 30;
 
 
 //

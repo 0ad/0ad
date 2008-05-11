@@ -38,10 +38,10 @@ class CGameEvents : public IEventTarget, public Singleton<CGameEvents>
 		int m_SecondaryOrder;
 		int m_SecondaryAction;
 		CEntity *m_Entity;
-		uint m_X, m_Y;
+		int m_X, m_Y;
 	public:
 		CEventWorldClick(int button, int clicks, int order, int action,
-				int secOrder, int secAction, CEntity *ent, uint x, uint y):
+				int secOrder, int secAction, CEntity *ent, int x, int y):
 			CScriptEvent(L"worldClick", EVENT_WORLD_CLICK, false),
 			m_Button(button),
 			m_Clicks(clicks),
@@ -76,7 +76,7 @@ public:
 	}
 	
 	void FireWorldClick(int button, int clicks, int order, int action,
-		int secOrder, int secAction, CEntity *ent, uint x, uint y)
+		int secOrder, int secAction, CEntity *ent, int x, int y)
 	{
 		CEventWorldClick evt(button, clicks, order, action, secOrder, secAction, ent, x, y);
 		DispatchEvent(&evt);

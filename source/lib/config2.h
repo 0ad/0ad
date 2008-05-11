@@ -16,13 +16,6 @@
 // configuration choices, so rebuilding them all is acceptable.
 // use config.h when settings must apply to the entire project.
 
-// (only applicable if ARCH_IA32) 64-bit values will be returned in EDX:EAX.
-// this chiefly affects ia32_rdtsc. if not set, a safer but slower fallback
-// will be used that doesn't assume anything about return convention.
-#ifndef CONFIG2_IA32_RETURN64_EDX_EAX
-# define CONFIG2_IA32_RETURN64_EDX_EAX 1
-#endif
-
 // allow use of RDTSC for raw tick counts (otherwise, the slower but
 // more reliable on MP systems wall-clock will be used).
 #ifndef CONFIG2_TIMER_ALLOW_RDTSC

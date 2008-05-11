@@ -9,9 +9,9 @@ public:
 	void TestParam()
 	{
 		debug_skip_next_err(ERR::INVALID_PARAM);
-		TS_ASSERT_EQUALS(rand(1, 0), 0);
+		TS_ASSERT_EQUALS(rand(1, 0), size_t(0));
 		debug_skip_next_err(ERR::INVALID_PARAM);
-		TS_ASSERT_EQUALS(rand(2, ~0u), 0);
+		TS_ASSERT_EQUALS(rand(2, ~0u), size_t(0));
 	}
 
 	// returned number must be in [min, max)
@@ -19,8 +19,8 @@ public:
 	{
 		for(int i = 0; i < 100; i++)
 		{
-			uint min = rand(), max = min+rand();
-			uint x = rand(min, max);
+			size_t min = rand(), max = min+rand();
+			size_t x = rand(min, max);
 			TS_ASSERT(min <= x && x < max);
 		}
 	}
@@ -28,10 +28,10 @@ public:
 	// make sure both possible values are hit
 	void TestTwoValues()
 	{
-		uint ones = 0, twos = 0;
+		size_t ones = 0, twos = 0;
 		for(int i = 0; i < 100; i++)
 		{
-			uint x = rand(1, 3);
+			size_t x = rand(1, 3);
 			// paranoia: don't use array (x might not be 1 or 2 - checked below)
 			if(x == 1) ones++;
 			if(x == 2) twos++;

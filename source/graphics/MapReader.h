@@ -54,7 +54,7 @@ private:
 	int DelayLoadFinished();
 
 	// size of map 
-	u32 m_MapSize;
+	ssize_t m_MapSize;
 	// heightmap for map
 	std::vector<u16> m_Heightmap;
 	// list of terrain textures used by map
@@ -81,8 +81,8 @@ private:
 	CStr filename_xml;
 
 	// UnpackTerrain generator state
-	u32 cur_terrain_tex;
-	u32 num_terrain_tex;
+	size_t cur_terrain_tex;
+	size_t num_terrain_tex;
 
 	CXMLReader* xml_reader;
 };

@@ -24,6 +24,7 @@
 #include "lib/path_util.h"
 #if ARCH_IA32
 # include "lib/sysdep/ia32/ia32.h"
+# include "lib/sysdep/ia32/ia32_asm.h"
 #endif
 #include "lib/external_libraries/dbghelp.h"
 #include "winit.h"
@@ -270,7 +271,7 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 #endif	// #if ARCH_IA32 && !CONFIG_OMIT_FP
 
 
-static void skip_this_frame(uint& skip, void* context)
+static void skip_this_frame(size_t& skip, void* context)
 {
 	if(!context)
 		skip++;
@@ -280,7 +281,7 @@ static void skip_this_frame(uint& skip, void* context)
 typedef VOID (*PRtlCaptureContext)(PCONTEXT);
 static PRtlCaptureContext s_RtlCaptureContext;
 
-LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, uint skip, const CONTEXT* pcontext)
+LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, size_t skip, const CONTEXT* pcontext)
 {
 	// to function properly, StackWalk64 requires a CONTEXT on
 	// non-x86 systems (documented) or when in release mode (observed).
@@ -413,7 +414,7 @@ static LibError nth_caller_cb(const _tagSTACKFRAME64* sf, uintptr_t cbData)
 	return INFO::OK;
 }
 
-void* debug_get_nth_caller(uint skip, void* pcontext)
+void* debug_get_nth_caller(size_t skip, void* pcontext)
 {
 	void* func;
 	skip_this_frame(skip, pcontext);
@@ -429,14 +430,14 @@ void* debug_get_nth_caller(uint skip, void* pcontext)
 
 // overflow is impossible in practice, but check for robustness.
 // keep in sync with DumpState.
-static const uint MAX_INDIRECTION = 255;
-static const uint MAX_LEVEL = 255;
+static const size_t MAX_INDIRECTION = 255;
+static const size_t MAX_LEVEL = 255;
 
 struct DumpState
 {
 	// keep in sync with MAX_* above
-	uint level : 8;
-	uint indirection : 8;
+	size_t level : 8;
+	size_t indirection : 8;
 
 	DumpState()
 	{
@@ -561,7 +562,7 @@ static LibError out_check_limit()
 
 //----------------------------------------------------------------------------
 
-#define INDENT STMT(for(uint i = 0; i <= state.level; i++) out(L"    ");)
+#define INDENT STMT(for(size_t i = 0; i <= state.level; i++) out(L"    ");)
 #define UNINDENT STMT(out_erase((state.level+1)*4);)
 
 
@@ -1034,7 +1035,7 @@ display_as_hex:
 			else if(size == 8)
 				fmt = L"0x%016I64X";
 			else
-				debug_assert(0);	// invalid uint size
+				debug_assert(0);	// invalid size_t size
 			break;
 
 		// character
@@ -1168,7 +1169,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 	const DWORD* children = fcp.p.ChildId;
 
 	// for each child (enumerant):
-	for(uint i = 0; i < num_children; i++)
+	for(size_t i = 0; i < num_children; i++)
 	{
 		DWORD child_data_id = children[i];
 
@@ -1785,7 +1786,7 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 }
 
 
-LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* pcontext)
+LibError debug_dump_stack(wchar_t* buf, size_t max_chars, size_t skip, void* pcontext)
 {
 	static uintptr_t already_in_progress;
 	if(!cpu_CAS(&already_in_progress, 0, 1))

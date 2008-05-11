@@ -522,7 +522,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 }
 
 
-JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 0)
 	{
@@ -540,7 +540,7 @@ JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, uint argc, jsval*
 }
 
 
-JSBool JSI_IGUIObject::getByName(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)
+JSBool JSI_IGUIObject::getByName(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval)
 {
 	debug_assert(argc == 1);
 

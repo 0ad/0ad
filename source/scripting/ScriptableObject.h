@@ -218,7 +218,7 @@ public:
 	static void ScriptingInit( const char* ClassName, JSNative Constructor = NULL, uintN ConstructorMinArgs = 0 )
 	{
 		JSFunctionSpec* JSI_methods = new JSFunctionSpec[ m_Methods.size() + 1 ];
-		unsigned int MethodID;
+		size_t MethodID;
 		for( MethodID = 0; MethodID < m_Methods.size(); MethodID++ )
 			JSI_methods[MethodID] = m_Methods[MethodID];
 

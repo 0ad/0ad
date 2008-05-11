@@ -25,7 +25,7 @@ CNetMessage::~CNetMessage()
 u8 *CNetMessage::Serialize(u8 *pos) const
 { return pos; }
 
-uint CNetMessage::GetSerializedLength() const
+size_t CNetMessage::GetSerializedLength() const
 {
 	return 0;
 }
@@ -49,7 +49,7 @@ CNetMessage *CNetMessage::Copy() const
 	return new CNetMessage(NMT_NONE);
 }
 
-CNetMessage *CNetMessage::DeserializeMessage(ENetMessageType type, u8 *buffer, uint length)
+CNetMessage *CNetMessage::DeserializeMessage(ENetMessageType type, u8 *buffer, size_t length)
 {
 	{
 	ONCE(
@@ -214,7 +214,7 @@ CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSConte
 
 	// argIndex, incremented by reading macros. We have already "eaten" the
 	// first argument (message type)
-	uint argIndex = 1;
+	size_t argIndex = 1;
 	switch (msgType)
 	{
 		// NMT_Goto, targetX, targetY

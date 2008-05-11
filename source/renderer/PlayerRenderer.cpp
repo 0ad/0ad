@@ -37,7 +37,7 @@ bool FastPlayerColorRender::IsAvailable()
 	return (ogl_max_tex_units >= 3);
 }
 
-u32 FastPlayerColorRender::BeginPass(uint pass)
+int FastPlayerColorRender::BeginPass(int pass)
 {
 	debug_assert(pass == 0);
 
@@ -98,7 +98,7 @@ u32 FastPlayerColorRender::BeginPass(uint pass)
 }
 
 
-bool FastPlayerColorRender::EndPass(uint UNUSED(pass))
+bool FastPlayerColorRender::EndPass(int UNUSED(pass))
 {
 	// Restore state
 	pglActiveTextureARB(GL_TEXTURE1);
@@ -110,14 +110,14 @@ bool FastPlayerColorRender::EndPass(uint UNUSED(pass))
 	return true;
 }
 
-void FastPlayerColorRender::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+void FastPlayerColorRender::PrepareTexture(int UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(2, texture);
 	g_Renderer.SetTexture(1, texture);
 	g_Renderer.SetTexture(0, texture);
 }
 
-void FastPlayerColorRender::PrepareModel(uint UNUSED(pass), CModel* model)
+void FastPlayerColorRender::PrepareModel(int UNUSED(pass), CModel* model)
 {
 	// Get the player color
 	SMaterialColor colour = model->GetMaterial().GetPlayerColor();
@@ -139,7 +139,7 @@ SlowPlayerColorRender::~SlowPlayerColorRender()
 {
 }
 
-u32 SlowPlayerColorRender::BeginPass(uint pass)
+int SlowPlayerColorRender::BeginPass(int pass)
 {
 	// We calculate: Result = (Color*Texture)*Texture.a + (Color*Texture*PlayerColor)*(1-Texture.a)
 	// Modulation is done via texture environments, the final interpolation is done via blending
@@ -205,7 +205,7 @@ u32 SlowPlayerColorRender::BeginPass(uint pass)
 	}
 }
 
-bool SlowPlayerColorRender::EndPass(uint pass)
+bool SlowPlayerColorRender::EndPass(int pass)
 {
 	if (pass == 0)
 		return false; // need two passes
@@ -221,7 +221,7 @@ bool SlowPlayerColorRender::EndPass(uint pass)
 	return true;
 }
 
-void SlowPlayerColorRender::PrepareTexture(uint pass, CTexture* texture)
+void SlowPlayerColorRender::PrepareTexture(int pass, CTexture* texture)
 {
 	if (pass == 1)
 		g_Renderer.SetTexture(1, texture);
@@ -229,7 +229,7 @@ void SlowPlayerColorRender::PrepareTexture(uint pass, CTexture* texture)
 }
 
 
-void SlowPlayerColorRender::PrepareModel(uint pass, CModel* model)
+void SlowPlayerColorRender::PrepareModel(int pass, CModel* model)
 {
 	if (pass == 1)
 	{
@@ -254,7 +254,7 @@ LitPlayerColorRender::~LitPlayerColorRender()
 {
 }
 
-u32 LitPlayerColorRender::BeginPass(uint pass)
+int LitPlayerColorRender::BeginPass(int pass)
 {
 	debug_assert(GetShadowMap() && GetShadowMap()->GetUseDepthTexture());
 
@@ -355,7 +355,7 @@ u32 LitPlayerColorRender::BeginPass(uint pass)
 }
 
 
-bool LitPlayerColorRender::EndPass(uint pass)
+bool LitPlayerColorRender::EndPass(int pass)
 {
 	if (pass == 0)
 	{
@@ -375,18 +375,18 @@ bool LitPlayerColorRender::EndPass(uint pass)
 	}
 }
 
-const CMatrix3D* LitPlayerColorRender::GetTexGenMatrix(uint UNUSED(pass))
+const CMatrix3D* LitPlayerColorRender::GetTexGenMatrix(int UNUSED(pass))
 {
 	return &GetShadowMap()->GetTextureMatrix();
 }
 
-void LitPlayerColorRender::PrepareTexture(uint pass, CTexture* texture)
+void LitPlayerColorRender::PrepareTexture(int pass, CTexture* texture)
 {
 	if (pass == 0)
 		g_Renderer.SetTexture(0, texture);
 }
 
-void LitPlayerColorRender::PrepareModel(uint pass, CModel* model)
+void LitPlayerColorRender::PrepareModel(int pass, CModel* model)
 {
 	if (pass == 0)
 	{

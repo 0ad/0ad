@@ -139,11 +139,11 @@ void CNetLogSink::DoSink( const CNetLogEvent& event )
 // Name: DoBulkSink()
 // Desc: Perform logging for a list of events
 //-----------------------------------------------------------------------------
-void CNetLogSink::DoBulkSink( const CNetLogEvent* pEvents, uint eventCount )
+void CNetLogSink::DoBulkSink( const CNetLogEvent* pEvents, size_t eventCount )
 {
-	uint*	pIndices	= NULL;
-	uint	indexCount  = 0;
-	uint	i;
+	unsigned*	pIndices	= NULL;
+	size_t	indexCount  = 0;
+	size_t	i;
 
 	CScopeLock lock( m_Mutex );
 
@@ -154,7 +154,7 @@ void CNetLogSink::DoBulkSink( const CNetLogEvent* pEvents, uint eventCount )
 	if ( m_Closed ) return;
 
 	// Allocate new array which will store the events that will be logged
-	pIndices = new uint[ eventCount ];
+	pIndices = new unsigned[ eventCount ];
 	if ( !pIndices ) 
 	{
 		throw std::bad_alloc();
@@ -827,7 +827,7 @@ void CNetLogger::WarnFormat( const char* pFormat, ... )
 //-----------------------------------------------------------------------------
 void CNetLogger::AddSink( CNetLogSink* pSink )
 {
-	uint		i;
+	size_t		i;
 	CScopeLock	lock( m_Mutex );
 
 	assert( pSink );
@@ -922,19 +922,19 @@ void CNetLogger::RemoveAllSinks( void )
 // Name: GetSinkCount()
 // Desc: Retrive the number of attached sinks
 //-----------------------------------------------------------------------------
-uint CNetLogger::GetSinkCount( void )
+size_t CNetLogger::GetSinkCount( void )
 {
-	return ( uint )m_Sinks.size();
+	return m_Sinks.size();
 }
 
 //-----------------------------------------------------------------------------
 // Name: GetSink()
 // Desc: Retrieves the sink by index
 //-----------------------------------------------------------------------------
-CNetLogSink* CNetLogger::GetSink( uint index )
+CNetLogSink* CNetLogger::GetSink( size_t index )
 {
 	// Validate parameter
-	if ( index > ( uint )m_Sinks.size() ) return NULL;
+	if ( index > m_Sinks.size() ) return NULL;
 
 	return m_Sinks[ index ];
 }
@@ -945,7 +945,7 @@ CNetLogSink* CNetLogger::GetSink( uint index )
 //-----------------------------------------------------------------------------
 CNetLogSink* CNetLogger::GetSink( const CStr& name )
 {
-	for ( uint i = 0; i < GetSinkCount(); i++ )
+	for ( size_t i = 0; i < GetSinkCount(); i++ )
 	{
 		CNetLogSink* pCurrSink = GetSink( i );
 		if ( !pCurrSink ) continue;
@@ -964,7 +964,7 @@ CNetLogSink* CNetLogger::GetSink( const CStr& name )
 //-----------------------------------------------------------------------------
 void CNetLogger::CallSinks( const CNetLogEvent& event )
 {
-	for ( uint i = 0; i < GetSinkCount(); i++ )
+	for ( size_t i = 0; i < GetSinkCount(); i++ )
 	{
 		CNetLogSink* pCurrSink = GetSink( i );
 		if ( !pCurrSink ) continue;
@@ -1040,7 +1040,8 @@ void CNetLogger::GetStringTime( CStr& str )
 void CNetLogger::GetStringTimeStamp( CStr& str )
 {
 	char buffer[ 128 ] = { 0 };
-	sprintf( buffer, "[%3u.%03u]", ( uint )timer_Time(), ( ( uint )( timer_Time() * 1000 ) % 1000 ) );
+	double timestamp = timer_Time();
+	sprintf( buffer, "[%3u.%03u]", ( unsigned )timestamp, ( ( unsigned )( timestamp * 1000 ) % 1000 ) );
 	str = buffer;
 }
 

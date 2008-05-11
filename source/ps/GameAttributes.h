@@ -4,6 +4,7 @@
 #include "Player.h"
 
 #include "scripting/SynchedJSObject.h"
+#include "simulation/LOSManager.h"
 
 class CNetServerSession;
 class CGameAttributes;
@@ -21,7 +22,7 @@ typedef void (PlayerSlotAssignmentCB)(void *data, CPlayerSlot *);
 
 class CPlayerSlot: public CJSObject<CPlayerSlot>
 {
-	int m_SlotID;
+	size_t m_SlotID;
 	EPlayerSlotAssignment m_Assignment;
 
 	CNetServerSession *m_pSession;
@@ -51,18 +52,18 @@ class CPlayerSlot: public CJSObject<CPlayerSlot>
 	
 protected:
 	friend class CGameAttributes;
-	inline void SetSlotID(int slotID)
+	inline void SetSlotID(size_t slotID)
 	{	m_SlotID=slotID; }
 
 public:
-	CPlayerSlot(int slotID, CPlayer *pPlayer);
+	CPlayerSlot(size_t slotID, CPlayer *pPlayer);
 	~CPlayerSlot();
 	
 	inline CPlayer *GetPlayer()
 	{	return m_pPlayer; }
 	inline int GetSessionID()
 	{	return m_SessionID; }
-	inline int GetSlotID()
+	inline size_t GetSlotID()
 	{	return m_SlotID; }
 	
 	// Only applicable on the server host, and may return NULL if the slot
@@ -119,7 +120,7 @@ public:
 	CStrW m_ResourceLevel;
 	CStrW m_StartingPhase;
 	CStrW m_GameMode;
-	uint m_LOSSetting;
+	ELOSSetting m_LOSSetting;
 	bool m_FogOfWar;
 	bool m_ScreenshotMode;
 
@@ -128,7 +129,7 @@ public:
 private:
 	friend JSBool PlayerSlotArray_JS::GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp );
 
-	uint m_NumSlots;
+	size_t m_NumSlots;
 	
 	// All players in the game. m_Players[0] is the Gaia Player, like in CGame.
 	// m_Players[1..n] have a corresponding player slot in m_PlayerSlots[0..n-1]
@@ -164,7 +165,7 @@ public:
 		m_UpdateCBData=userdata;
 	}
 	
-	inline uint GetSlotCount()
+	inline size_t GetSlotCount()
 	{	return m_NumSlots; }
 
 	inline CStrW GetGameMode()
@@ -176,9 +177,9 @@ public:
 	void FinalizeSlots();
 	
 	// Get the player object for the passed Player ID
-	CPlayer *GetPlayer(int id);
+	CPlayer *GetPlayer(size_t id);
 	// Get the slot object with the specified index
-	CPlayerSlot *GetSlot(int index);
+	CPlayerSlot *GetSlot(size_t index);
 	
 	void SetPlayerUpdateCallback(CPlayer::UpdateCallback *cb, void *userdata);
 	void SetPlayerSlotAssignmentCallback(PlayerSlotAssignmentCB *cb, void *userdata);

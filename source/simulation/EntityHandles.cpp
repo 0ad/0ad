@@ -106,7 +106,7 @@ CEntity& HEntity::operator*() const
 	return( *g_EntityManager.m_entities[m_handle].m_entity );
 }
 
-uint HEntity::GetSerializedLength() const
+size_t HEntity::GetSerializedLength() const
 {
 	return 2;
 }
@@ -133,9 +133,9 @@ HEntity::operator CStr() const
 	return CStr(buf);
 }
 
-uint CEntityList::GetSerializedLength() const
+size_t CEntityList::GetSerializedLength() const
 {
-	return (uint)(2*size());
+	return (size_t)(2*size());
 }
 
 u8 *CEntityList::Serialize(u8 *buffer) const

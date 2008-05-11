@@ -22,10 +22,10 @@ public:
 	void test_basic_single_threaded()
 	{
 		void* user_data;
-		const uint ENTRIES = 50;
+		const size_t ENTRIES = 50;
 		// should be more than max # retired nodes to test release..() code
 		uintptr_t key = 0x1000;
-		uint sig = 10;
+		size_t sig = 10;
 
 		LFList list;
 		TS_ASSERT_OK(lfl_init(&list));
@@ -34,29 +34,29 @@ public:
 		TS_ASSERT_OK(lfh_init(&hash, 8));
 
 		// add some entries; store "signatures" (ascending int values)
-		for(uint i = 0; i < ENTRIES; i++)
+		for(size_t i = 0; i < ENTRIES; i++)
 		{
 			int was_inserted;
 
 			user_data = lfl_insert(&list, key+i, sizeof(int), &was_inserted);
 			TS_ASSERT(user_data != 0 && was_inserted);
-			*(uint*)user_data = sig+i;
+			*(size_t*)user_data = sig+i;
 
 			user_data = lfh_insert(&hash, key+i, sizeof(int), &was_inserted);
 			TS_ASSERT(user_data != 0 && was_inserted);
-			*(uint*)user_data = sig+i;
+			*(size_t*)user_data = sig+i;
 		}
 
 		// make sure all "signatures" are present in list
-		for(uint i = 0; i < ENTRIES; i++)
+		for(size_t i = 0; i < ENTRIES; i++)
 		{
 			user_data = lfl_find(&list, key+i);
 			TS_ASSERT(user_data != 0);
-			TS_ASSERT_EQUALS(*(uint*)user_data, sig+i);
+			TS_ASSERT_EQUALS(*(size_t*)user_data, sig+i);
 
 			user_data = lfh_find(&hash, key+i);
 			TS_ASSERT(user_data != 0);
-			TS_ASSERT_EQUALS(*(uint*)user_data, sig+i);
+			TS_ASSERT_EQUALS(*(size_t*)user_data, sig+i);
 		}
 
 		lfl_free(&list);
@@ -126,9 +126,9 @@ class TestMultithread : public CxxTest::TestSuite
 		{
 			void* user_data;
 
-			const int action            = rand(0, 4);
-			const uintptr_t key         = rand(0, 100);
-			const int sleep_duration_ms = rand(0, 100);
+			const size_t action         = rand(0, 4);
+			const uintptr_t key         = (uintptr_t)rand(0, 100);
+			const size_t sleep_duration_ms = rand(0, 100);
 			debug_printf("thread %d: %s\n", thread_number, action_strings[action]);
 
 			//
@@ -225,7 +225,7 @@ public:
 		TS_ASSERT_OK(pthread_mutex_init(&mutex, 0));
 
 		// spin off test threads (many, to force preemption)
-		const uint NUM_THREADS = 16;
+		const size_t NUM_THREADS = 16;
 		for(uintptr_t i = 0; i < NUM_THREADS; i++)
 		{
 			ThreadFuncParam* param = new ThreadFuncParam(this, i);

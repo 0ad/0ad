@@ -165,7 +165,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	static const float one[4] = { 1.f, 1.f, 1.f, 1.f };
 	glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, one);
 	
-	for(uint i = 0; i < m->visiblePatches.size(); ++i)
+	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderBase(true); // with LOS color
@@ -197,7 +197,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	glDepthMask(0);
 	
 	// render blend passes for each patch
-	for(uint i = 0; i < m->visiblePatches.size(); ++i)
+	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderBlends();
@@ -328,7 +328,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	pglActiveTextureARB(GL_TEXTURE0);
 	pglClientActiveTextureARB(GL_TEXTURE0);
 	
-	for (uint i = 0; i < m->visiblePatches.size(); ++i)
+	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderStreams(STREAM_POS|STREAM_COLOR|STREAM_POSTOUV0, false);
@@ -364,7 +364,7 @@ void TerrainRenderer::RenderPatches()
 	debug_assert(m->phase == Phase_Render);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
-	for(uint i = 0; i < m->visiblePatches.size(); ++i)
+	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderStreams(STREAM_POS, true);
@@ -378,7 +378,7 @@ void TerrainRenderer::RenderPatches()
 void TerrainRenderer::RenderOutlines()
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
-	for(uint i = 0; i < m->visiblePatches.size(); ++i)
+	for(size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
 		patchdata->RenderOutline();
@@ -422,7 +422,7 @@ void TerrainRenderer::RenderWater()
 	double time = WaterMgr->m_WaterTexTimer;
 
 	double period = 1.6;
-	int curTex = (unsigned int)(time*60/period) % 60;
+	int curTex = (int)(time*60/period) % 60;
 
 	if(fancy)
 	{
@@ -571,10 +571,10 @@ void TerrainRenderer::RenderWater()
 						-100.0f, WaterMgr->m_WaterMaxAlpha);
 
 					float losMod = 1.0f;
-					for(int k=0; k<4; k++)
+					for(size_t k=0; k<4; k++)
 					{
-						int tx = ix - DX[k];
-						int tz = iz - DZ[k];
+						ssize_t tx = ix - DX[k];
+						ssize_t tz = iz - DZ[k];
 
 						if(tx >= 0 && tz >= 0 && tx <= mapSize-2 && tz <= mapSize-2)
 						{

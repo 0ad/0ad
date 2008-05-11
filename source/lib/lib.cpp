@@ -86,7 +86,7 @@ u8 u8_from_double(double in)
 	}
 
 	int l = (int)(in * 255.0);
-	debug_assert((unsigned int)l <= 255u);
+	debug_assert((unsigned)l <= 255u);
 	return (u8)l;
 }
 

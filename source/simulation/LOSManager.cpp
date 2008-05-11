@@ -15,7 +15,7 @@
 #include "lib/timer.h"
 
 
-CLOSManager::CLOSManager() : m_LOSSetting(0), m_FogOfWar(true)
+CLOSManager::CLOSManager() : m_LOSSetting(LOS_SETTING_NORMAL), m_FogOfWar(true)
 {
 #ifdef _2_los
 	m_Explored = 0;
@@ -38,7 +38,7 @@ CLOSManager::~CLOSManager()
 #endif
 }
 
-void CLOSManager::Initialize(uint losSetting, bool fogOfWar) 
+void CLOSManager::Initialize(ELOSSetting losSetting, bool fogOfWar) 
 {
 	// Set special LOS setting
 	m_LOSSetting = losSetting;
@@ -63,23 +63,23 @@ void CLOSManager::Initialize(uint losSetting, bool fogOfWar)
 
 	// Set initial values
 #ifdef _2_los
-	uint explored_value = (m_LOSSetting == EXPLORED || m_LOSSetting == ALL_VISIBLE)? 0xFF : 0;
-	uint vis_value      = (m_LOSSetting == ALL_VISIBLE)? 0xFF : 0;
+	int explored_value = (m_LOSSetting == LOS_SETTING_EXPLORED || m_LOSSetting == LOS_SETTING_ALL_VISIBLE)? 0xFF : 0;
+	int vis_value      = (m_LOSSetting == LOS_SETTING_ALL_VISIBLE)? 0xFF : 0;
 #else
 	u16 vis_value = 0;
-	if(m_LOSSetting == EXPLORED || m_LOSSetting == ALL_VISIBLE)
+	if(m_LOSSetting == LOS_SETTING_EXPLORED || m_LOSSetting == LOS_SETTING_ALL_VISIBLE)
 		for(int i = 0; i < 8; i++) vis_value |= LOS_EXPLORED << (i*2);
-	if(m_LOSSetting == ALL_VISIBLE || (m_LOSSetting == EXPLORED && !m_FogOfWar) )
+	if(m_LOSSetting == LOS_SETTING_ALL_VISIBLE || (m_LOSSetting == LOS_SETTING_EXPLORED && !m_FogOfWar) )
 		for(int i = 0; i < 8; i++) vis_value |= LOS_VISIBLE << (i*2);
 #endif
-	for(uint x=0; x<m_TilesPerSide; x++)
+	for(size_t x=0; x<m_TilesPerSide; x++)
 	{
 #ifdef _2_los
 		memset(m_Explored[x], explored_value, m_TilesPerSide*sizeof(int));
 		memset(m_Visible [x], vis_value     , m_TilesPerSide*sizeof(int));
 #else
-		for(uint y=0; y<m_TilesPerSide; y++)
-		for(uint x=0; x<m_TilesPerSide; x++)
+		for(size_t y=0; y<m_TilesPerSide; y++)
+		for(size_t x=0; x<m_TilesPerSide; x++)
 			m_VisibilityMatrix[y][x] = vis_value;
 #endif
 	}
@@ -92,7 +92,7 @@ void CLOSManager::Initialize(uint losSetting, bool fogOfWar)
 // NOTE: this will have to be changed if we decide to use incremental LOS
 void CLOSManager::Update() 
 {
-	if(m_LOSSetting == ALL_VISIBLE)
+	if(m_LOSSetting == LOS_SETTING_ALL_VISIBLE)
 		return;
 
 	// Clear the visible array
@@ -110,8 +110,8 @@ void CLOSManager::Update()
 		u16 not_all_vis = 0xFFFF;
 		for(int i = 0; i < 8; i++)
 			not_all_vis &= ~(LOS_VISIBLE << (i*2));
-		for(uint y=0; y<m_TilesPerSide; y++)
-		for(uint x=0; x<m_TilesPerSide; x++)
+		for(size_t y=0; y<m_TilesPerSide; y++)
+		for(size_t x=0; x<m_TilesPerSide; x++)
 			m_VisibilityMatrix[y][x] &= not_all_vis;
 	}
 #endif
@@ -123,29 +123,27 @@ void CLOSManager::Update()
 	{
 		CEntity* e = extant[i];
 
-		int los = e->m_los;
+		ssize_t los = e->m_los;
 		if(los == 0)
-		{
 			continue;
-		}
 
 #ifdef _2_los
-		int mask = (1 << e->GetPlayer()->GetPlayerID());
+		size_t mask = (size_t(1) << e->GetPlayer()->GetPlayerID());
 #else
-		uint shift = e->GetPlayer()->GetPlayerID()*2;
+		size_t shift = e->GetPlayer()->GetPlayerID()*2;
 #endif
 
-		int cx, cz;
+		ssize_t cx, cz;
 		CTerrain::CalcFromPosition(e->m_position.X, e->m_position.Z, cx, cz);
 
-		int minX = std::max(cx-los, 0);
-		int minZ = std::max(cz-los, 0);
-		int maxX = std::min(cx+los, (int)m_TilesPerSide_1);
-		int maxZ = std::min(cz+los, (int)m_TilesPerSide_1);
+		ssize_t minX = std::max(cx-los, ssize_t(0));
+		ssize_t minZ = std::max(cz-los, ssize_t(0));
+		ssize_t maxX = std::min(cx+los, ssize_t(m_TilesPerSide_1));
+		ssize_t maxZ = std::min(cz+los, ssize_t(m_TilesPerSide_1));
 
-		for(int x=minX; x<=maxX; x++) 
+		for(ssize_t x=minX; x<=maxX; x++) 
 		{
-			for(int z=minZ; z<=maxZ; z++) 
+			for(ssize_t z=minZ; z<=maxZ; z++) 
 			{
 				if((x-cx)*(x-cx) + (z-cz)*(z-cz) <= los*los) 
 				{
@@ -162,10 +160,10 @@ void CLOSManager::Update()
 }
 
 
-uint LOS_GetTokenFor(uint player_id)
+size_t LOS_GetTokenFor(size_t player_id)
 {
 #ifdef _2_los
-	return 1u << player_id;
+	return size_t(1) << player_id;
 #else
 	return player_id*2;
 #endif
@@ -173,13 +171,13 @@ uint LOS_GetTokenFor(uint player_id)
 
 //TIMER_ADD_CLIENT(tc_getstatus);
 
-ELOSStatus CLOSManager::GetStatus(int tx, int tz, CPlayer* player) 
+ELOSStatus CLOSManager::GetStatus(ssize_t tx, ssize_t tz, CPlayer* player) 
 {
 //TIMER_ACCRUE(tc_getstatus);
 
 	// Ensure that units off the map don't cause the visibility arrays to be
 	// accessed out of bounds
-	if ((unsigned)tx >= m_TilesPerSide || (unsigned)tz >= m_TilesPerSide)
+	if ((size_t)tx >= m_TilesPerSide || (size_t)tz >= m_TilesPerSide)
 		return LOS_VISIBLE; // because we don't want them to be permanently hidden
 
 	// TODO: Make the mask depend on the player's diplomacy (just OR all his allies' masks)
@@ -187,11 +185,11 @@ ELOSStatus CLOSManager::GetStatus(int tx, int tz, CPlayer* player)
 #ifdef _2_los
 
 	const int mask = player->GetLOSToken();
-	if((m_Visible[tx][tz] & mask) || m_LOSSetting == ALL_VISIBLE) 
+	if((m_Visible[tx][tz] & mask) || m_LOSSetting == LOS_SETTING_ALL_VISIBLE) 
 	{
 		return LOS_VISIBLE;
 	}
-	else if((m_Explored[tx][tz] & mask) || m_LOSSetting == EXPLORED)
+	else if((m_Explored[tx][tz] & mask) || m_LOSSetting == LOS_SETTING_EXPLORED)
 	{
 		return LOS_EXPLORED;
 	}
@@ -200,7 +198,7 @@ ELOSStatus CLOSManager::GetStatus(int tx, int tz, CPlayer* player)
 		return LOS_UNEXPLORED;
 	}
 #else
-	const uint shift = player->GetLOSToken();
+	const size_t shift = player->GetLOSToken();
 	return (ELOSStatus)((m_VisibilityMatrix[tx][tz] >> shift) & 3);
 #endif
 }
@@ -208,7 +206,7 @@ ELOSStatus CLOSManager::GetStatus(int tx, int tz, CPlayer* player)
 
 ELOSStatus CLOSManager::GetStatus(float fx, float fz, CPlayer* player) 
 {
-	int ix, iz;
+	ssize_t ix, iz;
 	CTerrain::CalcFromPosition(fx, fz, ix, iz);
 	return GetStatus(ix, iz, player);
 }

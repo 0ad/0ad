@@ -42,9 +42,9 @@ static float m_scaleX, m_scaleY;
 
 static unsigned int ScaleColor(unsigned int color, float x)
 {
-	unsigned int r = uint(float(color & 0xff) * x);
-	unsigned int g = uint(float((color>>8) & 0xff) * x);
-	unsigned int b = uint(float((color>>16) & 0xff) * x);
+	unsigned int r = unsigned int(float(color & 0xff) * x);
+	unsigned int g = unsigned int(float((color>>8) & 0xff) * x);
+	unsigned int b = unsigned int(float((color>>16) & 0xff) * x);
 	return (0xff000000 | r | g<<8 | b<<16);
 }
 
@@ -151,7 +151,7 @@ void CMiniMap::SetCameraPos()
 	}
 	m_Camera->UpdateFrustum();
 }
-void CMiniMap::FireWorldClickEvent(uint button, int clicks)
+void CMiniMap::FireWorldClickEvent(int button, int clicks)
 {
 	//debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
 	
@@ -269,7 +269,7 @@ void CMiniMap::Draw()
 		last_time = cur_time;
 
 		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-		if(losMgr->m_LOSSetting != CLOSManager::ALL_VISIBLE)
+		if(losMgr->m_LOSSetting != LOS_SETTING_ALL_VISIBLE)
 			RebuildLOSTexture();
 	}
 
@@ -457,7 +457,7 @@ void CMiniMap::CreateTextures()
 	Destroy();
 
 	// Create terrain texture
-	glGenTextures(1, (GLuint *)&m_TerrainTexture);
+	glGenTextures(1, &m_TerrainTexture);
 	g_Renderer.BindTexture(0, m_TerrainTexture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_TextureSize, m_TextureSize, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, 0);
 	m_TerrainData = new u32[(m_MapSize - 1) * (m_MapSize - 1)];
@@ -467,7 +467,7 @@ void CMiniMap::CreateTextures()
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP);
 
 	// Create LOS texture
-	glGenTextures(1, (GLuint *)&m_LOSTexture);
+	glGenTextures(1, &m_LOSTexture);
 	g_Renderer.BindTexture(0, m_LOSTexture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA8, m_TextureSize, m_TextureSize, 0, GL_ALPHA, GL_UNSIGNED_BYTE, 0);
 	m_LOSData = new u8[(m_MapSize - 1) * (m_MapSize - 1)];
@@ -541,28 +541,23 @@ void CMiniMap::RebuildLOSTexture()
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 	CPlayer* player = g_Game->GetLocalPlayer();
 
-	u32 x = 0;
-	u32 y = 0;
-	u32 w = m_MapSize - 1;
-	u32 h = m_MapSize - 1;
+	ssize_t x = 0;
+	ssize_t y = 0;
+	ssize_t w = m_MapSize - 1;
+	ssize_t h = m_MapSize - 1;
 
-	for(u32 j = 0; j < h; j++)
+	for(ssize_t j = 0; j < h; j++)
 	{
 		u8 *dataPtr = m_LOSData + ((y + j) * (m_MapSize - 1)) + x;
-		for(u32 i = 0; i < w; i++)
+		for(ssize_t i = 0; i < w; i++)
 		{
-			ELOSStatus status = losMgr->GetStatus((int) i, (int) j, player);
+			ELOSStatus status = losMgr->GetStatus(i, j, player);
 			if(status == LOS_UNEXPLORED)
-			{
 				*dataPtr++ = 0xff;
-			}
 			else if(status == LOS_EXPLORED)
-			{
 				*dataPtr++ = (u8) (0xff * 0.3f);
-			}
-			else {
+			else
 				*dataPtr++ = 0;
-			}
 		}
 	}
 
@@ -576,10 +571,10 @@ void CMiniMap::RebuildLOSTexture()
 void CMiniMap::Destroy()
 {
 	if(m_TerrainTexture)
-		glDeleteTextures(1, (GLuint *)&m_TerrainTexture);
+		glDeleteTextures(1, &m_TerrainTexture);
 
 	if(m_LOSTexture)
-		glDeleteTextures(1, (GLuint *)&m_LOSTexture);
+		glDeleteTextures(1, &m_LOSTexture);
 
 	delete[] m_TerrainData; m_TerrainData = 0;
 	delete[] m_LOSData; m_LOSData = 0;

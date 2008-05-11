@@ -119,7 +119,7 @@ struct TimerClient
 
 	// how often timer_BillClient was called (helps measure relative
 	// performance of something that is done indeterminately often).
-	uint num_calls;
+	size_t num_calls;
 };
 
 /**

@@ -163,7 +163,7 @@ float PSModel::BackToFrontIndexSort(const CMatrix3D& worldToCam)
 	std::sort(IndexSorter.begin(),IndexSorter.begin()+numFaces,SortFacesByDist());
 
 	// now build index list
-	u32 idxidx = 0;
+	size_t idxidx = 0;
 	for (size_t i = 0; i < numFaces; ++i) {
 		const SModelFace& face = faces[IndexSorter[i].first];
 		m_Indices[idxidx++] = (u16)(face.m_Verts[0]);
@@ -214,7 +214,7 @@ void* PolygonSortModelRenderer::CreateModelData(CModel* model)
 
 
 // Updated transforms
-void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, u32 updateflags)
+void PolygonSortModelRenderer::UpdateModelData(CModel* model, void* data, int updateflags)
 {
 	PSModel* psmdl = (PSModel*)data;
 
@@ -265,7 +265,7 @@ void PolygonSortModelRenderer::DestroyModelData(CModel* UNUSED(model), void* dat
 
 
 // Prepare for one rendering pass
-void PolygonSortModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
+void PolygonSortModelRenderer::BeginPass(int streamflags, const CMatrix3D* texturematrix)
 {
 	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_COLOR|STREAM_UV0|STREAM_TEXGENTOUV1)));
 
@@ -291,7 +291,7 @@ void PolygonSortModelRenderer::BeginPass(uint streamflags, const CMatrix3D* text
 
 
 // Cleanup rendering
-void PolygonSortModelRenderer::EndPass(uint streamflags)
+void PolygonSortModelRenderer::EndPass(int streamflags)
 {
 	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR) glDisableClientState(GL_COLOR_ARRAY);
@@ -315,7 +315,7 @@ void PolygonSortModelRenderer::EndPass(uint streamflags)
 
 
 // Prepare for rendering models using this CModelDef
-void PolygonSortModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr def)
+void PolygonSortModelRenderer::PrepareModelDef(int streamflags, CModelDefPtr def)
 {
 	if (streamflags & STREAM_UV0)
 	{
@@ -332,7 +332,7 @@ void PolygonSortModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr de
 
 
 // Render one model
-void PolygonSortModelRenderer::RenderModel(uint streamflags, CModel* model, void* data)
+void PolygonSortModelRenderer::RenderModel(int streamflags, CModel* model, void* data)
 {
 	CModelDefPtr mdef = model->GetModelDef();
 	PSModel* psmdl = (PSModel*)data;
@@ -510,16 +510,16 @@ bool SortModelRenderer::HaveSubmissions()
 
 
 // Render submitted models (filtered by flags) using the given modifier
-void SortModelRenderer::Render(RenderModifierPtr modifier, u32 flags)
+void SortModelRenderer::Render(RenderModifierPtr modifier, int flags)
 {
-	uint pass = 0;
+	int pass = 0;
 
 	if (m->models.size() == 0)
 		return;
 
 	do
 	{
-		u32 streamflags = modifier->BeginPass(pass);
+		int streamflags = modifier->BeginPass(pass);
 		const CMatrix3D* texturematrix = 0;
 		CModelDefPtr lastmdef;
 		CTexture* lasttex = 0;
@@ -579,7 +579,7 @@ TransparentRenderModifier::~TransparentRenderModifier()
 {
 }
 
-u32 TransparentRenderModifier::BeginPass(uint pass)
+int TransparentRenderModifier::BeginPass(int pass)
 {
 	if (pass == 0)
 	{
@@ -635,7 +635,7 @@ u32 TransparentRenderModifier::BeginPass(uint pass)
 	}
 }
 
-bool TransparentRenderModifier::EndPass(uint pass)
+bool TransparentRenderModifier::EndPass(int pass)
 {
 	if (pass == 0)
 		return false; // multi-pass
@@ -647,12 +647,12 @@ bool TransparentRenderModifier::EndPass(uint pass)
 	return true;
 }
 
-void TransparentRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+void TransparentRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
 
-void TransparentRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+void TransparentRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 	// No per-model setup necessary
 }
@@ -669,7 +669,7 @@ LitTransparentRenderModifier::~LitTransparentRenderModifier()
 {
 }
 
-u32 LitTransparentRenderModifier::BeginPass(uint pass)
+int LitTransparentRenderModifier::BeginPass(int pass)
 {
 	debug_assert(GetShadowMap() && GetShadowMap()->GetUseDepthTexture());
 
@@ -761,7 +761,7 @@ u32 LitTransparentRenderModifier::BeginPass(uint pass)
 	}
 }
 
-bool LitTransparentRenderModifier::EndPass(uint pass)
+bool LitTransparentRenderModifier::EndPass(int pass)
 {
 	if (pass == 0)
 		return false; // multi-pass
@@ -779,17 +779,17 @@ bool LitTransparentRenderModifier::EndPass(uint pass)
 	return true;
 }
 
-const CMatrix3D* LitTransparentRenderModifier::GetTexGenMatrix(uint UNUSED(pass))
+const CMatrix3D* LitTransparentRenderModifier::GetTexGenMatrix(int UNUSED(pass))
 {
 	return &GetShadowMap()->GetTextureMatrix();
 }
 
-void LitTransparentRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+void LitTransparentRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
 
-void LitTransparentRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+void LitTransparentRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 	// No per-model setup necessary
 }
@@ -806,7 +806,7 @@ TransparentShadowRenderModifier::~TransparentShadowRenderModifier()
 {
 }
 
-u32 TransparentShadowRenderModifier::BeginPass(uint pass)
+int TransparentShadowRenderModifier::BeginPass(int pass)
 {
 	debug_assert(pass == 0);
 
@@ -829,7 +829,7 @@ u32 TransparentShadowRenderModifier::BeginPass(uint pass)
 	return STREAM_POS|STREAM_UV0;
 }
 
-bool TransparentShadowRenderModifier::EndPass(uint UNUSED(pass))
+bool TransparentShadowRenderModifier::EndPass(int UNUSED(pass))
 {
 	glDepthMask(1);
 	glDisable(GL_BLEND);
@@ -837,12 +837,12 @@ bool TransparentShadowRenderModifier::EndPass(uint UNUSED(pass))
 	return true;
 }
 
-void TransparentShadowRenderModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+void TransparentShadowRenderModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
 
-void TransparentShadowRenderModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+void TransparentShadowRenderModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 	// No per-model setup necessary
 }
@@ -859,7 +859,7 @@ TransparentDepthShadowModifier::~TransparentDepthShadowModifier()
 {
 }
 
-u32 TransparentDepthShadowModifier::BeginPass(uint pass)
+int TransparentDepthShadowModifier::BeginPass(int pass)
 {
 	debug_assert(pass == 0);
 
@@ -880,19 +880,19 @@ u32 TransparentDepthShadowModifier::BeginPass(uint pass)
 	return STREAM_POS|STREAM_UV0;
 }
 
-bool TransparentDepthShadowModifier::EndPass(uint UNUSED(pass))
+bool TransparentDepthShadowModifier::EndPass(int UNUSED(pass))
 {
 	glDisable(GL_ALPHA_TEST);
 
 	return true;
 }
 
-void TransparentDepthShadowModifier::PrepareTexture(uint UNUSED(pass), CTexture* texture)
+void TransparentDepthShadowModifier::PrepareTexture(int UNUSED(pass), CTexture* texture)
 {
 	g_Renderer.SetTexture(0, texture);
 }
 
-void TransparentDepthShadowModifier::PrepareModel(uint UNUSED(pass), CModel* UNUSED(model))
+void TransparentDepthShadowModifier::PrepareModel(int UNUSED(pass), CModel* UNUSED(model))
 {
 	// No per-model setup necessary
 }

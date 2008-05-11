@@ -14,16 +14,6 @@ public:
 		TS_ASSERT_EQUALS(is_pow2(1u << 31), true);
 	}
 
-	void test_log2_of_pow2()
-	{
-		TS_ASSERT_EQUALS(log2_of_pow2(0u), -1);
-		TS_ASSERT_EQUALS(log2_of_pow2(3u), -1);
-		TS_ASSERT_EQUALS(log2_of_pow2(0xffffffffu), -1);
-		TS_ASSERT_EQUALS(log2_of_pow2(1u), 0);
-		TS_ASSERT_EQUALS(log2_of_pow2(256u), 8);
-		TS_ASSERT_EQUALS(log2_of_pow2(0x80000000u), 31);
-	}
-
 	void test_ceil_log2()
 	{
 		TS_ASSERT_EQUALS(ceil_log2(3u), 2u);

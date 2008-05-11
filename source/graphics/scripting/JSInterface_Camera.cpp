@@ -214,7 +214,7 @@ JSBool JSI_Camera::setProperty( JSContext* cx, JSObject* obj, jsval id, jsval* v
 #define GETVECTOR( jv ) ( ( JSVAL_IS_OBJECT( jv ) && NULL != ( v = (JSI_Vector3D::Vector3D_Info*)JS_GetInstancePrivate( g_ScriptingHost.getContext(), JSVAL_TO_OBJECT( jv ), &JSI_Vector3D::JSI_class, NULL ) ) ) ? *(v->vector) : CVector3D() )
 
 
-JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval )
+JSBool JSI_Camera::lookAt( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 {
 	JSI_Vector3D::Vector3D_Info* v = NULL;
 	Camera_Info* cameraInfo = (Camera_Info*)JS_GetPrivate( cx, obj );

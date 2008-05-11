@@ -30,7 +30,7 @@ CTechnology* CTechnologyCollection::GetTechnology( const CStrW& name, CPlayer* p
 {
 	// Find player ID
 	debug_assert( player != 0 );
-	int id = player->GetPlayerID();
+	const size_t id = player->GetPlayerID();
 
 	// Check whether this template has already been loaded.
 	//If previously loaded, all slots will be found, so any entry works.
@@ -62,7 +62,7 @@ CTechnology* CTechnologyCollection::GetTechnology( const CStrW& name, CPlayer* p
 
 CTechnologyCollection::~CTechnologyCollection()
 {
-	for( uint id=0; id<PS_MAX_PLAYERS+1; id++ )
+	for( size_t id=0; id<PS_MAX_PLAYERS+1; id++ )
 		for( TechMap::iterator it = m_techs[id].begin(); it != m_techs[id].end(); ++it )
 			delete( it->second );
 }

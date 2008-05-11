@@ -72,7 +72,7 @@ void CTerritoryManager::Recalculate()
 			centres.push_back(entities[i]);
 	}
 
-	int mapSize = m_TilesPerSide * CELL_SIZE;
+	const size_t mapSize = m_TilesPerSide * CELL_SIZE;
 
 	// If there aren't any centre objects, create one big Gaia territory which spans the whole map
 	if( centres.empty() )
@@ -87,9 +87,9 @@ void CTerritoryManager::Recalculate()
 
 		m_Territories.push_back(ter);
 
-		for( uint x=0; x<m_TilesPerSide; x++ )
+		for( size_t x=0; x<m_TilesPerSide; x++ )
 		{
-			for( uint z=0; z<m_TilesPerSide; z++ )
+			for( size_t z=0; z<m_TilesPerSide; z++ )
 			{
 				m_TerritoryMatrix[x][z] = ter;
 			}
@@ -113,9 +113,9 @@ void CTerritoryManager::Recalculate()
 
 		// TODO: Optimize this, for example by intersecting scanlines with the Voronoi polygons.
 
-		for( uint x=0; x<m_TilesPerSide; x++ )
+		for( size_t x=0; x<m_TilesPerSide; x++ )
 		{
-			for( uint z=0; z<m_TilesPerSide; z++ )
+			for( size_t z=0; z<m_TilesPerSide; z++ )
 			{
 				CVector2D tileLoc( (x+0.5f) * CELL_SIZE, (z+0.5f) * CELL_SIZE );
 				float bestSquareDist = 1e20f;
@@ -144,13 +144,13 @@ void CTerritoryManager::DelayedRecalculate()
 
 CTerritory* CTerritoryManager::GetTerritory(int x, int z)
 {
-	debug_assert( (uint) x < m_TilesPerSide && (uint) z < m_TilesPerSide );
+	debug_assert( (size_t) x < m_TilesPerSide && (size_t) z < m_TilesPerSide );
 	return m_TerritoryMatrix[x][z];
 }
 
 CTerritory* CTerritoryManager::GetTerritory(float x, float z)
 {
-	int ix, iz;
+	ssize_t ix, iz;
 	CTerrain::CalcFromPosition(x, z, ix, iz);
 	return GetTerritory(ix, iz);
 }
@@ -159,7 +159,7 @@ CTerritory* CTerritoryManager::GetTerritory(float x, float z)
 void CTerritoryManager::CalculateBoundary( std::vector<CEntity*>& centres, size_t myIndex, std::vector<CVector2D>& boundary )
 {
 	// Start with a boundary equal to the whole map
-	int mapSize = m_TilesPerSide * CELL_SIZE;
+	const size_t mapSize = m_TilesPerSide * CELL_SIZE;
 	boundary.push_back( CVector2D(0, 0) );
 	boundary.push_back( CVector2D(0, mapSize) );
 	boundary.push_back( CVector2D(mapSize, mapSize) );

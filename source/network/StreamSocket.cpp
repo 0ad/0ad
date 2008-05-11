@@ -68,7 +68,7 @@ PS_RESULT CStreamSocket::BeginConnect(const char *hostname, int port)
 	return PS_OK;
 }
 
-PS_RESULT CStreamSocket::Read(void *buf, uint len)
+PS_RESULT CStreamSocket::Read(void *buf, size_t len)
 {
 	// Check socket status
 	if (GetState() != SS_CONNECTED)
@@ -89,7 +89,7 @@ PS_RESULT CStreamSocket::Read(void *buf, uint len)
 	return PS_OK;
 }
 
-PS_RESULT CStreamSocket::Write(void *buf, uint len)
+PS_RESULT CStreamSocket::Write(void *buf, size_t len)
 {
 	// Check status
 	if (GetState() != SS_CONNECTED)
@@ -125,7 +125,7 @@ void CStreamSocket::OnWrite()
 		SetOpMask(GetOpMask() & (~WRITE));
 		return;
 	}
-	uint bytes=0;
+	size_t bytes=0;
 	PS_RESULT res=CSocketBase::Write(
 		((char *)m_WriteContext.m_pBuffer)+m_WriteContext.m_Completed,
 		m_WriteContext.m_Length-m_WriteContext.m_Completed,
@@ -151,7 +151,7 @@ void CStreamSocket::OnRead()
 		NET_LOG("CStreamSocket::OnRead(): No Read request in progress");
 		return;
 	}
-	uint bytes=0;
+	size_t bytes=0;
 	PS_RESULT res=CSocketBase::Read(
 		((u8 *)m_ReadContext.m_pBuffer)+m_ReadContext.m_Completed,
 		m_ReadContext.m_Length-m_ReadContext.m_Completed,

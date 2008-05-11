@@ -22,7 +22,7 @@ public:
 	void RenderBase(bool losColor);
 	void RenderBlends();
 	void RenderOutline();
-	void RenderStreams(u32 streamflags, bool losColor);
+	void RenderStreams(int streamflags, bool losColor);
 
 private:
 	struct SSplat {
@@ -31,9 +31,9 @@ private:
 		// handle of texture to apply during splat
 		Handle m_Texture;
 		// offset into the index array for this patch where splat starts
-		u32 m_IndexStart;
+		size_t m_IndexStart;
 		// number of indices used by splat
-		u32 m_IndexCount;
+		size_t m_IndexCount;
 	};
 
 	struct SBaseVertex {
@@ -98,7 +98,7 @@ private:
 
 	// remembers the index in the m_Vertices array of each blend vertex, so that we can
 	// properly update its color for fog of war and shroud of darkness
-	std::vector<uint> m_BlendVertexIndices;
+	std::vector<size_t> m_BlendVertexIndices;
 
 	// indices into blend vertices for the blend splats
 	std::vector<unsigned short> m_BlendIndices;

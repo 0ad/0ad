@@ -23,9 +23,9 @@ struct ProfileColumn
 	CStr title;
 	
 	/// Recommended width of the column, in pixels.
-	uint width;
+	size_t width;
 	
-	ProfileColumn(const CStr& t, uint w) : title(t), width(w) { }
+	ProfileColumn(const CStr& t, size_t w) : title(t), width(w) { }
 };
 
 

@@ -8,6 +8,7 @@
 
 #include "precompiled.h"
 
+#include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/tex/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
@@ -59,10 +60,10 @@ WaterManager::WaterManager()
 	m_Murkiness = 0.45f;
 	m_RepeatPeriod = 16.0f;
 
-	for (uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+	for (size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 		m_WaterTexture[i] = 0;
 
-	for (uint i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
+	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
 		m_NormalMap[i] = 0;
 
 	cur_loading_water_tex = 0;
@@ -80,8 +81,8 @@ WaterManager::~WaterManager()
 // Progressive load of water textures
 int WaterManager::LoadWaterTextures()
 {
-	const uint num_textures = ARRAY_SIZE(m_WaterTexture);
-	const uint num_normal_maps = ARRAY_SIZE(m_NormalMap);
+	const size_t num_textures = ARRAY_SIZE(m_WaterTexture);
+	const size_t num_normal_maps = ARRAY_SIZE(m_NormalMap);
 
 	// TODO: add a member variable and setter for this. (can't make this
 	// a parameter because this function is called via delay-load code)
@@ -131,7 +132,7 @@ int WaterManager::LoadWaterTextures()
 	// the reflection/reflaction images will fit within the window 
 	// (alternative: use FBO's, which can have arbitrary size - but do we need
 	// the reflection/refraction textures to be that large?)
-	int size = RoundUpToPowerOf2(g_Renderer.GetHeight());
+	int size = round_up_to_pow2(g_Renderer.GetHeight());
 	if(size > g_Renderer.GetHeight()) size /= 2;
 	m_ReflectionTextureSize = size;
 	m_RefractionTextureSize = size;
@@ -140,7 +141,7 @@ int WaterManager::LoadWaterTextures()
 	glGenTextures(1, &m_ReflectionTexture);
 	glBindTexture(GL_TEXTURE_2D, m_ReflectionTexture);
 	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB,
-		m_ReflectionTextureSize, m_ReflectionTextureSize,
+		(GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize,
 		0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -151,7 +152,7 @@ int WaterManager::LoadWaterTextures()
 	glGenTextures(1, &m_RefractionTexture);
 	glBindTexture(GL_TEXTURE_2D, m_RefractionTexture);
 	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, 
-		m_RefractionTextureSize, m_RefractionTextureSize,
+		(GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize,
 		0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -169,14 +170,14 @@ int WaterManager::LoadWaterTextures()
 // Unload water textures
 void WaterManager::UnloadWaterTextures()
 {
-	for(uint i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
+	for(size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 	{
 		ogl_tex_free(m_WaterTexture[i]);
 		m_WaterTexture[i] = 0;
 	}
 
 
-	for(uint i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
+	for(size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
 	{
 		ogl_tex_free(m_NormalMap[i]);
 		m_NormalMap[i] = 0;

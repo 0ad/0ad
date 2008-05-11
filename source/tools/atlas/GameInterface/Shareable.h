@@ -75,6 +75,7 @@ public:
 
 SHAREABLE_PRIMITIVE(unsigned char);
 SHAREABLE_PRIMITIVE(int);
+SHAREABLE_PRIMITIVE(size_t);
 SHAREABLE_PRIMITIVE(long);
 SHAREABLE_PRIMITIVE(bool);
 SHAREABLE_PRIMITIVE(float);
@@ -239,8 +240,16 @@ public:
 	{
 		wrapped_type r;
 		r.reserve(size);
+		// (/Wp64 causes a spurious warning here. see https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=253172)
+#if MSC_VERSION
+#pragma warning(push)
+#pragma warning(disable:4267)
+#endif
 		for (size_t i = 0; i < size; ++i)
 			r.push_back(array[i]._Unwrap());
+#if MSC_VERSION
+#pragma warning(pop)
+#endif
 		return r;
 	}
 

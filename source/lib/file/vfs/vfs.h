@@ -67,7 +67,7 @@ struct IVFS
 	 * if files with archive extensions are seen, their contents are added
 	 * as well.
 	 **/
-	virtual LibError Mount(const VfsPath& mountPoint, const Path& path, uint flags = 0, uint priority = 0) = 0;
+	virtual LibError Mount(const VfsPath& mountPoint, const Path& path, int flags = 0, size_t priority = 0) = 0;
 
 	virtual LibError GetFileInfo(const VfsPath& pathname, FileInfo* pfileInfo) const = 0;
 

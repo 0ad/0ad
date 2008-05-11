@@ -157,7 +157,7 @@ void CVertexBuffer::Release(VBChunk* chunk)
 // ClearBatchIndices: clear lists of all batches 
 void CVertexBuffer::ClearBatchIndices()
 {
-	for (uint i=0;i<m_Batches.size();i++) {
+	for (size_t i=0;i<m_Batches.size();i++) {
 		m_Batches[i]->m_IndexData.clear();
 		m_FreeBatches.push_back(m_Batches[i]);
 	}

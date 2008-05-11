@@ -87,7 +87,7 @@ float CEntity::ChooseMovementSpeed( float distance )
 
 // Does all the shared processing for line-of-sight gotos
 
-uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, HEntity& collide, float& timeLeft )
+int CEntity::ProcessGotoHelper( CEntityOrder* current, int timestep_millis, HEntity& collide, float& timeLeft )
 {
 	float timestep=timestep_millis/1000.0f;
 
@@ -259,7 +259,7 @@ uint CEntity::ProcessGotoHelper( CEntityOrder* current, size_t timestep_millis, 
 }
 
 
-bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, int timestep_millis )
 {
 	HEntity collide;
 	float timeLeft;
@@ -286,8 +286,10 @@ bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 				case CEntityOrder::ORDER_GOTO_NOPATHING:
 				case CEntityOrder::ORDER_GOTO_COLLISION:
 				case CEntityOrder::ORDER_GOTO_SMOOTHED:
-					size_t newTimestep = cpu_i32FromFloat(timeLeft * 1000.0f);
+				{
+					int newTimestep = int(timeLeft * 1000.0f);
 					return( ProcessGotoNoPathing( newOrder, newTimestep ) );
+				}
 			}
 		}
 		return( false );
@@ -375,7 +377,7 @@ bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, size_t timestep_milli
 }
 
 // Handles processing common to (at the moment) gather and melee attack actions
-bool CEntity::ProcessContactAction( CEntityOrder* current, size_t UNUSED(timestep_millis), CEntityOrder::EOrderType transition, SEntityAction* action )
+bool CEntity::ProcessContactAction( CEntityOrder* current, int UNUSED(timestep_millis), CEntityOrder::EOrderType transition, SEntityAction* action )
 {
 	HEntity target = current->m_target_entity;
 
@@ -425,13 +427,13 @@ bool CEntity::ProcessContactAction( CEntityOrder* current, size_t UNUSED(timeste
 	}
 }
 
-bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, size_t timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
+bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
 {
 	HEntity target = current->m_target_entity;
 
 	if( m_fsm_cyclepos != NOT_IN_CYCLE )
 	{
-		size_t nextpos = m_fsm_cyclepos + timestep_millis * 2;
+		int nextpos = m_fsm_cyclepos + timestep_millis * 2;
 
 		if( ( m_fsm_cyclepos <= action->m_Speed ) && ( nextpos > action->m_Speed ) )
 		{
@@ -597,7 +599,7 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, size_t times
 	return( false );
 }
 
-bool CEntity::ProcessGeneric( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::ProcessGeneric( CEntityOrder* current, int timestep_millis )
 {
 	if( m_actions.find( current->m_action ) == m_actions.end() )
 	{	
@@ -607,7 +609,7 @@ bool CEntity::ProcessGeneric( CEntityOrder* current, size_t timestep_millis )
 	return( ProcessContactAction( current, timestep_millis, CEntityOrder::ORDER_GENERIC_NOPATHING, &action_obj ) );
 }
 
-bool CEntity::ProcessGenericNoPathing( CEntityOrder* current, size_t timestep_millis )
+bool CEntity::ProcessGenericNoPathing( CEntityOrder* current, int timestep_millis )
 {
 	if( m_actions.find( current->m_action ) == m_actions.end() )
 	{	
@@ -619,7 +621,7 @@ bool CEntity::ProcessGenericNoPathing( CEntityOrder* current, size_t timestep_mi
 	return( ProcessContactActionNoPathing( current, timestep_millis, action_obj.m_Animation, &evt, &action_obj ) );
 }
 
-bool CEntity::ProcessGoto( CEntityOrder* current, size_t UNUSED(timestep_millis) )
+bool CEntity::ProcessGoto( CEntityOrder* current, int UNUSED(timestep_millis) )
 {
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_target_location;
@@ -646,7 +648,7 @@ bool CEntity::ProcessGoto( CEntityOrder* current, size_t UNUSED(timestep_millis)
 	return( true );
 }
 
-bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep_milli), bool contact )
+bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, int UNUSED(timestep_milli), bool contact )
 {
 	CVector2D pos( m_position.X, m_position.Z );
 	CVector2D path_to = current->m_target_location;
@@ -683,7 +685,7 @@ bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, size_t UNUSED(timestep
 	return( true );
 }
 
-bool CEntity::ProcessPatrol( CEntityOrder* current, size_t UNUSED(timestep_millis) )
+bool CEntity::ProcessPatrol( CEntityOrder* current, int UNUSED(timestep_millis) )
 {
 	CEntityOrder this_segment;
 	CEntityOrder repeat_patrol;

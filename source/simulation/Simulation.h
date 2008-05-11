@@ -56,11 +56,11 @@ public:
 	void Interpolate(double frameTime);
 
 	// Calculate the message mask of a message to be queued
-	static uint GetMessageMask(CNetMessage *, uint oldMask, void *userdata);
+	static size_t GetMessageMask(CNetMessage *, size_t oldMask, void *userdata);
 	
 	// Translate the command message into an entity order and queue it
 	// Returns oldMask
-	static uint TranslateMessage(CNetMessage *, uint oldMask, void *userdata);
+	static size_t TranslateMessage(CNetMessage *, size_t oldMask, void *userdata);
 
 	void QueueLocalCommand(CNetMessage *pMsg);
 

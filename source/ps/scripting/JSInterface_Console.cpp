@@ -79,7 +79,7 @@ JSBool JSI_Console::getConsole( JSContext* cx, JSObject* UNUSED(obj), jsval UNUS
 	return( JS_TRUE );
 }
 
-JSBool JSI_Console::writeConsole( JSContext* UNUSED(context), JSObject* UNUSED(globalObject), uint argc, jsval* argv, jsval* UNUSED(rval) )
+JSBool JSI_Console::writeConsole( JSContext* UNUSED(context), JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* UNUSED(rval) )
 {
 	debug_assert( argc >= 1 );
 	CStrW output;

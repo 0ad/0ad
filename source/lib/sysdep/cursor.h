@@ -10,8 +10,7 @@
 //   position where mouse clicks are registered.
 // cursor is only valid when INFO::OK is returned; in that case, it must be
 //   sys_cursor_free-ed when no longer needed.
-extern LibError sys_cursor_create(uint w, uint h, void* bgra_img,
-								  uint hx, uint hy, void** cursor);
+extern LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, void** cursor);
 
 // create a fully transparent cursor (i.e. one that when passed to set hides
 // the system cursor)

@@ -21,7 +21,7 @@
 #include "lib/module_init.h"
 
 
-static const uint MAX_EXTANT_HANDLES = 10000;
+static const size_t MAX_EXTANT_HANDLES = 10000;
 
 // rationale
 //
@@ -54,13 +54,13 @@ static const uint MAX_EXTANT_HANDLES = 10000;
 // - tag (1-based) ensures the handle references a certain resource instance.
 //   (field width determines maximum unambiguous resource allocs)
 #define TAG_BITS 32
-const uint TAG_SHIFT = 0;
+const size_t TAG_SHIFT = 0;
 const u32 TAG_MASK = 0xFFFFFFFF;	// safer than (1 << 32) - 1
 
 // - index (0-based) of control block in our array.
 //   (field width determines maximum currently open handles)
 #define IDX_BITS 16
-const uint IDX_SHIFT = 32;
+const size_t IDX_SHIFT = 32;
 const u32 IDX_MASK = (1l << IDX_BITS) - 1;
 
 // make sure both fields fit within a Handle variable
@@ -103,10 +103,10 @@ static inline Handle handle(const u32 _idx, const u32 tag)
 
 
 // determines maximum number of references to a resource.
-static const uint REF_BITS  = 16;
+static const size_t REF_BITS  = 16;
 static const u32 REF_MAX = (1ul << REF_BITS)-1;
 
-static const uint TYPE_BITS = 8;
+static const size_t TYPE_BITS = 8;
 
 
 // chosen so that all current resource structs are covered,
@@ -137,7 +137,7 @@ struct HDATA
 	H_Type type;
 
 	// for statistics
-	uint num_derefs;
+	size_t num_derefs;
 	
 	VfsPath pathname;
 
@@ -146,20 +146,20 @@ struct HDATA
 
 
 // max data array entries. compared to last_in_use => signed.
-static const i32 hdata_cap = 1ul << IDX_BITS;
+static const ssize_t hdata_cap = 1ul << IDX_BITS;
 
 // allocate entries as needed so as not to waste memory
 // (hdata_cap may be large). deque-style array of pages
 // to balance locality, fragmentation, and waste.
 static const size_t PAGE_SIZE = 4096;
-static const uint hdata_per_page = PAGE_SIZE / sizeof(HDATA);
-static const uint num_pages = hdata_cap / hdata_per_page;
+static const size_t hdata_per_page = PAGE_SIZE / sizeof(HDATA);
+static const size_t num_pages = hdata_cap / hdata_per_page;
 static HDATA* pages[num_pages];
 
 // these must be signed, because there won't always be a valid
 // first or last element.
-static i32 first_free = -1;		// don't want to scan array every h_alloc
-static i32 last_in_use = -1;	// don't search unused entries
+static ssize_t first_free = -1;		// don't want to scan array every h_alloc
+static ssize_t last_in_use = -1;	// don't search unused entries
 
 
 // error checking strategy:
@@ -172,7 +172,7 @@ static i32 last_in_use = -1;	// don't search unused entries
 // for the first time, and there's not enough memory to allocate it.
 //
 // also used by h_data, and alloc_idx to find a free entry.
-static HDATA* h_data_from_idx(const i32 idx)
+static HDATA* h_data_from_idx(const ssize_t idx)
 {
 	// don't compare against last_in_use - this is called before allocating
 	// new entries, and to check if the next (but possibly not yet valid)
@@ -187,7 +187,7 @@ static HDATA* h_data_from_idx(const i32 idx)
 			return 0;
 
 		// Initialise all the VfsPath members
-		for(uint i = 0; i < hdata_per_page; ++i)
+		for(size_t i = 0; i < hdata_per_page; ++i)
 			new (&page[i].pathname) VfsPath;
 	}
 
@@ -204,7 +204,7 @@ static HDATA* h_data_from_idx(const i32 idx)
 // used by h_force_close (which must work regardless of tag).
 static inline HDATA* h_data_no_tag(const Handle h)
 {
-	i32 idx = (i32)h_idx(h);
+	ssize_t idx = (ssize_t)h_idx(h);
 	// need to verify it's in range - h_data_from_idx can only verify that
 	// it's < maximum allowable index.
 	if(0 > idx || idx > last_in_use)
@@ -252,7 +252,7 @@ static HDATA* h_data_tag_type(const Handle h, const H_Type type)
 
 // idx and hd are undefined if we fail.
 // called by h_alloc only.
-static LibError alloc_idx(i32& idx, HDATA*& hd)
+static LibError alloc_idx(ssize_t& idx, HDATA*& hd)
 {
 	// we already know the first free entry
 	if(first_free != -1)
@@ -305,7 +305,7 @@ have_idx:;
 }
 
 
-static LibError free_idx(i32 idx)
+static LibError free_idx(ssize_t idx)
 {
 	if(first_free == -1 || idx < first_free)
 		first_free = idx;
@@ -329,7 +329,7 @@ static LibError free_idx(i32 idx)
 // that wasn't forseen here, so we'll just refrain from adding to the index.
 // that means they won't be found via h_find - no biggie.
 
-typedef STL_HASH_MULTIMAP<uintptr_t, i32> Key2Idx;
+typedef STL_HASH_MULTIMAP<uintptr_t, ssize_t> Key2Idx;
 typedef Key2Idx::iterator It;
 static OverrunProtector<Key2Idx> key2idx_wrapper;
 
@@ -350,7 +350,7 @@ static Handle key_find(uintptr_t key, H_Type type, KeyRemoveFlag remove_option =
 	std::pair<It, It> range = key2idx->equal_range(key);
 	for(It it = range.first; it != range.second; ++it)
 	{
-		i32 idx = it->second;
+		ssize_t idx = it->second;
 		HDATA* hd = h_data_from_idx(idx);
 		// found match
 		if(hd && hd->type == type && hd->key == key)
@@ -373,7 +373,7 @@ static void key_add(uintptr_t key, Handle h)
 	if(!key2idx)
 		return;
 
-	const i32 idx = h_idx(h);
+	const ssize_t idx = h_idx(h);
 	// note: MSDN documentation of stdext::hash_multimap is incorrect;
 	// there is no overload of insert() that returns pair<iterator, bool>.
 	(void)key2idx->insert(std::make_pair(key, idx));
@@ -444,7 +444,7 @@ static u32 gen_tag()
 }
 
 
-static Handle reuse_existing_handle(uintptr_t key, H_Type type, uint flags)
+static Handle reuse_existing_handle(uintptr_t key, H_Type type, int flags)
 {
 	if(flags & RES_NO_CACHE)
 		return 0;
@@ -506,9 +506,9 @@ static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const Vfs
 }
 
 
-static Handle alloc_new_handle(H_Type type, const VfsPath& pathname, uintptr_t key, uint flags, va_list* init_args)
+static Handle alloc_new_handle(H_Type type, const VfsPath& pathname, uintptr_t key, int flags, va_list* init_args)
 {
-	i32 idx;
+	ssize_t idx;
 	HDATA* hd;
 	RETURN_ERR(alloc_idx(idx, hd));
 
@@ -549,7 +549,7 @@ fail:
 
 
 // any further params are passed to type's init routine
-Handle h_alloc(H_Type type, const VfsPath& pathname, uint flags, ...)
+Handle h_alloc(H_Type type, const VfsPath& pathname, int flags, ...)
 {
 	RETURN_ERR(type_validate(type));
 
@@ -575,7 +575,7 @@ Handle h_alloc(H_Type type, const VfsPath& pathname, uint flags, ...)
 //-----------------------------------------------------------------------------
 
 // currently cannot fail.
-static LibError h_free_idx(i32 idx, HDATA* hd)
+static LibError h_free_idx(ssize_t idx, HDATA* hd)
 {
 	// debug_printf("free %s %s\n", type->name, hd->fn);
 
@@ -623,7 +623,7 @@ static LibError h_free_idx(i32 idx, HDATA* hd)
 
 LibError h_free(Handle& h, H_Type type)
 {
-	i32 idx = h_idx(h);
+	ssize_t idx = h_idx(h);
 	HDATA* hd = h_data_tag_type(h, type);
 
 	// wipe out the handle to prevent reuse but keep a copy for below.
@@ -690,7 +690,7 @@ LibError h_reload(const VfsPath& pathname)
 	// do this before reloading any of them, because we don't specify reload
 	// order (the parent resource may be reloaded first, and load the child,
 	// whose original data would leak).
-	for(i32 i = 0; i <= last_in_use; i++)
+	for(ssize_t i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data_from_idx(i);
 		if(!hd || hd->key != key || hd->disallow_reload)
@@ -701,7 +701,7 @@ LibError h_reload(const VfsPath& pathname)
 	LibError ret = INFO::OK;
 
 	// now reload all affected handles
-	for(i32 i = 0; i <= last_in_use; i++)
+	for(ssize_t i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data_from_idx(i);
 		if(!hd || hd->key != key || hd->disallow_reload)
@@ -805,7 +805,7 @@ void h_mgr_shutdown()
 	debug_printf("H_MGR| shutdown. any handle frees after this are leaks!\n");
 
 	// forcibly close all open handles
-	for(i32 i = 0; i <= last_in_use; i++)
+	for(ssize_t i = 0; i <= last_in_use; i++)
 	{
 		HDATA* hd = h_data_from_idx(i);
 		// can't fail - i is in bounds by definition, and
@@ -829,10 +829,10 @@ void h_mgr_shutdown()
 	}
 
 	// free HDATA array
-	for(uint j = 0; j < num_pages; j++)
+	for(size_t j = 0; j < num_pages; j++)
 	{
 		if (pages[j])
-			for(uint k = 0; k < hdata_per_page; ++k)
+			for(size_t k = 0; k < hdata_per_page; ++k)
 				pages[j][k].pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::string memory
 		free(pages[j]);
 		pages[j] = 0;

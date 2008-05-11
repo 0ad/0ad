@@ -51,7 +51,7 @@ MESSAGEHANDLER(Init)
 
 	g_Quickstart = true;
 
-	uint flags = INIT_HAVE_VMODE|INIT_NO_GUI;
+	int flags = INIT_HAVE_VMODE|INIT_NO_GUI;
 	if (! msg->initsimulation)
 		flags |= INIT_NO_SIM;
 
@@ -85,7 +85,7 @@ MESSAGEHANDLER(Shutdown)
 	View::DestroyViews();
 	g_GameLoop->view = View::GetView_None();
 
-	uint flags = 0;
+	int flags = 0;
 	if (! g_DidInitSim)
 		flags |= INIT_NO_SIM;
 	Shutdown(flags);

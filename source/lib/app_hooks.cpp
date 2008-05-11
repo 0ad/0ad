@@ -59,7 +59,7 @@ static void def_log(const wchar_t* text)
 }
 
 
-static ErrorReaction def_display_error(const wchar_t* UNUSED(text), uint UNUSED(flags))
+static ErrorReaction def_display_error(const wchar_t* UNUSED(text), int UNUSED(flags))
 {
 	return ER_NOT_IMPLEMENTED;
 }
@@ -153,7 +153,7 @@ void ah_log(const wchar_t* text)
 	ah.log(text);
 }
 
-ErrorReaction ah_display_error(const wchar_t* text, uint flags)
+ErrorReaction ah_display_error(const wchar_t* text, int flags)
 {
 	return ah.display_error(text, flags);
 }

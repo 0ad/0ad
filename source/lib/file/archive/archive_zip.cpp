@@ -111,7 +111,7 @@ public:
 		m_usize     = to_le32(u32_from_larger(fileInfo.Size()));
 		m_fn_len    = to_le16(u16_from_larger(pathnameString.length()));
 		m_e_len     = to_le16(0);
-		m_c_len     = to_le16(u16_from_larger((uint)slack));
+		m_c_len     = to_le16(u16_from_larger((size_t)slack));
 		m_x2        = to_le32(0);
 		m_x3        = to_le32(0);
 		m_lfh_ofs   = to_le32(ofs);
@@ -189,7 +189,7 @@ cassert(sizeof(CDFH) == 46);
 class ECDR
 {
 public:
-	void Init(uint cd_numEntries, off_t cd_ofs, off_t cd_size)
+	void Init(size_t cd_numEntries, off_t cd_ofs, off_t cd_size)
 	{
 		m_magic         = ecdr_magic;
 		memset(m_x1, 0, sizeof(m_x1));
@@ -199,9 +199,9 @@ public:
 		m_comment_len   = to_le16(0);
 	}
 
-	void Decompose(uint& cd_numEntries, off_t& cd_ofs, off_t& cd_size) const
+	void Decompose(size_t& cd_numEntries, off_t& cd_ofs, off_t& cd_size) const
 	{
-		cd_numEntries = (uint)read_le16(&m_cd_numEntries);
+		cd_numEntries = (size_t)read_le16(&m_cd_numEntries);
 		cd_ofs       = (off_t)read_le32(&m_cd_ofs);
 		cd_size      = (off_t)read_le32(&m_cd_size);
 	}
@@ -234,7 +234,7 @@ public:
 	{
 	}
 
-	virtual unsigned Precedence() const
+	virtual size_t Precedence() const
 	{
 		return 2u;
 	}
@@ -370,7 +370,7 @@ public:
 	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData)
 	{
 		// locate and read Central Directory
-		off_t cd_ofs; uint cd_numEntries; off_t cd_size;
+		off_t cd_ofs; size_t cd_numEntries; off_t cd_size;
 		RETURN_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
 		shared_ptr<u8> buf = io_Allocate(cd_size, cd_ofs);
 		u8* cd;
@@ -378,7 +378,7 @@ public:
 
 		// iterate over Central Directory
 		const u8* pos = cd;
-		for(uint i = 0; i < cd_numEntries; i++)
+		for(size_t i = 0; i < cd_numEntries; i++)
 		{
 			// scan for next CDFH
 			CDFH* cdfh = (CDFH*)FindRecord(cd, cd_size, pos, cdfh_magic, sizeof(CDFH));
@@ -435,7 +435,7 @@ private:
 	// search for ECDR in the last <maxScanSize> bytes of the file.
 	// if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
 	// return INFO::OK, otherwise IO error or ERR::CORRUPTED.
-	static LibError ScanForEcdr(PIFile file, off_t fileSize, u8* buf, off_t maxScanSize, uint& cd_numEntries, off_t& cd_ofs, off_t& cd_size)
+	static LibError ScanForEcdr(PIFile file, off_t fileSize, u8* buf, off_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, off_t& cd_size)
 	{
 		// don't scan more than the entire file
 		const off_t scanSize = std::min(maxScanSize, fileSize);
@@ -454,7 +454,7 @@ private:
 		return INFO::OK;
 	}
 
-	static LibError LocateCentralDirectory(PIFile file, off_t fileSize, off_t& cd_ofs, uint& cd_numEntries, off_t& cd_size)
+	static LibError LocateCentralDirectory(PIFile file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, off_t& cd_size)
 	{
 		const off_t maxScanSize = 66000u;	// see below
 		shared_ptr<u8> buf = io_Allocate(maxScanSize, BLOCK_SIZE-1);	// assume worst-case for alignment
@@ -616,7 +616,7 @@ private:
 			"ogg", "mp3"
 		};
 
-		for(uint i = 0; i < ARRAY_SIZE(incompressibleExtensions); i++)
+		for(size_t i = 0; i < ARRAY_SIZE(incompressibleExtensions); i++)
 		{
 			if(!strcasecmp(extension, incompressibleExtensions[i]))
 				return true;
@@ -630,7 +630,7 @@ private:
 	UnalignedWriter m_unalignedWriter;
 
 	Pool m_cdfhPool;
-	uint m_numEntries;
+	size_t m_numEntries;
 };
 
 PIArchiveWriter CreateArchiveWriter_Zip(const Path& archivePathname)

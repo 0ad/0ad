@@ -13,7 +13,7 @@
 
 /**
  * rationale: the Windows headers declare many POSIX functions (e.g. read).
- * unfortunately, these are often slightly incorrect (size_t vs. uint).
+ * unfortunately, these are often slightly incorrect (size_t vs. size_t).
  * to avert trouble in user code caused by these differences, we declare
  * all functions ourselves according to SUSv3 and do not use the headers.
  *

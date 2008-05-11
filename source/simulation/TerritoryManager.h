@@ -42,7 +42,7 @@ class CTerritoryManager
 	std::vector<CTerritory*> m_Territories;
 	CTerritory*** m_TerritoryMatrix;	// m_TerritoryMatrix[x][z] points to the territory for tile (x, z)
 
-	uint m_TilesPerSide;
+	size_t m_TilesPerSide;
 	bool m_DelayedRecalculate;
 
 public:

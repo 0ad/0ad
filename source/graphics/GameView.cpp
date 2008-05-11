@@ -306,11 +306,11 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 {
 	PROFILE_START( "submit terrain" );
 	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
-	u32 patchesPerSide = pTerrain->GetPatchesPerSide();
+	const ssize_t patchesPerSide = pTerrain->GetPatchesPerSide();
 
-	// findout, which patches will be drawn
-	for (uint j=0; j<patchesPerSide; j++) {
-		for (uint i=0; i<patchesPerSide; i++) {
+	// find out which patches will be drawn
+	for (ssize_t j=0; j<patchesPerSide; j++) {
+		for (ssize_t i=0; i<patchesPerSide; i++) {
 			CPatch* patch=pTerrain->GetPatch(i,j);
 
 			// If the patch is underwater, calculate a bounding box that also contains the water plane
@@ -357,9 +357,9 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	}
 
 	// draw the patches
-	for (uint j=0; j<patchesPerSide; j++)
+	for (ssize_t j=0; j<patchesPerSide; j++)
 	{
-		for (uint i=0; i<patchesPerSide; i++)
+		for (ssize_t i=0; i<patchesPerSide; i++)
 		{
 			CPatch* patch=pTerrain->GetPatch(i,j);
 			if(patch->getDrawState() == true)
@@ -378,7 +378,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	CLOSManager* losMgr = world->GetLOSManager();
 
 	const std::vector<CUnit*>& units = unitMan.GetUnits();
-	for (uint i=0;i<units.size();++i)
+	for (size_t i=0;i<units.size();++i)
 	{
 		ogl_WarnIfError();
 
@@ -469,7 +469,7 @@ static void MarkUpdateColorRecursive(CModel* model)
 	model->SetDirty(RENDERDATA_UPDATE_COLOR);
 
 	const std::vector<CModel::Prop>& props = model->GetProps();
-	for(uint i = 0; i < props.size(); ++i) {
+	for(size_t i = 0; i < props.size(); ++i) {
 		MarkUpdateColorRecursive(props[i].m_Model);
 	}
 }
@@ -928,14 +928,14 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 }
 
 bool CGameViewImpl::JSI_StartCustomSelection(
-	JSContext* UNUSED(context), uint UNUSED(argc), jsval* UNUSED(argv))
+	JSContext* UNUSED(context), size_t UNUSED(argc), jsval* UNUSED(argv))
 {
 	StartCustomSelection();
 	return true;
 }
 
 bool CGameViewImpl::JSI_EndCustomSelection(
-	JSContext* UNUSED(context), uint UNUSED(argc), jsval* UNUSED(argv))
+	JSContext* UNUSED(context), size_t UNUSED(argc), jsval* UNUSED(argv))
 {
 	ResetInteraction();
 	return true;

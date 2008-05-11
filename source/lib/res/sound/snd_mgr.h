@@ -132,7 +132,7 @@ extern LibError snd_dev_set(const char* alc_new_dev_name);
  * an implementation-defined limit anyway.
  * @return LibError
  **/
-extern LibError snd_set_max_voices(uint cap);
+extern LibError snd_set_max_voices(size_t cap);
 
 /**
  * set amplitude modifier, which is effectively applied to all sounds.

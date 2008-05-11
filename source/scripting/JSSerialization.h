@@ -44,7 +44,7 @@ public:
 	{
 		return( ToPrimitive<CStrW>( m_data ) );
 	}
-	uint GetSerializedLength() const
+	size_t GetSerializedLength() const
 	{
 		switch( m_tag )
 		{

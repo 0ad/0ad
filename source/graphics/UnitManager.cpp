@@ -68,8 +68,7 @@ void CUnitManager::DeleteUnit(CUnit* unit)
 // DeleteAll: remove and delete all units
 void CUnitManager::DeleteAll()
 {
-	uint i;
-	for (i=0;i<m_Units.size();i++) {
+	for (size_t i=0;i<m_Units.size();i++) {
 		delete m_Units[i];
 	}
 	m_Units.clear();
@@ -90,7 +89,7 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir, boo
 	// closest approach offset (easier to pick small stuff in forests than standard ScEd style selection)
 	float minrel = FLT_MAX;
 
-	for (uint i=0; i<m_Units.size(); i++) {
+	for (size_t i=0; i<m_Units.size(); i++) {
 		CUnit* unit = m_Units[i];
 		float tmin, tmax;
 		
@@ -137,9 +136,9 @@ CUnit* CUnitManager::CreateUnit(const CStr& actorName, CEntity* entity, const st
 
 ///////////////////////////////////////////////////////////////////////////////
 // FindByID
-CUnit* CUnitManager::FindByID(int id) const
+CUnit* CUnitManager::FindByID(size_t id) const
 {
-	if (id < 0)
+	if (id == CUnit::invalidId)
 		return NULL;
 
 	for (size_t i = 0; i < m_Units.size(); ++i)

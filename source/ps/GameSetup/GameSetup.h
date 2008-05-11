@@ -41,5 +41,5 @@ enum InitFlags
 };
 
 class CmdLineArgs;
-extern void Init(const CmdLineArgs& args, uint flags);
-extern void Shutdown(uint flags);
+extern void Init(const CmdLineArgs& args, int flags);
+extern void Shutdown(int flags);

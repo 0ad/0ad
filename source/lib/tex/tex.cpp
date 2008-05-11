@@ -60,11 +60,11 @@ LibError tex_validate(const Tex* t)
 
 	// flags
 	// .. DXT value
-	const uint dxt = t->flags & TEX_DXT;
+	const size_t dxt = t->flags & TEX_DXT;
 	if(dxt != 0 && dxt != 1 && dxt != DXT1A && dxt != 3 && dxt != 5)
 		WARN_RETURN(ERR::_4);
 	// .. orientation
-	const uint orientation = t->flags & TEX_ORIENTATION;
+	const size_t orientation = t->flags & TEX_ORIENTATION;
 	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
 		WARN_RETURN(ERR::_5);
 
@@ -78,7 +78,7 @@ LibError tex_validate(const Tex* t)
 // 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
 // basically, this is the "plain" format understood by all codecs and
 // tex_codec_plain_transform.
-LibError tex_validate_plain_format(uint bpp, uint flags)
+LibError tex_validate_plain_format(size_t bpp, int flags)
 {
 	const bool alpha   = (flags & TEX_ALPHA  ) != 0;
 	const bool grey    = (flags & TEX_GREY   ) != 0;
@@ -109,11 +109,11 @@ LibError tex_validate_plain_format(uint bpp, uint flags)
 // mipmaps
 //-----------------------------------------------------------------------------
 
-void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* pixels, int levels_to_skip, uint data_padding, MipmapCB cb, void* RESTRICT cbData)
+void tex_util_foreach_mipmap(size_t w, size_t h, size_t bpp, const u8* pixels, int levels_to_skip, size_t data_padding, MipmapCB cb, void* RESTRICT cbData)
 {
 	debug_assert(levels_to_skip >= 0 || levels_to_skip == TEX_BASE_LEVEL_ONLY);
 
-	uint level_w = w, level_h = h;
+	size_t level_w = w, level_h = h;
 	const u8* level_data = pixels;
 
 	// we iterate through the loop (necessary to skip over image data),
@@ -128,7 +128,7 @@ void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* pixels, int lev
 		const size_t level_data_size = (size_t)(round_up(level_w, data_padding) * round_up(level_h, data_padding) * bpp/8);
 
 		if(level >= 0)
-			cb((uint)level, level_w, level_h, level_data, level_data_size, cbData);
+			cb((size_t)level, level_w, level_h, level_data, level_data_size, cbData);
 
 		level_data += level_data_size;
 
@@ -154,16 +154,16 @@ void tex_util_foreach_mipmap(uint w, uint h, uint bpp, const u8* pixels, int lev
 
 struct CreateLevelData
 {
-	uint num_components;
+	size_t num_components;
 
-	uint prev_level_w;
-	uint prev_level_h;
+	size_t prev_level_w;
+	size_t prev_level_h;
 	const u8* prev_level_data;
 	size_t prev_level_data_size;
 };
 
 // uses 2x2 box filter
-static void create_level(uint level, uint level_w, uint level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
+static void create_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	CreateLevelData* cld = (CreateLevelData*)cbData;
 	const size_t src_w = cld->prev_level_w;
@@ -179,7 +179,7 @@ static void create_level(uint level, uint level_w, uint level_h, const u8* RESTR
 	}
 	else
 	{
-		const uint num_components = cld->num_components;
+		const size_t num_components = cld->num_components;
 		const size_t dx = num_components, dy = dx*src_w;
 
 		// special case: image is too small for 2x2 filter
@@ -188,9 +188,9 @@ static void create_level(uint level, uint level_w, uint level_h, const u8* RESTR
 			// image is either a horizontal or vertical line.
 			// their memory layout is the same (packed pixels), so no special
 			// handling is needed; just pick max dimension.
-			for(uint y = 0; y < std::max(src_w, src_h); y += 2)
+			for(size_t y = 0; y < std::max(src_w, src_h); y += 2)
 			{
-				for(uint i = 0; i < num_components; i++)
+				for(size_t i = 0; i < num_components; i++)
 				{
 					*dst++ = (src[0]+src[dx]+1)/2;
 					src += 1;
@@ -202,11 +202,11 @@ static void create_level(uint level, uint level_w, uint level_h, const u8* RESTR
 		// normal
 		else
 		{
-			for(uint y = 0; y < src_h; y += 2)
+			for(size_t y = 0; y < src_h; y += 2)
 			{
-				for(uint x = 0; x < src_w; x += 2)
+				for(size_t x = 0; x < src_w; x += 2)
 				{
-					for(uint i = 0; i < num_components; i++)
+					for(size_t i = 0; i < num_components; i++)
 					{
 						*dst++ = (src[0]+src[dx]+src[dy]+src[dx+dy]+2)/4;
 						src += 1;
@@ -230,7 +230,7 @@ static void create_level(uint level, uint level_w, uint level_h, const u8* RESTR
 }
 
 
-static LibError add_mipmaps(Tex* t, uint w, uint h, uint bpp, void* newData, size_t data_size)
+static LibError add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData, size_t data_size)
 {
 	// this code assumes the image is of POT dimension; we don't
 	// go to the trouble of implementing image scaling because
@@ -263,7 +263,7 @@ TIMER_ADD_CLIENT(tc_plain_transform);
 // but is much easier to maintain than providing all<->all conversion paths.
 //
 // somewhat optimized (loops are hoisted, cache associativity accounted for)
-static LibError plain_transform(Tex* t, uint transforms)
+static LibError plain_transform(Tex* t, size_t transforms)
 {
 TIMER_ACCRUE(tc_plain_transform);
 
@@ -272,7 +272,8 @@ TIMER_ACCRUE(tc_plain_transform);
 	CHECK_TEX(t);
 
 	// extract texture info
-	const uint w = t->w, h = t->h, bpp = t->bpp, flags = t->flags;
+	const size_t w = t->w, h = t->h, bpp = t->bpp;
+	const int flags = t->flags;
 	u8* const data = tex_get_data(t);
 	const size_t data_size = tex_img_size(t);
 
@@ -313,7 +314,7 @@ TIMER_ACCRUE(tc_plain_transform);
 	// no BGR convert necessary
 	if(!(transforms & TEX_BGR))
 	{
-		for(uint y = 0; y < h; y++)
+		for(size_t y = 0; y < h; y++)
 		{
 			cpu_memcpy(dst, src, pitch);
 			dst += pitch;
@@ -323,9 +324,9 @@ TIMER_ACCRUE(tc_plain_transform);
 	// RGB <-> BGR
 	else if(bpp == 24)
 	{
-		for(uint y = 0; y < h; y++)
+		for(size_t y = 0; y < h; y++)
 		{
-			for(uint x = 0; x < w; x++)
+			for(size_t x = 0; x < w; x++)
 			{
 				// need temporaries in case src == dst (i.e. not flipping)
 				const u8 b = src[0], g = src[1], r = src[2];
@@ -339,9 +340,9 @@ TIMER_ACCRUE(tc_plain_transform);
 	// RGBA <-> BGRA
 	else if(bpp == 32)
 	{
-		for(uint y = 0; y < h; y++)
+		for(size_t y = 0; y < h; y++)
 		{
-			for(uint x = 0; x < w; x++)
+			for(size_t x = 0; x < w; x++)
 			{
 				// need temporaries in case src == dst (i.e. not flipping)
 				const u8 b = src[0], g = src[1], r = src[2], a = src[3];
@@ -369,13 +370,13 @@ TIMER_ADD_CLIENT(tc_transform);
 
 // change <t>'s pixel format by flipping the state of all TEX_* flags
 // that are set in transforms.
-LibError tex_transform(Tex* t, uint transforms)
+LibError tex_transform(Tex* t, size_t transforms)
 {
 	TIMER_ACCRUE(tc_transform);
 	CHECK_TEX(t);
 
-	const uint target_flags = t->flags ^ transforms;
-	uint remaining_transforms;
+	const size_t target_flags = t->flags ^ transforms;
+	size_t remaining_transforms;
 	for(;;)
 	{
 		remaining_transforms = target_flags ^ t->flags;
@@ -396,10 +397,10 @@ LibError tex_transform(Tex* t, uint transforms)
 
 // change <t>'s pixel format to the new format specified by <new_flags>.
 // (note: this is equivalent to tex_transform(t, t->flags^new_flags).
-LibError tex_transform_to(Tex* t, uint new_flags)
+LibError tex_transform_to(Tex* t, size_t new_flags)
 {
 	// tex_transform takes care of validating <t>
-	const uint transforms = t->flags ^ new_flags;
+	const size_t transforms = t->flags ^ new_flags;
 	return tex_transform(t, transforms);
 }
 
@@ -427,12 +428,12 @@ static void flip_to_global_orientation(Tex* t)
 	// (can't use normal CHECK_TEX due to void return)
 	WARN_ERR(tex_validate(t));
 
-	uint orientation = t->flags & TEX_ORIENTATION;
+	size_t orientation = t->flags & TEX_ORIENTATION;
 	// if codec knows which way around the image is (i.e. not DDS):
 	if(orientation)
 	{
 		// flip image if necessary
-		uint transforms = orientation ^ global_orientation;
+		size_t transforms = orientation ^ global_orientation;
 		WARN_ERR(plain_transform(t, transforms));
 	}
 
@@ -450,9 +451,9 @@ static void flip_to_global_orientation(Tex* t)
 // dst_orientation (if the latter is 0, then the global_orientation).
 // (we ask for src_flags instead of src_orientation so callers don't
 // have to mask off TEX_ORIENTATION)
-bool tex_orientations_match(uint src_flags, uint dst_orientation)
+bool tex_orientations_match(size_t src_flags, size_t dst_orientation)
 {
-	const uint src_orientation = src_flags & TEX_ORIENTATION;
+	const size_t src_orientation = src_flags & TEX_ORIENTATION;
 	if(dst_orientation == 0)
 		dst_orientation = global_orientation;
 	return (src_orientation == dst_orientation);
@@ -495,7 +496,7 @@ bool tex_is_known_extension(const char* filename)
 //
 // we need only add bookkeeping information and "wrap" it in
 // our Tex struct, hence the name.
-LibError tex_wrap(uint w, uint h, uint bpp, uint flags, shared_ptr<u8> data, size_t ofs, Tex* t)
+LibError tex_wrap(size_t w, size_t h, size_t bpp, int flags, shared_ptr<u8> data, size_t ofs, Tex* t)
 {
 	t->w     = w;
 	t->h     = h;
@@ -543,7 +544,7 @@ u8* tex_get_data(const Tex* t)
 }
 
 
-static void add_level_size(uint UNUSED(level), uint UNUSED(level_w), uint UNUSED(level_h), const u8* RESTRICT UNUSED(level_data), size_t level_data_size, void* RESTRICT cbData)
+static void add_level_size(size_t UNUSED(level), size_t UNUSED(level_w), size_t UNUSED(level_h), const u8* RESTRICT UNUSED(level_data), size_t level_data_size, void* RESTRICT cbData)
 {
 	size_t* ptotal_size = (size_t*)cbData;
 	*ptotal_size += level_data_size;
@@ -558,7 +559,7 @@ size_t tex_img_size(const Tex* t)
 	WARN_ERR(tex_validate(t));
 
 	const int levels_to_skip = (t->flags & TEX_MIPMAPS)? 0 : TEX_BASE_LEVEL_ONLY;
-	const uint data_padding = (t->flags & TEX_DXT)? 4 : 1;
+	const size_t data_padding = (t->flags & TEX_DXT)? 4 : 1;
 	size_t out_size = 0;
 	tex_util_foreach_mipmap(t->w, t->h, t->bpp, 0, levels_to_skip, data_padding, add_level_size, &out_size);
 	return out_size;

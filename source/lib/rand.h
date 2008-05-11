@@ -16,6 +16,6 @@
  * avoids several common pitfalls; see discussion at
  * http://www.azillionmonkeys.com/qed/random.html
  **/
-extern uint rand(uint min_inclusive, uint max_exclusive);
+extern size_t rand(size_t min_inclusive, size_t max_exclusive);
 
 #endif	// #ifndef INCLUDED_RAND

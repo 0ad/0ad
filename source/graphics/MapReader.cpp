@@ -113,16 +113,13 @@ void CMapReader::UnpackLightEnv()
 void CMapReader::UnpackObjects()
 {
 	// unpack object types
-	u32 numObjTypes;
-	unpacker.UnpackRaw(&numObjTypes, sizeof(numObjTypes));
+	const size_t numObjTypes = unpacker.UnpackSize();
 	m_ObjectTypes.resize(numObjTypes);
-	for (u32 i=0; i<numObjTypes; i++) {
+	for (size_t i=0; i<numObjTypes; i++)
 		unpacker.UnpackString(m_ObjectTypes[i]);
-	}
 
 	// unpack object data
-	u32 numObjects;
-	unpacker.UnpackRaw(&numObjects, sizeof(numObjects));
+	const size_t numObjects = unpacker.UnpackSize();
 	m_Objects.resize(numObjects);
 	if (numObjects)
 		unpacker.UnpackRaw(&m_Objects[0], sizeof(SObjectDesc)*numObjects);
@@ -140,16 +137,15 @@ int CMapReader::UnpackTerrain()
 	// i.e. when the loop below was interrupted)
 	if (cur_terrain_tex == 0)
 	{
-		// unpack map size
-		unpacker.UnpackRaw(&m_MapSize, sizeof(m_MapSize));
+		m_MapSize = (ssize_t)unpacker.UnpackSize();
 
 		// unpack heightmap [600us]
-		u32 verticesPerSide = m_MapSize*PATCH_SIZE+1;
+		size_t verticesPerSide = m_MapSize*PATCH_SIZE+1;
 		m_Heightmap.resize(SQR(verticesPerSide));
 		unpacker.UnpackRaw(&m_Heightmap[0], SQR(verticesPerSide)*sizeof(u16));
 
 		// unpack # textures
-		unpacker.UnpackRaw(&num_terrain_tex, sizeof(num_terrain_tex));
+		num_terrain_tex = unpacker.UnpackSize();
 		m_TerrainTextures.reserve(num_terrain_tex);
 	}
 
@@ -174,9 +170,9 @@ int CMapReader::UnpackTerrain()
 	}
 
 	// unpack tile data [3ms]
-	u32 tilesPerSide = m_MapSize*PATCH_SIZE;
+	size_t tilesPerSide = m_MapSize*PATCH_SIZE;
 	m_Tiles.resize(SQR(tilesPerSide));
-	unpacker.UnpackRaw(&m_Tiles[0], (u32)(sizeof(STileDesc)*m_Tiles.size()));
+	unpacker.UnpackRaw(&m_Tiles[0], sizeof(STileDesc)*m_Tiles.size());
 
 	// reset generator state.
 	cur_terrain_tex = 0;
@@ -192,10 +188,10 @@ int CMapReader::ApplyData()
 	
 	// setup the textures on the minipatches
 	STileDesc* tileptr = &m_Tiles[0];
-	for (u32 j=0; j<m_MapSize; j++) {
-		for (u32 i=0; i<m_MapSize; i++) {
-			for (u32 m=0; m<(u32)PATCH_SIZE; m++) {
-				for (u32 k=0; k<(u32)PATCH_SIZE; k++) {
+	for (ssize_t j=0; j<m_MapSize; j++) {
+		for (ssize_t i=0; i<m_MapSize; i++) {
+			for (ssize_t m=0; m<PATCH_SIZE; m++) {
+				for (ssize_t k=0; k<PATCH_SIZE; k++) {
 					CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
 
 					mp.Tex1 = m_TerrainTextures[tileptr->m_Tex1Index];

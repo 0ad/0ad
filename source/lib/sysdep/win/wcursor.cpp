@@ -35,7 +35,7 @@ static HCURSOR HCURSOR_from_ptr(void* p)
 //   position where mouse clicks are registered.
 // cursor is only valid when INFO::OK is returned; in that case, it must be
 //   sys_cursor_free-ed when no longer needed.
-LibError sys_cursor_create(uint w, uint h, void* bgra_img, uint hx, uint hy, void** cursor)
+LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, void** cursor)
 {
 	// MSDN says selecting this HBITMAP into a DC is slower since we use
 	// CreateBitmap; bpp/format must be checked against those of the DC.
@@ -51,8 +51,8 @@ LibError sys_cursor_create(uint w, uint h, void* bgra_img, uint hx, uint hy, voi
 	// fIcon and the hotspot definitions).
 	ICONINFO ii;
 	ii.fIcon = FALSE;  // cursor
-	ii.xHotspot = hx;
-	ii.yHotspot = hy;
+	ii.xHotspot = (DWORD)hx;
+	ii.yHotspot = (DWORD)hy;
 	ii.hbmMask  = hbmMask;
 	ii.hbmColor = hbmColour;
 	HICON hIcon = CreateIconIndirect(&ii);

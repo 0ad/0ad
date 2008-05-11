@@ -29,8 +29,8 @@ public:
 private:
 	CStrW m_Name;
 	CStrW m_Civilization;	// Note: this must be the un-internationalized name of the civ
-	PS_uint m_PlayerID;
-	PS_uint m_LOSToken;
+	size_t m_PlayerID;
+	size_t m_LOSToken;
 	SPlayerColour m_Colour;
 	int /*EDiplomaticStance*/ m_DiplomaticStance[PS_MAX_PLAYERS+1];
 	std::vector<CTechnology*> m_ActiveTechs;
@@ -41,17 +41,18 @@ private:
 	virtual void Update(const CStrW& name, ISynchedJSProperty *prop);
 	
 public:
-	CPlayer( uint playerID );
+	CPlayer( size_t playerID );
 	~CPlayer();
 
 	bool ValidateCommand(CNetMessage *pMsg);
 
-	inline PS_uint GetPlayerID() const
+	static const size_t invalidId = ~(size_t)0;
+	inline size_t GetPlayerID() const
 	{	return m_PlayerID; }
-	inline void SetPlayerID(PS_uint id)
+	inline void SetPlayerID(size_t id)
 	{	m_PlayerID=id; }
 
-	inline PS_uint GetLOSToken() const
+	inline size_t GetLOSToken() const
 	{	return m_LOSToken; }
 	
 	inline const CStrW& GetName() const

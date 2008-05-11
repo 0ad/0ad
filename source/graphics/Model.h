@@ -68,7 +68,7 @@ public:
 	void SetMaterial(const CMaterial &material);
 	// set the model's player ID, recursively through props. CUnit::SetPlayerID
 	// should normally be used instead.
-	void SetPlayerID(int id);
+	void SetPlayerID(size_t id);
 	// set the model's player colour
 	void SetPlayerColor(CColor& colour);
 	// set the models mod color
@@ -91,12 +91,12 @@ public:
 	void CopyAnimationFrom(CModel* source);
 
 	// set object flags
-	void SetFlags(u32 flags) { m_Flags=flags; }
+	void SetFlags(int flags) { m_Flags=flags; }
 	// get object flags
-	u32 GetFlags() const { return m_Flags; }
+	int GetFlags() const { return m_Flags; }
 
 	// recurse down tree setting dirty bits
-	void SetDirtyRec(u32 dirtyflags) {
+	void SetDirtyRec(int dirtyflags) {
 		SetDirty(dirtyflags);
 		for (size_t i=0;i<m_Props.size();i++) {
 			m_Props[i].m_Model->SetDirtyRec(dirtyflags);
@@ -169,7 +169,7 @@ private:
 	CModel* m_Parent;
 
 	// object flags
-	u32 m_Flags;
+	int m_Flags;
 	// texture used by model
 	CTexture m_Texture;
 	// model's material

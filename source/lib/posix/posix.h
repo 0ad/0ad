@@ -108,8 +108,8 @@ extern double rint(double d);
 extern float fminf(float a, float b);
 extern float fmaxf(float a, float b);
 
-extern uint fpclassifyf(float f);
-extern uint fpclassifyd(double d);
+extern size_t fpclassifyf(float f);
+extern size_t fpclassifyd(double d);
 #define fpclassify(x) ( (sizeof(x) == sizeof(float))? fpclassifyf(x) : fpclassifyd(x) )
 
 // these definitions "happen" to match IA32_FP_* and allow using

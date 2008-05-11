@@ -46,7 +46,7 @@ CTrigger::CTrigger(const CStrW& name, bool active, float delay, int maxRuns,
 	m_effectFunction = effectFunc;
 }
 
-JSBool CTrigger::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool CTrigger::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS_CPP(6);
 
@@ -103,11 +103,11 @@ bool CTrigger::Fire()
 	return (m_runCount < m_maxRunCount);
 }
 
-void CTrigger::Activate(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* UNUSED(argv))
+void CTrigger::Activate(JSContext* UNUSED(cx), size_t UNUSED(argc), jsval* UNUSED(argv))
 {
 	m_active = true;
 }
-void CTrigger::Deactivate(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* UNUSED(argv))
+void CTrigger::Deactivate(JSContext* UNUSED(cx), size_t UNUSED(argc), jsval* UNUSED(argv))
 {
 	m_active = false;
 }

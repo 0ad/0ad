@@ -171,7 +171,7 @@ public:
 		}
 	}
 
-	void Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, uint cost)
+	void Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, size_t cost)
 	{
 		// zero-copy cache => all users share the contents => must not
 		// allow changes. this will be reverted when deallocating.
@@ -217,7 +217,7 @@ shared_ptr<u8> FileCache::Reserve(size_t size)
 	return impl->Reserve(size);
 }
 
-void FileCache::Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, uint cost)
+void FileCache::Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, size_t cost)
 {
 	impl->Add(pathname, data, size, cost);
 }

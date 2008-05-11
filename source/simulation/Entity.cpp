@@ -100,7 +100,7 @@ CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, 
 	m_currentRequest = 0;
 	entf_set(ENTF_DESTROY_NOTIFIERS);
 
-	m_formationSlot = -1;
+	m_formationSlot = (size_t)-1;
 	m_formation = -1;
 	m_grouped = -1;
 
@@ -152,7 +152,7 @@ CEntity::~CEntity()
 
 void CEntity::LoadBase()
 {
-	int previous_unit_id = -1;
+	size_t previous_unit_id = CUnit::invalidId;
 
 	if( m_actor )
 	{
@@ -394,7 +394,7 @@ void CEntity::RebuildClassSet()
 		(*it)->RebuildClassSet();
 }
 
-void CEntity::Update( size_t timestep )
+void CEntity::Update( int timestep )
 {
 	if( !m_extant ) return;
 
@@ -450,7 +450,7 @@ void CEntity::Update( size_t timestep )
 	);
 }
 
-void CEntity::UpdateOrders( size_t timestep )
+void CEntity::UpdateOrders( int timestep )
 {
 	// The process[...] functions return 'true' if the order at the top of the stack
 	// still needs to be (re-)evaluated; else 'false' to terminate the processing of
@@ -644,7 +644,7 @@ void CEntity::UpdateCollisionPatch()
 }
 
 #if AURA_TEST
-void CEntity::UpdateAuras( size_t timestep_millis )
+void CEntity::UpdateAuras( int timestep_millis )
 {
 	std::vector<SAura>::iterator it_a;
 	for( it_a = m_Auras.begin(); it_a != m_Auras.end(); it_a++ )

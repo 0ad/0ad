@@ -34,13 +34,13 @@ public:
 
 	// Implementations
 	void* CreateModelData(CModel* model);
-	void UpdateModelData(CModel* model, void* data, u32 updateflags);
+	void UpdateModelData(CModel* model, void* data, int updateflags);
 	void DestroyModelData(CModel* model, void* data);
 
-	void BeginPass(uint streamflags, const CMatrix3D* texturematrix);
-	void EndPass(uint streamflags);
-	void PrepareModelDef(uint streamflags, CModelDefPtr def);
-	void RenderModel(uint streamflags, CModel* model, void* data);
+	void BeginPass(int streamflags, const CMatrix3D* texturematrix);
+	void EndPass(int streamflags);
+	void PrepareModelDef(int streamflags, CModelDefPtr def);
+	void RenderModel(int streamflags, CModel* model, void* data);
 
 private:
 	PolygonSortModelRendererInternals* m;
@@ -72,7 +72,7 @@ public:
 	void PrepareModels();
 	void EndFrame();
 	bool HaveSubmissions();
-	void Render(RenderModifierPtr modifier, u32 flags);
+	void Render(RenderModifierPtr modifier, int flags);
 
 private:
 	SortModelRendererInternals* m;
@@ -90,10 +90,10 @@ public:
 	~TransparentRenderModifier();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 
 };
 
@@ -112,11 +112,11 @@ public:
 	~LitTransparentRenderModifier();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	const CMatrix3D* GetTexGenMatrix(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	const CMatrix3D* GetTexGenMatrix(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 
 };
 
@@ -132,10 +132,10 @@ public:
 	~TransparentShadowRenderModifier();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 };
 
 /**
@@ -150,10 +150,10 @@ public:
 	~TransparentDepthShadowModifier();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 };
 
 #endif

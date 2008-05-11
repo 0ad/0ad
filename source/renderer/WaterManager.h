@@ -45,8 +45,8 @@ public:
 	// Reflection and refraction textures for fancy water
 	GLuint m_ReflectionTexture;
 	GLuint m_RefractionTexture;
-	uint m_ReflectionTextureSize;
-	uint m_RefractionTextureSize;
+	size_t m_ReflectionTextureSize;
+	size_t m_RefractionTextureSize;
 
 	// Model-view-projection matrices for reflected & refracted cameras
 	// (used to let the vertex shader do projective texturing)
@@ -84,8 +84,8 @@ public:
 
 private:
 	/// State of progressive loading (in # of loaded textures)
-	uint cur_loading_water_tex;
-	uint cur_loading_normal_map;
+	size_t cur_loading_water_tex;
+	size_t cur_loading_normal_map;
 };
 
 

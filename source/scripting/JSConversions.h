@@ -119,10 +119,20 @@ template<> bool ToPrimitive<int>( JSContext* cx, jsval v, int& Storage );
 template<> jsval ToJSVal<int>( const int& Native );
 template<> jsval ToJSVal<int>( int& Native );
 
-// uint
-template<> bool ToPrimitive<uint>( JSContext* cx, jsval v, uint& Storage );
-template<> jsval ToJSVal<uint>( const uint& Native );
-template<> jsval ToJSVal<uint>( uint& Native );
+// unsigned
+template<> bool ToPrimitive<unsigned>( JSContext* cx, jsval v, unsigned& Storage );
+template<> jsval ToJSVal<unsigned>( const unsigned& Native );
+template<> jsval ToJSVal<unsigned>( unsigned& Native );
+
+// ssize_t
+template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage );
+template<> jsval ToJSVal<ssize_t>( const ssize_t& Native );
+template<> jsval ToJSVal<ssize_t>( ssize_t& Native );
+
+// size_t
+template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, size_t& Storage );
+template<> jsval ToJSVal<size_t>( const size_t& Native );
+template<> jsval ToJSVal<size_t>( size_t& Native );
 
 // double
 template<> bool ToPrimitive<double>( JSContext* cx, jsval v, double& Storage );

@@ -19,7 +19,7 @@ PIFrequencyFilter g_frequencyFilter;
 // updates the state of the above; never swallows messages.
 InReaction GlobalsInputHandler(const SDL_Event_* ev)
 {
-	uint c;
+	size_t c;
 
 	switch(ev->ev.type)
 	{

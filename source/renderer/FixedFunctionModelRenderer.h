@@ -32,13 +32,13 @@ public:
 
 	// Implementations
 	void* CreateModelData(CModel* model);
-	void UpdateModelData(CModel* model, void* data, u32 updateflags);
+	void UpdateModelData(CModel* model, void* data, int updateflags);
 	void DestroyModelData(CModel* model, void* data);
 
-	void BeginPass(uint streamflags, const CMatrix3D* texturematrix);
-	void EndPass(uint streamflags);
-	void PrepareModelDef(uint streamflags, CModelDefPtr def);
-	void RenderModel(uint streamflags, CModel* model, void* data);
+	void BeginPass(int streamflags, const CMatrix3D* texturematrix);
+	void EndPass(int streamflags);
+	void PrepareModelDef(int streamflags, CModelDefPtr def);
+	void RenderModel(int streamflags, CModel* model, void* data);
 
 private:
 	FixedFunctionModelRendererInternals* m;

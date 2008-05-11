@@ -159,10 +159,10 @@ void CMessageSocket::StartWriteNextMessage()
 		// Prepare the header
 		SNetHeader hdr;
 		hdr.m_MsgType=pMsg->GetType();
-		hdr.m_MsgLength=pMsg->GetSerializedLength();
+		hdr.m_MsgLength=(u16)pMsg->GetSerializedLength();
 
 		// Allocate buffer space
-		if ((uint)(hdr.m_MsgLength+HEADER_LENGTH) > m_WrBufferSize)
+		if ((size_t)(hdr.m_MsgLength+HEADER_LENGTH) > m_WrBufferSize)
 		{
 			m_WrBufferSize = BUFFER_SIZE(hdr.m_MsgLength+HEADER_LENGTH);
 			if (m_pWrBuffer)
@@ -258,7 +258,7 @@ void CMessageSocket::StartReadMessage()
 	SNetHeader hdr;
 	hdr.Deserialize(m_pRdBuffer);
 
-	uint reqBufSize=HEADER_LENGTH+hdr.m_MsgLength;
+	size_t reqBufSize=HEADER_LENGTH+hdr.m_MsgLength;
 	if (m_RdBufferSize < reqBufSize)
 	{
 		m_RdBufferSize=BUFFER_SIZE(reqBufSize);

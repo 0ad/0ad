@@ -43,7 +43,7 @@ public:
 	 * @return The streamflags that indicate which vertex components
 	 * are required by the fragment stages (see STREAM_XYZ constants).
 	 */
-	virtual u32 BeginPass(uint pass) = 0;
+	virtual int BeginPass(int pass) = 0;
 
 	/**
 	 * GetTexGenMatrix: If BeginPass returns STREAM_TEXGENTOUVx, the caller must
@@ -56,7 +56,7 @@ public:
 	 *
 	 * @return a pointer to the texture matrix for the given pass
 	 */
-	virtual const CMatrix3D* GetTexGenMatrix(uint pass);
+	virtual const CMatrix3D* GetTexGenMatrix(int pass);
 
 	/**
 	 * EndPass: Cleanup OpenGL state after the given pass. This function
@@ -70,7 +70,7 @@ public:
 	 * is needed. If false is returned, BeginPass is then called with an
 	 * increased pass number.
 	 */
-	virtual bool EndPass(uint pass) = 0;
+	virtual bool EndPass(int pass) = 0;
 
 	/**
 	 * PrepareTexture: Called before rendering models that use the given
@@ -81,7 +81,7 @@ public:
 	 * @param pass The current pass number (pass == 0 is the first pass)
 	 * @param texture The texture used by subsequent models
 	 */
-	virtual void PrepareTexture(uint pass, CTexture* texture) = 0;
+	virtual void PrepareTexture(int pass, CTexture* texture) = 0;
 
 	/**
 	 * PrepareModel: Called before rendering the given model.
@@ -91,7 +91,7 @@ public:
 	 * @param pass The current pass number (pass == 0 is the first pass)
 	 * @param model The model that is about to be rendered.
 	 */
-	virtual void PrepareModel(uint pass, CModel* model);
+	virtual void PrepareModel(int pass, CModel* model);
 };
 
 
@@ -157,9 +157,9 @@ public:
 	~PlainRenderModifier();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
 };
 
 
@@ -175,10 +175,10 @@ public:
 	~PlainLitRenderModifier();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	const CMatrix3D* GetTexGenMatrix(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
+	int BeginPass(int pass);
+	const CMatrix3D* GetTexGenMatrix(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
 };
 
 
@@ -192,10 +192,10 @@ public:
 	~WireframeRenderModifier();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 };
 
 
@@ -212,10 +212,10 @@ public:
 	~SolidColorRenderModifier();
 
 	// Implementation
-	u32 BeginPass(uint pass);
-	bool EndPass(uint pass);
-	void PrepareTexture(uint pass, CTexture* texture);
-	void PrepareModel(uint pass, CModel* model);
+	int BeginPass(int pass);
+	bool EndPass(int pass);
+	void PrepareTexture(int pass, CTexture* texture);
+	void PrepareModel(int pass, CModel* model);
 };
 
 #endif // INCLUDED_RENDERMODIFIERS

@@ -52,7 +52,7 @@ CProjectile::~CProjectile()
 	delete( m_Actor );
 }
 
-bool CProjectile::Update( size_t timestep_millis )
+bool CProjectile::Update( int timestep_millis )
 {
 	m_Position_Previous = m_Position;
 	m_Position.X += timestep_millis * m_Axis.x * m_Speed_H;
@@ -90,7 +90,7 @@ bool CProjectile::Update( size_t timestep_millis )
 	return( true );
 }
 
-void CProjectile::Interpolate( size_t timestep_millis )
+void CProjectile::Interpolate( int timestep_millis )
 {
 	m_Position_Graphics.X = m_Position_Previous.X + timestep_millis * m_Speed_H * m_Axis.x;
 	m_Position_Graphics.Z = m_Position_Previous.Z + timestep_millis * m_Speed_H * m_Axis.y;
@@ -123,7 +123,7 @@ void CProjectile::ScriptingInit()
 	CJSObject<CProjectile>::ScriptingInit( "Projectile", Construct, 4 );
 }
 
-JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 4 );
 	CStr ModelString;
@@ -263,7 +263,7 @@ void CProjectileManager::DeleteProjectile( CProjectile* p )
 	delete p;
 }
 
-void CProjectileManager::UpdateAll( size_t timestep )
+void CProjectileManager::UpdateAll( int timestep )
 {
 	m_LastTurnLength = timestep;
 	
@@ -289,7 +289,7 @@ void CProjectileManager::UpdateAll( size_t timestep )
 
 void CProjectileManager::InterpolateAll( double relativeOffset )
 {
-	size_t absoluteOffset = (size_t)( (double)m_LastTurnLength * relativeOffset );
+	int absoluteOffset = (int)( m_LastTurnLength * relativeOffset );
 	std::list<CProjectile*>::iterator it;
 	for( it = m_Projectiles.begin(); it != m_Projectiles.end(); ++it )
 		(*it)->Interpolate( absoluteOffset );

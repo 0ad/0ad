@@ -46,7 +46,7 @@ todo:
 
 // total number of hazard pointers needed by each thread.
 // determined by the algorithms using SMR; the LF list requires 2.
-static const uint NUM_HPS = 2;
+static const size_t NUM_HPS = 2;
 
 // number of slots for the per-thread node freelist.
 // this is a reasonable size and pads struct TLS to 64 bytes.
@@ -631,7 +631,7 @@ LibError lfh_init(LFHash* hash, size_t num_entries)
 	hash->tbl = (LFList*)malloc(sizeof(LFList) * num_entries);
 	if(!hash->tbl)
 		return ERR::NO_MEM;
-	hash->mask = (uint)num_entries-1;
+	hash->mask = (size_t)num_entries-1;
 
 	for(int i = 0; i < (int)num_entries; i++)
 	{

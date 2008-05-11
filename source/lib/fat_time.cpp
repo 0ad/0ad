@@ -18,8 +18,8 @@
 
 time_t time_t_from_FAT(u32 fat_timedate)
 {
-	const uint fat_time = bits(fat_timedate, 0, 15);
-	const uint fat_date = bits(fat_timedate, 16, 31);
+	const u32 fat_time = bits(fat_timedate, 0, 15);
+	const u32 fat_date = bits(fat_timedate, 16, 31);
 
 	struct tm t;							// struct tm format:
 	t.tm_sec   = bits(fat_time, 0,4) * 2;	// [0,59]

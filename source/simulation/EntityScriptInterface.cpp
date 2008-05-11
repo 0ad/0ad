@@ -130,7 +130,7 @@ void CEntity::ScriptingInit()
 
 // Script constructor
 
-JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval )
+JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 2 );
 
@@ -512,7 +512,7 @@ jsval_t CEntity::AddAura( JSContext* cx, uintN argc, jsval* argv )
 
 	CStrW name = ToPrimitive<CStrW>( argv[0] );
 	float radius = ToPrimitive<float>( argv[1] );
-	size_t tickRate = std::max( 0, ToPrimitive<int>( argv[2] ) );	// since it's a size_t we don't want it to be negative
+	int tickRate = std::max( 0, ToPrimitive<int>( argv[2] ) );	// since it's a size_t we don't want it to be negative
 	float r = ToPrimitive<float>( argv[3] );
 	float g = ToPrimitive<float>( argv[4] );
 	float b = ToPrimitive<float>( argv[5] );
@@ -553,7 +553,7 @@ jsval_t CEntity::SetActionParams( JSContext* UNUSED(cx), uintN argc, jsval* argv
 	int id = ToPrimitive<int>( argv[0] );
 	float minRange = ToPrimitive<int>( argv[1] );
 	float maxRange = ToPrimitive<int>( argv[2] );
-	uint speed = ToPrimitive<uint>( argv[3] );
+	int speed = ToPrimitive<int>( argv[3] );
 	CStr8 animation = ToPrimitive<CStr8>( argv[4] );
 
 	m_actions[id] = SEntityAction( id, minRange, maxRange, speed, animation );

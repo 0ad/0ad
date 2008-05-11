@@ -42,6 +42,6 @@ enum VfsLookupFlags
  *
  * to allow noiseless file-existence queries, this does not raise warnings.
  **/
-extern LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, unsigned flags = 0);
+extern LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, int flags = 0);
 
 #endif	// #ifndef INCLUDED_VFS_LOOKUP

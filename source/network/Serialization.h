@@ -61,7 +61,7 @@ public:
 	/**
 	 * Return the length of the serialized form of this object
 	 */
-	virtual uint GetSerializedLength() const = 0;
+	virtual size_t GetSerializedLength() const = 0;
 	/**
 	 * Serialize the object into the passed buffer.
 	 * 

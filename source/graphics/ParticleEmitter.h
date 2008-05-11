@@ -35,7 +35,7 @@ public:
 		short	life;						// How long it will last			2
 
 		// particle text stuff
-		CVector3D endPos;						// For particle texture				12
+		CVector3D endPos;					// For particle texture				12
 		bool inPos;							//									1
 
 		tParticle* next;					// pointer for link lists			4 

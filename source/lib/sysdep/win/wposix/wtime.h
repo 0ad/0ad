@@ -24,7 +24,7 @@ typedef long suseconds_t;
 // <unistd.h>
 //
 
-extern unsigned int sleep(unsigned int sec);
+extern unsigned sleep(unsigned sec);
 extern int usleep(useconds_t us);
 
 

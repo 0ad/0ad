@@ -144,7 +144,7 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* UNUSED(obj), uintN argc, j
 	LibError err = g_VFS->GetFileInfo(filename.c_str(), &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
-	*rval = ToJSVal( (uint)fileInfo.Size() );
+	*rval = ToJSVal( (unsigned)fileInfo.Size() );
 	return( JS_TRUE );
 }
 

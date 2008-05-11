@@ -54,7 +54,7 @@ static ICounter* GetNextBestSafeCounter()
 {
 	for(;;)
 	{
-		static uint nextCounterId = 0;
+		static size_t nextCounterId = 0;
 		ICounter* counter = CreateCounter(nextCounterId++);
 		if(!counter)
 			return 0;	// tried all, none were safe
@@ -82,7 +82,7 @@ static ICounter* counter;
 // (these counter properties are cached for efficiency and convenience:)
 static double nominalFrequency;
 static double resolution;
-static uint counterBits;
+static size_t counterBits;
 static u64 counterMask;
 
 static void InitCounter()
@@ -97,7 +97,7 @@ static void InitCounter()
 	resolution       = counter->Resolution();
 	counterBits      = counter->CounterBits();
 
-	counterMask = bit_mask64(counterBits);
+	counterMask = bit_mask<u64>(counterBits);
 
 	// sanity checks
 	debug_assert(nominalFrequency >= 500.0-DBL_EPSILON);
@@ -244,7 +244,7 @@ static inline LibError InitUpdateThread()
 	// make sure our interval isn't too long
 	// (counterBits can be 64 => BIT64 would overflow => calculate period/2)
 	const double period_2 = BIT64(counterBits-1) / nominalFrequency;
-	const uint rolloversPerInterval = UPDATE_INTERVAL_MS / cpu_i64FromDouble(period_2*2.0*1000.0);
+	const size_t rolloversPerInterval = UPDATE_INTERVAL_MS / cpu_i64FromDouble(period_2*2.0*1000.0);
 	debug_assert(rolloversPerInterval <= 1);
 
 	hExitEvent = CreateEvent(0, TRUE, FALSE, 0);	// manual reset, initially false

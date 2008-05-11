@@ -220,7 +220,7 @@ void CSelectedEntities::RenderOverlays()
 			glColor4f( 1.0f, 1.0f, 1.0f, 1.0f );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
-			glwprintf( L"%d", (i32) (*it)->m_grouped );
+			glwprintf( L"%d", (*it)->m_grouped );
 
 		}
 	}
@@ -244,7 +244,7 @@ void CSelectedEntities::RenderOverlays()
 			glColor4f( 1.0f, 1.0f, 1.0f, 0.5f );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
-			glwprintf( L"%d", (i32) (*it)->m_grouped );
+			glwprintf( L"%d", (*it)->m_grouped );
 		}
 
 		glDisable( GL_BLEND );
@@ -441,7 +441,7 @@ void CSelectedEntities::AddGroup( i8 groupid )
 void CSelectedEntities::ChangeGroup( HEntity entity, i8 groupid )
 {
 	// Remove from current group
-	i32 current = entity->m_grouped;
+	ssize_t current = entity->m_grouped;
 	if( current != -1 )
 	{
 		std::vector<HEntity>::iterator it;
@@ -1024,7 +1024,7 @@ void CMouseoverEntities::RenderOverlays()
 			glColor4f( 1.0f, 1.0f, 1.0f, it->fade );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
-			glwprintf( L"%d", (i32) it->entity->m_grouped );
+			glwprintf( L"%d", it->entity->m_grouped );
 			glDisable( GL_TEXTURE_2D );
 			glPopMatrix();
 		}
@@ -1042,7 +1042,7 @@ void CMouseoverEntities::StopBandbox()
 	m_bandbox = false;
 }
 
-void FireWorldClickEvent(uint button, int clicks)
+void FireWorldClickEvent(int button, int clicks)
 {
 	//debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
 	//If we're clicking on the minimap, use its world click handler
@@ -1058,8 +1058,8 @@ void FireWorldClickEvent(uint button, int clicks)
 		g_Selection.m_secondaryCommand, // FIXME Secondary order, depends entity scripts etc
 		g_Selection.m_secondaryAction, // FIXME Secondary action, depends entity scripts etc
 		g_Mouseover.m_target,
-		(uint)g_Mouseover.m_worldposition.x,
-		(uint)g_Mouseover.m_worldposition.y);
+		g_Mouseover.m_worldposition.x,
+		g_Mouseover.m_worldposition.y);
 
 	//Reset duplication flag- after this, it isn't the same order
 	std::vector<HEntity>::iterator it=g_Selection.m_selected.begin();

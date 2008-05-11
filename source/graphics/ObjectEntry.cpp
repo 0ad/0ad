@@ -229,7 +229,7 @@ CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName)
 	else
 	{
 		// TODO: Do we care about network synchronisation of random animations?
-		int id = rand(0, (int)count);
+		size_t id = rand(0, count);
 		std::advance(lower, id);
 		return lower->second;
 	}

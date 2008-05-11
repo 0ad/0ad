@@ -18,7 +18,7 @@ class CTerrain;
 // Terrain Constants:
 //
 // PATCH_SIZE: number of tiles in each patch
-const int PATCH_SIZE = 16;
+const ssize_t PATCH_SIZE = 16;
 
 /// neighbor IDs for CPatch
 enum CPatchNeighbors
@@ -44,7 +44,7 @@ public:
 	~CPatch();
 
 	// initialize the patch
-	void Initialize(CTerrain* parent,u32 x,u32 z);
+	void Initialize(CTerrain* parent,ssize_t x,ssize_t z);
 	// calculate and store bounds of this patch
 	void CalcBounds();
 
@@ -55,7 +55,7 @@ public:
 	// minipatches (tiles) making up the patch
 	CMiniPatch m_MiniPatches[PATCH_SIZE][PATCH_SIZE];
 	// position of patch in parent terrain grid
-	u32 m_X,m_Z;
+	int m_X,m_Z;
 	// parent terrain
 	CTerrain* m_Parent;
 

@@ -39,7 +39,7 @@ private:
 	// the heightfield were tracing
 	const u16* m_Heightfield;
 	// size of the heightfield
-	u32 m_MapSize;
+	size_t m_MapSize;
 	// cell size - size of each cell in x and z
 	float m_CellSize;
 	// vertical scale - size of each cell in y

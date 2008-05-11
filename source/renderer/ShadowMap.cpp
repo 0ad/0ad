@@ -8,6 +8,7 @@
 
 #include "precompiled.h"
 
+#include "lib/bits.h"
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
 
@@ -285,8 +286,8 @@ void ShadowMapInternals::CreateTexture()
 	else
 	{
 		// get shadow map size as next power of two up from view width and height
-		Width = RoundUpToPowerOf2(g_Renderer.GetWidth());
-		Height = RoundUpToPowerOf2(g_Renderer.GetHeight());
+		Width = round_up_to_pow2(g_Renderer.GetWidth());
+		Height = round_up_to_pow2(g_Renderer.GetHeight());
 	}
 	// Clamp to the maximum texture size
 	Width = std::min(Width, (int)ogl_max_tex_size);

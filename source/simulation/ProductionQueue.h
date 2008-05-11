@@ -18,7 +18,7 @@ public:
 	CProductionItem( int type, const CStrW& name, float totalTime );
 	~CProductionItem();
 
-	void Update( size_t timestep );
+	void Update( int timestep );
 
 	bool IsComplete();
 	float GetProgress();
@@ -37,7 +37,7 @@ public:
 	~CProductionQueue();
 
 	void AddItem( int type, const CStrW& name, float totalTime );
-	void Update( size_t timestep );
+	void Update( int timestep );
 	void CancelAll();
 
 	jsval JSI_GetLength( JSContext* cx );

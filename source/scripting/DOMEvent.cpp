@@ -71,7 +71,7 @@ bool IEventTarget::DispatchEvent( CScriptEvent* evt )
 	return( !evt->m_Cancelled );
 }
 
-bool IEventTarget::AddHandler( int TypeCode, DOMEventHandler handler )
+bool IEventTarget::AddHandler( size_t TypeCode, DOMEventHandler handler )
 {
 	HandlerList::iterator it;
 	for( it = m_Handlers_id[TypeCode].begin(); it != m_Handlers_id[TypeCode].end(); it++ )
@@ -90,7 +90,7 @@ bool IEventTarget::AddHandler( const CStrW& TypeString, DOMEventHandler handler 
 	return( true );
 }
 
-bool IEventTarget::RemoveHandler( int TypeCode, DOMEventHandler handler )
+bool IEventTarget::RemoveHandler( size_t TypeCode, DOMEventHandler handler )
 {
 	HandlerList::iterator it;
 	for( it = m_Handlers_id[TypeCode].begin(); it != m_Handlers_id[TypeCode].end(); it++ )
@@ -153,7 +153,7 @@ bool IEventTarget::RemoveHandlerJS( JSContext* UNUSED(cx), uintN argc, jsval* ar
 	return( true );
 }
 
-CScriptEvent::CScriptEvent( const CStrW& Type, unsigned int TypeCode, bool Cancelable, bool Blockable )
+CScriptEvent::CScriptEvent( const CStrW& Type, size_t TypeCode, bool Cancelable, bool Blockable )
 {
 	m_Type = Type; m_TypeCode = TypeCode;
 	m_Cancelable = Cancelable; m_Cancelled = false;

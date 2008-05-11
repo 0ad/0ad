@@ -24,7 +24,7 @@ void SceneCollector::SubmitRecursive(CModel* model)
 	SubmitNonRecursive(model);
 
 	const std::vector<CModel::Prop>& props = model->GetProps();
-	for (uint i=0;i<props.size();i++) {
+	for (size_t i=0;i<props.size();i++) {
 		SubmitRecursive(props[i].m_Model);
 	}
 }

@@ -71,10 +71,10 @@ public:
 	void Render() const;
 
 private:
-	static const uint no_vertex = ~0u;
+	static const size_t no_vertex = ~0u;
 
 	typedef std::vector<CVector3D> Vertices;
-	typedef std::vector<uint> FaceIndices;
+	typedef std::vector<size_t> FaceIndices;
 
 	Vertices m_Vertices;
 	FaceIndices m_Faces;

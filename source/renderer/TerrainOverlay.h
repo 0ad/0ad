@@ -32,7 +32,7 @@ class CTerrain;
 
 /**
  * Base class for (relatively) simple drawing of
- * data onto terrain tiles, intended for debugging purposes and for the Atlas
+ * data onto terrain tiles, ssize_tended for debugging purposes and for the Atlas
  * editor (hence not trying to be very efficient).
  * <p>
  * To start drawing a terrain overlay, first create a subclass of TerrainOverlay.
@@ -76,8 +76,8 @@ protected:
 	 * @param max_i_inclusive  [output] largest <i>i</i> coordinate
 	 * @param max_j_inclusive  [output] largest <i>j</i> coordinate
 	 */
-	virtual void GetTileExtents(int& min_i_inclusive, int& min_j_inclusive,
-	                            int& max_i_inclusive, int& max_j_inclusive);
+	virtual void GetTileExtents(ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
+	                            ssize_t& max_i_inclusive, ssize_t& max_j_inclusive);
 
 	/**
 	 * Override to perform processing of each tile. Typically calls
@@ -86,7 +86,7 @@ protected:
 	 * @param i  <i>i</i> coordinate of tile being processed
 	 * @param j  <i>j</i> coordinate of tile being processed
 	 */
-	virtual void ProcessTile(int i, int j) = 0;
+	virtual void ProcessTile(ssize_t i, ssize_t j) = 0;
 
 	/**
 	 * Draw a filled quad on top of the current tile.
@@ -134,7 +134,7 @@ private:
 
 	// Temporary storage of tile coordinates, so ProcessTile doesn't need to
 	// pass it to RenderTile/etc (and doesn't have a chance to get it wrong)
-	int m_i, m_j;
+	ssize_t m_i, m_j;
 
 	CTerrain* m_Terrain;
 };
@@ -278,8 +278,8 @@ public:
 	}
 
 	virtual void GetTileExtents(
-		int& min_i_inclusive, int& min_j_inclusive,
-		int& max_i_inclusive, int& max_j_inclusive)
+		ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
+		ssize_t& max_i_inclusive, ssize_t& max_j_inclusive)
 	{
 		min_i_inclusive = 1;
 		min_j_inclusive = 1;
@@ -287,7 +287,7 @@ public:
 		max_j_inclusive = 2;
 	}
 
-	virtual void ProcessTile(int UNUSED(i), int UNUSED(j))
+	virtual void ProcessTile(ssize_t UNUSED(i), ssize_t UNUSED(j))
 	{
 		
 		RenderConstrainedEdges();
@@ -320,7 +320,7 @@ public:
 	{
 		aPath =_aPath;
 
-		for(unsigned int k = 0 ; k< aPath.size();k++)
+		for(size_t k = 0 ; k< aPath.size();k++)
 		{
 			aPath[k] = WorldspaceToTilespace( aPath[k] );
 		}
@@ -332,9 +332,9 @@ public:
 		return CVector2D(floor(ws.x/CELL_SIZE), floor(ws.y/CELL_SIZE));
 	}
 
-	bool inPath(int i, int j)
+	bool inPath(ssize_t i, ssize_t j)
 	{
-		for(unsigned int k = 0 ; k<aPath.size();k++)
+		for(size_t k = 0 ; k<aPath.size();k++)
 		{
 			if(aPath[k].x== i && aPath[k].y== j)
 				return true;
@@ -350,8 +350,8 @@ public:
 	}
 
 	/*virtual void GetTileExtents(
-		int& min_i_inclusive, int& min_j_inclusive,
-		int& max_i_inclusive, int& max_j_inclusive)
+		ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
+		ssize_t& max_i_inclusive, ssize_t& max_j_inclusive)
 	{
 		min_i_inclusive = 1;
 		min_j_inclusive = 1;
@@ -359,7 +359,7 @@ public:
 		max_j_inclusive = 50;
 	}*/
 
-	virtual void ProcessTile(int i, int j)
+	virtual void ProcessTile(ssize_t i, ssize_t j)
 	{
 		
 		if ( inPath( i, j))
@@ -381,13 +381,13 @@ public:
 
 	ExampleTerrainOverlay()
 	{
-		for (int i = 0; i < ARRAY_SIZE(random); ++i)
+		for (size_t i = 0; i < ARRAY_SIZE(random); ++i)
 			random[i] = rand(0, 5);
 	}
 
 	virtual void GetTileExtents(
-		int& min_i_inclusive, int& min_j_inclusive,
-		int& max_i_inclusive, int& max_j_inclusive)
+		ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
+		ssize_t& max_i_inclusive, ssize_t& max_j_inclusive)
 	{
 		min_i_inclusive = 5;
 		min_j_inclusive = 10;
@@ -395,7 +395,7 @@ public:
 		max_j_inclusive = 50;
 	}
 
-	virtual void ProcessTile(int i, int j)
+	virtual void ProcessTile(ssize_t i, ssize_t j)
 	{
 		if (!random[(i*97+j*101) % ARRAY_SIZE(random)])
 			return;

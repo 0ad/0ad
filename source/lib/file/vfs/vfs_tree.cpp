@@ -17,7 +17,7 @@
 
 //-----------------------------------------------------------------------------
 
-VfsFile::VfsFile(const std::string& name, off_t size, time_t mtime, unsigned priority, PIFileLoader loader)
+VfsFile::VfsFile(const std::string& name, off_t size, time_t mtime, size_t priority, PIFileLoader loader)
 	: m_name(name), m_size(size), m_mtime(mtime), m_priority(priority), m_loader(loader)
 {
 }
@@ -135,7 +135,7 @@ void VfsDirectory::GetEntries(FileInfos* files, DirectoryNames* subdirectoryName
 }
 
 
-void VfsDirectory::DisplayR(unsigned depth) const
+void VfsDirectory::DisplayR(size_t depth) const
 {
 	static const char indent[] = "    ";
 
@@ -151,7 +151,7 @@ void VfsDirectory::DisplayR(unsigned depth) const
 		char description[100];
 		file.GenerateDescription(description, ARRAY_SIZE(description));
 
-		for(unsigned i = 0; i < depth+1; i++)
+		for(size_t i = 0; i < depth+1; i++)
 			printf(indent);
 		printf(fmt, name.c_str(), description);
 	}
@@ -161,7 +161,7 @@ void VfsDirectory::DisplayR(unsigned depth) const
 		const std::string& name = it->first;
 		const VfsDirectory& directory = it->second;
 
-		for(unsigned i = 0; i < depth+1; i++)
+		for(size_t i = 0; i < depth+1; i++)
 			printf(indent);
 		printf("[%s/]\n", name.c_str());
 

@@ -34,7 +34,7 @@ public:
 	/**
 	 * @returns The length of the message when serialized.
 	 */
-	virtual uint GetSerializedLength() const;
+	virtual size_t GetSerializedLength() const;
 	/**
 	 * Serialize the message into the buffer. The buffer will have the size
 	 * returned from the last call to GetSerializedLength()
@@ -65,7 +65,7 @@ public:
 	 * @returns a pointer to a newly created CNetMessage subclass, or NULL if
 	 * there was an error in data format.
 	 */
-	static CNetMessage *DeserializeMessage(ENetMessageType type, u8 *buffer, uint length);
+	static CNetMessage *DeserializeMessage(ENetMessageType type, u8 *buffer, size_t length);
 	
 	/**
 	 * Register a selection of message types as JS constants.
@@ -81,7 +81,7 @@ public:
 	static CNetMessage *CreateProduceMessage( const CEntityList& entities, const int type, int proType, const CStrW& name );
 };
 
-typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, uint length);
+typedef CNetMessage * (*NetMessageDeserializer) (const u8 *buffer, size_t length);
 
 #include "simulation/EntityHandles.h"
 

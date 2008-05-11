@@ -54,12 +54,12 @@ struct symbol_lookup_context
 	bfd_vma address;
 	const char* symbol;
 	const char* filename;
-	uint line;
+	size_t line;
 	
 	bool found;
 };
 
-void* debug_get_nth_caller(uint n, void *UNUSED(context))
+void* debug_get_nth_caller(size_t n, void *UNUSED(context))
 {
 	// bt[0] == debug_get_nth_caller
 	// bt[1] == caller of get_nth_caller
@@ -72,13 +72,13 @@ void* debug_get_nth_caller(uint n, void *UNUSED(context))
 	return bt[n+1]; // n==1 => bt[2], and so forth
 }
 
-LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* UNUSED(context))
+LibError debug_dump_stack(wchar_t* buf, size_t max_chars, size_t skip, void* UNUSED(context))
 {
 	++skip; // Skip ourselves too
 
 	// bt[0..skip] == skipped
 	// bt[skip..N_FRAMES+skip] == print
-	static const uint N_FRAMES = 16;
+	static const size_t N_FRAMES = 16;
 	void *bt[skip+N_FRAMES];
 	int bt_size=0;
 	wchar_t *bufpos = buf;
@@ -89,9 +89,9 @@ LibError debug_dump_stack(wchar_t* buf, size_t max_chars, uint skip, void* UNUSE
 	assert((bt_size >= (int)skip) && "Need at least <skip> frames in the backtrace");
 
 	// Assumed max length of a single print-out
-	static const uint MAX_OUT_CHARS=1024;
+	static const size_t MAX_OUT_CHARS=1024;
 
-	for (uint i=skip;(int)i<bt_size && bufpos+MAX_OUT_CHARS < bufend;i++)
+	for (size_t i=skip;(int)i<bt_size && bufpos+MAX_OUT_CHARS < bufend;i++)
 	{
 		char file[DBG_FILE_LEN];
 		char symbol[DBG_SYMBOL_LEN];
@@ -143,9 +143,9 @@ static int slurp_symtab(symbol_file_context *ctx)
 	symcount = bfd_canonicalize_symtab(abfd, *syms);
 
 	if (symcount == 0)
-		symcount = bfd_read_minisymbols (abfd, FALSE, (void **)syms, (uint *)&size);
+		symcount = bfd_read_minisymbols (abfd, FALSE, (void **)syms, (size_t *)&size);
 	if (symcount == 0)
-		symcount = bfd_read_minisymbols (abfd, TRUE /* dynamic */, (void **)syms, (uint *)&size);
+		symcount = bfd_read_minisymbols (abfd, TRUE /* dynamic */, (void **)syms, (size_t *)&size);
 
 	if (symcount < 0)
 	{
@@ -290,7 +290,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 			demangle_buf(sym_name, syminfo.dli_sname, DBG_SYMBOL_LEN);
 		else
 		{
-			snprintf(sym_name, DBG_SYMBOL_LEN, "0x%08x", (uint)ptr);
+			snprintf(sym_name, DBG_SYMBOL_LEN, "0x%08x", (size_t)ptr);
 			sym_name[DBG_SYMBOL_LEN-1]=0;
 		}
 	}

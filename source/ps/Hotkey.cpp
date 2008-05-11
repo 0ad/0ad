@@ -423,7 +423,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 	// SDL-events bit
 
-	uint closestMap = 0;	// avoid "uninitialized" warning
+	size_t closestMap = 0;	// avoid "uninitialized" warning
 	size_t closestMapMatch = 0;
 
 	for( it = hotkeyMap[keycode].begin(); it < hotkeyMap[keycode].end(); it++ )
@@ -454,7 +454,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 			{
 				if( g_mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
-			else if( (uint)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
+			else if( (size_t)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
 			{
 				if( unified[keyCode-UNIFIED_SHIFT] != rqdState ) accept = false;
 			}
@@ -489,7 +489,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	if( closestMapMatch )
 	{
 		hotkeyNotification.type = SDL_HOTKEYDOWN;
-		hotkeyNotification.user.code = closestMap;
+		hotkeyNotification.user.code = (int)closestMap;
 		SDL_PushEvent( &hotkeyNotification );
 	}
 	// GUI bit... could do with some optimization later.
@@ -523,7 +523,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 			{
 				if( g_mouse_buttons[keyCode-SDLK_LAST] != rqdState ) accept = false;
 			}
-			else if( (uint)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
+			else if( (size_t)(keyCode-UNIFIED_SHIFT) < ARRAY_SIZE(unified) )
 			{
 				if( unified[keyCode-UNIFIED_SHIFT] != rqdState ) accept = false;
 			}

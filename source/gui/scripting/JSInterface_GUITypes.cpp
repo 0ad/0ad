@@ -33,7 +33,7 @@ JSFunctionSpec JSI_GUISize::JSI_methods[] =
 	{ 0 }
 };
 
-JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool JSI_GUISize::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 8)
 	{
@@ -137,7 +137,7 @@ JSFunctionSpec JSI_GUIColor::JSI_methods[] =
 	{ 0 }
 };
 
-JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool JSI_GUIColor::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 4)
 	{
@@ -201,7 +201,7 @@ JSFunctionSpec JSI_GUIMouse::JSI_methods[] =
 	{ 0 }
 };
 
-JSBool JSI_GUIMouse::construct(JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* UNUSED(rval))
+JSBool JSI_GUIMouse::construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* UNUSED(rval))
 {
 	if (argc == 3)
 	{

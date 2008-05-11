@@ -44,14 +44,14 @@ class CProjectile : public CJSObject<CProjectile>, public IEventTarget
 	~CProjectile();
 
 	// Updates gameplay information for the specified timestep. Returns 'false' if the projectile should be removed from the world.
-	bool Update( size_t timestep_millis );
+	bool Update( int timestep_millis );
 	// Updates graphical information for a point timestep_millis after the previous simulation frame (and before the current one)
-	void Interpolate( size_t timestep_millis );
+	void Interpolate( int timestep_millis );
 
 	// Scripty things.
 public:	
 	static void ScriptingInit();
-	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
+	static JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 	JSObject* GetScriptExecContext( IEventTarget* UNUSED(target) ) { return( GetScript() ); }
 
 	inline CModel* GetModel() const { return( m_Actor ); }
@@ -87,7 +87,7 @@ public:
 
 	void DeleteAll();
 
-	void UpdateAll( size_t timestep );
+	void UpdateAll( int timestep );
 	void InterpolateAll( double frametime );
 
 	inline const std::list<CProjectile*>& GetProjectiles() { return m_Projectiles; }
@@ -98,7 +98,7 @@ public:
 	void DeleteProjectile( CProjectile* p );
 private:
 	// Keep this so we can go from relative->absolute offsets in interpolate.
-	size_t m_LastTurnLength;
+	int m_LastTurnLength;
 
 	// Maintain a list of the projectiles in the world
 	std::list<CProjectile*> m_Projectiles;

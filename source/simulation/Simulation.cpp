@@ -148,7 +148,7 @@ void CSimulation::Interpolate(double frameTime, double offset)
 
 void CSimulation::Simulate()
 {
-	uint time = m_pTurnManager->GetTurnLength();
+	int time = m_pTurnManager->GetTurnLength();
 	
 	m_Time += time / 1000.0f;
 #ifdef DEBUG_SYNCHRONIZATION
@@ -275,7 +275,7 @@ void QueueOrder(CEntityOrder order, const std::vector<HEntity> &entities, bool i
 	}
 }
 
-uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNUSED(userdata))
+size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void* UNUSED(userdata))
 {
 	CEntityOrder order;
 	bool isQueued = true;
@@ -410,7 +410,7 @@ uint CSimulation::TranslateMessage(CNetMessage* pMsg, uint clientMask, void* UNU
 	return clientMask;
 }
 
-uint CSimulation::GetMessageMask(CNetMessage* UNUSED(pMsg), uint UNUSED(oldMask), void* UNUSED(userdata))
+size_t CSimulation::GetMessageMask(CNetMessage* UNUSED(pMsg), size_t UNUSED(oldMask), void* UNUSED(userdata))
 {
 	//CSimulation *pSimulation=(CSimulation *)userdata;
 

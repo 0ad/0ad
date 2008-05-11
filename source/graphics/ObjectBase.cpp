@@ -440,7 +440,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 				// Choose a random number in the interval [0..totalFreq).
 				// (It shouldn't be necessary to use a network-synchronised RNG,
 				// since actors are meant to have purely visual manifestations.)
-				int randNum = rand(0, totalFreq);
+				int randNum = (int)rand(0, (size_t)totalFreq);
 
 				// and use that to choose one of the variants
 				for (size_t i = 0; i < grp->size(); ++i)

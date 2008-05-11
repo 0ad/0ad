@@ -28,7 +28,7 @@ public:
 
 	CStr ToString( JSContext* cx, uintN argc, jsval* argv );
 	static void ScriptingInit();
-	static JSBool Construct( JSContext* cx, JSObject* obj, uint argc, jsval* argv, jsval* rval );
+	static JSBool Construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );
 };
 
 #endif

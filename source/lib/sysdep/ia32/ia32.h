@@ -11,13 +11,32 @@
 #ifndef INCLUDED_IA32
 #define INCLUDED_IA32
 
-#if !ARCH_IA32
-#error "including ia32.h without ARCH_IA32=1"
+#if !ARCH_IA32 && !ARCH_AMD64
+#error "including ia32.h without ARCH_IA32=1 or ARCH_AMD64=1"
 #endif
 
-#include "ia32_asm.h"
-#include "lib/config2.h"	// CONFIG2_IA32_RETURN64_EDX_EAX
+/**
+ * registers used/returned by ia32_cpuid
+ **/
+struct Ia32CpuidRegs
+{
+	u32 eax;
+	u32 ebx;
+	u32 ecx;
+	u32 edx;
+};
 
+/**
+ * invoke CPUID instruction.
+ * @param regs input/output registers.
+ *   regs->eax must be set to the desired function.
+ *   some functions (e.g. 4) require regs->ecx to be set as well.
+ *   rationale: this interface (input/output structure vs. function parameters)
+ *     avoids unnecessary copying/initialization if some inputs aren't needed
+ *     and allows graceful expansion to functions that require further inputs.
+ * @return true on success or false if the sub-function isn't supported.
+ **/
+extern bool ia32_cpuid(Ia32CpuidRegs* regs);
 
 /**
  * CPU vendor.
@@ -38,7 +57,7 @@ LIB_API Ia32Vendor ia32_Vendor();
  * @return the colloquial processor generation
  * (5 = Pentium, 6 = Pentium Pro/II/III / K6, 7 = Pentium4 / Athlon, 8 = Core / Opteron)
  **/
-LIB_API uint ia32_Generation();
+LIB_API size_t ia32_Generation();
 
 
 /**
@@ -89,7 +108,7 @@ LIB_API bool ia32_cap(IA32Cap cap);
  * reliably on WinXP. also, the OS already has the APIC registers mapped and
  * in constant use, and we don't want to interfere.
  **/
-LIB_API uint ia32_ApicId();
+LIB_API u8 ia32_ApicId();
 
 
 /**
@@ -105,20 +124,12 @@ LIB_API uint ia32_ApicId();
 LIB_API LibError ia32_GetCallTarget(void* ret_addr, void** target);
 
 
-/// safe but slow inline-asm version
-LIB_API u64 ia32_rdtsc_safe(void);
-
 /**
  * @return the current value of the TimeStampCounter (a counter of
  * CPU cycles since power-on, which is useful for high-resolution timing
  * but potentially differs between multiple CPUs)
  **/
-LIB_API u64 ia32_rdtsc();	// only for CppDoc's benefit
-#if CONFIG2_IA32_RETURN64_EDX_EAX
-# define ia32_rdtsc ia32_asm_rdtsc_edx_eax
-#else
-# define ia32_rdtsc ia32_rdtsc_safe
-#endif
+LIB_API u64 ia32_rdtsc();
 
 /**
  * trigger a breakpoint inside this function when it is called.

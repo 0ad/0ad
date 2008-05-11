@@ -690,7 +690,7 @@ template<typename T, bool ReadOnly>
 void CJSComplex<T, ReadOnly>::ScriptingInit( const char* ClassName, JSNative Constructor, uintN ConstructorMinArgs )
 {
 	JSFunctionSpec* JSI_methods = new JSFunctionSpec[ m_Methods.size() + 3 ];
-	unsigned int MethodID;
+	size_t MethodID;
 	for( MethodID = 0; MethodID < m_Methods.size(); MethodID++ )
 		JSI_methods[MethodID] = m_Methods[MethodID];
 

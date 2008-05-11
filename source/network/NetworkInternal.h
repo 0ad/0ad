@@ -37,7 +37,7 @@ public:
 	
 	// Bitwise OR of all operations to listen for.
 	// See READ and WRITE
-	uint m_Ops;
+	int m_Ops;
 
 	char *m_pConnectHost;
 	int m_ConnectPort;
@@ -63,7 +63,7 @@ struct CSocketSetInternal
 	pthread_mutex_t m_Mutex;
 	pthread_t m_Thread;
 	
-	uint m_NumSockets;
+	size_t m_NumSockets;
 
 	std::map <socket_t, CSocketBase * > m_HandleMap;
 #if OS_WIN

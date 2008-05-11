@@ -152,7 +152,7 @@ void FillSetPlayerConfigCB(const CStrW& name, ISynchedJSProperty *prop, void *us
 
 void CNetServer::FillSetPlayerConfig(CSetPlayerConfig *pMsg, CPlayer *pPlayer)
 {
-	pMsg->m_PlayerID=pPlayer->GetPlayerID();
+	pMsg->m_PlayerID=(u32)pPlayer->GetPlayerID();
 	pPlayer->IterateSynchedProperties(FillSetPlayerConfigCB, pMsg);
 }
 
@@ -196,7 +196,7 @@ void CNetServer::AddSession(CNetServerSession *pSession)
 	pSession->Push(pMsg);
 
 	// Sync player slot assignments and player attributes
-	for (uint i=0;i<m_pGameAttributes->GetSlotCount();i++)
+	for (size_t i=0;i<m_pGameAttributes->GetSlotCount();i++)
 	{
 		CPlayerSlot *pSlot=m_pGameAttributes->GetSlot(i);
 	
@@ -232,7 +232,7 @@ void CNetServer::PlayerAttributeUpdate(const CStrW& name, const CStrW& newValue,
 	g_Console->InsertMessage(L"PlayerAttributeUpdate(%d): %ls = \"%ls\"", pPlayer->GetPlayerID(), name.c_str(), newValue.c_str());
 
 	CSetPlayerConfig *pMsg=new CSetPlayerConfig;
-	pMsg->m_PlayerID=pPlayer->GetPlayerID();
+	pMsg->m_PlayerID=(u32)pPlayer->GetPlayerID();
 	pMsg->m_Values.resize(1);
 	pMsg->m_Values[0].m_Name=name;
 	pMsg->m_Values[0].m_Value=newValue;
@@ -243,7 +243,7 @@ void CNetServer::PlayerAttributeUpdate(const CStrW& name, const CStrW& newValue,
 CNetMessage *CNetServer::CreatePlayerSlotAssignmentMessage(CPlayerSlot *pSlot)
 {
 	CAssignPlayerSlot *pMsg=new CAssignPlayerSlot();
-	pMsg->m_SlotID=pSlot->GetSlotID();
+	pMsg->m_SlotID=(u32)pSlot->GetSlotID();
 	pMsg->m_SessionID=pSlot->GetSessionID();
 	switch (pSlot->GetAssignment())
 	{
@@ -348,7 +348,7 @@ int CNetServer::StartGame()
 	else
 	{
 		CTurnManager::Initialize(m_pGameAttributes->GetSlotCount());
-		for (uint i=0;i<m_pGameAttributes->GetSlotCount();i++)
+		for (size_t i=0;i<m_pGameAttributes->GetSlotCount();i++)
 		{
 			CPlayerSlot *pSlot=m_pGameAttributes->GetSlot(i);
 			if (pSlot->GetAssignment() == SLOT_SESSION)

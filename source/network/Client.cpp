@@ -81,7 +81,7 @@ void CNetClient::ScriptingInit()
 bool CNetClient::JSI_BeginConnect(JSContext* UNUSED(cx), uintN argc, jsval *argv)
 {
 	CStr connectHostName;
-	uint connectPort=PS_DEFAULT_PORT;
+	unsigned connectPort=PS_DEFAULT_PORT;
 	if (argc >= 1)
 	{
 		connectHostName=g_ScriptingHost.ValueToString(argv[0]);
@@ -258,7 +258,7 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 		case NMT_ClientConnect:
 		{
 			CClientConnect *msg=(CClientConnect *)pMsg;
-			for (uint i=0;i<msg->m_Clients.size();i++)
+			for (size_t i=0;i<msg->m_Clients.size();i++)
 			{
 				pClient->OnClientConnect(msg->m_Clients[i].m_SessionID,
 					msg->m_Clients[i].m_Name);
@@ -274,7 +274,7 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 		case NMT_SetGameConfig:
 		{
 			CSetGameConfig *msg=(CSetGameConfig *)pMsg;
-			for (uint i=0;i<msg->m_Values.size();i++)
+			for (size_t i=0;i<msg->m_Values.size();i++)
 			{
 				pClient->m_pGameAttributes->SetValue(msg->m_Values[i].m_Name, msg->m_Values[i].m_Value);
 			}
@@ -310,7 +310,7 @@ bool CNetClient::PreGameHandler(CNetMessage *pMsg, CNetSession *pSession)
 			CSetPlayerConfig *msg=(CSetPlayerConfig *)pMsg;
 			// FIXME Check player ID
 			CPlayer *pPlayer=pClient->m_pGameAttributes->GetPlayer(msg->m_PlayerID);
-			for (uint i=0;i<msg->m_Values.size();i++)
+			for (size_t i=0;i<msg->m_Values.size();i++)
 			{
 				pPlayer->SetValue(msg->m_Values[i].m_Name, msg->m_Values[i].m_Value);
 			}

@@ -6,13 +6,13 @@
 #include "lib/file/io/io.h"
 
 
-RealDirectory::RealDirectory(const Path& path, unsigned priority, unsigned flags)
+RealDirectory::RealDirectory(const Path& path, size_t priority, int flags)
 	: m_path(path), m_priority(priority), m_flags(flags)
 {
 }
 
 
-/*virtual*/ unsigned RealDirectory::Precedence() const
+/*virtual*/ size_t RealDirectory::Precedence() const
 {
 	return 1u;
 }

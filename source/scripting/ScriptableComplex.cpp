@@ -13,7 +13,7 @@ static Bucket bucket;
 // HACK: it needs to be created/destroyed; since there is no
 // global init/shutdown call here, we keep a refcnt. this assumes that
 // going to 0 <==> shutdown! if that proves wrong, bucket_alloc will warn.
-static uint suballoc_refs;	// initialized in suballoc_attach
+static size_t suballoc_refs;	// initialized in suballoc_attach
 
 void jscomplexproperty_suballoc_attach()
 {

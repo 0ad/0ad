@@ -28,22 +28,20 @@ CFrustum::~CFrustum ()
 {
 }
 
-void CFrustum::SetNumPlanes (int num)
+void CFrustum::SetNumPlanes (size_t num)
 {
 	m_NumPlanes = num;
 
 	//clip it
 	if (m_NumPlanes >= MAX_NUM_FRUSTUM_PLANES)
 		m_NumPlanes = MAX_NUM_FRUSTUM_PLANES-1;
-	else if (m_NumPlanes < 0)
-		m_NumPlanes	= 0;
 }
 
 bool CFrustum::IsPointVisible (const CVector3D &point) const
 {
 	PLANESIDE Side;
 
-	for (int i=0; i<m_NumPlanes; i++)
+	for (size_t i=0; i<m_NumPlanes; i++)
 	{
 		Side = m_aPlanes[i].ClassifyPoint (point);
 
@@ -62,7 +60,7 @@ bool CFrustum::DoesSegmentIntersect(const CVector3D& startRef, const CVector3D &
 		return true;
 
 	CVector3D intersect;
-	for ( int i = 0; i<m_NumPlanes; ++i )
+	for ( size_t i = 0; i<m_NumPlanes; ++i )
 	{
 		if ( m_aPlanes[i].FindLineSegIntersection(start, end, &intersect) )
 		{
@@ -74,7 +72,7 @@ bool CFrustum::DoesSegmentIntersect(const CVector3D& startRef, const CVector3D &
 }
 bool CFrustum::IsSphereVisible (const CVector3D &center, float radius) const
 {
-	for (int i=0; i<m_NumPlanes; i++)
+	for (size_t i=0; i<m_NumPlanes; i++)
 	{
 		float Dist = m_aPlanes[i].DistanceToPlane (center);
 		
@@ -102,7 +100,7 @@ bool CFrustum::IsBoxVisible (const CVector3D &position,const CBound &bounds) con
 	CVector3D Min = position+bounds[0];
 	CVector3D Max = position+bounds[1];
 
-	for (int i=0; i<m_NumPlanes; i++)
+	for (size_t i=0; i<m_NumPlanes; i++)
 	{
 		if (m_aPlanes[i].m_Norm.X > 0.0f)
 		{

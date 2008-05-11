@@ -142,7 +142,7 @@ void* InstancingModelRenderer::CreateModelData(CModel* model)
 }
 
 
-void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), void* UNUSED(data), u32 UNUSED(updateflags))
+void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), void* UNUSED(data), int UNUSED(updateflags))
 {
 	// We have no per-CModel data
 }
@@ -155,7 +155,7 @@ void InstancingModelRenderer::DestroyModelData(CModel* UNUSED(model), void* UNUS
 
 
 // Setup one rendering pass.
-void InstancingModelRenderer::BeginPass(uint streamflags, const CMatrix3D* texturematrix)
+void InstancingModelRenderer::BeginPass(int streamflags, const CMatrix3D* texturematrix)
 {
 	debug_assert(streamflags == (streamflags & (STREAM_POS|STREAM_UV0|STREAM_COLOR|STREAM_TEXGENTOUV1)));
 
@@ -211,7 +211,7 @@ void InstancingModelRenderer::BeginPass(uint streamflags, const CMatrix3D* textu
 }
 
 // Cleanup rendering pass.
-void InstancingModelRenderer::EndPass(uint streamflags)
+void InstancingModelRenderer::EndPass(int streamflags)
 {
 	if (streamflags & STREAM_UV0) glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	if (streamflags & STREAM_COLOR) glDisableClientState(GL_NORMAL_ARRAY);
@@ -222,7 +222,7 @@ void InstancingModelRenderer::EndPass(uint streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void InstancingModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr def)
+void InstancingModelRenderer::PrepareModelDef(int streamflags, CModelDefPtr def)
 {
 	m->imodeldef = (IModelDef*)def->GetRenderData(m);
 
@@ -244,7 +244,7 @@ void InstancingModelRenderer::PrepareModelDef(uint streamflags, CModelDefPtr def
 
 
 // Render one model
-void InstancingModelRenderer::RenderModel(uint streamflags, CModel* model, void* UNUSED(data))
+void InstancingModelRenderer::RenderModel(int streamflags, CModel* model, void* UNUSED(data))
 {
 	CModelDefPtr mdldef = model->GetModelDef();
 	const CMatrix3D& mat = model->GetTransform();

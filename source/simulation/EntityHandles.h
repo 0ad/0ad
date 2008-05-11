@@ -76,7 +76,7 @@ public:
 	// Same as !IsValid()
 	bool operator!() const { return !IsValid(); };
 
-	uint GetSerializedLength() const;
+	size_t GetSerializedLength() const;
 	u8 *Serialize(u8 *buffer) const;
 	const u8 *Deserialize(const u8 *buffer, const u8 *end);
 	operator CStr8() const;
@@ -107,7 +107,7 @@ struct CEntityList:  public std::vector<HEntity>
 		push_back(oneEntity);
 	}
 
-	uint GetSerializedLength() const;
+	size_t GetSerializedLength() const;
 	u8 *Serialize(u8 *buffer) const;
 	const u8 *Deserialize(const u8 *buffer, const u8 *end);
 	operator CStr8() const;

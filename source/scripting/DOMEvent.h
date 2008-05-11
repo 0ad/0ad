@@ -54,11 +54,11 @@ public:
 
 	// Register a handler for the given event type.
 	// Returns false if the handler was already present
-	bool AddHandler( int TypeCode, DOMEventHandler handler );
+	bool AddHandler( size_t TypeCode, DOMEventHandler handler );
 	bool AddHandler( const CStrW& TypeString, DOMEventHandler handler );
 	// Remove a previously registered handler for the specified event.
 	// Returns false if the handler was not present
-	bool RemoveHandler( int TypeCode, DOMEventHandler handler );
+	bool RemoveHandler( size_t TypeCode, DOMEventHandler handler );
 	bool RemoveHandler( const CStrW& TypeString, DOMEventHandler handler );
 
 	// called by ScriptGlue.cpp for add|RemoveGlobalHandler
@@ -105,13 +105,13 @@ public:
 	bool m_Blockable;
 
 	// Timestamp (milliseconds since epoch (start of game?))
-	i32 m_Timestamp;
+	long m_Timestamp;
 
 	// Event type string
 	CStrW m_Type;
 
 	// Type code (to speed lookups)
-	unsigned int m_TypeCode;
+	size_t m_TypeCode;
 
 	// Has been cancelled?
 	bool m_Cancelled;
@@ -126,7 +126,7 @@ public:
 	void StopPropagation( JSContext* cx, uintN argc, jsval* argv );
 
 public:
-	CScriptEvent( const CStrW& Type, unsigned int TypeCode = (unsigned int)-1, bool Cancelable = true, bool Blockable = true );
+	CScriptEvent( const CStrW& Type, size_t TypeCode = ~0, bool Cancelable = true, bool Blockable = true );
 	static void ScriptingInit();
 };
 

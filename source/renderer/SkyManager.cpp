@@ -56,7 +56,7 @@ SkyManager::SkyManager()
 
 	m_HorizonHeight = -150.0f;
 
-	for (uint i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
+	for (size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
 		m_SkyTexture[i] = 0;
 
 	cur_loading_tex = 0;
@@ -73,7 +73,7 @@ SkyManager::~SkyManager()
 // Progressive load of sky textures
 int SkyManager::LoadSkyTextures()
 {
-	const uint num_textures = ARRAY_SIZE(m_SkyTexture);
+	const size_t num_textures = ARRAY_SIZE(m_SkyTexture);
 
 	// yield after this time is reached. balances increased progress bar
 	// smoothness vs. slowing down loading.
@@ -106,7 +106,7 @@ int SkyManager::LoadSkyTextures()
 // Unload sky textures
 void SkyManager::UnloadSkyTextures()
 {
-	for(uint i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
+	for(size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
 	{
 		ogl_tex_free(m_SkyTexture[i]);
 		m_SkyTexture[i] = 0;

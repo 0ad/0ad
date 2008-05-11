@@ -27,7 +27,7 @@ Guidelines
 What makes a good self-test?
 - They belong in the module being tested to ensure they are kept in
   sync with it.
-- It is easiest to attach them to low-level functions, e.g. log2_of_pow2,
+- It is easiest to attach them to low-level functions, e.g. ceil_log2,
   rather than verifying the module's final result (e.g. checking renderer
   output by comparing pictures).
 - You should cover all cases: expected failures ("does it fail as expected?"),

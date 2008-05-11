@@ -92,12 +92,12 @@ static bool fmt_is_s3tc(GLenum fmt)
 
 
 // determine OpenGL texture format, given <bpp> and Tex <flags>.
-static GLint choose_fmt(uint bpp, uint flags)
+static GLint choose_fmt(size_t bpp, int flags)
 {
 	const bool alpha = (flags & TEX_ALPHA) != 0;
 	const bool bgr   = (flags & TEX_BGR  ) != 0;
 	const bool grey  = (flags & TEX_GREY ) != 0;
-	const uint dxt   = flags & TEX_DXT;
+	const size_t dxt   = flags & TEX_DXT;
 
 	// S3TC
 	if(dxt != 0)
@@ -144,11 +144,11 @@ static GLint choose_fmt(uint bpp, uint flags)
 //----------------------------------------------------------------------------
 
 static GLint default_filter = GL_LINEAR;	// one of the GL *minify* filters
-static uint default_q_flags = OGL_TEX_FULL_QUALITY;	// OglTexQualityFlags
+static int default_q_flags = OGL_TEX_FULL_QUALITY;	// OglTexQualityFlags
 
-static bool q_flags_valid(uint q_flags)
+static bool q_flags_valid(int q_flags)
 {
-	const uint bits = OGL_TEX_FULL_QUALITY|OGL_TEX_HALF_BPP|OGL_TEX_HALF_RES;
+	const size_t bits = OGL_TEX_FULL_QUALITY|OGL_TEX_HALF_BPP|OGL_TEX_HALF_RES;
 	// unrecognized bits are set - invalid
 	if((q_flags & ~bits) != 0)
 		return false;
@@ -166,7 +166,7 @@ static bool q_flags_valid(uint q_flags)
 // pass 0 to keep the current setting; defaults and legal values are:
 // - q_flags: OGL_TEX_FULL_QUALITY; combination of OglTexQualityFlags 
 // - filter: GL_LINEAR; any valid OpenGL minification filter
-void ogl_tex_set_defaults(uint q_flags, GLint filter)
+void ogl_tex_set_defaults(int q_flags, GLint filter)
 {
 	if(q_flags)
 	{
@@ -183,7 +183,7 @@ void ogl_tex_set_defaults(uint q_flags, GLint filter)
 
 
 // choose an internal format for <fmt> based on the given q_flags.
-static GLint choose_int_fmt(GLenum fmt, uint q_flags)
+static GLint choose_int_fmt(GLenum fmt, int q_flags)
 {
 	// true => 4 bits per component; otherwise, 8
 	const bool half_bpp = (q_flags & OGL_TEX_HALF_BPP) != 0;
@@ -330,7 +330,7 @@ enum OglTexFlags
 	// "the enclosed Tex object is valid and holds a texture";
 	// reset in dtor and after ogl_tex_upload's tex_free.
 	OT_TEX_VALID = 2,
-	//uint tex_valid : 1;
+	//size_t tex_valid : 1;
 
 	// "reload() should automatically re-upload the texture" (because
 	// it had been uploaded before the reload); never reset.
@@ -357,12 +357,12 @@ struct OglTex
 	OglTexState state;
 
 	// OglTexQualityFlags
-	uint q_flags : 8;
+	int q_flags : 8;
 
 	// to which Texture Mapping Unit was this bound?
-	uint tmu : 8;
+	size_t tmu : 8;
 
-	uint flags : 16;
+	int flags : 16;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -475,7 +475,7 @@ static LibError OglTex_to_string(const OglTex* ot, char* buf)
 
 // load and return a handle to the texture given in <pathname>.
 // for a list of supported formats, see tex.h's tex_load.
-Handle ogl_tex_load(const VfsPath& pathname, uint flags)
+Handle ogl_tex_load(const VfsPath& pathname, int flags)
 {
 	Tex* wrapped_tex = 0;	// we're loading from file
 	return h_alloc(H_OglTex, pathname, flags, wrapped_tex);
@@ -503,7 +503,7 @@ Handle ogl_tex_find(const VfsPath& pathname)
 // note: because we cannot guarantee that callers will pass distinct
 // "filenames", caching is disabled for the created object. this avoids
 // mistakenly reusing previous objects that share the same comment.
-Handle ogl_tex_wrap(Tex* t, const char* fn, uint flags)
+Handle ogl_tex_wrap(Tex* t, const char* fn, int flags)
 {
 	// this object may not be backed by a file ("may", because
 	// someone could do tex_load and then ogl_tex_wrap).
@@ -694,7 +694,7 @@ static void detect_gl_upload_caps()
 // whether mipmaps are needed and the quality settings).
 // returns 0 to indicate success; otherwise, caller must disable
 // mipmapping by switching filter to e.g. GL_LINEAR.
-static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_skip)
+static LibError get_mipmaps(Tex* t, GLint filter, int q_flags, int* plevels_to_skip)
 {
 	// decisions:
 	// .. does filter call for uploading mipmaps?
@@ -748,8 +748,8 @@ static LibError get_mipmaps(Tex* t, GLint filter, uint q_flags, int* plevels_to_
 		// note: we don't just use GL_TEXTURE_BASE_LEVEL because it would
 		// require uploading unused levels, which is wasteful.
 		// .. can be expanded to reduce to 1/4, 1/8 by encoding factor in q_flags.
-		const uint reduce = (q_flags & OGL_TEX_HALF_RES)? 2 : 1;
-		*plevels_to_skip = ceil_log2(reduce);
+		const size_t reduce = (q_flags & OGL_TEX_HALF_RES)? 2 : 1;
+		*plevels_to_skip = (int)ceil_log2(reduce);
 	}
 
 	return INFO::OK;
@@ -764,18 +764,16 @@ struct UploadParams
 	GLint int_fmt;
 };
 
-static void upload_level(uint level, uint level_w, uint level_h, const u8* RESTRICT level_data, size_t UNUSED(level_data_size), void* RESTRICT cbData)
+static void upload_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t UNUSED(level_data_size), void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
-	glTexImage2D(GL_TEXTURE_2D, level, up->int_fmt, level_w, level_h, 0,
-		up->fmt, GL_UNSIGNED_BYTE, level_data);
+	glTexImage2D(GL_TEXTURE_2D, (GLint)level, up->int_fmt, (GLsizei)level_w, (GLsizei)level_h, 0, up->fmt, GL_UNSIGNED_BYTE, level_data);
 }
 
-static void upload_compressed_level(uint level, uint level_w, uint level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
+static void upload_compressed_level(size_t level, size_t level_w, size_t level_h, const u8* RESTRICT level_data, size_t level_data_size, void* RESTRICT cbData)
 {
 	const UploadParams* up = (const UploadParams*)cbData;
-	pglCompressedTexImage2DARB(GL_TEXTURE_2D, level, up->fmt,
-		(GLsizei)level_w, (GLsizei)level_h, 0, (GLsizei)level_data_size, level_data);
+	pglCompressedTexImage2DARB(GL_TEXTURE_2D, (GLint)level, up->fmt, (GLsizei)level_w, (GLsizei)level_h, 0, (GLsizei)level_data_size, level_data);
 }
 
 // upload the texture in the specified (internal) format.
@@ -786,7 +784,7 @@ static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip)
 {
 	const GLsizei w  = (GLsizei)t->w;
 	const GLsizei h  = (GLsizei)t->h;
-	const uint bpp   = t->bpp;
+	const size_t bpp   = t->bpp;
 	const u8* data = (const u8*)tex_get_data(t);
 	const UploadParams up = { fmt, int_fmt };
 
@@ -806,7 +804,7 @@ static void upload_impl(Tex* t, GLenum fmt, GLint int_fmt, int levels_to_skip)
 // side effects:
 // - enables texturing on TMU 0 and binds the texture to it;
 // - frees the texel data! see ogl_tex_get_data.
-LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint int_fmt_ovr)
+LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint int_fmt_ovr)
 {
 	ONCE(detect_gl_upload_caps());
 
@@ -873,7 +871,7 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, uint q_flags_ovr, GLint
 
 // retrieve texture dimensions and bits per pixel.
 // all params are optional and filled if non-NULL.
-LibError ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp)
+LibError ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp)
 {
 	H_DEREF(ht, OglTex, ot);
 
@@ -890,7 +888,7 @@ LibError ogl_tex_get_size(Handle ht, uint* w, uint* h, uint* bpp)
 // retrieve TexFlags and the corresponding OpenGL format.
 // the latter is determined during ogl_tex_upload and is 0 before that.
 // all params are optional and filled if non-NULL.
-LibError ogl_tex_get_format(Handle ht, uint* flags, GLenum* fmt)
+LibError ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
 {
 	H_DEREF(ht, OglTex, ot);
 
@@ -936,7 +934,7 @@ LibError ogl_tex_get_data(Handle ht, void** p)
 // - assumes multitexturing is available.
 // - not necessary before calling ogl_tex_upload!
 // - on error, the unit's texture state is unchanged; see implementation.
-LibError ogl_tex_bind(Handle ht, uint unit)
+LibError ogl_tex_bind(Handle ht, size_t unit)
 {
 	// note: there are many call sites of glActiveTextureARB, so caching
 	// those and ignoring redundant sets isn't feasible.
@@ -968,7 +966,7 @@ LibError ogl_tex_bind(Handle ht, uint unit)
 
 // apply the specified transforms (as in tex_transform) to the image.
 // must be called before uploading (raises a warning if called afterwards).
-LibError ogl_tex_transform(Handle ht, uint transforms)
+LibError ogl_tex_transform(Handle ht, size_t transforms)
 {
 	H_DEREF(ht, OglTex, ot);
 	LibError ret = tex_transform(&ot->t, transforms);
@@ -978,7 +976,7 @@ LibError ogl_tex_transform(Handle ht, uint transforms)
 
 // change the pixel format to that specified by <new_flags>.
 // (note: this is equivalent to ogl_tex_transform(ht, ht_flags^new_flags).
-LibError ogl_tex_transform_to(Handle ht, uint new_flags)
+LibError ogl_tex_transform_to(Handle ht, size_t new_flags)
 {
 	H_DEREF(ht, OglTex, ot);
 	LibError ret = tex_transform_to(&ot->t, new_flags);

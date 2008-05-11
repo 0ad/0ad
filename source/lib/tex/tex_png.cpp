@@ -59,7 +59,7 @@ static void io_flush(png_structp UNUSED(png_ptr))
 
 //-----------------------------------------------------------------------------
 
-static LibError png_transform(Tex* UNUSED(t), uint UNUSED(transforms))
+static LibError png_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -82,7 +82,7 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
 	const u32 bpp = (u32)(pitch/w * 8);
 
-	uint flags = 0;
+	int flags = 0;
 	if(bpp == 32)
 		flags |= TEX_ALPHA;
 	if(colour_type == PNG_COLOR_TYPE_GRAY)

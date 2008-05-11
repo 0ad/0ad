@@ -24,7 +24,7 @@ public:
 	~CMiniPatch();
 
 	// get the index of this tile in the root terrain object; x,y in [0,MapSize)
-	void GetTileIndex(u32& x,u32& z);
+	void GetTileIndex(ssize_t& x,ssize_t& z);
 
 public:
 	// texture applied to tile

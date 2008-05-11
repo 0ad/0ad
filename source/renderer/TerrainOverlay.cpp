@@ -204,8 +204,8 @@ void TerrainOverlay::RenderOverlays()
 //////////////////////////////////////////////////////////////////////////
 
 void TerrainOverlay::GetTileExtents(
-	int& min_i_inclusive, int& min_j_inclusive,
-	int& max_i_inclusive, int& max_j_inclusive)
+	ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
+	ssize_t& max_i_inclusive, ssize_t& max_j_inclusive)
 {
 	// Default to whole map
 	min_i_inclusive = min_j_inclusive = 0;
@@ -216,15 +216,15 @@ void TerrainOverlay::Render()
 {
 	m_Terrain = g_Game->GetWorld()->GetTerrain();
 
-	int min_i, min_j, max_i, max_j;
+	ssize_t min_i, min_j, max_i, max_j;
 	GetTileExtents(min_i, min_j, max_i, max_j);
 	// Clamp the min to 0, but the max to -1 - so tile -1 can never be rendered,
 	// but if unclamped_max<0 then no tiles at all will be rendered. And the same
 	// for the upper limit.
-	min_i = clamp(min_i, 0, (int)m_Terrain->GetTilesPerSide());
-	min_j = clamp(min_j, 0, (int)m_Terrain->GetTilesPerSide());
-	max_i = clamp(max_i, -1, (int)m_Terrain->GetTilesPerSide()-1);
-	max_j = clamp(max_j, -1, (int)m_Terrain->GetTilesPerSide()-1);
+	min_i = clamp(min_i, ssize_t(0), m_Terrain->GetTilesPerSide());
+	min_j = clamp(min_j, ssize_t(0), m_Terrain->GetTilesPerSide());
+	max_i = clamp(max_i, ssize_t(-1), m_Terrain->GetTilesPerSide()-1);
+	max_j = clamp(max_j, ssize_t(-1), m_Terrain->GetTilesPerSide()-1);
 
 	for (m_j = min_j; m_j <= max_j; ++m_j)
 		for (m_i = min_i; m_i <= max_i; ++m_i)

@@ -16,7 +16,7 @@ CTurnManager::CTurnManager()
 		m_Batches[i].m_TurnLength = DEFAULT_TURN_LENGTH;
 }
 
-void CTurnManager::ClearBatch(uint batch)
+void CTurnManager::ClearBatch(uintptr_t batch)
 {
 	typedef std::vector<SMessageSyncEntry> MsgVector;
 	MsgVector &messages=m_Batches[batch].m_Messages;
@@ -48,7 +48,7 @@ void CTurnManager::RotateBatches()
 	m_Batches[1].Swap(m_Batches[2]);
 }
 
-void CTurnManager::IterateBatch(uint batch, BatchIteratorFunc *fp, void *userdata)
+void CTurnManager::IterateBatch(uintptr_t batch, BatchIteratorFunc *fp, void *userdata)
 {
 	typedef std::vector<SMessageSyncEntry> MsgVector;
 	MsgVector &messages=m_Batches[batch].m_Messages;
@@ -60,7 +60,7 @@ void CTurnManager::IterateBatch(uint batch, BatchIteratorFunc *fp, void *userdat
 	}
 }
 
-void CTurnManager::SendBatch(uint batch)
+void CTurnManager::SendBatch(uintptr_t batch)
 {
 	typedef std::vector<SMessageSyncEntry> MsgVector;
 	MsgVector &messages=m_Batches[batch].m_Messages;
@@ -72,12 +72,12 @@ void CTurnManager::SendBatch(uint batch)
 	}
 	CEndCommandBatch *pMsg=new CEndCommandBatch();
 	pMsg->m_TurnLength=m_Batches[batch].m_TurnLength;
-	SendMessage(pMsg, (uint)-1);
+	SendMessage(pMsg, (size_t)-1);
 }
 
-void CTurnManager::SendMessage(CNetMessage *pMsg, uint clientMask)
+void CTurnManager::SendMessage(CNetMessage *pMsg, size_t clientMask)
 {
-	for (uint i=0;i<m_Clients.size();i++)
+	for (size_t i=0;i<m_Clients.size();i++)
 	{
 		if (clientMask & (1<<i))
 		{
@@ -87,22 +87,22 @@ void CTurnManager::SendMessage(CNetMessage *pMsg, uint clientMask)
 	}
 }
 
-void CTurnManager::QueueMessage(uint batch, CNetMessage *pMsg)
+void CTurnManager::QueueMessage(uintptr_t batch, CNetMessage *pMsg)
 {
 	m_Batches[batch].m_Messages.push_back(SMessageSyncEntry(pMsg));
 }
 
-void CTurnManager::SetClientPipe(uint client, IMessagePipeEnd *pipe)
+void CTurnManager::SetClientPipe(size_t client, IMessagePipeEnd *pipe)
 {
 	m_Clients[client].m_Pipe=pipe;
 }
 
-void CTurnManager::SetTurnLength(uint batch, uint turnLength)
+void CTurnManager::SetTurnLength(uintptr_t batch, int turnLength)
 {
 	m_Batches[batch].m_TurnLength=turnLength;
 }
 
-uint CTurnManager::GetTurnLength()
+int CTurnManager::GetTurnLength()
 {
 	return m_Batches[0].m_TurnLength;
 }
@@ -113,14 +113,14 @@ void CTurnManager::Initialize(size_t numClients)
 }
 
 
-void CTurnManager::RecordBatch(uint batch)
+void CTurnManager::RecordBatch(uintptr_t batch)
 {
 	IterateBatch(batch, RecordIterator, m_pRecord);
 	CEndCommandBatch msg;
 	m_pRecord->WriteMessage(&msg);
 }
 
-uint CTurnManager::RecordIterator(CNetMessage *pMsg, uint clientMask, void *userdata)
+size_t CTurnManager::RecordIterator(CNetMessage *pMsg, uintptr_t clientMask, void *userdata)
 {
 	CGameRecord *pRecord=(CGameRecord *)userdata;
 

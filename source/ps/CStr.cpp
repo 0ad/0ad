@@ -234,7 +234,7 @@ int CStr::ToInt() const
 
 unsigned int CStr::ToUInt() const
 {
-	return uint(_ttoi(c_str()));
+	return (unsigned int)_ttoi(c_str());
 }
 
 long CStr::ToLong() const
@@ -244,7 +244,7 @@ long CStr::ToLong() const
 
 unsigned long CStr::ToULong() const
 {
-	return ulong(_ttol(c_str()));
+	return (unsigned long)_ttol(c_str());
 }
 
 float CStr::ToFloat() const
@@ -586,9 +586,9 @@ const u8* CStrW::Deserialize(const u8* buffer, const u8* bufferend)
 	return (const u8 *)(strend+1);
 }
 
-uint CStr::GetSerializedLength() const
+size_t CStr::GetSerializedLength() const
 {
-	return uint(length()*2 + 2);
+	return size_t(length()*2 + 2);
 }
 
 #else
@@ -618,9 +618,9 @@ const u8* CStr8::Deserialize(const u8* buffer, const u8* bufferend)
 	return strend+1;
 }
 
-uint CStr::GetSerializedLength() const
+size_t CStr::GetSerializedLength() const
 {
-	return uint(length() + 1);
+	return size_t(length() + 1);
 }
 
 #endif // _UNICODE

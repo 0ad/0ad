@@ -20,12 +20,12 @@ public:
 	CEntityFormation( CFormation*& base, size_t index );
 	~CEntityFormation();
 
-	int GetEntityCount() { return m_numEntities; }
+	size_t GetEntityCount() { return m_numEntities; }
 	float GetSpeed() { return m_speed; }
-	int GetSlotCount();
+	size_t GetSlotCount();
 
 	CEntityList GetEntityList();
-	CVector2D GetSlotPosition( int order );
+	CVector2D GetSlotPosition( size_t order );
 	CVector2D GetPosition() { return m_position; }
 	CFormation* GetBase() { return m_base; }
 	void BaseToMovement();
@@ -36,11 +36,11 @@ public:
 	inline bool IsDuplication() { return m_duplication; }
 	inline void SetLock( bool lock ){ m_locked=lock; }
 	inline bool IsLocked() { return m_locked; }
-	inline bool IsValidOrder(int order) { return ( order >= 0 && order < GetSlotCount() ); }
+	inline bool IsValidOrder(size_t order) { return ( order < GetSlotCount() ); }
 
 private:
-	int m_numEntities;
-	int m_index;
+	size_t m_numEntities;
+	size_t m_index;
 	float m_speed;	//speed of slowest unit
 	float m_orientation;	//Our orientation angle. Used for rotation.
 	CVector2D m_position;
@@ -58,8 +58,8 @@ private:
 
 	bool AddUnit( CEntity* entity );
 	void RemoveUnit( CEntity* entity );
-	bool IsSlotAppropriate( int order, CEntity* entity );   //If empty, can we use this slot?
-	bool IsBetterUnit( int order, CEntity* entity );
+	bool IsSlotAppropriate( size_t order, CEntity* entity );   //If empty, can we use this slot?
+	bool IsBetterUnit( size_t order, CEntity* entity );
 
 	void UpdateFormation();
 	void SwitchBase( CFormation*& base );

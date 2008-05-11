@@ -178,7 +178,7 @@ QUERY(GetObjectsList,
 #ifndef MESSAGES_SKIP_STRUCTS
 struct sObjectSettings
 {
-	Shareable<int> player;
+	Shareable<size_t> player;
 	Shareable<std::vector<std::wstring> > selections;
 
 	// Some settings are immutable and therefore are ignored (and should be left

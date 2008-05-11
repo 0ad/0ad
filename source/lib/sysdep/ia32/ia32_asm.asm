@@ -17,47 +17,16 @@
 ; CPUID support
 ;-------------------------------------------------------------------------------
 
-[section .data]
-
-max_func		dd	0
-max_ext_func	dd	0
-
-__SECT__
-
-; extern "C" bool __cdecl ia32_asm_cpuid(u32 func, u32* regs)
+; extern "C" void __cdecl ia32_asm_cpuid(Ia32CpuidRegs* regs);
 global sym(ia32_asm_cpuid)
 sym(ia32_asm_cpuid):
-	push	ebx
-	push	edi
+	push	ebx							; (clobbered by CPUID)
+	push	edi							; (need a register other than eax..edx)
 
-	cmp		dword [max_func], 0
-	ja		.already_initialized
+	mov		edi, [esp+8+4]				; -> regs
 
-	; determine max supported CPUID function
-	xor		eax, eax
-	cpuid
-	mov		[max_func], eax
-	mov		eax, 0x80000000
-	cpuid
-	mov		[max_ext_func], eax
-.already_initialized:
-
-	mov		edx, [esp+8+4+0]			; func
-	mov		edi, [esp+8+4+4]			; -> regs
-
-	; compare against max supported func and fail if above
-	mov		ebx, [max_ext_func]
-	xor		eax, eax					; return value on failure
-	test	edx, edx
-	js		.is_ext_func
-	mov		ebx, [max_func]
-.is_ext_func:
-	cmp		edx, ebx
-	ja		.ret
-
-	; issue CPUID and store result registers in array
-	mov		eax, edx
-	xor		ecx, ecx					; CPUID.4 requires ECX = 0..2
+	mov		eax, [edi+0]				; eax (function)
+	mov		ecx, [edi+8]				; ecx (count)
 	cpuid
 	stosd
 	xchg		eax, ebx
@@ -67,10 +36,6 @@ sym(ia32_asm_cpuid):
 	xchg		eax, edx
 	stosd
 
-	; success
-	xor		eax, eax
-	inc		eax
-.ret:
 	pop		edi
 	pop		ebx
 	ret
@@ -112,13 +77,6 @@ db		0xf0							; LOCK prefix
 	ret
 
 
-; extern "C" bool __cdecl ia32_asm_Serialize();
-global sym(ia32_asm_Serialize)
-sym(ia32_asm_Serialize):
-	cpuid
-	ret
-
-
 ;-------------------------------------------------------------------------------
 ; FPU
 ;-------------------------------------------------------------------------------
@@ -132,7 +90,7 @@ round_bias		dd 0.4999999
 
 __SECT__
 
-; extern "C" uint __cdecl ia32_asm_control87(uint new_cw, uint mask);
+; extern "C" size_t __cdecl ia32_asm_control87(size_t new_cw, size_t mask);
 global sym(ia32_asm_control87)
 sym(ia32_asm_control87):
 	push	eax
@@ -154,7 +112,7 @@ sym(ia32_asm_control87):
 ; possible IA-32 FPU control word flags after FXAM: NAN|NORMAL|ZERO
 FP_CLASSIFY_MASK	equ 0x4500
 
-; extern "C" uint __cdecl ia32_asm_fpclassifyd(double d);
+; extern "C" size_t __cdecl ia32_asm_fpclassifyd(double d);
 global sym(ia32_asm_fpclassifyd)
 sym(ia32_asm_fpclassifyd):
 	fld		qword [esp+4]
@@ -164,7 +122,7 @@ sym(ia32_asm_fpclassifyd):
 	and		eax, FP_CLASSIFY_MASK
 	ret
 
-; extern "C" uint __cdecl ia32_asm_fpclassifyf(float f);
+; extern "C" size_t __cdecl ia32_asm_fpclassifyf(float f);
 global sym(ia32_asm_fpclassifyf)
 sym(ia32_asm_fpclassifyf):
 	fld		dword [esp+4]
@@ -249,40 +207,6 @@ sym(ia32_asm_i64FromDouble):
 ;-------------------------------------------------------------------------------
 ; misc
 ;-------------------------------------------------------------------------------
-
-; rationale: the common return convention for 64-bit values is in edx:eax.
-; with inline asm, we'd have to MOV data to a temporary and return that;
-; this is less efficient (-> important for low-overhead profiling) than
-; making use of the convention.
-;
-; however, speed is not the main reason for providing this routine.
-; xcode complains about CPUID clobbering ebx, so we use external asm
-; where possible (IA-32 CPUs).
-;
-; extern "C" u64 ia32_asm_rdtsc_edx_eax();
-global sym(ia32_asm_rdtsc_edx_eax)
-sym(ia32_asm_rdtsc_edx_eax):
-	push	ebx
-	cpuid
-	pop		ebx
-	rdtsc
-	ret
-
-
-; extern "C" int ia32_asm_log2_of_pow2(uint n);
-global sym(ia32_asm_log2_of_pow2)
-sym(ia32_asm_log2_of_pow2):
-	mov		ecx, [esp+4]	; n
-	or		eax, -1			; return value if not a POT
-	test	ecx, ecx
-	jz		.not_pot
-	lea		edx, [ecx-1]
-	test	ecx, edx
-	jnz		.not_pot
-	bsf		eax, ecx
-.not_pot:
-	ret
-
 
 ; write the current execution state (e.g. all register values) into
 ; (Win32::CONTEXT*)pcontext (defined as void* to avoid dependency).

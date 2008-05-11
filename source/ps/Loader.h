@@ -155,12 +155,12 @@ extern LibError LDR_NonprogressiveLoad();
 #define LDR_CHECK_TIMEOUT(completed_jobs, total_jobs)\
 	if(timer_Time() > end_time)\
 	{\
-		int progress_percent = ((completed_jobs)*100 / (total_jobs));\
+		size_t progress_percent = ((completed_jobs)*100 / (total_jobs));\
 		/* 0 means "finished", so don't return that! */\
 		if(progress_percent == 0)\
 			progress_percent = 1;\
 		debug_assert(0 < progress_percent && progress_percent <= 100);\
-		return progress_percent;\
+		return (int)progress_percent;\
 	}
 
 #endif	// #ifndef INCLUDED_LOADER

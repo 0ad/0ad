@@ -392,7 +392,7 @@ JpgErrorMgr::JpgErrorMgr(j_common_ptr cinfo)
 //-----------------------------------------------------------------------------
 
 
-static LibError jpg_transform(Tex* UNUSED(t), uint UNUSED(transforms))
+static LibError jpg_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -420,7 +420,7 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex
 
 	// set libjpg output format. we cannot go with the default because
 	// Photoshop writes non-standard CMYK files that must be converted to RGB.
-	uint flags = 0;
+	int flags = 0;
 	cinfo->out_color_space = JCS_RGB;
 	if(cinfo->num_components == 1)
 	{

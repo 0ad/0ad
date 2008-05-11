@@ -13,13 +13,13 @@ double cpu_ClockFrequency()
 }
 
 
-uint cpu_NumProcessors()
+size_t cpu_NumProcessors()
 {
 	long res = sysconf(_SC_NPROCESSORS_CONF);
 	if (res == -1)
 		return 0;
 	else
-		return (uint)res;
+		return (size_t)res;
 }
 
 

@@ -104,7 +104,7 @@ namespace __gnu_cxx
 
 			val.ptr = __x;
 
-			for(uint i = 0; i < sizeof(val); ++i)
+			for(size_t i = 0; i < sizeof(val); ++i)
 				h = 257*h + val.bytes[i];
 
 			return 257*h;

@@ -42,9 +42,9 @@ public:
 		srand(1);
 		RingBuf<int, N> buf;
 		std::deque<int> deq;
-		for(uint rep = 0; rep < 1000; rep++)
+		for(size_t rep = 0; rep < 1000; rep++)
 		{
-			uint rnd_op = rand(0, 10);
+			size_t rnd_op = rand(0, 10);
 			// 70% - insert
 			if(rnd_op >= 3)
 			{

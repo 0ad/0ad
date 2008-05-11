@@ -65,7 +65,7 @@ LIB_API void page_aligned_free(void* p, size_t unaligned_size);
  * @return 0 if out of memory, otherwise matrix that should be cast to
  * type** (sizeof(type) == el_size). must be freed via matrix_free.
  **/
-extern void** matrix_alloc(uint cols, uint rows, size_t el_size);
+extern void** matrix_alloc(size_t cols, size_t rows, size_t el_size);
 
 /**
  * free the given matrix.

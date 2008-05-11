@@ -17,7 +17,7 @@ WINIT_REGISTER_EARLY_INIT2(wdbg_heap_Init);	// wutil -> wdbg_heap
 
 void wdbg_heap_Enable(bool enable)
 {
-	uint flags = 0;
+	int flags = 0;
 	if(enable)
 	{
 		flags |= _CRTDBG_ALLOC_MEM_DF;	// enable checks at deallocation time
@@ -403,12 +403,12 @@ static uintptr_t Expand(uintptr_t pc)
 }
 
 
-static const uint numEncodedLengthBits = 2;
+static const size_t numEncodedLengthBits = 2;
 static const size_t maxCallers = (sizeof(char*)+sizeof(int))*CHAR_BIT / (2+14);
 
-static uint NumBitsForEncodedLength(uint encodedLength)
+static size_t NumBitsForEncodedLength(size_t encodedLength)
 {
-	static const uint numBitsForEncodedLength[1u << numEncodedLengthBits] =
+	static const size_t numBitsForEncodedLength[1u << numEncodedLengthBits] =
 	{
 		8,	// 1K
 		14,	// 64K
@@ -418,11 +418,11 @@ static uint NumBitsForEncodedLength(uint encodedLength)
 	return numBitsForEncodedLength[encodedLength];
 }
 
-static uint EncodedLength(uintptr_t quantizedOffset)
+static size_t EncodedLength(uintptr_t quantizedOffset)
 {
-	for(uint encodedLength = 0; encodedLength < 1u << numEncodedLengthBits; encodedLength++)
+	for(size_t encodedLength = 0; encodedLength < 1u << numEncodedLengthBits; encodedLength++)
 	{
-		const uint numBits = NumBitsForEncodedLength(encodedLength);
+		const size_t numBits = NumBitsForEncodedLength(encodedLength);
 		const uintptr_t maxValue = (1u << numBits)-1;
 		if(quantizedOffset <= maxValue)
 			return encodedLength;
@@ -450,26 +450,26 @@ static void FindCodeSegment()
 class BitStream
 {
 public:
-	BitStream(u8* storage, uint storageSize)
+	BitStream(u8* storage, size_t storageSize)
 		: m_remainderBits(0), m_numRemainderBits(0)
-		, m_pos(storage), m_bitsLeft((uint)storageSize*8)
+		, m_pos(storage), m_bitsLeft((size_t)storageSize*8)
 	{
 	}
 
-	uint BitsLeft() const
+	size_t BitsLeft() const
 	{
 		return m_bitsLeft;
 	}
 
-	void Write(const uint numOutputBits, uintptr_t outputValue)
+	void Write(const size_t numOutputBits, uintptr_t outputValue)
 	{
 		wdbg_assert(numOutputBits <= m_bitsLeft);
 		wdbg_assert(outputValue < ((uintptr_t)1u << numOutputBits));
 
-		uint outputBitsLeft = numOutputBits;
+		size_t outputBitsLeft = numOutputBits;
 		while(outputBitsLeft > 0)
 		{
-			const uint numBits = std::min(outputBitsLeft, 8u);
+			const size_t numBits = std::min(outputBitsLeft, 8u);
 			m_bitsLeft -= numBits;
 
 			// (NB: there is no need to extract exactly numBits because
@@ -493,7 +493,7 @@ public:
 
 	void Finish()
 	{
-		const uint partialBits = m_numRemainderBits % 8;
+		const size_t partialBits = m_numRemainderBits % 8;
 		if(partialBits)
 		{
 			m_bitsLeft -= 8-partialBits;
@@ -515,20 +515,20 @@ public:
 		}
 	}
 
-	uintptr_t Read(const uint numInputBits)
+	uintptr_t Read(const size_t numInputBits)
 	{
 		wdbg_assert(numInputBits <= m_bitsLeft);
 
 		uintptr_t inputValue = 0;
-		uint inputBitsLeft = numInputBits;
+		size_t inputBitsLeft = numInputBits;
 		while(inputBitsLeft > 0)
 		{
-			const uint numBits = std::min(inputBitsLeft, 8u);
+			const size_t numBits = std::min(inputBitsLeft, 8u);
 			m_bitsLeft -= numBits;
 
 			if(m_numRemainderBits < numBits)
 			{
-				const uint inputByte = *m_pos++;
+				const size_t inputByte = *m_pos++;
 				m_remainderBits |= inputByte << m_numRemainderBits;
 				m_numRemainderBits += 8;
 			}
@@ -546,9 +546,9 @@ public:
 
 private:
 	uintptr_t m_remainderBits;
-	uint m_numRemainderBits;
+	size_t m_numRemainderBits;
 	u8* m_pos;
-	uint m_bitsLeft;
+	size_t m_bitsLeft;
 };
 
 
@@ -580,8 +580,8 @@ static void StashCallers(_CrtMemBlockHeader* header, const uintptr_t* callers, s
 	for(size_t i = 0; i < quantizedPcSetSize; i++)
 	{
 		const uintptr_t quantizedOffset = quantizedOffsets[i];
-		const uint encodedLength = EncodedLength(quantizedOffset);
-		const uint numBits = NumBitsForEncodedLength(encodedLength);
+		const size_t encodedLength = EncodedLength(quantizedOffset);
+		const size_t numBits = NumBitsForEncodedLength(encodedLength);
 		if(bitStream.BitsLeft() < numEncodedLengthBits+numBits)
 			break;
 		bitStream.Write(numEncodedLengthBits, encodedLength);
@@ -602,8 +602,8 @@ static void RetrieveCallers(_CrtMemBlockHeader* header, uintptr_t* callers, size
 	{
 		if(bitStream.BitsLeft() < numEncodedLengthBits)
 			break;
-		const uint encodedLength = bitStream.Read(numEncodedLengthBits);
-		const uint numBits = NumBitsForEncodedLength(encodedLength);
+		const size_t encodedLength = bitStream.Read(numEncodedLengthBits);
+		const size_t numBits = NumBitsForEncodedLength(encodedLength);
 		if(bitStream.BitsLeft() < numBits)
 			break;
 		const uintptr_t quantizedOffset = bitStream.Read(numBits);

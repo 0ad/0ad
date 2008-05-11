@@ -20,23 +20,23 @@
 // folded down to a much smaller interval anyway. instead, a larger XRAND_MAX
 // decreases the probability of having to repeat the loop.
 #if RAND_MAX < 65536
-static const uint XRAND_MAX = (RAND_MAX+1)*(RAND_MAX+1) - 1;
-static uint xrand()
+static const size_t XRAND_MAX = (RAND_MAX+1)*(RAND_MAX+1) - 1;
+static size_t xrand()
 {
 	return rand()*(RAND_MAX+1) + rand();
 }
 // rand() is already ok; no need to do anything.
 #else
-static const uint XRAND_MAX = RAND_MAX;
-static uint xrand()
+static const size_t XRAND_MAX = RAND_MAX;
+static size_t xrand()
 {
 	return rand();
 }
 #endif
 
-uint rand(uint min_inclusive, uint max_exclusive)
+size_t rand(size_t min_inclusive, size_t max_exclusive)
 {
-	const uint range = (max_exclusive-min_inclusive);
+	const size_t range = (max_exclusive-min_inclusive);
 	// huge interval or min >= max
 	if(range == 0 || range > XRAND_MAX)
 	{
@@ -44,15 +44,17 @@ uint rand(uint min_inclusive, uint max_exclusive)
 		return 0;
 	}
 
-	const uint inv_range = XRAND_MAX / range;
+	const size_t inv_range = XRAND_MAX / range;
 
 	// generate random number in [0, range)
 	// idea: avoid skewed distributions when <range> doesn't evenly divide
 	// XRAND_MAX by simply discarding values in the "remainder".
 	// not expected to run often since XRAND_MAX is large.
-	uint x;
+	size_t x;
 	do
-	x = xrand();
+	{
+		x = xrand();
+	}
 	while(x >= range * inv_range);
 	x /= inv_range;
 

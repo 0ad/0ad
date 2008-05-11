@@ -92,7 +92,7 @@ static timespec TimespecFromNs(i64 ns)
 	return ts;
 }
 
-static uint MsFromTimespec(const timespec& ts)
+static size_t MsFromTimespec(const timespec& ts)
 {
 	i64 ms = ts.tv_sec;	// avoid overflow
 	ms *= _1e3;
@@ -132,11 +132,11 @@ int nanosleep(const struct timespec* rqtp, struct timespec* /* rmtp */)
 }
 
 
-uint sleep(uint sec)
+unsigned sleep(unsigned sec)
 {
 	// warn if overflow would result (it would be insane to ask for
 	// such lengthy sleep timeouts, but still)
-	debug_assert(sec < std::numeric_limits<uint>::max()/1000);
+	debug_assert(sec < std::numeric_limits<size_t>::max()/1000);
 
 	const DWORD ms = sec * 1000;
 	if(ms)

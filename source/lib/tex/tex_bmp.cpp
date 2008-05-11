@@ -44,7 +44,7 @@ struct BmpHeader
 #define BI_RGB 0		// biCompression
 
 
-static LibError bmp_transform(Tex* UNUSED(t), uint UNUSED(transforms))
+static LibError bmp_transform(Tex* UNUSED(t), size_t UNUSED(transforms))
 {
 	return INFO::TEX_CODEC_CANNOT_HANDLE;
 }
@@ -91,7 +91,7 @@ static LibError bmp_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 	const long h = abs(h_);
 
-	uint flags = 0;
+	int flags = 0;
 	flags |= (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	if(bpp > 16)
 		flags |= TEX_BGR;

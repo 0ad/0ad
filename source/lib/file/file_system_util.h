@@ -47,7 +47,7 @@ enum DirFlags
  * @param flags see DirFlags
  * @param LibError
  **/
-extern LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern = 0, uint flags = 0);
+extern LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern = 0, int flags = 0);
 
 
 /**
@@ -56,12 +56,12 @@ extern LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, u
  * ones (screenshots are a good example).
  *
  * @param pathnameFormat format string for the pathname; must contain one
- * format specifier for an (unsigned) int.
+ * format specifier for a size_t.
  * example: "screenshots/screenshot%04d.png"
  * @param nextNumber in: the first number to try; out: the next number.
  * if 0, numbers corresponding to existing files are skipped.
  * @param nextPathname receives the output.
  **/
-extern void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, unsigned& nextNumber, VfsPath& nextPathname);
+extern void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname);
 
 #endif	 // #ifndef INCLUDED_FILE_SYSTEM_UTIL

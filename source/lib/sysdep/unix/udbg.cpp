@@ -14,12 +14,12 @@ symbol lookups and backtraces)
 // udbg stubs.
 // (Linux has a better implementation using BFD)
 
-void* udbg_get_nth_caller(uint UNUSED(n), void *UNUSED(context))
+void* udbg_get_nth_caller(size_t UNUSED(n), void *UNUSED(context))
 {
 	return NULL;
 }
 
-LibError udbg_dump_stack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), uint UNUSED(skip), void* UNUSED(context))
+LibError udbg_dump_stack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), size_t UNUSED(skip), void* UNUSED(context))
 {
 	return ERR::NOT_IMPLEMENTED;
 }

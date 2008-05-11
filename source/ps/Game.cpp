@@ -173,7 +173,7 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 		// Player 0 = Gaia - allocate one extra
 		m_Players.resize(m_NumPlayers + 1);
 
-		for (uint i=0;i <= m_NumPlayers;i++)
+		for (size_t i=0;i <= m_NumPlayers;i++)
 			m_Players[i]=pAttribs->GetPlayer(i);
 		
 		if (g_NetClient)
@@ -304,10 +304,10 @@ void CGame::EndGame()
 /**
  * Get the player object from the players list at the provided index.
  *
- * @param PS_uint idx sequential position in the list.
+ * @param idx sequential position in the list.
  * @return CPlayer * pointer to player requested.
  **/
-CPlayer *CGame::GetPlayer(uint idx)
+CPlayer *CGame::GetPlayer(size_t idx)
 {
 	if (idx > m_NumPlayers)
 	{

@@ -54,7 +54,7 @@ class CGame : boost::noncopyable
 	/**
 	 * number of players operating on the game world(not including gaia).
 	 **/
-	uint m_NumPlayers;
+	size_t m_NumPlayers;
 	/**
 	 * the game has been initialized and ready for use if true.
 	 **/
@@ -119,7 +119,7 @@ public:
 	// PT: No longer inline, because it does too much error checking. When
 	// everything stops trying to access players before they're loaded, feel
 	// free to put the inline version back.
-	CPlayer *GetPlayer(uint idx);
+	CPlayer *GetPlayer(size_t idx);
 
 	/**
 	 * Get a reference to the m_Players vector.
@@ -132,9 +132,9 @@ public:
 	/**
 	 * Get m_NumPlayers.
 	 *
-	 * @return PS_uint the value of m_NumPlayers.
+	 * @return the number of players (not including gaia)
 	 **/
-	inline uint GetNumPlayers() const
+	inline size_t GetNumPlayers() const
 	{	return m_NumPlayers; }
 
 	/**

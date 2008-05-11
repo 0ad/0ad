@@ -171,7 +171,7 @@ CStr JSI_Sound::ToString(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSE
 	return "[object Sound: " + h_filename(m_Handle).string() + "]";
 }
 
-JSBool JSI_Sound::Construct(JSContext* cx, JSObject* UNUSED(obj), uint argc, jsval* argv, jsval* rval)
+JSBool JSI_Sound::Construct(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval)
 {
 	debug_assert(argc >= 1); // FIXME
 	CStrW filename;
