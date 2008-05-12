@@ -25,8 +25,8 @@
 # include <unistd.h>
 #endif
 #include "lib/config2.h"	// CONFIG2_TIMER_ALLOW_RDTSC
-#if ARCH_IA32 && CONFIG2_TIMER_ALLOW_RDTSC
-# include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
+#if (ARCH_IA32 || ARCH_AMD64) && CONFIG2_TIMER_ALLOW_RDTSC
+# include "lib/sysdep/x86_x64/x86_x64.h"	// x86_x64_rdtsc
 #endif
 
 #if OS_UNIX || OS_WIN
@@ -177,7 +177,7 @@ void TimerUnit::SetToZero()
 
 void TimerUnit::SetFromTimer()
 {
-	m_ticks = ia32_rdtsc();
+	m_ticks = x86_x64_rdtsc();
 }
 
 void TimerUnit::AddDifference(TimerUnit t0, TimerUnit t1)

@@ -12,7 +12,7 @@
 
 #include "maths/MathUtil.h"
 #include "graphics/SColor.h"
-#include "lib/sysdep/ia32/ia32.h"
+#include "lib/sysdep/x86_x64/x86_x64.h"
 
 static u32 fallback_ConvertRGBColorTo4ub(const RGBColor& src)
 {
@@ -39,7 +39,7 @@ void ColorActivateFastImpl()
 	{
 	}
 #if ARCH_IA32
-	else if (ia32_cap(IA32_CAP_SSE))
+	else if (x86_x64_cap(X86_X64_CAP_SSE))
 	{
 		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;
 	}

@@ -18,7 +18,7 @@
 #include "lib/allocators/allocators.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/allocators/headerless.h"
-#include "lib/allocators/mem_util.h"    // mem_PageSize
+#include "lib/sysdep/os_cpu.h"	// os_cpu_PageSize
 
 
 //-----------------------------------------------------------------------------

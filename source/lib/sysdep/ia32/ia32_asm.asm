@@ -17,7 +17,7 @@
 ; CPUID support
 ;-------------------------------------------------------------------------------
 
-; extern "C" void __cdecl ia32_asm_cpuid(Ia32CpuidRegs* regs);
+; extern "C" void __cdecl ia32_asm_cpuid(x86_x64_CpuidRegs* regs);
 global sym(ia32_asm_cpuid)
 sym(ia32_asm_cpuid):
 	push	ebx							; (clobbered by CPUID)
@@ -90,7 +90,7 @@ round_bias		dd 0.4999999
 
 __SECT__
 
-; extern "C" size_t __cdecl ia32_asm_control87(size_t new_cw, size_t mask);
+; extern "C" u32 __cdecl ia32_asm_control87(u32 new_cw, u32 mask);
 global sym(ia32_asm_control87)
 sym(ia32_asm_control87):
 	push	eax

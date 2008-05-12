@@ -186,7 +186,7 @@ class TestMultithread : public CxxTest::TestSuite
 			break;
 
 			case TA_SLEEP:
-				usleep(sleep_duration_ms*1000);
+				usleep(useconds_t(sleep_duration_ms*1000));
 				break;
 
 			default:

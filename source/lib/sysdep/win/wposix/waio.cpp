@@ -405,7 +405,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 	const BOOL waitAll = FALSE;
 	// convert timespec to milliseconds (ts == 0 => no timeout)
 	const DWORD timeout = ts? (DWORD)(ts->tv_sec*1000 + ts->tv_nsec/1000000) : INFINITE;
-	DWORD result = WaitForMultipleObjects(numPendingIos, hEvents, waitAll, timeout);
+	DWORD result = WaitForMultipleObjects((DWORD)numPendingIos, hEvents, waitAll, timeout);
 
 	for(size_t i = 0; i < numPendingIos; i++)
 		ResetEvent(hEvents[i]);

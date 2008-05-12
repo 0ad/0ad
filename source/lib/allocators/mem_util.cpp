@@ -13,23 +13,17 @@
 
 #include "lib/bits.h"				// round_up
 #include "lib/posix/posix_mman.h"
-#include "lib/sysdep/cpu.h"			// cpu_PageSize
+#include "lib/sysdep/os_cpu.h"			// os_cpu_PageSize
 
-
-size_t mem_PageSize()
-{
-	static const size_t page_size = cpu_PageSize();
-	return page_size;
-}
 
 bool mem_IsPageMultiple(uintptr_t x)
 {
-	return (x & (mem_PageSize()-1)) == 0;
+	return (x & (os_cpu_PageSize()-1)) == 0;
 }
 
 size_t mem_RoundUpToPage(size_t size)
 {
-	return round_up(size, mem_PageSize());
+	return round_up(size, os_cpu_PageSize());
 }
 
 size_t mem_RoundUpToAlignment(size_t size)

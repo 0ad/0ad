@@ -36,7 +36,7 @@ public:
 			if(x == 1) ones++;
 			if(x == 2) twos++;
 		}
-		TS_ASSERT_EQUALS(ones+twos, 100);
+		TS_ASSERT_EQUALS(ones+twos, size_t(100));
 		TS_ASSERT(ones > 10 && twos > 10);
 	}
 };

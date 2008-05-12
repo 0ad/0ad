@@ -11,14 +11,6 @@
 #ifndef INCLUDED_MEM_UTIL
 #define INCLUDED_MEM_UTIL
 
-
-/**
- * @return page size
- *
- * (this routine caches the result of cpu_PageSize and ensures the value
- * is available before static initializers have run.)
- **/
-extern size_t mem_PageSize();
 extern bool mem_IsPageMultiple(uintptr_t x);
 
 extern size_t mem_RoundUpToPage(size_t size);

@@ -9,20 +9,62 @@
 // license: GPL; see lib/license.txt
 
 #include "precompiled.h"
-#include "../cpu.h"
+#include "lib/sysdep/os_cpu.h"
 
 #include "win.h"
 #include "lib/bits.h"
+#include "lib/module_init.h"
+
+#ifdef _OPENMP
+# include <omp.h>
+#endif
 
 
-static LibError ReadFrequencyFromRegistry(DWORD* freqMhz)
+uintptr_t os_cpu_ProcessorMask()
+{
+	static uintptr_t processorMask;
+
+	if(!processorMask)
+	{
+		const HANDLE hProcess = GetCurrentProcess();
+		DWORD_PTR processAffinity, systemAffinity;
+		const BOOL ok = GetProcessAffinityMask(hProcess, &processAffinity, &systemAffinity);
+		debug_assert(ok);
+		processorMask = processAffinity;
+	}
+
+	return processorMask;
+}
+
+
+size_t os_cpu_NumProcessors()
+{
+	static size_t numProcessors;
+
+	if(!numProcessors)
+	{
+		numProcessors = PopulationCount(os_cpu_ProcessorMask());
+
+		// sanity check
+		SYSTEM_INFO si;
+		GetSystemInfo(&si);	// guaranteed to succeed
+		debug_assert(numProcessors <= (size_t)si.dwNumberOfProcessors);
+	}
+
+	return numProcessors;
+}
+
+
+//-----------------------------------------------------------------------------
+
+static LibError ReadFrequencyFromRegistry(DWORD& freqMhz)
 {
 	HKEY hKey;
 	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS)
 		return ERR::NO_SYS;
 
-	DWORD size = sizeof(*freqMhz);
-	LONG ret = RegQueryValueEx(hKey, "~MHz", 0, 0, (LPBYTE)freqMhz, &size);
+	DWORD size = sizeof(&freqMhz);
+	LONG ret = RegQueryValueEx(hKey, "~MHz", 0, 0, (LPBYTE)&freqMhz, &size);
 
 	RegCloseKey(hKey);
 
@@ -32,95 +74,232 @@ static LibError ReadFrequencyFromRegistry(DWORD* freqMhz)
 	return INFO::OK;
 }
 
-double cpu_ClockFrequency()
+double os_cpu_ClockFrequency()
 {
-	DWORD freqMhz;
-	if(ReadFrequencyFromRegistry(&freqMhz) < 0)
-		return -1.0;
+	static double clockFrequency;
 
-	const double clockFrequency = freqMhz * 1e6;
+	if(clockFrequency == 0.0)
+	{
+		DWORD freqMhz;
+		if(ReadFrequencyFromRegistry(freqMhz) == INFO::OK)
+			clockFrequency = freqMhz * 1e6;
+		else
+			clockFrequency = -1.0;
+	}
+
 	return clockFrequency;
 }
 
 
-size_t cpu_NumProcessors()
+size_t os_cpu_PageSize()
 {
-	SYSTEM_INFO si;
-	GetSystemInfo(&si);	// can't fail
-	const size_t numProcessors = (size_t)si.dwNumberOfProcessors;
-	return numProcessors;
+	static size_t systemPageSize;
+
+	if(!systemPageSize)
+	{
+		SYSTEM_INFO si;
+		GetSystemInfo(&si);	// guaranteed to succeed
+		systemPageSize = (size_t)si.dwPageSize;
+	}
+
+	return systemPageSize;
 }
 
 
-size_t cpu_PageSize()
+size_t os_cpu_LargePageSize()
 {
-	SYSTEM_INFO si;
-	GetSystemInfo(&si);	// can't fail
-	const size_t pageSize = (size_t)si.dwPageSize;
-	return pageSize;
+	static size_t largePageSize = ~(size_t)0;	// "0" has special significance
+
+	if(largePageSize == ~(size_t)0)
+	{
+		typedef SIZE_T (WINAPI *PGetLargePageMinimum)(void);
+		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+		const PGetLargePageMinimum pGetLargePageMinimum = (PGetLargePageMinimum)GetProcAddress(hKernel32, "GetLargePageMinimum");
+		if(pGetLargePageMinimum)
+		{
+			largePageSize = pGetLargePageMinimum();
+			debug_assert(largePageSize != 0);	// IA-32 and AMD64 definitely support large pages
+			debug_assert(largePageSize > os_cpu_PageSize());
+		}
+		// no OS support for large pages
+		else
+			largePageSize = 0;
+	}
+
+	return largePageSize;
 }
 
 
-size_t cpu_MemorySize(CpuMemoryIndicators mem_type)
+static void GetMemoryStatus(MEMORYSTATUSEX& mse)
 {
 	// note: we no longer bother dynamically importing GlobalMemoryStatusEx -
 	// it's available on Win2k and above. this function safely handles
 	// systems with > 4 GB of memory.
-	MEMORYSTATUSEX mse = { sizeof(mse) };
-	BOOL ok = GlobalMemoryStatusEx(&mse);
+	mse.dwLength = sizeof(mse);
+	const BOOL ok = GlobalMemoryStatusEx(&mse);
 	WARN_IF_FALSE(ok);
+}
 
-	if(mem_type == CPU_MEM_TOTAL)
+size_t os_cpu_MemorySize()
+{
+	static size_t memorySize;
+
+	if(memorySize == 0)
 	{
-		size_t memoryTotal = (size_t)mse.ullTotalPhys;
+		MEMORYSTATUSEX mse;
+		GetMemoryStatus(mse);
+		memorySize = (size_t)mse.ullTotalPhys;
 
 		// Richter, "Programming Applications for Windows": the reported
 		// value doesn't include non-paged pool reserved during boot;
 		// it's not considered available to the kernel. (the amount is
 		// 528 KiB on a 512 MiB WinXP/Win2k machine). we'll round up
 		// to the nearest megabyte to fix this.
-		memoryTotal = round_up(memoryTotal, 1*MiB);
-		return memoryTotal;
+		memorySize = round_up(memorySize, 1*MiB);
 	}
+
+	return memorySize;
+}
+
+size_t os_cpu_MemoryAvailable()
+{
+	MEMORYSTATUSEX mse;
+	GetMemoryStatus(mse);
+	const size_t memoryAvailable = (size_t)mse.ullAvailPhys;
+	return memoryAvailable;
+}
+
+
+//-----------------------------------------------------------------------------
+
+/**
+ * maximum number of processors supported by the OS (determined by the
+ * number of bits in an affinity mask)
+ **/
+static const DWORD maxProcessorNumber = sizeof(DWORD_PTR)*CHAR_BIT-1;
+
+DWORD_PTR wcpu_AffinityFromProcessorMask(DWORD_PTR processAffinity, uintptr_t processorMask)
+{
+	DWORD_PTR affinity = 0;
+
+	size_t processor = (size_t)-1;
+	for(DWORD processorNumber = 0; processorNumber <= maxProcessorNumber; processorNumber++)
+	{
+		if(IsBitSet(processAffinity, processorNumber))
+		{
+			++processor;	// now corresponds to processorNumber
+
+			if(IsBitSet(processorMask, processor))
+				affinity |= DWORD_PTR(1) << processorNumber;
+		}
+	}
+
+	return affinity;
+}
+
+uintptr_t wcpu_ProcessorMaskFromAffinity(DWORD_PTR processAffinity, DWORD_PTR affinity)
+{
+	uintptr_t processorMask = 0;
+
+	size_t processor = (size_t)-1;
+	for(DWORD processorNumber = 0; processorNumber <= maxProcessorNumber; processorNumber++)
+	{
+		if(IsBitSet(processAffinity, processorNumber))
+		{
+			++processor;	// now corresponds to processorNumber
+
+			if(IsBitSet(affinity, processorNumber))
+				processorMask |= uintptr_t(1) << processor;
+		}
+	}
+
+	return processorMask;
+}
+
+
+static const DWORD invalidProcessorNumber = (DWORD)-1;
+
+static DWORD CurrentProcessorNumber()
+{
+	typedef DWORD (WINAPI *PGetCurrentProcessorNumber)(void);
+	static PGetCurrentProcessorNumber pGetCurrentProcessorNumber;
+
+	static bool initialized;
+	if(!initialized)
+	{
+		initialized = true;
+		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+		// note: NtGetCurrentProcessorNumber and RtlGetCurrentProcessorNumber aren't
+		// implemented on WinXP SP2, so we can't use those either.
+		pGetCurrentProcessorNumber = (PGetCurrentProcessorNumber)GetProcAddress(hKernel32, "GetCurrentProcessorNumber");
+	}
+
+	if(pGetCurrentProcessorNumber)
+		return pGetCurrentProcessorNumber();
 	else
 	{
-		const size_t memoryAvailable = (size_t)mse.ullAvailPhys;
-		return memoryAvailable;
+		// note: we won't bother mapping APIC IDs to processor numbers or
+		// using LSL to re-implement GetCurrentProcessorNumber because
+		// this routine is just a debug aid.
+		return invalidProcessorNumber;
 	}
 }
 
 
-LibError cpu_CallByEachCPU(CpuCallback cb, void* param)
+uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 {
-	const HANDLE hProcess = GetCurrentProcess();
-	DWORD_PTR process_affinity, system_affinity;
-	if(!GetProcessAffinityMask(hProcess, &process_affinity, &system_affinity))
-		WARN_RETURN(ERR::FAIL);
-	// our affinity != system affinity: OS is limiting the CPUs that
-	// this process can run on. fail (cannot call back for each CPU).
-	if(process_affinity != system_affinity)
-		WARN_RETURN(ERR::CPU_RESTRICTED_AFFINITY);
+	debug_assert((processorMask >> os_cpu_NumProcessors()) == 0);
 
-	for(DWORD_PTR cpu_bit = 1; cpu_bit != 0 && cpu_bit <= process_affinity; cpu_bit *= 2)
+	DWORD_PTR processAffinity, systemAffinity;
+	const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
+	debug_assert(ok);
+
+	const DWORD_PTR affinity = wcpu_AffinityFromProcessorMask(processAffinity, processorMask);
+	const DWORD_PTR previousAffinity = SetThreadAffinityMask(GetCurrentThread(), affinity);
+	debug_assert(previousAffinity != 0);	// ensure function didn't fail
+
+	// hopefully reschedule our thread
+	Sleep(0);
+
+	// verify we're running on the correct processor
+	const DWORD currentProcessorNumber = CurrentProcessorNumber();
+	if(currentProcessorNumber != invalidProcessorNumber)
+		debug_assert(IsBitSet(affinity, currentProcessorNumber));
+
+	const uintptr_t previousProcessorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, previousAffinity);
+	return previousProcessorMask;
+}
+
+
+void os_cpu_SetThreadAffinity(size_t processor)
+{
+	debug_assert(processor < os_cpu_NumProcessors());
+
+	const uintptr_t processorMask = uintptr_t(1) << processor;
+	(void)os_cpu_SetThreadAffinityMask(processorMask);
+}
+
+
+LibError os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
+{
+	// ensure we are able to run on all system processors
+	DWORD_PTR processAffinity, systemAffinity;
 	{
-		// check if we can switch to target CPU
-		if(!(process_affinity & cpu_bit))
-			continue;
-		// .. and do so.
-		if(!SetThreadAffinityMask(GetCurrentThread(), cpu_bit))
-		{
-			WARN_ERR(ERR::CPU_RESTRICTED_AFFINITY);
-			continue;
-		}
-
-		// reschedule to make sure we switch CPUs.
-		Sleep(1);
-
-		cb(param);
+		const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
+		debug_assert(ok);
+		if(processAffinity != systemAffinity)
+			WARN_RETURN(ERR::OS_CPU_RESTRICTED_AFFINITY);
 	}
 
-	// restore to original value
-	SetThreadAffinityMask(hProcess, process_affinity);
+	const uintptr_t previousAffinity = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
+
+	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
+	{
+		os_cpu_SetThreadAffinity(processor);
+		cb(processor, cbData);
+	}
+
+	(void)os_cpu_SetThreadAffinityMask(previousAffinity);
 
 	return INFO::OK;
 }

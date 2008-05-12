@@ -15,14 +15,9 @@
 #include "lib/sysdep/win/win.h"
 #include "lib/bits.h"
 
-#if MSC_VERSION
-# include <intrin.h>
-# if !ICC_VERSION
-#  pragma intrinsic(__rdtsc)
-# endif
-#endif
-#if ARCH_IA32
-# include "lib/sysdep/ia32/ia32.h"	// ia32_rdtsc
+#if ARCH_IA32 || ARCH_AMD64
+# include "lib/sysdep/x86_x64/x86_x64.h"	// x86_x64_rdtsc
+# include "lib/sysdep/x86_x64/topology.h"
 #endif
 
 
@@ -38,18 +33,18 @@ enum AmdPowerNowFlags
 
 static bool IsThrottlingPossible()
 {
-#if ARCH_IA32
-	Ia32CpuidRegs regs;
-	switch(ia32_Vendor())
+#if ARCH_IA32 || ARCH_AMD64
+	x86_x64_CpuidRegs regs;
+	switch(x86_x64_Vendor())
 	{
-	case IA32_VENDOR_INTEL:
-		if(ia32_cap(IA32_CAP_TM_SCC) || ia32_cap(IA32_CAP_EST))
+	case X86_X64_VENDOR_INTEL:
+		if(x86_x64_cap(X86_X64_CAP_TM_SCC) || x86_x64_cap(X86_X64_CAP_EST))
 			return true;
 		break;
 
-	case IA32_VENDOR_AMD:
+	case X86_X64_VENDOR_AMD:
 		regs.eax = 0x80000007;
-		if(ia32_cpuid(&regs))
+		if(x86_x64_cpuid(&regs))
 		{
 			if(regs.edx & (PN_FREQ_ID_CTRL|PN_SW_THERMAL_CTRL))
 				return true;
@@ -57,9 +52,6 @@ static bool IsThrottlingPossible()
 		break;
 	}
 	return false;
-#elif ARCH_AMD64
-	// not yet implemented - consider it unsafe.
-	return true;
 #endif
 }
 
@@ -68,8 +60,8 @@ static bool IsThrottlingPossible()
 
 LibError CounterTSC::Activate()
 {
-#if ARCH_IA32
-	if(!ia32_cap(IA32_CAP_TSC))
+#if ARCH_IA32 || ARCH_AMD64
+	if(!x86_x64_cap(X86_X64_CAP_TSC))
 		return ERR::NO_SYS;		// NOWARN (CPU doesn't support RDTSC)
 #endif
 
@@ -107,16 +99,16 @@ bool CounterTSC::IsSafe() const
 	if(cpu_NumPackages() != 1 || cpu_CoresPerPackage() != 1)
 		return false;
 
-#if ARCH_IA32
+#if ARCH_IA32 || ARCH_AMD64
 	// recent CPU:
-	if(ia32_Generation() >= 7)
+	if(x86_x64_Generation() >= 7)
 	{
 		// note: 8th generation CPUs support C1-clock ramping, which causes
 		// drift on multi-core systems, but those were excluded above.
 
-		Ia32CpuidRegs regs;
+		x86_x64_CpuidRegs regs;
 		regs.eax = 0x80000007;
-		if(ia32_cpuid(&regs))
+		if(x86_x64_cpuid(&regs))
 		{
 			// TSC is invariant WRT P-state, C-state and STPCLK => safe.
 			if(regs.edx & PN_INVARIANT_TSC)
@@ -148,11 +140,7 @@ bool CounterTSC::IsSafe() const
 
 u64 CounterTSC::Counter() const
 {
-#if MSC_VERSION
-	return __rdtsc();
-#else
-	return ia32_rdtsc();
-#endif
+	return x86_x64_rdtsc();
 }
 
 /**

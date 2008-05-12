@@ -8,7 +8,8 @@
 #include "lib/allocators/shared_ptr.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/snd.h"
-#include "lib/sysdep/cpu.h"
+#include "lib/sysdep/os_cpu.h"
+#include "lib/sysdep/x86_x64/topology.h"
 #include "lib/tex/tex.h"
 #include "lib/file/io/io_align.h"	// BLOCK_SIZE
 
@@ -87,7 +88,7 @@ void WriteSystemInfo()
 		fprintf(f, "\n");
 
 	// memory
-	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", cpu_MemorySize(CPU_MEM_TOTAL)/MiB, cpu_MemorySize(CPU_MEM_AVAILABLE)/MiB);
+	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", os_cpu_MemorySize()/MiB, os_cpu_MemoryAvailable()/MiB);
 
 	// graphics
 	fprintf(f, "Graphics Card  : %s\n", gfx_card);

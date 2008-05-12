@@ -25,6 +25,13 @@
  **/
 #define BIT64(n) (1ull << (n))
 
+template<typename T>
+bool IsBitSet(T value, size_t index)
+{
+	const T bit = T(1) << index;
+	return (value & bit) != 0;
+}
+
 
 // these are declared in the header and inlined to aid compiler optimizations
 // (they can easily end up being time-critical).
