@@ -8,13 +8,22 @@
   </group>
 
   <group>
-    <variant frequency="3" name="plume">
+    <variant frequency="1" name="helmet-feathers-temple">
+      <mesh>props/helmet/rome_helmet_d.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-feathers-top">
+      <mesh>props/helmet/rome_helmet_e.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="helmet-feathers-all">
+      <mesh>props/helmet/rome_helmet_f.pmd</mesh>
+    </variant>
+    <variant frequency="2" name="helmet-plume">
       <mesh>props/helmet/rome_helmet_g.pmd</mesh>
     </variant>
-    <variant frequency="2" name="plume_feathers_top">
+    <variant frequency="1" name="helmet-plume-feathers-top">
       <mesh>props/helmet/rome_helmet_h.pmd</mesh>
     </variant>
-    <variant frequency="1" name="plume_feathers_all">
+    <variant frequency="2" name="helmet-all">
       <mesh>props/helmet/rome_helmet_i.pmd</mesh>
     </variant>
   </group>
