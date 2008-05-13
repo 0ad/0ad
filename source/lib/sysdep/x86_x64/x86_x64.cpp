@@ -339,6 +339,65 @@ const char* cpu_IdentifierString()
 
 
 //-----------------------------------------------------------------------------
+// misc stateless functions
+
+u8 x86_x64_ApicId()
+{
+	x86_x64_CpuidRegs regs;
+	regs.eax = 1;
+	// note: CPUID function 1 should be available everywhere, but only
+	// processors with an xAPIC (8th generation or above, e.g. P4/Athlon XP)
+	// will return a nonzero value.
+	if(!x86_x64_cpuid(&regs))
+		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
+	const u8 apicId = (u8)bits(regs.ebx, 24, 31);
+	return apicId;
+}
+
+
+u64 x86_x64_rdtsc()
+{
+#if MSC_VERSION
+	return (u64)__rdtsc();
+#elif GCC_VERSION
+	// GCC supports "portable" assembly for both x86 and x64
+	volatile u32 lo, hi;
+	asm volatile ("rdtsc" : "=a" (lo), "=d" (hi));
+	return u64_from_u32(hi, lo);
+#endif
+}
+
+
+void x86_x64_DebugBreak()
+{
+#if MSC_VERSION
+	__debugbreak();
+#elif GCC_VERSION
+	// note: this probably isn't necessary, since unix_debug_break
+	// (SIGTRAP) is most probably available if GCC_VERSION.
+	// we include it for completeness, though.
+	__asm__ __volatile__ ("int $3");
+#endif
+}
+
+
+// enforce strong memory ordering.
+void cpu_MemoryFence()
+{
+	if(x86_x64_cap(X86_X64_CAP_SSE2))
+		_mm_mfence();
+}
+
+
+void cpu_Serialize()
+{
+	x86_x64_CpuidRegs regs;
+	regs.eax = 1;
+	x86_x64_cpuid(&regs);	// CPUID serializes execution.
+}
+
+
+//-----------------------------------------------------------------------------
 // CPU frequency
 
 // set scheduling priority and restore when going out of scope.
@@ -367,10 +426,8 @@ public:
 };
 
 // note: this function uses timer.cpp!timer_Time, which is implemented via
-// whrt.cpp on Windows, which again calls x86_x64_Init. be careful that
-// this function isn't called from there as well, else WHRT will be used
-// before its init completes.
-double cpu_ClockFrequency()
+// whrt.cpp on Windows.
+double x86_x64_ClockFrequency()
 {
 	// if the TSC isn't available, there's really no good way to count the
 	// actual CPU clocks per known time interval, so bail.
@@ -446,60 +503,4 @@ double cpu_ClockFrequency()
 
 	const double clock_frequency = sum / (hi-lo);
 	return clock_frequency;
-}
-
-
-//-----------------------------------------------------------------------------
-// misc stateless functions
-
-u8 x86_x64_ApicId()
-{
-	x86_x64_CpuidRegs regs;
-	regs.eax = 1;
-	if(!x86_x64_cpuid(&regs))
-		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
-	const u8 apicId = (u8)bits(regs.ebx, 24, 31);
-	return apicId;
-}
-
-
-u64 x86_x64_rdtsc()
-{
-#if MSC_VERSION
-	return (u64)__rdtsc();
-#elif GCC_VERSION
-	// GCC supports "portable" assembly for both x86 and x64
-	volatile u32 lo, hi;
-	asm volatile ("rdtsc" : "=a" (lo), "=d" (hi));
-	return u64_from_u32(hi, lo);
-#endif
-}
-
-
-void x86_x64_DebugBreak()
-{
-#if MSC_VERSION
-	__debugbreak();
-#elif GCC_VERSION
-	// note: this probably isn't necessary, since unix_debug_break
-	// (SIGTRAP) is most probably available if GCC_VERSION.
-	// we include it for completeness, though.
-	__asm__ __volatile__ ("int $3");
-#endif
-}
-
-
-// enforce strong memory ordering.
-void cpu_MemoryFence()
-{
-	if(x86_x64_cap(X86_X64_CAP_SSE2))
-		_mm_mfence();
-}
-
-
-void cpu_Serialize()
-{
-	x86_x64_CpuidRegs regs;
-	regs.eax = 1;
-	x86_x64_cpuid(&regs);	// CPUID serializes execution.
 }

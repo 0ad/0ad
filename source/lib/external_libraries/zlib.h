@@ -20,7 +20,7 @@
 # define WINAPIV __cdecl
 #endif
 
-#ifndef FOM_ZLIB
+#ifndef ZLIB_STATIC
 #define ZLIB_DLL
 #endif
 
@@ -28,18 +28,10 @@
 
 // automatically link against the required library
 #if MSC_VERSION
-# ifdef FOM_ZLIB
-#  ifdef NDEBUG
-#   pragma comment(lib, "fom_zlib.lib")
-#  else
-#   pragma comment(lib, "fom_zlib_d.lib")
-#  endif
+# ifdef NDEBUG
+#  pragma comment(lib, "zlib1.lib")
 # else
-#  ifdef NDEBUG
-#   pragma comment(lib, "zlib1.lib")
-#  else
-#   pragma comment(lib, "zlib1d.lib")
-#  endif
+#  pragma comment(lib, "zlib1d.lib")
 # endif
 #endif
 

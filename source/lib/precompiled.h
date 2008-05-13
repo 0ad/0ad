@@ -56,19 +56,18 @@
 #include "lib/code_annotation.h"
 
 // Boost
+// .. if this package isn't going to be statically linked, we're better off
+// using Boost via DLL. (otherwise, we would have to ensure the exact same
+// compiler is used, which is a pain because MSC8, MSC9 and ICC 10 are in use)
+#ifndef LIB_STATIC_LINK
+# define BOOST_ALL_DYN_LINK 
+#endif
 #include <boost/utility.hpp>	// noncopyable
 #include <boost/shared_array.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
-#if MSC_VERSION
-# pragma warning(push, 3)	// filesystem isn't W4-clean
-#endif
-#include <boost/filesystem.hpp>
-#if MSC_VERSION
-# pragma warning(pop)
-#endif
 using boost::shared_ptr;	// has been added to TR1
-namespace fs = boost::filesystem;
+#include "lib/external_libraries/boost_filesystem.h"
 
 // (this must come after boost and common lib headers)
 #include "lib/posix/posix.h"

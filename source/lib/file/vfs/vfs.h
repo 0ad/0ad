@@ -100,6 +100,6 @@ struct IVFS
 };
 
 typedef shared_ptr<IVFS> PIVFS;
-LIB_API PIVFS CreateVfs();
+LIB_API PIVFS CreateVfs(size_t cacheSize);
 
 #endif	// #ifndef INCLUDED_VFS

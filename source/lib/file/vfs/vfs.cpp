@@ -25,8 +25,8 @@
 class VFS : public IVFS
 {
 public:
-	VFS()
-		: m_fileCache(ChooseCacheSize())
+	VFS(size_t cacheSize)
+		: m_cacheSize(cacheSize), m_fileCache(m_cacheSize)
 		, m_trace(CreateTrace(4*MiB))
 	{
 	}
@@ -106,7 +106,7 @@ public:
 			// safely handle zero-length files
 			if(!size)
 				fileContents = DummySharedPtr((u8*)0);
-			else if(size > ChooseCacheSize())
+			else if(size > m_cacheSize)
 			{
 				fileContents = io_Allocate(size);
 				RETURN_ERR(file->Load(fileContents));
@@ -152,19 +152,15 @@ public:
 	}
 
 private:
-	static size_t ChooseCacheSize()
-	{
-		return 96*MiB;
-	}
-
-	mutable VfsDirectory m_rootDirectory;
+	size_t m_cacheSize;
 	FileCache m_fileCache;
 	PITrace m_trace;
+	mutable VfsDirectory m_rootDirectory;
 };
 
 //-----------------------------------------------------------------------------
 
-PIVFS CreateVfs()
+PIVFS CreateVfs(size_t cacheSize)
 {
-	return PIVFS(new VFS);
+	return PIVFS(new VFS(cacheSize));
 }

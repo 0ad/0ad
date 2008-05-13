@@ -100,13 +100,12 @@ LIB_API bool x86_x64_cap(x86_x64_Cap cap);
 // stateless
 
 /**
- * @return APIC ID of the currently executing processor.
+ * @return APIC ID of the currently executing processor or zero if the
+ * platform does not have an xAPIC (i.e. 7th generation x86 or below).
  *
- * the implementation uses CPUID.1 and only works on >= 8th generation CPUs;
- * (P4/Athlon XP); otherwise it returns 0. the alternative of accessing the
- * APIC mmio registers is not feasible - mahaf_MapPhysicalMemory only works
- * reliably on WinXP. also, the OS already has the APIC registers mapped and
- * in constant use, and we don't want to interfere.
+ * rationale: the alternative of accessing the APIC mmio registers is not
+ * feasible - mahaf_MapPhysicalMemory only works reliably on WinXP. we also
+ * don't want to intefere with the OS's constant use of the APIC registers.
  **/
 LIB_API u8 x86_x64_ApicId();
 
@@ -121,5 +120,13 @@ LIB_API u64 x86_x64_rdtsc();
  * trigger a breakpoint inside this function when it is called.
  **/
 LIB_API void x86_x64_DebugBreak(void);
+
+/**
+ * measure the CPU clock frequency via x86_x64_rdtsc and timer_Time.
+ * (it follows that this must not be called from WHRT init.)
+ * this takes several milliseconds (i.e. much longer than
+ * os_cpu_ClockFrequency) but delivers accurate measurements.
+ **/
+LIB_API double x86_x64_ClockFrequency();
 
 #endif	// #ifndef INCLUDED_X86_X64

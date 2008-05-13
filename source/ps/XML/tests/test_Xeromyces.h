@@ -10,7 +10,7 @@ public:
 	void test_paths()
 	{
 		TS_ASSERT_OK(path_SetRoot(0, "../data"));
-		PIVFS vfs = CreateVfs();
+		PIVFS vfs = CreateVfs(20*MiB);
 
 		TS_ASSERT_OK(vfs->Mount("", "mods/_test.xero"));
 

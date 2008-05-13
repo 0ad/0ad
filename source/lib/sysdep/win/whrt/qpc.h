@@ -41,7 +41,7 @@ public:
 
 	/**
 	 * initial measurement of the tick rate. not necessarily correct
-	 * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
+	 * (e.g. when using TSC: os_cpu_ClockFrequency isn't exact).
 	 **/
 	virtual double NominalFrequency() const;
 

@@ -35,6 +35,8 @@ enum WinLockId
 {
 	WAIO_CS,
 	WDBG_SYM_CS,	// protects (non-reentrant) dbghelp.dll
+	WHRT_CS,
+	WNUMA_CS,
 
 	NUM_CS
 };

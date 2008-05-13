@@ -7,107 +7,113 @@
 #include "win.h"
 #include "wutil.h"
 #include "wcpu.h"
+#include "winit.h"
 #include <Psapi.h>
 
-#ifdef _OPENMP
-# include <omp.h>
-#endif
+
+WINIT_REGISTER_EARLY_INIT(wnuma_Init);
 
 
 //-----------------------------------------------------------------------------
 // node topology
 //-----------------------------------------------------------------------------
 
-size_t numa_NumNodes()
+static size_t NumNodes()
 {
-	static size_t numNodes;
-
-	if(!numNodes)
+	typedef BOOL (WINAPI *PGetNumaHighestNodeNumber)(PULONG highestNode);
+	const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+	const PGetNumaHighestNodeNumber pGetNumaHighestNodeNumber = (PGetNumaHighestNodeNumber)GetProcAddress(hKernel32, "GetNumaHighestNodeNumber");
+	if(pGetNumaHighestNodeNumber)
 	{
-		typedef BOOL (WINAPI *PGetNumaHighestNodeNumber)(PULONG highestNode);
-		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
-		const PGetNumaHighestNodeNumber pGetNumaHighestNodeNumber = (PGetNumaHighestNodeNumber)GetProcAddress(hKernel32, "GetNumaHighestNodeNumber");
-		if(pGetNumaHighestNodeNumber)
-		{
-			ULONG highestNode;
-			const BOOL ok = pGetNumaHighestNodeNumber(&highestNode);
-			debug_assert(ok);
-			debug_assert(highestNode < os_cpu_NumProcessors());	// #nodes <= #processors
-			numNodes = highestNode+1;
-		}
-		// NUMA not supported
-		else
-			numNodes = 1;
+		ULONG highestNode;
+		const BOOL ok = pGetNumaHighestNodeNumber(&highestNode);
+		debug_assert(ok);
+		debug_assert(highestNode < os_cpu_NumProcessors());	// #nodes <= #processors
+		return highestNode+1;
 	}
-
-	return numNodes;
+	// NUMA not supported
+	else
+		return 1;
 }
 
 
-// note: it is easier to implement this in terms of numa_ProcessorMaskFromNode
+static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask)
+{
+	typedef BOOL (WINAPI *PGetNumaNodeProcessorMask)(UCHAR node, PULONGLONG affinity);
+	const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+	const PGetNumaNodeProcessorMask pGetNumaNodeProcessorMask = (PGetNumaNodeProcessorMask)GetProcAddress(hKernel32, "GetNumaNodeProcessorMask");
+	if(pGetNumaNodeProcessorMask)
+	{
+		DWORD_PTR processAffinity, systemAffinity;
+		const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
+		debug_assert(ok);
+
+		for(size_t node = 0; node < numa_NumNodes(); node++)
+		{
+			ULONGLONG affinity;
+			const BOOL ok = pGetNumaNodeProcessorMask((UCHAR)node, &affinity);
+			debug_assert(ok);
+			const uintptr_t processorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, (DWORD_PTR)affinity);
+			nodesProcessorMask[node] = processorMask;
+		}
+	}
+	// NUMA not supported - consider node 0 to consist of all system processors
+	else
+		nodesProcessorMask[0] = os_cpu_ProcessorMask();
+}
+
+
+// note: it is easier to implement this in terms of nodesProcessorMask
 // rather than the other way around because wcpu provides the
 // wcpu_ProcessorMaskFromAffinity helper. there is no similar function to
 // convert processor to processorNumber.
-size_t numa_NodeFromProcessor(size_t processor)
+static void FillProcessorsNode(size_t numNodes, const uintptr_t* nodesProcessorMask, size_t* processorsNode)
 {
-	debug_assert(processor < os_cpu_NumProcessors());
-
-	static std::vector<size_t> processorsNode;
-#ifdef _OPENMP
-#pragma omp critical
-#endif
-	if(processorsNode.empty())
+	for(size_t node = 0; node < numNodes; node++)
 	{
-		processorsNode.resize(os_cpu_NumProcessors(), 0);
-		for(size_t node = 0; node < numa_NumNodes(); node++)
+		const uintptr_t processorMask = nodesProcessorMask[node];
+		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 		{
-			const uintptr_t processorMask = numa_ProcessorMaskFromNode(node);
-			for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
-			{
-				if(IsBitSet(processorMask, processor))
-					processorsNode[processor] = node;
-			}
+			if(IsBitSet(processorMask, processor))
+				processorsNode[processor] = node;
 		}
 	}
-
-	return processorsNode.at(processor);
 }
 
 
+//-----------------------------------------------------------------------------
+// node topology interface
+
+struct NodeTopology	// POD
+{
+	size_t numNodes;
+	size_t processorsNode[os_cpu_MaxProcessors];
+	uintptr_t nodesProcessorMask[os_cpu_MaxProcessors];
+};
+static NodeTopology s_nodeTopology;
+
+static void DetectNodeTopology()
+{
+	s_nodeTopology.numNodes = NumNodes();
+	FillNodesProcessorMask(s_nodeTopology.nodesProcessorMask);
+	FillProcessorsNode(s_nodeTopology.numNodes, s_nodeTopology.nodesProcessorMask, s_nodeTopology.processorsNode);
+}
+
+size_t numa_NumNodes()
+{
+	return s_nodeTopology.numNodes;
+}
+
+size_t numa_NodeFromProcessor(size_t processor)
+{
+	debug_assert(processor < os_cpu_NumProcessors());
+	return s_nodeTopology.processorsNode[processor];
+}
+
 uintptr_t numa_ProcessorMaskFromNode(size_t node)
 {
-	debug_assert(node < numa_NumNodes());
-
-	static std::vector<uintptr_t> nodesProcessorMask;
-#ifdef _OPENMP
-#pragma omp critical
-#endif
-	if(nodesProcessorMask.empty())
-	{
-		typedef BOOL (WINAPI *PGetNumaNodeProcessorMask)(UCHAR node, PULONGLONG affinity);
-		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
-		const PGetNumaNodeProcessorMask pGetNumaNodeProcessorMask = (PGetNumaNodeProcessorMask)GetProcAddress(hKernel32, "GetNumaNodeProcessorMask");
-		if(pGetNumaNodeProcessorMask)
-		{
-			DWORD_PTR processAffinity, systemAffinity;
-			const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
-			debug_assert(ok);
-
-			for(size_t node = 0; node < numa_NumNodes(); node++)
-			{
-				ULONGLONG affinity;
-				const BOOL ok = pGetNumaNodeProcessorMask((UCHAR)node, &affinity);
-				debug_assert(ok);
-				const uintptr_t processorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, (DWORD_PTR)affinity);
-				nodesProcessorMask.push_back(processorMask);
-			}
-		}
-		// NUMA not supported - consider node 0 to consist of all system processors
-		else
-			nodesProcessorMask.push_back(os_cpu_ProcessorMask());
-	}
-
-	return nodesProcessorMask.at(node);
+	debug_assert(node < s_nodeTopology.numNodes);
+	return s_nodeTopology.nodesProcessorMask[node];
 }
 
 
@@ -145,16 +151,10 @@ size_t numa_AvailableMemory(size_t node)
 
 double numa_Factor()
 {
+	WinScopedLock lock(WNUMA_CS);
 	static double factor;
-
-	static bool initialized;
-#ifdef _OPENMP
-#pragma omp critical
-#endif
-	if(!initialized)
+	if(factor == 0.0)
 	{
-		initialized = true;
-
 		// if non-NUMA, skip the (expensive) measurements below.
 		if(numa_NumNodes() == 1)
 			factor = 1.0;
@@ -356,4 +356,13 @@ void* numa_AllocateOnNode(size_t size, size_t node, LargePageDisposition largePa
 void numa_Deallocate(void* mem)
 {
 	VirtualFree(mem, 0, MEM_RELEASE);
+}
+
+
+//-----------------------------------------------------------------------------
+
+static LibError wnuma_Init()
+{
+	DetectNodeTopology();
+	return INFO::OK;
 }

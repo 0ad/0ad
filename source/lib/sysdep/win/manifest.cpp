@@ -11,7 +11,7 @@ to add the necessary parts to that generated manifest.
 ICC 10.1 IPO considers this string to be an input file, hence this
 is currently disabled there.
 */
-#if MSC_VERSION >= 1400 && !ICC_VERSION
+#if MSC_VERSION >= 1400 && !ICC_VERSION && defined(LIB_STATIC_LINK)
 # if ARCH_IA32
 #  pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df'\"")
 # elif ARCH_AMD64

@@ -211,7 +211,7 @@ struct ContainerBase : public Container
 
 struct Any_deque : public ContainerBase<std::deque<int> >
 {
-#if STL_DINKUMWARE
+#if STL_DINKUMWARE == 405
 
 	bool IsValid(size_t el_size) const
 	{
@@ -277,7 +277,7 @@ struct Any_list : public ContainerBase<std::list<int> >
 };
 
 
-#if STL_DINKUMWARE
+#if STL_DINKUMWARE == 405
 
 template<class _Traits>
 struct Any_tree : public std::_Tree<_Traits>
@@ -385,7 +385,7 @@ struct Any_vector: public ContainerBase<std::vector<int> >
 		return true;
 	}
 
-#if STL_DINKUMWARE
+#if STL_DINKUMWARE == 405
 
 	size_t NumElements(size_t el_size) const
 	{
@@ -416,7 +416,7 @@ struct Any_vector: public ContainerBase<std::vector<int> >
 };
 
 
-#if STL_DINKUMWARE
+#if STL_DINKUMWARE == 405
 
 struct Any_basic_string : public ContainerBase<std::string>
 {
@@ -461,7 +461,7 @@ struct Any_stack : public Any_deque
 
 struct Any_hash_map: public ContainerBase<STL_HASH_MAP<int,int> >
 {
-#if STL_DINKUMWARE
+#if STL_DINKUMWARE == 405
 
 	bool IsValid(size_t el_size) const
 	{
@@ -482,7 +482,7 @@ struct Any_hash_multimap : public Any_hash_map
 
 struct Any_hash_set: public ContainerBase<STL_HASH_SET<int> >
 {
-#if STL_DINKUMWARE
+#if STL_DINKUMWARE == 405
 
 	bool IsValid(size_t el_size) const
 	{
@@ -610,7 +610,7 @@ LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t
 	STD_CONTAINER(deque)
 	STD_CONTAINER(list)
 	STD_CONTAINER(vector)
-#if STL_DINKUMWARE
+#if STL_DINKUMWARE == 405
 	STD_CONTAINER(map)
 	STD_CONTAINER(multimap)
 	STD_CONTAINER(set)

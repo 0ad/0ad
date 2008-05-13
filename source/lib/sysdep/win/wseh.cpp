@@ -330,7 +330,7 @@ C++ classes. this way is more reliable/documented, but has several drawbacks:
 
 */
 
-#ifndef LIB_DLL
+#ifdef LIB_STATIC_LINK
 
 EXTERN_C int mainCRTStartup();
 

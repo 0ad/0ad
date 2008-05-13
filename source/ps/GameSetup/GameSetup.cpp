@@ -577,7 +577,7 @@ static void InitVfs(const CmdLineArgs& args)
 	// the VFS prevents any accesses to files above this directory.
 	path_SetRoot(args.GetArg0(), "../data");
 
-	g_VFS = CreateVfs();
+	g_VFS = CreateVfs(96*MiB);
 
 	g_VFS->Mount("screenshots/", "screenshots");
 	g_VFS->Mount("config/", "config");

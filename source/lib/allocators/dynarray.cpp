@@ -25,14 +25,15 @@ static LibError validate_da(DynArray* da)
 {
 	if(!da)
 		WARN_RETURN(ERR::INVALID_PARAM);
-	u8* const base           = da->base;
+//	u8* const base           = da->base;
 	const size_t max_size_pa = da->max_size_pa;
 	const size_t cur_size    = da->cur_size;
 	const size_t pos         = da->pos;
 	const int prot           = da->prot;
 
-	if(debug_is_pointer_bogus(base))
-		WARN_RETURN(ERR::_1);
+	// note: this happens if max_size == 0
+//	if(debug_is_pointer_bogus(base))
+//		WARN_RETURN(ERR::_1);
 	// note: don't check if base is page-aligned -
 	// might not be true for 'wrapped' mem regions.
 //	if(!mem_IsPageMultiple((uintptr_t)base))
@@ -56,8 +57,9 @@ LibError da_alloc(DynArray* da, size_t max_size)
 {
 	const size_t max_size_pa = mem_RoundUpToPage(max_size);
 
-	u8* p;
-	RETURN_ERR(mem_Reserve(max_size_pa, &p));
+	u8* p = 0;
+	if(max_size_pa)	// (avoid mmap failure)
+		RETURN_ERR(mem_Reserve(max_size_pa, &p));
 
 	da->base        = p;
 	da->max_size_pa = max_size_pa;
@@ -85,7 +87,7 @@ LibError da_free(DynArray* da)
 	// skip mem_Release if <da> was allocated via da_wrap_fixed
 	// (i.e. it doesn't actually own any memory). don't complain;
 	// da_free is supposed to be called even in the above case.
-	if(!was_wrapped)
+	if(!was_wrapped && size_pa)
 		RETURN_ERR(mem_Release(p, size_pa));
 	return INFO::OK;
 }

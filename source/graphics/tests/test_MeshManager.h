@@ -45,7 +45,7 @@ class TestMeshManager : public CxxTest::TestSuite
 		TS_ASSERT(fs::create_directory(MOD_PATH.external_directory_string()));
 		TS_ASSERT(fs::create_directory(CACHE_PATH.external_directory_string()));
 
-		g_VFS = CreateVfs();
+		g_VFS = CreateVfs(20*MiB);
 
 		TS_ASSERT_OK(g_VFS->Mount("", MOD_PATH));
 		TS_ASSERT_OK(g_VFS->Mount("collada/", "tests/collada"));

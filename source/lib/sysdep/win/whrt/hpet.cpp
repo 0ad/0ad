@@ -113,7 +113,7 @@ size_t CounterHPET::CounterBits() const
 
 /**
  * initial measurement of the tick rate. not necessarily correct
- * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
+ * (e.g. when using TSC: os_cpu_ClockFrequency isn't exact).
  **/
 double CounterHPET::NominalFrequency() const
 {

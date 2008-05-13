@@ -141,7 +141,7 @@ void CNetLogSink::DoSink( const CNetLogEvent& event )
 //-----------------------------------------------------------------------------
 void CNetLogSink::DoBulkSink( const CNetLogEvent* pEvents, size_t eventCount )
 {
-	unsigned*	pIndices	= NULL;
+	size_t*	pIndices	= NULL;
 	size_t	indexCount  = 0;
 	size_t	i;
 

@@ -413,7 +413,7 @@ WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 //-----------------------------------------------------------------------------
 // module handle
 
-#ifdef LIB_DLL
+#ifndef LIB_STATIC_LINK
 
 HMODULE wutil_LibModuleHandle;
 

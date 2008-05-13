@@ -38,7 +38,7 @@ static DWORD win32_prot(int prot)
 	NODEFAULT;
 	}
 
-	UNREACHABLE;
+	return 0;	// UNREACHABLE
 }
 
 
@@ -176,6 +176,13 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, 
 
 void* mmap(void* start, size_t len, int prot, int flags, int fd, off_t ofs)
 {
+	if(len == 0)	// POSIX says this must cause mmap to fail
+	{
+		debug_assert(0);
+		errno = EINVAL;
+		return MAP_FAILED;
+	}
+
 	void* p;
 	LibError err;
 	if(flags & MAP_ANONYMOUS)

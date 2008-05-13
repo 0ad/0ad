@@ -11,9 +11,10 @@
 #include "precompiled.h"
 #include "tsc.h"
 
-#include "lib/sysdep/cpu.h"
-#include "lib/sysdep/win/win.h"
 #include "lib/bits.h"
+#include "lib/sysdep/os_cpu.h"
+#include "lib/sysdep/win/win.h"
+#include "lib/sysdep/win/wutil.h"
 
 #if ARCH_IA32 || ARCH_AMD64
 # include "lib/sysdep/x86_x64/x86_x64.h"	// x86_x64_rdtsc
@@ -96,8 +97,12 @@ bool CounterTSC::IsSafe() const
 	// per-core counter state and the abovementioned race condition.
 	// however, we won't bother, since such platforms aren't yet widespread
 	// and would surely support the nice and safe HPET, anyway)
-	if(cpu_NumPackages() != 1 || cpu_CoresPerPackage() != 1)
-		return false;
+	{
+		WinScopedLock lock(WHRT_CS);
+		const CpuTopology* topology = cpu_topology_Detect();
+		if(cpu_topology_NumPackages(topology) != 1 || cpu_topology_CoresPerPackage(topology) != 1)
+			return false;
+	}
 
 #if ARCH_IA32 || ARCH_AMD64
 	// recent CPU:
@@ -154,9 +159,16 @@ size_t CounterTSC::CounterBits() const
 
 /**
  * initial measurement of the tick rate. not necessarily correct
- * (e.g. when using TSC: cpu_ClockFrequency isn't exact).
+ * (e.g. when using TSC: os_cpu_ClockFrequency isn't exact).
  **/
 double CounterTSC::NominalFrequency() const
 {
-	return cpu_ClockFrequency();
+	// WARNING: do not call x86_x64_ClockFrequency because it uses the
+	// HRT, which we're currently in the process of initializing.
+	// instead query CPU clock frequency via OS.
+	//
+	// note: even here, initial accuracy isn't critical because the
+	// clock is subject to thermal drift and would require continual
+	// recalibration anyway.
+	return os_cpu_ClockFrequency();
 }

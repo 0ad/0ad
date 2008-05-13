@@ -16,6 +16,7 @@
 #include "lib/sysdep/os_cpu.h"
 #include "x86_x64.h"
 
+
 //-----------------------------------------------------------------------------
 // detect *maximum* number of cores/packages/caches.
 // note: some of them may be disabled by the OS or BIOS.
@@ -143,20 +144,22 @@ static size_t LogicalPerCache()
 
 /**
  * @return an array of the processors' unique APIC IDs or zero if
- * no APIC is present or process affinity is limited.
+ * no xAPIC is present or process affinity is limited.
  **/
 static const u8* ApicIds()
 {
-	static u8 apicIdStorage[os_cpu_MaxProcessors];
-	static const u8* apicIds;
+	const u8* const uninitialized = (const u8*)1;
+	static const u8* apicIds = uninitialized;
 
-	static volatile uintptr_t initialized = 0;
-	if(cpu_CAS(&initialized, 0, 1))
+	if(apicIds == uninitialized)
 	{
-		// requires 'new' APIC (see x86_x64_ApicId for details)
+		apicIds = 0;	// return zero from now on unless the below succeeds
+
+		// requires xAPIC (see x86_x64_ApicId for details)
 		if(x86_x64_Generation() >= 8)
 		{
 			// store each processor's APIC ID in turn
+			static u8 apicIdStorage[os_cpu_MaxProcessors];
 			struct StoreApicId
 			{
 				static void Callback(size_t processor, uintptr_t UNUSED(cbData))
@@ -200,89 +203,109 @@ static size_t NumUniqueValuesInField(const u8* apicIds, size_t offset, size_t nu
 }
 
 
-size_t cpu_NumPackages()
+static size_t NumPackages(const u8* apicIds)
 {
-	static size_t numPackages = 0;
-
-	if(!numPackages)
+	if(apicIds)
 	{
-		const u8* apicIds = ApicIds();
-		if(apicIds)
-		{
-			const size_t offset = ceil_log2(CoresPerPackage()) + ceil_log2(LogicalPerCore());
-			const size_t numBits = 8;
-			numPackages = NumUniqueValuesInField(apicIds, offset, numBits);
-		}
-		else
-		{
-			// note: correct results cannot be guaranteed because unreported
-			// and disable logical units are indistinguishable. the below
-			// assumptions are reasonable because we care most about packages
-			// (i.e. whether the system is truly SMP). in contrast, it is
-			// safe to overestimate the number of cores because that
-			// only determines if memory barriers are needed or not.
-			// note: requiring modern processors featuring an APIC does not
-			// prevent this from being reached (the cause may be lack of
-			// OS support or restricted process affinity).
-
-			// assume cores are enabled and count as processors.
-			const size_t numPackagesTimesLogical = os_cpu_NumProcessors() / CoresPerPackage();
-			debug_assert(numPackagesTimesLogical != 0);
-			// assume hyperthreads are enabled; check if they count as processors.
-			if(numPackagesTimesLogical > LogicalPerCore())
-				numPackages = numPackagesTimesLogical / LogicalPerCore();
-		}
+		const size_t offset = ceil_log2(CoresPerPackage()) + ceil_log2(LogicalPerCore());
+		const size_t numBits = 8;
+		return NumUniqueValuesInField(apicIds, offset, numBits);
 	}
+	else
+	{
+		// note: correct results cannot be guaranteed because unreported
+		// and disable logical units are indistinguishable. the below
+		// assumptions are reasonable because we care most about packages
+		// (i.e. whether the system is truly SMP). in contrast, it is
+		// safe to overestimate the number of cores because that
+		// only determines if memory barriers are needed or not.
+		// note: requiring modern processors featuring an APIC does not
+		// prevent this from being reached (the cause may be lack of
+		// OS support or restricted process affinity).
 
-	return numPackages;
+		// assume cores are enabled and count as processors.
+		const size_t numPackagesTimesLogical = os_cpu_NumProcessors() / CoresPerPackage();
+		debug_assert(numPackagesTimesLogical != 0);
+		// assume hyperthreads are enabled.
+		size_t numPackages = numPackagesTimesLogical;
+		// if they are reported as processors, remove them from the count.
+		if(numPackages > LogicalPerCore())
+			numPackages /= LogicalPerCore();
+		return numPackages;
+	}
 }
 
 
-size_t cpu_CoresPerPackage()
+static size_t CoresPerPackage(const u8* apicIds)
 {
-	static size_t enabledCoresPerPackage;
-
-	if(!enabledCoresPerPackage)
+	if(apicIds)
 	{
-		const u8* apicIds = ApicIds();
-		if(apicIds)
-		{
-			const size_t offset = ceil_log2(LogicalPerCore());
-			const size_t numBits = ceil_log2(CoresPerPackage());
-			enabledCoresPerPackage = NumUniqueValuesInField(apicIds, offset, numBits);
-		}
-		else
-		{
-			// guess (must match cpu_NumPackages's assumptions)
-			enabledCoresPerPackage = CoresPerPackage();
-		}
+		const size_t offset = ceil_log2(LogicalPerCore());
+		const size_t numBits = ceil_log2(CoresPerPackage());
+		return NumUniqueValuesInField(apicIds, offset, numBits);
 	}
-
-	return enabledCoresPerPackage;
+	else
+	{
+		// guess (must match NumPackages's assumptions)
+		return CoresPerPackage();
+	}
 }
 
 
-size_t cpu_LogicalPerCore()
+static size_t LogicalPerCore(const u8* apicIds)
 {
-	static size_t enabledLogicalPerCore;
+	if(apicIds)
+	{
+		const size_t offset = 0;
+		const size_t numBits = ceil_log2(LogicalPerCore());
+		return NumUniqueValuesInField(apicIds, offset, numBits);
+	}
+	else
+	{
+		// guess (must match NumPackages's assumptions)
+		return LogicalPerCore();
+	}
+}
 
-	if(!enabledLogicalPerCore)
+
+//-----------------------------------------------------------------------------
+// CPU topology interface
+
+struct CpuTopology	// POD
+{
+	size_t numPackages;
+	size_t coresPerPackage;
+	size_t logicalPerCore;
+};
+
+const CpuTopology* cpu_topology_Detect()
+{
+	static CpuTopology topology;
+
+	if(!topology.numPackages)
 	{
 		const u8* apicIds = ApicIds();
-		if(apicIds)
-		{
-			const size_t offset = 0;
-			const size_t numBits = ceil_log2(LogicalPerCore());
-			enabledLogicalPerCore = NumUniqueValuesInField(apicIds, offset, numBits);
-		}
-		else
-		{
-			// guess (must match cpu_NumPackages's assumptions)
-			enabledLogicalPerCore = LogicalPerCore();
-		}
+		topology.numPackages = NumPackages(apicIds);
+		topology.coresPerPackage = CoresPerPackage(apicIds);
+		topology.logicalPerCore = LogicalPerCore(apicIds);
 	}
 
-	return enabledLogicalPerCore;
+	return &topology;
+}
+
+size_t cpu_topology_NumPackages(const CpuTopology* topology)
+{
+	return topology->numPackages;
+}
+
+size_t cpu_topology_CoresPerPackage(const CpuTopology* topology)
+{
+	return topology->coresPerPackage;
+}
+
+size_t cpu_topology_LogicalPerCore(const CpuTopology* topology)
+{
+	return topology->logicalPerCore;
 }
 
 
@@ -293,29 +316,22 @@ size_t cpu_LogicalPerCore()
 // functionality but returns incorrect results. (it claims all cores in
 // an Intel Core2 Quad processor share a single L2 cache.)
 
-size_t cpu_NumCaches()
+static size_t NumCaches(const u8* apicIds)
 {
-	static size_t numCaches;
-	if(!numCaches)
+	if(apicIds)
 	{
-		const u8* apicIds = ApicIds();
-		if(apicIds)
-		{
-			const size_t offset = 0;
-			const size_t numBits = ceil_log2(LogicalPerCache());
-			numCaches = NumUniqueValuesInField(apicIds, offset, numBits);
-		}
-		else
-		{
-			// assume each processor has its own cache
-			numCaches = os_cpu_NumProcessors();
-		}
+		const size_t offset = 0;
+		const size_t numBits = ceil_log2(LogicalPerCache());
+		return NumUniqueValuesInField(apicIds, offset, numBits);
 	}
-
-	return numCaches;
+	else
+	{
+		// assume each processor has its own cache
+		return os_cpu_NumProcessors();
+	}
 }
 
-class CacheTopology
+class CacheRelations
 {
 public:
 	/**
@@ -388,64 +404,87 @@ private:
 	std::vector<SharedCache> m_caches;
 };
 
-uintptr_t cpu_ProcessorMaskFromCache(size_t cache)
+static void DetermineCachesProcessorMask(const u8* apicIds, uintptr_t* cachesProcessorMask)
 {
-	static uintptr_t cachesProcessorMask[os_cpu_MaxProcessors];
-
-	static volatile uintptr_t initialized = 0;
-	if(cpu_CAS(&initialized, 0, 1))
+	if(apicIds)
 	{
-		const u8* apicIds = ApicIds();
-		if(apicIds)
-		{
-			const size_t numBits = ceil_log2(LogicalPerCache());
-			const u8 cacheIdMask = u8(0xFF << numBits);
+		const size_t numBits = ceil_log2(LogicalPerCache());
+		const u8 cacheIdMask = u8(0xFF << numBits);
 
-			CacheTopology cacheManager;
-			for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
-			{
-				const u8 apicId = apicIds[processor];
-				const u8 cacheId = apicId & cacheIdMask;
-				cacheManager.Add(cacheId, processor);
-			}
-			cacheManager.StoreProcessorMasks(cachesProcessorMask);
-		}
-		else
+		CacheRelations cacheRelations;
+		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 		{
-			// assume each cache belongs to exactly one processor and
-			// cache index == processor index.
-			for(size_t cache = 0; cache < cpu_NumCaches(); cache++)
-				cachesProcessorMask[cache] = uintptr_t(1) << cache;
+			const u8 apicId = apicIds[processor];
+			const u8 cacheId = apicId & cacheIdMask;
+			cacheRelations.Add(cacheId, processor);
 		}
+		cacheRelations.StoreProcessorMasks(cachesProcessorMask);
 	}
-
-	debug_assert(cache < cpu_NumCaches());
-	return cachesProcessorMask[cache];
+	else
+	{
+		// assume each processor has exactly one cache with matching IDs
+		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
+			cachesProcessorMask[processor] = uintptr_t(1) << processor;
+	}
 }
 
 
-size_t cpu_CacheFromProcessor(size_t processor)
+static void DetermineProcessorsCache(size_t numCaches, const uintptr_t* cachesProcessorMask, size_t* processorsCache)
 {
-	static size_t processorsCache[os_cpu_MaxProcessors];
-
-	static volatile uintptr_t initialized = 0;
-	if(cpu_CAS(&initialized, 0, 1))
+	for(size_t cache = 0; cache < numCaches; cache++)
 	{
-		for(size_t cache = 0; cache < cpu_NumCaches(); cache++)
+		// write to all entries that share this cache
+		const uintptr_t processorMask = cachesProcessorMask[cache];
+		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 		{
-			// write to all entries that share this cache
-			const uintptr_t processorMask = cpu_ProcessorMaskFromCache(cache);
-			for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
+			if(IsBitSet(processorMask, processor))
 			{
-				if(IsBitSet(processorMask, processor))
-				{
-					debug_assert(processorsCache[processor] == 0);
-					processorsCache[processor] = cache;
-				}
+				debug_assert(processorsCache[processor] == 0);
+				processorsCache[processor] = cache;
 			}
 		}
 	}
+}
 
+
+//-----------------------------------------------------------------------------
+// cache topology interface
+
+struct CacheTopology	// POD
+{
+	size_t numCaches;
+	size_t processorsCache[os_cpu_MaxProcessors];
+	uintptr_t cachesProcessorMask[os_cpu_MaxProcessors];
+};
+
+const CacheTopology* cache_topology_Detect()
+{
+	static CacheTopology topology;
+
+	if(!topology.numCaches)
+	{
+		const u8* apicIds = ApicIds();
+		topology.numCaches = NumCaches(apicIds);
+		DetermineCachesProcessorMask(apicIds, topology.cachesProcessorMask);
+		DetermineProcessorsCache(topology.numCaches, topology.cachesProcessorMask, topology.processorsCache);
+	}
+
+	return &topology;
+}
+
+size_t cache_topology_NumCaches(const CacheTopology* topology)
+{
+	return topology->numCaches;
+}
+
+size_t cache_topology_CacheFromProcessor(const CacheTopology* topology, size_t processor)
+{
 	debug_assert(processor < os_cpu_NumProcessors());
-	return processorsCache[processor];
+	return topology->processorsCache[processor];
+}
+
+uintptr_t cache_topology_ProcessorMaskFromCache(const CacheTopology* topology, size_t cache)
+{
+	debug_assert(cache < topology->numCaches);
+	return topology->cachesProcessorMask[cache];
 }

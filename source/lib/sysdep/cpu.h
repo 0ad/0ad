@@ -28,16 +28,6 @@ namespace ERR
  **/
 LIB_API const char* cpu_IdentifierString();
 
-/**
- * @return a rough estimate of the CPU clock frequency.
- *
- * note: the accuracy of this value is not important. while it is used by
- * the TSC timing backend, thermal drift is an issue that requires
- * continual recalibration anyway, which makes the initial accuracy moot.
- * querying frequency via OS is also much faster than ia32's measurement loop.
- **/
-LIB_API double cpu_ClockFrequency();
-
 
 //-----------------------------------------------------------------------------
 // lock-free support routines
