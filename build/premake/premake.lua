@@ -87,6 +87,10 @@ function package_set_build_flags()
 	package.config["Release"].buildflags = { "no-runtime-checks", "optimize-speed" }
 	package.config["Release"].defines = { "NDEBUG" }
 
+	-- required for the lowlevel library. must be set from all packages that use it, otherwise it assumes it is
+	-- being used as a DLL (which is currently not the case in 0ad)
+	tinsert(package.defines, "LIB_STATIC_LINK")
+	
 	-- various platform-specific build flags
 	if OS == "windows" then
 
