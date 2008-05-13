@@ -412,6 +412,7 @@ function setup_all_libs ()
 		"lib/res/sound",
 		"lib/sysdep",
 		"lib/sysdep/ia32",
+		"lib/sysdep/x86_x64",
 		"lib/tex"
 	}
 	extern_libs = {
