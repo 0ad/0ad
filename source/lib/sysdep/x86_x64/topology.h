@@ -11,9 +11,13 @@
 #ifndef INCLUDED_TOPOLOGY
 #define INCLUDED_TOPOLOGY
 
-// OSes report hyperthreading units and cores as "processors". we need to
-// drill down and find out the exact counts (for thread pool dimensioning
-// and cache sharing considerations).
+//-----------------------------------------------------------------------------
+// CPU
+
+// OSes typically consider both SMT units and cores to be "processors".
+// the following routines determine how many of each are actually present and
+// enabled. this information is useful for detecting SMP systems, predicting
+// performance and dimensioning thread pools.
 
 /**
  * @return number of *enabled* CPU packages / sockets.
@@ -35,6 +39,11 @@ LIB_API size_t cpu_LogicalPerCore();
 
 //-----------------------------------------------------------------------------
 // L2 cache
+
+// some CPU micro-architectures (e.g. Intel Core2) feature partitioned
+// L2 caches. if the cores sharing a cache work together on the same
+// sub-problem, contention may be reduced and effective capacity increased.
+// the following routines allow discovery of the L2 cache topology:
 
 /**
  * @return number of distinct L2 caches

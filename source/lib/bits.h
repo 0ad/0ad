@@ -101,9 +101,9 @@ bool is_pow2(T n)
 }
 
 /**
- * ceil(log2(n))
+ * ceil(log2(x))
  *
- * @param n (integer) input; MUST be > 0, else results are undefined.
+ * @param x (unsigned integer)
  * @return ceiling of the base-2 logarithm (i.e. rounded up).
  **/
 template<typename T>

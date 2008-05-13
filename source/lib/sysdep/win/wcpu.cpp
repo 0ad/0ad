@@ -172,18 +172,12 @@ size_t os_cpu_MemoryAvailable()
 
 //-----------------------------------------------------------------------------
 
-/**
- * maximum number of processors supported by the OS (determined by the
- * number of bits in an affinity mask)
- **/
-static const DWORD maxProcessorNumber = sizeof(DWORD_PTR)*CHAR_BIT-1;
-
 DWORD_PTR wcpu_AffinityFromProcessorMask(DWORD_PTR processAffinity, uintptr_t processorMask)
 {
 	DWORD_PTR affinity = 0;
 
 	size_t processor = (size_t)-1;
-	for(DWORD processorNumber = 0; processorNumber <= maxProcessorNumber; processorNumber++)
+	for(DWORD processorNumber = 0; processorNumber < (DWORD)os_cpu_MaxProcessors; processorNumber++)
 	{
 		if(IsBitSet(processAffinity, processorNumber))
 		{
@@ -202,7 +196,7 @@ uintptr_t wcpu_ProcessorMaskFromAffinity(DWORD_PTR processAffinity, DWORD_PTR af
 	uintptr_t processorMask = 0;
 
 	size_t processor = (size_t)-1;
-	for(DWORD processorNumber = 0; processorNumber <= maxProcessorNumber; processorNumber++)
+	for(DWORD processorNumber = 0; processorNumber < (DWORD)os_cpu_MaxProcessors; processorNumber++)
 	{
 		if(IsBitSet(processAffinity, processorNumber))
 		{
@@ -271,31 +265,23 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 }
 
 
-void os_cpu_SetThreadAffinity(size_t processor)
-{
-	debug_assert(processor < os_cpu_NumProcessors());
-
-	const uintptr_t processorMask = uintptr_t(1) << processor;
-	(void)os_cpu_SetThreadAffinityMask(processorMask);
-}
-
-
 LibError os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
 {
-	// ensure we are able to run on all system processors
+	// abort if we can't run on all system processors
 	DWORD_PTR processAffinity, systemAffinity;
 	{
 		const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
 		debug_assert(ok);
 		if(processAffinity != systemAffinity)
-			WARN_RETURN(ERR::OS_CPU_RESTRICTED_AFFINITY);
+			return ERR::OS_CPU_RESTRICTED_AFFINITY;	// NOWARN
 	}
 
 	const uintptr_t previousAffinity = os_cpu_SetThreadAffinityMask(os_cpu_ProcessorMask());
 
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{
-		os_cpu_SetThreadAffinity(processor);
+		const uintptr_t processorMask = uintptr_t(1) << processor;
+		os_cpu_SetThreadAffinityMask(processorMask);
 		cb(processor, cbData);
 	}
 

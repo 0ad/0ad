@@ -26,6 +26,13 @@ namespace ERR
 // rationale: this spares users from having to deal with noncontiguous IDs,
 // e.g. when administrative tools are used to restrict process affinity.
 
+
+/**
+ * maximum number of processors supported by the OS (determined by the
+ * number of bits in an affinity mask)
+ **/
+static const size_t os_cpu_MaxProcessors = sizeof(uintptr_t)*CHAR_BIT;
+
 /**
  * @return bit mask of processors that exist and are available to
  * this process.
@@ -84,19 +91,13 @@ LIB_API size_t os_cpu_MemoryAvailable();
 
 /**
  * restrict the current thread to a set of processors.
- * it will not be rescheduled until a subsequent os_cpu_SetThreadAffinity*.
+ * it will not be rescheduled until affinity is again changed.
  *
  * @param processorMask a bit mask of acceptable processors
  * (bit index i corresponds to processor i)
  * @return the previous mask
  **/
 LIB_API uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask);
-
-/**
- * restrict the current thread to a single processor.
- * it will not be rescheduled until a subsequent os_cpu_SetThreadAffinity*.
- **/
-LIB_API void os_cpu_SetThreadAffinity(size_t processor);
 
 /**
  * called by os_cpu_CallByEachCPU.
