@@ -23,10 +23,7 @@
 
   <group>
     <variant frequency="1" name="horse-texture-1">
-      <texture>skeletal/horse_iber_su2_1.dds</texture>
-    </variant>
-    <variant frequency="1" name="horse-texture-legs">
-      <texture>skeletal/horse_iber_su2_2.dds</texture>
+      <texture>skeletal/horse_iber_indibil.dds</texture>
     </variant>
   </group>
 
@@ -47,7 +44,5 @@
       <colour>255 255 255</colour>
     </variant>
   </group>
-
-  <material>objectcolor.xml</material>
 
 </actor>
