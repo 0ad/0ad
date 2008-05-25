@@ -12,7 +12,7 @@
 		
 		<Creation>
 			<Resource>
- 				<Food>350</Food>
+ 				<Food>100</Food>
 				<Metal>250</Metal>
  			</Resource>
 		</Creation>
@@ -32,7 +32,7 @@
 		</Armour>	
 
 		<Health>
-			<Max>400</Max>
+			<Max>250</Max>
 			<RegenRate>0.2</RegenRate>
 		</Health>		
 
@@ -67,6 +67,12 @@
 				<Speed>1500</Speed>
 			</Charge>
 		</Attack>
+		<Move>
+			<Speed>8.5</Speed>
+			<Run>
+				<Speed>16.5</Speed>
+			</Run>
+		</Move>		
 	</Actions>
 
 </Entity>

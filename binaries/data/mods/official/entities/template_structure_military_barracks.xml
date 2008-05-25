@@ -35,13 +35,18 @@
  		</Footprint>
 
 		<Health>
- 			<Max>600</Max>
+ 			<Max>2000</Max>
 		</Health>
 		
 		<Armour>
-			<Hack>25.0</Hack>
+			<Hack>15.0</Hack>
+			<Pierce>42.0</Hack>
 			<Crush>20.0</Crush>
 		</Armour>
+		
+		<Population>
+			<Add>5</Add>
+		</Population>
 
 	</Traits>
 	

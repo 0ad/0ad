@@ -12,8 +12,8 @@
 		
 		<Creation>
 			<Resource>
- 				<Food>350</Food>
-				<Metal>250</Metal>
+ 				<Food>100</Food>
+				<Wood>500</Wood>
  			</Resource>
 		</Creation>
 		
@@ -26,13 +26,13 @@
 		</Vision>
 		
 		<Armour>
-			<Hack>7.0</Hack>
-			<Pierce>12.0</Pierce>
-			<Crush>12.0</Crush>
+			<Hack>5.0</Hack>
+			<Pierce>10.0</Pierce>
+			<Crush>10.0</Crush>
 		</Armour>	
 
 		<Health>
-			<Max>300</Max>
+			<Max>200</Max>
 			<RegenRate>0.2</RegenRate>
 		</Health>		
 
@@ -53,9 +53,9 @@
 	<Actions>
 		<Attack>
 			<Ranged>
-				<Pierce>1.0</Pierce>
-				<Hack>1.0</Hack>
-				<Crush>1.0</Crush>
+				<Pierce>50.0</Pierce>
+				<Hack>0.0</Hack>
+				<Crush>0.0</Crush>
 				<Range>56.0</Range>
 				<Speed>1500</Speed>
 				<ProjectileSpeed>25.0</ProjectileSpeed>

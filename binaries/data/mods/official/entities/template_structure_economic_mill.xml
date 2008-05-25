@@ -21,8 +21,7 @@
 			<TerritoryRestriction>All</TerritoryRestriction>
 			<Foundation>foundation_3x3</Foundation>
 			<Resource>
- 				<Wood>50</Wood>
-				<Stone>50</Stone>
+ 				<Wood>100</Wood>
  			</Resource>
 		</Creation>
 		
@@ -37,7 +36,8 @@
 		</Health>
 		
 		<Armour>
-			<Hack>18.0</Hack>
+			<Hack>10.0</Hack>
+			<Pierce>42.0</Pierce>
 			<Crush>15.0</Crush>
 		</Armour>
 		

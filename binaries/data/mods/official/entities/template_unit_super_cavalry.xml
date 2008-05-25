@@ -14,8 +14,8 @@
 		</Id>
 		<Creation>
 			<Resource>
- 				<Food>300</Food>
-				<Metal>150</Metal>
+ 				<Food>150</Food>
+				<Metal>135</Metal>
  			</Resource>
 		</Creation>
 		<Footprint>
@@ -28,9 +28,9 @@
 				<Speed>1000</Speed>
 				<Duration>3</Duration>
 				
-				<Crush>0.0</Crush>
-				<Hack>20.0</Hack>
-				<Pierce>5.0</Pierce>
+				<Crush>10.0</Crush>
+				<Hack>10.0</Hack>
+				<Pierce>0.0</Pierce>
 				
 				<r>1.0</r>
 				<g>0.1</g>
@@ -44,7 +44,7 @@
 			<Crush>14.0</Crush>
 		</Armour>
 		<Health>
-			<Max>200</Max>
+			<Max>180</Max>
 		</Health>
 		<Population>
 			<Rem>2</Rem>

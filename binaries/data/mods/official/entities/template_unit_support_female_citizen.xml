@@ -17,13 +17,13 @@
 		</Id>
 		<Creation>
 			<Resource>
- 				<Food>40</Food>
+ 				<Food>50</Food>
  			</Resource>
 		</Creation>
 
 		<Auras>
 			<Infidelity>
-				<Radius>25</Radius>
+				<Radius>10</Radius>
 				<Time>10</Time>
 				<r>0.8</r>
 				<g>0.8</g>
@@ -41,8 +41,14 @@
 		<Armour>
 			<Hack>1.0</Hack>
 			<Pierce>1.0</Pierce>
-			<Crush>1.0</Crush>
-		</Armour>		
+			<Crush>2.0</Crush>
+		</Armour>
+
+		<Health>
+			<Max>70</Max>
+			<RegenRate>0.4</RegenRate>
+		</Health>	
+	
 	</Traits>
 
 	<Actions>

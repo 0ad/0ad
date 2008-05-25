@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_support"
->
+<Entity	Parent="template_unit_support">
+
 	<Traits>
 	
 		<Id>
@@ -18,18 +17,36 @@
 		</Id>
 		<Creation>
 			<Resource>
- 				<Food>75</Food>
-				<Metal>75</Metal>
+ 				<Food>50</Food>
+				<Metal>50</Metal>
  			</Resource>
 		</Creation>
+		
+		<Population>
+			<Rem>1</Rem>
+		</Population>
+		
+		<Vision>
+			<Los>15</Los>
+		</Vision>
+		
 		<Armour>
 			<Hack>5.0</Hack>
-			<Pierce>5.0</Pierce>
-			<Crush>1.0</Crush>
-		</Armour>
+			<Pierce>8.0</Pierce>
+			<Crush>5.0</Crush>
+		</Armour>	
+
+		<Health>
+			<Max>100</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>		
+
 	</Traits>
-
-
-
 	
+	<Actions>
+		<Move>
+			<Speed>12.0</Speed>
+		</Move>
+	</Actions>
+
 </Entity>
