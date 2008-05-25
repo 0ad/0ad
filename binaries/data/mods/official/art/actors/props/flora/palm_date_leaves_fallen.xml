@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="fronds-a">
+      <mesh>gaia/wrld_palm_date_leaves_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="fronds-b">
+      <mesh>gaia/wrld_palm_date_leaves_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="fronds-c">
+      <mesh>gaia/wrld_palm_date_leaves_c.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="fronds-d">
+      <mesh>gaia/wrld_palm_date_leaves_d.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="frond-texture">
+      <texture>gaia/tree_palmdate_b.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
