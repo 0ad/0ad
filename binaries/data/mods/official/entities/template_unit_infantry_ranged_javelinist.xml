@@ -22,12 +22,12 @@
 		</Creation>
 
 		<Health>
-			<Max>75</Max>
+			<Max>80</Max>
 		</Health>
 
 		<Armour>
 			<Hack>1.0</Hack>
-			<Pierce>3.0</Pierce>
+			<Pierce>5.0</Pierce>
 			<Crush>2.0</Crush>
 		</Armour>
 
@@ -40,13 +40,13 @@
  		<Attack>
 			<Ranged>
  				<Hack>0.0</Hack>
- 				<Pierce>25.0</Pierce>
+ 				<Pierce>50.0</Pierce>
  				<Crush>0.0</Crush>
 
 				<MinRange>16.0</MinRange>
 				<Range>32</Range>
 				<Speed>1500</Speed>
-				<ProjectileSpeed>25.0</ProjectileSpeed>
+				<ProjectileSpeed>30.0</ProjectileSpeed>
 			</Ranged>
  		</Attack>
 
