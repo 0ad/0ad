@@ -12,19 +12,18 @@
         <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="100"/>
         <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/iber_round_indibil.xml" attachpoint="shield"/>
-        <prop actor="props/units/cape_a.xml" attachpoint="back"/>
         <prop actor="props/units/heads/celt_helmet_b.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="indibil-scalemail">
+    <variant frequency="1" name="indibil-chainmail">
       <texture>skeletal/iber_hero_indibil.dds</texture>
     </variant>
   </group>

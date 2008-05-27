@@ -14,16 +14,12 @@
         <animation file="infantry/general/death/inf_06.psa" name="death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="death" speed="200"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="melee" speed="160"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_a.psa" name="melee" speed="110"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_b.psa" name="melee" speed="110"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_c.psa" name="melee" speed="110"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_d.psa" name="melee" speed="110"/>
-        <animation event="0.5" file="biped/not used/inf_2sword_attack_e.psa" name="melee" speed="110"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="melee" speed="110"/>
       </animations>
       <props>
         <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/gladus.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/iber_scutum_variato.xml" attachpoint="shield"/>
         <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/cape_iber_variato.xml" attachpoint="back"/>
       </props>
