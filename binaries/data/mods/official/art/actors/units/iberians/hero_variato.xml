@@ -18,9 +18,10 @@
       </animations>
       <props>
         <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/shields/iber_scutum_variato.xml" attachpoint="shield"/>
         <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/verutum.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/shields/iber_scutum_variato.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_iber_variato.xml" attachpoint="back"/>
       </props>
     </variant>
