@@ -23,84 +23,11 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="144.092" y="110.442" z="-5.57063"/>
+		<Position x="322.524" y="129.086" z="84.6068"/>
 		<Rotation angle="-0.0040499"/>
 		<Declination angle="0.597412"/>
 	</Camera>
-	<Entities>
-		<Entity uid="509">
-			<Template>cart_infantry_javelinist_e</Template>
-			<Player>1</Player>
-			<Position x="143.024" y="27.9766" z="133.351"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="511">
-			<Template>cart_infantry_javelinist_b</Template>
-			<Player>1</Player>
-			<Position x="140.667" y="27.1406" z="128.371"/>
-			<Orientation angle="2.86721"/>
-		</Entity>
-		<Entity uid="513">
-			<Template>cart_infantry_javelinist_a</Template>
-			<Player>1</Player>
-			<Position x="139.049" y="26.3758" z="124.767"/>
-			<Orientation angle="-1.40604"/>
-		</Entity>
-		<Entity uid="516">
-			<Template>cart_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="138.15" y="25.3779" z="120.424"/>
-			<Orientation angle="2.94138"/>
-		</Entity>
-		<Entity uid="517">
-			<Template>cart_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="141.949" y="25.9642" z="120.598"/>
-			<Orientation angle="2.28273"/>
-		</Entity>
-		<Entity uid="518">
-			<Template>cart_infantry_spearman_a</Template>
-			<Player>1</Player>
-			<Position x="145.479" y="26.0771" z="119.479"/>
-			<Orientation angle="-3.12298"/>
-		</Entity>
-		<Entity uid="520">
-			<Template>cart_infantry_spearman_b</Template>
-			<Player>1</Player>
-			<Position x="134.351" y="24.8188" z="120.482"/>
-			<Orientation angle="2.84855"/>
-		</Entity>
-		<Entity uid="522">
-			<Template>cart_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="148.39" y="26.5127" z="120.1"/>
-			<Orientation angle="2.60794"/>
-		</Entity>
-		<Entity uid="523">
-			<Template>cart_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="149.666" y="27.2916" z="122.48"/>
-			<Orientation angle="-3.04791"/>
-		</Entity>
-		<Entity uid="524">
-			<Template>cart_infantry_spearman_e</Template>
-			<Player>1</Player>
-			<Position x="151.55" y="26.7566" z="120.433"/>
-			<Orientation angle="-2.80236"/>
-		</Entity>
-		<Entity uid="526">
-			<Template>cart_super_infantry</Template>
-			<Player>1</Player>
-			<Position x="146.934" y="28.3003" z="128.155"/>
-			<Orientation angle="3.13297"/>
-		</Entity>
-		<Entity uid="527">
-			<Template>cart_super_infantry</Template>
-			<Player>1</Player>
-			<Position x="148.154" y="29.145" z="130.26"/>
-			<Orientation angle="2.02148"/>
-		</Entity>
-	</Entities>
+	<Entities/>
 	<Nonentities>
 		<Nonentity>
 			<Actor>flora/trees/palm_tropical.xml</Actor>
@@ -265,7 +192,7 @@
 		<Nonentity>
 			<Actor>flora/trees/palm_date.xml</Actor>
 			<Position x="287.986" y="33.6057" z="201.587"/>
-			<Orientation angle="-2.69822"/>
+			<Orientation angle="-1.0654"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/palm_date.xml</Actor>
@@ -290,7 +217,7 @@
 		<Nonentity>
 			<Actor>flora/trees/palm_date.xml</Actor>
 			<Position x="309.999" y="32.092" z="222.425"/>
-			<Orientation angle="-1.60537"/>
+			<Orientation angle="-2.25344"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/palm_date.xml</Actor>
@@ -415,12 +342,12 @@
 		<Nonentity>
 			<Actor>flora/trees/palm_date.xml</Actor>
 			<Position x="317.726" y="34.3985" z="208.484"/>
-			<Orientation angle="-0.867531"/>
+			<Orientation angle="1.18112"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/palm_date.xml</Actor>
 			<Position x="333.666" y="34.5816" z="235.024"/>
-			<Orientation angle="-0.105458"/>
+			<Orientation angle="2.86979"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>flora/trees/palm_date.xml</Actor>
