@@ -315,6 +315,7 @@ function setup_all_libs ()
 	extern_libs = {
 		"spidermonkey",
 		"xerces",
+		"enet",
 		"boost",	-- dragged in via server->simulation.h->random
 	}
 	setup_static_lib_package("network", source_dirs, extern_libs, {})
@@ -331,7 +332,7 @@ function setup_all_libs ()
 		"sound",
 		"scripting",
 		"maths",
-		"maths/scripting"
+		"maths/scripting",
 	}
 	extern_libs = {
 		"spidermonkey",
@@ -339,7 +340,8 @@ function setup_all_libs ()
 		"xerces",
 		"opengl",
 		"zlib",
-		"boost"
+		"boost",
+		"enet",
 	}
 	setup_static_lib_package("engine", source_dirs, extern_libs, {})
 
@@ -348,14 +350,12 @@ function setup_all_libs ()
 		"graphics",
 		"graphics/scripting",
 		"renderer"
-		
 	}
 	extern_libs = {
 		"opengl",
 		"sdl",	-- key definitions
 		"spidermonkey",	-- for graphics/scripting
 		"boost"
-		
 	}
 	setup_static_lib_package("graphics", source_dirs, extern_libs, {})
 
@@ -376,14 +376,12 @@ function setup_all_libs ()
 	source_dirs = {
 		"tools/atlas/GameInterface",
 		"tools/atlas/GameInterface/Handlers"
-		
 	}
 	extern_libs = {
 		"boost",
 		"sdl",	-- key definitions
 		"opengl",
 		"spidermonkey"
-		
 	}
 	setup_static_lib_package("atlas", source_dirs, extern_libs, {})
 
@@ -471,7 +469,8 @@ used_extern_libs = {
 	"dbghelp",
 	"cxxtest",
 	"directx",
-	"comsuppw"
+	"comsuppw",
+	"enet"
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.

@@ -79,6 +79,12 @@ extern_lib_defs = {
 	directx = {
 		dbg_suffix = "",
 	},
+	enet =
+	{
+		win_names = { "enet" },
+		unix_names = { "enet" },	-- TODO: ensure this works on unix
+		dbg_suffix = "_dbg",
+	},
 	fcollada = {
 		win_names  = { "FCollada" },
 		unix_names = { "FColladaSD" },
