@@ -12,7 +12,7 @@
         <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="100"/>
         <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
@@ -23,7 +23,7 @@
 
   <group>
     <variant>
-      <texture>skeletal/hele_isp_e_a.dds</texture>
+      <texture>skeletal/hele_csw_a_1.dds</texture>
     </variant>
   </group>
 
