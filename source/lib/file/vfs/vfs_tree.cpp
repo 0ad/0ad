@@ -25,17 +25,24 @@ VfsFile::VfsFile(const std::string& name, off_t size, time_t mtime, size_t prior
 
 bool VfsFile::IsSupersededBy(const VfsFile& file) const
 {
-	// 1) priority is lower => no.
-	if(file.m_priority < m_priority)
+	// 1) priority (override mods)
+	if(file.m_priority < m_priority)	// lower priority
 		return false;
 
-	// 2) timestamp is older => no.
-	// (note: we need to account for FAT's 2 sec. resolution)
-	if(difftime(file.MTime(), MTime()) < -2.0)
-		return false;
+	// 2) timestamp
+	{
+		const double howMuchNewer = difftime(file.MTime(), MTime());
+		const double threshold = 2.0;	// [seconds]; resolution provided by FAT
+		if(howMuchNewer > threshold)	// newer timestamp
+			return true;
+		if(howMuchNewer < threshold)	// older timestamp
+			return false;
+		// else: "equal" (tolerating small differences due to FAT's low
+		// mtime resolution)
+	}
 
-	// 3) provider is less efficient => no.
-	if(file.m_loader->Precedence() < m_loader->Precedence())
+	// 3) precedence (efficiency of file provider)
+	if(file.m_loader->Precedence() < m_loader->Precedence())	// less efficient
 		return false;
 
 	return true;
@@ -139,7 +146,7 @@ void VfsDirectory::DisplayR(size_t depth) const
 {
 	static const char indent[] = "    ";
 
-	const int maxNameChars = 80 - depth*(sizeof(indent)-1);
+	const size_t maxNameChars = 80 - depth*(sizeof(indent)-1);
 	char fmt[20];
 	sprintf_s(fmt, ARRAY_SIZE(fmt), "%%-%d.%ds %%s", maxNameChars, maxNameChars);
 

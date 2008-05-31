@@ -46,7 +46,7 @@ private:
 	off_t m_size;
 	time_t m_mtime;
 
-	unsigned m_priority;
+	size_t m_priority;
 
 	PIFileLoader m_loader;
 };
