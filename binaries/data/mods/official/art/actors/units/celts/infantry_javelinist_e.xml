@@ -38,16 +38,26 @@
   </group>
 
   <group>
-    <variant name="Tattoos-1">
+    <variant frequency="1" name="Tattoos-1">
       <texture>skeletal/celt_ijv_e_01.dds</texture>
     </variant>
-    <variant name="Tattoos-2">
+    <variant frequency="1" name="Tattoos-2">
       <texture>skeletal/celt_ijv_e_02.dds</texture>
+    </variant>
+    <variant frequency="1" name="Tattoos-3">
+      <texture>skeletal/kart_isw_a_01.dds</texture>
+    </variant>
+    <variant frequency="1" name="Tattoos-4">
+      <texture>skeletal/kart_isw_a_02.dds</texture>
     </variant>
   </group>
 
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant frequency="100" name="Idle">
+      <props>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
     <variant name="Melee">
       <props>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>

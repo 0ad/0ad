@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity Parent="template_structure_military_barracks">
+
+	<Actor>structures/hellenes/barracks.xml</Actor>
+	
 	<Traits>
 	
 		<Id>
@@ -15,8 +18,6 @@
 
 	</Traits>
 
-	<Actor>structures/hellenes/barracks.xml</Actor>
-	
 	<Actions>
 		<Create>
 			<List>

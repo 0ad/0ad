@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>cumulus</SkySet>
+		<SunColour r="1.73047" g="1.73047" b="1.73047"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.439216" g="0.439216" b="0.501961"/>
+		<UnitsAmbientColour r="0.447059" g="0.447059" b="0.447059"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>19.845</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.492188</Murkiness>
+				<Tint r="0.454902" g="0.439216" b="0.321569"/>
+				<ReflectionTint r="0.454902" g="0.439216" b="0.321569"/>
+				<ReflectionTintStrength>0.329102</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="144.092" y="110.442" z="-5.57063"/>
+		<Rotation angle="-0.0040499"/>
+		<Declination angle="0.597412"/>
+	</Camera>
+	<Entities>
+		<Entity uid="509">
+			<Template>cart_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="143.024" y="27.9766" z="133.351"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="511">
+			<Template>cart_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="140.667" y="27.1406" z="128.371"/>
+			<Orientation angle="2.86721"/>
+		</Entity>
+		<Entity uid="513">
+			<Template>cart_infantry_javelinist_a</Template>
+			<Player>1</Player>
+			<Position x="139.049" y="26.3758" z="124.767"/>
+			<Orientation angle="-1.40604"/>
+		</Entity>
+		<Entity uid="516">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="138.15" y="25.3779" z="120.424"/>
+			<Orientation angle="2.94138"/>
+		</Entity>
+		<Entity uid="517">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="141.949" y="25.9642" z="120.598"/>
+			<Orientation angle="2.28273"/>
+		</Entity>
+		<Entity uid="518">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="145.479" y="26.0771" z="119.479"/>
+			<Orientation angle="-3.12298"/>
+		</Entity>
+		<Entity uid="520">
+			<Template>cart_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="134.351" y="24.8188" z="120.482"/>
+			<Orientation angle="2.84855"/>
+		</Entity>
+		<Entity uid="522">
+			<Template>cart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="148.39" y="26.5127" z="120.1"/>
+			<Orientation angle="2.60794"/>
+		</Entity>
+		<Entity uid="523">
+			<Template>cart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="149.666" y="27.2916" z="122.48"/>
+			<Orientation angle="-3.04791"/>
+		</Entity>
+		<Entity uid="524">
+			<Template>cart_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="151.55" y="26.7566" z="120.433"/>
+			<Orientation angle="-2.80236"/>
+		</Entity>
+		<Entity uid="526">
+			<Template>cart_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="146.934" y="28.3003" z="128.155"/>
+			<Orientation angle="3.13297"/>
+		</Entity>
+		<Entity uid="527">
+			<Template>cart_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="148.154" y="29.145" z="130.26"/>
+			<Orientation angle="2.02148"/>
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="264.018" y="22.4" z="278.68"/>
+			<Orientation angle="-0.924382"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="297.399" y="22.4" z="303.135"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="290.252" y="22.4" z="302.77"/>
+			<Orientation angle="-2.47357"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="305.975" y="22.4" z="298.198"/>
+			<Orientation angle="-0.160974"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="273.941" y="22.4" z="282.682"/>
+			<Orientation angle="-1.6303"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="272.981" y="22.4" z="296.074"/>
+			<Orientation angle="-0.803739"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="302.579" y="22.2289" z="289.708"/>
+			<Orientation angle="0.64734"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="290.797" y="22.4" z="302.536"/>
+			<Orientation angle="-2.5758"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="300.079" y="22.4" z="300.888"/>
+			<Orientation angle="0.701405"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="271.626" y="22.4" z="286.535"/>
+			<Orientation angle="1.97202"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="286.233" y="22.4" z="302.653"/>
+			<Orientation angle="3.0857"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="297.132" y="22.4" z="302.599"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="297.184" y="22.4" z="297.592"/>
+			<Orientation angle="-2.57012"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="291.32" y="22.4" z="292.847"/>
+			<Orientation angle="-2.40393"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="277.709" y="22.4801" z="306.618"/>
+			<Orientation angle="-3.10223"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="294.602" y="22.3207" z="286.81"/>
+			<Orientation angle="-1.95763"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="298.093" y="22.4" z="300.048"/>
+			<Orientation angle="-1.81486"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="282.736" y="22.4" z="290.881"/>
+			<Orientation angle="0.145632"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="257.319" y="22.4" z="280.119"/>
+			<Orientation angle="0.208357"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="279.368" y="20.3485" z="278.88"/>
+			<Orientation angle="-0.79644"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="272.199" y="22.4121" z="259.319"/>
+			<Orientation angle="0.437039"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="292.637" y="22.4" z="289.038"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="260.491" y="22.4" z="278.653"/>
+			<Orientation angle="-2.03366"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="270.183" y="22.4" z="284.866"/>
+			<Orientation angle="-2.65583"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="302.242" y="22.4" z="295.296"/>
+			<Orientation angle="-1.3844"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="280.412" y="22.4" z="301.434"/>
+			<Orientation angle="-2.79287"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="289.09" y="22.4" z="302.714"/>
+			<Orientation angle="-3.05737"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="265.455" y="22.4" z="268.879"/>
+			<Orientation angle="0.424351"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="297.964" y="33.6989" z="210.252"/>
+			<Orientation angle="2.04612"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="285.507" y="22.4085" z="247.777"/>
+			<Orientation angle="-2.93588"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="292.277" y="33.4063" z="209.561"/>
+			<Orientation angle="-2.54677"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/palm_date_leaves_fallen.xml</Actor>
+			<Position x="299.225" y="33.4282" z="213.699"/>
+			<Orientation angle="0.718309"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="287.986" y="33.6057" z="201.587"/>
+			<Orientation angle="-2.69822"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="315.706" y="23.9223" z="263.773"/>
+			<Orientation angle="2.99522"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="297.804" y="33.3055" z="216.084"/>
+			<Orientation angle="-2.58988"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="339.711" y="34.5376" z="242.793"/>
+			<Orientation angle="-1.87532"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="325.609" y="33.3135" z="230.137"/>
+			<Orientation angle="-0.122152"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="309.999" y="32.092" z="222.425"/>
+			<Orientation angle="-1.60537"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="276.526" y="22.3255" z="260.5"/>
+			<Orientation angle="2.02321"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="266.518" y="22.4" z="274.34"/>
+			<Orientation angle="-0.203659"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="258.624" y="22.4" z="286.13"/>
+			<Orientation angle="0.390818"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="285.413" y="22.4" z="285.186"/>
+			<Orientation angle="-1.90325"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="272.515" y="22.4" z="303.212"/>
+			<Orientation angle="-1.71378"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="268.566" y="22.4" z="301.797"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="268.189" y="22.4714" z="305.939"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="276.416" y="22.4" z="298.598"/>
+			<Orientation angle="1.0038"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="277.9" y="22.6309" z="308.909"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="274.776" y="22.4746" z="305.933"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="283.471" y="22.4" z="303.315"/>
+			<Orientation angle="1.12094"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="295.689" y="22.7359" z="317.435"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="292.729" y="22.4582" z="311.52"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="274.778" y="22.4" z="264.203"/>
+			<Orientation angle="0.608069"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="282.611" y="23.4535" z="315.918"/>
+			<Orientation angle="1.65205"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="258.395" y="22.4" z="300.047"/>
+			<Orientation angle="0.33748"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="266.151" y="22.4" z="303.212"/>
+			<Orientation angle="3.09518"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="266.276" y="22.4" z="290.946"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="265.304" y="22.4" z="285.5"/>
+			<Orientation angle="-2.97593"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="259.668" y="22.4" z="285.186"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="276.267" y="22.4" z="285.789"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="285.823" y="22.4" z="295.1"/>
+			<Orientation angle="2.35533"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="295.551" y="22.4" z="302.33"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="282.405" y="33.0475" z="210.833"/>
+			<Orientation angle="-0.675005"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="317.726" y="34.3985" z="208.484"/>
+			<Orientation angle="-0.867531"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="333.666" y="34.5816" z="235.024"/>
+			<Orientation angle="-0.105458"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_date.xml</Actor>
+			<Position x="286.081" y="21.8956" z="251.01"/>
+			<Orientation angle="-1.29918"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="280.745" y="22.4" z="284.62"/>
+			<Orientation angle="3.05444"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="266.897" y="22.4" z="283.519"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="271.924" y="22.4" z="283.849"/>
+			<Orientation angle="-2.60129"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="278.555" y="22.4" z="295.748"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="267.957" y="22.4" z="300.979"/>
+			<Orientation angle="-2.61728"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="289.247" y="22.7512" z="313.698"/>
+			<Orientation angle="-2.41159"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="260.089" y="22.4" z="293.388"/>
+			<Orientation angle="-1.88749"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="290.515" y="22.4" z="287.327"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+	</Nonentities>
+	<Paths/>
+	<Triggers/>
+</Scenario>

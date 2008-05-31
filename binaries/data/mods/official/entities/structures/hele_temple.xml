@@ -20,6 +20,16 @@
  		</Footprint>
 		
 	</Traits>
+	
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Support_Healer />
+				</Train>
+			</List>
+		</Create>
+	</Actions>
 
 	<Actor>structures/hellenes/temple.xml</Actor>
 

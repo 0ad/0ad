@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="infantry/sword/attack/isw_s_off_05.psa" name="idle" speed="1"/>
+        <animation file="infantry/sword/attack/isw_s_def_06.psa" name="idle" speed="1"/>
         <animation file="biped/dudewalk_swordshield.psa" name="walk" speed="18"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="run" speed="8"/>
         <animation file="infantry/general/death/inf_01.psa" name="death" speed="200"/>
@@ -21,7 +21,7 @@
         <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
         <prop actor="props/units/weapons/verutum.xml" attachpoint="l_hand"/>
-        <prop actor="props/units/shields/iber_scutum_variato.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/iber_round_variato.xml" attachpoint="shield"/>
         <prop actor="props/units/cape_iber_variato.xml" attachpoint="back"/>
       </props>
     </variant>

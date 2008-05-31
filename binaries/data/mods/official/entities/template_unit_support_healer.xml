@@ -12,6 +12,7 @@
 			<Classes>Foot</Classes>
 		
 		</Id>
+		
 		<Creation>
 			<Resource>
  				<Metal>120</Metal>
@@ -26,7 +27,7 @@
 		
 		<Health>
 			<Max>85</Max>
-			<RegenRate>0.5</RegenRate>
+			<RegenRate>0.3</RegenRate>
 		</Health>
 
 		<Auras>
@@ -49,7 +50,7 @@
 	
 	<Actions>
 		<Move>
-			<Speed>8.0</Speed>
+			<Speed>7.5</Speed>
 			<TurningRadius>0.8</TurningRadius>
 		</Move>
 	</Actions>	
