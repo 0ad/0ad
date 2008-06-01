@@ -911,6 +911,25 @@ int SDL_ShowCursor(int toggle)
 
 //----------------------------------------------------------------------------
 
+static LRESULT OnDestroy(HWND hWnd)
+{
+	debug_assert(hWnd == g_hWnd);
+	WARN_IF_FALSE(ReleaseDC(g_hWnd, g_hDC));
+	g_hDC = (HDC)INVALID_HANDLE_VALUE;
+	g_hWnd = (HWND)INVALID_HANDLE_VALUE;
+	queue_quit_event();
+	PostQuitMessage(0);
+
+	// see http://www.adrianmccarthy.com/blog/?p=51
+	// with WM_QUIT in the message queue, MessageBox will immediately
+	// return IDABORT. to ensure any subsequent CRT error reports are
+	// at least somewhat visible, we redirect them to debug output.
+	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
+
+	return 0;
+}
+
+
 static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if(is_quitting)
@@ -936,14 +955,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		break;
 
 	HANDLE_MSG(hWnd, WM_ACTIVATE, OnActivate);
-
-	case WM_DESTROY:
-		WARN_IF_FALSE(ReleaseDC(g_hWnd, g_hDC));
-		g_hDC = (HDC)INVALID_HANDLE_VALUE;
-		g_hWnd = (HWND)INVALID_HANDLE_VALUE;
-		queue_quit_event();
-		PostQuitMessage(0);
-		break;
+	HANDLE_MSG(hWnd, WM_DESTROY, OnDestroy);
 
 	case WM_SYSCOMMAND:
 		switch(wParam)
