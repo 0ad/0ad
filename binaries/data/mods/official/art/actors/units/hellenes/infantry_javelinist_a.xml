@@ -15,6 +15,7 @@
         <animation file="infantry/general/chop.psa" name="gather_wood" speed="200"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="150"/>
+        <animation file="infantry/general/forage.psa" name="gather_meat" speed="100"/>
         <animation file="infantry/general/mine.psa" name="gather_stone" speed="200"/>
         <animation file="infantry/general/mine.psa" name="gather_metal" speed="200"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
@@ -33,8 +34,6 @@
         <prop actor="props/units/hele_ijv_rboot.xml" attachpoint="r_leg"/>
         <prop actor="props/units/hele_ijv_lboot.xml" attachpoint="l_leg"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-r_hand"/>
-        <prop actor="props/units/weapons/jav.xml" attachpoint="projectile"/>
       </props>
     </variant>
   </group>
@@ -81,6 +80,14 @@
       <props>
         <prop actor="" attachpoint="shield"/>
         <prop actor="" attachpoint="l_hand"/>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop attachpoint="shield"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="l_hand"/>
         <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
       </props>
     </variant>

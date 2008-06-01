@@ -53,6 +53,19 @@
 	</Traits>
 	
 	<Actions>
+		<Create>
+ 			<List>
+				<Train>
+					<Support_Trader />
+				</Train>
+ 				<Research>
+					<Real_Example />
+				</Research>
+ 			</List>
+ 			<Speed>1</Speed>
+			<Rally/>
+ 		</Create>
+	
 		<Barter>
 			<List>
 				<Food />

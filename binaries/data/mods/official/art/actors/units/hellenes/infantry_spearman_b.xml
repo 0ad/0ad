@@ -13,6 +13,7 @@
         <animation file="infantry/general/chop.psa" name="gather_wood" speed="250"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="400"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="100"/>
+        <animation file="infantry/general/forage.psa" name="gather_meat" speed="100"/>
         <animation file="infantry/general/mine.psa" name="gather_stone" speed="250"/>
         <animation file="infantry/general/mine.psa" name="gather_metal" speed="250"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="250"/>
@@ -73,6 +74,14 @@
         <prop attachpoint="r_hand"/>
         <prop attachpoint="shield"/>
         <prop attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant name="gather_meat">
+      <props>
+        <prop attachpoint="helmet"/>
+        <prop attachpoint="r_hand"/>
+        <prop attachpoint="shield"/>
+        <prop actor="props/units/tools/basket.xml" attachpoint="l_leg"/>
       </props>
     </variant>
     <variant name="gather_stone">
