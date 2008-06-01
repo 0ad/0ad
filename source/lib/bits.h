@@ -44,9 +44,14 @@ bool IsBitSet(T value, size_t index)
  * @param num_bits number of bits in mask
  **/
 template<typename T>
-T bit_mask(size_t num_bits)
+T bit_mask(size_t numBits)
 {
-	return (T)(T(1) << num_bits)-1;
+	if(numBits == 0)	// prevent shift count == bitsInT, which would be undefined.
+		return 0;
+	// note: the perhaps more intuitive (1 << numBits)-1 cannot
+	// handle numBits == bitsInT, but this implementation does.
+	const T bitsInT = sizeof(T)*CHAR_BIT;
+	return ~T(0) >> T(bitsInT-numBits);
 }
 
 
@@ -64,7 +69,7 @@ template<typename T>
 inline T bits(T num, size_t lo_idx, size_t hi_idx)
 {
 	const size_t count = (hi_idx - lo_idx)+1;	// # bits to return
-	T result = num >> lo_idx;
+	T result = num >> T(lo_idx);
 	result &= bit_mask<T>(count);
 	return result;
 }

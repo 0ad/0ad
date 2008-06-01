@@ -76,12 +76,12 @@ LIB_API size_t os_cpu_PageSize();
 LIB_API size_t os_cpu_LargePageSize();
 
 /**
- * @return the size [bytes] of physical memory.
+ * @return the size [MB] of physical memory.
  **/
 LIB_API size_t os_cpu_MemorySize();
 
 /**
- * @return the size [bytes] of currently available memory.
+ * @return the size [MB] of currently available memory.
  **/
 LIB_API size_t os_cpu_MemoryAvailable();
 

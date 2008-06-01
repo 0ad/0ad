@@ -224,6 +224,63 @@ size_t x86_x64_Generation()
 
 
 //-----------------------------------------------------------------------------
+// cache
+
+void x86_x64_EnumerateCaches(x86_x64_CacheCallback callback)
+{
+	for(u32 count = 0; ; count++)
+	{
+		x86_x64_CpuidRegs regs;
+		regs.eax = 4;
+		regs.ecx = count;
+		x86_x64_cpuid(&regs);
+
+		x86_x64_CacheParameters cache;
+		cache.type = (x86_x64_CacheType)bits(regs.eax, 0, 4);
+		if(cache.type == X86_X64_CACHE_TYPE_NULL)	// no more remaining
+			break;
+		cache.level = (size_t)bits(regs.eax, 5, 7);
+		cache.associativity = (size_t)bits(regs.ebx, 22, 31)+1;
+		cache.lineSize = (size_t)bits(regs.ebx, 0, 11)+1;	// (yes, this also uses +1 encoding)
+		cache.sharedBy = (size_t)bits(regs.eax, 14, 25)+1;
+		{
+			const size_t partitions = (size_t)bits(regs.ebx, 12, 21)+1;
+			const size_t sets = (size_t)bits(regs.ecx, 0, 31)+1;
+			cache.size = cache.associativity * partitions * cache.lineSize * sets;
+		}
+
+		callback(&cache);
+	}
+}
+
+
+size_t x86_x64_L1CacheLineSize()
+{
+	static size_t l1CacheLineSize;
+
+	if(!l1CacheLineSize)
+	{
+		l1CacheLineSize = 64;	// (default in case DetectL1CacheLineSize fails)
+
+		struct DetectL1CacheLineSize
+		{
+			static void Callback(const x86_x64_CacheParameters* cache)
+			{
+				if(cache->type != X86_X64_CACHE_TYPE_DATA && cache->type != X86_X64_CACHE_TYPE_UNIFIED)
+					return;
+				if(cache->level != 1)
+					return;
+				l1CacheLineSize = cache->lineSize;
+			}
+		};
+		x86_x64_EnumerateCaches(DetectL1CacheLineSize::Callback);
+	}
+
+	return l1CacheLineSize;
+}
+
+
+//-----------------------------------------------------------------------------
 // identifier string
 
 /// functor to remove substrings from the CPU identifier string

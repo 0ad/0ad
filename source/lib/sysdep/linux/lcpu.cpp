@@ -70,7 +70,10 @@ size_t os_cpu_MemorySize()
 	static size_t memorySize;
 
 	if(!memorySize)
-		memorySize = sysconf(_SC_PHYS_PAGES) * os_cpu_PageSize();
+	{
+		const uint64_t memorySizeBytes = (uint64_t)sysconf(_SC_PHYS_PAGES) * os_cpu_PageSize();
+		memorySize = size_t(memorySizeBytes / MiB);
+	}
 
 	return memorySize;
 }
@@ -78,7 +81,8 @@ size_t os_cpu_MemorySize()
 
 size_t os_cpu_MemoryAvailable()
 {
-	const size_t memoryAvailable = sysconf(_SC_AVPHYS_PAGES) * os_cpu_PageSize();
+	const uint64_t memoryAvailableBytes = (uint64_t)sysconf(_SC_AVPHYS_PAGES) * os_cpu_PageSize();
+	const size_t memoryAvailable = size_t(memoryAvailableBytes / MiB);
 	return memoryAvailable;
 }
 

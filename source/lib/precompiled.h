@@ -63,10 +63,15 @@
 # define BOOST_ALL_DYN_LINK 
 #endif
 #include <boost/utility.hpp>	// noncopyable
-#include <boost/shared_array.hpp>
+// the following boost libraries have been included in TR1 and are
+// thus deemed usable:
 #include <boost/shared_ptr.hpp>
-#include <boost/scoped_ptr.hpp>
-using boost::shared_ptr;	// has been added to TR1
+using boost::shared_ptr;
+#include <boost/mem_fn.hpp>
+using boost::mem_fn;
+#include <boost/function.hpp>
+using boost::function;
+#include <boost/bind.hpp>
 #include "lib/external_libraries/boost_filesystem.h"
 
 // (this must come after boost and common lib headers)

@@ -97,6 +97,40 @@ LIB_API bool x86_x64_cap(x86_x64_Cap cap);
 
 
 //-----------------------------------------------------------------------------
+// cache
+
+enum x86_x64_CacheType
+{
+	X86_X64_CACHE_TYPE_NULL,	// never passed to the callback
+	X86_X64_CACHE_TYPE_DATA,
+	X86_X64_CACHE_TYPE_INSTRUCTION,
+	X86_X64_CACHE_TYPE_UNIFIED
+	// note: further values are "reserved"
+};
+
+struct x86_x64_CacheParameters
+{
+	x86_x64_CacheType type;
+	size_t level;
+	size_t associativity;
+	size_t lineSize;
+	size_t sharedBy;
+	size_t size;
+};
+
+typedef void (CALL_CONV *x86_x64_CacheCallback)(const x86_x64_CacheParameters*);
+
+/**
+ * call back for each cache reported by CPUID.
+ *
+ * note: ordering is undefined (see Intel AP-485)
+ **/
+LIB_API void x86_x64_EnumerateCaches(x86_x64_CacheCallback callback);
+
+LIB_API size_t x86_x64_L1CacheLineSize();
+
+
+//-----------------------------------------------------------------------------
 // stateless
 
 /**

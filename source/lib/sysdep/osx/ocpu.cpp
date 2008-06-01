@@ -69,6 +69,7 @@ size_t os_cpu_MemorySize()
 		// Argh, the API doesn't seem to be const-correct
 		/*const*/ int mib[2] = { CTL_HW, HW_PHYSMEM };
 		sysctl(mib, 2, &memorySize, &len, 0, 0);
+		memorySize /= MiB;
 	}
 
 	return memorySize;
@@ -82,6 +83,7 @@ size_t os_cpu_MemoryAvailable()
 	// Argh, the API doesn't seem to be const-correct
 	/*const*/ int mib[2] = { CTL_HW, HW_USERMEM };
 	sysctl(mib, 2, &memoryAvailable, &len, 0, 0);
+	memoryAvailable /= MiB;
 	return memoryAvailable;
 }
 

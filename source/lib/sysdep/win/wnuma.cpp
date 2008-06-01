@@ -4,6 +4,7 @@
 #include "lib/bits.h"	// round_up, PopulationCount
 #include "lib/timer.h"
 #include "lib/sysdep/os_cpu.h"
+#include "lib/sysdep/acpi.h"
 #include "win.h"
 #include "wutil.h"
 #include "wcpu.h"
@@ -141,7 +142,8 @@ size_t numa_AvailableMemory(size_t node)
 		ULONGLONG availableBytes;
 		const BOOL ok = pGetNumaAvailableMemoryNode((UCHAR)node, &availableBytes);
 		debug_assert(ok);
-		return (size_t)availableBytes;
+		const size_t availableMiB = size_t(availableBytes / MiB);
+		return availableMiB;
 	}
 	// NUMA not supported - return available system memory
 	else
@@ -194,22 +196,34 @@ double numa_Factor()
 }
 
 
+bool numa_IsMemoryInterleaved()
+{
+	WinScopedLock lock(WNUMA_CS);
+	static int isInterleaved = -1;
+	if(isInterleaved == -1)
+	{
+		if(acpi_Init())
+		{
+			// the BIOS only generates an SRAT (System Resource Affinity Table)
+			// if node interleaving is disabled.
+			isInterleaved = acpi_GetTable("SRAT") == 0;
+			acpi_Shutdown();
+		}
+		else
+			isInterleaved = 0;	// can't tell
+	}
+
+	return isInterleaved != 0;
+}
+
+
 //-----------------------------------------------------------------------------
 // allocator
 //-----------------------------------------------------------------------------
 
-void* numa_Allocate(size_t size)
-{
-	void* const mem = VirtualAlloc(0, size, MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
-	if(!mem)
-		throw std::bad_alloc();
-	return mem;
-}
-
-
 static bool largePageAllocationTookTooLong = false;
 
-static bool ShouldUseLargePages(LargePageDisposition disposition, size_t allocationSize, size_t node)
+static bool ShouldUseLargePages(LargePageDisposition disposition, size_t allocationSize)
 {
 	// can't, OS does not support large pages
 	if(os_cpu_LargePageSize() == 0)
@@ -236,11 +250,49 @@ static bool ShouldUseLargePages(LargePageDisposition disposition, size_t allocat
 		// we want there to be plenty of memory available, otherwise the
 		// page frames are going to be terribly fragmented and even a
 		// single allocation would take SECONDS.
-		if(numa_AvailableMemory(node) < 2*GiB)
+		if(os_cpu_MemoryAvailable() < 2000)	// 2 GB
 			return false;
 	}
 
 	return true;
+}
+
+
+void* numa_Allocate(size_t size, LargePageDisposition largePageDisposition, size_t* ppageSize)
+{
+	void* mem = 0;
+
+	// try allocating with large pages (reduces TLB misses)
+	if(ShouldUseLargePages(largePageDisposition, size))
+	{
+		const size_t largePageSize = os_cpu_LargePageSize();
+		const size_t paddedSize = round_up(size, largePageSize);	// required by MEM_LARGE_PAGES
+		// note: this call can take SECONDS, which is why several checks are
+		// undertaken before we even try. these aren't authoritative, so we
+		// at least prevent future attempts if it takes too long.
+		const double startTime = timer_Time();
+		mem = VirtualAlloc(0, paddedSize, MEM_RESERVE|MEM_COMMIT|MEM_LARGE_PAGES, PAGE_READWRITE);
+		if(ppageSize)
+			*ppageSize = largePageSize;
+		const double elapsedTime = timer_Time() - startTime;
+		debug_printf("TIMER| NUMA large page allocation: %g\n", elapsedTime);
+		if(elapsedTime > 1.0)
+			largePageAllocationTookTooLong = true;
+	}
+
+	// try (again) with regular pages
+	if(!mem)
+	{
+		mem = VirtualAlloc(0, size, MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
+		if(ppageSize)
+			*ppageSize = os_cpu_PageSize();
+	}
+
+	// all attempts failed - we're apparently out of memory.
+	if(!mem)
+		throw std::bad_alloc();
+
+	return mem;
 }
 
 
@@ -294,60 +346,34 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 }
 
 
-void* numa_AllocateOnNode(size_t size, size_t node, LargePageDisposition largePageDisposition, size_t* ppageSize)
+void* numa_AllocateOnNode(size_t node, size_t size, LargePageDisposition largePageDisposition, size_t* ppageSize)
 {
 	debug_assert(node < numa_NumNodes());
 
 	// see if there will be enough memory (non-authoritative, for debug purposes only)
 	{
-		const size_t availableBytes = numa_AvailableMemory(node);
-		if(availableBytes < size)
-			debug_printf("NUMA: warning: node reports insufficient memory (%d vs %d)\n", availableBytes, size);
+		const size_t sizeMiB = size/MiB;
+		const size_t availableMiB = numa_AvailableMemory(node);
+		if(availableMiB < sizeMiB)
+			debug_printf("NUMA: warning: node reports insufficient memory (%d vs %d MB)\n", availableMiB, sizeMiB);
 	}
 
-	void* mem = 0;
-	size_t pageSize = 0;
-
-	// try allocating with large pages (reduces TLB misses)
-	if(ShouldUseLargePages(largePageDisposition, size, node))
-	{
-		const size_t largePageSize = os_cpu_LargePageSize();
-		const size_t paddedSize = round_up(size, largePageSize);	// required by MEM_LARGE_PAGES
-		// note: this call can take SECONDS, which is why several checks are
-		// undertaken before we even try. these aren't authoritative, so we
-		// at least prevent future attempts if it takes too long.
-		const double startTime = timer_Time();
-		mem = VirtualAlloc(0, paddedSize, MEM_RESERVE|MEM_COMMIT|MEM_LARGE_PAGES, PAGE_READWRITE);
-		pageSize = largePageSize;
-		const double elapsedTime = timer_Time() - startTime;
-		debug_printf("TIMER| NUMA large page allocation: %g\n", elapsedTime);
-		if(elapsedTime > 1.0)
-			largePageAllocationTookTooLong = true;
-	}
-
-	// try (again) with regular pages
-	if(!mem)
-	{
-		mem = VirtualAlloc(0, size, MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
-		pageSize = os_cpu_PageSize();
-	}
-
-	// all attempts failed - we're apparently out of memory.
-	if(!mem)
-		throw std::bad_alloc();
+	size_t pageSize;	// (used below even if ppageSize is zero)
+	void* const mem = numa_Allocate(size, largePageDisposition, &pageSize);
+	if(ppageSize)
+		*ppageSize = pageSize;
 
 	// we can't use VirtualAllocExNuma - it's only available in Vista and Server 2008.
 	// workaround: fault in all pages now to ensure they are allocated from the
 	// current node, then verify page attributes.
 	// (note: VirtualAlloc's MEM_COMMIT only maps virtual pages and does not
-	// actually allocate page frames. Windows uses a first-touch heuristic -
-	// the page will be taken from the node whose processor caused the fault.)
+	// actually allocate page frames. Windows XP uses a first-touch heuristic -
+	// the page will be taken from the node whose processor caused the fault.
+	// Windows Vista allocates on the "preferred" node, so affinity should be
+	// set such that this thread is running on <node>.)
 	memset(mem, 0, size);
 
 	VerifyPages(mem, size, pageSize, node);
-
-	if(ppageSize)
-		*ppageSize = pageSize;
 
 	return mem;
 }

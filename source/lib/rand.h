@@ -16,6 +16,6 @@
  * avoids several common pitfalls; see discussion at
  * http://www.azillionmonkeys.com/qed/random.html
  **/
-extern size_t rand(size_t min_inclusive, size_t max_exclusive);
+LIB_API size_t rand(size_t min_inclusive, size_t max_exclusive);
 
 #endif	// #ifndef INCLUDED_RAND

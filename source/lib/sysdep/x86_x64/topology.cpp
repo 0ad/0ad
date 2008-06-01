@@ -12,7 +12,7 @@
 #include "topology.h"
 
 #include "lib/bits.h"
-#include "lib/sysdep/cpu.h"
+#include "lib/sysdep/cpu.h"	// ERR::CPU_FEATURE_MISSING
 #include "lib/sysdep/os_cpu.h"
 #include "x86_x64.h"
 
@@ -99,36 +99,20 @@ static size_t LogicalPerCache()
 
 	if(!logicalPerCache)
 	{
-		logicalPerCache = 1;	// caches aren't shared unless we find a descriptor
+		logicalPerCache = 1;	// (default in case DetectL2Sharing fails)
 
-		// note: Intel Appnote 485 says the order in which caches are returned is
-		// undefined, so we need to loop through all of them.
-		for(u32 count = 0; ; count++)
+		struct DetectL2Sharing
 		{
-			// get next cache descriptor
-			x86_x64_CpuidRegs regs;
-			regs.eax = 4;
-			regs.ecx = count;
-			x86_x64_cpuid(&regs);
-			const u32 type = bits(regs.eax, 0, 4);
-			if(type == 0)	// no more remaining
-				break;
-			
-			struct IsL2DataCache
+			static void Callback(const x86_x64_CacheParameters* cache)
 			{
-				bool operator()(u32 type, u32 level) const
-				{
-					if(type != 1 && type != 3)	// neither data nor unified
-						return false;
-					if(level != 2)
-						return false;
-					return true;
-				}
-			};
-			const u32 level = bits(regs.eax, 5, 7);
-			if(IsL2DataCache()(type, level))
-				logicalPerCache = bits(regs.eax, 14, 25)+1;
-		}
+				if(cache->type != X86_X64_CACHE_TYPE_DATA && cache->type != X86_X64_CACHE_TYPE_UNIFIED)
+					return;
+				if(cache->level != 2)
+					return;
+				logicalPerCache = cache->sharedBy;
+			}
+		};
+		x86_x64_EnumerateCaches(DetectL2Sharing::Callback);
 	}
 
 	return logicalPerCache;
@@ -177,29 +161,41 @@ static const u8* ApicIds()
 
 
 /**
- * count the number of unique values assumed by a certain field (i.e. part
- * of the APIC ID).
- * @param numBits width of the field; must be set to ceil_log2 of the
- * maximum value that can be assumed by the field.
- * @return number of unique values (one if numBits is zero - this is
- * convenient and kind of justified by counting the empty symbol)
+ * count the number of unique APIC IDs after application of a mask.
+ *
+ * this is used to implement NumUniqueValuesInField and also required
+ * for counting the number of caches.
  **/
-static size_t NumUniqueValuesInField(const u8* apicIds, size_t offset, size_t numBits)
+static size_t NumUniqueMaskedValues(const u8* apicIds, u8 mask)
 {
-	if(numBits == 0)
-		return 1;	// see above
-	const u8 mask = bit_mask<u8>(numBits);
-
-	typedef std::set<u8> IdSet;
-	IdSet ids;
+	std::set<u8> ids;
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{
 		const u8 apicId = apicIds[processor];
-		const u8 field = u8(apicId >> offset) & mask;
+		const u8 field = apicId & mask;
 		ids.insert(field);
 	}
 
 	return ids.size();
+}
+
+
+/**
+ * count the number of values assumed by a certain field within APIC IDs.
+ *
+ * @param offset index of the lowest bit that is part of the field.
+ * @param numValues number of values that can be assumed by the field.
+ * if equal to one, the field is zero-width.
+ * @return number of unique values (for convenience of the topology code,
+ * this is always at least one)
+ **/
+static size_t NumUniqueValuesInField(const u8* apicIds, size_t offset, size_t numValues)
+{
+	if(numValues == 1)
+		return 1;	// see above
+	const size_t numBits = ceil_log2(numValues);
+	const u8 mask = u8((bit_mask<u8>(numBits) << offset) & 0xFF);
+	return NumUniqueMaskedValues(apicIds, mask);
 }
 
 
@@ -208,8 +204,7 @@ static size_t NumPackages(const u8* apicIds)
 	if(apicIds)
 	{
 		const size_t offset = ceil_log2(CoresPerPackage()) + ceil_log2(LogicalPerCore());
-		const size_t numBits = 8;
-		return NumUniqueValuesInField(apicIds, offset, numBits);
+		return NumUniqueValuesInField(apicIds, offset, 256);
 	}
 	else
 	{
@@ -241,8 +236,7 @@ static size_t CoresPerPackage(const u8* apicIds)
 	if(apicIds)
 	{
 		const size_t offset = ceil_log2(LogicalPerCore());
-		const size_t numBits = ceil_log2(CoresPerPackage());
-		return NumUniqueValuesInField(apicIds, offset, numBits);
+		return NumUniqueValuesInField(apicIds, offset, CoresPerPackage());
 	}
 	else
 	{
@@ -257,8 +251,7 @@ static size_t LogicalPerCore(const u8* apicIds)
 	if(apicIds)
 	{
 		const size_t offset = 0;
-		const size_t numBits = ceil_log2(LogicalPerCore());
-		return NumUniqueValuesInField(apicIds, offset, numBits);
+		return NumUniqueValuesInField(apicIds, offset, LogicalPerCore());
 	}
 	else
 	{
@@ -320,9 +313,9 @@ static size_t NumCaches(const u8* apicIds)
 {
 	if(apicIds)
 	{
-		const size_t offset = 0;
 		const size_t numBits = ceil_log2(LogicalPerCache());
-		return NumUniqueValuesInField(apicIds, offset, numBits);
+		const u8 mask = u8((0xFF << numBits) & 0xFF);
+		return NumUniqueMaskedValues(apicIds, mask);
 	}
 	else
 	{

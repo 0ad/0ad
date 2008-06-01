@@ -142,31 +142,33 @@ static void GetMemoryStatus(MEMORYSTATUSEX& mse)
 
 size_t os_cpu_MemorySize()
 {
-	static size_t memorySize;
+	static size_t memorySizeMiB;
 
-	if(memorySize == 0)
+	if(memorySizeMiB == 0)
 	{
 		MEMORYSTATUSEX mse;
 		GetMemoryStatus(mse);
-		memorySize = (size_t)mse.ullTotalPhys;
+		DWORDLONG memorySize = mse.ullTotalPhys;
 
 		// Richter, "Programming Applications for Windows": the reported
 		// value doesn't include non-paged pool reserved during boot;
 		// it's not considered available to the kernel. (the amount is
 		// 528 KiB on a 512 MiB WinXP/Win2k machine). we'll round up
 		// to the nearest megabyte to fix this.
-		memorySize = round_up(memorySize, 1*MiB);
+		memorySize = round_up(memorySize, DWORDLONG(1*MiB));
+
+		memorySizeMiB = size_t(memorySize / MiB);
 	}
 
-	return memorySize;
+	return memorySizeMiB;
 }
 
 size_t os_cpu_MemoryAvailable()
 {
 	MEMORYSTATUSEX mse;
 	GetMemoryStatus(mse);
-	const size_t memoryAvailable = (size_t)mse.ullAvailPhys;
-	return memoryAvailable;
+	const size_t memoryAvailableMiB = size_t(mse.ullAvailPhys / MiB);
+	return memoryAvailableMiB;
 }
 
 
