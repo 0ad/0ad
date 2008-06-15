@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Base">
       <animations>
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
         <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
@@ -14,7 +14,18 @@
       <props>
         <prop actor="props/units/heads/head_hele_healer.xml" attachpoint="head"/>
       </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="healer-robe-1">
+      <props>
+        <prop actor="props/units/heads/hele_hood_priest.xml" attachpoint="helmet"/>
+      </props>
       <texture>skeletal/hele_healer_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="healer-robe-2">
+      <texture>skeletal/hele_healer_2.dds</texture>
     </variant>
   </group>
 

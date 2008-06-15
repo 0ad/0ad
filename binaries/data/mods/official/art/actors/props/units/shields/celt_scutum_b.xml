@@ -2,7 +2,7 @@
 <actor version="1">
 
   <group>
-    <variant name="Base">
+    <variant frequency="1" name="Base">
       <mesh>props/shield/scutum_c_f.pmd</mesh>
       <props>
         <prop actor="props/units/shields/scutum_back.xml" attachpoint="back"/>
@@ -11,20 +11,26 @@
   </group>
 
   <group>
-    <variant name="A">
+    <variant frequency="1" name="A">
       <texture>props/shield/celt_oval1_a.dds</texture>
     </variant>
-    <variant name="B">
+    <variant frequency="1" name="B">
       <texture>props/shield/celt_oval1_b.dds</texture>
     </variant>
-    <variant name="C">
+    <variant frequency="1" name="C">
       <texture>props/shield/celt_oval1_c.dds</texture>
     </variant>
-    <variant name="D">
+    <variant frequency="1" name="D">
       <texture>props/shield/celt_oval1_d.dds</texture>
     </variant>
-    <variant name="E">
+    <variant frequency="1" name="E">
       <texture>props/shield/celt_oval1_e.dds</texture>
+    </variant>
+    <variant frequency="1" name="Misc-E">
+      <texture>props/shield/celt_misc_e.dds</texture>
+    </variant>
+    <variant frequency="1" name="Misc-F">
+      <texture>props/shield/celt_misc_f.dds</texture>
     </variant>
   </group>
 

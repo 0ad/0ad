@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="hele_infantry_spearman_a">
+
+	<Traits>
+
+		<Id>
+			<Icon_Cell>5</Icon_Cell>
+		</Id>
+
+		<Armour>
+			<Hack>7.0</Hack>
+			<Pierce>5.0</Pierce>
+			<Crush>12.0</Crush>
+		</Armour>
+
+		<Health>
+			<Max>100</Max>
+		</Health>
+	
+	</Traits>
+
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>17.0</Hack>
+ 				<Pierce>8.5</Pierce>
+			</Melee>
+			<Charge>
+				<Hack>35.0</Hack>
+				<Pierce>17.0</Pierce>
+			</Charge>		
+ 		</Attack>
+
+		<Move>
+			<Speed>7.25</Speed>
+			<Run>
+				<Speed>14.0</Speed>
+			</Run>
+		</Move>
+	</Actions>	
+
+	<Actor>temp/sword_hoplite_1.xml</Actor>
+
+</Entity>

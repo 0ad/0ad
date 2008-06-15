@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Administrator</author>
+      <authoring_tool>Feeling ColladaMax v3.02 with FCollada v3.02.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=0;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=0;AnimStart=0;AnimEnd=29;</comments>
+      <source_data>file:///C:/3dsMax6/scenes/0ad/capes.max</source_data>
+    </contributor>
+    <created>2008-06-12T04:23:04Z</created>
+    <modified>2008-06-12T04:23:05Z</modified>
+    <unit meter="0.0254" name="inch"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_lights>
+    <light id="ambient-environment-light" name="Ambient">
+      <technique_common>
+        <ambient>
+          <color>0.466667 0.466667 0.466667</color>
+        </ambient>
+      </technique_common>
+      <extra>
+        <technique profile="FCOLLADA">
+          <intensity>1</intensity>
+          <target_default_dist>240</target_default_dist>
+        </technique>
+      </extra>
+    </light>
+  </library_lights>
+  <library_materials>
+    <material id="ColorMaterial_0000C500" name="ColorMaterial_0000C500">
+      <instance_effect url="#ColorMaterial_0000C500-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="ColorMaterial_0000C500-fx">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color>0 0 0 0</color>
+            </emission>
+            <ambient>
+              <color>0 0 0.772549 1</color>
+            </ambient>
+            <diffuse>
+              <color>0 0 0.772549 1</color>
+            </diffuse>
+            <specular>
+              <color>1 1 1 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>1 1 1 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>0 0 0 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </phong>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0.2</float>
+              </spec_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="m_cape_short-mesh" name="m_cape_short">
+      <mesh>
+        <source id="m_cape_short-mesh-positions">
+          <float_array id="m_cape_short-mesh-positions-array" count="180">-0.000000 0.647039 0.033538 -0.18876 0.647039 -0.002862 -0.19111 0.295601 0.072449 -0.182732 0.905015 -0.11516 -0.18068 0.97747 -0.208392 -0.000000 0.905015 -0.093278 -0.000000 0.97747 -0.196125 0.188759 0.647039 -0.002862 0.19111 0.295601 0.07245 0.18273 0.905015 -0.115161 0.18068 0.97747 -0.208393 -0.142566 1.00078 -0.354718 0.000000 1.00078 -0.354718 0.142566 1.00078 -0.354718 -0.380759 -0.080546 -0.046152 -0.189666 -0.080546 0.105358 0.000000 -0.080546 0.149671 0.189666 -0.080546 0.10536 0.380759 -0.080546 -0.046148 0.382911 0.295601 -0.077725 0.379017 0.647039 -0.112065 0.366109 0.905015 -0.180807 0.36136 0.97747 -0.245197 0.286114 1.00078 -0.354719 -0.286114 1.00078 -0.354717 -0.36136 0.97747 -0.245195 -0.366109 0.905015 -0.180806 -0.379019 0.647039 -0.112064 -0.382911 0.295601 -0.077727 -0.000000 0.295601 0.099977 -0.000000 0.647039 0.033538 -0.18876 0.647039 -0.002862 -0.19111 0.295601 0.072449 -0.182732 0.905015 -0.11516 -0.18068 0.97747 -0.208392 -0.000000 0.905015 -0.093278 -0.000000 0.97747 -0.196125 0.188759 0.647039 -0.002862 0.19111 0.295601 0.07245 0.18273 0.905015 -0.115161 0.18068 0.97747 -0.208393 -0.142566 1.00078 -0.354718 0.000000 1.00078 -0.354718 0.142566 1.00078 -0.354718 -0.380759 -0.080546 -0.046152 -0.189666 -0.080546 0.105358 0.000000 -0.080546 0.149671 0.189666 -0.080546 0.10536 0.380759 -0.080546 -0.046148 0.38291 0.295601 -0.077725 0.379017 0.647039 -0.112065 0.366109 0.905015 -0.180807 0.36136 0.97747 -0.245197 0.286114 1.00078 -0.354719 -0.286114 1.00078 -0.354717 -0.36136 0.97747 -0.245195 -0.366109 0.905015 -0.180806 -0.379019 0.647039 -0.112064 -0.382911 0.295601 -0.077727 -0.000000 0.295601 0.099977</float_array>
+          <technique_common>
+            <accessor source="#m_cape_short-mesh-positions-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="m_cape_short-mesh-normals">
+          <float_array id="m_cape_short-mesh-normals-array" count="180">0.4276 -0.075922 -0.900774 0.620081 -0.0621 -0.782076 0.5935 -0.105254 -0.797922 0.396007 -0.139339 -0.907614 0.455993 -0.213297 -0.864046 0.341285 -0.28159 -0.89679 -0.003495 -0.162224 -0.986748 0.000003 -0.099973 -0.99499 0.001318 -0.309816 -0.950796 0.252345 -0.51361 -0.820078 0.200809 -0.585879 -0.785125 0.10558 -0.848637 -0.518332 0.072122 -0.905538 -0.418091 0.020915 -0.984885 -0.171942 -0.000000 -0.987552 -0.157296 0.011155 -0.631938 -0.774939 0.006422 -0.923166 -0.384347 0.002777 -0.988984 -0.147999 -0.383433 -0.131039 -0.914225 -0.428521 -0.077119 -0.900235 -0.316685 -0.273051 -0.90838 -0.618245 -0.064733 -0.783315 -0.614828 -0.073323 -0.785245 -0.510308 -0.199972 -0.836419 -0.177751 -0.59646 -0.782714 -0.060738 -0.915205 -0.398386 -0.011478 -0.987234 -0.158864 -0.322194 -0.510194 -0.797429 -0.131302 -0.867607 -0.479602 -0.000000 -0.978099 -0.208142 -0.4276 0.075922 0.900774 -0.396007 0.139339 0.907614 -0.5935 0.105254 0.797922 -0.620081 0.0621 0.782076 -0.341285 0.28159 0.89679 -0.455993 0.213297 0.864046 -0.000003 0.099973 0.99499 0.003495 0.162224 0.986748 -0.001318 0.309816 0.950796 -0.200809 0.585879 0.785125 -0.252345 0.513609 0.820078 -0.072122 0.905538 0.418091 -0.10558 0.848637 0.518332 0.000000 0.987552 0.157296 -0.020915 0.984885 0.171942 -0.011155 0.631938 0.774939 -0.006422 0.923166 0.384347 -0.002777 0.988984 0.147999 0.383433 0.13104 0.914225 0.428521 0.077119 0.900235 0.316685 0.273051 0.90838 0.618245 0.064733 0.783315 0.614829 0.073323 0.785245 0.510308 0.199972 0.836419 0.177751 0.59646 0.782714 0.060738 0.915205 0.398386 0.011478 0.987234 0.158864 0.322194 0.510194 0.797429 0.131302 0.867607 0.479602 0.000000 0.978099 0.208142</float_array>
+          <technique_common>
+            <accessor source="#m_cape_short-mesh-normals-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="m_cape_short-mesh-map-channel1">
+          <float_array id="m_cape_short-mesh-map-channel1-array" count="162">0.25 0.566406 0 0.128906 0.574219 0 0.128906 0.289063 0 0.125 0.824219 0 0.125 0.921875 0 0.25 0.816406 0 0.25 0.917969 0 0.371094 0.574219 0 0.371094 0.289063 0 0.371094 0.824219 0 0.371094 0.921875 0 0.125 1 0 0.25 1 0 0.375 1 0 0 0 0 0.128906 0 0 0.25 0 0 0.371094 0 0 0.501953 0 0 0.501953 0.304688 0 0.501953 0.595703 0 0.501953 0.841797 0 0.501953 0.933594 0 0.501953 1 0 0 1 0 0 0.933594 0 0 0.839844 0 0 0.59375 0 0 0.304688 0 0.25 0.292969 0 0.75 0.566406 0 0.628906 0.574219 0 0.628906 0.289063 0 0.628906 0.824219 0 0.628906 0.925781 0 0.75 0.820313 0 0.75 0.921875 0 0.871094 0.574219 0 0.871094 0.289063 0 0.875 0.824219 0 0.875 0.925781 0 0.625 1 0 0.75 1 0 0.875 1 0 0.628906 0 0 0.75 0 0 0.871094 0 0 1 0 0 1 0.304688 0 1 0.597656 0 1 0.84375 0 1 0.933594 0 1 1 0 0.75 0.292969 0</float_array>
+          <technique_common>
+            <accessor source="#m_cape_short-mesh-map-channel1-array" count="54" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="m_cape_short-mesh-vertices">
+          <input semantic="POSITION" source="#m_cape_short-mesh-positions"/>
+        </vertices>
+        <triangles material="ColorMaterial_0000C500" count="80">
+          <input semantic="VERTEX" source="#m_cape_short-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#m_cape_short-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#m_cape_short-mesh-map-channel1" offset="2" set="1"/>
+          <p>15 0 15 14 1 14 28 2 28 28 2 28 2 3 2 15 0 15 28 2 28 27 4 27 1 5 1 1 5 1 2 3 2 28 2 28 2 3 2 29 6 29 16 7 16 16 7 16 15 0 15 2 3 2 0 8 0 29 6 29 2 3 2 2 3 2 1 5 1 0 8 0 27 4 27 26 9 26 3 10 3 3 10 3 1 5 1 27 4 27 26 9 26 25 11 25 4 12 4 4 12 4 3 10 3 26 9 26 4 12 4 25 11 25 24 13 24 24 13 24 11 14 11 4 12 4 1 5 1 3 10 3 5 15 5 5 15 5 0 8 0 1 5 1 3 10 3 4 12 4 6 16 6 6 16 6 5 15 5 3 10 3 4 12 4 11 14 11 12 17 12 12 17 12 6 16 6 4 12 4 8 18 8 17 19 17 16 7 16 16 7 16 29 6 29 8 18 8 7 20 7 8 18 8 29 6 29 29 6 29 0 8 0 7 20 7 18 21 18 17 19 17 8 18 8 8 18 8 19 22 19 18 21 18 8 18 8 7 20 7 20 23 20 20 23 20 19 22 19 8 18 8 0 8 0 5 15 5 9 24 9 9 24 9 7 20 7 0 8 0 5 15 5 6 16 6 10 25 10 10 25 10 9 24 9 5 15 5 6 16 6 12 17 12 13 26 13 13 26 13 10 25 10 6 16 6 21 27 21 20 23 20 7 20 7 7 20 7 9 24 9 21 27 21 9 24 9 10 25 10 22 28 22 22 28 22 21 27 21 9 24 9 22 28 22 10 25 10 13 26 13 13 26 13 23 29 23 22 28 22 45 30 44 32 31 32 58 32 19 58 32 19 44 33 18 45 30 44 58 32 19 32 31 32 31 34 31 31 34 31 57 35 20 58 32 19 32 31 32 45 30 44 46 36 45 46 36 45 59 37 53 32 31 32 30 38 30 31 34 31 32 31 32 32 31 32 59 37 53 30 38 30 57 35 20 31 34 31 33 39 33 33 39 33 56 40 21 57 35 20 56 40 21 33 39 33 34 41 34 34 41 34 55 42 22 56 40 21 34 41 34 41 43 41 54 44 23 54 44 23 55 42 22 34 41 34 31 34 31 30 38 30 35 45 35 35 45 35 33 39 33 31 34 31 33 39 33 35 45 35 36 46 36 36 46 36 34 41 34 33 39 33 34 41 34 36 46 36 42 47 42 42 47 42 41 43 41 34 41 34 38 48 38 59 37 53 46 36 45 46 36 45 47 49 46 38 48 38 37 50 37 30 38 30 59 37 53 59 37 53 38 48 38 37 50 37 48 51 47 49 52 48 38 48 38 38 48 38 47 49 46 48 51 47 38 48 38 49 52 48 50 53 49 50 53 49 37 50 37 38 48 38 30 38 30 37 50 37 39 54 39 39 54 39 35 45 35 30 38 30 35 45 35 39 54 39 40 55 40 40 55 40 36 46 36 35 45 35 36 46 36 40 55 40 43 56 43 43 56 43 42 47 42 36 46 36 51 57 50 39 54 39 37 50 37 37 50 37 50 53 49 51 57 50 39 54 39 51 57 50 52 58 51 52 58 51 40 55 40 39 54 39 52 58 51 53 59 52 43 56 43 43 56 43 40 55 40 52 58 51</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="capes_max" name="capes_max">
+      <node id="m_cape_short-node" name="m_cape_short" type="NODE">
+        <translate>0 0 0</translate>
+        <scale>1.33383 1 1</scale>
+        <node id="m_cape_short-node_PIVOT" name="m_cape_short_PIVOT" type="NODE">
+          <translate>-0.001651 0.420162 -0.991646</translate>
+          <rotate>0.000001 0.707107 0.707107 -180</rotate>
+          <instance_geometry url="#m_cape_short-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="ColorMaterial_0000C500" target="#ColorMaterial_0000C500"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+      <node id="VisualSceneNode" type="NODE">
+        <instance_light url="#ambient-environment-light"/>
+      </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>30</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0</start_time>
+          <end_time>0.966667</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#capes_max"/>
+  </scene>
+</COLLADA>

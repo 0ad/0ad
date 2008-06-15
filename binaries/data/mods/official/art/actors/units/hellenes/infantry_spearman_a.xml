@@ -17,13 +17,9 @@
         <animation file="infantry/general/mine.psa" name="gather_stone" speed="200"/>
         <animation file="infantry/general/mine.psa" name="gather_metal" speed="200"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="250"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="400"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
       </animations>
       <mesh>skeletal/m_tunic_a.pmd</mesh>
       <props>

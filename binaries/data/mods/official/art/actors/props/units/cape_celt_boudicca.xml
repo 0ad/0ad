@@ -5,11 +5,11 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/special/cape_a.pmd</mesh>
+      <mesh>props/f_cape_long.dae</mesh>
       <texture>props/cape_celt_boudicca.dds</texture>
     </variant>
   </group>
 
-  <material>basic_trans.xml</material>
+  <material>player_trans.xml</material>
 
 </actor>

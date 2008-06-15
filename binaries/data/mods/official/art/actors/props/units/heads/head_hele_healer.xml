@@ -4,20 +4,23 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="beard-small">
-      <mesh>props/head_beard_small.pmd</mesh>
-    </variant>
-    <variant frequency="1" name="beard-large">
-      <mesh>props/head_beard_large.pmd</mesh>
+    <variant frequency="1" name="beard">
+      <mesh>props/head_beard.pmd</mesh>
     </variant>
     <variant frequency="1" name="beard-wide">
       <mesh>props/head_beard_wide.pmd</mesh>
     </variant>
+    <variant frequency="1" name="beard-long">
+      <mesh>props/head_beard_large.pmd</mesh>
+    </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="healer-face">
+    <variant frequency="1" name="healer-face-a">
       <texture>props/head/hele_healer_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="healer-face-b">
+      <texture>props/head/hele_healer_b.dds</texture>
     </variant>
   </group>
 

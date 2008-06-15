@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <float/>
+
+  <group>
+    <variant frequency="1" name="ship-trireme">
+      <mesh>structural/hele_tri.pmd</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/hele_tri1.xml" attachpoint="props_main"/>
+      </props>
+      <texture>structural/hele_trireme.dds</texture>
+    </variant>
+    <variant frequency="1" name="ship-bireme">
+      <mesh>structural/hele_bir.pmd</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/hele_bir1.xml" attachpoint="props_main"/>
+      </props>
+      <texture>structural/hele_bireme.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
