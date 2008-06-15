@@ -94,8 +94,8 @@ XMB_Text {
 #endif
 
 // File headers, to make sure it doesn't try loading anything other than an XMB
-extern const u32 HeaderMagic;
 extern const char* HeaderMagicStr;
+extern const char* UnfinishedHeaderMagicStr;
 
 class XMBElement;
 class XMBElementList;
@@ -111,7 +111,10 @@ public:
 	// Initialise from the contents of an XMB file.
 	// FileData must remain allocated and unchanged while
 	// the XMBFile is being used.
-	void Initialise(const char* FileData);
+	// @return indication of success; main cause for failure is attempting to
+	// load a partially valid XMB file (e.g. if the game was interrupted
+	// while writing it), which we detect by checking the magic string.
+	bool Initialise(const char* FileData);
 
 	// Returns the root element
 	XMBElement GetRoot() const;

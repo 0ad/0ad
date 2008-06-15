@@ -2,20 +2,25 @@
 
 #include "Xeromyces.h"
 
+#include "lib/byte_order.h"	// FOURCC_LE
 #include "ps/utf16string.h"
 
-
-
-const u32 HeaderMagic = 0x30424D58; // = "XMB0" (little-endian)
+// external linkage (also used by Xeromyces.cpp)
 const char* HeaderMagicStr = "XMB0";
+const char* UnfinishedHeaderMagicStr = "XMBu";
 
 // Warning: May contain traces of pointer abuse
 
-void XMBFile::Initialise(const char* FileData)
+bool XMBFile::Initialise(const char* FileData)
 {
 	m_Pointer = FileData;
-	u32 Header = *(u32 *)m_Pointer; m_Pointer += 4;
-	debug_assert(Header == HeaderMagic && "Invalid XMB header!");
+	char Header[5];
+	strncpy_s(Header, 5, m_Pointer, 4);
+	m_Pointer += 4;
+	// (c.f. @return documentation of this function)
+	if(!strcmp(Header, UnfinishedHeaderMagicStr))
+		return false;
+	debug_assert(!strcmp(Header, HeaderMagicStr) && "Invalid XMB header!");
 
 	int i;
 
@@ -47,6 +52,7 @@ void XMBFile::Initialise(const char* FileData)
 		m_Pointer += 4 + *(int*)m_Pointer; // skip over the string
 #endif
 
+	return true;	// success
 }
 
 std::string XMBFile::ReadZStrA()

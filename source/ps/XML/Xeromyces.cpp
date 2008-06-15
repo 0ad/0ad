@@ -177,8 +177,8 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	{
 		if (ReadXMBFile(xmbPath))
 			return PSRETURN_OK;
-		else
-			return PSRETURN_Xeromyces_XMLOpenFailed;
+		// (no longer return PSRETURN_Xeromyces_XMLOpenFailed here because
+		// failure legitimately happens due to partially-written XMB files.)
 	}
 
 	
@@ -243,7 +243,8 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	XMBBuffer = writeBuffer.Data();	// add a reference
 
 	// Set up the XMBFile
-	Initialise((const char*)XMBBuffer.get());
+	const bool ok = Initialise((const char*)XMBBuffer.get());
+	debug_assert(ok);
 
 	return PSRETURN_OK;
 }
@@ -256,7 +257,8 @@ bool CXeromyces::ReadXMBFile(const VfsPath& filename)
 	debug_assert(size >= 42);	// else: invalid XMB file size. (42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.))
 
 	// Set up the XMBFile
-	Initialise((const char*)XMBBuffer.get());
+	if(!Initialise((const char*)XMBBuffer.get()))
+		return false;
 
 	return true;
 }
@@ -349,7 +351,7 @@ void XeroHandler::characters(const XMLCh* const chars, const unsigned int UNUSED
 void XeroHandler::CreateXMB()
 {
 	// Header
-	writeBuffer.Append((void*)HeaderMagicStr, 4);
+	writeBuffer.Append(UnfinishedHeaderMagicStr, 4);
 
 	std::set<std::string>::iterator it;
 	int i;
@@ -385,6 +387,9 @@ void XeroHandler::CreateXMB()
 
 	delete Root;
 	Root = NULL;
+
+	// file is now valid, so insert correct magic string
+	writeBuffer.Overwrite(HeaderMagicStr, 4, 0);
 }
 
 // Writes a whole element (recursively if it has children) into the buffer,
