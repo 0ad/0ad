@@ -119,7 +119,10 @@ LibError Stream::Feed(const u8* in, size_t inSize)
 
 LibError Stream::Finish()
 {
-	return m_codec->Finish(m_checksum);
+	size_t outProduced;
+	RETURN_ERR(m_codec->Finish(m_checksum, outProduced));
+	m_outProduced += outProduced;
+	return INFO::OK;
 }
 
 

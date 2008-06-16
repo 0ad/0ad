@@ -68,8 +68,9 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError Finish(u32& checksum)
+	virtual LibError Finish(u32& checksum, size_t& outProduced)
 	{
+		outProduced = 0;
 		checksum = m_checksum;
 		return INFO::OK;
 	}
@@ -199,13 +200,17 @@ public:
 		return CodecZLibStream::CallStreamFunc(deflate, 0, in, inSize, out, outSize, inConsumed, outProduced);
 	}
 
-	virtual LibError Finish(u32& checksum)
+	virtual LibError Finish(u32& checksum, size_t& outProduced)
 	{
+		const uInt availOut = m_zs.avail_out;
+
 		// notify zlib that no more data is forthcoming and have it flush output.
 		// our output buffer has enough space due to use of deflateBound;
 		// therefore, deflate must return Z_STREAM_END.
 		const int ret = deflate(&m_zs, Z_FINISH);
 		debug_assert(ret == Z_STREAM_END);
+
+		outProduced = size_t(availOut - m_zs.avail_out);
 
 		checksum = m_checksum;
 		return INFO::OK;
@@ -255,9 +260,10 @@ public:
 		return ret;
 	}
 
-	virtual LibError Finish(u32& checksum)
+	virtual LibError Finish(u32& checksum, size_t& outProduced)
 	{
 		// no action needed - decompression always flushes immediately.
+		outProduced = 0;
 
 		checksum = m_checksum;
 		return INFO::OK;

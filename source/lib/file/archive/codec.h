@@ -15,7 +15,7 @@
 // besides ZLib. it also simplifies the interface for user code and
 // does error checking, etc.
 
-#define CODEC_COMPUTE_CHECKSUM 0
+#define CODEC_COMPUTE_CHECKSUM 1
 
 struct ICodec
 {
@@ -57,7 +57,7 @@ public:
 	 * @param checksum over all input data.
 	 * @return error status for the entire operation.
 	 **/
-	virtual LibError Finish(u32& checksum) = 0;
+	virtual LibError Finish(u32& checksum, size_t& outProduced) = 0;
 
 	/**
 	 * update a checksum to reflect the contents of a buffer.

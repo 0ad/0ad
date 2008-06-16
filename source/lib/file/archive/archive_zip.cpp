@@ -192,8 +192,10 @@ public:
 	void Init(size_t cd_numEntries, off_t cd_ofs, off_t cd_size)
 	{
 		m_magic         = ecdr_magic;
-		memset(m_x1, 0, sizeof(m_x1));
-		m_cd_numEntries = to_le16(u16_from_larger(cd_numEntries));
+		m_diskNum       = to_le16(0);
+		m_cd_diskNum    = to_le16(0);
+		m_cd_numEntriesOnDisk = to_le16(u16_from_larger(cd_numEntries));
+		m_cd_numEntries = m_cd_numEntriesOnDisk;
 		m_cd_size       = to_le32(u32_from_larger(cd_size));
 		m_cd_ofs        = to_le32(u32_from_larger(cd_ofs));
 		m_comment_len   = to_le16(0);
@@ -208,7 +210,9 @@ public:
 
 private:
 	u32 m_magic;
-	u8 m_x1[6];	// multiple-disk support
+	u16 m_diskNum;
+	u16 m_cd_diskNum;
+	u16 m_cd_numEntriesOnDisk;
 	u16 m_cd_numEntries;
 	u32 m_cd_size;
 	u32 m_cd_ofs;
@@ -532,7 +536,7 @@ public:
 		m_file.reset();
 
 		m_fileSize += cd_size+sizeof(ECDR);
-		truncate(pathname.string().c_str(), m_fileSize);
+		truncate(pathname.external_directory_string().c_str(), m_fileSize);
 	}
 
 	LibError AddFile(const Path& pathname)
