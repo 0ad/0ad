@@ -15,8 +15,8 @@
 #include "lib/res/graphics/unifont.h"
 #include "lib/sysdep/clipboard.h"
 #include "maths/MathUtil.h"
-#include "network/Client.h"
-#include "network/Server.h"
+#include "network/NetClient.h"
+#include "network/NetServer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Globals.h"
@@ -753,21 +753,25 @@ void CConsole::SaveHistory()
 	g_VFS->CreateFile(m_sHistoryFile, buffer.Data(), buffer.Size());
 }
 
-void CConsole::SendChatMessage(const wchar_t *szMessage)
+void CConsole::SendChatMessage(const wchar_t *pText)
 {
-	if (g_NetClient || g_NetServer)
+	CNetHost *pHost = NULL;
+
+	if ( pHost )
 	{
-		CChatMessage *msg=new CChatMessage();
-		msg->m_Recipient = PS_CHAT_RCP_ALL;
-		msg->m_Message = szMessage;
-		if (g_NetClient)
-			g_NetClient->Push(msg);
-		else
+		CChatMessage chat;
+		chat.m_Recipient = CHAT_RECIPIENT_ALL;
+		chat.m_Message	 = pText;
+		
+		if ( pHost->IsServer() )
 		{
-			msg->m_Sender=0;
-			ReceivedChatMessage(g_NetServer->GetServerPlayerName(), msg->m_Message.c_str());
-			g_NetServer->Broadcast(msg);
+			CNetServer* pServer = ( CNetServer* )pHost;
+
+			chat.m_Sender = 0;
+			ReceivedChatMessage( pServer->GetPlayerName(), chat.m_Message.c_str() );
 		}
+
+		pHost->Broadcast( &chat );
 	}
 }
 

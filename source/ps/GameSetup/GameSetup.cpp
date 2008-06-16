@@ -43,43 +43,32 @@
 
 #include "maths/MathUtil.h"
 
-#include "simulation/scripting/SimulationScriptInit.h"
 #include "simulation/Entity.h"
-#include "simulation/FormationManager.h"
-#include "simulation/TriggerManager.h"
-#include "simulation/FormationCollection.h"
-#include "simulation/TechnologyCollection.h"
 #include "simulation/EntityManager.h"
-#include "simulation/EntityTemplateCollection.h"
 #include "simulation/Scheduler.h"
-#include "simulation/EventHandlers.h"
-#include "simulation/PathfindEngine.h"
 
 #include "scripting/ScriptableComplex.inl"
 #include "scripting/ScriptingHost.h"
+#include "scripting/DOMEvent.h"
 #include "scripting/GameEvents.h"
 #include "scripting/ScriptableComplex.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
 #include "graphics/scripting/JSInterface_Camera.h"
+#include "graphics/scripting/JSInterface_LightEnv.h"
 #include "ps/scripting/JSInterface_Selection.h"
 #include "ps/scripting/JSInterface_Console.h"
-#include "graphics/scripting/JSInterface_LightEnv.h"
 #include "ps/scripting/JSCollection.h"
-#include "scripting/DOMEvent.h"
+#include "simulation/scripting/SimulationScriptInit.h"
 #ifndef NO_GUI
 # include "gui/scripting/JSInterface_IGUIObject.h"
 # include "gui/scripting/JSInterface_GUITypes.h"
 # include "gui/GUI.h"
 #endif
-#include "network/ServerSession.h"
-
-#include "sound/CMusicPlayer.h"
 #include "sound/JSI_Sound.h"
 
-#include "network/Client.h"
 #include "network/NetLog.h"
-#include "network/Server.h"
-#include "network/SessionManager.h"
+#include "network/NetServer.h"
+#include "network/NetClient.h"
 
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/GameSetup.h"
@@ -496,7 +485,8 @@ static void RegisterJavascriptInterfaces()
 	CNetMessage::ScriptingInit();
 	CNetClient::ScriptingInit();
 	CNetServer::ScriptingInit();
-	CNetServerSession::ScriptingInit();
+	CNetSession::ScriptingInit();
+	CServerPlayer::ScriptingInit();
 
 	// simulation
 	SimulationScriptInit();
@@ -521,33 +511,6 @@ static void InitScripting()
 	new CScheduler;
 
 	RegisterJavascriptInterfaces();
-
-	g_ScriptingHost.DefineConstant( "FORMATION_ENTER", CFormationEvent::FORMATION_ENTER );
-	g_ScriptingHost.DefineConstant( "FORMATION_LEAVE", CFormationEvent::FORMATION_LEAVE );
-	g_ScriptingHost.DefineConstant( "FORMATION_DAMAGE", CFormationEvent::FORMATION_DAMAGE );
-	g_ScriptingHost.DefineConstant( "FORMATION_ATTACK", CFormationEvent::FORMATION_ATTACK );
-
-	g_ScriptingHost.DefineConstant( "NOTIFY_NONE", CEntityListener::NOTIFY_NONE );
-	g_ScriptingHost.DefineConstant( "NOTIFY_GOTO", CEntityListener::NOTIFY_GOTO );
-	g_ScriptingHost.DefineConstant( "NOTIFY_RUN", CEntityListener::NOTIFY_RUN );
-	g_ScriptingHost.DefineConstant( "NOTIFY_FOLLOW", CEntityListener::NOTIFY_FOLLOW );
-	g_ScriptingHost.DefineConstant( "NOTIFY_ATTACK", CEntityListener::NOTIFY_ATTACK );
-	g_ScriptingHost.DefineConstant( "NOTIFY_DAMAGE", CEntityListener::NOTIFY_DAMAGE );
-	g_ScriptingHost.DefineConstant( "NOTIFY_COMBAT", CEntityListener::NOTIFY_COMBAT );
-	g_ScriptingHost.DefineConstant( "NOTIFY_ESCORT", CEntityListener::NOTIFY_ESCORT );
-	g_ScriptingHost.DefineConstant( "NOTIFY_HEAL", CEntityListener::NOTIFY_HEAL );
-	g_ScriptingHost.DefineConstant( "NOTIFY_GATHER", CEntityListener::NOTIFY_GATHER );
-	g_ScriptingHost.DefineConstant( "NOTIFY_IDLE", CEntityListener::NOTIFY_IDLE );
-	g_ScriptingHost.DefineConstant( "NOTIFY_ORDER_CHANGE", CEntityListener::NOTIFY_ORDER_CHANGE );
-	g_ScriptingHost.DefineConstant( "NOTIFY_ALL", CEntityListener::NOTIFY_ALL );
-	
-	g_ScriptingHost.DefineConstant( "ORDER_NONE", -1 );
-	g_ScriptingHost.DefineConstant( "ORDER_GOTO", CEntityOrder::ORDER_GOTO );
-	g_ScriptingHost.DefineConstant( "ORDER_RUN", CEntityOrder::ORDER_RUN );
-	g_ScriptingHost.DefineConstant( "ORDER_PATROL", CEntityOrder::ORDER_PATROL );
-	g_ScriptingHost.DefineConstant( "ORDER_GENERIC", CEntityOrder::ORDER_GENERIC );
-	g_ScriptingHost.DefineConstant( "ORDER_PRODUCE", CEntityOrder::ORDER_PRODUCE );
-	g_ScriptingHost.DefineConstant( "ORDER_START_CONSTRUCTION", CEntityOrder::ORDER_START_CONSTRUCTION );
 
 #define REG_JS_CONSTANT(_name) g_ScriptingHost.DefineConstant(#_name, _name)
 	REG_JS_CONSTANT(SDL_BUTTON_LEFT);
@@ -793,31 +756,15 @@ void Shutdown(int flags)
 
 	if (! (flags & INIT_NO_SIM))
 	{
-		TIMER_BEGIN("shutdown SessionManager");
-		delete &g_SessionManager;
-		TIMER_END("shutdown SessionManager");
-
 		TIMER_BEGIN("shutdown mouse stuff");
 		delete &g_Mouseover;
 		delete &g_Selection;
 		delete &g_BuildingPlacer;
 		TIMER_END("shutdown mouse stuff");
 
-		TIMER_BEGIN("shutdown Pathfinder");
-		delete &g_Pathfinder;
-		TIMER_END("shutdown Pathfinder");
-
-		// Managed by CWorld
-		// delete &g_EntityManager;
-
 		TIMER_BEGIN("shutdown game scripting stuff");
 		delete &g_GameAttributes;
-		
-		delete &g_TriggerManager;
-		delete &g_FormationManager;
-		delete &g_TechnologyCollection;
-		delete &g_EntityFormationCollection;
-		delete &g_EntityTemplateCollection;
+		SimulationShutdown();
 		TIMER_END("shutdown game scripting stuff");
 	}
 
@@ -1056,30 +1003,14 @@ void Init(const CmdLineArgs& args, int flags)
 
 	if (! (flags & INIT_NO_SIM))
 	{
-		{
-			TIMER("Init_entitiessection");
-			// This needs to be done after the renderer has loaded all its actors...
-			new CEntityTemplateCollection;
-			new CFormationCollection;
-			new CTechnologyCollection;
-			g_EntityFormationCollection.LoadTemplates();
-			g_TechnologyCollection.LoadTechnologies();
-			new CFormationManager;
-			new CTriggerManager;
-			g_TriggerManager.LoadXml(CStr("scripts/TriggerSpecs.xml"));
-			g_ScriptingHost.RunScript("scripts/trigger_functions.js");
-
-			// CEntityManager is managed by CWorld
-			//new CEntityManager;
-			new CSelectedEntities;
-			new CMouseoverEntities;
-		}
-
+		// This needs to be done after the renderer has loaded all its actors...
+		SimulationInit();
+			
 		{
 			TIMER("Init_miscgamesection");
-			new CPathfindEngine;
+			new CSelectedEntities;
+			new CMouseoverEntities;
 			new CBuildingPlacer;
-			new CSessionManager;
 			new CGameAttributes;
 		}
 

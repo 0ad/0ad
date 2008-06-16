@@ -166,9 +166,9 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 	g_JSGameEvents.FireWorldClick(
 		button,
 		clicks,
-		NMT_Goto,
+		NMT_GOTO,
 		-1,
-		NMT_Run,
+		NMT_RUN,
 		-1, 
 		NULL,
 		(int)Destination.x,

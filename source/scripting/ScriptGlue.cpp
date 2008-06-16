@@ -21,8 +21,8 @@
 #include "lib/timer.h"
 #include "lib/frequency_filter.h"
 #include "maths/scripting/JSInterface_Vector3D.h"
-#include "network/Client.h"
-#include "network/Server.h"
+#include "network/NetClient.h"
+#include "network/NetServer.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
@@ -196,23 +196,23 @@ void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* ms
 	CNetMessage* retMsg;
 	const int type = msg->GetType();
 
-	if ( type == NMT_Goto )
+	if ( type == NMT_GOTO )
 	{
 		//formationEnt->GetFormation()->BaseToMovement();
-		CGoto* tmp = static_cast<CGoto*>(msg);
-		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FormationGoto, 
+		CGotoMessage* tmp = static_cast<CGotoMessage*>(msg);
+		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FORMATION_GOTO, 
 						CVector2D(tmp->m_TargetX, tmp->m_TargetY) );
 	}
-	else if( type == NMT_Run )
+	else if( type == NMT_RUN )
 	{
-		CGoto* tmp = static_cast<CGoto*>(msg);
-		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FormationGoto, 
+		CGotoMessage* tmp = static_cast<CGotoMessage*>(msg);
+		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FORMATION_GOTO, 
 						CVector2D(tmp->m_TargetX, tmp->m_TargetY) );
 	}
-	else if ( type == NMT_Generic )
+	else if ( type == NMT_GENERIC )
 	{
-		CGeneric* tmp = static_cast<CGeneric*>(msg);
-		retMsg = CNetMessage::CreateEntityIntMessage(formation, NMT_FormationGeneric, 
+		CGenericMessage* tmp = static_cast<CGenericMessage*>(msg);
+		retMsg = CNetMessage::CreateEntityIntMessage(formation, NMT_FORMATION_GENERIC, 
 					tmp->m_Target, tmp->m_Action);
 	}
 	else
@@ -285,8 +285,8 @@ JSBool IssueCommand( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* r
 	
 	for ( std::vector<CNetMessage*>::iterator it=messages.begin(); it != messages.end(); it++ )
 	{
-		g_Console->InsertMessage(L"IssueCommand: %hs", (*it)->GetString().c_str());
-		*rval = g_ScriptingHost.UCStringToValue((*it)->GetString());
+		g_Console->InsertMessage(L"IssueCommand: %hs", (*it)->ToString().c_str());
+		*rval = g_ScriptingHost.UCStringToValue((*it)->ToString());
 		g_Game->GetSimulation()->QueueLocalCommand(*it);
 	}
 

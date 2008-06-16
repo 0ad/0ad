@@ -70,7 +70,7 @@ void CTurnManager::SendBatch(uintptr_t batch)
 		SendMessage(it->m_pMessage, it->m_ClientMask);
 		++it;
 	}
-	CEndCommandBatch *pMsg=new CEndCommandBatch();
+	CEndCommandBatchMessage *pMsg=new CEndCommandBatchMessage();
 	pMsg->m_TurnLength=m_Batches[batch].m_TurnLength;
 	SendMessage(pMsg, (size_t)-1);
 }
@@ -82,7 +82,7 @@ void CTurnManager::SendMessage(CNetMessage *pMsg, size_t clientMask)
 		if (clientMask & (1<<i))
 		{
 			if (m_Clients[i].m_Pipe)
-				m_Clients[i].m_Pipe->Push(pMsg->Copy());
+				m_Clients[i].m_Pipe->Push(pMsg->Clone());
 		}
 	}
 }
@@ -116,7 +116,7 @@ void CTurnManager::Initialize(size_t numClients)
 void CTurnManager::RecordBatch(uintptr_t batch)
 {
 	IterateBatch(batch, RecordIterator, m_pRecord);
-	CEndCommandBatch msg;
+	CEndCommandBatchMessage msg;
 	m_pRecord->WriteMessage(&msg);
 }
 

@@ -49,23 +49,19 @@ CNetMessage *Deserialize##_nm(const u8 *, size_t); \
 class _nm: public _base \
 { \
 protected: \
-	_nm(ENetMessageType type): _base(type) {}\
+	_nm(NetMessageType type): _base(type) {}\
 	\
 	/* This one is for subclasses that want to use the base class' string */ \
 	/* converters to get SubMessage { <parent fields>, ... } */ \
-	CStr GetStringRaw() const;\
+	CStr ToStringRaw() const;\
 public: \
 	_nm(): _base(_tp) {} \
 	virtual size_t GetSerializedLength() const; \
 	virtual u8 *Serialize(u8 *buffer) const; \
 	virtual const u8 *Deserialize(const u8 *pos, const u8 *end); \
-	virtual CStr GetString() const; \
-	virtual CNetMessage *Copy() const \
-	{ \
-		return new _nm(*this); \
-	} \
+	virtual CStr ToString() const; \
 	inline operator CStr () const \
-	{ return GetString(); }
+	{ return ToString(); }
 
 /**
  * Add an integer field to the message type.
@@ -251,13 +247,18 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 
 #define NMT_CREATOR_PASS_REGISTRATION
 
-#define START_NMTS() SNetMessageDeserializerRegistration g_DeserializerRegistrations[] = {
-#define END_NMTS() { NMT_NONE, NULL } };
+//#define START_NMTS() SNetMessageDeserializerRegistration g_DeserializerRegistrations[] = {
+//#define END_NMTS() { NMT_INVALID, NULL } };
+#define START_NMTS()
+#define END_NMTS()
 
 #define START_NMT_CLASS(_nm, _tp) \
 	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
-#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
-	{ _tp, Deserialize##_nm },
+
+//#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
+//	{ _tp, Deserialize##_nm },
+
+#define START_NMT_CLASS_DERIVED(_base, _nm, _tp)
 
 #define NMT_START_ARRAY(_nm)
 
@@ -285,26 +286,26 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 #define END_NMTS()
 
 #define START_NMT_CLASS(_nm, _tp) \
-CStr _nm::GetString() const \
+CStr _nm::ToString() const \
 { \
 	CStr ret=#_nm _T(" { "); \
-	return ret + GetStringRaw() + _T(" }"); \
+	return ret + ToStringRaw() + _T(" }"); \
 } \
-CStr _nm::GetStringRaw() const \
+CStr _nm::ToStringRaw() const \
 { \
 	CStr ret; \
 	const _nm *thiz=this;\
 	UNUSED2(thiz);	// preempt any "unused" warning
 
 #define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
-CStr _nm::GetString() const \
+CStr _nm::ToString() const \
 { \
 	CStr ret=#_nm _T(" { "); \
-	return ret + GetStringRaw() + _T(" }"); \
+	return ret + ToStringRaw() + _T(" }"); \
 } \
-CStr _nm::GetStringRaw() const \
+CStr _nm::ToStringRaw() const \
 { \
-	CStr ret=_base::GetStringRaw() + _T(", "); \
+	CStr ret=_base::ToStringRaw() + _T(", "); \
 	const _nm *thiz=this;\
 	UNUSED2(thiz);	// preempt any "unused" warning
 

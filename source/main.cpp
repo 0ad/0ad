@@ -31,13 +31,15 @@ that of Atlas depending on commandline parameters.
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Interact.h"
-#include "network/Client.h"
-#include "network/Server.h"
-#include "network/SessionManager.h"
+#include "network/NetClient.h"
+#include "network/NetServer.h"
+//#include "network/SessionManager.h"
+#include "network/NetSession.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "simulation/Scheduler.h"
 #include "sound/CMusicPlayer.h"
+#include "sound/SoundGroupMgr.h"
 #include "gui/GUI.h"
 
 #define LOG_CATEGORY "main"
@@ -204,6 +206,10 @@ static void Frame()
 	music_player.Update();
 	PROFILE_END( "update music" );
 
+	PROFILE_START( "update sound groups" );
+	g_soundGroupMgr->UpdateSoundGroups(TimeSinceLastFrame);
+	PROFILE_END( "update sound groups" );
+
 	bool is_building_archive;	// must come before PROFILE_START's {
 	PROFILE_START("build archive");
 	MICROLOG(L"build archive");
@@ -231,7 +237,9 @@ static void Frame()
 	PROFILE_START("input");
 	MICROLOG(L"input");
 	PumpEvents();
-	g_SessionManager.Poll();
+	//g_SessionManager.Poll();
+	if ( CNetHost::IsInitialised() )
+		CNetHost::GetSingleton().Poll();
 	PROFILE_END("input");
 
 	ogl_WarnIfError();

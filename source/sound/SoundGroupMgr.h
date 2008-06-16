@@ -64,3 +64,5 @@ private:
 	CSoundGroupMgr &operator=(const CSoundGroupMgr &ref);
 
 };
+
+#define g_soundGroupMgr CSoundGroupMgr::GetInstance()

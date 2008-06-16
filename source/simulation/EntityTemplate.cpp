@@ -7,6 +7,7 @@
 #include "ps/Player.h"
 #include "scripting/ScriptableComplex.inl"
 #include "ps/XML/Xeromyces.h"
+#include "sound/SoundGroupMgr.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "entity"
@@ -319,8 +320,9 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 			{
 				XMBElement child = children.Item(j);
 				CStr8 name = toCamelCase( XeroFile.GetElementString( child.GetNodeName() ) );
-				CStr8 value = child.GetText();
-				m_SoundGroupTable[name] = value;
+				CStr8 soundGroupFilename = child.GetText();
+				const size_t soundGroupIndex = g_soundGroupMgr->AddGroup(soundGroupFilename);
+				m_SoundGroupTable[name] = soundGroupIndex;
 			}
 		}
 		else

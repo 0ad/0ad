@@ -11,7 +11,7 @@
 #include "graphics/GameView.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
-#include "network/Client.h"
+#include "network/NetClient.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"

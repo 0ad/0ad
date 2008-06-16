@@ -17,6 +17,7 @@
 #include "LOSManager.h"
 #include "graphics/Terrain.h"
 #include "Stance.h"
+#include "sound/SoundGroupMgr.h"
 
 #include "ps/Game.h"
 #include "ps/World.h"
@@ -437,8 +438,8 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 
 		if( ( m_fsm_cyclepos <= action->m_Speed ) && ( nextpos > action->m_Speed ) )
 		{
-			// TODO: Play a sound here. Use m_base->m_SoundGroupTable[animation] to get the
-			// name of the soundgroup XML file to play.
+			const size_t soundGroupIndex = m_base->m_SoundGroupTable[animation];
+			g_soundGroupMgr->PlayNext(soundGroupIndex);
 
 			if(!DispatchEvent( contactEvent ))
 			{

@@ -1,313 +1,1524 @@
+/**
+ *-----------------------------------------------------------------------------
+ *	FILE			: NetMessage.cpp
+ *	PROJECT			: 0 A.D.
+ *	DESCRIPTION		:
+ *-----------------------------------------------------------------------------
+ */
+
+// INCLUDES
 #include "precompiled.h"
+#include "simulation/Entity.h"
+#include "ps/Vector2D.h"
+#define ALLNETMSGS_IMPLEMENT
+#include "NetMessage.h"
+#include "ps/CLogger.h"
+#include "Network.h"
 
 #include <stdio.h>
 #include <map>
 
-#include "simulation/Entity.h"
-#include "ps/Vector2D.h"
-#define ALLNETMSGS_IMPLEMENT
-
-#include "NetMessage.h"
-
-#include "ps/CLogger.h"
-
-#define LOG_CAT_NET "net"
+// DEFINES
 
 // Please don't modify the deserializer map outside the ONCE-block in DeserializeMessage
-typedef std::map <ENetMessageType, NetMessageDeserializer> MessageDeserializerMap;
-MessageDeserializerMap g_DeserializerMap;
+//typedef std::map< NetMessageType, NetMessageDeserializer > MessageDeserializerMap;
+//MessageDeserializerMap g_DeserializerMap;
 
-CNetMessage::~CNetMessage()
+//-----------------------------------------------------------------------------
+// Name: CNetMessage()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetMessage::CNetMessage( void )
 {
-	m_Type=NMT_NONE;
+	m_Type	= NMT_INVALID;
+	m_Dirty	= false;
 }
 
-u8 *CNetMessage::Serialize(u8 *pos) const
-{ return pos; }
-
-size_t CNetMessage::GetSerializedLength() const
+//-----------------------------------------------------------------------------
+// Name: CNetMessage()
+// Desc: Constructor
+//-----------------------------------------------------------------------------
+CNetMessage::CNetMessage( NetMessageType type )
 {
-	return 0;
+	m_Type  = type;
+	m_Dirty	= false;
 }
 
-CStr CNetMessage::GetString() const
+//-----------------------------------------------------------------------------
+// Name: ~CNetMessage()
+// Desc: Destructor
+//-----------------------------------------------------------------------------
+CNetMessage::~CNetMessage( void )
 {
-	if (m_Type==NMT_NONE)
-		return "NMT_NONE { Invalid Message }";
-	else
-		return CStr("Unknown Message ")+CStr(m_Type);
+	m_Dirty	= false;
 }
 
-const u8 *CNetMessage::Deserialize(const u8* pos, const u8* UNUSED(end))
+//-----------------------------------------------------------------------------
+// Name: Serialize()
+// Desc: Serializes the message into the buffer parameter
+//-----------------------------------------------------------------------------
+u8* CNetMessage::Serialize( u8* pBuffer ) const
 {
-	return pos;
+	// Validate parameters
+	if ( !pBuffer ) return NULL;
+
+//	Serialize_int_1( pBuffer, m_Type );
+//	Serialize_int_2( pBuffer, m_SerializeSize );
+
+	// Serialize message type and its size
+	*( ( NetMessageType* )pBuffer ) = m_Type;
+	*( ( uint* )( pBuffer + sizeof( NetMessageType ) ) ) = GetSerializedLength();
+
+	return pBuffer + sizeof( NetMessageType ) + sizeof( uint );
 }
 
-CNetMessage *CNetMessage::Copy() const
+//-----------------------------------------------------------------------------
+// Name: Deserialize()
+// Desc: Loads this message from the specifie buffer parameter
+//-----------------------------------------------------------------------------
+const u8* CNetMessage::Deserialize( const u8* pStart, const u8* pEnd )
 {
-	LOG(CLogger::Error, LOG_CAT_NET, "CNetMessage::Copy(): Attempting to copy non-copyable message!");
-	return new CNetMessage(NMT_NONE);
+	// Validate parameters
+	if ( !pStart || !pEnd )	return NULL;
+
+	// Deserialize message type and its size
+
+//	Deserialize_int_1( pStart, m_Type );
+//	Deserialize_int_2( pStart, m_SerializeSize );
+
+	m_Type = *( ( NetMessageType* )pStart );
+	uint size = *( ( uint* )( pStart + sizeof( NetMessageType ) ) );
+
+	assert( pStart + size == pEnd );
+
+	return pStart + sizeof( NetMessageType ) + sizeof( size );
 }
 
-CNetMessage *CNetMessage::DeserializeMessage(ENetMessageType type, u8 *buffer, size_t length)
+//-----------------------------------------------------------------------------
+// Name: Deserialize()
+// Desc: Constructs a CNetMessage object from the specified buffer parameter
+// Note: It uses the registered desrializers to create the CNetMessage object
+//-----------------------------------------------------------------------------
+/*CNetMessage* CNetMessage::Deserialize( 
+									  NetMessageType type,
+									  const u8* pBuffer,
+									  uint bufferSize )
 {
-	{
-	ONCE(
-		SNetMessageDeserializerRegistration *pReg=&g_DeserializerRegistrations[0];
-		for (;pReg->m_pDeserializer;pReg++)
+	ONCE
+	(
+		SNetMessageDeserializer* pDeserializer = &g_DeserializerRegistrations[ 0 ];
+		for ( ; pDeserializer->Deserializer; pDeserializer++ )
 		{
-			g_DeserializerMap.insert(std::make_pair(pReg->m_Type, pReg->m_pDeserializer));
+			g_DeserializerMap.insert( std::make_pair( 
+													 pDeserializer->Type,
+													 pDeserializer->Deserializer ) );
 		}
 	);
-	}
 	
-	MessageDeserializerMap::const_iterator dEntry=g_DeserializerMap.find(type);
-	if (dEntry == g_DeserializerMap.end())
+	MessageDeserializerMap::const_iterator it = g_DeserializerMap.find( type );
+	if ( it == g_DeserializerMap.end() )
 	{
-		LOG(CLogger::Warning, LOG_CAT_NET, "Unknown message received on socket: type 0x%04x, length %u", type, length);
+		LOG(WARNING, LOG_CAT_NET, "Unknown message received on socket: type 0x%04x, length %u", type, length);
+	
 		return NULL;
 	}
-	NetMessageDeserializer pDes=dEntry->second;
-	return (pDes)(buffer, length);
+
+	pfnNetMessageDeserializer pDeserializer = it->second;
+	if ( pDeserializer )
+	{
+		// Call deserializer
+		return ( pDeserializer )( pBuffer, bufferSize );
+	}
+
+	return NULL;
+}*/
+
+//-----------------------------------------------------------------------------
+// Name: GetSerializedLength()
+// Desc: Returns the size of the serialized message
+//-----------------------------------------------------------------------------
+uint CNetMessage::GetSerializedLength( void ) const
+{
+	// By default, return header size
+	return ( sizeof( m_Type ) + sizeof( uint ) );
 }
 
+//-----------------------------------------------------------------------------
+// Name: operator ( ENetPacket* )()
+// Desc: Cast to an ENetPacket structure
+//-----------------------------------------------------------------------------
+/*void CNetMessage::operator ENetPacket*( void )
+{
+	// Did we already serialized the message?
+	if ( m_Packet )
+	{
+		// Dirty message?
+		if ( m_Dirty )
+		{
+			// Make room for the new message content
+			enet_packet_resize( m_Packet, GetSerializedLength() );
+
+			// Serialize into buffer
+			Serialize( m_Packet->data );
+		}
+	}
+	else
+	{
+		// Serialize message into temporary buffer
+		u8* pBuffer = new u8[ GetSerializedLength() ];
+		if ( !pBuffer ) return NULL;
+
+		Serialize( pBuffer );
+
+		// Create ENet packet for this message
+		m_Packet = enet_packet_create( pBuffer, GetSerializedLength(), ENET_PACKET_FLAG_RELIABLE );
+
+		delete [] pBuffer;
+	}
+
+	return m_Packet;
+}*/
+
+//-----------------------------------------------------------------------------
+// Name: ToString()
+// Desc: Returns a string representation for the message
+//-----------------------------------------------------------------------------
+CStr CNetMessage::ToString( void ) const
+{
+	CStr ret;
+
+	// Not defined yet?
+	if ( GetType() == NMT_INVALID )
+	{
+		ret = "MESSAGE_TYPE_NONE { Undefined Message }";
+	}
+	else
+	{
+		ret = " Unknown Message " + CStr( GetType() );
+	}
+
+	return ret;
+}
+
+//-----------------------------------------------------------------------------
+// Name: Clone()
+// Desc: Makes a copy of the message and return it to caller
+//-----------------------------------------------------------------------------
+CNetMessage* CNetMessage::Clone( void ) const
+{
+	// Create new message
+	CNetMessage* pCloneMessage =  new CNetMessage;
+	if ( !pCloneMessage ) return NULL;
+
+	// Copy this message content into clone message
+	Copy( pCloneMessage );
+
+	return pCloneMessage;
+}
+
+//-----------------------------------------------------------------------------
+// Name: Copy()
+// Desc: Copies the content of this message into the message parameter
+//-----------------------------------------------------------------------------
+void CNetMessage::Copy( CNetMessage* pMessage ) const
+{
+	// Validate parameter
+	if ( !pMessage ) return;
+
+	// Copy header information
+	pMessage->m_Type = m_Type;
+}
+
+//-----------------------------------------------------------------------------
+// Name: ScriptingInit()
+// Desc:
+//-----------------------------------------------------------------------------
 void CNetMessage::ScriptingInit()
 {
-#define def(_msg) g_ScriptingHost.DefineConstant(#_msg, _msg)
-	
-	def(NMT_Goto);
-	def(NMT_Run);
-	def(NMT_Patrol);
-	def(NMT_AddWaypoint);
-	def(NMT_Generic);
-	def(NMT_Produce);
-	def(NMT_PlaceObject);
-	def(NMT_NotifyRequest);
-	def(NMT_FormationGoto);
-	def(NMT_FormationGeneric);
-
-#undef def
+	g_ScriptingHost.DefineConstant( "NMT_GOTO", NMT_GOTO );
+	g_ScriptingHost.DefineConstant( "NMT_RUN", NMT_RUN );
+	g_ScriptingHost.DefineConstant( "NMT_PATROL", NMT_PATROL );
+	g_ScriptingHost.DefineConstant( "NMT_ADD_WAYPOINT", NMT_ADD_WAYPOINT );
+	g_ScriptingHost.DefineConstant( "NMT_GENERIC", NMT_GENERIC );
+	g_ScriptingHost.DefineConstant( "NMT_PRODUCE", NMT_PRODUCE );
+	g_ScriptingHost.DefineConstant( "NMT_PLACE_OBJECT", NMT_PLACE_OBJECT );
+	g_ScriptingHost.DefineConstant( "NMT_NOTIFY_REQUEST", NMT_NOTIFY_REQUEST );
+	g_ScriptingHost.DefineConstant( "NMT_FORMATION_GOTO", NMT_FORMATION_GOTO );
+	g_ScriptingHost.DefineConstant( "NMT_FORMATION_GENERIC", NMT_FORMATION_GENERIC );
 }
 
-CNetCommand *CNetMessage::CommandFromJSArgs(const CEntityList &entities, JSContext *cx, uintN argc, jsval *argv, bool isQueued)
+//-----------------------------------------------------------------------------
+// Name: CommandFromJSArgs()
+// Desc:
+//-----------------------------------------------------------------------------
+CNetMessage* CNetMessage::CommandFromJSArgs(
+											const CEntityList &entities,
+											JSContext* pContext,
+											uintN argc,
+											jsval* argv,
+											bool isQueued )
 {
-	debug_assert(argc >= 1);
+	uint idx = 0;
+	uint messageType;
 
-	int msgType;
+	// Validate parameters
+	if ( argv == 0 ) return NULL;
 
 	try
 	{
-		msgType = ToPrimitive<int>( argv[0] );
+		messageType = ToPrimitive< uint >( argv[ idx++ ] );
 	}
-	catch(PSERROR_Scripting_ConversionFailed)
+	catch ( PSERROR_Scripting_ConversionFailed )
 	{
-		JS_ReportError(cx, "Invalid order type");
+		JS_ReportError( pContext, "Invalid order type" );
 		return NULL;
 	}
 	
-	#define ArgumentCountError() STMT(\
-			JS_ReportError(cx, "Too few parameters!"); \
-			return NULL; )
-	#define ArgumentTypeError() STMT(\
-			JS_ReportError(cx, "Parameter type error!"); \
-			return NULL; )
-	#define ReadPosition(_msg, _field) \
-		try { \
-			if (argIndex+2 > argc) \
-				ArgumentCountError();\
-			if (!JSVAL_IS_INT(argv[argIndex]) || !JSVAL_IS_INT(argv[argIndex+1])) \
-				ArgumentTypeError(); \
-			_msg->_field ## X = ToPrimitive<int>(argv[argIndex++]); \
-			_msg->_field ## Y = ToPrimitive<int>(argv[argIndex++]); \
-		} catch (PSERROR_Scripting_ConversionFailed) { \
-			JS_ReportError(cx, "Invalid location"); \
-			return NULL; \
-		}
-	#define ReadEntity(_msg, _field) \
-		STMT(\
-			if (argIndex+1 > argc) \
-				ArgumentCountError(); \
-			if (!JSVAL_IS_OBJECT(argv[argIndex])) \
-				ArgumentTypeError(); \
-			CEntity *ent=ToNative<CEntity>(argv[argIndex++]); \
-			if (!ent) \
-			{ \
-				JS_ReportError(cx, "Invalid entity parameter"); \
-				return NULL; \
-			} \
-			_msg->_field=ent->me; \
-		)
-	#define ReadInt(_msg, _field) \
-		STMT(\
-			if (argIndex+1 > argc) \
-				ArgumentCountError(); \
-			if (!JSVAL_IS_INT(argv[argIndex])) \
-				ArgumentTypeError(); \
-			int val=ToPrimitive<int>(argv[argIndex++]); \
-			_msg->_field=val; \
-		)
-	#define ReadString(_msg, _field) \
-		STMT(\
-			if (argIndex+1 > argc) \
-				ArgumentCountError(); \
-			if (!JSVAL_IS_STRING(argv[argIndex])) \
-				ArgumentTypeError(); \
-			CStrW val=ToPrimitive<CStrW>(argv[argIndex++]); \
-			_msg->_field=val; \
-		)
-	
-	#define PositionMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			msg->m_IsQueued = isQueued; \
-			msg->m_Entities = entities; \
-			ReadPosition(msg, m_Target); \
-			return msg; \
-		}
-	
-	#define EntityMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			msg->m_IsQueued = isQueued; \
-			msg->m_Entities = entities; \
-			ReadEntity(msg, m_Target); \
-			return msg; \
-		}
-
-	#define EntityIntMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			msg->m_IsQueued = isQueued; \
-			msg->m_Entities = entities; \
-			ReadEntity(msg, m_Target); \
-			ReadInt(msg, m_Action); \
-			return msg; \
-		}
-	
-	#define ProduceMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			msg->m_IsQueued = isQueued; \
-			msg->m_Entities = entities; \
-			ReadInt(msg, m_Type); \
-			ReadString(msg, m_Name); \
-			return msg; \
-		}
-
-	#define PlaceObjectMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg *msg = new C##_msg(); \
-			msg->m_IsQueued = isQueued; \
-			msg->m_Entities = entities; \
-			ReadString(msg, m_Template); \
-			ReadInt(msg, m_X); \
-			ReadInt(msg, m_Y); \
-			ReadInt(msg, m_Z); \
-			ReadInt(msg, m_Angle); \
-			return msg; \
-		}
-
-	// argIndex, incremented by reading macros. We have already "eaten" the
-	// first argument (message type)
-	size_t argIndex = 1;
-	switch (msgType)
+	switch ( messageType )
 	{
-		// NMT_Goto, targetX, targetY
-		PositionMessage(Goto)
-		PositionMessage(Run)
-		PositionMessage(Patrol)
-		PositionMessage(AddWaypoint)
-		PositionMessage(FormationGoto)
+	case NMT_GOTO:
+		{
+			CGotoMessage* pMessage = new CGotoMessage;
+			if ( !pMessage ) return NULL;
 
-		// NMT_Generic, target, action
-		EntityIntMessage(Generic)
-		EntityIntMessage(NotifyRequest)
-		EntityIntMessage(FormationGeneric)
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
 
-		// NMT_Produce, type, name
-		ProduceMessage(Produce)
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
 
-		// NMT_PlaceObject, template, x, y, z, angle, action
-		PlaceObjectMessage(PlaceObject)
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
 
-		default:
-			JS_ReportError(cx, "Invalid order type");
-			return NULL;
+				pMessage->m_TargetX  = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			return pMessage;
+		}
+
+	case NMT_RUN:
+		{
+			CRunMessage* pMessage = new CRunMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL; 
+						);
+				}
+
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			return pMessage;
+		}
+
+	case NMT_PATROL:
+		{
+			CPatrolMessage* pMessage = new CPatrolMessage;
+			if ( pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
+
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			return pMessage;
+		}
+
+	case NMT_ADD_WAYPOINT:
+		{
+			CAddWaypointMessage* pMessage = new CAddWaypointMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
+				
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			return pMessage;
+		}
+
+	case NMT_FORMATION_GOTO:
+		{
+			CFormationGotoMessage* pMessage = new CFormationGotoMessage;
+			if ( !pMessage ) return NULL;
+	
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
+
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			return pMessage;
+		}
+
+	case NMT_GENERIC:
+		{
+			CGenericMessage* pMessage = new CGenericMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 2 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+
+					if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+
+					CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+					if ( !pEntity )
+					{
+						STMT(
+								JS_ReportError( pContext, "Invalid entity parameter" );
+								return NULL;
+							);
+					}
+
+					pMessage->m_Target = pEntity->me;
+
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+				
+					pMessage->m_Action = ToPrimitive< int >( argv[ idx++ ] )
+				);
+
+			return pMessage;
+		}
+
+	case NMT_NOTIFY_REQUEST:
+		{
+			CNotifyRequestMessage* pMessage = new CNotifyRequestMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+					if ( !pEntity )
+					{
+						JS_ReportError( pContext, "Invalid entity parameter" );
+						return NULL;
+					}
+					
+					pMessage->m_Target = pEntity->me;
+				);
+			
+			return pMessage;
+		}
+
+	case NMT_FORMATION_GENERIC:
+		{
+			CFormationGenericMessage* pMessage = new CFormationGenericMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );\
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+					if ( !pEntity )
+					{
+						STMT(
+								JS_ReportError( pContext, "Invalid entity parameter" );
+								return NULL;
+							);
+					}
+					
+					pMessage->m_Target = pEntity->me;
+				);
+			
+			return pMessage;
+		}
+
+	case NMT_PRODUCE:
+		{
+			CProduceMessage* pMessage = new CProduceMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+
+					pMessage->m_Type = ToPrimitive< int >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+                    
+					if ( !JSVAL_IS_STRING( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL; 
+							);
+					}
+					
+					pMessage->m_Name = ToPrimitive< CStrW >( argv[ idx++ ] );
+				);
+
+			return pMessage;
+		}
+
+	case NMT_PLACE_OBJECT:
+		{
+			CPlaceObjectMessage* pMessage = new CPlaceObjectMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_STRING( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					pMessage->m_Template = ToPrimitive< CStrW >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					pMessage->m_X = ToPrimitive< int >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+
+					pMessage->m_Y = ToPrimitive< int >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+
+					pMessage->m_Z = ToPrimitive< int >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					pMessage->m_Angle = ToPrimitive< int >( argv[ idx++ ] );
+				);
+					
+			return pMessage;
+		}
+
+	default:
+
+		JS_ReportError( pContext, "Invalid order type" );
+		break;
 	}
+
+	return NULL;
 }
 
-CNetMessage *CNetMessage::CreatePositionMessage( const CEntityList& entities, const int type, CVector2D pos )
+//-----------------------------------------------------------------------------
+// Name: CreatePositionMessage()
+// Desc:
+//-----------------------------------------------------------------------------
+CNetMessage* CNetMessage::CreatePositionMessage( 
+												const CEntityList& entities,
+												const int type,
+												CVector2D pos )
 {
-	#define PosMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg* msg = new C##_msg(); \
-			msg->m_Entities = entities; \
-			msg->m_TargetX = pos.x; \
-			msg->m_TargetY = pos.y; \
-			return msg; \
-		}
-	
-	switch (type)
+	switch ( type )
 	{
-		PosMessage(Goto)
-		PosMessage(Run)
-		PosMessage(Patrol)
-		PosMessage(AddWaypoint)
-		PosMessage(FormationGoto)
-	
-	default:
-			return NULL;
+	case NMT_GOTO:
+		{
+			CGotoMessage *pMessage = new CGotoMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_TargetX = pos.x;
+			pMessage->m_TargetY = pos.y;
+
+			return pMessage;
+		}
+
+	case NMT_RUN:
+		{
+			CRunMessage *pMessage = new CRunMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_TargetX = pos.x;
+			pMessage->m_TargetY = pos.y;
+
+			return pMessage;
+		}
+
+	case NMT_PATROL:
+		{
+			CPatrolMessage *pMessage = new CPatrolMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_TargetX = pos.x;
+			pMessage->m_TargetY = pos.y;
+
+			return pMessage;
+		}
+
+	case NMT_ADD_WAYPOINT:
+		{
+			CAddWaypointMessage *pMessage = new CAddWaypointMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_TargetX = pos.x;
+			pMessage->m_TargetY = pos.y;
+
+			return pMessage;
+		}
+
+	case NMT_FORMATION_GOTO:
+		{
+			CFormationGotoMessage *pMessage = new CFormationGotoMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_TargetX = pos.x;
+			pMessage->m_TargetY = pos.y;
+
+			return pMessage;
+		}
 	}
+
+	return NULL;
 }
-CNetMessage *CNetMessage::CreateEntityIntMessage( const CEntityList& entities, const int type, HEntity& target, int action )
+
+//-----------------------------------------------------------------------------
+// Name: CreateEntityIntMessage()
+// Desc: 
+//-----------------------------------------------------------------------------
+CNetMessage* CNetMessage::CreateEntityIntMessage( 
+												 const CEntityList& entities,
+												 const int type,
+												 HEntity& target,
+												 int action )
 {
-	#define EntMessage(_msg) \
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg* msg = new C##_msg(); \
-			msg->m_Entities = entities; \
-			msg->m_Target = target; \
-			msg->m_Action = action; \
-			return msg; \
+	switch ( type )
+	{
+	case NMT_GENERIC:
+		{
+			CGenericMessage *pMessage = new CGenericMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_Target   = target;
+			pMessage->m_Action   = action;
+			
+			return pMessage;
 		}
 
-	switch (type)
-	{
-		EntMessage(Generic)
-		EntMessage(NotifyRequest)
-		EntMessage(FormationGeneric)
+	case NMT_NOTIFY_REQUEST:
+		{
+			CNotifyRequestMessage *pMessage = new CNotifyRequestMessage;
+			if ( !pMessage ) return NULL;
 
-	default:
+			pMessage->m_Entities = entities;
+			pMessage->m_Target   = target;
+			pMessage->m_Action   = action;
+
+			return pMessage;
+		}
+
+	case NMT_FORMATION_GENERIC:
+		{
+			CFormationGenericMessage *pMessage = new CFormationGenericMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_Target   = target;
+			pMessage->m_Action   = action;
+
+			return pMessage;
+		}
+	}
+
+	return NULL;
+}
+CNetMessage* CNetMessage::CreateProduceMessage( const CEntityList& entities, const int type, int proType, const CStrW& name )
+{
+	switch ( type )
+	{
+		case NMT_PRODUCE:
+		{
+			CProduceMessage* pMessage = new CProduceMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_Type	 = proType;
+			pMessage->m_Name	 = name;
+
+			return pMessage;
+		}
+	}
+
+	return NULL;
+}
+
+//-----------------------------------------------------------------------------
+// Name: CreateMessage()
+// Desc: Creates the appropriate message based on the given data
+//-----------------------------------------------------------------------------
+CNetMessage* CNetMessageFactory::CreateMessage( 
+											   const void* pData,
+											   uint dataSize )
+{
+	CNetMessage*	pNewMessage = NULL;
+	CNetMessage		header;
+
+	// Validate parameters
+	if ( !pData ) return NULL;
+
+	// Figure out message type
+	header.Deserialize( ( const u8* )pData, ( const u8* )pData  + dataSize );
+
+	switch ( header.GetType() )
+	{
+	case NMT_GAME_SETUP:
+		pNewMessage = new CGameSetupMessage;
+		break;
+
+	case NMT_ASSIGN_PLAYER_SLOT:
+		pNewMessage = new CAssignPlayerSlotMessage;
+		break;
+
+	case NMT_PLAYER_CONFIG:
+		pNewMessage = new CPlayerConfigMessage;
+		break;
+
+	case NMT_PLAYER_JOIN:
+		pNewMessage = new CPlayerJoinMessage;
+		break;
+
+	case NMT_SERVER_HANDSHAKE:
+		pNewMessage = new CSrvHandshakeMessage;
+		break;
+
+	case NMT_SERVER_HANDSHAKE_RESPONSE:
+		pNewMessage = new CSrvHandshakeResponseMessage;
+		break;
+
+	case NMT_CONNECT_COMPLETE:
+		pNewMessage = new CConnectCompleteMessage;
+		break;
+
+	case NMT_ERROR:
+		pNewMessage = new CErrorMessage;
+		break;
+
+	case NMT_CLIENT_HANDSHAKE:
+		pNewMessage = new CCliHandshakeMessage;
+		break;
+
+	case NMT_AUTHENTICATE:
+		pNewMessage = new CAuthenticateMessage;
+		break;
+
+	case NMT_AUTHENTICATE_RESULT:
+		pNewMessage = new CAuthenticateResultMessage;
+		break;
+
+	case NMT_GAME_START:
+		pNewMessage = new CGameStartMessage;
+		break;
+	}
+
+	if ( pNewMessage )
+		pNewMessage->Deserialize( ( const u8* )pData, ( const u8* )pData + dataSize );
+
+	return pNewMessage;
+}
+
+//-----------------------------------------------------------------------------
+// Name: CreateMessage()
+// Desc: Creates a message from the specified JavaScript arguments
+//-----------------------------------------------------------------------------
+CNetMessage* CNetMessageFactory::CreateMessage(
+											   const CEntityList &entities,
+											   JSContext *pContext,
+											   uintN argc,
+											   jsval *argv,
+											   bool queued )
+{
+	CNetMessage* pNewMessage = NULL;
+	uint		 idx		 = 0;
+	uint		 msgType;
+
+	// Validate parameters
+	if ( argv == 0 ) return NULL;
+
+	try
+	{
+		msgType = ToPrimitive< uint >( argv[ idx++ ] );
+	}
+	catch ( PSERROR_Scripting_ConversionFailed )
+	{
+		JS_ReportError( pContext, "Invalid order type" );
 		return NULL;
 	}
-}
-CNetMessage *CNetMessage::CreateProduceMessage( const CEntityList& entities, const int type, int proType, const CStrW& name )
-{
-	#define ProMessage(_msg)\
-		case NMT_ ## _msg: \
-		{ \
-			C##_msg* msg = new C##_msg(); \
-			msg->m_Entities = entities; \
-			msg->m_Type = proType; \
-			msg->m_Name = name; \
-			return msg; \
+	
+	switch ( msgType )
+	{
+	case NMT_GOTO:
+		{
+			CGotoMessage *pMessage = new CGotoMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
+
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_RUN:
+		{
+			CRunMessage *pMessage = new CRunMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL; 
+						);
+				}
+
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_PATROL:
+		{
+			CPatrolMessage *pMessage = new CPatrolMessage;
+			if ( pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
+
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_ADD_WAYPOINT:
+		{
+			CAddWaypointMessage *pMessage = new CAddWaypointMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
+				
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_FORMATION_GOTO:
+		{
+			CFormationGotoMessage *pMessage = new CFormationGotoMessage;
+			if ( !pMessage ) return NULL;
+	
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
+
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_GENERIC:
+		{
+			CGenericMessage* pMessage = new CGenericMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			if ( idx + 1 > argc )
+			{
+				STMT(
+					JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+				);
+			}
+
+			if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+			{
+				STMT(
+					JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+				);
+			}
+
+			CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+			if ( !pEntity )
+			{
+				STMT(
+					JS_ReportError( pContext, "Invalid entity parameter" );
+				return NULL;
+				);
+			}
+
+			pMessage->m_Target = pEntity->me;
+
+			pNewMessage = pMessage;
+
+			if ( !JSVAL_IS_INT( argv[ idx ] ) )
+			{
+				STMT(
+					JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+				);
+			}
+
+			pMessage->m_Action = ToPrimitive< int >( argv[ idx++ ] );
+			break;
 		}
 
-	switch (type)
-	{
-		ProMessage(Produce)
+	case NMT_NOTIFY_REQUEST:
+		{
+			CNotifyRequestMessage* pMessage = new CNotifyRequestMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+					if ( !pEntity )
+					{
+						JS_ReportError( pContext, "Invalid entity parameter" );
+						return NULL;
+					}
+					
+					pMessage->m_Target = pEntity->me;
+				);
+			
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_FORMATION_GENERIC:
+		{
+			CFormationGenericMessage* pMessage = new CFormationGenericMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );\
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+					if ( !pEntity )
+					{
+						STMT(
+								JS_ReportError( pContext, "Invalid entity parameter" );
+								return NULL;
+							);
+					}
+					
+					pMessage->m_Target = pEntity->me;
+				);
+			
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_PRODUCE:
+		{
+			CProduceMessage* pMessage = new CProduceMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+
+					pMessage->m_Type = ToPrimitive< int >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+                    
+					if ( !JSVAL_IS_STRING( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL; 
+							);
+					}
+					
+					pMessage->m_Name = ToPrimitive< CStrW >( argv[ idx++ ] );
+				);
+
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_PLACE_OBJECT:
+		{
+			CPlaceObjectMessage* pMessage = new CPlaceObjectMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_STRING( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					pMessage->m_Template = ToPrimitive< CStrW >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					pMessage->m_X = ToPrimitive< int >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+
+					pMessage->m_Y = ToPrimitive< int >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+
+					pMessage->m_Z = ToPrimitive< int >( argv[ idx++ ] );
+				);
+
+			STMT(
+					if ( idx + 1 > argc )
+					{
+						STMT(
+								JS_ReportError( pContext, "Too few parameters!" );
+								return NULL;
+							);
+					}
+
+					if ( !JSVAL_IS_INT( argv[ idx ] ) )
+					{
+						STMT(
+								JS_ReportError( pContext, "Parameter type error!" );
+								return NULL;
+							);
+					}
+					
+					pMessage->m_Angle = ToPrimitive< int >( argv[ idx++ ] );
+				);
+					
+			pNewMessage = pMessage;
+		}
+		break;
 
 	default:
-		return NULL;
+
+		JS_ReportError( pContext, "Invalid order type" );
+		break;
 	}
+
+	return pNewMessage;
 }
 
-		
-
-	

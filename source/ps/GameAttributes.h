@@ -6,7 +6,8 @@
 #include "scripting/SynchedJSObject.h"
 #include "simulation/LOSManager.h"
 
-class CNetServerSession;
+//class CNetServerSession;
+class CNetSession;
 class CGameAttributes;
 class CPlayerSlot;
 
@@ -25,7 +26,8 @@ class CPlayerSlot: public CJSObject<CPlayerSlot>
 	size_t m_SlotID;
 	EPlayerSlotAssignment m_Assignment;
 
-	CNetServerSession *m_pSession;
+	//CNetServerSession *m_pSession;
+	CNetSession *m_pSession;
 	int m_SessionID;
 	CPlayer *m_pPlayer;
 	
@@ -48,7 +50,8 @@ class CPlayerSlot: public CJSObject<CPlayerSlot>
 	jsval JSI_GetAssignment(JSContext* cx);
 
 	void CallCallback();
-	void SetAssignment(EPlayerSlotAssignment, CNetServerSession *pSession, int sessionID);
+	//void SetAssignment(EPlayerSlotAssignment, CNetServerSession *pSession, int sessionID);
+	void SetAssignment(EPlayerSlotAssignment, CNetSession *pSession, int sessionID);
 	
 protected:
 	friend class CGameAttributes;
@@ -68,7 +71,9 @@ public:
 	
 	// Only applicable on the server host, and may return NULL if the slot
 	// is not assigned to a server session.
-	inline CNetServerSession *GetSession()
+	//inline CNetServerSession *GetSession()
+	//{	return m_pSession; }
+	inline CNetSession *GetSession()
 	{	return m_pSession; }
 	
 	
@@ -86,7 +91,8 @@ public:
 	void AssignClosed();
 
 	// [Server] Assign the slot to a connected session
-	void AssignToSession(CNetServerSession *pSession);
+	//void AssignToSession(CNetServerSession *pSession);
+	void AssignToSession(CNetSession *pSession);
 
 	// [Client] The slot has been assigned by the server to a session ID, mirror
 	// the assignment

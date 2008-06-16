@@ -568,7 +568,7 @@ void CSelectedEntities::Update()
 		}
 
 		// Don't count GOTO as a majority action unless everything else has 0 votes.
-		defaultPoll[NMT_Goto - NMT_COMMAND_FIRST] = 0;
+		defaultPoll[NMT_GOTO - NMT_COMMAND_FIRST] = 0;
 
 		vote = -1;
 		secvote = -1;
@@ -1412,7 +1412,7 @@ void CBuildingPlacer::MouseReleased()
 	if( m_valid )
 	{
 		// issue a place object command accross the network
-		CPlaceObject *msg = new CPlaceObject();
+		CPlaceObjectMessage *msg = new CPlaceObjectMessage();
 		msg->m_IsQueued = hotkeys[HOTKEY_ORDER_QUEUE];
 		msg->m_Entities = g_Selection.m_selected;
 		msg->m_Template = m_templateName;

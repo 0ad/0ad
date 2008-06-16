@@ -81,8 +81,10 @@ CLogger::~CLogger ()
 
 	time_t t = time(NULL);
 	struct tm* now = localtime(&t);
-	const char* months[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-	CStr currentDate = CStr(months[now->tm_mon]) + " " + CStr(now->tm_mday) + " " + CStr(1900+now->tm_year);
+	//const char* months[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+	//CStr currentDate = CStr(months[now->tm_mon]) + " " + CStr(now->tm_mday) + " " + CStr(1900+now->tm_year);
+	char currentDate[11];
+	sprintf(currentDate, "%02d %02d %04d", now->tm_mon, now->tm_mday, (1900+now->tm_year));
 	char currentTime[10];
 	sprintf(currentTime, "%02d:%02d:%02d", now->tm_hour, now->tm_min, now->tm_sec);
 

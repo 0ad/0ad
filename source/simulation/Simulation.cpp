@@ -39,7 +39,7 @@ CSimulation::CSimulation(CGame *pGame):
 
 CSimulation::~CSimulation()
 {
-	delete g_SinglePlayerTurnManager;
+delete g_SinglePlayerTurnManager;
 	g_SinglePlayerTurnManager=NULL;
 }
 
@@ -94,10 +94,10 @@ bool CSimulation::Update(double frameTime)
 				// The desired sim frame rate can't be achieved - we're being called
 				// with average(frameTime) > turnLength.
 				// Let the caller know we can't go fast enough - they should try
-				// cutting down on Interpolate and rendering, and call us a few times
+			// cutting down on Interpolate and rendering, and call us a few times
 				// with frameTime == 0 to give us a chance to catch up.
 				ok = false;
-				LOG(CLogger::Warning, "simulation", "Missing a simulation turn due to low FPS");
+				debug_printf("WARNING: missing a simulation turn due to low FPS\n");
 			}
 		}
 		else
@@ -151,14 +151,13 @@ void CSimulation::Simulate()
 	int time = m_pTurnManager->GetTurnLength();
 	
 	m_Time += time / 1000.0f;
-#ifdef DEBUG_SYNCHRONIZATION
+#if defined(DEBUG_SYNCHRONIZATION)
 	debug_printf("Simulation turn: %.3lf\n", m_Time);
 #endif
 
 	PROFILE_START( "scheduler tick" );
 	g_Scheduler.Update(time);
 	PROFILE_END( "scheduler tick" );
-
 	PROFILE_START( "entity updates" );
 	g_EntityManager.UpdateAll(time);
 	PROFILE_END( "entity updates" );
@@ -180,7 +179,7 @@ void CSimulation::Simulate()
 	m_pTurnManager->IterateBatch(0, TranslateMessage, this);
 	PROFILE_END( "turn manager update" );
 	
-#ifdef DEBUG_SYNCHRONIZATION
+#if defined(DEBUG_SYNCHRONIZATION)
 	debug_printf("End turn\n", m_Time);
 #endif
 }
@@ -319,9 +318,9 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 	
 	switch (pMsg->GetType())
 	{
-		case NMT_AddWaypoint:
+		case NMT_ADD_WAYPOINT:
 		{
-			CAddWaypoint *msg=(CAddWaypoint *)pMsg;
+			CAddWaypointMessage *msg=(CAddWaypointMessage *)pMsg;
 			isQueued = msg->m_IsQueued != 0;
 			order.m_type=CEntityOrder::ORDER_LAST;
 			order.m_target_location.x=(float)msg->m_TargetX;
@@ -353,35 +352,35 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 			}
 			break;
 		}
-		case NMT_Goto:
-			ENTITY_POSITION(CGoto, ORDER_GOTO);
+		case NMT_GOTO:
+			ENTITY_POSITION(CGotoMessage, ORDER_GOTO);
 			break;
-		case NMT_Run:
-			ENTITY_POSITION(CRun, ORDER_RUN);
+		case NMT_RUN:
+			ENTITY_POSITION(CRunMessage, ORDER_RUN);
 			break;
-		case NMT_Patrol:
-			ENTITY_POSITION(CPatrol, ORDER_PATROL);
+		case NMT_PATROL:
+			ENTITY_POSITION(CPatrolMessage, ORDER_PATROL);
 			break;
-		case NMT_FormationGoto:
-			ENTITY_POSITION_FORM(CFormationGoto, ORDER_GOTO);
+		case NMT_FORMATION_GOTO:
+			ENTITY_POSITION_FORM(CFormationGotoMessage, ORDER_GOTO);
 			break;
 
 		//TODO: make formation move to within range of target and then attack normally
-		case NMT_Generic:
-			ENTITY_ENTITY_INT(CGeneric, ORDER_GENERIC);
+		case NMT_GENERIC:
+			ENTITY_ENTITY_INT(CGenericMessage, ORDER_GENERIC);
 			break;
-		case NMT_FormationGeneric:
-			ENTITY_ENTITY_INT(CFormationGeneric, ORDER_GENERIC);
+		case NMT_FORMATION_GENERIC:
+			ENTITY_ENTITY_INT(CFormationGenericMessage, ORDER_GENERIC);
 			break;
-		case NMT_NotifyRequest:
-			ENTITY_ENTITY_INT(CNotifyRequest, ORDER_NOTIFY_REQUEST);
+		case NMT_NOTIFY_REQUEST:
+			ENTITY_ENTITY_INT(CNotifyRequestMessage, ORDER_NOTIFY_REQUEST);
 			break;
-		case NMT_Produce:
-			ENTITY_INT_STRING(CProduce, ORDER_PRODUCE);
+		case NMT_PRODUCE:
+			ENTITY_INT_STRING(CProduceMessage, ORDER_PRODUCE);
 			break;
-		case NMT_PlaceObject:
+		case NMT_PLACE_OBJECT:
 			{
-				CPlaceObject *msg = (CPlaceObject *) pMsg;
+				CPlaceObjectMessage *msg = (CPlaceObjectMessage *) pMsg;
 				isQueued = msg->m_IsQueued != 0;
 				
 				// Figure out the player

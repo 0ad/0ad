@@ -71,6 +71,10 @@ void CSoundGroup::PlayNext()
 	}
 	else
 	{
+		// if no sounds, return
+		if (filenames.size() == 0)
+			return;
+
 		// try loading on the fly only when we need the sound to see if that fixes release problems...
 		if(TestFlag(eRandOrder))
 			m_index = (size_t)rand(0, (size_t)filenames.size());

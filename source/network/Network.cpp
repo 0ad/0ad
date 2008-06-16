@@ -1,5 +1,5 @@
-#include "precompiled.h"
 
+#include "precompiled.h"
 #include "Network.h"
 #include "Serialization.h"
 #include "ps/CLogger.h"
@@ -7,10 +7,6 @@
 
 
 DEFINE_ERROR(CONFLICTING_OP_IN_PROGRESS, "A conflicting operation is already in progress");
-
-#define ALIGN_UP(_n, _block) (_n+_block-(_n%_block))
-#define BUFFER_BLOCK 4096
-#define BUFFER_SIZE(_n) ALIGN_UP(_n, BUFFER_BLOCK)
 
 #define LOG_CAT_NET "net"
 
@@ -77,7 +73,7 @@ CNetMessage *CMessagePipe::End::TryPop()
 	}
 }*/
 
-CStr CNetErrorMessage::GetString() const
+/*CStr CErrorMessage::GetString() const
 {
 	static const char* const states[]={
 		"SS_UNCONNECTED",
@@ -98,11 +94,35 @@ CStr CConnectCompleteMessage::GetString() const
 CStr CCloseRequestMessage::GetString() const
 {
 	return CStr("CloseRequestMessage");
+}*/
+
+CStr CErrorMessage::ToString( void ) const
+{
+	static const char* const states[]=
+	{
+		"SS_UNCONNECTED",
+		"SS_CONNECT_STARTED",
+		"SS_CONNECTED",
+		"SS_CLOSED_LOCALLY"
+	};
+
+	return CStr("NetErrorMessage: ")+
+		m_Error+", Socket State "+states[m_State];
+}
+
+CStr CConnectCompleteMessage::ToString( void ) const
+{
+	return CStr( "ConnectCompleteMessage" );
+}
+
+CStr CCloseRequestMessage::ToString( void ) const
+{
+	return CStr( "CloseRequestMessage" );
 }
 
 void CMessageSocket::Push(CNetMessage *msg)
 {
-	NET_LOG2( "CMessageSocket::Push(): %s", msg->GetString().c_str() );
+	NET_LOG2( "CMessageSocket::Push(): %s", msg->ToString().c_str() );
 
 	m_OutQ.Lock();
 	m_OutQ.push_back(msg);
@@ -164,7 +184,8 @@ void CMessageSocket::StartWriteNextMessage()
 		// Allocate buffer space
 		if ((size_t)(hdr.m_MsgLength+HEADER_LENGTH) > m_WrBufferSize)
 		{
-			m_WrBufferSize = BUFFER_SIZE(hdr.m_MsgLength+HEADER_LENGTH);
+			//m_WrBufferSize = BUFFER_SIZE(hdr.m_MsgLength+HEADER_LENGTH);
+			m_WrBufferSize = ALIGN_BLOCK(hdr.m_MsgLength+HEADER_LENGTH);
 			if (m_pWrBuffer)
 				m_pWrBuffer=(u8 *)realloc(m_pWrBuffer, m_WrBufferSize);
 			else
@@ -188,7 +209,7 @@ void CMessageSocket::StartWriteNextMessage()
 
 			// Queue Error Message
 			m_InQ.Lock();
-			m_InQ.push_back(new CNetErrorMessage(res, GetState()));
+			m_InQ.push_back(new CErrorMessage(res, GetState()));
 			m_InQ.Unlock();
 		}
 	}
@@ -227,7 +248,7 @@ void CMessageSocket::WriteComplete(PS_RESULT ec)
 	else
 	{
 		// Push an error message
-		m_InQ.push_back(new CNetErrorMessage(ec, GetState()));
+		m_InQ.push_back(new CErrorMessage(ec, GetState()));
 	}
 }
 
@@ -235,13 +256,15 @@ void CMessageSocket::StartReadHeader()
 {
 	if (m_RdBufferSize < HEADER_LENGTH)
 	{
-		m_RdBufferSize=BUFFER_SIZE(HEADER_LENGTH);
+		//m_RdBufferSize=BUFFER_SIZE(HEADER_LENGTH);
+		m_RdBufferSize=ALIGN_BLOCK(HEADER_LENGTH);
 		if (m_pRdBuffer)
 			m_pRdBuffer=(u8 *)realloc(m_pRdBuffer, m_RdBufferSize);
 		else
 			m_pRdBuffer=(u8 *)malloc(m_RdBufferSize);
 	}
 	m_ReadingData=false;
+	printf("CMessageSocket::StartReadHeader(): Trying to read %u\n", HEADER_LENGTH);
 	PS_RESULT res=Read(m_pRdBuffer, HEADER_LENGTH);
 	if (res != PS_OK)
 	{
@@ -249,7 +272,7 @@ void CMessageSocket::StartReadHeader()
 
 		// Push an error message
 		CScopeLock scopeLock(m_InQ.m_Mutex);
-		m_InQ.push_back(new CNetErrorMessage(res, GetState()));
+		m_InQ.push_back(new CErrorMessage(res, GetState()));
 	}
 }
 
@@ -261,7 +284,8 @@ void CMessageSocket::StartReadMessage()
 	size_t reqBufSize=HEADER_LENGTH+hdr.m_MsgLength;
 	if (m_RdBufferSize < reqBufSize)
 	{
-		m_RdBufferSize=BUFFER_SIZE(reqBufSize);
+		//m_RdBufferSize=BUFFER_SIZE(reqBufSize);
+		m_RdBufferSize=ALIGN_BLOCK(reqBufSize);
 		if (m_pRdBuffer)
 			m_pRdBuffer=(u8 *)realloc(m_pRdBuffer, m_RdBufferSize);
 		else
@@ -282,7 +306,7 @@ void CMessageSocket::StartReadMessage()
 
 			// Queue an error message
 			CScopeLock scopeLock(m_InQ);
-			m_InQ.push_back(new CNetErrorMessage(res, GetState()));
+			m_InQ.push_back(new CErrorMessage(res, GetState()));
 		}
 	}
 }
@@ -302,7 +326,8 @@ void CMessageSocket::ReadComplete(PS_RESULT ec)
 	{
 		SNetHeader hdr;
 		hdr.Deserialize(m_pRdBuffer);
-		CNetMessage *pMsg=CNetMessage::DeserializeMessage((ENetMessageType)hdr.m_MsgType, m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
+		//CNetMessage *pMsg=CNetMessage::DeserializeMessage((ENetMessageType)hdr.m_MsgType, m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
+		CNetMessage *pMsg = CNetMessageFactory::CreateMessage( m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
 		if (pMsg)
 		{
 			OnMessage(pMsg);
@@ -326,7 +351,7 @@ void CMessageSocket::OnMessage(CNetMessage *pMsg)
 {
 	m_InQ.Lock();
 	m_InQ.push_back(pMsg);
-	NET_LOG2( "CMessageSocket::OnMessage(): %s", pMsg->GetString().c_str() );
+	NET_LOG2( "CMessageSocket::OnMessage(): %s", pMsg->ToString().c_str() );
 	NET_LOG2( "CMessageSocket::OnMessage(): Queue size now %u", m_InQ.size() );
 	m_InQ.Unlock();
 }
@@ -342,14 +367,14 @@ void CMessageSocket::ConnectComplete(PS_RESULT ec)
 	else
 	{
 		CScopeLock scopeLock(m_InQ);
-		m_InQ.push_back(new CNetErrorMessage(ec, GetState()));
+		m_InQ.push_back(new CErrorMessage(ec, GetState()));
 	}
 }
 
 void CMessageSocket::OnClose(PS_RESULT errorCode)
 {
 	CScopeLock scopeLock(m_InQ.m_Mutex);
-	m_InQ.push_back(new CNetErrorMessage(errorCode, GetState()));
+	m_InQ.push_back(new CErrorMessage(errorCode, GetState()));
 }
 
 CMessageSocket::CMessageSocket(CSocketInternal *pInt):

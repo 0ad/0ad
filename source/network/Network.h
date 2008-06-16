@@ -56,6 +56,9 @@ MORE INFO
 //-------------------------------------------------
 // Typedefs and Macros
 //-------------------------------------------------
+#define BLOCK_SIZE				4096
+#define ALIGN_UP( _n, _block )	( _n + _block - (_n % _block ) )
+#define ALIGN_BLOCK( _n )		ALIGN_UP( _n, BLOCK_SIZE )
 
 #define LOG_CAT_NET "net"
 
@@ -190,23 +193,23 @@ public:
 	virtual void OnAccept(const CSocketAddress &)=0;
 };
 
-class CNetErrorMessage: public CNetMessage
+class CErrorMessage: public CNetMessage
 {
 public:
 	PS_RESULT m_Error;
 	ESocketState m_State;
 
-	inline CNetErrorMessage():
+	inline CErrorMessage():
 		CNetMessage(NMT_ERROR)
 	{}
 
-	inline CNetErrorMessage(PS_RESULT error, ESocketState state):
+	inline CErrorMessage(PS_RESULT error, ESocketState state):
 		CNetMessage(NMT_ERROR),
 		m_Error(error),
 		m_State(state)
 	{}
 
-	virtual CStr GetString() const;
+	virtual CStr ToString() const;
 };
 
 struct CCloseRequestMessage: public CNetMessage
@@ -214,7 +217,7 @@ struct CCloseRequestMessage: public CNetMessage
 	inline CCloseRequestMessage(): CNetMessage(NMT_CLOSE_REQUEST)
 	{}
 
-	virtual CStr GetString() const;
+	virtual CStr ToString() const;
 };
 
 struct CConnectCompleteMessage: public CNetMessage
@@ -222,7 +225,7 @@ struct CConnectCompleteMessage: public CNetMessage
 	inline CConnectCompleteMessage(): CNetMessage(NMT_CONNECT_COMPLETE)
 	{}
 
-	virtual CStr GetString() const;
+	virtual CStr ToString() const;
 };
 
 /**

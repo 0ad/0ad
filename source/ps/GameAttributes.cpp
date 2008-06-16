@@ -5,7 +5,7 @@
 #include "GameAttributes.h"
 #include "Game.h"
 #include "ConfigDB.h"
-#include "network/ServerSession.h"
+#include "network/NetSession.h"
 #include "CLogger.h"
 #include "ps/XML/Xeromyces.h"
 #include "simulation/LOSManager.h"
@@ -80,7 +80,7 @@ bool CPlayerSlot::JSI_AssignToSession(JSContext* UNUSED(cx), uintN argc, jsval* 
 {
 	if (argc != 1)
 		return false;
-	CNetServerSession *pSession=ToNative<CNetServerSession>(argv[0]);
+	CNetSession* pSession = ToNative<CNetSession>(argv[0]);
 	if (pSession)
 	{
 		AssignToSession(pSession);
@@ -103,7 +103,7 @@ void CPlayerSlot::CallCallback()
 }
 
 void CPlayerSlot::SetAssignment(EPlayerSlotAssignment assignment,
-	CNetServerSession *pSession, int sessionID)
+	CNetSession *pSession, int sessionID)
 {
 	m_Assignment=assignment;
 	m_pSession=pSession;
@@ -122,7 +122,7 @@ void CPlayerSlot::AssignOpen()
 	SetAssignment(SLOT_OPEN, NULL, -1);
 }
 
-void CPlayerSlot::AssignToSession(CNetServerSession *pSession)
+void CPlayerSlot::AssignToSession(CNetSession *pSession)
 {
 	SetAssignment(SLOT_SESSION, pSession, pSession->GetID());
 	m_pPlayer->SetName(pSession->GetName());

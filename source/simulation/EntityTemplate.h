@@ -61,7 +61,8 @@ public:
 	CBoundingObject::EBoundingType m_bound_type;
 
 	// Sound properties
-	typedef STL_HASH_MAP<CStr, CStr, CStr_hash_compare> SoundGroupTable;
+	// map animation name to soundGroup index returned by SoundGroupMgr
+	typedef STL_HASH_MAP<CStr, size_t, CStr_hash_compare> SoundGroupTable;
 	SoundGroupTable m_SoundGroupTable;
 	
 	//SP properties
