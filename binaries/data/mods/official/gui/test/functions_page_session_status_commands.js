@@ -480,11 +480,11 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 								{
 									case "train":
 										// TODO: Remove this item from the production queue if right-clicked.
-										issueCommand(selection, true, NMT_Produce, PRODUCTION_TRAIN, ""+(Crd[getCrd (this.name, true)].entity));
+										issueCommand(selection, true, NMT_PRODUCE, PRODUCTION_TRAIN, ""+(Crd[getCrd (this.name, true)].entity));
 										break;
 									case "research":
 										// TODO: Remove this item from the production queue if right-clicked.
-										issueCommand(selection, true, NMT_Produce, PRODUCTION_RESEARCH, ""+(Crd[getCrd (this.name, true)].entity.name));
+										issueCommand(selection, true, NMT_PRODUCE, PRODUCTION_RESEARCH, ""+(Crd[getCrd (this.name, true)].entity.name));
 										break;
 									case "barter":
 										// Buy a quantity of this resource if left-clicked.
@@ -1024,7 +1024,7 @@ console.write (snStatusPaneCommand[tab][list].type);
 						setCursor ("action-patrol");
 						selectLocation(
 							function (x, y) {
-								issueCommand (selection, NMT_Patrol, x, y);
+								issueCommand (selection, NMT_PATROL, x, y);
 							}
 						);
 					break;
@@ -1032,7 +1032,7 @@ console.write (snStatusPaneCommand[tab][list].type);
 						setCursor ("action-attack");
 						selectEntity(
 							function (target) {
-								issueCommand (selection, NMT_AttackMelee, target);
+								issueCommand (selection, NMT_ATTACK_MELEE, target);
 							}
 						);
 					break;

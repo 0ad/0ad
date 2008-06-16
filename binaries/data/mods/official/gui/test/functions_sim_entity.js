@@ -49,22 +49,22 @@ function worldClickHandler(event)
 	switch (cmd)
 	{
 	// location target commands
-	case NMT_Goto:
-	case NMT_Run:
-	case NMT_Patrol:
+	case NMT_GOTO:
+	case NMT_RUN:
+	case NMT_PATROL:
 		if (event.queued)
 		{
-			cmd = NMT_AddWaypoint;
+			cmd = NMT_ADD_WAYPOINT;
 		}
 		args[0]=event.x;
 		args[1]=event.y;
 		break;
-	case NMT_AddWaypoint:
+	case NMT_ADD_WAYPOINT:
 		args[0]=event.x;
 		args[1]=event.y;
 		break;
 	// entity target commands
-	case NMT_Generic:
+	case NMT_GENERIC:
 		args[0]=event.entity;
 		if ( event.clicks == 1)
 			args[1]=event.action;
@@ -72,7 +72,7 @@ function worldClickHandler(event)
 			args[1]=event.secondaryAction;
 		break;
 	//TODO:  get rid of order() calls.
-	case NMT_NotifyRequest:
+	case NMT_NOTIFY_REQUEST:
 		if (event.clicks == 1)
 			action = event.action;
 		else

@@ -1174,14 +1174,14 @@ function entityEventTargetChanged( evt )
 		return;
 	}	
 
-	evt.defaultOrder = NMT_Goto;
+	evt.defaultOrder = NMT_GOTO;
 	evt.defaultCursor = "arrow-default";
 	evt.defaultAction = ACTION_NONE;
 	evt.secondaryAction = ACTION_NONE;
 	evt.secondaryCursor = "arrow-default";
 	if ( this.actions && this.actions.run && this.actions.run.speed > 0 )
 	{
-		evt.secondaryOrder = NMT_Run;
+		evt.secondaryOrder = NMT_RUN;
 	}
 
 	if( evt.target && this.actions )
@@ -1191,11 +1191,11 @@ function entityEventTargetChanged( evt )
 			evt.target.traits.health &&
 			evt.target.traits.health.max != 0 )
 		{
-			evt.defaultOrder = NMT_Generic;
+			evt.defaultOrder = NMT_GENERIC;
 			evt.defaultAction = this.getAttackAction( evt.target );
 			evt.defaultCursor = "action-attack";
 
-			evt.secondaryOrder = NMT_Generic;
+			evt.secondaryOrder = NMT_GENERIC;
 			evt.secondaryAction = this.getAttackAction( evt.target );
 			evt.secondaryCursor = "action-attack";
 		}
@@ -1208,8 +1208,8 @@ function entityEventTargetChanged( evt )
 			if (evt.target.actions.move)
 			{ 
 				//Send an empty order
-				evt.defaultOrder = NMT_NotifyRequest;
-				evt.secondaryOrder = NMT_NotifyRequest;
+				evt.defaultOrder = NMT_NOTIFY_REQUEST;
+				evt.secondaryOrder = NMT_NOTIFY_REQUEST;
 
 				evt.defaultAction = NOTIFY_ESCORT;
 				evt.secondaryAction = NOTIFY_ESCORT;
@@ -1218,12 +1218,12 @@ function entityEventTargetChanged( evt )
 
 		if ( canGather( this, evt.target ) )
 		{
-			evt.defaultOrder = NMT_Generic;
+			evt.defaultOrder = NMT_GENERIC;
 			evt.defaultAction = ACTION_GATHER;
 		    // Set cursor (eg "action-gather-fruit").
 		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subType;
 
-			evt.secondaryOrder = NMT_Generic;
+			evt.secondaryOrder = NMT_GENERIC;
 			evt.secondaryAction = ACTION_GATHER;
 		  	// Set cursor (eg "action-gather-fruit").
 		    evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subType;
@@ -1231,22 +1231,22 @@ function entityEventTargetChanged( evt )
 		
 		if ( canBuild( this, evt.target ) )
 		{
-			evt.defaultOrder = NMT_Generic;
+			evt.defaultOrder = NMT_GENERIC;
 			evt.defaultAction = ACTION_BUILD;
 		    evt.defaultCursor = "action-build";
 
-			evt.secondaryOrder = NMT_Generic;
+			evt.secondaryOrder = NMT_GENERIC;
 			evt.secondaryAction = ACTION_BUILD;
 		    evt.secondaryCursor = "action-build";
 		}
 		
 		if ( canRepair( this, evt.target ) )
 		{
-			evt.defaultOrder = NMT_Generic;
+			evt.defaultOrder = NMT_GENERIC;
 			evt.defaultAction = ACTION_REPAIR;
 		    evt.defaultCursor = "action-build";
 
-			evt.secondaryOrder = NMT_Generic;
+			evt.secondaryOrder = NMT_GENERIC;
 			evt.secondaryAction = ACTION_REPAIR;
 		    evt.secondaryCursor = "action-build";
 		}
