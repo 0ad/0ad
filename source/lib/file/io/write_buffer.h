@@ -36,14 +36,14 @@ public:
 	~UnalignedWriter();
 
 	/**
-	* add data to the align buffer, writing it out to disk if full.
-	**/
+	 * add data to the align buffer, writing it out to disk if full.
+	 **/
 	LibError Append(const u8* data, size_t size) const;
 
 	/**
-	* zero-initialize any remaining space in the align buffer and write
-	* it to the file. this is called by the destructor.
-	**/
+	 * zero-initialize any remaining space in the align buffer and write
+	 * it to the file. this is called by the destructor.
+	 **/
 	void Flush() const;
 
 private:
@@ -54,5 +54,7 @@ private:
 	mutable off_t m_alignedOfs;
 	mutable size_t m_bytesUsed;
 };
+
+typedef shared_ptr<UnalignedWriter> PUnalignedWriter;
 
 #endif	// #ifndef INCLUDED_WRITE_BUFFER

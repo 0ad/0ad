@@ -25,11 +25,25 @@ bool IsAligned_Data(T* address)
 	return IsAligned((uintptr_t)address, SECTOR_SIZE);
 }
 
-extern bool IsAligned_Offset(off_t ofs);
+static bool IsAligned_Offset(off_t ofs)
+{
+	return IsAligned(ofs, BLOCK_SIZE);
+}
 
 
-extern off_t AlignedOffset(off_t ofs);
-extern off_t AlignedSize(off_t size);
-extern off_t PaddedSize(off_t size, off_t ofs);
+static off_t AlignedOffset(off_t ofs)
+{
+	return round_down(ofs, (off_t)BLOCK_SIZE);
+}
+
+static off_t AlignedSize(off_t size)
+{
+	return round_up(size, (off_t)BLOCK_SIZE);
+}
+
+static off_t PaddedSize(off_t size, off_t ofs)
+{
+	return round_up(size + ofs - AlignedOffset(ofs), (off_t)BLOCK_SIZE);
+}
 
 #endif	// #ifndef INCLUDED_IO_ALIGN

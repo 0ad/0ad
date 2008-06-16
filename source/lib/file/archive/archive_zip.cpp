@@ -503,7 +503,8 @@ class ArchiveWriter_Zip : public IArchiveWriter
 {
 public:
 	ArchiveWriter_Zip(const Path& archivePathname)
-		: m_fileSize(0), m_unalignedWriter(m_file, 0)
+		: m_file(CreateFile_Posix()), m_fileSize(0)
+		, m_unalignedWriter(new UnalignedWriter(m_file, 0))
 		, m_numEntries(0)
 	{
 		THROW_ERR(m_file->Open(archivePathname, 'w'));
@@ -518,12 +519,20 @@ public:
 		ECDR* ecdr = (ECDR*)pool_alloc(&m_cdfhPool, sizeof(ECDR));
 		if(!ecdr)
 			throw std::bad_alloc();
-		ecdr->Init(m_numEntries, m_fileSize, cd_size);
+		const size_t cd_ofs = m_fileSize;
+		ecdr->Init(m_numEntries, cd_ofs, cd_size);
 
-		m_unalignedWriter.Append(m_cdfhPool.da.base, cd_size+sizeof(ECDR));
-		m_unalignedWriter.Flush();
+		m_unalignedWriter->Append(m_cdfhPool.da.base, cd_size+sizeof(ECDR));
+		m_unalignedWriter->Flush();
+		m_unalignedWriter.reset();
 
 		(void)pool_destroy(&m_cdfhPool);
+
+		const Path pathname = m_file->Pathname();
+		m_file.reset();
+
+		m_fileSize += cd_size+sizeof(ECDR);
+		truncate(pathname.string().c_str(), m_fileSize);
 	}
 
 	LibError AddFile(const Path& pathname)
@@ -597,12 +606,12 @@ public:
 
 		// write LFH, pathname and cdata to file
 		const size_t packageSize = sizeof(LFH) + pathnameLength + csize;
-		RETURN_ERR(m_unalignedWriter.Append(buf.get(), (off_t)packageSize));
+		RETURN_ERR(m_unalignedWriter->Append(buf.get(), (off_t)packageSize));
 		m_fileSize += (off_t)packageSize;
 
 		return INFO::OK;
 	}
-#include <boost/filesystem.hpp>
+
 private:
 	static bool IsFileTypeIncompressible(const Path& pathname)
 	{
@@ -627,7 +636,7 @@ private:
 
 	PIFile m_file;
 	off_t m_fileSize;
-	UnalignedWriter m_unalignedWriter;
+	PUnalignedWriter m_unalignedWriter;
 
 	Pool m_cdfhPool;
 	size_t m_numEntries;

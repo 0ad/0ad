@@ -51,7 +51,9 @@ T bit_mask(size_t numBits)
 	// note: the perhaps more intuitive (1 << numBits)-1 cannot
 	// handle numBits == bitsInT, but this implementation does.
 	const T bitsInT = sizeof(T)*CHAR_BIT;
-	return ~T(0) >> T(bitsInT-numBits);
+	T mask = ~T(0);
+	mask >>= T(bitsInT-numBits);
+	return mask;
 }
 
 

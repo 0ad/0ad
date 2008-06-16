@@ -839,35 +839,45 @@ static int __cdecl ReportHook(int reportType, char* message, int* out)
 	static enum
 	{
 		WaitingForDump,
-		WaitingForLeakAddress,
-		IsLeakAddress
+		WaitingForBlock,
+		IsBlock
 	}
 	state = WaitingForDump;
 	switch(state)
 	{
 	case WaitingForDump:
 		if(!strcmp(message, "Dumping objects ->\n"))
-			state = WaitingForLeakAddress;
+			state = WaitingForBlock;
 		return ret;
 
-	case WaitingForLeakAddress:
+	case IsBlock:
+		{
+			// common case: "normal block at 0xPPPPPPPP, N bytes long".
+			const char* addressString = strstr(message, "0x");
+			if(addressString)
+			{
+				const uintptr_t address = strtoul(addressString, 0, 0);
+				_CrtMemBlockHeader* header = HeaderFromData((void*)address);
+				uintptr_t callers[maxCallers]; size_t numCallers;
+				RetrieveCallers(header, callers, numCallers);
+				PrintCallStack(callers, numCallers);
+
+				state = WaitingForBlock;
+				return ret;
+			}
+			// else: for reasons unknown, there's apparently no information
+			// about the block; fall through to the previous state.
+		}
+
+	case WaitingForBlock:
 		if(message[0] == '{')
-			state = IsLeakAddress;
+			state = IsBlock;
+		// suppress messages containing "file" and "line" since the normal
+		// interpretation of those header fields is invalid.
 		else if(strchr(message, '('))
 			message[0] = '\0';
 		return ret;
 
-	case IsLeakAddress:
-		{
-			const char* addressString = strstr(message, "0x");
-			const uintptr_t address = strtoul(addressString, 0, 0);
-			_CrtMemBlockHeader* header = HeaderFromData((void*)address);
-			uintptr_t callers[maxCallers]; size_t numCallers;
-			RetrieveCallers(header, callers, numCallers);
-			PrintCallStack(callers, numCallers);
-		}
-		state = WaitingForLeakAddress;
-		return ret;
 
 	default:
 		wdbg_assert(0);	// unreachable

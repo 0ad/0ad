@@ -93,14 +93,14 @@ public:
 		const size_type alignment = x86_x64_L1CacheLineSize();
 		const size_type elementSize = round_up(sizeof(T), alignment);
 		const size_type size = numElements * elementSize;
-		pointer p = (pointer)_aligned_malloc(size, alignment);
+		pointer p = (pointer)_mm_malloc(size, alignment);
 		return p;
 	}
 
 	// deallocate storage of elements that have been destroyed
 	void deallocate(pointer p, size_type num)
 	{
-		_aligned_free((void*)p);
+		_mm_free((void*)p);
 	}
 
 	void construct(pointer p, const T& value)
