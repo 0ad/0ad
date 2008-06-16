@@ -3,12 +3,17 @@
 #include "lib/timer.h"
 #include "simulation/Scheduler.h"
 #include "simulation/EntityTemplate.h"
+#include "simulation/EntityTemplateCollection.h"
 #include "simulation/Entity.h"
 #include "simulation/Projectile.h"
+#include "simulation/EventHandlers.h"
 #include "simulation/TriggerManager.h"
 #include "simulation/FormationManager.h"
+#include "simulation/FormationCollection.h"
 #include "simulation/ProductionQueue.h"
 #include "simulation/Technology.h"
+#include "simulation/TechnologyCollection.h"
+#include "simulation/PathfindEngine.h"
 
 void SimulationScriptInit()
 {

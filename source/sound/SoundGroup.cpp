@@ -55,6 +55,8 @@ void CSoundGroup::PlayNext()
 		{
 			// load up replacement file
 			m_hReplacement = snd_open(m_filepath + m_intensity_file);
+			if(m_hReplacement == ERR::AGAIN)	// sound is disabled
+				return;
 			snd_set_gain(m_hReplacement, m_Gain);	
 			snd_set_pitch(m_hReplacement, m_Pitch);
 			snd_set_cone(m_hReplacement, m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
@@ -80,6 +82,8 @@ void CSoundGroup::PlayNext()
 			m_index = (size_t)rand(0, (size_t)filenames.size());
 		Handle temp;
 		temp = snd_open(m_filepath + filenames[m_index]);
+		if(temp == ERR::AGAIN)	// sound is disabled
+			return;
 		snd_set_gain(temp, m_Gain);	
 		snd_set_pitch(temp, m_Pitch);
 		snd_set_cone(temp, m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
