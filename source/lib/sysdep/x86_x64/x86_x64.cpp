@@ -226,14 +226,84 @@ size_t x86_x64_Generation()
 //-----------------------------------------------------------------------------
 // cache
 
+// AMD reports maxCpuidIdFunction > 4 but consider functions 2..4 to be
+// "reserved". cache characteristics are returned via ext. functions.
+static void EnumerateCaches_AMD(x86_x64_CacheCallback callback)
+{
+	x86_x64_CacheParameters cache;
+
+	x86_x64_CpuidRegs regs;
+	regs.eax = 0x80000005;
+	if(x86_x64_cpuid(&regs))
+	{
+		// L1D
+		cache.type = X86_X64_CACHE_TYPE_DATA;
+		cache.level = 1;
+		cache.associativity = bits(regs.ecx, 16, 23);
+		cache.lineSize      = bits(regs.ecx,  0,  7);
+		cache.sharedBy      = 1;
+		cache.size          = bits(regs.ecx, 24, 31)*KiB;
+		callback(&cache);
+
+		// L1I
+		cache.type = X86_X64_CACHE_TYPE_INSTRUCTION;
+		cache.level = 1;
+		cache.associativity = bits(regs.edx, 16, 23);
+		cache.lineSize      = bits(regs.edx,  0,  7);
+		cache.sharedBy      = 1;
+		cache.size          = bits(regs.edx, 24, 31)*KiB;
+		callback(&cache);	
+	}
+
+	regs.eax = 0x80000006;
+	if(x86_x64_cpuid(&regs))
+	{
+		// (zeroes are "reserved" encodings)
+		const size_t encodedAssociativity[16] =
+		{
+			0,1,2,0,4,0,8,0,16,0,
+			32, 48, 64, 96, 128,
+			0xFF	// fully associative
+		};
+
+		// L2
+		cache.type = X86_X64_CACHE_TYPE_UNIFIED;
+		cache.level = 2;
+		cache.associativity = encodedAssociativity[bits(regs.ecx, 12, 15)];
+		cache.lineSize      = bits(regs.ecx,  0,  7);
+		cache.sharedBy      = 1;
+		cache.size          = bits(regs.ecx, 16, 31)*KiB;
+		callback(&cache);
+
+		// L3
+		cache.type = X86_X64_CACHE_TYPE_UNIFIED;
+		cache.level = 3;
+		cache.associativity = encodedAssociativity[bits(regs.edx, 12, 15)];
+		cache.lineSize      = bits(regs.edx,  0,  7);
+		cache.sharedBy      = 1;
+		cache.size          = bits(regs.edx, 18, 31)*512*KiB;	// (is rounded down to 512 KiB)
+		callback(&cache);
+	}
+}
+
 void x86_x64_EnumerateCaches(x86_x64_CacheCallback callback)
 {
+	if(x86_x64_Vendor() == X86_X64_VENDOR_AMD)
+	{
+		EnumerateCaches_AMD(callback);
+		return;
+	}
+
 	for(u32 count = 0; ; count++)
 	{
 		x86_x64_CpuidRegs regs;
 		regs.eax = 4;
 		regs.ecx = count;
-		x86_x64_cpuid(&regs);
+		if(!x86_x64_cpuid(&regs))
+		{
+			debug_assert(0);
+			break;
+		}
 
 		x86_x64_CacheParameters cache;
 		cache.type = (x86_x64_CacheType)bits(regs.eax, 0, 4);

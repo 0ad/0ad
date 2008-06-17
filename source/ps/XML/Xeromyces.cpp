@@ -131,7 +131,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	// Make sure the .xml actually exists
 	if (! FileExists(filename))
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to find XML file %s", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to find XML file %s", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -139,7 +139,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	FileInfo fileInfo;
 	if (g_VFS->GetFileInfo(filename, &fileInfo) < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to stat XML file %s", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to stat XML file %s", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -195,7 +195,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	CVFSInputSource source;
 	if (source.OpenFile(filename) < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
