@@ -15,7 +15,7 @@
         <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="100"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_b.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b_cape.pmd</mesh>
+      <mesh>skeletal/m_hero_cape.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_britomartus.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_britomartus.xml" attachpoint="shield"/>

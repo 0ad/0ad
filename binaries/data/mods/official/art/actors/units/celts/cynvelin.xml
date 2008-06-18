@@ -16,9 +16,9 @@
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="Attack" speed="100"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b_cape.pmd</mesh>
+      <mesh>skeletal/m_hero_cape.dae</mesh>
       <props>
-        <prop actor="props/units/heads/celt_lime.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_cynelvin.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_cynelvin.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="r_hand"/>
         <prop actor="props/temp/l_sheath.xml" attachpoint="l_hip"/>

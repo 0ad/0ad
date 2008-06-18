@@ -11,12 +11,12 @@
         <animation file="cavalry/rider_gallop.psa" name="run" speed="8"/>
         <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/heads/rome_monte_simple.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/cape_m_med.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/cape_a.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>

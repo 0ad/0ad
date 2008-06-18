@@ -25,7 +25,7 @@
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
       </animations>
-      <mesh>skeletal/m_tights.pmd</mesh>
+      <mesh>skeletal/m_tights.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_lime.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_scutum_a.xml" attachpoint="shield"/>
@@ -36,31 +36,31 @@
 
   <group>
     <variant frequency="1" name="Tattoos-1">
-      <mesh>skeletal/m_tights.pmd</mesh>
+      <mesh>skeletal/m_tights.dae</mesh>
       <texture>skeletal/celt_ijv_e_01.dds</texture>
     </variant>
     <variant frequency="1" name="Tattoos-2">
-      <mesh>skeletal/m_tights.pmd</mesh>
+      <mesh>skeletal/m_tights.dae</mesh>
       <texture>skeletal/celt_ijv_e_02.dds</texture>
     </variant>
     <variant frequency="3" name="Tattoos-3">
-      <mesh>skeletal/m_tights.pmd</mesh>
+      <mesh>skeletal/m_tights.dae</mesh>
       <texture>skeletal/kart_isw_a_01.dds</texture>
     </variant>
     <variant frequency="3" name="Tattoos-4">
-      <mesh>skeletal/m_tights.pmd</mesh>
+      <mesh>skeletal/m_tights.dae</mesh>
       <texture>skeletal/kart_isw_a_02.dds</texture>
     </variant>
     <variant frequency="10" name="Trousers-1">
-      <mesh>skeletal/m_pants_b.pmd</mesh>
+      <mesh>skeletal/m_pants.dae</mesh>
       <texture>skeletal/kart_isw_a_03.dds</texture>
     </variant>
     <variant frequency="10" name="Trousers-2">
-      <mesh>skeletal/m_pants_b.pmd</mesh>
+      <mesh>skeletal/m_pants.dae</mesh>
       <texture>skeletal/kart_isw_a_04.dds</texture>
     </variant>
     <variant frequency="20" name="Trousers-3">
-      <mesh>skeletal/m_pants_b.pmd</mesh>
+      <mesh>skeletal/m_pants.dae</mesh>
       <texture>skeletal/kart_isw_a_05.dds</texture>
     </variant>
   </group>

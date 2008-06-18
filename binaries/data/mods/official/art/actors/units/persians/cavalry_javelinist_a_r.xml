@@ -11,7 +11,7 @@
         <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
         <animation event=".5" file="biped/rider_javelin_atk_a.psa" load="0" name="Melee" speed="75"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_pers_tiara.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="r_hand"/>

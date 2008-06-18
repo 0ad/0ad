@@ -14,7 +14,7 @@
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
         <animation event="0.5" file="biped/inf_sling_atk_a.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/temp/kart_sign_infantry_slinger_a.xml" attachpoint="head_extra"/>
         <prop actor="props/temp/placeholder_helmet_a.xml" attachpoint="helmet"/>

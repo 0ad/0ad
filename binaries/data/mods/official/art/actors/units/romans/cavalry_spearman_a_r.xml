@@ -11,7 +11,7 @@
         <animation file="cavalry/rider_gallop.psa" name="run" speed="8"/>
         <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="melee" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/rome_helmet_boeotian.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>

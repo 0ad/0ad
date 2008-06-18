@@ -20,16 +20,16 @@
         <prop actor="props/units/heads/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/heads/rome_monte_e.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/gladus.xml" attachpoint="r_hand"/>
-        <prop actor="props/units/weapons/saunion.xml" attachpoint="l_hand"/>
+        <prop actor="props/units/weapons/verutum.xml" attachpoint="l_hand"/>
         <prop actor="props/units/shields/iber_round_variato.xml" attachpoint="shield"/>
-        <prop actor="props/units/cape_iber_variato.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/cape_iber_variato.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>
 
   <group>
     <variant frequency="1" name="Variato-pants-yes">
-      <mesh>skeletal/m_pants_b.pmd</mesh>
+      <mesh>skeletal/m_pants.dae</mesh>
       <texture>skeletal/iber_hero_variato_pants.dds</texture>
     </variant>
   </group>

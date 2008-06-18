@@ -12,7 +12,7 @@
         <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="100"/>
         <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_b_cape.pmd</mesh>
+      <mesh>skeletal/m_hero_cape.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_cynelvin.xml" attachpoint="head"/>
         <prop actor="props/units/shields/celt_cynelvin.xml" attachpoint="shield"/>

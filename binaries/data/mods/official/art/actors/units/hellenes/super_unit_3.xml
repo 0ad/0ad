@@ -12,9 +12,8 @@
         <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="melee" speed="500"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="death" speed="165"/>
         <animation file="infantry/general/death/inf_06.psa" name="death" speed="200"/>
-        <animation file="infantry/general/death/inf_07.psa" name="death" speed="300"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/shields/mace_round_su3.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
@@ -30,7 +29,7 @@
       </props>
       <texture>skeletal/hele_pezhetairoi_3.dds</texture>
     </variant>
-    <variant frequency="6" name="Armour-Reinforced Linothorax">
+    <variant frequency="5" name="Armour-Reinforced Linothorax">
       <props>
         <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
@@ -38,13 +37,6 @@
       <texture>skeletal/hele_pezhetairoi.dds</texture>
     </variant>
     <variant frequency="2" name="Armour-Bronze Cuirass">
-      <props>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
-      </props>
-      <texture>skeletal/hele_pezhetairoi_2.dds</texture>
-    </variant>
-    <variant frequency="1" name="Armour-File-Leader">
       <props>
         <prop actor="props/units/heads/hele_mace_frontranker.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>

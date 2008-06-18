@@ -17,7 +17,10 @@
         <animation file="infantry/general/mine.psa" name="gather_stone" speed="150"/>
         <animation file="infantry/general/mine.psa" name="gather_metal" speed="150"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="250"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="500"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="300"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="300"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="300"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="300"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="300"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="300"/>
       </animations>
@@ -45,23 +48,23 @@
 
   <group>
     <variant frequency="2" name="armour-var-a">
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_a.dds</texture>
     </variant>
     <variant frequency="1" name="armour-var-c">
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_c.dds</texture>
     </variant>
     <variant frequency="1" name="armour-var-d">
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_d.dds</texture>
     </variant>
     <variant frequency="4" name="armour-var-f">
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_f.dds</texture>
     </variant>
     <variant frequency="1" name="armour-var-g">
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <texture>skeletal/hele_isp_e_g.dds</texture>
     </variant>
   </group>

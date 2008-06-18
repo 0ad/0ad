@@ -11,7 +11,7 @@
         <animation file="quadraped/elephant_rider_idle.psa" name="Run" speed="8"/>
         <animation file="quadraped/elephant_rider_idle.psa" name="melee" speed="50"/>
       </animations>
-      <mesh>skeletal/m_tights.pmd</mesh>
+      <mesh>skeletal/m_tights.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_indian_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/axe_single.xml" attachpoint="r_hand"/>

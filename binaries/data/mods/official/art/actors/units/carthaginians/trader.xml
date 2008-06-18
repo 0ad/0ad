@@ -8,18 +8,21 @@
       <animations>
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
         <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
+        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
+        <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
         <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation file="infantry/general/dude/dudeattack.psa" name="Attack" speed="100"/>
+        <animation file="infantry/general/dude/dudeattack1.psa" name="Attack" speed="100"/>
       </animations>
-      <mesh>skeletal/m_dress_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_hele_a.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/hele_straw.xml" attachpoint="helmet"/>
+        <prop actor="props/temp/kart_sign_trader.xml" attachpoint="head_extra"/>
+        <prop actor="props/units/heads/placeholder_hele_kart.xml" attachpoint="head"/>
+        <prop actor="props/temp/eyecandy/crate_a.xml" attachpoint="back"/>
       </props>
-      <texture>skeletal/hele_trd.dds</texture>
+      <texture>skeletal/plac_kart_b.dds</texture>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
 
 </actor>

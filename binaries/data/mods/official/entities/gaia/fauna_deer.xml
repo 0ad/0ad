@@ -12,7 +12,21 @@
 		</Id>
 	
 	</Traits>
+	
+	<Actions>	
+			<Move>
+			<Speed>1</Speed>
+			<TurningRadius>5.0</TurningRadius>
+			
+			<Run>
+				<Speed>10.0</Speed>
+				<Range>600.0</Range>
+				<RangeMin>5.0</RangeMin>
+			</Run>
+			
+		</Move>
+	</Actions>
 
- 	<Actor>fauna/deer1.xml</Actor>
+ 	<Actor>fauna/deer_male.xml</Actor>
 
 </Entity>

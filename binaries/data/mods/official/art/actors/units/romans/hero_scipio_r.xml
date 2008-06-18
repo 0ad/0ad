@@ -12,13 +12,13 @@
         <animation event="0.5" file="biped/rider_sword_shield_atk_a.psa" name="melee" speed="90"/>
         <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="melee" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/rome_attic_silver.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/rome_head_hero_scipio.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spatha.xml" attachpoint="r_hand"/>
         <prop actor="props/units/shields/rome_parma_hero_3.xml" attachpoint="shield"/>
-        <prop actor="props/units/cape_m_med.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/cape_a.xml" attachpoint="back"/>
       </props>
       <texture>skeletal/rome_hero_scipio.dds</texture>
     </variant>

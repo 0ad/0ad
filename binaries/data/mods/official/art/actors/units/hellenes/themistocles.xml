@@ -11,13 +11,15 @@
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="8"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_em_04.psa" name="Attack" speed="120"/>
         <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="Attack" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_def_06.psa" name="Attack" speed="145"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_02.psa" name="death" speed="420"/>
+        <animation file="infantry/general/death/inf_01.psa" name="death" speed="200"/>
+        <animation file="infantry/general/death/inf_02.psa" name="death" speed="200"/>
+        <animation file="infantry/general/death/inf_03.psa" name="death" speed="200"/>
+        <animation file="infantry/general/death/inf_04.psa" name="death" speed="200"/>
         <animation file="infantry/general/death/inf_06.psa" name="death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="death" speed="200"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/hele_themistocles.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>

@@ -12,7 +12,7 @@
         <animation event="0.5" file="biped/rider_sword_shield_atk_a.psa" name="melee" speed="90"/>
         <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="melee" speed="100"/>
       </animations>
-      <mesh>skeletal/m_tunic_a.pmd</mesh>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/rome_attic_bronze.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/rome_head_hero_scipio.xml" attachpoint="head"/>

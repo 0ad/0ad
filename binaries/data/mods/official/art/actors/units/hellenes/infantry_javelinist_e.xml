@@ -26,12 +26,12 @@
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="300"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="300"/>
       </animations>
-      <mesh>skeletal/m_tunic_b.pmd</mesh>
+      <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/thracian_cap_01.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/thrac_a.xml" attachpoint="head"/>
         <prop actor="props/units/shields/hele_pelta_e.xml" attachpoint="shield"/>
-        <prop actor="props/units/cape_hele_ijv_e_1.xml" attachpoint="shoulders"/>
+        <prop actor="props/units/cape_hele_ijv_e_1.xml" attachpoint="back"/>
         <prop actor="props/units/hele_ijv_lboot.xml" attachpoint="l_leg"/>
         <prop actor="props/units/hele_ijv_rboot.xml" attachpoint="r_leg"/>
         <prop actor="props/units/weapons/jav.xml" attachpoint="l_hand"/>
