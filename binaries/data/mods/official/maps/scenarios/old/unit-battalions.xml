@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.91992" g="1.91992" b="1.91992"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.439216" g="0.439216" b="0.505882"/>
+		<UnitsAmbientColour r="0.447059" g="0.447059" b="0.447059"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="250.448" y="118.286" z="-31.176"/>
+		<Rotation angle="-0.409162"/>
+		<Declination angle="0.566642"/>
+	</Camera>
+	<Entities>
+		<Entity uid="2">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="175.213" y="22.4" z="112.307"/>
+			<Orientation angle="2.36298"/>
+		</Entity>
+		<Entity uid="3">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="176.373" y="22.4" z="113.696"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="4">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="177.473" y="22.4" z="115.215"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="178.587" y="22.4" z="116.622"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="179.788" y="22.4" z="118.079"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="180.823" y="22.4" z="119.768"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="181.927" y="22.4" z="121.204"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="182.911" y="22.4" z="122.672"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="184.027" y="22.4" z="124.348"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="185.132" y="22.4" z="125.847"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="183.623" y="22.4" z="127.053"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="182.651" y="22.4" z="125.719"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="181.483" y="22.4" z="124.242"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="180.467" y="22.4" z="122.548"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="179.266" y="22.4" z="120.865"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="178.156" y="22.4" z="119.435"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="177.256" y="22.4" z="117.894"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="175.95" y="22.4" z="116.405"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="174.693" y="22.4" z="114.95"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="173.435" y="22.4" z="113.684"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="182.223" y="22.4" z="128.626"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="181.12" y="22.4" z="127.114"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="179.993" y="22.4" z="125.46"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="178.884" y="22.4" z="124.081"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="177.679" y="22.4" z="122.383"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="176.537" y="22.4" z="120.795"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="175.517" y="22.4" z="119.227"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="174.529" y="22.4" z="117.811"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="173.07" y="22.4" z="116.533"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="171.718" y="22.4" z="115.199"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="195.123" y="22.4" z="126.257"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="196.381" y="22.4" z="127.676"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="197.606" y="22.4" z="129.175"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="198.834" y="22.4" z="130.619"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="200.092" y="22.4" z="132.037"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="201.297" y="22.4" z="133.397"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="202.411" y="22.4" z="134.887"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="203.539" y="22.4" z="136.159"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="204.744" y="22.4" z="137.519"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="205.86" y="22.4" z="138.952"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="204.538" y="22.4" z="139.964"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="203.418" y="22.4" z="138.701"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="202.155" y="22.4" z="137.103"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="201.003" y="22.4" z="135.92"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="199.893" y="22.4" z="134.493"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="198.744" y="22.4" z="133.255"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="197.522" y="22.4" z="131.876"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="196.277" y="22.4" z="130.414"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="195.062" y="22.4" z="128.87"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="193.837" y="22.4" z="127.546"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="203.293" y="22.4" z="141.039"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="202.084" y="22.4" z="139.561"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="200.818" y="22.4" z="138.133"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="199.78" y="22.4" z="136.962"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="198.615" y="22.4" z="135.648"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="197.551" y="22.4" z="134.448"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="196.311" y="22.4" z="133.049"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="195.171" y="22.4" z="131.763"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="193.854" y="22.4" z="130.278"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="192.432" y="22.4" z="128.788"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="186.446" y="22.4" z="96.138"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="188.146" y="22.4" z="98.0677"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="190.273" y="22.4" z="99.6026"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="193.915" y="22.4" z="103.214"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="192.055" y="22.4" z="101.451"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="195.794" y="22.4" z="105.144"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="197.525" y="22.4" z="106.801"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="184.462" y="22.4" z="98.2122"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="186.385" y="22.4" z="99.731"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="188.462" y="22.4" z="101.577"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="190.083" y="22.4" z="103.27"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="192.061" y="22.4" z="104.836"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="194.317" y="22.4" z="106.933"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="196.13" y="22.4" z="108.696"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="194.13" y="22.4" z="110.528"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="192.393" y="22.4" z="108.877"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="190.204" y="22.4" z="106.836"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="188.566" y="22.4" z="105.075"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="186.844" y="22.4" z="103.584"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="184.829" y="22.4" z="101.694"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="182.676" y="22.4" z="100.124"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="185.021" y="22.4" z="139.607"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="187.023" y="22.4" z="141.537"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="188.881" y="22.4" z="143.325"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="190.963" y="22.4" z="145.338"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="193.024" y="22.4" z="147.468"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="194.939" y="22.4" z="149.173"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="197.137" y="22.4" z="151.451"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="182.657" y="22.4" z="141.759"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="184.527" y="22.4" z="143.709"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="186.76" y="22.4" z="145.554"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="188.75" y="22.4" z="147.599"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="190.988" y="22.4" z="149.67"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="192.945" y="22.4" z="151.697"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="195.158" y="22.4" z="153.587"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="180.7" y="22.4" z="143.989"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="182.457" y="22.4" z="145.938"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="184.65" y="22.4" z="147.705"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="186.602" y="22.4" z="149.983"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="189.063" y="22.4" z="151.895"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="191.058" y="22.4" z="153.921"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="192.808" y="22.4" z="156.062"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="156.091" y="22.4" z="111.194"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="157.608" y="22.4" z="112.566"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="159.28" y="22.4" z="114.142"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="161.055" y="22.4" z="115.907"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="162.559" y="22.4" z="117.599"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="164.254" y="22.4" z="119.229"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="166.243" y="22.4" z="120.477"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="154.316" y="22.4" z="112.824"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="155.747" y="22.4" z="114.312"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="157.394" y="22.4" z="115.858"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="158.89" y="22.4" z="117.681"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="160.747" y="22.4" z="119.334"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="162.491" y="22.4" z="120.895"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="164.075" y="22.4" z="122.496"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="162.112" y="22.4" z="124.306"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="160.204" y="22.4" z="126.098"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="160.425" y="22.4" z="122.671"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="158.716" y="22.4" z="121.26"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="157.022" y="22.4" z="119.473"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="155.27" y="22.4" z="117.745"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="153.581" y="22.4" z="116.276"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="152.29" y="22.4" z="114.886"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="150.547" y="22.4" z="116.757"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="166">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="151.784" y="22.4" z="118.016"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="167">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="153.505" y="22.4" z="119.554"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="168">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="155.126" y="22.4" z="121.152"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="169">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="156.831" y="22.4" z="122.952"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="158.391" y="22.4" z="124.491"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>pers_super_cavalry</Template>
+			<Player>2</Player>
+			<Position x="186.759" y="22.4" z="76.6291"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>pers_super_cavalry</Template>
+			<Player>2</Player>
+			<Position x="192.426" y="22.4" z="81.8241"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>pers_super_cavalry</Template>
+			<Player>2</Player>
+			<Position x="198.682" y="22.4" z="87.0185"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>pers_super_cavalry</Template>
+			<Player>2</Player>
+			<Position x="204.733" y="22.4" z="92.48"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="211.613" y="22.4" z="114.536"/>
+			<Orientation angle="2.34202"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="207.292" y="22.4" z="116.353"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="209.54" y="22.4" z="118.991"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="212.338" y="22.4" z="121.538"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="215.107" y="22.4" z="124.131"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="214.244" y="22.4" z="117.145"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="216.546" y="22.4" z="120.093"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="216.345" y="22.4" z="112.694"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="218.879" y="22.4" z="115.405"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="221.128" y="22.4" z="110.584"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="174.477" y="22.4" z="99.566"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="172.254" y="22.4" z="97.5679"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="170.256" y="22.4" z="95.7186"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="168.188" y="22.4" z="93.6208"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="166.097" y="22.4" z="91.8061"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="164.264" y="22.4" z="90.1086"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="176.615" y="22.4" z="101.284"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="163.53" y="22.4" z="92.4246"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="165.501" y="22.4" z="94.0892"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="167.503" y="22.4" z="95.8517"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="169.51" y="22.4" z="98.0166"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="171.907" y="22.4" z="99.8992"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="174.009" y="22.4" z="101.959"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="161.11" y="22.4" z="92.9339"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="163.063" y="22.4" z="94.5796"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="164.95" y="22.4" z="96.4273"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="167.069" y="22.4" z="98.3026"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="169.257" y="22.4" z="100.446"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="171.277" y="22.4" z="102.425"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>pers_infantry_archer_a</Template>
+			<Player>2</Player>
+			<Position x="173.757" y="22.4" z="104.454"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>

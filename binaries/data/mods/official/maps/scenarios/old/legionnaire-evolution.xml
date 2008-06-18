@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="2.11914" g="2.11914" b="2.11914"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.439216" g="0.439216" b="0.501961"/>
+		<UnitsAmbientColour r="0.47451" g="0.47451" b="0.47451"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="110.671" y="44.7624" z="79.7458"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity uid="21">
+			<Template>rome_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="105.643" y="22.4" z="115.039"/>
+			<Orientation angle="3.0297"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>rome_infantry_swordsman_a</Template>
+			<Player>2</Player>
+			<Position x="102.775" y="22.4" z="114.354"/>
+			<Orientation angle="2.80527"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="107.829" y="22.4" z="116.663"/>
+			<Orientation angle="3.02325"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>camp_rome_legionnaire_imperial</Template>
+			<Player>2</Player>
+			<Position x="110.223" y="22.4" z="118.446"/>
+			<Orientation angle="-3.14109"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="110.015" y="22.4" z="107.224"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="113.196" y="22.4" z="109.14"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="116.198" y="22.4" z="111.471"/>
+			<Orientation angle="-0.679035"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>1</Player>
+			<Position x="119.866" y="22.4" z="114.224"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>

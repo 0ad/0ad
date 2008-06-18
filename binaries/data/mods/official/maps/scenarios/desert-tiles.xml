@@ -1,0 +1,1220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.78983" g="1.78983" b="1.78983"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.439216" g="0.439216" b="0.501961"/>
+		<UnitsAmbientColour r="0.541176" g="0.541176" b="0.541176"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="337.608" y="103.742" z="97.3462"/>
+		<Rotation angle="-0.00761371"/>
+		<Declination angle="0.619298"/>
+	</Camera>
+	<Entities>
+		<Entity uid="1">
+			<Template>pers_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="348.88" y="22.4" z="248.749"/>
+			<Orientation angle="-2.31457"/>
+		</Entity>
+		<Entity uid="5">
+			<Template>pers_farmstead</Template>
+			<Player>1</Player>
+			<Position x="301.91" y="22.4" z="233.017"/>
+			<Orientation angle="2.99393"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>pers_dock</Template>
+			<Player>1</Player>
+			<Position x="331.6" y="22.4" z="229.807"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>pers_market</Template>
+			<Player>1</Player>
+			<Position x="315.922" y="22.4" z="214.444"/>
+			<Orientation angle="2.37518"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>pers_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="338.049" y="22.4" z="222.285"/>
+			<Orientation angle="-1.01386"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>pers_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="343.328" y="22.4" z="234.768"/>
+			<Orientation angle="-2.18841"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="339.987" y="22.4" z="211.761"/>
+			<Orientation angle="2.90841"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="341.889" y="22.4" z="213.726"/>
+			<Orientation angle="2.84703"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>pers_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="331.082" y="22.4" z="232.972"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>pers_scout_tower</Template>
+			<Player>1</Player>
+			<Position x="329.849" y="22.4" z="254.152"/>
+			<Orientation angle="2.4665"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>pers_barracks</Template>
+			<Player>1</Player>
+			<Position x="357.352" y="22.4" z="222.481"/>
+			<Orientation angle="-2.41333"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="344.004" y="22.4" z="215.698"/>
+			<Orientation angle="2.87605"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="338.046" y="22.4" z="209.799"/>
+			<Orientation angle="2.71812"/>
+		</Entity>
+		<Entity uid="182">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="335.988" y="22.4" z="207.864"/>
+			<Orientation angle="2.76382"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="333.978" y="22.4" z="205.639"/>
+			<Orientation angle="2.81565"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="331.849" y="22.4" z="203.878"/>
+			<Orientation angle="2.87561"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="329.954" y="22.4" z="201.694"/>
+			<Orientation angle="2.73189"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="327.982" y="22.4" z="200.011"/>
+			<Orientation angle="2.7827"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="325.806" y="22.4" z="197.734"/>
+			<Orientation angle="2.79437"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="324.006" y="22.4" z="195.969"/>
+			<Orientation angle="2.85447"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="326.022" y="22.4" z="193.859"/>
+			<Orientation angle="2.74818"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="327.756" y="22.4" z="192.118"/>
+			<Orientation angle="2.88545"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="329.661" y="22.4" z="190.029"/>
+			<Orientation angle="2.79995"/>
+		</Entity>
+		<Entity uid="192">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="331.997" y="22.4" z="192.224"/>
+			<Orientation angle="2.86549"/>
+		</Entity>
+		<Entity uid="193">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="334.024" y="22.4" z="193.904"/>
+			<Orientation angle="2.90198"/>
+		</Entity>
+		<Entity uid="194">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="335.827" y="22.4" z="196.541"/>
+			<Orientation angle="2.87544"/>
+		</Entity>
+		<Entity uid="195">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="337.93" y="22.4" z="197.912"/>
+			<Orientation angle="2.87033"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="339.872" y="22.4" z="200.291"/>
+			<Orientation angle="2.95199"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="345.97" y="22.4" z="213.69"/>
+			<Orientation angle="2.88515"/>
+		</Entity>
+		<Entity uid="198">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="347.889" y="22.4" z="211.712"/>
+			<Orientation angle="2.83613"/>
+		</Entity>
+		<Entity uid="199">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="349.925" y="22.4" z="209.878"/>
+			<Orientation angle="2.93621"/>
+		</Entity>
+		<Entity uid="200">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="343.94" y="22.4" z="211.901"/>
+			<Orientation angle="2.88406"/>
+		</Entity>
+		<Entity uid="201">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="345.819" y="22.4" z="210.05"/>
+			<Orientation angle="2.86532"/>
+		</Entity>
+		<Entity uid="202">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="347.758" y="22.4" z="208.028"/>
+			<Orientation angle="2.88549"/>
+		</Entity>
+		<Entity uid="203">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="341.92" y="22.4" z="209.615"/>
+			<Orientation angle="2.73825"/>
+		</Entity>
+		<Entity uid="204">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="343.867" y="22.4" z="208.036"/>
+			<Orientation angle="2.82439"/>
+		</Entity>
+		<Entity uid="205">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="345.781" y="22.4" z="205.793"/>
+			<Orientation angle="2.89735"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="339.857" y="22.4" z="208.024"/>
+			<Orientation angle="2.8568"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="341.858" y="22.4" z="205.728"/>
+			<Orientation angle="2.82391"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="343.878" y="22.4" z="203.96"/>
+			<Orientation angle="2.85147"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="338.016" y="22.4" z="205.586"/>
+			<Orientation angle="2.75715"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="339.749" y="22.4" z="204.139"/>
+			<Orientation angle="2.77298"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="341.686" y="22.4" z="202.197"/>
+			<Orientation angle="2.77885"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="335.921" y="22.4" z="203.962"/>
+			<Orientation angle="2.75308"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="337.908" y="22.4" z="202.109"/>
+			<Orientation angle="2.70437"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="333.837" y="22.4" z="201.727"/>
+			<Orientation angle="2.71874"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="335.786" y="22.4" z="200.193"/>
+			<Orientation angle="2.81261"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="331.952" y="22.4" z="200.08"/>
+			<Orientation angle="2.84424"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="334.011" y="22.4" z="197.956"/>
+			<Orientation angle="2.7822"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="329.807" y="22.4" z="198.083"/>
+			<Orientation angle="2.7779"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="331.952" y="22.4" z="196.251"/>
+			<Orientation angle="2.78326"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="327.874" y="22.4" z="196.22"/>
+			<Orientation angle="2.77704"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>pers_super_infantry</Template>
+			<Player>1</Player>
+			<Position x="330.087" y="22.4" z="194.124"/>
+			<Orientation angle="2.78408"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="334.873" y="22.4" z="265.726"/>
+			<Orientation angle="2.90244"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="345.218" y="22.4" z="269.85"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="349.808" y="22.4201" z="277.029"/>
+			<Orientation angle="2.0092"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="348.481" y="22.4" z="287.123"/>
+			<Orientation angle="1.48812"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="361.363" y="22.633" z="295.014"/>
+			<Orientation angle="-2.21094"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="363.035" y="24.9473" z="275.456"/>
+			<Orientation angle="-1.59889"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="362.516" y="24.3884" z="263.141"/>
+			<Orientation angle="-0.846447"/>
+		</Entity>
+		<Entity uid="230">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="351.694" y="22.4" z="307.226"/>
+			<Orientation angle="2.92553"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="353.006" y="22.4" z="196.976"/>
+			<Orientation angle="-2.25337"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="355.701" y="22.4" z="186.423"/>
+			<Orientation angle="-1.88341"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="309.949" y="22.4" z="199.555"/>
+			<Orientation angle="2.92832"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="343.746" y="22.4" z="178.129"/>
+			<Orientation angle="1.01407"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="365.476" y="22.4" z="166.711"/>
+			<Orientation angle="-1.90777"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="348.972" y="22.4" z="166.52"/>
+			<Orientation angle="1.61395"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>pers_house</Template>
+			<Player>1</Player>
+			<Position x="361.157" y="22.4" z="177.308"/>
+			<Orientation angle="-1.47853"/>
+		</Entity>
+		<Entity uid="241">
+			<Template>pers_mill</Template>
+			<Player>1</Player>
+			<Position x="320.791" y="22.4" z="186.727"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="243">
+			<Template>pers_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="296.724" y="22.4" z="215.298"/>
+			<Orientation angle="-2.09953"/>
+		</Entity>
+		<Entity uid="245">
+			<Template>pers_cavalry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="363.709" y="22.4" z="203.621"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="247">
+			<Template>pers_cavalry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="300.551" y="22.4" z="210.301"/>
+			<Orientation angle="-2.45594"/>
+		</Entity>
+		<Entity uid="249">
+			<Template>pers_cavalry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="295.81" y="22.4" z="208.434"/>
+			<Orientation angle="-1.80961"/>
+		</Entity>
+		<Entity uid="253">
+			<Template>pers_cavalry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="292.468" y="22.4" z="219.839"/>
+			<Orientation angle="-2.37757"/>
+		</Entity>
+		<Entity uid="350">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="398.414" y="22.4" z="86.0072"/>
+			<Orientation angle="-0.37479"/>
+		</Entity>
+		<Entity uid="351">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="397.58" y="22.4" z="85.4658"/>
+			<Orientation angle="-0.368049"/>
+		</Entity>
+		<Entity uid="352">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="396.619" y="22.4" z="84.6297"/>
+			<Orientation angle="-0.442389"/>
+		</Entity>
+		<Entity uid="353">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="395.326" y="22.4" z="83.9523"/>
+			<Orientation angle="-0.319907"/>
+		</Entity>
+		<Entity uid="354">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="393.889" y="22.4" z="83.5015"/>
+			<Orientation angle="-0.425687"/>
+		</Entity>
+		<Entity uid="355">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="392.358" y="22.4" z="82.6224"/>
+			<Orientation angle="-0.266331"/>
+		</Entity>
+		<Entity uid="356">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="391.311" y="22.4" z="83.4819"/>
+			<Orientation angle="-0.273278"/>
+		</Entity>
+		<Entity uid="357">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="390.045" y="22.4" z="82.6048"/>
+			<Orientation angle="-0.332127"/>
+		</Entity>
+		<Entity uid="358">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="388.98" y="22.4" z="82.2399"/>
+			<Orientation angle="-0.259847"/>
+		</Entity>
+		<Entity uid="359">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="400.16" y="22.4" z="86.7952"/>
+			<Orientation angle="-0.352365"/>
+		</Entity>
+		<Entity uid="360">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="401.951" y="22.4" z="82.7671"/>
+			<Orientation angle="-0.294589"/>
+		</Entity>
+		<Entity uid="361">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="400.596" y="22.4" z="81.2744"/>
+			<Orientation angle="-0.345331"/>
+		</Entity>
+		<Entity uid="362">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="399.371" y="22.4" z="80.3708"/>
+			<Orientation angle="-0.190403"/>
+		</Entity>
+		<Entity uid="363">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="397.984" y="22.4" z="79.4832"/>
+			<Orientation angle="-0.209055"/>
+		</Entity>
+		<Entity uid="364">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="396.997" y="22.4" z="79.7437"/>
+			<Orientation angle="-0.216607"/>
+		</Entity>
+		<Entity uid="365">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="395.796" y="22.4" z="79.4665"/>
+			<Orientation angle="-0.135214"/>
+		</Entity>
+		<Entity uid="366">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="394.917" y="22.4" z="78.5996"/>
+			<Orientation angle="-0.199041"/>
+		</Entity>
+		<Entity uid="367">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="393.4" y="22.4" z="77.9375"/>
+			<Orientation angle="-0.0781872"/>
+		</Entity>
+		<Entity uid="368">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="391.93" y="22.4" z="77.0313"/>
+			<Orientation angle="-0.0356759"/>
+		</Entity>
+		<Entity uid="369">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>2</Player>
+			<Position x="390.55" y="22.4" z="77.211"/>
+			<Orientation angle="-0.549166"/>
+		</Entity>
+		<Entity uid="373">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="407.802" y="22.4" z="89.189"/>
+			<Orientation angle="-0.271648"/>
+		</Entity>
+		<Entity uid="374">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="409.926" y="22.4" z="90.8529"/>
+			<Orientation angle="-0.575252"/>
+		</Entity>
+		<Entity uid="375">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="411.437" y="22.4" z="92.5517"/>
+			<Orientation angle="-0.385329"/>
+		</Entity>
+		<Entity uid="376">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="413.039" y="22.4" z="94.0427"/>
+			<Orientation angle="-0.522496"/>
+		</Entity>
+		<Entity uid="377">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="415.288" y="22.4" z="95.697"/>
+			<Orientation angle="-0.673684"/>
+		</Entity>
+		<Entity uid="378">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="417.097" y="22.4" z="98.4356"/>
+			<Orientation angle="-0.835063"/>
+		</Entity>
+		<Entity uid="379">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="419.929" y="22.4" z="100.196"/>
+			<Orientation angle="-0.559986"/>
+		</Entity>
+		<Entity uid="380">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="421.791" y="22.4" z="100.753"/>
+			<Orientation angle="-0.720198"/>
+		</Entity>
+		<Entity uid="381">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="422.978" y="22.4" z="104.106"/>
+			<Orientation angle="-1.09637"/>
+		</Entity>
+		<Entity uid="382">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="425.011" y="22.4" z="106.434"/>
+			<Orientation angle="-0.907499"/>
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_hele_a.xml</Actor>
+			<Position x="321.731" y="22.4" z="227.683"/>
+			<Orientation angle="-1.21225"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_hele_b.xml</Actor>
+			<Position x="331.144" y="22.4" z="217.842"/>
+			<Orientation angle="-0.229597"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_hele_c.xml</Actor>
+			<Position x="320.16" y="22.4" z="227.176"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_hele_e.xml</Actor>
+			<Position x="327.442" y="22.4" z="230.549"/>
+			<Orientation angle="-3.02064"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_celt_d.xml</Actor>
+			<Position x="319.963" y="22.4" z="229.938"/>
+			<Orientation angle="-0.872276"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_celt_c.xml</Actor>
+			<Position x="334.136" y="22.4" z="237.008"/>
+			<Orientation angle="-0.821044"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/crate_a.xml</Actor>
+			<Position x="324.836" y="22.4" z="226.712"/>
+			<Orientation angle="2.6335"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/crate_a.xml</Actor>
+			<Position x="341.671" y="22.4" z="226.712"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/handcart_1.xml</Actor>
+			<Position x="329.563" y="22.4" z="218.262"/>
+			<Orientation angle="2.89728"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_a.xml</Actor>
+			<Position x="340.557" y="22.4" z="229.635"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_b.xml</Actor>
+			<Position x="339.34" y="22.4" z="228.346"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_c.xml</Actor>
+			<Position x="338.004" y="22.4" z="226.996"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_d.xml</Actor>
+			<Position x="336.656" y="22.4" z="225.685"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_d.xml</Actor>
+			<Position x="335.491" y="22.4" z="224.501"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_b.xml</Actor>
+			<Position x="333.925" y="22.4" z="223.261"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_b.xml</Actor>
+			<Position x="333.135" y="22.4" z="235.624"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_a.xml</Actor>
+			<Position x="326.001" y="22.4" z="228.248"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_b.xml</Actor>
+			<Position x="327.63" y="22.4" z="226.901"/>
+			<Orientation angle="0.881484"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_c.xml</Actor>
+			<Position x="334.575" y="22.4" z="233.617"/>
+			<Orientation angle="0.720142"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_d.xml</Actor>
+			<Position x="329.544" y="22.4" z="228.64"/>
+			<Orientation angle="0.812494"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/sack_1_rough.xml</Actor>
+			<Position x="323.389" y="22.4" z="225.365"/>
+			<Orientation angle="2.8638"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/sack_1.xml</Actor>
+			<Position x="322.187" y="22.4" z="224.684"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/table1_long.xml</Actor>
+			<Position x="324.751" y="22.4" z="231.879"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_a.xml</Actor>
+			<Position x="323.056" y="22.4" z="226.056"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_c.xml</Actor>
+			<Position x="320.903" y="22.4" z="228.403"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_c.xml</Actor>
+			<Position x="337.022" y="22.4" z="222.887"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_f.xml</Actor>
+			<Position x="332.099" y="22.4" z="217.249"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/table1_short.xml</Actor>
+			<Position x="332.114" y="22.4" z="230.655"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/waterbin_a.xml</Actor>
+			<Position x="339.566" y="22.4" z="224.395"/>
+			<Orientation angle="2.1975"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/wood_pile_1_c.xml</Actor>
+			<Position x="327.529" y="22.4" z="221.071"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/woodcord.xml</Actor>
+			<Position x="328.685" y="22.4" z="238.885"/>
+			<Orientation angle="-0.681921"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_rome_d.xml</Actor>
+			<Position x="334.025" y="22.4" z="220.03"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_rome_b.xml</Actor>
+			<Position x="325.925" y="22.4" z="225.244"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_rome_b.xml</Actor>
+			<Position x="341.183" y="22.4" z="230.941"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_rome_b.xml</Actor>
+			<Position x="334.356" y="22.4" z="238.294"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_rome_a.xml</Actor>
+			<Position x="335.021" y="22.4" z="240.07"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
+			<Position x="367.368" y="22.4" z="218.661"/>
+			<Orientation angle="-0.28574"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/plant_medit_artichoke.xml</Actor>
+			<Position x="358.669" y="22.4" z="210.599"/>
+			<Orientation angle="3.04418"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_soft_dry_tuft_a.xml</Actor>
+			<Position x="324.317" y="22.4" z="226.351"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/grass_soft_dry_tuft_a.xml</Actor>
+			<Position x="339.853" y="22.4" z="226.26"/>
+			<Orientation angle="-2.49063"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="314.109" y="22.4" z="248.314"/>
+			<Orientation angle="0.268035"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="322.438" y="22.4" z="256.791"/>
+			<Orientation angle="-1.06121"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="311.059" y="22.4" z="262.151"/>
+			<Orientation angle="2.85834"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="304.016" y="22.4" z="241.864"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="295.031" y="22.4" z="247.31"/>
+			<Orientation angle="0.949274"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="298.409" y="22.4" z="259.137"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="317.295" y="22.4" z="254.514"/>
+			<Orientation angle="-2.4376"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="320.89" y="22.4" z="261.433"/>
+			<Orientation angle="-2.15267"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="316.813" y="22.4" z="257.313"/>
+			<Orientation angle="0.137068"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="308.077" y="22.4" z="259.674"/>
+			<Orientation angle="0.882309"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="325.942" y="22.4" z="259.5"/>
+			<Orientation angle="0.933623"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="366.479" y="22.4" z="179.093"/>
+			<Orientation angle="0.65392"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="306.487" y="22.4" z="194.752"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="350.056" y="22.4" z="158.141"/>
+			<Orientation angle="0.0862709"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="385.62" y="26.5691" z="267.846"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="387.514" y="26.2238" z="263.095"/>
+			<Orientation angle="2.47604"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="395.909" y="27.3043" z="254.3"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="399.146" y="25.1688" z="261.534"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="391.838" y="27.9132" z="254.406"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="387.007" y="30.947" z="249.652"/>
+			<Orientation angle="0.497034"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="399.754" y="23.3743" z="232.562"/>
+			<Orientation angle="-1.25785"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="367.851" y="23.1365" z="228.463"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="293.019" y="22.4" z="229.316"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="214.766" y="22.4" z="228.564"/>
+			<Orientation angle="-2.36692"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="213.056" y="22.4" z="219.657"/>
+			<Orientation angle="-2.92186"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="211.442" y="22.4" z="215.2"/>
+			<Orientation angle="2.7366"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="225.765" y="22.4" z="208.939"/>
+			<Orientation angle="0.618719"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="236.726" y="22.4" z="217.802"/>
+			<Orientation angle="0.779001"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="244.184" y="22.4" z="227.505"/>
+			<Orientation angle="0.749472"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="249.587" y="22.4" z="234.744"/>
+			<Orientation angle="-2.10597"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="236.749" y="22.4" z="231.767"/>
+			<Orientation angle="-2.31523"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="232.122" y="22.4" z="226.653"/>
+			<Orientation angle="-2.67844"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="223.283" y="22.4" z="218.823"/>
+			<Orientation angle="-2.07847"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_tropical.xml</Actor>
+			<Position x="214.823" y="22.4" z="215.118"/>
+			<Orientation angle="2.99018"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="217.144" y="22.4" z="221.078"/>
+			<Orientation angle="2.22541"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="228.172" y="22.4" z="217.515"/>
+			<Orientation angle="-2.24409"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="218.746" y="22.4" z="213.764"/>
+			<Orientation angle="3.07817"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="219.529" y="22.4" z="208.99"/>
+			<Orientation angle="1.9829"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="232.523" y="22.4" z="210.678"/>
+			<Orientation angle="1.06413"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="239.9" y="22.4" z="215.632"/>
+			<Orientation angle="0.0513269"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="238.826" y="22.4" z="226.202"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="236.121" y="22.4" z="230.958"/>
+			<Orientation angle="-1.47776"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="225.928" y="22.4" z="232.769"/>
+			<Orientation angle="-2.5397"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>flora/trees/palm_medit_fan_palm.xml</Actor>
+			<Position x="218.416" y="22.4" z="223.224"/>
+			<Orientation angle="-2.86871"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="212.047" y="22.4" z="212.576"/>
+			<Orientation angle="-2.34533"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="220.281" y="22.4" z="220.501"/>
+			<Orientation angle="2.74442"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="223.636" y="22.4" z="213.923"/>
+			<Orientation angle="2.607"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="226.602" y="22.4" z="213.168"/>
+			<Orientation angle="1.56319"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="232.208" y="22.4" z="214.875"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="233.011" y="22.4" z="218.986"/>
+			<Orientation angle="0.97123"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="235.514" y="22.4" z="225.478"/>
+			<Orientation angle="0.417745"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="237.809" y="22.4" z="233.332"/>
+			<Orientation angle="0.762917"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="242.757" y="22.4" z="238.422"/>
+			<Orientation angle="2.39518"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="249.083" y="22.4" z="233.55"/>
+			<Orientation angle="-1.84777"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="230.435" y="22.4" z="230.435"/>
+			<Orientation angle="-2.54853"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="224.608" y="22.4" z="225.513"/>
+			<Orientation angle="-2.15171"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="214.601" y="22.4" z="224.851"/>
+			<Orientation angle="-1.49771"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="208.403" y="22.4" z="227.351"/>
+			<Orientation angle="2.86949"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="213.408" y="22.4" z="231.197"/>
+			<Orientation angle="2.32385"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="226.585" y="22.4" z="225.528"/>
+			<Orientation angle="2.50128"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="235.936" y="22.4" z="222.723"/>
+			<Orientation angle="1.47484"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="235.107" y="22.4" z="225.593"/>
+			<Orientation angle="-2.16827"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="222.798" y="22.4" z="222.623"/>
+			<Orientation angle="-2.90907"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="222.119" y="22.4" z="219.758"/>
+			<Orientation angle="-2.73003"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="218.377" y="22.4" z="219.945"/>
+			<Orientation angle="1.74709"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="230.189" y="22.4" z="220.468"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="243.824" y="22.4" z="224.976"/>
+			<Orientation angle="1.51951"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="229.678" y="22.4" z="234.639"/>
+			<Orientation angle="-1.68944"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="319.484" y="22.4" z="255.229"/>
+			<Orientation angle="-2.88798"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="309.664" y="22.4" z="253.499"/>
+			<Orientation angle="-1.73002"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="302.806" y="22.4" z="256.401"/>
+			<Orientation angle="-2.99585"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/flora/bush_tempe_a.xml</Actor>
+			<Position x="321.921" y="22.4" z="261.556"/>
+			<Orientation angle="-2.46031"/>
+		</Nonentity>
+	</Nonentities>
+	<Paths/>
+	<Triggers/>
+</Scenario>

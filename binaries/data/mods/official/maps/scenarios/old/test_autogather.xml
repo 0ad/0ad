@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<UnitsAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="77.44" y="150.093" z="-126.442"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity uid="0">
+			<Template>flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="60.6743" y="22.4" z="65.3839"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1">
+			<Template>flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="64.862" y="22.4" z="72.151"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="2">
+			<Template>flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="69.7814" y="22.4" z="61.0003"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3">
+			<Template>flora_tree_oak</Template>
+			<Player>0</Player>
+			<Position x="96.273" y="22.4" z="204.402"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="4">
+			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
+			<Player>1</Player>
+			<Position x="78.1401" y="22.4" z="64.4475"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5">
+			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
+			<Player>1</Player>
+			<Position x="100.453" y="22.4" z="193.553"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6">
+			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
+			<Player>1</Player>
+			<Position x="60.1693" y="22.4" z="57.2121"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
+			<Player>1</Player>
+			<Position x="65.8666" y="22.4" z="55.2558"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>hele_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="74.1046" y="22.4" z="78.0031"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>hele_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="142.917" y="22.4" z="121.367"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>temp_hele_infantry_javelinist_b_gatherer</Template>
+			<Player>1</Player>
+			<Position x="141.125" y="22.4" z="96.4471"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>hele_mill</Template>
+			<Player>1</Player>
+			<Position x="74.2147" y="22.4" z="49.1112"/>
+			<Orientation angle="2.36874"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>

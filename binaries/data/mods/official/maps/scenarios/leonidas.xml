@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.39844" g="1.39844" b="1.39844"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.482353" g="0.482353" b="0.54902"/>
+		<UnitsAmbientColour r="0.541176" g="0.541176" b="0.541176"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="77.3422" y="48.3729" z="77.7044"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity uid="3">
+			<Template>hele_hero_leonidas</Template>
+			<Player>3</Player>
+			<Position x="81.1691" y="22.4" z="116.587"/>
+			<Orientation angle="3.06462"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>hele_hero_leonidas</Template>
+			<Player>2</Player>
+			<Position x="75.3794" y="22.4" z="117.563"/>
+			<Orientation angle="3.13867"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>hele_hero_leonidas</Template>
+			<Player>1</Player>
+			<Position x="76.6931" y="22.4" z="122.691"/>
+			<Orientation angle="-2.72076"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>hele_hero_leonidas</Template>
+			<Player>1</Player>
+			<Position x="71.9791" y="22.4" z="114.744"/>
+			<Orientation angle="2.14491"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>hele_hero_leonidas</Template>
+			<Player>4</Player>
+			<Position x="78.4367" y="22.4" z="118.091"/>
+			<Orientation angle="-2.89706"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>hele_hero_leonidas</Template>
+			<Player>5</Player>
+			<Position x="72.4631" y="22.4" z="120.718"/>
+			<Orientation angle="3.00443"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>

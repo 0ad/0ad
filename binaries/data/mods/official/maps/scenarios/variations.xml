@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<UnitsAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="257.674" y="39.2714" z="89.5275"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities/>
+	<Nonentities>
+		<Nonentity>
+			<Actor>props/units/heads/head_female_celt.xml</Actor>
+			<Position x="256.749" y="22.4" z="120.299"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_female_celt.xml</Actor>
+			<Position x="257.265" y="22.4" z="120.917"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_female_celt.xml</Actor>
+			<Position x="256.186" y="22.4" z="119.781"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_female_celt.xml</Actor>
+			<Position x="255.622" y="22.4" z="119.188"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_hele_b.xml</Actor>
+			<Position x="261.044" y="22.4" z="120.707"/>
+			<Orientation angle="-2.33931"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_hele_b.xml</Actor>
+			<Position x="262.015" y="22.4" z="119.482"/>
+			<Orientation angle="-2.47243"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_hele_b.xml</Actor>
+			<Position x="261.636" y="22.4" z="120.292"/>
+			<Orientation angle="-2.49303"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_hele_b.xml</Actor>
+			<Position x="262.498" y="22.4" z="118.997"/>
+			<Orientation angle="-2.56155"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_hele_b.xml</Actor>
+			<Position x="260.565" y="22.4" z="121.192"/>
+			<Orientation angle="-2.46317"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_hele_b.xml</Actor>
+			<Position x="259.928" y="22.4" z="121.641"/>
+			<Orientation angle="-2.37548"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_hele_b.xml</Actor>
+			<Position x="259.395" y="22.4" z="122.181"/>
+			<Orientation angle="-2.28418"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_iber_basic.xml</Actor>
+			<Position x="253.981" y="22.4" z="118.554"/>
+			<Orientation angle="2.71782"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_iber_basic.xml</Actor>
+			<Position x="254.34" y="22.4" z="119.146"/>
+			<Orientation angle="2.85586"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_iber_su1.xml</Actor>
+			<Position x="254.678" y="22.4" z="117.607"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_iber_su1.xml</Actor>
+			<Position x="254.923" y="22.4" z="118.202"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_numid_all.xml</Actor>
+			<Position x="255.586" y="22.4" z="117.366"/>
+			<Orientation angle="2.47561"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_numid_all.xml</Actor>
+			<Position x="256.114" y="22.4" z="117.812"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_numid_all.xml</Actor>
+			<Position x="256.689" y="22.4" z="118.199"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_pers_a.xml</Actor>
+			<Position x="255.252" y="22.4" z="121.884"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_pers_a.xml</Actor>
+			<Position x="255.753" y="22.4" z="122.166"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_pers_a.xml</Actor>
+			<Position x="254.831" y="22.4" z="121.579"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_cav_e.xml</Actor>
+			<Position x="259.075" y="22.4" z="119.767"/>
+			<Orientation angle="-1.97217"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_cav_e.xml</Actor>
+			<Position x="259.666" y="22.4" z="119.148"/>
+			<Orientation angle="-1.98096"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_cav_e.xml</Actor>
+			<Position x="260.208" y="22.4" z="118.52"/>
+			<Orientation angle="-1.82893"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_cav_e.xml</Actor>
+			<Position x="261.295" y="22.4" z="117.444"/>
+			<Orientation angle="-2.01308"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_cav_e.xml</Actor>
+			<Position x="261.837" y="22.4" z="116.762"/>
+			<Orientation angle="-2.03311"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_cav_e.xml</Actor>
+			<Position x="260.823" y="22.4" z="118.009"/>
+			<Orientation angle="-2.25698"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_cav_e.xml</Actor>
+			<Position x="258.481" y="22.4" z="120.385"/>
+			<Orientation angle="-1.73349"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_helmet_csw_e.xml</Actor>
+			<Position x="257.446" y="22.4" z="123.071"/>
+			<Orientation angle="-2.3211"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/hele_helmet_csw_e.xml</Actor>
+			<Position x="258.045" y="22.4" z="122.592"/>
+			<Orientation angle="-2.32107"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/celt_helmet_a.xml</Actor>
+			<Position x="258.193" y="22.4" z="117.867"/>
+			<Orientation angle="-2.11471"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/celt_helmet_a.xml</Actor>
+			<Position x="259.12" y="22.4" z="116.824"/>
+			<Orientation angle="-2.32249"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/celt_helmet_a.xml</Actor>
+			<Position x="259.594" y="22.4" z="116.387"/>
+			<Orientation angle="-2.06177"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/celt_helmet_a.xml</Actor>
+			<Position x="260.221" y="22.4" z="115.868"/>
+			<Orientation angle="-1.97514"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/celt_helmet_a.xml</Actor>
+			<Position x="260.814" y="22.4" z="115.139"/>
+			<Orientation angle="-2.35721"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/celt_helmet_a.xml</Actor>
+			<Position x="258.682" y="22.4" z="117.381"/>
+			<Orientation angle="-2.47553"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/celt_helmet_a.xml</Actor>
+			<Position x="257.724" y="22.4" z="118.421"/>
+			<Orientation angle="-2.40938"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_pers_tiara.xml</Actor>
+			<Position x="253.108" y="22.4" z="119.763"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_pers_tiara.xml</Actor>
+			<Position x="253.456" y="22.4" z="120.153"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_pers_tiara.xml</Actor>
+			<Position x="253.878" y="22.4" z="120.462"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/head_pers_tiara.xml</Actor>
+			<Position x="254.266" y="22.4" z="120.806"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/thrac_a.xml</Actor>
+			<Position x="253.777" y="22.4" z="122.396"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/thrac_a.xml</Actor>
+			<Position x="254.223" y="22.4" z="122.672"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/thrac_a.xml</Actor>
+			<Position x="254.679" y="22.4" z="123.152"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/thrac_a.xml</Actor>
+			<Position x="255.168" y="22.4" z="123.561"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/rome_monte_e.xml</Actor>
+			<Position x="257.079" y="22.4" z="116.268"/>
+			<Orientation angle="-2.30651"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/rome_monte_e.xml</Actor>
+			<Position x="257.771" y="22.4" z="116.002"/>
+			<Orientation angle="-2.29571"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/units/heads/rome_monte_e.xml</Actor>
+			<Position x="258.413" y="22.4" z="115.71"/>
+			<Orientation angle="-2.14133"/>
+		</Nonentity>
+	</Nonentities>
+	<Paths/>
+	<Triggers/>
+</Scenario>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="2.11133" g="2.11133" b="2.11133"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.447059" g="0.447059" b="0.447059"/>
+		<UnitsAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="236.401" y="93.7808" z="110.074"/>
+		<Rotation angle="-0.92144"/>
+		<Declination angle="0.690445"/>
+	</Camera>
+	<Entities>
+		<Entity uid="1">
+			<Template>pers_dock</Template>
+			<Player>2</Player>
+			<Position x="168.214" y="22.4" z="159.584"/>
+			<Orientation angle="1.55791"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>hele_support_trader</Template>
+			<Player>2</Player>
+			<Position x="164.574" y="22.4" z="154.388"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>hele_support_healer</Template>
+			<Player>2</Player>
+			<Position x="169.372" y="22.4" z="163.451"/>
+			<Orientation angle="-1.969"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="155.683" y="22.4" z="155.071"/>
+			<Orientation angle="0.636929"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="172.647" y="22.4" z="176.985"/>
+			<Orientation angle="2.82787"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="175.968" y="22.4" z="178.207"/>
+			<Orientation angle="2.76246"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="177.006" y="22.4" z="171.75"/>
+			<Orientation angle="1.62"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="181.182" y="22.4" z="173.44"/>
+			<Orientation angle="-1.86003"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="176.939" y="22.4" z="179.626"/>
+			<Orientation angle="2.17406"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="183.222" y="22.4" z="171.024"/>
+			<Orientation angle="1.54416"/>
+		</Entity>
+	</Entities>
+	<Nonentities>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_a.xml</Actor>
+			<Position x="163.739" y="22.4" z="151.225"/>
+			<Orientation angle="2.25579"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_a.xml</Actor>
+			<Position x="162.02" y="22.4" z="150.719"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_b.xml</Actor>
+			<Position x="162.124" y="22.4" z="151.397"/>
+			<Orientation angle="-2.68966"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_e.xml</Actor>
+			<Position x="160.566" y="22.4" z="151.266"/>
+			<Orientation angle="0.700966"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_e.xml</Actor>
+			<Position x="164.002" y="22.4" z="164.367"/>
+			<Orientation angle="-2.50673"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_a.xml</Actor>
+			<Position x="174.52" y="22.4" z="165.991"/>
+			<Orientation angle="1.46466"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_b.xml</Actor>
+			<Position x="174.588" y="22.4" z="164.176"/>
+			<Orientation angle="1.50967"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_c.xml</Actor>
+			<Position x="174.697" y="22.4" z="162.264"/>
+			<Orientation angle="1.47559"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_d.xml</Actor>
+			<Position x="174.731" y="22.4" z="160.412"/>
+			<Orientation angle="1.57342"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_d.xml</Actor>
+			<Position x="161.748" y="22.4" z="155.882"/>
+			<Orientation angle="1.54675"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_a.xml</Actor>
+			<Position x="161.819" y="22.4" z="157.748"/>
+			<Orientation angle="1.53878"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_b.xml</Actor>
+			<Position x="164.953" y="22.4" z="152.58"/>
+			<Orientation angle="1.56551"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_c.xml</Actor>
+			<Position x="167.067" y="22.4" z="153.026"/>
+			<Orientation angle="-0.0202397"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_b.xml</Actor>
+			<Position x="167.121" y="22.4" z="155.695"/>
+			<Orientation angle="-0.00486101"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_c.xml</Actor>
+			<Position x="167.014" y="22.4" z="165.653"/>
+			<Orientation angle="3.13757"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_d.xml</Actor>
+			<Position x="164.925" y="22.4" z="165.835"/>
+			<Orientation angle="1.52899"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_b.xml</Actor>
+			<Position x="166.923" y="22.4" z="162.987"/>
+			<Orientation angle="3.13367"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/produce_bin_d.xml</Actor>
+			<Position x="174.8" y="22.4" z="158.634"/>
+			<Orientation angle="-1.58609"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/table1_long.xml</Actor>
+			<Position x="174.746" y="22.4" z="154.991"/>
+			<Orientation angle="1.53545"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/table1_short.xml</Actor>
+			<Position x="167.115" y="22.4" z="159.524"/>
+			<Orientation angle="1.59241"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/vase_hele_b.xml</Actor>
+			<Position x="176.614" y="22.4" z="153.709"/>
+			<Orientation angle="-2.5179"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/waterbin_a.xml</Actor>
+			<Position x="174.457" y="22.4" z="151.19"/>
+			<Orientation angle="-3.00151"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/sack_1_rough.xml</Actor>
+			<Position x="165.583" y="22.4" z="169.368"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/sack_1_rough.xml</Actor>
+			<Position x="166.969" y="22.4" z="169.081"/>
+			<Orientation angle="-2.97817"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/sack_1.xml</Actor>
+			<Position x="164.7" y="22.4" z="168.889"/>
+			<Orientation angle="-2.56562"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/sack_1.xml</Actor>
+			<Position x="177.425" y="22.4" z="155.2"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/rome_basket_d.xml</Actor>
+			<Position x="175.966" y="22.4" z="151.77"/>
+			<Orientation angle="-2.32587"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/rome_basket_d.xml</Actor>
+			<Position x="176.506" y="22.4" z="164.889"/>
+			<Orientation angle="-2.43446"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/rome_basket_e.xml</Actor>
+			<Position x="177.141" y="22.4" z="163.688"/>
+			<Orientation angle="-3.04045"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/rome_basket_e.xml</Actor>
+			<Position x="172.242" y="22.4" z="152.282"/>
+			<Orientation angle="0.406832"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/rome_basket_a.xml</Actor>
+			<Position x="171.882" y="22.4" z="165.919"/>
+			<Orientation angle="-1.68107"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/wood_pile_1_a.xml</Actor>
+			<Position x="174.211" y="22.4" z="168.138"/>
+			<Orientation angle="3.12808"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/handcart_1_broken.xml</Actor>
+			<Position x="165.168" y="22.4" z="149.724"/>
+			<Orientation angle="2.66529"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_celt_b.xml</Actor>
+			<Position x="167.846" y="22.4" z="168.252"/>
+			<Orientation angle="0.305415"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/basket_celt_b.xml</Actor>
+			<Position x="172.014" y="22.4" z="151.312"/>
+			<Orientation angle="2.35619"/>
+		</Nonentity>
+	</Nonentities>
+	<Paths/>
+	<Triggers/>
+</Scenario>
