@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure"
->
+<Entity	Parent="template_structure">
 	<Traits>
 	
 		<Id>
@@ -16,7 +14,7 @@
 		</Id>
 		
 		<Vision>
-			<Los>0</Los>
+			<Los>1</Los>
 		</Vision>		
 
 	</Traits>
