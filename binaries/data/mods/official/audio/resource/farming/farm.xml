@@ -3,9 +3,9 @@
 	<Gain>1</Gain>
 	<Pitch>1</Pitch>
 	<Priority>60</Priority>
-	<ConeGain>0</ConeGain>
+	<ConeGain>1</ConeGain>
 	<ConeInner>360</ConeInner>
-	<ConeOuter>0</ConeOuter>
+	<ConeOuter>360</ConeOuter>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>1</RandGain>
@@ -15,16 +15,16 @@
 	<PitchUpper>1.1</PitchUpper>
 	<PitchLower>0.9</PitchLower>
 	<Threshold>1</Threshold>
-	<Decay>3</Decay>
-	<Replacement>chop_11.ogg</Replacement>
-	<Path>audio/resource/lumbering/</Path>
-	<Sound>chop_10.ogg</Sound>
-	<Sound>chop_11.ogg</Sound>
-	<Sound>chop_12.ogg</Sound>
-	<Sound>chop_13.ogg</Sound>
-	<Sound>chop_14.ogg</Sound>
-	<Sound>chop_15.ogg</Sound>
-	<Sound>chop_16.ogg</Sound>
-	<Sound>chop_17.ogg</Sound>
-	<Sound>chop_18.ogg</Sound>
+	<Decay>5</Decay>
+	<Replacement>hoe_10.ogg</Replacement>
+	<Path>audio/resource/farming/</Path>
+	<Sound>hoe_18.ogg</Sound>
+	<Sound>hoe_10.ogg</Sound>
+	<Sound>hoe_11.ogg</Sound>
+	<Sound>hoe_12.ogg</Sound>
+	<Sound>hoe_13.ogg</Sound>
+	<Sound>hoe_14.ogg</Sound>
+	<Sound>hoe_15.ogg</Sound>
+	<Sound>hoe_16.ogg</Sound>
+	<Sound>hoe_17.ogg</Sound>
 </SoundGroup>
