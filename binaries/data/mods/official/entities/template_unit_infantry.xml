@@ -99,11 +99,14 @@
 	</Actions>
 
 	<SoundGroups>
-		<Walk>infantry_walk.xml</Walk>
-		<Run>infantry_run.xml</Run>
-		<Death>male_death.xml</Death>
+		<Melee>audio/attack/weapon/sword.xml</Melee>
+		<Death>audio/actor/human/death/death.xml</Death>
+		<Build>audio/resource/construction/con_wood.xml</Build>
+		<Gather_Fruit>audio/resource/foraging/forage_leaves.xml</Gather_Fruit>
+		<Gather_Grain>audio/resource/farming/farm.xml</Gather_Grain>
 		<Gather_Wood>audio/resource/lumbering/lumbering.xml</Gather_Wood>
-		<Gather_Stone>mining.xml</Gather_Stone>
+		<Gather_Stone>audio/resource/mining/pickaxe.xml</Gather_Stone>
+		<Gather_Metal>audio/resource/mining/mining.xml</Gather_Metal>
 	</SoundGroups>
 	
 	<Script File="scripts/entity_functions.js" />
