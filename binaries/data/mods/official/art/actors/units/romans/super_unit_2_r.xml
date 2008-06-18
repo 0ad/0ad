@@ -11,6 +11,7 @@
         <animation file="biped/rider_gallop.psa" name="run" speed="8"/>
         <animation event="0.5" file="biped/rider_sword_shield_atk_a.psa" name="melee" speed="90"/>
         <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="melee" speed="100"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>

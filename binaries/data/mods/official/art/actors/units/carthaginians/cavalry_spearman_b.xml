@@ -8,6 +8,7 @@
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
         <animation file="quadraped/horse_gallop.psa" name="Walk" speed="17"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>
       <props>

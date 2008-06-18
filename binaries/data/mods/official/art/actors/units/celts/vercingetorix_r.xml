@@ -11,6 +11,7 @@
         <animation file="cavalry/rider_gallop.psa" name="Run" speed="10"/>
         <animation event="0.5" file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="100"/>
         <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/m_pants_celt.dae</mesh>
       <props>
