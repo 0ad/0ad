@@ -11,11 +11,19 @@
 	<RandGain>0</RandGain>
 	<GainUpper>1</GainUpper>
 	<GainLower>0</GainLower>
-	<RandPitch>0</RandPitch>
-	<PitchUpper>2</PitchUpper>
+	<RandPitch>1</RandPitch>
+	<PitchUpper>0.5</PitchUpper>
 	<PitchLower>0</PitchLower>
-	<Threshold>0</Threshold>
+	<Threshold>10</Threshold>
 	<Decay>3</Decay>
-	<Replacement></Replacement>
-	<Path>path/</Path>
+	<Replacement>death_11.ogg</Replacement>
+	<Path>audio/actor/human/death/</Path>
+	<Sound>death_18.ogg</Sound>
+	<Sound>death_11.ogg</Sound>
+	<Sound>death_12.ogg</Sound>
+	<Sound>death_13.ogg</Sound>
+	<Sound>death_14.ogg</Sound>
+	<Sound>death_15.ogg</Sound>
+	<Sound>death_16.ogg</Sound>
+	<Sound>death_17.ogg</Sound>
 </SoundGroup>
