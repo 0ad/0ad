@@ -36,23 +36,57 @@ Revision History:
 #endif
 #endif
 
-// for those without specstrings.h
+// For those without specstrings.h
+// Since there are different versions of this header, I need to
+// individually test each item and define it if it is not around.
 
-#ifndef __specstrings
+#ifndef __in
  #define __in
+#endif
+#ifndef __out
  #define __out
+#endif
+#ifndef __inout
  #define __inout
+#endif
+#ifndef __in_opt
  #define __in_opt
+#endif
+#ifndef __out_opt
  #define __out_opt
+#endif
+#ifndef __inout_opt
  #define __inout_opt
- #define __in_ecount
- #define __out_ecount
- #define __inout_ecount
- #define __in_bcount
- #define __out_bcount
- #define __inout_bcount
+#endif
+#ifndef __in_ecount
+ #define __in_ecount(x)
+#endif
+#ifndef __out_ecount
+ #define __out_ecount(x)
+#endif
+#ifndef __inout_ecount
+ #define __inout_ecount(x)
+#endif
+#ifndef __in_bcount
+ #define __in_bcount(x)
+#endif
+#ifndef __out_bcount
+ #define __out_bcount(x)
+#endif
+#ifndef __inout_bcount
+ #define __inout_bcount(x)
+#endif
+#ifndef __out_xcount
+ #define __out_xcount(x)
+#endif
+#ifndef __deref_opt_out
  #define __deref_opt_out
+#endif
+#ifndef __deref_out
  #define __deref_out
+#endif
+#ifndef __out_ecount_opt
+ #define __out_ecount_opt(x)
 #endif
 
 
@@ -76,6 +110,15 @@ extern "C" {
 
 #define IMAGE_SEPARATION (64*1024)
 
+// Observant readers may notice that 2 new fields,
+// 'fReadOnly' and 'Version' have been added to
+// the LOADED_IMAGE structure after 'fDOSImage'.
+// This does not change the size of the structure 
+// from previous headers.  That is because while 
+// 'fDOSImage' is a byte, it is padded by the 
+// compiler to 4 bytes.  So the 2 new fields are 
+// slipped into the extra space.
+
 typedef struct _LOADED_IMAGE {
     PSTR                  ModuleName;
     HANDLE                hFile;
@@ -91,6 +134,8 @@ typedef struct _LOADED_IMAGE {
     ULONG                 Characteristics;
     BOOLEAN               fSystemImage;
     BOOLEAN               fDOSImage;
+    BOOLEAN               fReadOnly;
+    UCHAR                 Version;
     LIST_ENTRY            Links;
     ULONG                 SizeOfImage;
 } LOADED_IMAGE, *PLOADED_IMAGE;
@@ -106,19 +151,46 @@ typedef struct _LOADED_IMAGE {
 #define ERROR_NO_DBG_POINTER        0x8801  // image is stripped but there is no pointer to a dbg file
 #define ERROR_NO_PDB_POINTER        0x8802  // image does not point to a pdb file
 
+typedef BOOL
+(CALLBACK *PFIND_DEBUG_FILE_CALLBACK)(
+    __in HANDLE FileHandle,
+    __in PCSTR FileName,
+    __in PVOID CallerData
+    );
+
+HANDLE
+IMAGEAPI
+SymFindDebugInfoFile(
+    __in HANDLE hProcess,
+    __in PCSTR FileName,
+    __out_ecount(MAX_PATH + 1) PSTR DebugFilePath,
+    __in_opt PFIND_DEBUG_FILE_CALLBACK Callback,
+    __in_opt PVOID CallerData
+    );
+
+typedef BOOL
+(CALLBACK *PFIND_DEBUG_FILE_CALLBACKW)(
+    __in HANDLE FileHandle,
+    __in PCWSTR FileName,
+    __in PVOID  CallerData
+    );
+
+HANDLE
+IMAGEAPI
+SymFindDebugInfoFileW(
+    __in HANDLE hProcess,
+    __in PCWSTR FileName,
+    __out_ecount(MAX_PATH + 1) PWSTR DebugFilePath,
+    __in_opt PFIND_DEBUG_FILE_CALLBACKW Callback,
+    __in_opt PVOID CallerData
+    );
+
 HANDLE
 IMAGEAPI
 FindDebugInfoFile (
     __in PCSTR FileName,
     __in PCSTR SymbolPath,
     __out_ecount(MAX_PATH + 1) PSTR DebugFilePath
-    );
-
-typedef BOOL
-(CALLBACK *PFIND_DEBUG_FILE_CALLBACK)(
-    __in HANDLE FileHandle,
-    __in PCSTR FileName,
-    __in PVOID CallerData
     );
 
 HANDLE
@@ -129,13 +201,6 @@ FindDebugInfoFileEx (
     __out_ecount(MAX_PATH + 1) PSTR  DebugFilePath,
     __in_opt PFIND_DEBUG_FILE_CALLBACK Callback,
     __in_opt PVOID CallerData
-    );
-
-typedef BOOL
-(CALLBACK *PFIND_DEBUG_FILE_CALLBACKW)(
-    __in HANDLE FileHandle,
-    __in PCWSTR FileName,
-    __in PVOID  CallerData
     );
 
 HANDLE
@@ -158,9 +223,9 @@ BOOL
 IMAGEAPI
 SymFindFileInPath(
     __in HANDLE hprocess,
-    __in PCSTR SearchPath,
+    __in_opt PCSTR SearchPath,
     __in PCSTR FileName,
-    __in PVOID id,
+    __in_opt PVOID id,
     __in DWORD two,
     __in DWORD three,
     __in DWORD flags,
@@ -179,23 +244,15 @@ BOOL
 IMAGEAPI
 SymFindFileInPathW(
     __in HANDLE hprocess,
-    __in PCWSTR SearchPath,
+    __in_opt PCWSTR SearchPath,
     __in PCWSTR FileName,
-    __in PVOID id,
+    __in_opt PVOID id,
     __in DWORD two,
     __in DWORD three,
     __in DWORD flags,
     __out_ecount(MAX_PATH + 1) PWSTR FoundFile,
     __in_opt PFINDFILEINPATHCALLBACKW callback,
     __in_opt PVOID context
-    );
-
-HANDLE
-IMAGEAPI
-FindExecutableImage(
-    __in PCSTR FileName,
-    __in PCSTR SymbolPath,
-    __out_ecount(MAX_PATH + 1) PSTR ImageFilePath
     );
 
 typedef BOOL
@@ -207,18 +264,46 @@ typedef BOOL
 
 HANDLE
 IMAGEAPI
-FindExecutableImageEx(
+SymFindExecutableImage(
+    __in HANDLE hProcess,
     __in PCSTR FileName,
-    __in PCSTR SymbolPath,
     __out_ecount(MAX_PATH + 1) PSTR ImageFilePath,
-    __in_opt PFIND_EXE_FILE_CALLBACK Callback,
-    __in_opt PVOID CallerData
+    __in PFIND_EXE_FILE_CALLBACK Callback,
+    __in PVOID CallerData
     );
 
 typedef BOOL
 (CALLBACK *PFIND_EXE_FILE_CALLBACKW)(
     __in HANDLE FileHandle,
     __in PCWSTR FileName,
+    __in_opt PVOID CallerData
+    );
+
+HANDLE
+IMAGEAPI
+SymFindExecutableImageW(
+    __in HANDLE hProcess,
+    __in PCWSTR FileName,
+    __out_ecount(MAX_PATH + 1) PWSTR ImageFilePath,
+    __in PFIND_EXE_FILE_CALLBACKW Callback,
+    __in PVOID CallerData
+    );
+
+HANDLE
+IMAGEAPI
+FindExecutableImage(
+    __in PCSTR FileName,
+    __in PCSTR SymbolPath,
+    __out_ecount(MAX_PATH + 1) PSTR ImageFilePath
+    );
+
+HANDLE
+IMAGEAPI
+FindExecutableImageEx(
+    __in PCSTR FileName,
+    __in PCSTR SymbolPath,
+    __out_ecount(MAX_PATH + 1) PSTR ImageFilePath,
+    __in_opt PFIND_EXE_FILE_CALLBACK Callback,
     __in_opt PVOID CallerData
     );
 
@@ -327,9 +412,9 @@ typedef struct _IMAGE_DEBUG_INFORMATION {
 PIMAGE_DEBUG_INFORMATION
 IMAGEAPI
 MapDebugInformation(
-    __in HANDLE FileHandle,
+    __in_opt HANDLE FileHandle,
     __in PCSTR FileName,
-    __in PCSTR SymbolPath,
+    __in_opt PCSTR SymbolPath,
     __in ULONG ImageBase
     );
 
@@ -366,10 +451,10 @@ typedef BOOL
 BOOL
 IMAGEAPI
 EnumDirTree(
-    __in HANDLE hProcess,
+    __in_opt HANDLE hProcess,
     __in PCSTR RootPath,
     __in PCSTR InputPathName,
-    __out_ecount(MAX_PATH + 1) PSTR OutputPathBuffer,
+    __out_ecount_opt(MAX_PATH + 1) PSTR OutputPathBuffer,
     __in_opt PENUMDIRTREE_CALLBACK cb,
     __in_opt PVOID data
     );
@@ -383,10 +468,10 @@ typedef BOOL
 BOOL
 IMAGEAPI
 EnumDirTreeW(
-    __in HANDLE hProcess,
+    __in_opt HANDLE hProcess,
     __in PCWSTR RootPath,
     __in PCWSTR InputPathName,
-    __out_ecount(MAX_PATH + 1) PWSTR OutputPathBuffer,
+    __out_ecount_opt(MAX_PATH + 1) PWSTR OutputPathBuffer,
     __in_opt PENUMDIRTREE_CALLBACKW cb,
     __in_opt PVOID data
     );
@@ -425,7 +510,7 @@ IMAGEAPI
 WINAPI
 UnDecorateSymbolName(
     __in PCSTR name,
-    __out_ecount(maxStringLength) PSTR outputString,	
+    __out_ecount(maxStringLength) PSTR outputString,
     __in DWORD maxStringLength,
     __in DWORD flags
     );
@@ -435,7 +520,7 @@ IMAGEAPI
 WINAPI
 UnDecorateSymbolNameW(
     __in PCWSTR name,
-    __out_ecount(maxStringLength) PWSTR outputString,	
+    __out_ecount(maxStringLength) PWSTR outputString,
     __in DWORD maxStringLength,
     __in DWORD flags
     );
@@ -447,6 +532,7 @@ UnDecorateSymbolNameW(
 //
 
 #define DBHHEADER_DEBUGDIRS     0x1
+#define DBHHEADER_CVMISC        0x2
 
 typedef struct _MODLOAD_DATA {
     DWORD   ssize;                  // size of this struct
@@ -455,6 +541,15 @@ typedef struct _MODLOAD_DATA {
     DWORD   size;                   // size of passed data
     DWORD   flags;                  // options
 } MODLOAD_DATA, *PMODLOAD_DATA;
+
+typedef struct _MODLOAD_CVMISC {
+    DWORD   oCV;                    // ofset to the codeview record
+    size_t  cCV;                    // size of the codeview record
+    DWORD   oMisc;                  // offset to the misc record
+    size_t  cMisc;                  // size of the misc record
+    DWORD   dtImage;                // datetime stamp of the image
+    DWORD   cImage;                 // size of the image
+} MODLOAD_CVMISC, *PMODLOAD_CVMISC;
 
 //
 // StackWalking API
@@ -738,10 +833,10 @@ StackWalk64(
     __in HANDLE hThread,
     __inout LPSTACKFRAME64 StackFrame,
     __inout PVOID ContextRecord,
-    __in PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
-    __in PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
-    __in PGET_MODULE_BASE_ROUTINE64 GetModuleBaseRoutine,
-    __in PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
+    __in_opt PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
+    __in_opt PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
+    __in_opt PGET_MODULE_BASE_ROUTINE64 GetModuleBaseRoutine,
+    __in_opt PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
     );
 
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
@@ -795,10 +890,10 @@ StackWalk(
     __in HANDLE hThread,
     __inout LPSTACKFRAME StackFrame,
     __inout PVOID ContextRecord,
-    __in PREAD_PROCESS_MEMORY_ROUTINE ReadMemoryRoutine,
-    __in PFUNCTION_TABLE_ACCESS_ROUTINE FunctionTableAccessRoutine,
-    __in PGET_MODULE_BASE_ROUTINE GetModuleBaseRoutine,
-    __in PTRANSLATE_ADDRESS_ROUTINE TranslateAddress
+    __in_opt PREAD_PROCESS_MEMORY_ROUTINE ReadMemoryRoutine,
+    __in_opt PFUNCTION_TABLE_ACCESS_ROUTINE FunctionTableAccessRoutine,
+    __in_opt PGET_MODULE_BASE_ROUTINE GetModuleBaseRoutine,
+    __in_opt PTRANSLATE_ADDRESS_ROUTINE TranslateAddress
     );
 
 #endif
@@ -1032,7 +1127,7 @@ enum SymTagEnum
 // this resets SymNext/Prev to the beginning
 // of the module passed in the address field
 
-#define SYMFLAG_RESET            0x80000000  
+#define SYMFLAG_RESET            0x80000000
 
 //
 // symbol type enumeration
@@ -1139,11 +1234,11 @@ typedef struct _IMAGEHLP_MODULE64 {
     SYM_TYPE SymType;                // type of symbols loaded
     CHAR     ModuleName[32];         // module name
     CHAR     ImageName[256];         // image name
-    // new elements: 07-Jun-2002
     CHAR     LoadedImageName[256];   // symbol file name
+    // new elements: 07-Jun-2002
     CHAR     LoadedPdbName[256];     // pdb file name
     DWORD    CVSig;                  // Signature of the CV record in the debug directories
-    CHAR         CVData[MAX_PATH * 3];   // Contents of the CV record
+    CHAR     CVData[MAX_PATH * 3];   // Contents of the CV record
     DWORD    PdbSig;                 // Signature of PDB
     GUID     PdbSig70;               // Signature of PDB (VC 7 and up)
     DWORD    PdbAge;                 // DBI age of pdb
@@ -1288,6 +1383,8 @@ typedef struct _SOURCEFILEW {
 #define CBA_EVENT                               0x00000010
 #define CBA_DEFERRED_SYMBOL_LOAD_PARTIAL        0x00000020
 #define CBA_DEBUG_INFO                          0x10000000
+#define CBA_SRCSRV_INFO                         0x20000000
+#define CBA_SRCSRV_EVENT                        0x40000000
 
 typedef struct _IMAGEHLP_CBA_READ_MEMORY {
     DWORD64   addr;                                     // address to read from
@@ -1426,35 +1523,54 @@ typedef enum {
     hdMax       // end marker
 };
 
+typedef struct _OMAP {
+    ULONG  rva;
+    ULONG  rvaTo;
+} OMAP, *POMAP;
+
+BOOL
+IMAGEAPI
+SymGetOmaps(
+    __in HANDLE hProcess,
+    __in DWORD64 BaseOfDll,
+    __out POMAP *OmapTo,
+    __out PDWORD64 cOmapTo,
+    __out POMAP *OmapFrom,
+    __out PDWORD64 cOmapFrom
+    );
+
 //
 // options that are set/returned by SymSetOptions() & SymGetOptions()
 // these are used as a mask
 //
-#define SYMOPT_CASE_INSENSITIVE         0x00000001
-#define SYMOPT_UNDNAME                  0x00000002
-#define SYMOPT_DEFERRED_LOADS           0x00000004
-#define SYMOPT_NO_CPP                   0x00000008
-#define SYMOPT_LOAD_LINES               0x00000010
-#define SYMOPT_OMAP_FIND_NEAREST        0x00000020
-#define SYMOPT_LOAD_ANYTHING            0x00000040
-#define SYMOPT_IGNORE_CVREC             0x00000080
-#define SYMOPT_NO_UNQUALIFIED_LOADS     0x00000100
-#define SYMOPT_FAIL_CRITICAL_ERRORS     0x00000200
-#define SYMOPT_EXACT_SYMBOLS            0x00000400
-#define SYMOPT_ALLOW_ABSOLUTE_SYMBOLS   0x00000800
-#define SYMOPT_IGNORE_NT_SYMPATH        0x00001000
-#define SYMOPT_INCLUDE_32BIT_MODULES    0x00002000
-#define SYMOPT_PUBLICS_ONLY             0x00004000
-#define SYMOPT_NO_PUBLICS               0x00008000
-#define SYMOPT_AUTO_PUBLICS             0x00010000
-#define SYMOPT_NO_IMAGE_SEARCH          0x00020000
-#define SYMOPT_SECURE                   0x00040000
-#define SYMOPT_NO_PROMPTS               0x00080000
-#define SYMOPT_OVERWRITE                0x00100000
-#define SYMOPT_IGNORE_IMAGEDIR          0x00200000
-#define SYMOPT_FLAT_DIRECTORY           0x00400000
+#define SYMOPT_CASE_INSENSITIVE          0x00000001
+#define SYMOPT_UNDNAME                   0x00000002
+#define SYMOPT_DEFERRED_LOADS            0x00000004
+#define SYMOPT_NO_CPP                    0x00000008
+#define SYMOPT_LOAD_LINES                0x00000010
+#define SYMOPT_OMAP_FIND_NEAREST         0x00000020
+#define SYMOPT_LOAD_ANYTHING             0x00000040
+#define SYMOPT_IGNORE_CVREC              0x00000080
+#define SYMOPT_NO_UNQUALIFIED_LOADS      0x00000100
+#define SYMOPT_FAIL_CRITICAL_ERRORS      0x00000200
+#define SYMOPT_EXACT_SYMBOLS             0x00000400
+#define SYMOPT_ALLOW_ABSOLUTE_SYMBOLS    0x00000800
+#define SYMOPT_IGNORE_NT_SYMPATH         0x00001000
+#define SYMOPT_INCLUDE_32BIT_MODULES     0x00002000
+#define SYMOPT_PUBLICS_ONLY              0x00004000
+#define SYMOPT_NO_PUBLICS                0x00008000
+#define SYMOPT_AUTO_PUBLICS              0x00010000
+#define SYMOPT_NO_IMAGE_SEARCH           0x00020000
+#define SYMOPT_SECURE                    0x00040000
+#define SYMOPT_NO_PROMPTS                0x00080000
+#define SYMOPT_OVERWRITE                 0x00100000
+#define SYMOPT_IGNORE_IMAGEDIR           0x00200000
+#define SYMOPT_FLAT_DIRECTORY            0x00400000
+#define SYMOPT_FAVOR_COMPRESSED          0x00800000
+#define SYMOPT_ALLOW_ZERO_ADDRESS        0x01000000
+#define SYMOPT_DISABLE_SYMSRV_AUTODETECT 0x02000000
 
-#define SYMOPT_DEBUG                    0x80000000
+#define SYMOPT_DEBUG                     0x80000000
 
 DWORD
 IMAGEAPI
@@ -1512,7 +1628,7 @@ IMAGEAPI
 SymEnumSourceFiles(
     __in HANDLE hProcess,
     __in ULONG64 ModBase,
-    __in PCSTR Mask,
+    __in_opt PCSTR Mask,
     __in PSYM_ENUMSOURCEFILES_CALLBACK cbSrcFiles,
     __in_opt PVOID UserContext
     );
@@ -1528,7 +1644,7 @@ IMAGEAPI
 SymEnumSourceFilesW(
     __in HANDLE hProcess,
     __in ULONG64 ModBase,
-    __in PCWSTR Mask,
+    __in_opt PCWSTR Mask,
     __in PSYM_ENUMSOURCEFILES_CALLBACKW cbSrcFiles,
     __in_opt PVOID UserContext
     );
@@ -1563,7 +1679,7 @@ SymEnumerateModules(
 
 BOOL
 IMAGEAPI
-EnumerateLoadedModules64(
+EnumerateLoadedModulesEx(
     __in HANDLE hProcess,
     __in PENUMLOADED_MODULES_CALLBACK64 EnumLoadedModulesCallback,
     __in_opt PVOID UserContext
@@ -1571,10 +1687,26 @@ EnumerateLoadedModules64(
     
 BOOL
 IMAGEAPI
+EnumerateLoadedModulesExW(
+    __in HANDLE hProcess,
+    __in PENUMLOADED_MODULES_CALLBACKW64 EnumLoadedModulesCallback,
+    __in_opt PVOID UserContext
+    );
+
+BOOL
+IMAGEAPI
+EnumerateLoadedModules64(
+    __in HANDLE hProcess,
+    __in PENUMLOADED_MODULES_CALLBACK64 EnumLoadedModulesCallback,
+    __in_opt PVOID UserContext
+    );
+
+BOOL
+IMAGEAPI
 EnumerateLoadedModulesW64(
     __in HANDLE hProcess,
     __in PENUMLOADED_MODULES_CALLBACKW64 EnumLoadedModulesCallback,
-    __in PVOID UserContext
+    __in_opt PVOID UserContext
     );
 
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
@@ -1606,6 +1738,15 @@ SymFunctionTableAccess(
     __in DWORD AddrBase
     );
 #endif
+
+BOOL
+IMAGEAPI
+SymGetUnwindInfo(
+    __in HANDLE hProcess,
+    __in DWORD64 Address,
+    __out_bcount_opt(*Size) PVOID Buffer,
+    __inout PULONG Size
+    );
 
 BOOL
 IMAGEAPI
@@ -1727,11 +1868,20 @@ SymGetLineFromAddr64(
 
 BOOL
 IMAGEAPI
+SymGetLineFromAddrW64(
+    __in HANDLE hProcess,
+    __in DWORD64 dwAddr,
+    __out PDWORD pdwDisplacement,
+    __out PIMAGEHLP_LINEW64 Line
+    );
+
+BOOL
+IMAGEAPI
 SymEnumSourceLines(
     __in HANDLE hProcess,
     __in ULONG64 Base,
     __in_opt PCSTR Obj,
-    __in PCSTR File,
+    __in_opt PCSTR File,
     __in_opt DWORD Line,
     __in DWORD Flags,
     __in PSYM_ENUMLINES_CALLBACK EnumLinesCallback,
@@ -1744,7 +1894,7 @@ SymEnumSourceLinesW(
     __in HANDLE hProcess,
     __in ULONG64 Base,
     __in_opt PCWSTR Obj,
-    __in PCWSTR File,
+    __in_opt PCWSTR File,
     __in_opt DWORD Line,
     __in DWORD Flags,
     __in PSYM_ENUMLINES_CALLBACKW EnumLinesCallback,
@@ -1757,15 +1907,6 @@ SymEnumSourceLinesW(
 #define ESLFLAG_NEAREST         0x2
 #define ESLFLAG_PREV            0x4
 #define ESLFLAG_NEXT            0x8
-
-BOOL
-IMAGEAPI
-SymGetLineFromAddrW64(
-    IN  HANDLE                  hProcess,
-    IN  DWORD64                 qwAddr,
-    OUT PDWORD                  pdwDisplacement,
-    OUT PIMAGEHLP_LINEW64       Line64
-    );
 
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymGetLineFromAddr SymGetLineFromAddr64
@@ -1794,8 +1935,8 @@ BOOL
 IMAGEAPI
 SymGetLineFromName64(
     __in HANDLE hProcess,
-    __in PCSTR ModuleName,
-    __in PCSTR FileName,
+    __in_opt PCSTR ModuleName,
+    __in_opt PCSTR FileName,
     __in DWORD dwLineNumber,
     __out PLONG plDisplacement,
     __inout PIMAGEHLP_LINE64 Line
@@ -1805,8 +1946,8 @@ BOOL
 IMAGEAPI
 SymGetLineFromNameW64(
     __in HANDLE hProcess,
-    __in PCWSTR ModuleName,
-    __in PCWSTR FileName,
+    __in_opt PCWSTR ModuleName,
+    __in_opt PCWSTR FileName,
     __in DWORD dwLineNumber,
     __out PLONG plDisplacement,
     __inout PIMAGEHLP_LINEW64 Line
@@ -1819,8 +1960,8 @@ BOOL
 IMAGEAPI
 SymGetLineFromName(
     __in HANDLE hProcess,
-    __in PCSTR ModuleName,
-    __in PCSTR FileName,
+    __in_opt PCSTR ModuleName,
+    __in_opt PCSTR FileName,
     __in DWORD dwLineNumber,
     __out PLONG plDisplacement,
     __inout PIMAGEHLP_LINE Line
@@ -1894,8 +2035,8 @@ SymGetLinePrevW(
 ULONG
 IMAGEAPI
 SymGetFileLineOffsets64(
-        __in  HANDLE hProcess,
-    __in PCSTR ModuleName,
+    __in HANDLE hProcess,
+    __in_opt PCSTR ModuleName,
     __in PCSTR FileName,
     __out_ecount(BufferLines) PDWORD64 Buffer,
     __in ULONG BufferLines
@@ -1924,7 +2065,7 @@ IMAGEAPI
 SymGetSourceFile(
     __in HANDLE hProcess,
     __in ULONG64 Base,
-    __in PCSTR Params,
+    __in_opt PCSTR Params,
     __in PCSTR FileSpec,
     __out_ecount(Size) PSTR FilePath,
     __in DWORD Size
@@ -1935,7 +2076,7 @@ IMAGEAPI
 SymGetSourceFileW(
     __in HANDLE hProcess,
     __in ULONG64 Base,
-    __in PCWSTR Params,
+    __in_opt PCWSTR Params,
     __in PCWSTR FileSpec,
     __out_ecount(Size) PWSTR FilePath,
     __in DWORD Size
@@ -1966,7 +2107,7 @@ IMAGEAPI
 SymGetSourceFileFromToken(
     __in HANDLE hProcess,
     __in PVOID Token,
-    __in PCSTR Params,
+    __in_opt PCSTR Params,
     __out_ecount(Size) PSTR FilePath,
     __in DWORD Size
     );
@@ -1976,7 +2117,7 @@ IMAGEAPI
 SymGetSourceFileFromTokenW(
     __in HANDLE hProcess,
     __in PVOID Token,
-    __in PCWSTR Params,
+    __in_opt PCWSTR Params,
     __out_ecount(Size) PWSTR FilePath,
     __in DWORD Size
     );
@@ -1986,7 +2127,7 @@ IMAGEAPI
 SymGetSourceVarFromToken(
     __in HANDLE hProcess,
     __in PVOID Token,
-    __in PCSTR Params,
+    __in_opt PCSTR Params,
     __in PCSTR VarName,
     __out_ecount(Size) PSTR Value,
     __in DWORD Size
@@ -1997,10 +2138,20 @@ IMAGEAPI
 SymGetSourceVarFromTokenW(
     __in HANDLE hProcess,
     __in PVOID Token,
-    __in PCWSTR Params,
+    __in_opt PCWSTR Params,
     __in PCWSTR VarName,
     __out_ecount(Size) PWSTR Value,
     __in DWORD Size
+    );
+
+typedef BOOL (CALLBACK *PENUMSOURCEFILETOKENSCALLBACK)(__in PVOID token,  __in size_t size);
+
+BOOL
+IMAGEAPI
+SymEnumSourceFileTokens(
+    __in HANDLE hProcess,
+    __in ULONG64 Base,
+    __in PENUMSOURCEFILETOKENSCALLBACK Callback
     );
 
 BOOL
@@ -2049,20 +2200,8 @@ SymSetSearchPathW(
     __in_opt PCWSTR SearchPath
     );
 
-DWORD64
-IMAGEAPI
-SymLoadModule64(
-    __in HANDLE hProcess,
-    __in_opt HANDLE hFile,
-    __in PCSTR ImageName,
-    __in_opt PCSTR ModuleName,
-    __in DWORD64 BaseOfDll,
-    __in DWORD SizeOfDll
-    );
-
 #define SLMFLAG_VIRTUAL     0x1
 #define SLMFLAG_ALT_INDEX   0x2
-//#define SLMFLAG_NO_PDB      0x4
 #define SLMFLAG_NO_SYMBOLS  0x4
 
 DWORD64
@@ -2070,7 +2209,7 @@ IMAGEAPI
 SymLoadModuleEx(
     __in HANDLE hProcess,
     __in_opt HANDLE hFile,
-    __in PCSTR ImageName,
+    __in_opt PCSTR ImageName,
     __in_opt PCSTR ModuleName,
     __in DWORD64 BaseOfDll,
     __in DWORD DllSize,
@@ -2083,28 +2222,13 @@ IMAGEAPI
 SymLoadModuleExW(
     __in HANDLE hProcess,
     __in_opt HANDLE hFile,
-    __in PCWSTR ImageName,
+    __in_opt PCWSTR ImageName,
     __in_opt PCWSTR ModuleName,
     __in DWORD64 BaseOfDll,
     __in DWORD DllSize,
     __in_opt PMODLOAD_DATA Data,
     __in_opt DWORD Flags
     );
-
-#if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
-#define SymLoadModule SymLoadModule64
-#else
-DWORD
-IMAGEAPI
-SymLoadModule(
-    __in HANDLE hProcess,
-    __in_opt HANDLE hFile,
-    __in PCSTR ImageName,
-    __in_opt PCSTR ModuleName,
-    __in DWORD BaseOfDll,
-    __in DWORD SizeOfDll
-    );
-#endif
 
 BOOL
 IMAGEAPI
@@ -2127,9 +2251,9 @@ SymUnloadModule(
 BOOL
 IMAGEAPI
 SymUnDName64(
-    __in PIMAGEHLP_SYMBOL64 sym,			// Symbol to undecorate
-    __out_ecount(UnDecNameLength) PSTR UnDecName,	// Buffer to store undecorated name in
-    __in DWORD UnDecNameLength				// Size of the buffer
+    __in PIMAGEHLP_SYMBOL64 sym,            // Symbol to undecorate
+    __out_ecount(UnDecNameLength) PSTR UnDecName,   // Buffer to store undecorated name in
+    __in DWORD UnDecNameLength              // Size of the buffer
     );
 
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
@@ -2138,9 +2262,9 @@ SymUnDName64(
 BOOL
 IMAGEAPI
 SymUnDName(
-    __in PIMAGEHLP_SYMBOL sym,  			// Symbol to undecorate
-    __out_ecount(UnDecNameLength) PSTR UnDecName,	// Buffer to store undecorated name in
-    __in DWORD UnDecNameLength				// Size of the buffer
+    __in PIMAGEHLP_SYMBOL sym,              // Symbol to undecorate
+    __out_ecount(UnDecNameLength) PSTR UnDecName,   // Buffer to store undecorated name in
+    __in DWORD UnDecNameLength              // Size of the buffer
     );
 #endif
 
@@ -2271,6 +2395,34 @@ SymSetContext(
     __in HANDLE hProcess,
     __in PIMAGEHLP_STACK_FRAME StackFrame,
     __in_opt PIMAGEHLP_CONTEXT Context
+    );
+
+BOOL
+IMAGEAPI
+SymSetScopeFromAddr(
+    __in HANDLE hProcess,
+    __in ULONG64 Address
+    );
+
+BOOL
+IMAGEAPI
+SymSetScopeFromIndex(
+    __in HANDLE hProcess,
+    __in ULONG64 BaseOfDll,
+    __in DWORD Index
+    );
+
+typedef BOOL
+(CALLBACK *PSYM_ENUMPROCESSES_CALLBACK)(
+    __in HANDLE hProcess,
+    __in PVOID UserContext
+    );
+
+BOOL
+IMAGEAPI
+SymEnumProcesses(
+    __in PSYM_ENUMPROCESSES_CALLBACK EnumProcessesCallback,
+    __in PVOID UserContext
     );
 
 BOOL
@@ -2414,6 +2566,7 @@ SymEnumSymbolsForAddrW(
 #define SYMSEARCH_MASKOBJS      0x01    // used internally to implement other APIs
 #define SYMSEARCH_RECURSE       0X02    // recurse scopes
 #define SYMSEARCH_GLOBALSONLY   0X04    // search only for global symbols
+#define SYMSEARCH_ALLITEMS      0X08    // search for everything in the pdb, not just normal scoped symbols
 
 BOOL
 IMAGEAPI
@@ -2511,6 +2664,8 @@ typedef enum _IMAGEHLP_SYMBOL_TYPE_INFO {
     TI_GTIEX_REQS_VALID,
     TI_GET_VIRTUALBASEOFFSET,
     TI_GET_VIRTUALBASEDISPINDEX,
+    TI_GET_IS_REFERENCE,
+    TI_GET_INDIRECTVIRTUALBASECLASS,
     IMAGEHLP_SYMBOL_TYPE_INFO_MAX,
 } IMAGEHLP_SYMBOL_TYPE_INFO;
 
@@ -2582,6 +2737,26 @@ SymEnumTypesW(
 
 BOOL
 IMAGEAPI
+SymEnumTypesByName(
+    __in HANDLE hProcess,
+    __in ULONG64 BaseOfDll,
+    __in_opt PCSTR mask,
+    __in PSYM_ENUMERATESYMBOLS_CALLBACK EnumSymbolsCallback,
+    __in_opt PVOID UserContext
+    );
+
+BOOL
+IMAGEAPI
+SymEnumTypesByNameW(
+    __in HANDLE hProcess,
+    __in ULONG64 BaseOfDll,
+    __in_opt PCWSTR mask,
+    __in PSYM_ENUMERATESYMBOLS_CALLBACKW EnumSymbolsCallback,
+    __in_opt PVOID UserContext
+    );
+
+BOOL
+IMAGEAPI
 SymGetTypeFromName(
     __in HANDLE hProcess,
     __in ULONG64 BaseOfDll,
@@ -2625,7 +2800,7 @@ IMAGEAPI
 SymDeleteSymbol(
     __in HANDLE hProcess,
     __in ULONG64 BaseOfDll,
-    __in PCSTR Name,
+    __in_opt PCSTR Name,
     __in DWORD64 Address,
     __in DWORD Flags
     );
@@ -2635,22 +2810,62 @@ IMAGEAPI
 SymDeleteSymbolW(
     __in HANDLE hProcess,
     __in ULONG64 BaseOfDll,
-    __in PCWSTR Name,
+    __in_opt PCWSTR Name,
     __in DWORD64 Address,
     __in DWORD Flags
     );
 
 BOOL
 IMAGEAPI
-SymSrvIsStoreW(
+SymRefreshModuleList(
+    __in HANDLE hProcess
+    );
+
+BOOL
+IMAGEAPI
+SymAddSourceStream(
     __in HANDLE hProcess,
+    __in ULONG64 Base,
+    __in_opt PCSTR StreamFile,
+    __in_bcount_opt(Size) PBYTE Buffer,
+    __in size_t Size
+    );
+
+typedef BOOL (WINAPI *SYMADDSOURCESTREAM)(HANDLE, ULONG64, PCSTR, PBYTE, size_t);
+
+BOOL
+IMAGEAPI
+SymAddSourceStreamA(
+    __in HANDLE hProcess,
+    __in ULONG64 Base,
+    __in_opt PCSTR StreamFile,
+    __in_bcount_opt(Size) PBYTE Buffer,
+    __in size_t Size
+    );
+
+typedef BOOL (WINAPI *SYMADDSOURCESTREAMA)(HANDLE, ULONG64, PCSTR, PBYTE, size_t);
+
+BOOL
+IMAGEAPI
+SymAddSourceStreamW(
+    __in HANDLE hProcess,
+    __in ULONG64 Base,
+    __in_opt PCWSTR FileSpec,
+    __in_bcount_opt(Size) PBYTE Buffer,
+    __in size_t Size
+    );
+
+BOOL
+IMAGEAPI
+SymSrvIsStoreW(
+    __in_opt HANDLE hProcess,
     __in PCWSTR path
     );
 
 BOOL
 IMAGEAPI
 SymSrvIsStore(
-    __in HANDLE hProcess,
+    __in_opt HANDLE hProcess,
     __in PCSTR path
     );
 
@@ -2716,10 +2931,10 @@ BOOL
 IMAGEAPI
 SymSrvGetFileIndexStringW(
     __in HANDLE hProcess,
-    __in PCWSTR SrvPath,
+    __in_opt PCWSTR SrvPath,
     __in PCWSTR File,
     __out_ecount(Size) PWSTR Index,
-    __in size_t Size,                                                                        
+    __in size_t Size,
     __in DWORD Flags
     );
 
@@ -2727,10 +2942,52 @@ BOOL
 IMAGEAPI
 SymSrvGetFileIndexString(
     __in HANDLE hProcess,
-    __in PCSTR SrvPath,
+    __in_opt PCSTR SrvPath,
     __in PCSTR File,
     __out_ecount(Size) PSTR Index,
     __in size_t Size,
+    __in DWORD Flags
+    );
+
+typedef struct {
+    DWORD sizeofstruct;
+    char file[MAX_PATH +1];
+    BOOL  stripped;
+    DWORD timestamp;
+    DWORD size;
+    char dbgfile[MAX_PATH +1];
+    char pdbfile[MAX_PATH + 1];
+    GUID  guid;
+    DWORD sig;
+    DWORD age;
+} SYMSRV_INDEX_INFO, *PSYMSRV_INDEX_INFO;
+
+typedef struct {
+    DWORD sizeofstruct;
+    WCHAR file[MAX_PATH +1];
+    BOOL  stripped;
+    DWORD timestamp;
+    DWORD size;
+    WCHAR dbgfile[MAX_PATH +1];
+    WCHAR pdbfile[MAX_PATH + 1];
+    GUID  guid;
+    DWORD sig;
+    DWORD age;
+} SYMSRV_INDEX_INFOW, *PSYMSRV_INDEX_INFOW;
+
+BOOL
+IMAGEAPI
+SymSrvGetFileIndexInfo(
+    __in PCSTR File,
+    __out PSYMSRV_INDEX_INFO Info,
+    __in DWORD Flags
+    );
+
+BOOL
+IMAGEAPI
+SymSrvGetFileIndexInfoW(
+    __in PCWSTR File,
+    __out PSYMSRV_INDEX_INFOW Info,
     __in DWORD Flags
     );
 
@@ -2785,8 +3042,8 @@ typedef enum {
 BOOL
 IMAGEAPI
 SymGetSymbolFile(
-    __in HANDLE hProcess,
-    __in PCSTR SymPath,
+    __in_opt HANDLE hProcess,
+    __in_opt PCSTR SymPath,
     __in PCSTR ImageFile,
     __in DWORD Type,
     __out_ecount(cSymbolFile) PSTR SymbolFile,
@@ -2798,8 +3055,8 @@ SymGetSymbolFile(
 BOOL
 IMAGEAPI
 SymGetSymbolFileW(
-    __in HANDLE hProcess,
-    __in PCWSTR SymPath,
+    __in_opt HANDLE hProcess,
+    __in_opt PCWSTR SymPath,
     __in PCWSTR ImageFile,
     __in DWORD Type,
     __out_ecount(cSymbolFile) PWSTR SymbolFile,
@@ -2925,30 +3182,34 @@ typedef BOOL (CALLBACK WINAPI *PSYMBOLSERVERMESSAGEPROC)(UINT_PTR action, ULONG6
 
 #define SYMSRV_VERSION              2
 
-#define SSRVOPT_CALLBACK            0x000001
-#define SSRVOPT_DWORD               0x000002
-#define SSRVOPT_DWORDPTR            0x000004
-#define SSRVOPT_GUIDPTR             0x000008
-#define SSRVOPT_OLDGUIDPTR          0x000010
-#define SSRVOPT_UNATTENDED          0x000020
-#define SSRVOPT_NOCOPY              0x000040
-#define SSRVOPT_GETPATH             0x000040
-#define SSRVOPT_PARENTWIN           0x000080
-#define SSRVOPT_PARAMTYPE           0x000100
-#define SSRVOPT_SECURE              0x000200
-#define SSRVOPT_TRACE               0x000400
-#define SSRVOPT_SETCONTEXT          0x000800
-#define SSRVOPT_PROXY               0x001000
-#define SSRVOPT_DOWNSTREAM_STORE    0x002000
-#define SSRVOPT_OVERWRITE           0x004000
-#define SSRVOPT_RESETTOU            0x008000
-#define SSRVOPT_CALLBACKW           0x010000
-#define SSRVOPT_FLAT_DEFAULT_STORE  0x020000
-#define SSRVOPT_PROXYW              0x040000
-#define SSRVOPT_MESSAGE             0x080000
-#define SSRVOPT_SERVICE             0x100000   // deprecated
+#define SSRVOPT_CALLBACK            0x00000001
+#define SSRVOPT_DWORD               0x00000002
+#define SSRVOPT_DWORDPTR            0x00000004
+#define SSRVOPT_GUIDPTR             0x00000008
+#define SSRVOPT_OLDGUIDPTR          0x00000010
+#define SSRVOPT_UNATTENDED          0x00000020
+#define SSRVOPT_NOCOPY              0x00000040
+#define SSRVOPT_GETPATH             0x00000040
+#define SSRVOPT_PARENTWIN           0x00000080
+#define SSRVOPT_PARAMTYPE           0x00000100
+#define SSRVOPT_SECURE              0x00000200
+#define SSRVOPT_TRACE               0x00000400
+#define SSRVOPT_SETCONTEXT          0x00000800
+#define SSRVOPT_PROXY               0x00001000
+#define SSRVOPT_DOWNSTREAM_STORE    0x00002000
+#define SSRVOPT_OVERWRITE           0x00004000
+#define SSRVOPT_RESETTOU            0x00008000
+#define SSRVOPT_CALLBACKW           0x00010000
+#define SSRVOPT_FLAT_DEFAULT_STORE  0x00020000
+#define SSRVOPT_PROXYW              0x00040000
+#define SSRVOPT_MESSAGE             0x00080000
+#define SSRVOPT_SERVICE             0x00100000   // deprecated
+#define SSRVOPT_FAVOR_COMPRESSED    0x00200000
+#define SSRVOPT_STRING              0x00400000
+#define SSRVOPT_WINHTTP             0x00800000
+#define SSRVOPT_WININET             0x01000000
 
-#define SSRVOPT_MAX                 0x40000
+#define SSRVOPT_MAX                 0x0100000
 
 #define SSRVOPT_RESET               ((ULONG_PTR)-1)
 
@@ -2959,13 +3220,15 @@ typedef BOOL (CALLBACK WINAPI *PSYMBOLSERVERMESSAGEPROC)(UINT_PTR action, ULONG6
 #define SSRVACTION_QUERYCANCEL  2
 #define SSRVACTION_EVENT        3
 #define SSRVACTION_EVENTW       4
+#define SSRVACTION_SIZE         5
 
-#define SYMSTOREOPT_COMPRESS    0x01
-#define SYMSTOREOPT_OVERWRITE   0x02
-#define SYMSTOREOPT_RETURNINDEX 0x04
-#define SYMSTOREOPT_POINTER     0x08
-#define SYMSTOREOPT_ALT_INDEX   0x10
-#define SYMSTOREOPT_UNICODE     0x20
+#define SYMSTOREOPT_COMPRESS        0x01
+#define SYMSTOREOPT_OVERWRITE       0x02
+#define SYMSTOREOPT_RETURNINDEX     0x04
+#define SYMSTOREOPT_POINTER         0x08
+#define SYMSTOREOPT_ALT_INDEX       0x10
+#define SYMSTOREOPT_UNICODE         0x20
+#define SYMSTOREOPT_PASS_IF_EXISTS  0x40
 
 #ifdef DBGHELP_TRANSLATE_TCHAR
  #define SymInitialize                     SymInitializeW
@@ -2978,6 +3241,7 @@ typedef BOOL (CALLBACK WINAPI *PSYMBOLSERVERMESSAGEPROC)(UINT_PTR action, ULONG6
  #define SymGetLineNext64                  SymGetLineNextW64
  #define SymGetLinePrev64                  SymGetLinePrevW64
  #define SymFromName                       SymFromNameW
+ #define SymFindExecutableImage            SymFindExecutableImageW
  #define FindExecutableImageEx             FindExecutableImageExW
  #define SymSearch                         SymSearchW
  #define SymEnumLines                      SymEnumLinesW
@@ -2998,7 +3262,9 @@ typedef BOOL (CALLBACK WINAPI *PSYMBOLSERVERMESSAGEPROC)(UINT_PTR action, ULONG6
  #define SymNext                           SymNextW
  #define SymPrev                           SymPrevW
  #define SymEnumTypes                      SymEnumTypesW
+ #define SymEnumTypesByName                SymEnumTypesByNameW
  #define SymRegisterCallback64             SymRegisterCallbackW64
+ #define SymFindDebugInfoFile              SymFindDebugInfoFileW
  #define FindDebugInfoFileEx               FindDebugInfoFileExW
  #define SymFindFileInPath                 SymFindFileInPathW
  #define SymEnumerateModules64             SymEnumerateModulesW64
@@ -3023,8 +3289,10 @@ typedef BOOL (CALLBACK WINAPI *PSYMBOLSERVERMESSAGEPROC)(UINT_PTR action, ULONG6
  #define SymSrvGetFileIndexString          SymSrvGetFileIndexStringW
  #define SymSrvStoreFile                   SymSrvStoreFileW
  #define SymGetSymbolFile                  SymGetSymbolFileW
- #define EnumerateLoadedModules64	   EnumerateLoadedModulesW64
- 
+ #define EnumerateLoadedModules64          EnumerateLoadedModulesW64
+ #define EnumerateLoadedModulesEx          EnumerateLoadedModulesExW
+ #define SymSrvGetFileIndexInfo            SymSrvGetFileIndexInfoW
+
  #define IMAGEHLP_LINE64                   IMAGEHLP_LINEW64
  #define PIMAGEHLP_LINE64                  PIMAGEHLP_LINEW64
  #define SYMBOL_INFO                       SYMBOL_INFOW
@@ -3050,7 +3318,9 @@ typedef BOOL (CALLBACK WINAPI *PSYMBOLSERVERMESSAGEPROC)(UINT_PTR action, ULONG6
  #define PFINDFILEINPATHCALLBACK           PFINDFILEINPATHCALLBACKW
  #define IMAGEHLP_MODULE64                 IMAGEHLP_MODULEW64
  #define PIMAGEHLP_MODULE64                PIMAGEHLP_MODULEW64
- 
+ #define SYMSRV_INDEX_INFO                 SYMSRV_INDEX_INFOW
+ #define PSYMSRV_INDEX_INFO                PSYMSRV_INDEX_INFOW
+
  #define PSYMBOLSERVERPROC                 PSYMBOLSERVERPROCW
  #define PSYMBOLSERVERPINGPROC             PSYMBOLSERVERPINGPROCW
 #endif
@@ -3145,6 +3415,34 @@ SymEnumerateSymbolsW(
     __in ULONG BaseOfDll,
     __in PSYM_ENUMSYMBOLS_CALLBACKW EnumSymbolsCallback,
     __in_opt PVOID UserContext
+    );
+#endif
+
+// use SymLoadModuleEx
+
+DWORD64
+IMAGEAPI
+SymLoadModule64(
+    __in HANDLE hProcess,
+    __in_opt HANDLE hFile,
+    __in_opt PCSTR ImageName,
+    __in_opt PCSTR ModuleName,
+    __in DWORD64 BaseOfDll,
+    __in DWORD SizeOfDll
+    );
+
+#if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+#define SymLoadModule SymLoadModule64
+#else
+DWORD
+IMAGEAPI
+SymLoadModule(
+    __in HANDLE hProcess,
+    __in_opt HANDLE hFile,
+    __in_opt PCSTR ImageName,
+    __in_opt PCSTR ModuleName,
+    __in DWORD BaseOfDll,
+    __in DWORD SizeOfDll
     );
 #endif
 
@@ -3352,6 +3650,7 @@ typedef enum _MINIDUMP_STREAM_TYPE {
     MiscInfoStream              = 15,
     MemoryInfoListStream        = 16,
     ThreadInfoListStream        = 17,
+    HandleOperationListStream   = 18,
 
     ceStreamNull                = 0x8000,
     ceStreamSystemInfo          = 0x8001,
@@ -3638,6 +3937,28 @@ typedef struct _MINIDUMP_EXCEPTION_INFORMATION64 {
 // Support for capturing system handle state at the time of the dump.
 //
 
+// Per-handle object information varies according to
+// the OS, the OS version, the processor type and
+// so on.  The minidump gives a minidump identifier
+// to each possible data format for identification
+// purposes but does not control nor describe the actual data.
+typedef enum _MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE {
+    MiniHandleObjectInformationNone,
+    MiniThreadInformation1,
+    MiniMutantInformation1,
+    MiniMutantInformation2,
+    MiniProcessInformation1,
+    MiniProcessInformation2,
+    MiniHandleObjectInformationTypeMax
+} MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE;
+
+typedef struct _MINIDUMP_HANDLE_OBJECT_INFORMATION {
+    RVA NextInfoRva;
+    ULONG32 InfoType;
+    ULONG32 SizeOfInfo;
+    // Raw information follows.
+} MINIDUMP_HANDLE_OBJECT_INFORMATION;
+
 typedef struct _MINIDUMP_HANDLE_DESCRIPTOR {
     ULONG64 Handle;
     RVA TypeNameRva;
@@ -3648,12 +3969,41 @@ typedef struct _MINIDUMP_HANDLE_DESCRIPTOR {
     ULONG32 PointerCount;
 } MINIDUMP_HANDLE_DESCRIPTOR, *PMINIDUMP_HANDLE_DESCRIPTOR;
 
+typedef struct _MINIDUMP_HANDLE_DESCRIPTOR_2 {
+    ULONG64 Handle;
+    RVA TypeNameRva;
+    RVA ObjectNameRva;
+    ULONG32 Attributes;
+    ULONG32 GrantedAccess;
+    ULONG32 HandleCount;
+    ULONG32 PointerCount;
+    RVA ObjectInfoRva;
+    ULONG32 Reserved0;
+} MINIDUMP_HANDLE_DESCRIPTOR_2, *PMINIDUMP_HANDLE_DESCRIPTOR_2;
+
+// The latest MINIDUMP_HANDLE_DESCRIPTOR definition.
+typedef MINIDUMP_HANDLE_DESCRIPTOR_2 MINIDUMP_HANDLE_DESCRIPTOR_N;
+typedef MINIDUMP_HANDLE_DESCRIPTOR_N *PMINIDUMP_HANDLE_DESCRIPTOR_N;
+
 typedef struct _MINIDUMP_HANDLE_DATA_STREAM {
     ULONG32 SizeOfHeader;
     ULONG32 SizeOfDescriptor;
     ULONG32 NumberOfDescriptors;
     ULONG32 Reserved;
 } MINIDUMP_HANDLE_DATA_STREAM, *PMINIDUMP_HANDLE_DATA_STREAM;
+
+// Some operating systems can track the last operations
+// performed on a handle.  For example, Application Verifier
+// can enable this for some versions of Windows.  The
+// handle operation list collects handle operations
+// known for the dump target.
+// Each entry is an AVRF_HANDLE_OPERATION.
+typedef struct _MINIDUMP_HANDLE_OPERATION_LIST {
+    ULONG32 SizeOfHeader;
+    ULONG32 SizeOfEntry;
+    ULONG32 NumberOfEntries;
+    ULONG32 Reserved;
+} MINIDUMP_HANDLE_OPERATION_LIST, *PMINIDUMP_HANDLE_OPERATION_LIST;
 
 
 //
@@ -3712,8 +4062,9 @@ typedef struct _MINIDUMP_UNLOADED_MODULE_LIST {
 // bit is set.
 //
 
-#define MINIDUMP_MISC1_PROCESS_ID    0x00000001
-#define MINIDUMP_MISC1_PROCESS_TIMES 0x00000002
+#define MINIDUMP_MISC1_PROCESS_ID           0x00000001
+#define MINIDUMP_MISC1_PROCESS_TIMES        0x00000002
+#define MINIDUMP_MISC1_PROCESSOR_POWER_INFO 0x00000004
 
 typedef struct _MINIDUMP_MISC_INFO {
     ULONG32 SizeOfInfo;
@@ -3723,6 +4074,24 @@ typedef struct _MINIDUMP_MISC_INFO {
     ULONG32 ProcessUserTime;
     ULONG32 ProcessKernelTime;
 } MINIDUMP_MISC_INFO, *PMINIDUMP_MISC_INFO;
+
+typedef struct _MINIDUMP_MISC_INFO_2 {
+    ULONG32 SizeOfInfo;
+    ULONG32 Flags1;
+    ULONG32 ProcessId;
+    ULONG32 ProcessCreateTime;
+    ULONG32 ProcessUserTime;
+    ULONG32 ProcessKernelTime;
+    ULONG32 ProcessorMaxMhz;
+    ULONG32 ProcessorCurrentMhz;
+    ULONG32 ProcessorMhzLimit;
+    ULONG32 ProcessorMaxIdleState;
+    ULONG32 ProcessorCurrentIdleState;
+} MINIDUMP_MISC_INFO_2, *PMINIDUMP_MISC_INFO_2;
+
+// The latest MINIDUMP_MISC_INFO definition.
+typedef MINIDUMP_MISC_INFO_2 MINIDUMP_MISC_INFO_N;
+typedef MINIDUMP_MISC_INFO_N* PMINIDUMP_MISC_INFO_N;
 
 
 //
@@ -3824,6 +4193,12 @@ typedef enum _MINIDUMP_CALLBACK_TYPE {
     WriteKernelMinidumpCallback,
     KernelMinidumpStatusCallback,
     RemoveMemoryCallback,
+    IncludeVmRegionCallback,
+    IoStartCallback,
+    IoWriteAllCallback,
+    IoFinishCallback,
+    ReadMemoryFailureCallback,
+    SecondaryFlagsCallback,
 } MINIDUMP_CALLBACK_TYPE;
 
 
@@ -3894,6 +4269,23 @@ typedef enum _MODULE_WRITE_FLAGS {
 } MODULE_WRITE_FLAGS;
 
 
+typedef struct _MINIDUMP_IO_CALLBACK {
+    HANDLE Handle;
+    ULONG64 Offset;
+    PVOID Buffer;
+    ULONG BufferBytes;
+} MINIDUMP_IO_CALLBACK, *PMINIDUMP_IO_CALLBACK;
+
+
+typedef struct _MINIDUMP_READ_MEMORY_FAILURE_CALLBACK
+{
+    ULONG64 Offset;
+    ULONG Bytes;
+    HRESULT FailureStatus;
+} MINIDUMP_READ_MEMORY_FAILURE_CALLBACK,
+  *PMINIDUMP_READ_MEMORY_FAILURE_CALLBACK;
+
+
 typedef struct _MINIDUMP_CALLBACK_INPUT {
     ULONG ProcessId;
     HANDLE ProcessHandle;
@@ -3905,6 +4297,9 @@ typedef struct _MINIDUMP_CALLBACK_INPUT {
         MINIDUMP_MODULE_CALLBACK Module;
         MINIDUMP_INCLUDE_THREAD_CALLBACK IncludeThread;
         MINIDUMP_INCLUDE_MODULE_CALLBACK IncludeModule;
+        MINIDUMP_IO_CALLBACK Io;
+        MINIDUMP_READ_MEMORY_FAILURE_CALLBACK ReadMemoryFailure;
+        ULONG SecondaryFlags;
     };
 } MINIDUMP_CALLBACK_INPUT, *PMINIDUMP_CALLBACK_INPUT;
 
@@ -3912,6 +4307,7 @@ typedef struct _MINIDUMP_CALLBACK_OUTPUT {
     union {
         ULONG ModuleWriteFlags;
         ULONG ThreadWriteFlags;
+        ULONG SecondaryFlags;
         struct {
             ULONG64 MemoryBase;
             ULONG MemorySize;
@@ -3921,6 +4317,11 @@ typedef struct _MINIDUMP_CALLBACK_OUTPUT {
             BOOL Cancel;
         };
         HANDLE Handle;
+        struct {
+            MINIDUMP_MEMORY_INFO VmRegion;
+            BOOL Continue;
+        };
+        HRESULT Status;
     };
 } MINIDUMP_CALLBACK_OUTPUT, *PMINIDUMP_CALLBACK_OUTPUT;
 
@@ -4018,7 +4419,26 @@ typedef enum _MINIDUMP_TYPE {
     MiniDumpWithCodeSegs                   = 0x00002000,
     MiniDumpWithoutAuxiliaryState          = 0x00004000,
     MiniDumpWithFullAuxiliaryState         = 0x00008000,
+    
+    MiniDumpValidTypeFlags                 = 0x0000ffff,
 } MINIDUMP_TYPE;
+
+//
+// In addition to the primary flags provided to
+// MiniDumpWriteDump there are additional, less
+// frequently used options queried via the secondary
+// flags callback.
+//
+// MiniSecondaryWithoutPowerInfo suppresses the minidump
+// query that retrieves processor power information for
+// MINIDUMP_MISC_INFO.
+//
+    
+typedef enum _MINIDUMP_SECONDARY_FLAGS {
+    MiniSecondaryWithoutPowerInfo = 0x00000001,
+
+    MiniSecondaryValidFlags       = 0x00000001,
+} MINIDUMP_SECONDARY_FLAGS;
 
 
 //
