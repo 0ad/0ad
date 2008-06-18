@@ -15,7 +15,7 @@
 	
 	<Actions>	
 			<Move>
-			<Speed>1</Speed>
+			<Speed>2.0</Speed>
 			<TurningRadius>5.0</TurningRadius>
 			
 			<Run>
@@ -27,6 +27,6 @@
 		</Move>
 	</Actions>
 
- 	<Actor>fauna/deer_male.xml</Actor>
+ 	<Actor>fauna/deer.xml</Actor>
 
 </Entity>
