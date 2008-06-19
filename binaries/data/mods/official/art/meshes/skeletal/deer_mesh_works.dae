@@ -7,8 +7,8 @@
       <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=0;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=0;AnimStart=0;AnimEnd=0.666667;</comments>
       <source_data>file:///D:/0adart/EWU/Task%20060%20%5BDeer%5D/Idle/deer_idle_01.max</source_data>
     </contributor>
-    <created>2008-05-08T03:40:31Z</created>
-    <modified>2008-05-08T03:40:32Z</modified>
+    <created>2008-05-08T03:39:39Z</created>
+    <modified>2008-05-08T03:39:42Z</modified>
     <unit meter="0.0254" name="inch"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -34,9 +34,6 @@
   <library_materials>
     <material id="Material__0" name="Material__0">
       <instance_effect url="#Material__0-fx"/>
-    </material>
-    <material id="ColorMaterial_FCFC0000" name="ColorMaterial_FCFC0000">
-      <instance_effect url="#ColorMaterial_FCFC0000-fx"/>
     </material>
   </library_materials>
   <library_effects>
@@ -123,93 +120,8 @@
         </technique>
       </extra>
     </effect>
-    <effect id="ColorMaterial_FCFC0000-fx">
-      <profile_COMMON>
-        <technique sid="common">
-          <phong>
-            <emission>
-              <color>0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color>0.988235 0.988235 0 1</color>
-            </ambient>
-            <diffuse>
-              <color>0.988235 0.988235 0 1</color>
-            </diffuse>
-            <specular>
-              <color>1 1 1 1</color>
-            </specular>
-            <shininess>
-              <float>10</float>
-            </shininess>
-            <reflective>
-              <color>0 0 0 1</color>
-            </reflective>
-            <reflectivity>
-              <float>1</float>
-            </reflectivity>
-            <transparent opaque="A_ONE">
-              <color>1 1 1 1</color>
-            </transparent>
-            <transparency>
-              <float>1</float>
-            </transparency>
-          </phong>
-          <extra>
-            <technique profile="FCOLLADA">
-              <spec_level>
-                <float>0.2</float>
-              </spec_level>
-            </technique>
-          </extra>
-        </technique>
-      </profile_COMMON>
-    </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="antler-mesh" name="antler">
-      <mesh>
-        <source id="antler-mesh-positions">
-          <float_array id="antler-mesh-positions-array" count="18">0 0 5 5 0 0 0 5 0 -5 0 0 0 -5 0 0 0 -5</float_array>
-          <technique_common>
-            <accessor source="#antler-mesh-positions-array" count="6" stride="3">
-              <param name="X" type="float"/>
-              <param name="Y" type="float"/>
-              <param name="Z" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="antler-mesh-normals">
-          <float_array id="antler-mesh-normals-array" count="72">0.57735 0.57735 0.57735 0.57735 0.57735 0.57735 0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 -0.57735 -0.57735 -0.57735 -0.57735 -0.57735 -0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735</float_array>
-          <technique_common>
-            <accessor source="#antler-mesh-normals-array" count="24" stride="3">
-              <param name="X" type="float"/>
-              <param name="Y" type="float"/>
-              <param name="Z" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <source id="antler-mesh-map-channel1">
-          <float_array id="antler-mesh-map-channel1-array" count="42">0.375 1 5 0.5 0.5 5 0.75 0.5 5 1 0.5 5 0.25 0.5 5 0.375 0 5 0.625 1 5 0.875 1 5 0.125 1 5 0 0.5 5 0.625 0 5 0.875 0 5 0.125 0 5 0 0.5 5</float_array>
-          <technique_common>
-            <accessor source="#antler-mesh-map-channel1-array" count="14" stride="3">
-              <param name="S" type="float"/>
-              <param name="T" type="float"/>
-              <param name="P" type="float"/>
-            </accessor>
-          </technique_common>
-        </source>
-        <vertices id="antler-mesh-vertices">
-          <input semantic="POSITION" source="#antler-mesh-positions"/>
-        </vertices>
-        <triangles material="ColorMaterial" count="8">
-          <input semantic="VERTEX" source="#antler-mesh-vertices" offset="0"/>
-          <input semantic="NORMAL" source="#antler-mesh-normals" offset="1"/>
-          <input semantic="TEXCOORD" source="#antler-mesh-map-channel1" offset="2" set="1"/>
-          <p>0 0 6 1 1 1 2 2 2 0 3 7 2 4 2 3 5 3 0 6 8 3 7 9 4 8 4 0 9 0 4 10 4 1 11 1 5 12 10 2 13 2 1 14 1 5 15 11 3 16 3 2 17 2 5 18 12 4 19 4 3 20 13 5 21 5 1 22 1 4 23 4</p>
-        </triangles>
-      </mesh>
-    </geometry>
     <geometry id="deer01-mesh" name="deer01">
       <mesh>
         <source id="deer01-mesh-positions">
@@ -256,20 +168,6 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="deer_idle_01max" name="deer_idle_01_max">
-      <node id="deer-node" name="deer" type="NODE">
-        <node id="antler-node" name="antler" type="NODE">
-          <translate>-8.3375 -1905.16 5847.96</translate>
-          <rotate>-0.540832 -0.627911 -0.559668 -115.972</rotate>
-          <scale>56.0142 56.0142 56.0142</scale>
-          <instance_geometry url="#antler-mesh">
-            <bind_material>
-              <technique_common>
-                <instance_material symbol="ColorMaterial" target="#ColorMaterial_FCFC0000"/>
-              </technique_common>
-            </bind_material>
-          </instance_geometry>
-        </node>
-      </node>
       <node id="deer01-node" name="deer01" type="NODE">
         <translate>0 0 0</translate>
         <scale>0.017852 0.017852 0.017852</scale>
