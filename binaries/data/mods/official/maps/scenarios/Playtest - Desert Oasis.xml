@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="179.347" y="113.841" z="35.0268"/>
+		<Position x="171.517" y="87.8894" z="63.263"/>
 		<Rotation angle="0.0154544"/>
 		<Declination angle="0.686883"/>
 	</Camera>
@@ -622,30 +622,6 @@
 			<Position x="131.278" y="17.0021" z="118.508"/>
 			<Orientation angle="-2.88599"/>
 		</Entity>
-		<Entity uid="343">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="108.1" y="19.9992" z="90.7407"/>
-			<Orientation angle="-1.58402"/>
-		</Entity>
-		<Entity uid="344">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="99.7032" y="19.9993" z="104.68"/>
-			<Orientation angle="0.772507"/>
-		</Entity>
-		<Entity uid="345">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="100.746" y="19.9992" z="108.644"/>
-			<Orientation angle="1.06704"/>
-		</Entity>
-		<Entity uid="346">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="93.1328" y="20.5682" z="109.647"/>
-			<Orientation angle="0.807032"/>
-		</Entity>
 		<Entity uid="348">
 			<Template>flora_tree_date_palm</Template>
 			<Player>0</Player>
@@ -1102,12 +1078,6 @@
 			<Position x="697.333" y="19.789" z="97.661"/>
 			<Orientation angle="2.124"/>
 		</Entity>
-		<Entity uid="689">
-			<Template>flora_tree_date_palm</Template>
-			<Player>0</Player>
-			<Position x="700.505" y="19.9992" z="101.585"/>
-			<Orientation angle="-3.02196"/>
-		</Entity>
 		<Entity uid="690">
 			<Template>flora_tree_date_palm</Template>
 			<Player>0</Player>
@@ -1497,42 +1467,6 @@
 			<Player>0</Player>
 			<Position x="746.179" y="19.973" z="74.0175"/>
 			<Orientation angle="0.123745"/>
-		</Entity>
-		<Entity uid="764">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="669.265" y="19.9992" z="71.5523"/>
-			<Orientation angle="0.700911"/>
-		</Entity>
-		<Entity uid="765">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="694.275" y="18.3935" z="80.1655"/>
-			<Orientation angle="1.67555"/>
-		</Entity>
-		<Entity uid="766">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="676.008" y="19.9992" z="68.6849"/>
-			<Orientation angle="-2.59701"/>
-		</Entity>
-		<Entity uid="767">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="673.044" y="19.9992" z="72.0849"/>
-			<Orientation angle="1.20852"/>
-		</Entity>
-		<Entity uid="768">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="675.264" y="19.9992" z="81.7359"/>
-			<Orientation angle="-2.87889"/>
-		</Entity>
-		<Entity uid="769">
-			<Template>fauna_deer</Template>
-			<Player>0</Player>
-			<Position x="690.142" y="19.7906" z="78.6994"/>
-			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="771">
 			<Template>fauna_boar</Template>
@@ -6579,6 +6513,12 @@
 			<Player>2</Player>
 			<Position x="883.231" y="19.9992" z="363.684"/>
 			<Orientation angle="-2.87935"/>
+		</Entity>
+		<Entity uid="689">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="700.505" y="19.9992" z="101.585"/>
+			<Orientation angle="-3.02196"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
