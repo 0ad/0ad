@@ -44,19 +44,19 @@
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>15.0</Hack>
- 				<Pierce>5.0</Pierce>
+ 				<Hack>10.0</Hack>
+ 				<Pierce>15.0</Pierce>
 			</Melee>
 			<Charge>
-				<Hack>30.0</Hack>
-				<Pierce>10.0</Pierce>
+				<Hack>20.0</Hack>
+				<Pierce>30.0</Pierce>
 			</Charge>		
  		</Attack>
 
 		<Move>
-			<Speed>8.0</Speed>
+			<Speed>3.5</Speed>
 			<Run>
-				<Speed>16.0</Speed>
+				<Speed>8.0</Speed>
 			</Run>
 		</Move>
 	</Actions>

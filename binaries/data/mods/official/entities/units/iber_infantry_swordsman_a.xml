@@ -15,6 +15,24 @@
 	
 	</Traits>
 
+<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>22.0</Hack>
+ 				<Pierce>0.0</Pierce>
+			</Melee>
+			<Charge>
+				<Hack>40.0</Hack>
+			</Charge>		
+ 		</Attack>
+
+		<Move>
+			<Speed>3.8</Speed>
+			<Run>
+				<Speed>8.4</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	<Actor>units/iberians/infantry_swordsman_a.xml</Actor>
 	
 </Entity>

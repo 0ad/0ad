@@ -20,15 +20,17 @@
 		</Promotion>
 		
 		<Creation>
+		<Time>3</Time>
 			<Resource>
- 				<Food>50</Food>
-				<Wood>45</Wood>
+ 				<Food>5</Food>
+				<Wood>2</Wood>
+				<Ore>1</Ore>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>4.0</Hack>
-			<Pierce>3.0</Pierce>
-			<Crush>9.5</Crush>
+			<Hack>2.5</Hack>
+			<Pierce>2.0</Pierce>
+			<Crush>1.0</Crush>
 		</Armour>
 		
 	</Traits>
@@ -36,21 +38,16 @@
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>14.0</Hack>
- 				<Pierce>5.0</Pierce>
+ 				<Hack>3.0</Hack>
+ 				<Pierce>8.0</Pierce>
+				<Crush>0.2</Crush>
 			</Melee>
 			<Charge>
-				<Hack>28.0</Hack>
-				<Pierce>10.0</Pierce>
+				<Hack>6.0</Hack>
+				<Pierce>17.0</Pierce>
+				<Crush>0.8</Crush>
 			</Charge>		
  		</Attack>
-
-		<Move>
-			<Speed>8.5</Speed>
-			<Run>
-				<Speed>16.0</Speed>
-			</Run>
-		</Move>
 	</Actions>	
 		
 	<Actor>units/persians/infantry_spearman_b.xml</Actor>

@@ -10,7 +10,35 @@
 			
 		</Promotion>
 	
+	
+	<Armour>
+			<Hack>10.0</Hack>
+			<Pierce>9.0</Pierce>
+			<Crush>7.0</Crush>
+		</Armour>
+		
 	</Traits>
+	
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>6.0</Hack>
+ 				<Pierce>20.0</Pierce>
+ 				<Crush>0.0</Crush>
+			<Charge>
+				<Hack>19.0</Hack>
+				<Pierce>40.0</Pierce>
+			</Charge>		
+			</Melee>
+ 		</Attack>
+
+		<Move>
+			<Speed>4.8</Speed>
+			<Run>
+				<Speed>30.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	
 	<Actor>units/iberians/cavalry_spearman_a.xml</Actor>
 	
