@@ -206,10 +206,6 @@ static void Frame()
 	music_player.Update();
 	PROFILE_END( "update music" );
 
-	PROFILE_START( "update sound groups" );
-	g_soundGroupMgr->UpdateSoundGroups(TimeSinceLastFrame);
-	PROFILE_END( "update sound groups" );
-
 	bool is_building_archive;	// must come before PROFILE_START's {
 	PROFILE_START("build archive");
 	MICROLOG(L"build archive");
@@ -276,12 +272,16 @@ static void Frame()
 		PROFILE_START( "sound update" );
 		CCamera* camera = g_Game->GetView()->GetCamera();
 		CMatrix3D& orientation = camera->m_Orientation;
-
 		float* pos = &orientation._data[12];
 		float* dir = &orientation._data[8];
 		float* up  = &orientation._data[4];
-		if(snd_update(pos, dir, up) < 0)
+		// HACK: otherwise sound effects are L/R flipped. No idea what else
+		// is going wrong, because the listener and camera are supposed to
+		// coincide in position and orientation.
+		float down[3] = { -up[0], -up[1], -up[2] };
+		if(snd_update(pos, dir, down) < 0)
 			debug_printf("snd_update failed\n");
+		g_soundGroupMgr->UpdateSoundGroups(TimeSinceLastFrame);
 		PROFILE_END( "sound update" );
 	}
 	else

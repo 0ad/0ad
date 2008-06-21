@@ -27,8 +27,6 @@ CSoundGroup::CSoundGroup()
 	m_Flags = 0;
 	m_Intensity = 0;
 	m_CurTime = 0.0f;
-	
-
 }
 
 CSoundGroup::CSoundGroup(const char *XMLfile)
@@ -44,11 +42,23 @@ CSoundGroup::~CSoundGroup()
 {
 	// clean up all the handles from this group.
 	ReleaseGroup();
-
 }
 
-void CSoundGroup::PlayNext()
+void CSoundGroup::PlayNext(const CVector3D& position)
 {
+	// interface/UI sounds should always be played at the listener's
+	// position, which is achieved by setting position to 0 and
+	// having that treated as relative to the listener.
+	float x = 0.0f, y = 0.0f, z = 0.0f;
+	bool relative = true;
+	if(!TestFlag(eOmnipresent))
+	{
+		x = position.X;
+		y = position.Y;
+		z = position.Z;
+		relative = false;
+	}
+
 	if(m_Intensity >= m_IntensityThreshold)
 	{
 		if(!is_playing(m_hReplacement))
@@ -59,7 +69,7 @@ void CSoundGroup::PlayNext()
 				return;
 			snd_set_gain(m_hReplacement, m_Gain);	
 			snd_set_pitch(m_hReplacement, m_Pitch);
-			snd_set_cone(m_hReplacement, m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
+			snd_set_pos(m_hReplacement, x, y, z, relative);
 
 			//check for randomization of pitch and gain
 			if(TestFlag(eRandPitch))
@@ -68,7 +78,6 @@ void CSoundGroup::PlayNext()
 				snd_set_gain(m_hReplacement, (float)((rand(m_GainLower * 100.0f, m_GainUpper * 100.0f) / 100.0f)));	
 		
 			snd_play(m_hReplacement, m_Priority);
-			
 		}
 	}
 	else
@@ -80,30 +89,21 @@ void CSoundGroup::PlayNext()
 		// try loading on the fly only when we need the sound to see if that fixes release problems...
 		if(TestFlag(eRandOrder))
 			m_index = (size_t)rand(0, (size_t)filenames.size());
-		Handle temp;
-		temp = snd_open(m_filepath + filenames[m_index]);
-		if(temp == ERR::AGAIN)	// sound is disabled
+		// (note: previously snd_group[m_index] was used in place of hs)
+		Handle hs = snd_open(m_filepath + filenames[m_index]);
+		if(hs == ERR::AGAIN)	// sound is disabled
 			return;
-		snd_set_gain(temp, m_Gain);	
-		snd_set_pitch(temp, m_Pitch);
-		snd_set_cone(temp, m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
-		
+		snd_set_gain(hs, m_Gain);	
+		snd_set_pitch(hs, m_Pitch);
+		snd_set_pos(hs, x, y, z, relative);
 
 		//check for randomization of pitch and gain
 		if(TestFlag(eRandPitch))
-			snd_set_pitch(temp, (float)((rand(m_PitchLower * 100.0f, m_PitchUpper * 100.0f) / 100.0f))); 
-			//snd_set_pitch(snd_group[m_index], (float)((rand(m_PitchLower * 100.0f, m_PitchUpper * 100.0f) / 100.0f))); 
-		
+			snd_set_pitch(hs, (float)((rand(m_PitchLower * 100.0f, m_PitchUpper * 100.0f) / 100.0f))); 
 		if(TestFlag(eRandGain))
-			snd_set_gain(temp, (float)((rand(m_GainLower * 100.0f, m_GainUpper * 100.0f) / 100.0f)));	
-			//snd_set_gain(snd_group[m_index], (float)((rand(m_GainLower * 100.0f, m_GainUpper * 100.0f) / 100.0f)));	
-	
-		snd_play(temp, m_Priority);
-		//snd_play(snd_group[m_index], m_Priority);
-		
-	
-		
-		
+			snd_set_gain(hs, (float)((rand(m_GainLower * 100.0f, m_GainUpper * 100.0f) / 100.0f)));	
+
+		snd_play(hs, m_Priority);
 	}
 	
 	playtimes[m_index] = 0.0f;
@@ -111,7 +111,6 @@ void CSoundGroup::PlayNext()
 	m_Intensity++;
 	if(m_Intensity > m_IntensityThreshold)
 		m_Intensity = m_IntensityThreshold;
-	
 
 	if(m_index >= filenames.size())
 		Reload();
@@ -119,7 +118,7 @@ void CSoundGroup::PlayNext()
 
 void CSoundGroup::Reload()
 {
-	m_index = 0; // reset our  index
+	m_index = 0; // reset our index
 	// get rid of the used handles
 	snd_group.clear();
 	// clear out the old timers
@@ -143,12 +142,10 @@ void CSoundGroup::Reload()
 
 void CSoundGroup::ReleaseGroup()
 {
-
 	for(size_t i = m_index; i<snd_group.size(); i++)
 	{
 		//if(!is_playing(snd_group[i]))	
 			snd_free(snd_group[i]);
-
 	}
 	snd_group.clear();
 	playtimes.clear();
@@ -160,7 +157,6 @@ void CSoundGroup::ReleaseGroup()
 
 void CSoundGroup::Update(float TimeSinceLastFrame)
 {
-	
 	for(size_t i = 0; i < playtimes.size(); i++)
 	{
 		if(playtimes[i] >= 0.0f)
@@ -176,7 +172,6 @@ void CSoundGroup::Update(float TimeSinceLastFrame)
 
 bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 {
-
 	CXeromyces XeroFile;
 	if (XeroFile.Load(XMLfile) != PSRETURN_OK)
 		return false;
@@ -190,6 +185,7 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 	EL(soundgroup);
 	EL(gain);
 	EL(looping);
+	EL(omnipresent);
 	EL(pitch);
 	EL(priority);
 	EL(randorder);
@@ -229,9 +225,15 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 		}
 
 		if(child_name == el_looping)
-		{			
+		{
 			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eLoop);
+		}
+
+		if(child_name == el_omnipresent)
+		{
+			if(CStr(child.GetText()).ToInt() == 1)
+				SetFlag(eOmnipresent);
 		}
 
 		if(child_name == el_pitch)
@@ -266,14 +268,11 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 			this->m_GainLower = CStr(child.GetText()).ToFloat();
 		}
 
-
-
 		if(child_name == el_randpitch)
 		{
 			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eRandPitch);
 		}
-
 
 		if(child_name == el_pitchupper)
 		{
@@ -329,7 +328,6 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 		
 		}
 	}
-
 
 	Reload();
 	return true;

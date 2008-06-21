@@ -31,7 +31,7 @@ public:
 	// in:  size_t index - index into m_Groups
 	// Plays the next queued sound in an indexed group 
 	///////////////////////////////////////////
-	void PlayNext(size_t index); 
+	void PlayNext(size_t index, const CVector3D& position); 
 
 	///////////////////////////////////////////
 	// AddGroup()

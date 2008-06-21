@@ -39,6 +39,7 @@ Example SoundGroup.xml
 
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
+#include "maths/Vector3D.h"
 #include "lib/res/sound/snd_mgr.h"
 
 #include <vector>
@@ -46,10 +47,11 @@ using namespace std;
 
 enum eSndGrpFlags
 {
-	eRandOrder = 0x01,
-	eRandGain = 0x02,
-	eRandPitch = 0x04,
-	eLoop = 0x08
+	eRandOrder     = 0x01,
+	eRandGain      = 0x02,
+	eRandPitch     = 0x04,
+	eLoop          = 0x08,
+	eOmnipresent      = 0x10
 };
 
 
@@ -89,7 +91,9 @@ public:
 	~CSoundGroup(void);
 	
 	// Play next sound in group
-	void PlayNext();
+	// @param position world position of the entity generating the sound
+	// (ignored if the eOmnipresent flag is set)
+	void PlayNext(const CVector3D& position);
 
 	// Load a group
 	bool LoadSoundGroup(const char *XMLfile);
@@ -106,7 +110,7 @@ public:
 	inline void SetFlag(int flag){ m_Flags |= flag; }  
 
 	// Test flag, returns true if flag is set.
-	inline bool TestFlag(int flag) { return (m_Flags & flag) == flag;}
+	inline bool TestFlag(int flag) { return (m_Flags & flag) != 0;}
 
 };
 

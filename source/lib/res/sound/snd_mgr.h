@@ -330,20 +330,6 @@ extern LibError snd_disable(bool disabled);
  **/
 extern LibError snd_update(const float* pos, const float* dir, const float* up);
 
-
-/** added by GF
- * set sound cone information
- *
- * cone_inner and cone_outer should be in the range 0.0 - 360.0, 
- * cone_gain (which is the outer cone gain) should range from 0.0 - 1.0
- * @param cone_inner inner angle of sound cone
- * @param cone_outer outer angle of sound cone
- * @param cone_gain outer cone gain
- * @return LibError
-
-**/
-extern LibError snd_set_cone(Handle hvs, const float cone_inner, const float cone_outer, const float cone_gain);
-
 /** added by GF
  * find out if a sound is still playing
  *

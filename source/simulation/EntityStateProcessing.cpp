@@ -439,7 +439,7 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 		if( ( m_fsm_cyclepos <= action->m_Speed ) && ( nextpos > action->m_Speed ) )
 		{
 			const size_t soundGroupIndex = m_base->m_SoundGroupTable[animation];
-			g_soundGroupMgr->PlayNext(soundGroupIndex);
+			g_soundGroupMgr->PlayNext(soundGroupIndex, m_position);
 
 			if(!DispatchEvent( contactEvent ))
 			{
