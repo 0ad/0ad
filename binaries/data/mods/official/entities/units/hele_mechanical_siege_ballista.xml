@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_mechanical_siege">
+	<Traits>
+	
+		<Id>
+
+			<Specific>Oxybeles</Specific>
+			
+			<Icon_Cell>37</Icon_Cell>
+
+			<Classes>Ranged</Classes>
+		
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Wood>190</Wood>
+				<Metal>100</Metal>
+ 			</Resource>
+		</Creation>
+		<Health>
+			<Max>200</Max>
+		</Health>
+	</Traits>
+	<Actions>
+ 		<Move>
+			<Speed>5.0</Speed>
+			<Run>
+				<Speed>5.9</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/hellenes/mechanical_siege_ballista.xml</Actor>
+</Entity>

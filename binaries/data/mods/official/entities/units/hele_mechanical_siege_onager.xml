@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_mechanical_siege_onager">
+	<Traits>
+	
+		<Id>
+		
+			<Specific>Lithobolos</Specific>
+		
+			<Icon_Cell>35</Icon_Cell>
+
+			<Classes>Ranged</Classes>
+
+		</Id>
+			<Creation>
+				<Resource>
+ 				<Wood>330</Wood>
+				<Stone>100</Stone>
+ 			</Resource>
+		</Creation>
+		<Health>
+			<Max>300</Max>
+		</Health>
+	</Traits>
+	<Actor>units/hellenes/mechanical_siege_onager.xml</Actor>
+</Entity>
