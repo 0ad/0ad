@@ -29,23 +29,28 @@
 		<Health>
 			<Max>160</Max>
 		</Health>
-
 	</Traits>
 
 	<Actions>
  		<Attack>
 			<Melee>
  				<Hack>17.0</Hack>
+				<Range>3.6</Range>
 			</Melee>
 			<Charge>
 				<Hack>51.0</Hack>
+				<Range>3.6</Range>
 			</Charge>		
  		</Attack>
 
 		<Move>
-			<Speed>13.0</Speed>
+
+			<Speed>11.0</Speed>
+
 			<Run>
-				<Speed>25.0</Speed>
+
+				<Speed>29.7</Speed>
+
 			</Run>
 		</Move>
 	</Actions>

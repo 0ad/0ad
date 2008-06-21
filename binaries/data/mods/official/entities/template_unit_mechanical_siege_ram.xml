@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_mechanical_siege"
->
+<Entity	Parent="template_unit_mechanical_siege">
 	<Traits>
 	
 		<Id>
+		
+			<Generic>Siege Ram</Generic>
 		
 			<Icon_Cell>36</Icon_Cell>
 
@@ -14,15 +14,24 @@
 		</Id>
 			<Creation>
 				<Resource>
- 				<Wood>300</Wood>
-				<Metal>175</Metal>
+ 				<Wood>260</Wood>
+				<Metal>60</Metal>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>30.0</Hack>
-			<Pierce>70.0</Pierce>
-			<Crush>70.0</Crush>
+			<Hack>5.0</Hack>
+			<Pierce>20.0</Pierce>
+			<Crush>6.0</Crush>
 		</Armour>
+		
+		<Health>
+			<Max>200</Max>
+		</Health>
+		
+		<Vision>
+			<Los>12</Los>
+		</Vision>
+		
 	</Traits>
 	
 
@@ -30,27 +39,31 @@
 
 	<Actions>
  		<Attack>
-			<Ranged>
- 				<Hack>80.0</Hack>
- 				<Pierce>120.0</Pierce>
- 				<Crush>250.0</Crush>
-			</Ranged>
- 		</Attack>
-	</Actions>
-
-
-
-	<Actions>
-		<Attack>
+			<Melee>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>0.0</Pierce>
+ 				<Crush>65.0</Crush>
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
+			</Melee>
 			<Charge>
 				<Hack>0.0</Hack>
 				<Pierce>0.0</Pierce>
-				<Crush>100.0</Crush>
+				<Crush>130.0</Crush>
 				
-				<Range>2.0</Range>
+				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Charge>	
-		</Attack>
+ 		</Attack>
+		
+		
+		<Move>
+			<Speed>3.0</Speed>
+			<Run>
+				<Speed>8.1</Speed>
+			</Run>
+		</Move>
+		
 	</Actions>	
 
 </Entity>

@@ -30,21 +30,27 @@
 		</Health>
 	</Traits>
 
-	<Actions>
+<Actions>
  		<Attack>
 			<Ranged>
  				<Hack>0.0</Hack>
  				<Pierce>30.0</Pierce>
  				<Crush>0.0</Crush>
+				<Range>40.0</Range>
 			</Ranged>
  		</Attack>
 
 		<Move>
-			<Speed>14.0</Speed>
+
+			<Speed>12.0</Speed>
+
 			<Run>
-				<Speed>25.0</Speed>
+
+				<Speed>32.4</Speed>
+
 			</Run>
 		</Move>
 	</Actions>
+
 	
 </Entity>

@@ -40,20 +40,24 @@
  		<Attack>
 			<Ranged>
  				<Hack>0.0</Hack>
- 				<Pierce>50.0</Pierce>
+ 				<Pierce>45.0</Pierce>
  				<Crush>0.0</Crush>
 
 				<MinRange>16.0</MinRange>
-				<Range>32</Range>
+				<Range>30</Range>
 				<Speed>1500</Speed>
 				<ProjectileSpeed>30.0</ProjectileSpeed>
 			</Ranged>
  		</Attack>
 
 		<Move>
-			<Speed>9.0</Speed>
+
+			<Speed>8.0</Speed>
+
 			<Run>
-				<Speed>20.0</Speed>
+
+				<Speed>21.6</Speed>
+
 			</Run>
 		</Move>
 	</Actions>

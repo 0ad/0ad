@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity	Parent="template_unit_super_ranged">
+<Entity	Parent="template_unit_super_infantry">
 	<Traits>
 	
 		<Id>
@@ -13,7 +13,7 @@
 		<Creation>
 			<Resource>
  				<Food>100</Food>
-				<Wood>500</Wood>
+				<Metal>250</Metal>
  			</Resource>
 		</Creation>
 		
@@ -26,13 +26,13 @@
 		</Vision>
 		
 		<Armour>
-			<Hack>5.0</Hack>
-			<Pierce>10.0</Pierce>
-			<Crush>10.0</Crush>
+			<Hack>7.0</Hack>
+			<Pierce>12.0</Pierce>
+			<Crush>12.0</Crush>
 		</Armour>	
 
 		<Health>
-			<Max>200</Max>
+			<Max>250</Max>
 			<RegenRate>0.2</RegenRate>
 		</Health>		
 
@@ -52,25 +52,32 @@
 
 	<Actions>
 		<Attack>
-			<Ranged>
-				<Pierce>50.0</Pierce>
-				<Hack>0.0</Hack>
+			<Melee>
+				<Hack>40.0</Hack>
+				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
-				<Range>56.0</Range>
+				<Range>5.0</Range>
 				<Speed>1500</Speed>
-				<ProjectileSpeed>25.0</ProjectileSpeed>
-			</Ranged>			
+			</Melee>
+			<Charge>
+				<Hack>120.0</Hack>
+				<Pierce>0.0</Pierce>
+				<Crush>0.0</Crush>
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
+			</Charge>
 		</Attack>
 		<Move>
-
-			<Speed>8.0</Speed>
-
+			<Speed>6.5</Speed>
 			<Run>
-
-				<Speed>21.6</Speed>
-
+				<Speed>17.55</Speed>
 			</Run>
-		</Move>
+		</Move>		
 	</Actions>
 
+	<SoundGroups>
+		<Melee>audio/attack/weapon/sword.xml</Melee>
+		<Death>audio/actor/human/death/death.xml</Death>
+	</SoundGroups>	
+	
 </Entity>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_mechanical_siege"
->
+<Entity	Parent="template_unit_mechanical_siege">
 	<Traits>
 	
 		<Id>
+		
+			<Generic>Siege Onager</Generic>
 		
 			<Icon_Cell>35</Icon_Cell>
 
@@ -14,16 +14,24 @@
 		</Id>
 			<Creation>
 				<Resource>
- 				<Wood>200</Wood>
-				<Metal>150</Metal>
-				<Stone>75</Stone>
+ 				<Wood>330</Wood>
+				<Stone>80</Stone>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>20.0</Hack>
-			<Pierce>80.0</Pierce>
-			<Crush>150.0</Crush>
+			<Hack>4.0</Hack>
+			<Pierce>6.0</Pierce>
+			<Crush>4.0</Crush>
 		</Armour>
+		<Health>
+			<Max>250</Max>
+		</Health>
+		
+		<Vision>
+			<Los>20</Los>
+		</Vision>
+		
+		
 	</Traits>
 
 
@@ -31,11 +39,20 @@
 	<Actions>
  		<Attack>
 			<Ranged>
- 				<Hack>80.0</Hack>
- 				<Pierce>200.0</Pierce>
- 				<Crush>85.0</Crush>
+ 				<Hack>35.0</Hack>
+ 				<Pierce>0.0</Pierce>
+ 				<Crush>40.0</Crush>
+				<Range>72</Range>
+				<Speed>1500</Speed>
+				<ProjectileSpeed>20.0</ProjectileSpeed>
 			</Ranged>
  		</Attack>
+		<Move>
+			<Speed>4.75</Speed>
+			<Run>
+				<Speed>4.9</Speed>
+			</Run>
+		</Move>
 	</Actions>
 
 
