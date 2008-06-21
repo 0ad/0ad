@@ -14,46 +14,52 @@
 			<History>The king of Macedonia (359 BC - 336 BC), he carried out vast monetary and military reforms in order to make his kingdom the most powerful force in the Greek world. Greatly enlarged the size of Macedonia by conquering much of Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign against Persia.</History>
 		
 		</Id>
-
+		<Creation>
+			<Resource>
+ 				<Food>150</Food>
+				<Metal>350</Metal>
+ 			</Resource>
+		</Creation>
+		<Population>
+			<Rem>2</Rem>
+		</Population>
+		<Vision>
+			<Los>17</Los>
+		</Vision>
+		<Armour>
+			<Hack>6.0</Hack>
+			<Pierce>14.0</Pierce>
+			<Crush>14.0</Crush>
+		</Armour>	
+		<Health>
+			<Max>350</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>		
 		<Footprint>
 			<Radius>1.5</Radius>
 			<Height>7.5</Height>
 		</Footprint>
-		
 	</Traits>
-
 	<Actions>
-
  		<Attack>
 			<Melee>
- 				<Pierce>30.0</Pierce>
-				<Crush>10.0</Crush>
+ 				<Hack>50<Hack>
 			</Melee>
-
 			<Charge>
-				<Crush>80.0</Crush>
-				<Pierce>80.0</Pierce>
-				
-				<Range>5.0</Range>
+				<Hack>150<Hack>
+				<Range>3.6</Range>
 				<Speed>1500</Speed>
 			</Charge>	
-
  		</Attack>
-
 		<Move>
-			<Speed>13.0</Speed>
+			<Speed>11.0</Speed>
 			<TurningRadius>4.0</TurningRadius>
-			
 			<Run>
-				<Speed>25.0</Speed>
+				<Speed>24.0</Speed>
 				<Range>600.0</Range>
 				<RangeMin>5.0</RangeMin>
 			</Run>
-			
 		</Move>
-
 	</Actions>
-
 	<Actor>units/hellenes/philip_horse.xml</Actor>
-
 </Entity>

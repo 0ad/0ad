@@ -25,11 +25,9 @@
 			<Crush>14.0</Crush>
 		</Armour>
 		<Health>
-			<Max>225</Max>
+			<Max>220</Max>
 		</Health>
-		
 	</Traits>
-
 	<Actions>
  		<Attack>
 			<Melee>
@@ -43,7 +41,6 @@
 				<Crush>30.0</Crush>
 			</Charge>		
  		</Attack>
-		
 		<Move>
 			<Speed>12.0</Speed>
 			<Run>
@@ -51,7 +48,5 @@
 			</Run>
 		</Move>
 	</Actions>
-
 	<Actor>units/hellenes/super_unit_4.xml</Actor>
-
 </Entity>

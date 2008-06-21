@@ -13,15 +13,30 @@
 			<History>Archers were used in Hellenistic armies to support the phalanx by splitting up enemy formations. The best Greek archers were from Crete, but mercenaries from Scythia and Asia Minor were sometimes employed. Hellenistic archers wore their quivers on their backs and the more successful ones were able to procure armor.</History>
 
 		</Id>
-		
 		<Promotion>
-				
 			<Entity>hele_infantry_archer_a</Entity>
-			
 		</Promotion>
-		
+	<Creation>
+			<Resource>
+ 				<Food>50</Food>
+				<Wood>70</Wood>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>1.0</Hack>
+			<Pierce>3.0</Pierce>
+			<Crush>5.0</Crush>
+		</Armour>
 	</Traits>
-
+	<Actions>
+ 		<Attack>
+			<Ranged>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>40.0</Pierce>
+ 				<Crush>0.0</Crush>
+				<Range>40.0</Range>
+			</Ranged>
+ 		</Attack>
+	</Actions>
 	<Actor>units/hellenes/infantry_archer_b.xml</Actor>
-
 </Entity>

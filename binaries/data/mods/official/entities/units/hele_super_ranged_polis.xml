@@ -12,7 +12,7 @@
 			<Civ>Hellenes</Civ>
 
 			<History>Ekdromos (literally: out runner) was a development of the hoplite. Development of the hoplite took many twists and turns based on the changing dynamics on the field of battle. Once armies began using Peltasts imported from Thrace something had to be done to counter this barrage of javelins thrown into the midst of a phalanx. The Thebans began to increase the armor of their hoplites, but the Athenians took a completely different approach and lightened the load for their infantry. The Ekdromoi would dash out from the phalanx, close with the enemy ranged units at speed, and cut them down at will. This approach also worked to harass more heavily armed troops as well, the enemy carrying too much weight to catch the vexatious Ekdromoi.</History>
-		
+
 		</Id>
 		<Creation>
 			<Resource>
@@ -20,24 +20,19 @@
 				<Wood>100</Wood>
  			</Resource>
 		</Creation>
-		
 		<Footprint>
 			<Radius>0.5</Radius>
 			<Height>4.0</Height>
 		</Footprint>
-
 		<Armour>
 			<Hack>5.0</Hack>
 			<Pierce>12.0</Pierce>
 			<Crush>11.0</Crush>
 		</Armour>
-
 		<Health>
-			<Max>150</Max>
+			<Max>120</Max>
 		</Health>
-		
 	</Traits>
-
 	<Actions>
  		<Attack>
 			<Ranged>
@@ -45,18 +40,15 @@
  				<Pierce>55.0</Pierce>
  				<Crush>0.0</Crush>
 				<MinRange>12.0</MinRange>
-				<Range>32.0</Range>
+				<Range>28.0</Range>
 			</Ranged>
  		</Attack>
 		<Move>
-			<Speed>11.0</Speed>
+			<Speed>9.0</Speed>
 			<Run>
-				<Speed>21.0</Speed>
+				<Speed>20.0</Speed>
 			</Run>
 		</Move>
-
 	</Actions>
-
 	<Actor>units/hellenes/super_unit_2.xml</Actor>
-
 </Entity>

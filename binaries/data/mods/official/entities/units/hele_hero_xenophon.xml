@@ -14,12 +14,15 @@
 			<History>Xenophon (c. 430 B. C. to c. 355 B. C.) was a Greek soldier and (later) historian who was born in Athens of an oligarch family and was a student of Socrates during his youth. He was elected one of the new Greek leaders chosen to lead the army in its retreat out of Persia. Xenophon went on to fight and lead troops in numerous battles then later write numerous books on military tactics, organization and command throughout the remainder of his lifetime.</History>
 		
 		</Id>
-		
 		<Armour>
-			<Hack>8.0</Hack>
-			<Pierce>13.0</Pierce>
-			<Crush>11.0</Crush>
+			<Hack>9.0</Hack>
+			<Pierce>11.0</Pierce>
+			<Crush>8.0</Crush>
 		</Armour>
+		<Health>
+			<Max>250</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>	
 	</Traits>
 	<Actions> 
 		<Attack>
@@ -28,17 +31,15 @@
 				<Hack>0.0</Hack>
 				<Crush>0.0</Crush>
 				<MinRange>12.0</MinRange>
-				<Range>32.0</Range>
+				<Range>40.0</Range>
 			</Ranged>
  		</Attack>
 		<Move>
-			<Speed>11.0</Speed>
+			<Speed>7.0</Speed>
 			<Run>
-				<Speed>21.0</Speed>
+				<Speed>16.0</Speed>
 			</Run>
 		</Move>
-	
 	</Actions>
-	
 	<Actor>units/hellenes/xenophon.xml</Actor>
 </Entity>

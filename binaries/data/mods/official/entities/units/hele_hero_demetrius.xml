@@ -14,27 +14,42 @@
 			<History>One of the Diadochi, king of Macedonia (294 BC - 288 BC), Demetrius was renowned as one of the bravest and most able successors of Alexander. As the son of Antigonus I Monophtalmus, he fought and won many important battles early on and was proclaimed king, along with his father, in 306 BC. Losing his Asian possessions after the battle of Ipsus, he later won the Macedonian throne. Fearing lest they should be overpowered by Demetrius, the other Diadochi united against him and defeated him.</History>
 		
 		</Id>
-		
+		<Creation>
+			<Resource>
+ 				<Food>150</Food>
+				<Metal>250</Metal>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>8.5</Hack>
+			<Pierce>10.0</Pierce>
+			<Crush>9.0</Crush>
+		</Armour>	
+		<Health>
+			<Max>250</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>		
 	</Traits>
-
 	<Actions>
-
- 		<Attack>
-			<Melee>
- 				<Pierce>20.0</Pierce>
-				<Hack>20.0</Hack>
-			</Melee>
-
- 		</Attack>
-
+		<Attack>
+			<Ranged>
+				<Pierce>50.0</Pierce>
+				<Hack>0.0</Hack>
+				<Crush>0.0</Crush>
+				<Range>56.0</Range>
+				<Speed>1500</Speed>
+				<ProjectileSpeed>25.0</ProjectileSpeed>
+			</Ranged>			
+		</Attack>
 		<Move>
-			<Speed>8.5.0</Speed>
+			<Speed>4.5</Speed>
 			<TurningRadius>1.0</TurningRadius>
+			<Run>
+				<Speed>11.0</Speed>
+				<Range>600.0</Range>
+				<RangeMin>5.0</RangeMin>
+			</Run>
 		</Move>
-
 	</Actions>
-
-
 	<Actor>units/hellenes/demetrius.xml</Actor>
-
 </Entity>

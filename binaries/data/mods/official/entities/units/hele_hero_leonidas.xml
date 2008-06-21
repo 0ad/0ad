@@ -14,7 +14,12 @@
 			<History>The king of Sparta, whom fought and died at the battle of Thermopylae in 480 BC. He successfully blocked the way of the huge Persian army through the narrow passage with his 7000 men, until Xerxes was made aware of a secret unobstructed path. Finding the enemy at his rear, Leonidas sent home most of his troops, choosing to stay behind with 300 hand-picked hoplites and win time for the others to withdraw.</History>
 		
 		</Id>
-		
+		<Creation>
+			<Resource>
+ 				<Food>100</Food>
+				<Metal>300</Metal>
+ 			</Resource>
+		</Creation>
 		<Auras>
 			<Fear>
 				<Radius>20</Radius>
@@ -24,40 +29,41 @@
 				<b>0.0</b>
 				<a>0.5</a>
 			</Fear>
-		</Auras>		
-		
+		</Auras>
+		<Armour>
+			<Hack>10.0</Hack>
+			<Pierce>11.0</Pierce>
+			<Crush>10.0</Crush>
+		</Armour>	
+		<Health>
+			<Max>260</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>			
 	</Traits>
-
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>20.0</Hack>
-				<Pierce>15.0</Pierce>
+ 				<Hack>25.0</Hack>
+				<Pierce>20.0</Pierce>
+				<Crush>5.0<Crush>
 			</Melee>
-
 			<Charge>
-				<Hack>50.0</Hack>
-				<Crush>50.0</Crush>
-				
+				<Hack>75.0</Hack>
+				<Pierce>60.0</Pierce>
+				<Crush>15.0</Crush>
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Charge>	
-
  		</Attack>
-
 		<Move>
-			<Speed>8.0</Speed>
+			<Speed>6.0</Speed>
 			<TurningRadius>4.0</TurningRadius>
-			
 			<Run>
-				<Speed>16.0</Speed>
+				<Speed>14.0</Speed>
 				<Range>600.0</Range>
 				<RangeMin>5.0</RangeMin>
 			</Run>
-			
 		</Move>
 	</Actions>
-
 	<Actor>units/hellenes/leonidas.xml</Actor>
-
 </Entity>
