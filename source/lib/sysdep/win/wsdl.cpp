@@ -47,10 +47,6 @@ static bool fullscreen;
 // if set, ignore further Windows messages for clean shutdown.
 static bool is_quitting;
 
-// app instance.
-// returned by GetModuleHandle and used in kbd hook and window creation. 
-static HINSTANCE hInst = 0;
-
 static HWND g_hWnd = (HWND)INVALID_HANDLE_VALUE;
 static HDC g_hDC = (HDC)INVALID_HANDLE_VALUE;	// needed by gamma code
 
@@ -58,72 +54,92 @@ static HDC g_hDC = (HDC)INVALID_HANDLE_VALUE;	// needed by gamma code
 //----------------------------------------------------------------------------
 // gamma
 
-static bool gamma_changed;
-static u16 org_ramp[3][256];
-static u16 cur_ramp[3][256];
-
-
-// ramp: 8.8 fixed point
-static void calc_gamma_ramp(float gamma, u16* ramp)
+class GammaRamp
 {
-	// assume identity if invalid
-	if(gamma <= 0.0f)
-		gamma = 1.0f;
-
-	// identity: special-case to make sure we get exact values
-	if(gamma == 1.0f)
+public:
+	GammaRamp()
+		: m_hasChanged(false)
 	{
-		for(u16 i = 0; i < 256; i++)
-			ramp[i] = (i << 8);
-		return;
 	}
 
-	const double inv_gamma = 1.0 / gamma;
-	for(int i = 0; i < 256; i++)
+	bool Change(float gamma_r, float gamma_g, float gamma_b)
 	{
-		const double frac = i / 256.0;
-		// don't add 1/256 - this isn't time-critical and
-		// accuracy is more important.
-		// need a temp variable to disambiguate pow() argument type.
-		ramp[i] = u16_from_double(pow(frac, inv_gamma));
+		// get current ramp (once) so we can later restore it.
+		if(!m_hasChanged)
+		{
+			if(!GetDeviceGammaRamp(g_hDC, m_original))
+				return false;
+		}
+
+		Compute(gamma_r, m_changed+0*256);
+		Compute(gamma_g, m_changed+1*256);
+		Compute(gamma_b, m_changed+2*256);
+		if(!Upload(m_changed))
+			return false;
+
+		m_hasChanged = true;
+		return true;
 	}
-}
 
+	void Latch()
+	{
+		if(m_hasChanged)
+			Upload(m_changed);
+	}
 
-enum GammaAction
-{
-	GAMMA_LATCH_NEW_RAMP,
-	GAMMA_RESTORE_ORIGINAL
+	void RestoreOriginal()
+	{
+		if(m_hasChanged)
+			Upload(m_original);
+	}
+
+private:
+	static void Compute(float gamma, u16* ramp)
+	{
+		// assume identity if invalid
+		if(gamma <= 0.0f)
+			gamma = 1.0f;
+
+		// identity: special-case to make sure we get exact values
+		if(gamma == 1.0f)
+		{
+			for(u16 i = 0; i < 256; i++)
+				ramp[i] = (i << 8);
+			return;
+		}
+
+		for(int i = 0; i < 256; i++)
+		{
+			const double val = pow((i+1) / 256.0, (double)gamma);
+			const double clamped = std::max(0.0, std::min(val, 1.0-DBL_EPSILON));
+			ramp[i] = u16_from_double(clamped);
+		}
+	}
+
+	bool Upload(u16* ramps)
+	{
+		WinScopedPreserveLastError s;
+		SetLastError(0);
+		debug_assert(g_hDC);
+		const BOOL ok = SetDeviceGammaRamp(g_hDC, ramps);
+		debug_assert(ok);
+		return !!ok;
+	}
+
+	bool m_hasChanged;
+
+	// values are 8.8 fixed point
+	u16 m_original[3*256];
+	u16 m_changed[3*256];
 };
 
-static void gamma_swap(GammaAction action)
-{
-	if(gamma_changed)
-	{
-		void* ramp = (action == GAMMA_LATCH_NEW_RAMP)? cur_ramp : org_ramp;
-		SetDeviceGammaRamp(g_hDC, ramp);
-	}
-}
+static GammaRamp gammaRamp;
 
 
 // note: any component gamma = 0 is assumed to be identity.
 int SDL_SetGamma(float r, float g, float b)
 {
-	// if we haven't successfully changed gamma yet,
-	// get current ramp so we can later restore it.
-	if(!gamma_changed)
-		if(!GetDeviceGammaRamp(g_hDC, org_ramp))
-			return -1;
-
-	calc_gamma_ramp(r, cur_ramp[0]);
-	calc_gamma_ramp(g, cur_ramp[1]);
-	calc_gamma_ramp(b, cur_ramp[2]);
-
-	if(!SetDeviceGammaRamp(g_hDC, cur_ramp))
-		return -1;
-
-	gamma_changed = true;
-	return 0;
+	return gammaRamp.Change(r, g, b)? 0 : -1;
 }
 
 
@@ -183,6 +199,10 @@ static HWND wsdl_CreateWindow(int w, int h)
 {
 	// (create new window every time (instead of once at startup), because
 	// pixel format isn't supposed to be changed more than once)
+
+	// app instance.
+	// returned by GetModuleHandle and used in kbd hook and window creation. 
+	const HINSTANCE hInst = GetModuleHandle(0);
 
 	// register window class
 	WNDCLASS wc;
@@ -428,7 +448,7 @@ static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL
 		// grab keyboard focus (we previously had DefWindowProc do this).
 		SetFocus(hWnd);
 
-		gamma_swap(GAMMA_LATCH_NEW_RAMP);
+		gammaRamp.Latch();
 		if(fullscreen)
 			video_enter_game_mode();
 	}
@@ -443,7 +463,7 @@ static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL
 
 		reset_all_keys();
 
-		gamma_swap(GAMMA_RESTORE_ORIGINAL);
+		gammaRamp.RestoreOriginal();
 		if(fullscreen)
 			video_leave_game_mode();
 	}
@@ -674,7 +694,7 @@ static void queue_mouse_event(int x, int y)
 {
 	SDL_Event ev;
 	ev.type = SDL_MOUSEMOTION;
-	debug_assert((x|y) <= USHRT_MAX);
+	debug_assert(unsigned(x|y) <= USHRT_MAX);
 	ev.motion.x = (Uint16)x;
 	ev.motion.y = (Uint16)y;
 	queue_event(ev);
@@ -686,7 +706,7 @@ static void queue_button_event(int button, int state, int x, int y)
 	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
 	ev.button.button = (u8)button;
 	ev.button.state  = (u8)state;
-	debug_assert((x|y) <= USHRT_MAX);
+	debug_assert(unsigned(x|y) <= USHRT_MAX);
 	ev.button.x = (Uint16)x;
 	ev.button.y = (Uint16)y;
 	queue_event(ev);
@@ -711,35 +731,42 @@ static void mouse_moved(int x, int y)
 	queue_mouse_event(x, y);
 }
 
-
-// convert from screen to client coords.
-static void screen_to_client(int screen_x, int screen_y, int& client_x, int& client_y)
+static POINT ScreenFromClient(int client_x, int client_y)
 {
-	POINT pt;
-	pt.x = (LONG) screen_x;
-	pt.y = (LONG) screen_y;
-	WARN_IF_FALSE(ScreenToClient(g_hWnd, &pt));
-	client_x = (int)pt.x;
-	client_y = (int)pt.y;
+	POINT screen_pt;
+	screen_pt.x = (LONG)client_x;
+	screen_pt.y = (LONG)client_y;
+	WARN_IF_FALSE(ClientToScreen(g_hWnd, &screen_pt));
+	return screen_pt;
 }
 
-// are the given coords in our window?
-// parameters are client coords as returned by screen_to_client.
-// postcondition: it is safe to cast coords to size_t and treat them
-// as idealized client coords.
-static bool is_in_window(int client_x, int client_y)
+// get idealized client coordinates or return false if outside our window.
+static bool GetCoords(int screen_x, int screen_y, int& x, int& y)
 {
-	RECT client_rect;
-	WARN_IF_FALSE(GetClientRect(g_hWnd, &client_rect));
-	POINT pt;
-	pt.x = (LONG)client_x;
-	pt.y = (LONG)client_y;
-	if(!PtInRect(&client_rect, pt))
-		return false;
-	if(WindowFromPoint(pt) != g_hWnd)
+	POINT screen_pt;
+	screen_pt.x = (LONG)screen_x;
+	screen_pt.y = (LONG)screen_y;
+
+	POINT client_pt;
+	{
+		client_pt = screen_pt;	// translated below
+		const int ret = MapWindowPoints(0, g_hWnd, &client_pt, 1);
+		debug_assert(ret != 0);
+	}
+
+	{
+		RECT client_rect;
+		WARN_IF_FALSE(GetClientRect(g_hWnd, &client_rect));
+		if(!PtInRect(&client_rect, client_pt))
+			return false;
+	}
+
+	if(WindowFromPoint(screen_pt) != g_hWnd)
 		return false;
 
-	debug_assert(client_x >= 0 && client_y >= 0);
+	x = client_pt.x;
+	y = client_pt.y;
+	debug_assert(x >= 0 && y >= 0);
 	return true;
 }
 
@@ -756,13 +783,9 @@ static void mouse_update()
 	// position directly.
 	POINT screen_pt;
 	WARN_IF_FALSE(GetCursorPos(&screen_pt));
-	int client_x, client_y;
-	screen_to_client(screen_pt.x, screen_pt.y, client_x, client_y);
-
-	if(is_in_window(client_x, client_y))
+	int x, y;
+	if(GetCoords(screen_pt.x, screen_pt.y, x, y))
 	{
-		const int x = client_x, y = client_y;
-
 		active_change_state(GAIN, SDL_APPMOUSEFOCUS);
 		mouse_moved(x, y);
 	}
@@ -775,7 +798,7 @@ static size_t mouse_buttons;
 
 // (we define a new function signature since the windowsx.h message crackers
 // don't provide for passing uMsg)
-static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int screen_y, UINT UNUSED(flags))
+static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int client_x, int client_y, UINT UNUSED(flags))
 {
 	int button;
 	int state;
@@ -832,35 +855,26 @@ static LRESULT OnMouseButton(HWND UNUSED(hWnd), UINT uMsg, int screen_x, int scr
 	else
 		mouse_buttons &= ~SDL_BUTTON(button);
 
-	int client_x, client_y;
-	screen_to_client(screen_x, screen_y, client_x, client_y);
-	// we may get click events from the NC area or window border where
-	// the coords are negative. unfortunately is_in_window can return
-	// false due to its window-on-top check, so we better not
-	// ignore messages based on that. it is safest to clamp coords to
-	// what the app can handle.
-	int x = std::max(client_x, 0), y = std::max(client_y, 0);
-	queue_button_event(button, state, x, y);
+	const POINT screen_pt = ScreenFromClient(client_x, client_y);
+	int x, y;
+	if(GetCoords(screen_pt.x, screen_pt.y, x, y))
+		queue_button_event(button, state, x, y);
 	return 0;
 }
 
 
+// (note: this message is sent even if the cursor is outside our window)
 static LRESULT OnMouseWheel(HWND UNUSED(hWnd), int screen_x, int screen_y, int zDelta, UINT UNUSED(fwKeys))
 {
-	int client_x, client_y;
-	screen_to_client(screen_x, screen_y, client_x, client_y);
-	// unfortunately we get mouse wheel messages even if mouse is outside
-	// our window.
-	// to prevent the app from seeing invalid coords, we ignore such messages.
-	if(is_in_window(client_x, client_y))
+	int x, y;
+	if(GetCoords(screen_x, screen_y, x, y))
 	{
-		const int x = client_x, y = client_y;
-
 		int button = (zDelta < 0)? SDL_BUTTON_WHEELDOWN : SDL_BUTTON_WHEELUP;
 		// SDL says this sends a down message followed by up.
-		queue_button_event(button, SDL_PRESSED , x, y);
+		queue_button_event(button, SDL_PRESSED,  x, y);
 		queue_button_event(button, SDL_RELEASED, x, y);
 	}
+
 	return 0;	// handled
 }
 
@@ -882,10 +896,8 @@ inline void SDL_WarpMouse(int x, int y)
 	debug_assert(x >= 0 && y >= 0);
 	mouse_moved(x, y);
 
-	POINT screen_pt;
-	screen_pt.x = x;
-	screen_pt.y = y;
-	WARN_IF_FALSE(ClientToScreen(g_hWnd, &screen_pt));
+	const int client_x = x, client_y = y;
+	const POINT screen_pt = ScreenFromClient(client_x, client_y);
 	WARN_IF_FALSE(SetCursorPos(screen_pt.x, screen_pt.y));
 }
 
@@ -1183,8 +1195,6 @@ int SDL_Init(Uint32 UNUSED(flags))
 	if(!ModuleShouldInitialize(&initState))
 		return 0;
 
-	hInst = GetModuleHandle(0);
-
 	return 0;
 }
 
@@ -1195,7 +1205,8 @@ void SDL_Quit()
 
 	is_quitting = true;
 
-	gamma_swap(GAMMA_RESTORE_ORIGINAL);
+	if(g_hDC != INVALID_HANDLE_VALUE)
+		gammaRamp.RestoreOriginal();
 
 	if(g_hWnd != INVALID_HANDLE_VALUE)
 		WARN_IF_FALSE(DestroyWindow(g_hWnd));
