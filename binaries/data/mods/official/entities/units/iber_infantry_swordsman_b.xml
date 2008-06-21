@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_infantry_melee_swordsman"
->
+<Entity	Parent="template_unit_infantry_melee_swordsman">
 	<Traits>
 	
 		<Id>
@@ -25,22 +23,7 @@
 	</Traits>
 	
 	<Actions>
- 		<Attack>
-			<Melee>
- 				<Hack>17.0</Hack>
- 				<Pierce>0.0</Pierce>
-			</Melee>
-			<Charge>
-				<Hack>34.0</Hack>
-			</Charge>		
- 		</Attack>
-
-		<Move>
-			<Speed>3.9</Speed>
-			<Run>
-				<Speed>8.6</Speed>
-			</Run>
-		</Move>
+ 	
 	</Actions>
 
 	<Actor>units/iberians/infantry_swordsman_b.xml</Actor>

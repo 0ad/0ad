@@ -3,32 +3,11 @@
 <Entity	Parent="iber_cavalry_spearman_a">
 
 <Traits>
-	<Armour>
-			<Hack>12.0</Hack>
-			<Pierce>11.0</Pierce>
-			<Crush>8.0</Crush>
-		</Armour>
+	
 </Traits>
 	
 	<Actions>
- 		<Attack>
-			<Melee>
- 				<Hack>9.0</Hack>
- 				<Pierce>25.0</Pierce>
- 				<Crush>0.0</Crush>
-			<Charge>
-				<Hack>21.0</Hack>
-				<Pierce>51.0</Pierce>
-			</Charge>		
-			</Melee>
- 		</Attack>
-
-		<Move>
-			<Speed>4.9</Speed>
-			<Run>
-				<Speed>31.5</Speed>
-			</Run>
-		</Move>
+ 		
 	</Actions>
 	<Actor>units/iberians/cavalry_spearman_e.xml</Actor>
 </Entity>

@@ -3,22 +3,7 @@
 <Entity	Parent="iber_infantry_swordsman_a">
 
 <Actions>
- 		<Attack>
-			<Melee>
- 				<Hack>27.0</Hack>
- 				<Pierce>0.0</Pierce>
-			</Melee>
-			<Charge>
-				<Hack>45.0</Hack>
-			</Charge>		
- 		</Attack>
-
-		<Move>
-			<Speed>3.7</Speed>
-			<Run>
-				<Speed>8.3</Speed>
-			</Run>
-		</Move>
+ 		
 	</Actions>
 	
 	<Actor>units/iberians/infantry_swordsman_e.xml</Actor>

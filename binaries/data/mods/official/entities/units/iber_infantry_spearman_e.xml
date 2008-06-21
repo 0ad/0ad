@@ -3,23 +3,7 @@
 <Entity	Parent="iber_infantry_spearman_a">
 
 <Actions>
- 		<Attack>
-			<Melee>
- 				<Hack>20.0</Hack>
- 				<Pierce>25.0</Pierce>
-			</Melee>
-			<Charge>
-				<Hack>35.0</Hack>
-				<Pierce>45.0</Pierce>
-			</Charge>		
- 		</Attack>
-
-		<Move>
-			<Speed>3.1</Speed>
-			<Run>
-				<Speed>7.4</Speed>
-			</Run>
-		</Move>
+ 		
 	</Actions>
 	
 	<Actor>units/iberians/infantry_spearman_e.xml</Actor>
