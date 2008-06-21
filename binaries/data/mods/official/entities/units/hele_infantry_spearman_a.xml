@@ -17,9 +17,9 @@
 		</Promotion>
 
 		<Armour>
-			<Hack>4.0</Hack>
-			<Pierce>3.0</Pierce>
-			<Crush>2.0</Crush>
+			<Hack>7.0</Hack>
+			<Pierce>5.0</Pierce>
+			<Crush>12.0</Crush>
 		</Armour>
 
 		<Health>
@@ -29,23 +29,23 @@
 	</Traits>
 
 	<Actions>
- 			<Attack>
+ 		<Attack>
 			<Melee>
- 				<Hack>4.0</Hack>
- 				<Pierce>11.0</Pierce>
-				<Crush>0.6</Crush>
+ 				<Hack>15.0</Hack>
+ 				<Pierce>7.0</Pierce>
+				<Crush>1.0</Crush>
 			</Melee>
 			<Charge>
-				<Hack>9.0</Hack>
-				<Pierce>24.0</Pierce>
-				<Crush>1.0</Crush>
+				<Hack>30.0</Hack>
+				<Pierce>14.0</Pierce>
+				<Crush>2.0</Crush>
 			</Charge>		
  		</Attack>
 
 		<Move>
-			<Speed>3.5</Speed>
+			<Speed>6.75</Speed>
 			<Run>
-				<Speed>7.9</Speed>
+				<Speed>14.0</Speed>
 			</Run>
 		</Move>
 	</Actions>	
