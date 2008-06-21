@@ -15,30 +15,20 @@
 		
 		</Id>
 		
-		<Creation>
-			<Time>20</Time>
-			<Resource>
- 				<Food>65</Food>
-				<Wood>2</Wood>
-				<Ore>1</Ore>
- 			</Resource>
-		</Creation>
-		
+	
 		<Promotion>
 				
 			<Entity>hele_infantry_spearman_a</Entity>
 			
 		</Promotion>
 
-		<Armour>
-			<Hack>5.0</Hack>
-			<Pierce>4.5</Pierce>
-			<Crush>10.0</Crush>
-		</Armour>
-		
+	
 	</Traits>
 
 	<Actions>
+<<<<<<< .mine
+ 		
+=======
  		<Attack>
 			<Melee>
  				<Hack>15.0</Hack>
@@ -58,6 +48,7 @@
 				<Speed>15.0</Speed>
 			</Run>
 		</Move>
+>>>>>>> .r6082
 	</Actions>	
 	
 	<Actor>units/hellenes/infantry_spearman_b.xml</Actor>

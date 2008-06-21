@@ -16,19 +16,20 @@
 			
 		</Promotion>
 
+<<<<<<< .mine
+		</Traits>
+=======
 		<Armour>
 			<Hack>7.0</Hack>
 			<Pierce>5.0</Pierce>
 			<Crush>12.0</Crush>
 		</Armour>
-
-		<Health>
-			<Max>100</Max>
-		</Health>
-	
-	</Traits>
+>>>>>>> .r6082
 
 	<Actions>
+<<<<<<< .mine
+ 		
+=======
  		<Attack>
 			<Melee>
  				<Hack>15.0</Hack>
@@ -48,6 +49,7 @@
 				<Speed>14.0</Speed>
 			</Run>
 		</Move>
+>>>>>>> .r6082
 	</Actions>	
 
 	<Actor>units/hellenes/infantry_spearman_a.xml</Actor>

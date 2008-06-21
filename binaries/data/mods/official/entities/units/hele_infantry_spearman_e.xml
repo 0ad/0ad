@@ -8,6 +8,8 @@
 			<Icon_Cell>5</Icon_Cell>
 		</Id>
 
+<<<<<<< .mine
+=======
 		<Armour>
 			<Hack>8.0</Hack>
 			<Pierce>5.0</Pierce>
@@ -17,10 +19,14 @@
 		<Health>
 			<Max>120</Max>
 		</Health>
+>>>>>>> .r6082
 	
 	</Traits>
 
 	<Actions>
+<<<<<<< .mine
+ 		
+=======
  			<Attack>
 			<Melee>
  				<Hack>16.0</Hack>
@@ -40,6 +46,7 @@
 				<Speed>14.0</Speed>
 			</Run>
 		</Move>
+>>>>>>> .r6082
 	</Actions>	
 
 	<Actor>units/hellenes/infantry_spearman_e.xml</Actor>
