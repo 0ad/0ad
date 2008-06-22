@@ -67,6 +67,7 @@ public:
 		// get current ramp (once) so we can later restore it.
 		if(!m_hasChanged)
 		{
+			debug_assert(wutil_IsValidHandle(g_hDC));
 			if(!GetDeviceGammaRamp(g_hDC, m_original))
 				return false;
 		}
@@ -120,7 +121,7 @@ private:
 	{
 		WinScopedPreserveLastError s;
 		SetLastError(0);
-		debug_assert(g_hDC);
+		debug_assert(wutil_IsValidHandle(g_hDC));
 		const BOOL ok = SetDeviceGammaRamp(g_hDC, ramps);
 		debug_assert(ok);
 		return !!ok;
@@ -305,7 +306,7 @@ int SDL_SetVideoMode(int w, int h, int bpp, unsigned long flags)
 	// the (possibly changed) mode will be (re)set at next WM_ACTIVATE
 
 	g_hWnd = wsdl_CreateWindow(w, h);
-	if(!g_hWnd || g_hWnd == INVALID_HANDLE_VALUE)
+	if(!wutil_IsValidHandle(g_hWnd))
 		return 0;
 
 	g_hDC = GetDC(g_hWnd);
@@ -684,11 +685,8 @@ int SDL_EnableUNICODE(int UNUSED(enable))
 // - "client" coords are simply relative to the parent window's origin and
 //   can also be negative (e.g. in the window's NC area).
 //   these are prefixed with client_*.
-// - "idealized" client coords are what the app sees. these are from
-//   0..window dimensions-1. they are derived from client coords that
-//   pass the is_in_window() test. unfortunately, these carry different
-//   types: we treat them exclusively as size_t, while SDL API provides for
-//   passing them around as int and packages them into Uint16 in events.
+// - "idealized" coords are what the app sees. these range from 0 to
+//   windowDimensions-1. they are returned by GetCoords and have no prefix.
 
 static void queue_mouse_event(int x, int y)
 {
@@ -743,15 +741,22 @@ static POINT ScreenFromClient(int client_x, int client_y)
 // get idealized client coordinates or return false if outside our window.
 static bool GetCoords(int screen_x, int screen_y, int& x, int& y)
 {
+	debug_assert(wutil_IsValidHandle(g_hWnd));
+
 	POINT screen_pt;
 	screen_pt.x = (LONG)screen_x;
 	screen_pt.y = (LONG)screen_y;
 
 	POINT client_pt;
 	{
+		// note: MapWindowPoints has a really stupid interface, returning 0
+		// on failure or if no shift was needed (i.e. window is fullscreen).
+		// we must use GetLastError to detect error conditions.
+		WinScopedPreserveLastError s;
+		SetLastError(0);
 		client_pt = screen_pt;	// translated below
-		const int ret = MapWindowPoints(0, g_hWnd, &client_pt, 1);
-		debug_assert(ret != 0);
+		const int ret = MapWindowPoints(HWND_DESKTOP, g_hWnd, &client_pt, 1);
+		debug_assert(ret != 0 || GetLastError() == 0);
 	}
 
 	{
@@ -775,7 +780,7 @@ static void mouse_update()
 {
 	// window not created yet or already shut down. no sense reporting
 	// mouse position, and bail now to avoid ScreenToClient failing.
-	if(g_hWnd == INVALID_HANDLE_VALUE)
+	if(!wutil_IsValidHandle(g_hWnd))
 		return;
 
 	// don't use DirectInput, because we want to respect the user's mouse

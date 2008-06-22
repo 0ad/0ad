@@ -11,10 +11,15 @@
 #ifndef INCLUDED_GRAPHICS_CURSOR
 #define INCLUDED_GRAPHICS_CURSOR
 
-// draw the specified cursor at the given pixel coordinates
-// (origin is top-left to match the windowing system).
-// uses a hardware mouse cursor where available, otherwise a
-// portable OpenGL implementation.
+/**
+ * draw the cursor on-screen.
+ *
+ * @param name base name of cursor or zero to hide the cursor.
+ * @param x,y coordinates [pixels] (origin is in the upper left)
+ *
+ * uses a hardware mouse cursor where available, otherwise a
+ * portable OpenGL implementation.
+ **/
 extern LibError cursor_draw(const char* name, int x, int y);
 
 // internal use only:

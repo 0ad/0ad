@@ -17,6 +17,12 @@
 
 #include "win.h"
 
+template<typename H>
+bool wutil_IsValidHandle(H h)
+{
+	return h != 0 && h != INVALID_HANDLE_VALUE;
+}
+
 
 //
 // safe allocator

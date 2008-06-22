@@ -5,38 +5,31 @@
 #include "wutil.h"
 
 
-static void* ptr_from_HICON(HICON hIcon)
+static sys_cursor cursor_from_HICON(HICON hIcon)
 {
-	return (void*)(uintptr_t)hIcon;
+	return (sys_cursor)(uintptr_t)hIcon;
 }
 
-static void* ptr_from_HCURSOR(HCURSOR hCursor)
+static sys_cursor cursor_from_HCURSOR(HCURSOR hCursor)
 {
-	return (void*)(uintptr_t)hCursor;
+	return (sys_cursor)(uintptr_t)hCursor;
 }
 
-static HICON HICON_from_ptr(void* p)
+static HICON HICON_from_cursor(sys_cursor cursor)
 {
-	return (HICON)(uintptr_t)p;
+	return (HICON)(uintptr_t)cursor;
 }
 
-static HCURSOR HCURSOR_from_ptr(void* p)
+static HCURSOR HCURSOR_from_cursor(sys_cursor cursor)
 {
-	return (HCURSOR)(uintptr_t)p;
+	return (HCURSOR)(uintptr_t)cursor;
 }
 
 
-// creates a cursor from the given image.
-// w, h specify image dimensions [pixels]. limit is implementation-
-//   dependent; 32x32 is typical and safe.
-// bgra_img is the cursor image (BGRA format, bottom-up).
-//   it is no longer needed and can be freed after this call returns.
-// hotspot (hx,hy) is the offset from its upper-left corner to the
-//   position where mouse clicks are registered.
-// cursor is only valid when INFO::OK is returned; in that case, it must be
-//   sys_cursor_free-ed when no longer needed.
-LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, void** cursor)
+LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor)
 {
+	*cursor = 0;
+
 	// MSDN says selecting this HBITMAP into a DC is slower since we use
 	// CreateBitmap; bpp/format must be checked against those of the DC.
 	// this is the simplest way and we don't care about slight performance
@@ -61,37 +54,35 @@ LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, void** 
 	DeleteObject(hbmMask);
 	DeleteObject(hbmColour);
 
-	if(!hIcon)	// not INVALID_HANDLE_VALUE
+	if(!wutil_IsValidHandle(hIcon))
 		WARN_RETURN(ERR::FAIL);
 
-	*cursor = ptr_from_HICON(hIcon);
+	*cursor = cursor_from_HICON(hIcon);
 	return INFO::OK;
 }
 
-LibError sys_cursor_create_empty(void **cursor)
+
+LibError sys_cursor_create_empty(sys_cursor* cursor)
 {
 	u8 bgra_img[] = {0, 0, 0, 0};
 	return sys_cursor_create(1, 1, bgra_img, 0, 0, cursor);
 }
 
-// replaces the current system cursor with the one indicated. need only be
-// called once per cursor; pass 0 to restore the default.
-LibError sys_cursor_set(void* cursor)
+
+LibError sys_cursor_set(sys_cursor cursor)
 {
 	// restore default cursor.
 	if(!cursor)
-		cursor = ptr_from_HCURSOR(LoadCursor(0, MAKEINTRESOURCE(IDC_ARROW)));
+		cursor = cursor_from_HCURSOR(LoadCursor(0, MAKEINTRESOURCE(IDC_ARROW)));
 
-	(void)SetCursor(HCURSOR_from_ptr(cursor));
+	(void)SetCursor(HCURSOR_from_cursor(cursor));
 	// return value (previous cursor) is useless.
 
 	return INFO::OK;
 }
 
 
-// destroys the indicated cursor and frees its resources. if it is
-// currently the system cursor, the default cursor is restored first.
-LibError sys_cursor_free(void* cursor)
+LibError sys_cursor_free(sys_cursor cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)
@@ -99,9 +90,9 @@ LibError sys_cursor_free(void* cursor)
 
 	// if the cursor being freed is active, restore the default arrow
 	// (just for safety).
-	if(ptr_from_HCURSOR(GetCursor()) == cursor)
+	if(cursor_from_HCURSOR(GetCursor()) == cursor)
 		WARN_ERR(sys_cursor_set(0));
 
-	BOOL ok = DestroyIcon(HICON_from_ptr(cursor));
+	BOOL ok = DestroyIcon(HICON_from_cursor(cursor));
 	return LibError_from_win32(ok);
 }

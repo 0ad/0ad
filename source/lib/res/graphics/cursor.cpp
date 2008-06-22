@@ -11,12 +11,15 @@
 #include "precompiled.h"
 #include "cursor.h"
 
+#include <string.h>
+#include <sstream>
+
+#include "lib/ogl.h"
+#include "lib/sysdep/cursor.h"
+#include "ogl_tex.h"
 #include "../h_mgr.h"
 #include "lib/file/vfs/vfs.h"
 extern PIVFS g_VFS;
-
-#include <string.h>
-#include <sstream>
 
 // On Windows, allow runtime choice between system cursors and OpenGL
 // cursors (Windows = more responsive, OpenGL = more consistent with what
@@ -27,68 +30,31 @@ extern PIVFS g_VFS;
 # define ALLOW_SYS_CURSOR 0
 #endif
 
-#include "lib/ogl.h"
-#include "lib/sysdep/cursor.h"
-#include "ogl_tex.h"
 
-/*
-	This is used to create the sys cursor to use together with the OpenGL
-	cursor. I.e. to set a transparent cursor on X-windows where we don't use
-	the X11 cursor, and on windows should the hardware cursor setup fail.
-	
-	Shouldn't be called when both hardware/software cursor fails (i.e. invalid
-	cursor file given) - in that case we'd rather use the default cursor.
-*/ 
-static void* load_empty_sys_cursor()
-{
-	void* sys_cursor = 0;
-	if(sys_cursor_create_empty(&sys_cursor) < 0)
-	{
-		debug_assert(0);
-		return 0;
-	}
-	return sys_cursor;
-}
-
-static void* load_sys_cursor(const VfsPath& pathname, int hx, int hy)
+static LibError load_sys_cursor(const VfsPath& pathname, int hx, int hy, sys_cursor* cursor)
 {
 #if !ALLOW_SYS_CURSOR
 	UNUSED2(pathname);
 	UNUSED2(hx);
 	UNUSED2(hy);
 
-	return 0;
+	return INFO::OK;
 #else
 	shared_ptr<u8> file; size_t fileSize;
-	if(g_VFS->LoadFile(pathname, file, fileSize) < 0)
-		return 0;
+	RETURN_ERR(g_VFS->LoadFile(pathname, file, fileSize));
 
-	Tex t;
-	if(tex_decode(file, fileSize, &t) < 0)
-		return 0;
-
-	{
-	void* sys_cursor = 0;	// return value
+	ScopedTex t;
+	RETURN_ERR(tex_decode(file, fileSize, &t));
 
 	// convert to required BGRA format.
 	const int flags = (t.flags | TEX_BGR) & ~TEX_DXT;
-	if(tex_transform_to(&t, flags) < 0)
-		goto fail;
+	RETURN_ERR(tex_transform_to(&t, flags));
 	void* bgra_img = tex_get_data(&t);
 	if(!bgra_img)
-		goto fail;
+		WARN_RETURN(ERR::FAIL);
 
-	if(sys_cursor_create(t.w, t.h, bgra_img, hx, hy, &sys_cursor) < 0)
-		goto fail;
-
-	tex_free(&t);
-	return sys_cursor;
-	}
-
-fail:
-	debug_assert(0);
-	tex_free(&t);
-	return 0;
+	RETURN_ERR(sys_cursor_create((int)t.w, (int)t.h, bgra_img, hx, hy, cursor));
+	return INFO::OK;
 #endif
 }
 
@@ -158,15 +124,23 @@ public:
 	}
 };
 
+enum CursorKind
+{
+	CK_Default,
+	CK_System,
+	CK_OpenGL
+};
 
 struct Cursor
 {
-	void* sys_cursor;
+	CursorKind kind;
 
-	// valid iff sys_cursor == 0.
+	// valid iff kind == CK_System
+	sys_cursor system_cursor;
+
+	// valid iff kind == CK_OpenGL
 	GLCursor gl_cursor;
-	// a system cursor to use together with the gl_cursor
-	void *gl_sys_cursor;
+	sys_cursor gl_empty_system_cursor;
 };
 
 H_TYPE_DEFINE(Cursor);
@@ -177,12 +151,24 @@ static void Cursor_init(Cursor* UNUSED(c), va_list UNUSED(args))
 
 static void Cursor_dtor(Cursor* c)
 {
-	// (note: these are safe, no need for an is_valid flag)
+	switch(c->kind)
+	{
+	case CK_Default:
+		break;	// nothing to do
 
-	if(c->sys_cursor)
-		WARN_ERR(sys_cursor_free(c->sys_cursor));
-	else
+	case CK_System:
+		sys_cursor_free(c->system_cursor);
+		break;
+
+	case CK_OpenGL:
 		c->gl_cursor.destroy();
+		sys_cursor_free(c->gl_empty_system_cursor);
+		break;
+
+	default:
+		debug_assert(0);
+		break;
+	}
 }
 
 static LibError Cursor_reload(Cursor* c, const VfsPath& name, Handle)
@@ -201,38 +187,73 @@ static LibError Cursor_reload(Cursor* c, const VfsPath& name, Handle)
 		s >> hotspotx >> hotspoty;
 	}
 
-	// load actual cursor
 	const VfsPath pathname(path / (basename + ".dds"));
-	// .. try loading as system cursor (2d, hardware accelerated)
-	c->sys_cursor = load_sys_cursor(pathname, hotspotx, hotspoty);
-	// .. fall back to GLCursor (system cursor code is disabled or failed)
-	if(!c->sys_cursor)
+
+	// try loading as system cursor (2d, hardware accelerated)
+	if(load_sys_cursor(pathname, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)
+		c->kind = CK_System;
+	// fall back to GLCursor (system cursor code is disabled or failed)
+	else if(c->gl_cursor.create(pathname, hotspotx, hotspoty) == INFO::OK)
 	{
-		LibError err=c->gl_cursor.create(pathname, hotspotx, hotspoty);
-		
-		if (err == INFO::OK)
-			c->gl_sys_cursor = load_empty_sys_cursor();
-		
-		return err;			
+		c->kind = CK_OpenGL;
+		// (we need to hide the system cursor when using a OpenGL cursor)
+		sys_cursor_create_empty(&c->gl_empty_system_cursor);
 	}
+	// everything failed, leave cursor unchanged
+	else
+		c->kind = CK_Default;
 
 	return INFO::OK;
 }
 
 static LibError Cursor_validate(const Cursor* c)
 {
-	// note: system cursors have no state to speak of, so we don't need to
-	// validate them.
+	switch(c->kind)
+	{
+	case CK_Default:
+		break;	// nothing to do
 
-	if(!c->sys_cursor)
+	case CK_System:
+		if(c->system_cursor == 0)
+			WARN_RETURN(ERR::_1);
+		break;
+
+	case CK_OpenGL:
 		RETURN_ERR(c->gl_cursor.validate());
+		break;
+
+	default:
+		WARN_RETURN(ERR::_2);
+		break;
+	}
+		
 	return INFO::OK;
 }
 
 static LibError Cursor_to_string(const Cursor* c, char* buf)
 {
-	const char* type = c->sys_cursor? "sys" : "gl";
-	snprintf(buf, H_STRING_LEN, "(%s)", type);
+	const char* type;
+	switch(c->kind)
+	{
+	case CK_Default:
+		type = "default";
+		break;
+
+	case CK_System:
+		type = "sys";
+		break;
+
+	case CK_OpenGL:
+		type = "gl";
+		break;
+
+	default:
+		debug_assert(0);
+		type = "?";
+		break;
+	}
+
+	snprintf(buf, H_STRING_LEN, "cursor (%s)", type);
 	return INFO::OK;
 }
 
@@ -254,32 +275,40 @@ static LibError cursor_free(Handle& h)
 }
 
 
-// draw the specified cursor at the given pixel coordinates
-// (origin is top-left to match the windowing system).
-// uses a hardware mouse cursor where available, otherwise a
-// portable OpenGL implementation.
 LibError cursor_draw(const char* name, int x, int y)
 {
-	// Use 'null' to disable the cursor
+	// hide the cursor
 	if(!name)
 	{
-		WARN_ERR(sys_cursor_set(0));
+		sys_cursor_set(0);
 		return INFO::OK;
 	}
 
 	Handle hc = cursor_load(name);
 	H_DEREF(hc, Cursor, c);
 
-	if(c->sys_cursor)
-		WARN_ERR(sys_cursor_set(c->sys_cursor));
-	else
+	switch(c->kind)
 	{
+	case CK_Default:
+		break;
+
+	case CK_System:
+		sys_cursor_set(c->system_cursor);
+		break;
+
+	case CK_OpenGL:
 		c->gl_cursor.draw(x, y);
-		// Here, gl_sys_cursor is either a pointer to a valid cursor or NULL.
-		// It is NULL if the gl_cursor init failed or if load_empty_sys_cursor
-		// failed - in the first case, we want to use the default system cursor,
-		// in the second case setting the default cursor yields no change.
-		WARN_ERR(sys_cursor_set(c->gl_sys_cursor));
+		// note: gl_empty_system_cursor can be 0 if sys_cursor_create_empty
+		// failed; in that case we don't want to sys_cursor_set because that
+		// would restore the default cursor (which is exactly what we're
+		// trying to avoid here)
+		if(c->gl_empty_system_cursor)
+			sys_cursor_set(c->gl_empty_system_cursor);
+		break;
+
+	default:
+		debug_assert(0);
+		break;
 	}
 
 	(void)cursor_free(hc);

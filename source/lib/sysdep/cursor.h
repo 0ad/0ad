@@ -1,25 +1,52 @@
+/**
+ * =========================================================================
+ * File        : cursor.h
+ * Project     : 0 A.D.
+ * Description : mouse cursor
+ * =========================================================================
+ */
 
-// note: these do not warn on error; that is left to the caller.
+// license: GPL; see lib/license.txt
 
-// creates a cursor from the given image.
-// w, h specify image dimensions [pixels]. limit is implementation-
-//   dependent; 32x32 is typical and safe.
-// bgra_img is the cursor image (BGRA format, bottom-up).
-//   it is no longer needed and can be freed after this call returns.
-// hotspot (hx,hy) is the offset from its upper-left corner to the
-//   position where mouse clicks are registered.
-// cursor is only valid when INFO::OK is returned; in that case, it must be
-//   sys_cursor_free-ed when no longer needed.
-extern LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, void** cursor);
+#ifndef INCLUDED_SYSDEP_CURSOR
+#define INCLUDED_SYSDEP_CURSOR
 
-// create a fully transparent cursor (i.e. one that when passed to set hides
-// the system cursor)
-extern LibError sys_cursor_create_empty(void **cursor);
+typedef void* sys_cursor;
 
-// replaces the current system cursor with the one indicated. need only be
-// called once per cursor; pass 0 to restore the default.
-extern LibError sys_cursor_set(void* cursor);
+/**
+ * create a cursor from the given color image.
+ *
+ * @ w, h image dimensions [pixels]. the maximum value is
+ * implementation-defined; 32x32 is typical and safe.
+ * @param bgra_img cursor image (BGRA format, bottom-up).
+ * it is copied and can be freed after this call returns.
+ * @param hx,hy 'hotspot', i.e. offset from the upper-left corner to the
+ * position where mouse clicks are registered.
+ * @param cursor is 0 if the return code indicates failure, otherwise
+ * a valid cursor that must be sys_cursor_free-ed when no longer needed.
+ **/
+extern LibError sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_cursor* cursor);
 
-// destroys the indicated cursor and frees its resources. if it is
-// currently the system cursor, the default cursor is restored first.
-extern LibError sys_cursor_free(void* cursor);
+/**
+ * create a transparent cursor (used to hide the system cursor)
+ *
+ * @param cursor is 0 if the return code indicates failure, otherwise
+ * a valid cursor that must be sys_cursor_free-ed when no longer needed.
+ **/
+extern LibError sys_cursor_create_empty(sys_cursor* cursor);
+
+/**
+ * override the current system cursor.
+ *
+ * @param cursor can be 0 to restore the default.
+ **/
+extern LibError sys_cursor_set(sys_cursor cursor);
+
+/**
+ * destroy the indicated cursor and frees its resources.
+ *
+ * @param cursor if currently in use, the default cursor is restored first.
+ **/
+extern LibError sys_cursor_free(sys_cursor cursor);
+
+#endif	 // #ifndef INCLUDED_SYSDEP_CURSOR

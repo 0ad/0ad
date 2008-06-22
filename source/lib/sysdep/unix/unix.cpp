@@ -96,7 +96,7 @@ LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 // note: do not return ERR_NOT_IMPLEMENTED or similar because that
 // would result in WARN_ERRs.
 LibError sys_cursor_create(size_t w, size_t h, void* bgra_img,
-	size_t hx, size_t hy, void** cursor)
+	size_t hx, size_t hy, sys_cursor* cursor)
 {
 	UNUSED2(w);
 	UNUSED2(h);
@@ -109,7 +109,7 @@ LibError sys_cursor_create(size_t w, size_t h, void* bgra_img,
 }
 
 // creates an empty cursor
-LibError sys_cursor_create_empty(void **cursor)
+LibError sys_cursor_create_empty(sys_cursor* cursor)
 {
 	/* bitmap for a fully transparent cursor */
 	u8 data[] = {0};
@@ -126,7 +126,7 @@ LibError sys_cursor_create_empty(void **cursor)
 SDL_Cursor *defaultCursor=NULL;
 // replaces the current system cursor with the one indicated. need only be
 // called once per cursor; pass 0 to restore the default.
-LibError sys_cursor_set(void* cursor)
+LibError sys_cursor_set(sys_cursor cursor)
 {
 	// Gaah, SDL doesn't have a good API for setting the default cursor
 	// SetCursor(NULL) just /repaints/ the cursor (well, obviously! or...)
@@ -143,7 +143,7 @@ LibError sys_cursor_set(void* cursor)
 
 // destroys the indicated cursor and frees its resources. if it is
 // currently the system cursor, the default cursor is restored first.
-LibError sys_cursor_free(void* cursor)
+LibError sys_cursor_free(sys_cursor cursor)
 {
 	// bail now to prevent potential confusion below; there's nothing to do.
 	if(!cursor)

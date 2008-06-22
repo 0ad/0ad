@@ -428,4 +428,13 @@ extern bool tex_is_known_extension(const char* filename);
  **/
 extern size_t tex_hdr_size(const VfsPath& filename);
 
+// RAII wrapper
+struct ScopedTex : public Tex
+{
+	~ScopedTex()
+	{
+		tex_free(this);
+	}
+};
+
 #endif	 // INCLUDED_TEX
