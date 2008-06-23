@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity	Parent="template_unit_mechanical_siege_onager">
+
+	<Actor>units/hellenes/siege_rock.xml</Actor>
+
 	<Traits>
 	
 		<Id>
@@ -21,6 +24,11 @@
 		<Health>
 			<Max>300</Max>
 		</Health>
+ 		<Footprint>
+ 			<Width>3.5</Width>
+ 			<Depth>8.0</Depth>
+ 			<Height>3.5</Height>
+		</Footprint>		
 	</Traits>
-	<Actor>units/hellenes/mechanical_siege_onager.xml</Actor>
+
 </Entity>

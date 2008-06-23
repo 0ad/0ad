@@ -21,6 +21,11 @@
 		<Health>
 			<Max>200</Max>
 		</Health>
+ 		<Footprint>
+ 			<Width>2.0</Width>
+ 			<Depth>4.0</Depth>
+ 			<Height>2.0</Height>
+		</Footprint>		
 	</Traits>
 	<Actions>
  		<Move>
@@ -30,5 +35,5 @@
 			</Run>
 		</Move>
 	</Actions>
-	<Actor>units/hellenes/mechanical_siege_ballista.xml</Actor>
+	<Actor>units/hellenes/siege_spear.xml</Actor>
 </Entity>
