@@ -61,6 +61,8 @@ public:
 
 typedef unsigned char AStarNodeFlag;
 
+class PathFindingTerrainOverlay;
+
 class CAStarEngine
 {
 public:
@@ -77,7 +79,7 @@ public:
 	void SetSearchLimit( int limit );
 
 	//Kai:added tile overlay for pathfinding
-	PathFindingTerrainOverlay pathfindingOverlay;
+	PathFindingTerrainOverlay* pathfindingOverlay;
 	
 	SrPolygon pol;
     

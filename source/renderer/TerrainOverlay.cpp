@@ -2,6 +2,7 @@
 
 #include "TerrainOverlay.h"
 
+#include "ps/Overlay.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "graphics/Terrain.h"
@@ -76,7 +77,7 @@ TerrainOverlay::~TerrainOverlay()
 
 
 
-
+#if 0
 //initial test to draw out entity boundaries
 //it shows how to retrieve object boundary postions for triangulation 
 //NOTE: it's a test to see how to retrieve bounadry locations for static objects on the terrain.
@@ -164,7 +165,7 @@ void TerrainOverlay::RenderEntityEdges()
 
 	//----------------------
 }
-
+#endif
 
 
 void TerrainOverlay::RenderOverlays()

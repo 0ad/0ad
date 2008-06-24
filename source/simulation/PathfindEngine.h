@@ -17,6 +17,7 @@
 
 #include "TRAStarEngine.h"
 
+class TriangulationTerrainOverlay;
 
 #define g_Pathfinder CPathfindEngine::GetSingleton()
 

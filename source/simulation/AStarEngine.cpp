@@ -38,6 +38,49 @@ enum
 };
 
 
+class PathFindingTerrainOverlay : public TerrainOverlay
+{
+public:
+	char random[1021];
+	std::vector<CVector2D> aPath;
+
+	void setPath(std::vector<CVector2D> _aPath)
+	{
+		aPath =_aPath;
+
+		for(size_t k = 0 ; k< aPath.size();k++)
+		{
+			aPath[k] = WorldspaceToTilespace( aPath[k] );
+		}
+	}
+
+	CVector2D WorldspaceToTilespace( const CVector2D &ws )
+	{
+		return CVector2D(floor(ws.x/CELL_SIZE), floor(ws.y/CELL_SIZE));
+	}
+
+	bool inPath(ssize_t i, ssize_t j)
+	{
+		for(size_t k = 0 ; k<aPath.size();k++)
+		{
+			if(aPath[k].x== i && aPath[k].y== j)
+				return true;
+		}
+		return false;
+	}
+
+	virtual void ProcessTile(ssize_t i, ssize_t j)
+	{
+		
+		if ( inPath( i, j))
+		{		
+			RenderTile(CColor(random[(i*79+j*13) % ARRAY_SIZE(random)]/4.f, 1, 0, 0.3f), false);
+			RenderTileOutline(CColor(1, 1, 1, 1), 1, true);
+		}
+	}
+};
+
+
 CAStarEngine::CAStarEngine()
 {
 	mSearchLimit = DEFAULT_SEARCH_LIMIT;
@@ -49,9 +92,8 @@ CAStarEngine::CAStarEngine()
 	mFlags = new AStarNodeFlag[mFlagArraySize*mFlagArraySize];
 	memset(mFlags, 0, mFlagArraySize*mFlagArraySize*sizeof(AStarNodeFlag));
 	
-	
-	
-		
+	// TODO: only instantiate this object when it's going to be used
+	pathfindingOverlay = new PathFindingTerrainOverlay();
 }
 
 CAStarEngine::CAStarEngine(AStarGoalBase *goal)
@@ -229,7 +271,7 @@ bool CAStarEngine::FindPath(
 	//the drawing is disable in the render() function in TerraiOverlay.cpp
 	if(g_ShowPathfindingOverlay)
 	{
-		pathfindingOverlay.setPath(mPath);
+		pathfindingOverlay->setPath(mPath);
 	}
 
 	Cleanup();

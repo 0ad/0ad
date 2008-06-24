@@ -18,6 +18,139 @@
 #define EPSILON 0.00001f
 
 
+class TriangulationTerrainOverlay : public TerrainOverlay
+{
+	SrArray<SrPnt2> constr;
+	SrArray<SrPnt2> unconstr;
+
+	//std::vector<CVector2D> path;
+
+	SrPolygon CurPath;
+public:
+
+	void RenderCurrentPath()
+	{
+		glColor3f(1,1,1);
+
+		for(int i=0; i< CurPath.size()-1; i++)
+		{
+			std::vector<CEntity*> results;
+			g_EntityManager.GetExtant(results);
+			CEntity* tempHandle = results[0];
+
+			glBegin(GL_LINE_LOOP);
+
+			float x1 = CurPath[i].x;
+			float y1 = CurPath[i].y;
+			float x2 = CurPath[i+1].x;
+			float y2 = CurPath[i+1].y;
+			glVertex3f(x1,tempHandle->GetAnchorLevel(x1,y1) + 0.2f,y1);
+			glVertex3f(x2,tempHandle->GetAnchorLevel(x2,y2) + 0.2f,y2);
+			glEnd();
+		}
+	}
+
+	//
+	//Kai: added function to draw out constrained line segments in triangulation
+	//
+	void RenderConstrainedEdges()
+	{
+		std::vector<CEntity*> results;
+		g_EntityManager.GetExtant(results);
+		CEntity* tempHandle = results[0];
+
+		glColor3f( 1, 1, 1 );
+		
+		for(int i=0; i<constr.size()-2; i=i+2)
+		{
+			glBegin( GL_LINE_LOOP );
+
+			SrPnt2 p1 = constr[i];
+			SrPnt2 p2 = constr[i+1];
+
+			float x1 = p1.x;
+			float y1 = p1.y;
+			float x2 = p2.x;
+			float y2 = p2.y;
+
+			glVertex3f( x1, tempHandle->GetAnchorLevel( x1, y1 ) + 0.2f, y1 );
+			glVertex3f( x2, tempHandle->GetAnchorLevel( x2, y2 ) + 0.2f, y2 );
+			glEnd();
+		}		
+	}
+
+	//
+	// Kai: added function to draw out unconstrained line segments in triangulation
+	//
+	void RenderUnconstrainedEdges()
+	{
+		std::vector<CEntity*> results;
+		g_EntityManager.GetExtant(results);
+		CEntity* tempHandle = results[0];
+
+		glColor3f( 0, 1, 0 );
+
+		for(int i=0; i<unconstr.size()-2; i=i+2)
+		{
+			glBegin( GL_LINE_LOOP );
+
+			SrPnt2 p1 = unconstr[i];
+			SrPnt2 p2 = unconstr[i+1];
+
+			float x1 = p1.x;
+			float y1 = p1.y;
+			float x2 = p2.x;
+			float y2 = p2.y;
+
+			glVertex3f( x1, tempHandle->GetAnchorLevel( x1, y1 ) + 0.2f, y1 );
+			glVertex3f( x2, tempHandle->GetAnchorLevel( x2, y2 ) + 0.2f, y2 );
+			glEnd();
+		}
+	}
+
+	void setCurrentPath(SrPolygon _CurPath)
+	{
+		CurPath = _CurPath;
+	}
+
+	void setConstrainedEdges(SrArray<SrPnt2> _constr)
+	{
+		constr = _constr;
+	}
+
+	void setUnconstrainedEdges(SrArray<SrPnt2> _unconstr)
+	{
+		unconstr = _unconstr;
+	}
+
+	void Render()
+	{	
+	}
+	
+
+	TriangulationTerrainOverlay()
+	{
+	}
+
+	virtual void GetTileExtents(
+		ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
+		ssize_t& max_i_inclusive, ssize_t& max_j_inclusive)
+	{
+		min_i_inclusive = 1;
+		min_j_inclusive = 1;
+		max_i_inclusive = 2;
+		max_j_inclusive = 2;
+	}
+
+	virtual void ProcessTile(ssize_t UNUSED(i), ssize_t UNUSED(j))
+	{
+		
+		RenderConstrainedEdges();
+		RenderUnconstrainedEdges();
+		RenderCurrentPath();		
+	}
+};
+
 
 CPathfindEngine::CPathfindEngine() : triangulationOverlay(0),
 									OABBBOUNDREDUCTION(0.8f),

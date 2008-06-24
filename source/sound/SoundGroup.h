@@ -14,7 +14,7 @@ Example usage: (SEE SOUNDGROUPMGR.H)
 
 
 Example SoundGroup.xml
-	<?xml version="1.0" encoding="utf-8" standalone="no" ?> 
+	<?xml version="1.0" encoding="utf-8"?>
 	<SoundGroup>
 		<Gain>1.0</Gain>
 		<Looping>0</Looping>
