@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
-#include "lib/sysdep/os_cpu.h
+#include "lib/sysdep/os_cpu.h"
+#include "lib/bits.h"
 
 #if OS_LINUX
 #include "valgrind.h"
@@ -123,7 +124,8 @@ LibError cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
 {
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{
-		os_cpu_SetThreadAffinity(processor);
+		const uintptr_t processorMask = uintptr_t(1) << processor;
+		os_cpu_SetThreadAffinityMask(processorMask);
 		cb(processor, cbData);
 	}
 

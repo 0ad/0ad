@@ -6,6 +6,7 @@
 
 #include "lib/external_libraries/sdl.h"
 #include "lib/sysdep/sysdep.h"
+#include "lib/sysdep/cursor.h"
 #include "udbg.h"
 
 #define GNU_SOURCE
