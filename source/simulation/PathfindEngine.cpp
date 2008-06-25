@@ -12,6 +12,7 @@
 
 #include "ps/GameSetup/Config.h"
 
+#include "lib/ogl.h"
 
 
 

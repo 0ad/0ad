@@ -10,7 +10,7 @@
 #include "precompiled.h"
 #include "NetClient.h"
 #include "NetJsEvents.h"
-#include "network.h"
+#include "Network.h"
 #include "NetServer.h"
 #include "scripting/DOMEvent.h"
 #include "scripting/JSConversions.h"
@@ -160,33 +160,33 @@ bool CNetClient::SetupSession( CNetSession* pSession )
 	pContext->pSession	= pSession;
 
 	// Setup transitions for session
-	pSession->AddTransition( NCS_CONNECT, ( uint )NMT_SERVER_HANDSHAKE, NCS_HANDSHAKE, &OnHandshake, pContext );
+	pSession->AddTransition( NCS_CONNECT, ( uint )NMT_SERVER_HANDSHAKE, NCS_HANDSHAKE, (void*)&OnHandshake, pContext );
 
-	pSession->AddTransition( NCS_HANDSHAKE, ( uint )NMT_ERROR, NCS_CONNECT, &OnError, pContext );
-	pSession->AddTransition( NCS_HANDSHAKE, ( uint )NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, &OnHandshake, pContext );
+	pSession->AddTransition( NCS_HANDSHAKE, ( uint )NMT_ERROR, NCS_CONNECT, (void*)&OnError, pContext );
+	pSession->AddTransition( NCS_HANDSHAKE, ( uint )NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, (void*)&OnHandshake, pContext );
 
-	pSession->AddTransition( NCS_AUTHENTICATE, ( uint )NMT_ERROR, NCS_CONNECT, &OnError, pContext );
-	pSession->AddTransition( NCS_AUTHENTICATE, ( uint )NMT_AUTHENTICATE_RESULT, NCS_PREGAME, &OnAuthenticate, pContext );
+	pSession->AddTransition( NCS_AUTHENTICATE, ( uint )NMT_ERROR, NCS_CONNECT, (void*)&OnError, pContext );
+	pSession->AddTransition( NCS_AUTHENTICATE, ( uint )NMT_AUTHENTICATE_RESULT, NCS_PREGAME, (void*)&OnAuthenticate, pContext );
 
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_ERROR, NCS_CONNECT, &OnError, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_GAME_SETUP, NCS_PREGAME, &OnPreGame, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_ASSIGN_PLAYER_SLOT, NCS_PREGAME, &OnPreGame, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_PLAYER_CONFIG, NCS_PREGAME, &OnPreGame, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_PLAYER_JOIN, NCS_PREGAME, &OnPlayerJoin, pContext );
-	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_GAME_START, NCS_INGAME, &OnStartGame, pContext );
+	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_ERROR, NCS_CONNECT, (void*)&OnError, pContext );
+	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnPreGame, pContext );
+	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_ASSIGN_PLAYER_SLOT, NCS_PREGAME, (void*)&OnPreGame, pContext );
+	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_PLAYER_CONFIG, NCS_PREGAME, (void*)&OnPreGame, pContext );
+	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_PLAYER_JOIN, NCS_PREGAME, (void*)&OnPlayerJoin, pContext );
+	pSession->AddTransition( NCS_PREGAME, ( uint )NMT_GAME_START, NCS_INGAME, (void*)&OnStartGame, pContext );
 
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_CHAT, NCS_INGAME, &OnChat, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_GOTO, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PATROL, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_ADD_WAYPOINT, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_GENERIC, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PRODUCE, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PLACE_OBJECT, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_RUN, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_FORMATION_GOTO, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_FORMATION_GENERIC, NCS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NCS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NCS_INGAME, &OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_CHAT, NCS_INGAME, (void*)&OnChat, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_GOTO, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PATROL, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_ADD_WAYPOINT, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_GENERIC, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PRODUCE, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_PLACE_OBJECT, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_RUN, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_FORMATION_GOTO, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_FORMATION_GENERIC, NCS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NCS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NCS_INGAME, (void*)&OnInGame, pContext );
 
 	// Set first state
 	pSession->SetFirstState( NCS_CONNECT );

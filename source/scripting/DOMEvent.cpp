@@ -158,7 +158,7 @@ CScriptEvent::CScriptEvent( const CStrW& Type, size_t TypeCode, bool Cancelable,
 	m_Type = Type; m_TypeCode = TypeCode;
 	m_Cancelable = Cancelable; m_Cancelled = false;
 	m_Blockable = Blockable; m_Blocked = false;
-	m_Timestamp = (long)( timer_Time() * 1000.0 );
+	m_Timestamp = (size_t)( timer_Time() * 1000.0 );
 }
 
 void CScriptEvent::ScriptingInit()

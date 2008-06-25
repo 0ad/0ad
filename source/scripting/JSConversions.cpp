@@ -130,8 +130,8 @@ template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, unsigned& Storage )
 	return true;
 }
 
+/* (See comment in JSConversions.h)
 // ssize_t
-
 template<> jsval ToJSVal<ssize_t>( const ssize_t& Native )
 {
 	return( INT_TO_JSVAL( (int)Native ) );
@@ -149,6 +149,7 @@ template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage )
 	Storage = (ssize_t)tmp;
 	return ok == JS_TRUE;
 }
+*/
 
 #if ARCH_AMD64
 

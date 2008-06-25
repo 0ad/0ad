@@ -105,7 +105,7 @@ public:
 	bool m_Blockable;
 
 	// Timestamp (milliseconds since epoch (start of game?))
-	long m_Timestamp;
+	size_t m_Timestamp;
 
 	// Event type string
 	CStrW m_Type;

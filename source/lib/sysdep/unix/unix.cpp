@@ -26,7 +26,7 @@ void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
 	fwprintf(stderr, L"%ls: %ls\n", caption, msg);
 }
 
-ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
+ErrorReaction sys_display_error(const wchar_t* text, int flags)
 {
 	printf("%ls\n\n", text);
 

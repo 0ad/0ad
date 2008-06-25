@@ -125,26 +125,26 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	pContext->pSession	= pSession;
 
 	// Setup transitions for session
-	pSession->AddTransition( NSS_HANDSHAKE, ( uint )NMT_ERROR, NSS_HANDSHAKE, &OnError, pContext );
-	pSession->AddTransition( NSS_HANDSHAKE, ( uint )NMT_CLIENT_HANDSHAKE, NSS_AUTHENTICATE, &OnHandshake, pContext );
-	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_ERROR, NSS_AUTHENTICATE, &OnError, pContext );
-	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_AUTHENTICATE, NSS_PREGAME, &OnAuthenticate, pContext );
-	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_APP_PREGAME, NSS_PREGAME, &OnPreGame, pContext );
-	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_APP_OBSERVER, NSS_INGAME, &OnChat, pContext );
-	pSession->AddTransition( NSS_PREGAME, ( uint )NMT_CHAT, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ERROR, NSS_INGAME, &OnError, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_CHAT, NSS_INGAME, &OnChat, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_GOTO, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PATROL, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ADD_WAYPOINT, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_GENERIC, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PRODUCE, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PLACE_OBJECT, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_RUN, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GOTO, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GENERIC, NSS_INGAME, &OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NSS_INGAME, &OnInGame, pContext );
+	pSession->AddTransition( NSS_HANDSHAKE, ( uint )NMT_ERROR, NSS_HANDSHAKE, (void*)&OnError, pContext );
+	pSession->AddTransition( NSS_HANDSHAKE, ( uint )NMT_CLIENT_HANDSHAKE, NSS_AUTHENTICATE, (void*)&OnHandshake, pContext );
+	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_ERROR, NSS_AUTHENTICATE, (void*)&OnError, pContext );
+	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_AUTHENTICATE, NSS_PREGAME, (void*)&OnAuthenticate, pContext );
+	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_APP_PREGAME, NSS_PREGAME, (void*)&OnPreGame, pContext );
+	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_APP_OBSERVER, NSS_INGAME, (void*)&OnChat, pContext );
+	pSession->AddTransition( NSS_PREGAME, ( uint )NMT_CHAT, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ERROR, NSS_INGAME, (void*)&OnError, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_CHAT, NSS_INGAME, (void*)&OnChat, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_GOTO, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PATROL, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ADD_WAYPOINT, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_GENERIC, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PRODUCE, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PLACE_OBJECT, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_RUN, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GOTO, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GENERIC, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NSS_INGAME, (void*)&OnInGame, pContext );
 
 	// Set first state
 	pSession->SetFirstState( NSS_HANDSHAKE );

@@ -6,6 +6,7 @@
 #include "Collision.h"
 #include "Entity.h"
 
+#include "ps/Overlay.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "graphics/TextureEntry.h"

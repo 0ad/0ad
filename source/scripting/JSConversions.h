@@ -125,9 +125,12 @@ template<> jsval ToJSVal<unsigned>( const unsigned& Native );
 template<> jsval ToJSVal<unsigned>( unsigned& Native );
 
 // ssize_t
+/* PT: Disabled this since it breaks the GCC build (conflicting with int) - this
+   might break the build on Windows instead. TODO: find out and clean this up.
 template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage );
 template<> jsval ToJSVal<ssize_t>( const ssize_t& Native );
 template<> jsval ToJSVal<ssize_t>( ssize_t& Native );
+*/
 
 // size_t
 template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, size_t& Storage );

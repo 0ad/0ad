@@ -42,9 +42,9 @@ static float m_scaleX, m_scaleY;
 
 static unsigned int ScaleColor(unsigned int color, float x)
 {
-	unsigned int r = unsigned int(float(color & 0xff) * x);
-	unsigned int g = unsigned int(float((color>>8) & 0xff) * x);
-	unsigned int b = unsigned int(float((color>>16) & 0xff) * x);
+	unsigned int r = unsigned(float(color & 0xff) * x);
+	unsigned int g = unsigned(float((color>>8) & 0xff) * x);
+	unsigned int b = unsigned(float((color>>16) & 0xff) * x);
 	return (0xff000000 | r | g<<8 | b<<16);
 }
 
