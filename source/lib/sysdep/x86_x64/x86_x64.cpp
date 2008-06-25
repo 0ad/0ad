@@ -30,8 +30,9 @@
 # endif
 
 #if MSC_VERSION
-# include <intrin.h>
+# include <intrin.h>	// __rdtsc
 #elif GCC_VERSION
+# include <emmintrin.h>
 #else
 # error compiler not supported
 #endif
