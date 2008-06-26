@@ -51,7 +51,7 @@ T bit_mask(size_t numBits)
 	// note: the perhaps more intuitive (1 << numBits)-1 cannot
 	// handle numBits == bitsInT, but this implementation does.
 	const T bitsInT = sizeof(T)*CHAR_BIT;
-	T mask = ~T(0);
+	T mask = T(~0);
 	mask >>= T(bitsInT-numBits);
 	return mask;
 }
@@ -111,7 +111,8 @@ bool is_pow2(T n)
  * ceil(log2(x))
  *
  * @param x (unsigned integer)
- * @return ceiling of the base-2 logarithm (i.e. rounded up).
+ * @return ceiling of the base-2 logarithm (i.e. rounded up) or
+ * zero if the input is zero.
  **/
 template<typename T>
 size_t ceil_log2(T x)

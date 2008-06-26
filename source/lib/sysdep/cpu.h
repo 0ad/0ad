@@ -64,11 +64,6 @@ LIB_API void cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
  **/
 LIB_API void cpu_Serialize();
 
-/**
- * enforce strong memory ordering.
- **/
-LIB_API void cpu_MemoryFence();
-
 
 //-----------------------------------------------------------------------------
 // misc

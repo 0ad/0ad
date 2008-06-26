@@ -509,14 +509,6 @@ void x86_x64_DebugBreak()
 }
 
 
-// enforce strong memory ordering.
-void cpu_MemoryFence()
-{
-	if(x86_x64_cap(X86_X64_CAP_SSE2))
-		_mm_mfence();
-}
-
-
 void cpu_Serialize()
 {
 	x86_x64_CpuidRegs regs;

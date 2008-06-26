@@ -10,12 +10,12 @@
 #ifndef INCLUDED_TERRAINOVERLAY
 #define INCLUDED_TERRAINOVERLAY
 
-class CColor;
+struct CColor;
 class CTerrain;
 
 /**
  * Base class for (relatively) simple drawing of
- * data onto terrain tiles, ssize_tended for debugging purposes and for the Atlas
+ * data onto terrain tiles, intended for debugging purposes and for the Atlas
  * editor (hence not trying to be very efficient).
  * <p>
  * To start drawing a terrain overlay, first create a subclass of TerrainOverlay.

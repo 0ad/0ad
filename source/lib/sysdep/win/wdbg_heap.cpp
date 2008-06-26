@@ -823,7 +823,7 @@ static void PrintCallStack(const uintptr_t* callers, size_t numCallers)
 	}
 }
 
-
+#ifndef NDEBUG
 static int __cdecl ReportHook(int reportType, char* message, int* out)
 {
 	UNUSED2(reportType);
@@ -886,6 +886,7 @@ static int __cdecl ReportHook(int reportType, char* message, int* out)
 	wdbg_assert(0);	// unreachable
 	return 0;
 }
+#endif
 
 //-----------------------------------------------------------------------------
 

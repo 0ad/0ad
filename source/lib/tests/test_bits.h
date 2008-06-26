@@ -33,9 +33,9 @@ public:
 	void test_round_up_to_pow2()
 	{
 		TS_ASSERT_EQUALS(round_up_to_pow2(0u), 1u);
-		TS_ASSERT_EQUALS(round_up_to_pow2(1u), 2u);
+		TS_ASSERT_EQUALS(round_up_to_pow2(1u), 1u);
 		TS_ASSERT_EQUALS(round_up_to_pow2(127u), 128u);
-		TS_ASSERT_EQUALS(round_up_to_pow2(128u), 256u);
+		TS_ASSERT_EQUALS(round_up_to_pow2(128u), 128u);
 		TS_ASSERT_EQUALS(round_up_to_pow2(129u), 256u);
 	}
 
