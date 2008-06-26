@@ -137,7 +137,7 @@ const u8* CNetMessage::Deserialize( const u8* pStart, const u8* pEnd )
 // Name: GetSerializedLength()
 // Desc: Returns the size of the serialized message
 //-----------------------------------------------------------------------------
-uint CNetMessage::GetSerializedLength( void ) const
+size_t CNetMessage::GetSerializedLength( void ) const
 {
 	// By default, return header size
 	return ( sizeof( m_Type ) + sizeof( uint ) );
@@ -920,9 +920,8 @@ CNetMessage* CNetMessage::CreateProduceMessage( const CEntityList& entities, con
 // Name: CreateMessage()
 // Desc: Creates the appropriate message based on the given data
 //-----------------------------------------------------------------------------
-CNetMessage* CNetMessageFactory::CreateMessage( 
-											   const void* pData,
-											   uint dataSize )
+CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
+											   size_t dataSize )
 {
 	CNetMessage*	pNewMessage = NULL;
 	CNetMessage		header;

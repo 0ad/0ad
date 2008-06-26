@@ -154,7 +154,7 @@ void CNetLogSink::DoBulkSink( const CNetLogEvent* pEvents, size_t eventCount )
 	if ( m_Closed ) return;
 
 	// Allocate new array which will store the events that will be logged
-	pIndices = new unsigned[ eventCount ];
+	pIndices = new size_t[ eventCount ];
 	if ( !pIndices ) 
 	{
 		throw std::bad_alloc();

@@ -107,7 +107,7 @@ public:
 	 *
 	 * @return							The size of serialized message
 	 */
-	virtual uint GetSerializedLength() const;
+	virtual size_t GetSerializedLength() const;
 
 	/**
 	 * Returns a string representation for the message
