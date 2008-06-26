@@ -336,6 +336,7 @@ class SrInput
     /*! Operator to read an integer using method getn() and function atoi(). 
         Errors can be tracked using last_error(). */
     friend SrInput& operator>> ( SrInput& in, int& i );
+    friend SrInput& operator>> ( SrInput& in, intptr_t& i );
 
     /*! Operator to read an unsigned integer using method getn() and function atoi(). 
         Errors can be tracked using last_error(). */

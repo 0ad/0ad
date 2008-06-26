@@ -178,6 +178,7 @@ class SrOutput
 
     /*! Outputs an int using intfmt with the putf() method. */
     friend SrOutput& operator<< ( SrOutput& o, int i );
+	friend SrOutput& operator<< ( SrOutput& o, intptr_t i);
 
     /*! Outputs a bool as "true" or "false" with the put() method. */
     friend SrOutput& operator<< ( SrOutput& o, bool b );
@@ -203,4 +204,5 @@ extern SrOutput sr_out;
 
 
 # endif  // SR_OUTPUT_H
+
 

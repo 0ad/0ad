@@ -208,12 +208,13 @@ class SrArray : protected SrArrayBase
 
     /*! Operator version of X& get(int i), but returning a non const reference.
         No checkings are done to ensure that i is valid. */
-    X& operator[] ( int i ) { return ((X*)_data)[i]; }
+    //X& operator[] ( int i ) { return ((X*)_data)[i]; }
 
     /*! Returns a const pointer of the internal buffer. The internal buffer 
         will always contain a contigous storage space of capacity() elements. 
         See also take_data() and leave_data() methods. */
     operator const X* () const { return (X*)_data; }
+	operator X* () { return (X*)_data; }
 
     /*! Returns a reference to the last element, ie, with index size()-1.
         The array must not be empty when calling this method. */
@@ -338,4 +339,5 @@ class SrArray : protected SrArrayBase
 //============================== end of file ===============================
 
 #endif // SR_ARRAY_H
+
 
