@@ -302,7 +302,7 @@ void CGameAttributes::OnNumSlotsUpdate(CSynchedJSObjectBase *owner)
 	
 	// Clamp to a preset upper bound.
 	CConfigValue *val=g_ConfigDB.GetValue(CFG_MOD, "max_players");
-	size_t maxPlayers=PS_MAX_PLAYERS;
+	uint maxPlayers=PS_MAX_PLAYERS;
 	if (val)
 		val->GetUnsignedInt(maxPlayers);
 	if (pInstance->m_NumSlots > maxPlayers)

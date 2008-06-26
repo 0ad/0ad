@@ -928,14 +928,14 @@ InReaction CGameView::HandleEvent(const SDL_Event_* ev)
 }
 
 bool CGameViewImpl::JSI_StartCustomSelection(
-	JSContext* UNUSED(context), size_t UNUSED(argc), jsval* UNUSED(argv))
+	JSContext* UNUSED(context), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	StartCustomSelection();
 	return true;
 }
 
 bool CGameViewImpl::JSI_EndCustomSelection(
-	JSContext* UNUSED(context), size_t UNUSED(argc), jsval* UNUSED(argv))
+	JSContext* UNUSED(context), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	ResetInteraction();
 	return true;
