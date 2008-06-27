@@ -259,7 +259,7 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	const wchar_t* messageFormat =
 		L"Much to our regret we must report the program has encountered an error.\r\n"
 		L"\r\n"
-		L"Please let us know at http://bugs.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
+		L"Please let us know at http://trac.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
 		L"\r\n"
 		L"Details: unhandled exception (%s)\r\n";
 	swprintf(message, ARRAY_SIZE(message), messageFormat, description);
