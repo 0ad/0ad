@@ -229,8 +229,8 @@ static void s3tc_decompress_level(size_t UNUSED(level), size_t level_w, size_t l
 	// note: 1x1 images are legitimate (e.g. in mipmaps). they report their
 	// width as such for glTexImage, but the S3TC data is padded to
 	// 4x4 pixel block boundaries.
-	const size_t blocks_w = round_up(level_w, 4u) / 4u;
-	const size_t blocks_h = round_up(level_h, 4u) / 4u;
+	const size_t blocks_w = round_up(level_w, size_t(4)) / 4u;
+	const size_t blocks_h = round_up(level_h, size_t(4)) / 4u;
 	const u8* s3tc_data = level_data;
 	debug_assert(level_data_size % s3tc_block_size == 0);
 
@@ -526,7 +526,7 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, size_t* w_, size_t* h_,
 	const size_t sd_pitch_or_size = (size_t)read_le32(&sd->dwPitchOrLinearSize);
 	if(sd_flags & DDSD_PITCH)
 	{
-		if(sd_pitch_or_size != round_up(pitch, 4u))
+		if(sd_pitch_or_size != round_up(pitch, size_t(4)))
 			WARN_RETURN(ERR::CORRUPTED);
 	}
 	if(sd_flags & DDSD_LINEARSIZE)
