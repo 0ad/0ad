@@ -22,7 +22,8 @@ WINIT_REGISTER_CRITICAL_INIT(wposix_Init);	// wposix -> error handling
 // used by _SC_PAGESIZE and _SC_*_PAGES
 static DWORD pageSize;
 static DWORD numProcessors;
-static BOOL (WINAPI *pGlobalMemoryStatusEx)(MEMORYSTATUSEX*);  
+typedef BOOL (WINAPI *PGlobalMemoryStatusEx)(MEMORYSTATUSEX*);  
+static PGlobalMemoryStatusEx pGlobalMemoryStatusEx;
 
 // NB: called from critical init
 static void InitSysconf()
@@ -35,7 +36,7 @@ static void InitSysconf()
 	// import GlobalMemoryStatusEx - it's not defined by the VC6 PSDK.
 	// used by _SC_*_PAGES if available (provides better results).
 	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");  
-	*(void**)&pGlobalMemoryStatusEx = GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
+	pGlobalMemoryStatusEx = (PGlobalMemoryStatusEx)GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
 }
 
 long sysconf(int name)

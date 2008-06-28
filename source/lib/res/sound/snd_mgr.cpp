@@ -1240,6 +1240,11 @@ static LibError VSrc_reload(VSrc* vs, const VfsPath& pathname, Handle hvs)
 	return INFO::OK;
 }
 
+static bool IsValidBoolean(ALboolean b)
+{
+	return (b == AL_FALSE || b == AL_TRUE);
+}
+
 static LibError VSrc_validate(const VSrc* vs)
 {
 	// al_src can legitimately be 0 (if vs is low-pri)
@@ -1250,7 +1255,7 @@ static LibError VSrc_validate(const VSrc* vs)
 		WARN_RETURN(ERR::_2);
 	if(!(0.0f < vs->pitch && vs->pitch <= 2.0f))
 		WARN_RETURN(ERR::_3);
-	if(*(u8*)&vs->loop > 1 || *(u8*)&vs->relative > 1)
+	if(!IsValidBoolean(vs->loop) || !IsValidBoolean(vs->relative))
 		WARN_RETURN(ERR::_4);
 	// <static_pri> and <cur_pri> have no invariant we could check.
 	return INFO::OK;

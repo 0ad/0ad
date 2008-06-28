@@ -274,8 +274,8 @@ static void EnableLowFragmentationHeap()
 {
 #if WINVER >= 0x0501
 	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
-	BOOL (WINAPI* pHeapSetInformation)(HANDLE, HEAP_INFORMATION_CLASS, void*, size_t);
-	*(void**)&pHeapSetInformation = GetProcAddress(hKernel32Dll, "HeapSetInformation");
+	typedef BOOL (WINAPI* PHeapSetInformation)(HANDLE, HEAP_INFORMATION_CLASS, void*, size_t);
+	PHeapSetInformation pHeapSetInformation = (PHeapSetInformation)GetProcAddress(hKernel32Dll, "HeapSetInformation");
 	if(!pHeapSetInformation)
 		return;
 
@@ -354,18 +354,21 @@ size_t wutil_WindowsVersion()
 // that's bad, because the actual drivers are not in the subdirectory. to
 // work around this, provide for temporarily disabling redirection.
 
-static BOOL (WINAPI *pIsWow64Process)(HANDLE, PBOOL);
-static BOOL (WINAPI *pWow64DisableWow64FsRedirection)(PVOID*) = 0;
-static BOOL (WINAPI *pWow64RevertWow64FsRedirection)(PVOID) = 0;
+typedef BOOL (WINAPI *PIsWow64Process)(HANDLE, PBOOL);
+typedef BOOL (WINAPI *PWow64DisableWow64FsRedirection)(PVOID*);
+typedef BOOL (WINAPI *PWow64RevertWow64FsRedirection)(PVOID);
+static PIsWow64Process pIsWow64Process;
+static PWow64DisableWow64FsRedirection pWow64DisableWow64FsRedirection;
+static PWow64RevertWow64FsRedirection pWow64RevertWow64FsRedirection;
 
 static bool isWow64;
 
 static void ImportWow64Functions()
 {
 	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
-	*(void**)&pIsWow64Process = GetProcAddress(hKernel32Dll, "IsWow64Process"); 
-	*(void**)&pWow64DisableWow64FsRedirection = GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
-	*(void**)&pWow64RevertWow64FsRedirection  = GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");
+	pIsWow64Process = (PIsWow64Process)GetProcAddress(hKernel32Dll, "IsWow64Process"); 
+	pWow64DisableWow64FsRedirection = (PWow64DisableWow64FsRedirection)GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
+	pWow64RevertWow64FsRedirection = (PWow64RevertWow64FsRedirection)GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");
 }
 
 static void DetectWow64()

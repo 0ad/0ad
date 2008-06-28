@@ -45,9 +45,12 @@ const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT; // ::_1
 // enter a clever but safe hack: we call a harmless winsock function that
 // triggers the delay load or does nothing if init has already happened.
 
-static int (WINAPI *pgetnameinfo)(const struct sockaddr*, socklen_t, char*, socklen_t, char*, socklen_t, unsigned int);
-static int (WINAPI *pgetaddrinfo)(const char*, const char*, const struct addrinfo*, struct addrinfo**);
-static void (WINAPI *pfreeaddrinfo)(struct addrinfo*);
+typedef int (WINAPI *Pgetnameinfo)(const struct sockaddr*, socklen_t, char*, socklen_t, char*, socklen_t, unsigned int);
+typedef int (WINAPI *Pgetaddrinfo)(const char*, const char*, const struct addrinfo*, struct addrinfo**);
+typedef void (WINAPI *Pfreeaddrinfo)(struct addrinfo*);
+static Pgetnameinfo pgetnameinfo;
+static Pgetaddrinfo pgetaddrinfo;
+static Pfreeaddrinfo pfreeaddrinfo;
 
 int getnameinfo(const struct sockaddr* sa, socklen_t salen, char* host, socklen_t hostlen, char* serv, socklen_t servlen, unsigned int flags)
 {
@@ -87,9 +90,9 @@ static void ImportOptionalFunctions()
 	// (by the time we get here, ws2_32.dll will have been loaded, so
 	// this isn't the only reference and can be freed immediately)
 	HMODULE hWs2_32Dll = LoadLibrary("ws2_32.dll");
-	*(void**)&pgetnameinfo = GetProcAddress(hWs2_32Dll, "getnameinfo");
-	*(void**)&pgetaddrinfo = GetProcAddress(hWs2_32Dll, "getaddrinfo");
-	*(void**)&pfreeaddrinfo = GetProcAddress(hWs2_32Dll, "freeaddrinfo");
+	pgetnameinfo = (Pgetnameinfo)GetProcAddress(hWs2_32Dll, "getnameinfo");
+	pgetaddrinfo = (Pgetaddrinfo)GetProcAddress(hWs2_32Dll, "getaddrinfo");
+	pfreeaddrinfo = (Pfreeaddrinfo)GetProcAddress(hWs2_32Dll, "freeaddrinfo");
 	FreeLibrary(hWs2_32Dll);
 }
 

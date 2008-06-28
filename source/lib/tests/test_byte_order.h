@@ -8,7 +8,8 @@ public:
 	void test_conversion()
 	{
 		const u32 x = 0x01234567u;
-		const u8 LS_byte = *(u8*)&x;
+		u8 LS_byte;
+		memcpy(&LS_byte, &x, 1);
 		// little endian
 		if(LS_byte == 0x67)
 		{

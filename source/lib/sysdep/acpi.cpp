@@ -110,7 +110,7 @@ static void* UnsafeLocateAndRetrieveRsdp(PCV_u8 buf, size_t numBytes, void* arg)
 		if(ComputeChecksum(p, sizeof(RSDP)) != 0)
 			continue;
 
-		*(RSDP*)arg = *prsdp;
+		memcpy(arg, prsdp, sizeof(RSDP));
 		return SUCCEEDED;
 	}
 
@@ -154,7 +154,7 @@ static inline void* UnsafeAllocateCopyOfTable(PCV_u8 mem, size_t numBytes, void*
 	// (caller will map a larger window and call us again)
 	if(numBytes < tableSize)
 	{
-		*(size_t*)arg = tableSize;
+		memcpy(arg, &tableSize, sizeof(size_t));
 		return 0;
 	}
 
