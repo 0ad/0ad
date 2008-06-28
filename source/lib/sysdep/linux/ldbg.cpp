@@ -54,7 +54,7 @@ struct symbol_lookup_context
 	bfd_vma address;
 	const char* symbol;
 	const char* filename;
-	size_t line;
+	uint line;
 	
 	bool found;
 };
@@ -143,9 +143,9 @@ static int slurp_symtab(symbol_file_context *ctx)
 	symcount = bfd_canonicalize_symtab(abfd, *syms);
 
 	if (symcount == 0)
-		symcount = bfd_read_minisymbols (abfd, FALSE, (void **)syms, (size_t *)&size);
+		symcount = bfd_read_minisymbols (abfd, FALSE, (void **)syms, (unsigned*)&size);
 	if (symcount == 0)
-		symcount = bfd_read_minisymbols (abfd, TRUE /* dynamic */, (void **)syms, (size_t *)&size);
+		symcount = bfd_read_minisymbols (abfd, TRUE /* dynamic */, (void **)syms, (unsigned*)&size);
 
 	if (symcount < 0)
 	{
@@ -199,7 +199,7 @@ static int read_symbols(const char *file_name, symbol_file_context *ctx)
 void udbg_bfd_init(void)
 {
 	char n_path[PATH_MAX];
-	char *exename=n_path;
+	const char *exename=n_path;
 	if (sys_get_executable_name(n_path, sizeof(n_path)) != INFO::OK)
 	{
 		debug_printf("sys_get_executable_name didn't work, using hard-coded guess %s.\n", EXE_NAME);
