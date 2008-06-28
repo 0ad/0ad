@@ -7,7 +7,7 @@ class TestPrintf : public CxxTest::TestSuite
 	// Split some bits into separate functions, so we can get
 	// a legitimate va_list to pass to sys_vsnprintf:
 
-	void _test_truncate(int buffer_size, char* expected_output, int expected_return, /* char* input_string */...)
+	void _test_truncate(int buffer_size, const char* expected_output, int expected_return, /* char* input_string */...)
 	{
 		char buf[17] = "................"; // fill with dots so null-termination is made obvious
 
@@ -25,7 +25,7 @@ class TestPrintf : public CxxTest::TestSuite
 		va_end(ap);
 	}
 
-	void _test_sprintf(char* expected_output, char* format, ...)
+	void _test_sprintf(const char* expected_output, const char* format, ...)
 	{
 		char buf[256];
 
