@@ -1,6 +1,6 @@
 /**********************************************************************
  * Premake - vs.c
- * Common code for Visual Studio 2002-2005 targets.
+ * Common code for Visual Studio 2002-2008 targets.
  *
  * Copyright (c) 2002-2006 Jason Perkins and the Premake project
  * 
@@ -85,7 +85,7 @@ static int blocks_2003[] =
 	BlocksEnd
 };
 
-static int blocks_2005[] =
+static int blocks_2005_2008[] =
 {
 	VCPreBuildEventTool,
 	VCCustomBuildTool,
@@ -112,7 +112,8 @@ static int* blocks[] =
 {
 	blocks_2002,
 	blocks_2003,
-	blocks_2005
+	blocks_2005_2008,
+	blocks_2005_2008
 };
 
 
@@ -135,7 +136,7 @@ static void tag_open(const char* name)
 {
 	if (opened)
 	{
-		if (version == VS2005 && attrib > 0)
+		if (version >= VS2005 && attrib > 0)
 		{
 			io_print("\n");
 			tag_indent();
@@ -192,7 +193,7 @@ static void tag_close(const char* name, int form)
 	}
 	else
 	{
-		if (version == VS2005)
+		if (version >= VS2005)
 		{
 			io_print("\n");
 			tag_indent();
@@ -235,7 +236,7 @@ void vs_assign_guids()
 		generateUUID(data->projGuid);
 
 		prj_select_config(0);
-		if (version == VS2005 && prj_is_kind("aspnet"))
+		if (version >= VS2005 && prj_is_kind("aspnet"))
 		{
 			strcpy(data->toolGuid, "E24C65DC-7377-472B-9ABA-BC803B73C61A");
 			strcpy(data->projExt, "");
@@ -294,13 +295,16 @@ int vs_write_cpp()
 	case VS2005:
 		str = "8.00";
 		break;
+	case VS2008:
+		str = "9.00";
+		break;
 	}
 	tag_attr("Version=\"%s\"", str);
 
 	tag_attr("Name=\"%s\"", prj_get_pkgname());
 	tag_attr("ProjectGUID=\"{%s}\"", data->projGuid);
 
-	if (version == VS2005)
+	if (version >= VS2005)
 		tag_attr("RootNamespace=\"%s\"", prj_get_pkgname());
 
 	tag_attr("Keyword=\"%s\"", prj_has_flag("managed") ? "ManagedCProj" : "Win32Proj");  
@@ -311,7 +315,7 @@ int vs_write_cpp()
 	tag_close("Platform", 0);
 	tag_close("Platforms", 1);
 
-	if (version == VS2005)
+	if (version >= VS2005)
 	{
 		tag_open("ToolFiles");
 		tag_close("ToolFiles", 1);
@@ -523,12 +527,12 @@ int vs_write_cpp()
 
 				if (version < VS2005 && !prj_has_flag("no-rtti"))
 					tag_attr("RuntimeTypeInfo=\"%s\"", S_TRUE);
-				if (version == VS2005 && prj_has_flag("no-rtti"))
+				if (version >= VS2005 && prj_has_flag("no-rtti"))
 					tag_attr("RuntimeTypeInfo=\"%s\"", S_FALSE);
 
 				if (version < VS2005 && prj_has_flag("native-wchar_t"))
 					tag_attr("TreatWChar_tAsBuiltInType=\"%s\"", S_TRUE);
-				if (version == VS2005 && prj_has_flag("no-native-wchar_t"))
+				if (version >= VS2005 && prj_has_flag("no-native-wchar_t"))
 					tag_attr("TreatWChar_tAsBuiltInType=\"%s\"", S_FALSE);
 
 				if (pchHeader)
@@ -542,7 +546,7 @@ int vs_write_cpp()
 				tag_attr("WarningLevel=\"%d\"", prj_has_flag("extra-warnings") ? 4 : 3);
 				if (prj_has_flag("fatal-warnings"))
 					tag_attr("WarnAsError=\"%s\"", S_TRUE);
-				if (!prj_has_flag("managed")) 
+				if (version < VS2008 && !prj_has_flag("managed")) 
 					tag_attr("Detect64BitPortabilityProblems=\"%s\"", prj_has_flag("no-64bit-checks") ? S_FALSE : S_TRUE);
 
 				tag_attr("DebugInformationFormat=\"%d\"", symbols);

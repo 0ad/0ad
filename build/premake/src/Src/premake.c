@@ -220,7 +220,11 @@ int onCommand(const char* cmd, const char* arg)
 		}
 		else if (matches(arg, "vs2005"))
 		{
-			return vs2005_generate();
+			return vs2005_generate(2005);
+		}
+		else if (matches(arg, "vs2008"))
+		{
+			return vs2005_generate(2008);
 		}
 		else
 		{
@@ -293,6 +297,7 @@ void showUsage()
 	puts("      vs2002    Microsoft Visual Studio 2002");
 	puts("      vs2003    Microsoft Visual Studio 2003");
 	puts("      vs2005    Microsoft Visual Studio 2005 (includes Express editions)");
+	puts("      vs2008    Microsoft Visual Studio 2008 (includes Express editions)");
 	puts("");
 	puts(" --help            Display this information");
 	puts(" --version         Display version information");

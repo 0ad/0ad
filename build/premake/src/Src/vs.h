@@ -1,6 +1,6 @@
 /**********************************************************************
  * Premake - vs.h
- * Common code for Visual Studio 2002-2005 targets.
+ * Common code for Visual Studio 2002-2008 targets.
  *
  * Copyright (c) 2002-2006 Jason Perkins and the Premake project
  * 
@@ -19,7 +19,8 @@ enum VsVer
 {
 	VS2002,
 	VS2003,
-	VS2005
+	VS2005,
+	VS2008
 };
 
 typedef struct tagVsPkgData

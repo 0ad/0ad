@@ -15,6 +15,6 @@
  * GNU General Public License in the file LICENSE.txt for details.
  **********************************************************************/
 
-int vs2005_generate();
+int vs2005_generate(int target);
 int vs2005_cs();
 

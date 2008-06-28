@@ -859,6 +859,7 @@ function setup_tests()
 	include = " --include=precompiled.h"
 	package.rootoptions = package.rootoptions .. include
 	package.testoptions = package.testoptions .. include
+	tinsert(package.buildflags, "no-manifest")
 
 	package_create("test_2_build", "winexe")
 	links = static_lib_names
@@ -905,6 +906,7 @@ function setup_tests()
 	tinsert(package.buildflags, "use-library-dep-inputs")
 
 	package_create("test_1_run", "run")
+	tinsert(package.buildflags, "no-manifest")
 	package.links = { "test_2_build" } -- This determines which project's executable to run
 
 end

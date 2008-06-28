@@ -186,8 +186,9 @@ int gnu_cpp()
 	}
 	else
 	{
-		io_print("PCHS := \\\n");
+
 		const char *basename = path_getbasename(pchOrigin);
+		io_print("PCHS := \\\n");
 		io_print("\t$(OBJDIR)/%s.%s \\\n", basename, pchExt);
 		io_print("\n");
 	}

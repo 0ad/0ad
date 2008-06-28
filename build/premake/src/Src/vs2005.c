@@ -22,15 +22,23 @@
 #include "vs.h"
 #include "vs2005.h"
 
-static int vs2005_write_solution();
+static int vs2005_write_solution(int target);
 static const char* list_aspnet_refs(const char* name);
 
 int vs2005_generate(int target)
 {
 	int p;
 
-	vs_setversion(VS2005);
-	printf("Generating Visual Studio 2005 solution and project files:\n");
+	if (target == 2005)
+	{
+		vs_setversion(VS2005);
+		printf("Generating Visual Studio 2005 solution and project files:\n");
+	}
+	else
+	{
+		vs_setversion(VS2008);
+		printf("Generating Visual Studio 2008 solution and project files:\n");
+	}
 
 	/* Assign GUIDs to packages */
 	vs_assign_guids();
@@ -63,7 +71,7 @@ int vs2005_generate(int target)
 		}
 	}
 
-	return vs2005_write_solution();
+	return vs2005_write_solution(target);
 }
 
 
@@ -71,7 +79,7 @@ int vs2005_generate(int target)
  * Write out the solution file
  ***********************************************************************/
 
-static int vs2005_write_solution()
+static int vs2005_write_solution(int target)
 {
 	VsPkgData* data;
 	int hasDotNet, hasCpp;
@@ -82,8 +90,16 @@ static int vs2005_write_solution()
 		return 0;
 
 	/* Format identification string */
-	io_print("Microsoft Visual Studio Solution File, Format Version 9.00\n");
-	io_print("# Visual Studio 2005\n");
+	if (target == 2005)
+	{
+		io_print("Microsoft Visual Studio Solution File, Format Version 9.00\n");
+		io_print("# Visual Studio 2005\n");
+	}
+	else
+	{
+		io_print("Microsoft Visual Studio Solution File, Format Version 10.00\n");
+		io_print("# Visual Studio 2008\n");
+	}
 
 	/* List packages */
 	numAspNet = 0;
