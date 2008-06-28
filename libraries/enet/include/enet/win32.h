@@ -5,14 +5,17 @@
 #ifndef __ENET_WIN32_H__
 #define __ENET_WIN32_H__
 
+#ifdef ENET_BUILDING_LIB
+#pragma warning (disable: 4996) // 'strncpy' was declared deprecated
+#pragma warning (disable: 4267) // size_t to int conversion
+#pragma warning (disable: 4244) // 64bit to 32bit int
+#pragma warning (disable: 4018) // signed/unsigned mismatch
+#endif
+
 #include <stdlib.h>
-//#include <winsock2.h>
-#include "lib/posix/posix_sock.h"
+#include <winsock2.h>
 
-#define INVALID_SOCKET  (int)(~0)
-
-//typedef SOCKET ENetSocket;
-typedef int ENetSocket;
+typedef SOCKET ENetSocket;
 
 enum
 {
@@ -30,6 +33,18 @@ typedef struct
     size_t dataLength;
     void * data;
 } ENetBuffer;
+
+#define ENET_CALLBACK __cdecl
+
+#if defined ENET_DLL
+#if defined ENET_BUILDING_LIB
+#define ENET_API __declspec( dllexport )
+#else
+#define ENET_API __declspec( dllimport )
+#endif /* ENET_BUILDING_LIB */
+#else /* !ENET_DLL */
+#define ENET_API extern
+#endif /* ENET_DLL */
 
 #endif /* __ENET_WIN32_H__ */
 

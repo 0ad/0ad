@@ -12,33 +12,21 @@ extern "C"
 
 #include <stdlib.h>
 
-#include "enet/types.h"
-#include "enet/protocol.h"
-#include "enet/list.h"
-
 #ifdef WIN32
 #include "enet/win32.h"
 #else
 #include "enet/unix.h"
 #endif
 
-#ifdef ENET_API
-#undef ENET_API
-#endif
+#include "enet/types.h"
+#include "enet/protocol.h"
+#include "enet/list.h"
+#include "enet/callbacks.h"
 
-#if defined WIN32
-#if defined ENET_DLL
-#if defined ENET_BUILDING_LIB
-#define ENET_API __declspec( dllexport )
-#else
-#define ENET_API __declspec( dllimport )
-#endif /* ENET_BUILDING_LIB */
-#endif /* ENET_DLL */
-#endif /* WIN32 */
-
-#ifndef ENET_API
-#define ENET_API extern
-#endif
+typedef enum
+{
+   ENET_VERSION = 1
+} ENetVersion;
 
 typedef enum
 {
@@ -53,9 +41,20 @@ typedef enum
    ENET_SOCKET_WAIT_RECEIVE = (1 << 1)
 } ENetSocketWait;
 
+typedef enum
+{
+   ENET_SOCKOPT_NONBLOCK  = 1,
+   ENET_SOCKOPT_BROADCAST = 2,
+   ENET_SOCKOPT_RCVBUF    = 3,
+   ENET_SOCKOPT_SNDBUF    = 4
+} ENetSocketOption;
+
 enum
 {
-   ENET_HOST_ANY = 0
+   ENET_HOST_ANY       = 0,            /**< specifies the default server host */
+   ENET_HOST_BROADCAST = 0xFFFFFFFF,   /**< specifies a subnet-wide broadcast */
+
+   ENET_PORT_ANY       = 0             /**< specifies that a port should be automatically chosen */
 };
 
 /**
@@ -63,11 +62,14 @@ enum
  *
  * The host must be specified in network byte-order, and the port must be in host 
  * byte-order. The constant ENET_HOST_ANY may be used to specify the default 
- * server host.
+ * server host. The constant ENET_HOST_BROADCAST may be used to specify the
+ * broadcast address (255.255.255.255).  This makes sense for enet_host_connect,
+ * but not for enet_host_create.  Once a server responds to a broadcast, the
+ * address is updated from ENET_HOST_BROADCAST to the server's actual IP address.
  */
 typedef struct _ENetAddress
 {
-   enet_uint32 host;  /**< may use ENET_HOST_ANY to specify default server host */
+   enet_uint32 host;
    enet_uint16 port;
 } ENetAddress;
 
@@ -84,8 +86,17 @@ typedef enum
 {
    /** packet must be received by the target peer and resend attempts should be
      * made until the packet is delivered */
-   ENET_PACKET_FLAG_RELIABLE = (1 << 0)
+   ENET_PACKET_FLAG_RELIABLE    = (1 << 0),
+   /** packet will not be sequenced with other packets
+     * not supported for reliable packets
+     */
+   ENET_PACKET_FLAG_UNSEQUENCED = (1 << 1),
+   /** packet will not allocate data, and user must supply it instead */
+   ENET_PACKET_FLAG_NO_ALLOCATE = (1 << 2)
 } ENetPacketFlag;
+
+struct _ENetPacket;
+typedef void (ENET_CALLBACK * ENetPacketFreeCallback) (struct _ENetPacket *);
 
 /**
  * ENet packet structure.
@@ -96,16 +107,23 @@ typedef enum
  * of the allocated data.  The flags field is either 0 (specifying no flags), 
  * or a bitwise-or of any combination of the following flags:
  *
- *    ENET_PACKET_FLAG_RELIABLE - packet must be received by the ta
-
+ *    ENET_PACKET_FLAG_RELIABLE - packet must be received by the target peer
+ *    and resend attempts should be made until the packet is delivered
+ *
+ *    ENET_PACKET_FLAG_UNSEQUENCED - packet will not be sequenced with other packets 
+ *    (not supported for reliable packets)
+ *
+ *    ENET_PACKET_FLAG_NO_ALLOCATE - packet will not allocate data, and user must supply it instead
+ 
    @sa ENetPacketFlag
  */
 typedef struct _ENetPacket
 {
-   size_t               referenceCount;  /**< internal use only */
-   enet_uint32          flags;           /**< bitwise or of ENetPacketFlag constants */
-   enet_uint8 *         data;            /**< allocated data for packet */
-   size_t               dataLength;      /**< length of data */
+   size_t                   referenceCount;  /**< internal use only */
+   enet_uint32              flags;           /**< bitwise-or of ENetPacketFlag constants */
+   enet_uint8 *             data;            /**< allocated data for packet */
+   size_t                   dataLength;      /**< length of data */
+   ENetPacketFreeCallback   freeCallback;    /**< function to be called when the packet is no longer in use */
 } ENetPacket;
 
 typedef struct _ENetAcknowledgement
@@ -118,13 +136,14 @@ typedef struct _ENetAcknowledgement
 typedef struct _ENetOutgoingCommand
 {
    ENetListNode outgoingCommandList;
-   enet_uint32  reliableSequenceNumber;
-   enet_uint32  unreliableSequenceNumber;
+   enet_uint16  reliableSequenceNumber;
+   enet_uint16  unreliableSequenceNumber;
    enet_uint32  sentTime;
    enet_uint32  roundTripTimeout;
    enet_uint32  roundTripTimeoutLimit;
    enet_uint32  fragmentOffset;
    enet_uint16  fragmentLength;
+   enet_uint16  sendAttempts;
    ENetProtocol command;
    ENetPacket * packet;
 } ENetOutgoingCommand;
@@ -132,8 +151,8 @@ typedef struct _ENetOutgoingCommand
 typedef struct _ENetIncomingCommand
 {  
    ENetListNode     incomingCommandList;
-   enet_uint32      reliableSequenceNumber;
-   enet_uint32      unreliableSequenceNumber;
+   enet_uint16      reliableSequenceNumber;
+   enet_uint16      unreliableSequenceNumber;
    ENetProtocol     command;
    enet_uint32      fragmentCount;
    enet_uint32      fragmentsRemaining;
@@ -146,10 +165,13 @@ typedef enum
    ENET_PEER_STATE_DISCONNECTED                = 0,
    ENET_PEER_STATE_CONNECTING                  = 1,
    ENET_PEER_STATE_ACKNOWLEDGING_CONNECT       = 2,
-   ENET_PEER_STATE_CONNECTED                   = 3,
-   ENET_PEER_STATE_DISCONNECTING               = 4,
-   ENET_PEER_STATE_ACKNOWLEDGING_DISCONNECT    = 5,
-   ENET_PEER_STATE_ZOMBIE                      = 6
+   ENET_PEER_STATE_CONNECTION_PENDING          = 3,
+   ENET_PEER_STATE_CONNECTION_SUCCEEDED        = 4,
+   ENET_PEER_STATE_CONNECTED                   = 5,
+   ENET_PEER_STATE_DISCONNECT_LATER            = 6,
+   ENET_PEER_STATE_DISCONNECTING               = 7,
+   ENET_PEER_STATE_ACKNOWLEDGING_DISCONNECT    = 8,
+   ENET_PEER_STATE_ZOMBIE                      = 9 
 } ENetPeerState;
 
 #ifndef ENET_BUFFER_MAXIMUM
@@ -159,6 +181,7 @@ typedef enum
 enum
 {
    ENET_HOST_RECEIVE_BUFFER_SIZE          = 256 * 1024,
+   ENET_HOST_SEND_BUFFER_SIZE             = 256 * 1024,
    ENET_HOST_BANDWIDTH_THROTTLE_INTERVAL  = 1000,
    ENET_HOST_DEFAULT_MTU                  = 1400,
 
@@ -173,15 +196,24 @@ enum
    ENET_PEER_PACKET_LOSS_INTERVAL         = 10000,
    ENET_PEER_WINDOW_SIZE_SCALE            = 64 * 1024,
    ENET_PEER_TIMEOUT_LIMIT                = 32,
-   ENET_PEER_PING_INTERVAL                = 500
+   ENET_PEER_TIMEOUT_MINIMUM              = 5000,
+   ENET_PEER_TIMEOUT_MAXIMUM              = 30000,
+   ENET_PEER_PING_INTERVAL                = 500,
+   ENET_PEER_UNSEQUENCED_WINDOWS          = 64,
+   ENET_PEER_UNSEQUENCED_WINDOW_SIZE      = 1024,
+   ENET_PEER_FREE_UNSEQUENCED_WINDOWS     = 32,
+   ENET_PEER_RELIABLE_WINDOWS             = 16,
+   ENET_PEER_RELIABLE_WINDOW_SIZE         = 0x1000,
+   ENET_PEER_FREE_RELIABLE_WINDOWS        = 8
 };
 
 typedef struct _ENetChannel
 {
-   enet_uint32  outgoingReliableSequenceNumber;
-   enet_uint32  outgoingUnreliableSequenceNumber;
-   enet_uint32  incomingReliableSequenceNumber;
-   enet_uint32  incomingUnreliableSequenceNumber;
+   enet_uint16  outgoingReliableSequenceNumber;
+   enet_uint16  outgoingUnreliableSequenceNumber;
+   enet_uint16  usedReliableWindows;
+   enet_uint16  reliableWindows [ENET_PEER_RELIABLE_WINDOWS];
+   enet_uint16  incomingReliableSequenceNumber;
    ENetList     incomingReliableCommands;
    ENetList     incomingUnreliableCommands;
 } ENetChannel;
@@ -196,7 +228,7 @@ typedef struct _ENetPeer
    struct _ENetHost * host;
    enet_uint16   outgoingPeerID;
    enet_uint16   incomingPeerID;
-   enet_uint32   challenge;
+   enet_uint32   sessionID;
    ENetAddress   address;            /**< Internet address of the peer */
    void *        data;               /**< Application private data, may be freely modified */
    ENetPeerState state;
@@ -211,6 +243,7 @@ typedef struct _ENetPeer
    enet_uint32   lastSendTime;
    enet_uint32   lastReceiveTime;
    enet_uint32   nextTimeout;
+   enet_uint32   earliestTimeout;
    enet_uint32   packetLossEpoch;
    enet_uint32   packetsSent;
    enet_uint32   packetsLost;
@@ -232,12 +265,16 @@ typedef struct _ENetPeer
    enet_uint16   mtu;
    enet_uint32   windowSize;
    enet_uint32   reliableDataInTransit;
-   enet_uint32   outgoingReliableSequenceNumber;
+   enet_uint16   outgoingReliableSequenceNumber;
    ENetList      acknowledgements;
    ENetList      sentReliableCommands;
    ENetList      sentUnreliableCommands;
    ENetList      outgoingReliableCommands;
    ENetList      outgoingUnreliableCommands;
+   enet_uint16   incomingUnsequencedGroup;
+   enet_uint16   outgoingUnsequencedGroup;
+   enet_uint32   unsequencedWindow [ENET_PEER_UNSEQUENCED_WINDOW_SIZE / 32]; 
+   enet_uint32   disconnectData;
 } ENetPeer;
 
 /** An ENet host for communicating with peers.
@@ -264,8 +301,11 @@ typedef struct _ENetHost
    int                recalculateBandwidthLimits;
    ENetPeer *         peers;                       /**< array of peers allocated for this host */
    size_t             peerCount;                   /**< number of peers allocated for this host */
+   enet_uint32        serviceTime;
    ENetPeer *         lastServicedPeer;
+   int                continueSending;
    size_t             packetSize;
+   enet_uint16        headerFlags;
    ENetProtocol       commands [ENET_PROTOCOL_MAXIMUM_PACKET_COMMANDS];
    size_t             commandCount;
    ENetBuffer         buffers [ENET_BUFFER_MAXIMUM];
@@ -292,7 +332,8 @@ typedef enum
      * completion of a disconnect initiated by enet_pper_disconnect, if 
      * a peer has timed out, or if a connection request intialized by 
      * enet_host_connect has timed out.  The peer field contains the peer 
-     * which disconnected. 
+     * which disconnected. The data field contains user supplied data 
+     * describing the disconnection, or 0, if none is available.
      */
    ENET_EVENT_TYPE_DISCONNECT = 2,  
 
@@ -314,8 +355,9 @@ typedef struct _ENetEvent
 {
    ENetEventType        type;      /**< type of the event */
    ENetPeer *           peer;      /**< peer that generated a connect, disconnect or receive event */
-   enet_uint8           channelID;
-   ENetPacket *         packet;
+   enet_uint8           channelID; /**< channel on the peer that generated the event, if appropriate */
+   enet_uint32          data;      /**< data associated with the event, if appropriate */
+   ENetPacket *         packet;    /**< packet associated with the event, if appropriate */
 } ENetEvent;
 
 /** @defgroup global ENet global functions
@@ -328,6 +370,15 @@ typedef struct _ENetEvent
   @returns 0 on success, < 0 on failure
 */
 ENET_API int enet_initialize (void);
+
+/** 
+  Initializes ENet globally and supplies user-overridden callbacks. Must be called prior to using any functions in ENet. Do not use enet_initialize() if you use this variant.
+
+  @param version the constant ENET_VERSION should be supplied so ENet knows which version of ENetCallbacks struct to use
+  @param inits user-overriden callbacks where any NULL callbacks will use ENet's defaults
+  @returns 0 on success, < 0 on failure
+*/
+ENET_API int enet_initialize_with_callbacks (ENetVersion version, const ENetCallbacks * inits);
 
 /** 
   Shuts down ENet globally.  Should be called when a program that has
@@ -351,15 +402,15 @@ ENET_API void enet_time_set (enet_uint32);
 
 /** @defgroup socket ENet socket functions
     @{
-    @ingroup private
 */
-extern ENetSocket enet_socket_create (ENetSocketType, const ENetAddress *);
-extern ENetSocket enet_socket_accept (ENetSocket, ENetAddress *);
-extern int        enet_socket_connect (ENetSocket, const ENetAddress *);
-extern int        enet_socket_send (ENetSocket, const ENetAddress *, const ENetBuffer *, size_t);
-extern int        enet_socket_receive (ENetSocket, ENetAddress *, ENetBuffer *, size_t);
-extern int        enet_socket_wait (ENetSocket, enet_uint32 *, enet_uint32);
-extern void       enet_socket_destroy (ENetSocket);
+ENET_API ENetSocket enet_socket_create (ENetSocketType, const ENetAddress *);
+ENET_API ENetSocket enet_socket_accept (ENetSocket, ENetAddress *);
+ENET_API int        enet_socket_connect (ENetSocket, const ENetAddress *);
+ENET_API int        enet_socket_send (ENetSocket, const ENetAddress *, const ENetBuffer *, size_t);
+ENET_API int        enet_socket_receive (ENetSocket, ENetAddress *, ENetBuffer *, size_t);
+ENET_API int        enet_socket_wait (ENetSocket, enet_uint32 *, enet_uint32);
+ENET_API int        enet_socket_set_option (ENetSocket, ENetSocketOption, int);
+ENET_API void       enet_socket_destroy (ENetSocket);
 
 /** @} */
 
@@ -374,9 +425,19 @@ extern void       enet_socket_destroy (ENetSocket);
     @retval < 0 on failure
     @returns the address of the given hostName in address on success
 */
-extern int enet_address_set_host (ENetAddress *address, const char *hostName );
+ENET_API int enet_address_set_host (ENetAddress * address, const char * hostName);
 
-/** Attempts to do a reserve lookup of the host field in the address parameter.
+/** Gives the printable form of the ip address specified in the address parameter.
+    @param address    address printed
+    @param hostName   destination for name, must not be NULL
+    @param nameLength maximum length of hostName.
+    @returns the null-terminated name of the host in hostName on success
+    @retval 0 on success
+    @retval < 0 on failure
+*/
+ENET_API int enet_address_get_host_ip (const ENetAddress * address, char * hostName, size_t nameLength);
+
+/** Attempts to do a reverse lookup of the host field in the address parameter.
     @param address    address used for reverse lookup
     @param hostName   destination for name, must not be NULL
     @param nameLength maximum length of hostName.
@@ -384,17 +445,19 @@ extern int enet_address_set_host (ENetAddress *address, const char *hostName );
     @retval 0 on success
     @retval < 0 on failure
 */
-extern int enet_address_get_host (const ENetAddress *address, char *hostName, size_t nameLength );
+ENET_API int enet_address_get_host (const ENetAddress * address, char * hostName, size_t nameLength);
 
 /** @} */
 
-ENET_API ENetPacket * enet_packet_create (const void *dataContents, size_t dataLength, enet_uint32 flags);
-ENET_API void         enet_packet_destroy (ENetPacket *packet );
-ENET_API int          enet_packet_resize  (ENetPacket *packet, size_t dataLength );
-
-ENET_API ENetHost * enet_host_create (const ENetAddress *address, size_t peerCount, enet_uint32 incomingBandwidth, enet_uint32 outgoingBandwidth );
-ENET_API void       enet_host_destroy (ENetHost *host );
-ENET_API ENetPeer * enet_host_connect (ENetHost *host, const ENetAddress *address, size_t channelCount );
+ENET_API ENetPacket * enet_packet_create (const void *, size_t, enet_uint32);
+ENET_API void         enet_packet_destroy (ENetPacket *);
+ENET_API int          enet_packet_resize  (ENetPacket *, size_t);
+extern enet_uint32    enet_crc32 (const ENetBuffer *, size_t);
+                
+ENET_API ENetHost * enet_host_create (const ENetAddress *, size_t, enet_uint32, enet_uint32);
+ENET_API void       enet_host_destroy (ENetHost *);
+ENET_API ENetPeer * enet_host_connect (ENetHost *, const ENetAddress *, size_t);
+ENET_API int        enet_host_check_events (ENetHost *, ENetEvent *);
 ENET_API int        enet_host_service (ENetHost *, ENetEvent *, enet_uint32);
 ENET_API void       enet_host_flush (ENetHost *);
 ENET_API void       enet_host_broadcast (ENetHost *, enet_uint8, ENetPacket *);
@@ -405,14 +468,17 @@ ENET_API int                 enet_peer_send (ENetPeer *, enet_uint8, ENetPacket 
 ENET_API ENetPacket *        enet_peer_receive (ENetPeer *, enet_uint8);
 ENET_API void                enet_peer_ping (ENetPeer *);
 ENET_API void                enet_peer_reset (ENetPeer *);
-ENET_API void                enet_peer_disconnect (ENetPeer *);
-ENET_API void                enet_peer_disconnect_now (ENetPeer *);
+ENET_API void                enet_peer_disconnect (ENetPeer *, enet_uint32);
+ENET_API void                enet_peer_disconnect_now (ENetPeer *, enet_uint32);
+ENET_API void                enet_peer_disconnect_later (ENetPeer *, enet_uint32);
 ENET_API void                enet_peer_throttle_configure (ENetPeer *, enet_uint32, enet_uint32, enet_uint32);
 extern int                   enet_peer_throttle (ENetPeer *, enet_uint32);
 extern void                  enet_peer_reset_queues (ENetPeer *);
 extern ENetOutgoingCommand * enet_peer_queue_outgoing_command (ENetPeer *, const ENetProtocol *, ENetPacket *, enet_uint32, enet_uint16);
 extern ENetIncomingCommand * enet_peer_queue_incoming_command (ENetPeer *, const ENetProtocol *, ENetPacket *, enet_uint32);
-extern ENetAcknowledgement * enet_peer_queue_acknowledgement (ENetPeer *, const ENetProtocol *, enet_uint32);
+extern ENetAcknowledgement * enet_peer_queue_acknowledgement (ENetPeer *, const ENetProtocol *, enet_uint16);
+
+extern size_t enet_protocol_command_size (enet_uint8);
 
 #ifdef __cplusplus
 }

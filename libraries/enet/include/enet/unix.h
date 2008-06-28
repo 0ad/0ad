@@ -7,8 +7,7 @@
 
 #include <stdlib.h>
 #include <sys/types.h>
-//#include <netinet/in.h>
-#include "lib/posix/posix_sock.h"
+#include <netinet/in.h>
 
 typedef int ENetSocket;
 
@@ -28,6 +27,10 @@ typedef struct
     void * data;
     size_t dataLength;
 } ENetBuffer;
+
+#define ENET_CALLBACK
+
+#define ENET_API extern
 
 #endif /* __ENET_UNIX_H__ */
 
