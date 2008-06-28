@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity	Parent="template_unit_mechanical_siege">
+
+	<Actor>units/hellenes/siege_spear.xml</Actor>
+
 	<Traits>
 	
 		<Id>
@@ -29,11 +32,10 @@
 	</Traits>
 	<Actions>
  		<Move>
-			<Speed>5.0</Speed>
+			<Speed>6.0</Speed>
 			<Run>
-				<Speed>5.9</Speed>
+				<Speed>7.0</Speed>
 			</Run>
 		</Move>
 	</Actions>
-	<Actor>units/hellenes/siege_spear.xml</Actor>
 </Entity>

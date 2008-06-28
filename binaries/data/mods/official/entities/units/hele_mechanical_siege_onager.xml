@@ -30,5 +30,12 @@
  			<Height>3.5</Height>
 		</Footprint>		
 	</Traits>
-
+	<Actions>
+ 		<Move>
+			<Speed>5.0</Speed>
+			<Run>
+				<Speed>5.9</Speed>
+			</Run>
+		</Move>
+	</Actions>
 </Entity>
