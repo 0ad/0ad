@@ -82,8 +82,9 @@ extern_lib_defs = {
 	enet =
 	{
 		win_names = { "enet" },
-		unix_names = { "enet" },	-- TODO: ensure this works on unix
+		unix_names = { "enet" },
 		dbg_suffix = "_dbg",
+		no_delayload = 1,	-- no DLL is involved, so avoid linker warning
 	},
 	fcollada = {
 		win_names  = { "FCollada" },
