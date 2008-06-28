@@ -140,5 +140,8 @@ void CSoundGroupMgr::UpdateSoundGroups(float TimeSinceLastFrame)
 ///////////////////////////////////////////
 void CSoundGroupMgr::PlayNext(size_t index, const CVector3D& position)
 {
-	m_Groups[index]->PlayNext(position);
+	if(index < m_Groups.size())
+		m_Groups[index]->PlayNext(position);
+	else
+		debug_printf("SND: PlayNext(%d) invalid, %d groups defined\n", index, m_Groups.size());
 }
