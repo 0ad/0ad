@@ -938,7 +938,7 @@ LibError ogl_tex_bind(Handle ht, size_t unit)
 {
 	// note: there are many call sites of glActiveTextureARB, so caching
 	// those and ignoring redundant sets isn't feasible.
-	pglActiveTextureARB(GL_TEXTURE0+unit);
+	pglActiveTextureARB((int)(GL_TEXTURE0+unit));
 
 	// special case: disable texturing
 	if(ht == 0)

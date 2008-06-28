@@ -440,7 +440,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, size_t& bpp, size_t& flags)
 			WARN_RETURN(ERR::TEX_FMT_INVALID);
 		}
 
-		RETURN_ERR(tex_validate_plain_format(bpp, flags));
+		RETURN_ERR(tex_validate_plain_format(bpp, (int)flags));
 	}
 	// .. compressed
 	else if(pf_flags & DDPF_FOURCC)

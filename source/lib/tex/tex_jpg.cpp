@@ -490,9 +490,9 @@ static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* d
 
 	// describe image format
 	// required:
-	cinfo->image_width = t->w;
-	cinfo->image_height = t->h;
-	cinfo->input_components = t->bpp / 8;
+	cinfo->image_width = (JDIMENSION)t->w;
+	cinfo->image_height = (JDIMENSION)t->h;
+	cinfo->input_components = (int)t->bpp / 8;
 	cinfo->in_color_space = (t->bpp == 8)? JCS_GRAYSCALE : JCS_RGB;
 	// defaults depend on cinfo->in_color_space already having been set!
 	jpeg_set_defaults(cinfo);

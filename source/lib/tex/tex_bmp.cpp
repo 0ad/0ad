@@ -115,7 +115,7 @@ static LibError bmp_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 	const size_t hdr_size = sizeof(BmpHeader);	// needed for BITMAPFILEHEADER
 	const size_t img_size = tex_img_size(t);
 	const size_t file_size = hdr_size + img_size;
-	const long h = (t->flags & TEX_TOP_DOWN)? -(long)t->h : t->h;
+	const long h = (t->flags & TEX_TOP_DOWN)? -(long)t->h : (long)t->h;
 
 	int transforms = t->flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
