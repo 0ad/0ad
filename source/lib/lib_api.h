@@ -24,6 +24,6 @@
 #   define LIB_API
 #  endif
 # else
-#  error Don't know how to define LIB_API for this compiler
+#  error "Don't know how to define LIB_API for this compiler"
 # endif
 #endif
