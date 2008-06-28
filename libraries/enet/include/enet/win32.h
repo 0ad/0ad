@@ -13,7 +13,16 @@
 #endif
 
 #include <stdlib.h>
+
+#if 0
 #include <winsock2.h>
+#else
+// When this header is included in Pyrogenesis, it needs to avoid pulling in the
+// standards Win32 headers (else there are conflicts), but we need to define a
+// couple of Win32-specific socket values so that ENet still compiles
+typedef uintptr_t        SOCKET;
+#define INVALID_SOCKET  (SOCKET)(~0)
+#endif
 
 typedef SOCKET ENetSocket;
 

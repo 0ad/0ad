@@ -185,7 +185,7 @@ bool CNetHost::Disconnect( CNetSession* pSession )
 	assert( pSession->m_Peer );
 
 	// Disconnect peer
-    enet_peer_disconnect( pSession->m_Peer );
+    enet_peer_disconnect( pSession->m_Peer, 0 );
 
 	// Allow up to 3 seconds for the disconnect to succeed
 	while ( enet_host_service( m_Host, &event, 5000 ) > 0 )
