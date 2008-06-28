@@ -843,7 +843,7 @@ function setup_tests()
 	get_all_test_files(source_root, src_files, hdr_files)
 
 
-	package_create("test_3_gen", "cxxtestgen")
+	package_create("test_gen", "cxxtestgen")
 	package.files = hdr_files
 	package.rootfile = source_root .. "test_root.cpp"
 	package.testoptions = "--have-std"
@@ -861,9 +861,9 @@ function setup_tests()
 	package.testoptions = package.testoptions .. include
 	tinsert(package.buildflags, "no-manifest")
 
-	package_create("test_2_build", "winexe")
+	package_create("test", "winexe")
 	links = static_lib_names
-	tinsert(links, "test_3_gen")
+	tinsert(links, "test_gen")
 	extra_params = {
 		extra_files = { "test_root.cpp", "test_setup.cpp" },
 		extra_links = links,
@@ -904,10 +904,6 @@ function setup_tests()
 		"precompiled.cpp");
 
 	tinsert(package.buildflags, "use-library-dep-inputs")
-
-	package_create("test_1_run", "run")
-	tinsert(package.buildflags, "no-manifest")
-	package.links = { "test_2_build" } -- This determines which project's executable to run
 
 end
 

@@ -79,6 +79,7 @@ extern_lib_defs = {
 	directx = {
 		dbg_suffix = "",
 	},
+	-- rationale: see libraries_dir..enet/lib/rationale.txt
 	enet =
 	{
 		add_func = function()
