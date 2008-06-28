@@ -38,7 +38,7 @@ static LibError load_sys_cursor(const VfsPath& pathname, int hx, int hy, sys_cur
 	UNUSED2(hx);
 	UNUSED2(hy);
 
-	return INFO::OK;
+	return ERR::FAIL;
 #else
 	shared_ptr<u8> file; size_t fileSize;
 	RETURN_ERR(g_VFS->LoadFile(pathname, file, fileSize));
