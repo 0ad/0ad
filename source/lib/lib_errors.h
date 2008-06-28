@@ -252,9 +252,9 @@ STMT(\
 	i64 err64__ = (i64)(expression);\
 	if(err64__ < 0)\
 	{\
-		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		LibError err__ = (LibError)(err64__ & ULONG_MAX);\
 		DEBUG_WARN_ERR(err__);\
-		return (LibError)(err__ & UINT_MAX);\
+		return (LibError)(err__ & ULONG_MAX);\
 	}\
 )
 
@@ -265,7 +265,7 @@ STMT(\
 	i64 err64__ = (i64)(expression);\
 	if(err64__ < 0)\
 	{\
-		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		LibError err__ = (LibError)(err64__ & ULONG_MAX);\
 		return err__;\
 	}\
 )
@@ -284,7 +284,7 @@ STMT(\
 	i64 err64__ = (i64)(expression);\
 	if(err64__ < 0)\
 	{\
-		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		LibError err__ = (LibError)(err64__ & ULONG_MAX);\
 		DEBUG_WARN_ERR(err__);\
 		throw err__;\
 	}\
@@ -297,7 +297,7 @@ STMT(\
 	i64 err64__ = (i64)(expression);\
 	if(err64__ < 0)\
 	{\
-		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		LibError err__ = (LibError)(err64__ & ULONG_MAX);\
 		DEBUG_WARN_ERR(err__);\
 		return;\
 	}\
@@ -310,7 +310,7 @@ STMT(\
 	i64 err64__ = (i64)(expression);\
 	if(err64__ < 0)\
 	{\
-		LibError err__ = (LibError)(err64__ & UINT_MAX);\
+		LibError err__ = (LibError)(err64__ & ULONG_MAX);\
 		DEBUG_WARN_ERR(err__);\
 	}\
 )
