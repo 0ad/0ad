@@ -39,7 +39,7 @@ end
 --   running on Windows.
 -- * unix_names: as above; shared object names when running on non-Windows.
 -- both of the above are 'required'; if not specified, no linking against the
--- library happens on platforms whose *_names are missings.
+-- library happens on platforms whose *_names are missing.
 -- (rationale: this allows for libraries that do not
 -- link against anything, e.g. Boost).
 -- * dbg_suffix: changes the debug suffix from the above default.
@@ -81,10 +81,19 @@ extern_lib_defs = {
 	},
 	enet =
 	{
-		win_names = { "enet" },
-		unix_names = { "enet" },
-		dbg_suffix = "_dbg",
-		no_delayload = 1,	-- no DLL is involved, so avoid linker warning
+		add_func = function()
+			if OS == "windows" then
+				tinsert(package.includepaths, libraries_dir.."enet/include")
+				tinsert(package.config["Debug"  ].libpaths, libraries_dir.."enet/lib/debug")
+				tinsert(package.config["Testing"].libpaths, libraries_dir.."enet/lib/debug")
+				tinsert(package.config["Release"].libpaths, libraries_dir.."enet/lib/release")
+				tinsert(package.config["Debug"  ].links, "enet_dbg")
+				tinsert(package.config["Testing"].links, "enet_dbg")
+				tinsert(package.config["Release"].links, "enet")
+			else
+				tinsert(package.linkoptions, "-lenet")
+			end
+		end,
 	},
 	fcollada = {
 		win_names  = { "FCollada" },
