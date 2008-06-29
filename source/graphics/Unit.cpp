@@ -13,6 +13,11 @@
 #include "ps/Player.h"
 #include "simulation/Entity.h"
 
+// Initialized in class declaration, but still needs a translation unit to
+// define the storage location for it... for cases where the compiler can't (or
+// doesn't) inline the constant value directly.
+const size_t CUnit::invalidId;
+
 CUnit::CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
 			 const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()), m_Entity(entity),
