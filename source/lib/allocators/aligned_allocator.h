@@ -13,6 +13,7 @@
 
 #include "lib/bits.h"	// round_up
 #include "lib/sysdep/x86_x64/x86_x64.h"	// x86_x64_L1CacheLineSize
+#include "lib/sysdep/rtl.h"	// rtl_AllocateAligned
 
 
 /**
@@ -93,7 +94,7 @@ public:
 		const size_type alignment = x86_x64_L1CacheLineSize();
 		const size_type elementSize = round_up(sizeof(T), alignment);
 		const size_type size = numElements * elementSize;
-		pointer p = (pointer)_mm_malloc(size, alignment);
+		pointer p = (pointer)rtl_AllocateAligned(size, alignment);
 		return p;
 	}
 

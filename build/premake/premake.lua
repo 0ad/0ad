@@ -431,6 +431,8 @@ function setup_all_libs ()
 		"cryptopp",
 		"valgrind"
 	}
+
+	-- OS-specific
 	sysdep_dirs = {
 		linux = { "lib/sysdep/linux", "lib/sysdep/unix", "lib/sysdep/unix/x" },
 		-- note: RC file must be added to main_exe package.
@@ -441,7 +443,14 @@ function setup_all_libs ()
 	for i,v in sysdep_dirs[OS] do
 		tinsert(source_dirs, v);
 	end
-	-- tinsert(source_dirs, sysdep_dirs[OS]);
+
+	-- runtime-library-specific
+	if target == "gnu" then
+		tinsert(source_dirs, "lib/sysdep/rtl/gcc");
+	else
+		tinsert(source_dirs, "lib/sysdep/rtl/msc");
+	end
+
 	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
 end
 
