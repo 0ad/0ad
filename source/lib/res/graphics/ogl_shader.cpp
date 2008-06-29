@@ -115,7 +115,8 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 	
 	{
 		const GLchar* strings[] = { (const GLchar*)file.get() };
-		pglShaderSourceARB(shdr->id, 1, strings, (const GLint*)&file_size);
+		const GLint tmp = file_size;
+		pglShaderSourceARB(shdr->id, 1, strings, &tmp);
 		pglCompileShaderARB(shdr->id);
 	}
 	
@@ -131,9 +132,9 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 		pglGetInfoLogARB(shdr->id, log_length, 0, infolog);
 	
 		debug_printf("Compile log for shader %hs (type %hs):\n%hs",
-			     pathname.string().c_str(),
-			     shader_type_to_string(shdr->type, typenamebuf, ARRAY_SIZE(typenamebuf)),
-			     infolog);
+				pathname.string().c_str(),
+				shader_type_to_string(shdr->type, typenamebuf, ARRAY_SIZE(typenamebuf)),
+				infolog);
 		
 		delete[] infolog;
 	}
@@ -255,7 +256,7 @@ static LibError do_load_shader(
 
 	if (Type.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Missing attribute \"type\" in element \"Shader\".", pathname);
+		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Missing attribute \"type\" in element \"Shader\".", pathname.string().c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -263,7 +264,7 @@ static LibError do_load_shader(
 	
 	if (!shadertype)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname, Type.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname.string().c_str(), Type.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -271,7 +272,7 @@ static LibError do_load_shader(
 	
 	if (Name.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Missing shader name.", pathname);
+		LOG(CLogger::Error, LOG_CATEGORY, "%hs: Missing shader name.", pathname.string().c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 	
