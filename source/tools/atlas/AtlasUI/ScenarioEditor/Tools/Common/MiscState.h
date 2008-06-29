@@ -5,7 +5,7 @@
 
 namespace AtlasMessage
 {
-	typedef int ObjectID;
+	typedef size_t ObjectID;
 }
 
 extern wxString g_SelectedTexture;
