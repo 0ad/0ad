@@ -228,13 +228,13 @@ static void importExtensionFunctions()
 	// checking for the extension.
 	// (TODO: this calls ogl_HaveVersion far more times than is necessary -
 	// we should probably use the have_* variables instead)
-#define FUNC(ret, name, params) p##name = (ret (*) params)SDL_GL_GetProcAddress(#name);
+#define FUNC(ret, name, params) p##name = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#name);
 #define FUNC2(ret, nameARB, nameCore, version, params) \
 	p##nameARB = NULL; \
 	if(ogl_HaveVersion(version)) \
-		p##nameARB = (ret (*) params)SDL_GL_GetProcAddress(#nameCore); \
+		p##nameARB = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameCore); \
 	if(!p##nameARB) /* use the ARB name if the driver lied about what version it supports */ \
-		p##nameARB = (ret (*) params)SDL_GL_GetProcAddress(#nameARB);
+		p##nameARB = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameARB);
 #include "glext_funcs.h"
 #undef FUNC2
 #undef FUNC
