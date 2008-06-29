@@ -124,18 +124,28 @@ template<> bool ToPrimitive<unsigned>( JSContext* cx, jsval v, unsigned& Storage
 template<> jsval ToJSVal<unsigned>( const unsigned& Native );
 template<> jsval ToJSVal<unsigned>( unsigned& Native );
 
+// (s)size_t are considered to be identical to (unsigned) int by GCC and
+// their specializations would cause conflicts there.
+#if !GCC_VERSION
+
 // ssize_t
-/* PT: Disabled this since it breaks the GCC build (conflicting with int) - this
-   might break the build on Windows instead. TODO: find out and clean this up.
 template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage );
 template<> jsval ToJSVal<ssize_t>( const ssize_t& Native );
 template<> jsval ToJSVal<ssize_t>( ssize_t& Native );
-*/
+
+// MSC treats ssize_t as distinct but not size_t. we will surely need this
+// specialization if on an LP64 system, otherwise probably not.
+
+#if ARCH_AMD64
 
 // size_t
 template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, size_t& Storage );
 template<> jsval ToJSVal<size_t>( const size_t& Native );
 template<> jsval ToJSVal<size_t>( size_t& Native );
+
+#endif
+
+#endif
 
 // double
 template<> bool ToPrimitive<double>( JSContext* cx, jsval v, double& Storage );

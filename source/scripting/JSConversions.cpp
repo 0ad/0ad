@@ -130,8 +130,9 @@ template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, unsigned& Storage )
 	return true;
 }
 
-/* (See comment in JSConversions.h)
-// ssize_t
+// see comment at declaration of specialization
+#if !GCC_VERSION
+
 template<> jsval ToJSVal<ssize_t>( const ssize_t& Native )
 {
 	return( INT_TO_JSVAL( (int)Native ) );
@@ -149,11 +150,8 @@ template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage )
 	Storage = (ssize_t)tmp;
 	return ok == JS_TRUE;
 }
-*/
 
 #if ARCH_AMD64
-
-// size_t (= unsigned int on IA32)
 
 template<> jsval ToJSVal<size_t>( const size_t& Native )
 {
@@ -176,7 +174,9 @@ template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, size_t& Storage )
 	return true;
 }
 
-#endif
+#endif	// #if ARCH_AMD64
+
+#endif	// #if !GCC_VERSION
 
 // double
 
