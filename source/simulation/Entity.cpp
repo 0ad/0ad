@@ -152,7 +152,7 @@ CEntity::~CEntity()
 
 void CEntity::LoadBase()
 {
-	size_t previous_unit_id = CUnit::invalidId;
+	size_t previous_unit_id = invalidUnitId;
 
 	if( m_actor )
 	{

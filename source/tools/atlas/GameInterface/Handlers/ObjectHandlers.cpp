@@ -241,7 +241,7 @@ END_COMMAND(SetObjectSettings);
 //////////////////////////////////////////////////////////////////////////
 
 
-static size_t g_PreviewUnitID = CUnit::invalidId;
+static size_t g_PreviewUnitID = invalidUnitId;
 static CStrW g_PreviewUnitName;
 static bool g_PreviewUnitFloating;
 
@@ -306,7 +306,7 @@ MESSAGEHANDLER(ObjectPreview)
 			previewUnit = NULL;
 		}
 
-		g_PreviewUnitID = CUnit::invalidId;
+		g_PreviewUnitID = invalidUnitId;
 
 		bool isEntity;
 		CStrW name;
@@ -519,7 +519,7 @@ QUERYHANDLER(PickObject)
 	if (target)
 		msg->id = target->GetID();
 	else
-		msg->id = CUnit::invalidId;
+		msg->id = invalidUnitId;
 
 	if (target)
 	{

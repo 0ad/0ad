@@ -12,6 +12,14 @@ class CEntity;
 class CSkeletonAnim;
 class CUnitAnimation;
 
+// note: we can't declare as static const size_t invalidId = size_t(~0) in
+// the class because it seems to be a grey area in the C++ standard whether
+// or not the constant is propagated or needs an external definition.
+// an enum causes conversion warnings in MSC, so we go with a file-scope
+// constant.
+const size_t invalidUnitId = ~size_t(0);
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 // CUnit: simple "actor" definition - defines a sole object within the world
 class CUnit : boost::noncopyable
@@ -74,7 +82,6 @@ public:
 	// Most units have a hopefully-unique ID number, so they can be referred to
 	// persistently despite saving/loading maps. Default for new units is -1; should
 	// usually be set to CUnitManager::GetNewID() after creation.
-	static const size_t invalidId = ~(size_t)0;
 	size_t GetID() const { return m_ID; }
 	void SetID(size_t id) { m_ID = id; }
 

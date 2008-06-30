@@ -13,15 +13,11 @@
 #include "ps/Player.h"
 #include "simulation/Entity.h"
 
-// Initialized in class declaration, but still needs a translation unit to
-// define the storage location for it... for cases where the compiler can't (or
-// doesn't) inline the constant value directly.
-const size_t CUnit::invalidId;
 
 CUnit::CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,
 			 const std::set<CStr>& actorSelections)
 : m_Object(object), m_Model(object->m_Model->Clone()), m_Entity(entity),
-m_ID(invalidId), m_ActorSelections(actorSelections), m_PlayerID(CPlayer::invalidId),
+m_ID(invalidUnitId), m_ActorSelections(actorSelections), m_PlayerID(invalidPlayerId),
   m_ObjectManager(objectManager)
 {
 	m_Animation = new CUnitAnimation(*this);
@@ -210,7 +206,7 @@ void CUnit::ReloadObject()
 
 		// Copy the old instance-specific settings from the old model to the new instance
 		newModel->SetTransform(m_Model->GetTransform());
-		if (m_PlayerID != CPlayer::invalidId)
+		if (m_PlayerID != invalidPlayerId)
 			newModel->SetPlayerID(m_PlayerID);
 		newModel->CopyAnimationFrom(m_Model);
 

@@ -21,6 +21,8 @@ enum EDiplomaticStance
 	DIPLOMACY_ALLIED
 };
 
+const size_t invalidPlayerId = ~size_t(0);	// rationale: see Unit.h
+
 class CPlayer : public CSynchedJSObject<CPlayer>
 {
 public:
@@ -46,7 +48,6 @@ public:
 
 	bool ValidateCommand(CNetMessage *pMsg);
 
-	static const size_t invalidId = ~(size_t)0;
 	inline size_t GetPlayerID() const
 	{	return m_PlayerID; }
 	inline void SetPlayerID(size_t id)
