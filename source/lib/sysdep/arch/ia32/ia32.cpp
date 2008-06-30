@@ -10,8 +10,6 @@
 
 #include "precompiled.h"
 
-#if ARCH_IA32
-
 #include "ia32.h"
 
 #include "lib/sysdep/cpu.h"
@@ -114,5 +112,3 @@ void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
 {
 	return ia32_memcpy(dst, src, size);
 }
-
-#endif // ARCH_IA32

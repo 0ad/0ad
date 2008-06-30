@@ -376,7 +376,7 @@ void CPatchRData::BuildVertices()
 
 			RGBColor diffuse;
 			lightEnv.EvaluateDirect(normal, diffuse);
-			*(u32*)&vertices[v].m_DiffuseColor = ConvertRGBColorTo4ub(diffuse);
+			vertices[v].m_DiffuseColor = ConvertRGBColorTo4ub(diffuse);
 		}
 	}
 

@@ -9,6 +9,7 @@
 #ifndef INCLUDED_COLOR
 #define INCLUDED_COLOR
 
+#include "SColor.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
 
@@ -19,7 +20,7 @@ typedef CVector4D RGBAColor;
 
 // exposed as function pointer because it is set at init-time to
 // one of several implementations depending on CPU caps.
-extern u32 (*ConvertRGBColorTo4ub)(const RGBColor& src);
+extern SColor4ub (*ConvertRGBColorTo4ub)(const RGBColor& src);
 
 // call once ia32_Init has run; detects CPU caps and activates the best
 // possible codepath.

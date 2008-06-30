@@ -116,7 +116,7 @@ void ModelRenderer::BuildColor4ub(
 			tempcolor.X *= shadingColor.r;
 			tempcolor.Y *= shadingColor.g;
 			tempcolor.Z *= shadingColor.b;
-			*(u32*)&Color[j] = ConvertRGBColorTo4ub(tempcolor);
+			Color[j] = ConvertRGBColorTo4ub(tempcolor);
 		}
 	}
 	else
@@ -127,7 +127,7 @@ void ModelRenderer::BuildColor4ub(
 			tempcolor.X *= shadingColor.r;
 			tempcolor.Y *= shadingColor.g;
 			tempcolor.Z *= shadingColor.b;
-			*(u32*)&Color[j] = ConvertRGBColorTo4ub(tempcolor);
+			Color[j] = ConvertRGBColorTo4ub(tempcolor);
 		}
 	}
 }

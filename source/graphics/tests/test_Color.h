@@ -12,12 +12,20 @@ public:
 
 	void test_Color4ub()
 	{
-#define T(r, g, b, ub) TS_ASSERT_EQUALS(ub | 0xff000000, ConvertRGBColorTo4ub(RGBColor(r,g,b)))
-		T(0, 0, 0, 0x000000);
-		T(1, 0, 0, 0x0000ff);
-		T(0, 1, 0, 0x00ff00);
-		T(0, 0, 1, 0xff0000);
-		T(1, 1, 1, 0xffffff);
-#undef T
+		CheckColor(0, 0, 0, 0x000000);
+		CheckColor(1, 0, 0, 0x0000ff);
+		CheckColor(0, 1, 0, 0x00ff00);
+		CheckColor(0, 0, 1, 0xff0000);
+		CheckColor(1, 1, 1, 0xffffff);
+	}
+
+private:
+	void CheckColor(int r, int g, int b, u32 expected)
+	{
+		SColor4ub colorStruct = ConvertRGBColorTo4ub(RGBColor(r,g,b));
+		u32 actual;
+		memcpy(&actual, &colorStruct, sizeof(u32));
+		expected |= 0xff000000;	// ConvertRGBColorTo4ub sets alpha to opaque 
+		TS_ASSERT_EQUALS(expected, actual);
 	}
 };
