@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="180.899" y="87.6811" z="70.4387"/>
-		<Rotation angle="0.0407634"/>
-		<Declination angle="0.738065"/>
+		<Position x="177.808" y="117.252" z="47.0166"/>
+		<Rotation angle="0.0187054"/>
+		<Declination angle="0.793469"/>
 	</Camera>
 	<Entities>
 		<Entity uid="1">
@@ -410,7 +410,7 @@
 			<Template>hele_infantry_archer_e</Template>
 			<Player>1</Player>
 			<Position x="164.19" y="19.9992" z="163.229"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="2.52156"/>
 		</Entity>
 		<Entity uid="186">
 			<Template>hele_infantry_javelinist_b</Template>
@@ -434,13 +434,13 @@
 			<Template>hele_cavalry_swordsman_b</Template>
 			<Player>1</Player>
 			<Position x="173.207" y="19.9992" z="166.154"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="2.43754"/>
 		</Entity>
 		<Entity uid="194">
 			<Template>hele_cavalry_swordsman_a</Template>
 			<Player>1</Player>
-			<Position x="176.587" y="19.9992" z="167.854"/>
-			<Orientation angle="2.35619"/>
+			<Position x="176.45" y="19.9992" z="167.461"/>
+			<Orientation angle="2.49635"/>
 		</Entity>
 		<Entity uid="196">
 			<Template>hele_cavalry_swordsman_e</Template>
@@ -494,13 +494,13 @@
 			<Template>geology_stone_temperate</Template>
 			<Player>0</Player>
 			<Position x="87.63" y="21.1925" z="105.812"/>
-			<Orientation angle="-1.91818"/>
+			<Orientation angle="-2.44544"/>
 		</Entity>
 		<Entity uid="209">
 			<Template>geology_stone_temperate</Template>
 			<Player>0</Player>
-			<Position x="82.9569" y="20.8998" z="100.867"/>
-			<Orientation angle="0.167713"/>
+			<Position x="82.6266" y="21.0235" z="101.251"/>
+			<Orientation angle="0.416513"/>
 		</Entity>
 		<Entity uid="211">
 			<Template>geology_metal_temperate</Template>
@@ -5378,7 +5378,7 @@
 			<Template>iber_infantry_spearman_a</Template>
 			<Player>3</Player>
 			<Position x="99.1902" y="19.9992" z="729.023"/>
-			<Orientation angle="-2.75289"/>
+			<Orientation angle="2.896"/>
 		</Entity>
 		<Entity uid="5626">
 			<Template>iber_infantry_spearman_a</Template>
@@ -5552,7 +5552,7 @@
 			<Template>iber_infantry_spearman_b</Template>
 			<Player>3</Player>
 			<Position x="102.514" y="20.3266" z="443.164"/>
-			<Orientation angle="-2.54226"/>
+			<Orientation angle="2.97826"/>
 		</Entity>
 		<Entity uid="5675">
 			<Template>iber_infantry_spearman_a</Template>
@@ -11389,8 +11389,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>fauna/fish.xml</Actor>
-			<Position x="125.236" y="13.9454" z="136.248"/>
-			<Orientation angle="-2.20325"/>
+			<Position x="130.307" y="12.9105" z="146.957"/>
+			<Orientation angle="2.48635"/>
 		</Nonentity>
 	</Nonentities>
 	<Paths/>

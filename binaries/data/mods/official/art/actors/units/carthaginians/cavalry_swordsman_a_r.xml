@@ -6,25 +6,29 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/cavalryidle.psa" name="Idle" speed="0"/>
-        <animation file="biped/cavalryidle.psa" name="Walk" speed="20"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="infantry/general/dude/dudechop.psa" name="Chop" speed="150"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="infantry/general/dude/dudeattack.psa" name="Attack" speed="100"/>
-        <animation event="0.5" file="infantry/general/dude/dudeattack1.psa" name="Attack" speed="100"/>
+        <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/cavalryidle.psa" name="Walk" speed="18"/>
+        <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
+        <animation file="cavalry/sword/attack/rider_sword_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="Melee" speed="100"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="230"/>
       </animations>
       <mesh>skeletal/m_tunic_long.dae</mesh>
       <props>
-        <prop actor="props/temp/kart_sign_cavalry_swordsman_a.xml" attachpoint="head_extra"/>
-        <prop actor="props/temp/placeholder_helmet_a.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/placeholder_hele_kart.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/test_towershield.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/head_iber_adv.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/shields/kart_csw_round_a.xml" attachpoint="shield"/>
+        <prop actor="props/units/heads/iber_helmet_04.xml" attachpoint="helmet"/>
       </props>
-      <texture>skeletal/plac_kart_a.dds</texture>
     </variant>
   </group>
+
+  <group>
+    <variant frequency="1" name="Texture">
+      <texture>skeletal/kart_ijv_a_1.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
