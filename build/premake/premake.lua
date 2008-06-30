@@ -425,8 +425,6 @@ function setup_all_libs ()
 		"lib/res/graphics",
 		"lib/res/sound",
 		"lib/sysdep",
-		"lib/sysdep/ia32",
-		"lib/sysdep/x86_x64",
 		"lib/tex"
 	}
 	extern_libs = {
@@ -457,7 +455,7 @@ function setup_all_libs ()
 	sysdep_dirs = {
 		linux = { "lib/sysdep/os/linux", "lib/sysdep/os/unix", "lib/sysdep/os/unix/x" },
 		-- note: RC file must be added to main_exe package.
-		-- note: don't add "lib/sysdep/win/aken.cpp" because that must be compiled with the DDK.
+		-- note: don't add "lib/sysdep/os/win/aken.cpp" because that must be compiled with the DDK.
 		windows = { "lib/sysdep/os/win", "lib/sysdep/os/win/wposix", "lib/sysdep/os/win/whrt" },
 		macosx = { "lib/sysdep/os/osx", "lib/sysdep/os/unix" },
 	}
@@ -524,13 +522,13 @@ function setup_main_exe ()
 	-- Platform Specifics
 	if OS == "windows" then
 
-		tinsert(package.files, source_root.."lib/sysdep/win/icon.rc")
+		tinsert(package.files, source_root.."lib/sysdep/os/win/icon.rc")
 		-- from "lowlevel" static lib; must be added here to be linked in
-		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
+		tinsert(package.files, source_root.."lib/sysdep/os/win/error_dialog.rc")
 
 		-- VS2005 generates its own manifest, but earlier ones need us to add it manually
 		if (options["target"] == "vs2002" or options["target"] == "vs2003") then
-			tinsert(package.files, source_root.."lib/sysdep/win/manifest.rc")
+			tinsert(package.files, source_root.."lib/sysdep/os/win/manifest.rc")
 		end
 
 		tinsert(package.buildflags, "no-rtti")
@@ -853,7 +851,7 @@ function get_all_test_files(root, src_files, hdr_files)
 		-- header file in subdirectory test
 		if string.sub(v, -2) == ".h" and string.find(v, "/tests/") then
 			-- don't include sysdep tests on the wrong sys
-			if not (string.find(v, "/sysdep/win/") and OS ~= "windows") then
+			if not (string.find(v, "/sysdep/os/win/") and OS ~= "windows") then
 				tinsert(hdr_files, v)
 				-- add the corresponding source file immediately, instead of
 				-- waiting for it to appear after cxxtestgen. this avoids
@@ -905,7 +903,7 @@ function setup_tests()
 
 	if OS == "windows" then
 		-- from "lowlevel" static lib; must be added here to be linked in
-		tinsert(package.files, source_root.."lib/sysdep/win/error_dialog.rc")
+		tinsert(package.files, source_root.."lib/sysdep/os/win/error_dialog.rc")
 
 		-- see wstartup.h
 		tinsert(package.linkoptions, "/INCLUDE:_wstartup_InitAndRegisterShutdown")
