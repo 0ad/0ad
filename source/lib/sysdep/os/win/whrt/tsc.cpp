@@ -13,12 +13,12 @@
 
 #include "lib/bits.h"
 #include "lib/sysdep/os_cpu.h"
-#include "lib/sysdep/win/win.h"
-#include "lib/sysdep/win/wutil.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 #if ARCH_IA32 || ARCH_AMD64
-# include "lib/sysdep/x86_x64/x86_x64.h"	// x86_x64_rdtsc
-# include "lib/sysdep/x86_x64/topology.h"
+# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
+# include "lib/sysdep/arch/x86_x64/topology.h"
 #endif
 
 

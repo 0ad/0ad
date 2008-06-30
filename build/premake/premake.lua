@@ -8,6 +8,18 @@ addoption("without-pch", "Disable generation and usage of precompiled headers")
 dofile("functions.lua")
 dofile("extern_libs.lua")
 
+-- detect CPU architecture (simplistic, currently only supports x86 and amd64
+arch = "x86"
+if OS == "windows" then
+	if os.getenv("PROCESSOR_ARCHITECTURE") == "amd64" or os.getenv("PROCESSOR_ARCHITEW6432") == "amd64" then
+		arch = "amd64"
+	end
+else
+	if os.getenv("HOSTTYPE") == "x86_64" then
+		arch = "amd64"
+	end
+end
+
 -- Set up the Project
 project.name = "pyrogenesis"
 project.bindir   = "../../binaries/system"
@@ -432,13 +444,22 @@ function setup_all_libs ()
 		"valgrind"
 	}
 
+	-- CPU architecture-specific
+	if arch == "amd64" then
+		tinsert(source_dirs, "lib/sysdep/arch/amd64");
+		tinsert(source_dirs, "lib/sysdep/arch/x86_x64");
+	else
+		tinsert(source_dirs, "lib/sysdep/arch/ia32");
+		tinsert(source_dirs, "lib/sysdep/arch/x86_x64");
+	end
+	
 	-- OS-specific
 	sysdep_dirs = {
-		linux = { "lib/sysdep/linux", "lib/sysdep/unix", "lib/sysdep/unix/x" },
+		linux = { "lib/sysdep/os/linux", "lib/sysdep/os/unix", "lib/sysdep/os/unix/x" },
 		-- note: RC file must be added to main_exe package.
 		-- note: don't add "lib/sysdep/win/aken.cpp" because that must be compiled with the DDK.
-		windows = { "lib/sysdep/win", "lib/sysdep/win/wposix", "lib/sysdep/win/whrt" },
-		macosx = { "lib/sysdep/osx", "lib/sysdep/unix" },
+		windows = { "lib/sysdep/os/win", "lib/sysdep/os/win/wposix", "lib/sysdep/os/win/whrt" },
+		macosx = { "lib/sysdep/os/osx", "lib/sysdep/os/unix" },
 	}
 	for i,v in sysdep_dirs[OS] do
 		tinsert(source_dirs, v);

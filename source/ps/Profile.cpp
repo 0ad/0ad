@@ -13,7 +13,7 @@
 #include "lib/timer.h"
 
 #if OS_WIN
-#include "lib/sysdep/win/wdbg_heap.h"
+#include "lib/sysdep/os/win/wdbg_heap.h"
 #endif
 #if defined(__GLIBC__) && !defined(NDEBUG)
 # define GLIBC_MALLOC_HOOK

@@ -1,5 +1,5 @@
 #if OS_WIN
-# include "lib/sysdep/win/wposix/wterminal.h"
+# include "lib/sysdep/os/win/wposix/wterminal.h"
 #else
 # include <sys/ioctl.h>
 #endif

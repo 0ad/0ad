@@ -19,7 +19,7 @@
 #include <limits.h>
 
 #if OS_WIN
-# include "lib/sysdep/win/wposix/wposix_types.h"
+# include "lib/sysdep/os/win/wposix/wposix_types.h"
 #else
 
 // unix/linux/glibc/gcc says that this macro has to be defined when including

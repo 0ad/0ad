@@ -23,8 +23,8 @@
 #include "lib/os_path.h"
 #include "lib/path_util.h"
 #if ARCH_IA32
-# include "lib/sysdep/ia32/ia32.h"
-# include "lib/sysdep/ia32/ia32_asm.h"
+# include "lib/sysdep/arch/ia32/ia32.h"
+# include "lib/sysdep/arch/ia32/ia32_asm.h"
 #endif
 #include "lib/external_libraries/dbghelp.h"
 #include "winit.h"

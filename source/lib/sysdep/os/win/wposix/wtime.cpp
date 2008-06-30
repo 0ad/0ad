@@ -17,7 +17,7 @@
 
 #include "wposix_internal.h"
 #include "lib/sysdep/cpu.h"				// cpu_i64FromDouble
-#include "lib/sysdep/win/whrt/whrt.h"
+#include "lib/sysdep/os/win/whrt/whrt.h"
 
 WINIT_REGISTER_MAIN_INIT(wtime_Init);	// whrt -> wtime
 

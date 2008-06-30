@@ -12,7 +12,7 @@
 #define ALIGNED_ALLOCATOR
 
 #include "lib/bits.h"	// round_up
-#include "lib/sysdep/x86_x64/x86_x64.h"	// x86_x64_L1CacheLineSize
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_L1CacheLineSize
 #include "lib/sysdep/rtl.h"	// rtl_AllocateAligned
 
 

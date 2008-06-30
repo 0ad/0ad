@@ -11,9 +11,9 @@
 #include "precompiled.h"
 #include "pmt.h"
 
-#include "lib/sysdep/win/win.h"
+#include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/acpi.h"
-#include "lib/sysdep/win/mahaf.h"
+#include "lib/sysdep/os/win/mahaf.h"
 #include "lib/bits.h"
 
 #pragma pack(push,1)

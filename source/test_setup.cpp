@@ -10,7 +10,7 @@
 #include <cxxtest/GlobalFixture.h>
 
 #if OS_WIN
-#include "lib/sysdep/win/wdbg_heap.h"
+#include "lib/sysdep/os/win/wdbg_heap.h"
 #endif
 
 class LeakReporter : public CxxTest::GlobalFixture

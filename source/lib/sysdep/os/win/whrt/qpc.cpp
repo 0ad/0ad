@@ -12,8 +12,8 @@
 #include "qpc.h"
 
 #include "lib/sysdep/os_cpu.h"
-#include "lib/sysdep/win/win.h"
-#include "lib/sysdep/win/wutil.h"	// wutil_argv
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"	// wutil_argv
 #include "pit.h"	// PIT_FREQ
 #include "pmt.h"	// PMT_FREQ
 

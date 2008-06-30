@@ -47,7 +47,7 @@ need only be renamed (e.g. _open, _stat).
 #include <cmath>	// see isfinite comment below
 
 #if OS_WIN
-# include "lib/sysdep/win/wposix/wposix.h"
+# include "lib/sysdep/os/win/wposix/wposix.h"
 #endif
 
 #include "posix_types.h"

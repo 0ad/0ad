@@ -4,7 +4,7 @@
 #include <fcntl.h>
 
 #if OS_WIN
-# include "lib/sysdep/win/wposix/waio.h"
+# include "lib/sysdep/os/win/wposix/waio.h"
 #else
 # include <aio.h>
 #endif

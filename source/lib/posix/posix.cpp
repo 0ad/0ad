@@ -2,7 +2,7 @@
 #include "posix.h"
 
 #if ARCH_IA32
-# include "lib/sysdep/ia32/ia32_asm.h"
+# include "lib/sysdep/arch/ia32/ia32_asm.h"
 #endif
 
 

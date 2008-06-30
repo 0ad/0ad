@@ -1,8 +1,8 @@
 #include "precompiled.h"
 
 #if OS_WIN
-#include "lib/sysdep/win/win.h"
-#include "lib/sysdep/win/wposix/wsock_internal.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wposix/wsock_internal.h"
 #endif
 
 #include "Network.h"

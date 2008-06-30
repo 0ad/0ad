@@ -1,5 +1,5 @@
 #include "precompiled.h"
-#include "../clipboard.h"
+#include "lib/sysdep/clipboard.h"
 
 #include "win.h"
 #include "wutil.h"

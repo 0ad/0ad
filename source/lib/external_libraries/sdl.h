@@ -15,7 +15,7 @@
 #include "lib/config2.h"	// CONFIG2_WSDL
 
 #if OS_WIN && CONFIG2_WSDL
-# include "lib/sysdep/win/wsdl.h"
+# include "lib/sysdep/os/win/wsdl.h"
 #else
 
 # include <SDL/SDL.h>

@@ -15,7 +15,7 @@
 #include "precompiled.h"
 #include "tgt.h"
 
-#include "lib/sysdep/win/win.h"
+#include "lib/sysdep/os/win/win.h"
 #include <mmsystem.h>
 
 #if MSC_VERSION

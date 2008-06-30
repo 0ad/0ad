@@ -27,7 +27,7 @@ extern PIVFS g_VFS;
 
 // for DLL-load hack in alc_init
 #if OS_WIN
-# include "lib/sysdep/win/win.h"
+# include "lib/sysdep/os/win/win.h"
 #endif
 
 #include "lib/timer.h"

@@ -1,5 +1,5 @@
 #include "precompiled.h"
-#include "../cursor.h"
+#include "lib/sysdep/cursor.h"
 
 #include "win.h"
 #include "wutil.h"

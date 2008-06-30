@@ -20,7 +20,7 @@
 #include <cxxtest/Gui.h>
 
 //#include <windows.h>b
-#include "lib/sysdep/win/win.h"
+#include "lib/sysdep/os/win/win.h"
 #include <commctrl.h>
 
 namespace CxxTest

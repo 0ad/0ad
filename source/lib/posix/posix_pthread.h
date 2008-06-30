@@ -1,5 +1,5 @@
 #if OS_WIN
-# include "lib/sysdep/win/wposix/wpthread.h"
+# include "lib/sysdep/os/win/wposix/wpthread.h"
 #else
 # include <pthread.h>
 # include <semaphore.h>

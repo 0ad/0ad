@@ -19,14 +19,14 @@
 #include "lib/posix/posix_time.h"
 #include "lib/sysdep/cpu.h"
 #if OS_WIN
-#include "lib/sysdep/win/whrt/whrt.h"
+#include "lib/sysdep/os/win/whrt/whrt.h"
 #endif
 #if OS_UNIX
 # include <unistd.h>
 #endif
 #include "lib/config2.h"	// CONFIG2_TIMER_ALLOW_RDTSC
 #if (ARCH_IA32 || ARCH_AMD64) && CONFIG2_TIMER_ALLOW_RDTSC
-# include "lib/sysdep/x86_x64/x86_x64.h"	// x86_x64_rdtsc
+# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
 #endif
 
 #if OS_UNIX || OS_WIN

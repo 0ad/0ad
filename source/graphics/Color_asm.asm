@@ -1,4 +1,4 @@
-%include "../lib/sysdep/ia32/ia32.inc"
+%include "../lib/sysdep/arch/ia32/ia32.inc"
 
 ;-------------------------------------------------------------------------------
 ; Color conversion (SSE)

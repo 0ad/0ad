@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "wdbg_heap.h"
 
-#include "lib/sysdep/win/win.h"
+#include "lib/sysdep/os/win/win.h"
 #include <crtdbg.h>
 #include <excpt.h>
 #include <dbghelp.h>

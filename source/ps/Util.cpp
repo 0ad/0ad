@@ -9,7 +9,7 @@
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/snd.h"
 #include "lib/sysdep/os_cpu.h"
-#include "lib/sysdep/x86_x64/topology.h"
+#include "lib/sysdep/arch/x86_x64/topology.h"
 #include "lib/tex/tex.h"
 #include "lib/file/io/io_align.h"	// BLOCK_SIZE
 

@@ -1,6 +1,6 @@
 #include "lib/self_test.h"
 
-#include "lib/sysdep/x86_x64/x86_x64.h"
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
 // note: ia32_i??_from_*, ia32_rint*, ia32_fm??f are all tested within
 // sysdep to avoid test duplication (both the ia32 versions and

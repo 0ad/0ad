@@ -11,8 +11,8 @@
 #include "precompiled.h"
 #include "hpet.h"
 
-#include "lib/sysdep/win/win.h"
-#include "lib/sysdep/win/mahaf.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/mahaf.h"
 #include "lib/sysdep/acpi.h"
 #include "lib/bits.h"
 

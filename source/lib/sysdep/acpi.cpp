@@ -1,7 +1,7 @@
 #include "precompiled.h"
 #include "acpi.h"
 
-#include "win/mahaf.h"
+#include "lib/sysdep/os/win/mahaf.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/module_init.h"
 

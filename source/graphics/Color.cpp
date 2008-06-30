@@ -12,7 +12,7 @@
 
 #include "maths/MathUtil.h"
 #include "graphics/SColor.h"
-#include "lib/sysdep/x86_x64/x86_x64.h"
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
 static u32 fallback_ConvertRGBColorTo4ub(const RGBColor& src)
 {

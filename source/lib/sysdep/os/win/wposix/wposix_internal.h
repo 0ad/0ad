@@ -1,9 +1,9 @@
 #ifndef INCLUDED_WPOSIX_INTERNAL
 #define INCLUDED_WPOSIX_INTERNAL
 
-#include "lib/sysdep/win/win.h"
-#include "lib/sysdep/win/winit.h"
-#include "lib/sysdep/win/wutil.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/winit.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 // cast intptr_t to HANDLE; centralized for easier changing, e.g. avoiding
 // warnings. i = -1 converts to INVALID_HANDLE_VALUE (same value).

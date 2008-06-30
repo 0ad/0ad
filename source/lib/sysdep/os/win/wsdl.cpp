@@ -26,7 +26,7 @@
 #include "lib/module_init.h"
 #include "wutil.h"
 #include "winit.h"
-#include "lib/sysdep/win/wmi.h"	// for SDL_GetVideoInfo
+#include "lib/sysdep/os/win/wmi.h"	// for SDL_GetVideoInfo
 
 #if MSC_VERSION
 #pragma comment(lib, "user32.lib")
