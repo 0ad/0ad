@@ -464,7 +464,7 @@ function setup_all_libs ()
 	end
 
 	-- runtime-library-specific
-	if target == "gnu" then
+	if options["target"] == "gnu" then
 		tinsert(source_dirs, "lib/sysdep/rtl/gcc");
 	else
 		tinsert(source_dirs, "lib/sysdep/rtl/msc");

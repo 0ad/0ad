@@ -32,6 +32,7 @@
 
 #include <xercesc/sax/InputSource.hpp>
 #include <xercesc/sax/EntityResolver.hpp>
+#include <xercesc/sax/Locator.hpp>
 #include <xercesc/util/BinMemInputStream.hpp>
 
 #include <xercesc/sax/SAXParseException.hpp>
@@ -43,6 +44,7 @@
 // be fairly easy to swap Xerces for something else (if desired)
 #include <xercesc/sax2/XMLReaderFactory.hpp>
 #include <xercesc/sax2/DefaultHandler.hpp>
+#include <xercesc/sax2/Attributes.hpp>
 
 
 #if MSC_VERSION

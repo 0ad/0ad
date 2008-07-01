@@ -101,7 +101,7 @@ public:
 	// deallocate storage of elements that have been destroyed
 	void deallocate(pointer p, size_type num)
 	{
-		_mm_free((void*)p);
+		rtl_FreeAligned((void*)p);
 	}
 
 	void construct(pointer p, const T& value)
