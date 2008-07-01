@@ -14,7 +14,7 @@
 #include "graphics/SColor.h"
 
 #if ARCH_IA32 || ARCH_AMD64
-# include <emmintrin.h>
+# include <xmmintrin.h>
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"
 #endif
 
