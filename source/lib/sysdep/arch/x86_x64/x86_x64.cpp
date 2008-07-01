@@ -26,13 +26,13 @@
 #if ARCH_IA32
 # include "../ia32/ia32_asm.h"
 #else
-#include "../amd64/amd64_asm.h"
-# endif
+# include "../amd64/amd64_asm.h"
+#endif
 
 #if MSC_VERSION
 # include <intrin.h>	// __rdtsc
 #elif GCC_VERSION
-# include <emmintrin.h>
+// (no includes needed)
 #else
 # error compiler not supported
 #endif
