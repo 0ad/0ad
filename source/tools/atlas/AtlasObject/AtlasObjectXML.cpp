@@ -3,6 +3,8 @@
 
 #include <assert.h>
 
+#include <memory>
+
 #ifdef _MSC_VER
 # ifndef NDEBUG
 #  pragma comment(lib, "xerces-c_2D.lib")
