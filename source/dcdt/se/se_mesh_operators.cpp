@@ -89,7 +89,7 @@ void SeMeshBase::_del_fac ( SeElement *e )
 
 //==================================== operator related funcs ======================================
 
-char* SeMeshBase::translate_op_msg ( OpMsg m )
+const char* SeMeshBase::translate_op_msg ( OpMsg m )
  {
    switch (m)
     { case OpNoErrors            : return "No Errors occured";

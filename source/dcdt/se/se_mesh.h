@@ -186,7 +186,7 @@ class SeMeshBase
     OpMsg last_op_msg () { return (OpMsg)_op_last_msg; } 
 
     /*! Get a string description of the given message. */
-    static char *translate_op_msg ( OpMsg m );
+    static const char *translate_op_msg ( OpMsg m );
 
     /*! Makes a global consistency check, for debug purposes, should always return ChkOk. */
     ChkMsg check_all () const;

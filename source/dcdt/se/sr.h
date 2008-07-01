@@ -317,6 +317,7 @@ char* sr_string_new ( const char* tocopy );
     this new memory allocated so that the returned value will be the 
     same as s. */
 char* sr_string_set ( char*& s, const char *tocopy );
+const char* sr_string_set ( const char*& s, const char *tocopy );
 
 /*! Deletes s, and reallocates it with the given size also copying its
     contents to the new allocated position. If size<=0, s is simply

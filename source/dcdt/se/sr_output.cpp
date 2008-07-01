@@ -11,9 +11,9 @@
 
 SrOutput sr_out;
 
-static char* DefaultIntFmt = "%d"; 
-static char* DefaultFloatFmt = "g";
-static char* DefaultDoubleFmt = "g";
+static const char* DefaultIntFmt = "%d"; 
+static const char* DefaultFloatFmt = "g";
+static const char* DefaultDoubleFmt = "g";
 
 //=============================== SrOutput ======================================
 
@@ -138,7 +138,7 @@ void SrOutput::close ()
    sr_string_set ( _filename, 0 );
  }
 
-static void set_fmt ( char*& fmt, char* def, const char* newfmt )
+static void set_fmt ( const char*& fmt, const char* def, const char* newfmt )
  {
    if ( fmt==def ) fmt=0;
     else sr_string_set ( fmt, 0 ); 

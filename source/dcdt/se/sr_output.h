@@ -35,9 +35,9 @@ class SrOutput
           } _device;
 
     void* _func_udata;  // used only when the output is a function
-    char* _intfmt;      // format used to print integers
-    char* _floatfmt;    // format used to print floats
-    char* _doublefmt;   // format used to print doubles
+    const char* _intfmt;      // format used to print integers
+    const char* _floatfmt;    // format used to print floats
+    const char* _doublefmt;   // format used to print doubles
     char* _filename;    // optional file name of the open file
     void _init ();
 

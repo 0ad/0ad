@@ -279,7 +279,7 @@ class SrInput
     /*! This static method will return a describing error message if t is one
         of the following: UndefChar, UnexpectedToken, TooBig, OpenString, or InvalidPoint.
         Otherwise it will return 0 : */
-    static char* error_desc ( ErrorType t );
+    static const char* error_desc ( ErrorType t );
 
     /*! Gets the next token of type string or name using get_token(void),
         and returns the token, which is kept in the internal last_token() string.

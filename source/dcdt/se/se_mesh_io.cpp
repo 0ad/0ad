@@ -16,7 +16,7 @@ void SeMeshBase::_elemsave ( SrOutput& out, SeMeshBase::ElemType type, SeElement
    SrClassManagerBase* man;
    SeElement *e;
    int esize;
-   char* st;
+   const char* st;
 
    if ( type==TypeVertex )
     { esize=_vertices; man=_vtxman; st="Vertices"; }

@@ -43,7 +43,7 @@ enum srFunc { srFuncAbs,  srFuncAcos,  srFuncAsin, srFuncAtan,  srFuncCeil,
               srFuncLog,  srFuncRound, srFuncSign, srFuncSin,   srFuncSqrt,
               srFuncTan,  srFuncUndefined }; // Alphabetical order !
 
-static char *Functions[] = { "abs", "acos",  "asin", "atan",  "ceil",
+static const char *Functions[] = { "abs", "acos",  "asin", "atan",  "ceil",
                              "cos", "exp",   "fact", "floor", "ln",
                              "log", "round", "sign", "sin",   "sqrt",
                              "tan"  }; // Alphabetical order !

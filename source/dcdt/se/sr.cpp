@@ -188,6 +188,13 @@ char* sr_string_set ( char*& s, const char *tocopy )
    return s;
  }
 
+const char* sr_string_set( const char*& s, const char *tocopy )
+ {
+   char* tmp = (char*)s; // Safe, since the other sr_string_set just frees the pointer
+   return s = sr_string_set(tmp, tocopy);
+ }
+
+
 char* sr_string_realloc ( char*& s, int size )
  {
    char *news = 0;

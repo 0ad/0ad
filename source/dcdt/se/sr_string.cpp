@@ -14,7 +14,7 @@
 //# define SR_USE_TRACE3 // set() member function
 # include "sr_trace.h"
 
-char *SrString::_empty = "";
+char *SrString::_empty = (char*)"";
 
 //============================= SrString ==========================================
 

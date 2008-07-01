@@ -58,7 +58,7 @@ class SrArrayPtBase : private SrArray<void*>
     /*! Returns a valid index as if the given index references a circular
         array, ie, it returns index%size() for positive numbers. Negative
         numbers are also correctly mapped. */
-    int validate ( int index ) const { SrArray<void*>::validate(index); }
+    int validate ( int index ) const { return SrArray<void*>::validate(index); }
 
     /*! deletes element i and reallocates a new one as a copy of pt */
     void set ( int i, const void* pt );

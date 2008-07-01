@@ -443,7 +443,7 @@ SrInput::TokenType SrInput::get_token ()
    return (TokenType)_last_token_type;
  }
 
-char* SrInput::error_desc ( SrInput::ErrorType t )
+const char* SrInput::error_desc ( SrInput::ErrorType t )
  {
    switch ( t )
     { case UndefChar :      return "Undefined character found";

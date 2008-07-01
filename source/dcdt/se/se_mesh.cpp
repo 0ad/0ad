@@ -10,7 +10,7 @@
 
 //================================= static functions =====================================
 
-static void fatal_error ( char* msg )
+static void fatal_error ( const char* msg )
  {
    sr_out.fatal_error ( msg );
  }
