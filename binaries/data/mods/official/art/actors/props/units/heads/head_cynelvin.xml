@@ -4,13 +4,11 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="cynelvin">
+    <variant frequency="1" name="cynelvin-head">
       <colour>78 55 24</colour>
-      <mesh>props/head_lime.pmd</mesh>
-      <texture>props/head/celt_e.dds</texture>
+      <mesh>props/dude_head.pmd</mesh>
+      <texture>props/head/celt_cynvelin.dds</texture>
     </variant>
   </group>
-
-  <material>objectcolor.xml</material>
 
 </actor>

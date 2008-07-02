@@ -6,6 +6,9 @@
   <group>
     <variant frequency="1" name="Mesh">
       <mesh>skeletal/elephant.pmd</mesh>
+      <props>
+        <prop actor="units/carthaginians/hero_hannibal_mahout.xml" attachpoint="rider1"/>
+      </props>
     </variant>
   </group>
 

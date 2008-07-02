@@ -7,8 +7,8 @@
     <variant frequency="100" name="Base">
       <animations>
         <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
-        <animation file="quadraped/horse_gallop.psa" name="Run" speed="9"/>
-        <animation file="quadraped/horse_walk.psa" name="Walk" speed="22"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="20"/>
         <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="105"/>
         <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="95"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
@@ -18,46 +18,46 @@
   </group>
 
   <group>
-    <variant frequency="7" name="horse1-feet">
+    <variant frequency="7" name="horse2-feet">
       <texture>skeletal/horse_celt_feet_a.dds</texture>
     </variant>
-    <variant frequency="5" name="horse1-blaze">
+    <variant frequency="5" name="horse2-blaze">
       <texture>skeletal/horse_celt_blaze_a.dds</texture>
     </variant>
-    <variant frequency="5" name="horse1-face">
+    <variant frequency="5" name="horse2-face">
       <texture>skeletal/horse_celt_face_a.dds</texture>
     </variant>
-    <variant frequency="7" name="horse1-star">
+    <variant frequency="7" name="horse2-star">
       <texture>skeletal/horse_celt_star_a.dds</texture>
     </variant>
-    <variant frequency="3" name="horse1-dapple">
+    <variant frequency="3" name="horse2-dapple">
       <texture>skeletal/horse_celt_dapple_a.dds</texture>
     </variant>
-    <variant frequency="2" name="horse1-snip">
+    <variant frequency="2" name="horse2-snip">
       <texture>skeletal/horse_celt_snip_a.dds</texture>
     </variant>
-    <variant frequency="5" name="horse1-stripe">
+    <variant frequency="5" name="horse2-stripe">
       <texture>skeletal/horse_celt_stripe_a.dds</texture>
     </variant>
   </group>
 
   <group>
-    <variant frequency="2" name="horse1-black">
+    <variant frequency="2" name="horse2-black">
       <colour>81 81 85</colour>
     </variant>
-    <variant frequency="2" name="horse1-chocolate">
+    <variant frequency="2" name="horse2-chocolate">
       <colour>98 68 58</colour>
     </variant>
-    <variant frequency="2" name="horse1-chestnut">
+    <variant frequency="2" name="horse2-chestnut">
       <colour>248 132 86</colour>
     </variant>
-    <variant frequency="2" name="horse1-roan">
+    <variant frequency="2" name="horse2-roan">
       <colour>242 219 164</colour>
     </variant>
-    <variant frequency="2" name="horse1-liver">
+    <variant frequency="2" name="horse2-liver">
       <colour>172 95 68</colour>
     </variant>
-    <variant frequency="2" name="horse1-brown">
+    <variant frequency="2" name="horse2-brown">
       <colour>255 148 89</colour>
     </variant>
   </group>

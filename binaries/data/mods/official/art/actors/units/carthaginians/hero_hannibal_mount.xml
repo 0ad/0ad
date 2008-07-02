@@ -12,6 +12,10 @@
         <animation file="quadraped/elephant_idle.psa" name="melee" speed="100"/>
       </animations>
       <mesh>skeletal/elephant_propped.pmd</mesh>
+      <props>
+        <prop actor="units/carthaginians/hero_hannibal_mahout.xml" attachpoint="rider1"/>
+        <prop actor="units/carthaginians/hero_hannibal_r.xml" attachpoint="rider2"/>
+      </props>
     </variant>
   </group>
 
