@@ -2,23 +2,17 @@
 
 <Entity	Parent="template_unit_support">
 	<Traits>
-	
 		<Id>
 			<Generic>Female Citizen</Generic>
-
 			<Icon_Cell>32</Icon_Cell>
-
 			<Classes>Worker, Foot</Classes>
-
 			<Rollover>Women in the ancient world took on a variety of roles - from leadership (Celts) to servant (Greeks). Women are hard workers, the economic backbone of any civilisation. In history, it was typical when all the males (capable of fighting) were killed for the females, children, and elderly to be sold as slaves.</Rollover>
-		
 		</Id>
 		<Creation>
 			<Resource>
  				<Food>50</Food>
  			</Resource>
 		</Creation>
-
 		<Auras>
 			<Infidelity>
 				<Radius>10</Radius>
@@ -41,20 +35,15 @@
 			<Pierce>1.0</Pierce>
 			<Crush>2.0</Crush>
 		</Armour>
-
 		<Health>
 			<Max>70</Max>
 			<RegenRate>0.4</RegenRate>
 		</Health>	
-	
-	<Vision>
+		<Vision>
 			<Los>11</Los>
 		</Vision>
-	
 	</Traits>
-
 	<Actions>
-	
 		<Create>
 			<List>
 				<StructCiv>
@@ -68,7 +57,6 @@
 				</StructCiv>
 			</List>
 		</Create>	
-
 		<Gather>
 			<Resource>
 				<Food>
@@ -84,17 +72,14 @@
  			<Range>2.0</Range>
 			<Speed>3000</Speed>
 		</Gather>
-
 		<Repair>
 			<Rate>0.5</Rate>
 			<Speed>1000</Speed>
 		</Repair>
-		
 		<Build>
 			<Rate>1.0</Rate>
 			<Speed>1000</Speed>
 		</Build>
-
 		<Move>
 			<Speed>5.0</Speed>
 			<TurningRadius>0.8</TurningRadius>
@@ -104,9 +89,7 @@
 				<RangeMin>0.0</RangeMin>
 			</Run>
 		</Move>
-	
 	</Actions>	
-	
 	<SoundGroups>
 		<Melee>audio/attack/weapon/sword.xml</Melee>
 		<Death>audio/actor/human/death/death.xml</Death>
@@ -117,8 +100,6 @@
 		<Gather_Stone>audio/resource/mining/pickaxe.xml</Gather_Stone>
 		<Gather_Metal>audio/resource/mining/mining.xml</Gather_Metal>
 	</SoundGroups>	
-	
 	<Script File="scripts/entity_functions.js" />
 	<Event On="StartConstruction" Function="entityStartConstruction" />
-	
 </Entity>

@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_infantry_ranged_javelinist"
->
+<Entity	Parent="template_unit_infantry_ranged_javelinist">
 	<Traits>
-	
 		<Id>
-
-			<Specific>Gaesata</Specific>
-
+			<Specific>Baguada</Specific>
 			<Civ>Celts</Civ>
-
 			<History>Gesatae were young men who devoted themselves to war, often serving as mercenaries for other tribes. They were the last Celts to fight stark naked to show their courage, often carrying only a shield with several javelins and a regular Celtic spear. More often than not they were covered in geometric designs painted in woad, a blue dye.</History>
-
 		</Id>
-		
+		<Creation>		
+			<Time>15</Time>
+			<Resource>
+ 				<Wood>45</Wood>
+ 			</Resource>
+		</Creation>
 		<Promotion>
-				
 			<Entity>celt_infantry_javelinist_a</Entity>
-			
 		</Promotion>
-		
 	</Traits>
-
+	<Actions>
+ 		<Move>
+			<Speed>9.0</Speed>
+			<Run>
+				<Speed>17.8</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	<Actor>units/celts/infantry_javelinist_b.xml</Actor>
 </Entity>

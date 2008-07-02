@@ -1,30 +1,91 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_support_female_citizen"
->
+<Entity	Parent="template_unit_support_female_citizen">
 	<Traits>
-	
 		<Id>
-		
 			<Internal_Only />
-
-			<Specific>Merch</Specific>
-
+			<Specific>Bodu</Specific>
 			<Civ>Celts</Civ>
-
 			<History>Celtic women enjoyed many freedoms, especially compared to their Greek and Roman counterparts. Although they did not fight in battle as some believe Gallic women were quite large and very strong compared to most men. They were able to own property and were capable of gaining considerable wealth. Some noblewomen took over power when their husband’s died, such as Boudicca of the Iceni. In addition, family trees were drawn up along female lines, men claiming their ancestry through female ancestors.</History>
-		
 		</Id>
-		
+			<Creation>
+			<Resource>
+ 				<Food>55</Food>
+ 			</Resource>
+		</Creation>
+		<Auras>
+			<Infidelity>
+				<Radius>11</Radius>
+				<Time>8</Time>
+				<r>0.8</r>
+				<g>0.8</g>
+				<b>1.0</b>
+				<a>0.5</a>
+			</Infidelity>
+			<Allure>
+				<Radius>27</Radius>
+				<r>0.9</r>
+				<g>0.8</g>
+				<b>1.1</b>
+				<a>0.6</a>
+			</Allure>
+		</Auras>		
+		<Armour>
+			<Hack>1.4</Hack>
+			<Pierce>1.4</Pierce>
+			<Crush>2.4</Crush>
+		</Armour>
+		<Health>
+			<Max>75</Max>
+			<RegenRate>0.5</RegenRate>
+		</Health>	
+		<Vision>
+			<Los>12</Los>
+		</Vision>
 	</Traits>
-
 	<Actions>
-	        <Move>
-	                <Speed>5.0</Speed>
-	        </Move>
-	</Actions>
-
+		<Create>
+			<List>
+				<StructCiv>
+					<Civil_Centre />
+					<Farmstead />
+					<Field />
+					<House />
+					<Market />
+					<Mill />
+					<Temple />
+				</StructCiv>
+			</List>
+		</Create>	
+		<Gather>
+			<Resource>
+				<Food>
+					<Fruit>8<.4/Fruit>
+					<Grain>8.4</Grain>
+					<Meat>2.9</Meat>
+					<Fish>6.4</Fish>
+				</Food>
+				<Wood>4.4</Wood>
+				<Metal>2.4</Metal>
+				<Stone>2.4</Stone>
+			</Resource>
+ 			<Range>2.4</Range>
+			<Speed>3010</Speed>
+		</Gather>
+		<Repair>
+			<Rate>0.9</Rate>
+			<Speed>1010</Speed>
+		</Repair>
+		<Build>
+			<Rate>1.4</Rate>
+			<Speed>1010</Speed>
+		</Build>
+		<Move>
+			<Speed>6.0</Speed>
+			<Run>
+				<Speed>12.45</Speed>
+			</Run>
+		</Move>
+	</Actions>	
 	<Actor>units/celts/female_citizen.xml</Actor>
-
 </Entity>
