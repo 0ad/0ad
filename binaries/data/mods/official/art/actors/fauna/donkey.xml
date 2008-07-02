@@ -5,7 +5,10 @@
 
   <group>
     <variant frequency="100" name="Mesh">
-      <mesh>skeletal/donkey.pmd</mesh>
+      <animations>
+        <animation file="quadraped/donkey_idle_01.dae" name="idle"/>
+      </animations>
+      <mesh>skeletal/donkey.dae</mesh>
     </variant>
   </group>
 
