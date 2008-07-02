@@ -6,8 +6,8 @@
   <group>
     <variant frequency="100" name="base">
       <animations>
-        <animation file="mechanical/chariot_walk.dae" name="walk" speed="20"/>
-        <animation file="mechanical/chariot_run.dae" name="run" speed="8"/>
+        <animation file="mechanical/chariot_walk.dae" name="walk" speed="10"/>
+        <animation file="mechanical/chariot_run.dae" name="run" speed="10"/>
         <animation file="mechanical/chariot_idle.dae" name="idle" speed="10"/>
       </animations>
       <mesh>structural/celt_char_a.dae</mesh>
