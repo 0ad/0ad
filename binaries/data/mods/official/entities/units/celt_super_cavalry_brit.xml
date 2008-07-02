@@ -11,7 +11,7 @@
 			<Rem>4</Rem>
 		</Population>
 	 	<Footprint>
- 			<Width>4.0</Width>
+ 			<Width>1.0</Width>
  			<Depth>8.0</Depth>
  			<Height>5.0</Height>
  		</Footprint>
@@ -21,8 +21,8 @@
 		/* This trample attack is set up by ROBOT to become a charging attack so you can use it to run over the enemy! */
 			<Auras>
 			<Trample>
-				<Radius>10</Radius>
-				<Speed>1000</Speed>
+				<Radius>4</Radius>
+				<Speed>1</Speed>
 				<Duration>1</Duration>
 				<Crush>10.0</Crush>
 				<Hack>11110.0</Hack>
@@ -62,7 +62,7 @@
 			</Ranged>
 		</Attack>
 		<Move>
-			<Speed>9.0</Speed>
+			<Speed>13.0</Speed>
 			<Run>
 				<Speed>20.0</Speed>
 			</Run>
