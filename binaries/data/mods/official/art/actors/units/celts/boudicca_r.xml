@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="infantry/support/idle/fem_01.psa" name="Idle" speed="200"/>
+        <animation file="infantry/support/idle/fem_01.psa" name="Walk" speed="10"/>
+        <animation file="infantry/support/idle/fem_01.psa" name="Run" speed="50"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_05.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
+      </animations>
+      <mesh>skeletal/f_tunic.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/head_celt_boudicca.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear_gold.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/cape_celt_boudicca.xml" attachpoint="shoulders"/>
+      </props>
+      <texture>skeletal/celt_boudicca_2.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
