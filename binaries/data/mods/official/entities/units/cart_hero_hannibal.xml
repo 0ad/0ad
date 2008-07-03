@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_hero">
+	<Traits>
+	
+		<Id>
+
+			<Specific>Hannibal Barca</Specific>
+
+			<Civ>Carthaginians</Civ>
+
+			<History>The king of Macedonia (359 BC - 336 BC), he carried out vast monetary and military reforms in order to make his kingdom the most powerful force in the Greek world. Greatly enlarged the size of Macedonia by conquering much of Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign against Persia.</History>
+		
+		</Id>
+		<Footprint>
+			<Radius>2.8</Radius>
+			<Height>9.0</Height>
+		</Footprint>
+	</Traits>
+
+	<Actor>units/carthaginians/hero_hannibal_mount.xml</Actor>
+
+</Entity>
