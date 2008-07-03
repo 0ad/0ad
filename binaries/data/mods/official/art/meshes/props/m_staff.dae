@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Administrator</author>
+      <authoring_tool>Feeling ColladaMax v3.02 with FCollada v3.02.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=0;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=0;AnimStart=0;AnimEnd=38;</comments>
+      <source_data>file:///C:/3dsMax6/scenes/0ad/walk/staff_walk.max</source_data>
+    </contributor>
+    <created>2008-07-03T03:58:42Z</created>
+    <modified>2008-07-03T03:58:46Z</modified>
+    <unit meter="0.0254" name="inch"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_lights>
+    <light id="ambient-environment-light" name="Ambient">
+      <technique_common>
+        <ambient>
+          <color>0.466667 0.466667 0.466667</color>
+        </ambient>
+      </technique_common>
+      <extra>
+        <technique profile="FCOLLADA">
+          <intensity>1</intensity>
+          <target_default_dist>240</target_default_dist>
+        </technique>
+      </extra>
+    </light>
+  </library_lights>
+  <library_images>
+    <image id="C__Users_User_Desktop_0adart_work_in_progress_Steven__SkylerCloud222__Art_assets_for_feature_freeze_Staff_celt_struct_1_dds" name="C__Users_User_Desktop_0adart_work_in_progress_Steven__SkylerCloud222__Art_assets_for_feature_freeze_Staff_celt_struct_1_dds">
+      <init_from>file:///C:/Users/User/Desktop/0adart/work%20in%20progress/Steven%20%5BSkylerCloud222%5D/Art%20assets%20for%20feature%20freeze/Staff/celt_struct_1.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_1_-_Default" name="_1_-_Default">
+      <instance_effect url="#_1_-_Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_1_-_Default-fx" name="_1_-_Default">
+      <profile_COMMON>
+        <newparam sid="C__Users_User_Desktop_0adart_work_in_progress_Steven__SkylerCloud222__Art_assets_for_feature_freeze_Staff_celt_struct_1_dds-surface">
+          <surface type="2D">
+            <init_from>C__Users_User_Desktop_0adart_work_in_progress_Steven__SkylerCloud222__Art_assets_for_feature_freeze_Staff_celt_struct_1_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="C__Users_User_Desktop_0adart_work_in_progress_Steven__SkylerCloud222__Art_assets_for_feature_freeze_Staff_celt_struct_1_dds-sampler">
+          <sampler2D>
+            <source>C__Users_User_Desktop_0adart_work_in_progress_Steven__SkylerCloud222__Art_assets_for_feature_freeze_Staff_celt_struct_1_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588235 0.588235 0.588235 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="C__Users_User_Desktop_0adart_work_in_progress_Steven__SkylerCloud222__Art_assets_for_feature_freeze_Staff_celt_struct_1_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Box01-mesh" name="Box01">
+      <mesh>
+        <source id="Box01-mesh-positions">
+          <float_array id="Box01-mesh-positions-array" count="57">-0.030876 -0.065737 -2.34788 0.043843 -0.092581 -1.42522 -0.044684 0.004147 -1.59734 0.043843 0.004147 -1.77849 -0.060706 -0.024954 -0.464681 0.043843 -0.08074 -0.46468 0.043843 0.059029 -0.650838 -0.024557 0.02862 -0.402958 -0.013692 -0.088424 -0.313116 0.055131 -0.006404 -0.402958 -0.054807 0.095066 0.212218 -0.009151 -0.027837 0.30206 0.059671 -0.000992 0.212218 -0.053772 0.119716 0.386508 -0.008117 -0.077689 0.35796 0.060705 0.041028 0.331411 -0.03267 0.085447 0.54902 -0.003959 -0.038693 0.531067 0.039321 0.035963 0.514371</float_array>
+          <technique_common>
+            <accessor source="#Box01-mesh-positions-array" count="19" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Box01-mesh-normals">
+          <float_array id="Box01-mesh-normals-array" count="306">-0.775076 -0.630305 0.04443 -0.775076 -0.630305 0.04443 -0.775076 -0.630305 0.04443 -0.19335 0.976569 -0.094489 -0.19335 0.976569 -0.094489 -0.19335 0.976569 -0.094489 0.945872 -0.313019 -0.085707 0.945872 -0.313019 -0.085707 0.945872 -0.313019 -0.085707 0.413176 -0.036031 0.909938 0.413176 -0.036031 0.909938 0.413176 -0.036031 0.909938 -0.744906 -0.667119 0.008223 -0.744906 -0.667119 0.008223 -0.744906 -0.667119 0.008223 -0.470555 -0.881883 -0.029315 -0.470555 -0.881883 -0.029315 -0.470556 -0.881883 -0.029315 1 -0.000000 0 1 -0.000000 0 1 -0.000000 0 1 0.000000 -0.000000 1 0.000000 -0.000000 1 0.000000 -0.000000 0.054044 0.998189 0.026411 0.054044 0.998189 0.026411 0.054044 0.998189 0.026411 -0.664368 0.746522 -0.036332 -0.664368 0.746522 -0.036332 -0.664368 0.746522 -0.036332 -0.910708 0.194973 0.364139 -0.910708 0.194973 0.364139 -0.910708 0.194973 0.364139 -0.459429 -0.861032 -0.218059 -0.459429 -0.861032 -0.218059 -0.459429 -0.861032 -0.218059 0.867687 -0.388872 0.309674 0.867687 -0.388872 0.309674 0.867687 -0.388872 0.309674 0.99323 -0.092897 -0.069749 0.99323 -0.092897 -0.069749 0.99323 -0.092897 -0.069749 0.392692 0.893466 0.21797 0.392692 0.893466 0.21797 0.392692 0.893466 0.21797 -0.748468 0.65096 -0.126678 -0.748468 0.65096 -0.126678 -0.748468 0.65096 -0.126678 -0.996616 -0.080759 0.01531 -0.996616 -0.080759 0.01531 -0.996616 -0.080759 0.01531 -0.935497 -0.353249 -0.007846 -0.935497 -0.353249 -0.007846 -0.935497 -0.353249 -0.007846 0.766043 -0.642789 0 0.766043 -0.642789 0 0.766043 -0.642789 0 0.455301 -0.886372 0.083935 0.455301 -0.886372 0.083935 0.455301 -0.886372 0.083935 0.401115 0.912628 -0.07885 0.401115 0.912628 -0.07885 0.401115 0.912628 -0.07885 0.642746 0.765993 -0.011481 0.642746 0.765993 -0.011481 0.642746 0.765993 -0.011481 -0.590813 -0.607541 -0.530881 -0.590813 -0.607541 -0.530881 -0.590813 -0.607541 -0.530881 -0.972334 -0.230424 0.038361 -0.972334 -0.230424 0.038361 -0.972334 -0.230424 0.038361 0.622171 -0.740017 0.255497 0.622171 -0.740017 0.255497 0.622171 -0.740017 0.255497 0.710793 -0.518385 -0.475447 0.710793 -0.518385 -0.475447 0.710793 -0.518385 -0.475447 0.638783 0.761271 -0.111458 0.638783 0.761271 -0.111458 0.638783 0.761271 -0.111458 0.436751 0.847205 -0.302476 0.436751 0.847205 -0.302477 0.436751 0.847205 -0.302476 -0.96897 -0.235124 0.076244 -0.96897 -0.235124 0.076244 -0.96897 -0.235124 0.076244 -0.96897 -0.235127 0.076241 -0.96897 -0.235127 0.076241 -0.96897 -0.235127 0.076241 0.870198 -0.484726 0.088292 0.870198 -0.484726 0.088292 0.870198 -0.484726 0.088292 0.870201 -0.484723 0.088288 0.8702 -0.484723 0.088288 0.870201 -0.484723 0.088288 0.593608 0.799534 0.091517 0.593608 0.799534 0.091517 0.593608 0.799534 0.091517 0.593608 0.799534 0.091517 0.593608 0.799534 0.091517 0.593608 0.799534 0.091517</float_array>
+          <technique_common>
+            <accessor source="#Box01-mesh-normals-array" count="102" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Box01-mesh-map-channel1">
+          <float_array id="Box01-mesh-map-channel1-array" count="120">0.845088 0.481634 0.5 0.786219 0.487639 -0.081042 0.795449 0.474935 0.181341 0.846504 0.456475 -0.218347 0.751507 0.476649 0.304465 0.757301 0.486619 -0.20496 0.79261 0.459718 0.055251 0.800419 0.448496 0.270911 0.849334 0.496677 -0.500002 0.800284 0.496902 0.350727 0.763845 0.461127 -0.5 0.818399 0.508428 -0.007098 0.771246 0.498313 0.44032 0.757505 0.449668 0.5 0.775881 0.514968 0.015209 0.750403 0.457689 0.010701 0.753999 0.44684 -0.184169 0.75333 0.494761 0.105135 0.711129 0.462943 0.335313 0.752598 0.473824 -0.176598 0.741903 0.484437 0.20322 0.717973 0.466608 -0.323271 0.709788 0.479445 -0.164219 0.707171 0.464537 -0.461031 0.70373 0.483788 0.019654 0.696081 0.468531 -0.499999 0.693917 0.480637 -0.197714 0.764659 0.507688 0.337985 0.716665 0.502189 0.120164 0.731046 0.508541 0.499999 0.723913 0.44638 -0.357359 0.697093 0.463338 0.481272 0.710114 0.447147 -0.029997 0.692973 0.459931 0.131418 0.701162 0.449749 -0.190099 0.715858 0.496296 0.275977 0.720954 0.513596 0.429008 0.690615 0.51461 -0.274553 0.702802 0.501133 0.249975 0.706007 0.512012 0.34621</float_array>
+          <technique_common>
+            <accessor source="#Box01-mesh-map-channel1-array" count="40" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Box01-mesh-vertices">
+          <input semantic="POSITION" source="#Box01-mesh-positions"/>
+        </vertices>
+        <triangles material="_1_-_Default" count="34">
+          <input semantic="VERTEX" source="#Box01-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Box01-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Box01-mesh-map-channel1" offset="2" set="1"/>
+          <p>0 0 0 1 1 1 2 2 2 0 3 3 2 4 6 3 5 7 0 6 8 3 7 11 1 8 9 17 9 38 18 10 39 16 11 37 2 12 2 1 13 1 5 14 5 5 15 5 4 16 4 2 17 2 1 18 9 3 19 11 6 20 14 6 21 14 5 22 12 1 23 9 3 24 7 2 25 6 4 26 10 4 27 10 6 28 13 3 29 7 8 30 20 7 31 19 4 32 4 4 33 4 5 34 5 8 35 20 9 36 27 8 37 17 5 38 12 5 39 12 6 40 14 9 41 27 7 42 15 9 43 16 6 44 13 6 45 13 4 46 10 7 47 15 7 48 19 8 49 20 11 50 22 11 51 22 10 52 21 7 53 19 8 54 17 9 55 27 12 56 29 12 57 29 11 58 28 8 59 17 9 60 16 7 61 15 10 62 18 10 63 18 12 64 30 9 65 16 10 66 21 11 67 22 14 68 24 14 69 24 13 70 23 10 71 21 11 72 28 12 73 29 15 74 36 15 75 36 14 76 35 11 77 28 12 78 30 10 79 18 13 80 31 13 81 31 15 82 32 12 83 30 13 84 23 14 85 24 17 86 26 17 87 26 16 88 25 13 89 23 14 90 35 15 91 36 18 92 39 18 93 39 17 94 38 14 95 35 15 96 32 13 97 31 16 98 33 16 99 33 18 100 34 15 101 32</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="staff_walk_max" name="staff_walk_max">
+      <node id="Box01-node" name="Box01" type="NODE">
+        <translate>0 0 0</translate>
+        <instance_geometry url="#Box01-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_1_-_Default" target="#_1_-_Default">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="VisualSceneNode" type="NODE">
+        <instance_light url="#ambient-environment-light"/>
+      </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>30</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0</start_time>
+          <end_time>1.26667</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#staff_walk_max"/>
+  </scene>
+</COLLADA>

@@ -5,12 +5,11 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <mesh>props/celt_trader.pmd</mesh>
+      <mesh>structural/hele_sb4.pmd</mesh>
       <props>
-        <prop actor="units/celts/trader_r.xml" attachpoint="trader"/>
-        <prop actor="units/celts/trader_h.xml" attachpoint="donkey"/>
+        <prop actor="props/structures/hellenes/tholos.xml" attachpoint="props_main"/>
       </props>
-      <texture>null_white.dds</texture>
+      <texture>structural/hele_struct_1.dds</texture>
     </variant>
   </group>
 

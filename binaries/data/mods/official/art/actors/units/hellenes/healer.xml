@@ -6,13 +6,14 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
-        <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
+        <animation file="biped/inf_staff_idle_a.dae" name="Idle" speed="200"/>
+        <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
       </animations>
       <mesh>skeletal/m_dress_a.pmd</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_healer.xml" attachpoint="head"/>
+        <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>

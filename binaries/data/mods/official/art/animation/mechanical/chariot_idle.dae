@@ -7,8 +7,8 @@
       <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=0;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=0;AnimStart=0;AnimEnd=42;</comments>
       <source_data>file:///C:/Documents%20and%20Settings/Administrator/My%20Documents/3dsmax/scenes/chariots_R9_su1_walk.max</source_data>
     </contributor>
-    <created>2008-07-02T02:24:12Z</created>
-    <modified>2008-07-02T02:24:17Z</modified>
+    <created>2008-07-03T03:07:23Z</created>
+    <modified>2008-07-03T03:07:33Z</modified>
     <unit meter="0.0254" name="inch"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -202,10 +202,13 @@
       <node id="base-node" name="base" sid="base-node" type="JOINT">
         <translate>0 0 0</translate>
         <node id="chariot-node" name="chariot" sid="chariot-node" type="JOINT">
-          <translate>0.000032 1.69922 0</translate>
+          <translate>0.000032 1.69922 0.347351</translate>
           <rotate sid="RotZ">0 0 1 0</rotate>
           <rotate sid="RotY">0 1 0 0</rotate>
           <rotate sid="RotX">1 0 0 0</rotate>
+          <node id="prop-driver-node" name="prop-driver" sid="prop-driver-node" type="JOINT">
+            <translate>0.017678 -1.15315 1.0382</translate>
+          </node>
           <node id="right_wheel-node" name="right_wheel" sid="right_wheel-node" type="JOINT">
             <translate>-1.61583 0.172415 0.746514</translate>
             <rotate sid="RotZ">0 0 1 0</rotate>
@@ -213,18 +216,15 @@
             <rotate sid="RotX">1 0 0 180</rotate>
             <scale>-1 -1 -1</scale>
           </node>
-          <node id="prop-rider-node" name="prop-rider" sid="prop-rider-node" type="JOINT">
-            <translate>0.017678 0.681035 1.0382</translate>
-          </node>
-          <node id="prop-driver-node" name="prop-driver" sid="prop-driver-node" type="JOINT">
-            <translate>0.017678 -1.15315 1.0382</translate>
-          </node>
           <node id="left_wheel-node" name="left_wheel" sid="left_wheel-node" type="JOINT">
             <translate>1.61583 0.172415 0.746514</translate>
             <rotate sid="RotZ">0 0 1 0</rotate>
             <rotate sid="RotY">0 1 0 0</rotate>
             <rotate sid="RotX">1 0 0 0</rotate>
             <scale>1 1 1</scale>
+          </node>
+          <node id="prop-rider-node" name="prop-rider" sid="prop-rider-node" type="JOINT">
+            <translate>0.017678 0.681035 1.0382</translate>
           </node>
         </node>
         <node id="prop-horseleft-node" name="prop-horseleft" sid="prop-horseleft-node" type="JOINT">

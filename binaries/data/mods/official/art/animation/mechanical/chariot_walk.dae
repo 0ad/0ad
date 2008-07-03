@@ -4,56 +4,20 @@
     <contributor>
       <author>Administrator</author>
       <authoring_tool>Feeling ColladaMax v3.02 with FCollada v3.02.</authoring_tool>
-      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=0;ExportSelected=1;ExportTangents=0;ExportAnimations=1;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=0;AnimStart=0;AnimEnd=42;</comments>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=0;ExportSelected=1;ExportTangents=0;ExportAnimations=1;SampleAnim=1;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=0;AnimStart=0;AnimEnd=34;</comments>
       <source_data>file:///C:/Documents%20and%20Settings/Administrator/My%20Documents/3dsmax/scenes/chariots_R9_su1_walk.max</source_data>
     </contributor>
-    <created>2008-07-02T02:27:08Z</created>
-    <modified>2008-07-02T02:27:10Z</modified>
+    <created>2008-07-03T03:10:13Z</created>
+    <modified>2008-07-03T03:10:15Z</modified>
     <unit meter="0.0254" name="inch"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_animations>
-    <animation id="chariot-node-translation">
-      <source id="chariot-node-translation_chariot-node_translation_Z-input">
-        <float_array id="chariot-node-translation_chariot-node_translation_Z-input-array" count="43">0 0.033333 0.066666 0.1 0.133333 0.166667 0.2 0.233333 0.266667 0.3 0.333333 0.366667 0.4 0.433333 0.466667 0.5 0.533333 0.566667 0.6 0.633333 0.666667 0.7 0.733333 0.766667 0.8 0.833333 0.866667 0.9 0.933333 0.966667 1 1.03333 1.06667 1.1 1.13333 1.16667 1.2 1.23333 1.26667 1.3 1.33333 1.36667 1.4</float_array>
-        <technique_common>
-          <accessor source="#chariot-node-translation_chariot-node_translation_Z-input-array" count="43" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="chariot-node-translation_chariot-node_translation_Z-output">
-        <float_array id="chariot-node-translation_chariot-node_translation_Z-output-array" count="43">0 -0.006414 0.00136 -0.000858 0.007319 0.008251 -0.014431 -0.017318 -0.0067 0.001718 0.008316 -0.016143 -0.008018 -0.009572 -0.008852 -0.004731 0.000196 -0.000039 0.000522 -0.004125 0.009744 -0.002144 -0.01976 -0.015409 0.006959 0.005802 -0.000635 -0.005295 -0.009715 -0.011147 -0.011215 -0.002272 0.003714 0.008241 0.007178 0.003108 0.00674 -0.007259 -0.007386 0.01533 0.016977 0.020015 -0.003273</float_array>
-        <technique_common>
-          <accessor source="#chariot-node-translation_chariot-node_translation_Z-output-array" count="43" stride="1">
-            <param name="Z" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="chariot-node-translation_chariot-node_translation_Z-interpolations">
-        <Name_array id="chariot-node-translation_chariot-node_translation_Z-interpolations-array" count="43">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
-        <technique_common>
-          <accessor source="#chariot-node-translation_chariot-node_translation_Z-interpolations-array" count="43" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="chariot-node-translation_chariot-node_translation_Z-sampler">
-        <input semantic="INPUT" source="#chariot-node-translation_chariot-node_translation_Z-input"/>
-        <input semantic="OUTPUT" source="#chariot-node-translation_chariot-node_translation_Z-output"/>
-        <input semantic="INTERPOLATION" source="#chariot-node-translation_chariot-node_translation_Z-interpolations"/>
-      </sampler>
-      <channel source="#chariot-node-translation_chariot-node_translation_Z-sampler" target="chariot-node/translation.Z"/>
-    </animation>
     <animation id="chariot-node-ry">
       <source id="chariot-node-ry_chariot-node_RotY_ANGLE-input">
-        <float_array id="chariot-node-ry_chariot-node_RotY_ANGLE-input-array" count="43">0 0.033333 0.066666 0.1 0.133333 0.166667 0.2 0.233333 0.266667 0.3 0.333333 0.366667 0.4 0.433333 0.466667 0.5 0.533333 0.566667 0.6 0.633333 0.666667 0.7 0.733333 0.766667 0.8 0.833333 0.866667 0.9 0.933333 0.966667 1 1.03333 1.06667 1.1 1.13333 1.16667 1.2 1.23333 1.26667 1.3 1.33333 1.36667 1.4</float_array>
+        <float_array id="chariot-node-ry_chariot-node_RotY_ANGLE-input-array" count="35">0 0.033333 0.066666 0.1 0.133333 0.166667 0.2 0.233333 0.266667 0.3 0.333333 0.366667 0.4 0.433333 0.466667 0.5 0.533333 0.566667 0.6 0.633333 0.666667 0.7 0.733333 0.766667 0.8 0.833333 0.866667 0.9 0.933333 0.966667 1 1.03333 1.06667 1.1 1.13333</float_array>
         <technique_common>
-          <accessor source="#chariot-node-ry_chariot-node_RotY_ANGLE-input-array" count="43" stride="1">
+          <accessor source="#chariot-node-ry_chariot-node_RotY_ANGLE-input-array" count="35" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
@@ -63,17 +27,17 @@
         </technique>
       </source>
       <source id="chariot-node-ry_chariot-node_RotY_ANGLE-output">
-        <float_array id="chariot-node-ry_chariot-node_RotY_ANGLE-output-array" count="43">0 0.02943 0.088395 -0.162502 -0.031636 0 -0.082589 -0.065602 0.016045 -0.074367 0 -0.163723 0.058024 -0.077357 -0.121975 0 0.101285 0.070984 -0.118155 0.229991 0 -0.316224 -0.207256 0.218277 0.172734 0 -0.09278 -0.03704 0.007956 0.055764 0 -0.020203 -0.022298 -0.208021 0.0977 0 -0.364258 -0.23953 0.159032 0.273846 0 -0.006851 -0.066905</float_array>
+        <float_array id="chariot-node-ry_chariot-node_RotY_ANGLE-output-array" count="35">0 0.02943 0.088395 -0.162502 -0.031636 0 -0.082589 -0.065602 0.016045 -0.074367 0 -0.163723 0.058024 -0.077357 -0.121975 0 0.101285 0.070984 -0.118155 0.229991 0 -0.316224 -0.207256 0.218277 0.172734 0 -0.09278 -0.03704 0.007956 0.055764 0 -0.020203 -0.022298 -0.208021 0.0977</float_array>
         <technique_common>
-          <accessor source="#chariot-node-ry_chariot-node_RotY_ANGLE-output-array" count="43" stride="1">
+          <accessor source="#chariot-node-ry_chariot-node_RotY_ANGLE-output-array" count="35" stride="1">
             <param name="ANGLE" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot-node-ry_chariot-node_RotY_ANGLE-interpolations">
-        <Name_array id="chariot-node-ry_chariot-node_RotY_ANGLE-interpolations-array" count="43">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="chariot-node-ry_chariot-node_RotY_ANGLE-interpolations-array" count="35">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot-node-ry_chariot-node_RotY_ANGLE-interpolations-array" count="43" stride="1">
+          <accessor source="#chariot-node-ry_chariot-node_RotY_ANGLE-interpolations-array" count="35" stride="1">
             <param name="INTERPOLATION" type="Name"/>
           </accessor>
         </technique_common>
@@ -87,9 +51,9 @@
     </animation>
     <animation id="chariot-node-rx">
       <source id="chariot-node-rx_chariot-node_RotX_ANGLE-input">
-        <float_array id="chariot-node-rx_chariot-node_RotX_ANGLE-input-array" count="43">0 0.033333 0.066666 0.1 0.133333 0.166667 0.2 0.233333 0.266667 0.3 0.333333 0.366667 0.4 0.433333 0.466667 0.5 0.533333 0.566667 0.6 0.633333 0.666667 0.7 0.733333 0.766667 0.8 0.833333 0.866667 0.9 0.933333 0.966667 1 1.03333 1.06667 1.1 1.13333 1.16667 1.2 1.23333 1.26667 1.3 1.33333 1.36667 1.4</float_array>
+        <float_array id="chariot-node-rx_chariot-node_RotX_ANGLE-input-array" count="35">0 0.033333 0.066666 0.1 0.133333 0.166667 0.2 0.233333 0.266667 0.3 0.333333 0.366667 0.4 0.433333 0.466667 0.5 0.533333 0.566667 0.6 0.633333 0.666667 0.7 0.733333 0.766667 0.8 0.833333 0.866667 0.9 0.933333 0.966667 1 1.03333 1.06667 1.1 1.13333</float_array>
         <technique_common>
-          <accessor source="#chariot-node-rx_chariot-node_RotX_ANGLE-input-array" count="43" stride="1">
+          <accessor source="#chariot-node-rx_chariot-node_RotX_ANGLE-input-array" count="35" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
@@ -99,17 +63,17 @@
         </technique>
       </source>
       <source id="chariot-node-rx_chariot-node_RotX_ANGLE-output">
-        <float_array id="chariot-node-rx_chariot-node_RotX_ANGLE-output-array" count="43">0 0.02943 0.088395 -0.162502 -0.031636 0 -0.082589 -0.065602 0.016045 -0.074367 0 -0.163723 0.058024 -0.077357 -0.121975 0 0.101285 0.070984 -0.118155 0.229991 0 -0.316224 -0.207256 0.218277 0.172734 0 -0.09278 -0.03704 0.007956 0.055764 0 -0.020203 -0.022298 -0.208021 0.0977 0 -0.364258 -0.23953 0.159032 0.273846 0 -0.006851 -0.066905</float_array>
+        <float_array id="chariot-node-rx_chariot-node_RotX_ANGLE-output-array" count="35">0 0.02943 0.088395 -0.162502 -0.031636 0 -0.082589 -0.065602 0.016045 -0.074367 0 -0.163723 0.058024 -0.077357 -0.121975 0 0.101285 0.070984 -0.118155 0.229991 0 -0.316224 -0.207256 0.218277 0.172734 0 -0.09278 -0.03704 0.007956 0.055764 0 -0.020203 -0.022298 -0.208021 0.0977</float_array>
         <technique_common>
-          <accessor source="#chariot-node-rx_chariot-node_RotX_ANGLE-output-array" count="43" stride="1">
+          <accessor source="#chariot-node-rx_chariot-node_RotX_ANGLE-output-array" count="35" stride="1">
             <param name="ANGLE" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="chariot-node-rx_chariot-node_RotX_ANGLE-interpolations">
-        <Name_array id="chariot-node-rx_chariot-node_RotX_ANGLE-interpolations-array" count="43">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
+        <Name_array id="chariot-node-rx_chariot-node_RotX_ANGLE-interpolations-array" count="35">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#chariot-node-rx_chariot-node_RotX_ANGLE-interpolations-array" count="43" stride="1">
+          <accessor source="#chariot-node-rx_chariot-node_RotX_ANGLE-interpolations-array" count="35" stride="1">
             <param name="INTERPOLATION" type="Name"/>
           </accessor>
         </technique_common>
@@ -121,189 +85,11 @@
       </sampler>
       <channel source="#chariot-node-rx_chariot-node_RotX_ANGLE-sampler" target="chariot-node/RotX.ANGLE"/>
     </animation>
-    <animation id="right_wheel-node-translation">
-      <source id="right_wheel-node-translation_right_wheel-node_translation-input">
-        <float_array id="right_wheel-node-translation_right_wheel-node_translation-input-array" count="2">0 1.4</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-translation_right_wheel-node_translation-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="right_wheel-node-translation_right_wheel-node_translation-output">
-        <float_array id="right_wheel-node-translation_right_wheel-node_translation-output-array" count="6">-1.61583 0.172415 0.746514 -1.61583 0.172415 0.746514</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-translation_right_wheel-node_translation-output-array" count="2" stride="3">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="Z" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-translation_right_wheel-node_translation-intangents">
-        <float_array id="right_wheel-node-translation_right_wheel-node_translation-intangents-array" count="12">0.999792 -1.61583 0.999792 0.172415 0.999792 0.746514 0.93338 -1.61583 0.93338 0.172415 0.93338 0.746514</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-translation_right_wheel-node_translation-intangents-array" count="2" stride="6">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-translation_right_wheel-node_translation-outtangents">
-        <float_array id="right_wheel-node-translation_right_wheel-node_translation-outtangents-array" count="12">0.46662 -1.61583 0.46662 0.172415 0.46662 0.746514 0.400208 -1.61583 0.400208 0.172415 0.400208 0.746514</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-translation_right_wheel-node_translation-outtangents-array" count="2" stride="6">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-translation_right_wheel-node_translation-interpolations">
-        <Name_array id="right_wheel-node-translation_right_wheel-node_translation-interpolations-array" count="2">BEZIER BEZIER</Name_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-translation_right_wheel-node_translation-interpolations-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="right_wheel-node-translation_right_wheel-node_translation-sampler">
-        <input semantic="INPUT" source="#right_wheel-node-translation_right_wheel-node_translation-input"/>
-        <input semantic="OUTPUT" source="#right_wheel-node-translation_right_wheel-node_translation-output"/>
-        <input semantic="IN_TANGENT" source="#right_wheel-node-translation_right_wheel-node_translation-intangents"/>
-        <input semantic="OUT_TANGENT" source="#right_wheel-node-translation_right_wheel-node_translation-outtangents"/>
-        <input semantic="INTERPOLATION" source="#right_wheel-node-translation_right_wheel-node_translation-interpolations"/>
-      </sampler>
-      <channel source="#right_wheel-node-translation_right_wheel-node_translation-sampler" target="right_wheel-node/translation"/>
-    </animation>
-    <animation id="right_wheel-node-rz">
-      <source id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-input">
-        <float_array id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-input-array" count="2">0 1.4</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-output">
-        <float_array id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-output-array" count="2">0 0</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-output-array" count="2" stride="1">
-            <param name="ANGLE" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-intangents">
-        <float_array id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-intangents-array" count="4">0.999792 0 0.93338 0</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-intangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-outtangents">
-        <float_array id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-outtangents-array" count="4">0.46662 0 0.400208 0</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-outtangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-interpolations">
-        <Name_array id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-interpolations-array" count="2">BEZIER BEZIER</Name_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-interpolations-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-sampler">
-        <input semantic="INPUT" source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-input"/>
-        <input semantic="OUTPUT" source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-output"/>
-        <input semantic="IN_TANGENT" source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-intangents"/>
-        <input semantic="OUT_TANGENT" source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-outtangents"/>
-        <input semantic="INTERPOLATION" source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-interpolations"/>
-      </sampler>
-      <channel source="#right_wheel-node-rz_right_wheel-node_RotZ_ANGLE-sampler" target="right_wheel-node/RotZ.ANGLE"/>
-    </animation>
-    <animation id="right_wheel-node-ry">
-      <source id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-input">
-        <float_array id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-input-array" count="2">0 1.4</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-output">
-        <float_array id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-output-array" count="2">0 0</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-output-array" count="2" stride="1">
-            <param name="ANGLE" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-intangents">
-        <float_array id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-intangents-array" count="4">0.999792 0 0.93338 0</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-intangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-outtangents">
-        <float_array id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-outtangents-array" count="4">0.46662 0 0.400208 0</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-outtangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-interpolations">
-        <Name_array id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-interpolations-array" count="2">BEZIER BEZIER</Name_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-interpolations-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="right_wheel-node-ry_right_wheel-node_RotY_ANGLE-sampler">
-        <input semantic="INPUT" source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-input"/>
-        <input semantic="OUTPUT" source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-output"/>
-        <input semantic="IN_TANGENT" source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-intangents"/>
-        <input semantic="OUT_TANGENT" source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-outtangents"/>
-        <input semantic="INTERPOLATION" source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-interpolations"/>
-      </sampler>
-      <channel source="#right_wheel-node-ry_right_wheel-node_RotY_ANGLE-sampler" target="right_wheel-node/RotY.ANGLE"/>
-    </animation>
     <animation id="right_wheel-node-rx">
       <source id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-input">
-        <float_array id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-input-array" count="2">0 1.4</float_array>
+        <float_array id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-input-array" count="35">0 0.033333 0.066666 0.1 0.133333 0.166667 0.2 0.233333 0.266667 0.3 0.333333 0.366667 0.4 0.433333 0.466667 0.5 0.533333 0.566667 0.6 0.633333 0.666667 0.7 0.733333 0.766667 0.8 0.833333 0.866667 0.9 0.933333 0.966667 1 1.03333 1.06667 1.1 1.13333</float_array>
         <technique_common>
-          <accessor source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-input-array" count="2" stride="1">
+          <accessor source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-input-array" count="35" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
@@ -313,35 +99,17 @@
         </technique>
       </source>
       <source id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-output">
-        <float_array id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-output-array" count="2">-180 261</float_array>
+        <float_array id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-output-array" count="35">-180 -169.5 -159 -148.5 -138 -127.5 -117 -106.5 -96 -85.5 -75 -64.5 -54 -43.5 -33 -22.5 -12 -1.50002 8.99998 19.5 30 40.5 51 61.5 72 82.5 93 103.5 114 124.5 135 145.5 156 166.5 177</float_array>
         <technique_common>
-          <accessor source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-output-array" count="2" stride="1">
+          <accessor source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-output-array" count="35" stride="1">
             <param name="ANGLE" type="float"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-intangents">
-        <float_array id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-intangents-array" count="4">0.999792 -211654 0.93338 114.015</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-intangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-outtangents">
-        <float_array id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-outtangents-array" count="4">0.46662 -33.0147 0.400208 211662</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-outtangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
       <source id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-interpolations">
-        <Name_array id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-interpolations-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-interpolations-array" count="35">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-interpolations-array" count="2" stride="1">
+          <accessor source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-interpolations-array" count="35" stride="1">
             <param name="INTERPOLATION" type="Name"/>
           </accessor>
         </technique_common>
@@ -349,261 +117,15 @@
       <sampler id="right_wheel-node-rx_right_wheel-node_RotX_ANGLE-sampler">
         <input semantic="INPUT" source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-input"/>
         <input semantic="OUTPUT" source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-output"/>
-        <input semantic="IN_TANGENT" source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-intangents"/>
-        <input semantic="OUT_TANGENT" source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-outtangents"/>
         <input semantic="INTERPOLATION" source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-interpolations"/>
       </sampler>
       <channel source="#right_wheel-node-rx_right_wheel-node_RotX_ANGLE-sampler" target="right_wheel-node/RotX.ANGLE"/>
     </animation>
-    <animation id="right_wheel-node-scale">
-      <source id="right_wheel-node-scale_right_wheel-node_scale-input">
-        <float_array id="right_wheel-node-scale_right_wheel-node_scale-input-array" count="2">0 1.4</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-scale_right_wheel-node_scale-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="right_wheel-node-scale_right_wheel-node_scale-output">
-        <float_array id="right_wheel-node-scale_right_wheel-node_scale-output-array" count="6">-1 -1 -1 -1 -1 -1</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-scale_right_wheel-node_scale-output-array" count="2" stride="3">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="Z" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-scale_right_wheel-node_scale-intangents">
-        <float_array id="right_wheel-node-scale_right_wheel-node_scale-intangents-array" count="12">0.999792 -1 0.999792 -1 0.999792 -1 0.93338 -1 0.93338 -1 0.93338 -1</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-scale_right_wheel-node_scale-intangents-array" count="2" stride="6">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-scale_right_wheel-node_scale-outtangents">
-        <float_array id="right_wheel-node-scale_right_wheel-node_scale-outtangents-array" count="12">0.46662 -1 0.46662 -1 0.46662 -1 0.400208 -1 0.400208 -1 0.400208 -1</float_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-scale_right_wheel-node_scale-outtangents-array" count="2" stride="6">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="right_wheel-node-scale_right_wheel-node_scale-interpolations">
-        <Name_array id="right_wheel-node-scale_right_wheel-node_scale-interpolations-array" count="2">BEZIER BEZIER</Name_array>
-        <technique_common>
-          <accessor source="#right_wheel-node-scale_right_wheel-node_scale-interpolations-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="right_wheel-node-scale_right_wheel-node_scale-sampler">
-        <input semantic="INPUT" source="#right_wheel-node-scale_right_wheel-node_scale-input"/>
-        <input semantic="OUTPUT" source="#right_wheel-node-scale_right_wheel-node_scale-output"/>
-        <input semantic="IN_TANGENT" source="#right_wheel-node-scale_right_wheel-node_scale-intangents"/>
-        <input semantic="OUT_TANGENT" source="#right_wheel-node-scale_right_wheel-node_scale-outtangents"/>
-        <input semantic="INTERPOLATION" source="#right_wheel-node-scale_right_wheel-node_scale-interpolations"/>
-      </sampler>
-      <channel source="#right_wheel-node-scale_right_wheel-node_scale-sampler" target="right_wheel-node/scale"/>
-    </animation>
-    <animation id="left_wheel-node-translation">
-      <source id="left_wheel-node-translation_left_wheel-node_translation-input">
-        <float_array id="left_wheel-node-translation_left_wheel-node_translation-input-array" count="2">0 1.4</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-translation_left_wheel-node_translation-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="left_wheel-node-translation_left_wheel-node_translation-output">
-        <float_array id="left_wheel-node-translation_left_wheel-node_translation-output-array" count="6">1.61583 0.172415 0.746514 1.61583 0.172415 0.746514</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-translation_left_wheel-node_translation-output-array" count="2" stride="3">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="Z" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-translation_left_wheel-node_translation-intangents">
-        <float_array id="left_wheel-node-translation_left_wheel-node_translation-intangents-array" count="12">0.999792 1.61583 0.999792 0.172415 0.999792 0.746514 0.93338 1.61583 0.93338 0.172415 0.93338 0.746514</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-translation_left_wheel-node_translation-intangents-array" count="2" stride="6">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-translation_left_wheel-node_translation-outtangents">
-        <float_array id="left_wheel-node-translation_left_wheel-node_translation-outtangents-array" count="12">0.46662 1.61583 0.46662 0.172415 0.46662 0.746514 0.400208 1.61583 0.400208 0.172415 0.400208 0.746514</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-translation_left_wheel-node_translation-outtangents-array" count="2" stride="6">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-translation_left_wheel-node_translation-interpolations">
-        <Name_array id="left_wheel-node-translation_left_wheel-node_translation-interpolations-array" count="2">LINEAR BEZIER</Name_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-translation_left_wheel-node_translation-interpolations-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="left_wheel-node-translation_left_wheel-node_translation-sampler">
-        <input semantic="INPUT" source="#left_wheel-node-translation_left_wheel-node_translation-input"/>
-        <input semantic="OUTPUT" source="#left_wheel-node-translation_left_wheel-node_translation-output"/>
-        <input semantic="IN_TANGENT" source="#left_wheel-node-translation_left_wheel-node_translation-intangents"/>
-        <input semantic="OUT_TANGENT" source="#left_wheel-node-translation_left_wheel-node_translation-outtangents"/>
-        <input semantic="INTERPOLATION" source="#left_wheel-node-translation_left_wheel-node_translation-interpolations"/>
-      </sampler>
-      <channel source="#left_wheel-node-translation_left_wheel-node_translation-sampler" target="left_wheel-node/translation"/>
-    </animation>
-    <animation id="left_wheel-node-rz">
-      <source id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-input">
-        <float_array id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-input-array" count="2">0 1.4</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-output">
-        <float_array id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-output-array" count="2">0 0</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-output-array" count="2" stride="1">
-            <param name="ANGLE" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-intangents">
-        <float_array id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-intangents-array" count="4">0.999792 0 0.93338 0</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-intangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-outtangents">
-        <float_array id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-outtangents-array" count="4">0.46662 0 0.400208 0</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-outtangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-interpolations">
-        <Name_array id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-interpolations-array" count="2">LINEAR BEZIER</Name_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-interpolations-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-sampler">
-        <input semantic="INPUT" source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-input"/>
-        <input semantic="OUTPUT" source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-output"/>
-        <input semantic="IN_TANGENT" source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-intangents"/>
-        <input semantic="OUT_TANGENT" source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-outtangents"/>
-        <input semantic="INTERPOLATION" source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-interpolations"/>
-      </sampler>
-      <channel source="#left_wheel-node-rz_left_wheel-node_RotZ_ANGLE-sampler" target="left_wheel-node/RotZ.ANGLE"/>
-    </animation>
-    <animation id="left_wheel-node-ry">
-      <source id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-input">
-        <float_array id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-input-array" count="2">0 1.4</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-output">
-        <float_array id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-output-array" count="2">0 0</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-output-array" count="2" stride="1">
-            <param name="ANGLE" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-intangents">
-        <float_array id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-intangents-array" count="4">0.999792 0 0.93338 0</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-intangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-outtangents">
-        <float_array id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-outtangents-array" count="4">0.46662 0 0.400208 0</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-outtangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-interpolations">
-        <Name_array id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-interpolations-array" count="2">LINEAR BEZIER</Name_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-interpolations-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="left_wheel-node-ry_left_wheel-node_RotY_ANGLE-sampler">
-        <input semantic="INPUT" source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-input"/>
-        <input semantic="OUTPUT" source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-output"/>
-        <input semantic="IN_TANGENT" source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-intangents"/>
-        <input semantic="OUT_TANGENT" source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-outtangents"/>
-        <input semantic="INTERPOLATION" source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-interpolations"/>
-      </sampler>
-      <channel source="#left_wheel-node-ry_left_wheel-node_RotY_ANGLE-sampler" target="left_wheel-node/RotY.ANGLE"/>
-    </animation>
     <animation id="left_wheel-node-rx">
       <source id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-input">
-        <float_array id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-input-array" count="2">0 1.4</float_array>
+        <float_array id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-input-array" count="35">0 0.033333 0.066666 0.1 0.133333 0.166667 0.2 0.233333 0.266667 0.3 0.333333 0.366667 0.4 0.433333 0.466667 0.5 0.533333 0.566667 0.6 0.633333 0.666667 0.7 0.733333 0.766667 0.8 0.833333 0.866667 0.9 0.933333 0.966667 1 1.03333 1.06667 1.1 1.13333</float_array>
         <technique_common>
-          <accessor source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-input-array" count="2" stride="1">
+          <accessor source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-input-array" count="35" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
@@ -613,35 +135,17 @@
         </technique>
       </source>
       <source id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-output">
-        <float_array id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-output-array" count="2">0 441</float_array>
+        <float_array id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-output-array" count="35">0 10.5 21 31.5 42 52.5 63 73.5 84 94.5 105 115.5 126 136.5 147 157.5 168 178.5 189 199.5 210 220.5 231 241.5 252 262.5 273 283.5 294 304.5 315 325.5 336 346.5 357</float_array>
         <technique_common>
-          <accessor source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-output-array" count="2" stride="1">
+          <accessor source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-output-array" count="35" stride="1">
             <param name="ANGLE" type="float"/>
           </accessor>
         </technique_common>
       </source>
-      <source id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-intangents">
-        <float_array id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-intangents-array" count="4">0.999792 -211636 0.938052 295.486</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-intangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-outtangents">
-        <float_array id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-outtangents-array" count="4">0.46662 146.985 0.400208 211680</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-outtangents-array" count="2" stride="2">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
       <source id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-interpolations">
-        <Name_array id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-interpolations-array" count="2">LINEAR LINEAR</Name_array>
+        <Name_array id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-interpolations-array" count="35">LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-interpolations-array" count="2" stride="1">
+          <accessor source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-interpolations-array" count="35" stride="1">
             <param name="INTERPOLATION" type="Name"/>
           </accessor>
         </technique_common>
@@ -649,77 +153,9 @@
       <sampler id="left_wheel-node-rx_left_wheel-node_RotX_ANGLE-sampler">
         <input semantic="INPUT" source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-input"/>
         <input semantic="OUTPUT" source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-output"/>
-        <input semantic="IN_TANGENT" source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-intangents"/>
-        <input semantic="OUT_TANGENT" source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-outtangents"/>
         <input semantic="INTERPOLATION" source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-interpolations"/>
       </sampler>
       <channel source="#left_wheel-node-rx_left_wheel-node_RotX_ANGLE-sampler" target="left_wheel-node/RotX.ANGLE"/>
-    </animation>
-    <animation id="left_wheel-node-scale">
-      <source id="left_wheel-node-scale_left_wheel-node_scale-input">
-        <float_array id="left_wheel-node-scale_left_wheel-node_scale-input-array" count="2">0 1.4</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-scale_left_wheel-node_scale-input-array" count="2" stride="1">
-            <param name="TIME" type="float"/>
-          </accessor>
-        </technique_common>
-        <technique profile="MAYA">
-          <pre_infinity>CONSTANT</pre_infinity>
-          <post_infinity>CONSTANT</post_infinity>
-        </technique>
-      </source>
-      <source id="left_wheel-node-scale_left_wheel-node_scale-output">
-        <float_array id="left_wheel-node-scale_left_wheel-node_scale-output-array" count="6">1 1 1 1 1 1</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-scale_left_wheel-node_scale-output-array" count="2" stride="3">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="Z" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-scale_left_wheel-node_scale-intangents">
-        <float_array id="left_wheel-node-scale_left_wheel-node_scale-intangents-array" count="12">0.999792 1 0.999792 1 0.999792 1 0.93338 1 0.93338 1 0.93338 1</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-scale_left_wheel-node_scale-intangents-array" count="2" stride="6">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-scale_left_wheel-node_scale-outtangents">
-        <float_array id="left_wheel-node-scale_left_wheel-node_scale-outtangents-array" count="12">0.46662 1 0.46662 1 0.46662 1 0.400208 1 0.400208 1 0.400208 1</float_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-scale_left_wheel-node_scale-outtangents-array" count="2" stride="6">
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-            <param name="X" type="float"/>
-            <param name="Y" type="float"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <source id="left_wheel-node-scale_left_wheel-node_scale-interpolations">
-        <Name_array id="left_wheel-node-scale_left_wheel-node_scale-interpolations-array" count="2">BEZIER BEZIER</Name_array>
-        <technique_common>
-          <accessor source="#left_wheel-node-scale_left_wheel-node_scale-interpolations-array" count="2" stride="1">
-            <param name="INTERPOLATION" type="Name"/>
-          </accessor>
-        </technique_common>
-      </source>
-      <sampler id="left_wheel-node-scale_left_wheel-node_scale-sampler">
-        <input semantic="INPUT" source="#left_wheel-node-scale_left_wheel-node_scale-input"/>
-        <input semantic="OUTPUT" source="#left_wheel-node-scale_left_wheel-node_scale-output"/>
-        <input semantic="IN_TANGENT" source="#left_wheel-node-scale_left_wheel-node_scale-intangents"/>
-        <input semantic="OUT_TANGENT" source="#left_wheel-node-scale_left_wheel-node_scale-outtangents"/>
-        <input semantic="INTERPOLATION" source="#left_wheel-node-scale_left_wheel-node_scale-interpolations"/>
-      </sampler>
-      <channel source="#left_wheel-node-scale_left_wheel-node_scale-sampler" target="left_wheel-node/scale"/>
     </animation>
   </library_animations>
   <library_lights>
@@ -912,29 +348,29 @@
       <node id="base-node" name="base" sid="base-node" type="JOINT">
         <translate>0 0 0</translate>
         <node id="chariot-node" name="chariot" sid="chariot-node" type="JOINT">
-          <translate sid="translation">0.000032 1.69922 0</translate>
+          <translate>0.000032 1.69922 0.347351</translate>
           <rotate sid="RotZ">0 0 1 0</rotate>
           <rotate sid="RotY">0 1 0 0</rotate>
           <rotate sid="RotX">1 0 0 0</rotate>
-          <node id="right_wheel-node" name="right_wheel" sid="right_wheel-node" type="JOINT">
-            <translate sid="translation">-1.61583 0.172415 0.746514</translate>
-            <rotate sid="RotZ">0 0 1 0</rotate>
-            <rotate sid="RotY">0 1 0 0</rotate>
-            <rotate sid="RotX">1 0 0 180</rotate>
-            <scale sid="scale">-1 -1 -1</scale>
-          </node>
-          <node id="prop-rider-node" name="prop-rider" sid="prop-rider-node" type="JOINT">
-            <translate>0.017678 0.681035 1.0382</translate>
-          </node>
           <node id="prop-driver-node" name="prop-driver" sid="prop-driver-node" type="JOINT">
             <translate>0.017678 -1.15315 1.0382</translate>
           </node>
+          <node id="right_wheel-node" name="right_wheel" sid="right_wheel-node" type="JOINT">
+            <translate>-1.61583 0.172415 0.746514</translate>
+            <rotate sid="RotZ">0 0 1 0</rotate>
+            <rotate sid="RotY">0 1 0 0</rotate>
+            <rotate sid="RotX">1 0 0 180</rotate>
+            <scale>-1 -1 -1</scale>
+          </node>
           <node id="left_wheel-node" name="left_wheel" sid="left_wheel-node" type="JOINT">
-            <translate sid="translation">1.61583 0.172415 0.746514</translate>
+            <translate>1.61583 0.172415 0.746514</translate>
             <rotate sid="RotZ">0 0 1 0</rotate>
             <rotate sid="RotY">0 1 0 0</rotate>
             <rotate sid="RotX">1 0 0 0</rotate>
-            <scale sid="scale">1 1 1</scale>
+            <scale>1 1 1</scale>
+          </node>
+          <node id="prop-rider-node" name="prop-rider" sid="prop-rider-node" type="JOINT">
+            <translate>0.017678 0.681035 1.0382</translate>
           </node>
         </node>
         <node id="prop-horseleft-node" name="prop-horseleft" sid="prop-horseleft-node" type="JOINT">
@@ -965,7 +401,7 @@
         </technique>
         <technique profile="FCOLLADA">
           <start_time>0</start_time>
-          <end_time>1.4</end_time>
+          <end_time>1.13333</end_time>
         </technique>
       </extra>
     </visual_scene>
