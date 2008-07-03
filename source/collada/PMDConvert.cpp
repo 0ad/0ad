@@ -41,6 +41,12 @@ struct PropPoint
 	uint8 bone;
 };
 
+// this isn't defined anywhere and is needed by FMVector3::Normalize.
+// note that CommonConvert mentions that this and other static const
+// members aren't exported from the DLL and that the preferred fix
+// is to define it there; hopefully the same applies here.
+/*static*/ const FMVector3 FMVector3::XAxis(1.0f, 0.0f, 0.0f);
+
 class PMDConvert
 {
 public:
