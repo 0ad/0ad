@@ -24,7 +24,7 @@
 #include <vector>
 
 // DECLARATIONS
-#define SERVER_SESSIONID			10
+#define SERVER_SESSIONID			1
 #define CLIENT_MIN_SESSIONID		100
 #define MAX_CLIENTS					8
 #define MAX_OBSERVERS				5
@@ -137,8 +137,6 @@ public:
 	 */
 	CNetSession* GetSessionByID( uint sessionID );
 
-	static void ScriptingInit( void );
-
 protected:
 
 	virtual bool SetupSession			( CNetSession* pSession );
@@ -233,8 +231,9 @@ private:
 	uint GetFreeSessionID( void ) const;
 
 	IDSessionMap	m_IDSessions;		// List of connected ID and session pairs
-	CScriptObject	m_ScriptConnect;	// Script client connect dispatch
-	CScriptObject	m_ScriptDisconnect;	// Script client disconnect dispatch
+	//CScriptObject	m_ScriptConnect;	// Script client connect dispatch
+	//CScriptObject	m_ScriptDisconnect;	// Script client disconnect dispatch
+	//CScriptObject	m_ScriptChat;		// Script client chat dispatch
 	CPlayer*		m_Player;			// Server player
 
 
@@ -251,6 +250,7 @@ public:
 	CStrW			GetPlayerName		( void ) const	{ return m_PlayerName; }
 	NetServerState	GetState			( void ) const	{ return m_State; }
 	int				StartGame			( void );
+	static void		ScriptingInit		( void );
 
 protected:
 
@@ -271,6 +271,7 @@ protected:
 	
 	// Call the JS callback for incoming events
 	void OnPlayerChat	( const CStrW& from, const CStrW& message );
+	void OnPlayerJoin	( CNetSession* pSession );
 	void OnPlayerLeave	( CNetSession* pSession );
 	void SetupPlayer	( CNetSession* pSession );
 
@@ -340,4 +341,5 @@ private:
 extern CNetServer *g_NetServer;
 
 #endif // NETSERVER_H
+
 

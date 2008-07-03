@@ -124,13 +124,14 @@ public:
 
 protected:
 
-	virtual bool SetupSession		( CNetSession* pSession );
-	virtual bool HandleConnect		( CNetSession* pSession );
-	virtual bool HandleDisconnect	( CNetSession *pSession );
+	virtual bool SetupSession			( CNetSession* pSession );
+	virtual bool HandleConnect			( CNetSession* pSession );
+	virtual bool HandleDisconnect		( CNetSession *pSession );
 
-	virtual void NewTurn			( void );
-	virtual bool NewTurnReady		( void ) { return m_TurnPending; }
-	virtual void QueueLocalCommand	( CNetMessage* pMessage );
+	virtual void NewTurn				( void );
+	virtual bool NewTurnReady			( void ) { return m_TurnPending; }
+	virtual void QueueLocalCommand		( CNetMessage* pMessage );
+			void QueueIncomingMessage	( CNetMessage* pMessage );
 
 private:
 
@@ -157,3 +158,4 @@ private:
 extern CNetClient *g_NetClient;
 
 #endif	// NETCLIENT_H
+

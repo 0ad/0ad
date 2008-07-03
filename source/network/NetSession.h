@@ -20,7 +20,7 @@
 #include <vector>
 
 // DECLARATIONS
-#define	INVALID_SESSION				( uint )( ~0 )
+#define	INVALID_SESSION				0
 #define ENET_DEFAULT_CHANNEL		0
 
 class CNetSession;

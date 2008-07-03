@@ -28,6 +28,8 @@ CNetServer*	g_NetServer = NULL;
 CNetServer::CNetServer( CGame *pGame, CGameAttributes *pGameAttributes )
 : m_JsSessions( &m_IDSessions )
 {
+	//ONCE( ScriptingInit(); );
+
 	m_Game				= pGame;
 	m_GameAttributes	= pGameAttributes;
 	m_MaxObservers		= MAX_OBSERVERS;
@@ -83,10 +85,12 @@ void CNetServer::ScriptingInit( void )
 	AddProperty( L"welcomeMessage", &CNetServer::m_WelcomeMessage );
 	AddProperty( L"port", &CNetServer::m_Port );
 	AddProperty( L"onChat", &CNetServer::m_OnChat );
-	AddProperty( L"onClientConnect",  &CNetServer::m_ScriptConnect );
+	AddProperty( L"onClientConnect", &CNetServer::m_OnClientConnect );
 	AddProperty( L"onClientDisconnect", &CNetServer::m_OnClientDisconnect );
- 
+
 	CJSObject< CNetServer >::ScriptingInit( "NetServer" );
+
+	//CGameAttributes::ScriptingInit();
 }
 
 //-----------------------------------------------------------------------------
@@ -131,6 +135,7 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_AUTHENTICATE, NSS_PREGAME, (void*)&OnAuthenticate, pContext );
 	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_APP_PREGAME, NSS_PREGAME, (void*)&OnPreGame, pContext );
 	pSession->AddTransition( NSS_AUTHENTICATE, ( uint )NMT_APP_OBSERVER, NSS_INGAME, (void*)&OnChat, pContext );
+	pSession->AddTransition( NSS_PREGAME, ( uint )NMT_END_COMMAND_BATCH, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_PREGAME, ( uint )NMT_CHAT, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ERROR, NSS_INGAME, (void*)&OnError, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_CHAT, NSS_INGAME, (void*)&OnChat, pContext );
@@ -171,13 +176,7 @@ bool CNetServer::HandleConnect( CNetSession* pSession )
 	// Store new session into the map
 	m_IDSessions[ pSession->GetID() ] = pSession;
 
-	// Script object defined?
-	if ( m_ScriptConnect.Defined() )
-	{
-		// Dispatch a client connection event
-		CClientConnectEvent event( pSession );
-		m_ScriptConnect.DispatchEvent( GetScript(), &event );
-	}
+	//OnPlayerJoin( pSession );
 
 	return true;
 }
@@ -294,6 +293,20 @@ void CNetServer::SetupPlayer( CNetSession* pSession )
 
 //-----------------------------------------------------------------------------
 // Name: OnClientDisconnect()
+// Desc: Called when a player joins the game
+//-----------------------------------------------------------------------------
+void CNetServer::OnPlayerJoin( CNetSession* pSession )
+{
+	if ( m_OnClientConnect.Defined() )
+	{
+		// Dispatch a client connect event
+		CClientConnectEvent event( pSession );
+		m_OnClientConnect.DispatchEvent( GetScript(), &event );
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Name: OnClientDisconnect()
 // Desc: Called when a player quits the game
 //-----------------------------------------------------------------------------
 void CNetServer::OnPlayerLeave( CNetSession* pSession )
@@ -344,11 +357,11 @@ void CNetServer::OnPlayerLeave( CNetSession* pSession )
 	Broadcast( &playerLeave );
 
 	// Script object defined?
-	if ( m_ScriptDisconnect.Defined() )
+	if ( m_OnClientDisconnect.Defined() )
 	{
 		// Dispatch a client disconnect event
 		CClientDisconnectEvent event( pSession->GetID(), pSession->GetName() );
-		m_ScriptDisconnect.DispatchEvent( GetScript(), &event );
+		m_OnClientDisconnect.DispatchEvent( GetScript(), &event );
 	}
 }
 
@@ -454,6 +467,9 @@ bool CNetServer::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
 			pSession->SetName( pMessage->m_Name );		
 			pSession->SetID( pServer->GetFreeSessionID() );
 
+			// Store new session
+			//pServer->m_IDSessions[ pSession->GetID() ] = pSession;
+
 			CAuthenticateResultMessage authenticateResult;
 			authenticateResult.m_Code		= ARC_OK;
 			authenticateResult.m_SessionID	= pSession->GetID();
@@ -471,6 +487,8 @@ bool CNetServer::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
 				// Chatter / observer
 			//	SetupObserver( pSession );
 			//}
+
+			pServer->OnPlayerJoin( pSession );
 		}
 		else
 		{
@@ -557,11 +575,7 @@ bool CNetServer::OnChat( void* pContext, CFsmEvent* pEvent )
 		
 		g_Console->ReceivedChatMessage( pSession->GetName(), pMessage->m_Message.c_str() );
 		
-		if ( pServer->m_OnChat.Defined() )
-		{
-			CChatEvent chatEvent( pMessage->m_Sender, pMessage->m_Message );
-			pServer->m_OnChat.DispatchEvent( pServer->GetScript(), &chatEvent );
-		}
+		pServer->OnPlayerChat( pMessage->m_Sender, pMessage->m_Message );
 		
 		( ( CNetHost*)pServer )->Broadcast( pMessage );
 	}
@@ -730,7 +744,7 @@ int CNetServer::StartGame( void )
 	Broadcast( &gameStart );
 
 	// This is the signal for everyone to start their simulations.
-	SendBatch( 1 );
+	//SendBatch( 1 );
 
 	return 0;
 }
@@ -831,7 +845,7 @@ uint CNetServer::GetFreeSessionID( void ) const
 		CNetSession* pCurrSession = it->second;
 		if ( !pCurrSession ) return it->first;
 
-		sessionID = pCurrSession->GetID() + 1;
+		sessionID++;
 	}
 
 	return sessionID;
@@ -904,14 +918,13 @@ void CNetServer::PlayerSlotAssignment(
 	if ( pPlayerSlot->GetAssignment() == SLOT_SESSION )
 		pPlayerSlot->GetSession()->SetPlayerSlot( pPlayerSlot );
 
-	CAssignPlayerSlotMessage* pMessage = new CAssignPlayerSlotMessage;
-	if ( !pMessage ) return;
-
-	pServer->BuildPlayerSlotAssignmentMessage( pMessage, pPlayerSlot );
-
-	g_Console->InsertMessage( L"Player Slot Assignment: %hs\n", pMessage->ToString().c_str() );
+	CAssignPlayerSlotMessage assignPlayerSlot;
 	
-	pServer->Broadcast( pMessage );
+	pServer->BuildPlayerSlotAssignmentMessage( &assignPlayerSlot, pPlayerSlot );
+
+	g_Console->InsertMessage( L"Player Slot Assignment: %hs\n", assignPlayerSlot.ToString().c_str() );
+	
+	pServer->Broadcast( &assignPlayerSlot );
 }
 
 //-----------------------------------------------------------------------------
@@ -929,8 +942,6 @@ bool CNetServer::AllowObserver( CNetSession* UNUSED( pSession ) )
 //-----------------------------------------------------------------------------
 bool CNetServer::NewTurnReady()
 {
-//	return true;
-
 	// Check whether all sessions are ready for the next turn
 	for ( uint i = 0; i < GetSessionCount(); i++ )
 	{
@@ -950,8 +961,6 @@ bool CNetServer::NewTurnReady()
 //-----------------------------------------------------------------------------
 void CNetServer::NewTurn()
 {
-//	return;
-
 	CScopeLock lock(m_Mutex);
 	
 	// Reset session ready for next turn flag
@@ -1036,4 +1045,5 @@ void CNetServer::BuildPlayerSlotAssignmentMessage(
 		break;
 	}
 }
+
 

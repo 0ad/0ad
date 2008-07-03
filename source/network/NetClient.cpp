@@ -73,6 +73,8 @@ CNetClient::CNetClient( CGame* pGame, CGameAttributes* pGameAttribs )
 	m_pGameAttributes = pGameAttribs;
 	m_TurnPending = false;
 
+	//ONCE( ScriptingInit(); );
+
 	m_pGame->GetSimulation()->SetTurnManager(this);
 	
 	g_ScriptingHost.SetGlobal("g_NetClient", OBJECT_TO_JSVAL(GetScript()));
@@ -120,6 +122,8 @@ void CNetClient::ScriptingInit()
 	
 	CJSMap< PlayerMap >::ScriptingInit("NetClient_SessionMap");
 	CJSObject<CNetClient>::ScriptingInit("NetClient");
+	//CGameAttributes::ScriptingInit();
+	//CServerPlayer::ScriptingInit();
 }
 
 //-----------------------------------------------------------------------------
@@ -418,14 +422,11 @@ bool CNetClient::OnPreGame( void* pContext, CFsmEvent* pEvent )
 				case ASSIGN_SESSION:
 					{
 						// TODO: Check where is the best place to assign client's session ID
-						//if ((int)msg->m_SessionID == (int)pClient->m_SessionID)
-						//	pClient->m_pLocalPlayerSlot=pSlot;
-
-						pSession->SetID( pMessage->m_SessionID );
-
-						pClient->m_pLocalPlayerSlot = pSlot;
-
-						pSlot->AssignToSessionID( pMessage->m_SessionID );
+						if ( pSession->GetID() == pMessage->m_SessionID )
+						{
+							pClient->m_pLocalPlayerSlot = pSlot;
+							pSlot->AssignToSessionID( pMessage->m_SessionID );
+						}
 					}
 					break;
 
@@ -472,32 +473,18 @@ bool CNetClient::OnInGame( void *pContext, CFsmEvent* pEvent )
 	if ( !pEvent || !pContext ) return false;
 
 	CNetClient* pClient = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
-	assert( pClient );
 
-	// ???
-	if ( pEvent->GetType() >= NMT_COMMAND_FIRST && pEvent->GetType() < NMT_COMMAND_LAST )
+	CNetMessage* pMessage = ( CNetMessage* )pEvent->GetParamRef();
+	if ( pMessage )
 	{
-		if ( pEvent->GetParamRef() )
+		if ( pEvent->GetType() >= NMT_COMMAND_FIRST && pEvent->GetType() < NMT_COMMAND_LAST )
 		{
-			pClient->QueueMessage( 1, ( CNetMessage* )pEvent->GetParamRef() );
+			pClient->QueueIncomingMessage( pMessage );
 
 			return true;
 		}
-	}
 
-	switch ( pEvent->GetType() )
-	{
-	//case NMT_ERROR:
-
-	//	CNetClient::OnError( pContext, pEvent );
-	//	break;
-
-	//case NMT_CHAT:
-
-	//	CNetClient::OnChat( pContext, pEvent );
-	//	break;
-
-	case NMT_END_COMMAND_BATCH:
+		if ( pMessage->GetType() == NMT_END_COMMAND_BATCH )
 		{
 			CEndCommandBatchMessage* pMessage = ( CEndCommandBatchMessage* )pEvent->GetParamRef();
 			if ( !pMessage ) return false;
@@ -677,6 +664,18 @@ void CNetClient::QueueLocalCommand( CNetMessage* pMessage )
 	CNetSession* pSession = GetSession( 0 );
 	CNetHost::SendMessage( pSession, pMessage );
 }
+
+//-----------------------------------------------------------------------------
+// Name: QueueIncomingMessage()
+// Desc:
+//-----------------------------------------------------------------------------
+void CNetClient::QueueIncomingMessage( CNetMessage* pMessage )
+{
+	CScopeLock lock( m_Mutex );
+
+	QueueMessage( 2, pMessage );
+}
+
 
 /*
 void CNetClient::OnStartGameMessage()
@@ -982,4 +981,5 @@ bool CNetClient::ChatHandler(CNetMessage *pMsg, CNetSession *pSession)
 		UNHANDLED(pMsg);
 	}
 }*/
+
 

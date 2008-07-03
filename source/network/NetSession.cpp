@@ -144,6 +144,8 @@ bool CNetHost::Connect( const CStr& host, uint port )
 
 		if ( !SetupSession( pNewSession ) ) return false;
 
+		NET_LOG3( "Successfully connected to server %s:%d succeeded", host.c_str(), port );
+
 		// Successfully handled?
 		if ( !HandleConnect( pNewSession ) )
 		{
@@ -151,8 +153,6 @@ bool CNetHost::Connect( const CStr& host, uint port )
 
 			return false;
 		}
-
-		NET_LOG3( "Successfully connected to server %s:%d succeeded", host.c_str(), port );
 
 		// Store the only server session
 		item.pPeer		= event.peer;
@@ -356,10 +356,11 @@ bool CNetHost::Poll( void )
 			// Setup new session
 			if ( !SetupSession( pSession ) ) return false;
 
+			NET_LOG3( "A new client connected from %x:%u", event.peer->address.host, event.peer->address.port );
+
 			// Successfully handled?
 			if ( !HandleConnect( pSession ) ) return false;
 
-			NET_LOG3( "A new client connected from %x:%u", event.peer->address.host, event.peer->address.port );
 			event.peer->data = pSession;
 				
 			// Add new item to internal list
@@ -378,12 +379,12 @@ bool CNetHost::Poll( void )
 				// Is this our session?
 				if ( it->pPeer == event.peer )
 				{
+					NET_LOG2( "%x disconnected", event.peer->data );
+
 					// Successfully handled?
 					if ( !HandleDisconnect( it->pSession ) ) return false;
 
 					m_PeerSessions.erase( it );
-
-					NET_LOG2( "%x disconnected", event.peer->data );
 
 					return true;
 				}
@@ -404,10 +405,10 @@ bool CNetHost::Poll( void )
 					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength );
 					if ( !pNewMessage ) return false;
 
+					NET_LOG4( "Message %s of size %u was received from %x", pNewMessage->ToString().c_str(), pNewMessage->GetSerializedLength(), event.peer->data );
+
 					// Successfully handled?
 					if ( !HandleMessageReceive( pNewMessage, it->pSession ) ) return false;
-
-					NET_LOG4( "Message %s of size %u was received from %x", pNewMessage->ToString().c_str(), pNewMessage->GetSerializedLength(), event.peer->data );
 
 					// Done using the packet
 					enet_packet_destroy( event.packet );
@@ -507,7 +508,14 @@ bool CNetHost::SendMessage(
 	}
 	else
 	{
-		NET_LOG( "Successfully sent ENet packet to peer" );
+		NET_LOG4( "Message %s of size %u was sent to %x", pMessage->ToString().c_str(), pMessage->GetSerializedLength(), pSession->m_Peer->data );
+
+		CStr8 str = pMessage->ToString();
+		std::string::size_type loc = str.find( "CEndCommandBatchMessage" );
+		if( loc != std::string::npos ) 
+		{
+			int x = 0;
+		}
 	}
 
 	enet_host_flush( m_Host );
@@ -603,9 +611,12 @@ CNetSession* CNetHost::GetSession( uint index )
 //-----------------------------------------------------------------------------
 CNetSession::CNetSession( CNetHost* pHost, ENetPeer* pPeer )
 {
+	//ONCE( ScriptingInit(); );
+
 	m_Host				= pHost;
 	m_Peer				= pPeer;
 	m_ID				= INVALID_SESSION;
+	m_Player			= NULL;
 	m_PlayerSlot		= NULL;
 	m_ReadyForTurn		= false;
 
@@ -743,6 +754,8 @@ CNetServerSession::CNetSession(
 	m_Player		= NULL;
 	m_PlayerSlot	= NULL;
 	m_IsObserver	= false;
+
+	//ONCE( ScriptingInit() );
 }
 
 //-----------------------------------------------------------------------------
@@ -759,6 +772,8 @@ CNetServerSession::CNetSession(
 	m_Player		= NULL;
 	m_PlayerSlot	= NULL;
 	m_IsObserver	= false;
+
+	//ONCE( ScriptingInit() );
 }
 
 //-----------------------------------------------------------------------------

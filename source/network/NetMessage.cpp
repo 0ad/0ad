@@ -981,6 +981,10 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 	case NMT_GAME_START:
 		pNewMessage = new CGameStartMessage;
 		break;
+
+	case NMT_END_COMMAND_BATCH:
+		pNewMessage = new CEndCommandBatchMessage;
+		break;
 	}
 
 	if ( pNewMessage )
