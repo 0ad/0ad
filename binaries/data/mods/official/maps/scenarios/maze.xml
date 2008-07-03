@@ -1,0 +1,2483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>sunrise</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.125786"/>
+		<SunRotation angle="-3.14159"/>
+		<TerrainAmbientColour r="0.639216" g="0.639216" b="0.639216"/>
+		<UnitsAmbientColour r="0.639216" g="0.639216" b="0.639216"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>23.94</Height>
+				<Shininess>8.05664</Shininess>
+				<Waviness>0</Waviness>
+				<Murkiness>1</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0.253906</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="77.5068" y="79.797" z="561.279"/>
+		<Rotation angle="-1.54746"/>
+		<Declination angle="0.618512"/>
+	</Camera>
+	<Entities>
+		<Entity uid="2">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.09462" y="22.4" z="555.549"/>
+			<Orientation angle="1.559"/>
+		</Entity>
+		<Entity uid="6">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="17.3564" y="22.4" z="557.243"/>
+			<Orientation angle="3.10893"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="17.9334" y="22.4" z="556.119"/>
+			<Orientation angle="-1.58138"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="1.60214" y="22.4" z="573.364"/>
+			<Orientation angle="-3.13183"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="20.0844" y="22.4" z="573.232"/>
+			<Orientation angle="3.10964"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="39.6031" y="22.4" z="573.795"/>
+			<Orientation angle="3.12854"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="48.1784" y="22.4" z="557.645"/>
+			<Orientation angle="3.12271"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="58.6955" y="22.4" z="574.07"/>
+			<Orientation angle="3.12511"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="65.7862" y="22.4" z="557.852"/>
+			<Orientation angle="3.13115"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="75.6971" y="22.4" z="574.451"/>
+			<Orientation angle="3.11959"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.9733" y="22.4" z="558.042"/>
+			<Orientation angle="3.13043"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="93.2138" y="22.4" z="574.802"/>
+			<Orientation angle="-3.13865"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="110.975" y="22.4" z="574.703"/>
+			<Orientation angle="3.11943"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.9739" y="22.4" z="558.651"/>
+			<Orientation angle="-1.59333"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="84.0176" y="22.4" z="505.727"/>
+			<Orientation angle="1.55608"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="98.3954" y="22.4" z="539.328"/>
+			<Orientation angle="-1.56909"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="84.5221" y="22.4" z="524.749"/>
+			<Orientation angle="0.00196469"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="64.2067" y="22.4" z="539.03"/>
+			<Orientation angle="3.11815"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="46.5627" y="22.4" z="538.328"/>
+			<Orientation angle="3.10357"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="48.3958" y="22.4" z="556.289"/>
+			<Orientation angle="-1.53698"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="36.4517" y="22.4" z="556.015"/>
+			<Orientation angle="-1.53136"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="47.5359" y="22.4" z="517.285"/>
+			<Orientation angle="1.58299"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="65.6168" y="22.4" z="526.257"/>
+			<Orientation angle="-1.54035"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="35.667" y="22.4" z="536.603"/>
+			<Orientation angle="-1.56516"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.25123" y="22.4" z="536.151"/>
+			<Orientation angle="1.5514"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.27834" y="22.4" z="516.898"/>
+			<Orientation angle="1.56457"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="35.4516" y="22.4" z="516.865"/>
+			<Orientation angle="-1.57962"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="16.22" y="22.4" z="517.694"/>
+			<Orientation angle="3.08865"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="64.959" y="22.4" z="508.077"/>
+			<Orientation angle="-1.601"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="47.7122" y="22.4" z="497.49"/>
+			<Orientation angle="1.57463"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="50.0111" y="22.4" z="477.678"/>
+			<Orientation angle="1.45267"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="16.5914" y="22.4" z="496.842"/>
+			<Orientation angle="3.0795"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.64111" y="22.4" z="497.795"/>
+			<Orientation angle="1.55604"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="82.8053" y="22.4" z="505.648"/>
+			<Orientation angle="3.12872"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.7387" y="22.4" z="519.879"/>
+			<Orientation angle="-3.14005"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="115.854" y="22.4" z="519.763"/>
+			<Orientation angle="3.11019"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="115.86" y="22.4" z="558.23"/>
+			<Orientation angle="3.11676"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="129.815" y="22.4" z="575.048"/>
+			<Orientation angle="3.11343"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="150.697" y="22.4" z="575.51"/>
+			<Orientation angle="-1.57199"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="103.223" y="22.4" z="505.132"/>
+			<Orientation angle="-1.58237"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="135.039" y="22.4" z="520.518"/>
+			<Orientation angle="-1.59577"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="117.138" y="22.4" z="518.772"/>
+			<Orientation angle="-1.5923"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="117.617" y="22.4" z="479.461"/>
+			<Orientation angle="-1.58977"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="35.8422" y="22.4" z="497.887"/>
+			<Orientation angle="-1.37593"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="31.1214" y="22.4" z="478.308"/>
+			<Orientation angle="3.10181"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="150.666" y="22.4" z="555.739"/>
+			<Orientation angle="-1.57297"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.5857" y="22.4" z="539.305"/>
+			<Orientation angle="3.12652"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="115.749" y="22.4" z="539.546"/>
+			<Orientation angle="3.11919"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="150.776" y="22.4" z="536.609"/>
+			<Orientation angle="-1.55736"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="133.535" y="22.4" z="499.951"/>
+			<Orientation angle="-3.11732"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="173.382" y="22.4" z="479.678"/>
+			<Orientation angle="1.55135"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="154.088" y="22.4" z="480.483"/>
+			<Orientation angle="1.55288"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="168.882" y="22.4" z="515.442"/>
+			<Orientation angle="0.0194506"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="172.574" y="22.4" z="498.906"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="183.212" y="22.4" z="528.233"/>
+			<Orientation angle="-0.709729"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="225.254" y="22.4" z="512.371"/>
+			<Orientation angle="-3.12379"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="116.799" y="22.4" z="460.71"/>
+			<Orientation angle="-3.13709"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="116.243" y="22.4" z="500.363"/>
+			<Orientation angle="-3.12295"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="205.49" y="22.4" z="512.724"/>
+			<Orientation angle="-3.12406"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="103.524" y="22.4" z="485.303"/>
+			<Orientation angle="-1.56625"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="170.446" y="22.4" z="575.128"/>
+			<Orientation angle="-0.00844288"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="137.994" y="22.4" z="462.012"/>
+			<Orientation angle="-1.60285"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="103.398" y="22.4" z="465.73"/>
+			<Orientation angle="-1.59755"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="154.659" y="22.4" z="460.852"/>
+			<Orientation angle="1.54129"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="103.873" y="22.4" z="446.53"/>
+			<Orientation angle="-1.57341"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="254.371" y="22.4" z="526.239"/>
+			<Orientation angle="0.0227573"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="272.837" y="22.4" z="526.484"/>
+			<Orientation angle="-0.0119492"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="267.058" y="22.4" z="512.288"/>
+			<Orientation angle="-1.57112"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="183.293" y="22.4" z="574.985"/>
+			<Orientation angle="0.00311084"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="221.166" y="22.4" z="525.431"/>
+			<Orientation angle="1.55827"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="222.331" y="22.4" z="574.589"/>
+			<Orientation angle="0.000632451"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="246.283" y="22.4" z="513.043"/>
+			<Orientation angle="-1.57198"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="285.863" y="22.4" z="511.301"/>
+			<Orientation angle="0.00425251"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="236.265" y="22.4" z="526.747"/>
+			<Orientation angle="0.00167377"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="202.79" y="22.4" z="574.613"/>
+			<Orientation angle="0.0182298"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="202.839" y="22.4" z="527.285"/>
+			<Orientation angle="0.0398178"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="185.9" y="22.4" z="512.696"/>
+			<Orientation angle="-3.13985"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="155.189" y="22.4" z="403.417"/>
+			<Orientation angle="1.57378"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="102.095" y="22.4" z="368.461"/>
+			<Orientation angle="-3.05171"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="319.848" y="22.4" z="545.148"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="227.761" y="22.4" z="475.278"/>
+			<Orientation angle="-0.921384"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="173.791" y="22.4" z="480.82"/>
+			<Orientation angle="-2.98286"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="263.154" y="22.4" z="546.61"/>
+			<Orientation angle="-3.12987"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="280.836" y="22.4" z="574.275"/>
+			<Orientation angle="-0.0198978"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="221.116" y="22.4" z="546.192"/>
+			<Orientation angle="3.12831"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="103.324" y="22.4" z="405.598"/>
+			<Orientation angle="-1.56723"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="65.7081" y="22.4" z="467.588"/>
+			<Orientation angle="3.12088"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="150.394" y="22.4" z="544.051"/>
+			<Orientation angle="-3.10509"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="170.267" y="22.4" z="543.88"/>
+			<Orientation angle="-2.32614"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="119.52" y="22.4" z="424.117"/>
+			<Orientation angle="-1.57643"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="320.066" y="22.4" z="572.372"/>
+			<Orientation angle="0.0690962"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="314.324" y="22.4" z="444.424"/>
+			<Orientation angle="-0.755341"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="247.611" y="22.4" z="492.24"/>
+			<Orientation angle="-0.00724693"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="84.6276" y="22.4" z="468.8"/>
+			<Orientation angle="1.55223"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="267.444" y="22.4" z="454.171"/>
+			<Orientation angle="-1.60773"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="217.845" y="22.4" z="344.634"/>
+			<Orientation angle="3.13598"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="213.313" y="22.4" z="474.751"/>
+			<Orientation angle="-0.969112"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="267.032" y="22.4" z="493.248"/>
+			<Orientation angle="-1.57515"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="261.21" y="22.4" z="573.902"/>
+			<Orientation angle="0.0149848"/>
+		</Entity>
+		<Entity uid="147">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="243.679" y="22.4" z="546.319"/>
+			<Orientation angle="3.13794"/>
+		</Entity>
+		<Entity uid="148">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="241.851" y="22.4" z="574.179"/>
+			<Orientation angle="0.0180397"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="85.1954" y="22.4" z="449.909"/>
+			<Orientation angle="1.53634"/>
+		</Entity>
+		<Entity uid="150">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="3.38808" y="22.4" z="478.365"/>
+			<Orientation angle="1.53468"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="75.7443" y="22.4" z="372.89"/>
+			<Orientation angle="-2.98304"/>
+		</Entity>
+		<Entity uid="152">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="193.093" y="22.4" z="477.717"/>
+			<Orientation angle="-3.05158"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="333.692" y="22.4" z="558.08"/>
+			<Orientation angle="0.785797"/>
+		</Entity>
+		<Entity uid="154">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="104.216" y="22.4" z="405.064"/>
+			<Orientation angle="-0.00982638"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="246.588" y="22.4" z="475.909"/>
+			<Orientation angle="-1.57124"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="154.824" y="22.4" z="443.166"/>
+			<Orientation angle="1.56046"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="282.976" y="22.4" z="546.231"/>
+			<Orientation angle="-3.13205"/>
+		</Entity>
+		<Entity uid="158">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="246.73" y="22.4" z="456.546"/>
+			<Orientation angle="-1.58311"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="119.177" y="22.4" z="443.579"/>
+			<Orientation angle="-1.59014"/>
+		</Entity>
+		<Entity uid="160">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="246.793" y="22.4" z="474.88"/>
+			<Orientation angle="0.00651748"/>
+		</Entity>
+		<Entity uid="161">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="300.076" y="22.4" z="574.2"/>
+			<Orientation angle="-0.00442647"/>
+		</Entity>
+		<Entity uid="162">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="58.7638" y="22.4" z="398.64"/>
+			<Orientation angle="-1.58511"/>
+		</Entity>
+		<Entity uid="163">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="267.004" y="22.4" z="473.756"/>
+			<Orientation angle="-1.59845"/>
+		</Entity>
+		<Entity uid="164">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="242.08" y="22.4" z="547.255"/>
+			<Orientation angle="-1.57098"/>
+		</Entity>
+		<Entity uid="165">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="138.53" y="22.4" z="443.299"/>
+			<Orientation angle="-1.5827"/>
+		</Entity>
+		<Entity uid="170">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="102.82" y="22.4" z="427.44"/>
+			<Orientation angle="-0.00248759"/>
+		</Entity>
+		<Entity uid="171">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="193.493" y="22.4" z="431.091"/>
+			<Orientation angle="-0.374862"/>
+		</Entity>
+		<Entity uid="172">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="205.308" y="22.4" z="445.409"/>
+			<Orientation angle="-0.887829"/>
+		</Entity>
+		<Entity uid="173">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="268.569" y="22.4" z="417.941"/>
+			<Orientation angle="-1.55189"/>
+		</Entity>
+		<Entity uid="174">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="247.001" y="22.4" z="416.568"/>
+			<Orientation angle="-0.000958427"/>
+		</Entity>
+		<Entity uid="175">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="232.411" y="22.4" z="383.805"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="176">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="268.338" y="22.4" z="379.439"/>
+			<Orientation angle="-1.59186"/>
+		</Entity>
+		<Entity uid="177">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="227.092" y="22.4" z="417.113"/>
+			<Orientation angle="-0.923237"/>
+		</Entity>
+		<Entity uid="178">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="247.373" y="22.4" z="397.626"/>
+			<Orientation angle="-1.60293"/>
+		</Entity>
+		<Entity uid="179">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="268.4" y="22.4" z="398.372"/>
+			<Orientation angle="-1.57263"/>
+		</Entity>
+		<Entity uid="180">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="190.776" y="22.4" z="443.944"/>
+			<Orientation angle="-0.063713"/>
+		</Entity>
+		<Entity uid="181">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="216.755" y="22.4" z="460.426"/>
+			<Orientation angle="-0.916582"/>
+		</Entity>
+		<Entity uid="183">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="247.01" y="22.4" z="436.874"/>
+			<Orientation angle="-1.58732"/>
+		</Entity>
+		<Entity uid="184">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="202.471" y="22.4" z="459.029"/>
+			<Orientation angle="-0.910223"/>
+		</Entity>
+		<Entity uid="185">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="173.556" y="22.4" z="442.734"/>
+			<Orientation angle="-0.014938"/>
+		</Entity>
+		<Entity uid="186">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="175.636" y="22.4" z="423.825"/>
+			<Orientation angle="-0.0114829"/>
+		</Entity>
+		<Entity uid="187">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="154.717" y="22.4" z="383.689"/>
+			<Orientation angle="1.59026"/>
+		</Entity>
+		<Entity uid="188">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="77.3976" y="22.4" z="402.683"/>
+			<Orientation angle="-0.24817"/>
+		</Entity>
+		<Entity uid="189">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="1.97555" y="22.4" z="381.03"/>
+			<Orientation angle="1.55309"/>
+		</Entity>
+		<Entity uid="190">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="39.6308" y="22.4" z="399.715"/>
+			<Orientation angle="0.0529521"/>
+		</Entity>
+		<Entity uid="191">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="58.4403" y="22.4" z="380.399"/>
+			<Orientation angle="-2.74702"/>
+		</Entity>
+		<Entity uid="192">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="20.9483" y="22.4" z="382.536"/>
+			<Orientation angle="-1.54776"/>
+		</Entity>
+		<Entity uid="193">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="1.74772" y="22.4" z="420.446"/>
+			<Orientation angle="1.6647"/>
+		</Entity>
+		<Entity uid="194">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="17.4351" y="22.4" z="477.401"/>
+			<Orientation angle="1.56203"/>
+		</Entity>
+		<Entity uid="195">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="33.9817" y="22.4" z="459.451"/>
+			<Orientation angle="0.0110791"/>
+		</Entity>
+		<Entity uid="196">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="15.3375" y="22.4" z="461.204"/>
+			<Orientation angle="-1.58369"/>
+		</Entity>
+		<Entity uid="197">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="32.5184" y="22.4" z="479.57"/>
+			<Orientation angle="-1.57929"/>
+		</Entity>
+		<Entity uid="198">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="3.4322" y="22.4" z="459.212"/>
+			<Orientation angle="1.56442"/>
+		</Entity>
+		<Entity uid="199">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="67.3346" y="22.4" z="445.562"/>
+			<Orientation angle="-0.029043"/>
+		</Entity>
+		<Entity uid="200">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="3.77906" y="22.4" z="440.179"/>
+			<Orientation angle="1.54996"/>
+		</Entity>
+		<Entity uid="201">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="85.0797" y="22.4" z="427.254"/>
+			<Orientation angle="0.00698846"/>
+		</Entity>
+		<Entity uid="202">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="66.3394" y="22.4" z="426.573"/>
+			<Orientation angle="1.56912"/>
+		</Entity>
+		<Entity uid="203">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="20.7686" y="22.4" z="401.847"/>
+			<Orientation angle="-1.58163"/>
+		</Entity>
+		<Entity uid="204">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="15.7513" y="22.4" z="442.652"/>
+			<Orientation angle="-1.79882"/>
+		</Entity>
+		<Entity uid="205">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="119.942" y="22.4" z="384.45"/>
+			<Orientation angle="1.55316"/>
+		</Entity>
+		<Entity uid="206">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="1.67395" y="22.4" z="400.605"/>
+			<Orientation angle="1.5698"/>
+		</Entity>
+		<Entity uid="207">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="19.5653" y="22.4" z="422.631"/>
+			<Orientation angle="-3.09183"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="137.948" y="22.4" z="384.199"/>
+			<Orientation angle="1.56992"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="59.2997" y="22.4" z="397.852"/>
+			<Orientation angle="0.0985211"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="311.342" y="22.4" z="524.681"/>
+			<Orientation angle="0.0644334"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="291.942" y="22.4" z="525.83"/>
+			<Orientation angle="0.023272"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="278.108" y="22.4" z="555.507"/>
+			<Orientation angle="1.54589"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="301.843" y="22.4" z="545.916"/>
+			<Orientation angle="3.13895"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="220.235" y="22.4" z="540.639"/>
+			<Orientation angle="1.57386"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="287.52" y="22.4" z="436.245"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="138.552" y="22.4" z="364.071"/>
+			<Orientation angle="1.56259"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="218.061" y="22.4" z="363.493"/>
+			<Orientation angle="-1.6472"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="217.707" y="22.4" z="383.246"/>
+			<Orientation angle="-0.0604548"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="316.201" y="22.4" z="495.212"/>
+			<Orientation angle="0.92147"/>
+		</Entity>
+		<Entity uid="222">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="234.187" y="22.4" z="364.852"/>
+			<Orientation angle="1.50297"/>
+		</Entity>
+		<Entity uid="223">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="199.267" y="22.4" z="362.263"/>
+			<Orientation angle="3.03841"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="78.0453" y="22.4" z="344.618"/>
+			<Orientation angle="-0.0201495"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="18.2284" y="22.4" z="344.543"/>
+			<Orientation angle="-1.53883"/>
+		</Entity>
+		<Entity uid="227">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="3.00891" y="22.4" z="361.177"/>
+			<Orientation angle="1.51088"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="143.737" y="22.4" z="325.44"/>
+			<Orientation angle="1.4244"/>
+		</Entity>
+		<Entity uid="229">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="19.9255" y="22.4" z="364.04"/>
+			<Orientation angle="-3.08007"/>
+		</Entity>
+		<Entity uid="230">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="57.733" y="22.4" z="362.089"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="231">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="103.265" y="22.4" z="387.073"/>
+			<Orientation angle="-1.5672"/>
+		</Entity>
+		<Entity uid="232">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="345.759" y="22.4" z="478.945"/>
+			<Orientation angle="0.177838"/>
+		</Entity>
+		<Entity uid="233">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="333.789" y="22.4" z="492.222"/>
+			<Orientation angle="0.95713"/>
+		</Entity>
+		<Entity uid="234">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="328.158" y="22.4" z="480.062"/>
+			<Orientation angle="0.904172"/>
+		</Entity>
+		<Entity uid="235">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="143.242" y="22.4" z="325.399"/>
+			<Orientation angle="-2.96723"/>
+		</Entity>
+		<Entity uid="236">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="180.458" y="22.4" z="360.592"/>
+			<Orientation angle="3.0549"/>
+		</Entity>
+		<Entity uid="237">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="38.9731" y="22.4" z="286.181"/>
+			<Orientation angle="1.53066"/>
+		</Entity>
+		<Entity uid="238">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="158.972" y="22.4" z="339.995"/>
+			<Orientation angle="1.68956"/>
+		</Entity>
+		<Entity uid="239">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="17.7091" y="22.4" z="326.273"/>
+			<Orientation angle="-1.57523"/>
+		</Entity>
+		<Entity uid="240">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="1.66715" y="22.4" z="304.166"/>
+			<Orientation angle="1.54864"/>
+		</Entity>
+		<Entity uid="241">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="17.8293" y="22.4" z="306.975"/>
+			<Orientation angle="-1.55823"/>
+		</Entity>
+		<Entity uid="243">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.65404" y="22.4" z="341.526"/>
+			<Orientation angle="1.59045"/>
+		</Entity>
+		<Entity uid="244">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="38.9434" y="22.4" z="362.885"/>
+			<Orientation angle="-3.1215"/>
+		</Entity>
+		<Entity uid="245">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="58.1009" y="22.4" z="325.27"/>
+			<Orientation angle="-1.62264"/>
+		</Entity>
+		<Entity uid="246">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="59.1211" y="22.4" z="305.525"/>
+			<Orientation angle="-1.6335"/>
+		</Entity>
+		<Entity uid="247">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="38.2032" y="22.4" z="305.68"/>
+			<Orientation angle="1.51623"/>
+		</Entity>
+		<Entity uid="248">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="57.3429" y="22.4" z="344.489"/>
+			<Orientation angle="-1.61137"/>
+		</Entity>
+		<Entity uid="249">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="120.857" y="22.4" z="367.021"/>
+			<Orientation angle="1.55352"/>
+		</Entity>
+		<Entity uid="250">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="161.777" y="22.4" z="320.765"/>
+			<Orientation angle="1.42382"/>
+		</Entity>
+		<Entity uid="251">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="1.59727" y="22.4" z="285.104"/>
+			<Orientation angle="1.57188"/>
+		</Entity>
+		<Entity uid="252">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="140.879" y="22.4" z="344.739"/>
+			<Orientation angle="1.46186"/>
+		</Entity>
+		<Entity uid="253">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="37.0454" y="22.4" z="324.928"/>
+			<Orientation angle="1.53151"/>
+		</Entity>
+		<Entity uid="254">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="161.697" y="22.4" z="358.777"/>
+			<Orientation angle="3.05542"/>
+		</Entity>
+		<Entity uid="255">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="215.268" y="22.4" z="401.893"/>
+			<Orientation angle="-1.65895"/>
+		</Entity>
+		<Entity uid="256">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="60.3573" y="22.4" z="286.478"/>
+			<Orientation angle="-1.53851"/>
+		</Entity>
+		<Entity uid="257">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.2697" y="22.4" z="351.834"/>
+			<Orientation angle="-0.372372"/>
+		</Entity>
+		<Entity uid="258">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="37.398" y="22.4" z="343.706"/>
+			<Orientation angle="-0.000337622"/>
+		</Entity>
+		<Entity uid="259">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="0.856781" y="22.4" z="323.041"/>
+			<Orientation angle="1.66578"/>
+		</Entity>
+		<Entity uid="260">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="119.239" y="22.4" z="385.885"/>
+			<Orientation angle="-3.06989"/>
+		</Entity>
+		<Entity uid="261">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="314.251" y="22.4" z="444.191"/>
+			<Orientation angle="1.35684"/>
+		</Entity>
+		<Entity uid="262">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="94.207" y="22.4" z="370.525"/>
+			<Orientation angle="-1.74133"/>
+		</Entity>
+		<Entity uid="263">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="322.925" y="22.4" z="507.601"/>
+			<Orientation angle="0.965934"/>
+		</Entity>
+		<Entity uid="264">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="96.8364" y="22.4" z="351.312"/>
+			<Orientation angle="2.19442"/>
+		</Entity>
+		<Entity uid="265">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="300.352" y="22.4" z="431.162"/>
+			<Orientation angle="-0.816107"/>
+		</Entity>
+		<Entity uid="266">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="203.76" y="22.4" z="560.693"/>
+			<Orientation angle="-0.588925"/>
+		</Entity>
+		<Entity uid="267">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="305.57" y="22.4" z="510.373"/>
+			<Orientation angle="0.0474909"/>
+		</Entity>
+		<Entity uid="268">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="222.363" y="22.4" z="559.521"/>
+			<Orientation angle="0.0224137"/>
+		</Entity>
+		<Entity uid="269">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="202.359" y="22.4" z="546.016"/>
+			<Orientation angle="-1.57606"/>
+		</Entity>
+		<Entity uid="270">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="313.117" y="22.4" z="466.564"/>
+			<Orientation angle="2.27935"/>
+		</Entity>
+		<Entity uid="271">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="301.717" y="22.4" z="450.572"/>
+			<Orientation angle="2.1836"/>
+		</Entity>
+		<Entity uid="272">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="267.348" y="22.4" z="435.214"/>
+			<Orientation angle="3.11409"/>
+		</Entity>
+		<Entity uid="273">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="345.794" y="22.4" z="478.071"/>
+			<Orientation angle="0.868857"/>
+		</Entity>
+		<Entity uid="274">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="287.415" y="22.4" z="417.056"/>
+			<Orientation angle="-0.00692299"/>
+		</Entity>
+		<Entity uid="300">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="234.537" y="22.4" z="365.61"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="301">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="253.603" y="22.4" z="331.821"/>
+			<Orientation angle="1.61319"/>
+		</Entity>
+		<Entity uid="302">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="254.998" y="22.4" z="263.013"/>
+			<Orientation angle="-1.57598"/>
+		</Entity>
+		<Entity uid="303">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="226.421" y="22.4" z="415.713"/>
+			<Orientation angle="0.726495"/>
+		</Entity>
+		<Entity uid="304">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="220.798" y="22.4" z="286.57"/>
+			<Orientation angle="-1.19438"/>
+		</Entity>
+		<Entity uid="305">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="255.59" y="22.4" z="184.492"/>
+			<Orientation angle="-1.61191"/>
+		</Entity>
+		<Entity uid="306">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="239.99" y="22.4" z="267.907"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="307">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="267.82" y="22.4" z="243.688"/>
+			<Orientation angle="-1.5568"/>
+		</Entity>
+		<Entity uid="308">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="236.916" y="22.4" z="311.1"/>
+			<Orientation angle="0.36821"/>
+		</Entity>
+		<Entity uid="309">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="226.101" y="22.4" z="253.974"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="310">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="219.257" y="22.4" z="318.651"/>
+			<Orientation angle="-0.76179"/>
+		</Entity>
+		<Entity uid="311">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="269.238" y="22.4" z="185.636"/>
+			<Orientation angle="-1.80305"/>
+		</Entity>
+		<Entity uid="312">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="211.302" y="22.4" z="428.115"/>
+			<Orientation angle="2.4165"/>
+		</Entity>
+		<Entity uid="313">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="175.763" y="22.4" z="404.859"/>
+			<Orientation angle="1.52771"/>
+		</Entity>
+		<Entity uid="314">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="176.556" y="22.4" z="385.926"/>
+			<Orientation angle="1.53198"/>
+		</Entity>
+		<Entity uid="315">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="199.465" y="22.4" z="141.179"/>
+			<Orientation angle="1.50287"/>
+		</Entity>
+		<Entity uid="317">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="255.035" y="22.4" z="243.359"/>
+			<Orientation angle="-1.55782"/>
+		</Entity>
+		<Entity uid="319">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="195.819" y="22.4" z="200.728"/>
+			<Orientation angle="2.93471"/>
+		</Entity>
+		<Entity uid="320">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="254.897" y="22.4" z="165.367"/>
+			<Orientation angle="3.05205"/>
+		</Entity>
+		<Entity uid="321">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="237.171" y="22.4" z="183.23"/>
+			<Orientation angle="-0.057929"/>
+		</Entity>
+		<Entity uid="322">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="268.269" y="22.4" z="205.156"/>
+			<Orientation angle="-1.62492"/>
+		</Entity>
+		<Entity uid="323">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="269.116" y="22.4" z="282.3"/>
+			<Orientation angle="-1.5543"/>
+		</Entity>
+		<Entity uid="324">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="268.547" y="22.4" z="321.08"/>
+			<Orientation angle="-1.59173"/>
+		</Entity>
+		<Entity uid="325">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="242.048" y="22.4" z="248.624"/>
+			<Orientation angle="2.32036"/>
+		</Entity>
+		<Entity uid="326">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="268.581" y="22.4" z="340.355"/>
+			<Orientation angle="-1.5697"/>
+		</Entity>
+		<Entity uid="327">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="236.387" y="22.4" z="344.711"/>
+			<Orientation angle="2.83847"/>
+		</Entity>
+		<Entity uid="328">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="268.663" y="22.4" z="359.758"/>
+			<Orientation angle="-1.56658"/>
+		</Entity>
+		<Entity uid="329">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="255.877" y="22.4" z="311.512"/>
+			<Orientation angle="-0.0171925"/>
+		</Entity>
+		<Entity uid="330">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="224.588" y="22.4" z="255.577"/>
+			<Orientation angle="-2.80347"/>
+		</Entity>
+		<Entity uid="331">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="254.202" y="22.4" z="281.463"/>
+			<Orientation angle="1.56508"/>
+		</Entity>
+		<Entity uid="333">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="213.667" y="22.4" z="268.743"/>
+			<Orientation angle="-2.28892"/>
+		</Entity>
+		<Entity uid="334">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="196.007" y="22.4" z="404.064"/>
+			<Orientation angle="-3.04552"/>
+		</Entity>
+		<Entity uid="335">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="268.751" y="22.4" z="262.791"/>
+			<Orientation angle="-1.51892"/>
+		</Entity>
+		<Entity uid="336">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="217.991" y="22.4" z="183.198"/>
+			<Orientation angle="-1.60718"/>
+		</Entity>
+		<Entity uid="337">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="218.596" y="22.4" z="163.911"/>
+			<Orientation angle="-1.64338"/>
+		</Entity>
+		<Entity uid="338">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="198.297" y="22.4" z="179.637"/>
+			<Orientation angle="-0.0729273"/>
+		</Entity>
+		<Entity uid="339">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="254.699" y="22.4" z="223.681"/>
+			<Orientation angle="-1.56771"/>
+		</Entity>
+		<Entity uid="340">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="219.101" y="22.4" z="292.47"/>
+			<Orientation angle="2.60926"/>
+		</Entity>
+		<Entity uid="341">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="235.558" y="22.4" z="302.417"/>
+			<Orientation angle="-3.13641"/>
+		</Entity>
+		<Entity uid="342">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="205.596" y="22.4" z="306.088"/>
+			<Orientation angle="-2.39771"/>
+		</Entity>
+		<Entity uid="343">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="254.604" y="22.4" z="312.242"/>
+			<Orientation angle="1.51945"/>
+		</Entity>
+		<Entity uid="344">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="215.328" y="22.4" z="204.761"/>
+			<Orientation angle="-3.12921"/>
+		</Entity>
+		<Entity uid="345">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="267.669" y="22.4" z="224.803"/>
+			<Orientation angle="-1.59863"/>
+		</Entity>
+		<Entity uid="346">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="234.986" y="22.4" z="204.742"/>
+			<Orientation angle="3.12433"/>
+		</Entity>
+		<Entity uid="348">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="256.927" y="22.4" z="183.153"/>
+			<Orientation angle="-0.000687819"/>
+		</Entity>
+		<Entity uid="349">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="198.132" y="22.4" z="160.761"/>
+			<Orientation angle="1.52068"/>
+		</Entity>
+		<Entity uid="350">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="187.673" y="22.4" z="408.967"/>
+			<Orientation angle="0.84899"/>
+		</Entity>
+		<Entity uid="351">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="225.92" y="22.4" z="441.106"/>
+			<Orientation angle="3.11237"/>
+		</Entity>
+		<Entity uid="353">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="0.702194" y="22.4" z="285.452"/>
+			<Orientation angle="2.6697"/>
+		</Entity>
+		<Entity uid="354">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="39.2824" y="22.4" z="266.308"/>
+			<Orientation angle="1.55098"/>
+		</Entity>
+		<Entity uid="356">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="136.656" y="22.4" z="273.092"/>
+			<Orientation angle="-0.051336"/>
+		</Entity>
+		<Entity uid="357">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.6639" y="22.4" z="271.148"/>
+			<Orientation angle="-0.114998"/>
+		</Entity>
+		<Entity uid="358">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="21.7867" y="22.4" z="226.424"/>
+			<Orientation angle="-0.0154778"/>
+		</Entity>
+		<Entity uid="359">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="21.3791" y="22.4" z="246.995"/>
+			<Orientation angle="3.10367"/>
+		</Entity>
+		<Entity uid="360">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="179.066" y="22.4" z="178.129"/>
+			<Orientation angle="-0.103343"/>
+		</Entity>
+		<Entity uid="361">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="1.51286" y="22.4" z="246.501"/>
+			<Orientation angle="3.121"/>
+		</Entity>
+		<Entity uid="362">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.9228" y="22.4" z="248.975"/>
+			<Orientation angle="3.11137"/>
+		</Entity>
+		<Entity uid="363">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="3.08586" y="22.4" z="246.663"/>
+			<Orientation angle="-1.56959"/>
+		</Entity>
+		<Entity uid="365">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="40.4071" y="22.4" z="208.324"/>
+			<Orientation angle="1.57694"/>
+		</Entity>
+		<Entity uid="367">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="78.4118" y="22.4" z="247.719"/>
+			<Orientation angle="3.08154"/>
+		</Entity>
+		<Entity uid="368">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="58.8382" y="22.4" z="246.405"/>
+			<Orientation angle="3.0743"/>
+		</Entity>
+		<Entity uid="369">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="137.434" y="22.4" z="196.314"/>
+			<Orientation angle="3.04717"/>
+		</Entity>
+		<Entity uid="373">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="156.881" y="22.4" z="198.115"/>
+			<Orientation angle="3.06304"/>
+		</Entity>
+		<Entity uid="374">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="176.106" y="22.4" z="199.488"/>
+			<Orientation angle="3.08086"/>
+		</Entity>
+		<Entity uid="375">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.204" y="22.4" z="269.822"/>
+			<Orientation angle="1.56285"/>
+		</Entity>
+		<Entity uid="376">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="117.164" y="22.4" z="290.95"/>
+			<Orientation angle="-1.60221"/>
+		</Entity>
+		<Entity uid="377">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="60.1016" y="22.4" z="247.485"/>
+			<Orientation angle="-1.61301"/>
+		</Entity>
+		<Entity uid="378">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="40.1645" y="22.4" z="246.932"/>
+			<Orientation angle="1.52829"/>
+		</Entity>
+		<Entity uid="379">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="58.5609" y="22.4" z="267.213"/>
+			<Orientation angle="3.05476"/>
+		</Entity>
+		<Entity uid="380">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="41.9405" y="22.4" z="227.187"/>
+			<Orientation angle="-0.0373866"/>
+		</Entity>
+		<Entity uid="381">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="139.247" y="22.4" z="195.582"/>
+			<Orientation angle="-1.64453"/>
+		</Entity>
+		<Entity uid="383">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="159.687" y="22.4" z="176.189"/>
+			<Orientation angle="-0.0807516"/>
+		</Entity>
+		<Entity uid="385">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="95.5626" y="22.4" z="308.777"/>
+			<Orientation angle="1.54163"/>
+		</Entity>
+		<Entity uid="386">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="115.071" y="22.4" z="349.818"/>
+			<Orientation angle="-1.59122"/>
+		</Entity>
+		<Entity uid="387">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="121.843" y="22.4" z="367.507"/>
+			<Orientation angle="-1.20424"/>
+		</Entity>
+		<Entity uid="388">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="175.468" y="22.4" z="273.712"/>
+			<Orientation angle="-0.00420471"/>
+		</Entity>
+		<Entity uid="389">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="135.904" y="22.4" z="271.954"/>
+			<Orientation angle="1.51138"/>
+		</Entity>
+		<Entity uid="390">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="133.411" y="22.4" z="310.52"/>
+			<Orientation angle="2.20568"/>
+		</Entity>
+		<Entity uid="391">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="115.373" y="22.4" z="330.273"/>
+			<Orientation angle="-1.59628"/>
+		</Entity>
+		<Entity uid="392">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="115.908" y="22.4" z="310.749"/>
+			<Orientation angle="-1.63036"/>
+		</Entity>
+		<Entity uid="393">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="156.202" y="22.4" z="292.566"/>
+			<Orientation angle="-1.59778"/>
+		</Entity>
+		<Entity uid="394">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="155.435" y="22.4" z="312.413"/>
+			<Orientation angle="-1.61552"/>
+		</Entity>
+		<Entity uid="395">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="156.352" y="22.4" z="311.796"/>
+			<Orientation angle="0.822675"/>
+		</Entity>
+		<Entity uid="396">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="134.768" y="22.4" z="291.628"/>
+			<Orientation angle="1.51184"/>
+		</Entity>
+		<Entity uid="398">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="94.9765" y="22.4" z="328.27"/>
+			<Orientation angle="1.23763"/>
+		</Entity>
+		<Entity uid="399">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.0474" y="22.4" z="289.317"/>
+			<Orientation angle="1.48893"/>
+		</Entity>
+		<Entity uid="404">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="3.87148" y="22.4" z="130.126"/>
+			<Orientation angle="1.57816"/>
+		</Entity>
+		<Entity uid="405">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="82.2178" y="22.4" z="168.53"/>
+			<Orientation angle="1.55079"/>
+		</Entity>
+		<Entity uid="406">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="41.4675" y="22.4" z="151.124"/>
+			<Orientation angle="-3.13222"/>
+		</Entity>
+		<Entity uid="408">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="60.9883" y="22.4" z="150.989"/>
+			<Orientation angle="-3.1371"/>
+		</Entity>
+		<Entity uid="409">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="156.504" y="22.4" z="252.791"/>
+			<Orientation angle="0.00844796"/>
+		</Entity>
+		<Entity uid="410">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="100.19" y="22.4" z="168.373"/>
+			<Orientation angle="1.54526"/>
+		</Entity>
+		<Entity uid="411">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="117.658" y="22.4" z="249.582"/>
+			<Orientation angle="2.94239"/>
+		</Entity>
+		<Entity uid="412">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="81.9628" y="22.4" z="187.894"/>
+			<Orientation angle="1.53587"/>
+		</Entity>
+		<Entity uid="413">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="41.5506" y="22.4" z="129.845"/>
+			<Orientation angle="1.56016"/>
+		</Entity>
+		<Entity uid="414">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="22.8599" y="22.4" z="150.176"/>
+			<Orientation angle="1.56637"/>
+		</Entity>
+		<Entity uid="415">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="41.5058" y="22.4" z="149.551"/>
+			<Orientation angle="1.56203"/>
+		</Entity>
+		<Entity uid="416">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.76591" y="22.4" z="110.771"/>
+			<Orientation angle="1.61716"/>
+		</Entity>
+		<Entity uid="417">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="4.01132" y="22.4" z="149.167"/>
+			<Orientation angle="1.54012"/>
+		</Entity>
+		<Entity uid="418">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="3.52143" y="22.4" z="168.63"/>
+			<Orientation angle="1.53147"/>
+		</Entity>
+		<Entity uid="419">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="22.7639" y="22.4" z="112.213"/>
+			<Orientation angle="-3.13831"/>
+		</Entity>
+		<Entity uid="420">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.97852" y="22.4" z="111.614"/>
+			<Orientation angle="3.1079"/>
+		</Entity>
+		<Entity uid="421">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="101.021" y="22.4" z="169.327"/>
+			<Orientation angle="3.10815"/>
+		</Entity>
+		<Entity uid="422">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="99.779" y="22.4" z="187.752"/>
+			<Orientation angle="1.57291"/>
+		</Entity>
+		<Entity uid="423">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="80.7468" y="22.4" z="150.956"/>
+			<Orientation angle="-3.11683"/>
+		</Entity>
+		<Entity uid="424">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="120.1" y="22.4" z="227.501"/>
+			<Orientation angle="-1.6114"/>
+		</Entity>
+		<Entity uid="425">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="138.887" y="22.4" z="227.172"/>
+			<Orientation angle="-0.0271796"/>
+		</Entity>
+		<Entity uid="426">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="157.424" y="22.4" z="227.839"/>
+			<Orientation angle="-0.0343042"/>
+		</Entity>
+		<Entity uid="427">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="137.013" y="22.4" z="252.436"/>
+			<Orientation angle="1.50808"/>
+		</Entity>
+		<Entity uid="428">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="99.9594" y="22.4" z="207.574"/>
+			<Orientation angle="1.5292"/>
+		</Entity>
+		<Entity uid="429">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="41.6782" y="22.4" z="111.215"/>
+			<Orientation angle="1.56188"/>
+		</Entity>
+		<Entity uid="430">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="100.012" y="22.4" z="226.431"/>
+			<Orientation angle="0.00271939"/>
+		</Entity>
+		<Entity uid="431">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="81.4412" y="22.4" z="207.633"/>
+			<Orientation angle="1.52772"/>
+		</Entity>
+		<Entity uid="432">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="60.9224" y="22.4" z="227.85"/>
+			<Orientation angle="-1.62631"/>
+		</Entity>
+		<Entity uid="433">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="41.4226" y="22.4" z="168.929"/>
+			<Orientation angle="1.52855"/>
+		</Entity>
+		<Entity uid="434">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="21.881" y="22.4" z="209.122"/>
+			<Orientation angle="-3.13678"/>
+		</Entity>
+		<Entity uid="435">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.32709" y="22.4" z="208.896"/>
+			<Orientation angle="3.13433"/>
+		</Entity>
+		<Entity uid="436">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="4.0899" y="22.4" z="169.043"/>
+			<Orientation angle="-3.13077"/>
+		</Entity>
+		<Entity uid="437">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="22.6639" y="22.4" z="131.584"/>
+			<Orientation angle="-3.11302"/>
+		</Entity>
+		<Entity uid="438">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="81.6698" y="22.4" z="169.577"/>
+			<Orientation angle="-3.1233"/>
+		</Entity>
+		<Entity uid="439">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="2.92715" y="22.4" z="188.187"/>
+			<Orientation angle="1.56317"/>
+		</Entity>
+		<Entity uid="440">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="42.2518" y="22.4" z="187.434"/>
+			<Orientation angle="-0.00536126"/>
+		</Entity>
+		<Entity uid="441">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="62.2308" y="22.4" z="188.448"/>
+			<Orientation angle="-1.58064"/>
+		</Entity>
+		<Entity uid="442">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="61.9708" y="22.4" z="208.231"/>
+			<Orientation angle="-1.5873"/>
+		</Entity>
+		<Entity uid="445">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="142.673" y="22.4" z="119.864"/>
+			<Orientation angle="-0.020032"/>
+		</Entity>
+		<Entity uid="446">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="220.58" y="22.4" z="125.072"/>
+			<Orientation angle="-1.6266"/>
+		</Entity>
+		<Entity uid="447">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="121.829" y="22.4" z="138"/>
+			<Orientation angle="3.09025"/>
+		</Entity>
+		<Entity uid="448">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="161.459" y="22.4" z="139.98"/>
+			<Orientation angle="3.09025"/>
+		</Entity>
+		<Entity uid="449">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="200.909" y="22.4" z="102.168"/>
+			<Orientation angle="1.54119"/>
+		</Entity>
+		<Entity uid="450">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="220.138" y="22.4" z="144.534"/>
+			<Orientation angle="-1.58187"/>
+		</Entity>
+		<Entity uid="451">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="180.681" y="22.4" z="140.92"/>
+			<Orientation angle="3.0919"/>
+		</Entity>
+		<Entity uid="455">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="201.824" y="22.4" z="120.811"/>
+			<Orientation angle="-0.00754581"/>
+		</Entity>
+		<Entity uid="456">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="141.674" y="22.4" z="138.881"/>
+			<Orientation angle="3.09025"/>
+		</Entity>
+		<Entity uid="457">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="162.507" y="22.4" z="101.228"/>
+			<Orientation angle="1.52112"/>
+		</Entity>
+		<Entity uid="458">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="182.93" y="22.4" z="121.422"/>
+			<Orientation angle="-1.60377"/>
+		</Entity>
+		<Entity uid="459">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="267.876" y="22.4" z="301.995"/>
+			<Orientation angle="-3.1255"/>
+		</Entity>
+		<Entity uid="461">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="120.549" y="22.4" z="170.064"/>
+			<Orientation angle="2.91764"/>
+		</Entity>
+		<Entity uid="462">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="100.243" y="22.4" z="149.266"/>
+			<Orientation angle="1.55646"/>
+		</Entity>
+		<Entity uid="463">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="192.181" y="22.4" z="200.578"/>
+			<Orientation angle="0.505749"/>
+		</Entity>
+		<Entity uid="464">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="175.571" y="22.4" z="253.364"/>
+			<Orientation angle="-0.0242307"/>
+		</Entity>
+		<Entity uid="465">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="175.452" y="22.4" z="209.294"/>
+			<Orientation angle="1.51545"/>
+		</Entity>
+		<Entity uid="466">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="193.782" y="22.4" z="228.171"/>
+			<Orientation angle="-0.00838411"/>
+		</Entity>
+		<Entity uid="467">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="174.963" y="22.4" z="253.632"/>
+			<Orientation angle="1.5584"/>
+		</Entity>
+		<Entity uid="468">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="194.253" y="22.4" z="253.459"/>
+			<Orientation angle="0.000893455"/>
+		</Entity>
+		<Entity uid="469">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="175.689" y="22.4" z="227.912"/>
+			<Orientation angle="0.00251382"/>
+		</Entity>
+		<Entity uid="471">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="206.805" y="22.4" z="215.105"/>
+			<Orientation angle="0.792938"/>
+		</Entity>
+		<Entity uid="472">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="197.01" y="22.4" z="271.553"/>
+			<Orientation angle="2.96833"/>
+		</Entity>
+		<Entity uid="473">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="198.507" y="22.4" z="271.585"/>
+			<Orientation angle="-1.30542"/>
+		</Entity>
+		<Entity uid="475">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="224.063" y="22.4" z="206"/>
+			<Orientation angle="0.505193"/>
+		</Entity>
+		<Entity uid="452">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="162.454" y="22.4" z="119.862"/>
+			<Orientation angle="-0.00253819"/>
+		</Entity>
+		<Entity uid="477">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="102.072" y="22.4" z="137.359"/>
+			<Orientation angle="3.10684"/>
+		</Entity>
+		<Entity uid="478">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="183.833" y="22.4" z="102.092"/>
+			<Orientation angle="-1.61771"/>
+		</Entity>
+		<Entity uid="479">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="59.8182" y="22.4" z="150.828"/>
+			<Orientation angle="-1.59862"/>
+		</Entity>
+		<Entity uid="481">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="200.972" y="22.4" z="104.811"/>
+			<Orientation angle="3.07262"/>
+		</Entity>
+		<Entity uid="482">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="78.4132" y="22.4" z="112.793"/>
+			<Orientation angle="2.909"/>
+		</Entity>
+		<Entity uid="483">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="60.1956" y="22.4" z="112.342"/>
+			<Orientation angle="3.09504"/>
+		</Entity>
+		<Entity uid="484">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="79.4479" y="22.4" z="132.334"/>
+			<Orientation angle="-1.58428"/>
+		</Entity>
+		<Entity uid="486">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="97.5624" y="22.4" z="117.291"/>
+			<Orientation angle="3.02814"/>
+		</Entity>
+		<Entity uid="487">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="103.268" y="22.4" z="136.318"/>
+			<Orientation angle="1.39574"/>
+		</Entity>
+		<Entity uid="489">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="41.1283" y="22.4" z="112.132"/>
+			<Orientation angle="3.13903"/>
+		</Entity>
+		<Entity uid="490">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="125.436" y="22.4" z="78.3443"/>
+			<Orientation angle="-0.096272"/>
+		</Entity>
+		<Entity uid="491">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="145.005" y="22.4" z="79.781"/>
+			<Orientation angle="-0.0705819"/>
+		</Entity>
+		<Entity uid="492">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="123.858" y="22.4" z="100.103"/>
+			<Orientation angle="3.08612"/>
+		</Entity>
+		<Entity uid="493">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="164.889" y="22.4" z="62.2437"/>
+			<Orientation angle="1.52523"/>
+		</Entity>
+		<Entity uid="494">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="184.833" y="22.4" z="83.3192"/>
+			<Orientation angle="-1.63309"/>
+		</Entity>
+		<Entity uid="495">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="143.531" y="22.4" z="101.213"/>
+			<Orientation angle="3.08484"/>
+		</Entity>
+		<Entity uid="496">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="165.473" y="22.4" z="63.571"/>
+			<Orientation angle="3.05954"/>
+		</Entity>
+		<Entity uid="497">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="164.765" y="22.4" z="81.1319"/>
+			<Orientation angle="-0.0637484"/>
+		</Entity>
+		<Entity uid="498">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="105.308" y="22.4" z="97.7399"/>
+			<Orientation angle="-1.6449"/>
+		</Entity>
+		<Entity uid="499">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="104.147" y="22.4" z="98.8674"/>
+			<Orientation angle="3.07631"/>
+		</Entity>
+		<Entity uid="500">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="104.634" y="22.4" z="117.957"/>
+			<Orientation angle="3.05049"/>
+		</Entity>
+		<Entity uid="502">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="288.251" y="22.4" z="281.23"/>
+			<Orientation angle="0.0055317"/>
+		</Entity>
+		<Entity uid="503">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="287.465" y="22.4" z="301.721"/>
+			<Orientation angle="-3.10829"/>
+		</Entity>
+		<Entity uid="504">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="327.508" y="22.4" z="281.15"/>
+			<Orientation angle="-0.00222479"/>
+		</Entity>
+		<Entity uid="505">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="365.3" y="22.4" z="303.092"/>
+			<Orientation angle="-3.14051"/>
+		</Entity>
+		<Entity uid="506">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="365.373" y="22.4" z="281.854"/>
+			<Orientation angle="0.0444625"/>
+		</Entity>
+		<Entity uid="507">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="344.697" y="22.4" z="340.329"/>
+			<Orientation angle="-1.58793"/>
+		</Entity>
+		<Entity uid="508">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="306.648" y="22.4" z="301.167"/>
+			<Orientation angle="-3.10716"/>
+		</Entity>
+		<Entity uid="509">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="307.669" y="22.4" z="281.124"/>
+			<Orientation angle="0.00367114"/>
+		</Entity>
+		<Entity uid="510">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="325.777" y="22.4" z="299.511"/>
+			<Orientation angle="1.53517"/>
+		</Entity>
+		<Entity uid="512">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="345.932" y="22.4" z="301.683"/>
+			<Orientation angle="3.08244"/>
+		</Entity>
+		<Entity uid="513">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="345.125" y="22.4" z="320.561"/>
+			<Orientation angle="-1.67882"/>
+		</Entity>
+		<Entity uid="514">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="324.944" y="22.4" z="319.086"/>
+			<Orientation angle="1.59877"/>
+		</Entity>
+		<Entity uid="515">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="344.812" y="22.4" z="338.82"/>
+			<Orientation angle="-0.0489041"/>
+		</Entity>
+		<Entity uid="516">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="346.123" y="22.4" z="282.783"/>
+			<Orientation angle="-0.0769314"/>
+		</Entity>
+		<Entity uid="517">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="384.717" y="22.4" z="283.012"/>
+			<Orientation angle="-0.0592529"/>
+		</Entity>
+		<Entity uid="518">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="383.852" y="22.4" z="302.873"/>
+			<Orientation angle="3.11564"/>
+		</Entity>
+		<Entity uid="519">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="403.667" y="22.4" z="283.876"/>
+			<Orientation angle="1.50637"/>
+		</Entity>
+		<Entity uid="520">
+			<Template>hele_wall</Template>
+			<Player>0</Player>
+			<Position x="404.452" y="22.4" z="284.096"/>
+			<Orientation angle="-0.0699944"/>
+		</Entity>
+		<Entity uid="522">
+			<Template>hele_cavalry_swordsman_a</Template>
+			<Player>1</Player>
+			<Position x="6.78099" y="22.4" z="564.297"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>
