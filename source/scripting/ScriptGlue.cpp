@@ -10,6 +10,8 @@
 #include "JSConversions.h"
 #include "GameEvents.h"
 
+#include "ScriptableComplex.inl"
+
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapWriter.h"
@@ -962,7 +964,7 @@ JSBool SetCursor( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval
 	return JS_TRUE;
 }
 
-JSBool GetCursorName( JSContext* UNUSED(cx), JSObject*, size_t UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
+JSBool GetCursorName( JSContext* UNUSED(cx), JSObject*, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval )
 {
 	*rval = ToJSVal(g_CursorName);
 	return JS_TRUE;
