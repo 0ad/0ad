@@ -1,4 +1,5 @@
 #include "precompiled.h"
+
 #include "JSConversions.h"
 #include "simulation/Entity.h"
 #include "graphics/ObjectManager.h"
@@ -119,7 +120,7 @@ template<> jsval ToJSVal<unsigned>( unsigned& Native )
 	return( INT_TO_JSVAL( Native ) );
 }
 
-template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, unsigned& Storage )
+template<> bool ToPrimitive<unsigned>( JSContext* cx, jsval v, unsigned& Storage )
 {
 	int temp;
 	if(!ToPrimitive<int>(cx, v, temp))
@@ -128,6 +129,44 @@ template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, unsigned& Storage )
 		return false;
 	Storage = (unsigned)temp;
 	return true;
+}
+
+// long
+template<> jsval ToJSVal<long>( const long& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> jsval ToJSVal<long>( long& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> bool ToPrimitive<long>( JSContext* cx, jsval v, long& Storage )
+{
+	int32 tmp;
+	JSBool ok = JS_ValueToInt32(cx, v, &tmp);
+	Storage = (long)tmp;
+	return ok == JS_TRUE;
+}
+
+// unsigned long
+template<> jsval ToJSVal<unsigned long>( const unsigned long& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> jsval ToJSVal<unsigned long>( unsigned long& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> bool ToPrimitive<unsigned long>( JSContext* cx, jsval v, unsigned long& Storage )
+{
+	int32 tmp;
+	JSBool ok = JS_ValueToInt32(cx, v, &tmp);
+	Storage = (unsigned long)tmp;
+	return ok == JS_TRUE;
 }
 
 // see comment at declaration of specialization

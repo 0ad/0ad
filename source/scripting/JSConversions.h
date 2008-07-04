@@ -124,8 +124,20 @@ template<> bool ToPrimitive<unsigned>( JSContext* cx, jsval v, unsigned& Storage
 template<> jsval ToJSVal<unsigned>( const unsigned& Native );
 template<> jsval ToJSVal<unsigned>( unsigned& Native );
 
+// long int
+template<> bool ToPrimitive<long>( JSContext* cx, jsval v, long& Storage );
+template<> jsval ToJSVal<long>( const long& Native );
+template<> jsval ToJSVal<long>( long& Native );
+
+// unsigned long int
+template<> bool ToPrimitive<unsigned long>( JSContext* cx, jsval v, unsigned long& Storage );
+template<> jsval ToJSVal<unsigned long>( const unsigned long& Native );
+template<> jsval ToJSVal<unsigned long>( unsigned long& Native );
+
 // (s)size_t are considered to be identical to (unsigned) int by GCC and
-// their specializations would cause conflicts there.
+// their specializations would cause conflicts there. On x86_64 GCC, s/size_t
+// is equivalent to (unsigned) long, but the same solution applies; use the
+// long and unsigned long specializations instead of s/size_t.
 #if !GCC_VERSION
 
 // ssize_t
