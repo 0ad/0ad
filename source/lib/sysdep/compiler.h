@@ -11,6 +11,7 @@
 #ifndef INCLUDED_COMPILER
 #define INCLUDED_COMPILER
 
+#include "lib/sysdep/arch.h"	// ARCH_AMD64
 #include "lib/config.h"	// CONFIG_OMIT_FP
 
 
@@ -44,7 +45,7 @@
 
 
 // pass "omit frame pointer" setting on to the compiler
-#if MSC_VERSION
+#if MSC_VERSION && !ARCH_AMD64
 # if CONFIG_OMIT_FP
 #  pragma optimize("y", on)
 # else

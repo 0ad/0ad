@@ -25,7 +25,7 @@
 # define ARCH_IA64 0
 #endif
 // .. AMD64
-#if defined(_M_AMD64) || defined(__amd64__) || defined(__amd64)
+#if defined(_M_X64) || defined(__amd64__) || defined(__amd64)
 # define ARCH_AMD64 1
 #else
 # define ARCH_AMD64 0
