@@ -1238,28 +1238,48 @@ static LibError dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpS
 // clutter a bit and prevents infinite recursion for cyclical references
 // (e.g. via struct S { S* p; } s; s.p = &s;)
 
-typedef std::set<const u8*> PtrSet;
-static PtrSet* already_visited_ptrs;
-	// allocated on-demand by ptr_already_visited. this cannot be a NLSO
-	// because it may be used before _cinit.
-	// if we put it in a function, construction still fails on VC7 because
-	// the atexit table will not have been initialized yet.
+// note: allocating memory dynamically would cause trouble if dumping
+// the stack from within memory-related code (the allocation hook would
+// be reentered, which is not permissible).
 
-// called by debug_dump_stack but not during shutdown (this must remain valid
-// until the very end to allow crash reports)
+static const size_t maxVisited = 1000;
+static const u8* visited[maxVisited];
+static size_t numVisited;
+
 static void ptr_reset_visited()
 {
-	delete already_visited_ptrs;
-	already_visited_ptrs = 0;
+	numVisited = 0;
 }
 
 static bool ptr_already_visited(const u8* p)
 {
-	if(!already_visited_ptrs)
-		already_visited_ptrs = new PtrSet;
+	for(size_t i = 0; i < numVisited; i++)
+	{
+		if(visited[i] == p)
+			return true;
+	}
 
-	std::pair<PtrSet::iterator, bool> ret = already_visited_ptrs->insert(p);
-	return !ret.second;
+	if(numVisited < maxVisited)
+	{
+		visited[numVisited] = p;
+		numVisited++;
+	}
+	// capacity exceeded
+	else
+	{
+		// warn user - but only once (we can't use the regular
+		// debug_display_error and wdbg_assert doesn't have a
+		// suppress mechanism)
+		static bool haveComplained;
+		if(!haveComplained)
+		{
+			debug_printf("WARNING: ptr_already_visited: capacity exceeded, increase maxVisited\n");
+			debug_break();
+			haveComplained = true;
+		}
+	}
+
+	return false;
 }
 
 
