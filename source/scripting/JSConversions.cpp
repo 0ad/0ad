@@ -171,25 +171,6 @@ template<> bool ToPrimitive<unsigned long>( JSContext* cx, jsval v, unsigned lon
 
 // see comment at declaration of specialization
 #if !GCC_VERSION
-
-template<> jsval ToJSVal<ssize_t>( const ssize_t& Native )
-{
-	return( INT_TO_JSVAL( (int)Native ) );
-}
-
-template<> jsval ToJSVal<ssize_t>( ssize_t& Native )
-{
-	return( INT_TO_JSVAL( (int)Native ) );
-}
-
-template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage )
-{
-	int32 tmp;
-	JSBool ok = JS_ValueToInt32(cx, v, &tmp);
-	Storage = (ssize_t)tmp;
-	return ok == JS_TRUE;
-}
-
 #if ARCH_AMD64
 
 template<> jsval ToJSVal<size_t>( const size_t& Native )
@@ -214,7 +195,6 @@ template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, size_t& Storage )
 }
 
 #endif	// #if ARCH_AMD64
-
 #endif	// #if !GCC_VERSION
 
 // double

@@ -140,14 +140,7 @@ template<> jsval ToJSVal<unsigned long>( unsigned long& Native );
 // long and unsigned long specializations instead of s/size_t.
 #if !GCC_VERSION
 
-// ssize_t
-template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage );
-template<> jsval ToJSVal<ssize_t>( const ssize_t& Native );
-template<> jsval ToJSVal<ssize_t>( ssize_t& Native );
-
-// MSC treats ssize_t as distinct but not size_t. we will surely need this
-// specialization if on an LP64 system, otherwise probably not.
-
+// for some reason, x64 MSC treats size_t as distinct from unsigned long:
 #if ARCH_AMD64
 
 // size_t
