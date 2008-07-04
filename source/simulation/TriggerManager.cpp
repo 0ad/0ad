@@ -103,11 +103,11 @@ bool CTrigger::Fire()
 	return (m_runCount < m_maxRunCount);
 }
 
-void CTrigger::Activate(JSContext* UNUSED(cx), size_t UNUSED(argc), jsval* UNUSED(argv))
+void CTrigger::Activate(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	m_active = true;
 }
-void CTrigger::Deactivate(JSContext* UNUSED(cx), size_t UNUSED(argc), jsval* UNUSED(argv))
+void CTrigger::Deactivate(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
 	m_active = false;
 }
