@@ -5,6 +5,9 @@
 #include "Stream/Stream.h"
 #include "Stream/Memory.h"
 
+//for :25 strncmp and :81 memset
+#include <string.h>
+
 #include <cassert>
 
 using namespace DatafileIO;
