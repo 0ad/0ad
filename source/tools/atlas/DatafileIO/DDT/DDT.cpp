@@ -9,6 +9,8 @@
 #include "IL/ilu.h"
 
 #include <cassert>
+#include <string.h>
+#include <stdlib.h>
 
 using namespace DatafileIO;
 
