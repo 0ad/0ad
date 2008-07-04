@@ -152,7 +152,7 @@ CTerritory* CTerritoryManager::GetTerritory(float x, float z)
 {
 	ssize_t ix, iz;
 	CTerrain::CalcFromPosition(x, z, ix, iz);
-	return GetTerritory(ix, iz);
+	return GetTerritory((int)ix, (int)iz);
 }
 
 // Calculate the boundary points of a given territory into the given vector
