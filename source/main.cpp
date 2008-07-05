@@ -181,7 +181,7 @@ static void Frame()
 #else
 	const float TimeSinceLastFrame = 1.0 / g_frequencyFilter->SmoothedFrequency();
 #endif
-	debug_assert(TimeSinceLastFrame >= 0.0f);
+	debug_assert(TimeSinceLastFrame > 0.0f);
 
 	// decide if update/render is necessary
 	bool need_render = !g_app_minimized;
@@ -369,9 +369,11 @@ static void RunGameOrAtlas(int argc, char* argv[])
 	if(ran_atlas)
 		return;
 
+	const double res = timer_Resolution();
+	g_frequencyFilter = CreateFrequencyFilter(res, 30.0);
+
 	// run the game
 	Init(args, 0);
-	g_frequencyFilter = CreateFrequencyFilter(timer_Resolution(), 30.0);
 	MainControllerInit();
 	while(!quit)
 		Frame();

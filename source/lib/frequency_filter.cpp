@@ -10,32 +10,28 @@ class FrequencyEstimator : boost::noncopyable
 public:
 	FrequencyEstimator(double resolution)
 		: m_minDeltaTime(4.0 * resolution)	// chosen to reduce error but still yield rapid updates.
-		, m_lastTime(0)	// will be set on first XX call
-		, m_numEvents(1)
+		, m_lastTime(0)	// will be set on first call
+		, m_numEvents(0)
 	{
+		debug_assert(resolution > 0.0);
 	}
 
 	bool operator()(double time, double& frequency)
 	{
-		// first call
+		m_numEvents++;
+
 		if(m_lastTime == 0.0)
-		{
 			m_lastTime = time;
-			return false;
-		}
 
 		// count # events until deltaTime is large enough
 		// (reduces quantization errors if resolution is low)
 		const double deltaTime = time - m_lastTime;
-		if(deltaTime < m_minDeltaTime)
-		{
-			m_numEvents++;
+		if(deltaTime <= m_minDeltaTime)
 			return false;
-		}
 
+		frequency = (1.0 / deltaTime) / m_numEvents;
+		m_numEvents = 0;
 		m_lastTime = time;
-		frequency = (1.0 / deltaTime) * m_numEvents;
-		m_numEvents = 1;
 		return true;	// success
 	}
 
@@ -52,8 +48,8 @@ private:
 class IirFilter
 {
 public:
-	IirFilter(double old)
-		: m_old(old)
+	IirFilter(double initialValue)
+		: m_prev(initialValue)
 	{
 	}
 
@@ -63,7 +59,7 @@ public:
 		// sensitivity to changes ([0,1]).
 		// approximately equal to a 16 sample average.
 		const double gain = pow(0.08, ComputeExponent(bias));
-		return m_old = x*gain + m_old*(1.0-gain);
+		return m_prev = x*gain + m_prev*(1.0-gain);
 	}
 
 private:
@@ -77,7 +73,7 @@ private:
 			return -bias;	// power-of-n
 	}
 
-	double m_old;
+	double m_prev;
 };
 
 

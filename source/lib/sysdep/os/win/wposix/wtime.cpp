@@ -117,7 +117,8 @@ int clock_getres(clockid_t clock, struct timespec* ts)
 {
 	debug_assert(clock == CLOCK_REALTIME || clock == CLOCK_MONOTONIC);
 
-	const i64 ns = cpu_i64FromDouble(whrt_Resolution() * 1e9);
+	const double resolution = whrt_Resolution();
+	const i64 ns = cpu_i64FromDouble(resolution * 1e9);
 	*ts = TimespecFromNs(ns);
 	return 0;
 }

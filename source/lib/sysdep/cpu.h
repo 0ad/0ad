@@ -83,8 +83,8 @@ LIB_API void cpu_ConfigureFloatingPoint();
 // used by (int) casts.
 // VC8 and GCC with -ffast-math now manage to generate SSE instructions,
 // so our implementation is no longer needed.
-#define cpu_i32FromFloat(f) ((i32)f)
-#define cpu_i32FromDouble(d) ((i32)d)
-#define cpu_i64FromDouble(d) ((i64)d)
+#define cpu_i32FromFloat(f)  ((i32)(f))
+#define cpu_i32FromDouble(d) ((i32)(d))
+#define cpu_i64FromDouble(d) ((i64)(d))
 
 #endif	// #ifndef INCLUDED_CPU
