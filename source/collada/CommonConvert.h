@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <string>
+#include <memory>
 
 class FCDEntityInstance;
 class FCDSceneNode;

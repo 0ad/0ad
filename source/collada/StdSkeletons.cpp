@@ -1,3 +1,6 @@
+#include <libxml2/libxml/parser.h>
+#include <libxml2/libxml/xmlerror.h>
+
 #include "precompiled.h"
 
 #include "StdSkeletons.h"

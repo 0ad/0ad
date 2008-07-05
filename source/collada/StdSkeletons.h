@@ -2,6 +2,7 @@
 #define INCLUDED_STDSKELETONS
 
 #include <string>
+#include <memory>
 
 /*
 
@@ -28,6 +29,7 @@ skeleton, so that's up to the artists to take care of.
 */
 
 struct Skeleton_impl;
+
 class Skeleton
 {
 public:
