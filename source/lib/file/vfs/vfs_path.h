@@ -2,6 +2,21 @@
 #define INCLUDED_VFS_PATH
 
 struct VfsPathTraits;
+
+/**
+ * VFS path of the form "(dir/)*file?"
+ *
+ * in other words: the root directory is "" and paths are separated by '/'.
+ * a trailing slash is allowed for directory names.
+ * rationale: it is important to avoid a leading slash because that might be
+ * confused with an absolute POSIX path.
+ *
+ * there is no restriction on path length; when dimensioning character
+ * arrays, prefer PATH_MAX.
+ *
+ * rationale: a distinct specialization of basic_path prevents inadvertent
+ * assignment from other path types.
+ **/
 typedef fs::basic_path<std::string, VfsPathTraits> VfsPath;
 
 typedef std::vector<VfsPath> VfsPaths;
@@ -33,6 +48,11 @@ namespace boost
 	}
 }
 
+/**
+ * Does a path appear to refer to a directory? (non-authoritative)
+ *
+ * note: only used as a safeguard.
+ **/
 extern bool vfs_path_IsDirectory(const VfsPath& pathname);
 
 #endif	//	#ifndef INCLUDED_VFS_PATH

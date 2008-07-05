@@ -115,7 +115,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 	
 	{
 		const GLchar* strings[] = { (const GLchar*)file.get() };
-		const GLint tmp = file_size;
+		const GLint tmp = (GLint)file_size;
 		pglShaderSourceARB(shdr->id, 1, strings, &tmp);
 		pglCompileShaderARB(shdr->id);
 	}
