@@ -59,6 +59,10 @@ void wdbg_heap_Validate()
 // improved leak detection
 //-----------------------------------------------------------------------------
 
+// (this relies on the debug CRT; not compiling it at all in release builds
+// avoids unreference local function warnings)
+#ifndef NDEBUG
+
 // leak detectors often rely on macro redirection to determine the file and
 // line of allocation owners (see _CRTDBG_MAP_ALLOC). unfortunately this
 // breaks code that uses placement new or functions called free() etc.
@@ -823,7 +827,6 @@ static void PrintCallStack(const uintptr_t* callers, size_t numCallers)
 	}
 }
 
-#ifndef NDEBUG
 static int __cdecl ReportHook(int reportType, char* message, int* out)
 {
 	UNUSED2(reportType);
@@ -886,17 +889,23 @@ static int __cdecl ReportHook(int reportType, char* message, int* out)
 	wdbg_assert(0);	// unreachable
 	return 0;
 }
+
+#else
+
+intptr_t wdbg_heap_NumberOfAllocations()
+{
+	return 0;
+}
+
 #endif
 
 //-----------------------------------------------------------------------------
 
-static AllocationTracker* s_tracker;
-
 static LibError wdbg_heap_Init()
 {
+#ifndef NDEBUG
 	FindCodeSegment();
 
-#ifndef NDEBUG
 	// load symbol information now (fails if it happens during shutdown)
 	char name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN]; int line;
 	(void)debug_resolve_symbol(wdbg_heap_Init, name, file, &line);
@@ -905,6 +914,7 @@ static LibError wdbg_heap_Init()
 	if(ret == -1)
 		abort();
 
+	static AllocationTracker* s_tracker;
 	s_tracker = new AllocationTracker;
 #endif
 
