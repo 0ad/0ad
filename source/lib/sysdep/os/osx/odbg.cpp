@@ -21,4 +21,7 @@ LibError debug_resolve_symbol(void* UNUSED(ptr_of_interest), char* UNUSED(sym_na
 	return ERR::NOT_IMPLEMENTED;
 }
 
-
+void debug_set_thread_name(char const* UNUSED(name))
+{
+    // Currently unimplemented
+}

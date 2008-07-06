@@ -1,6 +1,7 @@
 #include "precompiled.h"
 
-#include "../cpu.h"
+#include "lib/sysdep/os_cpu.h"
+#include "lib/bits.h"
 
 #include <sys/sysctl.h>
 
@@ -96,7 +97,7 @@ uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask)
 }
 
 
-LibError cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
+LibError os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData)
 {
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{
