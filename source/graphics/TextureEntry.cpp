@@ -54,7 +54,7 @@ CTextureEntry::~CTextureEntry()
 		m_LoadedTextures.erase(it);
 	
 	if (m_Handle > 0)
-		ogl_tex_free(m_Handle);
+		(void)ogl_tex_free(m_Handle);
 
 	for (GroupVector::iterator it=m_Groups.begin();it!=m_Groups.end();++it)
 		(*it)->RemoveTerrain(this);
@@ -87,7 +87,8 @@ void CTextureEntry::BuildBaseColor()
 		return;
 	}
 
-	ogl_tex_bind(GetHandle());
+	LibError ret = ogl_tex_bind(GetHandle());
+	debug_assert(ret == INFO::OK);
 
 	// get root colour for coloring minimap by querying root level of the texture 
 	// (this should decompress any compressed textures for us),

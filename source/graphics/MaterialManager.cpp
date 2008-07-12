@@ -13,11 +13,11 @@ static float ClampFloat(float value, float min, float max)
     return value;
 }
 
-static SMaterialColor ParseColor(CStr colorStr)
+static SMaterialColor ParseColor(const CStr& colorStr_)
 {
     SMaterialColor color;
     
-    colorStr = colorStr.Trim(PS_TRIM_BOTH);
+    CStr colorStr(colorStr_.Trim(PS_TRIM_BOTH));
     CStr tmp;
     int idx = 0;
     long pos = colorStr.Find(' ');

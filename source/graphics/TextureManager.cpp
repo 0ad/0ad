@@ -42,8 +42,9 @@ void CTextureManager::UnloadTerrainTextures()
 	m_LastGroupIndex = 0;
 }
 
-CTextureEntry* CTextureManager::FindTexture(CStr tag)
+CTextureEntry* CTextureManager::FindTexture(const CStr& tag_)
 {
+	CStr tag(tag_);
 	// Strip extension off of tag
 	long pos=tag.ReverseFind(".");
 	if (pos != -1)
@@ -65,12 +66,12 @@ CTextureEntry* CTextureManager::FindTexture(Handle handle)
 	return CTextureEntry::GetByHandle(handle);
 }
 
-CTerrainPropertiesPtr CTextureManager::GetPropertiesFromFile(CTerrainPropertiesPtr props, const char* path)
+CTerrainPropertiesPtr CTextureManager::GetPropertiesFromFile(const CTerrainPropertiesPtr& props, const char* path)
 {
 	return CTerrainProperties::FromXML(props, path);
 }
 
-CTextureEntry *CTextureManager::AddTexture(CTerrainPropertiesPtr props, const CStr& path)
+CTextureEntry *CTextureManager::AddTexture(const CTerrainPropertiesPtr& props, const CStr& path)
 {
 	CTextureEntry *entry = new CTextureEntry(props, path);
 	m_TextureEntries.push_back(entry);
@@ -93,7 +94,7 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 // jw: indeed this is inefficient and RecurseDirectory should be implemented
 // via VFSUtil::EnumFiles, but it works fine and "only" takes 25ms for
 // typical maps. therefore, we'll leave it for now.
-void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
+void CTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, const char* dir)
 {
 	VfsPaths pathnames;
 	if(fs_GetPathnames(g_VFS, dir, 0, pathnames) < 0)
@@ -134,7 +135,7 @@ void CTextureManager::LoadTextures(CTerrainPropertiesPtr props, const char* dir)
 	}
 }
 
-void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const char* cur_dir_path)
+void CTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps, const char* cur_dir_path)
 {
 	//LOG(CLogger::Normal,  LOG_CATEGORY, "CTextureManager::RecurseDirectory(%s)", path.c_str());
 
@@ -157,7 +158,7 @@ void CTextureManager::RecurseDirectory(CTerrainPropertiesPtr parentProps, const 
 
 	// Recurse once for each subdirectory
 	DirectoryNames subdirectoryNames;
-	g_VFS->GetDirectoryEntries(cur_dir_path, 0, &subdirectoryNames);
+	(void)g_VFS->GetDirectoryEntries(cur_dir_path, 0, &subdirectoryNames);
 	for (size_t i=0;i<subdirectoryNames.size();i++)
 	{
 		char subdirectoryPath[PATH_MAX];

@@ -78,7 +78,7 @@ public:
 
 	void ClearR();
 
-	void Attach(PRealDirectory realDirectory);
+	void Attach(const PRealDirectory& realDirectory);
 
 	PRealDirectory AssociatedDirectory() const
 	{

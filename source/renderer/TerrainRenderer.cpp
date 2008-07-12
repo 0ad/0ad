@@ -533,12 +533,12 @@ void TerrainRenderer::RenderWater()
 	{
 		CPatch* patch = m->visiblePatches[i];
 
-		for(int dx=0; dx<PATCH_SIZE; dx++)
+		for(ssize_t dx=0; dx<PATCH_SIZE; dx++)
 		{
-			for(int dz=0; dz<PATCH_SIZE; dz++)
+			for(ssize_t dz=0; dz<PATCH_SIZE; dz++)
 			{
-				int x = (patch->m_X*PATCH_SIZE + dx);
-				int z = (patch->m_Z*PATCH_SIZE + dz);
+				ssize_t x = (patch->m_X*PATCH_SIZE + dx);
+				ssize_t z = (patch->m_Z*PATCH_SIZE + dz);
 
 				// is any corner of the tile below the water height? if not, no point rendering it
 				bool shouldRender = false;

@@ -374,9 +374,9 @@ public:
 
 	void ClearOrders();
 	void PopOrder();	//Use this if an order has finished instead of m_orderQueue.pop_front()
-	void PushOrder( CEntityOrder& order );
+	void PushOrder( const CEntityOrder& order );
 
-	void DispatchNotification( CEntityOrder order, int type );
+	void DispatchNotification( const CEntityOrder& order, int type );
 	int DestroyNotifier( CEntity* target );	//Stop notifier from sending to us
 	void DestroyAllNotifiers();
 

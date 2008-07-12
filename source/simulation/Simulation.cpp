@@ -193,7 +193,7 @@ void CSimulation::Simulate()
 // Task them all to a point within a radius of the target, radius depends upon
 // the number of units in the group.
 
-void RandomizeLocations(CEntityOrder order, const std::vector<HEntity> &entities, bool isQueued)
+void RandomizeLocations(const CEntityOrder& order, const std::vector<HEntity> &entities, bool isQueued)
 {
 	std::vector<HEntity>::const_iterator it;
 	float radius = 2.0f * sqrt( (float)entities.size() - 1 ); 
@@ -226,7 +226,7 @@ void RandomizeLocations(CEntityOrder order, const std::vector<HEntity> &entities
 	}
 }
 
-void FormationLocations(CEntityOrder order, const std::vector<HEntity> &entities, bool isQueued)
+void FormationLocations(const CEntityOrder& order, const std::vector<HEntity> &entities, bool isQueued)
 {
 	CVector2D upvec(0.0f, 1.0f);
 	std::vector<HEntity>::const_iterator it = entities.begin();
@@ -261,7 +261,7 @@ void FormationLocations(CEntityOrder order, const std::vector<HEntity> &entities
 	}
 }
 
-void QueueOrder(CEntityOrder order, const std::vector<HEntity> &entities, bool isQueued)
+void QueueOrder(const CEntityOrder& order, const std::vector<HEntity> &entities, bool isQueued)
 {
 	std::vector<HEntity>::const_iterator it;
 

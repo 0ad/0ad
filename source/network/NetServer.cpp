@@ -17,8 +17,6 @@
 
 // DECLARATIONS
 
-#pragma warning( disable : 4100 )
-
 CNetServer*	g_NetServer = NULL;
 
 //-----------------------------------------------------------------------------
@@ -97,7 +95,7 @@ void CNetServer::ScriptingInit( void )
 // Name: Start()
 // Desc: Initialize the server
 //-----------------------------------------------------------------------------
-bool CNetServer::Start( JSContext* pContext, uintN argc, jsval* argv )
+bool CNetServer::Start( JSContext* UNUSED(pContext), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	// Setup initial state
 	m_State = SERVER_STATE_PREGAME;
@@ -378,7 +376,9 @@ bool CNetServer::OnError( void* pContext, CFsmEvent* pEvent )
 	if ( pEvent->GetType() != NMT_ERROR ) return true;
 
 	CNetServer*	 pServer  = ( CNetServer* )( ( FsmActionCtx* )pContext )->pHost;
+	UNUSED2(pServer);
 	CNetSession* pSession = ( ( FsmActionCtx* )pContext )->pSession;
+	UNUSED2(pSession);
 
 	CErrorMessage* pMessage = ( CErrorMessage* )pEvent->GetParamRef();
 	if ( pMessage )

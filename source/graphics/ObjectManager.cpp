@@ -160,10 +160,10 @@ static LibError GetObjectName_ThunkCb(const VfsPath& pathname, const FileInfo& U
 
 void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 {
-	fs_ForEachFile(g_VFS, "art/actors/", GetObjectName_ThunkCb, (uintptr_t)&names, "*.xml", DIR_RECURSIVE);
+	(void)fs_ForEachFile(g_VFS, "art/actors/", GetObjectName_ThunkCb, (uintptr_t)&names, "*.xml", DIR_RECURSIVE);
 }
 
 void CObjectManager::GetPropObjectNames(std::vector<CStr>& names)
 {
-	fs_ForEachFile(g_VFS, "art/actors/props/", GetObjectName_ThunkCb, (uintptr_t)&names, "*.xml", DIR_RECURSIVE);
+	(void)fs_ForEachFile(g_VFS, "art/actors/props/", GetObjectName_ThunkCb, (uintptr_t)&names, "*.xml", DIR_RECURSIVE);
 }

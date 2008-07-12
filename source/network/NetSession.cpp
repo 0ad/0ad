@@ -13,8 +13,6 @@
 //#include "NetServer.h"
 #include "NetLog.h"
 
-#pragma warning( disable : 4100 )
-
 // DECLARATIONS
 
 //-----------------------------------------------------------------------------
@@ -447,7 +445,7 @@ void CNetHost::Broadcast( const CNetMessage* pMessage )
 // Name: ResizeBuffer()
 // Desc: Resizes the internal buffer
 //-----------------------------------------------------------------------------
-void CNetHost::ResizeBuffer( uint size )
+void CNetHost::ResizeBuffer( size_t size )
 {
 	// Already enough space?
 	if ( size <= m_BufferSize ) return;
@@ -486,7 +484,7 @@ bool CNetHost::SendMessage(
 	assert( pSession->m_Peer );
 	assert( m_Host );
 
-	uint size = pMessage->GetSerializedLength();
+	size_t size = pMessage->GetSerializedLength();
 
 	// Adjust buffer for message
 	ResizeBuffer( size );
@@ -546,7 +544,7 @@ CNetMessage* CNetHost::ReceiveMessage( const CNetSession* pSession )
 // Name: SetupSession()
 // Desc: Setup new session upon creation
 //-----------------------------------------------------------------------------
-bool CNetHost::SetupSession( CNetSession* pSession )
+bool CNetHost::SetupSession( CNetSession* UNUSED(pSession) )
 {
 	return true;
 }
@@ -555,7 +553,7 @@ bool CNetHost::SetupSession( CNetSession* pSession )
 // Name: HandleConnect()
 // Desc: Allow application to handle client connect
 //-----------------------------------------------------------------------------
-bool CNetHost::HandleConnect( CNetSession* pSession )
+bool CNetHost::HandleConnect( CNetSession* UNUSED(pSession) )
 {
 	return true;
 }
@@ -564,7 +562,7 @@ bool CNetHost::HandleConnect( CNetSession* pSession )
 // Name: HandleDisconnect()
 // Desc: Allow application to handle client disconnect
 //-----------------------------------------------------------------------------
-bool CNetHost::HandleDisconnect( CNetSession* pSession )
+bool CNetHost::HandleDisconnect( CNetSession* UNUSED(pSession) )
 {
 	return true;
 }
@@ -726,7 +724,7 @@ void CNetSession::ScriptingInit( void )
 // Name: JSI_Close()
 // Desc:
 //-----------------------------------------------------------------------------
-bool CNetSession::JSI_Close( JSContext* cx, uintN argc, jsval* argv )
+bool CNetSession::JSI_Close( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
 	return false;
 }

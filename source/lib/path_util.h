@@ -104,9 +104,8 @@ enum PathAppendFlags
  * @param path1, path2 strings: empty, filenames, or full paths.
  * total resulting string must not exceed PATH_MAX chars.
  * @param flags see PathAppendFlags.
- * @return LibError
  **/
-extern LibError path_append(char* dst, const char* path1, const char* path2, int flags = 0);
+extern void path_append(char* dst, const char* path1, const char* path2, int flags = 0);
 
 /**
  * get the name component of a path.

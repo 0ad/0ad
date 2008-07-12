@@ -67,12 +67,12 @@ private:
 
 	// Find+load all textures in directory; check if
 	// there's an override XML with the same basename (if there is, load it)
-	void LoadTextures(CTerrainPropertiesPtr props, const char* dir);
+	void LoadTextures(const CTerrainPropertiesPtr& props, const char* dir);
 	
 	// Load all terrains below path, using props as the parent property sheet.
-	void RecurseDirectory(CTerrainPropertiesPtr props, const char* dir);
+	void RecurseDirectory(const CTerrainPropertiesPtr& props, const char* dir);
 	
-	CTerrainPropertiesPtr GetPropertiesFromFile(CTerrainPropertiesPtr props, const char* path);
+	CTerrainPropertiesPtr GetPropertiesFromFile(const CTerrainPropertiesPtr& props, const char* path);
 
 public:
 	// constructor, destructor
@@ -85,12 +85,12 @@ public:
 
 	void UnloadTerrainTextures();
 	
-	CTextureEntry* FindTexture(CStr tag);
+	CTextureEntry* FindTexture(const CStr& tag);
 	CTextureEntry* FindTexture(Handle handle);
 	
 	// Create a texture object for a new terrain texture at path, using the
 	// property sheet props.
-	CTextureEntry *AddTexture(CTerrainPropertiesPtr props, const CStr& path);
+	CTextureEntry *AddTexture(const CTerrainPropertiesPtr& props, const CStr& path);
 	
 	// Remove the texture from all our maps and lists and delete it afterwards.
 	void DeleteTexture(CTextureEntry* entry);

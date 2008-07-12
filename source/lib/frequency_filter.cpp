@@ -132,7 +132,7 @@ private:
 			const int vote = (value >= m_history[i])? 1 : -1;
 			sum += vote;
 		}
-		return abs(sum) == m_historySize;
+		return abs(sum) == (int)m_historySize;
 	}
 
 	static double Change(double from, double to)

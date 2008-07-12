@@ -27,7 +27,7 @@ CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 		m_Groups = m_pParent->m_Groups;	
 }
 
-CTerrainPropertiesPtr CTerrainProperties::FromXML(CTerrainPropertiesPtr parent, const char* path)
+CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& parent, const char* path)
 {
 	CXeromyces XeroFile;
 	if (XeroFile.Load(path) != PSRETURN_OK)

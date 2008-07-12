@@ -98,9 +98,9 @@ MESSAGEHANDLER(GenerateMap)
 		{
 			CPatch* patch = terrain->GetPatch(px, pz);
 
-			for (int z = 0; z < PATCH_SIZE; ++z)
+			for (ssize_t z = 0; z < PATCH_SIZE; ++z)
 			{
-				for (int x = 0; x < PATCH_SIZE; ++x)
+				for (ssize_t x = 0; x < PATCH_SIZE; ++x)
 				{
 					patch->m_MiniPatches[z][x].Tex1 = tex;
 					patch->m_MiniPatches[z][x].Tex1Priority = 0;

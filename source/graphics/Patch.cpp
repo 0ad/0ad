@@ -38,9 +38,9 @@ void CPatch::Initialize(CTerrain* parent,ssize_t x,ssize_t z)
 	m_Z=z;
 
 	// set parent of each patch	
-	for (size_t j=0;j<PATCH_SIZE;j++)
+	for (ssize_t j=0;j<PATCH_SIZE;j++)
 	{
-		for (size_t i=0;i<PATCH_SIZE;i++)
+		for (ssize_t i=0;i<PATCH_SIZE;i++)
 		{
 			m_MiniPatches[j][i].m_Parent=this;
 		}

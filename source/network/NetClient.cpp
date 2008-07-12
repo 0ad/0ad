@@ -24,7 +24,6 @@
 #include "simulation/Simulation.h"
 
 // DECLARATIONS
-#pragma warning( disable : 4100 )
 
 #define LOG_CAT_NET "net"
 
@@ -130,7 +129,7 @@ void CNetClient::ScriptingInit()
 // Name: Run()
 // Desc: Connect to server and start main loop
 //-----------------------------------------------------------------------------
-bool CNetClient::SetupConnection( JSContext* pContext, uintN argc, jsval* argv )
+bool CNetClient::SetupConnection( JSContext* UNUSED(pContext), uintN argc, jsval* argv )
 {
 	uint port = DEFAULT_HOST_PORT;
 
@@ -340,6 +339,7 @@ bool CNetClient::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
 	if ( !pEvent || !pContext ) return false;
 	
 	CNetClient*	 pClient	= ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
+	UNUSED2(pClient);
 	CNetSession* pSession	= ( ( FsmActionCtx* )pContext )->pSession;
 
 	assert( pClient );

@@ -62,7 +62,7 @@ struct MapTrigger
 struct MapTriggerGroup
 {
 	MapTriggerGroup() { }
-	MapTriggerGroup(CStrW _name, CStrW _parentName) : name(_name), parentName(_parentName) {}
+	MapTriggerGroup(const CStrW& _name, const CStrW& _parentName) : name(_name), parentName(_parentName) {}
 
 	std::list<MapTrigger> triggers;
 	std::list<CStrW> childGroups;	//Indices of children

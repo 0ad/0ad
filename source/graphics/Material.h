@@ -21,7 +21,7 @@ public:
 		b = _b;
 		a = _a;
 	}
-	SMaterialColor(const SMaterialColor &color)
+	SMaterialColor(const SMaterialColor& color)
 	{
 		r = color.r;
 		g = color.g;
@@ -29,14 +29,14 @@ public:
 		a = color.a;
 	}
 
-	void operator =(const SMaterialColor color)
+	void operator=(const SMaterialColor& color)
 	{
 		r = color.r;
 		g = color.g;
 		b = color.b;
 		a = color.a;
 	}
-	bool operator ==(const SMaterialColor color);
+	bool operator==(const SMaterialColor& color);
 
 	float Sum()
 	{
@@ -48,7 +48,7 @@ class CMaterial
 {
 public:
 	CMaterial();
-	CMaterial(const CMaterial &material);
+	CMaterial(const CMaterial& material);
 	virtual ~CMaterial();
 
 	void Bind();
@@ -81,15 +81,15 @@ public:
 	void SetTexture(const CStr& texture);
 	void SetVertexProgram(const CStr& prog);
 	void SetFragmentProgram(const CStr& prog);
-	void SetDiffuse(const SMaterialColor &color);
-	void SetAmbient(const SMaterialColor &color);
-	void SetSpecular(const SMaterialColor &color);
-	void SetEmissive(const SMaterialColor &color);
+	void SetDiffuse(const SMaterialColor& color);
+	void SetAmbient(const SMaterialColor& color);
+	void SetSpecular(const SMaterialColor& color);
+	void SetEmissive(const SMaterialColor& color);
 	void SetSpecularPower(float power);
 	void SetUsesAlpha(bool flag);
 
-	void operator =(const CMaterial &material);
-	bool operator ==(const CMaterial &material);
+	void operator=(const CMaterial& material);
+	bool operator==(const CMaterial& material);
 protected:
 	void ComputeHash();
 

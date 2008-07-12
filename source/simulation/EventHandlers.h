@@ -120,7 +120,7 @@ class CEventNotification : public CScriptEvent
 	int m_notifyType;
 	CVector3D m_location;	//No real use for y, but CVector2D unsupported
 public:
-	CEventNotification( CEntityOrder order, int notifyType );
+	CEventNotification( const CEntityOrder& order, int notifyType );
 };
 class CFormationEvent : public CScriptEvent
 {
@@ -147,6 +147,6 @@ class CIdleEvent : public CScriptEvent
 	CVector3D m_location;
 	CEntity* m_target;
 public:
-	CIdleEvent( CEntityOrder order, int notifyType );
+	CIdleEvent( const CEntityOrder& order, int notifyType );
 };
 #endif

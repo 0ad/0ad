@@ -189,7 +189,7 @@ void VfsDirectory::ClearR()
 }
 
 
-void VfsDirectory::Attach(PRealDirectory realDirectory)
+void VfsDirectory::Attach(const PRealDirectory& realDirectory)
 {
 	if(!cpu_CAS(&m_shouldPopulate, 0, 1))
 	{

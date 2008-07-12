@@ -46,7 +46,7 @@ template<class T> void RegMemFun(T* this_, int(T::*func)(void),
 	const wchar_t* description, int estimated_duration_ms)
 {
 	void* param = new MemFun_t<T>(this_, func);
-	THROW_ERR(LDR_Register(MemFunThunk<T>, param, description, estimated_duration_ms));
+	LDR_Register(MemFunThunk<T>, param, description, estimated_duration_ms);
 }
 
 
@@ -75,5 +75,5 @@ template<class T, class Arg> void RegMemFun1(T* this_, int(T::*func)(Arg), Arg a
 	const wchar_t* description, int estimated_duration_ms)
 {
 	void* param = new MemFun1_t<T, Arg>(this_, func, arg);
-	THROW_ERR(LDR_Register(MemFun1Thunk<T, Arg>, param, description, estimated_duration_ms));
+	LDR_Register(MemFun1Thunk<T, Arg>, param, description, estimated_duration_ms);
 }

@@ -76,7 +76,7 @@ char* error_description_r(LibError err, char* buf, size_t max_chars)
 	}
 
 	// unknown
-	snprintf(buf, max_chars, "Unknown error (%d, 0x%X)", err, err);
+	snprintf(buf, max_chars, "Unknown error (%d, 0x%X)", (int)err, (unsigned int)err);
 	return buf;
 }
 

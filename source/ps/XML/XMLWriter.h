@@ -121,7 +121,7 @@ public:
 	XMLWriter_Element(XMLWriter_File& file, const char* name);
 	~XMLWriter_Element();
 
-	template <typename T> void Text(T text);
+	template <typename constCharPtr> void Text(constCharPtr text);
 	template <typename T> void Attribute(const char* name, T value) { m_File->ElementAttribute(name, value, false); }
 	template <typename T> void Setting(const char* name, T value) { m_File->ElementAttribute(name, value, true); }
 	void Close(int type);

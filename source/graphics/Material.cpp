@@ -17,7 +17,7 @@ static SMaterialColor IdentityEmissive(0.0f, 0.0f, 0.0f, 1.0f);
 
 static SMaterialColor BrokenColor(0.3f, 0.3f, 0.3f, 1.0f);
 
-bool SMaterialColor::operator ==(const SMaterialColor color)
+bool SMaterialColor::operator==(const SMaterialColor& color)
 {
 	return (
 		r == color.r &&
@@ -40,7 +40,7 @@ CMaterial::CMaterial()
 	ComputeHash();
 }
 
-CMaterial::CMaterial(const CMaterial &material)
+CMaterial::CMaterial(const CMaterial& material)
 {
 	(*this) = material;
 }
@@ -49,7 +49,7 @@ CMaterial::~CMaterial()
 {
 }
 
-void CMaterial::operator =(const CMaterial &material)
+void CMaterial::operator=(const CMaterial& material)
 {
 	m_Diffuse = material.m_Diffuse;
 	m_Ambient = material.m_Ambient;
@@ -63,7 +63,7 @@ void CMaterial::operator =(const CMaterial &material)
 	ComputeHash();
 }
 
-bool CMaterial::operator ==(const CMaterial &material)
+bool CMaterial::operator==(const CMaterial& material)
 {
 	return(
 		m_Texture == m_Texture &&
@@ -141,13 +141,13 @@ void CMaterial::SetPlayerColor(size_t id)
 		m_PlayerID = id;
 }
 
-void CMaterial::SetPlayerColor(CColor &colour)
+void CMaterial::SetPlayerColor(CColor& colour)
 {
 	m_TextureColor = SMaterialColor(colour.r, colour.g, colour.b, colour.a);
 }
 
 
-void CMaterial::SetTexture(const CStr&  texture)
+void CMaterial::SetTexture(const CStr& texture)
 {
     m_Texture = texture;
     ComputeHash();
@@ -165,25 +165,25 @@ void CMaterial::SetFragmentProgram(const CStr& prog)
     ComputeHash();
 }
 
-void CMaterial::SetDiffuse(const SMaterialColor &color)
+void CMaterial::SetDiffuse(const SMaterialColor& color)
 {
 	m_Diffuse = color;
     ComputeHash();
 }
 
-void CMaterial::SetAmbient(const SMaterialColor &color)
+void CMaterial::SetAmbient(const SMaterialColor& color)
 {
 	m_Ambient = color;
     ComputeHash();
 }
 
-void CMaterial::SetSpecular(const SMaterialColor &color)
+void CMaterial::SetSpecular(const SMaterialColor& color)
 {
 	m_Specular = color;
     ComputeHash();
 }
 
-void CMaterial::SetEmissive(const SMaterialColor &color)
+void CMaterial::SetEmissive(const SMaterialColor& color)
 {
 	m_Emissive = color;
     ComputeHash();

@@ -47,7 +47,7 @@ void CSprite::Render()
 	glDisable(GL_CULL_FACE);
 
 	if ( m_texture && m_texture->GetHandle() != 0 )
-		ogl_tex_bind(m_texture->GetHandle());
+		(void)ogl_tex_bind(m_texture->GetHandle());
 
 	glColor4fv(m_colour);
 

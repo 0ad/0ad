@@ -82,9 +82,9 @@ ActorViewer::ActorViewer()
 	if (tex)
 	{
 		CPatch* patch = m.Terrain.GetPatch(0, 0);
-		for (int i = 0; i < PATCH_SIZE; ++i)
+		for (ssize_t i = 0; i < PATCH_SIZE; ++i)
 		{
-			for (int j = 0; j < PATCH_SIZE; ++j)
+			for (ssize_t j = 0; j < PATCH_SIZE; ++j)
 			{
 				CMiniPatch& mp = patch->m_MiniPatches[i][j];
 				mp.Tex1 = tex->GetHandle();

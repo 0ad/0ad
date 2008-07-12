@@ -125,7 +125,10 @@ public:
 		// we deliberately pass invalid XML data) because the VFS caching
 		// logic warns when asked to load such.
 		if(writeBuffer.Size())
-			g_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
+		{
+			LibError ret = g_VFS->CreateFile(pmdFilename, writeBuffer.Data(), writeBuffer.Size());
+			debug_assert(ret == INFO::OK);
+		}
 
 		return true;
 	}
@@ -215,7 +218,8 @@ VfsPath CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType ty
 
 	// realDaePath is "mods/whatever/art/meshes/whatever.dae"
 	Path realDaePath;
-	g_VFS->GetRealPath(dae, realDaePath);
+	LibError ret = g_VFS->GetRealPath(dae, realDaePath);
+	debug_assert(ret == INFO::OK);
 
 	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
 	VfsPath cachedPmdVfsPath = VfsPath("cache/") / realDaePath.string();

@@ -170,8 +170,8 @@ int CMapReader::UnpackTerrain()
 	}
 
 	// unpack tile data [3ms]
-	size_t tilesPerSide = m_MapSize*PATCH_SIZE;
-	m_Tiles.resize(SQR(tilesPerSide));
+	ssize_t tilesPerSide = m_MapSize*PATCH_SIZE;
+	m_Tiles.resize(size_t(SQR(tilesPerSide)));
 	unpacker.UnpackRaw(&m_Tiles[0], sizeof(STileDesc)*m_Tiles.size());
 
 	// reset generator state.

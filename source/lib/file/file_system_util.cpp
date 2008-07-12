@@ -17,7 +17,7 @@
 #include "lib/path_util.h"
 #include "lib/regex.h"
 
-LibError fs_GetPathnames(PIVFS fs, const VfsPath& path, const char* filter, VfsPaths& pathnames)
+LibError fs_GetPathnames(const PIVFS& fs, const VfsPath& path, const char* filter, VfsPaths& pathnames)
 {
 	std::vector<FileInfo> files;
 	RETURN_ERR(fs->GetDirectoryEntries(path, &files, 0));
@@ -63,7 +63,7 @@ void fs_SortDirectories(DirectoryNames& directories)
 }
 
 
-LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern, int flags)
+LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern, int flags)
 {
 	debug_assert(vfs_path_IsDirectory(path));
 
@@ -102,7 +102,7 @@ LibError fs_ForEachFile(PIVFS fs, const VfsPath& path, FileCallback cb, uintptr_
 }
 
 
-void fs_NextNumberedFilename(PIVFS fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname)
+void fs_NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname)
 {
 	// (first call only:) scan directory and set nextNumber according to
 	// highest matching filename found. this avoids filling "holes" in

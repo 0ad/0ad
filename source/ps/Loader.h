@@ -84,7 +84,7 @@ registering member functions, which would otherwise be messy.
 // this routine is provided so we can prevent 2 simultaneous load operations,
 // which is bogus. that can happen by clicking the load button quickly,
 // or issuing via console while already loading.
-extern LibError LDR_BeginRegistering();
+extern void LDR_BeginRegistering();
 
 
 // callback function of a task; performs the actual work.
@@ -109,19 +109,19 @@ typedef int (*LoadFunc)(void* param, double time_left);
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
-extern LibError LDR_Register(LoadFunc func, void* param, const wchar_t* description,
+extern void LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 	int estimated_duration_ms);
 
 
 // call when finished registering tasks; subsequent calls to
 // LDR_ProgressiveLoad will then work off the queued entries.
-extern LibError LDR_EndRegistering();
+extern void LDR_EndRegistering();
 
 
 // immediately cancel this load; no further tasks will be processed.
 // used to abort loading upon user request or failure.
 // note: no special notification will be returned by LDR_ProgressiveLoad.
-extern LibError LDR_Cancel();
+extern void LDR_Cancel();
 
 
 // process as many of the queued tasks as possible within <time_budget> [s].

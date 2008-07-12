@@ -81,14 +81,12 @@ struct DurationAdder: public std::binary_function<double, const LoadRequest&, do
 // this routine is provided so we can prevent 2 simultaneous load operations,
 // which is bogus. that can happen by clicking the load button quickly,
 // or issuing via console while already loading.
-LibError LDR_BeginRegistering()
+void LDR_BeginRegistering()
 {
-	if(state != IDLE)
-		return ERR::LOGIC;
+	debug_assert(state == IDLE);
 
 	state = REGISTERING;
 	load_requests.clear();
-	return INFO::OK;
 }
 
 
@@ -100,56 +98,43 @@ LibError LDR_BeginRegistering()
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
-LibError LDR_Register(LoadFunc func, void* param, const wchar_t* description,
+void LDR_Register(LoadFunc func, void* param, const wchar_t* description,
 	int estimated_duration_ms)
 {
-	if(state != REGISTERING)
-	{
-		debug_warn("not called between LDR_(Begin|End)Register - why?!");
-			// warn here instead of relying on the caller to CHECK_ERR because
-			// there will be lots of call sites spread around.
-		return ERR::LOGIC;
-	}
+	debug_assert(state == REGISTERING);	// must be called between LDR_(Begin|End)Register
 
 	const LoadRequest lr(func, param, description, estimated_duration_ms);
 	load_requests.push_back(lr);
-	return INFO::OK;
 }
 
 
 // call when finished registering tasks; subsequent calls to
 // LDR_ProgressiveLoad will then work off the queued entries.
-LibError LDR_EndRegistering()
+void LDR_EndRegistering()
 {
-	if(state != REGISTERING)
-		return ERR::LOGIC;
-
-	if(load_requests.empty())
-		debug_warn("no LoadRequests queued");
+	debug_assert(state == REGISTERING);
+	debug_assert(!load_requests.empty());
 
 	state = FIRST_LOAD;
 	estimated_duration_tally = 0.0;
 	task_elapsed_time = 0.0;
 	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0, DurationAdder());
-	return INFO::OK;
 }
 
 
 // immediately cancel this load; no further tasks will be processed.
 // used to abort loading upon user request or failure.
 // note: no special notification will be returned by LDR_ProgressiveLoad.
-LibError LDR_Cancel()
+void LDR_Cancel()
 {
 	// note: calling during registering doesn't make sense - that
 	// should be an atomic sequence of begin, register [..], end.
-	if(state != LOADING)
-		return ERR::LOGIC;
+	debug_assert(state == LOADING);
 
-	state = IDLE;
 	// the queue doesn't need to be emptied now; that'll happen during the
 	// next LDR_StartRegistering. for now, it is sufficient to set the
 	// state, so that LDR_ProgressiveLoad is a no-op.
-	return INFO::OK;
+	state = IDLE;
 }
 
 

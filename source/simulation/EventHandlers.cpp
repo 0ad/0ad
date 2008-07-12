@@ -108,7 +108,7 @@ CEventOrderTransition::CEventOrderTransition( int orderPrevious, int orderCurren
 	AddLocalProperty( L"target", &m_target );
 	AddLocalProperty( L"position", &m_worldPosition );
 }
-CEventNotification::CEventNotification( CEntityOrder order, int notifyType ) : CScriptEvent( L"notification", EVENT_NOTIFICATION, true )
+CEventNotification::CEventNotification( const CEntityOrder& order, int notifyType ) : CScriptEvent( L"notification", EVENT_NOTIFICATION, true )
 {
 	m_notifyType = notifyType;
 	m_target = order.m_target_entity;
@@ -124,7 +124,7 @@ CFormationEvent::CFormationEvent( int type ) : CScriptEvent( L"formationEvent", 
 	(int&) m_formationEvent = type;
 	AddLocalProperty( L"formationEvent", &m_formationEvent );
 }
-CIdleEvent::CIdleEvent( CEntityOrder order, int notifyType ) : CScriptEvent( L"idleEvent", EVENT_IDLE, false )
+CIdleEvent::CIdleEvent( const CEntityOrder& order, int notifyType ) : CScriptEvent( L"idleEvent", EVENT_IDLE, false )
 {
 	m_notifyType = notifyType;
 	m_orderType = order.m_type;

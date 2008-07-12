@@ -87,8 +87,8 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 	ssize_t mapsize=pTerrain->GetPatchesPerSide();
 	for (ssize_t j=0;j<mapsize;j++) {
 		for (ssize_t i=0;i<mapsize;i++) {
-			for (u32 m=0;m<(u32)PATCH_SIZE;m++) {
-				for (u32 k=0;k<(u32)PATCH_SIZE;k++) {
+			for (ssize_t m=0;m<PATCH_SIZE;m++) {
+				for (ssize_t k=0;k<PATCH_SIZE;k++) {
 					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
 					u16 index=u16(GetHandleIndex(mp.Tex1,handles));
 					if (index==0xFFFF) {
@@ -516,7 +516,7 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
 	VfsPaths pathnames;
-	fs_GetPathnames(g_VFS, "maps/scenarios", "*.pmp", pathnames);
+	(void)fs_GetPathnames(g_VFS, "maps/scenarios", "*.pmp", pathnames);
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
 		const char* pathname = pathnames[i].string().c_str();

@@ -143,7 +143,7 @@ protected:
 	 *
 	 * @param size						The new size for the buffer
 	 */
-	void ResizeBuffer( uint size );
+	void ResizeBuffer( size_t size );
 
 	// Allow application to handle new client connect
 	virtual bool SetupSession			( CNetSession* pSession );
@@ -168,7 +168,7 @@ private:
 	CNetHost& operator=( const CNetHost& );
 
 	u8*				m_Buffer;		// Serialize out messages buffer
-	uint		    m_BufferSize;	// Output buffer size
+	size_t		    m_BufferSize;	// Output buffer size
 	ENetHost*		m_Host;			// Represents this host
 	PeerSessionList	m_PeerSessions;	// Session list of connected peers
 	//pthread_t		m_WorkerID;		// Worker thread

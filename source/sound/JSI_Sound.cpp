@@ -26,12 +26,12 @@ JSI_Sound::JSI_Sound(const CStr& Filename)
 	if (m_Handle < 0)
 		throw std::exception(); // caught by JSI_Sound::Construct.
 
-	snd_set_pos(m_Handle, 0,0,0, true);
+	(void)snd_set_pos(m_Handle, 0,0,0, true);
 }
 
 JSI_Sound::~JSI_Sound()
 {
-	this->Free(0, 0, 0);
+	(void)this->Free(0, 0, 0);
 }
 
 
@@ -45,7 +45,7 @@ bool JSI_Sound::SetGain(JSContext* cx, uintN argc, jsval* argv)
 	if (! ToPrimitive<float>(cx, argv[0], gain))
 		return false;
 
-	snd_set_gain(m_Handle, gain);
+	(void)snd_set_gain(m_Handle, gain);
 	return true;
 }
 
@@ -59,7 +59,7 @@ bool JSI_Sound::SetPitch(JSContext* cx, uintN argc, jsval* argv)
 	if (! ToPrimitive<float>(cx, argv[0], pitch))
 		return false;
 
-	snd_set_pitch(m_Handle, pitch);
+	(void)snd_set_pitch(m_Handle, pitch);
 	return true;
 }
 
@@ -73,11 +73,11 @@ bool JSI_Sound::SetPosition(JSContext* cx, uintN argc, jsval* argv)
 	CVector3D pos;
 	// absolute world coords
 	if (ToPrimitive<CVector3D>(cx, argv[0], pos))
-		snd_set_pos(m_Handle, pos[0], pos[1], pos[2]);
+		(void)snd_set_pos(m_Handle, pos[0], pos[1], pos[2]);
 	// relative, 0 offset - right on top of the listener
 	// (we don't need displacement from the listener, e.g. always behind)
 	else
-		snd_set_pos(m_Handle, 0,0,0, true);
+		(void)snd_set_pos(m_Handle, 0,0,0, true);
 
 	return true;
 }
@@ -96,7 +96,7 @@ bool JSI_Sound::Fade(JSContext* cx, uintN argc, jsval* argv)
 		&& ToPrimitive<float>(cx, argv[2], length)))
 		return false;
 
-	snd_fade(m_Handle, initial_gain, final_gain, length, FT_S_CURVE);
+	(void)snd_fade(m_Handle, initial_gain, final_gain, length, FT_S_CURVE);
 
 	// HACK: snd_fade causes <m_Handle> to be automatically freed when a
 	// fade to 0 has completed. however, we're still holding on to a
@@ -116,7 +116,7 @@ bool JSI_Sound::Play(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(ar
 	if (! m_Handle)
 		return false;
 
-	snd_play(m_Handle);
+	(void)snd_play(m_Handle);
 	// We can't do anything else with this sound now, since it's impossible to
 	// know whether or not it's still valid (since it might have finished playing
 	// already). So set it to 0, so we don't try doing anything (like freeing it)
@@ -131,8 +131,8 @@ bool JSI_Sound::Loop(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(ar
 	if (! m_Handle)
 		return false;
 
-	snd_set_loop(m_Handle, true);
-	snd_play(m_Handle);
+	(void)snd_set_loop(m_Handle, true);
+	(void)snd_play(m_Handle);
 	return true;
 }
 
@@ -144,7 +144,7 @@ bool JSI_Sound::Free(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(ar
 	if (! m_Handle)
 		return false;
 
-	snd_free(m_Handle);	// resets it to 0
+	(void)snd_free(m_Handle);	// resets it to 0
 	return true;
 }
 

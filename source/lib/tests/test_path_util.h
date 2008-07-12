@@ -7,7 +7,7 @@
 #define TEST_APPEND(path1, path2, flags, correct_result) \
 	{ \
 		char dst[PATH_MAX] = {0}; \
-		TS_ASSERT_OK(path_append(dst, path1, path2, flags)); \
+		path_append(dst, path1, path2, flags); \
 		TS_ASSERT_STR_EQUALS(dst, correct_result); \
 	}
 

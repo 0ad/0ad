@@ -814,7 +814,7 @@ void CEntity::PopOrder()
 
 	m_orderQueue.pop_front();
 }
-void CEntity::PushOrder( CEntityOrder& order )
+void CEntity::PushOrder( const CEntityOrder& order )
 {
 	CEventPrepareOrder evt( order.m_target_entity, order.m_type, order.m_action, order.m_produce_name );
 	if( DispatchEvent(&evt) )
@@ -827,7 +827,7 @@ void CEntity::PushOrder( CEntityOrder& order )
 	}
 }
 
-void CEntity::DispatchNotification( CEntityOrder order, int type )
+void CEntity::DispatchNotification( const CEntityOrder& order, int type )
 {
 	CEventNotification evt( order, type );
 	DispatchEvent( &evt );
