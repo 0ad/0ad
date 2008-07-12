@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="182.513" y="100.23" z="51.1738"/>
+		<Position x="183.029" y="127.213" z="24.9544"/>
 		<Rotation angle="0.0098152"/>
 		<Declination angle="0.717203"/>
 	</Camera>
@@ -44,12 +44,6 @@
 			<Template>special_settlement</Template>
 			<Player>0</Player>
 			<Position x="727.885" y="19.9992" z="121.261"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="4">
-			<Template>special_settlement</Template>
-			<Player>5</Player>
-			<Position x="865.927" y="19.9992" z="378.022"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="5">
@@ -6139,25 +6133,25 @@
 		<Entity uid="6730">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="869.648" y="19.9992" z="363.083"/>
+			<Position x="885.963" y="19.9992" z="369.765"/>
 			<Orientation angle="3.13331"/>
 		</Entity>
 		<Entity uid="6731">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="872.825" y="19.9992" z="365.347"/>
+			<Position x="877.923" y="19.9992" z="357.338"/>
 			<Orientation angle="3.13122"/>
 		</Entity>
 		<Entity uid="6732">
 			<Template>rome_infantry_spearman_e</Template>
 			<Player>2</Player>
-			<Position x="866.502" y="19.9992" z="363.131"/>
+			<Position x="859.058" y="19.9992" z="359.993"/>
 			<Orientation angle="-3.0265"/>
 		</Entity>
 		<Entity uid="6734">
 			<Template>rome_infantry_spearman_a</Template>
 			<Player>2</Player>
-			<Position x="863.72" y="19.9992" z="360.886"/>
+			<Position x="853.085" y="19.9992" z="362.935"/>
 			<Orientation angle="3.03267"/>
 		</Entity>
 		<Entity uid="6735">
@@ -8090,6 +8084,12 @@
 			<Template>flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
 			<Position x="767.316" y="19.9992" z="464.029"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="12215">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="868.314" y="19.9992" z="379.091"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
