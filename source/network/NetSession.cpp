@@ -406,7 +406,10 @@ bool CNetHost::Poll( void )
 					NET_LOG4( "Message %s of size %u was received from %x", pNewMessage->ToString().c_str(), pNewMessage->GetSerializedLength(), event.peer->data );
 
 					// Successfully handled?
-					if ( !HandleMessageReceive( pNewMessage, it->pSession ) ) return false;
+					if ( !HandleMessageReceive( pNewMessage, it->pSession ) ) {
+						enet_packet_destroy( event.packet );
+						return false;
+					}
 
 					// Done using the packet
 					enet_packet_destroy( event.packet );
@@ -506,14 +509,8 @@ bool CNetHost::SendMessage(
 	}
 	else
 	{
-		NET_LOG4( "Message %s of size %u was sent to %x", pMessage->ToString().c_str(), pMessage->GetSerializedLength(), pSession->m_Peer->data );
-
-		CStr8 str = pMessage->ToString();
-		std::string::size_type loc = str.find( "CEndCommandBatchMessage" );
-		if( loc != std::string::npos ) 
-		{
-			int x = 0;
-		}
+		NET_LOG4( "Message %s of size %u was sent to %x", 
+			pMessage->ToString().c_str(), pMessage->GetSerializedLength(), pSession->m_Peer->data );
 	}
 
 	enet_host_flush( m_Host );

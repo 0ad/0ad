@@ -118,23 +118,6 @@ public:
 	// virtual CStr GetString( void ) const;
 	// operator CStr() const { return GetString(); }
 
-	/**
-	 * Makes a copy of the message
-	 *
-	 * @return							A copy of the message
-	 */
-	virtual CNetMessage* Clone( void ) const;
-	// virtual CNetMessage* Copy( void ) const;
-
-protected:
-
-	/**
-	 * Copies the content of this message into the message specified parameter
-	 *
-	 * @param							Message destination
-	 */
-	virtual void Copy( CNetMessage* pMessage ) const;
-
 private:
 
 	// Not implemented

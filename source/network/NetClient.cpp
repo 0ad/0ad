@@ -477,7 +477,7 @@ bool CNetClient::OnInGame( void *pContext, CFsmEvent* pEvent )
 	CNetMessage* pMessage = ( CNetMessage* )pEvent->GetParamRef();
 	if ( pMessage )
 	{
-		if ( pEvent->GetType() >= NMT_COMMAND_FIRST && pEvent->GetType() < NMT_COMMAND_LAST )
+		if ( pMessage->GetType() >= NMT_COMMAND_FIRST && pMessage->GetType() < NMT_COMMAND_LAST )
 		{
 			pClient->QueueIncomingMessage( pMessage );
 

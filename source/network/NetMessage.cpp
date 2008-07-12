@@ -201,35 +201,6 @@ CStr CNetMessage::ToString( void ) const
 }
 
 //-----------------------------------------------------------------------------
-// Name: Clone()
-// Desc: Makes a copy of the message and return it to caller
-//-----------------------------------------------------------------------------
-CNetMessage* CNetMessage::Clone( void ) const
-{
-	// Create new message
-	CNetMessage* pCloneMessage =  new CNetMessage;
-	if ( !pCloneMessage ) return NULL;
-
-	// Copy this message content into clone message
-	Copy( pCloneMessage );
-
-	return pCloneMessage;
-}
-
-//-----------------------------------------------------------------------------
-// Name: Copy()
-// Desc: Copies the content of this message into the message parameter
-//-----------------------------------------------------------------------------
-void CNetMessage::Copy( CNetMessage* pMessage ) const
-{
-	// Validate parameter
-	if ( !pMessage ) return;
-
-	// Copy header information
-	pMessage->m_Type = m_Type;
-}
-
-//-----------------------------------------------------------------------------
 // Name: ScriptingInit()
 // Desc:
 //-----------------------------------------------------------------------------
@@ -984,6 +955,54 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 
 	case NMT_END_COMMAND_BATCH:
 		pNewMessage = new CEndCommandBatchMessage;
+		break;
+	
+	case NMT_CHAT:
+		pNewMessage = new CChatMessage;
+		break;
+
+	case NMT_GOTO:
+		pNewMessage = new CGotoMessage;
+		break;
+
+	case NMT_PATROL:
+		pNewMessage = new CPatrolMessage;
+		break;
+
+	case NMT_ADD_WAYPOINT:
+		pNewMessage = new CAddWaypointMessage;
+		break;
+
+	case NMT_GENERIC:
+		pNewMessage = new CGenericMessage;
+		break;
+
+	case NMT_PRODUCE:
+		pNewMessage = new CProduceMessage;
+		break;
+
+	case NMT_PLACE_OBJECT:
+		pNewMessage = new CPlaceObjectMessage;
+		break;
+
+	case NMT_RUN:
+		pNewMessage = new CRunMessage;
+		break;
+
+	case NMT_NOTIFY_REQUEST:
+		pNewMessage = new CNotifyRequestMessage;
+		break;
+
+	case NMT_FORMATION_GOTO:
+		pNewMessage = new CFormationGotoMessage;
+		break;
+
+	case NMT_FORMATION_GENERIC:
+		pNewMessage = new CFormationGenericMessage;
+		break;
+
+	default:
+		LOG(CLogger::Error, LOG_CAT_NET, "CNetMessageFactory::CreateMessage(): Unknown message received" );
 		break;
 	}
 
