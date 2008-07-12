@@ -363,3 +363,16 @@ function snRefresh()
 }
 
 // ====================================================================
+
+
+function confirmLeave()
+{
+	if (isGameRunning()) 
+	{
+		endSession("return");
+	}
+	else
+	{
+		exit();
+	}
+}

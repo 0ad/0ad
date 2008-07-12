@@ -17,6 +17,18 @@
 		<action on="Press"><![CDATA[
 			guiToggle (this.name);
 		]]></action>
+		
+		<!-- EMPTY OBJECT TO END THE SESSION BUT WITH A CONFIRMATION BOX. (ESC key) -->
+		<object name="snLeave"
+		    hotkey="leave"
+		>
+		    <action on="Press"><![CDATA[
+		        btCaptions = new Array("Yes", "No!");
+                btCode = new Array("confirmLeave()", "");
+                messageBox (400, 200, "Do you really want to quit?", "Confirmation", 0, btCaptions, btCode);
+		    ]]></action>
+		</object>
+		
 
 		<!-- EMPTY OBJECT USED TO FLIP THE GUI TO VARIOUS ORIENTATIONS. -->
 		<object name="snFlip"
