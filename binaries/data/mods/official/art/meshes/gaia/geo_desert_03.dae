@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2008-07-01T01:22:30Z</created>
-    <modified>2008-07-01T01:22:30Z</modified>
+    <created>2008-07-04T22:58:26Z</created>
+    <modified>2008-07-04T22:58:26Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -82,10 +82,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="Box03-lib" name="Box03Mesh">
+    <geometry id="geo_desert_03-lib" name="geo_desert_03Mesh">
       <mesh>
-        <source id="Box03-lib-Position">
-          <float_array id="Box03-lib-Position-array" count="219">
+        <source id="geo_desert_03-lib-Position">
+          <float_array id="geo_desert_03-lib-Position-array" count="219">
 -6.621294 -6.357141 1.588167
 -3.497647 -7.749538 1.588167
 -1.905120 -6.858788 1.588167
@@ -161,15 +161,15 @@
 -4.276421 -1.747635 7.734561
 </float_array>
           <technique_common>
-            <accessor source="#Box03-lib-Position-array" count="73" stride="3">
+            <accessor source="#geo_desert_03-lib-Position-array" count="73" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Box03-lib-Normal0">
-          <float_array id="Box03-lib-Normal0-array" count="1152">
+        <source id="geo_desert_03-lib-Normal0">
+          <float_array id="geo_desert_03-lib-Normal0-array" count="1152">
 0.000000 0.000000 -1.000000
 0.005445 0.004399 -0.999976
 0.043105 0.009842 -0.999022
@@ -556,15 +556,15 @@
 -0.863688 -0.212488 0.457047
 </float_array>
           <technique_common>
-            <accessor source="#Box03-lib-Normal0-array" count="384" stride="3">
+            <accessor source="#geo_desert_03-lib-Normal0-array" count="384" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Box03-lib-UV0">
-          <float_array id="Box03-lib-UV0-array" count="326">
+        <source id="geo_desert_03-lib-UV0">
+          <float_array id="geo_desert_03-lib-UV0-array" count="326">
 0.094752 0.861914
 0.285290 0.946848
 0.834174 0.459662
@@ -730,19 +730,19 @@
 0.658480 1.025914
 </float_array>
           <technique_common>
-            <accessor source="#Box03-lib-UV0-array" count="163" stride="2">
+            <accessor source="#geo_desert_03-lib-UV0-array" count="163" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Box03-lib-Vertex">
-          <input semantic="POSITION" source="#Box03-lib-Position"/>
+        <vertices id="geo_desert_03-lib-Vertex">
+          <input semantic="POSITION" source="#geo_desert_03-lib-Position"/>
         </vertices>
         <polygons material="_07___Default" count="128">
-          <input semantic="VERTEX" offset="0" source="#Box03-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box03-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box03-lib-UV0"/>
+          <input semantic="VERTEX" offset="0" source="#geo_desert_03-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#geo_desert_03-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#geo_desert_03-lib-UV0"/>
           <p>0 0 0 5 1 114 6 2 115</p>
           <p>6 3 115 1 4 1 0 5 0</p>
           <p>1 6 1 6 7 115 7 8 121</p>
@@ -877,13 +877,13 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="Box03" name="Box03">
-        <translate sid="translate">-0.093674 -0.380054 10.301130</translate>
+      <node id="geo_desert_03" name="geo_desert_03">
+        <translate sid="translate">-0.093674 0.435146 10.301130</translate>
         <rotate sid="rotateZ">0 0 1 0.000009</rotate>
         <rotate sid="rotateY">0 1 0 -0.000009</rotate>
         <rotate sid="rotateX">1 0 0 180.000000</rotate>
         <scale sid="scale">0.599018 0.686768 1.353901</scale>
-        <instance_geometry url="#Box03-lib">
+        <instance_geometry url="#geo_desert_03-lib">
           <bind_material>
             <technique_common>
               <instance_material symbol="Map__8-Material" target="#Map__8-Material"/>

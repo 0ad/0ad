@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_special"
->
+<Entity	Parent="template_structure_special">
+
 	<Traits>
 	
 		<Id>
@@ -14,9 +13,14 @@
 			<History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.</History>
 		
 		</Id>
+		
+		<Footprint>
+			<Radius>24.0</Radius>
+			<Height>8.0</Height>
+		</Footprint>
 
 	</Traits>
 
-	<Actor>structures/hellenes/special_theatre.xml</Actor>
+<Actor>structures/hellenes/special_theatre.xml</Actor>
 
 </Entity>

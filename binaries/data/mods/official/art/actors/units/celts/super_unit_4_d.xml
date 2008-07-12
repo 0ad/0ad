@@ -16,46 +16,41 @@
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
       </animations>
-      <mesh>skeletal/m_pants_celt.dae</mesh>
       <props>
-        <prop actor="props/units/heads/head_lime.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/celt_helmet_a.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="Clothes-1">
-      <texture>skeletal/celt_isw_a_01.dds</texture>
+    <variant frequency="1" name="d-Tattoos-1">
+      <mesh>skeletal/m_tights.dae</mesh>
+      <texture>skeletal/celt_ijv_e_01.dds</texture>
     </variant>
-    <variant frequency="1" name="Clothes-2">
-      <texture>skeletal/celt_isw_a_02.dds</texture>
+    <variant frequency="1" name="d-Tattoos-2">
+      <mesh>skeletal/m_tights.dae</mesh>
+      <texture>skeletal/celt_ijv_e_02.dds</texture>
     </variant>
-    <variant frequency="1" name="Clothes-3">
-      <texture>skeletal/celt_isw_a_03.dds</texture>
+    <variant frequency="3" name="d-Tattoos-3">
+      <mesh>skeletal/m_tights.dae</mesh>
+      <texture>skeletal/kart_isw_a_01.dds</texture>
     </variant>
-    <variant frequency="1" name="Clothes-4">
-      <texture>skeletal/celt_isw_a_04.dds</texture>
+    <variant frequency="3" name="d-Tattoos-4">
+      <mesh>skeletal/m_tights.dae</mesh>
+      <texture>skeletal/kart_isw_a_02.dds</texture>
     </variant>
-    <variant frequency="1" name="Clothes-5">
-      <texture>skeletal/celt_isw_a_05.dds</texture>
+    <variant frequency="10" name="d-Trousers-1">
+      <mesh>skeletal/m_pants.dae</mesh>
+      <texture>skeletal/kart_isw_a_03.dds</texture>
     </variant>
-    <variant frequency="1" name="Clothes-6">
-      <texture>skeletal/celt_isw_a_06.dds</texture>
+    <variant frequency="10" name="d-Trousers-2">
+      <mesh>skeletal/m_pants.dae</mesh>
+      <texture>skeletal/kart_isw_a_04.dds</texture>
     </variant>
-    <variant frequency="1" name="Clothes-7">
-      <texture>skeletal/celt_isw_a_07.dds</texture>
-    </variant>
-    <variant frequency="3" name="Clothes-8">
-      <texture>skeletal/celt_isw_a_08.dds</texture>
-    </variant>
-    <variant frequency="1" name="Clothes-9">
-      <texture>skeletal/celt_isw_a_09.dds</texture>
-    </variant>
-    <variant frequency="1" name="Clothes-10">
-      <texture>skeletal/celt_isw_a_10.dds</texture>
-    </variant>
-    <variant frequency="1" name="Clothes-11">
-      <texture>skeletal/celt_isw_a_11.dds</texture>
+    <variant frequency="20" name="d-Trousers-3">
+      <mesh>skeletal/m_pants.dae</mesh>
+      <texture>skeletal/kart_isw_a_05.dds</texture>
     </variant>
   </group>
 
