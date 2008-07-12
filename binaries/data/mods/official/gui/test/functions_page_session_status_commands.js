@@ -463,13 +463,15 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 									Crd[getCrd (listObject.name, true)].entity = new Object(itemName);
 
 									// Set tooltip.
-									listObject.tooltip = getEntityTemplate(itemName).traits.id.civ + " " + getEntityTemplate(itemName).traits.id.generic;
+									var template = getEntityTemplate(itemName);
+									if (!template) break;
+									listObject.tooltip = template.traits.id.civ + " " + template.traits.id.generic;
 									
 									// Set portrait.
 									setPortrait (listObject.name, 
-										getEntityTemplate(itemName).traits.id.icon, 
+										template.traits.id.icon, 
 										"Button" + toTitleCase(selection[0].traits.id.civ_code), 
-										getEntityTemplate(itemName).traits.id.icon_cell);
+										template.traits.id.icon_cell);
 								break;
 							}
 								
