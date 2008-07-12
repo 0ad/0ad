@@ -858,7 +858,10 @@ function performRepair( evt )
 function damage( dmg, inflictor )
 {	
 	var arm = this.traits.armour;
-	if(!arm) return;		// corpses have no armour, everything else should
+	if( !arm ) return;		// corpses have no armour, everything else should
+
+	// Use traits.health.max = 0 to signify immortal things like settlements
+	if( this.traits.health.max == 0 ) return;
 	
 	this.lastCombatTime = getGameTime();
 	
@@ -944,10 +947,13 @@ function damage( dmg, inflictor )
 		}
 
 		// Notify player.
-		if ( inflictor )
-			console.write( this.traits.id.generic + " got the point of " + inflictor.traits.id.generic + "'s weapon." );
-		else
-			console.write( this.traits.id.generic + " died in mysterious circumstances." );
+		if ( inflictor ) {
+			console.write( "P" + this.player.id + "'s " + this.traits.id.generic +
+			               " got the point of " + inflictor.traits.id.generic + "'s weapon." );
+		} else {
+			console.write( "P" + this.player.id + "'s " + this.traits.id.generic + 
+			               " died in mysterious circumstances." );
+		}
 
 		// Make him cry out in pain.
 		if (this.traits.audio && this.traits.audio.path)
@@ -1052,7 +1058,7 @@ function entityEventNotification( evt )
 
 function getAttackAction( target )
 {
-	if (!this.actions.attack)
+	if ( !this.actions.attack || target.traits.health.max == 0 )
 		return ACTION_NONE;
 	var attack = this.actions.attack;
 	if ( attack.melee )
