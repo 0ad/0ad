@@ -241,9 +241,12 @@
 			style="pgButton"
 			type="button"
 			size="21.1914062% 3.125% 48.0664062% 31.5104166%"
-			tooltip="Click this logo to roll credits."
+			tooltip=""
 		>
 			<action on="Press"><![CDATA[
+			  // This used to roll credits, but that was annoying when you clicked it by
+				// mistake because there was no way to get out of credits. Do nothing for now.
+				/*
 				// Get credits text.
 				var creditsArray  = readFileLines("gui/text/credits.txt");
 
@@ -266,6 +269,7 @@
 
 				// Open the credits screen.
 				openMainMenuSubWindow ("pgCredits");
+				*/
 			]]></action>
 		</object>
 
