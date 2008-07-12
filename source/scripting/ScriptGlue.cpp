@@ -1370,6 +1370,26 @@ JSBool RevealMap( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsv
 	return( JS_TRUE );
 }
 
+/**
+ * isGameRunning
+ * @return bool
+ */
+JSBool isGameRunning( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
+{
+	JSU_REQUIRE_NO_PARAMS();
+	
+	if (g_Game && g_Game->IsGameStarted())
+	{
+		*rval = JSVAL_TRUE;
+	}
+	else
+	{
+		*rval = JSVAL_FALSE;
+	}
+	
+	return JS_TRUE;
+}
+
 //-----------------------------------------------------------------------------
 // function table
 //-----------------------------------------------------------------------------
@@ -1493,6 +1513,7 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("getCursorName", GetCursorName, 0)
 	JS_FUNC("getFPS", GetFps, 0)
 	JS_FUNC("isOrderQueued", isOrderQueued, 1)
+	JS_FUNC("isGameRunning", isGameRunning, 0)
 
 	// Miscellany
 	JS_FUNC("v3dist", ComputeDistanceBetweenTwoPoints, 2)
