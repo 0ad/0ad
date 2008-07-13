@@ -827,10 +827,19 @@ void CEntity::PushOrder( const CEntityOrder& order )
 	CEventPrepareOrder evt( order.m_target_entity, order.m_type, order.m_action, order.m_produce_name );
 	if( DispatchEvent(&evt) )
 	{
-		m_orderQueue.push_back( order );
-		if(evt.m_notifyType != CEntityListener::NOTIFY_NONE)
+		if (order.m_type == CEntityOrder::ORDER_SET_RALLY_POINT)
 		{
-			CheckListeners( evt.m_notifyType, evt.m_notifySource );
+			// It doesn't make sense to queue this type of order; just set the rally point
+			entf_set(ENTF_HAS_RALLY_POINT);
+			m_rallyPoint = order.m_target_location;
+		}
+		else
+		{
+			m_orderQueue.push_back( order );
+			if(evt.m_notifyType != CEntityListener::NOTIFY_NONE)
+			{
+				CheckListeners( evt.m_notifyType, evt.m_notifySource );
+			}
 		}
 	}
 }

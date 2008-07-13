@@ -15,6 +15,7 @@
 #include "renderer/WaterManager.h"
 #include "scripting/ScriptableComplex.inl"
 #include "ps/scripting/JSCollection.h"
+#include "network/NetMessage.h"
 
 #include "Aura.h"
 #include "Collision.h"
@@ -82,7 +83,7 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval_t, &CEntity::FindSector>( "findSector", 4);
 	AddMethod<jsval_t, &CEntity::GetHeight>( "getHeight", 0 );
 	AddMethod<jsval_t, &CEntity::HasRallyPoint>( "hasRallyPoint", 0 );
-	AddMethod<jsval_t, &CEntity::SetRallyPoint>( "setRallyPoint", 0 );
+	AddMethod<jsval_t, &CEntity::SetRallyPointAtCursor>( "setRallyPointAtCursor", 0 );
 	AddMethod<jsval_t, &CEntity::GetRallyPoint>( "getRallyPoint", 0 );
 	AddMethod<jsval_t, &CEntity::OnDamaged>( "onDamaged", 1 );
 	AddMethod<jsval_t, &CEntity::GetVisibleEntities>( "getVisibleEntities", 0 );
@@ -821,12 +822,19 @@ jsval_t CEntity::HasRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval
 }
 jsval_t CEntity::GetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	return ToJSVal( m_rallyPoint );
+	CVector3D v3d( m_rallyPoint.x, m_rallyPoint.y, 0 );
+	return ToJSVal( v3d );
 }
-jsval_t CEntity::SetRallyPoint( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+jsval_t CEntity::SetRallyPointAtCursor( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	entf_set(ENTF_HAS_RALLY_POINT);
-	m_rallyPoint = g_Game->GetView()->GetCamera()->GetWorldCoordinates(true);
+	// Queue an order over the network to set a rally point
+	CSetRallyPointMessage* msg = new CSetRallyPointMessage;
+	msg->m_Entities = CEntityList(me);
+	msg->m_IsQueued = true;
+	CVector3D point = g_Game->GetView()->GetCamera()->GetWorldCoordinates(true);
+	msg->m_TargetX = (int) point.X;
+	msg->m_TargetY = (int) point.Z;
+	g_Game->GetSimulation()->QueueLocalCommand(msg);
 	return JS_TRUE;
 }
 

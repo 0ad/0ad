@@ -47,7 +47,7 @@ function worldClickHandler(event)
 	if ( getCursorName() == "cursor-rally" )
 	{	
 		for ( var i=0; i<selection.length; i++ )
-			selection[i].setRallyPoint();	
+			selection[i].setRallyPointAtCursor();	
 		setCursor("arrow-default");
 		return;
 	}

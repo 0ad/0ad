@@ -189,7 +189,7 @@ public:
 	
 	CVector2D m_orientation_unclamped;
 
-	CVector3D m_rallyPoint;	// valid iff ENT_HAS_RALLY_POINT
+	CVector2D m_rallyPoint;	// valid iff ENT_HAS_RALLY_POINT
 
 	// If the actor's current transform data is valid (i.e. the entity hasn't
 	// moved since it was last calculated, and the terrain hasn't been changed).
@@ -414,7 +414,7 @@ public:
 
 	jsval_t HasRallyPoint( JSContext* cx, uintN argc, jsval* argv );
 	jsval_t GetRallyPoint( JSContext* cx, uintN argc, jsval* argv );
-	jsval_t SetRallyPoint( JSContext* cx, uintN argc, jsval* argv );
+	jsval_t SetRallyPointAtCursor( JSContext* cx, uintN argc, jsval* argv );
 
 	jsval_t AddAura( JSContext* cx, uintN argc, jsval* argv );
 	jsval_t RemoveAura( JSContext* cx, uintN argc, jsval* argv );

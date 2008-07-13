@@ -144,6 +144,7 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PRODUCE, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PLACE_OBJECT, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_RUN, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SET_RALLY_POINT, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GOTO, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GENERIC, NSS_INGAME, (void*)&OnInGame, pContext );

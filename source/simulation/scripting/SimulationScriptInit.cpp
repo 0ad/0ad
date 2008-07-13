@@ -53,6 +53,7 @@ void SimulationScriptInit()
 	g_ScriptingHost.DefineConstant( "ORDER_PATROL", CEntityOrder::ORDER_PATROL );
 	g_ScriptingHost.DefineConstant( "ORDER_GENERIC", CEntityOrder::ORDER_GENERIC );
 	g_ScriptingHost.DefineConstant( "ORDER_PRODUCE", CEntityOrder::ORDER_PRODUCE );
+	g_ScriptingHost.DefineConstant( "ORDER_SET_RALLY_POINT", CEntityOrder::ORDER_SET_RALLY_POINT );
 	g_ScriptingHost.DefineConstant( "ORDER_START_CONSTRUCTION", CEntityOrder::ORDER_START_CONSTRUCTION );
 }
 

@@ -565,8 +565,8 @@ void CEntity::RenderRallyPoint()
 	if( !m_visible )
 		return;
 
-	if ( !entf_get(ENTF_HAS_RALLY_POINT) || g_Selection.m_unitUITextures.find(m_base->m_rallyName) == 
-							g_Selection.m_unitUITextures.end() )
+	if ( !entf_get(ENTF_HAS_RALLY_POINT) ||
+		 g_Selection.m_unitUITextures.find(m_base->m_rallyName) == g_Selection.m_unitUITextures.end() )
 	{
 		return;
 	}
@@ -584,8 +584,10 @@ void CEntity::RenderRallyPoint()
 	CTexture tex;
 	tex.SetHandle( g_Selection.m_unitUITextures[m_base->m_rallyName] );
 	sprite.SetTexture(&tex);
-	CVector3D rally = m_rallyPoint;
-	rally.Y += m_base->m_rallyHeight/2.f + .1f;
+	// Place the sprite slightly above ground/water level.
+	float terrainHeight = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(m_rallyPoint);
+	float height = std::max(terrainHeight, g_Renderer.GetWaterManager()->m_WaterHeight) + 0.5f;
+	CVector3D rally(m_rallyPoint.x, height, m_rallyPoint.y);
 	sprite.SetTranslation(rally);
 	sprite.Render();
 }

@@ -213,6 +213,7 @@ void CNetMessage::ScriptingInit()
 	g_ScriptingHost.DefineConstant( "NMT_GENERIC", NMT_GENERIC );
 	g_ScriptingHost.DefineConstant( "NMT_PRODUCE", NMT_PRODUCE );
 	g_ScriptingHost.DefineConstant( "NMT_PLACE_OBJECT", NMT_PLACE_OBJECT );
+	g_ScriptingHost.DefineConstant( "NMT_SET_RALLY_POINT", NMT_SET_RALLY_POINT );
 	g_ScriptingHost.DefineConstant( "NMT_NOTIFY_REQUEST", NMT_NOTIFY_REQUEST );
 	g_ScriptingHost.DefineConstant( "NMT_FORMATION_GOTO", NMT_FORMATION_GOTO );
 	g_ScriptingHost.DefineConstant( "NMT_FORMATION_GENERIC", NMT_FORMATION_GENERIC );
@@ -368,6 +369,41 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 					return NULL;
 				}
 				
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					JS_ReportError( pContext, "Parameter type error!" );
+					return NULL;
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			return pMessage;
+		}
+
+	case NMT_SET_RALLY_POINT:
+		{
+			CSetRallyPointMessage* pMessage = new CSetRallyPointMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = isQueued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					JS_ReportError( pContext, "Too few parameters!" );
+					return NULL; 
+				}
+
 				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
 					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
 				{
@@ -722,6 +758,18 @@ CNetMessage* CNetMessage::CreatePositionMessage(
 			return pMessage;
 		}
 
+	case NMT_SET_RALLY_POINT:
+		{
+			CSetRallyPointMessage *pMessage = new CSetRallyPointMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_Entities = entities;
+			pMessage->m_TargetX = pos.x;
+			pMessage->m_TargetY = pos.y;
+
+			return pMessage;
+		}
+
 	case NMT_FORMATION_GOTO:
 		{
 			CFormationGotoMessage *pMessage = new CFormationGotoMessage;
@@ -758,6 +806,7 @@ CNetMessage* CNetMessage::CreateEntityIntMessage(
 			pMessage->m_Entities = entities;
 			pMessage->m_Target   = target;
 			pMessage->m_Action   = action;
+			pMessage->m_Run      = false;
 			
 			return pMessage;
 		}
@@ -909,6 +958,10 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 
 	case NMT_RUN:
 		pNewMessage = new CRunMessage;
+		break;
+
+	case NMT_SET_RALLY_POINT:
+		pNewMessage = new CSetRallyPointMessage;
 		break;
 
 	case NMT_NOTIFY_REQUEST:
@@ -1087,6 +1140,46 @@ CNetMessage* CNetMessageFactory::CreateMessage(
 	case NMT_ADD_WAYPOINT:
 		{
 			CAddWaypointMessage *pMessage = new CAddWaypointMessage;
+			if ( !pMessage ) return NULL;
+
+			pMessage->m_IsQueued = queued;
+			pMessage->m_Entities = entities;
+
+			try
+			{
+				if ( idx + 2 > argc )
+				{
+					STMT(
+							JS_ReportError( pContext, "Too few parameters!" );
+							return NULL;
+						);
+				}
+				
+				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
+					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
+				{
+					STMT(
+							JS_ReportError( pContext, "Parameter type error!" );
+							return NULL;
+						);
+				}
+
+				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
+				pMessage->m_TargetY = ToPrimitive< int >( argv[ idx++ ] );
+			}
+			catch ( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( pContext, "Invalid location" );
+				return NULL;
+			}
+
+			pNewMessage = pMessage;
+		}
+		break;
+
+	case NMT_SET_RALLY_POINT:
+		{
+			CSetRallyPointMessage *pMessage = new CSetRallyPointMessage;
 			if ( !pMessage ) return NULL;
 
 			pMessage->m_IsQueued = queued;

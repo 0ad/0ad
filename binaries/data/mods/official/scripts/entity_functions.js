@@ -1387,6 +1387,9 @@ function entityEventPrepareOrder( evt )
 		case ORDER_START_CONSTRUCTION:
 			evt.notifyType = NOTIFY_NONE;
 			break;
+
+		case ORDER_SET_RALLY_POINT:
+			break;
 			
 		default:
 			console.write("Unknown order type " + evt.orderType + "; ignoring.");
@@ -1587,7 +1590,7 @@ function entityFinishProduction( evt )
 			{
 				//console.write( "Created: ", template.tag );
 				var rally = this.getRallyPoint();
-				created.order( ORDER_GOTO, rally.x, rally.z );	
+				created.order( ORDER_GOTO, rally.x, rally.y );	
 			}
 		}		
 	}

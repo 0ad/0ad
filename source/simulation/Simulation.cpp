@@ -371,10 +371,12 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 		case NMT_PATROL:
 			ENTITY_POSITION(CPatrolMessage, ORDER_PATROL);
 			break;
+		case NMT_SET_RALLY_POINT:
+			ENTITY_POSITION(CSetRallyPointMessage, ORDER_SET_RALLY_POINT);
+			break;
 		case NMT_FORMATION_GOTO:
 			ENTITY_POSITION_FORM(CFormationGotoMessage, ORDER_GOTO);
 			break;
-
 		//TODO: make formation move to within range of target and then attack normally
 		case NMT_GENERIC:
 			ENTITY_ENTITY_INT_BOOL(CGenericMessage, ORDER_GENERIC);
