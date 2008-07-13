@@ -31,7 +31,7 @@ class CStr8;
 class CVector3D;
 
 const size_t MAX_HANDLES = 16384;
-cassert(MAX_HANDLES <= MAX_HANDLE+1);
+cassert(MAX_HANDLES < 0x10000);
 
 // collision patch size, in graphics units, not tiles (1 tile = 4 units)
 #define COLLISION_PATCH_SIZE 8

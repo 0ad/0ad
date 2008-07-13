@@ -19,12 +19,6 @@
 #define INCLUDED_ENTITYHANDLES
 
 #define INVALID_HANDLE 65535
-// The maximum numerical value of an entity handle sent over the network
-#define MAX_HANDLE 0x7fff
-// If (handle & PS_ENTITY_SENTINEL_BIT) is non-zero, this is a terminating
-// entity id. Reset the sentinel bit to get the original handle.
-#define HANDLE_SENTINEL_BIT 0x8000
-
 
 class CEntity;
 class CEntityManager;

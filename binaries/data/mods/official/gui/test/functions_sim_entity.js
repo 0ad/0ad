@@ -25,12 +25,17 @@ function worldClickHandler(event)
 	// Right button single- or double-clicks
 	if (event.button == SDL_BUTTON_RIGHT && event.clicks <= 2)
 	{
-		if (event.clicks == 1)
+		if (event.clicks == 1) {
 			cmd = event.order;
+		}
 		else if (event.clicks == 2)
 		{
-			//console.write("Issuing secondary order");
-			cmd = event.secondaryOrder;
+			// Use the secondary order, or, if the entites didn't vote for any order
+			// (i.e. we are using the default of NMT_GOTO), use the NMT_RUN
+		  if (event.order == NMT_GOTO )
+				cmd = NMT_RUN;
+			else
+				cmd = event.secondaryOrder;
 		}
 	}
 	else
@@ -53,9 +58,7 @@ function worldClickHandler(event)
 	case NMT_RUN:
 	case NMT_PATROL:
 		if (event.queued)
-		{
 			cmd = NMT_ADD_WAYPOINT;
-		}
 		args[0]=event.x;
 		args[1]=event.y;
 		break;
@@ -106,11 +109,6 @@ function worldClickHandler(event)
 		return;
 	}
 	
-	if (event.clicks == 2)
-		triggerSelectionRun();
-	else
-		setSelectionRun();
-
 	issueCommand (selection, isOrderQueued(), cmd, args[0], args[1]);
 }
 
@@ -184,37 +182,6 @@ function makeUnit (x, y, z, MakeUnitName)
 	var dudeSpawnPoint = new Vector3D(x, y, z);
 	new Entity(getEntityTemplate(MakeUnitName), dudeSpawnPoint, 1.0);
 	// writeConsole(MakeUnitName + " created at " + DudeSpawnPoint);
-}
-
-// ====================================================================
-
-function selected()
-{
-	// Returns how many units selected.
-
-	if( selection.length > 0 )
-			return( selection[0] );
-	return( null );
-}
-
-// ====================================================================
-
-function triggerSelectionRun()
-{
-	for ( i=0; i< selection.length; i++ )
-	{
-		 selection[i].triggerRun();
-	}
-}
-
-// ====================================================================
-
-function setSelectionRun()
-{
-	for ( i=0; i< selection.length; i++ )
-	{
-		 selection[i].setRun( false );
-	}
 }
 
 // ====================================================================

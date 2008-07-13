@@ -135,24 +135,26 @@ HEntity::operator CStr() const
 
 size_t CEntityList::GetSerializedLength() const
 {
-	return (size_t)(2*size());
+	return (size_t)(2*(size()+1));
 }
 
 u8 *CEntityList::Serialize(u8 *buffer) const
 {
-	for (size_t i=0;i<(size()-1);i++)
+	Serialize_int_2(buffer, size());
+	for (size_t i=0; i<size(); i++)
 		Serialize_int_2(buffer, at(i).m_handle);
-	Serialize_int_2(buffer, back().m_handle | HANDLE_SENTINEL_BIT);
 	return buffer;
 }
 
 const u8 *CEntityList::Deserialize(const u8* buffer, const u8* UNUSED(end))
 {
-	u16 n=0, handle;
-	while (!(n & HANDLE_SENTINEL_BIT))
+	const int MAX_SIZE = 500; // TODO: Don't allow selecting more than this many entities
+	u16 size, handle;
+	Deserialize_int_2(buffer, size);
+	debug_assert(size > 0 && size < MAX_SIZE && "Inalid size when deserializing CEntityList");
+	for (int i=0; i<size; i++)
 	{
-		Deserialize_int_2(buffer, n);
-		handle = n & ~HANDLE_SENTINEL_BIT;
+		Deserialize_int_2(buffer, handle);
 		// We have to validate the data, or the HEntity constructor will debug_assert
 		// on us.
 		// FIXME We should also check that the entity actually exists
