@@ -290,8 +290,6 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrde
 				JS_ReportError( cx, "Invalid location" );
 				return( false );
 			}
-			if ( orderCode == CEntityOrder::ORDER_RUN )
-				entf_set(ENTF_TRIGGER_RUN);
 			//It's not a notification order
 			if ( argc == 3 )
 			{
@@ -303,7 +301,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrde
 			}
 			break;
 		case CEntityOrder::ORDER_GENERIC:
-			JSU_REQUIRE_PARAMS_CPP(3);
+			JSU_REQUIRE_PARAMS_CPP(4);
 			target = ToNative<CEntity>( argv[1] );
 			if( !target )
 			{
@@ -317,11 +315,20 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrde
 			}
 			catch( PSERROR_Scripting_ConversionFailed )
 			{
-				JS_ReportError( cx, "Invalid generic order type" );
+				JS_ReportError( cx, "Invalid generic order type parameter - expected int" );
+				return( false );
+			}
+			try
+			{
+				newOrder.m_run = ToPrimitive<bool>( argv[3] );
+			}
+			catch( PSERROR_Scripting_ConversionFailed )
+			{
+				JS_ReportError( cx, "Invalid generic order run parameter - expected bool" );
 				return( false );
 			}
 			//It's not a notification order
-			if ( argc == 3 )
+			if ( argc == 4 )
 			{
 				if ( entf_get(ENTF_DESTROY_NOTIFIERS) )
 				{
@@ -402,8 +409,8 @@ jsval_t CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 		int edge = g_Game->GetSimulation()->RandInt( 4 );
 		int point;
 
-		double max_w = oabb->m_w + spawn_clearance + 1.0;
-		double max_d = oabb->m_d + spawn_clearance + 1.0;
+		double max_w = oabb->m_w + spawn_clearance + 2.0;
+		double max_d = oabb->m_d + spawn_clearance + 2.0;
 		int w_count = (int)( max_w * 2 );
 		int d_count = (int)( max_d * 2 );
 

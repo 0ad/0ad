@@ -982,7 +982,7 @@ function damage( dmg, inflictor )
 		this.requestNotification( inflictor, NOTIFY_ORDER_CHANGE, false, true );			
 		this.registerDamage( inflictor );
 		if( this.isIdle() )
-			this.order( ORDER_GENERIC, inflictor, this.getAttackAction( inflictor ) );
+			this.order( ORDER_GENERIC, inflictor, this.getAttackAction( inflictor ), false );
 	}*/
 	
 	this.onDamaged( inflictor );
@@ -1036,13 +1036,13 @@ function entityEventNotification( evt )
 			break;
 		case NOTIFY_ATTACK:
 		case NOTIFY_DAMAGE:
-			this.order( ORDER_GENERIC, evt.target, ACTION_ATTACK );
+			this.order( ORDER_GENERIC, evt.target, ACTION_ATTACK, false );
 			break;
 		case NOTIFY_HEAL:
-			this.order( ORDER_GENERIC, evt.target, ACTION_HEAL );
+			this.order( ORDER_GENERIC, evt.target, ACTION_HEAL, false );
 			break;
 		case NOTIFY_GATHER:
-			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER );
+			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER, false );
 			break;
 		case NOTIFY_IDLE:
 			//target is the unit that has become idle.  Eventually...do something here.
@@ -1099,7 +1099,7 @@ function entityEventTargetExhausted( evt )
 		// If the target was gatherable, try to gather it.
 		if( canGather(this, evt.target) )
 		{
-			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER );
+			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER, false );
 			return;
 		}
 		
@@ -1122,7 +1122,7 @@ function entityEventTargetExhausted( evt )
 		}
 		if( bestTarget != null )
 		{
-			this.order( ORDER_GENERIC, bestTarget, ACTION_BUILD );
+			this.order( ORDER_GENERIC, bestTarget, ACTION_BUILD, false );
 			return;
 		}
 		
@@ -1156,7 +1156,7 @@ function chooseGatherTarget( resourceSubType, targetList )
 	}
 	if( bestTarget != null )
 	{
-		this.order( ORDER_GENERIC, bestTarget, ACTION_GATHER );
+		this.order( ORDER_GENERIC, bestTarget, ACTION_GATHER, false );
 		return true;
 	}
 	return false;
@@ -1399,7 +1399,7 @@ function entityEventPrepareOrder( evt )
 
 function entityStartConstruction( evt )
 {
-	this.order( ORDER_GENERIC, evt.target, ACTION_BUILD );
+	this.order( ORDER_GENERIC, evt.target, ACTION_BUILD, false );
 }
 
 // ====================================================================
