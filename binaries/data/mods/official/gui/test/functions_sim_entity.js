@@ -109,7 +109,10 @@ function worldClickHandler(event)
 		return;
 	}
 	
-	issueCommand (selection, isOrderQueued(), cmd, args[0], args[1]);
+	if (cmd == NMT_GENERIC) // For NMT_GENERIC, add a third argument - whether to run
+		issueCommand (selection, isOrderQueued(), cmd, args[0], args[1], event.clicks > 1);
+	else
+		issueCommand (selection, isOrderQueued(), cmd, args[0], args[1]);
 }
 
 // ====================================================================

@@ -201,6 +201,7 @@ END_NMT_CLASS()
 DERIVE_NMT_CLASS_(Command, Generic, NMT_GENERIC)
 	NMT_FIELD(HEntity, m_Target)
 	NMT_FIELD_INT(m_Action, u32, 4)
+	NMT_FIELD_INT(m_Run, u32, 1)
 END_NMT_CLASS()
 
 DERIVE_NMT_CLASS_(Command, Produce, NMT_PRODUCE)

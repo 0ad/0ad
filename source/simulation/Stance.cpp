@@ -68,6 +68,7 @@ void CDefendStance::OnDamaged(CEntity *source)
 				CEntityOrder order( CEntityOrder::ORDER_GENERIC, CEntityOrder::SOURCE_UNIT_AI );
 				order.m_target_entity = source->me;
 				order.m_action = action;
+				order.m_run = false;
 				m_Entity->PushOrder( order );
 			}
 		}
@@ -141,6 +142,7 @@ void CStanceUtils::Attack(CEntity* entity, CEntity* target)
 		CEntityOrder order( CEntityOrder::ORDER_GENERIC, CEntityOrder::SOURCE_UNIT_AI );
 		order.m_target_entity = target->me;
 		order.m_action = action;
+		order.m_run = false;
 		entity->PushOrder( order );
 	}
 }

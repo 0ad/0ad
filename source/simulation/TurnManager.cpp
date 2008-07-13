@@ -79,7 +79,7 @@ void CTurnManager::SendMessage(CNetMessage *pMsg, size_t clientMask)
 {
 	for (size_t i=0;i<m_Clients.size();i++)
 	{
-		if (true || (clientMask & (1<<i)))
+		if (clientMask & (1<<i))
 		{
 			if (m_Clients[i].m_Pipe)
 				m_Clients[i].m_Pipe->Push(pMsg);

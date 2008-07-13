@@ -522,6 +522,10 @@ void CEntity::UpdateOrders( int timestep )
 				UpdateCollisionPatch();
 				return;
 			case CEntityOrder::ORDER_GENERIC:
+				// Choose to run if and only if order.m_run is set
+				entf_set_to(ENTF_TRIGGER_RUN, current->m_run);
+				if( !entf_get(ENTF_TRIGGER_RUN) )
+					entf_set_to(ENTF_SHOULD_RUN, false);
 				if( ProcessGeneric( current, timestep ) )
 					break;
 				UpdateCollisionPatch();
@@ -554,7 +558,7 @@ void CEntity::UpdateOrders( int timestep )
 				return;
 			case CEntityOrder::ORDER_GOTO:
 			case CEntityOrder::ORDER_RUN:
-				// Choose to run only if type == ORDER_RUN
+				// Choose to run if and only if type == ORDER_RUN
 				entf_set_to(ENTF_TRIGGER_RUN, current->m_type == CEntityOrder::ORDER_RUN);
 				if( !entf_get(ENTF_TRIGGER_RUN) )
 					entf_set_to(ENTF_SHOULD_RUN, false);

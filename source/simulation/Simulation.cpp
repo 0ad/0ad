@@ -306,6 +306,16 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 		order.m_action=msg->m_Action; \
 		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
+#define ENTITY_ENTITY_INT_BOOL(_msg, _order) \
+	do { \
+		_msg *msg=(_msg *)pMsg; \
+		isQueued = msg->m_IsQueued != 0; \
+		order.m_type=CEntityOrder::_order; \
+		order.m_target_entity=msg->m_Target; \
+		order.m_action=msg->m_Action; \
+		order.m_run=msg->m_Run != 0; \
+		QueueOrder(order, msg->m_Entities, isQueued); \
+	} while(0)
 #define ENTITY_INT_STRING(_msg, _order) \
 	do { \
 		_msg *msg=(_msg *)pMsg; \
@@ -367,7 +377,7 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 
 		//TODO: make formation move to within range of target and then attack normally
 		case NMT_GENERIC:
-			ENTITY_ENTITY_INT(CGenericMessage, ORDER_GENERIC);
+			ENTITY_ENTITY_INT_BOOL(CGenericMessage, ORDER_GENERIC);
 			break;
 		case NMT_FORMATION_GENERIC:
 			ENTITY_ENTITY_INT(CFormationGenericMessage, ORDER_GENERIC);

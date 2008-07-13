@@ -132,8 +132,8 @@ public:
 	CStrW m_produce_name;
 	int m_produce_type;
 
-
-	//SOrderData m_data[ORDER_MAX_DATA];
+	// NMT_Generic
+	bool m_run;
 
 	CEntityOrder(): m_type(ORDER_INVALID), m_source(SOURCE_PLAYER) {}
 

@@ -259,19 +259,15 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			{
 				if ( idx + 2 > argc )
 				{
-					STMT(
-							JS_ReportError( pContext, "Too few parameters!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Too few parameters!" );
+					return NULL;
 				}
 
 				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
 					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
 				{
-					STMT(
-							JS_ReportError( pContext, "Parameter type error!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Parameter type error!" );
+					return NULL;
 				}
 
 				pMessage->m_TargetX  = ToPrimitive< int >( argv[ idx++ ] );
@@ -298,19 +294,15 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			{
 				if ( idx + 2 > argc )
 				{
-					STMT(
-							JS_ReportError( pContext, "Too few parameters!" );
-							return NULL; 
-						);
+					JS_ReportError( pContext, "Too few parameters!" );
+					return NULL; 
 				}
 
 				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
 					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
 				{
-					STMT(
-							JS_ReportError( pContext, "Parameter type error!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Parameter type error!" );
+					return NULL;
 				}
 
 				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
@@ -337,19 +329,15 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			{
 				if ( idx + 2 > argc )
 				{
-					STMT(
-							JS_ReportError( pContext, "Too few parameters!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Too few parameters!" );
+					return NULL;
 				}
 
 				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
 					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
 				{
-					STMT(
-							JS_ReportError( pContext, "Parameter type error!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Parameter type error!" );
+					return NULL;
 				}
 
 				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
@@ -376,19 +364,15 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			{
 				if ( idx + 2 > argc )
 				{
-					STMT(
-							JS_ReportError( pContext, "Too few parameters!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Too few parameters!" );
+					return NULL;
 				}
 				
 				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
 					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
 				{
-					STMT(
-							JS_ReportError( pContext, "Parameter type error!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Parameter type error!" );
+					return NULL;
 				}
 
 				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
@@ -415,19 +399,15 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			{
 				if ( idx + 2 > argc )
 				{
-					STMT(
-							JS_ReportError( pContext, "Too few parameters!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Too few parameters!" );
+					return NULL;
 				}
 
 				if ( !JSVAL_IS_INT( argv[ idx ] ) ||
 					 !JSVAL_IS_INT( argv[ idx + 1 ] ) )
 				{
-					STMT(
-							JS_ReportError( pContext, "Parameter type error!" );
-							return NULL;
-						);
+					JS_ReportError( pContext, "Parameter type error!" );
+					return NULL;
 				}
 
 				pMessage->m_TargetX = ToPrimitive< int >( argv[ idx++ ] );
@@ -450,44 +430,42 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			pMessage->m_IsQueued = isQueued;
 			pMessage->m_Entities = entities;
 
-			STMT(
-					if ( idx + 2 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
+			if ( idx + 3 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
 
-					if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
+			if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
 
-					CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
-					if ( !pEntity )
-					{
-						STMT(
-								JS_ReportError( pContext, "Invalid entity parameter" );
-								return NULL;
-							);
-					}
+			CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+			if ( !pEntity )
+			{
+				JS_ReportError( pContext, "Invalid entity parameter" );
+				return NULL;
+			}
 
-					pMessage->m_Target = pEntity->me;
+			pMessage->m_Target = pEntity->me;
 
-					if ( !JSVAL_IS_INT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
-				
-					pMessage->m_Action = ToPrimitive< int >( argv[ idx++ ] )
-				);
+			if ( !JSVAL_IS_INT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
+		
+			pMessage->m_Action = ToPrimitive< int >( argv[ idx++ ] );
+
+			if ( !JSVAL_IS_BOOLEAN( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
+		
+			pMessage->m_Run = ToPrimitive< bool >( argv[ idx++ ] );
 
 			return pMessage;
 		}
@@ -500,34 +478,28 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			pMessage->m_IsQueued = isQueued;
 			pMessage->m_Entities = entities;
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
+			if ( idx + 1 > argc )
+			{
 
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
-					
-					if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
-					
-					CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
-					if ( !pEntity )
-					{
-						JS_ReportError( pContext, "Invalid entity parameter" );
-						return NULL;
-					}
-					
-					pMessage->m_Target = pEntity->me;
-				);
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
 			
+			if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
+			
+			CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+			if ( !pEntity )
+			{
+				JS_ReportError( pContext, "Invalid entity parameter" );
+				return NULL;
+			}
+			
+			pMessage->m_Target = pEntity->me;
+
 			return pMessage;
 		}
 
@@ -539,34 +511,26 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			pMessage->m_IsQueued = isQueued;
 			pMessage->m_Entities = entities;
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );\
-								return NULL;
-							);
-					}
-					
-					if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
-					
-					CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
-					if ( !pEntity )
-					{
-						STMT(
-								JS_ReportError( pContext, "Invalid entity parameter" );
-								return NULL;
-							);
-					}
-					
-					pMessage->m_Target = pEntity->me;
-				);
+			if ( idx + 1 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );\
+				return NULL;
+			}
+			
+			if ( !JSVAL_IS_OBJECT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
+			
+			CEntity* pEntity = ToNative< CEntity >( argv[ idx++ ] );
+			if ( !pEntity )
+			{
+				JS_ReportError( pContext, "Invalid entity parameter" );
+				return NULL;
+			}
+			
+			pMessage->m_Target = pEntity->me;
 			
 			return pMessage;
 		}
@@ -579,45 +543,33 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			pMessage->m_IsQueued = isQueued;
 			pMessage->m_Entities = entities;
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
-					
-					if ( !JSVAL_IS_INT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
+			if ( idx + 1 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
+			
+			if ( !JSVAL_IS_INT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
 
-					pMessage->m_Type = ToPrimitive< int >( argv[ idx++ ] );
-				);
+			pMessage->m_Type = ToPrimitive< int >( argv[ idx++ ] );
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
-                    
-					if ( !JSVAL_IS_STRING( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL; 
-							);
-					}
-					
-					pMessage->m_Name = ToPrimitive< CStrW >( argv[ idx++ ] );
-				);
+			if ( idx + 1 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
+            
+			if ( !JSVAL_IS_STRING( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL; 
+			}
+			
+			pMessage->m_Name = ToPrimitive< CStrW >( argv[ idx++ ] );
 
 			return pMessage;
 		}
@@ -630,104 +582,74 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			pMessage->m_IsQueued = isQueued;
 			pMessage->m_Entities = entities;
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
-					
-					if ( !JSVAL_IS_STRING( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
-					
-					pMessage->m_Template = ToPrimitive< CStrW >( argv[ idx++ ] );
-				);
+			if ( idx + 1 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
+			
+			if ( !JSVAL_IS_STRING( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
+				
+			pMessage->m_Template = ToPrimitive< CStrW >( argv[ idx++ ] );
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
-					
-					if ( !JSVAL_IS_INT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
-					
-					pMessage->m_X = ToPrimitive< int >( argv[ idx++ ] );
-				);
+			if ( idx + 1 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
+			
+			if ( !JSVAL_IS_INT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
+			
+			pMessage->m_X = ToPrimitive< int >( argv[ idx++ ] );
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
-					
-					if ( !JSVAL_IS_INT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
+			if ( idx + 1 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
+			
+			if ( !JSVAL_IS_INT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
 
-					pMessage->m_Y = ToPrimitive< int >( argv[ idx++ ] );
-				);
+			pMessage->m_Y = ToPrimitive< int >( argv[ idx++ ] );
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
-					if ( !JSVAL_IS_INT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
+			if ( idx + 1 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
+			if ( !JSVAL_IS_INT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
 
-					pMessage->m_Z = ToPrimitive< int >( argv[ idx++ ] );
-				);
+			pMessage->m_Z = ToPrimitive< int >( argv[ idx++ ] );
 
-			STMT(
-					if ( idx + 1 > argc )
-					{
-						STMT(
-								JS_ReportError( pContext, "Too few parameters!" );
-								return NULL;
-							);
-					}
+			if ( idx + 1 > argc )
+			{
+				JS_ReportError( pContext, "Too few parameters!" );
+				return NULL;
+			}
 
-					if ( !JSVAL_IS_INT( argv[ idx ] ) )
-					{
-						STMT(
-								JS_ReportError( pContext, "Parameter type error!" );
-								return NULL;
-							);
-					}
-					
-					pMessage->m_Angle = ToPrimitive< int >( argv[ idx++ ] );
-				);
+			if ( !JSVAL_IS_INT( argv[ idx ] ) )
+			{
+				JS_ReportError( pContext, "Parameter type error!" );
+				return NULL;
+			}
+			
+			pMessage->m_Angle = ToPrimitive< int >( argv[ idx++ ] );
 					
 			return pMessage;
 		}
