@@ -1,1 +1,1 @@
-pyrogenesis.exe -editor -actorviewer
+start pyrogenesis.exe -editor -actorviewer
