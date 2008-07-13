@@ -9,7 +9,6 @@ CCheckBox
 #include "ps/Font.h"
 #include "ps/CLogger.h"
 
-using namespace std;
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor

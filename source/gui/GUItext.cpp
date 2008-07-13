@@ -13,7 +13,6 @@ GUI text
 
 #include "ps/Font.h"
 
-using namespace std;
 
 static const wchar_t TagStart = '[';
 static const wchar_t TagEnd   = ']';
@@ -40,7 +39,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 
 	// Check out which text chunk this is within.
 	//bool match_found = false;
-	vector<TextChunk>::const_iterator itTextChunk;
+	std::vector<TextChunk>::const_iterator itTextChunk;
 	for (itTextChunk=m_TextChunks.begin(); itTextChunk!=m_TextChunks.end(); ++itTextChunk)
 	{
 		// - GL - Temp
@@ -50,8 +49,8 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 		// Get the area that is overlapped by both the TextChunk and
 		//  by the from/to inputted.
 		int _from, _to;
-		_from = max(from, itTextChunk->m_From);
-		_to = min(to, itTextChunk->m_To);
+		_from = std::max(from, itTextChunk->m_From);
+		_to = std::min(to, itTextChunk->m_To);
 		
 		// If from is larger than to, than they are not overlapping
 		if (_to == _from && itTextChunk->m_From == itTextChunk->m_To)
@@ -74,7 +73,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					GetRawString()[to-1] == '\n')
 					continue;
 			}
-			// This string is just a break
+			// This std::string is just a break
 			if (_from == from && from >= 1)
 			{
 				if (GetRawString()[from] == '\n' && 
@@ -132,7 +131,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 
 					// append width, and make maximum height the height.
 					Feedback.m_Size.cx += size.cx;
-					Feedback.m_Size.cy = max(Feedback.m_Size.cy, size.cy);
+					Feedback.m_Size.cy = std::max(Feedback.m_Size.cy, size.cy);
 
 					// These are also needed later
 					TextCall.m_Size = size;
@@ -140,7 +139,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 
 					// Now displace the sprite if the additional value in the tag
 					//  exists
-					if (itTextChunk->m_Tags[0].m_TagAdditionalValue != string())
+					if (itTextChunk->m_Tags[0].m_TagAdditionalValue != std::string())
 					{
 						CSize displacement;
 						// Parse the value
@@ -177,11 +176,11 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			TextCall.m_Font = DefaultFont;
 			TextCall.m_UseCustomColor = false;
 
-			// Extract substring from RawString.
+			// Extract substd::string from RawString.
 			TextCall.m_String = GetRawString().substr(_from, _to-_from);
 			
 			// Go through tags and apply changes.
-			vector<CGUIString::TextChunk::Tag>::const_iterator it2;
+			std::vector<CGUIString::TextChunk::Tag>::const_iterator it2;
 			for (it2 = itTextChunk->m_Tags.begin(); it2 != itTextChunk->m_Tags.end(); ++it2)
 			{
 				if (it2->m_TagType == CGUIString::TextChunk::Tag::TAG_COLOR)
@@ -189,7 +188,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					// Set custom color
 					TextCall.m_UseCustomColor = true;
 					
-					// Try parsing the color string
+					// Try parsing the color std::string
 					if (!GUI<CColor>::ParseString(it2->m_TagValue, TextCall.m_Color))
 					{
 						if (pObject)
@@ -219,7 +218,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 
 			// Append width, and make maximum height the height.
 			Feedback.m_Size.cx += size.cx;
-			Feedback.m_Size.cy = max(Feedback.m_Size.cy, size.cy);
+			Feedback.m_Size.cy = std::max(Feedback.m_Size.cy, size.cy);
 
 			// These are also needed later
 			TextCall.m_Size = size;
@@ -304,8 +303,8 @@ void CGUIString::SetValue(const CStrW& str)
 	Parser.InputTaskType("end", "/$ident");
 
 	long position = 0;
-	long from=0;		// the position in the raw string where the last tag ended
-	long from_nonraw=0;	// like from only in position of the REAL string, with tags.
+	long from=0;		// the position in the raw std::string where the last tag ended
+	long from_nonraw=0;	// like from only in position of the REAL std::string, with tags.
 	long curpos = 0;
 
 	// Current Text Chunk
@@ -378,14 +377,14 @@ void CGUIString::SetValue(const CStrW& str)
 						}
 						else
 						{
-							// Check for possible value-strings
+							// Check for possible value-std::strings
 							if (Line.GetArgCount() >= 2)
 								Line.GetArgString(1, tag.m_TagValue);
 
 							// Check if an additional parameter was specified
 							if (Line.GetArgCount() == 4)
 							{
-								string str;
+								std::string str;
 								Line.GetArgString(2, str);
 
 								if (tag.m_TagType == TextChunk::Tag::TAG_ICON && 
@@ -431,7 +430,7 @@ void CGUIString::SetValue(const CStrW& str)
 							{
 								// Add that tag, but first, erase previous occurences of the
 								//  same tag.
-								vector<TextChunk::Tag>::iterator it;
+								std::vector<TextChunk::Tag>::iterator it;
 								for (it = CurrentTextChunk.m_Tags.begin(); it != CurrentTextChunk.m_Tags.end(); ++it)
 								{
 									if (it->m_TagType == tag.m_TagType)
@@ -473,7 +472,7 @@ void CGUIString::SetValue(const CStrW& str)
 
 							// Search for the tag, if it's not added, then 
 							//  pass it as plain text.
-							vector<TextChunk::Tag>::iterator it;
+							std::vector<TextChunk::Tag>::iterator it;
 							for (it = CurrentTextChunk.m_Tags.begin(); it != CurrentTextChunk.m_Tags.end(); ++it)
 							{
 								if (it->m_TagType == tag.m_TagType)
@@ -555,7 +554,7 @@ void CGUIString::SetValue(const CStrW& str)
 	// Remove duplicates (only if larger than 2)
 	if (m_Words.size() > 2)
 	{
-		vector<int>::iterator it;
+		std::vector<int>::iterator it;
 		int last_word = -1;
 		for (it = m_Words.begin(); it != m_Words.end(); )
 		{

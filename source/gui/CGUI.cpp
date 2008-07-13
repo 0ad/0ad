@@ -42,8 +42,6 @@ CGUI
 #include "ps/Globals.h"
 #include "ps/Filesystem.h"
 
-// namespaces used
-using namespace std;
 const double SELECT_DBLCLICK_RATE = 0.5;
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"
@@ -669,7 +667,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 							// (it doesn't count the line spacing)
 
 	// Images on the left or the right side.
-	vector<SGenerateTextImage> Images[2];
+	std::vector<SGenerateTextImage> Images[2];
 	int pos_last_img=-1;	// Position in the string where last img (either left or right) were encountered.
 							//  in order to avoid duplicate processing.
 
@@ -702,7 +700,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 			// Loop left/right
 			for (int j=0; j<2; ++j)
 			{
-				for (vector<CStr>::const_iterator it = Feedback.m_Images[j].begin(); 
+				for (std::vector<CStr>::const_iterator it = Feedback.m_Images[j].begin(); 
 					it != Feedback.m_Images[j].end();
 					++it)
 				{
@@ -763,7 +761,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				// Loop through left and right side, from and to.
 				for (int j=0; j<2; ++j)
 				{
-					for (vector<SGenerateTextImage>::const_iterator it = Images[j].begin(); 
+					for (std::vector<SGenerateTextImage>::const_iterator it = Images[j].begin(); 
 						it != Images[j].end(); 
 						++it)
 					{
@@ -845,7 +843,7 @@ SGUIText CGUI::GenerateText(const CGUIString &string,
 				//  x, that is what x_pointer is for.
 				float x_pointer=0.f;
 
-				vector<SGUIText::STextCall>::iterator it;
+				std::vector<SGUIText::STextCall>::iterator it;
 				for (it = Feedback2.m_TextCalls.begin(); it != Feedback2.m_TextCalls.end(); ++it)
 				{
 					it->m_Pos = CPos(x + x_pointer, y);
@@ -954,7 +952,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	CFont* font = NULL;
 	CStr LastFontName;
 
-	for (vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
+	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
 		 it != Text.m_TextCalls.end(); 
 		 ++it)
 	{
@@ -987,7 +985,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	if (font)
 		delete font;
 
-	for (list<SGUIText::SSpriteCall>::iterator it=Text.m_SpriteCalls.begin(); 
+	for (std::list<SGUIText::SSpriteCall>::iterator it=Text.m_SpriteCalls.begin(); 
 		 it!=Text.m_SpriteCalls.end(); 
 		 ++it)
 	{
@@ -1043,7 +1041,7 @@ void CGUI::ReportParseError(const char *str, ...)
 /**
  * @callgraph
  */
-void CGUI::LoadXmlFile(const string &Filename)
+void CGUI::LoadXmlFile(const std::string &Filename)
 {
 	// Reset parse error
 	//  we can later check if this has increased

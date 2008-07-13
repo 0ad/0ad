@@ -16,7 +16,6 @@
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "graphics"
 
-using namespace std;
 
 CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_pParent(parent),
@@ -246,7 +245,7 @@ u32 CTerrainProperties::GetBaseColor()
 
 const STerrainPassability &CTerrainProperties::GetPassability(HEntity entity)
 {
-	vector<STerrainPassability>::iterator it=m_Passabilities.begin();
+	std::vector<STerrainPassability>::iterator it=m_Passabilities.begin();
 	for (;it != m_Passabilities.end();++it)
 	{
 		if (entity->m_classes.IsMember(it->m_Type))

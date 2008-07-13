@@ -43,7 +43,6 @@ Example SoundGroup.xml
 #include "lib/res/sound/snd_mgr.h"
 
 #include <vector>
-using namespace std;
 
 enum eSndGrpFlags
 {
@@ -61,9 +60,9 @@ class CSoundGroup
 	
 	Handle m_hReplacement;
 	
-	vector<Handle> snd_group;  // we store the handles so we can load now and play later
-	vector<CStr> filenames; // we need the filenames so we can reload when necessary.
-	vector<float> playtimes; // it would be better to store this in with the Handles perhaps?
+	std::vector<Handle> snd_group;  // we store the handles so we can load now and play later
+	std::vector<CStr> filenames; // we need the filenames so we can reload when necessary.
+	std::vector<float> playtimes; // it would be better to store this in with the Handles perhaps?
 	CStr m_filepath; // the file path for the list of sound file resources
 	CStr m_intensity_file; // the replacement aggregate 'intense' sound
 

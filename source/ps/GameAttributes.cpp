@@ -10,7 +10,6 @@
 #include "ps/XML/Xeromyces.h"
 #include "simulation/LOSManager.h"
 
-using namespace std;
 
 CPlayerSlot::CPlayerSlot(size_t slotID, CPlayer *pPlayer):
 	m_SlotID(slotID),
@@ -282,7 +281,7 @@ void CGameAttributes::ScriptingInit()
 
 jsval_t CGameAttributes::JSI_GetOpenSlot(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
 {
-	vector <CPlayerSlot *>::iterator it;
+	std::vector <CPlayerSlot *>::iterator it;
 	for (it = m_PlayerSlots.begin();it != m_PlayerSlots.end();++it)
 	{
 		if ((*it)->GetAssignment() == SLOT_OPEN)
@@ -353,10 +352,10 @@ CPlayerSlot *CGameAttributes::GetSlot(size_t index)
 
 void CGameAttributes::FinalizeSlots()
 {
-	// Back up our old slots, and empty the resulting vector
-	vector<CPlayerSlot *> oldSlots;
+	// Back up our old slots, and empty the resulting std::vector
+	std::vector<CPlayerSlot *> oldSlots;
 	oldSlots.swap(m_PlayerSlots);
-	vector<CPlayer *> oldPlayers;
+	std::vector<CPlayer *> oldPlayers;
 	oldPlayers.swap(m_Players);
 	m_Players.push_back(oldPlayers[0]); // Gaia
 	

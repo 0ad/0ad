@@ -15,8 +15,6 @@
 #include <cmath>
 #include <boost/random.hpp>
 
-using namespace std;
-
 namespace 
 {
 	/// Random number generator (Boost Mersenne Twister)

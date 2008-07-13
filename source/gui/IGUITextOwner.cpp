@@ -5,7 +5,6 @@ IGUITextOwner
 #include "precompiled.h"
 #include "GUI.h"
 
-using namespace std;
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
@@ -17,7 +16,7 @@ IGUITextOwner::IGUITextOwner()
 IGUITextOwner::~IGUITextOwner()
 {
 	// Delete all generated texts.
-	vector<SGUIText*>::iterator it;
+	std::vector<SGUIText*>::iterator it;
 	for (it=m_GeneratedTexts.begin(); it!=m_GeneratedTexts.end(); ++it)
 	{
 		delete *it;

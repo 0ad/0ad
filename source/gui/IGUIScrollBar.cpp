@@ -5,7 +5,6 @@ IGUIScrollBar
 #include "precompiled.h"
 #include "GUI.h"
 
-using namespace std;
 
 //-------------------------------------------------------------------
 //	IGUIScrollBar
@@ -31,7 +30,7 @@ IGUIScrollBar::~IGUIScrollBar()
 
 void IGUIScrollBar::SetupBarSize()
 {
-	m_BarSize = min((float)m_ScrollSpace/(float)m_ScrollRange, 1.f);
+	m_BarSize = std::min((float)m_ScrollSpace/(float)m_ScrollRange, 1.f);
 }
 
 SGUIScrollBarStyle *IGUIScrollBar::GetStyle() const

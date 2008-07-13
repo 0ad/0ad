@@ -9,7 +9,6 @@ GUI utilities
 
 extern int g_yres;
 
-using namespace std;
 
 template <>
 bool __ParseString<bool>(const CStr& Value, bool &Output)
@@ -45,7 +44,7 @@ bool __ParseString<CRect>(const CStr& Value, CRect &Output)
 	// Use the parser to parse the values
 	CParser& parser (CParserCache::Get("_$value_$value_$value_$value_"));
 
-	string str = Value;
+	std::string str = Value;
 
 	CParserLine line;
 	line.ParseString(parser, str);
@@ -111,7 +110,7 @@ bool __ParseString<CSize>(const CStr& Value, CSize &Output)
 	// Use the parser to parse the values
 	CParser& parser (CParserCache::Get("_$value_$value_"));
 
-	string str = Value;
+	std::string str = Value;
 
 	CParserLine line;
 	line.ParseString(parser, str);

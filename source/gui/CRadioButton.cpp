@@ -6,7 +6,6 @@ CCheckBox
 #include "GUI.h"
 #include "CRadioButton.h"
 
-using namespace std;
 
 void CRadioButton::HandleMessage(const SGUIMessage &Message)
 {

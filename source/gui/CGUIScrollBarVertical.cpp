@@ -8,7 +8,6 @@ IGUIScrollBar
 #include "ps/CLogger.h"
 #define LOG_CATEGORY "gui"
 
-using namespace std;
 
 CGUIScrollBarVertical::CGUIScrollBarVertical()
 {
@@ -149,7 +148,7 @@ CRect CGUIScrollBarVertical::GetBarRect() const
 	}
 
 	// Setup rectangle
-	ret.top = (from + (to-from)*(m_Pos/(max(1.f, m_ScrollRange - m_ScrollSpace))));
+	ret.top = (from + (to-from)*(m_Pos/(std::max(1.f, m_ScrollRange - m_ScrollSpace))));
 	ret.bottom = ret.top+size;
 	ret.right = m_X + ((m_RightAligned)?(0.f):(GetStyle()->m_Width));
 	ret.left = ret.right - GetStyle()->m_Width;

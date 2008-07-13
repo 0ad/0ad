@@ -6,7 +6,6 @@
 #pragma warning(disable:4786)
 #endif
 
-using namespace std;
 
 //-------------------------------------------------
 // Macros
@@ -80,7 +79,7 @@ CParserValue::~CParserValue()
 {
 }
 
-// Parse the string in Value to different types
+// Parse the std::string in Value to different types
 
 // bool
 bool CParserValue::GetBool(bool &ret)
@@ -133,7 +132,7 @@ bool CParserValue::GetDouble(double &ret)
 	
 	// find decimal position
 	DecimalPos = m_String.find(".");
-	if (DecimalPos == string::npos)	
+	if (DecimalPos == std::string::npos)	
 		DecimalPos = Size;
 
 	// Iterate left of the decimal sign
@@ -184,7 +183,7 @@ bool CParserValue::GetDouble(double &ret)
 	return true;
 }
 
-// string - only return m_String, can't fail
+// std::string - only return m_String, can't fail
 bool CParserValue::GetString(std::string &ret)
 {
 	ret = m_String;
@@ -285,7 +284,7 @@ bool CParserLine::ClearArguments()
 // Implementation of CParserFile::GetArg*
 //  it just checks if argument isn't out of range, and
 //  then it uses the the respective function in CParserValue
-FUNC_IMPL_GETARG(GetArgString,			GetString,			string)
+FUNC_IMPL_GETARG(GetArgString,			GetString,			std::string)
 FUNC_IMPL_GETARG(GetArgBool,			GetBool,			bool)
 FUNC_IMPL_GETARG(GetArgChar,			GetChar,			char)
 FUNC_IMPL_GETARG(GetArgShort,			GetShort,			short)
@@ -308,8 +307,8 @@ FUNC_IMPL_GETARG(GetArgDouble,			GetDouble,			double)
 // TODO Gee: Make Parser use CStr.
 bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 {
-	// Don't process empty string
-	if (strLine == string())
+	// Don't process empty std::string
+	if (strLine == std::string())
 	{
 		m_ParseOK = false;		// Empty lines should never be inputted by CParserFile
 		return m_ParseOK;
@@ -319,9 +318,9 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 	bool				Extract=false;
 	size_t				ExtractPos=0;
 	char				Buffer[256];
-	char				Letter[] = {'\0','\0'};		// Letter as string
-	vector<string>		Segments;
-	string				strSub;
+	char				Letter[] = {'\0','\0'};		// Letter as std::string
+	std::vector<std::string>		Segments;
+	std::string				strSub;
 	size_t				i;
 
 	// Set result to false, then if a match is found, turn it true
@@ -332,11 +331,11 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 	// Remove C++-styled comments!
 	// * * * *
 	int pos = strLine.find("//");
-	if (pos != string::npos)
+	if (pos != std::string::npos)
 		strLine = strLine.substr(0,pos);
 	*/
 
-	// Divide string into smaller vectors, separators are unusual signs
+	// Divide std::string into smaller std::vectors, separators are unusual signs
 	// * * * *
 
 	for (i=0; i<strLine.size(); ++i)
@@ -355,12 +354,12 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 			// GET STRING BETWEEN QUOTES	
 			if (strLine[i] == '\"')
 			{
-				// Extract a string, search for another "
+				// Extract a std::string, search for another "
 				size_t pos = strLine.find("\"", i+1);
 
 				// If matching can't be found,
 				//  the parsing will fail!
-				if (pos == string::npos)
+				if (pos == std::string::npos)
 				{
 					// TODO Gee - Output in logfile
 					m_ParseOK = false;
@@ -368,7 +367,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 				}
 
 				// Get substring
-				// Add a " to indicate this is a "..." string
+				// Add a " to indicate this is a "..." std::string
 				//  and can't be used as name
 				strSub = "\"" + strLine.substr(i+1, pos-i-1);
 
@@ -398,7 +397,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 			}
 			else
 			{
-				// Extract string after $ !
+				// Extract std::string after $ !
 				// break whenever we reach a sign that's not A-Z a-z
 				if (_IsValueChar(strLine[i]))
 				{
@@ -415,7 +414,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 					--i;
 				}
 
-				// Check if string is complete
+				// Check if std::string is complete
 				if (i == strLine.size()-1)
 					Extract=false;
 			}
@@ -423,7 +422,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 			// If extraction was finished! Input Buffer
 			if (Extract == false)
 			{
-				Segments.push_back( string(Buffer) );
+				Segments.push_back( std::string(Buffer) );
 			}
 		}
 	}
@@ -435,15 +434,15 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 	size_t Progress;						// progress in Segments index
 	size_t Lane=0;							// Have many alternative routes we are in
 	bool Match;							// If a task-type match has been found
-	// The vector of these three represents the different lanes
+	// The std::vector of these three represents the different lanes
 	//  LastValidProgress[1] takes you back to lane 1 and how
 	//  the variables was set at that point
-	vector<size_t> LastValidProgress;		// When diving into a dynamic argument store store
+	std::vector<size_t> LastValidProgress;		// When diving into a dynamic argument store store
 										//  the last valid so you can go back to it
-	vector<size_t> LastValidArgCount;		// If an alternative route turns out to fail, we
+	std::vector<size_t> LastValidArgCount;		// If an alternative route turns out to fail, we
 										//  need to know the amount of arguments on the last
 										//  valid position, so we can remove them.
-	vector<bool> LastValidMatch;		// Match at that point
+	std::vector<bool> LastValidMatch;		// Match at that point
 	bool BlockAltNode = false;			// If this turns true, the alternative route
 										//  tested was not a success, and the settings
 										//  should be set back in order to test the 
@@ -459,7 +458,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 	//  the similarities. If enough
 	//  similarities are found, then we can declare progress as
 	//  that type and exit loop
-	vector<CParserTaskType>::const_iterator cit_tt;
+	std::vector<CParserTaskType>::const_iterator cit_tt;
 	for (cit_tt = Parser.m_TaskTypes.begin(); 
 		 cit_tt != Parser.m_TaskTypes.end(); 
 		 ++cit_tt)
@@ -634,7 +633,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 					else
 					{
 						// Alright! An ident or const has been acquired, if we
-						//  can't find any or if the string has run out
+						//  can't find any or if the std::string has run out
 						//  that invalidates the match
 
 						// String end?
@@ -651,7 +650,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 							switch(CurNode->m_Type)
 							{
 							case typeIdent:
-								// Check if this really is a string
+								// Check if this really is a std::string
 								if (!_IsStrictNameChar(Segments[Progress][0]))
 								{
 									Match = false;
@@ -672,7 +671,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 								++Progress;
 								break;
 							case typeValue:
-								// Check if this really is a string
+								// Check if this really is a std::string
 								if (!_IsValueChar(Segments[Progress][0]) &&
 									Segments[Progress][0] != '\"')
 								{
@@ -694,10 +693,10 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 								++Progress;
 								break;
 							case typeRest:
-								// Extract the whole of the string
+								// Extract the whole of the std::string
 								
 								// Reset, probably is but still
-								value.m_String = string();
+								value.m_String = std::string();
 
 								for (i=Progress; i<Segments.size(); ++i)
 								{
@@ -799,7 +798,7 @@ CParser::CParser()
 CParser::~CParser()
 {
 	// Delete all task type trees
-	vector<CParserTaskType>::iterator itTT;
+	std::vector<CParserTaskType>::iterator itTT;
 	for (itTT = m_TaskTypes.begin();
 		 itTT != m_TaskTypes.end();
 		 ++itTT)
@@ -810,10 +809,10 @@ CParser::~CParser()
 
 // InputTaskType
 // ------------------------------------------------------------------| Function
-// A task-type is a string representing the acquired syntax when parsing
-//  This function converts that string into a binary tree, making it easier
+// A task-type is a std::string representing the acquired syntax when parsing
+//  This function converts that std::string into a binary tree, making it easier
 //  and faster to later parse.
-bool CParser::InputTaskType(const string& strName, const string& strSyntax)
+bool CParser::InputTaskType(const std::string& strName, const std::string& strSyntax)
 {
 	// Locals
 	CParserTaskType TaskType;	// Object we acquire to create
@@ -832,7 +831,7 @@ bool CParser::InputTaskType(const string& strName, const string& strSyntax)
 	// Working node
 	CParserTaskTypeNode *CurNode = TaskType.m_BaseNode;
 
-	// Loop through the string and construct nodes in the binary tree
+	// Loop through the std::string and construct nodes in the binary tree
 	//  when applicable
 	for (i=0; i<strSyntax.size(); ++i)
 	{
@@ -956,7 +955,7 @@ next	[a]		Null	[a]		<-- added NewNode
 			}
 			else
 			{
-				// Extract string after $ !
+				// Extract std::string after $ !
 				// break whenever we reach a sign that's not A-Z a-z
 				if (_IsStrictNameChar(strSyntax[i]))
 				{
@@ -973,7 +972,7 @@ next	[a]		Null	[a]		<-- added NewNode
 					--i;
 				}
 
-				// Check if string is complete
+				// Check if std::string is complete
 				if (i == strSyntax.size()-1)
 					Extract=false;
 			}
@@ -991,7 +990,7 @@ next	[a]		Null	[a]		<-- added NewNode
 
 				CurNode->m_Letter = '\0';
 
-				string str = string(Buffer);
+				std::string str = std::string(Buffer);
 
 				// Check value and set up CurNode accordingly
 				if (str == "value")		CurNode->m_Type = typeValue;
@@ -1012,7 +1011,7 @@ next	[a]		Null	[a]		<-- added NewNode
 				else
 				if (str == "arg")
 				{
-					// After $arg, you need a parenthesis, within that parenthesis is a string
+					// After $arg, you need a parenthesis, within that parenthesis is a std::string
 					//  that will be added as an argument when it's passed through
 
 					CurNode->m_Type = typeAddArg;
@@ -1036,13 +1035,13 @@ next	[a]		Null	[a]		<-- added NewNode
 					size_t Pos = strSyntax.find(")", ExtractPos+5);
 
 					// Check if ')' exists at all
-					if (Pos == string::npos)
+					if (Pos == std::string::npos)
 					{
 						Error = true;
 						break;
 					}
 
-					// Now extract string within ( and )
+					// Now extract std::string within ( and )
 					CurNode->m_String = strSyntax.substr(ExtractPos+4, Pos-(ExtractPos+4));
 
 					// Now update position

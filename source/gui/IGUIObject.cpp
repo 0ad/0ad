@@ -5,17 +5,13 @@ IGUIObject
 #include "precompiled.h"
 #include "GUI.h"
 
-///// janwas: again, including etiquette?
 #include "ps/Parser.h"
-
-/////
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 
 extern int g_xres, g_yres;
 
-using namespace std;
 
 //-------------------------------------------------------------------
 //  Implementation Macros
@@ -56,7 +52,7 @@ IGUIObject::IGUIObject() :
 IGUIObject::~IGUIObject()
 {
 	{
-		map<CStr, SGUISetting>::iterator it;
+		std::map<CStr, SGUISetting>::iterator it;
 		for (it = m_Settings.begin(); it != m_Settings.end(); ++it)
 		{
 			switch (it->second.m_Type)
@@ -453,7 +449,7 @@ void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
 
 void IGUIObject::ScriptEvent(const CStr& Action)
 {
-	map<CStr, JSObject**>::iterator it = m_ScriptHandlers.find(Action);
+	std::map<CStr, JSObject**>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 

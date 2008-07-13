@@ -8,7 +8,6 @@ CImage
 
 #include "lib/ogl.h"
 
-using namespace std;
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor

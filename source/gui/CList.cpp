@@ -9,7 +9,6 @@ CList
 #include "ps/CLogger.h"
 #include "lib/external_libraries/sdl.h"
 
-using namespace std;
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
@@ -67,7 +66,7 @@ void CList::SetupText()
 	// Delete all generated texts. Some could probably be saved,
 	//  but this is easier, and this function will never be called
 	//  continuously, or even often, so it'll probably be okay.
-	vector<SGUIText*>::iterator it;
+	std::vector<SGUIText*>::iterator it;
 	for (it=m_GeneratedTexts.begin(); it!=m_GeneratedTexts.end(); ++it)
 	{
 		if (*it)

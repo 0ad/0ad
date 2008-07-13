@@ -27,6 +27,9 @@
 #include "precompiled.h"
 #include "SoundGroupMgr.h"
 
+typedef std::vector<CSoundGroup*> SoundGroups;
+typedef SoundGroups::iterator SoundGroupIt;
+
 
 CSoundGroupMgr *CSoundGroupMgr::m_pInstance = 0;
 
@@ -48,8 +51,7 @@ void CSoundGroupMgr::DeleteInstance()
 {
 	if(m_pInstance)
 	{
-		
-		vector<CSoundGroup *>::iterator vIter = m_pInstance->m_Groups.begin();
+		SoundGroupIt vIter = m_pInstance->m_Groups.begin();
 		while(vIter != m_pInstance->m_Groups.end())
 			vIter = m_pInstance->RemoveGroup(vIter);		
 		
@@ -76,17 +78,14 @@ size_t CSoundGroupMgr::AddGroup(const char *XMLFile)
 ///////////////////////////////////////////
 // RemoveGroup()
 // in: size_t index into m_Groups
-// out: vector<CSoundGroup *>::iterator - one past the index removed (sometimes useful)
+// out: SoundGroupIt - one past the index removed (sometimes useful)
 // Removes and Releases a given soundgroup
 ///////////////////////////////////////////
-vector<CSoundGroup *>::iterator CSoundGroupMgr::RemoveGroup(size_t index)
+SoundGroupIt CSoundGroupMgr::RemoveGroup(size_t index)
 {
-
-	vector<CSoundGroup *>::iterator vIter = m_Groups.begin();
+	SoundGroupIt vIter = m_Groups.begin();
 	if(index >= m_Groups.size())
 		return vIter;
-
-	
 	
 	CSoundGroup *temp = (*vIter);
 	(*vIter)->ReleaseGroup();
@@ -100,11 +99,11 @@ vector<CSoundGroup *>::iterator CSoundGroupMgr::RemoveGroup(size_t index)
 
 ///////////////////////////////////////////
 // RemoveGroup()
-// in: vector<CSoundGroup *>::iterator - item to remove
-// out: vector<CSoundGroup *>::iterator - one past the index removed (sometimes useful)
+// in: SoundGroupIt - item to remove
+// out: SoundGroupIt - one past the index removed (sometimes useful)
 // Removes and Releases a given soundgroup
 ///////////////////////////////////////////
-vector<CSoundGroup *>::iterator CSoundGroupMgr::RemoveGroup(vector<CSoundGroup *>::iterator iter)
+SoundGroupIt CSoundGroupMgr::RemoveGroup(SoundGroupIt iter)
 {
 
 	(*iter)->ReleaseGroup();
@@ -125,7 +124,7 @@ vector<CSoundGroup *>::iterator CSoundGroupMgr::RemoveGroup(vector<CSoundGroup *
 ///////////////////////////////////////////
 void CSoundGroupMgr::UpdateSoundGroups(float TimeSinceLastFrame)
 {
-	vector<CSoundGroup *>::iterator vIter = m_Groups.begin();	
+	SoundGroupIt vIter = m_Groups.begin();	
 	while(vIter != m_Groups.end())
 	{
 		(*vIter)->Update(TimeSinceLastFrame);

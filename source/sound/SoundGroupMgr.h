@@ -10,12 +10,11 @@
 
 #include "SoundGroup.h"
 #include <vector>
-using namespace std;
 
 class CSoundGroupMgr
 {
 public:
-	vector <CSoundGroup *> m_Groups;  // a collection of sound groups
+	std::vector <CSoundGroup *> m_Groups;  // a collection of sound groups
 	static CSoundGroupMgr *m_pInstance; // our static instance of the manager
 	static CSoundGroupMgr *GetInstance(); 
 	static void DeleteInstance();
@@ -44,18 +43,18 @@ public:
 	///////////////////////////////////////////
 	// RemoveGroup()
 	// in: size_t index into m_Groups
-	// out: vector<CSoundGroup *>::iterator - one past the index removed (sometimes useful)
+	// out: std::vector<CSoundGroup *>::iterator - one past the index removed (sometimes useful)
 	// Removes and Releases a given soundgroup
 	///////////////////////////////////////////
-	vector<CSoundGroup *>::iterator RemoveGroup(size_t index);
+	std::vector<CSoundGroup *>::iterator RemoveGroup(size_t index);
 
 	///////////////////////////////////////////
 	// RemoveGroup()
-	// in: vector<CSoundGroup *>::iterator - item to remove
-	// out: vector<CSoundGroup *>::iterator - one past the index removed (sometimes useful)
+	// in: std::vector<CSoundGroup *>::iterator - item to remove
+	// out: std::vector<CSoundGroup *>::iterator - one past the index removed (sometimes useful)
 	// Removes and Releases a given soundgroup
 	///////////////////////////////////////////
-	vector<CSoundGroup *>::iterator RemoveGroup(vector<CSoundGroup *>::iterator iter);
+	std::vector<CSoundGroup *>::iterator RemoveGroup(std::vector<CSoundGroup *>::iterator iter);
 
 
 private:

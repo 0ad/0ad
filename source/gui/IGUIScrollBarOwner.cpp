@@ -5,7 +5,6 @@ IGUIScrollBarOwner
 #include "precompiled.h"
 #include "GUI.h"
 
-using namespace std;
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
@@ -17,7 +16,7 @@ IGUIScrollBarOwner::IGUIScrollBarOwner()
 IGUIScrollBarOwner::~IGUIScrollBarOwner()
 {
 	// Delete scroll-bars
-	vector<IGUIScrollBar*>::iterator it;
+	std::vector<IGUIScrollBar*>::iterator it;
 	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)
 	{
 		delete *it;
@@ -28,7 +27,7 @@ void IGUIScrollBarOwner::ResetStates()
 {
 	IGUIObject::ResetStates();
 	
-	vector<IGUIScrollBar*>::iterator it;
+	std::vector<IGUIScrollBar*>::iterator it;
 	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)
 	{
 		(*it)->SetBarPressed(false);
@@ -61,7 +60,7 @@ SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) co
 
 void IGUIScrollBarOwner::HandleMessage(const SGUIMessage &Message)
 {
-	vector<IGUIScrollBar*>::iterator it;
+	std::vector<IGUIScrollBar*>::iterator it;
 	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)
 	{
 		(*it)->HandleMessage(Message);
@@ -70,7 +69,7 @@ void IGUIScrollBarOwner::HandleMessage(const SGUIMessage &Message)
 
 void IGUIScrollBarOwner::Draw() 
 {
-	vector<IGUIScrollBar*>::iterator it;
+	std::vector<IGUIScrollBar*>::iterator it;
 	for (it=m_ScrollBars.begin(); it!=m_ScrollBars.end(); ++it)
 	{
 		(*it)->Draw();

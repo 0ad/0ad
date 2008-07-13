@@ -9,14 +9,13 @@ Overlay.cpp
 #include "Overlay.h"
 #include "Parser.h"
 
-using namespace std;
 
 bool CColor::ParseString(const CStr& Value, float DefaultAlpha)
 {
 	// Use the parser to parse the values
 	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[[-$arg(_minus)]$value_]"));
 
-	string str = Value;
+	std::string str = Value;
 
 	CParserLine line;
 	line.ParseString(parser, str);

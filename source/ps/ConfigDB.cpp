@@ -9,9 +9,7 @@
 
 #define LOG_CATEGORY "config"
 
-using namespace std;
-
-typedef map <CStr, CConfigValueSet> TConfigMap;
+typedef std::map <CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
 CStr CConfigDB::m_ConfigFile[CFG_LAST];
 bool CConfigDB::m_UseVFS[CFG_LAST];
@@ -284,8 +282,8 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		// Send line to parser
 		bool parseOk=parserLine.ParseString(parser, std::string(pos, lend));
 		// Get name and value from parser
-		string name;
-		string value;
+		std::string name;
+		std::string value;
 		
 		if (parseOk &&
 			parserLine.GetArgCount()>=2 &&
@@ -304,7 +302,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 				CConfigValue argument;
 				argument.m_String = value;
 				newMap[name].push_back( argument );
-				LOG(CLogger::Normal,  LOG_CATEGORY, "Loaded config string \"%s\" = \"%s\"", name.c_str(), value.c_str());
+				LOG(CLogger::Normal,  LOG_CATEGORY, "Loaded config std::string \"%s\" = \"%s\"", name.c_str(), value.c_str());
 			}
 		}
 	}

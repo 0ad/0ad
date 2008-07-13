@@ -9,7 +9,6 @@ CDropDown
 #include "lib/ogl.h"
 #include "lib/external_libraries/sdl.h"
 
-using namespace std;
 
 //-------------------------------------------------------------------
 //  Constructor / Destructor
@@ -352,7 +351,7 @@ float CDropDown::GetBufferedZ() const
 {
 	float bz = CList::GetBufferedZ();
 	if (m_Open)
-		return min(bz + 500.f, 1000.f); // TODO - don't use magic number for max z value
+		return std::min(bz + 500.f, 1000.f); // TODO - don't use magic number for max z value
 	else
 		return bz;
 }
