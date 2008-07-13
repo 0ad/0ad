@@ -4,10 +4,28 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="helmet-roman-coolus">
+    <variant frequency="1" name="helmet-coolus-simple">
       <mesh>props/helmet/rome_coolus_a.dae</mesh>
       <texture>props/helmet/rome-e-coolus.dds</texture>
     </variant>
+    <variant frequency="1" name="helmet-coolus-spike">
+      <mesh>props/helmet/rome_coolus_b.dae</mesh>
+      <texture>props/helmet/rome-e-coolus.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-coolus-feathers">
+      <mesh>props/helmet/rome_coolus_c.dae</mesh>
+      <texture>props/helmet/rome-e-coolus.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-coolus-plume">
+      <mesh>props/helmet/rome_coolus_d.dae</mesh>
+      <texture>props/helmet/rome-e-coolus.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-coolus-crest">
+      <mesh>props/helmet/rome_coolus_e.dae</mesh>
+      <texture>props/helmet/rome-e-coolus-centurion.dds</texture>
+    </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
