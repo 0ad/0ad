@@ -834,8 +834,11 @@ void CNetServer::PlayerConfigMessageCallback(
 //-----------------------------------------------------------------------------
 uint CNetServer::GetFreeSessionID( void ) const
 {
-	uint sessionID = CLIENT_MIN_SESSIONID;
+	// No need to be conservative with session IDs; just use a global counter.
+	static uint lastSessionID = CLIENT_MIN_SESSIONID;
+	return lastSessionID++;
 
+	/*
 	// Loop through the list of sessions and return the first
 	// ID for which the associated session is NULL. If no such
 	// free slot is found, return a new session ID which is higher
@@ -850,6 +853,7 @@ uint CNetServer::GetFreeSessionID( void ) const
 	}
 
 	return sessionID;
+	*/
 }
 
 //-----------------------------------------------------------------------------

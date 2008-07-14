@@ -355,9 +355,11 @@ bool CNetClient::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
 		CAuthenticateResultMessage* pMessage =( CAuthenticateResultMessage* )pEvent->GetParamRef();
 		if ( !pMessage ) return true;
 
-		LOG(CLogger::Error, LOG_CAT_NET, "CNetClient::OnAuthenticate(): Authentication result: %s", pMessage->m_Message.c_str() );
+		LOG(CLogger::Error, LOG_CAT_NET, "CNetClient::OnAuthenticate(): Authentication result: %ls", pMessage->m_Message.c_str() );
 
 		pSession->SetID( pMessage->m_SessionID );
+
+		LOG(CLogger::Error, LOG_CAT_NET, "CNetClient::OnAuthenticate(): My session ID is %d", pMessage->m_SessionID);
 	}
 
 	return true;
@@ -415,8 +417,9 @@ bool CNetClient::OnPreGame( void* pContext, CFsmEvent* pEvent )
 
 			// FIXME Validate slot id to prevent us from going boom
 			CPlayerSlot* pSlot = pClient->m_pGameAttributes->GetSlot( pMessage->m_SlotID );
-			if ( pSlot == pClient->m_pLocalPlayerSlot )
+			if ( pSlot == pClient->m_pLocalPlayerSlot ) {
 				pClient->m_pLocalPlayerSlot = NULL;
+			}
 
 			switch ( pMessage->m_Assignment )
 			{
@@ -426,8 +429,8 @@ bool CNetClient::OnPreGame( void* pContext, CFsmEvent* pEvent )
 						if ( pSession->GetID() == pMessage->m_SessionID )
 						{
 							pClient->m_pLocalPlayerSlot = pSlot;
-							pSlot->AssignToSessionID( pMessage->m_SessionID );
 						}
+						pSlot->AssignToSessionID( pMessage->m_SessionID );
 					}
 					break;
 

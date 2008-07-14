@@ -352,6 +352,14 @@ CPlayerSlot *CGameAttributes::GetSlot(size_t index)
 
 void CGameAttributes::FinalizeSlots()
 {
+	// This method was causing players to be mis-assigned, partly because the
+	// slot status changes did not seem to get broadcasted correctly. However,
+	// fundamentally, we really don't want to reassign players' IDs this way.
+	// We want to keep around dummy players for those that aren't human. So
+	// let's not mess with the array indices, etc unless it is really needed.
+	return;
+
+	/*
 	// Back up our old slots, and empty the resulting std::vector
 	std::vector<CPlayerSlot *> oldSlots;
 	oldSlots.swap(m_PlayerSlots);
@@ -382,6 +390,7 @@ void CGameAttributes::FinalizeSlots()
 	}
 	
 	m_NumSlots=assignedSlots;
+	*/
 }
 
 void CGameAttributes::SetValue(const CStrW& name, const CStrW& value)

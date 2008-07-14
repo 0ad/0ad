@@ -183,7 +183,9 @@ PSRETURN CGame::StartGame(CGameAttributes *pAttribs)
 			debug_assert(m_pLocalPlayer && "Darn it! We weren't assigned to a slot!");
 		}
 		else
+		{
 			m_pLocalPlayer=m_Players[1];
+		}
 
 		RegisterInit(pAttribs);
 	}
