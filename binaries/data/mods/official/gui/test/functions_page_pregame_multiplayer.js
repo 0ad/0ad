@@ -45,7 +45,7 @@ function initMPHost (parentWindow, gameName, welcomeMessage, profileName)
 		playerSlot.assignToSession (event.session);
 console.write (event.id);
 		// Set player slot to new player's name.
-		pushItem ("pgSessionSetupP" + (event.id), event.name);
+		//pushItem ("pgSessionSetupP" + (event.id), event.name);
 	}
 	
 	server.onClientDisconnect = function (event) 
@@ -78,8 +78,8 @@ function initMPClient (mpParentWindow, ipAddress, profileName)
 	{
 		// Set player slot to new player's name.
 		console.write("onClientConnect: name is " + event.name + ", id is " + event.id);
-		if( event.id != 1 )
-			pushItem ("pgSessionSetupP" + (event.id), event.name);
+		//if( event.id != 1 )
+		//	pushItem ("pgSessionSetupP" + (event.id), event.name);
 	}
 
 	client.onConnectComplete = function (event)
