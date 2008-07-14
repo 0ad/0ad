@@ -86,7 +86,7 @@ function popItem (objectName)
 	var selected = getGUIObjectByName (objectName).selected;
 	removeItem(objectName, getNumItems(objectName)-1);
 
-	If (selected == getNumItems(objectName)-1)
+	if (selected == getNumItems(objectName)-1)
 	{
 		getGUIObjectByName(objectName).selected = -1;
 	}
