@@ -2251,7 +2251,8 @@ var messagesList = new Array();
 
 function showMessage(text)
 {
-	var message = getGUIObjectByName("globalMessage");
+	message = getGUIObjectByName("globalMessage");
+	messageUnder = getGUIObjectByName("globalMessageUnder");
 
 	if (messagesList.length == MAX_MESSAGES)
 	{
@@ -2260,7 +2261,9 @@ function showMessage(text)
 	
 	messagesList.unshift(text);
 	updateMessageView();
+	
 	message.hidden = false;
+	messageUnder.hidden = false;
 	
 	/*
 	 * This is made so only the first message, calls hideMessage().
@@ -2278,6 +2281,7 @@ function hideMessage()
 	if (messagesList.length == 0) 
 	{
 		getGUIObjectByName("globalMessage").hidden = true;
+		getGUIObjectByName("globalMessageUnder").hidden = true;
 	}
 	else
 	{
@@ -2294,4 +2298,5 @@ function updateMessageView()
 		result = result + messagesList[i] + "\n";
 	}
 	getGUIObjectByName("globalMessage").caption = result;
+	getGUIObjectByName("globalMessageUnder").caption = result;
 }

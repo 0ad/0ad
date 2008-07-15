@@ -343,6 +343,12 @@
 		</object>
 
     <!-- This object contains the status messages like ´Insufficient wood..´, etc -->
+    <object name="globalMessageUnder"
+		        type="text"
+		        style="globalMessageStyleUnder"
+		>
+    </object>
+    
 		<object name="globalMessage"
 		        type="text"
 		        style="globalMessageStyle"

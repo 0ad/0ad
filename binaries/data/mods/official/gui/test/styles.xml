@@ -770,13 +770,24 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 	/>
 
   <style name="globalMessageStyle"
-    hidden="false"
+    hidden="true"
     text_align="left"
     text_valign="top"
     textcolor="255 255 255"
     ghost="true"
     font="trebuchet14b"
     size="20 150 100% 30%"
+  />
+
+  <!-- This is for creating a small 1px. shadow so the text is visible on the bright maps. -->
+  <style name="globalMessageStyleUnder"
+    hidden="true"
+    text_align="left"
+    text_valign="top"
+    textcolor="50 50 50"
+    ghost="true"
+    font="trebuchet14b"
+    size="19 150 100% 30%"
   />
 
 </styles>
