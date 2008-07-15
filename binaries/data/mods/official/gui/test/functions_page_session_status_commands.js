@@ -595,7 +595,8 @@ function tryConstruction( name )
 	else
 	{	
 		// If not, output the error message.
-		console.write( result );
+		//console.write( result );
+		showMessage(result);
 	}
 }
 

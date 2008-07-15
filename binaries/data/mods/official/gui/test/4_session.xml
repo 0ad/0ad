@@ -342,6 +342,13 @@
 			]]></action>
 		</object>
 
+    <!-- This object contains the status messages like ´Insufficient wood..´, etc -->
+		<object name="globalMessage"
+		        type="text"
+		        style="globalMessageStyle"
+		>
+		</object>
+
 		<!-- GROUP: STATUS PANE -->
 		<object	name="snStatusPane"
 			hotkey="session.statuspane.toggle"

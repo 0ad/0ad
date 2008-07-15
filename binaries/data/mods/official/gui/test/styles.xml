@@ -554,7 +554,7 @@
 				sprite="snIconSheetMiniMapButton"
 				sprite_over="snIconSheetMiniMapButtonOver"
 				sprite_disabled="snIconSheetMiniMapButtonDisabled"
-				ghost="false"				
+				ghost="false"
 		/>		
 		
 		<style name="snGreenBar"
@@ -768,5 +768,15 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
 		tooltip_style="snToolTip"
 		tooltip="(TBA)"
 	/>
+
+  <style name="globalMessageStyle"
+    hidden="false"
+    text_align="left"
+    text_valign="top"
+    textcolor="255 255 255"
+    ghost="true"
+    font="trebuchet14b"
+    size="20 150 100% 30%"
+  />
 
 </styles>
