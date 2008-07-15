@@ -7,46 +7,50 @@
 
 			<Icon_Cell>12</Icon_Cell>
 		
-			<Specific>Hypaspist</Specific>
+			<Specific>Argyraspides</Specific>
 
 			<Civ>Macedonians</Civ>
 
-			<History>The Hypaspists were the flower of the Macedonian infantry. They were the most battle hardened veterans  within the army and followed Philip II and Alexander the Great into over a dozen full scale engagements. These heavily armed and opulently armoured units acted as an intermediary between the phalanx and the cavalry arm, many times charging headlong with Alexander into a breech in the enemy lines. Sometimes they fought as slow pikemen, like the Pezhetairoi with 6 meter "sarissas", and other times they fought as Hoplites with large aspides and 2.5 meter spears, or "dorata". In later times they became known as the Argyrapides, or "Silver Shields" when Alexander bestowed upon them armor and shields plated in pure silver.</History>
+			<History>The Hypaspists, or "shield bearers", were the flower of the Macedonian infantry. They were the most battle hardened veterans  within the army and followed Philip II and Alexander the Great into over a dozen full scale engagements. These heavily armed and opulently armoured units acted as an intermediary between the phalanx and the cavalry arm, many times charging headlong with Alexander into a breech in the enemy lines. Sometimes they fought as slow pikemen, like the Pezhetairoi with 6 meter "sarissas", and other times they fought as Hoplites with large aspides and 2.5 meter spears, or "dorata". In later times they became known as the Argyrapides, or "Silver Shields" when Alexander bestowed upon them armor and shields plated in pure silver.</History>
 		
 		</Id>
-
+		<Creation>
+			<Resource>
+ 				<Food>65</Food>
+				<Metal>120</Metal>
+ 			</Resource>
+		</Creation>		
 		<Armour>
 			<Hack>9.0</Hack>
-			<Pierce>9.0</Pierce>
+			<Pierce>11.0</Pierce>
 			<Crush>14.0</Crush>
 		</Armour>
 
 		<Health>
-			<Max>180</Max>
+			<Max>135</Max>
 		</Health>
-
 	</Traits>
 
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>23.0</Hack>
+ 				<Hack>18.0</Hack>
  				<Pierce>19.0</Pierce>
- 				<Crush>2.0</Crush>
+ 				<Crush>1.0</Crush>
 			</Melee>
 
 			<Charge>
-				<Hack>46.0</Hack>
-				<Pierce>38.5</Pierce>
+				<Hack>40.0</Hack>
+				<Pierce>38.0</Pierce>
 				<Crush>5.0</Crush>
-				<Range>5.0</Range>
+				<Range>3.0</Range>
 				<Speed>1500</Speed>
 			</Charge>	
  		</Attack>
 		<Move>
 			<Speed>8.5</Speed>
 			<Run>
-				<Speed>17.5</Speed>
+				<Speed>17.0</Speed>
 			</Run>
 		</Move>
 	</Actions>
