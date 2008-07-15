@@ -731,7 +731,8 @@ function performHeal( evt )
 				// Make sure we have enough resources.
 				if ( pool[resource] - evt.target.actions.heal.cost * evt.target.traits.creation.cost[resource] < 0 )
 				{
-					console.write( "Not enough " + resource.toString() + " for healing." );
+					//console.write( "Not enough " + resource.toString() + " for healing." );
+					showMessage("Not enough " + resource.toString() + " for healing.");
 					return;
 				}
 			break;
@@ -836,7 +837,8 @@ function performRepair( evt )
 		var amount = parseInt( fraction * parseInt(resources[r]) );
 		if( this.player.resources[r.toString()] < amount )
 		{
-			console.write("Can't repair - not enough " + r.toString());
+			//console.write("Can't repair - not enough " + r.toString());
+			showMessage("Can't repair - not enough " + r.toString());
 			evt.preventDefault();
 			return;
 		}
@@ -1451,7 +1453,8 @@ function entityStartProduction( evt )
 		else
 		{	
 			// If not, output the error message.
-			console.write(result);
+			//console.write(result);
+			showMessage(result);
 			evt.preventDefault();
 			return;
 		}
@@ -1481,7 +1484,8 @@ function entityStartProduction( evt )
 			var res = TECH_RESOURCES[i];
 			if( this.player.resources[res] < tech[res] )
 			{
-				console.write( "Cannot afford " + evt.name + ": need " + tech[res] + " " + res );
+				//console.write( "Cannot afford " + evt.name + ": need " + tech[res] + " " + res );
+				showMessage( "Cannot afford " + evt.name + ": need " + tech[res] + " " + res );
 				evt.preventDefault();
 				return;
 			}
@@ -1732,7 +1736,8 @@ function attemptAddToBuildQueue( entity, create_tag, tab, list )
 	}
 	else
 	{	// If not, output the error message.
-		console.write(result);
+		//console.write(result);
+		showMessage(result);
 		return false;
 	}
 }
@@ -2225,4 +2230,68 @@ function getBuildingLimit( category/*, gameMode*/ )
     if(category=="Special") return 1;
     
     return 0;
+}
+
+
+/*
+ * Not exactly entity related funcions, but I wanted it to be accessible from gui/test/ and scripts/ scripts, as they have
+ * to call this function. If anyone know of better place for these functions, please tell me.
+ */
+
+/* 
+ * showMessage(string) - This function should be used when there is some info that should be showed to the user.
+ * It is used for example for informing the user about the lack of resources for building or training a unit.
+ * The message gets removed after WAIT milliseconds.
+ */
+
+const MAX_MESSAGES = 6; //max. messages at a time.
+const WAIT = 15000;		//during what time a message will be shown.
+
+var messagesList = new Array();
+
+function showMessage(text)
+{
+	var message = getGUIObjectByName("globalMessage");
+
+	if (messagesList.length == MAX_MESSAGES)
+	{
+		messagesList.pop();	
+	}
+	
+	messagesList.unshift(text);
+	updateMessageView();
+	message.hidden = false;
+	
+	/*
+	 * This is made so only the first message, calls hideMessage().
+	 */
+	if (messagesList.length == 1)
+	{
+		setTimeout(hideMessage, WAIT);
+	}
+}
+
+function hideMessage()
+{
+	messagesList.pop();
+	
+	if (messagesList.length == 0) 
+	{
+		getGUIObjectByName("globalMessage").hidden = true;
+	}
+	else
+	{
+		updateMessageView();
+		setTimeout(hideMessage, WAIT);
+	}
+}
+
+function updateMessageView()
+{
+	var result = "";
+	for (var i=0; i < messagesList.length; i++)
+	{
+		result = result + messagesList[i] + "\n";
+	}
+	getGUIObjectByName("globalMessage").caption = result;
 }
