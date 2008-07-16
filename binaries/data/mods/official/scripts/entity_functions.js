@@ -1301,7 +1301,7 @@ function entityEventPrepareOrder( evt )
 			break;
 			
 		case ORDER_RUN:
-			if ( !this.actions.move.run )	
+			if ( !this.actions.move || !this.actions.move.run )	
 			{
 				evt.preventDefault();
 				return;
