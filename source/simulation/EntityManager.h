@@ -55,10 +55,10 @@ friend class CHandle;
 	//Optimized data for triggers. key = playerID, nested key = entity class, value = frequency
 	std::map<size_t, std::map<CStrW, int> > m_entityClassData;
 
-	void Destroy( u16 handle );
+	void Destroy( size_t handle );
 	void DeleteAllHelper();
 	
-	inline bool IsEntityRefd( u16 index )
+	inline bool IsEntityRefd( size_t index )
 	{
 		return m_refd[index];
 		//return m_entities[index].m_refcount && !m_entities[index].m_entity->entf_get(ENTF_DESTROYED);
@@ -79,8 +79,8 @@ public:
 	HEntity CreateFoundation( const CStrW& templateName, CPlayer* player, CVector3D position, 
 		float orientation );
 
-	HEntity* GetByHandle( u16 index );
-	CHandle *GetHandle( int index );
+	HEntity* GetByHandle( size_t index );
+	CHandle *GetHandle( size_t index );
 	
 	inline int GetPlayerUnitCount( size_t player, const CStrW& name )
 	{

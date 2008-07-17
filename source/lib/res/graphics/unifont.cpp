@@ -181,7 +181,10 @@ static LibError UniFont_validate(const UniFont* f)
 static LibError UniFont_to_string(const UniFont* f, char* buf)
 {
 	if (f->ht) // not true if this is called after dtor (which it is)
-		snprintf(buf, H_STRING_LEN, "Font %s", h_filename(f->ht));
+	{
+		const VfsPath& path = h_filename(f->ht);
+		snprintf(buf, H_STRING_LEN, "Font %s", path.string().c_str());
+	}
 	else
 		snprintf(buf, H_STRING_LEN, "Font");
 	return INFO::OK;

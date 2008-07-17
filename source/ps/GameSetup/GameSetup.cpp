@@ -827,8 +827,6 @@ void Shutdown(int flags)
 		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
-
-		lockfree_Shutdown();
 	TIMER_END("shutdown misc");
 }
 
@@ -842,8 +840,6 @@ void EarlyInit()
 	debug_set_thread_name("main");
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add("TIMER");
-
-	lockfree_Init();
 
 	cpu_ConfigureFloatingPoint();
 

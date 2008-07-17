@@ -9,6 +9,10 @@
 class TestLockfreeBasic : public CxxTest::TestSuite 
 {
 public:
+// note: the lockfree module is no longer part of the build, but cxxtestgen
+// still sees this class and its methods despite them being commented out
+// (#if 0 doesn't help, either). we therefore need to disable their bodies.
+#if 0
 	void setUp()
 	{
 		lockfree_Init();
@@ -18,9 +22,11 @@ public:
 	{
 		lockfree_Shutdown();
 	}
+#endif
 
 	void test_basic_single_threaded()
 	{
+#if 0
 		void* user_data;
 		const size_t ENTRIES = 50;
 		// should be more than max # retired nodes to test release..() code
@@ -61,6 +67,7 @@ public:
 
 		lfl_free(&list);
 		lfh_free(&hash);
+#endif
 	}
 };
 
@@ -68,6 +75,7 @@ public:
 // known to fail on P4 due to mem reordering and lack of membars.
 class TestMultithread : public CxxTest::TestSuite 
 {
+#if 0
 	void setUp()
 	{
 		lockfree_Init();
@@ -247,4 +255,5 @@ public:
 		lfh_free(&hash);
 		TS_ASSERT_OK(pthread_mutex_destroy(&mutex));
 	}
+#endif
 };

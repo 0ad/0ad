@@ -42,7 +42,7 @@ static size_t io_seeks;
 static size_t cache_count[2];
 static double cache_size_total[2];
 static size_t conflict_misses;
-static double conflict_miss_size_total;
+//static double conflict_miss_size_total;	// JW: currently not used nor computed
 static size_t block_cache_count[2];
 
 // archive builder

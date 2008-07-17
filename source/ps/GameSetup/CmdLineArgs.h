@@ -16,7 +16,7 @@ public:
 	 * @param argc size of argv array
 	 * @param argv array of arguments; argv[0] should be the program's name
 	 */
-	CmdLineArgs(int argc, char* argv[]);
+	CmdLineArgs(int argc, const char* argv[]);
 
 	/**
 	 * Test whether the given name was specified, as either <tt>-name</tt> or

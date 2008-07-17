@@ -45,7 +45,7 @@ public:
 	char random[1021];
 	std::vector<CVector2D> aPath;
 
-	void setPath(std::vector<CVector2D> _aPath)
+	void setPath(const std::vector<CVector2D>& _aPath)
 	{
 		aPath =_aPath;
 
@@ -269,7 +269,7 @@ bool CAStarEngine::FindPath(
 	//switch on/off grid path drawing by command line arg "-showOverlay"
 	//it's guarded here to stop setting the drawing path in pathfindingOverlay.
 	//(efficiency issue)
-	//the drawing is disable in the render() function in TerraiOverlay.cpp
+	//the drawing is disabled in the render() function in TerrainOverlay.cpp
 	if(g_ShowPathfindingOverlay)
 	{
 		pathfindingOverlay->setPath(mPath);

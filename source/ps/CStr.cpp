@@ -520,12 +520,16 @@ CStr CStr::Pad(PS_TRIM_MODE Mode, size_t Length) const
 
 CStr CStr::operator+(const CStr& Str)
 {
-	return std::operator+(*this, std::tstring(Str));
+	CStr tmp(*this);
+	tmp += Str;
+	return tmp;
 }
 
 CStr CStr::operator+(const tchar* Str)
 {
-	return std::operator+(*this, std::tstring(Str));
+	CStr tmp(*this);
+	tmp += Str;
+	return tmp;
 }
 
 // Joining ASCII and Unicode strings:

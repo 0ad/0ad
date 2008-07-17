@@ -36,10 +36,12 @@ I18n::StringBuffer::operator Str()
 	}
 
 	if (String->VarCount == 0)
+	{
 		if (String->Parts.size())
 			return String->Parts[0]->ToString(Locale, Variables).str();
 		else
 			return Str();
+	}
 
 	Str ret;
 

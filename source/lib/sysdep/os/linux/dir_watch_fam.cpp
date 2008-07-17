@@ -109,6 +109,7 @@ LibError dir_get_changed_file(char* fn)
 				char n_path[PATH_MAX];
 				const char* dir = dirs[e.fr.reqnum].c_str();
 				snprintf(n_path, PATH_MAX, "%s%c%s", dir, SYS_DIR_SEP, e.filename);
+				UNUSED2(fn);	// we ought to copy to fn, but this code is apparently disabled..
 				return ERR::AGAIN;
 			}
 		}

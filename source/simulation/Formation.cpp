@@ -192,8 +192,9 @@ bool CFormation::LoadXml(const CStr& filename)
 	return true;
 }
 
-void CFormation::AssignCategory(size_t order, CStr category)
+void CFormation::AssignCategory(size_t order, const CStr& category_)
 {
+	CStr category(category_);
 	category.Remove( CStr(",") );
 	category = category + " ";	//So the final word will be pushed as well
 	CStr temp;

@@ -358,7 +358,7 @@ void kill_mainloop()
 
 // moved into a helper function to ensure args is destroyed before
 // exit(), which may result in a memory leak.
-static void RunGameOrAtlas(int argc, char* argv[])
+static void RunGameOrAtlas(int argc, const char* argv[])
 {
 	CmdLineArgs args(argc, argv);
 
@@ -386,7 +386,7 @@ int main(int argc, char* argv[])
 {
 	EarlyInit();	// must come at beginning of main
 
-	RunGameOrAtlas(argc, argv);
+	RunGameOrAtlas(argc, const_cast<const char**>(argv));
 
 	exit(EXIT_SUCCESS);
 }

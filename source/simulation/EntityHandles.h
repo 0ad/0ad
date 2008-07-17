@@ -42,7 +42,7 @@ class HEntity
 private:
 	void AddRef();
 	void DecRef();
-	HEntity( u16 index );
+	HEntity( size_t index );
 public:
 	HEntity();
 	HEntity( const HEntity& copy );

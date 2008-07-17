@@ -44,7 +44,7 @@ CEntityManager::CEntityManager()
 
 void CEntityManager::DeleteAllHelper()
 {
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 	{
 		if( m_entities[i].m_refcount )
 		{
@@ -195,7 +195,7 @@ HEntity CEntityManager::Create(CEntityTemplate* base, CVector3D position, float 
 		return HEntity();
 
 	// Find an unused handle for the unit
-	int pos = 0;
+	size_t pos = 0;
 	while( m_entities[m_nextalloc].m_refcount )
 	{
 		m_nextalloc++;
@@ -272,13 +272,13 @@ HEntity CEntityManager::CreateFoundation( const CStrW& templateName, CPlayer* pl
 	return Create( foundation, position, orientation, selections, &templateName );
 }
 
-HEntity* CEntityManager::GetByHandle( u16 index )
+HEntity* CEntityManager::GetByHandle( size_t index )
 {
 	if( index >= MAX_HANDLES ) return( NULL );
 	if( !m_entities[index].m_refcount ) return( NULL );
 	return( new HEntity( index ) );
 }
-CHandle *CEntityManager::GetHandle( int index )
+CHandle *CEntityManager::GetHandle( size_t index )
 {
 	if (!m_entities[index].m_refcount )
 		return NULL;
@@ -288,7 +288,7 @@ CHandle *CEntityManager::GetHandle( int index )
 void CEntityManager::GetMatchingAsHandles(std::vector<HEntity>& matchlist, EntityPredicate predicate, void* userdata)
 {
 	matchlist.clear();
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 	{
 		if( IsEntityRefd(i) )
 			if( predicate( m_entities[i].m_entity, userdata ) )
@@ -299,7 +299,7 @@ void CEntityManager::GetMatchingAsHandles(std::vector<HEntity>& matchlist, Entit
 void CEntityManager::GetExtantAsHandles( std::vector<HEntity>& results )
 {
 	results.clear();
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		if( IsEntityRefd(i) )
 			results.push_back( HEntity( i ) );
 }
@@ -307,7 +307,7 @@ void CEntityManager::GetExtantAsHandles( std::vector<HEntity>& results )
 void CEntityManager::GetExtant( std::vector<CEntity*>& results )
 {
 	results.clear();
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		if( IsEntityRefd(i) && m_entities[i].m_entity->m_extant )
 			results.push_back( m_entities[i].m_entity );
 }
@@ -356,7 +356,7 @@ void CEntityManager::GetInLOS( CEntity* entity, std::vector<CEntity*>& results )
 /*
 void CEntityManager::dispatchAll( CMessage* msg )
 {
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		if( m_entities[i].m_refcount && m_entities[i].m_entity->m_extant )
 			m_entities[i].m_entity->dispatch( msg );
 }
@@ -374,7 +374,7 @@ void CEntityManager::InitializeAll()
 	debug_assert(! m_collisionPatches);
 	m_collisionPatches = new std::vector<CEntity*>[m_collisionPatchesPerSide * m_collisionPatchesPerSide];
 
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 	{
 		if( IsEntityRefd(i) )
 		{
@@ -391,7 +391,7 @@ void CEntityManager::InitializeAll()
 /*
 void CEntityManager::TickAll()
 {
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		if( IsEntityRefd(i) && m_entities[i].m_entity->m_extant )
 			m_entities[i].m_entity->Tick();
 }
@@ -421,7 +421,7 @@ void CEntityManager::UpdateAll( int timestep )
 */
 
 	PROFILE_START( "update all" );
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		if( IsEntityRefd(i) )
 			m_entities[i].m_entity->Update( timestep );
 	PROFILE_END( "update all" );
@@ -429,7 +429,7 @@ void CEntityManager::UpdateAll( int timestep )
 
 void CEntityManager::InterpolateAll( float relativeoffset )
 {
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		// This needs to handle all entities, including destroyed/non-extant ones
 		// (mainly dead bodies), so it can't use IsEntityRefd
 		if( m_entities[i].m_refcount )
@@ -438,7 +438,7 @@ void CEntityManager::InterpolateAll( float relativeoffset )
 
 void CEntityManager::RenderAll()
 {
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		if( IsEntityRefd(i) )
 			m_entities[i].m_entity->Render();
 }
@@ -446,7 +446,7 @@ void CEntityManager::RenderAll()
 void CEntityManager::ConformAll()
 {
 	PROFILE_START("conform all");
-	for ( int i=0; i < MAX_HANDLES; i++ )
+	for ( size_t i=0; i < MAX_HANDLES; i++ )
 	{
 		if( IsEntityRefd(i) )
 		{
@@ -459,7 +459,7 @@ void CEntityManager::ConformAll()
 
 void CEntityManager::InvalidateAll()
 {
-	for( int i = 0; i < MAX_HANDLES; i++ )
+	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		if( IsEntityRefd(i) )
 			m_entities[i].m_entity->InvalidateActor();
 }
@@ -477,7 +477,7 @@ void CEntityManager::RemoveUnitCount(CEntity* ent)
 	}
 	--m_entityClassData[playerID][className];
 }
-void CEntityManager::Destroy( u16 handle )
+void CEntityManager::Destroy( size_t handle )
 {
 	m_reaper.push_back( m_entities[handle].m_entity );
 }

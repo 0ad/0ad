@@ -75,6 +75,6 @@ private:
 	std::map<size_t, FormationSlot> m_slots;
 
 	bool LoadXml(const CStr& filename);
-	void AssignCategory(size_t order, CStr category);	//takes care of formatting strings
+	void AssignCategory(size_t order, const CStr& category);	//takes care of formatting strings
 };
 #endif

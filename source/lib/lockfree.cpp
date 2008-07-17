@@ -9,6 +9,7 @@
 // license: GPL; see lib/license.txt
 
 #include "precompiled.h"
+#if 0	// JW: disabled, not used
 #include "lockfree.h"
 
 #include <set>
@@ -258,7 +259,7 @@ retry:
 	// for each participating thread:
 	for(TLS* t = tls_list; t; t = t->next)
 		// for each of its non-NULL hazard pointers:
-		for(int i = 0; i < NUM_HPS; i++)
+		for(size_t i = 0; i < NUM_HPS; i++)
 		{
 			void* hp = t->hp[i];
 			if(!hp)
@@ -707,3 +708,5 @@ void lockfree_Shutdown()
 
 	smr_shutdown();
 }
+
+#endif

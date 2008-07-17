@@ -2,7 +2,7 @@
 
 #include "CmdLineArgs.h"
 
-CmdLineArgs::CmdLineArgs(int argc, char* argv[])
+CmdLineArgs::CmdLineArgs(int argc, const char* argv[])
 {
 	if (argc >= 1)
 		m_Arg0 = argv[0];

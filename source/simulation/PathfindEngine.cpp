@@ -109,17 +109,17 @@ public:
 		}
 	}
 
-	void setCurrentPath(SrPolygon _CurPath)
+	void setCurrentPath(const SrPolygon& _CurPath)
 	{
 		CurPath = _CurPath;
 	}
 
-	void setConstrainedEdges(SrArray<SrPnt2> _constr)
+	void setConstrainedEdges(const SrArray<SrPnt2>& _constr)
 	{
 		constr = _constr;
 	}
 
-	void setUnconstrainedEdges(SrArray<SrPnt2> _unconstr)
+	void setUnconstrainedEdges(const SrArray<SrPnt2>& _unconstr)
 	{
 		unconstr = _unconstr;
 	}

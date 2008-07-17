@@ -56,7 +56,7 @@ CStr g_AutostartMap = "";
 
 static void LoadProfile( const CStr& profile )
 {
-	VfsPath path = VfsPath("profiles") / (std::string)profile;
+	VfsPath path = VfsPath("profiles") / profile;
 
 	VfsPath configFilename = path / "settings/user.cfg";
 	g_ConfigDB.SetConfigFile(CFG_USER, true, configFilename.string().c_str());

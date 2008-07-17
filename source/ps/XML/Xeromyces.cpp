@@ -228,7 +228,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 
 	if (errorHandler.GetSawErrors())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLParseError;
 		// The internal tree of the XeroHandler will be cleaned up automatically
 	}

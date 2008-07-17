@@ -89,7 +89,7 @@ void WriteSystemInfo()
 		fprintf(f, "\n");
 
 	// memory
-	fprintf(f, "Memory         : %lu MiB; %lu MiB free\n", os_cpu_MemorySize()/MiB, os_cpu_MemoryAvailable()/MiB);
+	fprintf(f, "Memory         : %u MiB; %u MiB free\n", os_cpu_MemorySize(), os_cpu_MemoryAvailable());
 
 	// graphics
 	fprintf(f, "Graphics Card  : %s\n", gfx_card);

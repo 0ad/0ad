@@ -368,7 +368,8 @@ public:
 		FileInfo fileInfo;
 		s_fileSystemPosix.GetFileInfo(pathname, &fileInfo);
 		m_fileSize = fileInfo.Size();
-		debug_assert(m_fileSize >= sizeof(LFH)+sizeof(CDFH)+sizeof(ECDR));
+		const size_t minFileSize = sizeof(LFH)+sizeof(CDFH)+sizeof(ECDR);
+		debug_assert(m_fileSize >= off_t(minFileSize));
 	}
 
 	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData)

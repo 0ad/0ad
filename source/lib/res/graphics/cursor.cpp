@@ -37,6 +37,7 @@ static LibError load_sys_cursor(const VfsPath& pathname, int hx, int hy, sys_cur
 	UNUSED2(pathname);
 	UNUSED2(hx);
 	UNUSED2(hy);
+	UNUSED2(cursor);
 
 	return ERR::FAIL;
 #else
@@ -115,7 +116,7 @@ public:
 
 	LibError validate() const
 	{
-		const size_t A = 128;	// no cursor is expected to get this big
+		const GLint A = 128;	// no cursor is expected to get this big
 		if(w > A || h > A || hotspotx > A || hotspoty > A)
 			WARN_RETURN(ERR::_1);
 		if(ht < 0)

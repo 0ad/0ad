@@ -32,7 +32,7 @@ BlockId::BlockId(const Path& pathname, off_t ofs)
 	const size_t indexBits = 16;
 	m_id <<= indexBits;
 	const off_t blockIndex = ofs / BLOCK_SIZE;
-	debug_assert(blockIndex < (1ul << indexBits));
+	debug_assert(blockIndex < off_t(1ul << indexBits));
 	m_id |= blockIndex;
 }
 

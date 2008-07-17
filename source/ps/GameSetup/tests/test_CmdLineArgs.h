@@ -7,7 +7,7 @@ class TestCmdLineArgs : public CxxTest::TestSuite
 public:
 	void test_has()
 	{
-		char* argv[] = { "program", "-test2" };
+		const char* argv[] = { "program", "-test2" };
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
 		TS_ASSERT(!c.Has("test1"));
 		TS_ASSERT(c.Has("test2"));
@@ -17,7 +17,7 @@ public:
 
 	void test_get()
 	{
-		char* argv[] = { "program", "-test1=", "-test2=x", "-test3=-y=y-", "-=z" };
+		const char* argv[] = { "program", "-test1=", "-test2=x", "-test3=-y=y-", "-=z" };
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
 		TS_ASSERT_STR_EQUALS(c.Get("test0"), "");
 		TS_ASSERT_STR_EQUALS(c.Get("test1"), "");
@@ -28,7 +28,7 @@ public:
 
 	void test_multiple()
 	{
-		char* argv[] = { "program", "-test1=one", "-test1=two", "-test2=none", "-test1=three" };
+		const char* argv[] = { "program", "-test1=one", "-test1=two", "-test2=none", "-test1=three" };
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
 
 		TS_ASSERT_STR_EQUALS(c.Get("test1"), "one");
@@ -48,7 +48,7 @@ public:
 
 	void test_get_invalid()
 	{
-		char* argv[] = { "-test1", "-test2", "test3", " -test4" };
+		const char* argv[] = { "-test1", "-test2", "test3", " -test4" };
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
 
 		TS_ASSERT(!c.Has("test1"));
@@ -59,7 +59,7 @@ public:
 
 	void test_arg0()
 	{
-		char* argv[] = { "program" };
+		const char* argv[] = { "program" };
 		CmdLineArgs c(ARRAY_SIZE(argv), argv);
 		TS_ASSERT_STR_EQUALS(c.GetArg0(), "program");
 

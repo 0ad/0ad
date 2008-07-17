@@ -12,9 +12,9 @@ CHandle::CHandle()
 	m_refcount = 0;
 }
 
-HEntity::HEntity( u16 index )
+HEntity::HEntity( size_t index )
 {
-	m_handle = index;
+	m_handle = (u16)index;
 	AddRef();
 }
 
