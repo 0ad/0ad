@@ -85,7 +85,7 @@ struct IVFS
 	 * rationale: disallowing partial writes simplifies file cache coherency
 	 * (need only be invalidated when closing a FILE_WRITE file).
 	 **/
-	virtual LibError CreateFile(const VfsPath& pathname, shared_ptr<u8> fileContents, size_t size) = 0;
+	virtual LibError CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
 
 	/**
 	 * read an entire file into memory.

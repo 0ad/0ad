@@ -32,7 +32,7 @@ private:
 class UnalignedWriter : public noncopyable
 {
 public:
-	UnalignedWriter(PIFile file, off_t ofs);
+	UnalignedWriter(const PIFile& file, off_t ofs);
 	~UnalignedWriter();
 
 	/**

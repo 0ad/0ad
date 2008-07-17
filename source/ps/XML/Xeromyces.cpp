@@ -98,7 +98,7 @@ void CXeromyces::Terminate()
 
 
 // Find out write location of the XMB file corresponding to xmlFilename
-void CXeromyces::GetXMBPath(PIVFS vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath)
+void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath)
 {
 	// rationale:
 	// - it is necessary to write out XMB files into a subdirectory

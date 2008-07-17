@@ -61,7 +61,7 @@ public:
 	 * @param cost is the expected cost of retrieving the file again and
 	 * influences how/when it is evicted from the cache.
 	 **/
-	void Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, size_t cost = 1);
+	void Add(const VfsPath& pathname, const shared_ptr<u8>& data, size_t size, size_t cost = 1);
 
 	/**
 	 * Remove a file's contents from the cache (if it exists).

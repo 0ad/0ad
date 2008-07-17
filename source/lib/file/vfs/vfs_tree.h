@@ -18,7 +18,7 @@
 class VfsFile
 {
 public:
-	VfsFile(const std::string& name, off_t size, time_t mtime, size_t priority, PIFileLoader provider);
+	VfsFile(const std::string& name, off_t size, time_t mtime, size_t priority, const PIFileLoader& provider);
 
 	const std::string& Name() const
 	{
@@ -39,7 +39,7 @@ public:
 
 	void GenerateDescription(char* text, size_t maxChars) const;
 
-	LibError Load(shared_ptr<u8> buf) const;
+	LibError Load(const shared_ptr<u8>& buf) const;
 
 private:
 	std::string m_name;
@@ -80,7 +80,7 @@ public:
 
 	void Attach(const PRealDirectory& realDirectory);
 
-	PRealDirectory AssociatedDirectory() const
+	const PRealDirectory& AssociatedDirectory() const
 	{
 		return m_realDirectory;
 	}

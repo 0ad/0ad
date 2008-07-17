@@ -32,7 +32,7 @@ static size_t s_numArchivedFiles;
 class PopulateHelper : noncopyable
 {
 public:
-	PopulateHelper(VfsDirectory* directory, PRealDirectory realDirectory)
+	PopulateHelper(VfsDirectory* directory, const PRealDirectory& realDirectory)
 		: m_directory(directory), m_realDirectory(realDirectory)
 	{
 	}
@@ -121,7 +121,7 @@ static LibError Populate(VfsDirectory* directory)
 	if(!directory->ShouldPopulate())
 		return INFO::OK;
 
-	PRealDirectory realDirectory = directory->AssociatedDirectory();
+	const PRealDirectory& realDirectory = directory->AssociatedDirectory();
 
 	if(realDirectory->Flags() & VFS_MOUNT_WATCH)
 		realDirectory->Watch();

@@ -55,7 +55,7 @@ typedef shared_ptr<Allocator> PAllocator;
 class FileCacheDeleter
 {
 public:
-	FileCacheDeleter(size_t size, PAllocator allocator)
+	FileCacheDeleter(size_t size, const PAllocator& allocator)
 		: m_size(size), m_allocator(allocator)
 	{
 	}
@@ -78,7 +78,7 @@ public:
 	{
 	}
 
-	shared_ptr<u8> Allocate(size_t size, PAllocator pthis)
+	shared_ptr<u8> Allocate(size_t size, const PAllocator& pthis)
 	{
 		const size_t alignedSize = round_up(size, BLOCK_SIZE);
 
@@ -171,7 +171,7 @@ public:
 		}
 	}
 
-	void Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, size_t cost)
+	void Add(const VfsPath& pathname, const shared_ptr<u8>& data, size_t size, size_t cost)
 	{
 		// zero-copy cache => all users share the contents => must not
 		// allow changes. this will be reverted when deallocating.
@@ -217,7 +217,7 @@ shared_ptr<u8> FileCache::Reserve(size_t size)
 	return impl->Reserve(size);
 }
 
-void FileCache::Add(const VfsPath& pathname, shared_ptr<u8> data, size_t size, size_t cost)
+void FileCache::Add(const VfsPath& pathname, const shared_ptr<u8>& data, size_t size, size_t cost)
 {
 	impl->Add(pathname, data, size, cost);
 }

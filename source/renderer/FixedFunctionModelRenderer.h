@@ -37,7 +37,7 @@ public:
 
 	void BeginPass(int streamflags, const CMatrix3D* texturematrix);
 	void EndPass(int streamflags);
-	void PrepareModelDef(int streamflags, CModelDefPtr def);
+	void PrepareModelDef(int streamflags, const CModelDefPtr& def);
 	void RenderModel(int streamflags, CModel* model, void* data);
 
 private:

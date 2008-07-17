@@ -47,12 +47,12 @@ struct IModelDef : public CModelDefRPrivate
 	u16* m_Indices;
 
 
-	IModelDef(CModelDefPtr mdef);
+	IModelDef(const CModelDefPtr& mdef);
 	~IModelDef() { delete[] m_Indices; }
 };
 
 
-IModelDef::IModelDef(CModelDefPtr mdef)
+IModelDef::IModelDef(const CModelDefPtr& mdef)
 	: m_Array(false)
 {
 	size_t numVertices = mdef->GetNumVertices();
@@ -222,7 +222,7 @@ void InstancingModelRenderer::EndPass(int streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void InstancingModelRenderer::PrepareModelDef(int streamflags, CModelDefPtr def)
+void InstancingModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
 {
 	m->imodeldef = (IModelDef*)def->GetRenderData(m);
 

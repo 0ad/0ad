@@ -35,9 +35,9 @@
 
 // Helper function to copy object-space position and normal vectors into arrays.
 void ModelRenderer::CopyPositionAndNormals(
-		CModelDefPtr mdef,
-		VertexArrayIterator<CVector3D> Position,
-		VertexArrayIterator<CVector3D> Normal)
+		const CModelDefPtr& mdef,
+		const VertexArrayIterator<CVector3D>& Position,
+		const VertexArrayIterator<CVector3D>& Normal)
 {
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices = mdef->GetVertices();
@@ -52,8 +52,8 @@ void ModelRenderer::CopyPositionAndNormals(
 // Helper function to transform position and normal vectors into world-space.
 void ModelRenderer::BuildPositionAndNormals(
 		CModel* model,
-		VertexArrayIterator<CVector3D> Position,
-		VertexArrayIterator<CVector3D> Normal)
+		const VertexArrayIterator<CVector3D>& Position,
+		const VertexArrayIterator<CVector3D>& Normal)
 {
 	CModelDefPtr mdef = model->GetModelDef();
 	size_t numVertices = mdef->GetNumVertices();
@@ -96,8 +96,8 @@ void ModelRenderer::BuildPositionAndNormals(
 // Helper function for lighting
 void ModelRenderer::BuildColor4ub(
 		CModel* model,
-		VertexArrayIterator<CVector3D> Normal,
-		VertexArrayIterator<SColor4ub> Color,
+		const VertexArrayIterator<CVector3D>& Normal,
+		const VertexArrayIterator<SColor4ub>& Color,
 		bool onlyDiffuse)
 {
 	PROFILE( "lighting vertices" );
@@ -135,23 +135,23 @@ void ModelRenderer::BuildColor4ub(
 
 // Copy UV coordinates
 void ModelRenderer::BuildUV(
-		CModelDefPtr mdef,
-		VertexArrayIterator<float[2]> UV)
+		const CModelDefPtr& mdef,
+		const VertexArrayIterator<float[2]>& UV)
 {
 	size_t numVertices = mdef->GetNumVertices();
 	SModelVertex* vertices = mdef->GetVertices();
 
-	for (size_t j=0; j < numVertices; ++j, ++UV)
+	for (size_t j=0; j < numVertices; ++j)
 	{
-		(*UV)[0] = vertices[j].m_U;
-		(*UV)[1] = 1.0-vertices[j].m_V;
+		UV[j][0] = vertices[j].m_U;
+		UV[j][1] = 1.0-vertices[j].m_V;
 	}
 }
 
 
 // Build default indices array.
 void ModelRenderer::BuildIndices(
-		CModelDefPtr mdef,
+		const CModelDefPtr& mdef,
 		u16* Indices)
 {
 	size_t idxidx = 0;
@@ -209,7 +209,7 @@ struct BMRModelData : public CModelRData
  */
 struct BMRModelDefTracker : public CModelDefRPrivate
 {
-	BMRModelDefTracker(CModelDefPtr mdef)
+	BMRModelDefTracker(const CModelDefPtr& mdef)
 	: m_ModelDef(mdef), m_Next(0), m_Slots(0) { }
 
 	/// Back-link to the CModelDef object
@@ -258,7 +258,7 @@ struct BatchModelRendererInternals
 		vertexRenderer->DestroyModelData(model, data);
 	}
 
-	void RenderAllModels(RenderModifierPtr modifier, int filterflags, int pass, int streamflags);
+	void RenderAllModels(const RenderModifierPtr& modifier, int filterflags, int pass, int streamflags);
 };
 
 BMRModelData::~BMRModelData()
@@ -406,7 +406,7 @@ bool BatchModelRenderer::HaveSubmissions()
 
 
 // Render models, outer loop for multi-passing
-void BatchModelRenderer::Render(RenderModifierPtr modifier, int flags)
+void BatchModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 {
 	debug_assert(m->phase == BMRRender);
 
@@ -434,7 +434,7 @@ void BatchModelRenderer::Render(RenderModifierPtr modifier, int flags)
 
 // Render one frame worth of models
 void BatchModelRendererInternals::RenderAllModels(
-		RenderModifierPtr modifier, int filterflags,
+		const RenderModifierPtr& modifier, int filterflags,
 		int pass, int streamflags)
 {
 	for(BMRModelDefTracker* mdeftracker = submissions; mdeftracker; mdeftracker = mdeftracker->m_Next)

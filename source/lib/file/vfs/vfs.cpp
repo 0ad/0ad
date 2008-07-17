@@ -65,12 +65,12 @@ public:
 
 	// note: only allowing either reads or writes simplifies file cache
 	// coherency (need only invalidate when closing a FILE_WRITE file).
-	virtual LibError CreateFile(const VfsPath& pathname, shared_ptr<u8> fileContents, size_t size)
+	virtual LibError CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size)
 	{
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 
-		PRealDirectory realDirectory = directory->AssociatedDirectory();
+		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
 		const std::string& name = pathname.leaf();
 		RETURN_ERR(realDirectory->Store(name, fileContents, size));
 
@@ -146,7 +146,7 @@ public:
 	{
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
-		PRealDirectory realDirectory = directory->AssociatedDirectory();
+		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
 		realPathname = realDirectory->GetPath() / pathname.leaf();
 		return INFO::OK;
 	}

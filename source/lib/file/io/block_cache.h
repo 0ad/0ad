@@ -56,7 +56,7 @@ public:
 	 * satisfy subsequent Retrieve calls for the same id.
 	 * if CONFIG2_CACHE_READ_ONLY, the memory is made read-only.
 	 **/
-	void Add(BlockId id, shared_ptr<u8> buf);
+	void Add(BlockId id, const shared_ptr<u8>& buf);
 
 	/**
 	 * Attempt to retrieve a block's contents.

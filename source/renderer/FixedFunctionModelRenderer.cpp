@@ -41,12 +41,12 @@ struct FFModelDef : public CModelDefRPrivate
 	/// UV coordinates are stored in the static array
 	VertexArray::Attribute m_UV;
 
-	FFModelDef(CModelDefPtr mdef);
+	FFModelDef(const CModelDefPtr& mdef);
 	~FFModelDef() { delete[] m_Indices; }
 };
 
 
-FFModelDef::FFModelDef(CModelDefPtr mdef)
+FFModelDef::FFModelDef(const CModelDefPtr& mdef)
 	: m_Array(false)
 {
 	size_t numVertices = mdef->GetNumVertices();
@@ -230,7 +230,7 @@ void FixedFunctionModelRenderer::EndPass(int streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void FixedFunctionModelRenderer::PrepareModelDef(int streamflags, CModelDefPtr def)
+void FixedFunctionModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
 {
 	m->ffmodeldef = (FFModelDef*)def->GetRenderData(m);
 
@@ -279,5 +279,3 @@ void FixedFunctionModelRenderer::RenderModel(int streamflags, CModel* model, voi
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_ModelTris += numFaces;
 }
-
-

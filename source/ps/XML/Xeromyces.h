@@ -31,7 +31,7 @@ public:
 private:
 
 	// Find out write location of the XMB file corresponding to xmlFilename
-	static void GetXMBPath(PIVFS vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath);
+	static void GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath);
 
 	bool ReadXMBFile(const VfsPath& filename);
 

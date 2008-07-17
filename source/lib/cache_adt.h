@@ -41,16 +41,16 @@ Manager is a template parameterized on typename Key and class Entry.
 	bool empty() const;
 
 	// add (key, entry) to cache.
-	void add(Key key, const Entry& entry);
+	void add(const Key& key, const Entry& entry);
 
 	// if the entry identified by <key> is not in cache, return false;
 	// otherwise return true and pass back a pointer to it.
-	bool find(Key key, const Entry** pentry) const;
+	bool find(const Key& key, const Entry** pentry) const;
 
 	// remove an entry from cache, which is assumed to exist!
 	// this makes sense because callers will typically first use find() to
 	// return info about the entry; this also checks if present.
-	void remove(Key key);
+	void remove(const Key& key);
 
 	// mark <entry> as just accessed for purpose of cache management.
 	// it will tend to be kept in cache longer.
@@ -215,13 +215,13 @@ public:
 		return map.empty();
 	}
 
-	void add(Key key, const Entry& entry)
+	void add(const Key& key, const Entry& entry)
 	{
 		// adapter for add_ (which returns an iterator)
 		(void)add_(key, entry);
 	}
 
-	bool find(Key key, const Entry** pentry) const
+	bool find(const Key& key, const Entry** pentry) const
 	{
 		MapCIt it = map.find(key);
 		if(it == map.end())
@@ -230,7 +230,7 @@ public:
 		return true;
 	}
 
-	void remove(Key key)
+	void remove(const Key& key)
 	{
 		MapIt it = map.find(key);
 		// note: don't complain if not in the cache: this happens after
@@ -304,7 +304,7 @@ protected:
 	Map map;
 
 	// add entry and return iterator pointing to it.
-	MapIt add_(Key key, const Entry& entry)
+	MapIt add_(const Key& key, const Entry& entry)
 	{
 		typedef std::pair<MapIt, bool> PairIB;
 		typename Map::value_type val = std::make_pair(key, entry);
@@ -379,7 +379,7 @@ class Landlord_Lazy : public Landlord_Naive<Key, Entry>
 public:
 	Landlord_Lazy() { pending_delta = 0.0f; }
 
-	void add(Key key, const Entry& entry)
+	void add(const Key& key, const Entry& entry)
 	{
 		// we must apply pending_delta now - otherwise, the existing delta
 		// would later be applied to this newly added item (incorrect).
@@ -389,7 +389,7 @@ public:
 		pri_q.push(it);
 	}
 
-	void remove(Key key)
+	void remove(const Key& key)
 	{
 		Parent::remove(key);
 
@@ -531,12 +531,12 @@ public:
 		return lru.empty();
 	}
 
-	void add(Key key, const Entry& entry)
+	void add(const Key& key, const Entry& entry)
 	{
 		lru.push_back(KeyAndEntry(key, entry));
 	}
 
-	bool find(Key key, const Entry** pentry) const
+	bool find(const Key& key, const Entry** pentry) const
 	{
 		CIt it = std::find_if(lru.begin(), lru.end(), KeyEq(key));
 		if(it == lru.end())
@@ -545,7 +545,7 @@ public:
 		return true;
 	}
 
-	void remove(Key key)
+	void remove(const Key& key)
 	{
 		std::remove_if(lru.begin(), lru.end(), KeyEq(key));
 	}
@@ -575,14 +575,14 @@ private:
 	{
 		Key key;
 		Entry entry;
-		KeyAndEntry(Key key_, const Entry& entry_)
+		KeyAndEntry(const Key& key_, const Entry& entry_)
 			: key(key_), entry(entry_) {}
 	};
 	class KeyEq
 	{
 		Key key;
 	public:
-		KeyEq(Key key_) : key(key_) {}
+		KeyEq(const Key& key_) : key(key_) {}
 		bool operator()(const KeyAndEntry& ke) const
 		{
 			return ke.key == key;
@@ -613,7 +613,7 @@ template<class Item, class Divider> struct CacheEntry
 	{
 	}
 
-	CacheEntry(Item item_, size_t size_, size_t cost_)
+	CacheEntry(const Item& item_, size_t size_, size_t cost_)
 		: item(item_), divider((float)size_)
 	{
 		size = size_;
@@ -647,7 +647,7 @@ class Cache
 public:
 	Cache() : mgr() {}
 
-	void add(Key key, Item item, size_t size, size_t cost)
+	void add(const Key& key, const Item& item, size_t size, size_t cost)
 	{
 		return mgr.add(key, Entry(item, size, cost));
 	}
@@ -656,7 +656,7 @@ public:
 	// if present and determine size via retrieve(), so no need for
 	// error checking.
 	// useful for invalidating single cache entries.
-	void remove(Key key)
+	void remove(const Key& key)
 	{
 		mgr.remove(key);
 	}
@@ -668,7 +668,7 @@ public:
 	// tending to keep it in cache longer. this parameter is not used in
 	// normal operation - it's only for special cases where we need to
 	// make an end run around the cache accounting (e.g. for cache simulator).
-	bool retrieve(Key key, Item& item, size_t* psize = 0, bool refill_credit = true)
+	bool retrieve(const Key& key, Item& item, size_t* psize = 0, bool refill_credit = true)
 	{
 		const Entry* entry;
 		if(!mgr.find(key, &entry))
@@ -684,7 +684,7 @@ public:
 		return true;
 	}
 
-	bool peek(Key key, Item& item, size_t* psize = 0)
+	bool peek(const Key& key, Item& item, size_t* psize = 0)
 	{
 		return retrieve(key, item, psize, false);
 	}

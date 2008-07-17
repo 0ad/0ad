@@ -255,7 +255,7 @@ extern void tex_codec_register_all();
  * @param t output texture object.
  * @return LibError.
  **/
-extern LibError tex_decode(shared_ptr<u8> data, size_t data_size, Tex* t);
+extern LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t);
 
 /**
  * encode a texture into a memory buffer in the desired file format.
@@ -291,7 +291,7 @@ extern LibError tex_encode(Tex* t, const std::string& extension, DynArray* da);
  * @param t output texture object.
  * @return LibError
  **/
-extern LibError tex_wrap(size_t w, size_t h, size_t bpp, int flags, shared_ptr<u8> data, size_t ofs, Tex* t);
+extern LibError tex_wrap(size_t w, size_t h, size_t bpp, int flags, const shared_ptr<u8>& data, size_t ofs, Tex* t);
 
 /**
  * free all resources associated with the image and make further

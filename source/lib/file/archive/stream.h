@@ -62,7 +62,7 @@ private:
 class Stream
 {
 public:
-	Stream(PICodec codec);
+	Stream(const PICodec& codec);
 
 	void SetOutputBuffer(u8* out, size_t outSize);
 

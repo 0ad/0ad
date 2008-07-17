@@ -153,7 +153,7 @@ public:
 	 * If flags is non-zero, only models that contain flags in their
 	 * CModel::GetFlags() are rendered.
 	 */
-	virtual void Render(RenderModifierPtr modifier, int flags) = 0;
+	virtual void Render(const RenderModifierPtr& modifier, int flags) = 0;
 
 	/**
 	 * CopyPositionAndNormals: Copy unanimated object-space vertices and
@@ -168,9 +168,9 @@ public:
 	 * The array behind the iterator must be as large as the Position array.
 	 */
 	static void CopyPositionAndNormals(
-			CModelDefPtr mdef,
-			VertexArrayIterator<CVector3D> Position,
-			VertexArrayIterator<CVector3D> Normal);
+			const CModelDefPtr& mdef,
+			const VertexArrayIterator<CVector3D>& Position,
+			const VertexArrayIterator<CVector3D>& Normal);
 
 	/**
 	 * BuildPositionAndNormals: Build animated vertices and normals,
@@ -187,8 +187,8 @@ public:
 	 */
 	static void BuildPositionAndNormals(
 			CModel* model,
-			VertexArrayIterator<CVector3D> Position,
-			VertexArrayIterator<CVector3D> Normal);
+			const VertexArrayIterator<CVector3D>& Position,
+			const VertexArrayIterator<CVector3D>& Normal);
 
 	/**
 	 * BuildColor4ub: Build lighting colors for the given model,
@@ -205,8 +205,8 @@ public:
 	 */
 	static void BuildColor4ub(
 			CModel* model,
-			VertexArrayIterator<CVector3D> Normal,
-			VertexArrayIterator<SColor4ub> Color,
+			const VertexArrayIterator<CVector3D>& Normal,
+			const VertexArrayIterator<SColor4ub>& Color,
 			bool onlyDiffuse);
 
 	/**
@@ -218,8 +218,8 @@ public:
 	 * mdef->GetNumVertices() vertices.
 	 */
 	static void BuildUV(
-			CModelDefPtr mdef,
-			VertexArrayIterator<float[2]> UV);
+			const CModelDefPtr& mdef,
+			const VertexArrayIterator<float[2]>& UV);
 
 	/**
 	 * BuildIndices: Create the indices array for the given CModelDef.
@@ -229,7 +229,7 @@ public:
 	 * mdef->GetNumFaces()*3 elements.
 	 */
 	static void BuildIndices(
-			CModelDefPtr mdef,
+			const CModelDefPtr& mdef,
 			u16* Indices);
 };
 
@@ -257,7 +257,7 @@ public:
 	virtual void PrepareModels();
 	virtual void EndFrame();
 	virtual bool HaveSubmissions();
-	virtual void Render(RenderModifierPtr modifier, int flags);
+	virtual void Render(const RenderModifierPtr& modifier, int flags);
 
 private:
 	BatchModelRendererInternals* m;

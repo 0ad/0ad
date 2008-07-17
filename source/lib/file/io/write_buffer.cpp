@@ -39,7 +39,7 @@ void WriteBuffer::Overwrite(const void* data, size_t size, size_t offset)
 // UnalignedWriter
 //-----------------------------------------------------------------------------
 
-UnalignedWriter::UnalignedWriter(PIFile file, off_t ofs)
+UnalignedWriter::UnalignedWriter(const PIFile& file, off_t ofs)
 	: m_file(file), m_alignedBuf(io_Allocate(BLOCK_SIZE))
 {
 	m_alignedOfs = AlignedOffset(ofs);

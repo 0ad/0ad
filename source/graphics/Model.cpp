@@ -79,7 +79,7 @@ void CModel::ReleaseData()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // InitModel: setup model from given geometry
-bool CModel::InitModel(CModelDefPtr modeldef)
+bool CModel::InitModel(const CModelDefPtr& modeldef)
 {
 	// clean up any existing data first
 	ReleaseData();

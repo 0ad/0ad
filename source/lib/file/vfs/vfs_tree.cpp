@@ -17,7 +17,7 @@
 
 //-----------------------------------------------------------------------------
 
-VfsFile::VfsFile(const std::string& name, off_t size, time_t mtime, size_t priority, PIFileLoader loader)
+VfsFile::VfsFile(const std::string& name, off_t size, time_t mtime, size_t priority, const PIFileLoader& loader)
 	: m_name(name), m_size(size), m_mtime(mtime), m_priority(priority), m_loader(loader)
 {
 }
@@ -62,7 +62,7 @@ void VfsFile::GenerateDescription(char* text, size_t maxChars) const
 }
 
 
-LibError VfsFile::Load(shared_ptr<u8> buf) const
+LibError VfsFile::Load(const shared_ptr<u8>& buf) const
 {
 	return m_loader->Load(Name(), buf, Size());
 }

@@ -50,7 +50,7 @@ public:
 	~CModel();
 
 	// setup model from given geometry
-	bool InitModel(CModelDefPtr modeldef);
+	bool InitModel(const CModelDefPtr& modeldef);
 	// calculate the world space bounds of this model
 	void CalcBounds();
 	// update this model's state; 'time' is the time since the last update, in MS

@@ -137,7 +137,7 @@ public:
 	 * BeginPass.
 	 * @param def The model definition.
 	 */
-	virtual void PrepareModelDef(int streamflags, CModelDefPtr def) = 0;
+	virtual void PrepareModelDef(int streamflags, const CModelDefPtr& def) = 0;
 
 
 	/**

@@ -24,7 +24,7 @@ RealDirectory::RealDirectory(const Path& path, size_t priority, int flags)
 }
 
 
-/*virtual*/ LibError RealDirectory::Load(const std::string& name, shared_ptr<u8> buf, size_t size) const
+/*virtual*/ LibError RealDirectory::Load(const std::string& name, const shared_ptr<u8>& buf, size_t size) const
 {
 	PIFile file = CreateFile_Posix();
 	RETURN_ERR(file->Open(m_path/name, 'r'));
@@ -34,7 +34,7 @@ RealDirectory::RealDirectory(const Path& path, size_t priority, int flags)
 }
 
 
-LibError RealDirectory::Store(const std::string& name, shared_ptr<u8> fileContents, size_t size)
+LibError RealDirectory::Store(const std::string& name, const shared_ptr<u8>& fileContents, size_t size)
 {
 	const Path pathname(m_path/name);
 
@@ -60,7 +60,7 @@ void RealDirectory::Watch()
 }
 
 
-PRealDirectory CreateRealSubdirectory(PRealDirectory realDirectory, const std::string& subdirectoryName)
+PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::string& subdirectoryName)
 {
 	const Path path(realDirectory->GetPath()/subdirectoryName);
 	return PRealDirectory(new RealDirectory(path, realDirectory->Priority(), realDirectory->Flags()));

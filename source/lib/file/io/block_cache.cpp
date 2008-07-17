@@ -51,7 +51,7 @@ bool BlockId::operator!=(const BlockId& rhs) const
 
 struct Block
 {
-	Block(BlockId id, shared_ptr<u8> buf)
+	Block(BlockId id, const shared_ptr<u8>& buf)
 	{
 		this->id = id;
 		this->buf = buf;
@@ -76,7 +76,7 @@ public:
 	{
 	}
 
-	void Add(BlockId id, shared_ptr<u8> buf)
+	void Add(BlockId id, const shared_ptr<u8>& buf)
 	{
 		if(m_blocks.size() > m_maxBlocks)
 		{
@@ -129,7 +129,7 @@ BlockCache::BlockCache(size_t numBlocks)
 {
 }
 
-void BlockCache::Add(BlockId id, shared_ptr<u8> buf)
+void BlockCache::Add(BlockId id, const shared_ptr<u8>& buf)
 {
 	impl->Add(id, buf);
 }

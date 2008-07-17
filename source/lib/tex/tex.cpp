@@ -496,7 +496,7 @@ bool tex_is_known_extension(const char* filename)
 //
 // we need only add bookkeeping information and "wrap" it in
 // our Tex struct, hence the name.
-LibError tex_wrap(size_t w, size_t h, size_t bpp, int flags, shared_ptr<u8> data, size_t ofs, Tex* t)
+LibError tex_wrap(size_t w, size_t h, size_t bpp, int flags, const shared_ptr<u8>& data, size_t ofs, Tex* t)
 {
 	t->w     = w;
 	t->h     = h;
@@ -587,7 +587,7 @@ size_t tex_hdr_size(const VfsPath& filename)
 // read/write from memory and disk
 //-----------------------------------------------------------------------------
 
-LibError tex_decode(shared_ptr<u8> data, size_t data_size, Tex* t)
+LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
 {
 	const TexCodecVTbl* c;
 	RETURN_ERR(tex_codec_for_header(data.get(), data_size, &c));

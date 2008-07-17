@@ -82,7 +82,7 @@ bool OutputBufferManager::IsAllowableBuffer(u8* buffer, size_t size)
 //-----------------------------------------------------------------------------
 
 
-Stream::Stream(PICodec codec)
+Stream::Stream(const PICodec& codec)
 	: m_codec(codec)
 	, m_inConsumed(0), m_outProduced(0)
 {

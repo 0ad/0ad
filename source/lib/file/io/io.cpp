@@ -114,7 +114,7 @@ shared_ptr<u8> io_Allocate(size_t size, off_t ofs)
 class BlockIo
 {
 public:
-	LibError Issue(PIFile file, off_t alignedOfs, u8* alignedBuf)
+	LibError Issue(const PIFile& file, off_t alignedOfs, u8* alignedBuf)
 	{
 		m_file = file;
 		m_blockId = BlockId(file->Pathname(), alignedOfs);
@@ -210,7 +210,7 @@ public:
 		m_misalignment = ofs - m_alignedOfs;
 	}
 
-	LibError Run(PIFile file, IoCallback cb = 0, uintptr_t cbData = 0)
+	LibError Run(const PIFile& file, IoCallback cb = 0, uintptr_t cbData = 0)
 	{
 		ScopedIoMonitor monitor;
 
@@ -289,7 +289,7 @@ private:
 };
 
 
-LibError io_Scan(PIFile file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData)
+LibError io_Scan(const PIFile& file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData)
 {
 	u8* alignedBuf = 0;	// use temporary block buffers
 	IoSplitter splitter(ofs, alignedBuf, size);
@@ -297,7 +297,7 @@ LibError io_Scan(PIFile file, off_t ofs, off_t size, IoCallback cb, uintptr_t cb
 }
 
 
-LibError io_Read(PIFile file, off_t ofs, u8* alignedBuf, size_t size, u8*& data)
+LibError io_Read(const PIFile& file, off_t ofs, u8* alignedBuf, size_t size, u8*& data)
 {
 	IoSplitter splitter(ofs, alignedBuf, (off_t)size);
 	RETURN_ERR(splitter.Run(file));
@@ -306,7 +306,7 @@ LibError io_Read(PIFile file, off_t ofs, u8* alignedBuf, size_t size, u8*& data)
 }
 
 
-LibError io_WriteAligned(PIFile file, off_t alignedOfs, const u8* alignedData, size_t size)
+LibError io_WriteAligned(const PIFile& file, off_t alignedOfs, const u8* alignedData, size_t size)
 {
 	debug_assert(IsAligned_Offset(alignedOfs));
 	debug_assert(IsAligned_Data(alignedData));
@@ -316,7 +316,7 @@ LibError io_WriteAligned(PIFile file, off_t alignedOfs, const u8* alignedData, s
 }
 
 
-LibError io_ReadAligned(PIFile file, off_t alignedOfs, u8* alignedBuf, size_t size)
+LibError io_ReadAligned(const PIFile& file, off_t alignedOfs, u8* alignedBuf, size_t size)
 {
 	debug_assert(IsAligned_Offset(alignedOfs));
 	debug_assert(IsAligned_Data(alignedBuf));

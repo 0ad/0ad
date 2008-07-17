@@ -231,7 +231,7 @@ cassert(sizeof(ECDR) == 22);
 class ArchiveFile_Zip : public IArchiveFile
 {
 public:
-	ArchiveFile_Zip(PIFile file, off_t ofs, off_t csize, u32 checksum, ZipMethod method)
+	ArchiveFile_Zip(const PIFile& file, off_t ofs, off_t csize, u32 checksum, ZipMethod method)
 		: m_file(file), m_ofs(ofs)
 		, m_csize(csize), m_checksum(checksum), m_method((u16)method)
 		, m_flags(NeedsFixup)
@@ -248,7 +248,7 @@ public:
 		return 'A';
 	}
 
-	virtual LibError Load(const std::string& UNUSED(name), shared_ptr<u8> buf, size_t size) const
+	virtual LibError Load(const std::string& UNUSED(name), const shared_ptr<u8>& buf, size_t size) const
 	{
 		AdjustOffset();
 
@@ -439,7 +439,7 @@ private:
 	// search for ECDR in the last <maxScanSize> bytes of the file.
 	// if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
 	// return INFO::OK, otherwise IO error or ERR::CORRUPTED.
-	static LibError ScanForEcdr(PIFile file, off_t fileSize, u8* buf, off_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, off_t& cd_size)
+	static LibError ScanForEcdr(const PIFile& file, off_t fileSize, u8* buf, off_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, off_t& cd_size)
 	{
 		// don't scan more than the entire file
 		const off_t scanSize = std::min(maxScanSize, fileSize);
@@ -458,7 +458,7 @@ private:
 		return INFO::OK;
 	}
 
-	static LibError LocateCentralDirectory(PIFile file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, off_t& cd_size)
+	static LibError LocateCentralDirectory(const PIFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, off_t& cd_size)
 	{
 		const off_t maxScanSize = 66000u;	// see below
 		shared_ptr<u8> buf = io_Allocate(maxScanSize, BLOCK_SIZE-1);	// assume worst-case for alignment

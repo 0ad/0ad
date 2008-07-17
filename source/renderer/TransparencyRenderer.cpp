@@ -39,7 +39,7 @@
  */
 struct PSModelDef : public CModelDefRPrivate
 {
-	PSModelDef(CModelDefPtr mdef);
+	PSModelDef(const CModelDefPtr& mdef);
 
 	/// Static vertex array
 	VertexArray m_Array;
@@ -48,7 +48,7 @@ struct PSModelDef : public CModelDefRPrivate
 	VertexArray::Attribute m_UV;
 };
 
-PSModelDef::PSModelDef(CModelDefPtr mdef)
+PSModelDef::PSModelDef(const CModelDefPtr& mdef)
 	: m_Array(false)
 {
 	m_UV.type = GL_FLOAT;
@@ -315,7 +315,7 @@ void PolygonSortModelRenderer::EndPass(int streamflags)
 
 
 // Prepare for rendering models using this CModelDef
-void PolygonSortModelRenderer::PrepareModelDef(int streamflags, CModelDefPtr def)
+void PolygonSortModelRenderer::PrepareModelDef(int streamflags, const CModelDefPtr& def)
 {
 	if (streamflags & STREAM_UV0)
 	{
@@ -510,7 +510,7 @@ bool SortModelRenderer::HaveSubmissions()
 
 
 // Render submitted models (filtered by flags) using the given modifier
-void SortModelRenderer::Render(RenderModifierPtr modifier, int flags)
+void SortModelRenderer::Render(const RenderModifierPtr& modifier, int flags)
 {
 	int pass = 0;
 

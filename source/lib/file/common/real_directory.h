@@ -27,9 +27,9 @@ public:
 	// IFileLoader
 	virtual size_t Precedence() const;
 	virtual char LocationCode() const;
-	virtual LibError Load(const std::string& name, shared_ptr<u8> buf, size_t size) const;
+	virtual LibError Load(const std::string& name, const shared_ptr<u8>& buf, size_t size) const;
 
-	LibError Store(const std::string& name, shared_ptr<u8> fileContents, size_t size);
+	LibError Store(const std::string& name, const shared_ptr<u8>& fileContents, size_t size);
 
 	void Watch();
 
@@ -53,6 +53,6 @@ private:
 
 typedef shared_ptr<RealDirectory> PRealDirectory;
 
-extern PRealDirectory CreateRealSubdirectory(PRealDirectory realDirectory, const std::string& subdirectoryName);
+extern PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::string& subdirectoryName);
 
 #endif	// #ifndef INCLUDED_REAL_DIRECTORY

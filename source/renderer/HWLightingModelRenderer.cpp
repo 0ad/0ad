@@ -39,12 +39,12 @@ struct HWLModelDef : public CModelDefRPrivate
 	u16* m_Indices;
 
 
-	HWLModelDef(CModelDefPtr mdef);
+	HWLModelDef(const CModelDefPtr& mdef);
 	~HWLModelDef() { delete[] m_Indices; }
 };
 
 
-HWLModelDef::HWLModelDef(CModelDefPtr mdef)
+HWLModelDef::HWLModelDef(const CModelDefPtr& mdef)
 {
 	m_Indices = new u16[mdef->GetNumFaces()*3];
 	ModelRenderer::BuildIndices(mdef, m_Indices);
@@ -272,7 +272,7 @@ void HWLightingModelRenderer::EndPass(int streamflags)
 
 
 // Prepare UV coordinates for this modeldef
-void HWLightingModelRenderer::PrepareModelDef(int UNUSED(streamflags), CModelDefPtr def)
+void HWLightingModelRenderer::PrepareModelDef(int UNUSED(streamflags), const CModelDefPtr& def)
 {
 	m->hwlmodeldef = (HWLModelDef*)def->GetRenderData(m);
 
