@@ -6,15 +6,20 @@
   <group>
     <variant frequency="100" name="Mesh">
       <animations>
-        <animation file="quadraped/elephant_idle.psa" name="Idle" speed="100"/>
-        <animation file="quadraped/elephant_walk.psa" name="walk" speed="15"/>
-        <animation file="quadraped/elephant_walk.psa" name="run " speed="20"/>
-        <animation file="quadraped/elephant_idle.psa" name="melee" speed="100"/>
+        <animation file="cavalry/uber/elephant_idle_01.dae" name="idle" speed="100"/>
+        <animation file="cavalry/uber/elephant_idle_02.dae" name="idle" speed="100"/>
+        <animation file="cavalry/uber/elephant_walk_01.dae" name="walk" speed="20"/>
+        <animation file="cavalry/uber/elephant_run_01.dae" name="run " speed="20"/>
+        <animation file="cavalry/uber/elephant_attack_01.dae" name="melee" speed="100"/>
+        <animation file="cavalry/uber/elephant_attack_02.dae" name="melee" speed="100"/>
+        <animation file="cavalry/uber/elephant_attack_03.dae" name="melee" speed="100"/>
+        <animation file="cavalry/uber/elephant_death_01.psa" name="death" speed="200"/>
       </animations>
-      <mesh>skeletal/elephant_propped.pmd</mesh>
+      <mesh>skeletal/elephant_asian.pmd</mesh>
       <props>
         <prop actor="units/carthaginians/hero_hannibal_mahout.xml" attachpoint="rider1"/>
-        <prop actor="units/carthaginians/hero_hannibal_r.xml" attachpoint="rider2"/>
+        <prop actor="props/units/turret_hannibal.xml" attachpoint="turret"/>
+        <prop actor="props/units/heads/elephant_tuskball_1.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
