@@ -6,12 +6,16 @@
   <group>
     <variant frequency="100" name="Mesh">
       <animations>
-        <animation file="quadraped/elephant_idle.psa" name="Idle" speed="100"/>
-        <animation file="quadraped/elephant_walk.psa" name="walk" speed="15"/>
-        <animation file="quadraped/elephant_walk.psa" name="run " speed="20"/>
-        <animation file="quadraped/elephant_idle.psa" name="melee" speed="100"/>
+        <animation file="cavalry/uber/elephant_idle_01.psa" name="Idle" speed="100"/>
+        <animation file="cavalry/uber/elephant_idle_02.psa" name="Idle" speed="100"/>
+        <animation file="cavalry/uber/elephant_walk_01.psa" name="walk" speed="20"/>
+        <animation file="cavalry/uber/elephant_walk_01.psa" name="run " speed="30"/>
+        <animation file="cavalry/uber/elephant_attack_01.psa" name="melee" speed="100"/>
+        <animation file="cavalry/uber/elephant_attack_02.psa" name="melee" speed="100"/>
+        <animation file="cavalry/uber/elephant_attack_03.psa" name="melee" speed="100"/>
+        <animation file="cavalry/uber/elephant_death_01.psa" name="death" speed="300"/>
       </animations>
-      <mesh>skeletal/elephant_propped.pmd</mesh>
+      <mesh>skeletal/elephant_asian.pmd</mesh>
       <props>
         <prop actor="units/persians/super_unit_2_mahout.xml" attachpoint="rider1"/>
         <prop actor="units/persians/super_unit_2_raja.xml" attachpoint="rider2"/>
