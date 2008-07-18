@@ -328,7 +328,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStr& path)
 	shared_ptr<u8> buf = io_Allocate(1*MiB);
 	char* pos = (char*)buf.get();
 	TConfigMap &map=m_Map[ns];
-	for(TConfigMap::const_iterator it = it=map.begin(); it != map.end(); ++it)
+	for(TConfigMap::const_iterator it = map.begin(); it != map.end(); ++it)
 	{
 		pos += sprintf(pos, "%s = \"%s\"\n", it->first.c_str(), it->second[0].m_String.c_str());
 	}
