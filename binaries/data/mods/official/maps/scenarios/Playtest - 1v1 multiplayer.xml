@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="100.718" y="102.623" z="0.43821"/>
+		<Position x="101.698" y="120.532" z="-16.0336"/>
 		<Rotation angle="0.00139702"/>
 		<Declination angle="0.654327"/>
 	</Camera>
@@ -2914,48 +2914,6 @@
 			<Position x="254.08" y="22.4" z="436.829"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="573">
-			<Template>hele_super_infantry_mace</Template>
-			<Player>2</Player>
-			<Position x="226.894" y="22.4" z="65.2234"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="574">
-			<Template>hele_super_infantry_mace</Template>
-			<Player>2</Player>
-			<Position x="228.652" y="22.4" z="66.8536"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="575">
-			<Template>hele_super_infantry_mace</Template>
-			<Player>2</Player>
-			<Position x="230.449" y="22.4" z="68.5089"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="576">
-			<Template>hele_super_infantry_mace</Template>
-			<Player>2</Player>
-			<Position x="233.03" y="22.4" z="70.1005"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="579">
-			<Template>hele_super_cavalry_mace</Template>
-			<Player>2</Player>
-			<Position x="233.026" y="22.4" z="62.308"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="580">
-			<Template>hele_super_cavalry_mace</Template>
-			<Player>2</Player>
-			<Position x="235.444" y="22.4" z="64.8553"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="582">
-			<Template>hele_hero_philip</Template>
-			<Player>2</Player>
-			<Position x="230.99" y="22.4" z="60.4211"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
 		<Entity uid="584">
 			<Template>pers_super_infantry</Template>
 			<Player>5</Player>
@@ -3129,6 +3087,60 @@
 			<Player>1</Player>
 			<Position x="227.723" y="22.4" z="281.421"/>
 			<Orientation angle="-0.648592"/>
+		</Entity>
+		<Entity uid="624">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>1</Player>
+			<Position x="214.011" y="22.4" z="78.9264"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="625">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>1</Player>
+			<Position x="212.085" y="22.4" z="76.4617"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="626">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>1</Player>
+			<Position x="210.608" y="22.4" z="74.2067"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="627">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>1</Player>
+			<Position x="209.43" y="22.4" z="72.1373"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="628">
+			<Template>hele_super_infantry_mace</Template>
+			<Player>1</Player>
+			<Position x="207.908" y="22.4" z="69.6525"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="630">
+			<Template>hele_super_cavalry_mace</Template>
+			<Player>1</Player>
+			<Position x="217.591" y="22.4" z="74.833"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="631">
+			<Template>hele_super_cavalry_mace</Template>
+			<Player>1</Player>
+			<Position x="216.346" y="22.4" z="72.6385"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="632">
+			<Template>hele_super_cavalry_mace</Template>
+			<Player>1</Player>
+			<Position x="214.306" y="22.4" z="69.8385"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="634">
+			<Template>hele_hero_philip</Template>
+			<Player>1</Player>
+			<Position x="211.389" y="22.4" z="66.4347"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
 	<Nonentities/>
