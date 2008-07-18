@@ -1761,7 +1761,7 @@ function checkEntityReqs( player, template )
 			break
 			default:
 				// If the item costs more of this resource type than we have,
-				var cur = player.resources[resource];
+				var cur = parseInt(player.resources[resource]);
 				var req = parseInt(resources[resource]);
 				if (req > cur)
 				{
@@ -2300,3 +2300,4 @@ function updateMessageView()
 	getGUIObjectByName("globalMessage").caption = result;
 	getGUIObjectByName("globalMessageUnder").caption = result;
 }
+
