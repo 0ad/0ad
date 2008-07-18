@@ -255,8 +255,10 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 #define START_NMT_CLASS(_nm, _tp) \
 	START_NMT_CLASS_DERIVED(CNetMessage, _nm, _tp)
 
-//#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
-//	{ _tp, Deserialize##_nm },
+/*
+#define START_NMT_CLASS_DERIVED(_base, _nm, _tp) \
+	{ _tp, Deserialize##_nm },
+*/
 
 #define START_NMT_CLASS_DERIVED(_base, _nm, _tp)
 
