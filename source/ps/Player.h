@@ -97,6 +97,7 @@ public:
 	jsval_t JSI_GetColour(JSContext *context, uintN argc, jsval *argv);
 	void JSI_SetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);
 	jsval_t JSI_GetDiplomaticStance(JSContext *context, uintN argc, jsval *argv);
+	CStrW JSI_GetName(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv));
 
 	static void ScriptingInit();
 };

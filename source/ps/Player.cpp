@@ -71,6 +71,7 @@ void CPlayer::ScriptingInit()
 	AddMethod<jsval_t, &CPlayer::JSI_GetColour>("getColour", 0);
 	AddMethod<void, &CPlayer::JSI_SetDiplomaticStance>("setDiplomaticStance", 2);
 	AddMethod<jsval_t, &CPlayer::JSI_GetDiplomaticStance>("getDiplomaticStance", 1);
+	AddMethod<CStrW, &CPlayer::JSI_GetName>("getName", 0);
 	
 	AddProperty( L"id", &CPlayer::m_PlayerID, true );
 	// MT: Work out how this fits with the Synched stuff...
@@ -176,4 +177,9 @@ jsval_t CPlayer::JSI_GetDiplomaticStance(JSContext *cx, uintN UNUSED(argc), jsva
 		JS_ReportError( cx, "Could not convert argument 1 to a Player object" );
 		return JSVAL_VOID;
 	}
+}
+
+CStrW CPlayer::JSI_GetName(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv))
+{
+	return m_Name;
 }
