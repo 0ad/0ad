@@ -17,25 +17,20 @@ struct BlackHoleStreamBuf : public std::streambuf
 {
 } blackHoleStreamBuf;
 std::ostream blackHoleStream(&blackHoleStreamBuf);
-CLogger nullLogger(&blackHoleStream, &blackHoleStream, false);
+CLogger nullLogger(&blackHoleStream, &blackHoleStream, false, true);
 
 CLogger* g_Logger = &nullLogger;
 
 const char* html_header0 =
-	"<!DOCTYPE HTML>\n" // HTML5 doctype - triggers standards mode in current browsers
-		// (The W3C validator doesn't like it - use
-		// http://hsivonen.iki.fi/validator/html5/ instead)
+	"<!DOCTYPE HTML>\n"
 	"<title>Pyrogenesis Log</title>\n"
 	"<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n"
 	"<p class=\"logo\"><img src=\"0adlogo.jpg\" alt=\"0 A.D.\"></p>\n"
 	"<h1>";
-	// (note that the html,head,body tags are optional)
 
 const char* html_header1 = "</h1>\n";
 
 const char* html_footer = "";
-	// (</body> and </html> are optional too - this way we get the same valid
-	// output even if we crash and don't close the file properly)
 
 CLogger::CLogger()
 {
@@ -46,15 +41,17 @@ CLogger::CLogger()
 	m_InterestingLog = new std::ofstream(interestinglogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;
+	m_UseDebugPrintf = true;
 
 	Init();
 }
 
-CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership)
+CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership, bool useDebugPrintf)
 {
 	m_MainLog = mainLog;
 	m_InterestingLog = interestingLog;
 	m_OwnsStreams = takeOwnership;
+	m_UseDebugPrintf = useDebugPrintf;
 
 	Init();
 }
@@ -123,7 +120,8 @@ void CLogger::WriteMessage(const char *message, int interestedness)
 void CLogger::WriteError(const char *message, int interestedness)
 {
 	m_NumberOfErrors++;
-	debug_printf("ERROR: %s\n", message);
+	if (m_UseDebugPrintf)
+		debug_printf("ERROR: %s\n", message);
 	if (interestedness >= 1)
 	{
 		if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
@@ -234,7 +232,7 @@ int CLogger::Interestedness(const char* category)
 TestLogger::TestLogger()
 {
 	m_OldLogger = g_Logger;
-	g_Logger = new CLogger(&m_Stream, &blackHoleStream, false);
+	g_Logger = new CLogger(&m_Stream, &blackHoleStream, false, false);
 }
 
 TestLogger::~TestLogger()

@@ -195,12 +195,16 @@ public:
 
 	void test_load_nonexistent_pmd()
 	{
+		TestLogger logger;
+
 		CModelDefPtr modeldef = meshManager->GetMesh(testPMD);
 		TS_ASSERT(! modeldef);
 	}
 
 	void test_load_nonexistent_dae()
 	{
+		TestLogger logger;
+
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
 	}

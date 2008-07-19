@@ -27,7 +27,7 @@ public:
 
 	// Special constructor (mostly for testing) - outputs to provided streams.
 	// Can take ownership of streams and delete them in the destructor.
-	CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership);
+	CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership, bool useDebugPrintf);
 
 	~CLogger();
 
@@ -50,6 +50,10 @@ private:
 	std::ostream* m_MainLog;
 	std::ostream* m_InterestingLog;
 	bool m_OwnsStreams;
+
+	// whether errors should be reported via debug_printf (default)
+	// or suppressed (for tests that intentionally trigger errors)
+	bool m_UseDebugPrintf;
 
 	// vars to hold message counts
 	int m_NumberOfMessages;

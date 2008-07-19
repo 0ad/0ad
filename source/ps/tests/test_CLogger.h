@@ -63,7 +63,7 @@ public:
 		mainlog = new std::stringstream();
 		interestinglog = new std::stringstream();
 
-		logger = new CLogger(mainlog, interestinglog, true);
+		logger = new CLogger(mainlog, interestinglog, true, true);
 
 		lines.clear();
 	}
