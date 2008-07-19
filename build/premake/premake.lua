@@ -880,7 +880,7 @@ function setup_tests()
 	package.testoptions = "--have-std"
 	package.rootoptions = "--have-std"
 	if OS == "windows" then
-		package.rootoptions = package.rootoptions .. " --gui=Win32Gui --runner=ParenPrinter"
+		package.rootoptions = package.rootoptions .. " --gui=Win32Gui --runner=Win32ODSPrinter"
 	else
 		package.rootoptions = package.rootoptions .. " --runner=ErrorPrinter"
 	end
