@@ -127,11 +127,11 @@ switch(x % 2)
  *
  * @param expression that is expected to evaluate to non-zero at compile-time.
  **/
-#define cassert(expr) typedef detail::static_assert<(expr)>::type UID__;
+#define cassert(expr) typedef detail::static_assert_<(expr)>::type UID__;
 namespace detail
 {
-	template<bool> struct static_assert;
-	template<> struct static_assert<true>
+	template<bool> struct static_assert_;
+	template<> struct static_assert_<true>
 	{
 		typedef int type;
 	};
