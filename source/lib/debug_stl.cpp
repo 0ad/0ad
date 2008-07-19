@@ -586,8 +586,15 @@ LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t
 	size_t el_size, size_t* el_count, DebugStlIterator* el_iterator, void* it_mem)
 {
 #if MSC_VERSION >= 1400
+	UNUSED2(type_name);
+	UNUSED2(p);
+	UNUSED2(size);
+	UNUSED2(el_size);
+	UNUSED2(el_count);
+	UNUSED2(el_iterator);
+	UNUSED2(it_mem);
 	return ERR::STL_CNT_UNKNOWN;	// NOWARN
-#endif
+#else
 
 	bool handled = false, IsValid = false;
 #define CONTAINER(name, type_name_pattern)\
@@ -641,4 +648,6 @@ LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t
 	if(!IsValid)
 		return ERR::STL_CNT_INVALID;	// NOWARN
 	return INFO::OK;
+
+#endif
 }

@@ -111,9 +111,9 @@ template<int x> struct static_assert_test{};
 	sizeof(REQUIRE_TYPE_TO_BE_SHAREABLE_FAILURE< T, (bool)(Shareable<T>::TypeIsShareable) >)> \
 	static_assert_typedef_
 
-template <typename T> const T* empty_str();
-template <> const char* empty_str() { return ""; }
-template <> const wchar_t* empty_str() { return L""; }
+template <typename T> inline const T* empty_str();
+template <> inline const char* empty_str() { return ""; }
+template <> inline const wchar_t* empty_str() { return L""; }
 
 // Shareable strings:
 template<typename C> class Shareable< std::basic_string<C> >
