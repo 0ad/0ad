@@ -151,10 +151,13 @@ using boost::function;
 #include <string>
 #include <sstream>
 #include <typeinfo>
-#include <valarray>	
+#include <valarray>
 
 // STL extensions
-#if GCC_VERSION
+#if GCC_VERSION >= 402 // (see comment in stl.h about GCC versions)
+# include <tr1/unordered_map>
+# include <tr1/unordered_set>
+#elif GCC_VERSION
 # include <ext/hash_map>
 # include <ext/hash_set>
 #else

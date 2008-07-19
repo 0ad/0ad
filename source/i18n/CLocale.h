@@ -18,28 +18,10 @@ All other methods are used internally by other I18n components.
 #include "StrImmutable.h"
 #include "ScriptInterface.h"
 
-#include "lib/sysdep/sysdep.h" // STL_HASH_MAP
+#include "lib/sysdep/stl.h" // STL_HASH_MAP
 
 #include <map>
 #include <algorithm>
-
-// GCC requires an explicit hash function for wide strings
-#if GCC_VERSION
-namespace __gnu_cxx
-{
-	template<> struct hash<I18n::Str>
-	{
-		size_t operator()(const I18n::Str& s) const
-		{
-			const wchar_t* __s = s.c_str();
-			unsigned long __h = 0;
-			for ( ; *__s; ++__s)
-					__h = 5*__h + *__s;
-			return size_t(__h);
-		}
-	};
-}
-#endif // __GNUC__
 
 struct JSContext;
 

@@ -63,6 +63,27 @@
 
 #if STL_GCC
 
+// std::tr1::unordered_* is preferred, but that causes a linker error in
+// old versions of GCC, so fall back to the (deprecated) non-standard
+// ext in older than 4.2.0
+#if GCC_VERSION >= 402
+# include <tr1/unordered_map>
+# include <tr1/unordered_set>
+
+# define STL_HASH_MAP std::tr1::unordered_map
+# define STL_HASH_MULTIMAP std::tr1::unordered_multimap
+# define STL_HASH_SET std::tr1::unordered_set
+# define STL_HASH_MULTISET std::tr1::unordered_multiset
+# define STL_SLIST __gnu_cxx::slist
+
+template<typename T>
+size_t STL_HASH_VALUE(T v)
+{
+	return std::tr1::hash<T>()(v);
+}
+
+#else // For older versions of GCC:
+
 # include <ext/hash_map>
 # include <ext/hash_set>
 
@@ -78,39 +99,55 @@ size_t STL_HASH_VALUE(T v)
 	return __gnu_cxx::hash<T>()(v);
 }
 
-// Hack: GCC Doesn't have a hash instance for std::string included (and it looks
-// like they won't add it - marked resolved/wontfix in the gcc bugzilla)
 namespace __gnu_cxx
 {
-	template<> struct hash<std::string>
+
+// Define some hash functions that GCC doesn't provide itself:
+
+template<> struct hash<std::wstring>
+{
+	size_t operator()(const std::wstring& s) const
 	{
-		size_t operator()(const std::string& __x) const
-		{
-			return __stl_hash_string(__x.c_str());
-		}
-	};
+		const wchar_t* __s = s.c_str();
+		unsigned long __h = 0;
+		for ( ; *__s; ++__s)
+			__h = 5*__h + *__s;
+		return size_t(__h);
+	}
+};
 
-	template<> struct hash<const void*>
+template<> struct hash<std::string>
+{
+	size_t operator()(const std::string& __x) const
 	{
-		// Nemesi hash function (see: http://mail-index.netbsd.org/tech-kern/2001/11/30/0001.html)
-		// treating the pointer as an array of bytes that is hashed.
-		size_t operator()(const void* __x) const
-		{
-			union {
-				const void* ptr;
-				unsigned char bytes[sizeof(void*)];
-			} val;
-			size_t h = 5381;
+		return __stl_hash_string(__x.c_str());
+	}
+};
 
-			val.ptr = __x;
+template<> struct hash<const void*>
+{
+	// Nemesi hash function (see: http://mail-index.netbsd.org/tech-kern/2001/11/30/0001.html)
+	// treating the pointer as an array of bytes that is hashed.
+	size_t operator()(const void* __x) const
+	{
+		union {
+			const void* ptr;
+			unsigned char bytes[sizeof(void*)];
+		} val;
+		size_t h = 5381;
 
-			for(size_t i = 0; i < sizeof(val); ++i)
-				h = 257*h + val.bytes[i];
+		val.ptr = __x;
 
-			return 257*h;
-		}
-	};
+		for(size_t i = 0; i < sizeof(val); ++i)
+			h = 257*h + val.bytes[i];
+
+		return 257*h;
+	}
+};
+
 }
+#endif // GCC_VERSION
+
 
 #elif STL_DINKUMWARE
 
