@@ -13,6 +13,7 @@
 
 
 WINIT_REGISTER_EARLY_INIT2(wdbg_heap_Init);	// wutil -> wdbg_heap
+WINIT_REGISTER_LATE_SHUTDOWN2(wdbg_heap_Shutdown);	// last - no leaks are detected after this
 
 
 void wdbg_heap_Enable(bool enable)
@@ -901,6 +902,10 @@ intptr_t wdbg_heap_NumberOfAllocations()
 
 //-----------------------------------------------------------------------------
 
+#ifndef NDEBUG
+static AllocationTracker* s_tracker;
+#endif
+
 static LibError wdbg_heap_Init()
 {
 #ifndef NDEBUG
@@ -914,11 +919,19 @@ static LibError wdbg_heap_Init()
 	if(ret == -1)
 		abort();
 
-	static AllocationTracker* s_tracker;
 	s_tracker = new AllocationTracker;
 #endif
 
 	wdbg_heap_Enable(true);
+
+	return INFO::OK;
+}
+
+static LibError wdbg_heap_Shutdown()
+{
+#ifndef NDEBUG
+	SAFE_DELETE(s_tracker);
+#endif
 
 	return INFO::OK;
 }
