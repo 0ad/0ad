@@ -111,9 +111,9 @@ template<int x> struct static_assert_test{};
 	sizeof(REQUIRE_TYPE_TO_BE_SHAREABLE_FAILURE< T, (bool)(Shareable<T>::TypeIsShareable) >)> \
 	static_assert_typedef_
 
-// Should be an empty string when cast to either char* or wchar_t*
-// (which requires length >= 4, since GCC's sizeof(wchar_t)==4)
-static const char empty_str[4] = { 0, 0, 0, 0 };
+template <typename T> const T* empty_str();
+template <> const char* empty_str() { return ""; }
+template <> const wchar_t* empty_str() { return L""; }
 
 // Shareable strings:
 template<typename C> class Shareable< std::basic_string<C> >
@@ -170,7 +170,7 @@ public:
 	// without constructing a new std::basic_string then calling c_str on that
 	const C* c_str() const
 	{
-		return (buf && length) ? buf : (C*)empty_str;
+		return (buf && length) ? buf : empty_str<C>();
 	}
 };
 

@@ -187,7 +187,7 @@ void ActorViewer::Render()
 {
 	m.Terrain.MakeDirty(RENDERDATA_UPDATE_COLOR);
 
-	g_Renderer.SetClearColor(*(u32*)&m.Background);
+	g_Renderer.SetClearColor(m.Background);
 
 	// Disable shadows locally (avoid clobbering global state)
 	bool oldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
