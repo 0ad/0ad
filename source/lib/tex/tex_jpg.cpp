@@ -334,7 +334,10 @@ struct JpgErrorMgr
 	// for thread safety. initialized in setup_err_mgr.
 	char msg[JMSG_LENGTH_MAX];
 
-	JpgErrorMgr(j_common_ptr cinfo);
+	JpgErrorMgr(jpeg_compress_struct& cinfo);
+	JpgErrorMgr(jpeg_decompress_struct& cinfo);
+private:
+	void init();
 };
 
 
@@ -371,7 +374,7 @@ METHODDEF(void) err_output_message(j_common_ptr cinfo)
 }
 
 
-JpgErrorMgr::JpgErrorMgr(j_common_ptr cinfo)
+void JpgErrorMgr::init()
 {
 	// fill in pub fields
 	jpeg_std_error(&pub);
@@ -381,11 +384,24 @@ JpgErrorMgr::JpgErrorMgr(j_common_ptr cinfo)
 
 	// required for "already have message" check in err_output_message
 	msg[0] = '\0';
+}
 
+JpgErrorMgr::JpgErrorMgr(jpeg_compress_struct& cinfo)
+{
+	init();
 	// hack: register this error manager with cinfo.
 	// must be done before jpeg_create_* in case that fails
 	// (unlikely, but possible if out of memory).
-	cinfo->err = &pub;
+	cinfo.err = &pub;
+}
+
+JpgErrorMgr::JpgErrorMgr(jpeg_decompress_struct& cinfo)
+{
+	init();
+	// hack: register this error manager with cinfo.
+	// must be done before jpeg_create_* in case that fails
+	// (unlikely, but possible if out of memory).
+	cinfo.err = &pub;
 }
 
 
@@ -559,7 +575,7 @@ static LibError jpg_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 	//  working space (allocated as needed by the JPEG library).
 	struct jpeg_decompress_struct cinfo;
 
-	JpgErrorMgr jerr((j_common_ptr)&cinfo);
+	JpgErrorMgr jerr(cinfo);
 	if(setjmp(jerr.call_site))
 		return ERR::FAIL;
 
@@ -580,7 +596,7 @@ static LibError jpg_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 	// working space (allocated as needed by the JPEG library).
 	struct jpeg_compress_struct cinfo;
 	
-	JpgErrorMgr jerr((j_common_ptr)&cinfo);
+	JpgErrorMgr jerr(cinfo);
 	if(setjmp(jerr.call_site))
 		WARN_RETURN(ERR::FAIL);
 

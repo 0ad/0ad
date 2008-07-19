@@ -131,10 +131,9 @@ static x86_x64_Vendors DetectVendor()
 	// copy regs to string
 	// note: 'strange' ebx,edx,ecx reg order is due to ModR/M encoding order.
 	char vendor_str[13];
-	u32* vendor_str_u32 = (u32*)vendor_str;
-	vendor_str_u32[0] = regs.ebx;
-	vendor_str_u32[1] = regs.edx;
-	vendor_str_u32[2] = regs.ecx;
+	memcpy(&vendor_str[0], &regs.ebx, 4);
+	memcpy(&vendor_str[4], &regs.edx, 4);
+	memcpy(&vendor_str[8], &regs.ecx, 4);
 	vendor_str[12] = '\0';	// 0-terminate
 
 	if(!strcmp(vendor_str, "AuthenticAMD"))

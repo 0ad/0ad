@@ -59,7 +59,7 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 	g_EntityManager.InitializeAll();
 
 	// [2006-06-26: 61ms]
-	m_pWorld->GetLOSManager()->Initialize(pAttribs->m_LOSSetting, pAttribs->m_FogOfWar);
+	m_pWorld->GetLOSManager()->Initialize((ELOSSetting)pAttribs->m_LOSSetting, pAttribs->m_FogOfWar);
 
 	m_pWorld->GetTerritoryManager()->Initialize();
 

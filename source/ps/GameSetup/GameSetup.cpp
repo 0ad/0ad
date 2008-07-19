@@ -263,7 +263,7 @@ void Render()
 	CFG_GET_USER_VAL("skycolor", String, skystring);
 	CColor skycol;
 	GUI<CColor>::ParseString(skystring, skycol);
-	g_Renderer.SetClearColor(skycol.Int());
+	g_Renderer.SetClearColor(skycol.AsSColor4ub());
 #endif
 
 	// start new frame

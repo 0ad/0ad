@@ -11,6 +11,7 @@
 #define INCLUDED_RENDERER
 
 #include "graphics/Camera.h"
+#include "graphics/SColor.h"
 #include "lib/ogl.h"
 #include "lib/res/handle.h"
 #include "ps/Singleton.h"
@@ -177,7 +178,7 @@ public:
 	void EndFrame();
 
 	// set color used to clear screen in BeginFrame()
-	void SetClearColor(u32 color);
+	void SetClearColor(SColor4ub color);
 
 	// return current frame counter
 	int GetFrameCounter() const { return m_FrameCounter; }

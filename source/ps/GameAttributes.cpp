@@ -198,8 +198,7 @@ CGameAttributes::CGameAttributes():
 	AddSynchedProperty(L"resourceLevel", &m_ResourceLevel);
 	AddSynchedProperty(L"startingPhase", &m_StartingPhase);
 	AddSynchedProperty(L"numSlots", &m_NumSlots, &CGameAttributes::OnNumSlotsUpdate);
-	cassert(sizeof(int) == sizeof(ELOSSetting));
-	AddSynchedProperty(L"losSetting", (int*)&m_LOSSetting);
+	AddSynchedProperty(L"losSetting", &m_LOSSetting);
 	AddSynchedProperty(L"fogOfWar", &m_FogOfWar);
 	AddSynchedProperty(L"gameMode", &m_GameMode);
 	AddSynchedProperty(L"screenshotMode", &m_ScreenshotMode);

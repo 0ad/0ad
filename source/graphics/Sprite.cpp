@@ -54,19 +54,19 @@ void CSprite::Render()
 	glBegin(GL_TRIANGLE_STRIP);
 		// bottom left
 		glTexCoord2f(0.0f, 0.0f);
-		glVertex3fv((GLfloat *) &m_coords[0]);
+		glVertex3fv(m_coords[0].GetFloatArray());
 	
 		// top left
 		glTexCoord2f(0.0f, 1.0f);
-		glVertex3fv((GLfloat *) &m_coords[1]);
+		glVertex3fv(m_coords[1].GetFloatArray());
 
 		// bottom right
 		glTexCoord2f(1.0f, 0.0f);
-		glVertex3fv((GLfloat *) &m_coords[2]);
+		glVertex3fv(m_coords[2].GetFloatArray());
 
 		// top left
 		glTexCoord2f(1.0f, 1.0f);
-		glVertex3fv((GLfloat *) &m_coords[3]);
+		glVertex3fv(m_coords[3].GetFloatArray());
 	glEnd();
 
 	glEnable(GL_CULL_FACE);

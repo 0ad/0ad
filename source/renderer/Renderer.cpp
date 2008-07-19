@@ -794,12 +794,12 @@ void CRenderer::BeginFrame()
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // SetClearColor: set color used to clear screen in BeginFrame()
-void CRenderer::SetClearColor(u32 color)
+void CRenderer::SetClearColor(SColor4ub color)
 {
-	m_ClearColor[0]=float(color & 0xff)/255.0f;
-	m_ClearColor[1]=float((color>>8) & 0xff)/255.0f;
-	m_ClearColor[2]=float((color>>16) & 0xff)/255.0f;
-	m_ClearColor[3]=float((color>>24) & 0xff)/255.0f;
+	m_ClearColor[0] = float(color.R) / 255.0f;
+	m_ClearColor[1] = float(color.G) / 255.0f;
+	m_ClearColor[2] = float(color.B) / 255.0f;
+	m_ClearColor[3] = float(color.A) / 255.0f;
 }
 
 void CRenderer::RenderShadowMap()
@@ -1586,8 +1586,8 @@ ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 	for(size_t i=0;i<NumAlphaMaps;i++)
 	{
 		// get src of copy
-		const u8* src = 0;
-		(void)ogl_tex_get_data(textures[i], (void**)&src);
+		u8* src = 0;
+		(void)ogl_tex_get_data(textures[i], &src);
 
 		size_t srcstep=bpp/8;
 

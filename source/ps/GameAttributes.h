@@ -126,7 +126,7 @@ public:
 	CStrW m_ResourceLevel;
 	CStrW m_StartingPhase;
 	CStrW m_GameMode;
-	ELOSSetting m_LOSSetting;
+	int m_LOSSetting; // ELOSSetting
 	bool m_FogOfWar;
 	bool m_ScreenshotMode;
 

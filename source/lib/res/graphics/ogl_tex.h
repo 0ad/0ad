@@ -358,7 +358,7 @@ extern LibError ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt);
 * If you still need to get at the data, add a reference before
 * uploading it or read directly from OpenGL (discouraged).
 */
-extern LibError ogl_tex_get_data(Handle ht, void** p);
+extern LibError ogl_tex_get_data(Handle ht, u8** p);
 
 
 //

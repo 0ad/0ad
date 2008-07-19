@@ -366,7 +366,7 @@ void CPatchRData::BuildVertices()
 
 			// calculate vertex data
 			terrain->CalcPosition(ix,iz,vertices[v].m_Position);
-			*(uint32_t*)&vertices[v].m_LOSColor = 0;	// will be set to the proper value in Update()
+			vertices[v].m_LOSColor = SColor4ub(0, 0, 0, 0);	// will be set to the proper value in Update()
 			CalculateUV(vertices[v].m_UVs, ix, iz);
 
 			// Calculate diffuse lighting for this vertex

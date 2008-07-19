@@ -910,7 +910,7 @@ LibError ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
 // the function doesn't fail (negative return value) by design.
 // if you still need to get at the data, add a reference before
 // uploading it or read directly from OpenGL (discouraged).
-LibError ogl_tex_get_data(Handle ht, void** p)
+LibError ogl_tex_get_data(Handle ht, u8** p)
 {
 	H_DEREF(ht, OglTex, ot);
 

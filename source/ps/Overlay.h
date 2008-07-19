@@ -10,6 +10,8 @@ Overlay.h
 #ifndef INCLUDED_OVERLAY
 #define INCLUDED_OVERLAY
 
+#include "graphics/SColor.h"
+
 class CStr8;
 
 struct CColor
@@ -30,12 +32,9 @@ struct CColor
 	const float* FloatArray() const { return &r; }
 
 	// For passing to CRenderer:
-	u32 Int() const
+	SColor4ub AsSColor4ub() const
 	{
-		return (((int)(a*255.0) & 0xff) << 24)
-			 + (((int)(b*255.0) & 0xff) << 16)
-			 + (((int)(g*255.0) & 0xff) <<  8)
-			 + (((int)(r*255.0) & 0xff));
+		return SColor4ub((int)(r*255.0), (int)(g*255.0), (int)(b*255.0), (int)(a*255.0));
 	}
 
 	float r, g, b, a;
