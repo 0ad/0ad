@@ -48,8 +48,11 @@ public:
 	{
 		m_mode = '\0';
 
-		close(m_fd);
-		m_fd = 0;
+		if(m_fd)
+		{
+			close(m_fd);
+			m_fd = 0;
+		}
 	}
 
 	virtual const Path& Pathname() const

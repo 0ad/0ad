@@ -73,6 +73,7 @@ extern bool path_IsDirectory(const char* path);
  * @return bool
  **/
 extern bool path_is_subpath(const char* s1, const char* s2);
+extern bool path_is_subpathw(const wchar_t* s1, const wchar_t* s2);
 
 
 /**

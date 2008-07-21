@@ -133,3 +133,9 @@ LibError FileSystem_Posix::DeleteDirectory(const Path& path)
 
 	return INFO::OK;
 }
+
+
+PIFileSystem_Posix CreateFileSystem_Posix()
+{
+	return PIFileSystem_Posix(new FileSystem_Posix);
+}

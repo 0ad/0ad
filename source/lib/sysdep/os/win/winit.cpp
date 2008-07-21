@@ -58,7 +58,9 @@ static void CallFunctionPointers(PfnLibErrorVoid* begin, PfnLibErrorVoid* end)
 	for(PfnLibErrorVoid* ppfunc = begin; ppfunc < end; ppfunc++)
 	{
 		if(*ppfunc)
+		{
 			(*ppfunc)();
+		}
 	}
 
 	const DWORD t1 = GetTickCount();

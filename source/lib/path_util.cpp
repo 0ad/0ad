@@ -37,6 +37,20 @@ bool path_is_dir_sep(char c)
 	return false;
 }
 
+bool path_is_dir_sepw(wchar_t c)
+{
+	// note: ideally path strings would only contain '/' or even SYS_DIR_SEP.
+	// however, windows-specific code (e.g. the sound driver detection)
+	// uses these routines with '\\' strings. converting them all to
+	// '/' and then back before passing to WinAPI would be annoying.
+	// also, the self-tests verify correct operation of such strings.
+	// it would be error-prone to only test the platform's separator
+	// strings there. hence, we allow all separators here.
+	if(c == L'/' || c == L'\\')
+		return true;
+	return false;
+}
+
 
 bool path_IsDirectory(const char* path)
 {
@@ -72,6 +86,36 @@ bool path_is_subpath(const char* s1, const char* s2)
 			if((c2 == '\0') ||	// its end (i.e. they're equal length) OR
 				path_is_dir_sep(c2) ||		// start of next component OR
 				path_is_dir_sep(last_c1))	// ", but both have a trailing slash
+				// => is subpath
+				return true;
+		}
+
+		// mismatch => is not subpath
+		if(c1 != c2)
+			return false;
+	}
+}
+
+
+bool path_is_subpathw(const wchar_t* s1, const wchar_t* s2)
+{
+	// make sure s1 is the shorter string
+	if(wcslen(s1) > wcslen(s2))
+		std::swap(s1, s2);
+
+	wchar_t c1 = 0, last_c1, c2;
+	for(;;)
+	{
+		last_c1 = c1;
+		c1 = *s1++, c2 = *s2++;
+
+		// end of s1 reached:
+		if(c1 == L'\0')
+		{
+			// s1 matched s2 up until:
+			if((c2 == L'\0') ||	// its end (i.e. they're equal length) OR
+				path_is_dir_sepw(c2) ||		// start of next component OR
+				path_is_dir_sepw(last_c1))	// ", but both have a trailing slash
 				// => is subpath
 				return true;
 		}

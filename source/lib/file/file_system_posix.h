@@ -28,4 +28,8 @@ struct FileSystem_Posix
 	LibError DeleteDirectory(const Path& dirPath);
 };
 
+typedef shared_ptr<FileSystem_Posix> PIFileSystem_Posix;
+
+LIB_API PIFileSystem_Posix CreateFileSystem_Posix();
+
 #endif	// #ifndef INCLUDED_FILE_SYSTEM_POSIX

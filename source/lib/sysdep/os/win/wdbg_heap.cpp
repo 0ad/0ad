@@ -39,20 +39,19 @@ void wdbg_heap_Enable(bool enable)
 
 void wdbg_heap_Validate()
 {
-	int ret = _HEAPOK;
+	int ok = TRUE;
 	__try
 	{
 		// NB: this is a no-op if !_CRTDBG_ALLOC_MEM_DF.
 		// we could call _heapchk but that would catch fewer errors.
-		ret = _CrtCheckMemory();
+		ok = _CrtCheckMemory();
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-		ret = _HEAPBADNODE;
+		ok = FALSE;
 	}
 
-	if(ret != _HEAPOK)
-		DEBUG_DISPLAY_ERROR(L"Heap is corrupted!");
+	wdbg_assert(ok == TRUE);	// else: heap is corrupt!
 }
 
 
@@ -61,7 +60,7 @@ void wdbg_heap_Validate()
 //-----------------------------------------------------------------------------
 
 // (this relies on the debug CRT; not compiling it at all in release builds
-// avoids unreference local function warnings)
+// avoids unreferenced local function warnings)
 #ifndef NDEBUG
 
 // leak detectors often rely on macro redirection to determine the file and
@@ -715,10 +714,10 @@ public:
 	}
 
 	/**
-	* @param operation either _HOOK_ALLOC, _HOOK_REALLOC or _HOOK_FREE
-	* @param userData is only valid (nonzero) for realloc and free because
-	* we are called BEFORE the actual heap operation.
-	**/
+	 * @param operation either _HOOK_ALLOC, _HOOK_REALLOC or _HOOK_FREE
+	 * @param userData is only valid (nonzero) for realloc and free because
+	 * we are called BEFORE the actual heap operation.
+	 **/
 	virtual void OnHeapOperation(int operation, void* userData, size_t size, long allocationNumber) = 0;
 
 private:

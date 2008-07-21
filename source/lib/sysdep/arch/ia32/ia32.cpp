@@ -17,59 +17,78 @@
 #include "ia32_asm.h"
 
 
-LibError ia32_GetCallTarget(void* ret_addr, void** target)
-{
-	*target = 0;
+static const size_t maxInstructionLength = 15;	// IA-32 limitation
 
+static bool IsCall(void* ret_addr, void*& target)
+{
 	// points to end of the CALL instruction (which is of unknown length)
 	const u8* c = (const u8*)ret_addr;
 	// this would allow for avoiding exceptions when accessing ret_addr
 	// close to the beginning of the code segment. it's not currently set
 	// because this is really unlikely and not worth the trouble.
-	const size_t len = ~0u;
+	const size_t len = maxInstructionLength;
 
 	// CALL rel32 (E8 cd)
 	if(len >= 5 && c[-5] == 0xE8)
 	{
-		*target = (u8*)ret_addr + *(i32*)(c-4);
-		return INFO::OK;
+		void* offset;
+		memcpy(&offset, c-4, 4);
+		target = (void*)(uintptr_t(offset) + uintptr_t(ret_addr));
+		return true;
 	}
 
 	// CALL r/m32 (FF /2)
 	// .. CALL [r32 + r32*s]          => FF 14 SIB
 	if(len >= 3 && c[-3] == 0xFF && c[-2] == 0x14)
-		return INFO::OK;
+		return true;
 	// .. CALL [disp32]               => FF 15 disp32
 	if(len >= 6 && c[-6] == 0xFF && c[-5] == 0x15)
 	{
-		void* addr_of_target = *(void**)(c-4);
+		void** addr_of_target;
+		memcpy(&addr_of_target, c-4, 4);
+		target = *addr_of_target;
 		// there are no meaningful checks we can perform: we're called from
 		// the stack trace code, so ring0 addresses may be legit.
 		// even if the pointer is 0, it's better to pass its value on
 		// (may help in tracking down memory corruption)
-		*target = *(void**)addr_of_target;
-		return INFO::OK;
+		return true;
 	}
 	// .. CALL [r32]                  => FF 00-3F(!14/15)
 	if(len >= 2 && c[-2] == 0xFF && c[-1] < 0x40 && c[-1] != 0x14 && c[-1] != 0x15)
-		return INFO::OK;
+		return true;
 	// .. CALL [r32 + r32*s + disp8]  => FF 54 SIB disp8
 	if(len >= 4 && c[-4] == 0xFF && c[-3] == 0x54)
-		return INFO::OK;
+		return true;
 	// .. CALL [r32 + disp8]          => FF 50-57(!54) disp8
 	if(len >= 3 && c[-3] == 0xFF && (c[-2] & 0xF8) == 0x50 && c[-2] != 0x54)
-		return INFO::OK;
+		return true;
 	// .. CALL [r32 + r32*s + disp32] => FF 94 SIB disp32
 	if(len >= 7 && c[-7] == 0xFF && c[-6] == 0x94)
-		return INFO::OK;
+		return true;
 	// .. CALL [r32 + disp32]         => FF 90-97(!94) disp32
 	if(len >= 6 && c[-6] == 0xFF && (c[-5] & 0xF8) == 0x90 && c[-5] != 0x94)
-		return INFO::OK;
+		return true;
 	// .. CALL r32                    => FF D0-D7                 
 	if(len >= 2 && c[-2] == 0xFF && (c[-1] & 0xF8) == 0xD0)
+		return true;
+
+	return false;
+}
+
+LibError ia32_GetCallTarget(void* ret_addr, void** target)
+{
+	if(IsCall(ret_addr, *target))
 		return INFO::OK;
 
-	WARN_RETURN(ERR::CPU_UNKNOWN_OPCODE);
+	const u8* const instructionWindow = (const u8*)ret_addr - maxInstructionLength;
+	if(memchr(instructionWindow, 0xCC, maxInstructionLength))
+		return ERR::AGAIN;	// NOWARN (debugger has inserted a breakpoint)
+
+	// this shouldn't normally be reached but might happen if the
+	// call stack is corrupted. note that we mustn't warn, because
+	// this routine is already called from the stack dump chain.
+	debug_break();
+	return ERR::CPU_UNKNOWN_OPCODE;	// NOWARN (see above)
 }
 
 
