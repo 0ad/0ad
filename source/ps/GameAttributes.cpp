@@ -351,45 +351,14 @@ CPlayerSlot *CGameAttributes::GetSlot(size_t index)
 
 void CGameAttributes::FinalizeSlots()
 {
-	// This method was causing players to be mis-assigned, partly because the
-	// slot status changes did not seem to get broadcasted correctly. However,
-	// fundamentally, we really don't want to reassign players' IDs this way.
-	// We want to keep around dummy players for those that aren't human. So
-	// let's not mess with the array indices, etc unless it is really needed.
-	return;
-
-	/*
-	// Back up our old slots, and empty the resulting std::vector
-	std::vector<CPlayerSlot *> oldSlots;
-	oldSlots.swap(m_PlayerSlots);
-	std::vector<CPlayer *> oldPlayers;
-	oldPlayers.swap(m_Players);
-	m_Players.push_back(oldPlayers[0]); // Gaia
-	
-	// Copy over the slots we want
-	size_t assignedSlots=0;
-	for (size_t i=0;i<oldSlots.size();i++)
-	{
-		CPlayerSlot *slot=oldSlots[i];
-		EPlayerSlotAssignment assignment=slot->GetAssignment();
+	for (size_t i=0; i<m_PlayerSlots.size(); i++) {
+		CPlayerSlot *slot = m_PlayerSlots[i];
+		EPlayerSlotAssignment assignment = slot->GetAssignment();
 		if (assignment != SLOT_OPEN && assignment != SLOT_CLOSED)
 		{
-			m_PlayerSlots.push_back(slot);
-			slot->GetPlayer()->SetPlayerID(assignedSlots+1);
-			m_Players.push_back(slot->GetPlayer());
-			
-			assignedSlots++;
-		}
-		else
-		{
-			LOG(CLogger::Error, "", "CGameAttributes::FinalizeSlots(): slot %d deleted", i);
-			delete slot->GetPlayer();
-			delete slot;
+			slot->GetPlayer()->SetActive(true);
 		}
 	}
-	
-	m_NumSlots=assignedSlots;
-	*/
 }
 
 void CGameAttributes::SetValue(const CStrW& name, const CStrW& value)

@@ -12,7 +12,8 @@ CPlayer::CPlayer(size_t playerID):
 	m_Name(CStrW(L"Player #")+CStrW((unsigned)playerID)),
 	m_Civilization(L""),
 	m_Colour(0.7f, 0.7f, 0.7f),
-	m_UpdateCB(0)
+	m_UpdateCB(0),
+	m_Active(false)
 {
 	m_LOSToken = LOS_GetTokenFor(playerID);
 	
@@ -73,6 +74,8 @@ void CPlayer::ScriptingInit()
 	AddMethod<jsval_t, &CPlayer::JSI_GetDiplomaticStance>("getDiplomaticStance", 1);
 	
 	AddProperty( L"id", &CPlayer::m_PlayerID, true );
+	AddProperty( L"active", &CPlayer::m_Active, true );
+	AddProperty( L"name", &CPlayer::m_Name, true );
 	// MT: Work out how this fits with the Synched stuff...
 
 	// AddClassProperty( L"name", &CPlayer::m_Name );

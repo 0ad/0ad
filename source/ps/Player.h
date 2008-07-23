@@ -36,6 +36,7 @@ private:
 	SPlayerColour m_Colour;
 	int /*EDiplomaticStance*/ m_DiplomaticStance[PS_MAX_PLAYERS+1];
 	std::vector<CTechnology*> m_ActiveTechs;
+	bool m_Active; // Is this an active player, or a dummy?
 	
 	UpdateCallback *m_UpdateCB;
 	void *m_UpdateCBData;
@@ -87,6 +88,11 @@ public:
 	{
 		return m_ActiveTechs;
 	}
+
+	inline bool IsActive() const
+	{	return m_Active; }
+	inline void SetActive(bool active)
+	{	m_Active = active; }
 
 	void GetControlledEntities(std::vector<HEntity>& controlled_entities);
 
