@@ -465,27 +465,44 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 									// Set tooltip.
 									var template = getEntityTemplate(itemName);
 									if (!template) break;
-									listObject.tooltip = template.traits.id.civ + " " + template.traits.id.generic;
-									listObject.tooltip += "\n" + template.traits.id.rollover;
-									listObject.tooltip += "\nRequired Resources:"
+									listObject.tooltip = "[font=trebuchet14b]" + template.traits.id.specific + " (" +
+									                     template.traits.id.generic + ")[/font]";
 									
 									//Show required resources list
-									if (template.traits.creation.resource.metal > 0)
-									{
-										listObject.tooltip += "\nMetal: " + template.traits.creation.resource.metal
+									if (template.traits.creation) {
+									    var first = true;
+						    			if (template.traits.creation.resource.food > 0)
+						    			{
+											listObject.tooltip += (first ? "\n" : ", ");
+											first = false;
+						    				listObject.tooltip += "[font=tahoma10b]Food:[/font] " +
+												    template.traits.creation.resource.food
+						    			}
+						    			if (template.traits.creation.resource.wood > 0)
+						    			{
+											listObject.tooltip += (first ? "\n" : ", ");
+											first = false;
+						    				listObject.tooltip += "[font=tahoma10b]Wood:[/font] " + 
+												    template.traits.creation.resource.wood;
+						    			}
+									    if (template.traits.creation.resource.metal > 0)
+								    	{
+											listObject.tooltip += (first ? "\n" : ", ");
+											first = false;
+							    			listObject.tooltip += "[font=tahoma10b]Metal:[/font] " +
+												    template.traits.creation.resource.metal
+							    		}
+							    		if (template.traits.creation.resource.stone > 0)
+							    		{
+											listObject.tooltip += (first ? "\n" : ", ");
+											first = false;
+								    		listObject.tooltip += "[font=tahoma10b]Stone:[/font] " + 
+												    template.traits.creation.resource.stone
+						    			}
 									}
-									if (template.traits.creation.resource.stone > 0)
-									{
-										listObject.tooltip += "\nStone: " + template.traits.creation.resource.stone
-									}
-									if (template.traits.creation.resource.food > 0)
-									{
-										listObject.tooltip += "\nFood: " + template.traits.creation.resource.food
-									}
-									if (template.traits.creation.resource.wood > 0)
-									{
-										listObject.tooltip += "\nWood: " + template.traits.creation.resource.wood;
-									}
+
+									listObject.tooltip += "\n[font=tahoma10]" +
+									                      template.traits.id.rollover + "[/font]";
 									
 									// Set portrait.
 									setPortrait (listObject.name, 
