@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="5.49779"/>
+		<TerrainAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<UnitsAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.3" g="0.35" b="0.7"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTint r="0.28" g="0.3" b="0.59"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="58.7017" y="102.134" z="-68.8138"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity uid="1">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="61.4943" y="22.4" z="92.2348"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="2">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="58.6655" y="22.4" z="88.5364"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="56.3028" y="22.4" z="83.5822"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="4">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>1</Player>
+			<Position x="52.9567" y="22.4" z="79.5946"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="83.7444" y="22.4" z="74.9696"/>
+			<Orientation angle="-0.547945"/>
+		</Entity>
+		<Entity uid="6">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="80.8455" y="22.4" z="71.2425"/>
+			<Orientation angle="-0.74514"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="77.7811" y="22.4" z="67.1513"/>
+			<Orientation angle="-0.956841"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="74.5034" y="22.4" z="63.4237"/>
+			<Orientation angle="-0.731168"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="55.5412" y="22.4" z="97.8317"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="53.1776" y="22.4" z="94.2697"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="50.0134" y="22.4" z="91.0857"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="46.8872" y="22.4" z="86.5873"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="91.6616" y="22.4" z="70.0248"/>
+			<Orientation angle="-0.945807"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="87.7601" y="22.4" z="64.8079"/>
+			<Orientation angle="-0.638389"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="83.7557" y="22.4" z="61.6028"/>
+			<Orientation angle="-0.862909"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="79.8576" y="22.4" z="58.4827"/>
+			<Orientation angle="-0.722016"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="157.178" y="22.4" z="138.263"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="153.162" y="22.4" z="125.324"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="162.589" y="22.4" z="129.391"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>3</Player>
+			<Position x="158.628" y="22.4" z="129.017"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="157.575" y="22.4" z="121.72"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="153.235" y="22.4" z="132.037"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="162.804" y="22.4" z="140.663"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>3</Player>
+			<Position x="162.268" y="22.4" z="121.72"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>hele_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="37.4428" y="22.4" z="63.831"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>hele_civil_centre</Template>
+			<Player>2</Player>
+			<Position x="59.9558" y="22.4" z="39.6599"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>
