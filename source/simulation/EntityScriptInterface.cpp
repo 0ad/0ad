@@ -57,6 +57,7 @@ void CEntity::ScriptingInit()
 	AddMethod<jsval_t, &CEntity::TerminateOrder>( "terminateOrder", 1 );
 	AddMethod<bool, &CEntity::Kill>( "kill", 0 );
 	AddMethod<bool, &CEntity::IsIdle>( "isIdle", 0 );
+	AddMethod<bool, &CEntity::IsDestroyed>( "isDestroyed", 0 );
 	AddMethod<bool, &CEntity::HasClass>( "hasClass", 1 );
 	AddMethod<jsval_t, &CEntity::GetSpawnPoint>( "getSpawnPoint", 1 );
 	AddMethod<jsval_t, &CEntity::AddAura>( "addAura", 3 );
@@ -364,9 +365,6 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrde
 
 bool CEntity::Kill( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
 {
-	CEventDeath evt;
-	DispatchEvent( &evt );
-
 	Kill(true);
 
 	return( true );

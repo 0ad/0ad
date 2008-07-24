@@ -862,6 +862,9 @@ function damage( dmg, inflictor )
 	var arm = this.traits.armour;
 	if( !arm ) return;		// corpses have no armour, everything else should
 
+	// Unit has already been destroyed this frame, don't loot for everything hitting it
+	if( this.isDestroyed() ) return;
+
 	// Use traits.health.max = 0 to signify immortal things like settlements
 	if( this.traits.health.max == 0 ) return;
 	

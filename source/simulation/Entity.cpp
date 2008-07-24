@@ -247,6 +247,10 @@ void CEntity::Kill(bool keepActor)
 	{
 		return;		// We were already killed this frame
 	}
+	entf_set(ENTF_DESTROYED);
+
+	CEventDeath evt;
+	DispatchEvent( &evt );
 
 	g_FormationManager.RemoveUnit(this);
 	
@@ -279,7 +283,6 @@ void CEntity::Kill(bool keepActor)
 
 	g_Selection.RemoveAll( me );
 
-	entf_set(ENTF_DESTROYED);
 	g_EntityManager.m_refd[me.m_handle] = false; // refd must be made false when DESTROYED is set
 	g_EntityManager.SetDeath(true); // remember that a unit died this frame
 

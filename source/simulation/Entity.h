@@ -468,6 +468,11 @@ public:
 		return( m_orderQueue.empty() );
 	}
 
+	bool IsDestroyed( JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUSED(argv) )
+	{
+		return( entf_get(ENTF_DESTROYED) );
+	}
+
 	bool HasClass( JSContext* cx, uintN argc, jsval* argv )
 	{
 		debug_assert( argc >= 1 );
