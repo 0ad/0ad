@@ -379,22 +379,17 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 							{
 								// Extract the properties from the comma-delimited string.
 								var tempArray = parseDelimiterString (this.hotkey, ",");
-								// Set .curr property to refer to this item.
-//								console.write (tempArray[0]);
-//								console.write (tempArray[1]);	
-								tempStr = tempArray[0] + " = '" + tempArray[1] + "'";
-								eval(tempStr);
-//								console.write (tempArray[0]);
-//								console.write (tempArray[1]);
-//								console.write (selection[0].traits.ai.stance.curr);
 
 								// Refresh tab so it displays the new .curr sprite.
 								tabCounter = tempArray[4];
-								updateTab (tempArray[3], "pick", "", tempArray[2], tempArray[0]);
+								updateTab (tempArray[3], "pick", "", tempArray[2], '"' + tempArray[1] + '"');
 								
 								// Do case-specific stuff depending on name of tab.
 								switch (tempArray[3])
 								{
+									case "stance":
+										issueCommand(selection, true, NMT_SET_STANCE, tempArray[1]);
+										break;
 									case "formation":
 										// Remove the selected units from any existing formation.
 										removeFromFormation (selection);
@@ -661,11 +656,11 @@ function refreshCommandButtons()
 		updateTab ("barter", "production", "Tab", "selection[0].actions.barter.list");
 		
 		// Update pick lists (formation, stance, trade). (Tab button holds current selection, click a button to select a new option and close the tab.)
-		updateTab ("formation", "pick", "", "selection[0].traits.formation.list", "selection[0].traits.formation.curr");
+		//updateTab ("formation", "pick", "", "selection[0].traits.formation.list", "selection[0].traits.formation.curr");
 		updateTab ("stance", "pick", "", "selection[0].traits.ai.stance.list", "selection[0].traits.ai.stance.curr");
-		updateTab ("trade", "pick", "", "selection[0].actions.trade.list", "selection[0].actions.trade.curr");
-		updateTab ("gate", "pick", "", "selection[0].actions.gate.list", "selection[0].actions.gate.curr");
-		updateTab ("weapon", "pick", "", "selection[0].actions.attack", "selection[0].actions.attack.curr");
+		//updateTab ("trade", "pick", "", "selection[0].actions.trade.list", "selection[0].actions.trade.curr");
+		//updateTab ("gate", "pick", "", "selection[0].actions.gate.list", "selection[0].actions.gate.curr");
+		//updateTab ("weapon", "pick", "", "selection[0].actions.attack", "selection[0].actions.attack.curr");
 /*		
 		// Update Allegiance. (Tab button, persistent buttons (though unit will be lost as soon as option selected), click them to do things.)
 		tempArray = new Array ("kill", "food");

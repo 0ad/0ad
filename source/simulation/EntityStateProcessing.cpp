@@ -707,10 +707,10 @@ bool CEntity::ProcessPatrol( CEntityOrder* current, int UNUSED(timestep_millis) 
 
 bool CEntity::ProcessProduce( CEntityOrder* order )
 {
-	CEventStartProduction evt( order->m_produce_type, order->m_produce_name );
+	CEventStartProduction evt( order->m_produce_type, order->m_name );
 	if( DispatchEvent( &evt ) && evt.GetTime() >= 0 )
 	{
-		m_productionQueue->AddItem( order->m_produce_type, order->m_produce_name, evt.GetTime() );
+		m_productionQueue->AddItem( order->m_produce_type, order->m_name, evt.GetTime() );
 	}
 	return( false );
 }

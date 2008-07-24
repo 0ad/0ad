@@ -40,15 +40,6 @@
 
 #include <deque>
 
-// An order data field, which could represent different things depending on the type of order.
-struct SOrderData
-{
-	CVector2D location;
-	HEntity entity;
-	CStrW string;
-	u64 data;  // could be recast as a double or int
-};
-
 class CEntityListener
 {
 public:
@@ -97,8 +88,9 @@ public:
 		ORDER_PRODUCE,				// 12
 		ORDER_START_CONSTRUCTION,	// 13
 		ORDER_SET_RALLY_POINT,		// 14
-		ORDER_NOTIFY_REQUEST,		// 15
-		ORDER_LAST					// 16
+		ORDER_SET_STANCE,			// 15
+		ORDER_NOTIFY_REQUEST,		// 16
+		ORDER_LAST					// 17
 	};
 	EOrderType m_type;
 
@@ -113,27 +105,29 @@ public:
 	// all commands involving pathfinder (i.e. all :P)
 	float m_pathfinder_radius;
 
-	// NMT_PlaceObject
+	// NMT_PLACE_OBJECT
 	HEntity m_new_obj;
 
-	// NMT_Goto
-	// NMT_FormationGoto
-	// NMT_Run
-	// NMT_Patrol
-	// NMT_AddWaypoint
+	// NMT_GOTO
+	// NMT_FORMATION_GOTO
+	// NMT_RUN
+	// NMT_PATROL
+	// NMT_ADD_WAYPOINT
 	CVector2D m_target_location;
 
-	// NMT_Generic
-	// NMT_FormationGeneric
-	// NMT_NotifyRequest
+	// NMT_GENERIC
+	// NMT_FORMATION_GENERIC
+	// NMT_NOTIFY_REQUEST
 	HEntity m_target_entity;
 	int m_action;
 
-	// NMT_Produce
-	CStrW m_produce_name;
+	// NMT_PRODUCE, NMT_SET_STANCE
+	CStrW m_name;
+
+	// NMT_PRODUCE
 	int m_produce_type;
 
-	// NMT_Generic
+	// NMT_GENERIC
 	bool m_run;
 
 	CEntityOrder(): m_type(ORDER_INVALID), m_source(SOURCE_PLAYER) {}

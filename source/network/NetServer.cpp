@@ -50,7 +50,7 @@ CNetServer::CNetServer( CGame *pGame, CGameAttributes *pGameAttributes )
 	// (e.g. less command batch spam that way)
 	for ( uint i = 0; i < 3; i++ )
 	{
-		CTurnManager::SetTurnLength( i, 150 );
+		CTurnManager::SetTurnLength( i, DEFAULT_TURN_LENGTH );
 	}
 
 	g_ScriptingHost.SetGlobal( "g_NetServer", OBJECT_TO_JSVAL( GetScript() ) );
@@ -145,6 +145,7 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PLACE_OBJECT, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_RUN, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SET_RALLY_POINT, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SET_STANCE, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GOTO, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GENERIC, NSS_INGAME, (void*)&OnInGame, pContext );

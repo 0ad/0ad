@@ -321,8 +321,16 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 		_msg *msg=(_msg *)pMsg; \
 		isQueued = msg->m_IsQueued != 0; \
 		order.m_type=CEntityOrder::_order; \
-		order.m_produce_name=msg->m_Name; \
+		order.m_name=msg->m_Name; \
 		order.m_produce_type=msg->m_Type; \
+		QueueOrder(order, msg->m_Entities, isQueued); \
+	} while(0)
+#define ENTITY_STRING(_msg, _order) \
+	do { \
+		_msg *msg=(_msg *)pMsg; \
+		isQueued = msg->m_IsQueued != 0; \
+		order.m_type=CEntityOrder::_order; \
+		order.m_name=msg->m_Stance; \
 		QueueOrder(order, msg->m_Entities, isQueued); \
 	} while(0)
 	
@@ -373,6 +381,9 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 			break;
 		case NMT_SET_RALLY_POINT:
 			ENTITY_POSITION(CSetRallyPointMessage, ORDER_SET_RALLY_POINT);
+			break;
+		case NMT_SET_STANCE:
+			ENTITY_STRING(CSetStanceMessage, ORDER_SET_STANCE);
 			break;
 		case NMT_FORMATION_GOTO:
 			ENTITY_POSITION_FORM(CFormationGotoMessage, ORDER_GOTO);

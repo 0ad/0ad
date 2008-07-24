@@ -186,23 +186,6 @@ public:
 	 */
 	static CNetMessage* CreateMessage( const void* pData, size_t dataSize );
 
-	/**
-	 * Factory methods which creates a message object from JavaScript arguments
-	 *
-	 * @param entities
-	 * @param pContext
-	 * @param argc
-	 * @param argv
-	 * @param isQueued
-	 * @return							The new message created
-	 */
-	static CNetMessage* CreateMessage(
-									  const CEntityList &entities,
-									  JSContext *pContext,
-									  uintN argc,
-									  jsval *argv,
-									  bool queued );
-
 protected:
 
 private:

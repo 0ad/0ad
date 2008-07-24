@@ -341,7 +341,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrde
 		case CEntityOrder::ORDER_PRODUCE:
 			JSU_REQUIRE_PARAMS_CPP(3);
 			try {
-				newOrder.m_produce_name = ToPrimitive<CStrW>(argv[2]);
+				newOrder.m_name = ToPrimitive<CStrW>(argv[2]);
 				newOrder.m_produce_type = ToPrimitive<int>(argv[1]);
 			}
 			catch( PSERROR_Scripting_ConversionFailed )

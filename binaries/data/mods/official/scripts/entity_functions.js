@@ -1391,6 +1391,7 @@ function entityEventPrepareOrder( evt )
 			break;
 
 		case ORDER_SET_RALLY_POINT:
+		case ORDER_SET_STANCE:
 			break;
 			
 		default:

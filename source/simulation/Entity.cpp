@@ -824,7 +824,7 @@ void CEntity::PopOrder()
 }
 void CEntity::PushOrder( const CEntityOrder& order )
 {
-	CEventPrepareOrder evt( order.m_target_entity, order.m_type, order.m_action, order.m_produce_name );
+	CEventPrepareOrder evt( order.m_target_entity, order.m_type, order.m_action, order.m_name );
 	if( DispatchEvent(&evt) )
 	{
 		if (order.m_type == CEntityOrder::ORDER_SET_RALLY_POINT)
@@ -832,6 +832,12 @@ void CEntity::PushOrder( const CEntityOrder& order )
 			// It doesn't make sense to queue this type of order; just set the rally point
 			entf_set(ENTF_HAS_RALLY_POINT);
 			m_rallyPoint = order.m_target_location;
+		}
+		else if (order.m_type == CEntityOrder::ORDER_SET_STANCE)
+		{
+			// It doesn't make sense to queue this type of order; just set the stance
+			m_stanceName = order.m_name;
+			StanceChanged();
 		}
 		else
 		{
