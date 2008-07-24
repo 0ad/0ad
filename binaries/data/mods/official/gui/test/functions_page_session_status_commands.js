@@ -496,8 +496,11 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 						    			}
 									}
 
-									listObject.tooltip += "\n[font=tahoma10]" +
-									                      template.traits.id.rollover + "[/font]";
+									if (template.traits.id.tooltip)
+									{
+										listObject.tooltip += "\n[font=tahoma10]" + 
+										                      template.traits.id.tooltip + "[/font]";
+									}
 									
 									// Set portrait.
 									setPortrait (listObject.name, 
