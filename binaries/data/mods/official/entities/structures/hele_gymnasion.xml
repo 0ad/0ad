@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_special"
->
+<Entity	Parent="template_structure_special">
 	<Traits>
 	
 		<Id>
@@ -14,6 +12,11 @@
 			<History>The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established.</History>
 		
 		</Id>
+ 		<Footprint>
+ 			<Width>22.0</Width>
+ 			<Depth>24.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
 
 	</Traits>
 
