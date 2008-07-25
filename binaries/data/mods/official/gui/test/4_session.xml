@@ -354,7 +354,81 @@
 		        style="globalMessageStyle"
 		>
 		</object>
-
+		
+		
+		<!-- Players list -->
+		<object name="PlayersList"
+		        type="text"
+		        hotkey="session.ShowPlayersList"
+		        style="PlayersListStyle"
+		>
+		
+		  <action on="Press"><![CDATA[
+		      togglePlayersList();
+		  ]]></action>
+		  
+		  <object name="Player_1"
+		          type="text"
+		          style="PlayerStyle"
+		          size="0% 0% 100% 100%"
+           >
+		   </object> 
+		  
+		   <object name="Player_2"
+                  type="text"
+                  style="PlayerStyle"
+                  size="0% 0%+14 100% 100%"
+           >
+           </object> 
+          
+           <object name="Player_3"
+                  type="text"
+                  style="PlayerStyle"
+                  size="0% 0%+28 100% 100%"
+           >
+           </object> 
+           
+        
+           <object name="Player_4"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+          
+           <object name="Player_5"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+          
+           <object name="Player_6"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+           
+           <object name="Player_7"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+           
+           <object name="Player_8"
+                  type="text"
+                  style="PlayerStyle"
+           >
+               <action on="Load"><![CDATA[ 
+                    //Sets correct coordinates for each text object.
+                    for (var i=1; i<=8; i++)
+                    {
+                        addCrds("Player_"+i, 0, 0, 0, i*14, 0, 0, 100, 100);
+                    }
+                    
+               ]]></action>
+           </object> 
+		  
+		</object>
+		
 		<!-- GROUP: STATUS PANE -->
 		<object	name="snStatusPane"
 			hotkey="session.statuspane.toggle"
@@ -546,7 +620,7 @@
 							
 							// Set width as either icon (odd) or text (even).
 							if (loop % 2 == 0)
-								tempWidth = (currCrd.coord[rb].width/max + 7);							
+								tempWidth = (currCrd.coord[rb].width/max + 7);
 							else
 								tempWidth = 16;							
 							

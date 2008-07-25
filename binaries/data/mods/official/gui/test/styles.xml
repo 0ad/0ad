@@ -535,6 +535,7 @@
 				sprite_disabled="snIconArcLeftDisabled"
 				tooltip_style="snToolTip"
 				ghost="false"
+				enabled="true"
 		/>
 
 		<style	name="snMiniMapArcUp"
@@ -542,7 +543,8 @@
 				sprite_over="snIconArcUpOver"
 				sprite_disabled="snIconArcUpDisabled"
 				tooltip_style="snToolTip"
-				ghost="false"				
+				ghost="false"	
+				enabled="true"			
 		/>		
 		
 		<style	name="snMiniMapButton"
@@ -555,6 +557,7 @@
 				sprite_over="snIconSheetMiniMapButtonOver"
 				sprite_disabled="snIconSheetMiniMapButtonDisabled"
 				ghost="false"
+				enabled="true"
 		/>		
 		
 		<style name="snGreenBar"
@@ -788,6 +791,22 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
     ghost="true"
     font="trebuchet14b"
     size="19 150 100% 30%"
+  />
+  
+  <style name="PlayersListStyle"
+    hidden="true"
+    text_align="right"
+    text_valign="bottom"
+    textcolor="white"
+    ghost="true"
+    font="trebuchet14"
+    size="100%-500 100%-320 100% 100%-180"
+  />
+  
+  <style name="PlayerStyle"
+    ghost="true"
+    textcolor="white"
+    text_align="right"
   />
 
 </styles>
