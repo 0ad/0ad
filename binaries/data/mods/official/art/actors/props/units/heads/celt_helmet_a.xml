@@ -24,7 +24,7 @@
       <mesh>props/helmet/celt_helmet_c.pmd</mesh>
       <texture>props/helmet/celt_b2.dds</texture>
     </variant>
-    <variant frequency="1" name="helmet-06">
+    <variant frequency="1" name="helmet-06-Port">
       <mesh>props/helmet/celt_helmet_d.pmd</mesh>
       <texture>props/helmet/celt_d1.dds</texture>
     </variant>
@@ -33,9 +33,15 @@
       <texture>props/helmet/celt_e1.dds</texture>
     </variant>
     <variant frequency="3" name="helmet-08">
+      <mesh>props/helmet/celt_coolus_caradoc.dae</mesh>
+      <texture>props/helmet/celt_a4.dds</texture>
+    </variant>
+    <variant frequency="2" name="helmet-09">
       <mesh>props/helmet/celt_coolus_feathers.dae</mesh>
       <texture>props/helmet/celt_a3.dds</texture>
     </variant>
   </group>
+
+  <material>player_trans.xml</material>
 
 </actor>
