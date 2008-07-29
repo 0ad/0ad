@@ -236,15 +236,13 @@ private:
 	// (returns EGotoSituation, but we don't want to expose that)
 	int ProcessGotoHelper( CEntityOrder* current, int timestep_millis, HEntity& collide, float& timeLeft );
 
-	bool ProcessContactAction( CEntityOrder* current, int timestep_millis, CEntityOrder::EOrderType transition, SEntityAction* action );
-	bool ProcessContactActionNoPathing( CEntityOrder* current, int timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action );
-
-	bool ProcessGeneric( CEntityOrder* current, int timestep_millis );
-	bool ProcessGenericNoPathing( CEntityOrder* current, int timestep_millis );
+	bool ProcessContactAction( CEntityOrder* current, int timestep_millis, bool repath_if_needed );
+	bool ProcessContactActionNoPathing( CEntityOrder* current, int timestep_millis );
 
 	bool ProcessProduce( CEntityOrder* order );
 
 	bool ProcessGotoNoPathing( CEntityOrder* current, int timestep_millis );
+	bool ProcessGotoNoPathingContact( CEntityOrder* current, int timestep_millis );
 	bool ProcessGoto( CEntityOrder* current, int timestep_millis );
 	bool ProcessGotoWaypoint( CEntityOrder* current, int timestep_millis, bool contact );
 

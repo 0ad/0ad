@@ -29,12 +29,12 @@ public:
 };
 */
 
-class CEventGeneric : public CScriptEvent
+class CEventContactAction : public CScriptEvent
 {
 	CEntity* m_target;
 	int m_action;
 public:
-	CEventGeneric( CEntity* target, int action );
+	CEventContactAction( CEntity* target, int action );
 };
 
 class CEventTargetExhausted : public CScriptEvent

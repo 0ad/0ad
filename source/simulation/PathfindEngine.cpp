@@ -350,10 +350,13 @@ void CPathfindEngine::RequestPath( HEntity entity, const CVector2D& destination,
 }
 
 
-void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D& destination, bool UNUSED(contact),
+void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D& destination, bool contact,
 										  float radius, CEntityOrder::EOrderSource orderSource )
 {
 	PROFILE_START("Pathfinding");
+
+	CEntityOrder::EOrderType stepType = CEntityOrder::ORDER_GOTO_NOPATHING;
+	if (contact) stepType = CEntityOrder::ORDER_GOTO_NOPATHING_CONTACT;
 
 	if(g_TriPathfind)
 		{
@@ -452,13 +455,13 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 				node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;	// push end marker (used as a sentinel when repathing)
 				node.m_target_location = finalDest;
 				entity->m_orderQueue.push_front(node);
-				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// push final goto step
+				node.m_type = stepType;	// push final goto step
 				node.m_target_location = finalDest;
 				entity->m_orderQueue.push_front(node);
 
 				for( int i = ((int) path.size()) - 2; i >= 0; i-- )
 				{
-					node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// TODO: For non-contact paths, do we want some other order type?
+					node.m_type = stepType;	// TODO: For non-contact paths, do we want some other order type?
 					node.m_target_location = path[i];
 					entity->m_orderQueue.push_front(node);
 				}
@@ -473,7 +476,7 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 					node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
 					node.m_target_location = destination;
 					entity->m_orderQueue.push_front(node);
-					node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+					node.m_type = stepType;
 					node.m_target_location = destination;
 					entity->m_orderQueue.push_front(node);
 				}
@@ -484,11 +487,13 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 	PROFILE_END("Pathfinding");
 }
 
-void CPathfindEngine::RequestLowLevelPath( HEntity entity, const CVector2D& destination, bool UNUSED(contact),
+void CPathfindEngine::RequestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact,
 										  float radius, CEntityOrder::EOrderSource orderSource )
 {
 	PROFILE_START("Pathfinding");
 
+	CEntityOrder::EOrderType stepType = CEntityOrder::ORDER_GOTO_NOPATHING;
+	if (contact) stepType = CEntityOrder::ORDER_GOTO_NOPATHING_CONTACT;
 	
 	//Kai: added test for terrain information in entityManager
 	//mLowPathfinder.TAStarTest();
@@ -529,13 +534,13 @@ void CPathfindEngine::RequestLowLevelPath( HEntity entity, const CVector2D& dest
 			node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;	// push end marker (used as a sentinel when repathing)
 			node.m_target_location = finalDest;
 			entity->m_orderQueue.push_front(node);
-			node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// push final goto step
+			node.m_type = stepType;	// push final goto step
 			node.m_target_location = finalDest;
 			entity->m_orderQueue.push_front(node);
 
 			for( int i = ((int) path.size()) - 2; i >= 0; i-- )
 			{
-				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;	// TODO: For non-contact paths, do we want some other order type?
+				node.m_type = stepType;
 				node.m_target_location = path[i];
 				entity->m_orderQueue.push_front(node);
 			}
@@ -550,7 +555,7 @@ void CPathfindEngine::RequestLowLevelPath( HEntity entity, const CVector2D& dest
 				node.m_type = CEntityOrder::ORDER_PATH_END_MARKER;
 				node.m_target_location = destination;
 				entity->m_orderQueue.push_front(node);
-				node.m_type = CEntityOrder::ORDER_GOTO_NOPATHING;
+				node.m_type = stepType;
 				node.m_target_location = destination;
 				entity->m_orderQueue.push_front(node);
 			}

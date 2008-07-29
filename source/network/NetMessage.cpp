@@ -210,14 +210,14 @@ void CNetMessage::ScriptingInit()
 	g_ScriptingHost.DefineConstant( "NMT_RUN", NMT_RUN );
 	g_ScriptingHost.DefineConstant( "NMT_PATROL", NMT_PATROL );
 	g_ScriptingHost.DefineConstant( "NMT_ADD_WAYPOINT", NMT_ADD_WAYPOINT );
-	g_ScriptingHost.DefineConstant( "NMT_GENERIC", NMT_GENERIC );
+	g_ScriptingHost.DefineConstant( "NMT_CONTACT_ACTION", NMT_CONTACT_ACTION );
 	g_ScriptingHost.DefineConstant( "NMT_PRODUCE", NMT_PRODUCE );
 	g_ScriptingHost.DefineConstant( "NMT_PLACE_OBJECT", NMT_PLACE_OBJECT );
 	g_ScriptingHost.DefineConstant( "NMT_SET_RALLY_POINT", NMT_SET_RALLY_POINT );
 	g_ScriptingHost.DefineConstant( "NMT_SET_STANCE", NMT_SET_STANCE );
 	g_ScriptingHost.DefineConstant( "NMT_NOTIFY_REQUEST", NMT_NOTIFY_REQUEST );
 	g_ScriptingHost.DefineConstant( "NMT_FORMATION_GOTO", NMT_FORMATION_GOTO );
-	g_ScriptingHost.DefineConstant( "NMT_FORMATION_GENERIC", NMT_FORMATION_GENERIC );
+	g_ScriptingHost.DefineConstant( "NMT_FORMATION_CONTACT_ACTION", NMT_FORMATION_CONTACT_ACTION );
 }
 
 //-----------------------------------------------------------------------------
@@ -492,9 +492,9 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			return pMessage;
 		}
 
-	case NMT_GENERIC:
+	case NMT_CONTACT_ACTION:
 		{
-			CGenericMessage* pMessage = new CGenericMessage;
+			CContactActionMessage* pMessage = new CContactActionMessage;
 			if ( !pMessage ) return NULL;
 
 			pMessage->m_IsQueued = isQueued;
@@ -573,9 +573,9 @@ CNetMessage* CNetMessage::CommandFromJSArgs(
 			return pMessage;
 		}
 
-	case NMT_FORMATION_GENERIC:
+	case NMT_FORMATION_CONTACT_ACTION:
 		{
-			CFormationGenericMessage* pMessage = new CFormationGenericMessage;
+			CFormationContactActionMessage* pMessage = new CFormationContactActionMessage;
 			if ( !pMessage ) return NULL;
 
 			pMessage->m_IsQueued = isQueued;
@@ -832,9 +832,9 @@ CNetMessage* CNetMessage::CreateEntityIntMessage(
 {
 	switch ( type )
 	{
-	case NMT_GENERIC:
+	case NMT_CONTACT_ACTION:
 		{
-			CGenericMessage *pMessage = new CGenericMessage;
+			CContactActionMessage *pMessage = new CContactActionMessage;
 			if ( !pMessage ) return NULL;
 
 			pMessage->m_Entities = entities;
@@ -857,9 +857,9 @@ CNetMessage* CNetMessage::CreateEntityIntMessage(
 			return pMessage;
 		}
 
-	case NMT_FORMATION_GENERIC:
+	case NMT_FORMATION_CONTACT_ACTION:
 		{
-			CFormationGenericMessage *pMessage = new CFormationGenericMessage;
+			CFormationContactActionMessage *pMessage = new CFormationContactActionMessage;
 			if ( !pMessage ) return NULL;
 
 			pMessage->m_Entities = entities;
@@ -978,8 +978,8 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		pNewMessage = new CAddWaypointMessage;
 		break;
 
-	case NMT_GENERIC:
-		pNewMessage = new CGenericMessage;
+	case NMT_CONTACT_ACTION:
+		pNewMessage = new CContactActionMessage;
 		break;
 
 	case NMT_PRODUCE:
@@ -1010,8 +1010,8 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		pNewMessage = new CFormationGotoMessage;
 		break;
 
-	case NMT_FORMATION_GENERIC:
-		pNewMessage = new CFormationGenericMessage;
+	case NMT_FORMATION_CONTACT_ACTION:
+		pNewMessage = new CFormationContactActionMessage;
 		break;
 
 	default:

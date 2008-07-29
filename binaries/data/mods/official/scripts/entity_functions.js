@@ -5,7 +5,7 @@
 
 // ====================================================================
 
-// To add a new generic order, do the following all within template_entity_script.js:
+// To add a new ContactAction order, do the following all within template_entity_script.js:
 
 //    * Pick a number to be its ID (add this to the "const"s directly below). f
 
@@ -13,7 +13,7 @@
 
 //    * Add code in entityEventTargetChanged() to tell the GUI whether the entity should use this action depending on what target the mouse is hovering over. This is also where you can set a cursor for the action. 
 
-//    * Add code in entityEventGeneric() to deal with new generic order events of your type. Note that if you want to have your action handler in a separate function (is preferable), you need to also add this function to the entity object in entityInit() (its initialize event), e.g. this.processGather = entityEventGather. 
+//    * Add code in entityEventContactAction() to deal with new ContactAction order events of your type. Note that if you want to have your action handler in a separate function (is preferable), you need to also add this function to the entity object in entityInit() (its initialize event), e.g. this.processGather = entityEventGather. 
 
 const ACTION_NONE	= 0;
 const ACTION_ATTACK	= 1;
@@ -192,7 +192,7 @@ function entityInit( evt )
 	stopXTimer(3);
 	startXTimer(4);
 	
-	// Register our actions with the generic order system
+	// Register our actions with the ContactAction order system
 	if( this.actions )
 	{
 		if ( this.actions.move && this.actions.move.speed )
@@ -987,14 +987,14 @@ function damage( dmg, inflictor )
 		this.requestNotification( inflictor, NOTIFY_ORDER_CHANGE, false, true );			
 		this.registerDamage( inflictor );
 		if( this.isIdle() )
-			this.order( ORDER_GENERIC, inflictor, this.getAttackAction( inflictor ), false );
+			this.order( ORDER_CONTACT_ACTION, inflictor, this.getAttackAction( inflictor ), false );
 	}*/
 	
 	this.onDamaged( inflictor );
 }
 // ====================================================================
 
-function entityEventGeneric( evt )
+function entityEventContactAction( evt )
 {
 	switch( evt.action )
 	{
@@ -1014,7 +1014,7 @@ function entityEventGeneric( evt )
 			this.performRepair( evt ); break;
 
 		default:
-			console.write( "Unknown generic action: " + evt.action );
+			console.write( "Unknown contact action: " + evt.action );
 	}
 }
 
@@ -1041,13 +1041,13 @@ function entityEventNotification( evt )
 			break;
 		case NOTIFY_ATTACK:
 		case NOTIFY_DAMAGE:
-			this.order( ORDER_GENERIC, evt.target, ACTION_ATTACK, false );
+			this.order( ORDER_CONTACT_ACTION, evt.target, ACTION_ATTACK, false );
 			break;
 		case NOTIFY_HEAL:
-			this.order( ORDER_GENERIC, evt.target, ACTION_HEAL, false );
+			this.order( ORDER_CONTACT_ACTION, evt.target, ACTION_HEAL, false );
 			break;
 		case NOTIFY_GATHER:
-			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER, false );
+			this.order( ORDER_CONTACT_ACTION, evt.target, ACTION_GATHER, false );
 			break;
 		case NOTIFY_IDLE:
 			//target is the unit that has become idle.  Eventually...do something here.
@@ -1104,7 +1104,7 @@ function entityEventTargetExhausted( evt )
 		// If the target was gatherable, try to gather it.
 		if( canGather(this, evt.target) )
 		{
-			this.order( ORDER_GENERIC, evt.target, ACTION_GATHER, false );
+			this.order( ORDER_CONTACT_ACTION, evt.target, ACTION_GATHER, false );
 			return;
 		}
 		
@@ -1127,7 +1127,7 @@ function entityEventTargetExhausted( evt )
 		}
 		if( bestTarget != null )
 		{
-			this.order( ORDER_GENERIC, bestTarget, ACTION_BUILD, false );
+			this.order( ORDER_CONTACT_ACTION, bestTarget, ACTION_BUILD, false );
 			return;
 		}
 		
@@ -1161,7 +1161,7 @@ function chooseGatherTarget( resourceSubType, targetList )
 	}
 	if( bestTarget != null )
 	{
-		this.order( ORDER_GENERIC, bestTarget, ACTION_GATHER, false );
+		this.order( ORDER_CONTACT_ACTION, bestTarget, ACTION_GATHER, false );
 		return true;
 	}
 	return false;
@@ -1202,11 +1202,11 @@ function entityEventTargetChanged( evt )
 			evt.target.traits.health &&
 			evt.target.traits.health.max != 0 )
 		{
-			evt.defaultOrder = NMT_GENERIC;
+			evt.defaultOrder = NMT_CONTACT_ACTION;
 			evt.defaultAction = this.getAttackAction( evt.target );
 			evt.defaultCursor = "action-attack";
 
-			evt.secondaryOrder = NMT_GENERIC;
+			evt.secondaryOrder = NMT_CONTACT_ACTION;
 			evt.secondaryAction = this.getAttackAction( evt.target );
 			evt.secondaryCursor = "action-attack";
 		}
@@ -1229,12 +1229,12 @@ function entityEventTargetChanged( evt )
 
 		if ( canGather( this, evt.target ) )
 		{
-			evt.defaultOrder = NMT_GENERIC;
+			evt.defaultOrder = NMT_CONTACT_ACTION;
 			evt.defaultAction = ACTION_GATHER;
 		    // Set cursor (eg "action-gather-fruit").
 		    evt.defaultCursor = "action-gather-" + evt.target.traits.supply.subType;
 
-			evt.secondaryOrder = NMT_GENERIC;
+			evt.secondaryOrder = NMT_CONTACT_ACTION;
 			evt.secondaryAction = ACTION_GATHER;
 		  	// Set cursor (eg "action-gather-fruit").
 		    evt.secondaryCursor = "action-gather-" + evt.target.traits.supply.subType;
@@ -1242,22 +1242,22 @@ function entityEventTargetChanged( evt )
 		
 		if ( canBuild( this, evt.target ) )
 		{
-			evt.defaultOrder = NMT_GENERIC;
+			evt.defaultOrder = NMT_CONTACT_ACTION;
 			evt.defaultAction = ACTION_BUILD;
 		    evt.defaultCursor = "action-build";
 
-			evt.secondaryOrder = NMT_GENERIC;
+			evt.secondaryOrder = NMT_CONTACT_ACTION;
 			evt.secondaryAction = ACTION_BUILD;
 		    evt.secondaryCursor = "action-build";
 		}
 		
 		if ( canRepair( this, evt.target ) )
 		{
-			evt.defaultOrder = NMT_GENERIC;
+			evt.defaultOrder = NMT_CONTACT_ACTION;
 			evt.defaultAction = ACTION_REPAIR;
 		    evt.defaultCursor = "action-build";
 
-			evt.secondaryOrder = NMT_GENERIC;
+			evt.secondaryOrder = NMT_CONTACT_ACTION;
 			evt.secondaryAction = ACTION_REPAIR;
 		    evt.secondaryCursor = "action-build";
 		}
@@ -1324,7 +1324,7 @@ function entityEventPrepareOrder( evt )
 			this.forceCheckListeners( NOTIFY_ORDER_CHANGE, this );
 			break;	
 			
-		case ORDER_GENERIC:
+		case ORDER_CONTACT_ACTION:
 			evt.notifySource = this;
 			switch ( evt.action )
 			{
@@ -1408,7 +1408,7 @@ function entityEventPrepareOrder( evt )
 
 function entityStartConstruction( evt )
 {
-	this.order( ORDER_GENERIC, evt.target, ACTION_BUILD, false );
+	this.order( ORDER_CONTACT_ACTION, evt.target, ACTION_BUILD, false );
 }
 
 // ====================================================================

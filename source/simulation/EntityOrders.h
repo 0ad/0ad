@@ -21,7 +21,7 @@
 //											order queue after it's executed. In this way, the entity will
 //											circle round a list of patrol points.
 //											Create this order when a standard patrol order is required.
-//					  ORDER_GENERIC:		Generic ranged action. Move towards target entity, then start
+//					  ORDER_CONTACT_ACTION:	Generic ranged action. Move towards target entity, then start
 //											performing an action (call a JS event handler every few seconds).
 //											If we collide with something (=> line-of-sight tracking no longer
 //											sufficient) spawns a ORDER_GOTO to target's location and pushes it
@@ -73,24 +73,25 @@ class CEntityOrder
 public:
 	enum EOrderType
 	{
-		ORDER_INVALID,				// 0
-		ORDER_GOTO_NOPATHING,		// 1
-		ORDER_GOTO_SMOOTHED,		// 2
-		ORDER_GOTO_COLLISION,		// 3
-		ORDER_GOTO_WAYPOINT,		// 4
-		ORDER_GOTO_WAYPOINT_CONTACT,// 5
-		ORDER_GOTO,					// 6
-		ORDER_RUN,					// 7
-		ORDER_PATROL,				// 8
-		ORDER_PATH_END_MARKER,		// 9
-		ORDER_GENERIC,				// 10
-		ORDER_GENERIC_NOPATHING,	// 11
-		ORDER_PRODUCE,				// 12
-		ORDER_START_CONSTRUCTION,	// 13
-		ORDER_SET_RALLY_POINT,		// 14
-		ORDER_SET_STANCE,			// 15
-		ORDER_NOTIFY_REQUEST,		// 16
-		ORDER_LAST					// 17
+		ORDER_INVALID,					// 0
+		ORDER_GOTO_NOPATHING,			// 1
+		ORDER_GOTO_NOPATHING_CONTACT,	// 2
+		ORDER_GOTO_SMOOTHED,			// 3
+		ORDER_GOTO_COLLISION,			// 4
+		ORDER_GOTO_WAYPOINT,			// 5
+		ORDER_GOTO_WAYPOINT_CONTACT,	// 6
+		ORDER_GOTO,						// 7
+		ORDER_RUN,						// 8
+		ORDER_PATROL,					// 9
+		ORDER_PATH_END_MARKER,			// 10
+		ORDER_CONTACT_ACTION,					// 11
+		ORDER_CONTACT_ACTION_NOPATHING,		// 12
+		ORDER_PRODUCE,					// 13
+		ORDER_START_CONSTRUCTION,		// 14
+		ORDER_SET_RALLY_POINT,			// 15
+		ORDER_SET_STANCE,				// 16
+		ORDER_NOTIFY_REQUEST,			// 17
+		ORDER_LAST						// 18
 	};
 	EOrderType m_type;
 
@@ -115,8 +116,8 @@ public:
 	// NMT_ADD_WAYPOINT
 	CVector2D m_target_location;
 
-	// NMT_GENERIC
-	// NMT_FORMATION_GENERIC
+	// NMT_CONTACT_ACTION
+	// NMT_FORMATION_CONTACT_ACTION
 	// NMT_NOTIFY_REQUEST
 	HEntity m_target_entity;
 	int m_action;
@@ -127,7 +128,7 @@ public:
 	// NMT_PRODUCE
 	int m_produce_type;
 
-	// NMT_GENERIC
+	// NMT_CONTACT_ACTION
 	bool m_run;
 
 	CEntityOrder(): m_type(ORDER_INVALID), m_source(SOURCE_PLAYER) {}

@@ -2,7 +2,7 @@
 #include "EventHandlers.h"
 #include "Entity.h"
 
-CEventGeneric::CEventGeneric( CEntity* target, int action ) : CScriptEvent( L"generic", EVENT_GENERIC, true)
+CEventContactAction::CEventContactAction( CEntity* target, int action ) : CScriptEvent( L"contactAction", EVENT_CONTACT_ACTION, true)
 {
 	m_target = target;
 	m_action = action;
@@ -10,7 +10,7 @@ CEventGeneric::CEventGeneric( CEntity* target, int action ) : CScriptEvent( L"ge
 	AddLocalProperty( L"action", &m_action );
 }
 
-CEventTargetExhausted::CEventTargetExhausted( CEntity* target, int action ) : CScriptEvent( L"TargetExhausted", EVENT_TARGET_EXHAUSTED, true)
+CEventTargetExhausted::CEventTargetExhausted( CEntity* target, int action ) : CScriptEvent( L"targetExhausted", EVENT_TARGET_EXHAUSTED, true)
 {
 	m_target = target;
 	m_action = action;

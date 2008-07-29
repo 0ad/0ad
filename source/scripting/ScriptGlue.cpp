@@ -211,10 +211,10 @@ void CreateFormationMessage( std::vector<CNetMessage*>& msgList, CNetMessage* ms
 		retMsg = CNetMessage::CreatePositionMessage( formation, NMT_FORMATION_GOTO, 
 						CVector2D(tmp->m_TargetX, tmp->m_TargetY) );
 	}
-	else if ( type == NMT_GENERIC )
+	else if ( type == NMT_CONTACT_ACTION )
 	{
-		CGenericMessage* tmp = static_cast<CGenericMessage*>(msg);
-		retMsg = CNetMessage::CreateEntityIntMessage(formation, NMT_FORMATION_GENERIC, 
+		CContactActionMessage* tmp = static_cast<CContactActionMessage*>(msg);
+		retMsg = CNetMessage::CreateEntityIntMessage(formation, NMT_FORMATION_CONTACT_ACTION, 
 					tmp->m_Target, tmp->m_Action);
 	}
 	else

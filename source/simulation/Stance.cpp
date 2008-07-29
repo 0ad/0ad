@@ -65,7 +65,7 @@ void CDefendStance::OnDamaged(CEntity *source)
 			float range = m_Entity->m_actions[action].m_MaxRange;
 			if( ( range + m_Entity->m_los * CELL_SIZE ) >= m_Entity->Distance2D( source ) )
 			{
-				CEntityOrder order( CEntityOrder::ORDER_GENERIC, CEntityOrder::SOURCE_UNIT_AI );
+				CEntityOrder order( CEntityOrder::ORDER_CONTACT_ACTION, CEntityOrder::SOURCE_UNIT_AI );
 				order.m_target_entity = source->me;
 				order.m_action = action;
 				order.m_run = false;
@@ -139,7 +139,7 @@ void CStanceUtils::Attack(CEntity* entity, CEntity* target)
 	int action = entity->GetAttackAction( target->me );
 	if( action )
 	{
-		CEntityOrder order( CEntityOrder::ORDER_GENERIC, CEntityOrder::SOURCE_UNIT_AI );
+		CEntityOrder order( CEntityOrder::ORDER_CONTACT_ACTION, CEntityOrder::SOURCE_UNIT_AI );
 		order.m_target_entity = target->me;
 		order.m_action = action;
 		order.m_run = false;

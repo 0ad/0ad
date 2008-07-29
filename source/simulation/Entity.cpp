@@ -524,12 +524,17 @@ void CEntity::UpdateOrders( int timestep )
 					break;
 				UpdateCollisionPatch();
 				return;
-			case CEntityOrder::ORDER_GENERIC:
+			case CEntityOrder::ORDER_GOTO_NOPATHING_CONTACT:
+				if( ProcessGotoNoPathingContact( current, timestep ) )
+					break;
+				UpdateCollisionPatch();
+				return;
+			case CEntityOrder::ORDER_CONTACT_ACTION:
 				// Choose to run if and only if order.m_run is set
 				entf_set_to(ENTF_TRIGGER_RUN, current->m_run);
 				if( !entf_get(ENTF_TRIGGER_RUN) )
 					entf_set_to(ENTF_SHOULD_RUN, false);
-				if( ProcessGeneric( current, timestep ) )
+				if( ProcessContactAction( current, timestep, true ) )
 					break;
 				UpdateCollisionPatch();
 				return;
@@ -544,8 +549,8 @@ void CEntity::UpdateOrders( int timestep )
 				ProcessProduce( current );
 				m_orderQueue.pop_front();
 				break;
-			case CEntityOrder::ORDER_GENERIC_NOPATHING:
-				if( ProcessGenericNoPathing( current, timestep ) )
+			case CEntityOrder::ORDER_CONTACT_ACTION_NOPATHING:
+				if( ProcessContactActionNoPathing( current, timestep ) )
 					break;
 				UpdateCollisionPatch();
 				return;

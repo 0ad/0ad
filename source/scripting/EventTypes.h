@@ -13,7 +13,7 @@ enum EEventType
 	EVENT_INITIALIZE = 0,
 	EVENT_DEATH,
 	EVENT_TICK,
-	EVENT_GENERIC,
+	EVENT_CONTACT_ACTION,
 	EVENT_TARGET_EXHAUSTED,
 	EVENT_START_CONSTRUCTION,
 	EVENT_START_PRODUCTION,
@@ -44,7 +44,7 @@ static const wchar_t* const EventNames[EVENT_LAST] =
 	/* EVENT_INITIALIZE */ L"onInitialize",
 	/* EVENT_DEATH */ L"onDeath",
 	/* EVENT_TICK */ L"onTick",
-	/* EVENT_GENERIC */ L"onGeneric", /* For generic contact actions on a target unit, like attack or gather */
+	/* EVENT_CONTACT_ACTION */ L"onContactAction", /* For generic contact actions on a target unit, like attack or gather */
 	/* EVENT_TARGET_EXHAUSTED*/ L"onTargetExhausted",	/* Called when the target of a generic action dies */
 	/* EVENT_START_CONSTRUCTION */ L"onStartConstruction", /* We were selected when the user placed a building */
 	/* EVENT_START_PRODUCTION */ L"onStartProduction", /* We're about to start training/researching something (deduct resources, etc) */

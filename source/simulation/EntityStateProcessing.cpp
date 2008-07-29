@@ -259,7 +259,7 @@ int CEntity::ProcessGotoHelper( CEntityOrder* current, int timestep_millis, HEnt
 	return( rc );
 }
 
-
+// Go towards a waypoint, or repath if there is an obstacle in the way
 bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, int timestep_millis )
 {
 	HEntity collide;
@@ -377,9 +377,48 @@ bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, int timestep_millis )
 	}
 }
 
-// Handles processing common to (at the moment) gather and melee attack actions
-bool CEntity::ProcessContactAction( CEntityOrder* current, int UNUSED(timestep_millis), CEntityOrder::EOrderType transition, SEntityAction* action )
+// Go towards a waypoint, unless you can perform a contact action
+bool CEntity::ProcessGotoNoPathingContact( CEntityOrder* current, int timestep_millis )
 {
+	CEntityOrder* contact_order = 0;
+	CEntityOrders::iterator it = m_orderQueue.begin();
+	for(; it != m_orderQueue.end(); ++it)
+	{
+		if( it->m_type == CEntityOrder::ORDER_CONTACT_ACTION
+			|| it->m_type == CEntityOrder::ORDER_CONTACT_ACTION_NOPATHING )
+		{
+			contact_order = &(*it);
+			break;
+		}
+	}
+	if( ProcessContactAction(contact_order, timestep_millis, false ) )
+	{
+		// We are in range to do our action; pop off all the pathing orders
+		while( m_orderQueue.front().m_type != CEntityOrder::ORDER_CONTACT_ACTION
+				&& m_orderQueue.front().m_type != CEntityOrder::ORDER_CONTACT_ACTION_NOPATHING )
+		{
+			m_orderQueue.pop_front();
+		}
+		return true;
+	}
+	else
+	{
+		return ProcessGotoNoPathing( current, timestep_millis );
+	}
+}
+
+// Handles processing common to (at the moment) gather and melee attack actions
+bool CEntity::ProcessContactAction( CEntityOrder* current, 
+								   int UNUSED(timestep_millis),
+								   bool repath_if_needed )
+{
+	if( m_actions.find( current->m_action ) == m_actions.end() )
+	{	
+		return false;	// we've been tasked as part of a group but we can't do this action
+	}
+
+	SEntityAction* action = &m_actions[current->m_action];
+	CEntityOrder::EOrderType transition = CEntityOrder::ORDER_CONTACT_ACTION_NOPATHING;
 	HEntity target = current->m_target_entity;
 
 	if( !target || !target->m_extant )
@@ -409,7 +448,7 @@ bool CEntity::ProcessContactAction( CEntityOrder* current, int UNUSED(timestep_m
 		entf_clear(ENTF_IS_RUNNING);
 		return true;
 	}
-	else
+	else if (repath_if_needed)
 	{
 		if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->AllowsMovement() )
 		{
@@ -426,10 +465,26 @@ bool CEntity::ProcessContactAction( CEntityOrder* current, int UNUSED(timestep_m
 
 		return true;
 	}
+	else
+	{
+		return false;
+	}
 }
 
-bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep_millis, const CStr& animation, CScriptEvent* contactEvent, SEntityAction* action )
+bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep_millis )
 {
+	if( m_actions.find( current->m_action ) == m_actions.end() )
+	{	
+		return false;	// we've been tasked as part of a group but we can't do this action
+	}
+	if( !m_actor )
+	{
+		return( false );	// shouldn't happen, but having no actor would mean we have no animation
+	}
+
+	CEventContactAction contactEvent( current->m_target_entity, current->m_action );
+	SEntityAction* action = &m_actions[current->m_action];
+	CStr& animation = action->m_Animation;
 	HEntity target = current->m_target_entity;
 
 	if( m_fsm_cyclepos != NOT_IN_CYCLE )
@@ -441,7 +496,7 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 			const size_t soundGroupIndex = m_base->m_SoundGroupTable[animation];
 			g_soundGroupMgr->PlayNext(soundGroupIndex, m_position);
 
-			if(!DispatchEvent( contactEvent ))
+			if(!DispatchEvent( &contactEvent ))
 			{
 				// Cancel current order
 				entf_clear(ENTF_IS_RUNNING);
@@ -598,28 +653,6 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 	m_fsm_cyclepos = 0;
 
 	return( false );
-}
-
-bool CEntity::ProcessGeneric( CEntityOrder* current, int timestep_millis )
-{
-	if( m_actions.find( current->m_action ) == m_actions.end() )
-	{	
-		return false;	// we've been tasked as part of a group but we can't do this action
-	}
-	SEntityAction& action_obj = m_actions[current->m_action];
-	return( ProcessContactAction( current, timestep_millis, CEntityOrder::ORDER_GENERIC_NOPATHING, &action_obj ) );
-}
-
-bool CEntity::ProcessGenericNoPathing( CEntityOrder* current, int timestep_millis )
-{
-	if( m_actions.find( current->m_action ) == m_actions.end() )
-	{	
-		return false;	// we've been tasked as part of a group but we can't do this action
-	}
-	CEventGeneric evt( current->m_target_entity, current->m_action );
-	if( !m_actor ) return( false );
-	SEntityAction& action_obj = m_actions[current->m_action];
-	return( ProcessContactActionNoPathing( current, timestep_millis, action_obj.m_Animation, &evt, &action_obj ) );
 }
 
 bool CEntity::ProcessGoto( CEntityOrder* current, int UNUSED(timestep_millis) )

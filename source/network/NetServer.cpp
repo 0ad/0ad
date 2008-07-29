@@ -140,7 +140,7 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_GOTO, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PATROL, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_ADD_WAYPOINT, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_GENERIC, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_CONTACT_ACTION, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PRODUCE, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_PLACE_OBJECT, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_RUN, NSS_INGAME, (void*)&OnInGame, pContext );
@@ -148,7 +148,7 @@ bool CNetServer::SetupSession( CNetSession* pSession )
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_SET_STANCE, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_NOTIFY_REQUEST, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GOTO, NSS_INGAME, (void*)&OnInGame, pContext );
-	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_GENERIC, NSS_INGAME, (void*)&OnInGame, pContext );
+	pSession->AddTransition( NSS_INGAME, ( uint )NMT_FORMATION_CONTACT_ACTION, NSS_INGAME, (void*)&OnInGame, pContext );
 	pSession->AddTransition( NSS_INGAME, ( uint )NMT_END_COMMAND_BATCH, NSS_INGAME, (void*)&OnInGame, pContext );
 
 	// Set first state

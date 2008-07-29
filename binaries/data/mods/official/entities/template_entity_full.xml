@@ -16,7 +16,7 @@
 	</Traits>
 
 	<Script File="scripts/entity_functions.js" />
-	<Event On="Generic" Function="entityEventGeneric" />
+	<Event On="ContactAction" Function="entityEventContactAction" />
 	<Event On="TargetExhausted" Function="entityEventTargetExhausted" />
 	<Event On="TargetChanged" Function="entityEventTargetChanged" />
 	<Event On="Notification" Function="entityEventNotification" />

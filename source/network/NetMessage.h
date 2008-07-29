@@ -15,8 +15,8 @@
 
 #include <map>
 
-// We need the enum from AllNetMessages.h, but we can't create any classes in
-// AllNetMessages, since they in turn require CNetMessage to be defined
+// We need the enum from NetMessages.h, but we can't create any classes in
+// NetMessages.h, since they in turn require CNetMessage to be defined
 #define ALLNETMSGS_DONT_CREATE_NMTS
 #include "NetMessages.h"
 #undef ALLNETMSGS_DONT_CREATE_NMTS

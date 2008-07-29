@@ -389,11 +389,11 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 			ENTITY_POSITION_FORM(CFormationGotoMessage, ORDER_GOTO);
 			break;
 		//TODO: make formation move to within range of target and then attack normally
-		case NMT_GENERIC:
-			ENTITY_ENTITY_INT_BOOL(CGenericMessage, ORDER_GENERIC);
+		case NMT_CONTACT_ACTION:
+			ENTITY_ENTITY_INT_BOOL(CContactActionMessage, ORDER_CONTACT_ACTION);
 			break;
-		case NMT_FORMATION_GENERIC:
-			ENTITY_ENTITY_INT(CFormationGenericMessage, ORDER_GENERIC);
+		case NMT_FORMATION_CONTACT_ACTION:
+			ENTITY_ENTITY_INT(CFormationContactActionMessage, ORDER_CONTACT_ACTION);
 			break;
 		case NMT_NOTIFY_REQUEST:
 			ENTITY_ENTITY_INT(CNotifyRequestMessage, ORDER_NOTIFY_REQUEST);

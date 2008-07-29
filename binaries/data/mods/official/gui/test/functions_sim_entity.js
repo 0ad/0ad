@@ -67,7 +67,7 @@ function worldClickHandler(event)
 		args[1]=event.y;
 		break;
 	// entity target commands
-	case NMT_GENERIC:
+	case NMT_CONTACT_ACTION:
 		args[0]=event.entity;
 		if ( event.clicks == 1)
 			args[1]=event.action;
@@ -109,7 +109,7 @@ function worldClickHandler(event)
 		return;
 	}
 	
-	if (cmd == NMT_GENERIC) // For NMT_GENERIC, add a third argument - whether to run
+	if (cmd == NMT_CONTACT_ACTION) // For NMT_CONTACT_ACTION, add a third argument - whether to run
 		issueCommand (selection, isOrderQueued(), cmd, args[0], args[1], event.clicks > 1);
 	else
 		issueCommand (selection, isOrderQueued(), cmd, args[0], args[1]);

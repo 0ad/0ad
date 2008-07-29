@@ -302,7 +302,7 @@ bool CEntity::Order( JSContext* cx, uintN argc, jsval* argv, CEntityOrder::EOrde
 				}
 			}
 			break;
-		case CEntityOrder::ORDER_GENERIC:
+		case CEntityOrder::ORDER_CONTACT_ACTION:
 			JSU_REQUIRE_PARAMS_CPP(4);
 			target = ToNative<CEntity>( argv[1] );
 			if( !target )
