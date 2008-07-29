@@ -236,7 +236,6 @@ function killSelectedEntities()
       {
 		for (i=0; i<selection.length; i++)
 		{
-			console.write("Killing "+selection[i]);
 			selection[i].kill();
 		}
       }
