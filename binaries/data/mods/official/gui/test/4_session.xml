@@ -84,6 +84,16 @@
 				toggleTerritoryRendering();
 			]]></action>
 		</object>
+    
+    <!-- EMPTY OBJECT USED TO KILL UNITS -->
+    <object name="unitsKiller"
+            hotkey="killUnit"
+    >
+      <action on="Press"><![CDATA[
+        killUnit();
+      ]]>  
+      </action>
+    </object>
 		
 		<!-- GROUP: MINIMAP -->
 		<object	name="snMiniMap"
@@ -354,7 +364,73 @@
 		        style="globalMessageStyle"
 		>
 		</object>
-		
+
+    //Shadow
+    <object name="PlayersListShadow"
+      type="text"
+      style="PlayersListStyleShadow"
+		>
+
+      <object name="PlayerShadow_1"
+              type="text"
+              style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_2"
+                 type="text"
+                 style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_3"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+
+      <object name="PlayerShadow_4"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_5"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_6"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_7"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_8"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+        <action on="Load">
+          <![CDATA[ 
+                    //Sets correct coordinates for each text object.
+                    for (var i=1; i<=8; i++)
+                    {
+                        addCrds("PlayerShadow_"+i, 0, 0, 0, i*14+1, 1, 0, 100, 100);
+                    }
+                    
+               ]]>
+        </action>
+      </object>
+
+    </object>
 		
 		<!-- Players list -->
 		<object name="PlayersList"
@@ -370,21 +446,18 @@
 		  <object name="Player_1"
 		          type="text"
 		          style="PlayerStyle"
-		          size="0% 0% 100% 100%"
            >
 		   </object> 
 		  
 		   <object name="Player_2"
                   type="text"
                   style="PlayerStyle"
-                  size="0% 0%+14 100% 100%"
            >
            </object> 
           
            <object name="Player_3"
                   type="text"
                   style="PlayerStyle"
-                  size="0% 0%+28 100% 100%"
            >
            </object> 
            
@@ -428,6 +501,8 @@
            </object> 
 		  
 		</object>
+
+    
 		
 		<!-- GROUP: STATUS PANE -->
 		<object	name="snStatusPane"

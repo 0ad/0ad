@@ -387,22 +387,32 @@ function togglePlayersList()
 	if (!playersList_init) 
 	{
 		playersList_init = true;
-                    
-        for (var i=1; i<=8; i++)
+		var trueLength = 0;
+		
+		for (var i=1; i<players.length-1; i++)
+		{
+			if (players[i].active)
+				trueLength++;
+		}
+		
+        for (var i=1; i<=trueLength; i++)
         {
             if (players[i].active)
             {
-            	getGUIObjectByName("Player_" + (8-i+1)).caption = players[i].name;
+            	getGUIObjectByName("Player_" + (i+8-trueLength)).caption = players[i].name;
+            	getGUIObjectByName("PlayerShadow_" + (i+8-trueLength)).caption = players[i].name;
                             
             	var col_r = parseInt(players[i].getColour().r * 255);
             	var col_g = parseInt(players[i].getColour().g * 255);
             	var col_b = parseInt(players[i].getColour().b * 255);
                             
-            	getGUIObjectByName("Player_" + (8-i+1)).textcolor = col_r + " " + col_g + " " + col_b;
+            	getGUIObjectByName("Player_" + (i+8-trueLength)).textcolor = col_r + " " + col_g + " " + col_b;
             }
         }
 	}
 	
 	 var pl = getGUIObjectByName("PlayersList");
      pl.hidden = ! pl.hidden;
+     var pls = getGUIObjectByName("PlayersListShadow");
+     pls.hidden = ! pls.hidden;
 }

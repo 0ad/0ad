@@ -799,7 +799,17 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
     text_valign="bottom"
     textcolor="white"
     ghost="true"
-    font="trebuchet14"
+    font="trebuchet14b"
+    size="100%-500 100%-320 100% 100%-180"
+  />
+
+  <style name="PlayersListStyleShadow"
+    hidden="true"
+    text_align="right"
+    text_valign="bottom"
+    textcolor="50 50 50"
+    ghost="true"
+    font="trebuchet14b"
     size="100%-500 100%-320 100% 100%-180"
   />
   
@@ -807,6 +817,14 @@ NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET 
     ghost="true"
     textcolor="white"
     text_align="right"
+    font="trebuchet14b"
+  />
+
+  <style name="PlayerStyleShadow"
+    ghost="true"
+    textcolor="50 50 50"
+    text_align="right"
+    font="trebuchet14b"
   />
 
 </styles>
