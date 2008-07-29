@@ -220,5 +220,25 @@ function validProperty (propertyName)
 	return true;
 }
 
-// ====================================================================
+
+function killSelectedEntities()
+{
+      var allOwned = true;
+      for (var i=0; i<selection.length && allOwned; i++)
+      {
+          if (localPlayer != selection[i].player)
+          {
+              allOwned = false;
+          }
+      }
+      
+      if (allOwned)
+      {
+		for (i=0; i<selection.length; i++)
+		{
+			console.write("Killing "+selection[i]);
+			selection[i].kill();
+		}
+      }
+}
 

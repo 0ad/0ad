@@ -86,16 +86,14 @@
 		</object>
     
     <!-- EMPTY OBJECT USED TO KILL UNITS -->
-    <!-- This is in development, not finished yet.
     <object name="unitsKiller"
             hotkey="killUnit"
     >
       <action on="Press"><![CDATA[
-        killUnit();
+        killSelectedEntities();
       ]]>  
       </action>
     </object>
-    -->
 		
 		<!-- GROUP: MINIMAP -->
 		<object	name="snMiniMap"
