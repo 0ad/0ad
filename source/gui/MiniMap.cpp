@@ -80,6 +80,13 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 			m_Clicking = false;
 			break;
 		}
+	case GUIM_MOUSE_DBLCLICK_LEFT:
+		{
+			if(m_Clicking)
+				SetCameraPos();
+			m_Clicking = false;
+			break;
+		}
 	case GUIM_MOUSE_ENTER:
 		{
 			g_Selection.m_mouseOverMM = true;
@@ -88,9 +95,9 @@ void CMiniMap::HandleMessage(const SGUIMessage &Message)
 	case GUIM_MOUSE_LEAVE:
 		{
 			g_Selection.m_mouseOverMM = false;
+			m_Clicking = false;
 			break;
 		}
-	
 	case GUIM_MOUSE_RELEASE_RIGHT:
 		{
 			CMiniMap::FireWorldClickEvent(SDL_BUTTON_RIGHT, 1);
