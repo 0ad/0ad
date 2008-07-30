@@ -27,6 +27,11 @@
 		<Health>
 			<Max>140</Max>
 		</Health>
+		<Stamina>
+			<Max>0</Max>
+			<BarHeight>0</BarHeight>
+			<Bar_Size>0</Bar_Size>
+		</Stamina>
 	</Traits>
 	<Actions>
 		<Attack>
@@ -37,9 +42,10 @@
 			</Melee>
 		</Attack>
 		<Move>
-			<Speed>4.5</Speed>
+			<Speed>6.5</Speed>
 			<Run>
-				<Speed>8.0</Speed>
+				<Range>0</Range>
+				<Speed>0</Speed>
 			</Run>
 		</Move>
 	</Actions>
