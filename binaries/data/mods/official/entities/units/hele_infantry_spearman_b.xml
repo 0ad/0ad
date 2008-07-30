@@ -33,6 +33,16 @@
 	</Traits>
 	
 	<Actions>
+		<Create>
+			<List>
+				<StructCiv>
+					<Theatron />
+				</StructCiv>
+				<StructMil>
+					<Gymnasion />
+				</StructMil>
+			</List>
+		</Create>
  		<Attack>
 			<Melee>
  				<Hack>17.0</Hack>

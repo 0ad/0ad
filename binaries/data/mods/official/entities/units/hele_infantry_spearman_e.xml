@@ -3,17 +3,23 @@
 <Entity Parent="hele_infantry_spearman_a">
 
 	<Traits>
-
 		<Id>
 			<Icon_Cell>5</Icon_Cell>
 		</Id>
-
-
 	</Traits>
 
 	<Actions>
-
-	</Actions>	
+		<Create>
+			<List>
+				<StructCiv>
+					<Theatron />
+				</StructCiv>
+				<StructMil>
+					<Gymnasion />
+				</StructMil>
+			</List>
+		</Create>
+	</Actions>
 
 	<Actor>units/hellenes/infantry_spearman_e.xml</Actor>
 

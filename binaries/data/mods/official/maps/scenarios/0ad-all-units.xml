@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.57227" g="1.57227" b="1.57227"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.407843" g="0.427451" b="0.576471"/>
+		<UnitsAmbientColour r="0.447059" g="0.447059" b="0.447059"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="131.05" y="54.446" z="52.933"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities>
+		<Entity uid="1">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="92.7221" y="22.4" z="114.794"/>
+			<Orientation angle="2.55815"/>
+		</Entity>
+		<Entity uid="2">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="94.3654" y="22.4" z="117.182"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3">
+			<Template>camp_mace_hypaspist</Template>
+			<Player>2</Player>
+			<Position x="95.7844" y="22.4" z="118.843"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5">
+			<Template>camp_rome_legionnaire_imperial</Template>
+			<Player>2</Player>
+			<Position x="95.9984" y="22.4" z="111.199"/>
+			<Orientation angle="2.78058"/>
+		</Entity>
+		<Entity uid="6">
+			<Template>camp_rome_legionnaire_imperial</Template>
+			<Player>2</Player>
+			<Position x="97.5867" y="22.4" z="113.279"/>
+			<Orientation angle="2.88286"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>camp_rome_legionnaire_imperial</Template>
+			<Player>2</Player>
+			<Position x="99.1294" y="22.4" z="115.28"/>
+			<Orientation angle="2.83796"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="99.5643" y="22.4" z="107.889"/>
+			<Orientation angle="2.81197"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="100.533" y="22.4" z="109.701"/>
+			<Orientation angle="2.84936"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>camp_rome_legionnaire_marian</Template>
+			<Player>2</Player>
+			<Position x="101.729" y="22.4" z="112.02"/>
+			<Orientation angle="2.9432"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>cart_cavalry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="126.802" y="22.4" z="119.662"/>
+			<Orientation angle="-2.27671"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>cart_cavalry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="123.773" y="22.4" z="122.801"/>
+			<Orientation angle="-2.64095"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>cart_cavalry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="131.379" y="22.4" z="117.091"/>
+			<Orientation angle="-2.44809"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>cart_cavalry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="118.671" y="22.4" z="116.39"/>
+			<Orientation angle="-2.28687"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>cart_cavalry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="122.324" y="22.4" z="113.15"/>
+			<Orientation angle="-2.34635"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>cart_cavalry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="126.26" y="22.4" z="110.747"/>
+			<Orientation angle="-2.13819"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>cart_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="113.905" y="22.4" z="112.418"/>
+			<Orientation angle="-2.43478"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>cart_cavalry_swordsman_a</Template>
+			<Player>2</Player>
+			<Position x="116.341" y="22.4" z="109.732"/>
+			<Orientation angle="-2.3755"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>cart_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="119.116" y="22.4" z="105.822"/>
+			<Orientation angle="-2.31674"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>cart_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="120.923" y="22.4" z="101.866"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>cart_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="122.606" y="22.4" z="103.336"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>cart_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="124.42" y="22.4" z="104.739"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>cart_infantry_slinger_b</Template>
+			<Player>2</Player>
+			<Position x="123.718" y="22.4" z="98.6887"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>cart_infantry_slinger_a</Template>
+			<Player>2</Player>
+			<Position x="125.306" y="22.4" z="100.291"/>
+			<Orientation angle="2.68809"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>cart_infantry_slinger_e</Template>
+			<Player>2</Player>
+			<Position x="126.911" y="22.4" z="102.057"/>
+			<Orientation angle="2.7253"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>cart_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="125.84" y="22.4" z="95.5798"/>
+			<Orientation angle="2.8734"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>cart_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="127.617" y="22.4" z="97.5796"/>
+			<Orientation angle="2.86595"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>cart_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="129.575" y="22.4" z="99.0013"/>
+			<Orientation angle="2.91785"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>cart_infantry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="128.117" y="22.4" z="92.8193"/>
+			<Orientation angle="2.88315"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>cart_infantry_swordsman_a</Template>
+			<Player>2</Player>
+			<Position x="129.976" y="22.4" z="94.1616"/>
+			<Orientation angle="2.98813"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>cart_infantry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="131.659" y="22.4" z="95.9885"/>
+			<Orientation angle="2.9525"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>cart_super_cavalry</Template>
+			<Player>2</Player>
+			<Position x="135.61" y="22.4" z="112.365"/>
+			<Orientation angle="2.34129"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="131.729" y="22.4" z="107.275"/>
+			<Orientation angle="2.23329"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="132.792" y="22.4" z="108.844"/>
+			<Orientation angle="2.37931"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>cart_super_infantry</Template>
+			<Player>2</Player>
+			<Position x="130.009" y="22.4" z="105.567"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>cart_hero_hamilcar</Template>
+			<Player>2</Player>
+			<Position x="134.184" y="22.4" z="98.8701"/>
+			<Orientation angle="2.35059"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>cart_hero_hannibal</Template>
+			<Player>2</Player>
+			<Position x="144.135" y="22.4" z="103.714"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>cart_hero_maharbal</Template>
+			<Player>2</Player>
+			<Position x="137.836" y="22.4" z="100.227"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>

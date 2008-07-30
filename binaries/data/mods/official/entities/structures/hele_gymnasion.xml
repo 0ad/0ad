@@ -10,6 +10,7 @@
 			<Civ>Hellenes</Civ>
 
 			<History>The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established.</History>
+			<Tooltip>Train Super Units and researches Osthimos technology.</Tooltip>
 		
 		</Id>
  		<Footprint>
@@ -19,7 +20,20 @@
  		</Footprint>
 
 	</Traits>
-
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Super_Cavalry_Mace/>
+					<Super_Infantry_Mace/>
+					<Super_Ranged_Polis/>
+					<Super_Infantry_Polis/>
+				</Train>
+				<Research>
+				</Research>
+			</List>
+		</Create>
+	</Actions>
 	<Actor>structures/hellenes/special_gym.xml</Actor>
 
 </Entity>

@@ -19,6 +19,18 @@
 		</Promotion>
 
 	</Traits>
+	<Actions>
+		<Create>
+			<List>
+				<StructCiv>
+					<Theatron />
+				</StructCiv>
+				<StructMil>
+					<Gymnasion />
+				</StructMil>
+			</List>
+		</Create>
+	</Actions>
 
 	<Actor>units/hellenes/infantry_archer_a.xml</Actor>
 

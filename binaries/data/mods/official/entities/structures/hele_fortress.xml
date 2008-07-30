@@ -10,7 +10,7 @@
 			<Civ>Hellenes</Civ>
 
 			<History>The Akropolis was usually a fortified citadel in the upper part of the city. The Athenian Akropolis was renowned for its marvellous temples, among which was the Parthenon, while the Acro-Corinthus was highly prized by the Macedonians for its strategic location and good defences.</History>
-		
+			<Tooltip>Trains Heroes and builds Siege Engines.</Tooltip>
 		</Id>
 
 	</Traits>
@@ -21,10 +21,6 @@
 		<Create>
 			<List>
 				<Train>
-					<Super_Cavalry_Mace/>
-					<Super_Infantry_Mace/>
-					<Super_Ranged_Polis/>
-					<Super_Infantry_Polis/>
 					<Hero_Alexander/>
 					<Hero_Demetrius/>
 					<Hero_Philip/>

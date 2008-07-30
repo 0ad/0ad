@@ -12,7 +12,6 @@
 			<Civ>Hellenes</Civ>
 
 			<History>Peltasts were javelinists originating in Thrace but their form of combat was widely copied by the Greeks, Macedonians, and Persians. Equipped with a small oval or crescent shield, a peltast would charge at enemy formations whilst hurling his javelins then fall back to avoid close combat. They wore no armor and were at a significant disadvantage against heavy infantry and cavalry, relying on their speed for survival.</History>
-
 		</Id>
 		<Promotion>
 			<Entity>hele_infantry_javelinist_a</Entity>
@@ -33,6 +32,16 @@
 		</Armour>
 	</Traits>
 	<Actions>
+		<Create>
+			<List>
+				<StructCiv>
+					<Theatron />
+				</StructCiv>
+				<StructMil>
+					<Gymnasion />
+				</StructMil>
+			</List>
+		</Create>
  		<Attack>
 			<Ranged>
  				<Hack>0.0</Hack>
