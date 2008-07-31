@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1" g="1" b="1"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-0.785398"/>
+		<TerrainAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<UnitsAmbientColour r="0.643137" g="0.643137" b="0.643137"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTint r="0.278431" g="0.298039" b="0.588235"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="105.493" y="42.7951" z="77.8984"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.523599"/>
+	</Camera>
+	<Entities/>
+	<Nonentities>
+		<Nonentity>
+			<Actor>units/celts/bouddica.xml</Actor>
+			<Position x="103.881" y="22.4" z="112.823"/>
+			<Orientation angle="2.50767"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/brennus.xml</Actor>
+			<Position x="99.1568" y="22.4" z="105.919"/>
+			<Orientation angle="2.9925"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/brennus.xml</Actor>
+			<Position x="101.387" y="22.4" z="106.067"/>
+			<Orientation angle="-2.83296"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/britomartus.xml</Actor>
+			<Position x="108.344" y="22.4" z="106.265"/>
+			<Orientation angle="-2.97608"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/britomartus.xml</Actor>
+			<Position x="110.307" y="22.4" z="106.016"/>
+			<Orientation angle="-2.36221"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/caradoc.xml</Actor>
+			<Position x="103.786" y="22.4" z="106.234"/>
+			<Orientation angle="-3.10367"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/caradoc.xml</Actor>
+			<Position x="106.073" y="22.4" z="106.422"/>
+			<Orientation angle="-2.52055"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/cynelvin.xml</Actor>
+			<Position x="107.253" y="22.4" z="112.32"/>
+			<Orientation angle="-2.79011"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/cynelvin.xml</Actor>
+			<Position x="109.704" y="22.4" z="112.738"/>
+			<Orientation angle="-2.62704"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/bouddica.xml</Actor>
+			<Position x="105.245" y="22.4" z="112.278"/>
+			<Orientation angle="-2.22537"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/vercingetorix.xml</Actor>
+			<Position x="101.492" y="22.4" z="112.486"/>
+			<Orientation angle="-2.71645"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>units/celts/vercingetorix.xml</Actor>
+			<Position x="98.9583" y="22.4" z="112.085"/>
+			<Orientation angle="3.05518"/>
+		</Nonentity>
+	</Nonentities>
+	<Tracks/>
+	<Triggers/>
+</Scenario>

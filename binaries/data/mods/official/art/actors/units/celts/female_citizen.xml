@@ -6,23 +6,17 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="infantry/support/idle/fem_01.psa" name="Idle" speed="200"/>
-        <animation file="infantry/support/move/walk/fem_01.psa" name="Walk" speed="10"/>
-        <animation file="infantry/general/chop.psa" name="gather_wood" speed="100"/>
-        <animation file="biped/hoe.psa" name="gather_grain" speed="150"/>
-        <animation file="infantry/general/forage_fem.psa" name="gather_fruit" speed="100"/>
-        <animation file="infantry/general/mine.psa" name="gather_stone" speed="150"/>
-        <animation file="infantry/general/mine.psa" name="gather_metal" speed="150"/>
-        <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="150"/>
-        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_03.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_04.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_06.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/death/inf_07.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation file="female/f_idle_01.dae" name="Idle" speed="200"/>
+        <animation file="female/f_walk_01.dae" name="Walk" speed="10"/>
+        <animation file="female/f_lumber_01.dae" name="gather_wood" speed="100"/>
+        <animation file="female/f_farm_01.dae" name="gather_grain" speed="150"/>
+        <animation file="female/f_gather_01.dae" name="gather_fruit" speed="100"/>
+        <animation file="female/f_mine_01.dae" name="gather_stone" speed="150"/>
+        <animation file="female/f_mine_01.dae" name="gather_metal" speed="150"/>
+        <animation file="female/f_build_01.dae" name="Build" speed="150"/>
+        <animation file="female/f_death_01.dae" name="Corpse" speed="100"/>
       </animations>
-      <mesh>skeletal/f_dress.pmd</mesh>
+      <mesh>skeletal/f_dress.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_female_celt.xml" attachpoint="head"/>
       </props>

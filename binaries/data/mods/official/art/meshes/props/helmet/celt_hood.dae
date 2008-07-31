@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Administrator</author>
+      <authoring_tool>Feeling ColladaMax v3.02 with FCollada v3.02.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=0;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=0;AnimStart=0;AnimEnd=29;</comments>
+      <source_data>file:///C:/3dsMax6/scenes/0ad/helmetsexport01.max</source_data>
+    </contributor>
+    <created>2008-07-31T01:59:53Z</created>
+    <modified>2008-07-31T01:59:56Z</modified>
+    <unit meter="0.0254" name="inch"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_06_10_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_06_10_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_06_10.dds</init_from>
+    </image>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_07_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_07_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_07.dds</init_from>
+    </image>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_08_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_08_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_08.dds</init_from>
+    </image>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_05_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_05_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_05.dds</init_from>
+    </image>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_09_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_09_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_09.dds</init_from>
+    </image>
+    <image id="C__Documents_and_Settings_Administrator_My_Documents_My_Received_Files_iber_04_dds" name="C__Documents_and_Settings_Administrator_My_Documents_My_Received_Files_iber_04_dds">
+      <init_from>file:///C:/Documents%20and%20Settings/Administrator/My%20Documents/My%20Received%20Files/iber_04.dds</init_from>
+    </image>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_03_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_03_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_03.dds</init_from>
+    </image>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_02_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_02_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_02.dds</init_from>
+    </image>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_01_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_01_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_01.dds</init_from>
+    </image>
+    <image id="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_11_dds" name="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_11_dds">
+      <init_from>file:///D:/0ad/binaries/data/mods/official/art/textures/skins/props/helmet/iber_11.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material__20" name="Material__20">
+      <instance_effect url="#Material__20-fx"/>
+    </material>
+    <material id="Material__21" name="Material__21">
+      <instance_effect url="#Material__21-fx"/>
+    </material>
+    <material id="Material__22" name="Material__22">
+      <instance_effect url="#Material__22-fx"/>
+    </material>
+    <material id="Material__23" name="Material__23">
+      <instance_effect url="#Material__23-fx"/>
+    </material>
+    <material id="Material__24" name="Material__24">
+      <instance_effect url="#Material__24-fx"/>
+    </material>
+    <material id="Material__25" name="Material__25">
+      <instance_effect url="#Material__25-fx"/>
+    </material>
+    <material id="Material__26" name="Material__26">
+      <instance_effect url="#Material__26-fx"/>
+    </material>
+    <material id="Material__27" name="Material__27">
+      <instance_effect url="#Material__27-fx"/>
+    </material>
+    <material id="Material__59" name="Material__59">
+      <instance_effect url="#Material__59-fx"/>
+    </material>
+    <material id="Material__60" name="Material__60">
+      <instance_effect url="#Material__60-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Material__20-fx" name="Material__20">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_06_10_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_06_10_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_06_10_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_06_10_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_06_10_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__21-fx" name="Material__21">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_07_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_07_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_07_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_07_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_07_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__22-fx" name="Material__22">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_08_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_08_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_08_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_08_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_08_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__23-fx" name="Material__23">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_05_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_05_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_05_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_05_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_05_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__24-fx" name="Material__24">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_09_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_09_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_09_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_09_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_09_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__25-fx" name="Material__25">
+      <profile_COMMON>
+        <newparam sid="C__Documents_and_Settings_Administrator_My_Documents_My_Received_Files_iber_04_dds-surface">
+          <surface type="2D">
+            <init_from>C__Documents_and_Settings_Administrator_My_Documents_My_Received_Files_iber_04_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="C__Documents_and_Settings_Administrator_My_Documents_My_Received_Files_iber_04_dds-sampler">
+          <sampler2D>
+            <source>C__Documents_and_Settings_Administrator_My_Documents_My_Received_Files_iber_04_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="C__Documents_and_Settings_Administrator_My_Documents_My_Received_Files_iber_04_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__26-fx" name="Material__26">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_03_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_03_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_03_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_03_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_03_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__27-fx" name="Material__27">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_02_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_02_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_02_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_02_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_02_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__59-fx" name="Material__59">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_01_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_01_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_01_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_01_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_01_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+    <effect id="Material__60-fx" name="Material__60">
+      <profile_COMMON>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_11_dds-surface">
+          <surface type="2D">
+            <init_from>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_11_dds</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_11_dds-sampler">
+          <sampler2D>
+            <source>D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_11_dds-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="D__0ad_binaries_data_mods_official_art_textures_skins_props_helmet_iber_11_dds-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="hood01-mesh" name="hood01">
+      <mesh>
+        <source id="hood01-mesh-positions">
+          <float_array id="hood01-mesh-positions-array" count="174">14.8029 65.4247 150.695 10.3409 68.2114 166.658 6.45322 41.6029 160.301 8.7022 77.5659 153.519 8.43166 63.8304 119.264 5.99947 60.2956 118.537 17.5645 55.3196 145.923 16.0093 47.2083 153.747 0.000007 64.0187 170.576 -0.000025 85.7408 169.017 0.000006 81.0851 156.674 0.000041 41.1936 161.112 0.000026 72.1649 117.266 6.15415 69.8191 118.61 -6.45311 41.6029 160.301 -10.3409 68.2114 166.658 -14.8029 65.4246 150.695 -8.70218 77.5659 153.519 -5.99943 60.2956 118.537 -8.43162 63.8303 119.264 -17.5644 55.3195 145.923 -16.0092 47.2083 153.747 -6.1541 69.8191 118.61 16.0093 47.2083 153.747 -16.0092 47.2083 153.747 14.2863 65.1018 134.226 10.1643 59.1149 131.114 0.000018 76.5841 139.585 10.428 72.3446 137.856 -14.2863 65.1018 134.226 -10.1643 59.1149 131.114 -10.4279 72.3446 137.856 6.45322 41.6029 160.3 10.3409 68.2114 166.658 0.000007 64.0187 170.575 0.000041 41.1936 161.111 14.8029 65.4247 150.694 8.7022 77.5659 153.518 14.2863 65.1018 134.226 17.5645 55.3196 145.922 10.1643 59.1149 131.114 16.0093 47.2083 153.747 16.0093 47.2083 153.747 10.428 72.3446 137.856 -6.45311 41.6029 160.3 -10.3409 68.2114 166.658 -8.70218 77.5659 153.518 -14.8029 65.4246 150.694 -10.1643 59.1149 131.114 -17.5644 55.3195 145.922 -14.2863 65.1018 134.226 -16.0092 47.2083 153.747 -16.0092 47.2083 153.747 -10.4279 72.3446 137.856 5.99947 60.2956 118.537 8.43166 63.8304 119.264 -8.43162 63.8303 119.264 -5.99943 60.2956 118.537</float_array>
+          <technique_common>
+            <accessor source="#hood01-mesh-positions-array" count="58" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hood01-mesh-normals">
+          <float_array id="hood01-mesh-normals-array" count="285">0.397642 -0.328689 0.856647 0.748814 0.122333 0.651393 -0.000000 -0.158876 0.987298 0 -0.383016 0.923742 0.954284 0.293777 0.055119 0.68147 0.729533 -0.058133 -0.000001 0.839263 0.543726 0.967775 0.251637 -0.009448 0.968227 -0.18304 -0.17039 0.977541 -0.209064 -0.026567 0.837669 -0.237069 0.492045 0.5521 -0.82815 0.096707 0.736015 0.664684 -0.128361 0 0.961968 -0.273163 0.000000 0.948218 -0.31762 -0.397641 -0.32869 0.856647 -0.748814 0.122331 0.651392 -0.681471 0.729533 -0.058134 -0.954284 0.293775 0.055119 -0.968227 -0.183041 -0.170389 -0.967777 0.251633 -0.009447 -0.977541 -0.209063 -0.026566 -0.987558 -0.152557 0.038139 -0.904567 -0.120995 0.408801 -0.736015 0.664685 -0.128362 0.85162 -0.432227 -0.296518 0.85162 -0.432227 -0.296518 0.85162 -0.432227 -0.296518 0.810944 -0.493202 -0.314835 0.810944 -0.493202 -0.314835 0.810944 -0.493202 -0.314835 0.344195 0.921019 -0.182358 0.344195 0.921019 -0.182358 0.344195 0.921019 -0.182358 0.387272 0.899117 -0.203983 0.387272 0.899117 -0.203983 0.387272 0.899117 -0.203983 0.797355 0.549662 -0.249191 0.797355 0.549662 -0.249191 0.797355 0.549662 -0.249191 0.881125 0.294682 -0.369839 0.881125 0.294682 -0.369839 0.881125 0.294682 -0.369839 -0.849771 -0.4184 -0.320672 -0.849771 -0.4184 -0.320672 -0.849771 -0.4184 -0.320672 -0.817277 -0.505374 -0.276865 -0.817277 -0.505374 -0.276865 -0.817277 -0.505374 -0.276865 -0.341156 0.919263 -0.196387 -0.341156 0.919263 -0.196387 -0.341156 0.919263 -0.196387 -0.384357 0.905604 -0.179306 -0.384357 0.905604 -0.179306 -0.384357 0.905604 -0.179306 -0.747959 0.569406 -0.341078 -0.747959 0.569406 -0.341078 -0.747959 0.569406 -0.341078 -0.914742 0.32108 -0.245264 -0.914742 0.32108 -0.245264 -0.914742 0.32108 -0.245264 -0.397642 0.328689 -0.856647 0 0.383016 -0.923742 0.000000 0.311966 -0.950093 -0.810282 -0.001308 -0.586039 -0.897787 -0.434822 -0.070058 -0.954284 -0.293777 -0.055119 -0.977541 0.209064 0.026567 -0.968227 0.18304 0.17039 -0.967776 -0.251637 0.009448 -0.825734 0.206549 -0.524881 -0.65048 0.65048 -0.392111 -0.87926 -0.474308 0.043971 0.397641 0.32869 -0.856647 0.810282 -0.001306 -0.586039 0.954284 -0.293775 -0.055119 0.897787 -0.434822 -0.070057 0.968227 0.183041 0.170389 0.977541 0.209063 0.026566 0.967777 -0.251633 0.009447 0.904567 0.120995 -0.408801 0.987558 0.152557 -0.038139 0.87926 -0.474309 0.043971 -0.810944 0.493203 0.314835 -0.810944 0.493203 0.314835 -0.810944 0.493203 0.314835 -0.85162 0.432227 0.296518 -0.85162 0.432227 0.296518 -0.85162 0.432227 0.296518 0.817277 0.505374 0.276865 0.817277 0.505374 0.276865 0.817277 0.505374 0.276865 0.849771 0.4184 0.320672 0.849771 0.4184 0.320672 0.849771 0.4184 0.320672</float_array>
+          <technique_common>
+            <accessor source="#hood01-mesh-normals-array" count="95" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="hood01-mesh-map-channel1">
+          <float_array id="hood01-mesh-map-channel1-array" count="198">0.639539 0.561559 0 0.687811 0.874584 0 0.059896 0.837674 0 0.868698 0.604406 0 0.629609 0.010031 0 0.389148 0.010387 0 0.406989 0.497351 0 0.315746 0.653338 0 0.536687 0.996496 0 0.003391 0.956338 0 0.975268 0.934392 0 0.980022 0.008824 0 0.99575 0.646913 0 0.834299 0.009341 0 0.059896 0.837674 0 0.687811 0.874584 0 0.536687 0.996496 0 0.003391 0.956338 0 0.639539 0.561559 0 0.868698 0.604406 0 0.975268 0.934392 0 0.389148 0.010387 0 0.629609 0.010031 0 0.406989 0.497351 0 0.315746 0.653338 0 0.834299 0.009341 0 0.980022 0.008824 0 0.99575 0.646913 0 0.315746 0.653338 0 0.315746 0.653338 0 0.637594 0.234184 0 0.397134 0.234536 0 0.988007 0.232976 0 0.988007 0.232976 0 0.842285 0.233493 0 0.637594 0.234184 0 0.397134 0.234536 0 0.842285 0.233493 0 0.059896 0.837674 0 0.687811 0.874584 0 0.536687 0.996496 0 0.003391 0.956338 0 0.639539 0.561559 0 0.868698 0.604406 0 0.637594 0.234184 0 0.406989 0.497351 0 0.397134 0.234536 0 0.315746 0.653338 0 0.315746 0.653338 0 0.842285 0.233493 0 0.059896 0.837674 0 0.003391 0.956338 0 0.536687 0.996496 0 0.687811 0.874584 0 0.868698 0.604406 0 0.639539 0.561559 0 0.397134 0.234536 0 0.406989 0.497351 0 0.637594 0.234184 0 0.315746 0.653338 0 0.315746 0.653338 0 0.842285 0.233493 0 0.389148 0.010387 0 0.629609 0.010031 0 0.629609 0.010031 0 0.389148 0.010387 0</float_array>
+          <technique_common>
+            <accessor source="#hood01-mesh-map-channel1-array" count="66" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="hood01-mesh-vertices">
+          <input semantic="POSITION" source="#hood01-mesh-positions"/>
+        </vertices>
+        <triangles material="Material__25" count="70">
+          <input semantic="VERTEX" source="#hood01-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#hood01-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#hood01-mesh-map-channel1" offset="2" set="1"/>
+          <p>2 0 2 1 1 1 8 2 8 8 2 8 11 3 9 2 0 2 1 1 1 0 4 0 3 5 3 1 1 1 9 6 10 8 2 8 0 4 0 6 7 6 26 8 31 26 8 31 25 9 30 0 4 0 6 7 6 0 4 0 1 1 1 1 1 1 7 10 7 6 7 6 7 10 7 1 1 1 2 0 2 2 0 2 23 11 28 7 10 7 3 5 3 28 12 34 27 13 32 27 13 32 10 14 12 3 5 3 9 6 10 1 1 1 3 5 3 3 5 3 10 14 12 9 6 10 0 4 0 25 9 30 28 12 34 28 12 34 3 5 3 0 4 0 14 15 14 11 3 17 8 2 16 8 2 16 15 16 15 14 15 14 15 16 15 17 17 19 16 18 18 15 16 15 8 2 16 9 6 20 30 19 36 20 20 23 16 18 18 16 18 18 29 21 35 30 19 36 20 20 23 21 22 24 24 23 29 20 20 23 24 23 29 15 16 15 20 20 23 15 16 15 16 18 18 17 17 19 10 14 27 27 13 33 27 13 33 31 24 37 17 17 19 9 6 20 10 14 27 17 17 19 17 17 19 15 16 15 9 6 20 31 24 37 29 21 35 16 18 18 16 18 18 17 17 19 31 24 37 14 15 14 15 16 15 24 23 29 4 25 4 25 26 30 26 27 31 26 28 31 5 29 5 4 30 4 12 31 11 27 32 32 28 33 34 28 34 34 13 35 13 12 36 11 13 37 13 28 38 34 25 39 30 25 40 30 4 41 4 13 42 13 18 43 21 30 44 36 29 45 35 29 46 35 19 47 22 18 48 21 22 49 25 31 50 37 27 51 33 27 52 33 12 53 26 22 54 25 19 55 22 29 56 35 31 57 37 31 58 37 22 59 25 19 60 22 32 61 38 35 62 41 34 63 40 34 63 40 33 64 39 32 61 38 33 64 39 37 65 43 36 66 42 36 66 42 38 67 44 40 68 46 40 68 46 39 69 45 36 66 42 39 69 45 41 70 47 33 64 39 33 64 39 36 66 42 39 69 45 41 70 47 42 71 48 32 61 38 32 61 38 33 64 39 41 70 47 36 66 42 37 65 43 43 72 49 43 72 49 38 67 44 36 66 42 44 73 50 45 74 53 34 63 52 34 63 52 35 62 51 44 73 50 45 74 53 47 75 55 46 76 54 48 77 56 50 78 58 47 75 55 47 75 55 49 79 57 48 77 56 49 79 57 47 75 55 45 74 53 49 79 57 45 74 53 52 80 60 49 79 57 52 80 60 51 81 59 53 82 61 46 76 54 47 75 55 47 75 55 50 78 58 53 82 61 44 73 50 52 80 60 45 74 53 55 83 63 54 84 62 40 85 46 40 86 46 38 87 44 55 88 63 57 89 65 56 90 64 50 91 58 50 92 58 48 93 56 57 94 65</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="helmetsexport01_max" name="helmetsexport01_max">
+      <node id="hood01-node" name="hood01" type="NODE">
+        <translate>0 0 0</translate>
+        <scale>0.01867 0.01867 0.01867</scale>
+        <node id="hood01-node_PIVOT" name="hood01_PIVOT" type="NODE">
+          <translate>-0.000007 -65.2546 -135.107</translate>
+          <instance_geometry url="#hood01-mesh">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Material__25" target="#Material__25">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>30</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0</start_time>
+          <end_time>0.966667</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#helmetsexport01_max"/>
+  </scene>
+</COLLADA>
