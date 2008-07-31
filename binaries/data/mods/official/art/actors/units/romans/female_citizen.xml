@@ -14,7 +14,7 @@
         <animation file="female/f_mine_01.dae" name="gather_stone" speed="150"/>
         <animation file="female/f_mine_01.dae" name="gather_metal" speed="150"/>
         <animation file="female/f_build_01.dae" name="Build" speed="150"/>
-        <animation file="female/f_death_01.dae" name="Corpse" speed="100"/>
+        <animation file="female/f_death_01.dae" name="Death" speed="100"/>
       </animations>
       <mesh>skeletal/f_dress.dae</mesh>
       <props>
@@ -38,8 +38,8 @@
     </variant>
     <variant name="gather_wood">
       <props>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop actor="props/units/tools/axe.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/axe.xml" attachpoint="l_hand"/>
+        <prop actor="" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="gather_grain">
@@ -56,6 +56,12 @@
       </props>
     </variant>
     <variant name="gather_stone">
+      <props>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="gather_metal">
       <props>
         <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
         <prop attachpoint="r_hand"/>

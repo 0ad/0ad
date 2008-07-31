@@ -8,6 +8,8 @@
       <animations>
         <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
         <animation event="0.4" file="infantry/javelin/attack/ijv_off_01.psa" load="0" name="Melee" speed="100"/>
+        <animation event="0.4" file="biped/not used/ijv_def_02.psa" load="0" name="Melee" speed="100"/>
+        <animation event="0.4" file="biped/not used/ijv_def_03.psa" load="0" name="Melee" speed="100"/>
         <animation file="infantry/general/dude/dudewalk.psa" name="Walk" speed="20"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
         <animation file="infantry/sword/move/run/isw_s_def_02.psa" name="Run" speed="10"/>
