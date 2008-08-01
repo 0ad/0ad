@@ -2133,8 +2133,9 @@ function SettlementAura( source )
 	{
 		if( this.affects( e ) ) 
 		{
-			// If a Civ Centre has entered our radius, it must mean the one on us died; become visible again
+			// If a Civ Centre has entered our radius, it must mean the one on us died; become visible again and assign it to Gaia.
 			source.visible = true;
+			source.player = players[0];	//player[0] is allways Gaia.
 		}
 	}
 }
