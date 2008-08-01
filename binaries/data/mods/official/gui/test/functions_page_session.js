@@ -389,7 +389,7 @@ function togglePlayersList()
 		playersList_init = true;
 		var trueLength = 0;
 		
-		for (var i=1; i<players.length-1; i++)
+		for (var i=1; i<=players.length-1; i++)
 		{
 			if (players[i].active)
 				trueLength++;
