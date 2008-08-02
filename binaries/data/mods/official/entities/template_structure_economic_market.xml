@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_economic"
->
+<Entity	Parent="template_structure_economic">
 	<Traits>
 	
 		<Id>
@@ -15,7 +13,7 @@
 
 			<Classes>Town</Classes>
 
-			<Rollover>The Market creates trade units and allows resources to be bartered. Traders travel between Markets, generating resources on a successful round-trip.</Rollover>
+			<Tooltip>Creates Trade units and allows resources to be Bartered.</Tooltip>
 		
 		</Id>
 		

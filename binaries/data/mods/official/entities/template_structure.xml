@@ -54,6 +54,14 @@
 			<Permanent>true</Permanent>
 		</Vision>
 	</Traits>
+	
+	<Actions>
+
+		<Create>
+			<Rally/>
+ 		</Create>
+
+	</Actions>
 
 	<Script File="scripts/entity_functions.js" />
 	<Event On="StartProduction" Function="entityStartProduction" />

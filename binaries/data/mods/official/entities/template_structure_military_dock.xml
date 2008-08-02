@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_military"
->
+<Entity	Parent="template_structure_military">
 	<Traits>
 	
 		<Id>
@@ -15,7 +13,7 @@
 
 			<Classes>Town</Classes>
 
-			<Rollover>Naval vessels are manufactured at this building. A Dock must be built on the shoreline of a body of water.</Rollover>
+			<Tooltip>Manufacture naval vessels here. Also allows for sea trade. Must be built on the shoreline only.</Tooltip>
 		
 		</Id>
 		<Creation>
@@ -50,4 +48,5 @@
 
 	</Traits>
 
+	
 </Entity>

@@ -11,8 +11,18 @@
 			<Civ>Hellenes</Civ>
 
 			<History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.</History>
+			<Tooltip>Build one of these to take advantage of the Hellenisation civ bonus.</Tooltip>
 		
 		</Id>
+		
+		<Creation>
+			<Foundation>foundation_5x5</Foundation>
+			<Resource>
+				<Wood>200</Wood>
+				<Stone>500</Stone>
+ 			</Resource>
+			<BuildingLimitCategory>Fortress</BuildingLimitCategory>
+		</Creation>
 		
 		<Footprint>
 			<Radius>26.0</Radius>

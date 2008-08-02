@@ -15,7 +15,7 @@
 
 			<Classes>Town</Classes>
 
-			<Rollover>The Temple trains physicians, researches medical technologies, and provides healing to nearby allied organic units.</Rollover>
+			<Tooltip>Trains physicians, researches medical technologies, and provides healing to nearby allied organic units.</Tooltip>
 		
 		</Id>
 		
@@ -58,5 +58,20 @@
 		</Population>
 
 	</Traits>
-
+	<Actions>
+		<Create>
+ 			<List>
+				<Train>
+					<Support_Healer />
+				</Train>
+ 				<Research>
+					<Real_Example />
+				</Research>
+ 			</List>
+ 			<Speed>1</Speed>
+			
+			<Rally/>
+ 		</Create>
+		
+	</Actions>
 </Entity>

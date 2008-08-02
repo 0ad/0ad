@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_civic"
->
+<Entity	Parent="template_structure_civic">
 	<Traits>
 	
 		<Id>
@@ -15,7 +13,7 @@
 
 			<Classes>Village</Classes>
 
-			<Rollover>Gates allow allied units access through a wall, but are also its most vulnerable point.</Rollover>
+			<Tooltip>Gates allow allied units access through a wall, but are also its most vulnerable point.</Tooltip>
 		
 		</Id>
 
