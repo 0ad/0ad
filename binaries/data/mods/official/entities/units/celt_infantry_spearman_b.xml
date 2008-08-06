@@ -32,7 +32,18 @@
 		</Vision>
 	</Traits>
 	<Actions>
-	<Attack>
+		<Create>
+			<List>
+				<StructCiv>
+					<Sb1 />
+				</StructCiv>
+				<StructMil>
+					<Fortress_B />
+					<Fortress_G />
+				</StructMil>
+			</List>
+		</Create>	
+		<Attack>
 			/* Charge power increased by 2 because of celts special speed */
 			<Charge>
 				<Hack>32.0</Hack>

@@ -25,6 +25,21 @@
 		</Population>
 
 	</Traits>
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Super_Cavalry_Brit />
+					<Super_Infantry_Brit />
+					<Hero_Boudicca />
+					<Hero_Caradoc />
+					<Hero_Cynvelin />
+				</Train>
+				<Research>
+				</Research>
+			</List>
+		</Create>
+	</Actions>
 
 	<Actor>structures/celts/fortress_briton.xml</Actor>
 

@@ -58,8 +58,8 @@
     </variant>
     <variant name="gather_metal">
       <props>
-        <prop actor="" attachpoint="l_hand"/>
-        <prop actor="props/units/tools/pick.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/tools/pick.xml" attachpoint="l_hand"/>
+        <prop actor="" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="Build">

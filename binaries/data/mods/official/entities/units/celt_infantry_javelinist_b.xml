@@ -18,6 +18,17 @@
 		</Promotion>
 	</Traits>
 	<Actions>
+		<Create>
+			<List>
+				<StructCiv>
+					<Sb1 />
+				</StructCiv>
+				<StructMil>
+					<Fortress_B />
+					<Fortress_G />
+				</StructMil>			
+			</List>
+		</Create>
  		<Move>
 			<Speed>9.0</Speed>
 			<Run>

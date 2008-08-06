@@ -21,6 +21,22 @@
 
 	</Traits>
 
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Super_Cavalry_Gaul />
+					<Super_Infantry_Gaul />
+					<Hero_Vercingetorix />
+					<Hero_Brennus />
+					<Hero_Britomartus />
+				</Train>
+				<Research>
+				</Research>
+			</List>
+		</Create>
+	</Actions>
+
 	<Actor>structures/celts/fortress_gallic.xml</Actor>
 
 </Entity>
