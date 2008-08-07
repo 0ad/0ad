@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="101.21" y="108.282" z="-3.81583"/>
+		<Position x="103.076" y="98.9347" z="2.12929"/>
 		<Rotation angle="0.00139702"/>
 		<Declination angle="0.654327"/>
 	</Camera>
@@ -3111,6 +3111,12 @@
 			<Player>1</Player>
 			<Position x="100.787" y="22.4" z="79.429"/>
 			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="697">
+			<Template>celt_super_cavalry_brit</Template>
+			<Player>1</Player>
+			<Position x="212.874" y="22.4" z="280.588"/>
+			<Orientation angle="-0.438322"/>
 		</Entity>
 	</Entities>
 	<Nonentities/>
