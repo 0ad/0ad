@@ -1,0 +1,1 @@
+start pyrogenesis.exe -quickstart
