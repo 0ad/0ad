@@ -13,7 +13,7 @@ class CTurnManager
 {
 public:
 	// Default turn length
-	static const int DEFAULT_TURN_LENGTH = 150;
+	static const int DEFAULT_TURN_LENGTH = 300;
 	
 	// Used with IterateBatch() to iterate a command batch and set the sync mask
 	// for each message. If the iterating function doesn't wish to change the
