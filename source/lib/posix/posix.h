@@ -56,9 +56,9 @@ need only be renamed (e.g. _open, _stat).
 #include "posix_filesystem.h"
 #include "posix_mman.h"
 #include "posix_pthread.h"
-#include "posix_sock.h"
-#include "posix_terminal.h"
-#include "posix_time.h"
+//#include "posix_sock.h"
+//#include "posix_terminal.h"
+//#include "posix_time.h"
 #include "posix_utsname.h"
 
 

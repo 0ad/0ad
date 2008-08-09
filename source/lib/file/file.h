@@ -22,6 +22,7 @@ namespace ERR
 struct IFile
 {
 	virtual LibError Open(const Path& pathname, char mode) = 0;
+	virtual LibError Open(const fs::wpath& pathname, char mode) = 0;
 	virtual void Close() = 0;
 
 	virtual const Path& Pathname() const = 0;

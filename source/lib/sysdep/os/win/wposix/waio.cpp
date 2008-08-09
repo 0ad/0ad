@@ -84,8 +84,21 @@ private:
 static HandleManager* handleManager;
 
 
+template<typename tchar>
+HANDLE Open(const tchar* fn, DWORD access, DWORD share, DWORD create, DWORD flags)
+{
+	return CreateFileA(fn, access, share, 0, create, flags, 0);
+}
+
+template<>
+HANDLE Open<wchar_t>(const wchar_t* fn, DWORD access, DWORD share, DWORD create, DWORD flags)
+{
+	return CreateFileW(fn, access, share, 0, create, flags, 0);
+}
+
 // open fn in async mode and associate handle with fd.
-int aio_reopen(int fd, const char* fn, int oflag, ...)
+template<typename tchar>
+int aio_reopen(int fd, const tchar* fn, int oflag, ...)
 {
 	WinScopedPreserveLastError s;	// CreateFile
 
@@ -108,7 +121,7 @@ int aio_reopen(int fd, const char* fn, int oflag, ...)
 
 	// open file
 	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
-	const HANDLE hFile = CreateFile(fn, access, share, 0, create, flags, 0);
+	const HANDLE hFile = Open(fn, access, share, create, flags);
 	if(hFile == INVALID_HANDLE_VALUE)
 		WARN_RETURN(-1);
 
@@ -186,6 +199,36 @@ int open(const char* fn, int oflag, ...)
 	// none of the above apply; now re-open the file.
 	// note: this is possible because _open defaults to DENY_NONE sharing.
 	if(isAioPossible(fd, is_com_port, oflag))
+		WARN_ERR(aio_reopen(fd, fn, oflag));
+
+	// CRT doesn't like more than 255 files open.
+	// warn now, so that we notice why so many are open.
+#ifndef NDEBUG
+	if(fd > 256)
+		WARN_ERR(ERR::LIMIT);
+#endif
+
+	return fd;
+}
+
+
+int wopen(const wchar_t* fn, int oflag, ...)
+{
+	mode_t mode = 0;
+	if(oflag & O_CREAT)
+	{
+		va_list args;
+		va_start(args, oflag);
+		mode = va_arg(args, mode_t);
+		va_end(args);
+	}
+
+	WinScopedPreserveLastError s;	// _open's CreateFile
+	int fd = _wopen(fn, oflag, mode);
+
+	// none of the above apply; now re-open the file.
+	// note: this is possible because _open defaults to DENY_NONE sharing.
+	if(isAioPossible(fd, false, oflag))
 		WARN_ERR(aio_reopen(fd, fn, oflag));
 
 	// CRT doesn't like more than 255 files open.

@@ -17,7 +17,7 @@
 #include <stdarg.h>
 
 #include "lib/posix/posix_time.h"
-#include "lib/sysdep/cpu.h"
+#include "lib/sysdep/os_cpu.h"
 #if OS_WIN
 #include "lib/sysdep/os/win/whrt/whrt.h"
 #endif
@@ -210,6 +210,11 @@ std::string TimerUnit::ToString() const
 	return ss.str();
 }
 
+double TimerUnit::ToSeconds() const
+{
+	return m_ticks / os_cpu_ClockFrequency();
+}
+
 #else
 
 void TimerUnit::SetToZero()
@@ -248,6 +253,11 @@ std::string TimerUnit::ToString() const
 	ss << m_seconds*scale;
 	ss << unit;
 	return ss.str();
+}
+
+double TimerUnit::ToSeconds() const
+{
+	return m_seconds;
 }
 
 #endif

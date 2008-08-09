@@ -99,6 +99,7 @@ public:
 	void AddDifference(TimerUnit t0, TimerUnit t1);
 	void Subtract(TimerUnit t);
 	std::string ToString() const;
+	double ToSeconds() const;
 
 private:
 	u64 m_ticks;

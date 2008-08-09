@@ -45,6 +45,7 @@ extern void debug_break();
  * @param format string and varargs; see printf.
  **/
 LIB_API void debug_printf(const char* fmt, ...);
+LIB_API void debug_printf(const wchar_t* fmt, ...);
 
 
 /**

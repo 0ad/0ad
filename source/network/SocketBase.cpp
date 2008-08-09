@@ -2,6 +2,7 @@
 
 #if OS_WIN
 #include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wposix/wsock.h"
 #include "lib/sysdep/os/win/wposix/wsock_internal.h"
 #endif
 
@@ -455,7 +456,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 
 	SetOpMask(READ);
 
-	res=bind(m_pInternal->m_fd, (struct sockaddr *)&address, sizeof(struct sockaddr_in));
+	res=bind(m_pInternal->m_fd, (const struct sockaddr*)&address, (socklen_t)sizeof(struct sockaddr_in));
 	if (res == -1)
 	{
 		PS_RESULT ret=PS_FAIL;

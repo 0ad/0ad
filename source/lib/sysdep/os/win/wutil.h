@@ -43,6 +43,7 @@ enum WinLockId
 	WDBG_SYM_CS,	// protects (non-reentrant) dbghelp.dll
 	WHRT_CS,
 	WNUMA_CS,
+	WDIR_WATCH_CS,
 
 	NUM_CS
 };

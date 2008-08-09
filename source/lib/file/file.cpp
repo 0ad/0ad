@@ -44,6 +44,25 @@ public:
 		return INFO::OK;
 	}
 
+	virtual LibError Open(const fs::wpath& pathname, char mode)
+	{
+		debug_assert(mode == 'w' || mode == 'r');
+
+		m_pathname = "(unicode)";
+		m_mode = mode;
+
+		int oflag = (mode == 'r')? O_RDONLY : O_WRONLY|O_CREAT|O_TRUNC;
+#if OS_WIN
+		oflag |= O_BINARY_NP;
+#endif
+		m_fd = wopen(pathname.external_file_string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
+		if(m_fd < 0)
+			WARN_RETURN(ERR::FILE_ACCESS);
+
+		stats_open();
+		return INFO::OK;
+	}
+
 	virtual void Close()
 	{
 		m_mode = '\0';

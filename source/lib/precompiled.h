@@ -60,7 +60,7 @@
 // using Boost via DLL. (otherwise, we would have to ensure the exact same
 // compiler is used, which is a pain because MSC8, MSC9 and ICC 10 are in use)
 #ifndef LIB_STATIC_LINK
-# define BOOST_ALL_DYN_LINK 
+//# define BOOST_ALL_DYN_LINK 
 #endif
 #include <boost/utility.hpp>	// noncopyable
 // the following boost libraries have been included in TR1 and are
@@ -72,6 +72,7 @@ using boost::mem_fn;
 #include <boost/function.hpp>
 using boost::function;
 #include <boost/bind.hpp>
+using boost::bind;
 #include "lib/external_libraries/boost_filesystem.h"
 
 // (this must come after boost and common lib headers)

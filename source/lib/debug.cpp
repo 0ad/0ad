@@ -171,6 +171,26 @@ void debug_printf(const char* fmt, ...)
 		debug_puts(buf);
 }
 
+void debug_printf(const wchar_t* fmt, ...)
+{
+	wchar_t buf[DEBUG_PRINTF_MAX_CHARS]; buf[ARRAY_SIZE(buf)-1] = '\0';
+
+	va_list ap;
+	va_start(ap, fmt);
+	const int len = vswprintf(buf, DEBUG_PRINTF_MAX_CHARS, fmt, ap);
+	debug_assert(len >= 0);
+	va_end(ap);
+
+	char buf2[DEBUG_PRINTF_MAX_CHARS];
+	size_t charsConverted;
+	errno_t ret = wcstombs_s(&charsConverted, buf2, DEBUG_PRINTF_MAX_CHARS, buf, DEBUG_PRINTF_MAX_CHARS);
+	debug_assert(ret == 0);
+	debug_assert(charsConverted == wcslen(buf));
+
+	if(debug_filter_allows(buf2))
+		debug_puts(buf2);
+}
+
 
 //-----------------------------------------------------------------------------
 
