@@ -96,13 +96,14 @@ static void InitCounter()
 	nominalFrequency = counter->NominalFrequency();
 	resolution       = counter->Resolution();
 	counterBits      = counter->CounterBits();
-
-	counterMask = bit_mask<u64>(counterBits);
+	debug_printf("HRT: counter=%s freq=%f res=%f bits=%d\n", counter->Name(), nominalFrequency, resolution, counterBits);
 
 	// sanity checks
 	debug_assert(nominalFrequency >= 500.0-DBL_EPSILON);
-	debug_assert(resolution <= 2e-3+DBL_EPSILON);
+	debug_assert(resolution <= 2e-3);
 	debug_assert(8 <= counterBits && counterBits <= 64);
+
+	counterMask = bit_mask<u64>(counterBits);
 }
 
 static void ShutdownCounter()

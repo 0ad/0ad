@@ -16,10 +16,7 @@
 class CounterQPC : public ICounter
 {
 public:
-	CounterQPC()
-	: m_frequency(-1)
-	{
-	}
+	CounterQPC();
 
 	virtual const char* Name() const
 	{

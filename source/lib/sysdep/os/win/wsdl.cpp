@@ -111,10 +111,12 @@ private:
 
 		for(int i = 0; i < 256; i++)
 		{
-			const double val = pow((i+1) / 256.0, (double)gamma);
+			const double val = pow(i/255.0, (double)gamma);
 			const double clamped = std::max(0.0, std::min(val, 1.0-DBL_EPSILON));
 			ramp[i] = u16_from_double(clamped);
 		}
+		debug_assert(ramp[0] == 0);
+		debug_assert(ramp[255] == 0xFFFF);
 	}
 
 	bool Upload(u16* ramps)

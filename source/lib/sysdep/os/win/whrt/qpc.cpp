@@ -18,6 +18,12 @@
 #include "pmt.h"	// PMT_FREQ
 
 
+CounterQPC::CounterQPC()
+	: m_frequency(-1)
+{
+}
+
+
 LibError CounterQPC::Activate()
 {
 	// note: QPC is observed to be universally supported, but the API
