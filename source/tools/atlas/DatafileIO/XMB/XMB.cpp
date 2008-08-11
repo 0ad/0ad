@@ -16,14 +16,21 @@
 # pragma warning(disable: 4267) // 'argument' : conversion from 'size_t' to 'const unsigned int', possible loss of data
 #endif
 
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/util/BinInputStream.hpp>
-#include <xercesc/sax/SAXParseException.hpp>
-#include <xercesc/sax/InputSource.hpp>
-#include <xercesc/util/BinInputStream.hpp>
+
 #include <xercesc/sax/ErrorHandler.hpp>
+#include <xercesc/sax/InputSource.hpp>
+#include <xercesc/sax/Locator.hpp>
+#include <xercesc/sax/SAXParseException.hpp>
+
+#include <xercesc/sax2/Attributes.hpp>
 #include <xercesc/sax2/XMLReaderFactory.hpp>
 #include <xercesc/sax2/DefaultHandler.hpp>
+
+#include <xercesc/util/BinInputStream.hpp>
+#include <xercesc/util/XMLString.hpp>
+
+
+
 
 XERCES_CPP_NAMESPACE_USE
 
