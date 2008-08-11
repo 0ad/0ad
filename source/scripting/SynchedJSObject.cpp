@@ -5,13 +5,13 @@
 #include "ScriptCustomTypes.h"
 
 template <>
-CStrW ToNetString(const unsigned &val)
+CStrW ToNetString(const size_t &val)
 {
 	return CStrW(val);
 }
 
 template <>
-void SetFromNetString(unsigned &val, const CStrW& string)
+void SetFromNetString(size_t &val, const CStrW& string)
 {
 	val=string.ToUInt();
 }

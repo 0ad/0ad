@@ -15,7 +15,7 @@
 #include "ps/GameAttributes.h"
 #include "ps/Player.h"
 #include "fsm.h"
-#include "enet/enet.h"
+#include <enet/enet.h>
 
 #include <vector>
 

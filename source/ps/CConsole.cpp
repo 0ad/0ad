@@ -740,7 +740,7 @@ void CConsole::SaveHistory()
 {
 	WriteBuffer buffer;
 	const int linesToSkip = (int)m_deqBufHistory.size() - m_MaxHistoryLines;
-	std::deque<std::wstring>::const_reverse_iterator it = m_deqBufHistory.rbegin();
+	std::deque<std::wstring>::reverse_iterator it = m_deqBufHistory.rbegin();
 	if(linesToSkip > 0)
 		std::advance(it, linesToSkip);
 	for (; it != m_deqBufHistory.rend(); ++it)

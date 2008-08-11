@@ -269,10 +269,10 @@ void CMapWriter::WriteXML(const char* filename,
 					continue;
 
 				XML_Element("Entity");
-				XML_Attribute("uid", (*unit)->GetID());
+				XML_Attribute("uid", (unsigned) (*unit)->GetID());
 				XML_Setting("Template", entity->m_base->m_Tag);
 
-				XML_Setting("Player", entity->GetPlayer()->GetPlayerID());
+				XML_Setting("Player", (unsigned) entity->GetPlayer()->GetPlayerID());
 
 				{
 					CVector3D position = entity->m_position;
