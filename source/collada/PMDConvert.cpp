@@ -12,6 +12,7 @@
 #include "FCDocument/FCDGeometry.h"
 #include "FCDocument/FCDGeometryMesh.h"
 #include "FCDocument/FCDGeometryPolygons.h"
+#include "FCDocument/FCDGeometryPolygonsInput.h"
 #include "FCDocument/FCDGeometryPolygonsTools.h"
 #include "FCDocument/FCDGeometrySource.h"
 #include "FCDocument/FCDSceneNode.h"
@@ -76,23 +77,29 @@ public:
 			FCDGeometryPolygonsInput* inputNormal   = polys->FindInput(FUDaeGeometryInput::NORMAL);
 			FCDGeometryPolygonsInput* inputTexcoord = polys->FindInput(FUDaeGeometryInput::TEXCOORD);
 
-			UInt32List* indicesCombined = polys->FindIndices(inputPosition); // guaranteed by ReindexGeometry
+			const uint32* indicesCombined = inputPosition->GetIndices();
+			size_t indicesCombinedCount = inputPosition->GetIndexCount();
+			// (ReindexGeometry guarantees position/normal/texcoord have the same indexes)
 
 			FCDGeometrySource* sourcePosition = inputPosition->GetSource();
 			FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
 			FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
 
-			FloatList& dataPosition = sourcePosition->GetData();
-			FloatList& dataNormal   = sourceNormal  ->GetData();
-			FloatList& dataTexcoord = sourceTexcoord->GetData();
+			float* dataPosition = sourcePosition->GetData();
+			float* dataNormal   = sourceNormal  ->GetData();
+			float* dataTexcoord = sourceTexcoord->GetData();
+			size_t vertexCount = sourcePosition->GetDataCount() / 3;
+			assert(sourcePosition->GetDataCount() == vertexCount*3);
+			assert(sourceNormal  ->GetDataCount() == vertexCount*3);
+			assert(sourceTexcoord->GetDataCount() == vertexCount*2);
 
-			TransformVertices(dataPosition, dataNormal, converter.GetEntityTransform(), converter.IsYUp());
+			TransformVertices(dataPosition, dataNormal, vertexCount, converter.GetEntityTransform(), converter.IsYUp());
 
 			std::vector<VertexBlend> boneWeights;
 			std::vector<BoneTransform> boneTransforms;
 			std::vector<PropPoint> propPoints;
 
-			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms, propPoints);
+			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoord, vertexCount, boneWeights, boneTransforms, propPoints);
 		}
 		else if (converter.GetInstance().GetType() == FCDEntityInstance::CONTROLLER)
 		{
@@ -120,6 +127,10 @@ public:
 			{
 				Log(LOG_WARNING, "Mismatched bone counts (skin has %d, skeleton has %d)", 
 					skin->GetJointCount(), controllerInstance.GetJointCount());
+				for (size_t i = 0; i < skin->GetJointCount(); ++i)
+					Log(LOG_INFO, "Skin joint %d: %s", i, skin->GetJoint(i)->GetId().c_str());
+				for (size_t i = 0; i < controllerInstance.GetJointCount(); ++i)
+					Log(LOG_INFO, "Skeleton joint %d: %s", i, controllerInstance.GetJoint(i)->GetName().c_str());
 			}
 
 			// Get the skinned mesh for this entity
@@ -141,19 +152,19 @@ public:
 
 			std::vector<VertexBlend> boneWeights; // one per vertex
 
-			const FCDWeightedMatches& vertexInfluences = skin->GetVertexInfluences();
-			for (size_t i = 0; i < vertexInfluences.size(); ++i)
+			const FCDSkinControllerVertex* vertexInfluences = skin->GetVertexInfluences();
+			for (size_t i = 0; i < skin->GetInfluenceCount(); ++i)
 			{
 				VertexBlend influences = defaultInfluences;
 
-				assert(vertexInfluences[i].size() <= maxInfluences);
+				assert(vertexInfluences[i].GetPairCount() <= maxInfluences);
 					// guaranteed by ReduceInfluences; necessary for avoiding
 					// out-of-bounds writes to the VertexBlend
 
-				for (size_t j = 0; j < vertexInfluences[i].size(); ++j)
+				for (size_t j = 0; j < vertexInfluences[i].GetPairCount(); ++j)
 				{
-					uint32 jointIdx = vertexInfluences[i][j].jointIndex;
-					REQUIRE(jointIdx <= 0xFF, "sensible number of joints"); // because we only have a u8 to store them in
+					uint32 jointIdx = vertexInfluences[i].GetPair(j)->jointIndex;
+					REQUIRE(jointIdx <= 0xFF, "sensible number of joints (<256)"); // because we only have a u8 to store them in
 
 					// Find the joint on the skeleton, after checking it really exists
 					FCDSceneNode* joint = NULL;
@@ -172,7 +183,7 @@ public:
 					}
 
 					// Store into the VertexBlend
-					int boneId = skeleton.GetBoneID(joint->GetName());
+					int boneId = skeleton.GetBoneID(joint->GetName().c_str());
 					if (boneId < 0)
 					{
 						// The relevant joint does exist, but it's not a recognised
@@ -182,7 +193,7 @@ public:
 					}
 
 					influences.bones[j] = (uint8)boneId;
-					influences.weights[j] = vertexInfluences[i][j].weight;
+					influences.weights[j] = vertexInfluences[i].GetPair(j)->weight;
 				}
 
 				boneWeights.push_back(influences);
@@ -197,7 +208,7 @@ public:
 			{
 				FCDSceneNode* joint = controllerInstance.GetJoint(i);
 
-				int boneId = skeleton.GetRealBoneID(joint->GetName());
+				int boneId = skeleton.GetRealBoneID(joint->GetName().c_str());
 				if (boneId < 0)
 				{
 					// unrecognised joint - it's probably just a prop point
@@ -205,7 +216,7 @@ public:
 					continue;
 				}
 
-				FMMatrix44 bindPose = skin->GetBindPoses()[i].Inverted();
+				FMMatrix44 bindPose = skin->GetJoint(i)->GetBindPoseInverse().Inverted();
 
 				HMatrix matrix;
 				memcpy(matrix, bindPose.Transposed().m, sizeof(matrix));
@@ -232,7 +243,7 @@ public:
 			{
 				FCDSceneNode* joint = controllerInstance.GetJoint(i);
 
-				int boneId = skeleton.GetBoneID(joint->GetName());
+				int boneId = skeleton.GetBoneID(joint->GetName().c_str());
 				if (boneId < 0)
 				{
 					// unrecognised joint name - ignore, same as before
@@ -281,22 +292,28 @@ public:
 			FCDGeometryPolygonsInput* inputNormal   = polys->FindInput(FUDaeGeometryInput::NORMAL);
 			FCDGeometryPolygonsInput* inputTexcoord = polys->FindInput(FUDaeGeometryInput::TEXCOORD);
 
-			UInt32List* indicesCombined = polys->FindIndices(inputPosition);
-				// guaranteed by ReindexGeometry to be the same for all inputs
+
+			const uint32* indicesCombined = inputPosition->GetIndices();
+			size_t indicesCombinedCount = inputPosition->GetIndexCount();
+			// (ReindexGeometry guarantees position/normal/texcoord have the same indexes)
 
 			FCDGeometrySource* sourcePosition = inputPosition->GetSource();
 			FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
 			FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
 
-			FloatList& dataPosition = sourcePosition->GetData();
-			FloatList& dataNormal   = sourceNormal  ->GetData();
-			FloatList& dataTexcoord = sourceTexcoord->GetData();
+			float* dataPosition = sourcePosition->GetData();
+			float* dataNormal   = sourceNormal  ->GetData();
+			float* dataTexcoord = sourceTexcoord->GetData();
+			size_t vertexCount = sourcePosition->GetDataCount() / 3;
+			assert(sourcePosition->GetDataCount() == vertexCount*3);
+			assert(sourceNormal  ->GetDataCount() == vertexCount*3);
+			assert(sourceTexcoord->GetDataCount() == vertexCount*2);
 
-			TransformVertices(dataPosition, dataNormal, boneTransforms, propPoints,
+			TransformVertices(dataPosition, dataNormal, vertexCount, boneTransforms, propPoints,
 				converter.GetEntityTransform(), skin->GetBindShapeTransform(),
 				converter.IsYUp(), converter.IsXSI());
 
-			WritePMD(output, *indicesCombined, dataPosition, dataNormal, dataTexcoord, boneWeights, boneTransforms, propPoints);
+			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoord, vertexCount, boneWeights, boneTransforms, propPoints);
 		}
 		else
 		{
@@ -309,15 +326,14 @@ public:
 	 * Writes the model data in the PMD format.
 	 */
 	static void WritePMD(OutputCB& output,
-		const UInt32List& indices,
-		const FloatList& position, const FloatList& normal, const FloatList& texcoord,
+		const uint32* indices, size_t indexCount,
+		const float* position, const float* normal, const float* texcoord, size_t vertexCount,
 		const std::vector<VertexBlend>& boneWeights, const std::vector<BoneTransform>& boneTransforms,
 		const std::vector<PropPoint>& propPoints)
 	{
 		static const VertexBlend noBlend = { { 0xFF, 0xFF, 0xFF, 0xFF }, { 0, 0, 0, 0 } };
 
-		size_t vertexCount = position.size()/3;
-		size_t faceCount = indices.size()/3;
+		size_t faceCount = indexCount/3;
 		size_t boneCount = boneTransforms.size();
 		if (boneCount)
 			assert(boneWeights.size() == vertexCount);
@@ -353,7 +369,7 @@ public:
 
 		// Face data
 		write(output, (uint32)faceCount);
-		for (size_t i = 0; i < indices.size(); ++i)
+		for (size_t i = 0; i < indexCount; ++i)
 		{
 			write(output, (uint16)indices[i]);
 		}
@@ -390,9 +406,9 @@ public:
 		REQUIRE(mesh->IsTriangles(), "mesh is made of triangles");
 		REQUIRE(mesh->GetPolygonsCount() == 1, "mesh has single set of polygons");
 		FCDGeometryPolygons* polys = mesh->GetPolygons(0);
-		REQUIRE(polys->FindIndices(polys->FindInput(FUDaeGeometryInput::POSITION)) != NULL, "mesh has vertex positions");
-		REQUIRE(polys->FindIndices(polys->FindInput(FUDaeGeometryInput::NORMAL)) != NULL, "mesh has vertex normals");
-		REQUIRE(polys->FindIndices(polys->FindInput(FUDaeGeometryInput::TEXCOORD)) != NULL, "mesh has vertex tex coords");
+		REQUIRE(polys->FindInput(FUDaeGeometryInput::POSITION) != NULL, "mesh has vertex positions");
+		REQUIRE(polys->FindInput(FUDaeGeometryInput::NORMAL) != NULL, "mesh has vertex normals");
+		REQUIRE(polys->FindInput(FUDaeGeometryInput::TEXCOORD) != NULL, "mesh has vertex tex coords");
 		return polys;
 	}
 
@@ -400,13 +416,13 @@ public:
 	 * Applies world-space transform to vertex data, and flips into other-handed
 	 * coordinate space.
 	 */
-	static void TransformVertices(FloatList& position, FloatList& normal,
+	static void TransformVertices(float* position, float* normal, size_t vertexCount,
 		const FMMatrix44& transform, bool yUp)
 	{
-		for (size_t i = 0; i < position.size(); i += 3)
+		for (size_t i = 0; i < vertexCount; ++i)
 		{
-			FMVector3 pos (position[i], position[i+1], position[i+2]);
-			FMVector3 norm (normal[i], normal[i+1], normal[i+2]);
+			FMVector3 pos (&position[i*3], 0);
+			FMVector3 norm (&normal[i*3], 0);
 
 			// Apply the scene-node transforms
 			pos = transform.TransformCoordinate(pos);
@@ -427,17 +443,17 @@ public:
 
 			// Copy back to array
 
-			position[i+0] = pos.x;
-			position[i+1] = pos.y;
-			position[i+2] = pos.z;
+			position[i*3] = pos.x;
+			position[i*3+1] = pos.y;
+			position[i*3+2] = pos.z;
 
-			normal[i+0] = norm.x;
-			normal[i+1] = norm.y;
-			normal[i+2] = norm.z;
+			normal[i*3] = norm.x;
+			normal[i*3+1] = norm.y;
+			normal[i*3+2] = norm.z;
 		}
 	}
 
-	static void TransformVertices(FloatList& position, FloatList& normal,
+	static void TransformVertices(float* position, float* normal, size_t vertexCount,
 		std::vector<BoneTransform>& bones, std::vector<PropPoint>& propPoints,
 		const FMMatrix44& transform, const FMMatrix44& bindTransform, bool yUp, bool isXSI)
 	{
@@ -457,8 +473,7 @@ public:
 		}
 
 		// Update the vertex positions and normals
-		assert(position.size() == normal.size());
-		for (size_t i = 0; i < position.size()/3; ++i)
+		for (size_t i = 0; i < vertexCount; ++i)
 		{
 			FMVector3 pos (&position[i*3], 0);
 			FMVector3 norm (&normal[i*3], 0);
@@ -482,11 +497,11 @@ public:
 
 			// and copy back into the original array
 
-			position[i*3+0] = pos.x;
+			position[i*3] = pos.x;
 			position[i*3+1] = pos.y;
 			position[i*3+2] = pos.z;
 
-			normal[i*3+0] = norm.x;
+			normal[i*3] = norm.x;
 			normal[i*3+1] = norm.y;
 			normal[i*3+2] = norm.z;
 		}

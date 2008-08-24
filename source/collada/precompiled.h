@@ -12,6 +12,8 @@ extern void Log(int severity, const char* fmt, ...);
 # pragma warning(disable: 4996)
 #endif
 
+#include <climits>
+
 #include "FCollada.h"
 #include "FCDocument/FCDAsset.h"
 #include "FCDocument/FCDocument.h"

@@ -5,14 +5,18 @@
 #include "FCollada.h"
 #include "FCDocument/FCDEntity.h"
 #include "FCDocument/FCDGeometryPolygons.h"
+#include "FCDocument/FCDGeometryPolygonsInput.h"
 #include "FCDocument/FCDGeometrySource.h"
 #include "FCDocument/FCDSkinController.h"
 
 #include <cassert>
+#include <vector>
+#include <map>
+#include <algorithm>
 
 struct VertexData
 {
-	VertexData(const float* pos, const float* norm, const float* tex, const FCDJointWeightPairList& weights)
+	VertexData(const float* pos, const float* norm, const float* tex, const std::vector<FCDJointWeightPair>& weights)
 		: x(pos[0]), y(pos[1]), z(pos[2]),
 		nx(norm[0]), ny(norm[1]), nz(norm[2]),
 		u(tex[0]), v(tex[1]),
@@ -23,7 +27,7 @@ struct VertexData
 	float x, y, z;
 	float nx, ny, nz;
 	float u, v;
-	FCDJointWeightPairList weights;
+	std::vector<FCDJointWeightPair> weights;
 };
 
 bool similar(float a, float b)
@@ -95,7 +99,7 @@ private:
 	InserterWithoutDuplicates& operator=(const InserterWithoutDuplicates&);
 };
 
-void CanonicaliseWeights(FCDJointWeightPairList& weights)
+void CanonicaliseWeights(std::vector<FCDJointWeightPair>& weights)
 {
 	// Convert weight-lists into a standard format, so simple vector equality
 	// can be used to determine equivalence
@@ -113,55 +117,62 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 	FCDGeometryPolygonsInput* inputNormal   = polys->FindInput(FUDaeGeometryInput::NORMAL);
 	FCDGeometryPolygonsInput* inputTexcoord = polys->FindInput(FUDaeGeometryInput::TEXCOORD);
 
-	UInt32List* indicesPosition = polys->FindIndices(inputPosition);
-	UInt32List* indicesNormal   = polys->FindIndices(inputNormal);
-	UInt32List* indicesTexcoord = polys->FindIndices(inputTexcoord);
+	size_t numVertices = polys->GetFaceVertexCount();
+
+	assert(inputPosition->GetIndexCount() == numVertices);
+	assert(inputNormal  ->GetIndexCount() == numVertices);
+	assert(inputTexcoord->GetIndexCount() == numVertices);
+
+	const uint32* indicesPosition = inputPosition->GetIndices();
+	const uint32* indicesNormal   = inputNormal->GetIndices();
+	const uint32* indicesTexcoord = inputTexcoord->GetIndices();
 
 	assert(indicesPosition);
 	assert(indicesNormal);
 	assert(indicesTexcoord); // TODO - should be optional, because textureless meshes aren't unreasonable
 
-	size_t numVertices = polys->GetFaceVertexCount();
-
-	assert(indicesPosition->size() == numVertices);
-	assert(indicesNormal  ->size() == numVertices);
-	assert(indicesTexcoord->size() == numVertices);
-
 	FCDGeometrySource* sourcePosition = inputPosition->GetSource();
 	FCDGeometrySource* sourceNormal   = inputNormal  ->GetSource();
 	FCDGeometrySource* sourceTexcoord = inputTexcoord->GetSource();
 
-	const FloatList& dataPosition = sourcePosition->GetData();
-	const FloatList& dataNormal   = sourceNormal  ->GetData();
-	const FloatList& dataTexcoord = sourceTexcoord->GetData();
+	const float* dataPosition = sourcePosition->GetData();
+	const float* dataNormal   = sourceNormal  ->GetData();
+	const float* dataTexcoord = sourceTexcoord->GetData();
 
 	if (skin)
 	{
-		size_t numVertexPositions = dataPosition.size() / sourcePosition->GetStride();
-		assert(skin->GetVertexInfluenceCount() == numVertexPositions);
+		size_t numVertexPositions = sourcePosition->GetDataCount() / sourcePosition->GetStride();
+		assert(skin->GetInfluenceCount() == numVertexPositions);
 	}
 
 	uint32 stridePosition = sourcePosition->GetStride();
 	uint32 strideNormal   = sourceNormal  ->GetStride();
 	uint32 strideTexcoord = sourceTexcoord->GetStride();
 
-	UInt32List indicesCombined;
+	std::vector<uint32> indicesCombined;
 	std::vector<VertexData> vertexes;
 	InserterWithoutDuplicates<VertexData> inserter(vertexes);
 
 	for (size_t i = 0; i < numVertices; ++i)
 	{
-		FCDJointWeightPairList weights;
+		std::vector<FCDJointWeightPair> weights;
 		if (skin)
 		{
-			weights = *skin->GetInfluences((*indicesPosition)[i]);
+			FCDSkinControllerVertex* influences = skin->GetVertexInfluence(indicesPosition[i]);
+			assert(influences != NULL);
+			for (size_t j = 0; j < influences->GetPairCount(); ++j)
+			{
+				FCDJointWeightPair* pair = influences->GetPair(j);
+				assert(pair != NULL);
+				weights.push_back(*pair);
+			}
 			CanonicaliseWeights(weights);
 		}
 
 		VertexData vtx (
-			&dataPosition[(*indicesPosition)[i]*stridePosition],
-			&dataNormal  [(*indicesNormal  )[i]*strideNormal],
-			&dataTexcoord[(*indicesTexcoord)[i]*strideTexcoord],
+			&dataPosition[indicesPosition[i]*stridePosition],
+			&dataNormal  [indicesNormal  [i]*strideNormal],
+			&dataTexcoord[indicesTexcoord[i]*strideTexcoord],
 			weights
 		);
 		size_t idx = inserter.add(vtx);
@@ -175,7 +186,7 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 	FloatList newDataPosition;
 	FloatList newDataNormal;
 	FloatList newDataTexcoord;
-	FCDWeightedMatches newWeightedMatches;
+	std::vector<std::vector<FCDJointWeightPair> > newWeightedMatches;
 
 	for (size_t i = 0; i < vertexes.size(); ++i)
 	{
@@ -192,13 +203,22 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 
 	// (Slightly wasteful to duplicate this array so many times, but FCollada
 	// doesn't seem to support multiple inputs with the same source data)
-	*indicesPosition = indicesCombined;
-	*indicesNormal   = indicesCombined;
-	*indicesTexcoord = indicesCombined;
+	inputPosition->SetIndices(&indicesCombined.front(), indicesCombined.size());
+	inputNormal  ->SetIndices(&indicesCombined.front(), indicesCombined.size());
+	inputTexcoord->SetIndices(&indicesCombined.front(), indicesCombined.size());
 
-	sourcePosition->SetSourceData(newDataPosition, 3);
-	sourceNormal  ->SetSourceData(newDataNormal,   3);
-	sourceTexcoord->SetSourceData(newDataTexcoord, 3);
+	sourcePosition->SetData(newDataPosition, 3);
+	sourceNormal  ->SetData(newDataNormal,   3);
+	sourceTexcoord->SetData(newDataTexcoord, 2);
+
 	if (skin)
-		skin->GetWeightedMatches() = newWeightedMatches;
+	{
+		skin->SetInfluenceCount(newWeightedMatches.size());
+		for (size_t i = 0; i < newWeightedMatches.size(); ++i)
+		{
+			skin->GetVertexInfluence(i)->SetPairCount(0);
+			for (size_t j = 0; j < newWeightedMatches[i].size(); ++j)
+				skin->GetVertexInfluence(i)->AddPair(newWeightedMatches[i][j].jointIndex, newWeightedMatches[i][j].weight);
+		}
+	}
 }

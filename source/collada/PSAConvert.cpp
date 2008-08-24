@@ -8,6 +8,7 @@
 #include "FCDocument/FCDocumentTools.h"
 #include "FCDocument/FCDAnimated.h"
 #include "FCDocument/FCDAnimationCurve.h"
+#include "FCDocument/FCDAnimationKey.h"
 #include "FCDocument/FCDController.h"
 #include "FCDocument/FCDControllerInstance.h"
 #include "FCDocument/FCDExtra.h"
@@ -88,7 +89,7 @@ public:
 				{
 					FCDSceneNode* joint = controllerInstance.GetJoint(i);
 
-					int boneId = skeleton.GetRealBoneID(joint->GetName());
+					int boneId = skeleton.GetRealBoneID(joint->GetName().c_str());
 					if (boneId < 0)
 						continue; // not a recognised bone - ignore it, same as before
 
@@ -199,7 +200,7 @@ public:
 			const FCDSceneNode* joint = controllerInstance.GetJoint(i);
 			REQUIRE(joint != NULL, "joint exists");
 
-			int boneId = skeleton.GetBoneID(joint->GetName());
+			int boneId = skeleton.GetBoneID(joint->GetName().c_str());
 			if (boneId < 0)
 			{
 				// unrecognised joint - it's probably just a prop point
@@ -218,17 +219,17 @@ public:
 				if (! transform->IsAnimated())
 					continue;
 
-				// Iterate over all curves
+				// Iterate over all curves to find the earliest and latest keys
 				const FCDAnimated* anim = transform->GetAnimated();
 				const FCDAnimationCurveListList& curvesList = anim->GetCurves();
 				for (size_t j = 0; j < curvesList.size(); ++j)
 				{
-					const FCDAnimationCurveList& curves = curvesList[j];
+					const FCDAnimationCurveTrackList& curves = curvesList[j];
 					for (size_t k = 0; k < curves.size(); ++k)
 					{
 						const FCDAnimationCurve* curve = curves[k];
-						timeStart = std::min(timeStart, curve->GetKeys().front());
-						timeEnd = std::max(timeEnd, curve->GetKeys().back());
+						timeStart = std::min(timeStart, curve->GetKeys()[0]->input);
+						timeEnd = std::max(timeEnd, curve->GetKeys()[curve->GetKeyCount()-1]->input);
 					}
 				}
 			}

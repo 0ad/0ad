@@ -83,6 +83,8 @@ int convert_dae_to_whatever(const char* dae, OutputFn writer, void* cb_data, voi
 {
 	Log(LOG_INFO, "Starting conversion");
 
+	FCollada::Initialize();
+
 	std::string xmlErrors;
 	BufferedOutputCallback cb(writer, cb_data);
 	try
@@ -96,8 +98,12 @@ int convert_dae_to_whatever(const char* dae, OutputFn writer, void* cb_data, voi
 
 		Log(LOG_ERROR, "%s", e.what());
 
+		FCollada::Release();
+
 		return -2;
 	}
+
+	FCollada::Release();
 
 	if (! xmlErrors.empty())
 	{

@@ -4,6 +4,7 @@
 #include <exception>
 #include <string>
 #include <memory>
+#include <vector>
 
 class FCDEntityInstance;
 class FCDSceneNode;
@@ -79,6 +80,7 @@ class CommonConvert
 {
 public:
 	CommonConvert(const char* text, std::string& xmlErrors);
+	~CommonConvert();
 	const FColladaDocument& GetDocument() const { return m_Doc; }
 	FCDSceneNode& GetRoot() { return *m_Doc.GetDocument()->GetVisualSceneRoot(); }
 	FCDEntityInstance& GetInstance() { return *m_Instance; }

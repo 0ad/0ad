@@ -1,13 +1,15 @@
-#include <libxml2/libxml/parser.h>
-#include <libxml2/libxml/xmlerror.h>
-
 #include "precompiled.h"
+
+#include "libxml/parser.h"
+#include "libxml/xmlerror.h"
 
 #include "StdSkeletons.h"
 
 #include "CommonConvert.h"
 
 #include "FUtils/FUXmlParser.h"
+
+#include <map>
 
 namespace
 {

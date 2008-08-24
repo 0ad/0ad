@@ -3,15 +3,16 @@
 #include "CommonConvert.h"
 
 #include "StdSkeletons.h"
+#include "XMLFix.h"
 
 #include "FCollada.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSkinController.h"
 #include "FUtils/FUDaeSyntax.h"
 #include "FUtils/FUFileManager.h"
-#include "FUtils/FUXmlParser.h"
 
 #include <cassert>
+#include <algorithm>
 
 void require_(int line, bool value, const char* type, const char* message)
 {
@@ -40,18 +41,18 @@ FColladaErrorHandler::FColladaErrorHandler(std::string& xmlErrors_)
 	// Grab all the error output from libxml2, for useful error reporting
 	xmlSetGenericErrorFunc(&xmlErrors, &errorHandler);
 
-	FUError::SetErrorCallback(FUError::DEBUG, new FUFunctor3<FColladaErrorHandler, FUError::Level, uint32, uint32, void>(this, &FColladaErrorHandler::OnError));
-	FUError::SetErrorCallback(FUError::WARNING, new FUFunctor3<FColladaErrorHandler, FUError::Level, uint32, uint32, void>(this, &FColladaErrorHandler::OnError));
-	FUError::SetErrorCallback(FUError::ERROR, new FUFunctor3<FColladaErrorHandler, FUError::Level, uint32, uint32, void>(this, &FColladaErrorHandler::OnError));
+	FUError::AddErrorCallback(FUError::DEBUG_LEVEL, this, &FColladaErrorHandler::OnError);
+	FUError::AddErrorCallback(FUError::WARNING_LEVEL, this, &FColladaErrorHandler::OnError);
+	FUError::AddErrorCallback(FUError::ERROR_LEVEL, this, &FColladaErrorHandler::OnError);
 }
 
 FColladaErrorHandler::~FColladaErrorHandler()
 {
 	xmlSetGenericErrorFunc(NULL, NULL);
 
-	FUError::SetErrorCallback(FUError::DEBUG, NULL);
-	FUError::SetErrorCallback(FUError::WARNING, NULL);
-	FUError::SetErrorCallback(FUError::ERROR, NULL);
+	FUError::RemoveErrorCallback(FUError::DEBUG_LEVEL, this, &FColladaErrorHandler::OnError);
+	FUError::RemoveErrorCallback(FUError::WARNING_LEVEL, this, &FColladaErrorHandler::OnError);
+	FUError::RemoveErrorCallback(FUError::ERROR_LEVEL, this, &FColladaErrorHandler::OnError);
 }
 
 void FColladaErrorHandler::OnError(FUError::Level errorLevel, uint32 errorCode, uint32 UNUSED(lineNumber))
@@ -60,9 +61,9 @@ void FColladaErrorHandler::OnError(FUError::Level errorLevel, uint32 errorCode, 
 	if (! errorString)
 		errorString = "Unknown error code";
 
-	if (errorLevel == FUError::DEBUG)
+	if (errorLevel == FUError::DEBUG_LEVEL)
 		Log(LOG_INFO, "FCollada message %d: %s", errorCode, errorString);
-	else if (errorLevel == FUError::WARNING)
+	else if (errorLevel == FUError::WARNING_LEVEL)
 		Log(LOG_WARNING, "FCollada warning %d: %s", errorCode, errorString);
 	else
 		throw ColladaException(errorString);
@@ -75,53 +76,27 @@ void FColladaDocument::LoadFromText(const char *text)
 {
 	document.reset(FCollada::NewTopDocument());
 
-	FUFileManager* fileManager = document->GetFileManager();
-	const char* basePath = "";
+	const char* newText = NULL;
+	size_t newTextSize = 0;
+	FixBrokenXML(text, &newText, &newTextSize);
 
-	// Mostly copied from FCDocument::LoadFromText
+	// Log(LOG_INFO, "%s", newText);
+	bool status = FCollada::LoadDocumentFromMemory("unknown.dae", document.get(), (void*)newText, newTextSize);
 
-	bool status = true;
-
-	// Push the given path unto the file manager's stack
-	fileManager->PushRootPath(basePath);
-
-	// Parse the document into a XML tree
-	xmlDoc* daeDocument = xmlParseDoc((const xmlChar*)text);
-	if (daeDocument != NULL)
-	{
-		xmlNode *rootNode = xmlDocGetRootElement(daeDocument);
-
-		// Read in the whole document from the root node
-		status &= (document->LoadDocumentFromXML(rootNode));
-
-		// HACK (sort of): read in <extra> from the root, because FCollada
-		// doesn't let us do that
-		ReadExtras(rootNode);
-
-		// Free the XML document
-		xmlFreeDoc(daeDocument);
-	}
-	else
-	{
-		xmlCleanupParser(); // do it here because our error handler throws
-		FUError::Error(FUError::ERROR, FUError::ERROR_MALFORMED_XML);
-		status = false;
-	}
-
-	// Clean-up the XML reader
-	xmlCleanupParser();
-
-	// Restore the original OS current folder
-	fileManager->PopRootPath();
-
-	if (status)
-		FUError::Error(FUError::DEBUG, FUError::DEBUG_LOAD_SUCCESSFUL);
+	if (newText != text)
+		xmlFreeFunc((void*)newText);
 
 	REQUIRE_SUCCESS(status);
 }
 
 void FColladaDocument::ReadExtras(xmlNode* colladaNode)
 {
+	// TODO: This was needed to recognise and load XSI models.
+	// XSI support should be reintroduced some time, but this function
+	// may not be necessary since FCollada might now provide access to the
+	// 'extra' data via a proper API.
+
+	/*
 	if (! IsEquivalent(colladaNode->name, DAE_COLLADA_ELEMENT))
 		return;
 
@@ -134,6 +109,7 @@ void FColladaDocument::ReadExtras(xmlNode* colladaNode)
 		xmlNode* extraNode = (*it);
 		extra->LoadFromXML(extraNode);
 	}
+	*/
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -163,6 +139,10 @@ CommonConvert::CommonConvert(const char* text, std::string& xmlErrors)
 
 	FMVector3 upAxis = m_Doc.GetDocument()->GetAsset()->GetUpAxis();
 	m_YUp = (upAxis.y != 0); // assume either Y_UP or Z_UP (TODO: does anyone ever do X_UP?)
+}
+
+CommonConvert::~CommonConvert()
+{
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -301,36 +281,35 @@ static bool ReverseSortWeight(const FCDJointWeightPair& a, const FCDJointWeightP
 
 void SkinReduceInfluences(FCDSkinController* skin, size_t maxInfluenceCount, float minimumWeight)
 {
-	FCDWeightedMatches& weightedMatches = skin->GetWeightedMatches();
-	for (FCDWeightedMatches::iterator itM = weightedMatches.begin(); itM != weightedMatches.end(); ++itM)
-	{
-		FCDJointWeightPairList& weights = (*itM);
+	// Approximately equivalent to:
+	//    skin->ReduceInfluences(maxInfluenceCount, minimumWeight);
+	// except this version merges multiple weights for the same joint
 
-		FCDJointWeightPairList newWeights;
-		for (FCDJointWeightPairList::iterator itW = weights.begin(); itW != weights.end(); ++itW)
+	for (size_t i = 0; i < skin->GetInfluenceCount(); ++i)
+	{
+		FCDSkinControllerVertex& influence = *skin->GetVertexInfluence(i);
+
+		std::vector<FCDJointWeightPair> newWeights;
+		for (size_t i = 0; i < influence.GetPairCount(); ++i)
 		{
-			// If this joint already has an influence, just add the weight
-			// instead of adding a new influence
-			bool done = false;
-			for (FCDJointWeightPairList::iterator itNW = newWeights.begin(); itNW != newWeights.end(); ++itNW)
+			FCDJointWeightPair* weight = influence.GetPair(i);
+
+			for (size_t j = 0; j < newWeights.size(); ++j)
 			{
-				if (itW->jointIndex == itNW->jointIndex)
+				FCDJointWeightPair& newWeight = newWeights[j];
+				if (weight->jointIndex == newWeight.jointIndex)
 				{
-					itNW->weight += itW->weight;
-					done = true;
-					break;
+					newWeight.weight += weight->weight;
+					goto MERGED_WEIGHTS;
 				}
 			}
 
-			if (done)
-				continue;
-
-			// Not had this joint before, so add it
-			newWeights.push_back(*itW);
+			newWeights.push_back(*weight);
+MERGED_WEIGHTS: ;
 		}
 
 		// Put highest-weighted influences at the front of the list
-		sort(newWeights.begin(), newWeights.end(), ReverseSortWeight);
+		std::sort(newWeights.begin(), newWeights.end(), ReverseSortWeight);
 
 		// Limit the maximum number of influences
 		if (newWeights.size() > maxInfluenceCount)
@@ -345,13 +324,15 @@ void SkinReduceInfluences(FCDSkinController* skin, size_t maxInfluenceCount, flo
 
 		// Renormalise, so sum(weights)=1
 		float totalWeight = 0;
-		for (FCDJointWeightPairList::iterator itNW = newWeights.begin(); itNW != newWeights.end(); ++itNW)
+		for (std::vector<FCDJointWeightPair>::iterator itNW = newWeights.begin(); itNW != newWeights.end(); ++itNW)
 			totalWeight += itNW->weight;
-		for (FCDJointWeightPairList::iterator itNW = newWeights.begin(); itNW != newWeights.end(); ++itNW)
+		for (std::vector<FCDJointWeightPair>::iterator itNW = newWeights.begin(); itNW != newWeights.end(); ++itNW)
 			itNW->weight /= totalWeight;
 
 		// Copy new weights into the skin
-		weights = newWeights;
+		influence.SetPairCount(0);
+		for (std::vector<FCDJointWeightPair>::iterator itNW = newWeights.begin(); itNW != newWeights.end(); ++itNW)
+			influence.AddPair(itNW->jointIndex, itNW->weight);
 	}
 
 	skin->SetDirtyFlag();
@@ -360,6 +341,8 @@ void SkinReduceInfluences(FCDSkinController* skin, size_t maxInfluenceCount, flo
 
 void FixSkeletonRoots(FCDControllerInstance& controllerInstance)
 {
+	// TODO: Need to reintroduce XSI support at some point
+#if 0
 	// HACK: The XSI exporter doesn't do a <skeleton> and FCollada doesn't
 	// seem to know where else to look, so just guess that it's somewhere
 	// under Scene_Root
@@ -371,6 +354,7 @@ void FixSkeletonRoots(FCDControllerInstance& controllerInstance)
 		uriList.push_back(FUUri("Scene_Root"));
 		controllerInstance.LinkImport();
 	}
+#endif
 }
 
 const Skeleton& FindSkeleton(const FCDControllerInstance& controllerInstance)
@@ -381,7 +365,7 @@ const Skeleton& FindSkeleton(const FCDControllerInstance& controllerInstance)
 
 	const Skeleton* skeleton = NULL;
 	const FCDSceneNode* joint = controllerInstance.GetJoint(0);
-	while (joint && (skeleton = Skeleton::FindSkeleton(joint->GetName())) == NULL)
+	while (joint && (skeleton = Skeleton::FindSkeleton(joint->GetName().c_str())) == NULL)
 	{
 		joint = joint->GetParent();
 	}
