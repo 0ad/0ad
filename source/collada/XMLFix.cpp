@@ -53,22 +53,21 @@ static bool applyFBXFixesNode(xmlNode* node)
 	{
 		if (child->type == XML_ELEMENT_NODE)
 		{
-			if (strcmp((const char*)child->name, "node"))
+			if (strcmp((const char*)child->name, "node") == 0)
 			{
 				if (applyFBXFixesNode(child))
 					changed = true;
-				continue;
 			}
+			else if (strcmp((const char*)child->name, "instance_geometry") == 0)
+			{
+				xmlNode* bind_material = findChildElement(child, "bind_material");
+				if (! bind_material) continue;
+				Log(LOG_INFO, "Found a bind_material to delete");
+				xmlUnlinkNode(bind_material);
+				xmlFreeNode(bind_material);
 
-			xmlNode* instance_geometry = findChildElement(child, "instance_geometry");
-			if (! instance_geometry) continue;
-			xmlNode* bind_material = findChildElement(instance_geometry, "bind_material");
-			if (! bind_material) continue;
-			Log(LOG_INFO, "Found a bind_material to delete");
-			xmlUnlinkNode(bind_material);
-			xmlFreeNode(bind_material);
-
-			changed = true;
+				changed = true;
+			}
 		}
 	}
 	return changed;
