@@ -78,7 +78,10 @@ public:
 
 	void ClearR();
 
-	void Attach(const PRealDirectory& realDirectory);
+	/**
+	 * side effect: the next ShouldPopulate() will return true.
+	 **/
+	void SetAssociatedDirectory(const PRealDirectory& realDirectory);
 
 	const PRealDirectory& AssociatedDirectory() const
 	{

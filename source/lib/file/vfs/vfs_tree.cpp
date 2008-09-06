@@ -189,14 +189,10 @@ void VfsDirectory::ClearR()
 }
 
 
-void VfsDirectory::Attach(const PRealDirectory& realDirectory)
+void VfsDirectory::SetAssociatedDirectory(const PRealDirectory& realDirectory)
 {
 	if(!cpu_CAS(&m_shouldPopulate, 0, 1))
-	{
-		debug_assert(0);	// multiple Attach() calls without an intervening ShouldPopulate()
-		return;
-	}
-
+		debug_assert(0);	// caller didn't check ShouldPopulate
 	m_realDirectory = realDirectory;
 }
 

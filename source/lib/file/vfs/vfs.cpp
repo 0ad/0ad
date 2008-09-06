@@ -19,6 +19,7 @@
 #include "lib/file/io/io.h"
 #include "vfs_tree.h"
 #include "vfs_lookup.h"
+#include "vfs_populate.h"
 #include "file_cache.h"
 
 
@@ -39,7 +40,7 @@ public:
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 		PRealDirectory realDirectory(new RealDirectory(path, priority, flags));
-		directory->Attach(realDirectory);
+		RETURN_ERR(vfs_Attach(directory, realDirectory));
 		return INFO::OK;
 	}
 
