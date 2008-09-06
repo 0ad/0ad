@@ -191,7 +191,7 @@ static inline i64 SignExtend(u64 bits, size_t size_bytes)
 	// no point in sign-extending if >= 8 bytes were requested
 	if(size_bytes < 8)
 	{
-		const u64 sign_bit = BIT64((size_bytes*8)-1);
+		const u64 sign_bit = Bit<u64>((size_bytes*8)-1);
 
 		// number would be negative in the smaller type,
 		// so sign-extend, i.e. set all more significant bits.

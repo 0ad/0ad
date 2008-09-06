@@ -106,7 +106,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		case SDL_BUTTON_LEFT:
 		case SDL_BUTTON_RIGHT:
 		case SDL_BUTTON_MIDDLE:
-			m_MouseButtons |= BIT(ev->ev.button.button);
+			m_MouseButtons |= Bit<unsigned int>(ev->ev.button.button);
 			break;
 		default:
 			break;
@@ -280,7 +280,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		case SDL_BUTTON_LEFT:
 		case SDL_BUTTON_RIGHT:
 		case SDL_BUTTON_MIDDLE:
-			m_MouseButtons &= ~BIT(ev->ev.button.button);
+			m_MouseButtons &= ~Bit<unsigned int>(ev->ev.button.button);
 			break;
 		default:
 			break;

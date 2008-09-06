@@ -12,7 +12,7 @@ class CEntity;
 class CSkeletonAnim;
 class CUnitAnimation;
 
-// note: we can't declare as static const size_t invalidId = size_t(~0) in
+// note: we can't declare as static const size_t invalidId = ~size_t(0) in
 // the class because it seems to be a grey area in the C++ standard whether
 // or not the constant is propagated or needs an external definition.
 // an enum causes conversion warnings in MSC, so we go with a file-scope

@@ -114,7 +114,7 @@ bool x86_x64_cap(x86_x64_Cap cap)
 		DEBUG_WARN_ERR(ERR::INVALID_PARAM);
 		return false;
 	}
-	return (x86_x64_caps[tbl_idx] & BIT(bit_idx)) != 0;
+	return (x86_x64_caps[tbl_idx] & Bit<u32>(bit_idx)) != 0;
 }
 
 

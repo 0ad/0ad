@@ -12,23 +12,33 @@
 #define INCLUDED_BITS
 
 /**
- * value of bit number <n> as unsigned long.
+ * value of bit number <n>.
  *
- * @param n bit index (0..CHAR_BIT*sizeof(int)-1)
+ * @param n bit index.
+ *
+ * requirements:
+ * - T should be an unsigned type
+ * - n must be in [0, CHAR_BIT*sizeof(T)), else the result is undefined!
  **/
-#define BIT(n) (1ul << (n))
+template<typename T>
+T Bit(size_t n)
+{
+	const T one = T(1);
+	return (one << n);
+}
 
 /**
- * value of bit number <n> as unsigned long long.
- *
- * @param n bit index (0..CHAR_BIT*sizeof(int)-1)
+ * pretty much the same as Bit<unsigned>.
+ * this is intended for the initialization of enum values, where a
+ * compile-time constant is required.
  **/
-#define BIT64(n) (1ull << (n))
+#define BIT(n) (1u << (n))
+
 
 template<typename T>
 bool IsBitSet(T value, size_t index)
 {
-	const T bit = T(1) << index;
+	const T bit = Bit<T>(index);
 	return (value & bit) != 0;
 }
 
@@ -51,7 +61,7 @@ T bit_mask(size_t numBits)
 	// note: the perhaps more intuitive (1 << numBits)-1 cannot
 	// handle numBits == bitsInT, but this implementation does.
 	const T bitsInT = sizeof(T)*CHAR_BIT;
-	T mask = T(~0);
+	T mask = ~T(0);
 	mask >>= T(bitsInT-numBits);
 	return mask;
 }

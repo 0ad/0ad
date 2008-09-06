@@ -126,7 +126,7 @@ public:
 	void StopPropagation( JSContext* cx, uintN argc, jsval* argv );
 
 public:
-	CScriptEvent( const CStrW& Type, size_t TypeCode = ~0, bool Cancelable = true, bool Blockable = true );
+	CScriptEvent( const CStrW& Type, size_t TypeCode = ~size_t(0), bool Cancelable = true, bool Blockable = true );
 	static void ScriptingInit();
 };
 

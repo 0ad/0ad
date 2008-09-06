@@ -27,7 +27,7 @@ struct FADT
 };
 #pragma pack(pop)
 
-static const u32 TMR_VAL_EXT = BIT(8);
+static const u32 TMR_VAL_EXT = Bit<u32>(8);
 
 //-----------------------------------------------------------------------------
 

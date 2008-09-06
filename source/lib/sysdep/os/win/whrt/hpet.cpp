@@ -44,9 +44,9 @@ struct CounterHPET::HpetRegisters
 
 #pragma pack(pop)
 
-static const u64 CAP_SIZE64 = BIT64(13);
+static const u64 CAP_SIZE64 = Bit<u64>(13);
 
-static const u64 CONFIG_ENABLE = BIT64(0);
+static const u64 CONFIG_ENABLE = Bit<u64>(0);
 
 
 //-----------------------------------------------------------------------------
@@ -78,7 +78,10 @@ LibError CounterHPET::Activate()
 void CounterHPET::Shutdown()
 {
 	if(m_hpetRegisters)
+	{
 		mahaf_UnmapPhysicalMemory((void*)m_hpetRegisters);
+		m_hpetRegisters = 0;
+	}
 
 	acpi_Shutdown();
 	mahaf_Shutdown();
@@ -119,6 +122,7 @@ double CounterHPET::NominalFrequency() const
 {
 	const u64 caps = m_hpetRegisters->capabilities;
 	const u32 timerPeriod_fs = (u32)bits(caps, 32, 63);
+	debug_assert(timerPeriod_fs != 0);	// guaranteed by HPET spec
 	const double frequency = 1e15 / timerPeriod_fs;
 	return frequency;
 }

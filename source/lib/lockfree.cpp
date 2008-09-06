@@ -361,7 +361,7 @@ struct ListPos
 static inline bool is_marked_as_deleted(Node* p)
 {
 	const uintptr_t u = (uintptr_t)p;
-	return (u & BIT(0)) != 0;
+	return (u & Bit<uintptr_t>(0)) != 0;
 }
 
 static inline Node* with_mark(Node* p)

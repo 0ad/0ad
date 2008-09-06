@@ -243,8 +243,8 @@ static unsigned __stdcall UpdateThread(void* UNUSED(data))
 static inline LibError InitUpdateThread()
 {
 	// make sure our interval isn't too long
-	// (counterBits can be 64 => BIT64 would overflow => calculate period/2)
-	const double period_2 = BIT64(counterBits-1) / nominalFrequency;
+	// (counterBits can be 64 => Bit() would overflow => calculate period/2)
+	const double period_2 = Bit<u64>(counterBits-1) / nominalFrequency;
 	const size_t rolloversPerInterval = UPDATE_INTERVAL_MS / cpu_i64FromDouble(period_2*2.0*1000.0);
 	debug_assert(rolloversPerInterval <= 1);
 

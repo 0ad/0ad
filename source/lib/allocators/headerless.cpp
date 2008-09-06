@@ -273,7 +273,7 @@ public:
 		const size_t sizeClass = SizeClass(freedBlock->Size());
 		m_rangeLists[sizeClass].Insert<AddressOrder>(freedBlock);
 
-		m_bitmap |= BIT(sizeClass);
+		m_bitmap |= Bit<u32>(sizeClass);
 	}
 
 	/**
@@ -298,7 +298,7 @@ public:
 
 		// apparently all classes above minSizeClass are empty,
 		// or the above would have succeeded.
-		debug_assert(m_bitmap < BIT(minSizeClass+1));
+		debug_assert(m_bitmap < Bit<u32>(minSizeClass+1));
 		return 0;
 	}
 
@@ -309,7 +309,7 @@ public:
 
 		// (masking with !IsEmpty() << sizeClass would probably be faster)
 		if(m_rangeLists[sizeClass].IsEmpty())
-			m_bitmap &= ~BIT(sizeClass);
+			m_bitmap &= ~Bit<u32>(sizeClass);
 	}
 
 	void Validate(u32 id) const
@@ -319,7 +319,7 @@ public:
 			m_rangeLists[i].Validate(id);
 
 			// both bitmap and list must agree on whether they are empty
-			debug_assert(((m_bitmap & BIT(i)) == 0) == m_rangeLists[i].IsEmpty());
+			debug_assert(((m_bitmap & Bit<u32>(i)) == 0) == m_rangeLists[i].IsEmpty());
 		}
 	}
 
