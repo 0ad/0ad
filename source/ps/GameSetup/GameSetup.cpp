@@ -557,7 +557,8 @@ static void InitVfs(const CmdLineArgs& args)
 	g_VFS->Mount("cache/", "cache", VFS_MOUNT_ARCHIVABLE);
 
 	std::vector<CStr> mods = args.GetMultiple("mod");
-	if (mods.empty())
+	mods.push_back("public");
+	if(!args.Has("onlyPublicFiles"))
 		mods.push_back("official");
 
 	for (size_t i = 0; i < mods.size(); ++i)

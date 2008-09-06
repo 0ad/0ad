@@ -44,7 +44,7 @@ static bool IsDummyDirectory(const char* name)
 	errno = 0;
 	DIR* pDir = opendir(path.external_file_string().c_str());
 	if(!pDir)
-		return LibError_from_errno();
+		return LibError_from_errno(false);
 	shared_ptr<DIR> osDir(pDir, DirDeleter());
 
 	for(;;)

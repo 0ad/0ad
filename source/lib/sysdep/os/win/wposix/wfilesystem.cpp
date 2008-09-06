@@ -243,8 +243,6 @@ DIR* opendir(const char* path)
 	if(!is_normal_dir(path))
 	{
 		errno = ENOENT;
-fail:
-		debug_assert(0);
 		return 0;
 	}
 
@@ -252,7 +250,7 @@ fail:
 	if(!d)
 	{
 		errno = ENOMEM;
-		goto fail;
+		return 0;
 	}
 
 	// build search path for FindFirstFile. note: "path\\dir" only returns
@@ -269,7 +267,7 @@ fail:
 	{
 		// not an error - the directory is just empty.
 		if(GetLastError() == ERROR_NO_MORE_FILES)
-			goto success;
+			return d;
 
 		// translate Win32 error to errno.
 		LibError err = LibError_from_win32(FALSE);
@@ -280,10 +278,9 @@ fail:
 		// d before FindFirstFile because it uses d->fd. copying from a
 		// temporary isn't nice either (this free doesn't happen often)
 		wdir_free(d);
-		goto fail;
+		return 0;
 	}
 
-success:
 	return d;
 }
 
