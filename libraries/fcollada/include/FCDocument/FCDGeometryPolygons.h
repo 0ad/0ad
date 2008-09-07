@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -11,7 +14,7 @@
 
 /**
 	@file FCDGeometryPolygons.h
-	This file defines the FCDGeometryPolygons and the FCDGeometryPolygonsInput classes.
+	This file defines the FCDGeometryPolygons class.
 */
 
 #ifndef _FCD_GEOMETRY_POLYGONS_H_
@@ -23,17 +26,19 @@
 #ifndef _FU_DAE_ENUM_H_
 #include "FUtils/FUDaeEnum.h"
 #endif // _FU_DAE_ENUM_H_
+#ifndef _FU_PARAMETER_H_
+#include "FUtils/FUParameter.h"
+#endif // _FU_PARAMETER_H_
 
 class FCDocument;
-class FRMeshPolygons;
+class FCDExtra;
 class FCDMaterial;
 class FCDGeometryMesh;
 class FCDGeometrySource;
 class FCDGeometryPolygonsInput;
+
 typedef fm::pvector<FCDGeometryPolygonsInput> FCDGeometryPolygonsInputList; /**< A dynamically-sized array of FCDGeometryPolygonsInput objects. */
 typedef fm::pvector<const FCDGeometryPolygonsInput> FCDGeometryPolygonsInputConstList; /**< A dynamically-sized array of FCDGeometryPolygonsInput objects. */
-typedef FUObjectList<FCDGeometryPolygonsInput> FCDGeometryPolygonsInputTrackList; /**< A dynamically-sized containment array of tracked FCDGeometryPolygonsInput objects. */
-typedef FUObjectContainer<FCDGeometryPolygonsInput> FCDGeometryPolygonsInputContainer; /**< A dynamically-sized containment array for FCDGeometryPolygonsInput objects. */
 typedef fm::map<const FCDGeometrySource*, FCDGeometrySource*> FCDGeometrySourceCloneMap; /**< A map of old FCDGeometrySource objects to newly cloned FCDGeometrySource objects. */
 
 /**
@@ -49,25 +54,52 @@ typedef fm::map<const FCDGeometrySource*, FCDGeometrySource*> FCDGeometrySourceC
 class FCOLLADA_EXPORT FCDGeometryPolygons : public FCDObject
 {
 public:
-	enum PrimitiveType { LINES, LINE_STRIPS, POLYGONS, TRIANGLE_FANS, TRIANGLE_STRIPS };
+	/** The types of primitives. */
+	enum PrimitiveType
+	{
+		LINES, /**< A list of lines. Only one element is contained in the face-vertex count list.
+			It represents the total number of line vertices. The total number of lines is
+			equal to half the total number of line vertices. */
+		LINE_STRIPS, /**< A list of continuous lines. Each element in the face-vertex count list
+			represents the number of consecutive line vertices before restarting. */
+		POLYGONS, /**< A list of polygons. All the polygons may be triangles.
+			This is the most common primitive type. The polygons may have holes. Each element in the
+			face-vertex count list represent the number of vertices for one polygon. */
+		TRIANGLE_FANS, /**< A list of triangle fans. Each element in the face-vertex count list
+			represents the number of vertices for one fan. A triangle fan is defined by re-using the first
+			vertex for every triangle. Advancing pairs are then used in order to generate adjacent triangles
+			such that if there are 5 vertices, then 3 triangles are created: {0,1,2}, {0,2,3} and {0,3,4}. */
+		TRIANGLE_STRIPS, /**< A list of continuous triangles. Each element in the face-vertex count list
+			represents the number of vertices for one strip. A triangle strip is defined by re-using two
+			advancing vertices from the previous triangle for the next triangle. If there are 5 vertices in 
+			the strip, then 3 triangles are created: {0,1,2}, {1,2,3}, {2,3,4}. Note that vertex winding must
+			also be taken into consideration and every even triangle in the strip has its vertices swapped
+			from the above pattern. */
+		POINTS /**< A list of Camera-facing sprites. The face-vertex count list will contain one element that 
+			represents the total number of points. Two non-COLLADA geometry sources (POINT_SIZE and POINT_ROTATION)
+			are specific to this type. */
+	};
 
 private:
 	DeclareObjectType(FCDObject);
-protected:
-	FCDGeometryPolygonsInputContainer inputs;
-	FCDGeometryPolygonsInputTrackList idxOwners;
-	UInt32List faceVertexCounts;
+
 	FCDGeometryMesh* parent;
-	size_t faceVertexCount;
-	UInt32List holeFaces;
+	DeclareParameterContainer(FCDGeometryPolygonsInput, inputs, FC("Data Inputs"));
+	DeclareParameterList(UInt32, faceVertexCounts, FC("Per-face Vertex counts"));
+	DeclareParameterList(UInt32, holeFaces, FC("Hole face indices"));
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, primitiveType, FC("Primitive Type")); // PrimitiveType
 
 	// Buffered statistics
+	size_t faceVertexCount;
 	size_t faceOffset;
 	size_t faceVertexOffset;
 	size_t holeOffset;
 
 	// Material for this set of polygons
-	fstring materialSemantic;
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, materialSemantic, FC("Material Semantic"));
+
+	// Extra information tree
+	DeclareParameterRef(FCDExtra, extra, FC("Extra Tree"));
 
 public:
 	/** Constructor: do not use directly. Instead, use the FCDGeometryMesh::AddPolygons function
@@ -84,6 +116,24 @@ public:
 	inline FCDGeometryMesh* GetParent() { return parent; }
 	inline const FCDGeometryMesh* GetParent() const { return parent; } /**< See above. */
 
+	/** Retrieves the extra information tree for this entity instance. The 
+		prefered way to save extra information in FCollada is at the entity 
+		level. Use this extra information tree to store any information you 
+		want exported and imported back.
+		@return The extra information tree. */
+	FCDExtra* GetExtra();
+	inline const FCDExtra* GetExtra() const { return const_cast<FCDGeometryPolygons*>(this)->GetExtra(); } /**< See above. */
+
+	/** Retrieves the primitive type for this polygons set.
+		@return The primitive type. */
+	inline PrimitiveType GetPrimitiveType() const { return (PrimitiveType) *primitiveType; }
+
+	/** Sets the primitive type for this polygons set.
+		Important note: no attempt is made at fixing up the indices. You should
+		only do this operation of empty polygons set.
+		@param type The new primitive type. */
+	inline void SetPrimitiveType(PrimitiveType type) { primitiveType = type; SetDirtyFlag(); }
+
 	/** Retrieves the list of face-vertex counts. Each face within the polygon set
 		has one or more entry within this list, depending on the number of holes within that face.
 		Each face-vertex count indicates the number of ordered indices
@@ -93,16 +143,35 @@ public:
 		Indirectly, the face-vertex count indicates the degree of the polygon.
 		@see GetHoleFaces @see GetHoleCount
 		@return The list of face-vertex counts.*/
-	inline UInt32List& GetFaceVertexCounts() { return faceVertexCounts; }
-	inline const UInt32List& GetFaceVertexCounts() const { return faceVertexCounts; } /**< See above. */
+	inline const uint32* GetFaceVertexCounts() const { return faceVertexCounts.begin(); } /**< See above. */
 
-	/** Retrieves the type of primitives contained in the geometry. */
-	inline virtual PrimitiveType GetType() const { return POLYGONS; }
+	/** Adds a new count to the face-vertex count list.
+		This function only modifies the face-vertex count list.
+		To also add indices to the inputs for the new face, use the AddFace function.
+		@param count The number of vertices in the new face. */
+	void AddFaceVertexCount(uint32 count);
 
-	/** Retrieves if the polygons is a list of polygons (returns false), or a list of triangles
+	/** Retrieves the number of face-vertex counts within the polygon set.
+		This value also represents the total the number of faces and holes within the polygon set.
+		@return The number of face-vertex counts within the polygon set. */
+	inline size_t GetFaceVertexCountCount() const { return faceVertexCounts.size(); }
+
+	/** Sets the number of face-vertex counts within the polygon set.
+		Any additional face-vertex count will not be initialized and
+		any removed face-vertex count will not remove the equivalent
+		indices within the polygon set inputs.
+		@param count The new number of face-vertex counts within the polygon set. */
+	void SetFaceVertexCountCount(size_t count);
+
+	/** [DEPRECATED]
+		Retrieves if the polygons is a list of polygons (returns false), or a list of triangles
 		(returns true).
 		@return The boolean answer. */
-	bool IsTriangles() const;
+	DEPRECATED(3.05, TestPolyType) bool IsTriangles() const;
+
+	/** Tests if the polygon can be aproximated with a constant face count
+		Returns: 3 if all faces are triangles, 4 if all faces are triangles, else -1 */
+	int32 TestPolyType() const;
 
 	/** Retrieves the number of holes within the faces of the polygon set.
 		@return The number of holes within the faces of the polygon set. */
@@ -168,7 +237,7 @@ public:
 			that will be expected, in order, within each of the input index lists. */
 	virtual void AddFace(uint32 degree);
 
-	/** Removes a face
+	/** Removes a face.
 		@param index The index of the face to remove. All the indices associated
 			with this face will also be removed. */
 	virtual void RemoveFace(size_t index);
@@ -176,8 +245,7 @@ public:
 	/** Retrieves the list of polygon set inputs.
 		@see FCDGeometryPolygonsInput
 		@return The list of polygon set inputs. */
-	inline FCDGeometryPolygonsInputContainer& GetInputs() { return inputs; }
-	inline const FCDGeometryPolygonsInputContainer& GetInputs() const { return inputs; } /**< See above. */
+	DEPRECATED(3.05A, GetInputCount and GetInput(index)) void GetInputs() {}
 
 	/** Retrieves the number of polygon set inputs.
 		@return The number of polygon set inputs. */
@@ -199,20 +267,34 @@ public:
 		@return The new polygon set input. */
 	FCDGeometryPolygonsInput* AddInput(FCDGeometrySource* source, uint32 offset);
 
-	/** [INTERNAL] Removes a polygon set input.
-		This function does NOT release the memory held by the polygon set input.
-		It is useful because it moves the indices to another polygon set input with
-		the same offset, if the offset is re-used.
-		@param input The polygon set input to remove. */
-	void RemoveInput(FCDGeometryPolygonsInput* input);
+	/** Retrieves the number of hole entries within the face-vertex count list.
+		@return The number of hole entries within the face-vertex count list. */
+	inline size_t GetHoleFaceCount() const { return holeFaces.size(); }
+
+	/** Sets the number of hole entries within the face-vertex count list.
+		Any additional hole entries will need to be initialized by the application.
+		Reducing the number of hole entries without taking special care to remove
+		these entries from the face-vertex count list will result in new, unwanted, faces.
+		@param count The number of hole entries within the face-vertex count list. */
+	void SetHoleFaceCount(size_t count);
+
+	/** Checks whether a given face-vertex count entries represents a hole.
+		@param index The index of the face-vertex count entry.
+		@return Whether this face-vertex count entry is a hole. */
+	bool IsHoleFaceHole(size_t index);
 
 	/** Retrieves the list of entries within the face-vertex count list
 		that are considered holes. COLLADA does not support holes within holes,
 		so each entry within this list implies a hole within the previous face.
 		@see GetFaceVertexCounts
 		@return The list of hole entries within the face-vertex counts. */
-	inline UInt32List& GetHoleFaces() { return holeFaces; }
-	inline const UInt32List& GetHoleFaces() const { return holeFaces; } /**< See above. */
+	inline const uint32* GetHoleFaces() const { return holeFaces.begin(); } /**< See above. */
+
+	/** Adds a new hole identifier.
+		The face-vertex count entry should already exist and the identifier will be place
+		in increasing order within the current list of entries within the face-vertex count list.
+		@param index The index of the hole within the face-vertex count list. */
+	void AddHole(uint32 index);
 
 	/** Retrieves the number of holes within faces of the polygon set that appear
 		before the given face index. This value is useful when trying to access
@@ -232,14 +314,14 @@ public:
 		@param semantic A type of geometry data.
 		@return The polygon set input. This pointer will be NULL if 
 			no polygon set input matches the data type. */
-	FCDGeometryPolygonsInput* FindInput(FUDaeGeometryInput::Semantic semantic);
+	FCDGeometryPolygonsInput* FindInput(FUDaeGeometryInput::Semantic semantic) { return const_cast<FCDGeometryPolygonsInput*>(const_cast<const FCDGeometryPolygons*>(this)->FindInput(semantic)); }
 	const FCDGeometryPolygonsInput* FindInput(FUDaeGeometryInput::Semantic semantic) const; /**< See above. */
 
 	/** Retrieves the polygon set input that points towards a given data source.
 		@param source A geometry data source.
 		@return The polygon set input. This pointer will be NULL if
 			no polygon set input matches the data source. */
-	FCDGeometryPolygonsInput* FindInput(const FCDGeometrySource* source);
+	FCDGeometryPolygonsInput* FindInput(const FCDGeometrySource* source) { return const_cast<FCDGeometryPolygonsInput*>(const_cast<const FCDGeometryPolygons*>(this)->FindInput(source)); }
 	const FCDGeometryPolygonsInput* FindInput(const FCDGeometrySource* source) const; /**< See above. */
 
 	/** [INTERNAL] Retrieves the polygon set input that points towards a given data source.
@@ -255,28 +337,6 @@ public:
 	inline void FindInputs(FUDaeGeometryInput::Semantic semantic, FCDGeometryPolygonsInputList& inputs) { const_cast<FCDGeometryPolygons*>(this)->FindInputs(semantic, *(FCDGeometryPolygonsInputConstList*)&inputs); }
 	void FindInputs(FUDaeGeometryInput::Semantic semantic, FCDGeometryPolygonsInputConstList& inputs) const; /**< See above. */
 
-	/** Retrieves the tessellation indices for a given polygon set input offset.
-		@deprecated Instead, use the FindIndices function.
-		@param idx A polygon set input offset.
-		@return The tessellation indices corresponding to the offset. This pointer
-			will be NULL if there are no polygon set input which uses the given offset. */
-	inline UInt32List* FindIndicesForIdx(uint32 idx) { return const_cast<UInt32List*>(const_cast<const FCDGeometryPolygons*>(this)->FindIndicesForIdx(idx)); }
-	const UInt32List* FindIndicesForIdx(uint32 idx) const; /**< See above. */
-
-	/** Retrieves the first tessellation index list for a given data source.
-		@param source A data source.
-		@return The first tessellation index list corresponding to the data source. This pointer
-			will be NULL if the data source is not used within this polygon set. */
-	inline UInt32List* FindIndices(FCDGeometrySource* source) { return const_cast<UInt32List*>(const_cast<const FCDGeometryPolygons*>(this)->FindIndices(source)); }
-	const UInt32List* FindIndices(const FCDGeometrySource* source) const; /**< See above. */
-
-	/** Retrieves the tessellation indices for a given polygon set input.
-		@param input A given polygon set input.
-		@return The tessellation indices corresponding to the polygon set input. This pointer
-			will be NULL if the polygon set input is not used within this polygon set. */
-	inline UInt32List* FindIndices(FCDGeometryPolygonsInput* input) { return const_cast<UInt32List*>(const_cast<const FCDGeometryPolygons*>(this)->FindIndices(input)); }
-	const UInt32List* FindIndices(const FCDGeometryPolygonsInput* input) const; /**< See above. */
-
 	/** Retrieves the symbolic name for the material used on this polygon set.
 		Match this symbolic name within a FCDGeometryInstance to get the
 		correct material instance.
@@ -284,8 +344,8 @@ public:
 	inline const fstring& GetMaterialSemantic() const { return materialSemantic; }
 
 	/** Sets a symbolic name for the material used on this polygon set.
-		This symbolic name will be matched within a FCDGeometryInstance to assign
-		the correct material.
+		This symbolic name will be matched in the FCDMaterialInstance contained within 
+		a FCDGeometryInstance to assign the correct material.
 		@param semantic The symbolic material name. */
 	inline void SetMaterialSemantic(const fchar* semantic) { materialSemantic = semantic; SetDirtyFlag(); }
 	inline void SetMaterialSemantic(const fstring& semantic) { materialSemantic = semantic; SetDirtyFlag(); } /**< See above. */
@@ -293,115 +353,12 @@ public:
 	/** [INTERNAL] Recalculates the buffered offset and count values for this polygon set. */
 	virtual void Recalculate();
 
-	/** [INTERNAL] Reads in the polygon set element from a given COLLADA XML tree node.
-		COLLADA has multiple polygon set elements. The most common ones are \<triangles\> and \<polylist\>.
-		@param polygonNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the polygon set.*/
-	virtual bool LoadFromXML(xmlNode* polygonNode);
-
-	/** [INTERNAL] Writes out the correct polygon set element to the given COLLADA XML tree node.
-		COLLADA has multiple polygon set elements. The most common ones are \<triangles\> and \<polylist\>.
-		@param parentNode The COLLADA XML parent node in which to insert the geometric mesh.
-		@return The created XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
-
 	/** [INTERNAL] Creates a copy of this mesh.
 		You should use the FCDGeometry::Clone function instead of this function.
 		@param clone The clone polygon set.
 		@param cloneMap A match-map of the original geometry sources to the clone geometry sources for the mesh.
 		@return The clone polygon set. */
 	virtual FCDGeometryPolygons* Clone(FCDGeometryPolygons* clone, const FCDGeometrySourceCloneMap& cloneMap) const;
-
-private:
-	// Performs operations needed before tessellation
-	bool InitTessellation(xmlNode* itNode, 
-		uint32* localFaceVertexCount, UInt32List& allIndices, 
-		const char* content, xmlNode*& holeNode, uint32 idxCount, 
-		bool* failed);
-};
-
-/**
-	An input data source for one mesh polygons set.
-	This structure knows the type of input data in the data source
-	as well as the set and offset for the data. It also contains a
-	pointer to the mesh data source.
-
-	Many polygon set inputs may have the same offset (or 'idx') when multiple
-	data sources are compressed together within the COLLADA document.
-	In this case, one and only one of the polygon set input will have
-	the 'ownsIdx' flag set. A polygon set input with this flag set will
-	contain valid indices. To find the indices of any polygon set input,
-	it is recommended that you use the FCDGeometryPolygons::FindIndicesForIdx function.
-
-	@ingroup FCDGeometry
-*/
-class FCDGeometryPolygonsInput : public FUObject, FUObjectTracker
-{
-private:
-	DeclareObjectType(FUObject);
-
-	FCDGeometryPolygons* parent;
-	FCDGeometrySource* source;
-	int32 set;
-
-public:
-	/** Constructor.
-		@param parent The polygons sets that contains the input. */
-    FCDGeometryPolygonsInput(FCDGeometryPolygons* parent);
-
-	/** Destructor. */
-	~FCDGeometryPolygonsInput();
-
-	/** Retrieves the type of data to input.
-		FCollada doesn't support data sources which are interpreted
-		differently depending on the input. Therefore, this information
-		is retrieved from the source.
-		@return The source data type. */
-	FUDaeGeometryInput::Semantic GetSemantic() const; 
-
-	/** Offset within the COLLADA document for this input.
-		All the inputs with the same offset value use the same indices within the COLLADA document. */
-	uint32 idx; 
-
-	/** Retrieves the data source references by this polygon set input.
-		This is the data source into which the indices are indexing.
-		You need to take the data source stride into consideration
-		when un-indexing the data.
-		@return The data source. */
-	FCDGeometrySource* GetSource() { return source; }
-	const FCDGeometrySource* GetSource() const { return source; } /**< See above. */
-
-	/** Sets the data source referenced by this polygon set input.
-		@param source The data source referenced by the input indices. */
-	void SetSource(FCDGeometrySource* source);
-
-	/** Retrieves the input set.
-		The input set is used to group together the texture coordinates with the texture tangents and binormals.
-		In ColladaMax, this value should also represent the map channel index for texture coordinates
-		and vertex color channels.
-		@return The input set. */
-	inline int32 GetSet() const { return set; }
-
-	/** Sets the input set.
-		The input set is used to group together the texture coordinates with the texture tangents and binormals.
-		In ColladaMax, this value should also represent the map channel index for texture coordinates
-		and vertex color channels.
-		@param _set The new input set. If the given value is -1, this input does not belong to any set.*/
-	void SetSet(int32 _set) { set = _set; }
-	
-	/** [INTERNAL] Offset owner flags. One and only one polygon set input will have this flag set for each offset value.
-		A polygon set input with this flag set will contain valid indices within the 'indices' member variable.
-		You should not set or access this flag directly. Instead, use the FCDGeometryPolygons::FindIndicesForIdx function. */
-	bool ownsIdx;
-
-	/** [INTERNAL] Tessellation indices. Use these indices to generate a list of unique vertices and generate your vertex buffers.
-		You should not set or access the indices directly. Instead, use the FCDGeometryPolygons::FindIndicesForIdx function. */
-	UInt32List indices;
-
-private:
-	// FUObjectTracker interface.
-	virtual void OnObjectReleased(FUObject* object);
 };
 
 #endif // _FCD_GEOMETRY_POLYGONS_H_

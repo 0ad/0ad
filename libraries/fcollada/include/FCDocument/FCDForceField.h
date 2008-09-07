@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 #ifndef _FCD_FORCE_FIELD_H_
@@ -9,8 +12,10 @@
 class FCDocument;
 class FCDExtra;
 class FCDForce;
-#include "FCDocument/FCDForceTyped.h"
 
+#ifndef _FCD_FORCE_TYPED_H_
+#include "FCDocument/FCDForceTyped.h"
+#endif // _FCD_FORCE_TYPED_H_
 #ifndef _FCD_ENTITY_H_
 #include "FCDocument/FCDEntity.h"
 #endif // _FCD_ENTITY_H_
@@ -25,12 +30,11 @@ class FCDForce;
 	@ingroup FCDocument
 */
 
-class FCDForceField : public FCDEntity
+class FCOLLADA_EXPORT FCDForceField : public FCDEntity
 {
 private:
 	DeclareObjectType(FCDEntity);
-	FUObjectRef<FCDExtra> information;
-
+	DeclareParameterRef(FCDExtra, information, FC("Information"));
 
 public:
 	/** Constructor.
@@ -40,11 +44,14 @@ public:
 	/** Destructor. */
 	virtual ~FCDForceField();
 
-
 	/** Retrieves the extra tree for all the force field information.
 		@return The extra tree. */
-	inline FCDExtra* GetInformation() { return information; }
-	inline const FCDExtra* GetInformation() const { return information; } /**< See above. */
+	inline FCDExtra* GetInformation() { return const_cast<FCDExtra*>(const_cast<const FCDForceField*>(this)->GetInformation()); }
+	const FCDExtra* GetInformation() const;
+
+	/** [INTERNAL] Set the information.
+		@param info The new information to set. */
+	inline void SetInformation(FCDExtra* info){ information = info; }
 
 	/** Retrieves the entity class type.
 		@return The entity class type: FORCE_FIELD */
@@ -57,17 +64,6 @@ public:
 		@param cloneChildren Whether to recursively clone this entity's children.
 		@return The clone. */
 	virtual FCDEntity* Clone(FCDEntity* clone = NULL, bool cloneChildren = false) const;
-
-	/** [INTERNAL] Reads in the force field from a given COLLADA XML tree node.
-		@param node The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the force field.*/
-	virtual bool LoadFromXML(xmlNode* node);
-
-	/** [INTERNAL] Writes out the force field to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the geometry information.
-		@return The created \<force_field\> element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_FORCE_FIELD_H_

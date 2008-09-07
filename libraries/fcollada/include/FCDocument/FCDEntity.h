@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -17,16 +20,19 @@
 #ifndef _FCD_ENTITY_H_
 #define _FCD_ENTITY_H_
 
-#ifndef __FCD_OBJECT_H_
-#include "FCDocument/FCDObject.h"
-#endif // __FCD_OBJECT_H_
+#ifndef __FCD_OBJECT_WITH_ID_H_
+#include "FCDocument/FCDObjectWithId.h"
+#endif // __FCD_OBJECT_WITH_ID_H_
+#ifndef _FU_PARAMETER_H_
+#include "FUtils/FUParameter.h"
+#endif // _FU_PARAMETER_H_
 
 class FCDocument;
 class FCDAsset;
 class FCDExtra;
 
-typedef fm::pvector<FCDAsset> FCDAssetList;
-typedef fm::pvector<const FCDAsset> FCDAssetConstList;
+typedef fm::pvector<FCDAsset> FCDAssetList; /**< A dynamically-sized array of asset tags. */
+typedef fm::pvector<const FCDAsset> FCDAssetConstList; /**< A dynamically-sized array of asset tags. */
 
 /**
 	A COLLADA entity.
@@ -71,23 +77,16 @@ public:
 		PHYSICS_SCENE_NODE, /**< A physics scene node (FCDPhysicsScene). */
 		FORCE_FIELD, /**< A physics force field (FCDForceField). */
 		EMITTER, /**< A generic emitter for sound and particles (FCDEmitter) - Premium feature. */
+		TYPE_COUNT
 	};
 
 private:
 	DeclareObjectType(FCDObjectWithId);
-	fstring name;
 
-	// Extra information for the entity.
-	FUObjectRef<FCDExtra> extra;
-
-	// Asset information for the entity.
-	FUObjectRef<FCDAsset> asset;
-
-	// Maya and Max both support custom strings for objects.
-	fstring note;
-
-	// Deprecated ColladaMaya post-processing information.
-	StringList postCmds;
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, name, FC("Name"));
+	DeclareParameterRef(FCDExtra, extra, FC("Extra Tree"));
+	DeclareParameterRef(FCDAsset, asset, FC("Asset Tag"));
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, note, FC("Note")); // Maya and Max both support custom strings for objects.
 
 public:
 	/** Constructor: do not use directly.
@@ -145,19 +144,19 @@ public:
 		This value is a simpler way, than the extra tree, to store
 		user-defined information that does not belong in COLLADA.
 		@return Whether the entity has an user-defined note. */
-	bool HasNote() const { return !note.empty(); }
+	bool HasNote() const;
 
 	/** Retrieves the user-defined note for this entity.
 		This value is a simpler way, than the extra tree, to store
 		user-defined information that does not belong in COLLADA.
 		@return The user-defined note. */
-	const fstring& GetNote() const { return note; }
+	const fstring& GetNote() const;
 
 	/** Sets the user-defined note for this entity.
 		This value is a simpler way, than the extra tree, to store
 		user-defined information that does not belong in COLLADA.
 		@param _note The user-defined note. */
-	void SetNote(const fstring& _note) { note = _note; SetDirtyFlag(); }
+	void SetNote(const fstring& _note);
 
 	/** Retrieves the child entity that has the given COLLADA id.
 		This function is only useful for entities that are hierarchical:
@@ -165,7 +164,8 @@ public:
 		@param daeId A COLLADA id.
 		@return The child entity with the given id. This pointer will be NULL
 			if no child entity matches the given id. */
-	virtual FCDEntity* FindDaeId(const fm::string& daeId);
+	virtual FCDEntity* FindDaeId(const fm::string& daeId) { return const_cast<FCDEntity*>(const_cast<const FCDEntity*>(this)->FindDaeId(daeId)); }
+	virtual const FCDEntity* FindDaeId(const fm::string& daeId) const; /**< See above. */
 
 	/** Copies the entity information into a clone.
 		All the overwriting functions of this function should call this function
@@ -178,36 +178,10 @@ public:
 		@return The clone. */
 	virtual FCDEntity* Clone(FCDEntity* clone = NULL, bool cloneChildren = false) const;
 
-	/** [INTERNAL] Reads in the entity from a given COLLADA XML tree node.
-		This function should be overwritten by all up-classes.
-		@param entityNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the entity.*/
-	virtual bool LoadFromXML(xmlNode* entityNode);
-
-	/** [INTERNAL] Writes out the entity to the given COLLADA XML tree node.
-		This function should be overwritten by all up-classes.
-		@param parentNode The COLLADA XML parent node in which to insert the entity.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-protected:
-	/** [INTERNAL] Writes out the top entity XML node for the entity.
-		This function should be used by all up-classes within the
-		WriteToXML overwriting function to create the top XML node,
-		as it will write out the name and COLLADA id of the entity.
-		@param parentNode The COLLADA XML parent node in which to insert the entity.
-		@param nodeName The COLLADA XML node name for the top entity XML node.
-		@return The created element XML tree node. */
-	xmlNode* WriteToEntityXML(xmlNode* parentNode, const char* nodeName, bool writeId=true) const;
-
-	/** [INTERNAL] Writes out the extra information for the entity.
-		This function should be used by all up-classes within the
-		WriteToXML overwriting function, at the very end, to write
-		the user-defined note and the extra tree to the COLLADA document.
-		@param entityNode The created element XML tree node returned
-			by the WriteToEntityXML function. */
-	virtual void WriteToExtraXML(xmlNode* entityNode) const;
+	/** Cleans illegal characters in from the input char string
+		@param c The string to clean
+		@returns the sanitized version */
+	static fstring CleanName(const fchar* c);
 };
 
 #endif // _FCD_ENTITY_H_

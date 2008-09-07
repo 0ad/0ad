@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -84,10 +87,10 @@ public:
 	bool Overlaps(const FUBoundingBox& boundingBox, FMVector3* overlapCenter = NULL) const;
 
 	/** Retrieves whether this bounding box overlaps a given bounding sphere.
-		@param boundingBox A bounding box.
+		@param boundingSphere A bounding sphere.
 		@param overlapCenter An optional pointer to retrieve the center of the overlap region.
 			For this particular case, there is no guarantee that this is the exact center of the overlap region.
-		@return Whether the two bounding boxes overlap. */
+		@return Whether this bounding box overlaps the bounding sphere. */
 	bool Overlaps(const FUBoundingSphere& boundingSphere, FMVector3* overlapCenter = NULL) const;
 
 	/** Extends the bounding box to include the given 3D coordinate.
@@ -102,18 +105,15 @@ public:
 		@param transform The transformation matrix to go into the other space basis.
 		@return The transformed bounding box. */
 	FUBoundingBox Transform(const FMMatrix44& transform) const;
-};
 
-#define FUBOUNDINGBOX_COORDINATE_COUNT 8
-#define FUBOUNDINGBOX_COORDINATES(coordinates, boundingBox) \
-	FMVector3 coordinates[FUBOUNDINGBOX_COORDINATE_COUNT] = { \
-		boundingBox.GetMin(), \
-		FMVector3(boundingBox.GetMin().x, boundingBox.GetMin().y, boundingBox.GetMax().z), \
-		FMVector3(boundingBox.GetMin().x, boundingBox.GetMax().y, boundingBox.GetMin().z), \
-		FMVector3(boundingBox.GetMax().x, boundingBox.GetMin().y, boundingBox.GetMin().z), \
-		FMVector3(boundingBox.GetMin().x, boundingBox.GetMax().y, boundingBox.GetMax().z), \
-		FMVector3(boundingBox.GetMax().x, boundingBox.GetMin().y, boundingBox.GetMax().z), \
-		FMVector3(boundingBox.GetMax().x, boundingBox.GetMax().y, boundingBox.GetMin().z), \
-		boundingBox.GetMax() }
+	/** Evaluates if this bounding box is equal to the one at the RHS.
+		@param right The bounding box to test against.
+		@return True if the two boxes are equivalent.*/
+	bool Equals(const FUBoundingBox& right) const;
+
+public:
+	/** Represents an infinite bounding box, including all space.*/
+	static const FUBoundingBox Infinity;
+};
 
 #endif // _FU_BOUNDINGBOX_H_

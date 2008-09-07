@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -38,7 +41,7 @@ private:
 
 public:
 	/** The standard string object which correspond to the builder. */
-	typedef std::basic_string<Char> String;
+	typedef fm::stringT<Char> String;
 
 	/** Creates a new builder with the content of the given string.
 		@param sz A string. Its content will be copied within the builder. */
@@ -86,7 +89,7 @@ public:
 		A builder is considered empty when it has no content, regardless of
 		the size or allocation status of its buffer.
 		@return Whether the builder is empty. */
-	inline bool empty() { return size == 0; }
+	inline bool empty() const { return size == 0; }
 
 	/** Appends a character to the content of the builder.
 		@param c A character. May not be the 'zero' value. */
@@ -100,6 +103,12 @@ public:
 		@param sz A character array. It must terminate with an
 			element containing the 'zero' value. */
 	void append(const Char* sz);
+
+	/** Appends a character array to the content of the builder.
+		@param sz A character array. It should not contain any 'zero'
+			characters before 'len'
+		@param len The number of characters to read from sz. */
+	void append(const Char* sz, size_t len);
 
 	/** Appends the content of a builder to the content of this builder.
 		@param b A string builder. */
@@ -119,12 +128,17 @@ public:
 	void appendHex(uint8 i);
 	template <class T> inline void appendHex(const T& i) { for (size_t j = 0; j < sizeof(T); ++j) appendHex(*(((uint8*)&i) + j)); } /**< See above. */
 
+#if defined(WIN32)
 	inline void append(int i) { append((int32) i); } /**< See above. */
 #ifdef _W64
 	inline void append(_W64 unsigned int i) { append((uint32) i); } /**< See above. */
 #else
 	inline void append(unsigned int i) { append((uint32) i); } /**< See above. */
-#endif 
+#endif
+#else
+	inline void append(unsigned long i) { append((uint32) i); } /**< See above. */
+	inline void append(long i) { append((int32) i); } /**< See above. */
+#endif // platform-switch.
 
 	/** Appends the floating-point value, after converting it to a string,
 		to the content of the builder. If the floating-point value is the special token
@@ -134,6 +148,12 @@ public:
 		@param f A floating-point value. */
 	void append(float f);
 	void append(double f); /**< See above. */
+
+	/** Appends a vector to the content of the builder.
+		@param v A vector. */
+	void append(const FMVector2& v);
+	void append(const FMVector3& v); /**< See above. */
+	void append(const FMVector4& v); /**< See above. */
 
 	/** Appends a value to the content of the builder.
 		This is a shortcut for the append function.
@@ -171,16 +191,15 @@ public:
 	template<typename TYPE> inline FUStringBuilderT& operator=(const TYPE& val) { clear(); append(val); return *this; } /**< See above. */
 
 	/** Converts the content of the builder to a standard string.
-		@return A string with the content of the builder.
-			This returns a static variable, you should copy it right away its a new string.*/
-	const String& ToString() const;
+		@return A string with the content of the builder. */
+	String ToString() const;
 
 	/** Converts the content of the builder to a character array.
 		@return A character array with the content of the builder.
 			This pointer is valid for the lifetime of the buffer of the builder, so
 			do not keep it around. This character array should not be modified. */
 	const Char* ToCharPtr() const;
-	operator const Char*() const { return ToCharPtr(); } /**< See above. */
+	inline operator const Char*() const { return ToCharPtr(); } /**< See above. */
 
 	/** Retrieves the index of the first character within the content of the builder
 		that is equivalent to the given character.
@@ -196,6 +215,10 @@ public:
 			character matches the given character. */
 	int32 rindex(Char c) const;
 
+	/** Retrieves the last character within the content of the builder.
+		@return The last character of the builder. */
+	Char back() const { FUAssert(size > 0, return (Char) 0); return buffer[size-1]; }
+
 private:
 	void enlarge(size_t minimum);
 };
@@ -203,15 +226,9 @@ private:
 typedef FUStringBuilderT<fchar> FUStringBuilder; /**< A Unicode string builder. */
 typedef FUStringBuilderT<char> FUSStringBuilder;  /**< A 8-bit string builder. */
 
-/** Declares a global Unicode string builder.
-	As many functions within FCollada use the global string builders, their content is often overwritten.
-	Use this builder only for quick conversion or character accumulation. */
-FCOLLADA_EXPORT extern FUStringBuilder globalBuilder; 
-
-/** Declares a global 8-bit string builder.
-	As many functions within FCollada use the global string builders, their content is often overwritten.
-	Use this builder only for quick conversion or character accumulation. */
-FCOLLADA_EXPORT extern FUSStringBuilder globalSBuilder;
+#if defined(__APPLE__)
+#include "FUtils/FUStringBuilder.hpp"
+#endif // __APPLE__
 
 #endif // _FCU_STRING_BUILDER_
 

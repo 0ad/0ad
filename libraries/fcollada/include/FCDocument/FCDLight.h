@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -20,12 +23,13 @@
 #ifndef _FCD_TARGETED_ENTITY_H_
 #include "FCDocument/FCDTargetedEntity.h"
 #endif // _FCD_TARGETED_ENTITY_H_
-#ifndef _FU_DAE_ENUM_H_
-#include "FUtils/FUDaeEnum.h"
-#endif // _FU_DAE_ENUM_H_
+#ifndef _FCD_PARAMETER_ANIMATABLE_H_
+#include "FCDocument/FCDParameterAnimatable.h"
+#endif // _FCD_PARAMETER_ANIMATABLE_H_
 
 class FCDocument;
 class FCDSceneNode;
+class FCDAnimated;
 
 /**
 	A COLLADA light.
@@ -70,32 +74,21 @@ private:
 	DeclareObjectType(FCDTargetedEntity);
 
 	// Common Light parameters
-	FMVector3 color;	
-	float intensity; // Max and Maya
-	LightType lightType;
+	DeclareParameterAnimatable(FMVector3, FUParameterQualifiers::COLOR, color, FC("Color"));
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, intensity, FC("Intensity")); // Non-standard COLLADA
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, lightType, FC("Light Type")); // LightType
 
 	// Point and spot light parameters
-	float constantAttenuationFactor;
-	float linearAttenuationFactor;
-	float quadracticAttenuationFactor;
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, constantAttenuationFactor, FC("Constant Attenuation Factor"));
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, linearAttenuationFactor, FC("Linear Attenuation Factor"));
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, quadracticAttenuationFactor, FC("Quadratic Attenuation Factor"));
 
 	// Spot-specific light parameters
-	float fallOffExponent;
-	float fallOffAngle;
-	float outerAngle; // Max-specific
-	float penumbraAngle; // Maya-specifc: these last two are are related as 'penumbra = outerAngle - fallOffAngle'.
-	float aspectRatio; // Max-specific, for rectangle lights
-	float dropoff; // Maya-specific
-	float defaultTargetDistance; // Max-specific?
-
-	// Directional light parameters
-	// Overshoot is a Max-specific flag that sets a directional light to cover everything,
-	// rather than to be restricted to a cylinder defined by the fallOffAngle/outerAngle.
-	bool overshoots; // Max-specific
-
-	// Flags to indicate if we're using a DCC specific representation
-	bool hasMayaExtras;
-	bool hasMaxExtras;
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, fallOffExponent, FC("Fall-off Exponent")); // Likely to be deprecated in future versions.
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, fallOffAngle, FC("Inner Cone Angle"));
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, outerAngle, FC("Outer Cone Angle")); // Non-standard COLLADA
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, penumbraAngle, FC("Penumbra Angle")); // *** DEPRECATED *** Replaced with the inner/outer angle.
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, dropoff, FC("Drop-off"));
 
 public:
 	/** Constructor: do not use directly. Create new lights using the FCDLibrary::AddEntity function.
@@ -110,15 +103,24 @@ public:
 	virtual Type GetType() const { return LIGHT; }
 
 	/** Checks if the light uses a DCC specific representation
+		Currently always returns false.
+		@deprecated Instead use: GetExtra()->GetDefaultType()->GetTechniques()
 		@return The DCC flag. */
-	virtual bool HasMaxExtras() const { return hasMaxExtras; }
-	virtual bool HasMayaExtras() const { return hasMayaExtras; } /**< See above. */
+	DEPRECATED(3.05A, GetExtra()->GetDefaultType()->GetTechniques()) virtual bool HasMaxExtras() const { return false; }
+	DEPRECATED(3.05A, GetExtra()->GetDefaultType()->GetTechniques()) virtual bool HasMayaExtras() const { return false; } /**< See above. */
+
+	/** [INTERNAL] Set DCC specific flags.
+		@deprecated Internal method, should never have been used.
+		@param value The new flag.
+	*/
+	DEPRECATED(3.05A, nothing) void SetHasMaxExtras(bool UNUSED(value)) { }
+	DEPRECATED(3.05A, nothing) void SetHasMayaExtras(bool UNUSED(value)) { }
 
 	/** Retrieves the base color for the light. To calculate the light color,
 		multiply the base color with the intensity.
 		@return The base color for the light. */
-	FMVector3& GetColor() { return color; }
-	const FMVector3& GetColor() const { return color; } /**< See above. */
+	FCDParameterAnimatableColor3& GetColor() { return color; }
+	const FCDParameterAnimatableColor3& GetColor() const { return color; } /**< See above. */
 
 	/** Sets the base color for the light. To calculate the light color,
 		multiply the base color with the intensity.
@@ -135,8 +137,8 @@ public:
 	/** Retrieves the intensity of the light. To calculate the light color,
 		multiply the base color with the intensity.
 		@return The intensity of the light. */
-	float& GetIntensity() { return intensity; }
-	const float& GetIntensity() const { return intensity; } /**< See above. */
+	FCDParameterAnimatableFloat& GetIntensity() { return intensity; }
+	const FCDParameterAnimatableFloat& GetIntensity() const { return intensity; } /**< See above. */
 
 	/** Sets the intensity of the light. To calculate the light color,
 		multiply the base color with the intensity.
@@ -147,7 +149,7 @@ public:
 		Make sure to check the type of light before using the values, as some values
 		may not make sense with some types of light.
 		@return The light type. */
-	LightType GetLightType() const { return lightType; }
+	LightType GetLightType() const { return (LightType) *lightType; }
 
 	/** Sets the type of the light. The default type of a new light is POINT.
 		@param type The light type. */
@@ -156,8 +158,8 @@ public:
 	/** Retrieves the constant attenuation factor for the light.
 		This value is valid only for point and spot lights.
 		@return The constant attenuation factor. */
-	float& GetConstantAttenuationFactor() { return constantAttenuationFactor; }
-	const float& GetConstantAttenuationFactor() const { return constantAttenuationFactor; } /**< See above. */
+	FCDParameterAnimatableFloat& GetConstantAttenuationFactor() { return constantAttenuationFactor; }
+	const FCDParameterAnimatableFloat& GetConstantAttenuationFactor() const { return constantAttenuationFactor; } /**< See above. */
 
 	/** Sets the constant attenuation factor for the light.
 		This value is valid only for point and spot lights.
@@ -167,8 +169,8 @@ public:
 	/** Retrieves the linear attenuation factor for the light.
 		This value is valid only for point and spot lights.
 		@return The linear attenuation factor. */
-	float& GetLinearAttenuationFactor() { return linearAttenuationFactor; }
-	const float& GetLinearAttenuationFactor() const { return linearAttenuationFactor; } /**< See above. */
+	FCDParameterAnimatableFloat& GetLinearAttenuationFactor() { return linearAttenuationFactor; }
+	const FCDParameterAnimatableFloat& GetLinearAttenuationFactor() const { return linearAttenuationFactor; } /**< See above. */
 
 	/** Sets the linear attenuation factor for the light.
 		This value is valid only for point and spot lights.
@@ -178,8 +180,8 @@ public:
 	/** Retrieves the quadratic attenuation factor for the light.
 		This value is valid only for point and spot lights.
 		@return The quadratic attenuation factor. */
-	float& GetQuadraticAttenuationFactor() { return quadracticAttenuationFactor; }
-	const float& GetQuadraticAttenuationFactor() const { return quadracticAttenuationFactor; } /**< See above. */
+	FCDParameterAnimatableFloat& GetQuadraticAttenuationFactor() { return quadracticAttenuationFactor; }
+	const FCDParameterAnimatableFloat& GetQuadraticAttenuationFactor() const { return quadracticAttenuationFactor; } /**< See above. */
 
 	/** Sets the quadratic attenuation factor for the light.
 		This value is valid only for point and spot lights.
@@ -196,8 +198,8 @@ public:
 		as neither Maya or 3dsMax use this technique for soft lighting.
 
 		@return The spot light fall-off exponent. */
-	float& GetFallOffExponent() { return fallOffExponent; }
-	const float& GetFallOffExponent() const { return fallOffExponent; } /**< See above. */
+	FCDParameterAnimatableFloat& GetFallOffExponent() { return fallOffExponent; }
+	const FCDParameterAnimatableFloat& GetFallOffExponent() const { return fallOffExponent; } /**< See above. */
 
 	/** Sets the fall-off exponent for the light.
 		@see GetFallOffExponent
@@ -208,8 +210,8 @@ public:
 		This value is valid only for spot lights. It defines
 		the cone of the spot light.
 		@return The spot light fall-off angle. */
-	float& GetFallOffAngle() { return fallOffAngle; }
-	const float& GetFallOffAngle() const { return fallOffAngle; } /**< See above. */
+	FCDParameterAnimatableFloat& GetFallOffAngle() { return fallOffAngle; }
+	const FCDParameterAnimatableFloat& GetFallOffAngle() const { return fallOffAngle; } /**< See above. */
 
 	/** Sets the fall-off angle for the light.
 		@see GetFallOffAngle
@@ -217,15 +219,15 @@ public:
 	void SetFallOffAngle(float angle) { fallOffAngle = angle; SetDirtyFlag(); }
 
 	/** Retrieves the outer angle for the light.
-		This value is valid only for spot lights. This value is only used
-		by documents exported by ColladaMax. This value should always be
+		This value is valid only for spot lights. This value is used
+		by documents exported by ColladaMax and ColladaMaya. This value should always be
 		greater than the fall-off angle. It represents the angle at which
 		the lighting is black. All lighting between the fall-off angle and
 		the outer angle is a linear interpolation between the light color
 		and black.
 		@return The spot light outer angle. */
-	float& GetOuterAngle() { return outerAngle; }
-	const float& GetOuterAngle() const { return outerAngle; } /**< See above. */
+	FCDParameterAnimatableFloat& GetOuterAngle() { return outerAngle; }
+	const FCDParameterAnimatableFloat& GetOuterAngle() const { return outerAngle; } /**< See above. */
 
 	/** Sets the outer angle for the light.
 		@see GetOuterAngle
@@ -240,80 +242,30 @@ public:
 		is negative, the fall-off angle is used as the outer angle and the
 		fall-off angle + the penumbra angle is used as the full-lighting
 		angle.
+		This now actually does nothing but gets the value assigned in SetPenumbraAngle
+		@deprecated Instead use: GetOuterAngle and GetFallOffAngle
 		@see GetOuterAngle
 		@return The spot light penumbra angle. */
-	float& GetPenumbraAngle() { return penumbraAngle; }
-	const float& GetPenumbraAngle() const { return penumbraAngle; } /**< See above. */
+	DEPRECATED(3.05A, GetOuterAngle and GetFallOffAngle) float& GetPenumbraAngle() { return penumbraAngle; }
+	DEPRECATED(3.05A, GetOuterAngle and GetFallOffAngle) const float& GetPenumbraAngle() const { return penumbraAngle; } /**< See above. */
 
 	/** Sets the penumbra angle for the light.
+		This now actually doesn't nothing except sets a variable that you can read back with GetPenumbraAngle.
+		@deprecated Instead use: SetOuterAngle and SetFallOffAngle, or FCDLightTools::LoadPenumbra
 		@see GetPenumbraAngle
 		@param angle The spot light penumbra angle. */
-	void SetPenumbraAngle(float angle) { penumbraAngle = angle; SetDirtyFlag(); }
-
-	/** Retrieves the aspect ratio for the light.
-		This value is only used by documents exported by ColladaMax.
-		This value is valid only for spot lights and directional lights
-		which project a rectangle (for pyramidal projection). It represents the ratio
-		of the projection's height to the projection's width and defines
-		the projection's rectangle. For pyramidal projections, the fall-off and outer angles
-		represent the width of the projection.
-		Note that there is no way to know if the projection is conic or pyramidal.
-		@return The aspect ratio of the light pyramidal projection. */
-	float& GetAspectRatio() { return aspectRatio; }
-	const float& GetAspectRatio() const { return aspectRatio; } /**< See above. */
-
-	/** Sets the aspect ratio for the light.
-		@see GetAspectRatio
-		@param ratio The aspect ratio of the light pyramidal projection. */
-	void SetAspectRatio(float ratio) { aspectRatio = ratio; SetDirtyFlag(); }
+	DEPRECATED(3.05A, SetOuterAngle and SetFallOffAngle) void SetPenumbraAngle(float angle) { penumbraAngle = angle; }
 	
 	/** Retrieves the drop-off for the light.
-		This value is only used by documents exported by ColladaMaya.
 		It defines the rate at which a spot light gets dimmer from the center
 		of the beam to outside angles.
 		@return The drop-off for the light. */
-	float& GetDropoff() { return dropoff; }
-	const float& GetDropoff() const { return dropoff; } /**< See above. */
+	FCDParameterAnimatableFloat& GetDropoff() { return dropoff; }
+	const FCDParameterAnimatableFloat& GetDropoff() const { return dropoff; } /**< See above. */
 
 	/** Sets the drop-off for the light.
-		This value is only used by documents exported by ColladaMaya.
 		@param factor The drop-off for the light. */
 	void SetDropoff(float factor) { dropoff = factor; SetDirtyFlag(); }
-
-	/** Retrieves the default target distance.
-		Used only with free spots having no specified targets.
-		@return The default target distance. */
-	float& GetDefaultTargetDistance() { return defaultTargetDistance; }
-	const float& GetDefaultTargetDistance() const { return defaultTargetDistance; } /**< See above. */
-
-	/** Sets the default target distance used when the free spot has no target.
-		@param tDist The default target distance for the light. */
-	void SetDefaultTargetDistance( float tDist ) { defaultTargetDistance = tDist; SetDirtyFlag(); }
-
-	/** Retrieves whether the directional light overshoots.
-		This value is only used by documents exported by ColladaMax.
-		This value is valid only for directional lights. This flag
-		represents whether the directional light has a global projection,
-		as defined in COLLADA, or a cylinder/prism projection.
-		Note that there is no way to know if the projection is conic or pyramidal.
-		@return Whether the directional light overshoots. */
-	bool DoesOvershoot() const { return overshoots; }
-
-	/** Sets whether the directional light overshoots.
-		@see DoesOvershoot
-		@param _overshoots The overshoot flag for the directional light. */
-	void SetOvershoot(bool _overshoots) { overshoots = _overshoots; SetDirtyFlag(); }
-
-	/** [INTERNAL] Reads in the \<light\> element from a given COLLADA XML tree node.
-		@param lightNode A COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the light.*/
-	bool LoadFromXML(xmlNode* lightNode);
-
-	/** [INTERNAL] Writes out the \<light\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the geometry information.
-		@return The created XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_LIGHT_H_

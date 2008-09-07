@@ -1,19 +1,24 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
 	@file FCDObject.h
-	This file contains the FCDObject and the FCDObjectWithId classes.
+	This file contains the FCDObject class.
 */
 
 #ifndef __FCD_OBJECT_H_
 #define __FCD_OBJECT_H_
 
-#ifndef _FU_OBJECT_H_
-#include "FUtils/FUObject.h"
-#endif // _FU_OBJECT_H_
+#ifndef _FU_PARAMETERIZABLE_H_
+#include "FUtils/FUParameterizable.h"
+#endif // _FU_PARAMETERIZABLE_H_
+
+class FCDocument;
 
 /**
 	A basic COLLADA document object.
@@ -25,16 +30,20 @@
 	You can therefore attach your own objects to most FCollada objects. If you assign memory buffers
 	to the user-specified handle, be aware that FCollada will make no attempt to release it.
 
-	A dirty flag is also available within this object. All FCollada objects should set
-	the dirty flag when modifications are made to the objects, but FCollada will never reset it.
-	This flag should be used by multi-tier applications. This flag defaults to 'true'.
+	32 flags are also available within this object. You can use the DeclareFlag
+	and DeclareFlagCount macros to include flags within your custom classes. This object reverses
+	the first four bits for its own flags: dirty, value changed, transient and new child.
+	
+	All FCollada objects should set the dirty flag when modifications are made
+	to the objects, but FCollada will never reset it. This flag should be used by
+	multi-tier applications. This flag defaults to 'true'.
 
 	@ingroup FCDocument
 */
-class FCOLLADA_EXPORT FCDObject : public FUObject
+class FCOLLADA_EXPORT FCDObject : public FUParameterizable
 {
 private:
-	DeclareObjectType(FUObject);
+	DeclareObjectType(FUParameterizable);
 
 	// The COLLADA document that owns this object
 	FCDocument* document;
@@ -43,9 +52,15 @@ private:
 	// attach objects to most FCollada objects.
 	void* userHandle;
 
-	// A flag container for dirtiness.
-	// This data value will probably be extended to a full bit-flag sometime.
-	bool dirty;
+public:
+	/** Declare the flags to set various states available on an FCDObject 
+		Each Declare flag requires its local index.  It is required to 
+		DeclareFlagCount, declaring the amount of flags specified locally */
+	DeclareFlag(Transient, 0); /**< [EXPERIMENTAL] This object exists for the application to use.
+							        This object should be not archived/saved. */
+	DeclareFlag(NewChild, 1); /**< [EXPERIMENTAL] A new child has been assigned to this object.
+							       Should be replaced by the StructureChanged flag in future versions. */
+	DeclareFlagCount(2); /**< 5 flags are locally declared. */
 
 public:
 	/** Constructor: sets the COLLADA document object.
@@ -53,7 +68,7 @@ public:
 	FCDObject(FCDocument* document);
 
 	/** Destructor. */
-	virtual ~FCDObject() {}
+	virtual ~FCDObject();
 
 	/** Retrieves the COLLADA document which owns this object.
 		@return The COLLADA document. */
@@ -82,89 +97,8 @@ public:
 		@param handle The user-specified handle. */
 	inline void SetUserHandle(void* handle) { userHandle = handle; SetDirtyFlag(); }
 
-	/** Sets the dirty flag. */
-	inline void SetDirtyFlag() { dirty = true; }
-
-	/** Resets the dirty flag. */
-	inline void ResetDirtyFlag() { dirty = false; }
-
-	/** Retrieves the status of the dirty flag. */
-	inline bool GetDirtyFlag() const { return dirty; }
-};
-
-/**
-	A basic COLLADA object which has a unique COLLADA id.
-	
-	Many COLLADA structures such as entities and sources need a unique COLLADA id.
-	The COLLADA document contains a map of all the COLLADA ids known in its scope.
-	The interface of the FCDObjectWithId class allows for the retrieval and the modification
-	of the unique COLLADA id attached to these objects.
-
-	A unique COLLADA id is built, if none are provided, using the 'baseId' field of the constructor.
-	A unique COLLADA id is generated only on demand.
-
-	@ingroup FCDocument
-*/
-class FCOLLADA_EXPORT FCDObjectWithId : public FCDObject
-{
-private:
-	DeclareObjectType(FCDObject);
-
-	fm::string daeId;
-	bool hasUniqueId;
-
-	// An optional sub id.  This can be used to identify bones.
-	fm::string daeSubId;
-
-public:
-	/** Constructor: sets the prefix COLLADA id to be used if no COLLADA id is provided.
-		@param document The COLLADA document which owns this object.
-		@param baseId The prefix COLLADA id to be used if no COLLADA id is provided. */
-	FCDObjectWithId(FCDocument* document, const char* baseId = "ObjectWithID");
-
-	/** Destructor. */
-	virtual ~FCDObjectWithId();
-
-	/** Retrieves the unique COLLADA id for this object.
-		If no unique COLLADA id has been previously generated or provided, this function
-		has the side-effect of generating a unique COLLADA id.
-		@return The unique COLLADA id. */
-	const fm::string& GetDaeId() const;
-
-	/** Sets the COLLADA id for this object.
-		There is no guarantee that the given COLLADA id will be used, as it may not be unique.
-		You can call the GetDaeId function after this call to retrieve the final, unique COLLADA id.
-		@param id The wanted COLLADA id for this object. This COLLADA id does not need to be unique.
-			If the COLLADA id is not unique, a new unique COLLADA id will be generated. */
-	void SetDaeId(const fm::string& id);
-
-	/** Sets the COLLADA id for this object.
-		There is no guarantee that the given COLLADA id will be used, as it may not be unique.
-		@param id The wanted COLLADA id for this object. This COLLADA id does not need to be unique.
-			If the COLLADA id is not unique, a new unique COLLADA id will be generated and
-			this formal variable will be modified to contain the new COLLADA id. */
-	void SetDaeId(fm::string& id);
-
-	/** Retrieves the optional subid.  This id is neither unique nor guaranteed to exist.
-		@return The set SubId of the node. */
-	const fm::string& GetSubId() const;
-
-	/** Sets the Sub Id for this object.
-		The SubId of an object is not required to be unique.
-		@param id The new sub id of the object. */
-	void SetSubId(fm::string& newId);
-	
-
-	/** [INTERNAL] Release the unique COLLADA id of an object.
-		Use this function wisely, as it leaves the object id-less and without a way to automatically
-		generate a COLLADA id. */
-	void RemoveDaeId();
-
-	/** [INTERNAL] Clones the object. The unique COLLADA id will be copied over to the clone object.
-		Use carefully: when a cloned object with an id is released, it
-		does remove the unique COLLADA id from the unique name map.
-		@param clone The object clone. */
-	void Clone(FCDObjectWithId* clone) const;
+	/** ValueChangedFlag override, this allows objects to react if necessary. */
+	virtual void SetValueChange() { SetValueChangedFlag(); }
 };
 
 #endif // __FCD_OBJECT_H_

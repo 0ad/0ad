@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -15,6 +18,9 @@
 #ifndef __FCD_OBJECT_H_
 #include "FCDocument/FCDObject.h"
 #endif // __FCD_OBJECT_H_
+#ifndef _FU_PARAMETER_H_
+#include "FUtils/FUParameter.h"
+#endif // _FU_PARAMETER_H_
 
 class FCDAnimated;
 class FCDAnimatedCustom;
@@ -23,14 +29,7 @@ class FCDETechnique;
 class FCDEType;
 class FCDENode;
 
-typedef fm::pvector<FCDEAttribute> FCDEAttributeList; /**< A dynamically-sized array of extra tree attributes. */
-typedef fm::pvector<FCDENode> FCDENodeList; /**< A dynamically-sized array of extra tree nodes. */
-typedef fm::pvector<FCDETechnique> FCDETechniqueList; /**< A dynamically-sized array of extra tree techniques. */
-typedef fm::pvector<FCDEType> FCDETypeList; /**< A dynamically-sized array of typed extra nodes. */
-typedef FUObjectContainer<FCDEAttribute> FCDEAttributeContainer; /**< A dynamically-sized containment array for extra tree attributes. */
-typedef FUObjectContainer<FCDENode> FCDENodeContainer; /**< A dynamically-sized containment array for extra tree nodes. */
-typedef FUObjectContainer<FCDETechnique> FCDETechniqueContainer; /**< A dynamically-sized containment array for extra tree techniques. */
-typedef FUObjectContainer<FCDEType> FCDETypeContainer; /**< A dynamically-sized containment array for typed extra nodes. */
+typedef fm::pvector<FCDENode> FCDENodeList; /**< A dynamically-sized list of extra tree nodes. */
 
 /**
 	A COLLADA extra tree.
@@ -44,21 +43,29 @@ class FCOLLADA_EXPORT FCDExtra : public FCDObject
 {
 private:
 	DeclareObjectType(FCDObject);
-	FCDETypeContainer types;
+
+	FUObject* parent;
+	DeclareParameterContainer(FCDEType, types, FC("Extra Types"));
 
 public:
-	/** Constructor: do not use directly.
-		The structures that contain extra trees will create them.
-		@param document The COLLADA document that owns the extra tree. */
-	FCDExtra(FCDocument* document);
+	/** Constructor.
+		Only structures that contain extra trees should create them.
+		@param document The COLLADA document that owns the extra tree.
+		@param parent The object that contains this extra tree. This parameter
+			is used only for plug-in support. */
+	FCDExtra(FCDocument* document, FUObject* parent);
 
 	/** Destructor. */
 	virtual ~FCDExtra();
 
+	/** Retrieves the parent object for the extra tree.
+		@return The parent object pointer. */
+	inline FUObject* GetParent() { return parent; }
+	inline const FUObject* GetParent() const { return parent; } /**< See above. */
+
 	/** Retrieves the list of types contained by this extra tree.
 		@return The list of types. */
-	inline FCDETypeContainer& GetTypes() { return types; }
-	inline const FCDETypeContainer& GetTypes() const { return types; } /**< See above. */
+	DEPRECATED(3.05A, GetTypeCount and GetType(index)) inline void GetTypes() const {}
 
 	/** Retrieves the number of types contained by this extra tree.
 		@return The number of types. */
@@ -94,29 +101,18 @@ public:
 	inline FCDEType* FindType(const fm::string& name) { return FindType(name.c_str()); } /**< See above. */
 	inline const FCDEType* FindType(const fm::string& name) const { return FindType(name.c_str()); } /**< See above. */
 
+	/** Determines whether this structure is empty or not.
+		Basically, if there is an extra type, and that this type contains at
+		least one extra technique, content exists.
+		@return True if non-empty, false otherwise.*/
+	bool HasContent() const;
+
 	/** [INTERNAL] Clones the extra tree information.
 		@param clone The extra tree that will take in this extra tree's information.
 			If this pointer is NULL, a new extra tree will be created and you will
 			need to release the returned pointer manually.
 		@return The clone. */
 	FCDExtra* Clone(FCDExtra* clone = NULL) const;
-
-	/** [INTERNAL] Reads in the extra tree from a given COLLADA XML tree node.
-		@param extraNode The COLLADA \<extra\> element XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the entity.*/
-	bool LoadFromXML(xmlNode* extraNode);
-
-	/** [INTERNAL] Writes out the extra tree to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the \<extra\> element.
-		@return The created element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-	/** [INTERNAL] Writes out the extra tree techniques to the given COLLADA XML tree node.
-		The techniques are written straight into the parent node. This is useful when
-		the extra tree represents a technique-switch, rather than an <extra> element.
-		@param parentNode The COLLADA XML parent node in which to insert the techniques. */
-	void WriteTechniquesToXML(xmlNode* parentNode) const;
 };
 
 /**
@@ -131,38 +127,51 @@ class FCOLLADA_EXPORT FCDEType : public FCDObject
 {
 private:
 	DeclareObjectType(FCDObject);
-	fm::string name;
-	FCDETechniqueContainer techniques;
+
+	FCDExtra* parent;
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, name, FC("Type name"));
+	DeclareParameterContainer(FCDETechnique, techniques, FC("Profile-specific Techniques"));
 
 public:
 	/** Constructor: do not use directly.
 		Use the FCDExtra::AddType function instead.
 		@param document The COLLADA document that owns the extra tree.
+		@param parent The parent extra tree structure.
 		@param type The name of the type for this typed extra. */
-	FCDEType(FCDocument* document, const char* type);
+	FCDEType(FCDocument* document, FCDExtra* parent, const char* type);
 
 	/** Destructor. */
 	virtual ~FCDEType();
 
+	/** Retrieves the extra tree that contains this typed extra.
+		@return The parent extra tree. */
+	inline FCDExtra* GetParent() { return parent; }
+	inline const FCDExtra* GetParent() const { return parent; } /**< See above. */
+
 	/** Retrieves the name of the type of the typed extra.
 		@return The name of the type. */
-	const fm::string& GetName() const { return name; }
+	inline const fm::string& GetName() const { return name; }
+
+	/** Modifies the name of the type of the typed extra.
+		Be careful when modifying the name of a type. The extra tree
+		assumes no duplicate type names within its typed extras.
+		@param _name The new name of the type. */
+	inline void SetName(const fm::string& _name) { name = _name; }
 
 	/** Retrieves the list of techniques contained by this extra tree.
 		@return The list of techniques. */
-	FCDETechniqueContainer& GetTechniques() { return techniques; }
-	const FCDETechniqueContainer& GetTechniques() const { return techniques; } /**< See above. */
+	DEPRECATED(3.05A, GetTechniqueCount and GetTechnique(index)) inline void GetTechniques() const {}
 
 	/** Retrieves the number of techniques contained by this extra tree.
 		@return The number of techniques. */
-	size_t GetTechniqueCount() const { return techniques.size(); }
+	inline size_t GetTechniqueCount() const { return techniques.size(); }
 
 	/** Retrieves a specific technique contained by this extra tree.
 		@param index The index of the technique.
 		@return The technique. This pointer will be NULL if the
 			index is out-of-bounds. */
-	FCDETechnique* GetTechnique(size_t index) { FUAssert(index < techniques.size(), return NULL); return techniques.at(index); }
-	const FCDETechnique* GetTechnique(size_t index) const { FUAssert(index < techniques.size(), return NULL); return techniques.at(index); } /**< See above. */
+	inline FCDETechnique* GetTechnique(size_t index) { FUAssert(index < techniques.size(), return NULL); return techniques.at(index); }
+	inline const FCDETechnique* GetTechnique(size_t index) const { FUAssert(index < techniques.size(), return NULL); return techniques.at(index); } /**< See above. */
 
 	/** Adds a new application-specific profile technique to the extra tree.
 		If the given application-specific profile already exists
@@ -198,23 +207,6 @@ public:
 			need to release the returned pointer manually.
 		@return The clone. */
 	FCDEType* Clone(FCDEType* clone = NULL) const;
-
-	/** [INTERNAL] Reads in the extra tree from a given COLLADA XML tree node.
-		@param extraNode The COLLADA \<extra\> element XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the entity.*/
-	bool LoadFromXML(xmlNode* extraNode);
-
-	/** [INTERNAL] Writes out the extra tree to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the \<extra\> element.
-		@return The created element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-	/** [INTERNAL] Writes out the extra tree techniques to the given COLLADA XML tree node.
-		The techniques are written straight into the parent node. This is useful when
-		the extra tree represents a technique-switch, rather than an <extra> element.
-		@param parentNode The COLLADA XML parent node in which to insert the techniques. */
-	void WriteTechniquesToXML(xmlNode* parentNode) const;
 };
 
 /**
@@ -231,14 +223,14 @@ class FCOLLADA_EXPORT FCDENode : public FCDObject
 private:
 	DeclareObjectType(FCDObject);
 
-	fm::string name;
-	fstring content;
-
 	FCDENode* parent;
-	FCDENodeContainer children;
-	FCDEAttributeContainer attributes;
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, name, FC("Node name"));
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, content, FC("Node content"));
 
-	FUObjectRef<FCDAnimatedCustom> animated;
+	DeclareParameterContainer(FCDENode, children, FC("Children"));
+	DeclareParameterContainer(FCDEAttribute, attributes, FC("Attributes"));
+
+	DeclareParameterRef(FCDAnimatedCustom, animated, FC("Custom Animatable"));
 
 public:
 	/** Constructor: do not use directly.
@@ -253,19 +245,26 @@ public:
 	/** Retrieves the name of the extra tree node.
 		The name of the extra tree node is the name of the equivalent XML tree node.
 		@return The name of the extra tree node. */
-	inline const char* GetName() const { return name.c_str(); }
+	inline const char* GetName() const { return name->c_str(); }
 
 	/** Sets the name of the extra tree node.
 		The name of the extra tree node is the name of the equivalent XML tree node.
 		@param _name The name of the extra tree node. */
-	inline void SetName(const char* _name) { name = _name; SetDirtyFlag(); }
-	inline void SetName(const fm::string& _name) { name = _name; SetDirtyFlag(); } /**< See above. */
+	inline void SetName(const char* _name) { fm::string n = _name; SetName(n); }
+	inline void SetName(const fm::string& _name) { fm::string n = _name; SetName(n); } /**< See above. */
+	void SetName(fm::string& _name);
+
+	/** Cleans up extra tree node names and extra tree attribute names in order to
+		always start with an alphabetic character or an underscore, as well as contain
+		only alphanumeric characters or underscore.
+		@param n The string to clean. This reference will be updated with the cleaned name. */
+	static void CleanName(fm::string& n);
 
 	/** Retrieves the textual content of the extra tree node.
 		This value is only valid for extra tree node that have no children,
 		as COLLADA doesn't allow for mixed-content.
 		@return The textual content of the extra tree node. */
-	const fchar* GetContent() const { return content.c_str(); }
+	const fchar* GetContent() const;
 
 	/** Sets the textual content of the extra tree node.
 		This function will release all the child node of this extra tree node,
@@ -274,12 +273,22 @@ public:
 	void SetContent(const fchar* _content);
 	inline void SetContent(const fstring& _content) { return SetContent(_content.c_str()); } /**< See above. */
 
+	/** [INTERNAL] Set the content directly.
+		@param _content The new content to set.
+	*/
+	void SetContentDirect(const fstring& _content) { content = _content; }
+
 	/** Retrieves the animated values associated with this extra tree node.
 		Extra tree node leaves may be animated. If this extra tree node leaf
 		is animated, this animated value will contain the animation curves.
 		@return The animated value. */
 	FCDAnimatedCustom* GetAnimated() { return animated; }
 	const FCDAnimatedCustom* GetAnimated() const { return animated; } /**< See above. */
+
+	/**[INTERNAL] Set the customized animated. The old pointer is released first.
+		@animatedCustom The new animated.
+	*/
+	void SetAnimated(FCDAnimatedCustom* animatedCustom);
 
 	/** Retrieves the parent of an extra tree node.
 		The hierarchy cannot be changed dynamically. If you to move an extra tree node,
@@ -291,8 +300,7 @@ public:
 
 	/** Retrieves the children of an extra tree node.
 		@return The list of child extra tree nodes. */
-	FCDENodeContainer& GetChildNodes() { return children; }
-	const FCDENodeContainer& GetChildNodes() const { return children; } /**< See above. */
+	DEPRECATED(3.05A, GetChildNodeCount and GetChildNode(index)) void GetChildNodes() const {}
 
 	/** Retrieves the number of children of an extra tree node.
 		@return The number of children. */
@@ -308,14 +316,14 @@ public:
 	/** Adds a new child extra tree to this extra tree node.
 		@see AddParameter
 		@return The new child extra tree node. */
-	inline FCDENode* AddChildNode() { FCDENode* node = children.Add(GetDocument(), this); SetDirtyFlag(); return node; }
+	FCDENode* AddChildNode();
 
 	/** Adds a new, named, child extra tree to this extra tree node.
 		@see AddParameter
 		@param name The name of the child node.
 		@return The new child extra tree node. */
-	inline FCDENode* AddChildNode(const char* name) { FCDENode* node = children.Add(GetDocument(), this); node->SetName(name); SetDirtyFlag(); return node; }
-	inline FCDENode* AddChildNode(const fm::string& name) { FCDENode* node = children.Add(GetDocument(), this); node->SetName(name.c_str()); SetDirtyFlag(); return node; }
+	FCDENode* AddChildNode(const char* name);
+	inline FCDENode* AddChildNode(const fm::string& name) { return AddChildNode(name.c_str()); } /**< See above. */
 
 	/** Retrieves the child extra tree node with the given name.
 		@param name A name.
@@ -352,8 +360,7 @@ public:
 
 	/** Retrieves the list of attributes for this extra tree node.
 		@return The list of attributes. */
-	FCDEAttributeContainer& GetAttributes() { return attributes; }
-	const FCDEAttributeContainer& GetAttributes() const { return attributes; } /**< See above. */
+	DEPRECATED(3.05A, GetAttributeCount and GetAttribute(index)) void GetAttributes() const {}
 
 	/** Retrieves the number of attributes for this extra tree node.
 		@return The number of attributes. */
@@ -369,15 +376,19 @@ public:
 	/** Adds a new attribute to this extra tree node.
 		If an attribute with the same name already exists, this function simply
 		assigns the new value to the existing attribute and returns the existing attribute.
-		@param _name The name of the attribute.
+		@param _name The name of the attribute. If this parameter is
+			a non-constant fm::string reference, it will be updated with the cleaned name.
 		@param _value The value of the attribute.
 		@return The new attribute. */
-	FCDEAttribute* AddAttribute(const char* _name, const fchar* _value);
-	inline FCDEAttribute* AddAttribute(const fm::string& _name, const fchar* _value) { return AddAttribute(_name.c_str(), _value); } /**< See above. */
-	inline FCDEAttribute* AddAttribute(const char* _name, const fstring& _value) { return AddAttribute(_name, _value.c_str()); } /**< See above. */
-	inline FCDEAttribute* AddAttribute(const fm::string& _name, const fstring& _value) { return AddAttribute(_name.c_str(), _value.c_str()); } /**< See above. */
-	template <typename T> inline FCDEAttribute* AddAttribute(const char* _name, const T& _value) { return AddAttribute(_name, TO_FSTRING(_value)); } /**< See above. */
-	template <typename T> inline FCDEAttribute* AddAttribute(const fm::string& _name, const T& _value) { return AddAttribute(_name.c_str(), TO_FSTRING(_value)); } /**< See above. */
+	FCDEAttribute* AddAttribute(fm::string& _name, const fchar* _value);
+	inline FCDEAttribute* AddAttribute(const char* _name, const fchar* _value) { fm::string n = _name; return AddAttribute(n, _value); } /**< See above. */
+	inline FCDEAttribute* AddAttribute(const fm::string& _name, const fchar* _value) { fm::string n = _name; return AddAttribute(n, _value); } /**< See above. */
+	inline FCDEAttribute* AddAttribute(const char* _name, const fstring& _value) { fm::string n = _name; return AddAttribute(n, _value.c_str()); } /**< See above. */
+	inline FCDEAttribute* AddAttribute(fm::string& _name, const fstring& _value) { return AddAttribute(_name, _value.c_str()); } /**< See above. */
+	inline FCDEAttribute* AddAttribute(const fm::string& _name, const fstring& _value) { fm::string n = _name; return AddAttribute(n, _value.c_str()); } /**< See above. */
+	template <typename T> inline FCDEAttribute* AddAttribute(const char* _name, const T& _value) { fm::string n = _name; return AddAttribute(n, TO_FSTRING(_value)); } /**< See above. */
+	template <typename T> inline FCDEAttribute* AddAttribute(fm::string& _name, const T& _value) { return AddAttribute(_name, TO_FSTRING(_value)); } /**< See above. */
+	template <typename T> inline FCDEAttribute* AddAttribute(const fm::string& _name, const T& _value) { fm::string n = _name; return AddAttribute(n, TO_FSTRING(_value)); } /**< See above. */
 
 	/** Retrieve the attribute of this extra tree node with the given name.
 		Attribute names are unique within an extra tree node.
@@ -414,30 +425,6 @@ public:
 			This pointer cannot be NULL.
 		@return The clone. You will need to release the returned pointer manually. */
 	virtual FCDENode* Clone(FCDENode* clone) const;
-
-	/** [INTERNAL] Reads in the extra tree node from a given COLLADA XML tree node.
-		@param customNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the extra tree node.*/
-	virtual bool LoadFromXML(xmlNode* customNode);
-
-	/** [INTERNAL] Writes out the extra tree node to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the extra tree node.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-protected:
-	/** [INTERNAL] Reads in the children nodes of the extra tree node.
-		Used by the FCDETechnique class exclusively.
-		@param customNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the extra tree node.*/
-	bool ReadChildrenFromXML(xmlNode* customNode);
-
-	/** [INTERNAL] Writes out the children nodes of extra tree node.
-		Used by the FCDETechnique class exclusively.
-		@param customNode The COLLADA XML node for the extra tree node. */
-	void WriteChildrenToXML(xmlNode* customNode) const;
 };
 
 /**
@@ -454,21 +441,41 @@ class FCOLLADA_EXPORT FCDETechnique : public FCDENode
 private:
 	DeclareObjectType(FCDENode);
 
-	fm::string profile;
+	FCDEType* parent;
+	DeclareParameterPtr(FUTrackable, pluginOverride, FC("Plug-in Override Object"));
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, profile, FC("Profile Name"));
 
 public:
 	/** Constructor: do not use directly.
 		Instead, use the FCDEType::AddTechnique function.
 		@param document The COLLADA document that owns the technique.
+		@param parent The extra type that contains this technique.
 		@param profile The application-specific profile name. */
-	FCDETechnique(FCDocument* document, const char* profile);
+	FCDETechnique(FCDocument* document, FCDEType* parent, const char* profile);
 
 	/** Destructor. */
 	virtual ~FCDETechnique();
 
 	/** Retrieves the name of the application-specific profile of the technique.
 		@return The name of the application-specific profile. */
-	const char* GetProfile() const { return profile.c_str(); }
+	const char* GetProfile() const { return profile->c_str(); }
+
+	/** Sets the name of the application-specific profile of the technique.
+		Be careful when modifying the application-specific profile name.
+		There is an assumption that within a typed-extra, all application-specific
+		profile names are unique.
+		@param _profile The new name of the application-specific profile. */
+	void SetProfile(const fm::string& _profile) { profile = _profile; }
+
+	/** Retrieves the plug-in object that overrides the extra tree for this profile.
+		The plug-in object should contain all the necessary information and this extra tree
+		is expected to be empty.
+		@return The profile-specific plug-in object. */
+	FUTrackable* GetPluginObject() { return pluginOverride; }
+	const FUTrackable* GetPluginObject() const { return pluginOverride; } /**< See above. */
+
+	/** Sets the plug-in object that overrides the extra tree for this profile.*/
+	void SetPluginObject(FUTrackable* plugin) { pluginOverride = plugin; }
 
 	/** Clones the extra tree node.
 		@param clone The extra tree node that will receive the clone information.
@@ -476,42 +483,44 @@ public:
 			need to release the returned pointer manually.
 		@return The clone. */
 	virtual FCDENode* Clone(FCDENode* clone) const;
-
-	/** [INTERNAL] Reads in the extra tree technique from a given COLLADA XML tree node.
-		@param techniqueNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the extra tree technique.*/
-	virtual bool LoadFromXML(xmlNode* techniqueNode);
-
-	/** [INTERNAL] Writes out the extra tree technique to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the extra tree technique.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 /**
 	An extra tree attribute.
 	Contains a name and a value string.
 */
-class FCDEAttribute : public FUObject
+class FCDEAttribute : public FUParameterizable
 {
 private:
-	DeclareObjectType(FUObject);
-
-public:
-	fm::string name; /**< The attribute name. Must be provided. */
-	fstring value; /**< The attribute value. Is optional. */
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, name, FC("Attribute Name")); /**< The attribute name. Must be provided. */
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, value, FC("Attribute Value")); /**< The attribute value. Is optional. */
 
 public:
 	/** Default constructor.
 		The name and the value string will be blank. */
-	FCDEAttribute() {}
+	FCDEAttribute();
 
 	/** Constructor.
 		Sets the attribute name and the attribute value appropriately.
-		@param _name The attribute name.
-		@param _value The attribute value. */
-	FCDEAttribute(const char* _name, const fchar* _value);
+		@param name The attribute name.
+		@param value The attribute value. */
+	FCDEAttribute(const char* name, const fchar* value);
+
+	/** Retrieves the name of the attribute.
+		@return The name of the attribute. */
+	inline const fm::string& GetName() const { return name; }
+
+	/** Sets the name of the attribute.
+		@param _name The new name of the attribute. */
+	inline void SetName(const fm::string& _name) { name = _name; }
+
+	/** Retrieves the value of the attribute.
+		@return The value of the attribute. */
+	inline const fstring& GetValue() const { return value; }
+
+	/** Sets the value of the attribute.
+		@param _value The new value of the attribute. */
+	inline void SetValue(const fstring& _value) { value = _value; }
 };
 
 #endif // _FCD_EXTRA_H_

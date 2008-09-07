@@ -1,21 +1,15 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
-*/
-/*
-	The idea is simple: the object registers itself in the constructor, with one container.
-	It may register/unregister itself with other containers subsequently.
-
-	It keeps a list of the containers and a pointer to the main container so that the up-classes
-	can easily access it. In the destructor, the object unregisters itself with the container(s).
-
-	The object has a RTTI-like static class structure so that the container(s) know which
-	object type list to remove this object from when it is deleted.
+   Copyright (C) 2005-2007 Feeling Software Inc.
+   Portions of the code are:
+   Copyright (C) 2005-2007 Sony Computer Entertainment America
+   
+   MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
 	@file FUObject.h
-	This file contains the FUObject class, the FUObjectContainer class and the FUObjectType class.
+	This file contains the FUObject class, the FUObjectOwner interface,
+	the FUObjectRef template class and FUObjectContainer template class.
 */
 
 #ifndef _FU_OBJECT_H_
@@ -25,26 +19,25 @@
 #include "FUtils/FUObjectType.h"
 #endif // _FU_OBJECT_TYPE_H_
 
-class FUObjectTracker;
-typedef fm::pvector<FUObjectTracker> FUObjectTrackerList; /**< A dynamically-sized array of object trackers. */
+class FUObjectOwner;
 
 /**
 	A basic object.
-
-	Each object holds a pointer to the trackers that track it.
-	This pointer is useful so that the trackers can be notified if the object
-	is released.
-
 	Each up-class of this basic object class hold an object type
 	that acts just like RTTI to provide a safe way to up-cast.
-
 	@ingroup FUtils
 */
 class FCOLLADA_EXPORT FUObject
 {
 private:
 	static class FUObjectType* baseObjectType;
-	FUObjectTrackerList trackers;
+
+	FUObjectOwner* objectOwner;
+
+protected:
+	/** [INTERNAL] Necessary, in order for the
+		flag macros to work on up-classes. */
+	static const uint32 nextAvailableBit = 0;
 
 public:
 	/** Constructor.
@@ -52,8 +45,7 @@ public:
 		not meant to be used directly.  */
 	FUObject();
 
-	/** Destructor.
-		This function informs the object lists of this object's release. */
+	/** Destructor. */
 	virtual ~FUObject();
 
 	/** Releases this object.
@@ -80,107 +72,136 @@ public:
 		@return Whether this object is exactly or inherits the given type. */
 	inline bool HasType(const FUObjectType& _type) const { return GetObjectType().Includes(_type); }
 
-	/** Retrieves the number of tracker tracking the object.
-		This can be used as an expensive reference counting mechanism.
-		@return The number of trackers tracking the object. */
-	size_t GetTrackerCount() const { return trackers.size(); }
-
-	/** Retrieves a reference to the wanted tracker.
-		@param idx The tracker index.
-		@return The tracker, or NULL if idx is not smaller than the number of trackers. */
-	const FUObjectTracker *GetTracker( size_t idx ) const { FUAssert( idx < trackers.size(), return NULL ); return trackers[idx]; }
-
 protected:
-	/** Detaches all the trackers of this object.
-		The trackers will be notified that this object has been released.
-		It is not recommended to call this function outside of a destructor. */
+	/** Detaches this object from its owner.
+		Mainly notifies the owner before the destructor is called. */
 	void Detach();
 
 private:
-	friend class FUObjectTracker;
-	void AddTracker(FUObjectTracker* tracker);
-	void RemoveTracker(FUObjectTracker* tracker);
-	bool HasTracker(const FUObjectTracker* tracker) const;
+	friend class FUObjectOwner;
+
+	/** Sets the owner for this object.
+		@param owner The new owner. */
+	inline void SetObjectOwner(FUObjectOwner* owner)
+	{
+		// Are you attempting to transfer ownership or do multiple-containment?
+		// (owner == NULL) is used to avoid the notification when the container
+		// knows its about to release this object.
+		FUAssert(objectOwner == NULL || owner == NULL, return);
+		objectOwner = owner;
+	}
 };
 
 /**
-	An object set
-	Each set has access to a list of unique objects.
-	When the objects are created/released: they will inform the
-	list.
+	An object owner.
+	This interface allows containment classes to be notified when a
+	contained object is released.
 	@ingroup FUtils
 */
-class FCOLLADA_EXPORT FUObjectTracker
+class FUObjectOwner
 {
+protected:
+	/** Owns the given object.
+		@param object The object to own. */
+	inline void AttachObject(FUObject* object) { object->SetObjectOwner(this); }
+
+	/** Detaches the given object.
+		Use this function right before releasing the object to avoid calling the
+		notification function (OnOwnedObjectReleased).
+		@param object The object to detach. */
+	inline void DetachObject(FUObject* object)
+	{
+		// This assert verifies that we are, indeed, the owner.
+		FUAssert(object->objectOwner == this, return);
+		object->SetObjectOwner(NULL);
+	}
+
 public:
 	/** Destructor. */
-	virtual ~FUObjectTracker() {}
+	virtual ~FUObjectOwner() {}
 
-	/** Callback when an object tracked by this tracker
-		is being released.
-		@param object A tracked object. */
-	virtual void OnObjectReleased(FUObject* object) = 0;
-
-	/** Retrieves whether an object is tracked by this tracker.
-		@param object An object. */
-	virtual bool TracksObject(const FUObject* object) const { return object != NULL ? object->HasTracker(this) : false; }
-
-protected:
-	/** Adds an object to be tracked.
-		@param object The object to track. */
-	void TrackObject(FUObject* object) { if(object) object->AddTracker(this); }
-
-	/** Stops tracking an object
-		@param object The object to stop tracking. */
-	void UntrackObject(FUObject* object) { if(object) object->RemoveTracker(this); }
+	/** Notification from the object to its owner, when it is released.
+		@param object The object being released. */
+	virtual void OnOwnedObjectReleased(FUObject* object) = 0;
 };
 
 /**
-	A tracked object pointer
-	The reverse idea of a smart pointer: if the object pointed
-	to by the pointer is released, the pointer will become NULL.
+	Macros used to dynamically case a given FUObject pointer to some higher
+	class object.
+	@ingroup FUtils
+*/
+template <class HigherClassType>
+inline HigherClassType* DynamicCast(FUObject* object) { return object->HasType(HigherClassType::GetClassType()) ? (HigherClassType*) object : NULL; }
+
+/**
+	An object reference
+	On top of the tracked object pointer, when this reference
+	is released: the tracked object is released.
+ 
+	This template is very complex for a reference.
+	You get reduced compilation times when compared to simple containment.
+	
 	@ingroup FUtils
 */
 template <class ObjectClass = FUObject>
-class FUObjectPtr : public FUObjectTracker
+class FUObjectRef : public FUObjectOwner
 {
-protected:
-	/** The tracked pointer. */
+private:
+	typedef fm::pvector<ObjectClass> Parent;
+
+	/** The owned object. */
 	ObjectClass* ptr;
 
 public:
 	/** Copy constructor.
-		@param _ptr The object to track. This pointer can be NULL to indicate
-			that no object should be tracked at this time. */
-	FUObjectPtr(ObjectClass* _ptr = NULL) : ptr(_ptr)
+		@param _ptr The object to reference. This pointer can be NULL to indicate
+			that no object should be referenced at this time. */
+	FUObjectRef(ObjectClass* _ptr = NULL)
+	:	ptr(_ptr)
 	{
-		if (ptr != NULL) FUObjectTracker::TrackObject((FUObject*) ptr);
-		ptr = ptr;
+		if (_ptr != NULL) AttachObject((FUObject*) ptr);
 	}
 
 	/** Destructor.
-		Stops the tracking of the pointer. */
-	~FUObjectPtr()
+		The object referenced will be released. */
+	~FUObjectRef()
 	{
-		if (ptr != NULL) FUObjectTracker::UntrackObject((FUObject*) ptr);
-		ptr = NULL;
+		if (ptr != NULL)
+		{
+			DetachObject((FUObject*) ptr);
+			((FUObject*) ptr)->Release();
+#ifdef _DEBUG
+
+			ptr = NULL;
+#endif // _DEBUG
+
+		}
 	}
 
-	/** Assigns this tracking pointer a new object to track.
-		@param _ptr The new object to track.
+	/** Assigns this reference to own a new object.
+		@param _ptr The new object to own.
 		@return This reference. */
-	FUObjectPtr& operator=(ObjectClass* _ptr)
+	FUObjectRef<ObjectClass>& operator=(ObjectClass* _ptr)
 	{
-		if (ptr != NULL) FUObjectTracker::UntrackObject((FUObject*) ptr);
+		if (ptr != NULL) ((FUObject*) ptr)->Release();
+		FUAssert(ptr == NULL, return *this);
 		ptr = _ptr;
-		if (ptr != NULL) FUObjectTracker::TrackObject((FUObject*) ptr);
+		if (_ptr != NULL) AttachObject((FUObject*) ptr);
 		return *this;
 	}
-	inline FUObjectPtr& operator=(const FUObjectPtr& _ptr) { return operator=(_ptr.ptr); } /**< See above. */
 
-	/** Retrieves whether an object is tracked by this tracker.
-		@param object An object. */
-	virtual bool TracksObject(const FUObject* object) const { return (FUObject*) ptr == object; }
+	/** Exchanges the reference from one object to another.
+		If this reference already points to an object, it will be released.
+		If the other reference points to an object, that object will
+		now be owned by this reference and the other reference will point to NULL.
+		@param _ptr The other reference.
+		@return This reference. */
+	FUObjectRef<ObjectClass>& operator=(FUObjectRef<ObjectClass>& _ptr)
+	{
+		operator=(_ptr.ptr);
+		_ptr.ptr = NULL;
+		return *this;
+	}
 
 	/** Accesses the tracked object.
 		@return The tracked object. */
@@ -195,92 +216,54 @@ protected:
 	/** Callback when an object tracked by this tracker
 		is being released.
 		@param object A contained object. */
-	virtual void OnObjectReleased(FUObject* object)
+	virtual void OnOwnedObjectReleased(FUObject* object)
 	{
-		FUAssert(TracksObject(object), return);
+		FUAssert((size_t) object == (size_t) ptr, return);
 		ptr = NULL;
 	}
 };
 
-/**
-	An object reference
-	On top of the tracked object pointer, when this reference
-	is released: the tracked object is released.
 
-	This is template is very complex for a reference.
-	You get reduced compilation times and support for
-	multiple containment references.
-	
+/**
+	A contained object list.
+	When this list is released, the contained objects are also released.
+	Each object should have only one owner.
 	@ingroup FUtils
 */
-template <class ObjectClass = FUObject>
-class FUObjectRef : public FUObjectPtr<ObjectClass>
+template <typename ObjectClass = FUObject>
+class FUObjectContainer : private fm::pvector<ObjectClass>, public FUObjectOwner
 {
 private:
-	typedef FUObjectPtr<ObjectClass> Parent;
-
-public:
-	/** Copy constructor.
-		@param ptr The object to reference. This pointer can be NULL to indicate
-			that no object should be referenced at this time. */
-	FUObjectRef(ObjectClass* _ptr = NULL)
-	:	FUObjectPtr<ObjectClass>(_ptr)
-	{
-	}
-
-	/** Destructor.
-		The object referenced will be released. */
-	~FUObjectRef()
-	{
-		FUObject* _ptr = (FUObject*) Parent::operator->();
-		SAFE_RELEASE(_ptr);
-	}
-
-	/** Sets a new object to reference.
-		The previously tracked object will be released.
-		@param _ptr The new object to reference.
-		@return This reference. */
-	FUObjectRef& operator=(ObjectClass* __ptr)
-	{
-		FUObject* _ptr = (FUObject*) Parent::operator->();
-		SAFE_RELEASE( _ptr);
-		Parent::operator=(__ptr);
-		return *this;
-	}
-	inline FUObjectRef& operator=(FUObjectPtr<ObjectClass>& _ptr) { return operator=(_ptr.ptr); } /**< See above. */
-	inline FUObjectRef& operator=(FUObjectRef& _ptr) { return operator=(_ptr.ptr); } /**< See above. */
-};
-
-/**
-	An object list.
-	Based on top of our modified version of the STL vector class,
-	this contained object list holds pointers to some FUObject derived class
-	and automatically removes objects when they are deleted.
-	@ingroup FUtils
-*/
-template <class ObjectClass = FUObject>
-class FUObjectList : public fm::pvector<ObjectClass>, FUObjectTracker
-{
-public:
 	typedef fm::pvector<ObjectClass> Parent;
-	typedef ObjectClass* item;
-	typedef const ObjectClass* const_item;
-	typedef item* iterator;
-	typedef const_item* const_iterator;
+public:
+	typedef ObjectClass** iterator;
+	typedef const ObjectClass** const_iterator;
 
-	/** Destructor. */
-	virtual ~FUObjectList() { clear(); }
+public:
+	/** Destructor.
+		Releases all the objects contained within this container. */
+	virtual ~FUObjectContainer() { clear(); }
 
-	/** Clears the object tracked by this object list. */
+	/** Clears and releases the object tracked by this object list. */
 	void clear()
 	{
-		for (iterator it = begin(); it != end(); ++it)
+		while (size() > 0)
 		{
-			FUObjectTracker::UntrackObject((FUObject*) (*it));
+			FUObject* last = (FUObject*) Parent::back();
+			Parent::pop_back();
+			DetachObject(last);
+			last->Release();
 		}
-		Parent::clear();
 	}
-	
+
+	/** Retrieves the number of elements in the container.
+		@return The number of elements in the container. */
+	inline size_t size() const { return Parent::size(); }
+
+	/** Retrieves whether there are values in this container.
+		@return Whether there are values in the container. */
+	inline bool empty() const { return Parent::empty(); }
+
 	/** Retrieves the first element of the container.
 		@return The first element in the container. */
 	ObjectClass*& front() { return (ObjectClass*&) Parent::front(); }
@@ -295,32 +278,32 @@ public:
 		@param index An index.
 		@return The given object. */
 	inline ObjectClass* at(size_t index) { return (ObjectClass*) Parent::at(index); }
-	inline const ObjectClass* at(size_t index) const { return (ObjectClass*) Parent::at(index); } /**< See above. */
+	inline const ObjectClass* at(size_t index) const { return (const ObjectClass*) Parent::at(index); } /**< See above. */
 	template <class INTEGER> inline ObjectClass* operator[](INTEGER index) { return at(index); } /**< See above. */
 	template <class INTEGER> inline const ObjectClass* operator[](INTEGER index) const { return at(index); } /**< See above. */
 
 	/** Retrieves an iterator for the first element in the list.
 		@return an iterator for the first element in the list. */
-	inline iterator begin() { return (!Parent::empty()) ? &front() : NULL; }
-	inline const_iterator begin() const { return (!Parent::empty()) ? &front() : NULL; } /**< See above. */
-	
+	inline iterator begin() { return (iterator) Parent::begin(); }
+	inline const_iterator begin() const { return (const_iterator) Parent::begin(); } /**< See above. */
+
 	/** Retrieves an iterator for the element after the last element in the list.
 		@return an iterator for the element after the last element in the list. */
-	inline iterator end() { return (!Parent::empty()) ? (&back()) + 1 : NULL; }
-	inline const_iterator end() const { return (!Parent::empty()) ? (&back()) + 1 : NULL; } /**< See above. */
-	
+	inline iterator end() { return (iterator) Parent::end(); }
+	inline const_iterator end() const { return (const_iterator) Parent::end(); } /**< See above. */
+
 	/** Retrieves an iterator for a given element in the list.
 		@param item An item of the list.
 		@return An iterator for the given item. If the item is not
 			found in the list, the end() iterator is returned. */
-	inline iterator find(const ObjectClass* item) { iterator f = Parent::find(item); return begin() + (f - begin()); }
-	inline const_iterator find(const ObjectClass* item) const { const_iterator f = Parent::find(item); return begin() + (f - begin()); }
+	inline iterator find(const ObjectClass* item) { return (iterator) Parent::find(item); }
+	inline const_iterator find(const ObjectClass* item) const { return (const_iterator) Parent::find(item); } /**< See above. */
 
 	/** Adds an object to the container's containment list.
 		@param object An object to contain. */
 	inline void push_back(ObjectClass* object)
 	{
-		FUObjectTracker::TrackObject((FUObject*)object);
+		AttachObject((FUObject*) object);
 		Parent::push_back(object);
 	}
 
@@ -328,148 +311,178 @@ public:
 		@param _iterator The iterator after which to insert the object.
 		@param object An object to insert.
 		@return The iterator to the inserted object. */
-	inline iterator insert(iterator _iterator, ObjectClass* object)
+	iterator insert(iterator _iterator, ObjectClass* object)
 	{
-		FUObjectTracker::TrackObject(object);
-		iterator originalStart = begin();
-		iterator newIt = Parent::insert(Parent::begin() + (_iterator - originalStart), object);
-		return begin() + (newIt - Parent::begin());
+		AttachObject((FUObject*) object);
+		return (iterator) Parent::insert(_iterator, object);
 	}
+
+	/** Inserts an object in the container's containment list.
+		@param index Where to insert the object.
+		@param object An object to insert. */
+	inline void insert(size_t index, ObjectClass* object) { insert(begin() + index, object); }
 
 	/** Inserts a list of object in the container's containment list.
 		@param _where The iterator after which to insert the object.
-		@param startIterator The iterator for the first object to insert.
-		@param endIterator The iterator for the last object.
+		@param _startIterator The iterator for the first object to insert.
+		@param _endIterator The iterator just passed the last object.
 			This object will not be inserted. */
 	template <class _It>
-	inline void insert(iterator _where, _It _startIterator, _It _endIterator)
+	void insert(iterator _where, _It _startIterator, _It _endIterator)
 	{
-		size_t relativeWhere = _where - begin();
-		size_t count = _endIterator - _startIterator;
-		Parent::insert(Parent::begin() + relativeWhere, count);
-		_where = begin() + relativeWhere;
-
-		for (; _startIterator != _endIterator; ++_startIterator, ++_where)
+		if (_startIterator < _endIterator)
 		{
-			*_where = const_cast<ObjectClass*>((const ObjectClass*)(*_startIterator));
-			FUObjectTracker::TrackObject(const_cast<FUObject*>((const FUObject*) (*_startIterator)));
+			size_t relativeWhere = _where - begin();
+			size_t count = _endIterator - _startIterator;
+			Parent::insert(Parent::begin() + relativeWhere, count);
+			_where = begin() + relativeWhere;
+
+			for (; _startIterator != _endIterator; ++_startIterator, ++_where)
+			{
+				*_where = const_cast<ObjectClass*>((const ObjectClass*)(*_startIterator));
+				AttachObject((FUObject*) *_startIterator);
+			}
 		}
 	}
 
 	/** Removes the last value of the tracked object list. */
-	inline void pop_back()
+	void pop_back()
 	{
-		if (!Parent::empty())
-		{
-			FUObjectTracker::UntrackObject(back());
-			Parent::pop_back();
-		}
+		FUAssert(!Parent::empty(), return);
+		FUObject* last = (FUObject*) Parent::back();
+		Parent::pop_back();
+		DetachObject(last);
+		last->Release();
 	}
-	
-	/** Removes the value at the given position within the list.
-		@param it The list position for the value to remove. */
-	inline iterator erase(iterator _it)
+
+	/** Removes the first value of the object container.
+		Warning: this function may result in large memory copies,
+		since we use an array to contain objects. */
+	void pop_front()
 	{
-		FUObjectTracker::UntrackObject((FUObject*) *_it);
-		iterator it = Parent::begin() + (_it - begin());
-		it = Parent::erase(it);
-		return begin() + (it - Parent::begin());
+		FUAssert(!Parent::empty(), return);
+		FUObject* first = (FUObject*) Parent::front();
+		Parent::pop_front();
+		DetachObject(first);
+		first->Release();
 	}
 
 	/** Removes the value at the given position within the list.
-		@param it The list position for the value to remove. */
+		@param _it The list position for the value to remove. */
+	iterator erase(iterator _it)
+	{
+		FUAssert(contains(*_it), return _it);
+		FUObject* o = (FUObject*) * _it;
+		iterator it = (iterator) Parent::erase(_it);
+		DetachObject(o);
+		o->Release();
+		return it;
+	}
+
+	/** Removes a range of values from the list.
+		@param first The list position of the first value to remove.
+		@param last The list position just passed the last value to remove. */
 	inline void erase(iterator first, iterator last)
 	{
-		for (iterator it = first; it != last; ++it) FUObjectTracker::UntrackObject((FUObject*) *it);
+		for (iterator it = first; it != last; ++it)
+		{
+			FUObject* o = (FUObject*) * it;
+			DetachObject(o);
+			o->Release();
+		}
 		Parent::erase(first, last);
 	}
+
+	/** Removes a range of values from the list.
+		@param first The index of the first value to remove.
+		@param last The index just passed the last value to remove. */
+	inline void erase(size_t first, size_t last) { erase(begin() + first, begin() + last); }
 
 	/** Removes a value contained within the list, once.
 		@param value The value, contained within the list, to erase from it.
 		@return Whether the value was found and erased from the list. */
 	inline bool erase(const ObjectClass* value)
 	{
-		iterator it = Parent::find(value);
-		if (it != Parent::end())
+		iterator it = find(value);
+		if (it == Parent::end()) return false;
+		erase(it);
+		return true;
+	}
+
+	/** Detaches the value at the given position from the list.
+		The object is not released, so after this call: it has no owner
+		and must be released manually.
+		@param _it The list position for the value to remove. */
+	iterator Detach(iterator _it)
+	{
+		FUAssert(contains(*_it), return _it);
+		FUObject* o = (FUObject*) * _it;
+		iterator it = (iterator) Parent::erase(_it);
+		DetachObject(o);
+		return it;
+	}
+
+	/** Detaches a range of values from the list.
+		The objects are not released, so after this call: they have no owner
+		and must be released manually.
+		@param first The list position of the first value to remove.
+		@param last The list position just passed the last value to remove. */
+	inline void Detach(iterator first, iterator last)
+	{
+		for (iterator it = first; it != last; ++it)
 		{
-			FUObjectTracker::UntrackObject((FUObject*) *it);
-			Parent::erase(it);
-			return true;
+			FUObject* o = (FUObject*) * it;
+			DetachObject(o);
 		}
-		return false;
+		Parent::erase(first, last);
+	}
+
+	/** Detaches a range of values from the list.
+		The objects are not released, so after this call: they have no owner
+		and must be released manually.
+		@param first The index of the first value to remove.
+		@param last The index just passed the last value to remove. */
+	inline void Detach(size_t first, size_t last) { Detach(begin() + first, begin() + last); }
+
+	/** Detaches a given value from the list.
+		The object is not released, so after this call: it has no owner
+		and must be released manually.
+		@param value The value, contained within the list, to detach from it.
+		@return Whether the value was found and detached from the list. */
+	inline bool Detach(const ObjectClass* value)
+	{
+		iterator it = find(value);
+		if (it == Parent::end()) return false;
+		Detach(it);
+		return true;
 	}
 
 	/** Removes an indexed value contained within the list.
 		@param index The index of the value to erase. */
-	inline void erase(size_t index) { erase(begin() + index); }
+inline void erase(size_t index) { erase(begin() + index); }
+
+	/** Pre-caches the wanted number of pointers.
+		Use this function to avoid many memory re-allocations.
+		@param count The wanted number of pre-cached pointers. */
+	inline void reserve(size_t count) { Parent::reserve(count); }
+
+	/** Retrieves whether this container owns a given object.
+		@param value An object.
+		@return Whether the object is owned by this container. */
+	inline bool contains(const ObjectClass* value) const { return Parent::contains(value); }
 
 	/** Releases a value contained within a list.
-		Use this function only if your vector contains pointers
-		and you are certain that there is no duplicate pointers within the list.
+		Use this function only if there is no duplicate pointers within the list.
+		@deprecated Use FUObject::Release instead.
 		@param value The value, contained within the list, to release.
 		@return Whether the value was found and released. */
-	inline bool release(const ObjectClass* value)
+	DEPRECATED(3.05A, "FUObject::Release()") bool release(const ObjectClass* value)
 	{
-		iterator it = Parent::find(value);
-		if (it != Parent::end()) { Parent::erase(it); ((FUObject*) value)->Release(); return true; }
+		ObjectClass** it = find(value);
+		if (it != Parent::end()) { ((FUObject*) value)->Release(); return true; }
 		return false;
 	}
 
-	/** Retrieves whether an object is contained by this container.
-		@param object An object. */
-	virtual bool TracksObject(const FUObject* object) const { return Parent::contains((ObjectClass*) object); }
-
-	/** @todo Write a nice description. */
-	FUObjectList<ObjectClass>& operator= (const FUObjectList<ObjectClass>& other) { clear(); insert(end(), other.begin(), other.end()); return *this; }
-
-protected:
-	/** Removes an object from the container's containment list.
-		@param object A contained object. */
-	virtual void OnObjectReleased(FUObject* object)
-	{
-		FUAssert(TracksObject(object), return);
-		Parent::erase((ObjectClass*) object);
-	}
-};
-
-/**
-	A contained object list.
-	When this list is released, the contained objects are also released.
-	In theory, each object should be contained only once, but may be tracked multiple times.
-	@ingroup FUtils
-*/
-template <typename ObjectClass = FUObject>
-class FUObjectContainer : public FUObjectList<ObjectClass>
-{
-private:
-	typedef FUObjectList<ObjectClass> Parent;
-	
-public:
-	/** Destructor.
-		Releases all the objects contained within this container. */
-	virtual ~FUObjectContainer() { clear(); }
-
-	/** Clears and releases the object tracked by this object list. */
-	void clear()
-	{
-#ifdef _DEBUG
-		size_t arraySize=size();
-#endif
-		while (size() > 0)
-		{
-			((FUObject*) Parent::back())->Release();
-#ifdef _DEBUG
-			if(size() >= arraySize)
-				FUFail(return); //if you crash here, you're probably deleting something you shouldn't be, or not cloning correctly an object.
-			arraySize = size();
-#endif
-		}
-	}
-	
-	/** Retrieves the number of elements in the container.
-		@return The number of elements in the container. */
-	size_t size() const { return Parent::size(); }
-	
 	/** Adds a new empty object to the container.
 		@return The new empty object. */
 	ObjectClass* Add()
@@ -514,13 +527,15 @@ public:
 		push_back(object);
 		return object;
 	}
-};
 
-/**
-	Macros used to dynamically case a given FUObject pointer to some higher
-	class object.
-*/
-template <class HigherClassType>
-inline HigherClassType* DynamicCast(FUObject* object) { return object->HasType(HigherClassType::GetClassType()) ? (HigherClassType*) object : NULL; }
+protected:
+	/** Removes an object from the container's owned list.
+		@param object A contained object. */
+	virtual void OnOwnedObjectReleased(FUObject* object)
+	{
+		FUAssert(Parent::contains(object), return);
+		Parent::erase((ObjectClass*) object);
+	}
+};
 
 #endif // _FU_OBJECT_H_

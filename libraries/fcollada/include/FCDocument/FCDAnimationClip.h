@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -12,13 +15,20 @@
 #define _FCD_ANIMATION_CLIP_H_
 
 class FCDocument;
+class FCDAnimation;
 class FCDAnimationCurve;
 
-typedef FUObjectList<FCDAnimationCurve> FCDAnimationCurveTrackList; /**< A dynamically-sized tracking array of animation curves. */
+class FCDEntityInstance;
+
+typedef FUTrackedList<FCDAnimationCurve> FCDAnimationCurveTrackList; /**< A dynamically-sized tracking array of animation curves. */
 
 #ifndef _FCD_ENTITY_H_
 #include "FCDocument/FCDEntity.h"
 #endif // _FCD_ENTITY_H_
+
+#ifndef _FCD_ENTITY_INSTANCE_H_
+#include "FCDocument/FCDEntityInstance.h"
+#endif // _FCD_ENTITY__INSTANCE_H_
 
 /**
 	A COLLADA animation clip.
@@ -34,7 +44,11 @@ class FCOLLADA_EXPORT FCDAnimationClip : public FCDEntity
 private:
 	DeclareObjectType(FCDEntity);
 	FCDAnimationCurveTrackList curves;
-	float start, end;
+	
+	DeclareParameter(float, FUParameterQualifiers::SIMPLE, start, FC("Start Time"));
+	DeclareParameter(float, FUParameterQualifiers::SIMPLE, end, FC("End Time"));
+	DeclareParameterContainer(FCDEntityInstance, animations, FC("Animation Instances"));
+	StringList names; // names are supported on animation_instances
 
 public:
 	/** Constructor.
@@ -50,7 +64,7 @@ public:
 			will be created and you will need to release the returned pointer manually.
 		@param cloneChildren Whether to recursively clone this entity's children.
 		@return The clone. */
-	virtual FCDEntity* Clone(FCDEntity* clone = NULL, bool cloneChildren = false, FCDAnimationCurve* dependentAnimationCurve = NULL) const;
+	virtual FCDEntity* Clone(FCDEntity* clone = NULL, bool cloneChildren = false) const;
 
 	/** Retrieves the entity type for this class. This function is part
 		of the FCDEntity class interface.
@@ -86,16 +100,33 @@ public:
 		@param _end The end time marker position. */
 	void SetEnd(float _end) { end = _end; SetDirtyFlag(); }
 
-	/** [INTERNAL] Reads in the animation clip from a given COLLADA XML tree node.
-		@param clipNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the animation clip. */
-	virtual bool LoadFromXML(xmlNode* clipNode);
+	/** Retrieves the number of instanced animations within this animation clip.
+        @return The number of instanced animations. */
+	inline size_t GetAnimationCount() const { return animations.size(); }
 
-	/** [INTERNAL] Writes out the animation clip to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the animation clip.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
+    /** Retrieves a given animation instanced by this clip.
+        @param index The index of the animation to retrieve.
+        @return The animation object at the given index. */
+	inline FCDAnimation* GetAnimation(size_t index) const { FUAssert(GetAnimationCount() > index, return NULL); return (FCDAnimation*) animations[index]->GetEntity(); };
+
+    /** Sets the name of the animation at a given index.
+        @param name The name to give the animation at the given index.
+        @param index The index of the animation that will get the new name. */
+	inline void SetAnimationName(const fm::string& name, size_t index) { if (names.size() <= index) names.resize(index + 1); names[index] = name; }
+    
+    /** Retrieves the name of the animation at a given index.
+        @param index The index of the animation.
+        @return The name of the animation. */
+	inline fm::string GetAnimationName(size_t index) const { return names[index]; }
+
+    /** [INTERNAL] Adds an animation instance.
+        @return The empty animation instance. */
+	FCDEntityInstance* AddInstanceAnimation();
+    
+    /** [INTERNAL] Adds an animation instance.
+        @param animation The animation to instance.
+        @return The animation instance. */
+	FCDEntityInstance* AddInstanceAnimation(FCDAnimation* animation);
 };
 
 #endif // _FCD_ANIMATION_CLIP_H_

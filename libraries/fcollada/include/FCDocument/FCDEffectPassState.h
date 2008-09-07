@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -17,6 +20,9 @@
 #ifndef _FU_DAE_ENUM_H_
 #include "FUtils/FUDaeEnum.h"
 #endif // _FU_DAE_ENUM_H_
+#ifndef _FU_PARAMETER_H_
+#include "FUtils/FUParameter.h"
+#endif // _FU_PARAMETER_H_
 
 /**
 	This class holds the information necessary to set or apply
@@ -31,8 +37,10 @@ class FCOLLADA_EXPORT FCDEffectPassState : public FCDObject
 {
 private:
 	DeclareObjectType(FCDObject);
-	FUDaePassState::State type;
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, type, FC("Type")); // FUDaePassState::State
 
+	// Data remains state-specific, un-parameterizable and will
+	// pretty much always require custom UI.
 	uint8* data;
 	size_t dataSize;
 
@@ -50,7 +58,7 @@ public:
 
 	/** Retrieves the type of the pass render state.
 		@return The render state type. */
-	FUDaePassState::State GetType() const { return type; }
+	FUDaePassState::State GetType() const { return (FUDaePassState::State) *type; }
 
 	/** Retrieves the data size of the pass render state.
 		@return The size of the render state data. */
@@ -71,17 +79,6 @@ public:
 			you will need to release this new pass.
 		@return The cloned pass. */
 	FCDEffectPassState* Clone(FCDEffectPassState* clone = NULL) const;
-
-	/** [INTERNAL] Reads in the effect pass render state from a given COLLADA XML tree node.
-		@param stateNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the render state.*/
-	bool LoadFromXML(xmlNode* stateNode);
-
-	/** [INTERNAL] Writes out the effect pass render state to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the effect pass render state.
-		@return The created element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_EFFECT_PASS_STATE_H_

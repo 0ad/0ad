@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -25,14 +28,19 @@ class FCDEffectCode;
 
 	@ingroup FCDEffect
 */
-class FCOLLADA_EXPORT FCDEffectPassBind
+class FCOLLADA_EXPORT FCDEffectPassBind : public FCDObject
 {
-public:
-	fm::string reference; /**< A COLLADA effect parameter reference. */
-	fm::string symbol; /**< An external symbol, used within the shader code. */
-};
+private:
+	DeclareObjectType(FCDObject);
 
-typedef fm::vector<FCDEffectPassBind> FCDEffectPassBindList; /**< A dynamically-sized array of shader bindings. */
+public:
+	/** Constructor.
+		@param document The document that owns this binding. */
+	FCDEffectPassBind(FCDocument* document);
+
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, reference, FC("Parameter Reference")); /**< A COLLADA effect parameter reference. */
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, symbol, FC("Shader Symbol")); /**< An external symbol, used within the shader code. */
+};
 
 /**
 	A COLLADA shader.
@@ -49,20 +57,20 @@ class FCOLLADA_EXPORT FCDEffectPassShader : public FCDObject
 {
 private:
 	DeclareObjectType(FCDObject);
-	FCDEffectPass* parent;
 
-	FCDEffectPassBindList bindings;
-	fstring compilerTarget;
-	fstring compilerOptions;
-	fm::string name;
-	bool isFragment;
-	FUObjectPtr<FCDEffectCode> code;
+	FCDEffectPass* parent;
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, name, FC("Name"));
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, compilerTarget, FC("Compiler Target"));
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, compilerOptions, FC("Compiler Options"));
+	DeclareParameterContainer(FCDEffectPassBind, bindings, FC("Shader Bindings"));
+	DeclareParameterPtr(FCDEffectCode, code, FC("Shader Code"));
+	DeclareParameter(bool, FUParameterQualifiers::SIMPLE, isFragment, FC("Is Fragment Shader"));
 
 public:
 	/** Constructor: do not use directly. Instead, use the FCDEffectPass::AddShader,
 		FCDEffectPass::AddVertexShader or FCDEffectPass::AddFragmentShader functions.
 		@param parent The effect pass that contains this shader. */
-	FCDEffectPassShader(FCDEffectPass* parent);
+	FCDEffectPassShader(FCDocument* document, FCDEffectPass* parent);
 
 	/** Destructor. */
 	virtual ~FCDEffectPassShader();
@@ -90,8 +98,7 @@ public:
 
 	/** Retrieves the list of bindings for this shader.
 		@return The list of bindings. */
-	inline FCDEffectPassBindList& GetBindings() { return bindings; }
-	inline const FCDEffectPassBindList& GetBindings() const { return bindings; } /**< See above. */
+	DEPRECATED(3.05A, GetBindingCount and GetBinding(index)) void GetBindings() const {}
 
 	/** Retrieves the number of bindings for this shader.
 		@return The number of bindings. */
@@ -100,8 +107,8 @@ public:
 	/** Retrieves a binding contained in this shader.
 		@param index The index of the binding.
 		@return The binding. This pointer will be NULL if the index is out-of-bounds. */
-	inline FCDEffectPassBind* GetBinding(size_t index) { FUAssert(index < GetBindingCount(), return NULL); return &bindings.at(index); }
-	inline const FCDEffectPassBind* GetBinding(size_t index) const { FUAssert(index < GetBindingCount(), return NULL); return &bindings.at(index); } /**< See above. */
+	inline FCDEffectPassBind* GetBinding(size_t index) { FUAssert(index < GetBindingCount(), return NULL); return bindings.at(index); }
+	inline const FCDEffectPassBind* GetBinding(size_t index) const { FUAssert(index < GetBindingCount(), return NULL); return bindings.at(index); } /**< See above. */
 
 	/** Retrieves a binding for a given COLLADA reference.
 		@param reference The reference of the parameter binding.
@@ -109,17 +116,13 @@ public:
 			the parameter is not bound in this shader. */
 	const FCDEffectPassBind* FindBindingReference(const char* reference) const;
 	inline FCDEffectPassBind* FindBindingReference(const char* reference) { return const_cast<FCDEffectPassBind*>(const_cast<const FCDEffectPassShader*>(this)->FindBindingReference(reference)); } /**< See above. */
-	inline FCDEffectPassBind* FindBindingReference(const fm::string& reference) { return FindBindingReference(reference.c_str()); } /**< See above. */
-	inline const FCDEffectPassBind* FindBindingReference(const fm::string& reference) const { return FindBindingReference(reference.c_str()); } /**< See above. */
 	
 	/** Retrieves a binding for a given FX symbol.
-		@param reference The symbol of the parameter binding.
+		@param symbol The symbol of the parameter binding.
 		@return The binding. This pointer will be NULL if
 			the parameter is not bound in this shader. */
 	const FCDEffectPassBind* FindBindingSymbol(const char* symbol) const;
 	inline FCDEffectPassBind* FindBindingSymbol(const char* symbol) { return const_cast<FCDEffectPassBind*>(const_cast<const FCDEffectPassShader*>(this)->FindBindingSymbol(symbol)); } /**< See above. */
-	inline FCDEffectPassBind* FindBindingSymbol(const fm::string& symbol) { return FindBindingSymbol(symbol.c_str()); } /**< See above. */
-	inline const FCDEffectPassBind* FindBindingSymbol(const fm::string& symbol) const { return FindBindingSymbol(symbol.c_str()); } /**< See above. */
 
 	/** Adds a new binding to this shader.
 		@return The new binding. */
@@ -127,7 +130,7 @@ public:
 
 	/** Releases a binding contained within this shader.
 		@param binding The binding to release. */
-	void ReleaseBinding(FCDEffectPassBind* binding);
+	DEPRECATED(3.05A, binding->Release()) void ReleaseBinding(FCDEffectPassBind* binding) { SAFE_RELEASE(binding); }
 
 	/** Retrieves the compiler target information.
 		The validity of this string depends on the type of the profile that contains this shader.
@@ -137,7 +140,7 @@ public:
 	/** Sets the compiler target information string.
 		The validity of this string depends on the type of the profile that contains this shader.
 		@param _compilerTarget The compiler target information. */
-	inline void SetCompilerTarget(const fstring& _compilerTarget) { compilerTarget = _compilerTarget; SetDirtyFlag(); }
+	inline void SetCompilerTarget(const fchar* _compilerTarget) { compilerTarget = _compilerTarget; SetDirtyFlag(); }
 
 	/** Retrieves the compiler option string.
 		The validity of this string depends on the type of the profile that contains this shader.
@@ -147,7 +150,7 @@ public:
 	/** Sets the compiler option string.
 		The validity of this string depends on the type of the profile that contains this shader.
 		@param _compilerOptions The compiler option string. */
-	inline void SetCompilerOptions(const fstring& _compilerOptions) { compilerOptions = _compilerOptions; SetDirtyFlag(); }
+	inline void SetCompilerOptions(const fchar* _compilerOptions) { compilerOptions = _compilerOptions; SetDirtyFlag(); }
 
 	/** Retrieves the sub-id of the shader.
 		@return The sub-id. */
@@ -155,7 +158,7 @@ public:
 
 	/** Sets the sub-id of the shader.
 		@param _name The sub-id. */
-	inline void SetName(const fm::string& _name) { name = _name; SetDirtyFlag(); }
+	inline void SetName(const char* _name) { name = _name; SetDirtyFlag(); }
 
 	/** Retrieves the code inclusion that contains the code for this shader.
 		@return The code inclusion. This pointer will be NULL if this shader
@@ -173,17 +176,6 @@ public:
 			a new shader is created and you will need to release this new shader.
 		@return The cloned shader. */
 	FCDEffectPassShader* Clone(FCDEffectPassShader* clone) const;
-
-	/** [INTERNAL] Reads in the pass shader from a given COLLADA XML tree node.
-		@param shaderNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the shader.*/
-	bool LoadFromXML(xmlNode* shaderNode);
-
-	/** [INTERNAL] Writes out the pass shader to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the effect profile.
-		@return The created element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_EFFECT_PASS_SHADER_H_

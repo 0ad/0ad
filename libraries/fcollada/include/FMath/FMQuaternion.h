@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -41,6 +44,11 @@ public:
 		@param _w The scalar component. */
 	FMQuaternion(float _x, float _y, float _z, float _w) { x = _x; y = _y; z = _z; w = _w; }
 
+	/**	Creates the quaternion with the given component values.
+		@param values A static float array containing at least four elements. */
+	FMQuaternion(const float* values);
+	FMQuaternion(const double* values); /**< See above. */
+
 	/**	Creates the quaternion from a given axis and angle of rotation.
 		@param axis The axis of rotation.
 		@param angle The angle of rotation in radians. */
@@ -70,7 +78,7 @@ public:
 	/** Normalizes this vector. */
 	inline void NormalizeIt() { float l = Length(); if (l > 0.0f) { x /= l; y /= l; z /= l; w /= l; }}
 
-	/** Get a normalized FMVector3 with the same direction as this vector.
+	/** Returns a quaternion with a unit length at the same space as this quaternion
 		@return A FMVector3 with length 1 and same direction as this vector. */
 	inline FMQuaternion Normalize() const { float l = Length(); return FMQuaternion(x / l, y / l, z / l, w / l); }
 
@@ -103,6 +111,12 @@ public:
 		@return This quaternion. */
 	inline FMQuaternion& operator=(const FMQuaternion& q) { x = q.x; y = q.y; z = q.z; w = q.w; return (*this); }
 
+	/** Returns the slerp of this quaternion to other at time time
+		@param other The Quaternion to interpolate to
+		@param time The percentage (0 < time < 1) to slerp
+		@return The Quaternion formed by the slerp */
+	FMQuaternion slerp(const FMQuaternion& other, float time) const;
+
 	/** Converts a quaternion to its Euler rotation angles.
 		@param previousAngles To support animated quaternions conversion,
 			you need to pass in the previous quaternion's converted angles.
@@ -113,12 +127,17 @@ public:
 
 	/** Converts a quaternion to a angle-axis rotation.
 		@param axis The returned axis for the rotation.
-		@param angle The returned angle for the rotation. */
+		@param angle The returned angle for the rotation, in radians. */
 	void ToAngleAxis(FMVector3& axis, float& angle) const;
 
 	/** Converts a quaternion to a transformation matrix.
 		@return The transformation matrix for this quaternion. */
 	FMMatrix44 ToMatrix() const;
+
+	/** Sets the Quaternions transform onto the specified matrix.
+		This will overwrite any existing rotations, but not positions
+		@param m  The matrix to set our transform onto */
+	void SetToMatrix(FMMatrix44& m) const;
 
 	/** Get the FMQuaternion representation of the Euler rotation angles.
 		@param x The rotation about the x-axis (roll), in radians.
@@ -127,9 +146,26 @@ public:
 	 */
 	static FMQuaternion EulerRotationQuaternion(float x, float y, float z);
 
+	/** Get the FMQuaternion that represents the FMMatrix44 rotation
+		@param mat The matrix whose rotation we will represent */
+	static FMQuaternion MatrixRotationQuaternion(const FMMatrix44& mat);
+
 public:
 	static const FMQuaternion Zero; /**< The zero quaternion. */
-	static const FMQuaternion NoRotation; /**< A simple quaternion representing no rotation. */
+
+	/** The identity quaternion.
+		Transforming a vector or a point with this quaternion
+		returns the same vector or point. */
+	static const FMQuaternion Identity;
 };
+
+/** Retrieves whether two quaternions are equivalent.
+	@param a A first quaternion.
+	@param b A second quaternion.
+	@return Whether the two quaternions are equivalent. */
+inline bool IsEquivalent(const FMQuaternion& a, const FMQuaternion& b)
+{
+	return IsEquivalent(a.x, b.x) && IsEquivalent(a.y, b.y) && IsEquivalent(a.z, b.z) && IsEquivalent(a.w, b.w);
+}
 
 #endif // _FM_QUATERNION_H_

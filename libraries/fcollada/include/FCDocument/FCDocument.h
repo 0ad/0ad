@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -17,20 +20,34 @@
 #ifndef _FC_DOCUMENT_H_
 #define _FC_DOCUMENT_H_
 
-template <class T> class FCDLibrary;
-template <class T> class FUUniqueStringMapT;
+#ifndef __FCD_OBJECT_H_
+#include "FCDocument/FCDObject.h"
+#endif // __FCD_OBJECT_H_
+#ifndef _FU_PARAMETER_H_
+#include "FUtils/FUParameter.h"
+#endif // _FU_PARAMETER_H_
 
+#if defined(WIN32)
+template <class T> class FCOLLADA_EXPORT FCDLibrary; /**< Trick Doxygen. */
+template <class T> class FCOLLADA_EXPORT FUUniqueStringMapT; /**< Trick Doxygen. */
+#elif defined(LINUX) || defined(__APPLE__)
+template <class T> class FCDLibrary; /**< Trick Doxygen. */
+template <class T> class FUUniqueStringMapT; /**< Trick Doxygen. */
+#endif // LINUX
+
+class FCDAnimated;
 class FCDAnimation;
 class FCDAnimationChannel;
 class FCDAnimationClip;
-class FCDAnimated;
 class FCDAsset;
 class FCDCamera;
 class FCDController;
 class FCDEffect;
 class FCDEntity;
+class FCDEntityReference;
 class FCDEmitter;
 class FCDExternalReferenceManager;
+class FCDExtra;
 class FCDForceField;
 class FCDGeometry;
 class FCDImage;
@@ -42,35 +59,8 @@ class FCDPhysicsModel;
 class FCDPhysicsScene;
 class FCDTexture;
 class FCDSceneNode;
+class FCDVersion;
 class FUFileManager;
-
-/**
-	A structure to keep the version of the COLLADA file
-	Format is major.minor.revision
-*/
-
-class FCOLLADA_EXPORT FCDVersion
-{
-public:
-	uint8 major;
-	uint8 minor;
-	uint8 revision;
-
-	FCDVersion() {major = minor = revision = 0;}
-	virtual ~FCDVersion() {};
-
-	/** Extracts the version number from a string in the form of
-		major.minor.revision (ex: 1.4.1)
-		@param v A string containing the version numbers */
-	void ParseVersionNumbers(const fm::string& v);
-
-	/** Comparison functions for version numbers.
-		@param v A string containing the version numbers
-		@return The result of the comparison */
-	bool IsLowerThan(const fm::string& v) const;
-	bool IsHigherThan(const fm::string& v) const;
-	bool Is(const fm::string& v) const;
-};
 
 /**
 	A layer declaration.
@@ -83,9 +73,6 @@ public:
 	StringList objects; /**< The list of COLLADA entity ids which are contained by this layer. */
 };
 
-typedef fm::map<FCDAnimated*, FCDAnimated*> FCDAnimatedSet; /**< A set of animated values. */
-typedef fm::pvector<FCDAnimationChannel> FCDAnimationChannelList;  /**< A dynamically-sized array of animation channels. */
-typedef fm::map<const float*, FCDAnimated*> FCDAnimatedValueMap;  /**< A map of animatable values to animated values. */
 typedef fm::pvector<FCDLayer> FCDLayerList; /**< A dynamically-sized array of layer declarations. */
 
 typedef FCDLibrary<FCDAnimation> FCDAnimationLibrary; /**< A COLLADA library of animation entities. */
@@ -103,7 +90,8 @@ typedef FCDLibrary<FCDSceneNode> FCDVisualSceneNodeLibrary; /**< A COLLADA libra
 typedef FCDLibrary<FCDPhysicsModel> FCDPhysicsModelLibrary; /**< A COLLADA library of physics model entities. */
 typedef FCDLibrary<FCDPhysicsMaterial> FCDPhysicsMaterialLibrary; /**< A COLLADA library of physics material entities. */
 typedef	FCDLibrary<FCDPhysicsScene> FCDPhysicsSceneLibrary; /**< A COLLADA library of physics scene nodes. */
-typedef FUUniqueStringMapT<FUSStringBuilder> FUSUniqueStringMap; /**< A set of unique strings. */
+typedef FUUniqueStringMapT<char> FUSUniqueStringMap; /**< A set of unique strings. */
+typedef fm::map<FCDExtra*, FCDExtra*> FCDExtraSet; /**< A set of extra trees. */
 
 /** @defgroup FCDocument COLLADA Document Object Model. */
 
@@ -118,47 +106,49 @@ typedef FUUniqueStringMapT<FUSStringBuilder> FUSUniqueStringMap; /**< A set of u
 
 	@ingroup FCDocument COLLADA Document Object Model
 */
-class FCOLLADA_EXPORT FCDocument : public FUObject
+class FCOLLADA_EXPORT FCDocument : public FCDObject
 {
 private:
-	DeclareObjectType(FUObject);
+	DeclareObjectType(FCDObject);
 
 	FUFileManager* fileManager;
 	FUObjectRef<FCDExternalReferenceManager> externalReferenceManager;
 	fstring fileUrl;
-	FCDVersion version;
+	FCDVersion* version;
+	FCDExtraSet extraTrees;
 
 	FUSUniqueStringMap* uniqueNameMap;
-	FUObjectPtr<FCDSceneNode> visualSceneRoot;
-	FUObjectPtr<FCDPhysicsScene> physicsSceneRoot;
+	DeclareParameterRef(FCDEntityReference, visualSceneRoot, FC("Root Visual Scene"));
+	DeclareParameterContainer(FCDEntityReference, physicsSceneRoots, FC("Root Physics Scenes"));
 
 	// Document parameters
-	FUObjectRef<FCDAsset> asset;
-	float lengthUnitWanted, lengthUnitConversion;
+	DeclareParameterRef(FCDAsset, asset, FC("Asset Tag"));
+	DeclareParameterRef(FCDExtra, extra, FC("Extra Tree"));
 	bool hasStartTime, hasEndTime;
-	float startTime, endTime; // Maya-only
+	DeclareParameter(float, FUParameterQualifiers::SIMPLE, startTime, FC("Start Time"));
+	DeclareParameter(float, FUParameterQualifiers::SIMPLE, endTime, FC("End Time"));
 	FCDLayerList layers; // Maya-only
 
 	// Parsed and merged libraries
-	FUObjectRef<FCDAnimationLibrary> animationLibrary;
-	FUObjectRef<FCDAnimationClipLibrary> animationClipLibrary;
-	FUObjectRef<FCDCameraLibrary> cameraLibrary;
-	FUObjectRef<FCDControllerLibrary> controllerLibrary;
-	FUObjectRef<FCDEffectLibrary> effectLibrary;
-	FUObjectRef<FCDForceFieldLibrary> forceFieldLibrary;
-	FUObjectRef<FCDGeometryLibrary> geometryLibrary;
-	FUObjectRef<FCDImageLibrary> imageLibrary;
-	FUObjectRef<FCDLightLibrary> lightLibrary;
-	FUObjectRef<FCDMaterialLibrary> materialLibrary;
-	FUObjectRef<FCDPhysicsModelLibrary> physicsModelLibrary;
-	FUObjectRef<FCDPhysicsMaterialLibrary> physicsMaterialLibrary;
-	FUObjectRef<FCDPhysicsSceneLibrary> physicsSceneLibrary;
-	FUObjectRef<FCDVisualSceneNodeLibrary> visualSceneLibrary;
-	FUObjectRef<FCDEmitterLibrary> emitterLibrary;
+	DeclareParameterRef(FCDAnimationLibrary, animationLibrary, FC("Animation Library"));
+	DeclareParameterRef(FCDAnimationClipLibrary, animationClipLibrary, FC("Animation Clip Library"));
+	DeclareParameterRef(FCDCameraLibrary, cameraLibrary, FC("Camera Library"));
+	DeclareParameterRef(FCDControllerLibrary, controllerLibrary, FC("Controller Library"));
+	DeclareParameterRef(FCDEffectLibrary, effectLibrary, FC("Effect Library"));
+	DeclareParameterRef(FCDForceFieldLibrary, forceFieldLibrary, FC("Force-field Library"));
+	DeclareParameterRef(FCDGeometryLibrary, geometryLibrary, FC("Geometry Library"));
+	DeclareParameterRef(FCDImageLibrary, imageLibrary, FC("Image Library"));
+	DeclareParameterRef(FCDLightLibrary, lightLibrary, FC("Light Library"));
+	DeclareParameterRef(FCDMaterialLibrary, materialLibrary, FC("Material Library"));
+	DeclareParameterRef(FCDPhysicsModelLibrary, physicsModelLibrary, FC("Physics Model Library"));
+	DeclareParameterRef(FCDPhysicsMaterialLibrary, physicsMaterialLibrary, FC("Physics Material Library"));
+	DeclareParameterRef(FCDPhysicsSceneLibrary, physicsSceneLibrary, FC("Physics Scene Library"));
+	DeclareParameterRef(FCDVisualSceneNodeLibrary, visualSceneLibrary, FC("Visual Scene Library"));
+	DeclareParameterRef(FCDEmitterLibrary, emitterLibrary, FC("Emitter Library"));
 
 	// Animated values
+	typedef fm::map<FCDAnimated*, FCDAnimated*> FCDAnimatedSet;
 	FCDAnimatedSet animatedValues;
-	FCDAnimatedValueMap animatedValueMap;
 
 public:
 	/** Construct a new COLLADA document. */
@@ -169,39 +159,76 @@ public:
 
 	/** Retrieves the asset information for this COLLADA document. The asset information should always be present.
 		@return A pointer to the asset information structure. This pointer should never be NULL. */
-	FCDAsset* GetAsset() { return asset; }
-	const FCDAsset* GetAsset() const { return asset; }	/**< See above. */
+	inline FCDAsset* GetAsset() { return asset; }
+	inline const FCDAsset* GetAsset() const { return asset; } /**< See above. */
+
+	/** Retrieves the base extra tree for this COLLADA document. An extra tree should always be present,
+		but is likely to be empty.
+		@return A pointer to the base extra tree. This pointer should never be NULL. */
+	inline FCDExtra* GetExtra() { return extra; }
+	inline const FCDExtra* GetExtra() const { return extra; } /**< See above. */
 
 	/** Retrieves the version numbers for this COLLADA document. The version numbers should always be present.
 		@return The version number structure.*/
-	FCDVersion GetVersion() { return version; }
-	const FCDVersion& GetVersion() const { return version; }	/**< See above. */
+	inline FCDVersion& GetVersion() { return *version; }
+	inline const FCDVersion& GetVersion() const { return *version; } /**< See above. */
 
 	/** [INTERNAL] Retrieves the local file manager for the COLLADA document. Used to resolve URIs and transform file
 		paths into their relative or absolute equivalent. May be deprecated in future versions.
 		@return The file manager for this COLLADA document. This pointer should never be NULL. */
-	FUFileManager* GetFileManager() { return fileManager; }
-	const FUFileManager* GetFileManager() const { return fileManager; }	/**< See above. */
+	inline FUFileManager* GetFileManager() { return fileManager; }
+	inline const FUFileManager* GetFileManager() const { return fileManager; } /**< See above. */
 
-	/** Retrieves the currently selected visual scene.
-		@return The currently selected visual scene structure. */
-	FCDSceneNode* GetVisualSceneRoot() { return visualSceneRoot; }
-	const FCDSceneNode* GetVisualSceneRoot() const { return visualSceneRoot; } /**< See above. */
+	/** Retrieves the currently instanced visual scene.
+		NOTE: GetVisualSceneRoot is deprecated. Please start using GetVisualSceneInstance.
+		@return The currently instanced visual scene. */
+	inline FCDSceneNode* GetVisualSceneInstance() { return const_cast<FCDSceneNode*>(const_cast<const FCDocument*>(this)->GetVisualSceneInstance()); }
+	const FCDSceneNode* GetVisualSceneInstance() const; /**< See above. */
+	DEPRECATED(3.04A, FCDocument::GetVisualSceneInstance) inline FCDSceneNode* GetVisualSceneRoot() { return GetVisualSceneInstance(); } /**< See above. */
+	DEPRECATED(3.04A, FCDocument::GetVisualSceneInstance) inline const FCDSceneNode* GetVisualSceneRoot() const { return GetVisualSceneInstance(); } /**< See above. */
 
-	/** Retrieves the currently selected physics scene.
-		@return The currently selected physics scene structure. */
-	FCDPhysicsScene* GetPhysicsSceneRoot() { return physicsSceneRoot; }
-	const FCDPhysicsScene* GetPhysicsSceneRoot() const { return physicsSceneRoot; } /**< See above. */
+	/** Retrieves the reference to the currently instanced visual scene.
+		@return The instanced visual scene reference. */
+	inline FCDEntityReference* GetVisualSceneInstanceReference() { return visualSceneRoot; }
+	inline const FCDEntityReference* GetVisualSceneInstanceReference() const { return visualSceneRoot; } /**< See above. */
+
+	/** Retrieves the number of instanced physics scenes.
+		@return The number of instanced physics scenes. */
+	inline size_t GetPhysicsSceneInstanceCount() const { return physicsSceneRoots.size(); }
+
+	/** Retrieves one instanced physics scene.
+		@param index The index of the physics scene to retrieve.
+			If the index is out-of-bounds, NULL is returned.
+		@return A currently instanced physics scene. */
+	inline FCDPhysicsScene* GetPhysicsSceneInstance(size_t index = 0) { return const_cast<FCDPhysicsScene*>(const_cast<const FCDocument*>(this)->GetPhysicsSceneInstance(index)); }
+	const FCDPhysicsScene* GetPhysicsSceneInstance(size_t index = 0) const; /**< See above. */
+	DEPRECATED(3.04A, FCDocument::GetPhysicsSceneInstance) inline FCDPhysicsScene* GetPhysicsSceneRoot(size_t index = 0) { return GetPhysicsSceneInstance(index); } /**< See above. */
+	DEPRECATED(3.04A, FCDocument::GetPhysicsSceneInstance) inline const FCDPhysicsScene* GetPhysicsSceneRoot(size_t index = 0) const { return GetPhysicsSceneInstance(index); } /**< See above. */
+
+	/** Adds one instanced physics scene to the document.
+		@param scene The newly instanced physics scene. */
+	void AddPhysicsSceneInstance(FCDPhysicsScene* scene);
+
+	/** Retrieves a reference to the instanced physics scene.
+		@param index The index of the physics scene instance reference to
+			retrieve. If the index is out-of-bounds, NULL is returned.
+		@return The reference to the index physics scene reference. */
+	inline FCDEntityReference* GetPhysicsSceneInstanceReference(size_t index = 0) { if (index == 0 && physicsSceneRoots.empty()) return NULL; FUAssert(index < physicsSceneRoots.size(), return NULL); return physicsSceneRoots[index]; }
+	inline const FCDEntityReference* GetPhysicsSceneInstanceReference(size_t index = 0) const { if (index == 0 && physicsSceneRoots.empty()) return NULL; FUAssert(index < physicsSceneRoots.size(), return NULL); return physicsSceneRoots[index]; }
+
+	/** Adds an empty reference in the list of instanced physics scenes.
+		@return The new, empty, reference. */
+	FCDEntityReference* AddPhysicsSceneInstanceReference();
 
 	/** [INTERNAL] Retrieves the map of unique ids for this document.
 		@return The map of unique ids for this document. */
-	FUSUniqueStringMap* GetUniqueNameMap() { return uniqueNameMap; }
-	const FUSUniqueStringMap* GetUniqueNameMap() const { return uniqueNameMap; } /**< See above. */
+	inline FUSUniqueStringMap* GetUniqueNameMap() { return uniqueNameMap; }
+	inline const FUSUniqueStringMap* GetUniqueNameMap() const { return uniqueNameMap; } /**< See above. */
 
 	/** Retrieves the external reference manager.
 		@return The external reference manager. */
-	FCDExternalReferenceManager* GetExternalReferenceManager() { return externalReferenceManager; }
-	const FCDExternalReferenceManager* GetExternalReferenceManager() const { return externalReferenceManager; } /**< See above. */
+	inline FCDExternalReferenceManager* GetExternalReferenceManager() { return externalReferenceManager; }
+	inline const FCDExternalReferenceManager* GetExternalReferenceManager() const { return externalReferenceManager; } /**< See above. */
 
 	/** Retrieves the file URL for this document.
 		@return The file URL for the document. */
@@ -209,31 +236,8 @@ public:
 
 	/** Sets the file URL for this document.
 		Useful when working with external references.
-		@param filepath The filename for the document. */
+		@param filename The filename for the document. */
 	void SetFileUrl(const fstring& filename);
-
-	/** @deprecated Retrieves the vector pre-determined by the document as the up-axis.
-		This information is now contained within the asset structure. Please use GetAsset()->GetUpAxis().
-		@return A 3D vector for the up axis direction. */
-	const FMVector3& GetUpAxis() const;
-
-	/** @deprecated Retrieves the length of 1 distance unit for this document, in meters. The default is 1.0,
-		which means that the 1 unit in the document is equal to 1 meter. This information is 
-		now contained within the asset structure. Please use GetAsset()->GetLengthUnit().
-		@return The length of 1 distance unit for this document. */
-	float GetLengthUnit() const;
-
-	/** [INTERNAL] Retrieves the conversion factor between the requested distance unit
-		and the document's distance unit.
-		@return The distance unit conversion factor. */
-	inline float GetLengthUnitConversion() const { return lengthUnitConversion; }
-
-	/** Sets the wanted distance unit factor, in meters, for this document.
-		For example, Maya uses centimeters internally and sets the wanted distance unit factor to 0.01.
-		Use this parameter on export as well, to enforce a length conversion:
-		set the value of the actual engine distance unit.
-		@param wantedLengthUnit The wanted distance unit, in meters. */
-	inline void SetLengthUnitWanted(float wantedLengthUnit) { lengthUnitWanted = wantedLengthUnit; }
 
 	/** Returns whether a start time is being enforced for the document.
 		@return Whether the document has a start time. */
@@ -255,6 +259,10 @@ public:
 		@param time The document end time. */
 	inline void SetEndTime(float time) { endTime = time; hasEndTime = true; }
 
+	/** Evaluate the animation objects at the given time
+		@param time The time to evaluate the objects at */
+	inline void SetCurrentTime(float time);
+
 	/** Retrieves the list of entity layers.
 		@return The list of entity layers. */
 	inline FCDLayerList& GetLayers() { return layers; }
@@ -269,7 +277,7 @@ public:
 		@return The entity layer. This pointer will be NULL if the index
 			is out-of-bounds. */
 	inline FCDLayer* GetLayer(size_t index) { FUAssert(index < GetLayerCount(), return NULL); return layers.at(index); }
-	inline const FCDLayer* GetLayer(size_t index) const { FUAssert(index < GetLayerCount(), return NULL); return layers.at(index); }
+	inline const FCDLayer* GetLayer(size_t index) const { FUAssert(index < GetLayerCount(), return NULL); return layers.at(index); } /**< See above. */
 
 	/** Adds an entity layer to the document.
 		@return The new layer. */
@@ -317,7 +325,7 @@ public:
 		Force fields are emitters of physical force and have no COMMON profile in COLLADA.
 		@return The force field library. */
 	inline FCDForceFieldLibrary* GetForceFieldLibrary() { return forceFieldLibrary; }
-	inline const FCDForceFieldLibrary* GetForceFieldLibrary() const { return forceFieldLibrary; }
+	inline const FCDForceFieldLibrary* GetForceFieldLibrary() const { return forceFieldLibrary; } /**< See above. */
 
 	/** Retrieves the image library. The image library contains a list of images. Images are used
 		by effects for textures.
@@ -371,14 +379,14 @@ public:
 	/** Retrieves the physics scene library.
 		The physics scene library contains a list of physics scene nodes.
 		@return The physics scene library. */
-	inline FCDPhysicsSceneLibrary* GetPhysicsSceneLibrary() { return physicsSceneLibrary;}
-	inline const FCDPhysicsSceneLibrary* GetPhysicsSceneLibrary() const { return physicsSceneLibrary;} /**< See above. */
+	inline FCDPhysicsSceneLibrary* GetPhysicsSceneLibrary() { return physicsSceneLibrary; }
+	inline const FCDPhysicsSceneLibrary* GetPhysicsSceneLibrary() const { return physicsSceneLibrary; } /**< See above. */
 
 	/** Retrieves the emitter library.
 		The emitter library contains a list of emitter definitions.
 		@return The emitter library. */
-	inline FCDEmitterLibrary* GetEmitterLibrary() { return emitterLibrary;}
-	inline const FCDEmitterLibrary* GetEmitterLibrary() const { return emitterLibrary;} /**< See above. */
+	inline FCDEmitterLibrary* GetEmitterLibrary() { return emitterLibrary; }
+	inline const FCDEmitterLibrary* GetEmitterLibrary() const { return emitterLibrary; } /**< See above. */
 
 	/** Insert a new visual scene within the visual scene library.
 		The new visual scene will be used as the root visual scene.
@@ -390,18 +398,6 @@ public:
 		@return The newly created physics scene. */
 	FCDPhysicsScene* AddPhysicsScene();
 	
-	/** [INTERNAL] Retrieves all the animation channels which include a given target pointer.
-		@param pointer A valid COLLADA target pointer. Example: "node01/translate.X".
-		@param channels A list to be filled with the animation channels which target the given pointer.
-			This list is not emptied by the function. If no animation channels are found, this list will be empty. */
-	void FindAnimationChannels(const fm::string& pointer, FCDAnimationChannelList& channels);
-
-	/** [INTERNAL] Retrieves the array indices of animation channels which target the given XML node.
-		@param targetArray A XML node that contains an array of animatable values.
-		@param animatedIndices A list to be filled with the array indices of the animation channels
-			which target the given XML node. If no animation channel indices are found, this list will be empty. */
-	void FindAnimationChannelsArrayIndices(xmlNode* targetArray, Int32List& animatedIndices);
-
 	/** Retrieves the animation tree node that matches the given COLLADA id.
 		@param daeId A valid COLLADA id.
 		@return The animation tree node. This pointer will be NULL if
@@ -432,6 +428,7 @@ public:
 	/** Retrieves the entity that matches the given COLLADA id.
 		This function will look through all the libraries for any entity
 		with the given COLLADA id.
+		@param daeId A valid COLLADA id.
 		@return The entity. This pointer will be NULL if no matching entity was found. */
 	FCDEntity* FindEntity(const fm::string& daeId);
 
@@ -496,7 +493,8 @@ public:
 		their child visual scene nodes to find the correct visual scene node.
 		@param daeId A valid COLLADA id.
 		@return The visual scene node. This pointer will be NULL if no matching visual scene node was found. */
-	FCDSceneNode* FindSceneNode(const fm::string& daeId);
+	const FCDSceneNode* FindSceneNode(const char* daeId) const;
+	inline FCDSceneNode* FindSceneNode(const char* daeId) { return const_cast<FCDSceneNode*>(const_cast<const FCDocument*>(this)->FindSceneNode(daeId)); }
 
 	/** [INTERNAL] Registers an animated value with the document. All animated values are
 		listed within the document.
@@ -508,93 +506,20 @@ public:
 		@param animated The animated value to un-list from the document. */
 	void UnregisterAnimatedValue(FCDAnimated* animated);
 
-	/** [INTERNAL] Links the given animated value as a possible driver to other animated value(s). This step is 
-		done during the import, after new animated values are imported. The whole list of animated values is checked
-		for potential driven values.
-		@param animated The animated value to verify.
-		@return Whether a driver was found. */
-	bool LinkDriver(FCDAnimated* animated);
+	/** [INTERNAL] Registers an extra tree with the document.
+		All extra trees are listed within the document to support extra-technique plug-ins.
+		@param tree The new extra tree to list within the document. */
+	inline void RegisterExtraTree(FCDExtra* tree) { extraTrees.insert(tree, tree); }
 
-	/** Retrieves an animated value given an animatable value.
-		@param ptr A pointer to an animatable value contained within the document.
-		@return The animated value. This pointer will NULL if no matching animated value was found. */
-	FCDAnimated* FindAnimatedValue(float* ptr);
-	const FCDAnimated* FindAnimatedValue(const float* ptr) const; /**< See above. */
+	/** [INTERNAL] Unregisters an extra tree of the document.
+		All extra trees are listed within the document to support extra-technique plug-ins.
+		@param tree The extra tree to un-list from the document. */
+	inline void UnregisterExtraTree(FCDExtra* tree) { FUAssert(extraTrees.find(tree) != extraTrees.end(), return); extraTrees.erase(tree); }
 
-	/** [INTERNAL] Retrieves an animated value given a COLLADA target pointer. Used during the resolving of drivers/driven
-		animated values.
-		@param fullyQualifiedTarget A valid COLLADA target pointer.
-		@return A pointer to the animatable value. */
-	const float* FindAnimatedTarget(const fm::string& fullyQualifiedTarget);
-
-	/** Retrieves whether a given animatable value is animated.
-		@param ptr The animatable value.
-		@return Whether the animatable value is animated. */
-	bool IsValueAnimated(const float* ptr) const;
-
-	/** Loads a COLLADA file into this document object. This function appends into the document object all
-		the COLLADA assets found within the file identified by the given filename.
-		@param filename An OS-dependant filename.
-		@return The status of the import. If the status is 'false', it may be dangerous to
-			extract information from the document. */
-	bool LoadFromFile(const fstring& filename);
-
-	/** Loads a COLLADA string into this document object. This function appends into the document object all
-		the COLLADA assets found within the given string. The string should be in XML format.
-		@param basePath The base file path for this import. Used when transforming the relative filenames
-			found within the COLLADA string into absolute and OS-dependent filenames.
-		@param text The COLLADA string.
-		@param textLength The COLLADA string length. Set this value to zero for NULL-terminated strings.
-		@return The status of the import. If the status is 'false', it may be dangerous to
-			extract information from the document. */
-	bool LoadFromText(const fstring& basePath, const char* text, size_t textLength = 0);
-#ifdef UNICODE
-	bool LoadFromText(const fstring& basePath, const fchar* text, size_t textLength = 0); /**< See above. */
-#endif
-
-	/** [INTERNAL] Reads the full document information from the given XML node tree. This step is done after
-		a successfull import, by LibXML2, of the COLLADA string/file into a full XML node tree.
-		@param colladaNode The base XML node tree to parse.
-		@return The status of the import. If the status is 'false', it may be dangerous to
-			extract information from the document. */
-	bool LoadDocumentFromXML(xmlNode* colladaNode);
-
-	/** Writes the document out to a file identified by its OS-dependent filename. This function is done
-		in two steps. First, the document is fully translated into a XML node tree. Then, the XML node tree
-		is written to a file by LibXML2.
-		@param filename The OS-dependent filename.
-		@return The status of the import. If the status is 'false', it may be dangerous to
-			extract information from the document. */
-	bool WriteToFile(const fstring& filename) const;
-
-	/** [INTERNAL] Writes out the document to a XML node tree. This is the first step of the document
-		export. This function traverses the full COLLADA document, writing all the entities into
-		the given XML node tree.
-		@param colladaNode The base XML node tree to write to.
-		@return The status of the import. If the status is 'false', it may be dangerous to
-			extract information from the document. */
-	bool WriteDocumentToXML(xmlNode* colladaNode) const;
-
-	/** [INTERNAL] Writes out the animation curves contained within an animated value to the given XML node tree.
-		@param value An animatable value.
-		@param valueNode The XML node associated with the animatable value. This XML node is used to generate a
-			valid COLLADA target pointer.
-		@param wantedSid The sub-id for the animatable value. If the animatable value is animated, this sub-id
-			will be added as an attribute to the XML node. If another node, within the sid range already uses this sub-id,
-			a unique sub-id will be generated using the wanted sub-id as a base.
-		@param arrayElement The array index for this animatable value. Defaults to -1, which implies that the
-			animatable value does not belong to an array.
-		@return Whether any animated value was found for the given value pointer. */
-	bool WriteAnimatedValueToXML(const float* value, xmlNode* valueNode, const char* wantedSid, int32 arrayElement = -1) const;
-
-	/** [INTERNAL] Writes out the animation curves contained within an animated value to the given XML node tree.
-		@param animated An animated element.
-		@param valueNode The XML node associated with the animatable value. This XML node is used to generate a
-			valid COLLADA target pointer.
-		@param wantedSid The sub-id for the animatable value. If the animatable value is animated, this sub-id
-			will be added as an attribute to the XML node. If another node, within the sid range already uses this sub-id,
-			a unique sub-id will be generated using the wanted sub-id as a base. */
-	void WriteAnimatedValueToXML(const FCDAnimated* animated, xmlNode* valueNode, const char* wantedSid) const;
+	/** [INTERNAL] Retrieves the set of extra trees.
+		This function is meant only to be used for supporting the extra-technique plug-ins.
+		@return The set of extra trees for this document. */
+	inline FCDExtraSet& GetExtraTrees() { return extraTrees; }
 };
 
 #endif //_FC_DOCUMENT_H_

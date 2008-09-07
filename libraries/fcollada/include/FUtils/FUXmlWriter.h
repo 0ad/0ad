@@ -1,11 +1,14 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
-	@file FUXmlWriter.h
-	This file defines the FUXmlWriter namespace.
+@file FUXmlWriter.h
+This file defines the FUXmlWriter namespace.
 */
 
 #ifndef _FU_XML_WRITER_H_
@@ -14,12 +17,12 @@
 #ifdef HAS_LIBXML
 
 /**
-	Common XML writing utility functions.
-	Based on top of the LibXML2 library.
-	This whole namespace is considered external and should only be used
-	by the FCollada library.
+Common XML writing utility functions.
+Based on top of the LibXML2 library.
+This whole namespace is considered internal and should only be used
+by the FCollada library.
 
-	@ingroup FUtils
+@ingroup FUtils
 */
 namespace FUXmlWriter
 {
@@ -33,6 +36,11 @@ namespace FUXmlWriter
 		@param parent The parent XML tree node.
 		@param child The child XML tree node. */
 	FCOLLADA_EXPORT void AddChild(xmlNode* parent, xmlNode* child);
+
+	/** Rename the given node to the new name
+		@param node The XML tree node to rename
+		@param newName The new name for the XML tree node */
+	FCOLLADA_EXPORT void RenameNode(xmlNode* node, const char* newName);
 
 	/** Creates a child XML tree node within a XML tree node.
 		The child XML tree node is added at the end of the parent XML tree node children list.
@@ -55,6 +63,14 @@ namespace FUXmlWriter
 	inline xmlNode* AddChild(xmlNode* parent, const char* name, const fm::string& content) { return AddChild(parent, name, content.c_str()); } /**< See above. */
 	inline xmlNode* AddChild(xmlNode* parent, const char* name, FUSStringBuilder& content) { return AddChild(parent, name, content.ToCharPtr()); } /**< See above. */
 
+	/** Appends an unprocessed content string to a XML tree node.
+			The content string is added at the end of the XML tree node's content, with no special characters added.
+			@param node The XML tree node.
+			@param content The content to add to the XML tree node. */
+	FCOLLADA_EXPORT void AddContentUnprocessed(xmlNode* node, const char* content);
+	inline void AddContentUnprocessed(xmlNode* node, const fm::string& content) { return AddContentUnprocessed(node, content.c_str()); } /**< See above. */
+	inline void AddContentUnprocessed(xmlNode* node, FUSStringBuilder& content) { return AddContentUnprocessed(node, content.ToCharPtr()); } /**< See above. */
+
 	/** Creates a child XML tree node within a XML tree node.
 		The child XML tree node is added at the end of the parent XML tree node children list.
 		The given content value is added, in string-form, to the returned child XML tree node.
@@ -62,23 +78,14 @@ namespace FUXmlWriter
 		@param name The name of the new child XML tree node.
 		@param value A primitive value. This value is stringified and added, as content, to the new child XML tree node.
 		@return The new child XML tree node. */
-
-		/** Appends an unprocessed content string to a XML tree node.
-		The content string is added at the end of the XML tree node's content, with no special characters added.
-		@param node The XML tree node.
-		@param content The content to add to the XML tree node. */
-	FCOLLADA_EXPORT void AddContentUnprocessed(xmlNode* node, const char* content);
-	inline void AddContentUnprocessed(xmlNode* node, const fm::string& content) { return AddContentUnprocessed(node, content.c_str()); }
-	inline void AddContentUnprocessed(xmlNode* node, FUSStringBuilder& content) { return AddContentUnprocessed(node, content.ToCharPtr()); }
-
-	template <typename T> inline xmlNode* AddChild(xmlNode* parent, const char* name, const T& value) { xmlNode* child = AddChild(parent, name); globalSBuilder.set(value); AddContentUnprocessed(child, globalSBuilder.ToCharPtr()); return child; }
+	template <typename T> inline xmlNode* AddChild(xmlNode* parent, const char* name, const T& value) { xmlNode* child = AddChild(parent, name); FUSStringBuilder builder; builder.set(value); AddContentUnprocessed(child, builder.ToCharPtr()); return child; }
 
 	/** Appends a dangling XML tree node as a sibling of a XML tree node.
 		Two sibling XML tree nodes have the same parent XML tree node.
 		The dangling XML tree node is added at the end of the parent XML tree node children list.
 		@param sibling The sibling XML tree node. It must have a valid parent XML tree node.
 		@param dangling The dangling XML tree node. */
-	FCOLLADA_EXPORT void AddSibling(xmlNode* sibling, xmlNode* dangling);
+	 FCOLLADA_EXPORT void AddSibling(xmlNode* sibling, xmlNode* dangling);
 
 	/** Creates a XML tree node as a sibling of a XML tree node.
 		Two sibling XML tree nodes have the same parent XML tree node.
@@ -86,14 +93,14 @@ namespace FUXmlWriter
 		@param sibling The sibling XML tree node. It must have a valid parent XML tree node.
 		@param name The name of the new XML tree node.
 		@return The new sibling XML tree node. */
-	FCOLLADA_EXPORT xmlNode* AddSibling(xmlNode* sibling, const char* name);
+	 FCOLLADA_EXPORT xmlNode* AddSibling(xmlNode* sibling, const char* name);
 
 	/** Inserts a XML tree node before the given XML tree child node.
 		@param parent The parent XML tree node.
 		@param sibling The sibling XML tree node. It must be parented to the given parent XML tree node.
 		@param name The name of the new XML tree node.
 		@return The inserted sibling XML tree node. */
-	FCOLLADA_EXPORT xmlNode* InsertChild(xmlNode* parent, xmlNode* sibling, const char* name);
+	 FCOLLADA_EXPORT xmlNode* InsertChild(xmlNode* parent, xmlNode* sibling, const char* name);
 
 	/** Returns a child XML tree node within a XML tree node.
 		If the child XML tree node with the given name does not exists, it is created and
@@ -113,7 +120,7 @@ namespace FUXmlWriter
 		@param name The name of the child XML tree node.
 		@param value A primitive value. If the child XML tree node must be created: this value is stringified and added as content.
 		@return The child XML tree node. */
-	template <typename T> inline xmlNode* AddChildOnce(xmlNode* parent, const char* name, const T& value) { xmlNode* child = AddChildOnce(parent, name); globalSBuilder.set(value); AddContentUnprocessed(child, globalSBuilder.ToCharPtr()); return child; }
+	template <typename T> inline xmlNode* AddChildOnce(xmlNode* parent, const char* name, const T& value) { xmlNode* child = AddChildOnce(parent, name); FUSStringBuilder builder(value); AddContentUnprocessed(child, builder.ToCharPtr()); return child; }
 
 	/** Appends a content string to a XML tree node.
 		The content string is added at the end of the XML tree node's content, with no special characters added.
@@ -130,13 +137,13 @@ namespace FUXmlWriter
 	/** Converts all the spaces and other characters not acceptable in filenames,
 		into their hex-equivalent. Example: %20 for spaces.
 		@param str The string with the spaces to convert. */
-	FCOLLADA_EXPORT void ConvertFilename(fstring& str);
+	 FCOLLADA_EXPORT void ConvertFilename(fstring& str);
 
 	/** Appends a primitive value to a XML tree node.
 		The primitive value is added at the end of the XML tree node's content, with no special characters added.
 		@param node The XML tree node.
 		@param value A primitive value. The value is stringified and added as content to the XML tree node. */
-	template <typename T> inline void AddContent(xmlNode* node, const T& value) { globalSBuilder.set(value); return AddContentUnprocessed(node, globalSBuilder.ToCharPtr()); }
+	template <typename T> inline void AddContent(xmlNode* node, const T& value) { FUSStringBuilder builder(value); return AddContentUnprocessed(node, builder.ToCharPtr()); }
 
 	/** Appends a XML attribute to a XML tree node.
 		A XML attribute appears in the form @<node name="value"/@>.
@@ -155,13 +162,13 @@ namespace FUXmlWriter
 		@param node The XML tree node.
 		@param attributeName The name of the XML attribute.
 		@param attributeValue A primitive value. The value is stringified and set as the value of the XML attribute. */
-	template <typename T> inline void AddAttribute(xmlNode* node, const char* attributeName, const T& attributeValue) { globalSBuilder.set(attributeValue); AddAttribute(node, attributeName, globalSBuilder.ToCharPtr()); }
+	template <typename T> inline void AddAttribute(xmlNode* node, const char* attributeName, const T& attributeValue) { FUSStringBuilder builder; builder.set(attributeValue); AddAttribute(node, attributeName, builder.ToCharPtr()); }
 
 	/** Removes a XML attribute from a XML tree node.
 		@param node The XML tree node with the unwanted attribute.
 		@param attributeName The name of the XML attribute to remove. */
 	FCOLLADA_EXPORT void RemoveAttribute(xmlNode* node, const char* attributeName);
-	
+
 	/** Appends a dangling XML tree node to a XML tree node
 		The dangling XML tree node is inserted in lexical order,
 		after all the sibling XML tree node with the same name.

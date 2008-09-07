@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	We use references to static objects so that the order of initialization shouldn't matter.
@@ -16,19 +19,19 @@
 
 /**
 	An object type.
+
 	Used for RTTI-purpose and to easily allow up-classing of objects.
 	Every object class should have one object type has a static member
 	and available through the virtual FUObject::GetObjectType function.
 	All FUObject up-classes should use the DeclareObjectType macro.
+
 	@ingroup FUtils
 */
 class FCOLLADA_EXPORT FUObjectType
 {
 private:
 	const FUObjectType* parent;
-#ifdef _DEBUG
 	const char* typeName;
-#endif
 
 public:
 	/** [INTERNAL] Constructor: do not use directly.
@@ -69,11 +72,9 @@ public:
 		@return Whether the two object type are different. */
 	inline bool operator!=(const FUObjectType& otherType) const { return &otherType != this; }
 
-#ifdef _DEBUG
 	/** Retrieves the object type name.
 		@return The object type name. */
 	inline const char* GetTypeName() const { return typeName; }
-#endif
 };
 
 /**
@@ -100,6 +101,25 @@ private:
 */
 #define ImplementObjectType(ClassName) \
 	FUObjectType ClassName::__classType(Parent::GetClassType(), #ClassName); \
-	void ClassName::Release() { delete this; }
+	void ClassName::Release() { Detach(); delete this; }
+
+/** See above. */
+#define ImplementObjectTypeT(ClassName) \
+	template <> \
+	FUObjectType ClassName::__classType(Parent::GetClassType(), #ClassName); \
+	template <> \
+	void ClassName::Release() { Detach(); delete this; }
+
+/**
+	Implements the object type for an object class, but without the Release() function.
+	Use this macro inside your code files only to create the objects
+	necessary to support RTTI in your up-classes of the FUObject class.
+	You will need to manually implement the Release() function, without declaring it.
+	The default implementation of the Release() function is the following:
+	Release() { delete this; }.
+	@param ClassName The name of the class.
+*/
+#define ImplementObjectType_NoDefaultRelease(ClassName) \
+	FUObjectType ClassName::__classType(Parent::GetClassType(), #ClassName);
 
 #endif // _FU_OBJECT_TYPE_H_

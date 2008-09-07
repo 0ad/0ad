@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -11,18 +14,17 @@
 #ifndef _FCD_GEOMETRY_SOURCE_H_
 #define _FCD_GEOMETRY_SOURCE_H_
 
-#ifndef __FCD_OBJECT_H_
-#include "FCDocument/FCDObject.h"
-#endif // __FCD_OBJECT_H_
+#ifndef __FCD_OBJECT_WITH_ID_H_
+#include "FCDocument/FCDObjectWithId.h"
+#endif // __FCD_OBJECT_WITH_ID_H_
 #ifndef _FU_DAE_ENUM_H_
 #include "FUtils/FUDaeEnum.h"
 #endif // _FU_DAE_ENUM_H_
+#ifndef _FCD_PARAMETER_ANIMATABLE_H_
+#include "FCDocument/FCDParameterAnimatable.h"
+#endif // _FCD_PARAMETER_ANIMATABLE_H_
 
-class FCDAnimated;
 class FCDExtra;
-
-/** A dynamically-sized array of FCDAnimated objects. */
-typedef fm::pvector<FCDAnimated> FCDAnimatedList;
 
 /**
 	A COLLADA data source for geometric meshes.
@@ -42,22 +44,17 @@ class FCOLLADA_EXPORT FCDGeometrySource : public FCDObjectWithId
 {
 private:
 	DeclareObjectType(FCDObjectWithId);
-	fstring name;
-	FloatList sourceData;
-	uint32 sourceStride;
-	xmlNode* sourceNode;
-	FUDaeGeometryInput::Semantic sourceType;
-	FCDExtra* extra;
-
-	// The animated values held here are contained within the document.
-	FCDAnimatedList animatedValues;
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, name, FC("Name"));
+	DeclareParameterListAnimatable(float, FUParameterQualifiers::SIMPLE, sourceData, FC("Data"))
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, stride, FC("Stride"));
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, sourceType, FC("Value Type")); // FUDaeGeometryInput::Semantic sourceType;
+	DeclareParameterRef(FCDExtra, extra, FC("Extra Tree"));
 
 public:
 	/** Constructor: do not use directly.
 		Use FCDGeometryMesh::AddSource or FCDGeometryMesh::AddValueSource instead.
-		@param document The COLLADA document which owns the data source.
-		@param type The type of data contained within the source. */
-	FCDGeometrySource(FCDocument* document, FUDaeGeometryInput::Semantic type);
+		@param document The COLLADA document which owns the data source. */
+	FCDGeometrySource(FCDocument* document);
 
 	/** Destructor. */
 	virtual ~FCDGeometrySource();
@@ -76,29 +73,31 @@ public:
 
 	/** Retrieves the pure data of the data source. This is a dynamically-sized array of
 		floating-point values that contains all the data of the source.
-		@deprecated Use GetData() instead.
 		@return The pure data of the data source. */
-	inline FloatList& GetSourceData() { return sourceData; }
-	inline const FloatList& GetSourceData() const { return sourceData; } /**< See above. */
+	inline float* GetData() { return !sourceData.empty() ? &sourceData.front() : NULL; }
+	inline const float* GetData() const { return !sourceData.empty() ? &sourceData.front() : NULL; } /**< See above. */
 
-	/** Retrieves the pure data of the data source. This is a dynamically-sized array of
-		floating-point values that contains all the data of the source.
-		@return The pure data of the data source. */
-	inline FloatList& GetData() { return sourceData; }
-	inline const FloatList& GetData() const { return sourceData; } /**< See above. */
+	/** [INTERNAL] Retrieve the reference to the source data.
+		@return The reference to the source data.
+	*/
+	inline FCDParameterListAnimatableFloat& GetSourceData(){ return sourceData; }
+	inline const FCDParameterListAnimatableFloat& GetSourceData() const { return sourceData; }
+
+	/** Retrieves a ptr to the data of the data source. This allows external objects to
+		store pointers to our data even when the data memory is reallocated
+		@return The ptr to the pure data of the data source. */
+	inline float** GetDataPtr() { return (float**) sourceData.GetDataPtr(); }
+	inline const float** GetDataPtr() const { return (const float**) sourceData.GetDataPtr(); } /**< See above. */
 
 	/** Retrieves the amount of data inside the source.
 		@return The number of data entries in the source. */
 	inline size_t GetDataCount() const { return sourceData.size(); }
 
-	/** Retrieves the stride of the data within the source.
-		There is no guarantee that the number of data values within the source is a multiple of the stride,
-		yet you should always verify that the stride is at least the wanted dimension. For example, there is
-		no guarantee that your vertex position data source has a stride of 3. 3dsMax is known to always
-		export 3D texture coordinate positions.
-		@deprecated Use GetStride() instead.
-		@return The stride of the data. */
-	inline uint32 GetSourceStride() const { return sourceStride; }
+	/** Sets the amount of data contained inside the source.
+		It is preferable to set the stride and to use SetValueCount.
+		No initialization of new values is done.
+		@param count The amount of data for the source to contain. */
+	void SetDataCount(size_t count);
 
 	/** Retrieves the stride of the data within the source.
 		There is no guarantee that the number of data values within the source is a multiple of the stride,
@@ -106,37 +105,50 @@ public:
 		no guarantee that your vertex position data source has a stride of 3. 3dsMax is known to always
 		export 3D texture coordinate positions.
 		@return The stride of the data. */
-	inline uint32 GetStride() const { return sourceStride; }
+	inline uint32 GetStride() const { return stride; }
 
 	/** Retrieves the number of individual source values contained in the source.
 		@return The number of source values. */
-	inline size_t GetValueCount() const { return sourceData.size() / sourceStride; }
+	inline size_t GetValueCount() const { return sourceData.size() / stride; }
+
+	/** Retrieves the max number of values this input can handle before memory is reallocated.
+		@return The number of source values. */
+	inline size_t GetValueReserved() const { return sourceData.capacity() / stride; }
+
+	/** Sets the number of individual source values contained in the source.
+		No initialization of new values is done.
+		@param count The number of individual source values to contain in this source. */
+	inline void SetValueCount(size_t count) { FUAssert(stride > 0, return); SetDataCount(count * stride); }
 
 	/** Retrieves one source value out of this source.
 		@param index The index of the source value.
 		@return The source value. */
-	inline float* GetValue(size_t index) { FUAssert(index < GetValueCount(), return NULL); return &sourceData.at(index * sourceStride); }
-	inline const float* GetValue(size_t index) const { FUAssert(index < GetValueCount(), return NULL); return &sourceData.at(index * sourceStride); }
+	inline const float* GetValue(size_t index) const { FUAssert(index < GetValueCount(), return NULL); return &sourceData.at(index * stride); } /**< See above. */
 
-	/** Retrieves the type of data contained within the source.
-		Common values for the type of data are POSITION, NORMAL, COLOR and TEXCOORD.
-		Please see FUDaeGeometryInput for more information.
-		@deprecated Use GetType() instead.
-		@see FUDaeGeometryInput.
-		@return The type of data contained within the source. */
-	inline FUDaeGeometryInput::Semantic GetSourceType() const { return sourceType; }
+	/** Sets one source value out of this source.
+		@param index The index of the source value.
+		@param value The new value. */
+	inline void SetValue(size_t index, const float* value) { FUAssert(index < GetValueCount(), return); for (size_t i = 0; i < stride; ++i) sourceData.set(stride * index + i, value[i]); }
 
 	/** Retrieves the type of data contained within the source.
 		Common values for the type of data are POSITION, NORMAL, COLOR and TEXCOORD.
 		Please see FUDaeGeometryInput for more information.
 		@see FUDaeGeometryInput.
 		@return The type of data contained within the source. */
-	inline FUDaeGeometryInput::Semantic GetType() const { return sourceType; }
+	inline FUDaeGeometryInput::Semantic GetType() const { return (FUDaeGeometryInput::Semantic) *sourceType; }
+
+	/** Sets the type of data contained within the source.
+		Modifying the source type of an existing source is not recommended.
+		Common values for the type of data are POSITION, NORMAL, COLOR and TEXCOORD.
+		Please see FUDaeGeometryInput for more information.
+		@see FUDaeGeometryInput.
+		@param type The type of data to be contained within the source. */
+	inline void SetType(FUDaeGeometryInput::Semantic type) { sourceType = type; }
 
 	/** Retrieves the list of animated values for the data of the source.
 		@return The list of animated values. */
-	inline FCDAnimatedList& GetAnimatedValues() { return animatedValues; }
-	inline const FCDAnimatedList& GetAnimatedValues() const { return animatedValues; } /**< See above. */
+	inline FUObjectContainer<FCDAnimated>& GetAnimatedValues() { return sourceData.GetAnimatedValues(); }
+	inline const FUObjectContainer<FCDAnimated>& GetAnimatedValues() const { return sourceData.GetAnimatedValues(); } /**< See above. */
 
 	/** Sets the user-friendly name of the data source. The name is optional and is used to
 		keep around a user-friendly name for texture coordinate sets or color sets.
@@ -150,25 +162,15 @@ public:
 			This argument defaults at 0 to indicate that the data copy should start from the beginning.
 		@param count The number of data entries to copy into the data source.
 			This argument defaults at 0 to indicate that the data copy should include everything. */
-	void SetSourceData(const FloatList& _sourceData, uint32 _sourceStride, size_t count=0, size_t offset=0);
+	void SetData(const FloatList& _sourceData, uint32 _sourceStride, size_t count=0, size_t offset=0);
 
 	/** Sets the stride for the source data.
-		@deprecated Use SetStride() instead.
-		@param stride The stride for the source data. */
-	inline void SetSourceStride(uint32 stride) { sourceStride = stride; SetDirtyFlag(); }
+		@param _stride The stride for the source data. */
+	inline void SetStride(uint32 _stride) { stride = _stride; SetDirtyFlag(); }
 
-	/** Sets the stride for the source data.
-		@param stride The stride for the source data. */
-	inline void SetStride(uint32 stride) { sourceStride = stride; SetDirtyFlag(); }
-
-	/** Sets the type of data contained within this data source.
-		@deprecated Use SetType instead.
-		@param type The new type of data for this data source. */
-	void SetSourceType(FUDaeGeometryInput::Semantic type);
-
-	/** Sets the type of data contained within this data source.
-		@param type The new type of data for this data source. */
-	void SetType(FUDaeGeometryInput::Semantic type);
+	/** [INTERNAL] Set the source type.
+		@param type The source type. */
+	void SetSourceType(FUDaeGeometryInput::Semantic type) { sourceType = type; }
 
 	/** Retrieves the extra information contained by this data source.
 		@return The extra tree. This pointer will be NULL,
@@ -178,25 +180,9 @@ public:
 	FCDExtra* GetExtra();
 	inline const FCDExtra* GetExtra() const { return extra; } /**< See above. */
 
-	/** [INTERNAL] Sets the XML tree node associated with the data source.
-		@todo Take the XML tree node out of this class.
-		@param _sourceNode A XML tree node. */
-	inline void SetSourceNode(xmlNode* _sourceNode) { sourceNode = _sourceNode; SetDirtyFlag(); }
-
 	/** [INTERNAL] Clones this data source. You will need to release the returned pointer manually.
 		@return An identical copy of the data source. */
 	FCDGeometrySource* Clone() const;
-
-	/** [INTERNAL] Reads in the \<source\> element from a given COLLADA XML tree node.
-		@param sourceNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the data source.*/
-	bool LoadFromXML(xmlNode* sourceNode);
-
-	/** [INTERNAL] Writes out the \<source\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the data source.
-		@return The created \<source\> element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_GEOMETRY_SOURCE_H_

@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -29,8 +32,8 @@ class FCDAnimationMultiCurve;
 
 typedef fm::pvector<float> FloatPtrList; /**< A dynamically-sized array of floating-point value pointers. */
 typedef fm::pvector<FCDAnimationCurve> FCDAnimationCurveList; /**< A dynamically-sized array of animation curves. */
-typedef FUObjectList<FCDAnimationCurve> FCDAnimationCurveTrackList; /**< A dynamically-sized array of tracked animation curves. */
-typedef fm::vector<FCDAnimationCurveTrackList> FCDAnimationCurveListList; /** A dynamically-sized array of animation curves. */
+typedef FUTrackedList<FCDAnimationCurve> FCDAnimationCurveTrackList; /**< A dynamically-sized array of tracked animation curves. */
+typedef fm::vector<FCDAnimationCurveTrackList> FCDAnimationCurveListList; /**< A dynamically-sized array of animation curve lists. */
 typedef fm::pvector<FCDAnimationChannel> FCDAnimationChannelList; /**< A dynamically-sized array of animation channels. */
 typedef fm::pvector<FCDAnimated> FCDAnimatedList; /**< A dynamically-sized array of animated values. */
 
@@ -49,7 +52,7 @@ typedef fm::pvector<FCDAnimated> FCDAnimatedList; /**< A dynamically-sized array
 
 	@ingroup FCDocument
 */
-class FCOLLADA_EXPORT FCDAnimated : public FCDObject
+class FCOLLADA_EXPORT FCDAnimated : public FCDObject, FUTracker
 {
 private:
 	DeclareObjectType(FCDObject);
@@ -65,7 +68,10 @@ protected:
 	/** The list of animation curves.
 		There is always one curve for one value pointer, although
 		that curve may be the NULL pointer to indicate a non-animated value. */
-	FCDAnimationCurveListList curves; 
+	FCDAnimationCurveListList curves;
+
+	/** The target object who contain the float values.*/
+	FCDObject* target;
 
 	/** The array index for animated element that belong
 		to a list of animated elements. This value may be -1
@@ -73,15 +79,26 @@ protected:
 		Otherwise, the index should always be unsigned. */
 	int32 arrayElement;
 
-	/** [INTERNAL] The target pointer prefix. */
-	fm::string pointer; 
+public:
+	DeclareFlag(RelativeAnimation, 0); /**< Flag to indicate that the animation should be applied relative to the default value. */
+	DeclareFlagCount(1); /**< The FCDAnimated class declares one flag. */
 
 public:
 	/** Constructor.
-		In most cases, it is preferable to create objects of the up-classes.
+		@param object The FCollada object that owns this animated element.
+		@param valueCount The number of values inside the animated element.
+		@param qualifiers A constant array of UTF8 string defining the qualifier for each value.
+			You should check out the arrays in FUDaeAccessor for examples.
+		@param values A constant array containing the value pointers. */
+	FCDAnimated(FCDObject* object, size_t valueCount, const char** qualifiers, float** values);
+
+	/** Constructor.
 		@param document The COLLADA document that owns this animated element.
-		@param valueCount The number of values inside the animated element. */
-	FCDAnimated(FCDocument* document, size_t valueCount);
+		@param valueCount The number of values inside the animated element.
+		@param qualifiers A constant array of UTF8 string defining the qualifier for each value.
+			You should check out the arrays in FUDaeAccessor for examples.
+		@param values A constant array containing the value pointers. */
+	FCDAnimated(FCDocument* document, size_t valueCount, const char** qualifiers, float** values);
 
 	/** Destructor. */
 	virtual ~FCDAnimated();
@@ -89,6 +106,11 @@ public:
 	/** Retrieves the number of values contained within this animated element.
 		@return The number of values. */
 	inline size_t GetValueCount() const { return values.size(); }
+
+    /** Retrieves the number of animation curves affecting one value of an animated element.
+        @param index The value index.
+        @return The number of curves affecting this value. */
+    inline size_t GetCurveCount(size_t index) const { FUAssert(index < GetValueCount(), return 0); return curves[index].size(); }
 
 	/** Retrieves the animation curve affecting the value of an animated element.
 		@param index The value index.
@@ -127,11 +149,22 @@ public:
 	inline float* GetValue(size_t index) { FUAssert(index < GetValueCount(), return NULL); return values.at(index); }
 	inline const float* GetValue(size_t index) const { FUAssert(index < GetValueCount(), return NULL); return values.at(index); } /**< See above. */
 
+	/** [INTERNAL] Overwrites the value pointer of an animated element.
+		Used when changing the list size within FCDParameterAnimatableList.
+		@param index The value index.
+		@param value The new value pointer for this index. */
+	inline void SetValue(size_t index, float* value) { FUAssert(index < GetValueCount(), return); values.at(index) = value; }
+
 	/** Retrieves the qualifier of the value of an animated element.
 		@param index The value index.
 		@return The qualifier for the value. The value returned will be an
 			empty string when the index is out-of-bounds. */
 	const fm::string& GetQualifier(size_t index) const;
+
+	/** [INTERNAL] Retrieve the qualifier list directly.
+		@return The reference to the qualifier list.
+	*/
+	StringList& GetQualifiers(){ return qualifiers; }
 
 	/** Retrieves an animated value given a valid qualifier.
 		@param qualifier A valid qualifier.
@@ -171,6 +204,14 @@ public:
 			value pointer is not contained by this animated element. */
 	size_t FindValue(const float* value) const;
 
+	/** Sets the FCDObject this animated value will notify when making changes
+		@param _target Pointer to the FCDObject we will notify*/
+	void SetTargetObject(FCDObject* _target);
+
+	/** Returns the FCDObject this animated value will notify when making changes
+		@return Pointer to the FCDObject we notify*/
+	FCDObject* GetTargetObject() { return target; } 
+
 	/** Retrieves the array index for an animated element.
 		This value is used only for animated elements that belong
 		to a list of animated elements within the COLLADA document.
@@ -197,7 +238,7 @@ public:
 	FCDAnimationMultiCurve* CreateMultiCurve() const;
 
 	/** Creates one multi-dimensional animation curve from a list of animated element.
-		This function is useful is your application does not handle animations
+		This function is useful if your application does not handle animations
 		per-values. For example, we use this function is ColladaMax for animated scale values,
 		where one scale value is two rotations for the scale rotation pivot and one
 		3D point for the scale factors.
@@ -211,309 +252,19 @@ public:
 		@param time The evaluation time. */
 	void Evaluate(float time);
 
-	/** [INTERNAL] Clones an animated element.
-		@param document The COLLADA document that owns the cloned animated element.
-		@param animatedValue One animated value contained within the original animated element.
-		@param newAnimatedValues The list of value pointers to be contained by the cloned animated element.
-		@return The cloned animated element. */
-	static FCDAnimated* Clone(FCDocument* document, const float* animatedValue, FloatPtrList& newAnimatedValues);
-
-	/** [INTERNAL] Clones an animated element.
+	/** Clones an animated element.
 		@param document The COLLADA document that owns the cloned animated element.
 		@return The cloned animated element. */
 	FCDAnimated* Clone(FCDocument* document) const;
 
-	/** [INTERNAL] Clones an animated element.
-		@param animated A clone.
+	/** Clones an animated element.
+		@param clone An animated element to be the clone of this element.
 		@return The clone. */
 	FCDAnimated* Clone(FCDAnimated* clone) const;
 
-	/** [INTERNAL] Retrieves the target pointer that prefixes the
-		fully-qualified target for the element.
-		@return The target pointer prefix. */
-	inline const fm::string& GetTargetPointer() const { return pointer; }
-
-	/** [INTERNAL] Sets the target pointer that prefixes the
-		fully-qualified target for the element. This function is used on export,
-		for the support of driven-key animations.
-		@param _pointer The target pointer. */
-	inline void SetTargetPointer(const fm::string& _pointer) { pointer = _pointer; }
-
-	/** [INTERNAL] Links this animated element with a given XML tree node.
-		This function is solely used within the import of a COLLADA document.
-		The floating-point values held within the XML tree node will be linked
-		with the list of floating-point value pointers held by the animated entity.
-		@param node The XML tree node.
-		@return Whether there was any linkage done. */
-	bool Link(xmlNode* node);
-
-	/** [INTERNAL] Links the animated element with the imported animation curves.
-		This compares the animation channel targets with the animated element target
-		and qualifiers to assign curves unto the value pointers.
-		@param channels A list of animation channels with the correct target pointer.
-		@return Whether any animation curves were assigned to the animation element. */
-	bool ProcessChannels(FCDAnimationChannelList& channels);
-};
-
-/** A COLLADA animated single floating-point value element.
-	Use this animated element class for all generic-purpose single floating-point values.
-	For angles, use the FCDAnimatedAngle class.
-	@ingroup FCDocument */
-class FCOLLADA_EXPORT FCDAnimatedFloat : public FCDAnimated
-{
-private:
-	DeclareObjectType(FCDAnimated);
-
-	// Don't build directly, use the Create function instead
-	FCDAnimatedFloat(FCDocument* document, float* value, int32 arrayElement);
-
-public:
-	/** Sets a different default qualifier for this animated element.
-		Don't forget the '.'!
-		@param qualifier The default qualifier for this animated element. */
-	void SetQualifier(const char* qualifier);
-
-	/** Creates a new animated element.
-		@param document The COLLADA document that owns the animated element.
-		@param value The value pointer for the single floating-point value.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedFloat* Create(FCDocument* document, float* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Creates a new animated element.
-		This function is used during the import of a COLLADA document.
-		@param document The COLLADA document that owns the animated element.
-		@param node The XML tree node that contains the animated values.
-		@param value The value pointer for the single floating-point value.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedFloat* Create(FCDocument* document, xmlNode* node, float* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Clones an animated element.
-		@param document The COLLADA document that owns the cloned animated element.
-		@param oldValue The single floating-point value pointer contained within the original animated element.
-		@param newValue The single floating-point value pointer for the cloned animated element.
-		@return The cloned animated value. */
-	static FCDAnimated* Clone(FCDocument* document, const float* oldValue, float* newValue);
-};
-
-/** A COLLADA animated 3D vector element.
-	@ingroup FCDocument */
-class FCOLLADA_EXPORT FCDAnimatedPoint3 : public FCDAnimated
-{
-private:
-	DeclareObjectType(FCDAnimated);
-
-	// Don't build directly, use the Create function instead
-	FCDAnimatedPoint3(FCDocument* document, FMVector3* value, int32 arrayElement);
-
-public:
-	/** Creates a new animated element.
-		@param document The COLLADA document that owns the animated element.
-		@param value The value pointer for the 3D vector.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedPoint3* Create(FCDocument* document, FMVector3* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Creates a new animated element.
-		This function is used during the import of a COLLADA document.
-		@param document The COLLADA document that owns the animated element.
-		@param node The XML tree node that contains the animated values.
-		@param value The value pointer for the 3D vector.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedPoint3* Create(FCDocument* document, xmlNode* node, FMVector3* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Clones an animated element.
-		@param document The COLLADA document that owns the cloned animated element.
-		@param oldValue The 3D vector contained within the original animated element.
-		@param newValue The 3D vector for the cloned animated element.
-		@return The cloned animated value. */
-	static FCDAnimated* Clone(FCDocument* document, const FMVector3* oldValue, FMVector3* newValue);
-};
-
-/** A COLLADA animated RGB color element.
-	@ingroup FCDocument */
-class FCOLLADA_EXPORT FCDAnimatedColor : public FCDAnimated
-{
-private:
-	DeclareObjectType(FCDAnimated);
-
-	// Don't build directly, use the Create function instead
-	FCDAnimatedColor(FCDocument* document, FMVector3* value, int32 arrayElement);
-	FCDAnimatedColor(FCDocument* document, FMVector4* value, int32 arrayElement);
-
-public:
-	/** Creates a new animated element.
-		@param document The COLLADA document that owns the animated element.
-		@param value The value pointer for the RGB color.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedColor* Create(FCDocument* document, FMVector3* value, int32 arrayElement=-1);
-
-	/** Creates a new animated element.
-		@param document The COLLADA document that owns the animated element.
-		@param value The value pointer for the RGBA color.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedColor* Create(FCDocument* document, FMVector4* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Creates a new animated element.
-		This function is used during the import of a COLLADA document.
-		@param document The COLLADA document that owns the animated element.
-		@param node The XML tree node that contains the animated values.
-		@param value The value pointer for the RGB color.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedColor* Create(FCDocument* document, xmlNode* node, FMVector3* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Creates a new animated element.
-		This function is used during the import of a COLLADA document.
-		@param document The COLLADA document that owns the animated element.
-		@param node The XML tree node that contains the animated values.
-		@param value The value pointer for the RGBA color.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedColor* Create(FCDocument* document, xmlNode* node, FMVector4* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Clones an animated element.
-		@param document The COLLADA document that owns the cloned animated element.
-		@param oldValue The RGB color contained within the original animated element.
-		@param newValue The RGB color for the cloned animated element.
-		@return The cloned animated value. */
-	static FCDAnimated* Clone(FCDocument* document, const FMVector3* oldValue, FMVector3* newValue);
-
-	/** [INTERNAL] Clones an animated element.
-		@param document The COLLADA document that owns the cloned animated element.
-		@param oldValue The RGBA color contained within the original animated element.
-		@param newValue The RGBA color for the cloned animated element.
-		@return The cloned animated value. */
-	static FCDAnimated* Clone(FCDocument* document, const FMVector4* oldValue, FMVector4* newValue);
-};
-
-/** A COLLADA floating-point value that represents an angle.
-	@ingroup FCDocument */
-class FCOLLADA_EXPORT FCDAnimatedAngle : public FCDAnimated
-{
-private:
-	DeclareObjectType(FCDAnimated);
-
-	// Don't build directly, use the Create function instead
-	FCDAnimatedAngle(FCDocument* document, float* value, int32 arrayElement);
-
-public:
-	/** Creates a new animated element.
-		@param document The COLLADA document that owns the animated element.
-		@param value The value pointer for the angle.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedAngle* Create(FCDocument* document, float* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Creates a new animated element.
-		This function is used during the import of a COLLADA document.
-		@param document The COLLADA document that owns the animated element.
-		@param node The XML tree node that contains the animated values.
-		@param value The value pointer for the angle.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedAngle* Create(FCDocument* document, xmlNode* node, float* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Clones an animated element.
-		@param document The COLLADA document that owns the cloned animated element.
-		@param oldValue The angle value pointer contained within the original animated element.
-		@param newValue The angle value pointer for the cloned animated element.
-		@return The cloned animated value. */
-	static FCDAnimated* Clone(FCDocument* document, const float* oldValue, float* newValue);
-};
-
-/** A COLLADA animated angle-axis.
-	Used for rotations, takes in a 3D vector for the axis and
-	a single floating-point value for the angle.
-	@ingroup FCDocument */
-class FCOLLADA_EXPORT FCDAnimatedAngleAxis : public FCDAnimated
-{
-private:
-	DeclareObjectType(FCDAnimated);
-
-	// Don't build directly, use the Create function instead
-	FCDAnimatedAngleAxis(FCDocument* document, FMVector3* axis, float* angle, int32 arrayElement);
-
-public:
-	/** Creates a new animated element.
-		@param document The COLLADA document that owns the animated element.
-		@param value The value pointer for the axis.
-		@param angle The value pointer for the angle.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedAngleAxis* Create(FCDocument* document, FMVector3* value, float* angle, int32 arrayElement=-1);
-
-	/** [INTERNAL] Creates a new animated element.
-		This function is used during the import of a COLLADA document.
-		@param document The COLLADA document that owns the animated element.
-		@param node The XML tree node that contains the animated values.
-		@param axis The value pointer for the axis.
-		@param angle The value pointer for the angle.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedAngleAxis* Create(FCDocument* document, xmlNode* node, FMVector3* axis, float* angle, int32 arrayElement=-1);
-
-	/** [INTERNAL] Clones an animated element.
-		@param document The COLLADA document that owns the cloned animated element.
-		@param oldAngle The angle value pointer contained within the original animated element.
-		@param newAxis The axis value pointer for the cloned animated element.
-		@param newAngle The angle value pointer for the cloned animated element.
-		@return The cloned animated value. */
-	static FCDAnimated* Clone(FCDocument* document, const float* oldAngle, FMVector3* newAxis, float* newAngle);
-};
-
-/** A COLLADA animated matrix.
-	Used for animated transforms, takes in a 16 floating-point values.
-	@ingroup FCDocument */
-class FCOLLADA_EXPORT FCDAnimatedMatrix : public FCDAnimated
-{
-private:
-	DeclareObjectType(FCDAnimated);
-
-	// Don't build directly, use the Create function instead
-	FCDAnimatedMatrix(FCDocument* document, FMMatrix44* value, int32 arrayElement);
-
-public:
-	/** Creates a new animated element.
-		@param document The COLLADA document that owns the animated element.
-		@param value The value pointer for the matrix.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedMatrix* Create(FCDocument* document, FMMatrix44* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Creates a new animated element.
-		This function is used during the import of a COLLADA document.
-		@param document The COLLADA document that owns the animated element.
-		@param node The XML tree node that contains the animated values.
-		@param value The value pointer for the matrix.
-		@param arrayElement The optional array index for animated element
-			that belong to an animated element list.
-		@return The new animated element. */
-	static FCDAnimatedMatrix* Create(FCDocument* document, xmlNode* node, FMMatrix44* value, int32 arrayElement=-1);
-
-	/** [INTERNAL] Clones an animated element.
-		@param document The COLLADA document that owns the cloned animated element.
-		@param oldMx The matrix value pointer contained within the original animated element.
-		@param newMx The matrix value pointer for the cloned animated element.
-		@return The cloned animated value. */
-	static FCDAnimated* Clone(FCDocument* document, const FMMatrix44* oldMx, FMMatrix44* newMx);
+	/** [INTERNAL]  See FUTracker
+		On object deletion, remove ourselves as we no longer have any values to animate */
+	virtual void OnObjectReleased(FUTrackable* object);
 };
 
 /** A COLLADA custom animated value.
@@ -526,17 +277,13 @@ private:
 	DeclareObjectType(FCDAnimated);
 	float dummy;
 
-	// Don't build directly, use the Create function instead
-	FCDAnimatedCustom(FCDocument* document);
-
 	bool Link(xmlNode* node);
 
 public:
-	/** Creates a new animated element.
-		@param document The COLLADA document that owns the animated element.
-		@param node [INTERNAL] The XML tree node that contains the animated values.
-		@return The new animated element. */
-	static FCDAnimatedCustom* Create(FCDocument* document, xmlNode* node = NULL);
+	/** [INTERNAL]
+        Don't build directly.
+        @param object The object that owns this animated value. */
+	FCDAnimatedCustom(FCDObject* object);
 
 	/** [INTERNAL] Initialized a custom animated element from
 		another animated element. The custom animated element will
@@ -550,11 +297,31 @@ public:
 	const float& GetDummy() const { return dummy; } /**< See above. */
 
 	/** Resizes the wanted qualifiers.
-		Using the FUDaeAccessor types is recommended.
+		Using the FUDaeAccessor types or the FCDAnimatedStandardQualifiers types is recommended.
 		@param count The new size of the animated element.
 		@param qualifiers The new qualifiers for the animated element.
 		@param prependDot Whether to prepend the '.' character for all the qualifiers of the animated element. */
 	void Resize(size_t count, const char** qualifiers = NULL, bool prependDot = true);
+    
+	/** Resizes the wanted qualifiers.
+		@param qualifiers The new qualifiers for the animated element.
+		@param prependDot Whether to prepend the '.' character for all the qualifiers of the animated element. */
+	void Resize(const StringList& qualifiers = NULL, bool prependDot = true);
+};
+
+/** The common qualifier lists. */
+namespace FCDAnimatedStandardQualifiers
+{
+	/** Common accessor type string arrays.
+		These are NULL-terminated and can be used with the AddAccessor function. */
+	FCOLLADA_EXPORT extern const char* EMPTY[1]; /**< Used for qualifying single values. */
+	FCOLLADA_EXPORT extern const char* XYZW[4]; /**< Used for position and vector values. */
+	FCOLLADA_EXPORT extern const char* RGBA[4]; /**< Used for color value. */
+
+	FCOLLADA_EXPORT extern const char* ROTATE_AXIS[4]; /**< Used for angle-axis rotation transforms. */
+	FCOLLADA_EXPORT extern const char* SKEW[7]; /**< Used for the skew transforms. */
+	FCOLLADA_EXPORT extern const char* MATRIX[16]; /**< Used for animating matrix values. */
+	FCOLLADA_EXPORT extern const char* LOOKAT[9]; /**< Used for the look-at transforms. */
 };
 
 #endif // _FCD_ANIMATED_H_

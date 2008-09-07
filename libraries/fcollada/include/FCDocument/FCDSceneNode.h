@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -31,20 +34,6 @@ class FCDocument;
 class FCDEntityInstance;
 class FCDSceneNode;
 class FCDTransform;
-class FCDExtra;
-class FCDTRotation;
-class FCDTTranslation;
-class FCDTScale;
-class FCDTSkew;
-class FCDTLookAt;
-class FCDTMatrix;
-
-typedef fm::pvector<FCDSceneNode> FCDSceneNodeList; /**< A dynamically-sized array of scene nodes. */
-typedef fm::pvector<FCDEntityInstance> FCDEntityInstanceList; /**< A dynamically-sized array of entity instances. */
-typedef fm::pvector<FCDTransform> FCDTransformList; /**< A dynamically-sized array of transforms. */
-typedef FUObjectList<FCDSceneNode> FCDSceneNodeTrackList; /**< A dynamically-sized array of tracked scene nodes. */
-typedef FUObjectContainer<FCDEntityInstance> FCDEntityInstanceContainer; /**< A dynamically-sized containment array for entitiy instances. */
-typedef FUObjectContainer<FCDTransform> FCDTransformContainer; /**< A dynamically-sized containment array for transforms. */
 
 /**
 	A COLLADA visual scene node.
@@ -57,25 +46,36 @@ typedef FUObjectContainer<FCDTransform> FCDTransformContainer; /**< A dynamicall
 	A visual scene node also contained an ordered list of transformations
 	and a list of entity instances.
 
+	NOTE: The GenerateSampledMatrixAnimation function was moved to the
+	FCDSceneNodeTools namespace to improve DLL support.
+
 	@ingroup FCDocument
 */
 class FCOLLADA_EXPORT FCDSceneNode : public FCDEntity
 {
 private:
 	DeclareObjectType(FCDEntity);
-	FCDSceneNodeTrackList parents;
-	FCDSceneNodeTrackList children;
-	FCDTransformContainer transforms;
-	FCDEntityInstanceContainer instances;
 
-	// Visibility parameter. Should be a boolean, but is animated
-	float visibility; // Maya-specific
+	// Hierarchy and instances
+	DeclareParameterTrackList(FCDSceneNode, parents, FC("Parents"));
+	DeclareParameterTrackList(FCDSceneNode, children, FC("Child Nodes"));
+	DeclareParameterContainer(FCDTransform, transforms, FC("Transforms"));
+	DeclareParameterContainer(FCDEntityInstance, instances, FC("Instances"));
+
+	// Visibility parameter.
+	// Should be a boolean, but is animated as float.
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, visibility, FC("Visibility"));
 
 	// The number of entities that target this node
 	uint32 targetCount;
 
-	// Whether this node is a joint.
-	bool isJoint;
+	// Mainly for joints.
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, daeSubId, FC("Sub-id"));
+
+public:
+	DeclareFlag(TransformsDirty, 0); /**< Whether the transforms have been dirtied. */
+	DeclareFlag(Joint, 1); /**< Whether the scene node is a joint. */
+	DeclareFlagCount(2); /**< . */
 
 public:
 	/** Constructor: do not use directly.
@@ -105,8 +105,7 @@ public:
 
 	/** Retrieves the list of parents for the visual scene node.
 		@return The list of parents. */
-	inline FCDSceneNodeTrackList& GetParents() { return parents; }
-	inline const FCDSceneNodeTrackList& GetParents() const { return parents; }
+	inline const FCDSceneNode** GetParents() const { return parents.begin(); }
 
 	/** Retrieves the number of child nodes for this visual scene node.
 		@return The number of children. */
@@ -121,8 +120,7 @@ public:
 
 	/** Retrieves the list of children of the visual scene node.
 		@return The list of child scene nodes. */
-	inline FCDSceneNodeTrackList& GetChildren() { return children; }
-	inline const FCDSceneNodeTrackList& GetChildren() const { return children; } /**< See above. */
+	inline const FCDSceneNode** GetChildren() const { return children.begin(); }
 
 	/** Creates a new child scene node.
 		@return The new child scene node. */
@@ -134,6 +132,15 @@ public:
 		@param sceneNode The scene node to attach.
 		@return Whether the given scene node was attached to this scene node. */
 	bool AddChildNode(FCDSceneNode* sceneNode);
+
+	/** Removes a scene node from this scene node direct child list.
+		This function should be used to detach a scene node with multiple parents.
+		To completely delete a scene node, you should use the FCDSceneNode::Release function
+		on the scene node to delete.
+		If the given child node is instanced multiple times within this scene node,
+		only the first instance will be removed.
+		@param childNode The child node to remove from the direct hierarchy. */
+	void RemoveChildNode(FCDSceneNode* childNode);
 
 	/** Retrieves the number of entity instances at this node of the scene graph.
 		@return The number of entity instances. */
@@ -148,8 +155,7 @@ public:
 
 	/** Retrieves the list of entity instances at this node of the scene graph.
 		@return The list of entity instances. */
-	inline FCDEntityInstanceContainer& GetInstances() { return instances; }
-	inline const FCDEntityInstanceContainer& GetInstances() const { return instances; } /**< See above. */
+	inline const FCDEntityInstance** GetInstances() const { return instances.begin(); }
 
 	/** Creates a new entity instance.
 		Only geometric entities, controllers, light and cameras
@@ -182,8 +188,7 @@ public:
 
 	/** Retrieves the list of transforms for this node of the scene graph.
 		@return The list of transforms. */
-	inline FCDTransformContainer& GetTransforms() { return transforms; }
-	inline const FCDTransformContainer& GetTransforms() const { return transforms; } /**< See above. */
+	inline const FCDTransform** GetTransforms() const { return transforms.begin(); } /**< See above. */
 
 	/** Creates a new transform for this visual scene node.
 		The transforms are processed in order and COLLADA is column-major.
@@ -203,34 +208,47 @@ public:
 	virtual void GetHierarchicalAssets(FCDAssetConstList& assets) const; /**< See above. */
 
 	/** Retrieves the visual scene node with the given id.
-		This function looks through the whole tree of visual scene nodes
+		This function looks through the whole sub-tree of visual scene nodes
 		for the wanted COLLADA id.
 		@param daeId The COLLADA id to look for.
 		@return The visual scene node which has the given COLLADA id. This pointer
 			will be NULL if no visual scene node can be found with the given COLLADA id. */
-	virtual FCDEntity* FindDaeId(const fm::string& daeId);
+	virtual FCDEntity* FindDaeId(const fm::string& daeId) { return const_cast<FCDEntity*>(const_cast<const FCDSceneNode*>(this)->FindDaeId(daeId)); }
+	virtual const FCDEntity* FindDaeId(const fm::string& daeId) const; /** < See above. */
 
-	/** Retrieves the visual scene node with the given sub id.
-		This function looks through the whole tree of visual scene nodes
-		for the wanted COLLADA id.
-		@param daeId The COLLADA id to look for.
-		@return The visual scene node which has the given COLLADA id. This pointer
-			will be NULL if no visual scene node can be found with the given COLLADA id. */
-	virtual FCDEntity* FindSubId(const fm::string& subId);
+	/** Retrieves the optional sub-id of the node.
+		This sub-id is neither unique nor guaranteed to exist.
+		@return The sub-id of the node. */
+	inline const fm::string& GetSubId() const { return daeSubId; }
+
+	/** Sets the sub-id for this node.
+		The sub-id of an object is not required to be unique.
+		@param id The new sub-id of the node. */
+	void SetSubId(const fm::string& id);
+
+	/** Retrieves the visual scene node with the given sub-id.
+		This function looks through the whole sub-tree of visual scene nodes
+		for the wanted COLLADA sub-id.
+		@param subId The COLLADA sub-id to look for.
+		@return The visual scene node which has the given COLLADA sub-id. This pointer
+			will be NULL if no visual scene node can be found with the given COLLADA sub-id. */
+	inline FCDEntity* FindSubId(const fm::string& subId) { return const_cast<FCDEntity*>(const_cast<const FCDSceneNode*>(this)->FindSubId(subId)); }
+	const FCDEntity* FindSubId(const fm::string& subId) const; /**< See above. */
 
 	/** Retrieves whether the visual scene node is visible.
 		A hidden visual scene node will not be rendered but will
 		still affect the world. This parameter is a floating-point value
 		because it is animated. It should be intepreted as a Boolean value.
 		@return Whether the scene node is visible. */
-	inline float& GetVisibility() { return visibility; }
-	inline const float& GetVisibility() const { return visibility; } /**< See above. */
+	inline FCDParameterAnimatableFloat& GetVisibility() { return visibility; }
+	inline const FCDParameterAnimatableFloat& GetVisibility() const { return visibility; } /**< See above. */
+	inline bool IsVisible() const { return visibility > 0.5f; } /**< See above. */
 
 	/** Sets the visibility of the visual scene node.
 		A hidden visual scene node will not be rendered but will
 		still affect the world.
 		@param isVisible Whether the visual scene node is visible. */
-	inline void SetVisibility(bool isVisible) { visibility = isVisible; }
+	inline void SetVisibility(bool isVisible) { visibility = isVisible ? 1.0f : 0.0f; }
 
 	/** Retrieves whether this visual scene node is the target of an entity.
 		@return Whether this is an entity target. */
@@ -239,12 +257,7 @@ public:
 	/** Retrieves whether this visual scene node is a joint.
 		Joints are called bones in 3dsMax. A joint is a scene node that is used in skinning.
 		@return Whether this node is a joint. */
-	bool IsJoint() const { return isJoint; }
-
-	/** Sets whether a visual scene node is a joint.
-		Joints are called bones in 3dsMax. A joint is a scene node that is used in skinning.
-		@param _isJoint Whether this node is a joint. */
-	void SetJointFlag(bool _isJoint) { isJoint = _isJoint; }
+	DEPRECATED(3.05A, GetJointFlag) bool IsJoint() const { return GetJointFlag(); }
 
 	/** Retrieves the local transform for this visual scene node.
 		This function does not handle or apply animations.
@@ -261,12 +274,6 @@ public:
 		This function is not optimized and will not work with node instances.
 		@return The world transform. */
 	FMMatrix44 CalculateWorldTransform() const;
-
-	/** Generates a list of local transform samples for this visual scene node.
-		This function will <b>permanently</b> modify the transforms of this visual scene node.
-		@param keys A list of key inputs that will be filled in with the sample times.
-		@param values A list of matrices that will be filled in with the sampled local transforms. */
-	void GenerateSampledMatrixAnimation(FloatList& keys, FMMatrix44List& values);
 
 	/** Copies the entity information into a clone.
 		All the overwriting functions of this function should call this function
@@ -287,27 +294,9 @@ public:
 		To set targets, use the FCDTargetedEntity::SetTarget function. */
 	inline void DecrementTargetCount() { if (targetCount > 0) --targetCount; }
 
-	/** [INTERNAL] Reads in the visual scene node from a given COLLADA XML tree node.
-		@param sceneNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the node.*/
-	virtual bool LoadFromXML(xmlNode* sceneNode);
-
-	/** [INTERNAL] Links controllers with their applied nodes **/
-	virtual bool LinkImport();
-
-	/** [INTERNAL] Links controllers with their applied nodes **/
-	virtual bool LinkExport();
-
-	/** [INTERNAL] Writes out the visual scene node to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the node.
-		@return The created XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-private:
-	bool LoadFromExtra();
-	void WriteToNodeXML(xmlNode* node, bool isVisualScene) const;
-
+	/** [INTERNAL] Cleans up the sub identifiers.
+		The sub identifiers must be unique with respect to its parent. This method corrects the sub ids if there are conflicts. */
+	virtual void CleanSubId();
 };
 
 #endif // _FCD_SCENE_NODE_

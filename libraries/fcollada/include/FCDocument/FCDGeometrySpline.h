@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /**
 	@file FCDGeometrySpline.h
@@ -16,6 +19,9 @@
 #ifndef _FU_DAE_ENUM_H_
 #include "FUtils/FUDaeEnum.h"
 #endif // _FU_DAE_ENUM_H_
+#ifndef _FU_PARAMETER_H_
+#include "FUtils/FUParameter.h"
+#endif // _FU_PARAMETER_H_
 
 class FCDocument;
 class FCDGeometry;
@@ -24,7 +30,7 @@ class FCDNURBSSpline;
 
 /** Represents a generic spline.
 	A FCSpline contains a list of control vertices and a closed attribute which defaults to false.*/
-class FCDSpline : public FCDObject
+class FCOLLADA_EXPORT FCDSpline : public FCDObject
 {
 private:
 	DeclareObjectType(FCDObject);
@@ -33,10 +39,14 @@ private:
 	fm::string name;
 
 protected:
-	FMVector3List cvs;
+	FMVector3List cvs; /**< The list of control vertices. */
 
 public:
+	/** Constructor.
+		@param document The FCollada document that owns this spline. */
 	FCDSpline(FCDocument* document);
+
+	/** Destructor. */
 	virtual ~FCDSpline();
 
 	/** Retrieves the type of the spline. This is the only method of the FCDSpline interface.
@@ -61,17 +71,17 @@ public:
 	inline void SetClosed(bool closed) { form = (closed) ? FUDaeSplineForm::CLOSED : FUDaeSplineForm::OPEN; }
 
 	/** Retrieves the number of CVs in the spline.
-		@return Count of control vertices.*/
+		@return The number of control vertices.*/
 	inline size_t GetCVCount() const { return cvs.size(); }
 
 	/** Retrieves a pointer to the control vertex specified by the given index.
 		@param index The index, must be higher or equal to 0 and lower than GetCVCount().
-		@return The CV reference.*/
+		@return The control vertex.*/
 	inline FMVector3* GetCV(size_t index) { FUAssert(index < GetCVCount(), return NULL); return &(cvs.at(index)); }
-	inline const FMVector3* GetCV(size_t index) const { FUAssert(index < GetCVCount(), return NULL); return &(cvs.at(index)); }
+	inline const FMVector3* GetCV(size_t index) const { FUAssert(index < GetCVCount(), return NULL); return &(cvs.at(index)); } /**< See above. */
 
-	/** Retrieve a reference to the CVs list
-		@return The reference to the CV vector. */
+	/** Retrieves a reference to the CVs list.
+		@return The reference to the control vertices. */
 	inline FMVector3List& GetCVs() { return cvs; }
 	inline const FMVector3List& GetCVs() const { return cvs; } /**< See above. */
 
@@ -83,20 +93,6 @@ public:
 		@param clone The empty clone. This pointer cannot be NULL.
 		@return The clone. */
 	virtual FCDSpline* Clone(FCDSpline* clone) const;
-
-	/** [INTERNAL] Reads in the \<spline\> element from a given COLLADA XML tree node.
-		@param splineNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the spline.*/
-	virtual bool LoadFromXML(xmlNode* splineNode);
-
-	/** [INTERNAL] Writes out the \<spline\> element to the given COLLADA XML tree node.
-		The sources in this spline will have an ID built this way : "parentId ID splineId".
-		@param parentId The parent's ID string.
-		@param parentNode The COLLADA XML parent node in which to insert the spline information.
-		@param splineId The spline's ID string.
-		@return The created Linear XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode, const fm::string& parentId, const fm::string& splineId) const;
 };
 
 typedef fm::pvector<FCDSpline> FCDSplineList; /**< A dynamically-sized array of FCSpline.*/
@@ -111,13 +107,17 @@ typedef fm::pvector<FCDNURBSSpline> FCDNURBSSplineList; /**< A dynamically-sized
 	last one being reused as the first vertex of the next segment. If the spline
 	is closed, the first vertex is also reused for the last vertex of the last segment.
 */
-class FCDLinearSpline : public FCDSpline
+class FCOLLADA_EXPORT FCDLinearSpline : public FCDSpline
 {
 private:
 	DeclareObjectType(FCDSpline);
 
 public:
+	/** Constructor.
+		@param document The FCollada document that owns this spline. */
 	FCDLinearSpline(FCDocument* document);
+
+	/** Destructor. */
 	virtual ~FCDLinearSpline();
 
 	/** FCDSpline method implementation.
@@ -126,21 +126,15 @@ public:
 
 	/** Adds a CV to a Linear spline
 		@param cv 3D position of the CV.*/
-	bool AddCV( const FMVector3& cv ){ cvs.push_back( cv ); return true; }
+	bool AddCV(const FMVector3& cv){ cvs.push_back(cv); return true; }
 
 	/** Convert the linear segments contained inside this linear spline into Bezier segments.
-		@param The Bezier spline to fill with linear information.*/
-	void ToBezier( FCDBezierSpline& toFill );
+		@param toFill The Bezier spline to fill with linear information.*/
+	void ToBezier(FCDBezierSpline& toFill);
 
 	/** Determines if the spline is valid.
 		@return True is the spline is valid, false otherwise.*/
-	virtual bool IsValid(bool* status = NULL) const;
-
-	/** [INTERNAL] Reads in the \<spline\> element from a given COLLADA XML tree node.
-		@param splineNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the spline.*/
-	virtual bool LoadFromXML(xmlNode* splineNode);
+	virtual bool IsValid() const;
 };
 
 /** Represents a Bezier spline.
@@ -150,13 +144,17 @@ public:
 	first vertex of the next segment. If the spline is closed, the first control vertex
 	is also reused for the last vertex of the last segment.
 */
-class FCDBezierSpline : public FCDSpline
+class FCOLLADA_EXPORT FCDBezierSpline : public FCDSpline
 {
 private:
 	DeclareObjectType(FCDSpline);
 
 public:
+	/** Constructor.
+		@param document The FCollada document that owns this spline. */
 	FCDBezierSpline(FCDocument* document);
+	
+	/** Destructor. */
 	virtual ~FCDBezierSpline();
 
 	/** FCDSpline method implementation.
@@ -165,21 +163,15 @@ public:
 
 	/** Adds a CV to a Bezier spline
 		@param cv 3D position of the CV.*/
-	bool AddCV( const FMVector3& cv ){ cvs.push_back( cv ); return true; }
+	bool AddCV(const FMVector3& cv){ cvs.push_back(cv); return true; }
 
 	/** Creates one NURB per Bezier segment and appends it to the provided NURB list.
 		@param toFill The NURB list to fill.*/
-	void ToNURBs( FCDNURBSSplineList &toFill ) const;
+	void ToNURBs(FCDNURBSSplineList &toFill) const;
 
 	/** Determines if the spline is valid.
 		@return True is the spline is valid, false otherwise.*/
-	virtual bool IsValid(bool* status = NULL) const;
-
-	/** [INTERNAL] Reads in the \<spline\> element from a given COLLADA XML tree node.
-		@param splineNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the spline.*/
-	virtual bool LoadFromXML(xmlNode* splineNode);
+	virtual bool IsValid() const;
 };
 
 /**
@@ -189,7 +181,7 @@ public:
 	along with a list of float to represent each vertex weight. A knot vector (uniform or not,
 	clamped or not), together with a degree, complete the specification.
 */
-class FCDNURBSSpline : public FCDSpline
+class FCOLLADA_EXPORT FCDNURBSSpline : public FCDSpline
 {
 private:
 	DeclareObjectType(FCDSpline);
@@ -199,7 +191,11 @@ private:
 	uint32 degree;
 
 public:
+	/** Constructor.
+		@param document The FCollada document that owns this spline. */
 	FCDNURBSSpline(FCDocument* document);
+	
+	/** Destructor. */
 	virtual ~FCDNURBSSpline();
 
 	/** FCDSpline method implementation.
@@ -212,18 +208,18 @@ public:
 
 	/** Set the degree for this NURBS.
 		@param deg The wanted degree.*/
-	inline void SetDegree( uint32 deg ){ degree = deg; }
+	inline void SetDegree(uint32 deg){ degree = deg; }
 
 	/** Add a control vertex as a 3D position and a weight attribute specific to this CV.
 		@param cv The 3D position.
 		@param weight The weight attribute.*/
-	bool AddCV( const FMVector3& cv, float weight );
+	bool AddCV(const FMVector3& cv, float weight);
 
 	/** Retrieves a reference to the weight specified by the index.
 		@param index The index.
 		@return The address of the weight value, NULL if index is invalid.*/
-	inline float* GetWeight( size_t index ) { FUAssert( index < GetCVCount(), return NULL); return &(weights.at(index)); }
-	inline const float* GetWeight( size_t index ) const { FUAssert( index < GetCVCount(), return NULL); return &(weights.at(index)); } /**< See above. */
+	inline float* GetWeight(size_t index) { FUAssert(index < GetCVCount(), return NULL); return &(weights.at(index)); }
+	inline const float* GetWeight(size_t index) const { FUAssert(index < GetCVCount(), return NULL); return &(weights.at(index)); } /**< See above. */
 
 	/** Retrieves the knot count in this NURB.
 		@return The knot count.*/
@@ -231,13 +227,13 @@ public:
 
 	/** Add a knot to this NURB.
 		@param knot The knot value.*/
-	inline void AddKnot( float knot ) { knots.push_back( knot ); }
+	inline void AddKnot(float knot) { knots.push_back(knot); }
 
 	/** Retrieves a reference to the knot specified by the index.
 		@param index The index.
 		@return The address of the knot value, NULL if index is invalid.*/
-	inline float* GetKnot( size_t index ) { FUAssert( index < GetKnotCount(), return NULL); return &(knots.at(index));}
-	inline const float* GetKnot( size_t index ) const { FUAssert( index < GetKnotCount(), return NULL); return &(knots.at(index));}
+	inline float* GetKnot(size_t index) { FUAssert(index < GetKnotCount(), return NULL); return &(knots.at(index));}
+	inline const float* GetKnot(size_t index) const { FUAssert(index < GetKnotCount(), return NULL); return &(knots.at(index));} /**< See above. */
 
 	/** Retrieves a const reference to the weight list.
 		@return The weights' const reference.*/
@@ -251,27 +247,13 @@ public:
 
 	/** Determines if the spline is valid.
 		@return True is the spline is valid, false otherwise.*/
-	virtual bool IsValid(bool* status = NULL) const;
+	virtual bool IsValid() const;
 
 	/** [INTERNAL] Copies the spline into a clone.
 		The clone may reside in another document.
 		@param clone The empty clone. This pointer cannot be NULL.
 		@return The clone. */
 	virtual FCDSpline* Clone(FCDSpline* clone) const;
-
-	/** [INTERNAL] Reads in the \<spline\> element from a given COLLADA XML tree node.
-		@param splineNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the spline.*/
-	virtual bool LoadFromXML(xmlNode* splineNode);
-
-	/** [INTERNAL] Writes out the \<spline\> element to the given COLLADA XML tree node.
-		The sources in this spline will have an ID built this way : "parentId ID splineId".
-		@param parentId The parent's ID string.
-		@param parentNode The COLLADA XML parent node in which to insert the spline information.
-		@param splineId The spline's ID string.
-		@return The created \<nurbs\> element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode, const fm::string& parentId, const fm::string& splineId) const;
 };
 
 /**
@@ -289,47 +271,47 @@ private:
 	DeclareObjectType(FCDObject);
 	FCDGeometry* parent;
 
-	FUDaeSplineType::Type type;
-	FCDSplineContainer splines;
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, type, FC("Spline Type")); // FUDaeSplineType::Type;
+	DeclareParameterContainer(FCDSpline, splines, FC("Splines"));
 
 public:
 	/** Constructor: do not use directly. Use the FCDGeometry::CreateMesh function instead.
 		@param document The COLLADA document that owns the new spline.
 		@param parent The geometry entity that contains the new spline. */
-	FCDGeometrySpline(FCDocument* document, FCDGeometry* parent, FUDaeSplineType::Type type = FUDaeSplineType::UNKNOWN );
+	FCDGeometrySpline(FCDocument* document, FCDGeometry* parent);
 
 	/** Destructor. */
 	virtual ~FCDGeometrySpline();
 
-	/** Retrieve the parent of this geometric spline: the geometry entity.
+	/** Retrieves the parent of this geometric spline: the geometry entity.
 		@return The geometry entity that this spline belongs to. */
 	FCDGeometry* GetParent() { return parent; }
 	const FCDGeometry* GetParent() const { return parent; } /**< See above. */
 
-	/** Retrieve the type of this geometry spline.
+	/** Retrieves the type of this geometry spline.
 		@return The type.*/
-	FUDaeSplineType::Type GetType(){ return type; }
+	FUDaeSplineType::Type GetType() const { return (FUDaeSplineType::Type) *type; }
 
-	/** Set the spline type for this geometry spline.
-		@param The type.
-		@retrun False if there are already splines of a different type in the spline array, True otherwise.*/
-	bool SetType( FUDaeSplineType::Type _type );
+	/** Sets the spline type for this geometry spline.
+		Changing the type of a geometry spline that contains sub-splines will clear all its sub-splines.
+		@param _type The type. */
+	bool SetType(FUDaeSplineType::Type _type);
 
-	/** Retrieve the number of splines in this geometry spline.
+	/** Retrieves the number of splines in this geometry spline.
 		@return The spline count.*/
 	size_t GetSplineCount() const { return splines.size(); }
 
-	/** Retrieve the total amount of control vertices in the spline array.
+	/** Retrieves the total amount of control vertices in the spline array.
 		@return The total CV count.*/
 	size_t GetTotalCVCount();
 
-	/** Retrieve a pointer to the spline specified by the given index.
-		@param The index, higher or equal to 0 and lower than GetSplineCount().
+	/** Retrieves a pointer to the spline specified by the given index.
+		@param index The index, higher or equal to 0 and lower than GetSplineCount().
 		@return The FCDSpline pointer, or NULL if index is invalid.*/
-	FCDSpline* GetSpline(size_t index){ FUAssert( index < GetSplineCount(), return NULL); return splines[index]; }
-	const FCDSpline* GetSpline(size_t index) const { FUAssert( index < GetSplineCount(), return NULL); return splines[index]; }/**< see above */
+	FCDSpline* GetSpline(size_t index){ FUAssert(index < GetSplineCount(), return NULL); return splines[index]; }
+	const FCDSpline* GetSpline(size_t index) const { FUAssert(index < GetSplineCount(), return NULL); return splines[index]; }/**< see above */
 
-	/** Add a spline to this geometry spline.
+	/** Adds a spline to this geometry spline.
 		@param type The type of spline to create.
 			Set the type to FUDaeSplineType::UNKNOWN to create a spline that has
 			the same type as this geometry spline.
@@ -339,9 +321,9 @@ public:
 			doesn't yet have a type assigned. */
 	FCDSpline* AddSpline(FUDaeSplineType::Type type = FUDaeSplineType::UNKNOWN);
 
-	/** Convert the Bezier splines in this geometry to a list of NURBS splines.
+	/** Converts the Bezier splines in this geometry to a list of NURBS splines.
 		@param toFill The list of NURBS to fill. An empty list if the type of this geometry is not BEZIER.*/
-	void ConvertBezierToNURBS(FCDNURBSSplineList &toFill );
+	void ConvertBezierToNURBS(FCDNURBSSplineList& toFill);
 
 	/** Copies the spline into a clone.
 		The clone may reside in another document.
@@ -349,17 +331,6 @@ public:
 			will be created and you will need to release the returned pointer manually.
 		@return The clone. */
 	FCDGeometrySpline* Clone(FCDGeometrySpline* clone = NULL) const;
-
-	/** [INTERNAL] Reads in the \<spline\> element from a given COLLADA XML tree node.
-		@param splineNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the spline.*/
-	bool LoadFromXML(xmlNode* splineNode);
-
-	/** [INTERNAL] Writes out the \<spline\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the spline information.
-		@return The created \<spline\> element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_GEOMETRY_SPLINE_H_

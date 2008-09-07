@@ -1023,12 +1023,12 @@ XMLPUBFUN int XMLCALL
 XMLPUBFUN void XMLCALL		
 		xmlDocDumpFormatMemory	(xmlDocPtr cur,
 					 xmlChar **mem,
-					 int *size,
+					 intptr_t *size,
 					 int format);
 XMLPUBFUN void XMLCALL		
 		xmlDocDumpMemory	(xmlDocPtr cur,
 					 xmlChar **mem,
-					 int *size);
+					 intptr_t *size);
 XMLPUBFUN void XMLCALL		
 		xmlDocDumpMemoryEnc	(xmlDocPtr out_doc,
 					 xmlChar **doc_txt_ptr,

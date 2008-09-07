@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -23,9 +26,6 @@ class FCDEffectParameter;
 class FCDEffectPassShader;
 class FCDEffectPassState;
 
-typedef FUObjectContainer<FCDEffectPassShader> FCDEffectPassShaderContainer; /**< A dynamically-sized containment array for shaders. */
-typedef FUObjectContainer<FCDEffectPassState> FCDEffectPassStateContainer; /**< A dynamically-sized containment array for render states. */
-
 /**
 	A COLLADA effect pass.
 
@@ -43,16 +43,18 @@ class FCOLLADA_EXPORT FCDEffectPass : public FCDObject
 {
 private:
 	DeclareObjectType(FCDObject);
-	fstring name;
+
 	FCDEffectTechnique* parent;
-	FCDEffectPassShaderContainer shaders;
-	FCDEffectPassStateContainer states;
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, name, FC("Name"));
+	DeclareParameterContainer(FCDEffectPassShader, shaders, FC("Shaders"));
+	DeclareParameterContainer(FCDEffectPassState, states, FC("Render States"));
 
 public:
 	/** Constructor: do not use directly.
 		Instead, use the FCDEffectTechnique::AddPass function.
+		@param document The FCollada document that owns this pass.
 		@param parent The effect technique that contains this effect pass. */
-	FCDEffectPass(FCDEffectTechnique* parent);
+	FCDEffectPass(FCDocument* document, FCDEffectTechnique* parent);
 
 	/** Destructor. */
 	virtual ~FCDEffectPass();
@@ -65,7 +67,7 @@ public:
 	/** Retrieves the COLLADA id of the parent effect.
 		This function is mostly useful as a shortcut for debugging and reporting.
 		@return The COLLADA id of the parent effect. */
-	const fm::string& GetDaeId() const;
+	DEPRECATED(3.05A, GetParent()->GetParent()->GetParent()->GetDaeId()) const fm::string& GetDaeId() const { return emptyString; }
 
 	/** Retrieves the sub-id of the effect pass.
 		This sub-id is optional.
@@ -75,7 +77,7 @@ public:
 	/** Sets the optional sub-id for the effect pass.
 		This sub-id is optional.
 		@param _name The sub-id. */
-	inline void SetPassName(const fstring& _name) { name = _name; SetDirtyFlag(); }
+	inline void SetPassName(const fchar* _name) { name = _name; SetDirtyFlag(); }
 
 	/** Retrieves the number of shaders contained within the effect pass.
 		@return The number of shaders. */
@@ -93,7 +95,7 @@ public:
 
 	/** Releases a shader contained within the pass.
 		@param shader The shader to release. */
-	void ReleaseShader(FCDEffectPassShader* shader);
+	DEPRECATED(3.05A, shader->Release()) void ReleaseShader(FCDEffectPassShader* shader) { ((FCDObject*)shader)->Release(); }
 
 	/** Retrieves the vertex shader for this effect pass.
 		@return The vertex shader. This pointer will be NULL if no
@@ -119,8 +121,7 @@ public:
 
 	/** Retrieves the container of the render states for the pass.
 		@return The render state list. */
-	inline FCDEffectPassStateContainer& GetRenderStates() { return states; }
-	inline const FCDEffectPassStateContainer& GetRenderStates() const { return states; } /**< See above. */
+	DEPRECATED(3.05A, GetRenderStateCount and GetRenderState(index)) void GetRenderStates() const {}
 
 	/** Retrieves the number of render states defined for the pass.
 		@return The render state count. */
@@ -153,19 +154,6 @@ public:
 			you will need to release this new pass.
 		@return The cloned pass. */
 	FCDEffectPass* Clone(FCDEffectPass* clone = NULL) const;
-
-	/** [INTERNAL] Reads in the effect pass from a given COLLADA XML tree node.
-		@param passNode The COLLADA XML tree node.
-		@param techniqueNode X @deprecated bad interface : this dependency must be taken out[3]
-		@param profileNode X @deprecated bad interface : this dependency must be taken out[2]
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the effect pass.*/
-	bool LoadFromXML(xmlNode* passNode, xmlNode* techniqueNode, xmlNode* profileNode);
-
-	/** [INTERNAL] Writes out the effect pass to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the effect pass.
-		@return The created element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif

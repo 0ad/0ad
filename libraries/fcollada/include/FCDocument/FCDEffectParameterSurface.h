@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -19,18 +22,23 @@
 class FCDImage;
 class FCDEffectParameterSurfaceInit;
 
-/** A dynamically-sized array of COLLADA images */
-typedef FUObjectList<FCDImage> FCDImageTrackList;
-
-/** [INTERNAL] Describes a surface format by providing hints as to
+/** Describes a surface format by providing hints as to
 	its properties.
 	Used by the FCDEffectParameterSurface class exclusively. */
 struct FCDFormatHint
 {
+    /** The color channels that the choosen format should have. */
 	enum channelValues { CHANNEL_UNKNOWN, CHANNEL_RGB, CHANNEL_RGBA, CHANNEL_L, CHANNEL_LA, CHANNEL_D, CHANNEL_XYZ, CHANNEL_XYZW };
+    
+    /** The range of the color values for the choosen format. */
 	enum rangeValue { RANGE_UNKNOWN, RANGE_SNORM, RANGE_UNORM, RANGE_SINT, RANGE_UINT, RANGE_FLOAT, RANGE_LOW };
+    
+    /** The precision of the color values for the choosen format. */
 	enum precisionValue { PRECISION_UNKNOWN, PRECISION_LOW, PRECISION_MID, PRECISION_HIGH };
+    
+    /** Additional options for the surface. */
 	enum optionValue { OPT_SRGB_GAMMA, OPT_NORMALIZED3, OPT_NORMALIZED4, OPT_COMPRESSABLE };
+
 	channelValues channels; /**< The per-texel layout of the format */
 	rangeValue range; /**< The range format of the channels */
 	precisionValue precision; /**< Precision (number of bits) of the texel channels */
@@ -51,7 +59,7 @@ class FCOLLADA_EXPORT FCDEffectParameterSurface : public FCDEffectParameter
 private:
 	DeclareObjectType(FCDEffectParameter);
 	StringList names; /**< The list of image names contained in the surface */
-	FCDImageTrackList images; /**< The list of images contained in the surface */
+	DeclareParameterTrackList(FCDImage, images, FC("Images")); /**< The list of images contained in the surface */
 	FCDEffectParameterSurfaceInit* initMethod; /**< The initialization method of the surface */
 	fm::string format; /**< Description of the surface format */
 	FCDFormatHint* formatHint; /**< Hints describing the format of the surface if format is not recognized */
@@ -63,7 +71,7 @@ private:
 
 public:
 	/** Constructor: do not use directly.
-		Instead, use the FCDEffectParameterList::AddParameter function.
+		Instead, use the appropriate AddEffectParameter function.
 		@param document The COLLADA document that owns the effect parameter. */
 	FCDEffectParameterSurface(FCDocument* document);
 
@@ -93,18 +101,17 @@ public:
 			for each surface parameter. */
 	void SetInitMethod(FCDEffectParameterSurfaceInit* method);
 
+	/** Retrieves the list of images that make up this surface.
+		There should never be more than six images to build a surface.
+		In the large majority of cases, expect one image.
+		@return The	list of images. */
+	const FCDImage** GetImages() const { return images.begin(); } /**< See above. */
+
 	/** Retrieves the number of COLLADA images that make up this surface.
 		There should never be more than six images to build a surface.
 		In the large majority of cases, expect one image.
 		@return The number of images. */
 	size_t GetImageCount() const { return images.size(); }
-
-	/** Retrieves the list of images that make up this surface.
-		There should never be more than six images to build a surface.
-		In the large majority of cases, expect one image.
-		@return The	list of images. */
-	FCDImageTrackList& GetImages() { return images; }
-	const FCDImageTrackList& GetImages() const { return images; } /**< See above. */
 
 	/** Retrieves a specific image.
 		@param index The index of the image.
@@ -123,8 +130,10 @@ public:
 		This function will verify that this image does not already exist within the list,
 		so use the returned index.
 		@param image The new image.
+		@param index The index at which to insert the image. Set the index
+			to -1 in order to append the image to the list.
 		@return The index of the image within the list. */
-	size_t AddImage(FCDImage* image);
+	size_t AddImage(FCDImage* image, size_t index = (size_t) -1);
 
 	/** Removes an image from the list.
 		The initialization method indexes the images from this list.
@@ -178,16 +187,20 @@ public:
 		@param _generateMipmaps Whether to generate the mip-map levels on load. */
 	void SetGenerateMipMaps(bool _generateMipmaps) { generateMipmaps = _generateMipmaps; SetDirtyFlag(); }
 	
-	/** Sets format*/
+	/** Sets/Gets format*/
 	void SetFormat(const fm::string& _format) { format = _format; SetDirtyFlag(); }
+	const fm::string& GetFormat(){ return format; }
 	
 	/** Sets type*/
-	void SetType(const fm::string& _type) { type = _type; SetDirtyFlag(); }
+	void SetSurfaceType(const fm::string& _type) { type = _type; SetDirtyFlag(); }
+
+	/** Retrieves type. */
+	const fm::string& GetSurfaceType() { return type; }
 
 	/** Compares this parameter's value with another
 		@param parameter The given parameter to compare with.
 		@return true if the values are equal */
-	virtual bool IsValueEqual( FCDEffectParameter *parameter );
+	virtual bool IsValueEqual(FCDEffectParameter *parameter);
 
 	/** Creates a full copy of the effect parameter.
 		@param clone The cloned effect parameter. If this pointer is NULL,
@@ -201,21 +214,19 @@ public:
 		@param target The target parameter to overwrite. */
 	virtual void Overwrite(FCDEffectParameter* target);
 
-	/** [INTERNAL] Reads in the effect parameter from a given COLLADA XML tree node.
-		@param parameterNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the parameter.*/
-	virtual bool LoadFromXML(xmlNode* parameterNode);
+	/** [INTERNAL] Retrieve the list of image names
+	*/
+	StringList& GetNames() { return names; }
 
-	/** [INTERNAL] Links the parameter. This is done after
-		the whole COLLADA document has been processed once.
-		@param parameters The list of parameters available at this abstraction level. */
-	virtual void Link(FCDEffectParameterList& parameters);
+	/** Adds a format hint to the surface parameter.
+		Will fail silently if one already exists. */
+	FCDFormatHint* AddFormatHint();
 
-	/** [INTERNAL] Writes out the effect parameter to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the parameter.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
+	/** Retrieves the format hint of the surface parameter.
+		@return The format hint of the parameter. If this pointer is NULL,
+			no format hint is provided. */
+	inline FCDFormatHint* GetFormatHint() { return formatHint; }
+	inline const FCDFormatHint* GetFormatHint() const { return formatHint; }
 };
 
 
@@ -439,6 +450,9 @@ public:
 	virtual FCDEffectParameterSurfaceInitFactory::InitType GetInitType() const {return FCDEffectParameterSurfaceInitFactory::AS_TARGET;}
 
 	/** Creates a full copy of the surface initialization parameter.
+		@param clone The cloned surface initialization. If this pointer is NULL,
+			a new surface initialization parameter will be created and you
+			will need to delete this pointer.
 		@return The surface initialization parameter. You will need to delete this pointer. */
 	virtual FCDEffectParameterSurfaceInit* Clone(FCDEffectParameterSurfaceInit* clone) const;
 };

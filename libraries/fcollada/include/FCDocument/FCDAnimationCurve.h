@@ -1,11 +1,8 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
-*/
-/*
-	Based on the FS Import classes:
-	Copyright (C) 2005-2006 Feeling Software Inc
-	Copyright (C) 2005-2006 Autodesk Media Entertainment
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
@@ -27,10 +24,13 @@
 class FCDAnimated;
 class FCDAnimationClip;
 class FCDAnimationChannel;
+class FCDAnimationKey;
 class FCDConversionFunctor;
 
-typedef fm::pvector<FCDAnimationClip> FCDAnimationClipList; /**< A dynamically-sized array of animation clips. */
 typedef float (*FCDConversionFunction)(float v); /**< A simple conversion function. */
+
+typedef fm::pvector<FCDAnimationClip> FCDAnimationClipList; /**< A dynamically-sized array of animation clips. */
+typedef fm::pvector<FCDAnimationKey> FCDAnimationKeyList; /**< A dynamically-sized array of curve keys. */
 
 /**
 	A COLLADA single-dimensional animation curve.
@@ -47,31 +47,32 @@ class FCOLLADA_EXPORT FCDAnimationCurve : public FCDObject
 {
 private:
 	DeclareObjectType(FCDObject);
+
+	// The channel owning this curve.
 	FCDAnimationChannel* parent;
 
 	// Targeting information
 	int32 targetElement;
 	fm::string targetQualifier;
 
-	// Input information
-	FloatList keys, keyValues;
-	FMVector2List inTangents, outTangents;
-	FMVector3List tcbParameters;
-	FMVector2List easeInOuts;
+	// Curve information
+	FCDAnimationKeyList keys;
 	FUDaeInfinity::Infinity preInfinity, postInfinity;
 	
 	// Driver information
-	FUObjectPtr<FCDAnimated> inputDriver;
+	FUTrackedPtr<FCDAnimated> inputDriver;
 	int32 inputDriverIndex;
-
-	// The interpolation values follow the FUDaeInterpolation enum (FUDaeEnum.h)
-	UInt32List interpolations;
 
 	// Animation clips that depend on this curve
 	FCDAnimationClipList clips;
 	FloatList clipOffsets;
 	FCDAnimationClip* currentClip;
 	float currentOffset;
+	static bool is2DEvaluation;
+
+public:
+	DeclareFlag(AnimChanged, 0);	// On Member Value Changed
+	DeclareFlagCount(1);
 
 public:
 	/** Constructor: do not use directly.
@@ -90,47 +91,49 @@ public:
 	inline FCDAnimationChannel* GetParent() { return parent; }
 	inline const FCDAnimationChannel* GetParent() const { return parent; } /**< See above. */
 
-	/** Retrieves the list of key inputs for the animation curve.
-		@return The list of key inputs. */
-	inline FloatList& GetKeys() { return keys; }
-	inline const FloatList& GetKeys() const { return keys; } /**< See above. */
+	/** Retrieves the list of keys for the animation curve.
+		@return The list of keys. */
+	inline FCDAnimationKey** GetKeys() { return keys.begin(); }
+	inline const FCDAnimationKey** GetKeys() const { return keys.begin(); } /**< See above. */
 
-	/** Retrieves the list of key outputs for the animation curve.
-		@return The list of key outputs. */
-	inline FloatList& GetKeyValues() { return keyValues; }
-	inline const FloatList& GetKeyValues() const { return keyValues; } /**< See above. */
+	/** Retrieves the number of keys within the animation curve.
+		@return The number of keys. */
+	inline size_t GetKeyCount() const { return keys.size(); }
 
-	/** Retrieves the list of interpolation type for the segments of the animation curve.
-		There is always one interpolation type for each key in the curve. The interpolation type
-		of a segment of the curve is set at the key at which begins the segment.
-		@see FUDaeInterpolation
-		@return The list of interpolation types. */
-	inline UInt32List& GetInterpolations() { return interpolations; }
-	inline const UInt32List& GetInterpolations() const { return interpolations; } /**< See above. */
+	/** Sets the number of keys within the animation curve.
+		@param count The new number of keys in the curve.
+		@param interpolation If creating new keys, the interpolation type
+			for the new keys. */
+	void SetKeyCount(size_t count, FUDaeInterpolation::Interpolation interpolation);
 
-	/** Retrieves the list of key in-tangent values for the animation curve.
-		This list has data only for curves that include segments with the bezier interpolation.
-		@return The list of in-tangent values. */
-	inline FMVector2List& GetInTangents() { return inTangents; }
-	inline const FMVector2List& GetInTangents() const { return inTangents; } /**< See above. */
+	/** Retrieves one key in the animation curve.
+		@param index The index of the key to retrieve.
+		@return The key. */
+	inline FCDAnimationKey* GetKey(size_t index) { FUAssert(index < keys.size(), return NULL); return keys.at(index); }
+	inline const FCDAnimationKey* GetKey(size_t index) const { FUAssert(index < keys.size(), return NULL); return keys.at(index); } /**< See above. */
 
-	/** Retrieves the list of key out-tangent values for the animation curve.
-		This list has data only for curves that include segments with the bezier interpolation.
-		@return The list of out-tangent values. */
-	inline FMVector2List& GetOutTangents() { return outTangents; }
-	inline const FMVector2List& GetOutTangents() const { return outTangents; } /**< See above. */
+	/** Appends a key to the animation curve.
+		@param interpolation The interpolation type for the new key.
+		@return The new key. */
+	FCDAnimationKey* AddKey(FUDaeInterpolation::Interpolation interpolation);
 
-	/** Retrieves the list of key TCB values for the animation curve.
-		This list has data only for curves that include segments with the TCB interpolation.
-		@return The list of TCB values. */
-	inline FMVector3List& GetTCBs() { return tcbParameters; }
-	inline const FMVector3List& GetTCBs() const { return tcbParameters; } /**< See above. */
+	/** Adds a new key to the animation curve at the given time.
+		@param interpolation The interpolation type for the new key.
+		@param input The input (x) value of the new key.
+		@return The new key. */
+	FCDAnimationKey* AddKey(FUDaeInterpolation::Interpolation interpolation, float input) { size_t blah; return AddKey(interpolation, input, blah); }
 
-	/** Retrieves the list of key ease-in/ease-out values for the TCB animation curve.
-		This list has data only for curves that include segments with the TCB interpolation.
-		@return The list of ease-in/ease-out values. */
-	inline FMVector2List& GetEaseInOuts() { return easeInOuts; }
-	inline const FMVector2List& GetEaseInOuts() const { return easeInOuts; } /**< See above. */
+	/** Adds a new key to the animation curve at the given time.
+		@param interpolation The interpolation type for the new key.
+		@param input The input (x) value of the new key.
+		@param index [OUT] The index in the array of the new key
+		@return The new key. */
+	FCDAnimationKey* AddKey(FUDaeInterpolation::Interpolation interpolation, float input, size_t& index);
+
+	/** Removes the given key from this curves list and deletes it
+		@param key The key to find and delete
+		@return True on success, false if the key is not found */
+	bool DeleteKey(FCDAnimationKey* key);
 
 	/** Retrieves the type of behavior for the curve if the input value is
 		outside the input interval defined by the curve keys and less than any key input value.
@@ -166,6 +169,12 @@ public:
 		@param index A reference to receive the animated input driver element index. */
 	void GetDriver(FCDAnimated*& driver, int32& index);
 	void GetDriver(const FCDAnimated*& driver, int32& index) const; /**< See above. */
+	FCDAnimated* GetDriverPtr(){ return inputDriver; }
+
+	/** [INTERNAL] Retrieve the driver index.
+		@return The driver index.
+	*/
+	int32 GetDriverIndex(){ return inputDriverIndex; }
 
 	/** Sets the value pointer that drives the animation curve.
 		@param driver The driver animated value. Set this pointer to NULL
@@ -173,10 +182,24 @@ public:
 		@param index The driver animated value index. */
 	void SetDriver(FCDAnimated* driver, int32 index);
 
+	/** Retrieves the number of animation clips that use this animation curve.
+		@return The number of animation clips. */
+	inline size_t GetClipCount() const { return clips.size(); }
+
 	/** Retrieves the list of animation clips that use this animation curve.
 		@return The list of animation clips. */
-	inline FCDAnimationClipList& GetClips() { return clips; }
-	inline const FCDAnimationClipList& GetClips() const { return clips; } /**< See above. */
+	inline FCDAnimationClip** GetClips() { return clips.begin(); }
+	inline const FCDAnimationClip** GetClips() const { return clips.begin(); } /**< See above. */
+
+	/** Retrieves an animation clips that use this animation curve.
+		@param index The index of the animation clip.
+		@return The animation clip at the given index in the list of clips that use this curve. */
+	inline FCDAnimationClip* GetClip(size_t index) { FUAssert(index < clips.size(), return NULL); return clips[index]; }
+	inline const FCDAnimationClip* GetClip(size_t index) const { FUAssert(index < clips.size(), return NULL); return clips[index]; } /**< See above. */
+
+	/** Adds an animation clip to the list of animation clips that use this curve.
+		@param clip An animation clip that uses this curve. */
+	void AddClip(FCDAnimationClip* clip);
 
 	/** Updates the keys to match the timing of an animation clip that has been
 		registered using RegisterAnimationClip, or returned from GetClips.
@@ -190,16 +213,15 @@ public:
 		@return The offset value. */
 	inline const float GetClipOffset(size_t index) const { return clipOffsets.at(index); }
 
-	/** Readies this curve for evaluation.
-		This will create the tangents and the tangent weights, if necessary. */
-	void Ready();
-
 	/** Clones the animation curve. The animation clips can be cloned as well,
 		but this may lead to an infinite recursion because cloning the clips
 		will also clone its curves.
-		@param includeClips True if want to also clone the animation clips. 
+		@param clone The cloned animation curve. If this pointer is NULL, a new
+			animation curve will be created for you. You will then need to release
+			the pointer.
+		@param includeClips True if want to also clone the animation clips.
 		@return The cloned animation curve. */
-	FCDAnimationCurve* Clone(FCDAnimationCurve* clone = NULL, bool includeClips = true, FCDAnimationClip* dependentAnimationClip = NULL) const;
+	FCDAnimationCurve* Clone(FCDAnimationCurve* clone = NULL, bool includeClips = true) const;
 
 	/** Applies a conversion function to the key output values of the animation curve.
 		@param valueConversion The conversion function to use on the key outputs.
@@ -221,29 +243,6 @@ public:
 	/** [INTERNAL] Adds an animation clip to the list of animation clips that use this curve.
 		@param clip An animation clip. */
 	void RegisterAnimationClip(FCDAnimationClip* clip);
-
-	/** [INTERNAL] Writes out the data sources necessary to import the animation curve
-		to a given XML tree node.
-		@param parentNode The XML tree node in which to create the data sources.
-		@param baseId A COLLADA Id prefix to use when generating the source ids. */
-	void WriteSourceToXML(xmlNode* parentNode, const fm::string& baseId) const;
-
-	/** [INTERNAL] Writes out the sampler that puts together the data sources
-		and generates a sampling function.
-		@param parentNode The XML tree node in which to create the sampler.
-		@param baseId The COLLADA id prefix used when generating the source ids.
-			This prefix is also used to generate the sampler COLLADA id.
-		@return The created XML tree node. */
-	xmlNode* WriteSamplerToXML(xmlNode* parentNode, const fm::string& baseId) const;
-
-	/** [INTERNAL] Writes out the animation channel that attaches the sampling function
-		to the animatable value.
-		@param parentNode The XML tree node in which to create the sampler.
-		@param baseId The COLLADA Id prefix used when generating the source ids
-			and the sampler id.
-		@param targetPointer The target pointer prefix for the targeted animated element.
-		@return The created XML tree node. */
-	xmlNode* WriteChannelToXML(xmlNode* parentNode, const fm::string& baseId, const char* targetPointer) const;
 
 	/** [INTERNAL] Retrieves the target element suffix for the curve.
 		This will be -1 if the animated element does not belong to an
@@ -271,6 +270,18 @@ public:
 		@param offset The new offset. 
 		@param clip The animation clip to associate with the offset. */
 	void SetClipOffset(float offset, const FCDAnimationClip* clip);
+
+	/** Sets the 2D Curve Evaluation flag.
+		This flag can be set by the user to enable the
+		slower, but higher quality 2D evaluation. If the
+		flag is negative, the faster 1D slope-based evaluation is
+		performed. Defaults to true.
+		@param flag Whether to enable 2D curve evaluation. */
+	static void Set2DCurveEvaluation(bool flag) { is2DEvaluation = flag; }
+
+	/** Returns whether 2D Curve Evaluation is on or off.
+		@return A boolean that indicates if the 2D Curve Evaluation is on or off. */
+	static bool Is2DCurveEvaluation() {return is2DEvaluation; }
 };
 
 /** A simple conversion functor. */
@@ -290,12 +301,11 @@ private:
 
 public:
 	FCDConversionScaleFunctor(float factor) { scaleFactor = factor; } /**< Constructor. @param factor The scale factor. */
-	void SetScaleFactor(float factor) { scaleFactor = factor; } /**< Accessor. @param the new scale factor. */
+	void SetScaleFactor(float factor) { scaleFactor = factor; } /**< Mutator. @param factor The new scale factor. */
 	virtual ~FCDConversionScaleFunctor() {} /**< Destructor. */
-	virtual void SetScale(float v) { scaleFactor = v; }
 	virtual float operator() (float v) { return v * scaleFactor; } /**< Scales the given value. @param v The value to scale. @return The scaled value. */
-	virtual FMVector3 operator() (FMVector3 v) { return v * scaleFactor; } /**< Scales the given FMVector3. @param v The value to scale. @return The scaled value. */
-	virtual FMVector4 operator() (FMVector4 v) { return v * scaleFactor; } /**< Scales the given FMVector4. @param v The value to scale. @return The scaled value. */
+	virtual FMVector3 operator() (const FMVector3& v) { return v * scaleFactor; } /**< Scales the given FMVector3. @param v The value to scale. @return The scaled value. */
+	virtual FMVector4 operator() (const FMVector4& v) { return v * scaleFactor; } /**< Scales the given FMVector4. @param v The value to scale. @return The scaled value. */
 };
 
 /** A sample conversion functor: it offsets the value by a given amount. */

@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -41,8 +44,7 @@ private:
 	DeclareObjectType(FCDEntity);
 
 	// Target
-	fm::string targetId; // only valid during the import
-	FUObjectPtr<FCDSceneNode> targetNode;
+	DeclareParameterPtr(FCDSceneNode, targetNode, FC("Target Node"));
 
 public:
 	/** Constructor: do not use directly.
@@ -77,33 +79,6 @@ public:
 		@return The clone. */
 	virtual FCDEntity* Clone(FCDEntity* clone = NULL, bool cloneChildren = false) const;
 
-	/** [INTERNAL] Links the entity with its target.
-		This function is used during the import of a COLLADA document.
-		@todo Modify this function to support multiple visual scenes.
-		@param sceneRoot The root visual scene.
-		@return The status of the linkage. */
-	bool LinkTarget();
-
-protected:
-	/** [INTERNAL] Retrieves the COLLADA id of the target entity.
-		The actual resolution of the COLLADA id into a visual scene node happens
-		during the LinkTarget function. 
-		@return The COLLADA id of the target entity. */
-	inline const fm::string& GetTargetId() { return targetId; }
-
-	/** [INTERNAL] Reads in the entity target from a given COLLADA XML tree node.
-		@param entityNode A COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the entity.*/
-	virtual bool LoadFromXML(xmlNode* entityNode);
-
-	/** [INTERNAL] Writes out the extra information for the targeted entity.
-		Since targets do not belong to COLLADA, this information is written
-		into the entity's extra tree.
-		@see FCDEntity::WriteToExtraXML
-		@param entityNode The created element XML tree node returned
-			by the FCDEntity::WriteToEntityXML function. */
-	virtual void WriteToExtraXML(xmlNode* entityNode) const;
 };
 
 #endif // _FCD_TARGETED_ENTITY_H_

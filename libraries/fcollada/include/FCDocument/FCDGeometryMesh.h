@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -20,6 +23,9 @@
 #ifndef __FCD_OBJECT_H_
 #include "FCDocument/FCDObject.h"
 #endif // __FCD_OBJECT_H_
+#ifndef _FU_PARAMETER_H_
+#include "FUtils/FUParameter.h"
+#endif // _FU_PARAMETER_H_
 #ifndef _FU_DAE_ENUM_H_
 #include "FUtils/FUDaeEnum.h"
 #endif // _FU_DAE_ENUM_H_
@@ -31,10 +37,7 @@ class FCDGeometrySource;
 
 typedef fm::pvector<FCDGeometrySource> FCDGeometrySourceList; /**< A dynamically-sized array of FCDGeometrySource objects. */
 typedef fm::pvector<const FCDGeometrySource> FCDGeometrySourceConstList; /**< A dynamically-sized array of FCDGeometrySource constant objects. */
-typedef FUObjectList<FCDGeometrySource> FCDGeometrySourceTrackList; /**< A dynamically-sized array of tracked FCDGeometrySource objects. */
-typedef FUObjectContainer<FCDGeometrySource> FCDGeometrySourceContainer;/** A dynamically-sized containment array for FCDGeometrySource objects. */
 typedef fm::pvector<FCDGeometryPolygons> FCDGeometryPolygonsList; /**< A dynamically-sized array of geometry polygon sets. */
-typedef FUObjectContainer<FCDGeometryPolygons> FCDGeometryPolygonsContainer; /** A dynamically-sized containment array for geometry polygon sets. */
 
 /**
 	A COLLADA geometric mesh.
@@ -50,22 +53,22 @@ typedef FUObjectContainer<FCDGeometryPolygons> FCDGeometryPolygonsContainer; /**
 
 	@ingroup FCDGeometry
 */
-class FCOLLADA_EXPORT FCDGeometryMesh : public FCDObject, public FUObjectTracker
+class FCOLLADA_EXPORT FCDGeometryMesh : public FCDObject
 {
 private:
 	DeclareObjectType(FCDObject);
 
 	FCDGeometry* parent;
-	FCDGeometrySourceContainer sources;
-	FCDGeometryPolygonsContainer polygons;
+	DeclareParameterContainer(FCDGeometrySource, sources, FC("Data Sources"));
+	DeclareParameterContainer(FCDGeometryPolygons, polygons, FC("Polygons Sets"));
 
-	FCDGeometrySourceTrackList vertexSources;
+	DeclareParameterTrackList(FCDGeometrySource, vertexSources, FC("Vertex Sources"));
 	size_t faceCount, holeCount;
 	size_t faceVertexCount;
 
 	bool isConvex; //determines if the mesh is defined as a <convex_mesh>
 	bool convexify; //determines if the mesh needs to be turned into a convex mesh
-	fm::string convexHullOf;
+	DeclareParameter(fm::string, FUParameterQualifiers::SIMPLE, convexHullOf, FC("Convex Hull of"));
 
 public:
 	/** Contructor: do not use directly. Use FCDGeometry::AddMesh instead.
@@ -124,9 +127,20 @@ public:
 		@return The name of the geometry containing the mesh to convexify. */
 	const fm::string& GetConvexHullOf() const {return convexHullOf;}
 
+	/** Retrieves the convex hull of this mesh.
+		@return The convex hull geometry created using this mesh. This pointer will be
+			NULL if no convex hull was created using this mesh. */
+	inline FCDGeometryMesh* FindConvexHullOfMesh() { return const_cast<FCDGeometryMesh*>(const_cast<const FCDGeometryMesh*>(this)->FindConvexHullOfMesh()); }
+	const FCDGeometryMesh* FindConvexHullOfMesh() const; /**< See above. */
+
 	/** Sets the name of the geometry of which this mesh is the convex hull of.
 	@param _geom The geometry of which this mesh is the convex hull of.*/
 	void SetConvexHullOf(FCDGeometry* _geom);
+
+	/** [INTERNAL] Set the convec hull name directly.
+		@param id The name id.
+	*/
+	void SetConvexHullOf(const fm::string& id){ convexHullOf = id; }
 
 	/** Retrieves the COLLADA id of the mesh.
 		This is a shortcut to the parent geometry's COLLADA id.
@@ -163,7 +177,7 @@ public:
 
 	/** Retrieves the polygons sets which use the given material semantic.
 		Useful when processing material instances.
-		@param material The material semantic to find.
+		@param semantic The material semantic to find.
 		@param sets A list of polygon sets to fill in.
 			This list is not cleared. */
 	void FindPolygonsByMaterial(const fstring& semantic, FCDGeometryPolygonsList& sets);
@@ -172,8 +186,7 @@ public:
 		There should usually be one per-vertex data source that contains positions.
 		All the sources within this list are also present within the data source list.
 		@return The list of per-vertex data sources. */
-	inline FCDGeometrySourceTrackList& GetVertexSources() { return vertexSources; }
-	inline const FCDGeometrySourceTrackList& GetVertexSources() const { return vertexSources; } /**< See above. */
+	DEPRECATED(3.05A, GetVertexSourceCount and GetVertexSource(index)) void GetVertexSources() const {}
 
 	/** Retrieves the number of per-vertex data sources.
 		This number should always be lesser or equal to the number of data sources, as each per-vertex
@@ -201,7 +214,13 @@ public:
 		@param source A source that will now contain per-vertex data. */
 	void AddVertexSource(FCDGeometrySource* source);
 
+	/** Transforms a source of per-vertex data into a source of per-vertex-face data.
+		Note: the offsets of the inputs is not changed and no data is released.
+		@param source A source that will now contain per-vertex data. */
+	void RemoveVertexSource(FCDGeometrySource* source);
+
 	/** Retrieves whether a given geometry source is a per-vertex source of this mesh.
+		@param source A source contained within this mesh.
 		@return Whether the source is a per-vertex source of the mesh. */
 	inline bool IsVertexSource(const FCDGeometrySource* source) const { return vertexSources.contains(const_cast<FCDGeometrySource*>(source)); }
 
@@ -243,8 +262,7 @@ public:
 	/** Retrieves the list of all data sources.
 		Some of the sources within this list are also present within the vertex data source list.
 		@return The list of all data sources. */
-	inline FCDGeometrySourceContainer& GetSources() { return sources; }
-	inline const FCDGeometrySourceContainer& GetSources() const { return sources; } /**< See above. */
+	DEPRECATED(3.05A, GetSourceCount and GetSource(index)) void GetSources() const {}
 
 	/** Retrieves the number of data sources contained within this geometric mesh.
 		@return The number of data sources within the mesh. */
@@ -275,22 +293,6 @@ public:
 		Since the counts and offsets are buffered at the geometric mesh object level, this function allows the polygon
 		groups to force the recalculation of the buffered values, when they are modified. */
 	void Recalculate();
-	
-	/** [INTERNAL] Reads in the \<mesh\> element from a given COLLADA XML tree node.
-		@param meshNode The COLLADA XML tree node.
-		@return The status of the import. If the status is not successful,
-			it may be dangerous to extract information from the geometric mesh.*/
-	bool LoadFromXML(xmlNode* meshNode);
-
-	/** [INTERNAL] Writes out the \<mesh\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the geometric mesh.
-		@return The created \<mesh\> element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-	/** [INTERNAL] Callback when an object tracked by this tracker
-		is being released. This function is part of the FUObjectTracker interface.
-		@param object A tracked object. */
-	virtual void OnObjectReleased(FUObject* object);
 };
 
 #endif // _FCD_GEOMETRY_MESH_H_

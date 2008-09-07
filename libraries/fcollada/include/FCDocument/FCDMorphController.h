@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -23,6 +26,9 @@
 #ifndef __FCD_OBJECT_H_
 #include "FCDocument/FCDObject.h"
 #endif // __FCD_OBJECT_H_
+#ifndef _FCD_PARAMETER_ANIMATABLE_H_
+#include "FCDocument/FCDParameterAnimatable.h"
+#endif // _FCD_PARAMETER_ANIMATABLE_H_
 
 class FCDocument;
 class FCDAnimated;
@@ -40,8 +46,8 @@ class FCOLLADA_EXPORT FCDMorphTarget : public FCDObject
 private:
 	DeclareObjectType(FCDObject);
 	FCDMorphController* parent;
-	FUObjectPtr<FCDGeometry> geometry;
-	float weight;
+	DeclareParameterPtr(FCDGeometry, geometry, FC("Mesh"))
+	DeclareParameterAnimatable(float, FUParameterQualifiers::SIMPLE, weight, FC("Weight"));
 
 public:
 	/** Constructor: do not use directly.
@@ -75,8 +81,8 @@ public:
 
 	/** Retrieves the morphing weight.
 		@return The morphing weight. */
-	float& GetWeight() { return weight; }
-	const float& GetWeight() const { return weight; } /**< See above. */
+	FCDParameterAnimatableFloat& GetWeight() { return weight; }
+	const FCDParameterAnimatableFloat& GetWeight() const { return weight; } /**< See above. */
 
 	/** Sets the morphing weight.
 		This function has no impact on any animations that target the morphing weight.
@@ -85,17 +91,14 @@ public:
 
 	/** Retrieves whether the morphing weight is animated.
 		@return Whether the morphing weight is animated. */
-	bool IsAnimated() const;
+	DEPRECATED(3.05A, GetWeight().IsAnimated()) bool IsAnimated() const;
 
 	/** Retrieves the animation associated with the morphing weight.
 		@return The animated value associated with the morphing weight.
 			This pointer will be NULL if the morphing weight is not animated. */
-	FCDAnimated* GetAnimatedWeight(); 
-	const FCDAnimated* GetAnimatedWeight() const; /**< See above. */
+	DEPRECATED(3.05A, GetWeight().GetAnimated()) FCDAnimated* GetAnimatedWeight(); 
+	DEPRECATED(3.05A, GetWeight().GetAnimated()) const FCDAnimated* GetAnimatedWeight() const; /**< See above. */
 };
-
-/** A dynamically-sized array of morph targets. */
-typedef FUObjectContainer<FCDMorphTarget> FCDMorphTargetContainer;
 
 /**
 	A COLLADA morpher.
@@ -119,11 +122,9 @@ private:
 	DeclareObjectType(FCDObject);
 	FCDController* parent;
 
-	FUDaeMorphMethod::Method method;
-	FUObjectPtr<FCDEntity> baseTarget;
-	FCDMorphTargetContainer morphTargets;
-
-	fm::string targetId; // Valid during load only
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, method, FC("Method")); // FUDaeMorphMethod::Method
+	DeclareParameterPtr(FCDEntity, baseTarget, FC("Base Mesh"));
+	DeclareParameterContainer(FCDMorphTarget, morphTargets, FC("Morph Targets"));
 
 public:
 	/** Constructor: do not use directly. 
@@ -156,8 +157,7 @@ public:
 	/** Retrieves the list of the morph targets.
 		All the morph target geometries should be similar to the base entity.
 		@return The morph targets. */
-	FCDMorphTargetContainer& GetTargets() { return morphTargets; }
-	const FCDMorphTargetContainer& GetTargets() const { return morphTargets; } /**< See above. */
+	DEPRECATED(3.05A, GetTargetCount and GetTarget(index)) void GetTargets() const {}
 
 	/** Retrieves the number of morph targets.
 		@return The number of morph targets. */
@@ -177,7 +177,7 @@ public:
 
 	/** Retrieves the method used to interpolate between the different morph targets.
 		@return The interpolation method. */
-	FUDaeMorphMethod::Method GetMethod() const { return method; }
+	FUDaeMorphMethod::Method GetMethod() const { return (FUDaeMorphMethod::Method) *method; }
 
 	/** Sets the method used to interpolate between the different morph targets.
 		@param _method The interpolation method. */
@@ -188,22 +188,6 @@ public:
 		@param entity An entity.
 		@return Whether the given entity is similar to the base target. */
 	bool IsSimilar(FCDEntity* entity);
-
-	/** [INTERNAL] Reads in the \<morph\> element from a given COLLADA XML tree node.
-		@param morphNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the morpher.*/
-	bool LoadFromXML(xmlNode* morphNode);
-
-	/** [INTERNAL] Writes out the \<morph\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the morphing information.
-		@return The created element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-	/** [INTERNAL] Links a controller to its target after load.  This
-		function will be called by an entities instances after load,
-		after which it will become invalid and do nothing */
-	virtual bool LinkImport();
 };
 
 #endif // _FCD_MORPH_CONTROLLER_H_

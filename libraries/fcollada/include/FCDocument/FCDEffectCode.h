@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -30,7 +33,7 @@ class FCDocument;
 	includes, the code inclusions' language is solely determined by
 	the effect profile they belong to.
 */
-class FCDEffectCode : public FCDObject
+class FCOLLADA_EXPORT FCDEffectCode : public FCDObject
 {
 public:
 	/** The list of support code inclusion types. */
@@ -76,7 +79,7 @@ public:
 	/** Sets the sub-id of the code inclusion.
 		This value may change on export, as the sub-id must be unique within its scope.
 		@param _sid The sub-id. */
-	inline void SetSubId(const fm::string& _sid) { sid = _sid; SetDirtyFlag(); }
+	void SetSubId(const fm::string& _sid);
 
 	/** Retrieves the inlined code.
 		First verify that this code inclusion contains inlined code
@@ -98,7 +101,7 @@ public:
 	/** Sets the filename of the code file.
 		As a side-effect, calling this function forces the type of the code inclusion.
 		@param _filename The code filename. */
-	inline void SetFilename(const fstring& _filename) { filename = _filename; type = INCLUDE; SetDirtyFlag(); }
+	void SetFilename(const fstring& _filename);
 
 	/** Clones the code inclusion.
 		@param clone The cloned code inclusion.
@@ -106,18 +109,6 @@ public:
 			you will need to release this new code inclusion.
 		@return The cloned effect object. This pointer will never be NULL. */
 	FCDEffectCode* Clone(FCDEffectCode* clone = NULL) const;
-
-	/** [INTERNAL] Reads in the code inclusion from a given COLLADA XML tree node.
-		Code inclusions cover the \<code\> element and the \<include\> element.
-		@param codeNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the code inclusion.*/
-	bool LoadFromXML(xmlNode* codeNode);
-
-	/** [INTERNAL] Writes out the code inclusion to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the code inclusion.
-		@return The created element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_EFFECT_CODE_H_

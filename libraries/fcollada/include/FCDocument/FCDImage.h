@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -40,10 +43,14 @@ class FCOLLADA_EXPORT FCDImage : public FCDEntity
 private:
 	DeclareObjectType(FCDEntity);
 
-	fstring filename;
-	uint32 width;
-	uint32 height;
-	uint32 depth;
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, filename, FC("Filename"));
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, width, FC("Width"));
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, height, FC("Height"));
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, depth, FC("Depth"));
+
+public:
+	DeclareFlag(Video, 0); /**< Flags this image as a video stream.*/
+	DeclareFlagCount(1);
 
 public:
 	/** Constructor: do not use directly.
@@ -71,7 +78,7 @@ public:
 		to use the image bits. FCollada will deal with the filename
 		internally and export a relative filename.
 		@param _filename The filename of the image file. */
-	void SetFilename(const fstring& _filename) { filename = _filename; SetDirtyFlag(); }
+	void SetFilename(const fstring& _filename);
 
 	/** Retrieves the width of the image.
 		This parameter is useful for off-screen render targets and is
@@ -120,17 +127,6 @@ public:
 		@param cloneChildren Whether to recursively clone this entity's children.
 		@return The clone. */
 	virtual FCDEntity* Clone(FCDEntity* clone = NULL, bool cloneChildren = false) const;
-
-	/** [INTERNAL] Reads in the \<image\> element from a given COLLADA XML tree node.
-		@param imageNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the image.*/
-	virtual bool LoadFromXML(xmlNode* imageNode);
-
-	/** [INTERNAL] Writes out the \<image\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the image.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_IMAGE_H_

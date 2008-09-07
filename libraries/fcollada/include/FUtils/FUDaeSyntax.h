@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -109,6 +112,8 @@
 
 #define DAE_FXCMN_VERTEX_SHADER						"VERTEX"
 #define DAE_FXCMN_FRAGMENT_SHADER					"FRAGMENT"
+#define DAE_FXGLSL_VERTEX_SHADER                    "VERTEXPROGRAM"
+#define DAE_FXGLSL_FRAGMENT_SHADER                  "FRAGMENTPROGRAM"
 
 #define DAE_FXSTD_CONSTANT_ELEMENT					"constant"
 #define DAE_FXSTD_LAMBERT_ELEMENT					"lambert"
@@ -272,7 +277,7 @@
 #define DAE_WEIGHT_SPLINE_INPUT						"WEIGHTS"
 
 
-// Collada 1.4 physics
+// COLLADA 1.4 physics
 #define DAE_PHYSICS_MATERIAL_ELEMENT				"physics_material"
 #define DAE_PHYSICS_MODEL_ELEMENT					"physics_model"
 #define DAE_PHYSICS_SCENE_ELEMENT					"physics_scene"
@@ -373,6 +378,7 @@
 #define DAE_EMITTER_ELEMENT							"emitter"
 #define DAE_LIBRARY_EMITTER_ELEMENT					"library_emitters"
 #define DAE_INSTANCE_EMITTER_ELEMENT				"instance_emitter"
+#define DAE_INSTANCE_SPRITE_ELEMENT					"sprite"
 
 // COLLADA 1.3 elements
 #define	DAE_ACCESSOR_ELEMENT						"accessor"
@@ -401,6 +407,9 @@
 #define DAE_MATERIAL_ELEMENT						"material"
 #define DAE_MATRIX_ELEMENT							"matrix"
 #define DAE_MESH_ELEMENT							"mesh"
+#define DAE_MIN_FILTER_ELEMENT						"minfilter"
+#define DAE_MAG_FILTER_ELEMENT						"magfilter"
+#define DAE_MIP_FILTER_ELEMENT						"mipfilter"
 #define DAE_NAME_ARRAY_ELEMENT						"Name_array"
 #define DAE_NODE_ELEMENT							"node"
 #define DAE_OPTICS_ELEMENT							"optics"
@@ -410,6 +419,7 @@
 #define DAE_POLYGONHOLED_ELEMENT					"ph"
 #define DAE_POLYGONS_ELEMENT						"polygons"
 #define DAE_POLYLIST_ELEMENT						"polylist"
+#define DAE_POINTS_ELEMENT							"points"
 #define DAE_REST_LENGTH_ELEMENT1_3					"rest_length"			// [Deprecated 1.4] - Replaced by "target_value"
 #define DAE_ROTATE_ELEMENT							"rotate"
 #define	DAE_SCALE_ELEMENT							"scale"
@@ -429,6 +439,9 @@
 #define DAE_VERTEX_ELEMENT							"v"
 #define DAE_VERTICES_ELEMENT						"vertices"
 #define DAE_WIDTH_ELEMENT							"width"
+#define DAE_WRAP_S_ELEMENT							"wrap_s"
+#define DAE_WRAP_T_ELEMENT							"wrap_t"
+#define DAE_WRAP_P_ELEMENT							"wrap_p"
 
 #define DAE_BINDMATRIX_SKIN_INPUT					"INV_BIND_MATRIX"
 #define DAE_JOINT_SKIN_INPUT						"JOINT"
@@ -445,6 +458,14 @@
 #define DAE_X_UP									"X_UP"
 #define DAE_Y_UP									"Y_UP"
 #define DAE_Z_UP									"Z_UP"
+
+// Points list attributes
+#define DAE_POINT_LIST_INSTANCE						"points_list"
+#define DAE_POINT_LIST_ITEM							"point"
+#define DAE_POINT_LIST_POS							"position"
+#define DAE_POINT_LIST_COLOR						"color"
+#define DAE_POINT_LIST_SIZE							"size"
+
 
 // COLLADA 1.4 Shared elements
 #define DAESHD_DOUBLESIDED_PARAMETER				"double_sided"
@@ -468,6 +489,7 @@
 #define DAEMAX_WIREFRAME_MATERIAL_PARAMETER			"wireframe"
 #define DAEMAX_FACEMAP_MATERIAL_PARAMETER			"face_map"
 #define DAEMAX_AMOUNT_TEXTURE_PARAMETER				"amount"
+#define DAEMAX_BUMP_INTERP_TEXTURE_PARAMETER		"bumpInterp"
 #define DAEMAX_CAMERA_TARGETDISTANCE_PARAMETER		"target_distance"
 #define DAEMAX_FRAMERATE_PARAMETER					"frame_rate"
 
@@ -541,9 +563,21 @@
 #define DAEMAYA_NOTE_PARAMETER							"note"
 #define DAEMAYA_ENDTIME_PARAMETER						"end_time"
 #define DAEMAYA_STARTTIME_PARAMETER						"start_time"
+#define DAEMAYA_SEGMENTSCALECOMP_PARAMETER				"segment_scale_compensate"
 
 #define DAEMAYA_DRIVER_INPUT							"DRIVER"
 #define DAEMAYA_WEIGHT_INPUT							"WEIGHT"
+
+#define DAEMAYA_TEXTURE_NODETYPE						"dgnode_type"
+#define DAEMAYA_TEXTURE_FILETEXTURE						"kFile"
+#define DAEMAYA_TEXTURE_PSDTEXTURE						"kPSDFile"
+
+#define DAEMAYA_TEXTURE_IMAGE_SEQUENCE					"image_sequence"
+
+#define DAEMAYA_CAMERA_FILMFIT							"film_fit"
+#define DAEMAYA_CAMERA_FILMFITOFFSET					"film_fit_offset"
+#define DAEMAYA_CAMERA_FILMOFFSETX						"film_offsetX"
+#define DAEMAYA_CAMERA_FILMOFFSETY						"film_offsetY"
 
 // COLLADA 1.3 Maya-specific definitions
 #define DAEMAYA_BLINDNAME_PARAMETER						"BLINDNAME"
@@ -589,12 +623,16 @@
 // FCOLLADA syntax for custom attributes
 #define DAEFC_DYNAMIC_ATTRIBUTES_ELEMENT				"dynamic_attributes"
 #define DAEFC_BOOLEAN_ATTRIBUTE_TYPE					"bool"
-#define DAEFC_FLOAT_ATTRIBUTE_TYPE						"float"
 #define DAEFC_INT_ATTRIBUTE_TYPE						"int"
+#define DAEFC_INT2_ATTRIBUTE_TYPE						"int2"
+#define DAEFC_INT3_ATTRIBUTE_TYPE						"int3"
 #define DAEFC_STRING_ATTRIBUTE_TYPE						"string"
+#define DAEFC_FLOAT_ATTRIBUTE_TYPE						"float"
+#define DAEFC_FLOAT2_ATTRIBUTE_TYPE						"float2"
 #define DAEFC_FLOAT3_ATTRIBUTE_TYPE						"float3"
 #define DAEFC_FLOAT4_ATTRIBUTE_TYPE						"float4"
 #define DAEFC_MATRIX_ATTRIBUTE_TYPE						"float4x4"
+#define DAEFC_COLOR3_ATTRIBUTE_TYPE						"color3"
 
 // FCOLLADA systax for camera depth of field multi-pass effect
 #define DAEFC_CAMERA_DEPTH_OF_FIELD_ELEMENT				"depth_of_field"

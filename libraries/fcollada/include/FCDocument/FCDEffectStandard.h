@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -23,16 +26,22 @@
 #ifndef _FCD_EFFECT_PROFILE_H_
 #include "FCDocument/FCDEffectProfile.h"
 #endif // _FCD_EFFECT_PROFILE_H_
+#ifndef _FCD_EFFECT_PARAMETER_H_
+#include "FCDocument/FCDEffectParameter.h"
+#endif // _FCD_EFFECT_PARAMETER_H_
 
 class FCDocument;
 class FCDEffect;
-class FCDEffectParameter;
 class FCDTexture;
-class FCDEffectParameterList;
+class FCDEffectParameter;
 
-typedef fm::pvector<FCDTexture> FCDTextureList; /**< A dynamically-sized array of texture objects. */
-typedef FUObjectList<FCDTexture> FCDTextureTrackList; /**< A dynamically-sized array of tracked texture objects. */
-typedef FUObjectContainer<FCDTexture> FCDTextureContainer; /**< A dynamically-sized containment array for texture objects. */
+#if defined(WIN32)
+template <class T, int Q> class FCOLLADA_EXPORT FCDEffectParameterAnimatableT; /**< Trick Doxygen. */
+#elif defined(LINUX) || defined(__APPLE__)
+template <class T, int Q> class FCDEffectParameterAnimatableT; /**< Trick Doxygen. */
+#endif // LINUX
+typedef FCDEffectParameterAnimatableT<FMVector4, 1> FCDEffectParameterColor4; /**< A RGBA color effect parameter. */
+typedef FCDEffectParameterAnimatableT<float, 0> FCDEffectParameterFloat; /**< A floating-point value effect parameter. */
 
 /**
 	A COMMON profile effect description.
@@ -95,47 +104,69 @@ public:
 
 private:
 	DeclareObjectType(FCDEffectProfile);
-	LightingType type;
-	FCDTextureContainer* textureBuckets;
 
-	// Common material parameter: Emission
-	FMVector4 emissionColor;
-	float emissionFactor; // Max-specific
-	bool isEmissionFactor; // Max-specific
-	
-	// Common material parameter: Reflectivity
-	bool isReflective; // Maya-specific (bug #218 - 2006-11-16)
-	FMVector4 reflectivityColor;
-	float reflectivityFactor;
-	float indexOfRefraction;
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, type, FC("Lighting Type")); // LightingType;
 
-	// Common material parameter: Translucency
-	FMVector4 translucencyColor;
-	float translucencyFactor;
-	TransparencyMode transparencyMode;
+	// Emission Channel
+	DeclareParameterContainer(FCDTexture, emissionTextures, FC("Emission Textures"));
+	DeclareParameterRef(FCDEffectParameterColor4, emissionColor, FC("Emission Color"));
+	DeclareParameterRef(FCDEffectParameterFloat, emissionFactor, FC("Emission Factor"));
+	DeclareParameter(bool, FUParameterQualifiers::SIMPLE, isEmissionFactor, FC("Is Emission Factor"));
 
-	// Lambert material parameters
-	FMVector4 diffuseColor;
-	FMVector4 ambientColor;
+	// Reflectivity Channel
+	DeclareParameterContainer(FCDTexture, reflectivityTextures, FC("Reflectivity Textures"));
+	DeclareParameterRef(FCDEffectParameterColor4, reflectivityColor, FC("Reflectivity Color"));
+	DeclareParameterRef(FCDEffectParameterFloat, reflectivityFactor, FC("Reflectivity Factor"));
+	DeclareParameter(bool, FUParameterQualifiers::SIMPLE, isReflective, FC("Is Reflective"));
 
-	// Phong material parameters: Specular
-	FMVector4 specularColor;
-	float specularFactor; // Max-specific
-	float shininess;
+	// Refractivity Channel
+	DeclareParameterContainer(FCDTexture, refractionTextures, FC("Refraction Textures"));
+	DeclareParameterRef(FCDEffectParameterFloat, indexOfRefraction, FC("Index of Refraction"));
+	DeclareParameter(bool, FUParameterQualifiers::SIMPLE, isRefractive, FC("Is Refractive"));
+
+	// Transparency Channel
+	DeclareParameterContainer(FCDTexture, translucencyTextures, FC("Translucency Textures"));
+	DeclareParameterRef(FCDEffectParameterColor4, translucencyColor, FC("Translucency Color"));
+	DeclareParameterRef(FCDEffectParameterFloat, translucencyFactor, FC("Translucency Factor"));
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, transparencyMode, FC("Translucency Mode")); // TransparencyMode
+
+	// Diffuse Channel
+	DeclareParameterContainer(FCDTexture, diffuseTextures, FC("Diffuse Textures"));
+	DeclareParameterRef(FCDEffectParameterColor4, diffuseColor, FC("Diffuse Color"));
+
+	// Ambient Channel
+	DeclareParameterContainer(FCDTexture, ambientTextures, FC("Ambient Textures"));
+	DeclareParameterRef(FCDEffectParameterColor4, ambientColor, FC("Ambient Color"));
+
+	// Specular Channel
+	DeclareParameterContainer(FCDTexture, specularTextures, FC("Specular Color Textures"));
+	DeclareParameterRef(FCDEffectParameterColor4, specularColor, FC("Specular Color"));
+	DeclareParameterContainer(FCDTexture, specularFactorTextures, FC("Specular Factor Textures"));
+	DeclareParameterRef(FCDEffectParameterFloat, specularFactor, FC("Specular Factor"));
+
+	// Specular Exponent Channel
+	DeclareParameterContainer(FCDTexture, shininessTextures, FC("Shininess Textures"));
+	DeclareParameterRef(FCDEffectParameterFloat, shininess, FC("Shininess Factor"));
+
+	// Extra Channels
+	DeclareParameterContainer(FCDTexture, bumpTextures, FC("Bump Maps"));
+	DeclareParameterContainer(FCDTexture, displacementTextures, FC("Displacement Maps")); // Max-only
+	DeclareParameterContainer(FCDTexture, filterTextures, FC("Filter Maps")); // Max-only
 
 public:
 	/** Constructor: do not use directly.
 		Instead, use the FCDEffect::AddProfile function
 		with the FUDaeProfileType::COMMON parameter.
+		@param document The FCollada document that owns this effect standard.
 		@param parent The effect that contains this profile. */
-	FCDEffectStandard(FCDEffect* parent);
+	FCDEffectStandard(FCDocument* document, FCDEffect* parent);
 
 	/** Destructor. */
 	virtual ~FCDEffectStandard();
 
 	/** Retrieves the lighting model to be used for this profile.
 		@return The lighting model. */
-	inline LightingType GetLightingType() const { return type; }
+	inline LightingType GetLightingType() const { return (LightingType) *type; }
 
 	/** Sets the lighting model to be used for this profile.
 		Note that which parameters are exported depends on the lighting model.
@@ -152,22 +183,22 @@ public:
 		@param bucket A texture channel index. This index should match one
 			of the values in the FUDaeTextureChannel enum.
 		@return The list of textures for this channel. */
-	FCDTextureContainer& GetTextureBucket(uint32 bucket);
-	const FCDTextureContainer& GetTextureBucket(uint32 bucket) const;
+	inline FCDTexture** GetTextureBucket(uint32 bucket) { return const_cast<FCDTexture**>(const_cast<const FCDEffectStandard*>(this)->GetTextureBucket(bucket)); }
+	const FCDTexture** GetTextureBucket(uint32 bucket) const; /**< See above. */
 
 	/** Retrieves the number of textures belonging to a specific channel.
 		@param bucket A texture channel index. This index should match one
 			of the values in the FUDaeTextureChannel enum.
 		@return The number of textures in that channel. */
-	size_t GetTextureCount(uint32 bucket) const { FUAssert(bucket < FUDaeTextureChannel::COUNT, return 0); return textureBuckets[bucket].size(); }
+	size_t GetTextureCount(uint32 bucket) const;
 
 	/** Retrieves a texture
 		@param bucket A texture channel index. This index should match one
 			of the values in the FUDaeTextureChannel enum.
 		@param index The index of a texture within this channel.
 		@return The texture. This pointer will be NULL if either the bucket or the index is out-of-bounds. */
-	inline FCDTexture* GetTexture(uint32 bucket, size_t index) { FUAssert(index < GetTextureCount(bucket), return NULL); return textureBuckets[bucket].at(index); }
-	inline const FCDTexture* GetTexture(uint32 bucket, size_t index) const { FUAssert(index < GetTextureCount(bucket), return NULL); return textureBuckets[bucket].at(index); } /**< See above. */
+	inline FCDTexture* GetTexture(uint32 bucket, size_t index) { FUAssert(index < GetTextureCount(bucket), return NULL); return GetTextureBucket(bucket)[index]; }
+	inline const FCDTexture* GetTexture(uint32 bucket, size_t index) const { FUAssert(index < GetTextureCount(bucket), return NULL); return GetTextureBucket(bucket)[index]; } /**< See above. */
 
 	/** Adds a texture to a specific channel.
 		@param bucket A texture channel index. This index should match one
@@ -177,7 +208,18 @@ public:
 
 	/** Releases a texture contained within this effect profile.
 		@param texture The texture to release. */
-	void ReleaseTexture(FCDTexture* texture);
+	DEPRECATED(3.05A, texture->Release()) void ReleaseTexture(FCDTexture* texture) { ((FUObject*) texture)->Release(); }
+
+	/** Retrieves a parameter based on the semantic.
+		@param semantic The semantic that names the param.
+		@param isFloat Returned float indicating whether the parameter is a float or a vector.
+		@return param The returned parameter. 
+		Use isFloat to cast to FCDEffectParameterFloat or FCDEffectParameterColor4. */
+	FCDEffectParameter* GetParam(const fm::string& semantic, bool* isFloat);
+
+//
+//	Translucency Color (vector)
+//
 
 	/** Retrieves the base translucency color.
 		This value must be multiplied with the translucency factor
@@ -186,32 +228,56 @@ public:
 		of a A_ONE transparency mode
 		This value is used in all lighting models.
 		@return The base translucency color. */
-	inline FMVector4& GetTranslucencyColor() { return translucencyColor; }
-	inline const FMVector4& GetTranslucencyColor() const { return translucencyColor; }
+	inline FMVector4& GetTranslucencyColor() { return translucencyColor->GetValue(); }
+	inline const FMVector4& GetTranslucencyColor() const { return translucencyColor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the translucency color.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple color. 
+		@return The parameter that contains the translucency color. */
+	inline FCDEffectParameterColor4* GetTranslucencyColorParam() { return translucencyColor; }
+	inline const FCDEffectParameterColor4* GetTranslucencyColorParam() const { return translucencyColor; } /**< See above. */
 
 	/** Sets the base translucency color.
 		@param color The base translucency color including the alpha channel. */
-	inline void SetTranslucencyColor(const FMVector4& color) { translucencyColor = color; SetDirtyFlag(); }
+	inline void SetTranslucencyColor(const FMVector4& color) { translucencyColor->SetValue(color); SetDirtyFlag(); }
+
+//
+// Translucency Factor (float)
+//
 
 	/** Retrieves the translucency factor.
 		This value must be multiplied with the translucency color
 		to get the real translucency color.
 		This value is used in all lighting models.
 		@return The translucency factor. */
-	inline float& GetTranslucencyFactor() { return translucencyFactor; }
-	inline const float& GetTranslucencyFactor() const { return translucencyFactor; } /**< See above. */
+	inline float& GetTranslucencyFactor() { return translucencyFactor->GetValue(); }
+	inline const float& GetTranslucencyFactor() const { return translucencyFactor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the translucency factor.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple float. 
+		@return The parameter that contains the translucency factor. */
+	inline FCDEffectParameterFloat* GetTranslucencyFactorParam() { return translucencyFactor; }
+	inline const FCDEffectParameterFloat* GetTranslucencyFactorParam() const { return translucencyFactor; } /**< See above. */
 
 	/** Sets the translucency factor.
 		@param factor The translucency factor. */
-	inline void SetTranslucencyFactor(float factor) { translucencyFactor = factor; SetDirtyFlag(); }
+	inline void SetTranslucencyFactor(float factor) { translucencyFactor->SetValue(factor); SetDirtyFlag(); }
+
+//
+// Transparency Mode (bool)
+//
 
 	/** Retrieves the transparency mode.
 		@return The transparency mode. */
-	inline TransparencyMode GetTransparencyMode() const {return transparencyMode; }
+	inline TransparencyMode GetTransparencyMode() const { return (TransparencyMode) *transparencyMode; }
 
 	/** Sets the transparency mode.
 		@param mode The transparency mode. */
-	inline void SetTransparencyMode(TransparencyMode mode) {transparencyMode = mode; SetDirtyFlag(); }
+	inline void SetTransparencyMode(TransparencyMode mode) { transparencyMode = mode; SetDirtyFlag(); }
 
 	/** Retrieves the flat opacity.
 		This is a calculated value and will not take into consideration any animations
@@ -220,26 +286,54 @@ public:
 		@return The flat opacity. */
 	float GetOpacity() const;
 
+// 
+// Emission Color (vector)
+//
+
 	/** Retrieves the base emission/self-illumination color.
 		This value must be multiplied with the emission factor to get the real emission color.
 		This value is used in all lighting models.
 		@return The base emission color. */
-	inline FMVector4& GetEmissionColor() { return emissionColor; }
-	inline const FMVector4& GetEmissionColor() const { return emissionColor; } /**< See above. */
+	inline FMVector4& GetEmissionColor() { return emissionColor->GetValue(); }
+	inline const FMVector4& GetEmissionColor() const { return emissionColor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the emission color.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple color. 
+		@return The parameter that contains the emission color. */
+	inline FCDEffectParameterColor4* GetEmissionColorParam() { return emissionColor; }
+	inline const FCDEffectParameterColor4* GetEmissionColorParam() const { return emissionColor; } /**< See above. */
 
 	/** Sets the base emission/self-illumination color.
 		@param color The base emission color. */
-	inline void SetEmissionColor(const FMVector4& color) { emissionColor = color; SetDirtyFlag(); }
+	inline void SetEmissionColor(const FMVector4& color) { emissionColor->SetValue(color); SetDirtyFlag(); }
+
+//
+// Emission Factor (float)
+//
 
     /** Retrieves the emission/self-illumination factor.
 		This value must be multiplied with the base emission color to get the real emission color.
 		@return The emission factor. */
-	inline float& GetEmissionFactor() { return emissionFactor; }
-	inline const float& GetEmissionFactor() const { return emissionFactor; } /**< See above. */
+	inline float& GetEmissionFactor() { return emissionFactor->GetValue(); }
+	inline const float& GetEmissionFactor() const { return emissionFactor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the emission/self-illumination factor.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple float. 
+		@return The parameter that contains the emission/self-illumination factor. */
+	inline FCDEffectParameterFloat* GetEmissionFactorParam() { return emissionFactor; }
+	inline const FCDEffectParameterFloat* GetEmissionFactorParam() const { return emissionFactor; } /**< See above. */
 
 	/** Sets the emission/self-illumination factor.
 		@param factor The emission factor. */
-	inline void SetEmissionFactor(float factor) { emissionFactor = factor; SetDirtyFlag(); }
+	inline void SetEmissionFactor(float factor) { emissionFactor->SetValue(factor); SetDirtyFlag(); }
+
+//
+// IsEmission Factor (bool)
+//
 
 	/** Retrieves whether the emission factor was used, rather than the emission color.
 		This value is used in conjunction with 3dsMax, in which the self-illumination color
@@ -253,49 +347,101 @@ public:
 		@param useFactor Whether the emission factor should be used. */
 	inline void SetIsEmissionFactor(bool useFactor) { isEmissionFactor = useFactor; SetDirtyFlag(); }
 
+//
+// Diffuse Color (vector)
+// 
+
 	/** Retrieves the diffuse color.
 		This value is used in the Lambert lighting model.
 		@return The diffuse color. */
-	inline FMVector4& GetDiffuseColor() { return diffuseColor; }
-	inline const FMVector4& GetDiffuseColor() const { return diffuseColor; } /**< See above. */
+	inline FMVector4& GetDiffuseColor() { return diffuseColor->GetValue(); }
+	inline const FMVector4& GetDiffuseColor() const { return diffuseColor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the diffuse color.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple color. 
+		@return The parameter that contains the diffuse color. */
+	inline FCDEffectParameterColor4* GetDiffuseColorParam() { return diffuseColor; }
+	inline const FCDEffectParameterColor4* GetDiffuseColorParam() const { return diffuseColor; } /**< See above. */
 
 	/** Sets the diffuse color.
 		@param color The diffuse color. */
-	inline void SetDiffuseColor(const FMVector4& color) { diffuseColor = color; SetDirtyFlag(); }
+	inline void SetDiffuseColor(const FMVector4& color) { diffuseColor->SetValue(color); SetDirtyFlag(); }
+
+//
+// Ambient Color (vector)
+//
 
 	/** Retrieves the ambient color.
 		This value is used in the Lambert lighting model.
 		@return The ambient color. */
-	inline FMVector4& GetAmbientColor() { return ambientColor; }
-	inline const FMVector4& GetAmbientColor() const { return ambientColor; } /**< See above. */
+	inline FMVector4& GetAmbientColor() { return ambientColor->GetValue(); }
+	inline const FMVector4& GetAmbientColor() const { return ambientColor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the ambient color.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple color. 
+		@return The parameter that contains the ambient color. */
+	inline FCDEffectParameterColor4* GetAmbientColorParam() { return ambientColor; }
+	inline const FCDEffectParameterColor4* GetAmbientColorParam() const { return ambientColor; } /**< See above. */
 
 	/** Sets the ambient color.
 		@param color The ambient color. */
-	inline void SetAmbientColor(const FMVector4& color) { ambientColor = color; SetDirtyFlag(); }
+	inline void SetAmbientColor(const FMVector4& color) { ambientColor->SetValue(color); SetDirtyFlag(); }
+
+//
+// Specular Color (vector)
+//
 
 	/** Retrieves the base specular color.
 		This value must be multiplied with the specular factor
 		to get the real specular color.
 		This value is used in the Phong and Blinn lighting models.
 		@return The specular color. */
-	inline FMVector4& GetSpecularColor() { return specularColor; }
-	inline const FMVector4& GetSpecularColor() const { return specularColor; } /**< See above. */
+	inline FMVector4& GetSpecularColor() { return specularColor->GetValue(); }
+	inline const FMVector4& GetSpecularColor() const { return specularColor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the specular color.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple color. 
+		@return The parameter that contains the specular color. */
+	inline FCDEffectParameterColor4* GetSpecularColorParam() { return specularColor; }
+	inline const FCDEffectParameterColor4* GetSpecularColorParam() const { return specularColor; } /**< See above. */
 
 	/** Sets the specular color.
 		@param color The specular color. */
-	inline void SetSpecularColor(const FMVector4& color) { specularColor = color; SetDirtyFlag(); }
+	inline void SetSpecularColor(const FMVector4& color) { specularColor->SetValue(color); SetDirtyFlag(); }
+
+//
+// Specular Factor (float)
+//
 
 	/** Retrieves the specular factor.
 		This value must be multiplied with the base specular color
 		to get the real specular color.
 		This value is used in the Phong and Blinn lighting models.
 		@return The specular factor. */
-	inline float& GetSpecularFactor() { return specularFactor; }
-	inline const float& GetSpecularFactor() const { return specularFactor; } /**< See above. */
+	inline float& GetSpecularFactor() { return specularFactor->GetValue(); }
+	inline const float& GetSpecularFactor() const { return specularFactor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the specular factor.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple float. 
+		@return The parameter that contains the specular factor. */
+	inline FCDEffectParameterFloat* GetSpecularFactorParam() { return specularFactor; }
+	inline const FCDEffectParameterFloat* GetSpecularFactorParam() const { return specularFactor; } /**< See above. */
 
 	/** Sets the specular factor.
 		@param factor The specular factor. */
-	inline void SetSpecularFactor(float factor) { specularFactor = factor; SetDirtyFlag(); }
+	inline void SetSpecularFactor(float factor) { specularFactor->SetValue(factor); SetDirtyFlag(); }
+
+//
+// Shininess (float)
+//
 
 	/** Retrieves the specular shininess.
 		This value represents the exponent to which you must raise
@@ -303,15 +449,27 @@ public:
 		as such, it is usually a number greater than 1.
 		This value is used in the Phong and Blinn lighting models.
 		@return The specular shininess. */
-	inline float& GetShininess() { return shininess; }
-	inline const float& GetShininess() const { return shininess; } /**< See above. */
+	inline float& GetShininess() { return shininess->GetValue(); }
+	inline const float& GetShininess() const { return shininess->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the specular shininess.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple float. 
+		@return The parameter that contains the specular shininess. */
+	inline FCDEffectParameterFloat* GetShininessParam() { return shininess; }
+	inline const FCDEffectParameterFloat* GetShininessParam() const { return shininess; } /**< See above. */
 
 	/** Sets the specular shininess.
 		This value represents the exponent to which you must raise
 		the dot-product between the view vector and reflected light vectors:
 		as such, it is usually a number greater than 1.
 		@param _shininess The specular shininess. */
-	inline void SetShininess(float _shininess) { shininess = _shininess; SetDirtyFlag(); }
+	inline void SetShininess(float _shininess) { shininess->SetValue(_shininess); SetDirtyFlag(); }
+
+//
+// IsReflective (bool)
+//
 
 	/**	Retrieves the reflectivity state.
 		@return True if the effect has reflectivity information.*/
@@ -321,29 +479,53 @@ public:
 		@param r The effect's new reflectivity state.*/
 	inline void SetReflective(bool r) { isReflective = r; }
 
+//
+// Reflectivity Color (vector)
+//
+
 	/** Retrieves the base reflectivity color.
 		This value must be multiplied to the reflectivity factor to
 		get the real reflectivity color.
 		This value is used in the Phong and Blinn lighting models.
 		@return The base reflectivity color. */
-    inline FMVector4& GetReflectivityColor() { return reflectivityColor; }
-    inline const FMVector4& GetReflectivityColor() const { return reflectivityColor; } /**< See above. */
+    inline FMVector4& GetReflectivityColor() { return reflectivityColor->GetValue(); }
+    inline const FMVector4& GetReflectivityColor() const { return reflectivityColor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the reflectivity color.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple color. 
+		@return The parameter that contains the reflectivity color. */
+	inline FCDEffectParameterColor4* GetReflectivityColorParam() { return reflectivityColor; }
+	inline const FCDEffectParameterColor4* GetReflectivityColorParam() const { return reflectivityColor; } /**< See above. */
 
 	/** Sets the base reflectivity color.
 		@param color The base reflectivity color. */
-	inline void SetReflectivityColor(const FMVector4& color) { reflectivityColor = color; SetDirtyFlag(); }
-	
+	inline void SetReflectivityColor(const FMVector4& color) { reflectivityColor->SetValue(color); isReflective = true; SetDirtyFlag(); }
+
+// 
+// Reflectivity Factor (float)
+//
+
 	/** Retrieves the reflectivity factor.
 		This value must be multiplied to the base reflectivity color
 		to get the real reflectivity color.
 		This value is used in the Phong and Blinn lighting models.
 		@return The reflectivity factor. */
-	inline float& GetReflectivityFactor() { return reflectivityFactor; }
-	inline const float& GetReflectivityFactor() const { return reflectivityFactor; } /**< See above. */
+	inline float& GetReflectivityFactor() { return reflectivityFactor->GetValue(); }
+	inline const float& GetReflectivityFactor() const { return reflectivityFactor->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the reflectivity factor.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple float. 
+		@return The parameter that contains the reflectivity factor. */
+	inline FCDEffectParameterFloat* GetReflectivityFactorParam() { return reflectivityFactor; }
+	inline const FCDEffectParameterFloat* GetReflectivityFactorParam() const { return reflectivityFactor; } /**< See above. */
 
 	/** Sets the reflectivity factor.
 		@param factor The reflectivity factor. */
-	inline void SetReflectivityFactor(float factor) { reflectivityFactor = factor; SetDirtyFlag(); }
+	inline void SetReflectivityFactor(float factor) { reflectivityFactor->SetValue(factor); isReflective = true; SetDirtyFlag(); }
 
 	/** Retrieves the flat reflectivity.
 		This is a calculated value and will not take into consideration any animations
@@ -352,38 +534,43 @@ public:
 		@return The flat reflectivity. */
 	float GetReflectivity() const;
 
+//
+// IsRefractive (bool)
+//
+
+	/**	Retrieves the refractive state.
+		@return True if the effect has refractive information.*/
+	inline bool IsRefractive() const { return isRefractive; }
+
+	/**	Sets the refractive state.
+		@param r The effect's new refractive state.*/
+	inline void SetRefractive(bool r) { isRefractive = r; }
+
+//
+// IndexOfRefraction (float)
+//
+
 	/** Retrieves the index of refraction.
 		The index of refraction defaults to 1.0f.
 		@return The index of refraction. */
-	inline float& GetIndexOfRefraction() { return indexOfRefraction; }
-	inline const float& GetIndexOfRefraction() const { return indexOfRefraction; } /**< See above. */
+	inline float& GetIndexOfRefraction() { return indexOfRefraction->GetValue(); }
+	inline const float& GetIndexOfRefraction() const { return indexOfRefraction->GetValue(); } /**< See above. */
+
+	/** Retrieves the parameter pointer that contains the index of refraction.
+		Use this function to modify the value, the semantic, reference or annotations of the parameter.
+		Note: in order to be linked with the profile_COMMON's parameter list, the parameter needs
+		to have a valid semantic and reference. Otherwise it is treated as a simple float. 
+		@return The parameter that contains the index of refraction. */
+	inline FCDEffectParameterFloat* GetIndexOfRefractionParam() { return indexOfRefraction; }
+	inline const FCDEffectParameterFloat* GetIndexOfRefractionParam() const { return indexOfRefraction; } /**< See above. */
 
 	/** Sets the index of refraction.
 		@param index The new index of refraction. */
-	inline void SetIndexOfRefraction(float index) { indexOfRefraction = index; SetDirtyFlag(); }
+	inline void SetIndexOfRefraction(float index) { indexOfRefraction->SetValue(index); isRefractive = true; SetDirtyFlag(); }
 
-	/** Retrieves an effect parameter.
-		Looks for the effect parameter with the correct semantic, in order to bind or override its value.
-		This function searches through the effect profile and the level of abstractions below.
-		@param semantic The effect parameter semantic to match.
-		@return The effect parameter that matches the semantic. This pointer may be
-			NULL if no effect parameter matches the given semantic. */
-	virtual FCDEffectParameter* FindParameterBySemantic(const fm::string& semantic);
-
-	/** Retrieves a subset of the effect parameter list.
-		Look for effect parameters with the correct semantic.
-		This function searches through the effect profile and the level of abstractions below.
-		@param semantic The effect parameter semantic to match.
-		@param parameters The list of parameters to fill in. This list is not cleared. */
-	virtual void FindParametersBySemantic(const fm::string& semantic, FCDEffectParameterList& parameters);
-
-	/** Retrieves a subset of the effect parameter list.
-		Look for effect parameters with the correct reference.
-		This function searches through the effect profile and the level of abstractions below.
-		@param reference The effect parameter reference to match. In the case of effect
-			parameter, the reference is replaced by the sub-id.
-		@param parameters The list of parameters to fill in. This list is not cleared. */
-	virtual void FindParametersByReference(const fm::string& reference, FCDEffectParameterList& parameters);
+//
+//	Miscellaneous
+//
 
 	/** Clones the COMMON profile effect and its parameters.
 		@param clone The cloned profile.
@@ -394,42 +581,32 @@ public:
 
 	/** [INTERNAL] Flattens the profile.
 		Does nothing on the common profile. */
-	virtual void Flatten() {}
-
-	/** [INTERNAL] Reads in the \<profile_COMMON\> element from a given COLLADA XML tree node.
-		@param baseNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the effect profile.*/
-	virtual bool LoadFromXML(xmlNode* baseNode);
-
-	/** [INTERNAL] Writes out the \<profile_COMMON\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the effect profile.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-	/** [INTERNAL] Links the effect profile and its parameters. This is done after
-		the whole COLLADA document has been processed once. */
-	virtual void Link();
+	DEPRECATED(3.05A, not recommended) void Flatten() {}
 
 	/** Adds an extra attribute to the given profile
 		@param profile The profile in which to insert the attribute.
 		@param key The attribute's key
 		@param value The attribute's value */
-	void AddExtraAttribute( const char *profile, const char *key, const fchar *value );
+	void AddExtraAttribute(const char *profile, const char *key, const fchar *value);
 
 	/** Get the extra attribute value corresponding to the given profile and key values
 		@param profile The profile to look for.
 		@param key The attribute key to look for. */
-	const fchar* GetExtraAttribute( const char *profile, const char *key ) const;
+	const fchar* GetExtraAttribute(const char *profile, const char *key) const;
 
-private:
-	xmlNode* WriteColorTextureParameterToXML(xmlNode* parentNode, const char* parameterNodeName, const FMVector4& value, const FCDTextureTrackList& textureBucket) const;
-	xmlNode* WriteFloatTextureParameterToXML(xmlNode* parentNode, const char* parameterNodeName, const float& value, const FCDTextureTrackList& textureBucket) const;
-	xmlNode* WriteTextureParameterToXML(xmlNode* parentNode, const FCDTextureTrackList& textureBucket) const;
-
-	bool ParseColorTextureParameter(xmlNode* parameterNode, FMVector4& value, FCDTextureContainer& textureBucket);
-	bool ParseFloatTextureParameter(xmlNode* parameterNode, float& value, FCDTextureContainer& textureBucket);
-	bool ParseSimpleTextureParameter(xmlNode* parameterNode, FCDTextureContainer& textureBucket);
+public:
+	static const fm::string EmissionColorSemantic;
+	static const fm::string EmissionFactorSemantic;
+	static const fm::string ReflectivityColorSemantic;
+	static const fm::string ReflectivityFactorSemantic;
+	static const fm::string IndexOfRefractionSemantic;
+	static const fm::string TranslucencyColorSemantic;
+	static const fm::string TranslucencyFactorSemantic;
+	static const fm::string DiffuseColorSemantic;
+	static const fm::string AmbientColorSemantic;
+	static const fm::string SpecularColorSemantic;
+	static const fm::string SpecularFactorSemantic;
+	static const fm::string ShininessSemantic;
 
 };
 

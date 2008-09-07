@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -28,16 +31,10 @@ class FCDocument;
 class FCDEffectStandard;
 class FCDEffectParameter;
 class FCDEffectProfile;
-class FCDEffectParameterList;
 
 /**	
 	@defgroup FCDEffect COLLADA Effect Classes [ColladaFX]
 */
-
-class FCDEffectProfile;
-class FCDEffectParameterList;
-
-typedef FUObjectContainer<FCDEffectProfile> FCDEffectProfileContainer; /**< A dynamically-sized array of effect profiles. */
 
 /**
 	A COLLADA effect.
@@ -57,8 +54,8 @@ class FCOLLADA_EXPORT FCDEffect : public FCDEntity
 {
 private:
 	DeclareObjectType(FCDEntity);
-	FCDEffectProfileContainer profiles;
-	FCDEffectParameterList* parameters;
+	DeclareParameterContainer(FCDEffectProfile, profiles, FC("Profiles"));
+	DeclareParameterContainer(FCDEffectParameter, parameters, FC("Parameters"));
 
 public:
 	/** Constructor: do not use directly.
@@ -86,8 +83,7 @@ public:
 
 	/** Retrieves the list of the profiles contained within the effect.
 		@return The list of effect profiles. */
-	FCDEffectProfileContainer& GetProfiles() { return profiles; }
-	const FCDEffectProfileContainer& GetProfiles() const { return profiles; } /**< See above. */
+	DEPRECATED(3.05A, GetProfileCount and GetProfile(index)) void GetProfiles() const {}
 
 	/** Retrieves the first profile for a specific profile type.
 		There should only be one profile of each type within an effect. This
@@ -105,7 +101,7 @@ public:
 		@param platform The profile platform.
 		@return The profile of this type. This pointer will be NULL if the effect
 			does not have any profile of this type. */
-	FCDEffectProfile* FindProfileByTypeAndPlatform(FUDaeProfileType::Type type, const fm::string& platform);
+	inline FCDEffectProfile* FindProfileByTypeAndPlatform(FUDaeProfileType::Type type, const fm::string& platform) { return const_cast<FCDEffectProfile*>(const_cast<const FCDEffect*>(this)->FindProfileByTypeAndPlatform(type, platform)); }
 	const FCDEffectProfile* FindProfileByTypeAndPlatform(FUDaeProfileType::Type type, const fm::string& platform) const; /**< See above. */
 
 	/** Retrieves whether the effect contains a profile of the given type.
@@ -119,41 +115,22 @@ public:
 		@param type The profile type.
 		@return The new effect profile. */
 	FCDEffectProfile* AddProfile(FUDaeProfileType::Type type);
+	
+	/** Retrieves the number of local effect parameters
+		@return The number of local effect parameters. */
+	inline size_t GetEffectParameterCount() const { return parameters.size(); }
 
-	/** Retrieves the list of common effect parameters declared at the effect level.
-		According to the COLLADA 1.4 schema, you should expect only parameter generators
-		at this abstraction level.
-		@return The list of effect parameters. */
-	FCDEffectParameterList* GetParameters() { return parameters; }
-	const FCDEffectParameterList* GetParameters() const { return parameters; } /**< See above. */
+	/** Retrieves a given local effect parameter.
+		@param index An index.
+		@return The local effect parameter at the given index. */
+	inline FCDEffectParameter* GetEffectParameter(size_t index) { FUAssert(index < parameters.size(), return NULL); return parameters.at(index); }
+	inline const FCDEffectParameter* GetEffectParameter(size_t index) const { FUAssert(index < parameters.size(), return NULL); return parameters.at(index); }
 
-	/** [INTERNAL] Inserts an existing parameter into the list of common effect parameters
-		at this abstraction level. This function is used during the flattening of a material.
-		@param parameter The effect parameter to insert. */
-	void AddParameter(FCDEffectParameter* parameter);
-
-	/** Retrieves a common effect parameter. Looks for the common effect parameter with the correct
-		semantic, in order to bind or override its value.
-		This function searches through the effect and the level of abstractions below.
-		@param semantic The effect parameter semantic to match.
-		@return The first effect parameter that matches the semantic.
-			This pointer will be NULL if no effect parameter matches the given semantic. */
-	FCDEffectParameter* FindParameterBySemantic(const fm::string& semantic);
-
-	/** Retrieves a subset of the common effect parameter list.
-		Look for the effect parameter generators with the correct semantic.
-		This function searches through the effect and the level of abstractions below.
-		@param semantic The effect parameter semantic to match.
-		@param parameters The list of parameters to fill in. This list is not cleared. */
-	void FindParametersBySemantic(const fm::string& semantic, FCDEffectParameterList& parameters);
-
-	/** Retrieves a subset of the common effect parameter list.
-		Look for the effect parameter generators with the correct reference.
-		This function searches through the effect and the level of abstractions below.
-		@param reference The effect parameter reference to match. In the case of effect
-			parameter generators, the reference is replaced by the sub-id.
-		@param parameters The list of parameters to fill in. This list is not cleared. */
-	void FindParametersByReference(const fm::string& reference, FCDEffectParameterList& parameters);
+	/** Adds a local effect parameter to the local list.
+		@see FCDEffectParameter::Type
+		@param type The value type of the effect parameter to create.
+		@return The new local effect parameter. */
+	FCDEffectParameter* AddEffectParameter(uint32 type);
 
 	/** Clones the effect object.
 		@param clone The clone object into which to copy the effect information.
@@ -166,22 +143,7 @@ public:
 	/** [INTERNAL] Flattens the effect, pushing all the common effect parameters
 		into to the effect technique level of abstraction. To correctly flatten a
 		material, use the FCDMaterialInstance::FlattenMaterial function. */
-	void Flatten();
-
-	/** [INTERNAL] Reads in the \<effect\> element from a given COLLADA XML tree node.
-		@param effectNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the effect.*/
-	virtual bool LoadFromXML(xmlNode* effectNode);
-
-	/** [INTERNAL] Writes out the \<effect\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the effect.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-	/** [INTERNAL] Links the effect and its parameters. This is done after
-		the whole COLLADA document has been processed once. */
-	void Link();
+	DEPRECATED(3.05A, not recommended) void Flatten();
 };
 
 #endif // _FCD_MATERIAL_H_

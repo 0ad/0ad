@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -53,8 +56,8 @@ private:
 	DeclareObjectType(FCDEntity);
 
 	// Contains only one of the following, in order of importance.
-	FUObjectRef<FCDGeometryMesh> mesh;
-	FUObjectRef<FCDGeometrySpline> spline;
+	DeclareParameterRef(FCDGeometryMesh, mesh, FC("Mesh"));
+	DeclareParameterRef(FCDGeometrySpline, spline, FC("Spline"));
 
 public:
 	/** Contructor: do not use directly.
@@ -64,6 +67,12 @@ public:
 
 	/** Destructor. */
 	virtual ~FCDGeometry();
+
+	/**	[INTERNAL] Set geometry information.
+		@param data The specific geometry data structure.
+	*/
+	void SetMesh(FCDGeometryMesh* data){ mesh = data; }
+	void SetSpline(FCDGeometrySpline* data){ spline = data; } /** see above */
 
 	/** Retrieves the entity class type.
 		This function is a part of the FCDEntity interface.
@@ -100,8 +109,10 @@ public:
 		@return The spline information structure. This pointer will always be valid. */
 	FCDGeometrySpline* CreateSpline();
 
-	bool IsPSurface() const { return false; }
 
+	/** Retrieves whether the type of this geometry is a parameterized surface.
+		@return Whether this geometry is a parameterized surface. */
+	bool IsPSurface() const { return false; }
 
 	/** Copies the geometry entity into a clone.
 		The clone may reside in another document.
@@ -110,17 +121,6 @@ public:
 		@param cloneChildren Whether to recursively clone this entity's children.
 		@return The clone. */
 	virtual FCDEntity* Clone(FCDEntity* clone = NULL, bool cloneChildren = false) const;
-
-	/** [INTERNAL] Reads in the \<geometry\> element from a given COLLADA XML tree node.
-		@param node The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the geometry.*/
-	virtual bool LoadFromXML(xmlNode* node);
-
-	/** [INTERNAL] Writes out the \<geometry\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the geometry information.
-		@return The created \<geometry\> element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
 };
 
 #endif // _FCD_GEOMETRY_H_

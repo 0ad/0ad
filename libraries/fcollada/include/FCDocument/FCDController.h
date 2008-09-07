@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -39,8 +42,8 @@ class FCOLLADA_EXPORT FCDController : public FCDEntity
 private:
 	DeclareObjectType(FCDEntity);
 
-	FUObjectRef<FCDSkinController> skinController;
-	FUObjectRef<FCDMorphController> morphController;
+	DeclareParameterRef(FCDSkinController, skinController, FC("Skin"));
+	DeclareParameterRef(FCDMorphController, morphController, FC("Morpher"));
 
 public:
 	/** Constructor: do not use directly.
@@ -79,16 +82,16 @@ public:
 		check the HasSkinController function.
 		@return The skin controller. This pointer will be NULL, if the controller
 			is not a skin. */
-	FCDSkinController* GetSkinController() { return skinController; }
-	const FCDSkinController* GetSkinController() const { return skinController; } /**< See above. */
+	inline FCDSkinController* GetSkinController() { return skinController; }
+	inline const FCDSkinController* GetSkinController() const { return skinController; } /**< See above. */
 
 	/** Retrieves the morph controller.
 		This pointer is only valid for skins. To verify that this is a morpher,
 		check the HasMorphController function.
 		@return The morph controller. This pointer will be NULL, if the controller
 			is not a morpher. */
-	FCDMorphController* GetMorphController() { return morphController; }
-	const FCDMorphController* GetMorphController() const { return morphController; } /**< See above. */
+	inline FCDMorphController* GetMorphController() { return morphController; }
+	inline const FCDMorphController* GetMorphController() const { return morphController; } /**< See above. */
 
 	/** Retrieves the base target entity for this controller.
 		The base target entity may be another controller or a geometry entity.
@@ -105,25 +108,17 @@ public:
 		@return The base target geometry. This pointer will be NULL
 			if no base target is defined or if the base target entity
 			is not a geometry. */
-	FCDGeometry* GetBaseGeometry();
+	inline FCDGeometry* GetBaseGeometry() { return const_cast<FCDGeometry*>(const_cast<const FCDController*>(this)->GetBaseGeometry()); }
 	const FCDGeometry* GetBaseGeometry() const; /**< See above. */
 
-	/** [INTERNAL] Reads in the \<controller\> element from a given COLLADA XML tree node.
-		@param controllerNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the controller.*/
-	virtual bool LoadFromXML(xmlNode* controllerNode);
-
-	/** [INTERNAL] Writes out the \<controller\> element to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the controller information.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
-
-	/** [INTERNAL] Links a controller to its target after load.  This
-		function will be called by an entities instances after load,
-		after which it will become invalid and do nothing */
-	virtual bool LinkImport();
-
+	/** Retrieves the lowest controller on this stack.
+		Controllers can be chained together. This function allows
+		you to retrieve the controller assigned to the base target geometry.
+		@return The base controller. This pointer will be NULL
+			if no base target is defined or if the base target entity
+			is not a geometry. */
+	inline FCDController* GetBaseGeometryController() 	{ return const_cast<FCDController*>(const_cast<const FCDController*>(this)->GetBaseGeometryController()); }
+	const FCDController* GetBaseGeometryController() const; /**< See above. */
 };
 
 #endif // _FCD_CONTROLLER_H_

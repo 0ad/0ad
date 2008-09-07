@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -14,17 +17,17 @@
 #ifndef __FCD_OBJECT_H_
 #include "FCDocument/FCDObject.h"
 #endif // __FCD_OBJECT_H_
+#ifndef _FU_PARAMETER_H_
+#include "FUtils/FUParameter.h"
+#endif // _FU_PARAMETER_H_
 
 class FCDEffectCode;
 class FCDEffectPass;
 class FCDEffectParameter;
-class FCDEffectParameterList;
 class FCDEffectProfileFX;
 
 typedef fm::pvector<FCDEffectPass> FCDEffectPassList; /**< A dynamically-sized array of effect passes. */
 typedef fm::pvector<FCDEffectCode> FCDEffectCodeList; /**< A dynamically-sized array of effect code inclusions. */
-typedef FUObjectContainer<FCDEffectPass> FCDEffectPassContainer; /**< A dynamically-sized containment array for effect passes. */
-typedef FUObjectContainer<FCDEffectCode> FCDEffectCodeContainer; /**< A dynamically-sized containment array for effect code inclusions. */
 
 /**
 	A COLLADA effect technique.
@@ -46,30 +49,30 @@ private:
 	DeclareObjectType(FCDObject);
 	FCDEffectProfileFX* parent;
 
-	fstring name;
-	FCDEffectCodeContainer codes;
-	FCDEffectPassContainer passes;
-	FCDEffectParameterList* parameters;
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, name, FC("Name"));
+	DeclareParameterContainer(FCDEffectCode, codes, FC("Code Inclusions"));
+	DeclareParameterContainer(FCDEffectPass, passes, FC("Passes"))
+	DeclareParameterContainer(FCDEffectParameter, parameters, FC("Effect Parameters"));
 
 public:
 	/** Constructor: do not use directly.
 		Instead, use the FCDEffectProfileFX::AddTechnique function. 
-		@param document The COLLADA document which owns this technique.
-		@param _parent The effect profile which contains the technique. */
-	FCDEffectTechnique(FCDEffectProfileFX *_parent);
+		@param document The FCollada document that owns this technique.
+		@param parent The effect profile which contains the technique. */
+	FCDEffectTechnique(FCDocument* document, FCDEffectProfileFX* parent);
 
 	/** Destructor. */
 	virtual ~FCDEffectTechnique();
 
 	/** Retrieves the effect profile that contains this technique.
 		@return The parent effect profile. */
-	FCDEffectProfileFX* GetParent() { return parent; }
-	const FCDEffectProfileFX* GetParent() const { return parent; } /**< See above. */
+	inline FCDEffectProfileFX* GetParent() { return parent; }
+	inline const FCDEffectProfileFX* GetParent() const { return parent; } /**< See above. */
 
 	/** Retrieves the COLLADA id of the parent effect.
 		This function is mostly useful as a shortcut for debugging and reporting.
 		@return The COLLADA id of the parent effect. */
-	const fm::string& GetDaeId() const;
+	DEPRECATED(3.05A, GetParent()->GetParent()->GetDaeId) const fm::string& GetDaeId() const { return emptyString; }
 
 	/** Retrieves the sub-id of the technique.
 		@return The sub-id of the technique. */
@@ -83,8 +86,7 @@ public:
 
 	/** Retrieves the list of passes.
 		@return The list of passes. */
-	FCDEffectPassContainer& GetPassList() { return passes; }
-	const FCDEffectPassContainer& GetPassList() const { return passes; } /**< See above. */
+	DEPRECATED(3.05A, GetPassCount and GetPass(index)) void GetPassList() {}
 
 	/** Retrieves the number of passes contained within this effect technique.
 		@return The number of passes. */
@@ -102,8 +104,7 @@ public:
 
 	/** Retrieves the list of code inclusions.
 		@return The list of code inclusions. */		
-	FCDEffectCodeContainer& GetCodeList() { return codes; }
-	const FCDEffectCodeContainer& GetCodeList() const { return codes; } /**< See above. */
+	DEPRECATED(3.05A, GetCodeCount and GetCode(index) or FindCode) void GetCodeList() {}
 
 	/** Retrieves the number of code inclusions contained within the effect profile.
 		@return The number of code inclusions. */
@@ -119,52 +120,28 @@ public:
 		@param sid A COLLADA sub-id.
 		@return The code inclusion with the given sub-id. This pointer will be NULL,
 			if there are no code inclusions that match the given sub-id. */
-	FCDEffectCode* FindCode(const fm::string& sid);
-	const FCDEffectCode* FindCode(const fm::string& sid) const; /**< See above. */
+	inline FCDEffectCode* FindCode(const char* sid) { return const_cast<FCDEffectCode*>(const_cast<const FCDEffectTechnique*>(this)->FindCode(sid)); }
+	const FCDEffectCode* FindCode(const char* sid) const; /**< See above. */
 
 	/** Adds a new code inclusion to this effect profile.
 		@return The new code inclusion. */
 	FCDEffectCode* AddCode();
+	
+	/** Retrieves the number of local effect parameters
+		@return The number of local effect parameters. */
+	inline size_t GetEffectParameterCount() const { return parameters.size(); }
 
-	/** Retrieves the list of effect parameters contained within the effect profile.
-		This is the lowest level of abstraction and may contain either effect parameter
-		generators or effect parameter overrides.
-		@return The list of effect parameters. */
-	FCDEffectParameterList* GetParameterList() { return parameters; }
-	const FCDEffectParameterList* GetParameterList() const { return parameters; } /**< See above. */
+	/** Retrieves a given local effect parameter.
+		@param index An index.
+		@return The local effect parameter at the given index. */
+	inline FCDEffectParameter* GetEffectParameter(size_t index) { FUAssert(index < parameters.size(), return NULL); return parameters.at(index); }
+	inline const FCDEffectParameter* GetEffectParameter(size_t index) const { FUAssert(index < parameters.size(), return NULL); return parameters.at(index); }
 
-	/** [INTERNAL] Inserts an existing parameter into the list of effect parameters
-		at this abstraction level. This function is used during the flattening of a material.
-		@param parameter The effect parameter to insert. */
-	void AddParameter(FCDEffectParameter* parameter);
-
-	/** Retrieves an effect parameter.
-		Looks for the effect parameter with the correct reference, in order to bind or override its value.
-		@param reference The reference to match. In the case of effect parameter generators,
-			the sub-id is used to match.
-		@return The first effect parameter that matches the reference.
-			This pointer will be NULL if no effect parameter matches the given semantic. */
-	const FCDEffectParameter* FindParameter(const char* reference) const;
-
-	/** Retrieves an effect parameter.
-		Looks for the effect parameter with the correct semantic, in order to bind or override its value.
-		@param semantic The effect parameter semantic to match.
-		@return The first effect parameter that matches the semantic.
-			This pointer will be NULL if no effect parameter matches the given semantic. */
-	virtual FCDEffectParameter* FindParameterBySemantic(const fm::string& semantic);
-
-	/** Retrieves a subset of the effect parameter list.
-		Look for the effect parameter generators with the correct semantic.
-		@param semantic The effect parameter semantic to match.
-		@param parameters The list of parameters to fill in. This list is not cleared. */
-	virtual void FindParametersBySemantic(const fm::string& semantic, FCDEffectParameterList& parameters);
-
-	/** Retrieves a subset of the effect parameter list.
-		Look for the effect parameter generators with the correct reference.
-		@param reference The effect parameter reference to match. In the case of effect
-			parameter generators, the reference is replaced by the sub-id.
-		@param parameters The list of parameters to fill in. This list is not cleared. */
-	virtual void FindParametersByReference(const fm::string& reference, FCDEffectParameterList& parameters);
+	/** Adds a local effect parameter to the local list.
+		@see FCDEffectParameter::Type
+		@param type The value type of the effect parameter to create.
+		@return The new local effect parameter. */
+	FCDEffectParameter* AddEffectParameter(uint32 type);
 
 	/** [INTERNAL] Clones the full effect technique.
 		@param clone The cloned technique.
@@ -175,23 +152,7 @@ public:
 
 	/** [INTERNAL] Flattens this effect technique.
 		Merges the parameter overrides into the parameter generators. */
-	void Flatten();
-
-	/** [INTERNAL] Reads in the effect technique from a given COLLADA XML tree node.
-		@param techniqueNode The COLLADA XML tree node.
-		@param profileNode X @deprecated bad interface : this dependency must be taken out.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the effect technique.*/
-	bool LoadFromXML(xmlNode* techniqueNode, xmlNode* profileNode);
-
-	/** [INTERNAL] Links the effect technique and its parameters. This is done after
-		the whole COLLADA document has been processed once. */
-	void Link();
-
-	/** [INTERNAL] Writes out the effect technique to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the effect technique.
-		@return The created element XML tree node. */
-	xmlNode* WriteToXML(xmlNode* parentNode) const;
+	DEPRECATED(3.05A, not recommended) void Flatten() {}
 };
 
 #endif

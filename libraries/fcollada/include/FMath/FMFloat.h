@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -11,20 +14,14 @@
 #ifndef _FM_FLOAT_H_
 #define _FM_FLOAT_H_
 
-#if defined (WIN32) || defined (LINUX)
+#if !defined(_INC_FLOAT) && (defined (WIN32) || defined (LINUX) || defined(__APPLE__))
 #include <float.h>
-#endif //WIN32 and LINUX
+#endif // _INC_FLOAT, WIN32 and LINUX
 
 /** The default tolerance for double-sized floating-point comparison functions. */
 #define DBL_TOLERANCE 0.0001
 /** The default tolerance for single-sized floating-point comparison functions. */
 #define FLT_TOLERANCE 0.0001f
-
-/** A dynamically-sized array of double-sized floating-point values. */
-//typedef fm::vector<double> DoubleList;
-
-/** A dynamically-sized array of floating-point values. */
-//typedef fm::vector<float> FloatList;
 
 /** Returns whether two floating-point values are equivalent within a given tolerance.
 	@param f1 A first floating-point value.

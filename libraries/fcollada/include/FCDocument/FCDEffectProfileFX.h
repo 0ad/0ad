@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -30,12 +33,6 @@ class FCDEffectCode;
 class FCDEffectParameter;
 class FCDEffectParameterSurface;
 class FCDEffectTechnique;
-class FCDEffectParameterList;
-
-typedef fm::pvector<FCDEffectTechnique> FCDEffectTechniqueList; /**< A dynamically-sized array of effect techniques. */
-typedef fm::pvector<FCDEffectCode> FCDEffectCodeList; /**< A dynamically-sized array of effect code inclusion. */
-typedef FUObjectContainer<FCDEffectTechnique> FCDEffectTechniqueContainer; /**< A dynamically-sized containment array for effect techniques. */
-typedef FUObjectContainer<FCDEffectCode> FCDEffectCodeContainer; /**< A dynamically-sized containment array for effect code inclusion. */
 
 /**
 	A general effect profile description.
@@ -59,17 +56,17 @@ class FCOLLADA_EXPORT FCDEffectProfileFX : public FCDEffectProfile
 {
 private:
 	DeclareObjectType(FCDEffectProfile);
-	FUDaeProfileType::Type type;
-	fstring platform;
+	DeclareParameter(uint32, FUParameterQualifiers::SIMPLE, type, FC("Profile Language")); // FUDaeProfileType::Type
+	DeclareParameter(fstring, FUParameterQualifiers::SIMPLE, platform, FC("Platform"));
 
-	FCDEffectCodeContainer codes;
-	FCDEffectTechniqueContainer techniques;
+	DeclareParameterContainer(FCDEffectCode, codes, FC("Code Inclusions"));
+	DeclareParameterContainer(FCDEffectTechnique, techniques, FC("Effect Techniques"));
 
 public:
 	/** Constructor: do not use directly. Instead, use the FCDEffect::AddProfile function.
 		@param parent The effect which contains this profile.
 		@param type The type of profile. */
-	FCDEffectProfileFX(FCDEffect* parent, FUDaeProfileType::Type type);
+	FCDEffectProfileFX(FCDocument* document, FCDEffect* parent);
 
 	/** Destructor. */
 	virtual ~FCDEffectProfileFX();
@@ -79,7 +76,11 @@ public:
 		to up-cast an effect profile pointer safely to this class.
 		@return The profile type. This should never be the value: 'COMMON',
 			but all other profiles currently derive from this class. */
-	virtual FUDaeProfileType::Type GetType() const { return type; }
+	virtual FUDaeProfileType::Type GetType() const { return (FUDaeProfileType::Type) *type; }
+
+	/** Sets the profile type for this effect.
+		Do not change the profile type of a completed effect. */
+	void SetType(FUDaeProfileType::Type _type) { type = _type; }
 
 	/** Retrieves the name of the platform in which to use the effect profile.
 		This parameter is very optional.
@@ -95,8 +96,7 @@ public:
 		You may want to check the FCDEffectMaterialTechniqueHint objects at the FCDMaterial level,
 		in order to determine which technique(s) to use for your platform.
 		@return The list of inner techniques. */
-	FCDEffectTechniqueContainer& GetTechniqueList() { return techniques; }
-	const FCDEffectTechniqueContainer& GetTechniqueList() const { return techniques; } /**< See above. */
+	DEPRECATED(3.05A, GetTechniqueCount and GetTechnique(index)) void GetTechniqueList() const {}
 
 	/** Retrieves the number of techniques contained within this effect profile.
 		@return The number of inner techniques. */
@@ -116,8 +116,7 @@ public:
 
 	/** Retrieves the list of code inclusions.
 		@return The list of code inclusions. */		
-	FCDEffectCodeContainer& GetCodeList() { return codes; }
-	const FCDEffectCodeContainer& GetCodeList() const { return codes; } /**< See above. */
+	DEPRECATED(3.05A, GetCodeCount and GetCode(index)) void GetCodeList() {}
 
 	/** Retrieves the number of code inclusions contained within the effect profile.
 		@return The number of code inclusions. */
@@ -126,52 +125,19 @@ public:
 	/** Retrieves a code inclusion contained within the effect profile.
 		@param index The index of the code inclusion.
 		@return The code inclusion. This pointer will be NULL if the index is out-of-bounds. */
-	FCDEffectCode* GetCode(size_t index) { FUAssert(index < GetCodeCount(), return NULL); return codes.at(index); }
-	const FCDEffectCode* GetCode(size_t index) const { FUAssert(index < GetCodeCount(), return NULL); return codes.at(index); } /**< See above. */
+	inline FCDEffectCode* GetCode(size_t index) { FUAssert(index < GetCodeCount(), return NULL); return codes.at(index); }
+	inline const FCDEffectCode* GetCode(size_t index) const { FUAssert(index < GetCodeCount(), return NULL); return codes.at(index); } /**< See above. */
 
 	/** Retrieves the code inclusion with the given sub-id.
 		@param sid A COLLADA sub-id.
 		@return The code inclusion with the given sub-id. This pointer will be NULL,
 			if there are no code inclusions that match the given sub-id. */
-	FCDEffectCode* FindCode(const fm::string& sid);
-	const FCDEffectCode* FindCode(const fm::string& sid) const; /**< See above. */
+	inline FCDEffectCode* FindCode(const char* sid) { return const_cast<FCDEffectCode*>(const_cast<const FCDEffectProfileFX*>(this)->FindCode(sid)); }
+	const FCDEffectCode* FindCode(const char* sid) const; /**< See above. */
 
 	/** Adds a new code inclusion to this effect profile.
 		@return The new code inclusion. */
 	FCDEffectCode* AddCode();
-
-	/** Retrieves an effect parameter.
-		Looks for the effect parameter with the correct reference.
-		@param reference The effect parameter reference to match.
-		@return The first effect parameter that matches the given reference. */
-	virtual const FCDEffectParameter* FindParameter(const char* reference) const;
-	inline const FCDEffectParameter* FindParameterByReference(const char* reference) const { return FindParameter(reference); } /**< See above. */
-	inline const FCDEffectParameter* FindParameterByReference(const fm::string& reference) const { return FindParameter(reference.c_str()); } /**< See above. */
-	inline FCDEffectParameter* FindParameterByReference(const char* reference) { return const_cast<FCDEffectParameter*>(const_cast<const FCDEffectProfileFX*>(this)->FindParameter(reference)); } /**< See above. */
-	inline FCDEffectParameter* FindParameterByReference(const fm::string& reference) { return const_cast<FCDEffectParameter*>(const_cast<const FCDEffectProfileFX*>(this)->FindParameter(reference.c_str())); } /**< See above. */
-
-	/** Retrieves an effect parameter.
-		Looks for the effect parameter with the correct semantic, in order to bind or override its value.
-		This function searches through the effect profile and the level of abstractions below.
-		@param semantic The effect parameter semantic to match.
-		@return The first effect parameter that matches the semantic.
-			This pointer will be NULL if no effect parameter matches the given semantic. */
-	virtual FCDEffectParameter* FindParameterBySemantic(const fm::string& semantic);
-
-	/** Retrieves a subset of the effect parameter list.
-		Look for the effect parameter generators with the correct semantic.
-		This function searches through the effect profile and the level of abstractions below.
-		@param semantic The effect parameter semantic to match.
-		@param parameters The list of parameters to fill in. This list is not cleared. */
-	virtual void FindParametersBySemantic(const fm::string& semantic, FCDEffectParameterList& parameters);
-
-	/** Retrieves a subset of the effect parameter list.
-		Look for the effect parameter generators with the correct reference.
-		This function searches through the effect profile and the level of abstractions below.
-		@param reference The effect parameter reference to match. In the case of effect
-			parameter generators, the reference is replaced by the sub-id.
-		@param parameters The list of parameters to fill in. This list is not cleared. */
-	virtual void FindParametersByReference(const fm::string& reference, FCDEffectParameterList& parameters);
 
 	/** Clones the full effect profile.
 		@param clone The cloned profile.
@@ -184,22 +150,7 @@ public:
 		into the effect parameter generators and moves all the parameters to the 
 		effect technique level of abstraction. To flatten the material, use the
 		FCDMaterialInstance::FlattenMaterial function. */
-	virtual void Flatten();
-
-	/** [INTERNAL] Reads in the effect profile from a given COLLADA XML tree node.
-		@param profileNode The COLLADA XML tree node.
-		@return The status of the import. If the status is 'false',
-			it may be dangerous to extract information from the effect profile.*/
-	virtual bool LoadFromXML(xmlNode* profileNode);
-
-	/** [INTERNAL] Writes out the effect profile to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the material declaration.
-		@return The created element XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode)  const;
-
-	/** [INTERNAL] Links the effect profile and its parameters. This is done after
-		the whole COLLADA document has been processed once. */
-	virtual void Link();
+	DEPRECATED(3.05A, not recommended) void Flatten() {}
 };
 
 #endif // _FCD_EFFECT_PROFILE_H_

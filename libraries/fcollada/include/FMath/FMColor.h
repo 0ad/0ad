@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -60,11 +63,11 @@ public:
 
 	/** Creates a color value from a 3D vector.
 		The alpha value of the color is set to the default of 255 (1.0f).
-		@param vector The 3D vector representing the color value. */
+		@param v The 3D vector representing the color value. */
 	FMColor(const FMVector3& v);
 
 	/** Creates a color value from a 4D vector.
-		@param vector The 4D vector representing the color value. */
+		@param v The 4D vector representing the color value. */
 	FMColor(const FMVector4& v);
 
 	/** Get this FMColor as an array of \c floats.
@@ -80,7 +83,7 @@ public:
 
 	/** Get this FMColor as an array of uint8s.
 		@return The \c uint8 array. */
-	operator uint8*() { return &b; }
+	operator uint8*() { return &r; }
 };
 
 /** Multiplication of a scalar with the FMColor.

@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
@@ -9,59 +12,78 @@
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
-#include "FUtils/FUDaeParser.h"
+#ifndef _FCD_EXTRA_H_
+#include "FCDocument/FCDExtra.h"
+#endif // _FCD_EXTRA_H_
+#ifndef _FCD_ASSET_H_
+#include "FCDocument/FCDAsset.h"
+#endif // _FCD_ASSET_H_
+#ifndef _FCD_ENTITY_H_
+#include "FCDocument/FCDEntity.h"
+#endif // _FCD_ENITTY_H_
 
 template <class T>
-FCDLibrary<T>::FCDLibrary(FCDocument* document) : FCDObject(document)
+FCDLibrary<T>::FCDLibrary(FCDocument* document)
+:	FCDObject(document)
+,	InitializeParameterNoArg(entities)
+,	InitializeParameterNoArg(extra)
+,	InitializeParameterNoArg(asset)
 {
+	extra = new FCDExtra(document, this);
 }
 
 template <class T>
 FCDLibrary<T>::~FCDLibrary()
 {
+	SAFE_RELEASE(extra);
+	SAFE_RELEASE(asset);
 }
 
-// Read in a list of entities for a library of a COLLADA document
+// Create the asset if it isn't already there.
 template <class T>
-bool FCDLibrary<T>::LoadFromXML(xmlNode* node)
+FCDAsset* FCDLibrary<T>::GetAsset(bool create)
 {
-	bool status = true;
-	for (xmlNode* entityNode = node->children; entityNode != NULL; entityNode = entityNode->next)
-	{
-		if (entityNode->type == XML_ELEMENT_NODE)
-		{
-			T* entity = AddEntity();
-			status &= (entity->LoadFromXML(entityNode));
-		}
-	}
-
-	SetDirtyFlag();
-	return status;
-}
-
-// Write out the library to the COLLADA XML document
-template <class T>
-void FCDLibrary<T>::WriteToXML(xmlNode* node) const
-{
-	for (typename FCDEntityContainer::const_iterator itEntity = entities.begin(); itEntity != entities.end(); ++itEntity)
-	{
-		const T* entity = (const T*) (*itEntity);
-		entity->WriteToXML(node);
-	}
+	if (create && asset == NULL) asset = new FCDAsset(GetDocument());
+	return asset;
 }
 
 // Search for the entity in this library with a given COLLADA id.
 template <class T>
-T* FCDLibrary<T>::FindDaeId(const fm::string& _daeId)
+const T* FCDLibrary<T>::FindDaeId(const fm::string& daeId) const
 {
-	const char* daeId = FUDaeParser::SkipPound(_daeId);
-	for (typename FCDEntityContainer::iterator itEntity = entities.begin(); itEntity != entities.end(); ++itEntity)
+#ifdef _DEBUG
+	// [staylor] June 12 2007 - !!Code change verification check!!
+	// When fixing up the FCPlugin archive merge, removed SkipPound
+	// here (Should be obsolete).  If you see this code much past this 
+	// date, feel free to remove it.
+	FUAssert (daeId.empty() || daeId[0] != '#',);
+#endif
+
+	size_t entityCount = entities.size();
+	for (size_t i = 0; i < entityCount; ++i)
 	{
-		FCDEntity* found = (*itEntity)->FindDaeId(daeId);
+		const FCDEntity* found = entities[i]->FindDaeId(daeId);
 		if (found != NULL && found->GetObjectType() == T::GetClassType())
 		{
 			return (T*) found;
 		}
 	}
 	return NULL;
+}
+
+// Search for the entity in this library with a given COLLADA id.
+template <class T>
+T* FCDLibrary<T>::AddEntity()
+{
+	T* entity = new T(GetDocument());
+	entities.push_back(entity);
+	SetNewChildFlag();
+	return entity;
+}
+
+
+template <class T>
+void FCDLibrary<T>::AddEntity(T* entity) 
+{ 
+	entities.push_back(entity); SetNewChildFlag(); 
 }

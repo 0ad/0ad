@@ -1,6 +1,9 @@
 /*
-    Copyright (C) 2005-2007 Feeling Software Inc.
-    MIT License: http://www.opensource.org/licenses/mit-license.php
+	Copyright (C) 2005-2007 Feeling Software Inc.
+	Portions of the code are:
+	Copyright (C) 2005-2007 Sony Computer Entertainment America
+	
+	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
 /**
@@ -19,9 +22,10 @@
 #include "FUtils/FUUri.h"
 #endif // _FU_URI_H_
 
+class FCDSkinController;
 class FCDSceneNode;
 typedef fm::pvector<FCDSceneNode> FCDSceneNodeList; /**< A dynamically-sized array of visual scene nodes. */
-typedef FUObjectList<FCDSceneNode> FCDSceneNodeTrackList; /**< A dynamically-sized array of tracked visual scene nodes. */
+typedef FUTrackedList<FCDSceneNode> FCDSceneNodeTrackList; /**< A dynamically-sized array of tracked visual scene nodes. */
 
 /**
 	A COLLADA controller instance.
@@ -40,15 +44,17 @@ typedef FUObjectList<FCDSceneNode> FCDSceneNodeTrackList; /**< A dynamically-siz
 	here, and call which means that the FCDSkinController should never try and know about
 	its own nodes.  It should all be linked through here.
 */
-class FCDControllerInstance : public FCDGeometryInstance
+class FCOLLADA_EXPORT FCDControllerInstance : public FCDGeometryInstance
 {
 private:
     DeclareObjectType(FCDGeometryInstance);
 
-	FUUriList skeletonRoots;
-	FCDSceneNodeTrackList joints;
+	friend class FCDEntityInstanceFactory;
 
-public:
+	FUUriList skeletonRoots;
+	DeclareParameterTrackList(FCDSceneNode, joints, FC("Skeleton Joints"));
+
+protected:
 	/** Constructor: do not use directly.
 		Instead, use the FCDSceneNode::AddInstance function.
 		@param document The COLLADA document that owns the controller instance.
@@ -57,6 +63,7 @@ public:
 			Unless the class is overwritten, FCDEntity::CONTROLLER should be given. */
 	FCDControllerInstance(FCDocument* document, FCDSceneNode* parent, FCDEntity::Type entityType = FCDEntity::CONTROLLER);
 
+public:
 	/** Destructor. */
 	virtual ~FCDControllerInstance();
 
@@ -73,32 +80,19 @@ public:
 		@return The clone. */
 	virtual FCDEntityInstance* Clone(FCDEntityInstance* clone = NULL) const;
 
-	// Load Controller properties
-	virtual bool LoadFromXML(xmlNode* instanceNode);
-
 	/** Retrieves a list of all the root joint ids for the controller.
 		@return List of parent Ids */
 	const FUUriList& GetSkeletonRoots() const { return skeletonRoots; }
+	FUUriList& GetSkeletonRoots() { return skeletonRoots; }
 
-	/** Set a skeleton root.
-		@param The Dae ID of the node to use as skeleton root
-		@return true if the root contains at least one child specified by
-			the SubId's on the SkinController */
-	bool SetSkeletonRoot(fstring id);
+	/** Retrieves a list of all the root scene nodes for the controller.
+		This list is generated with a call to this method.
+		@param skeletonNodes The list of parent Ids to fill in.
+		This list is not cleared first. */
+	void FindSkeletonNodes(FCDSceneNodeList& skeletonNodes) const;
 
 	/** Calculate our skeleton roots, based on the node list we have */
 	void CalculateRootIds();
-
-	/** Link the controller with the nodes it will be applied to */
-	virtual bool LinkImport();
-
-	/** Link the controller with the nodes it will be applied to */
-	virtual bool LinkExport();
-
-	/** [INTERNAL] Writes out the controller instance to the given COLLADA XML tree node.
-		@param parentNode The COLLADA XML parent node in which to insert the node.
-		@return The created XML tree node. */
-	virtual xmlNode* WriteToXML(xmlNode* parentNode) const;
 
 	/** Retrieves the number of joints used by this controller.
 		Joints only make sense when used with skin controllers.
@@ -122,13 +116,21 @@ public:
 	/** Find a given joint in this skin instance.
 		@param joint The joint.
 		@return true if the node is present, false if not. */
-	bool FindJoint(FCDSceneNode* joint);
 	bool FindJoint(const FCDSceneNode* joint) const; /**< See above. */
 
 	/** Find the index of the given joint in this skin instance
 		@param joint The joint.
-		@return The joints index, else -1 if not present. */
-	int FindJointIndex(FCDSceneNode* joint);
+		@return The joints index, else "(size_t) ~0" if not present. */
+	size_t FindJointIndex(const FCDSceneNode* joint) const;
+
+	/** Removes a joint from the skin instance.
+		@param index The index of the joint to remove. */
+	inline void RemoveJoint(size_t index) { joints.erase(index); }
+
+	/** Removes a joint from the skin instance.
+		@param joint The joint to remove. */
+	inline void RemoveJoint(FCDSceneNode* joint) { joints.erase(joint); }
+
 private:
 	void AppendJoint(FCDSceneNode* j);
 
@@ -137,3 +139,4 @@ private:
 };
 
 #endif // _FCD_CONTROLLER_INSTANCE_H_
+
