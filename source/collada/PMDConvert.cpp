@@ -42,11 +42,17 @@ struct PropPoint
 	uint8 bone;
 };
 
-// this isn't defined anywhere and is needed by FMVector3::Normalize.
-// note that CommonConvert mentions that this and other static const
-// members aren't exported from the DLL and that the preferred fix
-// is to define it there; hopefully the same applies here.
-/*static*/ const FMVector3 FMVector3::XAxis(1.0f, 0.0f, 0.0f);
+// Based on FMVector3::Normalize, but that function uses a static member
+// FMVector3::XAxis which causes irritating linker errors. Rather than trying
+// to make that XAxis work in a cross-platform way, just reimplement Normalize:
+static FMVector3 FMVector3_Normalize(const FMVector3& vec)
+{
+	float l = vec.Length();
+	if (l > 0.0f)
+		return FMVector3(vec.x/l, vec.y/l, vec.z/l);
+	else
+		return FMVector3(1.0f, 0.0f, 0.0f);
+}
 
 class PMDConvert
 {
@@ -426,7 +432,7 @@ public:
 
 			// Apply the scene-node transforms
 			pos = transform.TransformCoordinate(pos);
-			norm = transform.TransformVector(norm).Normalize();
+			norm = FMVector3_Normalize(transform.TransformVector(norm));
 
 			// Convert from Y_UP or Z_UP to the game's coordinate system
 
@@ -480,7 +486,7 @@ public:
 
 			// Apply the scene-node transforms
 			pos = scaledTransform.TransformCoordinate(pos);
-			norm = scaledTransform.TransformVector(norm).Normalize();
+			norm = FMVector3_Normalize(scaledTransform.TransformVector(norm));
 
 			// Convert from Y_UP or Z_UP to the game's coordinate system
 

@@ -152,7 +152,7 @@ void FixBrokenXML(const char* text, const char** out, size_t* outSize)
 	xmlDocPtr doc = xmlParseMemory(text, textSize);
 
 	xmlNode* root = xmlDocGetRootElement(doc);
-	if (processDocument(root))
+	if (root && processDocument(root))
 	{
 		// Reserialising the document, then parsing it again inside FCollada, is a bit ugly;
 		// but it's the only way I can see to make it work through FCollada's public API
