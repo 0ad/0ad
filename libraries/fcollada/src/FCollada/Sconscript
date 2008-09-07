@@ -1,0 +1,70 @@
+#Sconscript for FCollada Library for Linux
+sconscriptRelativePath = "../../../"
+execfile(sconscriptRelativePath + "../SconsCommon.py")
+
+# Create the Environment which creates the compile and linker command lines.
+env = Environment()
+ifdebug = ARGUMENTS.get('debug', 0)
+ifunicode = ARGUMENTS.get('unicode', 0)
+ifshared = ARGUMENTS.get('shared', 0)
+
+#Add the compiler and linker flags and include search path
+env.Append(CPPPATH = [sconscriptRelativePath, sconscriptRelativePath + "LibXML/include"])
+
+#Add the macros defined for all the builds
+env.Append(CPPDEFINES = ['LINUX'])
+if int(ifshared) != 0: env.Append(CPPDEFINES = ['FCOLLADA_DLL'])
+env.Append(CCFLAGS = ['-W', '-Wall', '-Wno-unused-parameter', '-Wno-unused-function'])
+
+#Add the macros and flags defined only for DEBUG, RETAIL or UNICODE
+if int(ifdebug):
+    env.Append(CPPDEFINES = ['_DEBUG'])
+    env.Append(CCFLAGS = ['-O0', '-g'])
+else:
+    env.Append(CPPDEFINES = ['NDEBUG', 'RETAIL'])
+    env.Append(CCFLAGS = ['-O2'])
+if int(ifunicode):
+    env.Append(CPPDEFINES = ['UNICODE'])
+
+#List of the source code to compile, and make a library out of it
+list = []
+FileListAppend(list, sconscriptRelativePath, "LibXML", "c")
+FileListAppend(list, sconscriptRelativePath, "FCDocument", "cpp")
+FileListAppend(list, sconscriptRelativePath, "FMath", "cpp")
+FileListAppend(list, sconscriptRelativePath, "FUtils", "cpp")
+FileListAppend(list, sconscriptRelativePath, "", "cpp")
+
+# Hack: we include the compiled object files from FArchiveXML to avoid the circular reference.
+libs = []
+libsPath = []
+if int(ifshared == 0):
+	intermediatePath = "../FColladaPlugins/Output/FArchiveXML/"
+	intermediatePath += BuildName(ifdebug, ifunicode, ifshared)
+	intermediatePath += "/Intermediate"
+	FileListAppend(list, sconscriptRelativePath, intermediatePath, "o")
+	FileListAppend(list, sconscriptRelativePath, intermediatePath, "os")
+else:
+	archiving = "FArchiveXML_"
+	if int(ifunicode): archiving += "U"
+	if int(ifdebug): archiving += "D"
+	else: archiving += "R"
+	libs.append(archiving)
+	libsPath.append(sconscriptRelativePath + "../FColladaPlugins/Output/FArchiveXML")
+
+# Build the library.
+libraryName = "FCollada"
+if not int(ifshared): libraryName += "S"
+if int(ifunicode): libraryName += "U"
+if int(ifdebug): libraryName += "D"
+else: libraryName += "R"
+
+if int(ifshared): FCollada = env.SharedLibrary(libraryName, list, LIBS=libs, LIBPATH=libsPath)
+else: FCollada = env.StaticLibrary(libraryName, list)
+ 
+#Specifying the name and directory of output library
+env.Install('../../', FCollada)
+
+# Copy over the archiving plug-in library.
+#if int(ifshared) != 0:
+#	env.Install('../../', libsPath[0] + "/lib" + archiving + ".so")
+

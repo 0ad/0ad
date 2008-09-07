@@ -1,0 +1,35 @@
+#Sconscript for FColladaTest executable for Linux
+sconscriptRelativePath = "../../.."
+execfile(sconscriptRelativePath + "/../../SconsCommon.py")
+
+#Create the Environment which creates the compile and linker command lines.
+env = Environment()
+
+#Add the compiler and linker flags and include search path
+env.Append(CPPPATH = [sconscriptRelativePath, sconscriptRelativePath + "/..", sconscriptRelativePath + "/../LibXML/include/"])
+
+#Add the macros defined for all the builds
+env.Append(CPPDEFINES = ['LINUX', '_DEBUG'])
+env.Append(CCFLAGS = ['-O0', '-g', '-W', '-Wall'])
+
+#Unicode is pre-requisite to building the test for FCollada.
+env.Append(CPPDEFINES = ['UNICODE'])
+
+#Make a list of the library to link with first and where to find it.
+libs = ['FColladaSUD', 'dl']
+        
+#List the source file to compile into the executable.
+list = []
+FileListAppend(list, sconscriptRelativePath, "FCTestExportImport", "cpp")
+FileListAppend(list, sconscriptRelativePath, "FCTestXRef", "cpp")
+FileListAppend(list, sconscriptRelativePath, "FCTestAssetManagement", "cpp")
+FileListAppend(list, sconscriptRelativePath, "", "cpp")
+
+path = [sconscriptRelativePath + "/../Output"]
+
+#Finally, create the executable.
+FColladaTest = env.Program('FColladaTest', list, LIBS=libs, LIBPATH=path)
+
+#Specifying the name and directory of output executable
+env.InstallAs(sconscriptRelativePath, FColladaTest)
+
