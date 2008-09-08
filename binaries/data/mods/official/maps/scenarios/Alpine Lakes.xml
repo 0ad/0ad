@@ -6,8 +6,8 @@
 		<SunColour r="1.47461" g="1.47461" b="1.47461"/>
 		<SunElevation angle="0.506214"/>
 		<SunRotation angle="-0.750325"/>
-		<TerrainAmbientColour r="0.419608" g="0.447059" b="0.537255"/>
-		<UnitsAmbientColour r="0.403922" g="0.419608" b="0.462745"/>
+		<TerrainAmbientColour r="0.396078" g="0.423529" b="0.560784"/>
+		<UnitsAmbientColour r="0.403922" g="0.419608" b="0.458824"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="32.199" y="121.986" z="-49.2463"/>
+		<Position x="34.5251" y="126.308" z="-54.0286"/>
 		<Rotation angle="0.0291848"/>
 		<Declination angle="0.764762"/>
 	</Camera>
@@ -1417,14 +1417,14 @@
 		<Entity uid="421">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="550.817" y="22.6831" z="399.752"/>
-			<Orientation angle="-2.2047"/>
+			<Position x="504.946" y="22.4" z="370.303"/>
+			<Orientation angle="1.12022"/>
 		</Entity>
 		<Entity uid="422">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="542.048" y="22.4" z="398.579"/>
-			<Orientation angle="-2.28367"/>
+			<Position x="491.247" y="22.4" z="358.819"/>
+			<Orientation angle="0.144948"/>
 		</Entity>
 		<Entity uid="423">
 			<Template>flora_tree_pine_w</Template>
@@ -1435,8 +1435,8 @@
 		<Entity uid="424">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="540.458" y="22.4" z="384.305"/>
-			<Orientation angle="2.84204"/>
+			<Position x="494.824" y="22.4" z="364.134"/>
+			<Orientation angle="1.12654"/>
 		</Entity>
 		<Entity uid="425">
 			<Template>flora_tree_pine_w</Template>
@@ -1489,14 +1489,14 @@
 		<Entity uid="433">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="536.792" y="22.4" z="374.496"/>
-			<Orientation angle="-0.153747"/>
+			<Position x="511.202" y="22.4" z="363.98"/>
+			<Orientation angle="1.76999"/>
 		</Entity>
 		<Entity uid="434">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="534.585" y="22.4" z="383.535"/>
-			<Orientation angle="-0.0488305"/>
+			<Position x="501.752" y="22.4" z="363.791"/>
+			<Orientation angle="0.855425"/>
 		</Entity>
 		<Entity uid="435">
 			<Template>flora_tree_pine_w</Template>
@@ -2197,31 +2197,31 @@
 		<Entity uid="556">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="9.7018" y="22.4" z="12.7994"/>
+			<Position x="8.70402" y="22.4" z="14.6776"/>
 			<Orientation angle="2.8761"/>
 		</Entity>
 		<Entity uid="557">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="15.3452" y="22.4" z="8.51063"/>
+			<Position x="16.8164" y="22.4" z="7.94213"/>
 			<Orientation angle="1.87807"/>
 		</Entity>
 		<Entity uid="558">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="19.9026" y="22.4" z="6.82391"/>
+			<Position x="23.7599" y="22.4" z="4.15001"/>
 			<Orientation angle="2.0519"/>
 		</Entity>
 		<Entity uid="559">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="26.653" y="22.4" z="4.7008"/>
+			<Position x="30.3026" y="22.4" z="7.04364"/>
 			<Orientation angle="1.79896"/>
 		</Entity>
 		<Entity uid="560">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="31.2123" y="22.4" z="8.09968"/>
+			<Position x="35.691" y="22.4" z="6.95407"/>
 			<Orientation angle="0.087345"/>
 		</Entity>
 		<Entity uid="561">
@@ -2233,14 +2233,14 @@
 		<Entity uid="562">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="27.7472" y="22.4" z="24.3186"/>
+			<Position x="38.6203" y="22.4" z="13.5869"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="563">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="19.1643" y="22.4" z="24.2063"/>
-			<Orientation angle="2.35619"/>
+			<Position x="25.5459" y="22.4" z="16.482"/>
+			<Orientation angle="1.35086"/>
 		</Entity>
 		<Entity uid="564">
 			<Template>flora_tree_pine</Template>
@@ -2665,31 +2665,31 @@
 		<Entity uid="637">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="438.026" y="26.421" z="513.855"/>
-			<Orientation angle="3.05366"/>
+			<Position x="451.378" y="30.6146" z="511.71"/>
+			<Orientation angle="1.36723"/>
 		</Entity>
 		<Entity uid="638">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="438.442" y="26.9827" z="503.234"/>
+			<Position x="437.154" y="26.2967" z="505.729"/>
 			<Orientation angle="3.12921"/>
 		</Entity>
 		<Entity uid="639">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="438.493" y="26.7059" z="498.862"/>
-			<Orientation angle="2.00613"/>
+			<Position x="442.383" y="28.3251" z="499.38"/>
+			<Orientation angle="1.24852"/>
 		</Entity>
 		<Entity uid="640">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="444.321" y="29.3865" z="502.598"/>
-			<Orientation angle="2.35619"/>
+			<Position x="446.724" y="29.9184" z="501.632"/>
+			<Orientation angle="0.507811"/>
 		</Entity>
 		<Entity uid="641">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="444.063" y="29.5555" z="507.892"/>
+			<Position x="441.184" y="27.7132" z="514.055"/>
 			<Orientation angle="0.0344116"/>
 		</Entity>
 		<Entity uid="642">
@@ -2707,20 +2707,20 @@
 		<Entity uid="644">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="435.84" y="24.1507" z="528.584"/>
+			<Position x="436.815" y="24.5387" z="527.364"/>
 			<Orientation angle="-1.01465"/>
 		</Entity>
 		<Entity uid="645">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="429.87" y="22.7935" z="532.761"/>
-			<Orientation angle="2.35619"/>
+			<Position x="432.406" y="23.4405" z="527.987"/>
+			<Orientation angle="0.759473"/>
 		</Entity>
 		<Entity uid="646">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="431.519" y="23.2131" z="525.23"/>
-			<Orientation angle="1.44998"/>
+			<Position x="433.722" y="24.0038" z="517.965"/>
+			<Orientation angle="2.27308"/>
 		</Entity>
 		<Entity uid="647">
 			<Template>flora_tree_pine</Template>
@@ -3535,7 +3535,7 @@
 		<Entity uid="806">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="544.352" y="24.6005" z="204.523"/>
+			<Position x="545.477" y="23.2794" z="200.583"/>
 			<Orientation angle="-2.2675"/>
 		</Entity>
 		<Entity uid="807">
@@ -3571,19 +3571,19 @@
 		<Entity uid="812">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="546.432" y="22.7156" z="198.055"/>
+			<Position x="546.615" y="22.4" z="189.379"/>
 			<Orientation angle="1.17491"/>
 		</Entity>
 		<Entity uid="813">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="553.219" y="22.6116" z="202.035"/>
+			<Position x="551.332" y="22.5103" z="199.192"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="814">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="552.434" y="23.5925" z="208.253"/>
+			<Position x="554.061" y="22.7418" z="204.324"/>
 			<Orientation angle="0.0425001"/>
 		</Entity>
 		<Entity uid="815">
@@ -3601,7 +3601,7 @@
 		<Entity uid="817">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="562.178" y="22.4522" z="209.429"/>
+			<Position x="560.386" y="22.4" z="200.11"/>
 			<Orientation angle="-2.99843"/>
 		</Entity>
 		<Entity uid="818">
@@ -3613,7 +3613,7 @@
 		<Entity uid="819">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="551.869" y="22.4" z="194.155"/>
+			<Position x="553.809" y="22.4" z="189.169"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="820">
@@ -4543,7 +4543,7 @@
 		<Entity uid="976">
 			<Template>flora_tree_pine_w</Template>
 			<Player>0</Player>
-			<Position x="327.994" y="22.5712" z="7.3924"/>
+			<Position x="332.641" y="23.0349" z="7.44638"/>
 			<Orientation angle="0.569485"/>
 		</Entity>
 		<Entity uid="977">
