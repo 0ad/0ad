@@ -4,10 +4,10 @@
 	<Environment>
 		<SkySet>cirrus</SkySet>
 		<SunColour r="1.47461" g="1.47461" b="1.47461"/>
-		<SunElevation angle="0.561437"/>
+		<SunElevation angle="0.506214"/>
 		<SunRotation angle="-0.750325"/>
 		<TerrainAmbientColour r="0.419608" g="0.447059" b="0.537255"/>
-		<UnitsAmbientColour r="0.447059" g="0.462745" b="0.513726"/>
+		<UnitsAmbientColour r="0.403922" g="0.419608" b="0.462745"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="37.4118" y="109.027" z="-47.0868"/>
-		<Rotation angle="0.00723358"/>
-		<Declination angle="0.691818"/>
+		<Position x="32.199" y="121.986" z="-49.2463"/>
+		<Rotation angle="0.0291848"/>
+		<Declination angle="0.764762"/>
 	</Camera>
 	<Entities>
 		<Entity uid="43">
@@ -746,7 +746,7 @@
 			<Template>special_settlement</Template>
 			<Player>0</Player>
 			<Position x="36.1503" y="22.4" z="55.9374"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="2.40125"/>
 		</Entity>
 		<Entity uid="240">
 			<Template>special_settlement</Template>
@@ -2233,7 +2233,7 @@
 		<Entity uid="562">
 			<Template>flora_tree_pine</Template>
 			<Player>0</Player>
-			<Position x="23.0432" y="22.4" z="17.8616"/>
+			<Position x="27.7472" y="22.4" z="24.3186"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="563">
@@ -4623,6 +4623,72 @@
 			<Player>0</Player>
 			<Position x="289.136" y="26.474" z="463.002"/>
 			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="994">
+			<Template>camp_rome_legionnaire_imperial</Template>
+			<Player>2</Player>
+			<Position x="226.286" y="18.4495" z="214.052"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="996">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="82.4962" y="22.4" z="7.35973"/>
+			<Orientation angle="-1.56556"/>
+		</Entity>
+		<Entity uid="997">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="93.2027" y="23.1107" z="7.23205"/>
+			<Orientation angle="-1.55143"/>
+		</Entity>
+		<Entity uid="998">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="90.1994" y="23.9212" z="12.7418"/>
+			<Orientation angle="-1.84727"/>
+		</Entity>
+		<Entity uid="1000">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="16.4531" y="27.0555" z="149.374"/>
+			<Orientation angle="-0.980718"/>
+		</Entity>
+		<Entity uid="1001">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="9.22306" y="24.823" z="141.522"/>
+			<Orientation angle="-0.00338006"/>
+		</Entity>
+		<Entity uid="1002">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="17.2587" y="25.7574" z="139.043"/>
+			<Orientation angle="-2.95404"/>
+		</Entity>
+		<Entity uid="1003">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="25.275" y="25.6032" z="145.152"/>
+			<Orientation angle="2.7616"/>
+		</Entity>
+		<Entity uid="1005">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="379.464" y="26.3147" z="169.48"/>
+			<Orientation angle="-0.0529884"/>
+		</Entity>
+		<Entity uid="1006">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="382.413" y="24.2384" z="162.08"/>
+			<Orientation angle="-1.98223"/>
+		</Entity>
+		<Entity uid="1007">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="389.609" y="24.1009" z="171.402"/>
+			<Orientation angle="2.24935"/>
 		</Entity>
 	</Entities>
 	<Nonentities/>
