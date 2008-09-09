@@ -22,7 +22,9 @@
 typedef void (*LogFn) (int severity, const char* text);
 typedef void (*OutputFn) (void* cb_data, const char* data, unsigned int length);
 
-#define COLLADA_CONVERTER_VERSION 1
+/* This version number should be bumped whenever incompatible changes
+ * are made, to invalidate old caches. */
+#define COLLADA_CONVERTER_VERSION 2
 
 EXPORT void set_logger(LogFn logger);
 EXPORT int set_skeleton_definitions(const char* xml, int length);

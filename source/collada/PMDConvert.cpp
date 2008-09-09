@@ -104,6 +104,7 @@ public:
 			std::vector<VertexBlend> boneWeights;
 			std::vector<BoneTransform> boneTransforms;
 			std::vector<PropPoint> propPoints;
+			AddDefaultPropPoints(propPoints);
 
 			WritePMD(output, indicesCombined, indicesCombinedCount, dataPosition, dataNormal, dataTexcoord, vertexCount, boneWeights, boneTransforms, propPoints);
 		}
@@ -244,6 +245,7 @@ public:
 			// standard bone, and whose name begins with "prop-".
 
 			std::vector<PropPoint> propPoints;
+			AddDefaultPropPoints(propPoints);
 
 			for (size_t i = 0; i < jointCount; ++i)
 			{
@@ -326,6 +328,20 @@ public:
 			throw ColladaException("Unrecognised object type");
 		}
 
+	}
+
+	/**
+	 * Adds the default "root" prop-point.
+	 */
+	static void AddDefaultPropPoints(std::vector<PropPoint>& propPoints)
+	{
+		PropPoint root;
+		root.name = "root";
+		root.translation[0] = root.translation[1] = root.translation[2] = 0.0f;
+		root.orientation[0] = root.orientation[1] = root.orientation[2] = 0.0f;
+		root.orientation[3] = 1.0f;
+		root.bone = 0xFF;
+		propPoints.push_back(root);
 	}
 
 	/**
