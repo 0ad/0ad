@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="2" name="formation-a">
+      <mesh>gaia/stonemine_granite_a.pmd</mesh>
+      <texture>gaia/metal_tropic.dds</texture>
+    </variant>
+    <variant frequency="2" name="formation-b">
+      <mesh>gaia/stonemine_granite_b.pmd</mesh>
+      <texture>gaia/metal_tropic.dds</texture>
+    </variant>
+    <variant frequency="2" name="formation-c">
+      <mesh>gaia/stonemine_granite_c.pmd</mesh>
+      <texture>gaia/metal_tropic.dds</texture>
+    </variant>
+    <variant frequency="1" name="boulder-a">
+      <mesh>gaia/stone_granite_boulder_a.pmd</mesh>
+      <texture>gaia/metal_tropic_hi.dds</texture>
+    </variant>
+    <variant frequency="1" name="boulder-b">
+      <mesh>gaia/stone_granite_boulder_b.pmd</mesh>
+      <texture>gaia/metal_tropic_hi.dds</texture>
+    </variant>
+    <variant frequency="1" name="boulder-c">
+      <mesh>gaia/stone_granite_boulder_c.pmd</mesh>
+      <texture>gaia/metal_tropic_hi.dds</texture>
+    </variant>
+  </group>
+
+</actor>
