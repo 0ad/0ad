@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="boulder-01">
+      <mesh>gaia/geo_desert_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="boulder-02">
+      <mesh>gaia/geo_desert_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="boulder-04">
+      <mesh>gaia/geo_desert_04.dae</mesh>
+    </variant>
+    <variant frequency="1" name="boulder-05">
+      <mesh>gaia/geo_desert_05.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>gaia/stone_tropic_hi.dds</texture>
+    </variant>
+  </group>
+
+</actor>
