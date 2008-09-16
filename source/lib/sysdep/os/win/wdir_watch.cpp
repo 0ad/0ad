@@ -149,10 +149,6 @@ private:
 
 //-----------------------------------------------------------------------------
 
-// (watches are removed by resetting shared_ptr; the DirWatch dtor must
-// notify DirWatchManager and remove itself from the list there)
-static void RemoveFromList(DirWatch* dirWatch);
-
 class DirWatch
 {
 public:
@@ -185,8 +181,6 @@ public:
 
 		CloseHandle(m_hDir);
 		m_hDir = INVALID_HANDLE_VALUE;
-
-		RemoveFromList(this);
 	}
 
 	void Issue()
@@ -333,16 +327,9 @@ public:
 		return INFO::OK;
 	}
 
-	void Remove(DirWatch* dirWatch)
+	void Remove(PDirWatch& dirWatch)
 	{
-		for(Watches::iterator it = m_watches.begin(); it != m_watches.end(); ++it)
-		{
-			if(it->get() == dirWatch)
-			{
-				m_watches.erase(it);
-				break;
-			}
-		}
+		m_watches.remove(dirWatch);
 	}
 
 	LibError Poll(DirWatchNotification& notification)
@@ -381,7 +368,7 @@ LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
 	return s_dirWatchManager->Add(path, dirWatch);
 }
 
-static void RemoveFromList(DirWatch* dirWatch)
+void dir_watch_Remove(PDirWatch& dirWatch)
 {
 	WinScopedLock lock(WDIR_WATCH_CS);
 	return s_dirWatchManager->Remove(dirWatch);

@@ -61,7 +61,15 @@ void wdbg_heap_Validate()
 
 // (this relies on the debug CRT; not compiling it at all in release builds
 // avoids unreferenced local function warnings)
-#ifndef NDEBUG
+// (this has only been tested on IA32 and seems to have trouble with larger
+// pointers, so it's disabled for now.)
+#if !defined(NDEBUG) && ARCH_IA32
+# define ENABLE_LEAK_INSTRUMENTATION 1
+#else
+# define ENABLE_LEAK_INSTRUMENTATION 0
+#endif
+
+#if ENABLE_LEAK_INSTRUMENTATION
 
 // leak detectors often rely on macro redirection to determine the file and
 // line of allocation owners (see _CRTDBG_MAP_ALLOC). unfortunately this
@@ -473,7 +481,7 @@ public:
 		size_t outputBitsLeft = numOutputBits;
 		while(outputBitsLeft > 0)
 		{
-			const size_t numBits = std::min(outputBitsLeft, 8u);
+			const size_t numBits = std::min(outputBitsLeft, size_t(8));
 			m_bitsLeft -= numBits;
 
 			// (NB: there is no need to extract exactly numBits because
@@ -527,7 +535,7 @@ public:
 		size_t inputBitsLeft = numInputBits;
 		while(inputBitsLeft > 0)
 		{
-			const size_t numBits = std::min(inputBitsLeft, 8u);
+			const size_t numBits = std::min(inputBitsLeft, size_t(8));
 			m_bitsLeft -= numBits;
 
 			if(m_numRemainderBits < numBits)
@@ -901,13 +909,13 @@ intptr_t wdbg_heap_NumberOfAllocations()
 
 //-----------------------------------------------------------------------------
 
-#ifndef NDEBUG
+#if ENABLE_LEAK_INSTRUMENTATION
 static AllocationTracker* s_tracker;
 #endif
 
 static LibError wdbg_heap_Init()
 {
-#ifndef NDEBUG
+#if ENABLE_LEAK_INSTRUMENTATION
 	FindCodeSegment();
 
 	// load symbol information now (fails if it happens during shutdown)
@@ -928,7 +936,7 @@ static LibError wdbg_heap_Init()
 
 static LibError wdbg_heap_Shutdown()
 {
-#ifndef NDEBUG
+#if ENABLE_LEAK_INSTRUMENTATION
 	SAFE_DELETE(s_tracker);
 #endif
 

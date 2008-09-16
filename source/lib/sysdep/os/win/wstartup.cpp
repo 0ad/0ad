@@ -104,4 +104,4 @@ EXTERN_C int wstartup_InitAndRegisterShutdown()
 #pragma section(".CRT$XIV", long,SECTION_ATTRIBUTES)
 #undef SECTION_ATTRIBUTES
 EXTERN_C __declspec(allocate(".CRT$XIV")) int(*wstartup_pInitAndRegisterShutdown)() = wstartup_InitAndRegisterShutdown;
-#pragma comment(linker, "/include:_wstartup_pInitAndRegisterShutdown")
+#pragma comment(linker, "/include:" STRINGIZE(DECORATED_NAME(wstartup_pInitAndRegisterShutdown)))

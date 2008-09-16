@@ -60,7 +60,7 @@
  * call before using any other function, and after each video mode change.
  * fails if OpenGL not ready for use.
  **/
-extern void ogl_Init(void);
+extern void ogl_Init();
 
 
 //-----------------------------------------------------------------------------

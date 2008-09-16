@@ -52,7 +52,7 @@ static LibError ReadVersionString(const OsPath& modulePathname_, char* out_ver, 
 		WARN_RETURN(ERR::FAIL);
 
 	u16* lang;	// -> 16 bit language ID, 16 bit codepage
-	size_t lang_len;
+	UINT lang_len;
 	const BOOL ok = VerQueryValue(mem.get(), "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
 	if(!ok || !lang || lang_len != 4)
 		WARN_RETURN(ERR::FAIL);
@@ -60,7 +60,7 @@ static LibError ReadVersionString(const OsPath& modulePathname_, char* out_ver, 
 	char subblock[64];
 	sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
 	const char* in_ver;
-	size_t in_ver_len;
+	UINT in_ver_len;
 	if(!VerQueryValue(mem.get(), subblock, (void**)&in_ver, &in_ver_len))
 		WARN_RETURN(ERR::FAIL);
 

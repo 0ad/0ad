@@ -185,4 +185,15 @@
 # define CALL_CONV
 #endif
 
+#if MSC_VERSION && !ARCH_AMD64
+# define DECORATED_NAME(name) _##name
+#else
+# define DECORATED_NAME(name) name
+#endif
+
+// workaround for preprocessor limitation: macro args aren't expanded
+// before being pasted.
+#define STRINGIZE2(id) # id
+#define STRINGIZE(id) STRINGIZE2(id)
+
 #endif	// #ifndef INCLUDED_COMPILER

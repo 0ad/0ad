@@ -23,10 +23,10 @@
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
 
-#if ARCH_IA32
-# include "../ia32/ia32_asm.h"
-#else
+#if ARCH_AMD64
 # include "../amd64/amd64_asm.h"
+#else
+# include "../ia32/ia32_asm.h"
 #endif
 
 #if MSC_VERSION
@@ -43,10 +43,10 @@
 // in assembly for both IA-32 and AMD64.
 static void cpuid_impl(x86_x64_CpuidRegs* regs)
 {
-#if ARCH_IA32
-	ia32_asm_cpuid(regs);
-#else
+#if ARCH_AMD64
 	amd64_asm_cpuid(regs);
+#else
+	ia32_asm_cpuid(regs);
 #endif
 }
 

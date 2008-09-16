@@ -301,7 +301,7 @@ static void DetectWindowsVersion()
 		DWORD size = ARRAY_SIZE(windowsVersionString);
 		(void)RegQueryValueEx(hKey, "CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
 
-		size_t major = 0, minor = 0;
+		int major = 0, minor = 0;
 		int ret = sscanf(windowsVersionString, "%d.%d", &major, &minor);
 		debug_assert(ret == 2);
 		debug_assert(major <= 0xFF && minor <= 0xFF);

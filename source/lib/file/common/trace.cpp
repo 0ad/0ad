@@ -31,8 +31,6 @@ TraceEntry::TraceEntry(EAction action, const char* pathname, size_t size)
 }
 
 
-#define STRINGIZE(number) #number
-
 TraceEntry::TraceEntry(const char* text)
 {
 	const char* fmt = "%f: %c \"" STRINGIZE(PATH_MAX) "[^\"]\" %d\n";

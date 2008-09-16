@@ -8,6 +8,8 @@
 
 #include "precompiled.h"
 
+#if ARCH_IA32
+
 /*
 	See http://www.opengroup.org/onlinepubs/009695399/functions/fprintf.html
 	for the specification (apparently an extension to ISO C) that was used
@@ -486,3 +488,5 @@ finished_reading:
 
 	return ret;
 }
+
+#endif

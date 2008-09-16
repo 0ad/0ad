@@ -19,14 +19,19 @@ typedef shared_ptr<DirWatch> PDirWatch;
  *
  * @param path native path of the directory to watch.
  * @param dirWatch receives a smart pointer to the watch object.
- * note: freeing it does not prevent any previously queued notifications
- * from being returned.
  *
  * note: the FAM backend can only watch single directories, so that is
  * all we can guarantee. the Win32 implementation watches entire trees;
  * adding a watch for subdirectories is a no-op there.
  **/
 LIB_API LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch);
+
+/**
+ * stop watching a directory.
+ *
+ * note: any previously queued notifications will still be returned.
+ **/
+LIB_API void dir_watch_Remove(PDirWatch& dirWatch);
 
 class DirWatchNotification
 {
