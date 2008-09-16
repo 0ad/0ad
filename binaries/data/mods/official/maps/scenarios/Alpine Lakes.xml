@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="35.0325" y="104.506" z="-29.1815"/>
+		<Position x="33.6458" y="114.009" z="-41.6416"/>
 		<Rotation angle="0.00723358"/>
 		<Declination angle="0.764762"/>
 	</Camera>
@@ -763,7 +763,7 @@
 		<Entity uid="242">
 			<Template>special_settlement</Template>
 			<Player>0</Player>
-			<Position x="496.68" y="22.4" z="539.039"/>
+			<Position x="496.25" y="22.4" z="538.666"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="243">
@@ -2917,7 +2917,7 @@
 		<Entity uid="685">
 			<Template>celt_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="496.819" y="22.4" z="538.798"/>
+			<Position x="496.075" y="22.4" z="539.275"/>
 			<Orientation angle="-2.30485"/>
 		</Entity>
 		<Entity uid="688">
@@ -4582,53 +4582,41 @@
 			<Position x="289.136" y="26.474" z="463.002"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="994">
-			<Template>camp_rome_legionnaire_imperial</Template>
-			<Player>2</Player>
-			<Position x="226.286" y="18.4495" z="214.052"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
 		<Entity uid="996">
 			<Template>geology_stone_alpine_a</Template>
 			<Player>0</Player>
-			<Position x="82.4962" y="22.4" z="7.35973"/>
-			<Orientation angle="-1.56556"/>
+			<Position x="64.2209" y="22.4" z="17.8806"/>
+			<Orientation angle="-1.92657"/>
 		</Entity>
 		<Entity uid="997">
 			<Template>geology_stone_alpine_a</Template>
 			<Player>0</Player>
-			<Position x="92.0325" y="22.4832" z="4.13452"/>
-			<Orientation angle="2.67694"/>
+			<Position x="60.7085" y="22.4" z="24.6227"/>
+			<Orientation angle="-1.59456"/>
 		</Entity>
 		<Entity uid="998">
 			<Template>geology_stone_alpine_a</Template>
 			<Player>0</Player>
-			<Position x="90.1994" y="23.9212" z="12.7418"/>
-			<Orientation angle="-0.254588"/>
+			<Position x="56.2136" y="22.4" z="17.4888"/>
+			<Orientation angle="1.76202"/>
 		</Entity>
 		<Entity uid="1000">
 			<Template>geology_stone_alpine_a</Template>
 			<Player>0</Player>
-			<Position x="16.4531" y="27.0555" z="149.374"/>
-			<Orientation angle="2.8918"/>
+			<Position x="16.7481" y="27.2389" z="145.852"/>
+			<Orientation angle="-1.83772"/>
 		</Entity>
 		<Entity uid="1001">
 			<Template>geology_stone_alpine_a</Template>
 			<Player>0</Player>
-			<Position x="9.22306" y="24.823" z="141.522"/>
-			<Orientation angle="0.744472"/>
-		</Entity>
-		<Entity uid="1002">
-			<Template>geology_stone_alpine_a</Template>
-			<Player>0</Player>
-			<Position x="17.3957" y="25.6249" z="138.693"/>
-			<Orientation angle="1.8239"/>
+			<Position x="8.79752" y="24.704" z="142.028"/>
+			<Orientation angle="2.71542"/>
 		</Entity>
 		<Entity uid="1003">
 			<Template>geology_stone_alpine_a</Template>
 			<Player>0</Player>
-			<Position x="25.275" y="25.6032" z="145.152"/>
-			<Orientation angle="-1.81802"/>
+			<Position x="22.1688" y="25.2495" z="139.665"/>
+			<Orientation angle="-1.78642"/>
 		</Entity>
 		<Entity uid="1005">
 			<Template>geology_stone_alpine_a</Template>
@@ -4647,6 +4635,516 @@
 			<Player>0</Player>
 			<Position x="389.609" y="24.1009" z="171.402"/>
 			<Orientation angle="1.02057"/>
+		</Entity>
+		<Entity uid="1014">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="64.9971" y="22.4" z="86.8589"/>
+			<Orientation angle="-2.48028"/>
+		</Entity>
+		<Entity uid="1015">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="70.9736" y="22.4" z="82.8474"/>
+			<Orientation angle="-2.16603"/>
+		</Entity>
+		<Entity uid="1016">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="71.1903" y="22.4" z="74.3859"/>
+			<Orientation angle="-0.446511"/>
+		</Entity>
+		<Entity uid="1018">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="82.0489" y="26.5273" z="155.083"/>
+			<Orientation angle="-3.05663"/>
+		</Entity>
+		<Entity uid="1019">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="83.6326" y="27.9876" z="162.546"/>
+			<Orientation angle="-3.02678"/>
+		</Entity>
+		<Entity uid="1020">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="74.1837" y="27.6712" z="158.101"/>
+			<Orientation angle="-2.67587"/>
+		</Entity>
+		<Entity uid="1023">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="504.076" y="22.4" z="506.341"/>
+			<Orientation angle="-1.88867"/>
+		</Entity>
+		<Entity uid="1024">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="493.194" y="22.4" z="503.557"/>
+			<Orientation angle="1.03252"/>
+		</Entity>
+		<Entity uid="1025">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="495.988" y="22.4" z="511.673"/>
+			<Orientation angle="-1.96983"/>
+		</Entity>
+		<Entity uid="1026">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="423.149" y="22.4112" z="544.81"/>
+			<Orientation angle="-2.1869"/>
+		</Entity>
+		<Entity uid="1027">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="430.127" y="22.5051" z="540.484"/>
+			<Orientation angle="0.326761"/>
+		</Entity>
+		<Entity uid="1028">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="429.446" y="22.4283" z="549.968"/>
+			<Orientation angle="-0.138015"/>
+		</Entity>
+		<Entity uid="1030">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="425.4" y="24.2717" z="455.161"/>
+			<Orientation angle="-2.72327"/>
+		</Entity>
+		<Entity uid="1031">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="427.291" y="24.248" z="446.546"/>
+			<Orientation angle="0.507888"/>
+		</Entity>
+		<Entity uid="1032">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="415.17" y="25.6057" z="462.416"/>
+			<Orientation angle="-2.41717"/>
+		</Entity>
+		<Entity uid="1033">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="550.024" y="23.1278" z="536.945"/>
+			<Orientation angle="-2.12117"/>
+		</Entity>
+		<Entity uid="1034">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="553.133" y="24.8038" z="526.784"/>
+			<Orientation angle="-1.89813"/>
+		</Entity>
+		<Entity uid="1035">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="558.129" y="23.7994" z="536.14"/>
+			<Orientation angle="0.733965"/>
+		</Entity>
+		<Entity uid="1037">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="222.541" y="22.4" z="373.843"/>
+			<Orientation angle="-3.00108"/>
+		</Entity>
+		<Entity uid="1038">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="223.684" y="22.4" z="365.143"/>
+			<Orientation angle="0.677692"/>
+		</Entity>
+		<Entity uid="1039">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="330.171" y="24.2681" z="291.16"/>
+			<Orientation angle="-2.58147"/>
+		</Entity>
+		<Entity uid="1040">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="337.383" y="28.1062" z="293.102"/>
+			<Orientation angle="0.784552"/>
+		</Entity>
+		<Entity uid="1041">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="321.497" y="22.2728" z="105.519"/>
+			<Orientation angle="-2.24235"/>
+		</Entity>
+		<Entity uid="1042">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="313.568" y="22.2375" z="105.037"/>
+			<Orientation angle="0.432214"/>
+		</Entity>
+		<Entity uid="1043">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="512.207" y="28.7056" z="186.642"/>
+			<Orientation angle="-2.84305"/>
+		</Entity>
+		<Entity uid="1044">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="508.613" y="27.7344" z="181.405"/>
+			<Orientation angle="0.899943"/>
+		</Entity>
+		<Entity uid="1045">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="543.595" y="29.4553" z="16.8701"/>
+			<Orientation angle="-2.80027"/>
+		</Entity>
+		<Entity uid="1046">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="545.915" y="26.0868" z="10.5807"/>
+			<Orientation angle="0.986469"/>
+		</Entity>
+		<Entity uid="1047">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="105.583" y="31.9498" z="245.033"/>
+			<Orientation angle="-2.37275"/>
+		</Entity>
+		<Entity uid="1048">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="100.248" y="33.3263" z="239.314"/>
+			<Orientation angle="1.49951"/>
+		</Entity>
+		<Entity uid="1049">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="155.139" y="24.3087" z="248.361"/>
+			<Orientation angle="-2.42928"/>
+		</Entity>
+		<Entity uid="1050">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="151.981" y="24.3877" z="255.548"/>
+			<Orientation angle="0.582087"/>
+		</Entity>
+		<Entity uid="1051">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="15.1893" y="31.9861" z="446.909"/>
+			<Orientation angle="-2.77345"/>
+		</Entity>
+		<Entity uid="1052">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="11.682" y="29.6116" z="438.144"/>
+			<Orientation angle="1.08927"/>
+		</Entity>
+		<Entity uid="1053">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="124.668" y="27.5061" z="555.423"/>
+			<Orientation angle="-2.62745"/>
+		</Entity>
+		<Entity uid="1054">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="125.205" y="27.7496" z="547.032"/>
+			<Orientation angle="0.903255"/>
+		</Entity>
+		<Entity uid="1056">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="277.61" y="35.7108" z="494.207"/>
+			<Orientation angle="-2.82495"/>
+		</Entity>
+		<Entity uid="1057">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="280.438" y="33.757" z="490.611"/>
+			<Orientation angle="1.21626"/>
+		</Entity>
+		<Entity uid="1058">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="285.031" y="30.5991" z="499.502"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1059">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="360.22" y="22.4" z="356.211"/>
+			<Orientation angle="-2.48161"/>
+		</Entity>
+		<Entity uid="1060">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="349.315" y="22.4" z="356.29"/>
+			<Orientation angle="0.930806"/>
+		</Entity>
+		<Entity uid="1061">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="355.401" y="22.4" z="348.625"/>
+			<Orientation angle="-2.93035"/>
+		</Entity>
+		<Entity uid="1062">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="449.948" y="20.3853" z="335.767"/>
+			<Orientation angle="-2.31002"/>
+		</Entity>
+		<Entity uid="1063">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="446.156" y="20.8776" z="343.071"/>
+			<Orientation angle="2.89348"/>
+		</Entity>
+		<Entity uid="1065">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="486.823" y="24.9606" z="257.478"/>
+			<Orientation angle="0.661602"/>
+		</Entity>
+		<Entity uid="1066">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="495.99" y="25.596" z="259.085"/>
+			<Orientation angle="-2.18324"/>
+		</Entity>
+		<Entity uid="1067">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="489.138" y="25.7925" z="265.326"/>
+			<Orientation angle="-2.02054"/>
+		</Entity>
+		<Entity uid="1068">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="541.028" y="24.045" z="403.908"/>
+			<Orientation angle="-2.22917"/>
+		</Entity>
+		<Entity uid="1069">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="534.835" y="22.4" z="406.052"/>
+			<Orientation angle="0.867385"/>
+		</Entity>
+		<Entity uid="1070">
+			<Template>geology_stone_alpine_a</Template>
+			<Player>0</Player>
+			<Position x="532.484" y="22.4" z="399.14"/>
+			<Orientation angle="1.19468"/>
+		</Entity>
+		<Entity uid="1072">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="546.409" y="25.8807" z="289.616"/>
+			<Orientation angle="-2.08031"/>
+		</Entity>
+		<Entity uid="1073">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="553.15" y="25.8458" z="293.817"/>
+			<Orientation angle="1.08636"/>
+		</Entity>
+		<Entity uid="1074">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="519.701" y="22.5074" z="86.9509"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1075">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="512.685" y="22.4" z="89.7"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1076">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="451.277" y="22.4" z="123.455"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1077">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="453.847" y="22.4" z="114.493"/>
+			<Orientation angle="0.993821"/>
+		</Entity>
+		<Entity uid="1078">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="276.753" y="30.0035" z="20.0641"/>
+			<Orientation angle="2.73277"/>
+		</Entity>
+		<Entity uid="1079">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="283.784" y="29.2399" z="13.978"/>
+			<Orientation angle="-2.76697"/>
+		</Entity>
+		<Entity uid="1080">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="329.893" y="21.9815" z="175.349"/>
+			<Orientation angle="-2.94339"/>
+		</Entity>
+		<Entity uid="1081">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="334.371" y="22.4" z="169.762"/>
+			<Orientation angle="0.842841"/>
+		</Entity>
+		<Entity uid="1082">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="255.238" y="24.6511" z="199.19"/>
+			<Orientation angle="-1.86502"/>
+		</Entity>
+		<Entity uid="1083">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="261.302" y="22.4529" z="209.501"/>
+			<Orientation angle="-1.848"/>
+		</Entity>
+		<Entity uid="1084">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="152.33" y="20.7309" z="403.415"/>
+			<Orientation angle="-2.69916"/>
+		</Entity>
+		<Entity uid="1085">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="154.443" y="22.0185" z="396.09"/>
+			<Orientation angle="1.15421"/>
+		</Entity>
+		<Entity uid="1086">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="10.5484" y="22.4" z="293.929"/>
+			<Orientation angle="1.10876"/>
+		</Entity>
+		<Entity uid="1087">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="13.7176" y="22.4" z="300.594"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1088">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="18.1068" y="22.4" z="294.27"/>
+			<Orientation angle="1.1334"/>
+		</Entity>
+		<Entity uid="1090">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="221.839" y="22.6582" z="255.148"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1091">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="224.728" y="22.346" z="247.462"/>
+			<Orientation angle="1.25404"/>
+		</Entity>
+		<Entity uid="1092">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="219.199" y="23.5779" z="568.273"/>
+			<Orientation angle="-2.25981"/>
+		</Entity>
+		<Entity uid="1093">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="216.025" y="23.3011" z="558.762"/>
+			<Orientation angle="1.22624"/>
+		</Entity>
+		<Entity uid="1094">
+			<Template>geology_metal_alpine</Template>
+			<Player>0</Player>
+			<Position x="208.966" y="22.4262" z="563.802"/>
+			<Orientation angle="-2.07169"/>
+		</Entity>
+		<Entity uid="1099">
+			<Template>celt_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="488.118" y="22.4" z="521.713"/>
+			<Orientation angle="-2.50133"/>
+		</Entity>
+		<Entity uid="1101">
+			<Template>celt_cavalry_swordsman_a</Template>
+			<Player>2</Player>
+			<Position x="483.612" y="22.4072" z="525.242"/>
+			<Orientation angle="-2.23721"/>
+		</Entity>
+		<Entity uid="1103">
+			<Template>celt_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="480.982" y="22.4" z="529.493"/>
+			<Orientation angle="-1.9894"/>
+		</Entity>
+		<Entity uid="1105">
+			<Template>celt_infantry_javelinist_b</Template>
+			<Player>2</Player>
+			<Position x="480.335" y="22.4" z="545.436"/>
+			<Orientation angle="-2.08324"/>
+		</Entity>
+		<Entity uid="1107">
+			<Template>celt_infantry_javelinist_a</Template>
+			<Player>2</Player>
+			<Position x="477.957" y="22.4" z="548.298"/>
+			<Orientation angle="-2.57696"/>
+		</Entity>
+		<Entity uid="1109">
+			<Template>celt_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="476.151" y="22.4" z="550.538"/>
+			<Orientation angle="-2.6557"/>
+		</Entity>
+		<Entity uid="1111">
+			<Template>celt_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="514.19" y="22.4" z="520.076"/>
+			<Orientation angle="-2.3724"/>
+		</Entity>
+		<Entity uid="1113">
+			<Template>celt_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="512.048" y="22.4" z="522.331"/>
+			<Orientation angle="-2.53911"/>
+		</Entity>
+		<Entity uid="1115">
+			<Template>celt_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="509.116" y="22.4" z="524.151"/>
+			<Orientation angle="-2.43537"/>
+		</Entity>
+		<Entity uid="1119">
+			<Template>celt_support_trader</Template>
+			<Player>2</Player>
+			<Position x="510.818" y="22.4" z="552.091"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="1121">
+			<Template>celt_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="482.718" y="22.4" z="560.296"/>
+			<Orientation angle="-2.0893"/>
+		</Entity>
+		<Entity uid="1122">
+			<Template>celt_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="484.066" y="22.4" z="558.558"/>
+			<Orientation angle="-2.30396"/>
+		</Entity>
+		<Entity uid="1123">
+			<Template>celt_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="486.125" y="22.4" z="556.494"/>
+			<Orientation angle="-2.24924"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
