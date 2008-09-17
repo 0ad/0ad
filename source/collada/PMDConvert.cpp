@@ -268,7 +268,7 @@ public:
 						continue;
 					}
 					// Strip off the "prop-" from the name
-					std::string propPointName = child->GetName().substr(5);
+					std::string propPointName (child->GetName().substr(5));
 
 					Log(LOG_INFO, "Adding prop point %s", propPointName.c_str());
 

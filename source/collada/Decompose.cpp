@@ -396,7 +396,7 @@ Quat snuggle(Quat q, HVect *k)
 	mag[0] = (double)q.z*q.z+(double)q.w*q.w-0.5;
 	mag[1] = (double)q.x*q.z-(double)q.y*q.w;
 	mag[2] = (double)q.y*q.z+(double)q.x*q.w;
-	for (i=0; i<3; i++) if (neg[i] = (mag[i]<0.0)) mag[i] = -mag[i];
+	for (i=0; i<3; i++) if ((neg[i] = (mag[i]<0.0))) mag[i] = -mag[i];
 	if (mag[0]>mag[1]) {if (mag[0]>mag[2]) win = 0; else win = 2;}
 	else		   {if (mag[1]>mag[2]) win = 1; else win = 2;}
 	switch (win) {
@@ -415,7 +415,7 @@ Quat snuggle(Quat q, HVect *k)
 	qa[0] = q.x; qa[1] = q.y; qa[2] = q.z; qa[3] = q.w;
 	for (i=0; i<4; i++) {
 	    pa[i] = 0.0;
-	    if (neg[i] = (qa[i]<0.0)) qa[i] = -qa[i];
+	    if ((neg[i] = (qa[i]<0.0))) qa[i] = -qa[i];
 	    par ^= neg[i];
 	}
 	/* Find two largest components, indices in hi and lo */

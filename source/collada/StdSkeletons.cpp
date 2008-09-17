@@ -87,7 +87,7 @@ namespace
 		FUXmlParser::FindChildrenByType(parent, "bone", boneNodes);
 		for (xmlNodeList::iterator boneNode = boneNodes.begin(); boneNode != boneNodes.end(); ++boneNode)
 		{
-			std::string name = FUXmlParser::ReadNodeProperty(*boneNode, "name");
+			std::string name (FUXmlParser::ReadNodeProperty(*boneNode, "name"));
 
 			Bone b;
 			b.name = name;
@@ -133,7 +133,7 @@ namespace
 		{
 			std::auto_ptr<Skeleton> skeleton (new Skeleton());
 
-			std::string title = FUXmlParser::ReadNodeProperty(*skeletonNode, "title");
+			std::string title (FUXmlParser::ReadNodeProperty(*skeletonNode, "title"));
 			
 			skeleton->m->title = title;
 
@@ -143,7 +143,7 @@ namespace
 
 				LoadSkeletonBones(*skeletonNode, skeleton->m->bones, NULL, "");
 
-				std::string id = FUXmlParser::ReadNodeProperty(*skeletonNode, "id");
+				std::string id (FUXmlParser::ReadNodeProperty(*skeletonNode, "id"));
 				REQUIRE(! id.empty(), "standard_skeleton has id");
 
 				g_StandardSkeletons[id] = skeleton.release();
@@ -153,7 +153,7 @@ namespace
 				// Non-standard skeletons need to choose a standard skeleton
 				// as their target to be mapped onto
 
-				std::string target = FUXmlParser::ReadNodeProperty(*skeletonNode, "target");
+				std::string target (FUXmlParser::ReadNodeProperty(*skeletonNode, "target"));
 				const Skeleton* targetSkeleton = g_StandardSkeletons[target];
 				REQUIRE(targetSkeleton != NULL, "skeleton target matches some standard_skeleton id");
 
@@ -167,7 +167,7 @@ namespace
 				REQUIRE(identifier != NULL, "skeleton has <identifier>");
 				xmlNode* identRoot = FUXmlParser::FindChildByType(identifier, "root");
 				REQUIRE(identRoot != NULL, "skeleton identifier has <root>");
-				std::string identRootName = FUXmlParser::ReadNodeContentFull(identRoot);
+				std::string identRootName (FUXmlParser::ReadNodeContentFull(identRoot));
 
 				g_MappedSkeletons[identRootName] = skeleton.release();
 			}

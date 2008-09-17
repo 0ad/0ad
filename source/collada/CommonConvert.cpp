@@ -84,7 +84,9 @@ void FColladaDocument::LoadFromText(const char *text)
 	bool status = FCollada::LoadDocumentFromMemory("unknown.dae", document.get(), (void*)newText, newTextSize);
 
 	if (newText != text)
+	{
 		xmlFreeFunc((void*)newText);
+	}
 
 	REQUIRE_SUCCESS(status);
 }
@@ -132,7 +134,7 @@ CommonConvert::CommonConvert(const char* text, std::string& xmlErrors)
 	FCDAsset* asset = m_Doc.GetDocument()->GetAsset();
 	if (asset && asset->GetContributorCount() >= 1)
 	{
-		std::string tool = asset->GetContributor(0)->GetAuthoringTool();
+		std::string tool (asset->GetContributor(0)->GetAuthoringTool());
 		if (tool.find("XSI") != tool.npos)
 			m_IsXSI = true;
 	}
