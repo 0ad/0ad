@@ -95,19 +95,9 @@ static LibError list_free_all();
 static void hsd_list_free_all();
 
 
-/**
- * check if OpenAL indicates an error has occurred. it can only report one
- * error at a time, so this is called before and after every OpenAL request.
- *
- * @param caller Name of calling function (typically passed via __func__)
- */
-static void al_check(const char* caller = "(unknown)")
+static void al_ReportError(ALenum err, const char* caller)
 {
 	debug_assert(al_initialized);
-
-	ALenum err = alGetError();
-	if(err == AL_NO_ERROR)
-		return;
 
 	// count # times we've been called for the same function (this shows
 	// which of multiple AL_CHECK inside a function is the culprit)
@@ -124,6 +114,19 @@ static void al_check(const char* caller = "(unknown)")
 	const char* str = (const char*)alGetString(err);
 	debug_printf("OpenAL error: %s; called from %s (#%d)\n", str, caller, num_times_within_same_function);
 	debug_assert(0);
+}
+
+/**
+ * check if OpenAL indicates an error has occurred. it can only report one
+ * error at a time, so this is called before and after every OpenAL request.
+ *
+ * @param caller Name of calling function (typically passed via __func__)
+ */
+static void al_check(const char* caller = "(unknown)")
+{
+	ALenum err = alGetError();
+	if(err != AL_NO_ERROR)
+		al_ReportError(err, caller);
 }
 
 // convenience version that automatically passes in function name.
@@ -1436,18 +1439,9 @@ static void vsrc_latch(VSrc* vs)
 {
 	if(!vs->al_src)
 		return;
+	debug_assert(alIsSource(vs->al_src));
 
 	AL_CHECK;
-
-#ifndef NDEBUG
-	// paranoid value checking; helps determine which parameter is
-	// the problem when the below AL_CHECK fails.
-	debug_assert(!isnan(vs->pos[0]) && !isnan(vs->pos[1]) && !isnan(vs->pos[2]));
-	debug_assert(vs->relative == AL_TRUE || vs->relative == AL_FALSE);
-	debug_assert(!isnan(vs->gain) && vs->gain >= 0.0f);
-	debug_assert(!isnan(vs->pitch) && vs->pitch > 0.0f);
-	debug_assert(vs->loop == AL_TRUE || vs->loop == AL_FALSE);
-#endif
 
 	alSourcefv(vs->al_src, AL_POSITION,         vs->pos);
 	alSourcei (vs->al_src, AL_SOURCE_RELATIVE,  vs->relative);
@@ -1457,7 +1451,19 @@ static void vsrc_latch(VSrc* vs)
 	alSourcef (vs->al_src, AL_PITCH,            vs->pitch);
 	alSourcei (vs->al_src, AL_LOOPING,          vs->loop);
 
-	AL_CHECK;
+	ALenum err = alGetError();
+	if(err != AL_NO_ERROR)
+	{
+		debug_printf("vsrc_latch: one of the below is invalid:\n");
+		debug_printf("  al_src: %d\n", vs->al_src);
+		debug_printf("  pos: %f %f %f\n", vs->pos[0], vs->pos[1], vs->pos[2]);
+		debug_printf("  relative: %d\n", (int)vs->relative);
+		debug_printf("  gain: %f\n", vs->gain);
+		debug_printf("  pitch: %f\n", vs->pitch);
+		debug_printf("  loop: %d\n", (int)vs->loop);
+
+		al_ReportError(err, __func__);
+	}
 }
 
 
