@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_structure_economic_farmstead">
+	<Traits>
+	
+		<Id>
+
+			<Specific>Ffermdy</Specific>
+
+			<Civ>Celts</Civ>
+
+			<History>Farming typically revolved around small hamlets and farmsteads with enclosed rectilinear fields - each having areas of pasture, farmland and wood. Ploughing became more efficient with the arrival of the iron share (plough point ? courtesy of our Celts) and a two field rotation was introduced; crops one year followed by a fallow that was grazed by livestock. This lead to surprisingly high yields and fuelled population growth. The image of a farmstead would most likely be a house with some out-buildings. Storage of crops was either in pits or in raised stores and harvest was over several months - weeds, grain and then straw.</History>
+		
+		</Id>
+
+		<Population>
+			<Add>2</Add>
+		</Population>
+
+	</Traits>
+
+	<Actor>structures/celts/farmstead.xml</Actor>
+
+</Entity>

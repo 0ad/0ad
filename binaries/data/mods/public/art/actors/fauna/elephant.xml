@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Mesh">
+      <mesh>skeletal/elephant.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="hide-brown">
+      <texture>skeletal/animal_elephant.dds</texture>
+    </variant>
+    <variant frequency="1" name="hide-gray">
+      <texture>skeletal/animal_elephant2.dds</texture>
+    </variant>
+  </group>
+
+</actor>

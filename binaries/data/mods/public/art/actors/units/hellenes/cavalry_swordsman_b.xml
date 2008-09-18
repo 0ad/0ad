@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="17"/>
+        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="20"/>
+        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="20"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+      <props>
+        <prop actor="units/hellenes/cavalry_swordsman_b_r.xml" attachpoint="rider"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="horse-color-palamino">
+      <colour>176 168 106</colour>
+      <texture>skeletal/horse_hele_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse-color-strawberryroan">
+      <colour>225 150 9</colour>
+      <texture>skeletal/horse_hele_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="horse-color-dun">
+      <colour>196 103 0</colour>
+      <texture>skeletal/horse_hele_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

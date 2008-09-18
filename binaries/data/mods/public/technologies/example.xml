@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+   
+<Tech>
+   <ID>
+       <Generic>Improved Architecture</Generic>
+       <Specific>Willow Reeds</Specific>
+       
+       <Icon>sheet_tech_shared</Icon>
+       <Icon_Cell>13</Icon_Cell>
+       
+       <Classes>Buff</Classes>
+       
+       <Rollover></Rollover>
+       <History></History>
+   </ID>
+   
+   <Req>
+       <Time>5</Time>
+       <Resource>
+               <Food>50</Food>
+               <Wood>80</Wood>
+               <Stone>90</Stone>
+               <Metal>10</Metal>
+       </Resource>
+       
+       <Entity>Melee</Entity>
+       <Entity>Ranged</Entity>
+       <!--<Entity>some_entity_class_name</Entity>-->
+      
+       <!--<Tech>otherexample</Tech>
+		<Tech>tech_file_name</Tech>-->
+   </Req>
+   
+   <Effect>
+       <Target>Infantry</Target>
+       <Target>some_entity_class_name</Target>
+       
+       <Pair>real_example</Pair>
+       
+       <Set>
+		<Attribute>traits.health.max</Attribute>
+		<Value>17</Value>
+       </Set>
+	        
+   
+      <Script File="" />
+      <Function Name="" />
+	
+     
+   </Effect>
+
+</Tech>

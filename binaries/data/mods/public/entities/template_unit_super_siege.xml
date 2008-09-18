@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_super"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Generic>Super Siege</Generic>
+
+			<Icon_Cell>44</Icon_Cell>
+
+			<Classes>Mechanical, Siege</Classes>
+		
+		</Id>
+					<Creation>
+				<Resource>
+ 				<Wood>500</Wood>
+				<Metal>400</Metal>
+			
+ 			</Resource>
+		</Creation>		
+
+		<Anchor>
+			<ConformX>3.141592</ConformX>
+			<ConformZ>3.141592</ConformZ>
+		</Anchor>
+		<Armour>
+			<Hack>550.0</Hack>
+			<Pierce>600.0</Pierce>
+			<Crush>200.0</Crush>
+		</Armour>
+		
+	</Traits>
+
+
+
+	<Actions>
+ 		<Attack>
+ 			<Hack>0.0</Hack>
+ 			<Pierce>0.0</Pierce>
+ 			<Crush>700.0</Crush>
+ 		</Attack>
+	</Actions>
+
+</Entity>

@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<!--
+==========================================
+- SESSION GUI -
+==========================================
+-->
+
+<objects>
+
+	<object name="sn"
+		hidden="true"
+		hotkey="session.gui.toggle"
+	>
+		<action on="Press"><![CDATA[
+			guiToggle (this.name);
+		]]></action>
+		
+		<!-- EMPTY OBJECT TO END THE SESSION BUT WITH A CONFIRMATION BOX. (ESC key) -->
+		<object name="snLeave"
+		    hotkey="leave"
+		>
+		    <action on="Press"><![CDATA[
+		        btCaptions = new Array("Yes", "No!");
+                btCode = new Array("confirmLeave()", "");
+                messageBox (400, 200, "Do you really want to quit?", "Confirmation", 0, btCaptions, btCode);
+		    ]]></action>
+		</object>
+		
+
+		<!-- EMPTY OBJECT USED TO FLIP THE GUI TO VARIOUS ORIENTATIONS. -->
+		<object name="snFlip"
+			hotkey="session.gui.flip"
+		>
+			<action on="Press"><![CDATA[
+				flipGUI();
+			]]></action>
+		</object>
+
+		<!-- EMPTY OBJECT USED TO RETURN TO MAIN MENU. -->
+		<object name="snReturn"
+			hotkey="menu.resign"
+		>
+			<action on="Press"><![CDATA[
+				console.write("Returning to main menu!");
+				endSession("return");
+			]]></action>
+		</object>
+		
+		<!-- EMPTY OBJECT USED TO TOGGLE WATER RENDERING. -->
+		<object name="snWaterToggle"
+			hotkey="water.toggle"
+		>
+			<action on="Press"><![CDATA[		
+				toggleWater();
+			]]></action>
+		</object>
+
+		<!-- EMPTY OBJECT USED TO RAISE WATER PLANE. -->
+		<object name="snWaterRaise"
+			hotkey="water.raise"
+		>
+			<action on="Press"><![CDATA[		
+				setWaterHeight( getWaterHeight() + 0.25 );
+			]]></action>
+		</object>
+
+		<!-- EMPTY OBJECT USED TO LOWER WATER PLANE. -->
+		<object name="snWaterLower"
+			hotkey="water.lower"
+		>
+			<action on="Press"><![CDATA[	
+				setWaterHeight( getWaterHeight() - 0.25 );
+			]]></action>
+		</object>
+			
+		<!-- EMPTY OBJECT USED TO TOGGLE TERRITORY RENDERING. -->
+		<object name="snTerritoryToggle"
+			hotkey="territory.rendering.toggle"
+		>
+			<action on="Press"><![CDATA[		
+				toggleTerritoryRendering();
+			]]></action>
+		</object>
+    
+    <!-- EMPTY OBJECT USED TO KILL UNITS -->
+    <object name="unitsKiller"
+            hotkey="killUnit"
+    >
+      <action on="Press"><![CDATA[
+        killSelectedEntities();
+      ]]>  
+      </action>
+    </object>
+		
+		<!-- GROUP: MINIMAP -->
+		<object	name="snMiniMap"
+				hotkey="session.minimap.toggle"
+		>
+			<action on="Press"><![CDATA[
+				guiToggle (this.name);
+			]]></action>
+			
+			<object name="snMiniMapDisplay"
+				style="snObject"
+				type="minimap"
+			>
+				<action on="Load"><![CDATA[
+					addCrds (this.name, 100, 100, 6, 6, 132, 132);
+				]]></action>
+			</object>			
+			
+			<object	name="snMiniMapBorder"
+				style="snMiniMapBorder"
+				type="image"
+			>
+				<action on="Load"><![CDATA[
+					addCrds (this.name, 100, 100, 0, 0, 172, 172);
+				]]></action>
+				
+				
+			</object>
+
+		</object>
+		
+		<object name="snMiniMapButtonGroup"
+		>
+			<object	name="snMiniMapButtonArc_Up" style="snMiniMapArcUp" type="button"
+			>
+				<action on="Load"><![CDATA[
+					var currCrd = getCrd ("snMiniMapBorder");
+					addCrds (this.name, 100, 100, currCrd.coord[rb].x+currCrd.coord[rb].width-32, currCrd.coord[rb].y+currCrd.coord[rb].height-83, 25, 52);
+				]]></action>				
+			</object>
+			<object	name="snMiniMapButtonArc_Left" style="snMiniMapArcLeft" type="button"
+			>
+				<action on="Load"><![CDATA[
+					var currCrd = getCrd ("snMiniMapBorder");
+					addCrds (this.name, 100, 100, currCrd.coord[rb].x+currCrd.coord[rb].width-83, currCrd.coord[rb].y+currCrd.coord[rb].height-32, 52, 25);
+				]]></action>				
+			</object>				
+			<object	name="snMiniMapButtonUp_1" style="snMiniMapButton" type="button" />
+			<object	name="snMiniMapButtonUp_2" style="snMiniMapButton" type="button" />
+			<object	name="snMiniMapButtonUp_3" style="snMiniMapButton" type="button"
+			>
+				<action on="Load"><![CDATA[
+					// Seek through this group of buttons (determining length from last object's name).
+					var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (var loop = 1; loop <= max; loop++)
+					{
+						var tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						// Set size/position.
+						if (loop == 1)
+						{
+							currCrd = getCrd ("snMiniMapBorder");									
+							addCrds (tempName,
+								100, 100,
+								currCrd.coord[rb].x+currCrd.coord[rb].width-35,
+								currCrd.coord[rb].y,
+								30,
+								30);									
+						}
+						else
+						{
+							currCrd = getCrd (this.name.substring (0, this.name.lastIndexOf ("_")+1) + (loop - 1));
+							addCrds (tempName,
+								100, 100,
+								currCrd.coord[rb].x,
+								currCrd.coord[rb].y+currCrd.coord[rb].height+1,
+								currCrd.coord[rb].width,
+								currCrd.coord[rb].height);
+						}
+						// Set object properties.
+						var tempObject = getGUIObjectByName (tempName);
+						switch (loop)
+						{
+							case 1:
+								tempObject.cell_id = cellGroup["Minimap"]["territories"].id;
+							break;
+							case 2:
+								tempObject.cell_id = cellGroup["Minimap"]["terrain"].id;
+							break;
+							case 3:
+								tempObject.cell_id = cellGroup["Minimap"]["chat"].id;
+							break;
+							default:
+							break;
+						}
+						// Set tooltip.
+						tempObject.tooltip = "This button doesn't do anything ... yet.";
+						
+					}
+				]]></action>
+			</object>				
+			<object	name="snMiniMapButtonLeft_1" style="snMiniMapButton" type="button" />
+			<object	name="snMiniMapButtonLeft_2" style="snMiniMapButton" type="button" />
+			<object	name="snMiniMapButtonLeft_3" style="snMiniMapButton" type="button"
+			>
+				<action on="Load"><![CDATA[
+					// Seek through this group of buttons (determining length from last object's name).
+					var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (var loop = 1; loop <= max; loop++)
+					{
+						var tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						// Set size/position.
+						if (loop == 1)
+						{
+							var currCrd = getCrd ("snMiniMapBorder");									
+							addCrds (tempName,
+								100, 100,
+								currCrd.coord[rb].x,
+								currCrd.coord[rb].y+currCrd.coord[rb].height-32,
+								30,
+								30);									
+						}
+						else
+						{
+							var currCrd = getCrd (this.name.substring (0, this.name.lastIndexOf ("_")+1) + (loop - 1));
+							addCrds (tempName,
+								100, 100,
+								currCrd.coord[rb].x+currCrd.coord[rb].width+1,
+								currCrd.coord[rb].y,
+								currCrd.coord[rb].width,
+								currCrd.coord[rb].height);
+						}
+						// Set object properties.
+						var tempObject = getGUIObjectByName (tempName);
+						switch (loop)
+						{
+							case 1:
+								tempObject.cell_id = cellGroup["Minimap"]["score"].id;
+							break;
+							case 2:
+								tempObject.cell_id = cellGroup["Minimap"]["cycleobjects"].id;
+							break;
+							case 3:
+								tempObject.cell_id = cellGroup["Minimap"]["friendorfoe"].id;
+							break;
+							default:
+							break;
+						}
+						// Set tooltip.
+						tempObject.tooltip = "This button doesn't do anything ... yet.";
+						
+					}
+				]]></action>
+			</object>
+		</object>
+		
+
+		<!-- GROUP: RESOURCE COUNTER -->
+		<object name="snResourceCounter"
+			hotkey="resourcepool.toggle"
+		>
+			<action on="Press"><![CDATA[
+				guiToggle(this.name);
+			]]></action>
+
+			<object name="snResourceCounter_1" 
+				style="snCounter"
+				type="button" 
+			/>
+			<object name="snResourceCounter_2" 
+				style="snCounter"
+				type="button" 
+			/>
+			<object name="snResourceCounter_3" 
+				style="snCounter"
+				type="button" 
+			/>
+			<object name="snResourceCounter_4" 
+				style="snCounter"
+				type="button" 
+			/>
+			<object name="snResourceCounter_5" 
+				style="snCounter"
+				type="button" 
+			>
+				<action on="Load"><![CDATA[
+					// Seek through this group of buttons (determining length from last object's name).
+					var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (var loop = 1; loop <= max; loop++)
+					{
+						// Get name of current object in group.
+						var tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						// Create coordinates for object (the actual coordinates are refreshed when the
+						// resource is updated, so at this point we don't sweat that they have the same
+						// coordinates).
+						addCrds (tempName, 50, 0, -200, 4,
+							snConst.MiniIcon.Width+54, 32); 
+					}
+				]]></action>
+			</object>
+			
+			<object name="snResourceCounterIcon_1" 
+					style="snResourceIcon"
+					type="button" 
+			/>
+			<object name="snResourceCounterIcon_2" 
+					style="snResourceIcon"
+					type="button" 
+			/>
+			<object name="snResourceCounterIcon_3" 
+					style="snResourceIcon"
+					type="button" 
+			/>
+			<object name="snResourceCounterIcon_4" 
+					style="snResourceIcon"
+					type="button" 
+			/>			
+			<object name="snResourceCounterIcon_5" 
+					style="snResourceIcon"
+					type="button" 
+			>
+				<action on="Load"><![CDATA[
+					// Seek through this group of buttons (determining length from last object's name).
+					var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+					for (var loop = 1; loop <= max; loop++)
+					{
+						// Get name of current object in group.
+						var tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+						// Create coordinates for object (the actual coordinates are refreshed when the
+						// resource is updated, so at this point we don't sweat that they have the same
+						// coordinates).
+						addCrds (tempName, 50, 0, -200, 4,
+							32, 32); 
+					}
+				]]></action>				
+			</object>			
+
+		</object>
+		
+		<!-- PAUSE/UNPAUSE GAME TITLE. -->
+		<object name="snPause"
+				type="button"
+				font="prospero18b"
+				hidden="true"
+				hotkey="pause"
+				text_align="center"
+				text_valign="center"
+				textcolor="gold"
+		>Game is Paused
+			<action on="Load"><![CDATA[
+				var currCrd = getCrd ("snResourceCounter_1")
+				addCrds (this.name, 50, 0, -200, currCrd.coord[rb].y+currCrd.coord[rb].height, 200, currCrd.coord[rb].y+currCrd.coord[rb].height+52, 50, 0); 
+			]]></action>		
+			<action on="Press"><![CDATA[	
+				setPaused( !isPaused() );
+				getGUIObjectByName (this.name).hidden = (!(getGUIObjectByName (this.name).hidden));
+			]]></action>
+		</object>
+
+    <!-- This object contains the status messages like ´Insufficient wood..´, etc -->
+    <object name="globalMessageUnder"
+		        type="text"
+		        style="globalMessageStyleUnder"
+		>
+    </object>
+    
+		<object name="globalMessage"
+		        type="text"
+		        style="globalMessageStyle"
+		>
+		</object>
+
+    //Shadow
+    <object name="PlayersListShadow"
+      type="text"
+      style="PlayersListStyleShadow"
+		>
+
+      <object name="PlayerShadow_1"
+              type="text"
+              style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_2"
+                 type="text"
+                 style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_3"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+
+      <object name="PlayerShadow_4"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_5"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_6"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_7"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+      </object>
+
+      <object name="PlayerShadow_8"
+             type="text"
+             style="PlayerStyleShadow"
+           >
+        <action on="Load">
+          <![CDATA[ 
+                    //Sets correct coordinates for each text object.
+                    for (var i=1; i<=8; i++)
+                    {
+                        addCrds("PlayerShadow_"+i, 0, 0, 0, i*14+1, 1, 0, 100, 100);
+                    }
+                    
+               ]]>
+        </action>
+      </object>
+
+    </object>
+		
+		<!-- Players list -->
+		<object name="PlayersList"
+		        type="text"
+		        hotkey="session.ShowPlayersList"
+		        style="PlayersListStyle"
+		>
+		
+		  <action on="Press"><![CDATA[
+		      togglePlayersList();
+		  ]]></action>
+		  
+		  <object name="Player_1"
+		          type="text"
+		          style="PlayerStyle"
+           >
+		   </object> 
+		  
+		   <object name="Player_2"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+          
+           <object name="Player_3"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+           
+        
+           <object name="Player_4"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+          
+           <object name="Player_5"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+          
+           <object name="Player_6"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+           
+           <object name="Player_7"
+                  type="text"
+                  style="PlayerStyle"
+           >
+           </object> 
+           
+           <object name="Player_8"
+                  type="text"
+                  style="PlayerStyle"
+           >
+               <action on="Load"><![CDATA[ 
+                    //Sets correct coordinates for each text object.
+                    for (var i=1; i<=8; i++)
+                    {
+                        addCrds("Player_"+i, 0, 0, 0, i*14, 0, 0, 100, 100);
+                    }
+                    
+               ]]></action>
+           </object> 
+		  
+		</object>
+
+    
+		
+		<!-- GROUP: STATUS PANE -->
+		<object	name="snStatusPane"
+			hotkey="session.statuspane.toggle"
+		>
+			<action on="Press"><![CDATA[
+				guiToggle (this.name);
+			]]></action>
+
+			<!-- STATUS PANE -->
+			<object	name="snStatusPaneBkg"
+				style="snStatusPane"
+				type="image"
+			>
+				<action on="Load"><![CDATA[
+					addCrds (this.name, 0, 100, 0, 0, 256, 128);
+				]]></action>
+				
+				<object	name="snStatusPaneEmblem"
+					style="snStatusPane"
+					type="image"
+					z="10"
+				>
+					<action on="Load"><![CDATA[				
+						var currCrd = getCrd ("snStatusPaneBkg");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x, currCrd.coord[rb].y, 
+							currCrd.coord[rb].width, currCrd.coord[rb].height);
+					]]></action>								
+				</object>
+
+				<object	name="snStatusPanePortrait"
+					style="snPortrait"
+					type="button"
+					hotkey="selection.snap"
+				>
+					<action on="Load"><![CDATA[
+						addCrds (this.name, 0, 0, 7, 11, 
+							snConst.Portrait.Lrg.Width, snConst.Portrait.Lrg.Height);
+					]]></action>
+					<action on="Press"><![CDATA[
+						// Focus the camera on the unit when his portrait is clicked.
+						if (selection[0].position)
+							setCameraTarget(selection[0].position); 
+					]]></action>
+				</object>
+				
+				<object	name="snStatusPaneRank"
+					style="snObject"
+					type="text"
+					sprite="snIconSheetRank"
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPanePortrait");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
+								currCrd.coord[rb].y, 25, 25);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneHealthBar"
+					style="snGreenBar"
+					type="progressbar"
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPanePortrait");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+1,
+								currCrd.coord[rb].y+currCrd.coord[rb].height+3, 35, 8);					
+					]]></action>
+				</object>	
+
+				<object	name="snStatusPaneStaminaBar"
+					style="snBlueBar"
+					type="progressbar"
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPaneHealthBar");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
+								currCrd.coord[rb].y+currCrd.coord[rb].height, currCrd.coord[rb].width, currCrd.coord[rb].height);					
+					]]></action>
+				</object>		
+				
+				<object	name="snStatusPaneHealthBarText"
+					style="snObject"
+					type="text"
+					text_align="left"
+					text_valign="center"					
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPaneHealthBar");
+						var currCrd2 = getCrd ("snStatusPanePortrait");						
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width, currCrd.coord[rb].y, currCrd2.coord[rb].width-currCrd.coord[rb].width-2, currCrd.coord[rb].height);					
+					]]></action>
+				</object>				
+
+				<object	name="snStatusPaneStaminaBarText"
+					style="snObject"
+					type="text"
+					text_align="left"
+					text_valign="center"					
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPaneHealthBarText");
+						var currCrd2 = getCrd ("snStatusPaneStaminaBar");						
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x, currCrd2.coord[rb].y, currCrd.coord[rb].width, currCrd.coord[rb].height);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneText"
+					style="snObject"
+					type="text"
+					buffer_zone="5"
+					text_align="left"
+					text_valign="top"					
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPanePortrait");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width+3,
+								currCrd.coord[rb].y-1, 190, currCrd.coord[rb].height);					
+					]]></action>
+				</object>	
+				
+				<object	name="snStatusPaneSupplyIcon"
+					style="snObject"
+					type="text"
+					cell_id="0"					
+					sprite="snIconSheetResource"					
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPaneText");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x,
+								currCrd.coord[rb].y+currCrd.coord[rb].height+2, 20, 20);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneSupply"
+					style="snObject"
+					type="text"
+					sprite="bkDarkGrayBorderBlack"
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPaneSupplyIcon");
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width,
+								currCrd.coord[rb].y, 64, currCrd.coord[rb].height);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneGarrisonIcon"
+					style="snObject"
+					type="text"
+					cell_id="0"					
+					sprite="snIconSheetGarrison"					
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPaneSupply");
+						var currCrd2 = getCrd ("snStatusPaneSupplyIcon");						
+						addCrds (this.name, 0, 0, currCrd.coord[rb].x+currCrd.coord[rb].width,
+								currCrd.coord[rb].y, currCrd2.coord[rb].width, currCrd.coord[rb].height);					
+					]]></action>
+				</object>
+
+				<object	name="snStatusPaneGarrison"
+					style="snObject"
+					type="text"
+					sprite="bkDarkGrayBorderBlack"
+				>
+					<action on="Load"><![CDATA[
+						var currCrd = getCrd ("snStatusPaneSupply");
+						var currCrd2 = getCrd ("snStatusPaneGarrisonIcon");						
+						addCrds (this.name, 0, 0, currCrd2.coord[rb].x+currCrd2.coord[rb].width, currCrd2.coord[rb].y, currCrd.coord[rb].width, currCrd.coord[rb].height);					
+					]]></action>
+				</object>				
+				
+				<object	name="snStatusPaneStat_1" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_2" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_3" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_4" style="snStat" type="button" />				
+				<object	name="snStatusPaneStat_5" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_6" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_7" style="snStat" type="button" />
+				<object	name="snStatusPaneStat_8" style="snStat" type="button"
+				>
+					<action on="Load"><![CDATA[
+						// Seek through this group of buttons (determining length from last object's name).
+						var max = this.name.substring (this.name.lastIndexOf ("_")+1, this.name.length);
+						var currCrd = getCrd ("snStatusPaneBkg");
+						var currCrd3 = getCrd ("snStatusPanePortrait");
+						for (loop = 1; loop <= max; loop++)
+						{
+							// Get name of current object in group.
+							tempName = this.name.substring (0, this.name.lastIndexOf ("_")+1) + loop;
+							
+							// Set width as either icon (odd) or text (even).
+							if (loop % 2 == 0)
+								tempWidth = (currCrd.coord[rb].width/max + 7);
+							else
+								tempWidth = 16;							
+							
+							if (loop == 1)
+							{
+								// Define first stat.
+								addCrds (tempName, 0, 0, currCrd3.coord[rb].x,
+									currCrd.coord[rb].y+currCrd.coord[rb].height-28,
+									tempWidth, 16);
+							}
+							else
+							{
+								// Get previous stat.
+								var currCrd2 = getCrd (this.name.substring (0, this.name.lastIndexOf ("_")+1) + (loop-1));
+								// Align to the right of it.
+								addCrds (tempName, 0, 0, currCrd2.coord[rb].x + currCrd2.coord[rb].width, currCrd2.coord[rb].y, tempWidth, currCrd2.coord[rb].height);								
+							}
+						}					
+					]]></action>				
+				</object>
+
+			</object>
+
+			<!-- COMMAND BUTTONS (arc the Status Pane) -->
+			<object	name="snStatusPaneCommand1_1"
+				style="snPortrait"
+				type="button"
+				z="100"
+			>
+			</object>
+			<object	name="snStatusPaneCommandGroup1" >
+				<object	style="snPortrait" type="button" name="snStatusPaneCommand1_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand1_12" />
+			</object>
+			<object	name="snStatusPaneCommand2_1" 
+				style="snPortrait" 
+				type="button"
+				z="100"				
+			/>
+			<object name="snStatusPaneCommandGroup2" >
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand2_12" />
+			</object>
+			<object name="snStatusPaneCommand3_1" 
+				style="snPortrait" 
+				type="button"
+				z="100"				
+			/>
+			<object name="snStatusPaneCommandGroup3" >
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand3_12" />
+			</object>
+			<object name="snStatusPaneCommand4_1" 
+				style="snPortrait" 
+				type="button"
+				z="100"				
+			/>
+			<object name="snStatusPaneCommandGroup4" >
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand4_12" />
+			</object>
+			<object name="snStatusPaneCommand5_1" 
+				style="snPortrait" 	
+				type="button"
+				z="100"				
+			/>
+			<object name="snStatusPaneCommandGroup5" >
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand5_12" />
+			</object>
+			<object name="snStatusPaneCommand6_1" 
+				style="snPortrait" 
+				type="button"
+				z="100"				
+			/>
+			<object name="snStatusPaneCommandGroup6" >
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand6_12" />
+			</object>
+			<object name="snStatusPaneCommand7_1" 
+				style="snPortrait" 	
+				type="button"
+				z="100"				
+			/>
+			<object name="snStatusPaneCommandGroup7" >
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand7_12" />
+			</object>
+			<object name="snStatusPaneCommand8_1" 
+				style="snPortrait" 
+				type="button"
+				z="10"				
+			/>
+			<object name="snStatusPaneCommandGroup8" >
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_2Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_3Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_4Bar" />	
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_5Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_6Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_7Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_8Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_9Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_10Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_11Bar" />
+				<object style="snGreenBar" type="progressbar" name="snStatusPaneCommand8_12Bar" />			
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_2" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_3" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_4" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_5" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_6" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_7" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_8" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_9" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_10" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_11" />
+				<object style="snPortrait" type="button" name="snStatusPaneCommand8_12" 
+				>
+					<action on="Load"><![CDATA[
+						defineCommandButtons(this.name);
+					]]></action>
+				</object>
+			</object>
+<!--
+			<object	name="snStatusPaneCommandProgress"
+				style="snPortraitProgress"
+				type="progressbar"
+				hidden="true"
+			>
+				<action on="Load"><![CDATA[
+					addCrds (this.name, 0, 100,
+						getCrd ("snStatusPaneBkg").coord[rb].x
+							+getCrd ("snStatusPaneBkg").coord[rb].width,
+							getCrd ("snStatusPaneBkg").coord[rb].y+getCrd ("snStatusPaneBkg").coord[rb].height, 
+								snConst.Portrait.Sml.Width, snConst.Portrait.Sml.Height);
+				]]></action>
+			</object>
+-->
+		</object>
+	</object>
+
+</objects>
+
+
+
+

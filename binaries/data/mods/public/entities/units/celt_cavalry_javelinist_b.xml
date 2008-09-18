@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_cavalry_ranged_javelinist">
+	<Traits>
+		<Id>
+			<Specific>Baguada</Specific>
+			<Civ>Celts</Civ>
+			<History>The Celts were extremely proficient horsemen and created excellent tack for their mounts. This included an early form of saddle with horns at each corner, giving them a huge edge in terms or control over their counterparts. Since the cavalry was made up of rich nobles armor and fine weapons were in great supply, making them formidable opponents.</History>
+		</Id>
+		<Creation>			
+			<Time>15</Time>
+		</Creation>
+		<Promotion>
+			<Entity>celt_cavalry_javelinist_a</Entity>
+		</Promotion>
+	</Traits>
+	<Actions>
+ 		<Move>
+			<Speed>11.0</Speed>
+			<Run>
+				<Speed>22.8</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/celts/cavalry_javelinist_b.xml</Actor>
+</Entity>

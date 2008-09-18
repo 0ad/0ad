@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="hele_infantry_javelinist_b">
+
+	<Traits>
+
+		<Id>
+
+			<Icon_Cell>7</Icon_Cell>
+
+		</Id>
+		
+		<Promotion>
+				
+			<Entity>hele_infantry_javelinist_e</Entity>
+			
+		</Promotion>
+	
+	</Traits>
+	<Actions>
+		<Create>
+			<List>
+				<StructCiv>
+					<Theatron />
+				</StructCiv>
+				<StructMil>
+					<Gymnasion />
+				</StructMil>
+			</List>
+		</Create>
+	</Actions>
+
+	<Actor>units/hellenes/infantry_javelinist_a.xml</Actor>
+</Entity>

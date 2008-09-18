@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_civic"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Temple</Generic>
+
+			<Icon_Cell>58</Icon_Cell>
+
+			<Classes>Town</Classes>
+
+			<Tooltip>Trains physicians, researches medical technologies, and provides healing to nearby allied organic units.</Tooltip>
+		
+		</Id>
+		
+		<Creation>
+			<Foundation>foundation_3x3</Foundation>
+ 			<Resource>
+ 				<Stone>300</Stone>
+ 			</Resource>
+		</Creation>
+			
+ 		<Footprint>
+ 			<Width>12.0</Width>
+ 			<Depth>12.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Auras>
+			<Heal>
+				<Radius>30</Radius>
+				<Rate>5</Rate>
+				<Speed>2000</Speed>
+				<r>1.0</r>
+				<g>1.0</g>
+				<b>0.0</b>
+				<a>0.6</a>
+			</Heal>
+		</Auras>
+		
+		<Health>
+ 			<Max>2000</Max>
+		</Health>
+
+		<Armour>
+			<Hack>25.0</Hack>
+			<Crush>25.0</Crush>
+		</Armour>
+
+		<Population>
+			<Add>5</Add>
+		</Population>
+
+	</Traits>
+	<Actions>
+		<Create>
+ 			<List>
+				<Train>
+					<Support_Healer />
+				</Train>
+ 				<Research>
+					<Real_Example />
+				</Research>
+ 			</List>
+ 			<Speed>1</Speed>
+			
+			<Rally/>
+ 		</Create>
+		
+	</Actions>
+</Entity>

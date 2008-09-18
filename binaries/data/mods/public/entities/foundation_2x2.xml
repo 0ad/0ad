@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_foundation"
+>
+	<Traits>
+	
+		<Id>
+			<Generic>Foundation 2x2</Generic>
+
+			<Classes>Foundation</Classes>
+		</Id>
+	
+		<Footprint>
+			<Width>9.0</Width>
+			<Depth>9.0</Depth>
+			<Height>8.0</Height>
+		</Footprint>
+
+		<Vision>
+			<Los>2</Los>
+		</Vision>
+	
+	</Traits>
+		
+	<Actor>structures/fndn_2x2.xml</Actor>
+
+</Entity>

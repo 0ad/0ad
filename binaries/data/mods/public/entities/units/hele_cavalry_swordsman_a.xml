@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="hele_cavalry_swordsman_b">
+	<Traits>
+	
+		<id>
+
+			<Icon_Cell>19</Icon_Cell>
+	
+		</id>
+		
+		<Promotion>
+				
+			<Entity>hele_cavalry_swordsman_e</Entity>
+			
+		</Promotion>
+
+	</Traits>
+
+	<Actor>units/hellenes/cavalry_swordsman_a.xml</Actor>
+
+</Entity>

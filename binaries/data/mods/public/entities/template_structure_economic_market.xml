@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_structure_economic">
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Market</Generic>
+
+			<Icon_Cell>60</Icon_Cell>
+
+			<Classes>Town</Classes>
+
+			<Tooltip>Creates Trade units and allows resources to be Bartered.</Tooltip>
+		
+		</Id>
+		
+		<Creation>
+			<Foundation>foundation_4x4</Foundation>
+			<Resource>
+ 				<Wood>300</Wood>
+ 			</Resource>
+		</Creation>
+			
+ 		<Footprint>
+ 			<Width>17.0</Width>
+ 			<Depth>17.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Garrison>
+			<Max>10</Max>
+		</Garrison>
+
+		<Health>
+ 			<Max>1500</Max>
+		</Health>
+
+		<Armour>
+			<Hack>10.0</Hack>
+			<Pierce>42.0</Pierce>
+			<Crush>20.0</Crush>
+		</Armour>
+
+		<Population>
+			<Add>10</Add>
+		</Population>
+
+	</Traits>
+	
+	<Actions>
+		<Create>
+ 			<List>
+				<Train>
+					<Support_Trader />
+				</Train>
+ 				<Research>
+					<Real_Example />
+				</Research>
+ 			</List>
+ 			<Speed>1</Speed>
+			<Rally/>
+ 		</Create>
+	
+		<Barter>
+			<List>
+				<Food />
+				<Wood />
+				<Stone />
+				<Metal />
+			</List>
+		</Barter>
+	</Actions>
+
+</Entity>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE setup SYSTEM "..\gui.dtd">
+
+<setup>
+	<!--
+	==========================================
+	- SETUP - SCROLLBARS
+	==========================================
+	-->
+
+	<scrollbar	name="wheatScrollBar"
+			width="12"
+			minimum_bar_size="4"
+			alwaysshown="false"
+			sprite_button_top="wheatArrowUp"
+			sprite_button_top_over="wheatArrowUpOver"
+			sprite_button_top_pressed="wheatArrowUpOver"
+			sprite_button_bottom="wheatArrowDn"
+			sprite_button_bottom_over="wheatArrowDnOver"
+			sprite_button_bottom_pressed="wheatArrowDnOver"
+			sprite_back_vertical="wheatScrollSpriteBar"
+			sprite_bar_vertical="wheatCheckBoxOpen"
+			sprite_bar_vertical_over="bkWhiteBorderBlack"
+			sprite_bar_vertical_pressed="bkWhiteBorderBlack"
+	/>
+	
+	<!--
+	==========================================
+	- SETUP - ICONS
+	==========================================
+	-->
+
+		<!--
+		==========================================
+		- SETUP - ICONS - GENERIC
+		==========================================
+		-->
+
+		<icon	name="iconProduct"
+			sprite="iconProduct"
+			size="16 16"
+		/>
+		
+		<icon 	name="iconBullet"
+			sprite="iconBullet"
+			size="8 8" 
+		/>
+
+		<icon 	name="iconInfinity"
+			sprite="iconInfinity"
+			size="16 16" 
+		/>
+		
+		<!--
+		==========================================
+		- SETUP - ICONS - RESOURCE
+		==========================================
+		-->
+
+		<icon	name="iconResourceFood"
+				sprite="snIconSheetResource"
+				cell_id="0"
+				size="30 30" 
+		/>
+
+		<icon	name="iconResourceWood"
+				sprite="snIconSheetResource"
+				cell_id="1"
+				size="30 30" 
+		/>
+
+		<icon	name="iconResourceStone"
+				sprite="snIconSheetResource"
+				cell_id="2"
+				size="30 30" 
+		/>
+
+		<icon 	name="iconResourceOre"
+				sprite="snIconSheetResource"
+				cell_id="3"
+				size="30 30" 
+		/>
+
+		<icon 	name="iconResourcePopulation"
+				sprite="snIconSheetResource"
+				cell_id="4"
+				size="30 30" 
+		/>
+		
+		<!--
+		==========================================
+		- SETUP - ICONS - STATISTICS
+		==========================================
+		-->		
+	
+		<icon 	name="iconGarrisonCapacity"
+				sprite="snIconSheetGarrison"
+				cell_id="0"
+				size="30 30" 
+		/>
+		
+		<!--
+		==========================================
+		- SETUP - TOOLTIPS
+		==========================================
+		-->
+
+		<tooltip	name="pgToolTip"
+				use_object="pgToolTip"
+				delay="0"
+				hide_object="true"
+		/>
+		
+		<tooltip	name="pgSessionSetupToolTip"
+				use_object="pgSessionSetupToolTip"
+				delay="0"
+				hide_object="true"
+		/>	
+		
+		<tooltip 	name="pgFloatingToolTip"
+				anchor="top"
+				buffer_zone="4"
+				delay="500"
+				font="tahoma12"
+				maxwidth="300"
+				offset="16 32"
+				sprite="bkWhiteBorderBlack"
+				textcolor="0 0 0"
+		/>
+
+		<tooltip 	name="snToolTip"
+				anchor="top"
+				buffer_zone="4"
+				delay="500"
+				font="tahoma12"
+				maxwidth="300"
+				offset="16 32"
+				sprite="bkWhiteBorderBlack"
+				textcolor="0 0 0"
+		/>
+		
+		<!--
+		==========================================
+		- SETUP - COLORS
+		==========================================
+		-->
+
+		<color		name="black"
+		>0 0 0
+		</color>
+
+		<color		name="gold"
+		>237 227 167
+		</color>
+
+		<color		name="white"
+		>255 255 255
+		</color>
+
+		<color		name="gray"
+		>243 242 240
+		</color>
+		
+		<color		name="darkgray"
+		>43 42 40
+		</color>		
+
+		<color		name="blue"
+		>0 0 255
+		</color>	
+		
+		<color		name="green"
+		>0 200 0
+		</color>	
+		
+		<color		name="mustard"
+		>191 191 2
+		</color>	
+		
+		<color		name="brown"
+		>159 98 24
+		</color>		
+		
+		
+        <!--
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
+	-->
+
+	<scrollbar	name="sb"
+			width="18"
+			minimum_bar_size="5"
+			sprite_button_top="sprite2"
+			sprite_button_top_over="null"
+			sprite_button_bottom="sprite2"
+			sprite_button_bottom_over="null"
+			sprite_back_vertical="bkFillGray"
+			sprite_bar_vertical="sprite2"
+			sprite_bar_vertical_over="null"
+			sprite_bar_vertical_pressed="null"
+			sprite_button_bottom_pressed="sprite2_pressed"
+			sprite_button_top_pressed="sprite2_pressed"
+	/>
+
+	<scrollbar	name="sb2"
+			width="37"
+			minimum_bar_size="5"
+			sprite_button_top="scroll"
+			sprite_button_top_over="null"
+			sprite_button_bottom="scroll"
+			sprite_button_bottom_over="null"
+			sprite_back_vertical="null"
+			sprite_bar_vertical="scroll_bar"
+			sprite_bar_vertical_over="null"
+			sprite_bar_vertical_pressed="null"
+			sprite_button_bottom_pressed="scroll"
+			sprite_button_top_pressed="scroll"
+	/>
+
+	<scrollbar	name="manual_scrollbar"
+			width="12"
+			minimum_bar_size="4"
+			alwaysshown="false"
+			sprite_button_top="sprite2"
+			sprite_button_top_over="scroll"
+			sprite_button_bottom="sprite2"
+			sprite_button_bottom_over="scroll"
+			sprite_back_vertical="bkFillGray"
+			sprite_bar_vertical="sprite2"
+			sprite_bar_vertical_over="scroll"
+			sprite_bar_vertical_pressed="sprite2_pressed"
+			sprite_button_bottom_pressed="sprite2_pressed"
+			sprite_button_top_pressed="sprite2_pressed"
+	/>
+
+	<scrollbar	name="atlas_scrollbar"
+			width="12"
+			minimum_bar_size="4"
+			alwaysshown="true"
+			sprite_button_top="atlas_global_button_up"
+			sprite_button_top_over="atlas_global_button_up_lit"
+			sprite_button_top_pressed="atlas_global_button_up_lit"
+			sprite_button_bottom="atlas_global_button_dn"
+			sprite_button_bottom_over="atlas_global_button_dn_lit"
+			sprite_button_bottom_pressed="atlas_global_button_dn_lit"
+			sprite_back_vertical="atlas_button"
+			sprite_bar_vertical="atlas_button"
+			sprite_bar_vertical_over="atlas_button_lit"
+			sprite_bar_vertical_pressed="atlas_button_lit"
+	/>
+	
+	
+
+        <!--
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
+NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED NOT YET CONVERTED 
+	-->
+
+
+		<!--
+		==========================================
+		- SETUP - ICONS - STATISTIC
+		==========================================
+		-->
+
+		<icon 	name="icon_statistic_garrison" 
+			sprite="ui_icon_sheet_statistic" 
+			cell_id="12" 
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_rank1"
+			sprite="ui_icon_sheet_statistic" 
+			cell_id="9" 
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_rank2"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="10" 
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_rank3"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="11" 
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_hp"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="13" 
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_accuracy"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="0"
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_armour"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="2"
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_attack"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="1"
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_crush"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="8" 
+			size="20 20" 
+		/>
+
+		<icon	name="icon_statistic_hack"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="6"
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_los"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="3"
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_pierce"
+			sprite="ui_icon_sheet_statistic" 
+			cell_id="7" 
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_range"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="5"
+			size="20 20" 
+		/>
+
+		<icon 	name="icon_statistic_speed"
+			sprite="ui_icon_sheet_statistic"
+			cell_id="4"
+			size="20 20" 
+		/>
+        
+</setup>

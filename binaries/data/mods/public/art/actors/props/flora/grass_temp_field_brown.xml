@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="small-short-a">
+      <mesh>gaia/grass_sm_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="small-short-b">
+      <mesh>gaia/grass_sm_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="small-tall-a">
+      <mesh>gaia/grass_sm_tall_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="small-tall-b">
+      <mesh>gaia/grass_sm_tall_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="large-short-a">
+      <mesh>gaia/grass_la_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="large-short-b">
+      <mesh>gaia/grass_la_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="large-tall-a">
+      <mesh>gaia/grass_la_tall_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="large-tall-b">
+      <mesh>gaia/grass_la_tall_b.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="brown">
+      <texture>gaia/grass_field_brown.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

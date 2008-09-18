@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_infantry_melee">
+	<Traits>
+	
+		<Id>
+			<Generic>Infantry Swordsman</Generic>
+
+			<Icon_Cell>0</Icon_Cell>
+
+			<Classes>Sword</Classes>
+
+			<Rollover>Weapon is basically a developed sickle. Probably from the club, to the axe, to the sickle to the sword. It was the Romans who used them to combat the long range of the sarissa. Their spears were so long they had to use two hands to wield them. In a formation they were almost impossible to maneouvre. If flanked, they were easily cut down by a sword as demonstrated by the Romans at the battle of Cynoscephalae. Generally swordsmen were well armoured, had shields, and tended to be nobles. A good sword was an expensive weapon.</Rollover>
+			<Tooltip>Bonused vs. Infantry Spearman and Infantry Javelinist.
+			</Tooltip>		
+		</Id>
+		
+		<Creation>
+				<Resource>
+ 				<Food>50</Food>
+				<Metal>62</Metal>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>6.0</Hack>
+			<Pierce>3.0</Pierce>
+			<Crush>10.0</Crush>
+		</Armour>	
+
+		<Health>
+			<Max>90</Max>
+		</Health>
+
+		<Stamina>
+			<Max>400.0</Max>
+		</Stamina>
+
+		<Vision>
+			<Los>12</Los>
+		</Vision>
+	
+	</Traits>
+
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>17.0</Hack>
+ 				<Pierce>0.0</Pierce>
+			</Melee>
+			<Charge>
+				<Hack>34.0</Hack>
+			</Charge>		
+ 		</Attack>
+
+		<Move>
+
+			<Speed>6.5</Speed>
+
+			<Run>
+
+				<Speed>15.00</Speed>
+
+			</Run>
+		</Move>
+	</Actions>
+
+</Entity>

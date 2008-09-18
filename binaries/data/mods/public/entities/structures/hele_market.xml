@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_economic_market"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Agora</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>The most important place in most Classical Greek polises, the Agora served many purposes - it was a stage for public speeches and debates, as well as a market.</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actor>structures/hellenes/market.xml</Actor>
+
+</Entity>

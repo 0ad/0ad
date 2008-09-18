@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_unit_fauna_hunt_skittish">
+	<Traits>
+
+		<Id>
+
+				<Specific>Gazelle</Specific>
+
+		</Id>
+	
+	</Traits>
+	
+	<Actions>	
+			<Move>
+			<Speed>5.0</Speed>
+			<TurningRadius>1.0</TurningRadius>
+			
+			<Run>
+				<Speed>15.0</Speed>
+				<Range>600.0</Range>
+				<RangeMin>5.0</RangeMin>
+			</Run>
+			
+		</Move>
+	</Actions>
+
+ 	<Actor>fauna/gazelle.xml</Actor>
+
+</Entity>

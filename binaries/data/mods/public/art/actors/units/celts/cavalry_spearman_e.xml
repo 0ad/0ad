@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/mastiff_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/mastiff_run.psa" name="Walk" speed="12"/>
+        <animation file="quadraped/mastiff_run.psa" name="run" speed="20"/>
+      </animations>
+      <mesh>skeletal/mastiff.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/celt_mastiff_a.xml" attachpoint="collar"/>
+      </props>
+      <texture>skeletal/mastiff_e.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="brown">
+      <colour>255 149 79</colour>
+    </variant>
+    <variant frequency="1" name="taupe">
+      <colour>255 224 151</colour>
+    </variant>
+    <variant frequency="2" name="tawny">
+      <colour>255 179 59</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

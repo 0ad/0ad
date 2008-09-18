@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="EuropeanBeech-Trunk-a">
+      <mesh>gaia/tree_oak_a.pmd</mesh>
+    </variant>
+    <variant name="EuropeanBeech-Trunk-b">
+      <mesh>gaia/tree_oak_b.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="Trunk-Texture">
+      <texture>gaia/trunk_beech_a.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="prop-canopy">
+      <props>
+        <prop actor="flora/trees/european_beech_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+  </group>
+
+</actor>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="verutum-light">
+      <mesh>props/weap_pillum_e.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="verutum-dark">
+      <mesh>props/weap_pillum_f.pmd</mesh>
+    </variant>
+  </group>
+
+</actor>

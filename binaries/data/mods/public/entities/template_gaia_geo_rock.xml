@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_gaia_geo"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Generic>Rock</Generic>
+			<Specific>Rock</Specific>			
+
+ 			<Icon>PortraitSheetRock</Icon>			
+			<Icon_Cell>0</Icon_Cell>			
+
+			<Classes>Rock</Classes>
+
+			<Rollover>A lump of hard common mineral.  It can be mined to provide stone building material.</Rollover>
+
+		</Id>
+ 
+ 		<MiniMap>
+ 			<Type>Stone</Type>
+ 			<Red>128</Red>
+ 			<Green>128</Green>
+ 			<Blue>128</Blue>
+		</MiniMap>
+
+ 		<Supply>
+ 			<Max>500</Max>
+ 			<Type>stone</Type>
+ 		</Supply>
+
+	</Traits>
+</Entity>

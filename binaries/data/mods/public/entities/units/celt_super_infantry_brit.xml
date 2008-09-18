@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_super_infantry">
+	<Traits>
+	
+		<Id>
+		
+			<Specific>Delamokludda</Specific>
+
+			<Civ>Celts</Civ>
+
+			<History>Two-handed swordsmen from Briton.</History>
+			<Tooltip>Bonus vs. Spear Units.</Tooltip>		
+		</Id>
+		
+	</Traits>
+
+	<Actor>units/celts/super_unit_3.xml</Actor>
+
+</Entity>

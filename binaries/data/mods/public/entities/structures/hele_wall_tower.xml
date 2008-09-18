@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_structure_defense_wall_tower">
+	<Traits>
+	
+		<Id>
+
+			<Specific>Pyrgos</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>Towers were an important part of city fortifications. The defending troops shot arrows at the enemy and poured boiling oil over the assailants.</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actor>structures/hellenes/wall_turret.xml</Actor>
+
+</Entity>

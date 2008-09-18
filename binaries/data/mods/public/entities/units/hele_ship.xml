@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_mechanical_ship_bireme"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Specific>Temporary Ship</Specific>
+
+			<History>This is a temporary ship; feel free to delete/tweak this entity file at any time.</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actor>temp/ship.xml</Actor>
+
+</Entity>

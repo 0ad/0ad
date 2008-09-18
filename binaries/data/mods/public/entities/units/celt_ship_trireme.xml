@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_mechanical_ship_trireme"
+>
+	<Traits>
+	
+		<Id>
+		
+			<Specific>Venetic Ponti</Specific>
+			
+			<Civ>Celts</Civ>
+			
+			<History>The ships of Gaul were described by Julias Caesar as:  flat bottoms to ride the shallows, exceptionally high bows and sterns, hulls were made entirely of oak, the foot wide cross-timbers were fastened with iron bolts as thick as a man’s thumb, sails of raw hides or thin leather, adapted for sailing treacherous and stormy waters of the north atlantic.  Caesar could not injure them by ramming because they were so solidly built, and their height made it difficult to reach them with missiles or board them with grappling irons.</History>
+			
+		</Id>
+	
+	</Traits>
+
+	<Actor>structures/celts/trireme.xml</Actor>
+</Entity>

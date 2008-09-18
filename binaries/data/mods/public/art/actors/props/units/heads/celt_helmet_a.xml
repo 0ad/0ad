@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="helmet-01">
+      <mesh>props/helmet/celt_helmet_a.pmd</mesh>
+      <texture>props/helmet/celt_a1.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-02">
+      <mesh>props/helmet/celt_helmet_a.pmd</mesh>
+      <texture>props/helmet/celt_a2.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-03">
+      <mesh>props/helmet/celt_helmet_b.pmd</mesh>
+      <texture>props/helmet/celt_b1.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-04">
+      <mesh>props/helmet/celt_helmet_c.pmd</mesh>
+      <texture>props/helmet/celt_b1.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-05">
+      <mesh>props/helmet/celt_helmet_c.pmd</mesh>
+      <texture>props/helmet/celt_b2.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-06-Port">
+      <mesh>props/helmet/celt_helmet_d.pmd</mesh>
+      <texture>props/helmet/celt_d1.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-07">
+      <mesh>props/helmet/celt_helmet_e.pmd</mesh>
+      <texture>props/helmet/celt_e1.dds</texture>
+    </variant>
+    <variant frequency="3" name="helmet-08">
+      <mesh>props/helmet/celt_coolus_caradoc.dae</mesh>
+      <texture>props/helmet/celt_a4.dds</texture>
+    </variant>
+    <variant frequency="2" name="helmet-09">
+      <mesh>props/helmet/celt_coolus_feathers.dae</mesh>
+      <texture>props/helmet/celt_a3.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

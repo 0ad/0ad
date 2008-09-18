@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="bush-tropical-a1">
+      <mesh>gaia/bush_dese_a_1.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="bush-tropical-a2">
+      <mesh>gaia/bush_dese_a_2.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="bush-tropical-a3">
+      <mesh>gaia/wrld_plant_bush_dry1.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="bush-tropical-a4">
+      <mesh>gaia/wrld_plant_bush_dry2.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="bush-tropical-a5">
+      <mesh>gaia/wrld_plant_bush_dry3.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="texture-a">
+      <texture>gaia/bush_tropic_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="texture-b">
+      <texture>gaia/bush_tropic_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="texture-c">
+      <texture>gaia/bush_tropic_c.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

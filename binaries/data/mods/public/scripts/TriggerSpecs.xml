@@ -1,0 +1,147 @@
+<Definitions>
+
+	<Condition name ="DisplayName" function = "something" funcParameters = "0">
+		<WindowRow>
+			<Parameter name = "Random">
+				<Window type="text" position = "0,0" size = "80,20"/>
+				<InputType>int</InputType>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+			<Parameter name ="something">
+				<Window type="choice" position ="0,0" size="80, 20"/>
+				<Choices>ATLAS_CINEMA_LIST</Choices>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+			<Parameter name ="awesome">
+				<Window type="choice" position ="0,0" size="80, 20"/>
+				<Choices>holy,crap,comma,separated,choices</Choices>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+		</WindowRow>
+	</Condition>
+	
+	<Condition name = "Always" function = "trigGetAlwaysTrue" funcParameters = "0"/>
+	
+	<Condition name = "Player resource" function = "trigPlayerResourceCount" funcParameters = "2">
+		<WindowRow>
+			<Parameter name = "Player">
+				<Window type="choice" position = "0,0" size = "80, 20"/>
+				<Choices>1,2,3,4,5,6</Choices>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+			<Parameter name = "Resource">
+				<Window type="choice" position = "5,0" size = "80, 20"/>
+				<Choices>Food,Wood,Stone,Metal</Choices>
+				<ChoiceTranslation>"Food","Wood","Stone","Metal"</ChoiceTranslation>
+				<ParameterOrder>1</ParameterOrder>
+			</Parameter>
+			<Parameter name = "Operator">
+				<Window type="choice" position = "5,0" size = "80, 20"/>
+				<Choices>&lt;,&lt;=,==,!=,&gt;=,&gt;</Choices>
+				<ParameterOrder>2</ParameterOrder>
+			</Parameter>
+			<Parameter name = "Value">
+				<Window type="text" position = "5,0" size = "80, 20"/>
+				<InputType>int</InputType>
+				<ParameterOrder>3</ParameterOrder>
+			</Parameter>
+		
+		</WindowRow>
+	</Condition>
+
+	<Condition name = "Player unit count" function = "trigPlayerUnitCount" funcParameters = "2">
+		<WindowRow>
+			
+			<Parameter name = "Player">
+				<Window type="choice" position = "0,0" size = "80, 20"/>
+				<Choices>1,2,3,4,5,6</Choices>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+			<Parameter name = "Unit">
+				<Window type="choice" position = "5,0" size = "80, 20"/>
+				<Choices>Unit,Range,Melee</Choices>
+				<ChoiceTranslation>"Unit","Range","Melee"</ChoiceTranslation>
+				<ParameterOrder>1</ParameterOrder>
+			</Parameter>
+			<Parameter name = "Operator">
+				<Window type="choice" position = "5,0" size = "80, 20"/>
+				<Choices>&lt;,&lt;=,==,!=,&gt;=,&gt;</Choices>
+				<ParameterOrder>2</ParameterOrder>
+			</Parameter>
+			<Parameter name = "Value">
+				<Window type="text" position = "5,0" size = "80, 20"/>
+				<InputType>int</InputType>
+				<ParameterOrder>3</ParameterOrder>
+			</Parameter>
+
+		</WindowRow>
+	</Condition>
+
+	<Condition name = "Significant entities" function = "trigPlayerSigEntities" funcParameters = "1">
+		<WindowRow>
+			
+			<Parameter name = "Player">
+				<Window type="choice" position = "0,0" size = "80, 20"/>
+				<Choices>1,2,3,4,5,6</Choices>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+		
+			<Parameter name = "Operator">
+				<Window type="choice" position = "5,0" size = "80, 20"/>
+				<Choices>&lt;,&lt;=,==,!=,&gt;=,&gt;</Choices>
+				<ParameterOrder>1</ParameterOrder>
+			</Parameter>
+
+			<Parameter name = "Value">
+				<Window type="text" position = "5,0" size = "80, 20"/>
+				<InputType>int</InputType>
+				<ParameterOrder>2</ParameterOrder>
+			</Parameter>
+
+		</WindowRow>
+	</Condition>
+				
+	
+	<Effect name ="Text" function = "console.write" funcParameters = "1">
+		<WindowRow>
+			<Parameter name = "Text to display">
+				<Window type="text" position = "0,0" size = "80,20"/>
+				<InputType>string</InputType>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+		</WindowRow>
+	</Effect>
+
+	<Effect name ="Object task" function ="trigObjectTask" funcParameters ="4">
+		<WindowRow>
+			<Parameter name ="Subjects">
+				<Window type="entity_selector" position ="0,0" size ="55,20"/>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+			<Parameter name="Target">
+				<Window type="entity_selector" position="0,0" size="55,20"/>
+				<ParameterOrder>1</ParameterOrder>
+			</Parameter>
+			<Parameter name="Task">
+				<Window type="choice" position="5,0" size="80,20"/>
+				<Choices>None,Attack,Gather,Heal,Build,Repair</Choices>
+				<ChoiceTranslation>ACTION_NONE, ACTION_ATTACK, ACTION_GATHER, ACTION_HEAL, ACTION_BUILD, ACTION_REPAIR</ChoiceTranslation>
+				<ParameterOrder>2</ParameterOrder>
+			</Parameter>
+		</WindowRow>
+	</Effect>
+	
+	<Effect name="Object goto" function="trigObjectGoto" funcParameters="2">
+		<WindowRow>
+			<Parameter name ="Subjects">
+				<Window type="entity_selector" position="0,0" size="55,20"/>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+			<Parameter name ="Destination">
+				<Window type="point_placer" position="0,0" size="75,20"/>
+				<ParameterOrder>0</ParameterOrder>
+			</Parameter>
+		</WindowRow>
+	</Effect>
+
+</Definitions>

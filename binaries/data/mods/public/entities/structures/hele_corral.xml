@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_structure_resource_corral">
+
+	<Traits>
+	
+		<Id>
+
+			<Specific>Stavlos</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>A place for a farmer to pen his animals. Garrison a sheep, goat, or cow here to gain a trickle of the food resource. Garrisoning an animal here also "fattens" them so that they may be slaughtered and gathered for a quick burst of food.</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actor>structures/plot_corral.xml</Actor>
+	
+</Entity>

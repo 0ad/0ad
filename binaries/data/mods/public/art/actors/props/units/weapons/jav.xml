@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="medgrip">
+      <mesh>props/weap_jav_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="light">
+      <mesh>props/weap_jav_c.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="med">
+      <mesh>props/weap_jav_d.pmd</mesh>
+    </variant>
+  </group>
+
+</actor>

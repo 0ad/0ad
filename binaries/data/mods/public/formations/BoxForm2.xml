@@ -1,0 +1,56 @@
+
+<formation tag="Form Box 2"
+   bonus="actions.move.speed_curr"
+   bonusbase="actions.move.speed"
+   bonustype="Melee"
+   bonusval=".2"
+   penalty=""
+   penaltytype=""
+   penaltyval=""
+   anglepenalty ="actions.move.speed"
+   anglepenaltydivs ="6"
+   anglepenaltytype ="Melee"
+   anglepenaltyval =".2"
+   required="10"
+   next="BoxForm3"
+   prior="BoxForm1"
+   movement="Group Line"
+   rankspacing="5.0f"
+   filespacing="5.0f"
+>
+   <fl category="Melee">
+     <rk order="1"></rk>
+     <rk order="10"></rk>
+     <rk order="2"></rk>
+     <rk order="11"></rk>
+     <rk order="3"></rk>
+   </fl>
+   <fl category="Melee">
+     <rk order="12"></rk>
+     <rk category="Melee, Ranged" order="18"></rk>
+     <rk category="Melee, Ranged" order="22"></rk>
+     <rk category="Melee, Ranged" order="19"></rk>
+     <rk order="13"></rk>
+   </fl>
+   <fl category="Melee">
+     <rk order="4"></rk>
+     <rk category="Melee, Ranged" order="23"></rk>
+     <rk category="Support, Lead, Ranged" order="5"></rk>
+     <rk category="Melee, Ranged" order="24"></rk>
+     <rk order="6"></rk>
+   </fl>
+   <fl category="melee">
+     <rk order="14"></rk>
+     <rk category="Melee, Ranged" order="20"></rk>
+     <rk category="Melee, Ranged" order="25"></rk>
+     <rk category="Melee, Ranged" order="21"></rk>
+     <rk order="15"></rk>
+   </fl>
+   <fl category="Melee">
+     <rk order="7"></rk>
+     <rk order="16"></rk>
+     <rk order="8"></rk>
+     <rk order="17"></rk>
+     <rk order="9"></rk>
+   </fl>
+</formation>

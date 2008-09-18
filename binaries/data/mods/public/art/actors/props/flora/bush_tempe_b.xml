@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Bush Temperate Large B1">
+      <mesh>gaia/bush_tempe_la_b_1.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Bush Temperate Large B2">
+      <mesh>gaia/bush_tempe_la_b_2.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Leaf-Color-Dark">
+      <texture>gaia/bush_tempe_la_b.dds</texture>
+    </variant>
+    <variant frequency="2" name="Leaf-Color-Light">
+      <texture>gaia/bush_tempe_la_b2.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/round_s_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/round_back.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="shield-F">
+      <texture>props/shield/celt_round_f.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-H">
+      <texture>props/shield/celt_round_h.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-I">
+      <texture>props/shield/celt_round_i.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-J">
+      <texture>props/shield/celt_round_j.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

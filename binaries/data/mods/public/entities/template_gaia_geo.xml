@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_gaia"
+>
+	<Traits>
+	
+		<Id>
+
+			<Internal_Only />
+
+			<Generic>Generic Geology</Generic>
+			
+			<Classes>Geology</Classes>
+
+		</Id>
+ 
+ 		<Footprint>
+ 			<Radius>3.5</Radius>
+ 			<Height>3.5</Height>
+ 		</Footprint>
+ 
+	</Traits>
+</Entity>

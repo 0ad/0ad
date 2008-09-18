@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_entity">
+	
+	<Traits>
+		<!-- Temporary creation properties until cost/time for each unit is locked down. -->
+		<Creation>
+ 			<Time>5</Time>
+ 			<Resource>
+ 				<Food>0</Food>
+ 				<Wood>0</Wood>
+ 				<Stone>0</Stone>
+ 				<Metal>0</Metal>
+ 			</Resource>
+ 		</Creation>		
+	</Traits>
+
+	<Script File="scripts/entity_functions.js" />
+	<Event On="ContactAction" Function="entityEventContactAction" />
+	<Event On="TargetExhausted" Function="entityEventTargetExhausted" />
+	<Event On="TargetChanged" Function="entityEventTargetChanged" />
+	<Event On="Notification" Function="entityEventNotification" />
+	<Event On="Formation" Function="entityEventFormation" />
+	<Event On="Idle" Function="entityEventIdle" />
+	<Event On="Death" Function="entityDestroyed" />
+	<Event On="Initialize" Function="entityInit" />
+</Entity>

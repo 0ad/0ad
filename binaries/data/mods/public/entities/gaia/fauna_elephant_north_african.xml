@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_unit_fauna_hunt_aggressive">
+
+	<Traits>
+
+		<Id>
+				<Specific>North African Elephant</Specific>
+		</Id>
+
+ 		<Supply>
+ 			<Max>450</Max>
+ 			<Type>food</Type>
+ 			<SubType>meat</SubType>
+ 		</Supply>
+	
+		<Footprint>
+			<Radius>2.5</Radius>
+			<Height>3.5</Height>
+		</Footprint>
+
+	</Traits>
+
+ 	<Actor>fauna/elephant.xml</Actor>
+
+</Entity>

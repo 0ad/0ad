@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="biped/inf_staff_idle_a.dae" name="Idle" speed="200"/>
+        <animation file="biped/inf_staff_walk_a.dae" name="Walk" speed="20"/>
+        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
+      </animations>
+      <mesh>skeletal/m_dress_a.pmd</mesh>
+      <props>
+        <prop actor="props/units/heads/head_hele_healer.xml" attachpoint="head"/>
+        <prop actor="props/units/staff.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="healer-robe-1">
+      <props>
+        <prop actor="props/units/heads/hele_hood_priest.xml" attachpoint="helmet"/>
+      </props>
+      <texture>skeletal/hele_healer_1.dds</texture>
+    </variant>
+    <variant frequency="1" name="healer-robe-2">
+      <texture>skeletal/hele_healer_2.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

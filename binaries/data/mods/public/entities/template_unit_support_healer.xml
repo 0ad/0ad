@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_support">
+	<Traits>
+	
+		<Id>
+		
+			<Generic>Healer</Generic>
+
+			<Icon_Cell>33</Icon_Cell>
+
+			<Classes>Foot</Classes>
+			<Tooltip>Heals units within his Aura.</Tooltip>		
+		</Id>
+		
+		<Creation>
+			<Resource>
+ 				<Metal>120</Metal>
+ 			</Resource>
+		</Creation>
+
+		<Armour>
+			<Hack>2.0</Hack>
+			<Pierce>2.0</Pierce>
+			<Crush>2.0</Crush>
+		</Armour>
+		
+		<Health>
+			<Max>85</Max>
+			<RegenRate>0.3</RegenRate>
+		</Health>
+
+		<Auras>
+			<Heal>
+				<Radius>20</Radius>
+				<Rate>5</Rate>
+				<Speed>2000</Speed>
+				<r>1.0</r>
+				<g>1.0</g>
+				<b>0.0</b>
+				<a>0.6</a>
+			</Heal>
+		</Auras>		
+		
+		<Vision>
+			<Los>12</Los>
+		</Vision>
+		
+	</Traits>
+	
+	<Actions>
+		<Move>
+
+			<Speed>5.5</Speed>
+
+			<TurningRadius>0.8</TurningRadius>
+		</Move>
+	</Actions>	
+	
+</Entity>

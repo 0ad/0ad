@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_foundation">
+	<Traits>
+	
+		<Id>
+			<Generic>Foundation Field</Generic>
+
+			<Classes>Foundation</Classes>
+		</Id>
+	
+		<Footprint>
+			<Width>10.0</Width>
+			<Depth>10.0</Depth>
+			<Height>8.0</Height>
+		</Footprint>
+
+		<Vision>
+			<Los>6</Los>
+		</Vision>
+	
+	</Traits>
+	
+	<Actor>structures/plot_field_found.xml</Actor>
+
+</Entity>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+   
+<Tech>
+   <ID>
+       <Generic>Spearman Speed 1</Generic>
+       <Specific>Rocket Boots</Specific>
+       
+       <Icon>PortraitSheetTech</Icon>
+       <Icon_Cell>0</Icon_Cell>
+       
+       <Classes>Buff</Classes>
+       
+       <Rollover></Rollover>
+       <History></History>
+   </ID>
+   
+   <Req>
+       <Time>5</Time>
+       <Resource>
+               <Food>0</Food>
+               <Wood>100</Wood>
+               <Stone>0</Stone>
+               <Metal>100</Metal>
+       </Resource>
+   </Req>
+   
+   <Effect>
+       <Target>InfantrySpearman</Target>
+       
+       <Pair>hele_spearman_armour_1</Pair>
+ 
+       <Modifier>
+              <Attribute>traits.armour.value</Attribute>
+              <Value>-3%</Value>
+       </Modifier>
+	   
+       <Modifier>
+              <Attribute>actions.move.speed</Attribute>
+              <Value>10%</Value>
+       </Modifier>
+	   
+       <Modifier>
+              <Attribute>actions.move.run.speed</Attribute>
+              <Value>10%</Value>
+       </Modifier>
+   </Effect>
+
+</Tech>

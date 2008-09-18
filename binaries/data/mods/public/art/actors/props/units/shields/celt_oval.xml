@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant frequency="1" name="A">
+      <mesh>props/shield/oval_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/oval_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_oval2_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="B">
+      <mesh>props/shield/oval_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/oval_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_oval2_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="C">
+      <mesh>props/shield/oval_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/oval_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_oval2_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="D">
+      <mesh>props/shield/oval_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/oval_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/celt_oval2_d.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="700"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="700"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="16" name="black">
+      <texture>skeletal/horse_black_a.dds</texture>
+    </variant>
+    <variant frequency="17" name="brown">
+      <texture>skeletal/horse_brown_a.dds</texture>
+    </variant>
+    <variant frequency="16" name="chestnut">
+      <texture>skeletal/horse_chestnut_a.dds</texture>
+    </variant>
+    <variant frequency="17" name="dun">
+      <texture>skeletal/horse_dun_a.dds</texture>
+    </variant>
+    <variant frequency="17" name="gray">
+      <texture>skeletal/horse_gray_a.dds</texture>
+    </variant>
+    <variant frequency="17" name="tan">
+      <texture>skeletal/horse_tan_a.dds</texture>
+    </variant>
+  </group>
+
+</actor>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_entity_full"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Generic>Settlement</Generic>
+			<Specific>Settlement</Specific>
+			
+			<Civ>Gaia</Civ>
+			
+ 			<Icon>PortraitSheetSpecial</Icon>			
+			<Icon_Cell>1</Icon_Cell>			
+
+			<Classes>Building, Gaia, Special, Settlement</Classes>
+
+ 			<Rollover>Build a Civil Centre at this location to expand your territory.</Rollover>
+
+		</Id>
+		
+		<IsTerritoryCentre>true</IsTerritoryCentre>
+		
+ 		<Footprint>
+ 			<Width>24.0</Width>
+ 			<Depth>24.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+ 		<MiniMap>
+ 			<Type>Settlement</Type>
+ 		</MiniMap>		
+
+		<Vision>
+			<Permanent>true</Permanent>
+		</Vision>
+
+	</Traits>
+</Entity>

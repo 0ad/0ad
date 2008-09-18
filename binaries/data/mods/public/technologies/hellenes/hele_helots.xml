@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+   
+<Tech>
+   <ID>
+       <Generic>Metal Mining 2</Generic>
+       <Specific>Helots</Specific>
+       
+       <Icon>PortraitSheetTech</Icon>
+       <Icon_Cell>0</Icon_Cell>
+       
+       <Classes>Buff</Classes>
+       
+       <Rollover></Rollover>
+       <History></History>
+   </ID>
+   
+   <Req>
+       <Time>5</Time>
+       <Resource>
+               <Food>100</Food>
+               <Wood>200</Wood>
+               <Stone>0</Stone>
+               <Metal>0</Metal>
+       </Resource>
+	   
+	   <Tech>hele_wedge_and_mallet</Tech>
+	   <Tech>hele_stone_1</Tech>
+   </Req>
+   
+   <Effect>
+       <Target>Worker</Target>
+       
+       <Pair>hele_slaves</Pair>
+ 
+       <Modifier>
+              <Attribute>actions.gather.resource.Metal</Attribute>
+              <Value>15%</Value>
+       </Modifier>
+   </Effect>
+
+</Tech>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="10" name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="akin">
+      <mesh>props/weap_akin_c.pmd</mesh>
+    </variant>
+  </group>
+
+</actor>

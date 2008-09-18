@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_infantry">
+	<Traits>
+		<Id>
+			<Icon_Cell>43</Icon_Cell>
+			<Generic>Ranged Infantry</Generic>
+			<Classes>Ranged</Classes>
+		</Id>
+		<Vision>
+			<Los>12.0</Los>
+		</Vision>
+	</Traits>
+	<Actions>
+ 		<Attack>
+			<Ranged>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>1.0</Pierce>
+ 				<Crush>0.0</Crush>
+				<MinRange>1.0</MinRange>
+				<Range>1.0</Range>
+				<Speed>1500</Speed>
+				<ProjectileSpeed>28.0</ProjectileSpeed>
+			</Ranged>
+ 		</Attack>
+	</Actions>
+	<SoundGroups>
+		<Melee>audio/attack/weapon/arrowfly.xml</Melee>
+	</SoundGroups>
+</Entity>

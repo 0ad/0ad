@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
+        <animation file="infantry/general/death/inf_01.psa" name="Death" speed="300"/>
+        <animation file="infantry/general/death/inf_02.psa" name="Death" speed="300"/>
+        <animation file="infantry/general/death/inf_03.psa" name="death" speed="300"/>
+        <animation file="infantry/general/death/inf_04.psa" name="death" speed="300"/>
+        <animation file="infantry/general/death/inf_06.psa" name="death" speed="300"/>
+        <animation file="infantry/general/death/inf_07.psa" name="death" speed="300"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/hele_leonidas.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/hele_round_leonidas.xml" attachpoint="shield"/>
+        <prop actor="props/units/cape_m_long.xml" attachpoint="shoulders"/>
+      </props>
+      <texture>skeletal/hele_leonidas.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Idle">
+      <animations>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="idle" speed="200"/>
+      </animations>
+      <props>
+        <prop actor="props/units/shields/hele_round_leonidas.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="Melee">
+      <animations>
+        <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="melee" speed="220"/>
+      </animations>
+      <props>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="Run">
+      <animations>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="run" speed="12"/>
+      </animations>
+      <props>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+    <variant name="walk">
+      <animations>
+        <animation file="biped/inf_hoplite_walk.psa" name="walk" speed="20"/>
+      </animations>
+      <props>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+      </props>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_infantry_melee">
+	<Traits>
+		<Id>
+			<Generic>Infantry Spearman</Generic>
+			<Icon_Cell>3</Icon_Cell>
+			<Classes>Spear, InfantrySpearman</Classes>
+			<Rollover>Probably one of the most primitive units in the game. Fighting with a sharp object at the end of the pole didn't require a lot of technology to develop. It also allowed the human to distance themselves from their attacker. As time passed the spears got longer and longer. Started with a fighting style similar to using a quarterstaff, then to using them in numbers as a 'pin cushion' vs. humans (sarissa in a phalanx). Later it was developed to combat cavalry. During the medieval period it evolved to the pike. These units tended to be armoured as heavily as possible.</Rollover>
+			<Tooltip>Bonused vs. Cavalry Swordsmen and Cavalry Spearmen.
+			</Tooltip>
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Food>60</Food>
+				<Wood>55</Wood>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>5.0</Hack>
+			<Pierce>3.0</Pierce>
+			<Crush>10.0</Crush>
+		</Armour>
+		<Health>
+			<Max>90</Max>
+		</Health>
+		<Stamina>
+			<Max>300.0</Max>
+		</Stamina>
+		<Vision>
+			<Los>12</Los>
+		</Vision>
+	</Traits>
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>15.0</Hack>
+ 				<Pierce>5.0</Pierce>
+			</Melee>
+			<Charge>
+				<Hack>30.0</Hack>
+				<Pierce>10.0</Pierce>
+			</Charge>		
+ 		</Attack>
+		<Move>
+			<Speed>6.0</Speed>
+			<Run>
+				<Speed>14.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
+</Entity>

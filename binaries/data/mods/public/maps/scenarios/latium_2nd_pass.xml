@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>cirrus</SkySet>
+		<SunColour r="1.84766" g="1.84766" b="1.84766"/>
+		<SunElevation angle="0.79767"/>
+		<SunRotation angle="2.39915"/>
+		<TerrainAmbientColour r="0.439216" g="0.439216" b="0.505882"/>
+		<UnitsAmbientColour r="0.478431" g="0.478431" b="0.478431"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Height>9.135</Height>
+				<Shininess>150</Shininess>
+				<Waviness>4.4043</Waviness>
+				<Murkiness>0.288086</Murkiness>
+				<Tint r="0.0941176" g="0.905882" b="0.905882"/>
+				<ReflectionTint r="0" g="0.501961" b="0.752941"/>
+				<ReflectionTintStrength>0.169922</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="519.296" y="76.0477" z="364.015"/>
+		<Rotation angle="0.0084585"/>
+		<Declination angle="0.664101"/>
+	</Camera>
+	<Entities>
+		<Entity uid="1">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="449.863" y="22.4" z="466.454"/>
+			<Orientation angle="0.177027"/>
+		</Entity>
+		<Entity uid="2">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="451.481" y="22.4" z="475.719"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="3">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="455.109" y="22.4" z="465.686"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="4">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="457.021" y="22.4" z="453.487"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="451.791" y="22.4" z="454.391"/>
+			<Orientation angle="-0.470185"/>
+		</Entity>
+		<Entity uid="6">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="444.725" y="22.4" z="461.925"/>
+			<Orientation angle="-0.0161731"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="444.62" y="22.4" z="468.435"/>
+			<Orientation angle="0.231598"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="447.236" y="22.4" z="455.431"/>
+			<Orientation angle="1.9556"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="439.521" y="22.4" z="466.583"/>
+			<Orientation angle="2.73818"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="441.748" y="22.4" z="469.247"/>
+			<Orientation angle="0.125504"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>flora_tree_poplar</Template>
+			<Player>0</Player>
+			<Position x="444.085" y="22.4" z="479.319"/>
+			<Orientation angle="-2.38946"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>hele_civil_centre</Template>
+			<Player>1</Player>
+			<Position x="400.743" y="22.4" z="502.921"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>

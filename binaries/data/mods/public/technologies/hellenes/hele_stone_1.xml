@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+   
+<Tech>
+   <ID>
+       <Generic>Stone Mining 1</Generic>
+       <Specific>Unnamed... For Now</Specific>
+       
+       <Icon>PortraitSheetTech</Icon>
+       <Icon_Cell>0</Icon_Cell>
+       
+       <Classes>Buff</Classes>
+       
+       <Rollover></Rollover>
+       <History></History>
+   </ID>
+   
+   <Req>
+       <Time>5</Time>
+       <Resource>
+               <Food>100</Food>
+               <Wood>50</Wood>
+               <Stone>0</Stone>
+               <Metal>0</Metal>
+       </Resource>
+   </Req>
+   
+   <Effect>
+       <Target>Worker</Target>
+       
+       <Pair>hele_wedge_and_mallet</Pair>
+ 
+       <Modifier>
+              <Attribute>actions.gather.resource.stone</Attribute>
+              <Value>15%</Value>
+       </Modifier>
+   </Effect>
+
+</Tech>

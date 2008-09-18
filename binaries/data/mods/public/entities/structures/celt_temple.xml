@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_civic_temple"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Addoldy</Specific>
+
+			<Civ>Celts</Civ>
+
+			<History>Classical Historians gave account to gruesome sacrifices done in dark forest groves. Trees were of great importance to the Celts. The word Druid is closely related to the word for oak.</History>
+		
+		</Id>
+
+		<Population>
+			<Add>2</Add>
+		</Population>
+
+	</Traits>
+
+	<Actor>structures/celts/temple.xml</Actor>
+
+</Entity>

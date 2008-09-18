@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/celt_ff_a.pmd</mesh>
+      <props>
+        <prop actor="props/structures/celts/fortress_a2.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/celts/fortress_a4.xml" attachpoint="props_extra"/>
+        <prop actor="props/structures/celts/fortress_a3.xml" attachpoint="props_broch"/>
+        <prop actor="props/structures/celts/fortress_a1.xml" attachpoint="props_props"/>
+      </props>
+      <texture>structural/celt_wall.dds</texture>
+    </variant>
+  </group>
+
+</actor>

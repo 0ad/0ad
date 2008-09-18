@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_gaia_flora_tree"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Specific>Oak Tree</Specific>
+ 
+			<Classes>Oak</Classes>
+
+			<History>A deciduous tree of the genus Quercus; has acorns and lobed leaves.</History>
+
+		</Id>
+
+	</Traits>
+ 
+ 	<Actor>flora/trees/oak.xml</Actor>
+ 
+</Entity>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_structure_military">
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Dock</Generic>
+
+			<Icon_Cell>57</Icon_Cell>
+
+			<Classes>Town</Classes>
+
+			<Tooltip>Manufacture naval vessels here. Also allows for sea trade. Must be built on the shoreline only.</Tooltip>
+		
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Wood>300</Wood>
+ 			</Resource>
+		</Creation>
+		<Creation>
+			<Foundation>foundation_4x4</Foundation>
+			<BuildingLimitCategory>Dock</BuildingLimitCategory>
+		</Creation>
+		
+ 		<Footprint>
+ 			<Width>18.0</Width>
+ 			<Depth>18.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Health>
+ 			<Max>2500</Max>
+		</Health>
+
+		<Armour>
+			<Hack>15.0</Hack>
+			<Pierce>42.0</Pierce>
+			<Crush>20.0</Crush>
+		</Armour>		
+		
+		<Population>
+			<Add>5</Add>
+		</Population>
+
+	</Traits>
+
+	
+</Entity>

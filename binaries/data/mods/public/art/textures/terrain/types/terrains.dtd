@@ -1,0 +1,22 @@
+<!ELEMENT Terrains (Terrain)>
+
+<!ELEMENT Terrain (Passable*,Doodad*,Event*)>
+<!ATTLIST Terrain
+	mmap CDATA #IMPLIED
+	groups CDATA ""
+	properties CDATA "">
+
+<!ELEMENT Passable EMPTY>
+<!ATTLIST Passable
+	type CDATA #REQUIRED
+	speed CDATA "100"
+	effect CDATA "">
+
+<!ELEMENT Doodad EMPTY>
+<!ATTLIST Doodad
+	name CDATA #REQUIRED
+	max CDATA #REQUIRED>
+
+<!ELEMENT Event (#PCDATA)>
+<!ATTLIST Event
+	on CDATA #REQUIRED>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_unit_fauna_herd"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Classes>Passive</Classes>
+			
+		</Id>
+		
+		<Ai>
+			<Behaviour>Passive</Behaviour>
+		</Ai>
+
+	</Traits>
+</Entity>

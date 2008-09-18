@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="a">
+      <mesh>gaia/tree_lumbardypoplar_a.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/lumbardypoplar_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/tree_lumbardypoplar_b.pmd</mesh>
+      <props>
+        <prop actor="flora/trees/lumbardypoplar_top.xml" attachpoint="tree"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>gaia/trunk_deciduous_a.dds</texture>
+    </variant>
+  </group>
+
+</actor>

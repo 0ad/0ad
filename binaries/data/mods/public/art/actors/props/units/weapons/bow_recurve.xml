@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Mesh">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="recurved bow-med">
+      <mesh>props/weap_bow_g.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="recurved bow-light">
+      <mesh>props/weap_bow_h.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="recurved bow-dark">
+      <mesh>props/weap_bow_i.pmd</mesh>
+    </variant>
+  </group>
+
+</actor>

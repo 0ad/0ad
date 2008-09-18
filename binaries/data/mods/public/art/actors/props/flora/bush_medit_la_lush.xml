@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="mesh-a">
+      <mesh>gaia/bush_la_1.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-b">
+      <mesh>gaia/bush_la_2.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-c">
+      <mesh>gaia/bush_la_3.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-d">
+      <mesh>gaia/bush_la_4.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-e">
+      <mesh>gaia/bush_la_5.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-f">
+      <mesh>gaia/bush_la_6.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-g">
+      <mesh>gaia/bush_la_7.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="texture">
+      <texture>gaia/bush_medit_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

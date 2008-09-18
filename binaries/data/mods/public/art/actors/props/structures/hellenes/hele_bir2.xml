@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant>
+      <mesh>props/hele_bir2.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Sail-Plain">
+      <texture>structural/hele_sail.dds</texture>
+    </variant>
+    <variant frequency="5" name="Sail-Pegasus">
+      <texture>structural/hele_sail_pegasus.dds</texture>
+    </variant>
+    <variant frequency="6" name="Sail-Star">
+      <texture>structural/hele_sail_star_a.dds</texture>
+    </variant>
+    <variant frequency="3" name="Sail-Hawk">
+      <texture>structural/hele_sail_hawk_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

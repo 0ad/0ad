@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+   
+<Tech>
+   <ID>
+       <Generic>Stone Mining 2</Generic>
+       <Specific>Slaves</Specific>
+       
+       <Icon>PortraitSheetTech</Icon>
+       <Icon_Cell>0</Icon_Cell>
+       
+       <Classes>Buff</Classes>
+       
+       <Rollover></Rollover>
+       <History></History>
+   </ID>
+   
+   <Req>
+       <Time>5</Time>
+       <Resource>
+               <Food>200</Food>
+               <Wood>100</Wood>
+               <Stone>0</Stone>
+               <Metal>0</Metal>
+       </Resource>
+	   
+	   <Tech>hele_wedge_and_mallet</Tech>
+	   <Tech>hele_stone_1</Tech>
+   </Req>
+   
+   <Effect>
+       <Target>Worker</Target>
+       
+       <Pair>hele_helots</Pair>
+ 
+       <Modifier>
+              <Attribute>actions.gather.resource.stone</Attribute>
+              <Value>15%</Value>
+       </Modifier>
+   </Effect>
+
+</Tech>

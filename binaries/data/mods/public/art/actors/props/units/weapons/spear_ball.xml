@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="spear-ball-darkgold">
+      <mesh>props/weap_spear_ball_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="darksilver">
+      <mesh>props/weap_spear_ball_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="lightgold">
+      <mesh>props/weap_spear_ball_c.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="medsilver">
+      <mesh>props/weap_spear_ball_d.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="medgold">
+      <mesh>props/weap_spear_ball_e.pmd</mesh>
+    </variant>
+  </group>
+
+</actor>

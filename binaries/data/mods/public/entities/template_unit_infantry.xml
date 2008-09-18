@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit">
+	<Traits>
+	
+		<Id>
+			<Generic>Infantry</Generic>
+
+			<Classes>Military, Foot, Organic, CitizenSoldier, Worker</Classes>
+		</Id>
+		
+		<Armour>
+			<Hack>2.0</Hack>
+			<Pierce>2.0</Pierce>
+			<Crush>2.0</Crush>
+		</Armour>
+		
+		<Health>
+			<RegenRate>0.1</RegenRate>
+		</Health>		
+
+		<Loot>
+			<Xp>200</Xp>
+			<Food>1</Food>
+			<Wood>1</Wood>
+			<Stone>1</Stone>
+			<Metal>1</Metal>
+		</Loot>		
+
+		<Population>
+			<Rem>1</Rem>
+		</Population>
+
+		<Promotion>
+			<Req>600</Req>
+		</Promotion>
+
+	</Traits>
+
+	<Actions>
+
+		<Create>
+			<List>
+				<StructCiv>
+					<Civil_Centre />
+					<Farmstead />
+					<Field />
+					<Corral />
+					<House />
+					<Market />
+					<Mill />
+					<Temple />
+				</StructCiv>
+				<StructMil>
+					<Barracks />
+					<Dock />
+					<Fortress />
+					<Scout_Tower />
+					<Wall />
+					<Wall_Gate />
+					<Wall_Tower />
+				</StructMil>
+			</List>
+		</Create>
+		
+		<Explore />
+
+ 		<Gather>
+			<Resource>
+				<Food>
+					<Fruit>4</Fruit>
+					<Grain>4</Grain>
+					<Meat>3</Meat>
+					<Fish>6</Fish>
+				</Food>
+				<Wood>8</Wood>
+				<Stone>9</Stone>
+				<Metal>9</Metal>
+			</Resource>
+			<AffectedByAllure>true</AffectedByAllure>
+ 			<Range>1.2</Range>
+			<Speed>3000</Speed>
+ 		</Gather>
+		
+		<Loot>
+			<Resources />
+			<Xp />
+		</Loot>
+
+		<Repair>
+			<Rate>1.0</Rate>
+			<Speed>1000</Speed>
+		</Repair>
+		
+		<Build>
+			<Rate>1.0</Rate>
+			<Speed>1000</Speed>
+		</Build>
+		
+	</Actions>
+
+	<SoundGroups>
+		<Walk>audio/actor/human/movement/walk.xml</Walk>
+		<Run>audio/actor/human/movement/walk.xml</Run>
+		<Melee>audio/attack/weapon/sword.xml</Melee>
+		<Death>audio/actor/human/death/death.xml</Death>
+		<Build>audio/resource/construction/con_wood.xml</Build>
+		<Gather_Fruit>audio/resource/foraging/forage_leaves.xml</Gather_Fruit>
+		<Gather_Grain>audio/resource/farming/farm.xml</Gather_Grain>
+		<Gather_Wood>audio/resource/lumbering/lumbering.xml</Gather_Wood>
+		<Gather_Stone>audio/resource/mining/pickaxe.xml</Gather_Stone>
+		<Gather_Metal>audio/resource/mining/mining.xml</Gather_Metal>
+	</SoundGroups>
+	
+	<Script File="scripts/entity_functions.js" />
+	<Event On="StartConstruction" Function="entityStartConstruction" />
+</Entity>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_cavalry_melee_swordsman">
+	<Traits>
+		<Id>
+			<Specific>Epos</Specific>
+			<Civ>Celts</Civ>
+			<History>Like a sword, a horse was a sign of nobility and as a result the Celtic cavalry was often better equipped than the infantry. Armor and helmets were common, while weapons consisted of a large bladed spear and a long slashing sword for close combat. Shields could be round, hexagonal, or oval, but the most common was a regular oval body shield with the top and bottom shorn off. Unlike other horseman, the Celts were not afraid to leap off their mount to fight on foot then climb into the saddle again when possible.</History>
+		</Id>
+		<Promotion>
+			<Entity>celt_cavalry_swordsman_a</Entity>
+		</Promotion>
+		<Creation>
+			<Time>15</Time>
+		</Creation>
+	</Traits>
+	<Actions>
+ 		<Move>
+			<Speed>10.0</Speed>
+			<Run>
+				<Speed>19.8</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/celts/cavalry_swordsman_b.xml</Actor>
+</Entity>

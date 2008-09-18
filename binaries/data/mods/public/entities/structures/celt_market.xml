@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_structure_economic_market"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Marchnaty</Specific>
+
+			<Civ>Celts</Civ>
+
+			<History>Efficient farming led to food surpluses and a developing social hierarchy through the period with administration and power centred on the hill forts. Trade would have been buoyant with Europe; exported corn, cattle hides, tin, gold and iron in exchange for wine and olive oil. The first coins appeared although they were more items of wealth and status than trade. There is evidence too of standardised pottery and this suggests that weights and measures were controlled to provide consistency in trade.</History>
+		
+		</Id>
+
+		<Population>
+			<Add>12</Add>
+		</Population>
+
+	</Traits>
+
+	<Actor>structures/celts/market.xml</Actor>
+
+</Entity>

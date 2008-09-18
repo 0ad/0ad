@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="beard">
+      <mesh>props/head_beard.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="healer-face-a">
+      <texture>props/head/hele_healer_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="healer-face-b">
+      <texture>props/head/hele_healer_b.dds</texture>
+    </variant>
+  </group>
+
+</actor>

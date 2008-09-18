@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <float/>
+
+  <group>
+    <variant frequency="1" name="base">
+      <animations>
+        <animation file="mechanical/ship_idle.psa" name="idle" speed="100"/>
+        <animation file="mechanical/ship_move.psa" name="walk" speed="100"/>
+      </animations>
+      <mesh>structural/hele_bir.pmd</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/hele_bir1.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/hellenes/hele_bir2.xml" attachpoint="mast"/>
+        <prop actor="props/structures/hellenes/hele_bir3.xml" attachpoint="oars"/>
+        <prop actor="units/hellenes/themistocles.xml" attachpoint="01"/>
+        <prop actor="units/hellenes/super_unit_2.xml" attachpoint="03"/>
+        <prop actor="units/hellenes/infantry_archer_e.xml" attachpoint="04"/>
+        <prop actor="units/hellenes/infantry_archer_e.xml" attachpoint="06"/>
+        <prop actor="units/hellenes/super_unit_1.xml" attachpoint="10"/>
+        <prop actor="units/hellenes/super_unit_2.xml" attachpoint="08"/>
+      </props>
+      <texture>structural/hele_bireme.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

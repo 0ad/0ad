@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Bush Desert Dry A1">
+      <mesh>gaia/bush_dese_a_1.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Bush Desert Dry A2">
+      <mesh>gaia/bush_dese_a_2.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="Desert-brown">
+      <texture>gaia/bush_dese_dry_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Desert-burnt">
+      <texture>gaia/bush_dese_dry_b.dds</texture>
+    </variant>
+    <variant frequency="2" name="Desert-dusty">
+      <texture>gaia/bush_dese_dry_c.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

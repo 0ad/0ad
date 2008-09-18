@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="shield-C">
+      <mesh>props/shield/pict_b_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/celt_buckler_b_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/pict_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="shield-D">
+      <mesh>props/shield/pict_a_f.pmd</mesh>
+      <props>
+        <prop actor="props/units/shields/celt_buckler_a_back.xml" attachpoint="back"/>
+      </props>
+      <texture>props/shield/pict_d.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

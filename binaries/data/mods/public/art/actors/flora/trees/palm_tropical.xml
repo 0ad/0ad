@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="mesh-a">
+      <mesh>gaia/palm_desert_a.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-b">
+      <mesh>gaia/palm_desert_b.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-c">
+      <mesh>gaia/palm_desert_c.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="mesh-d">
+      <mesh>gaia/palm_desert_d.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="texture-palm-brown">
+      <texture>gaia/tree_palm_a.dds</texture>
+    </variant>
+    <variant frequency="4" name="texture-palm-b">
+      <texture>gaia/tree_palm_b.dds</texture>
+    </variant>
+    <variant frequency="2" name="texture-palm-c">
+      <texture>gaia/tree_palm_c.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

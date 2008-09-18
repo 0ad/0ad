@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Base">
+      <animations>
+        <animation file="quadraped/horse_idle_a.psa" name="Idle" speed="50"/>
+        <animation file="quadraped/horse_gallop.psa" name="Run" speed="8"/>
+        <animation file="quadraped/horse_walk.psa" name="Walk" speed="20"/>
+        <animation event=".5" file="quadraped/horse_attack_a.psa" name="Melee" speed="105"/>
+        <animation event=".5" file="quadraped/horse_attack_b.psa" name="Melee" speed="95"/>
+        <animation file="quadraped/horse_death.psa" name="death" speed="230"/>
+      </animations>
+      <mesh>skeletal/horse.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="5" name="horse1-plain">
+      <texture>skeletal/horse_celt_chariot_1.dds</texture>
+    </variant>
+    <variant frequency="5" name="horse1-face">
+      <texture>skeletal/horse_celt_chariot_2.dds</texture>
+    </variant>
+    <variant frequency="3" name="horse1-feet">
+      <texture>skeletal/horse_celt_chariot_3.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="2" name="horse1-black">
+      <colour>81 81 85</colour>
+    </variant>
+    <variant frequency="2" name="horse1-chocolate">
+      <colour>98 68 58</colour>
+    </variant>
+    <variant frequency="2" name="horse1-chestnut">
+      <colour>248 132 86</colour>
+    </variant>
+    <variant frequency="2" name="horse1-roan">
+      <colour>242 219 164</colour>
+    </variant>
+    <variant frequency="2" name="horse1-liver">
+      <colour>172 95 68</colour>
+    </variant>
+    <variant frequency="2" name="horse1-brown">
+      <colour>255 148 89</colour>
+    </variant>
+  </group>
+
+  <material>objectcolor.xml</material>
+
+</actor>

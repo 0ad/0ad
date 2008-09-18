@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_structure_military_barracks">
+
+	<Actor>structures/hellenes/barracks.xml</Actor>
+	
+	<Traits>
+	
+		<Id>
+
+			<Specific>Strategion</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>The Strategion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
+		
+		</Id>
+
+	</Traits>
+
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Infantry_Spearman_B />
+					<Infantry_Javelinist_B />
+					<Infantry_Archer_B />
+					<Cavalry_Swordsman_B />
+				</Train>
+				<Research>
+					<Hele_Spearman_Armour_1 />
+					<Hele_Spearman_Speed_1 />
+				</Research>
+			</List>
+		</Create>
+	</Actions>
+
+</Entity>

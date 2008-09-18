@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_unit_hero">
+	<Traits>
+	
+		<Id>
+
+		<Icon_Cell>29</Icon_Cell>
+
+			<Specific>Demetrius</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>One of the Diadochi, king of Macedonia (294 BC - 288 BC), Demetrius was renowned as one of the bravest and most able successors of Alexander. As the son of Antigonus I Monophtalmus, he fought and won many important battles early on and was proclaimed king, along with his father, in 306 BC. Losing his Asian possessions after the battle of Ipsus, he later won the Macedonian throne. Fearing lest they should be overpowered by Demetrius, the other Diadochi united against him and defeated him.</History>
+			<Tooltip>Hero Aura: Increased Range and Attack for Siege Engines.</Tooltip>
+		
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Food>150</Food>
+				<Metal>250</Metal>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>8.5</Hack>
+			<Pierce>10.0</Pierce>
+			<Crush>9.0</Crush>
+		</Armour>	
+		<Health>
+			<Max>250</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>
+		<Stamina>
+			<Max>0</Max>
+			<BarHeight>0</BarHeight>
+			<Bar_Size>0</Bar_Size>
+		</Stamina>		
+	</Traits>
+	<Actions>
+		<Attack>
+			<Ranged>
+				<Pierce>50.0</Pierce>
+				<Hack>0.0</Hack>
+				<Crush>0.0</Crush>
+				<Range>56.0</Range>
+				<Speed>1500</Speed>
+				<ProjectileSpeed>25.0</ProjectileSpeed>
+			</Ranged>			
+		</Attack>
+		<Move>
+			<Speed>4.5</Speed>
+			<TurningRadius>1.0</TurningRadius>
+			<Run>
+				<Speed>0</Speed>
+				<Range>0</Range>
+				<RangeMin>0</RangeMin>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/hellenes/demetrius.xml</Actor>
+</Entity>

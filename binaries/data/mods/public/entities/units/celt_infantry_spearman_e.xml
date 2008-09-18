@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="celt_infantry_spearman_a">
+	<Traits>
+		<Id>
+			<Icon_Cell>5</Icon_Cell>
+		</Id>
+		<Armour>
+			<Hack>5.4</Hack>
+			<Pierce>3.4</Pierce>
+			<Crush>10.4</Crush>
+		</Armour>
+		<Health>
+			<Max>95</Max>
+		</Health>
+		<Stamina>
+			<Max>350.0</Max>
+		</Stamina>
+		<Vision>
+			<Los>15</Los>
+		</Vision>
+	</Traits>
+	<Actions>
+	<Attack>
+			<Melee>
+ 				<Hack>17.0</Hack>
+ 				<Pierce>7.0</Pierce>
+			</Melee>
+			<Charge>
+				<Hack>34.0</Hack>
+				<Pierce>14.0</Pierce>
+			</Charge>		
+ 		</Attack>
+ 		<Move>
+			<Speed>7.3</Speed>
+			<Run>
+				<Speed>15.1</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/celts/infantry_spearman_e.xml</Actor>
+</Entity>

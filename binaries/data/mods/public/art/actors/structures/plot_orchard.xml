@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="Orchard">
+      <mesh>structural/plot.pmd</mesh>
+      <props>
+        <prop actor="props/special/common/plot_orchard_trunks.xml" attachpoint="props_main"/>
+        <prop actor="props/special/common/plot_orchard_branches.xml" attachpoint="props_secondary"/>
+      </props>
+      <texture>structural/plot_orchard.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

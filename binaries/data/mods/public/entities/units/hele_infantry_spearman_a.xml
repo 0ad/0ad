@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="hele_infantry_spearman_b">
+
+	<Traits>
+		<Id>
+			<Icon_Cell>4</Icon_Cell>
+		</Id>
+		
+		<Promotion>
+			<Entity>hele_infantry_spearman_e</Entity>
+		</Promotion>
+	</Traits>
+	<Actions>
+		<Create>
+			<List>
+				<StructCiv>
+					<Theatron />
+				</StructCiv>
+				<StructMil>
+					<Gymnasion />
+				</StructMil>
+			</List>
+		</Create>
+	</Actions>
+
+	<Actor>units/hellenes/infantry_spearman_a.xml</Actor>
+
+</Entity>

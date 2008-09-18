@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_cavalry_melee_spearman">
+	<Traits>
+		<Id>
+			<Specific>Coun</Specific>
+			<Civ>Celts</Civ>
+			<History>The Celts used large dogs such as mastiffs or wolfhounds in combat, especially against enemy cavalry. The Romans were very impressed with the strength and ferocity of these dogs. Many were brought back to Rome for the gladiator arena or to serve as guard dogs.</History>
+		</Id>
+		<Creation>		
+			<Time>15</Time>
+		</Creation>
+		<Promotion>
+			<Entity>celt_cavalry_spearman_a</Entity>
+		</Promotion>
+	</Traits>
+	<Actions>
+		<Move>
+			<Speed>5.65</Speed>
+			<Run>
+				<Speed>28.7</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/celts/cavalry_spearman_b.xml</Actor>
+</Entity>

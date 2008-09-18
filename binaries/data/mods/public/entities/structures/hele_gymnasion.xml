@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_structure_special">
+	<Traits>
+	
+		<Id>
+
+			<Specific>Gymnasion</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>The gymnasion was a vital place in Hellenistic polises, where physical exercises were performed and social contacts established.</History>
+			<Tooltip>Train Super Units and researches Osthimos technology.</Tooltip>
+		
+		</Id>
+ 		<Footprint>
+ 			<Width>22.0</Width>
+ 			<Depth>24.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+		<Creation>
+			<Foundation>foundation_5x5</Foundation>
+			<Resource>
+				<Wood>0</Wood>
+				<Stone>200</Stone>
+				<Metal>200</Metal>
+ 			</Resource>
+		</Creation>
+	</Traits>
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Super_Cavalry_Mace/>
+					<Super_Infantry_Mace/>
+					<Super_Ranged_Polis/>
+					<Super_Infantry_Polis/>
+				</Train>
+				<Research>
+				</Research>
+			</List>
+		</Create>
+	</Actions>
+	<Actor>structures/hellenes/special_gym.xml</Actor>
+
+</Entity>

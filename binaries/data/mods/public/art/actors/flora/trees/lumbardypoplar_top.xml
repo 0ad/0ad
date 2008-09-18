@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="variant-a">
+      <mesh>gaia/tree_lumbardypoplar_a_top.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="variant-b">
+      <mesh>gaia/tree_lumbardypoplar_b_top.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="variant-c">
+      <mesh>gaia/tree_lumbardypoplar_c_top.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="variant-d">
+      <mesh>gaia/tree_lumbardypoplar_d_top.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="variant-e">
+      <mesh>gaia/tree_lumbardypoplar_e_top.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="variant-f">
+      <mesh>gaia/tree_lumbardypoplar_f_top.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="texture-a">
+      <texture>gaia/tree_lumbardypoplar_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

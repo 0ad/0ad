@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="helmet-phrygian-mask">
+      <mesh>props/helmet/mace_helmet_a.pmd</mesh>
+      <texture>props/helmet/mace_a2.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-phrygian-mask-feathers">
+      <mesh>props/helmet/mace_helmet_k.dae</mesh>
+      <texture>props/helmet/mace_a2.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-phrygian-feathers">
+      <mesh>props/helmet/mace_helmet_d.pmd</mesh>
+      <texture>props/helmet/mace_b2.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-phrygian-crest">
+      <mesh>props/helmet/mace_helmet_f.pmd</mesh>
+      <texture>props/helmet/mace_b2.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-thracian-plume">
+      <mesh>props/helmet/mace_helmet_h.pmd</mesh>
+      <texture>props/helmet/mace_c2.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-thracian-crested">
+      <mesh>props/helmet/helmet_thracian_4.dae</mesh>
+      <texture>props/helmet/mace_c2.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-thracian-crest-feathers">
+      <mesh>props/helmet/helmet_thracian_5.dae</mesh>
+      <texture>props/helmet/mace_c2.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

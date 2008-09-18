@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Administrator</author>
+      <authoring_tool>Feeling ColladaMax v3.02 with FCollada v3.02.</authoring_tool>
+      <comments>ColladaMax Export Options: ExportNormals=1;ExportEPolyAsTriangles=1;ExportXRefs=0;ExportSelected=1;ExportTangents=0;ExportAnimations=0;SampleAnim=0;ExportAnimClip=0;BakeMatrices=0;ExportRelativePaths=0;AnimStart=0;AnimEnd=29;</comments>
+      <source_data>file:///C:/3dsMax7/scenes/helmetsexport01.max</source_data>
+    </contributor>
+    <created>2008-06-18T00:50:59Z</created>
+    <modified>2008-06-18T00:51:00Z</modified>
+    <unit meter="0.0254" name="inch"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="C__Documents_and_Settings_Administrator_Desktop_david_celt-horns_png" name="C__Documents_and_Settings_Administrator_Desktop_david_celt-horns_png">
+      <init_from>file:///C:/Documents%20and%20Settings/Administrator/Desktop/david/celt-horns.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_3_-_Default" name="_3_-_Default">
+      <instance_effect url="#_3_-_Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_3_-_Default-fx" name="_3_-_Default">
+      <profile_COMMON>
+        <newparam sid="C__Documents_and_Settings_Administrator_Desktop_david_celt-horns_png-surface">
+          <surface type="2D">
+            <init_from>C__Documents_and_Settings_Administrator_Desktop_david_celt-horns_png</init_from>
+            <format>A8R8G8B8</format>
+          </surface>
+        </newparam>
+        <newparam sid="C__Documents_and_Settings_Administrator_Desktop_david_celt-horns_png-sampler">
+          <sampler2D>
+            <source>C__Documents_and_Settings_Administrator_Desktop_david_celt-horns_png-surface</source>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="C__Documents_and_Settings_Administrator_Desktop_david_celt-horns_png-sampler" texcoord="CHANNEL1">
+                <extra>
+                  <technique profile="MAX3D">
+                    <amount>1</amount>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <reflectivity>
+              <float>1</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>0</float>
+            </transparency>
+            <index_of_refraction>
+              <float>1</float>
+            </index_of_refraction>
+          </blinn>
+          <extra>
+            <technique profile="FCOLLADA">
+              <spec_level>
+                <float>0</float>
+              </spec_level>
+              <emission_level>
+                <float>0</float>
+              </emission_level>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="MAX3D">
+          <faceted>0</faceted>
+          <double_sided>0</double_sided>
+          <wireframe>0</wireframe>
+          <face_map>0</face_map>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="OBJECT44_001-Geometry" name="OBJECT44_001">
+      <mesh>
+        <source id="OBJECT44_001-Geometry-positions">
+          <float_array id="OBJECT44_001-Geometry-positions-array" count="114">0.224288 0.119806 0.314283 -0.224288 0.119806 0.314283 0.10331 0.15158 0.634986 -0.10331 0.15158 0.634986 0.21305 -0.146178 0.355149 -0.21305 -0.146178 0.355149 0.08581 -0.062139 0.684566 -0.08581 -0.062139 0.684566 0.22995 0.14291 0.49484 -0.22995 0.14291 0.49484 0.20415 -0.12092 0.54296 -0.20415 -0.12092 0.54296 0.099437 0.267112 0.276847 -0.099437 0.267112 0.276847 0.11529 -0.318458 0.386994 -0.11529 -0.318458 0.386994 0.1178 -0.271164 0.557885 -0.1178 -0.271164 0.557885 0.11974 0.297246 0.430846 -0.11974 0.297246 0.430846 -0.34809 -0.03738 0.683936 0.34809 -0.03738 0.683936 -0.36256 0.13435 0.650306 0.36256 0.13435 0.650306 -0.27872 0.13728 0.756816 0.27872 0.13728 0.756816 -0.26873 -0.00404 0.777946 0.26873 -0.00404 0.777946 -0.20415 -0.12092 0.54296 0.20415 -0.12092 0.54296 -0.22995 0.14291 0.49484 0.22995 0.14291 0.49484 -0.08581 -0.062139 0.684566 0.08581 -0.062139 0.684566 -0.53886 0.088813 0.899356 0.53886 0.088813 0.899356 -0.10331 0.15158 0.634986 0.10331 0.15158 0.634986</float_array>
+          <technique_common>
+            <accessor source="#OBJECT44_001-Geometry-positions-array" count="38" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="OBJECT44_001-Geometry-normals">
+          <float_array id="OBJECT44_001-Geometry-normals-array" count="114">0.907619 -0.306625 0.286722 0.963398 -0.255842 0.080061 0.956694 0.28036 -0.078324 0.916057 0.37601 0.139488 -0.959302 -0.274405 0.066652 -0.901501 -0.314631 0.297159 -0.909276 0.388669 0.148839 -0.95131 0.293109 -0.095378 0.487261 -0.844429 0.222524 0.447318 -0.721084 0.529098 -0.487261 -0.844429 0.222524 -0.447318 -0.721084 0.529098 0.41403 0.897254 0.153345 -0.41403 0.897254 0.153345 -0.146449 0.610696 0.778205 0.146449 0.610696 0.778205 0.39257 0.891472 -0.226199 -0.39257 0.891472 -0.226199 0.138762 -0.202751 0.969349 -0.138762 -0.202751 0.969349 -0.569153 -0.814026 -0.115874 0.274502 -0.47737 0.834726 0.259216 -0.47488 0.841009 -0.625663 -0.765108 -0.15217 -0.240945 -0.482574 0.842061 -0.286444 -0.490847 0.822812 0.568789 -0.814262 -0.116 0.625716 -0.76515 -0.151743 -0.767926 0.101287 0.632479 0.767926 0.101287 0.632479 -0.646418 0.623442 -0.439845 -0.620858 0.614046 -0.487322 0.617722 0.611991 -0.493849 0.650581 0.620634 -0.437673 0.272106 0.760704 0.589311 0.291184 0.785555 0.546 -0.307457 0.792673 0.526441 -0.25486 0.764288 0.592377</float_array>
+          <technique_common>
+            <accessor source="#OBJECT44_001-Geometry-normals-array" count="38" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="OBJECT44_001-Geometry-map-channel1">
+          <float_array id="OBJECT44_001-Geometry-map-channel1-array" count="336">0.16711 0.11387 0 0.17753 0.28839 0 0.58771 0.28839 0 0.59814 0.11387 0 0.150454 0.70849 0 0.29808 0.74305 0 0.28588 0.88605 0 0.075932 0.833525 0 0.47936 0.88605 0 0.46716 0.74305 0 0.614786 0.70849 0 0.689318 0.833525 0 0.29808 0.74305 0 0.28588 0.88605 0 0.46716 0.74305 0 0.47936 0.88605 0 0.29991 0.20555 0 0.46533 0.20555 0 0.16711 0.11387 0 0.28354 0.07219 0 0.29991 0.20555 0 0.17753 0.28839 0 0.46533 0.20555 0 0.4817 0.07219 0 0.59814 0.11387 0 0.58771 0.28839 0 0.28354 0.07219 0 0.29991 0.20555 0 0.4817 0.07219 0 0.46533 0.20555 0 0.31288 0.5907 0 0.45236 0.5907 0 0.29799 0.3991 0 0.46725 0.3991 0 0.31288 0.5907 0 0.45236 0.5907 0 0.31288 0.5907 0 0.45236 0.5907 0 0.150454 0.70849 0 0.29808 0.74305 0 0.614786 0.70849 0 0.46716 0.74305 0 0.57541 0.65207 0 0.65575 0.59244 0 0.20491 0.64561 0 0.12006 0.58777 0 0.65575 0.59244 0 0.7672 0.50281 0 0.12006 0.58777 0 0.00586 0.49637 0 0.57541 0.65207 0 0.65575 0.59244 0 0.12006 0.58777 0 0.20491 0.64561 0 0.65575 0.59244 0 0.7672 0.50281 0 0.12006 0.58777 0 0.00586 0.49637 0 0.57651 0.33986 0 0.65678 0.4028 0 0.12061 0.39644 0 0.20633 0.33706 0 0.65678 0.4028 0 0.7672 0.50281 0 0.12061 0.39644 0 0.00586 0.49637 0 0.53095 0.42679 0 0.62732 0.46346 0 0.24739 0.42969 0 0.14745 0.4587 0 0.62732 0.46346 0 0.14745 0.4587 0 0.53095 0.42679 0 0.62732 0.46346 0 0.14745 0.4587 0 0.24739 0.42969 0 0.62732 0.46346 0 0.7672 0.50281 0 0.14745 0.4587 0 0.00586 0.49637 0 0.53262 0.56164 0 0.62772 0.53539 0 0.24454 0.54954 0 0.1468 0.52964 0 0.62772 0.53539 0 0.1468 0.52964 0 0.53262 0.56164 0 0.62772 0.53539 0 0.1468 0.52964 0 0.24454 0.54954 0 0.62772 0.53539 0 0.1468 0.52964 0 0.29799 0.3991 0 0.46725 0.3991 0 0.29799 0.3991 0 0.46725 0.3991 0 0.29808 0.74305 0 0.46716 0.74305 0 0.17753 0.28839 0 0.29991 0.20555 0 0.58771 0.28839 0 0.46533 0.20555 0 0.073837 0.358719 0 0.007103 0.227941 0 0.758128 0.227922 0 0.691397 0.358715 0 0.711049 0.6431 0 0.66182 0.732046 0 0.118342 0.730611 0 0.064578 0.640672 0 0.713632 0.640294 0 0.061729 0.637902 0</float_array>
+          <technique_common>
+            <accessor source="#OBJECT44_001-Geometry-map-channel1-array" count="112" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="OBJECT44_001-Geometry-vertices">
+          <input semantic="POSITION" source="#OBJECT44_001-Geometry-positions"/>
+        </vertices>
+        <triangles material="_3_-_Default" count="50">
+          <input semantic="VERTEX" source="#OBJECT44_001-Geometry-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#OBJECT44_001-Geometry-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#OBJECT44_001-Geometry-map-channel1" offset="2" set="1"/>
+          <p>10 0 102 4 1 103 0 2 0 0 2 0 8 3 1 10 0 102 5 4 104 11 5 105 9 6 2 9 6 2 1 7 3 5 4 104 14 8 6 4 1 7 10 0 4 10 0 4 16 9 5 14 8 6 11 5 10 5 4 11 15 10 8 15 10 8 17 11 9 11 5 10 17 11 14 15 10 15 14 8 13 14 8 13 16 9 12 17 11 14 18 12 16 19 13 17 3 14 93 3 14 93 2 15 92 18 12 16 18 12 20 8 3 21 0 2 18 0 2 18 12 16 19 18 12 20 1 7 24 9 6 25 19 13 22 19 13 22 13 17 23 1 7 24 12 16 26 13 17 28 19 13 29 19 13 29 18 12 27 12 16 26 6 18 30 2 15 32 3 14 33 3 14 33 7 19 31 6 18 30 6 18 34 16 9 39 10 0 38 11 5 40 17 11 41 7 19 35 6 18 36 7 19 37 17 11 97 17 11 97 16 9 96 6 18 36 28 20 42 32 21 86 26 22 87 26 22 87 20 23 43 28 20 42 27 24 88 33 25 89 29 26 44 29 26 44 21 27 45 27 24 88 20 23 46 26 22 90 34 28 47 21 27 48 35 29 49 27 24 91 28 20 50 20 23 51 22 30 106 22 30 106 30 31 107 28 20 50 21 27 52 29 26 53 31 32 108 31 32 108 23 33 109 21 27 52 20 23 54 34 28 55 22 30 110 21 27 56 23 33 111 35 29 57 30 31 58 22 30 59 24 34 67 24 34 67 36 35 66 30 31 58 23 33 60 31 32 61 37 36 68 37 36 68 25 37 69 23 33 60 22 30 62 34 28 63 24 34 70 23 33 64 25 37 71 35 29 65 36 35 72 24 34 73 26 22 81 26 22 81 32 21 80 36 35 72 25 37 74 37 36 75 33 25 82 33 25 82 27 24 83 25 37 74 24 34 76 34 28 77 26 22 84 25 37 78 27 24 85 35 29 79 2 15 94 8 3 98 18 12 99 19 13 101 9 6 100 3 14 95</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="helmetsexport01_max" name="helmetsexport01_max">
+      <node id="OBJECT44_001" name="OBJECT44_001" type="NODE">
+        <translate>0 0 0</translate>
+        <instance_geometry url="#OBJECT44_001-Geometry">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="_3_-_Default" target="#_3_-_Default">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>30</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0</start_time>
+          <end_time>0.966667</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#helmetsexport01_max"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="a">
+      <mesh>gaia/cross_large_short.pmd</mesh>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/cross_large_tall.pmd</mesh>
+    </variant>
+    <variant name="c">
+      <mesh>gaia/cross_angledfromtop.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>gaia/grass_field_dry_a.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

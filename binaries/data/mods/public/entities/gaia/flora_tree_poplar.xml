@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_gaia_flora_tree"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Specific>Poplar Tree</Specific>
+ 
+			<Classes>Poplar</Classes>
+
+			<History>The poplar is a leafed deciduous.</History>
+
+		</Id>
+
+	</Traits>
+	
+ 	<Actor>flora/trees/poplar.xml</Actor>
+ 
+</Entity>

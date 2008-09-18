@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <float/>
+
+  <group>
+    <variant>
+      <mesh>structural/hele_mer.pmd</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/hele_mer1.xml" attachpoint="mast"/>
+      </props>
+      <texture>structural/hele_merchant.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>

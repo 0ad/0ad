@@ -1,0 +1,176 @@
+This is a function reference for scripters and modders. 
+
+entity = an object which represents a unit in the game.  Each entity has its own set of functions and attributes.
+handle = each entity has a number assigned to it that the engine uses as its "ID". 
+  
+===============================================================================
+
+Class: Output
+
+WriteLog(...) - accepts any number of arguments of any type.  All parameters are converted to strings.  Output is NORMAL style log.
+
+===============================================================================
+
+Class: Entity
+
+getEntityByHandle( int handle ) - returns the entity with the specified handle.
+getEntityTemplateName( string name ) - returns the entity template object that has the specified name.
+
+issueCommand( entity(s), int order_type, args[0], args[1]) - this will create a command, or order, for an entity or group of entities.  This entity(s) is specified in the first parameter.  order_type should be one of the net messages listed in the "net message order" section.  args is an array that contains the data necessary for the order.  For example, if it is a location message such as NMT_GOTO, args[0] should be the x coordinate of the destination and args[1] should be the y coordinate.
+
+createEntityFormation( entities, string name ) - creates a formation of type "name" out of the units in "entities".
+removeFromFormation( entity(s) ) - removes the entity(s) from their formation.  It is required that if it is a group, they are all in the same formation.
+lockEntityFormation( entity, bool lock ) - If lock is true, the formation "entity" is in will be locked.  Otherwise, it will be unlocked.
+isFormationLocked( entity ) -returns true if the entity's formation is locked, otherwise false.
+
+startPlacing( string name ) - Activates the building placement cursor for placing a building.  "name" is the name of the entity to place.  Returns true on sucess
+
+===============================================================================
+
+Class: Events
+ 
+AddGlobalHandler(  string event_name, function handler ) - Registers a global handler for the specified DOM event.  function handler can be a fragment or function.  Returns true on success, else false.
+RemoveGlobalHandler(  string event_name, function handler ) -  Removes a global handler.   function handler can be a fragment or function.  Returns true success.
+
+===============================================================================
+
+Class Timer:
+
+setTimeout( code, int time ) - time is a delay in milliseconds.  When this time has elapsed, "code" is executed once.  Code can be a fragment or function 
+Example: setTimeout( console.write("1 second passed"), 1000 ); Returns the ID of the timer (int).
+
+setIntervel( code, int time ) - nearly the same as setTimeout(), but "code" is executed every "time" milliseconds instead of once after a single delay.
+cancelIntervel() - causes all functions registered with setInterval to no longer be called.
+cancelTimer(int ID) - causes the timer or interval with this ID to longer be called.
+
+====================================================
+
+Class GameSetup:
+
+createServer() - creates and returns a network server object
+createClient() – creates and returns a client server object
+
+startGame() – begins the process of starting the game.  Returns true on success.  –may be changed soon
+
+endGame() – immediately ends the game
+
+===============================================================================
+
+Class Internationalization:
+
+loadLanguage( string language ) – replaces the current langauge with “language”.
+getLanguageID() - returns the name of the current language [string].
+
+===============================================================================
+
+Class GUI:
+
+getGUIGlobal() - returns the "global" object associated with the current GUI.
+
+===============================================================================
+
+Class Misc. Engine:
+
+getFPS() - returns the frame rate of the game [int].
+exitProgram() - causes the game to exit.
+changeCursor(string cursor) - changes the cursor to [string]. Cursors are stored in "art\textures\cursors" and "cursor" is the basename of the texture.
+_lodbias(float sharpness) - changes the sharpness of textures (to "sharpness).
+setCameraTarget(CVector3D position) - move the camera to look at "position".  Returns true on success. 
+
+v3dist( CVector3D a, CVector3D b ) - returns the distance between vectors a and b [float].
+
+isPaused() - returns true if the game is paused (else false).
+setPaused(bool pause) -  if true, the game is paused, else unpaused.
+getGameTime() - returns the amount of time elapsed since the start of the game.
+
+===============================================================================
+
+Class water:
+
+setWaterHeight( float height ) - changes the height of the water to "height".
+getWaterHeight() - returns the height of the water plane [float].
+setWaterColor( float r, float g, float b ) - sets the color of the water plane to the specified components.
+setWaterMaxAlpha( float max ) - sets the maximum alpha value (when the water is at WaterFullDepth or deeper)
+setWaterFullDepth( float depth ) - sets WaterFullDepth to "depth"-lower values result in water becoming opaque faster as the water gets deeper.
+setAlphaWaterOffset( float offset ) - sets the water alpha offset (added to tweak water alpha near the shore).
+toggleWater() - toggles the rendering of water.
+
+===============================================================================
+
+Net message types:
+
+NMT_Goto
+NMT_Patrol
+NMT_AddWaypoint
+NMT_Generic
+NMT_Produce
+NMT_PlaceObject
+NMT_Run
+NMT_NotifyRequest
+NMT_FormationGoto
+NMT_FormationGeneric
+
+Notification codes:
+
+NOTIFY_NONE
+NOTIFY_GOTO
+NOTIFY_RUN
+NOTIFY_FOLLOW - combination of goto and run
+NOTIFY_ATTACK
+NOTIFY_DAMAGE
+NOTIFY_COMBAT - combination of attack and damage
+NOTIFY_ESCORT - combination of combat and follow
+NOTIFY_GATHER
+NOTIFY_IDLE
+NOTIFY_ORDER_CHANGE
+NOITFY_ALL - combination of all except order_change
+
+Order codes:
+
+ORDER_NONE
+ORDER_GOTO
+ORDER_RUN
+ORDER_PATROL
+ORDER_GENERIC
+ORDER_PRODUCE
+ORDER_START_CONSTRUCTION
+
+===============================================================================
+
+Entity Member functions:
+
+registerDamage(entity inflictor) - Called when this entity is damaged. inflictor is the attacking entity. Updates the flank penalty. 
+registerOrderChange(entity) - Used to update flank penalty. Called when entity changes orders
+getAttackDirections() - returns number of directions this entit yis being attacked from
+findSector(int divs, float angle, float maxAngle, bool negative) - Finds the sector that "angle" is in.  divs is the number of sectors, maxAngle is the angle of the arc to check for, negative is whether or not angles are from 0-range or -range/2-range/2
+toString() - Get this entity's tag
+getSpawnPoint() - returns vector object of position for entity spawn point
+hasRallyPoint() - returns true if this entity has a rally point
+setRallyPoint() - sets rally point to cursor's position
+addAura(string name, float radius, int tickrate, function handler) - name is the name of hte aura, radius is its encompassing size, tickrate is something, and handler is the function to be called for events
+removeAura(string name) - removes the aura "name" from this entity's auras
+
+setActionParams(int id, float minRange, float maxRange, int speed, string animation) - id is the order code, min range and max range determine from how near or far the order can be performed, speed specifies how fast the order will happen, and animation is the name of the animation
+triggerRun() - will trigger run next frame (this is the correct way to do it)
+setRun() - set this entity running immediately
+isRunning() - returns true of this entity is currently running
+getRunState() - returns true if this entity will run when in range (or already in range)
+
+requestNotification(entity, int notifyCode, bool destroyOld, bool scriptDestroy) - requests notification for an order type.  entity is the target to be listened to, notifyCode is the notification ID, and destroyOld,if true, will destroy all previous requests except those being destroyed by the script.  scriptDestroy determines whether or not the engine can destroy this request. Setting scriptDestroy to true means you must destroy it yourself later in the script. It is not recommended because doing so from multiple targets may override each other, so use sparingly and with caution.
+
+forceCheckListeners(int notifyCode, entity ) - If necessary, listeners can be checked manually. notifyCode is the notification to check for, entity is the entity whose order data will be used.
+getCurrentRequest() - returns the ID of the notification this entity is currently listening for
+destroyAllNotifiers() - this entity will no longer listen to notifications
+destroyNotifier(entity target) - the entity will no longer listen to notifications from entity.  Use this to destroy notify requests manually
+
+isInFormation() - returns true if this entity is in a formation
+
+order(int order, arg1, arg2, <notification>) - Issues an order to this entity. order is the ID of the order being given, arg1 and arg2 are the parameters needed to complete the order (note that not necessarily all require two, so give the correct amount). The last parameter is optional and indicates whether this order is coming from a notification (if not specified, it will no longer listen to its notifiers)
+
+orderSingle( see order() ) - will clear other orders and replace with this one
+orderQueued( see order() ) - queues this order
+isIdle() - returns true if this entity is idle
+hasClass(string name) - returns true if this entity is part of class name
+terminateOrder(bool destroyAll) - if destroyAll is true, all orders are terminated, otherwise the first current order
+getHeight() - returns this entity's position.y
+

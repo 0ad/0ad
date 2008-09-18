@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="Base">
+      <mesh>gaia/wrld_fol_plant_sm.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="a">
+      <texture>gaia/wrld_fol_plant1.dds</texture>
+    </variant>
+    <variant name="b">
+      <texture>gaia/wrld_fol_plant2.dds</texture>
+    </variant>
+    <variant name="c">
+      <texture>gaia/wrld_fol_plant3.dds</texture>
+    </variant>
+    <variant name="d">
+      <texture>gaia/wrld_fol_plant4.dds</texture>
+    </variant>
+    <variant name="e">
+      <texture>gaia/wrld_fol_plant5.dds</texture>
+    </variant>
+    <variant name="f">
+      <texture>gaia/wrld_fol_plant6.dds</texture>
+    </variant>
+    <variant name="g">
+      <texture>gaia/wrld_fol_plant7.dds</texture>
+    </variant>
+    <variant name="h">
+      <texture>gaia/wrld_fol_plant8.dds</texture>
+    </variant>
+    <variant name="i">
+      <texture>gaia/wrld_fol_plant9.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

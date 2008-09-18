@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_unit_super_infantry"
+>
+	<Traits>
+	
+		<Id>
+
+			<Specific>Skeleton</Specific>
+
+			<Civ>Romans</Civ>
+
+			<History>He lived, and obviously he died, or he wouldn't be a skeleton.</History>
+		
+		</Id>
+		
+	</Traits>
+
+	<Actor>units/skeleton_live.xml</Actor>
+
+</Entity>

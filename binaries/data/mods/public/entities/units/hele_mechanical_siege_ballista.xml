@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_mechanical_siege">
+
+	<Actor>units/hellenes/siege_spear.xml</Actor>
+
+	<Traits>
+	
+		<Id>
+
+			<Specific>Oxybeles</Specific>
+			
+			<Icon_Cell>37</Icon_Cell>
+
+			<Classes>Ranged</Classes>
+		
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Wood>190</Wood>
+				<Metal>100</Metal>
+ 			</Resource>
+		</Creation>
+		<Health>
+			<Max>200</Max>
+		</Health>
+ 		<Footprint>
+ 			<Width>2.0</Width>
+ 			<Depth>4.0</Depth>
+ 			<Height>2.0</Height>
+		</Footprint>		
+	</Traits>
+	<Actions>
+ 		<Move>
+			<Speed>6.0</Speed>
+			<Run>
+				<Speed>7.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
+</Entity>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_structure_civic">
+	<Traits>
+	
+		<Id>
+		
+			<Internal_Only />
+
+			<Generic>Outpost</Generic>
+
+			<Icon_Cell>53</Icon_Cell>
+
+			<Classes>Village</Classes>
+
+			<Tooltip>Provides reconnaissance and defense against attackers when garrisoned.</Tooltip>
+		
+		</Id>
+		
+		<Creation>
+			<Foundation>foundation_1x1</Foundation>
+			<Resource>
+ 				<Wood>50</Wood>
+ 				<Stone>50</Stone>
+ 			</Resource>
+			<BuildingLimitCategory>ScoutTower</BuildingLimitCategory>
+		</Creation>
+			
+ 		<Footprint>
+ 			<Width>6.0</Width>
+ 			<Depth>6.0</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+
+		<Garrison>
+			<Max>3</Max>
+		</Garrison>
+
+		<Health>
+ 			<Max>1200</Max>
+		</Health>
+		
+		<Armour>
+			<Hack>15.0</Hack>
+			<Pierce>42.0</Pierce>
+			<Crush>20.0</Crush>
+		</Armour>
+
+	</Traits>
+
+</Entity>

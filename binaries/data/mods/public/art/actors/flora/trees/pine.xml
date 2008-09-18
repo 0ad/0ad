@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="Base">
+      <texture>gaia/pine.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="a1">
+      <mesh>gaia/pine1.pmd</mesh>
+    </variant>
+    <variant name="a2">
+      <mesh>gaia/pine2.pmd</mesh>
+    </variant>
+    <variant name="a3">
+      <mesh>gaia/pine3.pmd</mesh>
+    </variant>
+    <variant name="a4">
+      <mesh>gaia/pine4.pmd</mesh>
+    </variant>
+    <variant name="a5">
+      <mesh>gaia/pine5.pmd</mesh>
+    </variant>
+    <variant name="b1">
+      <mesh>gaia/pine6.pmd</mesh>
+    </variant>
+    <variant name="b2">
+      <mesh>gaia/pine7.pmd</mesh>
+    </variant>
+    <variant name="b3">
+      <mesh>gaia/pine8.pmd</mesh>
+    </variant>
+    <variant name="b4">
+      <mesh>gaia/pine9.pmd</mesh>
+    </variant>
+    <variant name="b5">
+      <mesh>gaia/pine10.pmd</mesh>
+    </variant>
+    <variant name="c1">
+      <mesh>gaia/pine11.pmd</mesh>
+    </variant>
+    <variant name="c2">
+      <mesh>gaia/pine12.pmd</mesh>
+    </variant>
+    <variant name="c3">
+      <mesh>gaia/pine13.pmd</mesh>
+    </variant>
+    <variant name="c4">
+      <mesh>gaia/pine14.pmd</mesh>
+    </variant>
+    <variant name="c5">
+      <mesh>gaia/pine15.pmd</mesh>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

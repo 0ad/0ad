@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_unit_super">
+	<Traits>
+		<Id>
+			<Generic>Super Ranged</Generic>
+			<Classes>Organic, Foot, Ranged</Classes>
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Food>75</Food>
+				<Wood>150</Wood>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>5.0</Hack>
+			<Pierce>4.0</Pierce>
+			<Crush>10.0</Crush>
+		</Armour>
+		<Health>
+			<Max>100</Max>
+		</Health>
+		<Vision>
+			<Los>15</Los>
+		</Vision>
+		<Population>
+			<Rem>1</Rem>
+		</Population>
+	</Traits>
+	<Actions>
+		<Attack>
+			<Ranged>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>45.0</Pierce>
+ 				<Crush>0.0</Crush>
+				<MinRange>16.0</MinRange>
+				<Range>56</Range>
+				<Speed>1500</Speed>
+				<ProjectileSpeed>25.0</ProjectileSpeed>
+			</Ranged>
+		</Attack>
+		<Move>
+			<Speed>8.0</Speed>
+			<Run>
+				<Speed>19.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
+</Entity>

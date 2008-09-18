@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_hero_ranged">
+	<Traits>
+	
+		<Id>
+
+		<Icon_Cell>23</Icon_Cell>
+
+			<Specific>Xenophon</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>Xenophon (c. 430 B. C. to c. 355 B. C.) was a Greek soldier and (later) historian who was born in Athens of an oligarch family and was a student of Socrates during his youth. He was elected one of the new Greek leaders chosen to lead the army in its retreat out of Persia. Xenophon went on to fight and lead troops in numerous battles then later write numerous books on military tactics, organization and command throughout the remainder of his lifetime.</History>
+			<Tooltip>Hero Aura: Increased Armour and Speed to units within his Formation. Increased Speed to Thracian Peltasts during his lifetime.</Tooltip>		
+		</Id>
+		<Armour>
+			<Hack>9.0</Hack>
+			<Pierce>11.0</Pierce>
+			<Crush>8.0</Crush>
+		</Armour>
+		<Health>
+			<Max>250</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>	
+	</Traits>
+	<Actions> 
+		<Attack>
+			<Ranged>
+ 				<Pierce>55.0</Pierce>
+				<Hack>0.0</Hack>
+				<Crush>0.0</Crush>
+				<MinRange>12.0</MinRange>
+				<Range>40.0</Range>
+			</Ranged>
+ 		</Attack>
+		<Move>
+			<Speed>10.0</Speed>
+			<Run>
+				<Speed>18.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/hellenes/xenophon.xml</Actor>
+</Entity>

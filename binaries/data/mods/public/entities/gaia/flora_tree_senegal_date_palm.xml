@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_gaia_flora_tree">
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Specific>Senegal Date Palm</Specific>
+ 
+			<Classes>Palm Tree</Classes>
+
+			<History>The Senegal Date Palm is an evergreen palm tree generally found on the continent of Africa. Their fruit, the date, is an important food crop in ancient and modern times.</History>
+
+		</Id>
+
+	</Traits>
+ 
+ 	<Actor>flora/trees/palm_senegal_date.xml</Actor>
+ 
+</Entity>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="celt_cavalry_javelinist_b">
+	<Traits>
+		<Id>
+			<Icon_Cell>7</Icon_Cell>
+		</Id>
+		<Promotion>
+			<Entity>celt_cavalry_javelinist_e</Entity>
+		</Promotion>
+		<Loot>
+			<Food>10</Food>
+			<Wood>4</Wood>
+			<Metal>2</Metal>
+		</Loot>			
+		<Stamina>
+			<Max>825.0</Max>
+		</Stamina>	
+		<Vision>
+			<Los>14.0</Los>
+		</Vision>
+		<Armour>
+			<Hack>2.2</Hack>
+			<Pierce>4.2</Pierce>
+			<Crush>8.2</Crush>
+		</Armour>
+	</Traits>
+	<Actions>
+		<Attack>
+			<Ranged>
+ 				<Hack>0.0</Hack>
+ 				<Pierce>32.0</Pierce>
+ 				<Crush>0.0</Crush>
+				<Range>40.0</Range>
+			</Ranged>
+ 		</Attack>
+ 		<Move>
+			<Speed>11.2</Speed>
+			<Run>
+				<Speed>22.9</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/celts/cavalry_javelinist_a.xml</Actor>
+</Entity>

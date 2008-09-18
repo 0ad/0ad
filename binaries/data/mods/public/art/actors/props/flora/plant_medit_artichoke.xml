@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="mesh-plant-large">
+      <mesh>gaia/wrld_fol_plant_lg.pmd</mesh>
+    </variant>
+    <variant name="mesh-plant-small">
+      <mesh>gaia/wrld_fol_plant_sm.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="artichoke-a">
+      <texture>gaia/plant_medit_artichoke_a.dds</texture>
+    </variant>
+    <variant name="artichoke-b-flowering">
+      <texture>gaia/plant_medit_artichoke_b_flower.dds</texture>
+    </variant>
+    <variant name="artichoke-c">
+      <texture>gaia/plant_medit_artichoke_c.dds</texture>
+    </variant>
+    <variant name="artichoke-d-flowering">
+      <texture>gaia/plant_medit_artichoke_d_flower.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

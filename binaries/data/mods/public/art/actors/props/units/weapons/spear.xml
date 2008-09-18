@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="spear-a">
+      <mesh>props/weap_spear_a.pmd</mesh>
+    </variant>
+    <variant name="spear-b">
+      <mesh>props/weap_spear_b.pmd</mesh>
+    </variant>
+  </group>
+
+</actor>

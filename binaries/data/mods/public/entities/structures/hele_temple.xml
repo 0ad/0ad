@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_structure_civic_temple">
+	<Traits>
+	
+		<Id>
+
+			<Specific>Anaktoron</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>The Hellenes built marvelous temples in order to honour their polytheistic pantheon. While all gods were venerated, a specific patron deity was supposed to watch over each polis.</History>
+		
+		</Id>
+		
+ 		<Footprint>
+ 			<Width>16.5</Width>
+ 			<Depth>10.5</Depth>
+ 			<Height>8.0</Height>
+ 		</Footprint>
+		
+	</Traits>
+	
+	<Actions>
+		<Create>
+			<List>
+				<Train>
+					<Support_Healer />
+				</Train>
+			</List>
+		</Create>
+	</Actions>
+
+	<Actor>structures/hellenes/temple.xml</Actor>
+
+</Entity>

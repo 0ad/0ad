@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_entity_quasi"
+>
+	<Traits>
+	
+		<Id>
+			<Internal_Only />
+
+			<Generic>Gaia</Generic>
+
+			<Classes>Gaia</Classes>
+			
+			<Civ>Gaia</Civ>
+			
+			<Civ_Code>gaia</Civ_Code>
+
+		</Id>
+
+		<Vision>
+			<Permanent>true</Permanent>
+		</Vision>
+		
+	</Traits>
+</Entity>

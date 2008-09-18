@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="plant-lrg">
+      <mesh>gaia/wrld_fol_plant_lg.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="plant-sm">
+      <mesh>gaia/wrld_fol_plant_sm.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="plant-leaves-a">
+      <texture>gaia/plant_tropic_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-leaves-b">
+      <texture>gaia/plant_tropic_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-leaves-c">
+      <texture>gaia/plant_tropic_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-leaves-d">
+      <texture>gaia/plant_tropic_d.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-leaves-e">
+      <texture>gaia/plant_tropic_e.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-leaves-f">
+      <texture>gaia/plant_tropic_f.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-leaves-g">
+      <texture>gaia/plant_tropic_g.dds</texture>
+    </variant>
+    <variant frequency="1" name="plant-leaves-h">
+      <texture>gaia/plant_tropic_h.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

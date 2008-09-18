@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_super_cavalry">
+	<Traits>
+	
+		<Id>
+
+			<Icon_Cell>15</Icon_Cell>
+		
+			<Specific>Hetairoi</Specific>
+
+			<Civ>Hellenes</Civ>
+
+			<History>Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand. The Companion Cavalry was also a preferred general stand.</History>
+			<Tooltip>Bonused vs. Cavalry and Archers. Weak vs. Super Units.</Tooltip>
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Food>150</Food>
+				<Metal>150</Metal>
+ 			</Resource>
+		</Creation>		
+		<Armour>
+			<Hack>8.0</Hack>
+			<Pierce>10.0</Pierce>
+			<Crush>14.0</Crush>
+		</Armour>
+		<Health>
+			<Max>220</Max>
+		</Health>
+	</Traits>
+	<Actions>
+ 		<Attack>
+			<Melee>
+				<Hack>15.0</Hack>
+				<Pierce>20.0</Pierce>
+				<Crush>10.0</Crush>
+			</Melee>
+			<Charge>
+				<Hack>45.0</Hack>
+				<Pierce>60.0</Pierce>
+				<Crush>30.0</Crush>
+			</Charge>		
+ 		</Attack>
+		<Move>
+			<Speed>12.0</Speed>
+			<Run>
+				<Speed>22.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>units/hellenes/super_unit_4.xml</Actor>
+</Entity>

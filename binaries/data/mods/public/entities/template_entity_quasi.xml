@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity
+	Parent="template_entity"
+>
+	<Event On="Initialize" Function="entityInitQuasi" />
+</Entity>

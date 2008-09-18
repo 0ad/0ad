@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Bush Medit Medium Dry">
+      <mesh>gaia/bush_me_1.pmd</mesh>
+      <texture>gaia/bush_medit_c.dds</texture>
+    </variant>
+    <variant frequency="100" name="B">
+      <mesh>gaia/bush_me_2.pmd</mesh>
+      <texture>gaia/bush_medit_c.dds</texture>
+    </variant>
+    <variant frequency="100" name="C">
+      <mesh>gaia/bush_me_3.pmd</mesh>
+      <texture>gaia/bush_medit_c.dds</texture>
+    </variant>
+    <variant frequency="100" name="D">
+      <mesh>gaia/bush_me_4.pmd</mesh>
+      <texture>gaia/bush_medit_c.dds</texture>
+    </variant>
+    <variant frequency="100" name="E">
+      <mesh>gaia/bush_me_5.pmd</mesh>
+      <texture>gaia/bush_medit_c.dds</texture>
+    </variant>
+    <variant frequency="100" name="F">
+      <mesh>gaia/bush_me_6.pmd</mesh>
+      <texture>gaia/bush_medit_c.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

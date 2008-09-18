@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <float/>
+
+  <group>
+    <variant frequency="1" name="mesh">
+      <mesh>gaia/water_lillies.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="blood-01">
+      <texture>props/blood_01.dds</texture>
+    </variant>
+    <variant frequency="1" name="blood-02">
+      <texture>props/blood_02.dds</texture>
+    </variant>
+    <variant frequency="1" name="blood-03">
+      <texture>props/blood_03.dds</texture>
+    </variant>
+    <variant frequency="1" name="blood-04">
+      <texture>props/blood_04.dds</texture>
+    </variant>
+    <variant frequency="1" name="blood-05">
+      <texture>props/blood_05.dds</texture>
+    </variant>
+    <variant frequency="1" name="blood-06">
+      <texture>props/blood_06.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

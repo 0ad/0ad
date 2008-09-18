@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant>
+      <mesh>structural/hele_sp_p.pmd</mesh>
+      <props>
+        <prop actor="props/units/weapons/hele_siege_spear.xml" attachpoint="siege"/>
+      </props>
+      <texture>structural/hele_wagon.dds</texture>
+    </variant>
+  </group>
+
+</actor>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="small-short-a">
+      <mesh>gaia/grass_sm_a.pmd</mesh>
+    </variant>
+    <variant name="small-short-b">
+      <mesh>gaia/grass_sm_b.pmd</mesh>
+    </variant>
+    <variant name="small-tall-a">
+      <mesh>gaia/grass_sm_tall_a.pmd</mesh>
+    </variant>
+    <variant name="small-tall-b">
+      <mesh>gaia/grass_sm_tall_b.pmd</mesh>
+    </variant>
+    <variant name="large-short-a">
+      <mesh>gaia/grass_la_a.pmd</mesh>
+    </variant>
+    <variant name="large-short-b">
+      <mesh>gaia/grass_la_b.pmd</mesh>
+    </variant>
+    <variant name="large-tall-a">
+      <mesh>gaia/grass_la_tall_a.pmd</mesh>
+    </variant>
+    <variant name="large-tall-b">
+      <mesh>gaia/grass_la_tall_b.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant name="Dry">
+      <texture>gaia/grass_field_dry.dds</texture>
+    </variant>
+    <variant name="Green">
+      <texture>gaia/grass_field_medit.dds</texture>
+    </variant>
+    <variant name="Mixed">
+      <texture>gaia/grass_field_mixed.dds</texture>
+    </variant>
+    <variant name="flowery">
+      <texture>gaia/grass_field_medit_flowering.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

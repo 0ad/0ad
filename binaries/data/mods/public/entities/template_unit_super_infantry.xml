@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity Parent="template_unit_super">
+	<Traits>
+	
+		<Id>
+		
+			<Generic>Super Infantry</Generic>
+
+			<Icon_Cell>43</Icon_Cell>
+
+			<Classes>Organic, Foot</Classes>
+		
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Food>75</Food>
+				<Metal>100</Metal>
+ 			</Resource>
+		</Creation>
+		<Footprint>
+			<Radius>0.5</Radius>
+			<Height>4.0</Height>
+		</Footprint>
+		<Armour>
+			<Hack>8.0</Hack>
+			<Pierce>7.0</Pierce>
+			<Crush>12.0</Crush>
+		</Armour>
+		<Health>
+			<Max>120</Max>
+		</Health>
+		<Population>
+			<Rem>1</Rem>
+		</Population>
+
+		<Vision>
+			<Los>13</Los>
+		</Vision>
+		
+	</Traits>
+
+	<Actions>
+ 		<Attack>
+			<Melee>
+				<Hack>25.0</Hack>
+				<Pierce>0.0</Pierce>
+				<Crush>0.0</Crush>
+				<Range>5.0</Range>
+				<Speed>1500</Speed>
+			</Melee>
+			<Charge>
+				<Hack>60.0</Hack>
+				<Range>5.0</Range>
+				<Speed>1000</Speed>
+			</Charge>		
+ 		</Attack>
+		<Move>
+
+			<Speed>6.5</Speed>
+
+			<Run>
+
+				<Speed>15.00</Speed>
+
+			</Run>
+		</Move>
+	</Actions>
+	
+	<SoundGroups>
+		<Walk>audio/actor/human/movement/walk.xml</Walk>
+		<Run>audio/actor/human/movement/walk.xml</Run>
+		<Melee>audio/attack/weapon/sword.xml</Melee>
+		<Death>audio/actor/human/death/death.xml</Death>
+		<Build>audio/resource/construction/con_wood.xml</Build>
+		<Gather_Fruit>audio/resource/foraging/forage_leaves.xml</Gather_Fruit>
+		<Gather_Grain>audio/resource/farming/farm.xml</Gather_Grain>
+		<Gather_Wood>audio/resource/lumbering/lumbering.xml</Gather_Wood>
+		<Gather_Stone>audio/resource/mining/pickaxe.xml</Gather_Stone>
+		<Gather_Metal>audio/resource/mining/mining.xml</Gather_Metal>
+	</SoundGroups>
+
+</Entity>

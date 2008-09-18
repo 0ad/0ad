@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_support">
+
+	<Traits>
+	
+		<Id>
+		
+			<Generic>Trader</Generic>
+
+			<Icon_Cell>34</Icon_Cell>
+
+			<Classes>Trade</Classes>
+
+			<Rollover>Trade was a very important part of ancient civilisation - effective trading and control of trade routes equaled wealth. Trade took place by many forms from foot to caravans to merchant ships. One of the most notorious examples of the power of trade was the Silk Road.</Rollover>
+			<Tooltip>Trades resources between allied Markets.</Tooltip>
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Food>50</Food>
+				<Metal>50</Metal>
+ 			</Resource>
+		</Creation>
+		
+		<Population>
+			<Rem>1</Rem>
+		</Population>
+		
+		<Vision>
+			<Los>15</Los>
+		</Vision>
+		
+		<Armour>
+			<Hack>5.0</Hack>
+			<Pierce>8.0</Pierce>
+			<Crush>5.0</Crush>
+		</Armour>	
+
+		<Health>
+			<Max>100</Max>
+		</Health>		
+
+	</Traits>
+	
+	<Actions>
+		<Move>
+
+			<Speed>10.0</Speed>
+
+		</Move>
+	</Actions>
+
+</Entity>
