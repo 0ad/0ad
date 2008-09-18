@@ -13,7 +13,7 @@ ColourTesterFileCtrl::ColourTesterFileCtrl(wxWindow* parent, const wxSize& size,
 	: wxVirtualDirTreeCtrl(parent, wxID_ANY, wxDefaultPosition, size),
 	m_ImageCtrl(imgctrl)
 {
-	wxFileName path (_T("mods/official/art/textures/skins/"));
+	wxFileName path (_T("mods/public/art/textures/skins/"));
 	path.MakeAbsolute(Datafile::GetDataDirectory());
 	wxASSERT(path.IsOk());
 	SetRootPath(path.GetPath());

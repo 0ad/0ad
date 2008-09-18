@@ -120,7 +120,7 @@ FieldEditCtrl_File::FieldEditCtrl_File(const wxString& rootDir, const wxString& 
 	: m_FileMask(fileMask)
 {
 	// Make the rootDir path absolute (where rootDir is relative to binaries/system):
-	wxFileName path (_T("mods/official/") + rootDir);
+	wxFileName path (_T("mods/public/") + rootDir);
 	wxASSERT(path.IsOk());
 	path.MakeAbsolute(Datafile::GetDataDirectory());
 	wxASSERT(path.IsOk());

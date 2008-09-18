@@ -554,7 +554,7 @@ void ScenarioEditor::OpenFile(const wxString& name)
 void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 {
 	wxFileDialog dlg (NULL, wxFileSelectorPromptStr,
-		Datafile::GetDataDirectory() + _T("/mods/official/maps/scenarios"), m_OpenFilename,
+		Datafile::GetDataDirectory() + _T("/mods/public/maps/scenarios"), m_OpenFilename,
 		_T("PMP files (*.pmp)|*.pmp|All files (*.*)|*.*"),
 		wxOPEN);
 
@@ -602,7 +602,7 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 {
 	wxFileDialog dlg (NULL, wxFileSelectorPromptStr,
-		Datafile::GetDataDirectory() + _T("/mods/official/maps/scenarios"), m_OpenFilename,
+		Datafile::GetDataDirectory() + _T("/mods/public/maps/scenarios"), m_OpenFilename,
 		_T("PMP files (*.pmp)|*.pmp|All files (*.*)|*.*"),
 		wxSAVE | wxOVERWRITE_PROMPT);
 

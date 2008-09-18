@@ -390,7 +390,7 @@ void ActorViewer::OnActorEdited()
 
 void ActorViewer::OnEditButton(wxCommandEvent& WXUNUSED(event))
 {
-	wxFileName dir (_T("mods/official/art/actors/") + m_CurrentActor, wxPATH_UNIX);
+	wxFileName dir (_T("mods/public/art/actors/") + m_CurrentActor, wxPATH_UNIX);
 	dir.MakeAbsolute(Datafile::GetDataDirectory());
 
 	ActorEditor* ed = new ActorEditor(NULL);

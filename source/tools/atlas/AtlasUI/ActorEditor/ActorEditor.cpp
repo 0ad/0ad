@@ -74,7 +74,7 @@ ActorEditor::ActorEditor(wxWindow* parent)
 	materialsPanel->SetSizer(materialsSizer);
 
 	// Get the list of XML materials
-	wxArrayString materials = Datafile::EnumerateDataFiles(_T("mods/official/art/materials/"), _T("*.xml"));
+	wxArrayString materials = Datafile::EnumerateDataFiles(_T("mods/public/art/materials/"), _T("*.xml"));
 	// Extract the filenames and discard the path
 	for (size_t i = 0; i < materials.Count(); ++i)
 		materials[i] = wxFileName(materials[i]).GetFullName();
@@ -352,7 +352,7 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 	wxString entityName = currentFilename.GetName();
 
 	// Work out where the entities are stored
-	wxFileName entityPath (_T("mods/official/entities/"));
+	wxFileName entityPath (_T("mods/public/entities/"));
 	entityPath.MakeAbsolute(Datafile::GetDataDirectory());
 
 	// Make sure the user knows what's going on
@@ -383,7 +383,7 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 		return; // cancelled by user
 
 	// Get this actor's filename, relative to actors/
-	wxFileName actorPath (_T("mods/official/art/actors/"));
+	wxFileName actorPath (_T("mods/public/art/actors/"));
 	actorPath.MakeAbsolute(Datafile::GetDataDirectory());
 	wxFileName actorFilename (currentFilename);
 	actorFilename.MakeRelativeTo(actorPath.GetFullPath());
@@ -413,7 +413,7 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 
 wxString ActorEditor::GetDefaultOpenDirectory()
 {
-	wxFileName dir (_T("mods/official/art/actors/"), wxPATH_UNIX);
+	wxFileName dir (_T("mods/public/art/actors/"), wxPATH_UNIX);
 	dir.MakeAbsolute(Datafile::GetDataDirectory());
 	return dir.GetPath();
 }
