@@ -91,7 +91,7 @@ void FColladaDocument::LoadFromText(const char *text)
 	REQUIRE_SUCCESS(status);
 }
 
-void FColladaDocument::ReadExtras(xmlNode* colladaNode)
+void FColladaDocument::ReadExtras(xmlNode* UNUSED(colladaNode))
 {
 	// TODO: This was needed to recognise and load XSI models.
 	// XSI support should be reintroduced some time, but this function
@@ -341,7 +341,7 @@ MERGED_WEIGHTS: ;
 }
 
 
-void FixSkeletonRoots(FCDControllerInstance& controllerInstance)
+void FixSkeletonRoots(FCDControllerInstance& UNUSED(controllerInstance))
 {
 	// TODO: Need to reintroduce XSI support at some point
 #if 0

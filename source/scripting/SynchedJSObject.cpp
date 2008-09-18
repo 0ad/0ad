@@ -7,7 +7,7 @@
 template <>
 CStrW ToNetString(const size_t &val)
 {
-	return CStrW(val);
+	return CStrW((unsigned long)val);
 }
 
 template <>

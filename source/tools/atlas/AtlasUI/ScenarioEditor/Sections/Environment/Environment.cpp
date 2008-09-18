@@ -12,6 +12,8 @@ using AtlasMessage::Shareable;
 
 static Observable<AtlasMessage::sEnvironmentSettings> g_EnvironmentSettings;
 
+const float M_PIf = 3.14159265f;
+
 //////////////////////////////////////////////////////////////////////////
 
 class VariableSliderBox : public wxPanel
@@ -204,8 +206,8 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	wxSizer* sunSizer = new wxGridSizer(2);
 	m_MainSizer->Add(sunSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
 
-	sunSizer->Add(new VariableSliderBox(this, _("Sun rotation"), g_EnvironmentSettings.sunrotation, -M_PI, M_PI), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableSliderBox(this, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -M_PI/2, M_PI/2), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableSliderBox(this, _("Sun rotation"), g_EnvironmentSettings.sunrotation, -M_PIf, M_PIf), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableSliderBox(this, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -M_PIf/2, M_PIf/2), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableSliderBox(this, _("Sun overbrightness"), g_EnvironmentSettings.sunoverbrightness, 1.0f, 3.0f), wxSizerFlags().Expand());
 
 	m_MainSizer->Add(new LightControl(this, wxSize(150, 150), g_EnvironmentSettings));

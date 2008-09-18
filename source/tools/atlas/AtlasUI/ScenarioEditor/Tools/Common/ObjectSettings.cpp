@@ -11,7 +11,7 @@ ObjectSettings::ObjectSettings(Observable<std::vector<AtlasMessage::ObjectID> >&
  	m_Conn = m_SelectedObjects.RegisterObserver(0, &ObjectSettings::OnSelectionChange, this);
 }
 
-int ObjectSettings::GetPlayerID() const
+size_t ObjectSettings::GetPlayerID() const
 {
 	return m_PlayerID;
 }

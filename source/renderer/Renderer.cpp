@@ -1494,7 +1494,7 @@ bool CRenderer::IsTextureTransparent(CTexture* texture)
 	if (!texture) return false;
 	Handle h=texture->GetHandle();
 
-	int flags = 0;	// assume no alpha on failure
+	size_t flags = 0;	// assume no alpha on failure
 	(void)ogl_tex_get_format(h, &flags, 0);
 	return (flags & TEX_ALPHA) != 0;
 }
@@ -1556,7 +1556,7 @@ int CRenderer::LoadAlphaMaps()
 // quick hack: we require plain RGB(A) format, so convert to that.
 // ideally the texture would be in uncompressed form; then this wouldn't
 // be necessary.
-int flags;
+size_t flags;
 ogl_tex_get_format(textures[i], &flags, 0);
 ogl_tex_transform_to(textures[i], flags & ~TEX_DXT);
 

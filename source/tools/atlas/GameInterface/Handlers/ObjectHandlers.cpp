@@ -144,7 +144,7 @@ QUERYHANDLER(GetObjectSettings)
 	if (! unit) return;
 
 	sObjectSettings settings;
-	settings.player = (int)unit->GetPlayerID();
+	settings.player = unit->GetPlayerID();
 
 	// Get the unit's possible variants and selected variants
 	std::vector<std::vector<CStr> > groups = unit->GetObject()->m_Base->GetVariantGroups();

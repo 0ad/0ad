@@ -10,7 +10,7 @@ ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* context);
 
 ATLASDLLIMPEXP void Atlas_NotifyEndOfFrame();
 
-ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, unsigned int flags);
+ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, size_t flags);
 
 ATLASDLLIMPEXP void Atlas_ReportError();
 

@@ -43,4 +43,6 @@ extern void Log(int severity, const char* fmt, ...);
 #undef min
 #undef max
 
+#define UNUSED(paramName)
+
 #endif // INCLUDED_COLLADA_PRECOMPILED

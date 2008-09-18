@@ -410,7 +410,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr& SpriteName, CRect 
 			(void)ogl_tex_get_size(h, &t_w, &t_h, 0);
 			float TexWidth = t_w, TexHeight = t_h;
 
-			int flags = 0;	// assume no alpha on failure
+			size_t flags = 0;	// assume no alpha on failure
 			(void)ogl_tex_get_format(h, &flags, 0);
 			Call.m_EnableBlending = (flags & TEX_ALPHA) != 0;
 

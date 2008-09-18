@@ -22,6 +22,8 @@
 
 using namespace AtlasMessage;
 
+const float M_PIf = 3.14159265f;
+
 //////////////////////////////////////////////////////////////////////////
 
 wxWindow* Tooltipped(wxWindow* window, const wxString& tip)
@@ -37,7 +39,7 @@ class ActorCanvas : public Canvas
 public:
 	ActorCanvas(wxWindow* parent, int* attribList)
 		: Canvas(parent, attribList, wxBORDER_SUNKEN),
-		m_Distance(20.f), m_Angle(0.f), m_Elevation(M_PI/6.f), m_LastIsValid(false)
+		m_Distance(20.f), m_Angle(0.f), m_Elevation(M_PIf/6.f), m_LastIsValid(false)
 	{
 	}
 
@@ -81,12 +83,12 @@ protected:
 			m_LastX = evt.GetX();
 			m_LastY = evt.GetY();
 
-			m_Angle += dx * M_PI/256.f * ScenarioEditor::GetSpeedModifier();
+			m_Angle += dx * M_PIf/256.f * ScenarioEditor::GetSpeedModifier();
 
 			if (evt.ButtonIsDown(wxMOUSE_BTN_LEFT))
 				m_Distance += dy / 8.f * ScenarioEditor::GetSpeedModifier();
 			else // evt.ButtonIsDown(wxMOUSE_BTN_RIGHT))
-				m_Elevation += dy * M_PI/256.f * ScenarioEditor::GetSpeedModifier();
+				m_Elevation += dy * M_PIf/256.f * ScenarioEditor::GetSpeedModifier();
 
 			camera_changed = true;
 		}
@@ -266,8 +268,8 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 	m_AnimationBox = new wxComboBox(sidePanel, ID_Animations, _T("Idle"), wxDefaultPosition, wxDefaultSize, animations);
 
-	m_EnvironmentSettings.sunelevation = 45 * M_PI/180;
-	m_EnvironmentSettings.sunrotation = 315 * M_PI/180;
+	m_EnvironmentSettings.sunelevation = 45 * M_PIf/180;
+	m_EnvironmentSettings.sunrotation = 315 * M_PIf/180;
 	m_EnvironmentSettings.sunoverbrightness = 1.0f;
 	m_EnvironmentSettings.suncolour = Colour(255, 255, 255);
 	m_EnvironmentSettings.terraincolour = Colour(164, 164, 164);

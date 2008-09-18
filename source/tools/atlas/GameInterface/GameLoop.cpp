@@ -32,7 +32,7 @@ void (*Atlas_SetMessagePasser)(MessagePasser*);
 void (*Atlas_GLSetCurrent)(void* cavas);
 void (*Atlas_GLSwapBuffers)(void* canvas);
 void (*Atlas_NotifyEndOfFrame)();
-void (*Atlas_DisplayError)(const wchar_t* text, unsigned int flags);
+void (*Atlas_DisplayError)(const wchar_t* text, size_t flags);
 void (*Atlas_ReportError)();
 namespace AtlasMessage
 {
@@ -68,7 +68,7 @@ static const wchar_t* FindWindowName(const CmdLineArgs& args)
 		return L"ScenarioEditor";
 }
 
-static ErrorReaction AtlasDisplayError(const wchar_t* text, int flags)
+static ErrorReaction AtlasDisplayError(const wchar_t* text, size_t flags)
 {
 	// TODO: after Atlas has been unloaded, don't do this
 	Atlas_DisplayError(text, flags);

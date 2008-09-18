@@ -524,6 +524,15 @@ static void InitScripting()
 }
 
 
+static size_t ChooseCacheSize()
+{
+#if OS_WIN
+	//const size_t overheadKiB = (wutil_WindowsVersion() >= WUTIL_VERSION_VISTA)? 1024 : 512;
+#endif
+	return 96*MiB;
+}
+
+
 static void InitVfs(const CmdLineArgs& args)
 {
 	TIMER("InitVfs");
@@ -540,7 +549,8 @@ static void InitVfs(const CmdLineArgs& args)
 	// the VFS prevents any accesses to files above this directory.
 	path_SetRoot(args.GetArg0(), "../data");
 
-	g_VFS = CreateVfs(96*MiB);
+	const size_t cacheSize = ChooseCacheSize();
+	g_VFS = CreateVfs(cacheSize);
 
 	g_VFS->Mount("screenshots/", "screenshots");
 	g_VFS->Mount("config/", "config");
@@ -552,27 +562,18 @@ static void InitVfs(const CmdLineArgs& args)
 	// - we mount as archivable so that all files will be added to archive.
 	//   even though we write out XMBs here, they will eventually be read,
 	//   so putting them in an archive boosts performance.
-	//
-	// [hot: 16ms]
 	g_VFS->Mount("cache/", "cache", VFS_MOUNT_ARCHIVABLE);
 
 	std::vector<CStr> mods = args.GetMultiple("mod");
 	mods.push_back("public");
 	if(!args.Has("onlyPublicFiles"))
-		mods.push_back("official");
+		mods.push_back("internal");
 
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		CStr path = "mods/" + mods[i];
 		size_t priority = i;
-		int flags = VFS_MOUNT_WATCH;
-
-		// TODO: currently only archive 'official' - probably ought to archive
-		// all mods instead?
-		if (mods[i] == "official")
-			flags |= VFS_MOUNT_ARCHIVABLE;
-
-		// [hot: 150ms for mods/official]
+		const int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
 		g_VFS->Mount("", path, flags, priority);
 	}
 

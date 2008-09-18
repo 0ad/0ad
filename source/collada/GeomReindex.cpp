@@ -141,8 +141,10 @@ void ReindexGeometry(FCDGeometryPolygons* polys, FCDSkinController* skin)
 
 	if (skin)
 	{
+#ifndef NDEBUG
 		size_t numVertexPositions = sourcePosition->GetDataCount() / sourcePosition->GetStride();
 		assert(skin->GetInfluenceCount() == numVertexPositions);
+#endif
 	}
 
 	uint32 stridePosition = sourcePosition->GetStride();

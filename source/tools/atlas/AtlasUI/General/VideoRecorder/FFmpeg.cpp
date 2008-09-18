@@ -48,7 +48,7 @@ typedef __int32 int32_t;
 typedef __int64 int64_t;
 #endif
 
-#define UNUSED(arg)
+#define WXUNUSED(arg)
 
 extern "C" {
 #include "ffmpeg/avformat.h"
@@ -274,7 +274,7 @@ struct VideoEncoderImpl
 		frame_count++;
 	}
 
-	void close_video(AVFormatContext *UNUSED(oc), AVStream *st)
+	void close_video(AVFormatContext *WXUNUSED(oc), AVStream *st)
 	{
 		avcodec_close(st->codec);
 		av_free(picture->data[0]);
@@ -289,7 +289,7 @@ struct VideoEncoderImpl
 
 //////////////////////////////////////////////////////////////////////////
 
-void log(void* UNUSED(v), int i, const char* format, va_list ap)
+void log(void* WXUNUSED(v), int i, const char* format, va_list ap)
 {
 	char buf[512];
 	vsnprintf(buf, sizeof(buf), format, ap);
@@ -416,11 +416,11 @@ VideoEncoder::~VideoEncoder()
 
 #else // !USE_FFMPEG:
 
-VideoEncoder::VideoEncoder(const wxString& filenameStr, int framerate, int bitrate, float duration, int width, int height)
+VideoEncoder::VideoEncoder(const wxString& WXUNUSED(filenameStr), int WXUNUSED(framerate), int WXUNUSED(bitrate), float WXUNUSED(duration), int WXUNUSED(width), int WXUNUSED(height))
 {
 }
 
-void VideoEncoder::Frame(const unsigned char* buffer)
+void VideoEncoder::Frame(const unsigned char* WXUNUSED(buffer))
 {
 }
 

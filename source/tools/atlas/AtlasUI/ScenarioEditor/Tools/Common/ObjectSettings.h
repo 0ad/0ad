@@ -19,7 +19,7 @@ class ObjectSettings
 public:
 	ObjectSettings(Observable<std::vector<AtlasMessage::ObjectID> >& selectedObjects, int view);
 
-	int GetPlayerID() const;
+	size_t GetPlayerID() const;
 	void SetPlayerID(int playerID);
 
 	struct Group
@@ -42,7 +42,7 @@ private:
 	int m_View;
 
 	// 0 = gaia, 1..inf = normal players
-	int m_PlayerID;
+	size_t m_PlayerID;
 
 	// Set of user-chosen actor selections, potentially a superset of any single
 	// actor's possible variants (since it doesn't get reset if you select

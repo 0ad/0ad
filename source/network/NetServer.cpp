@@ -260,8 +260,8 @@ void CNetServer::SetupPlayer( CNetSession* pSession )
 		CPlayerSlot* pCurrSlot = m_GameAttributes->GetSlot( i );
 		if ( !pCurrSlot ) continue;
 	
-		assignSlot.m_SlotID = pCurrSlot->GetSlotID();
-		assignSlot.m_SessionID = pCurrSlot->GetSessionID();
+		assignSlot.m_SlotID = (u32)pCurrSlot->GetSlotID();
+		assignSlot.m_SessionID = (u32)pCurrSlot->GetSessionID();
 		switch ( pCurrSlot->GetAssignment() )
 		{
 		case SLOT_CLOSED:
@@ -800,7 +800,7 @@ void CNetServer::BuildPlayerConfigMessage(
 	// Validare parameters
 	if ( !pMessage || !pPlayer ) return;
 
-	pMessage->m_PlayerID = pPlayer->GetPlayerID();
+	pMessage->m_PlayerID = (u32)pPlayer->GetPlayerID();
 
 	// Iterate through player properties and load them into message
 	pPlayer->IterateSynchedProperties( PlayerConfigMessageCallback, pMessage );
@@ -900,7 +900,7 @@ void CNetServer::PlayerAttributeUpdate(
 	CPlayerConfigMessage* pNewMessage = new CPlayerConfigMessage;
 	if ( !pNewMessage ) return;
 
-	pNewMessage->m_PlayerID = pPlayer->GetPlayerID();
+	pNewMessage->m_PlayerID = (u32)pPlayer->GetPlayerID();
 	pNewMessage->m_Values.resize( 1 );
 	pNewMessage->m_Values[ 0 ].m_Name  = name;
 	pNewMessage->m_Values[ 0 ].m_Value = newValue;
@@ -1033,7 +1033,7 @@ void CNetServer::BuildPlayerSlotAssignmentMessage(
 	// Validate parameters
 	if ( !pMessage || !pPlayerSlot ) return;
 
-	pMessage->m_SlotID	 = pPlayerSlot->GetSlotID();
+	pMessage->m_SlotID	 = (u32)pPlayerSlot->GetSlotID();
 	pMessage->m_SessionID = pPlayerSlot->GetSessionID();
 
 	switch ( pPlayerSlot->GetAssignment() )

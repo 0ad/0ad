@@ -104,7 +104,7 @@ ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 #endif
 }
 
-ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, unsigned int WXUNUSED(flags))
+ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, size_t WXUNUSED(flags))
 {
 	// This is called from the game thread.
 	// wxLog appears to be thread-safe, so that's okay.

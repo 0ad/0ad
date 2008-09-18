@@ -145,7 +145,7 @@ private:
 
 	void OnObjectSettingsChange(const ObjectSettings& settings)
 	{
-		SetSelection(settings.GetPlayerID());
+		SetSelection((long)settings.GetPlayerID());
 	}
 
 	void OnSelect(wxCommandEvent& evt)

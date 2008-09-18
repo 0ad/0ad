@@ -67,7 +67,7 @@ u8* CNetMessage::Serialize( u8* pBuffer ) const
 
 	// Serialize message type and its size
 	*( ( NetMessageType* )pBuffer ) = m_Type;
-	*( ( uint* )( pBuffer + sizeof( NetMessageType ) ) ) = GetSerializedLength();
+	*( ( size_t* )( pBuffer + sizeof( NetMessageType ) ) ) = GetSerializedLength();
 
 	return pBuffer + sizeof( NetMessageType ) + sizeof( uint );
 }
