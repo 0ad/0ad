@@ -62,8 +62,8 @@ void wdbg_heap_Validate()
 // (this relies on the debug CRT; not compiling it at all in release builds
 // avoids unreferenced local function warnings)
 // (this has only been tested on IA32 and seems to have trouble with larger
-// pointers, so it's disabled for now.)
-#if !defined(NDEBUG) && ARCH_IA32
+// pointers and is horribly expensive, so it's disabled for now.)
+#if !defined(NDEBUG) && ARCH_IA32 && 0
 # define ENABLE_LEAK_INSTRUMENTATION 1
 #else
 # define ENABLE_LEAK_INSTRUMENTATION 0

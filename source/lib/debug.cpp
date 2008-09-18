@@ -29,7 +29,7 @@
 
 ERROR_ASSOCIATE(ERR::SYM_NO_STACK_FRAMES_FOUND, "No stack frames found", -1);
 ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE_STATIC, "Value unretrievable (stored in external module)", -1);
-ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE_REG, "Value unretrievable (stored in register)", -1);
+ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE, "Value unretrievable", -1);
 ERROR_ASSOCIATE(ERR::SYM_TYPE_INFO_UNAVAILABLE, "Error getting type_info", -1);
 ERROR_ASSOCIATE(ERR::SYM_INTERNAL_ERROR, "Exception raised while processing a symbol", -1);
 ERROR_ASSOCIATE(ERR::SYM_UNSUPPORTED, "Symbol type not (fully) supported", -1);
@@ -177,15 +177,15 @@ void debug_printf(const wchar_t* fmt, ...)
 
 	va_list ap;
 	va_start(ap, fmt);
-	const int len = vswprintf(buf, DEBUG_PRINTF_MAX_CHARS, fmt, ap);
-	debug_assert(len >= 0);
+	const int numChars = vswprintf(buf, DEBUG_PRINTF_MAX_CHARS, fmt, ap);
+	debug_assert(numChars >= 0);
 	va_end(ap);
 
 	char buf2[DEBUG_PRINTF_MAX_CHARS];
-	size_t charsConverted;
-	errno_t ret = wcstombs_s(&charsConverted, buf2, DEBUG_PRINTF_MAX_CHARS, buf, DEBUG_PRINTF_MAX_CHARS);
+	size_t bytesWritten;
+	errno_t ret = wcstombs_s(&bytesWritten, buf2, DEBUG_PRINTF_MAX_CHARS, buf, DEBUG_PRINTF_MAX_CHARS);
 	debug_assert(ret == 0);
-	debug_assert(charsConverted == wcslen(buf));
+	debug_assert(bytesWritten-1 == (size_t)numChars);
 
 	if(debug_filter_allows(buf2))
 		debug_puts(buf2);
@@ -261,7 +261,9 @@ static bool should_suppress_error(u8* suppress)
 }
 
 
-static const size_t message_size_bytes = 256*KiB;	// enough
+// (NB: this may appear obscene, but deep stack traces have been
+// observed to take up > 256 KiB)
+static const size_t message_size_bytes = 512*KiB;
 
 void debug_error_message_free(ErrorMessageMem* emm)
 {

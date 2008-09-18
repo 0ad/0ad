@@ -374,7 +374,7 @@ namespace ERR
 {
 	const LibError SYM_NO_STACK_FRAMES_FOUND = -100400;
 	const LibError SYM_UNRETRIEVABLE_STATIC  = -100401;
-	const LibError SYM_UNRETRIEVABLE_REG     = -100402;
+	const LibError SYM_UNRETRIEVABLE         = -100402;
 	const LibError SYM_TYPE_INFO_UNAVAILABLE = -100403;
 	const LibError SYM_INTERNAL_ERROR        = -100404;
 	const LibError SYM_UNSUPPORTED           = -100405;
