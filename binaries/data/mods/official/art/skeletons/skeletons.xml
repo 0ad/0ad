@@ -680,4 +680,27 @@ This skeleton is for the deer and any other similiar shaped animals with the exa
 		 </bone>	
 	</skeleton>
 	
+
+
+	<standard_skeleton title="Tree Skeleton" id="tree">
+      <bone name="stump">
+        <bone name="trunk">
+          <bone name="foliage">
+		   </bone>
+        </bone>
+      </bone>
+	</standard_skeleton>
+	
+	<skeleton title="Tree Skeleton" target="tree">
+		 <identifier>
+			<root>stump</root>
+		 </identifier>
+      <bone name="stump"><target>stump</target>
+        <bone name="trunk"><target>trunk</target>
+          <bone name="foliage"><target>foliage</target>
+          </bone>
+        </bone>
+      </bone>
+	</skeleton>
+	
 </skeletons>
