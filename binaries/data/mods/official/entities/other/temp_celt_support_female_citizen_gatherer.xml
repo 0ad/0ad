@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
-
-<Entity
-	Parent="celt_support_female_citizen"
->
-	
-	<Script File="scripts/entity_functions.js" />
-	<Event On="Initialize" Function="entityInitGatherer" />
-</Entity>
