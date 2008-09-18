@@ -13,16 +13,16 @@
 
 #include "lib/os_path.h"
 
-// WARNING: not re-entrant or thread-safe!
-
-// set output buffer into which DLL names and their versions will be written.
-extern void wdll_ver_list_init(char* buf, size_t chars);
-
-// read DLL file version and append that and its name to the list.
-//
-// name should preferably be the complete path to DLL, to make sure
-// we don't inadvertently load another one on the library search path.
-// we add the .dll extension if necessary.
-extern LibError wdll_ver_list_add(const OsPath& name);
+/**
+ * read DLL version information and append it to a string.
+ *
+ * @param pathname of DLL (preferably the complete path, so that we don't
+ * inadvertently load another one on the library search path.)
+ * if no extension is given, .dll will be appended.
+ *
+ * the text output includes the module name.
+ * on failure, the version is given as "unknown".
+ **/
+extern void wdll_ver_Append(const OsPath& pathname, std::string& list);
 
 #endif	// #ifndef INCLUDED_WDLL_VER

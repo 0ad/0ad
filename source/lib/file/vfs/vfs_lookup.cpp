@@ -20,7 +20,7 @@
 TIMER_ADD_CLIENT(tc_lookup);
 
 
-LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, int flags)
+LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, size_t flags)
 {
 TIMER_ACCRUE(tc_lookup);
 

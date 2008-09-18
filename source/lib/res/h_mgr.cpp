@@ -444,7 +444,7 @@ static u32 gen_tag()
 }
 
 
-static Handle reuse_existing_handle(uintptr_t key, H_Type type, int flags)
+static Handle reuse_existing_handle(uintptr_t key, H_Type type, size_t flags)
 {
 	if(flags & RES_NO_CACHE)
 		return 0;
@@ -506,7 +506,7 @@ static LibError call_init_and_reload(Handle h, H_Type type, HDATA* hd, const Vfs
 }
 
 
-static Handle alloc_new_handle(H_Type type, const VfsPath& pathname, uintptr_t key, int flags, va_list* init_args)
+static Handle alloc_new_handle(H_Type type, const VfsPath& pathname, uintptr_t key, size_t flags, va_list* init_args)
 {
 	ssize_t idx;
 	HDATA* hd;
@@ -549,7 +549,7 @@ fail:
 
 
 // any further params are passed to type's init routine
-Handle h_alloc(H_Type type, const VfsPath& pathname, int flags, ...)
+Handle h_alloc(H_Type type, const VfsPath& pathname, size_t flags, ...)
 {
 	RETURN_ERR(type_validate(type));
 

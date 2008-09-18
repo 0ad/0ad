@@ -5,7 +5,7 @@
 #define GNU_SOURCE
 #include <dlfcn.h>
 
-LibError sys_get_executable_name(char* n_path, size_t buf_size)
+LibError sys_get_executable_name(char* n_path, size_t max_chars)
 {
 	Dl_info dl_info;
 
@@ -16,7 +16,7 @@ LibError sys_get_executable_name(char* n_path, size_t buf_size)
 		return ERR::NO_SYS;
 	}
 
-	strncpy(n_path, dl_info.dli_fname, buf_size);
+	strncpy(n_path, dl_info.dli_fname, max_chars);
 	return INFO::OK;
 }
 

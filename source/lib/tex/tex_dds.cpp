@@ -483,8 +483,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, size_t& bpp, size_t& flags)
 // sd points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static LibError decode_sd(const DDSURFACEDESC2* sd, size_t* w_, size_t* h_,
-	size_t* bpp_, size_t* flags_)
+static LibError decode_sd(const DDSURFACEDESC2* sd, size_t* w_, size_t* h_, size_t* bpp_, size_t* flags_)
 {
 	// check header size
 	if(read_le32(&sd->dwSize) != sizeof(*sd))
@@ -604,8 +603,8 @@ static LibError dds_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 	u8* file         = da->base;
 	const DDSURFACEDESC2* sd = (const DDSURFACEDESC2*)(file+4);
 
-	size_t w, h;
-	size_t bpp, flags;
+	size_t w, h, bpp;
+	size_t flags;
 	RETURN_ERR(decode_sd(sd, &w, &h, &bpp, &flags));
 	// note: cannot pass address of these directly to decode_sd because
 	// they are bitfields.

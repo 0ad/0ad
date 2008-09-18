@@ -264,7 +264,7 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 		L"Details: unhandled exception (%s)\r\n";
 	swprintf(message, ARRAY_SIZE(message), messageFormat, description);
 
-	int flags = 0;
+	size_t flags = 0;
 	if(ep->ExceptionRecord->ExceptionFlags & EXCEPTION_NONCONTINUABLE)
 		flags = DE_NO_CONTINUE;
 	ErrorReaction er = debug_display_error(message, flags, 1,ep->ContextRecord, file,line,func, 0);

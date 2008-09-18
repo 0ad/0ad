@@ -1158,7 +1158,7 @@ struct VSrc
 	ALboolean relative;
 
 	/// controls vsrc_update behavior (VSrcFlags)
-	int flags;
+	size_t flags;
 
 	ALuint al_src;
 
@@ -1284,7 +1284,7 @@ static LibError VSrc_to_string(const VSrc* vs, char * buf)
  */
 Handle snd_open(const VfsPath& pathname, bool is_stream)
 {
-	int flags = 0;
+	size_t flags = 0;
 	if(is_stream)
 		flags |= VS_IS_STREAM;
 	// note: RES_UNIQUE forces each instance to get a new resource

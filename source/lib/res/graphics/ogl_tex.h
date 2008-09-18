@@ -108,7 +108,7 @@ the next function to fail, but real apps should check and report errors.
    specify internal_format and use multitexturing.
 
 	Tex t;
-	const int flags = 0;	* image is plain RGB, default orientation
+	const size_t flags = 0;	* image is plain RGB, default orientation
 	void* data = [pre-existing image]
 	(void)tex_wrap(w, h, 24, flags, data, &t);
 	Handle hCompositeAlphaMap = ogl_tex_wrap(&t, "(alpha map composite)");
@@ -203,7 +203,7 @@ extern void ogl_tex_set_defaults(int q_flags, GLint filter);
 * @return Handle to texture or negative LibError
 * for a list of supported formats, see tex.h's tex_load.
 */
-extern Handle ogl_tex_load(const VfsPath& pathname, int flags = 0);
+extern Handle ogl_tex_load(const VfsPath& pathname, size_t flags = 0);
 
 /**
 * Find and return an existing texture object, if it has already been
@@ -232,7 +232,7 @@ extern Handle ogl_tex_find(const VfsPath& pathname);
 * we need only add bookkeeping information and "wrap" it in
 * a resource object (accessed via Handle), hence the name.
 */
-extern Handle ogl_tex_wrap(Tex* t, const char* fn = 0, int flags = 0);
+extern Handle ogl_tex_wrap(Tex* t, const char* fn = 0, size_t flags = 0);
 
 /**
 * Release this texture reference. When the count reaches zero, all of
@@ -343,7 +343,7 @@ extern LibError ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp);
 *        (it is determined during ogl_tex_upload and 0 before then)
 * @return LibError
 */
-extern LibError ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt);
+extern LibError ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt);
 
 /**
 * Retrieve pixel data of the texture.
@@ -394,7 +394,7 @@ extern LibError ogl_tex_bind(Handle ht, size_t unit = 0);
 *
 * Must be called before uploading (raises a warning if called afterwards).
 */
-extern LibError ogl_tex_transform(Handle ht, int flags);
+extern LibError ogl_tex_transform(Handle ht, size_t flags);
 
 /**
 * Transform pixel format of the texture.

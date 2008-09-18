@@ -25,12 +25,7 @@
 #endif
 
 
-void sys_display_msg(const char* caption, const char* msg)
-{
-	MessageBoxA(0, msg, caption, MB_ICONEXCLAMATION|MB_TASKMODAL|MB_SETFOREGROUND);
-}
-
-void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
+void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 {
 	MessageBoxW(0, msg, caption, MB_ICONEXCLAMATION|MB_TASKMODAL|MB_SETFOREGROUND);
 }
@@ -120,7 +115,7 @@ static void dlg_resize(HWND hDlg, WPARAM wParam, LPARAM lParam)
 struct DialogParams
 {
 	const wchar_t* text;
-	int flags;
+	size_t flags;
 };
 
 
@@ -225,9 +220,7 @@ static INT_PTR CALLBACK error_dialog_proc(HWND hDlg, unsigned int msg, WPARAM wP
 }
 
 
-// show error dialog with the given text and return user's reaction.
-// exits directly if 'exit' is clicked.
-ErrorReaction sys_display_error(const wchar_t* text, int flags)
+ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 {
 	// note: other threads might still be running, crash and take down the
 	// process before we have a chance to display this error message.
@@ -304,12 +297,7 @@ LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
 }
 
 
-// determine filename of the module to whom the given address belongs.
-// useful for handling exceptions in other modules.
-// <path> receives full path to module; it must hold at least MAX_PATH chars.
-// on error, it is set to L"".
-// return path for convenience.
-wchar_t* sys_get_module_filename(void* addr, wchar_t* path)
+void sys_get_module_filename(void* addr, wchar_t* path, size_t max_chars)
 {
 	path[0] = '\0';	// in case either API call below fails
 	wchar_t* module_filename = path;
@@ -318,21 +306,17 @@ wchar_t* sys_get_module_filename(void* addr, wchar_t* path)
 	if(VirtualQuery(addr, &mbi, sizeof(mbi)))
 	{
 		HMODULE hModule = (HMODULE)mbi.AllocationBase;
-		if(GetModuleFileNameW(hModule, path, MAX_PATH))
+		if(GetModuleFileNameW(hModule, path, (DWORD)max_chars))
 			module_filename = wcsrchr(path, '\\')+1;
 		// note: GetModuleFileName returns full path => a '\\' exists
 	}
-
-	return module_filename;
 }
 
 
-// store full path to the current executable.
-// useful for determining installation directory, e.g. for VFS.
-inline LibError sys_get_executable_name(char* n_path, size_t buf_size)
+LibError sys_get_executable_name(char* n_path, size_t max_chars)
 {
-	DWORD nbytes = GetModuleFileName(0, n_path, (DWORD)buf_size);
-	return nbytes? INFO::OK : ERR::FAIL;
+	const DWORD num_chars = GetModuleFileName(0, n_path, (DWORD)max_chars);
+	return num_chars? INFO::OK : ERR::FAIL;
 }
 
 
@@ -350,13 +334,10 @@ static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM UNUSED(lParam)
 	return 0;
 }
 
-// have the user specify a directory via OS dialog.
-// stores its full path in the given buffer, which must hold at least
-// PATH_MAX chars.
-LibError sys_pick_directory(char* path, size_t buf_size)
+LibError sys_pick_directory(char* path, size_t max_chars)
 {
 	// bring up dialog; set starting directory to current working dir.
-	WARN_IF_FALSE(GetCurrentDirectory((DWORD)buf_size, path));
+	WARN_IF_FALSE(GetCurrentDirectory((DWORD)max_chars, path));
 	BROWSEINFOA bi;
 	memset(&bi, 0, sizeof(bi));
 	bi.ulFlags = BIF_RETURNONLYFSDIRS;
@@ -366,7 +347,7 @@ LibError sys_pick_directory(char* path, size_t buf_size)
 
 	// translate ITEMIDLIST to string. note: SHGetPathFromIDList doesn't
 	// support a user-specified char limit *sigh*
-	debug_assert(buf_size >= MAX_PATH);	//
+	debug_assert(max_chars >= MAX_PATH);
 	BOOL ok = SHGetPathFromIDList(pidl, path);
 
 	// free the ITEMIDLIST

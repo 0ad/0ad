@@ -23,7 +23,7 @@
  * @param flags TexFlags
  * @return LibError
  **/
-extern LibError tex_validate_plain_format(size_t bpp, int flags);
+extern LibError tex_validate_plain_format(size_t bpp, size_t flags);
 
 
 /**

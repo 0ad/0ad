@@ -6,7 +6,7 @@
 
 class TestTex : public CxxTest::TestSuite 
 {
-	void generate_encode_decode_compare(size_t w, size_t h, int flags, size_t bpp, const std::string& extension)
+	void generate_encode_decode_compare(size_t w, size_t h, size_t flags, size_t bpp, const std::string& extension)
 	{
 		// generate test data
 		const size_t size = w*h*bpp/8;
@@ -67,7 +67,7 @@ public:
 				// for each bit depth
 				for(size_t bpp = 8; bpp <= 32; bpp += 8)
 				{
-					int flags = 0;
+					size_t flags = 0;
 					if(!strcmp(extension, ".dds"))
 						flags |= (TEX_DXT&3);	// DXT3
 					if(bpp == 8)

@@ -55,7 +55,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 }
 
 
-LibError sys_get_executable_name(char* n_path, size_t buf_size)
+LibError sys_get_executable_name(char* n_path, size_t max_chars)
 {
 	static char name[PATH_MAX];
 	static bool init = false;
@@ -81,7 +81,7 @@ LibError sys_get_executable_name(char* n_path, size_t buf_size)
 		debug_printf("app bundle name: %s\n", name);
 	}
 	
-	strncpy(n_path, name, buf_size);
+	strncpy(n_path, name, max_chars);
 	debug_printf("returning exe name: %s\n", name);
 	
 	return INFO::OK;

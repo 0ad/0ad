@@ -32,7 +32,7 @@ public:
 	{
 	}
 
-	virtual LibError Mount(const VfsPath& mountPoint, const Path& path, int flags /* = 0 */, size_t priority /* = 0 */)
+	virtual LibError Mount(const VfsPath& mountPoint, const Path& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
 		debug_assert(vfs_path_IsDirectory(mountPoint));
 		// note: mounting subdirectories is now allowed.

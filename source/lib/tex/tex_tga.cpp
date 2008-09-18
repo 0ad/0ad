@@ -107,7 +107,7 @@ static LibError tga_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 	const size_t bpp = hdr->bpp;
 	const u8 desc  = hdr->img_desc;
 
-	int flags = 0;
+	size_t flags = 0;
 	flags |= (desc & TGA_TOP_DOWN)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	if(desc & 0x0F)	// alpha bits
 		flags |= TEX_ALPHA;
@@ -139,7 +139,7 @@ static LibError tga_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 		img_desc |= 8;	// size of alpha channel
 	TgaImgType img_type = (t->flags & TEX_GREY)? TGA_GREY : TGA_TRUE_COLOUR;
 
-	int transforms = t->flags;
+	size_t transforms = t->flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
 	transforms ^= TEX_BGR;			// TGA is native BGR.
 
@@ -150,9 +150,9 @@ static LibError tga_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 		(u8)img_type,
 		{0,0,0,0,0},	// unused (colour map)
 		0, 0,			// unused (origin)
-		t->w,
-		t->h,
-		t->bpp,
+		(u16)t->w,
+		(u16)t->h,
+		(u8)t->bpp,
 		img_desc
 	};
 	const size_t hdr_size = sizeof(hdr);

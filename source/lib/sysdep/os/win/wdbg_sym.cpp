@@ -982,104 +982,108 @@ static LibError dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 
 	switch(base_type)
 	{
-		// boolean
-		case btBool:
-			debug_assert(size == sizeof(bool));
-			fmt = L"%hs";
-			data = (u64)(data? "true " : "false");
-			break;
+	// boolean
+	case btBool:
+		debug_assert(size == sizeof(bool));
+		out(L"%hs", data? "true " : "false");
+		return INFO::OK;
 
-		// floating-point
-		case btFloat:
-			// C calling convention casts float params to doubles, so printf
-			// expects one when we indicate %g. there are no width flags,
-			// so we have to manually convert the float data to double.
-			if(size == sizeof(float))
-				*(double*)&data = (double)*(float*)&data;
-			else if(size != sizeof(double))
-				debug_assert(0);	// invalid float size
-			fmt = L"%g";
-			break;
+	// floating-point
+	case btFloat:
+		if(size == sizeof(float))
+		{
+			// NB: the C calling convention calls for float arguments to be
+			// converted to double. passing `data' wouldn't work because it's
+			// merely a zero-extended 32-bit representation of the float.
+			float value;
+			memcpy(&value, p, sizeof(value));
+			out(L"%f (0x%08X)", value, value);
+		}
+		else if(size == sizeof(double))
+			out(L"%g (0x%016X)", data, data);
+		else
+			debug_assert(0);	// invalid float size
+		return INFO::OK;
 
-		// signed integers (displayed as decimal)
-		case btInt:
-		case btLong:
-			if(size != 1 && size != 2 && size != 4 && size != 8)
-				debug_assert(0);	// invalid int size
-			// need to re-load and sign-extend, because we output 64 bits.
-			data = movsx_le64(p, size);
-			fmt = L"%I64d";
-			break;
+	// signed integers (displayed as decimal)
+	case btInt:
+	case btLong:
+		if(size != 1 && size != 2 && size != 4 && size != 8)
+			debug_assert(0);	// invalid int size
+		// need to re-load and sign-extend, because we output 64 bits.
+		data = movsx_le64(p, size);
+		fmt = L"%I64d";
+		break;
 
-		// unsigned integers (displayed as hex)
-		// note: 0x00000000 can get annoying (0 would be nicer),
-		// but it indicates the variable size and makes for consistently
-		// formatted structs/arrays. (0x1234 0 0x5678 is ugly)
-		case btUInt:
-		case btULong:
+	// unsigned integers (displayed as hex)
+	// note: 0x00000000 can get annoying (0 would be nicer),
+	// but it indicates the variable size and makes for consistently
+	// formatted structs/arrays. (0x1234 0 0x5678 is ugly)
+	case btUInt:
+	case btULong:
 display_as_hex:
-			if(size == 1)
-			{
-				// _TUCHAR
-				if(state.indirection)
-				{
-					state.indirection = 0;
-					return dump_array(p, 8, type_id, size, state);
-				}
-				fmt = L"0x%02X";
-			}
-			else if(size == 2)
-				fmt = L"0x%04X";
-			else if(size == 4)
-				fmt = L"0x%08X";
-			else if(size == 8)
-				fmt = L"0x%016I64X";
-			else
-				debug_assert(0);	// invalid size_t size
-			break;
-
-		// character
-		case btChar:
-		case btWChar:
-			debug_assert(size == sizeof(char) || size == sizeof(wchar_t));
-			// char*, wchar_t*
+		if(size == 1)
+		{
+			// _TUCHAR
 			if(state.indirection)
 			{
 				state.indirection = 0;
 				return dump_array(p, 8, type_id, size, state);
 			}
-			// either integer or character;
-			// if printable, the character will be appended below.
-			fmt = L"%d";
-			break;
+			fmt = L"0x%02X";
+		}
+		else if(size == 2)
+			fmt = L"0x%04X";
+		else if(size == 4)
+			fmt = L"0x%08X";
+		else if(size == 8)
+			fmt = L"0x%016I64X";
+		else
+			debug_assert(0);	// invalid size_t size
+		break;
 
-		// note: void* is sometimes indicated as (pointer, btNoType).
-		case btVoid:
-		case btNoType:
-			// void* - cannot display what it's pointing to (type unknown).
-			if(state.indirection)
-			{
-				out_erase(4);	// " -> "
-				fmt = L"";
-			}
-			else
-				debug_assert(0);	// non-pointer btVoid or btNoType
-			break;
+	// character
+	case btChar:
+	case btWChar:
+		debug_assert(size == sizeof(char) || size == sizeof(wchar_t));
+		// char*, wchar_t*
+		if(state.indirection)
+		{
+			state.indirection = 0;
+			return dump_array(p, 8, type_id, size, state);
+		}
+		// either integer or character;
+		// if printable, the character will be appended below.
+		fmt = L"%d";
+		break;
 
-		default:
-			debug_warn("dump_sym_base_type: unknown type");
-			//-fallthrough
+	// note: void* is sometimes indicated as (pointer, btNoType).
+	case btVoid:
+	case btNoType:
+		// void* - cannot display what it's pointing to (type unknown).
+		if(state.indirection)
+		{
+			out_erase(4);	// " -> "
+			fmt = L"";
+		}
+		else
+			debug_assert(0);	// non-pointer btVoid or btNoType
+		break;
 
-		// unsupported complex types
-		case btBCD:
-		case btCurrency:
-		case btDate:
-		case btVariant:
-		case btComplex:
-		case btBit:
-		case btBSTR:
-		case btHresult:
-			return ERR::SYM_UNSUPPORTED;	// NOWARN
+	default:
+		debug_warn("dump_sym_base_type: unknown type");
+		//-fallthrough
+
+	// unsupported complex types
+	case btBCD:
+	case btCurrency:
+	case btDate:
+	case btVariant:
+	case btComplex:
+	case btBit:
+	case btBSTR:
+	case btHresult:
+		return ERR::SYM_UNSUPPORTED;	// NOWARN
 	}
 
 	out(fmt, data);
@@ -1113,8 +1117,6 @@ static LibError dump_sym_base_class(DWORD type_id, const u8* p, DumpState state)
 		return ERR::SYM_UNSUPPORTED;	// NOWARN
 
 	return dump_sym(base_class_type_id, p, state);
-	
-
 }
 
 
@@ -1747,10 +1749,22 @@ struct IMAGEHLP_STACK_FRAME2 : public IMAGEHLP_STACK_FRAME
 	}
 };
 
+static bool ShouldSkipSymbol(const wchar_t* name)
+{
+	if(!wcscmp(name, L"__suppress"))
+		return true;
+	if(!wcscmp(name, L"__profile"))
+		return true;
+	return false;
+}
+
 // output the symbol's name and value via dump_sym*.
 // called from dump_frame_cb for each local symbol; lock is held.
-static BOOL CALLBACK dump_sym_cb(SYMBOL_INFO* sym, ULONG UNUSED(size), void* UNUSED(ctx))
+static BOOL CALLBACK dump_sym_cb(SYMBOL_INFOW* sym, ULONG UNUSED(size), void* UNUSED(ctx))
 {
+	if(ShouldSkipSymbol(sym->Name))
+		return TRUE;	// continue
+
 	out_latch_pos();	// see decl
 	mod_base = sym->ModBase;
 	const u8* p = (const u8*)(uintptr_t)sym->Address;
@@ -1782,7 +1796,9 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 		// function name isn't future-proof, but not stopping is no big deal.
 		// an alternative would be to check if module=kernel32, but
 		// that would cut off callbacks as well.
-		if(!strcmp(func_name, "_BaseProcessStart@4"))
+		// note: the stdcall mangled name includes parameter size, which is
+		// different in 64-bit, so only check the first characters.
+		if(!strncmp(func_name, "_BaseProcessStart", 17))
 			return INFO::OK;
 
 		out(L"%hs (%hs:%d)\r\n", func_name, file, line);
@@ -1796,10 +1812,11 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 	// declared in sub-blocks. we'd have to pass an address in that block,
 	// which isn't worth the trouble. since 
 	IMAGEHLP_STACK_FRAME2 imghlp_frame(sf);
-	SymSetContext(hProcess, &imghlp_frame, 0);	// last param is ignored
+	const PIMAGEHLP_CONTEXT context = 0;	// ignored
+	SymSetContext(hProcess, &imghlp_frame, context);
 
-	const ULONG64 base = 0; const char* const mask = 0;	// use scope set by SymSetContext
-	SymEnumSymbols(hProcess, base, mask, dump_sym_cb, 0);
+	const ULONG64 base = 0; const wchar_t* const mask = 0;	// use scope set by SymSetContext
+	SymEnumSymbolsW(hProcess, base, mask, dump_sym_cb, 0);
 
 	out(L"\r\n");
 	return INFO::CB_CONTINUE;

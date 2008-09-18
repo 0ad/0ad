@@ -16,17 +16,12 @@
 // these are basic POSIX-compatible backends for the sysdep.h functions.
 // Win32 has better versions which override these.
 
-void sys_display_msg(const char* caption, const char* msg)
-{
-	fprintf(stderr, "%s: %s\n", caption, msg);
-}
-
-void sys_display_msgw(const wchar_t* caption, const wchar_t* msg)
+void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 {
 	fwprintf(stderr, L"%ls: %ls\n", caption, msg);
 }
 
-ErrorReaction sys_display_error(const wchar_t* text, int flags)
+ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 {
 	printf("%ls\n\n", text);
 

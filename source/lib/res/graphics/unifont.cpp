@@ -191,7 +191,7 @@ static LibError UniFont_to_string(const UniFont* f, char* buf)
 }
 
 
-Handle unifont_load(const VfsPath& pathname, int flags)
+Handle unifont_load(const VfsPath& pathname, size_t flags)
 {
 	return h_alloc(H_UniFont, pathname, flags);
 }

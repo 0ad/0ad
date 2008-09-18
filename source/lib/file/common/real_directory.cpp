@@ -6,7 +6,7 @@
 #include "lib/file/io/io.h"
 
 
-RealDirectory::RealDirectory(const Path& path, size_t priority, int flags)
+RealDirectory::RealDirectory(const Path& path, size_t priority, size_t flags)
 	: m_path(path), m_priority(priority), m_flags(flags)
 {
 }

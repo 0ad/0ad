@@ -100,11 +100,9 @@ static LibError win_get_gfx_drv_ver()
 	//   gfx_card which one is correct; we thus avoid driver-specific
 	//   name checks and reporting incorrectly.
 
-	LibError ret = ERR::FAIL;	// single point of exit (for RegCloseKey)
 	DWORD i;
 	char drv_name[MAX_PATH+1];
-
-	wdll_ver_list_init(gfx_drv_ver, GFX_DRV_VER_LEN);
+	std::string versionList;
 
 	HKEY hkOglDrivers;
 	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
@@ -116,20 +114,21 @@ static LibError win_get_gfx_drv_ver()
 	{
 		char set_name[32];
 		DWORD set_name_len = ARRAY_SIZE(set_name);
-		LONG err = RegEnumKeyEx(hkOglDrivers, i, set_name, &set_name_len, 0, 0,0, 0);
-		if(err != ERROR_SUCCESS)	// error or no more items - bail
+		const LONG err = RegEnumKeyEx(hkOglDrivers, i, set_name, &set_name_len, 0, 0,0, 0);
+		if(err == ERROR_NO_MORE_ITEMS)
 			break;
+		debug_assert(err == ERROR_SUCCESS);
 
 		HKEY hkSet;
 		if(RegOpenKeyEx(hkOglDrivers, set_name, 0, KEY_QUERY_VALUE, &hkSet) == 0)
 		{
 			DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
 			if(RegQueryValueEx(hkSet, "Dll", 0, 0, (LPBYTE)drv_name, &drv_name_len) == 0)
-				ret = wdll_ver_list_add(drv_name);
+				wdll_ver_Append(drv_name, versionList);
 
 			RegCloseKey(hkSet);
 		}
-	}	// for each subkey
+	}
 
 	// for each value:
 	// (some old drivers, e.g. S3 Super Savage, store their ICD name in a
@@ -140,16 +139,18 @@ static LibError win_get_gfx_drv_ver()
 		DWORD value_name_len = ARRAY_SIZE(value_name);
 		DWORD type;
 		DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
-		DWORD err = RegEnumValue(hkOglDrivers, i, value_name,&value_name_len,
-			0, &type, (LPBYTE)drv_name,&drv_name_len);
-		if(err != ERROR_SUCCESS)	// error or no more items - bail
+		const DWORD err = RegEnumValue(hkOglDrivers, i, value_name, &value_name_len, 0, &type, (LPBYTE)drv_name, &drv_name_len);
+		if(err == ERROR_NO_MORE_ITEMS)
 			break;
+		debug_assert(err == ERROR_SUCCESS);
 		if(type == REG_SZ)
-			ret = wdll_ver_list_add(drv_name);
-	}	// for each value
+			wdll_ver_Append(drv_name, versionList);
+	}
 
 	RegCloseKey(hkOglDrivers);
-	return ret;
+
+	strcpy_s(gfx_drv_ver, GFX_DRV_VER_LEN, versionList.c_str());
+	return INFO::OK;
 }
 
 

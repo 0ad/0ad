@@ -37,7 +37,7 @@ typedef std::set<std::string> StringSet;
 // call in library search order (exe dir, then win sys dir); otherwise,
 // DLLs in the executable's starting directory hide those of the
 // same name in the system directory.
-static void add_oal_dlls_in_dir(const OsPath& path, StringSet& dlls)
+static void add_oal_dlls_in_dir(const OsPath& path, StringSet& dlls, std::string& versionList)
 {
 	for(OsDirectoryIterator it(path); it != OsDirectoryIterator(); ++it)
 	{
@@ -54,7 +54,7 @@ static void add_oal_dlls_in_dir(const OsPath& path, StringSet& dlls)
 		if(!ret.second)	// insert failed - element already there
 			continue;
 
-		(void)wdll_ver_list_add(pathname);
+		wdll_ver_Append(pathname, versionList);
 	}
 }
 
@@ -116,13 +116,14 @@ LibError win_get_snd_info()
 	if(wmi_GetClass("Win32_SoundDevice", wmiMap) == INFO::OK)
 		sprintf_s(snd_card, SND_CARD_LEN, "%ls", wmiMap[L"ProductName"].bstrVal);
 
-	// find all DLLs related to OpenAL, retrieve their versions,
-	// and store in snd_drv_ver string.
-	wdll_ver_list_init(snd_drv_ver, SND_DRV_VER_LEN);
+	// find all DLLs related to OpenAL and retrieve their versions.
+	std::string versionList;
 	if(wutil_WindowsVersion() < WUTIL_VERSION_VISTA)
-		(void)wdll_ver_list_add(GetDirectSoundDriverPath());
+		wdll_ver_Append(GetDirectSoundDriverPath(), versionList);
 	StringSet dlls;	// ensures uniqueness
-	(void)add_oal_dlls_in_dir(win_exe_dir, dlls);
-	(void)add_oal_dlls_in_dir(win_sys_dir, dlls);
+	(void)add_oal_dlls_in_dir(win_exe_dir, dlls, versionList);
+	(void)add_oal_dlls_in_dir(win_sys_dir, dlls, versionList);
+	strcpy_s(snd_drv_ver, SND_DRV_VER_LEN, versionList.c_str());
+
 	return INFO::OK;
 }

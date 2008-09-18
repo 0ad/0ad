@@ -82,7 +82,7 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 	const size_t pitch = png_get_rowbytes(png_ptr, info_ptr);
 	const u32 bpp = (u32)(pitch/w * 8);
 
-	int flags = 0;
+	size_t flags = 0;
 	if(bpp == 32)
 		flags |= TEX_ALPHA;
 	if(colour_type == PNG_COLOR_TYPE_GRAY)
@@ -121,7 +121,7 @@ static LibError png_decode_impl(DynArray* da, png_structp png_ptr, png_infop inf
 // "dtor / setjmp interaction" warning.
 static LibError png_encode_impl(Tex* t, png_structp png_ptr, png_infop info_ptr, DynArray* da)
 {
-	const png_uint_32 w = t->w, h = t->h;
+	const png_uint_32 w = (png_uint_32)t->w, h = (png_uint_32)t->h;
 	const size_t pitch = w * t->bpp / 8;
 
 	int colour_type;

@@ -52,7 +52,7 @@ LIB_API void debug_printf(const wchar_t* fmt, ...);
  * translates and displays the given strings in a dialog.
  * this is typically only used when debug_display_error has failed or
  * is unavailable because that function is much more capable.
- * implemented via sys_display_msgw; see documentation there.
+ * implemented via sys_display_msg; see documentation there.
  **/
 LIB_API void debug_display_msgw(const wchar_t* caption, const wchar_t* msg);
 
@@ -148,7 +148,7 @@ enum ErrorReaction
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
 LIB_API ErrorReaction debug_display_error(const wchar_t* description,
-	int flags, size_t skip, void* context,
+	size_t flags, size_t skip, void* context,
 	const char* file, int line, const char* func,
 	u8* suppress);
 

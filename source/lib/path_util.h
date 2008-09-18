@@ -106,7 +106,7 @@ enum PathAppendFlags
  * total resulting string must not exceed PATH_MAX chars.
  * @param flags see PathAppendFlags.
  **/
-extern void path_append(char* dst, const char* path1, const char* path2, int flags = 0);
+extern void path_append(char* dst, const char* path1, const char* path2, size_t flags = 0);
 
 /**
  * get the name component of a path.

@@ -67,7 +67,7 @@ your actual definition must match.
 struct Res1
 {
 	void* data;		// data loaded from file
-	int flags;		// set when resource is created
+	size_t flags;		// set when resource is created
 };
 
 Note that all control blocks are stored in fixed-size slots
@@ -376,7 +376,7 @@ const size_t H_STRING_LEN = 256;
 //// user_size is checked to make sure the user data fits in the handle data space.
 // dtor is associated with type and called when the object is freed.
 // handle data is initialized to 0; optionally, a pointer to it is returned.
-extern Handle h_alloc(H_Type type, const VfsPath& pathname, int flags = 0, ...);
+extern Handle h_alloc(H_Type type, const VfsPath& pathname, size_t flags = 0, ...);
 extern LibError h_free(Handle& h, H_Type type);
 
 

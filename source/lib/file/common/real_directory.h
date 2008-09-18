@@ -7,7 +7,7 @@
 class RealDirectory : public IFileLoader
 {
 public:
-	RealDirectory(const Path& path, size_t priority, int flags);
+	RealDirectory(const Path& path, size_t priority, size_t flags);
 
 	const Path& GetPath() const
 	{
@@ -19,7 +19,7 @@ public:
 		return m_priority;
 	}
 
-	int Flags() const
+	size_t Flags() const
 	{
 		return m_flags;
 	}
@@ -44,7 +44,7 @@ private:
 
 	const size_t m_priority;
 
-	const int m_flags;
+	const size_t m_flags;
 
 	// note: watches are needed in each directory because some APIs
 	// (e.g. FAM) cannot watch entire trees with one call.

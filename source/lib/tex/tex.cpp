@@ -78,7 +78,7 @@ LibError tex_validate(const Tex* t)
 // 24bpp color or 32bpp color+alpha (BGR / upside down are permitted).
 // basically, this is the "plain" format understood by all codecs and
 // tex_codec_plain_transform.
-LibError tex_validate_plain_format(size_t bpp, int flags)
+LibError tex_validate_plain_format(size_t bpp, size_t flags)
 {
 	const bool alpha   = (flags & TEX_ALPHA  ) != 0;
 	const bool grey    = (flags & TEX_GREY   ) != 0;
@@ -273,7 +273,7 @@ TIMER_ACCRUE(tc_plain_transform);
 
 	// extract texture info
 	const size_t w = t->w, h = t->h, bpp = t->bpp;
-	const int flags = t->flags;
+	const size_t flags = t->flags;
 	u8* const data = tex_get_data(t);
 	const size_t data_size = tex_img_size(t);
 
@@ -496,7 +496,7 @@ bool tex_is_known_extension(const char* filename)
 //
 // we need only add bookkeeping information and "wrap" it in
 // our Tex struct, hence the name.
-LibError tex_wrap(size_t w, size_t h, size_t bpp, int flags, const shared_ptr<u8>& data, size_t ofs, Tex* t)
+LibError tex_wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs, Tex* t)
 {
 	t->w     = w;
 	t->h     = h;

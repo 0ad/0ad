@@ -47,7 +47,7 @@ enum DirFlags
  * @param flags see DirFlags
  * @param LibError
  **/
-extern LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern = 0, int flags = 0);
+extern LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern = 0, size_t flags = 0);
 
 
 /**

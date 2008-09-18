@@ -436,7 +436,7 @@ static LibError jpg_decode_impl(DynArray* da, jpeg_decompress_struct* cinfo, Tex
 
 	// set libjpg output format. we cannot go with the default because
 	// Photoshop writes non-standard CMYK files that must be converted to RGB.
-	int flags = 0;
+	size_t flags = 0;
 	cinfo->out_color_space = JCS_RGB;
 	if(cinfo->num_components == 1)
 	{
@@ -528,7 +528,7 @@ static LibError jpg_encode_impl(Tex* t, jpeg_compress_struct* cinfo, DynArray* d
 	// could use cinfo->output_scanline to keep track of progress,
 	// but we need to count lines_left anyway (paranoia).
 	JSAMPARRAY row = (JSAMPARRAY)rows.get();
-	JDIMENSION lines_left = t->h;
+	JDIMENSION lines_left = (JDIMENSION)t->h;
 	while(lines_left != 0)
 	{
 		JDIMENSION lines_read = jpeg_write_scanlines(cinfo, row, lines_left);

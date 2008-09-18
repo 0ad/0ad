@@ -63,7 +63,7 @@ void fs_SortDirectories(DirectoryNames& directories)
 }
 
 
-LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern, int flags)
+LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern, size_t flags)
 {
 	debug_assert(vfs_path_IsDirectory(path));
 

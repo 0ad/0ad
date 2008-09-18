@@ -92,7 +92,7 @@ static bool fmt_is_s3tc(GLenum fmt)
 
 
 // determine OpenGL texture format, given <bpp> and Tex <flags>.
-static GLint choose_fmt(size_t bpp, int flags)
+static GLint choose_fmt(size_t bpp, size_t flags)
 {
 	const bool alpha = (flags & TEX_ALPHA) != 0;
 	const bool bgr   = (flags & TEX_BGR  ) != 0;
@@ -357,12 +357,12 @@ struct OglTex
 	OglTexState state;
 
 	// OglTexQualityFlags
-	int q_flags : 8;
+	int q_flags;
 
 	// to which Texture Mapping Unit was this bound?
-	size_t tmu : 8;
+	size_t tmu;
 
-	int flags : 16;
+	size_t flags;
 };
 
 H_TYPE_DEFINE(OglTex);
@@ -475,7 +475,7 @@ static LibError OglTex_to_string(const OglTex* ot, char* buf)
 
 // load and return a handle to the texture given in <pathname>.
 // for a list of supported formats, see tex.h's tex_load.
-Handle ogl_tex_load(const VfsPath& pathname, int flags)
+Handle ogl_tex_load(const VfsPath& pathname, size_t flags)
 {
 	Tex* wrapped_tex = 0;	// we're loading from file
 	return h_alloc(H_OglTex, pathname, flags, wrapped_tex);
@@ -503,7 +503,7 @@ Handle ogl_tex_find(const VfsPath& pathname)
 // note: because we cannot guarantee that callers will pass distinct
 // "filenames", caching is disabled for the created object. this avoids
 // mistakenly reusing previous objects that share the same comment.
-Handle ogl_tex_wrap(Tex* t, const char* fn, int flags)
+Handle ogl_tex_wrap(Tex* t, const char* fn, size_t flags)
 {
 	// this object may not be backed by a file ("may", because
 	// someone could do tex_load and then ogl_tex_wrap).
@@ -888,7 +888,7 @@ LibError ogl_tex_get_size(Handle ht, size_t* w, size_t* h, size_t* bpp)
 // retrieve TexFlags and the corresponding OpenGL format.
 // the latter is determined during ogl_tex_upload and is 0 before that.
 // all params are optional and filled if non-NULL.
-LibError ogl_tex_get_format(Handle ht, int* flags, GLenum* fmt)
+LibError ogl_tex_get_format(Handle ht, size_t* flags, GLenum* fmt)
 {
 	H_DEREF(ht, OglTex, ot);
 

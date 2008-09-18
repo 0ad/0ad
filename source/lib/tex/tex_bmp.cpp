@@ -91,7 +91,7 @@ static LibError bmp_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 
 	const long h = abs(h_);
 
-	int flags = 0;
+	size_t flags = 0;
 	flags |= (h_ < 0)? TEX_TOP_DOWN : TEX_BOTTOM_UP;
 	if(bpp > 16)
 		flags |= TEX_BGR;
@@ -117,7 +117,7 @@ static LibError bmp_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 	const size_t file_size = hdr_size + img_size;
 	const long h = (t->flags & TEX_TOP_DOWN)? -(long)t->h : (long)t->h;
 
-	int transforms = t->flags;
+	size_t transforms = t->flags;
 	transforms &= ~TEX_ORIENTATION;	// no flip needed - we can set top-down bit.
 	transforms ^= TEX_BGR;			// BMP is native BGR.
 
@@ -131,10 +131,10 @@ static LibError bmp_encode(Tex* RESTRICT t, DynArray* RESTRICT da)
 
 		// BITMAPINFOHEADER
 		40,					// biSize = sizeof(BITMAPINFOHEADER)
-		t->w,
+		(long)t->w,
 		h,
 		1,					// biPlanes
-		t->bpp,
+		(u16)t->bpp,
 		BI_RGB,				// biCompression
 		(u32)img_size,		// biSizeImage
 		0, 0, 0, 0			// unused (bi?PelsPerMeter, biClr*)

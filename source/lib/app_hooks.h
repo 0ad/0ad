@@ -154,7 +154,7 @@ extern void ah_log(const wchar_t* text);
  * the default implementation just returns ER_NOT_IMPLEMENTED, which
  * causes the normal sys_display_error to be used.
  **/
-extern ErrorReaction ah_display_error(const wchar_t* text, int flags);
+extern ErrorReaction ah_display_error(const wchar_t* text, size_t flags);
 
 
 /**
@@ -169,7 +169,7 @@ struct AppHooks
 	const wchar_t* (*translate)(const wchar_t* text);
 	void (*translate_free)(const wchar_t* text);
 	void (*log)(const wchar_t* text);
-	ErrorReaction (*display_error)(const wchar_t* text, int flags);
+	ErrorReaction (*display_error)(const wchar_t* text, size_t flags);
 };
 
 /**

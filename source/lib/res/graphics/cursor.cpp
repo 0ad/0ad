@@ -48,7 +48,7 @@ static LibError load_sys_cursor(const VfsPath& pathname, int hx, int hy, sys_cur
 	RETURN_ERR(tex_decode(file, fileSize, &t));
 
 	// convert to required BGRA format.
-	const int flags = (t.flags | TEX_BGR) & ~TEX_DXT;
+	const size_t flags = (t.flags | TEX_BGR) & ~TEX_DXT;
 	RETURN_ERR(tex_transform_to(&t, flags));
 	void* bgra_img = tex_get_data(&t);
 	if(!bgra_img)

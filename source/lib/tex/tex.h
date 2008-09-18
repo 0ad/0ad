@@ -208,12 +208,12 @@ struct Tex
 	 **/
 	size_t ofs;
 
-	size_t w : 16;
-	size_t h : 16;
-	size_t bpp : 16;
+	size_t w;
+	size_t h;
+	size_t bpp;
 
 	/// see TexFlags and "Format Conversion" in docs.
-	int flags : 16;
+	size_t flags;
 };
 
 
@@ -291,7 +291,7 @@ extern LibError tex_encode(Tex* t, const std::string& extension, DynArray* da);
  * @param t output texture object.
  * @return LibError
  **/
-extern LibError tex_wrap(size_t w, size_t h, size_t bpp, int flags, const shared_ptr<u8>& data, size_t ofs, Tex* t);
+extern LibError tex_wrap(size_t w, size_t h, size_t bpp, size_t flags, const shared_ptr<u8>& data, size_t ofs, Tex* t);
 
 /**
  * free all resources associated with the image and make further

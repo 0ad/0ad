@@ -58,10 +58,13 @@ T bit_mask(size_t numBits)
 {
 	if(numBits == 0)	// prevent shift count == bitsInT, which would be undefined.
 		return 0;
-	// note: the perhaps more intuitive (1 << numBits)-1 cannot
-	// handle numBits == bitsInT, but this implementation does.
+	// notes:
+	// - the perhaps more intuitive (1 << numBits)-1 cannot
+	//   handle numBits == bitsInT, but this implementation does.
+	// - though bulky, the below statements avoid sign-conversion warnings.
 	const T bitsInT = sizeof(T)*CHAR_BIT;
-	T mask = ~T(0);
+	T mask(0);
+	mask = ~mask;
 	mask >>= T(bitsInT-numBits);
 	return mask;
 }

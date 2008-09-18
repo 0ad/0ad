@@ -231,10 +231,10 @@ LibError debug_write_crashlog(const wchar_t* text)
 // translates and displays the given strings in a dialog.
 // this is typically only used when debug_display_error has failed or
 // is unavailable because that function is much more capable.
-// implemented via sys_display_msgw; see documentation there.
+// implemented via sys_display_msg; see documentation there.
 void debug_display_msgw(const wchar_t* caption, const wchar_t* msg)
 {
-	sys_display_msgw(ah_translate(caption), ah_translate(msg));
+	sys_display_msg(ah_translate(caption), ah_translate(msg));
 }
 
 
@@ -344,7 +344,7 @@ fail:
 	return buf;
 }
 
-static ErrorReaction call_display_error(const wchar_t* text, int flags)
+static ErrorReaction call_display_error(const wchar_t* text, size_t flags)
 {
 	// first try app hook implementation
 	ErrorReaction er = ah_display_error(text, flags);
@@ -355,7 +355,7 @@ static ErrorReaction call_display_error(const wchar_t* text, int flags)
 	return er;
 }
 
-static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, int flags, u8* suppress)
+static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, size_t flags, u8* suppress)
 {
 	const bool manual_break = (flags & DE_MANUAL_BREAK) != 0;
 
@@ -392,7 +392,7 @@ static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, int flags, u8* su
 }
 
 ErrorReaction debug_display_error(const wchar_t* description,
-	int flags, size_t skip, void* context,
+	size_t flags, size_t skip, void* context,
 	const char* file, int line, const char* func,
 	u8* suppress)
 {
