@@ -44,20 +44,15 @@ static ICounter* ConstructCounterAt(size_t id, void* address, size_t size)
 	switch(id)
 	{
 	case 0:
-		debug_assert(sizeof(CounterHPET) <= size);
-		return new(address) CounterHPET();
+		return CreateCounterHPET(address, size);
 	case 1:
-		debug_assert(sizeof(CounterTSC) <= size);
-		return new(address) CounterTSC();
+		return CreateCounterTSC(address, size);
 	case 2:
-		debug_assert(sizeof(CounterQPC) <= size);
-		return new(address) CounterQPC();
+		return CreateCounterQPC(address, size);
 	case 3:
-		debug_assert(sizeof(CounterPMT) <= size);
-		return new(address) CounterPMT();
+		return CreateCounterPMT(address, size);
 	case 4:
-		debug_assert(sizeof(CounterTGT) <= size);
-		return new(address) CounterTGT();
+		return CreateCounterTGT(address, size);
 	default:
 		return 0;
 	}

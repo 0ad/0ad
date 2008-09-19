@@ -11,6 +11,8 @@
 #include "precompiled.h"
 #include "hpet.h"
 
+#include "counter.h"
+
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/mahaf.h"
 #include "lib/sysdep/acpi.h"
@@ -28,7 +30,7 @@ struct HpetDescriptionTable
 	u8 attributes;
 };
 
-struct CounterHPET::HpetRegisters
+struct HpetRegisters
 {
 	u64 capabilities;
 	u64 reserved1;
@@ -51,78 +53,98 @@ static const u64 CONFIG_ENABLE = Bit<u64>(0);
 
 //-----------------------------------------------------------------------------
 
-LibError CounterHPET::Activate()
+class CounterHPET : public ICounter
 {
-	if(mahaf_IsPhysicalMappingDangerous())
-		return ERR::FAIL;	// NOWARN (happens on Win2k)
-	if(!mahaf_Init())
-		return ERR::FAIL;	// NOWARN (no Administrator privileges)
-	if(!acpi_Init())
-		WARN_RETURN(ERR::FAIL);	// shouldn't fail, since we've checked mahaf_IsPhysicalMappingDangerous
-	const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
-	if(!hpet)
-		return ERR::NO_SYS;	// NOWARN (HPET not reported by BIOS)
-	debug_assert(hpet->baseAddress.addressSpaceId == ACPI_AS_MEMORY);
-	m_hpetRegisters = (volatile HpetRegisters*)mahaf_MapPhysicalMemory(hpet->baseAddress.address, sizeof(HpetRegisters));
-	if(!m_hpetRegisters)
-		WARN_RETURN(ERR::NO_MEM);
-
-	// start the counter (if not already running)
-	// note: do not reset value to 0 to avoid interfering with any
-	// other users of the timer (e.g. Vista QPC)
-	m_hpetRegisters->config |= CONFIG_ENABLE;
-
-	return INFO::OK;
-}
-
-void CounterHPET::Shutdown()
-{
-	if(m_hpetRegisters)
+public:
+	CounterHPET()
+		: m_hpetRegisters(0)
 	{
-		mahaf_UnmapPhysicalMemory((void*)m_hpetRegisters);
-		m_hpetRegisters = 0;
 	}
 
-	acpi_Shutdown();
-	mahaf_Shutdown();
-}
+	virtual const char* Name() const
+	{
+		return "HPET";
+	}
 
-bool CounterHPET::IsSafe() const
-{
-	// the HPET having been created to address other timers' problems,
-	// it has no issues of its own.
-	return true;
-}
+	LibError Activate()
+	{
+		if(mahaf_IsPhysicalMappingDangerous())
+			return ERR::FAIL;	// NOWARN (happens on Win2k)
+		if(!mahaf_Init())
+			return ERR::FAIL;	// NOWARN (no Administrator privileges)
+		if(!acpi_Init())
+			WARN_RETURN(ERR::FAIL);	// shouldn't fail, since we've checked mahaf_IsPhysicalMappingDangerous
+		const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
+		if(!hpet)
+			return ERR::NO_SYS;	// NOWARN (HPET not reported by BIOS)
+		debug_assert(hpet->baseAddress.addressSpaceId == ACPI_AS_MEMORY);
+		m_hpetRegisters = (volatile HpetRegisters*)mahaf_MapPhysicalMemory(hpet->baseAddress.address, sizeof(HpetRegisters));
+		if(!m_hpetRegisters)
+			WARN_RETURN(ERR::NO_MEM);
 
-u64 CounterHPET::Counter() const
-{
-	// note: we assume the data bus can do atomic 64-bit transfers,
-	// which has been the case since the original Pentium.
-	// (note: see implementation of GetTickCount for an algorithm to
-	// cope with non-atomic reads)
-	return m_hpetRegisters->counterValue;
-}
+		// start the counter (if not already running)
+		// note: do not reset value to 0 to avoid interfering with any
+		// other users of the timer (e.g. Vista QPC)
+		m_hpetRegisters->config |= CONFIG_ENABLE;
 
-/**
- * WHRT uses this to ensure the counter (running at nominal frequency)
- * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
- **/
-size_t CounterHPET::CounterBits() const
-{
-	const u64 caps = m_hpetRegisters->capabilities;
-	const size_t counterBits = (caps & CAP_SIZE64)? 64 : 32;
-	return counterBits;
-}
+		return INFO::OK;
+	}
 
-/**
- * initial measurement of the tick rate. not necessarily correct
- * (e.g. when using TSC: os_cpu_ClockFrequency isn't exact).
- **/
-double CounterHPET::NominalFrequency() const
+	void Shutdown()
+	{
+		if(m_hpetRegisters)
+		{
+			mahaf_UnmapPhysicalMemory((void*)m_hpetRegisters);
+			m_hpetRegisters = 0;
+		}
+
+		acpi_Shutdown();
+		mahaf_Shutdown();
+	}
+
+	bool IsSafe() const
+	{
+		// the HPET having been created to address other timers' problems,
+		// it has no issues of its own.
+		return true;
+	}
+
+	u64 Counter() const
+	{
+		// note: we assume the data bus can do atomic 64-bit transfers,
+		// which has been the case since the original Pentium.
+		// (note: see implementation of GetTickCount for an algorithm to
+		// cope with non-atomic reads)
+		return m_hpetRegisters->counterValue;
+	}
+
+	size_t CounterBits() const
+	{
+		const u64 caps = m_hpetRegisters->capabilities;
+		const size_t counterBits = (caps & CAP_SIZE64)? 64 : 32;
+		return counterBits;
+	}
+
+	double NominalFrequency() const
+	{
+		const u64 caps = m_hpetRegisters->capabilities;
+		const u32 timerPeriod_fs = (u32)bits(caps, 32, 63);
+		debug_assert(timerPeriod_fs != 0);	// guaranteed by HPET spec
+		const double frequency = 1e15 / timerPeriod_fs;
+		return frequency;
+	}
+
+	double Resolution() const
+	{
+		return 1.0 / NominalFrequency();
+	}
+
+private:
+	volatile HpetRegisters* m_hpetRegisters;
+};
+
+ICounter* CreateCounterHPET(void* address, size_t size)
 {
-	const u64 caps = m_hpetRegisters->capabilities;
-	const u32 timerPeriod_fs = (u32)bits(caps, 32, 63);
-	debug_assert(timerPeriod_fs != 0);	// guaranteed by HPET spec
-	const double frequency = 1e15 / timerPeriod_fs;
-	return frequency;
+	debug_assert(sizeof(CounterHPET) <= size);
+	return new(address) CounterHPET();
 }

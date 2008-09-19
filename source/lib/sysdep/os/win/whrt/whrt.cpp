@@ -96,7 +96,7 @@ static void InitCounter()
 	nominalFrequency = counter->NominalFrequency();
 	resolution       = counter->Resolution();
 	counterBits      = counter->CounterBits();
-	debug_printf("HRT: counter=%s freq=%f res=%f bits=%d\n", counter->Name(), nominalFrequency, resolution, counterBits);
+	debug_printf("HRT: counter=%s freq=%g res=%g bits=%d\n", counter->Name(), nominalFrequency, resolution, counterBits);
 
 	// sanity checks
 	debug_assert(nominalFrequency >= 500.0-DBL_EPSILON);
@@ -127,6 +127,7 @@ static inline u64 CounterDelta(u64 oldCounter, u64 newCounter)
 
 double whrt_Resolution()
 {
+	debug_assert(resolution != 0.0);
 	return resolution;
 }
 

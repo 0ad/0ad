@@ -13,7 +13,7 @@
 
 // derived implementations must be called CounterIMPL,
 // where IMPL matches the WHRT_IMPL identifier. (see CREATE)
-class ICounter : noncopyable
+class ICounter
 {
 public:
 	// (compiled-generated) ctor only sets up the vptr
@@ -51,13 +51,10 @@ public:
 	virtual double NominalFrequency() const = 0;
 
 	/**
-	 * actual resolution [s]
-	 * (override if the timer adjustment is greater than 1 tick).
+	 * actual resolution [s]. differs from 1/NominalFrequency if the
+	 * timer adjustment is greater than 1 tick.
 	 **/
-	virtual double Resolution() const
-	{
-		return 1.0 / NominalFrequency();
-	}
+	virtual double Resolution() const = 0;
 };
 
 

@@ -15,6 +15,8 @@
 #include "precompiled.h"
 #include "tgt.h"
 
+#include "counter.h"
+
 #include "lib/sysdep/os/win/win.h"
 #include <mmsystem.h>
 
@@ -28,58 +30,61 @@
 // causes significant slowdown.
 static const UINT PERIOD_MS = 2;
 
-
-LibError CounterTGT::Activate()
+class CounterTGT : public ICounter
 {
-	// note: timeGetTime is always available and cannot fail.
+public:
+	virtual const char* Name() const
+	{
+		return "TGT";
+	}
 
-	MMRESULT ret = timeBeginPeriod(PERIOD_MS);
-	debug_assert(ret == TIMERR_NOERROR);
+	LibError Activate()
+	{
+		// note: timeGetTime is always available and cannot fail.
 
-	return INFO::OK;
-}
+		MMRESULT ret = timeBeginPeriod(PERIOD_MS);
+		debug_assert(ret == TIMERR_NOERROR);
 
-void CounterTGT::Shutdown()
+		return INFO::OK;
+	}
+
+	void Shutdown()
+	{
+		timeEndPeriod(PERIOD_MS);
+	}
+
+	bool IsSafe() const
+	{
+		// the only point of criticism is the possibility of falling behind
+		// due to lost interrupts. this can happen to any interrupt-based timer
+		// and some systems may lack a counter-based timer, so consider TGT
+		// 'safe'. note that it is still only chosen when all other timers fail.
+		return true;
+	}
+
+	u64 Counter() const
+	{
+		return timeGetTime();
+	}
+
+	size_t CounterBits() const
+	{
+		return 32;
+	}
+
+	double NominalFrequency() const
+	{
+		return 1000.0;
+	}
+
+	double Resolution() const
+	{
+		return PERIOD_MS*1e-3;
+	}
+};
+
+ICounter* CreateCounterTGT(void* address, size_t size)
 {
-	timeEndPeriod(PERIOD_MS);
-}
-
-bool CounterTGT::IsSafe() const
-{
-	// the only point of criticism is the possibility of falling behind
-	// due to lost interrupts. this can happen to any interrupt-based timer
-	// and some systems may lack a counter-based timer, so consider TGT
-	// 'safe'. note that it is still only chosen when all other timers fail.
-	return true;
-}
-
-u64 CounterTGT::Counter() const
-{
-	return timeGetTime();
-}
-
-/**
- * WHRT uses this to ensure the counter (running at nominal frequency)
- * doesn't overflow more than once during CALIBRATION_INTERVAL_MS.
- **/
-size_t CounterTGT::CounterBits() const
-{
-	return 32;
-}
-
-/**
- * initial measurement of the tick rate. not necessarily correct
- * (e.g. when using TSC: os_cpu_ClockFrequency isn't exact).
- **/
-double CounterTGT::NominalFrequency() const
-{
-	return 1000.0;
-}
-
-/**
- * actual resolution [s]
- **/
-double CounterTGT::Resolution() const
-{
-	return PERIOD_MS*1e-3;
+	debug_assert(sizeof(CounterTGT) <= size);
+	return new(address) CounterTGT();
 }

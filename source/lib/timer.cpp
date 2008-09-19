@@ -58,7 +58,9 @@ static struct timeval start;
 
 void timer_LatchStartTime()
 {
-#if HAVE_CLOCK_GETTIME
+#if OS_WIN
+	// whrt_Time starts at zero, nothing needs to be done.
+#elif HAVE_CLOCK_GETTIME
 	(void)clock_gettime(CLOCK_REALTIME, &start);
 #elif HAVE_GETTIMEOFDAY
 	gettimeofday(&start, 0);
@@ -103,17 +105,17 @@ double timer_Resolution()
 
 	double res = 0.0;
 
-#if HAVE_CLOCK_GETTIME
+#if OS_WIN
+	res = whrt_Resolution();
+#elif HAVE_CLOCK_GETTIME
 	struct timespec ts;
 	if(clock_getres(CLOCK_REALTIME, &ts) == 0)
 		res = ts.tv_nsec * 1e-9;
-#elif OS_WIN
-	res = whrt_Resolution();
 #else
 	const double t0 = timer_Time();
 	double t1, t2;
-	do t1 = timer_Time();	while(t1 == t0);
-	do t2 = timer_Time();	while(t2 == t1);
+	do t1 = timer_Time(); while(t1 == t0);
+	do t2 = timer_Time(); while(t2 == t1);
 	res = t2-t1;
 #endif
 

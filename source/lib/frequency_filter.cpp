@@ -1,6 +1,8 @@
 #include "precompiled.h"
 #include "frequency_filter.h"
 
+static const double errorTolerance = 0.05f;
+static const double sensitivity = 0.10;
 
 /**
  * variable-width window for frequency determination
@@ -29,7 +31,7 @@ public:
 		if(deltaTime <= m_minDeltaTime)
 			return false;
 
-		frequency = (1.0 / deltaTime) / m_numEvents;
+		frequency = m_numEvents / deltaTime;
 		m_numEvents = 0;
 		m_lastTime = time;
 		return true;	// success
@@ -48,8 +50,8 @@ private:
 class IirFilter
 {
 public:
-	IirFilter(double initialValue)
-		: m_prev(initialValue)
+	IirFilter(double sensitivity, double initialValue)
+		: m_sensitivity(sensitivity), m_prev(initialValue)
 	{
 	}
 
@@ -57,8 +59,7 @@ public:
 	double operator()(double x, int bias)
 	{
 		// sensitivity to changes ([0,1]).
-		// approximately equal to a 16 sample average.
-		const double gain = pow(0.08, ComputeExponent(bias));
+		const double gain = pow(m_sensitivity, ComputeExponent(bias));
 		return m_prev = x*gain + m_prev*(1.0-gain);
 	}
 
@@ -73,6 +74,7 @@ private:
 			return -bias;	// power-of-n
 	}
 
+	double m_sensitivity;
 	double m_prev;
 };
 
@@ -94,31 +96,32 @@ public:
 	// bias := exponential change to gain, (-inf, inf)
 	int ComputeBias(double smoothedValue, double value)
 	{
-		if(!WasOnSameSide(value))	// (must be done before updating history)
-			m_timesOnSameSide = 0;	// see below
+		if(WasOnSameSide(value))	// (must be checked before updating history)
+			m_timesOnSameSide++;
+		else
+			m_timesOnSameSide = 0;
 
 		// update history
 		std::copy(m_history, m_history+m_historySize, m_history+1);
 		m_history[m_historySize-1] = value;
 
-		// suppress large jumps.
-		if(Change(m_history[m_historySize-1], value) > 0.30)
-			return -4;	// gain -> 0
+		// dampen jitter
+		if(Change(smoothedValue, value) < 0.04)
+			return -1;
 
 		// dampen spikes/bounces.
 		if(WasSpike())
-			return -1;
+			return -2;
 
-		if(Change(smoothedValue, value) > 0.02)	// ignore minor jitter
-		{
-			m_timesOnSameSide++;
+		// if the past few samples have been consistently above/below
+		// average, the function is changing and we need to catch up.
+		// (similar to I in a PID)
+		if(m_timesOnSameSide >= 3)
+			return std::min(m_timesOnSameSide, 4);
 
-			// if the past few samples have been consistently above/below
-			// average, the function is changing and we need to catch up.
-			// (similar to I in a PID)
-			if(m_timesOnSameSide >= 3)
-				return std::min(m_timesOnSameSide, 4);
-		}
+		// suppress large jumps.
+		if(Change(m_history[m_historySize-1], value) > 0.30)
+			return -4;	// gain -> 0
 
 		return 0;
 	}
@@ -164,7 +167,7 @@ class FrequencyFilter : public IFrequencyFilter
 {
 public:
 	FrequencyFilter(double resolution, double expectedFrequency)
-		: m_controller(expectedFrequency), m_frequencyEstimator(resolution), m_iirFilter(expectedFrequency)
+		: m_controller(expectedFrequency), m_frequencyEstimator(resolution), m_iirFilter(sensitivity, expectedFrequency)
 		, m_stableFrequency(expectedFrequency), m_smoothedFrequency(expectedFrequency)
 	{
 	}
@@ -182,7 +185,7 @@ public:
 		// previous stable FPS value. round up because values are more often
 		// too low than too high.
 		const double difference = fabs(m_smoothedFrequency - m_stableFrequency);
-		if(difference > fminf(5.f, 0.05f*m_stableFrequency))
+		if(difference > errorTolerance*m_stableFrequency)
 			m_stableFrequency = (int)(m_smoothedFrequency + 0.99);
 	}
 
