@@ -182,10 +182,10 @@ void debug_printf(const wchar_t* fmt, ...)
 	va_end(ap);
 
 	char buf2[DEBUG_PRINTF_MAX_CHARS];
-	size_t bytesWritten;
-	errno_t ret = wcstombs_s(&bytesWritten, buf2, DEBUG_PRINTF_MAX_CHARS, buf, DEBUG_PRINTF_MAX_CHARS);
-	debug_assert(ret == 0);
-	debug_assert(bytesWritten-1 == (size_t)numChars);
+
+	size_t bytesWritten = wcstombs(buf2, buf, DEBUG_PRINTF_MAX_CHARS);
+
+	debug_assert(bytesWritten == (size_t)numChars);
 
 	if(debug_filter_allows(buf2))
 		debug_puts(buf2);
