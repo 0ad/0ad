@@ -43,8 +43,6 @@ ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, "Invalid string (no 0 terminator fou
 # define tcpy wcscpy
 # define tprintf_s swprintf_s
 # define vtnprintf vswprintf    // private
-# define tfopen_s _wfopen_s
-# define tfopen _wfopen         // private
 #else
 # define tchar char
 # define T(string_literal) string_literal
@@ -57,8 +55,6 @@ ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, "Invalid string (no 0 terminator fou
 # define tcpy strcpy
 # define tprintf_s sprintf_s
 # define vtnprintf vsnprintf    // private
-# define tfopen_s fopen_s
-# define tfopen fopen           // private
 #endif	// #ifdef WSECURE_CRT
 
 
@@ -209,8 +205,6 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 }
 
 
-
-
 int tprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
 {
 	va_list args;
@@ -220,18 +214,37 @@ int tprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
 	return len;
 }
 
-#if OS_WIN || !defined(WSECURE_CRT)
-// FIXME this doesn't work in the wchar_t version, for the platforms where it's
-// supposed to do good, since wfopen is microsoft-specific.
-errno_t tfopen_s(FILE** pfile, const tchar* filename, const tchar* mode)
+// note: there is no portable wfopen, so we need separate implementations
+// of tfopen_s. (the Unicode version just converts to UTF8)
+#if defined(WSECURE_CRT)
+
+errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode)
 {
 	*pfile = NULL;
-	FILE* file = tfopen(filename, mode);
+
+	size_t numConverted; errno_t ret;
+	char filename_c[PATH_MAX];
+	ret = wcstombs_s(&numConverted, filename_c, filename, PATH_MAX);
+	debug_assert(ret == 0);
+	char mode_c[PATH_MAX];
+	ret = wcstombs_s(&numConverted, mode_c, mode, PATH_MAX);
+	debug_assert(ret == 0);
+
+	return fopen_s(pfile, filename_c, mode_c);
+}
+
+#else
+
+errno_t fopen_s(FILE** pfile, const char* filename, const char* mode)
+{
+	*pfile = NULL;
+	FILE* file = fopen(filename, mode);
 	if(!file)
 		return ENOENT;
 	*pfile = file;
 	return 0;
 }
+
 #endif
 
 #endif // #if EMULATE_SECURE_CRT

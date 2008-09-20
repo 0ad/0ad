@@ -46,21 +46,11 @@ public:
 
 	virtual LibError Open(const fs::wpath& pathname, char mode)
 	{
-		debug_assert(mode == 'w' || mode == 'r');
-
-		m_pathname = "(unicode)";
-		m_mode = mode;
-
-		int oflag = (mode == 'r')? O_RDONLY : O_WRONLY|O_CREAT|O_TRUNC;
-#if OS_WIN
-		oflag |= O_BINARY_NP;
-#endif
-		m_fd = wopen(pathname.external_file_string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
-		if(m_fd < 0)
-			WARN_RETURN(ERR::FILE_ACCESS);
-
-		stats_open();
-		return INFO::OK;
+		size_t numConverted;
+		char pathname_c[PATH_MAX];
+		const errno_t ret = wcstombs_s(&numConverted, pathname_c, pathname.external_file_string().c_str(), PATH_MAX);
+		debug_assert(ret == 0);
+		return Open(pathname_c, mode);
 	}
 
 	virtual void Close()

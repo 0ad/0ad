@@ -20,21 +20,37 @@
 
 #define LOG_CATEGORY "audio"
 
-
-CSoundGroup::CSoundGroup()
+void CSoundGroup::SetDefaultValues()
 {
 	m_index = 0;
 	m_Flags = 0;
 	m_Intensity = 0;
 	m_CurTime = 0.0f;
+
+	// sane defaults; will probably be replaced by the values read during LoadSoundGroup.
+	m_Gain = 0.5f;
+	m_Pitch = 1.0f;
+	m_Priority = 60;
+	m_PitchUpper = 1.1f;
+	m_PitchLower = 0.9f;
+	m_GainUpper = 1.0f;
+	m_GainLower = 0.8f;
+	m_ConeOuterGain = 0.0f;
+	m_ConeInnerAngle = 360.0f;
+	m_ConeOuterAngle = 360.0f;
+	m_Decay = 3.0f;
+	m_IntensityThreshold = 3;
+	// WARNING: m_TimeWindow is currently unused and uninitialized
+}
+
+CSoundGroup::CSoundGroup()
+{
+	SetDefaultValues();
 }
 
 CSoundGroup::CSoundGroup(const char *XMLfile)
 {
-	m_index = 0;
-	m_Flags = 0;
-	m_Intensity = 0;
-	m_CurTime = 0.0f;
+	SetDefaultValues();
 	LoadSoundGroup(XMLfile);
 }
 

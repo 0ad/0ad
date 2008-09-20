@@ -56,6 +56,36 @@ enum eSndGrpFlags
 
 class CSoundGroup
 {
+public:
+	CSoundGroup(const char *XMLfile);
+	CSoundGroup(void);
+	~CSoundGroup(void);
+
+	// Play next sound in group
+	// @param position world position of the entity generating the sound
+	// (ignored if the eOmnipresent flag is set)
+	void PlayNext(const CVector3D& position);
+
+	// Load a group
+	bool LoadSoundGroup(const char *XMLfile);
+
+	void Reload();
+
+	// Release all remaining loaded handles
+	void ReleaseGroup();
+
+	// Update SoundGroup, remove dead sounds from intensity count
+	void Update(float TimeSinceLastFrame);
+
+	// Set a flag using a value from eSndGrpFlags
+	inline void SetFlag(int flag){ m_Flags |= flag; }  
+
+	// Test flag, returns true if flag is set.
+	inline bool TestFlag(int flag) { return (m_Flags & flag) != 0;}
+	
+private:
+	void SetDefaultValues();
+
 	size_t m_index;  // index of the next sound to play
 	
 	Handle m_hReplacement;
@@ -83,34 +113,6 @@ class CSoundGroup
 	float m_GainLower;
 	float m_ConeInnerAngle;
 	float m_ConeOuterAngle;
-
-public:
-	CSoundGroup(const char *XMLfile);
-	CSoundGroup(void);
-	~CSoundGroup(void);
-	
-	// Play next sound in group
-	// @param position world position of the entity generating the sound
-	// (ignored if the eOmnipresent flag is set)
-	void PlayNext(const CVector3D& position);
-
-	// Load a group
-	bool LoadSoundGroup(const char *XMLfile);
-
-	void Reload();
-	
-	// Release all remaining loaded handles
-	void ReleaseGroup();
-
-	// Update SoundGroup, remove dead sounds from intensity count
-	void Update(float TimeSinceLastFrame);
-	
-	// Set a flag using a value from eSndGrpFlags
-	inline void SetFlag(int flag){ m_Flags |= flag; }  
-
-	// Test flag, returns true if flag is set.
-	inline bool TestFlag(int flag) { return (m_Flags & flag) != 0;}
-
 };
 
 #endif //#ifndef INCLUDED_SOUNDGROUP
