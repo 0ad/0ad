@@ -47,24 +47,24 @@ wchar_t* debug_log_pos = debug_log;
 // write to memory buffer (fast)
 void debug_wprintf_mem(const wchar_t* fmt, ...)
 {
-	const ssize_t chars_left = (ssize_t)LOG_CHARS - (debug_log_pos-debug_log);
-	debug_assert(chars_left >= 0);
+	const ssize_t charsLeft = (ssize_t)LOG_CHARS - (debug_log_pos-debug_log);
+	debug_assert(charsLeft >= 0);
 
 	// potentially not enough room for the new string; throw away the
 	// older half of the log. we still protect against overflow below.
-	if(chars_left < 512)
+	if(charsLeft < 512)
 	{
-		const size_t copy_size = sizeof(wchar_t) * LOG_CHARS/2;
+		const size_t copySize = sizeof(wchar_t) * LOG_CHARS/2;
 		wchar_t* const middle = &debug_log[LOG_CHARS/2];
-		cpu_memcpy(debug_log, middle, copy_size);
-		memset(middle, 0, copy_size);
+		cpu_memcpy(debug_log, middle, copySize);
+		memset(middle, 0, copySize);
 		debug_log_pos -= LOG_CHARS/2;	// don't assign middle (may leave gap)
 	}
 
 	// write into buffer (in-place)
 	va_list args;
 	va_start(args, fmt);
-	int len = vswprintf(debug_log_pos, chars_left-2, fmt, args);
+	int len = vswprintf(debug_log_pos, charsLeft-2, fmt, args);
 
 	va_end(args);
 	debug_log_pos += len+2;
@@ -194,22 +194,22 @@ void debug_printf(const wchar_t* fmt, ...)
 
 //-----------------------------------------------------------------------------
 
-LibError debug_write_crashlog(const wchar_t* text)
+LibError debug_WriteCrashlog(const wchar_t* text)
 {
 	// avoid potential infinite loop if an error occurs here.
-	static uintptr_t in_progress;
-	if(!cpu_CAS(&in_progress, 0, 1))
+	static uintptr_t isBusy;
+	if(!cpu_CAS(&isBusy, 0, 1))
 		return ERR::REENTERED;	// NOWARN
 
 	OsPath path = OsPath(ah_get_log_dir())/"crashlog.txt";
 	FILE* f = fopen(path.string().c_str(), "w");
 	if(!f)
 	{
-		in_progress = 0;
+		isBusy = 0;
 		WARN_RETURN(ERR::FAIL);
 	}
 
-	fputwc(0xfeff, f);	// BOM
+	fputwc(0xFEFF, f);	// BOM
 	fwprintf(f, L"%ls\n", text);
 	fwprintf(f, L"\n\n====================================\n\n");
 
@@ -219,7 +219,7 @@ LibError debug_write_crashlog(const wchar_t* text)
 	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 
 	fclose(f);
-	in_progress = 0;
+	isBusy = 0;
 	return INFO::OK;
 }
 
@@ -229,10 +229,10 @@ LibError debug_write_crashlog(const wchar_t* text)
 //-----------------------------------------------------------------------------
 
 // translates and displays the given strings in a dialog.
-// this is typically only used when debug_display_error has failed or
+// this is typically only used when debug_DisplayError has failed or
 // is unavailable because that function is much more capable.
 // implemented via sys_display_msg; see documentation there.
-void debug_display_msgw(const wchar_t* caption, const wchar_t* msg)
+void debug_DisplayMessage(const wchar_t* caption, const wchar_t* msg)
 {
 	sys_display_msg(ah_translate(caption), ah_translate(msg));
 }
@@ -242,11 +242,11 @@ void debug_display_msgw(const wchar_t* caption, const wchar_t* msg)
 // errors (e.g. caused by atexit handlers) to come up, possibly causing an
 // infinite loop. it sucks to hide errors, but we assume that whoever clicked
 // exit really doesn't want to see any more errors.
-static bool exit_requested;
+static bool isExiting;
 
 // this logic is applicable to any type of error. special cases such as
 // suppressing certain expected WARN_ERRs are done there.
-static bool should_suppress_error(u8* suppress)
+static bool ShouldSuppressError(u8* suppress)
 {
 	if(!suppress)
 		return false;
@@ -254,7 +254,7 @@ static bool should_suppress_error(u8* suppress)
 	if(*suppress == DEBUG_SUPPRESS)
 		return true;
 
-	if(exit_requested)
+	if(isExiting)
 		return true;
 
 	return false;
@@ -263,68 +263,67 @@ static bool should_suppress_error(u8* suppress)
 
 // (NB: this may appear obscene, but deep stack traces have been
 // observed to take up > 256 KiB)
-static const size_t message_size_bytes = 512*KiB;
+static const size_t messageSize = 512*KiB;
 
-void debug_error_message_free(ErrorMessageMem* emm)
+void debug_FreeErrorMessage(ErrorMessageMem* emm)
 {
-	page_aligned_free(emm->pa_mem, message_size_bytes);
+	page_aligned_free(emm->pa_mem, messageSize);
 }
 
-// split out of debug_display_error because it's used by the self-test.
-const wchar_t* debug_error_message_build(
+
+// split out of debug_DisplayError because it's used by the self-test.
+const wchar_t* debug_BuildErrorMessage(
 	const wchar_t* description,
-	const char* fn_only, int line, const char* func,
-	size_t skip, void* context,
+	const char* filename, int line, const char* func,
+	void* context, const char* lastFuncToSkip,
 	ErrorMessageMem* emm)
 {
 	// rationale: see ErrorMessageMem
-	emm->pa_mem = page_aligned_alloc(message_size_bytes);
+	emm->pa_mem = page_aligned_alloc(messageSize);
 	if(!emm->pa_mem)
 		return L"(insufficient memory to generate error message)";
 	wchar_t* const buf = (wchar_t*)emm->pa_mem;
-	const size_t max_chars = message_size_bytes / sizeof(wchar_t);
-	wchar_t* pos = buf; size_t chars_left = max_chars; int len;
+	const size_t maxChars = messageSize / sizeof(wchar_t);
+	wchar_t* pos = buf; size_t charsLeft = maxChars; int len;
 
 	// header
-	len = swprintf(pos, chars_left,
+	len = swprintf(pos, charsLeft,
 		L"%ls\r\n"
 		L"Location: %hs:%d (%hs)\r\n"
 		L"\r\n"
 		L"Call stack:\r\n"
 		L"\r\n",
-		description, fn_only, line, func);
+		description, filename, line, func);
 	if(len < 0)
 	{
 fail:
 		return L"(error while formatting error message)";
 	}
-	pos += len; chars_left -= len;
+	pos += len; charsLeft -= len;
 
 	// append stack trace
-	if(!context)
-		skip += 2;	// skip debug_error_message_build and debug_display_error
-	LibError ret = debug_dump_stack(pos, chars_left, skip, context);
+	LibError ret = debug_DumpStack(pos, charsLeft, context, lastFuncToSkip);
 	if(ret == ERR::REENTERED)
 	{
-		len = swprintf(pos, chars_left,
+		len = swprintf(pos, charsLeft,
 			L"(cannot start a nested stack trace; what probably happened is that "
 			L"an debug_assert/debug_warn/CHECK_ERR fired during the current trace.)"
 		);
-		if(len < 0) goto fail; pos += len; chars_left -= len;
+		if(len < 0) goto fail; pos += len; charsLeft -= len;
 	}
 	else if(ret != INFO::OK)
 	{
 		char description_buf[100] = {'?'};
-		len = swprintf(pos, chars_left,
+		len = swprintf(pos, charsLeft,
 			L"(error while dumping stack: %hs)",
 			error_description_r(ret, description_buf, ARRAY_SIZE(description_buf))
 		);
-		if(len < 0) goto fail; pos += len; chars_left -= len;
+		if(len < 0) goto fail; pos += len; charsLeft -= len;
 	}
 	else	// success
 	{
 		len = (int)wcslen(buf);
-		pos = buf+len; chars_left = max_chars-len;
+		pos = buf+len; charsLeft = maxChars-len;
 	}
 
 	// append OS error (just in case it happens to be relevant -
@@ -335,18 +334,18 @@ fail:
 		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
 	char os_error[100] = "?";
 	sys_error_description_r(0, os_error, ARRAY_SIZE(os_error));
-	len = swprintf(pos, chars_left,
+	len = swprintf(pos, charsLeft,
 		L"\r\n"
 		L"errno = %d (%hs)\r\n"
 		L"OS error = %hs\r\n",
 		errno, description_buf, os_error
 	);
-	if(len < 0) goto fail; pos += len; chars_left -= len;
+	if(len < 0) goto fail; pos += len; charsLeft -= len;
 
 	return buf;
 }
 
-static ErrorReaction call_display_error(const wchar_t* text, size_t flags)
+static ErrorReaction CallDisplayError(const wchar_t* text, size_t flags)
 {
 	// first try app hook implementation
 	ErrorReaction er = ah_display_error(text, flags);
@@ -357,16 +356,16 @@ static ErrorReaction call_display_error(const wchar_t* text, size_t flags)
 	return er;
 }
 
-static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, size_t flags, u8* suppress)
+static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, u8* suppress)
 {
-	const bool manual_break = (flags & DE_MANUAL_BREAK) != 0;
+	const bool shouldHandleBreak = (flags & DE_MANUAL_BREAK) == 0;
 
 	switch(er)
 	{
 	case ER_BREAK:
 		// handle "break" request unless the caller wants to (doing so here
 		// instead of within the dlgproc yields a correct call stack)
-		if(!manual_break)
+		if(shouldHandleBreak)
 		{
 			debug_break();
 			er = ER_CONTINUE;
@@ -379,7 +378,7 @@ static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, size_t flags, u8*
 		break;
 
 	case ER_EXIT:
-		exit_requested = true;	// see declaration
+		isExiting = true;	// see declaration
 
 #if OS_WIN
 		// prevent (slow) heap reporting since we're exiting abnormally and
@@ -393,13 +392,13 @@ static ErrorReaction carry_out_ErrorReaction(ErrorReaction er, size_t flags, u8*
 	return er;
 }
 
-ErrorReaction debug_display_error(const wchar_t* description,
-	size_t flags, size_t skip, void* context,
-	const char* file, int line, const char* func,
+ErrorReaction debug_DisplayError(const wchar_t* description,
+	size_t flags, void* context, const char* lastFuncToSkip,
+	const char* pathname, int line, const char* func,
 	u8* suppress)
 {
 	// "suppressing" this error means doing nothing and returning ER_CONTINUE.
-	if(should_suppress_error(suppress))
+	if(ShouldSuppressError(suppress))
 		return ER_CONTINUE;
 
 	// fix up params
@@ -410,105 +409,99 @@ ErrorReaction debug_display_error(const wchar_t* description,
 	if(suppress)
 		flags |= DE_ALLOW_SUPPRESS;
 	// .. deal with incomplete file/line info
-	if(!file || file[0] == '\0')
-		file = "unknown";
+	if(!pathname || pathname[0] == '\0')
+		pathname = "unknown";
 	if(line <= 0)
 		line = 0;
 	if(!func || func[0] == '\0')
 		func = "?";
 	// .. _FILE__ evaluates to the full path (albeit without drive letter)
 	//    which is rather long. we only display the base name for clarity.
-	const char* fn_only = path_name_only(file);
+	const char* filename = path_name_only(pathname);
 
 	// display in output window; double-click will navigate to error location.
-	debug_printf("%s(%d): %ls\n", fn_only, line, description);
-
+	debug_printf("%s(%d): %ls\n", filename, line, description);
 
 	ErrorMessageMem emm;
-	const wchar_t* text = debug_error_message_build(description,
-		fn_only, line, func, skip, context, &emm);
+	const wchar_t* text = debug_BuildErrorMessage(description, filename, line, func, context, lastFuncToSkip, &emm);
 
-	debug_write_crashlog(text);
-	ErrorReaction er = call_display_error(text, flags);
+	debug_WriteCrashlog(text);
+	ErrorReaction er = CallDisplayError(text, flags);
 
 	// note: debug_break-ing here to make sure the app doesn't continue
-	// running is no longer necessary. debug_display_error now determines our
+	// running is no longer necessary. debug_DisplayError now determines our
 	// window handle and is modal.
 
-	// must happen before carry_out_ErrorReaction because that may exit.
-	debug_error_message_free(&emm);
+	// must happen before PerformErrorReaction because that may exit.
+	debug_FreeErrorMessage(&emm);
 
-	return carry_out_ErrorReaction(er, flags, suppress);
+	return PerformErrorReaction(er, flags, suppress);
 }
 
 
-
-
-// strobe indicating expected_err is valid and the next error should be
+// strobe indicating expectedError is valid and the next error should be
 // compared against that / skipped if equal to it.
 // set/reset via cpu_CAS for thread-safety (hence uintptr_t).
-static uintptr_t expected_err_valid;
-static LibError expected_err;
+static uintptr_t isExpectedErrorValid;
+static LibError expectedError;
 
-void debug_skip_next_err(LibError err)
+void debug_SkipNextError(LibError err)
 {
-	if(cpu_CAS(&expected_err_valid, 0, 1))
-		expected_err = err;
+	if(cpu_CAS(&isExpectedErrorValid, 0, 1))
+		expectedError = err;
 	else
 		debug_assert(0);	// internal error: concurrent attempt to skip assert/error
 
 }
 
-static bool should_skip_this_error(LibError err)
+static bool ShouldSkipThisError(LibError err)
 {
-	// (compare before resetting strobe - expected_err may change afterwards)
-	bool was_expected_err = (expected_err == err);
+	// (compare before resetting strobe - expectedError may change afterwards)
+	bool isExpected = (expectedError == err);
 	// (use cpu_CAS to ensure only one error is skipped)
-	if(cpu_CAS(&expected_err_valid, 1, 0))
+	if(cpu_CAS(&isExpectedErrorValid, 1, 0))
 	{
-		debug_assert(was_expected_err);
-		return was_expected_err;
+		debug_assert(isExpected);
+		return isExpected;
 	}
 
 	return false;
 }
 
-// to share code between assert and error skip mechanism, we treat the former as
-// an error. choose the code such that no one would want to warn of it.
-static const LibError assert_err = INFO::OK;
-
-void debug_skip_next_assert()
+ErrorReaction debug_OnError(LibError err, u8* suppress, const char* file, int line, const char* func)
 {
-	debug_skip_next_err(assert_err);
-}
-
-static bool should_skip_this_assert()
-{
-	return should_skip_this_error(assert_err);
-}
-
-
-ErrorReaction debug_assert_failed(const char* expr, u8* suppress,
-	const char* file, int line, const char* func)
-{
-	if(should_skip_this_assert())
-		return ER_CONTINUE;
-	size_t skip = 1; void* context = 0;
-	wchar_t buf[400];
-	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%hs\"", expr);
-	return debug_display_error(buf, DE_MANUAL_BREAK, skip,context, file,line,func, suppress);
-}
-
-
-ErrorReaction debug_warn_err(LibError err, u8* suppress,
-	const char* file, int line, const char* func)
-{
-	if(should_skip_this_error(err))
+	if(ShouldSkipThisError(err))
 		return ER_CONTINUE;
 
-	size_t skip = 1; void* context = 0;
+	void* context = 0; const char* lastFuncToSkip = __func__;
 	wchar_t buf[400];
 	char err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
 	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %d (%hs)", err, err_buf);
-	return debug_display_error(buf, DE_MANUAL_BREAK, skip,context, file,line,func, suppress);
+	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }
+
+
+void debug_SkipNextAssertion()
+{
+	// to share code between assert and error skip mechanism, we treat the
+	// former as an error.
+	debug_SkipNextError(ERR::ASSERTION_FAILED);
+}
+
+
+static bool ShouldSkipThisAssertion()
+{
+	return ShouldSkipThisError(ERR::ASSERTION_FAILED);
+}
+
+ErrorReaction debug_OnAssertionFailure(const char* expr, u8* suppress, const char* file, int line, const char* func)
+{
+	if(ShouldSkipThisAssertion())
+		return ER_CONTINUE;
+	void* context = 0; const char* lastFuncToSkip = __func__;
+	wchar_t buf[400];
+	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%hs\"", expr);
+	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
+}
+
+

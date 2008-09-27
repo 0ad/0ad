@@ -115,7 +115,7 @@ For further details, see below.
 // macro magic (stringize+prepend L) and we already display file+line.
 #define TEST(condition) STMT(\
 	if(!(condition))\
-		debug_display_error(L"Self-test failed");\
+		debug_DisplayError(L"Self-test failed");\
 )
 
 
@@ -158,7 +158,7 @@ extern int self_test_run(void(*func)());
 
 extern int self_test_register(SelfTestRecord* r);
 
-// checked by debug_assert_failed; disables asserts if true (see above).
+// checked by debug_OnAssertionFailure; disables asserts if true (see above).
 // set/cleared by run_self_test.
 extern bool self_test_active;
 

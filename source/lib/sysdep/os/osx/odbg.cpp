@@ -6,22 +6,22 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
 
-void* debug_get_nth_caller(size_t UNUSED(n), void *UNUSED(context))
+void* debug_GetCaller(void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 {
 	return NULL;
 }
 
-LibError debug_dump_stack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), size_t UNUSED(skip), void* UNUSED(context))
+LibError debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), size_t UNUSED(skip), void* UNUSED(context))
 {
 	return ERR::NOT_IMPLEMENTED;
 }
 
-LibError debug_resolve_symbol(void* UNUSED(ptr_of_interest), char* UNUSED(sym_name), char* UNUSED(file), int* UNUSED(line))
+LibError debug_ResolveSymbol(void* UNUSED(ptr_of_interest), char* UNUSED(sym_name), char* UNUSED(file), int* UNUSED(line))
 {
 	return ERR::NOT_IMPLEMENTED;
 }
 
-void debug_set_thread_name(char const* UNUSED(name))
+void debug_SetThreadName(char const* UNUSED(name))
 {
     // Currently unimplemented
 }

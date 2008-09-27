@@ -839,7 +839,7 @@ void EarlyInit()
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(321);
 
-	debug_set_thread_name("main");
+	debug_SetThreadName("main");
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add("TIMER");
 

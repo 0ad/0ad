@@ -18,7 +18,7 @@ CStreamSocket::~CStreamSocket()
 
 void *CStreamSocket_ConnectThread(void *data)
 {
-	debug_set_thread_name("net_connect");
+	debug_SetThreadName("net_connect");
 
 	CStreamSocket *pSock=(CStreamSocket *)data;
 	PS_RESULT res=PS_OK;

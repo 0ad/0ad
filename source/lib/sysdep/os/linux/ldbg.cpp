@@ -59,20 +59,19 @@ struct symbol_lookup_context
 	bool found;
 };
 
-void* debug_get_nth_caller(size_t n, void *UNUSED(context))
+void* debug_GetCaller(void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 {
-	// bt[0] == debug_get_nth_caller
-	// bt[1] == caller of get_nth_caller
-	// bt[2] == 1:st caller (n==1)
-	void *bt[n+2];
-	int bt_size;
-	
-	bt_size=backtrace(bt, n+2);
-	assert(bt_size >= (int)(n+2) && "Need at least n+2 frames in get_nth_caller");
-	return bt[n+1]; // n==1 => bt[2], and so forth
+	// bt[0] == this function
+	// bt[1] == our caller
+	// bt[2] == the first caller they are interested in
+	// HACK: we currently don't support lastFuncToSkip (would require debug information),
+	// instead just returning the caller of the function calling us
+	void *bt[3];
+	int bt_size = backtrace(bt, 3);
+	return bt[2];
 }
 
-LibError debug_dump_stack(wchar_t* buf, size_t max_chars, size_t skip, void* UNUSED(context))
+LibError debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 {
 	++skip; // Skip ourselves too
 
@@ -86,19 +85,19 @@ LibError debug_dump_stack(wchar_t* buf, size_t max_chars, size_t skip, void* UNU
 
 	bt_size=backtrace(bt, ARRAY_SIZE(bt));
 	// did we get enough backtraced frames?
-	assert((bt_size >= (int)skip) && "Need at least <skip> frames in the backtrace");
+	//assert((bt_size >= (int)skip) && "Need at least <skip> frames in the backtrace");
 
 	// Assumed max length of a single print-out
 	static const size_t MAX_OUT_CHARS=1024;
 
-	for (size_t i=skip;(int)i<bt_size && bufpos+MAX_OUT_CHARS < bufend;i++)
+	for (size_t i=0;(int)i<bt_size && bufpos+MAX_OUT_CHARS < bufend;i++)
 	{
 		char file[DBG_FILE_LEN];
 		char symbol[DBG_SYMBOL_LEN];
 		int line;
 		int len;
 		
-		if (debug_resolve_symbol(bt[i], symbol, file, &line) == 0)
+		if (debug_ResolveSymbol(bt[i], symbol, file, &line) == 0)
 			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x) %hs:%d %hs\n", bt[i], file, line, symbol);
 		else
 			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x)\n", bt[i]);
@@ -217,11 +216,11 @@ void udbg_bfd_init(void)
 		char symbol[DBG_SYMBOL_LEN];
 		char file[DBG_FILE_LEN];
 		int line;
-		debug_resolve_symbol(debug_get_nth_caller(3), symbol, file, &line);
+		debug_ResolveSymbol(debug_get_nth_caller(3), symbol, file, &line);
 		printf("%s (%s:%d)\n", symbol, file, line);
 		for (int i=0;i<1000000;i++)
 		{
-			debug_resolve_symbol(debug_get_nth_caller(1), symbol, file, &line);
+			debug_ResolveSymbol(debug_get_nth_caller(1), symbol, file, &line);
 		}
 	}
 #endif
@@ -309,7 +308,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 	return INFO::OK;
 }
 
-LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
 	ONCE(udbg_bfd_init());
 
@@ -374,7 +373,7 @@ LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file,
 	return INFO::OK;
 }
 
-void debug_set_thread_name(char const* UNUSED(name))
+void debug_SetThreadName(char const* UNUSED(name))
 {
     // Currently unimplemented
 }

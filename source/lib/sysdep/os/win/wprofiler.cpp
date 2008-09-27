@@ -90,7 +90,7 @@ static sem_t exit_flag;
 
 static void* prof_thread_func(void* UNUSED(data))
 {
-	debug_set_thread_name("eip_sampler");
+	debug_SetThreadName("eip_sampler");
 
 	const long _1e6 = 1000000;
 	const long _1e9 = 1000000000;

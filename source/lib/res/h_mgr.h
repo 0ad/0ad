@@ -178,7 +178,7 @@ called automatically when the Handle is dereferenced or freed.
 static LibError Type_validate(const Res1* r);
 {
 	const int permissible_flags = 0x01;
-	if(debug_is_pointer_bogus(r->data))
+	if(debug_IsPointerBogus(r->data))
 		WARN_RETURN(ERR::_1);
 	if(r->flags & ~permissible_flags)
 		WARN_RETURN(ERR::_2);

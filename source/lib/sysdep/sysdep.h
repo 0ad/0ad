@@ -27,7 +27,7 @@
  * @param msg message contents
  *
  * implemented as a MessageBox on Win32 and printf on Unix.
- * called from debug_display_msgw.
+ * called from debug_DisplayMessage.
  **/
 extern void sys_display_msg(const wchar_t* caption, const wchar_t* msg);
 
@@ -38,7 +38,7 @@ extern void sys_display_msg(const wchar_t* caption, const wchar_t* msg);
  * @param flags: see DebugDisplayErrorFlags.
  * @return ErrorReaction (except ER_EXIT, which is acted on immediately)
  *
- * called from debug_display_error unless overridden by means of
+ * called from debug_DisplayError unless overridden by means of
  * ah_display_error.
  **/
 extern ErrorReaction sys_display_error(const wchar_t* text, size_t flags);

@@ -538,7 +538,7 @@ static bool IsContainerValid(const T& t, size_t el_count)
 	{
 		// valid pointer
 		const u8* front = (const u8*)&*t.begin();	// (note: map doesn't have front)
-		if(debug_is_pointer_bogus(front))
+		if(debug_IsPointerBogus(front))
 			return false;
 
 		// note: don't test back() because that depends on el_size and

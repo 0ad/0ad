@@ -170,7 +170,7 @@ ScopeTimer::~ScopeTimer()
 // note that overflow isn't an issue either way (63 bit cycle counts
 // at 10 GHz cover intervals of 29 years).
 
-#if ARCH_IA32 && CONFIG2_TIMER_ALLOW_RDTSC
+#if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
 
 void TimerUnit::SetToZero()
 {

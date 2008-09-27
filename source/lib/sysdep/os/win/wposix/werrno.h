@@ -59,7 +59,7 @@
 // defined by winsock2 and also Linux (with different values)
 // (values derived from winsock2 WSA* constants minus WSABASEERR)
 // update: disabled on newer Boost versions because filesystem drags in boost/cerrno.hpp
-#if BOOST_VERSION <= 103401
+#if !defined(BOOST_VERSION) || BOOST_VERSION <= 103401
 #define EWOULDBLOCK     35
 #define EINPROGRESS     36
 #define EALREADY        37

@@ -19,12 +19,15 @@
 // return 1 if the pointer appears to be totally bogus, otherwise 0.
 // this check is not authoritative (the pointer may be "valid" but incorrect)
 // but can be used to filter out obviously wrong values in a portable manner.
-int debug_is_pointer_bogus(const void* p)
+int debug_IsPointerBogus(const void* p)
 {
-#if ARCH_IA32
 	if(p < (void*)0x10000)
 		return true;
-	if(p >= (void*)(uintptr_t)0x80000000)
+#if ARCH_AMD64
+	if(p == (const void*)0xCCCCCCCCCCCCCCCCull)
+		return true;
+#elif ARCH_IA32
+	if(p == (const void*)0xCCCCCCCCul)
 		return true;
 #endif
 
@@ -40,11 +43,11 @@ int debug_is_pointer_bogus(const void* p)
 }
 
 
-bool debug_is_code_ptr(void* p)
+bool debug_IsCodePointer(void* p)
 {
 	uintptr_t addr = (uintptr_t)p;
 	// totally invalid pointer
-	if(debug_is_pointer_bogus(p))
+	if(debug_IsPointerBogus(p))
 		return false;
 	// comes before load address
 	static const HMODULE base = GetModuleHandle(0);
@@ -55,11 +58,11 @@ bool debug_is_code_ptr(void* p)
 }
 
 
-bool debug_is_stack_ptr(void* p)
+bool debug_IsStackPointer(void* p)
 {
 	uintptr_t addr = (uintptr_t)p;
 	// totally invalid pointer
-	if(debug_is_pointer_bogus(p))
+	if(debug_IsPointerBogus(p))
 		return false;
 	// not aligned
 	if(addr % sizeof(void*))
@@ -95,7 +98,7 @@ void wdbg_printf(const char* fmt, ...)
 // displays instead of just the thread handle.
 //
 // see "Setting a Thread Name (Unmanaged)": http://msdn2.microsoft.com/en-us/library/xcb2z8hs(vs.71).aspx
-void debug_set_thread_name(const char* name)
+void debug_SetThreadName(const char* name)
 {
 	// we pass information to the debugger via a special exception it
 	// swallows. if not running under one, bail now to avoid

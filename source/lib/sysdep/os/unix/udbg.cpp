@@ -82,13 +82,13 @@ void debug_puts(const char* text)
 // TODO: Do these properly. (I don't know what I'm doing; I just
 // know that these functions are required in order to compile...)
 
-int debug_write_crashlog(const char* UNUSED(file), wchar_t* UNUSED(header),
+int debug_WriteCrashlog(const char* UNUSED(file), wchar_t* UNUSED(header),
 	void* UNUSED(context))
 {
 	abort();
 }
 
-int debug_is_pointer_bogus(const void* UNUSED(p))
+int debug_IsPointerBogus(const void* UNUSED(p))
 {
 	return false;
 }

@@ -49,4 +49,6 @@
 # define ARCH_MIPS 0
 #endif
 
+#define ARCH_X86_X64 (ARCH_IA32|ARCH_AMD64)
+
 #endif	// #ifndef INCLUDED_ARCH

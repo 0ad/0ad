@@ -32,7 +32,7 @@ static LibError validate_da(DynArray* da)
 	const int prot           = da->prot;
 
 	// note: this happens if max_size == 0
-//	if(debug_is_pointer_bogus(base))
+//	if(debug_IsPointerBogus(base))
 //		WARN_RETURN(ERR::_1);
 	// note: don't check if base is page-aligned -
 	// might not be true for 'wrapped' mem regions.

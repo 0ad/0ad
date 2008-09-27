@@ -180,7 +180,7 @@ static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, c
 // sym_name and file must hold at least the number of chars above;
 // file is the base name only, not path (see rationale in wdbg_sym).
 // the PDB implementation is rather slow (~500µs).
-LibError debug_resolve_symbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
 	WinScopedLock lock(WDBG_SYM_CS);
 	return debug_resolve_symbol_lk(ptr_of_interest, sym_name, file, line);
@@ -246,11 +246,11 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 	void* prev_fp  = (void*)(uintptr_t)sf->AddrFrame .Offset;
 	void* prev_ip  = (void*)(uintptr_t)sf->AddrPC    .Offset;
 	void* prev_ret = (void*)(uintptr_t)sf->AddrReturn.Offset;
-	if(!debug_is_stack_ptr(prev_fp))
+	if(!debug_IsStackPointer(prev_fp))
 		WARN_RETURN(ERR::_11);
-	if(prev_ip && !debug_is_code_ptr(prev_ip))
+	if(prev_ip && !debug_IsCodePointer(prev_ip))
 		WARN_RETURN(ERR::_12);
-	if(prev_ret && !debug_is_code_ptr(prev_ret))
+	if(prev_ret && !debug_IsCodePointer(prev_ret))
 		WARN_RETURN(ERR::_13);
 
 	// read stack frame
@@ -258,9 +258,9 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 	void* ret_addr = ((void**)prev_fp)[1];
 	if(!fp)
 		return INFO::ALL_COMPLETE;
-	if(!debug_is_stack_ptr(fp))
+	if(!debug_IsStackPointer(fp))
 		WARN_RETURN(ERR::_14);
-	if(!debug_is_code_ptr(ret_addr))
+	if(!debug_IsCodePointer(ret_addr))
 		return ERR::FAIL;	// NOWARN (invalid address)
 
 	void* target;
@@ -268,7 +268,7 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 	RETURN_ERR(err);
 	if(target)	// were able to determine it from the call instruction
 	{
-		if(!debug_is_code_ptr(target))
+		if(!debug_IsCodePointer(target))
 			return ERR::FAIL;	// NOWARN (invalid address)
 	}
 
@@ -282,17 +282,10 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 #endif
 
 
-static void skip_this_frame(size_t& skip, void* context)
-{
-	if(!context)
-		skip++;
-}
-
-
 typedef VOID (WINAPI *PRtlCaptureContext)(PCONTEXT);
 static PRtlCaptureContext s_RtlCaptureContext;
 
-LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, size_t skip, const CONTEXT* pcontext)
+LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTEXT* pcontext, const char* lastFuncToSkip)
 {
 	// to function properly, StackWalk64 requires a CONTEXT on
 	// non-x86 systems (documented) or when in release mode (observed).
@@ -306,8 +299,6 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, size_t skip
 	// .. need to determine context ourselves.
 	else
 	{
-		skip_this_frame(skip, (void*)pcontext);
-
 		// there are 4 ways to do so, in order of preference:
 		// - asm (easy to use but currently only implemented on IA32)
 		// - RtlCaptureContext (only available on WinXP or above)
@@ -389,14 +380,21 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, size_t skip
 
 		// no more frames found - abort. note: also test FP because
 		// StackWalk64 sometimes erroneously reports success.
-		void* fp = (void*)(uintptr_t)sf.AddrFrame.Offset;
+		void* const fp = (void*)(uintptr_t)sf.AddrFrame.Offset;
 		if(err != INFO::OK || !fp)
 			return ret;
 
-		if(skip)
+		if(lastFuncToSkip)
 		{
-			skip--;
-			continue;
+			void* const pc = (void*)(uintptr_t)sf.AddrPC.Offset;
+			char func[DBG_SYMBOL_LEN];
+			err = debug_ResolveSymbol(pc, func, 0, 0);
+			if(err == INFO::OK)
+			{
+				if(strstr(func, lastFuncToSkip))
+					lastFuncToSkip = 0;
+				continue;
+			}
 		}
 
 		ret = cb(&sf, cbData);
@@ -428,11 +426,10 @@ static LibError nth_caller_cb(const _tagSTACKFRAME64* sf, uintptr_t cbData)
 	return INFO::OK;
 }
 
-void* debug_get_nth_caller(size_t skip, void* pcontext)
+void* debug_GetCaller(void* pcontext, const char* lastFuncToSkip)
 {
 	void* func;
-	skip_this_frame(skip, pcontext);
-	LibError ret = wdbg_sym_WalkStack(nth_caller_cb, (uintptr_t)&func, skip, (const CONTEXT*)pcontext);
+	LibError ret = wdbg_sym_WalkStack(nth_caller_cb, (uintptr_t)&func, (const CONTEXT*)pcontext, lastFuncToSkip);
 	return (ret == INFO::OK)? func : 0;
 }
 
@@ -626,48 +623,10 @@ static LibError dump_sym(DWORD id, const u8* p, DumpState state);
 // all we can do is display FP-relative variables.
 enum CV_HREG_e
 {
-	CV_REG_EAX = 17,
-	CV_REG_ECX = 18,
-	CV_REG_EDX = 19,
-	CV_REG_EBX = 20,
-	CV_REG_ESP = 21,
 	CV_REG_EBP = 22,
-	CV_REG_ESI = 23,
-	CV_REG_EDI = 24
+	CV_AMD64_RSP = 335
 };
 
-#if 0
-// (no longer needed - reg was always 0 (unknown), so there's no point in
-// cluttering the stack trace with register strings)
-static const wchar_t* string_for_register(CV_HREG_e reg)
-{
-	switch(reg)
-	{
-	case CV_REG_EAX:
-		return L"eax";
-	case CV_REG_ECX:
-		return L"ecx";
-	case CV_REG_EDX:
-		return L"edx";
-	case CV_REG_EBX:
-		return L"ebx";
-	case CV_REG_ESP:
-		return L"esp";
-	case CV_REG_EBP:
-		return L"ebp";
-	case CV_REG_ESI:
-		return L"esi";
-	case CV_REG_EDI:
-		return L"edi";
-	default:
-		{
-			static wchar_t buf[19];
-			swprintf(buf, ARRAY_SIZE(buf), L"0x%x", reg);
-			return buf;
-		}
-	}
-}
-#endif
 
 static void dump_error(LibError err)
 {
@@ -876,7 +835,9 @@ static bool IsRelativeToFramePointer(DWORD flags, DWORD reg)
 {
 	if(flags & SYMFLAG_FRAMEREL)	// note: this is apparently obsolete
 		return true;
-	if(flags & SYMFLAG_REGREL && reg == CV_REG_EBP)
+	if((flags & SYMFLAG_REGREL) == 0)
+		return false;
+	if(reg == CV_REG_EBP || reg == CV_AMD64_RSP)
 		return true;
 	return false;
 }
@@ -918,9 +879,11 @@ static LibError DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const 
 	uintptr_t addr = sym->Address;
 	if(IsRelativeToFramePointer(sym->Flags, sym->Register))
 	{
+#if ARCH_AMD64
+		addr += sf->AddrStack.Offset;
+#else
 		addr += sf->AddrFrame.Offset;
-
-#ifdef NDEBUG
+# if defined(NDEBUG)
 		// NB: the addresses of register-relative symbols are apparently
 		// incorrect [VC8, 32-bit Wow64]. the problem occurs regardless of
 		// IA32_STACK_WALK_ENABLED and with both ia32_asm_GetCurrentContext
@@ -931,6 +894,7 @@ static LibError DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const 
 			addr += sizeof(void*);
 		else
 			addr += sizeof(void*) * 2;
+# endif
 #endif
 	}
 	else if(IsUnretrievable(sym->Flags))
@@ -1289,7 +1253,7 @@ static bool ptr_already_visited(const u8* p)
 	else
 	{
 		// warn user - but only once (we can't use the regular
-		// debug_display_error and wdbg_assert doesn't have a
+		// debug_DisplayError and wdbg_assert doesn't have a
 		// suppress mechanism)
 		static bool haveComplained;
 		if(!haveComplained)
@@ -1317,7 +1281,7 @@ static LibError dump_sym_pointer(DWORD type_id, const u8* p, DumpState state)
 
 	// bail if it's obvious the pointer is bogus
 	// (=> can't display what it's pointing to)
-	if(debug_is_pointer_bogus(p))
+	if(debug_IsPointerBogus(p))
 		return INFO::OK;
 
 	// avoid duplicates and circular references
@@ -1578,7 +1542,11 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 		DWORD ofs = 0;
 		if(!SymGetTypeInfo(hProcess, mod_base, child_id, TI_GET_OFFSET, &ofs))
 			continue;
-		debug_assert(ofs < size);
+		if(ofs >= size)
+		{
+			debug_printf("INVALID_UDT %ws %d %d\n", type_name, ofs, size);
+		}
+		//debug_assert(ofs < size);
 
 		if(!fits_on_one_line)
 			INDENT;
@@ -1834,17 +1802,16 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 }
 
 
-LibError debug_dump_stack(wchar_t* buf, size_t max_chars, size_t skip, void* pcontext)
+LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* pcontext, const char* lastFuncToSkip)
 {
 	static uintptr_t already_in_progress;
 	if(!cpu_CAS(&already_in_progress, 0, 1))
 		return ERR::REENTERED;	// NOWARN
 
-	out_init(buf, max_chars);
+	out_init(buf, maxChars);
 	ptr_reset_visited();
 
-	skip_this_frame(skip, pcontext);
-	LibError ret = wdbg_sym_WalkStack(dump_frame_cb, 0, skip, (const CONTEXT*)pcontext);
+	LibError ret = wdbg_sym_WalkStack(dump_frame_cb, 0, (const CONTEXT*)pcontext, lastFuncToSkip);
 
 	already_in_progress = 0;
 

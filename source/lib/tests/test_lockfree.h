@@ -109,7 +109,7 @@ class TestMultithread : public CxxTest::TestSuite
 
 	static void* thread_func(void* arg)
 	{
-		debug_set_thread_name("LF_test");
+		debug_SetThreadName("LF_test");
 
 		ThreadFuncParam* param = (ThreadFuncParam*)arg;
 		TestMultithread* this_        = param->this_;

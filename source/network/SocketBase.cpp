@@ -221,7 +221,7 @@ void CSocketBase::Shutdown()
 
 void *WaitLoopThreadMain(void *)
 {
-	debug_set_thread_name("net_wait");
+	debug_SetThreadName("net_wait");
 
 	GLOBAL_LOCK();
 	CSocketBase::RunWaitLoop();

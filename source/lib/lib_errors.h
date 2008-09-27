@@ -384,6 +384,7 @@ const LibError LOGIC     = -100010;
 const LibError TIMED_OUT = -100011;
 const LibError REENTERED = -100012;
 const LibError CORRUPTED = -100013;
+const LibError ASSERTION_FAILED = -100014;
 
 // function arguments
 const LibError INVALID_PARAM  = -100020;

@@ -825,7 +825,7 @@ static void PrintCallStack(const uintptr_t* callers, size_t numCallers)
 	for(size_t i = 0; i < numCallers; i++)
 	{
 		char name[DBG_SYMBOL_LEN] = {'\0'}; char file[DBG_FILE_LEN] = {'\0'}; int line = -1;
-		LibError err = debug_resolve_symbol((void*)callers[i], name, file, &line);
+		LibError err = debug_ResolveSymbol((void*)callers[i], name, file, &line);
 		wdbg_printf("    ");
 		if(err != INFO::OK)
 			wdbg_printf("(error %d resolving PC=%p) ", err, callers[i]);
@@ -920,7 +920,7 @@ static LibError wdbg_heap_Init()
 
 	// load symbol information now (fails if it happens during shutdown)
 	char name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN]; int line;
-	(void)debug_resolve_symbol(wdbg_heap_Init, name, file, &line);
+	(void)debug_ResolveSymbol(wdbg_heap_Init, name, file, &line);
 
 	int ret = _CrtSetReportHook2(_CRT_RPTHOOK_INSTALL, ReportHook);
 	if(ret == -1)

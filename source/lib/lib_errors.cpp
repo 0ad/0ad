@@ -140,6 +140,7 @@ ERROR_ASSOCIATE(ERR::LOGIC, "Logic error in code", -1);
 ERROR_ASSOCIATE(ERR::TIMED_OUT, "Timed out", -1);
 ERROR_ASSOCIATE(ERR::REENTERED, "Single-call function was reentered", -1);
 ERROR_ASSOCIATE(ERR::CORRUPTED, "File/memory data is corrupted", -1);
+ERROR_ASSOCIATE(ERR::ASSERTION_FAILED, "Assertion failed", -1);
 
 ERROR_ASSOCIATE(ERR::INVALID_PARAM, "Invalid function argument", EINVAL);
 ERROR_ASSOCIATE(ERR::INVALID_HANDLE, "Invalid Handle (argument)", -1);

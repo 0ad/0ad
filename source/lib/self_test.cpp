@@ -15,7 +15,7 @@
 #include "self_test.h"
 #include "timer.h"
 
-// checked by debug_assert_failed; disables asserts if true (see above).
+// checked by debug_OnAssertionFailure; disables asserts if true (see above).
 // set/cleared by self_test_run.
 bool self_test_active = false;
 

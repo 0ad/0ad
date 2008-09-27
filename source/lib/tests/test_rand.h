@@ -8,9 +8,9 @@ public:
 	// complain if huge interval or min > max
 	void TestParam()
 	{
-		debug_skip_next_err(ERR::INVALID_PARAM);
+		debug_SkipNextError(ERR::INVALID_PARAM);
 		TS_ASSERT_EQUALS(rand(1, 0), size_t(0));
-		debug_skip_next_err(ERR::INVALID_PARAM);
+		debug_SkipNextError(ERR::INVALID_PARAM);
 		TS_ASSERT_EQUALS(rand(2, ~0u), size_t(0));
 	}
 

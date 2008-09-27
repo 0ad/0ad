@@ -54,7 +54,7 @@ GameLoopState* g_GameLoop = &state;
 static void* LaunchWindow(void* data)
 {
 	const wchar_t* windowName = reinterpret_cast<const wchar_t*>(data);
-	debug_set_thread_name("atlas_window");
+	debug_SetThreadName("atlas_window");
 	Atlas_StartWindow(windowName);
 	return NULL;
 }

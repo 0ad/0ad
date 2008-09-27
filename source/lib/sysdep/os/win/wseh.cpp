@@ -195,17 +195,17 @@ static const wchar_t* GetExceptionDescription(const EXCEPTION_POINTERS* ep,
 
 
 // return location at which the exception <er> occurred.
-// params: see debug_resolve_symbol.
+// params: see debug_ResolveSymbol.
 static void GetExceptionLocus(const EXCEPTION_POINTERS* ep,
 	char* file, int* line, char* func)
 {
 	// HACK: <ep> provides no useful information - ExceptionAddress always
-	// points to kernel32!RaiseException. we use debug_get_nth_caller to
+	// points to kernel32!RaiseException. we use debug_GetCaller to
 	// determine the real location.
 
-	const size_t skip = 1;	// skip RaiseException
-	void* func_addr = debug_get_nth_caller(skip, ep->ContextRecord);
-	(void)debug_resolve_symbol(func_addr, func, file, line);
+	const char* const lastFuncToSkip = "RaiseException";
+	void* func_addr = debug_GetCaller(ep->ContextRecord, lastFuncToSkip);
+	(void)debug_ResolveSymbol(func_addr, func, file, line);
 }
 
 
@@ -267,7 +267,8 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	size_t flags = 0;
 	if(ep->ExceptionRecord->ExceptionFlags & EXCEPTION_NONCONTINUABLE)
 		flags = DE_NO_CONTINUE;
-	ErrorReaction er = debug_display_error(message, flags, 1,ep->ContextRecord, file,line,func, 0);
+	const char* const lastFuncToSkip = STRINGIZE(DECORATED_NAME(wseh_ExceptionFilter));
+	ErrorReaction er = debug_DisplayError(message, flags, ep->ContextRecord, lastFuncToSkip, file,line,func, 0);
 	debug_assert(er == ER_CONTINUE);	// nothing else possible
 
 	// invoke the Win32 default handler - it calls ExitProcess for

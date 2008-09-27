@@ -24,7 +24,7 @@ LIB_API void wdbg_heap_Enable(bool);
 
 /**
  * check heap integrity.
- * errors are reported by the CRT or via debug_display_error.
+ * errors are reported by the CRT or via debug_DisplayError.
  * no effect if called between wdbg_heap_Enable(false) and the next
  * wdbg_heap_Enable(true).
  **/

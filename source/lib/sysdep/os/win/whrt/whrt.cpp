@@ -226,7 +226,7 @@ static HANDLE hUpdateThread;
 
 static unsigned __stdcall UpdateThread(void* UNUSED(data))
 {
-	debug_set_thread_name("whrt_UpdateThread");
+	debug_SetThreadName("whrt_UpdateThread");
 
 	for(;;)
 	{

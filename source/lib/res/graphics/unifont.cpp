@@ -167,7 +167,7 @@ static LibError UniFont_validate(const UniFont* f)
 {
 	if(f->ht < 0)
 		WARN_RETURN(ERR::_1);
-	if(debug_is_pointer_bogus(f->glyphs_id) || debug_is_pointer_bogus(f->glyphs_size))
+	if(debug_IsPointerBogus(f->glyphs_id) || debug_IsPointerBogus(f->glyphs_size))
 		WARN_RETURN(ERR::_2);
 	// <LineSpacing> and <Height> are read directly from font file.
 	// negative values don't make sense, but that's all we can check.
