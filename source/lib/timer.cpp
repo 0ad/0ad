@@ -25,7 +25,7 @@
 # include <unistd.h>
 #endif
 #include "lib/config2.h"	// CONFIG2_TIMER_ALLOW_RDTSC
-#if (ARCH_IA32 || ARCH_AMD64) && CONFIG2_TIMER_ALLOW_RDTSC
+#if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
 #endif
 

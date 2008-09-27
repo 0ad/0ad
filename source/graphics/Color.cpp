@@ -13,7 +13,7 @@
 #include "maths/MathUtil.h"
 #include "graphics/SColor.h"
 
-#if ARCH_IA32 || ARCH_AMD64
+#if ARCH_X86_X64
 # include <xmmintrin.h>
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"
 #endif
@@ -33,7 +33,7 @@ SColor4ub (*ConvertRGBColorTo4ub)(const RGBColor& src) = fallback_ConvertRGBColo
 
 
 // Assembler-optimized function for color conversion
-#if ARCH_IA32 || ARCH_AMD64
+#if ARCH_X86_X64
 static SColor4ub sse_ConvertRGBColorTo4ub(const RGBColor& src)
 {
 	const __m128 zero = _mm_setzero_ps();
@@ -69,7 +69,7 @@ void ColorActivateFastImpl()
 	if(0)
 	{
 	}
-#if ARCH_IA32 || ARCH_AMD64
+#if ARCH_X86_X64
 	else if (x86_x64_cap(X86_X64_CAP_SSE))
 	{
 		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;

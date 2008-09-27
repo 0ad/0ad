@@ -312,7 +312,7 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTE
 		// this MUST be done inline and not in an external function because
 		// compiler-generated prolog code trashes some registers.
 
-#if ARCH_IA32 && !ARCH_AMD64
+#if ARCH_IA32
 		ia32_asm_GetCurrentContext(&context);
 #else
 		if(!s_RtlCaptureContext)

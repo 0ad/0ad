@@ -11,8 +11,8 @@
 #ifndef INCLUDED_X86_X64
 #define INCLUDED_X86_X64
 
-#if !ARCH_IA32 && !ARCH_AMD64
-#error "including x86_x64.h without ARCH_IA32=1 or ARCH_AMD64=1"
+#if !ARCH_X86_X64
+#error "including x86_x64.h without ARCH_X86_X64=1"
 #endif
 
 /**

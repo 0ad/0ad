@@ -18,7 +18,7 @@
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"
 
-#if ARCH_IA32 || ARCH_AMD64
+#if ARCH_X86_X64
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
 # include "lib/sysdep/arch/x86_x64/topology.h"
 #endif
@@ -36,7 +36,7 @@ enum AmdPowerNowFlags
 
 static bool IsThrottlingPossible()
 {
-#if ARCH_IA32 || ARCH_AMD64
+#if ARCH_X86_X64
 	x86_x64_CpuidRegs regs;
 	switch(x86_x64_Vendor())
 	{
@@ -71,7 +71,7 @@ public:
 		
 	LibError Activate()
 	{
-#if ARCH_IA32 || ARCH_AMD64
+#if ARCH_X86_X64
 		if(!x86_x64_cap(X86_X64_CAP_TSC))
 			return ERR::NO_SYS;		// NOWARN (CPU doesn't support RDTSC)
 #endif
@@ -114,7 +114,7 @@ public:
 				return false;
 		}
 
-#if ARCH_IA32 || ARCH_AMD64
+#if ARCH_X86_X64
 		// recent CPU:
 		if(x86_x64_Generation() >= 7)
 		{
