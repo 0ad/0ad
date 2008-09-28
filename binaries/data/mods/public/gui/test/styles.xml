@@ -535,7 +535,7 @@
 				sprite_disabled="snIconArcLeftDisabled"
 				tooltip_style="snToolTip"
 				ghost="false"
-				enabled="true"
+				enabled="false"
 		/>
 
 		<style	name="snMiniMapArcUp"
@@ -544,7 +544,7 @@
 				sprite_disabled="snIconArcUpDisabled"
 				tooltip_style="snToolTip"
 				ghost="false"	
-				enabled="true"			
+				enabled="false"			
 		/>		
 		
 		<style	name="snMiniMapButton"
@@ -557,7 +557,7 @@
 				sprite_over="snIconSheetMiniMapButtonOver"
 				sprite_disabled="snIconSheetMiniMapButtonDisabled"
 				ghost="false"
-				enabled="true"
+				enabled="false"
 		/>		
 		
 		<style name="snGreenBar"
