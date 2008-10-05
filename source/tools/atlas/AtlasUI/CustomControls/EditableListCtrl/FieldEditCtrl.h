@@ -66,14 +66,14 @@ private:
 class FieldEditCtrl_File : public FieldEditCtrl
 {
 public:
-	// rootDir is relative to mods/public, and must end with a /
+	// rootDir is relative to mods/*/, and must end with a /
 	FieldEditCtrl_File(const wxString& rootDir, const wxString& fileMask);
 
 protected:
 	void StartEdit(wxWindow* parent, wxRect rect, long row, int col);
 
 private:
-	wxString m_RootDir;
+	wxString m_RootDir; // relative to mods/*/
 	wxString m_FileMask;
 	wxString m_RememberedDir;
 };

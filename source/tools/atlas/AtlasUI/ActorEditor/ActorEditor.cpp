@@ -391,7 +391,7 @@ void ActorEditor::OnCreateEntity(wxCommandEvent& WXUNUSED(event))
 	// Create the XML data to be written
 	// TODO: Native line endings
 	wxString xml =
-		_T("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\r\n")
+		_T("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n")
 		_T("\r\n")
 		_T("<Entity Parent=\"") + parentName + _T("\">\r\n")
 		_T("\t<Actor>") + actorFilename.GetFullPath(wxPATH_UNIX) + _T("</Actor>\r\n")

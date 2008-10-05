@@ -2,6 +2,8 @@
 
 #include "QuickFileCtrl.h"
 
+#include "General/Datafile.h"
+
 #include "wx/filename.h"
 
 const int verticalPadding = 2;
@@ -102,7 +104,14 @@ public:
 		wxFileName oldFilename (parent->m_TextCtrl->GetValue()); // TODO: use wxPATH_UNIX?
 		if (oldFilename.IsOk())
 		{
-			oldFilename.MakeAbsolute(m_RootDir);
+			// XXX: this assumes the file was in the 'public' mod, which is
+			// often untrue and will quite annoy users
+			wxFileName path (_T("mods/public/") + m_RootDir);
+			wxASSERT(path.IsOk());
+			path.MakeAbsolute(Datafile::GetDataDirectory());
+			wxASSERT(path.IsOk());
+
+			oldFilename.MakeAbsolute(path.GetPath());
 			defaultDir = oldFilename.GetPath();
 			defaultFile = oldFilename.GetFullName();
 		}
@@ -124,9 +133,17 @@ public:
 		wxFileName filename (dlg.GetPath());
 		*parent->m_RememberedDir = filename.GetPath();
 
-		filename.MakeRelativeTo(m_RootDir);
-		wxString filenameRel (filename.GetFullPath(wxPATH_UNIX));
-
+		// The file should be in ".../mods/*/$m_RootDir/..." for some unknown '*'
+		// So assume it is, and just find the substring after the m_RootDir
+		// (XXX: This is pretty bogus because of case-insensitive filenames etc)
+		wxString filenameStr (filename.GetFullPath(wxPATH_UNIX));
+		int idx = filenameStr.Find(m_RootDir);
+		if (idx < 0)
+		{
+			wxLogError(_T("Selected file (%s) must be in a \"%s\" directory"), filenameStr.c_str(), m_RootDir.c_str());
+			return;
+		}
+		wxString filenameRel (filenameStr.Mid(idx + m_RootDir.Len()));
 		parent->m_TextCtrl->SetValue(filenameRel);
 	}
 

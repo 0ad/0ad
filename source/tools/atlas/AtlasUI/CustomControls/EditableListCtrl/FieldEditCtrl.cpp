@@ -117,14 +117,15 @@ void FieldEditCtrl_Dialog::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), lo
 //////////////////////////////////////////////////////////////////////////
 
 FieldEditCtrl_File::FieldEditCtrl_File(const wxString& rootDir, const wxString& fileMask)
-	: m_FileMask(fileMask)
+	: m_RootDir(rootDir), m_FileMask(fileMask)
 {
-	// Make the rootDir path absolute (where rootDir is relative to binaries/system):
+	// Make the rootDir path absolute (where rootDir is relative to binaries/system),
+	// defaulting to the 'public' mod:
 	wxFileName path (_T("mods/public/") + rootDir);
 	wxASSERT(path.IsOk());
 	path.MakeAbsolute(Datafile::GetDataDirectory());
 	wxASSERT(path.IsOk());
-	m_RememberedDir = m_RootDir = path.GetPath();
+	m_RememberedDir = path.GetPath();
 }
 
 void FieldEditCtrl_File::StartEdit(wxWindow* parent, wxRect rect, long row, int col)

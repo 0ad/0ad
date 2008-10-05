@@ -16,7 +16,7 @@
 #include "AtlasUI/Misc/DLLInterface.h"
 
 #ifdef _WIN32
-int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
+int APIENTRY wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
 #else
 int main()
 #endif
