@@ -11,16 +11,16 @@ class CStr;
 
 class CFormation
 {
-friend class CFormationManager;
-friend class CFormationCollection;
-friend class CEntityFormation;
-
-struct FormationSlot
-{
-	float fileOff;	//Distance between files of this slot and the formation's center
-	float rankOff;
-	std::vector<CStr> category;
-};
+	friend class CFormationManager;
+	friend class CFormationCollection;
+	friend class CEntityFormation;
+	
+	struct FormationSlot
+	{
+		float fileOff;	//Distance between files of this slot and the formation's center
+		float rankOff;
+		std::vector<CStr> category;
+	};
 
 public:
 	CFormation();
