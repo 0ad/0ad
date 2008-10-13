@@ -128,6 +128,7 @@ typedef void (CALL_CONV *x86_x64_CacheCallback)(const x86_x64_CacheParameters*);
 LIB_API void x86_x64_EnumerateCaches(x86_x64_CacheCallback callback);
 
 LIB_API size_t x86_x64_L1CacheLineSize();
+LIB_API size_t x86_x64_L2CacheLineSize();
 
 
 //-----------------------------------------------------------------------------

@@ -42,6 +42,6 @@
 #define _SC_AVPHYS_PAGES               3
 #define _SC_NPROCESSORS_CONF           4
 
-extern long sysconf(int name);
+LIB_API long sysconf(int name);
 
 #endif	// #ifndef INCLUDED_WPOSIX

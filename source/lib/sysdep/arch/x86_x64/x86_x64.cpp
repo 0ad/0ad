@@ -324,29 +324,40 @@ void x86_x64_EnumerateCaches(x86_x64_CacheCallback callback)
 }
 
 
-size_t x86_x64_L1CacheLineSize()
+template<size_t level, size_t defaultSize>
+size_t CacheLineSize()
 {
-	static size_t l1CacheLineSize;
+	static size_t cacheLineSize;
 
-	if(!l1CacheLineSize)
+	if(!cacheLineSize)
 	{
-		l1CacheLineSize = 64;	// (default in case DetectL1CacheLineSize fails)
+		cacheLineSize = defaultSize;	// (in case DetectCacheLineSize fails)
 
-		struct DetectL1CacheLineSize
+		struct DetectCacheLineSize
 		{
 			static void Callback(const x86_x64_CacheParameters* cache)
 			{
 				if(cache->type != X86_X64_CACHE_TYPE_DATA && cache->type != X86_X64_CACHE_TYPE_UNIFIED)
 					return;
-				if(cache->level != 1)
+				if(cache->level != level)
 					return;
-				l1CacheLineSize = cache->lineSize;
+				cacheLineSize = cache->lineSize;
 			}
 		};
-		x86_x64_EnumerateCaches(DetectL1CacheLineSize::Callback);
+		x86_x64_EnumerateCaches(DetectCacheLineSize::Callback);
 	}
 
-	return l1CacheLineSize;
+	return cacheLineSize;
+}
+
+size_t x86_x64_L1CacheLineSize()
+{
+	return CacheLineSize<1, 64>();
+}
+
+size_t x86_x64_L2CacheLineSize()
+{
+	return CacheLineSize<2, 256*KiB>();
 }
 
 
@@ -445,7 +456,7 @@ static void DetectIdentifierString(char* identifierString, size_t maxChars)
 	// identifierString already holds a valid brand string; pretty it up.
 	else
 	{
-		const char* const undesired_strings[] = { "(tm)", "(TM)", "(R)", "CPU " };
+		const char* const undesired_strings[] = { "(tm)", "(TM)", "(R)", "CPU ", "          " };
 		std::for_each(undesired_strings, undesired_strings+ARRAY_SIZE(undesired_strings),
 			StringStripper(identifierString, strlen(identifierString)+1));
 
