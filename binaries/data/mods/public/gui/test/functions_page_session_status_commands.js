@@ -365,7 +365,7 @@ function updateTab (tab, type, cellSheet, attribute, attribute2, arrayCells)
 		}
 	}
 	
-	// Default the list to closed.
+	// Default the list to closed and queue to opened
 
 	if (tab == "queue") {
 		groupObject.hidden = false;
@@ -397,7 +397,6 @@ function tryConstruction( name )
 	else
 	{	
 		// If not, output the error message.
-		//console.write( result );
 		showMessage(result);
 	}
 }
@@ -509,10 +508,10 @@ function refreshCommandButtons()
 			}
 
 			updateTab("queue", "production", "Tab", "tempArray", "");
-			empty = false;
 		}
 		else
 		{
+			//hide the production queue if it is empty.
 			tabCounter = snStatusPaneCommand.tab.max;
 			var tabObject 	= getGUIObjectByName ("snStatusPaneCommand" + tabCounter + "_1");
 			guiHide(tabObject.name);

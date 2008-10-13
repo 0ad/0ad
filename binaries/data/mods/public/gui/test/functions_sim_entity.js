@@ -236,6 +236,7 @@ function killSelectedEntities()
       {
 		for (i=0; i<selection.length; i++)
 		{
+			//TODO: send network msg, so the unit is killed everywhere
 			selection[i].kill();
 		}
       }
