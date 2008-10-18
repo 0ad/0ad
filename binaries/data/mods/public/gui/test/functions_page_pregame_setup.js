@@ -21,54 +21,55 @@ function openSessionSetup (sessionReturnWindow)
 		}
 		else
 		{
-//			pushItem ("pgSessionSetupP" + i, "session");
-			pushItem ("pgSessionSetupP" + i, "Open");
-			pushItem ("pgSessionSetupP" + i, "Closed");
-//			pushItem ("pgSessionSetupP" + i, "local");
-//			pushItem ("pgSessionSetupP" + i, "AI");
-
-			// Set other slots to Open.
-			var result = setCurrItemValue ("pgSessionSetupP" + i, "Open");
-
-			// Setup onchange event (closing and opening affects host slots).
-			getGUIObjectByName ("pgSessionSetupP" + i).onSelectionChange = function (event)
+			if (getNumItems("pgSessionSetupP" + i) == 0) 
 			{
-				var slotNumber = this.name.substring (this.name.length-1, this.name.length);
-				switch (getCurrItemValue (this.name))
+				//pushItem ("pgSessionSetupP" + i, "session");
+				pushItem ("pgSessionSetupP" + i, "Open");
+				pushItem ("pgSessionSetupP" + i, "Closed");
+				//pushItem ("pgSessionSetupP" + i, "local");
+				//pushItem ("pgSessionSetupP" + i, "AI");
+
+				// Set other slots to Open.
+				var result = setCurrItemValue ("pgSessionSetupP" + i, "Open");
+
+				// Setup onchange event (closing and opening affects host slots).
+				getGUIObjectByName ("pgSessionSetupP" + i).onSelectionChange = function (event)
 				{
-					case "Open":
-						// If "Open" selected, 				
+					var slotNumber = this.name.substring (this.name.length-1, this.name.length);
+					switch (getCurrItemValue (this.name))
+					{
+						case "Open":
+							// If "Open" selected, 				
 
-						// Open the slot.
-						g_GameAttributes.slots[slotNumber-1].assignOpen();
+							// Open the slot.
+							g_GameAttributes.slots[slotNumber-1].assignOpen();
 
-						//console.write ("Opened slot " + this.name);
-					break;
-					case "Closed":
-						// If "Closed" selected,
+							//console.write ("Opened slot " + this.name);
+						break;
+						case "Closed":
+							// If "Closed" selected,
 
-						// And slot is occupied,
-						if (g_GameAttributes.slots[slotNumber-1].assignment == "session")
-						{
-							// Remove player name from slot list.
-							removeItem (this.name, g_GameAttributes.slots[slotNumber-1].player);
+							// And slot is occupied,
+							if (g_GameAttributes.slots[slotNumber-1].assignment == "session")
+							{
+								// Remove player name from slot list.
+								removeItem (this.name, g_GameAttributes.slots[slotNumber-1].player);
 
-							// Prompt that player was kicked.
-							// (Change this to a chat message when functionality available.)
-							console.write (g_GameAttributes.slots[slotNumber-1].player + " was kicked by the host.");
-						}	
+								// Prompt that player was kicked.
+								// (Change this to a chat message when functionality available.)
+								console.write (g_GameAttributes.slots[slotNumber-1].player + " was kicked by the host.");
+							}	
 	
-						// Close the slot.
-						g_GameAttributes.slots[slotNumber-1].assignClosed();
+							// Close the slot.
+							g_GameAttributes.slots[slotNumber-1].assignClosed();
 
-						//console.write ("Closed slot " + this.name);
-					break;
-					default:
-					break;
+							//console.write ("Closed slot " + this.name);
+						break;
+						default:
+						break;
+					}
 				}
 			}
-
-
 		}
 
 		// Make objects non-interactive to client.
