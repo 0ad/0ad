@@ -134,6 +134,7 @@
 			sprite_over="pgCampaignsOver"
 			sprite_disabled="pgCampaignsDisabled"
 			tooltip="Want to play a campaign? Tough luck, buddy!  That's right, go cry on your mamma's shoulder."
+			enabled="false"
 		>
 			<action on="Press"><![CDATA[
 				openMainMenuSubWindow ("pgCampaigns");
@@ -202,6 +203,7 @@
 			sprite_over="pgOptionsOver"
 			sprite_disabled="pgOptionsDisabled"
 			tooltip="This will take you to the options menu.  It does not work now, but someday it might."
+			enabled="false"
 		>
 			<action on="Press"><![CDATA[
 				// Open Options window.
@@ -696,6 +698,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 					style="wheatButton"
 					type="button"
 					size="100%-135 100%-30 100%-5 100%-5"
+					enabled="false"
 				>
 				Get more maps
 				</object>
@@ -784,13 +787,14 @@ A large landmass with rivers, forests and coastal fishing grounds.
 			==========================================
 			-->
 
+			<!-- NOT IMPLEMENTED YET
+
 			<object name="pgSessionSetupGrpGameSettings"
 				style="wheatBorderBlack"
 				type="image"
 				size="33%+10 50%+30 67%-5 100%-10"
 			>
-
-
+
 				<object name="pgSessionSetupGameModeTxt"
 					type="text"
 					size="5 10 100 35"
@@ -858,6 +862,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 
 
 			</object>
+			-->
 
 			<!--
 			==========================================
