@@ -73,19 +73,13 @@ void* debug_GetCaller(void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 
 LibError debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 {
-	++skip; // Skip ourselves too
-
-	// bt[0..skip] == skipped
-	// bt[skip..N_FRAMES+skip] == print
 	static const size_t N_FRAMES = 16;
-	void *bt[skip+N_FRAMES];
+	void *bt[N_FRAMES];
 	int bt_size=0;
 	wchar_t *bufpos = buf;
 	wchar_t *bufend = buf + max_chars;
 
 	bt_size=backtrace(bt, ARRAY_SIZE(bt));
-	// did we get enough backtraced frames?
-	//assert((bt_size >= (int)skip) && "Need at least <skip> frames in the backtrace");
 
 	// Assumed max length of a single print-out
 	static const size_t MAX_OUT_CHARS=1024;
