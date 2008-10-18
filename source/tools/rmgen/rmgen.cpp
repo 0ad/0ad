@@ -107,9 +107,9 @@ void ExecuteFile(const string& fileName) {
 
 int main(int argc, char* argv[])
 {
-	const string LIBRARY_FILE = "../data/mods/official/maps/rmlibrary.js";
-	const string RMS_PATH = "../data/mods/official/maps/random/";
-	const string SCENARIO_PATH = "../data/mods/official/maps/scenarios/";
+	const string LIBRARY_FILE = "../data/mods/public/maps/rmlibrary.js";
+	const string RMS_PATH = "../data/mods/public/maps/random/";
+	const string SCENARIO_PATH = "../data/mods/public/maps/scenarios/";
 
 	clock_t start = clock();
 

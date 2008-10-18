@@ -360,6 +360,7 @@ CRenderer::CRenderer()
 	for (size_t i=0;i<MaxTextureUnits;i++) {
 		m_ActiveTextures[i]=0;
 	}
+	m_hCompositeAlphaMap = 0;
 
 	AddLocalProperty(L"fancyWater", &m_Options.m_FancyWater, false);
 	AddLocalProperty(L"horizonHeight", &m->skyManager.m_HorizonHeight, false);

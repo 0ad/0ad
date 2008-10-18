@@ -63,7 +63,7 @@ Map::Map(string fileName, int loadLevel)
 	u32 map_size;
 
 	//HACK, also in rmgen.cpp
-	const string SCENARIO_PATH = "../data/mods/official/maps/scenarios/";
+	const string SCENARIO_PATH = "../data/mods/public/maps/scenarios/";
 
 	std::string pmpFile = SCENARIO_PATH + fileName + ".pmp";
 	std::string xmlFile = SCENARIO_PATH + fileName + ".xml";
