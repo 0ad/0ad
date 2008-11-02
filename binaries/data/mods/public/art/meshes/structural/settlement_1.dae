@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2008-11-02T21:11:20Z</created>
-    <modified>2008-11-02T21:11:20Z</modified>
+    <created>2008-11-02T21:18:00Z</created>
+    <modified>2008-11-02T21:18:00Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,38 +16,17 @@
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__3-image" name="Map__3">
-      <init_from>file://C:\Users\TJ\Desktop\wrld_settlements.dds</init_from>
-    </image>
-    <image id="Map__4-image" name="Map__4">
-      <init_from>file://C:\Users\TJ\Desktop\wrld_settlements.dds</init_from>
+    <image id="Map__15-image" name="Map__15">
+      <init_from>file://C:\0 AD\binaries\data\mods\public\art\textures\skins\structural\wrld_settlements.dds</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="_settMaterial__4756" name="_settMaterial__4756">
-      <instance_effect url="#_settMaterial__4756-fx"/>
-    </material>
-    <material id="_settMaterial__4757" name="_settMaterial__4757">
-      <instance_effect url="#_settMaterial__4757-fx"/>
-    </material>
-    <material id="_settMaterial__4754" name="_settMaterial__4754">
-      <instance_effect url="#_settMaterial__4754-fx"/>
-    </material>
-    <material id="_settMaterial__4761" name="_settMaterial__4761">
-      <instance_effect url="#_settMaterial__4761-fx"/>
-    </material>
-    <material id="_settMaterial__4775" name="_settMaterial__4775">
-      <instance_effect url="#_settMaterial__4775-fx"/>
-    </material>
-    <material id="_settMaterial__4776" name="_settMaterial__4776">
-      <instance_effect url="#_settMaterial__4776-fx"/>
-    </material>
-    <material id="_settMaterial__4758" name="_settMaterial__4758">
-      <instance_effect url="#_settMaterial__4758-fx"/>
+    <material id="Material__35" name="Material__35">
+      <instance_effect url="#Material__35-fx"/>
     </material>
   </library_materials>
   <library_effects>
-    <effect id="_settMaterial__4756-fx" name="_settMaterial__4756">
+    <effect id="Material__35-fx" name="Material__35">
       <profile_COMMON>
         <technique sid="standard">
           <phong>
@@ -58,39 +37,7 @@
               <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="_settMaterial__4757-fx" name="_settMaterial__4757">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <texture texture="Map__3-image" texcoord="CHANNEL0">
+              <texture texture="Map__15-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -99,192 +46,6 @@
                   </technique>
                 </extra>
               </texture>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__4-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="_settMaterial__4754-fx" name="_settMaterial__4754">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="_settMaterial__4761-fx" name="_settMaterial__4761">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="_settMaterial__4775-fx" name="_settMaterial__4775">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="_settMaterial__4776-fx" name="_settMaterial__4776">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-    <effect id="_settMaterial__4758-fx" name="_settMaterial__4758">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <color sid="diffuse">0.588000  0.588000 0.588000 1.000000</color>
             </diffuse>
             <specular>
               <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
@@ -313,7 +74,7 @@
     <geometry id="Box31-lib" name="Box31Mesh">
       <mesh>
         <source id="Box31-lib-Position">
-          <float_array id="Box31-lib-Position-array" count="1719">
+          <float_array id="Box31-lib-Position-array" count="1743">
 7.457350 11.385600 -3.638050
 6.817750 11.385600 -3.638050
 6.817750 11.867900 -3.638150
@@ -887,9 +648,17 @@
 -1.512650 0.360500 -1.470050
 -1.085450 0.607100 -1.470050
 -1.512650 -0.132700 -1.470050
+6.568312 -3.574829 -3.627750
+6.662650 -3.574829 -3.627750
+6.568312 -3.465977 -3.627750
+6.662650 -3.465977 -3.627750
+6.568312 -3.574841 0.796368
+6.662650 -3.574841 0.796368
+6.568312 -3.465986 0.815305
+6.662650 -3.465986 0.815305
 </float_array>
           <technique_common>
-            <accessor source="#Box31-lib-Position-array" count="573" stride="3">
+            <accessor source="#Box31-lib-Position-array" count="581" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
@@ -897,7 +666,7 @@
           </technique_common>
         </source>
         <source id="Box31-lib-Normal0">
-          <float_array id="Box31-lib-Normal0-array" count="8874">
+          <float_array id="Box31-lib-Normal0-array" count="8982">
 0.000000 -0.000208 -1.000000
 0.000000 -0.000208 -1.000000
 0.000000 -0.000208 -1.000000
@@ -3856,9 +3625,45 @@
 0.499933 -0.866064 -0.000060
 0.499933 -0.866064 -0.000060
 0.499933 -0.866064 -0.000060
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 -0.171392 0.985203
+0.000000 -0.171392 0.985203
+0.000000 -0.171392 0.985203
+0.000000 -0.171392 0.985203
+0.000000 -0.171392 0.985203
+0.000000 -0.171392 0.985203
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000003
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 1.000000 0.000002
+0.000000 1.000000 0.000002
+0.000000 1.000000 0.000002
+0.000000 1.000000 0.000002
+0.000000 1.000000 0.000002
+0.000000 1.000000 0.000002
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
 </float_array>
           <technique_common>
-            <accessor source="#Box31-lib-Normal0-array" count="2958" stride="3">
+            <accessor source="#Box31-lib-Normal0-array" count="2994" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
@@ -3866,7 +3671,7 @@
           </technique_common>
         </source>
         <source id="Box31-lib-UV0">
-          <float_array id="Box31-lib-UV0-array" count="544">
+          <float_array id="Box31-lib-UV0-array" count="584">
 0.007300 0.998000
 0.007300 0.633400
 0.044900 0.633400
@@ -4139,9 +3944,29 @@
 0.175800 0.102400
 0.080800 0.074400
 0.175800 0.074400
+0.446648 0.347803
+0.464537 0.347803
+0.464537 0.493526
+0.446648 0.493526
+0.446774 0.348509
+0.462992 0.348509
+0.462992 0.493688
+0.446774 0.493688
+0.119557 -0.678303
+1.119557 -0.678303
+0.119557 0.321697
+1.119557 0.321697
+0.462992 0.348509
+0.446774 0.348509
+0.446774 0.493688
+0.462992 0.493688
+0.464537 0.347803
+0.446648 0.347803
+0.446648 0.493526
+0.464537 0.493526
 </float_array>
           <technique_common>
-            <accessor source="#Box31-lib-UV0-array" count="272" stride="2">
+            <accessor source="#Box31-lib-UV0-array" count="292" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
@@ -4150,12 +3975,7 @@
         <vertices id="Box31-lib-Vertex">
           <input semantic="POSITION" source="#Box31-lib-Position"/>
         </vertices>
-        <polygons material="_settMaterial__4756" count="0">
-          <input semantic="VERTEX" offset="0" source="#Box31-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box31-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box31-lib-UV0"/>
-        </polygons>
-        <polygons material="_settMaterial__4757" count="986">
+        <polygons material="Material__35" count="998">
           <input semantic="VERTEX" offset="0" source="#Box31-lib-Vertex"/>
           <input semantic="NORMAL" offset="1" source="#Box31-lib-Normal0"/>
           <input semantic="TEXCOORD" offset="2" set="0" source="#Box31-lib-UV0"/>
@@ -5145,31 +4965,18 @@
           <p>559 2949 264 572 2950 269 570 2951 267</p>
           <p>552 2952 265 559 2953 264 570 2954 267</p>
           <p>552 2955 265 570 2956 267 571 2957 266</p>
-        </polygons>
-        <polygons material="_settMaterial__4754" count="0">
-          <input semantic="VERTEX" offset="0" source="#Box31-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box31-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box31-lib-UV0"/>
-        </polygons>
-        <polygons material="_settMaterial__4761" count="0">
-          <input semantic="VERTEX" offset="0" source="#Box31-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box31-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box31-lib-UV0"/>
-        </polygons>
-        <polygons material="_settMaterial__4775" count="0">
-          <input semantic="VERTEX" offset="0" source="#Box31-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box31-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box31-lib-UV0"/>
-        </polygons>
-        <polygons material="_settMaterial__4776" count="0">
-          <input semantic="VERTEX" offset="0" source="#Box31-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box31-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box31-lib-UV0"/>
-        </polygons>
-        <polygons material="_settMaterial__4758" count="0">
-          <input semantic="VERTEX" offset="0" source="#Box31-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box31-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box31-lib-UV0"/>
+          <p>573 2958 281 575 2959 283 576 2960 282</p>
+          <p>576 2961 282 574 2962 280 573 2963 281</p>
+          <p>577 2964 280 578 2965 281 580 2966 283</p>
+          <p>580 2967 283 579 2968 282 577 2969 280</p>
+          <p>573 2970 276 574 2971 277 578 2972 278</p>
+          <p>578 2973 278 577 2974 279 573 2975 276</p>
+          <p>574 2976 272 576 2977 273 580 2978 274</p>
+          <p>580 2979 274 578 2980 275 574 2981 272</p>
+          <p>576 2982 284 575 2983 285 579 2984 286</p>
+          <p>579 2985 286 580 2986 287 576 2987 284</p>
+          <p>575 2988 288 573 2989 289 577 2990 290</p>
+          <p>577 2991 290 579 2992 291 575 2993 288</p>
         </polygons>
       </mesh>
     </geometry>
@@ -5190,14 +4997,8 @@
         <instance_geometry url="#Box31-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Map__4-Material" target="#Map__4-Material"/>
-              <instance_material symbol="_settMaterial__4756" target="#_settMaterial__4756"/>
-              <instance_material symbol="_settMaterial__4757" target="#_settMaterial__4757"/>
-              <instance_material symbol="_settMaterial__4754" target="#_settMaterial__4754"/>
-              <instance_material symbol="_settMaterial__4761" target="#_settMaterial__4761"/>
-              <instance_material symbol="_settMaterial__4775" target="#_settMaterial__4775"/>
-              <instance_material symbol="_settMaterial__4776" target="#_settMaterial__4776"/>
-              <instance_material symbol="_settMaterial__4758" target="#_settMaterial__4758"/>
+              <instance_material symbol="Map__15-Material" target="#Map__15-Material"/>
+              <instance_material symbol="Material__35" target="#Material__35"/>
             </technique_common>
           </bind_material>
         </instance_geometry>
