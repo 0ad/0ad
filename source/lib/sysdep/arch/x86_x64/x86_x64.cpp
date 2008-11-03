@@ -324,14 +324,18 @@ void x86_x64_EnumerateCaches(x86_x64_CacheCallback callback)
 }
 
 
-template<size_t level, size_t defaultSize>
-size_t CacheLineSize()
+// note: code duplication among the following routines could be reduced
+// by factoring them into a template, but GCC then (for reasons unknown)
+// balks at the static variable. moving the definition to the calling
+// function would require DetectCacheLineSize to be a closure (complicated).
+// the simplest solution is to accept the duplication.
+size_t x86_x64_L1CacheLineSize()
 {
 	static size_t cacheLineSize;
 
 	if(!cacheLineSize)
 	{
-		cacheLineSize = defaultSize;	// (in case DetectCacheLineSize fails)
+		cacheLineSize = 64;	// (in case DetectCacheLineSize fails)
 
 		struct DetectCacheLineSize
 		{
@@ -339,7 +343,7 @@ size_t CacheLineSize()
 			{
 				if(cache->type != X86_X64_CACHE_TYPE_DATA && cache->type != X86_X64_CACHE_TYPE_UNIFIED)
 					return;
-				if(cache->level != level)
+				if(cache->level != 1)
 					return;
 				cacheLineSize = cache->lineSize;
 			}
@@ -350,14 +354,30 @@ size_t CacheLineSize()
 	return cacheLineSize;
 }
 
-size_t x86_x64_L1CacheLineSize()
-{
-	return CacheLineSize<1, 64>();
-}
 
 size_t x86_x64_L2CacheLineSize()
 {
-	return CacheLineSize<2, 256*KiB>();
+	static size_t cacheLineSize;
+
+	if(!cacheLineSize)
+	{
+		cacheLineSize = 256*KiB;	// (in case DetectCacheLineSize fails)
+
+		struct DetectCacheLineSize
+		{
+			static void Callback(const x86_x64_CacheParameters* cache)
+			{
+				if(cache->type != X86_X64_CACHE_TYPE_DATA && cache->type != X86_X64_CACHE_TYPE_UNIFIED)
+					return;
+				if(cache->level != 2)
+					return;
+				cacheLineSize = cache->lineSize;
+			}
+		};
+		x86_x64_EnumerateCaches(DetectCacheLineSize::Callback);
+	}
+
+	return cacheLineSize;
 }
 
 
