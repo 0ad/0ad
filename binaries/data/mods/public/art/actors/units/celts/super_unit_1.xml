@@ -6,7 +6,13 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="200"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="90"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="80"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="70"/>
+        <animation file="biped/inf_sword_ready_b.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_c.dae" name="Idle" speed="100"/>
+        <animation file="biped/inf_sword_ready_d.dae" name="Idle" speed="100"/>
         <animation file="biped/dudewalk_swordshield.psa" name="Walk" speed="20"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
