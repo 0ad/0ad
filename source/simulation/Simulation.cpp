@@ -267,10 +267,14 @@ void QueueOrder(const CEntityOrder& order, const std::vector<HEntity> &entities,
 
 	for (it = entities.begin(); it < entities.end(); it++)
 	{
-		if( !isQueued )
-			(*it)->ClearOrders();
+		if (*it)
+		{
+			if( !isQueued ) {
+				(*it)->ClearOrders();
+			}
 
-		(*it)->PushOrder( order );
+			(*it)->PushOrder( order );
+		}
 	}
 }
 
