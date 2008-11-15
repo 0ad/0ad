@@ -198,12 +198,13 @@ void RandomizeLocations(const CEntityOrder& order, const std::vector<HEntity> &e
 	std::vector<HEntity>::const_iterator it;
 	float radius = 2.0f * sqrt( (float)entities.size() - 1 ); 
 
+	CSimulation* sim = g_Game->GetSimulation();
+
 	for (it = entities.begin(); it < entities.end(); it++)
 	{
 		float _x, _y;
 		CEntityOrder randomizedOrder = order;
 		
-		CSimulation* sim = g_Game->GetSimulation();
 		do
 		{
 			_x = sim->RandFloat() * 2.0f - 1.0f;

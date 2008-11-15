@@ -60,6 +60,8 @@ friend class CHandle;
 	
 	inline bool IsEntityRefd( size_t index )
 	{
+		if(!m_entities[index].m_entity)
+			return false;
 		return m_refd[index];
 		//return m_entities[index].m_refcount && !m_entities[index].m_entity->entf_get(ENTF_DESTROYED);
 	}

@@ -308,7 +308,7 @@ void CEntityManager::GetExtant( std::vector<CEntity*>& results )
 {
 	results.clear();
 	for( size_t i = 0; i < MAX_HANDLES; i++ )
-		if( IsEntityRefd(i) && m_entities[i].m_entity->m_extant )
+		if( IsEntityRefd(i) )
 			results.push_back( m_entities[i].m_entity );
 }
 
@@ -432,7 +432,7 @@ void CEntityManager::InterpolateAll( float relativeoffset )
 	for( size_t i = 0; i < MAX_HANDLES; i++ )
 		// This needs to handle all entities, including destroyed/non-extant ones
 		// (mainly dead bodies), so it can't use IsEntityRefd
-		if( m_entities[i].m_refcount )
+		if( m_entities[i].m_refcount && m_entities[i].m_entity )
 			m_entities[i].m_entity->Interpolate( relativeoffset );
 }
 
