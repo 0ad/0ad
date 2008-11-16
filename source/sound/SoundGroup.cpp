@@ -81,7 +81,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		{
 			// load up replacement file
 			m_hReplacement = snd_open(m_filepath + m_intensity_file);
-			if(m_hReplacement < 0)	// one cause: sound is disabled
+			if(m_hReplacement < 0 || m_hReplacement > 1)	// one cause: sound is disabled
 				return;
 			snd_set_gain(m_hReplacement, m_Gain);	
 			snd_set_pitch(m_hReplacement, m_Pitch);
@@ -107,7 +107,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 			m_index = (size_t)rand(0, (size_t)filenames.size());
 		// (note: previously snd_group[m_index] was used in place of hs)
 		Handle hs = snd_open(m_filepath + filenames[m_index]);
-		if(hs < 0)	// one cause: sound is disabled
+		if(hs < 0 || hs > 1)	// one cause: sound is disabled
 			return;
 		snd_set_gain(hs, m_Gain);	
 		snd_set_pitch(hs, m_Pitch);
