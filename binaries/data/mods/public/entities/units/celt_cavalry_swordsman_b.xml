@@ -13,12 +13,28 @@
 		<Creation>
 			<Time>15</Time>
 		</Creation>
+		<Armour>
+			<Hack>3.0</Hack>
+			<Pierce>9.0</Pierce>
+			<Crush>10.0</Crush>
+		</Armour>
 	</Traits>
 	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>18.0</Hack>
+ 				<Pierce>0.0</Pierce>
+ 				<Crush>0.0</Crush>
+			<Charge>
+				<Hack>54.0</Hack>
+				<Pierce>0.0</Pierce>
+			</Charge>		
+			</Melee>
+ 		</Attack>
  		<Move>
-			<Speed>10.0</Speed>
+			<Speed>14.0</Speed>
 			<Run>
-				<Speed>19.8</Speed>
+				<Speed>25.5</Speed>
 			</Run>
 		</Move>
 	</Actions>

@@ -13,12 +13,21 @@
 		<Promotion>
 			<Entity>celt_cavalry_javelinist_a</Entity>
 		</Promotion>
+		<Armour>
+			<Pierce>3.0</Pierce>
+			<Crush>7.0</Crush>
+		</Armour>
 	</Traits>
 	<Actions>
+ 		<Attack>
+			<Ranged>
+ 				<Pierce>32.0</Pierce>
+			</Ranged>
+ 		</Attack>
  		<Move>
-			<Speed>11.0</Speed>
+			<Speed>15.0</Speed>
 			<Run>
-				<Speed>22.8</Speed>
+				<Speed>26.0</Speed>
 			</Run>
 		</Move>
 	</Actions>

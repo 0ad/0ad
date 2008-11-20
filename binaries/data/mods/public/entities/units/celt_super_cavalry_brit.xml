@@ -11,40 +11,42 @@
 		<Population>
 			<Rem>4</Rem>
 		</Population>
+		<Health>
+			<Max>200</Max>
+		</Health>
 	 	<Footprint>
  			<Width>1.0</Width>
  			<Depth>8.0</Depth>
  			<Height>5.0</Height>
  		</Footprint>
 		<Stamina>
-			<Max>50.0</Max>
+			<Max>500.0</Max>
 		</Stamina>
-		/* This trample attack is set up by ROBOT to become a charging attack so you can use it to run over the enemy! */
 		<Auras>
 			<Trample>
 				<Radius>4</Radius>
 				<Speed>800</Speed>
 				<Duration>1</Duration>
-				<Crush>10.0</Crush>
-				<Hack>35.0</Hack>
+				<Crush>20.0</Crush>
+				<Hack>25.0</Hack>
 				<Pierce>0.0</Pierce>
 				<r>1.0</r>
 				<g>0.1</g>
 				<b>0.2</b>
-				<a>0.5</a>
+				<a>0.05</a>
 			</Trample>
 		</Auras>		
 		<Creation>
 			<Resource>
- 				<Food>20</Food>
-				<Metal>135</Metal>
-				<Wood>50</Wood>
+ 				<Food>180</Food>
+				<Metal>120</Metal>
+				<Wood>100</Wood>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>7.0</Hack>
-			<Pierce>8.0</Pierce>
-			<Crush>14.0</Crush>
+			<Hack>5.0</Hack>
+			<Pierce>7.0</Pierce>
+			<Crush>8.0</Crush>
 		</Armour>
 		<Vision>
 			<Los>17</Los>
@@ -57,15 +59,15 @@
  				<Pierce>45.0</Pierce>
  				<Crush>0.0</Crush>
 				<MinRange>12.0</MinRange>
-				<Range>56</Range>
+				<Range>30</Range>
 				<Speed>2000</Speed>
-				<ProjectileSpeed>25.0</ProjectileSpeed>
+				<ProjectileSpeed>30.0</ProjectileSpeed>
 			</Ranged>
 		</Attack>
 		<Move>
 			<Speed>13.0</Speed>
 			<Run>
-				<Speed>20.0</Speed>
+				<Speed>25.0</Speed>
 			</Run>
 		</Move>
 	</Actions>

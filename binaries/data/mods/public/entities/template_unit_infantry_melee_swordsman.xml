@@ -11,12 +11,10 @@
 			<Classes>Sword</Classes>
 
 			<Rollover>Weapon is basically a developed sickle. Probably from the club, to the axe, to the sickle to the sword. It was the Romans who used them to combat the long range of the sarissa. Their spears were so long they had to use two hands to wield them. In a formation they were almost impossible to maneouvre. If flanked, they were easily cut down by a sword as demonstrated by the Romans at the battle of Cynoscephalae. Generally swordsmen were well armoured, had shields, and tended to be nobles. A good sword was an expensive weapon.</Rollover>
-			<Tooltip>Bonused vs. Infantry Spearman and Infantry Javelinist.
-			</Tooltip>		
+			<Tooltip>Bonused vs. Infantry Spearman and Infantry Javelinist.</Tooltip>		
 		</Id>
-		
 		<Creation>
-				<Resource>
+			<Resource>
  				<Food>50</Food>
 				<Metal>62</Metal>
  			</Resource>
@@ -26,21 +24,16 @@
 			<Pierce>3.0</Pierce>
 			<Crush>10.0</Crush>
 		</Armour>	
-
 		<Health>
 			<Max>90</Max>
 		</Health>
-
 		<Stamina>
 			<Max>400.0</Max>
 		</Stamina>
-
 		<Vision>
 			<Los>12</Los>
 		</Vision>
-	
 	</Traits>
-
 	<Actions>
  		<Attack>
 			<Melee>
@@ -51,15 +44,10 @@
 				<Hack>34.0</Hack>
 			</Charge>		
  		</Attack>
-
 		<Move>
-
-			<Speed>6.5</Speed>
-
+			<Speed>8.5</Speed>
 			<Run>
-
-				<Speed>15.00</Speed>
-
+				<Speed>16.0</Speed>
 			</Run>
 		</Move>
 	</Actions>

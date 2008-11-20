@@ -2,19 +2,38 @@
 
 <Entity	Parent="template_unit_super_infantry">
 	<Traits>
-	
 		<Id>
-		
-			<Specific>Soldurii</Specific>
-
+			<Specific></Specific>
 			<Civ>Celts</Civ>
-
-			<History>Gaulic swordsman.</History>
+			<History>The sword among Celts varies in reputation and commonality. Shortswords, essentially truly just long, broad-bladed daggers, were common, but cheaply made, and most likely the swords refered to as bending after a hard strike, and needing bent back into place. The iron construction of longswords, such as used here, was greatly superior, but also much more expensive. The longsword was primarily a weapon of aristocracy and experienced professional soldiers, who could either afford the weapon, have it made for them by their lord as a reward for service, passed down to them by family, or looted from the field.</History>
 			<Tooltip>Bonus vs. Spearmen and Cavalry.</Tooltip>		
 		</Id>
-		
+		<Creation>
+			<Time>20</Time>
+			<Resource>
+ 				<Food>60</Food>
+				<Metal>110</Metal>
+ 			</Resource>
+		</Creation>
+		<Health>
+			<Max>110</Max>
+		</Health>
+		<Vision>
+			<Los>15.0</Los>
+		</Vision>
+		<Armour>
+			<Hack>5.0</Hack>
+			<Crush>10.0</Crush>
+		</Armour>
 	</Traits>
+	<Actions>
+		<Move>
+			<Speed>9.5</Speed>
+			<Run>
+				<Speed>20.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
 
 	<Actor>units/celts/super_unit_1.xml</Actor>
-
 </Entity>

@@ -7,10 +7,9 @@
 			<Icon_Cell>6</Icon_Cell>
 			<Classes>Javelin</Classes>
 			<Rollover>The javelins thrown from a horse's back were probably 3 at most. The idea was to quickly advance with 3 in hand, then throw them all. After you had done that it was time to switch to your secondary weapon which was usually a spear or a sword. However, in the game - these units will only have ranged attack.</Rollover>
-			<Tooltip>Bonused vs. Infantry Archer and Cavalry Swordsman.
-			</Tooltip>
+			<Tooltip>Bonused vs. Infantry Archer and Cavalry Swordsman.</Tooltip>
 		</Id>
-		<Creation>			
+		<Creation>
 			<Resource>
  				<Food>100</Food>
 				<Wood>70</Wood>
@@ -31,13 +30,16 @@
  				<Hack>0.0</Hack>
  				<Pierce>30.0</Pierce>
  				<Crush>0.0</Crush>
-				<Range>40.0</Range>
+				<MinRange>16.0</MinRange>
+				<Range>40</Range>
+				<Speed>2000</Speed>
+				<ProjectileSpeed>30.0</ProjectileSpeed>
 			</Ranged>
  		</Attack>
 		<Move>
-			<Speed>10.0</Speed>
+			<Speed>14.0</Speed>
 			<Run>
-				<Speed>22.0</Speed>
+				<Speed>25.0</Speed>
 			</Run>
 		</Move>
 	</Actions>
