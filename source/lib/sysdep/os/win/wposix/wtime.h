@@ -24,8 +24,8 @@ typedef long suseconds_t;
 // <unistd.h>
 //
 
-extern unsigned sleep(unsigned sec);
-extern int usleep(useconds_t us);
+LIB_API unsigned sleep(unsigned sec);
+LIB_API int usleep(useconds_t us);
 
 
 //
@@ -61,5 +61,7 @@ extern int gettimeofday(struct timeval* tv, void* tzp);
 extern int nanosleep(const struct timespec* rqtp, struct timespec* rmtp);
 extern int clock_gettime(clockid_t clock, struct timespec* ts);
 extern int clock_getres(clockid_t clock, struct timespec* res);
+
+LIB_API char* strptime(const char* buf, const char* format, struct tm* timeptr);
 
 #endif	// #ifndef INCLUDED_WTIME

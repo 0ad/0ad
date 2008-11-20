@@ -4,20 +4,6 @@
 #include "allocators.h"	// AllocatorChecker
 
 
-PageAlignedDeleter::PageAlignedDeleter(size_t size)
-	: m_size(size)
-{
-	debug_assert(m_size != 0);
-}
-
-void PageAlignedDeleter::operator()(void* p)
-{
-	debug_assert(m_size != 0);
-	page_aligned_free(p, m_size);
-	m_size = 0;
-}
-
-
 #ifndef NDEBUG
 static AllocatorChecker s_allocatorChecker;
 #endif

@@ -85,13 +85,22 @@ LIB_API void numa_Deallocate(void* mem);
 
 #ifdef __cplusplus
 
-// for use with shared_ptr
 template<typename T>
 struct numa_Deleter
 {
 	void operator()(T* p) const
 	{
 		numa_Deallocate(p);
+	}
+};
+
+template<typename T>
+class numa_Allocator
+{
+public:
+	shared_ptr<T> operator()(size_t size) const
+	{
+		return shared_ptr<T>((T*)numa_Allocate(size), numa_Deleter<T>());
 	}
 };
 

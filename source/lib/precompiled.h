@@ -67,6 +67,8 @@
 // thus deemed usable:
 #include <boost/shared_ptr.hpp>
 using boost::shared_ptr;
+#include <boost/array.hpp>
+using boost::array;
 #include <boost/mem_fn.hpp>
 using boost::mem_fn;
 #include <boost/function.hpp>

@@ -32,8 +32,16 @@
  * but we are able to prevent this via __STDC__.
  **/
 
+//
+// <stdlib.h>
+//
 
-// misc routines
+LIB_API int setenv(const char* envname, const char* envval, int overwrite);
+
+
+//
+// <unistd.h>
+//
 
 // user tests if available via #ifdef; can't use enum.
 #define _SC_PAGESIZE                   1

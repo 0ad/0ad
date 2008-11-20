@@ -52,7 +52,7 @@ void OutputBufferManager::AllocateBuffer(size_t size)
 	// no buffer or the previous one wasn't big enough: reallocate
 	if(!m_mem || m_capacity < size)
 	{
-		m_mem.reset((u8*)page_aligned_alloc(size), PageAlignedDeleter(size));
+		m_mem.reset((u8*)page_aligned_alloc(size), PageAlignedDeleter<u8>(size));
 		m_capacity = size;
 	}
 

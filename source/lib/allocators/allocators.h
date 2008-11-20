@@ -47,6 +47,41 @@ LIB_API void* page_aligned_alloc(size_t unaligned_size);
  **/
 LIB_API void page_aligned_free(void* p, size_t unaligned_size);
 
+#ifdef __cplusplus
+
+template<typename T>
+class PageAlignedDeleter
+{
+public:
+	PageAlignedDeleter(size_t size)
+		: m_size(size)
+	{
+		debug_assert(m_size != 0);
+	}
+
+	void operator()(T* p)
+	{
+		debug_assert(m_size != 0);
+		page_aligned_free(p, m_size);
+		m_size = 0;
+	}
+
+private:
+	size_t m_size;
+};
+
+template<typename T>
+class PageAlignedAllocator
+{
+public:
+	shared_ptr<T> operator()(size_t size) const
+	{
+		return shared_ptr<T>((T*)page_aligned_alloc(size), PageAlignedDeleter<T>(size));
+	}
+};
+
+#endif
+
 
 //
 // matrix allocator

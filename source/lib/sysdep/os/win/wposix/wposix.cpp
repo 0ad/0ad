@@ -16,6 +16,22 @@
 
 WINIT_REGISTER_CRITICAL_INIT(wposix_Init);	// wposix -> error handling
 
+
+int setenv(const char* envname, const char* envval, int overwrite)
+{
+	if(!envname || envname[0] == '\0' || strchr(envname, '='))
+	{
+		errno = EINVAL;
+		return -1;
+	}
+
+	if(overwrite || !getenv(envname))
+		SetEnvironmentVariable(envname, envval);
+
+	return 0;
+}
+
+
 //-----------------------------------------------------------------------------
 // sysconf
 
