@@ -369,6 +369,12 @@ void CEntity::UpdateXZOrientation()
 	m_ahead.y = cos( m_orientation.Y );
 
 	CVector2D targetXZ = g_Game->GetWorld()->GetTerrain()->GetSlopeAngleFace(this);
+
+	if ( !m_base ) 
+	{
+		return;
+	}
+
 	m_orientation.X = clamp( targetXZ.x, -m_base->m_anchorConformX, m_base->m_anchorConformX );
 	m_orientation.Z = clamp( targetXZ.y, -m_base->m_anchorConformZ, m_base->m_anchorConformZ );
 	m_orientation_unclamped.x = targetXZ.x;
