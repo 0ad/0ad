@@ -158,6 +158,7 @@ private:
 
 	jsval JSI_GetPlayerSlots(JSContext* cx);
 	jsval_t JSI_GetOpenSlot(JSContext *cx, uintN argc, jsval *argv);
+	jsval JSI_GetUsedSlotsAmount(JSContext* cx);
 
 public:
 	CGameAttributes();

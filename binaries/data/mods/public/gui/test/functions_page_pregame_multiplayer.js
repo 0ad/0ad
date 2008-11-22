@@ -43,16 +43,18 @@ function initMPHost (parentWindow, gameName, welcomeMessage, profileName)
 		// Assign newly connected client to next available slot.	
 		var playerSlot = g_GameAttributes.getOpenSlot();
 		playerSlot.assignToSession (event.session);
-console.write (event.id);
-		// Set player slot to new player's name.
-		//pushItem ("pgSessionSetupP" + (event.id), event.name);
+		// Set player slot to new player's name
+		
+		var slotID = g_GameAttributes.getUsedSlotsAmount;
+		pushItem ("pgSessionSetupP" + slotID, g_GameAttributes.slots[slotID-1].player.name);
 	}
 	
 	server.onClientDisconnect = function (event) 
 	{
 		// Client has disconnected; free their slot.
-		g_GameAttributes.slots[event.id].assignOpen();
-		var result = setCurrItemValue ("pgSessionSetupP" + event.id, "Open");
+		var slotID = g_GameAttributes.getUsedSlotsAmount-1;
+		g_GameAttributes.slots[slotID].assignOpen();
+		var result = setCurrItemValue ("pgSessionSetupP" + slotID, "Open");
 
 		messageBox(400, 200, "Client " + event.name + "(" + event.id + ") disconnected from " + event.session + ".", "Client Disconnected", 2, new Array(), new Array());
 	}	
@@ -77,9 +79,11 @@ function initMPClient (mpParentWindow, ipAddress, profileName)
 	client.onClientConnect = function (event)
 	{
 		// Set player slot to new player's name.
-		console.write("onClientConnect: name is " + event.name + ", id is " + event.id);
-		//if( event.id != 1 )
-		//	pushItem ("pgSessionSetupP" + (event.id), event.name);
+		console.write("onClientConnect: name is " + event.name + ", event id is " + event.id);
+		
+		var slotID = g_GameAttributes.getUsedSlotsAmount;
+		console.write("slotID="+slotID);
+		pushItem ("pgSessionSetupP" + eval(slotID+1), g_GameAttributes.slots[slotID].player.name);
 	}
 
 	client.onConnectComplete = function (event)

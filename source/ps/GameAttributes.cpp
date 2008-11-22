@@ -274,6 +274,7 @@ void CGameAttributes::ScriptingInit()
 	
 	AddMethod<jsval_t, &CGameAttributes::JSI_GetOpenSlot>("getOpenSlot", 0);
 	AddProperty(L"slots", &CGameAttributes::JSI_GetPlayerSlots);
+	AddProperty(L"getUsedSlotsAmount", &CGameAttributes::JSI_GetUsedSlotsAmount);
 
 	CJSObject<CGameAttributes>::ScriptingInit("GameAttributes");
 }
@@ -287,6 +288,24 @@ jsval_t CGameAttributes::JSI_GetOpenSlot(JSContext* UNUSED(cx), uintN UNUSED(arg
 			return OBJECT_TO_JSVAL((*it)->GetScript());
 	}
 	return JSVAL_NULL;
+}
+
+jsval CGameAttributes::JSI_GetUsedSlotsAmount(JSContext* UNUSED(cx))
+{
+	int i = 0;
+	std::vector <CPlayerSlot *>::iterator it;
+	for (it = m_PlayerSlots.begin();it != m_PlayerSlots.end();++it)
+	{
+		if ((*it)->GetAssignment() != SLOT_OPEN) 
+		{
+			i++;
+		} 
+		else 
+		{
+			return INT_TO_JSVAL(i);
+		}
+	}
+	return INT_TO_JSVAL(i);
 }
 
 jsval CGameAttributes::JSI_GetPlayerSlots(JSContext* UNUSED(cx))
