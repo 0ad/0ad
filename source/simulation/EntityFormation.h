@@ -20,23 +20,50 @@ public:
 	CEntityFormation( CFormation*& base, size_t index );
 	~CEntityFormation();
 
-	size_t GetEntityCount() { return m_numEntities; }
-	float GetSpeed() { return m_speed; }
-	size_t GetSlotCount();
+	size_t GetEntityCount() const
+	{
+		return m_numEntities;
+	}
+	float GetSpeed() const
+	{
+		return m_speed;
+	}
+	size_t GetSlotCount() const;
 
-	CEntityList GetEntityList();
-	CVector2D GetSlotPosition( size_t order );
-	CVector2D GetPosition() { return m_position; }
-	CFormation* GetBase() { return m_base; }
+	CEntityList GetEntityList() const;
+	CVector2D GetSlotPosition( size_t order ) const;
+	CVector2D GetPosition() const
+	{
+		return m_position;
+	}
+	CFormation* GetBase()
+	{
+		return m_base;
+	}
 	void BaseToMovement();
 
-	void SelectAllUnits();
+	void SelectAllUnits() const;
 
-	inline void SetDuplication( bool duplicate ) { m_duplication=duplicate; }
-	inline bool IsDuplication() { return m_duplication; }
-	inline void SetLock( bool lock ){ m_locked=lock; }
-	inline bool IsLocked() { return m_locked; }
-	inline bool IsValidOrder(size_t order) { return ( order < GetSlotCount() ); }
+	inline void SetDuplication( bool duplicate )
+	{
+		m_duplication=duplicate;
+	}
+	inline bool IsDuplication() const
+	{
+		return m_duplication;
+	}
+	inline void SetLock( bool lock )
+	{
+		m_locked=lock;
+	}
+	inline bool IsLocked() const
+	{
+		return m_locked;
+	}
+	inline bool IsValidOrder(size_t order) const
+	{
+		return ( order < GetSlotCount() );
+	}
 
 private:
 	size_t m_numEntities;

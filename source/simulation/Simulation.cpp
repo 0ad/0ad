@@ -195,13 +195,15 @@ void CSimulation::Simulate()
 
 void RandomizeLocations(const CEntityOrder& order, const std::vector<HEntity> &entities, bool isQueued)
 {
-	std::vector<HEntity>::const_iterator it;
 	float radius = 2.0f * sqrt( (float)entities.size() - 1 ); 
 
 	CSimulation* sim = g_Game->GetSimulation();
 
-	for (it = entities.begin(); it < entities.end(); it++)
+	for (std::vector<HEntity>::const_iterator it = entities.begin(); it < entities.end(); it++)
 	{
+		if(!*it)
+			continue;
+
 		float _x, _y;
 		CEntityOrder randomizedOrder = order;
 		
@@ -229,13 +231,14 @@ void RandomizeLocations(const CEntityOrder& order, const std::vector<HEntity> &e
 
 void FormationLocations(const CEntityOrder& order, const std::vector<HEntity> &entities, bool isQueued)
 {
-	CVector2D upvec(0.0f, 1.0f);
-	std::vector<HEntity>::const_iterator it = entities.begin();
-	CEntityFormation* formation = (*it)->GetFormation();
+	const CVector2D upvec(0.0f, 1.0f);
+	const CEntityFormation* formation = entities.front()->GetFormation();
 
-
-	for (; it != entities.end(); it++)
+	for (std::vector<HEntity>::const_iterator it = entities.begin(); it != entities.end(); it++)
 	{
+		if(!*it)
+			continue;
+
 		CEntityOrder orderCopy = order;
 		CVector2D posDelta = orderCopy.m_target_location - formation->GetPosition();
 		CVector2D formDelta = formation->GetSlotPosition( (*it)->m_formationSlot );
@@ -264,18 +267,15 @@ void FormationLocations(const CEntityOrder& order, const std::vector<HEntity> &e
 
 void QueueOrder(const CEntityOrder& order, const std::vector<HEntity> &entities, bool isQueued)
 {
-	std::vector<HEntity>::const_iterator it;
-
-	for (it = entities.begin(); it < entities.end(); it++)
+	for (std::vector<HEntity>::const_iterator it = entities.begin(); it < entities.end(); it++)
 	{
-		if (*it)
-		{
-			if( !isQueued ) {
-				(*it)->ClearOrders();
-			}
+		if (!*it)
+			continue;
 
-			(*it)->PushOrder( order );
-		}
+		if( !isQueued )
+			(*it)->ClearOrders();
+
+		(*it)->PushOrder( order );
 	}
 }
 

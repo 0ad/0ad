@@ -40,11 +40,6 @@ CEntityFormation::~CEntityFormation()
 	}
 }
 
-size_t CEntityFormation::GetSlotCount()
-{
-	return m_base->m_numSlots;
-}
-
 void CEntityFormation::SwitchBase( CFormation*& base )
 {
 	std::vector<CEntity*> copy;
@@ -186,7 +181,7 @@ void CEntityFormation::ResetAngleDivs()
 		m_angleDivs[i] = false;
 }
 
-void CEntityFormation::SelectAllUnits()
+void CEntityFormation::SelectAllUnits() const
 {
 	for ( size_t i=0; i<m_base->m_numSlots; ++i )
 	{
@@ -195,7 +190,13 @@ void CEntityFormation::SelectAllUnits()
 	}
 }
 
-CEntityList CEntityFormation::GetEntityList()
+// (cannot be declared inline in the header due to use of CFormation (m_base)
+size_t CEntityFormation::GetSlotCount() const
+{
+	return m_base->m_numSlots;
+}
+
+CEntityList CEntityFormation::GetEntityList() const
 {
 	CEntityList ret;
 	for ( size_t i=0; i<m_base->m_numSlots; i++ )
@@ -206,7 +207,7 @@ CEntityList CEntityFormation::GetEntityList()
 	return ret;
 }
 
-CVector2D CEntityFormation::GetSlotPosition( size_t order )
+CVector2D CEntityFormation::GetSlotPosition( size_t order ) const
 {
 	if ( IsValidOrder(order) )
 		return CVector2D ( m_base->m_slots[order].rankOff, m_base->m_slots[order].fileOff );

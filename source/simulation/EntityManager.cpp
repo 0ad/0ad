@@ -208,6 +208,7 @@ HEntity CEntityManager::Create(CEntityTemplate* base, CVector3D position, float 
 	pos = m_nextalloc;
 	m_nextalloc++;
 
+	debug_assert(m_entities[pos].m_entity == 0);
 	m_entities[pos].m_entity = new CEntity( base, position, orientation, actorSelections, building );
 	if( m_collisionPatches)
 		m_entities[pos].m_entity->UpdateCollisionPatch();
