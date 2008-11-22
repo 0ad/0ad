@@ -601,7 +601,7 @@
 						// Set default value (pick whatever's at the top of the list).
 //						getGUIObjectByName(this.name).selected = 0;
 						// No, on second thought, set it to the randomly generated map until we can remember the last choice.
-						setCurrItemValue (this.name, "latium_generated");
+						setCurrItemValue (this.name, "Latium");
 					]]></action>
 				</object>
 
