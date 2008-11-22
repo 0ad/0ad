@@ -4,11 +4,8 @@ use strict;
 use base 'Catalyst::Controller';
 
 use XML::Simple;
-use File::Remote;
 use XML::Atom::SimpleFeed;
 use Data::UUID;
-
-my $feed_url = 'http://www.wildfiregames.com/~philip/svnlog.xml';
 
 sub doupdate : Local
 {
@@ -49,9 +46,10 @@ sub doupdate : Local
 	
 	add_default_public_msgs($c);
 
-	my $scp = new File::Remote(rcp => $c->config->{scp}{command});
-	$scp->writefile($c->config->{scp}{filename}, generate_text()) or die $!;
-	$scp->writefile($c->config->{scp}{filename_feed}, generate_feed()) or die $!;
+	open my $text_fh, '>', $c->config->{output}{filename} or die $!;
+	print $text_fh $self->generate_text($c);
+	open my $feed_fh, '>', $c->config->{output}{filename_feed} or die $!;
+	print $feed_fh $self->generate_feed($c);
 
 	$c->res->body("Updated log to $max_seen.");
 }
@@ -96,14 +94,14 @@ sub add_default_public_msgs
 sub createtext : Local
 {
 	my ($self, $c) = @_;
-	my $out = generate_text();
+	my $out = $self->generate_text($c);
 	$c->res->body($out);
 }
 
 sub createfeed : Local
 {
 	my ($self, $c) = @_;
-	my $out = generate_feed();
+	my $out = $self->generate_feed($c);
 	$c->res->body($out);
 }
 
@@ -125,6 +123,9 @@ sub get_log_entries
 
 sub generate_text
 {
+	my ($self, $c) = @_;
+
+	my $feed_url = $c->config->{output}{feed_url};
 	my $out = qq{<a href="$feed_url"><img alt="Atom feed" title="Subscribe to feed of revision log" src="/images/feed-icon-16x16.png" style="float: right"></a>\n};
 
 	my @logentries = get_log_entries(28, 10);
@@ -157,7 +158,11 @@ EOF
 
 sub generate_feed
 {
+	my ($self, $c) = @_;
+
 	my $uid_gen = new Data::UUID;
+
+	my $feed_url = $c->config->{output}{feed_url};
 
 	my $feed = new XML::Atom::SimpleFeed(
 		title => "0 A.D. Revision Log",
