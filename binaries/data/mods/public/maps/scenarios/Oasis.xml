@@ -2,8 +2,8 @@
 
 <Scenario>
 	<Environment>
-		<SkySet>mountainous</SkySet>
-		<SunColour r="2.01758" g="2.01758" b="2.01758"/>
+		<SkySet>cirrus</SkySet>
+		<SunColour r="1.59766" g="1.59766" b="1.59766"/>
 		<SunElevation angle="0.757787"/>
 		<SunRotation angle="-0.693359"/>
 		<TerrainAmbientColour r="0.337255" g="0.364706" b="0.486275"/>
@@ -16,16 +16,16 @@
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.402344</Murkiness>
-				<Tint r="0" g="0.501961" b="0.752941"/>
+				<Tint r="0.501961" g="0.501961" b="0.25098"/>
 				<ReflectionTint r="0.603922" g="0.560784" b="0.396078"/>
-				<ReflectionTintStrength>0.369141</ReflectionTintStrength>
+				<ReflectionTintStrength>0.455078</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="79.4649" y="91.4125" z="13.617"/>
-		<Rotation angle="0.0154821"/>
-		<Declination angle="0.774347"/>
+		<Position x="76.6618" y="119.428" z="-23.8151"/>
+		<Rotation angle="0.0161045"/>
+		<Declination angle="0.71449"/>
 	</Camera>
 	<Entities>
 		<Entity uid="1">
@@ -127,7 +127,7 @@
 		<Entity uid="20">
 			<Template>flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="82.9523" y="22.4" z="51.8172"/>
+			<Position x="69.4601" y="22.4" z="56.6107"/>
 			<Orientation angle="1.11202"/>
 		</Entity>
 		<Entity uid="21">
@@ -217,7 +217,7 @@
 		<Entity uid="35">
 			<Template>flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="68.5009" y="22.4" z="174.413"/>
+			<Position x="63.9727" y="22.2781" z="166.209"/>
 			<Orientation angle="1.35923"/>
 		</Entity>
 		<Entity uid="36">
@@ -241,7 +241,7 @@
 		<Entity uid="41">
 			<Template>flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="52.79" y="22.4" z="180.078"/>
+			<Position x="47.7507" y="21.963" z="171.365"/>
 			<Orientation angle="-2.77571"/>
 		</Entity>
 		<Entity uid="42">
@@ -253,7 +253,7 @@
 		<Entity uid="43">
 			<Template>flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="38.9262" y="22.4" z="181.615"/>
+			<Position x="38.2923" y="21.8485" z="172.558"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="44">
@@ -295,7 +295,7 @@
 		<Entity uid="50">
 			<Template>flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="41.659" y="22.3448" z="178.757"/>
+			<Position x="42.4747" y="21.679" z="170.859"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="51">
@@ -4221,7 +4221,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/palm_date_leaves_a.xml</Actor>
-			<Position x="43.066" y="22.4" z="183.936"/>
+			<Position x="44.7335" y="22.2881" z="176.623"/>
 			<Orientation angle="-1.93115"/>
 		</Nonentity>
 		<Nonentity>
