@@ -12,16 +12,72 @@
 			<Civ>Celts</Civ>
 
 			<History>The most famous of all Celts, Vercingetorix lead the rebelling Gallic tribes against the might of Rome and Julius Caesar’s veteran army in 54 BC. Although successful in defeating several Roman forces, Vercingetorix was unable to defeat Caesar, who eventually surrounded the Celtic leaders in the town of Alesia along with 100,000 men. When a relief army arrived to lift the epic siege, the Romans were out numbered 7 to 1 but still defeated the Celts. Vercingetorix surrendered and was executed.</History>
-			<Tooltip>Hero Aura: Train times for all units decreased considerably during his lifetime.</Tooltip>		
+			<Tooltip>Hero Aura: Increased attack for all units within his aura.</Tooltip>		
 		</Id>
-
 		<Footprint>
 			<Radius>1.4</Radius>
-			<Height>6.5</Height>
-		</Footprint>
-		
+			<Height>2.5</Height>
+		</Footprint>		
+		<Population>
+			<Rem>2</Rem>
+		</Population>
+		<Creation>
+			<Resource>
+ 				<Food>150</Food>
+				<Metal>300</Metal>
+ 			</Resource>
+		</Creation>
+		<Health>
+			<Max>300</Max>
+		</Health>
+		<Armour>
+			<Hack>6.0</Hack>
+			<Pierce>13.0</Pierce>
+			<Crush>13.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>2000.0</Max>
+		</Stamina>
+		<Auras>
+			<Trample>
+				<Radius>4.0</Radius>
+				<Speed>500</Speed>
+				<Duration>3</Duration>
+				<Crush>10.0</Crush>
+				<Hack>10.0</Hack>
+				<Pierce>0.0</Pierce>
+				<r>1.0</r>
+				<g>0.1</g>
+				<b>0.2</b>
+				<a>0.05</a>
+			</Trample>
+		</Auras>		
+		<Vision>
+			<Los>17.0</Los>
+		</Vision>
 	</Traits>
-
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>50.0</Hack>
+ 				<Pierce>0.0</Pierce>
+ 				<Crush>0.0</Crush>
+				<Speed>1500</Speed>
+			</Melee>
+			<Charge>
+				<Hack>150.0</Hack>
+				<Pierce>0.0</Pierce>
+				<Crush>0.0</Crush>
+				<Range>5.0</Range>
+				<Speed>1000</Speed>
+			</Charge>
+ 		</Attack>
+		<Move>
+			<Speed>12.0</Speed>
+			<Run>
+				<Speed>24.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	<Actor>units/celts/vercingetorix_horse.xml</Actor>
-
 </Entity>

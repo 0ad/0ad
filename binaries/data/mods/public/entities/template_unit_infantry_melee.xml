@@ -2,18 +2,11 @@
 
 <Entity	Parent="template_unit_infantry">
 	<Traits>
-	
 		<Id>
-
 			<Generic>Melee Infantry</Generic>
-
 			<Classes>Melee</Classes>
 		</Id>
-		
-
-		
 	</Traits>
-	
 	<Actions>
 		<Attack>
 			<Melee>
@@ -23,7 +16,6 @@
 				<Range>5.0</Range>
 				<Speed>1500</Speed>
 			</Melee>
-
 			<Charge>
 				<Hack>10.0</Hack>
 				<Pierce>0.0</Pierce>	

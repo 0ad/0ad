@@ -11,12 +11,52 @@
 
 			<Civ>Celts</Civ>
 
-			<History>Caradoc's name is better known in its Romanized form, Caratacus. Under this name he is remembered as a fierce defender of Britain against the Romans after their invasion in 43 AD. Son of King Cynvelin of the Catuvellauni tribe, Caradoc fought for nine years against the Romans with little success, eventually fleeing to the tribes in Wales, where he was defeated decisively. Finally he entered Northern Britain, where was handed over to the Romans. Taken to Rome, Caradoc was allowed to live by the Emperor Claudius and died in Italy.</History>
-			<Tooltip>Hero Aura: Increased Armour and Attack for Two-Handed Swordsmen.</Tooltip>		
+			<History>Caratacos's name is better known in its Romanized form, Caratacus. Under this name he is remembered as a fierce defender of Britain against the Romans after their invasion in 43 AD. Son of King Cynvelin of the Catuvellauni tribe, Caratacos fought for nine years against the Romans with little success, eventually fleeing to the tribes in Wales, where he was defeated decisively. Finally he entered Northern Britain, where was handed over to the Romans. Taken to Rome, Caratacos was allowed to live by the Emperor Claudius and died in Italy.</History>
+			<Tooltip>Hero Aura: Increased Speed for all units during his lifetime.</Tooltip>		
 		</Id>
-		
+		<Population>
+			<Rem>1</Rem>
+		</Population>
+		<Creation>
+			<Resource>
+ 				<Food>150</Food>
+				<Metal>175</Metal>
+ 			</Resource>
+		</Creation>
+		<Health>
+			<Max>225</Max>
+		</Health>
+		<Armour>
+			<Hack>2.0</Hack>
+			<Pierce>10.0</Pierce>
+			<Crush>14.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>700.0</Max>
+		</Stamina>		
 	</Traits>
-
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>50.0</Hack>
+ 				<Pierce>0.0</Pierce>
+ 				<Crush>0.0</Crush>
+				<Speed>1500</Speed>
+			</Melee>
+			<Charge>
+				<Hack>150.0</Hack>
+				<Pierce>0.0</Pierce>
+				<Crush>0.0</Crush>
+				<Range>5.0</Range>
+				<Speed>1000</Speed>
+			</Charge>
+ 		</Attack>
+		<Move>
+			<Speed>8.5</Speed>
+			<Run>
+				<Speed>17.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	<Actor>units/celts/caradoc.xml</Actor>
-
 </Entity>
