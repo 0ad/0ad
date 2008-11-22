@@ -21,3 +21,4 @@ CREATE TABLE public_message (
 	msg TEXT
 );
 CREATE INDEX public_message_logentry ON public_message (logentry);
+
