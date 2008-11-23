@@ -20,6 +20,13 @@
 
 #define LOG_CATEGORY "audio"
 
+
+void CSoundGroup::SetGain(float gain)
+{
+	gain = std::min(gain, 1.0f);
+	m_Gain = gain;
+}
+
 void CSoundGroup::SetDefaultValues()
 {
 	m_index = 0;
@@ -28,7 +35,7 @@ void CSoundGroup::SetDefaultValues()
 	m_CurTime = 0.0f;
 
 	// sane defaults; will probably be replaced by the values read during LoadSoundGroup.
-	m_Gain = 0.5f;
+	SetGain(0.5f);
 	m_Pitch = 1.0f;
 	m_Priority = 60;
 	m_PitchUpper = 1.1f;
@@ -60,7 +67,12 @@ CSoundGroup::~CSoundGroup()
 	ReleaseGroup();
 }
 
-void CSoundGroup::PlayNext(const CVector3D& position)
+static float RandFloat(float min, float max)
+{
+	return float(rand(min*100.0f, max*100.0f) / 100.0f);
+}
+
+void CSoundGroup::UploadPropertiesAndPlay(Handle hSound, const CVector3D& position)
 {
 	// interface/UI sounds should always be played at the listener's
 	// position, which is achieved by setting position to 0 and
@@ -75,25 +87,31 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		relative = false;
 	}
 
+	snd_set_pos(hSound, x, y, z, relative);
+
+	float gain = TestFlag(eRandGain)? RandFloat(m_GainLower, m_GainUpper) : m_Gain;
+	gain = std::min(gain, 1.0f);	// guard against roundoff error in RandFloat or too high m_GainUpper
+	snd_set_gain(hSound, gain);
+
+	const float pitch = TestFlag(eRandPitch)? RandFloat(m_PitchLower, m_PitchUpper) : m_Pitch;
+	snd_set_pitch(hSound, pitch);
+
+	snd_play(hSound, m_Priority);
+}
+
+
+void CSoundGroup::PlayNext(const CVector3D& position)
+{
 	if(m_Intensity >= m_IntensityThreshold)
 	{
 		if(!is_playing(m_hReplacement))
 		{
 			// load up replacement file
 			m_hReplacement = snd_open(m_filepath + m_intensity_file);
-			if(m_hReplacement < 0 || m_hReplacement > 1)	// one cause: sound is disabled
+			if(m_hReplacement < 0)	// one cause: sound is disabled
 				return;
-			snd_set_gain(m_hReplacement, m_Gain);	
-			snd_set_pitch(m_hReplacement, m_Pitch);
-			snd_set_pos(m_hReplacement, x, y, z, relative);
-
-			//check for randomization of pitch and gain
-			if(TestFlag(eRandPitch))
-				snd_set_pitch(m_hReplacement, (float)((rand(m_PitchLower * 100.0f, m_PitchUpper * 100.0f) / 100.0f))); 
-			if(TestFlag(eRandGain))
-				snd_set_gain(m_hReplacement, (float)((rand(m_GainLower * 100.0f, m_GainUpper * 100.0f) / 100.0f)));	
-		
-			snd_play(m_hReplacement, m_Priority);
+			
+			UploadPropertiesAndPlay(m_hReplacement, position);
 		}
 	}
 	else
@@ -107,19 +125,10 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 			m_index = (size_t)rand(0, (size_t)filenames.size());
 		// (note: previously snd_group[m_index] was used in place of hs)
 		Handle hs = snd_open(m_filepath + filenames[m_index]);
-		if(hs < 0 || hs > 1)	// one cause: sound is disabled
+		if(hs < 0)	// one cause: sound is disabled
 			return;
-		snd_set_gain(hs, m_Gain);	
-		snd_set_pitch(hs, m_Pitch);
-		snd_set_pos(hs, x, y, z, relative);
 
-		//check for randomization of pitch and gain
-		if(TestFlag(eRandPitch))
-			snd_set_pitch(hs, (float)((rand(m_PitchLower * 100.0f, m_PitchUpper * 100.0f) / 100.0f))); 
-		if(TestFlag(eRandGain))
-			snd_set_gain(hs, (float)((rand(m_GainLower * 100.0f, m_GainUpper * 100.0f) / 100.0f)));	
-
-		snd_play(hs, m_Priority);
+		UploadPropertiesAndPlay(hs, position);
 	}
 	
 	playtimes[m_index] = 0.0f;
@@ -237,7 +246,7 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 		
 		if(child_name == el_gain)
 		{
-			this->m_Gain = CStr(child.GetText()).ToFloat();
+			SetGain(CStr(child.GetText()).ToFloat());
 		}
 
 		if(child_name == el_looping)

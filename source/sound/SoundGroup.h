@@ -84,6 +84,8 @@ public:
 	inline bool TestFlag(int flag) { return (m_Flags & flag) != 0;}
 	
 private:
+	void SetGain(float gain);
+	void UploadPropertiesAndPlay(Handle hSound, const CVector3D& position);
 	void SetDefaultValues();
 
 	size_t m_index;  // index of the next sound to play
