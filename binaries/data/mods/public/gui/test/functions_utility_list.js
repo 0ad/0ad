@@ -136,8 +136,10 @@ function getCurrItemValue (objectName)
 // already in the list).
 function setCurrItemValue (objectName, string)
 {
-	if (getGUIObjectByName (objectName) == null)
+	if (getGUIObjectByName(objectName) == null) {
 		console.write ("setCurrItemValue(): " + objectName + " not found.");
+		return -1;
+	}
 
 	if (getGUIObjectByName(objectName).selected == -1)
 		return -1;	// Return -1 if nothing selected.
