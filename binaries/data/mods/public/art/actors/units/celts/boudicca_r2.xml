@@ -6,11 +6,11 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="female/f_chariot_idle_01.dae" name="Idle" speed="200"/>
-        <animation file="female/f_chariot_idle_01.dae" name="Walk" speed="10"/>
-        <animation file="female/f_chariot_run_01.dae" name="Run" speed="15"/>
-        <animation file="female/f_death_01.dae" name="Death" speed="200"/>
-        <animation file="female/f_jav_atk_01.dae" name="melee" speed="200"/>
+        <animation file="female/f_chariot_idle_01.dae" name="Idle" speed="10"/>
+        <animation file="female/f_chariot_idle_01.dae" name="Walk" speed="20"/>
+        <animation file="female/f_chariot_run_01.dae" name="Run" speed="10"/>
+        <animation file="female/f_death_01.dae" name="Death" speed="100"/>
+        <animation file="female/f_jav_atk_01.dae" name="melee" speed="100"/>
       </animations>
       <mesh>skeletal/f_tunic.dae</mesh>
       <props>
