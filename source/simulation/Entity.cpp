@@ -1073,7 +1073,7 @@ float CEntity::GetAnchorLevel( float x, float z )
 {
 	CTerrain *pTerrain = g_Game->GetWorld()->GetTerrain();
 	float groundLevel = pTerrain->GetExactGroundLevel( x, z );
-	if( m_base->m_anchorType==L"Ground" )
+	if( m_base && m_base->m_anchorType==L"Ground" )
 	{
 		return groundLevel;
 	}
