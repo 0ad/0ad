@@ -6,7 +6,7 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="infantry/sword/attack/isw_s_def_06.psa" name="Idle" speed="1"/>
+        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="20"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="Run" speed="5"/>
         <animation event="0.5" file="biped/inf_spear_shield_atk_a.psa" name="Attack" speed="100"/>
