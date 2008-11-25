@@ -2,14 +2,10 @@
 
 <Entity	Parent="template_unit_super_infantry">
 	<Traits>
-	
 		<Id>
 			<Generic>Hero</Generic>
-
 			<Classes>Hero, Military, Organic</Classes>
-		
 		</Id>
-		
 		<Creation>
 			<Time>60</Time>
 			<Resource>
@@ -17,26 +13,15 @@
 				<Metal>250</Metal>
  			</Resource>
 		</Creation>
-		
-		<Population>
-			<Rem>1</Rem>
-		</Population>
-		
-		<Vision>
-			<Los>15</Los>
-		</Vision>
-		
 		<Armour>
 			<Hack>7.0</Hack>
 			<Pierce>12.0</Pierce>
 			<Crush>12.0</Crush>
 		</Armour>	
-
 		<Health>
 			<Max>250</Max>
 			<RegenRate>0.2</RegenRate>
 		</Health>		
-
 		<Loot>
 			<Xp>1000</Xp>
 			<Food>10</Food>
@@ -44,13 +29,10 @@
 			<Stone>10</Stone>
 			<Metal>100</Metal>
 		</Loot>		
-
 		<MiniMap>
 			<Type>Hero</Type>
 		</MiniMap>
-
 	</Traits>
-
 	<Actions>
 		<Attack>
 			<Melee>
@@ -65,13 +47,14 @@
 				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
 				<Range>5.0</Range>
-				<Speed>1500</Speed>
+				<RangeMin>4.0</RangeMin>
+				<Speed>1000</Speed>
 			</Charge>
 		</Attack>
 		<Move>
 			<Speed>6.5</Speed>
 			<Run>
-				<Speed>15.00</Speed>
+				<Speed>15.0</Speed>
 			</Run>
 		</Move>		
 	</Actions>

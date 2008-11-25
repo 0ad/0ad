@@ -15,15 +15,6 @@
 				<Wood>500</Wood>
  			</Resource>
 		</Creation>
-		
-		<Population>
-			<Rem>1</Rem>
-		</Population>
-		
-		<Vision>
-			<Los>15</Los>
-		</Vision>
-		
 		<Armour>
 			<Hack>5.0</Hack>
 			<Pierce>10.0</Pierce>
@@ -48,7 +39,6 @@
 		</MiniMap>
 
 	</Traits>
-
 	<Actions>
 		<Attack>
 			<Ranged>
@@ -61,13 +51,9 @@
 			</Ranged>			
 		</Attack>
 		<Move>
-
 			<Speed>8.0</Speed>
-
 			<Run>
-
 				<Speed>16.0</Speed>
-
 			</Run>
 		</Move>
 	</Actions>

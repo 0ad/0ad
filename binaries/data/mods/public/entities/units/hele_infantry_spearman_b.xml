@@ -2,15 +2,10 @@
 
 <Entity	Parent="template_unit_infantry_melee_spearman">
 	<Traits>
-	
 		<Id>
-
 			<Icon_Cell>3</Icon_Cell>
-
 			<Specific>Hoplite</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>Hoplites were the very symbol of Hellenistic prestige and citizenship, armed with a spear and a large round, bronze-coated shield known as a hoplon. Armor was heavy, with bronze helmets and a cuirass of either bronze or linen, in addition to greaves. Hoplites fought in a tight formation called a phalanx, guarding each other with their shields while they attacked the enemy with their spear or a short iron sword.</History>
 		</Id>
 		<Promotion>
@@ -18,20 +13,13 @@
 		</Promotion>
 		<Creation>
 			<Resource>
- 				<Food>65</Food>
 				<Wood>65</Wood>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>6.0</Hack>
-			<Pierce>4.0</Pierce>
-			<Crush>11.0</Crush>
+			<Pierce>7.0</Pierce>
 		</Armour>
-		<Health>
-			<Max>100</Max>
-		</Health>
 	</Traits>
-	
 	<Actions>
 		<Create>
 			<List>
@@ -40,6 +28,7 @@
 				</StructCiv>
 				<StructMil>
 					<Gymnasion />
+					<Tholos />
 				</StructMil>
 			</List>
 		</Create>
@@ -55,9 +44,9 @@
  		</Attack>
 
 		<Move>
-			<Speed>6.5</Speed>
+			<Speed>8.0</Speed>
 			<Run>
-				<Speed>15.0</Speed>
+				<Speed>16.0</Speed>
 			</Run>
 		</Move>
 	</Actions>

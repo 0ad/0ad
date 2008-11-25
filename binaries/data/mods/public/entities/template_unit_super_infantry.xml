@@ -44,14 +44,19 @@
 			</Melee>
 			<Charge>
 				<Hack>60.0</Hack>
+				<Pierce>0.0</Pierce>
+				<Crush>0.0</Crush>
 				<Range>5.0</Range>
 				<Speed>1000</Speed>
 			</Charge>		
  		</Attack>
 		<Move>
 			<Speed>8.5</Speed>
+			<TurningRadius>1.0</TurningRadius>
 			<Run>
 				<Speed>16.5</Speed>
+				<Range>600.0</Range>
+				<RangeMin>5.0</RangeMin>
 			</Run>
 		</Move>
 	</Actions>

@@ -2,29 +2,25 @@
 
 <Entity	Parent="template_unit_super_infantry">
 	<Traits>
-	
 		<Id>
-
 			<Icon_Cell>12</Icon_Cell>
-		
 			<Specific>Spartiate</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>The Spartans had a very peculiar form of government which enabled them to be professional soldiers. It not only enabled them, but actually forced them to be superior soldiers as a small group of Spartans had to dominate an enormous number of subjects and unwilling allies. The Spartan army was superior in Hellas, and in the rest of the known world. No other army was so well trained, and had such excellent equipment. They believed that traditional training was the key to success, and for centuries they were correct, as they never lost a battle in spite of their small numbers. Ironically enough, this concept ended the Spartan supremacy, as the Spartan phalanx could not resist the new sloped Theban phalanx and the invading integrated Macedonian forces. The end of the Spartan power marked the end of the domination of the phalanx.</History>
-			<Tooltip>Bonused vs. Melee Cavalry and Infantry. Weak vs. Ranged Infantry and Ranged Cavalry. Long Train Time. Small bonus vs. All Persian Units.</Tooltip>		
+			<Tooltip>Bonused vs. Melee Cavalry and Infantry. Weak vs. Ranged Infantry and Ranged Cavalry. Long Train Time. Small bonus vs. All Persian Units.</Tooltip>
 		</Id>
 		<Creation>
+			<Time>40</Time>
 			<Resource>
  				<Food>75</Food>
-				<Wood>65</Wood>
-				<Metal>50</Metal>
+				<Wood>50</Wood>
+				<Metal>65</Metal>
  			</Resource>
 		</Creation>
 		<Armour>
 			<Hack>10.0</Hack>
-			<Pierce>11.0</Pierce>
-			<Crush>15.0</Crush>
+			<Pierce>9.0</Pierce>
+			<Crush>14.0</Crush>
 		</Armour>
 		<Health>
 			<Max>150</Max>
@@ -38,11 +34,9 @@
  				<Crush>5.0</Crush>
 			</Melee>
 			<Charge>
-				<Hack>40.0</Hack>
+				<Hack>42.0</Hack>
 				<Pierce>30.0</Pierce>
 				<Crush>10.0</Crush>
-				<Range>5.0</Range>
-				<Speed>1500</Speed>
 			</Charge>	
  		</Attack>
 		<Move>

@@ -32,7 +32,17 @@
 		</Armour>
 		<Stamina>
 			<Max>500.0</Max>
-		</Stamina>		
+		</Stamina>
+		<Auras>
+			<Fear>
+				<Radius>20</Radius>
+				<Bonus>5</Bonus>
+				<r>0.1</r>
+				<g>0.9</g>
+				<b>0.1</b>
+				<a>0.1</a>
+			</Fear>
+		</Auras>		
 	</Traits>
 	<Actions>
  		<Attack>

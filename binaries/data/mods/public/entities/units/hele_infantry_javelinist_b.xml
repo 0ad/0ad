@@ -2,15 +2,10 @@
 
 <Entity	Parent="template_unit_infantry_ranged_javelinist">
 	<Traits>
-	
 		<Id>
-
 			<Icon_Cell>6</Icon_Cell>
-			
 			<Specific>Thracian Peltast</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>Peltasts were javelinists originating in Thrace but their form of combat was widely copied by the Greeks, Macedonians, and Persians. Equipped with a small oval or crescent shield, a peltast would charge at enemy formations whilst hurling his javelins then fall back to avoid close combat. They wore no armor and were at a significant disadvantage against heavy infantry and cavalry, relying on their speed for survival.</History>
 		</Id>
 		<Promotion>
@@ -18,18 +13,14 @@
 		</Promotion>
 		<Creation>
 			<Resource>
- 				<Food>50</Food>
-				<Wood>60</Wood>
+ 				<Food>0</Food>
+				<Wood>0</Wood>
+				<Metal>70</Metal>
  			</Resource>
 		</Creation>
 		<Health>
 			<Max>85</Max>
 		</Health>
-		<Armour>
-			<Hack>1.0</Hack>
-			<Pierce>4.0</Pierce>
-			<Crush>3.0</Crush>
-		</Armour>
 	</Traits>
 	<Actions>
 		<Create>
@@ -39,19 +30,12 @@
 				</StructCiv>
 				<StructMil>
 					<Gymnasion />
+					<Tholos />
 				</StructMil>
 			</List>
 		</Create>
- 		<Attack>
-			<Ranged>
- 				<Hack>0.0</Hack>
- 				<Pierce>28.0</Pierce>
- 				<Crush>0.0</Crush>
-				<Range>34</Range>
-			</Ranged>
- 		</Attack>
 		<Move>
-			<Speed>9.0</Speed>
+			<Speed>9.5</Speed>
 			<Run>
 				<Speed>20.0</Speed>
 			</Run>

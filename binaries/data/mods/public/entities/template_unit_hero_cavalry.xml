@@ -2,43 +2,22 @@
 
 <Entity	Parent="template_unit_super_cavalry">
 	<Traits>
-	
 		<Id>
 			<Generic>Hero</Generic>
-
 			<Classes>Hero, Military, Organic</Classes>
-		
 		</Id>
-		
 		<Creation>
-			<Time>80</Time>
+			<Time>70</Time>
 			<Resource>
  				<Food>150</Food>
 				<Metal>300</Metal>
  			</Resource>
 		</Creation>
-		
-		<Population>
-			<Rem>2</Rem>
-		</Population>
-		
-		<Vision>
-			<Los>17</Los>
-		</Vision>
 		<Auras>
 			<Trample>
-				<Radius>3</Radius>
-				<Speed>1000</Speed>
-				<Duration>3</Duration>
-				
 				<Crush>13.0</Crush>
 				<Hack>13.0</Hack>
-				<Pierce>0.0</Pierce>
-			
-				<r>1.0</r>
-				<g>0.1</g>
-				<b>0.2</b>
-				<a>0.05</a>
+				<a>0.1</a>
 			</Trample>
 		</Auras>
 		<Armour>
@@ -51,7 +30,6 @@
 			<Max>300</Max>
 			<RegenRate>0.2</RegenRate>
 		</Health>		
-
 		<Loot>
 			<Xp>1000</Xp>
 			<Food>10</Food>
@@ -59,13 +37,10 @@
 			<Stone>10</Stone>
 			<Metal>100</Metal>
 		</Loot>		
-
 		<MiniMap>
 			<Type>Hero</Type>
 		</MiniMap>
-
 	</Traits>
-
 	<Actions>
 		<Attack>
 			<Melee>
@@ -73,22 +48,14 @@
 				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
 				<Range>3.6</Range>
-				<Speed>1500</Speed>
 			</Melee>
 			<Charge>
 				<Hack>135.0</Hack>
 				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
 				<Range>3.6</Range>
-				<Speed>1500</Speed>
 			</Charge>
 		</Attack>
-		<Move>
-			<Speed>9.0</Speed>
-			<Run>
-				<Speed>20.0</Speed>
-			</Run>
-		</Move>		
 	</Actions>
 
 	<SoundGroups>

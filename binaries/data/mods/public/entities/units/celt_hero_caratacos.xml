@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_hero"
->
+<Entity	Parent="template_unit_hero">
 	<Traits>
-	
 		<Id>
-		
-			<Specific>Caradoc</Specific>
-
+			<Specific>Caratacos</Specific>
 			<Civ>Celts</Civ>
-
 			<History>Caratacos's name is better known in its Romanized form, Caratacus. Under this name he is remembered as a fierce defender of Britain against the Romans after their invasion in 43 AD. Son of King Cynvelin of the Catuvellauni tribe, Caratacos fought for nine years against the Romans with little success, eventually fleeing to the tribes in Wales, where he was defeated decisively. Finally he entered Northern Britain, where was handed over to the Romans. Taken to Rome, Caratacos was allowed to live by the Emperor Claudius and died in Italy.</History>
 			<Tooltip>Hero Aura: Increased Speed for all units during his lifetime.</Tooltip>		
 		</Id>
-		<Population>
-			<Rem>1</Rem>
-		</Population>
 		<Creation>
 			<Resource>
  				<Food>150</Food>
@@ -33,7 +24,17 @@
 		</Armour>
 		<Stamina>
 			<Max>700.0</Max>
-		</Stamina>		
+		</Stamina>
+		<Auras>
+			<Courage>
+				<Radius>20</Radius>
+				<Bonus>5</Bonus>
+				<r>0.1</r>
+				<g>0.9</g>
+				<b>0.1</b>
+				<a>0.1</a>
+			</Courage>
+		</Auras>		
 	</Traits>
 	<Actions>
  		<Attack>
