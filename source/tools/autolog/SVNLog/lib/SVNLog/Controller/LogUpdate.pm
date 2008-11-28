@@ -126,7 +126,23 @@ sub generate_text
 	my ($self, $c) = @_;
 
 	my $feed_url = $c->config->{output}{feed_url};
-	my $out = qq{<a href="$feed_url"><img alt="Atom feed" title="Subscribe to feed of revision log" src="/images/feed-icon-16x16.png" style="float: right"></a>\n};
+	my $out = <<EOF;
+<!DOCTYPE html>
+<title>0 A.D. Revision Log</title>
+<style>
+body {
+  color: #fff;
+  margin: 3px;
+  background-color: #000;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+img {
+  border: 0;
+}
+</style>
+<a href="$feed_url" target="_top"><img alt="Atom feed" title="Subscribe to feed of revision log" src="/feed-icon-16x16.png" style="float: right"></a>
+EOF
 
 	my @logentries = get_log_entries(28, 10);
 
