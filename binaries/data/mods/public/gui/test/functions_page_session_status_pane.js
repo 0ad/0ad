@@ -177,7 +177,12 @@ function updateStat (baseName, cellSheet, cell, statistic)
 	textStat.sprite = "snIconSheet" + cellSheet;
 	textStat.cell_id = cellGroup[cellSheet][cell].id;
 	textStat.tooltip = cellGroup[cellSheet][cell].name;
-	var iconStat = getGUIObjectByName (baseName + (statCurr + 1))
+	var iconStat = getGUIObjectByName (baseName + (statCurr + 1));
+	
+	if (!isNaN(statistic)) {
+		statistic = Math.ceil(statistic);
+	}
+	
 	iconStat.caption = statistic;
 	iconStat.tooltip = cellGroup[cellSheet][cell].name + ": " + statistic + ".";
 	statCurr = (statCurr + 2);
