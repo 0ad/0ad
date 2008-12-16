@@ -120,7 +120,7 @@ struct TI_FINDCHILDREN_PARAMS2
 
 // actual implementation; made available so that functions already under
 // the lock don't have to unlock (slow) to avoid recursive locking.
-static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, char* file, int* line)
+static LibError ResolveSymbol_lk(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
 	sym_init();
 
@@ -183,7 +183,7 @@ static LibError debug_resolve_symbol_lk(void* ptr_of_interest, char* sym_name, c
 LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
 {
 	WinScopedLock lock(WDBG_SYM_CS);
-	return debug_resolve_symbol_lk(ptr_of_interest, sym_name, file, line);
+	return ResolveSymbol_lk(ptr_of_interest, sym_name, file, line);
 }
 
 
@@ -281,9 +281,14 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 
 #endif
 
+// note: RtlCaptureStackBackTrace (http://msinilo.pl/blog/?p=40)
+// is likely to be much faster than StackWalk64 (especially relevant
+// for debug_GetCaller), but wasn't known during development and
+// remains undocumented.
 
 typedef VOID (WINAPI *PRtlCaptureContext)(PCONTEXT);
 static PRtlCaptureContext s_RtlCaptureContext;
+
 
 LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTEXT* pcontext, const char* lastFuncToSkip)
 {
@@ -1207,7 +1212,7 @@ static LibError dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpS
 	// isn't exposed via TI_GET_SYMNAME, so we resolve it ourselves.
 
 	char name[DBG_SYMBOL_LEN];
-	LibError err = debug_resolve_symbol_lk((void*)p, name, 0, 0);
+	LibError err = ResolveSymbol_lk((void*)p, name, 0, 0);
 
 	if(state.indirection == 0)
 		out(L"0x%p ", p);
@@ -1767,7 +1772,7 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 	void* func = (void*)(uintptr_t)sf->AddrPC.Offset;
 
 	char func_name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN]; int line;
-	LibError ret = debug_resolve_symbol_lk(func, func_name, file, &line);
+	LibError ret = ResolveSymbol_lk(func, func_name, file, &line);
 	if(ret == INFO::OK)
 	{
 		// don't trace back further than the app's entry point

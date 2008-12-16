@@ -450,6 +450,9 @@ LIB_API void debug_puts(const char* text);
 /**
  * return the caller of a certain function on the call stack.
  *
+ * this function is useful for recording (partial) stack traces for
+ * memory allocation tracking, etc.
+ *
  * @param context, lastFuncToSkip - see debug_DumpStack
  * @return address of the caller
  **/

@@ -27,7 +27,7 @@
  *
  * opaque! do not read/write any fields!
  **/
-struct LIB_API Bucket
+struct Bucket
 {
 	/**
 	 * currently open bucket.

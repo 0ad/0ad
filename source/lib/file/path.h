@@ -23,13 +23,13 @@
 struct PathTraits;
 typedef fs::basic_path<std::string, PathTraits> Path;
 
-struct LIB_API PathTraits
+struct PathTraits
 {
 	typedef std::string internal_string_type;
 	typedef std::string external_string_type;
 
-	static external_string_type to_external(const Path&, const internal_string_type& src);
-	static internal_string_type to_internal(const external_string_type& src);
+	static LIB_API external_string_type to_external(const Path&, const internal_string_type& src);
+	static LIB_API internal_string_type to_internal(const external_string_type& src);
 };
 
 namespace boost

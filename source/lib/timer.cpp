@@ -17,16 +17,11 @@
 #include <stdarg.h>
 
 #include "lib/posix/posix_time.h"
-#include "lib/sysdep/os_cpu.h"
 #if OS_WIN
 #include "lib/sysdep/os/win/whrt/whrt.h"
 #endif
 #if OS_UNIX
 # include <unistd.h>
-#endif
-#include "lib/config2.h"	// CONFIG2_TIMER_ALLOW_RDTSC
-#if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
-# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
 #endif
 
 #if OS_UNIX || OS_WIN
@@ -125,147 +120,6 @@ double timer_Resolution()
 
 
 //-----------------------------------------------------------------------------
-
-ScopeTimer::ScopeTimer(const char* description)
-	: m_t0(timer_Time()), m_description(description)
-{
-}
-
-
-ScopeTimer::~ScopeTimer()
-{
-	double t1 = timer_Time();
-	double dt = t1-m_t0;
-
-	// determine scale factor for pretty display
-	double scale = 1e6;
-	const char* unit = "us";
-	if(dt > 1.0)
-		scale = 1, unit = "s";
-	else if(dt > 1e-3)
-		scale = 1e3, unit = "ms";
-
-	debug_printf("TIMER| %s: %g %s\n", m_description, dt*scale, unit);
-}
-
-
-//-----------------------------------------------------------------------------
-// TimerUnit
-
-// since TIMER_ACCRUE et al. are called so often, we try to keep
-// overhead to an absolute minimum. storing raw tick counts (e.g. CPU cycles
-// returned by ia32_rdtsc) instead of absolute time has two benefits:
-// - no need to convert from raw->time on every call
-//   (instead, it's only done once when displaying the totals)
-// - possibly less overhead to querying the time itself
-//   (timer_Time may be using slower time sources with ~3us overhead)
-//
-// however, the cycle count is not necessarily a measure of wall-clock time
-// (see http://www.gamedev.net/reference/programming/features/timing).
-// therefore, on systems with SpeedStep active, measurements of I/O or other
-// non-CPU bound activity may be skewed. this is ok because the timer is
-// only used for profiling; just be aware of the issue.
-// if this is a problem, disable CONFIG2_TIMER_ALLOW_RDTSC.
-// 
-// note that overflow isn't an issue either way (63 bit cycle counts
-// at 10 GHz cover intervals of 29 years).
-
-#if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
-
-void TimerUnit::SetToZero()
-{
-	m_ticks = 0;
-}
-
-void TimerUnit::SetFromTimer()
-{
-	m_ticks = x86_x64_rdtsc();
-}
-
-void TimerUnit::AddDifference(TimerUnit t0, TimerUnit t1)
-{
-	m_ticks += t1.m_ticks - t0.m_ticks;
-}
-
-void TimerUnit::Subtract(TimerUnit t)
-{
-	m_ticks -= t.m_ticks;
-}
-
-std::string TimerUnit::ToString() const
-{
-	debug_assert(m_ticks >= 0.0);
-
-	// determine scale factor for pretty display
-	double scale = 1.0;
-	const char* unit = " c";
-	if(m_ticks > 10000000000LL)	// 10 Gc
-		scale = 1e-9, unit = " Gc";
-	else if(m_ticks > 10000000)	// 10 Mc
-		scale = 1e-6, unit = " Mc";
-	else if(m_ticks > 10000)	// 10 kc
-		scale = 1e-3, unit = " kc";
-
-	std::stringstream ss;
-	ss << m_ticks*scale;
-	ss << unit;
-	return ss.str();
-}
-
-double TimerUnit::ToSeconds() const
-{
-	return m_ticks / os_cpu_ClockFrequency();
-}
-
-#else
-
-void TimerUnit::SetToZero()
-{
-	m_seconds = 0.0;
-}
-
-void TimerUnit::SetFromTimer()
-{
-	m_seconds = timer_Time();
-}
-
-void TimerUnit::AddDifference(TimerUnit t0, TimerUnit t1)
-{
-	m_seconds += t1.m_seconds - t0.m_seconds;
-}
-
-void TimerUnit::Subtract(TimerUnit t)
-{
-	m_seconds -= t.m_seconds;
-}
-
-std::string TimerUnit::ToString() const
-{
-	debug_assert(m_seconds >= 0.0);
-
-	// determine scale factor for pretty display
-	double scale = 1e6;
-	const char* unit = " us";
-	if(m_seconds > 1.0)
-		scale = 1, unit = " s";
-	else if(m_seconds > 1e-3)
-		scale = 1e3, unit = " ms";
-
-	std::stringstream ss;
-	ss << m_seconds*scale;
-	ss << unit;
-	return ss.str();
-}
-
-double TimerUnit::ToSeconds() const
-{
-	return m_seconds;
-}
-
-#endif
-
-
-//-----------------------------------------------------------------------------
 // client API
 
 // intrusive linked-list of all clients. a fixed-size limit would be
@@ -318,19 +172,4 @@ void timer_DisplayClientTotals()
 	}
 
 	debug_printf("-----------------------------------------------------\n");
-}
-
-
-ScopeTimerAccrue::ScopeTimerAccrue(TimerClient* tc)
-	: m_tc(tc)
-{
-	m_t0.SetFromTimer();
-}
-
-
-ScopeTimerAccrue::~ScopeTimerAccrue()
-{
-	TimerUnit t1;
-	t1.SetFromTimer();
-	timer_BillClient(m_tc, m_t0, t1);
 }

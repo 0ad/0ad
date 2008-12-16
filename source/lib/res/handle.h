@@ -13,11 +13,17 @@
 
 #include "lib/file/vfs/vfs_path.h"
 
-// 0 = invalid handle value; < 0 is an error code.
-// 64 bits, because we want tags to remain unique: tag overflow may
-// let handle use errors slip through, or worse, cause spurious errors.
-// with 32 bits, we'd need >= 12 for the index, leaving < 512K tags -
-// not a lot.
+/**
+ * `handle' representing a reference to a resource (sound, texture, etc.)
+ *
+ * 0 is the (silently ignored) invalid handle value; < 0 is an error code.
+ *
+ * this is 64 bits because we want tags to remain unique. (tags are a
+ * counter that disambiguate several subsequent uses of the same
+ * resource array slot). 32-bit handles aren't enough because the index
+ * field requires at least 12 bits, thus leaving only about 512K possible
+ * tag values.
+ **/
 typedef i64 Handle;
 
 #endif	// #ifndef INCLUDED_HANDLE

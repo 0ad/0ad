@@ -98,9 +98,9 @@ template<typename T>
 class numa_Allocator
 {
 public:
-	shared_ptr<T> operator()(size_t size) const
+	shared_ptr<T> operator()(size_t size, LargePageDisposition largePageDisposition = LPD_DEFAULT, size_t* ppageSize = 0) const
 	{
-		return shared_ptr<T>((T*)numa_Allocate(size), numa_Deleter<T>());
+		return shared_ptr<T>((T*)numa_Allocate(size, largePageDisposition, ppageSize), numa_Deleter<T>());
 	}
 };
 

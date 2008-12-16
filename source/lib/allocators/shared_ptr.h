@@ -1,6 +1,8 @@
 #ifndef INCLUDED_SHARED_PTR
 #define INCLUDED_SHARED_PTR
 
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"
+
 struct DummyDeleter
 {
 	template<class T>
@@ -26,5 +28,20 @@ struct ArrayDeleter
 
 // (note: uses CheckedArrayDeleter)
 LIB_API shared_ptr<u8> Allocate(size_t size);
+
+struct AlignedDeleter
+{
+	template<class T>
+	void operator()(T* t)
+	{
+		_mm_free(t);
+	}
+};
+
+template<class T>
+shared_ptr<T> AllocateAligned(size_t size)
+{
+	return shared_ptr<T>((T*)_mm_malloc(size, x86_x64_L1CacheLineSize()), AlignedDeleter());
+}
 
 #endif	// #ifndef INCLUDED_SHARED_PTR

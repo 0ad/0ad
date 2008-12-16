@@ -11,6 +11,12 @@
 #ifndef INCLUDED_TIMER
 #define INCLUDED_TIMER
 
+#include "lib/config2.h"	// CONFIG2_TIMER_ALLOW_RDTSC
+#if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
+# include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64_rdtsc
+# include "lib/sysdep/os_cpu.h"	// os_cpu_ClockFrequency
+#endif
+
 /**
  * timer_Time will subsequently return values relative to the current time.
  **/
@@ -31,11 +37,29 @@ LIB_API double timer_Resolution(void);
 // scope timing
 
 /// used by TIMER
-class LIB_API ScopeTimer : noncopyable
+class ScopeTimer : noncopyable
 {
 public:
-	ScopeTimer(const char* description);
-	~ScopeTimer();
+	ScopeTimer(const char* description)
+		: m_t0(timer_Time()), m_description(description)
+	{
+	}
+
+	~ScopeTimer()
+	{
+		double t1 = timer_Time();
+		double dt = t1-m_t0;
+
+		// determine scale factor for pretty display
+		double scale = 1e6;
+		const char* unit = "us";
+		if(dt > 1.0)
+			scale = 1, unit = "s";
+		else if(dt > 1e-3)
+			scale = 1e3, unit = "ms";
+
+		debug_printf("TIMER| %s: %g %s\n", m_description, dt*scale, unit);
+	}
 
 private:
 	double m_t0;
@@ -91,20 +115,131 @@ private:
 // this supplements in-game profiling by providing low-overhead,
 // high resolution time accounting of specific areas.
 
-union LIB_API TimerUnit
+// since TIMER_ACCRUE et al. are called so often, we try to keep
+// overhead to an absolute minimum. storing raw tick counts (e.g. CPU cycles
+// returned by ia32_rdtsc) instead of absolute time has two benefits:
+// - no need to convert from raw->time on every call
+//   (instead, it's only done once when displaying the totals)
+// - possibly less overhead to querying the time itself
+//   (timer_Time may be using slower time sources with ~3us overhead)
+//
+// however, the cycle count is not necessarily a measure of wall-clock time
+// (see http://www.gamedev.net/reference/programming/features/timing).
+// therefore, on systems with SpeedStep active, measurements of I/O or other
+// non-CPU bound activity may be skewed. this is ok because the timer is
+// only used for profiling; just be aware of the issue.
+// if this is a problem, disable CONFIG2_TIMER_ALLOW_RDTSC.
+// 
+// note that overflow isn't an issue either way (63 bit cycle counts
+// at 10 GHz cover intervals of 29 years).
+
+#if ARCH_X86_X64 && CONFIG2_TIMER_ALLOW_RDTSC
+
+class TimerUnit
 {
 public:
-	void SetToZero();
-	void SetFromTimer();
-	void AddDifference(TimerUnit t0, TimerUnit t1);
-	void Subtract(TimerUnit t);
-	std::string ToString() const;
-	double ToSeconds() const;
+	void SetToZero()
+	{
+		m_ticks = 0;
+	}
+
+	void SetFromTimer()
+	{
+		m_ticks = x86_x64_rdtsc();
+	}
+
+	void AddDifference(TimerUnit t0, TimerUnit t1)
+	{
+		m_ticks += t1.m_ticks - t0.m_ticks;
+	}
+
+	void Subtract(TimerUnit t)
+	{
+		m_ticks -= t.m_ticks;
+	}
+
+	std::string ToString() const
+	{
+		debug_assert(m_ticks >= 0.0);
+
+		// determine scale factor for pretty display
+		double scale = 1.0;
+		const char* unit = " c";
+		if(m_ticks > 10000000000LL)	// 10 Gc
+			scale = 1e-9, unit = " Gc";
+		else if(m_ticks > 10000000)	// 10 Mc
+			scale = 1e-6, unit = " Mc";
+		else if(m_ticks > 10000)	// 10 kc
+			scale = 1e-3, unit = " kc";
+
+		std::stringstream ss;
+		ss << m_ticks*scale;
+		ss << unit;
+		return ss.str();
+
+	}
+
+	double ToSeconds() const
+	{
+		return m_ticks / os_cpu_ClockFrequency();
+	}
 
 private:
 	u64 m_ticks;
+};
+
+#else
+
+class TimerUnit
+{
+public:
+	void SetToZero()
+	{
+		m_seconds = 0.0;
+	}
+
+	void SetFromTimer()
+	{
+		m_seconds = timer_Time();
+	}
+
+	void AddDifference(TimerUnit t0, TimerUnit t1)
+	{
+		m_seconds += t1.m_seconds - t0.m_seconds;
+	}
+
+	void Subtract(TimerUnit t)
+	{
+		m_seconds -= t.m_seconds;
+	}
+
+	std::string ToString() const
+	{
+		debug_assert(m_seconds >= 0.0);
+
+		// determine scale factor for pretty display
+		double scale = 1e6;
+		const char* unit = " us";
+		if(m_seconds > 1.0)
+			scale = 1, unit = " s";
+		else if(m_seconds > 1e-3)
+			scale = 1e3, unit = " ms";
+
+		std::stringstream ss;
+		ss << m_seconds*scale;
+		ss << unit;
+		return ss.str();	}
+
+	double ToSeconds() const
+	{
+		return m_seconds;
+	}
+
+private:
 	double m_seconds;
 };
+
+#endif
 
 // opaque - do not access its fields!
 // note: must be defined here because clients instantiate them;
@@ -159,11 +294,21 @@ LIB_API void timer_BillClient(TimerClient* tc, TimerUnit t0, TimerUnit t1);
 LIB_API void timer_DisplayClientTotals();
 
 /// used by TIMER_ACCRUE
-class LIB_API ScopeTimerAccrue
+class ScopeTimerAccrue
 {
 public:
-	ScopeTimerAccrue(TimerClient* tc);
-	~ScopeTimerAccrue();
+	ScopeTimerAccrue(TimerClient* tc)
+		: m_tc(tc)
+	{
+		m_t0.SetFromTimer();
+	}
+
+	~ScopeTimerAccrue()
+	{
+		TimerUnit t1;
+		t1.SetFromTimer();
+		timer_BillClient(m_tc, m_t0, t1);
+	}
 
 private:
 	TimerUnit m_t0;

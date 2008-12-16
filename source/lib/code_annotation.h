@@ -157,7 +157,7 @@ namespace detail
 
 namespace noncopyable_  // protection from unintended ADL
 {
-	class LIB_API noncopyable
+	class noncopyable
 	{
 	protected:
 		noncopyable() {}

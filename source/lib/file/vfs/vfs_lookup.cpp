@@ -17,13 +17,10 @@
 #include "vfs_populate.h"
 
 #include "lib/timer.h"
-TIMER_ADD_CLIENT(tc_lookup);
 
 
 LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDirectory*& directory, VfsFile** pfile, size_t flags)
 {
-TIMER_ACCRUE(tc_lookup);
-
 	// extract and validate flags (ensure no unknown bits are set)
 	const bool addMissingDirectories    = (flags & VFS_LOOKUP_ADD) != 0;
 	const bool createMissingDirectories = (flags & VFS_LOOKUP_CREATE) != 0;

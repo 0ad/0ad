@@ -24,10 +24,10 @@ int debug_IsPointerBogus(const void* p)
 	if(p < (void*)0x10000)
 		return true;
 #if ARCH_AMD64
-	if(p == (const void*)0xCCCCCCCCCCCCCCCCull)
+	if(p == (const void*)(uintptr_t)0xCCCCCCCCCCCCCCCCull)
 		return true;
 #elif ARCH_IA32
-	if(p == (const void*)0xCCCCCCCCul)
+	if(p == (const void*)(uintptr_t)0xCCCCCCCCul)
 		return true;
 #endif
 
