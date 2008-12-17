@@ -127,7 +127,7 @@ switch(x % 2)
  *
  * @param expression that is expected to evaluate to non-zero at compile-time.
  **/
-#define cassert(expr) typedef detail::static_assert_<(expr)>::type UID__;
+#define cassert(expr) typedef detail::static_assert_<(expr)>::type UID__
 namespace detail
 {
 	template<bool> struct static_assert_;
@@ -169,5 +169,12 @@ namespace noncopyable_  // protection from unintended ADL
 }
 
 typedef noncopyable_::noncopyable noncopyable;
+
+// this form avoids ICC 11 W4 warnings about non-virtual dtors and
+// suppression of the copy assignment operator.
+#define NONCOPYABLE(className)\
+private:\
+	className(const className&);\
+	const className& operator=(const className&)
 
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION

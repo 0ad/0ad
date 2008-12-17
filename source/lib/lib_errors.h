@@ -169,7 +169,7 @@ extern int error_AddAssociation(LibErrorAssociation*);
 // Invoke this at file or function scope.
 #define ERROR_ASSOCIATE(err, description, errno_equivalent)\
 	static LibErrorAssociation UID__ = { err, description, errno_equivalent };\
-	static int UID2__ = error_AddAssociation(&UID__);
+	static int UID2__ = error_AddAssociation(&UID__)
 
 
 /**

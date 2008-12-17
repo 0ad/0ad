@@ -31,8 +31,8 @@ BlockId::BlockId(const Path& pathname, off_t ofs)
 	m_id = fnv_hash64(pathname.string().c_str(), pathname.string().length());
 	const size_t indexBits = 16;
 	m_id <<= indexBits;
-	const off_t blockIndex = ofs / BLOCK_SIZE;
-	debug_assert(blockIndex < off_t(1ul << indexBits));
+	const off_t blockIndex = off_t(ofs / BLOCK_SIZE);
+	debug_assert(blockIndex < off_t(1) << indexBits);
 	m_id |= blockIndex;
 }
 

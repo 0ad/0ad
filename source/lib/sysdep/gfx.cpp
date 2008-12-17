@@ -12,6 +12,7 @@
 #include "gfx.h"
 
 #include "lib/external_libraries/sdl.h"
+#include "lib/ogl.h"
 
 
 char gfx_card[GFX_CARD_LEN] = "";
@@ -19,8 +20,6 @@ char gfx_drv_ver[GFX_DRV_VER_LEN] = "";
 
 int gfx_mem = -1;	// [MiB]; approximate
 
-
-extern LibError ogl_get_gfx_info();
 
 // detect graphics card and set the above information.
 void gfx_detect()

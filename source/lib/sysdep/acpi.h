@@ -33,7 +33,7 @@ enum AcpiAddressSpace
 	ACPI_AS_MEMORY     = 0,
 	ACPI_AS_IO         = 1,
 	ACPI_AS_PCI_CONFIG = 2,
-	ACPI_AS_SMBUS      = 4,
+	ACPI_AS_SMBUS      = 4
 };
 
 // address of a struct or register

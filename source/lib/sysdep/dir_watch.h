@@ -40,7 +40,7 @@ public:
 	{
 		Created,
 		Deleted,
-		Changed,
+		Changed
 	};
 
 	// (default ctor is required because DirWatchNotification is returned

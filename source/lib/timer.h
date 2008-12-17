@@ -37,8 +37,9 @@ LIB_API double timer_Resolution(void);
 // scope timing
 
 /// used by TIMER
-class ScopeTimer : noncopyable
+class ScopeTimer
 {
+	NONCOPYABLE(ScopeTimer);
 public:
 	ScopeTimer(const char* description)
 		: m_t0(timer_Time()), m_description(description)
@@ -176,7 +177,6 @@ public:
 		ss << m_ticks*scale;
 		ss << unit;
 		return ss.str();
-
 	}
 
 	double ToSeconds() const
@@ -228,7 +228,8 @@ public:
 		std::stringstream ss;
 		ss << m_seconds*scale;
 		ss << unit;
-		return ss.str();	}
+		return ss.str();
+	}
 
 	double ToSeconds() const
 	{
@@ -296,6 +297,7 @@ LIB_API void timer_DisplayClientTotals();
 /// used by TIMER_ACCRUE
 class ScopeTimerAccrue
 {
+	NONCOPYABLE(ScopeTimerAccrue);
 public:
 	ScopeTimerAccrue(TimerClient* tc)
 		: m_tc(tc)

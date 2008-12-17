@@ -32,6 +32,10 @@
 #  pragma warning(disable:6246)	// local declaration hides declaration of the same name in outer scope
 # endif
 # if ICC_VERSION
+#  pragma warning(disable:383)	// value copied to temporary, reference to temporary used
+#  pragma warning(disable:981)	// operands are evaluted in unspecified order
+#  pragma warning(disable:1418)	// external function definition with no prior declaration (raised for all non-static function templates)
+#  pragma warning(disable:1572)	// floating-point equality and inequality comparisons are unreliable
 #  pragma warning(disable:1786)	// function is deprecated (disabling 4996 isn't sufficient)
 #  pragma warning(disable:1684)	// conversion from pointer to same-sized integral type
 # endif
@@ -62,7 +66,6 @@
 #ifndef LIB_STATIC_LINK
 # define BOOST_ALL_DYN_LINK
 #endif
-#include <boost/utility.hpp>	// noncopyable
 // the following boost libraries have been included in TR1 and are
 // thus deemed usable:
 #include <boost/shared_ptr.hpp>

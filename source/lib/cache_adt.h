@@ -618,7 +618,7 @@ template<class Item, class Divider> struct CacheEntry
 	{
 		size = size_;
 		cost = cost_;
-		credit = cost;
+		credit = (float)cost;
 
 		// else divider will fail
 		debug_assert(size != 0);

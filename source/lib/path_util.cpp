@@ -37,7 +37,7 @@ bool path_is_dir_sep(char c)
 	return false;
 }
 
-bool path_is_dir_sepw(wchar_t c)
+static bool path_is_dir_sepw(wchar_t c)
 {
 	// note: ideally path strings would only contain '/' or even SYS_DIR_SEP.
 	// however, windows-specific code (e.g. the sound driver detection)
@@ -73,7 +73,7 @@ bool path_is_subpath(const char* s1, const char* s2)
 	if(strlen(s1) > strlen(s2))
 		std::swap(s1, s2);
 
-	int c1 = 0, last_c1, c2;
+	char c1 = 0, last_c1, c2;
 	for(;;)
 	{
 		last_c1 = c1;

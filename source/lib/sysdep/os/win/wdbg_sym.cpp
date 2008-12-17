@@ -577,7 +577,7 @@ static LibError out_check_limit()
 
 //----------------------------------------------------------------------------
 
-#define INDENT STMT(for(size_t i = 0; i <= state.level; i++) out(L"    ");)
+#define INDENT STMT(for(size_t i__ = 0; i__ <= state.level; i__++) out(L"    ");)
 #define UNINDENT STMT(out_erase((state.level+1)*4);)
 
 

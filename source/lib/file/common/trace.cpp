@@ -23,7 +23,7 @@
 //-----------------------------------------------------------------------------
 
 TraceEntry::TraceEntry(EAction action, const char* pathname, size_t size)
-: m_timestamp(timer_Time())
+: m_timestamp((float)timer_Time())
 , m_action(action)
 , m_pathname(strdup(pathname))
 , m_size(size)
@@ -52,7 +52,7 @@ TraceEntry::~TraceEntry()
 
 void TraceEntry::EncodeAsText(char* text, size_t maxTextChars) const
 {
-	const char action = m_action;
+	const char action = (char)m_action;
 	sprintf_s(text, maxTextChars, "%#010f: %c \"%s\" %d\n", m_timestamp, action, m_pathname, m_size);
 }
 

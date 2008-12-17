@@ -536,7 +536,7 @@ public:
 		const Path pathname = m_file->Pathname();
 		m_file.reset();
 
-		m_fileSize += cd_size+sizeof(ECDR);
+		m_fileSize += off_t(cd_size+sizeof(ECDR));
 		truncate(pathname.external_directory_string().c_str(), m_fileSize);
 	}
 

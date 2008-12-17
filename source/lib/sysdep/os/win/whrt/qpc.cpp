@@ -80,10 +80,10 @@ public:
 		// used on MP HAL systems and can be detected by comparing QPF with the
 		// CPU clock. we consider it unsafe unless the user promises (via
 		// command line) that it's patched and thus reliable on their system.
-		bool usesTsc = IsSimilarMagnitude(m_frequency, os_cpu_ClockFrequency());
+		bool usesTsc = IsSimilarMagnitude((double)m_frequency, os_cpu_ClockFrequency());
 		// unconfirmed reports indicate QPC sometimes uses 1/3 of the
 		// CPU clock frequency, so check that as well.
-		usesTsc |= IsSimilarMagnitude(m_frequency, os_cpu_ClockFrequency()/3);
+		usesTsc |= IsSimilarMagnitude((double)m_frequency, os_cpu_ClockFrequency()/3);
 		if(usesTsc)
 		{
 			const bool isTscSafe = wutil_HasCommandLineArgument("-wQpcTscSafe");

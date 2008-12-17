@@ -47,7 +47,7 @@ wchar_t* debug_log_pos = debug_log;
 // write to memory buffer (fast)
 void debug_wprintf_mem(const wchar_t* fmt, ...)
 {
-	const ssize_t charsLeft = (ssize_t)LOG_CHARS - (debug_log_pos-debug_log);
+	const ssize_t charsLeft = (ssize_t)(LOG_CHARS - (debug_log_pos-debug_log));
 	debug_assert(charsLeft >= 0);
 
 	// potentially not enough room for the new string; throw away the
@@ -503,5 +503,6 @@ ErrorReaction debug_OnAssertionFailure(const char* expr, u8* suppress, const cha
 	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%hs\"", expr);
 	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }
+
 
 

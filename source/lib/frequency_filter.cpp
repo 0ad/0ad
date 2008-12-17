@@ -7,8 +7,9 @@ static const double sensitivity = 0.10;
 /**
  * variable-width window for frequency determination
  **/
-class FrequencyEstimator : boost::noncopyable
+class FrequencyEstimator
 {
+	NONCOPYABLE(FrequencyEstimator);
 public:
 	FrequencyEstimator(double resolution)
 		: m_minDeltaTime(4.0 * resolution)	// chosen to reduce error but still yield rapid updates.
@@ -165,10 +166,11 @@ private:
 
 class FrequencyFilter : public IFrequencyFilter
 {
+	NONCOPYABLE(FrequencyFilter);
 public:
 	FrequencyFilter(double resolution, double expectedFrequency)
 		: m_controller(expectedFrequency), m_frequencyEstimator(resolution), m_iirFilter(sensitivity, expectedFrequency)
-		, m_stableFrequency(expectedFrequency), m_smoothedFrequency(expectedFrequency)
+		, m_stableFrequency((int)expectedFrequency), m_smoothedFrequency(expectedFrequency)
 	{
 	}
 

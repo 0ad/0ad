@@ -63,9 +63,9 @@ void fs_SortDirectories(DirectoryNames& directories)
 }
 
 
-LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern, size_t flags)
+LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const char* pattern, size_t flags)
 {
-	debug_assert(vfs_path_IsDirectory(path));
+	debug_assert(vfs_path_IsDirectory(startPath));
 
 	// (declare here to avoid reallocations)
 	FileInfos files; DirectoryNames subdirectoryNames;
@@ -73,7 +73,7 @@ LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, u
 	// (a FIFO queue is more efficient than recursion because it uses less
 	// stack space and avoids seeks due to breadth-first traversal.)
 	std::queue<VfsPath> pendingDirectories;
-	pendingDirectories.push(path);
+	pendingDirectories.push(startPath);
 	while(!pendingDirectories.empty())
 	{
 		const VfsPath& path = pendingDirectories.front();

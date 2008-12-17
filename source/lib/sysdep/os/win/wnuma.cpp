@@ -46,14 +46,18 @@ static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask)
 	if(pGetNumaNodeProcessorMask)
 	{
 		DWORD_PTR processAffinity, systemAffinity;
-		const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
-		debug_assert(ok);
+		{
+			const BOOL ok = GetProcessAffinityMask(GetCurrentProcess(), &processAffinity, &systemAffinity);
+			debug_assert(ok);
+		}
 
 		for(size_t node = 0; node < numa_NumNodes(); node++)
 		{
 			ULONGLONG affinity;
-			const BOOL ok = pGetNumaNodeProcessorMask((UCHAR)node, &affinity);
-			debug_assert(ok);
+			{
+				const BOOL ok = pGetNumaNodeProcessorMask((UCHAR)node, &affinity);
+				debug_assert(ok);
+			}
 			const uintptr_t processorMask = wcpu_ProcessorMaskFromAffinity(processAffinity, (DWORD_PTR)affinity);
 			nodesProcessorMask[node] = processorMask;
 		}

@@ -18,6 +18,7 @@ WINIT_REGISTER_LATE_SHUTDOWN2(wdbg_heap_Shutdown);	// last - no leaks are detect
 
 void wdbg_heap_Enable(bool enable)
 {
+#ifdef _DEBUG	// (avoid "expression has no effect" warning in release builds)
 	int flags = 0;
 	if(enable)
 	{
@@ -34,6 +35,9 @@ void wdbg_heap_Enable(bool enable)
 	// the normal build process as well as when debugging the test .exe
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE | _CRTDBG_MODE_DEBUG);
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
+#else
+	UNUSED2(enable);
+#endif
 }
 
 

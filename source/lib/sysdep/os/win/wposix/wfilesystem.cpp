@@ -145,7 +145,7 @@ int access(const char* path, int mode)
 }
 
 
-#if !HAVE_MKDIR
+#ifndef HAVE_MKDIR
 int mkdir(const char* path, mode_t UNUSED(mode))
 {
 	if(!CreateDirectory(path, (LPSECURITY_ATTRIBUTES)NULL))
@@ -155,7 +155,7 @@ int mkdir(const char* path, mode_t UNUSED(mode))
 
 	return 0;
 }
-#endif	// #if !HAVE_MKDIR
+#endif
 
 
 int rmdir(const char* path)
@@ -341,7 +341,7 @@ int readdir_stat_np(DIR* d_, struct stat* s)
 
 	memset(s, 0, sizeof(*s));
 	s->st_size  = (off_t)u64_from_u32(d->fd.nFileSizeHigh, d->fd.nFileSizeLow);
-	s->st_mode  = (d->fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG;
+	s->st_mode  = (unsigned short)((d->fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG);
 	s->st_mtime = filetime_to_time_t(&d->fd.ftLastWriteTime);
 	return 0;
 }

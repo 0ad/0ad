@@ -105,7 +105,7 @@ private:
 		if(gamma == 1.0f)
 		{
 			for(u16 i = 0; i < 256; i++)
-				ramp[i] = (i << 8);
+				ramp[i] = u16(i << 8);
 			return;
 		}
 
@@ -411,7 +411,7 @@ static inline void queue_active_event(SdlActivationType type, size_t changed_app
 	SDL_Event ev;
 	ev.type = SDL_ACTIVEEVENT;
 	ev.active.state = (u8)changed_app_state;
-	ev.active.gain  = (type == GAIN)? 1 : 0;
+	ev.active.gain  = (u8)((type == GAIN)? 1 : 0);
 	queue_event(ev);
 }
 
@@ -421,9 +421,9 @@ static inline void queue_active_event(SdlActivationType type, size_t changed_app
 // they control the main loop.
 static Uint8 app_state;
 
-static void active_change_state(SdlActivationType type, size_t changed_app_state)
+static void active_change_state(SdlActivationType type, Uint8 changed_app_state)
 {
-	size_t old_app_state = app_state;
+	Uint8 old_app_state = app_state;
 
 	if(type == GAIN)
 		app_state |= changed_app_state;
@@ -440,7 +440,7 @@ static void reset_all_keys();
 static LRESULT OnActivate(HWND hWnd, UINT state, HWND UNUSED(hWndActDeact), BOOL fMinimized)
 {
 	SdlActivationType type;
-	size_t changed_app_state;
+	Uint8 changed_app_state;
 
 	// went active and not minimized
 	if(state != WA_INACTIVE && !fMinimized)
@@ -939,11 +939,13 @@ static LRESULT OnDestroy(HWND hWnd)
 	queue_quit_event();
 	PostQuitMessage(0);
 
+#ifdef _DEBUG
 	// see http://www.adrianmccarthy.com/blog/?p=51
 	// with WM_QUIT in the message queue, MessageBox will immediately
 	// return IDABORT. to ensure any subsequent CRT error reports are
 	// at least somewhat visible, we redirect them to debug output.
 	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
+#endif
 
 	return 0;
 }

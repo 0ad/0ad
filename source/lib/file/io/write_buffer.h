@@ -29,8 +29,9 @@ private:
 };
 
 
-class UnalignedWriter : public noncopyable
+class UnalignedWriter
 {
+	NONCOPYABLE(UnalignedWriter);
 public:
 	UnalignedWriter(const PIFile& file, off_t ofs);
 	~UnalignedWriter();

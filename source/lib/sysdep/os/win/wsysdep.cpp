@@ -300,15 +300,12 @@ LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
 void sys_get_module_filename(void* addr, wchar_t* path, size_t max_chars)
 {
 	path[0] = '\0';	// in case either API call below fails
-	wchar_t* module_filename = path;
 
 	MEMORY_BASIC_INFORMATION mbi;
 	if(VirtualQuery(addr, &mbi, sizeof(mbi)))
 	{
 		HMODULE hModule = (HMODULE)mbi.AllocationBase;
-		if(GetModuleFileNameW(hModule, path, (DWORD)max_chars))
-			module_filename = wcsrchr(path, '\\')+1;
-		// note: GetModuleFileName returns full path => a '\\' exists
+		GetModuleFileNameW(hModule, path, (DWORD)max_chars);
 	}
 }
 

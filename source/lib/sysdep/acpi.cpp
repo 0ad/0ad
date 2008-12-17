@@ -207,7 +207,7 @@ static bool VerifyTable(const AcpiTable* table, const char* signature = 0)
 	// no specific signature is called for; just make sure it's 4 letters
 	else
 	{
-		for(int i = 0; i < 4; i++)
+		for(size_t i = 0; i < 4; i++)
 		{
 			if(!isalpha(table->signature[i]))
 				return false;
@@ -255,7 +255,7 @@ struct RSDT
 
 // avoid std::map et al. because we may be called before _cinit
 static const AcpiTable** tables;
-static int numTables;
+static size_t numTables;
 
 static bool LatchAllTables()
 {
@@ -269,7 +269,7 @@ static bool LatchAllTables()
 	numTables = (rsdt->header.size - sizeof(AcpiTable)) / sizeof(rsdt->tables[0]);
 	debug_assert(numTables > 0);
 	tables = new const AcpiTable*[numTables];
-	for(int i = 0; i < numTables; i++)
+	for(size_t i = 0; i < numTables; i++)
 		tables[i] = GetTable(rsdt->tables[i]);
 
 	DeallocateTable(rsdt);
@@ -281,7 +281,7 @@ static void FreeAllTables()
 {
 	if(tables)
 	{
-		for(int i = 0; i < numTables; i++)
+		for(size_t i = 0; i < numTables; i++)
 			DeallocateTable(tables[i]);
 		delete[] tables;
 	}
@@ -291,7 +291,7 @@ static void FreeAllTables()
 const AcpiTable* acpi_GetTable(const char* signature)
 {
 	// (typically only a few tables, linear search is OK)
-	for(int i = 0; i < numTables; i++)
+	for(size_t i = 0; i < numTables; i++)
 	{
 		const AcpiTable* table = tables[i];
 		if(!table)

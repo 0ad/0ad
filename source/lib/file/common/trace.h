@@ -26,7 +26,7 @@ public:
 	enum EAction
 	{
 		Load = 'L',
-		Store = 'S',
+		Store = 'S'
 	};
 
 	TraceEntry(EAction action, const char* pathname, size_t size);

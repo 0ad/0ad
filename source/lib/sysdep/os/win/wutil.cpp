@@ -420,7 +420,7 @@ WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
 
 HMODULE wutil_LibModuleHandle;
 
-BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD reason, LPVOID reserved)
+BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD UNUSED(reason), LPVOID UNUSED(reserved))
 {
 	DisableThreadLibraryCalls(hInstance);
 	wutil_LibModuleHandle = hInstance;

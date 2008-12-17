@@ -25,8 +25,9 @@ static size_t s_numArchivedFiles;
 
 // helper class that allows breaking up the logic into sub-functions without
 // always having to pass directory/realDirectory as parameters.
-class PopulateHelper : noncopyable
+class PopulateHelper
 {
+	NONCOPYABLE(PopulateHelper);
 public:
 	PopulateHelper(VfsDirectory* directory, const PRealDirectory& realDirectory)
 		: m_directory(directory), m_realDirectory(realDirectory)

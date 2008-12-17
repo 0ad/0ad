@@ -198,8 +198,9 @@ BlockCache BlockIo::s_blockCache;
 // IoSplitter
 //-----------------------------------------------------------------------------
 
-class IoSplitter : noncopyable
+class IoSplitter
 {
+	NONCOPYABLE(IoSplitter);
 public:
 	IoSplitter(off_t ofs, u8* alignedBuf, off_t size)
 		: m_ofs(ofs), m_alignedBuf(alignedBuf), m_size(size)
