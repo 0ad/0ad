@@ -212,7 +212,7 @@ void CNetMessage::ScriptingInit()
 	g_ScriptingHost.DefineConstant( "NMT_ADD_WAYPOINT", NMT_ADD_WAYPOINT );
 	g_ScriptingHost.DefineConstant( "NMT_CONTACT_ACTION", NMT_CONTACT_ACTION );
 	g_ScriptingHost.DefineConstant( "NMT_PRODUCE", NMT_PRODUCE );
-	g_ScriptingHost.DefineConstant( "NMT_PLACE_OBJECTS", NMT_PLACE_OBJECTS );
+	g_ScriptingHost.DefineConstant( "NMT_PLACE_OBJECT", NMT_PLACE_OBJECT );
 	g_ScriptingHost.DefineConstant( "NMT_REMOVE_OBJECT", NMT_REMOVE_OBJECT );
 	g_ScriptingHost.DefineConstant( "NMT_SET_RALLY_POINT", NMT_SET_RALLY_POINT );
 	g_ScriptingHost.DefineConstant( "NMT_SET_STANCE", NMT_SET_STANCE );
@@ -921,7 +921,7 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 	header.Deserialize( ( const u8* )pData, ( const u8* )pData  + dataSize );
 
 	// This is what we want
-	pNewMessage = m_Pool.GetMessage( header.GetType() );
+	//pNewMessage = m_Pool.GetMessage( header.GetType() );
 
 	switch ( header.GetType() )
 	{
