@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity	Parent="template_structure_special">
-
 	<Traits>
-	
 		<Id>
-
 			<Specific>Theatron</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>Greek theatres were places where the immortal tragedies of Aeschylus, Sophocles and many other talented dramatists were staged to the delight of the populace. They were instrumental in enriching Hellenic culture.</History>
 			<Tooltip>Build one of these to take advantage of the Hellenisation civ bonus.</Tooltip>
-		
 		</Id>
-		
 		<Creation>
 			<Foundation>foundation_5x5</Foundation>
 			<Resource>
@@ -22,14 +15,10 @@
 				<Stone>500</Stone>
  			</Resource>
 		</Creation>
-		
 		<Footprint>
 			<Radius>26.0</Radius>
 			<Height>8.0</Height>
 		</Footprint>
-
 	</Traits>
-
 <Actor>structures/hellenes/special_theatre.xml</Actor>
-
 </Entity>

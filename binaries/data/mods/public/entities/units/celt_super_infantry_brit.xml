@@ -3,10 +3,11 @@
 <Entity	Parent="template_unit_super_infantry">
 	<Traits>
 		<Id>
-			<Specific>Delamokludda</Specific>
+			<Icon_Cell>40</Icon_Cell>
+			<Specific>Brythonic Delamokludda</Specific>
 			<Civ>Celts</Civ>
-			<History>Two-handed swordsmen from Briton.</History>
-			<Tooltip>Bonus vs. Spear Units.</Tooltip>		
+			<History>Two-handed swordsmen from Briton. These men are veteran soldiers who offer their lives in service to their Brythonic lords.</History>
+			<Tooltip>Bonus vs. All Spear Units (infantry and cavalry).</Tooltip>		
 		</Id>
 		<Creation>
 			<Resource>

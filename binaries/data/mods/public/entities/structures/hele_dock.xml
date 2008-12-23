@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_military_dock"
->
+<Entity	Parent="template_structure_military_dock">
+<Actor>structures/hellenes/dock.xml</Actor>
 	<Traits>
-	
 		<Id>
-
 			<Specific>Limenos</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>Greece is a sea country, which is why some of the greatest Hellenic and Hellenistic cities like Ephesus, Corinth, Alexandria and Antioch were built by the sea. It should also be noted that all colonies during the Great Colonisation were thriving port centres, which traded with the local population.</History>
-		
 		</Id>
-
 	</Traits>
-
-	<Actor>structures/hellenes/dock.xml</Actor>
-
 	<Actions>
 		<Create>
 			<List>
@@ -34,5 +24,4 @@
 			</List>
 		</Create>
 	</Actions>
-
 </Entity>

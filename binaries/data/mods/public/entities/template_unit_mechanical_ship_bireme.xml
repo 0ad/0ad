@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_mechanical_ship"
->
+<Entity	Parent="template_unit_mechanical_ship">
 	<Traits>
-	
 		<Id>
-		
 			<Generic>Bireme</Generic>
-
 			<Icon_Cell>39</Icon_Cell>
-		
+			<Tooltip>Warship. </Tooltip>
 		</Id>
-		
 		<Creation>
 			<Resource>
  				<Wood>250</Wood>
@@ -25,8 +19,4 @@
 			<Crush>250.0</Crush>
 		</Armour>
 	</Traits>
-
-
-
-
 </Entity>

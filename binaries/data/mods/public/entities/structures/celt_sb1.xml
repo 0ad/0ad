@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_special"
->
+<Entity	Parent="template_structure_special">
 	<Traits>
-	
 		<Id>
-
+			<Icon_Cell>63</Icon_Cell>
 			<Specific>Ffactri</Specific>
-
 			<Civ>Celts</Civ>
-
 			<History>The Celts developed the first rotary flour mill.</History>
-			<Tooltip>Increases Farm output +10%.</Tooltip>
-		
+			<Tooltip>Increases Farm output +15% per Territory.</Tooltip>
 		</Id>
-
 		<Population>
 			<Add>2</Add>
 		</Population>
-		
 		<Footprint>
 			<Radius>8.0</Radius>
 			<Height>6.0</Height>
 		</Footprint>
 	</Traits>
-
 	<Actor>structures/celts/special.xml</Actor>
-
 </Entity>

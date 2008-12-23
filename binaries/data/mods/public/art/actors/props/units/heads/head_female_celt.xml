@@ -4,31 +4,34 @@
   <castshadow/>
 
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="Hair-Bun">
       <mesh>props/dudette_head.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Hair-Long">
+      <mesh>props/head_boudicca.pmd</mesh>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="Female-Face-01">
+    <variant frequency="1" name="Face-01">
       <texture>props/head/celt_fem_b.dds</texture>
     </variant>
-    <variant frequency="1" name="Female-Face-02">
+    <variant frequency="1" name="Face-02">
       <texture>props/head/celt_fem_boudicca_1.dds</texture>
     </variant>
-    <variant frequency="1" name="Female-Face-03">
+    <variant frequency="1" name="Face-03">
       <texture>props/head/celt_fem_c.dds</texture>
     </variant>
   </group>
 
   <group>
-    <variant frequency="1" name="blonde">
+    <variant frequency="1" name="color-blonde">
       <colour>232 205 123</colour>
     </variant>
-    <variant frequency="1" name="red">
+    <variant frequency="1" name="color-red">
       <colour>224 120 16</colour>
     </variant>
-    <variant frequency="3" name="brown">
+    <variant frequency="3" name="color-brown">
       <colour>120 114 35</colour>
     </variant>
   </group>
