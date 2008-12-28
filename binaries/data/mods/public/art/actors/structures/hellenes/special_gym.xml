@@ -5,9 +5,9 @@
 
   <group>
     <variant frequency="100" name="Base">
-      <mesh>structural/hele_sb2.pmd</mesh>
+      <mesh>structural/hele_gym_a.dae</mesh>
       <props>
-        <prop actor="props/structures/hellenes/special_gym.xml" attachpoint="props_main"/>
+        <prop actor="props/structures/hellenes/special_gym.xml" attachpoint="root"/>
       </props>
       <texture>structural/hele_struct_1.dds</texture>
     </variant>
