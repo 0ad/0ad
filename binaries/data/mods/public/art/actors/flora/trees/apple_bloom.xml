@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="apple_tree_a">
+      <mesh>gaia/tree_apple_trunk_a.dae</mesh>
+      <props>
+        <prop actor="flora/trees/apple_top_a.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="apple_tree_b">
+      <mesh>gaia/tree_apple_trunk_b.dae</mesh>
+      <props>
+        <prop actor="flora/trees/apple_top_b.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="apple_tree_c">
+      <mesh>gaia/tree_apple_trunk_a.dae</mesh>
+      <props>
+        <prop actor="flora/trees/apple_top_c.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="apple_tree_d">
+      <mesh>gaia/tree_apple_trunk_b.dae</mesh>
+      <props>
+        <prop actor="flora/trees/apple_top_d.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="trunk_texture_a">
+      <texture>gaia/trunk_deciduous_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="trunk_texture_b">
+      <texture>gaia/trunk_deciduous_b.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>

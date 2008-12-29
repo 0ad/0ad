@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="falen_apples_a">
+      <mesh>props/apples_fallen_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="fallen_apples_b">
+      <mesh>props/apples_fallen_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="fallen_apples_c">
+      <mesh>props/apples_fallen_c.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>gaia/tree_apple_a.dds</texture>
+    </variant>
+  </group>
+
+</actor>
