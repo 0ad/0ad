@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_civic"
->
+<Entity	Parent="template_structure_civic">
 	<Traits>
-	
 		<Id>
-		
 			<Internal_Only />
-
 			<Generic>House</Generic>
-
 			<Icon_Cell>48</Icon_Cell>
-
 			<Classes>Housing, Village</Classes>
-
 			<Rollover>A civic building that increases the player's population.</Rollover>
 			<Tooltip>Adds +5 to population limit.</Tooltip>
-		
 		</Id>
-		
 		<Creation>
 			<Foundation>foundation_2x2</Foundation>
  			<Resource>
@@ -27,13 +17,11 @@
  			</Resource>
 			<BuildingLimitCategory>House</BuildingLimitCategory>
 		</Creation>
-
  		<Footprint>
  			<Width>8.5</Width>
  			<Depth>8.5</Depth>
  			<Height>5.0</Height>
  		</Footprint>
-
 		<Health>
  			<Max>800</Max>
 		</Health>
