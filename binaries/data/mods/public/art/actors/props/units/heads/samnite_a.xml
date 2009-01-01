@@ -4,8 +4,16 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="1">
+    <variant frequency="1" name="Feathers-Crest">
       <mesh>props/helmet/samnite_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Feathers_three">
+      <mesh>props/helmet/samnite_b.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1">
       <texture>props/helmet/samnite_01.dds</texture>
     </variant>
   </group>
