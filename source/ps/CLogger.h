@@ -12,7 +12,7 @@ extern CLogger* g_Logger;
 #define LOG (g_Logger->Log)
 #define LOG_ONCE (g_Logger->LogOnce)
 
-class CLogger : boost::noncopyable
+class CLogger : noncopyable
 {
 public:
 	enum ELogMethod
@@ -72,7 +72,7 @@ private:
  * Helper class for unit tests - captures all log output while it is in scope,
  * and returns it as a single string.
  */
-class TestLogger : boost::noncopyable
+class TestLogger : noncopyable
 {
 public:
 	TestLogger();

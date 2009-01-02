@@ -65,7 +65,7 @@
  * Accesses CRenderer::m_Stats by keeping the reference passed to the
  * constructor.
  */
-class CRendererStatsTable : public AbstractProfileTable, boost::noncopyable
+class CRendererStatsTable : public AbstractProfileTable, noncopyable
 {
 public:
 	CRendererStatsTable(const CRenderer::Stats& st);
@@ -187,7 +187,7 @@ enum {
  * Struct CRendererInternals: Truly hide data that is supposed to be hidden
  * in this structure so it won't even appear in header files.
  */
-struct CRendererInternals : public boost::noncopyable
+struct CRendererInternals : public noncopyable
 {
 	/// true if CRenderer::Open has been called
 	bool IsOpen;

@@ -19,7 +19,7 @@ class CStr8;
 ///////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimManager : owner class of all skeleton anims - manages creation, 
 // loading and destruction of animation data
-class CSkeletonAnimManager : boost::noncopyable
+class CSkeletonAnimManager : noncopyable
 {
 public:
 	// constructor, destructor

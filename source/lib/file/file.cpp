@@ -46,10 +46,9 @@ public:
 
 	virtual LibError Open(const fs::wpath& pathname, char mode)
 	{
-		size_t numConverted;
 		char pathname_c[PATH_MAX];
-		const errno_t ret = wcstombs_s(&numConverted, pathname_c, pathname.external_file_string().c_str(), PATH_MAX);
-		debug_assert(ret == 0);
+		size_t numConverted = wcstombs(pathname_c, pathname.file_string().c_str(), PATH_MAX);
+		debug_assert(numConverted < PATH_MAX);
 		return Open(pathname_c, mode);
 	}
 

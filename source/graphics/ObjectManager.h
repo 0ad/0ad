@@ -15,7 +15,7 @@ class CSkeletonAnimManager;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CObjectManager: manager class for all possible actor types
-class CObjectManager : boost::noncopyable
+class CObjectManager : noncopyable
 {
 public:
 	struct ObjectKey

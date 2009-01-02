@@ -4,7 +4,7 @@
 #include "ps/CStr.h"
 #include <queue>
 
-class MessagePasserImpl : public AtlasMessage::MessagePasser, boost::noncopyable
+class MessagePasserImpl : public AtlasMessage::MessagePasser, noncopyable
 {
 public:
 	MessagePasserImpl();

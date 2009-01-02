@@ -10,7 +10,7 @@ class CObjectManager;
 #include <map>
 #include "ps/CStr.h"
 
-class CObjectBase : boost::noncopyable
+class CObjectBase : noncopyable
 {
 public:
 

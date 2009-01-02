@@ -22,7 +22,7 @@ const size_t invalidUnitId = ~size_t(0);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // CUnit: simple "actor" definition - defines a sole object within the world
-class CUnit : boost::noncopyable
+class CUnit : noncopyable
 {
 private:
 	// Private constructor. Needs complete list of selections for the variation.

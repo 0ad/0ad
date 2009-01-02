@@ -29,7 +29,7 @@ class CTerrain;
  * CWorld is a general data class containing whatever is needed to accurately represent the world.
  * This includes the map, entities, influence maps, tiles, heightmap, etc.
  **/
-class CWorld : boost::noncopyable
+class CWorld : noncopyable
 {
 	/**
 	 * pointer to the CGame object representing the game.

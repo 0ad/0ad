@@ -17,6 +17,8 @@
 # include "lib/sysdep/os_cpu.h"	// os_cpu_ClockFrequency
 #endif
 
+#include <sstream>	// std::stringstream
+
 /**
  * timer_Time will subsequently return values relative to the current time.
  **/

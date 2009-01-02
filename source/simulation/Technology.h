@@ -34,7 +34,7 @@ public:
 	~CTechnology() {}
 
 	// noncopyable (avoid VC7.1 warning); don't derive from
-	// boost::noncopyable, so that multiple inheritance is avoided
+	// noncopyable, so that multiple inheritance is avoided
 private:
 	CTechnology(const CTechnology&);
 	const CTechnology& operator=(const CTechnology&);

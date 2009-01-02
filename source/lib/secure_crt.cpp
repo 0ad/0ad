@@ -222,13 +222,13 @@ errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode)
 {
 	*pfile = NULL;
 
-	size_t numConverted; errno_t ret;
+	size_t numConverted;
 	char filename_c[PATH_MAX];
-	ret = wcstombs_s(&numConverted, filename_c, filename, PATH_MAX);
-	debug_assert(ret == 0);
+	numConverted = wcstombs(filename_c, filename, PATH_MAX);
+	debug_assert(numConverted < PATH_MAX);
 	char mode_c[PATH_MAX];
-	ret = wcstombs_s(&numConverted, mode_c, mode, PATH_MAX);
-	debug_assert(ret == 0);
+	numConverted = wcstombs(mode_c, mode, PATH_MAX);
+	debug_assert(numConverted < PATH_MAX);
 
 	return fopen_s(pfile, filename_c, mode_c);
 }

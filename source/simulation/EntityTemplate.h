@@ -27,7 +27,7 @@ class CPlayer;
 class CXeromyces;
 class XMBElement;
 
-class CEntityTemplate : public CJSComplex<CEntityTemplate>, public IEventTarget, boost::noncopyable
+class CEntityTemplate : public CJSComplex<CEntityTemplate>, public IEventTarget, noncopyable
 {
 public:
 	CPlayer* m_player;		// Which player this template is for, or null for the no-player template

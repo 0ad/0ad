@@ -21,7 +21,7 @@ struct JSObject;
 
 class CGameViewImpl;
 
-class CGameView : private Scene, public boost::noncopyable
+class CGameView : private Scene, public noncopyable
 {
 public:
 	static const float defaultFOV, defaultNear, defaultFar;

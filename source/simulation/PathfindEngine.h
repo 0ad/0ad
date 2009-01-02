@@ -30,7 +30,7 @@ enum EPathType
 };
 
 
-class CPathfindEngine : public Singleton<CPathfindEngine>, boost::noncopyable
+class CPathfindEngine : public Singleton<CPathfindEngine>, noncopyable
 {
 public:
 

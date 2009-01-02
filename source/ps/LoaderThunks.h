@@ -24,7 +24,7 @@ static bool ldr_was_interrupted(int ret)
 	return (0 < ret && ret <= 100);
 }
 
-template<class T> struct MemFun_t : boost::noncopyable
+template<class T> struct MemFun_t : noncopyable
 {
 	T* const this_;
 	int (T::*func)(void);
@@ -53,7 +53,7 @@ template<class T> void RegMemFun(T* this_, int(T::*func)(void),
 ////////////////////////////////////////////////////////
 
 
-template<class T, class Arg> struct MemFun1_t : boost::noncopyable
+template<class T, class Arg> struct MemFun1_t : noncopyable
 {
 	T* const this_;
 	Arg arg;

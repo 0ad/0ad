@@ -5,7 +5,7 @@
 
 class CUnit;
 
-class CUnitAnimation : boost::noncopyable
+class CUnitAnimation : noncopyable
 {
 public:
 	CUnitAnimation(CUnit& unit);

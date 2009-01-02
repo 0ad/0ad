@@ -27,7 +27,7 @@ namespace I18n
 	};
 
 	
-	class TSComponentString : public TSComponent, boost::noncopyable
+	class TSComponentString : public TSComponent, noncopyable
 	{
 	public:
 		TSComponentString(const wchar_t* s) : String(s) {}
@@ -39,7 +39,7 @@ namespace I18n
 	};
 
 
-	class TSComponentVariable : public TSComponent, boost::noncopyable
+	class TSComponentVariable : public TSComponent, noncopyable
 	{
 	public:
 		TSComponentVariable(unsigned char id) : ID(id) {}
@@ -51,7 +51,7 @@ namespace I18n
 	};
 
 
-	class TSComponentFunction : public TSComponent, boost::noncopyable
+	class TSComponentFunction : public TSComponent, noncopyable
 	{
 	public:
 		TSComponentFunction(const char* name) : Name(name) {}
