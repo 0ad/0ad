@@ -90,11 +90,12 @@ sub update_svn {
 
 sub run_build_script {
     write_log("Running build script");
-    system("perl e:\\svn\\source\\tools\\autobuild2\\build.pl");
+    my $output = `perl e:\\svn\\source\\tools\\autobuild2\\build.pl 2>&1`;
+    write_log("Build script exited with code $?:\n================================\n$output\n================================\n");
 }
 
 sub save_buildlogs {
-    opendir my $d, "d:\\0ad\\buildlogs" or die "Can't open buildlogs directory: $!";
+    opendir my $d, "d:\\0ad\\buildlogs" or do { write_log("Can't open buildlogs directory: $!"); return };
     for my $fn (sort readdir $d) {
         next if $fn =~ /^\./;
         open my $f, '<', "d:\\0ad\\buildlogs\\$fn" or die "Can't open buildlogs file $fn: $!";

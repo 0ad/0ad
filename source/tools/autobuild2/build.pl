@@ -19,7 +19,12 @@ eval { # catch deaths
 
 # Clean the output directory, just in case it's got old junk left over somehow
 `rmdir /q /s $temp_trunk 2>&1`; # (ignore failures, they don't matter)
-mkdir $temp_trunk or die $!;
+# This bit sometimes fails, for reasons I don't understand, so just keep trying it lots of times
+for my $i (0..60) {
+    mkdir $temp_trunk and last;
+    warn "($i) $!";
+    sleep 1;
+}
 mkdir $log_dir or die $!;
 
 # Capture all output
