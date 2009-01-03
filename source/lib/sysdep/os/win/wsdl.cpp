@@ -788,8 +788,11 @@ static void mouse_update()
 	// don't use DirectInput, because we want to respect the user's mouse
 	// sensitivity settings. Windows messages are laggy, so query current
 	// position directly.
+	// note: GetCursorPos fails if the desktop is switched (e.g. after
+	// pressing Ctrl+Alt+Del), which can be ignored.
 	POINT screen_pt;
-	WARN_IF_FALSE(GetCursorPos(&screen_pt));
+	if(!GetCursorPos(&screen_pt))
+		return;
 	int x, y;
 	if(GetCoords(screen_pt.x, screen_pt.y, x, y))
 	{
