@@ -911,22 +911,9 @@ function damage( dmg, inflictor )
 								if (this.traits.loot.xp)
 									inflictor.traits.promotion.curr = parseInt(inflictor.traits.promotion.curr) + parseInt(this.traits.loot.xp);
 
-								// Notify player.
-								/*if (inflictor.traits.id.specific)
-									console.write(inflictor.traits.id.specific + " has earned " + this.traits.loot.xp + " upgrade points!");
-								else
-									console.write("One of your units has earned " + this.traits.loot.xp + " upgrade points!");
-								*/
-
 								// If he now has maximum upgrade points for his rank,
 								if (inflictor.traits.promotion.curr >= inflictor.traits.promotion.req)
 								{
-									// Notify the player.
-									/*if (inflictor.traits.id.specific)
-										console.write(inflictor.traits.id.specific + " has gained a promotion!");
-									else
-										console.write("One of your units has gained a promotion!");*/
-									
 									// Reset his upgrade points.
 									inflictor.traits.promotion.curr = 0; 
 
@@ -943,7 +930,8 @@ function damage( dmg, inflictor )
 							if ( inflictor.actions.loot.resources )
 							{
 								// Give the inflictor his resources.
-								this.player.resources[loot.toString()] -= parseInt(this.traits.loot[loot.toString()]);
+								//commenting because of #221
+								//this.player.resources[loot.toString()] -= parseInt(this.traits.loot[loot.toString()]);
 							}
 							break;
 					}
@@ -1438,9 +1426,6 @@ function entityStartProduction( evt )
 					default:
 						// Deduct the given quantity of resources.
 						this.player.resources[resource.toString()] -= parseInt(pool[resource]);
-
-						/*console.write ("Spent " + pool[resource] + " " + resource + " to purchase " + 
-							template.traits.id.generic);*/
 					break;
 				}
 			}
