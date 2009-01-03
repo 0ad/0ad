@@ -28,8 +28,10 @@ class CSkeletonAnimManager;
 ///////////////////////////////////////////////////////////////////////////////
 // CModel: basically, a mesh object - holds the texturing and skinning 
 // information for a model in game
-class CModel : public CRenderableObject, noncopyable
+class CModel : public CRenderableObject
 {
+	NONCOPYABLE(CModel);
+
 	friend class CUnitAnimation;
 		// HACK - we should probably move the rest of this class's animation state
 		// into the animation class, then it wouldn't need friend access

@@ -19,8 +19,9 @@ class CStr8;
 ///////////////////////////////////////////////////////////////////////////////
 // CSkeletonAnimManager : owner class of all skeleton anims - manages creation, 
 // loading and destruction of animation data
-class CSkeletonAnimManager : noncopyable
+class CSkeletonAnimManager
 {
+	NONCOPYABLE(CSkeletonAnimManager);
 public:
 	// constructor, destructor
 	CSkeletonAnimManager(CColladaManager& colladaManager);

@@ -18,6 +18,8 @@ class CEntity;
 
 class CTechnology : public CJSComplex<CTechnology>
 {
+	NONCOPYABLE(CTechnology);
+
 	friend class CTechnologyCollection;
 	
 	struct Modifier
@@ -32,13 +34,6 @@ class CTechnology : public CJSComplex<CTechnology>
 public:
 	CTechnology(const CStrW& name, CPlayer* player);
 	~CTechnology() {}
-
-	// noncopyable (avoid VC7.1 warning); don't derive from
-	// noncopyable, so that multiple inheritance is avoided
-private:
-	CTechnology(const CTechnology&);
-	const CTechnology& operator=(const CTechnology&);
-public:
 
 	//JS functions
 	static void ScriptingInit();

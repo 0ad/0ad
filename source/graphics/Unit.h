@@ -22,8 +22,9 @@ const size_t invalidUnitId = ~size_t(0);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // CUnit: simple "actor" definition - defines a sole object within the world
-class CUnit : noncopyable
+class CUnit
 {
+	NONCOPYABLE(CUnit);
 private:
 	// Private constructor. Needs complete list of selections for the variation.
 	CUnit(CObjectEntry* object, CEntity* entity, CObjectManager& objectManager,

@@ -27,8 +27,9 @@ namespace I18n
 	};
 
 	
-	class TSComponentString : public TSComponent, noncopyable
+	class TSComponentString : public TSComponent
 	{
+		NONCOPYABLE(TSComponentString);
 	public:
 		TSComponentString(const wchar_t* s) : String(s) {}
 
@@ -39,8 +40,9 @@ namespace I18n
 	};
 
 
-	class TSComponentVariable : public TSComponent, noncopyable
+	class TSComponentVariable : public TSComponent
 	{
+		NONCOPYABLE(TSComponentVariable);
 	public:
 		TSComponentVariable(unsigned char id) : ID(id) {}
 
@@ -51,8 +53,9 @@ namespace I18n
 	};
 
 
-	class TSComponentFunction : public TSComponent, noncopyable
+	class TSComponentFunction : public TSComponent
 	{
+		NONCOPYABLE(TSComponentFunction);
 	public:
 		TSComponentFunction(const char* name) : Name(name) {}
 		~TSComponentFunction();

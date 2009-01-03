@@ -24,8 +24,10 @@ static bool ldr_was_interrupted(int ret)
 	return (0 < ret && ret <= 100);
 }
 
-template<class T> struct MemFun_t : noncopyable
+template<class T> struct MemFun_t
 {
+	NONCOPYABLE(MemFun_t);
+public:
 	T* const this_;
 	int (T::*func)(void);
 	MemFun_t(T* this__, int(T::*func_)(void))
@@ -53,8 +55,10 @@ template<class T> void RegMemFun(T* this_, int(T::*func)(void),
 ////////////////////////////////////////////////////////
 
 
-template<class T, class Arg> struct MemFun1_t : noncopyable
+template<class T, class Arg> struct MemFun1_t
 {
+	NONCOPYABLE(MemFun1_t);
+public:
 	T* const this_;
 	Arg arg;
 	int (T::*func)(Arg);

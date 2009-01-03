@@ -6,8 +6,9 @@ struct SColor4ub;
 class CUnit;
 class CStrW;
 
-class ActorViewer : noncopyable
+class ActorViewer
 {
+	NONCOPYABLE(ActorViewer);
 public:
 	ActorViewer();
 	~ActorViewer();

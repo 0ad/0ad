@@ -74,8 +74,10 @@ enum EntityFlags
 
 // TODO MT: Put this is /some/ sort of order...
 
-class CEntity : public CJSComplex<CEntity>, public IEventTarget, noncopyable
+class CEntity : public CJSComplex<CEntity>, public IEventTarget
 {
+	NONCOPYABLE(CEntity);
+
 	friend class CEntityManager;
 	friend class CUnit;
 

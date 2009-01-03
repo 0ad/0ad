@@ -5,8 +5,9 @@
 
 class CUnit;
 
-class CUnitAnimation : noncopyable
+class CUnitAnimation
 {
+	NONCOPYABLE(CUnitAnimation);
 public:
 	CUnitAnimation(CUnit& unit);
 

@@ -24,8 +24,10 @@
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
 
-struct ActorViewerImpl : public Scene, noncopyable
+struct ActorViewerImpl : public Scene
 {
+	NONCOPYABLE(ActorViewerImpl);
+public:
 	ActorViewerImpl()
 		: Unit(NULL), ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
 		ObjectManager(MeshManager, SkeletonAnimManager)

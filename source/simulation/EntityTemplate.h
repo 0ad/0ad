@@ -27,8 +27,9 @@ class CPlayer;
 class CXeromyces;
 class XMBElement;
 
-class CEntityTemplate : public CJSComplex<CEntityTemplate>, public IEventTarget, noncopyable
+class CEntityTemplate : public CJSComplex<CEntityTemplate>, public IEventTarget
 {
+	NONCOPYABLE(CEntityTemplate);
 public:
 	CPlayer* m_player;		// Which player this template is for, or null for the no-player template
 							// used to read unmodified values for upgrades and such.

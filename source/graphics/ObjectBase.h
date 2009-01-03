@@ -10,8 +10,9 @@ class CObjectManager;
 #include <map>
 #include "ps/CStr.h"
 
-class CObjectBase : noncopyable
+class CObjectBase
 {
+	NONCOPYABLE(CObjectBase);
 public:
 
 	struct Anim {

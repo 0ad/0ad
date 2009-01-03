@@ -30,12 +30,11 @@ enum EPathType
 };
 
 
-class CPathfindEngine : public Singleton<CPathfindEngine>, noncopyable
+class CPathfindEngine : public Singleton<CPathfindEngine>
 {
+	NONCOPYABLE(CPathfindEngine);
+
 public:
-
-
-
 	//Kai: added for dcdt 
 	const float OABBBOUNDREDUCTION  ; 
 	const float CIRCLEBOUNDREDUCTION  ; 

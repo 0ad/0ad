@@ -29,8 +29,9 @@ class CGameAttributes;
  * a set of attributes provided. The CGame object is also responsible for
  * maintaining the relations between CPlayer and CWorld, CSimulation and CWorld.
  **/
-class CGame : noncopyable
+class CGame
 {
+	NONCOPYABLE(CGame);
 	/**
 	 * pointer to the CWorld object representing the game world.
 	 **/

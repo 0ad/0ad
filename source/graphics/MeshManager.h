@@ -11,8 +11,9 @@ typedef shared_ptr<CModelDef> CModelDefPtr;
 
 class CColladaManager;
 
-class CMeshManager : noncopyable
+class CMeshManager
 {
+	NONCOPYABLE(CMeshManager);
 public:
 	CMeshManager(CColladaManager& colladaManager);
 	~CMeshManager();
