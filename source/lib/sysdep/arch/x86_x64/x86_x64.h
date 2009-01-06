@@ -97,38 +97,104 @@ LIB_API bool x86_x64_cap(x86_x64_Cap cap);
 
 
 //-----------------------------------------------------------------------------
-// cache
+// cache and TLB
 
 enum x86_x64_CacheType
 {
-	X86_X64_CACHE_TYPE_NULL,	// never passed to the callback
+	// (values match the CPUID.4 definition)
+	X86_X64_CACHE_TYPE_NULL,
 	X86_X64_CACHE_TYPE_DATA,
 	X86_X64_CACHE_TYPE_INSTRUCTION,
 	X86_X64_CACHE_TYPE_UNIFIED
 	// note: further values are "reserved"
 };
 
+const u8 x86_x64_fullyAssociative = 0xFF;
+
+/**
+ * describes a level of one of the caches.
+ **/
 struct x86_x64_CacheParameters
+{
+	/**
+	 * (used to determine if this cache is unified or disabled)
+	 **/
+	x86_x64_CacheType type;
+	size_t level;
+	size_t associativity;
+	size_t lineSize;	/// [bytes]
+	size_t sharedBy;
+	size_t totalSize;	/// [bytes]
+};
+
+/**
+ * describes all levels of a cache.
+ * instruction and data caches are returned separately by the corresponding
+ * accessor function; unified cache levels are reported by both.
+ **/
+struct x86_x64_Cache
+{
+	/**
+	 * total number of levels, each of which is described by
+	 * an entry in parameters[].
+	 **/
+	size_t levels;
+
+	x86_x64_CacheParameters* parameters;
+};
+
+/**
+ * @return pointer to a static x86_x64_Cache describing the instruction cache.
+ **/
+LIB_API const x86_x64_Cache* x86_x64_ICache();
+
+/**
+ * @return pointer to a static x86_x64_Cache describing the data cache.
+ **/
+LIB_API const x86_x64_Cache* x86_x64_DCache();
+
+LIB_API size_t x86_x64_L1CacheLineSize();
+LIB_API size_t x86_x64_L2CacheLineSize();
+
+/**
+ * describes part of a Translation Lookaside Buffer.
+ **/
+struct x86_x64_TLBParameters
 {
 	x86_x64_CacheType type;
 	size_t level;
 	size_t associativity;
-	size_t lineSize;
-	size_t sharedBy;
-	size_t size;
+	size_t pageSize;
+	size_t entries;
 };
 
-typedef void (CALL_CONV *x86_x64_CacheCallback)(const x86_x64_CacheParameters*);
+/**
+ * describes all parts of a Translation Lookaside Buffer
+ **/
+struct x86_x64_TLB
+{
+	/**
+	 * total number of parts, each of which is described by
+	 * an entry in parameters[]
+	 **/
+	size_t numParameters;
+	x86_x64_TLBParameters* parameters;
+};
 
 /**
- * call back for each cache reported by CPUID.
- *
- * note: ordering is undefined (see Intel AP-485)
+ * @return pointer to a static x86_x64_TLB describing the instruction TLB.
  **/
-LIB_API void x86_x64_EnumerateCaches(x86_x64_CacheCallback callback);
+LIB_API const x86_x64_TLB* x86_x64_ITLB();
 
-LIB_API size_t x86_x64_L1CacheLineSize();
-LIB_API size_t x86_x64_L2CacheLineSize();
+/**
+ * @return pointer to a static x86_x64_TLB describing the data TLB.
+ **/
+LIB_API const x86_x64_TLB* x86_x64_DTLB();
+
+/**
+ * @return coverage, i.e. total size [MiB] of the given TLB
+ **/
+size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb);
 
 
 //-----------------------------------------------------------------------------

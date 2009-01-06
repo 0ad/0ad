@@ -241,21 +241,26 @@ static bool ShouldUseLargePages(LargePageDisposition disposition, size_t allocat
 
 	// default disposition: use a heuristic
 	{
-		// a previous attempt already took too long (Windows is apparently
-		// shoveling aside lots of memory).
-		if(largePageAllocationTookTooLong)
-			return false;
-
 		// allocation is rather small and would "only" use half of the
 		// TLBs for its pages.
 		if(allocationSize < 64/2 * os_cpu_PageSize())
 			return false;
 
-		// we want there to be plenty of memory available, otherwise the
-		// page frames are going to be terribly fragmented and even a
-		// single allocation would take SECONDS.
-		if(os_cpu_MemoryAvailable() < 2000)	// 2 GB
-			return false;
+		// pre-Vista Windows OSes attempt to cope with page fragmentation by
+		// trimming the working set of all processes, thus swapping them out,
+		// and waiting for contiguous regions to appear. this is terribly
+		// slow (multiple seconds), hence the following heuristics:
+		if(wutil_WindowsVersion() < WUTIL_VERSION_VISTA)
+		{
+			// a previous attempt already took too long.
+			if(largePageAllocationTookTooLong)
+				return false;
+
+			// if there's not plenty of free memory, then memory is surely
+			// already fragmented.
+			if(os_cpu_MemoryAvailable() < 2000)	// 2 GB
+				return false;
+		}
 	}
 
 	return true;

@@ -28,8 +28,12 @@
 #undef _WINDOWS_
 
 // set version; needed for EnumDisplayDevices
-#define _WIN32_WINNT 0x0501
-
+#ifndef NTDDI_VERSION
+# define NTDDI_VERSION NTDDI_LONGHORN
+#endif
+#ifndef _WIN32_WINNT
+# define _WIN32_WINNT 0x600
+#endif
 
 #define NOGDICAPMASKS       // CC_*, LC_*, PC_*, CP_*, TC_*, RC_
 //#define NOVIRTUALKEYCODES // VK_*

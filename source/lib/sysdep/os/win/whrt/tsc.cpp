@@ -68,7 +68,7 @@ public:
 	{
 		return "TSC";
 	}
-		
+
 	LibError Activate()
 	{
 #if ARCH_X86_X64

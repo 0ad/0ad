@@ -99,20 +99,11 @@ static size_t LogicalPerCache()
 
 	if(!logicalPerCache)
 	{
-		logicalPerCache = 1;	// (default in case DetectL2Sharing fails)
-
-		struct DetectL2Sharing
-		{
-			static void Callback(const x86_x64_CacheParameters* cache)
-			{
-				if(cache->type != X86_X64_CACHE_TYPE_DATA && cache->type != X86_X64_CACHE_TYPE_UNIFIED)
-					return;
-				if(cache->level != 2)
-					return;
-				logicalPerCache = cache->sharedBy;
-			}
-		};
-		x86_x64_EnumerateCaches(DetectL2Sharing::Callback);
+		const x86_x64_Cache* const dcache = x86_x64_DCache();
+		if(dcache->levels < 2)
+			logicalPerCache = 1;	// default
+		else
+			logicalPerCache = dcache->parameters[1].sharedBy;
 	}
 
 	return logicalPerCache;
