@@ -25,6 +25,18 @@ function worldClickHandler(event)
 	// Right button single- or double-clicks
 	if (event.button == SDL_BUTTON_RIGHT && event.clicks <= 2)
 	{
+		var controlling = true;
+		for (var i = 0; i < selection.length; i++) {
+			if (! (selection[i].player.name == localPlayer.name)) {
+				controlling = false;
+				break;
+			}
+		}
+		
+		if (!controlling) {
+			return;
+		}
+	
 		if (event.clicks == 1) {
 			cmd = event.order;
 		}
@@ -237,7 +249,9 @@ function killSelectedEntities()
 		for (i=0; i<selection.length; i++)
 		{
 			//TODO: send network msg, so the unit is killed everywhere
+			console.write('killing....');
 			selection[i].kill();
+			issueCommand(selection[i], NMT_REMOVE_OBJECT);
 		}
       }
 }
