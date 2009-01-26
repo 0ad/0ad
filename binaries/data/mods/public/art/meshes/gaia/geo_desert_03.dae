@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2008-07-04T22:58:26Z</created>
-    <modified>2008-07-04T22:58:26Z</modified>
+    <created>2009-01-26T02:34:53Z</created>
+    <modified>2009-01-26T02:34:53Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,20 +16,17 @@
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__8-image" name="Map__8">
-      <init_from>file://C:\Documents and Settings\Owner\My Documents\My Received Files\stone_desert_a.dds</init_from>
-    </image>
-    <image id="Map__23-image" name="Map__23">
-      <init_from>file://</init_from>
+    <image id="Map__401-image" name="Map__401">
+      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\gaia\stone_desert_a.dds</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="_07___Default" name="_07___Default">
-      <instance_effect url="#_07___Default-fx"/>
+    <material id="_07___Default2" name="_07___Default2">
+      <instance_effect url="#_07___Default2-fx"/>
     </material>
   </library_materials>
   <library_effects>
-    <effect id="_07___Default-fx" name="_07___Default">
+    <effect id="_07___Default2-fx" name="_07___Default2">
       <profile_COMMON>
         <technique sid="standard">
           <phong>
@@ -37,10 +34,10 @@
               <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
             </emission>
             <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__8-image" texcoord="CHANNEL0">
+              <texture texture="Map__401-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -63,15 +60,7 @@
               <float sid="reflectivity">1.000000</float>
             </reflectivity>
             <transparent>
-              <texture texture="Map__23-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
             </transparent>
             <transparency>
               <float sid="transparency">0.000000</float>
@@ -82,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="geo_desert_03-lib" name="geo_desert_03Mesh">
+    <geometry id="Box03-lib" name="Box03Mesh">
       <mesh>
-        <source id="geo_desert_03-lib-Position">
-          <float_array id="geo_desert_03-lib-Position-array" count="219">
+        <source id="Box03-lib-Position">
+          <float_array id="Box03-lib-Position-array" count="219">
 -6.621294 -6.357141 1.588167
 -3.497647 -7.749538 1.588167
 -1.905120 -6.858788 1.588167
@@ -161,15 +150,15 @@
 -4.276421 -1.747635 7.734561
 </float_array>
           <technique_common>
-            <accessor source="#geo_desert_03-lib-Position-array" count="73" stride="3">
+            <accessor source="#Box03-lib-Position-array" count="73" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="geo_desert_03-lib-Normal0">
-          <float_array id="geo_desert_03-lib-Normal0-array" count="1152">
+        <source id="Box03-lib-Normal0">
+          <float_array id="Box03-lib-Normal0-array" count="1152">
 0.000000 0.000000 -1.000000
 0.005445 0.004399 -0.999976
 0.043105 0.009842 -0.999022
@@ -556,30 +545,30 @@
 -0.863688 -0.212488 0.457047
 </float_array>
           <technique_common>
-            <accessor source="#geo_desert_03-lib-Normal0-array" count="384" stride="3">
+            <accessor source="#Box03-lib-Normal0-array" count="384" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="geo_desert_03-lib-UV0">
-          <float_array id="geo_desert_03-lib-UV0-array" count="326">
-0.094752 0.861914
+        <source id="Box03-lib-UV0">
+          <float_array id="Box03-lib-UV0-array" count="326">
+0.095650 0.861914
 0.285290 0.946848
 0.834174 0.459662
 0.235806 0.317711
-0.111123 0.478247
+0.127226 0.477920
 0.050221 0.828457
 0.299229 0.896406
 0.677144 0.708816
-0.235804 0.639005
--0.032967 0.581428
+0.235804 0.638351
+0.001744 0.580891
 0.167407 0.936171
 0.310358 0.934853
 0.437453 0.937241
-0.336025 0.690560
-0.136792 0.882130
+0.336025 0.690394
+0.136792 0.865654
 0.276690 0.875203
 0.310358 0.759295
 0.437453 0.801529
@@ -588,161 +577,161 @@
 0.246008 0.648492
 0.306602 0.628052
 0.801550 0.234082
-0.710872 0.727301
+0.710872 0.724007
 1.003568 0.239361
--0.976882 -0.710068
--0.976882 -0.858942
--0.864768 -0.710516
--0.864786 -0.859023
--0.753877 -0.708681
--0.749394 -0.837083
--0.641864 -0.705718
--0.637261 -0.829844
--0.531809 -0.698385
--0.518354 -0.845282
-0.987566 -0.391881
-0.720718 -0.391879
-0.584671 -0.391878
-0.113150 -0.391874
-0.031312 -0.479510
-0.819634 -0.973089
-0.540682 -0.969813
-0.421916 -0.969812
-0.293636 -0.969811
-0.165356 -0.866616
-0.968386 -0.528421
-0.690231 -0.528419
-0.516815 -0.528417
-0.153607 -0.528414
--0.012435 -0.528413
-0.798391 -0.949039
-0.473329 -0.948947
-0.421918 -0.709686
-0.264841 -0.709685
-0.107764 -0.753619
--1.018477 0.028291
--0.768477 0.028291
--0.600086 -0.825629
--0.143164 -0.647393
--0.063245 -0.575956
--1.018477 0.361624
--0.768477 0.361624
--0.591146 -0.846445
--0.337729 -0.872036
--0.157975 -0.927814
--0.895364 -0.878409
--0.144076 -0.878409
--0.751805 -0.824480
--0.639578 -0.817445
--0.526869 -0.861992
--0.593078 -0.620587
--0.179870 -0.620587
--0.627946 -0.667490
--0.322494 -0.636393
--0.478819 -0.975154
--1.018477 0.028291
--0.768477 0.028291
--0.000001 0.642802
-0.167272 0.642803
+0.067671 0.271399
+0.067671 0.122525
+0.170991 0.270952
+0.170974 0.122445
+0.273185 0.272786
+0.277316 0.144384
+0.376413 0.275750
+0.380654 0.151623
+0.477836 0.283082
+0.490236 0.136185
+0.998818 0.595669
+0.734761 0.595671
+0.600137 0.595672
+0.133547 0.595675
+0.052564 0.508040
+0.832643 0.014461
+0.556608 0.017737
+0.439084 0.017738
+0.312145 0.017739
+0.185206 0.120934
+0.979839 0.459129
+0.704593 0.459131
+0.532990 0.459133
+0.173581 0.459135
+0.009274 0.459137
+0.811621 0.038511
+0.489959 0.038602
+0.439085 0.277864
+0.283651 0.277865
+0.128216 0.233931
+0.016465 0.023671
+0.266465 0.023671
+0.414914 0.155838
+0.836000 0.334074
+0.909650 0.405511
+0.016465 0.357004
+0.266465 0.357004
+0.423152 0.135023
+0.656695 0.109432
+0.822350 0.053653
+0.142795 0.103059
+0.835159 0.103059
+0.275094 0.156988
+0.378520 0.164022
+0.482388 0.119476
+0.421372 0.360880
+0.802173 0.360880
+0.389239 0.313977
+0.670734 0.345075
+0.526670 0.006314
+0.016465 0.023671
+0.266465 0.023671
+0.001339 0.642802
+0.167432 0.642803
 0.448899 0.642806
--1.018477 0.361624
--0.768477 0.361624
+0.016465 0.357004
+0.266465 0.357004
 0.843055 0.642808
 0.322345 -0.000001
 0.638823 0.016816
 0.783980 0.128592
 1.000000 0.494917
--0.518477 0.694958
--0.268477 0.694958
--0.018477 0.694958
+0.493063 0.656683
+0.743063 0.656683
+0.993063 0.656683
 0.797275 0.494915
 0.493661 0.494913
--0.518477 1.028291
--0.268477 1.028291
--0.018477 1.028291
-0.030025 -0.976196
--0.169906 -0.976195
--0.472922 -0.976193
--0.609537 -0.976192
--0.960649 -0.976190
--0.977359 -0.480527
--0.010653 -0.480534
--0.353270 -0.480531
--0.486580 -0.490594
--0.782266 -0.490592
--0.832788 -0.972176
--0.140378 -0.972181
--0.313481 -0.972180
--0.486583 -0.962115
--0.659685 -0.962114
+0.493063 0.990017
+0.743063 0.990017
+0.993063 0.990017
+0.995605 0.005272
+0.811355 0.005273
+0.532104 0.005275
+0.406204 0.005276
+0.082630 0.005278
+0.067231 0.500941
+0.958118 0.500934
+0.642372 0.500936
+0.519518 0.490873
+0.247023 0.490876
+0.200463 0.009291
+0.838567 0.009286
+0.679041 0.009287
+0.519515 0.019352
+0.359989 0.019354
 0.382432 0.892514
 0.520617 0.831158
 0.811121 0.882498
 0.964103 0.953919
-0.000000 0.706492
-0.249009 0.774441
+0.001345 0.706492
+0.249180 0.774441
 0.247860 0.805185
 0.281527 0.689278
 0.886963 0.221716
--0.080007 -0.752166
--0.845829 -0.752161
+0.894203 0.229302
+0.188444 0.229307
 0.470397 0.709194
--0.384049 -0.594077
--0.615666 -0.973215
--0.598753 -0.351682
--0.976882 -0.858942
--0.641921 -0.704166
--0.864786 -0.859023
+0.614007 0.387390
+0.400556 0.008252
+0.416142 0.629786
+0.067671 0.122525
+0.376360 0.277302
+0.170974 0.122445
 0.190047 0.494911
-0.017346 0.494909
+0.018564 0.494909
 0.849150 0.250985
 0.671406 0.298572
--0.156288 -0.692047
+0.823904 0.289421
 0.405984 0.269055
 0.355820 0.062663
 0.194873 0.039317
--0.188767 -0.576034
--1.043979 -0.486860
--0.854194 -0.550642
--0.860112 -0.323891
--0.738467 -0.344972
+0.793973 0.405433
+0.005836 0.494607
+0.180736 0.430825
+0.175282 0.657577
+0.287386 0.636495
 0.582794 0.968417
 0.996461 0.611034
--0.734918 -0.338665
--0.443232 -0.565894
+0.290657 0.642803
+0.559466 0.415573
 0.580236 0.801529
 0.408622 0.700195
--0.322034 -0.629309
+0.671158 0.352159
 0.408622 0.731512
--0.208887 -0.685390
--1.027217 -0.971618
--0.889936 -0.971618
--0.574409 -0.752163
--0.752934 -0.972148
--0.468801 -0.738037
--0.234559 -0.738038
+0.775431 0.296078
+0.021283 0.009849
+0.147798 0.009849
+0.438577 0.229305
+0.274054 0.009320
+0.535902 0.243431
+0.751772 0.243429
 0.050221 0.592897
 0.299229 0.590600
 0.520617 0.594760
 0.773790 0.649066
-0.497253 0.858237
-0.462680 1.020731
-0.658480 1.025914
+0.497253 0.843795
+0.462680 0.992456
+0.658480 0.997198
 </float_array>
           <technique_common>
-            <accessor source="#geo_desert_03-lib-UV0-array" count="163" stride="2">
+            <accessor source="#Box03-lib-UV0-array" count="163" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="geo_desert_03-lib-Vertex">
-          <input semantic="POSITION" source="#geo_desert_03-lib-Position"/>
+        <vertices id="Box03-lib-Vertex">
+          <input semantic="POSITION" source="#Box03-lib-Position"/>
         </vertices>
-        <polygons material="_07___Default" count="128">
-          <input semantic="VERTEX" offset="0" source="#geo_desert_03-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#geo_desert_03-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#geo_desert_03-lib-UV0"/>
+        <polygons material="_07___Default2" count="128">
+          <input semantic="VERTEX" offset="0" source="#Box03-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#Box03-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Box03-lib-UV0"/>
           <p>0 0 0 5 1 114 6 2 115</p>
           <p>6 3 115 1 4 1 0 5 0</p>
           <p>1 6 1 6 7 115 7 8 121</p>
@@ -877,17 +866,17 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="geo_desert_03" name="geo_desert_03">
-        <translate sid="translate">-0.093674 0.435146 10.301130</translate>
-        <rotate sid="rotateZ">0 0 1 0.000009</rotate>
+      <node id="Box03" name="Box03">
+        <translate sid="translate">1.088781 -0.812772 14.558376</translate>
+        <rotate sid="rotateZ">0 0 1 -32.555628</rotate>
         <rotate sid="rotateY">0 1 0 -0.000009</rotate>
         <rotate sid="rotateX">1 0 0 180.000000</rotate>
-        <scale sid="scale">0.599018 0.686768 1.353901</scale>
-        <instance_geometry url="#geo_desert_03-lib">
+        <scale sid="scale">1.066759 1.066759 1.910350</scale>
+        <instance_geometry url="#Box03-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Map__8-Material" target="#Map__8-Material"/>
-              <instance_material symbol="_07___Default" target="#_07___Default"/>
+              <instance_material symbol="Map__401-Material" target="#Map__401-Material"/>
+              <instance_material symbol="_07___Default2" target="#_07___Default2"/>
             </technique_common>
           </bind_material>
         </instance_geometry>

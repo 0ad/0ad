@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2008-07-01T01:19:37Z</created>
-    <modified>2008-07-01T01:19:37Z</modified>
+    <created>2009-01-26T02:32:15Z</created>
+    <modified>2009-01-26T02:32:15Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -16,20 +16,17 @@
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
-    <image id="Map__8-image" name="Map__8">
-      <init_from>file://C:\Documents and Settings\Owner\My Documents\My Received Files\stone_desert_a.dds</init_from>
-    </image>
-    <image id="Map__23-image" name="Map__23">
-      <init_from>file://</init_from>
+    <image id="Map__401-image" name="Map__401">
+      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\gaia\stone_desert_a.dds</init_from>
     </image>
   </library_images>
   <library_materials>
-    <material id="_07___Default" name="_07___Default">
-      <instance_effect url="#_07___Default-fx"/>
+    <material id="_07___Default2" name="_07___Default2">
+      <instance_effect url="#_07___Default2-fx"/>
     </material>
   </library_materials>
   <library_effects>
-    <effect id="_07___Default-fx" name="_07___Default">
+    <effect id="_07___Default2-fx" name="_07___Default2">
       <profile_COMMON>
         <technique sid="standard">
           <phong>
@@ -37,10 +34,10 @@
               <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
             </emission>
             <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
             </ambient>
             <diffuse>
-              <texture texture="Map__8-image" texcoord="CHANNEL0">
+              <texture texture="Map__401-image" texcoord="CHANNEL0">
                 <extra>
                   <technique profile="MAYA">
                     <wrapU sid="wrapU0">TRUE</wrapU>
@@ -63,15 +60,7 @@
               <float sid="reflectivity">1.000000</float>
             </reflectivity>
             <transparent>
-              <texture texture="Map__23-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
             </transparent>
             <transparency>
               <float sid="transparency">0.000000</float>
@@ -82,10 +71,10 @@
     </effect>
   </library_effects>
   <library_geometries>
-    <geometry id="Box04-lib" name="Box04Mesh">
+    <geometry id="desert_rocks_02-lib" name="desert_rocks_02Mesh">
       <mesh>
-        <source id="Box04-lib-Position">
-          <float_array id="Box04-lib-Position-array" count="150">
+        <source id="desert_rocks_02-lib-Position">
+          <float_array id="desert_rocks_02-lib-Position-array" count="150">
 8.309436 -1.970532 9.687473
 11.244232 -5.742642 8.549962
 12.634474 -5.286035 8.549962
@@ -138,15 +127,15 @@
 9.367220 1.464192 4.758004
 </float_array>
           <technique_common>
-            <accessor source="#Box04-lib-Position-array" count="50" stride="3">
+            <accessor source="#desert_rocks_02-lib-Position-array" count="50" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Box04-lib-Normal0">
-          <float_array id="Box04-lib-Normal0-array" count="837">
+        <source id="desert_rocks_02-lib-Normal0">
+          <float_array id="desert_rocks_02-lib-Normal0-array" count="837">
 -0.602348 -0.620187 0.502539
 -0.279838 -0.792464 0.541932
 -0.183228 -0.597907 0.780342
@@ -428,26 +417,26 @@
 -0.380566 0.107817 -0.918447
 </float_array>
           <technique_common>
-            <accessor source="#Box04-lib-Normal0-array" count="279" stride="3">
+            <accessor source="#desert_rocks_02-lib-Normal0-array" count="279" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Box04-lib-UV0">
-          <float_array id="Box04-lib-UV0-array" count="220">
+        <source id="desert_rocks_02-lib-UV0">
+          <float_array id="desert_rocks_02-lib-UV0-array" count="220">
 0.353439 0.441960
 0.568249 0.029433
 0.696836 0.029433
 0.750000 0.000000
 1.000000 0.000000
-0.234918 0.124612
+0.227436 0.321020
 0.568249 0.485467
 0.696836 0.485467
 0.750000 0.250000
 1.000000 0.250000
-0.329081 -0.193822
+0.321599 0.002587
 0.250000 0.500000
 0.500000 0.500000
 0.750000 0.500000
@@ -476,7 +465,7 @@
 0.250000 0.666667
 0.500000 0.666667
 0.750000 0.666667
-0.027988 0.336039
+0.060729 0.388151
 0.000000 1.000000
 0.250000 1.000000
 0.500000 1.000000
@@ -494,13 +483,13 @@
 1.000000 1.000000
 0.000000 0.666667
 0.250000 0.666667
-0.534788 0.031666
-0.543305 -0.185417
+0.527306 0.228075
+0.535822 0.010991
 0.767597 0.137796
 0.000000 1.000000
 0.250000 1.000000
-0.743404 0.136289
-0.750007 0.014713
+0.735921 0.332697
+0.742525 0.211121
 0.670283 0.036589
 0.193824 0.806179
 0.768616 0.768058
@@ -512,8 +501,8 @@
 0.808815 0.027594
 0.439129 0.064073
 0.192389 0.000000
-0.000000 0.184989
-0.147803 0.341868
+0.025270 0.144940
+0.212530 0.397538
 0.054351 0.434051
 0.150424 0.632533
 0.385000 0.451400
@@ -544,24 +533,24 @@
 0.500000 0.250000
 0.429084 0.627806
 0.336747 0.624183
--0.016152 0.255730
+0.004806 0.258843
 0.317778 0.051384
 0.393577 0.127626
 </float_array>
           <technique_common>
-            <accessor source="#Box04-lib-UV0-array" count="110" stride="2">
+            <accessor source="#desert_rocks_02-lib-UV0-array" count="110" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Box04-lib-Vertex">
-          <input semantic="POSITION" source="#Box04-lib-Position"/>
+        <vertices id="desert_rocks_02-lib-Vertex">
+          <input semantic="POSITION" source="#desert_rocks_02-lib-Position"/>
         </vertices>
-        <polygons material="_07___Default" count="93">
-          <input semantic="VERTEX" offset="0" source="#Box04-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#Box04-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#Box04-lib-UV0"/>
+        <polygons material="_07___Default2" count="93">
+          <input semantic="VERTEX" offset="0" source="#desert_rocks_02-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#desert_rocks_02-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#desert_rocks_02-lib-UV0"/>
           <p>0 0 0 1 1 101 5 2 103</p>
           <p>6 3 7 5 4 6 1 5 1</p>
           <p>1 6 1 2 7 2 6 8 7</p>
@@ -661,20 +650,20 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
-      <node id="Box04" name="Box04">
-        <translate sid="translate">0.088661 -0.066694 4.149777</translate>
-        <rotate sid="rotateZ">0 0 1 -127.350497</rotate>
+      <node id="desert_rocks_02" name="desert_rocks_02">
+        <translate sid="translate">-0.392118 -0.142044 4.560529</translate>
+        <rotate sid="rotateZ">0 0 1 -175.250973</rotate>
         <rotate sid="rotateY">0 1 0 -0.000009</rotate>
         <rotate sid="rotateX">1 0 0 180.000000</rotate>
         <scale sid="scale">1.066759 1.066759 1.213293</scale>
-        <node id="Box04-Pivot" name="Box04-Pivot">
+        <node id="desert_rocks_02-Pivot" name="desert_rocks_02-Pivot">
           <translate>-11.918430 1.088178 -7.841986</translate>
           <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
-          <instance_geometry url="#Box04-lib">
+          <instance_geometry url="#desert_rocks_02-lib">
             <bind_material>
               <technique_common>
-                <instance_material symbol="Map__8-Material" target="#Map__8-Material"/>
-                <instance_material symbol="_07___Default" target="#_07___Default"/>
+                <instance_material symbol="Map__401-Material" target="#Map__401-Material"/>
+                <instance_material symbol="_07___Default2" target="#_07___Default2"/>
               </technique_common>
             </bind_material>
           </instance_geometry>
