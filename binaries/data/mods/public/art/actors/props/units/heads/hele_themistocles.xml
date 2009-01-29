@@ -4,8 +4,16 @@
   <castshadow/>
 
   <group>
-    <variant name="Base">
+    <variant frequency="1" name="Helmet-Crest">
       <mesh>props/helmet/hele_helmet_o.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Helmet-High Crest">
+      <mesh>props/helmet/hele_themistocles_highcrest.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
       <texture>props/helmet/hele_thermistocles.dds</texture>
     </variant>
   </group>
