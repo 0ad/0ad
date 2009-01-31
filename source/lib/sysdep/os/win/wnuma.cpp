@@ -329,14 +329,14 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 	for(size_t i = 0; i < numPages; i++)
 	{
 		const PSAPI_WORKING_SET_EX_BLOCK& attributes = wsi[i].VirtualAttributes;
-		if(!attributes.valid)
+		if(!attributes.Valid)
 			return false;
-		if(attributes.LargePage != (pageSize == LargePageSize()))
+		if(attributes.LargePage != (pageSize == GetLargePageMinimum()))
 		{
 			debug_printf("NUMA: is not a large page\n");
 			return false;
 		}
-		if(attributes.node != node)
+		if(attributes.Node != node)
 		{
 			debug_printf("NUMA: allocated from remote node\n");
 			return false;
