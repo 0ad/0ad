@@ -3,9 +3,9 @@
 <Scenario>
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1.39844" g="1.39844" b="1.39844"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-0.785398"/>
+		<SunColour r="1.79688" g="1.79688" b="1.79688"/>
+		<SunElevation angle="0.76699"/>
+		<SunRotation angle="-0.82835"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
 		<UnitsAmbientColour r="0.411765" g="0.411765" b="0.411765"/>
 		<Water>
@@ -16,22 +16,22 @@
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.576172</Murkiness>
-				<Tint r="0.207843" g="0.254902" b="0.356863"/>
-				<ReflectionTint r="0" g="0.768627" b="0.768627"/>
+				<Tint r="0.203922" g="0.254902" b="0.356863"/>
+				<ReflectionTint r="0" g="0.764706" b="0.764706"/>
 				<ReflectionTintStrength>0.266602</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="168.098" y="98.7476" z="385.51"/>
-		<Rotation angle="0.00634921"/>
-		<Declination angle="0.556326"/>
+		<Position x="165.428" y="131.449" z="373.705"/>
+		<Rotation angle="0.0124805"/>
+		<Declination angle="0.707801"/>
 	</Camera>
 	<Entities>
 		<Entity uid="1">
 			<Template>special_settlement</Template>
 			<Player>0</Player>
-			<Position x="166.989" y="22.4" z="504.603"/>
+			<Position x="166.863" y="22.4" z="504.786"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="3">
@@ -67,13 +67,13 @@
 		<Entity uid="9">
 			<Template>hele_civil_centre</Template>
 			<Player>1</Player>
-			<Position x="167.116" y="22.4" z="502.015"/>
+			<Position x="167.138" y="22.4" z="504.385"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="10">
 			<Template>hele_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="405.533" y="22.4" z="81.2817"/>
+			<Position x="404.961" y="22.4" z="82.5308"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="12">
@@ -2067,7 +2067,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_medit_underbrush.xml</Actor>
 			<Position x="143.848" y="22.4" z="549.407"/>
-			<Orientation angle="-0.0696881"/>
+			<Orientation angle="-0.069688"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_underbrush.xml</Actor>
@@ -2162,7 +2162,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_medit_underbrush.xml</Actor>
 			<Position x="231.845" y="22.4" z="501.253"/>
-			<Orientation angle="0.0210738"/>
+			<Orientation angle="0.0210739"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_underbrush.xml</Actor>
