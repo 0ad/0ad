@@ -1351,6 +1351,7 @@ void ResetInteraction()
 	customSelectionMode = false;
 }
 
+static const float angleBias = 3*PI/4;	// Atlas does the same
 
 bool CBuildingPlacer::Activate(CStrW& templateName)
 {	
@@ -1363,7 +1364,7 @@ bool CBuildingPlacer::Activate(CStrW& templateName)
 	m_active = true;
 	m_clicked = false;
 	m_dragged = false;
-	m_angle = 0;
+	m_angle = angleBias;
 	m_timeSinceClick = 0;
 	m_totalTime = 0;
 	m_valid = false;
@@ -1463,7 +1464,7 @@ void CBuildingPlacer::Update( float timeStep )
 		else
 		{
 			m_dragged = true;
-			m_angle = atan2(x, z);
+			m_angle = atan2(x, z) + angleBias;
 		}
 	}
 
@@ -1487,7 +1488,7 @@ void CBuildingPlacer::Update( float timeStep )
 		if( ent && ent->m_classes.IsMember( m_template->m_socket ) )	// if it's a socket, snap to it
 		{
 			onSocket = true;
-			m_angle = atan2f( ent->m_ahead.x, ent->m_ahead.y );
+			m_angle = atan2f( ent->m_ahead.x, ent->m_ahead.y ) + angleBias;
 			pos = ent->m_position;
 			clickPos = ent->m_position;
 		}
@@ -1499,7 +1500,6 @@ void CBuildingPlacer::Update( float timeStep )
 	m.SetYRotation(m_angle + PI);
 	m.Translate(pos);
 	m_actor->GetModel()->SetTransform( m );
-
 	m_bounds->SetPosition(pos.X, pos.Z);
 
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
