@@ -139,7 +139,7 @@ public:
 
 	// add a prop to the model on the given point
 	void AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry);
-	// remove a prop from the given point
+	// remove any props from the given point
 	void RemoveProp(SPropPoint* point);
 	// return prop list
 	std::vector<Prop>& GetProps() { return m_Props; }

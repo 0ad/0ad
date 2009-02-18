@@ -62,7 +62,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 
 	std::vector<CObjectBase::Prop> props;
 
-	for (std::map<CStr, CObjectBase::Prop>::iterator it = variation.props.begin(); it != variation.props.end(); ++it)
+	for (std::multimap<CStr, CObjectBase::Prop>::iterator it = variation.props.begin(); it != variation.props.end(); ++it)
 		props.push_back(it->second);
 
 	// Build the model:

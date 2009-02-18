@@ -54,6 +54,9 @@ void CUnit::ShowAmmunition()
 {
 	if (!m_Object->m_AmmunitionModel || !m_Object->m_AmmunitionPoint)
 		return;
+	// Remove any previous ammunition prop, in case there's still one left on there
+	m_Model->RemoveProp(m_Object->m_AmmunitionPoint);
+	// Then add the new prop
 	m_Model->AddProp(m_Object->m_AmmunitionPoint, m_Object->m_AmmunitionModel->Clone(), m_Object);
 }
 
@@ -62,7 +65,10 @@ void CUnit::HideAmmunition()
 	if (!m_Object->m_AmmunitionModel || !m_Object->m_AmmunitionPoint)
 		return;
 
-	// Find out what the usual prop is:
+	// Remove the ammunition prop
+	m_Model->RemoveProp(m_Object->m_AmmunitionPoint);
+	// Restore the original props that were on the ammo attachpoint, by copying them from
+	// the base model
 	std::vector<CModel::Prop>& props = m_Object->m_Model->GetProps();
 	std::vector<CModel::Prop>::iterator it;
 	for (it = props.begin(); it != props.end(); ++it)
@@ -70,11 +76,8 @@ void CUnit::HideAmmunition()
 		if (it->m_Point == m_Object->m_AmmunitionPoint)
 		{
 			m_Model->AddProp(m_Object->m_AmmunitionPoint, it->m_Model->Clone(), m_Object);
-			return;
 		}
 	}
-	// No usual prop.
-	m_Model->RemoveProp(m_Object->m_AmmunitionPoint);
 }
 
 

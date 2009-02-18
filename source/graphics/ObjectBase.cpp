@@ -239,7 +239,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 
 	std::vector<u8> choices;
 
-	std::map<CStr, CStr> chosenProps;
+	std::multimap<CStr, CStr> chosenProps;
 
 	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_VariantGroups.begin();
 		grp != m_VariantGroups.end();
@@ -287,20 +287,23 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 
 		choices.push_back(match);
 
-		// Remember which props were chosen. (Later-defined props override
-		// earlier props at the same prop point.)
+		// Remember which props were chosen, so we can call CalculateVariationKey on them
+		// at the end.
 		CObjectBase::Variant& var ((*grp)[match]);
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
-			if (! it->m_ModelName.empty())
-				chosenProps[it->m_PropPointName] = it->m_ModelName;
-			else
+			// Erase all existing props which are overridden by this variant:
+			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				chosenProps.erase(it->m_PropPointName);
+			// and then insert the new ones:
+			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+				if (! it->m_ModelName.empty())
+					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName));
 		}
 	}
 
 	// Load each prop, and add their CalculateVariationKey to our key:
-	for (std::map<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+	for (std::multimap<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
 		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
 		if (prop)
@@ -354,18 +357,19 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 		if (! var.m_Color.empty())
 			variation.color = var.m_Color;
 
-		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
-		{
-			if (! it->m_ModelName.empty())
-				variation.props[it->m_PropPointName] = *it;
-			else
-				variation.props.erase(it->m_PropPointName);
-		}
-
-		// If one variant defines one animation called e.g. "attack", and this
-		// variant defines two different animations with the same name, the one
+		// If one variant defines one prop attached to e.g. "root", and this
+		// variant defines two different props with the same attachpoint, the one
 		// original should be erased, and replaced by the two new ones.
 		//
+		// So, erase all existing props which are overridden by this variant:
+		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+			variation.props.erase(it->m_PropPointName);
+		// and then insert the new ones:
+		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+			if (! it->m_ModelName.empty()) // if the name is empty then the overridden prop is just deleted
+				variation.props.insert(make_pair(it->m_PropPointName, *it));
+
+		// Same idea applies for animations.
 		// So, erase all existing animations which are overridden by this variant:
 		for (std::vector<CObjectBase::Anim>::iterator it = var.m_Anims.begin(); it != var.m_Anims.end(); ++it)
 			variation.anims.erase(it->m_AnimName);
@@ -381,7 +385,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 {
 	std::set<CStr> selections = initialSelections;
 
-	std::map<CStr, CStr> chosenProps;
+	std::multimap<CStr, CStr> chosenProps;
 
 	// Calculate a complete list of selections, so there is at least one
 	// (and in most cases only one) per group.
@@ -463,20 +467,23 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 			}
 		}
 
-		// Remember which props were chosen. (Later-defined props override
-		// earlier props at the same prop point.)
+		// Remember which props were chosen, so we can call CalculateRandomVariation on them
+		// at the end.
 		CObjectBase::Variant& var ((*grp)[match]);
 		for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 		{
-			if (! it->m_ModelName.empty())
-				chosenProps[it->m_PropPointName] = it->m_ModelName;
-			else
+			// Erase all existing props which are overridden by this variant:
+			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				chosenProps.erase(it->m_PropPointName);
+			// and then insert the new ones:
+			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
+				if (! it->m_ModelName.empty())
+					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName));
 		}
 	}
 
 	// Load each prop, and add their required selections to ours:
-	for (std::map<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+	for (std::multimap<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
 		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
 		if (prop)

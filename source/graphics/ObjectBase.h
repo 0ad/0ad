@@ -56,7 +56,7 @@ public:
 		CStr texture;
 		CStr model;
 		CStr color;
-		std::map<CStr, CObjectBase::Prop> props;
+		std::multimap<CStr, CObjectBase::Prop> props;
 		std::multimap<CStr, CObjectBase::Anim> anims;
 	};
 
