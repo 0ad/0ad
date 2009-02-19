@@ -6,7 +6,7 @@ use warnings;
 use constant EXIT_BUILDCOMPLETE => 0;
 use constant EXIT_FAILED => 1;
 
-my %config = load_conf("c:\\0ad\\autobuild\\aws.conf");
+my %config = (load_conf("c:\\0ad\\autobuild\\aws.conf"), load_conf("d:\\0ad\\autobuild\\run.conf"));
 
 my $svn_trunk = "e:\\svn";
 my $temp_trunk = "d:\\0ad";
