@@ -20,7 +20,6 @@ public:
 	// Sets up emitter to the default particle effect.
 	virtual bool Setup();
 
-	virtual bool Update();
 };
 
 #endif

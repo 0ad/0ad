@@ -10,6 +10,7 @@
 #define INCLUDED_PARTICLEEMITTER
 
 #include "maths/Vector3D.h"
+#include "ps/CStr.h"
 
 class CTexture;
 
@@ -53,55 +54,59 @@ public:
 	//};	
 
 protected:
-	CTexture* texture;						// Texture ID
+
+	CStrW m_tag;
+	int m_maxParticles;					// Maximum particles emitter can put out
+	int	m_particleCount;				// Total emitted right now
+	int	m_emitsPerFrame, m_emitsVar;	// Emits per frame and variation
+	int m_emitterLife;					// Life of the emitter
+
 	bool isFinished;					// tells the engine it's ready to be deleted
 
 	// Transformation Info
-	CVector3D pos;						// XYZ Position
-	CVector3D finalPos;					// Final position of the particles (IF IMPLOSION)
-	float yaw, yawVar;					// Yaw and variation
-	float pitch, pitchVar;				// Pitch and variation
-	float speed, speedVar;				// Speed and variation
-	float updateSpeed;					// Controls how fast emitter is updated.
-	float size;							// size of the particles (if point sprites is not enabled)
+	CVector3D m_pos;					// XYZ Position of emitter
+	float m_yaw, m_yawVar;				// Yaw of emitted particles
+	float m_pitch, m_pitchVar;			// Pitch of emitted particles
+	float m_speed, m_speedVar;			// Speed of emitted particles
+	
+	// Particle linked lists
+	tParticle* m_heap;					// Pointer to beginning of array
+	tParticle* m_openList;				// linked list of unused particles
+	tParticle* m_usedList;				// linked list of used particles	
 
-	// Particle
-	tParticle* heap;					// Pointer to beginning of array
-
-	tParticle* openList;				// linked list of unused particles
-	tParticle* usedList;				// linked list of used particles	
-
-	int blend_mode;						// Method used to blend particles.
-	int max_particles;					// Maximum particles emitter can put out
-	int	particleCount;					// Total emitted right now
-	int	emitsPerFrame, emitVar;			// Emits per frame and variation
-	int	life, lifeVar;					// Life count and variation (in Frames)
-	int emitterLife;					// Life of the emitter
-	bool decrementLife;					// Controls whether or not the particles life is decremented every update.
-	bool decrementAlpha;				// Controls whether or not the particles alpha is decremented every update.
-	bool RenderParticles;				// Controls the rendering of the particles.
-	tColor startColor, startColorVar;	// Current color of particle
-	tColor endColor, endColorVar;		// Current color of particle
-
+	//Particle appearence
+	CTexture* m_texture;				// Texture
+	float m_size;						// size of the particles (if point sprites is not enabled)
+	tColor m_startColor, m_startColorVar;	// Current color of particle
+	tColor m_endColor, m_endColorVar;		// End color of particle
+	int m_blendMode;					// Method used to blend particles
+	int m_alpha, m_alphaVar;			// Alpha value for particles
+	int	m_life, m_lifeVar;				// Life count and variation (in Frames)
+	bool m_decrementLife;					// Controls whether or not the particles life is decremented every update.
+	bool m_decrementAlpha;				// Controls whether or not the particles alpha is decremented every update.
+	bool m_renderParticles;				// Controls the rendering of the particles.
+	
 	// Physics
-	CVector3D force;						// Forces that affect the particles
+	CVector3D m_force;						// Forces that affect the particles
 
 public:
 	CEmitter(const int MAX_PARTICLES = 4000, const int lifetime = -1, int textureID = 0);
 	virtual ~CEmitter(void);
 
-
-	// note: functions are virtual and overridable so as to suit the
+	// note: methods are virtual and overridable so as to suit the
 	// specific particle needs.
+
+	virtual bool LoadFromXML(const CStr& filename );
 
 	virtual bool Setup() { return false; }
 
 	virtual bool AddParticle();
 
-	virtual bool Update() { return false; }
+	virtual bool Update();
 
 	virtual bool Render();
 
+	// Helper functions
 	inline float RandomNum()
 	{
 		int rn;
@@ -126,37 +131,34 @@ public:
 	// Accessors
 	//
 	///////////////////////////////////////////////////////////////////
-	float GetPosX() { return pos.X; }
-	float GetPosY() { return pos.Y; }
-	float GetPosZ() { return pos.Z; }
-	CVector3D GetPosVec() { return pos; }
-	float GetFinalPosX() { return finalPos.X; }
-	float GetFinalPosY() { return finalPos.Y; }
-	float GetFinalPosZ() { return finalPos.Z; }
+	CStrW GetTag() { return m_tag; }
+	float GetPosX() { return m_pos.X; }
+	float GetPosY() { return m_pos.Y; }
+	float GetPosZ() { return m_pos.Z; }
+	CVector3D GetPosVec() { return m_pos; }
 	bool IsFinished(void) { return isFinished; }
-	int GetEmitterLife() { return emitterLife; }
-	int GetParticleCount() { return particleCount; }
-	float GetUpdateSpeed() { return updateSpeed; }
-	int GetMaxParticles(void) { return max_particles; }
-	tColor GetStartColor(void) { return startColor; }
-	tColor GetStartColorVar(void) { return startColorVar; }
-	tColor GetEndColor(void) { return endColor; }
-	tColor GetEndColorVar(void) { return endColorVar; }
-	int GetBlendMode(void) { return blend_mode; }
-	float GetSize(void) { return size; }
-	float GetYaw(void) { return yaw; }
-	float GetYawVar(void) { return yawVar; }
-	float GetPitch(void) { return pitch; }
-	float GetPitchVar(void) { return pitchVar; }
-	float GetSpeed(void) { return speed; }
-	float GetSpeedVar(void) { return speedVar; }
-	int GetEmitsPerFrame(void) { return emitsPerFrame; }
-	int GetEmitVar(void) { return emitVar; }
-	int GetLife(void) { return life; }
-	int GetLifeVar(void) { return lifeVar; }
-	float GetForceX(void) { return force.X; }
-	float GetForceY(void) { return force.Y; }
-	float GetForceZ(void) { return force.Z; }
+	int GetEmitterLife() { return m_emitterLife; }
+	int GetParticleCount() { return m_particleCount; }
+	int GetMaxParticles(void) { return m_maxParticles; }
+	tColor GetStartColor(void) { return m_startColor; }
+	tColor GetStartColorVar(void) { return m_startColorVar; }
+	tColor GetEndColor(void) { return m_endColor; }
+	tColor GetEndColorVar(void) { return m_endColorVar; }
+	int GetBlendMode(void) { return m_blendMode; }
+	float GetSize(void) { return m_size; }
+	float GetYaw(void) { return m_yaw; }
+	float GetYawVar(void) { return m_yawVar; }
+	float GetPitch(void) { return m_pitch; }
+	float GetPitchVar(void) { return m_pitchVar; }
+	float GetSpeed(void) { return m_speed; }
+	float GetSpeedVar(void) { return m_speedVar; }
+	int GetEmitsPerFrame(void) { return m_emitsPerFrame; }
+	int GetEmitVar(void) { return m_emitsVar; }
+	int GetLife(void) { return m_life; }
+	int GetLifeVar(void) { return m_lifeVar; }
+	float GetForceX(void) { return m_force.X; }
+	float GetForceY(void) { return m_force.Y; }
+	float GetForceZ(void) { return m_force.Z; }
 
 
 	///////////////////////////////////////////////////////////////////
@@ -164,58 +166,55 @@ public:
 	// Mutators	
 	//
 	///////////////////////////////////////////////////////////////////
-	void SetPosX(float posX) { pos.X = posX; }
-	void SetPosY(float posY) { pos.Y = posY; }
-	void SetPosZ(float posZ) { pos.Z = posZ; }
+	void SetTag(CStrW tag) { m_tag = tag; }
+	void SetPosX(float posX) { m_pos.X = posX; }
+	void SetPosY(float posY) { m_pos.Y = posY; }
+	void SetPosZ(float posZ) { m_pos.Z = posZ; }
 	inline void SetPosVec(const CVector3D& newPos)
 	{
-		pos = newPos;
+		m_pos = newPos;
 	}
-	void SetFinalPosX(float finalposX) { finalPos.X = finalposX; }
-	void SetFinalPosY(float finalposY) { finalPos.Y = finalposY; }
-	void SetFinalPosZ(float finalposZ) { finalPos.Z = finalposZ; }
-	void SetTexture(CTexture* id) { texture = id; }
+	void SetTexture(CTexture* id) { m_texture = id; }
 	void SetIsFinished(bool finished) { isFinished = finished; }
-	void SetEmitterLife(int life) { emitterLife = life; }
-	void SetUpdateSpeed(float speed) { updateSpeed = speed; }
-	void SetLife(int newlife) { life = newlife; }
-	void SetLifeVar(int newlifevar) { lifeVar = newlifevar; }
-	void SetSpeed(float newspeed) { speed = newspeed; }
-	void SetSpeedVar(float newspeedvar) { speedVar = newspeedvar; }
-	void SetYaw(float newyaw) { yaw = newyaw; }
-	void SetYawVar(float newyawvar) { yawVar = newyawvar; }
-	void SetPitch(float newpitch) { pitch = newpitch; }
-	void SetPitchVar(float newpitchvar) { pitchVar = newpitchvar; }
-	void SetStartColor(tColor newColor) { startColor = newColor; }
-	void SetStartColorVar(tColor newColorVar) { startColorVar = newColorVar; }
-	void SetEndColor(tColor newColor) { endColor = newColor; }
-	void SetEndColorVar(tColor newColorVar) { endColorVar = newColorVar; }
-	void SetStartColorR(int newColorR) { startColor.r = newColorR; }
-	void SetStartColorG(int newColorG) { startColor.g = newColorG; }
-	void SetStartColorB(int newColorB) { startColor.b = newColorB; }
-	void SetStartColorVarR(int newColorVarR) { startColorVar.r = newColorVarR; }
-	void SetStartColorVarG(int newColorVarG) { startColorVar.g = newColorVarG; }
-	void SetStartColorVarB(int newColorVarB) { startColorVar.b = newColorVarB; }
-	void SetEndColorR(int newColorR) { endColor.r = newColorR; }
-	void SetEndColorG(int newColorG) { endColor.g = newColorG; }
-	void SetEndColorB(int newColorB) { endColor.b = newColorB; }
-	void SetEndColorVarR(int newColorVarR) { endColorVar.r = newColorVarR; }
-	void SetEndColorVarG(int newColorVarG) { endColorVar.g = newColorVarG; }
-	void SetEndColorVarB(int newColorVarB) { endColorVar.b = newColorVarB; }
+	void SetEmitterLife(int life) { m_emitterLife = life; }
+	void SetLife(int newlife) { m_life = newlife; }
+	void SetLifeVar(int newlifevar) { m_lifeVar = newlifevar; }
+	void SetSpeed(float newspeed) { m_speed = newspeed; }
+	void SetSpeedVar(float newspeedvar) { m_speedVar = newspeedvar; }
+	void SetYaw(float newyaw) { m_yaw = newyaw; }
+	void SetYawVar(float newyawvar) { m_yawVar = newyawvar; }
+	void SetPitch(float newpitch) { m_pitch = newpitch; }
+	void SetPitchVar(float newpitchvar) { m_pitchVar = newpitchvar; }
+	void SetStartColor(tColor newColor) { m_startColor = newColor; }
+	void SetStartColorVar(tColor newColorVar) { m_startColorVar = newColorVar; }
+	void SetEndColor(tColor newColor) { m_endColor = newColor; }
+	void SetEndColorVar(tColor newColorVar) { m_endColorVar = newColorVar; }
+	void SetStartColorR(int newColorR) { m_startColor.r = newColorR; }
+	void SetStartColorG(int newColorG) { m_startColor.g = newColorG; }
+	void SetStartColorB(int newColorB) { m_startColor.b = newColorB; }
+	void SetStartColorVarR(int newColorVarR) { m_startColorVar.r = newColorVarR; }
+	void SetStartColorVarG(int newColorVarG) { m_startColorVar.g = newColorVarG; }
+	void SetStartColorVarB(int newColorVarB) { m_startColorVar.b = newColorVarB; }
+	void SetEndColorR(int newColorR) { m_endColor.r = newColorR; }
+	void SetEndColorG(int newColorG) { m_endColor.g = newColorG; }
+	void SetEndColorB(int newColorB) { m_endColor.b = newColorB; }
+	void SetEndColorVarR(int newColorVarR) { m_endColorVar.r = newColorVarR; }
+	void SetEndColorVarG(int newColorVarG) { m_endColorVar.g = newColorVarG; }
+	void SetEndColorVarB(int newColorVarB) { m_endColorVar.b = newColorVarB; }
 	inline void SetBlendMode(int blendmode)
 	{
 		if(blendmode >= 1 && blendmode <= 4)
-			blend_mode = blendmode;
+			m_blendMode = blendmode;
 		else
-			blend_mode = 1;
+			m_blendMode = 1;
 	}
-	void SetEmitsPerFrame(int emitsperframe) { emitsPerFrame = emitsperframe; }
-	void SetEmitVar(int emitvar) { emitVar = emitvar; }
-	void SetForceX(float forceX) { force.X = forceX; }
-	void SetForceY(float forceY) { force.Y = forceY; }
-	void SetForceZ(float forceZ) { force.Z = forceZ; }
-	void SetSize(float newSize) { size = newSize; }
-	void SetRenderParticles(bool render) { RenderParticles = render; }
+	void SetEmitsPerFrame(int emitsperframe) { m_emitsPerFrame = emitsperframe; }
+	void SetEmitVar(int emitvar) { m_emitsVar = emitvar; }
+	void SetForceX(float forceX) { m_force.X = forceX; }
+	void SetForceY(float forceY) { m_force.Y = forceY; }
+	void SetForceZ(float forceZ) { m_force.Z = forceZ; }
+	void SetSize(float newSize) { m_size = newSize; }
+	void SetRenderParticles(bool render) { m_renderParticles = render; }
 };
 
 #endif
