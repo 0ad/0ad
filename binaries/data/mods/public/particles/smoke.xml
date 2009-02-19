@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Emitter Type="DefaultEmitter">
+
+	<Lifetime>-1</Lifetime>
+	
+	<Particles MaxNumber="100">
+    <EmitsPerFrame>
+      <Value>10</Value>
+      <Variation>0</Variation>
+    </EmitsPerFrame>
+		<Texture>art\textures\particles\sprite.tga</Texture>
+		<Size>1.0</Size>
+		<Color>
+			<Start>
+				<Value r="255" g="50" b="0" />
+				<Variation r="0" g="0" b="0" />
+			</Start>
+			<End>
+				<Value r="255" g="255" b="255" />
+				<Variation r="0" g="0" b="0" />
+			</End>
+		</Color>
+		<Alpha BlendMode="1" Decrement="True">
+			<Value>255</Value>
+			<Variation>0</Variation>
+		</Alpha>
+		<Direction>
+			<Yaw>
+				<Value>0</Value>
+				<Variation>360</Variation>
+			</Yaw>
+			<Pitch>
+				<Value>90</Value>
+				<Variation>45</Variation>
+			</Pitch>
+			<Speed>
+				<Value>0.05</Value>
+				<Variation>0.001</Variation>
+			</Speed>
+		</Direction>
+		<Life Decrement="True">
+			<Value>90</Value>
+			<Variation>65</Variation>
+		</Life>
+    <Force>
+      <X>0.0</X>
+      <Y>0.001</Y>
+      <Z>0.0</Z>
+    </Force>
+	</Particles>
+
+</Emitter>
