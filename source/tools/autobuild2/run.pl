@@ -1,6 +1,6 @@
 =pod
 
-This script is executed on startup (via a service) on the build server.
+This script does the EC2-specific stuff
 
 It is responsible for:
  * attaching the necessary disks,
@@ -9,8 +9,7 @@ It is responsible for:
  * cleaning up at the end,
  * and saving the logs of everything that's going on.
 
-This script does as little as possible, since it is necessarily frozen
-into the static machine image and is hard to update.
+i.e. everything except actually building.
 
 =cut
 
@@ -22,7 +21,7 @@ use Amazon::S3;
 use LWP::Simple();
 use DateTime;
 
-my %config = load_conf("c:\\0ad\\autobuild\\aws.conf");
+my %config = (load_conf("c:\\0ad\\autobuild\\aws.conf"), load_conf("d:\\0ad\\autobuild\\run.conf"));
 my $timestamp = DateTime->now->iso8601;
 
 my $s3 = new Amazon::S3( {
@@ -57,10 +56,7 @@ $SIG{__DIE__} = sub {
     die @_;
 };
 
-$ec2 = new Net::Amazon::EC2(
-    AWSAccessKeyId => $config{aws_access_key_id},
-    SecretAccessKey => $config{aws_secret_access_key},
-);
+connect_to_ec2();
 
 my $instance_id = get_instance_id();
 write_log("Running on instance $instance_id");
@@ -73,6 +69,8 @@ update_svn();
 run_build_script();
 
 save_buildlogs();
+
+connect_to_ec2(); # in case it timed out while building
 
 detach_disk();
 
@@ -102,6 +100,15 @@ sub save_buildlogs {
         my $data = do { local $/; <$f> };
         write_log("$fn:\n================================\n$data\n================================\n");
     }
+}
+
+sub connect_to_ec2 {
+    # This might need to be called more than once, if you wait
+    # so long that the original connection times out
+    $ec2 = new Net::Amazon::EC2(
+        AWSAccessKeyId => $config{aws_access_key_id},
+        SecretAccessKey => $config{aws_secret_access_key},
+    );
 }
 
 sub attach_disk {
@@ -167,11 +174,18 @@ sub terminate_instance {
     sleep 60*5;
     write_log("Really terminating now");
     flush_log();
-    my $statuses = $ec2->terminate_instances(
-        InstanceId => $instance_id,
-    );
-    write_log("Terminated");
-    flush_log();
+
+    connect_to_ec2(); # in case it timed out while sleeping
+
+    while (1) {
+        my $statuses = $ec2->terminate_instances(
+            InstanceId => $instance_id,
+        );
+        use Data::Dumper;
+        write_log("Termination status $statuses -- ".(Dumper $statuses));
+        flush_log();
+        sleep 15;
+    }
 }
 
 sub get_instance_id {
