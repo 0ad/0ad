@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_mechanical_ship"
->
+<Entity	Parent="template_unit_mechanical_ship">
 	<Traits>
-	
 		<Id>
-		
 			<Generic>Quinquereme</Generic>
-
 			<Icon_Cell>41</Icon_Cell>
-		
 		</Id>
 		<Creation>
 			<Resource>
@@ -19,13 +13,12 @@
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>750.0</Hack>
-			<Pierce>600.0</Pierce>
-			<Crush>450.0</Crush>
+			<Hack>25.0</Hack>
+			<Pierce>25.0</Pierce>
+			<Crush>15.0</Crush>
 		</Armour>
+		<Vision>
+			<Los>14</Los>
+		</Vision>
 	</Traits>
-
-
-
-
 </Entity>

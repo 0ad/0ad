@@ -1,38 +1,29 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_unit_mechanical"
->
+<Entity	Parent="template_unit_mechanical">
 	<Traits>
-	
 		<Id>
-		
 			<Generic>Ship</Generic>
-
 			<Classes>Ship, WarShip</Classes>
-		
 		</Id>
-
 		<Anchor>
 			<Type>Water</Type>
 		</Anchor>
-
  		<Footprint>
 			<Width>6.0</Width>
  			<Depth>30.0</Depth>
  			<Height>8.0</Height>
  		</Footprint>
-
 		<Health>
 			<BarHeight>12.0</BarHeight>
 		</Health>
-		
 		<Stamina>
 			<BarHeight>12.3</BarHeight>
 		</Stamina>
-
+		<Vision>
+			<Los>10</Los>
+		</Vision>
 	</Traits>
-	
 	<Actions>
 		<Attack>
 			<Charge>
