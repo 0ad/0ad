@@ -55,6 +55,15 @@ for (qw(build source libraries))
 #     die "junction $_: $?" if $?;
 # }
 
+# Store the SVN revision identifier in a file, so it can be embedded into the .exe
+{
+    my $rev = `svnversion -n $svn_trunk`;
+    die "svnversion: $?" if $?;
+    add_to_buildlog("SVN revision $rev");
+    open my $f, '>', "$temp_trunk\\build\\svn_revision\\svn_revision.txt" or die $!;
+    print $f qq{L"$rev"\n};
+}
+
 # Create the workspace files
 
 add_to_buildlog("Running update-workspaces");
