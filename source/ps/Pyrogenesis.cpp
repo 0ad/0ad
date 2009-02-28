@@ -6,6 +6,7 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/file/path.h"
 #include "lib/path_util.h"
+#include "lib/svn_revision.h"
 
 DEFINE_ERROR(PS_OK, "OK");
 DEFINE_ERROR(PS_FAIL, "Fail");
@@ -73,6 +74,8 @@ static void AppendAsciiFile(FILE* out, const char* in_filename)
 // for user convenience, bundle all logs into this file:
 void psBundleLogs(FILE* f)
 {
+	fwprintf(f, L"SVN Revision: %s\n\n", svn_revision);
+
 	fwprintf(f, L"System info:\n\n");
 	Path path1("../logs/system_info.txt");
 	AppendAsciiFile(f, path1.external_file_string().c_str());

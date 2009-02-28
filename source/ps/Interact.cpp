@@ -1410,9 +1410,11 @@ void CBuildingPlacer::MouseReleased()
 {
 	Deactivate();	// do it first in case we fail for any reason
 
+	m_clicked = false;
+
 	if( m_valid )
 	{
-		// issue a place object command accross the network
+		// issue a place object command across the network
 		CPlaceObjectMessage *msg = new CPlaceObjectMessage();
 		msg->m_IsQueued = hotkeys[HOTKEY_ORDER_QUEUE];
 		msg->m_Entities = g_Selection.m_selected;
@@ -1455,16 +1457,15 @@ void CBuildingPlacer::Update( float timeStep )
 		CVector3D mousePos = camera.GetWorldCoordinates();
 		CVector3D dif = mousePos - clickPos;
 		float x = dif.X, z = dif.Z;
-		if(x*x + z*z < 3*3) {
+		if(x*x + z*z < 3*3)
+		{
 			if(m_dragged || m_timeSinceClick > 0.2f)
-			{
 				m_angle += timeStep * PI;
-			}
 		}
 		else
 		{
 			m_dragged = true;
-			m_angle = atan2(x, z) + angleBias;
+			m_angle = atan2(x, z);
 		}
 	}
 
@@ -1488,14 +1489,13 @@ void CBuildingPlacer::Update( float timeStep )
 		if( ent && ent->m_classes.IsMember( m_template->m_socket ) )	// if it's a socket, snap to it
 		{
 			onSocket = true;
-			m_angle = atan2f( ent->m_ahead.x, ent->m_ahead.y ) + angleBias;
+			m_angle = atan2f( ent->m_ahead.x, ent->m_ahead.y );
 			pos = ent->m_position;
 			clickPos = ent->m_position;
 		}
 	}
 
 	// Set position and angle to the location we decided on
-
 	CMatrix3D m;
 	m.SetYRotation(m_angle + PI);
 	m.Translate(pos);

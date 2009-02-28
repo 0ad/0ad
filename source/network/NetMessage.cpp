@@ -74,7 +74,7 @@ u8* CNetMessage::Serialize( u8* pBuffer ) const
 
 //-----------------------------------------------------------------------------
 // Name: Deserialize()
-// Desc: Loads this message from the specifie buffer parameter
+// Desc: Loads this message from the specified buffer parameter
 //-----------------------------------------------------------------------------
 const u8* CNetMessage::Deserialize( const u8* pStart, const u8* pEnd )
 {
