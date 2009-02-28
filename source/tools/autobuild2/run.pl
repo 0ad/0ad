@@ -181,9 +181,9 @@ sub terminate_instance {
         my $statuses = $ec2->terminate_instances(
             InstanceId => $instance_id,
         );
-        use Data::Dumper;
-        write_log("Termination status $statuses -- ".(Dumper $statuses));
-        flush_log();
+#         use Data::Dumper;
+#         write_log("Termination status $statuses -- ".(Dumper $statuses));
+#         flush_log();
         sleep 15;
     }
 }
