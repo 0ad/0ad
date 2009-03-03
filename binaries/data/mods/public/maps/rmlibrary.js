@@ -60,7 +60,7 @@ function sin(x) {
 }
 
 function tan(x) {
-	return Math.sin(x);
+	return Math.tan(x);
 }
 
 function abs(x) {
