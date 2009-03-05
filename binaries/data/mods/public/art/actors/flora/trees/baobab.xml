@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="2" name="baobab-a">
+      <mesh>gaia/tree_baobab_trunk_a.dae</mesh>
+      <props>
+        <prop actor="flora/trees/baobab_top.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="baobab-b">
+      <mesh>gaia/tree_baobab_trunk_b.dae</mesh>
+      <props>
+        <prop actor="flora/trees/baobab_top_b.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="baobab-c">
+      <mesh>gaia/tree_baobab_trunk_c.dae</mesh>
+      <props>
+        <prop actor="flora/trees/baobab_top_c.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="baobab-c-dead">
+      <mesh>gaia/tree_baobab_trunk_c.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant>
+      <texture>gaia/trunk_baobab.dds</texture>
+    </variant>
+  </group>
+
+</actor>

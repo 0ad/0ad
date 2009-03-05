@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2009-03-04T23:07:41Z</created>
+    <modified>2009-03-04T23:07:41Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__402-image" name="Map__402">
+      <init_from>file://C:\Documents and Settings\Brad\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\gaia\decal_stone_medit.dds</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="_12___Default" name="_12___Default">
+      <instance_effect url="#_12___Default-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_12___Default-fx" name="_12___Default">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__402-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="decal-lib" name="decalMesh">
+      <mesh>
+        <source id="decal-lib-Position">
+          <float_array id="decal-lib-Position-array" count="12">
+-4.626709 -21.854248 7.929717
+4.626709 -21.854248 7.929717
+4.626709 -12.600830 7.929717
+-4.626709 -12.600830 7.929717
+</float_array>
+          <technique_common>
+            <accessor source="#decal-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="decal-lib-Normal0">
+          <float_array id="decal-lib-Normal0-array" count="18">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#decal-lib-Normal0-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="decal-lib-UV0">
+          <float_array id="decal-lib-UV0-array" count="8">
+0.000000 0.000000
+1.000000 0.000000
+1.000000 1.000000
+0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#decal-lib-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="decal-lib-Vertex">
+          <input semantic="POSITION" source="#decal-lib-Position"/>
+        </vertices>
+        <polygons material="_12___Default" count="2">
+          <input semantic="VERTEX" offset="0" source="#decal-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#decal-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#decal-lib-UV0"/>
+          <p>0 0 0 1 1 1 2 2 2</p>
+          <p>2 3 2 3 4 3 0 5 0</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="decal" name="decal">
+        <translate sid="translate">0.094554 0.148529 0.082764</translate>
+        <scale sid="scale">1.241875 1.241875 1.241875</scale>
+        <node id="decal-Pivot" name="decal-Pivot">
+          <translate>-0.029785 17.126953 -7.967529</translate>
+          <rotate>0.000000 0.000000 0.000000 0.000000</rotate>
+          <instance_geometry url="#decal-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Map__402-Material" target="#Map__402-Material"/>
+                <instance_material symbol="_12___Default" target="#_12___Default"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

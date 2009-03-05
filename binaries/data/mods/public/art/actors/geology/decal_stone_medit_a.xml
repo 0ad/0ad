@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <group>
+    <variant name="decal_stone_medit_a">
+      <mesh>props/decal_stone_medit_a.dae</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="decal_01">
+      <texture>gaia/decal_stone_medit_01.dds</texture>
+    </variant>
+    <variant frequency="1" name="decal_02">
+      <texture>gaia/decal_stone_medit_02.dds</texture>
+    </variant>
+  </group>
+
+  <material>basic_trans.xml</material>
+
+</actor>
