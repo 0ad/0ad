@@ -26,7 +26,7 @@
       </animations>
       <props>
         <prop actor="props/units/shields/hele_round_e.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>
@@ -73,7 +73,7 @@
     <variant frequency="1" name="Idle"/>
     <variant name="Melee">
       <props>
-        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="gather_wood">

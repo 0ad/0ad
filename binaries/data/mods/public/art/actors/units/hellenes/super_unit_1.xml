@@ -20,7 +20,7 @@
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_hele_h.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
         <prop actor="props/units/cape_m_long.xml" attachpoint="shoulders"/>
       </props>
       <texture>skeletal/hele_spartitiate_a.dds</texture>
@@ -46,17 +46,17 @@
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
       <props>
-        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="Walk">
       <props>
-        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="Run">
       <props>
-        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
       </props>
     </variant>
   </group>

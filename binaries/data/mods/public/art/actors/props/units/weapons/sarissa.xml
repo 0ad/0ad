@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant name="Base">
+      <texture>props/prop_weap.dds</texture>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="sarissa_a">
+      <mesh>props/sarissa_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="sarissa_b">
+      <mesh>props/sarissa_b.dae</mesh>
+    </variant>
+  </group>
+
+</actor>
