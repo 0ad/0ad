@@ -13,25 +13,22 @@
   </group>
 
   <group>
-    <variant frequency="1" name="shield-mora-a">
+    <variant frequency="1" name="shield-mora-geronthrae">
       <texture>props/shield/hele_spartan_a.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-mora-b">
-      <texture>props/shield/hele_spartan_b.dds</texture>
-    </variant>
-    <variant frequency="1" name="shield-mora-c">
+    <variant frequency="1" name="shield-mora-elos">
       <texture>props/shield/hele_spartan_c.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-mora-d">
+    <variant frequency="1" name="shield-mora-steniklaros">
       <texture>props/shield/hele_spartan_d.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-mora-e">
+    <variant frequency="1" name="shield-mora-amyklae">
       <texture>props/shield/hele_spartan_e.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-mora-g">
+    <variant frequency="1" name="shield-mora-pylos">
       <texture>props/shield/hele_spartan_g.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-mora-h">
+    <variant frequency="1" name="shield-mora-limnatos/limnatis">
       <texture>props/shield/hele_spartan_h.dds</texture>
     </variant>
     <variant frequency="1" name="shield-mora-skiritai">
@@ -40,11 +37,8 @@
     <variant frequency="1" name="shield-mora-gorgon">
       <texture>props/shield/hele_spartan_f.dds</texture>
     </variant>
-    <variant frequency="1" name="shield-dokana">
-      <texture>props/shield/hele_spartan_dokana.dds</texture>
-    </variant>
   </group>
 
-  <material>basic_trans.xml</material>
+  <material>player_trans.xml</material>
 
 </actor>

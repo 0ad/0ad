@@ -4,7 +4,7 @@
   <castshadow/>
 
   <group>
-    <variant frequency="6" name="helmet-spartan-homoios-1">
+    <variant frequency="8" name="helmet-spartan-homoios-1">
       <mesh>props/helmet/hele_helmet_o.pmd</mesh>
       <texture>props/helmet/hele_d1.dds</texture>
     </variant>
@@ -12,13 +12,21 @@
       <mesh>props/helmet/hele_helmet_n.pmd</mesh>
       <texture>props/helmet/hele_leonidas.dds</texture>
     </variant>
-    <variant frequency="1" name="helmet-spartan-officer">
+    <variant frequency="2" name="helmet-spartan-homoios-3">
+      <mesh>props/helmet/hele_helmet_o.pmd</mesh>
+      <texture>props/helmet/hele_su1.dds</texture>
+    </variant>
+    <variant frequency="2" name="helmet-spartan-officer">
       <mesh>props/helmet/hele_highcrest_spartan.dae</mesh>
       <texture>props/helmet/hele_d2.dds</texture>
     </variant>
-    <variant frequency="1" name="helmet-spartan-commander">
+    <variant frequency="1" name="helmet-spartan-commander-1">
       <mesh>props/helmet/hele_helmet_v.dae</mesh>
-      <texture>props/helmet/hele_leonidas.dds</texture>
+      <texture>props/helmet/hele_su1.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-spartan-commander-2">
+      <mesh>props/helmet/hele_helmet_v.dae</mesh>
+      <texture>props/helmet/hele_d2.dds</texture>
     </variant>
   </group>
 
