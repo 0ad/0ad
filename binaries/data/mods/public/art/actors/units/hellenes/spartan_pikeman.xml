@@ -6,7 +6,7 @@
   <group>
     <variant frequency="1" name="Base">
       <animations>
-        <animation file="biped/not used/inf_phalanx_a.psa" name="Idle" speed="100"/>
+        <animation file="biped/not used/inf_phalanx_b.psa" name="Idle" speed="100"/>
         <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="17"/>
         <animation file="biped/inf_phalanx_walk_a.psa" name="run" speed="18"/>
         <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="melee" speed="500"/>
@@ -15,32 +15,22 @@
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/shields/mace_round_su3.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/hele_round_spartiate_pike.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/spartan_phalangite_helmet.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
 
   <group>
     <variant frequency="5" name="Armour-Linen-Linothorax">
-      <props>
-        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-      </props>
       <texture>skeletal/hele_pezhetairoi_3.dds</texture>
     </variant>
     <variant frequency="5" name="Armour-Reinforced Linothorax">
-      <props>
-        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-      </props>
       <texture>skeletal/hele_pezhetairoi.dds</texture>
     </variant>
     <variant frequency="2" name="Armour-Bronze Cuirass">
-      <props>
-        <prop actor="props/units/heads/hele_mace_frontranker.xml" attachpoint="helmet"/>
-        <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-      </props>
       <texture>skeletal/hele_pezhetairoi_2.dds</texture>
     </variant>
   </group>

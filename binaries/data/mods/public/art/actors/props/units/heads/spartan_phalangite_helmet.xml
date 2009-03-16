@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="helmet-thracian-hellenistic-crest">
+      <mesh>props/helmet/mace_helmet_hellenistic_a.dae</mesh>
+      <texture>props/helmet/mace_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="helmet-pilos-simple">
+      <mesh>props/helmet/mace_helmet_hellenistic_pilos.dae</mesh>
+      <texture>props/helmet/hele_a3.dds</texture>
+    </variant>
+  </group>
+
+  <material>player_trans.xml</material>
+
+</actor>
