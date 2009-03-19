@@ -318,6 +318,9 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 	}
 
 #if WINVER >= 0x600
+	size_t largePageSize = os_cpu_LargePageSize();
+	debug_assert(largePageSize != 0); // this value is needed for later
+
 	// retrieve attributes of all pages constituting mem
 	const size_t numPages = (size + pageSize-1) / pageSize;
 	PSAPI_WORKING_SET_EX_INFORMATION* wsi = new PSAPI_WORKING_SET_EX_INFORMATION[numPages];
@@ -331,7 +334,7 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 		const PSAPI_WORKING_SET_EX_BLOCK& attributes = wsi[i].VirtualAttributes;
 		if(!attributes.Valid)
 			return false;
-		if(attributes.LargePage != (pageSize == GetLargePageMinimum()))
+		if((bool)attributes.LargePage != (pageSize == largePageSize))
 		{
 			debug_printf("NUMA: is not a large page\n");
 			return false;
