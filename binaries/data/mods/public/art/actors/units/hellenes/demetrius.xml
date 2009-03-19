@@ -6,11 +6,10 @@
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/inf_phalanx_c.psa" name="Idle" speed="200"/>
+        <animation file="biped/not used/inf_phalanx_b.psa" name="Idle" speed="100"/>
         <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="20"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
-        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="Attack" speed="150"/>
+        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="Attack" speed="120"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>

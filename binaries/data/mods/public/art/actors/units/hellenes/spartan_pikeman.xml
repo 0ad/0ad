@@ -9,7 +9,7 @@
         <animation file="biped/not used/inf_phalanx_b.psa" name="Idle" speed="100"/>
         <animation file="biped/inf_phalanx_walk_a.psa" name="Walk" speed="17"/>
         <animation file="biped/inf_phalanx_walk_a.psa" name="run" speed="18"/>
-        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="melee" speed="500"/>
+        <animation event="0.5" file="biped/inf_phalanx_atk_a.psa" name="melee" speed="350"/>
         <animation file="infantry/general/dude/dudedeath_sword.psa" name="death" speed="165"/>
         <animation file="infantry/general/death/inf_06.psa" name="death" speed="200"/>
       </animations>
@@ -32,6 +32,9 @@
     </variant>
     <variant frequency="2" name="Armour-Bronze Cuirass">
       <texture>skeletal/hele_pezhetairoi_2.dds</texture>
+    </variant>
+    <variant frequency="1" name="Armour-Officer">
+      <texture>skeletal/spart_phalangite_officer.dds</texture>
     </variant>
   </group>
 
