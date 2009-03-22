@@ -354,10 +354,21 @@ static const char* filterLinks(const char* name)
 		const char* lang = prj_get_language_for(i);
 		const char *kind = prj_get_config_for(i)->kind;
 		if (matches(kind, "cxxtestgen"))
+		{
 			return NULL;
+		}
 		else if (matches(lang, "c++") || matches(lang, "c"))
 		{
-			return prj_get_target_for(i);
+			if (matches(prj_get_kind_for(i), "dll"))
+			{
+				strcpy(g_buffer, "-l");
+				strcat(g_buffer, prj_get_targetname_for(i));
+				return g_buffer;
+			}
+			else
+			{
+				return prj_get_target_for(i);
+			}
 		}
 		else
 		{

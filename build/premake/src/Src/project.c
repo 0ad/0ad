@@ -378,6 +378,11 @@ const char* prj_get_kind()
 	return my_cfg->kind;
 }
 
+const char* prj_get_kind_for(int i)
+{
+	return project->packages[i]->kind;
+}
+
 int prj_is_kind(const char* kind)
 {
 	return matches(my_cfg->kind, kind);
