@@ -116,6 +116,20 @@ extern_lib_defs = {
 		win_names  = { "libpng13" },
 		unix_names = { "png" },
 	},
+	libxml2 = {
+		add_func = function()
+			if OS == "windows" then
+				tinsert(package.includepaths, libraries_dir.."libxml2/include")
+				tinsert(package.libpaths, libraries_dir.."libxml2/lib")
+				tinsert(package.config["Debug"  ].links, "libxml2")
+				tinsert(package.config["Testing"].links, "libxml2")
+				tinsert(package.config["Release"].links, "libxml2")
+		else
+				tinsert(package.includepaths, "/usr/include/libxml2")
+				tinsert(package.linkoptions, "-lxml2")
+			end
+		end,
+	},
 	openal = {
 		win_names  = { "openal32" },
 		unix_names = { "openal" },
