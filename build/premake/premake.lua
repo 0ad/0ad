@@ -601,6 +601,10 @@ function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_inc
 		package_setup_pch(nil, "precompiled.h", "precompiled.cpp");
 	end
 
+	if options["aoe3ed"] then
+		tinsert(package.defines, "USE_AOE3ED")
+	end
+
 	-- Platform Specifics
 	if OS == "windows" then
 
@@ -638,6 +642,7 @@ function setup_atlas_packages()
 		""
 	},{	-- include
 	},{	-- extern_libs
+		"libxml2",
 		"xerces",
 		"wxwidgets"
 	},{	-- extra_params
@@ -723,6 +728,7 @@ function setup_atlas_packages()
 		"boost",
 		"devil",
 		--"ffmpeg", -- disabled for now because it causes too many build difficulties
+		"libxml2",
 		"spidermonkey",
 		"wxwidgets",
 		"xerces",

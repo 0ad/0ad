@@ -263,7 +263,12 @@ bool AtlasWindow::SaveChanges(bool forceSaveAs)
 	AtObj file (ExportData());
 	// TODO: Make sure it succeeded. Back up .xml file in case it didn't.
 
-	AtlasObject::SaveToXML(file, GetCurrentFilename().GetFullPath());
+	std::string xml = AtlasObject::SaveToXML(file);
+	wxCHECK(!xml.empty(), false);
+
+	wxFile outfile (GetCurrentFilename().GetFullPath(), wxFile::write);
+	outfile.Write(xml.c_str(), xml.length());
+	outfile.Close();
 
 	sig_FileSaved();
 

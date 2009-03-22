@@ -8,6 +8,7 @@
 #define INCLUDED_ATLASOBJECT
 
 #include <wchar.h> // for wchar_t
+#include <string>
 
 //////////////////////////////////////////////////////////////////////////
 // Mostly-private bits:
@@ -142,8 +143,9 @@ namespace AtlasObject
 	// Returns AtObj() on failure - test with AtObj::defined()
 	AtObj LoadFromXML(const wchar_t* filename);
 
-	// Returns false on failure
-	bool SaveToXML(AtObj& obj, const wchar_t* filename);
+	// Returns UTF-8-encoded XML document string.
+	// Returns empty string on failure.
+	std::string SaveToXML(AtObj& obj);
 
 	AtObj TrimEmptyChildren(AtObj& obj);
 }

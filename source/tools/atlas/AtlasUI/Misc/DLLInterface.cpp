@@ -22,6 +22,12 @@
 #include "wx/debugrpt.h"
 #include "wx/file.h"
 
+#include <libxml/parser.h>
+
+#ifndef LIBXML_THREAD_ENABLED
+#error libxml2 must have threading support enabled
+#endif
+
 #ifdef __WXGTK__
 #include <X11/Xlib.h>
 #endif
@@ -85,6 +91,10 @@ ATLASDLLIMPEXP void Atlas_SetMessagePasser(MessagePasser* passer)
 
 ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 {
+	// Initialise libxml2
+	// (If we're executed from the game instead, it has the responsibility to initialise libxml2)
+	xmlInitParser();
+	
 	g_InitialWindowType = type;
 #ifdef __WXMSW__
 	wxEntry(g_Module);
@@ -99,7 +109,8 @@ ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 	}
 #endif
 	int argc = 1;
-	char *argv[] = {"atlas", NULL};
+	char atlas[] = "atlas";
+	char *argv[] = {atlas, NULL};
 	wxEntry(argc, argv);
 #endif
 }
@@ -161,9 +172,11 @@ public:
 #define MAYBE(t) if (g_InitialWindowType == _T(#t)) frame = new t(NULL); else
 		MAYBE(ActorEditor)
 		MAYBE(ActorViewer)
-		MAYBE(ArchiveViewer)
 		MAYBE(ColourTester)
+#ifdef USE_AOE3ED
+		MAYBE(ArchiveViewer)
 		MAYBE(FileConverter)
+#endif
 #undef MAYBE
 		// else
 		if (g_InitialWindowType == _T("ScenarioEditor"))
@@ -278,6 +291,7 @@ private:
 #else
 		// Figure out what goes for "default browser" on unix/linux/whatever
 		// open an xterm perhaps? :)
+		(void)dir;
 		return false;
 #endif
 	}

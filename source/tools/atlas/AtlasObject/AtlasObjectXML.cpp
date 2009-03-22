@@ -4,6 +4,7 @@
 #include <assert.h>
 
 #include <memory>
+#include <fstream>
 
 #ifdef _MSC_VER
 # ifndef NDEBUG
@@ -26,6 +27,8 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 #include <xercesc/sax/SAXParseException.hpp>
 #include <xercesc/sax/ErrorHandler.hpp>
+
+#include <libxml/parser.h>
 
 XERCES_CPP_NAMESPACE_USE
 
@@ -94,6 +97,45 @@ private:
 	}
 	
 	T* data;
+};
+
+// UTF conversion code adapted from http://www.unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
+static const unsigned char firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };
+class toXmlChar
+{
+public:
+	toXmlChar(const std::wstring& str)
+	{
+		for (size_t i = 0; i < str.length(); ++i)
+		{
+			unsigned short bytesToWrite;
+			wchar_t ch = str[i];
+
+			if (ch < 0x80) bytesToWrite = 1;
+			else if (ch < 0x800) bytesToWrite = 2;
+			else if (ch < 0x10000) bytesToWrite = 3;
+			else if (ch < 0x110000) bytesToWrite = 4;
+			else bytesToWrite = 3, ch = 0xFFFD; // replacement character
+
+			char buf[4];
+			char* target = &buf[bytesToWrite];
+			switch (bytesToWrite)
+			{
+			case 4: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+			case 3: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+			case 2: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
+			case 1: *--target = (ch | firstByteMark[bytesToWrite]);
+			}
+			data += std::string(buf, bytesToWrite);
+		}
+	}
+	operator const xmlChar*()
+	{
+		return (const xmlChar*)data.c_str();
+	}
+
+private:
+	std::string data;
 };
 
 // TODO: replace most of the asserts below (e.g. for when it fails to load
@@ -219,106 +261,64 @@ static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
 	return obj;
 }
 
-
 // Build a DOM node from a given AtNode
-static DOMAttr* BuildDOMAttr(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
+static void BuildDOMNode(xmlDocPtr doc, xmlNodePtr node, AtNode::Ptr p)
 {
-	assert(p); // attributes must contain some data
-	assert(p->children.size() == 0); // attributes mustn't contain nested data
-
-	if (!p || p->children.size() != 0)
-	{
-		// Oops - invalid data
-		return NULL;
-	}
-
-	DOMAttr* attr = doc->createAttribute(name);
-
-	attr->setValue(StrConv<XMLCh>(p->value).c_str());
-
-	return attr;
-}
-
-// Build a DOM node from a given AtNode
-static DOMNode* BuildDOMNode(DOMDocument* doc, const XMLCh* name, AtNode::Ptr p)
-{
-	DOMElement* node = doc->createElement(name);
-
 	if (p)
 	{
 		if (p->value.length())
-			node->setTextContent(StrConv<XMLCh>(p->value).c_str());
+			xmlNodeAddContent(node, toXmlChar(p->value));
 
-		XMLCh tempStr[256]; // urgh, nasty fixed-size buffer
 		for (AtNode::child_maptype::const_iterator it = p->children.begin(); it != p->children.end(); ++it)
 		{
 			// Test for attribute nodes (whose names start with @)
 			if (it->first.length() && it->first[0] == '@')
 			{
-				XMLString::transcode(it->first.c_str()+1, tempStr, 255);
-				node->setAttributeNode(BuildDOMAttr(doc, tempStr, it->second));
+				assert(it->second);
+				assert(it->second->children.empty());
+				xmlNewProp(node, (const xmlChar*)it->first.c_str()+1, toXmlChar(it->second->value));
 			}
 			else
 			{
-				XMLString::transcode(it->first.c_str(), tempStr, 255);
-				node->appendChild(BuildDOMNode(doc, tempStr, it->second));
+				if (node == NULL) // first node in the document - needs to be made the root node
+				{
+					xmlNodePtr root = xmlNewNode(NULL, (const xmlChar*)it->first.c_str());
+					xmlDocSetRootElement(doc, root);
+					BuildDOMNode(doc, root, it->second);
+				}
+				else
+				{
+					xmlNodePtr child = xmlNewChild(node, NULL, (const xmlChar*)it->first.c_str(), NULL);
+					BuildDOMNode(doc, child, it->second);
+				}
 			}
 		}
 	}
-
-	return node;
 }
 
-bool AtlasObject::SaveToXML(AtObj& obj, const wchar_t* filename)
+std::string AtlasObject::SaveToXML(AtObj& obj)
 {
-	XercesInitialiser::enable();
-
-	// Why does it take so much work just to create a standard DOMWriter? :-(
-	XMLCh domFeatures[100] = { 0 };
-	XMLString::transcode("LS", domFeatures, 99); // maybe "LS" means "load/save", but I really don't know
-	DOMImplementation* impl = DOMImplementationRegistry::getDOMImplementation(domFeatures);
-	DOMWriter* writer = ((DOMImplementationLS*)impl)->createDOMWriter();
-
-	if (writer->canSetFeature(XMLUni::fgDOMWRTDiscardDefaultContent, true))
-		writer->setFeature(XMLUni::fgDOMWRTDiscardDefaultContent, true);
-
-	if (writer->canSetFeature(XMLUni::fgDOMWRTFormatPrettyPrint, true))
-		writer->setFeature(XMLUni::fgDOMWRTFormatPrettyPrint, true);
-
-
-	// Find the root element of the object:
-
 	if (!obj.p || obj.p->children.size() != 1)
 	{
 		assert(! "SaveToXML: root must only have one child");
-		return false;
+		return "";
 	}
-	XMLCh rootName[255];
-	XMLString::transcode(obj.p->children.begin()->first.c_str(), rootName, 255);
+
 	AtNode::Ptr firstChild (obj.p->children.begin()->second);
 
-	try
-	{
-		std::auto_ptr<DOMDocument> doc (impl->createDocument());
-		doc->appendChild(BuildDOMNode(doc.get(), rootName, firstChild));
+	xmlDocPtr doc = xmlNewDoc((const xmlChar*)"1.0");
+	BuildDOMNode(doc, NULL, obj.p);
 
-		LocalFileFormatTarget formatTarget (StrConv<XMLCh>(filename).c_str());
-		writer->writeNode(&formatTarget, *doc);
-	}
-	catch (const XMLException& e) {
-		char* message = XMLString::transcode(e.getMessage());
-		assert(! "XML exception - maybe failed while writing the file");
-		XMLString::release(&message);
-		return false;
-	}
-	catch (const DOMException& e) {
-		char* message = XMLString::transcode(e.msg);
-		assert(! "DOM exception");
-		XMLString::release(&message);
-		return false;
-	}
+	xmlChar* buf;
+	int size;
+	xmlDocDumpFormatMemoryEnc(doc, &buf, &size, "utf-8", 1);
 
-	writer->release();
+	std::string ret((const char*)buf, size);
 
-	return true;
+	xmlFree(buf);
+	xmlFreeDoc(doc);
+
+	// TODO: handle errors better
+
+	return ret;
 }
