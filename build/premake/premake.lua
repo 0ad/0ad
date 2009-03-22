@@ -1,5 +1,6 @@
 addoption("atlas", "Include Atlas scenario editor packages")
 addoption("collada", "Include COLLADA packages (requires FCollada library)")
+addoption("aoe3ed", "Include AoE3Ed")
 addoption("icc", "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)")
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
@@ -51,6 +52,9 @@ else
 		major = 0+major -- coerce to number
 		minor = 0+minor
 		has_broken_pch = (major < 4 or (major == 4 and minor < 2))
+		if has_broken_pch then
+			print("WARNING: Detected GCC <4.2 -- disabling PCH for Atlas (will increase build times)")
+		end
 	end
 end
 
@@ -670,11 +674,9 @@ function setup_atlas_packages()
 		no_unused_warnings = 1, -- wxJS has far too many and we're never going to fix them, so just ignore them
 	})
 
-	setup_atlas_package("AtlasUI", "dll",
-	{	-- src
+	atlas_src = {
 		"ActorEditor",
 		"ActorViewer",
-		"ArchiveViewer",
 		"ColourTester",
 		"CustomControls/Buttons",
 		"CustomControls/Canvas",
@@ -687,7 +689,6 @@ function setup_atlas_packages()
 		"CustomControls/VirtualDirTreeCtrl",
 		"CustomControls/Windows",
 		"ErrorReporter",
-		"FileConverter",
 		"General",
 		"General/VideoRecorder",
 		"Misc",
@@ -700,8 +701,21 @@ function setup_atlas_packages()
 		"ScenarioEditor/Sections/Terrain",
 		"ScenarioEditor/Sections/Trigger",
 		"ScenarioEditor/Tools",
-		"ScenarioEditor/Tools/Common"
-	},{	-- include
+		"ScenarioEditor/Tools/Common",
+	}
+	atlas_extra_links = {
+		"AtlasObject",
+		"AtlasScript",
+		"wxJS",
+	}
+	if options["aoe3ed"] then
+		tinsert(atlas_src, "ArchiveViewer")
+		tinsert(atlas_src, "FileConverter")
+		tinsert(atlas_extra_links, "DatafileIO")
+	end
+
+	setup_atlas_package("AtlasUI", "dll", atlas_src,
+	{	-- include
 		"..",
 		"CustomControls",
 		"Misc"
@@ -716,26 +730,28 @@ function setup_atlas_packages()
 		"zlib"
 	},{	-- extra_params
 		pch = (not has_broken_pch),
-		extra_links = { "AtlasObject", "AtlasScript", "wxJS", "DatafileIO" },
+		extra_links = atlas_extra_links,
 		extra_files = { "Misc/atlas.rc" }
 	})
 
-	setup_atlas_package("DatafileIO", "lib",
-	{	-- src
-		"",
-		"BAR",
-		"DDT",
-		"SCN",
-		"Stream",
-		"XMB"
-	},{	-- include
-	},{	-- extern_libs
-		"devil",
-		"xerces",
-		"zlib"
-	},{	-- extra_params
-		pch = 1,
-	})
+	if options["aoe3ed"] then
+		setup_atlas_package("DatafileIO", "lib",
+		{	-- src
+			"",
+			"BAR",
+			"DDT",
+			"SCN",
+			"Stream",
+			"XMB"
+		},{	-- include
+		},{	-- extern_libs
+			"devil",
+			"xerces",
+			"zlib"
+		},{	-- extra_params
+			pch = 1,
+		})
+	end
 
 end
 
@@ -761,7 +777,9 @@ function setup_atlas_frontend_package (package_name)
 		tinsert(package.buildflags, "no-main")
 
 	else -- Non-Windows, = Unix
-		tinsert(package.links, "DatafileIO")
+		if options["aoe3ed"] then
+			tinsert(package.links, "DatafileIO")
+		end
 		tinsert(package.links, "AtlasObject")
 	end
 
