@@ -141,7 +141,7 @@ public:
 namespace AtlasObject
 {
 	// Returns AtObj() on failure - test with AtObj::defined()
-	AtObj LoadFromXML(const wchar_t* filename);
+	AtObj LoadFromXML(const std::string& xml);
 
 	// Returns UTF-8-encoded XML document string.
 	// Returns empty string on failure.

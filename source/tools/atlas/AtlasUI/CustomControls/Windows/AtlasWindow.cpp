@@ -4,6 +4,7 @@
 
 #include "AtlasObject/AtlasObject.h"
 #include "General/AtlasWindowCommand.h"
+#include "General/Datafile.h"
 
 #include "wx/artprov.h"
 #include "wx/config.h"
@@ -277,7 +278,9 @@ bool AtlasWindow::SaveChanges(bool forceSaveAs)
 
 bool AtlasWindow::OpenFile(const wxString& filename)
 {
-	AtObj file (AtlasObject::LoadFromXML(filename));
+	std::string xml;
+	wxCHECK(Datafile::SlurpFile(filename, xml), false);
+	AtObj file (AtlasObject::LoadFromXML(xml));
 	// TODO: Make sure it succeeded.
 
 	AtlasWindowCommandProc* commandProc = AtlasWindowCommandProc::GetFromParentFrame(this);

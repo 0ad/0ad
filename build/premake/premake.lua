@@ -496,6 +496,7 @@ used_extern_libs = {
 
 	"spidermonkey",
 	"xerces",
+	"libxml2",
 
 	"openal",
 	"vorbis",
@@ -505,7 +506,7 @@ used_extern_libs = {
 	"cxxtest",
 	"directx",
 	"comsuppw",
-	"enet"
+	"enet",
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.
@@ -643,7 +644,6 @@ function setup_atlas_packages()
 	},{	-- include
 	},{	-- extern_libs
 		"libxml2",
-		"xerces",
 		"wxwidgets"
 	},{	-- extra_params
 	})
@@ -731,7 +731,6 @@ function setup_atlas_packages()
 		"libxml2",
 		"spidermonkey",
 		"wxwidgets",
-		"xerces",
 		"comsuppw",
 		"zlib"
 	},{	-- extra_params
@@ -878,7 +877,10 @@ function get_all_test_files(root, src_files, hdr_files)
 		-- header file in subdirectory test
 		if string.sub(v, -2) == ".h" and string.find(v, "/tests/") then
 			-- don't include sysdep tests on the wrong sys
-			if not (string.find(v, "/sysdep/os/win/") and OS ~= "windows") then
+			-- don't include Atlas tests unless Atlas is being built
+			if not (string.find(v, "/sysdep/os/win/") and OS ~= "windows") and
+			   not (string.find(v, "/tools/atlas/") and not options["atlas"])
+			then
 				tinsert(hdr_files, v)
 				-- add the corresponding source file immediately, instead of
 				-- waiting for it to appear after cxxtestgen. this avoids
@@ -919,6 +921,9 @@ function setup_tests()
 	package_create("test", "winexe")
 	links = static_lib_names
 	tinsert(links, "test_gen")
+	if options["atlas"] then
+		tinsert(links, "AtlasObject")
+	end
 	extra_params = {
 		extra_files = { "test_root.cpp", "test_setup.cpp" },
 		extra_links = links,

@@ -67,8 +67,8 @@ CStr8 CStrW::ToUTF8() const
 		if (ch < 0x80) bytesToWrite = 1;
 		else if (ch < 0x800) bytesToWrite = 2;
 		else if (ch < 0x10000) bytesToWrite = 3;
-		else if (ch <= 0x7FFFFFFF) bytesToWrite = 4;
-		else bytesToWrite = 3, ch = 0x0000FFFD; // replacement character
+		else if (ch < 0x110000) bytesToWrite = 4;
+		else bytesToWrite = 3, ch = 0xFFFD; // replacement character
 
 		char buf[4];
 		char* target = &buf[bytesToWrite];

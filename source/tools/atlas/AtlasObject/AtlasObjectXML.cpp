@@ -6,101 +6,22 @@
 #include <memory>
 #include <fstream>
 
-#ifdef _MSC_VER
-# ifndef NDEBUG
-#  pragma comment(lib, "xerces-c_2D.lib")
-# else
-#  pragma comment(lib, "xerces-c_2.lib")
-# endif
-
-// Disable some warnings:
-//   "warning C4673: throwing 'blahblahException' the following types will not be considered at the catch site ..."
-//   "warning C4671: 'XMemory' : the copy constructor is inaccessible"
-//   "warning C4244: 'return' : conversion from '__w64 int' to 'unsigned long', possible loss of data"
-# pragma warning(disable: 4673 4671 4244)
-
-#endif // _MSC_VER
-
-#include <xercesc/parsers/XercesDOMParser.hpp>
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/util/XMLString.hpp>
-#include <xercesc/framework/LocalFileFormatTarget.hpp>
-#include <xercesc/sax/SAXParseException.hpp>
-#include <xercesc/sax/ErrorHandler.hpp>
-
 #include <libxml/parser.h>
-
-XERCES_CPP_NAMESPACE_USE
-
-class XercesInitialiser
-{
-	 XercesInitialiser() { XMLPlatformUtils::Initialize(); }
-	~XercesInitialiser() { XMLPlatformUtils::Terminate (); }
-public:
-	static void enable()
-	{
-		static XercesInitialiser x;
-	}
-};
-
-class XercesErrorHandler : public ErrorHandler
-{
-public:
-	XercesErrorHandler() : fSawErrors(false) {}
-	~XercesErrorHandler() {}
-	void warning(const SAXParseException& err) { complain(err, "warning"); }
-	void error(const SAXParseException& err) { complain(err, "error"); }
-	void fatalError(const SAXParseException& err) { complain(err, "fatal error"); };
-	void resetErrors() { fSawErrors = false; }
-	bool getSawErrors() const { return fSawErrors; }
-private:
-	bool fSawErrors;
-
-	void complain(const SAXParseException& err, const char* severity)
-	{
-		fSawErrors = true;
-		char* systemId = XMLString::transcode(err.getSystemId());
-		char* message = XMLString::transcode(err.getMessage());
-		// TODO: do something
-		(void)severity;
-		XMLString::release(&systemId);
-		XMLString::release(&message);
-	}
-};
-
-template <typename T>
-class StrConv
-{
-public:
-	template <typename S> StrConv(const S* str) { init(str); }
-	template <typename S> StrConv(const std::basic_string<S>& str) { init(str.c_str()); }
-	
-	~StrConv()
-	{
-		delete[] data;
-	}
-	const T* c_str()
-	{
-		return data;	
-	}
-	
-private:
-	template <typename S>
-	void init(S* str)
-	{
-		size_t len = 0;
-		while (str[len] != '\0')
-			++len;
-		data = new T[len+1];
-		for (size_t i = 0; i < len+1; ++i)
-			data[i] = (T)str[i];
-	}
-	
-	T* data;
-};
 
 // UTF conversion code adapted from http://www.unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
 static const unsigned char firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };
+static const char trailingBytesForUTF8[256] = {
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+	2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5 };
+static const unsigned long offsetsFromUTF8[6] = {
+	0x00000000UL, 0x00003080UL, 0x000E2080UL,
+	0x03C82080UL, 0xFA082080UL, 0x82082080UL };
 class toXmlChar
 {
 public:
@@ -138,112 +59,87 @@ private:
 	std::string data;
 };
 
+std::wstring fromXmlChar(const xmlChar* str)
+{
+	std::wstring result;
+	const xmlChar* source = str;
+	const xmlChar* sourceEnd = str + strlen((const char*)str);
+	while (source < sourceEnd)
+	{
+		wchar_t ch = 0;
+		int extraBytesToRead = trailingBytesForUTF8[*source];
+		assert(source + extraBytesToRead < sourceEnd);
+		switch (extraBytesToRead)
+		{
+		case 5: ch += *source++; ch <<= 6;
+		case 4: ch += *source++; ch <<= 6;
+		case 3: ch += *source++; ch <<= 6;
+		case 2: ch += *source++; ch <<= 6;
+		case 1: ch += *source++; ch <<= 6;
+		case 0: ch += *source++;
+		}
+		ch -= offsetsFromUTF8[extraBytesToRead];
+
+		result += ch;
+	}
+	return result;
+}
+
 // TODO: replace most of the asserts below (e.g. for when it fails to load
 // a file) with some proper logging/reporting system
 
-static AtSmartPtr<AtNode> ConvertNode(DOMElement* element);
+static AtSmartPtr<AtNode> ConvertNode(xmlNodePtr node);
 
-AtObj AtlasObject::LoadFromXML(const wchar_t* filename)
+AtObj AtlasObject::LoadFromXML(const std::string& xml)
 {
-	XercesInitialiser::enable();
-
-	XercesDOMParser* parser = new XercesDOMParser();
-
-	XercesErrorHandler ErrHandler;
-	parser->setErrorHandler(&ErrHandler);
-	parser->setValidationScheme(XercesDOMParser::Val_Never);
-	parser->setLoadExternalDTD(false); // because I really don't like bothering with them
-	parser->setCreateEntityReferenceNodes(false);
-
-	parser->parse(StrConv<XMLCh>(filename).c_str());
-
-	if (parser->getErrorCount() != 0)
-	{
-		delete parser;
-		assert(! "Error while loading XML - invalid XML data?");
+	xmlDocPtr doc = xmlReadMemory(xml.c_str(), xml.length(), "noname.xml", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
+	if (doc == NULL)
 		return AtObj();
-	}
+		// TODO: Need to report the error message somehow
 
-	DOMDocument* doc = parser->getDocument();
-	DOMElement* root = doc->getDocumentElement();
-
+	xmlNodePtr root = xmlDocGetRootElement(doc);
 	AtObj obj;
 	obj.p = ConvertNode(root);
 
 	AtObj rootObj;
-	char* rootName = XMLString::transcode(root->getNodeName());
-	rootObj.set(rootName, obj);
-	XMLString::release(&rootName);
+	rootObj.set((const char*)root->name, obj);
 
-	delete parser;
+	xmlFreeDoc(doc);
 
 	return rootObj;
 }
 
 // Convert from a DOMElement to an AtNode
-static AtSmartPtr<AtNode> ConvertNode(DOMElement* element)
+static AtSmartPtr<AtNode> ConvertNode(xmlNodePtr node)
 {
 	AtSmartPtr<AtNode> obj (new AtNode());
 
-	// Loop through all child elements
-	DOMNodeList* children = element->getChildNodes();
-	XMLSize_t len = children->getLength();
-	for (XMLSize_t i = 0; i < len; ++i)
+	// Loop through all attributes
+	for (xmlAttrPtr cur_attr = node->properties; cur_attr; cur_attr = cur_attr->next)
 	{
-		DOMNode* node = children->item(i);
-		short type = node->getNodeType();
-
-		if (type == DOMNode::ELEMENT_NODE)
-		{
-			// Sub-element.
-
-			// Use its name for the AtNode key
-			char* name = XMLString::transcode(node->getNodeName());
-
-			// Recursively convert the sub-element, and add it into this node
-			obj->children.insert(AtNode::child_pairtype(
-				name, ConvertNode((DOMElement*)node)
-			));
-
-			// Free memory
-			XMLString::release(&name);
-		}
-		else if (type == DOMNode::TEXT_NODE)
-		{
-			// Text inside the element. Append it to the current node's string.
-			std::wstring value_wstr (StrConv<wchar_t>(node->getNodeValue()).c_str());
-			obj->value += value_wstr;
-		}
+		std::string name ("@");
+		name += (const char*)cur_attr->name;
+		std::wstring value (fromXmlChar(xmlNodeGetContent(cur_attr->children)));
+		
+		AtNode* newNode = new AtNode(value.c_str());
+		obj->children.insert(AtNode::child_pairtype(
+			name.c_str(), AtNode::Ptr(newNode)
+		));
 	}
 
-	DOMNamedNodeMap* attrs = element->getAttributes();
-	len = attrs->getLength();
-	for (XMLSize_t i = 0; i < len; ++i)
+	// Loop through all child elements
+	for (xmlNodePtr cur_node = node->children; cur_node; cur_node = cur_node->next)
 	{
-		DOMNode* node = attrs->item(i);
-		if (node->getNodeType() == DOMNode::ATTRIBUTE_NODE)
+		if (cur_node->type == XML_ELEMENT_NODE)
 		{
-			DOMAttr* attr = (DOMAttr*)node;
-
-			// Get name and value
-			char* name = XMLString::transcode(attr->getName());
-			StrConv<wchar_t> value (attr->getValue());
-
-			// Prefix the name with an @, to differentiate it from an element
-			std::string newName ("@"); newName += name;
-
-			// Create new node
-			AtNode* newNode = new AtNode(value.c_str());
-
-			// Add to this node's list of children
-			obj->children.insert(AtNode::child_pairtype(newName.c_str(), AtNode::Ptr(newNode)));
-
-			// Free memory
-			XMLString::release(&name);
+			obj->children.insert(AtNode::child_pairtype(
+				(const char*)cur_node->name, ConvertNode(cur_node)
+			));
 		}
-		else
+		else if (cur_node->type == XML_TEXT_NODE)
 		{
-			assert(! "Invalid attribute node");
+			std::wstring value (fromXmlChar(xmlNodeGetContent(cur_node)));
+			obj->value += value;
 		}
 	}
 

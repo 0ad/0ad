@@ -2,6 +2,7 @@
 
 #include "Datafile.h"
 
+#include "wx/file.h"
 #include "wx/filename.h"
 #include "wx/dir.h"
 
@@ -21,9 +22,27 @@ AtObj Datafile::ReadList(const char* section)
 		return AtObj();
 	}
 
-	AtObj lists (AtlasObject::LoadFromXML(filename.GetFullPath()));
+	std::string xml;
+	wxCHECK(SlurpFile(filename.GetFullPath(), xml), AtObj());
+	AtObj lists (AtlasObject::LoadFromXML(xml));
 
 	return *lists["lists"][section];
+}
+
+bool Datafile::SlurpFile(const wxString& filename, std::string& out)
+{
+	wxFile file (filename, wxFile::read);
+	while (true)
+	{
+		static char buf[1024];
+		int read = file.Read(buf, sizeof(buf));
+		wxCHECK(read >= 0, false);
+		if (read == 0)
+			break;
+		out += std::string(buf, read);
+	}
+	file.Close();
+	return true;
 }
 
 void Datafile::SetSystemDirectory(const wxString& dir)
