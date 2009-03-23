@@ -14,7 +14,7 @@ const char* UnfinishedHeaderMagicStr = "XMBu";
 bool XMBFile::Initialise(const char* FileData)
 {
 	m_Pointer = FileData;
-	char Header[5];
+	char Header[5] = { 0 };
 	strncpy_s(Header, 5, m_Pointer, 4);
 	m_Pointer += 4;
 	// (c.f. @return documentation of this function)

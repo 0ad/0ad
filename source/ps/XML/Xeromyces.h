@@ -15,9 +15,12 @@ ERROR_TYPE(Xeromyces, XMLParseError);
 #include "XeroXMB.h"
 #include "ps/Filesystem.h"
 
+#include "XML.h" // XXX remove this
+
 class CXeromyces : public XMBFile
 {
 	friend class TestXeromyces;
+	friend class TestXeroXMB;
 public:
 	CXeromyces();
 	~CXeromyces();
@@ -34,6 +37,8 @@ private:
 	static void GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const VfsPath& xmbFilename, VfsPath& xmbActualPath);
 
 	bool ReadXMBFile(const VfsPath& filename);
+
+	static PSRETURN ConvertXMLtoXMB(const char* filename, InputSource& source, WriteBuffer& writeBuffer); // XXX remove filename
 
 	shared_ptr<u8> XMBBuffer;
 

@@ -165,8 +165,8 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	// zeroed because zip files only have 2 second resolution.
 	const int suffixLength = 22;
 	char suffix[suffixLength+1];
-	int ret = sprintf(suffix, "_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size());
-	debug_assert(ret == suffixLength);
+	int printed = sprintf(suffix, "_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size());
+	debug_assert(printed == suffixLength);
 	VfsPath xmbFilename = change_extension(filename, suffix);
 
 	VfsPath xmbPath;
@@ -199,12 +199,35 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
+	WriteBuffer writeBuffer;
+	PSRETURN ret = ConvertXMLtoXMB(filename.string().c_str(), source, writeBuffer);
+	if (ret)
+	{
+		if (ret == PSRETURN_Xeromyces_XMLParseError)
+			LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename.string().c_str());
+		return ret;
+	}
+	
+	// Save the file to disk, so it can be loaded quickly next time
+	g_VFS->CreateFile(xmbPath, writeBuffer.Data(), writeBuffer.Size());
+
+	XMBBuffer = writeBuffer.Data();	// add a reference
+
+	// Set up the XMBFile
+	const bool ok = Initialise((const char*)XMBBuffer.get());
+	debug_assert(ok);
+
+	return PSRETURN_OK;
+}
+
+// Reads from source, returns output in writeBuffer
+PSRETURN CXeromyces::ConvertXMLtoXMB(const char* filename, InputSource& source, WriteBuffer& writeBuffer)
+{
 	// Set up the Xerces parser
 	SAX2XMLReader* Parser = XMLReaderFactory::createXMLReader();
 
-	// Enable validation
-	Parser->setFeature(XMLUni::fgSAX2CoreValidation, true);
-	Parser->setFeature(XMLUni::fgXercesDynamic, true);
+	// Disable DTDs
+	Parser->setFeature(XMLUni::fgXercesLoadExternalDTD, false);
 
 	XeroHandler handler;
 	Parser->setContentHandler(&handler);
@@ -212,7 +235,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	CXercesErrorHandler errorHandler;
 	Parser->setErrorHandler(&errorHandler);
 
-	CVFSEntityResolver entityResolver(filename.string().c_str());
+	CVFSEntityResolver entityResolver(filename);
 	Parser->setEntityResolver(&entityResolver);
 
 	// Build a tree inside handler
@@ -227,24 +250,14 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	delete Parser;
 
 	if (errorHandler.GetSawErrors())
-	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLParseError;
 		// The internal tree of the XeroHandler will be cleaned up automatically
-	}
 
 	// Convert the data structures into the XMB format
 	handler.CreateXMB();
 
-	// Save the file to disk, so it can be loaded quickly next time
-	WriteBuffer& writeBuffer = handler.writeBuffer;
-	g_VFS->CreateFile(xmbPath, writeBuffer.Data(), writeBuffer.Size());
-
-	XMBBuffer = writeBuffer.Data();	// add a reference
-
-	// Set up the XMBFile
-	const bool ok = Initialise((const char*)XMBBuffer.get());
-	debug_assert(ok);
+	// Copy the (refcounted) buffer into the output parameter
+	writeBuffer = handler.writeBuffer;
 
 	return PSRETURN_OK;
 }

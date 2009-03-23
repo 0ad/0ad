@@ -93,6 +93,14 @@ public:
 			"<foo>abcde&amp;f&lt;g&gt;h\"i'j</foo>\n"
 		);
 	}
+	void test_parse_doctype()
+	{
+		try_parse_save(
+			"<!DOCTYPE foo SYSTEM \"file:///dev/urandom\"><foo/>",
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+			"<foo/>\n"
+		);
+	}
 	void test_parse_ignored()
 	{
 		try_parse_save(
