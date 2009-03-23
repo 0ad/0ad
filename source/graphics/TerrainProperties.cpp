@@ -182,8 +182,10 @@ void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromy
 	#undef ATTR
 
 	STerrainPassability pass(passable);
+	// Set default speed
+	pass.m_SpeedFactor = 100;
+
 	bool hasType = false;
-	bool hasSpeed;
 	XMBAttributeList attribs = node.GetAttributes();
 	for (int i=0;i<attribs.Count;i++)
 	{
@@ -205,7 +207,6 @@ void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromy
 				pass.m_SpeedFactor /= 100.0;
 			}
 			// FIXME speed=0 could/should be made to set the terrain impassable
-			hasSpeed = true;
 		}
 		else if (attr.Name == attr_effect)
 		{

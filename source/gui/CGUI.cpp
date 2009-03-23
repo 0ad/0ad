@@ -1207,6 +1207,8 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 	// Well first of all we need to determine the type
 	CStr type (attributes.GetNamedItem(pFile->GetAttributeID("type")));
+	if (type.empty())
+		type = "empty";
 
 	// Construct object from specified type
 	//  henceforth, we need to do a rollback before aborting.
