@@ -2,7 +2,10 @@
 
 #include "ps/XML/Xeromyces.h"
 
+#include "lib/file/io/write_buffer.h"
+
 #include <xercesc/framework/MemBufInputSource.hpp>
+#include <libxml/parser.h>
 
 XERCES_CPP_NAMESPACE_USE
 
@@ -13,10 +16,12 @@ private:
 
 	XMBFile parse(const char* doc)
 	{
-		XMLPlatformUtils::Initialize();
-		MemBufInputSource source((const XMLByte*)doc, strlen(doc), "null");
+		xmlDocPtr xmlDoc = xmlReadMemory(doc, strlen(doc), "", NULL,
+			XML_PARSE_NONET|XML_PARSE_NOCDATA);
 		WriteBuffer buffer;
-		PSRETURN ret = CXeromyces::ConvertXMLtoXMB("/dev/null", source, buffer);
+		PSRETURN ret = CXeromyces::CreateXMB(xmlDoc, buffer);
+		xmlFreeDoc(xmlDoc);
+
 		TS_ASSERT_EQUALS(ret, PSRETURN_OK);
 
 		XMBFile xmb;
@@ -73,4 +78,39 @@ public:
 		TS_ASSERT_EQUALS(CStr(xmb.GetRoot().GetText()), "x <>&\"'foobar\n\nbazqux");
 	}
 
+	void test_unicode()
+	{
+		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"utf-8\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
+		CStrW text;
+		
+		text = xmb.GetRoot().GetText();
+		TS_ASSERT_EQUALS(text.length(), 2);
+		TS_ASSERT_EQUALS(text[0], 0x1234);
+		TS_ASSERT_EQUALS(text[1], 0x1234);
+
+		text = xmb.GetRoot().GetAttributes().Item(0).Value;
+		TS_ASSERT_EQUALS(text.length(), 2);
+		TS_ASSERT_EQUALS(text[0], 0x1234);
+		TS_ASSERT_EQUALS(text[1], 0x1234);
+	}
+
+	void test_iso88591()
+	{
+		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"iso88591\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
+		CStrW text;
+		
+		text = xmb.GetRoot().GetText();
+		TS_ASSERT_EQUALS(text.length(), 4);
+		TS_ASSERT_EQUALS(text[0], 0x1234);
+		TS_ASSERT_EQUALS(text[1], 0x00E1);
+		TS_ASSERT_EQUALS(text[2], 0x0088);
+		TS_ASSERT_EQUALS(text[3], 0x00B4);
+
+		text = xmb.GetRoot().GetAttributes().Item(0).Value;
+		TS_ASSERT_EQUALS(text.length(), 4);
+		TS_ASSERT_EQUALS(text[0], 0x1234);
+		TS_ASSERT_EQUALS(text[1], 0x00E1);
+		TS_ASSERT_EQUALS(text[2], 0x0088);
+		TS_ASSERT_EQUALS(text[3], 0x00B4);
+	}
 };

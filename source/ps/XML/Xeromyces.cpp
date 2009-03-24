@@ -10,90 +10,23 @@
 #include "ps/Filesystem.h"
 #include "Xeromyces.h"
 
+#include <libxml/parser.h>
+
 #define LOG_CATEGORY "xml"
 
-#include "XML.h"
-
-
-int CXeromyces::XercesLoaded = 0; // for once-only initialisation
-
-// Convenient storage for the internal tree
-typedef struct {
-	std::string name;
-	utf16string value;
-} XMLAttribute;
-
-typedef struct XMLElement {
-	std::string name;
-	int linenum;
-	utf16string text;
-	std::vector<XMLElement*> childs;
-	std::vector<XMLAttribute*> attrs;
-} XMLElement;
-
-class XeroHandler : public DefaultHandler
+static bool g_XeromycesStarted = false;
+void CXeromyces::Startup()
 {
-public:
-	XeroHandler() : m_locator(NULL), Root(NULL) {}
-	~XeroHandler()
-	{
-		if (Root)
-			DeallocateElement(Root);
-	}
-
-	// SAX2 event handlers:
-	virtual void startDocument();
-	virtual void endDocument();
-	virtual void startElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname, const Attributes& attrs);
-	virtual void endElement(const XMLCh* const uri, const XMLCh* const localname, const XMLCh* const qname);
-	virtual void characters(const XMLCh* const chars, const unsigned int length);
-	
-	const Locator* m_locator;
-
-	virtual void setDocumentLocator(const Locator* const locator)
-	{
-		m_locator = locator;
-	}
-
-	// Non-SAX2 stuff, used for storing the
-	// parsed data and constructing the XMB:
-
-	void CreateXMB();
-	WriteBuffer writeBuffer;
-
-private:
-	std::set<std::string> ElementNames;
-	std::set<std::string> AttributeNames;
-	XMLElement* Root;
-	XMLElement* CurrentElement;
-	std::stack<XMLElement*> ElementStack;
-
-	std::map<std::string, int> ElementID;
-	std::map<std::string, int> AttributeID;
-
-	void OutputElement(XMLElement* el);
-
-	// Recursively frees memory
-	void DeallocateElement(XMLElement* el);
-};
-
-
-
-CXeromyces::CXeromyces()
-{
-}
-
-CXeromyces::~CXeromyces()
-{
+	debug_assert(!g_XeromycesStarted);
+	xmlInitParser();
+	g_XeromycesStarted = true;
 }
 
 void CXeromyces::Terminate()
 {
-	if (XercesLoaded)
-	{
-		XMLPlatformUtils::Terminate();
-		XercesLoaded = 0;
-	}
+	debug_assert(g_XeromycesStarted);
+	xmlCleanupParser();
+	g_XeromycesStarted = false;
 }
 
 
@@ -128,6 +61,8 @@ void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const 
 
 PSRETURN CXeromyces::Load(const VfsPath& filename)
 {
+	debug_assert(g_XeromycesStarted);
+
 	// Make sure the .xml actually exists
 	if (! FileExists(filename))
 	{
@@ -184,80 +119,30 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	
 	// XMB isn't up to date with the XML, so rebuild it:
 
-	// Load Xerces if necessary
-	if (! XercesLoaded)
-	{
-		XMLPlatformUtils::Initialize();
-		XercesLoaded = 1;
-	}
-
-	// Open the .xml file
-	CVFSInputSource source;
-	if (source.OpenFile(filename) < 0)
+	CVFSFile input;
+	if (input.Load(filename))
 	{
 		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
+	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), input.GetBufferSize(), "", NULL,
+		XML_PARSE_NONET|XML_PARSE_NOCDATA);
+	// TODO: handle parse errors
+
 	WriteBuffer writeBuffer;
-	PSRETURN ret = ConvertXMLtoXMB(filename.string().c_str(), source, writeBuffer);
-	if (ret)
-	{
-		if (ret == PSRETURN_Xeromyces_XMLParseError)
-			LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Errors in XML file '%s'", filename.string().c_str());
-		return ret;
-	}
-	
+	CreateXMB(doc, writeBuffer);
+
+	xmlFreeDoc(doc);
+
 	// Save the file to disk, so it can be loaded quickly next time
 	g_VFS->CreateFile(xmbPath, writeBuffer.Data(), writeBuffer.Size());
 
-	XMBBuffer = writeBuffer.Data();	// add a reference
+	m_XMBBuffer = writeBuffer.Data(); // add a reference
 
 	// Set up the XMBFile
-	const bool ok = Initialise((const char*)XMBBuffer.get());
+	const bool ok = Initialise((const char*)m_XMBBuffer.get());
 	debug_assert(ok);
-
-	return PSRETURN_OK;
-}
-
-// Reads from source, returns output in writeBuffer
-PSRETURN CXeromyces::ConvertXMLtoXMB(const char* filename, InputSource& source, WriteBuffer& writeBuffer)
-{
-	// Set up the Xerces parser
-	SAX2XMLReader* Parser = XMLReaderFactory::createXMLReader();
-
-	// Disable DTDs
-	Parser->setFeature(XMLUni::fgXercesLoadExternalDTD, false);
-
-	XeroHandler handler;
-	Parser->setContentHandler(&handler);
-
-	CXercesErrorHandler errorHandler;
-	Parser->setErrorHandler(&errorHandler);
-
-	CVFSEntityResolver entityResolver(filename);
-	Parser->setEntityResolver(&entityResolver);
-
-	// Build a tree inside handler
-	Parser->parse(source);
-
-	// (It's horribly inefficient doing SAX2->tree then tree->XMB,
-	// but the XML->XMB conversion should be done very rarely
-	// anyway. If it's ever needed, the XMB writing can be done
-	// directly from inside the SAX2 event handlers, although that's
-	// a little more complex)
-
-	delete Parser;
-
-	if (errorHandler.GetSawErrors())
-		return PSRETURN_Xeromyces_XMLParseError;
-		// The internal tree of the XeroHandler will be cleaned up automatically
-
-	// Convert the data structures into the XMB format
-	handler.CreateXMB();
-
-	// Copy the (refcounted) buffer into the output parameter
-	writeBuffer = handler.writeBuffer;
 
 	return PSRETURN_OK;
 }
@@ -265,12 +150,12 @@ PSRETURN CXeromyces::ConvertXMLtoXMB(const char* filename, InputSource& source, 
 bool CXeromyces::ReadXMBFile(const VfsPath& filename)
 {
 	size_t size;
-	if(g_VFS->LoadFile(filename, XMBBuffer, size) < 0)
+	if(g_VFS->LoadFile(filename, m_XMBBuffer, size) < 0)
 		return false;
-	debug_assert(size >= 42);	// else: invalid XMB file size. (42 bytes is the smallest possible XMB. (Well, maybe not quite, but it's a nice number.))
+	debug_assert(size >= 4); // make sure it's at least got the initial header
 
 	// Set up the XMBFile
-	if(!Initialise((const char*)XMBBuffer.get()))
+	if(!Initialise((const char*)m_XMBBuffer.get()))
 		return false;
 
 	return true;
@@ -278,152 +163,42 @@ bool CXeromyces::ReadXMBFile(const VfsPath& filename)
 
 
 
-void XeroHandler::startDocument()
+static void FindNames(const xmlNodePtr node, std::set<std::string>& elementNames, std::set<std::string>& attributeNames)
 {
-	Root = new XMLElement;
-	ElementStack.push(Root);
+	elementNames.insert((const char*)node->name);
+
+	for (xmlAttrPtr attr = node->properties; attr; attr = attr->next)
+		attributeNames.insert((const char*)attr->name);
+
+	for (xmlNodePtr child = node->children; child; child = child->next)
+		if (child->type == XML_ELEMENT_NODE)
+			FindNames(child, elementNames, attributeNames);
 }
 
-void XeroHandler::endDocument()
-{
-}
-
-/*
-// Silently clobbers non-ASCII characters
-std::string lowercase_ascii(const XMLCh *a)
-{
-	std::string b;
-	size_t len=XMLString::stringLen(a);
-	b.resize(len);
-	for (size_t i = 0; i < len; ++i)
-		b[i] = (char)towlower(a[i]);
-	return b;
-}
-*/
-
-/**
- * Return an ASCII version of the given 16-bit string, ignoring
- * any non-ASCII characters.
- *
- * @param const XMLCh * a Input string.
- * @return std::string 8-bit ASCII version of <code>a</code>.
- **/
-std::string toAscii( const XMLCh* a )
-{
-	std::string b;
-	size_t len=XMLString::stringLen(a);
-	b.reserve(len);
-	for (size_t i = 0; i < len; ++i)
-	{
-		if(a[i] < 0x80)
-			b += (char) a[i];
-	}
-	return b;
-}
-
-void XeroHandler::startElement(const XMLCh* const UNUSED(uri), const XMLCh* const localname, const XMLCh* const UNUSED(qname), const Attributes& attrs)
-{
-	std::string elementName = toAscii(localname);
-	ElementNames.insert(elementName);
-
-	// Create a new element
-	XMLElement* e = new XMLElement;
-	e->name = elementName;
-	e->linenum = m_locator->getLineNumber();
-
-	// Store all the attributes in the new element
-	for (unsigned int i = 0; i < attrs.getLength(); ++i)
-	{
-		std::string attrName = toAscii(attrs.getLocalName(i));
-		AttributeNames.insert(attrName);
-		XMLAttribute* a = new XMLAttribute;
-		a->name = attrName;
-		const XMLCh *tmp = attrs.getValue(i);
-		a->value = utf16string(tmp, tmp+XMLString::stringLen(tmp));
-		e->attrs.push_back(a);
-	}
-
-	// Add the element to its parent
-	ElementStack.top()->childs.push_back(e);
-
-	// Set as parent of following elements
-	ElementStack.push(e);
-}
-
-void XeroHandler::endElement(const XMLCh* const UNUSED(uri), const XMLCh* const UNUSED(localname), const XMLCh* const UNUSED(qname))
-{
-	ElementStack.pop();
-}
-
-void XeroHandler::characters(const XMLCh* const chars, const unsigned int UNUSED(length))
-{
-	ElementStack.top()->text += utf16string(chars, chars+XMLString::stringLen(chars));
-}
-
-
-void XeroHandler::CreateXMB()
-{
-	// Header
-	writeBuffer.Append(UnfinishedHeaderMagicStr, 4);
-
-	std::set<std::string>::iterator it;
-	int i;
-
-	// Element names
-	i = 0;
-	int ElementCount = (int)ElementNames.size();
-	writeBuffer.Append(&ElementCount, 4);
-	for (it = ElementNames.begin(); it != ElementNames.end(); ++it)
-	{
-		int TextLen = (int)it->length()+1;
-		writeBuffer.Append(&TextLen, 4);
-		writeBuffer.Append((void*)it->c_str(), TextLen);
-		ElementID[*it] = i++;
-	}
-
-	// Attribute names
-	i = 0;
-	int AttributeCount = (int)AttributeNames.size();
-	writeBuffer.Append(&AttributeCount, 4);
-	for (it = AttributeNames.begin(); it != AttributeNames.end(); ++it)
-	{
-		int TextLen = (int)it->length()+1;
-		writeBuffer.Append(&TextLen, 4);
-		writeBuffer.Append((void*)it->c_str(), TextLen);
-		AttributeID[*it] = i++;
-	}
-
-	// All the XML contents must be surrounded by a single element
-	debug_assert(Root->childs.size() == 1);
-
-	OutputElement(Root->childs[0]);
-
-	delete Root;
-	Root = NULL;
-
-	// file is now valid, so insert correct magic string
-	writeBuffer.Overwrite(HeaderMagicStr, 4, 0);
-}
-
-// Writes a whole element (recursively if it has children) into the buffer,
-// and also frees all the memory that has been allocated for that element.
-void XeroHandler::OutputElement(XMLElement* el)
+static void OutputElement(const xmlNodePtr node, WriteBuffer& writeBuffer,
+	std::map<std::string, u32>& elementIDs,
+	std::map<std::string, u32>& attributeIDs
+)
 {
 	// Filled in later with the length of the element
-	int Pos_Length = (int)writeBuffer.Size();
+	size_t posLength = writeBuffer.Size();
 	writeBuffer.Append("????", 4);
 
-	int NameID = ElementID[el->name];
-	writeBuffer.Append(&NameID, 4);
+	writeBuffer.Append(&elementIDs[(const char*)node->name], 4);
 
-	int AttrCount = (int)el->attrs.size();
-	writeBuffer.Append(&AttrCount, 4);
+	u32 attrCount = 0;
+	for (xmlAttrPtr attr = node->properties; attr; attr = attr->next)
+		++attrCount;
+	writeBuffer.Append(&attrCount, 4);
 
-	int ChildCount = (int)el->childs.size();
-	writeBuffer.Append(&ChildCount, 4);
+	u32 childCount = 0;
+	for (xmlNodePtr child = node->children; child; child = child->next)
+		if (child->type == XML_ELEMENT_NODE)
+			++childCount;
+	writeBuffer.Append(&childCount, 4);
 
 	// Filled in later with the offset to the list of child elements
-	int Pos_ChildrenOffset = (int)writeBuffer.Size();
+	size_t posChildrenOffset = writeBuffer.Size();
 	writeBuffer.Append("????", 4);
 
 
@@ -431,31 +206,42 @@ void XeroHandler::OutputElement(XMLElement* el)
 	// the number of newlines trimmed (so that JS error reporting
 	// can give the correct line number)
 
-	std::string whitespaceA = " \t\r\n";
-	utf16string whitespace (whitespaceA.begin(), whitespaceA.end());
+	std::string whitespace = " \t\r\n";
+	std::string text;
+	for (xmlNodePtr child = node->children; child; child = child->next)
+	{
+		if (child->type == XML_TEXT_NODE)
+		{
+			xmlChar* content = xmlNodeGetContent(child);
+			text += std::string((const char*)content);
+			xmlFree(content);
+		}
+	}
+
+	u32 linenum = XML_GET_LINE(node);
 
 	// Find the start of the non-whitespace section
-	size_t first = el->text.find_first_not_of(whitespace);
+	size_t first = text.find_first_not_of(whitespace);
 
-	if (first == el->text.npos)
+	if (first == text.npos)
 		// Entirely whitespace - easy to handle
-		el->text = utf16string();
+		text = "";
 
 	else
 	{
 		// Count the number of \n being cut off,
 		// and add them to the line number
-		utf16string trimmed (el->text.begin(), el->text.begin()+first);
-		el->linenum += (int)std::count(trimmed.begin(), trimmed.end(), (utf16_t)'\n');
+		std::string trimmed (text.begin(), text.begin()+first);
+		linenum += std::count(trimmed.begin(), trimmed.end(), '\n');
 
 		// Find the end of the non-whitespace section,
 		// and trim off everything else
-		size_t last = el->text.find_last_not_of(whitespace);
-		el->text = el->text.substr(first, 1+last-first);
+		size_t last = text.find_last_not_of(whitespace);
+		text = text.substr(first, 1+last-first);
 	}
 
 	// Output text, prefixed by length in bytes
-	if (el->text.length() == 0)
+	if (text.length() == 0)
 	{
 		// No text; don't write much
 		writeBuffer.Append("\0\0\0\0", 4);
@@ -463,54 +249,84 @@ void XeroHandler::OutputElement(XMLElement* el)
 	else
 	{
 		// Write length and line number and null-terminated text
-		int NodeLen = 4 + 2*((int)el->text.length()+1);
-		writeBuffer.Append(&NodeLen, 4);
-		writeBuffer.Append(&el->linenum, 4);
-		writeBuffer.Append((void*)el->text.c_str(), NodeLen-4);
+		utf16string textW = CStr8(text).FromUTF8().utf16();
+		u32 nodeLen = 4 + 2*(textW.length()+1);
+		writeBuffer.Append(&nodeLen, 4);
+		writeBuffer.Append(&linenum, 4);
+		writeBuffer.Append((void*)textW.c_str(), nodeLen-4);
 	}
 
 	// Output attributes
-
-	int i;
-
-	for (i = 0; i < AttrCount; ++i)
+	for (xmlAttrPtr attr = node->properties; attr; attr = attr->next)
 	{
-		int AttrName = AttributeID[el->attrs[i]->name];
-		writeBuffer.Append(&AttrName, 4);
+		writeBuffer.Append(&attributeIDs[(const char*)attr->name], 4);
 
-		int AttrLen = 2*((int)el->attrs[i]->value.length()+1);
-		writeBuffer.Append(&AttrLen, 4);
-		writeBuffer.Append((void*)el->attrs[i]->value.c_str(), AttrLen);
-
-		// Free each attribute as soon as it's been dealt with
-		delete el->attrs[i];
+		xmlChar* value = xmlNodeGetContent(attr->children);
+		utf16string textW = CStr8((const char*)value).FromUTF8().utf16();
+		xmlFree(value);
+		u32 attrLen = 2*(textW.length()+1);
+		writeBuffer.Append(&attrLen, 4);
+		writeBuffer.Append((void*)textW.c_str(), attrLen);
 	}
 
 	// Go back and fill in the child-element offset
-	int ChildrenOffset = (int)writeBuffer.Size() - (Pos_ChildrenOffset+4);
-	writeBuffer.Overwrite(&ChildrenOffset, 4, Pos_ChildrenOffset);
+	u32 childrenOffset = (u32)(writeBuffer.Size() - (posChildrenOffset+4));
+	writeBuffer.Overwrite(&childrenOffset, 4, posChildrenOffset);
 
-	// Output all child nodes
-	for (i = 0; i < ChildCount; ++i)
-		OutputElement(el->childs[i]);
+	// Output all child elements
+	for (xmlNodePtr child = node->children; child; child = child->next)
+		if (child->type == XML_ELEMENT_NODE)
+			OutputElement(child, writeBuffer, elementIDs, attributeIDs);
 
 	// Go back and fill in the length
-	int Length = (int)writeBuffer.Size() - Pos_Length;
-	writeBuffer.Overwrite(&Length, 4, Pos_Length);
-
-	// Tidy up the parser's mess
-	delete el;
+	u32 length = (u32)(writeBuffer.Size() - posLength);
+	writeBuffer.Overwrite(&length, 4, posLength);
 }
 
-void XeroHandler::DeallocateElement(XMLElement* el)
+PSRETURN CXeromyces::CreateXMB(const xmlDocPtr doc, WriteBuffer& writeBuffer)
 {
-	size_t i;
+	// Header
+	writeBuffer.Append(UnfinishedHeaderMagicStr, 4);
 
-	for (i = 0; i < el->attrs.size(); ++i)
-		delete el->attrs[i];
+	std::set<std::string>::iterator it;
+	u32 i;
 
-	for (i = 0; i < el->childs.size(); ++i)
-		DeallocateElement(el->childs[i]);
+	// Find the unique element/attribute names
+	std::set<std::string> elementNames;
+	std::set<std::string> attributeNames;
+	FindNames(xmlDocGetRootElement(doc), elementNames, attributeNames);
 
-	delete el;
+	std::map<std::string, u32> elementIDs;
+	std::map<std::string, u32> attributeIDs;
+
+	// Output element names
+	i = 0;
+	u32 elementCount = (u32)elementNames.size();
+	writeBuffer.Append(&elementCount, 4);
+	for (it = elementNames.begin(); it != elementNames.end(); ++it)
+	{
+		u32 textLen = (u32)it->length()+1;
+		writeBuffer.Append(&textLen, 4);
+		writeBuffer.Append((void*)it->c_str(), textLen);
+		elementIDs[*it] = i++;
+	}
+
+	// Output attribute names
+	i = 0;
+	u32 attributeCount = (u32)attributeNames.size();
+	writeBuffer.Append(&attributeCount, 4);
+	for (it = attributeNames.begin(); it != attributeNames.end(); ++it)
+	{
+		u32 textLen = (u32)it->length()+1;
+		writeBuffer.Append(&textLen, 4);
+		writeBuffer.Append((void*)it->c_str(), textLen);
+		attributeIDs[*it] = i++;
+	}
+
+	OutputElement(xmlDocGetRootElement(doc), writeBuffer, elementIDs, attributeIDs);
+
+	// file is now valid, so insert correct magic string
+	writeBuffer.Overwrite(HeaderMagicStr, 4, 0);
+
+	return PSRETURN_OK;
 }

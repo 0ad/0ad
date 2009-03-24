@@ -333,7 +333,6 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"spidermonkey",
-		"xerces",
 		"enet",
 		"boost",	-- dragged in via server->simulation.h->random
 	}
@@ -356,7 +355,7 @@ function setup_all_libs ()
 	extern_libs = {
 		"spidermonkey",
 		"sdl",	-- key definitions
-		"xerces",
+		"libxml2",
 		"opengl",
 		"zlib",
 		"boost",
@@ -495,7 +494,6 @@ used_extern_libs = {
 	"zlib",
 
 	"spidermonkey",
-	"xerces",
 	"libxml2",
 
 	"openal",
@@ -565,7 +563,9 @@ function setup_main_exe ()
 			-- Utilities
 			"pthread", "rt",
 			-- Debugging
-			"bfd", "iberty"
+			"bfd", "iberty",
+			-- Dynamic libraries (needed for linking for gold)
+			"dl",
 		})
 	
 		-- For debug_resolve_symbol
@@ -947,7 +947,9 @@ function setup_tests()
 			-- Utilities
 			"pthread", "rt",
 			-- Debugging
-			"bfd", "iberty"
+			"bfd", "iberty",
+			-- Dynamic libraries (needed for linking for gold)
+			"dl",
 		})
 
 		-- For debug_resolve_symbol

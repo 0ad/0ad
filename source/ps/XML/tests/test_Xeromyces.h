@@ -24,4 +24,7 @@ public:
 
 		path_ResetRootDir();
 	}
+
+	// TODO: Should test the reading/parsing/writing code,
+	// and parse error handling
 };

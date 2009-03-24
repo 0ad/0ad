@@ -362,6 +362,11 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 {
 	CmdLineArgs args(argc, argv);
 
+	// We need to initialise libxml2 in the main thread before
+	// any thread uses it. So initialise it here before we
+	// might run Atlas.
+	CXeromyces::Startup();
+
 	// run Atlas (if requested via args)
 	bool ran_atlas = ATLAS_RunIfOnCmdLine(args);
 	// Atlas handles the whole init/shutdown/etc sequence by itself;
@@ -380,6 +385,9 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	Shutdown(0);
 	ScriptingHost::FinalShutdown(); // this can't go in Shutdown() because that could be called multiple times per process, so stick it here instead
 	MainControllerShutdown();
+
+	// Shut down libxml2 (done here to match the Startup call)
+	CXeromyces::Terminate();
 }
 
 int main(int argc, char* argv[])

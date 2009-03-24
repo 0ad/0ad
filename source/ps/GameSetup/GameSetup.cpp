@@ -655,9 +655,6 @@ static void ShutdownPs()
 	// disable the special Windows cursor, or free textures for OGL cursors
 	cursor_draw(0, g_mouse_x, g_mouse_y);
 
-	// close down Xerces if it was loaded
-	CXeromyces::Terminate();
-
 	// Unload the real language (since it depends on the scripting engine,
 	// which is going to be killed later) and use the English fallback messages
 	I18n::LoadLanguage(NULL);

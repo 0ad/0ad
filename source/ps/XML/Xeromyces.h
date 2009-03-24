@@ -13,22 +13,28 @@ ERROR_TYPE(Xeromyces, XMLOpenFailed);
 ERROR_TYPE(Xeromyces, XMLParseError);
 
 #include "XeroXMB.h"
-#include "ps/Filesystem.h"
 
-#include "XML.h" // XXX remove this
+#include "lib/file/vfs/vfs.h"
+
+class WriteBuffer;
+
+
+typedef struct _xmlDoc xmlDoc;
+typedef xmlDoc* xmlDocPtr;
 
 class CXeromyces : public XMBFile
 {
 	friend class TestXeromyces;
 	friend class TestXeroXMB;
 public:
-	CXeromyces();
-	~CXeromyces();
-
 	// Load from an XML file (with invisible XMB caching).
 	PSRETURN Load(const VfsPath& filename);
 
-	// Call once when shutting down the program, to unload Xerces.
+	// Call once when initialising the program, to load libxml2.
+	// This should be run in the main thread, before any thread
+	// uses libxml2.
+	static void Startup();
+	// Call once when shutting down the program, to unload libxml2.
 	static void Terminate();
 
 private:
@@ -38,11 +44,9 @@ private:
 
 	bool ReadXMBFile(const VfsPath& filename);
 
-	static PSRETURN ConvertXMLtoXMB(const char* filename, InputSource& source, WriteBuffer& writeBuffer); // XXX remove filename
+	static PSRETURN CreateXMB(const xmlDocPtr doc, WriteBuffer& writeBuffer);
 
-	shared_ptr<u8> XMBBuffer;
-
-	static int XercesLoaded; // for once-only initialisation
+	shared_ptr<u8> m_XMBBuffer;
 };
 
 
