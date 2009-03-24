@@ -45,7 +45,7 @@ public:
 			case 4: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
 			case 3: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
 			case 2: *--target = ((ch | 0x80) & 0xBF); ch >>= 6;
-			case 1: *--target = (ch | firstByteMark[bytesToWrite]);
+			case 1: *--target = (char)(ch | firstByteMark[bytesToWrite]);
 			}
 			data += std::string(buf, bytesToWrite);
 		}
@@ -66,7 +66,7 @@ std::wstring fromXmlChar(const xmlChar* str)
 	const xmlChar* sourceEnd = str + strlen((const char*)str);
 	while (source < sourceEnd)
 	{
-		wchar_t ch = 0;
+		unsigned long ch = 0;
 		int extraBytesToRead = trailingBytesForUTF8[*source];
 		assert(source + extraBytesToRead < sourceEnd);
 		switch (extraBytesToRead)
@@ -79,8 +79,11 @@ std::wstring fromXmlChar(const xmlChar* str)
 		case 0: ch += *source++;
 		}
 		ch -= offsetsFromUTF8[extraBytesToRead];
+		// Make sure it fits in a 16-bit wchar_t
+		if (ch > 0xFFFF)
+			ch = 0xFFFD;
 
-		result += ch;
+		result += (wchar_t)ch;
 	}
 	return result;
 }

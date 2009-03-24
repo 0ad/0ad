@@ -119,6 +119,15 @@ public:
 		);
 	}
 
+	void test_parse_unicode_nonbmp()
+	{
+		try_parse_save(
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?><foo>&#xfffc;&#xfffd;&#x10000;&#x10ffff;</foo>",
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+			"<foo>\xEF\xBF\xBC\xEF\xBF\xBD\xEF\xBF\xBD\xEF\xBF\xBD</foo>\n"
+		);
+	}
+
 	void test_parse_iso88591()
 	{
 		try_parse_save(

@@ -91,6 +91,8 @@ void CEntityManager::DeleteAll()
 
 void CEntityManager::updateObstacle( CEntity* tempHandle )
 {
+	(void)tempHandle;
+
 #ifdef USE_DCDT
 	if(g_Pathfinder.dcdtInitialized)
 	{
