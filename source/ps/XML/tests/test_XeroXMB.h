@@ -33,7 +33,7 @@ private:
 public:
 	void test_basic()
 	{
-		XMBFile xmb (parse("<test>\n<foo x=' y '> bar </foo>\n</test>"));
+		XMBFile xmb (parse("<test>\n<foo x=' y '> bar </foo><foo>\n\n\nbar</foo>\n</test>"));
 
 		TS_ASSERT_DIFFERS(xmb.GetElementID("test"), -1);
 		TS_ASSERT_DIFFERS(xmb.GetElementID("foo"), -1);
@@ -49,15 +49,17 @@ public:
 
 		XMBElement root = xmb.GetRoot();
 		TS_ASSERT_EQUALS(root.GetNodeName(), el_test);
-//		TS_ASSERT_EQUALS(root.GetLineNumber(), 1);
+		TS_ASSERT_EQUALS(root.GetLineNumber(), -1);
 		TS_ASSERT_EQUALS(CStr(root.GetText()), "");
 
-		TS_ASSERT_EQUALS(root.GetChildNodes().Count, 1);
+		TS_ASSERT_EQUALS(root.GetChildNodes().Count, 2);
 		XMBElement child = root.GetChildNodes().Item(0);
 		TS_ASSERT_EQUALS(child.GetNodeName(), el_foo);
-//		TS_ASSERT_EQUALS(child.GetLineNumber(), 2);
+		TS_ASSERT_EQUALS(child.GetLineNumber(), 2);
 		TS_ASSERT_EQUALS(child.GetChildNodes().Count, 0);
 		TS_ASSERT_EQUALS(CStr(child.GetText()), "bar");
+
+		TS_ASSERT_EQUALS(root.GetChildNodes().Item(1).GetLineNumber(), 5);
 
 		TS_ASSERT_EQUALS(child.GetAttributes().Count, 1);
 		XMBAttribute attr = child.GetAttributes().Item(0);
@@ -84,12 +86,12 @@ public:
 		CStrW text;
 		
 		text = xmb.GetRoot().GetText();
-		TS_ASSERT_EQUALS(text.length(), 2);
+		TS_ASSERT_EQUALS((int)text.length(), 2);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x1234);
 
 		text = xmb.GetRoot().GetAttributes().Item(0).Value;
-		TS_ASSERT_EQUALS(text.length(), 2);
+		TS_ASSERT_EQUALS((int)text.length(), 2);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x1234);
 	}
@@ -100,14 +102,14 @@ public:
 		CStrW text;
 		
 		text = xmb.GetRoot().GetText();
-		TS_ASSERT_EQUALS(text.length(), 4);
+		TS_ASSERT_EQUALS((int)text.length(), 4);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x00E1);
 		TS_ASSERT_EQUALS(text[2], 0x0088);
 		TS_ASSERT_EQUALS(text[3], 0x00B4);
 
 		text = xmb.GetRoot().GetAttributes().Item(0).Value;
-		TS_ASSERT_EQUALS(text.length(), 4);
+		TS_ASSERT_EQUALS((int)text.length(), 4);
 		TS_ASSERT_EQUALS(text[0], 0x1234);
 		TS_ASSERT_EQUALS(text[1], 0x00E1);
 		TS_ASSERT_EQUALS(text[2], 0x0088);

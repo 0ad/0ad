@@ -219,7 +219,7 @@ static void OutputElement(const xmlNodePtr node, WriteBuffer& writeBuffer,
 
 	// Trim excess whitespace in the entity's text, while counting
 	// the number of newlines trimmed (so that JS error reporting
-	// can give the correct line number)
+	// can give the correct line number within the script)
 
 	std::string whitespace = " \t\r\n";
 	std::string text;
@@ -254,6 +254,7 @@ static void OutputElement(const xmlNodePtr node, WriteBuffer& writeBuffer,
 		size_t last = text.find_last_not_of(whitespace);
 		text = text.substr(first, 1+last-first);
 	}
+
 
 	// Output text, prefixed by length in bytes
 	if (text.length() == 0)

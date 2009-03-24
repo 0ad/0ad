@@ -160,6 +160,8 @@ public:
 	XMBElementList GetChildNodes() const;
 	XMBAttributeList GetAttributes() const;
 	utf16string GetText() const;
+	// Returns the line number of the text within this element,
+	// or -1 if there is no text
 	int GetLineNumber() const;
 
 private:
