@@ -4,10 +4,7 @@
 
 #include "lib/file/io/write_buffer.h"
 
-#include <xercesc/framework/MemBufInputSource.hpp>
 #include <libxml/parser.h>
-
-XERCES_CPP_NAMESPACE_USE
 
 class TestXeroXMB : public CxxTest::TestSuite 
 {
@@ -98,7 +95,7 @@ public:
 
 	void test_iso88591()
 	{
-		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"iso88591\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
+		XMBFile xmb (parse("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>"));
 		CStrW text;
 		
 		text = xmb.GetRoot().GetText();
