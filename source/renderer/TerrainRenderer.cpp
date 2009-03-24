@@ -17,6 +17,7 @@
 
 #include "maths/MathUtil.h"
 
+#include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"	// MICROLOG
@@ -31,6 +32,8 @@
 #include "renderer/WaterManager.h"
 
 #include "lib/res/graphics/ogl_shader.h"
+
+#define LOG_CATEGORY "graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -327,7 +330,7 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 
 	pglActiveTextureARB(GL_TEXTURE0);
 	pglClientActiveTextureARB(GL_TEXTURE0);
-	
+
 	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
 	{
 		CPatchRData* patchdata = (CPatchRData*)m->visiblePatches[i]->GetRenderData();
@@ -398,7 +401,17 @@ void TerrainRenderer::RenderWater()
 	// If we're using fancy water, make sure its shader is loaded
 	if(fancy && !m->fancyWaterShader)
 	{
-		m->fancyWaterShader = ogl_program_load( "shaders/water_high.xml" );
+		Handle h = ogl_program_load("shaders/water_high.xml");
+		if (h < 0)
+		{
+			LOG(CLogger::Error, LOG_CATEGORY, "Failed to load water shader. Falling back to non-fancy water.\n");
+			g_Renderer.m_Options.m_FancyWater = false;
+			fancy = false;
+		}
+		else
+		{
+			m->fancyWaterShader = h;
+		}
 	}
 
 	//(Crappy) fresnel effect

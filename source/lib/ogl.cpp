@@ -299,11 +299,12 @@ void ogl_WarnIfError()
 // this is useful for suppressing annoying error messages, e.g.
 // "invalid enum" for GL_CLAMP_TO_EDGE even though we've already
 // warned the user that their OpenGL implementation is too old.
-void ogl_SquelchError(GLenum err_to_ignore)
+bool ogl_SquelchError(GLenum err_to_ignore)
 {
 	// glGetError may return multiple errors, so we poll it in a loop.
 	// the debug_printf should only happen once (if this is set), though.
 	bool error_enountered = false;
+	bool error_ignored = false;
 	GLenum first_error = 0;
 
 	for(;;)
@@ -313,7 +314,10 @@ void ogl_SquelchError(GLenum err_to_ignore)
 			break;
 
 		if(err == err_to_ignore)
+		{
+			error_ignored = true;
 			continue;
+		}
 
 		if(!error_enountered)
 			first_error = err;
@@ -328,6 +332,8 @@ void ogl_SquelchError(GLenum err_to_ignore)
 		snprintf(msg, ARRAY_SIZE(msg), "OpenGL error(s) occurred: %04x", (int)first_error);
 		debug_printf(msg);
 	}
+
+	return error_ignored;
 }
 
 

@@ -153,8 +153,9 @@ extern void ogl_WarnIfError(void);
  * different error is pending, those are reported immediately.
  *
  * @param err_to_ignore: one of the glGetError enums.
+ * @return true if the requested error was seen and ignored
  **/
-extern void ogl_SquelchError(GLenum err_to_ignore);
+extern bool ogl_SquelchError(GLenum err_to_ignore);
 
 
 //-----------------------------------------------------------------------------
