@@ -119,7 +119,9 @@ static AtSmartPtr<AtNode> ConvertNode(xmlNodePtr node)
 	{
 		std::string name ("@");
 		name += (const char*)cur_attr->name;
-		std::wstring value (fromXmlChar(xmlNodeGetContent(cur_attr->children)));
+		xmlChar* content = xmlNodeGetContent(cur_attr->children);
+		std::wstring value (fromXmlChar(content));
+		xmlFree(content);
 		
 		AtNode* newNode = new AtNode(value.c_str());
 		obj->children.insert(AtNode::child_pairtype(
@@ -138,7 +140,9 @@ static AtSmartPtr<AtNode> ConvertNode(xmlNodePtr node)
 		}
 		else if (cur_node->type == XML_TEXT_NODE)
 		{
-			std::wstring value (fromXmlChar(xmlNodeGetContent(cur_node)));
+			xmlChar* content = xmlNodeGetContent(cur_node);
+			std::wstring value (fromXmlChar(content));
+			xmlFree(content);
 			obj->value += value;
 		}
 	}
