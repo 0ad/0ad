@@ -13,7 +13,10 @@
 #include "Entity.h"
 #include "lib/timer.h"
 
-#include "dcdt/se/se_dcdt.h"
+#ifdef USE_DCDT
+# include "dcdt/se/se_dcdt.h"
+#endif // USE_DCDT
+
 #include "PathfindEngine.h"
 #include "ps/GameSetup/Config.h"
 
@@ -88,6 +91,7 @@ void CEntityManager::DeleteAll()
 
 void CEntityManager::updateObstacle( CEntity* tempHandle )
 {
+#ifdef USE_DCDT
 	if(g_Pathfinder.dcdtInitialized)
 	{
 		SrPolygon poly;
@@ -183,7 +187,7 @@ void CEntityManager::updateObstacle( CEntity* tempHandle )
 			g_Pathfinder.drawTriangulation();
 		}
 	}
-
+#endif // USE_DCDT
 }
 
 

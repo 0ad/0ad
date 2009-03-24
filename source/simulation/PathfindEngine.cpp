@@ -16,6 +16,8 @@
 
 
 
+#ifdef USE_DCDT
+
 #define EPSILON 0.00001f
 
 
@@ -151,8 +153,10 @@ public:
 		RenderCurrentPath();		
 	}
 };
+#endif // USE_DCDT
 
 
+#ifdef USE_DCDT
 CPathfindEngine::CPathfindEngine() : triangulationOverlay(0),
 									OABBBOUNDREDUCTION(0.8f),
 									CIRCLEBOUNDREDUCTION(0.5f),
@@ -172,7 +176,13 @@ CPathfindEngine::~CPathfindEngine()
 		triangulationOverlay = 0;
 	}
 }
+#else // USE_DCDT
+CPathfindEngine::CPathfindEngine() { }
+CPathfindEngine::~CPathfindEngine() { }
+#endif // USE_DCDT
 
+
+#ifdef USE_DCDT
 //Todo:
 // 1; the bouncing problem with the fortress
 // 2; update obstacles when things vanishes. done
@@ -324,6 +334,7 @@ void CPathfindEngine::drawTriangulation()
 
 	
 }
+#endif // USE_DCDT
 
 void CPathfindEngine::RequestPath( HEntity entity, const CVector2D& destination,
 								  CEntityOrder::EOrderSource orderSource )
@@ -338,18 +349,19 @@ void CPathfindEngine::RequestPath( HEntity entity, const CVector2D& destination,
 	waypoint.m_type = CEntityOrder::ORDER_GOTO_WAYPOINT;
 	waypoint.m_source = orderSource;
 	waypoint.m_target_location = destination;
+	waypoint.m_pathfinder_radius = 0.0f;
 
-
+#ifdef USE_DCDT
 	//Kai: adding radius for pathfinding
 	CBoundingObject* m_bounds = entity->m_bounds;
-
 	waypoint.m_pathfinder_radius = m_bounds->m_radius + RADIUSINCREMENT;
+#endif // USE_DCDT
 	
-	//waypoint.m_pathfinder_radius = 0.0f;
 	entity->m_orderQueue.push_front( waypoint );
 }
 
 
+#ifdef USE_DCDT
 void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D& destination, bool contact,
 										  float radius, CEntityOrder::EOrderSource orderSource )
 {
@@ -486,6 +498,7 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 	
 	PROFILE_END("Pathfinding");
 }
+#endif // USE_DCDT
 
 void CPathfindEngine::RequestLowLevelPath( HEntity entity, const CVector2D& destination, bool contact,
 										  float radius, CEntityOrder::EOrderSource orderSource )

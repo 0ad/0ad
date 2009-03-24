@@ -703,12 +703,14 @@ bool CEntity::ProcessGotoWaypoint( CEntityOrder* current, int UNUSED(timestep_mi
 
 	ChooseMovementSpeed( Distance );
 
+#ifdef USE_DCDT
 	//Kai: invoking triangulation or original A* pathfinding
 	if(g_TriPathfind)
 	{
 		g_Pathfinder.RequestTriangulationPath( me, path_to, contact, pathfinder_radius, source );
 	}
 	else
+#endif // USE_DCDT
 	{
 		g_Pathfinder.RequestLowLevelPath( me, path_to, contact, pathfinder_radius, source );
 	}

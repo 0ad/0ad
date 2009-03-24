@@ -12,12 +12,13 @@
 #include "ps/Singleton.h"
 #include "EntityHandles.h"
 #include "ps/Vector2D.h"
-//#include "AStarEngine.h"
-#include "dcdt/se/se_dcdt.h"
+#include "AStarEngine.h"
 
-#include "TRAStarEngine.h"
-
+#ifdef USE_DCDT
+# include "dcdt/se/se_dcdt.h"
+# include "TRAStarEngine.h"
 class TriangulationTerrainOverlay;
+#endif // USE_DCDT
 
 #define g_Pathfinder CPathfindEngine::GetSingleton()
 
@@ -35,6 +36,7 @@ class CPathfindEngine : public Singleton<CPathfindEngine>
 	NONCOPYABLE(CPathfindEngine);
 
 public:
+#ifdef USE_DCDT
 	//Kai: added for dcdt 
 	const float OABBBOUNDREDUCTION  ; 
 	const float CIRCLEBOUNDREDUCTION  ; 
@@ -52,7 +54,7 @@ public:
 
 	//Kai:added tile overlay for pathfinding
 	TriangulationTerrainOverlay* triangulationOverlay;
-
+#endif
 
 	CPathfindEngine();
 	~CPathfindEngine();
@@ -66,13 +68,17 @@ public:
 	void RequestContactPath( HEntity entity, CEntityOrder* current, float range );
 	bool RequestAvoidPath( HEntity entity, CEntityOrder* current, float avoidRange );
 
+#ifdef USE_DCDT
 	void RequestTriangulationPath( HEntity entity, const CVector2D& destination, bool contact, 
 		float radius, CEntityOrder::EOrderSource orderSource );
+#endif
 
 private:
 	CAStarEngineLowLevel mLowPathfinder;
 
+#ifdef USE_DCDT
 	CTRAStarEngine mTriangulationPathfinder;
+#endif
 };
 
 #endif

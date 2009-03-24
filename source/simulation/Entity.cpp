@@ -227,6 +227,7 @@ void CEntity::initAuraData()
 
 void CEntity::removeObstacle()
 {
+#ifdef USE_DCDT
 	if(g_Pathfinder.dcdtInitialized)
 	{
 		g_Pathfinder.dcdtPathfinder.remove_polygon(m_dcdtId);
@@ -238,7 +239,7 @@ void CEntity::removeObstacle()
 			g_Pathfinder.drawTriangulation();
 		}
 	}
-
+#endif // USE_DCDT
 }
 
 void CEntity::Kill(bool keepActor)

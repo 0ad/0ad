@@ -10,7 +10,9 @@
 #include "ps/World.h"
 #include "EntityManager.h"
 
-#include "dcdt/se/se_dcdt.h"
+#ifdef USE_DCDT
+# include "dcdt/se/se_dcdt.h"
+#endif // USE_DCDT
 
 class AStarNode
 {
@@ -81,9 +83,10 @@ public:
 	//Kai:added tile overlay for pathfinding
 	PathFindingTerrainOverlay* pathfindingOverlay;
 	
+#ifdef USE_DCDT
 	SrPolygon pol;
-    
 	//void TAStarTest();
+#endif // USE_DCDT
 
 	
 
