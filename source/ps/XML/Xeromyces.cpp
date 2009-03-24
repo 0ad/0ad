@@ -14,11 +14,21 @@
 
 #define LOG_CATEGORY "xml"
 
+static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
+{
+	LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Parse %s: %s:%d: %s",
+		error->level == XML_ERR_WARNING ? "warning" : "error",
+		error->file, error->line, error->message);
+	// TODO: The (non-fatal) warnings and errors don't get stored in the XMB,
+	// so the caching is less transparent than it should be
+}
+
 static bool g_XeromycesStarted = false;
 void CXeromyces::Startup()
 {
 	debug_assert(!g_XeromycesStarted);
 	xmlInitParser();
+	xmlSetStructuredErrorFunc(NULL, &errorHandler);
 	g_XeromycesStarted = true;
 }
 
@@ -26,6 +36,7 @@ void CXeromyces::Terminate()
 {
 	debug_assert(g_XeromycesStarted);
 	xmlCleanupParser();
+	xmlSetStructuredErrorFunc(NULL, NULL);
 	g_XeromycesStarted = false;
 }
 
@@ -126,9 +137,13 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
-	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), input.GetBufferSize(), "", NULL,
-		XML_PARSE_NONET|XML_PARSE_NOCDATA);
-	// TODO: handle parse errors
+	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), input.GetBufferSize(),
+		filename.string().c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
+	if (! doc)
+	{
+		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to parse XML file %s", filename.string().c_str());
+		return PSRETURN_Xeromyces_XMLParseError;
+	}
 
 	WriteBuffer writeBuffer;
 	CreateXMB(doc, writeBuffer);
