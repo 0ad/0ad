@@ -137,7 +137,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
-	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), input.GetBufferSize(),
+	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), (int)input.GetBufferSize(),
 		filename.string().c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
@@ -266,7 +266,7 @@ static void OutputElement(const xmlNodePtr node, WriteBuffer& writeBuffer,
 	{
 		// Write length and line number and null-terminated text
 		utf16string textW = CStr8(text).FromUTF8().utf16();
-		u32 nodeLen = 4 + 2*(textW.length()+1);
+		u32 nodeLen = u32(4 + 2*(textW.length()+1));
 		writeBuffer.Append(&nodeLen, 4);
 		writeBuffer.Append(&linenum, 4);
 		writeBuffer.Append((void*)textW.c_str(), nodeLen-4);
@@ -280,7 +280,7 @@ static void OutputElement(const xmlNodePtr node, WriteBuffer& writeBuffer,
 		xmlChar* value = xmlNodeGetContent(attr->children);
 		utf16string textW = CStr8((const char*)value).FromUTF8().utf16();
 		xmlFree(value);
-		u32 attrLen = 2*(textW.length()+1);
+		u32 attrLen = u32(2*(textW.length()+1));
 		writeBuffer.Append(&attrLen, 4);
 		writeBuffer.Append((void*)textW.c_str(), attrLen);
 	}
