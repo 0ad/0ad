@@ -7,6 +7,7 @@ use constant EXIT_BUILDCOMPLETE => 0;
 use constant EXIT_FAILED => 1;
 
 my %config = (load_conf("c:\\0ad\\autobuild\\aws.conf"), load_conf("d:\\0ad\\autobuild\\run.conf"));
+my $build_options = do "d:\\0ad\\autobuild\\options.pl";
 
 my $svn_trunk = "e:\\svn";
 my $temp_trunk = "d:\\0ad";
@@ -66,9 +67,12 @@ for (qw(build source libraries))
 
 # Create the workspace files
 
-add_to_buildlog("Running update-workspaces");
+my $updateworkspaces_args = '';
+$updateworkspaces_args .= ' --atlas' if $build_options->{atlas};
+$updateworkspaces_args .= ' --collada' if $build_options->{collada};
+add_to_buildlog("Running update-workspaces$updateworkspaces_args");
 chdir "$temp_trunk\\build\\workspaces" or die $!;
-my $updateworkspaces_output = `update-workspaces.bat 2>&1`;
+my $updateworkspaces_output = `update-workspaces.bat$updateworkspaces_args 2>&1`;
 add_to_buildlog($updateworkspaces_output);
 die $? if $?;
 
@@ -83,20 +87,22 @@ add_to_buildlog("Running vcbuild");
 my $build_output = `$vcbuild /time /M2 /logfile:$log_dir\\build_vcbuild.txt vc2008\\pyrogenesis.sln "Release|Win32" 2>&1`;
 add_to_buildlog($build_output);
 die $? if ($? and $? != 32768);
-# { open my $f, '>', "$temp_trunk/binaries/system/pyrogenesis.exe"; print $f "exe\n" }
-# { open my $f, '>', "$temp_trunk/binaries/system/pyrogenesis.pdb"; print $f "pdb\n" }
 
 # Copy the output
 
 add_to_buildlog("Copying generated binaries");
-`copy $temp_trunk\\binaries\\system\\pyrogenesis.exe $svn_trunk\\binaries\\system\\`;
-die $? if $?;
-`copy $temp_trunk\\binaries\\system\\pyrogenesis.pdb $svn_trunk\\binaries\\system\\`;
-die $? if $?;
+my @binaries = qw(pyrogenesis.exe pyrogenesis.pdb);
+push @binaries, 'AtlasUI.dll' if $build_options->{atlas};
+push @binaries, 'Collada.dll' if $build_options->{collada};
+for (@binaries) {
+    `copy $temp_trunk\\binaries\\system\\$_ $svn_trunk\\binaries\\system\\`;
+    die "Failed to copy $_: $?" if $?;
+}
 
 # Commit to SVN
 
-my $svn_output = `svn commit --username $config{svn_username} --password $config{svn_password} $svn_trunk\\binaries\\system\\pyrogenesis.exe $svn_trunk\\binaries\\system\\pyrogenesis.pdb --message "Automated build." 2>&1`;
+my $commit_binaries = join ' ', map "$svn_trunk\\binaries\\system\\$_", @binaries;
+my $svn_output = `svn commit --username $config{svn_username} --password $config{svn_password} $commit_binaries --message "Automated build." 2>&1`;
 add_to_buildlog($svn_output);
 die $? if $?;
 
