@@ -956,7 +956,8 @@ void CEntity::Teleport()
 {
 	m_position_previous = m_position;
 	m_graphics_position = m_position;
-	m_bounds->SetPosition( m_position.X, m_position.Z );
+	if (m_bounds)
+		m_bounds->SetPosition( m_position.X, m_position.Z );
 	UpdateActorTransforms();
 	UpdateCollisionPatch();
 
