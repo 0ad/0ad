@@ -10,7 +10,7 @@ my %config = (load_conf("c:\\0ad\\autobuild\\aws.conf"), load_conf("d:\\0ad\\aut
 my $build_options = do "d:\\0ad\\autobuild\\options.pl";
 
 my $svn_trunk = "e:\\svn";
-my $temp_trunk = "d:\\0ad";
+my $temp_trunk = "d:\\0ad\\svn";
 my $log_dir = "d:\\0ad\\buildlogs";
 my $vcbuild = "$svn_trunk\\source\\tools\\autobuild2\\vcbuild_env.bat";
 
@@ -20,12 +20,8 @@ eval { # catch deaths
 
 # Clean the output directory, just in case it's got old junk left over somehow
 `rmdir /q /s $temp_trunk 2>&1`; # (ignore failures, they don't matter)
-# This bit sometimes fails, for reasons I don't understand, so just keep trying it lots of times
-for my $i (0..60) {
-    mkdir $temp_trunk and last;
-    warn "($i) $!";
-    sleep 1;
-}
+`rmdir /q /s $log_dir 2>&1`; # (ignore failures, they don't matter)
+mkdir $temp_trunk or die $!;
 mkdir $log_dir or die $!;
 
 # Capture all output
