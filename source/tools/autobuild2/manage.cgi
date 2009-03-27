@@ -29,6 +29,11 @@ my $ec2 = new Net::Amazon::EC2(
     SecretAccessKey => $config{aws_secret_access_key},
 );
 
+my @build_options = (
+    { name => 'atlas', title => 'Atlas DLL' },
+    { name => 'collada', title => 'Collada DLL' },
+);
+
 my $action = $cgi->url_param('action');
 
 if (not defined $action or $action eq 'index') {
@@ -139,7 +144,13 @@ EOF
     if ($got_active_instance) {
         print qq{<button disabled title="Already running an instance ($got_active_instance)">Start new build</button>\n};
     } else {
-        print qq{<form action="?action=start" method="post" onsubmit="return confirm('Are you sure you want to start a new build?')"><button type="submit">Start new build</button></form>\n};
+        print qq{<form action="?action=start" method="post" onsubmit="return confirm('Are you sure you want to start a new build?')">\n};
+        print qq{<fieldset><legend>Build options</legend>\n};
+        for (@build_options) {
+            print qq{<label><input type="checkbox" name="option_$_->{name}">$_->{title}</label><br>};
+        }
+        print qq{<button type="submit">Start new build</button>\n};
+        print qq{</fieldset></form>\n};
     }
 }
 
@@ -291,6 +302,14 @@ sub create_user_data {
     for (@files) {
         $zip->addFile("$root/$_", "$_") or die "Failed to add $root/$_ to zip";
     }
+
+    my %options;
+    for (@build_options) {
+        $options{$_->{name}} = ($cgi->param('option_'.$_->{name}) ? 1 : 0);
+    }
+    my $options = Dumper \%options;
+    $zip->addString($options, 'options.pl') or die "Failed to add options.pl to zip";
+
     my $fh = new IO::String;
     if ($zip->writeToFileHandle($fh) != Archive::Zip::AZ_OK) {
         die "writeToFileHandle failed";
