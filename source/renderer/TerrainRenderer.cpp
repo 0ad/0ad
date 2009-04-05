@@ -226,7 +226,11 @@ void TerrainRenderer::RenderTerrain(ShadowMap* shadow)
 	if (!shadow)
 	{
 		pglActiveTextureARB(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, 0);
+		// We're not going to use a texture here, but we have to have a valid texture
+		// bound else the texture unit will be disabled.
+		// We should still have a bound splat texture from some earlier rendering,
+		// so assume that's still valid to use.
+		// (TODO: That's a bit of an ugly hack.)
 
 		// Shadow rendering disabled: Ambient + Diffuse
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
