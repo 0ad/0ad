@@ -17,9 +17,9 @@ CLightEnv::CLightEnv()
 	: m_Elevation(DEGTORAD(45)),
 	m_Rotation(DEGTORAD(315)),
 	m_TerrainShadowTransparency(0.0),
-	m_SunColor(1, 1, 1),
-	m_TerrainAmbientColor(164/255.f, 164/255.f, 164/255.f),
-	m_UnitsAmbientColor(164/255.f, 164/255.f, 164/255.f)
+	m_SunColor(1.5, 1.5, 1.5),
+	m_TerrainAmbientColor(0x50/255.f, 0x60/255.f, 0x85/255.f),
+	m_UnitsAmbientColor(0x80/255.f, 0x80/255.f, 0x80/255.f)
 {
 	CalculateSunDirection();
 }
