@@ -10,7 +10,7 @@
 			<Tooltip>Bonused vs. Melee Cavalry and Infantry. Weak vs. Ranged Infantry and Ranged Cavalry. Long Train Time. Small bonus vs. All Persian Units.</Tooltip>
 		</Id>
 		<Creation>
-			<Time>40</Time>
+			<Time>45</Time>
 			<Resource>
  				<Food>75</Food>
 				<Wood>50</Wood>
@@ -19,7 +19,7 @@
 		</Creation>
 		<Armour>
 			<Hack>10.0</Hack>
-			<Pierce>9.0</Pierce>
+			<Pierce>10.0</Pierce>
 			<Crush>14.0</Crush>
 		</Armour>
 		<Health>
@@ -29,8 +29,8 @@
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>21.0</Hack>
- 				<Pierce>15.0</Pierce>
+ 				<Hack>20.0</Hack>
+ 				<Pierce>20.0</Pierce>
  				<Crush>5.0</Crush>
 			</Melee>
 			<Charge>

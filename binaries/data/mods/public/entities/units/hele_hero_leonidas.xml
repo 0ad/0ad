@@ -10,6 +10,7 @@
 			<Tooltip>Hero Aura: Increased Spartiate and Hoplite Attack.</Tooltip>
 		</Id>
 		<Creation>
+			<Time>40</Time>
 			<Resource>
  				<Food>100</Food>
 				<Metal>300</Metal>
@@ -39,12 +40,12 @@
  		<Attack>
 			<Melee>
  				<Hack>25.0</Hack>
-				<Pierce>25.0</Pierce>
+				<Pierce>30.0</Pierce>
 				<Crush>0.0</Crush>
 			</Melee>
 			<Charge>
 				<Hack>75.0</Hack>
-				<Pierce>75.0</Pierce>
+				<Pierce>90.0</Pierce>
 				<Crush>0.0</Crush>
 			</Charge>	
  		</Attack>

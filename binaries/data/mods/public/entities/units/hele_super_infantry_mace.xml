@@ -10,19 +10,20 @@
 			<Tooltip>Bonused vs. Cavalry and Infantry. Weak vs. Ranged Units. Uses the Syntagma Formation.</Tooltip>			
 		</Id>
 		<Creation>
+			<Time>30</Time>
 			<Resource>
- 				<Food>70</Food>
-				<Wood>75</Wood>
+ 				<Food>60</Food>
+				<Wood>70</Wood>
 				<Metal>50</Metal>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Hack>8.5</Hack>
-			<Pierce>7.0</Pierce>
+			<Hack>15.0</Hack>
+			<Pierce>10.0</Pierce>
 			<Crush>14.0</Crush>
 		</Armour>
 		<Health>
-			<Max>130</Max>
+			<Max>140</Max>
 		</Health>
 		<Stamina>
 			<Max>0</Max>
@@ -33,8 +34,8 @@
 	<Actions>
 		<Attack>
 			<Melee>
- 				<Hack>10.0</Hack>
- 				<Pierce>30.0</Pierce>
+ 				<Hack>5.0</Hack>
+ 				<Pierce>18.0</Pierce>
 				<Range>7.5</Range>
 			</Melee>
 		</Attack>
