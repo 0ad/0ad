@@ -233,7 +233,7 @@ static void OutputElement(const xmlNodePtr node, WriteBuffer& writeBuffer,
 		}
 	}
 
-	u32 linenum = XML_GET_LINE(node);
+	u32 linenum = xmlGetLineNo(node);
 
 	// Find the start of the non-whitespace section
 	size_t first = text.find_first_not_of(whitespace);
