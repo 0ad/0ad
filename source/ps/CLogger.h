@@ -12,6 +12,13 @@ extern CLogger* g_Logger;
 #define LOG (g_Logger->Log)
 #define LOG_ONCE (g_Logger->LogOnce)
 
+// Should become LOG_MESSAGE but this can only be changed once the LOG function is removed
+// from all of the files. LOG_INFO, LOG_WARNING and LOG_ERROR are currently existing macros.
+
+#define LOGMESSAGE (g_Logger->LogMessage) 
+#define LOGWARNING (g_Logger->LogWarning)
+#define LOGERROR (g_Logger->LogError)
+
 class CLogger
 {
 	NONCOPYABLE(CLogger);
@@ -32,20 +39,29 @@ public:
 
 	~CLogger();
 
-	// Functions to write different message types
-	void WriteMessage(const char *message, int interestedness);
-	void WriteError  (const char *message, int interestedness);
-	void WriteWarning(const char *message, int interestedness);
+	// Functions to write different message types (Errors and warnings are placed 
+	// both in mainLog and intrestingLog.)
+	void WriteMessage(const char *message);
+	void WriteError  (const char *message);
+	void WriteWarning(const char *message);
 	
 	// Function to log stuff to file
+	// -- This function has not been removed because the build would break.
 	void Log(ELogMethod method, const char* category, const char *fmt, ...);
 	// Similar to Log, but only outputs each message once no matter how many times it's called
+	// -- This function has not been removed because the build would break.
 	void LogOnce(ELogMethod method, const char* category, const char *fmt, ...);
+	
+	// Functions to write a message, warning or error to file.
+	void LogMessage(const char *fmt, ...);
+	void LogWarning(const char *fmt, ...);
+	void LogError(const char *fmt, ...);
 	
 private:
 	void Init();
 
-	void LogUsingMethod(ELogMethod method, const char* category, const char* message);
+	// -- This function has not been removed because the build would break.
+	void LogUsingMethod(ELogMethod method, const char* message);
 
 	// the output streams
 	std::ostream* m_MainLog;
@@ -61,12 +77,9 @@ private:
 	int m_NumberOfErrors;
 	int m_NumberOfWarnings;
 
-	// Returns how interesting this category is to the user
-	// (0 = no messages, 1(default) = warnings/errors, 2 = all)
-	int Interestedness(const char* category);
-
 	// Used to remember LogOnce messages
 	std::set<std::string> m_LoggedOnce;
+
 };
 
 /**

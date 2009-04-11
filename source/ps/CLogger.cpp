@@ -66,8 +66,7 @@ void CLogger::Init()
 	*m_MainLog << html_header0 << "Main log" << html_header1;
 	
 	//Write Headers for the HTML documents
-	*m_InterestingLog << html_header0 << "Main log (interesting items only, as specified in system.cfg)" << html_header1;
-
+	*m_InterestingLog << html_header0 << "Main log (warnings and errors only)" << html_header1;
 }
 
 CLogger::~CLogger ()
@@ -102,62 +101,56 @@ CLogger::~CLogger ()
 	}
 }
 
-void CLogger::WriteMessage(const char *message, int interestedness)
+void CLogger::WriteMessage(const char *message)
 {
-	m_NumberOfMessages++;
+	++m_NumberOfMessages;
 
-	if (interestedness >= 2)
-	{
-		if (g_Console) g_Console->InsertMessage(L"LOG: %hs", message);
-		*m_InterestingLog << "<p>" << message << "</p>\n";
-		m_InterestingLog->flush();
-	}
 	*m_MainLog << "<p>" << message << "</p>\n";
 	m_MainLog->flush();
 	
 }
 
-void CLogger::WriteError(const char *message, int interestedness)
+void CLogger::WriteError(const char *message)
 {
-	m_NumberOfErrors++;
+	++m_NumberOfErrors;
 	if (m_UseDebugPrintf)
 		debug_printf("ERROR: %s\n", message);
-	if (interestedness >= 1)
-	{
-		if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
-		*m_InterestingLog << "<p class=\"error\">ERROR: "<< message << "</p>\n";
-		m_InterestingLog->flush();
-	}
+
+	if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
+	*m_InterestingLog << "<p class=\"error\">ERROR: "<< message << "</p>\n";
+	m_InterestingLog->flush();
+
 	*m_MainLog << "<p class=\"error\">ERROR: "<< message << "</p>\n";
 	m_MainLog->flush();
 }
 
-void CLogger::WriteWarning(const char *message, int interestedness)
+void CLogger::WriteWarning(const char *message)
 {
-	m_NumberOfWarnings++;
-	if (interestedness >= 1)
-	{
-		if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
-		*m_InterestingLog << "<p class=\"warning\">WARNING: "<< message << "</p>\n";
-		m_InterestingLog->flush();
-	}
+	++m_NumberOfWarnings;
+
+	if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
+	*m_InterestingLog << "<p class=\"warning\">WARNING: "<< message << "</p>\n";
+	m_InterestingLog->flush();
+
 	*m_MainLog << "<p class=\"warning\">WARNING: "<< message << "</p>\n";
 	m_MainLog->flush();
 }
 
 // Sends the message to the appropriate piece of code
-void CLogger::LogUsingMethod(ELogMethod method, const char* category, const char* message)
+// -- This function has not been removed because the build would break.
+void CLogger::LogUsingMethod(ELogMethod method, const char* message)
 {
 	if(method == Normal)
-		WriteMessage(message, Interestedness(category));
+		WriteMessage(message);
 	else if(method == Error)
-		WriteError(message, Interestedness(category));
+		WriteError(message);
 	else if(method == Warning)
-		WriteWarning(message, Interestedness(category));
+		WriteWarning(message);
 	else
-		WriteMessage(message, Interestedness(category));
+		WriteMessage(message);
 }
 
+// -- This function has not been removed because the build would break.
 void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 {
 	va_list argp;
@@ -171,10 +164,10 @@ void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 	}
 	va_end(argp);
 
-	LogUsingMethod(method, category, buffer);
+	LogUsingMethod(method, buffer);
 }
 
-
+// -- This function has not been removed because the build would break.
 void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, ...)
 {
 	va_list argp;
@@ -196,38 +189,56 @@ void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, 
 
 	// If not, mark it as having been logged and then log it
 	m_LoggedOnce.insert(message);
-	LogUsingMethod(method, category, buffer);
+	LogUsingMethod(method, buffer);
 }
 
-
-int CLogger::Interestedness(const char* category)
+void CLogger::LogMessage(const char *fmt, ...)
 {
-	// This could be cached, but reading from the config DB every time allows
-	// easy run-time alteration of interest levels (and shouldn't be particularly
-	// slow)
+	va_list argp;
+	char buffer[512];
+	
+	va_start(argp, fmt);
+	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	{
+		// Buffer too small - ensure the string is nicely terminated
+		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
+	}
+	va_end(argp);
 
-	// Category unspecified: use a high interest level to encourage
-	// people to categorise their errors
-	if (category == NULL)
-		return 2;
-
-	// If the config DB hasn't been loaded, assume the default
-	if (! CConfigDB::IsInitialised())
-		return 1;
-
-	CConfigValue* v = g_ConfigDB.GetValue(CFG_SYSTEM, CStr("loginterest.")+category);
-	// If the value is unspecified, also use the default
-	if (!v)
-		return 1;
-
-	int level;
-	// Try to retrieve the value as an integer
-	if (! v->GetInt(level))
-		return 1; // something failed, so the default value might be a good alternative
-
-	return level;
+	WriteMessage(buffer);
 }
 
+void CLogger::LogWarning(const char *fmt, ...)
+{
+	va_list argp;
+	char buffer[512];
+	
+	va_start(argp, fmt);
+	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	{
+		// Buffer too small - ensure the string is nicely terminated
+		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
+	}
+	va_end(argp);
+
+	WriteWarning(buffer);
+}
+
+void CLogger::LogError(const char *fmt, ...)
+{
+	va_list argp;
+	char buffer[512];
+	
+	va_start(argp, fmt);
+	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	{
+		// Buffer too small - ensure the string is nicely terminated
+		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
+	}
+	va_end(argp);
+
+	WriteError(buffer);
+}
 
 TestLogger::TestLogger()
 {

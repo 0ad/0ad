@@ -290,7 +290,7 @@ StringBuffer CLocale::Translate(const wchar_t* id)
 	StringsType::iterator TransStr = Strings.find(Str(id));
 	if (TransStr == Strings.end())
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "I18n: No translation found for string '%ls'", id);
+		LOG(CLogger::Normal, LOG_CATEGORY, "I18n: No translation found for string '%ls'", id);
 
 		// Just use the ID string directly, and remember it for the future
 		return StringBuffer(&AddDefaultString(id), this);
