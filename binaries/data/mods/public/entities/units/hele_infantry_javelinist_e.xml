@@ -9,19 +9,27 @@
 			<Icon_Cell>8</Icon_Cell>
 
 		</Id>
-	
+		<Armour>
+			<Hack>3.0</Hack>
+			<Pierce>7.0</Pierce>
+		</Armour>
 	</Traits>
 	<Actions>
-		<Create>
-			<List>
-				<StructCiv>
-					<Theatron />
-				</StructCiv>
-				<StructMil>
-					<Gymnasion />
-				</StructMil>
-			</List>
-		</Create>
+	<Actions>
+ 		<Attack>
+			<Ranged>
+ 				<Pierce>47.0</Pierce>
+				<MinRange>8.0</MinRange>
+				<Range>38</Range>
+			</Ranged>
+ 		</Attack>
+		<Move>
+			<Speed>7.5</Speed>
+			<Run>
+				<Speed>17.75</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	</Actions>
 
 	<Actor>units/hellenes/infantry_javelinist_e.xml</Actor>

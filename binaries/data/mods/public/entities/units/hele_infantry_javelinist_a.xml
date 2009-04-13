@@ -15,19 +15,27 @@
 			<Entity>hele_infantry_javelinist_e</Entity>
 			
 		</Promotion>
-	
+		<Armour>
+			<Hack>2.0</Hack>
+			<Pierce>6.0</Pierce>
+		</Armour>
+		<Vision>
+			<Los>13.0</Los>
+		</Vision>
 	</Traits>
 	<Actions>
-		<Create>
-			<List>
-				<StructCiv>
-					<Theatron />
-				</StructCiv>
-				<StructMil>
-					<Gymnasion />
-				</StructMil>
-			</List>
-		</Create>
+ 		<Attack>
+			<Ranged>
+				<MinRange>10.0</MinRange>
+				<Range>34</Range>
+			</Ranged>
+ 		</Attack>
+		<Move>
+			<Speed>7.25</Speed>
+			<Run>
+				<Speed>17.5</Speed>
+			</Run>
+		</Move>
 	</Actions>
 
 	<Actor>units/hellenes/infantry_javelinist_a.xml</Actor>

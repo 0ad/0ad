@@ -2,13 +2,14 @@
 
 <Entity Parent="hele_cavalry_swordsman_a">
 	<Traits>
-
 		<id>
-
 			<Icon_Cell>20</Icon_Cell>
-
 		</id>
-
+		<Armour>
+			<Hack>8.0</Hack>
+			<Pierce>10.0</Pierce>
+			<Crush>14.0</Crush>
+		</Armour>
 	</Traits>
 
 	<Actor>units/hellenes/cavalry_swordsman_e.xml</Actor>

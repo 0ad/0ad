@@ -10,18 +10,25 @@
 		<Promotion>
 			<Entity>hele_infantry_spearman_e</Entity>
 		</Promotion>
+		<Armour>
+			<Hack>8.0</Hack>
+		</Armour>
 	</Traits>
 	<Actions>
-		<Create>
-			<List>
-				<StructCiv>
-					<Theatron />
-				</StructCiv>
-				<StructMil>
-					<Gymnasion />
-				</StructMil>
-			</List>
-		</Create>
+ 		<Attack>
+			<Melee>
+ 				<Pierce>9.0</Pierce>
+			</Melee>
+			<Charge>
+				<Pierce>18.0</Pierce>
+			</Charge>		
+ 		</Attack>
+		<Move>
+			<Speed>4.5</Speed>
+			<Run>
+				<Speed>13.0</Speed>
+			</Run>
+		</Move>
 	</Actions>
 
 	<Actor>units/hellenes/infantry_spearman_a.xml</Actor>

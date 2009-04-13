@@ -12,16 +12,19 @@
 
 	</Traits>
 	<Actions>
-		<Create>
-			<List>
-				<StructCiv>
-					<Theatron />
-				</StructCiv>
-				<StructMil>
-					<Gymnasion />
-				</StructMil>
-			</List>
-		</Create>
+ 		<Attack>
+			<Ranged>
+				<MinRange>12.0</MinRange>
+				<Range>46.0</Range>
+				<ProjectileSpeed>44.0</ProjectileSpeed>
+			</Ranged>
+ 		</Attack>
+		<Move>
+			<Speed>5.75</Speed>
+			<Run>
+				<Speed>15.0</Speed>
+			</Run>
+		</Move>
 	</Actions>
 
 	<Actor>units/hellenes/infantry_archer_e.xml</Actor>
