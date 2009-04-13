@@ -113,9 +113,9 @@ public:
 	void test_parse_unicode()
 	{
 		try_parse_save(
-			"<?xml version=\"1.0\" encoding=\"utf-8\"?><foo>&#x1234;\xE1\x88\xB4</foo>",
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>",
 			"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-			"<foo>\xE1\x88\xB4\xE1\x88\xB4</foo>\n"
+			"<foo x=\"\xE1\x88\xB4\xE1\x88\xB4\">\xE1\x88\xB4\xE1\x88\xB4</foo>\n"
 		);
 	}
 
@@ -131,9 +131,9 @@ public:
 	void test_parse_iso88591()
 	{
 		try_parse_save(
-			"<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><foo>&#x1234;\xE1\x88\xB4</foo>",
+			"<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><foo x='&#x1234;\xE1\x88\xB4'>&#x1234;\xE1\x88\xB4</foo>",
 			"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-			"<foo>\xE1\x88\xB4\xC3\xA1\xC2\x88\xC2\xB4</foo>\n"
+			"<foo x=\"\xE1\x88\xB4\xC3\xA1\xC2\x88\xC2\xB4\">\xE1\x88\xB4\xC3\xA1\xC2\x88\xC2\xB4</foo>\n"
 		);
 	}
 
