@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="base">
-      <mesh>structural/plot_field.pmd</mesh>
+      <mesh>structural/field_plot.dae</mesh>
       <texture>structural/plot_field_fallow.dds</texture>
     </variant>
   </group>
-
   <material>basic_trans.xml</material>
-
 </actor>

@@ -2,10 +2,7 @@
 <actor version="1">
   <group>
     <variant>
-      <mesh>structural/field_plot.dae</mesh>
-      <props>
-        <prop actor="props/special/common/field_grain.xml" attachpoint="root"/>
-      </props>
+      <mesh>props/field_grain.dae</mesh>
       <texture>structural/field_01.dds</texture>
     </variant>
   </group>
