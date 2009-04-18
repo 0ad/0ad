@@ -72,7 +72,7 @@ extern int close(int);
 extern int read (int fd, void* buf, size_t nbytes);	// thunk
 extern int write(int fd, void* buf, size_t nbytes);	// thunk
 extern off_t lseek(int fd, off_t ofs, int whence);  // thunk
-extern int truncate(const char* path, off_t length);
+LIB_API int truncate(const char* path, off_t length);
 
 
 //

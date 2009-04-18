@@ -177,4 +177,10 @@ private:\
 	className(const className&);\
 	const className& operator=(const className&)
 
+#if ICC_VERSION
+# define ASSUME_ALIGNED(ptr, multiple) __assume_aligned(ptr, multiple)
+#else
+# define ASSUME_ALIGNED(ptr, multiple)
+#endif
+
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION

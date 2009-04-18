@@ -33,17 +33,17 @@ inline bool IsAligned_Offset(off_t ofs)
 
 inline off_t AlignedOffset(off_t ofs)
 {
-	return round_down(ofs, (off_t)BLOCK_SIZE);
+	return (off_t)round_down<size_t>(size_t(ofs), BLOCK_SIZE);
 }
 
 inline off_t AlignedSize(off_t size)
 {
-	return round_up(size, (off_t)BLOCK_SIZE);
+	return (off_t)round_up<size_t>(size_t(size), BLOCK_SIZE);
 }
 
 inline off_t PaddedSize(off_t size, off_t ofs)
 {
-	return round_up(size + ofs - AlignedOffset(ofs), (off_t)BLOCK_SIZE);
+	return (off_t)round_up<size_t>(size_t(size + ofs - AlignedOffset(ofs)), BLOCK_SIZE);
 }
 
 #endif	// #ifndef INCLUDED_IO_ALIGN

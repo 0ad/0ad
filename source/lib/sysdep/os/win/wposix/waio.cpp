@@ -272,7 +272,7 @@ int write(int fd, void* buf, size_t nbytes)
 
 off_t lseek(int fd, off_t ofs, int whence)
 {
-	return _lseek(fd, ofs, whence);
+	return _lseeki64(fd, ofs, whence);
 }
 
 int truncate(const char* path, off_t length)

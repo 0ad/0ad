@@ -449,7 +449,7 @@ static void ExtractDescriptors(u32 reg, std::vector<u8>& descriptors)
 		return;
 	for(int pos = 24; pos >= 0; pos -= 8)
 	{
-		const u8 descriptor = bits(reg, pos, pos+7);
+		const u8 descriptor = (u8)bits(reg, pos, pos+7);
 		if(descriptor != 0)
 			descriptors.push_back(descriptor);
 	}
@@ -469,7 +469,7 @@ static void DecodeDescriptor(u8 descriptor)
 		// size
 		S4K = 0x08,
 		S4M = 0x10,
-		S2M = 0x20,
+		S2M = 0x20
 	};
 	struct Properties
 	{

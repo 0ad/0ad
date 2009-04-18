@@ -27,6 +27,15 @@ struct ArrayDeleter
 	}
 };
 
+struct FreeDeleter
+{
+	template<class T>
+	void operator()(T* p)
+	{
+		free(p);
+	}
+};
+
 // (note: uses CheckedArrayDeleter)
 LIB_API shared_ptr<u8> Allocate(size_t size);
 

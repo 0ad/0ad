@@ -326,7 +326,7 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 	PSAPI_WORKING_SET_EX_INFORMATION* wsi = new PSAPI_WORKING_SET_EX_INFORMATION[numPages];
 	for(size_t i = 0; i < numPages; i++)
 		wsi[i].VirtualAddress = (u8*)mem + i*pageSize;
-	pQueryWorkingSetEx(GetCurrentProcess(), wsi, sizeof(PSAPI_WORKING_SET_EX_INFORMATION)*numPages);
+	pQueryWorkingSetEx(GetCurrentProcess(), wsi, DWORD(sizeof(PSAPI_WORKING_SET_EX_INFORMATION)*numPages));
 
 	// ensure each is valid and allocated on the correct node
 	for(size_t i = 0; i < numPages; i++)

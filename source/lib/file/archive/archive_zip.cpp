@@ -114,7 +114,7 @@ public:
 		m_c_len     = to_le16(u16_from_larger((size_t)slack));
 		m_x2        = to_le32(0);
 		m_x3        = to_le32(0);
-		m_lfh_ofs   = to_le32(ofs);
+		m_lfh_ofs   = to_le32(u32_from_larger(ofs));
 
 		cpu_memcpy((char*)this + sizeof(CDFH), pathnameString.c_str(), pathnameString.length());
 	}

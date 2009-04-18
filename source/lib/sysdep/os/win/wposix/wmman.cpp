@@ -84,7 +84,10 @@ static LibError mmap_mem(void* start, size_t len, int prot, int flags, int fd, v
 	DWORD flProtect = win32_prot(prot);
 	void* p = VirtualAlloc(start, len, flAllocationType, flProtect);
 	if(!p)
+	{
+		debug_printf("wmman: VirtualAlloc(%p, 0x%I64X) failed\n", start, len);
 		WARN_RETURN(ERR::NO_MEM);
+	}
 	*pp = p;
 	return INFO::OK;
 }
@@ -211,4 +214,5 @@ int munmap(void* start, size_t UNUSED(len))
 	WARN_RETURN_IF_FALSE(ok);	// both failed
 	return 0;
 }
+
 

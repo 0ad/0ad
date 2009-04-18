@@ -12,6 +12,7 @@
 #define _SECURE_SCL 0
 
 #include "lib/sysdep/compiler.h"	// MSC_VERSION, HAVE_PCH
+#include "lib/sysdep/os.h"	// (must come before posix_types.h)
 
 // disable some common and annoying warnings
 // (done as soon as possible so that headers below are covered)
@@ -46,9 +47,11 @@
 // headers made available everywhere for convenience
 //
 
-#include "lib/sysdep/os.h"
-#include "lib/sysdep/stl.h"
+// (must come before any system headers because it fixes off_t)
+#include "lib/posix/posix_types.h"
+
 #include "lib/sysdep/arch.h"
+#include "lib/sysdep/stl.h"
 
 #include "lib/lib_api.h"
 

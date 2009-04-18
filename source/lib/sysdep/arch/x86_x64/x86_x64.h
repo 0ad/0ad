@@ -36,7 +36,7 @@ struct x86_x64_CpuidRegs
  *     and allows graceful expansion to functions that require further inputs.
  * @return true on success or false if the sub-function isn't supported.
  **/
-extern bool x86_x64_cpuid(x86_x64_CpuidRegs* regs);
+LIB_API bool x86_x64_cpuid(x86_x64_CpuidRegs* regs);
 
 /**
  * CPU vendor.

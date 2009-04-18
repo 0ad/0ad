@@ -1,8 +1,6 @@
 #ifndef INCLUDED_WFILESYSTEM
 #define INCLUDED_WFILESYSTEM
 
-#include <sys/stat.h>
-
 #include "no_crt_posix.h"
 
 
@@ -10,8 +8,8 @@
 // sys/stat.h
 //
 
-// stat is defined by <sys/stat.h> (we allow this because VC8 declares
-// inline macros that are worth keeping)
+// (use VC8's stat because it defines helpful inline macros)
+#include <sys/stat.h>
 
 // defined by MinGW but not VC
 #if MSC_VERSION

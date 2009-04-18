@@ -11,6 +11,9 @@
 #ifndef INCLUDED_WPOSIX_TYPES
 #define INCLUDED_WPOSIX_TYPES
 
+#include <crtdefs.h>	// intptr_t
+
+
 //
 // <inttypes.h>
 //
@@ -52,10 +55,14 @@ typedef unsigned long long uint64_t;
 // <sys/types.h>
 //
 
-typedef long ssize_t;
+typedef intptr_t ssize_t;
 // prevent wxWidgets from (incompatibly) redefining it
 #define HAVE_SSIZE_T
-typedef long off_t;
+
+// VC9 defines this as long, which is unacceptable.
+typedef intptr_t off_t;
+typedef off_t _off_t;	// used by wchar.h
+#define _OFF_T_DEFINED
 
 
 //
