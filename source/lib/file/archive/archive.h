@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : archive.h
- * Project     : 0 A.D.
- * Description : interface for reading from and creating archives.
- * =========================================================================
+/*
+ * interface for reading from and creating archives.
  */
 
 #ifndef INCLUDED_ARCHIVE

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : posix_types.h
- * Project     : 0 A.D.
- * Description : lightweight header that defines POSIX types.
- * =========================================================================
+/*
+ * lightweight header that defines POSIX types.
  */
 
 // this header defines e.g. ssize_t and int8_t without pulling in all

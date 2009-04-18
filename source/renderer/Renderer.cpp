@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Renderer.cpp
- * Project     : 0 A.D.
- * Description : higher level interface on top of OpenGL to render basic
- *               objects: terrain, models, sprites, particles etc.
- * =========================================================================
+/*
+ * higher level interface on top of OpenGL to render basic objects:
+ * terrain, models, sprites, particles etc.
  */
 
 #include "precompiled.h"

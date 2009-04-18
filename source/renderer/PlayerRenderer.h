@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : PlayerRenderer
- * Project     : Pyrogenesis
- * Description : RenderModifier for player color rendering, to be used
- *             : with e.g. FixedFunctionModelRenderer
- * =========================================================================
+/*
+ * RenderModifier for player color rendering, to be used with e.g.
+ * FixedFunctionModelRenderer
  */
 
 #ifndef INCLUDED_PLAYERRENDERER

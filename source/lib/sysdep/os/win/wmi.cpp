@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wmi.cpp
- * Project     : 0 A.D.
- * Description : wrapper for Windows Management Instrumentation
- * =========================================================================
+/*
+ * wrapper for Windows Management Instrumentation
  */
 
 #include "precompiled.h"

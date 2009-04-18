@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : MiniPatch.h
- * Project     : 0 A.D.
- * Description : Definition of a single terrain tile
- * =========================================================================
+/*
+ * Definition of a single terrain tile
  */
 
 #ifndef INCLUDED_MINIPATCH

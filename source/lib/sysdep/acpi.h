@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : acpi.h
- * Project     : 0 A.D.
- * Description : minimal subset of ACPI
- * =========================================================================
+/*
+ * minimal subset of ACPI
  */
 
 #ifndef INCLUDED_ACPI

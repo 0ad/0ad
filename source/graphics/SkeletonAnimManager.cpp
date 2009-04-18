@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : SkeletonAnimManager.cpp
- * Project     : 0 A.D.
- * Description : Owner of all skeleton animations
- * =========================================================================
+/*
+ * Owner of all skeleton animations
  */
 
 #include "precompiled.h"

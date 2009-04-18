@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wtime.h
- * Project     : 0 A.D.
- * Description : emulate POSIX high resolution timer on Windows.
- * =========================================================================
+/*
+ * emulate POSIX high resolution timer on Windows.
  */
 
 #ifndef INCLUDED_WTIME

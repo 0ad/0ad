@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : archive_zip.h
- * Project     : 0 A.D.
- * Description : archive backend for Zip files.
- * =========================================================================
+/*
+ * archive backend for Zip files.
  */
 
 #ifndef INCLUDED_ARCHIVE_ZIP

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ogl_shader.h
- * Project     : 0 A.D.
- * Description : load and link together shaders; provides hotload support.
- * =========================================================================
+/*
+ * load and link together shaders; provides hotload support.
  */
 
 #ifndef INCLUDED_OGL_SHADER

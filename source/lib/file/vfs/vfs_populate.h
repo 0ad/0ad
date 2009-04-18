@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : vfs_populate.h
- * Project     : 0 A.D.
- * Description : populate VFS directories with files
- * =========================================================================
+/*
+ * populate VFS directories with files
  */
 
 #ifndef INCLUDED_VFS_POPULATE

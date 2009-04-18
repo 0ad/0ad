@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : cache_adt.h
- * Project     : 0 A.D.
- * Description : Customizable cache data structure.
- * =========================================================================
+/*
+ * Customizable cache data structure.
  */
 
 #ifndef INCLUDED_CACHE_ADT

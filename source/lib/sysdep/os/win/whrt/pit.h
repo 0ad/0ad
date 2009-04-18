@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : pit.h
- * Project     : 0 A.D.
- * Description : Timer implementation using 82C53/4 PIT
- * =========================================================================
+/*
+ * Timer implementation using 82C53/4 PIT
  */
 
 #ifndef INCLUDED_PIT

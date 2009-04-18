@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : FixedFunctionModelRenderer.cpp
- * Project     : Pyrogenesis
- * Description : Implementation of FixedFunctionModelRenderer
- * =========================================================================
+/*
+ * Implementation of FixedFunctionModelRenderer
  */
 
 #include "precompiled.h"

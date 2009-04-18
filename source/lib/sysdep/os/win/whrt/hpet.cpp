@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : hpet.cpp
- * Project     : 0 A.D.
- * Description : Timer implementation using High Precision Event Timer
- * =========================================================================
+/*
+ * Timer implementation using High Precision Event Timer
  */
 
 #include "precompiled.h"

@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : lib_errors.cpp
- * Project     : 0 A.D.
- * Description : error handling system: defines error codes, associates
- *             : them with descriptive text, simplifies error notification.
- * =========================================================================
+/*
+ * error handling system: defines error codes, associates them with
+ * descriptive text, simplifies error notification.
  */
 
 // note: this is called lib_errors.cpp because we have another

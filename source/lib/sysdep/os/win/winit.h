@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : winit.h
- * Project     : 0 A.D.
- * Description : windows-specific module init and shutdown mechanism
- * =========================================================================
+/*
+ * windows-specific module init and shutdown mechanism
  */
 
 #ifndef INCLUDED_WINIT

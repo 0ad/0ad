@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tgt.cpp
- * Project     : 0 A.D.
- * Description : Timer implementation using timeGetTime
- * =========================================================================
+/*
+ * Timer implementation using timeGetTime
  */
 
 // note: WinMM is delay-loaded to avoid dragging it in when this timer

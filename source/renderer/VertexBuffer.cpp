@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : VertexBuffer.cpp
- * Project     : 0 A.D.
- * Description : encapsulation of VBOs with batching and sharing
- * =========================================================================
+/*
+ * encapsulation of VBOs with batching and sharing
  */
 
 #include "precompiled.h"

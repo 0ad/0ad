@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : SkyManager.cpp
- * Project     : Pyrogenesis
- * Description : Sky settings, texture management and rendering.
- * =========================================================================
+/*
+ * Sky settings, texture management and rendering.
  */
 
 #include "precompiled.h"

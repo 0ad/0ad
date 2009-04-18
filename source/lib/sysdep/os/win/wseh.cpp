@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wseh.cpp
- * Project     : 0 A.D.
- * Description : Structured Exception Handling support
- * =========================================================================
+/*
+ * Structured Exception Handling support
  */
 
 #include "precompiled.h"

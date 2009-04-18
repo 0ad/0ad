@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : self_test.h
- * Project     : 0 A.D.
- * Description : helpers for built-in self tests
- * =========================================================================
+/*
+ * helpers for built-in self tests
  */
 
 /*

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : file_stats.h
- * Project     : 0 A.D.
- * Description : gathers statistics from all file modules.
- * =========================================================================
+/*
+ * gathers statistics from all file modules.
  */
 
 #ifndef INCLUDED_FILE_STATS

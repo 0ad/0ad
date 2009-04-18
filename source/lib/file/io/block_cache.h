@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : block_cache.h
- * Project     : 0 A.D.
- * Description : cache for aligned I/O blocks.
- * =========================================================================
+/*
+ * cache for aligned I/O blocks.
  */
 
 #ifndef INCLUDED_BLOCK_CACHE

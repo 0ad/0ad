@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : mem_util.cpp
- * Project     : 0 A.D.
- * Description : memory allocator helper routines.
- * =========================================================================
+/*
+ * memory allocator helper routines.
  */
 
 #include "precompiled.h"

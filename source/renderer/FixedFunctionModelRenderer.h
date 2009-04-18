@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : FixedFunctionModelRenderer.h
- * Project     : Pyrogenesis
- * Description : ModelVertexRenderer that uses only fixed function pipeline
- *             : to render animated models.
- * =========================================================================
+/*
+ * ModelVertexRenderer that uses only fixed function pipeline to render
+ * animated models.
  */
 
 #ifndef INCLUDED_FIXEDFUNCTIONMODELRENDERER

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ShadowMap.h
- * Project     : Pyrogenesis
- * Description : Shadow mapping related texture and matrix management
- * =========================================================================
+/*
+ * Shadow mapping related texture and matrix management
  */
 
 #ifndef INCLUDED_SHADOWMAP

@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : vfs_optimizer.h
- * Project     : 0 A.D.
- * Description : automatically bundles files into archives in order of
- *             : access to optimize I/O.
- * =========================================================================
+/*
+ * automatically bundles files into archives in order of access to
+ * optimize I/O.
  */
 
 #ifndef INCLUDED_VFS_OPTIMIZER

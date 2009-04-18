@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : handle.h
- * Project     : 0 A.D.
- * Description : forward declaration of Handle (reduces dependencies)
- * =========================================================================
+/*
+ * forward declaration of Handle (reduces dependencies)
  */
 
 #ifndef INCLUDED_HANDLE

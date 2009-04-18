@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : dbghelp.h
- * Project     : 0 A.D.
- * Description : bring in dbghelp library
- * =========================================================================
+/*
+ * bring in dbghelp library
  */
 
 #ifndef INCLUDED_DBGHELP

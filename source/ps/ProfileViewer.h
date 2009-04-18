@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ProfileViewer.h
- * Project     : Pyrogenesis
- * Description : Viewing profiling information (timing and other statistics)
- * =========================================================================
+/*
+ * Viewing profiling information (timing and other statistics)
  */
 
 #ifndef INCLUDED_PROFILE_VIEWER

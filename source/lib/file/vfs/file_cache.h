@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : file_cache.h
- * Project     : 0 A.D.
- * Description : cache of file contents (supports zero-copy IO)
- * =========================================================================
+/*
+ * cache of file contents (supports zero-copy IO)
  */
 
 #ifndef INCLUDED_FILE_CACHE

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wxwidgets.h
- * Project     : 0 A.D.
- * Description : bring in wxWidgets headers, with compatibility fixes
- * =========================================================================
+/*
+ * bring in wxWidgets headers, with compatibility fixes
  */
 
 #ifndef INCLUDED_WXWIDGETS

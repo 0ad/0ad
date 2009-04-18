@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : cursor.h
- * Project     : 0 A.D.
- * Description : mouse cursor
- * =========================================================================
+/*
+ * mouse cursor
  */
 
 #ifndef INCLUDED_SYSDEP_CURSOR

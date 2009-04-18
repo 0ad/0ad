@@ -15,14 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : RenderModifiers.h
- * Project     : Pyrogenesis
- * Description : RenderModifiers can affect the fragment stage behaviour
- *             : of some ModelRenderers. This file defines some common
- *             : RenderModifiers in addition to the base class.
- * =========================================================================
+/*
+ * RenderModifiers can affect the fragment stage behaviour of some
+ * ModelRenderers. This file defines some common RenderModifiers in
+ * addition to the base class.
  */
 
 #ifndef INCLUDED_RENDERMODIFIERS

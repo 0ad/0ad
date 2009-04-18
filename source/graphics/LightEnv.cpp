@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : LightEnv.cpp
- * Project     : Pyrogenesis
- * Description : CLightEnv implementation
- * =========================================================================
+/*
+ * CLightEnv implementation
  */
 
 #include "precompiled.h"

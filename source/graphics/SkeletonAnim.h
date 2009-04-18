@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : SkeletonAnim.h
- * Project     : 0 A.D.
- * Description : Instance of CSkeletonAnimDef for application onto a model
- * =========================================================================
+/*
+ * Instance of CSkeletonAnimDef for application onto a model
  */
 
 #ifndef INCLUDED_SKELETONANIM

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wsock.cpp
- * Project     : 0 A.D.
- * Description : emulate Berkeley sockets on Windows.
- * =========================================================================
+/*
+ * emulate Berkeley sockets on Windows.
  */
 
 #include "precompiled.h"

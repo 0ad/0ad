@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : LightEnv.h
- * Project     : Pyrogenesis
- * Description : CLightEnv, a class describing the current lights
- * =========================================================================
+/*
+ * CLightEnv, a class describing the current lights
  */
 
 #ifndef INCLUDED_LIGHTENV

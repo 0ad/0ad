@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Matrix3D.h
- * Project     : 0 A.D.
- * Description : A Matrix class used for holding and manipulating
- *               transformation info.
- * =========================================================================
+/*
+ * A Matrix class used for holding and manipulating transformation
+ * info.
  */
 
 #ifndef INCLUDED_MATRIX3D

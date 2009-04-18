@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : boost_filesystem.h
- * Project     : 0 A.D.
- * Description : bring in Boost filesystem library
- * =========================================================================
+/*
+ * bring in Boost filesystem library
  */
 
 #ifndef INCLUDED_BOOST_FILESYSTEM

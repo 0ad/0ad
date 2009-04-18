@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : counter.cpp
- * Project     : 0 A.D.
- * Description : Interface for counter implementations
- * =========================================================================
+/*
+ * Interface for counter implementations
  */
 
 #include "precompiled.h"

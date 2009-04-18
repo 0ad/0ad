@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : precompiled.h
- * Project     : 0 A.D.
- * Description : precompiled header. must be the first non-comment part
- *             : of every source file (VC6..8 requirement).
- * =========================================================================
+/*
+ * precompiled header. must be the first non-comment part of every
+ * source file (VC6..8 requirement).
  */
 
 #define _SECURE_SCL 0

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : waio.cpp
- * Project     : 0 A.D.
- * Description : emulate POSIX asynchronous I/O on Windows.
- * =========================================================================
+/*
+ * emulate POSIX asynchronous I/O on Windows.
  */
 
 #include "precompiled.h"

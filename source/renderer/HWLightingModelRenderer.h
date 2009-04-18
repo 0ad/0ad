@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : HWLightingModelRenderer.h
- * Project     : Pyrogenesis
- * Description : ModelVertexRenderer that transforms models on the CPU
- *             : but performs lighting in a vertex shader.
- * =========================================================================
+/*
+ * ModelVertexRenderer that transforms models on the CPU but performs
+ * lighting in a vertex shader.
  */
 
 #ifndef INCLUDED_HWLIGHTINGMODELRENDERER

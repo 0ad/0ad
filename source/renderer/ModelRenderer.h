@@ -15,14 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ModelRenderer.h
- * Project     : Pyrogenesis
- * Description : Home to the ModelRenderer class, an abstract base class
- *             : that manages a per-frame list of submitted models,
- *             : as well as simple helper classes.
- * =========================================================================
+/*
+ * Home to the ModelRenderer class, an abstract base class that manages
+ * a per-frame list of submitted models, as well as simple helper
+ * classes.
  */
 
 #ifndef INCLUDED_MODELRENDERER

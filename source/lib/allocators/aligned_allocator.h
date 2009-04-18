@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : aligned_allocator.h
- * Project     : 0 A.D.
- * Description : STL allocator for aligned memory
- * =========================================================================
+/*
+ * STL allocator for aligned memory
  */
 
 #ifndef ALIGNED_ALLOCATOR

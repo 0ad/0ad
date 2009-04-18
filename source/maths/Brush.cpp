@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Brush.h
- * Project     : Pyrogenesis
- * Description : Implementation of CBrush, a class representing a convex object
- * =========================================================================
+/*
+ * Implementation of CBrush, a class representing a convex object
  */
 
 #include "precompiled.h"

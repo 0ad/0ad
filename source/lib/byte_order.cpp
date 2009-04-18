@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : byte_order.cpp
- * Project     : 0 A.D.
- * Description : byte order (endianness) support routines.
- * =========================================================================
+/*
+ * byte order (endianness) support routines.
  */
 
 #include "precompiled.h"

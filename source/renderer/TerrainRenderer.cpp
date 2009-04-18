@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : TerrainRenderer.cpp
- * Project     : Pyrogenesis
- * Description : Terrain rendering (everything related to patches and
- *             : water) is encapsulated in TerrainRenderer
- * =========================================================================
+/*
+ * Terrain rendering (everything related to patches and water) is
+ * encapsulated in TerrainRenderer
  */
 
 #include "precompiled.h"

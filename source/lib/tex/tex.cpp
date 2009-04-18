@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tex.cpp
- * Project     : 0 A.D.
- * Description : support routines for 2d texture access/writing.
- * =========================================================================
+/*
+ * support routines for 2d texture access/writing.
  */
 
 #include "precompiled.h"

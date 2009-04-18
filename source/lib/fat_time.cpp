@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : fat_time.cpp
- * Project     : 0 A.D.
- * Description : timestamp conversion: DOS FAT <-> Unix time_t
- * =========================================================================
+/*
+ * timestamp conversion: DOS FAT <-> Unix time_t
  */
 
 #include "precompiled.h"

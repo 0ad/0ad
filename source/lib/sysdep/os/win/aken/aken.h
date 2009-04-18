@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : aken.h
- * Project     : 0 A.D.
- * Description : Aken driver interface
- * =========================================================================
+/*
+ * Aken driver interface
  */
 
 // Aken - custodian of the ferryboat to the underworld in Egyptian mythology,

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wdbg_sym.h
- * Project     : 0 A.D.
- * Description : Win32 stack trace and symbol engine.
- * =========================================================================
+/*
+ * Win32 stack trace and symbol engine.
  */
 
 #ifndef INCLUDED_WDBG_SYM

@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ProfileViewer.cpp
- * Project     : Pyrogenesis
- * Description : Implementation of profile display (containing only display
- *             : routines, the data model(s) are implemented elsewhere).
- * =========================================================================
+/*
+ * Implementation of profile display (containing only display routines,
+ * the data model(s) are implemented elsewhere).
  */
 
 #include "precompiled.h"

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : config.h
- * Project     : 0 A.D.
- * Description : compile-time configuration for the entire project
- * =========================================================================
+/*
+ * compile-time configuration for the entire project
  */
 
 #ifndef INCLUDED_CONFIG

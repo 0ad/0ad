@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : topology.cpp
- * Project     : 0 A.D.
- * Description : detection of CPU and cache topology
- * =========================================================================
+/*
+ * detection of CPU and cache topology
  */
 
 #ifndef INCLUDED_TOPOLOGY

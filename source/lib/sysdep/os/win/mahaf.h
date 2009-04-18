@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : mahaf.h
- * Project     : 0 A.D.
- * Description : user-mode interface to Aken driver
- * =========================================================================
+/*
+ * user-mode interface to Aken driver
  */
 
 // Mahaf - ferryman in Egyptian mythology that wakes up Aken,

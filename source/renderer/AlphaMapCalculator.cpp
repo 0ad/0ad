@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : AlphaMapCalculator.cp
- * Project     : 0 A.D.
- * Description : Determine which alpha blend map fits a given shape.
- * =========================================================================
+/*
+ * Determine which alpha blend map fits a given shape.
  */
 
 #include "precompiled.h"

@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : InstancingModelRenderer.h
- * Project     : Pyrogenesis
- * Description : Special ModelVertexRender that only works for non-animated
- *             : models, but is very fast for instanced models.
- * =========================================================================
+/*
+ * Special ModelVertexRender that only works for non-animated models,
+ * but is very fast for instanced models.
  */
 
 #ifndef INCLUDED_INSTANCINGMODELRENDERER

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : x86_x64.cpp
- * Project     : 0 A.D.
- * Description : CPU-specific routines common to 32 and 64-bit x86
- * =========================================================================
+/*
+ * CPU-specific routines common to 32 and 64-bit x86
  */
 
 #include "precompiled.h"

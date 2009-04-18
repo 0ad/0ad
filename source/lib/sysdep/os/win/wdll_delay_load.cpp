@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wdll_delay_load.cpp
- * Project     : 0 A.D.
- * Description : DLL delay loading and notification
- * =========================================================================
+/*
+ * DLL delay loading and notification
  */
 
 #include "precompiled.h"

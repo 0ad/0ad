@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : debug_stl.cpp
- * Project     : 0 A.D.
- * Description : portable debugging helper functions specific to the STL.
- * =========================================================================
+/*
+ * portable debugging helper functions specific to the STL.
  */
 
 #include "precompiled.h"

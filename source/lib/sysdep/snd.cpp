@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : snd.cpp
- * Project     : 0 A.D.
- * Description : sound card detection.
- * =========================================================================
+/*
+ * sound card detection.
  */
 
 #include "precompiled.h"

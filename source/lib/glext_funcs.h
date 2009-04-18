@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : glext_funcs.h
- * Project     : 0 A.D.
- * Description : OpenGL extension function declarations (X macros).
- * =========================================================================
+/*
+ * OpenGL extension function declarations (X macros).
  */
 
 #if OS_MACOSX

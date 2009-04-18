@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : zlib.h
- * Project     : 0 A.D.
- * Description : bring in ZLib header+library, with compatibility fixes
- * =========================================================================
+/*
+ * bring in ZLib header+library, with compatibility fixes
  */
 
 #ifndef INCLUDED_ZLIB

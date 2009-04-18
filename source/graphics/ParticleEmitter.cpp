@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ParticleEmitter.cpp
- * Project     : 0 A.D.
- * Description : Particle and Emitter base classes.
- * =========================================================================
+/*
+ * Particle and Emitter base classes.
  */
 
 #include "precompiled.h"

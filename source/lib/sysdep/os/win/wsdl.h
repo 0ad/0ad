@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wsdl.h
- * Project     : 0 A.D.
- * Description : emulate SDL on Windows.
- * =========================================================================
+/*
+ * emulate SDL on Windows.
  */
 
 #ifndef INCLUDED_WSDL

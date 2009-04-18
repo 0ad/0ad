@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : InstancingModelRenderer.cpp
- * Project     : Pyrogenesis
- * Description : Implementation of InstancingModelRenderer
- * =========================================================================
+/*
+ * Implementation of InstancingModelRenderer
  */
 
 #include "precompiled.h"

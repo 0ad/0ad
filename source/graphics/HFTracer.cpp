@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : HFTracer.cpp
- * Project     : 0 A.D.
- * Description : Determine intersection of rays with a heightfield.
- * =========================================================================
+/*
+ * Determine intersection of rays with a heightfield.
  */
 
 #include "precompiled.h"

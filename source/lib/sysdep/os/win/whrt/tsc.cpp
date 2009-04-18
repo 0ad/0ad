@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tsc.cpp
- * Project     : 0 A.D.
- * Description : Timer implementation using RDTSC
- * =========================================================================
+/*
+ * Timer implementation using RDTSC
  */
 
 #include "precompiled.h"

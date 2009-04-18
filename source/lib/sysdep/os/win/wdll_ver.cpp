@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wdll_ver.cpp
- * Project     : 0 A.D.
- * Description : return DLL version information.
- * =========================================================================
+/*
+ * return DLL version information.
  */
 
 #include "precompiled.h"

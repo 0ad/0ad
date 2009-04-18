@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tex_png.cpp
- * Project     : 0 A.D.
- * Description : PNG codec using libpng.
- * =========================================================================
+/*
+ * PNG codec using libpng.
  */
 
 #include "precompiled.h"

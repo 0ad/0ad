@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tex.h
- * Project     : 0 A.D.
- * Description : read/write 2d texture files; allows conversion between
- *             : pixel formats and automatic orientation correction.
- * =========================================================================
+/*
+ * read/write 2d texture files; allows conversion between pixel formats
+ * and automatic orientation correction.
  */
 
 /**

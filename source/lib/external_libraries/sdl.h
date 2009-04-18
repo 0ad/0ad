@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : sdl.h
- * Project     : 0 A.D.
- * Description : SDL header; uses emulator on Windows, otherwise libsdl.
- * =========================================================================
+/*
+ * SDL header; uses emulator on Windows, otherwise libsdl.
  */
 
 #ifndef INCLUDED_SDL

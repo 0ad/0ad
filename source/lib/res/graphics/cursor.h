@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : cursor.h
- * Project     : 0 A.D.
- * Description : mouse cursors (either via OpenGL texture or hardware)
- * =========================================================================
+/*
+ * mouse cursors (either via OpenGL texture or hardware)
  */
 
 #ifndef INCLUDED_GRAPHICS_CURSOR

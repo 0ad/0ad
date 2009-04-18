@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wgl.cpp
- * Project     : 0 A.D.
- * Description : Windows definitions required for GL/gl.h
- * =========================================================================
+/*
+ * Windows definitions required for GL/gl.h
  */
 
 // RAGE! Win32 OpenGL headers are full of crap we have to emulate

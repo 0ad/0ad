@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Plane.cpp
- * Project     : 0 A.D.
- * Description : A Plane in R3 and several utility methods.
- * =========================================================================
+/*
+ * A Plane in R3 and several utility methods.
  */
 
 // Note that the format used for the plane equation is

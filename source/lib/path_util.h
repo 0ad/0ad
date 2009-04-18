@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : path_util.h
- * Project     : 0 A.D.
- * Description : helper functions for path strings.
- * =========================================================================
+/*
+ * helper functions for path strings.
  */
 
 // notes:

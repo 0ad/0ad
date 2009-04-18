@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : WaterManager.cpp
- * Project     : Pyrogenesis
- * Description : Water settings (speed, height) and texture management
- * =========================================================================
+/*
+ * Water settings (speed, height) and texture management
  */
 
 #include "precompiled.h"

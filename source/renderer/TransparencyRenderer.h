@@ -15,14 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : TransparencyRenderer.h
- * Project     : Pyrogenesis
- * Description : ModelRenderer implementation that sorts models and/or
- *             : polygons based on distance from viewer, for transparency
- *             : rendering.
- * =========================================================================
+/*
+ * ModelRenderer implementation that sorts models and/or polygons based
+ * on distance from viewer, for transparency rendering.
  */
 
 #ifndef INCLUDED_TRANSPARENCYRENDERER

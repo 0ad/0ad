@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : file.h
- * Project     : 0 A.D.
- * Description : simple POSIX file wrapper.
- * =========================================================================
+/*
+ * simple POSIX file wrapper.
  */
 
 #ifndef INCLUDED_FILE

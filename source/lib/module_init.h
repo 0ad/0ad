@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : module_init.h
- * Project     : 0 A.D.
- * Description : helpers for module initialization/shutdown.
- * =========================================================================
+/*
+ * helpers for module initialization/shutdown.
  */
 
 #ifndef INCLUDED_MODULE_INIT

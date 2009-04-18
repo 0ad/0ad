@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wseh.h
- * Project     : 0 A.D.
- * Description : Win32 debug support code and exception handler.
- * =========================================================================
+/*
+ * Win32 debug support code and exception handler.
  */
 
 #ifndef INCLUDED_WSEH

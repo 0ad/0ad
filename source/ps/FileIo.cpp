@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : FileIo.cpp
- * Project     : 0 A.D.
- * Description : endian-safe binary file IO helpers.
- * =========================================================================
+/*
+ * endian-safe binary file IO helpers.
  */
 
 #include "precompiled.h"

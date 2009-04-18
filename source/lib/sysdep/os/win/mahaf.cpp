@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : mahaf.cpp
- * Project     : 0 A.D.
- * Description : user-mode interface to Aken driver
- * =========================================================================
+/*
+ * user-mode interface to Aken driver
  */
 
 #include "precompiled.h"

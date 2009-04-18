@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : os_cpu.cpp
- * Project     : 0 A.D.
- * Description : OS-specific support functions relating to CPU and memory
- * =========================================================================
+/*
+ * OS-specific support functions relating to CPU and memory
  */
 
 #include "precompiled.h"

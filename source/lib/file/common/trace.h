@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : trace.h
- * Project     : 0 A.D.
- * Description : IO event recording
- * =========================================================================
+/*
+ * IO event recording
  */
 
 // traces are useful for determining the optimal ordering of archived files

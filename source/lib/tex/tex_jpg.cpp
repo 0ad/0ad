@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tex_jpg.cpp
- * Project     : 0 A.D.
- * Description : JPEG codec using IJG jpeglib.
- * =========================================================================
+/*
+ * JPEG codec using IJG jpeglib.
  */
 
 #include "precompiled.h"

@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Vector3D.cpp
- * Project     : 0 A.D.
- * Description : Provides an interface for a vector in R3 and
- *               allows vector and scalar operations on it
- * =========================================================================
+/*
+ * Provides an interface for a vector in R3 and allows vector and
+ * scalar operations on it
  */
 
 #include "precompiled.h"

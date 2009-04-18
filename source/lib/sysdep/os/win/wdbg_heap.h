@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wdbg_heap.h
- * Project     : 0 A.D.
- * Description : improved debug heap using MS CRT
- * =========================================================================
+/*
+ * improved debug heap using MS CRT
  */
 
 #ifndef INCLUDED_WDBG_HEAP

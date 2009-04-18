@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ModelDef.h
- * Project     : 0 A.D.
- * Description : Defines a raw 3d model.
- * =========================================================================
+/*
+ * Defines a raw 3d model.
  */
 
 #ifndef INCLUDED_MODELDEF

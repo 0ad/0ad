@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tex_codec.cpp
- * Project     : 0 A.D.
- * Description : support routines and interface for texture codecs.
- * =========================================================================
+/*
+ * support routines and interface for texture codecs.
  */
 
 #ifndef INCLUDED_TEX_CODEC

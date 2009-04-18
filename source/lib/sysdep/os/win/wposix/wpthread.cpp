@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wpthread.cpp
- * Project     : 0 A.D.
- * Description : emulate pthreads on Windows.
- * =========================================================================
+/*
+ * emulate pthreads on Windows.
  */
 
 #include "precompiled.h"

@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : input.h
- * Project     : 0 A.D.
- * Description : SDL input redirector; dispatches to multiple handlers and
- *             : allows record/playback of events.
- * =========================================================================
+/*
+ * SDL input redirector; dispatches to multiple handlers and allows
+ * record/playback of events.
  */
 
 #ifndef INCLUDED_INPUT

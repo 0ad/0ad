@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tex_internal.h
- * Project     : 0 A.D.
- * Description : private texture loader helper functions
- * =========================================================================
+/*
+ * private texture loader helper functions
  */
 
 #ifndef INCLUDED_TEX_INTERNAL

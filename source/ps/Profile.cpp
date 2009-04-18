@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Profile.cpp
- * Project     : Pyrogeneses
- * Description : GPG3-style hierarchical profiler
- * =========================================================================
+/*
+ * GPG3-style hierarchical profiler
  */
 
 #include "precompiled.h"

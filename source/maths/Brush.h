@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Brush.h
- * Project     : Pyrogenesis
- * Description : CBrush, a class representing a convex object
- * =========================================================================
+/*
+ * CBrush, a class representing a convex object
  */
 
 #ifndef maths_brush_h

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Singleton.h
- * Project     : 0 A.D.
- * Description : template base class for Singletons
- * =========================================================================
+/*
+ * template base class for Singletons
  */
 
 /*

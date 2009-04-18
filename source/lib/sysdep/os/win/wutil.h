@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wutil.h
- * Project     : 0 A.D.
- * Description : various Windows-specific utilities
- * =========================================================================
+/*
+ * various Windows-specific utilities
  */
 
 #ifndef INCLUDED_WUTIL

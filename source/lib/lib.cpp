@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : lib.cpp
- * Project     : 0 A.D.
- * Description : various utility functions.
- * =========================================================================
+/*
+ * various utility functions.
  */
 
 #include "precompiled.h"

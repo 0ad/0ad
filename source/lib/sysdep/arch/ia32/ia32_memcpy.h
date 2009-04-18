@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ia32_memcpy.h
- * Project     : 0 A.D.
- * Description : interface to various IA-32 functions (written in asm)
- * =========================================================================
+/*
+ * interface to various IA-32 functions (written in asm)
  */
 
 #ifndef INCLUDED_IA32_MEMCPY

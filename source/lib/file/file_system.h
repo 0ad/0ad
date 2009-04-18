@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : file_system.h
- * Project     : 0 A.D.
- * Description : 
- * =========================================================================
+/*
+
  */
 
 #ifndef INCLUDED_FILE_SYSTEM

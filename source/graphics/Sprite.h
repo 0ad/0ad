@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Sprite.h
- * Project     : 0 A.D.
- * Description : Billboarding sprite class - always faces the camera. It
- *               does this by getting the current model view matrix state.
- * =========================================================================
+/*
+ * Billboarding sprite class - always faces the camera. It does this by
+ * getting the current model view matrix state.
  */
 
 // Usage: Instantiate, then be sure to pass a loaded

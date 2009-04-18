@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : snd_mgr.cpp
- * Project     : 0 A.D.
- * Description : OpenAL sound engine. handles sound I/O, buffer
- *             : suballocation and voice management/prioritization.
- * =========================================================================
+/*
+ * OpenAL sound engine. handles sound I/O, buffer suballocation and
+ * voice management/prioritization.
  */
 
 #include "precompiled.h"

@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : TerrainOverlay.h
- * Project     : Pyrogenesis
- * Description : System for representing tile-based information on top of
- *             : the terrain.
- * =========================================================================
+/*
+ * System for representing tile-based information on top of the
+ * terrain.
  */
 
 #ifndef INCLUDED_TERRAINOVERLAY

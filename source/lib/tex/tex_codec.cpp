@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tex_codec.cpp
- * Project     : 0 A.D.
- * Description : support routines for texture codecs
- * =========================================================================
+/*
+ * support routines for texture codecs
  */
 
 #include "precompiled.h"

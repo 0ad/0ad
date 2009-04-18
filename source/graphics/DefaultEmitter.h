@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : DefaultEmitter.h
- * Project     : 0 A.D.
- * Description : Default particle emitter implementation.
- * =========================================================================
+/*
+ * Default particle emitter implementation.
  */
 
 #ifndef INCLUDED_DEFAULTEMITTER

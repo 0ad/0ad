@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : fnv_hash.h
- * Project     : 0 A.D.
- * Description : Fowler/Noll/Vo string hash
- * =========================================================================
+/*
+ * Fowler/Noll/Vo string hash
  */
 
 #include "precompiled.h"

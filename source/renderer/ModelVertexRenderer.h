@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ModelVertexRenderer.h
- * Project     : Pyrogenesis
- * Description : Definition of ModelVertexRenderer, the abstract base class
- *             : for model vertex transformation implementations.
- * =========================================================================
+/*
+ * Definition of ModelVertexRenderer, the abstract base class for model
+ * vertex transformation implementations.
  */
 
 #ifndef INCLUDED_MODELVERTEXRENDERER

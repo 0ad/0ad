@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Noise.h
- * Project     : 0 A.D.
- * Description : 2D and 3D seamless Perlin noise
- * =========================================================================
+/*
+ * 2D and 3D seamless Perlin noise
  */
 
 // Based on http://www.cs.cmu.edu/~mzucker/code/perlin-noise-math-faq.html 

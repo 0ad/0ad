@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : dynarray.h
- * Project     : 0 A.D.
- * Description : dynamic (expandable) array
- * =========================================================================
+/*
+ * dynamic (expandable) array
  */
 
 #ifndef INCLUDED_DYNARRAY

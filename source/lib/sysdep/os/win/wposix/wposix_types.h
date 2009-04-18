@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wposix_types.h
- * Project     : 0 A.D.
- * Description : type definitions needed for wposix.
- * =========================================================================
+/*
+ * type definitions needed for wposix.
  */
 
 #ifndef INCLUDED_WPOSIX_TYPES

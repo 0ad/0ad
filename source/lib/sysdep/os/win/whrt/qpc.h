@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : qpc.h
- * Project     : 0 A.D.
- * Description : Timer implementation using QueryPerformanceCounter
- * =========================================================================
+/*
+ * Timer implementation using QueryPerformanceCounter
  */
 
 #ifndef INCLUDED_QPC

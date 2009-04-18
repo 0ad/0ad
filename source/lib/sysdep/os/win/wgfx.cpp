@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wgfx.cpp
- * Project     : 0 A.D.
- * Description : graphics card detection on Windows.
- * =========================================================================
+/*
+ * graphics card detection on Windows.
  */
 
 #include "precompiled.h"

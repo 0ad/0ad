@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : mem_util.h
- * Project     : 0 A.D.
- * Description : memory allocator helper routines.
- * =========================================================================
+/*
+ * memory allocator helper routines.
  */
 
 #ifndef INCLUDED_MEM_UTIL

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : sdl_fwd.h
- * Project     : 0 A.D.
- * Description : forward declaration of SDL_Event
- * =========================================================================
+/*
+ * forward declaration of SDL_Event
  */
 
 #ifndef INCLUDED_SDL_FWD

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : unifont.cpp
- * Project     : 0 A.D.
- * Description : Unicode OpenGL texture font.
- * =========================================================================
+/*
+ * Unicode OpenGL texture font.
  */
 
 #include "precompiled.h"

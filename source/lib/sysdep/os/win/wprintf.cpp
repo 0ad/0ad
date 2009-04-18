@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wprintf.cpp
- * Project     : 0 A.D.
- * Description : implementation of sys_vsnprintf.
- * =========================================================================
+/*
+ * implementation of sys_vsnprintf.
  */
 
 #include "precompiled.h"

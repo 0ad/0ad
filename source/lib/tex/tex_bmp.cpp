@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : tex_bmp.cpp
- * Project     : 0 A.D.
- * Description : Windows BMP codec
- * =========================================================================
+/*
+ * Windows BMP codec
  */
 
 #include "precompiled.h"

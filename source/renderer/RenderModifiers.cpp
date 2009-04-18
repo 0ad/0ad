@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : RenderModifiers.cpp
- * Project     : Pyrogenesis
- * Description : Implementation of common RenderModifiers
- * =========================================================================
+/*
+ * Implementation of common RenderModifiers
  */
 
 #include "precompiled.h"

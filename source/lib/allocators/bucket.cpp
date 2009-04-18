@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : bucket.cpp
- * Project     : 0 A.D.
- * Description : bucket allocator
- * =========================================================================
+/*
+ * bucket allocator
  */
 
 #include "precompiled.h"

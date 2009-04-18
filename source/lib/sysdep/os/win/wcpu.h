@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wcpu.h
- * Project     : 0 A.D.
- * Description : Windows backend of os_cpu
- * =========================================================================
+/*
+ * Windows backend of os_cpu
  */
 
 #ifndef INCLUDED_WCPU

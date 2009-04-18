@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : allocators.cpp
- * Project     : 0 A.D.
- * Description : memory suballocators.
- * =========================================================================
+/*
+ * memory suballocators.
  */
 
 #include "precompiled.h"

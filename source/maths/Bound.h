@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Bound.h
- * Project     : 0 A.D.
- * Description : Axis-aligned bounding box
- * =========================================================================
+/*
+ * Axis-aligned bounding box
  */
 
 #ifndef INCLUDED_BOUND

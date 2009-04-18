@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wtime.cpp
- * Project     : 0 A.D.
- * Description : emulate POSIX time functionality on Windows.
- * =========================================================================
+/*
+ * emulate POSIX time functionality on Windows.
  */
 
 // note: clock_gettime et al. have been removed. callers should use the

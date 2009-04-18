@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : rtl.h
- * Project     : 0 A.D.
- * Description : functions specific to the toolset's runtime library
- * =========================================================================
+/*
+ * functions specific to the toolset's runtime library
  */
 
 #ifndef INCLUDED_RTL

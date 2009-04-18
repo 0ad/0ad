@@ -15,13 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Frustum.cpp
- * Project     : 0 A.D.
- * Description : CFrustum is a collection of planes which define
- *               a viewing space.
- * =========================================================================
+/*
+ * CFrustum is a collection of planes which define a viewing space.
  */
 
 /*

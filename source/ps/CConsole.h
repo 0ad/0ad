@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : CConsole.h
- * Project     : 0 A.D.
- * Description : Implements the in-game console with scripting support.
- * =========================================================================
+/*
+ * Implements the in-game console with scripting support.
  */
 
 #include <stdarg.h>

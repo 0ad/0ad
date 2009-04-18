@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : dir_watch.h
- * Project     : 0 A.D.
- * Description : portable directory change notification API.
- * =========================================================================
+/*
+ * portable directory change notification API.
  */
 
 #ifndef INCLUDED_DIR_WATCH

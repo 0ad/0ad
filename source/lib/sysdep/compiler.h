@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : compiler.h
- * Project     : 0 A.D.
- * Description : compiler-specific macros and fixes
- * =========================================================================
+/*
+ * compiler-specific macros and fixes
  */
 
 #ifndef INCLUDED_COMPILER

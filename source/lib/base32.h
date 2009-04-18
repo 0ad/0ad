@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : base32.h
- * Project     : 0 A.D.
- * Description : base32 conversion
- * =========================================================================
+/*
+ * base32 conversion
  */
 
 #ifndef INCLUDED_BASE32

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : code_annotation.h
- * Project     : 0 A.D.
- * Description : macros for code annotation.
- * =========================================================================
+/*
+ * macros for code annotation.
  */
 
 #ifndef INCLUDED_CODE_ANNOTATION

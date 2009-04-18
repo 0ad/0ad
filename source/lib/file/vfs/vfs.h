@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : vfs.h
- * Project     : 0 A.D.
- * Description : Virtual File System API - allows transparent access to
- *             : files in archives and modding via multiple mount points.
- * =========================================================================
+/*
+ * Virtual File System API - allows transparent access to files in
+ * archives and modding via multiple mount points.
  */
 
 #ifndef INCLUDED_VFS

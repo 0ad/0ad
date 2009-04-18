@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : adts.h
- * Project     : 0 A.D.
- * Description : useful Abstract Data Types not provided by STL.
- * =========================================================================
+/*
+ * useful Abstract Data Types not provided by STL.
  */
 
 #ifndef INCLUDED_ADTS

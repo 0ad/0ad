@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : file_system_util.cpp
- * Project     : 0 A.D.
- * Description : helper functions for directory access
- * =========================================================================
+/*
+ * helper functions for directory access
  */
 
 #include "precompiled.h"

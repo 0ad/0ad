@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : os.h
- * Project     : 0 A.D.
- * Description : OS-specific macros
- * =========================================================================
+/*
+ * OS-specific macros
  */
 
 #ifndef INCLUDED_OS

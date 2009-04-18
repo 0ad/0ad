@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : secure_crt.cpp
- * Project     : 0 A.D.
- * Description : partial implementation of VC8's secure CRT functions
- * =========================================================================
+/*
+ * partial implementation of VC8's secure CRT functions
  */
 
 #include "precompiled.h"

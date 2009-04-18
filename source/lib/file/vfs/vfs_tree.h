@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : vfs_tree.h
- * Project     : 0 A.D.
- * Description : 'tree' of VFS directories and files
- * =========================================================================
+/*
+ * 'tree' of VFS directories and files
  */
 
 #ifndef INCLUDED_VFS_TREE

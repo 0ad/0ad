@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : whrt.cpp
- * Project     : 0 A.D.
- * Description : Windows High Resolution Timer
- * =========================================================================
+/*
+ * Windows High Resolution Timer
  */
 
 #include "precompiled.h"

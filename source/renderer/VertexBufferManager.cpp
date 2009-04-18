@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : VertexBufferManager.cpp
- * Project     : 0 A.D.
- * Description : Allocate and destroy CVertexBuffers
- * =========================================================================
+/*
+ * Allocate and destroy CVertexBuffers
  */
 
 #include "precompiled.h"

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : config2.h
- * Project     : 0 A.D.
- * Description : compile-time configuration for isolated spots
- * =========================================================================
+/*
+ * compile-time configuration for isolated spots
  */
 
 #ifndef INCLUDED_CONFIG2

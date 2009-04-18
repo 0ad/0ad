@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : regex.h
- * Project     : 0 A.D.
- * Description : minimal regex implementation
- * =========================================================================
+/*
+ * minimal regex implementation
  */
 
 #ifndef INCLUDED_REGEX

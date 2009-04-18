@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Patch.cpp
- * Project     : 0 A.D.
- * Description : A patch of terrain holding NxN MiniPatch tiles
- * =========================================================================
+/*
+ * A patch of terrain holding NxN MiniPatch tiles
  */
 
 #include "precompiled.h"

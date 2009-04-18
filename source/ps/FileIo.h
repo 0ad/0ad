@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : FileIo.h
- * Project     : 0 A.D.
- * Description : endian-safe binary file IO helpers.
- * =========================================================================
+/*
+ * endian-safe binary file IO helpers.
  */
 
 // the file format has passing similarity to IFF. note however that

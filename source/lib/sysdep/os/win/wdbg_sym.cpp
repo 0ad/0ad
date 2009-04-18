@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wdbg_sym.cpp
- * Project     : 0 A.D.
- * Description : Win32 stack trace and symbol engine.
- * =========================================================================
+/*
+ * Win32 stack trace and symbol engine.
  */
 
 #include "precompiled.h"

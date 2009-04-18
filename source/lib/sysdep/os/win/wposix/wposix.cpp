@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wposix.cpp
- * Project     : 0 A.D.
- * Description : emulate a subset of POSIX on Win32.
- * =========================================================================
+/*
+ * emulate a subset of POSIX on Win32.
  */
 
 #include "precompiled.h"

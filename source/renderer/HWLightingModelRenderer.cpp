@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : HWLightingModelRenderer.cpp
- * Project     : Pyrogenesis
- * Description : Implementation of HWLightingModelRenderer
- * =========================================================================
+/*
+ * Implementation of HWLightingModelRenderer
  */
 
 #include "precompiled.h"

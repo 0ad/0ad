@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : os_cpu.h
- * Project     : 0 A.D.
- * Description : OS-specific support functions relating to CPU and memory
- * =========================================================================
+/*
+ * OS-specific support functions relating to CPU and memory
  */
 
 #ifndef INCLUDED_OS_CPU

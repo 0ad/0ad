@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ParticleEngine.h
- * Project     : 0 A.D.
- * Description : Particle engine implementation
- * =========================================================================
+/*
+ * Particle engine implementation
  */
 
 #ifndef INCLUDED_PARTICLEENGINE

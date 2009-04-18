@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ia32.h
- * Project     : 0 A.D.
- * Description : routines specific to IA-32
- * =========================================================================
+/*
+ * routines specific to IA-32
  */
 
 #ifndef INCLUDED_IA32

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wcpu.cpp
- * Project     : 0 A.D.
- * Description : Windows implementation of sysdep/cpu
- * =========================================================================
+/*
+ * Windows implementation of sysdep/cpu
  */
 
 #include "precompiled.h"

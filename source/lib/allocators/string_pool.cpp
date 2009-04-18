@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : string_pool.cpp
- * Project     : 0 A.D.
- * Description : shared storage for strings
- * =========================================================================
+/*
+ * shared storage for strings
  */
 
 #include "precompiled.h"

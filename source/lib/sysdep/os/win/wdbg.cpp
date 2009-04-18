@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wdbg.cpp
- * Project     : 0 A.D.
- * Description : Win32 debug support code.
- * =========================================================================
+/*
+ * Win32 debug support code.
  */
 
 #include "precompiled.h"

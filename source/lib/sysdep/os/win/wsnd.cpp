@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wsdl.cpp
- * Project     : 0 A.D.
- * Description : sound card detection on Windows.
- * =========================================================================
+/*
+ * sound card detection on Windows.
  */
 
 #include "precompiled.h"

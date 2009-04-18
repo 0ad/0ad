@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : wsysdep.cpp
- * Project     : 0 A.D.
- * Description : Windows backend of the sysdep interface
- * =========================================================================
+/*
+ * Windows backend of the sysdep interface
  */
 
 #include "precompiled.h"

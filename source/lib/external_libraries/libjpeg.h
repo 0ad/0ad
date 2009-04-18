@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : libjpeg.h
- * Project     : 0 A.D.
- * Description : bring in libjpeg header+library, with compatibility fixes
- * =========================================================================
+/*
+ * bring in libjpeg header+library, with compatibility fixes
  */
 
 #ifndef INCLUDED_LIBJPEG

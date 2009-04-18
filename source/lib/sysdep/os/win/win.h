@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : win.h
- * Project     : 0 A.D.
- * Description : bring in <windows.h> with compatibility fixes
- * =========================================================================
+/*
+ * bring in <windows.h> with compatibility fixes
  */
 
 #ifndef INCLUDED_WIN

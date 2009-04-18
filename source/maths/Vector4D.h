@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Vector4D.h
- * Project     : 0 A.D.
- * Description : Provides an interface for a vector in R4 and
- *               allows vector and scalar operations on it
- * =========================================================================
+/*
+ * Provides an interface for a vector in R4 and allows vector and
+ * scalar operations on it
  */
 
 #ifndef INCLUDED_VECTOR4D

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : Terrain.cpp
- * Project     : 0 A.D.
- * Description : Describes ground via heightmap and array of CPatch.
- * =========================================================================
+/*
+ * Describes ground via heightmap and array of CPatch.
  */
 
 #include "precompiled.h"

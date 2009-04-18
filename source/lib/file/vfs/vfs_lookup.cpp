@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : vfs_lookup.cpp
- * Project     : 0 A.D.
- * Description : look up directories/files by traversing path components.
- * =========================================================================
+/*
+ * look up directories/files by traversing path components.
  */
 
 #include "precompiled.h"

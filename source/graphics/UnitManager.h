@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : UnitManager.h
- * Project     : 0 A.D.
- * Description : Container that owns all units
- * =========================================================================
+/*
+ * Container that owns all units
  */
 
 #ifndef INCLUDED_UNITMANAGER

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : snd.h
- * Project     : 0 A.D.
- * Description : sound card detection.
- * =========================================================================
+/*
+ * sound card detection.
  */
 
 #ifndef INCLUDED_SND

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : rand.h
- * Project     : 0 A.D.
- * Description : pseudorandom number generator
- * =========================================================================
+/*
+ * pseudorandom number generator
  */
 
 #ifndef INCLUDED_RAND

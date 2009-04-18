@@ -15,13 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ogl_tex.h
- * Project     : 0 A.D.
- * Description : wrapper for all OpenGL texturing calls.
- *             : provides caching, hotloading and lifetime management.
- * =========================================================================
+/*
+ * wrapper for all OpenGL texturing calls. provides caching, hotloading
+ * and lifetime management.
  */
 
 /*

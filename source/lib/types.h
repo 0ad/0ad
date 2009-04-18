@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : types.h
- * Project     : 0 A.D.
- * Description : convenient type aliases (shorter than stdint.h's uintN_t)
- * =========================================================================
+/*
+ * convenient type aliases (shorter than stdint.h's uintN_t)
  */
 
 #ifndef INCLUDED_TYPES

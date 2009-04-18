@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : JSInterface_LightEnv.h
- * Project     : Pyrogenesis
- * Description : Provide the LightEnv object type for JavaScript
- * =========================================================================
+/*
+ * Provide the LightEnv object type for JavaScript
  */
 
 #ifndef INCLUDED_JSI_LIGHTENV

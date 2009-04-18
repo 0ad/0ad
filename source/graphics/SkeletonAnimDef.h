@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : SkeletonAnim.h
- * Project     : 0 A.D.
- * Description : Raw description of a skeleton animation
- * =========================================================================
+/*
+ * Raw description of a skeleton animation
  */
 
 #ifndef INCLUDED_SKELETONANIMDEF

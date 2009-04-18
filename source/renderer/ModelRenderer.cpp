@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : ModelRenderer.cpp
- * Project     : Pyrogenesis
- * Description : Implementation of ModelRenderer and BatchModelRenderer
- * =========================================================================
+/*
+ * Implementation of ModelRenderer and BatchModelRenderer
  */
 
 #include "precompiled.h"

@@ -15,12 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * =========================================================================
- * File        : PlayerRenderer.cpp
- * Project     : Pyrogenesis
- * Description : Implementation of player colour RenderModifiers.
- * =========================================================================
+/*
+ * Implementation of player colour RenderModifiers.
  */
 
 #include "precompiled.h"
