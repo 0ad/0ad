@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_ARCHIVE_ZIP
 #define INCLUDED_ARCHIVE_ZIP
 

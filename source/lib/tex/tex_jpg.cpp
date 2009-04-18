@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #include "precompiled.h"
 
 #include "lib/external_libraries/libjpeg.h"

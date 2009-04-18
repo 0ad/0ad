@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_IA32_MEMCPY
 #define INCLUDED_IA32_MEMCPY
 

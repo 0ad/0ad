@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // notes:
 // - this module is independent of lib/file so that it can be used from
 //   other code without pulling in the entire file manager.

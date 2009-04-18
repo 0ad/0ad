@@ -24,8 +24,6 @@
 * =========================================================================
 */
 
-// license: GPL; see sound/license.txt
-
 #include "precompiled.h"
 #include "SoundGroup.h"
 

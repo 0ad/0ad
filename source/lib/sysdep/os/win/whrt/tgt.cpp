@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // note: WinMM is delay-loaded to avoid dragging it in when this timer
 // implementation isn't used. (this is relevant because its startup is
 // fairly slow)

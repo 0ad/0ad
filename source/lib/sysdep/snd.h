@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_SND
 #define INCLUDED_SND
 

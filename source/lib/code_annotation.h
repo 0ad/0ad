@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_CODE_ANNOTATION
 #define INCLUDED_CODE_ANNOTATION
 

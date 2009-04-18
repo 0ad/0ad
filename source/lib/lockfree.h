@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_LOCKFREE
 #define INCLUDED_LOCKFREE
 

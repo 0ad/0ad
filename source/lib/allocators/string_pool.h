@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_STRING_POOL
 #define INCLUDED_STRING_POOL
 

@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_WDBG_HEAP
 #define INCLUDED_WDBG_HEAP
 

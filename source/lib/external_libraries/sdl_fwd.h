@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_SDL_FWD
 #define INCLUDED_SDL_FWD
 

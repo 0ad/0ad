@@ -24,8 +24,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_FILE_SYSTEM_POSIX
 #define INCLUDED_FILE_SYSTEM_POSIX
 

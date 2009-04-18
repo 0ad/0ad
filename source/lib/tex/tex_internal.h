@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_TEX_INTERNAL
 #define INCLUDED_TEX_INTERNAL
 

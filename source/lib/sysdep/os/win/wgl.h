@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // RAGE! Win32 OpenGL headers are full of crap we have to emulate
 // (must not include windows.h)
 

@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // linking with this component should automatically arrange for winit's
 // functions to be called at the appropriate times.
 //

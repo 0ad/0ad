@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_AMD64_ASM
 #define INCLUDED_AMD64_ASM
 

@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_CACHE_ADT
 #define INCLUDED_CACHE_ADT
 

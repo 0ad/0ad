@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_MODULE_INIT
 #define INCLUDED_MODULE_INIT
 

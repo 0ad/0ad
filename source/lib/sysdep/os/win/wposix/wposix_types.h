@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_WPOSIX_TYPES
 #define INCLUDED_WPOSIX_TYPES
 

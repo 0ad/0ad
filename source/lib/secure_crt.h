@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_SECURE_CRT
 #define INCLUDED_SECURE_CRT
 

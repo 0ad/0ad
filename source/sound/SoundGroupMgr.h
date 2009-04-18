@@ -23,8 +23,6 @@
 * =========================================================================
 */
 
-// license: GPL; see sound/license.txt
-
 #include "SoundGroup.h"
 #include <vector>
 

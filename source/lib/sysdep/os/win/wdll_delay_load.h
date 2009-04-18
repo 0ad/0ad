@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_WDLL_DELAY_LOAD
 #define INCLUDED_WDLL_DELAY_LOAD
 

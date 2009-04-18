@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_SYSDEP_CURSOR
 #define INCLUDED_SYSDEP_CURSOR
 

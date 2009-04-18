@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_BYTE_ORDER
 #define INCLUDED_BYTE_ORDER
 

@@ -24,8 +24,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #define _SECURE_SCL 0
 
 #include "lib/sysdep/compiler.h"	// MSC_VERSION, HAVE_PCH

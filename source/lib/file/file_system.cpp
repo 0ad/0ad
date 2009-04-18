@@ -23,7 +23,5 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #include "precompiled.h"
 #include "file_system.h"

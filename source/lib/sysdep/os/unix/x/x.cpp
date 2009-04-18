@@ -17,8 +17,6 @@
 
 // X Window System-specific code
 
-// license: GPL; see lib/license.txt
-
 #include "precompiled.h"
 
 #if OS_LINUX

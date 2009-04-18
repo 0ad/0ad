@@ -24,8 +24,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // note: this is called lib_errors.cpp because we have another
 // errors.cpp; the MS linker isn't smart enough to deal with
 // object files of the same name but in different paths.

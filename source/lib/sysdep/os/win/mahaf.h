@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // Mahaf - ferryman in Egyptian mythology that wakes up Aken,
 // and the interface to the Aken driver.
 

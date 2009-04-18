@@ -24,8 +24,6 @@
 * =========================================================================
 */
 
-// license: GPL; see sound/license.txt
-
 /*
 Example usage: (SEE SOUNDGROUPMGR.H)
 

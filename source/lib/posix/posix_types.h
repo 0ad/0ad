@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // this header defines e.g. ssize_t and int8_t without pulling in all
 // POSIX declarations.
 // included from lib/types.h in place of posix.h; this helps avoid conflicts

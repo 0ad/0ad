@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_DEBUG_STL
 #define INCLUDED_DEBUG_STL
 

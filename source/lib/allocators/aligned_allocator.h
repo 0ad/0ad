@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef ALIGNED_ALLOCATOR
 #define ALIGNED_ALLOCATOR
 

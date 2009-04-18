@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_VFS_TREE
 #define INCLUDED_VFS_TREE
 

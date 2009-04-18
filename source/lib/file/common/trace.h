@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // traces are useful for determining the optimal ordering of archived files
 // and can also serve as a repeatable IO benchmark.
 

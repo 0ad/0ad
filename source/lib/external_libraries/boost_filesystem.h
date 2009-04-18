@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_BOOST_FILESYSTEM
 #define INCLUDED_BOOST_FILESYSTEM
 

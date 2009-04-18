@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_DIR_WATCH
 #define INCLUDED_DIR_WATCH
 

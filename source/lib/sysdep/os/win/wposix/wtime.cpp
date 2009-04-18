@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // note: clock_gettime et al. have been removed. callers should use the
 // WHRT directly, rather than needlessly translating s -> ns -> s,
 // which costs time and accuracy.

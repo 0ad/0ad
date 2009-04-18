@@ -24,8 +24,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_VFS_OPTIMIZER
 #define INCLUDED_VFS_OPTIMIZER
 

@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #if OS_MACOSX
 #include <OpenGL/glext.h>
 #else

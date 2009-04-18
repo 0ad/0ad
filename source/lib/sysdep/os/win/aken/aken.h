@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 // Aken - custodian of the ferryboat to the underworld in Egyptian mythology,
 // and a driver that shuttles between applications and kernel mode resources.
 

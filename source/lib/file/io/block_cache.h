@@ -23,8 +23,6 @@
  * =========================================================================
  */
 
-// license: GPL; see lib/license.txt
-
 #ifndef INCLUDED_BLOCK_CACHE
 #define INCLUDED_BLOCK_CACHE
 
