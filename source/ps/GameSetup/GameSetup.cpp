@@ -99,7 +99,7 @@ ERROR_TYPE(System, RequiredExtensionsMissing);
 
 #define LOG_CATEGORY "gamesetup"
 
-bool DoRenderGui = true;
+bool g_DoRenderGui = true;
 
 static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 {
@@ -396,7 +396,7 @@ void Render()
 	// Temp GUI message GeeTODO
 	MICROLOG(L"render GUI");
 	PROFILE_START( "render gui" );
-	if(DoRenderGui) g_GUI.Draw();
+	if(g_DoRenderGui) g_GUI.Draw();
 	PROFILE_END( "render gui" );
 #endif
 
@@ -1078,5 +1078,5 @@ void Init(const CmdLineArgs& args, int flags)
 
 void RenderGui(bool RenderingState)
 {
-	DoRenderGui = RenderingState;
+	g_DoRenderGui = RenderingState;
 }
