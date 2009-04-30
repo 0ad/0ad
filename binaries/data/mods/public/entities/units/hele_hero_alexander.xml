@@ -9,53 +9,53 @@
 			<History>The most powerful hero of them all - son of Philip II, king of Macedonia (336 BC - 323 BC). After conquering the rest of the Thracians and quelling the unrest of the Greeks, Alexander embarked on a world-conquest march. Defeating the Persian forces at Granicus (334 BC), Issus (333 BC) and Gaugamela (331 BC), he became master of the Persian Empire. Entering India, he defeated king Porus at Hydaspes (326 BC), but his weary troops made him halt. Died in Babylon at the age of 33 while planning a campaign against Arabia.</History>
 			<Tooltip>Hero Aura: Increased Cavalry and Super Cavalry Attack and Speed. "Herocide" attack bonus vs. enemy Heroes.</Tooltip> 
 		</Id>
+		<Health>
+			<Max>400</Max>
+		</Health>
 		<Creation>
-			<Time>55</Time>
+			<Time>80</Time>
 			<Resource>
- 				<Food>150</Food>
-				<Metal>450</Metal>
+				<Wood>12</Wood>
+				<Metal>97</Metal>
  			</Resource>
 		</Creation>
+		<Vision>
+			<Los>16</Los>
+		</Vision>
 		<Armour>
-			<Hack>7.0</Hack>
-			<Pierce>15.0</Pierce>
-			<Crush>12.0</Crush>
-		</Armour>	
-		<Health>
-			<Max>380</Max>
-			<RegenRate>0.2</RegenRate>
-		</Health>		
+			<Hack>10.0</Hack>
+			<Pierce>7.0</Pierce>
+			<Crush>19.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>1385</Max>
+		</Stamina>		
 		<Auras>
 			<Courage>
 				<Radius>20</Radius>
-				<Bonus>10</Bonus>
+				<Bonus>15</Bonus>
 				<r>0.1</r>
-				<g>0.9</g>
-				<b>0.1</b>
+				<g>1.0</g>
+				<b>0.5</b>
 				<a>0.1</a>
 			</Courage>
-		</Auras>		
+		</Auras>
 	</Traits>
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>55.0</Hack>
+ 				<Hack>45.0</Hack>
 			</Melee>
 			<Charge>
-				<Hack>165.0</Hack>
-				<Range>3.6</Range>
-				<Speed>1000</Speed>
+				<Hack>157.5</Hack>
 			</Charge>	
  		</Attack>
 		<Move>
-			<Speed>14.3</Speed>
-			<TurningRadius>4.0</TurningRadius>
+			<Speed>7.4</Speed>
 			<Run>
-				<Speed>25.0</Speed>
-				<Range>1000.0</Range>
-				<RangeMin>5.0</RangeMin>
+				<Speed>18.5</Speed>
 			</Run>
-		</Move>
+		</Move>	
 	</Actions>
 	<Actor>units/hellenes/alexander.xml</Actor>
 </Entity>

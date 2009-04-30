@@ -5,12 +5,41 @@
 		<id>
 			<Icon_Cell>20</Icon_Cell>
 		</id>
+		<Health>
+			<Max>160</Max>
+			<RegenRate>0.4</RegenRate>
+		</Health>
+		<Vision>
+			<Los>13</Los>
+		</Vision>
 		<Armour>
-			<Hack>8.0</Hack>
-			<Pierce>10.0</Pierce>
-			<Crush>14.0</Crush>
+			<Hack>10.0</Hack>
+			<Pierce>5.0</Pierce>
+			<Crush>16.0</Crush>
 		</Armour>
 	</Traits>
-
+	<Actions>
+		<Gather>
+			<Speed>2000</Speed>
+ 		</Gather>
+ 		<Attack>
+			<Melee>
+ 				<Hack>19.0</Hack>
+				<Crush>7.0</Crush>
+				<Range>2.0</Range>
+			</Melee>
+			<Charge>
+				<Hack>57.0</Hack>
+				<Crush>21.0</Crush>
+				<Range>4.0</Range>
+			</Charge>		
+ 		</Attack>
+		<Move>
+			<Speed>7.5</Speed>
+			<Run>
+				<Speed>18.75</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	<Actor>units/hellenes/cavalry_swordsman_e.xml</Actor>
 </Entity>

@@ -8,11 +8,42 @@
 		<Promotion>
 			<Entity>hele_cavalry_swordsman_e</Entity>
 		</Promotion>
+		<Health>
+			<Max>150</Max>
+			<RegenRate>0.3</RegenRate>
+		</Health>
 		<Armour>
-			<Hack>7.0</Hack>
+			<Hack>6.0</Hack>
+			<Pierce>1.0</Pierce>
+			<Crush>10.0</Crush>
 		</Armour>
+		<Stamina>
+			<Max>1060.0</Max>
+		</Stamina>
 	</Traits>
-
+	<Actions>
+		<Gather>
+			<Speed>1500</Speed>
+ 		</Gather>
+ 		<Attack>
+			<Melee>
+ 				<Hack>19.0</Hack>
+				<Crush>4.0</Crush>
+				<Range>2.0</Range>
+			</Melee>
+			<Charge>
+				<Hack>57.0</Hack>
+				<Crush>12.0</Crush>
+				<Range>4.0</Range>
+			</Charge>		
+ 		</Attack>
+		<Move>
+			<Speed>8.0</Speed>
+			<Run>
+				<Speed>20</Speed>
+			</Run>
+		</Move>
+	</Actions>
 	<Actor>units/hellenes/cavalry_swordsman_a.xml</Actor>
 
 </Entity>

@@ -7,29 +7,39 @@
 			<Icon_Cell>5</Icon_Cell>
 		</Id>
 		<Health>
-			<Max>100</Max>
+			<Max>120</Max>
+			<RegenRate>0.4</RegenRate>
 		</Health>
 		<Armour>
-			<Hack>7.0</Hack>
-			<Pierce>8.5</Pierce>
+			<Hack>13.0</Hack>
+			<Pierce>16.0</Pierce>
+			<Crush>15.0</Crush>
 		</Armour>
+		<Stamina>
+			<Max>670.0</Max>
+		</Stamina>
 	</Traits>
 
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Pierce>12.0</Pierce>
+ 				<Hack>7.0</Hack>
+ 				<Pierce>17.0</Pierce>
 			</Melee>
 			<Charge>
-				<Pierce>24.0</Pierce>
-			</Charge>		
+				<Hack>14.0</Hack>
+				<Pierce>34.0</Pierce>
+			</Charge>
  		</Attack>
 		<Move>
-			<Speed>5.0</Speed>
+			<Speed>5.4</Speed>
 			<Run>
-				<Speed>13.0</Speed>
+				<Speed>13.5</Speed>
 			</Run>
 		</Move>
+ 		<Gather>
+			<Speed>2000</Speed>
+ 		</Gather>
 	</Actions>
 
 	<Actor>units/hellenes/infantry_spearman_e.xml</Actor>

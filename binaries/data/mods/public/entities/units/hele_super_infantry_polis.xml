@@ -9,40 +9,45 @@
 			<History>The Spartans had a very peculiar form of government which enabled them to be professional soldiers. It not only enabled them, but actually forced them to be superior soldiers as a small group of Spartans had to dominate an enormous number of subjects and unwilling allies. The Spartan army was superior in Hellas, and in the rest of the known world. No other army was so well trained, and had such excellent equipment. They believed that traditional training was the key to success, and for centuries they were correct, as they rarely lost a battle in spite of their small numbers. Ironic enough, this concept ended the Spartan supremacy, as the Spartan phalanx could not resist the new sloped Theban phalanx and the invading integrated Macedonian forces. The end of the Spartan power marked the decline of the domination of traditional phalanx warfare.</History>
 			<Tooltip>Bonused vs. Melee Cavalry and Melee Infantry. Weak vs. Ranged Infantry and Ranged Cavalry. Long Train Time. Small Bonus vs. All Persian Units.</Tooltip>
 		</Id>
-		<Creation>
-			<Time>45</Time>
-			<Resource>
- 				<Food>75</Food>
-				<Wood>50</Wood>
-				<Metal>65</Metal>
- 			</Resource>
-		</Creation>
-		<Armour>
-			<Hack>10.0</Hack>
-			<Pierce>10.0</Pierce>
-			<Crush>14.0</Crush>
-		</Armour>
 		<Health>
 			<Max>150</Max>
 		</Health>
+		<Creation>
+			<Time>30</Time>
+			<Resource>
+				<Wood>35</Wood>
+				<Metal>78</Metal>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>16.0</Hack>
+			<Pierce>14.0</Pierce>
+			<Crush>21.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>590.0</Max>
+		</Stamina>
+		<Vision>
+			<Los>8</Los>
+		</Vision>
 	</Traits>
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>20.0</Hack>
+ 				<Hack>15.0</Hack>
  				<Pierce>20.0</Pierce>
- 				<Crush>5.0</Crush>
+				<Range>4.8</Range>
 			</Melee>
 			<Charge>
-				<Hack>42.0</Hack>
-				<Pierce>30.0</Pierce>
-				<Crush>10.0</Crush>
+				<Hack>37.5</Hack>
+				<Pierce>50.0</Pierce>
+				<Range>4.8</Range>
 			</Charge>	
  		</Attack>
 		<Move>
-			<Speed>4.5</Speed>
+			<Speed>5.0</Speed>
 			<Run>
-				<Speed>14.0</Speed>
+				<Speed>12.5</Speed>
 			</Run>
 		</Move>
 	</Actions>

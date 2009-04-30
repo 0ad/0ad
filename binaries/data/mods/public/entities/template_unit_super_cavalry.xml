@@ -10,19 +10,21 @@
 		<Creation>
 			<Resource>
  				<Food>150</Food>
-				<Metal>135</Metal>
+				<Wood>0</Wood>
+				<Stone>0</Stone>
+				<Metal>0</Metal>
  			</Resource>
 		</Creation>
 		<Footprint>
 			<Radius>1.2</Radius>
-			<Height>7.5</Height>
+			<Height>5.0</Height>
 		</Footprint>
 		<Auras>
 			<Trample>
 				<Radius>3</Radius>
 				<Speed>500</Speed>
 				<Duration>3</Duration>
-				<Crush>10.0</Crush>
+				<Crush>15.0</Crush>
 				<Hack>10.0</Hack>
 				<Pierce>0.0</Pierce>
 				<r>1.0</r>
@@ -30,21 +32,24 @@
 				<b>0.2</b>
 				<a>0.1</a>
 			</Trample>
-		</Auras>		
+		</Auras>
 		<Armour>
 			<Hack>7.0</Hack>
 			<Pierce>8.0</Pierce>
 			<Crush>14.0</Crush>
 		</Armour>
 		<Health>
-			<Max>180</Max>
+			<Max>200</Max>
 		</Health>
 		<Population>
 			<Rem>2</Rem>
 		</Population>
 		<Vision>
-			<Los>17</Los>
+			<Los>15</Los>
 		</Vision>
+		<Stamina>
+			<Max>1200</Max>
+		</Stamina>
 	</Traits>
 	<Actions>
  		<Attack>
@@ -53,7 +58,7 @@
 				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
 				<Range>4.8</Range>
-				<Speed>1500</Speed>
+				<Speed>1000</Speed>
 			</Melee>
 			<Charge>
 				<Hack>105.0</Hack>

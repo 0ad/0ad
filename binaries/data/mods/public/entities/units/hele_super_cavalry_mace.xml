@@ -6,48 +6,51 @@
 			<Icon_Cell>15</Icon_Cell>
 			<Specific>Hetairoi</Specific>
 			<Civ>Hellenes</Civ>
-			<History>Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand. The Companion Cavalry was also a preferred general stand.</History>
+			<History>The Heyairoi, or Companion cavalry, were a preferred general stand in Macedonian armies. Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand.</History>
 			<Tooltip>Bonused vs. Cavalry and Archers. Weak vs. Super Units.</Tooltip>
 		</Id>
 		<Creation>
 			<Time>40</Time>
 			<Resource>
- 				<Food>160</Food>
-				<Metal>150</Metal>
+				<Wood>32</Wood>
+				<Metal>45</Metal>
  			</Resource>
-		</Creation>		
+		</Creation>
 		<Armour>
-			<Hack>8.0</Hack>
-			<Pierce>10.0</Pierce>
-			<Crush>20.0</Crush>
+			<Hack>9.0</Hack>
+			<Pierce>4.0</Pierce>
+			<Crush>16.0</Crush>
 		</Armour>
-		<Health>
-			<Max>190</Max>
-		</Health>
+		<Stamina>
+			<Max>1135.0</Max>
+		</Stamina>
+		<Vision>
+			<Los>14</Los>
+		</Vision>
 		<Auras>
 			<Trample>
-				<Crush>15.0</Crush>
-				<Hack>15.0</Hack>
+				<Crush>30.0</Crush>
+				<Hack>20.0</Hack>
 			</Trample>
 		</Auras>		
 	</Traits>
 	<Actions>
  		<Attack>
 			<Melee>
-				<Hack>20.0</Hack>
-				<Pierce>20.0</Pierce>
+				<Hack>11.0</Hack>
+				<Pierce>15.0</Pierce>
 				<Crush>0.0</Crush>
 			</Melee>
 			<Charge>
-				<Hack>60.0</Hack>
-				<Pierce>60.0</Pierce>
+				<Hack>38.5</Hack>
+				<Pierce>52.5</Pierce>
 				<Crush>0.0</Crush>
 			</Charge>		
  		</Attack>
 		<Move>
-			<Speed>13.5</Speed>
+			<Speed>8.3</Speed>
 			<Run>
-				<Speed>26.0</Speed>
+				<Speed>20.75</Speed>
 			</Run>
 		</Move>
 	</Actions>

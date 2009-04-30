@@ -10,51 +10,50 @@
 			<Tooltip>Hero Aura: Increased Spartiate and Hoplite Attack.</Tooltip>
 		</Id>
 		<Creation>
-			<Time>40</Time>
 			<Resource>
- 				<Food>100</Food>
-				<Metal>300</Metal>
+ 				<Wood>35</Wood>
+				<Metal>150</Metal>
  			</Resource>
 		</Creation>
+		<Vision>
+			<Los>8</Los>
+		</Vision>
+		<Armour>
+			<Hack>16.0</Hack>
+			<Pierce>14.0</Pierce>
+			<Crush>21.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>990</Max>
+		</Stamina>
 		<Auras>
 			<Fear>
 				<Radius>20</Radius>
 				<Bonus>5</Bonus>
-				<r>0.0</r>
+				<r>0.5</r>
 				<g>0.0</g>
-				<b>0.0</b>
+				<b>0.2</b>
 				<a>0.1</a>
 			</Fear>
 		</Auras>
-		<Armour>
-			<Hack>10.0</Hack>
-			<Pierce>10.0</Pierce>
-			<Crush>10.0</Crush>
-		</Armour>	
-		<Health>
-			<Max>260</Max>
-			<RegenRate>0.2</RegenRate>
-		</Health>			
 	</Traits>
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>25.0</Hack>
-				<Pierce>30.0</Pierce>
+ 				<Hack>20.0</Hack>
+				<Pierce>20.0</Pierce>
 				<Crush>0.0</Crush>
 			</Melee>
 			<Charge>
-				<Hack>75.0</Hack>
-				<Pierce>90.0</Pierce>
+				<Hack>60.0</Hack>
+				<Pierce>60.0</Pierce>
 				<Crush>0.0</Crush>
 			</Charge>	
  		</Attack>
 		<Move>
-			<Speed>8.0</Speed>
+			<Speed>5.0</Speed>
 			<Run>
-				<Speed>16.0</Speed>
-				<Range>600.0</Range>
-				<RangeMin>5.0</RangeMin>
+				<Speed>12.5</Speed>
 			</Run>
 		</Move>
 	</Actions>

@@ -6,29 +6,51 @@
 			<Generic>Infantry</Generic>
 			<Classes>Military, Foot, Organic, CitizenSoldier, Worker</Classes>
 		</Id>
-		<Armour>
-			<Hack>2.0</Hack>
-			<Pierce>2.0</Pierce>
-			<Crush>2.0</Crush>
-		</Armour>
+		<Population>
+			<Rem>1</Rem>
+		</Population>
 		<Health>
-			<RegenRate>0.1</RegenRate>
-		</Health>		
+			<Max>100</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>
+		<Creation>
+			<Time>20</Time>
+			<Resource>
+ 				<Food>50</Food>
+				<Wood>0</Wood>
+				<Stone>0</Stone>
+				<Metal>0</Metal>
+ 			</Resource>
+		</Creation>
+		<Armour>
+			<Hack>1.0</Hack>
+			<Pierce>1.0</Pierce>
+			<Crush>9.0</Crush>
+		</Armour>
+		<Vision>
+			<Los>12.0</Los>
+		</Vision>
+		<Stamina>
+			<Max>600.0</Max>
+		</Stamina>
 		<Loot>
-			<Xp>200</Xp>
+			<Xp>100</Xp>
 			<Food>1</Food>
 			<Wood>1</Wood>
 			<Stone>1</Stone>
 			<Metal>1</Metal>
 		</Loot>		
-		<Population>
-			<Rem>1</Rem>
-		</Population>
 		<Promotion>
 			<Req>600</Req>
 		</Promotion>
 	</Traits>
 	<Actions>
+		<Move>
+			<Speed>7.0</Speed>
+			<Run>
+				<Speed>17.5</Speed>
+			</Run>
+		</Move>
 		<Create>
 			<List>
 				<StructCiv>
@@ -56,18 +78,18 @@
  		<Gather>
 			<Resource>
 				<Food>
-					<Fruit>2</Fruit>
-					<Grain>2</Grain>
-					<Meat>3</Meat>
-					<Fish>3</Fish>
+					<Fruit>1</Fruit>
+					<Grain>1</Grain>
+					<Meat>2</Meat>
+					<Fish>2</Fish>
 				</Food>
-				<Wood>4</Wood>
-				<Stone>5</Stone>
-				<Metal>5</Metal>
+				<Wood>3</Wood>
+				<Stone>4</Stone>
+				<Metal>4</Metal>
 			</Resource>
 			<AffectedByAllure>true</AffectedByAllure>
- 			<Range>1.2</Range>
-			<Speed>3000</Speed>
+ 			<Range>1.75</Range>
+			<Speed>1000</Speed>
  		</Gather>
 		
 		<Loot>

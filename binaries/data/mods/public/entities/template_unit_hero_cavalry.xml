@@ -4,39 +4,47 @@
 	<Traits>
 		<Id>
 			<Generic>Hero</Generic>
-			<Classes>Hero, Military, Organic</Classes>
+			<Classes>Hero, Military, Organic, Mounted</Classes>
 		</Id>
+		<Population>
+			<Rem>2</Rem>
+		</Population>
+		<Health>
+			<Max>400</Max>
+			<RegenRate>0.5</RegenRate>
+		</Health>
 		<Creation>
-			<Time>70</Time>
+			<Time>80</Time>
 			<Resource>
  				<Food>150</Food>
-				<Metal>300</Metal>
+				<Metal>25</Metal>
  			</Resource>
 		</Creation>
+		<Vision>
+			<Los>17</Los>
+		</Vision>
+		<Armour>
+			<Hack>0.0</Hack>
+			<Pierce>0.0</Pierce>
+			<Crush>15.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>1500</Max>
+		</Stamina>
 		<Auras>
 			<Trample>
-				<Crush>13.0</Crush>
-				<Hack>13.0</Hack>
+				<Crush>15.0</Crush>
+				<Hack>15.0</Hack>
 				<a>0.1</a>
 			</Trample>
 		</Auras>
-		<Armour>
-			<Hack>7.0</Hack>
-			<Pierce>12.0</Pierce>
-			<Crush>12.0</Crush>
-		</Armour>	
-
-		<Health>
-			<Max>300</Max>
-			<RegenRate>0.2</RegenRate>
-		</Health>		
 		<Loot>
 			<Xp>1000</Xp>
-			<Food>10</Food>
+			<Food>15</Food>
 			<wood>10</wood>
 			<Stone>10</Stone>
 			<Metal>100</Metal>
-		</Loot>		
+		</Loot>
 		<MiniMap>
 			<Type>Hero</Type>
 		</MiniMap>
@@ -44,18 +52,28 @@
 	<Actions>
 		<Attack>
 			<Melee>
-				<Hack>45.0</Hack>
+				<Hack>1.0</Hack>
 				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
 				<Range>3.6</Range>
+				<Speed>1000</Speed>
 			</Melee>
 			<Charge>
-				<Hack>135.0</Hack>
+				<Hack>3.0</Hack>
 				<Pierce>0.0</Pierce>
 				<Crush>0.0</Crush>
 				<Range>3.6</Range>
+				<Speed>1000</Speed>
 			</Charge>
 		</Attack>
+		<Move>
+			<Speed>9.0</Speed>
+			<Run>
+				<Speed>22.5</Speed>
+				<Range>600.0</Range>
+				<RangeMin>16.0</RangeMin>
+			</Run>
+		</Move>	
 	</Actions>
 
 	<SoundGroups>

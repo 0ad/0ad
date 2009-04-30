@@ -6,20 +6,33 @@
 			<Generic>Cavalry</Generic>
 			<Classes>Cavalry, Military, Mounted, Organic, CitizenSoldier, Worker</Classes>
 		</Id>
+		<Population>
+			<Rem>2</Rem>
+		</Population>
+		<Health>
+			<Max>150</Max>
+			<RegenRate>0.2</RegenRate>
+		</Health>
+		<Creation>
+			<Time>30</Time>
+			<Resource>
+ 				<Food>100</Food>
+ 			</Resource>
+		</Creation>
+		<Vision>
+			<Los>15</Los>
+		</Vision>
 		<Armour>
-			<Hack>3.0</Hack>
-			<Pierce>10.0</Pierce>
+			<Hack>0.0</Hack>
+			<Pierce>0.0</Pierce>
 			<Crush>12.0</Crush>
 		</Armour>
 		<Footprint>
 			<Radius>1.2</Radius>
 			<Height>7.5</Height>
 		</Footprint>
-		<Health>
-			<RegenRate>0.1</RegenRate>
-		</Health>
 		<Stamina>
-			<Max>1000.0</Max>
+			<Max>1000</Max>
 		</Stamina>
 		<Loot>
 			<Xp>200</Xp>
@@ -28,9 +41,6 @@
 			<Stone>1</Stone>
 			<Metal>1</Metal>
 		</Loot>		
-		<Population>
-			<Rem>2</Rem>
-		</Population>
 		<Promotion>
 			<Req>900</Req>
 		</Promotion>
@@ -38,15 +48,12 @@
 			<ConformX>3.141592</ConformX>
 			<ConformZ>0</ConformZ>
 		</Anchor>
-		<Vision>
-			<Los>15</Los>
-		</Vision>
 	</Traits>
 	<Actions>
 		<Gather>
 			<Resource>
 				<Food>
-					<Meat>50</Meat>
+					<Meat>25</Meat>
 				</Food>
 			</Resource>
 			<AffectedByAllure>true</AffectedByAllure>
@@ -54,10 +61,10 @@
 			<Speed>1000</Speed>
  		</Gather>
 		<Move>
-			<Speed>4.65</Speed>
+			<Speed>8.5</Speed>
 			<TurningRadius>5.0</TurningRadius>
 			<Run>
-				<Speed>27.9</Speed>
+				<Speed>21.25</Speed>
 				<Range>600.0</Range>
 				<RangeMin>5.0</RangeMin>
 			</Run>

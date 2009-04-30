@@ -2,29 +2,21 @@
 
 <Entity	Parent="template_unit">
 	<Traits>
-	
 		<Id>
-		
 			<Generic>Super Unit</Generic>
-
 			<Classes>Military, Super</Classes>
-		
 		</Id>
-		
 		<Health>
-			<RegenRate>0.2</RegenRate>
+			<RegenRate>0.4</RegenRate>
 		</Health>		
-
 		<Loot>
-			<Xp>50</Xp>
-			<Food>1</Food>
-			<wood>1</wood>
-			<Stone>1</Stone>
-			<Metal>1</Metal>
+			<Xp>150</Xp>
+			<Food>5</Food>
+			<wood>5</wood>
+			<Stone>5</Stone>
+			<Metal>10</Metal>
 		</Loot>
-		
 	</Traits>
-	
 </Entity>
 
 

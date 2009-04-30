@@ -9,29 +9,33 @@
 			<History>The king of Macedonia (359 BC - 336 BC), he carried out vast monetary and military reforms in order to make his kingdom the most powerful force in the Greek world. Greatly enlarged the size of Macedonia by conquering much of Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign against Persia.</History>
 			<Tooltip>Hero Aura: Increased Attack for Super Units.</Tooltip>		
 		</Id>
+		<Health>
+			<Max>380</Max>
+		</Health>
 		<Creation>
-			<Time>50</Time>
+			<Time>76</Time>
 			<Resource>
- 				<Food>150</Food>
-				<Metal>350</Metal>
+				<Metal>93</Metal>
  			</Resource>
 		</Creation>
+		<Vision>
+			<Los>16</Los>
+		</Vision>
 		<Armour>
-			<Hack>6.0</Hack>
-			<Pierce>14.0</Pierce>
-			<Crush>14.0</Crush>
-		</Armour>	
-		<Health>
-			<Max>350</Max>
-			<RegenRate>0.2</RegenRate>
-		</Health>		
+			<Hack>14.0</Hack>
+			<Pierce>11.0</Pierce>
+			<Crush>22.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>1340</Max>
+		</Stamina>		
 		<Auras>
 			<Courage>
 				<Radius>20</Radius>
 				<Bonus>5</Bonus>
 				<r>0.1</r>
-				<g>0.9</g>
-				<b>0.1</b>
+				<g>1.0</g>
+				<b>0.5</b>
 				<a>0.1</a>
 			</Courage>
 		</Auras>
@@ -39,16 +43,20 @@
 	<Actions>
  		<Attack>
 			<Melee>
- 				<Hack>50.0</Hack>
-				<Pierce>0.0</Pierce>
-				<Crush>0.0</Crush>
+ 				<Hack>32.0</Hack>
+				<Crush>3.0</Crush>
 			</Melee>
 			<Charge>
-				<Hack>150</Hack>
-				<Range>3.6</Range>
-				<Speed>1000</Speed>
+				<Hack>112</Hack>
+				<Crush>9.0</Crush>
 			</Charge>	
  		</Attack>
+		<Move>
+			<Speed>6.9</Speed>
+			<Run>
+				<Speed>17.25</Speed>
+			</Run>
+		</Move>	
 	</Actions>
 	<Actor>units/hellenes/philip_horse.xml</Actor>
 </Entity>

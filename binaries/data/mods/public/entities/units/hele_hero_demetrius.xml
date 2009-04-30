@@ -9,55 +9,57 @@
 			<History>One of the Diadochi, king of Macedonia (294 BC - 288 BC), Demetrius was renowned as one of the bravest and most able successors of Alexander. As the son of Antigonus I Monophtalmus, he fought and won many important battles early on and was proclaimed king, along with his father, in 306 BC. Losing his Asian possessions after the battle of Ipsus, he later won the Macedonian throne. Fearing lest they should be overpowered by Demetrius, the other Diadochi united against him and defeated him.</History>
 			<Tooltip>Hero Aura: Increased Range and Attack for Siege Engines.</Tooltip>
 		</Id>
+		<Health>
+			<Max>275</Max>
+		</Health>
 		<Creation>
-			<Time>50</Time>
+			<Time>55</Time>
 			<Resource>
- 				<Food>100</Food>
-				<Metal>250</Metal>
+				<Wood>51</Wood>
+				<Metal>73</Metal>
  			</Resource>
 		</Creation>
+		<Vision>
+			<Los>9</Los>
+		</Vision>
+		<Armour>
+			<Hack>13.0</Hack>
+			<Pierce>10.0</Pierce>
+			<Crush>22.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>920</Max>
+		</Stamina>
 		<Auras>
-			<Fear>
+			<Courage>
 				<Radius>20</Radius>
 				<Bonus>5</Bonus>
 				<r>0.1</r>
-				<g>0.9</g>
+				<g>0.5</g>
 				<b>0.1</b>
 				<a>0.1</a>
-			</Fear>
+			</Courage>
 		</Auras>
-		<Armour>
-			<Hack>9.0</Hack>
-			<Pierce>9.0</Pierce>
-			<Crush>15.0</Crush>
-		</Armour>	
-		<Health>
-			<Max>250</Max>
-			<RegenRate>0.15</RegenRate>
-		</Health>
-		<Stamina>
-			<Max>0</Max>
-			<BarHeight>0</BarHeight>
-			<Bar_Size>0</Bar_Size>
-		</Stamina>		
 	</Traits>
 	<Actions>
 		<Attack>
 			<Melee>
-				<Hack>0.0</Hack>
-				<Pierce>50.0</Pierce>
+				<Hack>20.0</Hack>
+				<Pierce>24.0</Pierce>
 				<Crush>0.0</Crush>
-				<Range>7.5</Range>
-				<Speed>1500</Speed>
+				<Range>7.0</Range>
 			</Melee>
+			<Charge>
+ 				<Hack>40.5</Hack>
+				<Pierce>48.0</Pierce>
+				<RangeMin>14.0</RangeMin>
+			</Charge>
 		</Attack>
 		<Move>
-			<Speed>6.5</Speed>
+			<Speed>4.7</Speed>
 			<TurningRadius>1.0</TurningRadius>
 			<Run>
-				<Speed>0</Speed>
-				<Range>0</Range>
-				<RangeMin>0</RangeMin>
+				<Speed>11.75</Speed>
 			</Run>
 		</Move>
 	</Actions>

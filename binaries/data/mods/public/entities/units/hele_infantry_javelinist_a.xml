@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity Parent="hele_infantry_javelinist_b">
-
 	<Traits>
-
 		<Id>
-
 			<Icon_Cell>7</Icon_Cell>
-
 		</Id>
-		
 		<Promotion>
-				
 			<Entity>hele_infantry_javelinist_e</Entity>
-			
 		</Promotion>
+		<Health>
+			<Max>110</Max>
+			<RegenRate>0.3</RegenRate>
+		</Health>
 		<Armour>
-			<Hack>2.0</Hack>
-			<Pierce>6.0</Pierce>
+			<Hack>3.0</Hack>
+			<Pierce>2.0</Pierce>
+			<Crush>8.0</Crush>
 		</Armour>
+		<Stamina>
+			<Max>740.0</Max>
+		</Stamina>
 		<Vision>
 			<Los>13.0</Los>
 		</Vision>
@@ -26,16 +27,18 @@
 	<Actions>
  		<Attack>
 			<Ranged>
-				<MinRange>10.0</MinRange>
-				<Range>34</Range>
+ 				<Pierce>50.0</Pierce>
 			</Ranged>
  		</Attack>
 		<Move>
-			<Speed>7.25</Speed>
+			<Speed>7.2</Speed>
 			<Run>
-				<Speed>17.5</Speed>
+				<Speed>18.0</Speed>
 			</Run>
 		</Move>
+ 		<Gather>
+			<Speed>1500</Speed>
+ 		</Gather>
 	</Actions>
 
 	<Actor>units/hellenes/infantry_javelinist_a.xml</Actor>

@@ -15,14 +15,30 @@
 			<Resource>
  				<Food>0</Food>
 				<Wood>0</Wood>
-				<Metal>70</Metal>
+				<Metal>75</Metal>
  			</Resource>
 		</Creation>
-		<Health>
-			<Max>85</Max>
-		</Health>
+		<Armour>
+			<Hack>2.0</Hack>
+			<Pierce>2.0</Pierce>
+			<Crush>6.0</Crush>
+		</Armour>
+		<Stamina>
+			<Max>590.0</Max>
+		</Stamina>
 	</Traits>
 	<Actions>
+ 		<Attack>
+			<Ranged>
+				<Range>36.0</Range>
+			</Ranged>
+ 		</Attack>
+		<Move>
+			<Speed>6.7</Speed>
+			<Run>
+				<Speed>16.75</Speed>
+			</Run>
+		</Move>
 		<Create>
 			<List>
 				<StructCiv>
@@ -34,12 +50,7 @@
 				</StructMil>
 			</List>
 		</Create>
-		<Move>
-			<Speed>9.5</Speed>
-			<Run>
-				<Speed>20.0</Speed>
-			</Run>
-		</Move>
+
 	</Actions>
 
 	<Actor>units/hellenes/infantry_javelinist_b.xml</Actor>

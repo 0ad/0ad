@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_civic"
->
+<Entity	Parent="template_structure_civic">
 	<Traits>
-	
 		<Id>
-		
 			<Internal_Only />
-
-			<Generic>Civil Centre</Generic>
-
+			<Generic>Civic Centre</Generic>
 			<Icon_Cell>47</Icon_Cell>
-
 			<Classes>Housing, Village, CivilCentre</Classes>
-
-			<Tooltip>The heart of the player's empire. Trains economic units, and can only be built on settlements.</Tooltip>		
+			<Tooltip>The heart of the player's empire. Trains economic units, and can only be built on settlements.</Tooltip>	
 		</Id>
-		
 		<Creation>
 			<TerritoryRestriction>All</TerritoryRestriction>
 			<Foundation>foundation_5x5</Foundation>
@@ -79,9 +70,6 @@
 	<Actions>
 		<Create>
  			<List>
-				<Train>
-					<Support_Female_Citizen />
-				</Train>
  				<Research>
 					<Real_Example />
 				</Research>

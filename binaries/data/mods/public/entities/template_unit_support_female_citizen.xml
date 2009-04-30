@@ -10,6 +10,7 @@
 			<Tooltip>Economic support unit that gathers resources, builds structures, and inspires nearby males to work faster.</Tooltip>
 		</Id>
 		<Creation>
+			<Time>15</Time>
 			<Resource>
  				<Food>50</Food>
  			</Resource>
@@ -34,15 +35,18 @@
 		<Armour>
 			<Hack>1.0</Hack>
 			<Pierce>1.0</Pierce>
-			<Crush>2.0</Crush>
+			<Crush>5.0</Crush>
 		</Armour>
 		<Health>
-			<Max>70</Max>
-			<RegenRate>0.4</RegenRate>
+			<Max>75</Max>
+			<RegenRate>0.3</RegenRate>
 		</Health>	
 		<Vision>
 			<Los>10</Los>
 		</Vision>
+		<Stamina>
+			<Max>500</Max>
+		</Stamina>	
 	</Traits>
 	<Actions>
 		<Create>
@@ -63,16 +67,16 @@
 			<Resource>
 				<Food>
 					<Fruit>5</Fruit>
-					<Grain>4</Grain>
-					<Meat>1</Meat>
-					<Fish>2</Fish>
+					<Grain>2</Grain>
+					<Meat>0.5</Meat>
+					<Fish>0.8</Fish>
 				</Food>
 				<Wood>2</Wood>
 				<Metal>1</Metal>
 				<Stone>1</Stone>
 			</Resource>
- 			<Range>2.0</Range>
-			<Speed>3000</Speed>
+ 			<Range>1.75</Range>
+			<Speed>1000</Speed>
 		</Gather>
 		<Repair>
 			<Rate>0.5</Rate>
@@ -83,11 +87,11 @@
 			<Speed>1000</Speed>
 		</Build>
 		<Move>
-			<Speed>5.0</Speed>
+			<Speed>6.0</Speed>
 			<TurningRadius>0.8</TurningRadius>
 			<Run>
-				<Speed>9.45</Speed>
-				<Range>50.0</Range>
+				<Speed>8.0</Speed>
+				<Range>150.0</Range>
 				<RangeMin>0.0</RangeMin>
 			</Run>
 		</Move>

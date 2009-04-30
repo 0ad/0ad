@@ -6,21 +6,44 @@
 			<Icon_Cell>3</Icon_Cell>
 			<Specific>Hoplite</Specific>
 			<Civ>Hellenes</Civ>
-			<History>Hoplites were the very symbol of Hellenistic prestige and citizenship, armed with a spear and a large round, bronze-coated shield known as a hoplon. Armor was heavy, with bronze helmets and a cuirass of either bronze or linen, in addition to greaves. Hoplites fought in a tight formation called a phalanx, guarding each other with their shields while they attacked the enemy with their spear or a short iron sword.</History>
+			<History>Hoplites were the very symbol of Hellenistic prestige and citizenship, armed with a spear and a large round, bronze-coated shield known as an aspis. Armor was heavy, with bronze helmets and a cuirass of either bronze or linen, in addition to greaves. Hoplites fought in a tight formation called a phalanx, guarding each other with their shields while they attacked the enemy with their 2.5 meter spear or short iron sword.</History>
 		</Id>
 		<Promotion>
 			<Entity>hele_infantry_spearman_a</Entity>
 		</Promotion>
 		<Creation>
 			<Resource>
-				<Wood>65</Wood>
+				<Wood>75</Wood>
+				<Metal>5</Metal>
  			</Resource>
 		</Creation>
 		<Armour>
-			<Pierce>7.0</Pierce>
+			<Hack>5.0</Hack>
+			<Pierce>8.0</Pierce>
+			<Crush>9.0</Crush>
 		</Armour>
+		<Stamina>
+			<Max>540.0</Max>
+		</Stamina>
 	</Traits>
 	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>5.0</Hack>
+ 				<Pierce>15.0</Pierce>
+				<Range>4.8</Range>
+			</Melee>
+			<Charge>
+				<Hack>10.0</Hack>
+				<Pierce>30.0</Pierce>
+			</Charge>
+ 		</Attack>
+		<Move>
+			<Speed>6.1</Speed>
+			<Run>
+				<Speed>15.25</Speed>
+			</Run>
+		</Move>
 		<Create>
 			<List>
 				<StructCiv>
@@ -32,23 +55,6 @@
 				</StructMil>
 			</List>
 		</Create>
- 		<Attack>
-			<Melee>
- 				<Hack>17.0</Hack>
- 				<Pierce>7.0</Pierce>
-			</Melee>
-			<Charge>
-				<Hack>34.0</Hack>
-				<Pierce>14.0</Pierce>
-			</Charge>		
- 		</Attack>
-
-		<Move>
-			<Speed>8.0</Speed>
-			<Run>
-				<Speed>16.0</Speed>
-			</Run>
-		</Move>
 	</Actions>
 	<Actor>units/hellenes/infantry_spearman_b.xml</Actor>
 </Entity>

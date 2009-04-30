@@ -36,5 +36,15 @@
 		</Population>
 
 	</Traits>
-	
+	<Actions>
+		<Create>
+ 			<List>
+				<Train>
+					<Support_Female_Citizen />
+				</Train>
+ 			</List>
+ 			<Speed>1</Speed>
+			<Rally/>
+ 		</Create>
+	</Actions>	
 </Entity>
