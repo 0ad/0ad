@@ -19,8 +19,9 @@
 
 		<Creation>
 			<Foundation>foundation_4x4</Foundation>
+			<Time>40</Time>
 			<Resource>
- 				<Wood>150</Wood>
+ 				<Wood>100</Wood>
 				<Stone>100</Stone>
  			</Resource>
 			<BuildingLimitCategory>Barracks</BuildingLimitCategory>
@@ -38,14 +39,19 @@
 		
 		<Armour>
 			<Hack>15.0</Hack>
-			<Pierce>42.0</Pierce>
+			<Pierce>40.0</Pierce>
 			<Crush>20.0</Crush>
 		</Armour>
 		
 		<Population>
 			<Add>5</Add>
 		</Population>
-
+ 		<Garrison>
+ 			<Max>10</Max>
+		</Garrison>
+		<Vision>
+			<Los>10</Los>
+		</Vision>
 	</Traits>
 	
 	<Actions>

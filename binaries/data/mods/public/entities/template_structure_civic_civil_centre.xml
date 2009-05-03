@@ -7,14 +7,15 @@
 			<Generic>Civic Centre</Generic>
 			<Icon_Cell>47</Icon_Cell>
 			<Classes>Housing, Village, CivilCentre</Classes>
-			<Tooltip>The heart of the player's empire. Trains economic units, and can only be built on settlements.</Tooltip>	
+			<Tooltip>The heart of the player's empire. Trains Citizen-Soldiers and is used to capture territories by being built on settlements.</Tooltip>	
 		</Id>
 		<Creation>
 			<TerritoryRestriction>All</TerritoryRestriction>
 			<Foundation>foundation_5x5</Foundation>
 			<Socket>Settlement</Socket>
- 			<Time>20</Time>
+ 			<Time>60</Time>
   			<Resource>
+				<Food>0</Food>
  				<Wood>100</Wood>
  				<Stone>100</Stone>
 				<Metal>100</Metal>
@@ -37,8 +38,9 @@
 		</Health>
 		
 		<Armour>
-			<Hack>25.0</Hack>
-			<Crush>25.0</Crush>
+			<Hack>20.0</Hack>
+			<Pierce>40</Pierce>
+			<Crush>10.0</Crush>
 		</Armour>
 
 		<Population>

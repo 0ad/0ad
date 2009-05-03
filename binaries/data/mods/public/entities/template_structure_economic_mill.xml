@@ -13,18 +13,21 @@
 
 			<Classes>Village, Mill</Classes>
 
-			<Tooltip>Gather Wood, Stone, and Metal within its aura. Researches economic imprevements.</Tooltip>
+			<Tooltip>Gather Wood, Stone, and Metal within its aura. Researches economic improvements.</Tooltip>
 		
 		</Id>
 
 		<Creation>
 			<TerritoryRestriction>All</TerritoryRestriction>
 			<Foundation>foundation_3x3</Foundation>
+			<Time>16</Time>
 			<Resource>
  				<Wood>100</Wood>
  			</Resource>
 		</Creation>
-		
+ 		<Garrison>
+ 			<Max>5</Max>
+		</Garrison>		
  		<Footprint>
  			<Width>12.0</Width>
  			<Depth>12.0</Depth>
@@ -37,13 +40,15 @@
 		
 		<Armour>
 			<Hack>10.0</Hack>
-			<Pierce>42.0</Pierce>
+			<Pierce>40.0</Pierce>
 			<Crush>15.0</Crush>
 		</Armour>
-		
+		<Vision>
+			<Los>15</Los>
+		</Vision>		
 		<Auras>
 			<Dropsite>
-				<Radius>50</Radius>
+				<Radius>56</Radius>
 				<Types>
 					<Wood/>
 					<Stone/>

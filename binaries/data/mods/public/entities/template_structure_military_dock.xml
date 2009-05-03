@@ -17,11 +17,10 @@
 		
 		</Id>
 		<Creation>
+			<Time>50</Time>
 			<Resource>
  				<Wood>300</Wood>
  			</Resource>
-		</Creation>
-		<Creation>
 			<Foundation>foundation_4x4</Foundation>
 			<BuildingLimitCategory>Dock</BuildingLimitCategory>
 		</Creation>
@@ -38,14 +37,19 @@
 
 		<Armour>
 			<Hack>15.0</Hack>
-			<Pierce>42.0</Pierce>
+			<Pierce>40.0</Pierce>
 			<Crush>20.0</Crush>
 		</Armour>		
 		
 		<Population>
 			<Add>5</Add>
 		</Population>
-
+ 		<Garrison>
+ 			<Max>5</Max>
+		</Garrison>
+		<Vision>
+			<Los>15</Los>
+		</Vision>
 	</Traits>
 
 	

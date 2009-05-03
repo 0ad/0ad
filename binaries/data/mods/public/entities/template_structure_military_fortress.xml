@@ -19,6 +19,7 @@
 
 		<Creation>
 			<Foundation>foundation_5x5</Foundation>
+			<Time>84</Time>
 			<Resource>
 				<Wood>0</Wood>
 				<Stone>500</Stone>
@@ -33,22 +34,26 @@
  		</Footprint>
 
  		<Garrison>
- 			<Max>30</Max>
+ 			<Max>20</Max>
 		</Garrison>
 
 		<Health>
- 			<Max>4000</Max>
+ 			<Max>4200</Max>
 		</Health>
 
 		<Armour>
 			<Hack>20.0</Hack>
-			<Pierce>42.0</Pierce>
+			<Pierce>40.0</Pierce>
 			<Crush>25.0</Crush>
 		</Armour>
 		
 		<Population>
-			<Add>20</Add>
+			<Add>10</Add>
 		</Population>
+		
+		<Vision>
+			<Los>10</Los>
+		</Vision>
 	</Traits>
 
 </Entity>

@@ -22,15 +22,16 @@
 
 		<Creation>
 			<Foundation>foundation_field</Foundation>
+			<Time>12</Time>
 			<Resource>
- 				<Wood>60</Wood>
+ 				<Wood>20</Wood>
 			</Resource>
 			<BuildingLimitCategory>Field</BuildingLimitCategory>
 		</Creation>
 
 		<Armour>
-			<Hack>10.0</Hack>
-			<Pierce>42.0</Pierce>
+			<Hack>5.0</Hack>
+			<Pierce>40.0</Pierce>
 			<Crush>10.0</Crush>
 		</Armour>
 
@@ -51,7 +52,7 @@
 		</Supply>
 		
 		<Vision>
-			<Los>9</Los>
+			<Los>7</Los>
 		</Vision>
 
 	</Traits>

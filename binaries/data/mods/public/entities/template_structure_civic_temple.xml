@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_civic"
->
+<Entity	Parent="template_structure_civic">
 	<Traits>
 	
 		<Id>
@@ -15,13 +13,14 @@
 
 			<Classes>Town</Classes>
 
-			<Tooltip>Trains physicians, researches medical technologies, and provides healing to nearby allied organic units.</Tooltip>
+			<Tooltip>Trains physicians, researches medical technologies, and provides slow healing to nearby allied organic units. Garrison units inside for even quicker healing.</Tooltip>
 		
 		</Id>
 		
 		<Creation>
 			<Foundation>foundation_3x3</Foundation>
- 			<Resource>
+ 			<Time>40</Time>
+			<Resource>
  				<Stone>300</Stone>
  			</Resource>
 		</Creation>
@@ -34,9 +33,9 @@
 
 		<Auras>
 			<Heal>
-				<Radius>30</Radius>
+				<Radius>40</Radius>
 				<Rate>5</Rate>
-				<Speed>2000</Speed>
+				<Speed>1000</Speed>
 				<r>1.0</r>
 				<g>1.0</g>
 				<b>0.0</b>
@@ -49,14 +48,20 @@
 		</Health>
 
 		<Armour>
-			<Hack>25.0</Hack>
-			<Crush>25.0</Crush>
+			<Hack>20.0</Hack>
+			<Pierce>40.0</Pierce>
+			<Crush>10.0</Crush>
 		</Armour>
 
 		<Population>
 			<Add>5</Add>
 		</Population>
-
+ 		<Garrison>
+ 			<Max>10</Max>
+		</Garrison>
+		<Vision>
+			<Los>15</Los>
+		</Vision>
 	</Traits>
 	<Actions>
 		<Create>

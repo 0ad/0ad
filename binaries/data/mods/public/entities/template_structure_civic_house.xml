@@ -7,19 +7,19 @@
 			<Generic>House</Generic>
 			<Icon_Cell>48</Icon_Cell>
 			<Classes>Housing, Village</Classes>
-			<Rollover>A civic building that increases the player's population.</Rollover>
-			<Tooltip>Adds +5 to population limit.</Tooltip>
+			<Tooltip>Adds +5 to population limit. Trains Female Citizens.</Tooltip>
 		</Id>
 		<Creation>
 			<Foundation>foundation_2x2</Foundation>
- 			<Resource>
+ 			<Time>16</Time>
+			<Resource>
  				<Wood>100</Wood>
  			</Resource>
 			<BuildingLimitCategory>House</BuildingLimitCategory>
 		</Creation>
  		<Footprint>
- 			<Width>8.5</Width>
- 			<Depth>8.5</Depth>
+ 			<Width>9.0</Width>
+ 			<Depth>9.0</Depth>
  			<Height>5.0</Height>
  		</Footprint>
 		<Health>
@@ -27,14 +27,17 @@
 		</Health>
 
 		<Armour>
-			<Hack>15.0</Hack>
-			<Crush>15.0</Crush>
+			<Hack>10.0</Hack>
+			<Pierce>40.0</Pierce>
+			<Crush>5.0</Crush>
 		</Armour>
 
 		<Population>
 			<Add>5</Add>
 		</Population>
-
+		<Vision>
+			<Los>7</Los>
+		</Vision>
 	</Traits>
 	<Actions>
 		<Create>

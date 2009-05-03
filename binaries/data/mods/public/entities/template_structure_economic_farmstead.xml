@@ -18,8 +18,9 @@
 		<Creation>
 			<Foundation>foundation_3x3</Foundation>
 			<BuildingLimitCategory>Farmstead</BuildingLimitCategory>
+			<Time>18</Time>
 			<Resource>
- 				<Wood>150</Wood>
+ 				<Wood>100</Wood>
  			</Resource>
 		</Creation>
 		
@@ -39,13 +40,13 @@
 		
 		<Armour>
 			<Hack>10.0</Hack>
-			<Pierce>42.0</Pierce>
+			<Pierce>40.0</Pierce>
 			<Crush>15.0</Crush>
 		</Armour>
 
 		<Auras>
 			<Dropsite>
-				<Radius>50</Radius>
+				<Radius>56</Radius>
 				<Types>
 					<Food/>
 				</Types>
@@ -55,6 +56,8 @@
 				<a>0.4</a>
 			</Dropsite>
 		</Auras>
-
+		<Vision>
+			<Los>15</Los>
+		</Vision>
 	</Traits>
 </Entity>

@@ -19,6 +19,7 @@
 
 		<Creation>
 			<Foundation>foundation_3x3</Foundation>
+			<Time>10</Time>
 			<Resource>
  				<Wood>50</Wood>
 			</Resource>
@@ -31,7 +32,7 @@
  		</Footprint>
 
  		<Garrison>
- 			<Max>6</Max>
+ 			<Max>10</Max>
 		</Garrison>
 
 		<Health>
@@ -39,11 +40,15 @@
 		</Health>
 		
 		<Armour>
-			<Hack>10.0</Hack>
-			<Pierce>42.0</Pierce>
+			<Hack>5.0</Hack>
+			<Pierce>40.0</Pierce>
 			<Crush>10.0</Crush>
 		</Armour>
-			
+		
+		<Vision>
+			<Los>7</Los>
+		</Vision>
+		
 		<Supply>
 			<Max>200</Max>
 			<Type>food</Type>
