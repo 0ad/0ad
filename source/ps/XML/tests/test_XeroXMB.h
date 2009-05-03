@@ -30,7 +30,7 @@ private:
 
 	XMBFile parse(const char* doc)
 	{
-		xmlDocPtr xmlDoc = xmlReadMemory(doc, strlen(doc), "", NULL,
+		xmlDocPtr xmlDoc = xmlReadMemory(doc, int(strlen(doc)), "", NULL,
 			XML_PARSE_NONET|XML_PARSE_NOCDATA);
 		WriteBuffer buffer;
 		PSRETURN ret = CXeromyces::CreateXMB(xmlDoc, buffer);

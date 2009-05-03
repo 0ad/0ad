@@ -16,15 +16,13 @@
  */
 
 /*
-
+ * this layer allows for other compression methods/libraries
+ * besides ZLib. it also simplifies the interface for user code and
+ * does error checking, etc.
  */
 
 #ifndef INCLUDED_CODEC
 #define INCLUDED_CODEC
-
-// rationale: this layer allows for other compression methods/libraries
-// besides ZLib. it also simplifies the interface for user code and
-// does error checking, etc.
 
 #define CODEC_COMPUTE_CHECKSUM 1
 

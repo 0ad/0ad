@@ -16,7 +16,7 @@
  */
 
 /*
-
+ * output buffer and 'stream' layered on top of a compression codec
  */
 
 #ifndef INCLUDED_STREAM

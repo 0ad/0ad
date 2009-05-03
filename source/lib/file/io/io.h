@@ -16,7 +16,8 @@
  */
 
 /*
-
+ * IO manager: splits requests into asynchronously issued blocks,
+ * thus simplifying caching and enabling periodic callbacks.
  */
 
 #ifndef INCLUDED_IO
