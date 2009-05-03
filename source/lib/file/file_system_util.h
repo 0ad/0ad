@@ -67,7 +67,7 @@ extern LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallbac
  * ones (screenshots are a good example).
  *
  * @param pathnameFormat format string for the pathname; must contain one
- * format specifier for a size_t.
+ * format specifier for an integer.
  * example: "screenshots/screenshot%04d.png"
  * @param nextNumber in: the first number to try; out: the next number.
  * if 0, numbers corresponding to existing files are skipped.
