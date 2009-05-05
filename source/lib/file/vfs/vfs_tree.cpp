@@ -28,7 +28,7 @@
 
 //-----------------------------------------------------------------------------
 
-VfsFile::VfsFile(const std::string& name, off_t size, time_t mtime, size_t priority, const PIFileLoader& loader)
+VfsFile::VfsFile(const std::string& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& loader)
 	: m_name(name), m_size(size), m_mtime(mtime), m_priority(priority), m_loader(loader)
 {
 }

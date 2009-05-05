@@ -702,7 +702,7 @@ size_t x86_x64_TLBCoverage(const x86_x64_TLB* tlb)
 			totalSize += largePageSize * params.entries;
 	}
 
-	return totalSize / MiB;
+	return size_t(totalSize / MiB);
 }
 
 

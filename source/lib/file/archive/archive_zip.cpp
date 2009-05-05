@@ -200,7 +200,7 @@ cassert(sizeof(CDFH) == 46);
 class ECDR
 {
 public:
-	void Init(size_t cd_numEntries, off_t cd_ofs, off_t cd_size)
+	void Init(size_t cd_numEntries, off_t cd_ofs, size_t cd_size)
 	{
 		m_magic         = ecdr_magic;
 		m_diskNum       = to_le16(0);
@@ -212,11 +212,11 @@ public:
 		m_comment_len   = to_le16(0);
 	}
 
-	void Decompose(size_t& cd_numEntries, off_t& cd_ofs, off_t& cd_size) const
+	void Decompose(size_t& cd_numEntries, off_t& cd_ofs, size_t& cd_size) const
 	{
 		cd_numEntries = (size_t)read_le16(&m_cd_numEntries);
 		cd_ofs       = (off_t)read_le32(&m_cd_ofs);
-		cd_size      = (off_t)read_le32(&m_cd_size);
+		cd_size      = (size_t)read_le32(&m_cd_size);
 	}
 
 private:
@@ -386,7 +386,7 @@ public:
 	virtual LibError ReadEntries(ArchiveEntryCallback cb, uintptr_t cbData)
 	{
 		// locate and read Central Directory
-		off_t cd_ofs; size_t cd_numEntries; off_t cd_size;
+		off_t cd_ofs; size_t cd_numEntries; size_t cd_size;
 		RETURN_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
 		shared_ptr<u8> buf = io_Allocate(cd_size, cd_ofs);
 		u8* cd;
@@ -451,13 +451,13 @@ private:
 	// search for ECDR in the last <maxScanSize> bytes of the file.
 	// if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
 	// return INFO::OK, otherwise IO error or ERR::CORRUPTED.
-	static LibError ScanForEcdr(const PIFile& file, off_t fileSize, u8* buf, off_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, off_t& cd_size)
+	static LibError ScanForEcdr(const PIFile& file, off_t fileSize, u8* buf, size_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, size_t& cd_size)
 	{
 		// don't scan more than the entire file
-		const off_t scanSize = std::min(maxScanSize, fileSize);
+		const size_t scanSize = std::min(maxScanSize, size_t(fileSize));
 
 		// read desired chunk of file into memory
-		const off_t ofs = fileSize - scanSize;
+		const off_t ofs = fileSize - off_t(scanSize);
 		u8* data;
 		RETURN_ERR(io_Read(file, ofs, buf, scanSize, data));
 
@@ -470,9 +470,9 @@ private:
 		return INFO::OK;
 	}
 
-	static LibError LocateCentralDirectory(const PIFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, off_t& cd_size)
+	static LibError LocateCentralDirectory(const PIFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
 	{
-		const off_t maxScanSize = 66000u;	// see below
+		const size_t maxScanSize = 66000u;	// see below
 		shared_ptr<u8> buf = io_Allocate(maxScanSize, BLOCK_SIZE-1);	// assume worst-case for alignment
 
 		// expected case: ECDR at EOF; no file comment
@@ -531,7 +531,7 @@ public:
 	{
 		// append an ECDR to the CDFH list (this allows us to
 		// write out both to the archive file in one burst)
-		const off_t cd_size = (off_t)m_cdfhPool.da.pos;
+		const size_t cd_size = m_cdfhPool.da.pos;
 		ECDR* ecdr = (ECDR*)pool_alloc(&m_cdfhPool, sizeof(ECDR));
 		if(!ecdr)
 			throw std::bad_alloc();
@@ -588,7 +588,7 @@ public:
 		}
 
 		// allocate memory
-		const size_t csizeMax = codec->MaxOutputSize(usize);
+		const size_t csizeMax = codec->MaxOutputSize(size_t(usize));
 		shared_ptr<u8> buf = io_Allocate(sizeof(LFH) + pathnameLength + csizeMax);
 
 		// read and compress file contents
@@ -622,7 +622,7 @@ public:
 
 		// write LFH, pathname and cdata to file
 		const size_t packageSize = sizeof(LFH) + pathnameLength + csize;
-		RETURN_ERR(m_unalignedWriter->Append(buf.get(), (off_t)packageSize));
+		RETURN_ERR(m_unalignedWriter->Append(buf.get(), packageSize));
 		m_fileSize += (off_t)packageSize;
 
 		return INFO::OK;

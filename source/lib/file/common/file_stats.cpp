@@ -29,7 +29,7 @@
 
 // vfs
 static size_t vfs_files;
-static size_t vfs_size_total;
+static double vfs_size_total;
 static double vfs_init_elapsed_time;
 
 // file
@@ -183,7 +183,7 @@ ScopedIoMonitor::~ScopedIoMonitor()
 	timer_reset(&m_startTime);
 }
 
-void ScopedIoMonitor::NotifyOfSuccess(FileIOImplentation fi, char mode, size_t size)
+void ScopedIoMonitor::NotifyOfSuccess(FileIOImplentation fi, char mode, off_t size)
 {
 	debug_assert(fi < FI_MAX_IDX);
 	debug_assert(mode == 'r' || mode == 'w');

@@ -101,7 +101,7 @@ shared_ptr<u8> io_Allocate(size_t size, off_t ofs)
 {
 	debug_assert(size != 0);
 
-	const size_t paddedSize = PaddedSize((off_t)size, ofs);
+	const size_t paddedSize = (size_t)PaddedSize(size, ofs);
 	u8* mem = (u8*)page_aligned_alloc(paddedSize);
 	if(!mem)
 		throw std::bad_alloc();
@@ -215,7 +215,7 @@ public:
 	{
 		m_alignedOfs = AlignedOffset(ofs);
 		m_alignedSize = PaddedSize(size, ofs);
-		m_misalignment = ofs - m_alignedOfs;
+		m_misalignment = size_t(ofs - m_alignedOfs);
 	}
 
 	LibError Run(const PIFile& file, IoCallback cb = 0, uintptr_t cbData = 0)
@@ -268,7 +268,7 @@ private:
 
 		// last block: don't include trailing padding
 		if(m_totalTransferred + (off_t)blockSize > m_size)
-			blockSize = m_size - m_totalTransferred;
+			blockSize = size_t(m_size - m_totalTransferred);
 
 		m_totalTransferred += (off_t)blockSize;
 
@@ -305,30 +305,30 @@ LibError io_Scan(const PIFile& file, off_t ofs, off_t size, IoCallback cb, uintp
 }
 
 
-LibError io_Read(const PIFile& file, off_t ofs, u8* alignedBuf, size_t size, u8*& data)
+LibError io_Read(const PIFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*& data)
 {
-	IoSplitter splitter(ofs, alignedBuf, (off_t)size);
+	IoSplitter splitter(ofs, alignedBuf, size);
 	RETURN_ERR(splitter.Run(file));
 	data = alignedBuf + ofs - splitter.AlignedOfs();
 	return INFO::OK;
 }
 
 
-LibError io_WriteAligned(const PIFile& file, off_t alignedOfs, const u8* alignedData, size_t size)
+LibError io_WriteAligned(const PIFile& file, off_t alignedOfs, const u8* alignedData, off_t size)
 {
 	debug_assert(IsAligned_Offset(alignedOfs));
 	debug_assert(IsAligned_Data(alignedData));
 
-	IoSplitter splitter(alignedOfs, const_cast<u8*>(alignedData), (off_t)size);
+	IoSplitter splitter(alignedOfs, const_cast<u8*>(alignedData), size);
 	return splitter.Run(file);
 }
 
 
-LibError io_ReadAligned(const PIFile& file, off_t alignedOfs, u8* alignedBuf, size_t size)
+LibError io_ReadAligned(const PIFile& file, off_t alignedOfs, u8* alignedBuf, off_t size)
 {
 	debug_assert(IsAligned_Offset(alignedOfs));
 	debug_assert(IsAligned_Data(alignedBuf));
 
-	IoSplitter splitter(alignedOfs, alignedBuf, (off_t)size);
+	IoSplitter splitter(alignedOfs, alignedBuf, size);
 	return splitter.Run(file);
 }

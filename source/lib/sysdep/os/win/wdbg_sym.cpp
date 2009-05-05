@@ -92,7 +92,7 @@ static LibError sym_init()
 	BOOL ok = SymInitialize(hProcess, UserSearchPath, fInvadeProcess);
 	WARN_IF_FALSE(ok);
 
-	mod_base = SymGetModuleBase64(hProcess, (u64)&sym_init);
+	mod_base = (uintptr_t)SymGetModuleBase64(hProcess, (u64)&sym_init);
 	IMAGE_NT_HEADERS* header = ImageNtHeader((void*)(uintptr_t)mod_base);
 	machine = header->FileHeader.Machine;
 
@@ -892,13 +892,13 @@ static LibError DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const 
 	// TI_GET_ADDRESS, and TI_GET_OFFSET is apparently equal to sym->Address.
 
 	// get address
-	uintptr_t addr = sym->Address;
+	uintptr_t addr = (uintptr_t)sym->Address;
 	if(IsRelativeToFramePointer(sym->Flags, sym->Register))
 	{
 #if ARCH_AMD64
-		addr += sf->AddrStack.Offset;
+		addr += (uintptr_t)sf->AddrStack.Offset;
 #else
-		addr += sf->AddrFrame.Offset;
+		addr += (uintptr_t)sf->AddrFrame.Offset;
 # if defined(NDEBUG)
 		// NB: the addresses of register-relative symbols are apparently
 		// incorrect [VC8, 32-bit Wow64]. the problem occurs regardless of
@@ -1761,7 +1761,7 @@ static BOOL CALLBACK dump_sym_cb(SYMBOL_INFOW* sym, ULONG UNUSED(size), void* UN
 		return TRUE;	// continue
 
 	out_latch_pos();	// see decl
-	mod_base = sym->ModBase;
+	mod_base = (uintptr_t)sym->ModBase;
 	const u8* p = (const u8*)(uintptr_t)sym->Address;
 	DumpState state;
 

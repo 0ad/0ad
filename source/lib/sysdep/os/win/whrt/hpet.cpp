@@ -89,7 +89,7 @@ public:
 		if(!hpet)
 			return ERR::NO_SYS;	// NOWARN (HPET not reported by BIOS)
 		debug_assert(hpet->baseAddress.addressSpaceId == ACPI_AS_MEMORY);
-		m_hpetRegisters = (volatile HpetRegisters*)mahaf_MapPhysicalMemory(hpet->baseAddress.address, sizeof(HpetRegisters));
+		m_hpetRegisters = (volatile HpetRegisters*)mahaf_MapPhysicalMemory(uintptr_t(hpet->baseAddress.address), sizeof(HpetRegisters));
 		if(!m_hpetRegisters)
 			WARN_RETURN(ERR::NO_MEM);
 

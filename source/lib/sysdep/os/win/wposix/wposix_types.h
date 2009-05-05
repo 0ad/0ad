@@ -71,7 +71,7 @@ typedef intptr_t ssize_t;
 #define HAVE_SSIZE_T
 
 // VC9 defines this as long, which is unacceptable.
-typedef intptr_t off_t;
+typedef __int64 off_t;
 typedef off_t _off_t;	// used by wchar.h
 #define _OFF_T_DEFINED
 

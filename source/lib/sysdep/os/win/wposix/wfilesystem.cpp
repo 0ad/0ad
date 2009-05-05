@@ -148,7 +148,7 @@ int stat(const char* fn, struct stat* s)
 	else
 	{
 		s->st_mode = S_IFREG;
-		s->st_size = (off_t)((((u64)fad.nFileSizeHigh) << 32) | fad.nFileSizeLow);
+		s->st_size = (off_t)u64_from_u32(fad.nFileSizeHigh, fad.nFileSizeLow);
 	}
 
 	return 0;

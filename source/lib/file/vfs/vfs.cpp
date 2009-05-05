@@ -82,7 +82,7 @@ public:
 		const std::string& name = pathname.leaf();
 		RETURN_ERR(realDirectory->Store(name, fileContents, size));
 
-		const VfsFile file(name, (off_t)size, time(0), realDirectory->Priority(), realDirectory);
+		const VfsFile file(name, size, time(0), realDirectory->Priority(), realDirectory);
 		directory->AddFile(file);
 
 		// wipe out any cached blocks. this is necessary to cover the (rare) case

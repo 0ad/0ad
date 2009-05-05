@@ -108,7 +108,7 @@ static size_t MsFromTimespec(const timespec& ts)
 	i64 ms = ts.tv_sec;	// avoid overflow
 	ms *= _1e3;
 	ms += ts.tv_nsec / _1e6;
-	return ms;
+	return size_t(ms);
 }
 
 

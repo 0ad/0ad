@@ -351,7 +351,7 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 		const PSAPI_WORKING_SET_EX_BLOCK& attributes = wsi[i].VirtualAttributes;
 		if(!attributes.Valid)
 			return false;
-		if((bool)attributes.LargePage != (pageSize == largePageSize))
+		if((attributes.LargePage != 0) != (pageSize == largePageSize))
 		{
 			debug_printf("NUMA: is not a large page\n");
 			return false;

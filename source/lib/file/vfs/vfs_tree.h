@@ -29,14 +29,14 @@
 class VfsFile
 {
 public:
-	VfsFile(const std::string& name, off_t size, time_t mtime, size_t priority, const PIFileLoader& provider);
+	VfsFile(const std::string& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& provider);
 
 	const std::string& Name() const
 	{
 		return m_name;
 	}
 
-	off_t Size() const
+	size_t Size() const
 	{
 		return m_size;
 	}
@@ -54,7 +54,7 @@ public:
 
 private:
 	std::string m_name;
-	off_t m_size;
+	size_t m_size;
 	time_t m_mtime;
 
 	size_t m_priority;

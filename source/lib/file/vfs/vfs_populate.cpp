@@ -58,7 +58,7 @@ public:
 private:
 	void AddFile(const FileInfo& fileInfo) const
 	{
-		const VfsFile file(fileInfo.Name(), fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
+		const VfsFile file(fileInfo.Name(), (size_t)fileInfo.Size(), fileInfo.MTime(), m_realDirectory->Priority(), m_realDirectory);
 		const VfsFile* pfile = m_directory->AddFile(file);
 
 		// notify archive builder that this file could be archived but
@@ -79,7 +79,7 @@ private:
 		const size_t flags = VFS_LOOKUP_ADD;
 		VfsDirectory* directory;
 		WARN_ERR(vfs_Lookup(pathname, this_->m_directory, directory, 0, flags));
-		const VfsFile file(fileInfo.Name(), fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
+		const VfsFile file(fileInfo.Name(), (size_t)fileInfo.Size(), fileInfo.MTime(), this_->m_realDirectory->Priority(), archiveFile);
 		directory->AddFile(file);
 		s_numArchivedFiles++;
 	}
