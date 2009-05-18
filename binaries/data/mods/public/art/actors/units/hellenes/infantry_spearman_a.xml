@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Base">
       <animations>
@@ -10,12 +8,12 @@
         <animation file="biped/inf_hoplite_walk.psa" name="Walk" speed="20"/>
         <animation event="0.5" file="biped/inf_hoplite_atk_a.psa" name="Melee" speed="200"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="Run" speed="13"/>
-        <animation file="infantry/general/chop.psa" name="gather_wood" speed="200"/>
+        <animation file="infantry/general/chop.psa" name="gather_wood" speed="100"/>
         <animation file="biped/hoe.psa" name="gather_grain" speed="400"/>
         <animation file="infantry/general/forage.psa" name="gather_fruit" speed="100"/>
         <animation file="infantry/general/forage.psa" name="gather_meat" speed="100"/>
-        <animation file="infantry/general/mine.psa" name="gather_stone" speed="200"/>
-        <animation file="infantry/general/mine.psa" name="gather_metal" speed="200"/>
+        <animation file="infantry/general/mine.psa" name="gather_stone" speed="100"/>
+        <animation file="infantry/general/mine.psa" name="gather_metal" speed="100"/>
         <animation file="infantry/general/dude/dudebuild.psa" name="Build" speed="250"/>
         <animation file="infantry/general/death/inf_01.psa" name="Death" speed="200"/>
         <animation file="infantry/general/death/inf_02.psa" name="Death" speed="200"/>
@@ -32,7 +30,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Helmet-Corinthians">
       <props>
@@ -47,7 +44,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Armour-a">
       <texture>skeletal/hele_isp_a.dds</texture>
@@ -56,7 +52,6 @@
       <texture>skeletal/hele_csw_e.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="100" name="Idle"/>
     <variant name="Melee">
@@ -128,7 +123,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
