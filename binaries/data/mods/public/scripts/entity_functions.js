@@ -2209,15 +2209,16 @@ function getBuildingLimit( category/*, gameMode*/ )
     // Civil
     if(category=="CivilCentre") return 1;
     if(category=="House") return 15;
-    if(category=="Farmstead") return 2;
-    if(category=="Field") return 8;
+    if(category=="Farmstead") return 4;
+    if(category=="Field") return 16;
+    if(category=="Market") return 2;
     // Military
     if(category=="Dock") return 2;
     if(category=="Fortress") return 1;
     if(category=="Barracks") return 2;
     if(category=="ScoutTower") return 10;
     // Other
-    if(category=="Special") return 1;
+    if(category=="Special") return 2;
     
     return 0;
 }
