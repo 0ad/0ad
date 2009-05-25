@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<author>Illusoft Collada 1.4.0 plugin for Blender - http://colladablender.illusoft.com</author>
+			<authoring_tool>Blender v:248 - Illusoft Collada Exporter v:0.3.153</authoring_tool>
+			<comments></comments>
+			<copyright></copyright>
+			<source_data>file://C:/Users/EmjeR/Models/0ad%20aspis.blend</source_data>
+		</contributor>
+		<created>2009-05-18T21:12:45.815000</created>
+		<modified>2009-05-18T21:12:45.815000</modified>
+		<unit meter="0.01" name="centimeter"/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_effects>
+		<effect id="hele_round_back_dds-fx" name="hele_round_back_dds-fx">
+			<profile_COMMON>
+				<newparam sid="hele_round_back_dds-surface">
+					<surface type="2D">
+						<init_from>hele_round_back_dds-img</init_from>
+						<format>A8R8G8B8</format>
+					</surface>
+				</newparam>
+				<newparam sid="hele_round_back_dds-sampler">
+					<sampler2D>
+						<source>hele_round_back_dds-surface</source>
+						<minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+						<maxfilter>LINEAR</maxfilter>
+					</sampler2D>
+				</newparam>
+				<technique sid="blender">
+					<phong>
+						<emission>
+							<color>0.00000 0.00000 0.00000 1</color>
+						</emission>
+						<ambient>
+							<color>0.16207 0.02937 0.02937 1</color>
+						</ambient>
+						<diffuse>
+							<texture texcoord="CHANNEL1" texture="hele_round_back_dds-sampler"/>
+						</diffuse>
+						<specular>
+							<color>0.50000 0.50000 0.50000 1</color>
+						</specular>
+						<shininess>
+							<float>12.5</float>
+						</shininess>
+						<reflective>
+							<color>1.00000 1.00000 1.00000 1</color>
+						</reflective>
+						<reflectivity>
+							<float>0.0</float>
+						</reflectivity>
+						<transparent>
+							<color>1 1 1 1</color>
+						</transparent>
+						<transparency>
+							<float>0.0</float>
+						</transparency>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_images>
+		<image id="hele_round_back_dds-img" name="hele_round_back_dds-img">
+			<init_from>..\..\..\textures\skins\props\shield\hele_round_back.dds</init_from>
+		</image>
+		<image id="Tex" name="Tex">
+			<init_from>..\..\..\textures\skins\props\shield\hele_spartan_a.dds</init_from>
+		</image>
+	</library_images>
+	<library_materials>
+		<material id="hele_round_back_dds" name="hele_round_back_dds">
+			<instance_effect url="#hele_round_back_dds-fx"/>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="Aspis_Back-Geometry" name="Aspis_Back-Geometry">
+			<mesh>
+				<source id="Aspis_Back-Geometry-Position">
+					<float_array count="54" id="Aspis_Back-Geometry-Position-array">0.28988 0.03664 1.10459 -0.28988 0.03664 1.10459 -0.79196 0.03664 0.81472 -1.08184 0.03664 0.31263 -1.08184 0.03664 -0.26712 -0.79196 0.03664 -0.76920 -0.28988 0.03664 -1.05908 0.28988 0.03664 -1.05908 0.79196 0.03664 -0.76920 1.08184 0.03664 -0.26712 1.08184 0.03664 0.31263 0.79196 0.03664 0.81472 -0.00000 -0.09895 0.53882 -0.44692 -0.09895 0.28079 -0.44692 -0.09895 -0.23527 0.00000 -0.09895 -0.49330 0.44692 -0.09895 -0.23527 0.44692 -0.09895 0.28079</float_array>
+					<technique_common>
+						<accessor count="18" source="#Aspis_Back-Geometry-Position-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Aspis_Back-Geometry-Normals">
+					<float_array count="198" id="Aspis_Back-Geometry-Normals-array">-0.06970 0.97760 -0.19855 0.00000 0.98871 -0.14969 0.06970 0.97760 -0.19855 0.15339 0.97687 -0.14893 0.08911 0.99362 -0.06879 0.20679 0.97760 -0.03888 0.20566 0.97687 0.05835 0.12149 0.99133 0.04990 0.13709 0.97760 0.15964 0.05228 0.97687 0.20728 0.02100 0.98749 0.15610 -0.06970 0.97760 0.19855 -0.15339 0.97687 0.14893 -0.08911 0.99362 0.06879 -0.20679 0.97760 0.03888 -0.20566 0.97687 -0.05835 -0.11917 0.99048 -0.06879 -0.15339 0.97687 -0.14893 -0.11917 0.99048 -0.06879 0.08911 0.99362 -0.06879 0.00000 0.98871 -0.14969 -0.08911 0.99362 0.06879 0.08911 0.99362 -0.06879 -0.11917 0.99048 -0.06879 -0.08911 0.99362 0.06879 0.12149 0.99133 0.04990 0.08911 0.99362 -0.06879 0.02100 0.98749 0.15610 0.12149 0.99133 0.04990 -0.08911 0.99362 0.06879 -0.20679 0.97760 0.03888 -0.08911 0.99362 0.06879 -0.11917 0.99048 -0.06879 -0.20679 0.97760 0.03888 -0.11917 0.99048 -0.06879 -0.20566 0.97687 -0.05835 -0.06970 0.97760 0.19855 0.02100 0.98749 0.15610 -0.08911 0.99362 0.06879 -0.06970 0.97760 0.19855 -0.08911 0.99362 0.06879 -0.15339 0.97687 0.14893 0.13709 0.97760 0.15964 0.12149 0.99133 0.04990 0.02100 0.98749 0.15610 0.13709 0.97760 0.15964 0.02100 0.98749 0.15610 0.05228 0.97687 0.20728 0.20679 0.97760 -0.03888 0.08911 0.99362 -0.06879 0.12149 0.99133 0.04990 0.20679 0.97760 -0.03888 0.12149 0.99133 0.04990 0.20566 0.97687 0.05835 0.06970 0.97760 -0.19855 0.00000 0.98871 -0.14969 0.08911 0.99362 -0.06879 0.06970 0.97760 -0.19855 0.08911 0.99362 -0.06879 0.15339 0.97687 -0.14893 -0.06970 0.97760 -0.19855 -0.15339 0.97687 -0.14893 -0.11917 0.99048 -0.06879 -0.06970 0.97760 -0.19855 -0.11917 0.99048 -0.06879 0.00000 0.98871 -0.14969</float_array>
+					<technique_common>
+						<accessor count="66" source="#Aspis_Back-Geometry-Normals-array" stride="3">
+							<param type="float" name="X"></param>
+							<param type="float" name="Y"></param>
+							<param type="float" name="Z"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="Aspis_Back-Geometry-UV">
+					<float_array count="132" id="Aspis_Back-Geometry-UV-array">0.36603 1.00000 0.50000 0.73851 0.63397 1.00000 0.86603 0.86603 0.70656 0.61926 1.00000 0.63397 1.00000 0.36603 0.70656 0.38074 0.86603 0.13397 0.63397 0.00000 0.50000 0.26149 0.36603 0.00000 0.13397 0.13397 0.29344 0.38074 0.00000 0.36603 0.00000 0.63397 0.29344 0.61926 0.13397 0.86603 0.29344 0.61926 0.70656 0.61926 0.50000 0.73851 0.29344 0.38074 0.70656 0.61926 0.29344 0.61926 0.29344 0.38074 0.70656 0.38074 0.70656 0.61926 0.50000 0.26149 0.70656 0.38074 0.29344 0.38074 0.00000 0.36603 0.29344 0.38074 0.29344 0.61926 0.00000 0.36603 0.29344 0.61926 0.00000 0.63397 0.36603 0.00000 0.50000 0.26149 0.29344 0.38074 0.36603 0.00000 0.29344 0.38074 0.13397 0.13397 0.86603 0.13397 0.70656 0.38074 0.50000 0.26149 0.86603 0.13397 0.50000 0.26149 0.63397 0.00000 1.00000 0.63397 0.70656 0.61926 0.70656 0.38074 1.00000 0.63397 0.70656 0.38074 1.00000 0.36603 0.63397 1.00000 0.50000 0.73851 0.70656 0.61926 0.63397 1.00000 0.70656 0.61926 0.86603 0.86603 0.36603 1.00000 0.13397 0.86603 0.29344 0.61926 0.36603 1.00000 0.29344 0.61926 0.50000 0.73851</float_array>
+					<technique_common>
+						<accessor count="66" source="#Aspis_Back-Geometry-UV-array" stride="2">
+							<param type="float" name="S"></param>
+							<param type="float" name="T"></param>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="Aspis_Back-Geometry-Vertex">
+					<input semantic="POSITION" source="#Aspis_Back-Geometry-Position"/>
+				</vertices>
+				<triangles count="22" material="hele_round_back_dds">
+					<input offset="0" semantic="VERTEX" source="#Aspis_Back-Geometry-Vertex"/>
+					<input offset="1" semantic="NORMAL" source="#Aspis_Back-Geometry-Normals"/>
+					<input offset="2" semantic="TEXCOORD" source="#Aspis_Back-Geometry-UV"/>
+					<p>0 0 0 12 1 1 1 2 2 2 3 3 13 4 4 3 5 5 4 6 6 14 7 7 5 8 8 6 9 9 15 10 10 7 11 11 8 12 12 16 13 13 9 14 14 10 15 15 17 16 16 11 17 17 17 18 18 13 19 19 12 20 20 16 21 21 13 22 22 17 23 23 16 24 24 14 25 25 13 26 26 15 27 27 14 28 28 16 29 29 9 30 30 16 31 31 17 32 32 9 33 33 17 34 34 10 35 35 7 36 36 15 37 37 16 38 38 7 39 39 16 40 40 8 41 41 5 42 42 14 43 43 15 44 44 5 45 45 15 46 46 6 47 47 3 48 48 13 49 49 14 50 50 3 51 51 14 52 52 4 53 53 1 54 54 12 55 55 13 56 56 1 57 57 13 58 58 2 59 59 0 60 60 11 61 61 17 62 62 0 63 63 17 64 64 12 65 65</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="Scene" name="Scene">
+			<node layer="L1" id="Aspis_Back" name="Aspis_Back">
+				<translate sid="translate">0.00000 0.00000 -0.02276</translate>
+				<rotate sid="rotateZ">0 0 1 0.00000</rotate>
+				<rotate sid="rotateY">0 1 0 -0.00000</rotate>
+				<rotate sid="rotateX">1 0 0 0.00000</rotate>
+				<scale sid="scale">1.00000 1.00000 1.00000</scale>
+				<instance_geometry url="#Aspis_Back-Geometry">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="hele_round_back_dds" target="#hele_round_back_dds">
+								<bind_vertex_input input_semantic="TEXCOORD" input_set="1" semantic="CHANNEL1"/>
+							</instance_material>
+						</technique_common>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#Scene"/>
+	</scene>
+</COLLADA>
