@@ -1,17 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="base">
-      <mesh>props/shield/round_h_f.pmd</mesh>
+      <mesh>props/shield/aspis_f.dae</mesh>
       <props>
-        <prop actor="props/units/shields/hele_round_back.xml" attachpoint="back"/>
+        <prop actor="props/units/shields/hele_aspis_back.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>
-
   <group>
     <variant name="shield-dokana-a">
       <texture>props/shield/hele_spartan_dokana_a.dds</texture>
@@ -20,7 +17,5 @@
       <texture>props/shield/hele_spartan_dokana_b.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
