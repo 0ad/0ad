@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="110"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="100"/>
-        <animation file="biped/inf_sword_ready_a.dae" name="Idle" speed="80"/>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="110"/>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="100"/>
+        <animation file="biped/inf_hoplite_idle_a.psa" name="Idle" speed="80"/>
         <animation file="biped/inf_hoplite_shield_run_a.psa" name="walk" speed="12"/>
-        <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="run" speed="9"/>
+        <animation file="biped/inf_hoplite_shield_run_a.psa" name="run" speed="13"/>
         <animation event="0.5" file="infantry/javelin/attack/ijv_off_01.psa" name="melee" speed="75"/>
         <animation file="infantry/general/death/inf_01.psa" name="death" speed="220"/>
         <animation file="infantry/general/death/inf_03.psa" name="death" speed="220"/>
@@ -26,11 +24,10 @@
       <texture>skeletal/hele_xenophon.dds</texture>
     </variant>
   </group>
-
   <group>
     <variant frequency="100" name="Idle">
       <props>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="Walk">
@@ -40,7 +37,7 @@
     </variant>
     <variant name="Run">
       <props>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="r_hand"/>
       </props>
     </variant>
     <variant name="Melee">
@@ -51,7 +48,5 @@
       </props>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

@@ -12,7 +12,7 @@
 		<Creation>
 			<Foundation>foundation_1x1</Foundation>
 			<Resource>
- 				<Stone>100</Stone>
+ 				<Stone>20</Stone>
  			</Resource>
 		</Creation>
  		<Footprint>
@@ -21,12 +21,12 @@
  			<Height>8.0</Height>
  		</Footprint>
 		<Health>
- 			<Max>3000</Max>
+ 			<Max>2000</Max>
 		</Health>
 		<Armour>
-			<Hack>15.0</Hack>
-			<Pierce>42.0</Pierce>
-			<Crush>20.0</Crush>
+			<Hack>20.0</Hack>
+			<Pierce>40.0</Pierce>
+			<Crush>10.0</Crush>
 		</Armour>
 	</Traits>
 </Entity>

@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_defense_scout_tower"
->
+<Entity	Parent="template_structure_defense_scout_tower">
 	<Traits>
-	
 		<Id>
-
 			<Specific>Pyrgion</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>Towers were an important part of city fortifications. The defending troops shot arrows at the enemy and poured boiling oil over the assailants.</History>
-		
 		</Id>
-
+		<Creation>
+			<Time>26.4</Time>
+		</Creation>
+		<Health>
+ 			<Max>1320</Max>
+		</Health>
 	</Traits>
 
 	<Actor>structures/hellenes/scout_tower.xml</Actor>

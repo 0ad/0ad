@@ -2,44 +2,31 @@
 
 <Entity	Parent="template_structure_civic">
 	<Traits>
-	
 		<Id>
-		
 			<Internal_Only />
-
 			<Generic>Gate</Generic>
-
 			<Icon_Cell>56</Icon_Cell>
-
 			<Classes>Village</Classes>
-
 			<Tooltip>Gates allow allied units access through a wall, but are also its most vulnerable point.</Tooltip>
-		
 		</Id>
-
 		<Creation>
 			<Foundation>foundation_1x1</Foundation>
 			<Resource>
- 				<Stone>200</Stone>
+ 				<Stone>100</Stone>
  			</Resource>
 		</Creation>
-		
  		<Footprint>
  			<Width>6.0</Width>
  			<Depth>6.0</Depth>
  			<Height>8.0</Height>
  		</Footprint>
-
 		<Health>
- 			<Max>3200</Max>
+ 			<Max>3000</Max>
 		</Health>
-
 		<Armour>
 			<Hack>15.0</Hack>
-			<Pierce>42.0</Pierce>
-			<Crush>20.0</Crush>
+			<Pierce>40.0</Pierce>
+			<Crush>10.0</Crush>
 		</Armour>
-
 	</Traits>
-
 </Entity>

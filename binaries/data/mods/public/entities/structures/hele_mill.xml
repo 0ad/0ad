@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_economic_mill"
->
+<Entity	Parent="template_structure_economic_mill">
 	<Traits>
-	
 		<Id>
-
 			<Specific>Anakeion</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>Resources and building materials were kept in warehouses.</History>
-		
 		</Id>
-
+		<Creation>
+			<Time>17.6</Time>
+		</Creation>
+		<Health>
+ 			<Max>880</Max>
+		</Health>
 	</Traits>
 
 	<Actor>structures/hellenes/mill.xml</Actor>

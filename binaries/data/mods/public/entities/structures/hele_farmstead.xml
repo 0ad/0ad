@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity
-	Parent="template_structure_economic_farmstead"
->
+<Entity	Parent="template_structure_economic_farmstead">
 	<Traits>
-	
 		<Id>
-
 			<Specific>Sitobolion</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>Grain wasn't plentiful in Hellas, which is why it was carefully stored in granaries, some of it being reserved for times of siege.</History>
-		
 		</Id>
-
+		<Creation>
+			<Time>19.8</Time>
+		</Creation>
+		<Health>
+ 			<Max>990</Max>
+		</Health>
 	</Traits>
 
 	<Actor>structures/hellenes/farmstead.xml</Actor>

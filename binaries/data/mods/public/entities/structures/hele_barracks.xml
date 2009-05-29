@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity Parent="template_structure_military_barracks">
-
 	<Actor>structures/hellenes/barracks.xml</Actor>
-	
 	<Traits>
-	
 		<Id>
-
 			<Specific>Strategion</Specific>
-
 			<Civ>Hellenes</Civ>
-
 			<History>The Strategion was the main military headquarters, where important decisions were taken and plans for battles discussed by the Hellene Generals, or "Strategoi".</History>
-		
 		</Id>
-
+		<Creation>
+			<Time>44</Time>
+		</Creation>
+		<Health>
+ 			<Max>2200</Max>
+		</Health>
 	</Traits>
 
 	<Actions>
