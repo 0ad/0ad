@@ -31,7 +31,7 @@
 				<b>1.0</b>
 				<a>0.5</a>
 			</Allure>
-		</Auras>		
+		</Auras>
 		<Armour>
 			<Hack>1.0</Hack>
 			<Pierce>1.0</Pierce>
@@ -40,13 +40,13 @@
 		<Health>
 			<Max>75</Max>
 			<RegenRate>0.3</RegenRate>
-		</Health>	
+		</Health>
 		<Vision>
 			<Los>10</Los>
 		</Vision>
 		<Stamina>
 			<Max>500</Max>
-		</Stamina>	
+		</Stamina>
 	</Traits>
 	<Actions>
 		<Create>
@@ -66,8 +66,8 @@
 		<Gather>
 			<Resource>
 				<Food>
-					<Fruit>5</Fruit>
-					<Grain>2</Grain>
+					<Fruit>3</Fruit>
+					<Grain>3</Grain>
 					<Meat>0.5</Meat>
 					<Fish>0.8</Fish>
 				</Food>
@@ -75,7 +75,7 @@
 				<Metal>1</Metal>
 				<Stone>1</Stone>
 			</Resource>
- 			<Range>1.75</Range>
+ 			<Range>1.8</Range>
 			<Speed>1000</Speed>
 		</Gather>
 		<Repair>
