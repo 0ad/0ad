@@ -1,17 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
-  <autoflatten/>
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <animations/>
-      <mesh>structural/wrld_bld_f5x5.pmd</mesh>
-      <props/>
-      <texture>structural/wrld_wood.dds</texture>
+    <variant frequency="1" name="foundation 5x5 a">
+      <mesh>structural/found_5x5_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="foundation 5x5 b">
+      <mesh>structural/found_5x5_b.dae</mesh>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="1">
+      <props>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1">
+      <texture>structural/foundation.dds</texture>
+    </variant>
+  </group>
 </actor>

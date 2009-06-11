@@ -2,11 +2,25 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
+    <variant frequency="1" name="foundation 3x3 a">
       <mesh>structural/found_3x3_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="foundation 3x3 b">
+      <mesh>structural/found_3x3_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="foundation 3x3 c">
+      <mesh>structural/found_3x3_c.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1">
       <props>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1">
       <texture>structural/foundation.dds</texture>
     </variant>
   </group>
