@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_foundation">
+	<Traits>
+	
+		<Id>
+			<Generic>Foundation Theatron</Generic>
+
+			<Classes>Foundation</Classes>
+		</Id>
+	
+		<Footprint>
+			<Radius>26.0</Radius>
+			<Height>8.0</Height>
+		</Footprint>
+
+		<Vision>
+			<Los>6</Los>
+		</Vision>
+	
+	</Traits>
+		
+	<Actor>structures/fndn_theatron.xml</Actor>
+
+</Entity>
