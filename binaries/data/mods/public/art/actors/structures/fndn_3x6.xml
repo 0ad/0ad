@@ -2,14 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="foundation 2x2 a">
-      <mesh>structural/found_2x2_a.dae</mesh>
+    <variant frequency="1" name="foundation 3x6 a">
+      <mesh>structural/found_3x6_a.dae</mesh>
     </variant>
   </group>
   <group>
     <variant frequency="1">
       <props>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_3x6.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
