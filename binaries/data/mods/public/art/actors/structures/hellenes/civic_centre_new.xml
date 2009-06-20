@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Hellenes_Civic_Centre">
+      <mesh>structural/hele_civic_struct.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/civic_centre_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_tiles1.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_tiles2.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/civic_centre_round.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+      </props>
+      <texture>structural/hele_struct.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
