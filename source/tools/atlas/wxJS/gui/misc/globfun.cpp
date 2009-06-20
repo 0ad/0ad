@@ -50,6 +50,7 @@ static JSFunctionSpec Functions[] =
 {
     { "wxMessageBox", wxjs::gui::MessageBox, 1 },
     { "wxInitAllImageHandlers", wxjs::gui::InitAllImageHandlers, 0 },
+    { "wxGetKeyState", wxjs::gui::GetKeyState, 1 },
 	{ 0 }
 };
 
@@ -93,6 +94,15 @@ JSBool wxjs::gui::InitAllImageHandlers(JSContext *cx, JSObject *obj, uintN argc,
 {
     wxInitAllImageHandlers();
     return JS_TRUE;
+}
+
+JSBool wxjs::gui::GetKeyState(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+	int key;
+	if (! FromJS(cx, argv[0], key))
+		return JS_FALSE;
+	*rval = (wxGetKeyState((wxKeyCode)key) ? JS_TRUE : JS_FALSE);
+	return JS_TRUE;
 }
 
 bool wxjs::gui::InitFunctions(JSContext *cx, JSObject *global)
