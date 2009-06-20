@@ -69,15 +69,8 @@ extern_lib_defs = {
 		dbg_suffix = "d",
 		no_delayload = 1
 	},
-	dbghelp = {
-		win_names  = { "dbghelp" },
-		dbg_suffix = "",
-	},
 	devil = {
 		unix_names = { "IL", "ILU" },
-	},
-	directx = {
-		dbg_suffix = "",
 	},
 	-- rationale: see libraries_dir..enet/lib/rationale.txt
 	enet =

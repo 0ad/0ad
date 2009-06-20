@@ -21,7 +21,6 @@
 #include "lib/sysdep/os/win/win.h"
 #include <crtdbg.h>
 #include <excpt.h>
-#include <dbghelp.h>
 
 #include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
 #include "winit.h"

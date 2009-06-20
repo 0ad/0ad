@@ -449,8 +449,6 @@ function setup_all_libs ()
 		"openal",
 		"vorbis",
 		"libjpg",
-		"dbghelp",
-		"directx",
 		"cryptopp",
 		"valgrind"
 	}
@@ -507,9 +505,7 @@ used_extern_libs = {
 	"vorbis",
 
 	"boost",
-	"dbghelp",
 	"cxxtest",
-	"directx",
 	"comsuppw",
 	"enet",
 }
