@@ -32,7 +32,12 @@ my $now = DateTime->now;
 
 print "\n", $now->iso8601, "\n";
 
-my $cutoff = DateTime::Duration->new(minutes => 55);
+# Builds should complete in <1 hour and then shut themselves off
+# automatically. In case that fails, allow them to run up to 2 hours
+# before forcibly terminating them, minus 20 minutes tolerance so we
+# don't exceed 2 hours even if this script only runs once every ~10
+# minutes.
+my $cutoff = DateTime::Duration->new(minutes => 120-20);
 
 my $ec2 = new Net::Amazon::EC2(
     AWSAccessKeyId => $config{aws_access_key_id},
