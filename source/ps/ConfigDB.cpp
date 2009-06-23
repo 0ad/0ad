@@ -186,6 +186,7 @@ namespace ConfigDB_JS
 	ConfigNamespace_JS::SetNamespace(cx, nsobj, _enum); \
 	debug_assert(JS_DefineProperty(cx, newObj, _propname, OBJECT_TO_JSVAL(nsobj), NULL, NULL, flags)); )
 
+		cfg_ns("default", CFG_DEFAULT);
 		cfg_ns("system", CFG_SYSTEM);
 		cfg_ns("user", CFG_USER);
 		cfg_ns("mod", CFG_MOD);
@@ -224,7 +225,7 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name )
 	if( it != m_Map[CFG_COMMAND].end() )
 		return &( it->second );
 
-	for( int search_ns = ns; search_ns >= CFG_SYSTEM; search_ns-- )
+	for( int search_ns = ns; search_ns >= 0; search_ns-- )
 	{
 		TConfigMap::iterator it = m_Map[search_ns].find(name);
 		if (it != m_Map[search_ns].end())
@@ -272,11 +273,20 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	// Open file with VFS
 	shared_ptr<u8> buffer; size_t buflen;
 	{
-		LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
-		if(ret != INFO::OK)
+		// Handle missing files quietly
+		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) == ERR::VFS_FILE_NOT_FOUND)
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), ret);
+			LOG(CLogger::Warning, LOG_CATEGORY, "Cannot find config file \"%s\" - ignoring", m_ConfigFile[ns].c_str());
 			return false;
+		}
+		else
+		{
+			LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
+			if (ret != INFO::OK)
+			{
+				LOG(CLogger::Error, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), ret);
+				return false;
+			}
 		}
 	}
 	

@@ -32,6 +32,7 @@
 			g_ConfigDB.GetValue(CFG_SYSTEM, "foo");
 		mod: Ditto, but linked to CFG_MOD
 		user: Ditto, but linked to CFG_USER
+		default: Ditto, but linked to CFG_DEFAULT
 
 		g_ConfigDB Functions: None so far
 
@@ -59,6 +60,7 @@
 
 enum EConfigNamespace
 {
+	CFG_DEFAULT,
 	CFG_SYSTEM,
 	CFG_MOD,
 	CFG_USER,

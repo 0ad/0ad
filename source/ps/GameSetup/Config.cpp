@@ -196,8 +196,14 @@ void CONFIG_Init(const CmdLineArgs& args)
 
 	new CConfigDB;
 
-	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/system.cfg");
-	g_ConfigDB.Reload(CFG_SYSTEM);	// 216ms
+	// Load the global, default config file
+	g_ConfigDB.SetConfigFile(CFG_DEFAULT, false, "config/default.cfg");
+	g_ConfigDB.Reload(CFG_DEFAULT);	// 216ms
+	// Try loading the local system config file (which doesn't exist by
+	// default) - this is designed as a way of letting developers edit the
+	// system config without accidentally committing their changes back to SVN.
+	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/local.cfg");
+	g_ConfigDB.Reload(CFG_SYSTEM);
 
 	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
