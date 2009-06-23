@@ -389,7 +389,7 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTE
 			// so we have to reset it and check for 0. *sigh*
 			SetLastError(0);
 			const HANDLE hThread = GetCurrentThread();
-			const BOOL ok = StackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext, 0, pSymFunctionTableAccess64, pSymGetModuleBase64, 0);
+			const BOOL ok = pStackWalk64(machine, hProcess, hThread, &sf, (PVOID)pcontext, 0, pSymFunctionTableAccess64, pSymGetModuleBase64, 0);
 			// note: don't use LibError_from_win32 because it raises a warning,
 			// and this "fails" commonly (when no stack frames are left).
 			err = ok? INFO::OK : ERR::FAIL;
