@@ -225,4 +225,18 @@ public:
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
 	}
+
+	//////////////////////////////////////////////////////////////////////////
+
+	// Tests based on real DAE files:
+
+	void test_load_dae_bogus_material_target()
+	{
+		copyFile("collada/bogus_material_target.dae", testDAE);
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
+
+		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
+		TS_ASSERT(modeldef);
+	}
+
 };
