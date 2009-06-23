@@ -16,6 +16,9 @@
  */
 
 #include "precompiled.h"
+
+#if OS_WIN
+
 #include "dbghelp.h"
 
 // define extension function pointers
@@ -34,3 +37,5 @@ void dbghelp_ImportFunctions()
 #include "dbghelp_funcs.h"
 #undef FUNC
 }
+
+#endif // OS_WIN
