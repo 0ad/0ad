@@ -18,7 +18,8 @@
 #include "AtlasObject.h"
 #include "AtlasObjectImpl.h"
 
-#include <assert.h>
+#include <cassert>
+#include <cstring>
 
 #include <memory>
 #include <fstream>
