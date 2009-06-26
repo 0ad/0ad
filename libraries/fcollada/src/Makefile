@@ -201,3 +201,6 @@ output/debug/%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -c $< -o $@
 output/release/%.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -c $< -o $@
+
+clean:
+	rm -rf output
