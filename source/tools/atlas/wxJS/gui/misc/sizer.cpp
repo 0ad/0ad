@@ -150,6 +150,7 @@ WXJS_BEGIN_METHOD_MAP(Sizer)
   WXJS_METHOD("setDimension", setDimension, 4)
   WXJS_METHOD("setMinSize", setMinSize, 4)
   WXJS_METHOD("setItemMinSize", setItemMinSize, 3)
+  WXJS_METHOD("clear", clear, 1)
 WXJS_END_METHOD_MAP()
 
 bool Sizer::GetProperty(wxSizer *p, JSContext *cx, JSObject *obj, int id, jsval *vp)
@@ -670,5 +671,20 @@ JSBool Sizer::setItemMinSize(JSContext *cx, JSObject *obj, uintN argc, jsval *ar
     else
         return JS_FALSE;
     
+    return JS_TRUE;
+}
+
+JSBool Sizer::clear(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
+{
+    wxSizer *p = (wxSizer *) GetPrivate(cx, obj);
+    if ( p == NULL )
+        return JS_FALSE;
+    bool delete_windows = false;
+
+    if (FromJS(cx, argv[0], delete_windows))
+        p->Clear(delete_windows);
+    else
+        return JS_FALSE;
+
     return JS_TRUE;
 }

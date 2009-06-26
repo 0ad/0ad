@@ -65,3 +65,5 @@ gui/event/jsevent.cpp: add
         return false;
 
 TODO: add back tooltips into window.cpp
+
+gui/sizer: add 'clear'

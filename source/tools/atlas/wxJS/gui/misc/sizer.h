@@ -51,6 +51,7 @@ namespace wxjs
 	        static JSBool setDimension(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 	        static JSBool setMinSize(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 	        static JSBool setItemMinSize(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
+	        static JSBool clear(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval);
 
 	        WXJS_DECLARE_PROPERTY_MAP()
 	        WXJS_DECLARE_METHOD_MAP()
