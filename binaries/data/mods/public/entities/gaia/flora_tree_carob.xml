@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity 
-	Parent="template_gaia_flora_tree"
->
+<Entity Parent="template_gaia_flora_tree">
 	<Traits>
-	
 		<Id>
 			<Internal_Only />
-
+			<Icon_Cell>3</Icon_Cell>
 			<Specific>Carob Tree</Specific>
- 
-			<Classes>Carob</Classes>
-
-			<History>The carob is a leafed evergreen.</History>
-
+			<Classes>Tree, Carob</Classes>
+			<History>The carob is a leafed evergreen common in the Aegean Sea region.</History>
 		</Id>
-
 	</Traits>
- 
- 	<Actor>flora/trees/carob.xml</Actor>
- 
+	<Actor>flora/trees/carob.xml</Actor>
 </Entity>

@@ -2,6 +2,9 @@
 
 <Entity Parent="template_gaia_geo_rock">
 	<Traits>
+		<Id>
+			<Icon_Cell>1</Icon_Cell>
+		</Id>
  		<Anchor>
  			<Type>Ground</Type>
 		<!-- If negative or > 90.0, entity will always conform to terrain (assuming traits.pitch allows it) -->

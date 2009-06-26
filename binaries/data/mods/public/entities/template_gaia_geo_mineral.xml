@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
-<Entity 
-	Parent="template_gaia_geo"
->
+<Entity Parent="template_gaia_geo">
 	<Traits>
 	
 		<Id>
@@ -13,7 +11,7 @@
  			<Icon>PortraitSheetRock</Icon>			
 			<Icon_Cell>1</Icon_Cell>			
 
-			<Classes>Mineral</Classes>
+			<Classes>Mineral, Metal</Classes>
 
 			<Rollover>A mineral deposit, providing access to rare forms of precious metal.</Rollover>
 
