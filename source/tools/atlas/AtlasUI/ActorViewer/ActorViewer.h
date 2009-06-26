@@ -25,11 +25,12 @@
 
 class wxTreeCtrl;
 class wxTreeEvent;
+class ScriptInterface;
 
 class ActorViewer : public wxFrame
 {
 public:
-	ActorViewer(wxWindow* parent);
+	ActorViewer(wxWindow* parent, ScriptInterface& scriptInterface);
 
 private:
 	void SetActorView(bool flushCache = false);
@@ -49,8 +50,10 @@ private:
 	wxString m_CurrentActor;
 	float m_CurrentSpeed;
 
+	ScriptInterface& m_ScriptInterface;
+
 	Observable<std::vector<AtlasMessage::ObjectID> > m_ObjectSelection;
-	Observable<ObjectSettings> m_ObjectSettings;
+	ObjectSettings m_ObjectSettings;
 	wxColour m_BackgroundColour;
 	bool m_ToggledWireframe, m_ToggledWalking, m_ToggledGround, m_ToggledShadows, m_ToggledStats;
 

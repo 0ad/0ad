@@ -37,14 +37,22 @@ class wxWindow;
 class wxString;
 class wxPanel;
 
+namespace AtlasMessage { struct mWorldCommand; }
+typedef void (*SubmitCommand)(AtlasMessage::mWorldCommand* command);
+
 struct ScriptInterface_impl;
 class ScriptInterface
 {
 public:
-	ScriptInterface();
+	ScriptInterface(SubmitCommand submitCommand);
 	~ScriptInterface();
 	void SetCallbackData(void* cbdata);
 	static void* GetCallbackData(JSContext* cx);
+
+	template <typename T> void SetValue(const wxString& name, const T& val);
+	template <typename T> bool GetValue(const wxString& name, T& ret);
+	void Eval(const wxString& script);
+	template <typename T> bool Eval(const wxString& script, T& ret);
 
 	// Defined elsewhere:
 	//     template <TR, T0..., TR (*fptr) (void* cbdata, T0...)>
@@ -59,8 +67,43 @@ public:
 	template <typename T> static bool FromJSVal(JSContext* cx, jsval val, T& ret);
 	template <typename T> static jsval ToJSVal(JSContext* cx, const T& val);
 private:
+	JSContext* GetContext();
+	void AddRoot(void* ptr);
+	void RemoveRoot(void* ptr);
+	void SetValue_(const wxString& name, jsval val);
+	bool GetValue_(const wxString& name, jsval& ret);
+	bool Eval_(const wxString& name, jsval& ret);
+
 	void Register(const char* name, JSNative fptr, size_t nargs);
 	std::auto_ptr<ScriptInterface_impl> m;
 
 // The nasty macro/template bits are split into a separate file so you don't have to look at them
 #include "NativeWrapper.inl"
+
+template <typename T>
+void ScriptInterface::SetValue(const wxString& name, const T& val)
+{
+	return SetValue_(name, ToJSVal(GetContext(), val));
+}
+
+template <typename T>
+bool ScriptInterface::GetValue(const wxString& name, T& ret)
+{
+	jsval jsRet;
+	if (! GetValue_(name, jsRet)) return false;
+	AddRoot(&jsRet); // root it while we do some more work (TODO: is this really necessary?)
+	bool ok = FromJSVal(GetContext(), jsRet, ret);
+	RemoveRoot(&jsRet);
+	return ok;
+}
+
+template <typename T>
+bool ScriptInterface::Eval(const wxString& script, T& ret)
+{
+	jsval jsRet;
+	if (! Eval_(script, jsRet)) return false;
+	AddRoot(&jsRet); // root it while we do some more work
+	bool ok = FromJSVal(GetContext(), jsRet, ret);
+	RemoveRoot(&jsRet);
+	return ok;
+}

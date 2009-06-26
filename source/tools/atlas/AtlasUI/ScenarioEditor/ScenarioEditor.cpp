@@ -30,8 +30,8 @@
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"
 
-#include "HighResTimer/HighResTimer.h"
-#include "Buttons/ToolButton.h"
+#include "CustomControls/HighResTimer/HighResTimer.h"
+#include "CustomControls/Buttons/ToolButton.h"
 #include "CustomControls/Canvas/Canvas.h"
 
 #include "GameInterface/MessagePasser.h"
@@ -295,11 +295,18 @@ AtlasWindowCommandProc& ScenarioEditor::GetCommandProc() { return g_CommandProc;
 
 namespace
 {
-	// Wrapper function because SetCurrentTool takes an optional argument, which JS doesn't like
-	void SetCurrentTool_script(void* cbdata, wxString name)
+	// Wrapper functions for scripts
+
+	void SetCurrentTool_(void* cbdata, wxString name)
 	{
 		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name);
 	}
+
+	void SetCurrentToolWith(void* cbdata, wxString name, wxString arg)
+	{
+		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name, &arg);
+	}
+
 	wxString GetDataDirectory(void*)
 	{
 		return Datafile::GetDataDirectory();
@@ -319,7 +326,7 @@ namespace
 ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterface)
 : wxFrame(parent, wxID_ANY, _T(""), wxDefaultPosition, wxSize(1024, 768))
 , m_FileHistory(_T("Scenario Editor")), m_ScriptInterface(scriptInterface)
-, m_ObjectSettings(g_SelectedObjects, AtlasMessage::eRenderView::GAME)
+, m_ObjectSettings(g_SelectedObjects, m_ScriptInterface)
 , m_ToolManager(this)
 {
 	// Global application initialisation:
@@ -338,7 +345,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	// Script interface functions
 	GetScriptInterface().SetCallbackData(static_cast<void*>(this));
 	GetScriptInterface().RegisterFunction<wxString, GetDataDirectory>("GetDataDirectory");
-	GetScriptInterface().RegisterFunction<void, wxString, SetCurrentTool_script>("SetCurrentTool");
+	GetScriptInterface().RegisterFunction<void, wxString, SetCurrentTool_>("SetCurrentTool");
+	GetScriptInterface().RegisterFunction<void, wxString, wxString, SetCurrentToolWith>("SetCurrentToolWith");
 	GetScriptInterface().RegisterFunction<void, float, SetBrushStrength>("SetBrushStrength");
 	GetScriptInterface().RegisterFunction<void, wxString, SetSelectedTexture>("SetSelectedTexture");
 
@@ -352,6 +360,9 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 			wxLogError(_("Failed to read script"));
 		GetScriptInterface().LoadScript(filename.GetFullName(), script);
 	}
+
+	// Initialise things that rely on scripts
+	m_ObjectSettings.Init(AtlasMessage::eRenderView::GAME);
 
 	//////////////////////////////////////////////////////////////////////////
 	// Menu

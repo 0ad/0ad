@@ -27,7 +27,7 @@
 #include "ScenarioEditor/Tools/Common/Tools.h"
 #include "ScenarioEditor/ScenarioEditor.h"
 #include "ScenarioEditor/Sections/Environment/LightControl.h"
-#include "ScenarioEditor/Sections/Object/VariationControl.h"
+//#include "ScenarioEditor/Sections/Object/VariationControl.h"
 
 #include "GameInterface/Messages.h"
 
@@ -182,14 +182,19 @@ static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 	POST_COMMAND(SetEnvironmentSettings, (settings));
 }
 
-ActorViewer::ActorViewer(wxWindow* parent)
+ActorViewer::ActorViewer(wxWindow* parent, ScriptInterface& scriptInterface)
 	: wxFrame(parent, wxID_ANY, _("Actor Viewer"), wxDefaultPosition, wxSize(800, 600)),
 	m_CurrentSpeed(0.f), m_BackgroundColour(wxColour(255, 255, 255)),
 	m_ToggledWalking(false), m_ToggledWireframe(false), m_ToggledGround(true),
 	m_ToggledShadows(true), m_ToggledStats(false),
-	m_ObjectSettings(m_ObjectSelection, AtlasMessage::eRenderView::ACTOR)
+	m_ScriptInterface(scriptInterface),
+	m_ObjectSettings(m_ObjectSelection, m_ScriptInterface)
 {
 	SetIcon(wxIcon(_T("ICON_ActorEditor")));
+
+	// XXX: need to init m_ScriptInterface
+	
+	m_ObjectSettings.Init(AtlasMessage::eRenderView::ACTOR);
 
 	SnapSplitterWindow* splitter = new SnapSplitterWindow(this, 0);
 	splitter->SetDefaultSashPosition(250);
@@ -301,7 +306,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	wxSizer* bottomRightSizer = new wxBoxSizer(wxVERTICAL);
 	wxSizer* playButtonSizer = new wxBoxSizer(wxHORIZONTAL);
 	wxSizer* optionButtonSizer = new wxBoxSizer(wxVERTICAL);
-	wxSizer* variationSizer = new wxStaticBoxSizer(wxVERTICAL, sidePanel, _("Variation"));
+//	wxSizer* variationSizer = new wxStaticBoxSizer(wxVERTICAL, sidePanel, _("Variation"));
 
 	playButtonSizer->Add(new wxButton(sidePanel, ID_Play, _("Play")), wxSizerFlags().Proportion(1));
 	playButtonSizer->Add(new wxButton(sidePanel, ID_Pause, _("Pause")), wxSizerFlags().Proportion(1));
@@ -315,7 +320,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_ToggleShadows, _("Shadows")), _("Toggle shadow rendering")), wxSizerFlags().Expand());
 	optionButtonSizer->Add(Tooltipped(new wxButton(sidePanel, ID_ToggleStats, _("Poly count")), _("Toggle polygon-count statistics - turn off ground and shadows for more useful data")), wxSizerFlags().Expand());
 
-	variationSizer->Add(new VariationControl(sidePanel, m_ObjectSettings), wxSizerFlags().Expand().Proportion(1));
+//	variationSizer->Add(new VariationControl(sidePanel, m_ObjectSettings), wxSizerFlags().Expand().Proportion(1));
 
 	mainSizer->Add(m_TreeCtrl, wxSizerFlags().Expand().Proportion(1));
 	mainSizer->Add(bottomSizer, wxSizerFlags().Expand());
@@ -328,7 +333,7 @@ ActorViewer::ActorViewer(wxWindow* parent)
 
 	bottomRightSizer->Add(m_AnimationBox, wxSizerFlags().Expand());
 	bottomRightSizer->Add(playButtonSizer, wxSizerFlags().Expand());
-	bottomRightSizer->Add(variationSizer, wxSizerFlags().Expand().Proportion(1));
+//	bottomRightSizer->Add(variationSizer, wxSizerFlags().Expand().Proportion(1));
 
 	sidePanel->SetSizer(mainSizer);
 

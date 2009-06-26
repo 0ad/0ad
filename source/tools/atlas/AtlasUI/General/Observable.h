@@ -53,7 +53,7 @@ public:
 	template <typename T1>
 		explicit Observable(const T1& a1) : T(a1) {}
 	template <typename T1, typename T2>
-		explicit Observable(T1& a1, T2 a2) : T(a1, a2) {}
+		explicit Observable(T1& a1, T2& a2) : T(a1, a2) {}
 
 	template<typename C> ObservableConnection RegisterObserver(int order, void (C::*callback) (const T&), C* obj)
 	{

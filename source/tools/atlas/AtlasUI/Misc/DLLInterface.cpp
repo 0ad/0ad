@@ -155,6 +155,10 @@ ATLASDLLIMPEXP void Atlas_ReportError()
 	///ReportError();	// janwas: disabled until ErrorReporter.cpp compiles
 }
 
+void ScenarioEditorSubmitCommand(AtlasMessage::mWorldCommand* command)
+{
+	ScenarioEditor::GetCommandProc().Submit(new WorldCommand(command));
+}
 
 class AtlasDLLApp : public wxApp
 {
@@ -188,7 +192,6 @@ public:
 		wxFrame* frame;
 #define MAYBE(t) if (g_InitialWindowType == _T(#t)) frame = new t(NULL); else
 		MAYBE(ActorEditor)
-		MAYBE(ActorViewer)
 		MAYBE(ColourTester)
 #ifdef USE_AOE3ED
 		MAYBE(ArchiveViewer)
@@ -198,8 +201,13 @@ public:
 		// else
 		if (g_InitialWindowType == _T("ScenarioEditor"))
 		{
-			m_ScriptInterface = new ScriptInterface();
+			m_ScriptInterface = new ScriptInterface(&ScenarioEditorSubmitCommand);
 			frame = new ScenarioEditor(NULL, *m_ScriptInterface);
+		}
+		else if (g_InitialWindowType == _T("ActorViewer"))
+		{
+			m_ScriptInterface = new ScriptInterface(&ScenarioEditorSubmitCommand);
+			frame = new ActorViewer(NULL, *m_ScriptInterface);
 		}
 		else
 		{

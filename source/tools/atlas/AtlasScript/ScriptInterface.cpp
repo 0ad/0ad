@@ -18,6 +18,10 @@
 #include "ScriptInterface.h"
 
 #include <cassert>
+#ifndef _WIN32
+# include <typeinfo>
+# include <cxxabi.h>
+#endif
 
 #include "js/jsapi.h"
 
@@ -37,30 +41,49 @@
 #include "GameInterface/Shareable.h"
 #include "GameInterface/Messages.h"
 
+
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
+#include <valgrind/valgrind.h>
+
 #define FAIL(msg) do { JS_ReportError(cx, msg); return false; } while (false)
 
-const int RUNTIME_SIZE = 1024*1024; // TODO: how much memory is needed?
+const int RUNTIME_SIZE = 4*1024*1024; // TODO: how much memory is needed?
 const int STACK_CHUNK_SIZE = 8192;
+
+SubmitCommand g_SubmitCommand; // TODO: globals are ugly
 
 ////////////////////////////////////////////////////////////////
 
 namespace
 {
+	template<typename T>
+	void ReportError(JSContext* cx, const char* title)
+	{
+		// TODO: SetPendingException turns the error into a JS-catchable exception,
+		// but the error report doesn't say anything useful like the line number,
+		// so I'm just using ReportError instead for now (and failures are uncatchable
+		// and will terminate the whole script)
+		//JS_SetPendingException(cx, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, "%s: Unhandled type", title)));
+#ifdef _WIN32
+		JS_ReportError(cx, "%s: Unhandled type", title);
+#else
+		// Give a more informative message on GCC
+		int status;
+		char* name = abi::__cxa_demangle(typeid(T).name(), 0, 0, &status);
+		JS_ReportError(cx, "%s: Unhandled type '%s'", title, name);
+		free(name);
+#endif
+	}
+
 	// Use templated structs instead of functions, so that we can use partial specialisation:
 	
 	template<typename T> struct FromJSVal
 	{
 		static bool Convert(JSContext* cx, jsval WXUNUSED(v), T& WXUNUSED(out))
 		{
-			JS_ReportError(cx, "Unrecognised argument type");
-			// TODO: SetPendingException turns the error into a JS-catchable exception,
-			// but the error report doesn't say anything useful like the line number,
-			// so I'm just using ReportError instead for now (and failures are uncatchable
-			// and will terminate the whole script)
-			//JS_SetPendingException(cx, STRING_TO_JSVAL(JS_NewStringCopyZ(cx, "Unrecognised argument type")));
+			ReportError<T>(cx, "FromJSVal");
 			return false;
 		}
 	};
@@ -92,7 +115,18 @@ namespace
 		static bool Convert(JSContext* cx, jsval v, int& out)
 		{
 			int32 ret;
-			if (! JS_ValueToInt32(cx, v, &ret)) return false;
+			if (! JS_ValueToECMAInt32(cx, v, &ret)) return false;
+			out = ret;
+			return true;
+		}
+	};
+
+	template<> struct FromJSVal<size_t>
+	{
+		static bool Convert(JSContext* cx, jsval v, size_t& out)
+		{
+			uint32 ret;
+			if (! JS_ValueToECMAUint32(cx, v, &ret)) return false;
 			out = ret;
 			return true;
 		}
@@ -163,12 +197,13 @@ namespace
 	};
 
 	////////////////////////////////////////////////////////////////
-	
+	// Primitive types:
+
 	template<typename T> struct ToJSVal
 	{
 		static jsval Convert(JSContext* cx, const T& WXUNUSED(val))
 		{
-			JS_ReportError(cx, "Unrecognised query return type");
+			ReportError<T>(cx, "ToJSVal");
 			return JSVAL_VOID;
 		}
 	};
@@ -186,6 +221,14 @@ namespace
 	template<> struct ToJSVal<int>
 	{
 		static jsval Convert(JSContext* WXUNUSED(cx), const int& val)
+		{
+			return INT_TO_JSVAL(val);
+		}
+	};
+
+	template<> struct ToJSVal<size_t>
+	{
+		static jsval Convert(JSContext* WXUNUSED(cx), const size_t& val)
 		{
 			return INT_TO_JSVAL(val);
 		}
@@ -221,6 +264,9 @@ namespace
 		}
 	};
 
+	////////////////////////////////////////////////////////////////
+	// Compound types:
+
 	template<typename T> struct ToJSVal<std::vector<T> >
 	{
 		static jsval Convert(JSContext* cx, const std::vector<T>& val)
@@ -247,6 +293,7 @@ namespace
 	};
 
 	////////////////////////////////////////////////////////////////
+	// AtlasMessage structures:
 
 	template<> struct ToJSVal<AtlasMessage::sTerrainGroupPreview>
 	{
@@ -269,6 +316,65 @@ namespace
 		}
 	};
 
+	template<> struct ToJSVal<AtlasMessage::sObjectsListItem>
+	{
+		static jsval Convert(JSContext* cx, const AtlasMessage::sObjectsListItem& val)
+		{
+			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+			if (! obj) return JSVAL_VOID;
+			JS_AddRoot(cx, &obj);
+			JS_DefineProperty(cx, obj, "id", ToJSVal<std::wstring>::Convert(cx, *val.id), NULL, NULL, JSPROP_ENUMERATE);
+			JS_DefineProperty(cx, obj, "name", ToJSVal<std::wstring>::Convert(cx, *val.name), NULL, NULL, JSPROP_ENUMERATE);
+			JS_DefineProperty(cx, obj, "type", ToJSVal<int>::Convert(cx, val.type), NULL, NULL, JSPROP_ENUMERATE);
+			JS_RemoveRoot(cx, &obj);
+			return OBJECT_TO_JSVAL(obj);
+		}
+	};
+
+	template<> struct ToJSVal<AtlasMessage::sObjectSettings>
+	{
+		static jsval Convert(JSContext* cx, const AtlasMessage::sObjectSettings& val)
+		{
+			JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+			if (! obj) return JSVAL_VOID;
+			JS_AddRoot(cx, &obj);
+			JS_DefineProperty(cx, obj, "player", ToJSVal<size_t>::Convert(cx, val.player), NULL, NULL, JSPROP_ENUMERATE);
+			JS_DefineProperty(cx, obj, "selections", ToJSVal<std::vector<std::wstring> >::Convert(cx, *val.selections), NULL, NULL, JSPROP_ENUMERATE);
+			JS_DefineProperty(cx, obj, "variantgroups", ToJSVal<std::vector<std::vector<std::wstring> > >::Convert(cx, *val.variantgroups), NULL, NULL, JSPROP_ENUMERATE);
+			JS_RemoveRoot(cx, &obj);
+			return OBJECT_TO_JSVAL(obj);
+		}
+	};
+
+	template<> struct FromJSVal<AtlasMessage::sObjectSettings>
+	{
+		static bool Convert(JSContext* cx, jsval v, AtlasMessage::sObjectSettings& out)
+		{
+			JSObject* obj;
+			if (! JS_ValueToObject(cx, v, &obj) || obj == NULL)
+				FAIL("Argument must be an array");
+			jsval val;
+
+			int player;
+			if (! JS_GetProperty(cx, obj, "player", &val))
+				FAIL("Failed to get 'player'");
+			if (! ScriptInterface::FromJSVal(cx, val, player))
+				FAIL("Failed to convert 'player'");
+			out.player = player;
+
+			std::vector<std::wstring> selections;
+			if (! JS_GetProperty(cx, obj, "selections", &val))
+				FAIL("Failed to get 'selections'");
+			if (! ScriptInterface::FromJSVal(cx, val, selections))
+				FAIL("Failed to convert 'selections'");
+			out.selections = selections;
+			
+			// variantgroups is only used in engine-to-editor, so we don't
+			// bother converting it here
+
+			return true;
+		}
+	};
 }
 
 template<typename T> bool ScriptInterface::FromJSVal(JSContext* cx, jsval v, T& out)
@@ -284,10 +390,10 @@ template<typename T> jsval ScriptInterface::ToJSVal(JSContext* cx, const T& v)
 // Explicit instantiation of functions that would otherwise be unused in this file
 // but are required for linking with other files
 template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&);
-
 template bool ScriptInterface::FromJSVal<float>(JSContext*, jsval, float&);
-
 template jsval ScriptInterface::ToJSVal<wxString>(JSContext*, wxString const&);
+template jsval ScriptInterface::ToJSVal<int>(JSContext*, int const&);
+template jsval ScriptInterface::ToJSVal<std::vector<int> >(JSContext*, std::vector<int> const&);
 
 ////////////////////////////////////////////////////////////////
 
@@ -327,6 +433,7 @@ namespace
 			wxLogWarning(_T("%s"), logMessage.c_str());
 		else
 			wxLogError(_T("%s"), logMessage.c_str());
+		VALGRIND_PRINTF_BACKTRACE("->");
 		wxPrintf(_T("wxJS %s: %s\n--------\n"), isWarning ? _T("warning") : _T("error"), logMessage.c_str());
 	}
 
@@ -377,7 +484,8 @@ ScriptInterface_impl::ScriptInterface_impl()
 	m_cx = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
 	assert(m_cx);
 
-	JS_BeginRequest(m_cx); // if you get linker errors, see the comment in the .h about JS_THREADSAFE
+	JS_BeginRequest(m_cx); // if you get linker errors, see the comment in ScriptInterface.h about JS_THREADSAFE
+	// (TODO: are we using requests correctly? (Probably not; how much does it matter?))
 
 	JS_SetContextPrivate(m_cx, NULL);
 
@@ -400,9 +508,10 @@ ScriptInterface_impl::ScriptInterface_impl()
 
 	JS_DefineFunction(m_cx, m_glob, "print", ::print, 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	
-	m_atlas = JS_DefineObject(m_cx, m_glob, "Atlas", NULL, NULL, JSPROP_READONLY|JSPROP_PERMANENT);
+	m_atlas = JS_DefineObject(m_cx, m_glob, "Atlas", NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_atlas, "ForceGC", ::ForceGC, 0, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_atlas, "LoadScript", ::LoadScript, 2, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
+	JS_DefineObject(m_cx, m_atlas, "State", NULL, NULL, JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 	
 	RegisterMessages(m_atlas);
 }
@@ -435,9 +544,10 @@ void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs
 }
 
 
-ScriptInterface::ScriptInterface()
-	: m(new ScriptInterface_impl)
+ScriptInterface::ScriptInterface(SubmitCommand submitCommand)
+	: m(new ScriptInterface_impl())
 {
+	g_SubmitCommand = submitCommand;
 }
 
 ScriptInterface::~ScriptInterface()
@@ -457,6 +567,55 @@ void* ScriptInterface::GetCallbackData(JSContext* cx)
 void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs)
 {
 	m->Register(name, fptr, (uintN)nargs);
+}
+
+JSContext* ScriptInterface::GetContext()
+{
+	return m->m_cx;
+}
+
+void ScriptInterface::AddRoot(void* ptr)
+{
+	JS_AddRoot(m->m_cx, ptr);
+}
+
+void ScriptInterface::RemoveRoot(void* ptr)
+{
+	JS_RemoveRoot(m->m_cx, ptr);
+}
+
+void ScriptInterface::SetValue_(const wxString& name, jsval val)
+{
+	jsval jsName = ToJSVal(m->m_cx, name);
+
+	const uintN argc = 2;
+	jsval argv[argc] = { jsName, val };
+	jsval rval;
+	JSBool ok = JS_CallFunctionName(m->m_cx, m->m_glob, "setValue", argc, argv, &rval); // TODO: error checking
+}
+
+bool ScriptInterface::GetValue_(const wxString& name, jsval& ret)
+{
+	jsval jsName = ToJSVal(m->m_cx, name);
+
+	const uintN argc = 1;
+	jsval argv[argc] = { jsName };
+	return JS_CallFunctionName(m->m_cx, m->m_glob, "getValue", argc, argv, &ret);
+}
+
+void ScriptInterface::Eval(const wxString& script)
+{
+	jsval rval;
+	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob,
+		script.mb_str(), script.length(), NULL, 0, &rval);
+		// TODO: error checking
+}
+
+bool ScriptInterface::Eval_(const wxString& script, jsval& rval)
+{
+	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob,
+		script.mb_str(), script.length(), NULL, 0, &rval);
+	return ok;
 }
 
 void ScriptInterface::LoadScript(const wxString& filename, const wxString& code)
@@ -540,6 +699,15 @@ std::pair<wxPanel*, wxPanel*> ScriptInterface::LoadScriptAsSidebar(const wxStrin
 		return JS_TRUE; \
 	}
 	
+#define COMMAND(name, merge, vals) \
+	JSBool call_##name(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* WXUNUSED(rval)) \
+	{ \
+		(void)cx; (void)argv; /* avoid 'unused parameter' warnings */ \
+		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_ARGS, ~, vals) \
+		g_SubmitCommand(new AtlasMessage::m##name (AtlasMessage::d##name ( BOOST_PP_SEQ_FOR_EACH_I(ARG_LIST, ~, vals) ))); \
+		return JS_TRUE; \
+	}
+	
 #define QUERY(name, in_vals, out_vals) \
 	JSBool call_##name(JSContext* cx, JSObject* WXUNUSED(obj), uintN WXUNUSED(argc), jsval* argv, jsval* rval) \
 	{ \
@@ -553,8 +721,6 @@ std::pair<wxPanel*, wxPanel*> ScriptInterface::LoadScriptAsSidebar(const wxStrin
 		BOOST_PP_SEQ_FOR_EACH_I(CONVERT_OUTPUTS, ~, out_vals) \
 		return JS_TRUE; \
 	}
-
-#define COMMAND(name, merge, vals)
 
 #define MESSAGES_SKIP_SETUP
 #define MESSAGES_SKIP_STRUCTS
@@ -570,6 +736,7 @@ namespace
 }
 
 #undef MESSAGE
+#undef COMMAND
 #undef QUERY
 
 void ScriptInterface_impl::RegisterMessages(JSObject* parent)
@@ -583,13 +750,20 @@ void ScriptInterface_impl::RegisterMessages(JSObject* parent)
 	ret = JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)vals)-1, \
 		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
 
+	#define COMMAND(name, merge, vals) \
+	ret = JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)vals)-1, \
+		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
+
 	#define QUERY(name, in_vals, out_vals) \
 	ret = JS_DefineFunction(m_cx, obj, #name, call_##name, BOOST_PP_SEQ_SIZE((~)in_vals)-1, \
 		JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT);
-	 
-	// TODO: #define COMMAND(name, merge, vals) ...
 
 	#undef INCLUDED_MESSAGES
-	
+	 
 	#include "GameInterface/Messages.h"
+
+	#undef MESSAGE
+	#undef COMMAND
+	#undef QUERY
 }
+

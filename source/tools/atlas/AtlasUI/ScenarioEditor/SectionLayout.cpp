@@ -22,13 +22,12 @@
 
 #include "SectionLayout.h"
 
-#include "SnapSplitterWindow/SnapSplitterWindow.h"
+#include "CustomControls/SnapSplitterWindow/SnapSplitterWindow.h"
 
 #include "ScenarioEditor.h"
 #include "AtlasScript/ScriptInterface.h"
 
 #include "Sections/Terrain/Terrain.h"
-#include "Sections/Object/Object.h"
 #include "Sections/Environment/Environment.h"
 #include "Sections/Cinematic/Cinematic.h"
 #include "Sections/Trigger/Trigger.h"
@@ -317,7 +316,7 @@ void SectionLayout::Build(ScenarioEditor& scenarioEditor)
 	ADD_SIDEBAR_SCRIPT(_T("map"),       _T("map.png"),         _("Map"));
 	ADD_SIDEBAR_SCRIPT(_T("terrain"),   _T("terrain.png"),     _("Terrain"));
 	//ADD_SIDEBAR(TerrainSidebar,         _T("terrain.png"),     _("Terrain"));
-	ADD_SIDEBAR(ObjectSidebar,          _T("object.png"),      _("Object"));
+	ADD_SIDEBAR_SCRIPT(_T("object"),    _T("object.png"),      _("Object"));
 	ADD_SIDEBAR(EnvironmentSidebar,     _T("environment.png"), _("Environment"));
 	
 	#ifndef ATLAS_PUBLIC_RELEASE

@@ -94,6 +94,8 @@ TerrainPreviewPage.prototype = {
 				itemSizer.cols = numCols;
 		};
 		
+		// TODO: Do something clever like load the preview images asynchronously,
+		// to avoid the annoying freeze when switching tabs
 		var previews = Atlas.Message.GetTerrainGroupPreviews(this.name, w, h).previews;
 		var i = 0;
 		var names = [];
@@ -113,6 +115,8 @@ TerrainPreviewPage.prototype = {
 			itemSizer.add(imgSizer, 0, wxAlignment.CENTRE | wxStretch.EXPAND);
 		}
 
+		// TODO: fix keyboard navigation of the terrain previews
+
 		this.panel.layout();
 
 		this.loaded = true;
@@ -124,10 +128,9 @@ function init(window, bottomWindow)
 	window.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
 		
 	var tools = [
-		/* text label; internal tool name; button */
-		[ 'Modify', 'AlterElevation', undefined ],
-		[ 'Flatten', 'FlattenElevation', undefined ],
-		[ 'Paint', 'PaintTerrain', undefined ]
+		{ label: 'Modify', name: 'AlterElevation' },
+		{ label: 'Flatten', name: 'FlattenElevation' },
+		{ label: 'Paint', name: 'PaintTerrain' },
 	];
 	var selectedTool = null; // null if none selected, else an element of 'tools'
 
@@ -135,9 +138,9 @@ function init(window, bottomWindow)
 	window.sizer.add(toolSizer, 0, wxStretch.EXPAND);
 	for each (var tool in tools)
 	{
-		var button = new wxButton(window, -1, tool[0]);
+		var button = new wxButton(window, -1, tool.label);
 		toolSizer.add(button, 1);
-		tool[2] = button;
+		tool.button = button;
 		
 		// Explicitly set the background to the default colour, so that the button
 		// is always owner-drawn (by the wxButton code), rather than initially using the
@@ -157,15 +160,16 @@ function init(window, bottomWindow)
 				{
 					// Disable the old tool
 					if (selectedTool)
-						selectedTool[2].backgroundColour = wxSystemSettings.getColour(wxSystemSettings.COLOUR_BTNFACE);
+						selectedTool.button.backgroundColour = wxSystemSettings.getColour(wxSystemSettings.COLOUR_BTNFACE);
 					// Enable the new one
 					selectedTool = tool;
 					this.backgroundColour = new wxColour(0xEE, 0xCC, 0x55);
-					Atlas.SetCurrentTool(tool[1]);
+					Atlas.SetCurrentTool(tool.name);
 					brush.send();
 				}
 			};
 		})(tool);
+		// TODO: Need to make this interact properly with Tools.cpp/RegisterToolButton so all the buttons are in sync
 	}
 	
 	var brushSizer = new wxStaticBoxSizer(new wxStaticBox(window, -1, 'Brush'), wxOrientation.VERTICAL);
