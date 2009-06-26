@@ -81,7 +81,7 @@ public:
 				POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
 				return true;
 			}
-			else if (evt.Dragging() && evt.RightIsDown() || evt.RightDown())
+			else if ((evt.Dragging() && evt.RightIsDown()) || evt.RightDown())
 			{
 				// Dragging with right mouse button -> rotate objects to look
 				// at mouse
