@@ -102,7 +102,7 @@ void FColladaDocument::LoadFromText(const char *text)
 
 	if (newText != text)
 	{
-		xmlFreeFunc((void*)newText);
+		xmlFree((void*)newText);
 	}
 
 	REQUIRE_SUCCESS(status);
