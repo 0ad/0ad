@@ -88,6 +88,9 @@ bool Button::GetProperty(wxButton *p,
                          int id, 
                          jsval *vp)
 {
+  if ( p == NULL )
+    return false;
+
   if ( id == P_LABEL )
     *vp = ToJS(cx, p->GetLabel());
 
@@ -100,6 +103,9 @@ bool Button::SetProperty(wxButton *p,
                          int id, 
                          jsval *vp)
 {
+  if ( p == NULL )
+    return false;
+
   if ( id == P_LABEL )
   {
     wxString label;

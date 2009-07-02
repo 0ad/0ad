@@ -101,7 +101,7 @@ JSBool wxjs::gui::GetKeyState(JSContext *cx, JSObject *obj, uintN argc, jsval *a
 	int key;
 	if (! FromJS(cx, argv[0], key))
 		return JS_FALSE;
-	*rval = (wxGetKeyState((wxKeyCode)key) ? JS_TRUE : JS_FALSE);
+	*rval = (wxGetKeyState((wxKeyCode)key) ? JSVAL_TRUE : JSVAL_FALSE);
 	return JS_TRUE;
 }
 
