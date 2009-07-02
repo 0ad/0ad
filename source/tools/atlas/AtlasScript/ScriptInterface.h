@@ -94,6 +94,8 @@ public:
 		bool OK();
 		// Leaves the local root scope
 		~LocalRootScope();
+	private:
+		LocalRootScope& operator=(const LocalRootScope&);
 	};
 	#define LOCAL_ROOT_SCOPE LocalRootScope scope(*this); if (! scope.OK()) return false
 

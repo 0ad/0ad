@@ -48,7 +48,9 @@
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
-#include <valgrind/valgrind.h>
+#ifndef _WIN32
+# include <valgrind/valgrind.h>
+#endif
 
 #define FAIL(msg) do { JS_ReportError(cx, msg); return false; } while (false)
 
@@ -511,7 +513,10 @@ namespace
 			wxLogWarning(_T("%s"), logMessage.c_str());
 		else
 			wxLogError(_T("%s"), logMessage.c_str());
+#ifndef _WIN32
+		// When running under Valgrind, print more information in the error message
 		VALGRIND_PRINTF_BACKTRACE("->");
+#endif
 		wxPrintf(_T("wxJS %s: %s\n--------\n"), isWarning ? _T("warning") : _T("error"), logMessage.c_str());
 	}
 
@@ -654,18 +659,18 @@ JSContext* ScriptInterface::GetContext()
 
 bool ScriptInterface::AddRoot(void* ptr)
 {
-	return JS_AddRoot(m->m_cx, ptr);
+	return JS_AddRoot(m->m_cx, ptr) ? true : false;
 }
 
 bool ScriptInterface::RemoveRoot(void* ptr)
 {
-	return JS_RemoveRoot(m->m_cx, ptr);
+	return JS_RemoveRoot(m->m_cx, ptr) ? true : false;
 }
 
 ScriptInterface::LocalRootScope::LocalRootScope(ScriptInterface& scriptInterface)
 	: m_ScriptInterface(scriptInterface)
 {
-	m_OK = JS_EnterLocalRootScope(m_ScriptInterface.m->m_cx);
+	m_OK = JS_EnterLocalRootScope(m_ScriptInterface.m->m_cx) ? true : false;
 }
 
 ScriptInterface::LocalRootScope::~LocalRootScope()
@@ -688,7 +693,7 @@ bool ScriptInterface::SetValue_(const wxString& name, jsval val)
 	jsval argv[argc] = { jsName, val };
 	jsval rval;
 	JSBool ok = JS_CallFunctionName(m->m_cx, m->m_glob, "setValue", argc, argv, &rval);
-	return ok;
+	return ok ? true : false;
 }
 
 bool ScriptInterface::GetValue_(const wxString& name, jsval& ret)
@@ -697,7 +702,8 @@ bool ScriptInterface::GetValue_(const wxString& name, jsval& ret)
 
 	const uintN argc = 1;
 	jsval argv[argc] = { jsName };
-	return JS_CallFunctionName(m->m_cx, m->m_glob, "getValue", argc, argv, &ret);
+	JSBool ok = JS_CallFunctionName(m->m_cx, m->m_glob, "getValue", argc, argv, &ret);
+	return ok ? true : false;
 }
 
 bool ScriptInterface::CallFunction(jsval val, const char* name)
@@ -718,21 +724,22 @@ bool ScriptInterface::CallFunction_(jsval val, const char* name, std::vector<jsv
 	wxCHECK(JS_HasProperty(m->m_cx, JSVAL_TO_OBJECT(val), name, &found), false);
 	if (! found)
 		return false;
-	return JS_CallFunctionName(m->m_cx, JSVAL_TO_OBJECT(val), name, argc, argv, &ret);
+	JSBool ok = JS_CallFunctionName(m->m_cx, JSVAL_TO_OBJECT(val), name, argc, argv, &ret);
+	return ok ? true : false;
 }
 
 bool ScriptInterface::Eval(const wxString& script)
 {
 	jsval rval;
 	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob, script.mb_str(), script.length(), NULL, 0, &rval);
-	return ok;
+	return ok ? true : false;
 }
 
 bool ScriptInterface::Eval_(const wxString& script, jsval& rval)
 {
 	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob,
 		script.mb_str(), script.length(), NULL, 0, &rval);
-	return ok;
+	return ok ? true : false;
 }
 
 void ScriptInterface::LoadScript(const wxString& filename, const wxString& code)

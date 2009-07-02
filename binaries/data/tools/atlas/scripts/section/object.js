@@ -276,6 +276,7 @@ function init(window, bottomWindow)
 	}
 
 	function updateVariationControl() {
+		variationControl.freeze();
 		variationControl.sizer.clear(true);
 		var settings = Atlas.State.objectSettings;
 		var variation = settings.getActorVariation();
@@ -286,6 +287,9 @@ function init(window, bottomWindow)
 			choice.stringSelection = variation[i];
 			variationControl.sizer.add(choice, 0, wxStretch.EXPAND);
 		}
+		// TODO: this sizer stuff is a bit dodgy - it often doesn't quite
+		// update the sizes and scrollbars at the right points
+		variationControl.thaw();
 		variationControlBox.layout();
 		variationControl.sizer.layout();
 		bottomWindow.sizer.layout();

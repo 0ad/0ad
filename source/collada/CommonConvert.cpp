@@ -102,7 +102,11 @@ void FColladaDocument::LoadFromText(const char *text)
 
 	if (newText != text)
 	{
-		xmlFree((void*)newText);
+		// It'd be nice to use xmlFree, but for some reason (?) it causes
+		// linker errors in MSVC. So get access to it an ugly way:
+		xmlFreeFunc freeFunc;
+		xmlMemGet(&freeFunc, NULL, NULL, NULL);
+		freeFunc((void*)newText);
 	}
 
 	REQUIRE_SUCCESS(status);
