@@ -37,6 +37,9 @@
 #include "wxJS/gui/init.h"
 #include "wxJS/gui/control/panel.h"
 #include "wxJS/gui/misc/bitmap.h"
+#include "wxJS/gui/event/jsevent.h"
+#include "wxJS/gui/event/key.h"
+#include "wxJS/gui/event/mouse.h"
 
 #include "GameInterface/Shareable.h"
 #include "GameInterface/Messages.h"
@@ -77,8 +80,10 @@ namespace
 #endif
 	}
 
-	// Use templated structs instead of functions, so that we can use partial specialisation:
-	
+	// Report runtime errors for unhandled types, so we don't have to bother
+	// defining all the types in advance. (TODO: at some point we should
+	// define all the types and then remove this bit so the errors are found
+	// at link-time.)
 	template<typename T> struct FromJSVal
 	{
 		static bool Convert(JSContext* cx, jsval WXUNUSED(v), T& WXUNUSED(out))
@@ -128,6 +133,15 @@ namespace
 			uint32 ret;
 			if (! JS_ValueToECMAUint32(cx, v, &ret)) return false;
 			out = ret;
+			return true;
+		}
+	};
+
+	template<> struct FromJSVal<jsval>
+	{
+		static bool Convert(JSContext* WXUNUSED(cx), jsval v, jsval& out)
+		{
+			out = v;
 			return true;
 		}
 	};
@@ -197,8 +211,11 @@ namespace
 	};
 
 	////////////////////////////////////////////////////////////////
-	// Primitive types:
 
+	// Report runtime errors for unhandled types, so we don't have to bother
+	// defining all the types in advance. (TODO: at some point we should
+	// define all the types and then remove this bit so the errors are found
+	// at link-time.)
 	template<typename T> struct ToJSVal
 	{
 		static jsval Convert(JSContext* cx, const T& WXUNUSED(val))
@@ -208,7 +225,10 @@ namespace
 		}
 	};
 
-	/*template<> struct ToJSVal<float>
+	////////////////////////////////////////////////////////////////
+	// Primitive types:
+
+	template<> struct ToJSVal<float>
 	{
 		static jsval Convert(JSContext* cx, const float& val)
 		{
@@ -216,7 +236,7 @@ namespace
 			JS_NewDoubleValue(cx, val, &rval); // ignore return value
 			return rval;
 		}
-	};*/
+	};
 
 	template<> struct ToJSVal<int>
 	{
@@ -265,6 +285,31 @@ namespace
 	};
 
 	////////////////////////////////////////////////////////////////
+	// wxJS types:
+
+	template<> struct ToJSVal<wxKeyEvent>
+	{
+		static jsval Convert(JSContext* cx, const wxKeyEvent& val)
+		{
+			wxKeyEvent& evt = const_cast<wxKeyEvent&>(val); // ugly, but needed for wxJS
+			wxjs::gui::PrivKeyEvent *jsEvent = new wxjs::gui::PrivKeyEvent(evt);
+			jsEvent->SetScoop(false); // (wxJS will clone the event now, and not modify the const version)
+			return wxjs::gui::KeyEvent::CreateObject(cx, jsEvent);
+		}
+	};
+
+	template<> struct ToJSVal<wxMouseEvent>
+	{
+		static jsval Convert(JSContext* cx, const wxMouseEvent& val)
+		{
+			wxMouseEvent& evt = const_cast<wxMouseEvent&>(val); // see comments above for KeyEvent
+			wxjs::gui::PrivMouseEvent *jsEvent = new wxjs::gui::PrivMouseEvent(evt);
+			jsEvent->SetScoop(false);
+			return wxjs::gui::MouseEvent::CreateObject(cx, jsEvent);
+		}
+	};
+
+	////////////////////////////////////////////////////////////////
 	// Compound types:
 
 	template<typename T> struct ToJSVal<std::vector<T> >
@@ -294,6 +339,34 @@ namespace
 
 	////////////////////////////////////////////////////////////////
 	// AtlasMessage structures:
+
+	template<> struct FromJSVal<AtlasMessage::Position>
+	{
+		static bool Convert(JSContext* cx, jsval v, AtlasMessage::Position& out)
+		{
+			JSObject* obj;
+			if (! JS_ValueToObject(cx, v, &obj) || obj == NULL)
+				FAIL("Argument must be an object");
+			jsval val;
+
+			float x, y, z;
+			if (! JS_GetProperty(cx, obj, "x", &val))
+				FAIL("Failed to get 'x'");
+			if (! ScriptInterface::FromJSVal(cx, val, x))
+				FAIL("Failed to convert 'x'");
+			if (! JS_GetProperty(cx, obj, "y", &val))
+				FAIL("Failed to get 'y'");
+			if (! ScriptInterface::FromJSVal(cx, val, y))
+				FAIL("Failed to convert 'y'");
+			if (! JS_GetProperty(cx, obj, "z", &val))
+				FAIL("Failed to get 'z'");
+			if (! ScriptInterface::FromJSVal(cx, val, z))
+				FAIL("Failed to convert 'z'");
+
+			out = AtlasMessage::Position(x, y, z);
+			return true;
+		}
+	};
 
 	template<> struct ToJSVal<AtlasMessage::sTerrainGroupPreview>
 	{
@@ -352,7 +425,7 @@ namespace
 		{
 			JSObject* obj;
 			if (! JS_ValueToObject(cx, v, &obj) || obj == NULL)
-				FAIL("Argument must be an array");
+				FAIL("Argument must be an object");
 			jsval val;
 
 			int player;
@@ -375,6 +448,7 @@ namespace
 			return true;
 		}
 	};
+
 }
 
 template<typename T> bool ScriptInterface::FromJSVal(JSContext* cx, jsval v, T& out)
@@ -391,8 +465,12 @@ template<typename T> jsval ScriptInterface::ToJSVal(JSContext* cx, const T& v)
 // but are required for linking with other files
 template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&);
 template bool ScriptInterface::FromJSVal<float>(JSContext*, jsval, float&);
+template bool ScriptInterface::FromJSVal<jsval>(JSContext*, jsval, jsval&);
 template jsval ScriptInterface::ToJSVal<wxString>(JSContext*, wxString const&);
+template jsval ScriptInterface::ToJSVal<wxKeyEvent>(JSContext*, wxKeyEvent const&);
+template jsval ScriptInterface::ToJSVal<wxMouseEvent>(JSContext*, wxMouseEvent const&);
 template jsval ScriptInterface::ToJSVal<int>(JSContext*, int const&);
+template jsval ScriptInterface::ToJSVal<float>(JSContext*, float const&);
 template jsval ScriptInterface::ToJSVal<std::vector<int> >(JSContext*, std::vector<int> const&);
 
 ////////////////////////////////////////////////////////////////
@@ -574,24 +652,43 @@ JSContext* ScriptInterface::GetContext()
 	return m->m_cx;
 }
 
-void ScriptInterface::AddRoot(void* ptr)
+bool ScriptInterface::AddRoot(void* ptr)
 {
-	JS_AddRoot(m->m_cx, ptr);
+	return JS_AddRoot(m->m_cx, ptr);
 }
 
-void ScriptInterface::RemoveRoot(void* ptr)
+bool ScriptInterface::RemoveRoot(void* ptr)
 {
-	JS_RemoveRoot(m->m_cx, ptr);
+	return JS_RemoveRoot(m->m_cx, ptr);
 }
 
-void ScriptInterface::SetValue_(const wxString& name, jsval val)
+ScriptInterface::LocalRootScope::LocalRootScope(ScriptInterface& scriptInterface)
+	: m_ScriptInterface(scriptInterface)
+{
+	m_OK = JS_EnterLocalRootScope(m_ScriptInterface.m->m_cx);
+}
+
+ScriptInterface::LocalRootScope::~LocalRootScope()
+{
+	if (m_OK)
+		JS_LeaveLocalRootScope(m_ScriptInterface.m->m_cx);
+}
+
+bool ScriptInterface::LocalRootScope::OK()
+{
+	return m_OK;
+}
+
+
+bool ScriptInterface::SetValue_(const wxString& name, jsval val)
 {
 	jsval jsName = ToJSVal(m->m_cx, name);
 
 	const uintN argc = 2;
 	jsval argv[argc] = { jsName, val };
 	jsval rval;
-	JSBool ok = JS_CallFunctionName(m->m_cx, m->m_glob, "setValue", argc, argv, &rval); // TODO: error checking
+	JSBool ok = JS_CallFunctionName(m->m_cx, m->m_glob, "setValue", argc, argv, &rval);
+	return ok;
 }
 
 bool ScriptInterface::GetValue_(const wxString& name, jsval& ret)
@@ -603,12 +700,32 @@ bool ScriptInterface::GetValue_(const wxString& name, jsval& ret)
 	return JS_CallFunctionName(m->m_cx, m->m_glob, "getValue", argc, argv, &ret);
 }
 
-void ScriptInterface::Eval(const wxString& script)
+bool ScriptInterface::CallFunction(jsval val, const char* name)
+{
+	jsval jsRet;
+	std::vector<jsval> argv;
+	return CallFunction_(val, name, argv, jsRet);
+}
+
+bool ScriptInterface::CallFunction_(jsval val, const char* name, std::vector<jsval>& args, jsval& ret)
+{
+	const uintN argc = args.size();
+	jsval* argv = NULL;
+	if (argc)
+		argv = &args[0];
+	wxCHECK(JSVAL_IS_OBJECT(val), false);
+	JSBool found;
+	wxCHECK(JS_HasProperty(m->m_cx, JSVAL_TO_OBJECT(val), name, &found), false);
+	if (! found)
+		return false;
+	return JS_CallFunctionName(m->m_cx, JSVAL_TO_OBJECT(val), name, argc, argv, &ret);
+}
+
+bool ScriptInterface::Eval(const wxString& script)
 {
 	jsval rval;
-	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob,
-		script.mb_str(), script.length(), NULL, 0, &rval);
-		// TODO: error checking
+	JSBool ok = JS_EvaluateScript(m->m_cx, m->m_glob, script.mb_str(), script.length(), NULL, 0, &rval);
+	return ok;
 }
 
 bool ScriptInterface::Eval_(const wxString& script, jsval& rval)

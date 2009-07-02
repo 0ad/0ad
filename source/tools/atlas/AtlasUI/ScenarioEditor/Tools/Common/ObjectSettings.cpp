@@ -43,7 +43,7 @@ AtlasMessage::sObjectSettings ObjectSettings::GetSettings() const
 {
 	AtlasMessage::sObjectSettings settings;
 	bool ok = m_ScriptInterface.Eval(_T("Atlas.State.objectSettings.toSObjectSettings()"), settings);
-	wxASSERT(ok);
+	wxCHECK(ok, AtlasMessage::sObjectSettings());
 	return settings;
 }
 

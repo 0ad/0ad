@@ -1,10 +1,15 @@
+Atlas.RenderView = {
+	GAME: 1,
+	ACTOR: 2
+}; // TODO: this should probably be defined by the C++ code
+
 // Define the default state settings.
 // (It's done this way so that this script can be dynamically reloaded,
 // and won't overwrite the previous runtime state but will still pick
 // up any new properties)
 var defaults = {
 	objectSettings: {
-		view: undefined,
+		view: Atlas.RenderView.GAME,
 		selectedObjects: [],
 		playerID: 1,
 		actorSelections: [],
@@ -20,18 +25,21 @@ defaults.objectSettings.toSObjectSettings = function () {
 }
 
 defaults.objectSettings.onSelectionChange = function () {
-	if (! this.selectedObjects.length)
-		return; // TODO: do something sensible here
+	if (! this.selectedObjects.length) {
+		// TODO: do something sensible here
+		this.actorSelections = [];
+		this.variantGroups = [];
+	} else {
+		// TODO: Support multiple selections
+		var selection = this.selectedObjects[0];
 
-	// TODO: Support multiple selections
-	var selection = this.selectedObjects[0];
+		var settings = Atlas.Message.GetObjectSettings(this.view, selection).settings;
 
-	var settings = Atlas.Message.GetObjectSettings(this.view, selection).settings;
-
-	this.playerID = settings.player;
-	this.actorSelections = settings.selections;
-	this.variantGroups = settings.variantgroups;
-
+		if (settings.player != -1)
+			this.playerID = settings.player;
+		this.actorSelections = settings.selections;
+		this.variantGroups = settings.variantgroups;
+	}
 	this.notifyObservers();
 }
 
@@ -95,6 +103,7 @@ function makeObservable(obj)
 
 function postObjectSettingsToGame(objectSettings)
 {
+	// TODO: if view != GAME, we don't really want this to be an undoable command
 	if (objectSettings.selectedObjects.length)
 		Atlas.Message.SetObjectSettings(objectSettings.view,
 			objectSettings.selectedObjects[0], objectSettings.toSObjectSettings());

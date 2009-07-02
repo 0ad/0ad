@@ -40,6 +40,8 @@
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
+#include "simulation/EntityTemplateCollection.h"
+#include "simulation/EntityTemplate.h"
 
 struct ActorViewerImpl : public Scene
 {
@@ -84,6 +86,8 @@ ActorViewer::ActorViewer()
 {
 	m.Unit = NULL;
 	m.WalkEnabled = false;
+	m.GroundEnabled = true;
+	m.ShadowsEnabled = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
 	m.Background = SColor4ub(255, 255, 255, 255);
 
 	// Set up the renderer
@@ -129,9 +133,42 @@ void ActorViewer::UnloadObjects()
 	m.ObjectManager.UnloadObjects();
 }
 
-void ActorViewer::SetActor(const CStrW& id, const CStrW& animation)
+// We want to support selection of both entities and actors in the
+// Actor Viewer tool, so work out the actor corresponding to the given
+// string
+static bool ParseObjectName(const CStrW& obj, CStrW& name)
+{
+	if (obj.substr(0, 4) == L"(e) ")
+	{
+		CStrW entname = obj.substr(4);
+		CEntityTemplate* entity = g_EntityTemplateCollection.GetTemplate(entname);
+		if (! entity)
+			return false;
+		name = entity->m_actorName;
+		return true;
+	}
+	else if (obj.substr(0, 4) == L"(n) ")
+	{
+		name = obj.substr(4);
+		return true;
+	}
+	else
+	{
+		// By default, assume it's just an actor name. (TODO: This
+		// case is probably only used by the obsolete standalone
+		// Actor Viewer and should get removed eventually.)
+		name = obj;
+		return true;
+	}
+}
+
+void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 {
 	bool needsAnimReload = false;
+
+	CStrW id;
+	if (! ParseObjectName(name, id))
+		id = L"";
 
 	if (! m.Unit || id != m.CurrentUnitID)
 	{

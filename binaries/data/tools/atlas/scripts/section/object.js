@@ -13,6 +13,145 @@ function setObjectFilter(objectList, objects, type)
 	objectList.thaw();
 }
 
+var actorViewer = {
+	active: false,
+	distance: 20,
+	angle: 0,
+	elevation: Math.PI / 6,
+	actor: "(n) structures/fndn_1x1.xml",
+	animation: "idle",
+	// Animation playback speed
+	speed: 0,
+	// List of controls which should be hidden, and only shown when the Actor Viewer is active
+	controls: []
+};
+
+actorViewer.toggle = function () {
+	if (this.active) {
+		// TODO: maybe this should switch back to whatever was selected before,
+		// not necessarily PlaceObject
+		Atlas.SetCurrentToolWith('PlaceObject', this.actor);
+	} else {
+		Atlas.SetCurrentToolWithVal('ScriptedTool', this);
+	}
+};
+
+actorViewer.postToGame = function () {
+	Atlas.Message.SetActorViewer(this.actor, this.animation, this.speed, false);	
+};
+
+actorViewer.postLookAt = function () {
+	var offset = 0.3; // slight fudge so we turn nicely when going over the top of the unit
+	var pos = {
+		x: this.distance*Math.cos(this.elevation)*Math.sin(this.angle) + offset*Math.cos(this.angle),
+		y: this.distance*Math.sin(this.elevation),
+		z: this.distance*Math.cos(this.elevation)*Math.cos(this.angle) - offset*Math.sin(this.angle)
+	};
+	Atlas.Message.LookAt(Atlas.RenderView.ACTOR, pos, {x:0, y:0, z:0});
+};
+
+actorViewer.setActor = function (actor) {
+	this.actor = actor;
+	if (this.active) {
+		this.postToGame();
+		Atlas.State.objectSettings.onSelectionChange();
+	}
+}
+
+actorViewer.onEnable = function () {
+	this.active = true;
+	this.button.label = this.buttonTextActive;
+	for each (ctrl in actorViewer.controls)
+		ctrl.show(true);
+	this.postToGame();
+	Atlas.State.objectSettings.view = Atlas.RenderView.ACTOR;
+	Atlas.State.objectSettings.selectedObjects = [0];
+	Atlas.State.objectSettings.onSelectionChange(); // (must come after postToGame)
+	this.postLookAt();
+	Atlas.Message.RenderEnable(Atlas.RenderView.ACTOR);
+}
+
+actorViewer.onDisable = function () {
+	this.active = false;
+	this.button.label = this.buttonTextInactive;
+	for each (ctrl in actorViewer.controls)
+		ctrl.show(false);
+	Atlas.State.objectSettings.view = Atlas.RenderView.GAME;
+	Atlas.State.objectSettings.selectedObjects = [];
+	Atlas.State.objectSettings.onSelectionChange();
+	Atlas.Message.RenderEnable(Atlas.RenderView.GAME);
+}
+
+actorViewer.onKey = function (evt, type) {
+	var code0 = '0'.charCodeAt(0);
+	var code9 = '9'.charCodeAt(0);
+	if (type == 'down' && evt.keyCode >= code0 && evt.keyCode <= code9) {
+		// (TODO: this should probably be 'char' not 'down'; but we don't get
+		// 'char' unless we return false from this function, in which case the
+		// scenario editor intercepts some other keys for itself)
+		Atlas.State.objectSettings.playerID = evt.keyCode - code0;
+		Atlas.State.objectSettings.notifyObservers();
+	}
+
+	// Prevent keys from passing through to the scenario editor
+	return true;
+}
+
+actorViewer.onMouse = function (evt) {
+	var cameraChanged = false;
+
+	var speedModifier = this.getSpeedModifier();
+
+	if (evt.wheelRotation) {
+		var speed = -1 * speedModifier;
+		this.distance += evt.wheelRotation * speed / evt.wheelDelta;
+		cameraChanged = true;
+	}
+
+	if (evt.leftDown || evt.rightDown) {
+		this.mouseLastX = evt.x;
+		this.mouseLastY = evt.y;
+		this.mouseLastValid = true;
+	} else if (evt.dragging && this.mouseLastValid && (evt.leftIsDown || evt.rightIsDown)) {
+		var dx = evt.x - this.mouseLastX;
+		var dy = evt.y - this.mouseLastY;
+		this.mouseLastX = evt.x;
+		this.mouseLastY = evt.y;
+		this.angle += dx * Math.PI/256 * speedModifier;
+		if (evt.leftIsDown)
+			this.distance += (dy / 8) * speedModifier;
+		else // evt.rightIsDown
+			this.elevation += (dy * Math.PI/256) * speedModifier;
+		cameraChanged = true;
+	} else if ((evt.leftUp || evt.rightUp) && ! (evt.leftDown || evt.rightDown)) {
+		// In some situations (e.g. double-clicking the title bar to
+		// maximise the window) we get a dragging event without the matching
+		// buttondown; so disallow dragging when all buttons were released since
+		// the last buttondown.
+		// (TODO: does this problem affect the scenario editor too?)
+		this.mouseLastValid = false;
+	}
+
+	if (cameraChanged) {
+		this.distance = Math.max(this.distance, 1/64); // don't let people fly through the origin
+		this.postLookAt();
+	}
+
+	return true;
+};
+
+actorViewer.getSpeedModifier = function () { // TODO: this should be shared with the rest of the application
+	if (wxGetKeyState(wxKeyCode.SHIFT) && wxGetKeyState(wxKeyCode.CONTROL))
+		return 1/64;
+	else if (wxGetKeyState(wxKeyCode.CONTROL))
+		return 1/4;
+	else if (wxGetKeyState(wxKeyCode.SHIFT))
+		return 4;
+	else
+		return 1;
+};
+
+
 var g_observer;
 
 function init(window, bottomWindow)
@@ -23,31 +162,41 @@ function init(window, bottomWindow)
 	
 	var objectList = new wxListBox(window, -1, wxDefaultPosition, wxDefaultSize, [],
 		wxListBox.SINGLE | wxListBox.HSCROLL);
+	var objectType = 0;
 	objectList.onListBox = function (evt) {
 		if (evt.selection == -1)
 			return;
 		var id = objectList.objectIDs[evt.selection];
-		Atlas.SetCurrentToolWith('PlaceObject', id);
+
+		actorViewer.setActor(id);
+		if (! actorViewer.active)
+			Atlas.SetCurrentToolWith('PlaceObject', id);
 	};
-	setObjectFilter(objectList, objects, 0);
+	setObjectFilter(objectList, objects, objectType);
 	
 	var groupSelector = new wxChoice(window, -1, wxDefaultPosition, wxDefaultSize,
 		["Entities", "Actors (all)"]
 	);
 	groupSelector.onChoice = function (evt) {
-		setObjectFilter(objectList, objects, evt.selection);
+		objectType = evt.selection;
+		setObjectFilter(objectList, objects, objectType);
 	};
 	
 	window.sizer.add(groupSelector, 0, wxStretch.EXPAND);
 	window.sizer.add(objectList, 1, wxStretch.EXPAND);
-	
-	
-	bottomWindow.sizer = new wxBoxSizer(wxOrientation.VERTICAL);
+
+
+	var viewerButton = new wxButton(window, -1, "Switch to Actor Viewer");
+	actorViewer.button = viewerButton;
+	actorViewer.buttonTextInactive = "Switch to Actor Viewer";
+	actorViewer.buttonTextActive = "Switch to game view";
+	viewerButton.onClicked = function () { actorViewer.toggle(); }
+	window.sizer.add(viewerButton, 0, wxStretch.EXPAND);
+
+
 	var playerSelector = new wxChoice(bottomWindow, -1, wxDefaultPosition, wxDefaultSize,
 		["Gaia", "Player 1", "Player 2", "Player 3", "Player 4", "Player 5", "Player 6", "Player 7", "Player 8"]
 	);
-	bottomWindow.sizer.add(playerSelector);
-
 	playerSelector.selection = Atlas.State.objectSettings.playerID;
 	playerSelector.onChoice = function (evt) {
 		Atlas.State.objectSettings.playerID = evt.selection;
@@ -57,6 +206,46 @@ function init(window, bottomWindow)
 		playerSelector.selection = Atlas.State.objectSettings.playerID;
 	}
 
+	var animationBoxBox = new wxStaticBox(bottomWindow, -1, "Animation");
+	actorViewer.controls.push(animationBoxBox);
+	var animationBox = new wxStaticBoxSizer(animationBoxBox, wxOrientation.VERTICAL);
+	var animationSelector = new wxChoice(bottomWindow, -1, wxDefaultPosition, wxDefaultSize,
+		[ "attack1", "attack2", "build", "corpse", "death",
+		  "gather_fruit", "gather_grain", "gather_wood", "gather_stone", "gather_metal",
+		  "idle", "melee", "run", "walk" ] // TODO: this list should come from the actor
+	);
+	animationSelector.stringSelection = "idle";
+	actorViewer.controls.push(animationSelector);
+	animationSelector.onChoice = function (evt) {
+		actorViewer.animation = evt.string;
+		actorViewer.postToGame();
+	};
+	var animationSpeedSizer = new wxBoxSizer(wxOrientation.HORIZONTAL);
+	var speeds = [ ['Play', 1], ['Pause', 0], ['Slow', 0.1] ];
+	for each (var speed in speeds) {
+		var button = new wxButton(bottomWindow, -1, speed[0], wxDefaultPosition, new wxSize(50, -1));
+		actorViewer.controls.push(button);
+		(function (s) { // local scope for closure
+			button.onClicked = function () {
+				actorViewer.speed = s;
+				actorViewer.postToGame();
+			};
+		})(speed[1]);
+		animationSpeedSizer.add(button);
+	}
+	animationBox.add(animationSelector, 0, wxStretch.EXPAND);
+	animationBox.add(animationSpeedSizer, 0, wxStretch.EXPAND);
+
+	var animationSizer = new wxBoxSizer(wxOrientation.VERTICAL);
+	animationSizer.minSize = new wxSize(160, -1);
+	animationSizer.add(playerSelector, 0, wxStretch.EXPAND);
+	animationSizer.add(animationBox, 0, wxStretch.EXPAND);
+
+
+
+	for each (ctrl in actorViewer.controls)
+		ctrl.show(false);
+
 
 	var variationControl = new wxScrolledWindow(bottomWindow, -1);
 	variationControl.setScrollRate(0, 5);
@@ -64,7 +253,6 @@ function init(window, bottomWindow)
 	var variationControlBox = new wxStaticBoxSizer(new wxStaticBox(bottomWindow, -1, "Actor Variation"), wxOrientation.VERTICAL);
 	variationControl.sizer.minSize = new wxSize(160, -1);
 	variationControlBox.add(variationControl, 1);
-	bottomWindow.sizer.add(variationControlBox, 1);
 
 	function onVariationSelect() {
 		// It's possible for a variant name to appear in multiple groups.
@@ -102,6 +290,12 @@ function init(window, bottomWindow)
 		variationControl.sizer.layout();
 		bottomWindow.sizer.layout();
 	}
+
+
+	bottomWindow.sizer = new wxBoxSizer(wxOrientation.HORIZONTAL);
+	bottomWindow.sizer.add(animationSizer);
+	bottomWindow.sizer.add(variationControlBox, 0, wxStretch.EXPAND);
+
 
 	g_observer = function() {
 		updatePlayerSelector();

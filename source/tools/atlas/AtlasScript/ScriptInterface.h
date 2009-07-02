@@ -16,6 +16,7 @@
  */
 
 #include <memory>
+#include <vector>
 
 #ifdef _WIN32
 # define XP_WIN
@@ -49,9 +50,16 @@ public:
 	void SetCallbackData(void* cbdata);
 	static void* GetCallbackData(JSContext* cx);
 
-	template <typename T> void SetValue(const wxString& name, const T& val);
+	template <typename T> bool SetValue(const wxString& name, const T& val);
 	template <typename T> bool GetValue(const wxString& name, T& ret);
-	void Eval(const wxString& script);
+
+	bool CallFunction(jsval val, const char* name);
+	template <typename T, typename R>
+		bool CallFunction(jsval val, const char* name, const T& a, R& ret);
+	template <typename T, typename S, typename R>
+		bool CallFunction(jsval val, const char* name, const T& a, const S& b, R& ret);
+
+	bool Eval(const wxString& script);
 	template <typename T> bool Eval(const wxString& script, T& ret);
 
 	// Defined elsewhere:
@@ -64,14 +72,36 @@ public:
 	wxPanel* LoadScriptAsPanel(const wxString& name, wxWindow* parent);
 	std::pair<wxPanel*, wxPanel*> LoadScriptAsSidebar(const wxString& name, wxWindow* side, wxWindow* bottom);
 
+	// Convert a jsval to a C++ type. (This might trigger GC.)
 	template <typename T> static bool FromJSVal(JSContext* cx, jsval val, T& ret);
+	// Convert a C++ type to a jsval. (This might trigger GC. The return
+	// value must be rooted if you don't want it to be collected.)
 	template <typename T> static jsval ToJSVal(JSContext* cx, const T& val);
+
+	bool AddRoot(void* ptr);
+	bool RemoveRoot(void* ptr);
+
+	// Helper class for automatically rooting values
+	class LocalRootScope
+	{
+		ScriptInterface& m_ScriptInterface;
+		bool m_OK;
+	public:
+		// Tries to enter local root scope, so newly created
+		// values won't be GCed. This might fail, so check OK()
+		LocalRootScope(ScriptInterface& scriptInterface);
+		// Returns true if the local root scope was successfully entered
+		bool OK();
+		// Leaves the local root scope
+		~LocalRootScope();
+	};
+	#define LOCAL_ROOT_SCOPE LocalRootScope scope(*this); if (! scope.OK()) return false
+
 private:
 	JSContext* GetContext();
-	void AddRoot(void* ptr);
-	void RemoveRoot(void* ptr);
-	void SetValue_(const wxString& name, jsval val);
+	bool SetValue_(const wxString& name, jsval val);
 	bool GetValue_(const wxString& name, jsval& ret);
+	bool CallFunction_(jsval val, const char* name, std::vector<jsval>& args, jsval& ret);
 	bool Eval_(const wxString& name, jsval& ret);
 
 	void Register(const char* name, JSNative fptr, size_t nargs);
@@ -81,7 +111,7 @@ private:
 #include "NativeWrapper.inl"
 
 template <typename T>
-void ScriptInterface::SetValue(const wxString& name, const T& val)
+bool ScriptInterface::SetValue(const wxString& name, const T& val)
 {
 	return SetValue_(name, ToJSVal(GetContext(), val));
 }
@@ -89,21 +119,42 @@ void ScriptInterface::SetValue(const wxString& name, const T& val)
 template <typename T>
 bool ScriptInterface::GetValue(const wxString& name, T& ret)
 {
+	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	if (! GetValue_(name, jsRet)) return false;
-	AddRoot(&jsRet); // root it while we do some more work (TODO: is this really necessary?)
-	bool ok = FromJSVal(GetContext(), jsRet, ret);
-	RemoveRoot(&jsRet);
-	return ok;
+	return FromJSVal(GetContext(), jsRet, ret);
+}
+
+template <typename T, typename R>
+bool ScriptInterface::CallFunction(jsval val, const char* name, const T& a, R& ret)
+{
+	LOCAL_ROOT_SCOPE;
+	jsval jsRet;
+	std::vector<jsval> argv;
+	argv.push_back(ToJSVal(GetContext(), a));
+	bool ok = CallFunction_(val, name, argv, jsRet);
+	if (! ok) return false;
+	return FromJSVal(GetContext(), jsRet, ret);
+}
+
+template <typename T, typename S, typename R>
+bool ScriptInterface::CallFunction(jsval val, const char* name, const T& a, const S& b, R& ret)
+{
+	LOCAL_ROOT_SCOPE;
+	jsval jsRet;
+	std::vector<jsval> argv;
+	argv.push_back(ToJSVal(GetContext(), a));
+	argv.push_back(ToJSVal(GetContext(), b));
+	bool ok = CallFunction_(val, name, argv, jsRet);
+	if (! ok) return false;
+	return FromJSVal(GetContext(), jsRet, ret);
 }
 
 template <typename T>
 bool ScriptInterface::Eval(const wxString& script, T& ret)
 {
+	LOCAL_ROOT_SCOPE;
 	jsval jsRet;
 	if (! Eval_(script, jsRet)) return false;
-	AddRoot(&jsRet); // root it while we do some more work
-	bool ok = FromJSVal(GetContext(), jsRet, ret);
-	RemoveRoot(&jsRet);
-	return ok;
+	return FromJSVal(GetContext(), jsRet, ret);
 }
