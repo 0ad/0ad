@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="shark_big">
+      <mesh>skeletal/shark_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shark_light">
+      <texture>skeletal/animal_shark.dds</texture>
+    </variant>
+    <variant frequency="1" name="shark_dark">
+      <texture>skeletal/animal_sharkdark.dds</texture>
+    </variant>
+  </group>
+</actor>

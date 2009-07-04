@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/hawk.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant name="hawk a">
+      <texture>skeletal/animal_falcon_a.dds</texture>
+    </variant>
+    <variant name="hawk b">
+      <texture>skeletal/animal_falcon_b.dds</texture>
+    </variant>
+    <variant name="hawk c">
+      <texture>skeletal/animal_falcon_c.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
