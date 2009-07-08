@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Cypress Tree (Small)">
+      <mesh>gaia/tree_cypress_sm.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Cypress Tree (Medium)">
+      <mesh>gaia/tree_cypress_med.dae</mesh>
+    </variant>
+    <variant frequency="2" name="Cypress Tree (Tall)">
+      <mesh>gaia/tree_cypress_large.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <texture>gaia/prop_tree_cypess.dds</texture>
+    </variant>
+  </group>
+</actor>
