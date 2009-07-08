@@ -4,14 +4,14 @@
 	<Environment>
 		<SkySet>sunny</SkySet>
 		<SunColour r="1" g="1" b="1"/>
-		<SunElevation angle="0.717903"/>
-		<SunRotation angle="-0.582913"/>
+		<SunElevation angle="0.619728"/>
+		<SunRotation angle="-0.435651"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
-				<Colour r="0.298039" g="0.34902" b="0.698039"/>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>21.84</Height>
 				<Shininess>8.05664</Shininess>
 				<Waviness>8</Waviness>
@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="167.325" y="119.14" z="376.142"/>
+		<Position x="168.792" y="120.901" z="376.454"/>
 		<Rotation angle="0.00744593"/>
 		<Declination angle="0.664298"/>
 	</Camera>
@@ -1033,7 +1033,7 @@
 		<Entity uid="233">
 			<Template>hele_cavalry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="146.755" y="22.4" z="514.212"/>
+			<Position x="142.644" y="22.4" z="509.062"/>
 			<Orientation angle="-2.18539"/>
 		</Entity>
 		<Entity uid="239">
@@ -1051,7 +1051,7 @@
 		<Entity uid="247">
 			<Template>hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="149.561" y="22.4" z="511.176"/>
+			<Position x="145.833" y="22.4" z="505.471"/>
 			<Orientation angle="-2.68437"/>
 		</Entity>
 		<Entity uid="248">
@@ -4216,6 +4216,12 @@
 			<Position x="355.769" y="23.1512" z="143.466"/>
 			<Orientation angle="-2.16382"/>
 		</Entity>
+		<Entity uid="2271">
+			<Template>iber_dock</Template>
+			<Player>0</Player>
+			<Position x="478.671" y="21.3293" z="321.84"/>
+			<Orientation angle="2.46448"/>
+		</Entity>
 	</Entities>
 	<Nonentities>
 		<Nonentity>
@@ -5095,7 +5101,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_medit_underbrush.xml</Actor>
-			<Position x="470.613" y="22.4" z="345.644"/>
+			<Position x="471.321" y="22.4" z="345.453"/>
 			<Orientation angle="0.899725"/>
 		</Nonentity>
 		<Nonentity>
@@ -6247,6 +6253,66 @@
 			<Actor>props/flora/grass_soft_dry_small_tall.xml</Actor>
 			<Position x="452.133" y="22.4" z="469.835"/>
 			<Orientation angle="-1.43291"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="503.487" y="21.84" z="324.927"/>
+			<Orientation angle="-0.81945"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="508.208" y="21.84" z="332.279"/>
+			<Orientation angle="-1.14421"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="512.302" y="21.84" z="339.4"/>
+			<Orientation angle="-1.02942"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="517.232" y="21.84" z="346.133"/>
+			<Orientation angle="-0.912741"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="523.07" y="21.84" z="353.035"/>
+			<Orientation angle="-0.846186"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="496.107" y="21.84" z="319.094"/>
+			<Orientation angle="-0.461701"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="488.483" y="21.84" z="314.553"/>
+			<Orientation angle="-0.440939"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="480.155" y="21.84" z="309.933"/>
+			<Orientation angle="-0.63315"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="472.854" y="21.84" z="303.859"/>
+			<Orientation angle="-0.726053"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="465.692" y="21.84" z="297.789"/>
+			<Orientation angle="-0.614344"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="526.498" y="21.84" z="360.499"/>
+			<Orientation angle="-1.45673"/>
+		</Nonentity>
+		<Nonentity>
+			<Actor>props/special/eyecandy/water_waves.xml</Actor>
+			<Position x="459.935" y="21.84" z="292.356"/>
+			<Orientation angle="-0.81264"/>
 		</Nonentity>
 	</Nonentities>
 	<Paths/>
