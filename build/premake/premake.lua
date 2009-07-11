@@ -625,6 +625,7 @@ function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_inc
 
 	elseif OS == "linux" then
 		tinsert(package.buildoptions, "-rdynamic")
+		tinsert(package.buildoptions, "-fPIC")
 		tinsert(package.linkoptions, "-rdynamic")
 
 		if extra_params["no_unused_warnings"] then
