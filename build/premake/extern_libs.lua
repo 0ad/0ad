@@ -264,7 +264,7 @@ function package_add_extern_libs(extern_libs)
 
 	for i,extern_lib in extern_libs do
 		local def = extern_lib_defs[extern_lib]
-		assert(def, "external library not defined")
+		assert(def, "external library " .. extern_lib .. " not defined")
 
 		if def["add_func"] then
 			def["add_func"]()
