@@ -1,8 +1,8 @@
 CXX := g++
-CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function -DLINUX
+CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function -DLINUX -fpic
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG
 CXXFLAGS_RELEASE := -O2 -DNDEBUG -DRETAIL
-LDFLAGS := -lxml2 -shared
+LDFLAGS := -lxml2 -shared -fpic
 INCLUDES := -IFCollada -I/usr/include/libxml2
 
 SOURCE = \
@@ -185,7 +185,7 @@ OBJECTS_RELEASE = $(addprefix output/release/,$(SOURCE:.cpp=.o))
 all: output_dirs output/libFColladaSD.a output/libFColladaSR.a install
 
 output_dirs:
-	mkdir -p output/{debug,release}/{FCollada/{FCDocument,FMath,FUtils},FColladaPlugins/FArchiveXML}
+	bash -c 'mkdir -p output/{debug,release}/{FCollada/{FCDocument,FMath,FUtils},FColladaPlugins/FArchiveXML}'
 
 output/libFColladaSD.a: $(OBJECTS_DEBUG)
 	ar -cr $@ $(OBJECTS_DEBUG); ranlib $@
