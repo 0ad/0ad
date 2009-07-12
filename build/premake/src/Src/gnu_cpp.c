@@ -438,7 +438,8 @@ static const char* listCppTargets(const char* name)
 {
 	const char* ext = path_getextension(name);
 	const char* pchHeader = prj_get_pch_header();
-	const char *pchSource = prj_get_pch_source();
+	const char* pchSource = prj_get_pch_source();
+	const char* nasm_format = prj_get_nasm_format();
 
 	int use_pch = pchHeader?1:0, gen_pch=0;
 	const char* pchExt = (matches(g_cc, "icc") ? "pchi" : "h.gch");
@@ -514,7 +515,9 @@ static const char* listCppTargets(const char* name)
 				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); 
 				strcat(g_buffer, " -i"); strcat(g_buffer,input_dir ); 
 				strcat(g_buffer, " -f ");
-				if (os_is("macosx"))
+				if (nasm_format)
+					strcat(g_buffer, nasm_format);
+				else if (os_is("macosx"))
 					strcat(g_buffer, "macho");
 				else
 					strcat(g_buffer, "elf");

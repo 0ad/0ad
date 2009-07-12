@@ -40,6 +40,10 @@ if OS == "windows" then
 	has_broken_pch = false
 else
 	project.cxxtestpath = "../../build/bin/cxxtestgen.pl"
+	if arch == "amd64" then
+		-- Hack for amd64 linux - tell nasm to product 64-bit elf.
+		project.nasmformat = "elf64"
+	end
 
 	-- GCC bug (http://gcc.gnu.org/bugzilla/show_bug.cgi?id=10591) - PCH breaks anonymous namespaces
 	-- Fixed in 4.2.0, but we have to disable PCH for earlier versions, else

@@ -28,6 +28,7 @@ typedef struct tagPrjConfig
 	const char* bindir;
 	const char* libdir;
 	const char* nasmpath;
+	const char* nasm_format;
 	const char* cxxtest_path;
 } PrjConfig;
 
@@ -117,6 +118,7 @@ const char*  prj_get_objdir();
 const char*  prj_get_prefix();
 const char*  prj_get_name();
 const char*  prj_get_nasmpath();
+const char*  prj_get_nasm_format();
 const char*  prj_get_cxxtestpath();
 int          prj_get_numbuildoptions();
 int          prj_get_numconfigs();

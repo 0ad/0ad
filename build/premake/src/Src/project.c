@@ -248,6 +248,11 @@ const char* prj_get_nasmpath()
 	return buffer;
 }
 
+const char* prj_get_nasm_format()
+{
+	return my_cfg->prjConfig->nasm_format;
+}
+
 const char* prj_get_cxxtestpath()
 {
 	strcpy(buffer, path_build(my_pkg->path, my_cfg->prjConfig->cxxtest_path));

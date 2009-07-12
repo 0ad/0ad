@@ -421,6 +421,7 @@ int script_export()
 		config->bindir   = export_value(tbl, obj, "bindir");
 		config->libdir   = export_value(tbl, obj, "libdir");
 		config->nasmpath = export_value(tbl, obj, "nasmpath");
+		config->nasm_format = export_value(tbl, obj, "nasmformat");
 		config->cxxtest_path = export_value(tbl, obj, "cxxtestpath");
 	}
 
