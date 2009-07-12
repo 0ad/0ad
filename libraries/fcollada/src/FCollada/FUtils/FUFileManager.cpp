@@ -389,7 +389,7 @@ fstring FUFileManager::GetApplicationFolderName()
 		}
 		else
 		{
-			path[max(1023u, size)] = '\0';
+			path[max(size_t(1023), size)] = '\0';
 			int i = stat (path, &stat_buf);
 			if (i == -1) break; 
 			else if (!S_ISLNK(stat_buf.st_mode)) break;
