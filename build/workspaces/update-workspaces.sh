@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # build/workspaces/
 
@@ -11,7 +11,7 @@ cd $premake_dir
 
 # build/premake/
 
-./premake --outpath $workspace_dir --atlas --collada $* --target gnu
+HOSTTYPE=$HOSTTYPE ./premake --outpath $workspace_dir --atlas --collada $* --target gnu
 
 # These files need to be linked; premake makefiles assume that the
 # lua file is accessible from the makefile directory
