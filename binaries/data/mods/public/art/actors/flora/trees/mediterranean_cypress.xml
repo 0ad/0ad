@@ -8,13 +8,22 @@
     <variant frequency="2" name="Cypress Tree (Medium)">
       <mesh>gaia/tree_cypress_med.dae</mesh>
     </variant>
-    <variant frequency="2" name="Cypress Tree (Tall)">
+    <variant frequency="2" name="Cypress Tree (Large)">
       <mesh>gaia/tree_cypress_large.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Cypress Tree (Tall)">
+      <mesh>gaia/tree_cypress_xlarge.dae</mesh>
     </variant>
   </group>
   <group>
-    <variant>
+    <variant frequency="1" name="Foliage Colour (A)">
       <texture>gaia/prop_tree_cypess.dds</texture>
+    </variant>
+    <variant frequency="1" name="Foliage Colour (B)">
+      <texture>gaia/prop_tree_cypess_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="Foliage Colour (C)">
+      <texture>gaia/prop_tree_cypess_c.dds</texture>
     </variant>
   </group>
 </actor>
