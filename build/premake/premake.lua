@@ -40,7 +40,7 @@ if OS == "windows" then
 	has_broken_pch = false
 else
 	project.cxxtestpath = "../../build/bin/cxxtestgen.pl"
-	if arch == "amd64" then
+	if OS == "linux" and arch == "amd64" then
 		-- Hack for amd64 linux - tell nasm to product 64-bit elf.
 		project.nasmformat = "elf64"
 	end
