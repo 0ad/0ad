@@ -510,7 +510,7 @@ static const char* listCppTargets(const char* name)
 
 				opts = "";
 				if (!os_is("windows") && !os_is("macosx"))
-					opts = "-dDONT_USE_UNDERLINE=1 ";
+					opts = "-dDONT_USE_UNDERLINE=1 -dOS_LINUX=1 ";
 				
 				strcat(g_buffer, "nasm "); strcat(g_buffer, opts); 
 				strcat(g_buffer, " -i"); strcat(g_buffer,input_dir ); 
