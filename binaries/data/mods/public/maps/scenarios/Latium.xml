@@ -3,7 +3,7 @@
 <Scenario>
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="1" g="1" b="1"/>
+		<SunColour r="1.10156" g="1.10156" b="1.10156"/>
 		<SunElevation angle="0.619728"/>
 		<SunRotation angle="-0.435651"/>
 		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
@@ -13,17 +13,17 @@
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>21.84</Height>
-				<Shininess>8.05664</Shininess>
+				<Shininess>0.732422</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.661133</Murkiness>
+				<Murkiness>0.626953</Murkiness>
 				<Tint r="0" g="0.501961" b="0.501961"/>
-				<ReflectionTint r="0" g="1" b="1"/>
-				<ReflectionTintStrength>0.217773</ReflectionTintStrength>
+				<ReflectionTint r="0.313726" g="0.376471" b="0.521569"/>
+				<ReflectionTintStrength>0.615234</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="168.792" y="120.901" z="376.454"/>
+		<Position x="172.058" y="136.791" z="358.894"/>
 		<Rotation angle="0.00744593"/>
 		<Declination angle="0.664298"/>
 	</Camera>
@@ -1051,38 +1051,38 @@
 		<Entity uid="247">
 			<Template>hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="145.833" y="22.4" z="505.471"/>
+			<Position x="146.688" y="22.4" z="520.413"/>
 			<Orientation angle="-2.68437"/>
 		</Entity>
 		<Entity uid="248">
 			<Template>hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="188.174" y="22.4" z="517.376"/>
+			<Position x="152.206" y="22.4" z="526.64"/>
 			<Orientation angle="-2.53846"/>
 		</Entity>
 		<Entity uid="249">
 			<Template>hele_support_female_citizen</Template>
 			<Player>1</Player>
-			<Position x="183.062" y="22.4531" z="483.516"/>
+			<Position x="149.476" y="22.4" z="522.826"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="250">
 			<Template>hele_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="391.114" y="22.4" z="65.1054"/>
+			<Position x="427.289" y="22.4" z="107.582"/>
 			<Orientation angle="0.698399"/>
 		</Entity>
 		<Entity uid="251">
 			<Template>hele_support_female_citizen</Template>
 			<Player>2</Player>
-			<Position x="415.879" y="22.4" z="64.7329"/>
+			<Position x="424.341" y="22.4" z="104.287"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="252">
 			<Template>hele_support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="420.498" y="22.4" z="103.787"/>
-			<Orientation angle="-0.847692"/>
+			<Orientation angle="2.41221"/>
 		</Entity>
 		<Entity uid="258">
 			<Template>hele_infantry_spearman_e</Template>
@@ -1093,8 +1093,8 @@
 		<Entity uid="266">
 			<Template>hele_infantry_javelinist_e</Template>
 			<Player>2</Player>
-			<Position x="417.957" y="22.4" z="100.089"/>
-			<Orientation angle="-0.954656"/>
+			<Position x="382.032" y="22.4" z="97.8513"/>
+			<Orientation angle="2.55915"/>
 		</Entity>
 		<Entity uid="272">
 			<Template>hele_cavalry_swordsman_e</Template>
@@ -4216,11 +4216,41 @@
 			<Position x="355.769" y="23.1512" z="143.466"/>
 			<Orientation angle="-2.16382"/>
 		</Entity>
-		<Entity uid="2271">
-			<Template>iber_dock</Template>
-			<Player>0</Player>
-			<Position x="478.671" y="21.3293" z="321.84"/>
-			<Orientation angle="2.46448"/>
+		<Entity uid="2691">
+			<Template>hele_cavalry_swordsman_e</Template>
+			<Player>1</Player>
+			<Position x="144.175" y="22.4" z="503.38"/>
+			<Orientation angle="-2.48966"/>
+		</Entity>
+		<Entity uid="2693">
+			<Template>hele_infantry_javelinist_e</Template>
+			<Player>1</Player>
+			<Position x="188.918" y="22.4" z="519.48"/>
+			<Orientation angle="-2.06787"/>
+		</Entity>
+		<Entity uid="2695">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>1</Player>
+			<Position x="182.572" y="22.4" z="481.839"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="2697">
+			<Template>hele_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="379.972" y="22.4" z="95.9362"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="2699">
+			<Template>hele_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="392.004" y="22.4" z="61.9865"/>
+			<Orientation angle="0.746404"/>
+		</Entity>
+		<Entity uid="2701">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="415.743" y="22.4" z="64.182"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -6253,66 +6283,6 @@
 			<Actor>props/flora/grass_soft_dry_small_tall.xml</Actor>
 			<Position x="452.133" y="22.4" z="469.835"/>
 			<Orientation angle="-1.43291"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="503.487" y="21.84" z="324.927"/>
-			<Orientation angle="-0.81945"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="508.208" y="21.84" z="332.279"/>
-			<Orientation angle="-1.14421"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="512.302" y="21.84" z="339.4"/>
-			<Orientation angle="-1.02942"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="517.232" y="21.84" z="346.133"/>
-			<Orientation angle="-0.912741"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="523.07" y="21.84" z="353.035"/>
-			<Orientation angle="-0.846186"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="496.107" y="21.84" z="319.094"/>
-			<Orientation angle="-0.461701"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="488.483" y="21.84" z="314.553"/>
-			<Orientation angle="-0.440939"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="480.155" y="21.84" z="309.933"/>
-			<Orientation angle="-0.63315"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="472.854" y="21.84" z="303.859"/>
-			<Orientation angle="-0.726053"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="465.692" y="21.84" z="297.789"/>
-			<Orientation angle="-0.614344"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="526.498" y="21.84" z="360.499"/>
-			<Orientation angle="-1.45673"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/special/eyecandy/water_waves.xml</Actor>
-			<Position x="459.935" y="21.84" z="292.356"/>
-			<Orientation angle="-0.81264"/>
 		</Nonentity>
 	</Nonentities>
 	<Paths/>
