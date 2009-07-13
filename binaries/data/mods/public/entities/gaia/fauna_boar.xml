@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity 
+	Parent="template_unit_fauna_hunt_aggressive"
+>
+
+	<Traits>
+
+		<Id>
+
+				<Specific>Boar</Specific>
+
+		</Id>
+
+ 		<Supply>
+ 			<Max>150</Max>
+ 			<Type>food</Type>
+ 			<SubType>meat</SubType>
+ 		</Supply>
+	
+		<Footprint>
+			<Radius>1.0</Radius>
+			<Height>3.5</Height>
+		</Footprint>
+
+	</Traits>
+
+ 	<Actor>fauna/boar.xml</Actor>
+
+</Entity>
