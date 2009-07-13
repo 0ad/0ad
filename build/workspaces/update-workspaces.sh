@@ -11,6 +11,7 @@ cd $premake_dir
 
 # build/premake/
 
+make -C src
 HOSTTYPE=$HOSTTYPE ./premake --outpath $workspace_dir --atlas --collada $* --target gnu
 
 # These files need to be linked; premake makefiles assume that the
