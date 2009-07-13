@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+
+<Entity	Parent="template_unit_super_infantry">
+	<Traits>
+		<Id>
+			<Icon_Cell>12</Icon_Cell>
+			<Specific>Argyraspides</Specific>
+			<Civ>Macedonians</Civ>
+			<History>The Hypaspists, or "shield bearers", were the flower of the Macedonian infantry. They were the most battle hardened veterans  within the army and followed Philip II and Alexander the Great into over a dozen full scale engagements. These heavily armed and opulently armoured units acted as an intermediary between the phalanx and the cavalry arm, many times charging headlong with Alexander into a breech in the enemy lines. Sometimes they fought as slow pikemen, like the Pezhetairoi with 6 meter "sarissas", and other times they fought as Hoplites with large aspides and 2.5 meter-long spears, or "dorata". In later times they became known as the Argyrapides, or "Silver Shields" when Alexander bestowed upon them armor and shields plated in pure silver, and played a decisive role in the early Diadochoi Wars of Alexander's "Successors."</History>
+		
+		</Id>
+		<Creation>
+			<Resource>
+ 				<Food>65</Food>
+				<Metal>120</Metal>
+ 			</Resource>
+		</Creation>		
+		<Armour>
+			<Hack>9.0</Hack>
+			<Pierce>11.0</Pierce>
+			<Crush>14.0</Crush>
+		</Armour>
+
+		<Health>
+			<Max>135</Max>
+		</Health>
+	</Traits>
+	<Actions>
+ 		<Attack>
+			<Melee>
+ 				<Hack>18.0</Hack>
+ 				<Pierce>22.0</Pierce>
+ 				<Crush>0.0</Crush>
+				<Speed>1500</Speed>
+			</Melee>
+
+			<Charge>
+				<Hack>36.0</Hack>
+				<Pierce>40.0</Pierce>
+				<Crush>0.0</Crush>
+				<Range>3.0</Range>
+				<Speed>1000</Speed>
+			</Charge>	
+ 		</Attack>
+		<Move>
+			<Speed>5.5</Speed>
+			<Run>
+				<Speed>15.0</Speed>
+			</Run>
+		</Move>
+	</Actions>
+	<Actor>temp/mace_su1_hypaspist.xml</Actor>
+</Entity>
