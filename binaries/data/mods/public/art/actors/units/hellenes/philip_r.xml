@@ -1,16 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Base">
       <animations>
         <animation file="biped/cavalryidle.psa" name="Idle" speed="100"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="17"/>
         <animation file="biped/rider_gallop.psa" name="run" speed="8"/>
-        <animation file="infantry/general/dude/dudedeath_sword.psa" name="Death" speed="200"/>
-        <animation file="infantry/general/dude/dudedecay_sword.psa" name="Corpse" speed="100"/>
+        <animation file="biped/rider_sword_death_a.psa" name="Death" speed="230"/>
         <animation event="0.5" file="biped/rider_spear_shield_atk_a.psa" name="melee" speed="200"/>
       </animations>
       <mesh>skeletal/m_tunic_long.dae</mesh>
@@ -22,7 +19,5 @@
       <texture>skeletal/hele_philip_3.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>
