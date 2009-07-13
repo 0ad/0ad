@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="1" name="Sheep-Male">
+      <mesh>gaia/temp_sheep1.pmd</mesh>
+    </variant>
+    <variant frequency="1" name="Sheep-Female">
+      <mesh>gaia/temp_sheep2.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="100" name="Texture">
+      <texture>skeletal/animal_sheep_a.dds</texture>
+    </variant>
+  </group>
+
+</actor>

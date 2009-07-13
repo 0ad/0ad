@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+
+  <castshadow/>
+
+  <group>
+    <variant frequency="100" name="Mesh">
+      <mesh>skeletal/wolf.pmd</mesh>
+    </variant>
+  </group>
+
+  <group>
+    <variant frequency="1" name="fur-black">
+      <texture>skeletal/animal_wolf_black.dds</texture>
+    </variant>
+    <variant frequency="4" name="fur-brown">
+      <texture>skeletal/animal_wolf_brown.dds</texture>
+    </variant>
+  </group>
+
+</actor>
