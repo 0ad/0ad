@@ -22,6 +22,8 @@
 #include "EntityManager.h"
 #include "Entity.h"
 
+#include "scripting/ScriptableComplex.inl"
+
 #include <algorithm>
 
 CAura::CAura( JSContext* cx, CEntity* source, CStrW& name, float radius, int tickRate, const CVector4D& color, JSObject* handler )

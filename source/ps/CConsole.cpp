@@ -37,6 +37,7 @@
 #include "ps/Interact.h"
 #include "ps/Pyrogenesis.h"
 #include "scripting/ScriptingHost.h"
+#include "scripting/ScriptableComplex.inl"
 #include "simulation/Entity.h"
 
 CConsole* g_Console = 0;

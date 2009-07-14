@@ -20,6 +20,7 @@
 #include "Projectile.h"
 
 #include "ScriptObject.h"
+
 #include "graphics/GameView.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectEntry.h"
@@ -29,6 +30,7 @@
 #include "maths/Matrix3D.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
+#include "scripting/ScriptableComplex.inl"
 #include "simulation/Collision.h"
 #include "simulation/Entity.h"
 

@@ -41,6 +41,7 @@
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "scripting/GameEvents.h"
+#include "scripting/ScriptableComplex.inl"
 #include "simulation/BoundingObjects.h"
 #include "simulation/Collision.h"
 #include "simulation/Entity.h"

@@ -27,6 +27,7 @@
 #include "lib/sysdep/sysdep.h"	// isfinite
 #include <math.h>
 #include <cfloat>
+#include "scripting/ScriptableComplex.inl"
 
 // HEntity
 
