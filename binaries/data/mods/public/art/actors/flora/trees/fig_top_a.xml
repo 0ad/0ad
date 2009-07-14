@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Fig Tree Foliage (A)">
+      <mesh>gaia/tree_fig_top_a.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="leaf-color-a">
+      <texture>gaia/tree_carob_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="leaf-color-b">
+      <texture>gaia/tree_carob_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="leaf-color-c">
+      <texture>gaia/tree_carob_c.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Fig Tree (A)">
+      <mesh>gaia/tree_fig_trunk_a.dae</mesh>
+      <props>
+        <prop actor="flora/trees/fig_top_a.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Fig Tree (B)">
+      <mesh>gaia/tree_fig_trunk_b.dae</mesh>
+      <props>
+        <prop actor="flora/trees/fig_top_b.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <texture>gaia/trunk_baobab.dds</texture>
+    </variant>
+  </group>
+</actor>
