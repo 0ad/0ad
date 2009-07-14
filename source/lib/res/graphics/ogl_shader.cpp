@@ -142,14 +142,14 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 	
 	GLint log_length;
 	GLint compile_success;
-	pglGetObjectParameterivARB(shdr->id, GL_OBJECT_COMPILE_STATUS_ARB, &compile_success);
-	pglGetObjectParameterivARB(shdr->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
+	pglGetShaderiv(shdr->id, GL_OBJECT_COMPILE_STATUS_ARB, &compile_success);
+	pglGetShaderiv(shdr->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
 	if (log_length > 1)
 	{
 		char typenamebuf[32];
 		char* infolog = new char[log_length];
 		
-		pglGetInfoLogARB(shdr->id, log_length, 0, infolog);
+		pglGetShaderInfoLog(shdr->id, log_length, 0, infolog);
 	
 		debug_printf("Compile log for shader %hs (type %hs):\n%hs",
 				pathname.string().c_str(),
@@ -384,12 +384,12 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 	GLint log_length;
 	GLint linked;
 	
-	pglGetObjectParameterivARB(p->id, GL_OBJECT_LINK_STATUS_ARB, &linked);
-	pglGetObjectParameterivARB(p->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
+	pglGetProgramiv(p->id, GL_OBJECT_LINK_STATUS_ARB, &linked);
+	pglGetProgramiv(p->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
 	if (log_length > 1)
 	{
 		char* infolog = new char[log_length];
-		pglGetInfoLogARB(p->id, log_length, 0, infolog);
+		pglGetProgramInfoLog(p->id, log_length, 0, infolog);
 
 		debug_printf("Linker log for %hs:\n%hs\n", pathname, infolog);
 		delete[] infolog;

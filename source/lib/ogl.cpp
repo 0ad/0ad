@@ -48,7 +48,9 @@ extern "C"
 {
 #define FUNC(ret, name, params) ret (GL_CALL_CONV *p##name) params;
 #define FUNC2(ret, nameARB, nameCore, version, params) ret (GL_CALL_CONV *p##nameARB) params;
+#define FUNC3(ret, nameARB, nameCore, version, params) ret (GL_CALL_CONV *p##nameCore) params;
 #include "glext_funcs.h"
+#undef FUNC3
 #undef FUNC2
 #undef FUNC
 }
@@ -240,14 +242,18 @@ static void importExtensionFunctions()
 	// (TODO: this calls ogl_HaveVersion far more times than is necessary -
 	// we should probably use the have_* variables instead)
 #define FUNC(ret, name, params) p##name = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#name);
-#define FUNC2(ret, nameARB, nameCore, version, params) \
-	p##nameARB = NULL; \
+#define FUNC23(pname, ret, nameARB, nameCore, version, params) \
+	pname = NULL; \
 	if(ogl_HaveVersion(version)) \
-		p##nameARB = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameCore); \
-	if(!p##nameARB) /* use the ARB name if the driver lied about what version it supports */ \
-		p##nameARB = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameARB);
+		pname = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameCore); \
+	if(!pname) /* use the ARB name if the driver lied about what version it supports */ \
+		pname = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameARB);
+#define FUNC2(ret, nameARB, nameCore, version, params) FUNC23(p##nameARB, ret, nameARB, nameCore, version, params)
+#define FUNC3(ret, nameARB, nameCore, version, params) FUNC23(p##nameCore, ret, nameARB, nameCore, version, params)
 #include "glext_funcs.h"
+#undef FUNC3
 #undef FUNC2
+#undef FUNC23
 #undef FUNC
 }
 

@@ -32,8 +32,11 @@
 
 FUNC is used for functions that are only extensions.
 FUNC2 is used for functions that have been promoted to core features.
+FUNC3 is used for functions that have been promoted to core features
+but have slightly changed semantics and need to be referred to by their
+core name instead of extension name.
 
-The FUNC2 call includes the version of OpenGL in which the extension was promoted,
+The FUNC2/FUNC3 calls include the version of OpenGL in which the extension was promoted,
 and the pre- and post-promotion names (e.g. "glBindBufferARB" vs "glBindBuffer").
 
 If the GL driver is advertising a sufficiently high version, we load the promoted
@@ -103,12 +106,12 @@ FUNC(void, glGenerateMipmapEXT, (GLenum target))
 
 // GL_ARB_shader_objects
 FUNC2(void, glDeleteObjectARB, glDeleteObject, "2.0", (GLhandleARB obj))
-FUNC2(GLhandleARB, glGetHandleARB, glGetHandle, "2.0", (GLenum pname))
+// FUNC2(GLhandleARB, glGetHandleARB, glGetHandle, "2.0", (GLenum pname)) // NOTE: invalid because glGetHandle doesn't exist
 FUNC2(void, glDetachObjectARB, glDetachObject, "2.0", (GLhandleARB containerObj, GLhandleARB attachedObj))
 FUNC2(GLhandleARB, glCreateShaderObjectARB, glCreateShaderObject, "2.0", (GLenum shaderType))
 FUNC2(void, glShaderSourceARB, glShaderSource, "2.0", (GLhandleARB shaderObj, GLsizei count, const char **string, const GLint *length))
 FUNC2(void, glCompileShaderARB, glCompileShader, "2.0", (GLhandleARB shaderObj))
-FUNC2(GLhandleARB, glCreateProgramObjectARB, glCreateProgramObject, "2.0", (void))
+FUNC2(GLhandleARB, glCreateProgramObjectARB, glCreateProgram, "2.0", (void)) // NOTE: not glCreateProgramObject
 FUNC2(void, glAttachObjectARB, glAttachObject, "2.0", (GLhandleARB containerObj, GLhandleARB obj))
 FUNC2(void, glLinkProgramARB, glLinkProgram, "2.0", (GLhandleARB programObj))
 FUNC2(void, glUseProgramObjectARB, glUseProgramObject, "2.0", (GLhandleARB programObj))
@@ -132,9 +135,12 @@ FUNC2(void, glUniform4ivARB, glUniform4iv, "2.0", (GLint location, GLsizei count
 FUNC2(void, glUniformMatrix2fvARB, glUniformMatrix2fv, "2.0", (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value))
 FUNC2(void, glUniformMatrix3fvARB, glUniformMatrix3fv, "2.0", (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value))
 FUNC2(void, glUniformMatrix4fvARB, glUniformMatrix4fv, "2.0", (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value))
-FUNC2(void, glGetObjectParameterfvARB, glGetObjectParameterfv, "2.0", (GLhandleARB obj, GLenum pname, GLfloat *params))
-FUNC2(void, glGetObjectParameterivARB, glGetObjectParameteriv, "2.0", (GLhandleARB obj, GLenum pname, GLint *params))
-FUNC2(void, glGetInfoLogARB, glGetInfoLog, "2.0", (GLhandleARB obj, GLsizei maxLength, GLsizei *length, char *infoLog))
+FUNC3(void, glGetObjectParameterfvARB, glGetProgramfv, "2.0", (GLhandleARB obj, GLenum pname, GLfloat *params)) // NOTE: not glGetObjectParameterfv
+FUNC3(void, glGetObjectParameterfvARB, glGetShaderfv, "2.0", (GLhandleARB obj, GLenum pname, GLfloat *params)) // NOTE: not glGetObjectParameterfv
+FUNC3(void, glGetObjectParameterivARB, glGetProgramiv, "2.0", (GLhandleARB obj, GLenum pname, GLint *params)) // NOTE: not glGetObjectParameteriv
+FUNC3(void, glGetObjectParameterivARB, glGetShaderiv, "2.0", (GLhandleARB obj, GLenum pname, GLint *params)) // NOTE: not glGetObjectParameteriv
+FUNC3(void, glGetInfoLogARB, glGetProgramInfoLog, "2.0", (GLhandleARB obj, GLsizei maxLength, GLsizei *length, char *infoLog)) // NOTE: not glGetInfoLog
+FUNC3(void, glGetInfoLogARB, glGetShaderInfoLog, "2.0", (GLhandleARB obj, GLsizei maxLength, GLsizei *length, char *infoLog)) // NOTE: not glGetInfoLog
 FUNC2(void, glGetAttachedObjectsARB, glGetAttachedObjects, "2.0", (GLhandleARB containerObj, GLsizei maxCount, GLsizei *count, GLhandleARB *obj))
 FUNC2(GLint, glGetUniformLocationARB, glGetUniformLocation, "2.0", (GLhandleARB programObj, const char *name))
 FUNC2(void, glGetActiveUniformARB, glGetActiveUniform, "2.0", (GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei *length, GLint *size, GLenum *type, char *name))
