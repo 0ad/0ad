@@ -108,7 +108,7 @@ FUNC(void, glGenerateMipmapEXT, (GLenum target))
 FUNC2(void, glDeleteObjectARB, glDeleteObject, "2.0", (GLhandleARB obj))
 // FUNC2(GLhandleARB, glGetHandleARB, glGetHandle, "2.0", (GLenum pname)) // NOTE: invalid because glGetHandle doesn't exist
 FUNC2(void, glDetachObjectARB, glDetachObject, "2.0", (GLhandleARB containerObj, GLhandleARB attachedObj))
-FUNC2(GLhandleARB, glCreateShaderObjectARB, glCreateShaderObject, "2.0", (GLenum shaderType))
+FUNC2(GLhandleARB, glCreateShaderObjectARB, glCreateShader, "2.0", (GLenum shaderType)) // NOTE: not glCreateShaderObject
 FUNC2(void, glShaderSourceARB, glShaderSource, "2.0", (GLhandleARB shaderObj, GLsizei count, const char **string, const GLint *length))
 FUNC2(void, glCompileShaderARB, glCompileShader, "2.0", (GLhandleARB shaderObj))
 FUNC2(GLhandleARB, glCreateProgramObjectARB, glCreateProgram, "2.0", (void)) // NOTE: not glCreateProgramObject
