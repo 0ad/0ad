@@ -105,16 +105,19 @@ FUNC(void, glGetFramebufferAttachmentParameterivEXT, (GLenum target, GLenum atta
 FUNC(void, glGenerateMipmapEXT, (GLenum target))
 
 // GL_ARB_shader_objects
-FUNC2(void, glDeleteObjectARB, glDeleteObject, "2.0", (GLhandleARB obj))
-// FUNC2(GLhandleARB, glGetHandleARB, glGetHandle, "2.0", (GLenum pname)) // NOTE: invalid because glGetHandle doesn't exist
-FUNC2(void, glDetachObjectARB, glDetachObject, "2.0", (GLhandleARB containerObj, GLhandleARB attachedObj))
-FUNC2(GLhandleARB, glCreateShaderObjectARB, glCreateShader, "2.0", (GLenum shaderType)) // NOTE: not glCreateShaderObject
+// (NOTE: Many of these have "Object" in their ARB names, but "Program" or "Shader" in their core names.)
+FUNC2(void, glDeleteObjectARB, glDeleteShader, "2.0", (GLhandleARB obj))
+// FUNC2(GLhandleARB, glGetHandleARB, glGetHandle, "2.0", (GLenum pname))
+  // there is no analog to the ARB function in GL 2.0 (the functionality is probably moved into glGetIntegerv(GL_CURRENT_PROGRAM))
+  // so we can't represent it in this FUNC2 system, so just pretend it doesn't exist
+FUNC2(void, glDetachObjectARB, glDetachShader, "2.0", (GLhandleARB containerObj, GLhandleARB attachedObj))
+FUNC2(GLhandleARB, glCreateShaderObjectARB, glCreateShader, "2.0", (GLenum shaderType))
 FUNC2(void, glShaderSourceARB, glShaderSource, "2.0", (GLhandleARB shaderObj, GLsizei count, const char **string, const GLint *length))
 FUNC2(void, glCompileShaderARB, glCompileShader, "2.0", (GLhandleARB shaderObj))
-FUNC2(GLhandleARB, glCreateProgramObjectARB, glCreateProgram, "2.0", (void)) // NOTE: not glCreateProgramObject
-FUNC2(void, glAttachObjectARB, glAttachObject, "2.0", (GLhandleARB containerObj, GLhandleARB obj))
+FUNC2(GLhandleARB, glCreateProgramObjectARB, glCreateProgram, "2.0", (void))
+FUNC2(void, glAttachObjectARB, glAttachShader, "2.0", (GLhandleARB containerObj, GLhandleARB obj))
 FUNC2(void, glLinkProgramARB, glLinkProgram, "2.0", (GLhandleARB programObj))
-FUNC2(void, glUseProgramObjectARB, glUseProgramObject, "2.0", (GLhandleARB programObj))
+FUNC2(void, glUseProgramObjectARB, glUseProgram, "2.0", (GLhandleARB programObj))
 FUNC2(void, glValidateProgramARB, glValidateProgram, "2.0", (GLhandleARB programObj))
 FUNC2(void, glUniform1fARB, glUniform1f, "2.0", (GLint location, GLfloat v0))
 FUNC2(void, glUniform2fARB, glUniform2f, "2.0", (GLint location, GLfloat v0, GLfloat v1))
@@ -135,13 +138,13 @@ FUNC2(void, glUniform4ivARB, glUniform4iv, "2.0", (GLint location, GLsizei count
 FUNC2(void, glUniformMatrix2fvARB, glUniformMatrix2fv, "2.0", (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value))
 FUNC2(void, glUniformMatrix3fvARB, glUniformMatrix3fv, "2.0", (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value))
 FUNC2(void, glUniformMatrix4fvARB, glUniformMatrix4fv, "2.0", (GLint location, GLsizei count, GLboolean transpose, const GLfloat *value))
-FUNC3(void, glGetObjectParameterfvARB, glGetProgramfv, "2.0", (GLhandleARB obj, GLenum pname, GLfloat *params)) // NOTE: not glGetObjectParameterfv
-FUNC3(void, glGetObjectParameterfvARB, glGetShaderfv, "2.0", (GLhandleARB obj, GLenum pname, GLfloat *params)) // NOTE: not glGetObjectParameterfv
-FUNC3(void, glGetObjectParameterivARB, glGetProgramiv, "2.0", (GLhandleARB obj, GLenum pname, GLint *params)) // NOTE: not glGetObjectParameteriv
-FUNC3(void, glGetObjectParameterivARB, glGetShaderiv, "2.0", (GLhandleARB obj, GLenum pname, GLint *params)) // NOTE: not glGetObjectParameteriv
-FUNC3(void, glGetInfoLogARB, glGetProgramInfoLog, "2.0", (GLhandleARB obj, GLsizei maxLength, GLsizei *length, char *infoLog)) // NOTE: not glGetInfoLog
-FUNC3(void, glGetInfoLogARB, glGetShaderInfoLog, "2.0", (GLhandleARB obj, GLsizei maxLength, GLsizei *length, char *infoLog)) // NOTE: not glGetInfoLog
-FUNC2(void, glGetAttachedObjectsARB, glGetAttachedObjects, "2.0", (GLhandleARB containerObj, GLsizei maxCount, GLsizei *count, GLhandleARB *obj))
+FUNC3(void, glGetObjectParameterfvARB, glGetProgramfv, "2.0", (GLhandleARB obj, GLenum pname, GLfloat *params))
+FUNC3(void, glGetObjectParameterfvARB, glGetShaderfv, "2.0", (GLhandleARB obj, GLenum pname, GLfloat *params))
+FUNC3(void, glGetObjectParameterivARB, glGetProgramiv, "2.0", (GLhandleARB obj, GLenum pname, GLint *params))
+FUNC3(void, glGetObjectParameterivARB, glGetShaderiv, "2.0", (GLhandleARB obj, GLenum pname, GLint *params))
+FUNC3(void, glGetInfoLogARB, glGetProgramInfoLog, "2.0", (GLhandleARB obj, GLsizei maxLength, GLsizei *length, char *infoLog))
+FUNC3(void, glGetInfoLogARB, glGetShaderInfoLog, "2.0", (GLhandleARB obj, GLsizei maxLength, GLsizei *length, char *infoLog))
+FUNC2(void, glGetAttachedObjectsARB, glGetAttachedShaders, "2.0", (GLhandleARB containerObj, GLsizei maxCount, GLsizei *count, GLhandleARB *obj))
 FUNC2(GLint, glGetUniformLocationARB, glGetUniformLocation, "2.0", (GLhandleARB programObj, const char *name))
 FUNC2(void, glGetActiveUniformARB, glGetActiveUniform, "2.0", (GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei *length, GLint *size, GLenum *type, char *name))
 FUNC2(void, glGetUniformfvARB, glGetUniformfv, "2.0", (GLhandleARB programObj, GLint location, GLfloat *params))
