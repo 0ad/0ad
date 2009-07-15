@@ -1,8 +1,8 @@
 CXX := g++
-CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function -DLINUX -fpic
+CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function -DLINUX -fPIC
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG
 CXXFLAGS_RELEASE := -O2 -DNDEBUG -DRETAIL
-LDFLAGS := -lxml2 -shared -fpic
+LDFLAGS := -lxml2 -shared -fPIC
 INCLUDES := -IFCollada -I/usr/include/libxml2
 
 SOURCE = \
