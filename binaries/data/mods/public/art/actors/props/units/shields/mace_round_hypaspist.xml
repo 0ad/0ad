@@ -10,11 +10,14 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="silver-shield-a">
+    <variant frequency="4" name="Argyraspis (A)">
       <texture>props/shield/mace_silver_a.dds</texture>
     </variant>
-    <variant frequency="1" name="silver-shield-b">
+    <variant frequency="3" name="Argyraspis (B)">
       <texture>props/shield/mace_silver_b.dds</texture>
+    </variant>
+    <variant frequency="2" name="Argyraspis (C)">
+      <texture>props/shield/mace_silver_c.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
