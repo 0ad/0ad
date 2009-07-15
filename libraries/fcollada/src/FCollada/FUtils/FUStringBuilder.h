@@ -135,7 +135,9 @@ public:
 #else
 	inline void append(unsigned int i) { append((uint32) i); } /**< See above. */
 #endif
-#endif // WIN32
+#elif defined(__APPLE__)
+	inline void append(size_t i) { append((uint32) i); } /**< See above. */
+#endif // platform-switch.
 
 	/** Appends the floating-point value, after converting it to a string,
 		to the content of the builder. If the floating-point value is the special token
