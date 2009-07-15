@@ -117,9 +117,9 @@ public:
 	/** Appends the integer value, after converting it to a string,
 		to the content of the builder.
 		@param i An integer value. */
-	void append(int32 i);
-	void append(uint32 i); /**< See above. */
-	void append(uint64 i); /**< See above. */
+	void append(const int32 i);
+	void append(const uint32 i); /**< See above. */
+	void append(const uint64 i); /**< See above. */
 
 	/** Appends the integer value, after converting it to a
 		fm::string, in hexadecimal, to the content of the builder.
