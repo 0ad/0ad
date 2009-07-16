@@ -370,7 +370,7 @@ LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, 
 				ctx.filename = h + 1;
 	
 			strncpy(file, ctx.filename, DBG_FILE_LEN);
-			file[DBG_FILE_LEN]=0;
+			file[DBG_FILE_LEN-1]=0;
 		}
 		else
 			strcpy(file, "none");
