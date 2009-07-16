@@ -19,6 +19,8 @@
  * detection of CPU and cache topology
  */
 
+#include <set>
+
 #include "precompiled.h"
 #include "topology.h"
 

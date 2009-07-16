@@ -26,6 +26,7 @@
 #include <map>
 #include <set>
 #include <cassert>
+#include <list>
 
 #include "regex.h"
 

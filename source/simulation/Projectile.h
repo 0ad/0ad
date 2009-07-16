@@ -22,6 +22,8 @@
 #ifndef INCLUDED_PROJECTILE
 #define INCLUDED_PROJECTILE
 
+#include <list>
+
 #include "maths/Vector3D.h"
 #include "ps/Vector2D.h"
 #include "scripting/ScriptableObject.h"

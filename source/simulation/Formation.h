@@ -23,8 +23,7 @@
 #include <vector>
 #include <map>
 #include "ps/XML/Xeromyces.h"
-
-class CStr;
+#include "ps/CStr.h"
 
 class CFormation
 {

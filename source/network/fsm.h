@@ -29,6 +29,7 @@
 // INCLUDES
 #include <vector>
 #include <set>
+#include <map>
 
 // DECLARATIONS
 #define	FSM_INVALID_STATE	( unsigned int )( ~0 )

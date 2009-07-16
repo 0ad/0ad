@@ -22,6 +22,8 @@
 #ifndef INCLUDED_VFS_TREE
 #define INCLUDED_VFS_TREE
 
+#include <map>
+
 #include "lib/file/file_system.h"	// FileInfo
 #include "lib/file/common/file_loader.h"	// PIFileLoader
 #include "lib/file/common/real_directory.h"	// PRealDirectory
