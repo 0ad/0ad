@@ -30,6 +30,14 @@
 # include <AL/alc.h>
 #endif
 
+// ALC strings (e.g. device and extension names) are typed differently
+// between platforms *sigh*
+#if OS_MACOSX
+typedef ALCubyte* alcString;
+#else
+typedef ALCchar* alcString;
+#endif
+
 #if MSC_VERSION
 # pragma comment(lib, "openal32.lib")
 #endif

@@ -248,7 +248,7 @@ static LibError alc_init()
 #if OS_WIN
 	__try
 	{
-		alc_dev = alcOpenDevice((ALCchar*)alc_dev_name);
+		alc_dev = alcOpenDevice((alcString)alc_dev_name);
 	}
 	// if invalid handle, handle it; otherwise, continue handler search.
 	__except(GetExceptionCode() == EXCEPTION_INVALID_HANDLE)
@@ -256,7 +256,7 @@ static LibError alc_init()
 		// ignore
 	}
 #else
-	alc_dev = alcOpenDevice(alc_dev_name);
+	alc_dev = alcOpenDevice((alcString)alc_dev_name);
 #endif
 
 	if(alc_dev)
@@ -686,7 +686,7 @@ static const char* devs;
  */
 LibError snd_dev_prepare_enum()
 {
-	if(alcIsExtensionPresent(0, (ALCchar*)"ALC_ENUMERATION_EXT") != AL_TRUE)
+	if(alcIsExtensionPresent(0, (alcString)"ALC_ENUMERATION_EXT") != AL_TRUE)
 		WARN_RETURN(ERR::NO_SYS);
 
 	devs = (const char*)alcGetString(0, ALC_DEVICE_SPECIFIER);
