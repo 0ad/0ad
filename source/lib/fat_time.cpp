@@ -55,15 +55,17 @@ u32 FAT_from_time_t(time_t time)
 	// (values are adjusted for DST)
 	struct tm* t = localtime(&time);
 
-	u16 fat_time = 0;
-	fat_time |= u16(t->tm_sec/2);		// 5
-	fat_time |= u16(t->tm_min) << 5;	// 6
-	fat_time |= u16(t->tm_hour) << 11;	// 5
+	const u16 fat_time = u16(
+		(t->tm_sec/2) |		    // 5
+		(u16(t->tm_min) << 5) | // 6
+		(u16(t->tm_hour) << 11)	// 5
+	);
 
-	u16 fat_date = 0;
-	fat_date |= u16(t->tm_mday);			// 5
-	fat_date |= u16(t->tm_mon+1) << 5;		// 4
-	fat_date |= u16(t->tm_year-80) << 9;	// 7
+	const u16 fat_date = u16(
+		(t->tm_mday) |            // 5
+		(u16(t->tm_mon+1) << 5) | // 4
+		(u16(t->tm_year-80) << 9) // 7
+	);
 
 	u32 fat_timedate = u32_from_u16(fat_date, fat_time);
 	return fat_timedate;

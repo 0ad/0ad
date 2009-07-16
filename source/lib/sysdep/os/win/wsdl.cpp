@@ -437,9 +437,9 @@ static void active_change_state(SdlActivationType type, Uint8 changed_app_state)
 	Uint8 old_app_state = app_state;
 
 	if(type == GAIN)
-		app_state |= changed_app_state;
+		app_state = Uint8(app_state | changed_app_state);
 	else
-		app_state &= ~changed_app_state;
+		app_state = Uint8(app_state & ~changed_app_state);
 
 	// generate an event - but only if the given state flags actually changed.
 	if((old_app_state & changed_app_state) != (app_state & changed_app_state))
@@ -714,7 +714,7 @@ static void queue_mouse_event(int x, int y)
 static void queue_button_event(int button, int state, int x, int y)
 {
 	SDL_Event ev;
-	ev.type = (state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
+	ev.type = Uint8((state == SDL_PRESSED)? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP);
 	ev.button.button = (u8)button;
 	ev.button.state  = (u8)state;
 	debug_assert(unsigned(x|y) <= USHRT_MAX);

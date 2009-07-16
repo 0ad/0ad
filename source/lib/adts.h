@@ -97,7 +97,7 @@ class DynHashTbl
 			throw std::bad_alloc();
 		}
 
-		max_entries += max_entries;
+		max_entries *= 2;
 		// must be set before get_slot
 
 		// newly initialized, nothing to copy - done

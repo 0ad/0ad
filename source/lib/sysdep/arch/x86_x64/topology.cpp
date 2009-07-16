@@ -176,7 +176,7 @@ static size_t NumUniqueMaskedValues(const u8* apicIds, u8 mask)
 	for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 	{
 		const u8 apicId = apicIds[processor];
-		const u8 field = apicId & mask;
+		const u8 field = u8(apicId & mask);
 		ids.insert(field);
 	}
 
@@ -412,7 +412,7 @@ static void DetermineCachesProcessorMask(const u8* apicIds, uintptr_t* cachesPro
 		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
 		{
 			const u8 apicId = apicIds[processor];
-			const u8 cacheId = apicId & cacheIdMask;
+			const u8 cacheId = u8(apicId & cacheIdMask);
 			cacheRelations.Add(cacheId, processor);
 		}
 		cacheRelations.StoreProcessorMasks(cachesProcessorMask);

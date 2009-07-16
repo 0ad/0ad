@@ -27,7 +27,7 @@
 #include "lib/bits.h"
 
 
-static const size_t minAlignment = 16;
+static const size_t minAlignment = 32;
 static const bool performSanityChecks = true;
 
 // shared by the Impl::Allocate and FreedBlock::Validate
@@ -51,7 +51,7 @@ public:
 	{
 	}
 
-	FreedBlock(u32 id, size_t size)
+	FreedBlock(uintptr_t id, size_t size)
 		:  m_magic(s_magic), m_size(size), m_id(id)
 	{
 	}
@@ -61,7 +61,7 @@ public:
 		// clear all fields to prevent accidental reuse
 		prev = next = 0;
 		m_id = 0;
-		m_size = ~(size_t)0u;
+		m_size = ~size_t(0);
 		m_magic = 0;
 	}
 
@@ -74,7 +74,7 @@ public:
 	 * @return whether this appears to be a FreedBlock instance with the
 	 * desired ID. for additional safety, also call Validate().
 	 **/
-	bool IsFreedBlock(u32 id) const
+	bool IsFreedBlock(uintptr_t id) const
 	{
 		if(m_id != id)
 			return false;
@@ -86,7 +86,7 @@ public:
 	/**
 	 * warn if any invariant doesn't hold.
 	 **/
-	void Validate(u32 id) const
+	void Validate(uintptr_t id) const
 	{
 		if(!performSanityChecks) return;
 
@@ -103,8 +103,8 @@ public:
 private:
 	// note: the magic and ID fields are stored at both ends of this
 	// class to increase the chance of detecting memory corruption.
-	static const uintptr_t s_magic = 0xFF55AA00;
-	uintptr_t m_magic;
+	static const u64 s_magic = 0xFF55AA00BBCCDDEEull;
+	u64 m_magic;
 
 	FreedBlock* prev;
 	FreedBlock* next;
@@ -113,7 +113,7 @@ private:
 	size_t m_size;
 
 	// this differentiates between headers and footers.
-	u32 m_id;
+	uintptr_t m_id;
 };
 
 
@@ -211,7 +211,7 @@ public:
 		m_freeBytes -= freedBlock->Size();
 	}
 
-	void Validate(u32 id) const
+	void Validate(uintptr_t id) const
 	{
 		if(!performSanityChecks) return;
 
@@ -284,7 +284,7 @@ public:
 		const size_t sizeClass = SizeClass(freedBlock->Size());
 		m_rangeLists[sizeClass].Insert<AddressOrder>(freedBlock);
 
-		m_bitmap |= Bit<u32>(sizeClass);
+		m_bitmap |= Bit<uintptr_t>(sizeClass);
 	}
 
 	/**
@@ -295,7 +295,7 @@ public:
 		// iterate over all large enough, non-empty size classes
 		// (zero overhead for empty size classes)
 		const size_t minSizeClass = SizeClass(minSize);
-		size_t sizeClassBits = m_bitmap & (~0u << minSizeClass);
+		size_t sizeClassBits = m_bitmap & ((~size_t(0)) << minSizeClass);
 		while(sizeClassBits)
 		{
 			const size_t size = ValueOfLeastSignificantOneBit(sizeClassBits);
@@ -309,7 +309,7 @@ public:
 
 		// apparently all classes above minSizeClass are empty,
 		// or the above would have succeeded.
-		debug_assert(m_bitmap < Bit<u32>(minSizeClass+1));
+		debug_assert(m_bitmap < Bit<uintptr_t>(minSizeClass+1));
 		return 0;
 	}
 
@@ -320,17 +320,17 @@ public:
 
 		// (masking with !IsEmpty() << sizeClass would probably be faster)
 		if(m_rangeLists[sizeClass].IsEmpty())
-			m_bitmap &= ~Bit<u32>(sizeClass);
+			m_bitmap &= ~Bit<uintptr_t>(sizeClass);
 	}
 
-	void Validate(u32 id) const
+	void Validate(uintptr_t id) const
 	{
 		for(size_t i = 0; i < numRangeLists; i++)
 		{
 			m_rangeLists[i].Validate(id);
 
 			// both bitmap and list must agree on whether they are empty
-			debug_assert(((m_bitmap & Bit<u32>(i)) == 0) == m_rangeLists[i].IsEmpty());
+			debug_assert(((m_bitmap & Bit<uintptr_t>(i)) == 0) == m_rangeLists[i].IsEmpty());
 		}
 	}
 
@@ -357,7 +357,7 @@ private:
 	 **/
 	static size_t SizeClass(size_t size)
 	{
-		return ceil_log2((size_t)size);
+		return ceil_log2(size);
 	}
 
 	static uintptr_t ValueOfLeastSignificantOneBit(uintptr_t x)
@@ -371,7 +371,7 @@ private:
 
 	// bit i set <==> size class i's freelist is not empty.
 	// this allows finding a non-empty list in O(1).
-	u32 m_bitmap;
+	uintptr_t m_bitmap;
 };
 
 
@@ -465,8 +465,8 @@ public:
 	}
 
 	// (generated via GUID)
-	static const u32 s_headerId = 0x111E8E6Fu;
-	static const u32 s_footerId = 0x4D745342u;
+	static const uintptr_t s_headerId = 0x111E8E6Fu;
+	static const uintptr_t s_footerId = 0x4D745342u;
 
 private:
 	void Validate(FreedBlock* freedBlock) const

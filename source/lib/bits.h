@@ -75,7 +75,7 @@ T bit_mask(size_t numBits)
 	// - though bulky, the below statements avoid sign-conversion warnings.
 	const T bitsInT = sizeof(T)*CHAR_BIT;
 	T mask(0);
-	mask = ~mask;
+	mask = T(~mask);
 	mask >>= T(bitsInT-numBits);
 	return mask;
 }

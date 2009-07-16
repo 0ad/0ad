@@ -22,6 +22,10 @@
 #include "precompiled.h"
 #include "snd.h"
 
+#if OS_WIN
+# include "lib/sysdep/os/win/wsnd.h"
+#endif
+
 
 char snd_card[SND_CARD_LEN];
 char snd_drv_ver[SND_DRV_VER_LEN];
@@ -32,7 +36,6 @@ void snd_detect()
 	// OpenAL API version and renderer (e.g. "Software").
 
 #if OS_WIN
-	extern LibError win_get_snd_info();
 	win_get_snd_info();
 #else
 	// At least reset the values for unhandled platforms.

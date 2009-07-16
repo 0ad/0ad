@@ -187,7 +187,7 @@ int open(const char* fn, int oflag, ...)
 	if(is_com_port)
 	{
 		char port[] = "COM1";
-		const char digit = fn[8]+1;
+		const char digit = char(fn[8]+1);
 		// PCs only support COM1..COM4.
 		if(!('1' <= digit && digit <= '4'))
 			return -1;

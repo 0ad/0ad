@@ -24,6 +24,9 @@
 
 #include "lib/external_libraries/sdl.h"
 #include "lib/ogl.h"
+#if OS_WIN
+# include "lib/sysdep/os/win/wgfx.h"
+#endif
 
 
 char gfx_card[GFX_CARD_LEN] = "";
@@ -41,7 +44,6 @@ void gfx_detect()
 	// try platform-specific version: they return more
 	// detailed information, and don't require OpenGL to be ready.
 #if OS_WIN
-	extern LibError win_get_gfx_info();
 	if(win_get_gfx_info() < 0)
 #endif
 	{

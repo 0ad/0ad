@@ -457,8 +457,7 @@ static HWND hAppWindow;
 static BOOL CALLBACK FindAppWindowByPid(HWND hWnd, LPARAM UNUSED(lParam))
 {
 	DWORD pid;
-	const DWORD tid = GetWindowThreadProcessId(hWnd, &pid);
-	UNUSED2(tid);	// the function can't fail
+	(void)GetWindowThreadProcessId(hWnd, &pid);	// (function always succeeds)
 
 	if(pid == GetCurrentProcessId())
 	{
@@ -469,15 +468,18 @@ static BOOL CALLBACK FindAppWindowByPid(HWND hWnd, LPARAM UNUSED(lParam))
 	return TRUE;	// keep calling
 }
 
+
 HWND wutil_AppWindow()
 {
 	if(!hAppWindow)
 	{
-		const DWORD ret = EnumWindows(FindAppWindowByPid, 0);
-		// the callback returns FALSE when it has found the window
-		// (so as not to waste time); EnumWindows then returns 0.
-		// we therefore cannot check for errors.
-		UNUSED2(ret);
+		// to avoid wasting time, FindAppWindowByPid returns FALSE after
+		// finding the desired window, which causes EnumWindows to 'fail'.
+		// we detect actual errors by checking GetLastError.
+		WinScopedPreserveLastError s;
+		SetLastError(0);
+		(void)EnumWindows(FindAppWindowByPid, 0);	// (see above)
+		debug_assert(GetLastError() == 0);
 	}
 
 	return hAppWindow;
