@@ -488,7 +488,7 @@ function refreshCommandButtons()
 			{
 				tempArray = new Array();
 				for ( var i = 0; i < selection.length; i++ )
-					tempArray.push(selection[i].tag);
+					tempArray.push(selection[i].tag);
 				updateTab ("selection", "production", "Tab", "tempArray", "");	
 			}
 		}
