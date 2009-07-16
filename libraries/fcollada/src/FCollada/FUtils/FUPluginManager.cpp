@@ -42,7 +42,10 @@ ImplementObjectType(FUPlugin);
 FUPluginManager::FUPluginManager(const fchar* _filter)
 {
 	fstring applicationFolderName = FUFileManager::GetApplicationFolderName();
-	LoadPluginsInFolderName(applicationFolderName, _filter);
+	if (!applicationFolderName.empty())
+	{
+		LoadPluginsInFolderName(applicationFolderName, _filter);
+	}
 
 	fstring moduleFolderName = FUFileManager::GetModuleFolderName();
 	if (!moduleFolderName.empty() && !IsEquivalent(moduleFolderName, applicationFolderName))
