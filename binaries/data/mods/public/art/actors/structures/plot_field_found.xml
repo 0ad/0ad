@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant>
       <mesh>structural/field_plot.dae</mesh>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="furrows-01">
-      <texture>structural/plot_field.dds</texture>
-    </variant>
-    <variant frequency="1" name="furrows-02">
-      <texture>structural/plot_field_alternate.dds</texture>
+      <texture>structural/field_01.dds</texture>
     </variant>
   </group>
   <material>basic_trans.xml</material>
