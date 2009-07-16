@@ -744,7 +744,7 @@ function setItemTooltip(tab, itemName, listObject, selection)
 			var template = getEntityTemplate(itemName);
 			if (!template) break;
 			
-			//If there are several units selected, don´t show this tooltip when moving the cursor over the selection tab.
+			//If there are several units selected, don't show this tooltip when moving the cursor over the selection tab.
 			if (tab != "selection")
 			{
 				listObject.tooltip = getProductionTooltip(template);
