@@ -156,13 +156,17 @@ CStrW CStr8::FromUTF8() const
 		unsigned short extraBytesToRead = trailingBytesForUTF8[*source];
 		if (source + extraBytesToRead >= sourceEnd)
 		{
-			//debug_warn("Invalid UTF-8 (fell off end)");
-			return L"";
+			// Error - fell of the the end of the string
+			result += (wchar_t)0xFFFD;
+			source++;
+			continue;
 		}
 
 		if (! isLegalUTF8(source, extraBytesToRead+1)) {
-			//debug_warn("Invalid UTF-8 (illegal data)");
-			return L"";
+			// Error - illegal data
+			result += (wchar_t)0xFFFD;
+			source++;
+			continue;
 		}
 
 		switch (extraBytesToRead)

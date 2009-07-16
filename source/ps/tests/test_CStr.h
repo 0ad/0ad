@@ -58,12 +58,20 @@ public:
 
 	void test_invalid_utf8()
 	{
-		const unsigned char chr_utf8_a[] = { 'a', 0xef };
-		const unsigned char chr_utf8_b[] = { 'b', 0xef, 0xbf };
-		const unsigned char chr_utf8_c[] = { 'c', 0xef, 0xbf, 0x01 };
+		struct { const char* utf8; const wchar_t* utf16; } tests[] = {
+			{ "a\xef", L"a\xfffd" },
+			{ "b\xef\xbf", L"b\xfffd\xfffd" },
+			{ "c\xef\xbf\x01", L"c\xfffd\xfffd\x0001" },
+			{ "d\xffX\x80Y\x80" , L"d\xfffdX\xfffdY\xfffd" }
+		};
+		for (size_t i = 0; i < ARRAY_SIZE(tests); ++i)
+		{
+			CStr8 str_utf8 (tests[i].utf8);
+			CStrW str_utf16 (tests[i].utf16);
 
-		TS_ASSERT_WSTR_EQUALS(CStr8((const char*)chr_utf8_a, sizeof(chr_utf8_a)).FromUTF8(), L"");
-		TS_ASSERT_WSTR_EQUALS(CStr8((const char*)chr_utf8_b, sizeof(chr_utf8_b)).FromUTF8(), L"");
-		TS_ASSERT_WSTR_EQUALS(CStr8((const char*)chr_utf8_c, sizeof(chr_utf8_c)).FromUTF8(), L"");
+			CStrW str_utf8to16 = str_utf8.FromUTF8();
+			TS_ASSERT_EQUALS(str_utf16.length(), str_utf8to16.length());
+			TS_ASSERT_SAME_DATA(str_utf8to16.data(), str_utf16.data(), str_utf16.length()*sizeof(wchar_t));
+		}
 	}
 };
