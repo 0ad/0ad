@@ -186,7 +186,8 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsva
 	// Fix CRLF line endings. (This function will only ever be used on text files.)
 	contents.Replace("\r\n", "\n");
 
-	*rval = ToJSVal( contents );
+	// Decode as UTF-8
+	*rval = ToJSVal( contents.FromUTF8() );
 	return( JS_TRUE );
 }
 
@@ -228,7 +229,8 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 	int cur_line = 0;
 	while( std::getline( ss, line ) )
 	{
-		jsval val = ToJSVal( CStr( line ) );
+		// Decode each line as UTF-8
+		jsval val = ToJSVal( CStr( line ).FromUTF8() );
 		JS_SetElement( cx, line_array, cur_line++, &val );
 	}
 
