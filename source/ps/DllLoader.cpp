@@ -84,7 +84,7 @@ bool DllLoader::LoadDLL()
 		// open failed (mostly likely SO not found)
 		if (! m_Handle)
 		{
-			char* error = dlerror();
+			const char* error = dlerror();
 			if (error)
 				LOG(CLogger::Error, "", "dlopen error: %s", error);
 			m_Handle = HANDLE_UNAVAILABLE;

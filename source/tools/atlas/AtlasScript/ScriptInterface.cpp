@@ -48,7 +48,7 @@
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
-#ifndef _WIN32
+#if defined(__linux__) || (defined(__APPLE__) && defined(__MACH__))
 # include <valgrind/valgrind.h>
 #endif
 
@@ -513,7 +513,7 @@ namespace
 			wxLogWarning(_T("%s"), logMessage.c_str());
 		else
 			wxLogError(_T("%s"), logMessage.c_str());
-#ifndef _WIN32
+#if defined(__linux__) || (defined(__APPLE__) && defined(__MACH__))
 		// When running under Valgrind, print more information in the error message
 		VALGRIND_PRINTF_BACKTRACE("->");
 #endif
