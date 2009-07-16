@@ -48,17 +48,17 @@ cancelTimer(int ID) - causes the timer or interval with this ID to longer be cal
 Class GameSetup:
 
 createServer() - creates and returns a network server object
-createClient() – creates and returns a client server object
+createClient() - creates and returns a client server object
 
-startGame() – begins the process of starting the game.  Returns true on success.  –may be changed soon
+startGame() - begins the process of starting the game.  Returns true on success.  may be changed soon
 
-endGame() – immediately ends the game
+endGame() - immediately ends the game
 
 ===============================================================================
 
 Class Internationalization:
 
-loadLanguage( string language ) – replaces the current langauge with “language”.
+loadLanguage( string language ) - replaces the current langauge with "language".
 getLanguageID() - returns the name of the current language [string].
 
 ===============================================================================
