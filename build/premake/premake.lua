@@ -18,7 +18,14 @@ if OS == "windows" then
 		arch = "amd64"
 	end
 else
-	if os.getenv("HOSTTYPE") == "x86_64" then
+	arch = os.getenv("HOSTTYPE")
+	if not arch then
+		os.execute("uname -m > .hosttype.tmp")
+		local f = io.open(".hosttype.tmp","r")
+		arch = f:read("*line")
+		f:close()
+	end
+	if arch == "x86_64" then
 		arch = "amd64"
 	end
 end
