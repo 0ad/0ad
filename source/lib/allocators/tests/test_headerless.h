@@ -65,10 +65,11 @@ public:
 	{
 		HeaderlessAllocator a(0x10000);
 
-		// can Allocate non-power-of-two sizes
-		void* p1 = a.Allocate(0x5670);
-		void* p2 = a.Allocate(0x7890);
-		void* p3 = a.Allocate(0x1230);
+		// can Allocate non-power-of-two sizes (note: the current
+		// implementation only allows sizes that are multiples of 0x20)
+		void* p1 = a.Allocate(0x5680);
+		void* p2 = a.Allocate(0x78A0);
+		void* p3 = a.Allocate(0x1240);
 		TS_ASSERT_DIFFERS(p1, null);
 		TS_ASSERT_DIFFERS(p2, null);
 		TS_ASSERT_DIFFERS(p3, null);
@@ -79,10 +80,10 @@ public:
 		// virtual address space left, but the allocator doesn't grab that
 		// and add it to the freelist. that feature is currently not
 		// implemented.
-		a.Deallocate(p1, 0x5670);
-		a.Deallocate(p2, 0x7890);
-		a.Deallocate(p3, 0x1230);
-		void* p4 = a.Allocate(0xE130);
+		a.Deallocate(p1, 0x5680);
+		a.Deallocate(p2, 0x78A0);
+		a.Deallocate(p3, 0x1240);
+		void* p4 = a.Allocate(0xE140);
 		TS_ASSERT_DIFFERS(p4, null);
 	}
 
@@ -113,7 +114,7 @@ public:
 			if(rand() >= RAND_MAX/2)
 			{
 				const size_t maxSize = (size_t)((rand() / (float)RAND_MAX) * poolSize);
-				const size_t size = maxSize & ~0xFu;
+				const size_t size = maxSize & ~0x1Fu;
 				void* p = a.Allocate(size);
 				if(!p)
 					continue;
