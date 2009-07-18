@@ -166,9 +166,11 @@ function package_set_build_flags()
 				-- non-IEEE-conformant results, but haven't noticed any trouble so far.
 				"-ffast-math",
 			})
-			tinsert(package.linkoptions, {
-				"-Wl,--no-undefined",
-			})
+            if OS == "linux" then
+              tinsert(package.linkoptions, {
+                  "-Wl,--no-undefined",
+              })
+            end
 		end
 
 		tinsert(package.buildoptions, {
