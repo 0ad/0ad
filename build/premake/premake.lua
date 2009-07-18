@@ -5,6 +5,7 @@ addoption("icc", "Use Intel C++ Compiler (Linux only; should use either \"--cc i
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
+addoption("with-valgrind", "Enable using valgrind for debugging functionality")
 
 use_dcdt = false -- disable it since it's a non-Free library
 
@@ -199,6 +200,9 @@ function package_set_build_flags()
 		}
 		if use_dcdt then
 			tinsert(package.defines, "USE_DCDT")
+		end
+		if options["with-valgrind"] then
+			tinsert(package.defines, "USE_VALGRIND")
 		end
 	end
 end
@@ -842,18 +846,21 @@ function setup_collada_package(package_name, target_type, rel_source_dirs, rel_i
 			listconcat(package.links, extra_params["extra_links"]) 
 		end
 
-	elseif OS == "linux" then
+	else
+		tinsert(package.buildoptions, "`pkg-config libxml-2.0 --cflags`")
+		tinsert(package.linkoptions, "`pkg-config libxml-2.0 --libs`")
+	end
+
+	if OS == "linux" then
 		tinsert(package.defines, "LINUX");
-		tinsert(package.includepaths, "/usr/include/libxml2")
-		tinsert(package.links, "xml2")
 
 		tinsert(package.buildoptions, "-rdynamic")
 		tinsert(package.linkoptions, "-rdynamic")
 	elseif OS == "macosx" then
 		-- define MACOS-something? 
-	
-		tinsert(package.buildoptions, "`pkg-config libxml-2.0 --cflags`")
-		tinsert(package.linkoptions, "`pkg-config libxml-2.0 --libs`")
+
+		-- On OSX, fcollada uses a few utility functions from coreservices
+		tinsert(package.linkoptions, "-framework CoreServices")
 	end
 
 end
