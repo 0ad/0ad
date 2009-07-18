@@ -31,11 +31,11 @@
 #endif
 
 // ALC strings (e.g. device and extension names) are typed differently
-// between platforms *sigh*
-#if OS_MACOSX
-typedef ALCubyte* alcString;
-#else
+// between OpenAL specifications
+#ifdef AL_VERSION_1_1
 typedef ALCchar* alcString;
+#else
+typedef ALCubyte* alcString;
 #endif
 
 #if MSC_VERSION
