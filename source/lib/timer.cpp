@@ -52,9 +52,9 @@
 // timer values than their us / ns interface, via double [seconds].
 // they're also not guaranteed to be monotonic.
 
-#if HAVE_GETTIMEOFDAY
+#if HAVE_CLOCK_GETTIME
 static struct timespec start;
-#elif HAVE_CLOCK_GETTIME
+#elif HAVE_GETTIMEOFDAY
 static struct timeval start;
 #endif
 
