@@ -155,7 +155,7 @@ function package_set_build_flags()
 				"-Wno-reorder",		-- order of initialization list in constructors
 				"-Wno-non-virtual-dtor",
 				"-Wno-invalid-offsetof",	-- offsetof on non-POD types
-	
+
 				-- do something (?) so that ccache can handle compilation with PCH enabled
 				"-fpch-preprocess",
 
@@ -165,6 +165,9 @@ function package_set_build_flags()
 				-- speed up math functions by inlining. warning: this may result in
 				-- non-IEEE-conformant results, but haven't noticed any trouble so far.
 				"-ffast-math",
+			})
+			tinsert(package.linkoptions, {
+				"-Wl,--no-undefined",
 			})
 		end
 
@@ -750,7 +753,8 @@ function setup_atlas_packages()
 		"spidermonkey",
 		"wxwidgets",
 		"comsuppw",
-		"zlib"
+		"zlib",
+		"x11",
 	},{	-- extra_params
 		pch = (not has_broken_pch),
 		extra_links = atlas_extra_links,
@@ -812,9 +816,11 @@ end
 
 function setup_atlas_frontends()
 	setup_atlas_frontend_package("ActorEditor")
-	setup_atlas_frontend_package("ArchiveViewer")
 	setup_atlas_frontend_package("ColourTester")
-	setup_atlas_frontend_package("FileConverter")
+	if options["aoe3ed"] then
+		setup_atlas_frontend_package("ArchiveViewer")
+		setup_atlas_frontend_package("FileConverter")
+	end
 end
 
 
@@ -874,6 +880,7 @@ function setup_collada_packages()
 	},{	-- include
 	},{	-- extern_libs
 		"fcollada",
+		"dl",
 	},{	-- extra_params
 		pch = 1,
 	})

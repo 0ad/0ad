@@ -78,6 +78,10 @@ extern_lib_defs = {
 	devil = {
 		unix_names = { "IL", "ILU" },
 	},
+	dl = {
+		win_names  = { },
+		unix_names = { "dl" },
+	},
 	-- rationale: see libraries_dir..enet/lib/rationale.txt
 	enet =
 	{
@@ -141,6 +145,15 @@ extern_lib_defs = {
 		osx_frameworks = { "OpenGL" },
 		dbg_suffix = "",
 	},
+	sdl = {
+		add_func = function()
+			add_extern_lib_paths("sdl")
+			if OS ~= "windows" then
+				tinsert(package.buildoptions, "`sdl-config --cflags`")
+				tinsert(package.linkoptions, "`sdl-config --libs`")
+			end
+		end
+	},
 	spidermonkey = {
 		win_names  = { "js32" },
 		unix_names = { "js" },
@@ -167,6 +180,10 @@ extern_lib_defs = {
 			end
 		end,
 	},
+	x11 = {
+		win_names  = { },
+		unix_names = { "X11" },
+	},
 	xerces = {
 		win_names  = { "xerces-c_2" },
 		unix_names = { "xerces-c" },
@@ -176,16 +193,6 @@ extern_lib_defs = {
 		win_names  = { "zlib1" },
 		unix_names = { "z" },
 	},
-
-	sdl = {
-		add_func = function()
-			add_extern_lib_paths("sdl")
-			if OS ~= "windows" then
-				tinsert(package.buildoptions, "`sdl-config --cflags`")
-				tinsert(package.linkoptions, "`sdl-config --libs`")
-			end
-		end
-	}
 }
 
 
