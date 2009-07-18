@@ -124,7 +124,7 @@ extern_lib_defs = {
 				tinsert(package.config["Testing"].links, "libxml2")
 				tinsert(package.config["Release"].links, "libxml2")
 			else
-				tinsert(package.includepaths, "`pkg-config libxml-2.0 --cflags`")
+				tinsert(package.buildoptions, "`pkg-config libxml-2.0 --cflags`")
 				tinsert(package.linkoptions, "`pkg-config libxml-2.0 --libs`")
 			end
 		end,
