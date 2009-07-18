@@ -38,10 +38,15 @@ end
 -- * win_names: table of import library / DLL names (no extension) when
 --   running on Windows.
 -- * unix_names: as above; shared object names when running on non-Windows.
--- both of the above are 'required'; if not specified, no linking against the
+-- * osx_names: as above; for OS X specificall (overrides unix_names if both are
+--   specified)
+-- * linux_names: ditto for Linux (overrides unix_names if both given)
+--
+-- win- and unix-names are 'required'; if not specified, no linking against the
 -- library happens on platforms whose *_names are missing.
--- (rationale: this allows for libraries that do not
--- link against anything, e.g. Boost).
+-- (rationale: this allows for libraries that do not link against anything,
+-- e.g. Boost).
+--
 -- * dbg_suffix: changes the debug suffix from the above default.
 --   can be "" to indicate the library doesn't have a debug build;
 --   in that case, the same library (without suffix) is used in
@@ -56,7 +61,8 @@ end
 --   library installation rules.
 extern_lib_defs = {
 	boost = {
-		unix_names = { "boost_signals", "boost_filesystem" }
+		unix_names = { "boost_signals-mt", "boost_filesystem-mt" },
+		osx_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" }
 	},
 	cryptopp = {
 	},
@@ -117,9 +123,9 @@ extern_lib_defs = {
 				tinsert(package.config["Debug"  ].links, "libxml2")
 				tinsert(package.config["Testing"].links, "libxml2")
 				tinsert(package.config["Release"].links, "libxml2")
-		else
-				tinsert(package.includepaths, "/usr/include/libxml2")
-				tinsert(package.linkoptions, "-lxml2")
+			else
+				tinsert(package.includepaths, "`pkg-config libxml-2.0 --cflags`")
+				tinsert(package.linkoptions, "`pkg-config libxml-2.0 --libs`")
 			end
 		end,
 	},
@@ -220,10 +226,12 @@ local function add_extern_lib(extern_lib, def)
 		if def.win_names then
 			names = def.win_names
 		end
-	else
-		if def.unix_names then
-			names = def.unix_names
-		end
+	elseif OS == "linux" and def.linux_names then
+		names = def.linux_names
+	elseif OS == "macosx" and def.osx_names then
+		names = def.osx_names
+	elseif def.unix_names then
+		names = def.unix_names
 	end
 
 	local suffix = "d"
