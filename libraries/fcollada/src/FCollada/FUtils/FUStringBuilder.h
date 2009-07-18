@@ -135,6 +135,8 @@ public:
 #else
 	inline void append(unsigned int i) { append((uint32) i); } /**< See above. */
 #endif
+#elif defined(__APPLE__)
+	inline void append(size_t i) { append((uint64)i); }
 #endif // defined(WIN32)
 
 	/** Appends the floating-point value, after converting it to a string,

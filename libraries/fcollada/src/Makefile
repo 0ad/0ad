@@ -1,9 +1,18 @@
+OS_ARCH := $(shell uname -s)
+
+ifeq ($(OS_ARCH),Darwin)
+PIC_FLAGS ?= -fPIC
+else
+OS_DEFINE ?= -DLINUX
+PIC_FLAGS ?= -fpic
+endif
+
 CXX := g++
-CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function -DLINUX -fPIC
+CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS)
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG
 CXXFLAGS_RELEASE := -O2 -DNDEBUG -DRETAIL
-LDFLAGS := -lxml2 -shared -fPIC
-INCLUDES := -IFCollada -I/usr/include/libxml2
+LDFLAGS := `pkg-config libxml-2.0 --libs` -shared $(PIC_FLAGS)
+INCLUDES := -IFCollada `pkg-config libxml-2.0 --cflags`
 
 SOURCE = \
 	FCollada/FCollada.cpp \
