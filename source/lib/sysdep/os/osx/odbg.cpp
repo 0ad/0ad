@@ -28,7 +28,7 @@ void* debug_GetCaller(void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 	return NULL;
 }
 
-LibError debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), size_t UNUSED(skip), void* UNUSED(context))
+LibError debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 {
 	return ERR::NOT_IMPLEMENTED;
 }

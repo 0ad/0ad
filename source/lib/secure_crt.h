@@ -38,7 +38,7 @@ namespace ERR
 #if EMULATE_SECURE_CRT
 
 // (conflicts with glibc definitions)
-#if !OS_UNIX
+#if !OS_UNIX || OS_MACOSX
 // return length [in characters] of a string, not including the trailing
 // null character. to protect against access violations, only the
 // first <max_len> characters are examined; if the null character is
