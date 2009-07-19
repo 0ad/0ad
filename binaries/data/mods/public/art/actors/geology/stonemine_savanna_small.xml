@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="formation-01">
+      <mesh>gaia/geo_medit_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="formation-02">
+      <mesh>gaia/geo_medit_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="formation-03">
+      <mesh>gaia/geo_medit_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="formation-04">
+      <mesh>gaia/geo_medit_04.dae</mesh>
+    </variant>
+    <variant frequency="1" name="formation-05">
+      <mesh>gaia/geo_medit_05.dae</mesh>
+    </variant>
+    <variant frequency="1" name="formation-06">
+      <mesh>gaia/geo_medit_06.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Stone Savanna (A)">
+      <texture>gaia/stone_savanna_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="Stone Savanna (B)">
+      <texture>gaia/stone_savanna_b.dds</texture>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="decal">
+      <props>
+        <prop actor="geology/decal_stone_desert_a.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>
