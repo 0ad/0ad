@@ -1617,9 +1617,15 @@ static LibError vsrc_reclaim(VSrc* vs)
 	alSourceStop(vs->al_src);
 	AL_CHECK;
 
-	// deque and free remaining buffers (if sound was closed abruptly).
-	// (note: all queued buffers are now considered 'processed')
-	vsrc_deque_finished_bufs(vs);
+	// clear the source's buffer queue (necessary because buffers cannot
+	// be deleted at shutdown while still attached to a source).
+	// note: OpenAL 1.1 says all buffers become "processed" when the
+	// source is stopped (so vsrc_deque_finished_bufs ought to have the
+	// same effect), but that doesn't seem to be the case on Linux
+	// implementations (OpenAL Soft/ALSA and PulseAudio with on-board
+	// NVidia). wiping out the entire queue is safer, anyway.
+	alSourcei(vs->al_src, AL_BUFFER, AL_NONE);
+	AL_CHECK;
 
 	al_src_free(vs->al_src);
 	return INFO::OK;
