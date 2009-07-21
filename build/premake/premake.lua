@@ -260,13 +260,13 @@ function package_add_contents(source_root, rel_source_dirs, rel_include_dirs, ex
 	-- (e.g. "lib/precompiled.h")
 	tinsert(package.includepaths, source_root)
 
-	for i,v in rel_include_dirs do
+	for i,v in pairs(rel_include_dirs) do
 		tinsert(package.includepaths, source_root .. v)
 	end
 
 
 	if extra_params["extra_files"] then
-		for i,v in extra_params["extra_files"] do
+		for i,v in pairs(extra_params["extra_files"]) do
 			tinsert(package.files, source_root .. v)
 		end
 	end
@@ -288,7 +288,7 @@ function package_setup_pch(pch_dir, header, source)
 				pch_dir..source
 			})
 		end
-		for i,v in project.configs do
+		for i,v in pairs(project.configs) do
 			tinsert(package.config[v].defines, "USING_PCH")
 		end
 	end
@@ -489,7 +489,7 @@ function setup_all_libs ()
 		windows = { "lib/sysdep/os/win", "lib/sysdep/os/win/wposix", "lib/sysdep/os/win/whrt" },
 		macosx = { "lib/sysdep/os/osx", "lib/sysdep/os/unix" },
 	}
-	for i,v in sysdep_dirs[OS] do
+	for i,v in pairs(sysdep_dirs[OS]) do
 		tinsert(source_dirs, v);
 	end
 
@@ -903,7 +903,7 @@ function get_all_test_files(root, src_files, hdr_files)
 	-- desired */tests/* files. this is a bit slow, but hey.
 
 	local all_files = matchrecursive(root .. "*.h")
-	for i,v in all_files do
+	for i,v in pairs(all_files) do
 		-- header file in subdirectory test
 		if string.sub(v, -2) == ".h" and string.find(v, "/tests/") then
 			-- don't include sysdep tests on the wrong sys

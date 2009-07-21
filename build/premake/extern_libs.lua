@@ -256,11 +256,11 @@ local function add_extern_lib(extern_lib, def)
 	-- OS X "Frameworks" need to be added in a special way to the link
 	-- i.e. by linkoptions += "-framework ..."
 	if OS == "macosx" and def.osx_frameworks then
-		for i,name in def.osx_frameworks do
+		for i,name in pairs(def.osx_frameworks) do
 			tinsert(package.linkoptions, "-framework " .. name)
 		end
 	else
-		for i,name in names do
+		for i,name in pairs(names) do
 			tinsert(package.config["Debug"  ].links, name .. suffix)
 			-- 'Testing' config uses 'Debug' DLLs
 			tinsert(package.config["Testing"].links, name .. suffix)
@@ -277,7 +277,7 @@ end
 -- extern_libs: table of library names [string]
 function package_add_extern_libs(extern_libs)
 
-	for i,extern_lib in extern_libs do
+	for i,extern_lib in pairs(extern_libs) do
 		local def = extern_lib_defs[extern_lib]
 		assert(def, "external library " .. extern_lib .. " not defined")
 
