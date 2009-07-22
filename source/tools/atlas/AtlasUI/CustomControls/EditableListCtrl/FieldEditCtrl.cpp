@@ -70,7 +70,7 @@ void FieldEditCtrl_Colour::StartEdit(wxWindow* parent, wxRect WXUNUSED(rect), lo
 
 	wxColour newColour = wxGetColourFromUser(parent, oldColour);
 
-	if (newColour.Ok()) // test whether the user cancelled the selection
+	if (newColour.IsOk()) // test whether the user cancelled the selection
 	{
 		wxString newColourStr = wxString::Format(_T("%d %d %d"), newColour.Red(), newColour.Green(), newColour.Blue());
 		AtlasWindowCommandProc::GetFromParentFrame(editCtrl)->Submit(

@@ -66,7 +66,7 @@ public:
 	void OnButton(wxCommandEvent& WXUNUSED(event))
 	{
 		wxColour c = wxGetColourFromUser(this, m_Colour);
-		if (c.Ok())
+		if (c.IsOk())
 		{
 			m_Colour = c;
 			m_ImageCtrl->SetColour(m_Colour);
