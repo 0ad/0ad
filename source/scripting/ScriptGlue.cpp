@@ -645,7 +645,7 @@ static void InitJsTimers()
 	for(size_t i = 0; i < MAX_JS_TIMERS; i++)
 	{
 		const char* description = pos;
-		pos += sprintf(pos, "js_timer %d", i)+1;
+		pos += sprintf(pos, "js_timer %d", (int)i)+1;
 		timer_AddClient(&js_timer_clients[i], description);
 	}
 

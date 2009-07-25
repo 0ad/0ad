@@ -85,6 +85,8 @@ void* debug_GetCaller(void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 	// instead just returning the caller of the function calling us
 	void *bt[3];
 	int bt_size = backtrace(bt, 3);
+	if (bt_size < 3)
+	    return NULL;
 	return bt[2];
 }
 
@@ -300,7 +302,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 			demangle_buf(sym_name, syminfo.dli_sname, DBG_SYMBOL_LEN);
 		else
 		{
-			snprintf(sym_name, DBG_SYMBOL_LEN, "0x%08x", (size_t)ptr);
+			snprintf(sym_name, DBG_SYMBOL_LEN, "%p", ptr);
 			sym_name[DBG_SYMBOL_LEN-1]=0;
 		}
 	}

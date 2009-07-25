@@ -34,7 +34,7 @@ MessagePasserImpl::MessagePasserImpl()
 	{
 		static char name[1024];
 		sprintf(name, "/wfg-atlas-msgpass-%d-%d",
-				rand(1, 1000), (int)(time(0)%1000));
+				(int)rand(1, 1000), (int)(time(0)%1000));
 		sem_t* sem = sem_open(name, O_CREAT | O_EXCL, 0700, 0);
 
 		// This cast should not be necessary, but apparently SEM_FAILED is not

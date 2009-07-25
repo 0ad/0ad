@@ -111,7 +111,7 @@ int WaterManager::LoadWaterTextures()
 	while (cur_loading_water_tex < num_textures)
 	{
 		snprintf(filename, ARRAY_SIZE(filename), "art/textures/animated/water/%s/diffuse%02d.dds", 
-			water_type, cur_loading_water_tex+1);
+			water_type, (int)cur_loading_water_tex+1);
 		Handle ht = ogl_tex_load(filename);
 		if (ht <= 0)
 		{
@@ -128,7 +128,7 @@ int WaterManager::LoadWaterTextures()
 	while (cur_loading_normal_map < num_normal_maps)
 	{
 		snprintf(filename, ARRAY_SIZE(filename), "art/textures/animated/water/%s/normal%02d.dds", 
-			water_type, cur_loading_normal_map+1);
+			water_type, (int)cur_loading_normal_map+1);
 		Handle ht = ogl_tex_load(filename);
 		if (ht <= 0)
 		{

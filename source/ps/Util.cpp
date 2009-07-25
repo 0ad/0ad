@@ -93,7 +93,7 @@ void WriteSystemInfo()
 
 	// CPU
 	const CpuTopology* topology = cpu_topology_Detect();
-	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), cpu_topology_NumPackages(topology), cpu_topology_CoresPerPackage(topology), cpu_topology_LogicalPerCore(topology));
+	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)cpu_topology_NumPackages(topology), (int)cpu_topology_CoresPerPackage(topology), (int)cpu_topology_LogicalPerCore(topology));
 	const double cpu_freq = os_cpu_ClockFrequency();
 	if(cpu_freq != 0.0f)
 	{
@@ -106,7 +106,7 @@ void WriteSystemInfo()
 		fprintf(f, "\n");
 
 	// memory
-	fprintf(f, "Memory         : %u MiB; %u MiB free\n", os_cpu_MemorySize(), os_cpu_MemoryAvailable());
+	fprintf(f, "Memory         : %u MiB; %u MiB free\n", (unsigned)os_cpu_MemorySize(), (unsigned)os_cpu_MemoryAvailable());
 
 	// graphics
 	fprintf(f, "Graphics Card  : %s\n", gfx_card);
