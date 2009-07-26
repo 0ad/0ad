@@ -95,7 +95,6 @@ extern_lib_defs = {
 				tinsert(package.config["Testing"].links, "enet_dbg")
 				tinsert(package.config["Release"].links, "enet")
 			else
-				tinsert(package.includepaths, libraries_dir.."enet/include")
 				tinsert(package.linkoptions, "-lenet")
 			end
 		end,
