@@ -85,7 +85,7 @@ inline const T& min(const T& x,const T& y) { return (x < y) ? x : y; } /**< See 
 #ifndef NO_LIBXML
 #define HAS_LIBXML /**< Used by FCollada, implies that we are including LibXML functions in the library interface. */
 #if !defined(FCOLLADA_DLL) || defined(FCOLLADA_INTERNAL)
-#define LIBXML_STATIC /**< Used by LibXML, implies that we are statically-linking the LibXML. */
+//#define LIBXML_STATIC /**< Used by LibXML, implies that we are statically-linking the LibXML. */
 #endif // !FCOLLADA_DLL || !FCOLLADA_INTERNAL
 #ifndef __XML_TREE_H__
 #include <libxml/tree.h>

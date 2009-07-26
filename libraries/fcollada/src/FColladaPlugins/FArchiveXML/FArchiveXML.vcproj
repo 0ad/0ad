@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;FCOLLADA_DLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -53,6 +53,761 @@
 				WarnAsError="true"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release DLL|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="0"
+			WholeProgramOptimization="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;FCOLLADA_DLL"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="2"
+				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Retail DLL|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="0"
+			WholeProgramOptimization="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;RETAIL;FCOLLADA_DLL"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="2"
+				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="0"
+			WholeProgramOptimization="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="2"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="0"
+			WholeProgramOptimization="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="2"
+				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Retail|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="0"
+			WholeProgramOptimization="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;RETAIL"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="2"
+				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug Unicode|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="2"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug Unicode DLL|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;FCOLLADA_DLL"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="2"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release Unicode|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="2"
+				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release Unicode DLL|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;FCOLLADA_DLL"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="2"
+				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Retail Unicode|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;RETAIL"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="2"
+				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				AdditionalOptions="/MACHINE:X86"
+				AdditionalLibraryDirectories=""
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Retail Unicode DLL|Win32"
+			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
+			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
+			ConfigurationType="4"
+			CharacterSet="1"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				InlineFunctionExpansion="2"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\..\..\libxml2\include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;RETAIL;FCOLLADA_DLL"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="2"
+				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
+				WarningLevel="4"
+				WarnAsError="true"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -155,75 +910,6 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release DLL|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="0"
-			WholeProgramOptimization="0"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;FCOLLADA_DLL"
-				RuntimeLibrary="2"
-				UsePrecompiledHeader="2"
-				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
 			Name="Release DLL|x64"
 			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
 			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
@@ -274,75 +960,6 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalOptions="/MACHINE:x64"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Retail DLL|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="0"
-			WholeProgramOptimization="0"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;RETAIL;FCOLLADA_DLL"
-				RuntimeLibrary="2"
-				UsePrecompiledHeader="2"
-				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
 				AdditionalLibraryDirectories=""
 			/>
 			<Tool
@@ -433,74 +1050,6 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="0"
-			WholeProgramOptimization="0"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				UsePrecompiledHeader="2"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="4"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
 			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
@@ -550,75 +1099,6 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalOptions="/MACHINE:x64"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="0"
-			WholeProgramOptimization="0"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG"
-				RuntimeLibrary="0"
-				UsePrecompiledHeader="2"
-				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
 				AdditionalLibraryDirectories=""
 			/>
 			<Tool
@@ -709,75 +1189,6 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Retail|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="0"
-			WholeProgramOptimization="0"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;RETAIL"
-				RuntimeLibrary="0"
-				UsePrecompiledHeader="2"
-				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
 			Name="Retail|x64"
 			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
 			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
@@ -828,73 +1239,6 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalOptions="/MACHINE:x64"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Debug Unicode|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				UsePrecompiledHeader="2"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="4"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
 				AdditionalLibraryDirectories=""
 			/>
 			<Tool
@@ -983,73 +1327,6 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug Unicode DLL|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;FCOLLADA_DLL"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="4"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
 			Name="Debug Unicode DLL|x64"
 			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
 			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
@@ -1098,75 +1375,6 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalOptions="/MACHINE:x64"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Release Unicode|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="1"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG"
-				RuntimeLibrary="0"
-				UsePrecompiledHeader="2"
-				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
 				AdditionalLibraryDirectories=""
 			/>
 			<Tool
@@ -1257,75 +1465,6 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release Unicode DLL|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="1"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;FCOLLADA_DLL"
-				RuntimeLibrary="2"
-				UsePrecompiledHeader="2"
-				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
 			Name="Release Unicode DLL|x64"
 			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
 			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
@@ -1376,76 +1515,6 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalOptions="/MACHINE:x64"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Retail Unicode|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="1"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;RETAIL"
-				RuntimeLibrary="0"
-				UsePrecompiledHeader="2"
-				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
 				AdditionalLibraryDirectories=""
 			/>
 			<Tool
@@ -1517,75 +1586,6 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalOptions="/MACHINE:x64"
-				AdditionalLibraryDirectories=""
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine=""
-			/>
-		</Configuration>
-		<Configuration
-			Name="Retail Unicode DLL|Win32"
-			OutputDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)"
-			IntermediateDirectory="$(ProjectDir)../Output/$(ConfigurationName) $(PlatformName)/$(ProjectName)/Intermediate"
-			ConfigurationType="4"
-			CharacterSet="1"
-			WholeProgramOptimization="1"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				InlineFunctionExpansion="2"
-				EnableIntrinsicFunctions="true"
-				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)..\..\FCollada\LibXML/include&quot;;&quot;$(ProjectDir)..\..\FCollada&quot;;&quot;$(ProjectDir)..\..\..\External&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;RETAIL;FCOLLADA_DLL"
-				RuntimeLibrary="2"
-				UsePrecompiledHeader="2"
-				ProgramDataBaseFileName="$(OutDir)\FArchiveXML.pdb"
-				WarningLevel="4"
-				WarnAsError="true"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				AdditionalOptions="/MACHINE:X86"
 				AdditionalLibraryDirectories=""
 			/>
 			<Tool
@@ -1831,23 +1831,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug DLL|x64"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Release DLL|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release DLL|x64"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -1863,23 +1847,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Retail DLL|x64"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Debug|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Debug|x64"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -1895,23 +1863,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release|x64"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Retail|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Retail|x64"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -1927,23 +1879,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Debug Unicode|x64"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Debug Unicode DLL|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Debug Unicode DLL|x64"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -1959,23 +1895,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release Unicode|x64"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
 				Name="Release Unicode DLL|Win32"
-				>
-				<Tool
-					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="1"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release Unicode DLL|x64"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -1991,7 +1911,7 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Retail Unicode|x64"
+				Name="Retail Unicode DLL|Win32"
 				>
 				<Tool
 					Name="VCCLCompilerTool"
@@ -1999,7 +1919,87 @@
 				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Retail Unicode DLL|Win32"
+				Name="Debug DLL|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release DLL|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Retail DLL|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Retail|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug Unicode|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug Unicode DLL|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release Unicode|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release Unicode DLL|x64"
+				>
+				<Tool
+					Name="VCCLCompilerTool"
+					UsePrecompiledHeader="1"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Retail Unicode|x64"
 				>
 				<Tool
 					Name="VCCLCompilerTool"

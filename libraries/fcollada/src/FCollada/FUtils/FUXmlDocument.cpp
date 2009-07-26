@@ -36,7 +36,7 @@ FUXmlDocument::FUXmlDocument(FUFileManager* manager, const fchar* _filename, boo
 			file->Close();
 
 			// Open the given XML file.
-			xmlDocument = xmlParseMemory((const char*) fileData, fileLength);
+			xmlDocument = xmlParseMemory((const char*) fileData, (int)fileLength);
 			SAFE_DELETE_ARRAY(fileData);
 		}
 		SAFE_DELETE(file);
@@ -64,7 +64,7 @@ FUXmlDocument::FUXmlDocument(const char* data, size_t length)
 	}
 
 	// Open the given XML file.
-	xmlDocument = xmlParseMemory(data, length);
+	xmlDocument = xmlParseMemory(data, (int)length);
 }
 
 FUXmlDocument::~FUXmlDocument()

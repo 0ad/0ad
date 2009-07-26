@@ -853,10 +853,6 @@ function setup_collada_package(package_name, target_type, rel_source_dirs, rel_i
 		if extra_params["extra_links"] then 
 			listconcat(package.links, extra_params["extra_links"]) 
 		end
-
-	else
-		tinsert(package.buildoptions, "`pkg-config libxml-2.0 --cflags`")
-		tinsert(package.linkoptions, "`pkg-config libxml-2.0 --libs`")
 	end
 
 	if OS == "linux" then
@@ -883,6 +879,7 @@ function setup_collada_packages()
 	},{	-- extern_libs
 		"fcollada",
 		"dl",
+		"libxml2",
 	},{	-- extra_params
 		pch = 1,
 	})
