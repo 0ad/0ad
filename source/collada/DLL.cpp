@@ -54,9 +54,9 @@ void Log(int severity, const char* msg, ...)
 
 struct BufferedOutputCallback : public OutputCB
 {
-	static const int bufferSize = 4096;
+	static const unsigned int bufferSize = 4096;
 	char buffer[bufferSize];
-	int bufferUsed;
+	unsigned int bufferUsed;
 
 	OutputFn fn;
 	void* cb_data;
