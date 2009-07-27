@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
 
 <Entity Parent="template_unit_fauna_hunt_aggressive">
-
 	<Traits>
-
 		<Id>
-				<Specific>North African Elephant</Specific>
+			<Specific>African Bush Elephant</Specific>
 		</Id>
-
  		<Supply>
- 			<Max>500</Max>
+ 			<Max>800</Max>
  			<Type>food</Type>
  			<SubType>meat</SubType>
  		</Supply>
-	
 		<Footprint>
-			<Radius>2.5</Radius>
-			<Height>3.0</Height>
+			<Radius>3.0</Radius>
+			<Height>3.5</Height>
 		</Footprint>
-
 	</Traits>
-
- 	<Actor>fauna/elephant_african_forest.xml</Actor>
-
+ 	<Actor>fauna/elephant_african_bush.xml</Actor>
 </Entity>
