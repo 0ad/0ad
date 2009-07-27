@@ -7,7 +7,7 @@
 		<SunElevation angle="0.877437"/>
 		<SunRotation angle="-1.11674"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
-		<UnitsAmbientColour r="0.513726" g="0.478431" b="0.403922"/>
+		<UnitsAmbientColour r="0.513726" g="0.47451" b="0.403922"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="78.7381" y="121.558" z="-29.3592"/>
+		<Position x="79.9861" y="113.115" z="-16.6722"/>
 		<Rotation angle="0.0045216"/>
 		<Declination angle="0.713791"/>
 	</Camera>
@@ -2839,38 +2839,8 @@
 		<Entity uid="547">
 			<Template>fauna_gazelle</Template>
 			<Player>0</Player>
-			<Position x="237.809" y="22.4" z="264.075"/>
-			<Orientation angle="0.518647"/>
-		</Entity>
-		<Entity uid="551">
-			<Template>fauna_elephant</Template>
-			<Player>0</Player>
-			<Position x="238.66" y="22.0762" z="285.768"/>
-			<Orientation angle="-3.01414"/>
-		</Entity>
-		<Entity uid="552">
-			<Template>fauna_elephant</Template>
-			<Player>0</Player>
-			<Position x="17.1282" y="21.2372" z="113.455"/>
-			<Orientation angle="-2.04732"/>
-		</Entity>
-		<Entity uid="553">
-			<Template>fauna_elephant</Template>
-			<Player>0</Player>
-			<Position x="34.8445" y="20.0397" z="161.452"/>
-			<Orientation angle="-2.31568"/>
-		</Entity>
-		<Entity uid="554">
-			<Template>fauna_elephant</Template>
-			<Player>0</Player>
-			<Position x="497.848" y="20.545" z="516.879"/>
-			<Orientation angle="2.35619"/>
-		</Entity>
-		<Entity uid="555">
-			<Template>fauna_elephant</Template>
-			<Player>0</Player>
-			<Position x="495.847" y="20.1142" z="507.755"/>
-			<Orientation angle="-0.747317"/>
+			<Position x="231.633" y="22.4" z="278.024"/>
+			<Orientation angle="2.29443"/>
 		</Entity>
 		<Entity uid="557">
 			<Template>hele_civil_centre</Template>
@@ -2878,46 +2848,40 @@
 			<Position x="81.3078" y="22.4" z="84.0777"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="561">
-			<Template>celt_civil_centre</Template>
-			<Player>2</Player>
-			<Position x="478.6" y="22.4" z="465.053"/>
-			<Orientation angle="-2.35959"/>
-		</Entity>
 		<Entity uid="564">
 			<Template>hele_infantry_javelinist_b</Template>
 			<Player>1</Player>
-			<Position x="86.7276" y="22.4" z="103.578"/>
+			<Position x="96.8946" y="22.4" z="102.916"/>
 			<Orientation angle="-2.36105"/>
 		</Entity>
 		<Entity uid="566">
 			<Template>hele_infantry_javelinist_a</Template>
 			<Player>1</Player>
-			<Position x="84.7244" y="22.4" z="105.956"/>
+			<Position x="93.1242" y="22.4" z="107.118"/>
 			<Orientation angle="-2.35782"/>
 		</Entity>
 		<Entity uid="568">
 			<Template>hele_infantry_javelinist_e</Template>
 			<Player>1</Player>
-			<Position x="82.1236" y="22.4" z="108.221"/>
+			<Position x="90.8679" y="22.4" z="111.345"/>
 			<Orientation angle="-2.45758"/>
 		</Entity>
 		<Entity uid="570">
 			<Template>hele_infantry_spearman_b</Template>
 			<Player>1</Player>
-			<Position x="90.7751" y="22.4" z="69.5045"/>
+			<Position x="91.3107" y="22.4" z="66.4345"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="572">
 			<Template>hele_infantry_spearman_a</Template>
 			<Player>1</Player>
-			<Position x="92.9517" y="22.4" z="71.2274"/>
+			<Position x="94.9068" y="22.4" z="68.8415"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="574">
 			<Template>hele_infantry_spearman_e</Template>
 			<Player>1</Player>
-			<Position x="95.3786" y="22.4" z="72.6727"/>
+			<Position x="97.9862" y="22.4" z="70.4244"/>
 			<Orientation angle="2.54661"/>
 		</Entity>
 		<Entity uid="578">
@@ -4060,77 +4024,149 @@
 			<Position x="266.798" y="22.4" z="460.187"/>
 			<Orientation angle="0.337736"/>
 		</Entity>
-		<Entity uid="4705">
-			<Template>celt_infantry_spearman_e</Template>
-			<Player>2</Player>
-			<Position x="472.602" y="22.4" z="448.438"/>
-			<Orientation angle="-2.42636"/>
+		<Entity uid="5365">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="496.919" y="20.7595" z="517.847"/>
+			<Orientation angle="2.92498"/>
 		</Entity>
-		<Entity uid="4707">
-			<Template>celt_infantry_spearman_a</Template>
-			<Player>2</Player>
-			<Position x="469.984" y="22.4" z="450.82"/>
-			<Orientation angle="-2.48836"/>
+		<Entity uid="5366">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="494.969" y="20.2393" z="508.745"/>
+			<Orientation angle="-0.330878"/>
 		</Entity>
-		<Entity uid="4709">
-			<Template>celt_infantry_spearman_b</Template>
-			<Player>2</Player>
-			<Position x="467.119" y="22.4" z="452.784"/>
-			<Orientation angle="-2.48583"/>
+		<Entity uid="5368">
+			<Template>fauna_elephant_african_infant</Template>
+			<Player>0</Player>
+			<Position x="484.471" y="21.9175" z="518.496"/>
+			<Orientation angle="-2.42572"/>
 		</Entity>
-		<Entity uid="4711">
-			<Template>celt_infantry_javelinist_b</Template>
-			<Player>2</Player>
-			<Position x="455.08" y="22.4" z="474.098"/>
-			<Orientation angle="-2.3312"/>
+		<Entity uid="5370">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="31.3393" y="21.1697" z="163.241"/>
+			<Orientation angle="2.73602"/>
 		</Entity>
-		<Entity uid="4713">
-			<Template>celt_infantry_javelinist_a</Template>
-			<Player>2</Player>
-			<Position x="457.332" y="22.4" z="471.219"/>
-			<Orientation angle="-2.49751"/>
+		<Entity uid="5371">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="25.5261" y="21.6946" z="157.721"/>
+			<Orientation angle="1.96828"/>
 		</Entity>
-		<Entity uid="4715">
-			<Template>celt_infantry_javelinist_e</Template>
-			<Player>2</Player>
-			<Position x="459.329" y="22.4" z="468.299"/>
-			<Orientation angle="-2.21698"/>
-		</Entity>
-		<Entity uid="4717">
-			<Template>celt_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="480.648" y="22.4" z="446.491"/>
+		<Entity uid="5373">
+			<Template>fauna_elephant_african_infant</Template>
+			<Player>0</Player>
+			<Position x="26.6236" y="21.7767" z="164.617"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="4718">
-			<Template>celt_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="484.102" y="22.4" z="448.361"/>
+		<Entity uid="5375">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="21.9977" y="20.0696" z="102.393"/>
+			<Orientation angle="1.86405"/>
+		</Entity>
+		<Entity uid="5376">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="521.469" y="20.2372" z="423.097"/>
+			<Orientation angle="1.13373"/>
+		</Entity>
+		<Entity uid="5377">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="48.5268" y="22.4" z="486.388"/>
+			<Orientation angle="-2.64707"/>
+		</Entity>
+		<Entity uid="5378">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="433.367" y="22.1933" z="76.3768"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="4719">
-			<Template>celt_support_female_citizen</Template>
-			<Player>2</Player>
-			<Position x="486.847" y="22.4" z="450.664"/>
+		<Entity uid="5379">
+			<Template>fauna_elephant_north_african</Template>
+			<Player>0</Player>
+			<Position x="232.252" y="21.4643" z="296.633"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="4722">
-			<Template>celt_cavalry_javelinist_b</Template>
+		<Entity uid="5381">
+			<Template>hele_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="482.331" y="22.4" z="486.355"/>
-			<Orientation angle="-2.37302"/>
+			<Position x="477.394" y="22.4" z="465.329"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="4724">
-			<Template>celt_cavalry_javelinist_a</Template>
+		<Entity uid="5384">
+			<Template>hele_infantry_javelinist_b</Template>
 			<Player>2</Player>
-			<Position x="485.558" y="22.4" z="482.753"/>
-			<Orientation angle="-2.0407"/>
+			<Position x="479.514" y="22.4" z="439.006"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
-		<Entity uid="4726">
-			<Template>celt_cavalry_javelinist_e</Template>
+		<Entity uid="5386">
+			<Template>hele_infantry_javelinist_a</Template>
 			<Player>2</Player>
-			<Position x="488.951" y="22.4" z="479.417"/>
-			<Orientation angle="-2.11955"/>
+			<Position x="481.828" y="22.4" z="441.288"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5388">
+			<Template>hele_infantry_javelinist_e</Template>
+			<Player>2</Player>
+			<Position x="484.426" y="22.4" z="443.062"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5390">
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>2</Player>
+			<Position x="447.578" y="22.4" z="477.214"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5392">
+			<Template>hele_infantry_spearman_a</Template>
+			<Player>2</Player>
+			<Position x="450.238" y="22.4" z="479.474"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5394">
+			<Template>hele_infantry_spearman_e</Template>
+			<Player>2</Player>
+			<Position x="453.283" y="22.4" z="481.804"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5396">
+			<Template>hele_cavalry_swordsman_b</Template>
+			<Player>2</Player>
+			<Position x="490.298" y="22.4" z="449.396"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5398">
+			<Template>hele_cavalry_swordsman_a</Template>
+			<Player>2</Player>
+			<Position x="494.223" y="22.4" z="453.281"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5400">
+			<Template>hele_cavalry_swordsman_e</Template>
+			<Player>2</Player>
+			<Position x="497.451" y="22.4" z="456.01"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="5402">
+			<Template>hele_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="463.631" y="22.4" z="452.753"/>
+			<Orientation angle="-2.46107"/>
+		</Entity>
+		<Entity uid="5403">
+			<Template>hele_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="465.2" y="22.4" z="450.412"/>
+			<Orientation angle="-2.49695"/>
+		</Entity>
+		<Entity uid="5404">
+			<Template>hele_support_female_citizen</Template>
+			<Player>2</Player>
+			<Position x="467.228" y="22.4" z="449.765"/>
+			<Orientation angle="-2.70601"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -5116,7 +5152,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
-			<Position x="109.203" y="22.4" z="49.7761"/>
+			<Position x="109.401" y="22.4" z="50.8859"/>
 			<Orientation angle="-2.55466"/>
 		</Nonentity>
 		<Nonentity>
@@ -5346,7 +5382,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="225.589" y="22.4" z="249.94"/>
+			<Position x="227.668" y="22.4" z="250.784"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -6246,13 +6282,13 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="506.776" y="20.8516" z="518.498"/>
+			<Position x="508.801" y="22.3629" z="527.922"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
 			<Position x="507.441" y="21.4018" z="521.148"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="0.322705"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
@@ -6306,12 +6342,12 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="503.924" y="21.7775" z="524.756"/>
-			<Orientation angle="2.35619"/>
+			<Position x="521.466" y="22.3107" z="520.692"/>
+			<Orientation angle="-0.128046"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="504.36" y="21.6292" z="523.582"/>
+			<Position x="500.954" y="21.448" z="522.952"/>
 			<Orientation angle="2.18132"/>
 		</Nonentity>
 		<Nonentity>
@@ -6346,13 +6382,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="498.19" y="20.9081" z="519.289"/>
-			<Orientation angle="1.58476"/>
-		</Nonentity>
-		<Nonentity>
-			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="502.174" y="20.885" z="519.826"/>
-			<Orientation angle="2.35619"/>
+			<Position x="503.997" y="20.8547" z="519.62"/>
+			<Orientation angle="-1.85551"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
@@ -6376,7 +6407,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="512.477" y="20.9697" z="517.158"/>
+			<Position x="516.928" y="21.9332" z="519.248"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
@@ -6406,17 +6437,17 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="489.296" y="21.4995" z="515.527"/>
+			<Position x="481.64" y="22.1218" z="520.817"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="489.556" y="21.3655" z="513.726"/>
+			<Position x="489.617" y="21.1232" z="508.795"/>
 			<Orientation angle="2.35619"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="495.534" y="20.9887" z="518.476"/>
+			<Position x="495.252" y="21.1157" z="519.017"/>
 			<Orientation angle="0.533038"/>
 		</Nonentity>
 		<Nonentity>
@@ -6431,8 +6462,8 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
-			<Position x="511.985" y="21.1932" z="518.166"/>
-			<Orientation angle="1.99916"/>
+			<Position x="512.216" y="20.9813" z="517.291"/>
+			<Orientation angle="0.448849"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
