@@ -80,14 +80,14 @@ public:
 		const u8 d2[] = { 0xD9, 0x2C, 0xDD, 0x8F };
 		const u8 d3[] = { 0x92, 0x26, 0x88, 0xF1, 0x35, 0xAC, 0x01, 0x83 };
 
-		TS_ASSERT_EQUALS(movsx_le64(d1, 1), 0x09ull);
-		TS_ASSERT_EQUALS(movsx_le64(d1, 2), 0xFFFFFFFFFFFFFE09ull);
-		TS_ASSERT_EQUALS(movsx_le64(d2, 4), 0xFFFFFFFF8FDD2CD9ull);
-		TS_ASSERT_EQUALS(movsx_le64(d3, 8), 0x8301AC35F1882692ull);
+		TS_ASSERT_EQUALS(movsx_le64(d1, 1), (i64)0x09ull);
+		TS_ASSERT_EQUALS(movsx_le64(d1, 2), (i64)0xFFFFFFFFFFFFFE09ull);
+		TS_ASSERT_EQUALS(movsx_le64(d2, 4), (i64)0xFFFFFFFF8FDD2CD9ull);
+		TS_ASSERT_EQUALS(movsx_le64(d3, 8), (i64)0x8301AC35F1882692ull);
 
-		TS_ASSERT_EQUALS(movsx_be64(d1, 1), 0x09ull);
-		TS_ASSERT_EQUALS(movsx_be64(d1, 2), 0x00000000000009FEull);
-		TS_ASSERT_EQUALS(movsx_be64(d2, 4), 0xFFFFFFFFD92CDD8Full);
-		TS_ASSERT_EQUALS(movsx_be64(d3, 8), 0x922688F135AC0183ull);
+		TS_ASSERT_EQUALS(movsx_be64(d1, 1), (i64)0x09ull);
+		TS_ASSERT_EQUALS(movsx_be64(d1, 2), (i64)0x00000000000009FEull);
+		TS_ASSERT_EQUALS(movsx_be64(d2, 4), (i64)0xFFFFFFFFD92CDD8Full);
+		TS_ASSERT_EQUALS(movsx_be64(d3, 8), (i64)0x922688F135AC0183ull);
 	}
 };

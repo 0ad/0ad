@@ -39,7 +39,7 @@ public:
 		TS_ASSERT_OK(da_wrap_fixed(&da, data, sizeof(data)));
 		u8 buf[4];
 		TS_ASSERT_OK(da_read(&da, buf, 4));
-		TS_ASSERT_EQUALS(read_le32(buf), 0x78563412);	// read correct value
+		TS_ASSERT_EQUALS(read_le32(buf), (u32)0x78563412);	// read correct value
 		debug_SkipNextError(ERR::FAIL);
 		TS_ASSERT(da_read(&da, buf, 1) < 0);		// no more data left
 		TS_ASSERT_OK(da_free(&da));
