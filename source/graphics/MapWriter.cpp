@@ -366,7 +366,7 @@ void CMapWriter::WriteXML(const char* filename,
 					XML_Attribute("switch", data->m_Switch);
 				}
 
-				for ( size_t j=nodes.size()-1; j >= 0; --j )
+				for ( ssize_t j=nodes.size()-1; j >= 0; --j )
 				{
 					XML_Element("Node");
 					
