@@ -76,14 +76,15 @@ template<typename T, JSClass* ScriptType> JSClass CJSCollection<T, ScriptType>::
 	GetProperty, SetProperty,
 	JS_EnumerateStub, JS_ResolveStub,
 	JS_ConvertStub, Finalize,
+	NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL
 };
 
 template<typename T, JSClass* ScriptType> JSPropertySpec CJSCollection<T, ScriptType>::JSI_props[] =
 {
-	{ "length", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetLength },
-	{ "empty", 0, JSPROP_PERMANENT | JSPROP_READONLY, IsEmpty },
-	{ 0 }
+	{ "length", 0, JSPROP_PERMANENT | JSPROP_READONLY, GetLength, NULL },
+	{ "empty", 0, JSPROP_PERMANENT | JSPROP_READONLY, IsEmpty, NULL },
+	{ NULL, 0, 0, NULL, NULL }
 };
 
 template<typename T, JSClass* ScriptType> JSFunctionSpec CJSCollection<T, ScriptType>::JSI_methods[] = 
@@ -95,7 +96,7 @@ template<typename T, JSClass* ScriptType> JSFunctionSpec CJSCollection<T, Script
 	{ "remove", Remove, 1, 0, 0 },
 	{ "clear", Clear, 0, 0, 0 },
 	{ "equals", Equals, 1, 0, 0 },
-	{ 0 },
+	{ NULL, NULL, 0, 0, 0 },
 };
 
 template<typename T, JSClass* ScriptType> std::vector<T>* CJSCollection<T, ScriptType>::RetrieveSet( JSContext* cx, JSObject* obj )

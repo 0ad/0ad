@@ -280,11 +280,12 @@ template<typename T, bool ReadOnly> JSClass CJSComplex<T, ReadOnly>::JSI_class =
 	JSGetProperty, JSSetProperty,
 	(JSEnumerateOp)JSEnumerate, JS_ResolveStub,
 	JS_ConvertStub, DefaultFinalize,
-	NULL, NULL, NULL, NULL 
+	NULL, NULL, NULL, NULL,
+	NULL, NULL, NULL, NULL
 };
 
 template<typename T, bool ReadOnly> JSPropertySpec CJSComplex<T, ReadOnly>::JSI_props[] = {
-	{ 0 },
+	{ NULL, 0, 0, NULL, NULL },
 };
 
 template<typename T, bool ReadOnly> std::vector<JSFunctionSpec> CJSComplex<T, ReadOnly>::m_Methods;

@@ -45,7 +45,7 @@ public:
 	void DestroyFormation( size_t form );
 	inline bool IsValidFormation( size_t index )
 	{
-		return ((size_t)index < m_formations.size() && index >= 0);
+		return (index < m_formations.size());
 	}
 	bool AddUnit( CEntity* entity, size_t& form );
 	CEntityList AddUnitList( CEntityList& entities, size_t form );

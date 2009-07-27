@@ -252,7 +252,8 @@ template<typename T> JSClass CJSComplexPropertyAccessor<T>::JSI_Class = {
 	JSGetProperty, JSSetProperty,
 	(JSEnumerateOp)JSEnumerate, JS_ResolveStub,
 	JS_ConvertStub, JS_FinalizeStub,
-	NULL, NULL, NULL, NULL 
+	NULL, NULL, NULL, NULL,
+	NULL, NULL, NULL, NULL
 };
 
 
