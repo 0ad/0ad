@@ -79,7 +79,7 @@ namespace FCTestExportImport
 		FailIf(a2 == NULL);
 		FailIf(a1 == a2);
 		PassIf(IsEquivalent(a1->GetValue(), FC("Squirrel")));
-		PassIf(IsEquivalent(FUStringConversion::ToUInt32(a2->GetValue()), 1002));
+		PassIf(IsEquivalent(FUStringConversion::ToUInt32(a2->GetValue()), (uint32)1002));
 
 		// Identify the base node leaves
 		PassIf(baseNode->GetChildNodeCount() == 2);

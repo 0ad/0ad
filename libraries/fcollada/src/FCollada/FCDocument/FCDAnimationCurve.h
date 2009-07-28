@@ -211,7 +211,7 @@ public:
 		animation clip starts at the beginning. 
 		@param index The index of the animation clip to get offset for.
 		@return The offset value. */
-	inline const float GetClipOffset(size_t index) const { return clipOffsets.at(index); }
+	inline float GetClipOffset(size_t index) const { return clipOffsets.at(index); }
 
 	/** Clones the animation curve. The animation clips can be cloned as well,
 		but this may lead to an infinite recursion because cloning the clips

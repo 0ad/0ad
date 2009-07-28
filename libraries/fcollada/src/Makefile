@@ -9,10 +9,17 @@ endif
 
 CXX := g++
 CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS)
-CXXFLAGS_DEBUG := -O0 -g -D_DEBUG
+CXXFLAGS_DEBUG := -O0 -g -D_DEBUG -DRETAIL
 CXXFLAGS_RELEASE := -O2 -DNDEBUG -DRETAIL
+CXXFLAGS_TEST := -O0 -g -D_DEBUG
 LDFLAGS := `pkg-config libxml-2.0 --libs` -shared $(PIC_FLAGS)
+LDFLAGS_TEST := `pkg-config libxml-2.0 --libs`
 INCLUDES := -IFCollada `pkg-config libxml-2.0 --cflags`
+INCLUDES_TEST := -IFCollada/FColladaTest $(INCLUDES)
+
+# FCollada is not aliasing-safe, so disallow dangerous optimisations
+# (TODO: It'd be nice to fix FCollada, but that looks hard)
+CXXFLAGS_RELEASE += -fno-strict-aliasing
 
 SOURCE = \
 	FCollada/FCollada.cpp \
@@ -105,56 +112,42 @@ SOURCE = \
 	FCollada/FCDocument/FCDVersion.cpp \
 	FCollada/FMath/FMAllocator.cpp \
 	FCollada/FMath/FMAngleAxis.cpp \
-	FCollada/FMath/FMArrayTest.cpp \
 	FCollada/FMath/FMColor.cpp \
 	FCollada/FMath/FMInterpolation.cpp \
 	FCollada/FMath/FMLookAt.cpp \
 	FCollada/FMath/FMMatrix33.cpp \
 	FCollada/FMath/FMMatrix44.cpp \
 	FCollada/FMath/FMQuaternion.cpp \
-	FCollada/FMath/FMQuaternionTest.cpp \
 	FCollada/FMath/FMRandom.cpp \
 	FCollada/FMath/FMSkew.cpp \
-	FCollada/FMath/FMTreeTest.cpp \
 	FCollada/FMath/FMVector3.cpp \
 	FCollada/FMath/FMVolume.cpp \
 	FCollada/FUtils/FUAssert.cpp \
 	FCollada/FUtils/FUBase64.cpp \
 	FCollada/FUtils/FUBoundingBox.cpp \
 	FCollada/FUtils/FUBoundingSphere.cpp \
-	FCollada/FUtils/FUBoundingTest.cpp \
 	FCollada/FUtils/FUCrc32.cpp \
-	FCollada/FUtils/FUCrc32Test.cpp \
 	FCollada/FUtils/FUCriticalSection.cpp \
 	FCollada/FUtils/FUDaeEnum.cpp \
 	FCollada/FUtils/FUDateTime.cpp \
 	FCollada/FUtils/FUDebug.cpp \
 	FCollada/FUtils/FUError.cpp \
 	FCollada/FUtils/FUErrorLog.cpp \
-	FCollada/FUtils/FUEventTest.cpp \
 	FCollada/FUtils/FUFile.cpp \
 	FCollada/FUtils/FUFileManager.cpp \
-	FCollada/FUtils/FUFileManagerTest.cpp \
-	FCollada/FUtils/FUFunctorTest.cpp \
 	FCollada/FUtils/FULogFile.cpp \
 	FCollada/FUtils/FUObject.cpp \
-	FCollada/FUtils/FUObjectTest.cpp \
 	FCollada/FUtils/FUObjectType.cpp \
 	FCollada/FUtils/FUParameter.cpp \
 	FCollada/FUtils/FUParameterizable.cpp \
 	FCollada/FUtils/FUPluginManager.cpp \
 	FCollada/FUtils/FUSemaphore.cpp \
 	FCollada/FUtils/FUStringBuilder.cpp \
-	FCollada/FUtils/FUStringBuilderTest.cpp \
 	FCollada/FUtils/FUStringConversion.cpp \
-	FCollada/FUtils/FUStringConversionTest.cpp \
-	FCollada/FUtils/FUStringTest.cpp \
 	FCollada/FUtils/FUSynchronizableObject.cpp \
-	FCollada/FUtils/FUTestBed.cpp \
 	FCollada/FUtils/FUThread.cpp \
 	FCollada/FUtils/FUTracker.cpp \
 	FCollada/FUtils/FUUniqueStringMap.cpp \
-	FCollada/FUtils/FUUniqueStringMapTest.cpp \
 	FCollada/FUtils/FUUri.cpp \
 	FCollada/FUtils/FUXmlDocument.cpp \
 	FCollada/FUtils/FUXmlParser.cpp \
@@ -188,28 +181,82 @@ SOURCE = \
 	FColladaPlugins/FArchiveXML/FAXSceneExport.cpp \
 	FColladaPlugins/FArchiveXML/FAXSceneImport.cpp \
 
+TEST_SOURCE = \
+	FCollada/FMath/FMArrayTest.cpp \
+	FCollada/FMath/FMQuaternionTest.cpp \
+	FCollada/FMath/FMTreeTest.cpp \
+	FCollada/FUtils/FUBoundingTest.cpp \
+	FCollada/FUtils/FUCrc32Test.cpp \
+	FCollada/FUtils/FUEventTest.cpp \
+	FCollada/FUtils/FUFileManagerTest.cpp \
+	FCollada/FUtils/FUFunctorTest.cpp \
+	FCollada/FUtils/FUObjectTest.cpp \
+	FCollada/FUtils/FUStringBuilderTest.cpp \
+	FCollada/FUtils/FUStringConversionTest.cpp \
+	FCollada/FUtils/FUStringTest.cpp \
+	FCollada/FUtils/FUTestBed.cpp \
+	FCollada/FUtils/FUUniqueStringMapTest.cpp \
+	FCollada/FColladaTest/FCTest.cpp \
+	FCollada/FColladaTest/FCTestAnimation.cpp \
+	FCollada/FColladaTest/FCTestArchiving.cpp \
+	FCollada/FColladaTest/FCTestController.cpp \
+	FCollada/FColladaTest/FCTestGeometryPolygonsTools.cpp \
+	FCollada/FColladaTest/FCTestParameters.cpp \
+	FCollada/FColladaTest/FCTestSceneGraph.cpp \
+	FCollada/FColladaTest/FCTestAssetManagement/FCTAMCrossCloning.cpp \
+	FCollada/FColladaTest/FCTestAssetManagement/FCTAssetManagement.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEIAnimation.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEICamera.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEIEmitter.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEIExtra.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEIGeometry.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEILight.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEIMaterial.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEIPhysics.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTEIVisualScene.cpp \
+	FCollada/FColladaTest/FCTestExportImport/FCTestExportImport.cpp \
+	FCollada/FColladaTest/FCTestXRef/FCTestXRef.cpp \
+	FCollada/FColladaTest/FCTestXRef/FCTestXRefAcyclic.cpp \
+	FCollada/FColladaTest/FCTestXRef/FCTestXRefSimple.cpp \
+	FCollada/FColladaTest/FCTestXRef/FCTestXRefTree.cpp \
+
 OBJECTS_DEBUG = $(addprefix output/debug/,$(SOURCE:.cpp=.o))
 OBJECTS_RELEASE = $(addprefix output/release/,$(SOURCE:.cpp=.o))
+OBJECTS_TEST = $(addprefix output/test/,$(SOURCE:.cpp=.o) $(TEST_SOURCE:.cpp=.o))
 
 all: output_dirs output/libFColladaSD.a output/libFColladaSR.a install
 
 output_dirs:
-	bash -c 'mkdir -p output/{debug,release}/{FCollada/{FCDocument,FMath,FUtils},FColladaPlugins/FArchiveXML}'
+	bash -c 'mkdir -p output/{debug,release,test}/{FCollada/{FCDocument,FMath,FUtils,FColladaTest/{FCTestAssetManagement,FCTestExportImport,FCTestXRef}},FColladaPlugins/FArchiveXML}'
+
+test: output/FColladaTest
+	( cd FCollada/FColladaTest/ ; ../../output/FColladaTest )
+	cat FCollada/FColladaTest/FColladaTestLog.txt
 
 output/libFColladaSD.a: $(OBJECTS_DEBUG)
-	ar -cr $@ $(OBJECTS_DEBUG); ranlib $@
+	@echo "$@"
+	@ar -cr $@ $(OBJECTS_DEBUG); ranlib $@
 
 output/libFColladaSR.a: $(OBJECTS_RELEASE)
-	ar -cr $@ $(OBJECTS_RELEASE); ranlib $@
+	@echo "$@"
+	@ar -cr $@ $(OBJECTS_RELEASE); ranlib $@
+
+output/FColladaTest: $(OBJECTS_TEST)
+	@$(CXX) -o $@ $(OBJECTS_TEST) $(LDFLAGS_TEST)
 
 install: output/libFColladaSD.a output/libFColladaSR.a
 	cp output/libFColladaSD.a ../lib/libFColladaSD.a
 	cp output/libFColladaSR.a ../lib/libFColladaSR.a
 
 output/debug/%.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -c $< -o $@
+	@echo "$<"
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -c $< -o $@
 output/release/%.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -c $< -o $@
+	@echo "$<"
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -c $< -o $@
+output/test/%.o: %.cpp
+	@echo "$<"
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_TEST) $(INCLUDES_TEST) -c $< -o $@
 
 clean:
 	rm -rf output
