@@ -109,7 +109,7 @@ bool CLocale::LoadStrings(const char* data)
 					u8 NameLength = *(u8*)data;
 					data += 1;
 
-					std::string NameText ((char*)data, (char*)(data + NameLength));
+					std::string NameText ((const char*)data, (const char*)(data + NameLength));
 					data += NameLength;
 
 					u8 ParamCount = *(u8*)data;

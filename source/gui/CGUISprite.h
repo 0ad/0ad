@@ -156,7 +156,7 @@ public:
 	CGUISpriteInstance(const CStr& SpriteName);
 	CGUISpriteInstance(const CGUISpriteInstance &Sprite);
 	CGUISpriteInstance &operator=(const CStr& SpriteName);
-	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites);
+	void Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites) const;
 	void Invalidate();
 	bool IsEmpty() const;
 	const CStr& GetName() { return m_SpriteName; }
@@ -165,11 +165,11 @@ private:
 	CStr m_SpriteName;
 
 	// Stored drawing calls, for more efficient rendering
-	GUIRenderer::DrawCalls m_DrawCallCache;
+	mutable GUIRenderer::DrawCalls m_DrawCallCache;
 	// Relevant details of previously rendered sprite; the cache is invalidated
 	// whenever any of these values changes.
-	CRect m_CachedSize;
-	int m_CachedCellID;
+	mutable CRect m_CachedSize;
+	mutable int m_CachedCellID;
 };
 
 #endif

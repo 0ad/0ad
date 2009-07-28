@@ -291,7 +291,8 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 #ifndef NDEBUG
 	#define TYPE(T) \
 		template<> void CheckType<T>(const IGUIObject* obj, const CStr& setting) {	\
-			if (((IGUIObject*)obj)->m_Settings[setting].m_Type != GUIST_##T)	\
+			std::map<CStr, SGUISetting>::const_iterator it = obj->m_Settings.find(setting);	\
+			if (it == obj->m_Settings.end() || it->second.m_Type != GUIST_##T)	\
 			{	\
 				/* Abort now, to avoid corrupting everything by invalidly \
 					casting pointers */ \

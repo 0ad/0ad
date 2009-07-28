@@ -77,9 +77,9 @@ bool IEventTarget::_DispatchEvent( CScriptEvent* evt, IEventTarget* target )
 // returns: whether the event arrived (i.e. wasn't cancelled) [bool]
 bool IEventTarget::DispatchEvent( CScriptEvent* evt )
 {
-	char* data;
+	const char* data;
 	PROFILE_START( "intern string" );
-	data = (char*) g_Profiler.InternString( "script: " + (CStr8)evt->m_Type );
+	data = g_Profiler.InternString( "script: " + (CStr8)evt->m_Type );
 	PROFILE_END( "intern string" );
 	g_Profiler.StartScript( data );
 	evt->m_Target = this;

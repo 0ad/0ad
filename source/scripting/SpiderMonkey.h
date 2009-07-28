@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_SPIDERMONKEY
+#define INCLUDED_SPIDERMONKEY
+
 // Master header for the SpiderMonkey Javascript library.
 //
 // Include this instead of accessing any <js*.h> headers directly.
@@ -58,3 +61,5 @@
 #ifndef NDEBUG
 # define JS_AddRoot(cx, rp) JS_AddNamedRoot((cx), (rp), __FILE__ )
 #endif
+
+#endif // INCLUDED_SPIDERMONKEY

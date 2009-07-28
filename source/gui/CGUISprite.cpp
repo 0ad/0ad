@@ -18,7 +18,7 @@
 #include "precompiled.h"
 #include "CGUISprite.h"
 
-void CGUISpriteInstance::Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites)
+void CGUISpriteInstance::Draw(CRect Size, int CellID, std::map<CStr, CGUISprite> &Sprites) const
 {
 	if (m_CachedSize != Size || m_CachedCellID != CellID)
 	{

@@ -204,7 +204,7 @@ static bool IsVisible_XSI(FCDSceneNode* node, bool& visible)
 
 static bool IsVisible(FCDSceneNode* node)
 {
-	bool visible;
+	bool visible = false;
 
 	// Try the XSI visibility property
 	if (IsVisible_XSI(node, visible))

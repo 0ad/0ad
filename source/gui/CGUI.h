@@ -148,7 +148,7 @@ public:
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(CGUISpriteInstance& Sprite, int CellID, const float &Z, 
+	void DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float &Z, 
 					const CRect &Rect, const CRect &Clipping=CRect());
 
 	/**

@@ -304,7 +304,7 @@ public:
 	 * Get style used by the scrollbar
 	 * @return Scroll bar style struct.
 	 */
-	SGUIScrollBarStyle * GetStyle() const;
+	const SGUIScrollBarStyle * GetStyle() const;
 
 	/**
 	 * Get the rectangle of the actual BAR. not the whole scroll-bar.

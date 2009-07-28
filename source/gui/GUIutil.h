@@ -222,9 +222,9 @@ public:
 	 * @param sec Secondary sprite if Primary should fail
 	 * @return Resulting string
 	 */
-	static CGUISpriteInstance& FallBackSprite(
-									CGUISpriteInstance& prim,
-									CGUISpriteInstance& sec)
+	static const CGUISpriteInstance& FallBackSprite(
+									const CGUISpriteInstance& prim,
+									const CGUISpriteInstance& sec)
 	{
 		// CStr() == empty string, null
 		return (prim.IsEmpty() ? sec : prim);

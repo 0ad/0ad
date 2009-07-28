@@ -513,7 +513,7 @@ void CGUI::Draw()
 	glPopMatrix();
 }
 
-void CGUI::DrawSprite(CGUISpriteInstance& Sprite,
+void CGUI::DrawSprite(const CGUISpriteInstance& Sprite,
 					  int CellID,
 					  const float& Z,
 					  const CRect& Rect,

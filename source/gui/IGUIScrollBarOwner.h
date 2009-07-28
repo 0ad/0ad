@@ -81,7 +81,7 @@ public:
 	/**
 	 * Interface for the m_ScrollBar to use.
 	 */
-	virtual SGUIScrollBarStyle *GetScrollBarStyle(const CStr& style) const;
+	virtual const SGUIScrollBarStyle *GetScrollBarStyle(const CStr& style) const;
 
 	/**
 	 * Add a scroll-bar

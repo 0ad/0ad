@@ -344,7 +344,7 @@ public:
 
 // Functions to perform drawing-related actions:
 
-void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, CStr& SpriteName, CRect &Size, int CellID, std::map<CStr, CGUISprite> &Sprites)
+void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, const CRect &Size, int CellID, std::map<CStr, CGUISprite> &Sprites)
 {
 	// This is called only when something has changed (like the size of the
 	// sprite), so it doesn't need to be particularly efficient.

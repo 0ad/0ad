@@ -58,21 +58,22 @@ void IGUIScrollBarOwner::AddScrollBar(IGUIScrollBar * scrollbar)
 	m_ScrollBars.push_back(scrollbar);
 }
 
-SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
+const SGUIScrollBarStyle * IGUIScrollBarOwner::GetScrollBarStyle(const CStr& style) const
 {
 	if (!GetGUI())
 	{
 		// TODO Gee: Output in log
 		return NULL;
 	}
-	
-	if (GetGUI()->m_ScrollBarStyles.count(style) == 0)
+
+	std::map<CStr, SGUIScrollBarStyle>::const_iterator it = GetGUI()->m_ScrollBarStyles.find(style);
+	if (it == GetGUI()->m_ScrollBarStyles.end())
 	{
 		// TODO Gee: Output in log
 		return NULL;
 	}
 
- 	return &((CGUI*)GetGUI())->m_ScrollBarStyles.find(style)->second;
+ 	return &it->second;
 }
 
 void IGUIScrollBarOwner::HandleMessage(const SGUIMessage &Message)

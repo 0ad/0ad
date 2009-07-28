@@ -55,11 +55,11 @@ const char* StringPool::UniqueCopy(const char* string)
 		return existingString;
 
 	const size_t length = strlen(string);
-	const char* uniqueCopy = (const char*)pool_alloc(&m_pool, length+1);
+	char* uniqueCopy = (char*)pool_alloc(&m_pool, length+1);
 	if(!uniqueCopy)
 		throw std::bad_alloc();
 	cpu_memcpy((void*)uniqueCopy, string, length);
-	((char*)uniqueCopy)[length] = '\0';
+	uniqueCopy[length] = '\0';
 
 	m_map.insert(uniqueCopy, uniqueCopy);
 

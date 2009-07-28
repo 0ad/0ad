@@ -25,8 +25,8 @@
 struct SEntityAction
 {
 	int m_Id;
-	float m_MaxRange;
 	float m_MinRange;
+	float m_MaxRange;
 	int m_Speed;
 	CStr8 m_Animation;
 	SEntityAction()

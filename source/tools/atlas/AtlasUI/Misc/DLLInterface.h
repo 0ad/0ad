@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef DLLINTERFACE_INCLUDED
+#define DLLINTERFACE_INCLUDED
+
 #include <wchar.h>
 
 namespace AtlasMessage { class MessagePasser; }
@@ -31,4 +34,4 @@ ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, size_t flags);
 
 ATLASDLLIMPEXP void Atlas_ReportError();
 
-ATLASDLLIMPEXP void Atlas_ReportError();
+#endif // DLLINTERFACE_INCLUDED
