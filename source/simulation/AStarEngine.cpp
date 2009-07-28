@@ -429,7 +429,7 @@ void PriQueue::promote( AStarNode *node )
 	}
 
 	std::vector<AStarNode*>::iterator ind, first;
-	for( ind = c.begin(); ind!=c.end() && !((*ind)->equals(*node)); ind++ );
+	for( ind = c.begin(); ind!=c.end() && !((*ind)->equals(*node)); ind++ ) { }
 	if (ind == c.end())
 	{
 		push(node);

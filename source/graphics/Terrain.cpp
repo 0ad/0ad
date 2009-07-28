@@ -365,7 +365,7 @@ void CTerrain::Resize(ssize_t size)
 			for (ssize_t n=0;n<size-m_MapSizePatches;n++) {
 				for (ssize_t m=0;m<PATCH_SIZE;m++) {
 					CMiniPatch& src=m_Patches[j*m_MapSizePatches+m_MapSizePatches-1].m_MiniPatches[m][15];
-					for (size_t k=0;k<PATCH_SIZE;k++) {
+					for (ssize_t k=0;k<PATCH_SIZE;k++) {
 						CMiniPatch& dst=newPatches[j*size+m_MapSizePatches+n].m_MiniPatches[m][k];
 						dst.Tex1=src.Tex1;
 						dst.Tex1Priority=src.Tex1Priority;

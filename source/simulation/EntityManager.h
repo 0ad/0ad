@@ -64,7 +64,7 @@ friend class CHandle;
 	std::bitset<MAX_HANDLES> m_refd;
 	std::vector<CEntity*> m_reaper;
 	std::vector<CEntity*>* m_collisionPatches;
-	int m_nextalloc;
+	size_t m_nextalloc;
 	static bool m_extant;
 	bool m_death;
 	int m_collisionPatchesPerSide;

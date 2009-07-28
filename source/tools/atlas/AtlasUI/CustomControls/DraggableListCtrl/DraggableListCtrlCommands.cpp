@@ -47,17 +47,23 @@ bool DragCommand::Do()
 	AtObj srcData = m_Ctrl->m_ListData.at(m_Src);
 
 	if (m_Tgt > m_Src)
+	{
 		std::copy(
 				m_Ctrl->m_ListData.begin()+(m_Src+1),
 				m_Ctrl->m_ListData.begin()+(m_Tgt+1),
 				m_Ctrl->m_ListData.begin()+ m_Src);
+	}
 	else if (m_Tgt < m_Src)
+	{
 		std::copy_backward(
 				m_Ctrl->m_ListData.begin()+ m_Tgt,
 				m_Ctrl->m_ListData.begin()+ m_Src,
 				m_Ctrl->m_ListData.begin()+(m_Src+1));
+	}
 	else // m_Tgt == m_Src
-		; // do nothing - this item was just dragged onto itself
+	{
+		// do nothing - this item was just dragged onto itself
+	}
 
 	m_Ctrl->m_ListData.at(m_Tgt) = srcData;
 

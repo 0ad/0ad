@@ -554,7 +554,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 					// --- New node is set!
 
 					// Make sure they are large enough
-					if ((int)LastValidProgress.size() < Lane+1)
+					if (LastValidProgress.size() < Lane+1)
 					{
 						LastValidProgress.resize(Lane+1);
 						LastValidMatch.resize(Lane+1);
@@ -602,7 +602,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 								++Progress;
 
 								// Check length
-								if (Progress >= (int)Segments.size())
+								if (Progress >= Segments.size())
 								{
 									break;
 								}
@@ -654,7 +654,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 						//  that invalidates the match
 
 						// String end?
-						if (Progress >= (int)Segments.size())
+						if (Progress >= Segments.size())
 						{
 							Match = false;
 						}
@@ -790,7 +790,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 	// if _minus is found as argument, remove it and add "-" to the one after that
 	// note, it's easier if std::iterator isn't used here
 	
-	for (i=1; i<(int)GetArgCount(); ++i)
+	for (i=1; i<GetArgCount(); ++i)
 	{
 		if (m_Arguments[i-1].m_String == "_minus")
 		{

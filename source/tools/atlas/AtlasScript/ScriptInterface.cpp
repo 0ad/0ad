@@ -496,7 +496,9 @@ namespace
 	JSClass global_class = {
 		"global", 0,
 		JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub,
-		JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub
+		JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
+		NULL, NULL, NULL, NULL,
+		NULL, NULL, NULL, NULL
 	};
 	
 	void ErrorReporter(JSContext* WXUNUSED(cx), const char* message, JSErrorReport* report)

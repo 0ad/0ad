@@ -168,7 +168,7 @@ void CLogger::LogUsingMethod(ELogMethod method, const char* message)
 }
 
 // -- This function has not been removed because the build would break.
-void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
+void CLogger::Log(ELogMethod method, const char* UNUSED(category), const char *fmt, ...)
 {
 	va_list argp;
 	char buffer[512];
@@ -185,7 +185,7 @@ void CLogger::Log(ELogMethod method, const char* category, const char *fmt, ...)
 }
 
 // -- This function has not been removed because the build would break.
-void CLogger::LogOnce(ELogMethod method, const char* category, const char *fmt, ...)
+void CLogger::LogOnce(ELogMethod method, const char* UNUSED(category), const char *fmt, ...)
 {
 	va_list argp;
 	char buffer[512];

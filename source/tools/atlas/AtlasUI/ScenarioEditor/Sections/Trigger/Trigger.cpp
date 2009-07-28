@@ -1046,7 +1046,7 @@ void TriggerSpecText::onTextEnter(wxCommandEvent& WXUNUSED(evt))
 		wxBell();
 }
 
-TriggerSpecChoice::TriggerSpecChoice(TriggerBottomBar* parent, std::wstring label, const wxPoint& pos, 
+TriggerSpecChoice::TriggerSpecChoice(TriggerBottomBar* parent, std::wstring WXUNUSED(label), const wxPoint& pos, 
 	const wxSize& size, const wxArrayString& strings, int parameter, callback func, void* data) 
 	: wxChoice(parent, wxID_ANY, pos, size, strings), m_Callback(func), m_Data(data), 
 											m_Parent(parent), m_Parameter(parameter)

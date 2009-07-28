@@ -58,9 +58,10 @@ namespace GUIRenderer
 	public:
 		void clear();
 		DrawCalls();
+		~DrawCalls();
+		// Copy/assignment results in an empty list, not an actual copy
 		DrawCalls(const DrawCalls&);
 		const DrawCalls& operator=(const DrawCalls&);
-		~DrawCalls();
 	};
 }
 

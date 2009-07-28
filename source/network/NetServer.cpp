@@ -392,7 +392,7 @@ bool CNetServer::OnError( void* pContext, CFsmEvent* pEvent )
 	if ( !pContext || !pEvent ) return false;
 
 	// Error event?
-	if ( pEvent->GetType() != NMT_ERROR ) return true;
+	if ( pEvent->GetType() != (uint)NMT_ERROR ) return true;
 
 	CNetServer*	 pServer  = ( CNetServer* )( ( FsmActionCtx* )pContext )->pHost;
 	UNUSED2(pServer);

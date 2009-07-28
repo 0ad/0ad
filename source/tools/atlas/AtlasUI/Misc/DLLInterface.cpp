@@ -39,6 +39,9 @@
 #include "wx/debugrpt.h"
 #include "wx/file.h"
 
+// wx and libxml both want to define ATTRIBUTE_PRINTF (with similar
+// meanings), so undef it to avoid a warning
+#undef ATTRIBUTE_PRINTF
 #include <libxml/parser.h>
 
 #ifndef LIBXML_THREAD_ENABLED

@@ -48,9 +48,15 @@ DrawCalls::~DrawCalls()
 	clear();
 }
 
-// Never copy anything (to avoid losing track of who owns various pointers):
+// DrawCalls needs to be copyable, so it can be used in other copyable types.
+// But actually copying data is hard, since we'd need to avoid losing track of
+// who owns various pointers, so instead we just return an empty list.
+// The list should get filled in again (by GUIRenderer::UpdateDrawCallCache)
+// before it's used for rendering. (TODO: Is this class actually used safely
+// in practice?)
 
 DrawCalls::DrawCalls(const DrawCalls&)
+	: std::vector<SDrawCall>()
 {
 }
 

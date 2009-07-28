@@ -250,7 +250,7 @@ bool CNetClient::OnError( void* pContext, CFsmEvent* pEvent )
 	if ( !pEvent || !pContext ) return false;
 
 	// Error event?
-	if ( pEvent->GetType() != NMT_ERROR ) return true;
+	if ( pEvent->GetType() != (uint)NMT_ERROR ) return true;
 
 	CNetClient*	pClient = ( CNetClient* )( ( FsmActionCtx* )pContext )->pHost;
 	assert( pClient );
@@ -364,7 +364,7 @@ bool CNetClient::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
 	assert( pClient );
 	assert( pSession );
 
-	if ( pEvent->GetType() ==  NMT_ERROR )
+	if ( pEvent->GetType() == (uint)NMT_ERROR )
 	{
 		// return CNetClient::OnError( pContext, pEvent );
 	}

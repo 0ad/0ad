@@ -180,8 +180,6 @@ bool CObjectBase::Load(const char* filename)
 									float pos = CStr(ae.Value).ToFloat();
 									anim.m_ActionPos2 = clamp(pos, 0.f, 1.f);
 								}
-								else
-									; // unrecognised element
 							}
 							currentVariant->m_Anims.push_back(anim);
 						}
@@ -200,14 +198,10 @@ bool CObjectBase::Load(const char* filename)
 									prop.m_PropPointName = pe.Value;
 								else if (pe.Name == at_actor)
 									prop.m_ModelName = pe.Value;
-								else
-									; // unrecognised element
 							}
 							currentVariant->m_Props.push_back(prop);
 						}
 					}
-					else
-						; // unrecognised element
 				}
 
 				++currentVariant;
@@ -232,10 +226,6 @@ bool CObjectBase::Load(const char* filename)
 		{
 			m_Material = "art/materials/" + CStr(child.GetText());
 		}
-		else
-			; // unrecognised element
-
-		// TODO: castshadow, etc
 	}
 
 	return true;
