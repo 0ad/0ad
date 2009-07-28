@@ -149,12 +149,28 @@ function package_set_build_flags()
 			end
 		else
 			tinsert(package.buildoptions, {
+				-- enable most of the standard warnings
 				"-Wall",
-				"-Wunused-parameter",	-- needs to be enabled explicitly
-				"-Wno-switch",		-- enumeration value not handled in switch
-				"-Wno-reorder",		-- order of initialization list in constructors
-				"-Wno-non-virtual-dtor",
-				"-Wno-invalid-offsetof",	-- offsetof on non-POD types
+				"-Wno-switch",		-- enumeration value not handled in switch (this is sometimes useful, but results in lots of noise)
+				"-Wno-reorder",		-- order of initialization list in constructors (lots of noise)
+				"-Wno-invalid-offsetof",	-- offsetof on non-POD types (see comment in renderer/PatchRData.cpp)
+
+				"-Wextra",
+				"-Wno-missing-field-initializers",	-- (this is common in external headers we can't fix)
+
+				-- add some other useful warnings that need to be enabled explicitly
+				"-Wunused-parameter",
+				"-Wredundant-decls",	-- (useful for finding some multiply-included header files)
+				-- "-Wformat=2",		-- (useful sometimes, but a bit noisy, so skip it by default)
+				-- "-Wcast-qual",		-- (useful for checking const-correctness, but a bit noisy, so skip it by default)
+
+				-- enable security features (stack checking etc) that shouldn't have
+				-- a significant effect on performance and can catch bugs
+				"-fstack-protector-all",
+				"-D_FORTIFY_SOURCE=2",
+
+				-- always enable strict aliasing (useful in debug builds because of the warnings)
+				"-fstrict-aliasing",
 
 				-- do something (?) so that ccache can handle compilation with PCH enabled
 				"-fpch-preprocess",
@@ -166,11 +182,11 @@ function package_set_build_flags()
 				-- non-IEEE-conformant results, but haven't noticed any trouble so far.
 				"-ffast-math",
 			})
-            if OS == "linux" then
-              tinsert(package.linkoptions, {
-                  "-Wl,--no-undefined",
-              })
-            end
+			if OS == "linux" then
+				tinsert(package.linkoptions, {
+					"-Wl,--no-undefined",
+				})
+			end
 		end
 
 		tinsert(package.buildoptions, {
@@ -857,6 +873,10 @@ function setup_collada_package(package_name, target_type, rel_source_dirs, rel_i
 
 	if OS == "linux" then
 		tinsert(package.defines, "LINUX");
+
+		-- FCollada is not aliasing-safe, so disallow dangerous optimisations
+		-- (TODO: It'd be nice to fix FCollada, but that looks hard)
+		tinsert(package.buildoptions, "-fno-strict-aliasing")
 
 		tinsert(package.buildoptions, "-rdynamic")
 		tinsert(package.linkoptions, "-rdynamic")
