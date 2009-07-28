@@ -91,8 +91,13 @@ typedef int errno_t;
 extern errno_t fopen_s(FILE** pfile, const char* filename, const char* mode);
 extern errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode);
 
-#define fscanf_s fscanf
-#define sscanf_s sscanf
+// *scanf_s functions have a different API to *scanf - in particular, any
+// %s or %c or %[ parameter must be followed by a size parameter.
+// Therefore we can't just fall back on the *scanf functions.
+// Emulating the behaviour would require a lot of effort, so don't bother and
+// just require callers to deal with the problem.
+//#define fscanf_s fscanf
+//#define sscanf_s sscanf
 
 #endif	// #if EMULATE_SECURE_CRT
 #endif	// #ifndef INCLUDED_SECURE_CRT

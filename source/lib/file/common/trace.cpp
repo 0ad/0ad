@@ -44,10 +44,15 @@ TraceEntry::TraceEntry(EAction action, const char* pathname, size_t size)
 
 TraceEntry::TraceEntry(const char* text)
 {
-#define TRACE_FORMAT "%f: %c \"%" STRINGIZE(PATH_MAX) "[^\"]\" %d\n" /* use a macro to allow compile-time type-checking */
-	char pathname[PATH_MAX];
+	char pathname[PATH_MAX] = "";
 	char action;
-	const int fieldsRead = sscanf_s(text, TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
+#if EMULATE_SECURE_CRT
+	#define TRACE_FORMAT "%f: %c \"%" STRINGIZE(PATH_MAX) "[^\"]\" %d\n" /* use a macro to allow compile-time type-checking */
+	const int fieldsRead = sscanf(text, TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
+#else
+	#define TRACE_FORMAT "%f: %c \"%[^\"]\" %d\n"
+	const int fieldsRead = sscanf_s(text, TRACE_FORMAT, &m_timestamp, &action, 1, pathname, PATH_MAX, &m_size);
+#endif
 	debug_assert(fieldsRead == 4);
 	debug_assert(action == 'L' || action == 'S');
 	m_action = (EAction)action;
