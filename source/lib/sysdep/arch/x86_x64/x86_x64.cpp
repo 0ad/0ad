@@ -69,6 +69,7 @@ bool x86_x64_cpuid(x86_x64_CpuidRegs* regs)
 	{
 		x86_x64_CpuidRegs regs2;
 		regs2.eax = 0;
+		regs2.ecx = 0; // necessary to avoid valgrind uninitialized-value warnings
 		cpuid_impl(&regs2);
 		maxFunction = regs2.eax;
 		regs2.eax = 0x80000000;
@@ -94,6 +95,7 @@ static void DetectFeatureFlags(u32 caps[4])
 {
 	x86_x64_CpuidRegs regs;
 	regs.eax = 1;
+	regs.ecx = 0; // necessary to avoid valgrind uninitialized-value warnings
 	if(x86_x64_cpuid(&regs))
 	{
 		caps[0] = regs.ecx;

@@ -41,6 +41,7 @@ ImplementObjectType(FUPlugin);
 
 FUPluginManager::FUPluginManager(const fchar* _filter)
 {
+#if 0 // disabled because it causes loads of valgrind warnings on Linux
 	fstring applicationFolderName = FUFileManager::GetApplicationFolderName();
 	if (!applicationFolderName.empty())
 	{
@@ -52,6 +53,7 @@ FUPluginManager::FUPluginManager(const fchar* _filter)
 	{
 		LoadPluginsInFolderName(moduleFolderName, _filter);
 	}
+#endif
 }
 
 void FUPluginManager::LoadPluginsInFolderName(const fstring& folderName, const fchar* _filter)

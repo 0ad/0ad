@@ -114,12 +114,6 @@ CAStarEngine::CAStarEngine()
 	pathfindingOverlay = new PathFindingTerrainOverlay();
 }
 
-CAStarEngine::CAStarEngine(AStarGoalBase *goal)
-{
-	CAStarEngine();
-	mGoal = goal;
-}
-
 
 CAStarEngine::~CAStarEngine()
 {
@@ -133,6 +127,8 @@ CAStarEngine::~CAStarEngine()
 	{
 		delete (*it);
 	}
+
+	delete pathfindingOverlay;
 }
 
 /*

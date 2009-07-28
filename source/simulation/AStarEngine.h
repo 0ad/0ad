@@ -86,7 +86,6 @@ class CAStarEngine
 {
 public:
 	CAStarEngine();
-	CAStarEngine(AStarGoalBase* goal);
 	virtual ~CAStarEngine();
 
 	void SetGoal(AStarGoalBase* goal) { mGoal = goal; }
