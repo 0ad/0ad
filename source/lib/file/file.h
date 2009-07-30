@@ -26,8 +26,8 @@
 
 namespace ERR
 {
-	const LibError FILE_ACCESS = -110200;
-	const LibError IO          = -110201;
+	const LibError FILE_ACCESS = -110300;
+	const LibError IO          = -110301;
 }
 
 struct IFile
