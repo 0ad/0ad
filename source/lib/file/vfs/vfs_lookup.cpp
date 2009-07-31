@@ -66,7 +66,8 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 		{
 			Path currentPath;
 			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
-				currentPath = directory->AssociatedDirectory()->GetPath()/subdirectoryName;
+				currentPath = directory->AssociatedDirectory()->GetPath();
+			currentPath /= subdirectoryName;
 
 			const int ret = mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG);
 			if(ret == 0)
