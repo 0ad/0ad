@@ -28,7 +28,7 @@
  * (blocks are also thereby page-aligned, which allows write-protecting
  * file buffers without worrying about their boundaries.)
  **/
-static const size_t BLOCK_SIZE = 256*KiB;
+static const size_t BLOCK_SIZE = 1024*KiB;
 
 // note: *sizes* and *offsets* are aligned to blocks to allow zero-copy block cache.
 // that the *buffer* need only be sector-aligned (we assume 4kb for simplicity)

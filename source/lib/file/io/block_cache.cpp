@@ -16,7 +16,7 @@
  */
 
 /*
- * cache for aligned I/O m_blocks.
+ * cache for aligned I/O blocks.
  */
 
 #include "precompiled.h"

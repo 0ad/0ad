@@ -25,7 +25,7 @@
 #include "block_cache.h"
 #include "io_align.h"
 
-static const size_t ioDepth = 8;
+static const size_t ioDepth = 16;
 
 
 // the underlying aio implementation likes buffer and offset to be
@@ -125,43 +125,48 @@ public:
 	{
 		m_file = file;
 		m_blockId = BlockId(file->Pathname(), alignedOfs);
-		if(file->Mode() == 'r' && s_blockCache.Retrieve(m_blockId, m_cachedBlock))
+		if(file->Mode() == 'r')
 		{
-			stats_block_cache(CR_HIT);
-
-			// copy from cache into user buffer
-			if(alignedBuf)
+			if(s_blockCache.Retrieve(m_blockId, m_cachedBlock))
 			{
-				cpu_memcpy(alignedBuf, m_cachedBlock.get(), BLOCK_SIZE);
-				m_alignedBuf = alignedBuf;
+				stats_block_cache(CR_HIT);
+
+				// copy from cache into user buffer
+				if(alignedBuf)
+				{
+					cpu_memcpy(alignedBuf, m_cachedBlock.get(), BLOCK_SIZE);
+					m_alignedBuf = alignedBuf;
+				}
+				// return cached block
+				else
+				{
+					m_alignedBuf = const_cast<u8*>(m_cachedBlock.get());
+				}
+
+				return INFO::OK;
 			}
-			// return cached block
 			else
 			{
-				m_alignedBuf = const_cast<u8*>(m_cachedBlock.get());
+				stats_block_cache(CR_MISS);
+				// fall through to the actual issue..
 			}
-
-			return INFO::OK;
 		}
+
+		stats_io_check_seek(m_blockId);
+
+		// transfer directly to/from user buffer
+		if(alignedBuf)
+		{
+			m_alignedBuf = alignedBuf;
+		}
+		// transfer into newly allocated temporary block
 		else
 		{
-			stats_block_cache(CR_MISS);
-			stats_io_check_seek(m_blockId);
-
-			// transfer directly to/from user buffer
-			if(alignedBuf)
-			{
-				m_alignedBuf = alignedBuf;
-			}
-			// transfer into newly allocated temporary block
-			else
-			{
-				m_tempBlock = io_Allocate(BLOCK_SIZE);
-				m_alignedBuf = const_cast<u8*>(m_tempBlock.get());
-			}
-
-			return file->Issue(m_req, alignedOfs, m_alignedBuf, BLOCK_SIZE);
+			m_tempBlock = io_Allocate(BLOCK_SIZE);
+			m_alignedBuf = const_cast<u8*>(m_tempBlock.get());
 		}
+
+		return file->Issue(m_req, alignedOfs, m_alignedBuf, BLOCK_SIZE);
 	}
 
 	LibError WaitUntilComplete(const u8*& block, size_t& blockSize)

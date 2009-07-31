@@ -297,13 +297,19 @@ LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
 		return INFO::OK;
 	}
 
-	const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
-	const DWORD lang_id = 0;	// look for neutral, then current locale
-	va_list* args = 0;			// we don't care about "inserts"
-	const DWORD chars_output = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, err, lang_id, buf, (DWORD)max_chars, args);
-	if(!chars_output)
-		WARN_RETURN(ERR::FAIL);
-	debug_assert(chars_output < max_chars);
+	char message[200];
+	{
+		const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
+		const DWORD lang_id = 0;	// look for neutral, then current locale
+		va_list* args = 0;			// we don't care about "inserts"
+		const DWORD charsWritten = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, err, lang_id, message, (DWORD)ARRAY_SIZE(message), args);
+		if(!charsWritten)
+			WARN_RETURN(ERR::FAIL);
+		debug_assert(charsWritten < max_chars);
+	}
+
+	const int charsWritten = sprintf_s(buf, max_chars, "%d (%s)", err, message);
+	debug_assert(charsWritten != -1);
 	return INFO::OK;
 }
 
