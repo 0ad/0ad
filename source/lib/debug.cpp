@@ -207,17 +207,25 @@ void debug_printf(const wchar_t* fmt, ...)
 
 LibError debug_WriteCrashlog(const wchar_t* text)
 {
-	// avoid potential infinite loop if an error occurs here.
-	static uintptr_t isBusy;
-	if(!cpu_CAS(&isBusy, 0, 1))
+	// (avoid infinite recursion and/or reentering this function if it
+	// fails/reports an error)
+	enum State
+	{
+		IDLE,
+		BUSY,
+		FAILED
+	};
+	static volatile uintptr_t state = IDLE;
+	if(!cpu_CAS(&state, IDLE, BUSY))
 		return ERR::REENTERED;	// NOWARN
 
 	OsPath path = OsPath(ah_get_log_dir())/"crashlog.txt";
 	FILE* f = fopen(path.string().c_str(), "w");
 	if(!f)
 	{
-		isBusy = 0;
-		WARN_RETURN(ERR::FAIL);
+		state = FAILED;	// must come before DEBUG_DISPLAY_ERROR
+		DEBUG_DISPLAY_ERROR(L"Unable to open crashlog.txt for writing (please ensure the log directory is writable)");
+		return ERR::FAIL;	// NOWARN (the above text is more helpful than a generic error code)
 	}
 
 	fputwc(0xFEFF, f);	// BOM
@@ -230,13 +238,146 @@ LibError debug_WriteCrashlog(const wchar_t* text)
 	fwprintf(f, L"Last known activity:\n\n %ls\n", debug_log);
 
 	fclose(f);
-	isBusy = 0;
+	state = IDLE;
 	return INFO::OK;
 }
 
 
 //-----------------------------------------------------------------------------
-// output
+// error message
+//-----------------------------------------------------------------------------
+
+// (NB: this may appear obscene, but deep stack traces have been
+// observed to take up > 256 KiB)
+static const size_t messageSize = 512*KiB;
+
+void debug_FreeErrorMessage(ErrorMessageMem* emm)
+{
+	page_aligned_free(emm->pa_mem, messageSize);
+}
+
+
+// a stream with printf-style varargs and the possibility of
+// writing directly to the output buffer.
+class PrintfWriter
+{
+public:
+	PrintfWriter(wchar_t* buf, size_t maxChars)
+		: m_pos(buf), m_charsLeft(maxChars)
+	{
+	}
+
+	bool operator()(const wchar_t* fmt, ...)
+	{
+		va_list ap;
+		va_start(ap, fmt);
+		const int len = vswprintf_s(m_pos, m_charsLeft, fmt, ap);
+		va_end(ap);
+		if(len < 0)
+			return false;
+		m_pos += len;
+		m_charsLeft -= len;
+		return true;
+	}
+
+	wchar_t* Position() const
+	{
+		return m_pos;
+	}
+
+	size_t CharsLeft() const
+	{
+		return m_charsLeft;
+	}
+
+	void CountAddedChars()
+	{
+		const size_t len = wcslen(m_pos);
+		m_pos += len;
+		m_charsLeft -= len;
+	}
+
+private:
+	wchar_t* m_pos;
+	size_t m_charsLeft;
+};
+
+
+// split out of debug_DisplayError because it's used by the self-test.
+const wchar_t* debug_BuildErrorMessage(
+	const wchar_t* description,
+	const char* filename, int line, const char* func,
+	void* context, const char* lastFuncToSkip,
+	ErrorMessageMem* emm)
+{
+	// rationale: see ErrorMessageMem
+	emm->pa_mem = page_aligned_alloc(messageSize);
+	wchar_t* const buf = (wchar_t*)emm->pa_mem;
+	if(!buf)
+		return L"(insufficient memory to generate error message)";
+	PrintfWriter writer(buf, messageSize / sizeof(wchar_t));
+
+	// header
+	if(!writer(
+		L"%ls\r\n"
+		L"Location: %hs:%d (%hs)\r\n"
+		L"\r\n"
+		L"Call stack:\r\n"
+		L"\r\n",
+		description, filename, line, func
+	))
+	{
+fail:
+		return L"(error while formatting error message)";
+	}
+
+	// append stack trace
+	LibError ret = debug_DumpStack(writer.Position(), writer.CharsLeft(), context, lastFuncToSkip);
+	if(ret == ERR::REENTERED)
+	{
+		if(!writer(
+			L"While generating an error report, we encountered a second "
+			L"problem. Please be sure to report both this and the subsequent "
+			L"error messages."
+		))
+			goto fail;
+	}
+	else if(ret != INFO::OK)
+	{
+		char description_buf[100] = {'?'};
+		if(!writer(
+			L"(error while dumping stack: %hs)",
+			error_description_r(ret, description_buf, ARRAY_SIZE(description_buf))
+		))
+			goto fail;
+	}
+	else	// success
+	{
+		writer.CountAddedChars();
+	}
+
+	// append OS error (just in case it happens to be relevant -
+	// it's usually still set from unrelated operations)
+	char description_buf[100] = "?";
+	LibError errno_equiv = LibError_from_errno(false);
+	if(errno_equiv != ERR::FAIL)	// meaningful translation
+		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
+	char os_error[100] = "?";
+	sys_error_description_r(0, os_error, ARRAY_SIZE(os_error));
+	if(!writer(
+		L"\r\n"
+		L"errno = %d (%hs)\r\n"
+		L"OS error = %hs\r\n",
+		errno, description_buf, os_error
+	))
+		goto fail;
+
+	return buf;
+}
+
+
+//-----------------------------------------------------------------------------
+// display error messages
 //-----------------------------------------------------------------------------
 
 // translates and displays the given strings in a dialog.
@@ -251,109 +392,24 @@ void debug_DisplayMessage(const wchar_t* caption, const wchar_t* msg)
 
 // when an error has come up and user clicks Exit, we don't want any further
 // errors (e.g. caused by atexit handlers) to come up, possibly causing an
-// infinite loop. it sucks to hide errors, but we assume that whoever clicked
-// exit really doesn't want to see any more errors.
+// infinite loop. hiding errors isn't good, but we assume that whoever clicked
+// exit really doesn't want to see any more messages.
 static bool isExiting;
 
 // this logic is applicable to any type of error. special cases such as
 // suppressing certain expected WARN_ERRs are done there.
 static bool ShouldSuppressError(u8* suppress)
 {
+	if(isExiting)
+		return true;
+
 	if(!suppress)
 		return false;
 
 	if(*suppress == DEBUG_SUPPRESS)
 		return true;
 
-	if(isExiting)
-		return true;
-
 	return false;
-}
-
-
-// (NB: this may appear obscene, but deep stack traces have been
-// observed to take up > 256 KiB)
-static const size_t messageSize = 512*KiB;
-
-void debug_FreeErrorMessage(ErrorMessageMem* emm)
-{
-	page_aligned_free(emm->pa_mem, messageSize);
-}
-
-
-// split out of debug_DisplayError because it's used by the self-test.
-const wchar_t* debug_BuildErrorMessage(
-	const wchar_t* description,
-	const char* filename, int line, const char* func,
-	void* context, const char* lastFuncToSkip,
-	ErrorMessageMem* emm)
-{
-	// rationale: see ErrorMessageMem
-	emm->pa_mem = page_aligned_alloc(messageSize);
-	if(!emm->pa_mem)
-		return L"(insufficient memory to generate error message)";
-	wchar_t* const buf = (wchar_t*)emm->pa_mem;
-	const size_t maxChars = messageSize / sizeof(wchar_t);
-	wchar_t* pos = buf; size_t charsLeft = maxChars; int len;
-
-	// header
-	len = swprintf(pos, charsLeft,
-		L"%ls\r\n"
-		L"Location: %hs:%d (%hs)\r\n"
-		L"\r\n"
-		L"Call stack:\r\n"
-		L"\r\n",
-		description, filename, line, func);
-	if(len < 0)
-	{
-fail:
-		return L"(error while formatting error message)";
-	}
-	pos += len; charsLeft -= len;
-
-	// append stack trace
-	LibError ret = debug_DumpStack(pos, charsLeft, context, lastFuncToSkip);
-	if(ret == ERR::REENTERED)
-	{
-		len = swprintf(pos, charsLeft,
-			L"(cannot start a nested stack trace; what probably happened is that "
-			L"an debug_assert/debug_warn/CHECK_ERR fired during the current trace.)"
-		);
-		if(len < 0) goto fail; pos += len; charsLeft -= len;
-	}
-	else if(ret != INFO::OK)
-	{
-		char description_buf[100] = {'?'};
-		len = swprintf(pos, charsLeft,
-			L"(error while dumping stack: %hs)",
-			error_description_r(ret, description_buf, ARRAY_SIZE(description_buf))
-		);
-		if(len < 0) goto fail; pos += len; charsLeft -= len;
-	}
-	else	// success
-	{
-		len = (int)wcslen(buf);
-		pos = buf+len; charsLeft = maxChars-len;
-	}
-
-	// append OS error (just in case it happens to be relevant -
-	// it's usually still set from unrelated operations)
-	char description_buf[100] = "?";
-	LibError errno_equiv = LibError_from_errno(false);
-	if(errno_equiv != ERR::FAIL)	// meaningful translation
-		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
-	char os_error[100] = "?";
-	sys_error_description_r(0, os_error, ARRAY_SIZE(os_error));
-	len = swprintf(pos, charsLeft,
-		L"\r\n"
-		L"errno = %d (%hs)\r\n"
-		L"OS error = %hs\r\n",
-		errno, description_buf, os_error
-	);
-	if(len < 0) goto fail; pos += len; charsLeft -= len;
-
-	return buf;
 }
 
 static ErrorReaction CallDisplayError(const wchar_t* text, size_t flags)
@@ -436,7 +492,7 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 	ErrorMessageMem emm;
 	const wchar_t* text = debug_BuildErrorMessage(description, filename, line, func, context, lastFuncToSkip, &emm);
 
-	debug_WriteCrashlog(text);
+	(void)debug_WriteCrashlog(text);
 	ErrorReaction er = CallDisplayError(text, flags);
 
 	// note: debug_break-ing here to make sure the app doesn't continue
@@ -514,6 +570,3 @@ ErrorReaction debug_OnAssertionFailure(const char* expr, u8* suppress, const cha
 	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%hs\"", expr);
 	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }
-
-
-
