@@ -163,10 +163,31 @@ int access(const char* path, int mode)
 
 
 #ifndef HAVE_MKDIR
+static int ErrnoFromCreateDirectory()
+{
+	switch(GetLastError())
+	{
+	case ERROR_ALREADY_EXISTS:
+		return EEXIST;
+	case ERROR_PATH_NOT_FOUND:
+		return ENOENT;
+	case ERROR_ACCESS_DENIED:
+		return EACCES;
+	case ERROR_WRITE_PROTECT:
+		return EROFS;
+	case ERROR_DIRECTORY:
+		return ENOTDIR;
+	default:
+		return 0;
+
+	}
+}
+
 int mkdir(const char* path, mode_t UNUSED(mode))
 {
 	if(!CreateDirectory(path, (LPSECURITY_ATTRIBUTES)NULL))
 	{
+		errno = ErrnoFromCreateDirectory();
 		return -1;
 	}
 

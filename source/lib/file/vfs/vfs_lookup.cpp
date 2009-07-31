@@ -68,10 +68,16 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
 				currentPath = directory->AssociatedDirectory()->GetPath()/subdirectoryName;
 
-			if(mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG) == 0)
+			const int ret = mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG);
+			if(ret == 0)
 			{
 				PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
 				RETURN_ERR(vfs_Attach(subdirectory, realDirectory));
+			}
+			else if(errno != EEXIST)	// notify of unexpected failures
+			{
+				debug_printf("mkdir failed with errno=%d\n", errno);
+				debug_assert(0);
 			}
 		}
 
