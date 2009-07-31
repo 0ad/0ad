@@ -215,7 +215,12 @@ LibError debug_WriteCrashlog(const wchar_t* text)
 		BUSY,
 		FAILED
 	};
-	static volatile uintptr_t state = IDLE;
+	// note: the initial state is IDLE. we rely on zero-init because
+	// initializing local static objects from constants may happen when
+	// this is first called, which isn't thread-safe. (see C++ 6.7.4)
+	cassert(IDLE == 0);
+	static volatile uintptr_t state;
+
 	if(!cpu_CAS(&state, IDLE, BUSY))
 		return ERR::REENTERED;	// NOWARN
 
