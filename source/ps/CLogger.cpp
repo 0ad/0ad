@@ -39,13 +39,17 @@ CLogger nullLogger(&blackHoleStream, &blackHoleStream, false, true);
 CLogger* g_Logger = &nullLogger;
 
 const char* html_header0 =
-	"<!DOCTYPE HTML>\n"
+	"<!DOCTYPE html>\n"
 	"<title>Pyrogenesis Log</title>\n"
-	"<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n"
-	"<p class=\"logo\"><img src=\"0adlogo.jpg\" alt=\"0 A.D.\"></p>\n"
-	"<h1>";
+	"<style>\n"
+	"body { background: #eee; color: black; font-family: sans-serif; }\n"
+	"p { background: white; margin: 3px 0 3px 0; }\n"
+	".error { color: red; }\n"
+	".warning { color: blue; }\n"
+	"</style>\n"
+	"<h2>0 A.D. ";
 
-const char* html_header1 = "</h1>\n";
+const char* html_header1 = "</h2>\n";
 
 const char* html_footer = "";
 
