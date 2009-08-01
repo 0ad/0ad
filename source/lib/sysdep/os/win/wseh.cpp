@@ -254,6 +254,11 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	if(win_is_locked(WDBG_SYM_CS) == 1)
 		DEBUG_DISPLAY_ERROR(L"Exception raised while critical section is held - may deadlock..");
 
+	// a dump file is essential for debugging, so write it before
+	// anything else goes wrong (especially before showing the error
+	// dialog because the user could choose to exit immediately)
+	wdbg_sym_WriteMinidump(ep);
+
 	// extract details from ExceptionRecord.
 	wchar_t descriptionBuf[150];
 	const wchar_t* description = GetExceptionDescription(ep, descriptionBuf, ARRAY_SIZE(descriptionBuf));
@@ -261,10 +266,6 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	int line = 0;
 	char func[DBG_SYMBOL_LEN] = {0};
 	GetExceptionLocus(ep, file, &line, func);
-
-	// this must happen before the error dialog because user could choose to
-	// exit immediately there.
-	wdbg_sym_WriteMinidump(ep);
 
 	wchar_t message[500];
 	const wchar_t* messageFormat =

@@ -607,7 +607,7 @@ static void InitVfs(const CmdLineArgs& args)
 		CStr path = "mods/" + mods[i];
 		size_t priority = i;
 		const int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
-		g_VFS->Mount("", binariesDir/"../data"/path, flags, priority);
+		g_VFS->Mount("", (binariesDir/"../data")/path, flags, priority);
 	}
 
 	// don't try g_VFS->Display yet: SDL_Init hasn't yet redirected stdout
