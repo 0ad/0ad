@@ -22,6 +22,8 @@
 #ifndef INCLUDED_SECURE_CRT
 #define INCLUDED_SECURE_CRT
 
+#include <stdarg.h>
+
 namespace ERR
 {
 	const LibError STRING_NOT_TERMINATED = -100600;
