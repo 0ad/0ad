@@ -52,8 +52,9 @@ ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, "Invalid string (no 0 terminator fou
 # define tcat_s wcscat_s
 # define tcmp wcscmp
 # define tcpy wcscpy
-# define tprintf_s swprintf_s
-# define vtnprintf vswprintf    // private
+# define tvsnprintf vswprintf	// used by implementation
+# define tvsprintf_s vswprintf_s
+# define tsprintf_s swprintf_s
 #else
 # define tchar char
 # define T(string_literal) string_literal
@@ -64,8 +65,9 @@ ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, "Invalid string (no 0 terminator fou
 # define tcat_s strcat_s
 # define tcmp strcmp
 # define tcpy strcpy
-# define tprintf_s sprintf_s
-# define vtnprintf vsnprintf    // private
+# define tvsnprintf vsnprintf	// used by implementation
+# define tvsprintf_s vsprintf_s
+# define tsprintf_s sprintf_s
 #endif	// #ifdef WSECURE_CRT
 
 
@@ -216,14 +218,21 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 }
 
 
-int tprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
+int tvsprintf_s(tchar* dst, size_t max_dst_chars, const tchar* fmt, va_list ap)
 {
-	va_list args;
-	va_start(args, fmt);
-	int len = vtnprintf(buf, max_chars, fmt, args);
-	va_end(args);
+	return tvsnprintf(dst, max_dst_chars, fmt, ap);
+}
+
+
+int tsprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
+{
+	va_list ap;
+	va_start(ap, fmt);
+	int len = tvsprintf_s(buf, max_chars, fmt, ap);
+	va_end(ap);
 	return len;
 }
+
 
 // note: there is no portable wfopen, so we need separate implementations
 // of tfopen_s. (the Unicode version just converts to UTF8)
