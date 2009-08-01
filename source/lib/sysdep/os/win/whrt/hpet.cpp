@@ -22,6 +22,8 @@
 #include "precompiled.h"
 #include "hpet.h"
 
+#include <emmintrin.h>	// for atomic 64-bit read/write
+
 #include "counter.h"
 
 #include "lib/sysdep/os/win/win.h"
@@ -29,40 +31,6 @@
 #include "lib/sysdep/acpi.h"
 #include "lib/bits.h"
 
-#pragma pack(push, 1)
-
-struct HpetDescriptionTable
-{
-	AcpiTable header;
-	u32 eventTimerBlockId;
-	AcpiGenericAddress baseAddress;
-	u8 sequenceNumber;
-	u16 minimumPeriodicTicks;
-	u8 attributes;
-};
-
-struct HpetRegisters
-{
-	u64 capabilities;
-	u64 reserved1;
-	u64 config;
-	u64 reserved2;
-	u64 interruptStatus;
-	u64 reserved3[25];
-	u64 counterValue;
-	u64 reserved4;
-
-	// .. followed by blocks for timers 0..31
-};
-
-#pragma pack(pop)
-
-static const u64 CAP_SIZE64 = Bit<u64>(13);
-
-static const u64 CONFIG_ENABLE = Bit<u64>(0);
-
-
-//-----------------------------------------------------------------------------
 
 class CounterHPET : public ICounter
 {
@@ -79,24 +47,26 @@ public:
 
 	LibError Activate()
 	{
-		if(mahaf_IsPhysicalMappingDangerous())
-			return ERR::FAIL;	// NOWARN (happens on Win2k)
-		if(!mahaf_Init())
-			return ERR::FAIL;	// NOWARN (no Administrator privileges)
-		if(!acpi_Init())
-			WARN_RETURN(ERR::FAIL);	// shouldn't fail, since we've checked mahaf_IsPhysicalMappingDangerous
-		const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
-		if(!hpet)
-			return ERR::NO_SYS;	// NOWARN (HPET not reported by BIOS)
-		debug_assert(hpet->baseAddress.addressSpaceId == ACPI_AS_MEMORY);
-		m_hpetRegisters = (volatile HpetRegisters*)mahaf_MapPhysicalMemory(uintptr_t(hpet->baseAddress.address), sizeof(HpetRegisters));
-		if(!m_hpetRegisters)
-			WARN_RETURN(ERR::NO_MEM);
+		RETURN_ERR(MapRegisters(m_hpetRegisters));
+
+		// retrieve capabilities and ID
+		{
+			const u64 caps_and_id = Read64(CAPS_AND_ID);
+			const u8 revision = bits(caps_and_id, 0, 7);
+			debug_assert(revision != 0);	// "the value must NOT be 00h"
+			m_counterBits = (caps_and_id & Bit<u64>(13))? 64 : 32;
+			const u16 vendorID = bits(caps_and_id, 16, 31);
+			const u32 period_fs = (u32)bits(caps_and_id, 32, 63);
+			debug_assert(period_fs != 0);	// "a value of 0 in this field is not permitted"
+			debug_assert(period_fs <= 0x05F5E100);	// 100 ns (min freq is 10 MHz)
+			m_frequency = 1e15 / period_fs;
+			debug_printf("HPET: rev=%X vendor=%X bits=%d period=%X freq=%g\n", revision, vendorID, m_counterBits, period_fs, m_frequency);
+		}
 
 		// start the counter (if not already running)
-		// note: do not reset value to 0 to avoid interfering with any
-		// other users of the timer (e.g. Vista QPC)
-		m_hpetRegisters->config |= CONFIG_ENABLE;
+		Write64(CONFIG, Read64(CONFIG)|1);
+		// note: to avoid interfering with any other users of the timer
+		// (e.g. Vista QPC), we don't reset the counter value to 0.
 
 		return INFO::OK;
 	}
@@ -122,36 +92,109 @@ public:
 
 	u64 Counter() const
 	{
-		// note: we assume the data bus can do atomic 64-bit transfers,
-		// which has been the case since the original Pentium.
-		// (note: see implementation of GetTickCount for an algorithm to
-		// cope with non-atomic reads)
-		return m_hpetRegisters->counterValue;
+		// notes:
+		// - Read64 is atomic and avoids race conditions.
+		// - 32-bit counters (m_counterBits == 32) still allow
+		//   reading the whole register (the upper bits are zero).
+		return Read64(COUNTER_VALUE);
 	}
 
 	size_t CounterBits() const
 	{
-		const u64 caps = m_hpetRegisters->capabilities;
-		const size_t counterBits = (caps & CAP_SIZE64)? 64 : 32;
-		return counterBits;
+		return m_counterBits;
 	}
 
 	double NominalFrequency() const
 	{
-		const u64 caps = m_hpetRegisters->capabilities;
-		const u32 timerPeriod_fs = (u32)bits(caps, 32, 63);
-		debug_assert(timerPeriod_fs != 0);	// guaranteed by HPET spec
-		const double frequency = 1e15 / timerPeriod_fs;
-		return frequency;
+		return m_frequency;
 	}
 
 	double Resolution() const
 	{
-		return 1.0 / NominalFrequency();
+		return 1.0 / m_frequency;
 	}
 
 private:
-	volatile HpetRegisters* m_hpetRegisters;
+#pragma pack(push, 1)
+
+	struct HpetDescriptionTable
+	{
+		AcpiTable header;
+		u32 eventTimerBlockId;
+		AcpiGenericAddress baseAddress;
+		u8 sequenceNumber;
+		u16 minimumPeriodicTicks;
+		u8 attributes;
+	};
+
+#pragma pack(pop)
+
+	enum RegisterOffsets
+	{
+		CAPS_AND_ID   = 0x00,
+		CONFIG        = 0x10,
+		COUNTER_VALUE = 0xF0,
+		MAX_OFFSET    = 0x3FF
+	};
+
+	static LibError MapRegisters(volatile void*& registers)
+	{
+		if(mahaf_IsPhysicalMappingDangerous())
+			return ERR::FAIL;	// NOWARN (happens on Win2k)
+		if(!mahaf_Init())
+			return ERR::FAIL;	// NOWARN (no Administrator privileges)
+		if(!acpi_Init())
+			WARN_RETURN(ERR::FAIL);	// shouldn't fail, since we've checked mahaf_IsPhysicalMappingDangerous
+
+		const HpetDescriptionTable* hpet = (const HpetDescriptionTable*)acpi_GetTable("HPET");
+		if(!hpet)
+			return ERR::NO_SYS;	// NOWARN (HPET not reported by BIOS)
+
+		if(hpet->baseAddress.addressSpaceId != ACPI_AS_MEMORY)
+			return ERR::NOT_SUPPORTED;	// NOWARN (happens on some BIOSes)
+		// hpet->baseAddress.accessSize is reserved
+		const uintptr_t address = uintptr_t(hpet->baseAddress.address);
+		debug_assert(address % 8 == 0);	// "registers are generally aligned on 64-bit boundaries"
+
+		registers = mahaf_MapPhysicalMemory(address, MAX_OFFSET+1);
+		if(!registers)
+			WARN_RETURN(ERR::NO_MEM);
+
+		return INFO::OK;
+	}
+
+	// note: this is atomic even on 32-bit CPUs (Pentium MMX and
+	// above have a 64-bit data bus and MOVQ instruction)
+	u64 Read64(size_t offset) const
+	{
+		debug_assert(offset <= MAX_OFFSET);
+		debug_assert(offset % 8 == 0);
+		const uintptr_t address = uintptr_t(m_hpetRegisters)+offset;
+		const __m128i value128 = _mm_loadl_epi64((__m128i*)address);
+#if ARCH_AMD64
+		return _mm_cvtsi128_si64x(value128);
+#else
+		return u64_from_u32(value128.m128i_u32[1], value128.m128i_u32[0]);
+#endif
+	}
+
+	void Write64(size_t offset, u64 value) const
+	{
+		debug_assert(offset <= MAX_OFFSET);
+		debug_assert(offset % 8 == 0);
+		debug_assert(offset != CAPS_AND_ID);	// can't write to read-only registers
+		const uintptr_t address = uintptr_t(m_hpetRegisters)+offset;
+#if ARCH_AMD64
+		const __m128i value128 = _mm_cvtsi64x_si128(value);
+#else
+		const __m128i value128 = _mm_set_epi32(0, 0, int(value >> 32), int(value & 0xFFFFFFFF));
+#endif
+		_mm_storel_epi64((__m128i*)address, value128);
+	}
+
+	volatile void* m_hpetRegisters;
+	double m_frequency;
+	u32 m_counterBits;
 };
 
 ICounter* CreateCounterHPET(void* address, size_t size)
