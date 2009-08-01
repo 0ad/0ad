@@ -371,7 +371,7 @@ private:
 class ArchiveReader_Zip : public IArchiveReader
 {
 public:
-	ArchiveReader_Zip(const Path& pathname)
+	ArchiveReader_Zip(const fs::path& pathname)
 		: m_file(CreateFile_Posix())
 	{
 		m_file->Open(pathname, 'r');
@@ -505,7 +505,7 @@ private:
 	off_t m_fileSize;
 };
 
-PIArchiveReader CreateArchiveReader_Zip(const Path& archivePathname)
+PIArchiveReader CreateArchiveReader_Zip(const fs::path& archivePathname)
 {
 	return PIArchiveReader(new ArchiveReader_Zip(archivePathname));
 }
@@ -518,7 +518,7 @@ PIArchiveReader CreateArchiveReader_Zip(const Path& archivePathname)
 class ArchiveWriter_Zip : public IArchiveWriter
 {
 public:
-	ArchiveWriter_Zip(const Path& archivePathname)
+	ArchiveWriter_Zip(const fs::path& archivePathname)
 		: m_file(CreateFile_Posix()), m_fileSize(0)
 		, m_unalignedWriter(new UnalignedWriter(m_file, 0))
 		, m_numEntries(0)
@@ -544,14 +544,14 @@ public:
 
 		(void)pool_destroy(&m_cdfhPool);
 
-		const Path pathname = m_file->Pathname();
+		const fs::path pathname = m_file->Pathname();
 		m_file.reset();
 
 		m_fileSize += off_t(cd_size+sizeof(ECDR));
 		truncate(pathname.external_directory_string().c_str(), m_fileSize);
 	}
 
-	LibError AddFile(const Path& pathname)
+	LibError AddFile(const fs::path& pathname)
 	{
 		FileInfo fileInfo;
 		RETURN_ERR(s_fileSystemPosix.GetFileInfo(pathname, &fileInfo));
@@ -629,7 +629,7 @@ public:
 	}
 
 private:
-	static bool IsFileTypeIncompressible(const Path& pathname)
+	static bool IsFileTypeIncompressible(const fs::path& pathname)
 	{
 		const char* extension = path_extension(pathname.string().c_str());
 
@@ -658,7 +658,7 @@ private:
 	size_t m_numEntries;
 };
 
-PIArchiveWriter CreateArchiveWriter_Zip(const Path& archivePathname)
+PIArchiveWriter CreateArchiveWriter_Zip(const fs::path& archivePathname)
 {
 	return PIArchiveWriter(new ArchiveWriter_Zip(archivePathname));
 }

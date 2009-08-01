@@ -39,7 +39,7 @@ public:
 	{
 	}
 
-	virtual LibError Mount(const VfsPath& mountPoint, const Path& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
+	virtual LibError Mount(const VfsPath& mountPoint, const fs::path& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
 		debug_assert(vfs_path_IsDirectory(mountPoint));
 		// note: mounting subdirectories is now allowed.
@@ -150,12 +150,12 @@ public:
 		m_rootDirectory.DisplayR(0);
 	}
 
-	virtual LibError GetRealPath(const VfsPath& pathname, Path& realPathname)
+	virtual LibError GetRealPath(const VfsPath& pathname, fs::path& realPathname)
 	{
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
 		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
-		realPathname = realDirectory->GetPath() / pathname.leaf();
+		realPathname = realDirectory->Path() / pathname.leaf();
 		return INFO::OK;
 	}
 

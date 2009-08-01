@@ -49,7 +49,7 @@ public:
 	{
 		FileInfos files; files.reserve(100);
 		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(20);
-		RETURN_ERR(s_fileSystemPosix.GetDirectoryEntries(m_realDirectory->GetPath(), &files, &subdirectoryNames));
+		RETURN_ERR(s_fileSystemPosix.GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
 		RETURN_ERR(AddFiles(files));
 		AddSubdirectories(subdirectoryNames);
 		return INFO::OK;
@@ -86,7 +86,7 @@ private:
 
 	LibError AddFiles(const FileInfos& files) const
 	{
-		const Path path(m_realDirectory->GetPath());
+		const fs::path path(m_realDirectory->Path());
 
 		for(size_t i = 0; i < files.size(); i++)
 		{

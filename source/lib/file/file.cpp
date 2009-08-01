@@ -23,7 +23,6 @@
 #include "file.h"
 
 #include "lib/file/common/file_stats.h"
-#include "lib/file/path.h"
 
 
 ERROR_ASSOCIATE(ERR::FILE_ACCESS, "Insufficient access rights to open file", EACCES);
@@ -38,7 +37,7 @@ public:
 		Close();
 	}
 
-	virtual LibError Open(const Path& pathname, char mode)
+	virtual LibError Open(const fs::path& pathname, char mode)
 	{
 		debug_assert(mode == 'w' || mode == 'r');
 
@@ -76,7 +75,7 @@ public:
 		}
 	}
 
-	virtual const Path& Pathname() const
+	virtual const fs::path& Pathname() const
 	{
 		return m_pathname;
 	}
@@ -149,7 +148,7 @@ private:
 		return INFO::OK;
 	}
 
-	Path m_pathname;
+	fs::path m_pathname;
 	char m_mode;
 	int m_fd;
 };

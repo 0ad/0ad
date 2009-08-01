@@ -19,7 +19,6 @@
 
 #include "lib/file/vfs/vfs.h"
 #include "lib/file/io/io.h"
-#include "lib/file/path.h"
 #include "lib/file/file_system_posix.h"
 
 #include "graphics/ColladaManager.h"
@@ -27,9 +26,10 @@
 #include "graphics/ModelDef.h"
 
 #include "ps/CLogger.h"
+#include "ps/Pyrogenesis.h"
 
-static Path MOD_PATH("mods/_test.mesh");
-static Path CACHE_PATH("_testcache");
+static fs::path MOD_PATH(psLogPath()/"../data/mods/_test.mesh");
+static fs::path CACHE_PATH(psLogPath()/"../data/_testcache");
 
 const char* srcDAE = "collada/sphere.dae";
 const char* srcPMD = "collada/sphere.pmd";
@@ -47,8 +47,6 @@ class TestMeshManager : public CxxTest::TestSuite
 	void initVfs()
 	{
 		// Initialise VFS:
-
-		TS_ASSERT_OK(path_SetRoot(0, "../data"));
 
 		// Set up a mod directory to work in:
 
@@ -77,8 +75,6 @@ class TestMeshManager : public CxxTest::TestSuite
 	{
 //		fsPosix.DeleteDirectory(MOD_PATH);
 //		fsPosix.DeleteDirectory(CACHE_PATH);
-
-		path_ResetRootDir();
 
 		g_VFS.reset();
 	}

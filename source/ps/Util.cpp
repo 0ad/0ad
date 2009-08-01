@@ -71,7 +71,7 @@ void WriteSystemInfo()
 	struct utsname un;
 	uname(&un);
 
-	Path pathname("../logs/system_info.txt");
+	fs::path pathname(psLogPath()/"system_info.txt");
 	FILE* f = fopen(pathname.external_file_string().c_str(), "w");
 	if(!f)
 		return;

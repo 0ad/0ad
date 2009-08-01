@@ -37,7 +37,7 @@ BlockId::BlockId()
 {
 }
 
-BlockId::BlockId(const Path& pathname, off_t ofs)
+BlockId::BlockId(const fs::path& pathname, off_t ofs)
 {
 	m_id = fnv_hash64(pathname.string().c_str(), pathname.string().length());
 	const size_t indexBits = 16;

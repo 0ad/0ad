@@ -233,13 +233,16 @@ VfsPath CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType ty
 	extension += hashString;
 	extension += extn;
 
-	// realDaePath is "mods/whatever/art/meshes/whatever.dae"
-	Path realDaePath;
-	LibError ret = g_VFS->GetRealPath(dae, realDaePath);
+	// realDaePath_ is "[..]/mods/whatever/art/meshes/whatever.dae"
+	fs::path realDaePath_;
+	LibError ret = g_VFS->GetRealPath(dae, realDaePath_);
 	debug_assert(ret == INFO::OK);
+	char realDaeBuf[PATH_MAX];
+	path_copy(realDaeBuf, realDaePath_.string().c_str());
+	const char* realDaePath = strstr(realDaeBuf, "mods/");
 
 	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
-	VfsPath cachedPmdVfsPath = VfsPath("cache/") / realDaePath.string();
+	VfsPath cachedPmdVfsPath = VfsPath("cache/") / realDaePath;
 	cachedPmdVfsPath = change_extension(cachedPmdVfsPath, extension);
 
 	// If it's not in the cache, we'll have to create it first

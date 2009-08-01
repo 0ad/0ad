@@ -22,8 +22,6 @@
 #ifndef INCLUDED_BLOCK_CACHE
 #define INCLUDED_BLOCK_CACHE
 
-#include "lib/file/path.h"
-
 /**
  * ID that uniquely identifies a block within a file
  **/
@@ -31,7 +29,7 @@ class BlockId
 {
 public:
 	BlockId();
-	BlockId(const Path& pathname, off_t ofs);
+	BlockId(const fs::path& pathname, off_t ofs);
 	bool operator==(const BlockId& rhs) const;
 	bool operator!=(const BlockId& rhs) const;
 

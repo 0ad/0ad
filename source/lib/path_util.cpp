@@ -26,12 +26,12 @@
 #include <cerrno>
 
 
-ERROR_ASSOCIATE(ERR::PATH_LENGTH, "Path exceeds PATH_MAX characters", ENAMETOOLONG);
-ERROR_ASSOCIATE(ERR::PATH_EMPTY, "Path is an empty string", -1);
-ERROR_ASSOCIATE(ERR::PATH_NOT_RELATIVE, "Path is not relative", -1);
-ERROR_ASSOCIATE(ERR::PATH_NON_PORTABLE, "Path contains OS-specific dir separator", -1);
-ERROR_ASSOCIATE(ERR::PATH_NON_CANONICAL, "Path contains unsupported .. or ./", -1);
-ERROR_ASSOCIATE(ERR::PATH_COMPONENT_SEPARATOR, "Path component contains dir separator", -1);
+ERROR_ASSOCIATE(ERR::PATH_LENGTH, "path exceeds PATH_MAX characters", ENAMETOOLONG);
+ERROR_ASSOCIATE(ERR::PATH_EMPTY, "path is an empty string", -1);
+ERROR_ASSOCIATE(ERR::PATH_NOT_RELATIVE, "path is not relative", -1);
+ERROR_ASSOCIATE(ERR::PATH_NON_PORTABLE, "path contains OS-specific dir separator", -1);
+ERROR_ASSOCIATE(ERR::PATH_NON_CANONICAL, "path contains unsupported .. or ./", -1);
+ERROR_ASSOCIATE(ERR::PATH_COMPONENT_SEPARATOR, "path component contains dir separator", -1);
 
 
 bool path_is_dir_sep(char c)
@@ -272,7 +272,7 @@ const char* path_name_only(const char* path)
 	if(!slash1 && !slash2)
 		return path;
 
-	// return name, i.e. component after the last portable or platform slash
+	// return name, i.e. component after the last slash
 	const char* name = std::max(slash1, slash2)+1;
 	if(name[0] != '\0')	// else path_component_validate would complain
 		path_component_validate(name);

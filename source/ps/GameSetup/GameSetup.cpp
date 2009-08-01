@@ -23,6 +23,7 @@
 #include "lib/input.h"
 #include "lib/lockfree.h"
 #include "lib/app_hooks.h"
+#include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/h_mgr.h"
@@ -550,29 +551,43 @@ static size_t ChooseCacheSize()
 	return 96*MiB;
 }
 
+fs::path BinariesDir(const CStr& argv0)
+{
+	// get full path to executable
+	char pathname[PATH_MAX];
+	// .. first try safe, but system-dependent version
+	if(sys_get_executable_name(pathname, PATH_MAX) < 0)
+	{
+		// .. failed; use argv[0]
+		errno = 0;
+		if(!realpath(argv0.c_str(), pathname))
+			WARN_ERR(LibError_from_errno(false));
+	}
+
+	// make sure it's valid
+	errno = 0;
+	if(access(pathname, X_OK) < 0)
+		WARN_ERR(LibError_from_errno(false));
+
+	// strip executable name
+	char* name = (char*)path_name_only(pathname);
+	*name = '\0';
+
+	return fs::path(pathname);
+}
+
 
 static void InitVfs(const CmdLineArgs& args)
 {
 	TIMER("InitVfs");
 
-	// set root directory to "$game_dir/data". all relative file paths
-	// passed to file.cpp will be based from this dir.
-	// (we don't set current directory because other libraries may
-	// hijack it).
-	//
-	// "../data" is relative to the executable (in "$game_dir/system").
-	//
-	// rationale for data/ being root: untrusted scripts must not be
-	// allowed to overwrite critical game (or worse, OS) files.
-	// the VFS prevents any accesses to files above this directory.
-	path_SetRoot(args.GetArg0(), "../data");
-
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	g_VFS->Mount("screenshots/", "screenshots");
-	g_VFS->Mount("config/", "config");
-	g_VFS->Mount("profiles/", "profiles");
+	const fs::path binariesDir(BinariesDir(args.GetArg0()));
+	g_VFS->Mount("screenshots/", binariesDir/"../data/screenshots");
+	g_VFS->Mount("config/", binariesDir/"../data/config");
+	g_VFS->Mount("profiles/", binariesDir/"../data/profiles");
 
 	// rationale:
 	// - this is in a separate real directory so that it can later be moved
@@ -580,7 +595,7 @@ static void InitVfs(const CmdLineArgs& args)
 	// - we mount as archivable so that all files will be added to archive.
 	//   even though we write out XMBs here, they will eventually be read,
 	//   so putting them in an archive boosts performance.
-	g_VFS->Mount("cache/", "cache", VFS_MOUNT_ARCHIVABLE);
+	g_VFS->Mount("cache/", binariesDir/"../data/cache", VFS_MOUNT_ARCHIVABLE);
 
 	std::vector<CStr> mods = args.GetMultiple("mod");
 	mods.push_back("public");
@@ -592,7 +607,7 @@ static void InitVfs(const CmdLineArgs& args)
 		CStr path = "mods/" + mods[i];
 		size_t priority = i;
 		const int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
-		g_VFS->Mount("", path, flags, priority);
+		g_VFS->Mount("", binariesDir/"../data"/path, flags, priority);
 	}
 
 	// don't try g_VFS->Display yet: SDL_Init hasn't yet redirected stdout

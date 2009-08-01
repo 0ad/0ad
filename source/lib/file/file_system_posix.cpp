@@ -28,7 +28,6 @@
 #include <string>
 
 #include "lib/path_util.h"
-#include "lib/file/path.h"
 #include "lib/posix/posix_filesystem.h"
 
 
@@ -49,7 +48,7 @@ static bool IsDummyDirectory(const char* name)
 	return (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'));
 }
 
-/*virtual*/ LibError FileSystem_Posix::GetDirectoryEntries(const Path& path, FileInfos* files, DirectoryNames* subdirectoryNames) const
+/*virtual*/ LibError FileSystem_Posix::GetDirectoryEntries(const fs::path& path, FileInfos* files, DirectoryNames* subdirectoryNames) const
 {
 	// open directory
 	errno = 0;
@@ -82,7 +81,7 @@ static bool IsDummyDirectory(const char* name)
 #else
 		// .. call regular stat().
 		errno = 0;
-		const Path pathname(path/name);
+		const fs::path pathname(path/name);
 		if(stat(pathname.external_directory_string().c_str(), &s) != 0)
 			return LibError_from_errno();
 #endif
@@ -95,7 +94,7 @@ static bool IsDummyDirectory(const char* name)
 }
 
 
-LibError FileSystem_Posix::GetFileInfo(const Path& pathname, FileInfo* pfileInfo) const
+LibError FileSystem_Posix::GetFileInfo(const fs::path& pathname, FileInfo* pfileInfo) const
 {
 	char osPathname[PATH_MAX];
 	path_copy(osPathname, pathname.external_directory_string().c_str());
@@ -117,7 +116,7 @@ LibError FileSystem_Posix::GetFileInfo(const Path& pathname, FileInfo* pfileInfo
 }
 
 
-LibError FileSystem_Posix::DeleteDirectory(const Path& path)
+LibError FileSystem_Posix::DeleteDirectory(const fs::path& path)
 {
 	// note: we have to recursively empty the directory before it can
 	// be deleted (required by Windows and POSIX rmdir()).
@@ -128,7 +127,7 @@ LibError FileSystem_Posix::DeleteDirectory(const Path& path)
 	// delete files
 	for(size_t i = 0; i < files.size(); i++)
 	{
-		const Path pathname(path/files[i].Name());
+		const fs::path pathname(path/files[i].Name());
 		errno = 0;
 		if(unlink(pathname.external_file_string().c_str()) != 0)
 			return LibError_from_errno();

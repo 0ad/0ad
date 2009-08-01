@@ -22,8 +22,6 @@
 #ifndef INCLUDED_FILE
 #define INCLUDED_FILE
 
-#include "path.h"
-
 namespace ERR
 {
 	const LibError FILE_ACCESS = -110300;
@@ -32,11 +30,11 @@ namespace ERR
 
 struct IFile
 {
-	virtual LibError Open(const Path& pathname, char mode) = 0;
+	virtual LibError Open(const fs::path& pathname, char mode) = 0;
 	virtual LibError Open(const fs::wpath& pathname, char mode) = 0;
 	virtual void Close() = 0;
 
-	virtual const Path& Pathname() const = 0;
+	virtual const fs::path& Pathname() const = 0;
 	virtual char Mode() const = 0;
 
 	virtual LibError Issue(aiocb& req, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const = 0;

@@ -19,14 +19,13 @@
 #define INCLUDED_REAL_DIRECTORY
 
 #include "file_loader.h"
-#include "lib/file/path.h"
 
 class RealDirectory : public IFileLoader
 {
 public:
-	RealDirectory(const Path& path, size_t priority, size_t flags);
+	RealDirectory(const fs::path& path, size_t priority, size_t flags);
 
-	const Path& GetPath() const
+	const fs::path& Path() const
 	{
 		return m_path;
 	}
@@ -57,7 +56,7 @@ private:
 	// note: paths are relative to the root directory, so storing the
 	// entire path instead of just the portion relative to the mount point
 	// is not all too wasteful.
-	const Path m_path;
+	const fs::path m_path;
 
 	const size_t m_priority;
 

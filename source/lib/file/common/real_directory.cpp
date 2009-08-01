@@ -23,7 +23,7 @@
 #include "lib/file/io/io.h"
 
 
-RealDirectory::RealDirectory(const Path& path, size_t priority, size_t flags)
+RealDirectory::RealDirectory(const fs::path& path, size_t priority, size_t flags)
 	: m_path(path), m_priority(priority), m_flags(flags)
 {
 }
@@ -53,7 +53,7 @@ RealDirectory::RealDirectory(const Path& path, size_t priority, size_t flags)
 
 LibError RealDirectory::Store(const std::string& name, const shared_ptr<u8>& fileContents, size_t size)
 {
-	const Path pathname(m_path/name);
+	const fs::path pathname(m_path/name);
 
 	{
 		PIFile file = CreateFile_Posix();
@@ -73,12 +73,12 @@ LibError RealDirectory::Store(const std::string& name, const shared_ptr<u8>& fil
 
 void RealDirectory::Watch()
 {
-	//m_watch = CreateWatch(Path().external_file_string().c_str());
+	//m_watch = CreateWatch(fs::path().external_file_string().c_str());
 }
 
 
 PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::string& subdirectoryName)
 {
-	const Path path(realDirectory->GetPath()/subdirectoryName);
+	const fs::path path(realDirectory->Path()/subdirectoryName);
 	return PRealDirectory(new RealDirectory(path, realDirectory->Priority(), realDirectory->Flags()));
 }

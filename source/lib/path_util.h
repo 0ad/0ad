@@ -26,7 +26,7 @@
 //   input buffers must not exceed PATH_MAX chars, while outputs
 //   must hold at least that much.
 // - unless otherwise mentioned, all functions are intended to work with
-//   native and portable and VFS paths.
+//   native and VFS paths.
 //   when reading, both '/' and SYS_DIR_SEP are accepted; '/' is written.
 
 #ifndef INCLUDED_PATH_UTIL

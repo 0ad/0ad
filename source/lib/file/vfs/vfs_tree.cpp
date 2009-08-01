@@ -65,11 +65,7 @@ void VfsFile::GenerateDescription(char* text, size_t maxChars) const
 	char timestamp[25];
 	const time_t mtime = MTime();
 	strftime(timestamp, ARRAY_SIZE(timestamp), "%a %b %d %H:%M:%S %Y", localtime(&mtime));
-
-	// build format string (set width of name field so that everything
-	// lines up correctly)
-	const char* fmt = "(%c; %6d; %s)\n";
-	sprintf_s(text, maxChars, fmt, m_loader->LocationCode(), Size(), timestamp);
+	sprintf_s(text, maxChars, "(%c; %6d; %s)\n", m_loader->LocationCode(), Size(), timestamp);
 }
 
 

@@ -21,7 +21,6 @@
 #include "ps/i18n.h"
 
 #include "lib/sysdep/sysdep.h"
-#include "lib/file/path.h"
 #include "lib/path_util.h"
 #include "lib/svn_revision.h"
 
@@ -94,12 +93,12 @@ void psBundleLogs(FILE* f)
 	fwprintf(f, L"SVN Revision: %s\n\n", svn_revision);
 
 	fwprintf(f, L"System info:\n\n");
-	Path path1("../logs/system_info.txt");
+	fs::path path1(psLogPath()/"system_info.txt");
 	AppendAsciiFile(f, path1.external_file_string().c_str());
 	fwprintf(f, L"\n\n====================================\n\n");
 
 	fwprintf(f, L"Main log:\n\n");
-	Path path2("../logs/mainlog.html");
+	fs::path path2(psLogPath()/"mainlog.html");
 	AppendAsciiFile(f, path2.external_file_string().c_str());
 	fwprintf(f, L"\n\n====================================\n\n");
 }
@@ -116,4 +115,13 @@ const char* psGetLogDir()
 		(void)path_append(N_log_dir, N_exe_name, "../logs/");
 	);
 	return N_log_dir;
+}
+
+
+fs::path psLogPath()
+{
+	char exePathname[PATH_MAX];
+	(void)sys_get_executable_name(exePathname, ARRAY_SIZE(exePathname));
+	path_strip_fn(exePathname);
+	return fs::path(exePathname)/"../logs/";
 }

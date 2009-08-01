@@ -24,7 +24,7 @@
 
 #include "archive.h"
 
-LIB_API PIArchiveReader CreateArchiveReader_Zip(const Path& archivePathname);
-LIB_API PIArchiveWriter CreateArchiveWriter_Zip(const Path& archivePathname);
+LIB_API PIArchiveReader CreateArchiveReader_Zip(const fs::path& archivePathname);
+LIB_API PIArchiveWriter CreateArchiveWriter_Zip(const fs::path& archivePathname);
 
 #endif	// #ifndef INCLUDED_ARCHIVE_ZIP

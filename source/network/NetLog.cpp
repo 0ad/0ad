@@ -27,7 +27,6 @@
 #include "precompiled.h"
 #include "NetLog.h"
 #include "ps/CConsole.h"
-#include "lib/file/path.h"
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -259,7 +258,7 @@ CNetLogFileSink::CNetLogFileSink( void )
 	CNetLogger::GetStringTime( time );
 	
 	// Make relative path
-	Path path("../logs/net_log");
+	fs::path path(psLogPath()/"net_log");
 	path /= time+".txt";
 	m_FileName = path.external_file_string();
 	m_Append = true;

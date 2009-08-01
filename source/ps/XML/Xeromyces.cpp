@@ -74,13 +74,17 @@ void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const 
 	//   a subdirectory (which would make manually deleting all harder).
 
 	// get real path of XML file (e.g. mods/official/entities/...)
-	Path P_XMBRealPath;
-	vfs->GetRealPath(xmlFilename, P_XMBRealPath);
+	fs::path XMBRealPath_;
+	vfs->GetRealPath(xmlFilename, XMBRealPath_);
+	char XMBRealPath[PATH_MAX];
+	path_copy(XMBRealPath, XMBRealPath_.string().c_str());
 
 	// extract mod name from that
+	const char* modPath = strstr(XMBRealPath, "mods/");
+	debug_assert(modPath != 0);
 	char modName[PATH_MAX];
 	// .. NOTE: can't use %s, of course (keeps going beyond '/')
-	int matches = sscanf(P_XMBRealPath.string().c_str(), "mods/%[^/]", modName);
+	int matches = sscanf(modPath, "mods/%[^/]", modName);
 	debug_assert(matches == 1);
 
 	// build full name: cache, then mod name, XMB subdir, original XMB path

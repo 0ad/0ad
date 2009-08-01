@@ -64,12 +64,12 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 		if(createMissingDirectories && !subdirectory->AssociatedDirectory())
 		{
-			Path currentPath;
+			fs::path currentPath;
 			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
-				currentPath = directory->AssociatedDirectory()->GetPath();
+				currentPath = directory->AssociatedDirectory()->Path();
 			currentPath /= subdirectoryName;
 
-			const int ret = mkdir(currentPath.external_directory_string().c_str(), S_IRWXO|S_IRWXU|S_IRWXG);
+			const int ret = mkdir(currentPath.external_directory_string().c_str(), S_IRWXU);
 			if(ret == 0)
 			{
 				PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));

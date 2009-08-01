@@ -50,6 +50,7 @@ public:
 
 	bool IsSupersededBy(const VfsFile& file) const;
 
+	// store file attributes (timestamp, location, size) in a string.
 	void GenerateDescription(char* text, size_t maxChars) const;
 
 	LibError Load(const shared_ptr<u8>& buf) const;

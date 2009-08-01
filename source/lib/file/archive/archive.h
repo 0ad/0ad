@@ -22,7 +22,6 @@
 #ifndef INCLUDED_ARCHIVE
 #define INCLUDED_ARCHIVE
 
-#include "lib/file/path.h"
 #include "lib/file/file_system.h"	// FileInfo
 #include "lib/file/common/file_loader.h"
 #include "lib/file/vfs/vfs_path.h"
@@ -84,7 +83,7 @@ struct IArchiveWriter
 	 * precisely because they aren't in archives, and the cache would
 	 * thrash anyway, so this is deemed acceptable.
 	 **/
-	virtual LibError AddFile(const Path& pathname) = 0;
+	virtual LibError AddFile(const fs::path& pathname) = 0;
 };
 
 typedef shared_ptr<IArchiveWriter> PIArchiveWriter;

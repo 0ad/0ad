@@ -23,7 +23,6 @@
 #ifndef INCLUDED_FILE_SYSTEM_POSIX
 #define INCLUDED_FILE_SYSTEM_POSIX
 
-#include "lib/file/path.h"
 #include "lib/file/file_system.h"
 
 // jw 2007-12-20: we'd love to replace this with boost::filesystem,
@@ -33,10 +32,10 @@
 
 struct FileSystem_Posix
 {
-	virtual LibError GetFileInfo(const Path& pathname, FileInfo* fileInfo) const;
-	virtual LibError GetDirectoryEntries(const Path& path, FileInfos* files, DirectoryNames* subdirectoryNames) const;
+	virtual LibError GetFileInfo(const fs::path& pathname, FileInfo* fileInfo) const;
+	virtual LibError GetDirectoryEntries(const fs::path& path, FileInfos* files, DirectoryNames* subdirectoryNames) const;
 
-	LibError DeleteDirectory(const Path& dirPath);
+	LibError DeleteDirectory(const fs::path& dirPath);
 };
 
 typedef shared_ptr<FileSystem_Posix> PIFileSystem_Posix;
