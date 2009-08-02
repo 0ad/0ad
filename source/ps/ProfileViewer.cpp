@@ -428,7 +428,7 @@ void CProfileViewer::SaveToFile()
 	{
 		// Open the file. (It will be closed when the CProfileViewer
 		// destructor is called.)
-		fs::path path(psLogPath()/"profile.txt");
+		fs::path path(fs::path(psLogDir())/"profile.txt");
 		m->outputStream.open(path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
 		if (m->outputStream.fail())

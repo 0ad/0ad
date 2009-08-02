@@ -258,7 +258,7 @@ CNetLogFileSink::CNetLogFileSink( void )
 	CNetLogger::GetStringTime( time );
 	
 	// Make relative path
-	fs::path path(psLogPath()/"net_log");
+	fs::path path(fs::path(psLogDir())/"net_log");
 	path /= time+".txt";
 	m_FileName = path.external_file_string();
 	m_Append = true;

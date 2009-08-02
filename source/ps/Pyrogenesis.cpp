@@ -93,35 +93,25 @@ void psBundleLogs(FILE* f)
 	fwprintf(f, L"SVN Revision: %s\n\n", svn_revision);
 
 	fwprintf(f, L"System info:\n\n");
-	fs::path path1(psLogPath()/"system_info.txt");
+	fs::path path1(fs::path(psLogDir())/"system_info.txt");
 	AppendAsciiFile(f, path1.external_file_string().c_str());
 	fwprintf(f, L"\n\n====================================\n\n");
 
 	fwprintf(f, L"Main log:\n\n");
-	fs::path path2(psLogPath()/"mainlog.html");
+	fs::path path2(fs::path(psLogDir())/"mainlog.html");
 	AppendAsciiFile(f, path2.external_file_string().c_str());
 	fwprintf(f, L"\n\n====================================\n\n");
 }
 
 
-const char* psGetLogDir()
+static char logDir[PATH_MAX];
+
+void psSetLogDir(const char* path)
 {
-	static char N_log_dir[PATH_MAX];
-	ONCE(\
-		char N_exe_name[PATH_MAX];\
-		(void)sys_get_executable_name(N_exe_name, ARRAY_SIZE(N_exe_name));\
-		/* strip app name (we only want its path) */\
-		path_strip_fn(N_exe_name);\
-		(void)path_append(N_log_dir, N_exe_name, "../logs/");
-	);
-	return N_log_dir;
+	path_copy(logDir, path);
 }
 
-
-fs::path psLogPath()
+const char* psLogDir()
 {
-	char exePathname[PATH_MAX];
-	(void)sys_get_executable_name(exePathname, ARRAY_SIZE(exePathname));
-	path_strip_fn(exePathname);
-	return fs::path(exePathname)/"../logs/";
+	return logDir;
 }

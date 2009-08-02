@@ -54,10 +54,10 @@ const char* html_footer = "";
 
 CLogger::CLogger()
 {
-	fs::path mainlogPath(psLogPath()/"mainlog.html");
+	fs::path mainlogPath(fs::path(psLogDir())/"mainlog.html");
 	m_MainLog = new std::ofstream(mainlogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
-	fs::path interestinglogPath(psLogPath()/"interestinglog.html");
+	fs::path interestinglogPath(fs::path(psLogDir())/"interestinglog.html");
 	m_InterestingLog = new std::ofstream(interestinglogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;

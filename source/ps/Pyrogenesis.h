@@ -42,11 +42,7 @@ extern const wchar_t* psTranslate(const wchar_t* text);
 extern void psTranslateFree(const wchar_t* text);
 extern void psBundleLogs(FILE* f);
 
-// (this is used by AppHooks during crash reporting, where it's useful
-// not to allocate any memory.)
-extern const char* psGetLogDir();
-
-// same as psGetLogDir, but more convenient (yet doesn't cache the results).
-extern fs::path psLogPath();
+extern void psSetLogDir(const char* path);	// set during InitVfs
+extern const char* psLogDir();	// used by AppHooks and engine code when reporting errors
 
 #endif

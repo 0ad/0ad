@@ -28,8 +28,8 @@
 #include "ps/CLogger.h"
 #include "ps/Pyrogenesis.h"
 
-static fs::path MOD_PATH(psLogPath()/"../data/mods/_test.mesh");
-static fs::path CACHE_PATH(psLogPath()/"../data/_testcache");
+static fs::path MOD_PATH(fs::path(psLogDir())/"../data/mods/_test.mesh");
+static fs::path CACHE_PATH(fs::path(psLogDir())/"../data/_testcache");
 
 const char* srcDAE = "collada/sphere.dae";
 const char* srcPMD = "collada/sphere.pmd";

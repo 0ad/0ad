@@ -17,6 +17,9 @@
 
 #include "precompiled.h"
 
+#if OS_WIN
+#include "lib/sysdep/os/win/wutil.h"
+#endif
 #include "lib/external_libraries/sdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
@@ -88,6 +91,7 @@
 #include "network/NetServer.h"
 #include "network/NetClient.h"
 
+#include "ps/Pyrogenesis.h"	// psSetLogDir
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Config.h"
@@ -551,63 +555,154 @@ static size_t ChooseCacheSize()
 	return 96*MiB;
 }
 
-fs::path BinariesDir(const CStr& argv0)
+
+class Paths
 {
-	// get full path to executable
-	char pathname[PATH_MAX];
-	// .. first try safe, but system-dependent version
-	if(sys_get_executable_name(pathname, PATH_MAX) < 0)
+public:
+	Paths(const CStr& argv0, const char* subdirectoryName)
 	{
-		// .. failed; use argv[0]
-		errno = 0;
-		if(!realpath(argv0.c_str(), pathname))
-			WARN_ERR(LibError_from_errno(false));
+		m_root = Root(argv0);
+		m_rdata = m_root/"data";
+
+		// everything is a subdirectory of the root
+		if(!subdirectoryName)
+		{
+			m_data = m_rdata;
+			m_config = m_data/"config";
+			m_cache = m_data/"cache";
+			m_logs = m_root/"logs";
+		}
+		else
+		{
+#if OS_WIN
+			const fs::path appdata(fs::path(win_appdata_dir)/subdirectoryName);
+			m_data = appdata/"data";
+			m_config = appdata/"config";
+			m_cache = appdata/"cache";
+			m_logs = appdata/"logs";
+#else
+			const char* envHome = getenv("HOME");
+			debug_assert(envHome);
+			const fs::path home(envHome);
+			m_data = XDG_Path("XDG_DATA_HOME", home/".local/share")/subdirectoryName;
+			m_config = XDG_Path("XDG_CONFIG_HOME", home/".config")/subdirectoryName;
+			m_cache = XDG_Path("XDG_CACHE_HOME", home/".cache")/subdirectoryName;
+			m_logs = m_config/"logs";
+#endif
+		}
 	}
 
-	// make sure it's valid
-	errno = 0;
-	if(access(pathname, X_OK) < 0)
-		WARN_ERR(LibError_from_errno(false));
+	const fs::path& Root() const
+	{
+		return m_root;
+	}
 
-	// strip executable name
-	char* name = (char*)path_name_only(pathname);
-	*name = '\0';
+	const fs::path& RData() const
+	{
+		return m_rdata;
+	}
 
-	return fs::path(pathname);
-}
+	const fs::path& Data() const
+	{
+		return m_data;
+	}
+
+	const fs::path& Config() const
+	{
+		return m_config;
+	}
+
+	const fs::path& Cache() const
+	{
+		return m_cache;
+	}
+
+	const fs::path& Logs() const
+	{
+		return m_logs;
+	}
+
+private:
+	static fs::path Root(const CStr& argv0)
+	{
+		// get full path to executable
+		char pathname[PATH_MAX];
+		// .. first try safe, but system-dependent version
+		if(sys_get_executable_name(pathname, PATH_MAX) < 0)
+		{
+			// .. failed; use argv[0]
+			errno = 0;
+			if(!realpath(argv0.c_str(), pathname))
+				WARN_ERR(LibError_from_errno(false));
+		}
+
+		// make sure it's valid
+		errno = 0;
+		if(access(pathname, X_OK) < 0)
+			WARN_ERR(LibError_from_errno(false));
+
+		fs::path path(pathname);
+		for(size_t i = 0; i < 3; i++)	// remove "system/name.exe"
+			path.remove_leaf();
+		return path;
+	}
+
+	static fs::path XDG_Path(const char* envname, const fs::path& home, const fs::path& defaultPath)
+	{
+		const char* path = getenv(envname);
+		if(path)
+		{
+			if(path[0] != '/')	// relative to $HOME
+				return home/path;
+			return fs::path(path);
+		}
+		return defaultPath;
+	}
+
+	// read-only directories, fixed paths relative to executable
+	fs::path m_root;
+	fs::path m_rdata;
+
+	// writable directories
+	fs::path m_data;
+	fs::path m_config;
+	fs::path m_cache;
+	fs::path m_logs;	// special-cased in single-root-folder installations
+};
 
 
 static void InitVfs(const CmdLineArgs& args)
 {
 	TIMER("InitVfs");
 
+	const char* subdirectory = args.Has("writableRoot")? 0 : "0ad";
+	const Paths paths(args.GetArg0(), subdirectory);
+
+	fs::path logs(paths.Logs());
+	fs::create_directories(logs);
+	psSetLogDir(logs.string().c_str());
+
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	const fs::path binariesDir(BinariesDir(args.GetArg0()));
-	g_VFS->Mount("screenshots/", binariesDir/"../data/screenshots");
-	g_VFS->Mount("config/", binariesDir/"../data/config");
-	g_VFS->Mount("profiles/", binariesDir/"../data/profiles");
-
-	// rationale:
-	// - this is in a separate real directory so that it can later be moved
-	//   to $APPDATA to allow running without Admin access.
-	// - we mount as archivable so that all files will be added to archive.
-	//   even though we write out XMBs here, they will eventually be read,
-	//   so putting them in an archive boosts performance.
-	g_VFS->Mount("cache/", binariesDir/"../data/cache", VFS_MOUNT_ARCHIVABLE);
+	g_VFS->Mount("screenshots/", paths.Data()/"screenshots");
+	g_VFS->Mount("config/", paths.RData()/"config");
+	g_VFS->Mount("profiles/", paths.Config()/"profiles");
+	g_VFS->Mount("cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
 
 	std::vector<CStr> mods = args.GetMultiple("mod");
 	mods.push_back("public");
 	if(!args.Has("onlyPublicFiles"))
 		mods.push_back("internal");
 
+	fs::path modArchivePath(paths.Cache()/"mods");
+	fs::path modLoosePath(paths.RData()/"mods");
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
-		CStr path = "mods/" + mods[i];
 		size_t priority = i;
 		const int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
-		g_VFS->Mount("", (binariesDir/"../data")/path, flags, priority);
+		g_VFS->Mount("", modLoosePath/mods[i], flags, priority);
+		g_VFS->Mount("", modArchivePath/mods[i], flags, priority);
 	}
 
 	// don't try g_VFS->Display yet: SDL_Init hasn't yet redirected stdout
@@ -916,7 +1011,7 @@ void Init(const CmdLineArgs& args, int flags)
 	hooks.translate = psTranslate;
 	hooks.translate_free = psTranslateFree;
 	hooks.bundle_logs = psBundleLogs;
-	hooks.get_log_dir = psGetLogDir;
+	hooks.get_log_dir = psLogDir;
 	app_hooks_update(&hooks);
 
 	// Set up the console early, so that debugging

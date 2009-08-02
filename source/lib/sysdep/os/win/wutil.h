@@ -99,6 +99,7 @@ public:
 	WinScopedPreserveLastError()
 		: m_lastError(GetLastError())
 	{
+		SetLastError(0);
 	}
 	
 	~WinScopedPreserveLastError()
@@ -143,9 +144,10 @@ extern bool wutil_HasCommandLineArgument(const char* arg);
 // directories
 //
 
-// neither of these end in a slash.
+// none of these end with a slash.
 extern char win_sys_dir[MAX_PATH+1];
 extern char win_exe_dir[MAX_PATH+1];
+extern char win_appdata_dir[MAX_PATH+1];
 
 
 //

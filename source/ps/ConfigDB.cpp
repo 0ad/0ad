@@ -274,7 +274,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	shared_ptr<u8> buffer; size_t buflen;
 	{
 		// Handle missing files quietly
-		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) == ERR::VFS_FILE_NOT_FOUND)
+		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) < 0)
 		{
 			LOG(CLogger::Warning, LOG_CATEGORY, "Cannot find config file \"%s\" - ignoring", m_ConfigFile[ns].c_str());
 			return false;

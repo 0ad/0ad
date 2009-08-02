@@ -30,6 +30,9 @@
 #include "win.h"
 #include "winit.h"
 
+#include <shlobj.h>	// SHGetFolderPath
+
+
 WINIT_REGISTER_EARLY_INIT(wutil_Init);
 WINIT_REGISTER_LATE_SHUTDOWN(wutil_Shutdown);
 
@@ -232,19 +235,37 @@ bool wutil_HasCommandLineArgument(const char* arg)
 
 char win_sys_dir[MAX_PATH+1];
 char win_exe_dir[MAX_PATH+1];
+char win_appdata_dir[MAX_PATH+1];
 
 static void GetDirectories()
 {
-	GetSystemDirectory(win_sys_dir, sizeof(win_sys_dir));
+	WinScopedPreserveLastError s;
 
-	const DWORD len = GetModuleFileName(GetModuleHandle(0), win_exe_dir, MAX_PATH);
-	debug_assert(len != 0);
-	// strip EXE filename and trailing slash
-	char* slash = strrchr(win_exe_dir, '\\');
-	if(slash)
-		*slash = '\0';
-	else
-		debug_assert(0);	// directory name invalid?!
+	// system directory
+	{
+		const UINT charsWritten = GetSystemDirectory(win_sys_dir, ARRAY_SIZE(win_sys_dir));
+		debug_assert(charsWritten != 0);
+	}
+
+	// executable's directory
+	{
+		const DWORD len = GetModuleFileName(GetModuleHandle(0), win_exe_dir, ARRAY_SIZE(win_exe_dir));
+		debug_assert(len != 0);
+		// strip EXE filename and trailing slash
+		char* slash = strrchr(win_exe_dir, '\\');
+		if(slash)
+			*slash = '\0';
+		else
+			debug_assert(0);	// directory name invalid?!
+	}
+
+	// application data
+	{
+		HWND hwnd = 0;	// ignored unless a dial-up connection is needed to access the folder
+		HANDLE token = 0;
+		const HRESULT ret = SHGetFolderPath(hwnd, CSIDL_APPDATA, token, 0, win_appdata_dir);
+		debug_assert(SUCCEEDED(ret));
+	}
 }
 
 
