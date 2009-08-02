@@ -277,7 +277,7 @@ JSBool JSI_Camera::construct( JSContext* cx, JSObject* UNUSED(obj),
 
 	JSObject* camera = JS_NewObject( cx, &JSI_Camera::JSI_class, NULL, NULL );
 
-	JSU_REQUIRE_PARAM_RANGE(0, 3);
+	JSU_REQUIRE_MAX_PARAMS(3);
 	Camera_Info* camera_info = 0;
 	switch(argc)
 	{

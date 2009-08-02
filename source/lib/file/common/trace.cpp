@@ -47,7 +47,7 @@ TraceEntry::TraceEntry(const char* text)
 	char pathname[PATH_MAX] = "";
 	char action;
 #if EMULATE_SECURE_CRT
-	#define TRACE_FORMAT "%f: %c \"%" STRINGIZE(PATH_MAX) "[^\"]\" %d\n" /* use a macro to allow compile-time type-checking */
+	#define TRACE_FORMAT "%f: %c \"%" STRINGIZE(PATH_MAX) "[^\"]\" %zd\n" /* use a macro to allow compile-time type-checking */
 	const int fieldsRead = sscanf(text, TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
 #else
 	#define TRACE_FORMAT "%f: %c \"%[^\"]\" %d\n"

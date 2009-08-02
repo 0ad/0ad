@@ -35,6 +35,10 @@ extern jsval jsu_report_param_error(JSContext* cx, jsval* rval);
 #define JSU_REQUIRE_PARAM_RANGE(min_number, max_number)\
 	if(!(min_number <= argc && argc <= max_number))\
 		return jsu_report_param_error(cx, rval);
+// .. require at most a certain count
+#define JSU_REQUIRE_MAX_PARAMS(max_number)\
+	if(argc > max_number)\
+		return jsu_report_param_error(cx, rval);
 // .. require at least a certain count (rarely needed)
 #define JSU_REQUIRE_MIN_PARAMS(min_number)\
 	if(argc < min_number)\

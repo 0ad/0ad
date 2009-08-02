@@ -1058,7 +1058,7 @@ JSBool SetCameraTarget( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval*
 //   that revision so that they match user-submitted crashdumps).
 JSBool GetBuildTimestamp( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
 {
-	JSU_REQUIRE_PARAM_RANGE(0, 1);
+	JSU_REQUIRE_MAX_PARAMS(1);
 
 	char buf[200];
 
@@ -1387,7 +1387,7 @@ JSBool GetTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, js
 // Reveal map
 JSBool RevealMap( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, jsval* argv, jsval* rval )
 {
-	JSU_REQUIRE_PARAM_RANGE(0, 1);
+	JSU_REQUIRE_MAX_PARAMS(1);
 
 	int newValue;
 	if(argc == 0)
