@@ -584,9 +584,9 @@ public:
 			const char* envHome = getenv("HOME");
 			debug_assert(envHome);
 			const fs::path home(envHome);
-			m_data = XDG_Path("XDG_DATA_HOME", home/".local/share")/subdirectoryName;
-			m_config = XDG_Path("XDG_CONFIG_HOME", home/".config")/subdirectoryName;
-			m_cache = XDG_Path("XDG_CACHE_HOME", home/".cache")/subdirectoryName;
+			m_data = XDG_Path("XDG_DATA_HOME", home, home/".local/share")/subdirectoryName;
+			m_config = XDG_Path("XDG_CONFIG_HOME", home, home/".config")/subdirectoryName;
+			m_cache = XDG_Path("XDG_CACHE_HOME", home, home/".cache")/subdirectoryName;
 			m_logs = m_config/"logs";
 #endif
 		}
@@ -701,8 +701,9 @@ static void InitVfs(const CmdLineArgs& args)
 	{
 		size_t priority = i;
 		const int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
-		g_VFS->Mount("", modLoosePath/mods[i], flags, priority);
-		g_VFS->Mount("", modArchivePath/mods[i], flags, priority);
+		const std::string modName = mods[i];
+		g_VFS->Mount("", modLoosePath/modName, flags, priority);
+		g_VFS->Mount("", modArchivePath/modName, flags, priority);
 	}
 
 	// don't try g_VFS->Display yet: SDL_Init hasn't yet redirected stdout
