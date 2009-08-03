@@ -1044,7 +1044,9 @@ void Init(const CmdLineArgs& args, int flags)
 	new CGUI;
 #endif
 
-	bool windowed = false;
+	// default to windowed, so users don't get stuck if e.g. half the
+	// filesystem is missing and the config files aren't loaded
+	bool windowed = true;
 	CFG_GET_SYS_VAL("windowed", Bool, windowed);
 
 	if(setup_vmode)
