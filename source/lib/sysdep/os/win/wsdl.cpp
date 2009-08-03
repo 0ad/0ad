@@ -367,9 +367,11 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 	if(video_info.video_mem == 0)
 	{
 		WmiMap videoAdapter;
-		wmi_GetClass("Win32_VideoController", videoAdapter);
-		VARIANT vTotalMemory = videoAdapter[L"AdapterRAM"];
-		video_info.video_mem = vTotalMemory.lVal;
+		if(wmi_GetClass("Win32_VideoController", videoAdapter) == INFO::OK)
+		{
+			VARIANT vTotalMemory = videoAdapter[L"AdapterRAM"];
+			video_info.video_mem = vTotalMemory.lVal;
+		}
 	}
 
 	return &video_info;

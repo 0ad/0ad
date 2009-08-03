@@ -60,7 +60,7 @@ static LibError Init()
 
 		hr = pLoc->ConnectServer(_bstr_t(L"ROOT\\CIMV2"), 0, 0, 0, 0, 0, 0, &pSvc);
 		if(FAILED(hr))
-			WARN_RETURN(ERR::_4);
+			return ERR::_4;	// NOWARN (happens if WMI service is disabled)
 	}
 
 	hr = CoSetProxyBlanket(pSvc, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, 0, RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, 0, EOAC_NONE);
@@ -85,7 +85,7 @@ void wmi_Shutdown()
 
 LibError wmi_GetClass(const char* className, WmiMap& wmiMap)
 {
-	Init();
+	RETURN_ERR(Init());
 
 	IEnumWbemClassObjectPtr pEnum = 0;
 	char query[200];
