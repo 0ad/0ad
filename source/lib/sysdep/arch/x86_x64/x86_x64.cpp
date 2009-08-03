@@ -138,6 +138,7 @@ static x86_x64_Vendors DetectVendor()
 {
 	x86_x64_CpuidRegs regs;
 	regs.eax = 0;
+	regs.ecx = 0;
 	if(!x86_x64_cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 
@@ -173,6 +174,7 @@ static void DetectSignature(size_t* model, size_t* family)
 {
 	x86_x64_CpuidRegs regs;
 	regs.eax = 1;
+	regs.ecx = 0;
 	if(!x86_x64_cpuid(&regs))
 		DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 	*model  = bits(regs.eax, 4, 7);
@@ -387,6 +389,7 @@ static void DetectCacheAndTLB()
 	x86_x64_CpuidRegs regs;
 
 	regs.eax = 0x80000005;
+	regs.ecx = 0;
 	if(x86_x64_cpuid(&regs))
 	{
 		AddTLB1Parameters(regs);
@@ -601,6 +604,7 @@ static void DetectTLB_CPUID2()
 	// extract descriptors
 	x86_x64_CpuidRegs regs;
 	regs.eax = 2;
+	regs.ecx = 0;
 	if(!x86_x64_cpuid(&regs))
 		return;
 	size_t iterations = bits(regs.eax, 0, 7);
@@ -748,6 +752,7 @@ static void DetectIdentifierString(char* identifierString, size_t maxChars)
 	{
 		x86_x64_CpuidRegs regs;
 		regs.eax = function;
+		regs.ecx = 0;
 		have_brand_string &= x86_x64_cpuid(&regs);
 		memcpy(pos, &regs, 16);
 		pos += 16;
@@ -830,6 +835,7 @@ u8 x86_x64_ApicId()
 {
 	x86_x64_CpuidRegs regs;
 	regs.eax = 1;
+	regs.ecx = 0;
 	// note: CPUID function 1 should be available everywhere, but only
 	// processors with an xAPIC (8th generation or above, e.g. P4/Athlon XP)
 	// will return a nonzero value.
@@ -870,6 +876,7 @@ void cpu_Serialize()
 {
 	x86_x64_CpuidRegs regs;
 	regs.eax = 1;
+	regs.ecx = 0;
 	x86_x64_cpuid(&regs);	// CPUID serializes execution.
 }
 

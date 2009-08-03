@@ -55,6 +55,7 @@ static size_t CoresPerPackage()
 
 		case X86_X64_VENDOR_AMD:
 			regs.eax = 0x80000008;
+			regs.ecx = 0;
 			if(x86_x64_cpuid(&regs))
 				coresPerPackage = bits(regs.ecx, 0, 7)+1;
 			break;
@@ -93,6 +94,7 @@ static size_t LogicalPerCore()
 		{
 			x86_x64_CpuidRegs regs;
 			regs.eax = 1;
+			regs.ecx = 0;
 			if(!x86_x64_cpuid(&regs))
 				DEBUG_WARN_ERR(ERR::CPU_FEATURE_MISSING);
 			const size_t logicalPerPackage = bits(regs.ebx, 16, 23);
