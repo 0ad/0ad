@@ -182,7 +182,7 @@ namespace
 			if (! ret)
 				FAIL("Argument must be convertible to a string");
 			jschar* ch = JS_GetStringChars(ret);
-			out = wxString((const char*)ch, wxMBConvUTF16(), JS_GetStringLength(ret)*2);
+			out = wxString((const char*)ch, wxMBConvUTF16(), (size_t)(JS_GetStringLength(ret)*2));
 			return true;
 		}
 	};
