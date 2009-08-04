@@ -1093,7 +1093,7 @@ void Init(const CmdLineArgs& args, int flags)
 		"GL_EXT_draw_range_elements",
 		"GL_ARB_texture_env_combine",
 		"GL_ARB_texture_env_dot3",
-		0);
+		NULL);
 	if(missing)
 	{
 		wchar_t buf[500];

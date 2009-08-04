@@ -306,7 +306,7 @@ private:
 	 *
 	 * @param str Error message
 	 */
-	void ReportParseError(const char *str, ...);
+	void ReportParseError(const char *str, ...) PRINTF_ARGS(2);
 
 	/**
 	 * You input the name of the object type, and let's
@@ -334,7 +334,7 @@ private:
 	 */
 	//--------------------------------------------------------
 
-	/**
+	/*
 		Xeromyces_* functions tree
 		<objects> (ReadRootObjects)
 		 |
@@ -346,7 +346,7 @@ private:
 			|
 			+-Optional Type Extensions (IGUIObject::ReadExtendedElement) TODO
 			|
-			+-«object» *recursive*
+			+-<<object>> *recursive*
 
 
 		<styles> (ReadRootStyles)

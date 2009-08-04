@@ -211,4 +211,11 @@ private:\
 // TODO: support _Printf_format_string_ for VC9+
 #endif
 
+// annotate vararg functions that expect to end with an explicit NULL
+#if GCC_VERSION
+# define SENTINEL_ARG __attribute__ ((sentinel))
+#else
+# define SENTINEL_ARG
+#endif
+
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION

@@ -443,13 +443,13 @@ void CRenderer::EnumCaps()
 	if (ogl_HaveExtension("GL_SGIS_generate_mipmap")) {
 		m_Caps.m_GenerateMipmaps=true;
 	}
-	if (0 == ogl_HaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", 0))
+	if (0 == ogl_HaveExtensions(0, "GL_ARB_shader_objects", "GL_ARB_shading_language_100", NULL))
 	{
 		if (ogl_HaveExtension("GL_ARB_vertex_shader"))
 			m_Caps.m_VertexShader=true;
 	}
 
-	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", 0)) {
+	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", NULL)) {
 		// According to Delphi3d.net, all relevant graphics chips that support depth textures
 		// (i.e. Geforce3+, Radeon9500+, even i915) also have >= 4 TMUs, so this restriction
 		// isn't actually a restriction, and it helps with integrating depth texture

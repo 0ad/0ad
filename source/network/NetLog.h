@@ -435,11 +435,11 @@ public:
 	void	Error			( const CStr& message );
 	void	Fatal			( const CStr& message );
 
-	void	DebugFormat		( const char* pFormat, ... );
-	void	WarnFormat		( const char* pFormat, ... );
-	void	InfoFormat		( const char* pFormat, ... );
-	void	ErrorFormat		( const char* pFormat, ... );
-	void	FatalFormat		( const char* pFormat, ... );
+	void	DebugFormat		( const char* pFormat, ... ) PRINTF_ARGS(2);
+	void	WarnFormat		( const char* pFormat, ... ) PRINTF_ARGS(2);
+	void	InfoFormat		( const char* pFormat, ... ) PRINTF_ARGS(2);
+	void	ErrorFormat		( const char* pFormat, ... ) PRINTF_ARGS(2);
+	void	FatalFormat		( const char* pFormat, ... ) PRINTF_ARGS(2);
 
 	/**
 	 * Retrieves the name of the logger

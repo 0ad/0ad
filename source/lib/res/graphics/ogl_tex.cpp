@@ -671,7 +671,7 @@ static void detect_gl_upload_caps()
 	{
 		// note: we don't bother checking for GL_S3_s3tc - it is incompatible
 		// and irrelevant (was never widespread).
-		have_s3tc = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", 0) == 0;
+		have_s3tc = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", NULL) == 0;
 	}
 
 	// allow app hook to make ogl_tex_override calls

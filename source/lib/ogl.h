@@ -107,7 +107,7 @@ extern bool ogl_HaveVersion(const char* version);
  * @return 0 if all are present; otherwise, the first extension in the
  * list that's not supported (useful for reporting errors).
  **/
-extern const char* ogl_HaveExtensions(int dummy, ...);
+extern const char* ogl_HaveExtensions(int dummy, ...) SENTINEL_ARG;
 
 /**
  * get a list of all supported extensions.
