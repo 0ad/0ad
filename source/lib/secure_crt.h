@@ -85,11 +85,11 @@ extern int wcsncat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src, siz
 extern int strcat_s(char* dst, size_t max_dst_chars, const char* src);
 extern int wcscat_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* src);
 
-extern int vsprintf_s(char* dst, size_t max_dst_chars, const char* fmt, va_list ap);
-extern int vswprintf_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* fmt, va_list ap);
+extern int vsprintf_s(char* dst, size_t max_dst_chars, const char* fmt, va_list ap) VPRINTF_ARGS(3);
+extern int vswprintf_s(wchar_t* dst, size_t max_dst_chars, const wchar_t* fmt, va_list ap) VWPRINTF_ARGS(3);
 
-extern int sprintf_s(char* buf, size_t max_chars, const char* fmt, ...);
-extern int swprintf_s(wchar_t* buf, size_t max_chars, const wchar_t* fmt, ...);
+extern int sprintf_s(char* buf, size_t max_chars, const char* fmt, ...) PRINTF_ARGS(3);
+extern int swprintf_s(wchar_t* buf, size_t max_chars, const wchar_t* fmt, ...) WPRINTF_ARGS(3);
 
 typedef int errno_t;
 extern errno_t fopen_s(FILE** pfile, const char* filename, const char* mode);

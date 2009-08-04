@@ -60,14 +60,14 @@ extern LibError unifont_bind(Handle h);
  * glDisable(GL_ALPHA_TEST);
  * glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
  **/
-extern void glwprintf(const wchar_t* fmt, ...);
+extern void glwprintf(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 
 /**
  * varargs version of glwprintf.
  *
  * @param fmt, args - see vfprintf
  **/
-extern void glvwprintf(const wchar_t* fmt, va_list args);
+extern void glvwprintf(const wchar_t* fmt, va_list args) VWPRINTF_ARGS(1);
 
 /**
  * Determine pixel extents of a string.

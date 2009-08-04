@@ -194,4 +194,21 @@ private:\
 # define ASSUME_ALIGNED(ptr, multiple)
 #endif
 
+// annotate printf-style functions for compile-time type checking.
+// fmtpos is the index of the format argument, counting from 1 or
+// (if it's a non-static class function) 2; the '...' is assumed
+// to come directly after it.
+#if GCC_VERSION
+# define PRINTF_ARGS(fmtpos) __attribute__ ((format (printf, fmtpos, fmtpos+1)))
+# define VPRINTF_ARGS(fmtpos) __attribute__ ((format (printf, fmtpos, 0)))
+# define WPRINTF_ARGS(fmtpos) /* not currently supported in GCC */
+# define VWPRINTF_ARGS(fmtpos) /* not currently supported in GCC */
+#else
+# define PRINTF_ARGS(fmtpos)
+# define VPRINTF_ARGS(fmtpos)
+# define WPRINTF_ARGS(fmtpos)
+# define VWPRINTF_ARGS(fmtpos)
+// TODO: support _Printf_format_string_ for VC9+
+#endif
+
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION

@@ -55,8 +55,8 @@ extern void debug_break();
  *
  * @param format string and varargs; see printf.
  **/
-LIB_API void debug_printf(const char* fmt, ...);
-LIB_API void debug_printf(const wchar_t* fmt, ...);
+LIB_API void debug_printf(const char* fmt, ...) PRINTF_ARGS(1);
+LIB_API void debug_printf(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 
 
 /**
@@ -222,7 +222,7 @@ LIB_API bool debug_filter_allows(const char* text);
  *
  * @param format string and varags; see printf.
  **/
-LIB_API void debug_wprintf_mem(const wchar_t* fmt, ...);
+LIB_API void debug_wprintf_mem(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 
 /**
  * write an error description and all logs into crashlog.txt

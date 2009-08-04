@@ -64,15 +64,15 @@ public:
 	
 	// Function to log stuff to file
 	// -- This function has not been removed because the build would break.
-	void Log(ELogMethod method, const char* category, const char *fmt, ...);
+	void Log(ELogMethod method, const char* category, const char *fmt, ...) PRINTF_ARGS(4);
 	// Similar to Log, but only outputs each message once no matter how many times it's called
 	// -- This function has not been removed because the build would break.
-	void LogOnce(ELogMethod method, const char* category, const char *fmt, ...);
+	void LogOnce(ELogMethod method, const char* category, const char *fmt, ...) PRINTF_ARGS(4);
 	
 	// Functions to write a message, warning or error to file.
-	void LogMessage(const char *fmt, ...);
-	void LogWarning(const char *fmt, ...);
-	void LogError(const char *fmt, ...);
+	void LogMessage(const char *fmt, ...) PRINTF_ARGS(2);
+	void LogWarning(const char *fmt, ...) PRINTF_ARGS(2);
+	void LogError(const char *fmt, ...) PRINTF_ARGS(2);
 	
 private:
 	void Init();

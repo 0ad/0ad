@@ -69,9 +69,9 @@
 #include "lib/types.h"
 #include "lib/lib.h"
 #include "lib/lib_errors.h"
+#include "lib/code_annotation.h"
 #include "lib/secure_crt.h"
 #include "lib/debug.h"
-#include "lib/code_annotation.h"
 
 // Boost
 // .. if this package isn't going to be statically linked, we're better off
