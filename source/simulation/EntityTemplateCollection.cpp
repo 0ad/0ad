@@ -50,7 +50,7 @@ static LibError LoadFileThunk( const VfsPath& path, const FileInfo& UNUSED(fileI
 int CEntityTemplateCollection::LoadTemplates()
 {
 	// List all files in entities/ and its subdirectories.
-	THROW_ERR( fs_ForEachFile(g_VFS, "entities/", LoadFileThunk, (uintptr_t)this, "*.xml", DIR_RECURSIVE));
+	THROW_ERR( fs_util::ForEachFile(g_VFS, "entities/", LoadFileThunk, (uintptr_t)this, "*.xml", fs_util::DIR_RECURSIVE));
 
 	/*// Load all the templates; this is necessary so that we can apply techs to them
 	// (otherwise a tech can't affect the template of a unit that doesn't yet exist)

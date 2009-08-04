@@ -992,7 +992,7 @@ static LibError LoadUnitUIThunk( const VfsPath& pathname, const FileInfo& UNUSED
 }
 int CSelectedEntities::LoadUnitUiTextures()
 {
-	THROW_ERR( fs_ForEachFile(g_VFS, "art/textures/ui/session/icons/", LoadUnitUIThunk, (uintptr_t)&m_unitUITextures, 0, DIR_RECURSIVE));
+	THROW_ERR( fs_util::ForEachFile(g_VFS, "art/textures/ui/session/icons/", LoadUnitUIThunk, (uintptr_t)&m_unitUITextures, 0, fs_util::DIR_RECURSIVE));
 	return 0;
 }
 void CSelectedEntities::DestroyUnitUiTextures()

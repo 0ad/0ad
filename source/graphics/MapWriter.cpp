@@ -533,7 +533,7 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
 	VfsPaths pathnames;
-	(void)fs_GetPathnames(g_VFS, "maps/scenarios", "*.pmp", pathnames);
+	(void)fs_util::GetPathnames(g_VFS, "maps/scenarios", "*.pmp", pathnames);
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
 		const char* pathname = pathnames[i].string().c_str();

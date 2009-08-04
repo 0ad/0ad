@@ -19,7 +19,6 @@
 
 #include "lib/file/vfs/vfs.h"
 #include "lib/file/io/io.h"
-#include "lib/file/file_system_posix.h"
 
 #include "graphics/ColladaManager.h"
 #include "graphics/MeshManager.h"
@@ -53,12 +52,12 @@ class TestMeshManager : public CxxTest::TestSuite
 		// Make sure the required directories doesn't exist when we start,
 		// in case the previous test aborted and left them full of junk
 		if(exists(MOD_PATH))
-			fsPosix.DeleteDirectory(MOD_PATH);
+			DeleteDirectory(MOD_PATH);
 		if(exists(CACHE_PATH))
-			fsPosix.DeleteDirectory(CACHE_PATH);
+			DeleteDirectory(CACHE_PATH);
 
-		TS_ASSERT(fs::create_directory(MOD_PATH.external_directory_string()));
-		TS_ASSERT(fs::create_directory(CACHE_PATH.external_directory_string()));
+		TS_ASSERT_OK(CreateDirectories(MOD_PATH.external_directory_string(), 0700));
+		TS_ASSERT_OK(CreateDirectories(CACHE_PATH.external_directory_string(), 0700));
 
 		g_VFS = CreateVfs(20*MiB);
 
@@ -73,8 +72,8 @@ class TestMeshManager : public CxxTest::TestSuite
 
 	void deinitVfs()
 	{
-//		fsPosix.DeleteDirectory(MOD_PATH);
-//		fsPosix.DeleteDirectory(CACHE_PATH);
+//		DeleteDirectory(MOD_PATH);
+//		DeleteDirectory(CACHE_PATH);
 
 		g_VFS.reset();
 	}
@@ -99,7 +98,6 @@ class TestMeshManager : public CxxTest::TestSuite
 
 	CColladaManager* colladaManager;
 	CMeshManager* meshManager;
-	FileSystem_Posix fsPosix;
 
 public:
 

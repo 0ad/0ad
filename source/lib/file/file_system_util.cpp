@@ -28,7 +28,10 @@
 #include "lib/path_util.h"
 #include "lib/regex.h"
 
-LibError fs_GetPathnames(const PIVFS& fs, const VfsPath& path, const char* filter, VfsPaths& pathnames)
+
+namespace fs_util {
+
+LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const char* filter, VfsPaths& pathnames)
 {
 	std::vector<FileInfo> files;
 	RETURN_ERR(fs->GetDirectoryEntries(path, &files, 0));
@@ -54,7 +57,7 @@ struct FileInfoNameLess : public std::binary_function<const FileInfo, const File
 	}
 };
 
-void fs_SortFiles(FileInfos& files)
+void SortFiles(FileInfos& files)
 {
 	std::sort(files.begin(), files.end(), FileInfoNameLess());
 }
@@ -68,13 +71,13 @@ struct NameLess : public std::binary_function<const std::string, const std::stri
 	}
 };
 
-void fs_SortDirectories(DirectoryNames& directories)
+void SortDirectories(DirectoryNames& directories)
 {
 	std::sort(directories.begin(), directories.end(), NameLess());
 }
 
 
-LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const char* pattern, size_t flags)
+LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const char* pattern, size_t flags)
 {
 	debug_assert(vfs_path_IsDirectory(startPath));
 
@@ -113,7 +116,7 @@ LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback 
 }
 
 
-void fs_NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname)
+void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname)
 {
 	// (first call only:) scan directory and set nextNumber according to
 	// highest matching filename found. this avoids filling "holes" in
@@ -151,3 +154,5 @@ void fs_NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, siz
 	}
 	while(fs->GetFileInfo(nextPathname, 0) == INFO::OK);
 }
+
+}	// namespace fs_util

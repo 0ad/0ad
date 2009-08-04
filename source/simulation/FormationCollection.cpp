@@ -45,7 +45,7 @@ static LibError LoadFormationThunk( const VfsPath& path, const FileInfo& UNUSED(
 int CFormationCollection::LoadTemplates()
 {
 	// Load all files in formations and subdirectories.
-	THROW_ERR( fs_ForEachFile(g_VFS, "formations/", LoadFormationThunk, (uintptr_t)this, "*.xml", DIR_RECURSIVE));
+	THROW_ERR( fs_util::ForEachFile(g_VFS, "formations/", LoadFormationThunk, (uintptr_t)this, "*.xml", fs_util::DIR_RECURSIVE));
 	return 0;
 }
 

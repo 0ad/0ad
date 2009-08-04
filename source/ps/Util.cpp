@@ -225,7 +225,7 @@ void WriteScreenshot(const char* extension)
 	const VfsPath basenameFormat("screenshots/screenshot%04d");
 	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
 	VfsPath filename;
-	fs_NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
+	fs_util::NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
 
 	const size_t w = (size_t)g_xres, h = (size_t)g_yres;
 	const size_t bpp = 24;
@@ -264,7 +264,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	const VfsPath basenameFormat("screenshots/screenshot%04d");
 	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
 	VfsPath filename;
-	fs_NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
+	fs_util::NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
 
 	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
 	// hope the screen is actually large enough for that.

@@ -23,14 +23,12 @@
 #include "vfs_populate.h"
 
 #include "lib/path_util.h"
-#include "lib/file/file_system_posix.h"
 #include "lib/file/archive/archive_zip.h"
 #include "vfs_tree.h"
 #include "vfs_lookup.h"
 #include "vfs.h"	// error codes
 
 
-static FileSystem_Posix s_fileSystemPosix;
 static std::vector<const VfsFile*> s_looseFiles;
 static size_t s_numArchivedFiles;
 
@@ -49,7 +47,7 @@ public:
 	{
 		FileInfos files; files.reserve(100);
 		DirectoryNames subdirectoryNames; subdirectoryNames.reserve(20);
-		RETURN_ERR(s_fileSystemPosix.GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
+		RETURN_ERR(GetDirectoryEntries(m_realDirectory->Path(), &files, &subdirectoryNames));
 		RETURN_ERR(AddFiles(files));
 		AddSubdirectories(subdirectoryNames);
 		return INFO::OK;

@@ -35,12 +35,9 @@
 #include "codec_zlib.h"
 #include "stream.h"
 #include "lib/file/file.h"
-#include "lib/file/file_system_posix.h"
 #include "lib/file/io/io.h"
 #include "lib/file/io/io_align.h"	// BLOCK_SIZE
 #include "lib/file/io/write_buffer.h"
-
-static FileSystem_Posix s_fileSystemPosix;
 
 
 //-----------------------------------------------------------------------------
@@ -377,7 +374,7 @@ public:
 		m_file->Open(pathname, 'r');
 		
 		FileInfo fileInfo;
-		s_fileSystemPosix.GetFileInfo(pathname, &fileInfo);
+		GetFileInfo(pathname, &fileInfo);
 		m_fileSize = fileInfo.Size();
 		const size_t minFileSize = sizeof(LFH)+sizeof(CDFH)+sizeof(ECDR);
 		debug_assert(m_fileSize >= off_t(minFileSize));
@@ -554,7 +551,7 @@ public:
 	LibError AddFile(const fs::path& pathname)
 	{
 		FileInfo fileInfo;
-		RETURN_ERR(s_fileSystemPosix.GetFileInfo(pathname, &fileInfo));
+		RETURN_ERR(GetFileInfo(pathname, &fileInfo));
 		const off_t usize = fileInfo.Size();
 		// skip 0-length files.
 		// rationale: zip.cpp needs to determine whether a CDFH entry is

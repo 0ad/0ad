@@ -114,7 +114,7 @@ void CTextureManager::DeleteTexture(CTextureEntry* entry)
 void CTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, const char* dir)
 {
 	VfsPaths pathnames;
-	if(fs_GetPathnames(g_VFS, dir, 0, pathnames) < 0)
+	if(fs_util::GetPathnames(g_VFS, dir, 0, pathnames) < 0)
 		return;
 	for(size_t i = 0; i < pathnames.size(); i++)
 	{

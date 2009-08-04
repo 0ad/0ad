@@ -42,7 +42,7 @@ public:
 	virtual LibError Mount(const VfsPath& mountPoint, const fs::path& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
 		debug_assert(vfs_path_IsDirectory(mountPoint));
-		fs::create_directories(path);
+		CreateDirectories(path, 0700);
 
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));

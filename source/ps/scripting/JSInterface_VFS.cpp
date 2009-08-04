@@ -114,12 +114,12 @@ JSBool JSI_VFS::BuildDirEntList( JSContext* cx, JSObject* UNUSED(obj), uintN arg
 		if( !ToPrimitive<bool>( cx, argv[2], recursive ) )
 			return( JS_FALSE );
 	}
-	int flags = recursive? DIR_RECURSIVE : 0;
+	int flags = recursive? fs_util::DIR_RECURSIVE : 0;
 
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
-	fs_ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
+	fs_util::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
 	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );

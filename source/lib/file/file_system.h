@@ -51,7 +51,21 @@ private:
 	time_t m_mtime;
 };
 
+extern LibError GetFileInfo(const fs::path& pathname, FileInfo* fileInfo);
+
 typedef std::vector<FileInfo> FileInfos;
 typedef std::vector<std::string> DirectoryNames;
+
+// jw 2007-12-20: we'd love to replace this with boost::filesystem,
+// but basic_directory_iterator does not yet cache file_size and
+// last_write_time in file_status. (they each entail a stat() call,
+// which is unacceptably slow.)
+extern LibError GetDirectoryEntries(const fs::path& path, FileInfos* files, DirectoryNames* subdirectoryNames);
+
+// same as fs::create_directories, except that mkdir is invoked with
+// <mode> instead of 0755.
+extern LibError CreateDirectories(const fs::path& path, mode_t mode);
+
+extern LibError DeleteDirectory(const fs::path& dirPath);
 
 #endif	// #ifndef INCLUDED_FILE_SYSTEM

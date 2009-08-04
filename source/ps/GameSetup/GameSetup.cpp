@@ -679,7 +679,7 @@ static void InitVfs(const CmdLineArgs& args)
 	const Paths paths(args.GetArg0(), subdirectory);
 
 	fs::path logs(paths.Logs());
-	fs::create_directories(logs);
+	CreateDirectories(logs, 0700);
 	psSetLogDir(logs.string().c_str());
 
 	const size_t cacheSize = ChooseCacheSize();

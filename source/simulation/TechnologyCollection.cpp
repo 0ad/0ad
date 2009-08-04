@@ -39,7 +39,7 @@ static LibError LoadTechThunk( const VfsPath& pathname, const FileInfo& UNUSED(f
 int CTechnologyCollection::LoadTechnologies()
 {
 	// Load all files in techs/ and subdirectories.
-	THROW_ERR( fs_ForEachFile(g_VFS, "technologies/", LoadTechThunk, (uintptr_t)this, "*.xml", DIR_RECURSIVE));
+	THROW_ERR( fs_util::ForEachFile(g_VFS, "technologies/", LoadTechThunk, (uintptr_t)this, "*.xml", fs_util::DIR_RECURSIVE));
 	return 0;
 }
 

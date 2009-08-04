@@ -24,10 +24,12 @@
 
 #include "lib/file/vfs/vfs.h"
 
-extern void fs_SortFiles(FileInfos& files);
-extern void fs_SortDirectories(DirectoryNames& directories);
+namespace fs_util {
 
-extern LibError fs_GetPathnames(const PIVFS& fs, const VfsPath& path, const char* filter, VfsPaths& pathnames);
+extern void SortFiles(FileInfos& files);
+extern void SortDirectories(DirectoryNames& directories);
+
+extern LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const char* filter, VfsPaths& pathnames);
 
 
 /**
@@ -58,7 +60,7 @@ enum DirFlags
  * @param flags see DirFlags
  * @param LibError
  **/
-extern LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern = 0, size_t flags = 0);
+extern LibError ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern = 0, size_t flags = 0);
 
 
 /**
@@ -73,6 +75,8 @@ extern LibError fs_ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallbac
  * if 0, numbers corresponding to existing files are skipped.
  * @param nextPathname receives the output.
  **/
-extern void fs_NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname);
+extern void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t& nextNumber, VfsPath& nextPathname);
+
+}	// namespace fs_util
 
 #endif	 // #ifndef INCLUDED_FILE_SYSTEM_UTIL

@@ -62,7 +62,7 @@ bool I18n::LoadLanguage(const char* name)
 
 	// Open *.lng with LoadStrings
 	VfsPaths pathnames;
-	if(fs_GetPathnames(g_VFS, dirname, "*.lng", pathnames) < 0)
+	if(fs_util::GetPathnames(g_VFS, dirname, "*.lng", pathnames) < 0)
 		return false;
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
@@ -76,7 +76,7 @@ bool I18n::LoadLanguage(const char* name)
 	}
 
 	// Open *.wrd with LoadDictionary
-	if(fs_GetPathnames(g_VFS, dirname, "*.wrd", pathnames) < 0)
+	if(fs_util::GetPathnames(g_VFS, dirname, "*.wrd", pathnames) < 0)
 		return false;
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
@@ -90,7 +90,7 @@ bool I18n::LoadLanguage(const char* name)
 	}
 
 	// Open *.js with LoadFunctions
-	if(fs_GetPathnames(g_VFS, dirname, "*.js", pathnames) < 0)
+	if(fs_util::GetPathnames(g_VFS, dirname, "*.js", pathnames) < 0)
 		return false;
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
