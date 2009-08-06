@@ -12,8 +12,7 @@ CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(P
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG -DRETAIL
 CXXFLAGS_RELEASE := -O2 -DNDEBUG -DRETAIL
 CXXFLAGS_TEST := -O0 -g -D_DEBUG
-LDFLAGS := `pkg-config libxml-2.0 --libs` -shared $(PIC_FLAGS)
-LDFLAGS_TEST := `pkg-config libxml-2.0 --libs`
+LIBS := `pkg-config libxml-2.0 --libs`
 INCLUDES := -IFCollada `pkg-config libxml-2.0 --cflags`
 INCLUDES_TEST := -IFCollada/FColladaTest $(INCLUDES)
 
@@ -242,7 +241,7 @@ output/libFColladaSR.a: $(OBJECTS_RELEASE)
 	@ar -cr $@ $(OBJECTS_RELEASE); ranlib $@
 
 output/FColladaTest: $(OBJECTS_TEST)
-	@$(CXX) -o $@ $(OBJECTS_TEST) $(LDFLAGS_TEST)
+	@$(CXX) -o $@ $(LDFLAGS) $(OBJECTS_TEST) $(LIBS)
 
 install: output/libFColladaSD.a output/libFColladaSR.a
 	cp output/libFColladaSD.a ../lib/libFColladaSD.a

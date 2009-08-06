@@ -61,7 +61,7 @@ end
 --   library installation rules.
 extern_lib_defs = {
 	boost = {
-		unix_names = { "boost_signals-mt", "boost_filesystem-mt" },
+		unix_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
 		osx_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" }
 	},
 	cryptopp = {
@@ -95,7 +95,7 @@ extern_lib_defs = {
 				tinsert(package.config["Testing"].links, "enet_dbg")
 				tinsert(package.config["Release"].links, "enet")
 			else
-				tinsert(package.linkoptions, "-lenet")
+				tinsert(package.links, "enet")
 			end
 		end,
 	},
@@ -128,7 +128,7 @@ extern_lib_defs = {
 				tinsert(package.config["Release"].links, "libxml2")
 			else
 				tinsert(package.buildoptions, "`pkg-config libxml-2.0 --cflags`")
-				tinsert(package.linkoptions, "`pkg-config libxml-2.0 --libs`")
+				tinsert(package.gnu_external, "`pkg-config libxml-2.0 --libs`")
 			end
 		end,
 	},
@@ -149,7 +149,7 @@ extern_lib_defs = {
 			add_extern_lib_paths("sdl")
 			if OS ~= "windows" then
 				tinsert(package.buildoptions, "`sdl-config --cflags`")
-				tinsert(package.linkoptions, "`sdl-config --libs`")
+				tinsert(package.gnu_external, "`sdl-config --libs`")
 			end
 		end
 	},
@@ -175,7 +175,7 @@ extern_lib_defs = {
 				tinsert(package.config["Release"].links, "wxmsw28u_gl")
 			else
 				tinsert(package.buildoptions, "`wx-config --unicode=yes --cxxflags`")
-				tinsert(package.linkoptions, "`wx-config --unicode=yes --libs std,gl`")
+				tinsert(package.gnu_external, "`wx-config --unicode=yes --libs std,gl`")
 			end
 		end,
 	},

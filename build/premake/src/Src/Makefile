@@ -13,7 +13,8 @@ ifeq ($(CONFIG),Debug)
   CPPFLAGS := -MD -D "_CRT_SECURE_NO_DEPRECATE"
   CFLAGS += $(CPPFLAGS) -g
   CXXFLAGS := $(CFLAGS)
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -lm
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR)
+  LIBS = -lm
   LDDEPS :=
   TARGET := premake
 endif
@@ -26,7 +27,8 @@ ifeq ($(CONFIG),Release)
   CPPFLAGS := -MD -D "_CRT_SECURE_NO_DEPRECATE"
   CFLAGS += $(CPPFLAGS) -Os
   CXXFLAGS := $(CFLAGS)
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -s -lm
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -s
+  LIBS = -lm
   LDDEPS :=
   TARGET := premake
 endif
@@ -105,7 +107,7 @@ $(OUTDIR)/$(TARGET): $(OBJECTS) $(LDDEPS) $(RESOURCES)
 	-@$(CMD_MKBINDIR)
 	-@$(CMD_MKLIBDIR)
 	-@$(CMD_MKOUTDIR)
-	@$(CC) -o $@ $(OBJECTS) $(LDFLAGS) $(RESOURCES)
+	@$(CC) -o $@ $(LDFLAGS) $(OBJECTS) $(RESOURCES) $(LIBS)
 
 clean:
 	@echo Cleaning Premake

@@ -130,16 +130,14 @@ int gnu_cpp()
 		// Use start-group and end-group to get around the problem with the 
 		// order of link arguments.
 
-		if (!os_is("macosx"))
-			io_print(" -Xlinker --start-group");
-		
 		print_list(prj_get_linkoptions(), " ", "", "", NULL);
 		print_list(prj_get_libpaths(), " -L\"", "\"", "", NULL);
-		print_list(prj_get_links(), " ", "", "", filterLinks);
+		io_print("\n");
 
-		if (!os_is("macosx"))
-			io_print(" -Xlinker --end-group");
-			
+		/* Write dependencies */
+		io_print("  LIBS = ");
+		print_list(prj_get_links(), " ", "", "", filterLinks);
+		print_list(prj_get_gnu_external(), " ", "", "", NULL);
 		io_print("\n");
 
 		/* Build a list of libraries this target depends on */
@@ -164,7 +162,12 @@ int gnu_cpp()
 		else if (prj_is_kind("run"))
 			io_print("for a in $(LDDEPS); do echo Running $$a; $$a; done");
 		else
-			io_print("$(%s) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES)", prj_is_lang("c") ? "CC" : "CXX");
+		{
+			io_print("$(%s) -o $(OUTDIR)/$(TARGET) $(LDFLAGS) $(OBJECTS) $(RESOURCES) %s $(LIBS)",
+				prj_is_lang("c") ? "CC" : "CXX",
+				os_is("macosx") ? "$(LDDEPS)" : "-Xlinker --start-group $(LDDEPS) -Xlinker --end-group");
+		}
+
 		io_print("\n");
 
 		io_print("endif\n\n");
@@ -353,6 +356,7 @@ static const char* filterLinks(const char* name)
 	{
 		const char* lang = prj_get_language_for(i);
 		const char *kind = prj_get_config_for(i)->kind;
+
 		if (matches(kind, "cxxtestgen"))
 		{
 			return NULL;
@@ -365,10 +369,16 @@ static const char* filterLinks(const char* name)
 				strcat(g_buffer, prj_get_targetname_for(i));
 				return g_buffer;
 			}
-			else
+			/*
+			 * Get a rid of library archives.
+			 * Might we even return NULL rather than check if kind != lib?
+			 */
+			else if (!matches(prj_get_kind_for(i), "lib"))
 			{
 				return prj_get_target_for(i);
 			}
+			else
+				return NULL;
 		}
 		else
 		{

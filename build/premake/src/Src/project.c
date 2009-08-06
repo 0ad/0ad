@@ -63,6 +63,7 @@ void   prj_close()
 				free((void*)config->libpaths);
 				free((void*)config->linkopts);
 				free((void*)config->links);
+				free((void*)config->gnu_external);
 				prj_freelist((void**)config->fileconfigs);
 			}
 
@@ -453,6 +454,10 @@ const char** prj_get_links()
 	return my_cfg->links;
 }
 
+const char **prj_get_gnu_external()
+{
+	return my_cfg->gnu_external;
+}
 
 /************************************************************************
  * Return the name of the active object

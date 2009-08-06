@@ -105,6 +105,7 @@ function package_set_build_flags()
 
 	package.buildflags = { "with-symbols", "no-edit-and-continue" }
 	if not options["icc"] then
+		-- adds the -Wall compiler flag
 		tinsert(package.buildflags, "extra-warnings") -- this causes far too many warnings/remarks on ICC
 	end
 
@@ -150,7 +151,6 @@ function package_set_build_flags()
 		else
 			tinsert(package.buildoptions, {
 				-- enable most of the standard warnings
-				"-Wall",
 				"-Wno-switch",		-- enumeration value not handled in switch (this is sometimes useful, but results in lots of noise)
 				"-Wno-reorder",		-- order of initialization list in constructors (lots of noise)
 				"-Wno-invalid-offsetof",	-- offsetof on non-POD types (see comment in renderer/PatchRData.cpp)
@@ -185,6 +185,7 @@ function package_set_build_flags()
 			if OS == "linux" then
 				tinsert(package.linkoptions, {
 					"-Wl,--no-undefined",
+					"-Wl,--as-needed",
 				})
 			end
 		end
@@ -662,6 +663,7 @@ function setup_atlas_package(package_name, target_type, rel_source_dirs, rel_inc
 	elseif OS == "linux" then
 		tinsert(package.buildoptions, "-rdynamic")
 		tinsert(package.buildoptions, "-fPIC")
+		tinsert(package.linkoptions, "-fPIC")
 		tinsert(package.linkoptions, "-rdynamic")
 
 		if extra_params["no_unused_warnings"] then

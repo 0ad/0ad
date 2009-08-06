@@ -152,6 +152,7 @@ static int writeRootMakefile()
 
 		io_print("%s:", prj_get_pkgname());
 		print_list(prj_get_links(), " ", "", "", listInterPackageDeps);
+		print_list(prj_get_gnu_external(), " ", "", "", listInterPackageDeps);
 		io_print("\n");
 
 		io_print("\t@echo ==== Building %s ====\n", prj_get_pkgname());

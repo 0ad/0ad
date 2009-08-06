@@ -368,6 +368,7 @@ static int export_pkgconfig(Package* package, int tbl)
 		export_list(tbl, obj, "libpaths",     &config->libpaths);
 		export_list(tbl, obj, "linkoptions",  &config->linkopts);
 		export_list(tbl, obj, "links",        &config->links);
+		export_list(tbl, obj, "gnu_external", &config->gnu_external);
 
 		/* Build the file list */
 		config->files = export_files(tbl, obj);
@@ -632,6 +633,10 @@ static void buildNewConfig(const char* name)
 	lua_settable(L, -3);
 
 	lua_pushstring(L, "links");
+	lua_newtable(L);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "gnu_external");
 	lua_newtable(L);
 	lua_settable(L, -3);
 }

@@ -49,6 +49,7 @@ typedef struct tagPkgConfig
 	const char** libpaths;
 	const char** linkopts;
 	const char** links;
+	const char** gnu_external;
 	const char*  objdir;
 	const char*  prefix;
 	const char*  target;
@@ -114,6 +115,7 @@ const char*  prj_get_libdir_for(int i);
 const char** prj_get_libpaths();
 const char** prj_get_linkoptions();
 const char** prj_get_links();
+const char** prj_get_gnu_external();
 const char*  prj_get_objdir();
 const char*  prj_get_prefix();
 const char*  prj_get_name();
