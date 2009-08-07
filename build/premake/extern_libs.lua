@@ -129,6 +129,11 @@ extern_lib_defs = {
 			else
 				tinsert(package.buildoptions, "`pkg-config libxml-2.0 --cflags`")
 				tinsert(package.gnu_external, "`pkg-config libxml-2.0 --libs`")
+				-- libxml2 needs _REENTRANT or __MT__ for thread support;
+				-- OS X doesn't get either set by default, so do it manually
+				if OS == "osx" then
+					tinsert(package.defines, "_REENTRANT")
+				end
 			end
 		end,
 	},
