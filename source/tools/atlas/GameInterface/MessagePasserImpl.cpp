@@ -17,6 +17,8 @@
 
 #include "precompiled.h"
 
+#include <cstdio>
+
 #include "MessagePasserImpl.h"
 #include "Messages.h"
 
@@ -32,7 +34,7 @@ MessagePasserImpl::MessagePasserImpl()
 	int tries = 0;
 	while (tries++ < 16) // some arbitrary cut-off point to avoid infinite loops
 	{
-		static char name[1024];
+		static char name[64];
 		sprintf(name, "/wfg-atlas-msgpass-%d-%d",
 				(int)rand(1, 1000), (int)(time(0)%1000));
 		sem_t* sem = sem_open(name, O_CREAT | O_EXCL, 0700, 0);

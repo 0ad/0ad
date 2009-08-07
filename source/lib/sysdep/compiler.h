@@ -69,7 +69,7 @@
 
 // are PreCompiled Headers supported?
 #if MSC_VERSION
-# define  HAVE_PCH 1
+# define HAVE_PCH 1
 #elif defined(USING_PCH)
 # define HAVE_PCH 1
 #else

@@ -22,6 +22,8 @@
 #include "precompiled.h"
 #include "vfs_tree.h"
 
+#include <cstdio>
+
 #include "lib/file/common/file_stats.h"
 #include "lib/sysdep/cpu.h"
 
@@ -166,7 +168,7 @@ void VfsDirectory::DisplayR(size_t depth) const
 		file.GenerateDescription(description, ARRAY_SIZE(description));
 
 		for(size_t i = 0; i < depth+1; i++)
-			printf(indent);
+			printf("%s", indent);
 		printf(fmt, name.c_str(), description);
 	}
 
@@ -176,7 +178,7 @@ void VfsDirectory::DisplayR(size_t depth) const
 		const VfsDirectory& directory = it->second;
 
 		for(size_t i = 0; i < depth+1; i++)
-			printf(indent);
+			printf("%s", indent);
 		printf("[%s/]\n", name.c_str());
 
 		directory.DisplayR(depth+1);

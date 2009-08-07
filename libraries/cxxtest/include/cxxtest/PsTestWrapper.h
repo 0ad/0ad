@@ -1,6 +1,8 @@
 #ifndef __cxxtest__PsTestWrapper_h__
 #define __cxxtest__PsTestWrapper_h__
 
+#include <cstdio>
+
 #include <cxxtest/Gui.h>
 // (This is not actually a GUI, but we use the CxxTest GUI mechanism
 // to capture argv and do some special processing)

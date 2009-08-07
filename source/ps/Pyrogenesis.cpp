@@ -17,6 +17,8 @@
 
 #include "precompiled.h"
 
+#include <cstdio>
+
 #include "Pyrogenesis.h"
 #include "ps/i18n.h"
 

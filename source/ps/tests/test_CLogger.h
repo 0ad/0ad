@@ -46,15 +46,15 @@ public:
 		std::string clipped (buflen-4, '*');
 		clipped += "...";
 
-		logger->Log(CLogger::Normal, "", msg0.c_str());
-		logger->Log(CLogger::Normal, "", msg1.c_str());
-		logger->Log(CLogger::Normal, "", msg2.c_str());
-		logger->Log(CLogger::Normal, "", msg3.c_str());
+		logger->Log(CLogger::Normal, "", "%s", msg0.c_str());
+		logger->Log(CLogger::Normal, "", "%s", msg1.c_str());
+		logger->Log(CLogger::Normal, "", "%s", msg2.c_str());
+		logger->Log(CLogger::Normal, "", "%s", msg3.c_str());
 
-		logger->LogOnce(CLogger::Normal, "", msg0.c_str());
-		logger->LogOnce(CLogger::Normal, "", msg1.c_str());
-		logger->LogOnce(CLogger::Normal, "", msg2.c_str());
-		logger->LogOnce(CLogger::Normal, "", msg3.c_str());
+		logger->LogOnce(CLogger::Normal, "", "%s", msg0.c_str());
+		logger->LogOnce(CLogger::Normal, "", "%s", msg1.c_str());
+		logger->LogOnce(CLogger::Normal, "", "%s", msg2.c_str());
+		logger->LogOnce(CLogger::Normal, "", "%s", msg3.c_str());
 
 		ParseOutput();
 

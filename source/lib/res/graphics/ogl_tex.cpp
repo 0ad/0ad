@@ -23,6 +23,8 @@
 #include "precompiled.h"
 #include "ogl_tex.h"
 
+#include <cstdio>
+
 #include "lib/app_hooks.h"
 #include "lib/ogl.h"
 #include "lib/bits.h"

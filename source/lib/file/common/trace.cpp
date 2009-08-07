@@ -22,6 +22,8 @@
 #include "precompiled.h"
 #include "trace.h"
 
+#include <cstdio>
+
 #include "lib/allocators/pool.h"
 #include "lib/timer.h"	// timer_Time
 

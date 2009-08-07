@@ -28,7 +28,8 @@
 #include <vector>
 #include <algorithm>
 #include <deque>
-#include <math.h>
+#include <cmath>
+#include <cstdio>
 
 #include "lib/path_util.h"
 #include "../h_mgr.h"

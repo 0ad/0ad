@@ -27,8 +27,9 @@
 #include "precompiled.h"
 #include "lib_errors.h"
 
-#include <string.h>
-#include <stdlib.h>	// abs
+#include <cstring>
+#include <cstdlib>	// abs
+#include <cstdio>
 #include <map>
 
 #include "lib/posix/posix_errno.h"

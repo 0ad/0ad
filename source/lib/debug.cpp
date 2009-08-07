@@ -22,8 +22,9 @@
 #include "precompiled.h"
 #include "debug.h"
 
-#include <stdarg.h>
-#include <string.h>
+#include <cstdarg>
+#include <cstring>
+#include <cstdio>
 
 #include "app_hooks.h"
 #include "os_path.h"

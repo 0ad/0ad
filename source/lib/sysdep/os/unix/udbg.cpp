@@ -24,6 +24,8 @@ symbol lookups and backtraces)
 
 #include "precompiled.h"
 
+#include <cstdio>
+
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"

@@ -24,6 +24,7 @@
 
 #include <queue>
 #include <cstring>
+#include <cstdio>
 
 #include "lib/path_util.h"
 #include "lib/regex.h"

@@ -22,7 +22,8 @@
 #include "precompiled.h"
 #include "cursor.h"
 
-#include <string.h>
+#include <cstring>
+#include <cstdio>
 #include <sstream>
 
 #include "lib/ogl.h"

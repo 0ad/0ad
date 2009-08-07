@@ -1,5 +1,12 @@
 #define CXXTEST_MOCK_TEST_SOURCE_FILE
-#include "lib/sysdep/os.h"
+
+// Pull in the common config headers from precompiled.h,
+// but disable the actual precompiling (since we've only got
+// one source file)
+#ifdef USING_PCH
+# undef USING_PCH
+#endif
+#include "lib/precompiled.h"
 
 // Cause calls to be redirected to the real function by default
 #define DEFAULT(name) static T::Real_##name real_##name
