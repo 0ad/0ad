@@ -39,6 +39,8 @@ int gnu_cpp()
 	const char* pchExt = (matches(g_cc, "icc") ? "pchi" : "h.gch");
 	const char* pchOrigin;
 
+	prj_select_config(0);
+
 	/* Open package makefile and write the header */
 	if (gnu_pkgOwnsPath())
 		strcpy(g_buffer, path_join(prj_get_pkgpath(), "Makefile", ""));
@@ -65,7 +67,6 @@ int gnu_cpp()
 	io_print("# Don't edit this file! Instead edit `premake.lua` then rerun `make`\n\n");
 
 	/* Set a default configuration */
-	prj_select_config(0);
 	io_print("ifndef CONFIG\n");
 	io_print("  CONFIG=%s\n", prj_get_cfgname());
 	io_print("endif\n\n");
