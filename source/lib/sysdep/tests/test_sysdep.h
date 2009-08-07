@@ -17,8 +17,16 @@
 
 #include "lib/self_test.h"
 
+#include "lib/lib.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/posix/posix.h"	// fminf etc.
+
+#if OS_LINUX
+# include "mocks/dlfcn.h"
+# include "mocks/boost_filesystem.h"
+#endif
+
+#include <cxxtest/PsTestWrapper.h>
 
 class TestSysdep : public CxxTest::TestSuite 
 {
@@ -68,4 +76,106 @@ public:
 		TS_ASSERT_EQUALS(fmaxf(-2.0f, 1.0f), 1.0f);
 		TS_ASSERT_EQUALS(fmaxf(0.001f, 0.00001f), 0.001f);
 	}
+
+	void test_sys_get_executable_name()
+	{
+		char path[PATH_MAX] = "";
+
+		// Try it first with the real executable (i.e. the
+		// one that's running this test code)
+		TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
+		// Check it's absolute
+		TSM_ASSERT(std::string("Path: ")+path, path_is_absolute(path));
+		// Check the file exists
+		struct stat s;
+		TSM_ASSERT_EQUALS(std::string("Path: ")+path, stat(path, &s), 0);
+
+		// Do some platform-specific tests, based on the
+		// implementations of sys_get_executable_name:
+
+#if OS_LINUX
+		// Try with absolute paths
+		{
+			Mock_dladdr d("/example/executable");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
+			TS_ASSERT_STR_EQUALS(path, "/example/executable");
+		}
+		{
+			Mock_dladdr d("/example/./a/b/../c/../../executable");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
+			TS_ASSERT_STR_EQUALS(path, "/example/executable");
+		}
+
+		// Try with relative paths
+		{
+			Mock_dladdr d("./executable");
+			Mock_initial_path m("/example");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
+			TS_ASSERT_STR_EQUALS(path, "/example/executable");
+		}
+		{
+			Mock_dladdr d("./executable");
+			Mock_initial_path m("/example/");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
+			TS_ASSERT_STR_EQUALS(path, "/example/executable");
+		}
+		{
+			Mock_dladdr d("../d/../../e/executable");
+			Mock_initial_path m("/example/a/b/c");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
+			TS_ASSERT_STR_EQUALS(path, "/example/a/e/executable");
+		}
+
+		// Try with pathless names
+		{
+			Mock_dladdr d("executable");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), ERR::NO_SYS);
+		}
+#endif // OS_LINUX
+	}
+
+	// Mock classes for test_sys_get_executable_name
+#if OS_LINUX
+	class Mock_dladdr : public T::Base_dladdr
+	{
+	public:
+		Mock_dladdr(const char* fname) : fname_(fname) { }
+		int dladdr(void *UNUSED(addr), Dl_info *info) {
+			info->dli_fname = fname_;
+			return 1;
+		}
+	private:
+		const char* fname_;
+	};
+
+	class Mock_initial_path : public T::Base_Boost_Filesystem_initial_path
+	{
+	public:
+		Mock_initial_path(const char* buf) : buf_(buf) { }
+		fs::path Boost_Filesystem_initial_path() {
+			return fs::path(buf_);
+		}
+	private:
+		const char* buf_;
+	};
+#endif
+
+private:
+	bool path_is_absolute(const char* path)
+	{
+		// UNIX-style absolute paths
+		if (path[0] == '/')
+			return true;
+
+		// Windows UNC absolute paths
+		if (path[0] == '\\' && path[1] == '\\')
+			return true;
+
+		// Windows drive-letter absolute paths
+		if (isalpha(path[0]) && path[1] == ':' && (path[2] == '/' || path[2] == '\\'))
+			return true;
+
+		return false;
+	}
+
 };

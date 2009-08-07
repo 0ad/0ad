@@ -16,6 +16,8 @@ namespace CxxTest
 {
     class TestRunner
     {
+        friend class PsTestRunner;
+
     public:
         static void runAllTests( TestListener &listener )
         {

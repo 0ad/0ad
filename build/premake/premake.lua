@@ -334,7 +334,9 @@ function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, e
 	package_add_contents(source_root, rel_source_dirs, {}, extra_params)
 	package_add_extern_libs(extern_libs)
 
-	tinsert(static_lib_names, package_name)
+	if not extra_params["no_default_link"] then
+		tinsert(static_lib_names, package_name)
+	end
 
 	if OS == "windows" then
 		tinsert(package.buildflags, "no-rtti")
@@ -353,8 +355,10 @@ function setup_static_lib_package (package_name, rel_source_dirs, extern_libs, e
 	--   correctly open these files from the IDE.
 	-- * precompiled.cpp (needed to "Create" the PCH) also goes in
 	--   the abovementioned dir.
-	pch_dir = source_root.."pch/"..package_name.."/"
-	package_setup_pch(pch_dir, "precompiled.h", "precompiled.cpp")
+	if not extra_params["no_default_pch"] then
+		pch_dir = source_root.."pch/"..package_name.."/"
+		package_setup_pch(pch_dir, "precompiled.h", "precompiled.cpp")
+	end
 end
 
 -- this is where the source tree is chopped up into static libs.
@@ -486,7 +490,8 @@ function setup_all_libs ()
 		"vorbis",
 		"libjpg",
 		"cryptopp",
-		"valgrind"
+		"valgrind",
+		"cxxtest",
 	}
 
 	-- CPU architecture-specific
@@ -518,6 +523,18 @@ function setup_all_libs ()
 	end
 
 	setup_static_lib_package("lowlevel", source_dirs, extern_libs, {})
+
+
+	-- CxxTest mock function support
+	extern_libs = {
+		"cxxtest",
+	}
+	-- 'real' implementations, to be linked against the main executable
+	setup_static_lib_package("mocks_real", {}, extern_libs, { no_default_link = 1, no_default_pch = 1 })
+	listconcat(package.files, matchfiles(source_root.."mocks/*.h", source_root.."mocks/*_real.cpp"))
+	-- 'test' implementations, to be linked against the test executable
+	setup_static_lib_package("mocks_test", {}, extern_libs, { no_default_link = 1, no_default_pch = 1 })
+	listconcat(package.files, matchfiles(source_root.."mocks/*.h", source_root.."mocks/*_test.cpp"))
 end
 
 
@@ -563,6 +580,7 @@ function setup_main_exe ()
 
 	package_add_extern_libs(used_extern_libs)
 
+	tinsert(package.links, "mocks_real")
 
 	-- Platform Specifics
 	if OS == "windows" then
@@ -955,9 +973,9 @@ function setup_tests()
 	package.testoptions = "--have-std"
 	package.rootoptions = "--have-std"
 	if OS == "windows" then
-		package.rootoptions = package.rootoptions .. " --gui=Win32Gui --runner=Win32ODSPrinter"
+		package.rootoptions = package.rootoptions .. " --gui=PsTestWrapper --runner=Win32ODSPrinter"
 	else
-		package.rootoptions = package.rootoptions .. " --runner=ErrorPrinter"
+		package.rootoptions = package.rootoptions .. " --gui=PsTestWrapper --runner=ErrorPrinter"
 	end
 	-- precompiled headers - the header is added to all generated .cpp files
 	-- note that the header isn't actually precompiled here, only #included
@@ -981,6 +999,7 @@ function setup_tests()
 	-- note: these are not relative to source_root and therefore can't be included via package_add_contents.
 	listconcat(package.files, src_files)
 	package_add_extern_libs(used_extern_libs)
+	tinsert(package.links, "mocks_test")
 
 	if OS == "windows" then
 		-- from "lowlevel" static lib; must be added here to be linked in

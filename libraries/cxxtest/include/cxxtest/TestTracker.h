@@ -102,6 +102,7 @@ namespace CxxTest
         void countFailure();
 
         friend class TestRunner;
+        friend class PsTestRunner;
         
         TestTracker();
         void initialize();
