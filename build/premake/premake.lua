@@ -527,6 +527,7 @@ function setup_all_libs ()
 
 	-- CxxTest mock function support
 	extern_libs = {
+		"boost",
 		"cxxtest",
 	}
 	-- 'real' implementations, to be linked against the main executable
