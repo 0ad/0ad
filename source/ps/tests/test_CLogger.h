@@ -93,7 +93,7 @@ public:
 
 	void ParseOutput()
 	{
-		const std::string header_end = "</h1>\n";
+		const std::string header_end = "</h2>\n";
 
 		std::string s = mainlog->str();
 		size_t start = s.find(header_end);
