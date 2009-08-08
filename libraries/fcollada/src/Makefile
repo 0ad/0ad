@@ -222,6 +222,7 @@ TEST_SOURCE = \
 OBJECTS_DEBUG = $(addprefix output/debug/,$(SOURCE:.cpp=.o))
 OBJECTS_RELEASE = $(addprefix output/release/,$(SOURCE:.cpp=.o))
 OBJECTS_TEST = $(addprefix output/test/,$(SOURCE:.cpp=.o) $(TEST_SOURCE:.cpp=.o))
+OBJECTS_ALL = $(OBJECTS_DEBUG) $(OBJECTS_RELEASE) $(OBJECTS_TEST)
 
 all: output_dirs output/libFColladaSD.a output/libFColladaSR.a install
 
@@ -247,15 +248,27 @@ install: output/libFColladaSD.a output/libFColladaSR.a
 	cp output/libFColladaSD.a ../lib/libFColladaSD.a
 	cp output/libFColladaSR.a ../lib/libFColladaSR.a
 
+dfile = $(@:.o=.d)
+Pfile = $(@:.o=.P)
+gendep = \
+	@cp $(dfile) $(Pfile) && \
+		sed -e 's/\#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+		    -e '/^$$/ d' -e 's/$$/ :/' < $(dfile) >> $(Pfile) && \
+		rm -f $(dfile)
 output/debug/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -MD -c $< -o $@
+	$(gendep)
 output/release/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -MD -c $< -o $@
+	$(gendep)
 output/test/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_TEST) $(INCLUDES_TEST) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_TEST) $(INCLUDES_TEST) -MD -c $< -o $@
+	$(gendep)
 
 clean:
 	rm -rf output
+
+-include $(OBJECTS_ALL:.o=.P)
