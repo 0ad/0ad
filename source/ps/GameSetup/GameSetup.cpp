@@ -80,11 +80,9 @@
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSCollection.h"
 #include "simulation/scripting/SimulationScriptInit.h"
-#ifndef NO_GUI
-# include "gui/scripting/JSInterface_IGUIObject.h"
-# include "gui/scripting/JSInterface_GUITypes.h"
-# include "gui/GUI.h"
-#endif
+#include "gui/scripting/JSInterface_IGUIObject.h"
+#include "gui/scripting/JSInterface_GUITypes.h"
+#include "gui/GUI.h"
 #include "sound/JSI_Sound.h"
 
 #include "network/NetLog.h"
@@ -129,9 +127,7 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 	glViewport(0, 0, w, h);
 
-#ifndef NO_GUI
 	g_GUI.UpdateResolution();
-#endif
 
 	ogl_Init();	// required after each mode change
 
@@ -207,7 +203,6 @@ retry:
 
 void GUI_Init()
 {
-#ifndef NO_GUI
 	{TIMER("ps_gui_init");
 	g_GUI.Initialize();}
 
@@ -242,16 +237,13 @@ void GUI_Init()
 	g_GUI.LoadXmlFile("gui/test/7_atlas.xml");}
 	{TIMER("ps_gui_9");
 	g_GUI.LoadXmlFile("gui/test/9_global.xml");}
-#endif
 }
 
 
 void GUI_Shutdown()
 {
-#ifndef NO_GUI
 	g_GUI.Destroy();
 	delete &g_GUI;
-#endif
 }
 
 
@@ -264,13 +256,11 @@ void GUI_ShowMainMenu()
 // display progress / description in loading screen
 void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 {
-#ifndef NO_GUI
 	CStrW i18n_description = I18n::translate(pending_task);
 	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
 	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(percent));
 	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
 	g_GUI.SendEventToAll("progress");
-#endif
 }
 
 
@@ -281,13 +271,11 @@ void Render()
 
 	ogl_WarnIfError();
 
-#ifndef NO_GUI // HACK: because colour-parsing requires the GUI
 	CStr skystring = "61 193 255";
 	CFG_GET_USER_VAL("skycolor", String, skystring);
 	CColor skycol;
 	GUI<CColor>::ParseString(skystring, skycol);
 	g_Renderer.SetClearColor(skycol.AsSColor4ub());
-#endif
 
 	// start new frame
 	g_Renderer.BeginFrame();
@@ -397,13 +385,11 @@ void Render()
 
 	ogl_WarnIfError();
 
-#ifndef NO_GUI
 	// Temp GUI message GeeTODO
 	MICROLOG(L"render GUI");
 	PROFILE_START( "render gui" );
 	if(g_DoRenderGui) g_GUI.Draw();
 	PROFILE_END( "render gui" );
-#endif
 
 	ogl_WarnIfError();
 
@@ -515,10 +501,8 @@ static void RegisterJavascriptInterfaces()
 	SimulationScriptInit();
 
 	// GUI
-#ifndef NO_GUI
 	JSI_IGUIObject::init();
 	JSI_GUITypes::init();
-#endif
 }
 
 
@@ -1040,9 +1024,7 @@ void Init(const CmdLineArgs& args, int flags)
 	const bool setup_gui = ((flags & INIT_NO_GUI) == 0 && g_AutostartMap.empty());
 
 	// GUI is notified in SetVideoMode, so this must come before that.
-#ifndef NO_GUI
 	new CGUI;
-#endif
 
 	// default to windowed, so users don't get stuck if e.g. half the
 	// filesystem is missing and the config files aren't loaded
@@ -1149,12 +1131,10 @@ void Init(const CmdLineArgs& args, int flags)
 
 	ogl_WarnIfError();
 
-#ifndef NO_GUI
 	{
-	TIMER("Init_guiload");
-	g_GUI.SendEventToAll("load");
+		TIMER("Init_guiload");
+		g_GUI.SendEventToAll("load");
 	}
-#endif
 
 	if (g_FixedFrameTiming) {
 		CCamera &camera = *g_Game->GetView()->GetCamera();

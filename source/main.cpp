@@ -259,9 +259,7 @@ static void Frame()
 
 	PROFILE_START("gui tick");
 	MICROLOG(L"gui tick");
-#ifndef NO_GUI
 	g_GUI.TickObjects();
-#endif
 	PROFILE_END("gui tick");
 
 	ogl_WarnIfError();
@@ -347,9 +345,7 @@ static void MainControllerInit()
 	// gui_handler needs to be registered after (i.e. called before!) the
 	// hotkey handler so that input boxes can be typed in without
 	// setting off hotkeys.
-#ifndef NO_GUI
 	in_add_handler(gui_handler);
-#endif
 
 	// must be registered after gui_handler. Should mayhap even be last.
 	in_add_handler(MainInputHandler);

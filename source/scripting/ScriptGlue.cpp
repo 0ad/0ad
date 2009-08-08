@@ -73,9 +73,7 @@
 #include "simulation/TechnologyCollection.h"
 #include "simulation/TriggerManager.h"
 
-#ifndef NO_GUI
-# include "gui/scripting/JSInterface_IGUIObject.h"
-#endif
+#include "gui/scripting/JSInterface_IGUIObject.h"
 
 extern bool g_TerrainModified;
 
@@ -1483,11 +1481,9 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("toggleTerritoryRendering", ToggleTerritoryRendering, 0)
 
 	// GUI
-#ifndef NO_GUI
 	JS_FUNC("getGUIObjectByName", JSI_IGUIObject::getByName, 1)	// external
 	JS_FUNC("getGUIGlobal", GetGuiGlobal, 0)
 	JS_FUNC("resetGUI", ResetGui, 0)
-#endif
 
 	// Events
 	JS_FUNC("addGlobalHandler", AddGlobalHandler, 2)
