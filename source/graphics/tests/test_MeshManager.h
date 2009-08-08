@@ -19,16 +19,27 @@
 
 #include "lib/file/vfs/vfs.h"
 #include "lib/file/io/io.h"
+#include "lib/sysdep/sysdep.h"	// sys_get_executable_name
 
 #include "graphics/ColladaManager.h"
 #include "graphics/MeshManager.h"
 #include "graphics/ModelDef.h"
 
 #include "ps/CLogger.h"
-#include "ps/Pyrogenesis.h"
 
-static fs::path MOD_PATH(fs::path(psLogDir())/"../data/mods/_test.mesh");
-static fs::path CACHE_PATH(fs::path(psLogDir())/"../data/_testcache");
+// we need the (version-controlled) binaries/data directory because it
+// contains input files (it is assumed that developer's machines have
+// write access to those directories). note that argv0 isn't
+// available, so we use sys_get_executable_name.
+static fs::path DataDir()
+{
+	char path[PATH_MAX];
+	TS_ASSERT_OK(sys_get_executable_name(path, ARRAY_SIZE(path)));
+	return fs::path(path).branch_path()/"../data";
+}
+
+static fs::path MOD_PATH(DataDir()/"mods/_test.mesh");
+static fs::path CACHE_PATH(DataDir()/"_testcache");
 
 const char* srcDAE = "collada/sphere.dae";
 const char* srcPMD = "collada/sphere.pmd";
@@ -56,13 +67,10 @@ class TestMeshManager : public CxxTest::TestSuite
 		if(exists(CACHE_PATH))
 			DeleteDirectory(CACHE_PATH);
 
-		TS_ASSERT_OK(CreateDirectories(MOD_PATH.external_directory_string(), 0700));
-		TS_ASSERT_OK(CreateDirectories(CACHE_PATH.external_directory_string(), 0700));
-
 		g_VFS = CreateVfs(20*MiB);
 
 		TS_ASSERT_OK(g_VFS->Mount("", MOD_PATH));
-		TS_ASSERT_OK(g_VFS->Mount("collada/", "tests/collada"));
+		TS_ASSERT_OK(g_VFS->Mount("collada/", DataDir()/"tests/collada"));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the
@@ -72,9 +80,8 @@ class TestMeshManager : public CxxTest::TestSuite
 
 	void deinitVfs()
 	{
-//		DeleteDirectory(MOD_PATH);
-//		DeleteDirectory(CACHE_PATH);
-
+		DeleteDirectory(MOD_PATH);
+		DeleteDirectory(CACHE_PATH);
 		g_VFS.reset();
 	}
 

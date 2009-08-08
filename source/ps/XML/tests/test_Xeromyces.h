@@ -19,6 +19,15 @@
 
 #include "ps/XML/Xeromyces.h"
 #include "lib/file/vfs/vfs.h"
+#include "lib/sysdep/sysdep.h"
+
+// FIXME: copied from test_MeshManager
+static fs::path DataDir()
+{
+	char path[PATH_MAX];
+	TS_ASSERT_OK(sys_get_executable_name(path, ARRAY_SIZE(path)));
+	return fs::path(path).branch_path()/"../data";
+}
 
 class TestXeromyces : public CxxTest::TestSuite 
 {
@@ -27,7 +36,7 @@ public:
 	{
 		PIVFS vfs = CreateVfs(20*MiB);
 
-		TS_ASSERT_OK(vfs->Mount("", "mods/_test.xero"));
+		TS_ASSERT_OK(vfs->Mount("", DataDir()/"mods/_test.xero"));
 
 		VfsPath xmbPath;
 
