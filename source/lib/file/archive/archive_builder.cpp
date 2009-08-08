@@ -928,6 +928,12 @@ extern LibError trace_run(const char* trace_filename);
 // run first, to give more weight to it (TSP code should go with first entry
 // when #occurrences are equal)
 
+#error "reimplement me"
+// update: file enumeration really isn't hard, and splitting separate
+// traces into files would greatly simplify deleting old traces after
+// awhile and avoid indexing problems due to counting delimiter lines
+// (#167). this section should be rewritten.
+
 
 static const TraceEntry delimiter_entry =
 {

@@ -48,7 +48,7 @@ class TestString_s : public CxxTest::TestSuite
 	static void TEST_LEN(const char* string, size_t limit,
 		size_t expected_len)
 	{
-		TS_ASSERT_EQUALS(strnlen((string), (limit)), (expected_len));
+		TS_ASSERT_EQUALS(int(strnlen((string), int(limit))), int(expected_len));
 	}
 
 	static void TEST_CPY(char* dst, size_t dst_max, const char* src,
@@ -241,5 +241,30 @@ public:
 		TEST_NCAT(d5,5, s5,4, "",0,"abcd");
 		TEST_NCAT(d5,5, s5,2, "12",0,"12ab");
 		TEST_NCAT(d6,6, s5,10, "",0,"abcde");
+	}
+
+	static void TEST_PRINTF(char* dst, size_t max_dst_chars, const char* dst_val,
+		int expected_ret, const char* expected_dst, const char* fmt, ...)
+	{
+		strcpy(dst, dst_val);
+		va_list ap;
+		va_start(ap, fmt);
+		int ret = vsprintf_s(dst, max_dst_chars, fmt, ap);
+		va_end(ap);
+		TS_ASSERT_EQUALS(ret, expected_ret);
+		TS_ASSERT_STR_EQUALS(dst, expected_dst);
+	}
+
+	void test_printf()
+	{
+		TEST_PRINTF(d10,10, s10, 4, "1234", "%d", 1234);
+		TEST_PRINTF(d10,5, s10, 4, "1234", "%d", 1234);
+
+		// VC's *printf raises an error dialog if the buffer is too
+		// small, so only test our implementation.
+#if EMULATE_SECURE_CRT
+		TEST_PRINTF(d10,4, s10, 0, "", "%d", 1234);
+		TEST_PRINTF(d10,3, s10, 0, "", "%d", 1234);
+#endif
 	}
 };

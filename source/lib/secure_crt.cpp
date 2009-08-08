@@ -220,7 +220,19 @@ int tcat_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 
 int tvsprintf_s(tchar* dst, size_t max_dst_chars, const tchar* fmt, va_list ap)
 {
-	return tvsnprintf(dst, max_dst_chars, fmt, ap);
+	if(!dst || !fmt || max_dst_chars == 0)
+	{
+		errno = EINVAL;
+		return -1;
+	}
+
+	const int ret = tvsnprintf(dst, max_dst_chars, fmt, ap);
+	if(ret >= int(max_dst_chars))	// not enough space
+	{
+		dst[0] = '\0';
+		return -1;
+	}
+	return ret;	// negative if error, else # chars written (excluding '\0')
 }
 
 
