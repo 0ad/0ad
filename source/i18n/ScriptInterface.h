@@ -35,11 +35,9 @@ and 'variables' (dependent on the type passed with "translate(...) <<").
 ERROR_SUBGROUP(I18n, Script);
 ERROR_TYPE(I18n_Script, SetupFailed);
 
-#if OS_WIN // the Windows JS libraries are using '_W64 long' to avoid MSVC warnings
-typedef _W64 long jsval;
-#else
-typedef long jsval;
-#endif
+typedef _W64 long JSWord;
+typedef JSWord jsword;
+typedef jsword jsval;
 typedef unsigned short jschar;
 struct JSContext;
 struct JSObject;
