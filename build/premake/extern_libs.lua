@@ -15,11 +15,17 @@ local function add_extern_lib_paths(extern_lib)
 	-- Often, the headers in libraries/ are windows-specific (always, except
 	-- for cxxtest and fcollada). So don't add the include dir unless on
 	-- windows or processing one of those libs.
-	if OS == "windows" or extern_lib == "cxxtest" or extern_lib == "fcollada" or extern_lib == "valgrind" then
+	if OS == "windows" or extern_lib == "cxxtest" or extern_lib == "fcollada" or extern_lib == "valgrind" or extern_lib == "spidermonkey" then
 		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
 		tinsert(package.libpaths, libraries_dir .. extern_lib .. "/lib")
 	end
 
+end
+
+-- For unixes: add buildflags and linkflags from the given pkg-config module.
+local function pkgconfig(lib)
+	tinsert(package.buildoptions, "`pkg-config "..lib.." --cflags`")
+	tinsert(package.gnu_external, "`pkg-config "..lib.." --libs`")
 end
 
 -- library definitions
@@ -59,6 +65,7 @@ end
 --   arranging for delay-loading. this is necessary e.g. for wxWidgets,
 --   which is unfortunately totally incompatible with our
 --   library installation rules.
+-- * depends: a table of external libraries that this library depends on
 extern_lib_defs = {
 	boost = {
 		unix_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
@@ -95,6 +102,7 @@ extern_lib_defs = {
 				tinsert(package.config["Testing"].links, "enet_dbg")
 				tinsert(package.config["Release"].links, "enet")
 			else
+				-- We should be using pkgconfig, but (at least on ubuntu) that adds /usr/include/enet which contains a time.h that gets used before the system header...
 				tinsert(package.links, "enet")
 			end
 		end,
@@ -127,13 +135,21 @@ extern_lib_defs = {
 				tinsert(package.config["Testing"].links, "libxml2")
 				tinsert(package.config["Release"].links, "libxml2")
 			else
-				tinsert(package.buildoptions, "`pkg-config libxml-2.0 --cflags`")
-				tinsert(package.gnu_external, "`pkg-config libxml-2.0 --libs`")
+				pkgconfig("libxml-2.0")
 				-- libxml2 needs _REENTRANT or __MT__ for thread support;
 				-- OS X doesn't get either set by default, so do it manually
 				if OS == "macosx" then
 					tinsert(package.defines, "_REENTRANT")
 				end
+			end
+		end,
+	},
+	nspr = {
+		-- On windows, this is somehow baked into the js library (ask philip)
+		-- but on unix we need to explicitly include this (it's used by libjs).
+		add_func = function()
+			if OS ~= "windows" then
+				pkgconfig("nspr")
 			end
 		end,
 	},
@@ -153,14 +169,14 @@ extern_lib_defs = {
 		add_func = function()
 			add_extern_lib_paths("sdl")
 			if OS ~= "windows" then
-				tinsert(package.buildoptions, "`sdl-config --cflags`")
-				tinsert(package.gnu_external, "`sdl-config --libs`")
+				pkgconfig("sdl")
 			end
 		end
 	},
 	spidermonkey = {
 		win_names  = { "js32" },
 		unix_names = { "js" },
+		depends = { "nspr" }
 	},
 	valgrind = {
 	},
@@ -281,12 +297,28 @@ end
 -- extern_libs: table of library names [string]
 function package_add_extern_libs(extern_libs)
 
-	for i,extern_lib in pairs(extern_libs) do
-		local def = extern_lib_defs[extern_lib]
-		assert(def, "external library " .. extern_lib .. " not defined")
+	local function add_with_deps(libs, lib)
+		local def = extern_lib_defs[lib]
+		assert(def, "external library " .. lib .. " not defined")
+		tinsert(libs, lib)
+		if def.depends then
+			for i,dep in pairs(def.depends) do
+				add_with_deps(libs, dep)
+			end
+		end
+	end
 
-		if def["add_func"] then
-			def["add_func"]()
+	local libs = {}
+
+	for i,extern_lib in pairs(extern_libs) do
+		add_with_deps(libs, extern_lib)
+	end
+
+	for i,extern_lib in pairs(libs) do
+		local def = extern_lib_defs[extern_lib]
+
+		if def.add_func then
+			def.add_func()
 		else
 			add_extern_lib(extern_lib, def)
 		end
