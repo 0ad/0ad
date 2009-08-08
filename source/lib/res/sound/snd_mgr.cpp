@@ -107,24 +107,12 @@ static LibError list_free_all();
 static void hsd_list_free_all();
 
 
-static void al_ReportError(ALenum err, const char* caller)
+static void al_ReportError(ALenum err, const char* caller, int line)
 {
 	debug_assert(al_initialized);
 
-	// count # times we've been called for the same function (this shows
-	// which of multiple AL_CHECK inside a function is the culprit)
-	static const char* last_caller;
-	static int num_times_within_same_function = 1;
-	if(caller == last_caller)
-		num_times_within_same_function++;
-	else
-	{
-		num_times_within_same_function = 1;
-		last_caller = caller;
-	}
-
 	const char* str = (const char*)alGetString(err);
-	debug_printf("OpenAL error: %s; called from %s (#%d)\n", str, caller, num_times_within_same_function);
+	debug_printf("OpenAL error: %s; called from %s (line %d)\n", str, caller, line);
 	debug_assert(0);
 }
 
@@ -133,16 +121,18 @@ static void al_ReportError(ALenum err, const char* caller)
  * error at a time, so this is called before and after every OpenAL request.
  *
  * @param caller Name of calling function (typically passed via __func__)
+ * @param line line number of the call site (typically passed via __LINE__)
+ * (identifies the exact call site since there may be several per caller)
  */
-static void al_check(const char* caller = "(unknown)")
+static void al_check(const char* caller = "(unknown)", int line = -1)
 {
 	ALenum err = alGetError();
 	if(err != AL_NO_ERROR)
-		al_ReportError(err, caller);
+		al_ReportError(err, caller, line);
 }
 
 // convenience version that automatically passes in function name.
-#define AL_CHECK al_check(__func__)
+#define AL_CHECK al_check(__func__, __LINE__)
 
 
 //-----------------------------------------------------------------------------
@@ -1474,7 +1464,7 @@ static void vsrc_latch(VSrc* vs)
 		debug_printf("  pitch: %f\n", vs->pitch);
 		debug_printf("  loop: %d\n", (int)vs->loop);
 
-		al_ReportError(err, __func__);
+		al_ReportError(err, __func__, __LINE__);
 	}
 }
 
@@ -1487,8 +1477,12 @@ static void vsrc_latch(VSrc* vs)
  */
 static int vsrc_deque_finished_bufs(VSrc* vs)
 {
+	AL_CHECK;
+
 	int num_processed;
 	alGetSourcei(vs->al_src, AL_BUFFERS_PROCESSED, &num_processed);
+
+	AL_CHECK;
 
 	for(int i = 0; i < num_processed; i++)
 	{
