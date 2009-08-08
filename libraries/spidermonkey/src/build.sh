@@ -17,7 +17,7 @@ lib=lib
 
 # libjs can't be included in a dylib if it has common symbols on Mac OS. This
 # breaks linkage for Atlas.
-if [ "`uname -s`" == "Darwin" ]; then
+if [ "`uname -s`" = "Darwin" ]; then
 	no_common=-fno-common
 fi
 
