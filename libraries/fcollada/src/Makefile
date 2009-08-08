@@ -257,15 +257,15 @@ gendep = \
 		rm -f $(dfile)
 output/debug/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -MD -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_DEBUG) $(INCLUDES) -MD -MF $(dfile) -c $< -o $@
 	$(gendep)
 output/release/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -MD -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_RELEASE) $(INCLUDES) -MD -MF $(dfile) -c $< -o $@
 	$(gendep)
 output/test/%.o: %.cpp
 	@echo "$<"
-	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_TEST) $(INCLUDES_TEST) -MD -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CXXFLAGS_TEST) $(INCLUDES_TEST) -MD -MF $(dfile) -c $< -o $@
 	$(gendep)
 
 clean:
