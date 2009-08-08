@@ -17,16 +17,12 @@
 
 #include "precompiled.h"
 
-#if OS_WIN
-#include "lib/sysdep/os/win/wutil.h"
-#endif
 #include "lib/external_libraries/sdl.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/input.h"
 #include "lib/lockfree.h"
 #include "lib/app_hooks.h"
-#include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/h_mgr.h"
@@ -92,6 +88,7 @@
 #include "ps/Pyrogenesis.h"	// psSetLogDir
 #include "ps/GameSetup/Atlas.h"
 #include "ps/GameSetup/GameSetup.h"
+#include "ps/GameSetup/Paths.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/CmdLineArgs.h"
 
@@ -540,127 +537,11 @@ static size_t ChooseCacheSize()
 }
 
 
-class Paths
-{
-public:
-	Paths(const CStr& argv0, const char* subdirectoryName)
-	{
-		m_root = Root(argv0);
-		m_rdata = m_root/"data";
-
-		// everything is a subdirectory of the root
-		if(!subdirectoryName)
-		{
-			m_data = m_rdata;
-			m_config = m_data/"config";
-			m_cache = m_data/"cache";
-			m_logs = m_root/"logs";
-		}
-		else
-		{
-#if OS_WIN
-			const fs::path appdata(fs::path(win_appdata_dir)/subdirectoryName);
-			m_data = appdata/"data";
-			m_config = appdata/"config";
-			m_cache = appdata/"cache";
-			m_logs = appdata/"logs";
-#else
-			const char* envHome = getenv("HOME");
-			debug_assert(envHome);
-			const fs::path home(envHome);
-			m_data = XDG_Path("XDG_DATA_HOME", home, home/".local/share")/subdirectoryName;
-			m_config = XDG_Path("XDG_CONFIG_HOME", home, home/".config")/subdirectoryName;
-			m_cache = XDG_Path("XDG_CACHE_HOME", home, home/".cache")/subdirectoryName;
-			m_logs = m_config/"logs";
-#endif
-		}
-	}
-
-	const fs::path& Root() const
-	{
-		return m_root;
-	}
-
-	const fs::path& RData() const
-	{
-		return m_rdata;
-	}
-
-	const fs::path& Data() const
-	{
-		return m_data;
-	}
-
-	const fs::path& Config() const
-	{
-		return m_config;
-	}
-
-	const fs::path& Cache() const
-	{
-		return m_cache;
-	}
-
-	const fs::path& Logs() const
-	{
-		return m_logs;
-	}
-
-private:
-	static fs::path Root(const CStr& argv0)
-	{
-		// get full path to executable
-		char pathname[PATH_MAX];
-		// .. first try safe, but system-dependent version
-		if(sys_get_executable_name(pathname, PATH_MAX) < 0)
-		{
-			// .. failed; use argv[0]
-			errno = 0;
-			if(!realpath(argv0.c_str(), pathname))
-				WARN_ERR(LibError_from_errno(false));
-		}
-
-		// make sure it's valid
-		errno = 0;
-		if(access(pathname, X_OK) < 0)
-			WARN_ERR(LibError_from_errno(false));
-
-		fs::path path(pathname);
-		for(size_t i = 0; i < 3; i++)	// remove "system/name.exe"
-			path.remove_leaf();
-		return path;
-	}
-
-	static fs::path XDG_Path(const char* envname, const fs::path& home, const fs::path& defaultPath)
-	{
-		const char* path = getenv(envname);
-		if(path)
-		{
-			if(path[0] != '/')	// relative to $HOME
-				return home/path;
-			return fs::path(path);
-		}
-		return defaultPath;
-	}
-
-	// read-only directories, fixed paths relative to executable
-	fs::path m_root;
-	fs::path m_rdata;
-
-	// writable directories
-	fs::path m_data;
-	fs::path m_config;
-	fs::path m_cache;
-	fs::path m_logs;	// special-cased in single-root-folder installations
-};
-
-
 static void InitVfs(const CmdLineArgs& args)
 {
 	TIMER("InitVfs");
 
-	const char* subdirectory = args.Has("writableRoot")? 0 : "0ad";
-	const Paths paths(args.GetArg0(), subdirectory);
+	const Paths paths(args);
 
 	fs::path logs(paths.Logs());
 	CreateDirectories(logs, 0700);
