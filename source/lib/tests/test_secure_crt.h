@@ -246,13 +246,13 @@ public:
 	static void TEST_PRINTF(char* dst, size_t max_dst_chars, const char* dst_val,
 		int expected_ret, const char* expected_dst, const char* fmt, ...)
 	{
-		strcpy(dst, dst_val);
+		if (dst) strcpy(dst, dst_val);
 		va_list ap;
 		va_start(ap, fmt);
 		int ret = vsprintf_s(dst, max_dst_chars, fmt, ap);
 		va_end(ap);
 		TS_ASSERT_EQUALS(ret, expected_ret);
-		TS_ASSERT_STR_EQUALS(dst, expected_dst);
+		if (dst) TS_ASSERT_STR_EQUALS(dst, expected_dst);
 	}
 
 	void test_printf()
@@ -263,8 +263,11 @@ public:
 		// VC's *printf raises an error dialog if the buffer is too
 		// small, so only test our implementation.
 #if EMULATE_SECURE_CRT
-		TEST_PRINTF(d10,4, s10, 0, "", "%d", 1234);
-		TEST_PRINTF(d10,3, s10, 0, "", "%d", 1234);
+		TEST_PRINTF(d10,4, s10, -1, "", "%d", 1234);
+		TEST_PRINTF(d10,3, s10, -1, "", "%d", 1234);
+		TEST_PRINTF(d10,0, s10, -1, "abcdefghij", "%d", 1234);
+		TEST_PRINTF(NULL,0, NULL, -1, "", "%d", 1234);
+		TEST_PRINTF(d10,10, s10, -1, "abcdefghij", NULL);
 #endif
 	}
 };
