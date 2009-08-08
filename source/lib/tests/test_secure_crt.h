@@ -25,6 +25,45 @@
 // secure_crt.cpp's unicode functions are the same anyway
 // (they're implemented via the abovementioned tcpy macro redirection).
 
+
+#if OS_WIN
+// helper class to disable CRT error dialogs
+class SuppressErrors
+{
+public:
+	SuppressErrors()
+	{
+		// Redirect the assertion output to somewhere where it shouldn't be noticed
+		old_mode = _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+		old_file = _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
+		// Replace the invalid parameter handler with one that ignores everything
+		old_handler = _set_invalid_parameter_handler(&invalid_parameter_handler);
+	}
+	~SuppressErrors()
+	{
+		_CrtSetReportMode(_CRT_ASSERT, old_mode);
+		_CrtSetReportFile(_CRT_ASSERT, old_file);
+		_set_invalid_parameter_handler(old_handler);
+	}
+
+private:
+	int old_mode;
+	_HFILE old_file;
+	_invalid_parameter_handler old_handler;
+
+	static void invalid_parameter_handler(const wchar_t* UNUSED(expression), const wchar_t* UNUSED(function),
+		const wchar_t* UNUSED(file), unsigned int UNUSED(line), uintptr_t UNUSED(pReserved))
+	{
+		return;
+	}
+};
+#else
+class SuppressErrors
+{
+};
+#endif
+
+
 class TestString_s : public CxxTest::TestSuite 
 {
 	// note: avoid 4-byte strings - they would trigger WARN::IF_PTR_LEN.
@@ -117,13 +156,16 @@ public:
 
 	// contains all tests that verify correct behavior for bogus input.
 	// our implementation suppresses error dialogs while the self-test is active,
-	// but others (e.g. the functions shipped with VC8) do not.
-	// since we have no control over their error reporting (which ends up taking
-	// down the program), we must skip this part of the test if using them.
-	// this is still preferable to completely disabling the self-test.
+	// but others (e.g. the functions shipped with VC8) need the code in
+	// SuppressErrors to disable the error dialogs.
 	void test_param_validation()
 	{
-	#if EMULATE_SECURE_CRT
+		SuppressErrors suppress;
+
+#if !EMULATE_SECURE_CRT
+# define debug_SkipNextError(err) (void)0
+#endif
+
 		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
 		debug_SkipNextError(ERR::INVALID_PARAM);
@@ -183,7 +225,10 @@ public:
 		TEST_NCAT(d10,10, s5,5, "12345",ERANGE,"");		// not empty, overflow
 		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_NCAT(d10,10, s10,10, "12345",ERANGE,"");	// not empty, total overflow
-	#endif
+
+#if !EMULATE_SECURE_CRT
+# undef debug_SkipNextError
+#endif
 	}
 
 
@@ -243,6 +288,7 @@ public:
 		TEST_NCAT(d6,6, s5,10, "",0,"abcde");
 	}
 
+
 	static void TEST_PRINTF(char* dst, size_t max_dst_chars, const char* dst_val,
 		int expected_ret, const char* expected_dst, const char* fmt, ...)
 	{
@@ -260,14 +306,11 @@ public:
 		TEST_PRINTF(d10,10, s10, 4, "1234", "%d", 1234);
 		TEST_PRINTF(d10,5, s10, 4, "1234", "%d", 1234);
 
-		// VC's *printf raises an error dialog if the buffer is too
-		// small, so only test our implementation.
-#if EMULATE_SECURE_CRT
+		SuppressErrors suppress;
 		TEST_PRINTF(d10,4, s10, -1, "", "%d", 1234);
 		TEST_PRINTF(d10,3, s10, -1, "", "%d", 1234);
 		TEST_PRINTF(d10,0, s10, -1, "abcdefghij", "%d", 1234);
 		TEST_PRINTF(NULL,0, NULL, -1, "", "%d", 1234);
 		TEST_PRINTF(d10,10, s10, -1, "abcdefghij", NULL);
-#endif
 	}
 };
