@@ -85,7 +85,7 @@ CFLAGS          += $(OPTIMIZER) $(OS_CFLAGS) $(DEFINES) $(INCLUDES) $(XCFLAGS)
 LDFLAGS		= $(XLDFLAGS)
 
 ifndef NO_LIBM
-LDFLAGS += -lm
+LIBS += -lm
 endif
 
 # Prevent floating point errors caused by VC++ optimizations
@@ -308,14 +308,14 @@ $(PROGRAM): $(PROG_OBJS) $(LIBRARY) $(FDLIBM_LIBRARY)
 	link.exe -out:"$@" $(EXE_LINK_FLAGS) $^
 else
 $(PROGRAM): $(PROG_OBJS) $(LIBRARY) $(FDLIBM_LIBRARY)
-	$(CC) -o $@ $(CFLAGS) $(PROG_OBJS) $(LIBRARY) $(LDFLAGS) $(OTHER_LIBS) \
-	    $(PROG_LIBS)
+	$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(PROG_OBJS) $(LIBRARY) $(OTHER_LIBS) \
+	    $(PROG_LIBS) $(LIBS)
 endif
 
 $(PROGRAM).pure: $(PROG_OBJS) $(LIBRARY)
 	purify $(PUREFLAGS) \
-	    $(CC) -o $@ $(PURE_OS_CFLAGS) $(PROG_OBJS) $(LIBRARY) $(LDFLAGS) \
-		$(OTHER_LIBS) $(PROG_LIBS)
+	    $(CC) -o $@ $(PURE_OS_CFLAGS) $(LDFLAGS) $(PROG_OBJS) $(LIBRARY) \
+		$(OTHER_LIBS) $(PROG_LIBS) $(LIBS)
 
 ifndef PREBUILT_CPUCFG
 $(HFILES) $(CFILES): $(OBJDIR)/jsautocfg.h

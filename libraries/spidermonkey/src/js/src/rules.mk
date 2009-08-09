@@ -115,7 +115,7 @@ $(LIBRARY): $(LIB_OBJS)
 	$(RANLIB) $@
 
 $(SHARED_LIBRARY): $(LIB_OBJS)
-	$(MKSHLIB) -o $@ $(LIB_OBJS) $(LDFLAGS) $(OTHER_LIBS)
+	$(MKSHLIB) -o $@ $(LDFLAGS) $(LIB_OBJS) $(shell echo $(OTHER_LIBS) | sed 's:-Wl,::g')
 endif
 endif
 
