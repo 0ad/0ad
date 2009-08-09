@@ -175,7 +175,7 @@ public:
 		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CPY(d1,1,0 , EINVAL,"");	// src = 0
 		debug_SkipNextError(ERR::INVALID_PARAM);
-		TEST_CPY(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
+		TEST_CPY(d1,0,s1, EINVAL,"");	// max_dst_chars = 0
 
 		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_CPY2(d1,1, s1, ERANGE,"");
@@ -200,9 +200,9 @@ public:
 		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CAT(d1,1,0 , EINVAL,"");	// src = 0
 		debug_SkipNextError(ERR::INVALID_PARAM);
-		TEST_CAT(d1,0,s1, ERANGE,"");	// max_dst_chars = 0
+		TEST_CAT(d1,0,s1, EINVAL,"");	// max_dst_chars = 0
 		debug_SkipNextError(ERR::STRING_NOT_TERMINATED);
-		TEST_CAT(no_null,5,s1, ERANGE,"");	// dst not terminated
+		TEST_CAT(no_null,5,s1, EINVAL,"");	// dst not terminated
 
 		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_CAT2(d1,1, s1, "",ERANGE,"");
