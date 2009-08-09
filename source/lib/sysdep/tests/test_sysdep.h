@@ -23,7 +23,7 @@
 
 #if OS_LINUX
 # include "mocks/dlfcn.h"
-# include "mocks/boost_filesystem.h"
+# include "mocks/unistd.h"
 #endif
 
 #include <cxxtest/PsTestWrapper.h>
@@ -94,36 +94,73 @@ public:
 		// implementations of sys_get_executable_name:
 
 #if OS_LINUX
+		// Since the implementation uses realpath, the tested files need to
+		// really exist. So set up a directory tree for testing:
+
+		const char* tmpdir = getenv("TMPDIR");
+		if (! tmpdir) tmpdir = P_tmpdir;
+
+		char root[PATH_MAX];
+		sprintf_s(root, PATH_MAX, "%s/pyrogenesis-test-sysdep-XXXXXX", tmpdir);
+		TS_ASSERT(mkdtemp(root));
+		std::string rootstr(root);
+
+		const char* dirs[] = {
+			"/example",
+			"/example/a",
+			"/example/a/b",
+			"/example/a/b/c",
+			"/example/a/b/d",
+			"/example/a/e",
+			"/example/a/f"
+		};
+		const char* files[] = {
+			"/example/executable",
+			"/example/a/f/executable",
+		};
+		for (size_t i = 0; i < ARRAY_SIZE(dirs); ++i)
+		{
+			std::string name = rootstr + dirs[i];
+			TS_ASSERT_EQUALS(mkdir(name.c_str(), 0700), 0);
+		}
+		for (size_t i = 0; i < ARRAY_SIZE(files); ++i)
+		{
+			std::string name = rootstr + files[i];
+			FILE* f = fopen(name.c_str(), "w");
+			TS_ASSERT(f);
+			fclose(f);
+		}
+
 		// Try with absolute paths
 		{
-			Mock_dladdr d("/example/executable");
+			Mock_dladdr d(rootstr+"/example/executable");
 			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, "/example/executable");
+			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/executable");
 		}
 		{
-			Mock_dladdr d("/example/./a/b/../c/../../executable");
+			Mock_dladdr d(rootstr+"/example/./a/b/../e/../../executable");
 			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, "/example/executable");
+			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/executable");
 		}
 
 		// Try with relative paths
 		{
 			Mock_dladdr d("./executable");
-			Mock_initial_path m("/example");
+			Mock_getcwd m(rootstr+"/example");
 			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, "/example/executable");
+			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/executable");
 		}
 		{
 			Mock_dladdr d("./executable");
-			Mock_initial_path m("/example/");
+			Mock_getcwd m(rootstr+"/example/");
 			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, "/example/executable");
+			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/executable");
 		}
 		{
-			Mock_dladdr d("../d/../../e/executable");
-			Mock_initial_path m("/example/a/b/c");
+			Mock_dladdr d("../d/../../f/executable");
+			Mock_getcwd m(rootstr+"/example/a/b/c");
 			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, "/example/a/e/executable");
+			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/a/f/executable");
 		}
 
 		// Try with pathless names
@@ -131,6 +168,20 @@ public:
 			Mock_dladdr d("executable");
 			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), ERR::NO_SYS);
 		}
+
+		// Clean up the temporary files
+		for (size_t i = 0; i < ARRAY_SIZE(files); ++i)
+		{
+			std::string name = rootstr + files[i];
+			TS_ASSERT_EQUALS(unlink(name.c_str()), 0);
+		}
+		for (ssize_t i = ARRAY_SIZE(dirs)-1; i >= 0; --i) // reverse order
+		{
+			std::string name(root);
+			name += dirs[i];
+			TS_ASSERT_EQUALS(rmdir(name.c_str()), 0);
+		}
+		TS_ASSERT_EQUALS(rmdir(root), 0);
 #endif // OS_LINUX
 	}
 
@@ -139,24 +190,25 @@ public:
 	class Mock_dladdr : public T::Base_dladdr
 	{
 	public:
-		Mock_dladdr(const char* fname) : fname_(fname) { }
+		Mock_dladdr(const std::string& fname) : fname_(fname) { }
 		int dladdr(void *UNUSED(addr), Dl_info *info) {
-			info->dli_fname = fname_;
+			info->dli_fname = fname_.c_str();
 			return 1;
 		}
 	private:
-		const char* fname_;
+		std::string fname_;
 	};
 
-	class Mock_initial_path : public T::Base_Boost_Filesystem_initial_path
+	class Mock_getcwd : public T::Base_getcwd
 	{
 	public:
-		Mock_initial_path(const char* buf) : buf_(buf) { }
-		fs::path Boost_Filesystem_initial_path() {
-			return fs::path(buf_);
+		Mock_getcwd(const std::string& buf) : buf_(buf) { }
+		char* getcwd(char* buf, size_t size) {
+			strncpy_s(buf, size, buf_.c_str(), buf_.length());
+			return buf;
 		}
 	private:
-		const char* buf_;
+		std::string buf_;
 	};
 #endif
 

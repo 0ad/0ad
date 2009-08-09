@@ -8,8 +8,7 @@
 #endif
 #include "lib/precompiled.h"
 
-#include "mocks/boost_filesystem.h"
-
 #if OS_LINUX
 #include "mocks/dlfcn.h"
+#include "mocks/unistd.h"
 #endif // OS_LINUX
