@@ -124,14 +124,14 @@ size_t tnlen(const tchar* str, size_t max_len)
 // <dst> is set to the empty string and ERANGE returned; otherwise,
 // 0 is returned to indicate success and that <dst> is null-terminated.
 //
-// note: padding with zeroes is not called for by NG1031.
+// note: padding with zeroes is not called for by N1031.
 int tncpy_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_chars)
 {
 	// the MS implementation returns EINVAL and allows dst = 0 if
 	// max_dst_chars = max_src_chars = 0. no mention of this in
 	// 3.6.2.1.1, so don't emulate that behavior.
 	ENFORCE(dst != 0, ERR::INVALID_PARAM, EINVAL);
-	ENFORCE(max_dst_chars != 0, ERR::INVALID_PARAM, ERANGE);
+	ENFORCE(max_dst_chars != 0, ERR::INVALID_PARAM, EINVAL);	// N1031 says ERANGE, MSDN/MSVC says EINVAL
 	*dst = '\0';	// in case src ENFORCE is triggered
 	ENFORCE(src != 0, ERR::INVALID_PARAM, EINVAL);
 
@@ -181,7 +181,7 @@ int tcpy_s(tchar* dst, size_t max_dst_chars, const tchar* src)
 int tncat_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_chars)
 {
 	ENFORCE(dst != 0, ERR::INVALID_PARAM, EINVAL);
-	ENFORCE(max_dst_chars != 0, ERR::INVALID_PARAM, ERANGE);
+	ENFORCE(max_dst_chars != 0, ERR::INVALID_PARAM, EINVAL);	// N1031 says ERANGE, MSDN/MSVC says EINVAL
 	// src is checked in tncpy_s
 
 	// WARN_IF_PTR_LEN not necessary: both max_dst_chars and max_src_chars
@@ -191,7 +191,7 @@ int tncat_s(tchar* dst, size_t max_dst_chars, const tchar* src, size_t max_src_c
 	if(dst_len == max_dst_chars)
 	{
 		*dst = '\0';
-		ENFORCE(0, ERR::STRING_NOT_TERMINATED, ERANGE);
+		ENFORCE(0, ERR::STRING_NOT_TERMINATED, EINVAL);	// N1031/MSDN says ERANGE, MSVC says EINVAL
 	}
 
 	tchar* const end = dst+dst_len;
