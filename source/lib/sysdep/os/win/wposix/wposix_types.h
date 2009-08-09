@@ -70,9 +70,13 @@ typedef intptr_t ssize_t;
 // prevent wxWidgets from (incompatibly) redefining it
 #define HAVE_SSIZE_T
 
-// VC9 defines this as long, which is unacceptable.
+// VC9 defines off_t as long, but we need 64-bit file offsets even in
+// 32-bit builds. to avoid conflicts, we have to define _OFF_T_DEFINED,
+// which promises _off_t has also been defined. since that's used by
+// CRT headers, we have to define it too, but must use the original
+// long type to avoid breaking struct stat et al.
 typedef __int64 off_t;
-typedef off_t _off_t;	// used by wchar.h
+typedef long _off_t;
 #define _OFF_T_DEFINED
 
 
