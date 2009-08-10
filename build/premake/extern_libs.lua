@@ -17,7 +17,9 @@ local function add_extern_lib_paths(extern_lib)
 	-- windows or processing one of those libs.
 	if OS == "windows" or extern_lib == "cxxtest" or extern_lib == "fcollada" or extern_lib == "valgrind" or extern_lib == "spidermonkey" then
 		tinsert(package.includepaths, libraries_dir .. extern_lib .. "/include")
-		tinsert(package.libpaths, libraries_dir .. extern_lib .. "/lib")
+		-- Insert libs at pos=1 (i.e. the front of the list) so they take
+		-- precedence over system libraries
+		tinsert(package.libpaths, 1, libraries_dir .. extern_lib .. "/lib")
 	end
 
 end

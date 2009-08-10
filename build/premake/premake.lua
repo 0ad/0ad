@@ -1026,7 +1026,6 @@ function setup_tests()
 		package.config["Testing"].linkoptions = { "-rdynamic" }
 	
 		tinsert(package.includepaths, source_root .. "pch/test/")
-		tinsert(package.libpaths, "/usr/X11R6/lib")
 	end
 
 	package_setup_pch(
