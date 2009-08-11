@@ -124,7 +124,7 @@ static void al_ReportError(ALenum err, const char* caller, int line)
  * @param line line number of the call site (typically passed via __LINE__)
  * (identifies the exact call site since there may be several per caller)
  */
-static void al_check(const char* caller = "(unknown)", int line = -1)
+static void al_check(const char* caller, int line)
 {
 	ALenum err = alGetError();
 	if(err != AL_NO_ERROR)
@@ -1447,8 +1447,7 @@ static void vsrc_latch(VSrc* vs)
 
 	alSourcefv(vs->al_src, AL_POSITION,         vs->pos);
 	alSourcei (vs->al_src, AL_SOURCE_RELATIVE,  vs->relative);
-	if(vs->relative)
-		alSourcef (vs->al_src, AL_ROLLOFF_FACTOR,  0.0f);
+	alSourcef (vs->al_src, AL_ROLLOFF_FACTOR,   vs->relative? 0.0f : 1.0f);
 	alSourcef (vs->al_src, AL_GAIN,             vs->gain);
 	alSourcef (vs->al_src, AL_PITCH,            vs->pitch);
 	alSourcei (vs->al_src, AL_LOOPING,          vs->loop);
@@ -1527,7 +1526,7 @@ static LibError vsrc_update(VSrc* vs)
 
 	int num_queued;
 	alGetSourcei(vs->al_src, AL_BUFFERS_QUEUED, &num_queued);
-	al_check("vsrc_update alGetSourcei");
+	AL_CHECK;
 
 	const int num_processed = vsrc_deque_finished_bufs(vs);
 	UNUSED2(num_processed);
@@ -1551,7 +1550,7 @@ static LibError vsrc_update(VSrc* vs)
 			return ret;
 
 		alSourceQueueBuffers(vs->al_src, 1, &al_buf);
-		al_check("vsrc_update alSourceQueueBuffers");
+		AL_CHECK;
 
 		// SndData has reported that no further buffers are available.
 		if(ret == INFO::OK)
