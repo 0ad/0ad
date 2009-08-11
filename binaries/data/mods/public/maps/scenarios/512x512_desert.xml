@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario>
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.81445" g="1.81445" b="1.81445"/>
+		<SunElevation angle="0.785398"/>
+		<SunRotation angle="-1.22718"/>
+		<TerrainAmbientColour r="0.301961" g="0.368627" b="0.529412"/>
+		<UnitsAmbientColour r="0.509804" g="0.47451" b="0.411765"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="94.2291" y="81.8061" z="-38.741"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.61"/>
+	</Camera>
+	<Entities>
+		<Entity uid="6">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="56.0469" y="19.9992" z="55.6288"/>
+			<Orientation angle="-0.213213"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="54.3987" y="19.9992" z="63.2416"/>
+			<Orientation angle="1.87274"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="64.0011" y="19.9992" z="54.8272"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="76.7358" y="19.9992" z="62.6151"/>
+			<Orientation angle="2.83751"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="66.8625" y="19.9992" z="55.2474"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="62.5254" y="19.9992" z="58.4262"/>
+			<Orientation angle="0.542735"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="72.4226" y="19.9992" z="60.6455"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="69.8546" y="19.9992" z="60.3765"/>
+			<Orientation angle="0.994456"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="99.9674" y="19.9992" z="28.2616"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="109.541" y="19.9992" z="47.0809"/>
+			<Orientation angle="0.578854"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="112.277" y="19.9992" z="52.0614"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="117.798" y="19.9992" z="49.6251"/>
+			<Orientation angle="1.01996"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="114.52" y="19.9992" z="47.1619"/>
+			<Orientation angle="0.409734"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="112.485" y="19.9992" z="42.5058"/>
+			<Orientation angle="-2.87303"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="111.308" y="19.9992" z="32.9528"/>
+			<Orientation angle="-0.488387"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="113.581" y="19.9992" z="38.7777"/>
+			<Orientation angle="0.618816"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="119.399" y="19.9992" z="47.5081"/>
+			<Orientation angle="-1.97229"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="119.852" y="19.9992" z="50.3465"/>
+			<Orientation angle="-3.00081"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="117.327" y="19.9992" z="37.2904"/>
+			<Orientation angle="-1.68614"/>
+		</Entity>
+	</Entities>
+	<Nonentities/>
+	<Paths/>
+	<Triggers/>
+</Scenario>
