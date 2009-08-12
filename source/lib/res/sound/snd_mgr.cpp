@@ -602,6 +602,8 @@ static LibError al_init()
 	al_src_init();
 	al_listener_latch();
 
+	alDistanceModel(AL_LINEAR_DISTANCE_CLAMPED);
+
 	return INFO::OK;
 }
 
@@ -1443,14 +1445,26 @@ static void vsrc_latch(VSrc* vs)
 		return;
 	debug_assert(alIsSource(vs->al_src));
 
+	float rolloff = 1.0f;
+	float referenceDistance = 125.0f;
+	float maxDistance = 500.0f;
+	if(vs->relative)
+	{
+		rolloff = 0.0f;
+		referenceDistance = 0.0f;
+		maxDistance = 0.0f;
+	}
+
 	AL_CHECK;
 
-	alSourcefv(vs->al_src, AL_POSITION,         vs->pos);
-	alSourcei (vs->al_src, AL_SOURCE_RELATIVE,  vs->relative);
-	alSourcef (vs->al_src, AL_ROLLOFF_FACTOR,   vs->relative? 0.0f : 1.0f);
-	alSourcef (vs->al_src, AL_GAIN,             vs->gain);
-	alSourcef (vs->al_src, AL_PITCH,            vs->pitch);
-	alSourcei (vs->al_src, AL_LOOPING,          vs->loop);
+	alSourcefv(vs->al_src, AL_POSITION,           vs->pos);
+	alSourcei (vs->al_src, AL_SOURCE_RELATIVE,    vs->relative);
+	alSourcef (vs->al_src, AL_ROLLOFF_FACTOR,     rolloff);
+	alSourcef (vs->al_src, AL_REFERENCE_DISTANCE, referenceDistance);
+	alSourcef (vs->al_src, AL_MAX_DISTANCE,       maxDistance);
+	alSourcef (vs->al_src, AL_GAIN,               vs->gain);
+	alSourcef (vs->al_src, AL_PITCH,              vs->pitch);
+	alSourcei (vs->al_src, AL_LOOPING,            vs->loop);
 
 	ALenum err = alGetError();
 	if(err != AL_NO_ERROR)
