@@ -662,7 +662,6 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 						{
 							// Store argument in CParserValue!
 							CParserValue value;
-							size_t i;
 
 							switch(CurNode->m_Type)
 							{
@@ -710,22 +709,7 @@ bool CParserLine::ParseString(const CParser& Parser, const std::string &strLine)
 								++Progress;
 								break;
 							case typeRest:
-								// Extract the whole of the std::string
-								
-								// Reset, probably is but still
-								value.m_String = std::string();
-
-								for (i=Progress; i<Segments.size(); ++i)
-								{
-									value.m_String += Segments[i];
-
-									// If argument starts with => " <=, add one to the end of it too
-									if (Segments[i][0] == '"')
-										value.m_String += "\"";
-								}
-
-								m_Arguments.push_back(value);
-
+								// This is a comment, don't store it.
 								// Now BREAK EVERYTHING !
 								//  We're done, we found our match and let's get out
 								LookNoFurther = true;

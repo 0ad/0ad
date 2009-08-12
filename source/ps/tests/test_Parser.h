@@ -22,7 +22,7 @@
 class TestParser : public CxxTest::TestSuite 
 {
 public:
-	void test1()
+	void test_basic()
 	{
 		CParser Parser;
 		Parser.InputTaskType("test", "_$ident_=_$value_");
@@ -39,7 +39,7 @@ public:
 	}
 
 
-	void test2()
+	void test_optional()
 	{
 		CParser Parser;
 		Parser.InputTaskType("test", "_$value_[$value]_");
@@ -61,7 +61,7 @@ public:
 	}
 
 
-	void test3()
+	void test_multi_optional()
 	{
 		CParser Parser;
 		Parser.InputTaskType("test", "_[$value]_[$value]_[$value]_");
@@ -90,7 +90,7 @@ public:
 	}
 
 
-	void test4()
+	void test_optional_repeat()
 	{
 		CParser Parser;
 		Parser.InputTaskType("test", "<[_a_][_b_]_x_>");
@@ -108,5 +108,19 @@ public:
 		TS_ASSERT(! Line.ParseString(Parser, "a"));
 		TS_ASSERT(! Line.ParseString(Parser, "a a x"));
 		TS_ASSERT(Line.ParseString(Parser, "a x a b x a x b x b x b x b x a x a x a b x a b x b x a x"));
+	}
+
+	void test_rest()
+	{
+		CParser Parser;
+		Parser.InputTaskType("assignment", "_$ident_=_$value[[;]$rest]");
+		std::string str;
+
+		CParserLine Line;
+
+		TS_ASSERT(Line.ParseString(Parser, "12 = 34 ; comment"));
+		TS_ASSERT_EQUALS((int)Line.GetArgCount(), 2);
+		TS_ASSERT(Line.GetArgString(0, str) && str == "12");
+		TS_ASSERT(Line.GetArgString(1, str) && str == "34");
 	}
 };
