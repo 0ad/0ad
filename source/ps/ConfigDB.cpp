@@ -284,7 +284,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 			if (ret != INFO::OK)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %lld", m_ConfigFile[ns].c_str(), ret);
+				LOG(CLogger::Error, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %ld", m_ConfigFile[ns].c_str(), ret);
 				return false;
 			}
 		}

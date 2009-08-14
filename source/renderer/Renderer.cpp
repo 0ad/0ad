@@ -710,7 +710,7 @@ CRenderer::RenderPath CRenderer::GetRenderPathByName(const CStr& name)
 	if (name == "default")
 		return RP_DEFAULT;
 
-	LOG(CLogger::Warning, LOG_CATEGORY, "Unknown render path name '%hs', assuming 'default'", name.c_str());
+	LOG(CLogger::Warning, LOG_CATEGORY, "Unknown render path name '%s', assuming 'default'", name.c_str());
 	return RP_DEFAULT;
 }
 

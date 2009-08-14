@@ -92,7 +92,7 @@ static void AppendAsciiFile(FILE* out, const char* in_filename)
 // for user convenience, bundle all logs into this file:
 void psBundleLogs(FILE* f)
 {
-	fwprintf(f, L"SVN Revision: %s\n\n", svn_revision);
+	fwprintf(f, L"SVN Revision: %ls\n\n", svn_revision);
 
 	fwprintf(f, L"System info:\n\n");
 	fs::path path1(fs::path(psLogDir())/"system_info.txt");

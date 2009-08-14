@@ -89,7 +89,7 @@ bool XMLWriter_File::StoreVFS(const char* filename)
 	LibError ret = g_VFS->CreateFile(filename, data, size);
 	if (ret < 0)
 	{
-		LOG(CLogger::Error, "xml", "Error saving XML data through VFS: %d", ret);
+		LOG(CLogger::Error, "xml", "Error saving XML data through VFS: %ld", ret);
 		return false;
 	}
 	return true;

@@ -1065,7 +1065,7 @@ JSBool GetBuildTimestamp( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsv
 	switch(mode)
 	{
 	case -1:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%s %s (%ws)", __DATE__, __TIME__, svn_revision);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%s %s (%ls)", __DATE__, __TIME__, svn_revision);
 		break;
 	case 0:
 		sprintf_s(buf, ARRAY_SIZE(buf), "%s", __DATE__);
@@ -1074,7 +1074,7 @@ JSBool GetBuildTimestamp( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsv
 		sprintf_s(buf, ARRAY_SIZE(buf), "%s", __TIME__);
 		break;
 	case 2:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%ws", svn_revision);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%ls", svn_revision);
 		break;
 	}
 
@@ -1376,7 +1376,7 @@ JSBool GetTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, js
 		*rval = ToJSVal( g_TriggerManager.m_TriggerMap[name] );
 	else
 	{
-		debug_printf("Invalid trigger name %ws", name.c_str());
+		debug_printf("Invalid trigger name %ls", name.c_str());
 		*rval = JSVAL_NULL;
 	}
 	return JS_TRUE;

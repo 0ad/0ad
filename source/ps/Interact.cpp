@@ -982,7 +982,7 @@ static LibError LoadUnitUIThunk( const VfsPath& pathname, const FileInfo& UNUSED
 	Handle tmp = ogl_tex_load(name.c_str());
 	if (tmp <= 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "Rank Textures", "loadRankTextures failed on \"%s\"", name.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, "loadRankTextures failed on \"%s\"", name.c_str());
 		return INFO::CB_CONTINUE;
 	}
 	name.Remove("art/textures/ui/session/icons/");	//Names are relative to this directory

@@ -60,6 +60,10 @@ private:
 #else
 class SuppressErrors
 {
+public:
+	SuppressErrors()
+	{
+	}
 };
 #endif
 

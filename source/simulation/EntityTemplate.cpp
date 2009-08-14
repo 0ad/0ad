@@ -317,7 +317,7 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 						JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 						if( !fn )
 						{
-							LOG(CLogger::Error, LOG_CATEGORY, "CEntityTemplate::LoadXml: Function does not exist for event %hs in file %s. Load failed.", EventName.c_str(), filename.c_str() );
+							LOG(CLogger::Error, LOG_CATEGORY, "CEntityTemplate::LoadXml: Function does not exist for event %ls in file %s. Load failed.", EventName.c_str(), filename.c_str() );
 							break;
 						}
 						m_EventHandlers[eventID].SetFunction( fn );

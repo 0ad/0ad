@@ -169,8 +169,8 @@ wchar_t *sys_clipboard_get()
 			&len, &bytes_left,
 			&data);
 		if (result != Success)
-			debug_printf("clipboard_get: result: %d type:%d len:%d format:%d bytes_left:%d\n", 
-				result, (int)type, len, format, bytes_left);
+			debug_printf("clipboard_get: result: %d type:%lu len:%lu format:%d bytes_left:%lu\n", 
+				result, type, len, format, bytes_left);
 		if (result == Success && bytes_left > 0)
 		{
 			result = XGetWindowProperty (disp, selOwner, 
@@ -181,7 +181,7 @@ wchar_t *sys_clipboard_get()
 			if (result == Success)
 			{
 				debug_printf("clipboard_get: XGetWindowProperty succeeded, returning data\n");
-				debug_printf("clipboard_get: data was: \"%s\", type was %d, XA_STRING atom is %d\n", data, type, XA_STRING);
+				debug_printf("clipboard_get: data was: \"%s\", type was %lu, XA_STRING atom is %lu\n", data, type, XA_STRING);
 				
 				if (type == XA_STRING) //Latin-1: Just copy into low byte of wchar_t
 				{

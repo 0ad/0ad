@@ -394,7 +394,7 @@ bool CNetHost::Poll( void )
 				// Is this our session?
 				if ( it->pPeer == event.peer )
 				{
-					NET_LOG2( "%x disconnected", event.peer->data );
+					NET_LOG2( "%p disconnected", event.peer->data );
 
 					// Successfully handled?
 					if ( !HandleDisconnect( it->pSession ) ) return false;
@@ -420,7 +420,7 @@ bool CNetHost::Poll( void )
 					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength );
 					if ( !pNewMessage ) return false;
 
-					NET_LOG4( "Message %s of size %u was received from %x", pNewMessage->ToString().c_str(), pNewMessage->GetSerializedLength(), event.peer->data );
+					NET_LOG4( "Message %s of size %u was received from %p", pNewMessage->ToString().c_str(), pNewMessage->GetSerializedLength(), event.peer->data );
 
 					// Successfully handled?
 					if ( !HandleMessageReceive( pNewMessage, it->pSession ) ) {
@@ -526,7 +526,7 @@ bool CNetHost::SendMessage(
 	}
 	else
 	{
-		NET_LOG4( "Message %s of size %u was sent to %x", 
+		NET_LOG4( "Message %s of size %u was sent to %p", 
 			pMessage->ToString().c_str(), pMessage->GetSerializedLength(), pSession->m_Peer->data );
 	}
 

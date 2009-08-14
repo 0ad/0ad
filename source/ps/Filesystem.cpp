@@ -57,7 +57,7 @@ PSRETURN CVFSFile::Load(const VfsPath& filename)
 	LibError ret = g_VFS->LoadFile(filename, m_Buffer, m_BufferSize);
 	if (ret != INFO::OK)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CVFSFile: file %s couldn't be opened (vfs_load: %d)", filename.string().c_str(), ret);
+		LOG(CLogger::Error, LOG_CATEGORY, "CVFSFile: file %s couldn't be opened (vfs_load: %ld)", filename.string().c_str(), ret);
 		return PSRETURN_CVFSFile_LoadFailed;
 	}
 

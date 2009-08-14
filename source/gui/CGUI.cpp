@@ -1108,7 +1108,7 @@ void CGUI::LoadXmlFile(const std::string &Filename)
 	}
 	catch (PSERROR_GUI& e)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "Errors loading GUI file %s (%s)", Filename.c_str(), e.getCode());
+		LOG(CLogger::Error, LOG_CATEGORY, "Errors loading GUI file %s (%d)", Filename.c_str(), e.getCode());
 		return;
 	}
 
@@ -1395,7 +1395,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// Try making the object read the tag.
 			if (!object->HandleAdditionalChildren(child, pFile))
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "(object: %s) Reading unknown children for its type");
+				LOG(CLogger::Error, LOG_CATEGORY, "(object: %s) Reading unknown children for its type", object->GetPresentableName().c_str());
 			}
 		}
 	} 
