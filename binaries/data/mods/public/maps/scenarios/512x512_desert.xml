@@ -6,24 +6,24 @@
 		<SunColour r="1.81445" g="1.81445" b="1.81445"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-1.22718"/>
-		<TerrainAmbientColour r="0.301961" g="0.368627" b="0.529412"/>
-		<UnitsAmbientColour r="0.509804" g="0.47451" b="0.411765"/>
+		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
+		<UnitsAmbientColour r="0.47451" g="0.411765" b="0.32549"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>5</Height>
+				<Height>16.38</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
-				<Tint r="0.27451" g="0.294118" b="0.584314"/>
-				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<Tint r="0.513726" g="0.403922" b="0.286275"/>
+				<ReflectionTint r="0.376471" g="0.341176" b="0.27451"/>
+				<ReflectionTintStrength>0.366211</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="94.2291" y="81.8061" z="-38.741"/>
+		<Position x="172.633" y="106.538" z="48.7709"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.61"/>
 	</Camera>
@@ -141,6 +141,606 @@
 			<Player>0</Player>
 			<Position x="117.327" y="19.9992" z="37.2904"/>
 			<Orientation angle="-1.68614"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="168.344" y="19.9992" z="168.515"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>geology_stone_desert_small</Template>
+			<Player>0</Player>
+			<Position x="140.143" y="19.9992" z="133.382"/>
+			<Orientation angle="-2.19928"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>geology_stone_desert_small</Template>
+			<Player>0</Player>
+			<Position x="131.635" y="19.9992" z="140.563"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>geology_stone_desert_small</Template>
+			<Player>0</Player>
+			<Position x="147.58" y="19.9992" z="125.01"/>
+			<Orientation angle="-1.68608"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>geology_stone_desert_small</Template>
+			<Player>0</Player>
+			<Position x="137.016" y="19.9992" z="122.993"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>geology_stone_desert_small</Template>
+			<Player>0</Player>
+			<Position x="129.563" y="19.9992" z="129.748"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>geology_metal_desert_small</Template>
+			<Player>0</Player>
+			<Position x="216.803" y="19.9992" z="205.654"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>geology_metal_desert_small</Template>
+			<Player>0</Player>
+			<Position x="222.38" y="19.9992" z="195.134"/>
+			<Orientation angle="0.549892"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>geology_metal_desert_small</Template>
+			<Player>0</Player>
+			<Position x="210.792" y="19.9992" z="197.138"/>
+			<Orientation angle="-2.2047"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>geology_metal_desert_small</Template>
+			<Player>0</Player>
+			<Position x="204.658" y="19.9992" z="206.835"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>geology_metal_desert_small</Template>
+			<Player>0</Player>
+			<Position x="214.124" y="19.9992" z="189.595"/>
+			<Orientation angle="-1.65398"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="660.8" y="19.9993" z="417.67"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="264.954" y="19.9994" z="937.43"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="427.771" y="19.9991" z="1611.92"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="1442.82" y="19.9993" z="1548.17"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="1264.59" y="19.9994" z="744.538"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="1555.8" y="19.9993" z="308.825"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>special_settlement</Template>
+			<Player>0</Player>
+			<Position x="866.023" y="19.9993" z="1132.66"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="176.19" y="19.9992" z="100.958"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="183.668" y="19.9992" z="96.0912"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="178.786" y="19.9992" z="94.2935"/>
+			<Orientation angle="-1.78772"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="181.204" y="19.9992" z="101.902"/>
+			<Orientation angle="0.703067"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="187.416" y="19.9992" z="97.7668"/>
+			<Orientation angle="2.60382"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="191.402" y="19.9992" z="93.5323"/>
+			<Orientation angle="0.985057"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="194.664" y="19.9992" z="104.123"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="186.398" y="19.9992" z="108.108"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="189.796" y="19.9992" z="113.86"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="188.191" y="19.9992" z="104.123"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="198.456" y="19.9992" z="115.606"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="191.12" y="19.9992" z="118.539"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="192.797" y="19.9992" z="129.114"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="197.051" y="19.9992" z="136.584"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="193.972" y="19.9992" z="122.865"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="200.703" y="19.9992" z="122.312"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="205.022" y="19.9992" z="122.233"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="208.517" y="19.9992" z="116.312"/>
+			<Orientation angle="0.856443"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="207.403" y="19.9992" z="123.342"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="198.499" y="19.9992" z="127.97"/>
+			<Orientation angle="-0.906378"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="235.219" y="19.9992" z="178.05"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="241.381" y="19.9992" z="178.05"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="231.721" y="19.9992" z="187.64"/>
+			<Orientation angle="1.04106"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="234.339" y="19.9992" z="172.022"/>
+			<Orientation angle="1.14387"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="239.066" y="19.9992" z="189.867"/>
+			<Orientation angle="-1.76682"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="231.139" y="19.9992" z="195.86"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="228.067" y="19.9992" z="208.863"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="231.78" y="19.9992" z="216.079"/>
+			<Orientation angle="1.57081"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="236.259" y="19.9992" z="210.532"/>
+			<Orientation angle="3.07223"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="236.792" y="19.9992" z="201.955"/>
+			<Orientation angle="2.79979"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="236.259" y="19.9992" z="198.582"/>
+			<Orientation angle="1.24023"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="244.079" y="19.9992" z="186.17"/>
+			<Orientation angle="0.956795"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="228.827" y="19.9992" z="178.719"/>
+			<Orientation angle="1.05701"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="238.784" y="19.9992" z="175.228"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="198.513" y="19.9992" z="107.603"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="182.223" y="19.9992" z="112.174"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="202.862" y="19.9992" z="135.588"/>
+			<Orientation angle="-2.12157"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="96.1703" y="19.9992" z="186.401"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="102.927" y="19.9992" z="186.921"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="107.404" y="19.9992" z="186.013"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="109.63" y="19.9992" z="193.024"/>
+			<Orientation angle="-2.94331"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="101.248" y="19.9992" z="183.354"/>
+			<Orientation angle="-1.95112"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="99.4473" y="19.9992" z="195.024"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="102.87" y="19.9992" z="200.869"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="106.897" y="19.9992" z="204.682"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="116.122" y="19.9992" z="202.596"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="120.99" y="19.9992" z="210.047"/>
+			<Orientation angle="1.5708"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="125.059" y="19.9992" z="205.993"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="115">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="117.378" y="19.9992" z="210.047"/>
+			<Orientation angle="3.10242"/>
+		</Entity>
+		<Entity uid="116">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="119.99" y="19.9992" z="200.869"/>
+			<Orientation angle="1.06309"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="110.567" y="19.9992" z="200.405"/>
+			<Orientation angle="2.8979"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="111.389" y="19.9992" z="210.047"/>
+			<Orientation angle="1.13113"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="144.426" y="19.9992" z="205.381"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="120.977" y="19.9992" z="145.877"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="159.969" y="19.9992" z="107.658"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="149.526" y="19.9992" z="105.844"/>
+			<Orientation angle="0.979745"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="172.284" y="19.9992" z="238.709"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="175.531" y="19.9992" z="229.243"/>
+			<Orientation angle="2.43159"/>
+		</Entity>
+		<Entity uid="125">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>0</Player>
+			<Position x="190.675" y="19.9992" z="217.899"/>
+			<Orientation angle="0.739469"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="145.574" y="19.9992" z="115.408"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="156.469" y="19.9992" z="119.298"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="154.221" y="19.9992" z="112.422"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="166.29" y="19.9992" z="216.769"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="121.138" y="19.9992" z="165.583"/>
+			<Orientation angle="-2.33844"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>flora_tree_date_palm</Template>
+			<Player>0</Player>
+			<Position x="132.288" y="19.9992" z="160.908"/>
+			<Orientation angle="0.756653"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="94.7708" y="19.9992" z="178.383"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="99.2738" y="19.8586" z="174.679"/>
+			<Orientation angle="3.06096"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="104.407" y="19.2898" z="174.633"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="107.214" y="18.6175" z="180.693"/>
+			<Orientation angle="-3.11366"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="221.632" y="19.9992" z="176.203"/>
+			<Orientation angle="-3.09541"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="224.819" y="19.9992" z="171.654"/>
+			<Orientation angle="1.18157"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="227.953" y="19.9992" z="170.409"/>
+			<Orientation angle="-2.35641"/>
+		</Entity>
+		<Entity uid="144">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="231.06" y="19.9992" z="167.753"/>
+			<Orientation angle="1.08354"/>
+		</Entity>
+		<Entity uid="145">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="185.297" y="19.9992" z="199.09"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="146">
+			<Template>flora_bush_berry</Template>
+			<Player>0</Player>
+			<Position x="184.986" y="19.9992" z="192.88"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="149">
+			<Template>hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="145.008" y="19.9992" z="155.123"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="151">
+			<Template>hele_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="148.292" y="19.9992" z="153.227"/>
+			<Orientation angle="-2.11017"/>
+		</Entity>
+		<Entity uid="153">
+			<Template>hele_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="144.84" y="19.9992" z="149.012"/>
+			<Orientation angle="0.420229"/>
+		</Entity>
+		<Entity uid="155">
+			<Template>hele_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="153.505" y="19.9992" z="147.289"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="156">
+			<Template>hele_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="150.032" y="19.9992" z="148.721"/>
+			<Orientation angle="-0.765475"/>
+		</Entity>
+		<Entity uid="157">
+			<Template>hele_support_female_citizen</Template>
+			<Player>1</Player>
+			<Position x="142.231" y="19.9992" z="154.379"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="159">
+			<Template>hele_cavalry_swordsman_b</Template>
+			<Player>1</Player>
+			<Position x="157.816" y="19.9992" z="145.043"/>
+			<Orientation angle="-2.33385"/>
 		</Entity>
 	</Entities>
 	<Nonentities/>
