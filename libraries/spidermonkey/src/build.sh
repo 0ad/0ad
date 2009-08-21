@@ -21,6 +21,13 @@ if [ "`uname -s`" = "Darwin" ]; then
 	no_common=-fno-common
 fi
 
+if ! nspr-config --version >/dev/null 2>&1; then
+	echo "nspr-config is missing!" >&2
+	echo "Please install the libnspr library (with development headers)" >&2
+	echo "(on ubuntu, \`sudo aptitude install libnspr4-dev\' should do the trick)" >&2
+	exit 1
+fi
+
 JS_THREADSAFE=1 \
 OTHER_LIBS=`nspr-config --libs` \
 CFLAGS="`nspr-config --cflags` $no_common" \
