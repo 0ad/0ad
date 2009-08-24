@@ -50,7 +50,7 @@ class UnalignedWriter
 {
 	NONCOPYABLE(UnalignedWriter);
 public:
-	UnalignedWriter(const PIFile& file, off_t ofs);
+	UnalignedWriter(const PFile& file, off_t ofs);
 	~UnalignedWriter();
 
 	/**
@@ -67,7 +67,7 @@ public:
 private:
 	LibError WriteBlock() const;
 
-	PIFile m_file;
+	PFile m_file;
 	shared_ptr<u8> m_alignedBuf;
 	mutable off_t m_alignedOfs;
 	mutable size_t m_bytesUsed;

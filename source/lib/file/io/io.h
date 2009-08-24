@@ -40,11 +40,11 @@ LIB_API shared_ptr<u8> io_Allocate(size_t size, off_t ofs = 0);
  **/
 typedef LibError (*IoCallback)(uintptr_t cbData, const u8* block, size_t blockSize);
 
-LIB_API LibError io_Scan(const PIFile& file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData);
+LIB_API LibError io_Scan(const PFile& file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData);
 
-LIB_API LibError io_Read(const PIFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*& data);
+LIB_API LibError io_Read(const PFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*& data);
 
-LIB_API LibError io_WriteAligned(const PIFile& file, off_t alignedOfs, const u8* alignedData, off_t size);
-LIB_API LibError io_ReadAligned(const PIFile& file, off_t alignedOfs, u8* alignedBuf, off_t size);
+LIB_API LibError io_WriteAligned(const PFile& file, off_t alignedOfs, const u8* alignedData, off_t size);
+LIB_API LibError io_ReadAligned(const PFile& file, off_t alignedOfs, u8* alignedBuf, off_t size);
 
 #endif	// #ifndef INCLUDED_IO

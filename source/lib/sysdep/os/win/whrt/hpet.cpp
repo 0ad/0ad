@@ -52,10 +52,10 @@ public:
 		// retrieve capabilities and ID
 		{
 			const u64 caps_and_id = Read64(CAPS_AND_ID);
-			const u8 revision = bits(caps_and_id, 0, 7);
+			const u8 revision = (u8)bits(caps_and_id, 0, 7);
 			debug_assert(revision != 0);	// "the value must NOT be 00h"
 			m_counterBits = (caps_and_id & Bit<u64>(13))? 64 : 32;
-			const u16 vendorID = bits(caps_and_id, 16, 31);
+			const u16 vendorID = (u16)bits(caps_and_id, 16, 31);
 			const u32 period_fs = (u32)bits(caps_and_id, 32, 63);
 			debug_assert(period_fs != 0);	// "a value of 0 in this field is not permitted"
 			debug_assert(period_fs <= 0x05F5E100);	// 100 ns (min freq is 10 MHz)

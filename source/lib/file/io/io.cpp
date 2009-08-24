@@ -121,9 +121,8 @@ shared_ptr<u8> io_Allocate(size_t size, off_t ofs)
 class BlockIo
 {
 public:
-	LibError Issue(const PIFile& file, off_t alignedOfs, u8* alignedBuf)
+	LibError Issue(const PFile& file, off_t alignedOfs, u8* alignedBuf)
 	{
-		m_file = file;
 		m_blockId = BlockId(file->Pathname(), alignedOfs);
 		if(file->Mode() == 'r')
 		{
@@ -166,7 +165,7 @@ public:
 			m_alignedBuf = const_cast<u8*>(m_tempBlock.get());
 		}
 
-		return file->Issue(m_req, alignedOfs, m_alignedBuf, BLOCK_SIZE);
+		return file->Issue(m_req, file->Mode(), alignedOfs, m_alignedBuf, BLOCK_SIZE);
 	}
 
 	LibError WaitUntilComplete(const u8*& block, size_t& blockSize)
@@ -178,7 +177,7 @@ public:
 			return INFO::OK;
 		}
 
-		RETURN_ERR(m_file->WaitUntilComplete(m_req, const_cast<u8*&>(block), blockSize));
+		RETURN_ERR(FileImpl::WaitUntilComplete(m_req, const_cast<u8*&>(block), blockSize));
 
 		if(m_tempBlock)
 			s_blockCache.Add(m_blockId, m_tempBlock);
@@ -188,8 +187,6 @@ public:
 
 private:
 	static BlockCache s_blockCache;
-
-	PIFile m_file;
 
 	BlockId m_blockId;
 
@@ -223,7 +220,7 @@ public:
 		m_misalignment = size_t(ofs - m_alignedOfs);
 	}
 
-	LibError Run(const PIFile& file, IoCallback cb = 0, uintptr_t cbData = 0)
+	LibError Run(const PFile& file, IoCallback cb = 0, uintptr_t cbData = 0)
 	{
 		ScopedIoMonitor monitor;
 
@@ -302,7 +299,7 @@ private:
 };
 
 
-LibError io_Scan(const PIFile& file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData)
+LibError io_Scan(const PFile& file, off_t ofs, off_t size, IoCallback cb, uintptr_t cbData)
 {
 	u8* alignedBuf = 0;	// use temporary block buffers
 	IoSplitter splitter(ofs, alignedBuf, size);
@@ -310,7 +307,7 @@ LibError io_Scan(const PIFile& file, off_t ofs, off_t size, IoCallback cb, uintp
 }
 
 
-LibError io_Read(const PIFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*& data)
+LibError io_Read(const PFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*& data)
 {
 	IoSplitter splitter(ofs, alignedBuf, size);
 	RETURN_ERR(splitter.Run(file));
@@ -319,7 +316,7 @@ LibError io_Read(const PIFile& file, off_t ofs, u8* alignedBuf, off_t size, u8*&
 }
 
 
-LibError io_WriteAligned(const PIFile& file, off_t alignedOfs, const u8* alignedData, off_t size)
+LibError io_WriteAligned(const PFile& file, off_t alignedOfs, const u8* alignedData, off_t size)
 {
 	debug_assert(IsAligned_Offset(alignedOfs));
 	debug_assert(IsAligned_Data(alignedData));
@@ -329,7 +326,7 @@ LibError io_WriteAligned(const PIFile& file, off_t alignedOfs, const u8* aligned
 }
 
 
-LibError io_ReadAligned(const PIFile& file, off_t alignedOfs, u8* alignedBuf, off_t size)
+LibError io_ReadAligned(const PFile& file, off_t alignedOfs, u8* alignedBuf, off_t size)
 {
 	debug_assert(IsAligned_Offset(alignedOfs));
 	debug_assert(IsAligned_Data(alignedBuf));

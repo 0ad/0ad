@@ -19,10 +19,10 @@
  * detection of CPU and cache topology
  */
 
-#include <set>
-
 #include "precompiled.h"
 #include "topology.h"
+
+#include <set>
 
 #include "lib/bits.h"
 #include "lib/sysdep/cpu.h"	// ERR::CPU_FEATURE_MISSING

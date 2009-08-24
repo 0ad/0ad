@@ -95,8 +95,8 @@ template<typename T>
 inline T bits(T num, size_t lo_idx, size_t hi_idx)
 {
 	const size_t count = (hi_idx - lo_idx)+1;	// # bits to return
-	T result = num >> T(lo_idx);
-	result &= bit_mask<T>(count);
+	T result = T(num >> lo_idx);
+	result = T(result & bit_mask<T>(count));
 	return result;
 }
 

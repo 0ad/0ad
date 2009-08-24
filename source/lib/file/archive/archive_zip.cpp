@@ -239,7 +239,7 @@ cassert(sizeof(ECDR) == 22);
 class ArchiveFile_Zip : public IArchiveFile
 {
 public:
-	ArchiveFile_Zip(const PIFile& file, off_t ofs, off_t csize, u32 checksum, ZipMethod method)
+	ArchiveFile_Zip(const PFile& file, off_t ofs, off_t csize, u32 checksum, ZipMethod method)
 		: m_file(file), m_ofs(ofs)
 		, m_csize(csize), m_checksum(checksum), m_method((u16)method)
 		, m_flags(NeedsFixup)
@@ -350,7 +350,7 @@ private:
 			m_ofs += (off_t)lfh.Size();
 	}
 
-	PIFile m_file;
+	PFile m_file;
 
 	// all relevant LFH/CDFH fields not covered by FileInfo
 	mutable off_t m_ofs;
@@ -369,10 +369,8 @@ class ArchiveReader_Zip : public IArchiveReader
 {
 public:
 	ArchiveReader_Zip(const fs::path& pathname)
-		: m_file(CreateFile_Posix())
+		: m_file(new File(pathname, 'r'))
 	{
-		m_file->Open(pathname, 'r');
-		
 		FileInfo fileInfo;
 		GetFileInfo(pathname, &fileInfo);
 		m_fileSize = fileInfo.Size();
@@ -448,7 +446,7 @@ private:
 	// search for ECDR in the last <maxScanSize> bytes of the file.
 	// if found, fill <dst_ecdr> with a copy of the (little-endian) ECDR and
 	// return INFO::OK, otherwise IO error or ERR::CORRUPTED.
-	static LibError ScanForEcdr(const PIFile& file, off_t fileSize, u8* buf, size_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, size_t& cd_size)
+	static LibError ScanForEcdr(const PFile& file, off_t fileSize, u8* buf, size_t maxScanSize, size_t& cd_numEntries, off_t& cd_ofs, size_t& cd_size)
 	{
 		// don't scan more than the entire file
 		const size_t scanSize = std::min(maxScanSize, size_t(fileSize));
@@ -467,7 +465,7 @@ private:
 		return INFO::OK;
 	}
 
-	static LibError LocateCentralDirectory(const PIFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
+	static LibError LocateCentralDirectory(const PFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
 	{
 		const size_t maxScanSize = 66000u;	// see below
 		shared_ptr<u8> buf = io_Allocate(maxScanSize, BLOCK_SIZE-1);	// assume worst-case for alignment
@@ -498,7 +496,7 @@ private:
 			WARN_RETURN(ERR::ARCHIVE_UNKNOWN_FORMAT);
 	}
 
-	PIFile m_file;
+	PFile m_file;
 	off_t m_fileSize;
 };
 
@@ -516,11 +514,10 @@ class ArchiveWriter_Zip : public IArchiveWriter
 {
 public:
 	ArchiveWriter_Zip(const fs::path& archivePathname)
-		: m_file(CreateFile_Posix()), m_fileSize(0)
+		: m_file(new File(archivePathname, 'w')), m_fileSize(0)
 		, m_unalignedWriter(new UnalignedWriter(m_file, 0))
 		, m_numEntries(0)
 	{
-		THROW_ERR(m_file->Open(archivePathname, 'w'));
 		THROW_ERR(pool_create(&m_cdfhPool, 10*MiB, 0));
 	}
 
@@ -564,7 +561,7 @@ public:
 		if(!usize)
 			return INFO::SKIPPED;
 
-		PIFile file = CreateFile_Posix();
+		PFile file(new File);
 		RETURN_ERR(file->Open(pathname, 'r'));
 
 		const size_t pathnameLength = pathname.string().length();
@@ -647,7 +644,7 @@ private:
 		return false;
 	}
 
-	PIFile m_file;
+	PFile m_file;
 	off_t m_fileSize;
 	PUnalignedWriter m_unalignedWriter;
 

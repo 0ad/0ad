@@ -28,9 +28,12 @@
 // (use VC8's stat because it defines helpful inline macros)
 #include <sys/stat.h>
 
-// defined by MinGW but not VC
 #if MSC_VERSION
+// defined by MinGW but not VC
 typedef unsigned int mode_t;
+
+// we need 64-bit st_size and time_t currently defaults to 64-bit
+#define stat _stat64
 #endif
 
 // (christmas-tree values because mkdir mode is ignored anyway)

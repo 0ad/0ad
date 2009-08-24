@@ -43,7 +43,7 @@ RealDirectory::RealDirectory(const fs::path& path, size_t priority, size_t flags
 
 /*virtual*/ LibError RealDirectory::Load(const std::string& name, const shared_ptr<u8>& buf, size_t size) const
 {
-	PIFile file = CreateFile_Posix();
+	PFile file(new File);
 	RETURN_ERR(file->Open(m_path/name, 'r'));
 
 	RETURN_ERR(io_ReadAligned(file, 0, buf.get(), size));
@@ -56,7 +56,7 @@ LibError RealDirectory::Store(const std::string& name, const shared_ptr<u8>& fil
 	const fs::path pathname(m_path/name);
 
 	{
-		PIFile file = CreateFile_Posix();
+		PFile file(new File);
 		RETURN_ERR(file->Open(pathname, 'w'));
 		RETURN_ERR(io_WriteAligned(file, 0, fileContents.get(), size));
 	}

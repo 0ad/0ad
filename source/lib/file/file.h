@@ -28,24 +28,94 @@ namespace ERR
 	const LibError IO          = -110301;
 }
 
-struct IFile
+LIB_API fs::path path_from_wpath(const fs::wpath& pathname);
+
+namespace FileImpl
 {
-	virtual LibError Open(const fs::path& pathname, char mode) = 0;
-	virtual LibError Open(const fs::wpath& pathname, char mode) = 0;
-	virtual void Close() = 0;
+	LIB_API LibError Open(const fs::path& pathname, char mode, int& fd);
+	LIB_API void Close(int& fd);
+	LIB_API LibError IO(int fd, char mode, off_t ofs, u8* buf, size_t size);
+	LIB_API LibError Issue(aiocb& req, int fd, char mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize);
+	LIB_API LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize);
+}
 
-	virtual const fs::path& Pathname() const = 0;
-	virtual char Mode() const = 0;
 
-	virtual LibError Issue(aiocb& req, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const = 0;
-	virtual LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize) = 0;
+class File
+{
+	NONCOPYABLE(File);
+public:
+	File()
+		: m_pathname(), m_fd(0)
+	{
+	}
 
-	virtual LibError Read(off_t ofs, u8* buf, size_t size) const = 0;
-	virtual LibError Write(off_t ofs, const u8* buf, size_t size) const = 0;
+	LibError Open(const fs::path& pathname, char mode)
+	{
+		RETURN_ERR(FileImpl::Open(pathname, mode, m_fd));
+		m_pathname = pathname;
+		m_mode = mode;
+		return INFO::OK;
+	}
+
+	LibError Open(const fs::wpath& pathname, char mode)
+	{
+		m_pathname = path_from_wpath(pathname);
+		RETURN_ERR(FileImpl::Open(m_pathname, mode, m_fd));
+		m_mode = mode;
+		return INFO::OK;
+	}
+
+	void Close()
+	{
+		FileImpl::Close(m_fd);
+	}
+
+	File(const fs::path& pathname, char mode)
+	{
+		(void)Open(pathname, mode);
+	}
+
+	File(const fs::wpath& pathname, char mode)
+	{
+		(void)Open(pathname, mode);
+	}
+
+	~File()
+	{
+		Close();
+	}
+
+	const fs::path& Pathname() const
+	{
+		return m_pathname;
+	}
+
+	char Mode() const
+	{
+		return m_mode;
+	}
+
+	LibError Issue(aiocb& req, char mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const
+	{
+		return FileImpl::Issue(req, m_fd, mode, alignedOfs, alignedBuf, alignedSize);
+	}
+
+	LibError Write(off_t ofs, const u8* buf, size_t size)
+	{
+		return FileImpl::IO(m_fd, 'w', ofs, const_cast<u8*>(buf), size);
+	}
+
+	LibError Read(off_t ofs, u8* buf, size_t size) const
+	{
+		return FileImpl::IO(m_fd, 'r', ofs, buf, size);
+	}
+
+private:
+	fs::path m_pathname;
+	int m_fd;
+	char m_mode;
 };
 
-typedef shared_ptr<IFile> PIFile;
-
-LIB_API PIFile CreateFile_Posix();
+typedef shared_ptr<File> PFile;
 
 #endif	// #ifndef INCLUDED_FILE

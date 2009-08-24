@@ -51,6 +51,8 @@ enum VfsMountFlags
 
 struct IVFS
 {
+	virtual ~IVFS() {}
+
 	/**
 	 * mount a directory into the VFS.
 	 *
