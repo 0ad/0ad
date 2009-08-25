@@ -4,10 +4,10 @@
 	<Environment>
 		<SkySet>default</SkySet>
 		<SunColour r="1.81445" g="1.81445" b="1.81445"/>
-		<SunElevation angle="0.785398"/>
-		<SunRotation angle="-1.22718"/>
+		<SunElevation angle="0.984816"/>
+		<SunRotation angle="0.478602"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
-		<UnitsAmbientColour r="0.47451" g="0.411765" b="0.32549"/>
+		<UnitsAmbientColour r="0.47451" g="0.411765" b="0.321569"/>
 		<Water>
 			<WaterBody>
 				<Type>default</Type>
@@ -17,13 +17,13 @@
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
 				<Tint r="0.513726" g="0.403922" b="0.286275"/>
-				<ReflectionTint r="0.376471" g="0.341176" b="0.27451"/>
+				<ReflectionTint r="0.376471" g="0.337255" b="0.27451"/>
 				<ReflectionTintStrength>0.366211</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="172.633" y="106.538" z="48.7709"/>
+		<Position x="165.633" y="107.522" z="40.9564"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.61"/>
 	</Camera>
@@ -170,7 +170,7 @@
 			<Template>geology_stone_desert_small</Template>
 			<Player>0</Player>
 			<Position x="137.016" y="19.9992" z="122.993"/>
-			<Orientation angle="2.35619"/>
+			<Orientation angle="-2.31344"/>
 		</Entity>
 		<Entity uid="44">
 			<Template>geology_stone_desert_small</Template>
@@ -193,7 +193,7 @@
 		<Entity uid="48">
 			<Template>geology_metal_desert_small</Template>
 			<Player>0</Player>
-			<Position x="210.792" y="19.9992" z="197.138"/>
+			<Position x="209.031" y="19.9992" z="195.736"/>
 			<Orientation angle="-2.2047"/>
 		</Entity>
 		<Entity uid="49">
@@ -205,7 +205,7 @@
 		<Entity uid="50">
 			<Template>geology_metal_desert_small</Template>
 			<Player>0</Player>
-			<Position x="214.124" y="19.9992" z="189.595"/>
+			<Position x="214.098" y="19.9992" z="186.777"/>
 			<Orientation angle="-1.65398"/>
 		</Entity>
 		<Entity uid="54">
