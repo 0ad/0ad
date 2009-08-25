@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="underbrush_01">
+      <mesh>gaia/underbrush_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="underbrush_02">
+      <mesh>gaia/underbrush_02.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="foliage-a">
+      <texture>gaia/poplar_c.dds</texture>
+    </variant>
+    <variant frequency="3" name="foliage-b">
+      <texture>gaia/tree_euro_beech_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="foliage-c">
+      <texture>gaia/tree_euro_beech_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="foliage-d">
+      <texture>gaia/tree_euro_beech_c.dds</texture>
+    </variant>
+    <variant frequency="1" name="foliage-e">
+      <texture>gaia/tree_oak_a.dds</texture>
+    </variant>
+    <variant frequency="1" name="foliage-f">
+      <texture>gaia/tree_oak_b.dds</texture>
+    </variant>
+    <variant frequency="1" name="foliage-g">
+      <texture>gaia/tree_oak_c.dds</texture>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
