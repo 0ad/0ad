@@ -5,7 +5,7 @@
 		<SkySet>sunny</SkySet>
 		<SunColour r="1.88086" g="1.88086" b="1.88086"/>
 		<SunElevation angle="1.03697"/>
-		<SunRotation angle="-0.582913"/>
+		<SunRotation angle="-0.208621"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
 		<UnitsAmbientColour r="0.411765" g="0.411765" b="0.411765"/>
 		<Water>
@@ -23,9 +23,9 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="82.2806" y="115.095" z="-18.6089"/>
-		<Rotation angle="-0.00540325"/>
-		<Declination angle="0.733563"/>
+		<Position x="78.9366" y="133.313" z="-38.4668"/>
+		<Rotation angle="0.032692"/>
+		<Declination angle="0.725149"/>
 	</Camera>
 	<Entities>
 		<Entity uid="1">
@@ -4184,7 +4184,37 @@
 			<Template>fauna_elephant_african_bush</Template>
 			<Player>0</Player>
 			<Position x="72.9123" y="22.3168" z="121.473"/>
-			<Orientation angle="-3.08378"/>
+			<Orientation angle="-0.919378"/>
+		</Entity>
+		<Entity uid="6696">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>1</Player>
+			<Position x="80.9796" y="23.5891" z="238.044"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6697">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>1</Player>
+			<Position x="80.7392" y="22.7307" z="266.591"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6698">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>1</Player>
+			<Position x="113.605" y="22.723" z="297.616"/>
+			<Orientation angle="2.35619"/>
+		</Entity>
+		<Entity uid="6699">
+			<Template>flora_tree_senegal_date_palm</Template>
+			<Player>1</Player>
+			<Position x="116.296" y="22.4" z="208.738"/>
+			<Orientation angle="-1.04813"/>
+		</Entity>
+		<Entity uid="6701">
+			<Template>flora_tree_date_palm</Template>
+			<Player>1</Player>
+			<Position x="81.0603" y="22.4367" z="231.239"/>
+			<Orientation angle="2.35619"/>
 		</Entity>
 	</Entities>
 	<Nonentities>
@@ -4415,7 +4445,7 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
-			<Position x="406.556" y="28.4369" z="290.074"/>
+			<Position x="400.342" y="25.9236" z="282.344"/>
 			<Orientation angle="2.53952"/>
 		</Nonentity>
 		<Nonentity>
