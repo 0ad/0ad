@@ -19,10 +19,10 @@ for(var i=0; i<players.length; i++)
 		p.resources.stone = 500;
 		break;
 	default:
-		p.resources.food = 200;
-		p.resources.wood = 200;
-		p.resources.metal = 100;
-		p.resources.stone = 100;
+		p.resources.food = 1000;
+		p.resources.wood = 1000;
+		p.resources.metal = 500;
+		p.resources.stone = 500;
 		break;
 	}
 	
