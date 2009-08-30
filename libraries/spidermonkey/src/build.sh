@@ -29,8 +29,8 @@ if ! nspr-config --version >/dev/null 2>&1; then
 fi
 
 JS_THREADSAFE=1 \
-OTHER_LIBS=`nspr-config --libs` \
-CFLAGS="`nspr-config --cflags` $no_common" \
+OTHER_LIBS=$(nspr-config --libs) \
+CFLAGS="${CFLAGS} $(nspr-config --cflags) $no_common" \
 JS_DIST="$dist" \
 JS_LIBDIR=$lib \
 make -C js/src -f Makefile.ref all export &&
