@@ -2,7 +2,7 @@
 
 <Scenario>
 	<Environment>
-		<SkySet>sunny</SkySet>
+		<SkySet>cirrus</SkySet>
 		<SunColour r="1.88086" g="1.88086" b="1.88086"/>
 		<SunElevation angle="1.03697"/>
 		<SunRotation angle="-0.208621"/>
@@ -15,15 +15,15 @@
 				<Height>22.155</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.355469</Murkiness>
+				<Murkiness>0.199219</Murkiness>
 				<Tint r="0.603922" g="0.556863" b="0.392157"/>
 				<ReflectionTint r="0.603922" g="0.556863" b="0.392157"/>
-				<ReflectionTintStrength>0.338867</ReflectionTintStrength>
+				<ReflectionTintStrength>0.44043</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="78.9366" y="133.313" z="-38.4668"/>
+		<Position x="73.0596" y="131.798" z="-40.9187"/>
 		<Rotation angle="0.032692"/>
 		<Declination angle="0.725149"/>
 	</Camera>
@@ -218,7 +218,7 @@
 			<Template>flora_tree_date_palm</Template>
 			<Player>0</Player>
 			<Position x="63.9727" y="22.2781" z="166.209"/>
-			<Orientation angle="1.35923"/>
+			<Orientation angle="1.93093"/>
 		</Entity>
 		<Entity uid="36">
 			<Template>flora_tree_date_palm</Template>
@@ -4216,6 +4216,54 @@
 			<Position x="81.0603" y="22.4367" z="231.239"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
+		<Entity uid="7338">
+			<Template>fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="77.5417" y="23.0782" z="262.239"/>
+			<Orientation angle="0.867164"/>
+		</Entity>
+		<Entity uid="7339">
+			<Template>fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="72.8263" y="22.9095" z="256.205"/>
+			<Orientation angle="-1.32987"/>
+		</Entity>
+		<Entity uid="7340">
+			<Template>fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="70.7835" y="22.4" z="263.115"/>
+			<Orientation angle="-1.93567"/>
+		</Entity>
+		<Entity uid="7341">
+			<Template>fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="77.3961" y="24.0328" z="255.041"/>
+			<Orientation angle="-2.76855"/>
+		</Entity>
+		<Entity uid="7342">
+			<Template>fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="463.559" y="22.4" z="285.29"/>
+			<Orientation angle="1.60349"/>
+		</Entity>
+		<Entity uid="7343">
+			<Template>fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="455.828" y="22.4" z="283.946"/>
+			<Orientation angle="0.896622"/>
+		</Entity>
+		<Entity uid="7344">
+			<Template>fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="451.089" y="22.4" z="277.739"/>
+			<Orientation angle="-1.52426"/>
+		</Entity>
+		<Entity uid="7345">
+			<Template>fauna_zebra</Template>
+			<Player>0</Player>
+			<Position x="450.315" y="22.4" z="288.865"/>
+			<Orientation angle="0.0643105"/>
+		</Entity>
 	</Entities>
 	<Nonentities>
 		<Nonentity>
@@ -5036,7 +5084,7 @@
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
 			<Position x="60.7926" y="21.98" z="163.567"/>
-			<Orientation angle="2.17012"/>
+			<Orientation angle="-1.6942"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_a.xml</Actor>
