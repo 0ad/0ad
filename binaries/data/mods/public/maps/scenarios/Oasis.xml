@@ -3,7 +3,7 @@
 <Scenario>
 	<Environment>
 		<SkySet>cirrus</SkySet>
-		<SunColour r="1.88086" g="1.88086" b="1.88086"/>
+		<SunColour r="2.01758" g="2.01758" b="2.01758"/>
 		<SunElevation angle="1.03697"/>
 		<SunRotation angle="-0.208621"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
@@ -15,15 +15,15 @@
 				<Height>22.155</Height>
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
-				<Murkiness>0.199219</Murkiness>
-				<Tint r="0.603922" g="0.556863" b="0.392157"/>
+				<Murkiness>0.695313</Murkiness>
+				<Tint r="0.313726" g="0.376471" b="0.521569"/>
 				<ReflectionTint r="0.603922" g="0.556863" b="0.392157"/>
-				<ReflectionTintStrength>0.44043</ReflectionTintStrength>
+				<ReflectionTintStrength>0.452148</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="73.0596" y="131.798" z="-40.9187"/>
+		<Position x="75.5698" y="129.275" z="-33.5436"/>
 		<Rotation angle="0.032692"/>
 		<Declination angle="0.725149"/>
 	</Camera>
@@ -3529,13 +3529,13 @@
 		<Entity uid="1379">
 			<Template>flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="570.056" y="22.4" z="14.0762"/>
+			<Position x="552.347" y="22.4" z="72.9617"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="1380">
 			<Template>flora_tree_senegal_date_palm</Template>
 			<Player>0</Player>
-			<Position x="368.007" y="22.4" z="42.8539"/>
+			<Position x="389.568" y="22.4" z="59.2566"/>
 			<Orientation angle="0.039093"/>
 		</Entity>
 		<Entity uid="1381">
@@ -3643,14 +3643,14 @@
 		<Entity uid="2695">
 			<Template>geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="167.435" y="22.4" z="37.4152"/>
-			<Orientation angle="-0.596502"/>
+			<Position x="164.854" y="22.4" z="38.2156"/>
+			<Orientation angle="-1.80876"/>
 		</Entity>
 		<Entity uid="2696">
 			<Template>geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="178.207" y="22.4" z="37.2382"/>
-			<Orientation angle="-0.765936"/>
+			<Position x="175.198" y="22.4" z="38.5883"/>
+			<Orientation angle="-0.817823"/>
 		</Entity>
 		<Entity uid="2698">
 			<Template>geology_stone_desert_small</Template>
@@ -3697,13 +3697,13 @@
 		<Entity uid="2708">
 			<Template>geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="272.369" y="22.421" z="416.59"/>
+			<Position x="270.807" y="22.4" z="415.65"/>
 			<Orientation angle="-2.71652"/>
 		</Entity>
 		<Entity uid="2709">
 			<Template>geology_stone_desert_small</Template>
 			<Player>0</Player>
-			<Position x="279.957" y="22.4" z="412.288"/>
+			<Position x="279.939" y="22.4" z="408.839"/>
 			<Orientation angle="0.614727"/>
 		</Entity>
 		<Entity uid="2711">
@@ -6983,18 +6983,18 @@
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
-			<Position x="205.377" y="22.4" z="440.205"/>
+			<Position x="230.163" y="22.4" z="470.016"/>
 			<Orientation angle="1.34958"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
-			<Position x="234.747" y="22.4" z="443.306"/>
-			<Orientation angle="3.09781"/>
+			<Position x="228.242" y="22.4" z="466.258"/>
+			<Orientation angle="-0.156634"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
-			<Position x="236.92" y="22.4" z="435.992"/>
-			<Orientation angle="2.43683"/>
+			<Position x="223.056" y="22.4" z="464.727"/>
+			<Orientation angle="-1.9259"/>
 		</Nonentity>
 		<Nonentity>
 			<Actor>props/flora/bush_desert_dry_a.xml</Actor>
