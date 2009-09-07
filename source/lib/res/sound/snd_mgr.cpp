@@ -1473,6 +1473,9 @@ static void vsrc_latch(VSrc* vs)
 		debug_printf("  al_src: %d\n", vs->al_src);
 		debug_printf("  pos: %f %f %f\n", vs->pos[0], vs->pos[1], vs->pos[2]);
 		debug_printf("  relative: %d\n", (int)vs->relative);
+		debug_printf("  rolloff: %f\n", rolloff);
+		debug_printf("  ref dist: %f\n", referenceDistance);
+		debug_printf("  max dist: %f\n", maxDistance);
 		debug_printf("  gain: %f\n", vs->gain);
 		debug_printf("  pitch: %f\n", vs->pitch);
 		debug_printf("  loop: %d\n", (int)vs->loop);
