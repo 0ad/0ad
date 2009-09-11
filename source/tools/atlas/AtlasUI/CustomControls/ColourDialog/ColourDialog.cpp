@@ -29,7 +29,7 @@ ColourDialog::ColourDialog(wxWindow* parent, const wxString& customColourConfigP
 
 	// Load custom colours from the config database
 
-	wxRegEx re (_T("(\\d+) (\\d+) (\\d+)"), wxRE_ADVANCED);
+	wxRegEx re (_T("([0-9]+) ([0-9]+) ([0-9]+)"), wxRE_EXTENDED);
 
 	wxConfigBase* cfg = wxConfigBase::Get(false);
 	if (cfg)

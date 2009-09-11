@@ -242,7 +242,7 @@ ActorViewer::ActorViewer(wxWindow* parent, ScriptInterface& scriptInterface)
 
 	std::map<std::wstring, wxTreeItemId> treeEntries;
 
-	wxRegEx stripDirs (_T("^([^/]+)/"), wxRE_ADVANCED); // the non-empty string up to the first slash
+	wxRegEx stripDirs (_T("^([^/]+)/"), wxRE_EXTENDED); // the non-empty string up to the first slash
 
 	for (std::vector<sObjectsListItem>::iterator it = objects.begin(); it != objects.end(); ++it)
 	{
