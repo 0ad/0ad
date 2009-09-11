@@ -20,14 +20,21 @@ if OS == "windows" then
 	end
 else
 	arch = os.getenv("HOSTTYPE")
-	if not arch then
-		os.execute("uname -m > .hosttype.tmp")
-		local f = io.open(".hosttype.tmp","r")
-		arch = f:read("*line")
-		f:close()
-	end
 	if arch == "x86_64" then
 		arch = "amd64"
+	end
+	if not arch then
+		os.execute("gcc -dumpmachine > .gccmachine.tmp")
+		local f = io.open(".gccmachine.tmp", "r")
+		local machine = f:read("*line")
+		f:close()
+		if string.find(machine, "x86_64") == 1 then
+			arch = "amd64"
+		elseif string.find(machine, "i.86") == 1 then
+			arch = "x86"
+		else
+			print("WARNING: Cannot determine architecture from GCC, assuming x86")
+		end
 	end
 end
 
@@ -61,8 +68,9 @@ else
 	-- you have a better idea)
 	if not options["icc"] then
 		os.execute("gcc -dumpversion > .gccver.tmp")
-		f = io.open(".gccver.tmp")
+		local f = io.open(".gccver.tmp", "r")
 		major, dot, minor = f:read(1, 1, 1)
+		f:close()
 		major = 0+major -- coerce to number
 		minor = 0+minor
 		has_broken_pch = (major < 4 or (major == 4 and minor < 2))
