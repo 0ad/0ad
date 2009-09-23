@@ -310,11 +310,11 @@ template <typename T>
 PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value)
 {
 	if (pObject == NULL)
-		return PS_OBJECT_FAIL;
+		throw PSERROR_GUI_NullObjectProvided();
 
 	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
 	if (it == pObject->m_Settings.end())
-		return PS_SETTING_FAIL;
+		throw PSERROR_GUI_InvalidSetting();
 
 	if (it->second.m_pSetting == NULL)
 		return PS_FAIL;
@@ -344,10 +344,10 @@ PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 							 const T &Value, const bool& SkipMessage)
 {
 	if (pObject == NULL)
-		return PS_OBJECT_FAIL;
+		throw PSERROR_GUI_NullObjectProvided();
 
 	if (!pObject->SettingExists(Setting))
-		return PS_SETTING_FAIL;
+		throw PSERROR_GUI_InvalidSetting();
 
 #ifndef NDEBUG
 	CheckType<T>(pObject, Setting);

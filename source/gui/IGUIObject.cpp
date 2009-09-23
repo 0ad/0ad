@@ -147,11 +147,11 @@ void IGUIObject::AddToPointersMap(map_pObjects &ObjectMap)
 	//  (i.e. being the base object)
 	if (m_Name.empty())
 	{
-		throw PS_NEEDS_NAME;
+		throw PSERROR_GUI_ObjectNeedsName();
 	}
 	if (ObjectMap.count(m_Name) > 0)
 	{
-		throw PS_NAME_AMBIGUITY;
+		throw PSERROR_GUI_NameAmbiguity();
 	}
 	else
 	{
@@ -195,7 +195,7 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 bool IGUIObject::MouseOver()
 {
 	if(!GetGUI())
-		throw PS_NEEDS_PGUI;
+		throw PSERROR_GUI_OperationNeedsGUIObject();
 
 	return m_CachedActualSize.PointInside(GetMousePos());
 }
@@ -282,7 +282,7 @@ PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value, const b
 PS_RESULT IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType &Type) const
 {
 	if (!SettingExists(Setting))
-		return PS_SETTING_FAIL;
+		throw PSERROR_GUI_InvalidSetting();
 
 	if (m_Settings.find(Setting) == m_Settings.end())
 		return PS_FAIL;

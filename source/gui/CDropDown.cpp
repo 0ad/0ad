@@ -267,7 +267,7 @@ CRect CDropDown::GetListRect() const
 bool CDropDown::MouseOver()
 {
 	if(!GetGUI())
-		throw PS_NEEDS_PGUI;
+		throw PSERROR_GUI_OperationNeedsGUIObject();
 
 	if (m_Open)
 	{

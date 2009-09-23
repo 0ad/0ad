@@ -32,10 +32,6 @@ CGUI
 #ifndef INCLUDED_CGUI
 #define INCLUDED_CGUI
 
-#include "ps/Errors.h"
-ERROR_GROUP(GUI);
-ERROR_TYPE(GUI, JSOpenFailed);
-
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
@@ -65,6 +61,8 @@ extern InReaction gui_handler(const SDL_Event_* ev);
 //--------------------------------------------------------
 //  Error declarations
 //--------------------------------------------------------
+
+ERROR_TYPE(GUI, JSOpenFailed);
 
 //--------------------------------------------------------
 //  Declarations

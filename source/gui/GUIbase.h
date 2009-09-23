@@ -44,6 +44,9 @@ GUI Core, stuff that the whole GUI uses
 #include "ps/Overlay.h"
 
 #include "ps/CStr.h"
+
+#include "ps/Errors.h"
+
 #include "ps/Pyrogenesis.h"	// deprecated DECLARE_ERROR
 
 //--------------------------------------------------------
@@ -217,15 +220,14 @@ public:
 //--------------------------------------------------------
 //  Error declarations
 //--------------------------------------------------------
-DECLARE_ERROR(PS_NAME_TAKEN);
-DECLARE_ERROR(PS_OBJECT_FAIL);
-DECLARE_ERROR(PS_SETTING_FAIL);
-DECLARE_ERROR(PS_VALUE_INVALID);
-DECLARE_ERROR(PS_NEEDS_PGUI);
-DECLARE_ERROR(PS_NAME_AMBIGUITY);
-DECLARE_ERROR(PS_NEEDS_NAME);
+ERROR_GROUP(GUI);
 
-DECLARE_ERROR(PS_LEXICAL_FAIL);
-DECLARE_ERROR(PS_SYNTACTICAL_FAIL);
+ERROR_TYPE(GUI, ReferenceNameTake);
+ERROR_TYPE(GUI, NullObjectProvided);
+ERROR_TYPE(GUI, InvalidSetting);
+ERROR_TYPE(GUI, InvalidValueSyntax);
+ERROR_TYPE(GUI, OperationNeedsGUIObject);
+ERROR_TYPE(GUI, NameAmbiguity);
+ERROR_TYPE(GUI, ObjectNeedsName);
 
 #endif

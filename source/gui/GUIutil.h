@@ -163,7 +163,7 @@ public:
 		const CStr& Setting, T &Value)
 	{
 		if (!GUIinstance.ObjectExists(Object))
-			return PS_OBJECT_FAIL;
+			throw PSERROR_GUI_NullObjectProvided();
 
 		// Retrieve pointer and call sibling function
 		const IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
@@ -201,7 +201,7 @@ public:
 		const bool& SkipMessage=false)
 	{
 		if (!GUIinstance.ObjectExists(Object))
-			return PS_OBJECT_FAIL;
+			throw PSERROR_GUI_NullObjectProvided();
 
 		// Retrieve pointer and call sibling function
 
