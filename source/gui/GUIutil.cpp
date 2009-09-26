@@ -314,7 +314,7 @@ PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setti
 
 	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
 	if (it == pObject->m_Settings.end())
-		throw PSERROR_GUI_InvalidSetting();
+		return PS_FAIL;
 
 	if (it->second.m_pSetting == NULL)
 		return PS_FAIL;
