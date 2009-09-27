@@ -69,7 +69,7 @@ void CText::SetupText()
 	debug_assert(m_GeneratedTexts.size()>=1);
 
 	CStr font;
-	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.empty())
+	if (GUI<CStr>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
 		// Use the default if none is specified
 		// TODO Gee: (2004-08-14) Don't define standard like this. Do it with the default style.
 		font = "default";

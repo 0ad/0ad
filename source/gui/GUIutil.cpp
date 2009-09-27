@@ -26,6 +26,9 @@ GUI utilities
 
 extern int g_yres;
 
+#include "ps/CLogger.h"
+#define LOG_CATEGORY "gui"
+
 
 template <>
 bool __ParseString<bool>(const CStr& Value, bool &Output)
@@ -307,17 +310,21 @@ void CInternalCGUIAccessorBase::HandleMessage(IGUIObject *pObject, const SGUIMes
 //--------------------------------------------------------------------
 
 template <typename T>
-PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value)
+PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value)
 {
-	if (pObject == NULL)
-		throw PSERROR_GUI_NullObjectProvided();
+	debug_assert(pObject != NULL);
 
 	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
 	if (it == pObject->m_Settings.end())
-		return PS_FAIL;
+	{
+		LOG(CLogger::Warning, LOG_CATEGORY, "setting %s was not found on object %s", 
+			Setting.c_str(),
+			pObject->GetPresentableName().c_str());
+		return PSRETURN_GUI_InvalidSetting;
+	}
 
 	if (it->second.m_pSetting == NULL)
-		return PS_FAIL;
+		return PSRETURN_GUI_InvalidSetting;
 
 #ifndef NDEBUG
 	CheckType<T>(pObject, Setting);
@@ -326,28 +333,32 @@ PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setti
 	// Get value
 	Value = (T*)(it->second.m_pSetting);
 
-	return PS_OK;
+	return PSRETURN_OK;
 }
 
 template <typename T>
-PS_RESULT GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value)
+PSRETURN GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value)
 {
 	T* v;
-	PS_RESULT ret = GetSettingPointer(pObject, Setting, v);
-	if (ret == PS_OK)
+	PSRETURN ret = GetSettingPointer(pObject, Setting, v);
+	if (ret == PSRETURN_OK)
 		Value = *v;
 	return ret;
 }
 
 template <typename T>
-PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, 
+PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, 
 							 const T &Value, const bool& SkipMessage)
 {
-	if (pObject == NULL)
-		throw PSERROR_GUI_NullObjectProvided();
+	debug_assert(pObject != NULL);
 
 	if (!pObject->SettingExists(Setting))
-		throw PSERROR_GUI_InvalidSetting();
+	{
+		LOG(CLogger::Warning, LOG_CATEGORY, "setting %s was not found on object %s", 
+			Setting.c_str(),
+			pObject->GetPresentableName().c_str());
+		return PSRETURN_GUI_InvalidSetting;
+	}
 
 #ifndef NDEBUG
 	CheckType<T>(pObject, Setting);
@@ -376,14 +387,14 @@ PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 	if (!SkipMessage)
 		HandleMessage(pObject, SGUIMessage(GUIM_SETTINGS_UPDATED, Setting));
 
-	return PS_OK;
+	return PSRETURN_OK;
 }
 
 // Instantiate templated functions:
 #define TYPE(T) \
-	template PS_RESULT GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value); \
-	template PS_RESULT GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value); \
-	template PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value, const bool& SkipMessage);
+	template PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value); \
+	template PSRETURN GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value); \
+	template PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value, const bool& SkipMessage);
 #define GUITYPE_IGNORE_CGUISpriteInstance
 #include "GUItypes.h"
 
@@ -391,5 +402,5 @@ PS_RESULT GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 // you attempt to retrieve a sprite using GetSetting, since that copies the sprite
 // and will mess up the caching performed by DrawSprite. You have to use GetSettingPointer
 // instead. (This is mainly useful to stop me accidentally using the wrong function.)
-template PS_RESULT GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, CGUISpriteInstance* &Value);
-template PS_RESULT GUI<CGUISpriteInstance>::SetSetting(IGUIObject *pObject, const CStr& Setting, const CGUISpriteInstance &Value, const bool& SkipMessage);
+template PSRETURN GUI<CGUISpriteInstance>::GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, CGUISpriteInstance* &Value);
+template PSRETURN GUI<CGUISpriteInstance>::SetSetting(IGUIObject *pObject, const CStr& Setting, const CGUISpriteInstance &Value, const bool& SkipMessage);

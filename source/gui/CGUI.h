@@ -283,7 +283,7 @@ private:
 	 * This function is atomic, meaning if it throws anything, it will
 	 * have seen it through that nothing was ultimately changed.
 	 *
-	 * @throws PS_RESULT that is thrown from IGUIObject::AddToPointersMap().
+	 * @throws PSERROR_GUI that is thrown from IGUIObject::AddToPointersMap().
 	 */
 	void UpdateObjects();
 
@@ -293,8 +293,7 @@ private:
 	 * XML files. Why? Because it enables the GUI to
 	 * be much more encapsulated and safe.
 	 *
-	 * @throws	Rethrows PS_RESULT from IGUIObject::SetGUI() and
-	 *			IGUIObject::AddChild().
+	 * @throws	Rethrows PSERROR_GUI from IGUIObject::AddChild().
 	 */
 	void AddObject(IGUIObject* pObject);
 

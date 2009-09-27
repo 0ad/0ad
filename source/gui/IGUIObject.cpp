@@ -27,6 +27,9 @@ IGUIObject
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 
+#include "ps/CLogger.h"
+#define LOG_CATEGORY "gui"
+
 extern int g_xres, g_yres;
 
 
@@ -122,15 +125,13 @@ void IGUIObject::AddChild(IGUIObject *pChild)
 			//UpdateObjects();
 			pChild->GetGUI()->UpdateObjects();
 		}
-		catch (PS_RESULT e)
+		catch (PSERROR_GUI&)
 		{
 			// If anything went wrong, reverse what we did and throw
 			//  an exception telling it never added a child
 			m_Children.erase( m_Children.end()-1 );
-
-			// We'll throw the same exception for easier
-			//  error handling
-			throw e;
+			
+			throw;
 		}
 	}
 	// else do nothing
@@ -251,16 +252,16 @@ bool IGUIObject::SettingExists(const CStr& Setting) const
 	{													\
 		type _Value;									\
 		if (!GUI<type>::ParseString(Value, _Value))		\
-			return PS_FAIL;								\
+			return PSRETURN_GUI_UnableToParse;			\
 														\
 		GUI<type>::SetSetting(this, Setting, _Value, SkipMessage);	\
 	}
 
-PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value, const bool& SkipMessage)
+PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStr& Value, const bool& SkipMessage)
 {
 	if (!SettingExists(Setting))
 	{
-		return PS_FAIL;
+		return LogInvalidSettings(Setting);
 	}
 
 	// Get setting
@@ -271,25 +272,31 @@ PS_RESULT IGUIObject::SetSetting(const CStr& Setting, const CStr& Value, const b
 #include "GUItypes.h"
 	else
 	{
-		return PS_FAIL;
+		// Why does it always fail?
+		//return PS_FAIL;
+		return LogInvalidSettings(Setting);
 	}
-	return PS_OK;
+	return PSRETURN_OK;
 }
 
 #undef TYPE
 
 
-PS_RESULT IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType &Type) const
+PSRETURN IGUIObject::GetSettingType(const CStr& Setting, EGUISettingType &Type) const
 {
 	if (!SettingExists(Setting))
-		throw PSERROR_GUI_InvalidSetting();
+	{
+		return LogInvalidSettings(Setting);
+	}
 
 	if (m_Settings.find(Setting) == m_Settings.end())
-		return PS_FAIL;
+	{
+		return LogInvalidSettings(Setting);
+	}
 
 	Type = m_Settings.find(Setting)->second.m_Type;
 
-	return PS_OK;
+	return PSRETURN_OK;
 }
 
 
@@ -414,7 +421,7 @@ void IGUIObject::CheckSettingsValidity()
 		{
 			GUI<IGUIObject*>::RecurseObject(0, this, &IGUIObject::UpdateMouseOver, NULL);
 		}
-		catch (PS_RESULT)
+		catch (PSERROR_GUI&)
 		{
 		}
 	}
@@ -425,7 +432,7 @@ void IGUIObject::CheckSettingsValidity()
 		HandleMessage(GUIM_SETTINGS_UPDATED);
 		ScriptEvent("update");
 	}
-	catch (PS_RESULT)
+	catch (PSERROR_GUI&)
 	{
 	}
 }
@@ -552,4 +559,11 @@ bool IGUIObject::IsFocused() const
 bool IGUIObject::IsRootObject() const
 {
 	return (GetGUI() != 0 && m_pParent == GetGUI()->m_BaseObject);
+}
+
+PSRETURN IGUIObject::LogInvalidSettings(const CStr8 &Setting) const
+{
+	LOG(CLogger::Warning, LOG_CATEGORY, "IGUIObject: setting %s was not found on an object", 
+		Setting.c_str());
+	return PSRETURN_GUI_InvalidSetting;
 }

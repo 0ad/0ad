@@ -77,6 +77,8 @@ struct JSObject;
 //  Error declarations
 //--------------------------------------------------------
 
+ERROR_TYPE(GUI, UnableToParse);
+
 //--------------------------------------------------------
 //  Declarations
 //--------------------------------------------------------
@@ -184,8 +186,8 @@ public:
 	 *
 	 * @param ObjectMap Adds this to the map_pObjects.
 	 *
-	 * @throws PS_NEEDS_NAME Name is missing
-	 * @throws PS_NAME_AMBIGUITY Name is already taken
+	 * @throws PSERROR_GUI_ObjectNeedsName Name is missing
+	 * @throws PSERROR_GUI_NameAmbiguity Name is already taken
 	 */
 	void AddToPointersMap(map_pObjects &ObjectMap);
 
@@ -203,7 +205,7 @@ public:
 	 *
 	 * @param pChild Child to add
 	 *
-	 * @throws PS_RESULT from CGUI::UpdateObjects().
+	 * @throws PSERROR_GUI from CGUI::UpdateObjects().
 	 */
 	void AddChild(IGUIObject *pChild);
 
@@ -268,18 +270,18 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Value to set to
 	 *
-	 * @return PS_RESULT (PS_OK if successful)
+	 * @return PSERROR (PSRETURN_OK if successful)
 	 */
-	PS_RESULT SetSetting(const CStr& Setting, const CStr& Value, const bool& SkipMessage=false);
+	PSRETURN SetSetting(const CStr& Setting, const CStr& Value, const bool& SkipMessage=false);
 
 	/**
 	 * Retrieves the type of a named setting.
 	 *
 	 * @param Setting Setting by name
 	 * @param Type Stores an EGUISettingType
-	 * @return PS_RESULT (PS_OK if successful)
+	 * @return PSRETURN (PSRETURN_OK if successful)
 	 */
-	PS_RESULT GetSettingType(const CStr& Setting, EGUISettingType &Type) const;
+	PSRETURN GetSettingType(const CStr& Setting, EGUISettingType &Type) const;
 
 	/**
 	 * Set the script handler for a particular object-specific action
@@ -334,7 +336,7 @@ protected:
 	/**
 	 * Draws the object.
 	 *
-	 * @throws	PS_RESULT if any. But this will mostlikely be
+	 * @throws	PSERROR if any. But this will mostlikely be
 	 *			very rare since if an object is drawn unsuccessfully
 	 *			it'll probably only output in the Error log, and not
 	 *			disrupt the whole GUI drawing.
@@ -492,6 +494,13 @@ private:
 	//  has got no parent, and technically, it's got the m_BaseObject
 	//  as parent.
 	bool IsRootObject() const;
+
+	/**
+	 * Logs an invalid setting search and returns the correct return result
+	 *
+	 * @return the error result
+	 */
+	PSRETURN LogInvalidSettings(const CStr& Setting) const;
 
 	// Variables
 

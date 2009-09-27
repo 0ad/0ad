@@ -112,7 +112,7 @@ public:
 
 	// Like GetSetting (below), but doesn't make a copy of the value
 	// (so it can be modified later)
-	static PS_RESULT GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value);
+	static PSRETURN GetSettingPointer(const IGUIObject *pObject, const CStr& Setting, T* &Value);
 
 	/**
 	 * Retrieves a setting by name from object pointer
@@ -121,7 +121,7 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Stores value here, note type T!
 	 */
-	static PS_RESULT GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value);
+	static PSRETURN GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value);
 
 	/**
 	 * Sets a value by name using a real datatype as input.
@@ -134,7 +134,7 @@ public:
 	 * @param Value Sets value to this, note type T!
 	 * @param SkipMessage Does not send a GUIM_SETTINGS_UPDATED if true
 	 */
-	static PS_RESULT SetSetting(IGUIObject *pObject, const CStr& Setting, 
+	static PSRETURN SetSetting(IGUIObject *pObject, const CStr& Setting, 
 								const T &Value, const bool &SkipMessage=false);
 
 #ifdef g_GUI
@@ -142,7 +142,7 @@ public:
 	 * Adapter that uses the singleton g_GUI
 	 * Can safely be removed.
 	 */
-	static PS_RESULT GetSetting(
+	static PSRETURN GetSetting(
 		const CStr& Object, 
 		const CStr& Setting, T &Value)
 	{
@@ -158,12 +158,12 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Stores value here, note type T!
 	 */
-	static PS_RESULT GetSetting(
+	static PSRETURN GetSetting(
 		const CGUI &GUIinstance, const CStr& Object, 
 		const CStr& Setting, T &Value)
 	{
 		if (!GUIinstance.ObjectExists(Object))
-			throw PSERROR_GUI_NullObjectProvided();
+			return PSRETURN_GUI_NullObjectProvided;
 
 		// Retrieve pointer and call sibling function
 		const IGUIObject *pObject = GetObjectPointer(GUIinstance, Object);
@@ -176,7 +176,7 @@ public:
 	 * Adapter that uses the singleton g_GUI
 	 * Can safely be removed.
 	 */
-	static PS_RESULT SetSetting(
+	static PSRETURN SetSetting(
 		const CStr& Object, const CStr& Setting, const T &Value, const bool& SkipMessage=false)
 	{
 		return SetSetting(g_GUI, Object, Setting, Value, SkipMessage);		
@@ -195,13 +195,13 @@ public:
 	 * @param Setting Setting by name
 	 * @param Value Sets value to this, note type T!
 	 */
-	static PS_RESULT SetSetting(
+	static PSRETURN SetSetting(
 		CGUI &GUIinstance, const CStr& Object, 
 		const CStr& Setting, const T &Value,
 		const bool& SkipMessage=false)
 	{
 		if (!GUIinstance.ObjectExists(Object))
-			throw PSERROR_GUI_NullObjectProvided();
+			return PSRETURN_GUI_NullObjectProvided;
 
 		// Retrieve pointer and call sibling function
 
@@ -294,7 +294,7 @@ private:
 	 * @param pObject Top object, this is where the iteration starts
 	 * @param pFunc Function to recurse
 	 * @param Argument Argument for pFunc of type T
-	 * @throws PS_RESULT Depends on what pFunc might throw. PS_RESULT is standard.
+	 * @throws PSERROR Depends on what pFunc might throw. PSERROR is standard.
 	 *			Itself doesn't throw anything.
 	*/
 	static void RecurseObject(int RR, IGUIObject *pObject, void_Object_pFunction_argT pFunc, const T &Argument)

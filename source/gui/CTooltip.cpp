@@ -65,7 +65,7 @@ void CTooltip::SetupText()
 	debug_assert(m_GeneratedTexts.size()==1);
 
 	CStr font;
-	if (GUI<CStr>::GetSetting(this, "font", font) != PS_OK || font.empty())
+	if (GUI<CStr>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
 		font = "default";
 
 	float buffer_zone = 0.f;

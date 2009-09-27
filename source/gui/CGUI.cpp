@@ -272,7 +272,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				pNearest->m_MouseHovering = true;
 		}
 	}
-	catch (PS_RESULT e)
+	catch (PSERROR_GUI& e)
 	{
 		UNUSED2(e);
 		debug_warn("CGUI::HandleEvent error");
@@ -431,7 +431,7 @@ void CGUI::Process()
 	{
 		GUI<EGUIMessage>::RecurseObject(0, m_BaseObject, &IGUIObject::HandleMessage, GUIM_PREPROCESS);
 	}
-	catch (PS_RESULT e)
+	catch (PSERROR_GUI& e)
 	{
 		return;
 	}
@@ -469,7 +469,7 @@ void CGUI::Process()
 		}
 
 	}
-	catch (PS_RESULT e)
+	catch (PSERROR_GUI& e)
 	{
 		return;
 	}
@@ -479,7 +479,7 @@ void CGUI::Process()
 	{
 		GUI<EGUIMessage>::RecurseObject(0, m_BaseObject, &IGUIObject::HandleMessage, GUIM_POSTPROCESS);
 	}
-	catch (PS_RESULT e)
+	catch (PSERROR_GUI& e)
 	{
 		return;
 	}
@@ -501,7 +501,7 @@ void CGUI::Draw()
 		//  meaning all hidden objects won't call Draw (nor will it recurse its children)
 		GUI<>::RecurseObject(GUIRR_HIDDEN, m_BaseObject, &IGUIObject::Draw);
 	}
-	catch (PS_RESULT e)
+	catch (PSERROR_GUI& e)
 	{
 		UNUSED2(e);
 		glPopMatrix();
@@ -545,7 +545,7 @@ void CGUI::Destroy()
 		{
 			it->second->Destroy();
 		}
-		catch (PS_RESULT e)
+		catch (PSERROR_GUI& e)
 		{
 			UNUSED2(e);
 			debug_warn("CGUI::Destroy error");
@@ -587,9 +587,9 @@ void CGUI::AddObject(IGUIObject* pObject)
 		// Loaded
 		GUI<SGUIMessage>::RecurseObject(0, pObject, &IGUIObject::HandleMessage, SGUIMessage(GUIM_LOAD));
 	}
-	catch (PS_RESULT e)
+	catch (PSERROR_GUI&)
 	{
-		throw e;
+		throw;
 	}
 }
 
@@ -604,10 +604,10 @@ void CGUI::UpdateObjects()
 		// Fill freshly
 		GUI< map_pObjects >::RecurseObject(0, m_BaseObject, &IGUIObject::AddToPointersMap, AllObjects );
 	}
-	catch (PS_RESULT e)
+	catch (PSERROR_GUI&)
 	{
 		// Throw the same error
-		throw e;
+		throw;
 	}
 
 	// Else actually update the real one
@@ -1313,7 +1313,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			ManuallySetZ = true;
 
 		// Try setting the value
-		if (object->SetSetting(pFile->GetAttributeString(attr.Name), (CStr)attr.Value, true) != PS_OK)
+		if (object->SetSetting(pFile->GetAttributeString(attr.Name), (CStr)attr.Value, true) != PSRETURN_OK)
 		{
 			ReportParseError("(object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), CStr(attr.Value).c_str());
 
@@ -1442,9 +1442,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		else
 			pParent->AddChild(object);
 	}
-	catch (PS_RESULT e)
+	catch (PSERROR_GUI& e)
 	{ 
-		ReportParseError(e);
+		ReportParseError(e.what());
 	}
 }
 

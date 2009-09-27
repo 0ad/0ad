@@ -84,10 +84,10 @@ const double CooldownTime = 0.25; // TODO: Don't hard-code this value
 static bool GetTooltip(IGUIObject* obj, CStr&style)
 {
 	if (obj && obj->SettingExists("tooltip_style")
-		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PS_OK)
+		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PSRETURN_OK)
 	{
 		CStr text;
-		if (GUI<CStr>::GetSetting(obj, "tooltip", text) == PS_OK)
+		if (GUI<CStr>::GetSetting(obj, "tooltip", text) == PSRETURN_OK)
 		{
 			if (text.empty())
 			{
@@ -125,7 +125,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 	IGUIObject* usedobj = tooltipobj; // object actually used to display the tooltip in
 
 	CStr usedObjectName;
-	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PS_OK
+	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PSRETURN_OK
 		&& !usedObjectName.empty())
 	{
 		usedobj = gui->FindObjectByName(usedObjectName);
@@ -145,20 +145,20 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 		GUI<bool>::SetSetting(usedobj, "hidden", false);
 
 		// Store mouse position inside the CTooltip
-		if (GUI<CPos>::SetSetting(usedobj, "_mousepos", pos) != PS_OK)
+		if (GUI<CPos>::SetSetting(usedobj, "_mousepos", pos) != PSRETURN_OK)
 			debug_warn("Failed to set tooltip mouse position");
 	}
 
 	// Retrieve object's 'tooltip' setting
 	CStr text;
-	if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PS_OK)
+	if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PSRETURN_OK)
 		debug_warn("Failed to retrieve tooltip text"); // shouldn't fail
 
 	// Do some minimal processing ("\n" -> newline, etc)
 	text = text.UnescapeBackslashes();
 
 	// Set tooltip's caption
-	if (usedobj->SetSetting("caption", text) != PS_OK)
+	if (usedobj->SetSetting("caption", text) != PSRETURN_OK)
 		debug_warn("Failed to set tooltip caption"); // shouldn't fail
 
 	// Make the tooltip object regenerate its text
@@ -179,7 +179,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 	}
 
 	CStr usedObjectName;
-	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PS_OK
+	if (GUI<CStr>::GetSetting(tooltipobj, "use_object", usedObjectName) == PSRETURN_OK
 		&& !usedObjectName.empty())
 	{
 		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);

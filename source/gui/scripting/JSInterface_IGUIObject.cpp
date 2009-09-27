@@ -109,7 +109,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	{
 		// Retrieve the setting's type (and make sure it actually exists)
 		EGUISettingType Type;
-		if (e->GetSettingType(propName, Type) != PS_OK)
+		if (e->GetSettingType(propName, Type) != PSRETURN_OK)
 		{
 			JS_ReportError(cx, "Invalid GUIObject property '%s'", propName.c_str());
 			return JS_FALSE;
@@ -311,7 +311,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 
 	// Retrieve the setting's type (and make sure it actually exists)
 	EGUISettingType Type;
-	if (e->GetSettingType(propName, Type) != PS_OK)
+	if (e->GetSettingType(propName, Type) != PSRETURN_OK)
 	{
 		JS_ReportError(cx, "Invalid setting '%s'", propName.c_str());
 		return JS_TRUE;
@@ -427,7 +427,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		{
 			if (JSVAL_IS_STRING(*vp))
 			{
-				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PS_OK)
+				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PSRETURN_OK)
 				{
 					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
 					return JS_FALSE;
@@ -464,7 +464,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		{
 			if (JSVAL_IS_STRING(*vp))
 			{
-				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PS_OK)
+				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PSRETURN_OK)
 				{
 					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
 					return JS_FALSE;
