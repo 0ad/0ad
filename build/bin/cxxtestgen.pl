@@ -83,7 +83,7 @@ sub parseCommandline() {
 }
 
 sub printVersion() {
-  print "This is CxxTest version 3.10.1.\n";
+  print "This is CxxTest version 3.10.1 (plus some non-standard tweaks).\n";
   exit 0;
 }
 
@@ -111,7 +111,7 @@ sub scanInputFiles() {
 
 sub scanInputFile($) {
   my ($file) = @_;
-  open FILE, "<$file" or die("Cannot open input file \"$file\"\n");
+  open FILE, "<$file" or die("Cannot open input file \"$file\": $!\n");
 
   my $line;
   while (defined($line = <FILE>)) {
@@ -299,7 +299,7 @@ sub writeOutput() {
 
 sub startOutputFile() {
   if ( !standardOutput() ) {
-    open OUTPUT_FILE,">$output" or die("Cannot create output file \"$output\"\n");
+    open OUTPUT_FILE,">$output" or die("Cannot create output file \"$output\": $!\n");
     select OUTPUT_FILE;
   }
   print "/* Generated file, do not edit */\n\n";
@@ -337,7 +337,7 @@ sub writeTemplateOutput() {
 }
 
 sub openTemplateFile() {
-  open TEMPLATE_FILE, "<$template" or die("Cannot open template file \"$template\"\n");
+  open TEMPLATE_FILE, "<$template" or die("Cannot open template file \"$template\": $!\n");
 }
 
 sub writePreamble() {
