@@ -7,7 +7,8 @@ function sourcesfromdirs(root, dirs)
 			prefix.."*.cpp",
 			prefix.."*.h",
 			prefix.."*.inl",
-			prefix.."*.asm")
+			prefix.."*.asm",
+			prefix.."*.js")
 		listconcat(res, files)
 	end
 	return res

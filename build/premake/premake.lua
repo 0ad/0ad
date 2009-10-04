@@ -463,6 +463,9 @@ function setup_all_libs ()
 		"gui",
 		"gui/scripting"
 	}
+	if OS == "windows" then	-- add JS files to allow VS find-in-solution and VA open-file-in-workspace
+		tinsert(source_dirs, "../binaries/data/mods/public/gui/test")
+	end
 	extern_libs = {
 		"spidermonkey",
 		"sdl",	-- key definitions
