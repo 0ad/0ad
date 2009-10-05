@@ -152,7 +152,7 @@ void CStreamSocket::OnWrite()
 		WriteComplete(res);
 		return;
 	}
-	NET_LOG2("CStreamSocket::OnWrite(): %u bytes", bytes);
+	NET_LOG2("CStreamSocket::OnWrite(): %lu bytes", (unsigned long)bytes);
 	m_WriteContext.m_Completed+=bytes;
 	if (m_WriteContext.m_Completed == m_WriteContext.m_Length)
 	{
@@ -173,9 +173,9 @@ void CStreamSocket::OnRead()
 		((u8 *)m_ReadContext.m_pBuffer)+m_ReadContext.m_Completed,
 		m_ReadContext.m_Length-m_ReadContext.m_Completed,
 		&bytes);
-	NET_LOG4("CStreamSocket::OnRead(): %s, %u bytes read of %u", 
-					res, bytes,
-					m_ReadContext.m_Length-m_ReadContext.m_Completed);
+	NET_LOG4("CStreamSocket::OnRead(): %s, %lu bytes read of %lu",
+					res, (unsigned long)bytes,
+					(unsigned long)(m_ReadContext.m_Length-m_ReadContext.m_Completed));
 	if (res != PS_OK)
 	{
 		ReadComplete(res);

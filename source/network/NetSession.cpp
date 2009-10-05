@@ -420,7 +420,7 @@ bool CNetHost::Poll( void )
 					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength );
 					if ( !pNewMessage ) return false;
 
-					NET_LOG4( "Message %s of size %u was received from %p", pNewMessage->ToString().c_str(), pNewMessage->GetSerializedLength(), event.peer->data );
+					NET_LOG4( "Message %s of size %lu was received from %p", pNewMessage->ToString().c_str(), (unsigned long)pNewMessage->GetSerializedLength(), event.peer->data );
 
 					// Successfully handled?
 					if ( !HandleMessageReceive( pNewMessage, it->pSession ) ) {
@@ -526,8 +526,8 @@ bool CNetHost::SendMessage(
 	}
 	else
 	{
-		NET_LOG4( "Message %s of size %u was sent to %p", 
-			pMessage->ToString().c_str(), pMessage->GetSerializedLength(), pSession->m_Peer->data );
+		NET_LOG4( "Message %s of size %lu was sent to %p",
+			pMessage->ToString().c_str(), (unsigned long)pMessage->GetSerializedLength(), pSession->m_Peer->data );
 	}
 
 	enet_host_flush( m_Host );
