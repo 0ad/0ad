@@ -67,7 +67,7 @@ void VfsFile::GenerateDescription(char* text, size_t maxChars) const
 	char timestamp[25];
 	const time_t mtime = MTime();
 	strftime(timestamp, ARRAY_SIZE(timestamp), "%a %b %d %H:%M:%S %Y", localtime(&mtime));
-	sprintf_s(text, maxChars, "(%c; %6d; %s)\n", m_loader->LocationCode(), Size(), timestamp);
+	sprintf_s(text, maxChars, "(%c; %6lu; %s)\n", m_loader->LocationCode(), (unsigned long)Size(), timestamp);
 }
 
 
@@ -157,7 +157,7 @@ void VfsDirectory::DisplayR(size_t depth) const
 
 	const size_t maxNameChars = 80 - depth*(sizeof(indent)-1);
 	char fmt[20];
-	sprintf_s(fmt, ARRAY_SIZE(fmt), "%%-%d.%ds %%s", maxNameChars, maxNameChars);
+	sprintf_s(fmt, ARRAY_SIZE(fmt), "%%-%lu.%lus %%s", (unsigned long)maxNameChars, (unsigned long)maxNameChars);
 
 	for(VfsFiles::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
 	{

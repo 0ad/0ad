@@ -369,7 +369,7 @@ void CMessageSocket::OnMessage(CNetMessage *pMsg)
 	m_InQ.Lock();
 	m_InQ.push_back(pMsg);
 	NET_LOG2( "CMessageSocket::OnMessage(): %s", pMsg->ToString().c_str() );
-	NET_LOG2( "CMessageSocket::OnMessage(): Queue size now %u", m_InQ.size() );
+	NET_LOG2( "CMessageSocket::OnMessage(): Queue size now %lu", (unsigned long)m_InQ.size() );
 	m_InQ.Unlock();
 }
 

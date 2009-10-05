@@ -414,7 +414,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			Handle h = ogl_tex_load(cit->m_TextureName);
 			if (h <= 0)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "Error reading texture '%s': %lld", (const char*)cit->m_TextureName, h);
+				LOG(CLogger::Error, LOG_CATEGORY, "Error reading texture '%s': %ld", (const char*)cit->m_TextureName, (long)h);
 				return;
 			}
 

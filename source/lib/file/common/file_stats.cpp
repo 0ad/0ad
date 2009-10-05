@@ -281,59 +281,59 @@ void file_stats_dump()
 
 	debug_printf(
 		"\nvfs:\n"
-		"Total files: %u (%g MB)\n"
+		"Total files: %lu (%g MB)\n"
 		"Init/mount time: %g ms\n",
-		vfs_files, vfs_size_total/MB,
+		(unsigned long)vfs_files, vfs_size_total/MB,
 		vfs_init_elapsed_time/ms
 	);
 
 	debug_printf(
 		"\nfile:\n"
-		"Total names: %u (%u KB)\n"
-		"Max. concurrent: %u; leaked: %u.\n",
-		unique_names, unique_name_len_total/1000, 
-		open_files_max, open_files_cur
+		"Total names: %lu (%lu KB)\n"
+		"Max. concurrent: %lu; leaked: %lu.\n",
+		(unsigned long)unique_names, (unsigned long)(unique_name_len_total/1000),
+		(unsigned long)open_files_max, (unsigned long)open_files_cur
 	);
 
 	debug_printf(
 		"\nfile_buf:\n"
-		"Total buffers used: %u (%g MB)\n"
-		"Max concurrent: %u; leaked: %u\n"
+		"Total buffers used: %lu (%g MB)\n"
+		"Max concurrent: %lu; leaked: %lu\n"
 		"Internal fragmentation: %d%%\n",
-		extant_bufs_total, buf_size_total/MB,
-		extant_bufs_max, extant_bufs_cur,
+		(unsigned long)extant_bufs_total, buf_size_total/MB,
+		(unsigned long)extant_bufs_max, (unsigned long)extant_bufs_cur,
 		percent(buf_aligned_size_total-buf_size_total, buf_size_total)
 	);
 
 	debug_printf(
 		"\nfile_io:\n"
-		"Total user load requests: %u (%g MB)\n"
+		"Total user load requests: %lu (%g MB)\n"
 		"IO thoughput [MB/s; 0=never happened]:\n"
 		"  lowio: R=%.3g, W=%.3g\n"
 		"    aio: R=%.3g, W=%.3g\n"
-		"Average size = %g KB; seeks: %u; total callback time: %g ms\n"
+		"Average size = %g KB; seeks: %lu; total callback time: %g ms\n"
 		"Total data actually read from disk = %g MB\n",
-		user_ios, user_io_size_total/MB,
+		(unsigned long)user_ios, user_io_size_total/MB,
 #define THROUGHPUT(impl, op) (io_elapsed_time[impl][op] == 0.0)? 0.0 : (io_actual_size_total[impl][op] / io_elapsed_time[impl][op] / MB)
 		THROUGHPUT(FI_LOWIO, FO_READ), THROUGHPUT(FI_LOWIO, FO_WRITE),
 		THROUGHPUT(FI_AIO  , FO_READ), THROUGHPUT(FI_AIO  , FO_WRITE),
-		user_io_size_total/user_ios/KB, io_seeks, io_process_time_total/ms,
+		user_io_size_total/user_ios/KB, (unsigned long)io_seeks, io_process_time_total/ms,
 		(io_actual_size_total[FI_LOWIO][FO_READ]+io_actual_size_total[FI_AIO][FO_READ])/MB
 	);
 
 	debug_printf(
 		"\nfile_cache:\n"
-		"Hits: %u (%g MB); misses %u (%g MB); ratio: %u%%\n"
-		"Percent of requested bytes satisfied by cache: %u%%; non-compulsory misses: %u (%u%% of misses)\n"
-		"Block hits: %u; misses: %u; ratio: %u%%\n",
-		cache_count[CR_HIT], cache_size_total[CR_HIT]/MB, cache_count[CR_MISS], cache_size_total[CR_MISS]/MB, percent(cache_count[CR_HIT], cache_count[CR_HIT]+cache_count[CR_MISS]),
-		percent(cache_size_total[CR_HIT], cache_size_total[CR_HIT]+cache_size_total[CR_MISS]), conflict_misses, percent(conflict_misses, cache_count[CR_MISS]),
-		block_cache_count[CR_HIT], block_cache_count[CR_MISS], percent(block_cache_count[CR_HIT], block_cache_count[CR_HIT]+block_cache_count[CR_MISS])
+		"Hits: %lu (%g MB); misses %lu (%g MB); ratio: %u%%\n"
+		"Percent of requested bytes satisfied by cache: %u%%; non-compulsory misses: %lu (%u%% of misses)\n"
+		"Block hits: %lu; misses: %lu; ratio: %u%%\n",
+		(unsigned long)cache_count[CR_HIT], cache_size_total[CR_HIT]/MB, (unsigned long)cache_count[CR_MISS], cache_size_total[CR_MISS]/MB, percent(cache_count[CR_HIT], cache_count[CR_HIT]+cache_count[CR_MISS]),
+		percent(cache_size_total[CR_HIT], cache_size_total[CR_HIT]+cache_size_total[CR_MISS]), (unsigned long)conflict_misses, percent(conflict_misses, cache_count[CR_MISS]),
+		(unsigned long)block_cache_count[CR_HIT], (unsigned long)block_cache_count[CR_MISS], percent(block_cache_count[CR_HIT], block_cache_count[CR_HIT]+block_cache_count[CR_MISS])
 	);
 
 	debug_printf(
 		"\nvfs_optimizer:\n"
-		"Total trace entries: %u; repeated connections: %u; unique files: %u\n",
-		ab_connection_attempts, ab_repeated_connections, ab_connection_attempts-ab_repeated_connections
+		"Total trace entries: %lu; repeated connections: %lu; unique files: %lu\n",
+		(unsigned long)ab_connection_attempts, (unsigned long)ab_repeated_connections, (unsigned long)(ab_connection_attempts-ab_repeated_connections)
 	);
 }

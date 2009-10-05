@@ -618,7 +618,7 @@ static LibError h_free_idx(ssize_t idx, HDATA* hd)
 		char buf[H_STRING_LEN];
 		if(vtbl->to_string(hd->user, buf) < 0)
 			strcpy(buf, "(error)");	// safe
-		debug_printf("H_MGR| free %s %s accesses=%d %s\n", hd->type->name, hd->pathname.string().c_str(), hd->num_derefs, buf);
+		debug_printf("H_MGR| free %s %s accesses=%lu %s\n", hd->type->name, hd->pathname.string().c_str(), (unsigned long)hd->num_derefs, buf);
 	}
 #endif
 

@@ -369,7 +369,7 @@ CPlayer *CGameAttributes::GetPlayer(size_t id)
 		return m_Players[id];
 	else
 	{
-		LOG(CLogger::Error, "", "CGameAttributes::GetPlayer(): Attempt to get player %d (while there only are %d players)", id, m_Players.size());
+		LOG(CLogger::Error, "", "CGameAttributes::GetPlayer(): Attempt to get player %lu (while there only are %lu players)", (unsigned long)id, (unsigned long)m_Players.size());
 		return m_Players[0];
 	}
 }
@@ -380,7 +380,7 @@ CPlayerSlot *CGameAttributes::GetSlot(size_t index)
 		return m_PlayerSlots[index];
 	else
 	{
-		LOG(CLogger::Error, "", "CGameAttributes::GetSlot(): Attempt to get slot %d (while there only are %d slots)", index, m_PlayerSlots.size());
+		LOG(CLogger::Error, "", "CGameAttributes::GetSlot(): Attempt to get slot %lu (while there only are %lu slots)", (unsigned long)index, (unsigned long)m_PlayerSlots.size());
 		return m_PlayerSlots[0];
 	}
 }

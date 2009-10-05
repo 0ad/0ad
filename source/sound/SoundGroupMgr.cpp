@@ -157,5 +157,5 @@ void CSoundGroupMgr::PlayNext(size_t index, const CVector3D& position)
 	if(index < m_Groups.size())
 		m_Groups[index]->PlayNext(position);
 	else
-		debug_printf("SND: PlayNext(%d) invalid, %d groups defined\n", index, m_Groups.size());
+		debug_printf("SND: PlayNext(%lu) invalid, %lu groups defined\n", (unsigned long)index, (unsigned long)m_Groups.size());
 }

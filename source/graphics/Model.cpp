@@ -395,8 +395,8 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeleton
 
 		if (anim->m_AnimDef && anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones()) {
 			// mismatch between model's skeleton and animation's skeleton
-			LOG(CLogger::Error, LOG_CATEGORY, "Mismatch between model's skeleton and animation's skeleton (%d model bones != %d animation keys)",
-										m_pModelDef->GetNumBones(), anim->m_AnimDef->GetNumKeys());
+			LOG(CLogger::Error, LOG_CATEGORY, "Mismatch between model's skeleton and animation's skeleton (%lu model bones != %lu animation keys)",
+										(unsigned long)m_pModelDef->GetNumBones(), (unsigned long)anim->m_AnimDef->GetNumKeys());
 			return false;
 		}
 

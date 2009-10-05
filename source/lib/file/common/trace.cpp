@@ -71,7 +71,7 @@ TraceEntry::~TraceEntry()
 void TraceEntry::EncodeAsText(char* text, size_t maxTextChars) const
 {
 	const char action = (char)m_action;
-	sprintf_s(text, maxTextChars, "%#010f: %c \"%s\" %d\n", m_timestamp, action, m_pathname, m_size);
+	sprintf_s(text, maxTextChars, "%#010f: %c \"%s\" %lu\n", m_timestamp, action, m_pathname, (unsigned long)m_size);
 }
 
 

@@ -331,7 +331,7 @@ CPlayer *CGame::GetPlayer(size_t idx)
 	else if (idx >= m_Players.size())
 	{
 		debug_warn("Invalid player ID");
-		LOG(CLogger::Error, "", "Invalid player ID %d (not <=%d - internal error?)", idx, m_Players.size());
+		LOG(CLogger::Error, "", "Invalid player ID %lu (not <=%lu - internal error?)", (unsigned long)idx, (unsigned long)m_Players.size());
 
 		if (m_Players.size() != 0)
 			return m_Players[0];

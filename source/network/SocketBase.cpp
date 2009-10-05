@@ -203,10 +203,10 @@ CSocketBase::CSocketBase(CSocketInternal *pInt)
 CSocketBase::~CSocketBase()
 {
 	NET_LOG4( "CSocketBase::~CSocketBase(): fd is %d. "
-					"Received: %lld bytes. Sent: %lld bytes.", 
+					"Received: %lu bytes. Sent: %lu bytes.",
 					m_pInternal->m_fd,
-					m_pInternal->m_RecvBytes, 
-					m_pInternal->m_SentBytes );
+					(unsigned long)m_pInternal->m_RecvBytes,
+					(unsigned long)m_pInternal->m_SentBytes );
 
 	Destroy();
 	delete m_pInternal;
@@ -218,14 +218,14 @@ void CSocketBase::Shutdown()
 	
 	if (g_SocketSetInternal.m_NumSockets)
 	{
-		NET_LOG2( "CSocketBase::Shutdown(): %d sockets still open! (forcing network shutdown)", g_SocketSetInternal.m_NumSockets );
+		NET_LOG2( "CSocketBase::Shutdown(): %lu sockets still open! (forcing network shutdown)", (unsigned long)g_SocketSetInternal.m_NumSockets );
 	}
 
 #if RECORD_GLOBAL_STATS
 	NET_LOG3( "GLOBAL SOCKET STATISTICS: "
-					"Received: %lld bytes. Sent: %lld bytes.",
-					g_SocketSetInternal.m_GlobalRecvBytes,
-					g_SocketSetInternal.m_GlobalSentBytes);
+					"Received: %lu bytes. Sent: %lu bytes.",
+					(unsigned long)g_SocketSetInternal.m_GlobalRecvBytes,
+					(unsigned long)g_SocketSetInternal.m_GlobalSentBytes);
 #endif
 
 	GLOBAL_UNLOCK();
