@@ -36,6 +36,7 @@
 #include "Terrain.h"
 #include "Patch.h"
 #include "maths/MathUtil.h"
+#include "ps/CLogger.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain constructor
@@ -108,12 +109,15 @@ bool CTerrain::IsPassable(const CVector2D &loc/*tile space*/, HEntity entity) co
 {
 	CMiniPatch *pTile = GetTile(loc.x, loc.y);
 	if(!pTile->Tex1)
-	{
 		return false;		// Invalid terrain type in the scenario file
-	}
 	CTextureEntry *pTexEntry = g_TexMan.FindTexture(pTile->Tex1);
 	CTerrainPropertiesPtr pProperties = pTexEntry->GetProperties();
-
+	if(!pProperties)
+	{
+		CStr texturePath = pTexEntry->GetTexturePath();
+		LOGWARNING("no properties loaded for %s\n", texturePath.c_str());
+		return false;
+	}
 	return pProperties->IsPassable(entity);
 }
 
