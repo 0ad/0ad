@@ -261,7 +261,7 @@ PSRETURN IGUIObject::SetSetting(const CStr& Setting, const CStr& Value, const bo
 {
 	if (!SettingExists(Setting))
 	{
-		return LogInvalidSettings(Setting);
+		return PSRETURN_GUI_InvalidSetting;
 	}
 
 	// Get setting
