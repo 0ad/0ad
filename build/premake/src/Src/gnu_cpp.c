@@ -510,7 +510,7 @@ static const char* listCppTargets(const char* name)
 			if (matches(ext, ".s"))
 				strcat(g_buffer, "$(CC) -x assembler-with-cpp $(CPPFLAGS) -o $@ -c $<\n");
 			else if (matches(ext, ".c"))
-				strcat(g_buffer, "$(CC) $(CFLAGS) -MF $(OBJDIR)/$(<F:%%.c=%%.d) -o $@ -c $<\n");
+				strcat(g_buffer, "$(CC) $(CFLAGS) -MF $(OBJDIR)/$(<F:%%.c=%%.d) -MT $@ -o $@ -c $<\n");
 			else if (matches(ext, ".asm"))
 			{
 				char input_dir[512];
@@ -546,7 +546,7 @@ static const char* listCppTargets(const char* name)
 			{
 				strcat(g_buffer, "$(CXX) $(CXXFLAGS) -MF $(OBJDIR)/");
 				strcat(g_buffer, basename);
-				strcat(g_buffer, ".d -o $@ -c");
+				strcat(g_buffer, ".d -MT $@ -o $@ -c");
 				if (gen_pch)
 				{
 					if (matches(g_cc, "icc"))
