@@ -129,7 +129,7 @@ namespace CxxTest
         void failedAssertSameData( const char *file, unsigned line,
                                    const char *xStr, const char *yStr,
                                    const char *sizeStr, const void *x,
-                                   const void *y, unsigned size )
+                                   const void *y, size_t size )
         {
             stop( file, line ) << "Error: Expected " << sizeStr << " (" << size << ") bytes to be equal at (" <<
                 xStr << ") and (" << yStr << "), found:" << endl;
