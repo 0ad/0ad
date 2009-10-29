@@ -86,7 +86,7 @@ int gnu_cpp()
 		/* Write preprocessor flags - how to generate dependencies for DMC? */
 		io_print("  CPPFLAGS :=");
 		if (!matches(g_cc, "dmc"))
-			io_print(" -MD");
+			io_print(" -MMD");
 		print_list(prj_get_defines(), " -D \"", "\"", "", NULL);
 		print_list(prj_get_incpaths(), " -I \"", "\"", "", NULL);
 		io_print("\n");
