@@ -23,7 +23,7 @@ extern LibError sys_clipboard_set(const wchar_t* text);
 // can be represented as text, otherwise 0.
 // when it is no longer needed, the returned pointer must be freed via
 // sys_clipboard_free. (NB: not necessary if zero, but doesn't hurt)
-extern wchar_t* sys_clipboard_get(void);
+extern wchar_t* sys_clipboard_get();
 
 // frees memory used by <copy>, which must have been returned by
 // sys_clipboard_get. see note above.

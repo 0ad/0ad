@@ -86,7 +86,7 @@ const size_t GiB = size_t(1) << 30;
 // (function taking a reference to an array and returning a pointer to
 // an array of characters. it's only declared and never defined; we just
 // need it to determine n, the size of the array that was passed.)
-template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
+template<typename T, size_t n> u8 (*ArraySizeDeducer(T (&)[n]))[n];
 
 // (although requiring C++, this method is much better than the standard
 // sizeof(name) / sizeof(name[0]) because it doesn't compile when a

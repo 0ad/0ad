@@ -123,7 +123,7 @@ size_t os_cpu_LargePageSize()
 
 	if(largePageSize == ~(size_t)0)
 	{
-		typedef SIZE_T (WINAPI *PGetLargePageMinimum)(void);
+		typedef SIZE_T (WINAPI *PGetLargePageMinimum)();
 		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
 		const PGetLargePageMinimum pGetLargePageMinimum = (PGetLargePageMinimum)GetProcAddress(hKernel32, "GetLargePageMinimum");
 		if(pGetLargePageMinimum)
@@ -228,7 +228,7 @@ static const DWORD invalidProcessorNumber = (DWORD)-1;
 
 static DWORD CurrentProcessorNumber()
 {
-	typedef DWORD (WINAPI *PGetCurrentProcessorNumber)(void);
+	typedef DWORD (WINAPI *PGetCurrentProcessorNumber)();
 	static PGetCurrentProcessorNumber pGetCurrentProcessorNumber;
 
 	static bool initialized;

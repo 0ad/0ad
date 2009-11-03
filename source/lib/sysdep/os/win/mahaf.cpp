@@ -186,7 +186,7 @@ static void UninstallDriver()
 	SC_HANDLE hSCM = OpenServiceControlManager();
 	if(!hSCM)
 		return;
-	SC_HANDLE hService = OpenService(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
+	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
 	if(!hService)
 		return;
 
@@ -212,13 +212,13 @@ static void UninstallDriver()
 }
 
 
-static void StartDriver(const char* driverPathname)
+static void StartDriver(const fs::wpath& driverPathname)
 {
 	const SC_HANDLE hSCM = OpenServiceControlManager();
 	if(!hSCM)
 		return;
 
-	SC_HANDLE hService = OpenService(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
+	SC_HANDLE hService = OpenServiceW(hSCM, AKEN_NAME, SERVICE_ALL_ACCESS);
 
 	// during development, we want to ensure the newest build is used, so
 	// unload and re-create the service if it's running/installed.
@@ -238,10 +238,10 @@ static void StartDriver(const char* driverPathname)
 	// no error is raised if the driver binary doesn't exist etc.)
 	if(!hService)
 	{
-		LPCSTR startName = 0;	// LocalSystem
-		hService = CreateService(hSCM, AKEN_NAME, AKEN_NAME,
+		LPCWSTR startName = 0;	// LocalSystem
+		hService = CreateServiceW(hSCM, AKEN_NAME, AKEN_NAME,
 			SERVICE_ALL_ACCESS, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
-			driverPathname, 0, 0, 0, startName, 0);
+			driverPathname.string().c_str(), 0, 0, 0, startName, 0);
 		debug_assert(hService != 0);
 	}
 
@@ -274,15 +274,17 @@ static bool Is64BitOs()
 #endif
 }
 
-static void GetDriverPathname(char* driverPathname, size_t maxChars)
+static fs::wpath DriverPathname()
 {
-	const char* const bits = Is64BitOs()? "64" : "";
+	const wchar_t* const bits = Is64BitOs()? L"64" : L"";
 #ifdef NDEBUG
-	const char* const debug = "";
+	const wchar_t* const debug = L"";
 #else
-	const char* const debug = "d";
+	const wchar_t* const debug = L"d";
 #endif
-	sprintf_s(driverPathname, maxChars, "%s\\aken%s%s.sys", win_exe_dir, bits, debug);
+	wchar_t filename[PATH_MAX];
+	swprintf_s(filename, ARRAY_SIZE(filename), L"aken%ls%ls.sys", bits, debug);
+	return wutil_ExecutablePath()/filename;
 }
 
 
@@ -297,12 +299,11 @@ bool mahaf_Init()
 	if(!ModuleShouldInitialize(&initState))
 		return true;
 
-	if(wutil_HasCommandLineArgument("-wNoMahaf"))
+	if(wutil_HasCommandLineArgument(L"-wNoMahaf"))
 		goto fail;
 
 	{
-	char driverPathname[PATH_MAX];
-	GetDriverPathname(driverPathname, ARRAY_SIZE(driverPathname));
+	const fs::wpath driverPathname = DriverPathname();
 	StartDriver(driverPathname);
 	}
 

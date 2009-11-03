@@ -846,17 +846,17 @@ u8 x86_x64_ApicId()
 }
 
 
+#if !MSC_VERSION	// replaced by macro
 u64 x86_x64_rdtsc()
 {
-#if MSC_VERSION
-	return (u64)__rdtsc();
-#elif GCC_VERSION
+#if GCC_VERSION
 	// GCC supports "portable" assembly for both x86 and x64
 	volatile u32 lo, hi;
 	asm volatile ("rdtsc" : "=a" (lo), "=d" (hi));
 	return u64_from_u32(hi, lo);
 #endif
 }
+#endif
 
 
 void x86_x64_DebugBreak()

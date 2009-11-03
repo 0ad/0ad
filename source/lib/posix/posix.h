@@ -90,6 +90,8 @@ need only be renamed (e.g. _open, _stat).
 #if MSC_VERSION
 #define strcasecmp stricmp
 #define strncasecmp strnicmp
+#define wcscasecmp wcsicmp
+#define wcsncasecmp wcsnicmp
 #endif
 
 #if OS_MACOSX

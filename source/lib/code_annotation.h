@@ -160,7 +160,7 @@ namespace detail
  *
  * @param expression that is expected to evaluate to non-zero at compile-time.
  **/
-#define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)]
+#define cassert2(expr) extern u8 CASSERT_FAILURE[1][(expr)]
 
 
 // copied from boost::noncopyable; this definition avoids warnings when

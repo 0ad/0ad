@@ -25,7 +25,7 @@
 #ifndef INCLUDED_AKEN
 #define INCLUDED_AKEN
 
-#define AKEN_NAME "Aken"
+#define AKEN_NAME L"Aken"
 
 // device type
 #define FILE_DEVICE_AKEN 53498	// in the "User Defined" range."

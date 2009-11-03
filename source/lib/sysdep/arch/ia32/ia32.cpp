@@ -32,6 +32,8 @@ static const size_t maxInstructionLength = 15;	// IA-32 limitation
 
 static bool IsCall(void* ret_addr, void*& target)
 {
+	target = 0;	// (not always possible to determine)
+
 	// points to end of the CALL instruction (which is of unknown length)
 	const u8* c = (const u8*)ret_addr;
 	// this would allow for avoiding exceptions when accessing ret_addr
