@@ -21,12 +21,12 @@
 #include "ps/CLogger.h"
 #include "ps/Player.h"
 
-#define LOG_CATEGORY "tech"
+#define LOG_CATEGORY L"tech"
 
 void CTechnologyCollection::LoadFile( const VfsPath& pathname )
 {
 	const CStrW basename(fs::basename(pathname));
-	m_techFilenames[basename] = pathname.string();
+	m_techFilenames[basename] = pathname;
 }
 
 static LibError LoadTechThunk( const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), uintptr_t cbData )
@@ -39,7 +39,7 @@ static LibError LoadTechThunk( const VfsPath& pathname, const FileInfo& UNUSED(f
 int CTechnologyCollection::LoadTechnologies()
 {
 	// Load all files in techs/ and subdirectories.
-	THROW_ERR( fs_util::ForEachFile(g_VFS, "technologies/", LoadTechThunk, (uintptr_t)this, "*.xml", fs_util::DIR_RECURSIVE));
+	THROW_ERR( fs_util::ForEachFile(g_VFS, L"technologies/", LoadTechThunk, (uintptr_t)this, L"*.xml", fs_util::DIR_RECURSIVE));
 	return 0;
 }
 
@@ -60,20 +60,20 @@ CTechnology* CTechnologyCollection::GetTechnology( const CStrW& name, CPlayer* p
 	if( filename_it == m_techFilenames.end() )
 		return( NULL );
 
-	CStr path( filename_it->second );
+	VfsPath path( filename_it->second );
 
 	//Try to load to the tech
 	CTechnology* newTemplate = new CTechnology( name, player );
 	if( !newTemplate->LoadXml( path ) )
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CTechnologyCollection::GetTechnology(): Couldn't load tech \"%s\"", path.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"CTechnologyCollection::GetTechnology(): Couldn't load tech \"%ls\"", path.string().c_str());
 		delete newTemplate;
 		return( NULL );
 
 	}
 	m_techs[id][name] = newTemplate;
 	
-	LOG(CLogger::Normal,  LOG_CATEGORY, "CTechnologyCollection::GetTechnology(): Loaded tech \"%s\"", path.c_str());
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"CTechnologyCollection::GetTechnology(): Loaded tech \"%ls\"", path.string().c_str());
 	return newTemplate;
 }
 

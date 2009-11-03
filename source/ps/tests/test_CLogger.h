@@ -24,37 +24,37 @@ class TestCLogger : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
-		logger->Log(CLogger::Normal, "", "Test 1");
-		logger->Log(CLogger::Normal, "", "Test 2");
+		logger->Log(CLogger::Normal, L"", L"Test 1");
+		logger->Log(CLogger::Normal, L"", L"Test 2");
 
 		ParseOutput();
 
 		TS_ASSERT_EQUALS((int)lines.size(), 2);
-		TS_ASSERT_EQUALS(lines[0], "Test 1");
-		TS_ASSERT_EQUALS(lines[1], "Test 2");
+		TS_ASSERT_EQUALS(lines[0], L"Test 1");
+		TS_ASSERT_EQUALS(lines[1], L"Test 2");
 	}
 
 	void test_overflow()
 	{
 		const int buflen = 512;
 
-		std::string msg0 (buflen-2, '*');
-		std::string msg1 (buflen-1, '*');
-		std::string msg2 (buflen,   '*');
-		std::string msg3 (buflen+1, '*');
+		std::wstring msg0 (buflen-2, '*');
+		std::wstring msg1 (buflen-1, '*');
+		std::wstring msg2 (buflen,   '*');
+		std::wstring msg3 (buflen+1, '*');
 
-		std::string clipped (buflen-4, '*');
-		clipped += "...";
+		std::wstring clipped (buflen-4, '*');
+		clipped += L"...";
 
-		logger->Log(CLogger::Normal, "", "%s", msg0.c_str());
-		logger->Log(CLogger::Normal, "", "%s", msg1.c_str());
-		logger->Log(CLogger::Normal, "", "%s", msg2.c_str());
-		logger->Log(CLogger::Normal, "", "%s", msg3.c_str());
+		logger->Log(CLogger::Normal, L"", L"%ls", msg0.c_str());
+		logger->Log(CLogger::Normal, L"", L"%ls", msg1.c_str());
+		logger->Log(CLogger::Normal, L"", L"%ls", msg2.c_str());
+		logger->Log(CLogger::Normal, L"", L"%ls", msg3.c_str());
 
-		logger->LogOnce(CLogger::Normal, "", "%s", msg0.c_str());
-		logger->LogOnce(CLogger::Normal, "", "%s", msg1.c_str());
-		logger->LogOnce(CLogger::Normal, "", "%s", msg2.c_str());
-		logger->LogOnce(CLogger::Normal, "", "%s", msg3.c_str());
+		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg0.c_str());
+		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg1.c_str());
+		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg2.c_str());
+		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg3.c_str());
 
 		ParseOutput();
 
@@ -71,14 +71,14 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 
 	CLogger* logger;
-	std::stringstream* mainlog;
-	std::stringstream* interestinglog;
-	std::vector<std::string> lines;
+	std::wstringstream* mainlog;
+	std::wstringstream* interestinglog;
+	std::vector<std::wstring> lines;
 
 	void setUp()
 	{
-		mainlog = new std::stringstream();
-		interestinglog = new std::stringstream();
+		mainlog = new std::wstringstream();
+		interestinglog = new std::wstringstream();
 
 		logger = new CLogger(mainlog, interestinglog, true, true);
 
@@ -93,9 +93,9 @@ public:
 
 	void ParseOutput()
 	{
-		const std::string header_end = "</h2>\n";
+		const std::wstring header_end = L"</h2>\n";
 
-		std::string s = mainlog->str();
+		std::wstring s = mainlog->str();
 		size_t start = s.find(header_end);
 		TS_ASSERT_DIFFERS(start, s.npos);
 		s = s.substr(start + header_end.length());

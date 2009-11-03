@@ -90,7 +90,7 @@ end of XMLWriter.cpp.
 
 // Create a VFS file from the XML data.
 // Returns true on success, false (and logs an error) on failure.
-#define XML_StoreVFS(handle) xml_file_.StoreVFS(handle)
+#define XML_StoreVFS(pathname) xml_file_.StoreVFS(pathname)
 
 // Returns the contents of the XML file as a UTF-8 byte stream in a const CStr&
 // string. (Use CStr::FromUTF8 to get a Unicode string back.)
@@ -98,6 +98,7 @@ end of XMLWriter.cpp.
 
 
 #include "ps/CStr.h"
+#include "lib/file/vfs/vfs_path.h"
 
 class XMLWriter_Element;
 
@@ -110,7 +111,7 @@ public:
 
 	void Comment(const char* text);
 
-	bool StoreVFS(const char* filename);
+	bool StoreVFS(const VfsPath& pathname);
 	const CStr& GetOutput();
 
 private:

@@ -56,14 +56,14 @@ filesystem;
 // the app's directory (and therefore its appendant volume - see above).
 static void detect_filesystem()
 {
-	char root_path[MAX_PATH] = "c:\\";	// default in case GCD fails
-	DWORD gcd_ret = GetCurrentDirectory(sizeof(root_path), root_path);
+	wchar_t root_path[MAX_PATH] = L"c:\\";	// default in case GCD fails
+	DWORD gcd_ret = GetCurrentDirectoryW(ARRAY_SIZE(root_path), root_path);
 	debug_assert(gcd_ret != 0);
 		// if this fails, no problem - we have the default from above.
 	root_path[3] = '\0';	// cut off after "c:\"
 
-	char fs_name[32] = {0};
-	BOOL ret = GetVolumeInformation(root_path, 0,0,0,0,0, fs_name, sizeof(fs_name));
+	wchar_t fs_name[32] = {0};
+	BOOL ret = GetVolumeInformationW(root_path, 0,0,0,0,0, fs_name, sizeof(fs_name));
 	fs_name[ARRAY_SIZE(fs_name)-1] = '\0';
 	debug_assert(ret != 0);
 		// if this fails, no problem - we really only care if fs is FAT,
@@ -71,9 +71,9 @@ static void detect_filesystem()
 
 	filesystem = FS_UNKNOWN;
 
-	if(!strncmp(fs_name, "FAT", 3))	// e.g. FAT32
+	if(!wcsncmp(fs_name, L"FAT", 3))	// e.g. FAT32
 		filesystem = FS_FAT;
-	else if(!strcmp(fs_name, "NTFS"))
+	else if(!wcscmp(fs_name, L"NTFS"))
 		filesystem = FS_NTFS;
 }
 
@@ -295,7 +295,7 @@ DIR* opendir(const char* path)
 	// information about that directory; trailing slashes aren't allowed.
 	// for dir entries to be returned, we have to append "\\*".
 	char search_path[PATH_MAX];
-	snprintf(search_path, ARRAY_SIZE(search_path), "%s\\*", path);
+	sprintf_s(search_path, ARRAY_SIZE(search_path), "%s\\*", path);
 
 	// note: we could store search_path and defer FindFirstFile until
 	// readdir. this way is a bit more complex but required for

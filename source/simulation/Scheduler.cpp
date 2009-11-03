@@ -109,7 +109,7 @@ void CScheduler::Update(int simElapsed)
 			continue;
 		}
 
-		g_ScriptingHost.ExecuteScript( top.script, CStrW( L"timer" ), top.operateOn );
+		g_ScriptingHost.ExecuteScript( top.script, L"timer", top.operateOn );
 		if( top.isRecurrent && !m_abortInterval )
 			PushInterval( top.delay, top.delay, top.script, top.operateOn, top.id );
 	}
@@ -126,7 +126,7 @@ void CScheduler::Update(int simElapsed)
 			continue;
 		}
 
-		g_ScriptingHost.ExecuteScript( top.script, CStrW( L"timer" ), top.operateOn );
+		g_ScriptingHost.ExecuteScript( top.script, L"timer", top.operateOn );
 	}
 	while( !timeFunction.empty() )
 	{

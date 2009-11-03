@@ -118,7 +118,7 @@ void TerrainOverlay::RenderEntityEdges()
 		glBegin(GL_LINE_LOOP);
 
 		CEntity* tempHandle = results[i];
-		debug_printf("Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
+		debug_printf(L"Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
 
 		CVector2D p, q;
 			CVector2D u, v;

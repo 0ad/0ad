@@ -105,13 +105,13 @@ void CommandProc::Merge()
 {
 	if (m_CurrentCommand == m_Commands.begin())
 	{
-		debug_warn("Merge illogic: no commands");
+		debug_warn(L"Merge illogic: no commands");
 		return;
 	}
 
 	if (next(m_CurrentCommand) != m_Commands.end())
 	{
-		debug_warn("Merge illogic: not at stack top");
+		debug_warn(L"Merge illogic: not at stack top");
 		return;
 	}
 
@@ -120,16 +120,16 @@ void CommandProc::Merge()
 
 	if (prev == m_Commands.begin())
 	{
-		debug_warn("Merge illogic: only 1 command");
+		debug_warn(L"Merge illogic: only 1 command");
 		return;
 	}
 
 	if ((*prev)->GetType() != (*m_CurrentCommand)->GetType())
 	{
-		const char* a = (*prev)->GetType();
-		const char* b = (*m_CurrentCommand)->GetType();
-		debug_printf("[incompatible: %s -> %s]\n", a, b);
-		debug_warn("Merge illogic: incompatible command");
+		const CStrW a = (*prev)->GetType();
+		const CStrW b = (*m_CurrentCommand)->GetType();
+		debug_printf(L"[incompatible: %ls -> %ls]\n", a.c_str(), b.c_str());
+		debug_warn(L"Merge illogic: incompatible command");
 		return;
 	}
 

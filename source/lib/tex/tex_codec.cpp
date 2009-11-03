@@ -53,7 +53,7 @@ int tex_codec_register(TexCodecVTbl* c)
 // or return ERR::TEX_UNKNOWN_FORMAT if unknown.
 // note: does not raise a warning because it is used by
 // tex_is_known_extension.
-LibError tex_codec_for_filename(const std::string& extension, const TexCodecVTbl** c)
+LibError tex_codec_for_filename(const std::wstring& extension, const TexCodecVTbl** c)
 {
 	for(*c = codecs; *c; *c = (*c)->next)
 	{

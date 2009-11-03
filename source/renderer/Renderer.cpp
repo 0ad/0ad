@@ -65,7 +65,7 @@
 #include "renderer/WaterManager.h"
 #include "renderer/SkyManager.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -550,11 +550,11 @@ bool CRenderer::Open(int width, int height, int depth)
 
 	GLint bits;
 	glGetIntegerv(GL_DEPTH_BITS,&bits);
-	LOG(CLogger::Normal,  LOG_CATEGORY, "CRenderer::Open: depth bits %d",bits);
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"CRenderer::Open: depth bits %d",bits);
 	glGetIntegerv(GL_STENCIL_BITS,&bits);
-	LOG(CLogger::Normal,  LOG_CATEGORY, "CRenderer::Open: stencil bits %d",bits);
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"CRenderer::Open: stencil bits %d",bits);
 	glGetIntegerv(GL_ALPHA_BITS,&bits);
-	LOG(CLogger::Normal,  LOG_CATEGORY, "CRenderer::Open: alpha bits %d",bits);
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"CRenderer::Open: alpha bits %d",bits);
 
 	// Validate the currently selected render path
 	SetRenderPath(m_Options.m_RenderPath);
@@ -590,7 +590,7 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 			m_Options.m_FancyWater=value;
 			break;
 		default:
-			debug_warn("CRenderer::SetOptionBool: unknown option");
+			debug_warn(L"CRenderer::SetOptionBool: unknown option");
 			break;
 	}
 }
@@ -609,7 +609,7 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 		case OPT_FANCYWATER:
 			return m_Options.m_FancyWater;
 		default:
-			debug_warn("CRenderer::GetOptionBool: unknown option");
+			debug_warn(L"CRenderer::GetOptionBool: unknown option");
 			break;
 	}
 
@@ -622,7 +622,7 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 // {
 // //	switch (opt) {
 // //		default:
-// 			debug_warn("CRenderer::SetOptionColor: unknown option");
+// 			debug_warn(L"CRenderer::SetOptionColor: unknown option");
 // //			break;
 // //	}
 // }
@@ -635,7 +635,7 @@ void CRenderer::SetOptionFloat(enum Option opt, float val)
 		m_Options.m_LodBias = val;
 		break;
 	default:
-		debug_warn("CRenderer::SetOptionFloat: unknown option");
+		debug_warn(L"CRenderer::SetOptionFloat: unknown option");
 		break;
 	}
 }
@@ -648,7 +648,7 @@ void CRenderer::SetOptionFloat(enum Option opt, float val)
 // 
 // //	switch (opt) {
 // //		default:
-// 			debug_warn("CRenderer::GetOptionColor: unknown option");
+// 			debug_warn(L"CRenderer::GetOptionColor: unknown option");
 // //			break;
 // //	}
 // 
@@ -682,7 +682,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	{
 		if (!m->CanUseRenderPathVertexShader())
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, "Falling back to fixed function\n");
+			LOG(CLogger::Warning, LOG_CATEGORY, L"Falling back to fixed function\n");
 			rp = RP_FIXED;
 		}
 	}
@@ -710,7 +710,7 @@ CRenderer::RenderPath CRenderer::GetRenderPathByName(const CStr& name)
 	if (name == "default")
 		return RP_DEFAULT;
 
-	LOG(CLogger::Warning, LOG_CATEGORY, "Unknown render path name '%s', assuming 'default'", name.c_str());
+	LOG(CLogger::Warning, LOG_CATEGORY, L"Unknown render path name '%hs', assuming 'default'", name.c_str());
 	return RP_DEFAULT;
 }
 
@@ -725,7 +725,7 @@ void CRenderer::SetFastPlayerColor(bool fast)
 	{
 		if (!FastPlayerColorRender::IsAvailable())
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, "Falling back to slower player color rendering.");
+			LOG(CLogger::Warning, LOG_CATEGORY, L"Falling back to slower player color rendering.");
 			m_FastPlayerColor = false;
 		}
 	}
@@ -1328,7 +1328,7 @@ void CRenderer::EndFrame()
 
 	static bool once=false;
 	if (!once && glGetError()) {
-		LOG(CLogger::Error, LOG_CATEGORY, "CRenderer::EndFrame: GL errors occurred");
+		LOG(CLogger::Error, LOG_CATEGORY, L"CRenderer::EndFrame: GL errors occurred");
 		once=true;
 	}
 }
@@ -1451,7 +1451,7 @@ bool CRenderer::LoadTexture(CTexture* texture,int wrapflags)
 	h = ogl_tex_load(texture->GetName());
 	if (h <= 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "LoadTexture failed on \"%s\"",(const char*) texture->GetName());
+		LOG(CLogger::Error, LOG_CATEGORY, L"LoadTexture failed on \"%ls\"", texture->GetName().string().c_str());
 		texture->SetHandle(errorhandle);
 		return false;
 	}
@@ -1464,7 +1464,7 @@ bool CRenderer::LoadTexture(CTexture* texture,int wrapflags)
 	// (this also verifies that the texture is a power-of-two)
 	if(ogl_tex_upload(h) < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "LoadTexture failed on \"%s\" : upload failed",(const char*) texture->GetName());
+		LOG(CLogger::Error, LOG_CATEGORY, L"LoadTexture failed on \"%ls\" : upload failed", texture->GetName().string().c_str());
 		ogl_tex_free(h);
 		texture->SetHandle(errorhandle);
 		return false;
@@ -1528,7 +1528,7 @@ static inline void CopyTriple(unsigned char* dst,const unsigned char* src)
 // calculate the coordinate of each alphamap within this packed texture
 int CRenderer::LoadAlphaMaps()
 {
-	const char* const key = "(alpha map composite)";
+	const wchar_t* const key = L"(alpha map composite)";
 	Handle ht = ogl_tex_find(key);
 	// alpha map texture had already been created and is still in memory:
 	// reuse it, do not load again.
@@ -1542,22 +1542,22 @@ int CRenderer::LoadAlphaMaps()
 	// load all textures and store Handle in array
 	//
 	Handle textures[NumAlphaMaps] = {0};
-	VfsPath path("art/textures/terrain/alphamaps/special");
-	const char* fnames[NumAlphaMaps] = {
-		"blendcircle.dds",
-		"blendlshape.dds",
-		"blendedge.dds",
-		"blendedgecorner.dds",
-		"blendedgetwocorners.dds",
-		"blendfourcorners.dds",
-		"blendtwooppositecorners.dds",
-		"blendlshapecorner.dds",
-		"blendtwocorners.dds",
-		"blendcorner.dds",
-		"blendtwoedges.dds",
-		"blendthreecorners.dds",
-		"blendushape.dds",
-		"blendbad.dds"
+	VfsPath path(L"art/textures/terrain/alphamaps/special");
+	const wchar_t* fnames[NumAlphaMaps] = {
+		L"blendcircle.dds",
+		L"blendlshape.dds",
+		L"blendedge.dds",
+		L"blendedgecorner.dds",
+		L"blendedgetwocorners.dds",
+		L"blendfourcorners.dds",
+		L"blendtwooppositecorners.dds",
+		L"blendlshapecorner.dds",
+		L"blendtwocorners.dds",
+		L"blendcorner.dds",
+		L"blendtwoedges.dds",
+		L"blendthreecorners.dds",
+		L"blendushape.dds",
+		L"blendbad.dds"
 	};
 	size_t base = 0;	// texture width/height (see below)
 	// for convenience, we require all alpha maps to be of the same BPP

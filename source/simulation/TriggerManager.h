@@ -198,7 +198,7 @@ public:
 	~CTriggerManager();
 	
 	//Returns false on detection of error
-	bool LoadXml( const CStr& filename );
+	bool LoadXml( const VfsPath& filename );
 	void Update(float delta);
 
 	//Add simulation trigger (probably only called from JS)

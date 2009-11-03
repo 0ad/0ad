@@ -52,12 +52,12 @@ enum
 typedef uintptr_t pthread_once_t;
 #define PTHREAD_ONCE_INIT 0	// static pthread_once_t x = PTHREAD_ONCE_INIT;
 
-extern int pthread_once(pthread_once_t*, void (*init_routine)(void));
+extern int pthread_once(pthread_once_t*, void (*init_routine)());
 
 // thread
 typedef uintptr_t pthread_t;
 
-extern pthread_t pthread_self(void);
+extern pthread_t pthread_self();
 extern int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
 extern int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
 extern int pthread_create(pthread_t* thread, const void* attr, void* (*func)(void*), void* arg);
@@ -69,7 +69,7 @@ typedef void* pthread_mutex_t;	// pointer to critical section
 typedef void pthread_mutexattr_t;
 #define PTHREAD_MUTEX_INITIALIZER pthread_mutex_initializer()
 
-extern pthread_mutex_t pthread_mutex_initializer(void);
+extern pthread_mutex_t pthread_mutex_initializer();
 extern int pthread_mutex_init(pthread_mutex_t*, const pthread_mutexattr_t*);
 extern int pthread_mutex_destroy(pthread_mutex_t*);
 extern int pthread_mutex_lock(pthread_mutex_t*);

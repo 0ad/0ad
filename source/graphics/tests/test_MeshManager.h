@@ -31,24 +31,24 @@
 // contains input files (it is assumed that developer's machines have
 // write access to those directories). note that argv0 isn't
 // available, so we use sys_get_executable_name.
-static fs::path DataDir()
+static fs::wpath DataDir()
 {
-	char path[PATH_MAX];
-	TS_ASSERT_OK(sys_get_executable_name(path, ARRAY_SIZE(path)));
-	return fs::path(path).branch_path()/"../data";
+	fs::wpath path;
+	TS_ASSERT_OK(sys_get_executable_name(path));
+	return path.branch_path()/L"../data";
 }
 
-static fs::path MOD_PATH(DataDir()/"mods/_test.mesh");
-static fs::path CACHE_PATH(DataDir()/"_testcache");
+static fs::wpath MOD_PATH(DataDir()/L"mods/_test.mesh");
+static fs::wpath CACHE_PATH(DataDir()/L"_testcache");
 
-const char* srcDAE = "collada/sphere.dae";
-const char* srcPMD = "collada/sphere.pmd";
-const char* testDAE = "art/skeletons/test.dae";
-const char* testPMD = "art/skeletons/test.pmd";
-const char* testBase = "art/skeletons/test";
+const wchar_t* srcDAE = L"collada/sphere.dae";
+const wchar_t* srcPMD = L"collada/sphere.pmd";
+const wchar_t* testDAE = L"art/skeletons/test.dae";
+const wchar_t* testPMD = L"art/skeletons/test.pmd";
+const wchar_t* testBase = L"art/skeletons/test";
 
-const char* srcSkeletonDefs = "collada/skeletons.xml";
-const char* testSkeletonDefs = "art/skeletons/skeletons.xml";
+const wchar_t* srcSkeletonDefs = L"collada/skeletons.xml";
+const wchar_t* testSkeletonDefs = L"art/skeletons/skeletons.xml";
 
 extern PIVFS g_VFS;
 
@@ -69,13 +69,13 @@ class TestMeshManager : public CxxTest::TestSuite
 
 		g_VFS = CreateVfs(20*MiB);
 
-		TS_ASSERT_OK(g_VFS->Mount("", MOD_PATH));
-		TS_ASSERT_OK(g_VFS->Mount("collada/", DataDir()/"tests/collada"));
+		TS_ASSERT_OK(g_VFS->Mount(L"", MOD_PATH));
+		TS_ASSERT_OK(g_VFS->Mount(L"collada/", DataDir()/L"tests/collada"));
 
 		// Mount _testcache onto virtual /cache - don't use the normal cache
 		// directory because that's full of loads of cached files from the
 		// proper game and takes a long time to load.
-		TS_ASSERT_OK(g_VFS->Mount("cache/", CACHE_PATH));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache/", CACHE_PATH));
 	}
 
 	void deinitVfs()
@@ -85,7 +85,7 @@ class TestMeshManager : public CxxTest::TestSuite
 		g_VFS.reset();
 	}
 
-	void copyFile(const char* src, const char* dst)
+	void copyFile(const VfsPath& src, const VfsPath& dst)
 	{
 		// Copy a file into the mod directory, so we can work on it:
 		shared_ptr<u8> data; size_t size = 0;
@@ -137,7 +137,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testPMD);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_STR_EQUALS(modeldef->GetName(), testBase);
+		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName().string(), testBase);
 	}
 
 	void test_load_pmd_without_extension()
@@ -146,7 +146,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testBase);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_STR_EQUALS(modeldef->GetName(), testBase);
+		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName().string(), testBase);
 	}
 
 	void test_caching()
@@ -166,7 +166,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(modeldef);
-		if (modeldef) TS_ASSERT_STR_EQUALS(modeldef->GetName(), testBase);
+		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName().string(), testBase);
 	}
 
 	void test_load_dae_caching()
@@ -177,7 +177,7 @@ public:
 		VfsPath daeName1 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
 		VfsPath daeName2 = colladaManager->GetLoadableFilename(testBase, CColladaManager::PMD);
 		TS_ASSERT(!daeName1.empty());
-		TS_ASSERT_STR_EQUALS(daeName1.string(), daeName2.string());
+		TS_ASSERT_WSTR_EQUALS(daeName1.string(), daeName2.string());
 		// TODO: it'd be nice to test that it really isn't doing the DAE->PMD
 		// conversion a second time, but there doesn't seem to be an easy way
 		// to check that
@@ -194,7 +194,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
-		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "parser error");
+		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"parser error");
 	}
 
 	void test_invalid_dae()
@@ -208,7 +208,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
-		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "parser error");
+		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"parser error");
 	}
 
 	void test_load_nonexistent_pmd()
@@ -233,7 +233,7 @@ public:
 
 	void test_load_dae_bogus_material_target()
 	{
-		copyFile("collada/bogus_material_target.dae", testDAE);
+		copyFile(L"collada/bogus_material_target.dae", testDAE);
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);

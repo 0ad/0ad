@@ -22,8 +22,6 @@
 #ifndef INCLUDED_WDLL_VER
 #define INCLUDED_WDLL_VER
 
-#include "lib/os_path.h"
-
 /**
  * read DLL version information and append it to a string.
  *
@@ -34,6 +32,6 @@
  * the text output includes the module name.
  * on failure, the version is given as "unknown".
  **/
-extern void wdll_ver_Append(const OsPath& pathname, std::string& list);
+extern void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list);
 
 #endif	// #ifndef INCLUDED_WDLL_VER

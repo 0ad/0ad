@@ -33,7 +33,7 @@ CInput
 #include "ps/CLogger.h"
 #include "ps/Globals.h"
 
-#define LOG_CATEGORY "gui"
+#define LOG_CATEGORY L"gui"
 
 
 //-------------------------------------------------------------------
@@ -44,7 +44,7 @@ CInput::CInput() : m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(fals
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CStrW,					"caption");
 	AddSetting(GUIST_int,					"cell_id");
-	AddSetting(GUIST_CStr,					"font");
+	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_int,					"max_length");
 	AddSetting(GUIST_bool,					"multiline");
 	AddSetting(GUIST_bool,					"scrollbar");
@@ -647,10 +647,10 @@ void CInput::Draw()
 
 	if (GetGUI())
 	{	
-		CStr font_name;
+		CStrW font_name;
 		CColor color, color_selected;
 		//CStrW caption;
-		GUI<CStr>::GetSetting(this, "font", font_name);
+		GUI<CStrW>::GetSetting(this, "font", font_name);
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 		GUI<CColor>::GetSetting(this, "textcolor_selected", color_selected);
 		
@@ -1022,15 +1022,15 @@ void CInput::Draw()
 void CInput::UpdateText(int from, int to_before, int to_after)
 {
 	CStrW caption;
-	CStr font_name;
+	CStrW font_name;
 	float buffer_zone;
 	bool multiline;
-	GUI<CStr>::GetSetting(this, "font", font_name);
+	GUI<CStrW>::GetSetting(this, "font", font_name);
 	GUI<CStrW>::GetSetting(this, "caption", caption);
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
 	GUI<bool>::GetSetting(this, "multiline", multiline);
 
-	if (font_name == CStr())
+	if (font_name == CStrW())
 	{
 		// Destroy everything stored, there's no font, so there can be
 		//  no data.
@@ -1428,9 +1428,9 @@ int CInput::GetMouseHoveringTextPosition()
 
 	if (multiline)
 	{
-		CStr font_name;
+		CStrW font_name;
 		bool scrollbar;
-		GUI<CStr>::GetSetting(this, "font", font_name);
+		GUI<CStrW>::GetSetting(this, "font", font_name);
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 		
 		float scroll=0.f;
@@ -1580,9 +1580,9 @@ void CInput::UpdateAutoScroll()
 	// Autoscrolling up and down
 	if (multiline)
 	{
-		CStr font_name;
+		CStrW font_name;
 		bool scrollbar;
-		GUI<CStr>::GetSetting(this, "font", font_name);
+		GUI<CStrW>::GetSetting(this, "font", font_name);
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 		
 		float scroll=0.f;

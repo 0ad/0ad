@@ -25,22 +25,22 @@
 #define INCLUDED_TEXTURE
 
 #include "lib/res/handle.h"
-#include "ps/CStr.h"
+#include "lib/file/vfs/vfs_path.h"
 
 class CTexture
 {
 public:
 	CTexture() : m_Handle(0) {}
-	CTexture(const char* name) : m_Name(name), m_Handle(0) {}
+	CTexture(const VfsPath& pathname) : m_Name(pathname), m_Handle(0) {}
 
-	void SetName(const char* name) { m_Name=name; }
-	const char* GetName() const { return (const char*) m_Name; }
+	void SetName(const VfsPath& pathname) { m_Name=pathname; }
+	const VfsPath& GetName() const { return m_Name; }
 
 	Handle GetHandle() const { return m_Handle; }
 	void SetHandle(Handle handle) { m_Handle=handle; }
 
 private:
-	CStr m_Name;
+	VfsPath m_Name;
 	Handle m_Handle;
 };
 

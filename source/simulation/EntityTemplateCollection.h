@@ -33,6 +33,7 @@
 
 #include <vector>
 #include <map>
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 #include "ps/Game.h"
@@ -51,7 +52,7 @@ class CEntityTemplateCollection : public Singleton<CEntityTemplateCollection>
 	static const size_t NULL_PLAYER = (PS_MAX_PLAYERS+1);
 
 	typedef STL_HASH_MAP<CStrW, CEntityTemplate*, CStrW_hash_compare> TemplateMap;
-	typedef STL_HASH_MAP<CStrW, CStr, CStrW_hash_compare> TemplateFilenameMap;
+	typedef STL_HASH_MAP<CStrW, VfsPath, CStrW_hash_compare> TemplateFilenameMap;
 	
 	TemplateMap m_templates[PS_MAX_PLAYERS + 2];
 	TemplateFilenameMap m_templateFilenames;

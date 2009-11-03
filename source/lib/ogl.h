@@ -117,7 +117,7 @@ extern const char* ogl_HaveExtensions(int dummy, ...) SENTINEL_ARG;
  * @return read-only C string of unspecified length containing all
  * advertised extension names, separated by space.
  **/
-extern const char* ogl_ExtensionString(void);
+extern const char* ogl_ExtensionString();
 
 // declare extension function pointers
 #if OS_WIN
@@ -150,7 +150,7 @@ extern const char* ogl_ExtensionString(void);
  *
  * disabled in release mode for efficiency and to avoid annoying errors.
  **/
-extern void ogl_WarnIfError(void);
+extern void ogl_WarnIfError();
 #ifdef NDEBUG
 # define ogl_WarnIfError()
 #endif
@@ -185,6 +185,6 @@ extern GLint ogl_max_tex_units;				/// limit on GL_TEXTUREn
  *
  * @return LibError
  **/
-extern LibError ogl_get_gfx_info(void);
+extern LibError ogl_get_gfx_info();
 
 #endif	// #ifndef INCLUDED_OGL

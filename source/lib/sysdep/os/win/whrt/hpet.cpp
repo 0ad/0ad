@@ -40,9 +40,9 @@ public:
 	{
 	}
 
-	virtual const char* Name() const
+	virtual const wchar_t* Name() const
 	{
-		return "HPET";
+		return L"HPET";
 	}
 
 	LibError Activate()
@@ -60,7 +60,7 @@ public:
 			debug_assert(period_fs != 0);	// "a value of 0 in this field is not permitted"
 			debug_assert(period_fs <= 0x05F5E100);	// 100 ns (min freq is 10 MHz)
 			m_frequency = 1e15 / period_fs;
-			debug_printf("HPET: rev=%X vendor=%X bits=%d period=%X freq=%g\n", revision, vendorID, m_counterBits, period_fs, m_frequency);
+			debug_printf(L"HPET: rev=%X vendor=%X bits=%d period=%X freq=%g\n", revision, vendorID, m_counterBits, period_fs, m_frequency);
 		}
 
 		// start the counter (if not already running)
@@ -174,7 +174,9 @@ private:
 #if ARCH_AMD64
 		return _mm_cvtsi128_si64x(value128);
 #else
-		return u64_from_u32(value128.m128i_u32[1], value128.m128i_u32[0]);
+		__declspec(align(16)) u32 values[4];
+		_mm_store_si128((__m128i*)values, value128);
+		return u64_from_u32(values[1], values[0]);
 #endif
 	}
 

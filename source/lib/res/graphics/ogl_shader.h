@@ -76,7 +76,7 @@ Encapsulate program objects into handles.
  *
  * note: Shader objects are loaded and attached automatically.
  **/
-Handle ogl_program_load(const char* pathname);
+Handle ogl_program_load(const VfsPath& pathname);
 
 /**
  * Free all resources associated with the given program handle.

@@ -34,7 +34,7 @@
 #endif
 #endif
 
-#define LOG_CATEGORY "scriptinghost"
+#define LOG_CATEGORY L"scriptinghost"
 
 namespace
 {
@@ -127,14 +127,15 @@ void ScriptingHost::RunMemScript(const char* script, size_t size, const char* fi
 }
 
 // globalObject defaults to 0 (in which case we use our m_GlobalObject).
-void ScriptingHost::RunScript(const CStr& filename, JSObject* globalObject)
+void ScriptingHost::RunScript(const VfsPath& pathname, JSObject* globalObject)
 {
 	shared_ptr<u8> buf; size_t size;
-	if(g_VFS->LoadFile(filename, buf, size) != INFO::OK)	// ERRTODO: translate/pass it on
+	if(g_VFS->LoadFile(pathname, buf, size) != INFO::OK)	// ERRTODO: translate/pass it on
 		throw PSERROR_Scripting_LoadFile_OpenFailed();
 
 	const char* script = (const char*)buf.get();
-	RunMemScript(script, size, filename.c_str(), 1, globalObject);
+	CStr pathname_c(pathname.string());
+	RunMemScript(script, size, pathname_c.c_str(), 1, globalObject);
 }
 
 jsval ScriptingHost::CallFunction(const std::string & functionName, jsval * params, int numParams)
@@ -400,28 +401,24 @@ jsval ScriptingHost::UTF16ToValue(const utf16string &str)
 
 // called by SpiderMonkey whenever someone does JS_ReportError.
 // prints that message as well as locus to log, debug output and console.
-void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* message, JSErrorReport* report)
+void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* pmessage, JSErrorReport* report)
 {
-	const char* file = report->filename;
+	const CStrW file = report->filename? report->filename : "(current document)";
 	const int line   = report->lineno;
+	const CStrW message = pmessage? pmessage : "No error message available";
 	// apparently there is no further information in this struct we can use
 	// because linebuf/tokenptr require a buffer to have been allocated.
 	// that doesn't look possible since we are a callback and there is
 	// no mention in the dox about where this would happen (typical).
 
-	if(!file)
-		file = "(current document)";
-	if(!message)
-		message = "No error message available";
-
 	// for developer convenience: write to output window so they can
 	// doubleclick on that line and be taken to the error locus.
-	debug_printf("%s(%d): %s\n", file, line, message);
+	debug_printf(L"%ls(%d): %ls\n", file.c_str(), line, message.c_str());
 
 	// note: CLogger's LOG already takes care of writing to the console,
 	// so don't do that here.
 
-	LOG(CLogger::Error, LOG_CATEGORY, "JavaScript Error (%s, line %d): %s", file, line, message);
+	LOG(CLogger::Error, LOG_CATEGORY, L"JavaScript Error (%s, line %d): %s", file.c_str(), line, message.c_str());
 }
 
 #ifndef NDEBUG

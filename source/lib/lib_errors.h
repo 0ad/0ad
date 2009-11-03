@@ -162,7 +162,7 @@ struct LibErrorAssociation
 	LibError err;
 
 	// must remain valid until end of program.
-	const char* description;
+	const wchar_t* description;
 
 	// POSIX errno, or -1
 	int errno_equivalent;
@@ -193,7 +193,7 @@ extern int error_AddAssociation(LibErrorAssociation*);
  * @param max_chars size of buffer [characters]
  * @return buf (allows using this function in expressions)
  **/
-extern char* error_description_r(LibError err, char* buf, size_t max_chars);
+extern wchar_t* error_description_r(LibError err, wchar_t* buf, size_t max_chars);
 
 //-----------------------------------------------------------------------------
 
@@ -340,8 +340,8 @@ STMT(\
 STMT(\
 	if(!(ok))\
 	{\
-		debug_warn("FYI: WARN_RETURN_IF_FALSE reports that a function failed."\
-		           "feel free to ignore or suppress this warning.");\
+		debug_warn(L"FYI: WARN_RETURN_IF_FALSE reports that a function failed."\
+		           L"feel free to ignore or suppress this warning.");\
 		return ERR::FAIL;\
 	}\
 )
@@ -357,8 +357,8 @@ STMT(\
 #define WARN_IF_FALSE(ok)\
 STMT(\
 	if(!(ok))\
-		debug_warn("FYI: WARN_IF_FALSE reports that a function failed."\
-		           "feel free to ignore or suppress this warning.");\
+		debug_warn(L"FYI: WARN_IF_FALSE reports that a function failed."\
+		           L"feel free to ignore or suppress this warning.");\
 )
 
 

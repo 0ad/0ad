@@ -69,9 +69,9 @@ static bool bmp_is_hdr(const u8* file)
 }
 
 
-static bool bmp_is_ext(const std::string& extension)
+static bool bmp_is_ext(const std::wstring& extension)
 {
-	return !strcasecmp(extension.c_str(), ".bmp");
+	return !wcscasecmp(extension.c_str(), L".bmp");
 }
 
 

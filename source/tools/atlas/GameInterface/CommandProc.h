@@ -150,7 +150,7 @@ The following macros convert that into:
 		d##t* msg; \
 	public: \
 		c##t##_base() : msg(NULL) {} \
-		void MergeIntoPrevious(void*) { debug_warn("MergeIntoPrevious unimplemented in command " #t); } \
+		void MergeIntoPrevious(void*) { debug_warn(L"MergeIntoPrevious unimplemented in command " WIDEN(#t)); } \
 	}; \
 	struct c##t : public c##t##_base 
 

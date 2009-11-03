@@ -30,7 +30,7 @@
 #include "maths/Quaternion.h"
 #include "lib/res/graphics/ogl_tex.h"
 
-#define LOG_CATEGORY "Cinema"
+#define LOG_CATEGORY L"Cinema"
 
 namespace AtlasMessage {
 

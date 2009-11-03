@@ -20,5 +20,5 @@
 
 bool vfs_path_IsDirectory(const VfsPath& pathname)
 {
-	return pathname.empty() || pathname.leaf() == ".";
+	return pathname.empty() || pathname.leaf() == L".";
 }

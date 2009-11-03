@@ -25,7 +25,7 @@
 
 DEFINE_ERROR(CONFLICTING_OP_IN_PROGRESS, "A conflicting operation is already in progress");
 
-#define LOG_CAT_NET "net"
+#define LOG_CATEGORY L"net"
 
 /**
  * The SNetHeader will always be stored in host-order
@@ -187,7 +187,7 @@ void CMessageSocket::StartWriteNextMessage()
 			}
 			else if (pMsg->GetType() < 0)
 			{
-				LOG(CLogger::Warning, LOG_CAT_NET, "CMessageSocket::StartWriteNextMessage(): Non-network message");
+				LOG(CLogger::Warning, LOG_CATEGORY, L"CMessageSocket::StartWriteNextMessage(): Non-network message");
 				delete pMsg;
 				pMsg=NULL;
 			}

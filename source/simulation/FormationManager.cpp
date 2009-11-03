@@ -36,7 +36,7 @@ void CFormationManager::CreateFormation( CEntityList& entities, CStrW& name )
 {
 	if ( entities.empty() )
 	{
-		debug_warn("Attempting to create a formation with no entities");
+		debug_warn(L"Attempting to create a formation with no entities");
 		return;
 	}
 	CFormation* base = g_EntityFormationCollection.GetTemplate(name);
@@ -66,7 +66,7 @@ void CFormationManager::DestroyFormation( size_t form )
 {
 	if ( form >= m_formations.size())
 	{
-		debug_warn("CFormationManager::DestroyFormation--invalid entity");
+		debug_warn(L"CFormationManager::DestroyFormation--invalid entity");
 		return;
 	}
 	FormIterator it=m_formations.begin() + form;

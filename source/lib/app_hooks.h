@@ -100,7 +100,7 @@ extern const wchar_t*, translate, (const wchar_t* text), (text), return)
  * the default implementation works but is hardwired in code and therefore
  * not expandable.
  **/
-extern void ah_override_gl_upload_caps(void);
+extern void ah_override_gl_upload_caps();
 
 /**
  * return path to directory into which crash dumps should be written.
@@ -113,7 +113,7 @@ extern void ah_override_gl_upload_caps(void);
  *
  * @return full native path; must end with directory separator (e.g. '/').
  **/
-extern const char* ah_get_log_dir(void);
+extern const fs::wpath& ah_get_log_dir();
 
 /**
  * gather all app-related logs/information and write it to file.
@@ -174,8 +174,8 @@ extern ErrorReaction ah_display_error(const wchar_t* text, size_t flags);
  **/
 struct AppHooks
 {
-	void (*override_gl_upload_caps)(void);
-	const char* (*get_log_dir)(void);
+	void (*override_gl_upload_caps)();
+	const fs::wpath& (*get_log_dir)();
 	void (*bundle_logs)(FILE* f);
 	const wchar_t* (*translate)(const wchar_t* text);
 	void (*translate_free)(const wchar_t* text);

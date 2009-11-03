@@ -29,7 +29,7 @@ class BlockId
 {
 public:
 	BlockId();
-	BlockId(const fs::path& pathname, off_t ofs);
+	BlockId(const fs::wpath& pathname, off_t ofs);
 	bool operator==(const BlockId& rhs) const;
 	bool operator!=(const BlockId& rhs) const;
 

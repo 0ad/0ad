@@ -447,8 +447,8 @@ static u32 gen_tag()
 	static u32 tag;
 	if(++tag >= TAG_MASK)
 	{
-		debug_warn("h_mgr: tag overflow - allocations are no longer unique."\
-			"may not notice stale handle reuse. increase TAG_BITS.");
+		debug_warn(L"h_mgr: tag overflow - allocations are no longer unique."\
+			L"may not notice stale handle reuse. increase TAG_BITS.");
 		tag = 1;
 	}
 	return tag;
@@ -564,9 +564,7 @@ Handle h_alloc(H_Type type, const VfsPath& pathname, size_t flags, ...)
 {
 	RETURN_ERR(type_validate(type));
 
-	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length());
-
-//debug_printf("alloc %s %s\n", type->name, fn);
+	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
 
 	// see if we can reuse an existing handle
 	Handle h = reuse_existing_handle(key, type, flags);
@@ -588,8 +586,6 @@ Handle h_alloc(H_Type type, const VfsPath& pathname, size_t flags, ...)
 // currently cannot fail.
 static LibError h_free_idx(ssize_t idx, HDATA* hd)
 {
-	// debug_printf("free %s %s\n", type->name, hd->fn);
-
 	// only decrement if refcount not already 0.
 	if(hd->refs > 0)
 		hd->refs--;
@@ -613,16 +609,16 @@ static LibError h_free_idx(ssize_t idx, HDATA* hd)
 
 #ifndef NDEBUG
 	// to_string is slow for some handles, so avoid calling it if unnecessary
-	if(debug_filter_allows("H_MGR|"))
+	if(debug_filter_allows(L"H_MGR|"))
 	{
 		char buf[H_STRING_LEN];
 		if(vtbl->to_string(hd->user, buf) < 0)
 			strcpy(buf, "(error)");	// safe
-		debug_printf("H_MGR| free %s %s accesses=%lu %s\n", hd->type->name, hd->pathname.string().c_str(), (unsigned long)hd->num_derefs, buf);
+		debug_printf(L"H_MGR| free %ls %ls accesses=%lu %hs\n", hd->type->name, hd->pathname.string().c_str(), (unsigned long)hd->num_derefs, buf);
 	}
 #endif
 
-	hd->pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::string memory
+	hd->pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::wstring memory
 	memset(hd, 0, sizeof(*hd));
 	new (&hd->pathname) VfsPath;	// FIXME too: necessary because otherwise it'll break if we reuse this page
 
@@ -695,7 +691,7 @@ VfsPath h_filename(const Handle h)
 // TODO: what if iterating through all handles is too slow?
 LibError h_reload(const VfsPath& pathname)
 {
-	const u32 key = fnv_hash(pathname.string().c_str(), pathname.string().length());
+	const u32 key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
 
 	// destroy (note: not free!) all handles backed by this file.
 	// do this before reloading any of them, because we don't specify reload
@@ -813,7 +809,7 @@ void h_mgr_shutdown()
 	if(!ModuleShouldShutdown(&initState))
 		return;
 
-	debug_printf("H_MGR| shutdown. any handle frees after this are leaks!\n");
+	debug_printf(L"H_MGR| shutdown. any handle frees after this are leaks!\n");
 
 	// forcibly close all open handles
 	for(ssize_t i = 0; i <= last_in_use; i++)
@@ -844,7 +840,7 @@ void h_mgr_shutdown()
 	{
 		if (pages[j])
 			for(size_t k = 0; k < hdata_per_page; ++k)
-				pages[j][k].pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::string memory
+				pages[j][k].pathname.~VfsPath();	// FIXME: ugly hack, but necessary to reclaim std::wstring memory
 		free(pages[j]);
 		pages[j] = 0;
 	}

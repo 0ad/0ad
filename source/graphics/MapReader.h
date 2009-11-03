@@ -44,7 +44,7 @@ public:
 	// constructor
 	CMapReader();
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-	void LoadMap(const char* filename, CTerrain *pTerrain, CUnitManager *pUnitMan,
+	void LoadMap(const VfsPath& pathname, CTerrain *pTerrain, CUnitManager *pUnitMan,
 		WaterManager* pWaterMan, SkyManager* pSkyMan, CLightEnv *pLightEnv, CCamera *pCamera, 
 																CCinemaManager* pCinema);
 
@@ -95,7 +95,7 @@ private:
 	CCamera* pCamera;
 	CCinemaManager* pCinema;
 	CTriggerManager* pTrigMan;
-	CStr filename_xml;
+	VfsPath filename_xml;
 
 	// UnpackTerrain generator state
 	size_t cur_terrain_tex;

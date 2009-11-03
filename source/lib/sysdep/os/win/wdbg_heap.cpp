@@ -18,10 +18,11 @@
 #include "precompiled.h"
 #include "wdbg_heap.h"
 
-#include "lib/sysdep/os/win/win.h"
+#include "win.h"
 #include <crtdbg.h>
 #include <excpt.h>
 
+#include "lib/external_libraries/dbghelp.h"
 #include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
 #include "winit.h"
 #include "wdbg.h"       // wdbg_printf
@@ -126,7 +127,7 @@ struct _CrtMemBlockHeader
 	int blockType;
 #endif
 	long allocationNumber;
-	unsigned char gap[4];
+	u8 gap[4];
 
 	bool IsValid() const
 	{
@@ -245,9 +246,9 @@ public:
 	{
 	}
 
-	ModuleExtents(const char* dllName)
+	ModuleExtents(const wchar_t* dllName)
 	{
-		HMODULE hModule = GetModuleHandle(dllName);
+		HMODULE hModule = GetModuleHandleW(dllName);
 		PIMAGE_NT_HEADERS ntHeaders = (PIMAGE_NT_HEADERS)((u8*)hModule + ((PIMAGE_DOS_HEADER)hModule)->e_lfanew);
 		m_address = (uintptr_t)hModule + ntHeaders->OptionalHeader.BaseOfCode;
 		MEMORY_BASIC_INFORMATION mbi = {0};
@@ -362,17 +363,17 @@ private:
 	{
 #if MSC_VERSION && _DLL	// DLL runtime library
 #ifdef NDEBUG
-		static const char* dllNameFormat = "msvc%c%d" ".dll";
+		static const wchar_t* dllNameFormat = L"msvc%c%d" L".dll";
 #else
-		static const char* dllNameFormat = "msvc%c%d" "d" ".dll";
+		static const wchar_t* dllNameFormat = L"msvc%c%d" L"d" L".dll";
 #endif
 		const int dllVersion = (MSC_VERSION-600)/10;	// VC2005: 1400 => 80
 		wdbg_assert(0 < dllVersion && dllVersion <= 999);
 		for(int i = 0; i < numModules; i++)
 		{
 			static const char modules[numModules] = { 'r', 'p' };	// C and C++ runtime libraries
-			char dllName[20];
-			sprintf_s(dllName, ARRAY_SIZE(dllName), dllNameFormat, modules[i], dllVersion);
+			wchar_t dllName[20];
+			swprintf_s(dllName, ARRAY_SIZE(dllName), dllNameFormat, modules[i], dllVersion);
 			m_moduleIgnoreList[i] = ModuleExtents(dllName);
 		}
 #endif
@@ -389,11 +390,11 @@ private:
 				free(p1);
 		}
 		{
-			char* p = new char;
+			u8* p = new u8;
 			delete p;
 		}
 		{
-			char* p = new char[2];
+			u8* p = new u8[2];
 			delete[] p;
 		}
 	}
@@ -471,7 +472,7 @@ static uintptr_t quantizedCodeSegmentLength;
 
 static void FindCodeSegment()
 {
-	const char* dllName = 0;	// current module
+	const wchar_t* dllName = 0;	// current module
 	ModuleExtents extents(dllName);
 	codeSegmentAddress = extents.Address();
 	quantizedCodeSegmentAddress = Quantize(codeSegmentAddress);
@@ -837,25 +838,25 @@ static void PrintCallStack(const uintptr_t* callers, size_t numCallers)
 {
 	if(!numCallers || callers[0] == 0)
 	{
-		wdbg_printf("\n  call stack not available.\n");
+		wdbg_printf(L"\n  call stack not available.\n");
 		return;
 	}
 
-	wdbg_printf("\n  partial call stack:\n");
+	wdbg_printf(L"\n  partial call stack:\n");
 	for(size_t i = 0; i < numCallers; i++)
 	{
-		char name[DBG_SYMBOL_LEN] = {'\0'}; char file[DBG_FILE_LEN] = {'\0'}; int line = -1;
+		wchar_t name[DBG_SYMBOL_LEN] = {'\0'}; wchar_t file[DBG_FILE_LEN] = {'\0'}; int line = -1;
 		LibError err = debug_ResolveSymbol((void*)callers[i], name, file, &line);
-		wdbg_printf("    ");
+		wdbg_printf(L"    ");
 		if(err != INFO::OK)
-			wdbg_printf("(error %d resolving PC=%p) ", err, callers[i]);
+			wdbg_printf(L"(error %d resolving PC=%p) ", err, callers[i]);
 		if(file[0] != '\0')
-			wdbg_printf("%s(%d) : ", file, line);
-		wdbg_printf("%s\n", name);
+			wdbg_printf(L"%ls(%d) : ", file, line);
+		wdbg_printf(L"%ls\n", name);
 	}
 }
 
-static int __cdecl ReportHook(int reportType, char* message, int* out)
+static int __cdecl ReportHook(int reportType, wchar_t* message, int* out)
 {
 	UNUSED2(reportType);
 
@@ -877,17 +878,17 @@ static int __cdecl ReportHook(int reportType, char* message, int* out)
 	switch(state)
 	{
 	case WaitingForDump:
-		if(!strcmp(message, "Dumping objects ->\n"))
+		if(!wcscmp(message, L"Dumping objects ->\n"))
 			state = WaitingForBlock;
 		return ret;
 
 	case IsBlock:
 		{
 			// common case: "normal block at 0xPPPPPPPP, N bytes long".
-			const char* addressString = strstr(message, "0x");
+			const wchar_t* addressString = wcsstr(message, L"0x");
 			if(addressString)
 			{
-				const uintptr_t address = strtoul(addressString, 0, 0);
+				const uintptr_t address = wcstoul(addressString, 0, 0);
 				_CrtMemBlockHeader* header = HeaderFromData((void*)address);
 				uintptr_t callers[maxCallers]; size_t numCallers;
 				RetrieveCallers(header, callers, numCallers);
@@ -905,10 +906,9 @@ static int __cdecl ReportHook(int reportType, char* message, int* out)
 			state = IsBlock;
 		// suppress messages containing "file" and "line" since the normal
 		// interpretation of those header fields is invalid.
-		else if(strchr(message, '('))
+		else if(wcschr(message, '('))
 			message[0] = '\0';
 		return ret;
-
 
 	default:
 		wdbg_assert(0);	// unreachable
@@ -939,10 +939,10 @@ static LibError wdbg_heap_Init()
 	FindCodeSegment();
 
 	// load symbol information now (fails if it happens during shutdown)
-	char name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN]; int line;
+	wchar_t name[DBG_SYMBOL_LEN]; wchar_t file[DBG_FILE_LEN]; int line;
 	(void)debug_ResolveSymbol(wdbg_heap_Init, name, file, &line);
 
-	int ret = _CrtSetReportHook2(_CRT_RPTHOOK_INSTALL, ReportHook);
+	int ret = _CrtSetReportHookW2(_CRT_RPTHOOK_INSTALL, ReportHook);
 	if(ret == -1)
 		abort();
 

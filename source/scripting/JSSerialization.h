@@ -75,7 +75,7 @@ public:
 		case TAG_STRING:
 			return( 1 + (ToPrimitive<CStrW>(m_data)).GetSerializedLength() );
 		default:
-			debug_warn("An attempt was made to serialize a jsval other than a number, boolean or string." );
+			debug_warn(L"An attempt was made to serialize a jsval other than a number, boolean or string." );
 			return( 1 );
 		}
 	}
@@ -108,7 +108,7 @@ public:
 			buffer = ( ToPrimitive<CStrW>( m_data ) ).Serialize( buffer );
 			break;
 		default:
-			debug_warn("An attempt was made to serialize a jsval other than a number, boolean or string." );
+			debug_warn(L"An attempt was made to serialize a jsval other than a number, boolean or string." );
 			break;
 		}
 		return( buffer );
@@ -150,7 +150,7 @@ public:
 			}
 			break;
 		default:
-			debug_warn("An attempt was made to deserialize a jsval other than a number, boolean or string." );
+			debug_warn(L"An attempt was made to deserialize a jsval other than a number, boolean or string." );
 			break;
 		}
 		return( buffer );

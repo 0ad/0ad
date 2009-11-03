@@ -367,7 +367,7 @@ SDL_VideoInfo* SDL_GetVideoInfo()
 	if(video_info.video_mem == 0)
 	{
 		WmiMap videoAdapter;
-		if(wmi_GetClass("Win32_VideoController", videoAdapter) == INFO::OK)
+		if(wmi_GetClass(L"Win32_VideoController", videoAdapter) == INFO::OK)
 		{
 			VARIANT vTotalMemory = videoAdapter[L"AdapterRAM"];
 			video_info.video_mem = vTotalMemory.lVal;
@@ -1039,7 +1039,7 @@ static LRESULT CALLBACK wndproc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 }
 
 
-void SDL_PumpEvents(void)
+void SDL_PumpEvents()
 {
 	// rationale: we would like to reduce CPU usage automatically if
 	// possible. blocking here until a message arrives would accomplish
@@ -1251,13 +1251,12 @@ static LibError wsdl_Init()
 	// notes:
 	// - use full path for safety (works even if someone does chdir)
 	// - the real SDL does this in its WinMain hook
-	char path[MAX_PATH];
-	snprintf(path, ARRAY_SIZE(path), "%s\\stdout.txt", win_exe_dir);
+	fs::wpath path = wutil_ExecutablePath()/L"stdout.txt";
 	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
 	// to avoid the OS opening a console on startup (ugly). that means
 	// stdout isn't associated with a lowio handle; _close ends up
 	// getting called with fd = -1. oh well, nothing we can do.
-	FILE* f = freopen(path, "wt", stdout);
+	FILE* f = _wfreopen(path.string().c_str(), L"wt", stdout);
 	debug_assert(f);
 
 #if CONFIG_PARANOIA

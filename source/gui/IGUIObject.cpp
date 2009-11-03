@@ -28,7 +28,7 @@ IGUIObject
 #include "gui/scripting/JSInterface_GUITypes.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "gui"
+#define LOG_CATEGORY L"gui"
 
 extern int g_xres, g_yres;
 
@@ -82,7 +82,7 @@ IGUIObject::~IGUIObject()
 #include "GUItypes.h"
 #undef TYPE
 		default:
-			debug_warn("Invalid setting type");
+			debug_warn(L"Invalid setting type");
 			}
 		}
 	}
@@ -186,7 +186,7 @@ void IGUIObject::AddSetting(const EGUISettingType &Type, const CStr& Name)
 		#include "GUItypes.h"
 
 	default:
-		debug_warn("IGUIObject::AddSetting failed, type not recognized!");
+		debug_warn(L"IGUIObject::AddSetting failed, type not recognized!");
 		break;
 	}
 }
@@ -360,7 +360,7 @@ void IGUIObject::LoadStyle(CGUI &GUIinstance, const CStr& StyleName)
 	}
 	else
 	{
-		debug_warn("IGUIObject::LoadStyle failed");
+		debug_warn(L"IGUIObject::LoadStyle failed");
 	}
 }
 
@@ -511,7 +511,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), jsGuiObject, OBJECT_TO_JSVAL(*it->second), 1, paramData, &result);
 	if (!ok)
 	{
-		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());
+		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%hs\"", Action.c_str());
 	}
 
 	// Allow the temporary parameters to be garbage-collected
@@ -563,7 +563,7 @@ bool IGUIObject::IsRootObject() const
 
 PSRETURN IGUIObject::LogInvalidSettings(const CStr8 &Setting) const
 {
-	LOG(CLogger::Warning, LOG_CATEGORY, "IGUIObject: setting %s was not found on an object", 
+	LOG(CLogger::Warning, LOG_CATEGORY, L"IGUIObject: setting %hs was not found on an object", 
 		Setting.c_str());
 	return PSRETURN_GUI_InvalidSetting;
 }

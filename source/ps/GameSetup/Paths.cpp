@@ -18,8 +18,9 @@
 #include "precompiled.h"
 #include "Paths.h"
 
+#include "lib/path_util.h"
 #if OS_WIN
-#include "lib/sysdep/os/win/wutil.h"	// win_appdata_dir
+#include "lib/sysdep/os/win/wutil.h"	// wutil_AppdataPath
 #endif
 #include "lib/sysdep/sysdep.h"	// sys_get_executable_name
 
@@ -27,29 +28,29 @@
 Paths::Paths(const CmdLineArgs& args)
 {
 	m_root = Root(args.GetArg0());
-	m_rdata = m_root/"data";
-	const char* subdirectoryName = args.Has("writableRoot")? 0 : "0ad";
+	m_rdata = m_root/L"data";
+	const wchar_t* subdirectoryName = args.Has("writableRoot")? 0 : L"0ad";
 
 	// everything is a subdirectory of the root
 	if(!subdirectoryName)
 	{
 		m_data = m_rdata;
-		m_config = m_data/"config";
-		m_cache = m_data/"cache";
-		m_logs = m_root/"logs";
+		m_config = m_data/L"config";
+		m_cache = m_data/L"cache";
+		m_logs = m_root/L"logs";
 	}
 	else
 	{
 #if OS_WIN
-		const fs::path appdata(fs::path(win_appdata_dir)/subdirectoryName);
-		m_data = appdata/"data";
-		m_config = appdata/"config";
-		m_cache = appdata/"cache";
-		m_logs = appdata/"logs";
+		const fs::wpath appdata(wutil_AppdataPath()/subdirectoryName);
+		m_data = appdata/L"data";
+		m_config = appdata/L"config";
+		m_cache = appdata/L"cache";
+		m_logs = appdata/L"logs";
 #else
 		const char* envHome = getenv("HOME");
 		debug_assert(envHome);
-		const fs::path home(envHome);
+		const fs::wpath home(envHome);
 		m_data = XDG_Path("XDG_DATA_HOME", home, home/".local/share")/subdirectoryName;
 		m_config = XDG_Path("XDG_CONFIG_HOME", home, home/".config")/subdirectoryName;
 		m_cache = XDG_Path("XDG_CACHE_HOME", home, home/".cache")/subdirectoryName;
@@ -59,39 +60,39 @@ Paths::Paths(const CmdLineArgs& args)
 }
 
 
-/*static*/ fs::path Paths::Root(const CStr& argv0)
+/*static*/ fs::wpath Paths::Root(const CStr& argv0)
 {
 	// get full path to executable
-	char pathname[PATH_MAX];
+	fs::wpath pathname;
 	// .. first try safe, but system-dependent version
-	if(sys_get_executable_name(pathname, PATH_MAX) < 0)
+	if(sys_get_executable_name(pathname) != INFO::OK)
 	{
 		// .. failed; use argv[0]
+		char pathname_c[PATH_MAX];
 		errno = 0;
-		if(!realpath(argv0.c_str(), pathname))
+		if(!realpath(argv0.c_str(), pathname_c))
 			WARN_ERR(LibError_from_errno(false));
+		pathname = wpath_from_path(pathname_c);
 	}
 
 	// make sure it's valid
-	errno = 0;
-	if(access(pathname, X_OK) < 0)
+	if(!fs::exists(pathname))
 		WARN_ERR(LibError_from_errno(false));
 
-	fs::path path(pathname);
 	for(size_t i = 0; i < 3; i++)	// remove "system/name.exe"
-		path.remove_leaf();
-	return path;
+		pathname.remove_leaf();
+	return pathname;
 }
 
 
-/*static*/ fs::path Paths::XDG_Path(const char* envname, const fs::path& home, const fs::path& defaultPath)
+/*static*/ fs::wpath Paths::XDG_Path(const char* envname, const fs::wpath& home, const fs::wpath& defaultPath)
 {
 	const char* path = getenv(envname);
 	if(path)
 	{
 		if(path[0] != '/')	// relative to $HOME
-			return home/path;
-		return fs::path(path);
+			return home/CStrW(path);
+		return fs::wpath(CStrW(path));
 	}
 	return defaultPath;
 }

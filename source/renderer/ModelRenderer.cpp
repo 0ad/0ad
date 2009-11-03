@@ -40,7 +40,7 @@
 
 #include <boost/weak_ptr.hpp>
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@ void ModelRenderer::BuildPositionAndNormals(
 		// some broken situations
 		if (numVertices && vertices[0].m_Blend.m_Bone[0] == 0xff)
 		{
-			LOG_ONCE(CLogger::Error, LOG_CATEGORY, "Model %s is boned with unboned animation", mdef->GetName().c_str());
+			LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Model %ls is boned with unboned animation", mdef->GetName().string().c_str());
 			return;
 		}
 
@@ -401,7 +401,7 @@ void BatchModelRenderer::EndFrame()
 		if (mdeftracker->m_Slots > mostslots)
 		{
 			mostslots = mdeftracker->m_Slots;
-			//debug_printf("BatchModelRenderer: SubmissionSlots maximum: %u\n", mostslots);
+			//debug_printf(L"BatchModelRenderer: SubmissionSlots maximum: %u\n", mostslots);
 		}
 		mdeftracker->m_Slots = 0;
 	}

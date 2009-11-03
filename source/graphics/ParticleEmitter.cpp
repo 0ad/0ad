@@ -25,7 +25,7 @@
 #include "ps/XML/Xeromyces.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "particleSystem"
+#define LOG_CATEGORY L"particleSystem"
 
 //forward declaration
 void GetValueAndVariation(CXeromyces XeroFile, XMBElement parent, CStr& value, CStr& variation);
@@ -61,10 +61,10 @@ CEmitter::~CEmitter(void)
 	delete [] m_heap;
 }
 
-bool CEmitter::LoadFromXML(const CStr& filename)
+bool CEmitter::LoadXml(const VfsPath& pathname)
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(filename) != PSRETURN_OK)
+	if (XeroFile.Load(pathname) != PSRETURN_OK)
 		// Fail
 		return false;
 
@@ -107,11 +107,11 @@ bool CEmitter::LoadFromXML(const CStr& filename)
 
 	if( root.GetNodeName() != el_Emitter )
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CEmitter::LoadEmitterXML: XML root was not \"Emitter\" in file %s. Load failed.", filename.c_str() );
+		LOG(CLogger::Error, LOG_CATEGORY, L"CEmitter::LoadEmitterXML: XML root was not \"Emitter\" in file %ls. Load failed.", pathname.string().c_str() );
 		return( false );
 	}
 
-	m_tag = CStr(filename).AfterLast("/").BeforeLast(".xml");
+	m_tag = fs::basename(pathname);
 
 	//TODO figure out if we need to use Type attribute to construct different emitter types, 
 	// probably have to move some of this code into a static factory method or out into ParticleEngine class
@@ -152,7 +152,7 @@ bool CEmitter::LoadFromXML(const CStr& filename)
 				else if( settingName == el_Texture )
 				{
 					stringValue = settingElement.GetText();
-					m_texture = new CTexture(stringValue);
+					m_texture = new CTexture(CStrW(stringValue));
 					u32 flags = 0;
 					if(!(CRenderer::GetSingletonPtr()->LoadTexture(m_texture, flags)))
 						return false;

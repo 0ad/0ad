@@ -29,7 +29,7 @@
 #include "lib/rand.h"
 #include "maths/MathUtil.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 CObjectBase::CObjectBase(CObjectManager& objectManager)
 : m_ObjectManager(objectManager)
@@ -39,21 +39,18 @@ CObjectBase::CObjectBase(CObjectManager& objectManager)
 	m_Properties.m_FloatOnWater = false;
 }
 
-bool CObjectBase::Load(const char* filename)
+bool CObjectBase::Load(const std::wstring& filename)
 {
 	m_VariantGroups.clear();
 
-	CStr filePath ("art/actors/");
-	filePath += filename;
+	VfsPath pathname(VfsPath(L"art/actors/")/filename);
 
 	CXeromyces XeroFile;
-	if (XeroFile.Load(filePath) != PSRETURN_OK)
+	if (XeroFile.Load(pathname) != PSRETURN_OK)
 		return false;
 
 	m_Name = filename;
-
-	// Use the filename for the model's name
-	m_ShortName = CStr(filename).AfterLast("/").BeforeLast(".xml");
+	m_ShortName = fs::basename(pathname);
 
 	// Define all the elements used in the XML file
 	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
@@ -86,7 +83,7 @@ bool CObjectBase::Load(const char* filename)
 
 	if (root.GetNodeName() != el_actor)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "Invalid actor format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"Invalid actor format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 
@@ -140,10 +137,10 @@ bool CObjectBase::Load(const char* filename)
 					int option_name = option.GetNodeName();
 
 					if (option_name == el_mesh)
-						currentVariant->m_ModelFilename = "art/meshes/" + CStr(option.GetText());
+						currentVariant->m_ModelFilename = VfsPath(L"art/meshes")/CStrW(option.GetText());
 
 					else if (option_name == el_texture)
-						currentVariant->m_TextureFilename = "art/textures/skins/" + CStr(option.GetText());
+						currentVariant->m_TextureFilename = VfsPath(L"art/textures/skins")/CStrW(option.GetText());
 
 					else if (option_name == el_colour)
 						currentVariant->m_Color = option.GetText();
@@ -163,7 +160,7 @@ bool CObjectBase::Load(const char* filename)
 								}
 								else if (ae.Name == at_file)
 								{
-									anim.m_FileName = "art/animation/" + CStr(ae.Value);
+									anim.m_FileName = VfsPath(L"art/animation")/CStrW(ae.Value);
 								}
 								else if (ae.Name == at_speed)
 								{
@@ -197,7 +194,7 @@ bool CObjectBase::Load(const char* filename)
 								if (pe.Name == at_attachpoint)
 									prop.m_PropPointName = pe.Value;
 								else if (pe.Name == at_actor)
-									prop.m_ModelName = pe.Value;
+									prop.m_ModelName = CStrW(pe.Value);
 							}
 							currentVariant->m_Props.push_back(prop);
 						}
@@ -209,7 +206,7 @@ bool CObjectBase::Load(const char* filename)
 
 			if (currentGroup->size() == 0)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "Actor group has zero variants ('%s')", filename);
+				LOG(CLogger::Error, LOG_CATEGORY, L"Actor group has zero variants ('%ls')", filename.c_str());
 			}
 
 			++currentGroup;
@@ -224,7 +221,7 @@ bool CObjectBase::Load(const char* filename)
 		}
 		else if (child_name == el_material)
 		{
-			m_Material = "art/materials/" + CStr(child.GetText());
+			m_Material = VfsPath(L"art/materials")/CStrW(child.GetText());
 		}
 	}
 
@@ -246,7 +243,7 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 
 	std::vector<u8> choices;
 
-	std::multimap<CStr, CStr> chosenProps;
+	std::multimap<CStr, CStrW> chosenProps;
 
 	for (std::vector<std::vector<CObjectBase::Variant> >::iterator grp = m_VariantGroups.begin();
 		grp != m_VariantGroups.end();
@@ -305,12 +302,12 @@ std::vector<u8> CObjectBase::CalculateVariationKey(const std::vector<std::set<CS
 			// and then insert the new ones:
 			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				if (! it->m_ModelName.empty())
-					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName));
+					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName.string()));
 		}
 	}
 
 	// Load each prop, and add their CalculateVariationKey to our key:
-	for (std::multimap<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+	for (std::multimap<CStr, CStrW>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
 		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
 		if (prop)
@@ -346,7 +343,7 @@ const CObjectBase::Variation CObjectBase::BuildVariation(const std::vector<u8>& 
 		if (id >= grp->size())
 		{
 			// This should be impossible
-			debug_warn("BuildVariation: invalid variant id");
+			debug_warn(L"BuildVariation: invalid variant id");
 			continue;
 		}
 
@@ -392,7 +389,7 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 {
 	std::set<CStr> selections = initialSelections;
 
-	std::multimap<CStr, CStr> chosenProps;
+	std::multimap<CStr, CStrW> chosenProps;
 
 	// Calculate a complete list of selections, so there is at least one
 	// (and in most cases only one) per group.
@@ -485,12 +482,12 @@ std::set<CStr> CObjectBase::CalculateRandomVariation(const std::set<CStr>& initi
 			// and then insert the new ones:
 			for (std::vector<CObjectBase::Prop>::iterator it = var.m_Props.begin(); it != var.m_Props.end(); ++it)
 				if (! it->m_ModelName.empty())
-					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName));
+					chosenProps.insert(make_pair(it->m_PropPointName, it->m_ModelName.string()));
 		}
 	}
 
 	// Load each prop, and add their required selections to ours:
-	for (std::multimap<CStr, CStr>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
+	for (std::multimap<CStr, CStrW>::iterator it = chosenProps.begin(); it != chosenProps.end(); ++it)
 	{
 		CObjectBase* prop = m_ObjectManager.FindObjectBase(it->second);
 		if (prop)
@@ -566,7 +563,7 @@ std::vector<std::vector<CStr> > CObjectBase::GetVariantGroups() const
 				{
 					if (! props[k].m_ModelName.empty())
 					{
-						CObjectBase* prop = m_ObjectManager.FindObjectBase(props[k].m_ModelName);
+						CObjectBase* prop = m_ObjectManager.FindObjectBase(props[k].m_ModelName.string().c_str());
 						if (prop)
 							objectsQueue.push(prop);
 					}

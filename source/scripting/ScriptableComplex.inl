@@ -416,7 +416,7 @@ public:
 	void ImmediateCopy( IJSComplex* UNUSED(CopyTo), IJSComplex* UNUSED(CopyFrom),
 		IJSComplexProperty* UNUSED(CopyProperty) )
 	{
-		debug_warn("ImmediateCopy called on a CJSValComplexProperty (something's gone wrong with the inheritance on this object)" );
+		debug_warn(L"ImmediateCopy called on a CJSValComplexProperty (something's gone wrong with the inheritance on this object)" );
 	}
 };
 
@@ -449,7 +449,7 @@ public:
 	}
 	void ImmediateCopy( IJSComplex* UNUSED(CopyTo), IJSComplex* UNUSED(CopyFrom), IJSComplexProperty* UNUSED(CopyProperty) )
 	{
-		debug_warn("ImmediateCopy called on a property wrapping getter/setter functions (something's gone wrong with the inheritance for this object)" );
+		debug_warn(L"ImmediateCopy called on a property wrapping getter/setter functions (something's gone wrong with the inheritance for this object)" );
 	}
 };
 
@@ -983,7 +983,7 @@ void CJSComplex<T, ReadOnly>::DeletePreviouslyAssignedProperty( const CStrW& Pro
 	it = m_Properties.find( PropertyName );
 	if( it != m_Properties.end() )
 	{
-		debug_warn("BUG: CJSComplexProperty added but already existed!");
+		debug_warn(L"BUG: CJSComplexProperty added but already existed!");
 		jscomplexproperty_suballoc_free(it->second);
 	}
 #endif

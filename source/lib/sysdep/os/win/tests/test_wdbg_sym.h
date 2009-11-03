@@ -231,7 +231,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 	// anyway (to see at a glance whether symbol engine addrs are correct)
 	static void m_test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_uintptr)
 	{
-		debug_printf("\nTEST_ADDRS\n");
+		debug_printf(L"\nTEST_ADDRS\n");
 
 		size_t l_uint = 0x1234;
 		bool l_bool = true; UNUSED2(l_bool);
@@ -246,16 +246,16 @@ class TestWdbgSym : public CxxTest::TestSuite
 		static void* s_ptr = (void*)(uintptr_t)0x87654321;
 		static HDC s_hdc = (HDC)0xff0;
 
-		debug_printf("p_int     addr=%p val=%d\n", &p_int, p_int);
-		debug_printf("p_double  addr=%p val=%g\n", &p_double, p_double);
-		debug_printf("p_pchar   addr=%p val=%s\n", &p_pchar, p_pchar);
-		debug_printf("p_uintptr addr=%p val=%lu\n", &p_uintptr, p_uintptr);
+		debug_printf(L"p_int     addr=%p val=%d\n", &p_int, p_int);
+		debug_printf(L"p_double  addr=%p val=%g\n", &p_double, p_double);
+		debug_printf(L"p_pchar   addr=%p val=%hs\n", &p_pchar, p_pchar);
+		debug_printf(L"p_uintptr addr=%p val=%lu\n", &p_uintptr, p_uintptr);
 
-		debug_printf("l_uint    addr=%p val=%u\n", &l_uint, l_uint);
-		debug_printf("l_wchars  addr=%p val=%ws\n", &l_wchars, l_wchars);
-		debug_printf("l_enum    addr=%p val=%d\n", &l_enum, l_enum);
-		debug_printf("l_u8s     addr=%p val=%d\n", &l_u8s, l_u8s);
-		debug_printf("l_funcptr addr=%p val=%p\n", &l_funcptr, l_funcptr);
+		debug_printf(L"l_uint    addr=%p val=%u\n", &l_uint, l_uint);
+		debug_printf(L"l_wchars  addr=%p val=%ls\n", &l_wchars, l_wchars);
+		debug_printf(L"l_enum    addr=%p val=%d\n", &l_enum, l_enum);
+		debug_printf(L"l_u8s     addr=%p val=%d\n", &l_u8s, l_u8s);
+		debug_printf(L"l_funcptr addr=%p val=%p\n", &l_funcptr, l_funcptr);
 
 		m_test_stl();
 

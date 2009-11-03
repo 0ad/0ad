@@ -294,7 +294,7 @@ struct H_VTbl
 	LibError (*validate)(const void* user);
 	LibError (*to_string)(const void* user, char* buf);
 	size_t user_size;
-	const char* name;
+	const wchar_t* name;
 };
 
 typedef H_VTbl* H_Type;
@@ -314,7 +314,7 @@ typedef H_VTbl* H_Type;
 		(LibError (*)(const void*))type##_validate,\
 		(LibError (*)(const void*, char*))type##_to_string,\
 		sizeof(type),	/* control block size */\
-		#type			/* name */\
+		WIDEN(#type)			/* name */\
 	};\
 	static H_Type H_##type = &V_##type
 

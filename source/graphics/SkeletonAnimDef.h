@@ -79,7 +79,7 @@ public:
 
 	// anim I/O functions
 	static CSkeletonAnimDef* Load(const VfsPath& filename);
-	static void Save(const char* filename, const CSkeletonAnimDef* anim);
+	static void Save(const VfsPath& pathname, const CSkeletonAnimDef* anim);
 
 public:
 	// frame time - time between successive frames, in ms

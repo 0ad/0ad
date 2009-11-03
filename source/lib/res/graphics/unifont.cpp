@@ -82,13 +82,13 @@ static LibError UniFont_reload(UniFont* f, const VfsPath& basename, Handle UNUSE
 	f->glyphs_id = new glyphmap_id();
 	f->glyphs_size = new glyphmap_size();
 
-	const VfsPath path("fonts/");
+	const VfsPath path(L"fonts/");
 
 	// Read font definition file into a stringstream
 	shared_ptr<u8> buf; size_t size;
-	const VfsPath fntName(basename.string() + ".fnt");
+	const VfsPath fntName(basename.string() + L".fnt");
 	RETURN_ERR(g_VFS->LoadFile(path/fntName, buf, size));	// [cumulative for 12: 36ms]
-	std::istringstream FNTStream (std::string((const char*)buf.get(), size));
+	std::istringstream FNTStream(std::string((const char*)buf.get(), size));
 
 	int Version;
 	FNTStream >> Version;
@@ -156,7 +156,7 @@ static LibError UniFont_reload(UniFont* f, const VfsPath& basename, Handle UNUSE
 
 	// Load glyph texture
 	// [cumulative for 12: 20ms]
-	const VfsPath tgaName(basename.string() + ".tga");
+	const VfsPath tgaName(basename.string() + L".tga");
 	Handle ht = ogl_tex_load(path/tgaName);
 	RETURN_ERR(ht);
 	(void)ogl_tex_set_filter(ht, GL_NEAREST);
@@ -196,7 +196,7 @@ static LibError UniFont_to_string(const UniFont* f, char* buf)
 	if (f->ht) // not true if this is called after dtor (which it is)
 	{
 		const VfsPath& path = h_filename(f->ht);
-		snprintf(buf, H_STRING_LEN, "Font %s", path.string().c_str());
+		snprintf(buf, H_STRING_LEN, "Font %ls", path.string().c_str());
 	}
 	else
 		snprintf(buf, H_STRING_LEN, "Font");
@@ -261,7 +261,7 @@ void glvwprintf(const wchar_t* fmt, va_list args)
 
 	int ret = vswprintf(buf, buf_size-1, fmt, args);
 	if(ret < 0) {
-		debug_printf("glwprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
+		debug_printf(L"glwprintf failed (buffer size exceeded?) - return value %d, errno %d\n", ret, errno);
 	}
 
 	// Make sure there's always null termination

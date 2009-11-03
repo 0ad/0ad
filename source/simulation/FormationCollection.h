@@ -25,6 +25,7 @@
 #define INCLUDED_FORMATIONCOLLECTION
 
 #include <vector>
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
 #include "ps/Filesystem.h"
@@ -37,7 +38,7 @@ class CFormationCollection : public Singleton<CFormationCollection>
 {
 	
 	typedef std::map<CStrW, CFormation*> templateMap;
-	typedef std::map<CStrW, CStr> templateFilenameMap;
+	typedef std::map<CStrW, VfsPath> templateFilenameMap;
 	templateMap m_templates;
 	templateFilenameMap m_templateFilenames;
 public:

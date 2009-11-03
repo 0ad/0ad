@@ -40,7 +40,7 @@
 #include "graphics/Camera.h"
 #include "graphics/LightEnv.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,12 +49,12 @@
 
 ///////////////////////////////////////////////////////////////////
 // String names for each image, in order of the IMG_ constants
-const char* SkyManager::IMAGE_NAMES[5] = {
-	"front",
-	"back",
-	"right",
-	"left",
-	"top"
+const wchar_t* SkyManager::s_imageNames[numTextures] = {
+	L"front",
+	L"back",
+	L"right",
+	L"left",
+	L"top"
 };
 
 
@@ -83,6 +83,25 @@ SkyManager::~SkyManager()
 
 
 ///////////////////////////////////////////////////////////////////
+// Load single sky textures
+LibError SkyManager::LoadSkyTexture(size_t index)
+{
+	wchar_t filename[PATH_MAX];
+	swprintf_s(filename, ARRAY_SIZE(filename), L"art/textures/skies/%ls/%ls.dds", m_SkySet.c_str(), s_imageNames[index]);
+	Handle ht = ogl_tex_load(filename);
+	if(ht <= 0)
+	{
+		LOG(CLogger::Error, LOG_CATEGORY, L"SkyManager::LoadSkyTexture failed on \"%ls\"", filename);
+		return ht;
+	}
+	ogl_tex_set_wrap(ht, GL_CLAMP_TO_EDGE);
+	m_SkyTexture[index] = ht;
+	RETURN_ERR(ogl_tex_upload(ht));
+	return INFO::OK;
+}
+
+
+///////////////////////////////////////////////////////////////////
 // Progressive load of sky textures
 int SkyManager::LoadSkyTextures()
 {
@@ -94,19 +113,7 @@ int SkyManager::LoadSkyTextures()
 
 	while (cur_loading_tex < num_textures)
 	{
-		char filename[PATH_MAX];
-		snprintf(filename, ARRAY_SIZE(filename), "art/textures/skies/%s/%s.dds", 
-			CStr8(m_SkySet).c_str(), IMAGE_NAMES[cur_loading_tex]);
-		Handle ht = ogl_tex_load(filename);
-		if (ht <= 0)
-		{
-			LOG(CLogger::Error, LOG_CATEGORY, "SkyManager::LoadSkyTextures failed on \"%s\"", filename);
-			return ht;
-		}
-		ogl_tex_set_wrap(ht, GL_CLAMP_TO_EDGE);
-		m_SkyTexture[cur_loading_tex] = ht;
-		RETURN_ERR(ogl_tex_upload(ht));
-
+		RETURN_ERR(LoadSkyTexture(cur_loading_tex));
 		cur_loading_tex++;
 		LDR_CHECK_TIMEOUT(cur_loading_tex, num_textures);
 	}
@@ -132,27 +139,14 @@ void SkyManager::UnloadSkyTextures()
 // Switch to a different sky set (while the game is running)
 void SkyManager::SetSkySet( const CStrW& newSet )
 {
-	if( newSet != m_SkySet )
-	{
-		m_SkySet = newSet;
+	if(newSet == m_SkySet)
+		return;
+	m_SkySet = newSet;
 
-		UnloadSkyTextures();
+	UnloadSkyTextures();
 
-		for( size_t i=0; i<ARRAY_SIZE(m_SkyTexture); i++ ) {
-			char filename[PATH_MAX];
-			snprintf(filename, ARRAY_SIZE(filename), "art/textures/skies/%s/%s.dds", 
-				CStr8(m_SkySet).c_str(), IMAGE_NAMES[i]);
-			Handle ht = ogl_tex_load(filename);
-			if (ht <= 0)
-			{
-				LOG(CLogger::Error, LOG_CATEGORY, "SkyManager::SetSkySet failed on \"%s\"", filename);
-				return;
-			}
-			ogl_tex_set_wrap(ht, GL_CLAMP_TO_EDGE);
-			m_SkyTexture[i] = ht;
-			ogl_tex_upload(ht);
-		}
-	}
+	for(size_t i = 0; i < ARRAY_SIZE(m_SkyTexture); i++)
+		LoadSkyTexture(i);
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -163,17 +157,16 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 
 	// Find all subdirectories in art/textures/skies
 
-	const char* dirname = "art/textures/skies/";
+	const VfsPath path(L"art/textures/skies/");
 	DirectoryNames subdirectories;
-	if(g_VFS->GetDirectoryEntries(dirname, 0, &subdirectories) < 0)
+	if(g_VFS->GetDirectoryEntries(path, 0, &subdirectories) < 0)
 	{
-		LOG(CLogger::Error, "vfs", "Error opening directory '%s'", dirname);
+		LOG(CLogger::Error, LOG_CATEGORY, L"Error opening directory '%ls'", path);
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
 	}
 
 	for(size_t i = 0; i < subdirectories.size(); i++)
-		skies.push_back(CStr(subdirectories[i]));
-
+		skies.push_back(subdirectories[i]);
 	sort(skies.begin(), skies.end());
 
 	return skies;
@@ -211,7 +204,7 @@ void SkyManager::RenderSky()
 	const float D = 2000.0;
 
 	// Front face (positive Z)
-	ogl_tex_bind( m_SkyTexture[IMG_FRONT] );
+	ogl_tex_bind( m_SkyTexture[FRONT] );
 	glBegin( GL_QUADS );
 		glTexCoord2f( 0, 1 );
 		glVertex3f( -D, -D, +D );
@@ -224,7 +217,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Back face (negative Z)
-	ogl_tex_bind( m_SkyTexture[IMG_BACK] );
+	ogl_tex_bind( m_SkyTexture[BACK] );
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( -D, -D, -D );
@@ -237,7 +230,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Right face (negative X)
-	ogl_tex_bind( m_SkyTexture[IMG_RIGHT] );
+	ogl_tex_bind( m_SkyTexture[RIGHT] );
 	glBegin( GL_QUADS );
 		glTexCoord2f( 0, 1 );
 		glVertex3f( -D, -D, -D );
@@ -250,7 +243,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Left face (positive X)
-	ogl_tex_bind( m_SkyTexture[IMG_LEFT] );
+	ogl_tex_bind( m_SkyTexture[LEFT] );
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 1 );
 		glVertex3f( +D, -D, -D );
@@ -263,7 +256,7 @@ void SkyManager::RenderSky()
 	glEnd();
 
 	// Top face (positive Y)
-	ogl_tex_bind( m_SkyTexture[IMG_TOP] );
+	ogl_tex_bind( m_SkyTexture[TOP] );
 	glBegin( GL_QUADS );
 		glTexCoord2f( 1, 0 );
 		glVertex3f( +D, +D, -D );

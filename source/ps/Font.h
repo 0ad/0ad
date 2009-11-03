@@ -35,7 +35,7 @@ glwprintf(L"Hello world");
 class CFont
 {
 public:
-	CFont(const char* name);
+	CFont(const wchar_t* name);
 	~CFont();
 
 	void Bind();

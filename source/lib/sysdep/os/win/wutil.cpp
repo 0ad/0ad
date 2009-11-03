@@ -162,18 +162,18 @@ LibError LibError_from_win32(DWORD ret, bool warn_if_failed)
 
 // copy of GetCommandLine string. will be tokenized and then referenced by
 // the argv pointers.
-static char* argvContents;
+static wchar_t* argvContents;
 
 int wutil_argc = 0;
-char** wutil_argv = 0;
+wchar_t** wutil_argv = 0;
 
 static void ReadCommandLine()
 {
-	const char* commandLine = GetCommandLine();
+	const wchar_t* commandLine = GetCommandLineW();
 	// (this changes as quotation marks are removed)
-	size_t numChars = strlen(commandLine);
-	argvContents = (char*)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, numChars+1);
-	strcpy_s(argvContents, numChars+1, commandLine);
+	size_t numChars = wcslen(commandLine);
+	argvContents = (wchar_t*)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, (numChars+1)*sizeof(wchar_t));
+	wcscpy_s(argvContents, numChars+1, commandLine);
 
 	// first pass: tokenize string and count number of arguments
 	bool ignoreSpace = false;
@@ -184,7 +184,7 @@ static void ReadCommandLine()
 		case '"':
 			ignoreSpace = !ignoreSpace;
 			// strip the " character
-			memmove(argvContents+i, argvContents+i+1, numChars-i);
+			memmove(argvContents+i, argvContents+i+1, (numChars-i)*sizeof(wchar_t));
 			numChars--;
 			i--;
 			break;
@@ -201,12 +201,12 @@ static void ReadCommandLine()
 	wutil_argc++;
 
 	// have argv entries point into the tokenized string
-	wutil_argv = (char**)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, wutil_argc*sizeof(char*));
-	char* nextArg = argvContents;
+	wutil_argv = (wchar_t**)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS, wutil_argc*sizeof(wchar_t*));
+	wchar_t* nextArg = argvContents;
 	for(int i = 0; i < wutil_argc; i++)
 	{
 		wutil_argv[i] = nextArg;
-		nextArg += strlen(nextArg)+1;
+		nextArg += wcslen(nextArg)+1;
 	}
 }
 
@@ -218,11 +218,11 @@ static void FreeCommandLine()
 }
 
 
-bool wutil_HasCommandLineArgument(const char* arg)
+bool wutil_HasCommandLineArgument(const wchar_t* arg)
 {
 	for(int i = 0; i < wutil_argc; i++)
 	{
-		if(!strcmp(wutil_argv[i], arg))
+		if(!wcscmp(wutil_argv[i], arg))
 			return true;
 	}
 
@@ -233,39 +233,66 @@ bool wutil_HasCommandLineArgument(const char* arg)
 //-----------------------------------------------------------------------------
 // directories
 
-char win_sys_dir[MAX_PATH+1];
-char win_exe_dir[MAX_PATH+1];
-char win_appdata_dir[MAX_PATH+1];
+// (NB: wutil_Init is called before static ctors => use placement new)
+static fs::wpath* systemPath;
+static fs::wpath* executablePath;
+static fs::wpath* appdataPath;
+
+const fs::wpath& wutil_SystemPath()
+{
+	return *systemPath;
+}
+
+const fs::wpath& wutil_ExecutablePath()
+{
+	return *executablePath;
+}
+
+const fs::wpath& wutil_AppdataPath()
+{
+	return *appdataPath;
+}
+
 
 static void GetDirectories()
 {
 	WinScopedPreserveLastError s;
+	wchar_t path[MAX_PATH+1];
 
 	// system directory
 	{
-		const UINT charsWritten = GetSystemDirectory(win_sys_dir, ARRAY_SIZE(win_sys_dir));
+		const UINT charsWritten = GetSystemDirectoryW(path, ARRAY_SIZE(path));
 		debug_assert(charsWritten != 0);
+		systemPath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(path);
 	}
 
 	// executable's directory
 	{
-		const DWORD len = GetModuleFileName(GetModuleHandle(0), win_exe_dir, ARRAY_SIZE(win_exe_dir));
+		const DWORD len = GetModuleFileNameW(GetModuleHandle(0), path, ARRAY_SIZE(path));
 		debug_assert(len != 0);
-		// strip EXE filename and trailing slash
-		char* slash = strrchr(win_exe_dir, '\\');
-		if(slash)
-			*slash = '\0';
-		else
-			debug_assert(0);	// directory name invalid?!
+		executablePath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(path);
+		*executablePath = executablePath->branch_path();
 	}
 
 	// application data
 	{
 		HWND hwnd = 0;	// ignored unless a dial-up connection is needed to access the folder
 		HANDLE token = 0;
-		const HRESULT ret = SHGetFolderPath(hwnd, CSIDL_APPDATA, token, 0, win_appdata_dir);
+		const HRESULT ret = SHGetFolderPathW(hwnd, CSIDL_APPDATA, token, 0, path);
 		debug_assert(SUCCEEDED(ret));
+		appdataPath = new(win_alloc(sizeof(fs::wpath))) fs::wpath(path);
 	}
+}
+
+
+static void FreeDirectories()
+{
+	systemPath->~basic_path();
+	win_free(systemPath);
+	executablePath->~basic_path();
+	win_free(executablePath);
+	appdataPath->~basic_path();
+	win_free(appdataPath);
 }
 
 
@@ -334,7 +361,7 @@ static void DetectWindowsVersion()
 		(void)RegQueryValueEx(hKey, "CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
 
 		int major = 0, minor = 0;
-		int ret = sscanf(windowsVersionString, "%d.%d", &major, &minor);
+		int ret = sscanf_s(windowsVersionString, "%d.%d", &major, &minor);
 		debug_assert(ret == 2);
 		debug_assert(major <= 0xFF && minor <= 0xFF);
 		windowsVersion = (major << 8) | minor;
@@ -537,6 +564,8 @@ static LibError wutil_Shutdown()
 	FreeUser32Dll();
 
 	ShutdownLocks();
+
+	FreeDirectories();
 
 	return INFO::OK;
 }

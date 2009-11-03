@@ -502,7 +502,7 @@ void CEntity::UpdateOrders( int timestep )
 		CEntityOrder* current = &m_orderQueue.front();
 		CStr name = me;
 #ifdef DEBUG_SYNCHRONIZATION
-		debug_printf("Order for %ls: %d (src %d)\n", 
+		debug_printf(L"Order for %ls: %d (src %d)\n", 
 			m_base->m_Tag.c_str(), current->m_type, current->m_source);
 #endif
 
@@ -607,7 +607,7 @@ void CEntity::UpdateOrders( int timestep )
 				m_orderQueue.pop_front();
 				break;
 			default:
-				debug_warn( "Invalid entity order" );
+				debug_warn( L"Invalid entity order" );
 		}
 	}
 
@@ -814,7 +814,7 @@ bool CEntity::Initialize()
     CEventInitialize evt;
     if( !DispatchEvent( &evt ) ) 
 	{
-		//debug_printf("start construction failed, killing self\n");
+		//debug_printf(L"start construction failed, killing self\n");
 		Kill();
 		return false;
 	}
@@ -937,7 +937,7 @@ void CEntity::DispatchFormationEvent( int type )
 }
 void CEntity::Repath()
 {
-	debug_printf("Repath\n");
+	debug_printf(L"Repath\n");
 	CVector2D destination;
 	CEntityOrder::EOrderSource orderSource = CEntityOrder::SOURCE_PLAYER;
 
@@ -1132,7 +1132,7 @@ int CEntity::FindSector( int divs, float angle, float maxAngle, bool negative )
 				return i;
 		}
 	}
-	debug_warn("CEntity::FindSector() - invalid parameters passed.");
+	debug_warn(L"CEntity::FindSector() - invalid parameters passed.");
 	return -1;
 }
 

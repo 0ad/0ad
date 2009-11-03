@@ -75,16 +75,16 @@ public:
 		return m_type;
 	}
 
-	static const char* EventString(Event type)
+	static const wchar_t* EventString(Event type)
 	{
 		switch(type)
 		{
 		case Created:
-			return "created";
+			return L"created";
 		case Deleted:
-			return "deleted";
+			return L"deleted";
 		case Changed:
-			return "changed";
+			return L"changed";
 		default:
 			throw std::logic_error("invalid type");
 		}

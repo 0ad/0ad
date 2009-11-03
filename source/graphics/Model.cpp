@@ -35,7 +35,7 @@
 #include "ps/Profile.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Constructor
@@ -213,9 +213,9 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const char* filename, const char* name, float speed, double actionpos, double actionpos2)
+CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const char* name, float speed, double actionpos, double actionpos2)
 {
-	CSkeletonAnimDef* def = m_SkeletonAnimManager.GetAnimation(filename);
+	CSkeletonAnimDef* def = m_SkeletonAnimManager.GetAnimation(pathname);
 	if (!def) return NULL;
 
 
@@ -395,7 +395,7 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeleton
 
 		if (anim->m_AnimDef && anim->m_AnimDef->GetNumKeys() != m_pModelDef->GetNumBones()) {
 			// mismatch between model's skeleton and animation's skeleton
-			LOG(CLogger::Error, LOG_CATEGORY, "Mismatch between model's skeleton and animation's skeleton (%lu model bones != %lu animation keys)",
+			LOG(CLogger::Error, LOG_CATEGORY, L"Mismatch between model's skeleton and animation's skeleton (%lu model bones != %lu animation keys)",
 										(unsigned long)m_pModelDef->GetNumBones(), (unsigned long)anim->m_AnimDef->GetNumKeys());
 			return false;
 		}

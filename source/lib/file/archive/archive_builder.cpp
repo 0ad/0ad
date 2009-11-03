@@ -82,7 +82,7 @@ class IdMgr
 		const Map::value_type item = std::make_pair(node.atom_fn, id);
 		std::pair<Map::iterator, bool> ret = map.insert(item);
 		if(!ret.second)
-			debug_warn("atom_fn already associated with node");
+			debug_warn(L"atom_fn already associated with node");
 	}
 
 public:
@@ -105,7 +105,7 @@ public:
 		Map::const_iterator cit = map.find(atom_fn);
 		if(cit == map.end())
 		{
-			debug_warn("id_from_fn: not found");
+			debug_warn(L"id_from_fn: not found");
 			return NULL_ID;
 		}
 		return cit->second;
@@ -1060,7 +1060,7 @@ bool trace_entry_causes_io(FileCache& simulatedCache, const TraceEntry* ent)
 		break;
 
 	default:
-		debug_warn("unknown TraceOp");
+		debug_warn(L"unknown TraceOp");
 	}
 
 	return false;
@@ -1095,7 +1095,7 @@ bool trace_entry_causes_io(FileCache& simulatedCache, const TraceEntry* ent)
 		fileCache.Release(ent->vfsPathname);
 		break;
 	default:
-		debug_warn("unknown TraceOp");
+		debug_warn(L"unknown TraceOp");
 	}
 }
 

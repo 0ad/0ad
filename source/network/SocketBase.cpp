@@ -38,6 +38,8 @@
 # include <sys/ioctl.h>
 #endif
 
+#define LOG_CATEGORY L"net"
+
 // Record global transfer statistics (sent/recvd bytes). This will put a lock
 // /unlock pair in all read and write operations.
 #define RECORD_GLOBAL_STATS 1
@@ -76,7 +78,7 @@ PS_RESULT GetPS_RESULT(int error)
 	default:
 		char buf[256];
 		Network_GetErrorString(error, buf, sizeof(buf));
-		LOG(CLogger::Error, LOG_CAT_NET, "SocketBase.cpp::GetPS_RESULT(): Unrecognized error %s[%d]", buf, error);
+		LOG(CLogger::Error, LOG_CATEGORY, L"SocketBase.cpp::GetPS_RESULT(): Unrecognized error %s[%d]", buf, error);
 		return PS_FAIL;
 	}
 }
@@ -97,7 +99,7 @@ CSocketAddress::CSocketAddress(int port, ESocketProtocol proto)
 		m_Union.m_IPv6.sin6_port=htons(port);
 		break;
 	default:
-		debug_warn("CSocketAddress::CSocketAddress: Bad proto");
+		debug_warn(L"CSocketAddress::CSocketAddress: Bad proto");
 	}
 }
 
@@ -117,7 +119,7 @@ CSocketAddress CSocketAddress::Loopback(int port, ESocketProtocol proto)
 		ret.m_Union.m_IPv6.sin6_port=htons(port);
 		break;
 	default:
-		debug_warn("CSocketAddress::CSocketAddress: Bad proto");
+		debug_warn(L"CSocketAddress::CSocketAddress: Bad proto");
 	}
 	return ret;
 }
@@ -489,7 +491,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 				break;
 			default:
 				Network_GetErrorString(err, errBuf, sizeof(errBuf));
-				LOG(CLogger::Error, LOG_CAT_NET, "CServerSocket::Bind(): bind: %s [%d] => PS_FAIL", errBuf, err);
+				LOG(CLogger::Error, LOG_CATEGORY, L"CServerSocket::Bind(): bind: %s [%d] => PS_FAIL", errBuf, err);
 		}
 		m_State=SS_UNCONNECTED;
 		m_Error=ret;
@@ -501,7 +503,7 @@ PS_RESULT CSocketBase::Bind(const CSocketAddress &address)
 	{
 		int err=Network_LastError;
 		Network_GetErrorString(err, errBuf, sizeof(errBuf));
-		LOG(CLogger::Error, LOG_CAT_NET, "CServerSocket::Bind(): listen: %s [%d] => PS_FAIL", errBuf, err);
+		LOG(CLogger::Error, LOG_CATEGORY, L"CServerSocket::Bind(): listen: %s [%d] => PS_FAIL", errBuf, err);
 		m_State=SS_UNCONNECTED;
 		return PS_FAIL;
 	}

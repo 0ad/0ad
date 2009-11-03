@@ -40,6 +40,7 @@ ERROR_TYPE(Scripting_DefineType, AlreadyExists);
 ERROR_TYPE(Scripting_DefineType, CreationFailed);
 
 #include "scripting/SpiderMonkey.h"
+#include "lib/file/vfs/vfs_path.h"
 
 #include <string>
 #include <vector>
@@ -105,12 +106,12 @@ public:
 	inline JSObject* GetGlobalObject() { return m_GlobalObject; }
 
 	void RunMemScript(const char* script, size_t size, const char* filename = 0, int line = 0, JSObject* globalObject = 0);
-	void RunScript(const CStr& filename, JSObject* globalObject = 0);
+	void RunScript(const VfsPath& filename, JSObject* globalObject = 0);
 
 
 	jsval CallFunction(const std::string & functionName, jsval * params, int numParams);
 
-	jsval ExecuteScript(const CStrW& script, const CStrW& calledFrom = CStrW( L"Console" ), JSObject* contextObject = NULL );
+	jsval ExecuteScript(const CStrW& script, const CStrW& calledFrom = L"Console", JSObject* contextObject = NULL );
 
 	void RegisterFunction(const std::string & functionName, JSNative function, int numArgs);
 

@@ -23,7 +23,7 @@ IGUIScrollBar
 #include "GUI.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "gui"
+#define LOG_CATEGORY L"gui"
 
 
 CGUIScrollBarVertical::CGUIScrollBarVertical()

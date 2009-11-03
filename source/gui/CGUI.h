@@ -181,7 +181,7 @@ public:
 	 *
 	 * @param Filename Name of file
 	 */
-	void LoadXmlFile(const std::string &Filename);
+	void LoadXmlFile(const VfsPath& Filename);
 
 	/**
 	 * Checks if object exists and return true or false accordingly
@@ -303,7 +303,7 @@ private:
 	 *
 	 * @param str Error message
 	 */
-	void ReportParseError(const char *str, ...) PRINTF_ARGS(2);
+	void ReportParseError(const wchar_t* str, ...) PRINTF_ARGS(2);
 
 	/**
 	 * You input the name of the object type, and let's

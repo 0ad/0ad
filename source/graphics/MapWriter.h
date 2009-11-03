@@ -43,7 +43,7 @@ public:
 	// constructor
 	CMapWriter();
 	// SaveMap: try to save the current map to the given file
-	void SaveMap(const char* filename, CTerrain* pTerr, CUnitManager* pUnitMan, 
+	void SaveMap(const VfsPath& pathname, CTerrain* pTerr, CUnitManager* pUnitMan, 
 									WaterManager* pWaterMan, SkyManager* pSkyMan, 
 									CLightEnv* pLightEnv, CCamera* pCamera, 
 									CCinemaManager* pCinema);
@@ -66,7 +66,7 @@ private:
 		std::vector<STileDesc>& tileIndices);
 
 	// WriteXML: output some other data (entities, etc) in XML format
-	void WriteXML(const char* filename, CUnitManager* pUnitMan, WaterManager* pWaterMan, 
+	void WriteXML(const VfsPath& pathname, CUnitManager* pUnitMan, WaterManager* pWaterMan, 
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
 								CCinemaManager* pCinema);
 	void WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group, 

@@ -39,9 +39,9 @@ public:
 	{
 	}
 
-	virtual const char* Name() const
+	virtual const wchar_t* Name() const
 	{
-		return "QPC";
+		return L"QPC";
 	}
 
 	LibError Activate()
@@ -97,7 +97,7 @@ public:
 		usesTsc |= IsSimilarMagnitude((double)m_frequency, os_cpu_ClockFrequency()/3);
 		if(usesTsc)
 		{
-			const bool isTscSafe = wutil_HasCommandLineArgument("-wQpcTscSafe");
+			const bool isTscSafe = wutil_HasCommandLineArgument(L"-wQpcTscSafe");
 			return isTscSafe;
 		}
 

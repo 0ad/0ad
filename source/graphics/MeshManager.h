@@ -19,6 +19,7 @@
 #define INCLUDED_MESHMANAGER
 
 #include "ps/CStr.h"
+#include "lib/file/vfs/vfs_path.h"
 
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
@@ -35,10 +36,10 @@ public:
 	CMeshManager(CColladaManager& colladaManager);
 	~CMeshManager();
 
-	CModelDefPtr GetMesh(const CStr& filename);
+	CModelDefPtr GetMesh(const VfsPath& pathname);
 
 private:
-	typedef STL_HASH_MAP<CStr, boost::weak_ptr<CModelDef>, CStr_hash_compare> mesh_map;
+	typedef STL_HASH_MAP<CStrW, boost::weak_ptr<CModelDef>, CStrW_hash_compare> mesh_map;
 	mesh_map m_MeshMap;
 	CColladaManager& m_ColladaManager;
 };

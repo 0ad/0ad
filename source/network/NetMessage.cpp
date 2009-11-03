@@ -36,6 +36,7 @@
 #include <map>
 
 // DEFINES
+#define LOG_CATEGORY L"net"
 
 // Please don't modify the deserializer map outside the ONCE-block in DeserializeMessage
 //typedef std::map< NetMessageType, NetMessageDeserializer > MessageDeserializerMap;
@@ -135,7 +136,7 @@ const u8* CNetMessage::Deserialize( const u8* pStart, const u8* pEnd )
 	MessageDeserializerMap::const_iterator it = g_DeserializerMap.find( type );
 	if ( it == g_DeserializerMap.end() )
 	{
-		LOG(WARNING, LOG_CAT_NET, "Unknown message received on socket: type 0x%04x, length %u", type, length);
+		LOG(WARNING, LOG_CATEGORY, L"Unknown message received on socket: type 0x%04x, length %u", type, length);
 	
 		return NULL;
 	}
@@ -1051,7 +1052,7 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		break;
 
 	default:
-		LOG(CLogger::Error, LOG_CAT_NET, "CNetMessageFactory::CreateMessage(): Unknown message received" );
+		LOG(CLogger::Error, LOG_CATEGORY, L"CNetMessageFactory::CreateMessage(): Unknown message received" );
 		break;
 	}
 

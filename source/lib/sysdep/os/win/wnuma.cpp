@@ -301,7 +301,7 @@ void* numa_Allocate(size_t size, LargePageDisposition largePageDisposition, size
 		if(ppageSize)
 			*ppageSize = largePageSize;
 		const double elapsedTime = timer_Time() - startTime;
-		debug_printf("TIMER| NUMA large page allocation: %g\n", elapsedTime);
+		debug_printf(L"TIMER| NUMA large page allocation: %g\n", elapsedTime);
 		if(elapsedTime > 1.0)
 			largePageAllocationTookTooLong = true;
 	}
@@ -353,12 +353,12 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 			return false;
 		if((attributes.LargePage != 0) != (pageSize == largePageSize))
 		{
-			debug_printf("NUMA: is not a large page\n");
+			debug_printf(L"NUMA: is not a large page\n");
 			return false;
 		}
 		if(attributes.Node != node)
 		{
-			debug_printf("NUMA: allocated from remote node\n");
+			debug_printf(L"NUMA: allocated from remote node\n");
 			return false;
 		}
 	}
@@ -384,7 +384,7 @@ void* numa_AllocateOnNode(size_t node, size_t size, LargePageDisposition largePa
 		const size_t sizeMiB = size/MiB;
 		const size_t availableMiB = numa_AvailableMemory(node);
 		if(availableMiB < sizeMiB)
-			debug_printf("NUMA: warning: node reports insufficient memory (%d vs %d MB)\n", availableMiB, sizeMiB);
+			debug_printf(L"NUMA: warning: node reports insufficient memory (%d vs %d MB)\n", availableMiB, sizeMiB);
 	}
 
 	size_t pageSize;	// (used below even if ppageSize is zero)

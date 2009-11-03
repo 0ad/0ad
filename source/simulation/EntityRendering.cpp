@@ -407,7 +407,7 @@ void CEntity::RenderBars()
 
 	// Draw the rank icon
 
-	std::map<CStr, Handle>::iterator it = g_Selection.m_unitUITextures.find( m_rankName );
+	CSelectedEntities::MapFilenameToHandle::iterator it = g_Selection.m_unitUITextures.find( m_rankName );
 	if( it != g_Selection.m_unitUITextures.end() )
 	{
 		float size = 2*h + borderSize;

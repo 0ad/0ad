@@ -48,7 +48,7 @@ namespace ERR
  *
  * @return LibError (ERR::PATH_* or INFO::OK)
  **/
-extern LibError path_validate(const char* path);
+LIB_API LibError path_validate(const wchar_t* path);
 
 /**
  * return appropriate code if path is invalid, otherwise continue.
@@ -60,7 +60,7 @@ extern LibError path_validate(const char* path);
  *
  * @return LibError (ERR::PATH_* or INFO::OK)
  **/
-extern LibError path_component_validate(const char* name);
+LIB_API LibError path_component_validate(const wchar_t* name);
 
 /**
  * is the given character a path separator character?
@@ -68,14 +68,14 @@ extern LibError path_component_validate(const char* name);
  * @param c character to test
  * @return bool
  **/
-extern bool path_is_dir_sep(char c);
+LIB_API bool path_is_dir_sep(wchar_t c);
 
 /**
  * is the given path(name) a directory?
  *
  * @return bool
  **/
-extern bool path_IsDirectory(const char* path);
+LIB_API bool path_IsDirectory(const wchar_t* path);
 
 /**
  * is s2 a subpath of s1, or vice versa? (equal counts as subpath)
@@ -83,8 +83,8 @@ extern bool path_IsDirectory(const char* path);
  * @param s1, s2 comparand strings
  * @return bool
  **/
-extern bool path_is_subpath(const char* s1, const char* s2);
-extern bool path_is_subpathw(const wchar_t* s1, const wchar_t* s2);
+LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
+LIB_API bool path_is_subpathw(const wchar_t* s1, const wchar_t* s2);
 
 
 /**
@@ -94,7 +94,7 @@ extern bool path_is_subpathw(const wchar_t* s1, const wchar_t* s2);
  * and should hold PATH_MAX chars.
  * @param src source; should not exceed PATH_MAX chars
  **/
-extern void path_copy(char* dst, const char* src);
+LIB_API void path_copy(wchar_t* dst, const wchar_t* src);
 
 /**
  * flags controlling path_append behavior
@@ -117,7 +117,7 @@ enum PathAppendFlags
  * total resulting string must not exceed PATH_MAX chars.
  * @param flags see PathAppendFlags.
  **/
-extern void path_append(char* dst, const char* path1, const char* path2, size_t flags = 0);
+LIB_API void path_append(wchar_t* dst, const wchar_t* path1, const wchar_t* path2, size_t flags = 0);
 
 /**
  * get the name component of a path.
@@ -126,14 +126,14 @@ extern void path_append(char* dst, const char* path1, const char* path2, size_t 
  * @param path input path.
  * @return pointer to name component within <path>.
  **/
-extern const char* path_name_only(const char* path);
+LIB_API const wchar_t* path_name_only(const wchar_t* path);
 
 /**
  * strip away the name component in a path.
  *
  * @param path input and output; chopped by inserting '\0'.
  **/
-extern void path_strip_fn(char* path);
+LIB_API void path_strip_fn(wchar_t* path);	// deprecated in favor of fs::branch_path
 
 /**
  * get filename's extension.
@@ -141,6 +141,10 @@ extern void path_strip_fn(char* path);
  * @return pointer to extension within <fn>, or "" if there is none.
  * NOTE: does not include the period; e.g. "a.bmp" yields "bmp".
  **/
-extern const char* path_extension(const char* fn);
+LIB_API const wchar_t* path_extension(const wchar_t* fn);	// deprecated in favor of fs::extension
+
+
+LIB_API fs::wpath wpath_from_path(const fs::path& pathname);
+LIB_API fs::path path_from_wpath(const fs::wpath& pathname);
 
 #endif	// #ifndef INCLUDED_PATH_UTIL

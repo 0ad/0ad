@@ -83,7 +83,7 @@ struct IArchiveWriter
 	 * precisely because they aren't in archives, and the cache would
 	 * thrash anyway, so this is deemed acceptable.
 	 **/
-	virtual LibError AddFile(const fs::path& pathname) = 0;
+	virtual LibError AddFile(const fs::wpath& pathname) = 0;
 };
 
 typedef shared_ptr<IArchiveWriter> PIArchiveWriter;

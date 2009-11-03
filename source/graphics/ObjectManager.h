@@ -61,12 +61,12 @@ public:
 
 	void UnloadObjects();
 
-	CObjectEntry* FindObject(const char* objname);
+	CObjectEntry* FindObject(const wchar_t* objname);
 	void DeleteObject(CObjectEntry* entry);
 	
-	CObjectBase* FindObjectBase(const char* objname);
+	CObjectBase* FindObjectBase(const wchar_t* objname);
 
-	CObjectEntry* FindObjectVariation(const char* objname, const std::vector<std::set<CStr> >& selections);
+	CObjectEntry* FindObjectVariation(const wchar_t* objname, const std::vector<std::set<CStr> >& selections);
 	CObjectEntry* FindObjectVariation(CObjectBase* base, const std::vector<std::set<CStr> >& selections);
 
 	// Get all names, quite slowly. (Intended only for Atlas.)
@@ -78,7 +78,7 @@ private:
 	CSkeletonAnimManager& m_SkeletonAnimManager;
 
 	std::map<ObjectKey, CObjectEntry*> m_Objects;
-	std::map<CStr, CObjectBase*> m_ObjectBases;
+	std::map<CStrW, CObjectBase*> m_ObjectBases;
 };
 
 #endif

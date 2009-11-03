@@ -44,9 +44,9 @@ static const UINT PERIOD_MS = 2;
 class CounterTGT : public ICounter
 {
 public:
-	virtual const char* Name() const
+	virtual const wchar_t* Name() const
 	{
-		return "TGT";
+		return L"TGT";
 	}
 
 	LibError Activate()

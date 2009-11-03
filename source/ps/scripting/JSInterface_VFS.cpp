@@ -96,15 +96,15 @@ JSBool JSI_VFS::BuildDirEntList( JSContext* cx, JSObject* UNUSED(obj), uintN arg
 	if( !ToPrimitive<CStr>( cx, argv[0], path ) )
 		return( JS_FALSE );
 
-	CStr filter_str = "";
+	CStrW filter_str = L"";
 	if(argc >= 2)
 	{
-		if( !ToPrimitive<CStr>( cx, argv[1], filter_str ) )
+		if( !ToPrimitive<CStrW>( cx, argv[1], filter_str ) )
 			return( JS_FALSE );
 	}
-	// convert to const char*; if there's no filter, pass 0 for speed
+	// convert to const wchar_t*; if there's no filter, pass 0 for speed
 	// (interpreted as: "accept all files without comparing").
-	const char* filter = 0;
+	const wchar_t* filter = 0;
 	if(!filter_str.empty())
 		filter = filter_str.c_str();
 
@@ -119,7 +119,7 @@ JSBool JSI_VFS::BuildDirEntList( JSContext* cx, JSObject* UNUSED(obj), uintN arg
 
 	// build array in the callback function
 	BuildDirEntListState state(cx);
-	fs_util::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
+	fs_util::ForEachFile(g_VFS, CStrW(path), BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
 	*rval = OBJECT_TO_JSVAL( state.filename_array );
 	return( JS_TRUE );
@@ -138,7 +138,7 @@ JSBool JSI_VFS::GetFileMTime( JSContext* cx, JSObject* UNUSED(obj), uintN argc, 
 		return( JS_FALSE );
 
 	FileInfo fileInfo;
-	LibError err = g_VFS->GetFileInfo(filename.c_str(), &fileInfo);
+	LibError err = g_VFS->GetFileInfo(CStrW(filename), &fileInfo);
 	JS_CHECK_FILE_ERR( err );
 
 	*rval = ToJSVal( (double)fileInfo.MTime() );
@@ -158,7 +158,7 @@ JSBool JSI_VFS::GetFileSize( JSContext* cx, JSObject* UNUSED(obj), uintN argc, j
 		return( JS_FALSE );
 
 	FileInfo fileInfo;
-	LibError err = g_VFS->GetFileInfo(filename.c_str(), &fileInfo);
+	LibError err = g_VFS->GetFileInfo(CStrW(filename), &fileInfo);
 	JS_CHECK_FILE_ERR(err);
 
 	*rval = ToJSVal( (unsigned)fileInfo.Size() );
@@ -178,7 +178,7 @@ JSBool JSI_VFS::ReadFile( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsva
 		return( JS_FALSE );
 
 	shared_ptr<u8> buf; size_t size;
-	LibError err = g_VFS->LoadFile( filename.c_str(), buf, size );
+	LibError err = g_VFS->LoadFile( CStrW(filename), buf, size );
 	JS_CHECK_FILE_ERR( err );
 
 	CStr contents( (const char*)buf.get(), size );
@@ -208,7 +208,7 @@ JSBool JSI_VFS::ReadFileLines( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 	//
 
 	shared_ptr<u8> buf; size_t size;
-	LibError err = g_VFS->LoadFile( filename.c_str( ), buf, size );
+	LibError err = g_VFS->LoadFile( CStrW(filename), buf, size );
 	JS_CHECK_FILE_ERR( err );
 
 	CStr contents( (const char*)buf.get(), size );

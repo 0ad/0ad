@@ -136,7 +136,7 @@ bool I18n::operator== (BufferVariable& a, BufferVariable& b)
 	case vartype_rawstring:
 		return *static_cast<BufferVariable_rawstring*>(&a) == *static_cast<BufferVariable_rawstring*>(&b);
 	}
-	debug_warn("Invalid buffer variable vartype");
+	debug_warn(L"Invalid buffer variable vartype");
 	return false;
 }
 

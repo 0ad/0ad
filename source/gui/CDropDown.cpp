@@ -35,7 +35,7 @@ CDropDown::CDropDown() : m_Open(false), m_HideScrollBar(false), m_ElementHighlig
 	AddSetting(GUIST_float,					"button_width");
 	AddSetting(GUIST_float,					"dropdown_size");
 	AddSetting(GUIST_float,					"dropdown_buffer");
-//	AddSetting(GUIST_CStr,					"font");
+//	AddSetting(GUIST_CStrW,					"font");
 //	AddSetting(GUIST_CGUISpriteInstance,	"sprite");				// Background that sits around the size
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_list");			// Background of the drop down list
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite2");				// Button that sits to the right

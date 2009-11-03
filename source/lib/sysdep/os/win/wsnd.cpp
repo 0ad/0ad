@@ -34,29 +34,29 @@
 #include "wmi.h"
 
 
-static LibError IsOpenAlDllName(const std::string& name)
+static bool IsOpenAlDllName(const std::wstring& name)
 {
 	// (matches "*oal.dll" and "*OpenAL*", as with OpenAL router's search)
-	return name.find("oal.dll") != std::string::npos || name.find("OpenAL") != std::string::npos;
+	return name.find(L"oal.dll") != std::wstring::npos || name.find(L"OpenAL") != std::wstring::npos;
 }
 
 // ensures each OpenAL DLL is only listed once (even if present in several
 // directories on our search path).
-typedef std::set<std::string> StringSet;
+typedef std::set<std::wstring> StringSet;
 
 // find all OpenAL DLLs in a dir.
 // call in library search order (exe dir, then win sys dir); otherwise,
 // DLLs in the executable's starting directory hide those of the
 // same name in the system directory.
-static void add_oal_dlls_in_dir(const OsPath& path, StringSet& dlls, std::string& versionList)
+static void add_oal_dlls_in_dir(const fs::wpath& path, StringSet& dlls, std::wstring& versionList)
 {
-	for(OsDirectoryIterator it(path); it != OsDirectoryIterator(); ++it)
+	for(fs::wdirectory_iterator it(path); it != fs::wdirectory_iterator(); ++it)
 	{
 		if(!fs::is_regular(it->status()))
 			continue;
 
-		const OsPath& pathname = it->path();
-		const std::string& name = pathname.leaf();
+		const fs::wpath& pathname = it->path();
+		const std::wstring& name = pathname.leaf();
 		if(!IsOpenAlDllName(name))
 			continue;
 
@@ -82,12 +82,12 @@ static void add_oal_dlls_in_dir(const OsPath& path, StringSet& dlls, std::string
 // the version info for that bogus driver path, we'll skip this code there.
 // (delay-loading dsound.dll eliminates any overhead)
 
-static char directSoundDriverPath[MAX_PATH+1];
+static fs::wpath directSoundDriverPath;
 
 // store sound card name and path to DirectSound driver.
 // called for each DirectSound driver, but aborts after first valid driver.
-static BOOL CALLBACK DirectSoundCallback(void* guid, const char* UNUSED(description),
-	const char* module, void* UNUSED(cbData))
+static BOOL CALLBACK DirectSoundCallback(void* guid, const wchar_t* UNUSED(description),
+	const wchar_t* module, void* UNUSED(cbData))
 {
 	// skip first dummy entry (description == "Primary Sound Driver")
 	if(guid == NULL)
@@ -95,23 +95,23 @@ static BOOL CALLBACK DirectSoundCallback(void* guid, const char* UNUSED(descript
 
 	// note: $system\\drivers is not in LoadLibrary's search list,
 	// so we have to give the full pathname.
-	snprintf(directSoundDriverPath, ARRAY_SIZE(directSoundDriverPath), "%s\\drivers\\%s", win_sys_dir, module);
+	directSoundDriverPath = wutil_SystemPath()/L"drivers"/module;
 
 	// we assume the first "driver name" (sound card) is the one we want;
 	// stick with that and stop calling.
 	return FALSE;
 }
 
-static const char* GetDirectSoundDriverPath()
+static const fs::wpath& GetDirectSoundDriverPath()
 {
 #define DS_OK 0
-	typedef BOOL (CALLBACK* LPDSENUMCALLBACKA)(void*, const char*, const char*, void*);
-	typedef HRESULT (WINAPI *PDirectSoundEnumerateA)(LPDSENUMCALLBACKA, void*);
+	typedef BOOL (CALLBACK* LPDSENUMCALLBACKW)(void*, const wchar_t*, const wchar_t*, void*);
+	typedef HRESULT (WINAPI *PDirectSoundEnumerateW)(LPDSENUMCALLBACKW, void*);
 	HMODULE hDsoundDll = LoadLibrary("dsound.dll");
-	PDirectSoundEnumerateA pDirectSoundEnumerateA = (PDirectSoundEnumerateA)GetProcAddress(hDsoundDll, "DirectSoundEnumerateA");
-	if(pDirectSoundEnumerateA)
+	PDirectSoundEnumerateW pDirectSoundEnumerateW = (PDirectSoundEnumerateW)GetProcAddress(hDsoundDll, "DirectSoundEnumerateW");
+	if(pDirectSoundEnumerateW)
 	{
-		HRESULT ret = pDirectSoundEnumerateA(DirectSoundCallback, (void*)0);
+		HRESULT ret = pDirectSoundEnumerateW(DirectSoundCallback, (void*)0);
 		debug_assert(ret == DS_OK);
 	}
 	FreeLibrary(hDsoundDll);
@@ -124,17 +124,17 @@ static const char* GetDirectSoundDriverPath()
 LibError win_get_snd_info()
 {
 	WmiMap wmiMap;
-	if(wmi_GetClass("Win32_SoundDevice", wmiMap) == INFO::OK)
-		sprintf_s(snd_card, SND_CARD_LEN, "%ls", wmiMap[L"ProductName"].bstrVal);
+	if(wmi_GetClass(L"Win32_SoundDevice", wmiMap) == INFO::OK)
+		swprintf_s(snd_card, SND_CARD_LEN, L"%ls", wmiMap[L"ProductName"].bstrVal);
 
 	// find all DLLs related to OpenAL and retrieve their versions.
-	std::string versionList;
+	std::wstring versionList;
 	if(wutil_WindowsVersion() < WUTIL_VERSION_VISTA)
 		wdll_ver_Append(GetDirectSoundDriverPath(), versionList);
 	StringSet dlls;	// ensures uniqueness
-	(void)add_oal_dlls_in_dir(win_exe_dir, dlls, versionList);
-	(void)add_oal_dlls_in_dir(win_sys_dir, dlls, versionList);
-	strcpy_s(snd_drv_ver, SND_DRV_VER_LEN, versionList.c_str());
+	(void)add_oal_dlls_in_dir(wutil_ExecutablePath(), dlls, versionList);
+	(void)add_oal_dlls_in_dir(wutil_SystemPath(), dlls, versionList);
+	wcscpy_s(snd_drv_ver, SND_DRV_VER_LEN, versionList.c_str());
 
 	return INFO::OK;
 }

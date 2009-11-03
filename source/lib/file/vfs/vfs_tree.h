@@ -31,9 +31,9 @@
 class VfsFile
 {
 public:
-	VfsFile(const std::string& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& provider);
+	VfsFile(const std::wstring& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& provider);
 
-	const std::string& Name() const
+	const std::wstring& Name() const
 	{
 		return m_name;
 	}
@@ -51,12 +51,12 @@ public:
 	bool IsSupersededBy(const VfsFile& file) const;
 
 	// store file attributes (timestamp, location, size) in a string.
-	void GenerateDescription(char* text, size_t maxChars) const;
+	void GenerateDescription(wchar_t* text, size_t maxChars) const;
 
 	LibError Load(const shared_ptr<u8>& buf) const;
 
 private:
-	std::string m_name;
+	std::wstring m_name;
 	size_t m_size;
 	time_t m_mtime;
 
@@ -81,10 +81,10 @@ public:
 	 * @return address of existing or newly inserted subdirectory; remains
 	 * valid until ClearR is called (i.e. VFS is rebuilt).
 	 **/
-	VfsDirectory* AddSubdirectory(const std::string& name);
+	VfsDirectory* AddSubdirectory(const std::wstring& name);
 
-	VfsFile* GetFile(const std::string& name);
-	VfsDirectory* GetSubdirectory(const std::string& name);
+	VfsFile* GetFile(const std::wstring& name);
+	VfsDirectory* GetSubdirectory(const std::wstring& name);
 
 	void GetEntries(FileInfos* files, DirectoryNames* subdirectories) const;
 
@@ -110,10 +110,10 @@ public:
 	bool ShouldPopulate();
 
 private:
-	typedef std::map<std::string, VfsFile> VfsFiles;
+	typedef std::map<std::wstring, VfsFile> VfsFiles;
 	VfsFiles m_files;
 
-	typedef std::map<std::string, VfsDirectory> VfsSubdirectories;
+	typedef std::map<std::wstring, VfsDirectory> VfsSubdirectories;
 	VfsSubdirectories m_subdirectories;
 
 	PRealDirectory m_realDirectory;

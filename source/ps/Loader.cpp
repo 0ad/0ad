@@ -239,7 +239,7 @@ LibError LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t ma
 		// either finished entirely, or failed => remove from queue.
 		if(!timed_out)
 		{
-			debug_printf("LOADER| completed %ls in %g ms; estimate was %g ms\n", lr.description.c_str(), task_elapsed_time*1e3, estimated_duration*1e3);
+			debug_printf(L"LOADER| completed %ls in %g ms; estimate was %g ms\n", lr.description.c_str(), task_elapsed_time*1e3, estimated_duration*1e3);
 			task_elapsed_time = 0.0;
 			estimated_duration_tally += estimated_duration;
 			load_requests.pop_front();
@@ -295,7 +295,7 @@ done:
 		new_description = load_requests.front().description.c_str();
 	wcscpy_s(description, max_chars, new_description);
 
-	debug_printf("LOADER| returning; desc=%ls progress=%d\n", description, *progress_percent);
+	debug_printf(L"LOADER| returning; desc=%ls progress=%d\n", description, *progress_percent);
 
 	return ret;
 }
@@ -317,7 +317,7 @@ LibError LDR_NonprogressiveLoad()
 		switch(ret)
 		{
 		case INFO::OK:
-			debug_warn("No load in progress");
+			debug_warn(L"No load in progress");
 			return INFO::OK;
 		case INFO::ALL_COMPLETE:
 			return INFO::OK;

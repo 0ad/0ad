@@ -65,7 +65,7 @@ extern bool g_Quickstart;
 // If non-empty, specified map will be automatically loaded
 extern CStr g_AutostartMap;
 
-extern CStr g_CursorName;
+extern CStrW g_CursorName;
 
 class CmdLineArgs;
 extern void CONFIG_Init(const CmdLineArgs& args);

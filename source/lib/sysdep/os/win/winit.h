@@ -128,29 +128,29 @@ Several methods of module init are possible: (see Large Scale C++ Design)
 
 // very early init; must not fail, since error handling code *crashes*
 // if called before these have completed.
-#define WINIT_REGISTER_CRITICAL_INIT(func)   __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I0")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_CRITICAL_INIT(func)   __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$I0")) LibError (*p##func)(void) = func
 
 // meant for modules with dependents but whose init is complicated and may
 // raise error/warning messages (=> can't go in WINIT_REGISTER_CRITICAL_INIT)
-#define WINIT_REGISTER_EARLY_INIT(func)      __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I1")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_EARLY_INIT(func)      __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$I1")) LibError (*p##func)(void) = func
 
 // available for dependents of WINIT_REGISTER_EARLY_INIT-modules that
 // must still come before WINIT_REGISTER_MAIN_INIT.
-#define WINIT_REGISTER_EARLY_INIT2(func)     __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I2")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_EARLY_INIT2(func)     __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$I2")) LibError (*p##func)(void) = func
 
 // most modules will go here unless they are often used or
 // have many dependents.
-#define WINIT_REGISTER_MAIN_INIT(func)       __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I6")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_MAIN_INIT(func)       __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$I6")) LibError (*p##func)(void) = func
 
 // available for any modules that may need to come after
 // WINIT_REGISTER_MAIN_INIT (unlikely)
-#define WINIT_REGISTER_LATE_INIT(func)       __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$I7")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_LATE_INIT(func)       __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$I7")) LibError (*p##func)(void) = func
 
-#define WINIT_REGISTER_EARLY_SHUTDOWN(func)  __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S0")) LibError (*p##func)(void) = func
-#define WINIT_REGISTER_EARLY_SHUTDOWN2(func) __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S1")) LibError (*p##func)(void) = func
-#define WINIT_REGISTER_MAIN_SHUTDOWN(func)   __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S6")) LibError (*p##func)(void) = func
-#define WINIT_REGISTER_LATE_SHUTDOWN(func)   __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S7")) LibError (*p##func)(void) = func
-#define WINIT_REGISTER_LATE_SHUTDOWN2(func)  __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(void); EXTERN_C __declspec(allocate(".WINIT$S8")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_EARLY_SHUTDOWN(func)  __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$S0")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_EARLY_SHUTDOWN2(func) __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$S1")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_MAIN_SHUTDOWN(func)   __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$S6")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_LATE_SHUTDOWN(func)   __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$S7")) LibError (*p##func)(void) = func
+#define WINIT_REGISTER_LATE_SHUTDOWN2(func)  __pragma(comment(linker, "/include:" STRINGIZE(DECORATED_NAME(p##func)))) static LibError func(); EXTERN_C __declspec(allocate(".WINIT$S8")) LibError (*p##func)(void) = func
 
 //-----------------------------------------------------------------------------
 

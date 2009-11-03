@@ -36,7 +36,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/ShadowMap.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 
 
@@ -45,7 +45,7 @@
 
 const CMatrix3D* RenderModifier::GetTexGenMatrix(int UNUSED(pass))
 {
-	debug_warn("GetTexGenMatrix not implemented by a derived RenderModifier");
+	debug_warn(L"GetTexGenMatrix not implemented by a derived RenderModifier");
 	return 0;
 }
 

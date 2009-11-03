@@ -26,15 +26,15 @@
 #include <cerrno>
 
 
-ERROR_ASSOCIATE(ERR::PATH_LENGTH, "path exceeds PATH_MAX characters", ENAMETOOLONG);
-ERROR_ASSOCIATE(ERR::PATH_EMPTY, "path is an empty string", -1);
-ERROR_ASSOCIATE(ERR::PATH_NOT_RELATIVE, "path is not relative", -1);
-ERROR_ASSOCIATE(ERR::PATH_NON_PORTABLE, "path contains OS-specific dir separator", -1);
-ERROR_ASSOCIATE(ERR::PATH_NON_CANONICAL, "path contains unsupported .. or ./", -1);
-ERROR_ASSOCIATE(ERR::PATH_COMPONENT_SEPARATOR, "path component contains dir separator", -1);
+ERROR_ASSOCIATE(ERR::PATH_LENGTH, L"path exceeds PATH_MAX characters", ENAMETOOLONG);
+ERROR_ASSOCIATE(ERR::PATH_EMPTY, L"path is an empty string", -1);
+ERROR_ASSOCIATE(ERR::PATH_NOT_RELATIVE, L"path is not relative", -1);
+ERROR_ASSOCIATE(ERR::PATH_NON_PORTABLE, L"path contains OS-specific dir separator", -1);
+ERROR_ASSOCIATE(ERR::PATH_NON_CANONICAL, L"path contains unsupported .. or ./", -1);
+ERROR_ASSOCIATE(ERR::PATH_COMPONENT_SEPARATOR, L"path component contains dir separator", -1);
 
 
-bool path_is_dir_sep(char c)
+bool path_is_dir_sep(wchar_t c)
 {
 	// note: ideally path strings would only contain '/' or even SYS_DIR_SEP.
 	// however, windows-specific code (e.g. the sound driver detection)
@@ -63,12 +63,12 @@ static bool path_is_dir_sepw(wchar_t c)
 }
 
 
-bool path_IsDirectory(const char* path)
+bool path_IsDirectory(const wchar_t* path)
 {
 	if(path[0] == '\0')	// root dir
 		return true;
 
-	const char lastChar = path[strlen(path)-1];
+	const wchar_t lastChar = path[wcslen(path)-1];
 	if(path_is_dir_sep(lastChar))
 		return true;
 
@@ -78,13 +78,13 @@ bool path_IsDirectory(const char* path)
 
 // is s2 a subpath of s1, or vice versa?
 // (equal counts as subpath)
-bool path_is_subpath(const char* s1, const char* s2)
+bool path_is_subpath(const wchar_t* s1, const wchar_t* s2)
 {
 	// make sure s1 is the shorter string
-	if(strlen(s1) > strlen(s2))
+	if(wcslen(s1) > wcslen(s2))
 		std::swap(s1, s2);
 
-	char c1 = 0, last_c1, c2;
+	wchar_t c1 = 0, last_c1, c2;
 	for(;;)
 	{
 		last_c1 = c1;
@@ -139,15 +139,15 @@ bool path_is_subpathw(const wchar_t* s1, const wchar_t* s2)
 
 
 // if path is invalid, return a descriptive error code, otherwise INFO::OK.
-LibError path_validate(const char* path)
+LibError path_validate(const wchar_t* path)
 {
 	// disallow "/", because it would create a second 'root' (with name = "").
 	// root dir is "".
 	if(path[0] == '/')
 		WARN_RETURN(ERR::PATH_NOT_RELATIVE);
 
-	// scan each char in path string; count length.
-	int c = 0;		// current char; used for .. detection
+	// scan each wchar_t in path string; count length.
+	int c = 0;		// current wchar_t; used for .. detection
 	size_t path_len = 0;
 	for(;;)
 	{
@@ -180,7 +180,7 @@ LibError path_validate(const char* path)
 
 // if name is invalid, return a descriptive error code, otherwise INFO::OK.
 // (name is a path component, i.e. that between directory separators)
-LibError path_component_validate(const char* name)
+LibError path_component_validate(const wchar_t* name)
 {
 	// disallow empty strings
 	if(*name == '\0')
@@ -205,9 +205,9 @@ LibError path_component_validate(const char* name)
 
 
 // copy path strings (provided for convenience).
-void path_copy(char* dst, const char* src)
+void path_copy(wchar_t* dst, const wchar_t* src)
 {
-	strcpy_s(dst, PATH_MAX, src);
+	wcscpy_s(dst, PATH_MAX, src);
 }
 
 
@@ -215,10 +215,10 @@ void path_copy(char* dst, const char* src)
 // if necessary, a directory separator is added between the paths.
 // each may be empty, filenames, or full paths.
 // total path length (including '\0') must not exceed PATH_MAX.
-void path_append(char* dst, const char* path1, const char* path2, size_t flags)
+void path_append(wchar_t* dst, const wchar_t* path1, const wchar_t* path2, size_t flags)
 {
-	const size_t len1 = strlen(path1);
-	const size_t len2 = strlen(path2);
+	const size_t len1 = wcslen(path1);
+	const size_t len2 = wcslen(path2);
 	size_t total_len = len1 + len2 + 1;	// includes '\0'
 	const bool no_end_slash1 = (len1 == 0 || !path_is_dir_sep(path1[len1-1]));
 	const bool no_end_slash2 = (len2 == 0 || !path_is_dir_sep(path2[len2-1]));
@@ -250,13 +250,13 @@ void path_append(char* dst, const char* path1, const char* path2, size_t flags)
 		return;
 	}
 
-	SAFE_STRCPY(dst, path1);
+	SAFE_WCSCPY(dst, path1);
 	dst += len1;
 	if(need_separator)
 		*dst++ = '/';
-	SAFE_STRCPY(dst, path2);
+	SAFE_WCSCPY(dst, path2);
 	if(need_terminator)
-		SAFE_STRCPY(dst+len2, "/");
+		SAFE_WCSCPY(dst+len2, L"/");
 }
 
 
@@ -264,25 +264,25 @@ void path_append(char* dst, const char* path1, const char* path2, size_t flags)
 
 // return pointer to the name component within path (i.e. skips over all
 // characters up to the last dir separator, if any).
-const char* path_name_only(const char* path)
+const wchar_t* path_name_only(const wchar_t* path)
 {
-	const char* slash1 = strrchr(path, '/');
-	const char* slash2 = strrchr(path, '\\');
+	const wchar_t* slash1 = wcsrchr(path, '/');
+	const wchar_t* slash2 = wcsrchr(path, '\\');
 	// neither present, it's a filename only
 	if(!slash1 && !slash2)
 		return path;
 
 	// return name, i.e. component after the last slash
-	const char* name = std::max(slash1, slash2)+1;
+	const wchar_t* name = std::max(slash1, slash2)+1;
 	if(name[0] != '\0')	// else path_component_validate would complain
 		path_component_validate(name);
 	return name;
 }
 
 // if <path> contains a name component, it is stripped away.
-void path_strip_fn(char* path)
+void path_strip_fn(wchar_t* path)
 {
-	char* name = (char*)path_name_only(path);
+	wchar_t* name = (wchar_t*)path_name_only(path);
 	*name = '\0';	// cut off string here
 	debug_assert(path_IsDirectory(path));
 }
@@ -290,11 +290,28 @@ void path_strip_fn(char* path)
 
 // return extension of <fn>, or "" if there is none.
 // NOTE: does not include the period; e.g. "a.bmp" yields "bmp".
-const char* path_extension(const char* fn)
+const wchar_t* path_extension(const wchar_t* fn)
 {
-	const char* dot = strrchr(fn, '.');
+	const wchar_t* dot = wcsrchr(fn, '.');
 	if(!dot)
-		return "";
-	const char* ext = dot+1;
+		return L"";
+	const wchar_t* ext = dot+1;
 	return ext;
+}
+
+
+fs::wpath wpath_from_path(const fs::path& pathname)
+{
+	wchar_t pathname_w[PATH_MAX];
+	const size_t numConverted = mbstowcs(pathname_w, pathname.file_string().c_str(), ARRAY_SIZE(pathname_w));
+	debug_assert(numConverted < PATH_MAX);	// if == PATH_MAX, result isn't zero-terminated
+	return fs::wpath(pathname_w);
+}
+
+fs::path path_from_wpath(const fs::wpath& pathname)
+{
+	char pathname_c[PATH_MAX];
+	const size_t numConverted = wcstombs(pathname_c, pathname.file_string().c_str(), ARRAY_SIZE(pathname_c));
+	debug_assert(numConverted < PATH_MAX);	// if == PATH_MAX, result isn't zero-terminated
+	return fs::path(pathname_c);
 }

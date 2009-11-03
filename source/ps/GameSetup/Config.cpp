@@ -25,12 +25,12 @@
 #include "lib/res/sound/snd_mgr.h"
 #include "Config.h"
 
-#define LOG_CATEGORY "config"
+#define LOG_CATEGORY L"config"
 
 
 // (these variables are documented in the header.)
 
-CStr g_CursorName = "test";
+CStrW g_CursorName = L"test";
 CStr g_ActiveProfile = "default";
 
 bool g_NoGLS3TC = false;
@@ -73,15 +73,15 @@ CStr g_AutostartMap = "";
 
 static void LoadProfile( const CStr& profile )
 {
-	VfsPath path = VfsPath("profiles") / (std::string)profile;
+	VfsPath path = VfsPath(L"profiles") / CStrW(profile);
 
-	VfsPath configFilename = path / "settings/user.cfg";
+	VfsPath configFilename = path / L"settings/user.cfg";
 	g_ConfigDB.SetConfigFile(CFG_USER, true, configFilename.string().c_str());
 	g_ConfigDB.Reload(CFG_USER);
 
 	int max_history_lines = 200;
 	CFG_GET_USER_VAL("console.history.size", Int, max_history_lines);
-	g_Console->UseHistoryFile(path / "settings/history", max_history_lines);
+	g_Console->UseHistoryFile(path / L"settings/history", max_history_lines);
 }
 
 
@@ -113,8 +113,8 @@ static void LoadGlobals()
 	if(gain > 0.0f)
 		WARN_ERR(snd_set_master_gain(gain));
 
-	LOG(CLogger::Normal,  LOG_CATEGORY, "g_x/yres is %dx%d", g_xres, g_yres);
-	LOG(CLogger::Normal,  LOG_CATEGORY, "Active profile is %s", g_ActiveProfile.c_str());
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"g_x/yres is %dx%d", g_xres, g_yres);
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"Active profile is %hs", g_ActiveProfile.c_str());
 }
 
 
@@ -191,21 +191,21 @@ static void ProcessCommandLineArgs(const CmdLineArgs& args)
 
 void CONFIG_Init(const CmdLineArgs& args)
 {
-	TIMER("CONFIG_Init");
+	TIMER(L"CONFIG_Init");
 	MICROLOG(L"init config");
 
 	new CConfigDB;
 
 	// Load the global, default config file
-	g_ConfigDB.SetConfigFile(CFG_DEFAULT, false, "config/default.cfg");
+	g_ConfigDB.SetConfigFile(CFG_DEFAULT, false, L"config/default.cfg");
 	g_ConfigDB.Reload(CFG_DEFAULT);	// 216ms
 	// Try loading the local system config file (which doesn't exist by
 	// default) - this is designed as a way of letting developers edit the
 	// system config without accidentally committing their changes back to SVN.
-	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, "config/local.cfg");
+	g_ConfigDB.SetConfigFile(CFG_SYSTEM, false, L"config/local.cfg");
 	g_ConfigDB.Reload(CFG_SYSTEM);
 
-	g_ConfigDB.SetConfigFile(CFG_MOD, true, "config/mod.cfg");
+	g_ConfigDB.SetConfigFile(CFG_MOD, true, L"config/mod.cfg");
 	// No point in reloading mod.cfg here - we haven't mounted mods yet
 
 	ProcessCommandLineArgs(args);

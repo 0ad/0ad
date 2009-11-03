@@ -32,7 +32,7 @@
 class CTechnologyCollection : public Singleton<CTechnologyCollection>
 {
 	typedef std::map<CStrW, CTechnology*> TechMap;
-	typedef std::map<CStrW, CStr> TechFilenameMap;
+	typedef std::map<CStrW, VfsPath> TechFilenameMap;
 
 	TechMap m_techs[PS_MAX_PLAYERS+1];
 	TechFilenameMap m_techFilenames;

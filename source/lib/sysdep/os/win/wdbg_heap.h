@@ -39,7 +39,7 @@ LIB_API void wdbg_heap_Enable(bool);
  * no effect if called between wdbg_heap_Enable(false) and the next
  * wdbg_heap_Enable(true).
  **/
-LIB_API void wdbg_heap_Validate(void);
+LIB_API void wdbg_heap_Validate();
 
 /**
  * @return the total number of alloc and realloc operations thus far.

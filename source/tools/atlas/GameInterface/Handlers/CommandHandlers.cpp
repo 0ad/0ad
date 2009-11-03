@@ -34,7 +34,7 @@ MESSAGEHANDLER(DoCommand)
 	}
 	else
 	{
-		debug_warn("Unrecognised command");
+		debug_warn(L"Unrecognised command");
 		return;
 	}
 

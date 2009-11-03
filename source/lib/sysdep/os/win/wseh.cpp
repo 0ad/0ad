@@ -133,7 +133,7 @@ static const wchar_t* GetCppExceptionDescription(const EXCEPTION_RECORD* er,
 	// format the info we got (if both are empty, then something is seriously
 	// wrong; it's better to show empty strings than returning 0 to have our
 	// caller display the SEH info)
-	swprintf(description, maxChars, L"%hs(\"%hs\")", type_name, what);
+	swprintf_s(description, maxChars, L"%hs(\"%hs\")", type_name, what);
 	return description;
 }
 
@@ -156,7 +156,7 @@ static const wchar_t* GetSehExceptionDescription(const EXCEPTION_RECORD* er,
 		// special case: display type and address.
 		const wchar_t* accessType = (ei[0])? L"writing" : L"reading";
 		const ULONG_PTR address = ei[1];
-		swprintf(description, maxChars, L"Access violation %s 0x%08X", accessType, address);
+		swprintf_s(description, maxChars, L"Access violation %ls 0x%08X", accessType, address);
 		return description;
 	}
 	case EXCEPTION_DATATYPE_MISALIGNMENT:    return L"Datatype misalignment";
@@ -208,13 +208,13 @@ static const wchar_t* GetExceptionDescription(const EXCEPTION_POINTERS* ep,
 // return location at which the exception <er> occurred.
 // params: see debug_ResolveSymbol.
 static void GetExceptionLocus(const EXCEPTION_POINTERS* ep,
-	char* file, int* line, char* func)
+	wchar_t* file, int* line, wchar_t* func)
 {
 	// HACK: <ep> provides no useful information - ExceptionAddress always
 	// points to kernel32!RaiseException. we use debug_GetCaller to
 	// determine the real location.
 
-	const char* const lastFuncToSkip = "RaiseException";
+	const wchar_t* const lastFuncToSkip = L"RaiseException";
 	void* func_addr = debug_GetCaller(ep->ContextRecord, lastFuncToSkip);
 	(void)debug_ResolveSymbol(func_addr, func, file, line);
 }
@@ -262,9 +262,9 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	// extract details from ExceptionRecord.
 	wchar_t descriptionBuf[150];
 	const wchar_t* description = GetExceptionDescription(ep, descriptionBuf, ARRAY_SIZE(descriptionBuf));
-	char file[DBG_FILE_LEN] = {0};
+	wchar_t file[DBG_FILE_LEN] = {0};
 	int line = 0;
-	char func[DBG_SYMBOL_LEN] = {0};
+	wchar_t func[DBG_SYMBOL_LEN] = {0};
 	GetExceptionLocus(ep, file, &line, func);
 
 	wchar_t message[500];
@@ -273,13 +273,13 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 		L"\r\n"
 		L"Please let us know at http://trac.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
 		L"\r\n"
-		L"Details: unhandled exception (%s)\r\n";
-	swprintf(message, ARRAY_SIZE(message), messageFormat, description);
+		L"Details: unhandled exception (%ls)\r\n";
+	swprintf_s(message, ARRAY_SIZE(message), messageFormat, description);
 
 	size_t flags = 0;
 	if(ep->ExceptionRecord->ExceptionFlags & EXCEPTION_NONCONTINUABLE)
 		flags = DE_NO_CONTINUE;
-	const char* const lastFuncToSkip = STRINGIZE(DECORATED_NAME(wseh_ExceptionFilter));
+	const wchar_t* const lastFuncToSkip = WIDEN(STRINGIZE(DECORATED_NAME(wseh_ExceptionFilter)));
 	ErrorReaction er = debug_DisplayError(message, flags, ep->ContextRecord, lastFuncToSkip, file,line,func, 0);
 	debug_assert(er == ER_CONTINUE);	// nothing else possible
 

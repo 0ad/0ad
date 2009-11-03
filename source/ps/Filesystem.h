@@ -30,7 +30,6 @@
 
 extern PIVFS g_VFS;
 
-extern bool FileExists(const char* pathname);
 extern bool FileExists(const VfsPath& pathname);
 
 ERROR_GROUP(CVFSFile);

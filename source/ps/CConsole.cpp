@@ -40,6 +40,8 @@
 #include "scripting/ScriptableComplex.inl"
 #include "simulation/Entity.h"
 
+#define LOG_CATEGORY L"Console"
+
 CConsole* g_Console = 0;
 
 CConsole::CConsole()
@@ -61,17 +63,17 @@ CConsole::CConsole()
 	InsertMessage(L"[ 0 A.D. Console v0.12 ]   type \"\\info\" for help");
 	InsertMessage(L"");
 
-	if (FileExists("gui/text/help.txt"))
+	if (FileExists(L"gui/text/help.txt"))
 	{
 		shared_ptr<u8> buf; size_t size;
-		if ( g_VFS->LoadFile("gui/text/help.txt", buf, size) < 0 )
+		if ( g_VFS->LoadFile(L"gui/text/help.txt", buf, size) < 0 )
 		{
-			LOG(CLogger::Error, "Console", "Help file not found for console");
+			LOG(CLogger::Error, LOG_CATEGORY, L"Help file not found for console");
 			return;
 		}
 		// TODO: read in text mode, or at least get rid of the \r\n somehow
 		// TODO: maybe the help file should be UTF-8 - we assume it's iso-8859-1 here
-		m_helpText = CStrW(CStr( (const char*)buf.get() ));
+		m_helpText = CStrW((const char*)buf.get());
 	}
 	else
 	{
@@ -541,14 +543,14 @@ void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 	va_start(args, szMessage);
 	if (vswprintf(szBuffer, CONSOLE_MESSAGE_SIZE, szMessage, args) == -1)
 	{
-		debug_printf("Error printfing console message (buffer size exceeded?)\n");
+		debug_printf(L"Error printfing console message (buffer size exceeded?)\n");
 
 		// Make it obvious that the text was trimmed (assuming it was)
 		wcscpy(szBuffer+CONSOLE_MESSAGE_SIZE-4, L"...");
 	}
 	va_end(args);
 
-	InsertMessageRaw(CStrW(szBuffer));
+	InsertMessageRaw(szBuffer);
 }
 	
 
@@ -701,7 +703,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 			JS_SetParent(g_ScriptingHost.GetContext(), m_ScriptObject, g_Selection.m_selected[0]->GetScript());
 		}
 
-		jsval rval = g_ScriptingHost.ExecuteScript( CStrW( szLine + 1 ), L"Console", m_ScriptObject );
+		jsval rval = g_ScriptingHost.ExecuteScript( szLine+1, L"Console", m_ScriptObject );
 		if (szLine[0] == '?' && rval)
 		{
 			try {

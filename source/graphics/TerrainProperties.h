@@ -28,6 +28,7 @@
 #define INCLUDED_TERRAINPROPERTIES
 
 #include "ps/CStr.h"
+#include "lib/file/vfs/vfs_path.h"
 #include <boost/shared_ptr.hpp>
 
 class CTerrainGroup;
@@ -74,8 +75,8 @@ private:
 	// Passability definitions
 	std::vector<STerrainPassability> m_Passabilities;
 
-	void ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const char *path);
-	void LoadXml(XMBElement node, CXeromyces *pFile, const char *path);
+	void ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const VfsPath& pathname);
+	void LoadXml(XMBElement node, CXeromyces *pFile, const VfsPath& pathname);
 
 public:
 	CTerrainProperties(CTerrainPropertiesPtr parent);
@@ -83,7 +84,7 @@ public:
 	// Create a new object and load the XML file specified. Returns NULL upon
 	// failure
 	// The parent pointer may be NULL, for the "root" terrainproperties object.
-	static CTerrainPropertiesPtr FromXML(const CTerrainPropertiesPtr& parent, const char* path);
+	static CTerrainPropertiesPtr FromXML(const CTerrainPropertiesPtr& parent, const VfsPath& pathname);
 	
 	// Save the object to an XML file. Implement when needed! ;-)
 	// bool WriteXML(const CStr& path);

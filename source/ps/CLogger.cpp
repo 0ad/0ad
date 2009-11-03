@@ -29,36 +29,36 @@
 // Set up a default logger that throws everything away, because that's
 // better than crashing. (This is particularly useful for unit tests which
 // don't care about any log output.)
-struct BlackHoleStreamBuf : public std::streambuf
+struct BlackHoleStreamBuf : public std::wstreambuf
 {
 } blackHoleStreamBuf;
-std::ostream blackHoleStream(&blackHoleStreamBuf);
+std::wostream blackHoleStream(&blackHoleStreamBuf);
 CLogger nullLogger(&blackHoleStream, &blackHoleStream, false, true);
 
 CLogger* g_Logger = &nullLogger;
 
-const char* html_header0 =
-	"<!DOCTYPE html>\n"
-	"<title>Pyrogenesis Log</title>\n"
-	"<style>\n"
-	"body { background: #eee; color: black; font-family: sans-serif; }\n"
-	"p { background: white; margin: 3px 0 3px 0; }\n"
-	".error { color: red; }\n"
-	".warning { color: blue; }\n"
-	"</style>\n"
-	"<h2>0 A.D. ";
+const wchar_t* html_header0 =
+	L"<!DOCTYPE html>\n"
+	L"<title>Pyrogenesis Log</title>\n"
+	L"<style>\n"
+	L"body { background: #eee; color: black; font-family: sans-serif; }\n"
+	L"p { background: white; margin: 3px 0 3px 0; }\n"
+	L".error { color: red; }\n"
+	L".warning { color: blue; }\n"
+	L"</style>\n"
+	L"<h2>0 A.D. ";
 
-const char* html_header1 = "</h2>\n";
+const wchar_t* html_header1 = L"</h2>\n";
 
-const char* html_footer = "";
+const wchar_t* html_footer = L"";
 
 CLogger::CLogger()
 {
-	fs::path mainlogPath(fs::path(psLogDir())/"mainlog.html");
-	m_MainLog = new std::ofstream(mainlogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	fs::wpath mainlogPath(fs::wpath(psLogDir())/L"mainlog.html");
+	m_MainLog = new std::wofstream(mainlogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
-	fs::path interestinglogPath(fs::path(psLogDir())/"interestinglog.html");
-	m_InterestingLog = new std::ofstream(interestinglogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	fs::wpath interestinglogPath(fs::wpath(psLogDir())/L"interestinglog.html");
+	m_InterestingLog = new std::wofstream(interestinglogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;
 	m_UseDebugPrintf = true;
@@ -66,7 +66,7 @@ CLogger::CLogger()
 	Init();
 }
 
-CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership, bool useDebugPrintf)
+CLogger::CLogger(std::wostream* mainLog, std::wostream* interestingLog, bool takeOwnership, bool useDebugPrintf)
 {
 	m_MainLog = mainLog;
 	m_InterestingLog = interestingLog;
@@ -83,82 +83,79 @@ void CLogger::Init()
 	m_NumberOfWarnings = 0;
 	
 	//Write Headers for the HTML documents
-	*m_MainLog << html_header0 << "Main log" << html_header1;
+	*m_MainLog << html_header0 << L"Main log" << html_header1;
 	
 	//Write Headers for the HTML documents
-	*m_InterestingLog << html_header0 << "Main log (warnings and errors only)" << html_header1;
+	*m_InterestingLog << html_header0 << L"Main log (warnings and errors only)" << html_header1;
 }
 
 CLogger::~CLogger ()
 {
-	char buffer[128];
-	sprintf(buffer," with %d message(s), %d error(s) and %d warning(s).", \
-						m_NumberOfMessages,m_NumberOfErrors,m_NumberOfWarnings);
+	wchar_t buffer[128];
+	swprintf_s(buffer, ARRAY_SIZE(buffer), L" with %d message(s), %d error(s) and %d warning(s).", m_NumberOfMessages,m_NumberOfErrors,m_NumberOfWarnings);
 
 	time_t t = time(NULL);
 	struct tm* now = localtime(&t);
-	//const char* months[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-	//CStr currentDate = CStr(months[now->tm_mon]) + " " + CStr(now->tm_mday) + " " + CStr(1900+now->tm_year);
-	char currentDate[11];
-	sprintf(currentDate, "%02d %02d %04d", now->tm_mon, now->tm_mday, (1900+now->tm_year));
-	char currentTime[10];
-	sprintf(currentTime, "%02d:%02d:%02d", now->tm_hour, now->tm_min, now->tm_sec);
+	wchar_t currentDate[11];
+	swprintf_s(currentDate, ARRAY_SIZE(currentDate), L"%02d %02d %04d", now->tm_mon, now->tm_mday, (1900+now->tm_year));
+	wchar_t currentTime[10];
+	swprintf_s(currentTime, ARRAY_SIZE(currentTime), L"%02d:%02d:%02d", now->tm_hour, now->tm_min, now->tm_sec);
 
 	//Write closing text
 
-	*m_MainLog << "<p>Engine exited successfully on " << currentDate;
-	*m_MainLog << " at " << currentTime << buffer << "</p>\n";
+	*m_MainLog << L"<p>Engine exited successfully on " << currentDate;
+	*m_MainLog << L" at " << currentTime << buffer << L"</p>\n";
 	*m_MainLog << html_footer;
 	
-	*m_InterestingLog << "<p>Engine exited successfully on " << currentDate;
-	*m_InterestingLog << " at " << currentTime << buffer << "</p>\n";
+	*m_InterestingLog << L"<p>Engine exited successfully on " << currentDate;
+	*m_InterestingLog << L" at " << currentTime << buffer << L"</p>\n";
 	*m_InterestingLog << html_footer;
 
 	if (m_OwnsStreams)
 	{
-		delete m_InterestingLog;
-		delete m_MainLog;
+		SAFE_DELETE(m_InterestingLog);
+		SAFE_DELETE(m_MainLog);
 	}
 }
 
-void CLogger::WriteMessage(const char *message)
+void CLogger::WriteMessage(const wchar_t* message)
 {
 	++m_NumberOfMessages;
 
-	*m_MainLog << "<p>" << message << "</p>\n";
+	*m_MainLog << L"<p>" << message << L"</p>\n";
 	m_MainLog->flush();
 	
 }
 
-void CLogger::WriteError(const char *message)
+void CLogger::WriteError(const wchar_t* message)
 {
 	++m_NumberOfErrors;
 	if (m_UseDebugPrintf)
-		debug_printf("ERROR: %s\n", message);
+		debug_printf(L"ERROR: %ls\n", message);
 
-	if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
-	*m_InterestingLog << "<p class=\"error\">ERROR: "<< message << "</p>\n";
+	if (g_Console) g_Console->InsertMessage(L"ERROR: %ls", message);
+	*m_InterestingLog << L"<p class=\"error\">ERROR: "<< message << L"</p>\n";
 	m_InterestingLog->flush();
 
-	*m_MainLog << "<p class=\"error\">ERROR: "<< message << "</p>\n";
+	*m_MainLog << L"<p class=\"error\">ERROR: "<< message << L"</p>\n";
 	m_MainLog->flush();
 }
 
-void CLogger::WriteWarning(const char *message)
+void CLogger::WriteWarning(const wchar_t* message)
 {
 	++m_NumberOfWarnings;
 
-	if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
-	*m_InterestingLog << "<p class=\"warning\">WARNING: "<< message << "</p>\n";
+	if (g_Console) g_Console->InsertMessage(L"WARNING: %ls", message);
+	*m_InterestingLog << L"<p class=\"warning\">WARNING: "<< message << L"</p>\n";
 	m_InterestingLog->flush();
 
-	*m_MainLog << "<p class=\"warning\">WARNING: "<< message << "</p>\n";
+	*m_MainLog << L"<p class=\"warning\">WARNING: "<< message << L"</p>\n";
 	m_MainLog->flush();
 }
 
 // Sends the message to the appropriate piece of code
 // -- This function has not been removed because the build would break.
-void CLogger::LogUsingMethod(ELogMethod method, const char* message)
+void CLogger::LogUsingMethod(ELogMethod method, const wchar_t* message)
 {
 	if(method == Normal)
 		WriteMessage(message);
@@ -171,16 +168,16 @@ void CLogger::LogUsingMethod(ELogMethod method, const char* message)
 }
 
 // -- This function has not been removed because the build would break.
-void CLogger::Log(ELogMethod method, const char* UNUSED(category), const char *fmt, ...)
+void CLogger::Log(ELogMethod method, const wchar_t* UNUSED(category), const wchar_t* fmt, ...)
 {
 	va_list argp;
-	char buffer[512];
+	wchar_t buffer[512];
 	
 	va_start(argp, fmt);
-	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
+		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
 	}
 	va_end(argp);
 
@@ -188,20 +185,20 @@ void CLogger::Log(ELogMethod method, const char* UNUSED(category), const char *f
 }
 
 // -- This function has not been removed because the build would break.
-void CLogger::LogOnce(ELogMethod method, const char* UNUSED(category), const char *fmt, ...)
+void CLogger::LogOnce(ELogMethod method, const wchar_t* UNUSED(category), const wchar_t* fmt, ...)
 {
 	va_list argp;
-	char buffer[512];
+	wchar_t buffer[512];
 
 	va_start(argp, fmt);
-	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
+		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
 	}
 	va_end(argp);
 
-	std::string message (buffer);
+	std::wstring message(buffer);
 
 	// If this message has already been logged, ignore it
 	if (m_LoggedOnce.find(message) != m_LoggedOnce.end())
@@ -212,53 +209,54 @@ void CLogger::LogOnce(ELogMethod method, const char* UNUSED(category), const cha
 	LogUsingMethod(method, buffer);
 }
 
-void CLogger::LogMessage(const char *fmt, ...)
+void CLogger::LogMessage(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	char buffer[512];
+	wchar_t buffer[512];
 	
 	va_start(argp, fmt);
-	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
+		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
 	}
 	va_end(argp);
 
 	WriteMessage(buffer);
 }
 
-void CLogger::LogWarning(const char *fmt, ...)
+void CLogger::LogWarning(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	char buffer[512];
+	wchar_t buffer[512];
 	
 	va_start(argp, fmt);
-	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
+		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
 	}
 	va_end(argp);
 
 	WriteWarning(buffer);
 }
 
-void CLogger::LogError(const char *fmt, ...)
+void CLogger::LogError(const wchar_t* fmt, ...)
 {
 	va_list argp;
-	char buffer[512];
+	wchar_t buffer[512];
 	
 	va_start(argp, fmt);
-	if (sys_vsnprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		strcpy(buffer+sizeof(buffer)-4, "...");	// safe
+		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
 	}
 	va_end(argp);
 
 	WriteError(buffer);
 }
+
 
 TestLogger::TestLogger()
 {
@@ -272,7 +270,7 @@ TestLogger::~TestLogger()
 	g_Logger = m_OldLogger;
 }
 
-std::string TestLogger::GetOutput()
+std::wstring TestLogger::GetOutput()
 {
 	return m_Stream.str();
 }

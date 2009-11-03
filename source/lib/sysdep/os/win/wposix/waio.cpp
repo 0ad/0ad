@@ -171,7 +171,7 @@ static bool isAioPossible(int fd, bool is_com_port, int oflag)
 	if(is_com_port)
 		return false;
 
-	// caller is requesting we skip it (see file_open)
+	// caller is requesting we skip it (see open())
 	if(oflag & O_NO_AIO_NP)
 		return false;
 
@@ -234,7 +234,7 @@ int wopen(const wchar_t* fn, int oflag, ...)
 		va_end(args);
 	}
 
-	WinScopedPreserveLastError s;	// _open's CreateFile
+	WinScopedPreserveLastError s;	// _wopen's CreateFile
 	int fd = _wopen(fn, oflag, mode);
 
 	// none of the above apply; now re-open the file.

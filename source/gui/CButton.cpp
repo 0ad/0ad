@@ -34,7 +34,7 @@ CButton::CButton()
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_int,					"cell_id");
-	AddSetting(GUIST_CStr,					"font");
+	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_pressed");
@@ -63,11 +63,11 @@ void CButton::SetupText()
 
 	debug_assert(m_GeneratedTexts.size()>=1);
 
-	CStr font;
-	if (GUI<CStr>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
+	CStrW font;
+	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
 		// Use the default if none is specified
 		// TODO Gee: (2004-08-14) Default should not be hard-coded, but be in styles!
-		font = "default";
+		font = L"default";
 
 	CGUIString caption;
 	GUI<CGUIString>::GetSetting(this, "caption", caption);

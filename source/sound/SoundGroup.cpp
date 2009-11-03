@@ -33,7 +33,7 @@
 #include "ps/CLogger.h"
 #include "lib/rand.h"
 
-#define LOG_CATEGORY "audio"
+#define LOG_CATEGORY L"audio"
 
 
 void CSoundGroup::SetGain(float gain)
@@ -70,10 +70,10 @@ CSoundGroup::CSoundGroup()
 	SetDefaultValues();
 }
 
-CSoundGroup::CSoundGroup(const char *XMLfile)
+CSoundGroup::CSoundGroup(const VfsPath& pathnameXML)
 {
 	SetDefaultValues();
-	LoadSoundGroup(XMLfile);
+	LoadSoundGroup(pathnameXML);
 }
 
 CSoundGroup::~CSoundGroup()
@@ -122,7 +122,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		if(!is_playing(m_hReplacement))
 		{
 			// load up replacement file
-			m_hReplacement = snd_open(m_filepath + m_intensity_file);
+			m_hReplacement = snd_open(m_filepath/m_intensity_file);
 			if(m_hReplacement < 0)	// one cause: sound is disabled
 				return;
 			
@@ -139,7 +139,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		if(TestFlag(eRandOrder))
 			m_index = (size_t)rand(0, (size_t)filenames.size());
 		// (note: previously snd_group[m_index] was used in place of hs)
-		Handle hs = snd_open(m_filepath + filenames[m_index]);
+		Handle hs = snd_open(m_filepath/filenames[m_index]);
 		if(hs < 0)	// one cause: sound is disabled
 			return;
 
@@ -210,10 +210,10 @@ void CSoundGroup::Update(float TimeSinceLastFrame)
 	}
 }
 
-bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
+bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(XMLfile) != PSRETURN_OK)
+	if (XeroFile.Load(pathnameXML) != PSRETURN_OK)
 		return false;
 
 	// adjust the path name for resources if necessary
@@ -250,7 +250,7 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 
 	if (root.GetNodeName() != el_soundgroup)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"Invalid SoundGroup format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 	
@@ -341,13 +341,13 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 
 		if(child_name == el_sound)
 		{
-			CStr szTemp(child.GetText());
+			CStrW szTemp(child.GetText());
 			this->filenames.push_back(szTemp);	
 			
 		}
 		if(child_name == el_path)
 		{
-			m_filepath = child.GetText();
+			m_filepath = CStrW(child.GetText());
 		
 		}
 		if(child_name == el_threshold)
@@ -364,8 +364,7 @@ bool CSoundGroup::LoadSoundGroup(const char *XMLfile)
 
 		if(child_name == el_replacement)
 		{
-			m_intensity_file = child.GetText();
-		
+			m_intensity_file = CStrW(child.GetText());
 		}
 	}
 

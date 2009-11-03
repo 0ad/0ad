@@ -53,7 +53,7 @@ public:
 	// out: size_t index into m_Groups
 	// Loads the given XML file and returns an index for later use
 	///////////////////////////////////////////
-	size_t AddGroup(const char *XMLFile);  
+	size_t AddGroup(const VfsPath& XMLFile);  
 
 	///////////////////////////////////////////
 	// RemoveGroup()

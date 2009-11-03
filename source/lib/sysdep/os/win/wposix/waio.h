@@ -83,6 +83,9 @@ extern int close(int);
 extern int read (int fd, void* buf, size_t nbytes);	// thunk
 extern int write(int fd, void* buf, size_t nbytes);	// thunk
 extern off_t lseek(int fd, off_t ofs, int whence);  // thunk
+// portable code for truncating files can use truncate or ftruncate.
+// we'd like to use wchar_t pathnames, but neither truncate nor open have
+// portable wchar_t variants. callers will have to use multi-byte strings.
 LIB_API int truncate(const char* path, off_t length);
 
 

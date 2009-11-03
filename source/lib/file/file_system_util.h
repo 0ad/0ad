@@ -29,7 +29,7 @@ namespace fs_util {
 extern void SortFiles(FileInfos& files);
 extern void SortDirectories(DirectoryNames& directories);
 
-extern LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const char* filter, VfsPaths& pathnames);
+extern LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames);
 
 
 /**
@@ -60,7 +60,7 @@ enum DirFlags
  * @param flags see DirFlags
  * @param LibError
  **/
-extern LibError ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const char* pattern = 0, size_t flags = 0);
+extern LibError ForEachFile(const PIVFS& fs, const VfsPath& path, FileCallback cb, uintptr_t cbData, const wchar_t* pattern = 0, size_t flags = 0);
 
 
 /**

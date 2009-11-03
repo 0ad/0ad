@@ -33,6 +33,7 @@
 #define INCLUDED_ENTITYTEMPLATE
 
 #include "ps/CStr.h"
+#include "lib/file/vfs/vfs_path.h"
 
 #include "scripting/ScriptableComplex.h"
 #include "scripting/DOMEvent.h"
@@ -54,7 +55,7 @@ public:
 	CEntityTemplate(CPlayer* player);
 	~CEntityTemplate();
 	// Load from XML
-	bool LoadXml(const CStr& filename);
+	bool LoadXml(const VfsPath& filename);
 	// Load a tree of properties from an XML (XMB) node.
 	void XMLLoadProperty(const CXeromyces& XeroFile, const XMBElement& Source, const CStrW& BasePropertyName);
 

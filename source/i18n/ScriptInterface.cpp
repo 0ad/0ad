@@ -23,7 +23,7 @@
 #include "scripting/SpiderMonkey.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "i18n"
+#define LOG_CATEGORY L"i18n"
 
 using namespace I18n;
 
@@ -340,7 +340,7 @@ const StrImW ScriptObject::CallFunction(const char* name, const std::vector<Buff
 
 	if (! called)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Error executing JS function '%s'", name);
+		LOG(CLogger::Error, LOG_CATEGORY, L"I18n: Error executing JS function '%hs'", name);
 		return L"(JS error)";
 	}
 
@@ -349,13 +349,13 @@ const StrImW ScriptObject::CallFunction(const char* name, const std::vector<Buff
 	JSString* str = JS_ValueToString(Context, rval);
 	if (! str)
 	{
-		debug_warn("Conversion to string failed");
+		debug_warn(L"Conversion to string failed");
 		return L"(JS error)";
 	}
 	jschar* chars = JS_GetStringChars(str);
 	if (! chars)
 	{
-		debug_warn("GetStringChars failed");
+		debug_warn(L"GetStringChars failed");
 		return L"(JS error)";
 	}
 	return StrImW(chars, JS_GetStringLength(str));
@@ -369,7 +369,7 @@ ScriptValueString::ScriptValueString(ScriptObject& script, const wchar_t* s)
 	JSString* str = StringConvert::wchars_to_jsstring(Context, s);
 	if (!str)
 	{
-		debug_warn("Error creating JS string");
+		debug_warn(L"Error creating JS string");
 		Value = JSVAL_NULL;
 	}
 	else
@@ -441,7 +441,7 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 			jsdouble* val = JS_NewDouble(Context, ((BufferVariable_double*)vars[ID])->value);
 			if (!val)
 			{
-				debug_warn("Error creating JS double");
+				debug_warn(L"Error creating JS double");
 				return JSVAL_NULL;
 			}
 			GCVal = (void*)val;
@@ -453,7 +453,7 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 			JSString* val = StringConvert::wchars_to_jsstring(Context, ((BufferVariable_string*)vars[ID])->value.str());
 			if (!val)
 			{
-				debug_warn("Error creating JS string");
+				debug_warn(L"Error creating JS string");
 				return JSVAL_NULL;
 			}
 			GCVal = (void*)val;
@@ -465,7 +465,7 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 			JSString* val = StringConvert::wchars_to_jsstring(Context, ((BufferVariable_rawstring*)vars[ID])->value.str());
 			if (!val)
 			{
-				debug_warn("Error creating JS string");
+				debug_warn(L"Error creating JS string");
 				return JSVAL_NULL;
 			}
 			GCVal = (void*)val;
@@ -473,7 +473,7 @@ jsval ScriptValueVariable::GetJsval(const std::vector<BufferVariable*>& vars)
 			return STRING_TO_JSVAL(val);
 		}
 	default:
-		debug_warn("Invalid type");
+		debug_warn(L"Invalid type");
 		return JSVAL_NULL;
 	}
 }

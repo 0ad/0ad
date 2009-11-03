@@ -76,21 +76,31 @@ public:
 	std::vector<CStrW> GetSkySets() const;
 
 private:
+	/**
+	 * load texture file from skyset and store in m_SkyTexture
+	 * @param index 0..numTextures-1
+	 **/
+	LibError LoadSkyTexture(size_t index);
+
 	/// Name of current skyset (a directory within art/textures/skies)
 	CStrW m_SkySet;
 
-	// Sky textures
-	Handle m_SkyTexture[5];
-
 	// Indices into m_SkyTexture
-	static const int IMG_FRONT = 0;
-	static const int IMG_BACK = 1;
-	static const int IMG_RIGHT = 2;
-	static const int IMG_LEFT = 3;
-	static const int IMG_TOP = 4;
+	enum
+	{
+		FRONT,
+		BACK,
+		RIGHT,
+		LEFT,
+		TOP,
+		numTextures
+	};
+
+	// Sky textures
+	Handle m_SkyTexture[numTextures];
 
 	// Array of image names (defined in SkyManager.cpp), in the order of the IMG_ id's
-	static const char* IMAGE_NAMES[5];
+	static const wchar_t* s_imageNames[numTextures];
 
 	/// State of progressive loading (in # of loaded textures)
 	size_t cur_loading_tex;

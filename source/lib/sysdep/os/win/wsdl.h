@@ -38,7 +38,7 @@ typedef u32 Uint32;
 
 extern int SDL_Init(Uint32 flags);
 
-extern void SDL_Quit(void);
+extern void SDL_Quit();
 
 
 //
@@ -66,7 +66,7 @@ typedef struct
 }
 SDL_Surface;
 
-extern SDL_Surface* SDL_GetVideoSurface(void);
+extern SDL_Surface* SDL_GetVideoSurface();
 
 typedef struct
 {
@@ -74,11 +74,11 @@ typedef struct
 }
 SDL_VideoInfo;
 
-extern SDL_VideoInfo* SDL_GetVideoInfo(void);
+extern SDL_VideoInfo* SDL_GetVideoInfo();
 
 extern void* SDL_GL_GetProcAddress(const char*);
 
-extern void SDL_GL_SwapBuffers(void);
+extern void SDL_GL_SwapBuffers();
 
 
 //
@@ -88,7 +88,7 @@ extern void SDL_GL_SwapBuffers(void);
 typedef void SDL_sem;
 typedef void SDL_Thread;
 
-extern u32 SDL_GetTicks(void);
+extern u32 SDL_GetTicks();
 extern void SDL_Delay(u32 ms);
 
 extern SDL_sem* SDL_CreateSemaphore(int cnt);

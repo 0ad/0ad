@@ -30,9 +30,9 @@ public:
 	CMaterialManager();
 	~CMaterialManager();
 
-	CMaterial &LoadMaterial(const char *file);
+	CMaterial& LoadMaterial(const VfsPath& pathname);
 private:
-    std::map<std::string, CMaterial *> m_Materials;
+    std::map<VfsPath, CMaterial*> m_Materials;
 };
 
 #endif

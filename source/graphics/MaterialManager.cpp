@@ -173,7 +173,7 @@ CMaterialManager::CMaterialManager()
 
 CMaterialManager::~CMaterialManager()
 {
-    std::map<std::string, CMaterial *>::iterator iter;
+    std::map<VfsPath, CMaterial*>::iterator iter;
     for(iter = m_Materials.begin(); iter != m_Materials.end(); iter++)
     {
         if((*iter).second)
@@ -183,20 +183,20 @@ CMaterialManager::~CMaterialManager()
     m_Materials.clear();
 }
 
-CMaterial &CMaterialManager::LoadMaterial(const char *file)
+CMaterial& CMaterialManager::LoadMaterial(const VfsPath& pathname)
 {
-	if(!strlen(file))
+	if(pathname.empty())
 		return NullMaterial;
 
-	std::map<std::string, CMaterial *>::iterator iter;
-	if((iter = m_Materials.find(std::string(file))) != m_Materials.end())
+	std::map<VfsPath, CMaterial*>::iterator iter = m_Materials.find(pathname);
+	if(iter != m_Materials.end())
 	{
 		if((*iter).second)
 			return *(*iter).second;
 	}
 
 	CXeromyces xeroFile;
-	if(xeroFile.Load(file) != PSRETURN_OK)
+	if(xeroFile.Load(pathname) != PSRETURN_OK)
 		return NullMaterial;
 
 	#define EL(x) int el_##x = xeroFile.GetElementID(#x)
@@ -248,25 +248,25 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 			}
 			else if(token == el_colors)
 			{
-				temp = (CStr)attrs.GetNamedItem(at_diffuse);
+				temp = CStr(attrs.GetNamedItem(at_diffuse));
 				if(! temp.empty())
 					material->SetDiffuse(ParseColor(temp));
 
-				temp = (CStr)attrs.GetNamedItem(at_ambient);
+				temp = CStr(attrs.GetNamedItem(at_ambient));
 				if(! temp.empty())
 					material->SetAmbient(ParseColor(temp));
 
-				temp = (CStr)attrs.GetNamedItem(at_specular);
+				temp = CStr(attrs.GetNamedItem(at_specular));
 				if(! temp.empty())
 					material->SetSpecular(ParseColor(temp));
 
-				temp = (CStr)attrs.GetNamedItem(at_specularpower);
+				temp = CStr(attrs.GetNamedItem(at_specularpower));
 				if(! temp.empty())
 					material->SetSpecularPower(ClampFloat(temp.ToFloat(), 0.0f, 1.0f));
 			}
 			else if(token == el_alpha)
 			{
-				temp = (CStr)attrs.GetNamedItem(at_usage);
+				temp = CStr(attrs.GetNamedItem(at_usage));
 
 				// Determine whether the alpha is used for basic transparency or player color
 				if (temp == "playercolor")
@@ -278,7 +278,7 @@ CMaterial &CMaterialManager::LoadMaterial(const char *file)
 			}
 		}
 
-		m_Materials[file] = material;
+		m_Materials[pathname] = material;
 	}
 	catch(...)
 	{

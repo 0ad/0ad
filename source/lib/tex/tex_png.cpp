@@ -178,9 +178,9 @@ static bool png_is_hdr(const u8* file)
 }
 
 
-static bool png_is_ext(const std::string& extension)
+static bool png_is_ext(const std::wstring& extension)
 {
-	return !strcasecmp(extension.c_str(), ".png");
+	return !wcscasecmp(extension.c_str(), L".png");
 }
 
 

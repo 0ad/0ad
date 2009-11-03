@@ -141,7 +141,7 @@ PSRETURN CGame::ReallyStartGame()
 		debug_assert(ok);
 	}
 
-	debug_printf("GAME STARTED, ALL INIT COMPLETE\n");
+	debug_printf(L"GAME STARTED, ALL INIT COMPLETE\n");
 	m_GameStarted=true;
 
 	// The call tree we've built for pregame probably isn't useful in-game.
@@ -323,15 +323,15 @@ CPlayer *CGame::GetPlayer(size_t idx)
 {
 	if (idx > m_NumPlayers)
 	{
-//		debug_warn("Invalid player ID");
+//		debug_warn(L"Invalid player ID");
 //		LOG(CLogger::Error, "", "Invalid player ID %d (outside 0..%d)", idx, m_NumPlayers);
 		return m_Players[0];
 	}
 	// Be a bit more paranoid - maybe m_Players hasn't been set large enough
 	else if (idx >= m_Players.size())
 	{
-		debug_warn("Invalid player ID");
-		LOG(CLogger::Error, "", "Invalid player ID %lu (not <=%lu - internal error?)", (unsigned long)idx, (unsigned long)m_Players.size());
+		debug_warn(L"Invalid player ID");
+		LOG(CLogger::Error, L"", L"Invalid player ID %lu (not <=%lu - internal error?)", (unsigned long)idx, (unsigned long)m_Players.size());
 
 		if (m_Players.size() != 0)
 			return m_Players[0];

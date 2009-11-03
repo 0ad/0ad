@@ -47,13 +47,13 @@ static pthread_t pthread_from_HANDLE(HANDLE h)
 // misc
 //-----------------------------------------------------------------------------
 
-pthread_t pthread_self(void)
+pthread_t pthread_self()
 {
 	return pthread_from_HANDLE(GetCurrentThread());
 }
 
 
-int pthread_once(pthread_once_t* once, void (*init_routine)(void))
+int pthread_once(pthread_once_t* once, void (*init_routine)())
 {
 	if(cpu_CAS(once, 0, 1))
 		init_routine();
@@ -622,7 +622,7 @@ int pthread_cancel(pthread_t thread)
 {
 	HANDLE hThread = HANDLE_from_pthread(thread);
 	TerminateThread(hThread, 0);
-	debug_printf("WARNING: pthread_cancel is unsafe\n");
+	debug_printf(L"WARNING: pthread_cancel is unsafe\n");
 	return 0;
 }
 

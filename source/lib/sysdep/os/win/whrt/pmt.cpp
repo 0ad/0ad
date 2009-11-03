@@ -53,9 +53,9 @@ public:
 	{
 	}
 
-	virtual const char* Name() const
+	virtual const wchar_t* Name() const
 	{
-		return "PMT";
+		return L"PMT";
 	}
 
 	LibError Activate()

@@ -37,69 +37,69 @@
 
 //-----------------------------------------------------------------------------
 
-static LibError ReadVersionString(const OsPath& modulePathname_, char* out_ver, size_t out_ver_len)
+static LibError ReadVersionString(const fs::wpath& modulePathname_, wchar_t* out_ver, size_t out_ver_len)
 {
 	WinScopedPreserveLastError s;	// GetFileVersion*, Ver*
 	WinScopedDisableWow64Redirection noRedirect;
 
-	const std::string modulePathname = modulePathname_.external_file_string();
+	const std::wstring modulePathname = modulePathname_.external_file_string();
 
 	// determine size of and allocate memory for version information.
 	DWORD unused;
-	const DWORD ver_size = GetFileVersionInfoSize(modulePathname.c_str(), &unused);
+	const DWORD ver_size = GetFileVersionInfoSizeW(modulePathname.c_str(), &unused);	// [bytes]
 	if(!ver_size)
 	{
 		// check if the failure is due to not finding modulePathname
 		// (necessary since GetFileVersionInfoSize doesn't SetLastError)
-		HMODULE hModule = LoadLibraryEx(modulePathname.c_str(), 0, LOAD_LIBRARY_AS_DATAFILE);
+		HMODULE hModule = LoadLibraryExW(modulePathname.c_str(), 0, LOAD_LIBRARY_AS_DATAFILE);
 		FreeLibrary(hModule);
 		const LibError err = hModule? ERR::_1 : ERR::_2;
 		WARN_RETURN(err);
 	}
 
 	shared_ptr<u8> mem = Allocate(ver_size);
-	if(!GetFileVersionInfo(modulePathname.c_str(), 0, ver_size, mem.get()))
+	if(!GetFileVersionInfoW(modulePathname.c_str(), 0, ver_size, mem.get()))
 		WARN_RETURN(ERR::_3);
 
 	u16* lang;	// -> 16 bit language ID, 16 bit codepage
 	UINT lang_len;
-	const BOOL ok = VerQueryValue(mem.get(), "\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
+	const BOOL ok = VerQueryValueW(mem.get(), L"\\VarFileInfo\\Translation", (void**)&lang, &lang_len);
 	if(!ok || !lang || lang_len != 4)
 		WARN_RETURN(ERR::_4);
 
-	char subblock[64];
-	sprintf(subblock, "\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
-	const char* in_ver;
+	wchar_t subblock[64];
+	swprintf_s(subblock, ARRAY_SIZE(subblock), L"\\StringFileInfo\\%04X%04X\\FileVersion", lang[0], lang[1]);
+	const wchar_t* in_ver;
 	UINT in_ver_len;
-	if(!VerQueryValue(mem.get(), subblock, (void**)&in_ver, &in_ver_len))
+	if(!VerQueryValueW(mem.get(), subblock, (void**)&in_ver, &in_ver_len))
 		WARN_RETURN(ERR::_5);
 
-	strcpy_s(out_ver, out_ver_len, in_ver);
+	wcscpy_s(out_ver, out_ver_len, in_ver);
 	return INFO::OK;
 }
 
 
-void wdll_ver_Append(const OsPath& pathname, std::string& list)
+void wdll_ver_Append(const fs::wpath& pathname, std::wstring& list)
 {
 	// pathname may not have an extension (e.g. driver names from the
 	// registry). note that always appending ".dll" would be incorrect
 	// since some have ".sys" extension.
-	OsPath modulePathname(pathname);
+	fs::wpath modulePathname(pathname);
 	if(fs::extension(modulePathname).empty())
-		modulePathname = fs::change_extension(modulePathname, ".dll");
-	const std::string moduleName(modulePathname.leaf());
+		modulePathname = fs::change_extension(modulePathname, L".dll");
+	const std::wstring moduleName(modulePathname.leaf());
 
 	// read file version.
 	// (note: we can ignore the return value since the default
 	// text has already been set)
-	char versionString[500] = "unknown";	// enclosed in () below
+	wchar_t versionString[500] = L"unknown";	// enclosed in () below
 	(void)ReadVersionString(modulePathname, versionString, ARRAY_SIZE(versionString));
 
 	if(!list.empty())
-		list += ", ";
+		list += L", ";
 	
 	list += moduleName;
-	list += " (";
+	list += L" (";
 	list += versionString;
-	list += ")";
+	list += L")";
 }

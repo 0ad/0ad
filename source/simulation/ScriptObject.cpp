@@ -135,7 +135,7 @@ void CScriptObject::Compile( const CStrW& FileNameTag, const CStrW& FunctionBody
 
 	const char* argnames[] = { "evt" };
 	utf16string str16=FunctionBody.utf16();
-	Function = JS_CompileUCFunction( g_ScriptingHost.GetContext(), NULL, NULL, 1, argnames, str16.c_str(), str16.size(), (CStr)FileNameTag, 0 );
+	Function = JS_CompileUCFunction( g_ScriptingHost.GetContext(), NULL, NULL, 1, argnames, str16.c_str(), str16.size(), CStr(FileNameTag), 0 );
 	
 	Root();
 }

@@ -404,14 +404,14 @@ jsval_t CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 				spawn_clearance = be->m_bound_box->m_radius;
 				break;
 				default:
-				debug_warn("No bounding information for spawned object!" );
+				debug_warn(L"No bounding information for spawned object!" );
 			}
 		}
 		else
 			spawn_clearance = ToPrimitive<float>( argv[0] );
 	}
 	else
-		debug_warn("No arguments to Entity::GetSpawnPoint()" );
+		debug_warn(L"No arguments to Entity::GetSpawnPoint()" );
 
 	// TODO: Make netsafe.
 	CBoundingCircle spawn( 0.0f, 0.0f, spawn_clearance, 0.0f );
@@ -703,7 +703,7 @@ void CEntity::CheckListeners( int type, CEntity *target)
 					 m_listeners[i].m_sender->DispatchNotification( order, result );
 					 break;
 				 default:
-					debug_warn("Invalid notification: CheckListeners()");
+					debug_warn(L"Invalid notification: CheckListeners()");
 					continue;
 			 }
 		}

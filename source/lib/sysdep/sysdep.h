@@ -24,7 +24,7 @@
 
 #include "lib/debug.h"	// ErrorReaction
 
-#include <cstdarg>	// needed for sys_vsnprintf
+#include <cstdarg>	// needed for sys_vswprintf
 
 
 //
@@ -60,13 +60,13 @@ extern ErrorReaction sys_display_error(const wchar_t* text, size_t flags);
 //
 
 /**
- * sys_vsnprintf: doesn't quite follow the standard for vsnprintf, but works
+ * sys_vswprintf: doesn't quite follow the standard for vswprintf, but works
  * better across compilers:
  * - handles positional parameters and %lld
  * - always null-terminates the buffer
  * - returns -1 on overflow (if the output string (including null) does not fit in the buffer)
  **/
-extern int sys_vsnprintf(char* buffer, size_t count, const char* format, va_list argptr);
+extern int sys_vswprintf(wchar_t* buffer, size_t count, const wchar_t* format, va_list argptr);
 
 /**
  * describe the current OS error state.
@@ -79,35 +79,34 @@ extern int sys_vsnprintf(char* buffer, size_t count, const char* format, va_list
  * rationale: it is expected to be rare that OS return/error codes are
  * actually seen by user code, but we leave the possibility open.
  **/
-extern LibError sys_error_description_r(int err, char* buf, size_t max_chars);
+extern LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars);
 
 /**
  * determine filename of the module to whom an address belongs.
  *
- * @param path receives full path to module or L"" on error.
- * @param max_chars
+ * @param path full path to module (unchanged unless INFO::OK is returned).
+ * @return LibError
  *
  * note: this is useful for handling exceptions in other modules.
  **/
-void sys_get_module_filename(void* addr, wchar_t* path, size_t max_chars);
+LibError sys_get_module_filename(void* addr, fs::wpath& pathname);
 
 /**
  * get path to the current executable.
  *
- * @param n_path receives the full native path.
- * @param max_chars
+ * @param path full path to executable (unchanged unless INFO::OK is returned).
+ * @return LibError
  *
  * this is useful for determining installation directory, e.g. for VFS.
  **/
-extern LibError sys_get_executable_name(char* n_path, size_t max_chars);
+extern LibError sys_get_executable_name(fs::wpath& pathname);
 
 /**
  * have the user choose a directory via OS dialog.
  *
- * @param n_path receives the full native path.
- * @param max_chars must be at least PATH_MAX due to a Win32 limitation.
+ * @param path (unchanged unless INFO::OK is returned).
  **/
-extern LibError sys_pick_directory(char* n_path, size_t max_chars);
+extern LibError sys_pick_directory(fs::wpath& path);
 
 /**
  * return the largest sector size [bytes] of any storage medium

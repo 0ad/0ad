@@ -59,7 +59,7 @@ that of Atlas depending on commandline parameters.
 #include "sound/SoundGroupMgr.h"
 #include "gui/GUI.h"
 
-#define LOG_CATEGORY "main"
+#define LOG_CATEGORY L"main"
 
 extern bool g_TerrainModified;
 extern bool g_GameRestarted;
@@ -84,11 +84,11 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 			return IN_HANDLED;
 
 		case HOTKEY_SCREENSHOT:
-			WriteScreenshot(".png");
+			WriteScreenshot(L".png");
 			return IN_HANDLED;
 
 		case HOTKEY_BIGSCREENSHOT:
-			WriteBigScreenshot(".bmp", 10);
+			WriteBigScreenshot(L".bmp", 10);
 			return IN_HANDLED;
 
 		default:
@@ -295,7 +295,7 @@ static void Frame()
 		// coincide in position and orientation.
 		float down[3] = { -up[0], -up[1], -up[2] };
 		if(snd_update(pos, dir, down) < 0)
-			debug_printf("snd_update failed\n");
+			debug_printf(L"snd_update failed\n");
 		g_soundGroupMgr->UpdateSoundGroups(TimeSinceLastFrame);
 		PROFILE_END( "sound update" );
 	}
@@ -306,7 +306,7 @@ static void Frame()
 		int ms_elapsed = (int)(TimeSinceLastFrame*1000);
 		g_Scheduler.Update(ms_elapsed);
 		if(snd_update(0, 0, 0) < 0)
-			debug_printf("snd_update (pos=0 version) failed\n");
+			debug_printf(L"snd_update (pos=0 version) failed\n");
 	}
 	PROFILE_END( "game logic" );
 

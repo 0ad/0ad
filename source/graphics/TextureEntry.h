@@ -38,13 +38,12 @@ public:
 
 private:
 	// Tag = file name stripped of path and extension (grass_dark_1)
-	CStr m_Tag;
+	CStrW m_Tag;
 	
 	// The property sheet used by this texture
 	CTerrainPropertiesPtr m_pProperties;
 	
-	// Path to the texture file
-	CStr m_TexturePath;
+	VfsPath m_TexturePath;
 	
 	void* m_Bitmap; // UI bitmap object (user data for ScEd)
 	Handle m_Handle; // handle to GL texture data
@@ -69,7 +68,7 @@ private:
 public:
 	// Most of the texture's data is delay-loaded, so after the constructor has
 	// been called, the texture entry is ready to be used.
-	CTextureEntry(CTerrainPropertiesPtr props, const CStr& path);
+	CTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path);
 	~CTextureEntry();
 
 	CStr GetTag() const
@@ -78,7 +77,7 @@ public:
 	CTerrainPropertiesPtr GetProperties() const
 	{ return m_pProperties; }
 	
-	CStr GetTexturePath() const
+	VfsPath GetTexturePath() const
 	{ return m_TexturePath; }
 	
 	void* GetBitmap() const { return m_Bitmap; }

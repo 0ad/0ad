@@ -277,7 +277,7 @@ extern LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
  * when no longer needed. invalid unless function succeeds.
  * @return LibError
  **/
-extern LibError tex_encode(Tex* t, const std::string& extension, DynArray* da);
+extern LibError tex_encode(Tex* t, const std::wstring& extension, DynArray* da);
 
 /**
  * store the given image data into a Tex object; this will be as if
@@ -419,10 +419,10 @@ extern void tex_util_foreach_mipmap(size_t w, size_t h, size_t bpp, const u8* da
  * an alternative might be a flag to suppress warning about invalid files,
  * but this is open to misuse.
  *
- * @param filename only the extension (that after '.') is used. case-insensitive.
+ * @param pathname only the extension (starting with '.') is used. case-insensitive.
  * @return bool
  **/
-extern bool tex_is_known_extension(const char* filename);
+extern bool tex_is_known_extension(const VfsPath& pathname);
 
 /**
  * return the minimum header size (i.e. offset to pixel data) of the

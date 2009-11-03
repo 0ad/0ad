@@ -42,7 +42,7 @@
 
 // DECLARATIONS
 
-#define LOG_CAT_NET "net"
+#define LOG_CATEGORY L"net"
 
 CNetClient *g_NetClient=NULL;
 extern int fps;
@@ -258,7 +258,7 @@ bool CNetClient::OnError( void* pContext, CFsmEvent* pEvent )
 	CErrorMessage* pMessage = ( CErrorMessage* )pEvent->GetParamRef();
 	if ( pMessage )
 	{
-		LOG( CLogger::Error, LOG_CAT_NET, "CNetClient::OnError(): Error description %s", pMessage->m_Error );
+		LOG( CLogger::Error, LOG_CATEGORY, L"CNetClient::OnError(): Error description %s", pMessage->m_Error );
 
 		if ( pClient->m_OnConnectComplete.Defined() )
 		{
@@ -373,11 +373,11 @@ bool CNetClient::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
 		CAuthenticateResultMessage* pMessage =( CAuthenticateResultMessage* )pEvent->GetParamRef();
 		if ( !pMessage ) return true;
 
-		LOG(CLogger::Error, LOG_CAT_NET, "CNetClient::OnAuthenticate(): Authentication result: %ls", pMessage->m_Message.c_str() );
+		LOG(CLogger::Error, LOG_CATEGORY, L"CNetClient::OnAuthenticate(): Authentication result: %ls", pMessage->m_Message.c_str() );
 
 		pSession->SetID( pMessage->m_SessionID );
 
-		LOG(CLogger::Error, LOG_CAT_NET, "CNetClient::OnAuthenticate(): My session ID is %d", pMessage->m_SessionID);
+		LOG(CLogger::Error, LOG_CATEGORY, L"CNetClient::OnAuthenticate(): My session ID is %d", pMessage->m_SessionID);
 	}
 
 	return true;
@@ -461,7 +461,7 @@ bool CNetClient::OnPreGame( void* pContext, CFsmEvent* pEvent )
 					break;
 
 				default:
-					LOG( CLogger::Warning, LOG_CAT_NET, "Invalid slot assignment %s", pMessage->ToString().c_str() );
+					LOG( CLogger::Warning, LOG_CATEGORY, L"Invalid slot assignment %s", pMessage->ToString().c_str() );
 					break;
 			}
 		}
@@ -609,7 +609,7 @@ void CNetClient::OnPlayerLeave( uint ID )
 	PlayerMap::iterator it = m_Players.find( ID );
 	if ( it == m_Players.end() )
 	{
-		LOG( CLogger::Warning, LOG_CAT_NET, "CNetClient::OnPlayerLeav(): No such player %d.", ID );
+		LOG( CLogger::Warning, LOG_CATEGORY, L"CNetClient::OnPlayerLeav(): No such player %d.", ID );
 		return;
 	}
 
@@ -666,7 +666,7 @@ void CNetClient::NewTurn()
 	ClearBatch(2);
 	m_TurnPending = false;
 
-	//debug_printf("In NewTurn - sending ack\n");
+	//debug_printf(L"In NewTurn - sending ack\n");
 	CEndCommandBatchMessage* pMsg = new CEndCommandBatchMessage;
 	pMsg->m_TurnLength=1000/g_frequencyFilter->StableFrequency();	// JW: it'd probably be nicer to get the FPS as a parameter
 

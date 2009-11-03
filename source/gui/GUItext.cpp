@@ -26,7 +26,7 @@ GUI text
 #include "ps/Parser.h"
 #include <algorithm>
 
-#define LOG_CATEGORY "gui"
+#define LOG_CATEGORY L"gui"
 
 #include "ps/Font.h"
 
@@ -110,7 +110,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				}
 				else if (pObject)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "Trying to use an [imgleft]-tag with an undefined icon (\"%s\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+					LOG(CLogger::Error, LOG_CATEGORY, L"Trying to use an [imgleft]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
 				}
 			}
 			else
@@ -123,7 +123,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				}
 				else if (pObject)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "Trying to use an [imgright]-tag with an undefined icon (\"%s\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+					LOG(CLogger::Error, LOG_CATEGORY, L"Trying to use an [imgright]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
 				}
 			}
 			else
@@ -161,7 +161,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 						CSize displacement;
 						// Parse the value
 						if (!GUI<CSize>::ParseString(itTextChunk->m_Tags[0].m_TagAdditionalValue, displacement))
-							LOG(CLogger::Error, LOG_CATEGORY, "Error parsing 'displace' value for tag [ICON]");
+							LOG(CLogger::Error, LOG_CATEGORY, L"Error parsing 'displace' value for tag [ICON]");
 						else
 							SpriteCall.m_Area += displacement;
 					}
@@ -180,7 +180,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 				}
 				else if (pObject)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "Trying to use an [icon]-tag with an undefined icon (\"%s\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
+					LOG(CLogger::Error, LOG_CATEGORY, L"Trying to use an [icon]-tag with an undefined icon (\"%hs\").", itTextChunk->m_Tags[0].m_TagValue.c_str());
 				}
 			}
 		}
@@ -209,14 +209,14 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					if (!GUI<CColor>::ParseString(it2->m_TagValue, TextCall.m_Color))
 					{
 						if (pObject)
-							LOG(CLogger::Error, LOG_CATEGORY, "Error parsing the value of a [color]-tag in GUI text when reading object \"%s\".", pObject->GetPresentableName().c_str());
+							LOG(CLogger::Error, LOG_CATEGORY, L"Error parsing the value of a [color]-tag in GUI text when reading object \"%hs\".", pObject->GetPresentableName().c_str());
 					}
 				}
 				else
 				if (it2->m_TagType == CGUIString::TextChunk::Tag::TAG_FONT)
 				{
 					// TODO Gee: (2004-08-15) Check if Font exists?
-					TextCall.m_Font = it2->m_TagValue;
+					TextCall.m_Font = CStrW(it2->m_TagValue);
 				}
 			}
 
@@ -411,7 +411,7 @@ void CGUIString::SetValue(const CStrW& str)
 								}
 								else
 								{
-									LOG(CLogger::Warning, LOG_CATEGORY, "Trying to declare an additional attribute ('%s') in a [%s]-tag, which the tag isn't accepting", str.c_str(), Str_TagType.c_str());
+									LOG(CLogger::Warning, LOG_CATEGORY, L"Trying to declare an additional attribute ('%hs') in a [%hs]-tag, which the tag isn't accepting", str.c_str(), Str_TagType.c_str());
 								}
 							}
 
@@ -590,15 +590,15 @@ void CGUIString::SetValue(const CStrW& str)
 #if 0
 	for (int i=0; i<(int)m_Words.size(); ++i)
 	{
-		LOG(CLogger::Normal,  LOG_CATEGORY, "m_Words[%d] = %d", i, m_Words[i]);
+		LOG(CLogger::Normal,  LOG_CATEGORY, L"m_Words[%d] = %d", i, m_Words[i]);
 	}
 
 	for (int i=0; i<(int)m_TextChunks.size(); ++i)
 	{
-		LOG(CLogger::Normal,  LOG_CATEGORY, "m_TextChunk[%d] = [%d,%d]", i, m_TextChunks[i].m_From, m_TextChunks[i].m_To);
+		LOG(CLogger::Normal,  LOG_CATEGORY, L"m_TextChunk[%d] = [%d,%d]", i, m_TextChunks[i].m_From, m_TextChunks[i].m_To);
 		for (int j=0; j<(int)m_TextChunks[i].m_Tags.size(); ++j)
 		{
-			LOG(CLogger::Normal,  LOG_CATEGORY, "--Tag: %d \"%s\"", (int)m_TextChunks[i].m_Tags[j].m_TagType, m_TextChunks[i].m_Tags[j].m_TagValue.c_str());
+			LOG(CLogger::Normal,  LOG_CATEGORY, L"--Tag: %d \"%hs\"", (int)m_TextChunks[i].m_Tags[j].m_TagType, m_TextChunks[i].m_Tags[j].m_TagValue.c_str());
 		}
 	}
 #endif

@@ -29,12 +29,12 @@
 
 #include <libxml/parser.h>
 
-#define LOG_CATEGORY "xml"
+#define LOG_CATEGORY L"xml"
 
 static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 {
-	LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Parse %s: %s:%d: %s",
-		error->level == XML_ERR_WARNING ? "warning" : "error",
+	LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Parse %hs: %ls:%d: %hs",
+		error->level == XML_ERR_WARNING ? L"warning" : L"error",
 		error->file, error->line, error->message);
 	// TODO: The (non-fatal) warnings and errors don't get stored in the XMB,
 	// so the caching is less transparent than it should be
@@ -74,21 +74,21 @@ void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const 
 	//   a subdirectory (which would make manually deleting all harder).
 
 	// get real path of XML file (e.g. mods/official/entities/...)
-	fs::path XMBRealPath_;
+	fs::wpath XMBRealPath_;
 	vfs->GetRealPath(xmlFilename, XMBRealPath_);
-	char XMBRealPath[PATH_MAX];
+	wchar_t XMBRealPath[PATH_MAX];
 	path_copy(XMBRealPath, XMBRealPath_.string().c_str());
 
 	// extract mod name from that
-	const char* modPath = strstr(XMBRealPath, "mods/");
+	const wchar_t* modPath = wcsstr(XMBRealPath, L"mods/");
 	debug_assert(modPath != 0);
-	char modName[PATH_MAX];
+	wchar_t modName[PATH_MAX];
 	// .. NOTE: can't use %s, of course (keeps going beyond '/')
-	int matches = sscanf(modPath, "mods/%[^/]", modName);
+	int matches = swscanf(modPath, L"mods/%[^/]", modName);
 	debug_assert(matches == 1);
 
 	// build full name: cache, then mod name, XMB subdir, original XMB path
-	xmbActualPath = VfsPath("cache/mods") / modName / "xmb" / xmbFilename;
+	xmbActualPath = VfsPath(L"cache/mods") / modName / L"xmb" / xmbFilename;
 }
 
 PSRETURN CXeromyces::Load(const VfsPath& filename)
@@ -98,7 +98,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	// Make sure the .xml actually exists
 	if (! FileExists(filename))
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to find XML file %s", filename.string().c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to find XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -106,7 +106,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	FileInfo fileInfo;
 	if (g_VFS->GetFileInfo(filename, &fileInfo) < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to stat XML file %s", filename.string().c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to stat XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -131,8 +131,8 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	// with mtime/size as 8-digit hex, where mtime's lowest bit is
 	// zeroed because zip files only have 2 second resolution.
 	const int suffixLength = 22;
-	char suffix[suffixLength+1];
-	int printed = sprintf(suffix, "_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size());
+	wchar_t suffix[suffixLength+1];
+	int printed = swprintf_s(suffix, L"_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size());
 	debug_assert(printed == suffixLength);
 	VfsPath xmbFilename = change_extension(filename, suffix);
 
@@ -154,15 +154,16 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	CVFSFile input;
 	if (input.Load(filename))
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to open XML file %s", filename.string().c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to open XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
+	CStr8 filename8(filename.string());
 	xmlDocPtr doc = xmlReadMemory((const char*)input.GetBuffer(), (int)input.GetBufferSize(),
-		filename.string().c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
+		filename8.c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CXeromyces: Failed to parse XML file %s", filename.string().c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to parse XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLParseError;
 	}
 

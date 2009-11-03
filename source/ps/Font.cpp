@@ -23,27 +23,27 @@
 #include "lib/res/graphics/unifont.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 #include <map>
 #include <string>
 
-const char* DefaultFont = "verdana16";
+const wchar_t* DefaultFont = L"verdana16";
 
-CFont::CFont(const char* name)
+CFont::CFont(const wchar_t* name)
 {
 	// TODO perhaps: cache the resultant filename (or Handle) for each
 	// font name; but it's nice to allow run-time alteration of the fonts
 
 	std::string fontFilename;
 
-	CStr fontName = "font."; fontName += name;
+	CStrW fontName = L"font."; fontName += name;
 
 	// See if the config value can be loaded
 	CConfigValue* fontFilenameVar = g_ConfigDB.GetValue(CFG_USER, fontName);
 	if (fontFilenameVar && fontFilenameVar->GetString(fontFilename))
 	{
-		h = unifont_load(fontFilename.c_str());
+		h = unifont_load(CStrW(fontFilename));
 	}
 	else
 	{
@@ -55,7 +55,7 @@ CFont::CFont(const char* name)
 			return;
 
 		// Not found as a font -- give up and use the default.
-		LOG_ONCE(CLogger::Error, LOG_CATEGORY, "Failed to find font '%s'", name);
+		LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Failed to find font '%ls'", name);
 		h = unifont_load(DefaultFont);
 		// Assume this worked
 	}

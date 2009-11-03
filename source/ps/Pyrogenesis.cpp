@@ -65,9 +65,10 @@ void psTranslateFree(const wchar_t* text)
 
 // convert contents of file <in_filename> from char to wchar_t and
 // append to <out> file.
-static void AppendAsciiFile(FILE* out, const char* in_filename)
+static void AppendAsciiFile(FILE* out, const fs::wpath& pathname)
 {
-	FILE* in = fopen(in_filename, "rb");
+	const fs::path pathname_c = path_from_wpath(pathname);
+	FILE* in = fopen(pathname_c.external_file_string().c_str(), "rb");
 	if(!in)
 	{
 		fwprintf(out, L"(unavailable)");
@@ -95,25 +96,25 @@ void psBundleLogs(FILE* f)
 	fwprintf(f, L"SVN Revision: %ls\n\n", svn_revision);
 
 	fwprintf(f, L"System info:\n\n");
-	fs::path path1(fs::path(psLogDir())/"system_info.txt");
-	AppendAsciiFile(f, path1.external_file_string().c_str());
+	fs::wpath path1(fs::wpath(psLogDir())/L"system_info.txt");
+	AppendAsciiFile(f, path1);
 	fwprintf(f, L"\n\n====================================\n\n");
 
 	fwprintf(f, L"Main log:\n\n");
-	fs::path path2(fs::path(psLogDir())/"mainlog.html");
-	AppendAsciiFile(f, path2.external_file_string().c_str());
+	fs::wpath path2(fs::wpath(psLogDir())/L"mainlog.html");
+	AppendAsciiFile(f, path2);
 	fwprintf(f, L"\n\n====================================\n\n");
 }
 
 
-static char logDir[PATH_MAX];
+static fs::wpath logDir;
 
-void psSetLogDir(const char* path)
+void psSetLogDir(const fs::wpath& newLogDir)
 {
-	path_copy(logDir, path);
+	logDir = newLogDir;
 }
 
-const char* psLogDir()
+const fs::wpath& psLogDir()
 {
 	return logDir;
 }

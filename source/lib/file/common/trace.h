@@ -40,16 +40,15 @@ public:
 		Store = 'S'
 	};
 
-	TraceEntry(EAction action, const char* pathname, size_t size);
-	TraceEntry(const char* textualRepresentation);
-	~TraceEntry();
+	TraceEntry(EAction action, const fs::wpath& pathname, size_t size);
+	TraceEntry(const std::wstring& text);
 
 	EAction Action() const
 	{
 		return m_action;
 	}
 
-	const char* Pathname() const
+	const fs::wpath& Pathname() const
 	{
 		return m_pathname;
 	}
@@ -59,7 +58,7 @@ public:
 		return m_size;
 	}
 
-	void EncodeAsText(char* text, size_t maxTextChars) const;
+	std::wstring EncodeAsText() const;
 
 private:
 	// note: keep an eye on the class size because all instances are kept
@@ -72,7 +71,7 @@ private:
 
 	EAction m_action;
 
-	const char* m_pathname;
+	fs::wpath m_pathname;
 
 	// size of file.
 	// rationale: other applications using this trace format might not
@@ -87,28 +86,28 @@ struct ITrace
 {
 	virtual ~ITrace();
 
-	virtual void NotifyLoad(const char* pathname, size_t size) = 0;
-	virtual void NotifyStore(const char* pathname, size_t size) = 0;
+	virtual void NotifyLoad(const fs::wpath& pathname, size_t size) = 0;
+	virtual void NotifyStore(const fs::wpath& pathname, size_t size) = 0;
 
 	/**
 	 * store all entries into a file.
 	 *
-	 * @param osPathname native (absolute) pathname
+	 * @param pathname (native, absolute)
 	 *
 	 * note: the file format is text-based to allow human inspection and
 	 * because storing filename strings in a binary format would be a
 	 * bit awkward.
 	 **/
-	virtual LibError Store(const char* osPathname) const = 0;
+	virtual LibError Store(const fs::wpath& pathname) const = 0;
 
 	/**
 	 * load entries from file.
 	 *
-	 * @param osPathname native (absolute) pathname
+	 * @param pathname (native, absolute)
 	 *
 	 * replaces any existing entries.
 	 **/
-	virtual LibError Load(const char* osPathname) = 0;
+	virtual LibError Load(const fs::wpath& osPathname) = 0;
 
 	virtual const TraceEntry* Entries() const = 0;
 	virtual size_t NumEntries() const = 0;

@@ -35,15 +35,16 @@ static void def_override_gl_upload_caps()
 }
 
 
-static const char* def_get_log_dir()
+static const fs::wpath& def_get_log_dir()
 {
-	static char N_log_dir[PATH_MAX];
-	ONCE(\
-		(void)sys_get_executable_name(N_log_dir, ARRAY_SIZE(N_log_dir));\
-		/* strip app name (we only want its path) */\
-		path_strip_fn(N_log_dir);\
-	);
-	return N_log_dir;
+	static fs::wpath logDir;
+	if(logDir.empty())
+	{
+		fs::wpath exePathname;
+		(void)sys_get_executable_name(exePathname);
+		logDir = exePathname.branch_path();
+	}
+	return logDir;
 }
 
 
@@ -133,13 +134,13 @@ bool app_hook_was_redefined(size_t offset_in_struct)
 // (boilerplate code; hides details of how to call the app hook)
 //-----------------------------------------------------------------------------
 
-void ah_override_gl_upload_caps(void)
+void ah_override_gl_upload_caps()
 {
 	if(ah.override_gl_upload_caps)
 		ah.override_gl_upload_caps();
 }
 
-const char* ah_get_log_dir(void)
+const fs::wpath& ah_get_log_dir()
 {
 	return ah.get_log_dir();
 }

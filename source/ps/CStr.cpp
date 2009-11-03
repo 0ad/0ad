@@ -499,7 +499,7 @@ CStr CStr::Trim(PS_TRIM_MODE Mode) const
 		} break;
 
 		default:
-			debug_warn("CStr::Trim: invalid Mode");
+			debug_warn(L"CStr::Trim: invalid Mode");
 	}
 
 
@@ -531,7 +531,7 @@ CStr CStr::Pad(PS_TRIM_MODE Mode, size_t Length) const
 		break;
 
 	default:
-		debug_warn("CStr::Trim: invalid Mode");
+		debug_warn(L"CStr::Trim: invalid Mode");
 	}
 
 	return std::tstring(Left, _T(' ')) + *this + std::tstring(Right, _T(' '));
@@ -575,7 +575,7 @@ CStr::operator const tchar*() const
 
 size_t CStr::GetHashCode() const
 {
-	return (size_t)fnv_hash(data(), length());
+	return (size_t)fnv_hash(data(), length()*sizeof(value_type));
 		// janwas 2005-03-18: now use 32-bit version; 64 is slower and
 		// the result was truncated down to 32 anyway.
 }

@@ -33,14 +33,14 @@
 #include "tex_codec.h"
 
 
-ERROR_ASSOCIATE(ERR::TEX_FMT_INVALID, "Invalid/unsupported texture format", -1);
-ERROR_ASSOCIATE(ERR::TEX_INVALID_COLOR_TYPE, "Invalid color type", -1);
-ERROR_ASSOCIATE(ERR::TEX_NOT_8BIT_PRECISION, "Not 8-bit channel precision", -1);
-ERROR_ASSOCIATE(ERR::TEX_INVALID_LAYOUT, "Unsupported texel layout, e.g. right-to-left", -1);
-ERROR_ASSOCIATE(ERR::TEX_COMPRESSED, "Unsupported texture compression", -1);
-ERROR_ASSOCIATE(WARN::TEX_INVALID_DATA, "Warning: invalid texel data encountered", -1);
-ERROR_ASSOCIATE(ERR::TEX_INVALID_SIZE, "Texture size is incorrect", -1);
-ERROR_ASSOCIATE(INFO::TEX_CODEC_CANNOT_HANDLE, "Texture codec cannot handle the given format", -1);
+ERROR_ASSOCIATE(ERR::TEX_FMT_INVALID, L"Invalid/unsupported texture format", -1);
+ERROR_ASSOCIATE(ERR::TEX_INVALID_COLOR_TYPE, L"Invalid color type", -1);
+ERROR_ASSOCIATE(ERR::TEX_NOT_8BIT_PRECISION, L"Not 8-bit channel precision", -1);
+ERROR_ASSOCIATE(ERR::TEX_INVALID_LAYOUT, L"Unsupported texel layout, e.g. right-to-left", -1);
+ERROR_ASSOCIATE(ERR::TEX_COMPRESSED, L"Unsupported texture compression", -1);
+ERROR_ASSOCIATE(WARN::TEX_INVALID_DATA, L"Warning: invalid texel data encountered", -1);
+ERROR_ASSOCIATE(ERR::TEX_INVALID_SIZE, L"Texture size is incorrect", -1);
+ERROR_ASSOCIATE(INFO::TEX_CODEC_CANNOT_HANDLE, L"Texture codec cannot handle the given format", -1);
 
 
 //-----------------------------------------------------------------------------
@@ -484,11 +484,11 @@ bool tex_orientations_match(size_t src_flags, size_t dst_orientation)
 // enumerating only images in a file picker.
 // an alternative might be a flag to suppress warning about invalid files,
 // but this is open to misuse.
-bool tex_is_known_extension(const char* filename)
+bool tex_is_known_extension(const VfsPath& pathname)
 {
 	const TexCodecVTbl* dummy;
 	// found codec for it => known extension
-	const std::string extension = fs::extension(filename);
+	const std::wstring extension = fs::extension(pathname);
 	if(tex_codec_for_filename(extension, &dummy) == INFO::OK)
 		return true;
 
@@ -588,7 +588,7 @@ size_t tex_hdr_size(const VfsPath& filename)
 {
 	const TexCodecVTbl* c;
 	
-	const std::string extension = fs::extension(filename);
+	const std::wstring extension = fs::extension(filename);
 	CHECK_ERR(tex_codec_for_filename(extension, &c));
 	return c->hdr_size(0);
 }
@@ -640,7 +640,7 @@ LibError tex_decode(const shared_ptr<u8>& data, size_t data_size, Tex* t)
 }
 
 
-LibError tex_encode(Tex* t, const std::string& extension, DynArray* da)
+LibError tex_encode(Tex* t, const std::wstring& extension, DynArray* da)
 {
 	CHECK_TEX(t);
 	CHECK_ERR(tex_validate_plain_format(t->bpp, t->flags));

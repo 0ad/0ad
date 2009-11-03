@@ -31,7 +31,7 @@
 #include "ps/XML/Xeromyces.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 
 CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
@@ -43,10 +43,10 @@ CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 		m_Groups = m_pParent->m_Groups;	
 }
 
-CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& parent, const char* path)
+CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& parent, const VfsPath& pathname)
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(path) != PSRETURN_OK)
+	if (XeroFile.Load(pathname) != PSRETURN_OK)
 		return CTerrainPropertiesPtr();
 
 	XMBElement root = XeroFile.GetRoot();
@@ -57,8 +57,8 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 	{
 		LOG(CLogger::Error,
 			LOG_CATEGORY,
-			"TextureManager: Loading %s: Root node is not terrains (found \"%s\")",
-			path,
+			L"TextureManager: Loading %ls: Root node is not terrains (found \"%hs\")",
+			pathname.string().c_str(),
 			rootName.c_str());
 		return CTerrainPropertiesPtr();
 	}
@@ -76,20 +76,20 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 	XMBElementList children = root.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		//debug_printf("Object %d\n", i);
+		//debug_printf(L"Object %d\n", i);
 		XMBElement child = children.Item(i);
 
 		if (child.GetNodeName() == el_terrain)
 		{
 			CTerrainPropertiesPtr ret (new CTerrainProperties(parent));
-			ret->LoadXml(child, &XeroFile, path);
+			ret->LoadXml(child, &XeroFile, pathname);
 			return ret;
 		}
 		else
 		{
 			LOG(CLogger::Warning, LOG_CATEGORY, 
-				"TerrainProperties: Loading %s: Unexpected node %s\n",
-				path,
+				L"TerrainProperties: Loading %ls: Unexpected node %hs\n",
+				pathname.string().c_str(),
 				XeroFile.GetElementString(child.GetNodeName()).c_str());
 			// Keep reading - typos shouldn't be showstoppers
 		}
@@ -98,7 +98,7 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 	return CTerrainPropertiesPtr();
 }
 
-void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const char *path)
+void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPath& pathname)
 {
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
@@ -139,7 +139,7 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const char 
 			CParserLine parserLine;
 			parser.InputTaskType("GroupList", "<_$value_,>_$value_");
 			
-			if (!parserLine.ParseString(parser, (CStr)attr.Value))
+			if (!parserLine.ParseString(parser, CStr(attr.Value)))
 				continue;
 			m_Groups.clear();
 			for (size_t i=0;i<parserLine.GetArgCount();i++)
@@ -154,7 +154,7 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const char 
 		else if (attr.Name == attr_mmap)
 		{
 			CColor col;
-			if (!col.ParseString((CStr)attr.Value, 255))
+			if (!col.ParseString(CStr(attr.Value), 255))
 				continue;
 			
 			// m_BaseColor is BGRA
@@ -178,17 +178,17 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const char 
 
 		if (child.GetNodeName() == elmt_passable)
 		{
-			ReadPassability(true, child, pFile, path);
+			ReadPassability(true, child, pFile, pathname);
 		}
 		else if (child.GetNodeName() == elmt_impassable)
 		{
-			ReadPassability(false, child, pFile, path);
+			ReadPassability(false, child, pFile, pathname);
 		}
 		// TODO Parse information about doodads and events and store it
 	}
 }
 
-void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const char *UNUSED(path))
+void CTerrainProperties::ReadPassability(bool passable, XMBElement node, CXeromyces *pFile, const VfsPath& UNUSED(pathname))
 {
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)		
 	// Passable Attribs

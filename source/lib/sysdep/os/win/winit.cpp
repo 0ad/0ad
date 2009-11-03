@@ -38,7 +38,7 @@
 //   main     : waio, wsock, wtime, wdir_watch
 //   late     : wsdl
 
-typedef LibError (*PfnLibErrorVoid)(void);
+typedef LibError (*PfnLibError)();
 
 // pointers to start and end of function tables.
 // notes:
@@ -46,10 +46,10 @@ typedef LibError (*PfnLibErrorVoid)(void);
 //   (zero, because CallFunctionPointers has to ignore entries =0 anyway).
 // - ASCII '$' and 'Z' come before resp. after '0'..'9', so use that to
 //   bound the section names.
-__declspec(allocate(".WINIT$I$")) PfnLibErrorVoid initBegin = 0;
-__declspec(allocate(".WINIT$IZ")) PfnLibErrorVoid initEnd = 0;
-__declspec(allocate(".WINIT$S$")) PfnLibErrorVoid shutdownBegin = 0;
-__declspec(allocate(".WINIT$SZ")) PfnLibErrorVoid shutdownEnd = 0;
+__declspec(allocate(".WINIT$I$")) PfnLibError initBegin = 0;
+__declspec(allocate(".WINIT$IZ")) PfnLibError initEnd = 0;
+__declspec(allocate(".WINIT$S$")) PfnLibError shutdownBegin = 0;
+__declspec(allocate(".WINIT$SZ")) PfnLibError shutdownEnd = 0;
 // note: #pragma comment(linker, "/include") is not necessary since
 // these are referenced below.
 
@@ -62,11 +62,11 @@ __declspec(allocate(".WINIT$SZ")) PfnLibErrorVoid shutdownEnd = 0;
  * are initialized to 0 and because the range may be larger than
  * expected due to COFF section padding (with zeroes).
  **/
-static void CallFunctionPointers(PfnLibErrorVoid* begin, PfnLibErrorVoid* end)
+static void CallFunctionPointers(PfnLibError* begin, PfnLibError* end)
 {
 	const DWORD t0 = GetTickCount();
 
-	for(PfnLibErrorVoid* ppfunc = begin; ppfunc < end; ppfunc++)
+	for(PfnLibError* ppfunc = begin; ppfunc < end; ppfunc++)
 	{
 		if(*ppfunc)
 		{
@@ -75,7 +75,7 @@ static void CallFunctionPointers(PfnLibErrorVoid* begin, PfnLibErrorVoid* end)
 	}
 
 	const DWORD t1 = GetTickCount();
-	debug_printf("WINIT| total elapsed time in callbacks %d ms (+-10)\n", t1-t0);
+	debug_printf(L"WINIT| total elapsed time in callbacks %d ms (+-10)\n", t1-t0);
 }
 
 

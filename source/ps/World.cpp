@@ -47,7 +47,7 @@
 #include "simulation/TerritoryManager.h"
 #include "simulation/Projectile.h"
 
-#define LOG_CATEGORY "world"
+#define LOG_CATEGORY L"world"
 
 /**
  * Global light settings.
@@ -86,10 +86,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 	// Load the map, if one was specified
 	if (pAttribs->m_MapFile.length())
 	{
-		CStr mapfilename("maps/scenarios/");
-
-		mapfilename += (CStr)pAttribs->m_MapFile;
-
+		VfsPath mapfilename(VfsPath(L"maps/scenarios/")/pAttribs->m_MapFile);
 		CMapReader* reader = 0;
 
 		try {
@@ -99,7 +96,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 				// fails immediately, or registers for delay loading
 		} catch (PSERROR_File&) {
 			delete reader;
-			LOG(CLogger::Error, LOG_CATEGORY, "Failed to load map %s", mapfilename.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load map %ls", mapfilename.string().c_str());
 			throw PSERROR_Game_World_MapLoadFailed();
 		}
 	}

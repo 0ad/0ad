@@ -114,8 +114,8 @@ bool CTerrain::IsPassable(const CVector2D &loc/*tile space*/, HEntity entity) co
 	CTerrainPropertiesPtr pProperties = pTexEntry->GetProperties();
 	if(!pProperties)
 	{
-		CStr texturePath = pTexEntry->GetTexturePath();
-		LOGWARNING("no properties loaded for %s\n", texturePath.c_str());
+		VfsPath texturePath = pTexEntry->GetTexturePath();
+		LOGWARNING(L"no properties loaded for %ls\n", texturePath.string().c_str());
 		return false;
 	}
 	return pProperties->IsPassable(entity);

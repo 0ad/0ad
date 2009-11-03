@@ -183,7 +183,7 @@ ScopedIoMonitor::~ScopedIoMonitor()
 	timer_reset(&m_startTime);
 }
 
-void ScopedIoMonitor::NotifyOfSuccess(FileIOImplentation fi, char mode, off_t size)
+void ScopedIoMonitor::NotifyOfSuccess(FileIOImplentation fi, wchar_t mode, off_t size)
 {
 	debug_assert(fi < FI_MAX_IDX);
 	debug_assert(mode == 'r' || mode == 'w');
@@ -268,51 +268,51 @@ template<typename T> int percent(T num, T divisor)
 
 void file_stats_dump()
 {
-	if(!debug_filter_allows("FILE_STATS|"))
+	if(!debug_filter_allows(L"FILE_STATS|"))
 		return;
 
 	const double KB = 1e3; const double MB = 1e6; const double ms = 1e-3;
 
-	debug_printf("--------------------------------------------------------------------------------\n");
-	debug_printf("File statistics:\n");
+	debug_printf(L"--------------------------------------------------------------------------------\n");
+	debug_printf(L"File statistics:\n");
 
 	// note: we split the reports into several debug_printfs for clarity;
 	// this is necessary anyway due to fixed-size buffer.
 
 	debug_printf(
-		"\nvfs:\n"
-		"Total files: %lu (%g MB)\n"
-		"Init/mount time: %g ms\n",
+		L"\nvfs:\n"
+		L"Total files: %lu (%g MB)\n"
+		L"Init/mount time: %g ms\n",
 		(unsigned long)vfs_files, vfs_size_total/MB,
 		vfs_init_elapsed_time/ms
 	);
 
 	debug_printf(
-		"\nfile:\n"
-		"Total names: %lu (%lu KB)\n"
-		"Max. concurrent: %lu; leaked: %lu.\n",
+		L"\nfile:\n"
+		L"Total names: %lu (%lu KB)\n"
+		L"Max. concurrent: %lu; leaked: %lu.\n",
 		(unsigned long)unique_names, (unsigned long)(unique_name_len_total/1000),
 		(unsigned long)open_files_max, (unsigned long)open_files_cur
 	);
 
 	debug_printf(
-		"\nfile_buf:\n"
-		"Total buffers used: %lu (%g MB)\n"
-		"Max concurrent: %lu; leaked: %lu\n"
-		"Internal fragmentation: %d%%\n",
+		L"\nfile_buf:\n"
+		L"Total buffers used: %lu (%g MB)\n"
+		L"Max concurrent: %lu; leaked: %lu\n"
+		L"Internal fragmentation: %d%%\n",
 		(unsigned long)extant_bufs_total, buf_size_total/MB,
 		(unsigned long)extant_bufs_max, (unsigned long)extant_bufs_cur,
 		percent(buf_aligned_size_total-buf_size_total, buf_size_total)
 	);
 
 	debug_printf(
-		"\nfile_io:\n"
-		"Total user load requests: %lu (%g MB)\n"
-		"IO thoughput [MB/s; 0=never happened]:\n"
-		"  lowio: R=%.3g, W=%.3g\n"
-		"    aio: R=%.3g, W=%.3g\n"
-		"Average size = %g KB; seeks: %lu; total callback time: %g ms\n"
-		"Total data actually read from disk = %g MB\n",
+		L"\nfile_io:\n"
+		L"Total user load requests: %lu (%g MB)\n"
+		L"IO thoughput [MB/s; 0=never happened]:\n"
+		L"  lowio: R=%.3g, W=%.3g\n"
+		L"    aio: R=%.3g, W=%.3g\n"
+		L"Average size = %g KB; seeks: %lu; total callback time: %g ms\n"
+		L"Total data actually read from disk = %g MB\n",
 		(unsigned long)user_ios, user_io_size_total/MB,
 #define THROUGHPUT(impl, op) (io_elapsed_time[impl][op] == 0.0)? 0.0 : (io_actual_size_total[impl][op] / io_elapsed_time[impl][op] / MB)
 		THROUGHPUT(FI_LOWIO, FO_READ), THROUGHPUT(FI_LOWIO, FO_WRITE),
@@ -322,18 +322,18 @@ void file_stats_dump()
 	);
 
 	debug_printf(
-		"\nfile_cache:\n"
-		"Hits: %lu (%g MB); misses %lu (%g MB); ratio: %u%%\n"
-		"Percent of requested bytes satisfied by cache: %u%%; non-compulsory misses: %lu (%u%% of misses)\n"
-		"Block hits: %lu; misses: %lu; ratio: %u%%\n",
+		L"\nfile_cache:\n"
+		L"Hits: %lu (%g MB); misses %lu (%g MB); ratio: %u%%\n"
+		L"Percent of requested bytes satisfied by cache: %u%%; non-compulsory misses: %lu (%u%% of misses)\n"
+		L"Block hits: %lu; misses: %lu; ratio: %u%%\n",
 		(unsigned long)cache_count[CR_HIT], cache_size_total[CR_HIT]/MB, (unsigned long)cache_count[CR_MISS], cache_size_total[CR_MISS]/MB, percent(cache_count[CR_HIT], cache_count[CR_HIT]+cache_count[CR_MISS]),
 		percent(cache_size_total[CR_HIT], cache_size_total[CR_HIT]+cache_size_total[CR_MISS]), (unsigned long)conflict_misses, percent(conflict_misses, cache_count[CR_MISS]),
 		(unsigned long)block_cache_count[CR_HIT], (unsigned long)block_cache_count[CR_MISS], percent(block_cache_count[CR_HIT], block_cache_count[CR_HIT]+block_cache_count[CR_MISS])
 	);
 
 	debug_printf(
-		"\nvfs_optimizer:\n"
-		"Total trace entries: %lu; repeated connections: %lu; unique files: %lu\n",
+		L"\nvfs_optimizer:\n"
+		L"Total trace entries: %lu; repeated connections: %lu; unique files: %lu\n",
 		(unsigned long)ab_connection_attempts, (unsigned long)ab_repeated_connections, (unsigned long)(ab_connection_attempts-ab_repeated_connections)
 	);
 }

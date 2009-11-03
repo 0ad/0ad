@@ -30,13 +30,13 @@
 #include "Texture.h"
 #include "renderer/Renderer.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 std::map<Handle, CTextureEntry *> CTextureEntry::m_LoadedTextures;
 
 /////////////////////////////////////////////////////////////////////////////////////
 // CTextureEntry constructor
-CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const CStr& path):
+CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const VfsPath& path):
 	m_pProperties(props),
 	m_Bitmap(NULL),
 	m_Handle(-1),
@@ -51,15 +51,7 @@ CTextureEntry::CTextureEntry(CTerrainPropertiesPtr props, const CStr& path):
 	for (;it!=m_Groups.end();++it)
 		(*it)->AddTerrain(this);
 	
-	long slashPos=m_TexturePath.ReverseFind("/");
-	long dotPos=m_TexturePath.ReverseFind(".");
-	if (slashPos == -1)
-		slashPos = 0;
-	else
-		slashPos++; // Skip the actual slash
-	if (dotPos == -1)
-		dotPos = (long)m_TexturePath.length();
-	m_Tag = m_TexturePath.substr(slashPos, dotPos-slashPos);
+	m_Tag = fs::basename(m_TexturePath);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -81,8 +73,7 @@ CTextureEntry::~CTextureEntry()
 // LoadTexture: actually load the texture resource from file
 void CTextureEntry::LoadTexture()	
 {
-	CTexture texture;
-	texture.SetName(m_TexturePath);
+	CTexture texture(m_TexturePath);
 	if (g_Renderer.LoadTexture(&texture,GL_REPEAT)) {
 		m_Handle=texture.GetHandle();
 		m_LoadedTextures[m_Handle] = this;

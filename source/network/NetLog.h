@@ -290,8 +290,8 @@ class CNetLogFileSink : public CNetLogSink
 public:
 
 	CNetLogFileSink( void );
-	CNetLogFileSink( const CStr& filename );
-	CNetLogFileSink( const CStr& filename, bool append );
+	CNetLogFileSink( const fs::wpath& filename );
+	CNetLogFileSink( const fs::wpath& filename, bool append );
 	~CNetLogFileSink( void );
 
 protected:
@@ -342,7 +342,7 @@ private:
 	 * @param append			Indicates whether logging should append to 
 	 *							the file or truncate the file
 	 */
-	void OpenFile( const CStr& fileName, bool append );
+	void OpenFile( const fs::wpath& fileName, bool append );
 
 	/**
 	 * Close the previously opened file. The footer text will be written each time
@@ -352,7 +352,7 @@ private:
 	void CloseFile( void );
 
 	std::ofstream	m_File;				// The log file handle
-	CStr			m_FileName;			// The name of the log file
+	fs::wpath       m_FileName;			// The name of the log file
 	bool			m_Append;			// Logging should append to file
 };
 

@@ -29,7 +29,7 @@ CTooltip::CTooltip()
 	// If the tooltip is an object by itself:
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
-	AddSetting(GUIST_CStr,					"font");
+	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_int,					"delay");
 	AddSetting(GUIST_CColor,				"textcolor");
@@ -64,9 +64,9 @@ void CTooltip::SetupText()
 
 	debug_assert(m_GeneratedTexts.size()==1);
 
-	CStr font;
-	if (GUI<CStr>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
-		font = "default";
+	CStrW font;
+	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
+		font = L"default";
 
 	float buffer_zone = 0.f;
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
@@ -111,7 +111,7 @@ void CTooltip::SetupText()
 		size.pixel.bottom = size.pixel.top + textwidth;
 		break;
 	default:
-		debug_warn("Invalid EVAlign!");
+		debug_warn(L"Invalid EVAlign!");
 	}
 
 

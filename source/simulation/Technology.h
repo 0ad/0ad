@@ -67,10 +67,10 @@ public:
 
 	void SetExclusion( bool exclude ) { m_excluded=exclude; }
 
-	bool LoadXml( const CStr& filename );
+	bool LoadXml( const VfsPath& filename );
 	bool LoadElId( XMBElement ID, CXeromyces& XeroFile );
 	bool LoadElReq( XMBElement Req, CXeromyces& XeroFile );
-	bool LoadElEffect( XMBElement Effect, CXeromyces& XeroFile, const CStr& filename );
+	bool LoadElEffect( XMBElement Effect, CXeromyces& XeroFile, const VfsPath& pathname);
 
 private:
 	CStrW m_Name;	// name of the tech file

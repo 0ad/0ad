@@ -19,5 +19,5 @@ extern void WriteSystemInfo();
 
 extern const wchar_t* ErrorString(int err);
 
-extern void WriteScreenshot(const char* extension);
-extern void WriteBigScreenshot(const char* extension, int tiles);
+extern void WriteScreenshot(const std::wstring& extension);
+extern void WriteBigScreenshot(const std::wstring& extension, int tiles);

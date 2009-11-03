@@ -179,7 +179,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		if (id.empty())
 			return;
 
-		m.Unit = CUnit::Create((CStr)id, NULL, std::set<CStr>(), m.ObjectManager);
+		m.Unit = CUnit::Create(CStr(id), NULL, std::set<CStr>(), m.ObjectManager);
 
 		if (! m.Unit)
 			return;
@@ -199,7 +199,7 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 
 	if (needsAnimReload)
 	{
-		CStr anim = ((CStr)animation).LowerCase();
+		CStr anim = CStr(animation).LowerCase();
 
 		float speed;
 		// TODO: this is just copied from template_unit.xml and isn't the
@@ -288,7 +288,7 @@ void ActorViewer::Render()
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glEnable(GL_TEXTURE_2D);
 
-	CFont font("console");
+	CFont font(L"console");
 	font.Bind();
 
 	g_ProfileViewer.RenderProfile();

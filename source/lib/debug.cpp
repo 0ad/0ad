@@ -27,7 +27,6 @@
 #include <cstdio>
 
 #include "app_hooks.h"
-#include "os_path.h"
 #include "path_util.h"
 #include "lib/allocators/allocators.h"	// page_aligned_alloc
 #include "fnv_hash.h"
@@ -39,16 +38,16 @@
 #endif
 
 
-ERROR_ASSOCIATE(ERR::SYM_NO_STACK_FRAMES_FOUND, "No stack frames found", -1);
-ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE_STATIC, "Value unretrievable (stored in external module)", -1);
-ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE, "Value unretrievable", -1);
-ERROR_ASSOCIATE(ERR::SYM_TYPE_INFO_UNAVAILABLE, "Error getting type_info", -1);
-ERROR_ASSOCIATE(ERR::SYM_INTERNAL_ERROR, "Exception raised while processing a symbol", -1);
-ERROR_ASSOCIATE(ERR::SYM_UNSUPPORTED, "Symbol type not (fully) supported", -1);
-ERROR_ASSOCIATE(ERR::SYM_CHILD_NOT_FOUND, "Symbol does not have the given child", -1);
-ERROR_ASSOCIATE(ERR::SYM_NESTING_LIMIT, "Symbol nesting too deep or infinite recursion", -1);
-ERROR_ASSOCIATE(ERR::SYM_SINGLE_SYMBOL_LIMIT, "Symbol has produced too much output", -1);
-ERROR_ASSOCIATE(INFO::SYM_SUPPRESS_OUTPUT, "Symbol was suppressed", -1);
+ERROR_ASSOCIATE(ERR::SYM_NO_STACK_FRAMES_FOUND, L"No stack frames found", -1);
+ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE_STATIC, L"Value unretrievable (stored in external module)", -1);
+ERROR_ASSOCIATE(ERR::SYM_UNRETRIEVABLE, L"Value unretrievable", -1);
+ERROR_ASSOCIATE(ERR::SYM_TYPE_INFO_UNAVAILABLE, L"Error getting type_info", -1);
+ERROR_ASSOCIATE(ERR::SYM_INTERNAL_ERROR, L"Exception raised while processing a symbol", -1);
+ERROR_ASSOCIATE(ERR::SYM_UNSUPPORTED, L"Symbol type not (fully) supported", -1);
+ERROR_ASSOCIATE(ERR::SYM_CHILD_NOT_FOUND, L"Symbol does not have the given child", -1);
+ERROR_ASSOCIATE(ERR::SYM_NESTING_LIMIT, L"Symbol nesting too deep or infinite recursion", -1);
+ERROR_ASSOCIATE(ERR::SYM_SINGLE_SYMBOL_LIMIT, L"Symbol has produced too much output", -1);
+ERROR_ASSOCIATE(INFO::SYM_SUPPRESS_OUTPUT, L"Symbol was suppressed", -1);
 
 
 // needed when writing crashlog
@@ -102,9 +101,9 @@ static const size_t MAX_TAGS = 20;
 static u32 tags[MAX_TAGS];
 static size_t num_tags;
 
-void debug_filter_add(const char* tag)
+void debug_filter_add(const wchar_t* tag)
 {
-	const u32 hash = fnv_hash(tag);
+	const u32 hash = fnv_hash(tag, wcslen(tag)*sizeof(tag[0]));
 
 	// make sure it isn't already in the list
 	for(size_t i = 0; i < MAX_TAGS; i++)
@@ -121,13 +120,13 @@ void debug_filter_add(const char* tag)
 	tags[num_tags++] = hash;
 }
 
-void debug_filter_remove(const char* tag)
+void debug_filter_remove(const wchar_t* tag)
 {
-	const u32 hash = fnv_hash(tag);
+	const u32 hash = fnv_hash(tag, wcslen(tag)*sizeof(tag[0]));
 
 	for(size_t i = 0; i < MAX_TAGS; i++)
-		// found it
-		if(tags[i] == hash)
+	{
+		if(tags[i] == hash)	// found it
 		{
 			// replace with last element (avoid holes)
 			tags[i] = tags[MAX_TAGS-1];
@@ -136,6 +135,7 @@ void debug_filter_remove(const char* tag)
 			// can only happen once, so we're done.
 			return;
 		}
+	}
 }
 
 void debug_filter_clear()
@@ -143,7 +143,7 @@ void debug_filter_clear()
 	std::fill(tags, tags+MAX_TAGS, 0);
 }
 
-bool debug_filter_allows(const char* text)
+bool debug_filter_allows(const wchar_t* text)
 {
 	size_t i;
 	for(i = 0; ; i++)
@@ -155,7 +155,7 @@ bool debug_filter_allows(const char* text)
 			break;
 	}
 
-	const u32 hash = fnv_hash(text, i);
+	const u32 hash = fnv_hash(text, i*sizeof(text[0]));
 
 	// check if entry allowing this tag is found
 	for(i = 0; i < MAX_TAGS; i++)
@@ -169,19 +169,6 @@ bool debug_filter_allows(const char* text)
 const size_t DEBUG_PRINTF_MAX_CHARS = 1024;	// refer to wdbg.cpp!debug_vsprintf before changing this
 
 #undef debug_printf	// allowing #defining it out
-void debug_printf(const char* fmt, ...)
-{
-	char buf[DEBUG_PRINTF_MAX_CHARS]; buf[ARRAY_SIZE(buf)-1] = '\0';
-
-	va_list ap;
-	va_start(ap, fmt);
-	const int len = vsnprintf(buf, DEBUG_PRINTF_MAX_CHARS, fmt, ap);
-	debug_assert(len >= 0);
-	va_end(ap);
-
-	if(debug_filter_allows(buf))
-		debug_puts(buf);
-}
 
 void debug_printf(const wchar_t* fmt, ...)
 {
@@ -189,18 +176,12 @@ void debug_printf(const wchar_t* fmt, ...)
 
 	va_list ap;
 	va_start(ap, fmt);
-	const int numChars = vswprintf(buf, DEBUG_PRINTF_MAX_CHARS, fmt, ap);
+	const int numChars = vswprintf_s(buf, DEBUG_PRINTF_MAX_CHARS, fmt, ap);
 	debug_assert(numChars >= 0);
 	va_end(ap);
 
-	char buf2[DEBUG_PRINTF_MAX_CHARS];
-
-	size_t bytesWritten = wcstombs(buf2, buf, DEBUG_PRINTF_MAX_CHARS);
-
-	debug_assert(bytesWritten == (size_t)numChars);
-
-	if(debug_filter_allows(buf2))
-		debug_puts(buf2);
+	if(debug_filter_allows(buf))
+		debug_puts(buf);
 }
 
 
@@ -225,8 +206,9 @@ LibError debug_WriteCrashlog(const wchar_t* text)
 	if(!cpu_CAS(&state, IDLE, BUSY))
 		return ERR::REENTERED;	// NOWARN
 
-	OsPath path = OsPath(ah_get_log_dir())/"crashlog.txt";
-	FILE* f = fopen(path.string().c_str(), "w");
+	fs::wpath path = ah_get_log_dir()/L"crashlog.txt";
+	fs::path path_c = path_from_wpath(path);
+	FILE* f = fopen(path_c.string().c_str(), "w");
 	if(!f)
 	{
 		state = FAILED;	// must come before DEBUG_DISPLAY_ERROR
@@ -312,8 +294,8 @@ private:
 // split out of debug_DisplayError because it's used by the self-test.
 const wchar_t* debug_BuildErrorMessage(
 	const wchar_t* description,
-	const char* filename, int line, const char* func,
-	void* context, const char* lastFuncToSkip,
+	const wchar_t* filename, int line, const wchar_t* func,
+	void* context, const wchar_t* lastFuncToSkip,
 	ErrorMessageMem* emm)
 {
 	// rationale: see ErrorMessageMem
@@ -326,7 +308,7 @@ const wchar_t* debug_BuildErrorMessage(
 	// header
 	if(!writer(
 		L"%ls\r\n"
-		L"Location: %hs:%d (%hs)\r\n"
+		L"Location: %ls:%d (%ls)\r\n"
 		L"\r\n"
 		L"Call stack:\r\n"
 		L"\r\n",
@@ -350,9 +332,9 @@ fail:
 	}
 	else if(ret != INFO::OK)
 	{
-		char description_buf[100] = {'?'};
+		wchar_t description_buf[100] = {'?'};
 		if(!writer(
-			L"(error while dumping stack: %hs)",
+			L"(error while dumping stack: %ls)",
 			error_description_r(ret, description_buf, ARRAY_SIZE(description_buf))
 		))
 			goto fail;
@@ -364,16 +346,16 @@ fail:
 
 	// append OS error (just in case it happens to be relevant -
 	// it's usually still set from unrelated operations)
-	char description_buf[100] = "?";
+	wchar_t description_buf[100] = L"?";
 	LibError errno_equiv = LibError_from_errno(false);
 	if(errno_equiv != ERR::FAIL)	// meaningful translation
 		error_description_r(errno_equiv, description_buf, ARRAY_SIZE(description_buf));
-	char os_error[100] = "?";
+	wchar_t os_error[100] = L"?";
 	sys_error_description_r(0, os_error, ARRAY_SIZE(os_error));
 	if(!writer(
 		L"\r\n"
-		L"errno = %d (%hs)\r\n"
-		L"OS error = %hs\r\n",
+		L"errno = %d (%ls)\r\n"
+		L"OS error = %ls\r\n",
 		errno, description_buf, os_error
 	))
 		goto fail;
@@ -466,8 +448,8 @@ static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, u8* su
 }
 
 ErrorReaction debug_DisplayError(const wchar_t* description,
-	size_t flags, void* context, const char* lastFuncToSkip,
-	const char* pathname, int line, const char* func,
+	size_t flags, void* context, const wchar_t* lastFuncToSkip,
+	const wchar_t* pathname, int line, const wchar_t* func,
 	u8* suppress)
 {
 	// "suppressing" this error means doing nothing and returning ER_CONTINUE.
@@ -483,17 +465,17 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 		flags |= DE_ALLOW_SUPPRESS;
 	// .. deal with incomplete file/line info
 	if(!pathname || pathname[0] == '\0')
-		pathname = "unknown";
+		pathname = L"unknown";
 	if(line <= 0)
 		line = 0;
 	if(!func || func[0] == '\0')
-		func = "?";
+		func = L"?";
 	// .. _FILE__ evaluates to the full path (albeit without drive letter)
 	//    which is rather long. we only display the base name for clarity.
-	const char* filename = path_name_only(pathname);
+	const wchar_t* filename = path_name_only(pathname);
 
 	// display in output window; double-click will navigate to error location.
-	debug_printf("%s(%d): %ls\n", filename, line, description);
+	debug_printf(L"%ls(%d): %ls\n", filename, line, description);
 
 	ErrorMessageMem emm;
 	const wchar_t* text = debug_BuildErrorMessage(description, filename, line, func, context, lastFuncToSkip, &emm);
@@ -541,15 +523,15 @@ static bool ShouldSkipThisError(LibError err)
 	return false;
 }
 
-ErrorReaction debug_OnError(LibError err, u8* suppress, const char* file, int line, const char* func)
+ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const wchar_t* func)
 {
 	if(ShouldSkipThisError(err))
 		return ER_CONTINUE;
 
-	void* context = 0; const char* lastFuncToSkip = __func__;
+	void* context = 0; const wchar_t* lastFuncToSkip = __wfunc__;
 	wchar_t buf[400];
-	char err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
-	swprintf(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %d (%hs)", err, err_buf);
+	wchar_t err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
+	swprintf_s(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %d (%ls)", err, err_buf);
 	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }
 
@@ -567,12 +549,12 @@ static bool ShouldSkipThisAssertion()
 	return ShouldSkipThisError(ERR::ASSERTION_FAILED);
 }
 
-ErrorReaction debug_OnAssertionFailure(const char* expr, u8* suppress, const char* file, int line, const char* func)
+ErrorReaction debug_OnAssertionFailure(const wchar_t* expr, u8* suppress, const wchar_t* file, int line, const wchar_t* func)
 {
 	if(ShouldSkipThisAssertion())
 		return ER_CONTINUE;
-	void* context = 0; const char* lastFuncToSkip = __func__;
+	void* context = 0; const wchar_t* lastFuncToSkip = __wfunc__;
 	wchar_t buf[400];
-	swprintf(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%hs\"", expr);
+	swprintf_s(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%ls\"", expr);
 	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }

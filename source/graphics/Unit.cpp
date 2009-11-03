@@ -46,7 +46,7 @@ CUnit::~CUnit()
 	delete m_Model;
 }
 
-CUnit* CUnit::Create(const CStr& actorName, CEntity* entity,
+CUnit* CUnit::Create(const CStrW& actorName, CEntity* entity,
 					 const std::set<CStr>& selections, CObjectManager& objectManager)
 {
 	CObjectBase* base = objectManager.FindObjectBase(actorName);

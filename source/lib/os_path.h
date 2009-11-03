@@ -14,7 +14,3 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-typedef fs::path OsPath;
-typedef fs::basic_directory_entry<OsPath> OsDirectoryEntry;
-typedef fs::basic_directory_iterator<OsPath> OsDirectoryIterator;

@@ -60,7 +60,7 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 		else
 		{
 			// don't complain: just ignore people with too many mouse buttons
-			//debug_warn("invalid mouse button");
+			//debug_warn(L"invalid mouse button");
 		}
 		return IN_PASS;
 
@@ -73,7 +73,7 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 		{
 			// don't complain: this happens when the hotkey system
 			// spoofs keys (it assigns values starting from SDLK_LAST)
-			//debug_warn("invalid key");
+			//debug_warn(L"invalid key");
 		}
 		return IN_PASS;
 

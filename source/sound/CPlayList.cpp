@@ -22,34 +22,35 @@
 #include <stdio.h>	// sscanf
 #include "ps/Filesystem.h"
 
-CPlayList::CPlayList(void)
+
+CPlayList::CPlayList()
 {
 	tracks.clear();
 }
 
-CPlayList::CPlayList(const char* file)
+CPlayList::CPlayList(const VfsPath& pathname)
 {
-	Load(file);
+	Load(pathname);
 }
 
-CPlayList::~CPlayList(void)
+CPlayList::~CPlayList()
 {
 
 }
 
-void CPlayList::Load(const char* filename)
+void CPlayList::Load(const VfsPath& pathname)
 {
 	tracks.clear();
 
 	shared_ptr<u8> buf; size_t size;
-	if(g_VFS->LoadFile(filename, buf, size) < 0)
+	if(g_VFS->LoadFile(pathname, buf, size) < 0)
 		return;
 
 	const char* playlist = (const char*)buf.get();
 	char track[512];
 
 	while(sscanf(playlist, "%511s\n", track) == 1)
-		tracks.push_back(track);
+		tracks.push_back(CStrW(track));
 }
 
 
@@ -57,11 +58,11 @@ void CPlayList::List()
 {
 	for(size_t i = 0; i < tracks.size(); i++)
 	{
-		debug_printf("%s\n", tracks.at(i).c_str());
+		debug_printf(L"%ls\n", tracks[i].c_str());
 	}
 }
 
-void CPlayList::Add(std::string name)
+void CPlayList::Add(std::wstring name)
 {
 	tracks.push_back(name);
 }

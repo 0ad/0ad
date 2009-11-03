@@ -36,7 +36,7 @@ CList::CList()
 
 	AddSetting(GUIST_float,					"buffer_zone");
 	//AddSetting(GUIST_CGUIString,			"caption"); will it break removing this? If I know my system, then no, but test just in case TODO (Gee).
-	AddSetting(GUIST_CStr,					"font");
+	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_bool,					"scrollbar");
 	AddSetting(GUIST_CStr,					"scrollbar_style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
@@ -74,7 +74,7 @@ void CList::SetupText()
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list", pList);
 
-	//LOG(CLogger::Error, LOG_CATEGORY, "SetupText() %s", GetPresentableName().c_str());
+	//LOG(CLogger::Error, LOG_CATEGORY, L"SetupText() %hs", GetPresentableName().c_str());
 
 	//debug_assert(m_GeneratedTexts.size()>=1);
 
@@ -91,11 +91,11 @@ void CList::SetupText()
 	}
 	m_GeneratedTexts.clear();
 
-	CStr font;
-	if (GUI<CStr>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
+	CStrW font;
+	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
 		// Use the default if none is specified
 		// TODO Gee: (2004-08-14) Don't define standard like this. Do it with the default style.
-		font = "default";
+		font = L"default";
 
 	//CGUIString caption;
 	bool scrollbar;
@@ -433,7 +433,7 @@ bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
 
 	if (child.GetNodeName() == elmt_item)
 	{
-		AddItem((CStr)child.GetText());
+		AddItem(CStr(child.GetText()));
 		
 		return true;
 	}

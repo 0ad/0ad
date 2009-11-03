@@ -24,7 +24,7 @@
 #include "lib/tex/tex.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "gui"
+#define LOG_CATEGORY L"gui"
 
 using namespace GUIRenderer;
 
@@ -104,7 +104,7 @@ public:
 		// Otherwise, complain.
 		else
 		{
-			LOG(CLogger::Warning, "gui", "add_color effect has some components above 127 and some below -127 - colours will be clamped");
+			LOG(CLogger::Warning, LOG_CATEGORY, L"add_color effect has some components above 127 and some below -127 - colours will be clamped");
 			m_Color = CColor(c.r+0.5f, c.g+0.5f, c.b+0.5f, c.a+0.5f);
 			m_Method = ADD_SIGNED;
 		}
@@ -183,7 +183,7 @@ public:
 				;
 			else
 				// Oops - trying to multiply by >4
-				LOG(CLogger::Warning, "gui", "multiply_color effect has a component >1020 - colours will be clamped");
+				LOG(CLogger::Warning, LOG_CATEGORY, L"multiply_color effect has a component >1020 - colours will be clamped");
 
 			m_Color = CColor(c.r/4.f, c.g/4.f, c.b/4.f, c.a);
 			m_Scale = 4;
@@ -369,7 +369,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		if (SpriteName.substr(0, 10) == "stretched:")
 		{
 			SGUIImage Image;
-			Image.m_TextureName = "art/textures/ui/" + SpriteName.substr(10);
+			Image.m_TextureName = VfsPath(L"art/textures/ui")/CStrW(SpriteName.substr(10));
 			CClientArea ca("0 0 100% 100%");
 			Image.m_Size = ca;
 			Image.m_TextureSize = ca;
@@ -385,7 +385,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		else
 		{
 			// Otherwise, just complain and give up:
-			LOG(CLogger::Error, LOG_CATEGORY, "Trying to use a sprite that doesn't exist (\"%s\").", (const char*)SpriteName);
+			LOG(CLogger::Error, LOG_CATEGORY, L"Trying to use a sprite that doesn't exist (\"%hs\").", SpriteName.c_str());
 			return;
 		}
 	}
@@ -414,7 +414,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			Handle h = ogl_tex_load(cit->m_TextureName);
 			if (h <= 0)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "Error reading texture '%s': %ld", (const char*)cit->m_TextureName, (long)h);
+				LOG(CLogger::Error, LOG_CATEGORY, L"Error reading texture '%ls': %ld", cit->m_TextureName.string().c_str(), (long)h);
 				return;
 			}
 
@@ -423,7 +423,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			int err = ogl_tex_upload(h);
 			if (err < 0)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "Error uploading texture '%s': %d", (const char*)cit->m_TextureName, err);
+				LOG(CLogger::Error, LOG_CATEGORY, L"Error uploading texture '%ls': %d", cit->m_TextureName.string().c_str(), err);
 				return;
 			}
 

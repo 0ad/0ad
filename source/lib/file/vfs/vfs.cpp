@@ -39,7 +39,7 @@ public:
 	{
 	}
 
-	virtual LibError Mount(const VfsPath& mountPoint, const fs::path& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
+	virtual LibError Mount(const VfsPath& mountPoint, const fs::wpath& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
 		debug_assert(vfs_path_IsDirectory(mountPoint));
 		CreateDirectories(path, 0700);
@@ -79,7 +79,7 @@ public:
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
 
 		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
-		const std::string& name = pathname.leaf();
+		const std::wstring& name = pathname.leaf();
 		RETURN_ERR(realDirectory->Store(name, fileContents, size));
 
 		const VfsFile file(name, size, time(0), realDirectory->Priority(), realDirectory);
@@ -108,7 +108,8 @@ public:
 		if(!isCacheHit)
 		{
 			VfsDirectory* directory; VfsFile* file;
-			CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
+			if(vfs_Lookup(pathname, &m_rootDirectory, directory, &file) < 0)
+				debug_break();
 
 			size = file->Size();
 			// safely handle zero-length files
@@ -150,7 +151,7 @@ public:
 		m_rootDirectory.DisplayR(0);
 	}
 
-	virtual LibError GetRealPath(const VfsPath& pathname, fs::path& realPathname)
+	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& realPathname)
 	{
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));

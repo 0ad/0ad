@@ -23,7 +23,7 @@
 #include "lib/file/io/io.h"
 
 
-RealDirectory::RealDirectory(const fs::path& path, size_t priority, size_t flags)
+RealDirectory::RealDirectory(const fs::wpath& path, size_t priority, size_t flags)
 	: m_path(path), m_priority(priority), m_flags(flags)
 {
 }
@@ -35,25 +35,27 @@ RealDirectory::RealDirectory(const fs::path& path, size_t priority, size_t flags
 }
 
 
-/*virtual*/ char RealDirectory::LocationCode() const
+/*virtual*/ wchar_t RealDirectory::LocationCode() const
 {
 	return 'F';
 }
 
 
-/*virtual*/ LibError RealDirectory::Load(const std::string& name, const shared_ptr<u8>& buf, size_t size) const
+/*virtual*/ LibError RealDirectory::Load(const std::wstring& name, const shared_ptr<u8>& buf, size_t size) const
 {
+	const fs::wpath pathname(m_path/name);
+
 	PFile file(new File);
-	RETURN_ERR(file->Open(m_path/name, 'r'));
+	RETURN_ERR(file->Open(pathname, 'r'));
 
 	RETURN_ERR(io_ReadAligned(file, 0, buf.get(), size));
 	return INFO::OK;
 }
 
 
-LibError RealDirectory::Store(const std::string& name, const shared_ptr<u8>& fileContents, size_t size)
+LibError RealDirectory::Store(const std::wstring& name, const shared_ptr<u8>& fileContents, size_t size)
 {
-	const fs::path pathname(m_path/name);
+	const fs::wpath pathname(m_path/name);
 
 	{
 		PFile file(new File);
@@ -65,7 +67,8 @@ LibError RealDirectory::Store(const std::string& name, const shared_ptr<u8>& fil
 	// length. ftruncate can't be used because Windows' FILE_FLAG_NO_BUFFERING
 	// only allows resizing to sector boundaries, so the file must first
 	// be closed.
-	truncate(pathname.external_file_string().c_str(), size);
+	const fs::path pathname_c(path_from_wpath(pathname));
+	truncate(pathname_c.string().c_str(), size);
 
 	return INFO::OK;
 }
@@ -73,12 +76,13 @@ LibError RealDirectory::Store(const std::string& name, const shared_ptr<u8>& fil
 
 void RealDirectory::Watch()
 {
-	//m_watch = CreateWatch(fs::path().external_file_string().c_str());
+	const fs::wpath path;// = m_path
+	(void)dir_watch_Add(path, m_watch);
 }
 
 
-PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::string& subdirectoryName)
+PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::wstring& subdirectoryName)
 {
-	const fs::path path(realDirectory->Path()/subdirectoryName);
+	const fs::wpath path(realDirectory->Path()/subdirectoryName);
 	return PRealDirectory(new RealDirectory(path, realDirectory->Priority(), realDirectory->Flags()));
 }

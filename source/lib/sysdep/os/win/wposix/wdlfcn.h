@@ -30,7 +30,7 @@
 #define RTLD_LOCAL  0x08
 
 extern int dlclose(void* handle);
-extern char* dlerror(void);
+extern char* dlerror();
 extern void* dlopen(const char* so_name, int flags);
 extern void* dlsym(void* handle, const char* sym_name);
 

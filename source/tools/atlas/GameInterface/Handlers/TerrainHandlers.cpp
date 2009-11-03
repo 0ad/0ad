@@ -190,7 +190,7 @@ BEGIN_COMMAND(PaintTerrain)
 		CTextureEntry* texentry = g_TexMan.FindTexture(CStrW(*msg->texture));
 		if (! texentry)
 		{
-			debug_warn("Can't find texentry"); // TODO: nicer error handling
+			debug_warn(L"Can't find texentry"); // TODO: nicer error handling
 			return;
 		}
 		Handle texture = texentry->GetHandle();

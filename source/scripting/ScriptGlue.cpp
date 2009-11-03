@@ -75,6 +75,7 @@
 
 #include "gui/scripting/JSInterface_IGUIObject.h"
 
+#define LOG_CATEGORY L"script"
 extern bool g_TerrainModified;
 
 
@@ -101,13 +102,13 @@ JSBool WriteLog(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 {
 	JSU_REQUIRE_PARAMS(1);
 
-	CStr logMessage;
+	CStrW logMessage;
 
 	for (int i = 0; i < (int)argc; i++)
 	{
 		try
 		{
-			CStr arg = g_ScriptingHost.ValueToString( argv[i] );
+			CStrW arg = g_ScriptingHost.ValueToUCString( argv[i] );
 			logMessage += arg;
 		}
 		catch( PSERROR_Scripting_ConversionFailed )
@@ -116,9 +117,7 @@ JSBool WriteLog(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 		}
 	}
 
-	// We should perhaps unicodify (?) the logger at some point.
-
-	LOG(CLogger::Normal, "script", logMessage );
+	LOG(CLogger::Normal, LOG_CATEGORY, logMessage.c_str());
 
 	*rval = JSVAL_TRUE;
 	return JS_TRUE;
@@ -635,15 +634,15 @@ static const size_t MAX_JS_TIMERS = 20;
 static TimerUnit js_start_times[MAX_JS_TIMERS];
 static TimerUnit js_timer_overhead;
 static TimerClient js_timer_clients[MAX_JS_TIMERS];
-static char js_timer_descriptions_buf[MAX_JS_TIMERS * 12];	// depends on MAX_JS_TIMERS and format string below
+static wchar_t js_timer_descriptions_buf[MAX_JS_TIMERS * 12];	// depends on MAX_JS_TIMERS and format string below
 
 static void InitJsTimers()
 {
-	char* pos = js_timer_descriptions_buf;
+	wchar_t* pos = js_timer_descriptions_buf;
 	for(size_t i = 0; i < MAX_JS_TIMERS; i++)
 	{
-		const char* description = pos;
-		pos += sprintf(pos, "js_timer %d", (int)i)+1;
+		const wchar_t* description = pos;
+		pos += swprintf(pos, 12, L"js_timer %d", (int)i)+1;
 		timer_AddClient(&js_timer_clients[i], description);
 	}
 
@@ -976,7 +975,7 @@ JSBool WriteVideoMemToConsole( JSContext* cx, JSObject*, uintN argc, jsval* argv
 JSBool SetCursor( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval )
 {
 	JSU_REQUIRE_PARAMS(1);
-	g_CursorName = g_ScriptingHost.ValueToString(argv[0]);
+	g_CursorName = g_ScriptingHost.ValueToUCString(argv[0]);
 	return JS_TRUE;
 }
 
@@ -1376,7 +1375,7 @@ JSBool GetTrigger( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc, js
 		*rval = ToJSVal( g_TriggerManager.m_TriggerMap[name] );
 	else
 	{
-		debug_printf("Invalid trigger name %ls", name.c_str());
+		debug_printf(L"Invalid trigger name %ls", name.c_str());
 		*rval = JSVAL_NULL;
 	}
 	return JS_TRUE;

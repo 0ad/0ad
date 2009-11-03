@@ -97,7 +97,7 @@ ERROR_TYPE(System, SDLInitFailed);
 ERROR_TYPE(System, VmodeFailed);
 ERROR_TYPE(System, RequiredExtensionsMissing);
 
-#define LOG_CATEGORY "gamesetup"
+#define LOG_CATEGORY L"gamesetup"
 
 bool g_DoRenderGui = true;
 
@@ -129,7 +129,7 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	ogl_Init();	// required after each mode change
 
 	if(SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
-		debug_warn("SDL_SetGamma failed");
+		debug_warn(L"SDL_SetGamma failed");
 
 	return 0;
 }
@@ -183,7 +183,7 @@ retry:
 		break;
 		// invalid
 	default:
-		debug_warn("SetTextureQuality: invalid quality");
+		debug_warn(L"SetTextureQuality: invalid quality");
 		quality = SANE_TEX_QUALITY_DEFAULT;
 		// careful: recursion doesn't work and we don't want to duplicate
 		// the "sane" default values.
@@ -200,15 +200,15 @@ retry:
 
 void GUI_Init()
 {
-	{TIMER("ps_gui_init");
+	{TIMER(L"ps_gui_init");
 	g_GUI.Initialize();}
 
-	{TIMER("ps_gui_setup_xml");
-	g_GUI.LoadXmlFile("gui/test/setup.xml");}
-	{TIMER("ps_gui_styles_xml");
-	g_GUI.LoadXmlFile("gui/test/styles.xml");}
-	{TIMER("ps_gui_sprite1_xml");
-	g_GUI.LoadXmlFile("gui/test/sprite1.xml");}
+	{TIMER(L"ps_gui_setup_xml");
+	g_GUI.LoadXmlFile(L"gui/test/setup.xml");}
+	{TIMER(L"ps_gui_styles_xml");
+	g_GUI.LoadXmlFile(L"gui/test/styles.xml");}
+	{TIMER(L"ps_gui_sprite1_xml");
+	g_GUI.LoadXmlFile(L"gui/test/sprite1.xml");}
 
 	// Atlas is running, we won't need these GUI pages (for now!
 	// what if Atlas switches to in-game mode?!)
@@ -216,24 +216,24 @@ void GUI_Init()
 //	if(ATLAS_IsRunning())
 //		return;
 
-	{TIMER("ps_gui_1");
-	g_GUI.LoadXmlFile("gui/test/1_init.xml");}
-	{TIMER("ps_gui_2");
-	g_GUI.LoadXmlFile("gui/test/2_mainmenu.xml");}
-	{TIMER("ps_gui_3");
-	g_GUI.LoadXmlFile("gui/test/3_loading.xml");}
-	{TIMER("ps_gui_4");
-	g_GUI.LoadXmlFile("gui/test/4_session.xml");}
-	{TIMER("ps_gui_6");
-	g_GUI.LoadXmlFile("gui/test/6_subwindows.xml");}
-	{TIMER("ps_gui_6_1");
-	g_GUI.LoadXmlFile("gui/test/6_1_manual.xml");}
-	{TIMER("ps_gui_6_2");
-	g_GUI.LoadXmlFile("gui/test/6_2_jukebox.xml");}
-	{TIMER("ps_gui_7");
-	g_GUI.LoadXmlFile("gui/test/7_atlas.xml");}
-	{TIMER("ps_gui_9");
-	g_GUI.LoadXmlFile("gui/test/9_global.xml");}
+	{TIMER(L"ps_gui_1");
+	g_GUI.LoadXmlFile(L"gui/test/1_init.xml");}
+	{TIMER(L"ps_gui_2");
+	g_GUI.LoadXmlFile(L"gui/test/2_mainmenu.xml");}
+	{TIMER(L"ps_gui_3");
+	g_GUI.LoadXmlFile(L"gui/test/3_loading.xml");}
+	{TIMER(L"ps_gui_4");
+	g_GUI.LoadXmlFile(L"gui/test/4_session.xml");}
+	{TIMER(L"ps_gui_6");
+	g_GUI.LoadXmlFile(L"gui/test/6_subwindows.xml");}
+	{TIMER(L"ps_gui_6_1");
+	g_GUI.LoadXmlFile(L"gui/test/6_1_manual.xml");}
+	{TIMER(L"ps_gui_6_2");
+	g_GUI.LoadXmlFile(L"gui/test/6_2_jukebox.xml");}
+	{TIMER(L"ps_gui_7");
+	g_GUI.LoadXmlFile(L"gui/test/7_atlas.xml");}
+	{TIMER(L"ps_gui_9");
+	g_GUI.LoadXmlFile(L"gui/test/9_global.xml");}
 }
 
 
@@ -409,7 +409,7 @@ void Render()
 		glLoadIdentity();
 
 		MICROLOG(L"render console");
-		CFont font("console");
+		CFont font(L"console");
 		font.Bind();
 		g_Console->Render();
 	}
@@ -435,11 +435,11 @@ void Render()
 	ogl_WarnIfError();
 
 	// Draw the cursor (or set the Windows cursor, on Windows)
-	CStr cursorName = g_BuildingPlacer.m_active ? "action-build" : g_CursorName;
+	CStrW cursorName = g_BuildingPlacer.m_active ? L"action-build" : g_CursorName;
 	if (cursorName.empty())
 		cursor_draw(NULL, g_mouse_x, g_mouse_y);
 	else
-		cursor_draw(cursorName, g_mouse_x, g_mouse_y);
+		cursor_draw(cursorName.c_str(), g_mouse_x, g_mouse_y);
 
 	// restore
 	glMatrixMode(GL_PROJECTION);
@@ -505,7 +505,7 @@ static void RegisterJavascriptInterfaces()
 
 static void InitScripting()
 {
-	TIMER("InitScripting");
+	TIMER(L"InitScripting");
 
 	// Create the scripting host.  This needs to be done before the GUI is created.
 	// [7ms]
@@ -539,36 +539,36 @@ static size_t ChooseCacheSize()
 
 static void InitVfs(const CmdLineArgs& args)
 {
-	TIMER("InitVfs");
+	TIMER(L"InitVfs");
 
 	const Paths paths(args);
 
-	fs::path logs(paths.Logs());
+	fs::wpath logs(paths.Logs());
 	CreateDirectories(logs, 0700);
-	psSetLogDir(logs.string().c_str());
+	psSetLogDir(logs);
 
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	g_VFS->Mount("screenshots/", paths.Data()/"screenshots");
-	g_VFS->Mount("config/", paths.RData()/"config");
-	g_VFS->Mount("profiles/", paths.Config()/"profiles");
-	g_VFS->Mount("cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
+	g_VFS->Mount(L"screenshots/", paths.Data()/L"screenshots");
+	g_VFS->Mount(L"config/", paths.RData()/L"config");
+	g_VFS->Mount(L"profiles/", paths.Config()/L"profiles");
+	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
 
 	std::vector<CStr> mods = args.GetMultiple("mod");
 	mods.push_back("public");
 	if(!args.Has("onlyPublicFiles"))
 		mods.push_back("internal");
 
-	fs::path modArchivePath(paths.Cache()/"mods");
-	fs::path modLoosePath(paths.RData()/"mods");
+	fs::wpath modArchivePath(paths.Cache()/L"mods");
+	fs::wpath modLoosePath(paths.RData()/L"mods");
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		size_t priority = i;
 		const int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
-		const std::string modName = mods[i];
-		g_VFS->Mount("", modLoosePath/modName, flags, priority);
-		g_VFS->Mount("", modArchivePath/modName, flags, priority);
+		const CStrW modName(mods[i]);
+		g_VFS->Mount(L"", modLoosePath/modName, flags, priority);
+		g_VFS->Mount(L"", modArchivePath/modName, flags, priority);
 	}
 
 	// don't try g_VFS->Display yet: SDL_Init hasn't yet redirected stdout
@@ -584,12 +584,12 @@ static void InitPs(bool setup_gui)
 
 		{
 			// console
-			TIMER("ps_console");
+			TIMER(L"ps_console");
 
 			g_Console->UpdateScreenSize(g_xres, g_yres);
 
 			// Calculate and store the line spacing
-			CFont font("console");
+			CFont font(L"console");
 			g_Console->m_iFontHeight = font.GetLineSpacing();
 			g_Console->m_iFontWidth = font.GetCharacterWidth(L'C');
 			g_Console->m_charsPerPage = (size_t)(g_xres / g_Console->m_iFontWidth);
@@ -599,7 +599,7 @@ static void InitPs(bool setup_gui)
 
 		// language and hotkeys
 		{
-			TIMER("ps_lang_hotkeys");
+			TIMER(L"ps_lang_hotkeys");
 
 			std::string lang = "english";
 			CFG_GET_SYS_VAL("language", String, lang);
@@ -657,7 +657,7 @@ static void ShutdownPs()
 
 static void InitRenderer()
 {
-	TIMER("InitRenderer");
+	TIMER(L"InitRenderer");
 
 	if(g_NoGLS3TC)
 		ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
@@ -706,7 +706,7 @@ static void InitSDL()
 	MICROLOG(L"init sdl");
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "SDL library initialization failed: %s", SDL_GetError());
+		LOG(CLogger::Error, LOG_CATEGORY, L"SDL library initialization failed: %hs", SDL_GetError());
 		throw PSERROR_System_SDLInitFailed();
 	}
 	atexit(SDL_Quit);
@@ -741,68 +741,68 @@ void Shutdown(int flags)
 
 	ShutdownPs(); // Must delete g_GUI before g_ScriptingHost
 
-	TIMER_BEGIN("shutdown Scheduler");
+	TIMER_BEGIN(L"shutdown Scheduler");
 	delete &g_Scheduler;
-	TIMER_END("shutdown Scheduler");
+	TIMER_END(L"shutdown Scheduler");
 
 	delete &g_JSGameEvents;
 
 	if (! (flags & INIT_NO_SIM))
 	{
-		TIMER_BEGIN("shutdown mouse stuff");
+		TIMER_BEGIN(L"shutdown mouse stuff");
 		delete &g_Mouseover;
 		delete &g_Selection;
 		delete &g_BuildingPlacer;
-		TIMER_END("shutdown mouse stuff");
+		TIMER_END(L"shutdown mouse stuff");
 
-		TIMER_BEGIN("shutdown game scripting stuff");
+		TIMER_BEGIN(L"shutdown game scripting stuff");
 		delete &g_GameAttributes;
 		SimulationShutdown();
-		TIMER_END("shutdown game scripting stuff");
+		TIMER_END(L"shutdown game scripting stuff");
 	}
 
 	// destroy actor related stuff
-	TIMER_BEGIN("shutdown actor stuff");
+	TIMER_BEGIN(L"shutdown actor stuff");
 	delete &g_MaterialManager;
-	TIMER_END("shutdown actor stuff");
+	TIMER_END(L"shutdown actor stuff");
 
 	// destroy terrain related stuff
-	TIMER_BEGIN("shutdown TexMan");
+	TIMER_BEGIN(L"shutdown TexMan");
 	delete &g_TexMan;
-	TIMER_END("shutdown TexMan");
+	TIMER_END(L"shutdown TexMan");
 
 	// destroy renderer
-	TIMER_BEGIN("shutdown Renderer");
+	TIMER_BEGIN(L"shutdown Renderer");
 	delete &g_Renderer;
 	g_VBMan.Shutdown();
-	TIMER_END("shutdown Renderer");
+	TIMER_END(L"shutdown Renderer");
 
-	TIMER_BEGIN("shutdown ScriptingHost");
+	TIMER_BEGIN(L"shutdown ScriptingHost");
 	delete &g_ScriptingHost;
-	TIMER_END("shutdown ScriptingHost");
+	TIMER_END(L"shutdown ScriptingHost");
 
-	TIMER_BEGIN("shutdown ConfigDB");
+	TIMER_BEGIN(L"shutdown ConfigDB");
 	delete &g_ConfigDB;
-	TIMER_END("shutdown ConfigDB");
+	TIMER_END(L"shutdown ConfigDB");
 
 	// Shut down the network loop
-	TIMER_BEGIN("shutdown CSocketBase");
+	TIMER_BEGIN(L"shutdown CSocketBase");
 	CSocketBase::Shutdown();
-	TIMER_END("shutdown CSocketBase");
+	TIMER_END(L"shutdown CSocketBase");
 
-	TIMER_BEGIN("shutdown CNetLogManager");
+	TIMER_BEGIN(L"shutdown CNetLogManager");
 	CNetLogManager::Shutdown();
-	TIMER_END("shutdown CNetLogManager");
+	TIMER_END(L"shutdown CNetLogManager");
 
 	// Really shut down the i18n system. Any future calls
 	// to translate() will crash.
-	TIMER_BEGIN("shutdown I18N");
+	TIMER_BEGIN(L"shutdown I18N");
 	I18n::Shutdown();
-	TIMER_END("shutdown I18N");
+	TIMER_END(L"shutdown I18N");
 
 	// resource
 	// first shut down all resource owners, and then the handle manager.
-	TIMER_BEGIN("resource modules");
+	TIMER_BEGIN(L"resource modules");
 		snd_shutdown();
 
 		g_VFS.reset();
@@ -811,16 +811,16 @@ void Shutdown(int flags)
 		// and makes further access to h_mgr impossible.
 		h_mgr_shutdown();
 
-	TIMER_END("resource modules");
+	TIMER_END(L"resource modules");
 
-	TIMER_BEGIN("shutdown misc");
+	TIMER_BEGIN(L"shutdown misc");
 		timer_DisplayClientTotals();
 
 		// should be last, since the above use them
 		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
-	TIMER_END("shutdown misc");
+	TIMER_END(L"shutdown misc");
 }
 
 void EarlyInit()
@@ -828,12 +828,12 @@ void EarlyInit()
 	MICROLOG(L"EarlyInit");
 
 	// If you ever want to catch a particular allocation:
-	//_CrtSetBreakAlloc(321);
+	//_CrtSetBreakAlloc(232647);
 
 	debug_SetThreadName("main");
 	// add all debug_printf "tags" that we are interested in:
-	debug_filter_add("TIMER");
-	debug_filter_add("HRT");
+	debug_filter_add(L"TIMER");
+	debug_filter_add(L"HRT");
 
 	cpu_ConfigureFloatingPoint();
 
@@ -917,7 +917,7 @@ void Init(const CmdLineArgs& args, int flags)
 		MICROLOG(L"SetVideoMode");
 		if(SetVideoMode(g_xres, g_yres, 32, !windowed) < 0)
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "Could not set %dx%d graphics mode: %s", g_xres, g_yres, SDL_GetError());
+			LOG(CLogger::Error, LOG_CATEGORY, L"Could not set %dx%d graphics mode: %hs", g_xres, g_yres, SDL_GetError());
 			throw PSERROR_System_VmodeFailed();
 		}
 
@@ -997,7 +997,7 @@ void Init(const CmdLineArgs& args, int flags)
 		SimulationInit();
 			
 		{
-			TIMER("Init_miscgamesection");
+			TIMER(L"Init_miscgamesection");
 			new CSelectedEntities;
 			new CMouseoverEntities;
 			new CBuildingPlacer;
@@ -1013,7 +1013,7 @@ void Init(const CmdLineArgs& args, int flags)
 	ogl_WarnIfError();
 
 	{
-		TIMER("Init_guiload");
+		TIMER(L"Init_guiload");
 		g_GUI.SendEventToAll("load");
 	}
 

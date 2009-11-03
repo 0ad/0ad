@@ -25,22 +25,13 @@
 #include "lib/file/common/file_stats.h"
 
 
-ERROR_ASSOCIATE(ERR::FILE_ACCESS, "Insufficient access rights to open file", EACCES);
-ERROR_ASSOCIATE(ERR::IO, "Error during IO", EIO);
-
-
-fs::path path_from_wpath(const fs::wpath& pathname)
-{
-	char pathname_c[PATH_MAX];
-	size_t numConverted = wcstombs(pathname_c, pathname.file_string().c_str(), PATH_MAX);
-	debug_assert(numConverted < PATH_MAX);
-	return fs::path(pathname_c);
-}
+ERROR_ASSOCIATE(ERR::FILE_ACCESS, L"Insufficient access rights to open file", EACCES);
+ERROR_ASSOCIATE(ERR::IO, L"Error during IO", EIO);
 
 
 namespace FileImpl {
 
-LibError Open(const fs::path& pathname, char mode, int& fd)
+LibError Open(const fs::wpath& pathname, wchar_t mode, int& fd)
 {
 	int oflag = -1;
 	switch(mode)
@@ -60,7 +51,7 @@ LibError Open(const fs::path& pathname, char mode, int& fd)
 #if OS_WIN
 	oflag |= O_BINARY_NP;
 #endif
-	fd = open(pathname.file_string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
+	fd = wopen(pathname.string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
 		WARN_RETURN(ERR::FILE_ACCESS);
 
@@ -79,7 +70,7 @@ void Close(int& fd)
 }
 
 
-LibError IO(int fd, char mode, off_t ofs, u8* buf, size_t size)
+LibError IO(int fd, wchar_t mode, off_t ofs, u8* buf, size_t size)
 {
 	debug_assert(mode == 'r' || mode == 'w');
 
@@ -101,7 +92,7 @@ LibError IO(int fd, char mode, off_t ofs, u8* buf, size_t size)
 }
 
 
-LibError Issue(aiocb& req, int fd, char mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize)
+LibError Issue(aiocb& req, int fd, wchar_t mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize)
 {
 	memset(&req, 0, sizeof(req));
 	req.aio_lio_opcode = (mode == 'w')? LIO_WRITE : LIO_READ;

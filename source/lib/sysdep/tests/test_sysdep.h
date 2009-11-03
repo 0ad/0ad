@@ -18,6 +18,7 @@
 #include "lib/self_test.h"
 
 #include "lib/lib.h"
+#include "lib/path_util.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/posix/posix.h"	// fminf etc.
 
@@ -79,16 +80,17 @@ public:
 
 	void test_sys_get_executable_name()
 	{
-		char path[PATH_MAX] = "";
+		fs::wpath path;
 
 		// Try it first with the real executable (i.e. the
 		// one that's running this test code)
-		TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
+		TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
 		// Check it's absolute
-		TSM_ASSERT(std::string("Path: ")+path, path_is_absolute(path));
+		TSM_ASSERT(std::wstring(L"Path: ")+path.string(), path_is_absolute(path.string().c_str()));
 		// Check the file exists
+		fs::path path_c = path_from_wpath(path);
 		struct stat s;
-		TSM_ASSERT_EQUALS(std::string("Path: ")+path, stat(path, &s), 0);
+		TSM_ASSERT_EQUALS(std::wstring(L"Path: ")+path.string(), stat(path_c.string().c_str(), &s), 0);
 
 		// Do some platform-specific tests, based on the
 		// implementations of sys_get_executable_name:
@@ -213,7 +215,7 @@ public:
 #endif
 
 private:
-	bool path_is_absolute(const char* path)
+	bool path_is_absolute(const wchar_t* path)
 	{
 		// UNIX-style absolute paths
 		if (path[0] == '/')
@@ -224,7 +226,7 @@ private:
 			return true;
 
 		// Windows drive-letter absolute paths
-		if (isalpha(path[0]) && path[1] == ':' && (path[2] == '/' || path[2] == '\\'))
+		if (iswalpha(path[0]) && path[1] == ':' && (path[2] == '/' || path[2] == '\\'))
 			return true;
 
 		return false;

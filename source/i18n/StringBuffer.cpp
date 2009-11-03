@@ -28,7 +28,7 @@ template<typename T> void delete_fn(T* v) { delete v; }
 #include <iostream>
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "i18n"
+#define LOG_CATEGORY L"i18n"
 
 using namespace I18n;
 
@@ -44,7 +44,7 @@ I18n::StringBuffer::operator Str()
 
 	if (Variables.size() != String->VarCount)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Incorrect number of parameters passed to Translate");
+		LOG(CLogger::Error, LOG_CATEGORY, L"I18n: Incorrect number of parameters passed to Translate");
 
 		// Tidy up
 		std::for_each(Variables.begin(), Variables.end(), delete_fn<BufferVariable>);

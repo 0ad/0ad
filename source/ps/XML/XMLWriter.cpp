@@ -22,6 +22,8 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
+#define LOG_CATEGORY L"xml"
+
 
 // TODO (maybe): Write to the file frequently, instead of buffering
 // the entire file, so that large files get written faster.
@@ -79,17 +81,17 @@ XMLWriter_File::XMLWriter_File()
 	m_Data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 }
 
-bool XMLWriter_File::StoreVFS(const char* filename)
+bool XMLWriter_File::StoreVFS(const VfsPath& pathname)
 {
-	if (m_LastElement) debug_warn("ERROR: Saving XML while an element is still open");
+	if (m_LastElement) debug_warn(L"ERROR: Saving XML while an element is still open");
 
 	const size_t size = m_Data.length();
 	shared_ptr<u8> data = io_Allocate(size);
 	cpu_memcpy(data.get(), m_Data.data(), size);
-	LibError ret = g_VFS->CreateFile(filename, data, size);
+	LibError ret = g_VFS->CreateFile(pathname, data, size);
 	if (ret < 0)
 	{
-		LOG(CLogger::Error, "xml", "Error saving XML data through VFS: %ld", ret);
+		LOG(CLogger::Error, LOG_CATEGORY, L"Error saving XML data through VFS: %ld", ret);
 		return false;
 	}
 	return true;

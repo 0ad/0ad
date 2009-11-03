@@ -51,7 +51,7 @@ public:
 	// Attempt to create a unit with the given actor, attached to an entity
 	// (or NULL), with a set of suggested selections (with the rest being randomised).
 	// Returns NULL on failure.
- 	static CUnit* Create(const CStr& actorName, CEntity* entity,
+ 	static CUnit* Create(const CStrW& actorName, CEntity* entity,
 		const std::set<CStr>& selections, CObjectManager& objectManager);
 
 	// destructor

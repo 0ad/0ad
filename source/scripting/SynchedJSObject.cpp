@@ -48,13 +48,13 @@ void SetFromNetString(int &val, const CStrW& string)
 template <>
 CStrW ToNetString(const bool &val)
 {
-	return val ? CStrW("true") : CStrW("false");
+	return val ? L"true" : L"false";
 }
 
 template <>
 void SetFromNetString(bool &val, const CStrW& string)
 {
-	val = (string == CStrW("true"));
+	val = (string == L"true");
 }
 
 template <>
@@ -75,7 +75,7 @@ CStrW ToNetString(const SColour &data)
 	swprintf(buf, 256, L"%f %f %f %f", data.r, data.g, data.b, data.a);
 	buf[255]=0;
 	
-	return CStrW(buf);
+	return buf;
 }
 
 template <>

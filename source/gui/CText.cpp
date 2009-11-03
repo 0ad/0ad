@@ -34,7 +34,7 @@ CText::CText()
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_int,					"cell_id");
-	AddSetting(GUIST_CStr,					"font");
+	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_bool,					"scrollbar");
 	AddSetting(GUIST_CStr,					"scrollbar_style");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
@@ -68,11 +68,11 @@ void CText::SetupText()
 
 	debug_assert(m_GeneratedTexts.size()>=1);
 
-	CStr font;
-	if (GUI<CStr>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
+	CStrW font;
+	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
 		// Use the default if none is specified
 		// TODO Gee: (2004-08-14) Don't define standard like this. Do it with the default style.
-		font = "default";
+		font = L"default";
 
 	CGUIString caption;
 	bool scrollbar;

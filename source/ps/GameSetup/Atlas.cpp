@@ -53,7 +53,7 @@ static void ATLAS_Run(const CmdLineArgs& args, int flags = 0)
 	extern bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll);
 	if (!BeginAtlas(args, atlas_dll))
 	{
-		debug_warn("Atlas loading failed");
+		debug_warn(L"Atlas loading failed");
 		return;
 	}
 }

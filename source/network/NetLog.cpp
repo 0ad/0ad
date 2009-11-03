@@ -258,8 +258,8 @@ CNetLogFileSink::CNetLogFileSink( void )
 	CNetLogger::GetStringTime( time );
 	
 	// Make relative path
-	fs::path path(fs::path(psLogDir())/"net_log");
-	path /= time+".txt";
+	fs::wpath path(psLogDir()/L"net_log");
+	path /= CStrW(time)+L".txt";
 	m_FileName = path.external_file_string();
 	m_Append = true;
 }
@@ -268,7 +268,7 @@ CNetLogFileSink::CNetLogFileSink( void )
 // Name: CNetLogFileSink()
 // Desc: Constructor
 //-----------------------------------------------------------------------------
-CNetLogFileSink::CNetLogFileSink( const CStr& filename )
+CNetLogFileSink::CNetLogFileSink( const fs::wpath& filename )
 {
 	m_FileName	= filename;
 	m_Append	= true;
@@ -278,7 +278,7 @@ CNetLogFileSink::CNetLogFileSink( const CStr& filename )
 // Name: CNetLogFileSink()
 // Desc: Constructor
 //-----------------------------------------------------------------------------
-CNetLogFileSink::CNetLogFileSink( const CStr& filename, bool append )
+CNetLogFileSink::CNetLogFileSink( const fs::wpath& filename, bool append )
 {
 	m_FileName	= filename;
 	m_Append	= append;
@@ -368,13 +368,13 @@ void CNetLogFileSink::Write( char c )
 // Name: OpenFile()
 // Desc: Open the file where the logging will output
 //-----------------------------------------------------------------------------
-void CNetLogFileSink::OpenFile( const CStr& fileName, bool append )
+void CNetLogFileSink::OpenFile( const fs::wpath& fileName, bool append )
 {
 	// Close any open file
 	if ( m_File.is_open() ) m_File.close();
 
 	// Open the file and log start
-	m_File.open( fileName.c_str(), append ? std::ios::app : std::ios::out );
+	m_File.open( fileName.string().c_str(), append ? std::ios::app : std::ios::out );
 	if ( !m_File.is_open() )
 	{
 		// throw std::ios_base::failure
@@ -931,6 +931,8 @@ void CNetLogger::RemoveAllSinks( void )
 {
 	CScopeLock lock( m_Mutex );
 
+	for ( size_t i = 0; i < GetSinkCount(); i++ )
+		delete m_Sinks[i];
 	m_Sinks.clear();
 }
 

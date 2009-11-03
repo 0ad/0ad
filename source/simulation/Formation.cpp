@@ -21,13 +21,13 @@
 #include "ps/CStr.h"
 #include "maths/MathUtil.h"
 
-#define LOG_CATEGORY "Formation"
+#define LOG_CATEGORY L"Formation"
 
 CFormation::CFormation()
 {
 	m_numSlots = 0;
 }
-bool CFormation::LoadXml(const CStr& filename)
+bool CFormation::LoadXml(const VfsPath& filename)
 {
 	CXeromyces XeroFile;
 
@@ -69,7 +69,7 @@ bool CFormation::LoadXml(const CStr& filename)
 	XMBElement Root = XeroFile.GetRoot();
 	if( Root.GetNodeName() != el_formation )
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CFormation::LoadXml: XML root was not \"Formation\" in file %s. Load failed.", filename.c_str() );
+		LOG(CLogger::Error, LOG_CATEGORY, L"CFormation::LoadXml: XML root was not \"Formation\" in file %ls. Load failed.", filename.string().c_str() );
 		return( false );
 	}
 
@@ -121,7 +121,7 @@ bool CFormation::LoadXml(const CStr& filename)
 		else
 		{
 			const char* invAttr = XeroFile.GetAttributeString(Attr.Name).c_str();
-			LOG(CLogger::Error, LOG_CATEGORY, "CFormation::LoadXml: Invalid attribute %s defined in formation file %s. Load failed.", invAttr, filename.c_str() );
+			LOG(CLogger::Error, LOG_CATEGORY, L"CFormation::LoadXml: Invalid attribute %hs defined in formation file %ls. Load failed.", invAttr, filename.string().c_str() );
 			return( false );
 		}
 	}
@@ -164,7 +164,7 @@ bool CFormation::LoadXml(const CStr& filename)
 
 				if( order <= 0 )
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "CFormation::LoadXml: Invalid (negative number or 0) order defined in formation file %s. The game will try to continue anyway.", filename.c_str() );
+					LOG(CLogger::Error, LOG_CATEGORY, L"CFormation::LoadXml: Invalid (negative number or 0) order defined in formation file %ls. The game will try to continue anyway.", filename.string().c_str() );
 					continue;
 				}
 				--order;	//We need this to be in line with arrays, so start at 0
@@ -196,7 +196,7 @@ bool CFormation::LoadXml(const CStr& filename)
 	{
 		if ( m_slots.find(i) == m_slots.end() )
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "CFormation::LoadXml: Missing orders in %s. Load failed.", filename.c_str() );
+			LOG(CLogger::Error, LOG_CATEGORY, L"CFormation::LoadXml: Missing orders in %ls. Load failed.", filename.string().c_str() );
 			return false;
 		}
 		else

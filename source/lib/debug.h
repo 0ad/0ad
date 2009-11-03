@@ -44,6 +44,12 @@
 extern void debug_break();
 #endif
 
+// wide versions of predefined macros
+#define WIDEN2(x) L ## x
+#define WIDEN(x) WIDEN2(x)
+#define __WFILE__ WIDEN(__FILE__)
+#define __wfunc__ WIDEN(__func__)
+
 
 //-----------------------------------------------------------------------------
 // output
@@ -55,7 +61,6 @@ extern void debug_break();
  *
  * @param format string and varargs; see printf.
  **/
-LIB_API void debug_printf(const char* fmt, ...) PRINTF_ARGS(1);
 LIB_API void debug_printf(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
 
 
@@ -150,7 +155,7 @@ enum ErrorReaction
  * @param flags: see DebugDisplayErrorFlags.
  * @param context, lastFuncToSkip: see debug_DumpStack.
  * @param file, line, func: location of the error (typically passed as
- * __FILE__, __LINE__, __func__ from a macro)
+ * __WFILE__, __LINE__, __wfunc__ from a macro)
  * @param suppress pointer to a caller-allocated flag that can be used to
  * suppress this error. if NULL, this functionality is skipped and the
  * "Suppress" dialog button will be disabled.
@@ -158,13 +163,13 @@ enum ErrorReaction
  * provides the storage. values: see DEBUG_SUPPRESS above.
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flags, void* context, const char* lastFuncToSkip, const char* file, int line, const char* func, u8* suppress);
+LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flags, void* context, const wchar_t* lastFuncToSkip, const wchar_t* file, int line, const wchar_t* func, u8* suppress);
 
 /**
  * convenience version, in case the advanced parameters aren't needed.
  * macro instead of providing overload/default values for C compatibility.
  **/
-#define DEBUG_DISPLAY_ERROR(text) debug_DisplayError(text, 0, 0, "debug_DisplayError", __FILE__,__LINE__,__func__, 0)
+#define DEBUG_DISPLAY_ERROR(text) debug_DisplayError(text, 0, 0, L"debug_DisplayError", __WFILE__,__LINE__,__wfunc__, 0)
 
 
 //
@@ -194,13 +199,13 @@ LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flag
  * in future, allow output with the given tag to proceed.
  * no effect if already added.
  **/
-LIB_API void debug_filter_add(const char* tag);
+LIB_API void debug_filter_add(const wchar_t* tag);
 
 /**
  * in future, discard output with the given tag.
  * no effect if not currently added.
  **/
-LIB_API void debug_filter_remove(const char* tag);
+LIB_API void debug_filter_remove(const wchar_t* tag);
 
 /**
  * clear all filter state; equivalent to debug_filter_remove for
@@ -213,7 +218,7 @@ LIB_API void debug_filter_clear();
  * useful for a series of debug_printfs - avoids needing to add a tag to
  * each of their format strings.
  **/
-LIB_API bool debug_filter_allows(const char* text);
+LIB_API bool debug_filter_allows(const wchar_t* text);
 
 
 /**
@@ -264,7 +269,7 @@ STMT(\
 	static u8 suppress__;\
 	if(!(expr))\
 	{\
-		switch(debug_OnAssertionFailure(#expr, &suppress__, __FILE__, __LINE__, __func__))\
+	switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, __WFILE__, __LINE__, __wfunc__))\
 		{\
 		case ER_BREAK:\
 			debug_break();\
@@ -288,7 +293,7 @@ STMT(\
 #define debug_warn(expr) \
 STMT(\
 	static u8 suppress__;\
-	switch(debug_OnAssertionFailure(expr, &suppress__, __FILE__, __LINE__, __func__))\
+	switch(debug_OnAssertionFailure(expr, &suppress__, __WFILE__, __LINE__, __wfunc__))\
 	{\
 	case ER_BREAK:\
 		debug_break();\
@@ -307,7 +312,7 @@ STMT(\
 #define DEBUG_WARN_ERR(err)\
 STMT(\
 	static u8 suppress__;\
-	switch(debug_OnError(err, &suppress__, __FILE__, __LINE__, __func__))\
+	switch(debug_OnError(err, &suppress__, __WFILE__, __LINE__, __wfunc__))\
 	{\
 	case ER_BREAK:\
 		debug_break();\
@@ -329,7 +334,7 @@ STMT(\
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_OnAssertionFailure(const char* assert_expr, u8* suppress, const char* file, int line, const char* func);
+LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, u8* suppress, const wchar_t* file, int line, const wchar_t* func);
 
 /**
  * called when a DEBUG_WARN_ERR indicates an error occurred;
@@ -341,7 +346,7 @@ LIB_API ErrorReaction debug_OnAssertionFailure(const char* assert_expr, u8* supp
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_OnError(LibError err, u8* suppress, const char* file, int line, const char* func);
+LIB_API ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const wchar_t* func);
 
 
 /**
@@ -424,7 +429,7 @@ const size_t DBG_FILE_LEN = 100;
  * @return LibError; INFO::OK iff any information was successfully
  * retrieved and stored.
  **/
-LIB_API LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, int* line);
+LIB_API LibError debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line);
 
 /**
  * write a complete stack trace (including values of local variables) into
@@ -444,7 +449,7 @@ LIB_API LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char
  * @return LibError; ERR::REENTERED if reentered via recursion or
  * multithreading (not allowed since static data is used).
  **/
-LIB_API LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* context, const char* lastFuncToSkip);
+LIB_API LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* context, const wchar_t* lastFuncToSkip);
 
 
 //-----------------------------------------------------------------------------
@@ -456,7 +461,7 @@ LIB_API LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* context, c
  * this can be quite slow (~1 ms)! On Windows, it uses OutputDebugString
  * (entails context switch), otherwise stdout+fflush (waits for IO).
  **/
-LIB_API void debug_puts(const char* text);
+LIB_API void debug_puts(const wchar_t* text);
 
 /**
  * return the caller of a certain function on the call stack.
@@ -467,7 +472,7 @@ LIB_API void debug_puts(const char* text);
  * @param context, lastFuncToSkip - see debug_DumpStack
  * @return address of the caller
  **/
-LIB_API void* debug_GetCaller(void* context, const char* lastFuncToSkip);
+LIB_API void* debug_GetCaller(void* context, const wchar_t* lastFuncToSkip);
 
 /**
  * check if a pointer appears to be totally invalid.
@@ -535,6 +540,6 @@ LIB_API void debug_FreeErrorMessage(ErrorMessageMem* emm);
  * fallback in case heap alloc fails. should be freed via
  * debug_FreeErrorMessage when no longer needed.
  **/
-LIB_API const wchar_t* debug_BuildErrorMessage(const wchar_t* description, const char* fn_only, int line, const char* func, void* context, const char* lastFuncToSkip, ErrorMessageMem* emm);
+LIB_API const wchar_t* debug_BuildErrorMessage(const wchar_t* description, const wchar_t* fn_only, int line, const wchar_t* func, void* context, const wchar_t* lastFuncToSkip, ErrorMessageMem* emm);
 
 #endif	// #ifndef INCLUDED_DEBUG

@@ -54,7 +54,7 @@ CMapWriter::CMapWriter()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // SaveMap: try to save the current map to the given file
-void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
+void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 						 CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
 						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
@@ -64,11 +64,10 @@ void CMapWriter::SaveMap(const char* filename, CTerrain* pTerrain,
 	PackMap(packer, pTerrain);
 
 	// write it out
-	packer.Write(filename);
+	packer.Write(pathname);
 
-	CStr filename_xml (filename);
-	filename_xml = filename_xml.Left(filename_xml.length()-4) + ".xml";
-	WriteXML(filename_xml, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
+	VfsPath pathnameXML = fs::change_extension(pathname, L".xml");
+	WriteXML(pathnameXML, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -173,7 +172,7 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 	// pack tile data
 	packer.PackRaw(&tiles[0],sizeof(STileDesc)*tiles.size());	
 }
-void CMapWriter::WriteXML(const char* filename,
+void CMapWriter::WriteXML(const VfsPath& filename,
 						  CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
 						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
@@ -391,8 +390,7 @@ void CMapWriter::WriteXML(const char* filename,
 		
 		const std::list<MapTriggerGroup>& groups = g_TriggerManager.GetAllTriggerGroups();
 		std::list<MapTriggerGroup> rootChildren;
-		std::list<MapTriggerGroup>::const_iterator root = std::find( groups.begin(), groups.end(),
-																			CStrW(L"Triggers") );
+		std::list<MapTriggerGroup>::const_iterator root = std::find( groups.begin(), groups.end(), L"Triggers" );
 
 		if ( root == groups.end() )
 		{
@@ -432,7 +430,7 @@ void CMapWriter::WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGr
 		if ( it2 != groupList.end() )
 			WriteTriggerGroup(xml_file_, *it2, groupList);
 		else
-			debug_warn("Invalid trigger group ID while writing map");
+			debug_warn(L"Invalid trigger group ID while writing map");
 	}
 
 	for ( std::list<MapTrigger>::const_iterator it = group.triggers.begin(); it != group.triggers.end(); ++it )
@@ -489,8 +487,8 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 											paramIter != it2->parameters.end(); ++paramIter )
 				{
 					CStrW paramString(*paramIter);
-					//paramString.Replace(CStrW(L"<"), CStrW(L"&lt;"));
-					//paramString.Replace(CStrW(L">"), CStrW(L"&gt;"));
+					//paramString.Replace(L"<", L"&lt;");
+					//paramString.Replace(L">", L"&gt;");
 					XML_Setting("Parameter", paramString);
 				}
 				if ( it2->linkLogic == 1 )
@@ -533,18 +531,17 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
 	VfsPaths pathnames;
-	(void)fs_util::GetPathnames(g_VFS, "maps/scenarios", "*.pmp", pathnames);
+	(void)fs_util::GetPathnames(g_VFS, L"maps/scenarios", L"*.pmp", pathnames);
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
-		const char* pathname = pathnames[i].string().c_str();
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(pathname, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
+		reader->LoadMap(pathnames[i], pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 
-		CStr newPathname(pathname);
-		newPathname.Replace("scenarios/", "scenarios/new/");
+		CStrW newPathname(pathnames[i].string());
+		newPathname.Replace(L"scenarios/", L"scenarios/new/");
 		CMapWriter writer;
 		writer.SaveMap(newPathname, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
 	}

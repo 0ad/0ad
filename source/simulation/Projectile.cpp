@@ -145,7 +145,7 @@ void CProjectile::ScriptingInit()
 JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval )
 {
 	debug_assert( argc >= 4 );
-	CStr ModelString;
+	CStrW ModelString;
 	CVector3D Here, There;
 	float Speed;
 	CEntity* Temp, *Originator = NULL;
@@ -165,7 +165,7 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 			goto fail;
 		}
 	}
-	else if( !ToPrimitive<CStr>( cx, argv[0], ModelString ) || NULL == ( oe = g_Game->GetView()->GetObjectManager().FindObject( ModelString ) ) || NULL == ( Model = oe->m_Model ) )
+	else if( !ToPrimitive<CStrW>( cx, argv[0], ModelString ) || NULL == ( oe = g_Game->GetView()->GetObjectManager().FindObject( ModelString ) ) || NULL == ( Model = oe->m_Model ) )
 	{
 		err = "Invalid actor";
 		goto fail;

@@ -30,7 +30,7 @@
 
 //-----------------------------------------------------------------------------
 
-VfsFile::VfsFile(const std::string& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& loader)
+VfsFile::VfsFile(const std::wstring& name, size_t size, time_t mtime, size_t priority, const PIFileLoader& loader)
 	: m_name(name), m_size(size), m_mtime(mtime), m_priority(priority), m_loader(loader)
 {
 }
@@ -62,12 +62,12 @@ bool VfsFile::IsSupersededBy(const VfsFile& file) const
 }
 
 
-void VfsFile::GenerateDescription(char* text, size_t maxChars) const
+void VfsFile::GenerateDescription(wchar_t* text, size_t maxChars) const
 {
-	char timestamp[25];
+	wchar_t timestamp[25];
 	const time_t mtime = MTime();
-	strftime(timestamp, ARRAY_SIZE(timestamp), "%a %b %d %H:%M:%S %Y", localtime(&mtime));
-	sprintf_s(text, maxChars, "(%c; %6lu; %s)\n", m_loader->LocationCode(), (unsigned long)Size(), timestamp);
+	wcsftime(timestamp, ARRAY_SIZE(timestamp), L"%a %b %d %H:%M:%S %Y", localtime(&mtime));
+	swprintf_s(text, maxChars, L"(%c; %6lu; %ls)\n", m_loader->LocationCode(), (unsigned long)Size(), timestamp);
 }
 
 
@@ -87,7 +87,7 @@ VfsDirectory::VfsDirectory()
 
 VfsFile* VfsDirectory::AddFile(const VfsFile& file)
 {
-	std::pair<std::string, VfsFile> value = std::make_pair(file.Name(), file);
+	std::pair<std::wstring, VfsFile> value = std::make_pair(file.Name(), file);
 	std::pair<VfsFiles::iterator, bool> ret = m_files.insert(value);
 	if(!ret.second)	// already existed
 	{
@@ -105,15 +105,15 @@ VfsFile* VfsDirectory::AddFile(const VfsFile& file)
 
 // rationale: passing in a pre-constructed VfsDirectory and copying that into
 // our map would be slower and less convenient for the caller.
-VfsDirectory* VfsDirectory::AddSubdirectory(const std::string& name)
+VfsDirectory* VfsDirectory::AddSubdirectory(const std::wstring& name)
 {
-	std::pair<std::string, VfsDirectory> value = std::make_pair(name, VfsDirectory());
+	std::pair<std::wstring, VfsDirectory> value = std::make_pair(name, VfsDirectory());
 	std::pair<VfsSubdirectories::iterator, bool> ret = m_subdirectories.insert(value);
 	return &(*ret.first).second;
 }
 
 
-VfsFile* VfsDirectory::GetFile(const std::string& name)
+VfsFile* VfsDirectory::GetFile(const std::wstring& name)
 {
 	VfsFiles::iterator it = m_files.find(name);
 	if(it == m_files.end())
@@ -122,7 +122,7 @@ VfsFile* VfsDirectory::GetFile(const std::string& name)
 }
 
 
-VfsDirectory* VfsDirectory::GetSubdirectory(const std::string& name)
+VfsDirectory* VfsDirectory::GetSubdirectory(const std::wstring& name)
 {
 	VfsSubdirectories::iterator it = m_subdirectories.find(name);
 	if(it == m_subdirectories.end())
@@ -153,33 +153,33 @@ void VfsDirectory::GetEntries(FileInfos* files, DirectoryNames* subdirectoryName
 
 void VfsDirectory::DisplayR(size_t depth) const
 {
-	static const char indent[] = "    ";
+	static const wchar_t indent[] = L"    ";
 
-	const size_t maxNameChars = 80 - depth*(sizeof(indent)-1);
-	char fmt[20];
-	sprintf_s(fmt, ARRAY_SIZE(fmt), "%%-%lu.%lus %%s", (unsigned long)maxNameChars, (unsigned long)maxNameChars);
+	const size_t maxNameChars = 80 - depth*(ARRAY_SIZE(indent)-1);
+	wchar_t fmt[20];
+	swprintf_s(fmt, ARRAY_SIZE(fmt), L"%%-%lu.%luls %%ls", (unsigned long)maxNameChars, (unsigned long)maxNameChars);
 
 	for(VfsFiles::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
 	{
-		const std::string& name = it->first;
+		const std::wstring& name = it->first;
 		const VfsFile& file = it->second;
 
-		char description[100];
+		wchar_t description[100];
 		file.GenerateDescription(description, ARRAY_SIZE(description));
 
 		for(size_t i = 0; i < depth+1; i++)
-			printf("%s", indent);
-		printf(fmt, name.c_str(), description);
+			wprintf(L"%ls", indent);
+		wprintf(fmt, name.c_str(), description);
 	}
 
 	for(VfsSubdirectories::const_iterator it = m_subdirectories.begin(); it != m_subdirectories.end(); ++it)
 	{
-		const std::string& name = it->first;
+		const std::wstring& name = it->first;
 		const VfsDirectory& directory = it->second;
 
 		for(size_t i = 0; i < depth+1; i++)
-			printf("%s", indent);
-		printf("[%s/]\n", name.c_str());
+			wprintf(L"%ls", indent);
+		wprintf(L"[%ls/]\n", name.c_str());
 
 		directory.DisplayR(depth+1);
 	}

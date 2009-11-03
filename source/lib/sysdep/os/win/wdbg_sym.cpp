@@ -31,7 +31,6 @@
 
 #include "lib/debug_stl.h"
 #include "lib/app_hooks.h"
-#include "lib/os_path.h"
 #include "lib/path_util.h"
 #if ARCH_IA32
 # include "lib/sysdep/arch/ia32/ia32.h"
@@ -133,7 +132,7 @@ struct TI_FINDCHILDREN_PARAMS2
 
 // actual implementation; made available so that functions already under
 // the lock don't have to unlock (slow) to avoid recursive locking.
-static LibError ResolveSymbol_lk(void* ptr_of_interest, char* sym_name, char* file, int* line)
+static LibError ResolveSymbol_lk(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line)
 {
 	sym_init();
 
@@ -149,7 +148,7 @@ static LibError ResolveSymbol_lk(void* ptr_of_interest, char* sym_name, char* fi
 		SYMBOL_INFOW* sym = &sp.si;
 		if(pSymFromAddrW(hProcess, addr, 0, sym))
 		{
-			wsprintfA(sym_name, "%ws", sym->Name);
+			wcscpy_s(sym_name, DBG_SYMBOL_LEN, sym->Name);
 			successes++;
 		}
 	}
@@ -160,9 +159,9 @@ static LibError ResolveSymbol_lk(void* ptr_of_interest, char* sym_name, char* fi
 		file[0] = '\0';
 		*line = 0;
 
-		IMAGEHLP_LINE64 line_info = { sizeof(IMAGEHLP_LINE64) };
+		IMAGEHLP_LINEW64 line_info = { sizeof(IMAGEHLP_LINEW64) };
 		DWORD displacement; // unused but required by pSymGetLineFromAddr64!
-		if(pSymGetLineFromAddr64(hProcess, addr, &displacement, &line_info))
+		if(pSymGetLineFromAddrW64(hProcess, addr, &displacement, &line_info))
 		{
 			if(file)
 			{
@@ -170,8 +169,8 @@ static LibError ResolveSymbol_lk(void* ptr_of_interest, char* sym_name, char* fi
 				// this loses information, but that isn't expected to be a
 				// problem and is balanced by not having to do this from every
 				// call site (full path is too long to display nicely).
-				const char* base_name = path_name_only(line_info.FileName);
-				wsprintf(file, "%s", base_name);
+				const wchar_t* basename = path_name_only(line_info.FileName);
+				wcscpy_s(file, DBG_FILE_LEN, basename);
 				successes++;
 			}
 
@@ -193,7 +192,7 @@ static LibError ResolveSymbol_lk(void* ptr_of_interest, char* sym_name, char* fi
 // sym_name and file must hold at least the number of chars above;
 // file is the base name only, not path (see rationale in wdbg_sym).
 // the PDB implementation is rather slow (~500µs).
-LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+LibError debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line)
 {
 	WinScopedLock lock(WDBG_SYM_CS);
 	return ResolveSymbol_lk(ptr_of_interest, sym_name, file, line);
@@ -303,7 +302,7 @@ typedef VOID (WINAPI *PRtlCaptureContext)(PCONTEXT);
 static PRtlCaptureContext s_RtlCaptureContext;
 
 
-LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTEXT* pcontext, const char* lastFuncToSkip)
+LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTEXT* pcontext, const wchar_t* lastFuncToSkip)
 {
 	// to function properly, StackWalk64 requires a CONTEXT on
 	// non-x86 systems (documented) or when in release mode (observed).
@@ -405,11 +404,11 @@ LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, const CONTE
 		if(lastFuncToSkip)
 		{
 			void* const pc = (void*)(uintptr_t)sf.AddrPC.Offset;
-			char func[DBG_SYMBOL_LEN];
+			wchar_t func[DBG_SYMBOL_LEN];
 			err = debug_ResolveSymbol(pc, func, 0, 0);
 			if(err == INFO::OK)
 			{
-				if(strstr(func, lastFuncToSkip))
+				if(wcsstr(func, lastFuncToSkip))
 					lastFuncToSkip = 0;
 				continue;
 			}
@@ -444,7 +443,7 @@ static LibError nth_caller_cb(const _tagSTACKFRAME64* sf, uintptr_t cbData)
 	return INFO::OK;
 }
 
-void* debug_GetCaller(void* pcontext, const char* lastFuncToSkip)
+void* debug_GetCaller(void* pcontext, const wchar_t* lastFuncToSkip)
 {
 	void* func;
 	LibError ret = wdbg_sym_WalkStack(nth_caller_cb, (uintptr_t)&func, (const CONTEXT*)pcontext, lastFuncToSkip);
@@ -704,7 +703,7 @@ static LibError dump_string(const u8* p, size_t el_size)
 		buf[i] = '\0';
 	}
 
-	out(L"\"%s\"", buf);
+	out(L"\"%ls\"", buf);
 	return INFO::OK;
 }
 
@@ -920,7 +919,7 @@ static LibError DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const 
 
 	*pp = (const u8*)(uintptr_t)addr;
 
-	debug_printf("SYM| %ws at %p  flags=%X dk=%d sym->addr=%I64X fp=%I64x\n", sym->Name, *pp, sym->Flags, dataKind, sym->Address, sf->AddrFrame.Offset);
+	debug_printf(L"SYM| %ls at %p  flags=%X dk=%d sym->addr=%I64X fp=%I64x\n", sym->Name, *pp, sym->Flags, dataKind, sym->Address, sf->AddrFrame.Offset);
 	return INFO::OK;
 }
 
@@ -1135,7 +1134,7 @@ static LibError dump_sym_data(DWORD id, const u8* p, DumpState state)
 	if(!pSymFromIndexW(hProcess, mod_base, id, sym))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
-	out(L"%ws = ", sym->Name);
+	out(L"%ls = ", sym->Name);
 
 	__try
 	{
@@ -1193,7 +1192,7 @@ static LibError dump_sym_enum(DWORD type_id, const u8* p, DumpState UNUSED(state
 			const wchar_t* name;
 			if(!pSymGetTypeInfo(hProcess, mod_base, child_data_id, TI_GET_SYMNAME, &name))
 				WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
-			out(L"%s", name);
+			out(L"%ls", name);
 			LocalFree((HLOCAL)name);
 			return INFO::OK;
 		}
@@ -1224,7 +1223,7 @@ static LibError dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpS
 	// unfortunately the one thing we care about, its name,
 	// isn't exposed via TI_GET_SYMNAME, so we resolve it ourselves.
 
-	char name[DBG_SYMBOL_LEN];
+	wchar_t name[DBG_SYMBOL_LEN];
 	LibError err = ResolveSymbol_lk((void*)p, name, 0, 0);
 
 	if(state.indirection == 0)
@@ -1276,7 +1275,7 @@ static bool ptr_already_visited(const u8* p)
 		static bool haveComplained;
 		if(!haveComplained)
 		{
-			debug_printf("WARNING: ptr_already_visited: capacity exceeded, increase maxVisited\n");
+			debug_printf(L"WARNING: ptr_already_visited: capacity exceeded, increase maxVisited\n");
 			debug_break();
 			haveComplained = true;
 		}
@@ -1377,23 +1376,19 @@ static LibError udt_get_child_type(const wchar_t* child_name, ULONG num_children
 }
 
 
-static LibError udt_dump_std(const wchar_t* wtype_name, const u8* p, size_t size, DumpState state, ULONG num_children, const DWORD* children)
+static LibError udt_dump_std(const wchar_t* type_name, const u8* p, size_t size, DumpState state, ULONG num_children, const DWORD* children)
 {
 	LibError err;
 
 	// not a C++ standard library object; can't handle it.
-	if(wcsncmp(wtype_name, L"std::", 5) != 0)
+	if(wcsncmp(type_name, L"std::", 5) != 0)
 		return INFO::CANNOT_HANDLE;
 
 	// check for C++ objects that should be displayed via udt_dump_normal.
 	// STL containers are special-cased and the rest (apart from those here)
 	// are ignored, because for the most part they are spew.
-	if(!wcsncmp(wtype_name, L"std::pair", 9))
+	if(!wcsncmp(type_name, L"std::pair", 9))
 		return INFO::CANNOT_HANDLE;
-
-	// convert to char since debug_stl doesn't support wchar_t.
-	char ctype_name[DBG_SYMBOL_LEN];
-	sprintf_s(ctype_name, ARRAY_SIZE(ctype_name), "%ws", wtype_name);
 
 	// display contents of STL containers
 	// .. get element type
@@ -1406,34 +1401,40 @@ static LibError udt_dump_std(const wchar_t* wtype_name, const u8* p, size_t size
 	size_t el_count;
 	DebugStlIterator el_iterator;
 	u8 it_mem[DEBUG_STL_MAX_ITERATOR_SIZE];
-	err = debug_stl_get_container_info(ctype_name, p, size, el_size, &el_count, &el_iterator, it_mem);
+	err = debug_stl_get_container_info(type_name, p, size, el_size, &el_count, &el_iterator, it_mem);
 	if(err != INFO::OK)
 		goto not_valid_container;
 	return dump_sequence(el_iterator, it_mem, el_count, el_type_id, el_size, state);
 not_valid_container:
 
 	// build and display detailed "error" message.
-	char buf[100];
-	const char* text;
+	wchar_t buf[100];
+	const wchar_t* text;
 	// .. object named std::* but doesn't include a "value_type" child =>
 	//    it's a non-STL C++ stdlib object. wasn't handled by the
 	//    special case above, so we just display its simplified type name
 	//    (the contents are usually spew).
 	if(err == ERR::SYM_CHILD_NOT_FOUND)
-		text = "";
+		text = L"";
 	// .. not one of the containers we can analyse.
 	if(err == ERR::STL_CNT_UNKNOWN)
-		text = "unsupported ";
+		text = L"unsupported ";
 	// .. container of a known type but contents are invalid.
 	if(err == ERR::STL_CNT_INVALID)
-		text = "uninitialized/invalid ";
+		text = L"uninitialized/invalid ";
 	// .. some other error encountered
 	else
 	{
-		sprintf_s(buf, ARRAY_SIZE(buf), "error %d while analyzing ", err);
+		swprintf_s(buf, ARRAY_SIZE(buf), L"error %d while analyzing ", err);
 		text = buf;
 	}
-	out(L"(%hs%hs)", text, debug_stl_simplify_name(ctype_name));
+
+	// (debug_stl modifies its input string in-place; type_name is
+	// a const string returned by dbghelp)
+	wchar_t type_name_buf[DBG_SYMBOL_LEN];
+	wcscpy_s(type_name_buf, ARRAY_SIZE(type_name_buf), type_name);
+
+	out(L"(%ls%ls)", text, debug_stl_simplify_name(type_name_buf));
 	return INFO::OK;
 }
 
@@ -1562,7 +1563,7 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 			continue;
 		if(ofs >= size)
 		{
-			debug_printf("INVALID_UDT %ws %d %d\n", type_name, ofs, size);
+			debug_printf(L"INVALID_UDT %ls %d %d\n", type_name, ofs, size);
 		}
 		//debug_assert(ofs < size);
 
@@ -1594,7 +1595,7 @@ static LibError udt_dump_normal(const wchar_t* type_name, const u8* p, size_t si
 	if(!displayed_anything)
 	{
 		out_erase(2);	// "{ " or "\r\n"
-		out(L"(%s)", type_name);
+		out(L"(%ls)", type_name);
 		return INFO::OK;
 	}
 
@@ -1674,7 +1675,7 @@ static LibError dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState U
 	if(!pSymGetTypeInfo(hProcess, mod_base, type_id, TI_GET_SYMTAG, &type_tag))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
-	debug_printf("SYM| unknown tag: %d\n", type_tag);
+	debug_printf(L"SYM| unknown tag: %d\n", type_tag);
 	out(L"(unknown symbol type)");
 	return INFO::OK;
 }
@@ -1784,7 +1785,7 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 	current_stackframe64 = sf;
 	void* func = (void*)(uintptr_t)sf->AddrPC.Offset;
 
-	char func_name[DBG_SYMBOL_LEN]; char file[DBG_FILE_LEN]; int line;
+	wchar_t func_name[DBG_SYMBOL_LEN]; wchar_t file[DBG_FILE_LEN]; int line;
 	LibError ret = ResolveSymbol_lk(func, func_name, file, &line);
 	if(ret == INFO::OK)
 	{
@@ -1795,10 +1796,10 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 		// that would cut off callbacks as well.
 		// note: the stdcall mangled name includes parameter size, which is
 		// different in 64-bit, so only check the first characters.
-		if(!strncmp(func_name, "_BaseProcessStart", 17))
+		if(!wcsncmp(func_name, L"_BaseProcessStart", 17))
 			return INFO::OK;
 
-		out(L"%hs (%hs:%d)\r\n", func_name, file, line);
+		out(L"%ls (%ls:%d)\r\n", func_name, file, line);
 	}
 	else
 		out(L"%p\r\n", func);
@@ -1820,7 +1821,7 @@ static LibError dump_frame_cb(const _tagSTACKFRAME64* sf, uintptr_t UNUSED(cbDat
 }
 
 
-LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* pcontext, const char* lastFuncToSkip)
+LibError debug_DumpStack(wchar_t* buf, size_t maxChars, void* pcontext, const wchar_t* lastFuncToSkip)
 {
 	static uintptr_t already_in_progress;
 	if(!cpu_CAS(&already_in_progress, 0, 1))
@@ -1847,8 +1848,8 @@ void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* exception_pointers)
 {
 	WinScopedLock lock(WDBG_SYM_CS);
 
-	OsPath path = OsPath(ah_get_log_dir())/"crashlog.dmp";
-	HANDLE hFile = CreateFile(path.string().c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
+	fs::wpath path = ah_get_log_dir()/L"crashlog.dmp";
+	HANDLE hFile = CreateFileW(path.string().c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, 0, CREATE_ALWAYS, 0, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 	{
 		DEBUG_DISPLAY_ERROR(L"wdbg_sym_WriteMinidump: unable to create crashlog.dmp.");

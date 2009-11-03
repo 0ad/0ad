@@ -224,7 +224,7 @@ HEntity CEntityManager::Create(CEntityTemplate* base, CVector3D position, float 
 		m_nextalloc++;
 		if(m_nextalloc >= MAX_HANDLES)
 		{
-			debug_warn("Ran out of entity handles!");
+			debug_warn(L"Ran out of entity handles!");
 			return HEntity();
 		}
 	}

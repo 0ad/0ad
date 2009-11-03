@@ -120,7 +120,7 @@ struct SGUIText
 		/**
 		 * Font name
 		 */
-		CStr m_Font;
+		CStrW m_Font;
 
 		/**
 		 * Settings

@@ -29,7 +29,7 @@
  * this function does not allocate memory from the CRT heap, which makes it
  * safe to use from an allocation hook.
  **/
-LIB_API void wdbg_printf(const char* fmt, ...);
+LIB_API void wdbg_printf(const wchar_t* fmt, ...);
 
 /**
  * similar to debug_assert but safe to use during critical init or

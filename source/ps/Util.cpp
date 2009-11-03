@@ -63,7 +63,7 @@ static std::string SplitExts(const char *exts)
 
 void WriteSystemInfo()
 {
-	TIMER("write_sys_info");
+	TIMER(L"write_sys_info");
 
 	// get_cpu_info and gfx_detect already called during init - see call site
 	snd_detect();
@@ -71,21 +71,22 @@ void WriteSystemInfo()
 	struct utsname un;
 	uname(&un);
 
-	fs::path pathname(fs::path(psLogDir())/"system_info.txt");
-	FILE* f = fopen(pathname.external_file_string().c_str(), "w");
+	fs::wpath pathname(fs::wpath(psLogDir())/L"system_info.txt");
+	const fs::path pathname_c = path_from_wpath(pathname);
+	FILE* f = fopen(pathname_c.string().c_str(), "w");
 	if(!f)
 		return;
 
 	// current timestamp (redundant WRT OS timestamp, but that is not
 	// visible when people are posting this file's contents online)
 	{
-	char timestamp_buf[100] = {'\0'};
+	wchar_t timestampBuf[100] = {'\0'};
 	time_t seconds;
 	time(&seconds);
 	struct tm* t = gmtime(&seconds);
-	const size_t chars_written = strftime(timestamp_buf, ARRAY_SIZE(timestamp_buf), "(generated %Y-%m-%d %H:%M:%S UTC)", t);
-	debug_assert(chars_written != 0);
-	fprintf(f, "%s\n\n", timestamp_buf);
+	const size_t charsWritten = wcsftime(timestampBuf, ARRAY_SIZE(timestampBuf), L"(generated %Y-%m-%d %H:%M:%S UTC)", t);
+	debug_assert(charsWritten != 0);
+	fwprintf(f, L"%ls\n\n", timestampBuf);
 	}
 
 	// OS
@@ -109,13 +110,13 @@ void WriteSystemInfo()
 	fprintf(f, "Memory         : %u MiB; %u MiB free\n", (unsigned)os_cpu_MemorySize(), (unsigned)os_cpu_MemoryAvailable());
 
 	// graphics
-	fprintf(f, "Graphics Card  : %s\n", gfx_card);
-	fprintf(f, "OpenGL Drivers : %s; %s\n", glGetString(GL_VERSION), gfx_drv_ver);
+	fwprintf(f, L"Graphics Card  : %ls\n", gfx_card);
+	fprintf(f, "OpenGL Drivers : %s; %ls\n", glGetString(GL_VERSION), gfx_drv_ver);
 	fprintf(f, "Video Mode     : %dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 
 	// sound
-	fprintf(f, "Sound Card     : %s\n", snd_card);
-	fprintf(f, "Sound Drivers  : %s\n", snd_drv_ver);
+	fwprintf(f, L"Sound Card     : %ls\n", snd_card);
+	fwprintf(f, L"Sound Drivers  : %ls\n", snd_drv_ver);
 
 
 	//
@@ -168,11 +169,9 @@ no_ip:
 // not thread-safe!
 static const wchar_t* HardcodedErrorString(int err)
 {
-	char description[200];
+	static wchar_t description[200];
 	error_description_r((LibError)err, description, ARRAY_SIZE(description));
-	static wchar_t output_buf[200];
-	mbstowcs(output_buf, description, ARRAY_SIZE(output_buf));
-	return output_buf;
+	return description;
 }
 
 // not thread-safe!
@@ -191,7 +190,7 @@ const wchar_t* ErrorString(int err)
 // transformed to write it out in the format determined by <fn>'s extension.
 static LibError tex_write(Tex* t, const VfsPath& filename)
 {
-	const std::string extension = fs::extension(filename);
+	const std::wstring extension = fs::extension(filename);
 
 	DynArray da;
 	RETURN_ERR(tex_encode(t, extension, &da));
@@ -218,11 +217,11 @@ static size_t s_nextScreenshotNumber;
 // <extension> identifies the file format that is to be written
 // (case-insensitive). examples: "bmp", "png", "jpg".
 // BMP is good for quick output at the expense of large files.
-void WriteScreenshot(const char* extension)
+void WriteScreenshot(const std::wstring& extension)
 {
 	// get next available numbered filename
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
-	const VfsPath basenameFormat("screenshots/screenshot%04d");
+	const VfsPath basenameFormat(L"screenshots/screenshot%04d");
 	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
 	VfsPath filename;
 	fs_util::NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
@@ -233,7 +232,7 @@ void WriteScreenshot(const char* extension)
 	int flags = TEX_BOTTOM_UP;
 	// we want writing BMP to be as fast as possible,
 	// so read data from OpenGL in BMP format to obviate conversion.
-	if(!strcasecmp(extension, "bmp"))
+	if(!wcscasecmp(extension.c_str(), L".bmp"))
 	{
 		fmt = GL_BGR;
 		flags |= TEX_BGR;
@@ -254,14 +253,14 @@ void WriteScreenshot(const char* extension)
 
 
 // Similar to WriteScreenshot, but generates an image of size 640*tiles x 480*tiles.
-void WriteBigScreenshot(const char* extension, int tiles)
+void WriteBigScreenshot(const std::wstring& extension, int tiles)
 {
 	// If the game hasn't started yet then use WriteScreenshot to generate the image.
-	if(g_Game == NULL){ WriteScreenshot(".bmp"); return; }
+	if(g_Game == NULL){ WriteScreenshot(L".bmp"); return; }
 
 	// get next available numbered filename
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
-	const VfsPath basenameFormat("screenshots/screenshot%04d");
+	const VfsPath basenameFormat(L"screenshots/screenshot%04d");
 	const VfsPath filenameFormat = fs::change_extension(basenameFormat, extension);
 	VfsPath filename;
 	fs_util::NextNumberedFilename(g_VFS, filenameFormat, s_nextScreenshotNumber, filename);
@@ -277,7 +276,7 @@ void WriteBigScreenshot(const char* extension, int tiles)
 	int flags = TEX_BOTTOM_UP;
 	// we want writing BMP to be as fast as possible,
 	// so read data from OpenGL in BMP format to obviate conversion.
-	if(!strcasecmp(extension, "bmp"))
+	if(!wcscasecmp(extension.c_str(), L".bmp"))
 	{
 		fmt = GL_BGR;
 		flags |= TEX_BGR;

@@ -110,7 +110,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	}
 	catch (PSERROR_DllLoader&)
 	{
-		debug_warn("Failed to initialise DLL");
+		debug_warn(L"Failed to initialise DLL");
 		return false;
 	}
 
@@ -131,8 +131,8 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	app_hooks_update(&hooks);
 	
 	// Disable the game's cursor rendering
-	extern CStr g_CursorName;
-	g_CursorName = "";
+	extern CStrW g_CursorName;
+	g_CursorName = L"";
 
 	state.args = args;
 	state.running = true;
@@ -182,10 +182,10 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 				}
 				else
 				{
-					debug_warn("Unrecognised message");
+					debug_warn(L"Unrecognised message");
 					// CLogger might not be initialised, but this error will be sent
 					// to the debug output window anyway so people can still see it
-					LOG(CLogger::Error, "atlas", "Unrecognised message (%s)", name.c_str());
+					LOG(CLogger::Error, L"atlas", L"Unrecognised message (%hs)", name.c_str());
 				}
 
 				if (msg->GetType() == IMessage::Query)

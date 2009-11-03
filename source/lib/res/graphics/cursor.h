@@ -31,7 +31,7 @@
  * uses a hardware mouse cursor where available, otherwise a
  * portable OpenGL implementation.
  **/
-extern LibError cursor_draw(const char* name, int x, int y);
+extern LibError cursor_draw(const wchar_t* name, int x, int y);
 
 // internal use only:
 extern int g_yres;

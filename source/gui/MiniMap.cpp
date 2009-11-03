@@ -177,7 +177,7 @@ void CMiniMap::SetCameraPos()
 }
 void CMiniMap::FireWorldClickEvent(int button, int clicks)
 {
-	//debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
+	//debug_printf(L"FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
 	
 	CPos MousePos = GetMousePos();
 	CVector2D Destination;

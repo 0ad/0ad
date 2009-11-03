@@ -27,7 +27,7 @@
 #include "sound/SoundGroupMgr.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "entity"
+#define LOG_CATEGORY L"entity"
 
 STL_HASH_SET<CStr, CStr_hash_compare> CEntityTemplate::scriptsLoaded;
 
@@ -156,10 +156,10 @@ void CEntityTemplate::RebuildClassSet()
 		(*it)->RebuildClassSet();
 }
 
-bool CEntityTemplate::LoadXml( const CStr& filename )
+bool CEntityTemplate::LoadXml( const VfsPath& pathname )
 {
 	CXeromyces XeroFile;
-	if (XeroFile.Load(filename) != PSRETURN_OK)
+	if (XeroFile.Load(pathname) != PSRETURN_OK)
 		// Fail
 		return false;
 
@@ -188,13 +188,13 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 
 	if( Root.GetNodeName() != el_Entity )
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CEntityTemplate::LoadXml: XML root was not \"Entity\" in file %s. Load failed.", filename.c_str() );
+		LOG(CLogger::Error, LOG_CATEGORY, L"CEntityTemplate::LoadXml: XML root was not \"Entity\" in file %ls. Load failed.", pathname.string().c_str() );
 		return( false );
 	}
 
 	XMBElementList RootChildren = Root.GetChildNodes();
 
-	m_Tag = CStr(filename).AfterLast("/").BeforeLast(".xml");
+	m_Tag = CStr(pathname.string()).AfterLast("/").BeforeLast(".xml");
 
 	m_Base_Name = Root.GetAttributes().GetNamedItem( at_Parent );
 
@@ -209,7 +209,7 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 		}
 		else
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, "Parent template \"%ls\" does not exist in template \"%ls\"", m_Base_Name.c_str(), m_Tag.c_str() );
+			LOG(CLogger::Warning, LOG_CATEGORY, L"Parent template \"%ls\" does not exist in template \"%ls\"", m_Base_Name.c_str(), m_Tag.c_str() );
 			// (The requested entity will still be returned, but with no parent.
 			// Is this a reasonable thing to do?)
 		}
@@ -227,13 +227,14 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 			if( !Include.empty() && scriptsLoaded.find( Include ) == scriptsLoaded.end() )
 			{
 				scriptsLoaded.insert( Include );
-				g_ScriptingHost.RunScript( Include );
+				g_ScriptingHost.RunScript( CStrW(Include) );
 			}
 
 			CStr Inline = Child.GetText();
 			if( !Inline.empty() )
 			{
-				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), filename.c_str(), Child.GetLineNumber() );
+				CStr pathname_c = CStr(pathname.string());
+				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), pathname_c.c_str(), Child.GetLineNumber() );
 			}
 		}
 		else if (ChildName == el_Traits)
@@ -317,13 +318,13 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 						JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 						if( !fn )
 						{
-							LOG(CLogger::Error, LOG_CATEGORY, "CEntityTemplate::LoadXml: Function does not exist for event %ls in file %s. Load failed.", EventName.c_str(), filename.c_str() );
+							LOG(CLogger::Error, LOG_CATEGORY, L"CEntityTemplate::LoadXml: Function does not exist for event %ls in file %ls. Load failed.", EventName.c_str(), pathname.string().c_str() );
 							break;
 						}
 						m_EventHandlers[eventID].SetFunction( fn );
 					}
 					else
-						m_EventHandlers[eventID].Compile( CStrW( filename ) + L"::" + EventName + L" (" + CStrW( Child.GetLineNumber() ) + L")", Code );
+						m_EventHandlers[eventID].Compile( pathname.string() + L"::" + EventName + L" (" + CStrW( Child.GetLineNumber() ) + L")", Code );
 					HasProperty( EventName )->m_Inherited = false;
 					break;
 				}
@@ -337,7 +338,7 @@ bool CEntityTemplate::LoadXml( const CStr& filename )
 			{
 				XMBElement child = children.Item(j);
 				CStr8 name = toCamelCase( XeroFile.GetElementString( child.GetNodeName() ) );
-				CStr8 soundGroupFilename = child.GetText();
+				VfsPath soundGroupFilename = CStrW(child.GetText());
 				const size_t soundGroupIndex = g_soundGroupMgr->AddGroup(soundGroupFilename);
 				m_SoundGroupTable[name] = soundGroupIndex;
 			}
@@ -370,7 +371,7 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 	if( Existing )
 	{	
 		if( !Existing->m_Intrinsic )
-			LOG(CLogger::Warning, LOG_CATEGORY, "CEntityTemplate::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
+			LOG(CLogger::Warning, LOG_CATEGORY, L"CEntityTemplate::XMLAddProperty: %ls already defined for %ls. Property trees will be merged.", PropertyName.c_str(), m_Tag.c_str() );
 		Existing->Set( this, JSParseString( Source.GetText() ) );
 		//Existing->m_Inherited = false;
 	}
@@ -389,7 +390,7 @@ void CEntityTemplate::XMLLoadProperty( const CXeromyces& XeroFile, const XMBElem
 	}
 
 	
-	PropertyName += CStrW( L"." );
+	PropertyName += L".";
 
 	// Retrieve any attributes it has and add them as subproperties.
 	XMBAttributeList AttributeSet = Source.GetAttributes();

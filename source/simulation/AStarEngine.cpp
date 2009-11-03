@@ -145,7 +145,7 @@ void CAStarEngine::TAStarTest()
 
 		
 
-		debug_printf("Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
+		debug_printf(L"Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
 
 		CBoundingObject* m_bounds = tempHandle->m_bounds;
 
@@ -178,7 +178,7 @@ void CAStarEngine::TAStarTest()
 
 		if(tempHandler->m_bound_type == CBoundingOjbect::BOUND_OABB)
 		{
-			debug_printf("Entity bound box: %f\n", tempHandler->m_bound_box.m_v);
+			debug_printf(L"Entity bound box: %f\n", tempHandler->m_bound_box.m_v);
 		}
 		
 
@@ -275,7 +275,7 @@ bool CAStarEngine::FindPath(
 
 	if (mSolved && best!=NULL)
 	{
-		//debug_printf("Number of nodes searched: %d\n", iterations);
+		//debug_printf(L"Number of nodes searched: %d\n", iterations);
 		ConstructPath(best);
 	}
 

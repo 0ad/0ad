@@ -40,7 +40,7 @@ MESSAGEHANDLER(ScrollConstant)
 
 	if (msg->dir < 0 || msg->dir > 3)
 	{
-		debug_warn("ScrollConstant: invalid direction");
+		debug_warn(L"ScrollConstant: invalid direction");
 	}
 	else
 	{
@@ -96,7 +96,7 @@ MESSAGEHANDLER(Scroll)
 	}
 	else
 	{
-		debug_warn("Scroll: Invalid type");
+		debug_warn(L"Scroll: Invalid type");
 	}
 	lastCameraPos = camera.GetTranslation();
 }
@@ -158,7 +158,7 @@ MESSAGEHANDLER(RotateAround)
 	}
 	else
 	{
-		debug_warn("RotateAround: Invalid type");
+		debug_warn(L"RotateAround: Invalid type");
 	}
 }
 

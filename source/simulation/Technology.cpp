@@ -30,7 +30,7 @@
 #include "ps/Player.h"
 #include "scripting/ScriptableComplex.inl"
 
-#define LOG_CATEGORY "Techs"
+#define LOG_CATEGORY L"Techs"
 
 STL_HASH_SET<CStr, CStr_hash_compare> CTechnology::m_scriptsLoaded;
 
@@ -42,11 +42,11 @@ CTechnology::CTechnology( const CStrW& name, CPlayer* player )
 	m_inProgress = false;
 } 
 
-bool CTechnology::LoadXml( const CStr& filename )
+bool CTechnology::LoadXml( const VfsPath& pathname )
 {
 	CXeromyces XeroFile;
 
-	if (XeroFile.Load(filename) != PSRETURN_OK)
+	if (XeroFile.Load(pathname) != PSRETURN_OK)
         return false;
 
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
@@ -61,7 +61,7 @@ bool CTechnology::LoadXml( const CStr& filename )
 	XMBElement Root = XeroFile.GetRoot();
 	if ( Root.GetNodeName() != el_tech )
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CTechnology: XML root was not \"Tech\" in file %s. Load failed.", filename.c_str() );
+		LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology: XML root was not \"Tech\" in file %ls. Load failed.", pathname.string().c_str() );
 		return false;
 	}
 	XMBElementList RootChildren = Root.GetChildNodes();
@@ -75,12 +75,12 @@ bool CTechnology::LoadXml( const CStr& filename )
 		else if ( name == el_req )
 			ret = LoadElReq( element, XeroFile );
 		else if ( name == el_effect )
-			ret = LoadElEffect( element, XeroFile, filename );
+			ret = LoadElEffect( element, XeroFile, pathname );
 		else 
 			continue;
 		if ( !ret )
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "CTechnology: Load failed for file %s", filename.c_str() );
+			LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology: Load failed for file %ls", pathname.string().c_str() );
 			return false;
 		}
 	}
@@ -125,8 +125,8 @@ bool CTechnology::LoadElId( XMBElement ID, CXeromyces& XeroFile )
 			m_History = value;
 		else
 		{
-			const char* tagName = XeroFile.GetElementString(name).c_str();
-			LOG(CLogger::Error, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
+			const CStrW tagName(XeroFile.GetElementString(name));
+			LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology: invalid tag %ls for XML file", tagName.c_str() );
 			return false;
 		}
 	}
@@ -176,15 +176,15 @@ bool CTechnology::LoadElReq( XMBElement Req, CXeromyces& XeroFile )
 		}
 		else
 		{
-			const char* tagName = XeroFile.GetElementString(name).c_str();
-			LOG(CLogger::Error, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
+			const CStrW tagName(XeroFile.GetElementString(name));
+			LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology: invalid tag %ls for XML file", tagName.c_str() );
 			return false;
 		}
 	}
 	return true;
 }
 
-bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const CStr& filename )
+bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const VfsPath& pathname )
 {
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
@@ -229,7 +229,7 @@ bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const C
 				{
 					if( modValue.size() == 0)
 					{
-						LOG(CLogger::Error, LOG_CATEGORY, "CTechnology::LoadXml: invalid Modifier value (empty string)" );
+						LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology::LoadXml(%ls): invalid Modifier value (empty string)", pathname.string().c_str() );
 						m_Modifiers.pop_back();
 						return false;
 					}
@@ -243,7 +243,7 @@ bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const C
 				}
 				else
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "CTechnology::LoadXml: invalid tag inside \"Modifier\" tag" );
+					LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology::LoadXml(%ls): invalid tag inside \"Modifier\" tag", pathname.string().c_str() );
 					m_Modifiers.pop_back();
 					return false;
 				}
@@ -264,7 +264,7 @@ bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const C
 					m_Sets.back().value = setValue.ToFloat();
 				else
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "CTechnology::LoadXml: invalid tag inside \"Set\" tag" );
+					LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology::LoadXml(%ls): invalid tag inside \"Set\" tag", pathname.string().c_str() );
 					m_Sets.pop_back();
 					return false;
 				}
@@ -276,12 +276,13 @@ bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const C
 			if( !Include.empty() && m_scriptsLoaded.find( Include ) == m_scriptsLoaded.end() )
 			{
 				m_scriptsLoaded.insert( Include );
-				g_ScriptingHost.RunScript( Include );
+				g_ScriptingHost.RunScript( CStrW(Include) );
 			}
 			CStr Inline = element.GetText();
 			if( !Inline.empty() )
 			{
-				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), filename, element.GetLineNumber() );
+				CStr pathname_c = CStr(pathname.string());
+				g_ScriptingHost.RunMemScript( Inline.c_str(), Inline.length(), pathname_c.c_str(), element.GetLineNumber() );
 			}
 		}
 		else if ( name == el_function )
@@ -297,19 +298,19 @@ bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const C
 				JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 				if( !fn )
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "CTechnology::LoadXml: Function does not exist for %s in file %s. Load failed.", CStr(funcName).c_str(), filename.c_str() );
+					LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology::LoadXml: Function does not exist for %hs in file %ls. Load failed.", funcName.c_str(), pathname.string().c_str() );
 					return false;
 				}
 				m_effectFunction.SetFunction( fn );
 			}
 			else if ( Inline != CStr() )
-				m_effectFunction.Compile( CStrW( filename ) + L"::" + (CStrW)funcName + L" (" + CStrW( element.GetLineNumber() ) + L")", Inline );
+				m_effectFunction.Compile( pathname.string() + L"::" + CStrW(funcName) + L" (" + CStrW( element.GetLineNumber() ) + L")", Inline );
 			//(No error needed; scripts are optional)
 		}
 		else
 		{
-			const char* tagName = XeroFile.GetElementString(name).c_str();
-			LOG(CLogger::Error, LOG_CATEGORY, "CTechnology: invalid tag %s for XML file", tagName );
+			const CStrW tagName(XeroFile.GetElementString(name));
+			LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology: invalid tag %ls for XML file", tagName.c_str() );
 			return false;
 		}
 	}

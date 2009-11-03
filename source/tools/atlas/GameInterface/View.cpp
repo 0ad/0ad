@@ -267,7 +267,7 @@ View* View::GetView(int /*eRenderView*/ view)
 	case AtlasMessage::eRenderView::GAME:  return View::GetView_Game();
 	case AtlasMessage::eRenderView::ACTOR: return View::GetView_Actor();
 	default:
-		debug_warn("Invalid view type");
+		debug_warn(L"Invalid view type");
 		return View::GetView_None();
 	}
 }

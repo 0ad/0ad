@@ -317,7 +317,7 @@ QUERYHANDLER(GetTriggerChoices)
 			}
 		}
 		else
-			debug_warn("Invalid special choice list for trigger specification parameter");
+			debug_warn(L"Invalid special choice list for trigger specification parameter");
 	}
 	msg->choices = choices;
 	msg->translations = translations;

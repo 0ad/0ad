@@ -73,7 +73,7 @@ to std::wstring.
 #include "CLocale.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "i18n"
+#define LOG_CATEGORY L"i18n"
 
 using namespace I18n;
 
@@ -87,7 +87,7 @@ CLocale_interface* I18n::NewLocale(JSContext* cx, JSObject* scope)
 	}
 	catch (PSERROR_I18n& e)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "Error creating locale object ('%s')", GetErrorString(e));
+		LOG(CLogger::Error, LOG_CATEGORY, L"Error creating locale object ('%hs')", GetErrorString(e));
 		return NULL;
 	}
 }

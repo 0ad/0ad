@@ -43,7 +43,7 @@ public:
 
 	// note: filename is stored by handle manager; no need to keep a copy here.
 
-	JSI_Sound(const CStr& Filename);
+	JSI_Sound(const VfsPath& pathname);
 	~JSI_Sound();
 
 	// Script-bound functions

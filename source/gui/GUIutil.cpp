@@ -27,7 +27,7 @@ GUI utilities
 extern int g_yres;
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "gui"
+#define LOG_CATEGORY L"gui"
 
 
 template <>
@@ -317,7 +317,7 @@ PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Settin
 	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
 	if (it == pObject->m_Settings.end())
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "setting %s was not found on object %s", 
+		LOG(CLogger::Warning, LOG_CATEGORY, L"setting %hs was not found on object %hs", 
 			Setting.c_str(),
 			pObject->GetPresentableName().c_str());
 		return PSRETURN_GUI_InvalidSetting;
@@ -354,7 +354,7 @@ PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 
 	if (!pObject->SettingExists(Setting))
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "setting %s was not found on object %s", 
+		LOG(CLogger::Warning, LOG_CATEGORY, L"setting %hs was not found on object %hs", 
 			Setting.c_str(),
 			pObject->GetPresentableName().c_str());
 		return PSRETURN_GUI_InvalidSetting;

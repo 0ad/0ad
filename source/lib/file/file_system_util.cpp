@@ -32,7 +32,7 @@
 
 namespace fs_util {
 
-LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const char* filter, VfsPaths& pathnames)
+LibError GetPathnames(const PIVFS& fs, const VfsPath& path, const wchar_t* filter, VfsPaths& pathnames)
 {
 	std::vector<FileInfo> files;
 	RETURN_ERR(fs->GetDirectoryEntries(path, &files, 0));
@@ -54,7 +54,7 @@ struct FileInfoNameLess : public std::binary_function<const FileInfo, const File
 {
 	bool operator()(const FileInfo& fileInfo1, const FileInfo& fileInfo2) const
 	{
-		return strcasecmp(fileInfo1.Name().c_str(), fileInfo2.Name().c_str()) < 0;
+		return wcscasecmp(fileInfo1.Name().c_str(), fileInfo2.Name().c_str()) < 0;
 	}
 };
 
@@ -64,11 +64,11 @@ void SortFiles(FileInfos& files)
 }
 
 
-struct NameLess : public std::binary_function<const std::string, const std::string, bool>
+struct NameLess : public std::binary_function<const std::wstring, const std::wstring, bool>
 {
-	bool operator()(const std::string& name1, const std::string& name2) const
+	bool operator()(const std::wstring& name1, const std::wstring& name2) const
 	{
-		return strcasecmp(name1.c_str(), name2.c_str()) < 0;
+		return wcscasecmp(name1.c_str(), name2.c_str()) < 0;
 	}
 };
 
@@ -78,7 +78,7 @@ void SortDirectories(DirectoryNames& directories)
 }
 
 
-LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const char* pattern, size_t flags)
+LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const wchar_t* pattern, size_t flags)
 {
 	debug_assert(vfs_path_IsDirectory(startPath));
 
@@ -93,7 +93,7 @@ LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb,
 	{
 		const VfsPath& path = pendingDirectories.front();
 
-		RETURN_ERR(fs->GetDirectoryEntries(path/"/", &files, &subdirectoryNames));
+		RETURN_ERR(fs->GetDirectoryEntries(path/L"/", &files, &subdirectoryNames));
 
 		for(size_t i = 0; i < files.size(); i++)
 		{
@@ -126,8 +126,8 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 	// add 3rd -> without this measure it would get number 1, not 3. 
 	if(nextNumber == 0)
 	{
-		const std::string nameFormat = pathnameFormat.leaf();
-		const VfsPath path = pathnameFormat.branch_path()/"/";
+		const std::wstring nameFormat = pathnameFormat.leaf();
+		const VfsPath path = pathnameFormat.branch_path()/L"/";
 
 		size_t maxNumber = 0;
 		FileInfos files;
@@ -135,7 +135,7 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 		for(size_t i = 0; i < files.size(); i++)
 		{
 			int number;
-			if(sscanf(files[i].Name().c_str(), nameFormat.c_str(), &number) == 1)
+			if(swscanf(files[i].Name().c_str(), nameFormat.c_str(), &number) == 1)
 				maxNumber = std::max(size_t(number), maxNumber);
 		}
 
@@ -149,8 +149,8 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 	// we don't bother with binary search - this isn't a bottleneck.
 	do
 	{
-		char pathnameBuf[PATH_MAX];
-		snprintf(pathnameBuf, PATH_MAX, pathnameFormat.string().c_str(), nextNumber++);
+		wchar_t pathnameBuf[PATH_MAX];
+		swprintf_s(pathnameBuf, ARRAY_SIZE(pathnameBuf), pathnameFormat.string().c_str(), nextNumber++);
 		nextPathname = VfsPath(pathnameBuf);
 	}
 	while(fs->GetFileInfo(nextPathname, 0) == INFO::OK);

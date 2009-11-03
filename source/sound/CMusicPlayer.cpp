@@ -23,7 +23,7 @@
 #include <sstream>
 #include <list>
 
-#define LOG_CATEGORY "audio"
+#define LOG_CATEGORY L"audio"
 
 
 
@@ -37,7 +37,7 @@ CMusicPlayer::CMusicPlayer(void)
 	oal_Init();
 
 	if(!alIsExtensionPresent((ALubyte*)"AL_EXT_vorbis"))
-		debug_warn("no OpenAL ogg extension");
+		debug_warn(L"no OpenAL ogg extension");
 */
 	is_open = false;
 }
@@ -59,11 +59,11 @@ void CMusicPlayer::Open(char* UNUSED(filename))
 	size_t sizeOfFile;
 	if(vfs_load(filename, p, sizeOfFile) != INFO::OK)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, L"CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
 		return;
 	}
 	else
-		LOG(CLogger::Normal,  LOG_CATEGORY, "CMusicPlayer::open(): file %s loaded successfully\n", filename);
+		LOG(CLogger::Normal,  LOG_CATEGORY, L"CMusicPlayer::open(): file %s loaded successfully\n", filename);
 	memFile.dataPtr = (char*)p;
 	memFile.dataRead = 0;
 	memFile.dataSize = sizeOfFile;	
@@ -164,7 +164,7 @@ bool CMusicPlayer::Play()
 		return true;
 
 	if(!is_open)
-		debug_warn("play() called before open()");
+		debug_warn(L"play() called before open()");
 /*
 	if(!stream(0))
 		return false;
@@ -208,7 +208,7 @@ bool CMusicPlayer::Update()
 		for(i = 0; i < NUM_BUFS; i++)
 			if(bufs[i].al_buffer == buffer)
 				goto found;
-		debug_warn("al_buffer not found!");
+		debug_warn(L"al_buffer not found!");
 found:
 
 		//fill buffer with new data if false is returned the there is no more data
@@ -233,7 +233,7 @@ void CMusicPlayer::Check()
 	if(error != AL_NO_ERROR)
 	{
 		std::string str = errorString(error);
-		LOG(CLogger::Error, LOG_CATEGORY, "OpenAL error: %s\n", str.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"OpenAL error: %s\n", str.c_str());
 	}
 */
 }

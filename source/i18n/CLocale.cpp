@@ -25,7 +25,7 @@
 #include <algorithm>
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "i18n"
+#define LOG_CATEGORY L"i18n"
 
 using namespace I18n;
 
@@ -154,7 +154,7 @@ bool CLocale::LoadStrings(const char* data)
 							}
 
 						default: // Argh!
-							debug_warn("Invalid function parameter type");
+							debug_warn(L"Invalid function parameter type");
 						}
 					}
 
@@ -164,7 +164,7 @@ bool CLocale::LoadStrings(const char* data)
 				}
 
 			default: // Argh!
-				debug_warn("Invalid translation string section type");
+				debug_warn(L"Invalid translation string section type");
 			}
 		}
 	}
@@ -182,19 +182,19 @@ bool CLocale::LoadFunctions(const char* data, size_t len, const char* filename)
 
 	if (len < 2)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Functions file '%s' is too short", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, L"I18n: Functions file '%hs' is too short", filename);
 		return false;
 	}
 
 	if (*(jschar*)data != 0xFEFF)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Functions file '%s' has invalid Unicode format (lacking little-endian BOM)", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, L"I18n: Functions file '%hs' has invalid Unicode format (lacking little-endian BOM)", filename);
 		return false;
 	}
 
 	if (! Script.ExecuteCode((jschar*)(data+2), len/2, filename))
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "I18n: JS errors in functions file '%s'", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, L"I18n: JS errors in functions file '%hs'", filename);
 		return false;
 	}
 
@@ -213,7 +213,7 @@ bool CLocale::LoadDictionary(const char* data)
 
 	if (dict.DictProperties.size() && PropertyCount != dict.DictProperties.size())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "I18n: Multiple dictionary files loaded with the name ('%ls') and different properties", DictName.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"I18n: Multiple dictionary files loaded with the name ('%ls') and different properties", DictName.c_str());
 		return false;
 		// TODO: Check headings to make sure they're identical (or handle them more cleverly)
 	}
@@ -260,7 +260,7 @@ const CLocale::LookupType* CLocale::LookupWord(const Str& dictname, const Str& w
 	std::map<Str, DictData>::const_iterator dictit = Dictionaries.find(dictname);
 	if (dictit == Dictionaries.end())
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "I18n: Non-loaded dictionary '%ls' accessed", dictname.c_str());
+		LOG(CLogger::Warning, LOG_CATEGORY, L"I18n: Non-loaded dictionary '%ls' accessed", dictname.c_str());
 		return NULL;
 	}
 	std::map<Str, std::vector<Str> >::const_iterator wordit = dictit->second.DictWords.find(word);
@@ -307,7 +307,7 @@ StringBuffer CLocale::Translate(const wchar_t* id)
 	StringsType::iterator TransStr = Strings.find(Str(id));
 	if (TransStr == Strings.end())
 	{
-		LOG(CLogger::Normal, LOG_CATEGORY, "I18n: No translation found for string '%ls'", id);
+		LOG(CLogger::Normal, LOG_CATEGORY, L"I18n: No translation found for string '%ls'", id);
 
 		// Just use the ID string directly, and remember it for the future
 		return StringBuffer(&AddDefaultString(id), this);

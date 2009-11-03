@@ -82,7 +82,7 @@ void CSoundGroupMgr::DeleteInstance()
 // out: size_t index into m_Groups
 // Loads the given XML file and returns an index for later use
 ///////////////////////////////////////////
-size_t CSoundGroupMgr::AddGroup(const char *XMLFile)
+size_t CSoundGroupMgr::AddGroup(const VfsPath& XMLFile)
 {
 	CSoundGroup* newGroup = new CSoundGroup(XMLFile);
 	m_Groups.push_back(newGroup);
@@ -157,5 +157,5 @@ void CSoundGroupMgr::PlayNext(size_t index, const CVector3D& position)
 	if(index < m_Groups.size())
 		m_Groups[index]->PlayNext(position);
 	else
-		debug_printf("SND: PlayNext(%lu) invalid, %lu groups defined\n", (unsigned long)index, (unsigned long)m_Groups.size());
+		debug_printf(L"SND: PlayNext(%lu) invalid, %lu groups defined\n", (unsigned long)index, (unsigned long)m_Groups.size());
 }

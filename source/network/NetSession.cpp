@@ -866,7 +866,7 @@ bool CNetServerSession::BaseHandler(
 	else
 	{
 		// Not disconnected? Weired...
-		LOG( WARNING, LOG_CAT_NET, "CNetServerSession::BaseHandler() NMT_ERROR: %s", pErrMessage->ToString().c_str() );
+		LOG( WARNING, LOG_CATEGORY, L"CNetServerSession::BaseHandler() NMT_ERROR: %s", pErrMessage->ToString().c_str() );
 	}
 
 	delete pMessage;
@@ -892,7 +892,7 @@ bool CNetServerSession::HandshakeHandler(
 	CNetServerSession* pSrvSession = dynamic_cast< CNetServerSession* >( pSession );
 	if ( !pSrvSession ) return false;
 
-	LOG( NORMAL, LOG_CAT_NET, "CNetServerSession::HandshakeHandler() %s", pMessage->ToString().c_str() );
+	LOG( NORMAL, LOG_CATEGORY, L"CNetServerSession::HandshakeHandler() %s", pMessage->ToString().c_str() );
 
 	// Call base handler if other message thant NMT_ClientHandshake
 	if ( pMessage->GetType() != NMT_ClientHandshake ) BaseHandler( pMessage, pSession );

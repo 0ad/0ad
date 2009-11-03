@@ -34,6 +34,7 @@
 #include "ps/CLogger.h"
 #include "lib/external_libraries/sdl.h"
 
+#define LOG_CATEGORY L"profiler"
 extern int g_xres, g_yres;
 
 struct CProfileViewerInternals
@@ -428,12 +429,12 @@ void CProfileViewer::SaveToFile()
 	{
 		// Open the file. (It will be closed when the CProfileViewer
 		// destructor is called.)
-		fs::path path(fs::path(psLogDir())/"profile.txt");
+		fs::wpath path(fs::wpath(psLogDir())/L"profile.txt");
 		m->outputStream.open(path.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
 		if (m->outputStream.fail())
 		{
-			LOG(CLogger::Error, "profiler", "Failed to open profile log file");
+			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to open profile log file");
 			return;
 		}
 	}

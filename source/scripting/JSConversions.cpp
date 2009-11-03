@@ -342,7 +342,7 @@ jsval JSParseString( const CStrW& Native )
 	CParser stringParser;
 	stringParser.InputTaskType( "string", "_$value_" );
 	CParserLine result;
-	result.ParseString( stringParser, (CStr)Native );
+	result.ParseString( stringParser, CStr(Native) );
 	bool boolResult; int intResult; float floatResult;
 
 	if( result.GetArgFloat( 0, floatResult ) )

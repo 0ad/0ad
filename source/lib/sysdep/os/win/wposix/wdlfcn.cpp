@@ -18,7 +18,6 @@
 #include "precompiled.h"
 #include "wdlfcn.h"
 
-#include "lib/os_path.h"
 #include "wposix_internal.h"
 
 
@@ -41,7 +40,7 @@ int dlclose(void* handle)
 }
 
 
-char* dlerror(void)
+char* dlerror()
 {
 	return 0;
 }
@@ -51,8 +50,8 @@ void* dlopen(const char* so_name, int flags)
 {
 	debug_assert(!(flags & RTLD_GLOBAL));
 
-	OsPath path = fs::change_extension(so_name, ".dll");
-	HMODULE hModule = LoadLibrary(path.external_directory_string().c_str());
+	fs::path pathname = fs::change_extension(so_name, ".dll");
+	HMODULE hModule = LoadLibrary(pathname.string().c_str());
 	debug_assert(hModule);
 	return void_from_HMODULE(hModule);
 }

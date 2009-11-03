@@ -23,7 +23,7 @@
 #include "ps/Filesystem.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "i18n"
+#define LOG_CATEGORY L"i18n"
 
 // Yay, global variables. (The user only ever wants to be using one language
 // at a time, so this is sufficient)
@@ -51,60 +51,59 @@ bool I18n::LoadLanguage(const char* name)
 
 	if (! locale_ptr)
 	{
-		debug_warn("Failed to create locale");
+		debug_warn(L"Failed to create locale");
 		return false;
 	}
 
 	// Automatically delete the pointer when returning early
 	std::auto_ptr<CLocale_interface> locale (locale_ptr);
 
-	CStr dirname = CStr("language/")+name+"/";
+	VfsPath dirname = VfsPath(L"language")/CStrW(name)/L"/";
 
 	// Open *.lng with LoadStrings
 	VfsPaths pathnames;
-	if(fs_util::GetPathnames(g_VFS, dirname, "*.lng", pathnames) < 0)
+	if(fs_util::GetPathnames(g_VFS, dirname, L"*.lng", pathnames) < 0)
 		return false;
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
-		const char* pathname = pathnames[i].string().c_str();
 		CVFSFile strings;
-		if (! (strings.Load(pathname) == PSRETURN_OK && locale->LoadStrings((const char*)strings.GetBuffer())))
+		if (! (strings.Load(pathnames[i]) == PSRETURN_OK && locale->LoadStrings((const char*)strings.GetBuffer())))
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "Error opening language string file '%s'", pathname);
+			LOG(CLogger::Error, LOG_CATEGORY, L"Error opening language string file '%ls'", pathnames[i].string().c_str());
 			return false;
 		}
 	}
 
 	// Open *.wrd with LoadDictionary
-	if(fs_util::GetPathnames(g_VFS, dirname, "*.wrd", pathnames) < 0)
+	if(fs_util::GetPathnames(g_VFS, dirname, L"*.wrd", pathnames) < 0)
 		return false;
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
-		const char* pathname = pathnames[i].string().c_str();
 		CVFSFile strings;
-		if (! (strings.Load(pathname) == PSRETURN_OK && locale->LoadDictionary((const char*)strings.GetBuffer())))
+		if (! (strings.Load(pathnames[i]) == PSRETURN_OK && locale->LoadDictionary((const char*)strings.GetBuffer())))
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "Error opening language string file '%s'", pathname);
+			LOG(CLogger::Error, LOG_CATEGORY, L"Error opening language string file '%ls'", pathnames[i].string().c_str());
 			return false;
 		}
 	}
 
 	// Open *.js with LoadFunctions
-	if(fs_util::GetPathnames(g_VFS, dirname, "*.js", pathnames) < 0)
+	if(fs_util::GetPathnames(g_VFS, dirname, L"*.js", pathnames) < 0)
 		return false;
 	for (size_t i = 0; i < pathnames.size(); i++)
 	{
-		const char* pathname = pathnames[i].string().c_str();
+		const wchar_t* pathname = pathnames[i].string().c_str();
+		CStr8 pathname8(pathname);
 		CVFSFile strings;
 		if (! (strings.Load(pathname) == PSRETURN_OK
 			&& 
 			locale->LoadFunctions(
 				(const char*)strings.GetBuffer(),
 				strings.GetBufferSize(),
-				pathname
+				pathname8.c_str()
 			)))
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "Error opening language function file '%s'", pathname);
+			LOG(CLogger::Error, LOG_CATEGORY, L"Error opening language function file '%ls'", pathname);
 			return false;
 		}
 	}

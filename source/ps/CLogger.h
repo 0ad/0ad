@@ -52,37 +52,37 @@ public:
 
 	// Special constructor (mostly for testing) - outputs to provided streams.
 	// Can take ownership of streams and delete them in the destructor.
-	CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership, bool useDebugPrintf);
+	CLogger(std::wostream* mainLog, std::wostream* interestingLog, bool takeOwnership, bool useDebugPrintf);
 
 	~CLogger();
 
 	// Functions to write different message types (Errors and warnings are placed 
 	// both in mainLog and intrestingLog.)
-	void WriteMessage(const char *message);
-	void WriteError  (const char *message);
-	void WriteWarning(const char *message);
+	void WriteMessage(const wchar_t* message);
+	void WriteError  (const wchar_t* message);
+	void WriteWarning(const wchar_t* message);
 	
 	// Function to log stuff to file
 	// -- This function has not been removed because the build would break.
-	void Log(ELogMethod method, const char* category, const char *fmt, ...) PRINTF_ARGS(4);
+	void Log(ELogMethod method, const wchar_t* category, const wchar_t* fmt, ...) PRINTF_ARGS(4);
 	// Similar to Log, but only outputs each message once no matter how many times it's called
 	// -- This function has not been removed because the build would break.
-	void LogOnce(ELogMethod method, const char* category, const char *fmt, ...) PRINTF_ARGS(4);
+	void LogOnce(ELogMethod method, const wchar_t* category, const wchar_t* fmt, ...) PRINTF_ARGS(4);
 	
 	// Functions to write a message, warning or error to file.
-	void LogMessage(const char *fmt, ...) PRINTF_ARGS(2);
-	void LogWarning(const char *fmt, ...) PRINTF_ARGS(2);
-	void LogError(const char *fmt, ...) PRINTF_ARGS(2);
+	void LogMessage(const wchar_t* fmt, ...) PRINTF_ARGS(2);
+	void LogWarning(const wchar_t* fmt, ...) PRINTF_ARGS(2);
+	void LogError(const wchar_t* fmt, ...) PRINTF_ARGS(2);
 	
 private:
 	void Init();
 
 	// -- This function has not been removed because the build would break.
-	void LogUsingMethod(ELogMethod method, const char* message);
+	void LogUsingMethod(ELogMethod method, const wchar_t* message);
 
 	// the output streams
-	std::ostream* m_MainLog;
-	std::ostream* m_InterestingLog;
+	std::wostream* m_MainLog;
+	std::wostream* m_InterestingLog;
 	bool m_OwnsStreams;
 
 	// whether errors should be reported via debug_printf (default)
@@ -95,7 +95,7 @@ private:
 	int m_NumberOfWarnings;
 
 	// Used to remember LogOnce messages
-	std::set<std::string> m_LoggedOnce;
+	std::set<std::wstring> m_LoggedOnce;
 
 };
 
@@ -109,10 +109,10 @@ class TestLogger
 public:
 	TestLogger();
 	~TestLogger();
-	std::string GetOutput();
+	std::wstring GetOutput();
 private:
 	CLogger* m_OldLogger;
-	std::stringstream m_Stream;
+	std::wstringstream m_Stream;
 };
 
 #endif

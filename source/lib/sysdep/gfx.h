@@ -27,7 +27,7 @@ const size_t GFX_CARD_LEN = 128;
  * description of graphics card.
  * initial value is "".
  **/
-extern char gfx_card[GFX_CARD_LEN];
+extern wchar_t gfx_card[GFX_CARD_LEN];
 
 // note: increased from 64 by Joe Cocovich; this large size is necessary
 // because there must be enough space to list the versions of all drivers
@@ -37,7 +37,7 @@ const size_t GFX_DRV_VER_LEN = 256;
  * (OpenGL) graphics driver identification and version.
  * initial value is "".
  **/
-extern char gfx_drv_ver[GFX_DRV_VER_LEN];
+extern wchar_t gfx_drv_ver[GFX_DRV_VER_LEN];
 
 /**
  * approximate amount of graphics memory [MiB]
@@ -47,7 +47,7 @@ extern int gfx_mem;
 /**
  * detect graphics card and set the above information.
  **/
-extern void gfx_detect(void);
+extern void gfx_detect();
 
 
 /**

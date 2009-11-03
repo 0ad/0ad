@@ -76,7 +76,7 @@ typedef std::vector<CParserValue> CConfigValueSet;
 class CConfigDB: public Singleton<CConfigDB>
 {
 	static std::map <CStr, CConfigValueSet> m_Map[];
-	static CStr m_ConfigFile[];
+	static CStrW m_ConfigFile[];
 	static bool m_UseVFS[];
 
 public:
@@ -117,7 +117,7 @@ public:
 	//		VFS: relative to VFS root
 	//		non-VFS: relative to current working directory (binaries/data/)
 	// 'useVFS': true if the path is a VFS path, false if it is a real path
-	void SetConfigFile(EConfigNamespace ns, bool useVFS, const CStr& path);
+	void SetConfigFile(EConfigNamespace ns, bool useVFS, const CStrW& path);
 	
 	// Reload()
 	// Reload the config file associated with the specified config namespace
@@ -135,7 +135,7 @@ public:
 	// Returns:
 	//	true:	if the config namespace was successfully written to the file
 	//	false:	if an error occured
-	bool WriteFile(EConfigNamespace ns, bool useVFS, const CStr& path);
+	bool WriteFile(EConfigNamespace ns, bool useVFS, const CStrW& path);
 };
 
 

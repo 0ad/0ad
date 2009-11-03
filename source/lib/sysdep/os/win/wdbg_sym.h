@@ -48,7 +48,7 @@ typedef LibError (*StackFrameCallback)(const _tagSTACKFRAME64* frame, uintptr_t 
  * stack trace (which is triggered by debug_assert et al. in app code) because
  * nested stack traces are ignored and only the error is displayed.
  **/
-extern LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData = 0, size_t skip = 0, const _CONTEXT* pcontext = 0);
+extern LibError wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData = 0, const _CONTEXT* pcontext = 0, const wchar_t* lastFuncToSkip = 0);
 
 extern void wdbg_sym_WriteMinidump(_EXCEPTION_POINTERS* ep);
 

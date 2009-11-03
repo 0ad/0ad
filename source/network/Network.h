@@ -77,8 +77,6 @@ MORE INFO
 #define ALIGN_UP( _n, _block )	( _n + _block - (_n % _block ) )
 #define ALIGN_BLOCK( _n )		ALIGN_UP( _n, BLOCK_SIZE )
 
-#define LOG_CAT_NET "net"
-
 typedef CLocker<std::deque <CNetMessage *> > CLockedMessageDeque;
 
 //-------------------------------------------------

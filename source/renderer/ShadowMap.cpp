@@ -34,7 +34,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/ShadowMap.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -332,8 +332,8 @@ void ShadowMapInternals::CreateTexture()
 		}
 	}
 
-	LOG(CLogger::Normal,  LOG_CATEGORY, "Creating shadow texture (size %dx%d) (format = %s)%s",
-		Width, Height, formatname, Framebuffer ? " (using EXT_framebuffer_object)" : "");
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"Creating shadow texture (size %dx%d) (format = %hs)%ls",
+		Width, Height, formatname, Framebuffer ? L" (using EXT_framebuffer_object)" : L"");
 
 	// create texture object
 	glGenTextures(1, &Texture);
@@ -398,7 +398,7 @@ void ShadowMapInternals::CreateTexture()
 
 		if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, "Framebuffer object incomplete: %04d", status);
+			LOG(CLogger::Warning, LOG_CATEGORY, L"Framebuffer object incomplete: %04d", status);
 
 			pglDeleteFramebuffersEXT(1, &Framebuffer);
 			Framebuffer = 0;
@@ -513,7 +513,7 @@ void ShadowMap::SetUseDepthTexture(bool depthTexture)
 	{
 		if (!g_Renderer.GetCapabilities().m_DepthTextureShadows)
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, "Depth textures are not supported by your graphics card/driver. Fallback to luminance map (no self-shadowing)!");
+			LOG(CLogger::Warning, LOG_CATEGORY, L"Depth textures are not supported by your graphics card/driver. Fallback to luminance map (no self-shadowing)!");
 			depthTexture = false;
 		}
 	}

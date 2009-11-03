@@ -85,9 +85,9 @@ LibError sys_get_executable_name(char* n_path, size_t max_chars)
 		{
 			return ERR::NO_SYS;
 		}
-		debug_printf("exe name before realpath: %s\n", temp);
+		debug_printf(L"exe name before realpath: %hs\n", temp);
 		realpath(temp, name);
-		debug_printf("exe name after realpath: %s\n", temp);
+		debug_printf(L"exe name after realpath: %hs\n", temp);
 	}
 	
 	// On OS X, we might be in a bundle. In this case set its name as our name.
@@ -95,11 +95,11 @@ LibError sys_get_executable_name(char* n_path, size_t max_chars)
 	if (app) {
 		// Remove everything after the .app
 		*(app + strlen(".app")) = '\0';
-		debug_printf("app bundle name: %s\n", name);
+		debug_printf(L"app bundle name: %hs\n", name);
 	}
 	
 	strncpy(n_path, name, max_chars);
-	debug_printf("returning exe name: %s\n", name);
+	debug_printf(L"returning exe name: %hs\n", name);
 	
 	return INFO::OK;
 }

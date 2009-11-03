@@ -55,9 +55,9 @@
 #include "simulation/TerritoryManager.h"
 
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "world"
+#define LOG_CATEGORY L"world"
 
-extern CStr g_CursorName;
+extern CStrW g_CursorName;
 extern float g_xres, g_yres;
 
 static const double SELECT_DBLCLICK_RATE = 0.5;
@@ -429,7 +429,7 @@ void CSelectedEntities::LoadGroup( i8 groupid )
 
 	if( groupid >= MAX_GROUPS )
 	{
-		debug_warn( "Invalid group id" );
+		debug_warn( L"Invalid group id" );
 		return;
 	}
 
@@ -974,30 +974,30 @@ void CMouseoverEntities::RenderRallyPoints()
 // Helper function for CSelectedEntities::LoadUnitUiTextures
 static LibError LoadUnitUIThunk( const VfsPath& pathname, const FileInfo& UNUSED(fileInfo), uintptr_t cbData )
 {
-	std::map<CStr, Handle>* textures = (std::map<CStr, Handle>*)cbData;
-	CStr name(pathname.string());
+	CSelectedEntities::MapFilenameToHandle* textures = (CSelectedEntities::MapFilenameToHandle*)cbData;
 
-	if ( !tex_is_known_extension(name.c_str()) )
+	if ( !tex_is_known_extension(pathname) )
 		return INFO::CB_CONTINUE;
-	Handle tmp = ogl_tex_load(name.c_str());
-	if (tmp <= 0)
+	Handle ht = ogl_tex_load(pathname);
+	if (ht <= 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "loadRankTextures failed on \"%s\"", name.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"loadRankTextures failed on \"%ls\"", pathname.string().c_str());
 		return INFO::CB_CONTINUE;
 	}
-	name.Remove("art/textures/ui/session/icons/");	//Names are relative to this directory
-	(*textures)[name] = tmp;
-	ogl_tex_upload(tmp);
+	CStrW filename = pathname.string();	
+	filename.Remove(L"art/textures/ui/session/icons/");	//Names are relative to this directory
+	(*textures)[filename] = ht;
+	ogl_tex_upload(ht);
 	return INFO::CB_CONTINUE;
 }
 int CSelectedEntities::LoadUnitUiTextures()
 {
-	THROW_ERR( fs_util::ForEachFile(g_VFS, "art/textures/ui/session/icons/", LoadUnitUIThunk, (uintptr_t)&m_unitUITextures, 0, fs_util::DIR_RECURSIVE));
+	THROW_ERR( fs_util::ForEachFile(g_VFS, L"art/textures/ui/session/icons/", LoadUnitUIThunk, (uintptr_t)&m_unitUITextures, 0, fs_util::DIR_RECURSIVE));
 	return 0;
 }
 void CSelectedEntities::DestroyUnitUiTextures()
 {
-	for ( std::map<CStr, Handle>::iterator it=m_unitUITextures.begin(); it != m_unitUITextures.end(); it++ )
+	for ( MapFilenameToHandle::iterator it=m_unitUITextures.begin(); it != m_unitUITextures.end(); it++ )
 	{
 		ogl_tex_free(it->second);
 		it->second = 0;
@@ -1062,7 +1062,7 @@ void CMouseoverEntities::StopBandbox()
 
 void FireWorldClickEvent(int button, int clicks)
 {
-	//debug_printf("FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
+	//debug_printf(L"FireWorldClickEvent: button %d, clicks %d\n", button, clicks);
 	//If we're clicking on the minimap, use its world click handler
 
 	if ( g_Selection.m_mouseOverMM )

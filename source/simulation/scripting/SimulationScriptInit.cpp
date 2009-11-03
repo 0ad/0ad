@@ -78,7 +78,7 @@ void SimulationScriptInit()
 
 void SimulationInit()
 {
-	TIMER("SimulationInit");
+	TIMER(L"SimulationInit");
 
 	new CEntityTemplateCollection;
 	new CFormationCollection;
@@ -87,8 +87,8 @@ void SimulationInit()
 	g_TechnologyCollection.LoadTechnologies();
 	new CFormationManager;
 	new CTriggerManager;
-	g_TriggerManager.LoadXml(CStr("scripts/TriggerSpecs.xml"));
-	g_ScriptingHost.RunScript("scripts/trigger_functions.js");
+	g_TriggerManager.LoadXml(L"scripts/TriggerSpecs.xml");
+	g_ScriptingHost.RunScript(L"scripts/trigger_functions.js");
 
 	// CEntityManager is managed by CWorld
 	//new CEntityManager;
@@ -98,9 +98,9 @@ void SimulationInit()
 
 void SimulationShutdown()
 {
-	TIMER_BEGIN("shutdown Pathfinder");
+	TIMER_BEGIN(L"shutdown Pathfinder");
 	delete &g_Pathfinder;
-	TIMER_END("shutdown Pathfinder");
+	TIMER_END(L"shutdown Pathfinder");
 
 	// Managed by CWorld
 	// delete &g_EntityManager;

@@ -16,7 +16,7 @@
  */
 
 /*
- * implementation of sys_vsnprintf.
+ * implementation of sys_vswprintf.
  */
 
 #include "precompiled.h"
@@ -47,7 +47,15 @@
 
 */
 
+#define _UNICODE
 #include <tchar.h>
+#ifdef _UNICODE
+# define tstring wstring
+# define tstringstream wstringstream
+#else
+# define tstring string
+# define tstringstream stringstream
+#endif
 #include <string>
 #include <vector>
 
@@ -90,8 +98,8 @@ struct FormatVariable : public FormatChunk
 struct FormatString : public FormatChunk
 {
 	int ChunkType() { return 1; }
-	FormatString(std::string t) : text(t) {}
-	std::string text;
+	FormatString(std::tstring t) : text(t) {}
+	std::tstring text;
 };
 
 
@@ -109,9 +117,9 @@ int get_flag(TCHAR c)
 	return 0;
 }
 
-std::string flags_to_string(char flags)
+std::tstring flags_to_string(char flags)
 {
-	std::string s;
+	std::tstring s;
 	const char* c = "\'-+ #0";
 	for (int i=0; i<6; ++i)
 		if (flags & (1<<i))
@@ -120,10 +128,10 @@ std::string flags_to_string(char flags)
 }
 
 template<typename T>
-std::string to_string(T n)
+std::tstring to_string(T n)
 {
-	std::string s;
-	std::stringstream str;
+	std::tstring s;
+	std::tstringstream str;
 	str << n;
 	str >> s;
 	return s;
@@ -198,7 +206,7 @@ int type_size(TCHAR type, int length)
 	return 0;
 }
 
-int sys_vsnprintf(TCHAR* buffer, size_t count, const TCHAR* format, va_list argptr)
+int sys_vswprintf(TCHAR* buffer, size_t count, const TCHAR* format, va_list argptr)
 {
 	/*
 	
@@ -212,7 +220,7 @@ int sys_vsnprintf(TCHAR* buffer, size_t count, const TCHAR* format, va_list argp
 	/**** Parse the format string into constant/variable chunks ****/
 
 	std::vector<FormatChunk*> specs;
-	std::string stringchunk;
+	std::tstring stringchunk;
 
 	TCHAR chr;
 
@@ -346,7 +354,7 @@ finished_reading:
 
 	/**** Build a new format string (to pass to the system printf) ****/
 
-	std::string newformat;
+	std::tstring newformat;
 
 	std::vector<int> varsizes; // stores the size of each variable type, to allow stack twiddling
 
@@ -368,7 +376,7 @@ finished_reading:
 			}
 
 
-			newformat += "%";
+			newformat += _T("%");
 
 			if (s->flags)
 				newformat += flags_to_string(s->flags);
@@ -395,10 +403,10 @@ finished_reading:
 						#if USE_I64_FORMAT
 						 newformat += "I64";
 						#else
-						 newformat += "ll";
+						 newformat += _T("ll");
 						#endif
 					else if (s->length == 0x00006868)
-						newformat += "hh";
+						newformat += _T("hh");
 				}
 				else
 				{
@@ -433,14 +441,14 @@ finished_reading:
 #endif
 
 	// Highly efficient buffer to store the rearranged copy of the stack
-	std::string newstack;
+	std::tstring newstack;
 
 	std::vector< std::pair<char*, char*> > stackitems;
 
 	va_list arglist = argptr;
 	//va_start(arglist, format);
 
-	const char* newstackptr;
+	const TCHAR* newstackptr;
 
 	if (varsizes.size())
 	{
@@ -474,7 +482,7 @@ finished_reading:
 					debug_assert(0);	// Invalid use of positional elements - make sure all variable things are positional and defined
 					return -1;
 				}
-				newstack += std::string( stackitems[s->position-1].first, stackitems[s->position-1].second );
+				newstack += std::tstring( stackitems[s->position-1].first, stackitems[s->position-1].second );
 			}
 		}
 		
@@ -482,7 +490,7 @@ finished_reading:
 	}
 	else
 	{
-		newstackptr = arglist;
+		newstackptr = (const TCHAR*)arglist;
 	}
 
 	for (ChunkIt it = specs.begin(); it != specs.end(); ++it)
@@ -491,7 +499,7 @@ finished_reading:
 		else
 			delete static_cast<FormatString*>(*it);
 
-	int ret = _vsnprintf(buffer, count, newformat.c_str(), (va_list)newstackptr);
+	int ret = _vsntprintf(buffer, count, newformat.c_str(), (va_list)newstackptr);
 
 	// For consistency with GCC's vsnprintf, make sure the buffer is null-terminated
 	// and return an error if that truncates the output

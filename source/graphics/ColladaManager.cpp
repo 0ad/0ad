@@ -26,6 +26,8 @@
 #include "ps/DllLoader.h"
 #include "ps/Filesystem.h"
 
+#define LOG_CATEGORY L"collada"
+
 namespace Collada
 {
 	#include "collada/DLL.h"
@@ -36,7 +38,7 @@ namespace
 	void ColladaLog(int severity, const char* text)
 	{
 		const CLogger::ELogMethod method = severity == LOG_INFO ? CLogger::Normal : severity == LOG_WARNING ? CLogger::Warning : CLogger::Error;
-		LOG(method, "collada", "%s", text);
+		LOG(method, LOG_CATEGORY, L"%hs", text);
 	}
 
 	void ColladaOutput(void* cb_data, const char* data, unsigned int length)
@@ -79,7 +81,7 @@ public:
 		{
 			if (! dll.LoadDLL())
 			{
-				LOG_ONCE(CLogger::Error, "collada", "Failed to load COLLADA conversion DLL");
+				LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Failed to load COLLADA conversion DLL");
 				return false;
 			}
 
@@ -92,7 +94,7 @@ public:
 			}
 			catch (PSERROR_DllLoader&)
 			{
-				LOG(CLogger::Error, "collada", "Failed to load symbols from COLLADA conversion DLL");
+				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load symbols from COLLADA conversion DLL");
 				dll.Unload();
 				return false;
 			}
@@ -100,9 +102,9 @@ public:
 			set_logger(ColladaLog);
 
 			CVFSFile skeletonFile;
-			if (skeletonFile.Load("art/skeletons/skeletons.xml") != PSRETURN_OK)
+			if (skeletonFile.Load(L"art/skeletons/skeletons.xml") != PSRETURN_OK)
 			{
-				LOG(CLogger::Error, "collada", "Failed to read skeleton definitions");
+				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to read skeleton definitions");
 				dll.Unload();
 				return false;
 			}
@@ -110,7 +112,7 @@ public:
 			int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
 			if (ok < 0)
 			{
-				LOG(CLogger::Error, "collada", "Failed to load skeleton definitions");
+				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load skeleton definitions");
 				dll.Unload();
 				return false;
 			}
@@ -161,13 +163,13 @@ CColladaManager::~CColladaManager()
 	delete m;
 }
 
-VfsPath CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType type)
+VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension, FileType type)
 {
-	const char* extn = NULL;
+	std::wstring extn;
 	switch (type)
 	{
-	case PMD: extn = ".pmd"; break;
-	case PSA: extn = ".psa"; break;
+	case PMD: extn = L".pmd"; break;
+	case PSA: extn = L".psa"; break;
 		// no other alternatives
 	}
 
@@ -199,11 +201,11 @@ VfsPath CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType ty
 	// (TODO: the comments and variable names say "pmd" but actually they can
 	// be "psa" too.)
 
-	VfsPath dae(sourceName + ".dae");
+	VfsPath dae(fs::change_extension(pathnameNoExtension, L".dae"));
 	if (! FileExists(dae))
 	{
 		// No .dae - got to use the .pmd, assuming there is one
-		return VfsPath(sourceName + extn);
+		return fs::change_extension(pathnameNoExtension, extn);
 	}
 
 	// There is a .dae - see if there's an up-to-date cached copy
@@ -212,7 +214,7 @@ VfsPath CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType ty
 	if (g_VFS->GetFileInfo(dae, &fileInfo) < 0)
 	{
 		// This shouldn't occur for any sensible reasons
-		LOG(CLogger::Error, "collada", "Failed to stat DAE file '%s'", dae.string().c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"Failed to stat DAE file '%ls'", dae.string().c_str());
 		return VfsPath();
 	}
 
@@ -221,35 +223,37 @@ VfsPath CColladaManager::GetLoadableFilename(const CStr& sourceName, FileType ty
 	// but do care about the fields not being 64-bit aligned)
 	// (Remove the lowest bit of mtime because some things round it to a
 	// resolution of 2 seconds)
+#pragma pack(push, 1)
 	struct { int version; int mtime; int size; } hashSource
 		= { COLLADA_CONVERTER_VERSION, (int)fileInfo.MTime() & ~1, (int)fileInfo.Size() };
 	cassert(sizeof(hashSource) == sizeof(int) * 3); // no padding, because that would be bad
+#pragma pack(pop)
 
 	// Calculate the hash, convert to hex
 	u32 hash = fnv_hash(static_cast<void*>(&hashSource), sizeof(hashSource));
-	char hashString[9];
-	sprintf(hashString, "%08x", hash);
-	std::string extension("_");
+	wchar_t hashString[9];
+	swprintf_s(hashString, ARRAY_SIZE(hashString), L"%08x", hash);
+	std::wstring extension(L"_");
 	extension += hashString;
 	extension += extn;
 
 	// realDaePath_ is "[..]/mods/whatever/art/meshes/whatever.dae"
-	fs::path realDaePath_;
+	fs::wpath realDaePath_;
 	LibError ret = g_VFS->GetRealPath(dae, realDaePath_);
 	debug_assert(ret == INFO::OK);
-	char realDaeBuf[PATH_MAX];
-	path_copy(realDaeBuf, realDaePath_.string().c_str());
-	const char* realDaePath = strstr(realDaeBuf, "mods/");
+	wchar_t realDaeBuf[PATH_MAX];
+	wcscpy_s(realDaeBuf, ARRAY_SIZE(realDaeBuf), realDaePath_.string().c_str());
+	const wchar_t* realDaePath = wcsstr(realDaeBuf, L"mods/");
 
 	// cachedPmdVfsPath is "cache/mods/whatever/art/meshes/whatever_{hash}.pmd"
-	VfsPath cachedPmdVfsPath = VfsPath("cache/") / realDaePath;
-	cachedPmdVfsPath = change_extension(cachedPmdVfsPath, extension);
+	VfsPath cachedPmdVfsPath = VfsPath(L"cache/") / realDaePath;
+	cachedPmdVfsPath = fs::change_extension(cachedPmdVfsPath, extension);
 
 	// If it's not in the cache, we'll have to create it first
 	if (! FileExists(cachedPmdVfsPath))
 	{
 		if (! m->Convert(dae, cachedPmdVfsPath, type))
-			return ""; // failed to convert
+			return L""; // failed to convert
 	}
 
 	return cachedPmdVfsPath;

@@ -29,7 +29,7 @@ extern JSPropertySpec ScriptGlobalTable[];
 // .. from main.cpp:
 extern int fps;
 extern void kill_mainloop();
-extern CStr g_CursorName;
+extern CStrW g_CursorName;
 extern void StartGame();
 extern void EndGame();
 // .. other

@@ -36,7 +36,7 @@ CCheckBox::CCheckBox()
 	AddSetting(GUIST_CGUIString,			"caption");
 	AddSetting(GUIST_int,					"cell_id");
 	AddSetting(GUIST_bool,					"checked");
-	AddSetting(GUIST_CStr,					"font");
+	AddSetting(GUIST_CStrW,					"font");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_over");
 	AddSetting(GUIST_CGUISpriteInstance,	"sprite_pressed");
@@ -68,11 +68,11 @@ void CCheckBox::SetupText()
 
 	debug_assert(m_GeneratedTexts.size()>=1);
 
-	CStr font;
-	if (GUI<CStr>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
+	CStrW font;
+	if (GUI<CStrW>::GetSetting(this, "font", font) != PSRETURN_OK || font.empty())
 		// Use the default if none is specified
 		// TODO Gee: (2004-08-14) Default should not be hard-coded, but be in styles!
-		font = "default";
+		font = L"default";
 
 	float square_side;
 	GUI<float>::GetSetting(this, "square_side", square_side);
@@ -115,12 +115,12 @@ void CCheckBox::Draw()
 	//////////
 
 	float square_side, buffer_zone;
-	CStr font_name;
+	CStrW font_name;
 	bool checked;
 	int cell_id;
 	GUI<float>::GetSetting(this, "square_side", square_side);
 	GUI<float>::GetSetting(this, "buffer_zone", buffer_zone);
-	GUI<CStr>::GetSetting(this, "font", font_name);
+	GUI<CStrW>::GetSetting(this, "font", font_name);
 	GUI<bool>::GetSetting(this, "checked", checked);
 	GUI<int>::GetSetting(this, "cell_id", cell_id);
 

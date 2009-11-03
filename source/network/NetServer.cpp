@@ -32,8 +32,9 @@
 #include "NetSession.h"
 #include "NetServer.h"
 
-// DECLARATIONS
+#define LOG_CATEGORY L"net"
 
+// DECLARATIONS
 CNetServer*	g_NetServer = NULL;
 
 //-----------------------------------------------------------------------------
@@ -120,7 +121,7 @@ bool CNetServer::Start( JSContext* UNUSED(pContext), uintN UNUSED(argc), jsval* 
 	// Create new session
 	if ( !Create( m_Port, MAX_CLIENTS ) )
 	{
-		LOG( CLogger::Error, LOG_CAT_NET, "CNetServer::Run(): Initialize failed" );
+		LOG( CLogger::Error, LOG_CATEGORY, L"CNetServer::Run(): Initialize failed" );
 
 		return false;
 	}
@@ -412,7 +413,7 @@ bool CNetServer::OnError( void* pContext, CFsmEvent* pEvent )
 		else
 		{
 			// Weird stuff...
-			LOG( CLogger::Warning, LOG_CAT_NET, "NMT_ERROR: %s", pMessage->ToString().c_str() );
+			LOG( CLogger::Warning, LOG_CATEGORY, L"NMT_ERROR: %s", pMessage->ToString().c_str() );
 		}
 	}
 
@@ -481,7 +482,7 @@ bool CNetServer::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
 	{
 		if ( pMessage->m_Password == pServer->m_PlayerPassword )
 		{
-			LOG( CLogger::Normal, LOG_CAT_NET, "Player authentication successful");
+			LOG( CLogger::Normal, LOG_CATEGORY, L"Player authentication successful");
 			
 			pSession->SetName( pMessage->m_Name );		
 			pSession->SetID( pServer->GetFreeSessionID() );
@@ -511,7 +512,7 @@ bool CNetServer::OnAuthenticate( void* pContext, CFsmEvent* pEvent )
 		}
 		else
 		{
-			LOG( CLogger::Warning, LOG_CAT_NET, "Player authentication failed" );
+			LOG( CLogger::Warning, LOG_CATEGORY, L"Player authentication failed" );
 
 			CAuthenticateResultMessage authenticateResult;
 			authenticateResult.m_Code		= ARC_PASSWORD_INVALID;
@@ -1021,7 +1022,7 @@ void CNetServer::QueueIncomingCommand( CNetMessage* pMessage )
 	// Validate parameters
 	if ( !pMessage ) return;
 
-	//LOG( NORMAL, LOG_CAT_NET, "CNetServer::QueueIncomingCommand(): %s.", pMessage->ToString().c_str() );
+	//LOG( NORMAL, LOG_CATEGORY, L"CNetServer::QueueIncomingCommand(): %s.", pMessage->ToString().c_str() );
 
 	QueueMessage( 2, pMessage );
 }

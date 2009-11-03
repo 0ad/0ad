@@ -43,7 +43,7 @@ namespace ERR
  * strings. DBG_SYMBOL_LEN chars is a good measure.
  * @return name for convenience.
  **/
-extern char* debug_stl_simplify_name(char* name);
+extern wchar_t* debug_stl_simplify_name(wchar_t* name);
 
 
 /**
@@ -74,7 +74,7 @@ const size_t DEBUG_STL_MAX_ITERATOR_SIZE = 64;
  * at least DEBUG_STL_MAX_ITERATOR_SIZE bytes.
  * @return LibError (ERR::STL_*)
  **/
-extern LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t size,
+extern LibError debug_stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugStlIterator* el_iterator, void* it_mem);
 
 #endif	// #ifndef INCLUDED_DEBUG_STL

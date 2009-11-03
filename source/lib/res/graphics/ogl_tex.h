@@ -243,7 +243,7 @@ extern Handle ogl_tex_find(const VfsPath& pathname);
 * we need only add bookkeeping information and "wrap" it in
 * a resource object (accessed via Handle), hence the name.
 */
-extern Handle ogl_tex_wrap(Tex* t, const char* fn = 0, size_t flags = 0);
+extern Handle ogl_tex_wrap(Tex* t, const VfsPath& pathname, size_t flags = 0);
 
 /**
 * Release this texture reference. When the count reaches zero, all of

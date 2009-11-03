@@ -66,7 +66,7 @@ struct IVFS
 	 * if files with archive extensions are seen, their contents are added
 	 * as well.
 	 **/
-	virtual LibError Mount(const VfsPath& mountPoint, const fs::path& path, size_t flags = 0, size_t priority = 0) = 0;
+	virtual LibError Mount(const VfsPath& mountPoint, const fs::wpath& path, size_t flags = 0, size_t priority = 0) = 0;
 
 	/**
 	 * retrieve information about a file (similar to POSIX stat)
@@ -129,7 +129,7 @@ struct IVFS
 	 *
 	 * this is useful when passing paths to external libraries.
 	 **/
-	virtual LibError GetRealPath(const VfsPath& pathname, fs::path& path) = 0;
+	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& path) = 0;
 };
 
 typedef shared_ptr<IVFS> PIVFS;

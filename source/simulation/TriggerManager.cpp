@@ -23,7 +23,7 @@
 #include "ps/XML/XeroXMB.h"
 #include "ps/CLogger.h"
 
-#define LOG_CATEGORY "Triggers"
+#define LOG_CATEGORY L"Triggers"
 
 
 CTrigger::CTrigger()
@@ -132,13 +132,13 @@ void CTrigger::Deactivate(JSContext* UNUSED(cx), uintN UNUSED(argc), jsval* UNUS
 
 void TriggerParameter::SetWindowData(const CStrW& _windowType, CStrW& windowPosition, CStrW& windowSize)
 {
-	windowPosition.Remove( CStrW(L" ") );
-	windowSize.Remove( CStrW(L" ") );
+	windowPosition.Remove( L" " );
+	windowSize.Remove( L" " );
 
-	xPos = windowPosition.BeforeFirst( CStrW(L",") ).ToInt();
-	yPos = windowPosition.AfterFirst( CStrW(L",") ).ToInt();
-	xSize = windowSize.BeforeFirst( CStrW(L",") ).ToInt();
-	ySize = windowSize.AfterFirst( CStrW(L",") ).ToInt();
+	xPos = windowPosition.BeforeFirst( L"," ).ToInt();
+	yPos = windowPosition.AfterFirst( L"," ).ToInt();
+	xSize = windowSize.BeforeFirst( L"," ).ToInt();
+	ySize = windowSize.AfterFirst( L"," ).ToInt();
 	windowType = _windowType;
 }
 
@@ -227,15 +227,15 @@ void CTriggerManager::SetAllGroups(const std::list<MapTriggerGroup>& groups)
 void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigger)
 {
 	CStrW conditionBody;
-	CStrW linkLogic[] = { CStrW(L""), CStrW(L" && "), CStrW(L" || ") };
+	CStrW linkLogic[] = { L"", L" && ", L" || " };
 	size_t i=0;
 	bool allParameters = true;
 
 	if(trigger.conditions.size() == 0) {
-		conditionBody = CStrW(L"return ( true );");
+		conditionBody = L"return ( true );";
 	}
 	else {
-		conditionBody = CStrW(L"return ( ");
+		conditionBody = L"return ( ";
 
 		for ( std::list<MapTriggerCondition>::const_iterator it = trigger.conditions.begin();
 													it != trigger.conditions.end(); ++it, ++i )
@@ -245,14 +245,14 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 			if ( ( blockIt = trigger.logicBlocks.find(MapTriggerLogicBlock(i)) ) != trigger.logicBlocks.end() )
 			{
 				if ( blockIt->negated )
-					conditionBody += CStrW(L"!");
-				conditionBody += CStrW(L" (");
+					conditionBody += L"!";
+				conditionBody += L" (";
 			}
 			
 			if ( it->negated )
-				conditionBody += CStrW(L"!");
+				conditionBody += L"!";
 			conditionBody += it->functionName;
-			conditionBody += CStrW(L"(");
+			conditionBody += L"(";
 			
 			for ( std::list<CStrW>::const_iterator it2 = it->parameters.begin(); it2 != 
 														it->parameters.end(); ++it2 )
@@ -263,7 +263,7 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 				//Parameters end here, additional "parameters" are used directly as script
 				if ( distance == params )
 				{
-					conditionBody += CStrW(L") ");
+					conditionBody += L") ";
 					allParameters = false;
 				}
 
@@ -284,19 +284,19 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 					conditionBody += m_TriggerTranslations[combined][translatedIndex];	
 
 				if ( distance + 1 < params )
-					conditionBody += CStrW(L", ");
+					conditionBody += L", ";
 			}
 			
 			if ( allParameters )	//Otherwise, closed inside loop
-				conditionBody += CStrW(L")");
+				conditionBody += L")";
 			if ( trigger.logicBlockEnds.find(i) != trigger.logicBlockEnds.end() )
-				conditionBody += CStrW(L" )");
+				conditionBody += L" )";
 
 			if ( std::distance(it, trigger.conditions.end()) != 1 )
 				conditionBody += linkLogic[it->linkLogic];
 		}
 
-		conditionBody += CStrW(L" );");
+		conditionBody += L" );";
 	}
 
 	CStrW effectBody;
@@ -305,7 +305,7 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 													it != trigger.effects.end(); ++it )
 	{
 		effectBody += it->functionName;
-		effectBody += CStrW(L"(");
+		effectBody += L"(";
 		for ( std::list<CStrW>::const_iterator it2 = it->parameters.begin(); it2 != 
 													it->parameters.end(); ++it2 )
 		{
@@ -327,10 +327,10 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 				effectBody += m_TriggerTranslations[combined][translatedIndex];	
 			std::list<CStrW>::const_iterator endIt = it->parameters.end();
 			if ( std::distance(it2, endIt) != 1 )
-				effectBody += CStrW(L", ");
+				effectBody += L", ";
 		}
 
-		effectBody += CStrW(L");");
+		effectBody += L");";
 	}
 
 	group.triggers.push_back(trigger);
@@ -342,11 +342,11 @@ void CTriggerManager::AddTrigger(MapTriggerGroup& group, const MapTrigger& trigg
 
 //XML stuff
 
-bool CTriggerManager::LoadXml( const CStr& filename )
+bool CTriggerManager::LoadXml( const VfsPath& pathname )
 {
 	CXeromyces XeroFile;
 
-	if ( XeroFile.Load( filename.c_str() ) != PSRETURN_OK )
+	if ( XeroFile.Load( pathname ) != PSRETURN_OK )
 		return false;
 
 	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
@@ -372,7 +372,7 @@ bool CTriggerManager::LoadXml( const CStr& filename )
 		{
 			if ( !LoadTriggerSpec(rootChild, XeroFile, true) )
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "Error detected in Trigger XML <condition> tag. File: %s", filename.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, L"Error detected in Trigger XML <condition> tag. File: %ls", pathname.string().c_str());
 				return false;
 			}
 		}
@@ -380,13 +380,13 @@ bool CTriggerManager::LoadXml( const CStr& filename )
 		{
 			if ( !LoadTriggerSpec(rootChild, XeroFile, false) )
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "Error detected in Trigger XML <effect> tag. File: %s", filename.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, L"Error detected in Trigger XML <effect> tag. File: %ls", pathname.string().c_str());
 				return false;
 			}
 		}
 		else 
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "Invalid tag in trigger XML. File: %s", filename.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, L"Invalid tag in trigger XML. File: %ls", pathname.string().c_str());
 			return false;
 		}
 	}

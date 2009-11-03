@@ -34,14 +34,14 @@ struct VfsPathTraits;
  * rationale: a distinct specialization of basic_path prevents inadvertent
  * assignment from other path types.
  **/
-typedef fs::basic_path<std::string, VfsPathTraits> VfsPath;
+typedef fs::basic_path<std::wstring, VfsPathTraits> VfsPath;
 
 typedef std::vector<VfsPath> VfsPaths;
 
 struct VfsPathTraits
 {
-	typedef std::string internal_string_type;
-	typedef std::string external_string_type;
+	typedef std::wstring internal_string_type;
+	typedef std::wstring external_string_type;
 
 	static external_string_type to_external(const VfsPath&, const internal_string_type& src)
 	{

@@ -84,16 +84,15 @@ private:
 
 	LibError AddFiles(const FileInfos& files) const
 	{
-		const fs::path path(m_realDirectory->Path());
+		const fs::wpath path(m_realDirectory->Path());
 
 		for(size_t i = 0; i < files.size(); i++)
 		{
-			const std::string& name = files[i].Name();
-
-			const char* extension = path_extension(name.c_str());
-			if(strcasecmp(extension, "zip") == 0)
+			const fs::wpath pathname = path/files[i].Name();
+			const std::wstring extension = fs::extension(pathname);
+			if(wcscasecmp(extension.c_str(), L"zip") == 0)
 			{
-				PIArchiveReader archiveReader = CreateArchiveReader_Zip(path/name);
+				PIArchiveReader archiveReader = CreateArchiveReader_Zip(pathname);
 				RETURN_ERR(archiveReader->ReadEntries(AddArchiveFile, (uintptr_t)this));
 			}
 			else	// regular (non-archive) file
@@ -109,7 +108,7 @@ private:
 		{
 			// skip version control directories - this avoids cluttering the
 			// VFS with hundreds of irrelevant files.
-			if(strcasecmp(subdirectoryNames[i].c_str(), ".svn") == 0)
+			if(wcscasecmp(subdirectoryNames[i].c_str(), L".svn") == 0)
 				continue;
 
 			VfsDirectory* subdirectory = m_directory->AddSubdirectory(subdirectoryNames[i]);

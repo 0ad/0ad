@@ -22,7 +22,7 @@
 #include "graphics/Model.h"
 #include "ps/CLogger.h"
 
-#define LOG_CATEGORY "formation"
+#define LOG_CATEGORY L"formation"
 
 
 void CFormationCollection::LoadFile( const VfsPath& pathname )
@@ -32,7 +32,7 @@ void CFormationCollection::LoadFile( const VfsPath& pathname )
 	// we don't have to search every directory for x.xml.
 
 	const CStrW basename(fs::basename(pathname));
-	m_templateFilenames[basename] = pathname.string();
+	m_templateFilenames[basename] = pathname;
 }
 
 static LibError LoadFormationThunk( const VfsPath& path, const FileInfo& UNUSED(fileInfo), uintptr_t cbData )
@@ -45,7 +45,7 @@ static LibError LoadFormationThunk( const VfsPath& path, const FileInfo& UNUSED(
 int CFormationCollection::LoadTemplates()
 {
 	// Load all files in formations and subdirectories.
-	THROW_ERR( fs_util::ForEachFile(g_VFS, "formations/", LoadFormationThunk, (uintptr_t)this, "*.xml", fs_util::DIR_RECURSIVE));
+	THROW_ERR( fs_util::ForEachFile(g_VFS, L"formations/", LoadFormationThunk, (uintptr_t)this, L"*.xml", fs_util::DIR_RECURSIVE));
 	return 0;
 }
 
@@ -61,18 +61,18 @@ CFormation* CFormationCollection::GetTemplate( const CStrW& name )
 	if( filename_it == m_templateFilenames.end() )
 		return( NULL );
 
-	CStr path( filename_it->second );
+	VfsPath pathname( filename_it->second );
 
 	//Try to load to the formation
 	CFormation* newTemplate = new CFormation();
-	if( !newTemplate->LoadXml( path ) )
+	if( !newTemplate->LoadXml( pathname ) )
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CFormationCollection::LoadTemplates(): Couldn't load template \"%s\"", path.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"CFormationCollection::LoadTemplates(): Couldn't load template \"%ls\"", pathname.string().c_str());
 		delete newTemplate;
 		return( NULL );
 	}
 
-	LOG(CLogger::Normal,  LOG_CATEGORY, "CFormationCollection::LoadTemplates(): Loaded template \"%s\"", path.c_str());
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"CFormationCollection::LoadTemplates(): Loaded template \"%ls\"", pathname.string().c_str());
 	m_templates[name] = newTemplate;
 
 	return newTemplate;

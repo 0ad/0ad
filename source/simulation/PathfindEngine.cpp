@@ -237,7 +237,7 @@ void  CPathfindEngine::insertObstacles()
 		
 
 		CEntity* tempHandle = results[i];
-		//debug_printf("Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
+		//debug_printf(L"Entity position: %f %f %f\n", tempHandle->m_position.X,tempHandle->m_position.Y,tempHandle->m_position.Z);
 		
 
 		CVector2D p, q;
@@ -333,7 +333,7 @@ void CPathfindEngine::drawTriangulation()
 	
 	int polyNum = dcdtPathfinder.num_polygons();
 
-	//debug_printf("Number of polygons: %d",polyNum);
+	//debug_printf(L"Number of polygons: %d",polyNum);
 	
 	if(polyNum)
 	{
@@ -452,7 +452,7 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 			// Make the path take as few steps as possible by collapsing steps in the same direction together.
 			std::vector<CVector2D> path;
 
-			debug_printf("waypoints: %d  channel size %d \n ",CurPath.size(),CurChannel.size());
+			debug_printf(L"waypoints: %d  channel size %d \n ",CurPath.size(),CurChannel.size());
 			
 			for (int i = 0; i < CurPath.size(); i++)
    			{
@@ -461,7 +461,7 @@ void CPathfindEngine::RequestTriangulationPath( HEntity entity, const CVector2D&
 				waypoint.x = CurPath[i].x;
 				waypoint.y = CurPath[i].y;
 
-				debug_printf("waypoints: %f %f \n",waypoint.x, waypoint.y);
+				debug_printf(L"waypoints: %f %f \n",waypoint.x, waypoint.y);
 				
 				
 					path.push_back(waypoint);

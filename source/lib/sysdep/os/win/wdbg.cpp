@@ -87,18 +87,18 @@ bool debug_IsStackPointer(void* p)
 }
 
 
-void debug_puts(const char* text)
+void debug_puts(const wchar_t* text)
 {
-	OutputDebugStringA(text);
+	OutputDebugStringW(text);
 }
 
 
-void wdbg_printf(const char* fmt, ...)
+void wdbg_printf(const wchar_t* fmt, ...)
 {
-	char buf[1024];	// as required by wvsprintf
+	wchar_t buf[1024];	// as required by wvsprintf
 	va_list ap;
 	va_start(ap, fmt);
-	wvsprintf(buf, fmt, ap);
+	wvsprintfW(buf, fmt, ap);
 	va_end(ap);
 
 	debug_puts(buf);

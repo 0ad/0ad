@@ -19,21 +19,20 @@
 #define INCLUDED_CPLAYLIST
 
 #include <vector>
-#include <string>
-#include <fstream>
+#include "lib/file/vfs/vfs_path.h"
 
 class CPlayList
 {
 public:
 	CPlayList();
-	CPlayList(const char* file);
+	CPlayList(const VfsPath& pathname);
 	~CPlayList();
-	void Load(const char* file);
+	void Load(const VfsPath& pathname);
 	void List();
-	void Add(std::string name);
+	void Add(std::wstring name);
 
 private:
-	std::vector<std::string> tracks;
+	std::vector<CStrW> tracks;
 };
 
 #endif

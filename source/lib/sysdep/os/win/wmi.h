@@ -35,7 +35,7 @@ typedef std::map<std::wstring, VARIANT> WmiMap;
  * return a map of name/value pairs of the WMI class members.
  * @return LibError
  **/
-extern LibError wmi_GetClass(const char* className, WmiMap& wmiMap);
+extern LibError wmi_GetClass(const wchar_t* className, WmiMap& wmiMap);
 
 extern void wmi_Shutdown();
 

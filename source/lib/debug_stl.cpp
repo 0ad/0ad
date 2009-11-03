@@ -31,32 +31,32 @@
 #include "regex.h"
 
 
-ERROR_ASSOCIATE(ERR::STL_CNT_UNKNOWN, "Unknown STL container type_name", -1);
-ERROR_ASSOCIATE(ERR::STL_CNT_INVALID, "Container type is known but contents are invalid", -1);
+ERROR_ASSOCIATE(ERR::STL_CNT_UNKNOWN, L"Unknown STL container type_name", -1);
+ERROR_ASSOCIATE(ERR::STL_CNT_INVALID, L"Container type is known but contents are invalid", -1);
 
 
 // used in debug_stl_simplify_name.
 // note: strcpy is safe because replacement happens in-place and
 // src is longer than dst (otherwise, we wouldn't be replacing).
 #define REPLACE(what, with)\
-	else if(!strncmp(src, (what), sizeof(what)-1))\
+	else if(!wcsncmp(src, (what), ARRAY_SIZE(what)-1))\
 	{\
-		src += sizeof(what)-1-1; /* see preincrement rationale*/\
-		strcpy(dst, (with)); /* safe - see above */\
-		dst += sizeof(with)-1;\
+		src += ARRAY_SIZE(what)-1-1; /* see preincrement rationale*/\
+		SAFE_WCSCPY(dst, (with));\
+		dst += ARRAY_SIZE(with)-1;\
 	}
 #define STRIP(what)\
-	else if(!strncmp(src, (what), sizeof(what)-1))\
+	else if(!wcsncmp(src, (what), ARRAY_SIZE(what)-1))\
 	{\
-		src += sizeof(what)-1-1;/* see preincrement rationale*/\
+		src += ARRAY_SIZE(what)-1-1;/* see preincrement rationale*/\
 	}
 #define STRIP_NESTED(what)\
-	else if(!strncmp(src, (what), sizeof(what)-1))\
+	else if(!wcsncmp(src, (what), ARRAY_SIZE(what)-1))\
 	{\
 		/* remove preceding comma (if present) */\
 		if(src != name && src[-1] == ',')\
 			dst--;\
-		src += sizeof(what)-1;\
+		src += ARRAY_SIZE(what)-1;\
 		/* strip everything until trailing > is matched */\
 		debug_assert(nesting == 0);\
 		nesting = 1;\
@@ -69,19 +69,19 @@ ERROR_ASSOCIATE(ERR::STL_CNT_INVALID, "Container type is known but contents are 
 //
 // see http://www.bdsoft.com/tools/stlfilt.html and
 // http://www.moderncppdesign.com/publications/better_template_error_messages.html
-char* debug_stl_simplify_name(char* name)
+wchar_t* debug_stl_simplify_name(wchar_t* name)
 {
 	// used when stripping everything inside a < > to continue until
 	// the final bracket is matched (at the original nesting level).
 	int nesting = 0;
 
-	const char* src = name-1;	// preincremented; see below.
-	char* dst = name;
+	const wchar_t* src = name-1;	// preincremented; see below.
+	wchar_t* dst = name;
 
 	// for each character: (except those skipped as parts of strings)
 	for(;;)
 	{
-		char c = *(++src);
+		wchar_t c = *(++src);
 		// preincrement rationale: src++ with no further changes would
 		// require all comparisons to subtract 1. incrementing at the
 		// end of a loop would require a goto, instead of continue
@@ -112,7 +112,7 @@ char* debug_stl_simplify_name(char* name)
 
 		// start if chain (REPLACE and STRIP use else if)
 		if(0) {}
-		else if(!strncmp(src, "::_Node", 7))
+		else if(!wcsncmp(src, L"::_Node", 7))
 		{
 			// add a space if not already preceded by one
 			// (prevents replacing ">::_Node>" with ">>")
@@ -120,29 +120,29 @@ char* debug_stl_simplify_name(char* name)
 				*dst++ = ' ';
 			src += 7;
 		}
-		REPLACE("unsigned short", "u16")
-		REPLACE("unsigned int", "size_t")
-		REPLACE("unsigned __int64", "u64")
-		STRIP(",0> ")
+		REPLACE(L"unsigned short", L"u16")
+		REPLACE(L"unsigned int", L"size_t")
+		REPLACE(L"unsigned __int64", L"u64")
+		STRIP(L",0> ")
 		// early out: all tests after this start with s, so skip them
 		else if(c != 's')
 		{
 			*dst++ = c;
 			continue;
 		}
-		REPLACE("std::_List_nod", "list")
-		REPLACE("std::_Tree_nod", "map")
-		REPLACE("std::basic_string<char,", "string<")
-		REPLACE("std::basic_string<unsigned short,", "wstring<")
-		STRIP("std::char_traits<char>,")
-		STRIP("std::char_traits<unsigned short>,")
-		STRIP("std::_Tmap_traits")
-		STRIP("std::_Tset_traits")
-		STRIP_NESTED("std::allocator<")
-		STRIP_NESTED("std::less<")
-		STRIP_NESTED("stdext::hash_compare<")
-		STRIP("std::")
-		STRIP("stdext::")
+		REPLACE(L"std::_List_nod", L"list")
+		REPLACE(L"std::_Tree_nod", L"map")
+		REPLACE(L"std::basic_string<char,", L"string<")
+		REPLACE(L"std::basic_string<unsigned short,", L"wstring<")
+		STRIP(L"std::char_traits<char>,")
+		STRIP(L"std::char_traits<unsigned short>,")
+		STRIP(L"std::_Tmap_traits")
+		STRIP(L"std::_Tset_traits")
+		STRIP_NESTED(L"std::allocator<")
+		STRIP_NESTED(L"std::less<")
+		STRIP_NESTED(L"stdext::hash_compare<")
+		STRIP(L"std::")
+		STRIP(L"stdext::")
 		else
 			*dst++ = c;
 	}
@@ -594,7 +594,7 @@ template<class T> bool get_container_info(const T& t, size_t size, size_t el_siz
 // return number of elements and an iterator (any data it needs is stored in
 // it_mem, which must hold DEBUG_STL_MAX_ITERATOR_SIZE bytes).
 // returns 0 on success or an StlContainerError.
-LibError debug_stl_get_container_info(const char* type_name, const u8* p, size_t size,
+LibError debug_stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugStlIterator* el_iterator, void* it_mem)
 {
 #if MSC_VERSION >= 1400

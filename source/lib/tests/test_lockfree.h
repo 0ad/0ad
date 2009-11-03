@@ -142,9 +142,9 @@ class TestMultithread : public CxxTest::TestSuite
 			TA_ERASE  = 2,
 			TA_SLEEP  = 3
 		};
-		static const char* const action_strings[] =
+		static const wchar_t* const action_strings[] =
 		{
-			"find", "insert", "erase", "sleep"
+			L"find", L"insert", L"erase", L"sleep"
 		};
 
 		while(!this_->is_complete)
@@ -154,7 +154,7 @@ class TestMultithread : public CxxTest::TestSuite
 			const size_t action         = rand(0, 4);
 			const uintptr_t key         = (uintptr_t)rand(0, 100);
 			const size_t sleep_duration_ms = rand(0, 100);
-			debug_printf("thread %d: %s\n", thread_number, action_strings[action]);
+			debug_printf(L"thread %d: %ls\n", thread_number, action_strings[action]);
 
 			//
 			pthread_mutex_lock(&this_->mutex);

@@ -158,7 +158,7 @@ void VertexArray::Layout()
 	
 	m_Stride = 0;
 	
-	//debug_printf("Layouting VertexArray\n");
+	//debug_printf(L"Layouting VertexArray\n");
 	
 	for(int idx = (int)m_Attributes.size()-1; idx >= 0; --idx)
 	{
@@ -178,7 +178,7 @@ void VertexArray::Layout()
 			break;
 		default:
 			attrSize = 0;
-			debug_warn("Bad AttributeInfo::Type"); break;
+			debug_warn(L"Bad AttributeInfo::Type"); break;
 		}
 
 		attrSize *= attr->elems;
@@ -186,12 +186,12 @@ void VertexArray::Layout()
 		attr->offset = m_Stride;
 		m_Stride = (m_Stride + attrSize + 3) & ~3;
 	
-		//debug_printf("%i: offset: %u\n", idx, attr->offset);
+		//debug_printf(L"%i: offset: %u\n", idx, attr->offset);
 	}
 	
 	m_Stride = RoundStride(m_Stride);
 	
-	//debug_printf("Stride: %u\n", m_Stride);
+	//debug_printf(L"Stride: %u\n", m_Stride);
 	
 	if (m_Stride)
 		m_BackingStore = new char[m_Stride * m_NumVertices];

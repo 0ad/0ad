@@ -25,7 +25,7 @@
 #include "ps/Profile.h"
 #include "ps/Filesystem.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 template<typename T, typename S>
 static void delete_pair_2nd(std::pair<T,S> v)
@@ -62,13 +62,13 @@ CObjectManager::~CObjectManager()
 }
 
 
-CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
+CObjectBase* CObjectManager::FindObjectBase(const wchar_t* objectname)
 {
-	debug_assert(strcmp(objectname, "") != 0);
+	debug_assert(objectname[0] != '\0');
 
 	// See if the base type has been loaded yet:
 
-	std::map<CStr, CObjectBase*>::iterator it = m_ObjectBases.find(objectname);
+	std::map<CStrW, CObjectBase*>::iterator it = m_ObjectBases.find(objectname);
 	if (it != m_ObjectBases.end())
 		return it->second;
 
@@ -84,18 +84,18 @@ CObjectBase* CObjectManager::FindObjectBase(const char* objectname)
 	else
 		delete obj;
 
-	LOG(CLogger::Error, LOG_CATEGORY, "CObjectManager::FindObjectBase(): Cannot find object '%s'", objectname);
+	LOG(CLogger::Error, LOG_CATEGORY, L"CObjectManager::FindObjectBase(): Cannot find object '%ls'", objectname);
 
 	return 0;
 }
 
-CObjectEntry* CObjectManager::FindObject(const char* objname)
+CObjectEntry* CObjectManager::FindObject(const wchar_t* objname)
 {
 	std::vector<std::set<CStr> > selections; // TODO - should this really be empty?
 	return FindObjectVariation(objname, selections);
 }
 
-CObjectEntry* CObjectManager::FindObjectVariation(const char* objname, const std::vector<std::set<CStr> >& selections)
+CObjectEntry* CObjectManager::FindObjectVariation(const wchar_t* objname, const std::vector<std::set<CStr> >& selections)
 {
 	CObjectBase* base = FindObjectBase(objname);
 
@@ -177,10 +177,10 @@ static LibError GetObjectName_ThunkCb(const VfsPath& pathname, const FileInfo& U
 
 void CObjectManager::GetAllObjectNames(std::vector<CStr>& names)
 {
-	(void)fs_util::ForEachFile(g_VFS, "art/actors/", GetObjectName_ThunkCb, (uintptr_t)&names, "*.xml", fs_util::DIR_RECURSIVE);
+	(void)fs_util::ForEachFile(g_VFS, L"art/actors/", GetObjectName_ThunkCb, (uintptr_t)&names, L"*.xml", fs_util::DIR_RECURSIVE);
 }
 
 void CObjectManager::GetPropObjectNames(std::vector<CStr>& names)
 {
-	(void)fs_util::ForEachFile(g_VFS, "art/actors/props/", GetObjectName_ThunkCb, (uintptr_t)&names, "*.xml", fs_util::DIR_RECURSIVE);
+	(void)fs_util::ForEachFile(g_VFS, L"art/actors/props/", GetObjectName_ThunkCb, (uintptr_t)&names, L"*.xml", fs_util::DIR_RECURSIVE);
 }

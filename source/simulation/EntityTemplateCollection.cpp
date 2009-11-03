@@ -25,7 +25,7 @@
 #include "ps/Player.h"
 #include "ps/Game.h"
 
-#define LOG_CATEGORY "entity"
+#define LOG_CATEGORY L"entity"
 
 
 #include <boost/filesystem.hpp>
@@ -37,7 +37,7 @@ void CEntityTemplateCollection::LoadFile( const VfsPath& pathname )
 	// we don't have to search every directory for x.xml.
 
 	const CStrW basename(fs::basename(pathname));
-	m_templateFilenames[basename] = pathname.string();
+	m_templateFilenames[basename] = pathname;
 }
 
 static LibError LoadFileThunk( const VfsPath& path, const FileInfo& UNUSED(fileInfo), uintptr_t cbData )
@@ -50,7 +50,7 @@ static LibError LoadFileThunk( const VfsPath& path, const FileInfo& UNUSED(fileI
 int CEntityTemplateCollection::LoadTemplates()
 {
 	// List all files in entities/ and its subdirectories.
-	THROW_ERR( fs_util::ForEachFile(g_VFS, "entities/", LoadFileThunk, (uintptr_t)this, "*.xml", fs_util::DIR_RECURSIVE));
+	THROW_ERR( fs_util::ForEachFile(g_VFS, L"entities/", LoadFileThunk, (uintptr_t)this, L"*.xml", fs_util::DIR_RECURSIVE));
 
 	/*// Load all the templates; this is necessary so that we can apply techs to them
 	// (otherwise a tech can't affect the template of a unit that doesn't yet exist)
@@ -84,18 +84,18 @@ CEntityTemplate* CEntityTemplateCollection::GetTemplate( const CStrW& name, CPla
 	if( filename_it == m_templateFilenames.end() )
 		return( NULL );
 
-	CStr path( filename_it->second );
+	VfsPath path( filename_it->second );
 
 	// Try to load to the entity
 	CEntityTemplate* newTemplate = new CEntityTemplate( player );
 	if( !newTemplate->LoadXml( path ) )
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CEntityTemplateCollection::GetTemplate(): Couldn't load template \"%s\"", path.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"CEntityTemplateCollection::GetTemplate(): Couldn't load template \"%ls\"", path.string().c_str());
 		delete newTemplate;
 		return( NULL );
 	}
 
-	LOG(CLogger::Normal,  LOG_CATEGORY, "CEntityTemplateCollection::GetTemplate(): Loaded template \"%s\"", path.c_str());
+	LOG(CLogger::Normal,  LOG_CATEGORY, L"CEntityTemplateCollection::GetTemplate(): Loaded template \"%ls\"", path.string().c_str());
 	m_templates[id][name] = newTemplate;
 
 	return newTemplate;

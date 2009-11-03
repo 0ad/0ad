@@ -36,18 +36,20 @@ struct DirDeleter
 };
 
 // is name "." or ".."?
-static bool IsDummyDirectory(const char* name)
+static bool IsDummyDirectory(const wchar_t* name)
 {
 	if(name[0] != '.')
 		return false;
 	return (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'));
 }
 
-LibError GetDirectoryEntries(const fs::path& path, FileInfos* files, DirectoryNames* subdirectoryNames)
+LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
 {
+	fs::path path_c = path_from_wpath(path);
+
 	// open directory
 	errno = 0;
-	DIR* pDir = opendir(path.external_file_string().c_str());
+	DIR* pDir = opendir(path_c.string().c_str());
 	if(!pDir)
 		return LibError_from_errno(false);
 	shared_ptr<DIR> osDir(pDir, DirDeleter());
@@ -64,7 +66,8 @@ LibError GetDirectoryEntries(const fs::path& path, FileInfos* files, DirectoryNa
 			return LibError_from_errno();
 		}
 
-		const char* name = osEnt->d_name;
+		wchar_t name[PATH_MAX];
+		mbstowcs(name, osEnt->d_name, ARRAY_SIZE(name));
 		RETURN_ERR(path_component_validate(name));
 
 		// get file information (mode, size, mtime)
@@ -76,8 +79,9 @@ LibError GetDirectoryEntries(const fs::path& path, FileInfos* files, DirectoryNa
 #else
 		// .. call regular stat().
 		errno = 0;
-		const fs::path pathname(path/name);
-		if(stat(pathname.external_directory_string().c_str(), &s) != 0)
+		const fs::wpath pathname(path/name);
+		const fs::path pathname_c = path_from_wpath(pathname);
+		if(stat(pathname_c.string().c_str(), &s) != 0)
 			return LibError_from_errno();
 #endif
 
@@ -89,29 +93,21 @@ LibError GetDirectoryEntries(const fs::path& path, FileInfos* files, DirectoryNa
 }
 
 
-LibError GetFileInfo(const fs::path& pathname, FileInfo* pfileInfo)
+LibError GetFileInfo(const fs::wpath& pathname, FileInfo* pfileInfo)
 {
-	char osPathname[PATH_MAX];
-	path_copy(osPathname, pathname.external_directory_string().c_str());
-
-	// if path ends in slash, remove it (required by stat)
-	char* last_char = osPathname+strlen(osPathname)-1;
-	if(path_is_dir_sep(*last_char))
-		*last_char = '\0';
-
+	fs::path pathname_c = path_from_wpath(pathname);
 	errno = 0;
 	struct stat s;
 	memset(&s, 0, sizeof(s));
-	if(stat(osPathname, &s) != 0)
+	if(stat(pathname_c.string().c_str(), &s) != 0)
 		return LibError_from_errno();
 
-	const char* name = path_name_only(osPathname);
-	*pfileInfo = FileInfo(name, s.st_size, s.st_mtime);
+	*pfileInfo = FileInfo(pathname.leaf(), s.st_size, s.st_mtime);
 	return INFO::OK;
 }
 
 
-LibError CreateDirectories(const fs::path& path, mode_t mode)
+LibError CreateDirectories(const fs::wpath& path, mode_t mode)
 {
 	if(path.empty() || fs::exists(path))
 	{
@@ -122,17 +118,16 @@ LibError CreateDirectories(const fs::path& path, mode_t mode)
 
 	RETURN_ERR(CreateDirectories(path.branch_path(), mode));
 
-	char osPath[PATH_MAX];
-	path_copy(osPath, path.external_directory_string().c_str());
+	const fs::path path_c = path_from_wpath(path);
 	errno = 0;
-	if(mkdir(osPath, mode) != 0)
+	if(mkdir(path_c.string().c_str(), mode) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;
 }
 
 
-LibError DeleteDirectory(const fs::path& path)
+LibError DeleteDirectory(const fs::wpath& path)
 {
 	// note: we have to recursively empty the directory before it can
 	// be deleted (required by Windows and POSIX rmdir()).
@@ -143,9 +138,10 @@ LibError DeleteDirectory(const fs::path& path)
 	// delete files
 	for(size_t i = 0; i < files.size(); i++)
 	{
-		const fs::path pathname(path/files[i].Name());
+		const fs::wpath pathname(path/files[i].Name());
+		const fs::path pathname_c = path_from_wpath(pathname);
 		errno = 0;
-		if(unlink(pathname.external_file_string().c_str()) != 0)
+		if(unlink(pathname_c.string().c_str()) != 0)
 			return LibError_from_errno();
 	}
 
@@ -153,8 +149,9 @@ LibError DeleteDirectory(const fs::path& path)
 	for(size_t i = 0; i < subdirectoryNames.size(); i++)
 		RETURN_ERR(DeleteDirectory(path/subdirectoryNames[i]));
 
+	const fs::path path_c = path_from_wpath(path);
 	errno = 0;
-	if(rmdir(path.external_directory_string().c_str()) != 0)
+	if(rmdir(path_c.string().c_str()) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;

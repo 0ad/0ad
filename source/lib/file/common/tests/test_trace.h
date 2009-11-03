@@ -24,35 +24,35 @@ class TestTraceEntry : public CxxTest::TestSuite
 public:
 	void test_entry()
 	{
-		char buf1[1024];
-		char buf2[1024];
+		std::wstring buf1;
+		std::wstring buf2;
 
-		TraceEntry t1(TraceEntry::Load, "example.txt", 1234);
+		TraceEntry t1(TraceEntry::Load, L"example.txt", 1234);
 		TS_ASSERT_EQUALS(t1.Action(), TraceEntry::Load);
-		TS_ASSERT_STR_EQUALS(t1.Pathname(), "example.txt");
+		TS_ASSERT_WSTR_EQUALS(t1.Pathname().string(), L"example.txt");
 		TS_ASSERT_EQUALS(t1.Size(), (size_t)1234);
 
-		t1.EncodeAsText(buf1, sizeof(buf1));
+		buf1 = t1.EncodeAsText();
 		// The part before the ':' is an unpredictable timestamp,
 		// so just test the string after that point
-		TS_ASSERT_STR_EQUALS(strchr(buf1, ':'), ": L \"example.txt\" 1234\n");
+		TS_ASSERT_WSTR_EQUALS(wcschr(buf1.c_str(), ':'), L": L \"example.txt\" 1234\n");
 
-		TraceEntry t2(TraceEntry::Store, "example two.txt", 16777216);
+		TraceEntry t2(TraceEntry::Store, L"example two.txt", 16777216);
 		TS_ASSERT_EQUALS(t2.Action(), TraceEntry::Store);
-		TS_ASSERT_STR_EQUALS(t2.Pathname(), "example two.txt");
+		TS_ASSERT_WSTR_EQUALS(t2.Pathname().string(), L"example two.txt");
 		TS_ASSERT_EQUALS(t2.Size(), (size_t)16777216);
 
-		t2.EncodeAsText(buf2, sizeof(buf2));
-		TS_ASSERT_STR_EQUALS(strchr(buf2, ':'), ": S \"example two.txt\" 16777216\n");
+		buf2 = t2.EncodeAsText();
+		TS_ASSERT_WSTR_EQUALS(wcschr(buf2.c_str(), ':'), L": S \"example two.txt\" 16777216\n");
 
 		TraceEntry t3(buf1);
 		TS_ASSERT_EQUALS(t3.Action(), TraceEntry::Load);
-		TS_ASSERT_STR_EQUALS(t3.Pathname(), "example.txt");
+		TS_ASSERT_WSTR_EQUALS(t3.Pathname().string(), L"example.txt");
 		TS_ASSERT_EQUALS(t3.Size(), (size_t)1234);
 
 		TraceEntry t4(buf2);
 		TS_ASSERT_EQUALS(t4.Action(), TraceEntry::Store);
-		TS_ASSERT_STR_EQUALS(t4.Pathname(), "example two.txt");
+		TS_ASSERT_WSTR_EQUALS(t4.Pathname().string(), L"example two.txt");
 		TS_ASSERT_EQUALS(t4.Size(), (size_t)16777216);
 	}
 };

@@ -75,9 +75,9 @@ static bool IsThrottlingPossible()
 class CounterTSC : public ICounter
 {
 public:
-	virtual const char* Name() const
+	virtual const wchar_t* Name() const
 	{
-		return "TSC";
+		return L"TSC";
 	}
 
 	LibError Activate()

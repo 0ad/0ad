@@ -46,7 +46,7 @@
 
 #include "lib/res/graphics/ogl_shader.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -418,10 +418,10 @@ void TerrainRenderer::RenderWater()
 	// If we're using fancy water, make sure its shader is loaded
 	if(fancy && !m->fancyWaterShader)
 	{
-		Handle h = ogl_program_load("shaders/water_high.xml");
+		Handle h = ogl_program_load(L"shaders/water_high.xml");
 		if (h < 0)
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "Failed to load water shader. Falling back to non-fancy water.\n");
+			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load water shader. Falling back to non-fancy water.\n");
 			g_Renderer.m_Options.m_FancyWater = false;
 			fancy = false;
 		}

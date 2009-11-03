@@ -50,7 +50,7 @@ MessagePasserImpl::MessagePasserImpl()
 				continue;
 			}
 			// Otherwise, it's a probably-fatal error
-			debug_warn("sem_open failed");
+			debug_warn(L"sem_open failed");
 			break;
 		}
 		// Succeeded - use this semaphore
@@ -61,7 +61,7 @@ MessagePasserImpl::MessagePasserImpl()
 	
 	if (! m_Semaphore)
 	{
-		debug_warn("Failed to create semaphore for Atlas - giving up");
+		debug_warn(L"Failed to create semaphore for Atlas - giving up");
 		// We will probably crash later - maybe we could fall back on sem_init, if this
 		// ever fails in practice
 	}
@@ -83,7 +83,7 @@ void MessagePasserImpl::Add(IMessage* msg)
 	debug_assert(msg->GetType() == IMessage::Message);
 
 	if (m_Trace)
-		debug_printf("%8.3f add message: %s\n", timer_Time(), msg->GetName());
+		debug_printf(L"%8.3f add message: %hs\n", timer_Time(), msg->GetName());
 
 	m_Mutex.Lock();
 	m_Queue.push(msg);
@@ -108,7 +108,7 @@ IMessage* MessagePasserImpl::Retrieve()
 	m_Mutex.Unlock();
 
 	if (m_Trace && msg)
-		debug_printf("%8.3f retrieved message: %s\n", timer_Time(), msg->GetName());
+		debug_printf(L"%8.3f retrieved message: %hs\n", timer_Time(), msg->GetName());
 
 	return msg;
 }
@@ -119,7 +119,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 	debug_assert(qry->GetType() == IMessage::Query);
 
 	if (m_Trace)
-		debug_printf("%8.3f add query: %s\n", timer_Time(), qry->GetName());
+		debug_printf(L"%8.3f add query: %hs\n", timer_Time(), qry->GetName());
 
 	// Set the semaphore, so we can block until the query has been handled
 	qry->m_Semaphore = static_cast<void*>(m_Semaphore);
@@ -172,7 +172,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 		// Keep retrying while EINTR, but other errors are probably fatal
 		if (errno != EINTR)
 		{
-			debug_warn("Semaphore wait failed");
+			debug_warn(L"Semaphore wait failed");
 			return; // (leaks the semaphore)
 		}
 	}

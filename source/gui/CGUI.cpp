@@ -61,7 +61,7 @@ CGUI
 
 const double SELECT_DBLCLICK_RATE = 0.5;
 #include "ps/CLogger.h"
-#define LOG_CATEGORY "gui"
+#define LOG_CATEGORY L"gui"
 
 
 // Class for global JavaScript object
@@ -94,7 +94,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		IGUIObject* object = FindObjectByName(objectName);
 		if (! object)
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "Cannot find hotkeyed object '%s'", objectName.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, L"Cannot find hotkeyed object '%hs'", objectName.c_str());
 		}
 		else
 		{
@@ -275,7 +275,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	catch (PSERROR_GUI& e)
 	{
 		UNUSED2(e);
-		debug_warn("CGUI::HandleEvent error");
+		debug_warn(L"CGUI::HandleEvent error");
 		// TODO Gee: Handle
 	}
 // JW: what's the difference between mPress and mDown? what's the code below responsible for?
@@ -507,7 +507,7 @@ void CGUI::Draw()
 		glPopMatrix();
 
 		// TODO Gee: Report error.
-		debug_warn("CGUI::Draw error");
+		debug_warn(L"CGUI::Draw error");
 		return;
 	}
 	glPopMatrix();
@@ -548,7 +548,7 @@ void CGUI::Destroy()
 		catch (PSERROR_GUI& e)
 		{
 			UNUSED2(e);
-			debug_warn("CGUI::Destroy error");
+			debug_warn(L"CGUI::Destroy error");
 			// TODO Gee: Handle
 		}
 		
@@ -967,7 +967,7 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	}
 
 	CFont* font = NULL;
-	CStr LastFontName;
+	CStrW LastFontName;
 
 	for (std::vector<SGUIText::STextCall>::const_iterator it = Text.m_TextCalls.begin(); 
 		 it != Text.m_TextCalls.end(); 
@@ -1033,20 +1033,19 @@ bool CGUI::GetPreDefinedColor(const CStr& name, CColor &Output)
 	}
 }
 
-void CGUI::ReportParseError(const char *str, ...)
+void CGUI::ReportParseError(const wchar_t* str, ...)
 {
 	va_list argp;
-	char buffer[512];
-	memset(buffer,0,sizeof(buffer));
+	wchar_t buffer[512]={0};
 	
 	va_start(argp, str);
-	sys_vsnprintf(buffer, sizeof(buffer), str, argp);
+	sys_vswprintf(buffer, ARRAY_SIZE(buffer), str, argp);
 	va_end(argp);
 
 	// Print header
 	if (m_Errors==0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "*** GUI Tree Creation Errors:");
+		LOG(CLogger::Error, LOG_CATEGORY, L"*** GUI Tree Creation Errors:");
 	}
 
 	// Important, set ParseError to true
@@ -1058,14 +1057,14 @@ void CGUI::ReportParseError(const char *str, ...)
 /**
  * @callgraph
  */
-void CGUI::LoadXmlFile(const std::string &Filename)
+void CGUI::LoadXmlFile(const VfsPath& Filename)
 {
 	// Reset parse error
 	//  we can later check if this has increased
 	m_Errors = 0;
 
 	CXeromyces XeroFile;
-	if (XeroFile.Load(Filename.c_str()) != PSRETURN_OK)
+	if (XeroFile.Load(Filename) != PSRETURN_OK)
 		// Fail silently
 		return;
 
@@ -1102,13 +1101,13 @@ void CGUI::LoadXmlFile(const std::string &Filename)
 		}
 		else
 		{
-			debug_warn("CGUI::LoadXmlFile error");
+			debug_warn(L"CGUI::LoadXmlFile error");
 			// TODO Gee: Output in log
 		}
 	}
 	catch (PSERROR_GUI& e)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "Errors loading GUI file %s (%d)", Filename.c_str(), e.getCode());
+		LOG(CLogger::Error, LOG_CATEGORY, L"Errors loading GUI file %ls (%d)", Filename.string().c_str(), e.getCode());
 		return;
 	}
 
@@ -1133,7 +1132,7 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile)
 	XMBElementList children = Element.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		//debug_printf("Object %d\n", i);
+		//debug_printf(L"Object %d\n", i);
 		XMBElement child = children.Item(i);
 
 		if (child.GetNodeName() == el_script)
@@ -1207,7 +1206,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 		}
 		else
 		{
-			debug_warn("Invalid data - DTD shouldn't allow this");
+			debug_warn(L"Invalid data - DTD shouldn't allow this");
 		}
 	}
 }
@@ -1235,7 +1234,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	if (!object)
 	{
 		// Report error that object was unsuccessfully loaded
-		ReportParseError("Unrecognized type \"%s\"", type.c_str());
+		ReportParseError(L"Unrecognized type \"%hs\"", type.c_str());
 		return;
 	}
 
@@ -1269,7 +1268,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// additional check
 		if (m_Styles.count(argStyle) == 0)
 		{
-			ReportParseError("Trying to use style '%s' that doesn't exist.", argStyle.c_str());
+			ReportParseError(L"Trying to use style '%hs' that doesn't exist.", argStyle.c_str());
 		}
 		else object->LoadStyle(*this, argStyle);
 	}
@@ -1290,7 +1289,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		XMBAttribute attr = attributes.Item(i);
 
 		// If value is "null", then it is equivalent as never being entered
-		if ((CStr)attr.Value == "null")
+		if (CStr(attr.Value) == "null")
 			continue;
 
 		// Ignore "type" and "style", we've already checked it
@@ -1300,7 +1299,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// Also the name needs some special attention
 		if (attr.Name == attr_name)
 		{
-			object->SetName((CStr)attr.Value);
+			object->SetName(CStr(attr.Value));
 			NameSet = true;
 			continue;
 		}
@@ -1313,9 +1312,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			ManuallySetZ = true;
 
 		// Try setting the value
-		if (object->SetSetting(pFile->GetAttributeString(attr.Name), (CStr)attr.Value, true) != PSRETURN_OK)
+		if (object->SetSetting(pFile->GetAttributeString(attr.Name), CStr(attr.Value), true) != PSRETURN_OK)
 		{
-			ReportParseError("(object: %s) Can't set \"%s\" to \"%s\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), CStr(attr.Value).c_str());
+			ReportParseError(L"(object: %hs) Can't set \"%hs\" to \"%hs\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), attr.Value.c_str());
 
 			// This is not a fatal error
 		}
@@ -1367,17 +1366,17 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// Scripted <action> element
 
 			// Check for a 'file' parameter
-			CStr file (child.GetAttributes().GetNamedItem(attr_file));
+			CStrW filename (child.GetAttributes().GetNamedItem(attr_file));
 
 			CStr code;
 
 			// If there is a file, open it and use it as the code
-			if (! file.empty())
+			if (! filename.empty())
 			{
 				CVFSFile scriptfile;
-				if (scriptfile.Load(file) != PSRETURN_OK)
+				if (scriptfile.Load(filename) != PSRETURN_OK)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "Error opening action file '%s'", file.c_str());
+					LOG(CLogger::Error, LOG_CATEGORY, L"Error opening action file '%ls'", filename.c_str());
 					throw PSERROR_GUI_JSOpenFailed();
 				}
 
@@ -1385,9 +1384,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			}
 
 			// Read the inline code (concatenating to the file code, if both are specified)
-			code += (CStr)child.GetText();
+			code += CStr(child.GetText());
 
-			CStr action = (CStr)child.GetAttributes().GetNamedItem(attr_on);
+			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
 			object->RegisterScriptHandler(action.LowerCase(), code, this);
 		}
 		else
@@ -1395,7 +1394,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			// Try making the object read the tag.
 			if (!object->HandleAdditionalChildren(child, pFile))
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "(object: %s) Reading unknown children for its type", object->GetPresentableName().c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, L"(object: %hs) Reading unknown children for its type", object->GetPresentableName().c_str());
 			}
 		}
 	} 
@@ -1408,7 +1407,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// Set it automatically to 10 plus its parents
 		if (pParent==NULL)
 		{
-			debug_warn("CGUI::Xeromyces_ReadObject error");
+			debug_warn(L"CGUI::Xeromyces_ReadObject error");
 			// TODO Gee: Report error
 		}
 		else
@@ -1443,8 +1442,9 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			pParent->AddChild(object);
 	}
 	catch (PSERROR_GUI& e)
-	{ 
-		ReportParseError(e.what());
+	{
+		CStrW what(e.what());
+		ReportParseError(what.c_str());
 	}
 }
 
@@ -1456,7 +1456,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile)
 
 	// If there is a file specified, open and execute it
 	if (! file.empty())
-		g_ScriptingHost.RunScript(file, m_ScriptObject);
+		g_ScriptingHost.RunScript(CStrW(file), m_ScriptObject);
 
 	// Execute inline scripts
 	CStr code (Element.GetText());
@@ -1480,7 +1480,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 	name = Element.GetAttributes().GetNamedItem( pFile->GetAttributeID("name") );
 
 	if (m_Sprites.find(name) != m_Sprites.end())
-		LOG(CLogger::Warning, LOG_CATEGORY, "Sprite name '%s' used more than once; first definition will be discarded", (const char*)name);
+		LOG(CLogger::Warning, LOG_CATEGORY, L"Sprite name '%hs' used more than once; first definition will be discarded", name.c_str());
 
 	//
 	//	Read Children (the images)
@@ -1510,7 +1510,7 @@ void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)
 		}
 		else
 		{
-			debug_warn("Invalid data - DTD shouldn't allow this");
+			debug_warn(L"Invalid data - DTD shouldn't allow this");
 		}
 	}
 
@@ -1556,17 +1556,14 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 
 		if (attr_name == "texture")
 		{
-			CStr TexFilename ("art/textures/ui/");
-			TexFilename += attr_value;
-
-			image.m_TextureName = TexFilename;
+			image.m_TextureName = VfsPath(L"art/textures/ui")/CStrW(attr_value);
 		}
 		else
 		if (attr_name == "size")
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_Size = ca;
 		}
 		else
@@ -1574,7 +1571,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CClientArea ca;
 			if (!GUI<CClientArea>::ParseString(attr_value, ca))
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_TextureSize = ca;
 		}
 		else
@@ -1582,7 +1579,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CRect rect;
 			if (!GUI<CRect>::ParseString(attr_value, rect))
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_TexturePlacementInFile = rect;
 		}
 		else
@@ -1590,7 +1587,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CSize size;
 			if (!GUI<CSize>::ParseString(attr_value, size))
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_CellSize = size;
 		}
 		else
@@ -1598,7 +1595,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			float z_level;
 			if (!GUI<float>::ParseString(attr_value, z_level))
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_DeltaZ = z_level/100.f;
 		}
 		else
@@ -1606,7 +1603,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_BackColor = color;
 		}
 		else
@@ -1614,7 +1611,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			CColor color;
 			if (!GUI<CColor>::ParseString(attr_value, color))
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_BorderColor = color;
 		}
 		else
@@ -1622,12 +1619,12 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		{
 			bool b;
 			if (!GUI<bool>::ParseString(attr_value, b))
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			else image.m_Border = b;
 		}
 		else
 		{
-			debug_warn("Invalid data - DTD shouldn't allow this");
+			debug_warn(L"Invalid data - DTD shouldn't allow this");
 		}
 	}
 
@@ -1645,7 +1642,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 		}
 		else
 		{
-			debug_warn("Invalid data - DTD shouldn't allow this");
+			debug_warn(L"Invalid data - DTD shouldn't allow this");
 		}
 	}
 
@@ -1670,7 +1667,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		{ \
 			CColor color; \
 			if (!GUI<int>::ParseColor(attr_value, color, alpha)) \
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str()); \
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str()); \
 			else effects.m_##mem = color; \
 		} \
 		else
@@ -1688,7 +1685,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		BOOL("grayscale", Greyscale)
 
 		{
-			debug_warn("Invalid data - DTD shouldn't allow this");
+			debug_warn(L"Invalid data - DTD shouldn't allow this");
 		}
 	}
 }
@@ -1755,7 +1752,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			float f;
 			if (!GUI<float>::ParseString(attr_value, f))
 			{
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			}
 			scrollbar.m_Width = f;
 		}
@@ -1765,7 +1762,7 @@ void CGUI::Xeromyces_ReadScrollBarStyle(XMBElement Element, CXeromyces* pFile)
 			float f;
 			if (!GUI<float>::ParseString(attr_value, f))
 			{
-				ReportParseError("Error parsing '%s' (\"%s\")", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\")", attr_name.c_str(), attr_value.c_str());
 			}
 			scrollbar.m_MinimumBarSize = f;
 		}
@@ -1840,7 +1837,7 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		{
 			CSize size;
 			if (!GUI<CSize>::ParseString(attr_value, size))
-				ReportParseError("Error parsing '%s' (\"%s\") inside <icon>.", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\") inside <icon>.", attr_name.c_str(), attr_value.c_str());
 			icon.m_Size = size;
 		}
 		else
@@ -1848,12 +1845,12 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 		{
 			int cell_id;
 			if (!GUI<int>::ParseString(attr_value, cell_id))
-				ReportParseError("Error parsing '%s' (\"%s\") inside <icon>.", attr_name.c_str(), attr_value.c_str());
+				ReportParseError(L"Error parsing '%hs' (\"%hs\") inside <icon>.", attr_name.c_str(), attr_value.c_str());
 			icon.m_CellID = cell_id;
 		}
 		else
 		{
-			debug_warn("Invalid data - DTD shouldn't allow this");
+			debug_warn(L"Invalid data - DTD shouldn't allow this");
 		}
 	}
 
@@ -1904,7 +1901,7 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 		// Try setting color to value
 		if (!color.ParseString(value, 255.f))
 		{
-			ReportParseError("Unable to create custom color '%s'. Invalid color syntax.", name.c_str());
+			ReportParseError(L"Unable to create custom color '%hs'. Invalid color syntax.", name.c_str());
 		}
 		else
 		{

@@ -25,7 +25,7 @@
 #include "ps/FileIo.h" // to get access to its CError
 #include "ps/Profile.h"
 
-#define LOG_CATEGORY "mesh"
+#define LOG_CATEGORY L"mesh"
 
 // TODO: should this cache models while they're not actively in the game?
 // (Currently they'll probably be deleted when the reference count drops to 0,
@@ -40,17 +40,12 @@ CMeshManager::~CMeshManager()
 {
 }
 
-CModelDefPtr CMeshManager::GetMesh(const CStr& filename)
+CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 {
-	// Strip a three-letter file extension (if there is one) from the filename
-	CStr name;
-	if (filename.length() > 4 && filename[filename.length()-4] == '.')
-		name = filename.substr(0, filename.length()-4);
-	else
-		name = filename;
+	const VfsPath name = fs::change_extension(pathname, L"");
 
 	// Find the mesh if it's already been loaded and cached
-	mesh_map::iterator iter = m_MeshMap.find(name);
+	mesh_map::iterator iter = m_MeshMap.find(name.string());
 	if (iter != m_MeshMap.end() && !iter->second.expired())
 		return CModelDefPtr(iter->second);
 
@@ -60,19 +55,19 @@ CModelDefPtr CMeshManager::GetMesh(const CStr& filename)
 
 	if (pmdFilename.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "Could not load mesh '%s'", filename.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"Could not load mesh '%ls'", pathname.string().c_str());
 		return CModelDefPtr();
 	}
 
 	try
 	{
 		CModelDefPtr model (CModelDef::Load(pmdFilename, name));
-		m_MeshMap[name] = model;
+		m_MeshMap[name.string()] = model;
 		return model;
 	}
 	catch (PSERROR_File&)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "Could not load mesh '%s'", filename.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"Could not load mesh '%ls'", pathname.string().c_str());
 		return CModelDefPtr();
 	}
 }

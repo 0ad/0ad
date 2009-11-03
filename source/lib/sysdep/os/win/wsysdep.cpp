@@ -281,7 +281,7 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 // misc
 //-----------------------------------------------------------------------------
 
-LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
+LibError sys_error_description_r(int user_err, wchar_t* buf, size_t max_chars)
 {
 	// validate user_err - Win32 doesn't have negative error numbers
 	if(user_err < 0)
@@ -293,44 +293,55 @@ LibError sys_error_description_r(int user_err, char* buf, size_t max_chars)
 	// error messages, so return more descriptive text instead.
 	if(err == 0)
 	{
-		strcpy_s(buf, max_chars, "0 (no error code was set)");
+		wcscpy_s(buf, max_chars, L"0 (no error code was set)");
 		return INFO::OK;
 	}
 
-	char message[200];
+	wchar_t message[200];
 	{
 		const LPCVOID source = 0;	// ignored (we're not using FROM_HMODULE etc.)
 		const DWORD lang_id = 0;	// look for neutral, then current locale
 		va_list* args = 0;			// we don't care about "inserts"
-		const DWORD charsWritten = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, source, err, lang_id, message, (DWORD)ARRAY_SIZE(message), args);
+		const DWORD charsWritten = FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM, source, err, lang_id, message, (DWORD)ARRAY_SIZE(message), args);
 		if(!charsWritten)
 			WARN_RETURN(ERR::FAIL);
 		debug_assert(charsWritten < max_chars);
 	}
 
-	const int charsWritten = sprintf_s(buf, max_chars, "%d (%s)", err, message);
+	const int charsWritten = swprintf_s(buf, max_chars, L"%d (%ls)", err, message);
 	debug_assert(charsWritten != -1);
 	return INFO::OK;
 }
 
 
-void sys_get_module_filename(void* addr, wchar_t* path, size_t max_chars)
+LibError sys_get_module_filename(void* addr, fs::wpath& pathname)
 {
-	path[0] = '\0';	// in case either API call below fails
-
 	MEMORY_BASIC_INFORMATION mbi;
-	if(VirtualQuery(addr, &mbi, sizeof(mbi)))
-	{
-		HMODULE hModule = (HMODULE)mbi.AllocationBase;
-		GetModuleFileNameW(hModule, path, (DWORD)max_chars);
-	}
+	const SIZE_T bytesWritten = VirtualQuery(addr, &mbi, sizeof(mbi));
+	if(!bytesWritten)
+		return LibError_from_GLE();
+	debug_assert(bytesWritten >= sizeof(mbi));
+	const HMODULE hModule = (HMODULE)mbi.AllocationBase;
+
+	wchar_t pathnameBuf[MAX_PATH+1];
+	const DWORD charsWritten = GetModuleFileNameW(hModule, pathnameBuf, (DWORD)ARRAY_SIZE(pathnameBuf));
+	if(charsWritten == 0)
+		return LibError_from_GLE();
+	debug_assert(charsWritten < ARRAY_SIZE(pathnameBuf));
+	pathname = pathnameBuf;
+	return INFO::OK;
 }
 
 
-LibError sys_get_executable_name(char* n_path, size_t max_chars)
+LibError sys_get_executable_name(fs::wpath& pathname)
 {
-	const DWORD num_chars = GetModuleFileName(0, n_path, (DWORD)max_chars);
-	return num_chars? INFO::OK : ERR::FAIL;
+	wchar_t pathnameBuf[MAX_PATH+1];
+	const DWORD charsWritten = GetModuleFileNameW(0, pathnameBuf, (DWORD)ARRAY_SIZE(pathnameBuf));
+	if(charsWritten == 0)
+		return LibError_from_GLE();
+	debug_assert(charsWritten < ARRAY_SIZE(pathnameBuf));
+	pathname = pathnameBuf;
+	return INFO::OK;
 }
 
 
@@ -340,29 +351,28 @@ static int CALLBACK browse_cb(HWND hWnd, unsigned int msg, LPARAM UNUSED(lParam)
 {
 	if(msg == BFFM_INITIALIZED)
 	{
-		const char* cur_dir = (const char*)ldata;
-		SendMessage(hWnd, BFFM_SETSELECTIONA, 1, (LPARAM)cur_dir);
+		const wchar_t* initialPath = (const wchar_t*)ldata;
+		SendMessage(hWnd, BFFM_SETSELECTIONA, 1, (LPARAM)initialPath);
 		return 1;
 	}
 
 	return 0;
 }
 
-LibError sys_pick_directory(char* path, size_t max_chars)
+LibError sys_pick_directory(fs::wpath& path)
 {
 	// bring up dialog; set starting directory to current working dir.
-	WARN_IF_FALSE(GetCurrentDirectory((DWORD)max_chars, path));
+	fs::wpath initialPath = fs::current_path<fs::wpath>();
 	BROWSEINFOA bi;
 	memset(&bi, 0, sizeof(bi));
 	bi.ulFlags = BIF_RETURNONLYFSDIRS;
 	bi.lpfn = (BFFCALLBACK)browse_cb;
-	bi.lParam = (LPARAM)path;
+	bi.lParam = (LPARAM)initialPath.string().c_str();
 	LPITEMIDLIST pidl = SHBrowseForFolderA(&bi);
 
-	// translate ITEMIDLIST to string. note: SHGetPathFromIDList doesn't
-	// support a user-specified char limit *sigh*
-	debug_assert(max_chars >= MAX_PATH);
-	BOOL ok = SHGetPathFromIDList(pidl, path);
+	// translate ITEMIDLIST to string
+	wchar_t pathBuf[MAX_PATH];
+	BOOL ok = SHGetPathFromIDListW(pidl, pathBuf);
 
 	// free the ITEMIDLIST
 	IMalloc* p_malloc;
@@ -370,5 +380,6 @@ LibError sys_pick_directory(char* path, size_t max_chars)
 	p_malloc->Free(pidl);
 	p_malloc->Release();
 
+	path = pathBuf;
 	return LibError_from_win32(ok);
 }

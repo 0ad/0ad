@@ -117,7 +117,7 @@ CSkeletonAnimDef* CSkeletonAnimDef::Load(const VfsPath& filename)
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Save: try to save anim to file
-void CSkeletonAnimDef::Save(const char* filename,const CSkeletonAnimDef* anim)
+void CSkeletonAnimDef::Save(const VfsPath& pathname,const CSkeletonAnimDef* anim)
 {
 	CFilePacker packer(FILE_VERSION, "PSSA");
 
@@ -131,5 +131,5 @@ void CSkeletonAnimDef::Save(const char* filename,const CSkeletonAnimDef* anim)
 	packer.PackRaw(anim->m_Keys,numKeys*numFrames*sizeof(Key));
 
 	// now write it
-	packer.Write(filename);
+	packer.Write(pathname);
 }

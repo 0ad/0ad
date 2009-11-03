@@ -28,14 +28,12 @@ namespace ERR
 	const LibError IO          = -110301;
 }
 
-LIB_API fs::path path_from_wpath(const fs::wpath& pathname);
-
 namespace FileImpl
 {
-	LIB_API LibError Open(const fs::path& pathname, char mode, int& fd);
+	LIB_API LibError Open(const fs::wpath& pathname, wchar_t mode, int& fd);
 	LIB_API void Close(int& fd);
-	LIB_API LibError IO(int fd, char mode, off_t ofs, u8* buf, size_t size);
-	LIB_API LibError Issue(aiocb& req, int fd, char mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize);
+	LIB_API LibError IO(int fd, wchar_t mode, off_t ofs, u8* buf, size_t size);
+	LIB_API LibError Issue(aiocb& req, int fd, wchar_t mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize);
 	LIB_API LibError WaitUntilComplete(aiocb& req, u8*& alignedBuf, size_t& alignedSize);
 }
 
@@ -49,18 +47,10 @@ public:
 	{
 	}
 
-	LibError Open(const fs::path& pathname, char mode)
+	LibError Open(const fs::wpath& pathname, wchar_t mode)
 	{
 		RETURN_ERR(FileImpl::Open(pathname, mode, m_fd));
 		m_pathname = pathname;
-		m_mode = mode;
-		return INFO::OK;
-	}
-
-	LibError Open(const fs::wpath& pathname, char mode)
-	{
-		m_pathname = path_from_wpath(pathname);
-		RETURN_ERR(FileImpl::Open(m_pathname, mode, m_fd));
 		m_mode = mode;
 		return INFO::OK;
 	}
@@ -70,12 +60,7 @@ public:
 		FileImpl::Close(m_fd);
 	}
 
-	File(const fs::path& pathname, char mode)
-	{
-		(void)Open(pathname, mode);
-	}
-
-	File(const fs::wpath& pathname, char mode)
+	File(const fs::wpath& pathname, wchar_t mode)
 	{
 		(void)Open(pathname, mode);
 	}
@@ -85,17 +70,17 @@ public:
 		Close();
 	}
 
-	const fs::path& Pathname() const
+	const fs::wpath& Pathname() const
 	{
 		return m_pathname;
 	}
 
-	char Mode() const
+	wchar_t Mode() const
 	{
 		return m_mode;
 	}
 
-	LibError Issue(aiocb& req, char mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const
+	LibError Issue(aiocb& req, wchar_t mode, off_t alignedOfs, u8* alignedBuf, size_t alignedSize) const
 	{
 		return FileImpl::Issue(req, m_fd, mode, alignedOfs, alignedBuf, alignedSize);
 	}
@@ -111,9 +96,9 @@ public:
 	}
 
 private:
-	fs::path m_pathname;
+	fs::wpath m_pathname;
 	int m_fd;
-	char m_mode;
+	wchar_t m_mode;
 };
 
 typedef shared_ptr<File> PFile;

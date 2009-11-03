@@ -20,15 +20,10 @@
 
 #include "ps/CLogger.h"
 
-#define LOG_CATEGORY "file"
+#define LOG_CATEGORY L"file"
 
 
 PIVFS g_VFS;
-
-bool FileExists(const char* pathname)
-{
-	return g_VFS->GetFileInfo(pathname, 0) == INFO::OK;
-}
 
 bool FileExists(const VfsPath& pathname)
 {
@@ -57,7 +52,7 @@ PSRETURN CVFSFile::Load(const VfsPath& filename)
 	LibError ret = g_VFS->LoadFile(filename, m_Buffer, m_BufferSize);
 	if (ret != INFO::OK)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CVFSFile: file %s couldn't be opened (vfs_load: %ld)", filename.string().c_str(), ret);
+		LOG(CLogger::Error, LOG_CATEGORY, L"CVFSFile: file %ls couldn't be opened (vfs_load: %ld)", filename.string().c_str(), ret);
 		return PSRETURN_CVFSFile_LoadFailed;
 	}
 
@@ -70,7 +65,7 @@ const u8* CVFSFile::GetBuffer() const
 	// accidentally forgetting to check that the open succeeded
 	if (!m_Buffer)
 	{
-		debug_warn("GetBuffer() called with no file loaded");
+		debug_warn(L"GetBuffer() called with no file loaded");
 		throw PSERROR_CVFSFile_InvalidBufferAccess();
 	}
 

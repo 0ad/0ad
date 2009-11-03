@@ -64,7 +64,7 @@ class ScopedIoMonitor
 public:
 	ScopedIoMonitor();
 	~ScopedIoMonitor();
-	void NotifyOfSuccess(FileIOImplentation fi, char mode, off_t size);
+	void NotifyOfSuccess(FileIOImplentation fi, wchar_t mode, off_t size);
 
 private:
 	double m_startTime;
@@ -101,7 +101,7 @@ class ScopedIoMonitor
 public:
 	ScopedIoMonitor() {}
 	~ScopedIoMonitor() {}
-	void NotifyOfSuccess(FileIOImplentation fi, char mode, off_t size) {}
+	void NotifyOfSuccess(FileIOImplentation fi, wchar_t mode, off_t size) {}
 };
 #define stats_io_check_seek(blockId)
 #define stats_cb_start()

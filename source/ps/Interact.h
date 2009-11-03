@@ -104,7 +104,8 @@ struct CSelectedEntities : public Singleton<CSelectedEntities>
 	
 	void DestroyUnitUiTextures();
 	int LoadUnitUiTextures();
-	std::map<CStr, Handle> m_unitUITextures;
+	typedef std::map<CStrW, Handle> MapFilenameToHandle;
+	MapFilenameToHandle m_unitUITextures;
 };
 
 // CMouseoverEntities: the singleton containing entities the mouse is currently hovering over or bandboxing

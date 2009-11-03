@@ -45,7 +45,7 @@
 #include "simulation/EntityTemplate.h"
 #include "simulation/EntityTemplateCollection.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 CMapReader::CMapReader()
 	: xml_reader(0)
@@ -55,7 +55,7 @@ CMapReader::CMapReader()
 
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
+void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 						 CUnitManager *pUnitMan_, WaterManager* pWaterMan_, SkyManager* pSkyMan_,
 						 CLightEnv *pLightEnv_, CCamera *pCamera_, CCinemaManager* pCinema_)
 {
@@ -69,7 +69,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
 	pCinema = pCinema_;
 
 	// [25ms]
-	unpacker.Read(filename, "PSMP");
+	unpacker.Read(pathname, "PSMP");
 
 	// check version
 	if (unpacker.GetVersion() < FILE_READ_VERSION) {
@@ -87,8 +87,7 @@ void CMapReader::LoadMap(const char* filename, CTerrain *pTerrain_,
 
 	if (unpacker.GetVersion() >= 3) {
 		// read the corresponding XML file
-		filename_xml = filename;
-		filename_xml = filename_xml.Left(filename_xml.length()-4) + ".xml";
+		filename_xml = fs::change_extension(pathname, L".xml");
 		RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 5800);
 	}
 
@@ -226,7 +225,7 @@ int CMapReader::ApplyData()
 
 		if (unpacker.GetVersion() < 3)
 		{
-			debug_warn("Old unsupported map version - objects will be missing");
+			debug_warn(L"Old unsupported map version - objects will be missing");
 			// (GetTemplateByActor doesn't work, since entity templates are now
 			// loaded on demand)
 		}
@@ -260,7 +259,7 @@ class CXMLReader
 {
 	NONCOPYABLE(CXMLReader);
 public:
-	CXMLReader(const CStr& xml_filename, CMapReader& mapReader)
+	CXMLReader(const VfsPath& xml_filename, CMapReader& mapReader)
 		: m_MapReader(mapReader)
 	{
 		Init(xml_filename);
@@ -295,7 +294,7 @@ private:
 	int completed_jobs, total_jobs;
 
 
-	void Init(const CStr& xml_filename);
+	void Init(const VfsPath& xml_filename);
 
 	void ReadEnvironment(XMBElement parent);
 	void ReadCamera(XMBElement parent);
@@ -307,7 +306,7 @@ private:
 };
 
 
-void CXMLReader::Init(const CStr& xml_filename)
+void CXMLReader::Init(const VfsPath& xml_filename)
 {
 	// must only assign once, so do it here
 	node_idx = entity_idx = nonentity_idx = 0;
@@ -460,13 +459,13 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 #undef READ_COLOUR
 
 					else
-						debug_warn("Invalid map XML data");
+						debug_warn(L"Invalid map XML data");
 				}
 
 			}
 		}
 		else
-			debug_warn("Invalid map XML data");
+			debug_warn(L"Invalid map XML data");
 	}
 
 	m_MapReader.m_LightEnv.CalculateSunDirection();
@@ -508,7 +507,7 @@ void CXMLReader::ReadCamera(XMBElement parent)
 				CStr(attrs.GetNamedItem(at_z)).ToFloat());
 		}
 		else
-			debug_warn("Invalid map XML data");
+			debug_warn(L"Invalid map XML data");
 	}
 
 	m_MapReader.pCamera->m_Orientation.SetXRotation(declination);
@@ -596,13 +595,13 @@ void CXMLReader::ReadCinema(XMBElement parent)
 						else if ( elementName == el_time )
 							data.Distance = CStr( nodeChild.GetText() ).ToFloat();
 						else 
-							debug_warn("Invalid cinematic element for node child");
+							debug_warn(L"Invalid cinematic element for node child");
 					
 						backwardSpline.AddNode(data.Position, data.Rotation, data.Distance);
 					}
 				}
 				else
-					debug_warn("Invalid cinematic element for path child");
+					debug_warn(L"Invalid cinematic element for path child");
 				
 				
 			}
@@ -612,7 +611,7 @@ void CXMLReader::ReadCinema(XMBElement parent)
 			const std::vector<SplineData>& nodes = temp.GetAllNodes();
 			if ( nodes.empty() )
 			{
-				debug_warn("Failure loading cinematics");
+				debug_warn(L"Failure loading cinematics");
 				return;
 			}
 					
@@ -633,7 +632,7 @@ void CXMLReader::ReadCinema(XMBElement parent)
 
 void CXMLReader::ReadTriggers(XMBElement parent)
 {
-	MapTriggerGroup rootGroup( CStrW(L"Triggers"), CStrW(L"") );
+	MapTriggerGroup rootGroup( L"Triggers", L"" );
 	g_TriggerManager.DestroyEngineTriggers();
 	ReadTriggerGroup(parent, rootGroup);
 }
@@ -761,7 +760,7 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 					{
 						if ( effect.GetNodeName() != el_effect )
 						{
-							debug_warn("Invalid effect tag in trigger XML file");
+							debug_warn(L"Invalid effect tag in trigger XML file");
 							return;
 						}
 						MapTriggerEffect mapEffect;
@@ -779,7 +778,7 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 								mapEffect.parameters.push_back( effectChild.GetText() );
 							else
 							{
-								debug_warn("Invalid parameter tag in trigger XML file");
+								debug_warn(L"Invalid parameter tag in trigger XML file");
 								return;
 							}
 						}
@@ -787,13 +786,13 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 					}
 				}
 				else
-					debug_warn("Invalid trigger node child in trigger XML file");
+					debug_warn(L"Invalid trigger node child in trigger XML file");
 
 			}	//Read trigger children
 			g_TriggerManager.AddTrigger(mapGroup, mapTrigger);
 		}	
 		else
-			debug_warn("Invalid group node child in XML file");
+			debug_warn(L"Invalid group node child in XML file");
 	}	//Read group children
 
 	g_TriggerManager.AddGroup(mapGroup);
@@ -869,12 +868,12 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				Orientation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
 			}
 			else
-				debug_warn("Invalid map XML data");
+				debug_warn(L"Invalid map XML data");
 		}
 
 		CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(TemplateName, g_Game->GetPlayer(PlayerID));
 		if (! base)
-			LOG(CLogger::Error, LOG_CATEGORY, "Failed to load entity template '%ls'", TemplateName.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load entity template '%ls'", TemplateName.c_str());
 		else
 		{
 			std::set<CStr> selections; // TODO: read from file
@@ -882,7 +881,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			HEntity ent = g_EntityManager.Create(base, Position, Orientation, selections);
 
 			if (! ent)
-				LOG(CLogger::Error, LOG_CATEGORY, "Failed to create entity of type '%ls'", TemplateName.c_str());
+				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to create entity of type '%ls'", TemplateName.c_str());
 			else
 			{
 				ent->m_actor->SetPlayerID(PlayerID);
@@ -943,7 +942,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 				Orientation = CStr(attrs.GetNamedItem(at_angle)).ToFloat();
 			}
 			else
-				debug_warn("Invalid map XML data");
+				debug_warn(L"Invalid map XML data");
 		}
 
 		std::set<CStr> selections; // TODO: read from file
@@ -1012,8 +1011,8 @@ int CXMLReader::ProgressiveRead()
 		}
 		else
 		{
-			debug_printf("Invalid XML element in map file: %s\n", name.c_str());
-			debug_warn("Invalid map XML data");
+			debug_printf(L"Invalid XML element in map file: %ls\n", CStrW(name).c_str());
+			debug_warn(L"Invalid map XML data");
 		}
 
 		node_idx++;

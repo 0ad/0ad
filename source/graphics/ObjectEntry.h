@@ -28,6 +28,7 @@ struct SPropPoint;
 #include <set>
 #include <vector>
 
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "ps/Overlay.h"
 
@@ -45,10 +46,9 @@ public:
 	// different variations of the actor.
 	CObjectBase* m_Base;
 
-	// texture name
-	CStr m_TextureName;
+	VfsPath m_TextureName;
 	// model name
-	CStr m_ModelName;
+	VfsPath m_ModelName;
 	// colour (used when doing alpha-channel colouring, but not doing player-colour)
 	CColor m_Color;
 		// (probable TODO: make colour a per-model thing, rather than per-objectEntry,

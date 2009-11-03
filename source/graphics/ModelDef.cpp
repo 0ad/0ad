@@ -92,7 +92,7 @@ CVector3D CModelDef::SkinNormal(const SModelVertex& vtx,
 // CModelDef Constructor
 CModelDef::CModelDef()	
 	: m_NumVertices(0), m_pVertices(0), m_NumFaces(0), m_pFaces(0), m_NumBones(0), m_Bones(0),
-	m_NumPropPoints(0), m_PropPoints(0), m_Name("[not loaded]")
+	m_NumPropPoints(0), m_PropPoints(0), m_Name(L"[not loaded]")
 {
 }
 
@@ -119,7 +119,7 @@ SPropPoint* CModelDef::FindPropPoint(const char* name) const
 }
 
 // Load: read and return a new CModelDef initialised with data from given file
-CModelDef* CModelDef::Load(const VfsPath& filename, const char* name)
+CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 {
 	CFileUnpacker unpacker;
 

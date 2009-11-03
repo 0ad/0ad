@@ -90,6 +90,6 @@ void ColorActivateFastImpl()
 #endif
 	else
 	{
-		debug_printf("No SSE available. Slow fallback routines will be used.\n");
+		debug_printf(L"No SSE available. Slow fallback routines will be used.\n");
 	}
 }

@@ -34,7 +34,7 @@ Examples:
 
 		// UNICODE
 		LPCWSTR str = L"PI";
-		wprintf( L"%s = %fn", str, 3.1459f );
+		wprintf( L"%ls = %fn", str, 3.1459f );
 */
 
 // history:

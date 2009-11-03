@@ -76,8 +76,7 @@ void CParticleEngine::DeleteInstance()
 bool CParticleEngine::InitParticleSystem()
 {
 	// Texture Loading
-	CTexture pTex;
-	pTex.SetName("art/textures/particles/sprite.tga");
+	CTexture pTex(L"art/textures/particles/sprite.tga");
 
 	int flags = 0;
 	if(!(g_Renderer.LoadTexture(&pTex, flags)))

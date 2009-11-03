@@ -52,7 +52,7 @@ CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline)
 		DistModePtr = &CCinemaPath::EaseOutIn;
 		break;
 	default:
-		debug_printf("Cinematic mode not found for %d ", data.m_Mode);
+		debug_printf(L"Cinematic mode not found for %d ", data.m_Mode);
 		break;
 	}
 
@@ -74,7 +74,7 @@ CCinemaPath::CCinemaPath(const CCinemaData& data, const TNSpline& spline)
 		DistStylePtr = &CCinemaPath::EaseSine;
 		break;
 	default:
-		debug_printf("Cinematic mode not found for %d !", data.m_Style);
+		debug_printf(L"Cinematic mode not found for %d !", data.m_Style);
 		break;
 	}
 	//UpdateDuration();

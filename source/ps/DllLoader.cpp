@@ -86,7 +86,7 @@ bool DllLoader::LoadDLL()
 		{
 			const char* error = dlerror();
 			if (error)
-				LOG(CLogger::Error, "", "dlopen error: %s", error);
+				LOG(CLogger::Error, L"", L"dlopen error: %hs", error);
 			m_Handle = HANDLE_UNAVAILABLE;
 		}
 	}
@@ -107,7 +107,7 @@ void DllLoader::LoadSymbolInternal(const char* name, void** fptr) const
 {
 	if (! IsLoaded())
 	{
-		debug_warn("Loading symbol from invalid DLL");
+		debug_warn(L"Loading symbol from invalid DLL");
 		*fptr = NULL;
 		throw PSERROR_DllLoader_DllNotLoaded();
 	}

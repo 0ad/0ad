@@ -91,7 +91,7 @@ struct TexCodecVTbl
 	 * @param extension (including '.')
 	 * @return bool
 	 **/
-	bool (*is_ext)(const std::string& extension);
+	bool (*is_ext)(const std::wstring& extension);
 
 	/**
 	 * return size of the file header supported by this codec.
@@ -107,7 +107,7 @@ struct TexCodecVTbl
 	/**
 	 * name of codec for debug purposes. typically set via TEX_CODEC_REGISTER.
 	 **/
-	const char* name;
+	const wchar_t* name;
 
 	/**
 	 * intrusive linked-list of codecs: more convenient than fixed-size
@@ -135,7 +135,7 @@ struct TexCodecVTbl
 	{\
 		name##_decode, name##_encode, name##_transform,\
 		name##_is_hdr, name##_is_ext, name##_hdr_size,\
-		#name\
+		WIDEN(#name)\
 	};\
 	/*static int dummy = tex_codec_register(&vtbl);*/\
 	/* note: when building as a static library, pre-main initializers */\
@@ -164,7 +164,7 @@ extern int tex_codec_register(TexCodecVTbl* c);
  * called by tex_is_known_extension) if no codec indicates they can
  * handle the given extension.
  **/
-extern LibError tex_codec_for_filename(const std::string& extension, const TexCodecVTbl** c);
+extern LibError tex_codec_for_filename(const std::wstring& extension, const TexCodecVTbl** c);
 
 /**
  * find codec that recognizes the header's magic field.

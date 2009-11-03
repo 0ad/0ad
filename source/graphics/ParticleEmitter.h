@@ -22,6 +22,7 @@
 #ifndef INCLUDED_PARTICLEEMITTER
 #define INCLUDED_PARTICLEEMITTER
 
+#include "lib/file/vfs/vfs_path.h"
 #include "maths/Vector3D.h"
 #include "ps/CStr.h"
 
@@ -109,7 +110,7 @@ public:
 	// note: methods are virtual and overridable so as to suit the
 	// specific particle needs.
 
-	virtual bool LoadFromXML(const CStr& filename );
+	virtual bool LoadXml(const VfsPath& pathname);
 
 	virtual bool Setup() { return false; }
 

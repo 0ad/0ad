@@ -111,7 +111,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		EGUISettingType Type;
 		if (e->GetSettingType(propName, Type) != PSRETURN_OK)
 		{
-			JS_ReportError(cx, "Invalid GUIObject property '%s'", propName.c_str());
+			JS_ReportError(cx, "Invalid GUIObject property '%hs'", propName.c_str());
 			return JS_FALSE;
 		}
 
@@ -182,7 +182,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				}
 				catch (PSERROR_Scripting_ConversionFailed)
 				{
-					debug_warn("Error creating size object!");
+					debug_warn(L"Error creating size object!");
 					break;
 				}
 
@@ -232,7 +232,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				case EAlign_Left: word = "left"; break;
 				case EAlign_Right: word = "right"; break;
 				case EAlign_Center: word = "center"; break;
-				default: debug_warn("Invalid EAlign!"); word = "error"; break;
+				default: debug_warn(L"Invalid EAlign!"); word = "error"; break;
 				}
 				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, word));
 				break;
@@ -248,7 +248,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 				case EVAlign_Top: word = "top"; break;
 				case EVAlign_Bottom: word = "bottom"; break;
 				case EVAlign_Center: word = "center"; break;
-				default: debug_warn("Invalid EVAlign!"); word = "error"; break;
+				default: debug_warn(L"Invalid EVAlign!"); word = "error"; break;
 				}
 				*vp = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, word));
 				break;
@@ -273,8 +273,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			}
 
 		default:
-			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
-			debug_warn("This shouldn't happen");
+			JS_ReportError(cx, "Setting '%hs' uses an unimplemented type", propName.c_str());
+			debug_assert(0);
 			return JS_FALSE;
 		}
 
@@ -313,7 +313,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	EGUISettingType Type;
 	if (e->GetSettingType(propName, Type) != PSRETURN_OK)
 	{
-		JS_ReportError(cx, "Invalid setting '%s'", propName.c_str());
+		JS_ReportError(cx, "Invalid setting '%hs'", propName.c_str());
 		return JS_TRUE;
 	}
 
@@ -429,7 +429,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PSRETURN_OK)
 				{
-					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
+					JS_ReportError(cx, "Invalid value for setting '%hs'", propName.c_str());
 					return JS_FALSE;
 				}
 			}
@@ -466,7 +466,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PSRETURN_OK)
 				{
-					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
+					JS_ReportError(cx, "Invalid value for setting '%hs'", propName.c_str());
 					return JS_FALSE;
 				}
 			}
@@ -531,7 +531,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		// TODO Gee: (2004-09-01) EAlign and EVAlign too.
 
 	default:
-		JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
+		JS_ReportError(cx, "Setting '%hs' uses an unimplemented type", propName.c_str());
 		break;
 	}
 

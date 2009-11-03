@@ -53,6 +53,7 @@ Example SoundGroup.xml
 #define INCLUDED_SOUNDGROUP
 
 #include "lib/res/handle.h"
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "maths/Vector3D.h"
 #include "lib/res/sound/snd_mgr.h"
@@ -72,7 +73,7 @@ enum eSndGrpFlags
 class CSoundGroup
 {
 public:
-	CSoundGroup(const char *XMLfile);
+	CSoundGroup(const VfsPath& pathnameXML);
 	CSoundGroup(void);
 	~CSoundGroup(void);
 
@@ -82,7 +83,7 @@ public:
 	void PlayNext(const CVector3D& position);
 
 	// Load a group
-	bool LoadSoundGroup(const char *XMLfile);
+	bool LoadSoundGroup(const VfsPath& pathnameXML);
 
 	void Reload();
 
@@ -108,10 +109,10 @@ private:
 	Handle m_hReplacement;
 	
 	std::vector<Handle> snd_group;  // we store the handles so we can load now and play later
-	std::vector<CStr> filenames; // we need the filenames so we can reload when necessary.
+	std::vector<std::wstring> filenames; // we need the filenames so we can reload when necessary.
 	std::vector<float> playtimes; // it would be better to store this in with the Handles perhaps?
-	CStr m_filepath; // the file path for the list of sound file resources
-	CStr m_intensity_file; // the replacement aggregate 'intense' sound
+	VfsPath m_filepath; // the file path for the list of sound file resources
+	std::wstring m_intensity_file; // the replacement aggregate 'intense' sound
 
 	float m_CurTime; // Time elapsed since soundgroup was created
 	float m_TimeWindow; // The Intensity Threshold Window

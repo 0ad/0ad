@@ -19,13 +19,14 @@
 #define INCLUDED_REAL_DIRECTORY
 
 #include "file_loader.h"
+#include "lib/sysdep/dir_watch.h"
 
 class RealDirectory : public IFileLoader
 {
 public:
-	RealDirectory(const fs::path& path, size_t priority, size_t flags);
+	RealDirectory(const fs::wpath& path, size_t priority, size_t flags);
 
-	const fs::path& Path() const
+	const fs::wpath& Path() const
 	{
 		return m_path;
 	}
@@ -42,10 +43,10 @@ public:
 
 	// IFileLoader
 	virtual size_t Precedence() const;
-	virtual char LocationCode() const;
-	virtual LibError Load(const std::string& name, const shared_ptr<u8>& buf, size_t size) const;
+	virtual wchar_t LocationCode() const;
+	virtual LibError Load(const std::wstring& name, const shared_ptr<u8>& buf, size_t size) const;
 
-	LibError Store(const std::string& name, const shared_ptr<u8>& fileContents, size_t size);
+	LibError Store(const std::wstring& name, const shared_ptr<u8>& fileContents, size_t size);
 
 	void Watch();
 
@@ -56,7 +57,7 @@ private:
 	// note: paths are relative to the root directory, so storing the
 	// entire path instead of just the portion relative to the mount point
 	// is not all too wasteful.
-	const fs::path m_path;
+	const fs::wpath m_path;
 
 	const size_t m_priority;
 
@@ -64,11 +65,11 @@ private:
 
 	// note: watches are needed in each directory because some APIs
 	// (e.g. FAM) cannot watch entire trees with one call.
-	void* m_watch;
+	PDirWatch m_watch;
 };
 
 typedef shared_ptr<RealDirectory> PRealDirectory;
 
-extern PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::string& subdirectoryName);
+extern PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::wstring& subdirectoryName);
 
 #endif	// #ifndef INCLUDED_REAL_DIRECTORY

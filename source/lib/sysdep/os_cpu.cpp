@@ -22,4 +22,4 @@
 #include "precompiled.h"
 #include "os_cpu.h"
 
-ERROR_ASSOCIATE(ERR::OS_CPU_RESTRICTED_AFFINITY, "Cannot set desired CPU affinity", -1);
+ERROR_ASSOCIATE(ERR::OS_CPU_RESTRICTED_AFFINITY, L"Cannot set desired CPU affinity", -1);

@@ -27,8 +27,8 @@
 #endif
 
 
-char snd_card[SND_CARD_LEN];
-char snd_drv_ver[SND_DRV_VER_LEN];
+wchar_t snd_card[SND_CARD_LEN];
+wchar_t snd_drv_ver[SND_DRV_VER_LEN];
 
 void snd_detect()
 {

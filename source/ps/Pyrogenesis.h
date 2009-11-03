@@ -42,7 +42,7 @@ extern const wchar_t* psTranslate(const wchar_t* text);
 extern void psTranslateFree(const wchar_t* text);
 extern void psBundleLogs(FILE* f);
 
-extern void psSetLogDir(const char* path);	// set during InitVfs
-extern const char* psLogDir();	// used by AppHooks and engine code when reporting errors
+extern void psSetLogDir(const fs::wpath& logDir);	// set during InitVfs
+extern const fs::wpath& psLogDir();	// used by AppHooks and engine code when reporting errors
 
 #endif

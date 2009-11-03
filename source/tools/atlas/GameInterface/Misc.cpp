@@ -39,12 +39,12 @@ CVector3D AtlasMessage::Position::GetWorldSpace(bool floating) const
 		break;
 
 	case 2:
-		debug_warn("Invalid Position acquisition (unchanged without previous)");
+		debug_warn(L"Invalid Position acquisition (unchanged without previous)");
 		return CVector3D(0.f, 0.f, 0.f);
 		break;
 
 	default:
-		debug_warn("Invalid Position type");
+		debug_warn(L"Invalid Position type");
 		return CVector3D(0.f, 0.f, 0.f);
 	}
 }
@@ -87,7 +87,7 @@ void AtlasMessage::Position::GetScreenSpace(float& x, float& y) const
 		break;
 
 	default:
-		debug_warn("Invalid Position type");
+		debug_warn(L"Invalid Position type");
 		x = y = 0.f;
 	}
 }

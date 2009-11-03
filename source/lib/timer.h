@@ -38,12 +38,12 @@ LIB_API void timer_LatchStartTime();
 /**
  * @return high resolution (> 1 us) timestamp [s].
  **/
-LIB_API double timer_Time(void);
+LIB_API double timer_Time();
 
 /**
  * @return resolution [s] of the timer.
  **/
-LIB_API double timer_Resolution(void);
+LIB_API double timer_Resolution();
 
 
 //-----------------------------------------------------------------------------
@@ -54,7 +54,7 @@ class ScopeTimer
 {
 	NONCOPYABLE(ScopeTimer);
 public:
-	ScopeTimer(const char* description)
+	ScopeTimer(const wchar_t* description)
 		: m_t0(timer_Time()), m_description(description)
 	{
 	}
@@ -66,18 +66,18 @@ public:
 
 		// determine scale factor for pretty display
 		double scale = 1e6;
-		const char* unit = "us";
+		const wchar_t* unit = L"us";
 		if(dt > 1.0)
-			scale = 1, unit = "s";
+			scale = 1, unit = L"s";
 		else if(dt > 1e-3)
-			scale = 1e3, unit = "ms";
+			scale = 1e3, unit = L"ms";
 
-		debug_printf("TIMER| %s: %g %s\n", m_description, dt*scale, unit);
+		debug_printf(L"TIMER| %ls: %g %ls\n", m_description, dt*scale, unit);
 	}
 
 private:
 	double m_t0;
-	const char* m_description;
+	const wchar_t* m_description;
 };
 
 /**
@@ -90,7 +90,7 @@ private:
  * Example usage:
  * 	void func()
  * 	{
- * 		TIMER("description");
+ * 		TIMER(L"description");
  * 		// code to be measured
  * 	}
  **/
@@ -113,9 +113,9 @@ private:
  * 	void func2()
  * 	{
  * 		// uninteresting code
- * 		TIMER_BEGIN("description2");
+ * 		TIMER_BEGIN(L"description2");
  * 		// code to be measured
- * 		TIMER_END("description2");
+ * 		TIMER_END(L"description2");
  * 		// uninteresting code
  * 	}
  **/
@@ -172,21 +172,21 @@ public:
 		m_ticks -= t.m_ticks;
 	}
 
-	std::string ToString() const
+	std::wstring ToString() const
 	{
 		debug_assert(m_ticks >= 0.0);
 
 		// determine scale factor for pretty display
 		double scale = 1.0;
-		const char* unit = " c";
+		const wchar_t* unit = L" c";
 		if(m_ticks > 10000000000LL)	// 10 Gc
-			scale = 1e-9, unit = " Gc";
+			scale = 1e-9, unit = L" Gc";
 		else if(m_ticks > 10000000)	// 10 Mc
-			scale = 1e-6, unit = " Mc";
+			scale = 1e-6, unit = L" Mc";
 		else if(m_ticks > 10000)	// 10 kc
-			scale = 1e-3, unit = " kc";
+			scale = 1e-3, unit = L" kc";
 
-		std::stringstream ss;
+		std::wstringstream ss;
 		ss << m_ticks*scale;
 		ss << unit;
 		return ss.str();
@@ -226,19 +226,19 @@ public:
 		m_seconds -= t.m_seconds;
 	}
 
-	std::string ToString() const
+	std::wstring ToString() const
 	{
 		debug_assert(m_seconds >= 0.0);
 
 		// determine scale factor for pretty display
 		double scale = 1e6;
-		const char* unit = " us";
+		const wchar_t* unit = L" us";
 		if(m_seconds > 1.0)
-			scale = 1, unit = " s";
+			scale = 1, unit = L" s";
 		else if(m_seconds > 1e-3)
-			scale = 1e3, unit = " ms";
+			scale = 1e3, unit = L" ms";
 
-		std::stringstream ss;
+		std::wstringstream ss;
 		ss << m_seconds*scale;
 		ss << unit;
 		return ss.str();
@@ -263,7 +263,7 @@ struct TimerClient
 	TimerUnit sum;	// total bill
 
 	// only store a pointer for efficiency.
-	const char* description;
+	const wchar_t* description;
 
 	TimerClient* next;
 
@@ -283,7 +283,7 @@ struct TimerClient
  * - free() is not needed nor possible.
  * - description must remain valid until exit; a string literal is safest.
  **/
-LIB_API TimerClient* timer_AddClient(TimerClient* tc, const char* description);
+LIB_API TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description);
 
 /**
  * "allocate" a new TimerClient that will keep track of the total time
@@ -294,7 +294,7 @@ LIB_API TimerClient* timer_AddClient(TimerClient* tc, const char* description);
  **/
 #define TIMER_ADD_CLIENT(id)\
 	static TimerClient UID__;\
-	static TimerClient* id = timer_AddClient(&UID__, #id);
+	static TimerClient* id = timer_AddClient(&UID__, WIDEN(#id));
 
 /**
  * bill the difference between t0 and t1 to the client's total.

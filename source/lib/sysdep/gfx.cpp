@@ -29,8 +29,8 @@
 #endif
 
 
-char gfx_card[GFX_CARD_LEN] = "";
-char gfx_drv_ver[GFX_DRV_VER_LEN] = "";
+wchar_t gfx_card[GFX_CARD_LEN] = L"";
+wchar_t gfx_drv_ver[GFX_DRV_VER_LEN] = L"";
 
 int gfx_mem = -1;	// [MiB]; approximate
 
@@ -55,11 +55,11 @@ void gfx_detect()
 	// remove crap from vendor names. (don't dare touch the model name -
 	// it's too risky, there are too many different strings)
 #define SHORTEN(what, chars_to_keep)\
-	if(!strncmp(gfx_card, what, ARRAY_SIZE(what)-1))\
-	memmove(gfx_card+chars_to_keep, gfx_card+ARRAY_SIZE(what)-1, strlen(gfx_card)-(ARRAY_SIZE(what)-1)+1);
-	SHORTEN("ATI Technologies Inc.", 3);
-	SHORTEN("NVIDIA Corporation", 6);
-	SHORTEN("S3 Graphics", 2);					// returned by EnumDisplayDevices
-	SHORTEN("S3 Graphics, Incorporated", 2);	// returned by GL_VENDOR
+	if(!wcsncmp(gfx_card, what, ARRAY_SIZE(what)-1))\
+		memmove(gfx_card+chars_to_keep, gfx_card+ARRAY_SIZE(what)-1, (wcslen(gfx_card)-ARRAY_SIZE(what))*sizeof(wchar_t));
+	SHORTEN(L"ATI Technologies Inc.", 3);
+	SHORTEN(L"NVIDIA Corporation", 6);
+	SHORTEN(L"S3 Graphics", 2);					// returned by EnumDisplayDevices
+	SHORTEN(L"S3 Graphics, Incorporated", 2);	// returned by GL_VENDOR
 #undef SHORTEN
 }

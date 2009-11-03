@@ -78,7 +78,7 @@ void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos,
 {
 	if (index < 0 || index >= (int)m_GeneratedTexts.size())
 	{
-		debug_warn("Trying to draw a Text Index within a IGUITextOwner that doesn't exist");
+		debug_warn(L"Trying to draw a Text Index within a IGUITextOwner that doesn't exist");
 		return;
 	}
 
@@ -108,7 +108,7 @@ void IGUITextOwner::CalculateTextPosition(CRect &ObjSize, CPos &TextPos, SGUITex
 		TextPos.x = ObjSize.right - Text.m_Size.cx;
 		break;
 	default:
-		debug_warn("Broken EAlign in CButton::SetupText()");
+		debug_warn(L"Broken EAlign in CButton::SetupText()");
 		break;
 	}
 
@@ -125,7 +125,7 @@ void IGUITextOwner::CalculateTextPosition(CRect &ObjSize, CPos &TextPos, SGUITex
 		TextPos.y = ObjSize.bottom - Text.m_Size.cy;
 		break;
 	default:
-		debug_warn("Broken EVAlign in CButton::SetupText()");
+		debug_warn(L"Broken EVAlign in CButton::SetupText()");
 		break;
 	}
 }

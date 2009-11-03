@@ -80,7 +80,7 @@ struct SGUIImage
 	SGUIImage() : m_Effects(NULL), m_Border(false), m_DeltaZ(0.f) {}
 
 	// Filename of the texture
-	CStr			m_TextureName;
+	VfsPath			m_TextureName;
 
 	// Image placement (relative to object)
 	CClientArea		m_Size;

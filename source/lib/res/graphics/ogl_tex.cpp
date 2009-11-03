@@ -499,7 +499,7 @@ Handle ogl_tex_load(const VfsPath& pathname, size_t flags)
 // is still in memory; otherwise, a negative error code.
 Handle ogl_tex_find(const VfsPath& pathname)
 {
-	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length());
+	const uintptr_t key = fnv_hash(pathname.string().c_str(), pathname.string().length()*sizeof(pathname.string()[0]));
 	return h_find(H_OglTex, key);
 }
 
@@ -516,7 +516,7 @@ Handle ogl_tex_find(const VfsPath& pathname)
 // note: because we cannot guarantee that callers will pass distinct
 // "filenames", caching is disabled for the created object. this avoids
 // mistakenly reusing previous objects that share the same comment.
-Handle ogl_tex_wrap(Tex* t, const char* fn, size_t flags)
+Handle ogl_tex_wrap(Tex* t, const VfsPath& pathname, size_t flags)
 {
 	// this object may not be backed by a file ("may", because
 	// someone could do tex_load and then ogl_tex_wrap).
@@ -526,7 +526,7 @@ Handle ogl_tex_wrap(Tex* t, const char* fn, size_t flags)
 	// 'descriptive comment' instead of filename, but don't rely on that)
 	// also disable caching as explained above.
 	flags |= RES_DISALLOW_RELOAD|RES_NO_CACHE;
-	return h_alloc(H_OglTex, fn, flags, t);
+	return h_alloc(H_OglTex, pathname, flags, t);
 }
 
 
@@ -687,9 +687,9 @@ static void detect_gl_upload_caps()
 		// rationale: janwas's laptop's S3 card blows up if S3TC is used
 		// (oh, the irony). it'd be annoying to have to share this between all
 		// projects, hence this default implementation here.
-		if(!strcmp(gfx_card, "S3 SuperSavage/IXC 1014"))
+		if(!wcscmp(gfx_card, L"S3 SuperSavage/IXC 1014"))
 		{
-			if(strstr(gfx_drv_ver, "ssicdnt.dll (2.60.115)"))
+			if(wcsstr(gfx_drv_ver, L"ssicdnt.dll (2.60.115)"))
 				ogl_tex_override(OGL_TEX_S3TC, OGL_TEX_DISABLE);
 		}
 	}

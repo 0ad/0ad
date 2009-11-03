@@ -51,7 +51,7 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 	VfsPath::iterator it;	// (used outside of loop to get filename)
 	for(it = pathname.begin(); it != --pathname.end(); ++it)
 	{
-		const std::string& subdirectoryName = *it;
+		const std::wstring& subdirectoryName = *it;
 
 		VfsDirectory* subdirectory = directory->GetSubdirectory(subdirectoryName);
 		if(!subdirectory)
@@ -64,12 +64,13 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 		if(createMissingDirectories && !subdirectory->AssociatedDirectory())
 		{
-			fs::path currentPath;
+			fs::wpath currentPath;
 			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
 				currentPath = directory->AssociatedDirectory()->Path();
 			currentPath /= subdirectoryName;
 
-			const int ret = mkdir(currentPath.external_directory_string().c_str(), S_IRWXU);
+			fs::path currentPath_c = path_from_wpath(currentPath);
+			const int ret = mkdir(currentPath_c.external_directory_string().c_str(), S_IRWXU);
 			if(ret == 0)
 			{
 				PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
@@ -77,7 +78,7 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 			}
 			else if(errno != EEXIST)	// notify of unexpected failures
 			{
-				debug_printf("mkdir failed with errno=%d\n", errno);
+				debug_printf(L"mkdir failed with errno=%d\n", errno);
 				debug_assert(0);
 			}
 		}
@@ -88,8 +89,8 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 
 	if(pfile)
 	{
-		const std::string& filename = *it;
-		debug_assert(filename != ".");	// asked for file but specified directory path
+		const std::wstring& filename = *it;
+		debug_assert(filename != L".");	// asked for file but specified directory path
 		*pfile = directory->GetFile(filename);
 		if(!*pfile)
 			return ERR::VFS_FILE_NOT_FOUND;	// NOWARN

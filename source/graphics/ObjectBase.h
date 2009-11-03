@@ -25,6 +25,7 @@ class CObjectManager;
 #include <vector>
 #include <set>
 #include <map>
+#include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 
 class CObjectBase
@@ -39,7 +40,7 @@ public:
 		// name of the animation - "Idle", "Run", etc
 		CStr m_AnimName;
 		// filename of the animation - manidle.psa, manrun.psa, etc
-		CStr m_FileName;
+		VfsPath m_FileName;
 		// animation speed, as specified in XML actor file
 		float m_Speed;
 		// fraction of the way through the animation that the interesting bit(s)
@@ -52,7 +53,7 @@ public:
 		// name of the prop point to attach to - "Prop01", "Prop02", "Head", "LeftHand", etc ..
 		CStr m_PropPointName;
 		// name of the model file - art/actors/props/sword.xml or whatever
-		CStr m_ModelName;
+		VfsPath m_ModelName;
 	};
 
 	struct Variant
@@ -60,8 +61,8 @@ public:
 		Variant() : m_Frequency(0) {}
 		CStr m_VariantName; // lowercase name
 		int m_Frequency;
-		CStr m_ModelFilename;
-		CStr m_TextureFilename;
+		VfsPath m_ModelFilename;
+		VfsPath m_TextureFilename;
 		CStr m_Color;
 
 		std::vector<Anim> m_Anims;
@@ -70,8 +71,8 @@ public:
 
 	struct Variation
 	{
-		CStr texture;
-		CStr model;
+		VfsPath texture;
+		VfsPath model;
 		CStr color;
 		std::multimap<CStr, CObjectBase::Prop> props;
 		std::multimap<CStr, CObjectBase::Anim> anims;
@@ -96,13 +97,13 @@ public:
 	// variant names.
 	std::vector<std::vector<CStr> > GetVariantGroups() const;
 
-	bool Load(const char* filename);
+	bool Load(const std::wstring& filename);
 
 	// object name
-	CStr m_Name;
+	CStrW m_Name;
 
 	// short human-readable name
-	CStr m_ShortName;
+	CStrW m_ShortName;
 
 	struct {
 		// automatically flatten terrain when applying object
@@ -114,12 +115,11 @@ public:
 	} m_Properties;
 
 	// the material file
-	CStr m_Material;
+	VfsPath m_Material;
 
 private:
 	std::vector< std::vector<Variant> > m_VariantGroups;
 	CObjectManager& m_ObjectManager;
 };
-
 
 #endif

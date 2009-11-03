@@ -241,7 +241,7 @@ static void setBindings( const CStr& hotkeyName, int integerMapping = -1 )
 						if( !mapping )
 							if( !it->GetInt( mapping ) )	// Attempt decode as key code
 							{
-								LOG(CLogger::Warning, "hotkey", "Couldn't map '%s'", hotkey.c_str() );
+								LOG(CLogger::Warning, L"hotkey", L"Couldn't map '%hs'", hotkey.c_str() );
 								continue;
 							}
 
@@ -477,8 +477,8 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 			}
 			else
 			{
-				debug_printf("keyCode = %i\n", keyCode);
-				debug_warn("keyCode out of range in GUI hotkey requirements");
+				debug_printf(L"keyCode = %i\n", keyCode);
+				debug_warn(L"keyCode out of range in GUI hotkey requirements");
 			}
 
 			// If this event requires a multiple keypress (with the exception
@@ -546,8 +546,8 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 			}
 			else
 			{
-				debug_printf("keyCode = %i\n", keyCode);
-				debug_warn("keyCode out of range in GUI hotkey requirements");
+				debug_printf(L"keyCode = %i\n", keyCode);
+				debug_warn(L"keyCode out of range in GUI hotkey requirements");
 			}
 
 			// If this event requires a multiple keypress (with the exception

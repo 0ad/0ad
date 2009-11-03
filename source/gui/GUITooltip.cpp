@@ -65,6 +65,8 @@
 	* If now > target time, switch to 'STATIONARY, NO TOOLTIP'
 */
 
+#define LOG_CATEGORY L"gui"
+
 enum
 {
 	ST_IN_MOTION,
@@ -118,7 +120,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
-		LOG_ONCE(CLogger::Error, "gui", "Cannot find tooltip named '%s'", (const char*)style);
+		LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Cannot find tooltip named '%hs'", style.c_str());
 		return;
 	}
 
@@ -131,7 +133,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 		usedobj = gui->FindObjectByName(usedObjectName);
 		if (! usedobj)
 		{
-			LOG_ONCE(CLogger::Error, "gui", "Cannot find object named '%s' used by tooltip '%s'", (const char*)usedObjectName, (const char*)style);
+			LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Cannot find object named '%hs' used by tooltip '%hs'", usedObjectName.c_str(), style.c_str());
 			return;
 		}
 
@@ -146,20 +148,20 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 
 		// Store mouse position inside the CTooltip
 		if (GUI<CPos>::SetSetting(usedobj, "_mousepos", pos) != PSRETURN_OK)
-			debug_warn("Failed to set tooltip mouse position");
+			debug_warn(L"Failed to set tooltip mouse position");
 	}
 
 	// Retrieve object's 'tooltip' setting
 	CStr text;
 	if (GUI<CStr>::GetSetting(obj, "tooltip", text) != PSRETURN_OK)
-		debug_warn("Failed to retrieve tooltip text"); // shouldn't fail
+		debug_warn(L"Failed to retrieve tooltip text"); // shouldn't fail
 
 	// Do some minimal processing ("\n" -> newline, etc)
 	text = text.UnescapeBackslashes();
 
 	// Set tooltip's caption
 	if (usedobj->SetSetting("caption", text) != PSRETURN_OK)
-		debug_warn("Failed to set tooltip caption"); // shouldn't fail
+		debug_warn(L"Failed to set tooltip caption"); // shouldn't fail
 
 	// Make the tooltip object regenerate its text
 	usedobj->HandleMessage(SGUIMessage(GUIM_SETTINGS_UPDATED, "caption"));
@@ -174,7 +176,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
-		LOG_ONCE(CLogger::Error, "gui", "Cannot find tooltip named '%s'", (const char*)style);
+		LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Cannot find tooltip named '%hs'", style.c_str());
 		return;
 	}
 
@@ -185,7 +187,7 @@ void GUITooltip::HideTooltip(const CStr& style, CGUI* gui)
 		IGUIObject* usedobj = gui->FindObjectByName(usedObjectName);
 		if (! usedobj)
 		{
-			LOG_ONCE(CLogger::Error, "gui", "Cannot find object named '%s' used by tooltip '%s'", (const char*)usedObjectName, (const char*)style);
+			LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Cannot find object named '%hs' used by tooltip '%hs'", usedObjectName.c_str(), style.c_str());
 			return;
 		}
 
@@ -215,7 +217,7 @@ static int GetTooltipDelay(CStr& style, CGUI* gui)
 	IGUIObject* tooltipobj = gui->FindObjectByName("__tooltip_"+style);
 	if (! tooltipobj)
 	{
-		LOG_ONCE(CLogger::Error, "gui", "Cannot find tooltip object named '%s'", (const char*)style);
+		LOG_ONCE(CLogger::Error, LOG_CATEGORY, L"Cannot find tooltip object named '%hs'", style.c_str());
 		return delay;
 	}
 	GUI<int>::GetSetting(tooltipobj, "delay", delay);

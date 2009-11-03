@@ -23,7 +23,7 @@
 
 class TestTex : public CxxTest::TestSuite 
 {
-	void generate_encode_decode_compare(size_t w, size_t h, size_t flags, size_t bpp, const std::string& extension)
+	void generate_encode_decode_compare(size_t w, size_t h, size_t flags, size_t bpp, const std::wstring& extension)
 	{
 		// generate test data
 		const size_t size = w*h*bpp/8;
@@ -69,8 +69,8 @@ public:
 
 			// get an extension that this codec will support
 			// (so that tex_encode uses this codec)
-			char extension[30] = {'.'};
-			strcpy_s(extension+1, 29, c->name);
+			wchar_t extension[30] = {'.'};
+			wcscpy_s(extension+1, 29, c->name);
 			// .. make sure the c->name hack worked
 			const TexCodecVTbl* correct_c = 0;
 			TS_ASSERT_OK(tex_codec_for_filename(extension, &correct_c));
@@ -85,7 +85,7 @@ public:
 				for(size_t bpp = 8; bpp <= 32; bpp += 8)
 				{
 					size_t flags = 0;
-					if(!strcmp(extension, ".dds"))
+					if(!wcscmp(extension, L".dds"))
 						flags |= (TEX_DXT&3);	// DXT3
 					if(bpp == 8)
 						flags |= TEX_GREY;

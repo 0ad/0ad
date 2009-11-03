@@ -54,7 +54,7 @@ int self_test_register(SelfTestRecord* r)
 
 void self_test_run_all()
 {
-	debug_printf("SELF TESTS:\n");
+	debug_printf(L"SELF TESTS:\n");
 	const double t0 = timer_Time();
 
 	// someone somewhere may want to run self-tests twice (e.g. to help
@@ -68,7 +68,7 @@ void self_test_run_all()
 	}
 
 	const double dt = timer_Time() - t0;
-	debug_printf("-- done (elapsed time %.0f ms)\n", dt*1e3);
+	debug_printf(L"-- done (elapsed time %.0f ms)\n", dt*1e3);
 }
 
 #endif

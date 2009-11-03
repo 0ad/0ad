@@ -83,13 +83,13 @@ void wmi_Shutdown()
 }
 
 
-LibError wmi_GetClass(const char* className, WmiMap& wmiMap)
+LibError wmi_GetClass(const wchar_t* className, WmiMap& wmiMap)
 {
 	RETURN_ERR(Init());
 
 	IEnumWbemClassObjectPtr pEnum = 0;
-	char query[200];
-	sprintf_s(query, ARRAY_SIZE(query), "SELECT * FROM %s", className);
+	wchar_t query[200];
+	swprintf_s(query, ARRAY_SIZE(query), L"SELECT * FROM %ls", className);
 	HRESULT hr = pSvc->ExecQuery(L"WQL", _bstr_t(query), WBEM_FLAG_FORWARD_ONLY|WBEM_FLAG_RETURN_IMMEDIATELY, 0, &pEnum);
 	if(FAILED(hr))
 		WARN_RETURN(ERR::FAIL);

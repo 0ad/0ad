@@ -186,27 +186,27 @@ static void Cursor_dtor(Cursor* c)
 
 static LibError Cursor_reload(Cursor* c, const VfsPath& name, Handle)
 {
-	const VfsPath path("art/textures/cursors");
-	const std::string basename = name.string();
+	const VfsPath path(L"art/textures/cursors");
+	const VfsPath pathname(path/name);
 
 	// read pixel offset of the cursor's hotspot [the bit of it that's
 	// drawn at (g_mouse_x,g_mouse_y)] from file.
 	int hotspotx = 0, hotspoty = 0;
 	{
-		const VfsPath pathname(path / (basename + ".txt"));
+		const VfsPath pathnameHotspot = fs::change_extension(pathname, L".txt");
 		shared_ptr<u8> buf; size_t size;
-		RETURN_ERR(g_VFS->LoadFile(pathname, buf, size));
-		std::stringstream s(std::string((const char*)buf.get(), size));
+		RETURN_ERR(g_VFS->LoadFile(pathnameHotspot, buf, size));
+		std::wstringstream s(std::wstring((const wchar_t*)buf.get(), size));
 		s >> hotspotx >> hotspoty;
 	}
 
-	const VfsPath pathname(path / (basename + ".dds"));
+	const VfsPath pathnameImage = fs::change_extension(pathname, L".dds");
 
 	// try loading as system cursor (2d, hardware accelerated)
-	if(load_sys_cursor(pathname, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)
+	if(load_sys_cursor(pathnameImage, hotspotx, hotspoty, &c->system_cursor) == INFO::OK)
 		c->kind = CK_System;
 	// fall back to GLCursor (system cursor code is disabled or failed)
-	else if(c->gl_cursor.create(pathname, hotspotx, hotspoty) == INFO::OK)
+	else if(c->gl_cursor.create(pathnameImage, hotspotx, hotspoty) == INFO::OK)
 	{
 		c->kind = CK_OpenGL;
 		// (we need to hide the system cursor when using a OpenGL cursor)
@@ -277,7 +277,7 @@ static LibError Cursor_to_string(const Cursor* c, char* buf)
 // in other words, we continually create/free the cursor resource in
 // cursor_draw and trust h_mgr's caching to absorb it.
 
-static Handle cursor_load(const char* name)
+static Handle cursor_load(const VfsPath& name)
 {
 	return h_alloc(H_Cursor, name, 0);
 }
@@ -288,7 +288,7 @@ static LibError cursor_free(Handle& h)
 }
 
 
-LibError cursor_draw(const char* name, int x, int y)
+LibError cursor_draw(const wchar_t* name, int x, int y)
 {
 	// hide the cursor
 	if(!name)

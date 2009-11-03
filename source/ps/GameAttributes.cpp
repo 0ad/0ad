@@ -221,9 +221,9 @@ CGameAttributes::CGameAttributes():
 	AddSynchedProperty(L"screenshotMode", &m_ScreenshotMode);
 
 	CXeromyces XeroFile;
-	if (XeroFile.Load("temp/players.xml") != PSRETURN_OK)
+	if (XeroFile.Load(L"temp/players.xml") != PSRETURN_OK)
 	{
-		LOG(CLogger::Error, "", "Failed to load players list (temp/players.xml)");
+		LOG(CLogger::Error, L"", L"Failed to load players list (temp/players.xml)");
 
 		// Basic default players
 
@@ -248,7 +248,7 @@ CGameAttributes::CGameAttributes():
 			m_Players.back()->SetName(attr.GetNamedItem(at_name));
 
 			std::stringstream str;
-			str << (CStr)attr.GetNamedItem(at_rgb);
+			str << CStr(attr.GetNamedItem(at_rgb));
 			int r, g, b;
 			if (str >> r >> g >> b)
 				m_Players.back()->SetColour(SPlayerColour(r/255.0f, g/255.0f, b/255.0f));
@@ -369,7 +369,7 @@ CPlayer *CGameAttributes::GetPlayer(size_t id)
 		return m_Players[id];
 	else
 	{
-		LOG(CLogger::Error, "", "CGameAttributes::GetPlayer(): Attempt to get player %lu (while there only are %lu players)", (unsigned long)id, (unsigned long)m_Players.size());
+		LOG(CLogger::Error, L"", L"CGameAttributes::GetPlayer(): Attempt to get player %lu (while there only are %lu players)", (unsigned long)id, (unsigned long)m_Players.size());
 		return m_Players[0];
 	}
 }
@@ -380,7 +380,7 @@ CPlayerSlot *CGameAttributes::GetSlot(size_t index)
 		return m_PlayerSlots[index];
 	else
 	{
-		LOG(CLogger::Error, "", "CGameAttributes::GetSlot(): Attempt to get slot %lu (while there only are %lu slots)", (unsigned long)index, (unsigned long)m_PlayerSlots.size());
+		LOG(CLogger::Error, L"", L"CGameAttributes::GetSlot(): Attempt to get slot %lu (while there only are %lu slots)", (unsigned long)index, (unsigned long)m_PlayerSlots.size());
 		return m_PlayerSlots[0];
 	}
 }

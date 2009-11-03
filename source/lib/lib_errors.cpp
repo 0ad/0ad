@@ -77,18 +77,18 @@ static const LibErrorAssociation* AssociationFromErrno(errno_t errno_equivalent)
 }
 
 
-char* error_description_r(LibError err, char* buf, size_t max_chars)
+wchar_t* error_description_r(LibError err, wchar_t* buf, size_t max_chars)
 {
 	// lib error
 	const LibErrorAssociation* lea = AssociationFromLibError(err);
 	if(lea)
 	{
-		strcpy_s(buf, max_chars, lea->description);
+		wcscpy_s(buf, max_chars, lea->description);
 		return buf;
 	}
 
 	// unknown
-	snprintf(buf, max_chars, "Unknown error (%d, 0x%X)", (int)err, (unsigned int)err);
+	swprintf_s(buf, max_chars, L"Unknown error (%d, 0x%X)", (int)err, (unsigned int)err);
 	return buf;
 }
 
@@ -139,55 +139,55 @@ void LibError_set_errno(LibError err)
 //-----------------------------------------------------------------------------
 
 // INFO::OK doesn't really need a string because calling error_description_r(0) should never happen, but go the safe route.
-ERROR_ASSOCIATE(INFO::OK, "(but return value was 0 which indicates success)", -1);
-ERROR_ASSOCIATE(ERR::FAIL, "Function failed (no details available)", -1);
+ERROR_ASSOCIATE(INFO::OK, L"(but return value was 0 which indicates success)", -1);
+ERROR_ASSOCIATE(ERR::FAIL, L"Function failed (no details available)", -1);
 
-ERROR_ASSOCIATE(INFO::CB_CONTINUE,    "Continue (not an error)", -1);
-ERROR_ASSOCIATE(INFO::SKIPPED,        "Skipped (not an error)", -1);
-ERROR_ASSOCIATE(INFO::CANNOT_HANDLE,  "Cannot handle (not an error)", -1);
-ERROR_ASSOCIATE(INFO::ALL_COMPLETE,   "All complete (not an error)", -1);
-ERROR_ASSOCIATE(INFO::ALREADY_EXISTS, "Already exists (not an error)", -1);
+ERROR_ASSOCIATE(INFO::CB_CONTINUE,    L"Continue (not an error)", -1);
+ERROR_ASSOCIATE(INFO::SKIPPED,        L"Skipped (not an error)", -1);
+ERROR_ASSOCIATE(INFO::CANNOT_HANDLE,  L"Cannot handle (not an error)", -1);
+ERROR_ASSOCIATE(INFO::ALL_COMPLETE,   L"All complete (not an error)", -1);
+ERROR_ASSOCIATE(INFO::ALREADY_EXISTS, L"Already exists (not an error)", -1);
 
-ERROR_ASSOCIATE(ERR::LOGIC, "Logic error in code", -1);
-ERROR_ASSOCIATE(ERR::TIMED_OUT, "Timed out", -1);
-ERROR_ASSOCIATE(ERR::REENTERED, "Single-call function was reentered", -1);
-ERROR_ASSOCIATE(ERR::CORRUPTED, "File/memory data is corrupted", -1);
-ERROR_ASSOCIATE(ERR::ASSERTION_FAILED, "Assertion failed", -1);
+ERROR_ASSOCIATE(ERR::LOGIC, L"Logic error in code", -1);
+ERROR_ASSOCIATE(ERR::TIMED_OUT, L"Timed out", -1);
+ERROR_ASSOCIATE(ERR::REENTERED, L"Single-call function was reentered", -1);
+ERROR_ASSOCIATE(ERR::CORRUPTED, L"File/memory data is corrupted", -1);
+ERROR_ASSOCIATE(ERR::ASSERTION_FAILED, L"Assertion failed", -1);
 
-ERROR_ASSOCIATE(ERR::INVALID_PARAM, "Invalid function argument", EINVAL);
-ERROR_ASSOCIATE(ERR::INVALID_HANDLE, "Invalid Handle (argument)", -1);
-ERROR_ASSOCIATE(ERR::BUF_SIZE, "Buffer argument too small", -1);
-ERROR_ASSOCIATE(ERR::AGAIN, "Try again later", -1);
-ERROR_ASSOCIATE(ERR::LIMIT, "Fixed limit exceeded", -1);
-ERROR_ASSOCIATE(ERR::NO_SYS, "OS doesn't provide a required API", -1);
-ERROR_ASSOCIATE(ERR::NOT_IMPLEMENTED, "Feature currently not implemented", ENOSYS);
-ERROR_ASSOCIATE(ERR::NOT_SUPPORTED, "Feature isn't and won't be supported", -1);
-ERROR_ASSOCIATE(ERR::NO_MEM, "Not enough memory", ENOMEM);
+ERROR_ASSOCIATE(ERR::INVALID_PARAM, L"Invalid function argument", EINVAL);
+ERROR_ASSOCIATE(ERR::INVALID_HANDLE, L"Invalid Handle (argument)", -1);
+ERROR_ASSOCIATE(ERR::BUF_SIZE, L"Buffer argument too small", -1);
+ERROR_ASSOCIATE(ERR::AGAIN, L"Try again later", -1);
+ERROR_ASSOCIATE(ERR::LIMIT, L"Fixed limit exceeded", -1);
+ERROR_ASSOCIATE(ERR::NO_SYS, L"OS doesn't provide a required API", -1);
+ERROR_ASSOCIATE(ERR::NOT_IMPLEMENTED, L"Feature currently not implemented", ENOSYS);
+ERROR_ASSOCIATE(ERR::NOT_SUPPORTED, L"Feature isn't and won't be supported", -1);
+ERROR_ASSOCIATE(ERR::NO_MEM, L"Not enough memory", ENOMEM);
 
-ERROR_ASSOCIATE(ERR::_1, "Case 1", -1);
-ERROR_ASSOCIATE(ERR::_2, "Case 2", -1);
-ERROR_ASSOCIATE(ERR::_3, "Case 3", -1);
-ERROR_ASSOCIATE(ERR::_4, "Case 4", -1);
-ERROR_ASSOCIATE(ERR::_5, "Case 5", -1);
-ERROR_ASSOCIATE(ERR::_6, "Case 6", -1);
-ERROR_ASSOCIATE(ERR::_7, "Case 7", -1);
-ERROR_ASSOCIATE(ERR::_8, "Case 8", -1);
-ERROR_ASSOCIATE(ERR::_9, "Case 9", -1);
-ERROR_ASSOCIATE(ERR::_11, "Case 11", -1);
-ERROR_ASSOCIATE(ERR::_12, "Case 12", -1);
-ERROR_ASSOCIATE(ERR::_13, "Case 13", -1);
-ERROR_ASSOCIATE(ERR::_14, "Case 14", -1);
-ERROR_ASSOCIATE(ERR::_15, "Case 15", -1);
-ERROR_ASSOCIATE(ERR::_16, "Case 16", -1);
-ERROR_ASSOCIATE(ERR::_17, "Case 17", -1);
-ERROR_ASSOCIATE(ERR::_18, "Case 18", -1);
-ERROR_ASSOCIATE(ERR::_19, "Case 19", -1);
-ERROR_ASSOCIATE(ERR::_21, "Case 21", -1);
-ERROR_ASSOCIATE(ERR::_22, "Case 22", -1);
-ERROR_ASSOCIATE(ERR::_23, "Case 23", -1);
-ERROR_ASSOCIATE(ERR::_24, "Case 24", -1);
-ERROR_ASSOCIATE(ERR::_25, "Case 25", -1);
-ERROR_ASSOCIATE(ERR::_26, "Case 26", -1);
-ERROR_ASSOCIATE(ERR::_27, "Case 27", -1);
-ERROR_ASSOCIATE(ERR::_28, "Case 28", -1);
-ERROR_ASSOCIATE(ERR::_29, "Case 29", -1);
+ERROR_ASSOCIATE(ERR::_1, L"Case 1", -1);
+ERROR_ASSOCIATE(ERR::_2, L"Case 2", -1);
+ERROR_ASSOCIATE(ERR::_3, L"Case 3", -1);
+ERROR_ASSOCIATE(ERR::_4, L"Case 4", -1);
+ERROR_ASSOCIATE(ERR::_5, L"Case 5", -1);
+ERROR_ASSOCIATE(ERR::_6, L"Case 6", -1);
+ERROR_ASSOCIATE(ERR::_7, L"Case 7", -1);
+ERROR_ASSOCIATE(ERR::_8, L"Case 8", -1);
+ERROR_ASSOCIATE(ERR::_9, L"Case 9", -1);
+ERROR_ASSOCIATE(ERR::_11, L"Case 11", -1);
+ERROR_ASSOCIATE(ERR::_12, L"Case 12", -1);
+ERROR_ASSOCIATE(ERR::_13, L"Case 13", -1);
+ERROR_ASSOCIATE(ERR::_14, L"Case 14", -1);
+ERROR_ASSOCIATE(ERR::_15, L"Case 15", -1);
+ERROR_ASSOCIATE(ERR::_16, L"Case 16", -1);
+ERROR_ASSOCIATE(ERR::_17, L"Case 17", -1);
+ERROR_ASSOCIATE(ERR::_18, L"Case 18", -1);
+ERROR_ASSOCIATE(ERR::_19, L"Case 19", -1);
+ERROR_ASSOCIATE(ERR::_21, L"Case 21", -1);
+ERROR_ASSOCIATE(ERR::_22, L"Case 22", -1);
+ERROR_ASSOCIATE(ERR::_23, L"Case 23", -1);
+ERROR_ASSOCIATE(ERR::_24, L"Case 24", -1);
+ERROR_ASSOCIATE(ERR::_25, L"Case 25", -1);
+ERROR_ASSOCIATE(ERR::_26, L"Case 26", -1);
+ERROR_ASSOCIATE(ERR::_27, L"Case 27", -1);
+ERROR_ASSOCIATE(ERR::_28, L"Case 28", -1);
+ERROR_ASSOCIATE(ERR::_29, L"Case 29", -1);

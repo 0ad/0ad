@@ -39,7 +39,7 @@ class DirWatchRequest
 {
 public:
 	DirWatchRequest()
-		: m_data(new char[dataSize])
+		: m_data(new u8[dataSize])
 	{
 		m_undefined = 0;
 		memset(&m_ovl, 0, sizeof(m_ovl));
@@ -48,7 +48,7 @@ public:
 	/**
 	 * @return the buffer containing one or more FILE_NOTIFY_INFORMATION
 	 **/
-	char* Results() const
+	u8* Results() const
 	{
 		debug_assert(HasOverlappedIoCompleted(&m_ovl));
 		return m_data.get();
@@ -79,7 +79,7 @@ private:
 	// note: each instance needs their own buffer. (we can't share a central
 	// copy because the watches are independent and may be triggered
 	// 'simultaneously' before the next poll.)
-	shared_ptr<char> m_data;
+	shared_ptr<u8> m_data;
 
 	// (passing this instead of a null pointer avoids a BoundsChecker warning
 	// but has no other value since its contents are undefined.)
@@ -209,7 +209,7 @@ public:
 		return m_path;
 	}
 
-	const char* Results() const
+	const u8* Results() const
 	{
 		return m_request.Results();
 	}
@@ -239,9 +239,9 @@ public:
 	 * @param packets points to at least one (variable-length)
 	 *   FILE_NOTIFY_INFORMATION.
 	 **/
-	void Enqueue(const fs::wpath& path, const char* const packets)
+	void Enqueue(const fs::wpath& path, const u8* const packets)
 	{
-		const char* pos = packets;
+		const u8* pos = packets;
 		for(;;)
 		{
 			const FILE_NOTIFY_INFORMATION* fni = (const FILE_NOTIFY_INFORMATION*)pos;
@@ -350,7 +350,7 @@ public:
 		{
 			DirWatch& dirWatch = *(DirWatch*)key;
 			const fs::wpath& path = dirWatch.Path();
-			const char* const packets = dirWatch.Results();
+			const u8* const packets = dirWatch.Results();
 
 			m_queue.Enqueue(path, packets);
 

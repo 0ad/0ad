@@ -37,7 +37,7 @@
 
 #include <sstream>
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 CObjectEntry::CObjectEntry(CObjectBase* base)
 : m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f),
@@ -72,7 +72,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		str << variation.color;
 		int r, g, b;
 		if (! (str >> r >> g >> b)) // Any trailing data is ignored
-			LOG(CLogger::Error, LOG_CATEGORY, "Invalid RGB colour '%s'", variation.color.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, L"Invalid RGB colour '%hs'", variation.color.c_str());
 		else
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
@@ -93,14 +93,14 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	CModelDefPtr modeldef (objectManager.GetMeshManager().GetMesh(m_ModelName));
 	if (!modeldef)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CObjectEntry::BuildModel(): Model %s failed to load", m_ModelName.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"CObjectEntry::BuildModel(): Model %ls failed to load", m_ModelName.string().c_str());
 		return false;
 	}
 
 	// delete old model, create new 
 	delete m_Model;
 	m_Model = new CModel(objectManager.GetSkeletonAnimManager());
-	m_Model->SetTexture((const char*) m_TextureName);
+	m_Model->SetTexture(CTexture(m_TextureName));
 	m_Model->SetMaterial(g_MaterialManager.LoadMaterial(m_Base->m_Material));
 	m_Model->InitModel(modeldef);
 	m_Model->SetPlayerColor(m_Color);
@@ -145,7 +145,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		// start up idling
 		if (! m_Model->SetAnimation(GetRandomAnimation("idle")))
-			LOG(CLogger::Error, LOG_CATEGORY, "Failed to set idle animation in model \"%s\"", m_ModelName.c_str());
+			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to set idle animation in model \"%ls\"", m_ModelName.string().c_str());
 	}
 
 	// build props - TODO, RC - need to fix up bounds here
@@ -154,10 +154,10 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		const CObjectBase::Prop& prop = props[p];
 	
-		CObjectEntry* oe = objectManager.FindObjectVariation(prop.m_ModelName, selections);
+		CObjectEntry* oe = objectManager.FindObjectVariation(prop.m_ModelName.string().c_str(), selections);
 		if (!oe)
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "Failed to build prop model \"%s\" on actor \"%s\"", (const char*)prop.m_ModelName, (const char*)m_Base->m_ShortName);
+			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to build prop model \"%ls\" on actor \"%ls\"", prop.m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
 			continue;
 		}
 
@@ -171,13 +171,13 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		{
 			CStr ppn = prop.m_PropPointName.substr(7);
 			m_AmmunitionModel = oe->m_Model;
-			m_AmmunitionPoint = modeldef->FindPropPoint((const char*)ppn );
+			m_AmmunitionPoint = modeldef->FindPropPoint(ppn);
 			if (! m_AmmunitionPoint)
-				LOG(CLogger::Error, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" for actor \"%s\"", (const char*)ppn, (const char*)m_ModelName, (const char*)m_Base->m_Name);
+				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.string().c_str(), m_Base->m_Name.c_str());
 		}
 		else
 		{
-			SPropPoint* proppoint = modeldef->FindPropPoint((const char*) prop.m_PropPointName);
+			SPropPoint* proppoint = modeldef->FindPropPoint(prop.m_PropPointName.c_str());
 			if (proppoint)
 			{
 				CModel* propmodel = oe->m_Model->Clone();
@@ -185,7 +185,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 				propmodel->SetAnimation(oe->GetRandomAnimation("idle"));
 			}
 			else
-				LOG(CLogger::Error, LOG_CATEGORY, "Failed to find matching prop point called \"%s\" in model \"%s\" for actor \"%s\"", (const char*)prop.m_PropPointName, (const char*)m_ModelName, (const char*)m_Base->m_Name);
+				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", prop.m_PropPointName.c_str(), m_ModelName.string().c_str(), m_Base->m_Name.c_str());
 		}
 	}
 
@@ -240,7 +240,7 @@ CSkeletonAnim* CObjectEntry::GetRandomAnimation(const CStr& animationName)
 	size_t count = std::distance(lower, upper);
 	if (count == 0)
 	{
-//		LOG(CLogger::Warning, LOG_CATEGORY, "Failed to find animation '%s' for actor '%s'", animationName.c_str(), m_ModelName.c_str());
+//		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to find animation '%hs' for actor '%ls'", animationName.c_str(), m_ModelName.c_str());
 		return NULL;
 	}
 	else

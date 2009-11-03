@@ -25,49 +25,49 @@ class Paths
 public:
 	Paths(const CmdLineArgs& args);
 
-	const fs::path& Root() const
+	const fs::wpath& Root() const
 	{
 		return m_root;
 	}
 
-	const fs::path& RData() const
+	const fs::wpath& RData() const
 	{
 		return m_rdata;
 	}
 
-	const fs::path& Data() const
+	const fs::wpath& Data() const
 	{
 		return m_data;
 	}
 
-	const fs::path& Config() const
+	const fs::wpath& Config() const
 	{
 		return m_config;
 	}
 
-	const fs::path& Cache() const
+	const fs::wpath& Cache() const
 	{
 		return m_cache;
 	}
 
-	const fs::path& Logs() const
+	const fs::wpath& Logs() const
 	{
 		return m_logs;
 	}
 
 private:
-	static fs::path Root(const CStr& argv0);
-	static fs::path XDG_Path(const char* envname, const fs::path& home, const fs::path& defaultPath);
+	static fs::wpath Root(const CStr& argv0);
+	static fs::wpath XDG_Path(const char* envname, const fs::wpath& home, const fs::wpath& defaultPath);
 
 	// read-only directories, fixed paths relative to executable
-	fs::path m_root;
-	fs::path m_rdata;
+	fs::wpath m_root;
+	fs::wpath m_rdata;
 
 	// writable directories
-	fs::path m_data;
-	fs::path m_config;
-	fs::path m_cache;
-	fs::path m_logs;	// special-cased in single-root-folder installations
+	fs::wpath m_data;
+	fs::wpath m_config;
+	fs::wpath m_cache;
+	fs::wpath m_logs;	// special-cased in single-root-folder installations
 };
 
 #endif	// #ifndef INCLUDED_PS_GAMESETUP_PATHS

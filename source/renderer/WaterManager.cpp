@@ -34,7 +34,7 @@
 #include "renderer/WaterManager.h"
 #include "renderer/Renderer.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,23 +99,22 @@ int WaterManager::LoadWaterTextures()
 
 	// TODO: add a member variable and setter for this. (can't make this
 	// a parameter because this function is called via delay-load code)
-	static const char* const water_type = "default";
+	static const wchar_t* const water_type = L"default";
 
 	// yield after this time is reached. balances increased progress bar
 	// smoothness vs. slowing down loading.
 	const double end_time = timer_Time() + 100e-3;
 
-	char filename[PATH_MAX];
+	wchar_t pathname[PATH_MAX];
 
 	// Load diffuse grayscale images (for non-fancy water)
 	while (cur_loading_water_tex < num_textures)
 	{
-		snprintf(filename, ARRAY_SIZE(filename), "art/textures/animated/water/%s/diffuse%02d.dds", 
-			water_type, (int)cur_loading_water_tex+1);
-		Handle ht = ogl_tex_load(filename);
+		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/diffuse%02d.dds", water_type, (int)cur_loading_water_tex+1);
+		Handle ht = ogl_tex_load(pathname);
 		if (ht <= 0)
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", filename);
+			LOG(CLogger::Error, LOG_CATEGORY, L"LoadWaterTextures failed on \"%ls\"", pathname);
 			return ht;
 		}
 		m_WaterTexture[cur_loading_water_tex] = ht;
@@ -127,12 +126,11 @@ int WaterManager::LoadWaterTextures()
 	// Load normalmaps (for fancy water)
 	while (cur_loading_normal_map < num_normal_maps)
 	{
-		snprintf(filename, ARRAY_SIZE(filename), "art/textures/animated/water/%s/normal%02d.dds", 
-			water_type, (int)cur_loading_normal_map+1);
-		Handle ht = ogl_tex_load(filename);
+		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal%02d.dds", water_type, (int)cur_loading_normal_map+1);
+		Handle ht = ogl_tex_load(pathname);
 		if (ht <= 0)
 		{
-			LOG(CLogger::Error, LOG_CATEGORY, "LoadWaterTextures failed on \"%s\"", filename);
+			LOG(CLogger::Error, LOG_CATEGORY, L"LoadWaterTextures failed on \"%ls\"", pathname);
 			return ht;
 		}
 		m_NormalMap[cur_loading_normal_map] = ht;

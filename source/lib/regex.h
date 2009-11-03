@@ -31,10 +31,8 @@
  *
  * @return 1 if they match, otherwise 0.
  *
- * algorithmfrom http://www.codeproject.com/string/wildcmp.asp.
+ * algorithm from http://www.codeproject.com/string/wildcmp.asp.
  **/
-extern int match_wildcard(const char* s, const char* w);
-/// unicode version of match_wildcard.
-extern int match_wildcardw(const wchar_t* s, const wchar_t* w);
+extern int match_wildcard(const wchar_t* s, const wchar_t* w);
 
 #endif	// #ifndef INCLUDED_REGEX

@@ -148,7 +148,7 @@ public:
 
 	// load raw animation frame animation from given file, and build a 
 	// animation specific to this model
-	CSkeletonAnim* BuildAnimation(const char* filename, const char* name, float speed, double actionpos, double actionpos2);
+	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const char* name, float speed, double actionpos, double actionpos2);
 
 	// add a prop to the model on the given point
 	void AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry);

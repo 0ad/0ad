@@ -166,7 +166,7 @@ void FixBrokenXML(const char* text, const char** out, size_t* outSize)
 	Log(LOG_INFO, "Running FixBrokenXML");
 
 	size_t textSize = strlen(text);
-	xmlDocPtr doc = xmlParseMemory(text, textSize);
+	xmlDocPtr doc = xmlParseMemory(text, (int)textSize);
 
 	xmlNode* root = xmlDocGetRootElement(doc);
 	if (root && processDocument(root))

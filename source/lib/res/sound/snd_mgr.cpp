@@ -107,12 +107,11 @@ static LibError list_free_all();
 static void hsd_list_free_all();
 
 
-static void al_ReportError(ALenum err, const char* caller, int line)
+static void al_ReportError(ALenum err, const wchar_t* caller, int line)
 {
 	debug_assert(al_initialized);
 
-	const char* str = (const char*)alGetString(err);
-	debug_printf("OpenAL error: %s; called from %s (line %d)\n", str, caller, line);
+	debug_printf(L"OpenAL error: %hs; called from %ls (line %d)\n", alGetString(err), caller, line);
 	debug_assert(0);
 }
 
@@ -124,7 +123,7 @@ static void al_ReportError(ALenum err, const char* caller, int line)
  * @param line line number of the call site (typically passed via __LINE__)
  * (identifies the exact call site since there may be several per caller)
  */
-static void al_check(const char* caller, int line)
+static void al_check(const wchar_t* caller, int line)
 {
 	ALenum err = alGetError();
 	if(err != AL_NO_ERROR)
@@ -132,7 +131,7 @@ static void al_check(const char* caller, int line)
 }
 
 // convenience version that automatically passes in function name.
-#define AL_CHECK al_check(__func__, __LINE__)
+#define AL_CHECK al_check(__wfunc__, __LINE__)
 
 
 //-----------------------------------------------------------------------------
@@ -263,7 +262,7 @@ static LibError alc_init()
 	ALCenum err = alcGetError(alc_dev);
 	if(err != ALC_NO_ERROR || !alc_dev || !alc_ctx)
 	{
-		debug_printf("alc_init failed. alc_dev=%p alc_ctx=%p alc_dev_name=%s err=%d\n", alc_dev, alc_ctx, alc_dev_name, err);
+		debug_printf(L"alc_init failed. alc_dev=%p alc_ctx=%p alc_dev_name=%hs err=%d\n", alc_dev, alc_ctx, alc_dev_name, err);
 // FIXME Hack to get around exclusive access to the sound device
 #if OS_UNIX
 		ret = INFO::OK;
@@ -1216,11 +1215,11 @@ static LibError VSrc_reload(VSrc* vs, const VfsPath& pathname, Handle hvs)
 
 	// pathname is a definition file containing the data file name and
 	// its gain.
-	if(fs::extension(pathname) == ".txt")
+	if(fs::extension(pathname) == L".txt")
 	{
 		shared_ptr<u8> buf; size_t size;
 		RETURN_ERR(g_VFS->LoadFile(pathname, buf, size));
-		std::istringstream def(std::string((char*)buf.get(), (int)size));
+		std::wistringstream def(std::wstring((wchar_t*)buf.get(), (int)size));
 
 		def >> dataPathname;
 		def >> vs->gain;
@@ -1268,7 +1267,7 @@ static LibError VSrc_validate(const VSrc* vs)
 	return INFO::OK;
 }
 
-static LibError VSrc_to_string(const VSrc* vs, char * buf)
+static LibError VSrc_to_string(const VSrc* vs, char* buf)
 {
 	snprintf(buf, H_STRING_LEN, "al_src = %d", vs->al_src);
 	return INFO::OK;
@@ -1469,18 +1468,18 @@ static void vsrc_latch(VSrc* vs)
 	ALenum err = alGetError();
 	if(err != AL_NO_ERROR)
 	{
-		debug_printf("vsrc_latch: one of the below is invalid:\n");
-		debug_printf("  al_src: %d\n", vs->al_src);
-		debug_printf("  pos: %f %f %f\n", vs->pos[0], vs->pos[1], vs->pos[2]);
-		debug_printf("  relative: %d\n", (int)vs->relative);
-		debug_printf("  rolloff: %f\n", rolloff);
-		debug_printf("  ref dist: %f\n", referenceDistance);
-		debug_printf("  max dist: %f\n", maxDistance);
-		debug_printf("  gain: %f\n", vs->gain);
-		debug_printf("  pitch: %f\n", vs->pitch);
-		debug_printf("  loop: %d\n", (int)vs->loop);
+		debug_printf(L"vsrc_latch: one of the below is invalid:\n");
+		debug_printf(L"  al_src: %d\n", vs->al_src);
+		debug_printf(L"  pos: %f %f %f\n", vs->pos[0], vs->pos[1], vs->pos[2]);
+		debug_printf(L"  relative: %d\n", (int)vs->relative);
+		debug_printf(L"  rolloff: %f\n", rolloff);
+		debug_printf(L"  ref dist: %f\n", referenceDistance);
+		debug_printf(L"  max dist: %f\n", maxDistance);
+		debug_printf(L"  gain: %f\n", vs->gain);
+		debug_printf(L"  pitch: %f\n", vs->pitch);
+		debug_printf(L"  loop: %d\n", (int)vs->loop);
 
-		al_ReportError(err, __func__, __LINE__);
+		al_ReportError(err, __wfunc__, __LINE__);
 	}
 }
 

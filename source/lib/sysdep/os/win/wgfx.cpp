@@ -81,8 +81,8 @@ LibError gfx_get_monitor_size(int& width_mm, int& height_mm)
 static LibError win_get_gfx_card()
 {
 	WmiMap wmiMap;
-	RETURN_ERR(wmi_GetClass("Win32_VideoController", wmiMap));
-	sprintf_s(gfx_card, GFX_CARD_LEN, "%ls", wmiMap[L"Caption"].bstrVal);
+	RETURN_ERR(wmi_GetClass(L"Win32_VideoController", wmiMap));
+	swprintf_s(gfx_card, GFX_CARD_LEN, L"%ls", wmiMap[L"Caption"].bstrVal);
 	return INFO::OK;
 }
 
@@ -112,29 +112,29 @@ static LibError win_get_gfx_drv_ver()
 	//   name checks and reporting incorrectly.
 
 	DWORD i;
-	char drv_name[MAX_PATH+1];
-	std::string versionList;
+	wchar_t drv_name[MAX_PATH+1];
+	std::wstring versionList;
 
 	HKEY hkOglDrivers;
-	const char* key = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
-	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkOglDrivers) != 0)
+	const wchar_t* key = L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\OpenGLDrivers";
+	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, key, 0, KEY_READ, &hkOglDrivers) != 0)
 		WARN_RETURN(ERR::FAIL);
 
 	// for each subkey (i.e. set of installed OpenGL drivers):
 	for(i = 0; ; i++)
 	{
-		char set_name[32];
+		wchar_t set_name[32];
 		DWORD set_name_len = ARRAY_SIZE(set_name);
-		const LONG err = RegEnumKeyEx(hkOglDrivers, i, set_name, &set_name_len, 0, 0,0, 0);
+		const LONG err = RegEnumKeyExW(hkOglDrivers, i, set_name, &set_name_len, 0, 0,0, 0);
 		if(err == ERROR_NO_MORE_ITEMS)
 			break;
 		debug_assert(err == ERROR_SUCCESS);
 
 		HKEY hkSet;
-		if(RegOpenKeyEx(hkOglDrivers, set_name, 0, KEY_QUERY_VALUE, &hkSet) == 0)
+		if(RegOpenKeyExW(hkOglDrivers, set_name, 0, KEY_QUERY_VALUE, &hkSet) == 0)
 		{
 			DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
-			if(RegQueryValueEx(hkSet, "Dll", 0, 0, (LPBYTE)drv_name, &drv_name_len) == 0)
+			if(RegQueryValueExW(hkSet, L"Dll", 0, 0, (LPBYTE)drv_name, &drv_name_len) == 0)
 				wdll_ver_Append(drv_name, versionList);
 
 			RegCloseKey(hkSet);
@@ -146,11 +146,11 @@ static LibError win_get_gfx_drv_ver()
 	// single REG_SZ value. we therefore include those as well.)
 	for(i = 0; ; i++)
 	{
-		char value_name[100];	// we don't need this, but RegEnumValue fails otherwise.
+		wchar_t value_name[100];	// we don't need this, but RegEnumValue fails otherwise.
 		DWORD value_name_len = ARRAY_SIZE(value_name);
 		DWORD type;
 		DWORD drv_name_len = ARRAY_SIZE(drv_name)-5;	// for ".dll"
-		const DWORD err = RegEnumValue(hkOglDrivers, i, value_name, &value_name_len, 0, &type, (LPBYTE)drv_name, &drv_name_len);
+		const DWORD err = RegEnumValueW(hkOglDrivers, i, value_name, &value_name_len, 0, &type, (LPBYTE)drv_name, &drv_name_len);
 		if(err == ERROR_NO_MORE_ITEMS)
 			break;
 		debug_assert(err == ERROR_SUCCESS);
@@ -160,7 +160,7 @@ static LibError win_get_gfx_drv_ver()
 
 	RegCloseKey(hkOglDrivers);
 
-	strcpy_s(gfx_drv_ver, GFX_DRV_VER_LEN, versionList.c_str());
+	wcscpy_s(gfx_drv_ver, GFX_DRV_VER_LEN, versionList.c_str());
 	return INFO::OK;
 }
 

@@ -130,7 +130,7 @@ For further details, see below.
 )
 
 
-// your source file should contain a function: void self_test(void) that
+// your source file should contain a function: void self_test() that
 // performs all tests or calls out to individual test functions.
 // this macro calls it at static init time and takes care of setting
 // self_test_active (see above).
@@ -216,8 +216,8 @@ namespace CxxTest
 #define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::string(str1), std::string(str2))
 #define TS_ASSERT_WSTR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::wstring(str1), std::wstring(str2))
 
-bool ts_str_contains(const std::string& str1, const std::string& str2); // defined in test_setup.cpp
-#define TS_ASSERT_STR_CONTAINS(str1, str2) TS_ASSERT(ts_str_contains(str1, str2))
+bool ts_str_contains(const std::wstring& str1, const std::wstring& str2); // defined in test_setup.cpp
+#define TS_ASSERT_WSTR_CONTAINS(str1, str2) TS_ASSERT(ts_str_contains(str1, str2))
 
 template <typename T>
 std::vector<T> ts_make_vector(T* start, size_t size_bytes)

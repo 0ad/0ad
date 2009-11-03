@@ -115,11 +115,11 @@ public:
 	/**
 	 * Loads a PMD file.
 	 * @param filename VFS path of .pmd file to load
-	 * @param name arbitrary name to give the model for debugging purposes
+	 * @param name arbitrary name to give the model for debugging purposes (usually pathname)
 	 * @return the model - always non-NULL
 	 * @throw PSERROR_File if it can't load the model
 	 */
-	static CModelDef* Load(const VfsPath& filename, const char* name);
+	static CModelDef* Load(const VfsPath& filename, const VfsPath& name);
 	
 public:
 	// accessor: get vertex data
@@ -178,7 +178,7 @@ public:
 	CModelDefRPrivate* GetRenderData(const void* key) const;
 
 	// accessor: get model name (for debugging)
-	const CStr& GetName() const { return m_Name; }
+	const VfsPath& GetName() const { return m_Name; }
 
 public:
 	// vertex data
@@ -195,8 +195,7 @@ public:
 	SPropPoint* m_PropPoints;
 
 private:
-	// filename
-	CStr m_Name;
+	VfsPath m_Name;	// filename
 
 	// renderdata shared by models of the same modeldef,
 	// by render path

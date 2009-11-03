@@ -262,8 +262,8 @@ static void importExtensionFunctions()
 
 static void dump_gl_error(GLenum err)
 {
-	debug_printf("OGL| ");
-#define E(e) case e: debug_printf("%s\n", #e); break;
+	debug_printf(L"OGL| ");
+#define E(e) case e: debug_printf(L"%ls\n", WIDEN(#e)); break;
 	switch (err)
 	{
 	E(GL_INVALID_ENUM)
@@ -273,7 +273,7 @@ static void dump_gl_error(GLenum err)
 	E(GL_STACK_UNDERFLOW)
 	E(GL_OUT_OF_MEMORY)
 	E(GL_INVALID_FRAMEBUFFER_OPERATION_EXT)
-	default: debug_printf("Unknown GL error: %04x\n", err); break;
+	default: debug_printf(L"Unknown GL error: %04x\n", err); break;
 	}
 #undef E
 }
@@ -302,8 +302,8 @@ void ogl_WarnIfError()
 
 	if(error_enountered)
 	{
-		char msg[64];
-		snprintf(msg, ARRAY_SIZE(msg), "OpenGL error(s) occurred: %04x", (int)first_error);
+		wchar_t msg[64];
+		swprintf_s(msg, ARRAY_SIZE(msg), L"OpenGL error(s) occurred: %04x", (int)first_error);
 		debug_printf(msg);
 	}
 }
@@ -344,11 +344,7 @@ bool ogl_SquelchError(GLenum err_to_ignore)
 	}
 
 	if(error_enountered)
-	{
-		char msg[64];
-		snprintf(msg, ARRAY_SIZE(msg), "OpenGL error(s) occurred: %04x", (int)first_error);
-		debug_printf(msg);
-	}
+		debug_printf(L"OpenGL error(s) occurred: %04x\n", (int)first_error);
 
 	return error_ignored;
 }
@@ -376,11 +372,11 @@ LibError ogl_get_gfx_info()
 	if(!vendor || !renderer || !version)
 		WARN_RETURN(ERR::AGAIN);
 
-	snprintf(gfx_card, ARRAY_SIZE(gfx_card), "%s %s", vendor, renderer);
+	swprintf_s(gfx_card, ARRAY_SIZE(gfx_card), L"%hs %hs", vendor, renderer);
 
 	// add "OpenGL" to differentiate this from the real driver version
 	// (returned by platform-specific detect routines).
-	snprintf(gfx_drv_ver, ARRAY_SIZE(gfx_drv_ver), "OpenGL %s", version);
+	swprintf_s(gfx_drv_ver, ARRAY_SIZE(gfx_drv_ver), L"OpenGL %hs", version);
 	return INFO::OK;
 }
 

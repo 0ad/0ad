@@ -135,19 +135,18 @@ extern LibError LibError_from_win32(DWORD ret, bool warn_if_failed = true);
 //
 
 extern int wutil_argc;
-extern char** wutil_argv;
+extern wchar_t** wutil_argv;
 
-extern bool wutil_HasCommandLineArgument(const char* arg);
+extern bool wutil_HasCommandLineArgument(const wchar_t* arg);
 
 
 //
 // directories
 //
 
-// none of these end with a slash.
-extern char win_sys_dir[MAX_PATH+1];
-extern char win_exe_dir[MAX_PATH+1];
-extern char win_appdata_dir[MAX_PATH+1];
+extern const fs::wpath& wutil_SystemPath();
+extern const fs::wpath& wutil_ExecutablePath();
+extern const fs::wpath& wutil_AppdataPath();
 
 
 //

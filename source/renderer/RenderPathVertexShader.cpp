@@ -23,7 +23,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/RenderPathVertexShader.h"
 
-#define LOG_CATEGORY "graphics"
+#define LOG_CATEGORY L"graphics"
 
 void VS_GlobalLight::Init(Handle shader)
 {
@@ -77,45 +77,45 @@ bool RenderPathVertexShader::Init()
 	if (!g_Renderer.m_Caps.m_VertexShader)
 		return false;
 
-	m_ModelLight = ogl_program_load("shaders/model_light.xml");
+	m_ModelLight = ogl_program_load(L"shaders/model_light.xml");
 	if (m_ModelLight < 0)
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "Failed to load shaders/model_light.xml: %i\n", (int)m_ModelLight);
+		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/model_light.xml: %i\n", (int)m_ModelLight);
 		return false;
 	}
 
-	m_ModelLightP = ogl_program_load("shaders/model_lightp.xml");
+	m_ModelLightP = ogl_program_load(L"shaders/model_lightp.xml");
 	if (m_ModelLightP < 0)
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "Failed to load shaders/model_lightp.xml: %i\n", (int)m_ModelLightP);
+		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/model_lightp.xml: %i\n", (int)m_ModelLightP);
 		return false;
 	}
 
-	m_InstancingLight = ogl_program_load("shaders/instancing_light.xml");
+	m_InstancingLight = ogl_program_load(L"shaders/instancing_light.xml");
 	if (m_InstancingLight < 0)
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "Failed to load shaders/instancing_light.xml: %i\n", (int)m_InstancingLight);
+		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/instancing_light.xml: %i\n", (int)m_InstancingLight);
 		return false;
 	}
 
-	m_InstancingLightP = ogl_program_load("shaders/instancing_lightp.xml");
+	m_InstancingLightP = ogl_program_load(L"shaders/instancing_lightp.xml");
 	if (m_InstancingLightP < 0)
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "Failed to load shaders/instancing_lightp.xml: %i\n", (int)m_InstancingLightP);
+		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/instancing_lightp.xml: %i\n", (int)m_InstancingLightP);
 		return false;
 	}
 
-	m_Instancing = ogl_program_load("shaders/instancing.xml");
+	m_Instancing = ogl_program_load(L"shaders/instancing.xml");
 	if (m_Instancing < 0)
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "Failed to load shaders/instancing.xml: %i\n", (int)m_Instancing);
+		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/instancing.xml: %i\n", (int)m_Instancing);
 		return false;
 	}
 
-	m_InstancingP = ogl_program_load("shaders/instancingp.xml");
+	m_InstancingP = ogl_program_load(L"shaders/instancingp.xml");
 	if (m_InstancingP < 0)
 	{
-		LOG(CLogger::Warning, LOG_CATEGORY, "Failed to load shaders/instancingp.xml: %i\n", (int)m_InstancingP);
+		LOG(CLogger::Warning, LOG_CATEGORY, L"Failed to load shaders/instancingp.xml: %i\n", (int)m_InstancingP);
 		return false;
 	}
 

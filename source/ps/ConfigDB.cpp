@@ -24,11 +24,11 @@
 #include "Filesystem.h"
 #include "scripting/ScriptingHost.h"
 
-#define LOG_CATEGORY "config"
+#define LOG_CATEGORY L"config"
 
 typedef std::map <CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
-CStr CConfigDB::m_ConfigFile[CFG_LAST];
+CStrW CConfigDB::m_ConfigFile[CFG_LAST];
 bool CConfigDB::m_UseVFS[CFG_LAST];
 
 namespace ConfigNamespace_JS
@@ -103,7 +103,7 @@ namespace ConfigNamespace_JS
 		char *path;
 		if (JS_ConvertArguments(cx, 2, argv, "bs", &useVFS, &path))
 		{
-			JSBool res=g_ConfigDB.WriteFile(cfgNs, useVFS?true:false, path);
+			JSBool res=g_ConfigDB.WriteFile(cfgNs, useVFS?true:false, CStrW(path));
 			*rval = BOOLEAN_TO_JSVAL(res);
 			return JS_TRUE;
 		}
@@ -138,7 +138,7 @@ namespace ConfigNamespace_JS
 		char *path;
 		if (JS_ConvertArguments(cx, 2, argv, "bs", &useVFS, &path))
 		{
-			g_ConfigDB.SetConfigFile(cfgNs, useVFS?true:false, path);
+			g_ConfigDB.SetConfigFile(cfgNs, useVFS?true:false, CStrW(path));
 			return JS_TRUE;
 		}
 		else
@@ -217,7 +217,7 @@ CConfigValueSet *CConfigDB::GetValues(EConfigNamespace ns, const CStr& name )
 {
 	if (ns < 0 || ns >= CFG_LAST)
 	{
-		debug_warn("CConfigDB: Invalid ns value");
+		debug_warn(L"CConfigDB: Invalid ns value");
 		return NULL;
 	}
 
@@ -239,7 +239,7 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 {
 	if (ns < 0 || ns >= CFG_LAST)
 	{
-		debug_warn("CConfigDB: Invalid ns value");
+		debug_warn(L"CConfigDB: Invalid ns value");
 		return NULL;
 	}
 	
@@ -250,11 +250,11 @@ CConfigValue *CConfigDB::CreateValue(EConfigNamespace ns, const CStr& name)
 	return &(it->second[0]);
 }
 
-void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, const CStr& path)
+void CConfigDB::SetConfigFile(EConfigNamespace ns, bool useVFS, const CStrW& path)
 {
 	if (ns < 0 || ns >= CFG_LAST)
 	{
-		debug_warn("CConfigDB: Invalid ns value");
+		debug_warn(L"CConfigDB: Invalid ns value");
 		return;
 	}
 	
@@ -276,7 +276,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		// Handle missing files quietly
 		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) < 0)
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, "Cannot find config file \"%s\" - ignoring", m_ConfigFile[ns].c_str());
+			LOG(CLogger::Warning, LOG_CATEGORY, L"Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].c_str());
 			return false;
 		}
 		else
@@ -284,7 +284,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 			if (ret != INFO::OK)
 			{
-				LOG(CLogger::Error, LOG_CATEGORY, "vfs_load for \"%s\" failed: return was %ld", m_ConfigFile[ns].c_str(), ret);
+				LOG(CLogger::Error, LOG_CATEGORY, L"vfs_load for \"%ls\" failed: return was %ld", m_ConfigFile[ns].c_str(), ret);
 				return false;
 			}
 		}
@@ -329,7 +329,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 				CConfigValue argument;
 				argument.m_String = value;
 				newMap[name].push_back( argument );
-				LOG(CLogger::Normal,  LOG_CATEGORY, "Loaded config std::string \"%s\" = \"%s\"", name.c_str(), value.c_str());
+				LOG(CLogger::Normal,  LOG_CATEGORY, L"Loaded config string \"%hs\" = \"%hs\"", name.c_str(), value.c_str());
 			}
 		}
 	}
@@ -340,31 +340,29 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	return true;
 }
 
-bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStr& path)
+bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStrW& path)
 {
 	debug_assert(useVFS);
 
 	if (ns < 0 || ns >= CFG_LAST)
 	{
-		debug_warn("CConfigDB: Invalid ns value");
+		debug_warn(L"CConfigDB: Invalid ns value");
 		return false;
 	}
-
-	const char *filepath=path.c_str();
 
 	shared_ptr<u8> buf = io_Allocate(1*MiB);
 	char* pos = (char*)buf.get();
 	TConfigMap &map=m_Map[ns];
 	for(TConfigMap::const_iterator it = map.begin(); it != map.end(); ++it)
 	{
-		pos += sprintf(pos, "%s = \"%s\"\n", it->first.c_str(), it->second[0].m_String.c_str());
+		pos += sprintf(pos, "%hs = \"%hs\"\n", it->first.c_str(), it->second[0].m_String.c_str());
 	}
 	const size_t len = pos - (char*)buf.get();
 
-	LibError ret = g_VFS->CreateFile(filepath, buf, len);
+	LibError ret = g_VFS->CreateFile(path, buf, len);
 	if(ret < 0)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "CConfigDB::WriteFile(): CreateFile \"%s\" failed (error: %d)", filepath, (int)ret);
+		LOG(CLogger::Error, LOG_CATEGORY, L"CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.c_str(), (int)ret);
 		return false;
 	}
 

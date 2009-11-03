@@ -25,7 +25,10 @@
 #include <cstdio>
 
 #include "lib/allocators/pool.h"
+#include "lib/bits.h"	// round_up
 #include "lib/timer.h"	// timer_Time
+#include "lib/path_util.h"
+
 
 /*virtual*/ ITrace::~ITrace()
 {
@@ -35,43 +38,39 @@
 
 //-----------------------------------------------------------------------------
 
-TraceEntry::TraceEntry(EAction action, const char* pathname, size_t size)
+TraceEntry::TraceEntry(EAction action, const fs::wpath& pathname, size_t size)
 : m_timestamp((float)timer_Time())
 , m_action(action)
-, m_pathname(strdup(pathname))
+, m_pathname(pathname)
 , m_size(size)
 {
 }
 
 
-TraceEntry::TraceEntry(const char* text)
+TraceEntry::TraceEntry(const std::wstring& text)
 {
-	char pathname[PATH_MAX] = "";
-	char action;
+	wchar_t pathname[PATH_MAX] = L"";
+	wchar_t action;
 #if EMULATE_SECURE_CRT
-	#define TRACE_FORMAT "%f: %c \"%" STRINGIZE(PATH_MAX) "[^\"]\" %zd\n" /* use a macro to allow compile-time type-checking */
-	const int fieldsRead = sscanf(text, TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
+	#define TRACE_FORMAT L"%f: %c \"%" STRINGIZE(PATH_MAX) "[^\"]\" %zd\n" /* use a macro to allow compile-time type-checking */
+	const int fieldsRead = swscanf(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
 #else
-	#define TRACE_FORMAT "%f: %c \"%[^\"]\" %d\n"
-	const int fieldsRead = sscanf_s(text, TRACE_FORMAT, &m_timestamp, &action, 1, pathname, PATH_MAX, &m_size);
+	#define TRACE_FORMAT L"%f: %c \"%[^\"]\" %d\n"
+	const int fieldsRead = swscanf_s(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, 1, pathname, PATH_MAX, &m_size);
 #endif
 	debug_assert(fieldsRead == 4);
 	debug_assert(action == 'L' || action == 'S');
 	m_action = (EAction)action;
-	m_pathname = strdup(pathname);
+	m_pathname = pathname;
 }
 
 
-TraceEntry::~TraceEntry()
+std::wstring TraceEntry::EncodeAsText() const
 {
-	SAFE_FREE(m_pathname);
-}
-
-
-void TraceEntry::EncodeAsText(char* text, size_t maxTextChars) const
-{
-	const char action = (char)m_action;
-	sprintf_s(text, maxTextChars, "%#010f: %c \"%s\" %lu\n", m_timestamp, action, m_pathname, (unsigned long)m_size);
+	const wchar_t action = (wchar_t)m_action;
+	wchar_t buf[1000];
+	swprintf_s(buf, ARRAY_SIZE(buf), L"%#010f: %c \"%ls\" %lu\n", m_timestamp, action, m_pathname.string().c_str(), (unsigned long)m_size);
+	return buf;
 }
 
 
@@ -85,20 +84,20 @@ public:
 
 	}
 
-	virtual void NotifyLoad(const char* UNUSED(pathname), size_t UNUSED(size))
+	virtual void NotifyLoad(const fs::wpath& UNUSED(pathname), size_t UNUSED(size))
 	{
 	}
 
-	virtual void NotifyStore(const char* UNUSED(pathname), size_t UNUSED(size))
+	virtual void NotifyStore(const fs::wpath& UNUSED(pathname), size_t UNUSED(size))
 	{
 	}
 
-	virtual LibError Load(const char* UNUSED(pathname))
+	virtual LibError Load(const fs::wpath& UNUSED(pathname))
 	{
 		return INFO::OK;
 	}
 
-	virtual LibError Store(const char* UNUSED(pathname)) const
+	virtual LibError Store(const fs::wpath& UNUSED(pathname)) const
 	{
 		return INFO::OK;
 	}
@@ -127,34 +126,39 @@ public:
 
 	virtual ~Trace()
 	{
-		TraceEntry* entries = (TraceEntry*)m_pool.da.base;
-		for(TraceEntry* entry = entries; entry < entries+NumEntries(); entry++)
+		for(size_t i = 0; i < NumEntries(); i++)
+		{
+			TraceEntry* entry = (TraceEntry*)(uintptr_t(m_pool.da.base) + i*m_pool.el_size);
 			entry->~TraceEntry();
+		}
+
 		(void)pool_destroy(&m_pool);
 	}
 
-	virtual void NotifyLoad(const char* pathname, size_t size)
+	virtual void NotifyLoad(const fs::wpath& pathname, size_t size)
 	{
 		new(Allocate()) TraceEntry(TraceEntry::Load, pathname, size);
 	}
 
-	virtual void NotifyStore(const char* pathname, size_t size)
+	virtual void NotifyStore(const fs::wpath& pathname, size_t size)
 	{
 		new(Allocate()) TraceEntry(TraceEntry::Store, pathname, size);
 	}
 
-	virtual LibError Load(const char* osPathname)
+	virtual LibError Load(const fs::wpath& pathname)
 	{
 		pool_free_all(&m_pool);
 
+		const fs::path pathname_c = path_from_wpath(pathname);
 		errno = 0;
-		FILE* file = fopen(osPathname, "rt");
+		FILE* file = fopen(pathname_c.string().c_str(), "rt");
 		if(!file)
 			return LibError_from_errno();
+
 		for(;;)
 		{
-			char text[500];
-			if(!fgets(text, ARRAY_SIZE(text)-1, file))
+			wchar_t text[500];
+			if(!fgetws(text, ARRAY_SIZE(text)-1, file))
 				break;
 			new(Allocate()) TraceEntry(text);
 		}
@@ -163,17 +167,17 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError Store(const char* osPathname) const
+	virtual LibError Store(const fs::wpath& pathname) const
 	{
+		const fs::path pathname_c = path_from_wpath(pathname);
 		errno = 0;
-		FILE* file = fopen(osPathname, "at");
+		FILE* file = fopen(pathname_c.string().c_str(), "at");
 		if(!file)
 			return LibError_from_errno();
 		for(size_t i = 0; i < NumEntries(); i++)
 		{
-			char text[500];
-			Entries()[i].EncodeAsText(text, ARRAY_SIZE(text));
-			fputs(text, file);
+			std::wstring text = Entries()[i].EncodeAsText();
+			fputws(text.c_str(), file);
 		}
 		(void)fclose(file);
 		return INFO::OK;
@@ -186,7 +190,7 @@ public:
 
 	virtual size_t NumEntries() const
 	{
-		return m_pool.da.pos / sizeof(TraceEntry);
+		return m_pool.da.pos / m_pool.el_size;
 	}
 
 private:

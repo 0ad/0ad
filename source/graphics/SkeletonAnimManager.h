@@ -24,6 +24,7 @@
 
 #include <map>
 #include <set>
+#include "lib/file/vfs/vfs_path.h"
 
 class CColladaManager;
 class CSkeletonAnimDef;
@@ -42,13 +43,13 @@ public:
 	
 	// return a given animation by filename; return null if filename doesn't
 	// refer to valid animation file
-	CSkeletonAnimDef* GetAnimation(const CStr8& filename);
+	CSkeletonAnimDef* GetAnimation(const VfsPath& pathname);
 
 private:
-	CSkeletonAnimDef* LoadAnimation(const char* filename);
+	CSkeletonAnimDef* LoadAnimation(const VfsPath& pathname);
 
 	// map of all known animations. Value is NULL if it failed to load.
-	std::map<CStr8, CSkeletonAnimDef*> m_Animations;
+	std::map<VfsPath, CSkeletonAnimDef*> m_Animations;
 
 	CColladaManager& m_ColladaManager;
 };

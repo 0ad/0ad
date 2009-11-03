@@ -45,6 +45,8 @@
 #include "simulation/TurnManager.h"
 #include "simulation/TriggerManager.h"
 
+#define LOG_CATEGORY L"simulation"
+
 CSimulation::CSimulation(CGame *pGame):
 	m_pGame(pGame),
 	m_pWorld(pGame->GetWorld()),
@@ -69,7 +71,7 @@ int CSimulation::Initialize(CGameAttributes* pAttribs)
 	// Call the game startup script 
 	// TODO: Maybe don't do this if we're in Atlas
 	// [2006-06-26 20ms]
-	g_ScriptingHost.RunScript( "scripts/game_startup.js" );
+	g_ScriptingHost.RunScript( L"scripts/game_startup.js" );
 
 	// [2006-06-26 3647ms]
 	g_EntityManager.m_screenshotMode = pAttribs->m_ScreenshotMode;
@@ -114,7 +116,7 @@ bool CSimulation::Update(double frameTime)
 			// cutting down on Interpolate and rendering, and call us a few times
 				// with frameTime == 0 to give us a chance to catch up.
 				ok = false;
-				debug_printf("WARNING: missing a simulation turn due to low FPS\n");
+				debug_printf(L"WARNING: missing a simulation turn due to low FPS\n");
 			}
 		}
 		else
@@ -169,7 +171,7 @@ void CSimulation::Simulate()
 	
 	m_Time += time / 1000.0f;
 #if defined(DEBUG_SYNCHRONIZATION)
-	debug_printf("Simulation turn: %.3lf\n", m_Time);
+	debug_printf(L"Simulation turn: %.3lf\n", m_Time);
 #endif
 
 	PROFILE_START( "scheduler tick" );
@@ -197,7 +199,7 @@ void CSimulation::Simulate()
 	PROFILE_END( "turn manager update" );
 	
 #if defined(DEBUG_SYNCHRONIZATION)
-	debug_printf("End turn\n", m_Time);
+	debug_printf(L"End turn\n", m_Time);
 #endif
 }
 
@@ -387,7 +389,7 @@ size_t CSimulation::TranslateMessage(CNetMessage* pMsg, size_t clientMask, void*
 				}
 				if (order.m_type == CEntityOrder::ORDER_LAST)
 				{
-					LOG(CLogger::Error, "simulation", "Got an AddWaypoint message for an entity that isn't moving.");
+					LOG(CLogger::Error, LOG_CATEGORY, L"Got an AddWaypoint message for an entity that isn't moving.");
 				}
 			}
 			break;

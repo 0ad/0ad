@@ -43,8 +43,8 @@ extern int ioctl(int fd, int op, int* data);
 #endif
 
 
-extern void _get_console(void);
-extern void _hide_console(void);
+extern void _get_console();
+extern void _hide_console();
 
 
 //

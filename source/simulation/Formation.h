@@ -90,7 +90,7 @@ private:
 	//The key is the "order" of the slot
 	std::map<size_t, FormationSlot> m_slots;
 
-	bool LoadXml(const CStr& filename);
+	bool LoadXml(const VfsPath& filename);
 	void AssignCategory(size_t order, const CStr& category);	//takes care of formatting strings
 };
 #endif

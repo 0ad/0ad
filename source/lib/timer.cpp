@@ -143,7 +143,7 @@ static size_t num_clients;
 static TimerClient* clients;
 
 
-TimerClient* timer_AddClient(TimerClient* tc, const char* description)
+TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description)
 {
 	tc->sum.SetToZero();
 
@@ -167,8 +167,8 @@ void timer_BillClient(TimerClient* tc, TimerUnit t0, TimerUnit t1)
 
 void timer_DisplayClientTotals()
 {
-	debug_printf("TIMER TOTALS (%lu clients)\n", (unsigned long)num_clients);
-	debug_printf("-----------------------------------------------------\n");
+	debug_printf(L"TIMER TOTALS (%lu clients)\n", (unsigned long)num_clients);
+	debug_printf(L"-----------------------------------------------------\n");
 
 	while(clients)
 	{
@@ -178,9 +178,9 @@ void timer_DisplayClientTotals()
 		clients = tc->next;
 		num_clients--;
 
-		const std::string duration = tc->sum.ToString();
-		debug_printf("  %s: %s (%lux)\n", tc->description, duration.c_str(), (unsigned long)tc->num_calls);
+		const std::wstring duration = tc->sum.ToString();
+		debug_printf(L"  %ls: %ls (%lux)\n", tc->description, duration.c_str(), (unsigned long)tc->num_calls);
 	}
 
-	debug_printf("-----------------------------------------------------\n");
+	debug_printf(L"-----------------------------------------------------\n");
 }

@@ -33,14 +33,14 @@
 extern PIVFS g_VFS;
 
 
-#define LOG_CATEGORY "shaders"
+#define LOG_CATEGORY L"shaders"
 
 
-ERROR_ASSOCIATE(ERR::SHDR_CREATE, "Shader creation failed", -1);
-ERROR_ASSOCIATE(ERR::SHDR_COMPILE, "Shader compile failed", -1);
-ERROR_ASSOCIATE(ERR::SHDR_NO_SHADER, "Invalid shader reference", -1);
-ERROR_ASSOCIATE(ERR::SHDR_LINK, "Shader linking failed", -1);
-ERROR_ASSOCIATE(ERR::SHDR_NO_PROGRAM, "Invalid shader program reference", -1);
+ERROR_ASSOCIATE(ERR::SHDR_CREATE, L"Shader creation failed", -1);
+ERROR_ASSOCIATE(ERR::SHDR_COMPILE, L"Shader compile failed", -1);
+ERROR_ASSOCIATE(ERR::SHDR_NO_SHADER, L"Invalid shader reference", -1);
+ERROR_ASSOCIATE(ERR::SHDR_LINK, L"Shader linking failed", -1);
+ERROR_ASSOCIATE(ERR::SHDR_NO_PROGRAM, L"Invalid shader program reference", -1);
 
 
 // Convert a shader object type into a descriptive string.
@@ -139,23 +139,21 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 		if(ogl_SquelchError(GL_INVALID_ENUM))
 			goto fail_shadercreated;
 	}
-	
+
+	{
+	char typenamebuf[32];
+	CStrW type(shader_type_to_string(shdr->type, typenamebuf, ARRAY_SIZE(typenamebuf)));
+
 	GLint log_length;
 	GLint compile_success;
 	pglGetShaderiv(shdr->id, GL_OBJECT_COMPILE_STATUS_ARB, &compile_success);
 	pglGetShaderiv(shdr->id, GL_OBJECT_INFO_LOG_LENGTH_ARB, &log_length);
 	if (log_length > 1)
 	{
-		char typenamebuf[32];
 		char* infolog = new char[log_length];
-		
 		pglGetShaderInfoLog(shdr->id, log_length, 0, infolog);
-	
-		debug_printf("Compile log for shader %s (type %s):\n%s",
-				pathname.string().c_str(),
-				shader_type_to_string(shdr->type, typenamebuf, ARRAY_SIZE(typenamebuf)),
-				infolog);
-		
+		CStrW infologw(infolog);
+		debug_printf(L"Compile log for shader %ls (type %ls):\n%ls", pathname.string().c_str(), type.c_str(), infologw.c_str());
 		delete[] infolog;
 	}
 
@@ -167,13 +165,11 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 		// useful some time.
 		ogl_WarnIfError();
 	
-		char typenamebuf[32];
-		debug_printf("Failed to compile shader %s (type %s)\n",
-			     pathname.string().c_str(),
-			     shader_type_to_string(shdr->type, typenamebuf, ARRAY_SIZE(typenamebuf)));
+		debug_printf(L"Failed to compile shader %ls (type %ls)\n", pathname.string().c_str(), type.c_str());
 		
 		err = ERR::SHDR_COMPILE;
 		goto fail_shadercreated;
+	}
 	}
 
 	return INFO::OK;
@@ -276,7 +272,7 @@ static LibError do_load_shader(
 
 	if (Type.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "%s: Missing attribute \"type\" in element \"Shader\".", pathname.string().c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"%ls: Missing attribute \"type\" in element \"Shader\".", pathname.string().c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -284,19 +280,19 @@ static LibError do_load_shader(
 	
 	if (!shadertype)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "%s: Unknown shader type \"%s\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname.string().c_str(), Type.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"%ls: Unknown shader type \"%hs\" (valid are: VERTEX_SHADER, FRAGMENT_SHADER).", pathname.string().c_str(), Type.c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
-	CStr Name = Shader.GetText();
+	CStr pathnameShader = Shader.GetText();
 	
-	if (Name.empty())
+	if (pathnameShader.empty())
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "%s: Missing shader name.", pathname.string().c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"%ls: Missing shader name.", pathname.string().c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 	
-	Handle hshader = ogl_shader_load(Name, shadertype);
+	Handle hshader = ogl_shader_load(CStrW(pathnameShader), shadertype);
 	RETURN_ERR(hshader);
 
 	ogl_shader_attach(p->id, hshader);
@@ -312,7 +308,7 @@ static LibError do_load_shader(
 
 
 // Reload the program object from the source file.
-static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Handle h)
+static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname, Handle h)
 {
 	if (p->id)
 		return INFO::OK;
@@ -329,7 +325,6 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 		WARN_RETURN(ERR::SHDR_CREATE);
 	}
 	
-	const char* pathname = pathname_.string().c_str();
 	CXeromyces XeroFile;
 	if (XeroFile.Load(pathname) != PSRETURN_OK)
 		WARN_RETURN(ERR::CORRUPTED); // more informative error message?
@@ -345,7 +340,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 
 	if (Root.GetNodeName() != el_program)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, "%s: XML root was not \"Program\".", pathname);
+		LOG(CLogger::Error, LOG_CATEGORY, L"%ls: XML root was not \"Program\".", pathname.string().c_str());
 		WARN_RETURN(ERR::CORRUPTED);
 	}
 
@@ -366,7 +361,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 				
 				if (Shader.GetNodeName() != el_shader)
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, "%s: Only \"Shader\" may be child of \"Shaders\".", pathname);
+					LOG(CLogger::Error, LOG_CATEGORY, L"%ls: Only \"Shader\" may be child of \"Shaders\".", pathname.string().c_str());
 					WARN_RETURN(ERR::CORRUPTED);
 				}
 				
@@ -375,7 +370,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 		}
 		else
 		{
-			LOG(CLogger::Warning, LOG_CATEGORY, "%s: Unknown child of \"Program\".", pathname);
+			LOG(CLogger::Warning, LOG_CATEGORY, L"%ls: Unknown child of \"Program\".", pathname.string().c_str());
 		}
 	}
 
@@ -390,14 +385,14 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname_, Han
 	{
 		char* infolog = new char[log_length];
 		pglGetProgramInfoLog(p->id, log_length, 0, infolog);
-
-		debug_printf("Linker log for %s:\n%s\n", pathname, infolog);
+		CStrW infologw(infolog);
+		debug_printf(L"Linker log for %ls:\n%ls\n", pathname.string().c_str(), infologw.c_str());
 		delete[] infolog;
 	}
 
 	if (!linked)
 	{
-		debug_printf("Link failed for %s\n", pathname);
+		debug_printf(L"Link failed for %ls\n", pathname.string().c_str());
 		WARN_RETURN(ERR::SHDR_LINK);
 	}
 
@@ -433,9 +428,9 @@ static LibError Ogl_Program_to_string(const Ogl_Program* UNUSED(p), char* buf)
 
 // Load a program object based on the given XML file description.
 // Shader objects are loaded and attached automatically.
-Handle ogl_program_load(const char* fn)
+Handle ogl_program_load(const VfsPath& pathname)
 {
-	return h_alloc(H_Ogl_Program, fn, 0);
+	return h_alloc(H_Ogl_Program, pathname, 0);
 }
 
 // Free all resources associated with the given program handle.

@@ -30,7 +30,7 @@ public:
 	// (compiled-generated) ctor only sets up the vptr
 	virtual ~ICounter() {}
 
-	virtual const char* Name() const = 0;
+	virtual const wchar_t* Name() const = 0;
 
 	// Activate with an error return value is much cleaner+safer than
 	// throwing exceptions in the ctor.
