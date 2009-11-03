@@ -27,6 +27,10 @@
 
 #include "secure_crt.h"
 
+#ifdef WSECURE_CRT
+#include "lib/wchar.h"
+#endif
+
 
 // we were included from wsecure_crt.cpp; skip all stuff that
 // must only be done once.
@@ -253,16 +257,9 @@ int tsprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
 errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode)
 {
 	*pfile = NULL;
-
-	size_t numConverted;
-	char filename_c[PATH_MAX];
-	numConverted = wcstombs(filename_c, filename, PATH_MAX);
-	debug_assert(numConverted < PATH_MAX);
-	char mode_c[PATH_MAX];
-	numConverted = wcstombs(mode_c, mode, PATH_MAX);
-	debug_assert(numConverted < PATH_MAX);
-
-	return fopen_s(pfile, filename_c, mode_c);
+	const std::string filename_c = string_from_wstring(filename);
+	const std::string mode_c = string_from_wstring(mode);
+	return fopen_s(pfile, filename_c.c_str(), mode_c.c_str());
 }
 
 #else

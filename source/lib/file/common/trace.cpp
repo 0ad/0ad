@@ -149,10 +149,10 @@ public:
 	{
 		pool_free_all(&m_pool);
 
-		const fs::path pathname_c = path_from_wpath(pathname);
 		errno = 0;
-		FILE* file = fopen(pathname_c.string().c_str(), "rt");
-		if(!file)
+		FILE* file;
+		errno_t err = _wfopen_s(&file, pathname.string().c_str(), L"rt");
+		if(err != 0)
 			return LibError_from_errno();
 
 		for(;;)
@@ -169,10 +169,10 @@ public:
 
 	virtual LibError Store(const fs::wpath& pathname) const
 	{
-		const fs::path pathname_c = path_from_wpath(pathname);
 		errno = 0;
-		FILE* file = fopen(pathname_c.string().c_str(), "at");
-		if(!file)
+		FILE* file;
+		errno_t err = _wfopen_s(&file, pathname.string().c_str(), L"at");
+		if(err != 0)
 			return LibError_from_errno();
 		for(size_t i = 0; i < NumEntries(); i++)
 		{

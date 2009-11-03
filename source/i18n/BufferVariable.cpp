@@ -46,8 +46,8 @@ namespace I18n {
 
 StrImW BufferVariable_int::ToString(CLocale*)
 {
-	wchar_t buffer[16];
-	swprintf(buffer, 16, L"%d", value);
+	wchar_t buffer[50];
+	swprintf_s(buffer, ARRAY_SIZE(buffer), L"%d", value);
 	return buffer;
 }
 u32 BufferVariable_int::Hash()
@@ -58,9 +58,8 @@ u32 BufferVariable_int::Hash()
 
 StrImW BufferVariable_double::ToString(CLocale*)
 {
-	// TODO: Work out how big the buffer should be
-	wchar_t buffer[256];
-	swprintf(buffer, 256, L"%f", value);
+	wchar_t buffer[50];
+	swprintf_s(buffer, ARRAY_SIZE(buffer), L"%f", value);
 	return buffer;
 }
 u32 BufferVariable_double::Hash()

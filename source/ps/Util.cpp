@@ -71,10 +71,10 @@ void WriteSystemInfo()
 	struct utsname un;
 	uname(&un);
 
-	fs::wpath pathname(fs::wpath(psLogDir())/L"system_info.txt");
-	const fs::path pathname_c = path_from_wpath(pathname);
-	FILE* f = fopen(pathname_c.string().c_str(), "w");
-	if(!f)
+	fs::wpath pathname(psLogDir()/L"system_info.txt");
+	FILE* f;
+	errno_t err = _wfopen_s(&f, pathname.string().c_str(), L"w");
+	if(err != 0)
 		return;
 
 	// current timestamp (redundant WRT OS timestamp, but that is not

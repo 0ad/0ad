@@ -19,6 +19,7 @@
 
 #include "lib/lib.h"
 #include "lib/path_util.h"
+#include "lib/secure_crt.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/posix/posix.h"	// fminf etc.
 
@@ -128,8 +129,9 @@ public:
 		for (size_t i = 0; i < ARRAY_SIZE(files); ++i)
 		{
 			std::string name = rootstr + files[i];
-			FILE* f = fopen(name.c_str(), "w");
-			TS_ASSERT(f);
+			FILE* f;
+			errno_t err = fopen_s(&f, name.c_str(), "w");
+			TS_ASSERT_EQUALS(err, 0);
 			fclose(f);
 		}
 

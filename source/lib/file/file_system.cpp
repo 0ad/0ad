@@ -23,6 +23,7 @@
 #include <string>
 
 #include "lib/path_util.h"
+#include "lib/wchar.h"	// wstring_from_string
 #include "lib/posix/posix_filesystem.h"
 
 
@@ -36,7 +37,7 @@ struct DirDeleter
 };
 
 // is name "." or ".."?
-static bool IsDummyDirectory(const wchar_t* name)
+static bool IsDummyDirectory(const std::wstring& name)
 {
 	if(name[0] != '.')
 		return false;
@@ -66,9 +67,8 @@ LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryN
 			return LibError_from_errno();
 		}
 
-		wchar_t name[PATH_MAX];
-		mbstowcs(name, osEnt->d_name, ARRAY_SIZE(name));
-		RETURN_ERR(path_component_validate(name));
+		const std::wstring name = wstring_from_string(osEnt->d_name);
+		RETURN_ERR(path_component_validate(name.c_str()));
 
 		// get file information (mode, size, mtime)
 		struct stat s;

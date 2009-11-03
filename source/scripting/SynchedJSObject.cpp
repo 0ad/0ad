@@ -72,8 +72,7 @@ template <>
 CStrW ToNetString(const SColour &data)
 {
 	wchar_t buf[256];
-	swprintf(buf, 256, L"%f %f %f %f", data.r, data.g, data.b, data.a);
-	buf[255]=0;
+	swprintf_s(buf, ARRAY_SIZE(buf), L"%f %f %f %f", data.r, data.g, data.b, data.a);
 	
 	return buf;
 }

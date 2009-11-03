@@ -151,7 +151,7 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 	{
 		wchar_t pathnameBuf[PATH_MAX];
 		swprintf_s(pathnameBuf, ARRAY_SIZE(pathnameBuf), pathnameFormat.string().c_str(), nextNumber++);
-		nextPathname = VfsPath(pathnameBuf);
+		nextPathname = pathnameBuf;
 	}
 	while(fs->GetFileInfo(nextPathname, 0) == INFO::OK);
 }

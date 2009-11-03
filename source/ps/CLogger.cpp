@@ -54,10 +54,10 @@ const wchar_t* html_footer = L"";
 
 CLogger::CLogger()
 {
-	fs::wpath mainlogPath(fs::wpath(psLogDir())/L"mainlog.html");
+	fs::wpath mainlogPath(psLogDir()/L"mainlog.html");
 	m_MainLog = new std::wofstream(mainlogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
-	fs::wpath interestinglogPath(fs::wpath(psLogDir())/L"interestinglog.html");
+	fs::wpath interestinglogPath(psLogDir()/L"interestinglog.html");
 	m_InterestingLog = new std::wofstream(interestinglogPath.external_file_string().c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;

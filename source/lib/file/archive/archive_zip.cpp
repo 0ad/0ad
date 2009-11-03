@@ -27,6 +27,7 @@
 
 #include "lib/bits.h"
 #include "lib/byte_order.h"
+#include "lib/wchar.h"	// wstring_from_string
 #include "lib/fat_time.h"
 #include "lib/path_util.h"
 #include "lib/allocators/pool.h"
@@ -133,13 +134,8 @@ public:
 	fs::wpath Pathname() const
 	{
 		const size_t length = (size_t)read_le16(&m_fn_len);
-		const char* pathname_c = (const char*)this + sizeof(CDFH); // not 0-terminated!
-		wchar_t pathname[PATH_MAX];
-		size_t charsConverted;
-		const errno_t ret = mbstowcs_s(&charsConverted, pathname, pathname_c, length);
-		debug_assert(ret == 0);
-		debug_assert(charsConverted == length);
-		return pathname;
+		const char* pathname = (const char*)this + sizeof(CDFH); // not 0-terminated!
+		return wstring_from_string(std::string(pathname, length));
 	}
 
 	off_t HeaderOffset() const
@@ -404,13 +400,13 @@ public:
 			if(!cdfh)
 				WARN_RETURN(ERR::CORRUPTED);
 
-			const fs::wpath relativePathname(cdfh->Pathname());
+			const VfsPath relativePathname(cdfh->Pathname().string());	// convert from fs::wpath
 			const std::wstring name = relativePathname.leaf();
 			if(*name.rbegin() != '/')	// ignore paths ending in slash (i.e. representing a directory)
 			{
 				FileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
 				shared_ptr<ArchiveFile_Zip> archiveFile(new ArchiveFile_Zip(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method()));
-				cb(VfsPath(relativePathname.string()), fileInfo, archiveFile, cbData);
+				cb(relativePathname, fileInfo, archiveFile, cbData);
 			}
 
 			pos += cdfh->Size();

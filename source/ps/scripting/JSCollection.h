@@ -263,7 +263,7 @@ template<typename T, JSClass* ScriptType> JSBool CJSCollection<T, ScriptType>::T
 		return( JS_FALSE ); // That's odd; we've lost the pointer.
 
 	wchar_t buffer[256];
-	int len=swprintf( buffer, 256, L"[object Collection: %hs: %d members]", ScriptType->name, set->size() );
+	int len = swprintf_s( buffer, ARRAY_SIZE(buffer), L"[object Collection: %hs: %d members]", ScriptType->name, set->size() );
 	buffer[255] = 0;
 	if (len < 0 || len > 255) len=255;
 	utf16string u16str(buffer, buffer+len);

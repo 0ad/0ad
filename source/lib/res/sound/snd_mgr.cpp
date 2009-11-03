@@ -275,7 +275,7 @@ static LibError alc_init()
 	// (e.g. DS3D, native, MMSYSTEM) - needed when reporting OpenAL bugs.
 	const char* dev_name = (const char*)alcGetString(alc_dev, ALC_DEVICE_SPECIFIER);
 	wchar_t buf[200];
-	swprintf(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
+	swprintf_s(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
 	ah_log(buf);
 
 #if WIN_LOADLIBRARY_HACK

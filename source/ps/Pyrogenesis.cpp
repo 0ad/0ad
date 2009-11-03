@@ -67,9 +67,9 @@ void psTranslateFree(const wchar_t* text)
 // append to <out> file.
 static void AppendAsciiFile(FILE* out, const fs::wpath& pathname)
 {
-	const fs::path pathname_c = path_from_wpath(pathname);
-	FILE* in = fopen(pathname_c.external_file_string().c_str(), "rb");
-	if(!in)
+	FILE* in;
+	errno_t err = _wfopen_s(&in, pathname.string().c_str(), L"rb");
+	if(err != 0)
 	{
 		fwprintf(out, L"(unavailable)");
 		return;
@@ -96,12 +96,12 @@ void psBundleLogs(FILE* f)
 	fwprintf(f, L"SVN Revision: %ls\n\n", svn_revision);
 
 	fwprintf(f, L"System info:\n\n");
-	fs::wpath path1(fs::wpath(psLogDir())/L"system_info.txt");
+	fs::wpath path1(psLogDir()/L"system_info.txt");
 	AppendAsciiFile(f, path1);
 	fwprintf(f, L"\n\n====================================\n\n");
 
 	fwprintf(f, L"Main log:\n\n");
-	fs::wpath path2(fs::wpath(psLogDir())/L"mainlog.html");
+	fs::wpath path2(psLogDir()/L"mainlog.html");
 	AppendAsciiFile(f, path2);
 	fwprintf(f, L"\n\n====================================\n\n");
 }

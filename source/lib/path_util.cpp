@@ -25,6 +25,8 @@
 #include <cstring>
 #include <cerrno>
 
+#include "lib/wchar.h"
+
 
 ERROR_ASSOCIATE(ERR::PATH_LENGTH, L"path exceeds PATH_MAX characters", ENAMETOOLONG);
 ERROR_ASSOCIATE(ERR::PATH_EMPTY, L"path is an empty string", -1);
@@ -302,16 +304,10 @@ const wchar_t* path_extension(const wchar_t* fn)
 
 fs::wpath wpath_from_path(const fs::path& pathname)
 {
-	wchar_t pathname_w[PATH_MAX];
-	const size_t numConverted = mbstowcs(pathname_w, pathname.file_string().c_str(), ARRAY_SIZE(pathname_w));
-	debug_assert(numConverted < PATH_MAX);	// if == PATH_MAX, result isn't zero-terminated
-	return fs::wpath(pathname_w);
+	return wstring_from_string(pathname.string());
 }
 
 fs::path path_from_wpath(const fs::wpath& pathname)
 {
-	char pathname_c[PATH_MAX];
-	const size_t numConverted = wcstombs(pathname_c, pathname.file_string().c_str(), ARRAY_SIZE(pathname_c));
-	debug_assert(numConverted < PATH_MAX);	// if == PATH_MAX, result isn't zero-terminated
-	return fs::path(pathname_c);
+	return string_from_wstring(pathname.string());
 }

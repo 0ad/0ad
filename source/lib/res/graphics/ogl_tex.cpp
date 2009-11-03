@@ -235,7 +235,7 @@ static GLint choose_int_fmt(GLenum fmt, int q_flags)
 	default:
 		{
 		wchar_t buf[100];
-		swprintf(buf, ARRAY_SIZE(buf), L"choose_int_fmt: fmt 0x%x isn't covered! please add it", fmt);
+		swprintf_s(buf, ARRAY_SIZE(buf), L"choose_int_fmt: fmt 0x%x isn't covered! please add it", fmt);
 		DEBUG_DISPLAY_ERROR(buf);
 		debug_assert(0);	// given fmt isn't covered! please add it.
 		// fall back to a reasonable default

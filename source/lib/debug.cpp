@@ -206,10 +206,10 @@ LibError debug_WriteCrashlog(const wchar_t* text)
 	if(!cpu_CAS(&state, IDLE, BUSY))
 		return ERR::REENTERED;	// NOWARN
 
-	fs::wpath path = ah_get_log_dir()/L"crashlog.txt";
-	fs::path path_c = path_from_wpath(path);
-	FILE* f = fopen(path_c.string().c_str(), "w");
-	if(!f)
+	FILE* f;
+	fs::wpath pathname = ah_get_log_dir()/L"crashlog.txt";
+	errno_t err = _wfopen_s(&f, pathname.string().c_str(), L"w");
+	if(err != 0)
 	{
 		state = FAILED;	// must come before DEBUG_DISPLAY_ERROR
 		DEBUG_DISPLAY_ERROR(L"Unable to open crashlog.txt for writing (please ensure the log directory is writable)");

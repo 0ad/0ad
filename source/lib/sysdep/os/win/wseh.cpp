@@ -185,7 +185,7 @@ static const wchar_t* GetSehExceptionDescription(const EXCEPTION_RECORD* er,
 	// anything else => unknown; display its exception code.
 	// we don't punt to GetExceptionDescription because anything
 	// we get called for will actually be a SEH exception.
-	swprintf(description, maxChars, L"Unknown (0x%08X)", code);
+	swprintf_s(description, maxChars, L"Unknown (0x%08X)", code);
 	return description;
 }
 
