@@ -41,24 +41,30 @@ static bool IsCall(void* ret_addr, void*& target)
 	// because this is really unlikely and not worth the trouble.
 	const size_t len = maxInstructionLength;
 
+	// (most frequent cases first to reduce stack walk overhead:)
+
 	// CALL rel32 (E8 cd)
 	if(len >= 5 && c[-5] == 0xE8)
 	{
-		void* offset;
-		memcpy(&offset, c-4, 4);
-		target = (void*)(uintptr_t(offset) + uintptr_t(ret_addr));
+		i32 offset;
+		memcpy(&offset, c-sizeof(offset), sizeof(offset));
+		target = (void*)(intptr_t(ret_addr) + intptr_t(offset));
 		return true;
 	}
 
-	// CALL r/m32 (FF /2)
-	// .. CALL [r32 + r32*s]          => FF 14 SIB
-	if(len >= 3 && c[-3] == 0xFF && c[-2] == 0x14)
+	// CALL r32                    => FF D0-D7                 
+	if(len >= 2 && c[-2] == 0xFF && (c[-1] & 0xF8) == 0xD0)
 		return true;
-	// .. CALL [disp32]               => FF 15 disp32
+
+	// CALL [r32 + disp8]          => FF 50-57(!54) disp8
+	if(len >= 3 && c[-3] == 0xFF && (c[-2] & 0xF8) == 0x50 && c[-2] != 0x54)
+		return true;
+
+	// CALL [disp32]               => FF 15 disp32
 	if(len >= 6 && c[-6] == 0xFF && c[-5] == 0x15)
 	{
 		void** addr_of_target;
-		memcpy(&addr_of_target, c-4, 4);
+		memcpy(&addr_of_target, c-sizeof(addr_of_target), sizeof(addr_of_target));
 		target = *addr_of_target;
 		// there are no meaningful checks we can perform: we're called from
 		// the stack trace code, so ring0 addresses may be legit.
@@ -66,32 +72,41 @@ static bool IsCall(void* ret_addr, void*& target)
 		// (may help in tracking down memory corruption)
 		return true;
 	}
-	// .. CALL [r32]                  => FF 00-3F(!14/15)
+
+	// CALL [r32 + r32*s]          => FF 14 SIB
+	if(len >= 3 && c[-3] == 0xFF && c[-2] == 0x14)
+		return true;
+	// CALL [r32]                  => FF 00-3F(!14/15)
 	if(len >= 2 && c[-2] == 0xFF && c[-1] < 0x40 && c[-1] != 0x14 && c[-1] != 0x15)
 		return true;
-	// .. CALL [r32 + r32*s + disp8]  => FF 54 SIB disp8
+	// CALL [r32 + r32*s + disp8]  => FF 54 SIB disp8
 	if(len >= 4 && c[-4] == 0xFF && c[-3] == 0x54)
 		return true;
-	// .. CALL [r32 + disp8]          => FF 50-57(!54) disp8
-	if(len >= 3 && c[-3] == 0xFF && (c[-2] & 0xF8) == 0x50 && c[-2] != 0x54)
-		return true;
-	// .. CALL [r32 + r32*s + disp32] => FF 94 SIB disp32
+	// CALL [r32 + r32*s + disp32] => FF 94 SIB disp32
 	if(len >= 7 && c[-7] == 0xFF && c[-6] == 0x94)
 		return true;
-	// .. CALL [r32 + disp32]         => FF 90-97(!94) disp32
+	// CALL [r32 + disp32]         => FF 90-97(!94) disp32
 	if(len >= 6 && c[-6] == 0xFF && (c[-5] & 0xF8) == 0x90 && c[-5] != 0x94)
-		return true;
-	// .. CALL r32                    => FF D0-D7                 
-	if(len >= 2 && c[-2] == 0xFF && (c[-1] & 0xF8) == 0xD0)
 		return true;
 
 	return false;
 }
 
-LibError ia32_GetCallTarget(void* ret_addr, void** target)
+LibError ia32_GetCallTarget(void* ret_addr, void*& target)
 {
-	if(IsCall(ret_addr, *target))
+	if(IsCall(ret_addr, target))
+	{
+		// follow the incremental linker's jump tables
+		const u8* c = (const u8*)target;
+		if(c && c[0] == 0xE9)
+		{
+			i32 offset;
+			memcpy(&offset, c+1, sizeof(offset));
+			target = (void*)(intptr_t(c)+5 + intptr_t(offset));
+		}
+
 		return INFO::OK;
+	}
 
 	const u8* const instructionWindow = (const u8*)ret_addr - maxInstructionLength;
 	if(memchr(instructionWindow, 0xCC, maxInstructionLength))

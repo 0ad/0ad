@@ -95,7 +95,7 @@ void debug_puts(const wchar_t* text)
 
 void wdbg_printf(const wchar_t* fmt, ...)
 {
-	wchar_t buf[1024];	// as required by wvsprintf
+	wchar_t buf[1024/sizeof(wchar_t)];	// as required by wvsprintf
 	va_list ap;
 	va_start(ap, fmt);
 	wvsprintfW(buf, fmt, ap);

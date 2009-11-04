@@ -276,7 +276,7 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 		return ERR::FAIL;	// NOWARN (invalid address)
 
 	void* target;
-	LibError err = ia32_GetCallTarget(ret_addr, &target);
+	LibError err = ia32_GetCallTarget(ret_addr, target);
 	RETURN_ERR(err);
 	if(target)	// were able to determine it from the call instruction
 	{
@@ -284,9 +284,10 @@ static LibError ia32_walk_stack(_tagSTACKFRAME64* sf)
 			return ERR::FAIL;	// NOWARN (invalid address)
 	}
 
-	sf->AddrFrame .Offset = (DWORD64)fp;
-	sf->AddrPC    .Offset = (DWORD64)target;
-	sf->AddrReturn.Offset = (DWORD64)ret_addr;
+	sf->AddrFrame .Offset = DWORD64(fp);
+	sf->AddrStack .Offset = DWORD64(prev_fp)+8;	// +8 reverts effects of call + push ebp
+	sf->AddrPC    .Offset = DWORD64(target);
+	sf->AddrReturn.Offset = DWORD64(ret_addr);
 
 	return INFO::OK;
 }
@@ -1024,7 +1025,7 @@ static LibError dump_sym_base_type(DWORD type_id, const u8* p, DumpState state)
 	case btBool:
 		debug_assert(size == sizeof(bool));
 		if(data == 0 || data == 1)
-			out(L"%hs", data? "true " : "false");
+			out(L"%ls", data? L"true " : L"false");
 		else
 			out(L"(bool)0x%02I64X", data);
 		break;
@@ -1229,7 +1230,7 @@ static LibError dump_sym_function_type(DWORD UNUSED(type_id), const u8* p, DumpS
 	if(state.indirection == 0)
 		out(L"0x%p ", p);
 	if(err == INFO::OK)
-		out(L"(%hs)", name);
+		out(L"(%ls)", name);
 	return INFO::OK;
 }
 

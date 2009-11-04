@@ -842,7 +842,7 @@ static void PrintCallStack(const uintptr_t* callers, size_t numCallers)
 		return;
 	}
 
-	wdbg_printf(L"\n  partial call stack:\n");
+	wdbg_printf(L"\n  partial, unordered call stack:\n");
 	for(size_t i = 0; i < numCallers; i++)
 	{
 		wchar_t name[DBG_SYMBOL_LEN] = {'\0'}; wchar_t file[DBG_FILE_LEN] = {'\0'}; int line = -1;

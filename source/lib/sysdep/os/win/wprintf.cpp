@@ -441,14 +441,14 @@ finished_reading:
 #endif
 
 	// Highly efficient buffer to store the rearranged copy of the stack
-	std::tstring newstack;
+	std::string newstack;
 
 	std::vector< std::pair<char*, char*> > stackitems;
 
 	va_list arglist = argptr;
 	//va_start(arglist, format);
 
-	const TCHAR* newstackptr;
+	const u8* newstackptr;
 
 	if (varsizes.size())
 	{
@@ -474,23 +474,24 @@ finished_reading:
 
 		for (ChunkIt it = specs.begin(); it != specs.end(); ++it)
 		{
-			if ((*it)->ChunkType() == 0)
+			FormatChunk* chunk = *it;
+			if (chunk->ChunkType() == 0)
 			{
-				FormatVariable* s = static_cast<FormatVariable*>(*it);
+				FormatVariable* s = static_cast<FormatVariable*>(chunk);
 				if (s->position <= 0)
 				{
 					debug_assert(0);	// Invalid use of positional elements - make sure all variable things are positional and defined
 					return -1;
 				}
-				newstack += std::tstring( stackitems[s->position-1].first, stackitems[s->position-1].second );
+				newstack += std::string( stackitems[s->position-1].first, stackitems[s->position-1].second );
 			}
 		}
 		
-		newstackptr = newstack.c_str();
+		newstackptr = (const u8*)newstack.c_str();
 	}
 	else
 	{
-		newstackptr = (const TCHAR*)arglist;
+		newstackptr = (const u8*)arglist;
 	}
 
 	for (ChunkIt it = specs.begin(); it != specs.end(); ++it)

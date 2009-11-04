@@ -22,16 +22,46 @@
 
 #include "lib/self_test.h"
 
-#include "lib/sysdep/os/win/win.h"	// HWND
-#include "lib/debug.h"	// no wdbg_sym interface needed
-#include "lib/sysdep/sysdep.h"
-#include "lib/sysdep/os/win/win.h"
-
 #include <queue>
 #include <deque>
 #include <list>
 #include <map>
 #include <stack>
+
+#include "lib/sysdep/os/win/win.h"	// HWND
+#include "lib/sysdep/sysdep.h"
+#include "lib/sysdep/os/win/wdbg_sym.h"
+#include "lib/external_libraries/dbghelp.h"
+
+
+static void* callers[100];
+static size_t numCallers;
+
+static LibError OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
+{
+	callers[numCallers++] = (void*)frame->AddrPC.Offset;
+	return INFO::CB_CONTINUE;
+}
+
+// (these must be outside of TestWdbgSym so that we can simply
+// search for the function's name as a substring within the ILT
+// decorated name (which omits the :: scope resolution operator,
+// while debug_ResolveSymbol for the function does not)
+__declspec(noinline) static void Func1()
+{
+	wdbg_sym_WalkStack(OnFrame, 0, 0, L"wdbg_sym_WalkStack");
+}
+
+__declspec(noinline) static void Func2()
+{
+	Func1();
+}
+
+__declspec(noinline) static void Func3()
+{
+	Func2();
+}
+
 
 class TestWdbgSym : public CxxTest::TestSuite 
 {
@@ -61,24 +91,16 @@ class TestWdbgSym : public CxxTest::TestSuite
 		int ints[] = { 1,2,3,4,5 };	UNUSED2(ints);
 		wchar_t chars[] = { 'w','c','h','a','r','s',0 }; UNUSED2(chars);
 
-		// note: prefer simple error (which also generates stack trace) to
-		// exception, because it is guaranteed to work (no issues with the
-		// debugger swallowing exceptions).
-		//DEBUG_DISPLAY_ERROR(L"wdbg_sym self test: check if stack trace below is ok.");
-		//RaiseException(0xf001,0,0,0);
-
 		// note: we don't want any kind of dialog to be raised, because
 		// this test now always runs. therefore, just make sure a decent
 		// amount of text (not just "(failed)" error messages) was produced.
-		//
-		// however, we can't call debug_DumpStack directly because
-		// it'd be reentered if an actual error comes up.
-		// therefore, use debug_DisplayError with DE_HIDE_DIALOG.
-		// unfortunately this means we can no longer get at the error text.
-		// a sanity check of the text length has been added to debug_DisplayError
 		ErrorMessageMem emm = {0};
-		const wchar_t* text = debug_BuildErrorMessage(L"dummy", 0,0,0, 0,0, &emm);
+		const wchar_t* text = debug_BuildErrorMessage(L"dummy", 0,0,0, 0,L"debug_BuildErrorMessage", &emm);
 		TS_ASSERT(wcslen(text) > 500);
+		{
+			std::wofstream s(L"d:\\out.txt");
+			s << text;
+		}
 		debug_FreeErrorMessage(&emm);
 	}
 
@@ -271,7 +293,23 @@ class TestWdbgSym : public CxxTest::TestSuite
 public:
 	void test_stack_trace()
 	{
-		// TODO: restore this when it doesn't cause annoying assertion failures
-//		m_test_addrs(123, 3.1415926535897932384626, "pchar string", 0xf00d);
+		m_test_addrs(123, 3.1415926535897932384626, "pchar string", 0xf00d);
+	}
+
+	void test_stack_walk()
+	{
+		Func3();
+		TS_ASSERT(numCallers >= 3);
+		void* funcAddresses[3] = { (void*)&Func1, (void*)&Func2, (void*)&Func3 };
+		for(size_t i = 0; i < 3; i++)
+		{
+			wchar_t func1[DBG_SYMBOL_LEN], func2[DBG_SYMBOL_LEN];
+			LibError ret;
+			ret = debug_ResolveSymbol(callers[i], func1, 0, 0);
+			TS_ASSERT_OK(ret);
+			ret = debug_ResolveSymbol(funcAddresses[i], func2, 0, 0);
+			TS_ASSERT_OK(ret);
+			TS_ASSERT_WSTR_CONTAINS(func2, func1);
+		}
 	}
 };
