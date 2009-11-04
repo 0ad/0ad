@@ -139,7 +139,7 @@ CStr CCloseRequestMessage::ToString( void ) const
 
 void CMessageSocket::Push(CNetMessage *msg)
 {
-	NET_LOG2( "CMessageSocket::Push(): %s", msg->ToString().c_str() );
+	NET_LOG2( "CMessageSocket::Push(): %hs", msg->ToString().c_str() );
 
 	m_OutQ.Lock();
 	m_OutQ.push_back(msg);
@@ -222,7 +222,7 @@ void CMessageSocket::StartWriteNextMessage()
 		PS_RESULT res=Write(m_pWrBuffer, hdr.m_MsgLength+HEADER_LENGTH);
 		if (res != PS_OK)
 		{
-			NET_LOG2( "CMessageSocket::StartWriteNextMessage(): %s", res );
+			NET_LOG2( "CMessageSocket::StartWriteNextMessage(): %hs", res );
 
 			// Queue Error Message
 			m_InQ.Lock();
@@ -246,7 +246,7 @@ void CMessageSocket::StartWriteNextMessage()
 
 void CMessageSocket::WriteComplete(PS_RESULT ec)
 {
-	NET_LOG2( "CMessageSocket::WriteComplete(): %s", ec );
+	NET_LOG2( "CMessageSocket::WriteComplete(): %hs", ec );
 
 	if (ec == PS_OK)
 	{
@@ -285,7 +285,7 @@ void CMessageSocket::StartReadHeader()
 	PS_RESULT res=Read(m_pRdBuffer, HEADER_LENGTH);
 	if (res != PS_OK)
 	{
-		NET_LOG2( "CMessageSocket::StartReadHeader(): %s", res );
+		NET_LOG2( "CMessageSocket::StartReadHeader(): %hs", res );
 
 		// Push an error message
 		CScopeLock scopeLock(m_InQ.m_Mutex);
@@ -319,7 +319,7 @@ void CMessageSocket::StartReadMessage()
 		PS_RESULT res=Read(m_pRdBuffer+HEADER_LENGTH, hdr.m_MsgLength);
 		if (res != PS_OK)
 		{
-			NET_LOG2( "CMessageSocket::StartReadMessage(): %s", res );
+			NET_LOG2( "CMessageSocket::StartReadMessage(): %hs", res );
 
 			// Queue an error message
 			CScopeLock scopeLock(m_InQ);
@@ -330,7 +330,7 @@ void CMessageSocket::StartReadMessage()
 
 void CMessageSocket::ReadComplete(PS_RESULT ec)
 {
-	NET_LOG3( "CMessageSocket::ReadComplete(%s): %s", m_ReadingData ? "data":"header", ec );
+	NET_LOG3( "CMessageSocket::ReadComplete(%ls): %hs", m_ReadingData ? L"data":L"header", ec );
 
 	// Check if we were reading header or message
 	// If header:
@@ -368,7 +368,7 @@ void CMessageSocket::OnMessage(CNetMessage *pMsg)
 {
 	m_InQ.Lock();
 	m_InQ.push_back(pMsg);
-	NET_LOG2( "CMessageSocket::OnMessage(): %s", pMsg->ToString().c_str() );
+	NET_LOG2( "CMessageSocket::OnMessage(): %hs", pMsg->ToString().c_str() );
 	NET_LOG2( "CMessageSocket::OnMessage(): Queue size now %lu", (unsigned long)m_InQ.size() );
 	m_InQ.Unlock();
 }

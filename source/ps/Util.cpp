@@ -86,15 +86,15 @@ void WriteSystemInfo()
 	struct tm* t = gmtime(&seconds);
 	const size_t charsWritten = wcsftime(timestampBuf, ARRAY_SIZE(timestampBuf), L"(generated %Y-%m-%d %H:%M:%S UTC)", t);
 	debug_assert(charsWritten != 0);
-	fwprintf(f, L"%ls\n\n", timestampBuf);
+	fprintf(f, "%ls\n\n", timestampBuf);
 	}
 
 	// OS
-	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
+	fprintf(f, "OS             : %hs %hs (%hs)\n", un.sysname, un.release, un.version);
 
 	// CPU
 	const CpuTopology* topology = cpu_topology_Detect();
-	fprintf(f, "CPU            : %s, %s (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)cpu_topology_NumPackages(topology), (int)cpu_topology_CoresPerPackage(topology), (int)cpu_topology_LogicalPerCore(topology));
+	fprintf(f, "CPU            : %hs, %hs (%dx%dx%d)", un.machine, cpu_IdentifierString(), (int)cpu_topology_NumPackages(topology), (int)cpu_topology_CoresPerPackage(topology), (int)cpu_topology_LogicalPerCore(topology));
 	const double cpu_freq = os_cpu_ClockFrequency();
 	if(cpu_freq != 0.0f)
 	{
@@ -110,13 +110,13 @@ void WriteSystemInfo()
 	fprintf(f, "Memory         : %u MiB; %u MiB free\n", (unsigned)os_cpu_MemorySize(), (unsigned)os_cpu_MemoryAvailable());
 
 	// graphics
-	fwprintf(f, L"Graphics Card  : %ls\n", gfx_card);
-	fprintf(f, "OpenGL Drivers : %s; %ls\n", glGetString(GL_VERSION), gfx_drv_ver);
+	fprintf(f, "Graphics Card  : %ls\n", gfx_card);
+	fprintf(f, "OpenGL Drivers : %hs; %ls\n", glGetString(GL_VERSION), gfx_drv_ver);
 	fprintf(f, "Video Mode     : %dx%d:%d@%d\n", g_xres, g_yres, g_bpp, g_freq);
 
 	// sound
-	fwprintf(f, L"Sound Card     : %ls\n", snd_card);
-	fwprintf(f, L"Sound Drivers  : %ls\n", snd_drv_ver);
+	fprintf(f, "Sound Card     : %ls\n", snd_card);
+	fprintf(f, "Sound Drivers  : %ls\n", snd_drv_ver);
 
 
 	//
@@ -129,7 +129,7 @@ void WriteSystemInfo()
 	(void)gethostname(hostname, sizeof(hostname)-1);
 	// -1 makes sure it's 0-terminated. if the function fails,
 	// we display "(unknown)" and will skip IP output below.
-	fprintf(f, "Network Name   : %s", hostname);
+	fprintf(f, "Network Name   : %hs", hostname);
 
 	{
 		// ignore exception here - see https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=114032
@@ -147,7 +147,7 @@ void WriteSystemInfo()
 			// separate entries but avoid trailing comma
 			if(i != 0)
 				fprintf(f, ", ");
-			fprintf(f, "%s", inet_ntoa(*ips[i]));
+			fprintf(f, "%hs", inet_ntoa(*ips[i]));
 		}
 		fprintf(f, ")");
 	}
@@ -159,7 +159,7 @@ no_ip:
 	// OpenGL extensions (write them last, since it's a lot of text)
 	const char* exts = ogl_ExtensionString();
 	if (!exts) exts = "{unknown}";
-	fprintf(f, "\nOpenGL Extensions: \n%s\n", SplitExts(exts).c_str());
+	fprintf(f, "\nOpenGL Extensions: \n%hs\n", SplitExts(exts).c_str());
 
 	fclose(f);
 	f = 0;

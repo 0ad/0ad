@@ -47,7 +47,7 @@ CMusicPlayer::~CMusicPlayer(void)
 	Release();
 }
 
-void CMusicPlayer::Open(char* UNUSED(filename))
+void CMusicPlayer::Open(const VfsPath& UNUSED(pathname))
 {
 	// If a new file is opened while another is already in memory,
 	// close the old one first.
@@ -57,19 +57,19 @@ void CMusicPlayer::Open(char* UNUSED(filename))
 /*
 	void* p;
 	size_t sizeOfFile;
-	if(vfs_load(filename, p, sizeOfFile) != INFO::OK)
+	if(vfs_load(pathname, p, sizeOfFile) != INFO::OK)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"CMusicPlayer::open(): vfs_load for %s failed!\n", filename);
+		LOG(CLogger::Error, LOG_CATEGORY, L"CMusicPlayer::open(): vfs_load for %ls failed!\n", pathname.string().c_str());
 		return;
 	}
 	else
-		LOG(CLogger::Normal,  LOG_CATEGORY, L"CMusicPlayer::open(): file %s loaded successfully\n", filename);
+		LOG(CLogger::Normal,  LOG_CATEGORY, L"CMusicPlayer::open(): file %ls loaded successfully\n", pathname.string().c_str());
 	memFile.dataPtr = (char*)p;
 	memFile.dataRead = 0;
 	memFile.dataSize = sizeOfFile;	
 */
 /*
-	hf = vfs_open(filename);
+	hf = vfs_open(pathname);
 
 	for(int i = 0; i < NUM_BUFS; i++)
 	{
@@ -233,7 +233,7 @@ void CMusicPlayer::Check()
 	if(error != AL_NO_ERROR)
 	{
 		std::string str = errorString(error);
-		LOG(CLogger::Error, LOG_CATEGORY, L"OpenAL error: %s\n", str.c_str());
+		LOG(CLogger::Error, LOG_CATEGORY, L"OpenAL error: %hs\n", str.c_str());
 	}
 */
 }

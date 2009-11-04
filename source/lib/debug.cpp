@@ -294,7 +294,7 @@ private:
 // split out of debug_DisplayError because it's used by the self-test.
 const wchar_t* debug_BuildErrorMessage(
 	const wchar_t* description,
-	const wchar_t* filename, int line, const wchar_t* func,
+	const wchar_t* filename, int line, const char* func,
 	void* context, const wchar_t* lastFuncToSkip,
 	ErrorMessageMem* emm)
 {
@@ -308,7 +308,7 @@ const wchar_t* debug_BuildErrorMessage(
 	// header
 	if(!writer(
 		L"%ls\r\n"
-		L"Location: %ls:%d (%ls)\r\n"
+		L"Location: %ls:%d (%hs)\r\n"
 		L"\r\n"
 		L"Call stack:\r\n"
 		L"\r\n",
@@ -449,7 +449,7 @@ static ErrorReaction PerformErrorReaction(ErrorReaction er, size_t flags, u8* su
 
 ErrorReaction debug_DisplayError(const wchar_t* description,
 	size_t flags, void* context, const wchar_t* lastFuncToSkip,
-	const wchar_t* pathname, int line, const wchar_t* func,
+	const wchar_t* pathname, int line, const char* func,
 	u8* suppress)
 {
 	// "suppressing" this error means doing nothing and returning ER_CONTINUE.
@@ -469,7 +469,7 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 	if(line <= 0)
 		line = 0;
 	if(!func || func[0] == '\0')
-		func = L"?";
+		func = "?";
 	// .. _FILE__ evaluates to the full path (albeit without drive letter)
 	//    which is rather long. we only display the base name for clarity.
 	const wchar_t* filename = path_name_only(pathname);
@@ -523,12 +523,13 @@ static bool ShouldSkipThisError(LibError err)
 	return false;
 }
 
-ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const wchar_t* func)
+ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const char* func)
 {
 	if(ShouldSkipThisError(err))
 		return ER_CONTINUE;
 
-	void* context = 0; const wchar_t* lastFuncToSkip = __wfunc__;
+	void* context = 0;
+	const wchar_t* lastFuncToSkip = L"debug_OnError";
 	wchar_t buf[400];
 	wchar_t err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
 	swprintf_s(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %d (%ls)", err, err_buf);
@@ -549,12 +550,13 @@ static bool ShouldSkipThisAssertion()
 	return ShouldSkipThisError(ERR::ASSERTION_FAILED);
 }
 
-ErrorReaction debug_OnAssertionFailure(const wchar_t* expr, u8* suppress, const wchar_t* file, int line, const wchar_t* func)
+ErrorReaction debug_OnAssertionFailure(const wchar_t* expr, u8* suppress, const wchar_t* file, int line, const char* func)
 {
 	if(ShouldSkipThisAssertion())
 		return ER_CONTINUE;
-	void* context = 0; const wchar_t* lastFuncToSkip = __wfunc__;
+	void* context = 0;
+	const std::wstring lastFuncToSkip = L"debug_OnAssertionFailure";
 	wchar_t buf[400];
 	swprintf_s(buf, ARRAY_SIZE(buf), L"Assertion failed: \"%ls\"", expr);
-	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
+	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip.c_str(), file,line,func, suppress);
 }

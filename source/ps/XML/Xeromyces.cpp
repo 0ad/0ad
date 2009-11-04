@@ -33,7 +33,7 @@
 
 static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 {
-	LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Parse %hs: %ls:%d: %hs",
+	LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Parse %ls: %hs:%d: %hs",
 		error->level == XML_ERR_WARNING ? L"warning" : L"error",
 		error->file, error->line, error->message);
 	// TODO: The (non-fatal) warnings and errors don't get stored in the XMB,
@@ -83,7 +83,7 @@ void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const 
 	const wchar_t* modPath = wcsstr(XMBRealPath, L"mods/");
 	debug_assert(modPath != 0);
 	wchar_t modName[PATH_MAX];
-	// .. NOTE: can't use %s, of course (keeps going beyond '/')
+	// .. NOTE: can't use %ls, of course (keeps going beyond '/')
 	int matches = swscanf(modPath, L"mods/%[^/]", modName);
 	debug_assert(matches == 1);
 

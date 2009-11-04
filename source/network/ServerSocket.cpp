@@ -37,7 +37,7 @@ void CServerSocket::OnRead()
 	{
 		// All errors are non-critical, so no need to do anything special besides
 		// not calling OnAccept [ shouldn't be, that is ;-) ]
-		NET_LOG2( "CServerSocket::OnRead(): PreAccept returned an error: %s", res );
+		NET_LOG2( "CServerSocket::OnRead(): PreAccept returned an error: %hs", res );
 	}
 }
 

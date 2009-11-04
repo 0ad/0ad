@@ -48,7 +48,8 @@ extern void debug_break();
 #define WIDEN2(x) L ## x
 #define WIDEN(x) WIDEN2(x)
 #define __WFILE__ WIDEN(__FILE__)
-#define __wfunc__ WIDEN(__func__)
+// note: C99 says __func__ is a magic *variable*, and GCC doesn't allow
+// widening it via preprocessor.
 
 
 //-----------------------------------------------------------------------------
@@ -155,7 +156,7 @@ enum ErrorReaction
  * @param flags: see DebugDisplayErrorFlags.
  * @param context, lastFuncToSkip: see debug_DumpStack.
  * @param file, line, func: location of the error (typically passed as
- * __WFILE__, __LINE__, __wfunc__ from a macro)
+ * __WFILE__, __LINE__, __func__ from a macro)
  * @param suppress pointer to a caller-allocated flag that can be used to
  * suppress this error. if NULL, this functionality is skipped and the
  * "Suppress" dialog button will be disabled.
@@ -163,13 +164,13 @@ enum ErrorReaction
  * provides the storage. values: see DEBUG_SUPPRESS above.
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flags, void* context, const wchar_t* lastFuncToSkip, const wchar_t* file, int line, const wchar_t* func, u8* suppress);
+LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flags, void* context, const wchar_t* lastFuncToSkip, const wchar_t* file, int line, const char* func, u8* suppress);
 
 /**
  * convenience version, in case the advanced parameters aren't needed.
  * macro instead of providing overload/default values for C compatibility.
  **/
-#define DEBUG_DISPLAY_ERROR(text) debug_DisplayError(text, 0, 0, L"debug_DisplayError", __WFILE__,__LINE__,__wfunc__, 0)
+#define DEBUG_DISPLAY_ERROR(text) debug_DisplayError(text, 0, 0, L"debug_DisplayError", __WFILE__,__LINE__,__func__, 0)
 
 
 //
@@ -269,7 +270,7 @@ STMT(\
 	static u8 suppress__;\
 	if(!(expr))\
 	{\
-	switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, __WFILE__, __LINE__, __wfunc__))\
+	switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, __WFILE__, __LINE__, __func__))\
 		{\
 		case ER_BREAK:\
 			debug_break();\
@@ -293,7 +294,7 @@ STMT(\
 #define debug_warn(expr) \
 STMT(\
 	static u8 suppress__;\
-	switch(debug_OnAssertionFailure(expr, &suppress__, __WFILE__, __LINE__, __wfunc__))\
+	switch(debug_OnAssertionFailure(expr, &suppress__, __WFILE__, __LINE__, __func__))\
 	{\
 	case ER_BREAK:\
 		debug_break();\
@@ -312,7 +313,7 @@ STMT(\
 #define DEBUG_WARN_ERR(err)\
 STMT(\
 	static u8 suppress__;\
-	switch(debug_OnError(err, &suppress__, __WFILE__, __LINE__, __wfunc__))\
+	switch(debug_OnError(err, &suppress__, __WFILE__, __LINE__, __func__))\
 	{\
 	case ER_BREAK:\
 		debug_break();\
@@ -334,7 +335,7 @@ STMT(\
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, u8* suppress, const wchar_t* file, int line, const wchar_t* func);
+LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, u8* suppress, const wchar_t* file, int line, const char* func);
 
 /**
  * called when a DEBUG_WARN_ERR indicates an error occurred;
@@ -346,7 +347,7 @@ LIB_API ErrorReaction debug_OnAssertionFailure(const wchar_t* assert_expr, u8* s
  * @param func name of the function containing it
  * @return ErrorReaction (user's choice: continue running or stop?)
  **/
-LIB_API ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const wchar_t* func);
+LIB_API ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const char* func);
 
 
 /**
@@ -540,6 +541,6 @@ LIB_API void debug_FreeErrorMessage(ErrorMessageMem* emm);
  * fallback in case heap alloc fails. should be freed via
  * debug_FreeErrorMessage when no longer needed.
  **/
-LIB_API const wchar_t* debug_BuildErrorMessage(const wchar_t* description, const wchar_t* fn_only, int line, const wchar_t* func, void* context, const wchar_t* lastFuncToSkip, ErrorMessageMem* emm);
+LIB_API const wchar_t* debug_BuildErrorMessage(const wchar_t* description, const wchar_t* fn_only, int line, const char* func, void* context, const wchar_t* lastFuncToSkip, ErrorMessageMem* emm);
 
 #endif	// #ifndef INCLUDED_DEBUG

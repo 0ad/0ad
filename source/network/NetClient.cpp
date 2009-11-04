@@ -258,7 +258,7 @@ bool CNetClient::OnError( void* pContext, CFsmEvent* pEvent )
 	CErrorMessage* pMessage = ( CErrorMessage* )pEvent->GetParamRef();
 	if ( pMessage )
 	{
-		LOG( CLogger::Error, LOG_CATEGORY, L"CNetClient::OnError(): Error description %s", pMessage->m_Error );
+		LOG( CLogger::Error, LOG_CATEGORY, L"CNetClient::OnError(): Error description %hs", pMessage->m_Error );
 
 		if ( pClient->m_OnConnectComplete.Defined() )
 		{
@@ -461,7 +461,7 @@ bool CNetClient::OnPreGame( void* pContext, CFsmEvent* pEvent )
 					break;
 
 				default:
-					LOG( CLogger::Warning, LOG_CATEGORY, L"Invalid slot assignment %s", pMessage->ToString().c_str() );
+					LOG( CLogger::Warning, LOG_CATEGORY, L"Invalid slot assignment %hs", pMessage->ToString().c_str() );
 					break;
 			}
 		}

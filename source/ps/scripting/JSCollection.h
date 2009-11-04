@@ -249,7 +249,7 @@ template<typename T, JSClass* ScriptType> bool CJSCollection<T, ScriptType>::Get
 	if( ToPrimitive( g_ScriptingHost.GetContext(), m, Storage ) )
 		return( true );
 
-	JS_ReportError( g_ScriptingHost.GetContext(), "Only objects of type %s can be stored in this collection.", ScriptType->name );
+	JS_ReportError( g_ScriptingHost.GetContext(), "Only objects of type %hs can be stored in this collection.", ScriptType->name );
 	return( false );
 }
 

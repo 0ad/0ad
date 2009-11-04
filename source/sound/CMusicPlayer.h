@@ -22,6 +22,8 @@
 #include <iostream>
 #include <stdio.h>
 
+#include "lib/file/vfs/vfs_path.h"
+
 //#include "oal.h"
 
 /*
@@ -48,7 +50,7 @@ class CMusicPlayer
 public:
 	CMusicPlayer(void);
 	~CMusicPlayer(void);
-	void Open(char *filename);
+	void Open(const VfsPath& pathname);
 	void Release();
 	bool Play();
 	bool IsPlaying();

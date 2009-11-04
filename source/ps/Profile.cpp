@@ -111,7 +111,7 @@ CStr CProfileNodeTable::GetTitle()
 {
 	char buf[512];
 	
-	snprintf(buf, sizeof(buf), "Profiling Information for: %s (Time in node: %.3f msec/frame)", node->GetName(), node->GetFrameTime() * 1000.0f );
+	snprintf(buf, sizeof(buf), "Profiling Information for: %hs (Time in node: %.3f msec/frame)", node->GetName(), node->GetFrameTime() * 1000.0f );
 	buf[sizeof(buf)-1] = '\0';
 	
 	return buf;

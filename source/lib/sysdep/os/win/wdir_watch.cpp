@@ -173,7 +173,7 @@ public:
 			WinScopedPreserveLastError s;	// CreateFile
 			const DWORD share = FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE;
 			const DWORD flags = FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED;
-			const std::wstring dirPath = m_path.external_directory_string();
+			const std::wstring dirPath = m_path.string();
 			m_hDir = CreateFileW(dirPath.c_str(), FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
 			if(m_hDir == INVALID_HANDLE_VALUE)
 				throw std::runtime_error("");

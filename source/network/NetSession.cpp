@@ -159,7 +159,7 @@ bool CNetHost::Connect( const CStr& host, uint port )
 
 		if ( !SetupSession( pNewSession ) ) return false;
 
-		NET_LOG3( "Successfully connected to server %s:%d succeeded", host.c_str(), port );
+		NET_LOG3( "Successfully connected to server %hs:%d succeeded", host.c_str(), port );
 
 		// Successfully handled?
 		if ( !HandleConnect( pNewSession ) )
@@ -177,7 +177,7 @@ bool CNetHost::Connect( const CStr& host, uint port )
 		return true;
 	}
 
-	NET_LOG3( "Connection to server %s:%d failed", host.c_str(), port );
+	NET_LOG3( "Connection to server %hs:%d failed", host.c_str(), port );
 
 	// 3 seconds are up or a host was disconnected
 	enet_peer_reset( pPeer );
@@ -420,7 +420,7 @@ bool CNetHost::Poll( void )
 					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength );
 					if ( !pNewMessage ) return false;
 
-					NET_LOG4( "Message %s of size %lu was received from %p", pNewMessage->ToString().c_str(), (unsigned long)pNewMessage->GetSerializedLength(), event.peer->data );
+					NET_LOG4( "Message %hs of size %lu was received from %p", pNewMessage->ToString().c_str(), (unsigned long)pNewMessage->GetSerializedLength(), event.peer->data );
 
 					// Successfully handled?
 					if ( !HandleMessageReceive( pNewMessage, it->pSession ) ) {
@@ -526,7 +526,7 @@ bool CNetHost::SendMessage(
 	}
 	else
 	{
-		NET_LOG4( "Message %s of size %lu was sent to %p",
+		NET_LOG4( "Message %hs of size %lu was sent to %p",
 			pMessage->ToString().c_str(), (unsigned long)pMessage->GetSerializedLength(), pSession->m_Peer->data );
 	}
 
@@ -866,7 +866,7 @@ bool CNetServerSession::BaseHandler(
 	else
 	{
 		// Not disconnected? Weired...
-		LOG( WARNING, LOG_CATEGORY, L"CNetServerSession::BaseHandler() NMT_ERROR: %s", pErrMessage->ToString().c_str() );
+		LOG( WARNING, LOG_CATEGORY, L"CNetServerSession::BaseHandler() NMT_ERROR: %hs", pErrMessage->ToString().c_str() );
 	}
 
 	delete pMessage;
@@ -892,7 +892,7 @@ bool CNetServerSession::HandshakeHandler(
 	CNetServerSession* pSrvSession = dynamic_cast< CNetServerSession* >( pSession );
 	if ( !pSrvSession ) return false;
 
-	LOG( NORMAL, LOG_CATEGORY, L"CNetServerSession::HandshakeHandler() %s", pMessage->ToString().c_str() );
+	LOG( NORMAL, LOG_CATEGORY, L"CNetServerSession::HandshakeHandler() %hs", pMessage->ToString().c_str() );
 
 	// Call base handler if other message thant NMT_ClientHandshake
 	if ( pMessage->GetType() != NMT_ClientHandshake ) BaseHandler( pMessage, pSession );

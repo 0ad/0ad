@@ -413,7 +413,7 @@ bool CNetServer::OnError( void* pContext, CFsmEvent* pEvent )
 		else
 		{
 			// Weird stuff...
-			LOG( CLogger::Warning, LOG_CATEGORY, L"NMT_ERROR: %s", pMessage->ToString().c_str() );
+			LOG( CLogger::Warning, LOG_CATEGORY, L"NMT_ERROR: %hs", pMessage->ToString().c_str() );
 		}
 	}
 
@@ -1022,7 +1022,7 @@ void CNetServer::QueueIncomingCommand( CNetMessage* pMessage )
 	// Validate parameters
 	if ( !pMessage ) return;
 
-	//LOG( NORMAL, LOG_CATEGORY, L"CNetServer::QueueIncomingCommand(): %s.", pMessage->ToString().c_str() );
+	//LOG( NORMAL, LOG_CATEGORY, L"CNetServer::QueueIncomingCommand(): %hs.", pMessage->ToString().c_str() );
 
 	QueueMessage( 2, pMessage );
 }

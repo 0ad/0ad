@@ -39,7 +39,7 @@ int uname(struct utsname* un)
 		sprintf(un->release, "SP %d", sp);
 
 	// version
-	sprintf(un->version, "%s.%lu", wutil_WindowsVersionString(), vi.dwBuildNumber & 0xFFFF);
+	sprintf(un->version, "%hs.%lu", wutil_WindowsVersionString(), vi.dwBuildNumber & 0xFFFF);
 
 	// node name
 	DWORD buf_size = sizeof(un->nodename);

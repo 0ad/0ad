@@ -587,7 +587,7 @@ JSBool JSI_IGUIObject::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc)
 	IGUIObject* e = (IGUIObject*)JS_GetPrivate( cx, obj );
 
 	char buffer[256];
-	snprintf(buffer, 256, "[GUIObject: %s]", e->GetName().c_str());
+	snprintf(buffer, 256, "[GUIObject: %hs]", e->GetName().c_str());
 	buffer[255] = 0;
 	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer));
 	return JS_TRUE;

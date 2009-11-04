@@ -120,8 +120,7 @@ bool CFormation::LoadXml(const VfsPath& filename)
 			m_fileSpacing = CStr(Attr.Value).ToFloat();
 		else
 		{
-			const char* invAttr = XeroFile.GetAttributeString(Attr.Name).c_str();
-			LOG(CLogger::Error, LOG_CATEGORY, L"CFormation::LoadXml: Invalid attribute %hs defined in formation file %ls. Load failed.", invAttr, filename.string().c_str() );
+			LOG(CLogger::Error, LOG_CATEGORY, L"CFormation::LoadXml: Invalid attribute %hs defined in formation file %ls. Load failed.", XeroFile.GetAttributeString(Attr.Name).c_str(), filename.string().c_str() );
 			return( false );
 		}
 	}

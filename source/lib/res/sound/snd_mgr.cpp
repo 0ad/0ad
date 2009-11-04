@@ -107,11 +107,11 @@ static LibError list_free_all();
 static void hsd_list_free_all();
 
 
-static void al_ReportError(ALenum err, const wchar_t* caller, int line)
+static void al_ReportError(ALenum err, const char* caller, int line)
 {
 	debug_assert(al_initialized);
 
-	debug_printf(L"OpenAL error: %hs; called from %ls (line %d)\n", alGetString(err), caller, line);
+	debug_printf(L"OpenAL error: %hs; called from %hs (line %d)\n", alGetString(err), caller, line);
 	debug_assert(0);
 }
 
@@ -123,7 +123,7 @@ static void al_ReportError(ALenum err, const wchar_t* caller, int line)
  * @param line line number of the call site (typically passed via __LINE__)
  * (identifies the exact call site since there may be several per caller)
  */
-static void al_check(const wchar_t* caller, int line)
+static void al_check(const char* caller, int line)
 {
 	ALenum err = alGetError();
 	if(err != AL_NO_ERROR)
@@ -131,7 +131,7 @@ static void al_check(const wchar_t* caller, int line)
 }
 
 // convenience version that automatically passes in function name.
-#define AL_CHECK al_check(__wfunc__, __LINE__)
+#define AL_CHECK al_check(__func__, __LINE__)
 
 
 //-----------------------------------------------------------------------------
@@ -841,7 +841,7 @@ static LibError SndData_validate(const SndData * sd)
 static LibError SndData_to_string(const SndData* sd, char* buf)
 {
 	const char* type = "clip";
-	snprintf(buf, H_STRING_LEN, "%s; al_buf=%d", type, sd->al_buf);
+	snprintf(buf, H_STRING_LEN, "%hs; al_buf=%d", type, sd->al_buf);
 	return INFO::OK;
 }
 
@@ -1479,7 +1479,7 @@ static void vsrc_latch(VSrc* vs)
 		debug_printf(L"  pitch: %f\n", vs->pitch);
 		debug_printf(L"  loop: %d\n", (int)vs->loop);
 
-		al_ReportError(err, __wfunc__, __LINE__);
+		al_ReportError(err, __func__, __LINE__);
 	}
 }
 

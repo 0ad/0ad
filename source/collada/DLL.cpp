@@ -27,7 +27,7 @@
 
 void default_logger(int severity, const char* message)
 {
-	fprintf(stderr, "[%d] %s\n", severity, message);
+	fprintf(stderr, "[%d] %hs\n", severity, message);
 }
 
 static LogFn g_Logger = &default_logger;
@@ -111,9 +111,9 @@ int convert_dae_to_whatever(const char* dae, OutputFn writer, void* cb_data, voi
 	catch (const ColladaException& e)
 	{
 		if (! xmlErrors.empty())
-			Log(LOG_ERROR, "%s", xmlErrors.c_str());
+			Log(LOG_ERROR, "%hs", xmlErrors.c_str());
 
-		Log(LOG_ERROR, "%s", e.what());
+		Log(LOG_ERROR, "%hs", e.what());
 
 		FCollada::Release();
 
@@ -124,7 +124,7 @@ int convert_dae_to_whatever(const char* dae, OutputFn writer, void* cb_data, voi
 
 	if (! xmlErrors.empty())
 	{
-		Log(LOG_ERROR, "%s", xmlErrors.c_str());
+		Log(LOG_ERROR, "%hs", xmlErrors.c_str());
 
 		return -1;
 	}
@@ -152,9 +152,9 @@ EXPORT int set_skeleton_definitions(const char* xml, int length)
 	catch (const ColladaException& e)
 	{
 		if (! xmlErrors.empty())
-			Log(LOG_ERROR, "%s", xmlErrors.c_str());
+			Log(LOG_ERROR, "%hs", xmlErrors.c_str());
 
-		Log(LOG_ERROR, "%s", e.what());
+		Log(LOG_ERROR, "%hs", e.what());
 
 		return -1;
 	}

@@ -42,7 +42,7 @@ void *CStreamSocket_ConnectThread(void *data)
 	CSocketAddress addr;
 
 	res=CSocketAddress::Resolve(pSock->m_pConnectHost, pSock->m_ConnectPort, addr);
-	NET_LOG4("CStreamSocket_ConnectThread: Resolve: %s -> %s [%s]", pSock->m_pConnectHost, addr.GetString().c_str(), res);
+	NET_LOG4("CStreamSocket_ConnectThread: Resolve: %hs -> %hs [%hs]", pSock->m_pConnectHost, addr.GetString().c_str(), res);
 	if (res == PS_OK)
 	{
 		pSock->Initialize();
@@ -53,7 +53,7 @@ void *CStreamSocket_ConnectThread(void *data)
 		pSock->SetOpMask(0);
 		pSock->SetNonBlocking(false);
 		res=pSock->Connect(addr);
-		NET_LOG2("CStreamSocket_ConnectThread: Connect: %s", res);
+		NET_LOG2("CStreamSocket_ConnectThread: Connect: %hs", res);
 	}
 	
 	if (res == PS_OK)
@@ -128,7 +128,7 @@ PS_RESULT CStreamSocket::Write(void *buf, size_t len)
 }
 
 #define MakeDefaultCallback(_nm) void CStreamSocket::_nm(PS_RESULT error) \
-	{ NET_LOG2("CStreamSocket::"#_nm"(): %s", error); }
+	{ NET_LOG2("CStreamSocket::"#_nm"(): %hs", error); }
 
 MakeDefaultCallback(OnClose)
 MakeDefaultCallback(ConnectComplete)
@@ -173,7 +173,7 @@ void CStreamSocket::OnRead()
 		((u8 *)m_ReadContext.m_pBuffer)+m_ReadContext.m_Completed,
 		m_ReadContext.m_Length-m_ReadContext.m_Completed,
 		&bytes);
-	NET_LOG4("CStreamSocket::OnRead(): %s, %lu bytes read of %lu",
+	NET_LOG4("CStreamSocket::OnRead(): %hs, %lu bytes read of %lu",
 					res, (unsigned long)bytes,
 					(unsigned long)(m_ReadContext.m_Length-m_ReadContext.m_Completed));
 	if (res != PS_OK)

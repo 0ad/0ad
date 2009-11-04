@@ -260,7 +260,7 @@ CNetLogFileSink::CNetLogFileSink( void )
 	// Make relative path
 	fs::wpath path(psLogDir()/L"net_log");
 	path /= CStrW(time)+L".txt";
-	m_FileName = path.external_file_string();
+	m_FileName = path.string();
 	m_Append = true;
 }
 

@@ -79,9 +79,9 @@ void FColladaErrorHandler::OnError(FUError::Level errorLevel, uint32 errorCode, 
 		errorString = "Unknown error code";
 
 	if (errorLevel == FUError::DEBUG_LEVEL)
-		Log(LOG_INFO, "FCollada message %d: %s", errorCode, errorString);
+		Log(LOG_INFO, "FCollada message %d: %hs", errorCode, errorString);
 	else if (errorLevel == FUError::WARNING_LEVEL)
-		Log(LOG_WARNING, "FCollada warning %d: %s", errorCode, errorString);
+		Log(LOG_WARNING, "FCollada warning %d: %hs", errorCode, errorString);
 	else
 		throw ColladaException(errorString);
 }
@@ -97,7 +97,7 @@ void FColladaDocument::LoadFromText(const char *text)
 	size_t newTextSize = 0;
 	FixBrokenXML(text, &newText, &newTextSize);
 
-	// Log(LOG_INFO, "%s", newText);
+	// Log(LOG_INFO, "%hs", newText);
 	bool status = FCollada::LoadDocumentFromMemory("unknown.dae", document.get(), (void*)newText, newTextSize);
 
 	if (newText != text)
@@ -143,7 +143,7 @@ CommonConvert::CommonConvert(const char* text, std::string& xmlErrors)
 		throw ColladaException("Couldn't find object to convert");
 
 	assert(m_Instance);
-	Log(LOG_INFO, "Converting '%s'", m_Instance->GetEntity()->GetName().c_str());
+	Log(LOG_INFO, "Converting '%hs'", m_Instance->GetEntity()->GetName().c_str());
 
 	m_IsXSI = false;
 	FCDAsset* asset = m_Doc.GetDocument()->GetAsset();
@@ -254,7 +254,7 @@ static void FindInstances(FCDSceneNode* node, std::vector<FoundInstance>& instan
 		f.transform = transform * node->ToMatrix();
 		f.instance = node->GetInstance(i);
 		instances.push_back(f);
-		Log(LOG_INFO, "Found convertible object '%s'", node->GetName().c_str());
+		Log(LOG_INFO, "Found convertible object '%hs'", node->GetName().c_str());
 	}
 }
 

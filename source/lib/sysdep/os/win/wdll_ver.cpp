@@ -42,7 +42,7 @@ static LibError ReadVersionString(const fs::wpath& modulePathname_, wchar_t* out
 	WinScopedPreserveLastError s;	// GetFileVersion*, Ver*
 	WinScopedDisableWow64Redirection noRedirect;
 
-	const std::wstring modulePathname = modulePathname_.external_file_string();
+	const std::wstring modulePathname = modulePathname_.string();
 
 	// determine size of and allocate memory for version information.
 	DWORD unused;

@@ -303,7 +303,7 @@ private:
 	 *
 	 * @param str Error message
 	 */
-	void ReportParseError(const wchar_t* str, ...) PRINTF_ARGS(2);
+	void ReportParseError(const wchar_t* str, ...) WPRINTF_ARGS(2);
 
 	/**
 	 * You input the name of the object type, and let's

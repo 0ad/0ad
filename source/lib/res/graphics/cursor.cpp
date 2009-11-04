@@ -266,7 +266,7 @@ static LibError Cursor_to_string(const Cursor* c, char* buf)
 		break;
 	}
 
-	snprintf(buf, H_STRING_LEN, "cursor (%s)", type);
+	snprintf(buf, H_STRING_LEN, "cursor (%hs)", type);
 	return INFO::OK;
 }
 
