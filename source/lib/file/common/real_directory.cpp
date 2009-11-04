@@ -76,8 +76,7 @@ LibError RealDirectory::Store(const std::wstring& name, const shared_ptr<u8>& fi
 
 void RealDirectory::Watch()
 {
-	const fs::wpath path;// = m_path
-	(void)dir_watch_Add(path, m_watch);
+	(void)dir_watch_Add(m_path, m_watch);
 }
 
 

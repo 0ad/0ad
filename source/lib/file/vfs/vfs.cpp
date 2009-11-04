@@ -62,17 +62,38 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames) const
+	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const
 	{
 		debug_assert(vfs_path_IsDirectory(path));
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(path, &m_rootDirectory, directory, 0));
-		directory->GetEntries(files, subdirectoryNames);
+
+		if(fileInfos)
+		{
+			const VfsDirectory::VfsFiles& files = directory->Files();
+			fileInfos->clear();
+			fileInfos->reserve(files.size());
+			for(VfsDirectory::VfsFiles::const_iterator it = files.begin(); it != files.end(); ++it)
+			{
+				const VfsFile& file = it->second;
+				fileInfos->push_back(FileInfo(file.Name(), file.Size(), file.MTime()));
+			}
+		}
+
+		if(subdirectoryNames)
+		{
+			const VfsDirectory::VfsSubdirectories& subdirectories = directory->Subdirectories();
+			subdirectoryNames->clear();
+			subdirectoryNames->reserve(subdirectories.size());
+			for(VfsDirectory::VfsSubdirectories::const_iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
+				subdirectoryNames->push_back(it->first);
+		}
+
 		return INFO::OK;
 	}
 
-	// note: only allowing either reads or writes simplifies file cache
-	// coherency (need only invalidate when closing a FILE_WRITE file).
+	// note: only allowing either reads or writes simplifies file cache coherency
+	// (we need only invalidate when closing a newly written file).
 	virtual LibError CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size)
 	{
 		VfsDirectory* directory;
@@ -108,8 +129,7 @@ public:
 		if(!isCacheHit)
 		{
 			VfsDirectory* directory; VfsFile* file;
-			if(vfs_Lookup(pathname, &m_rootDirectory, directory, &file) < 0)
-				debug_break();
+			CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file));
 
 			size = file->Size();
 			// safely handle zero-length files
@@ -143,12 +163,15 @@ public:
 		// it's not worth the trouble.
 	virtual void Clear()
 	{
-		m_rootDirectory.ClearR();
+		ClearR(m_rootDirectory);
 	}
 
-	virtual void Display() const
+	virtual std::wstring TextRepresentation() const
 	{
-		m_rootDirectory.DisplayR(0);
+		std::wstring textRepresentation;
+		textRepresentation.reserve(100000);
+		DirectoryDescriptionR(textRepresentation, m_rootDirectory, 0);
+		return textRepresentation;
 	}
 
 	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& realPathname)
@@ -161,6 +184,35 @@ public:
 	}
 
 private:
+	void ClearR(VfsDirectory& directory)
+	{
+		VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
+		for(VfsDirectory::VfsSubdirectories::iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
+		{
+			VfsDirectory& subdirectory = it->second;
+			ClearR(subdirectory);
+		}
+
+		directory.Clear();
+	}
+
+	void DirectoryDescriptionR(std::wstring& descriptions, const VfsDirectory& directory, size_t indentLevel) const
+	{
+		const std::wstring indentation(4*indentLevel, ' ');
+
+		const VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
+		for(VfsDirectory::VfsSubdirectories::const_iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
+		{
+			const std::wstring& name = it->first;
+			const VfsDirectory& subdirectory = it->second;
+			descriptions += indentation;
+			descriptions += std::wstring(L"[") + name + L"]\n";
+			descriptions += FileDescriptions(subdirectory, indentLevel+1);
+
+			DirectoryDescriptionR(descriptions, subdirectory, indentLevel+1);
+		}
+	}
+
 	size_t m_cacheSize;
 	FileCache m_fileCache;
 	PITrace m_trace;

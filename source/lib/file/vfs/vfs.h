@@ -86,7 +86,7 @@ struct IVFS
 	 * - we cannot efficiently provide routines for returning files and
 	 *   subdirectories separately due to the underlying POSIX interface.
 	 **/
-	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* files, DirectoryNames* subdirectoryNames) const = 0;
+	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const = 0;
 
 	/**
 	 * create a file with the given contents.
@@ -115,7 +115,7 @@ struct IVFS
 	/**
 	 * dump a text representation of the filesystem to debug output.
 	 **/
-	virtual void Display() const = 0;
+	virtual std::wstring TextRepresentation() const = 0;
 
 	/**
 	 * empty the contents of the filesystem.

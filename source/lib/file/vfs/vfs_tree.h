@@ -38,6 +38,11 @@ public:
 		return m_name;
 	}
 
+	wchar_t LocationCode() const
+	{
+		return m_loader->LocationCode();
+	}
+
 	size_t Size() const
 	{
 		return m_size;
@@ -49,9 +54,6 @@ public:
 	}
 
 	bool IsSupersededBy(const VfsFile& file) const;
-
-	// store file attributes (timestamp, location, size) in a string.
-	void GenerateDescription(wchar_t* text, size_t maxChars) const;
 
 	LibError Load(const shared_ptr<u8>& buf) const;
 
@@ -69,28 +71,55 @@ private:
 class VfsDirectory
 {
 public:
+	typedef std::map<std::wstring, VfsFile> VfsFiles;
+	typedef std::map<std::wstring, VfsDirectory> VfsSubdirectories;
+
 	VfsDirectory();
 
 	/**
-	 * @return address of existing or newly inserted file; remains
-	 * valid until ClearR is called (i.e. VFS is rebuilt).
+	 * @return address of existing or newly inserted file.
 	 **/
 	VfsFile* AddFile(const VfsFile& file);
 
 	/**
-	 * @return address of existing or newly inserted subdirectory; remains
-	 * valid until ClearR is called (i.e. VFS is rebuilt).
+	 * @return address of existing or newly inserted subdirectory.
 	 **/
 	VfsDirectory* AddSubdirectory(const std::wstring& name);
 
+	/**
+	 * @return file with the given name.
+	 * (note: non-const to allow changes to the file)
+	 **/
 	VfsFile* GetFile(const std::wstring& name);
+
+	/**
+	 * @return subdirectory with the given name.
+	 * (note: non-const to allow changes to the subdirectory)
+	 **/
 	VfsDirectory* GetSubdirectory(const std::wstring& name);
 
-	void GetEntries(FileInfos* files, DirectoryNames* subdirectories) const;
+	// note: exposing only iterators wouldn't enable callers to reserve space.
 
-	void DisplayR(size_t depth) const;
+	const VfsFiles& Files() const
+	{
+		return m_files;
+	}
 
-	void ClearR();
+	const VfsSubdirectories& Subdirectories() const
+	{
+		return m_subdirectories;
+	}
+
+	VfsSubdirectories& Subdirectories()
+	{
+		return m_subdirectories;
+	}
+
+	/**
+	 * empty file and subdirectory lists (e.g. when rebuilding VFS).
+	 * CAUTION: this invalidates all previously returned pointers.
+	 **/
+	void Clear();
 
 	/**
 	 * side effect: the next ShouldPopulate() will return true.
@@ -109,15 +138,30 @@ public:
 	 **/
 	bool ShouldPopulate();
 
-private:
-	typedef std::map<std::wstring, VfsFile> VfsFiles;
-	VfsFiles m_files;
+	/**
+	 * cause the directory to be (re)populated when next accessed
+	 * by having ShouldPopulate return true.
+	 * this is typically called in response to file change notifications.
+	 **/
+	void Invalidate();
 
-	typedef std::map<std::wstring, VfsDirectory> VfsSubdirectories;
+private:
+	VfsFiles m_files;
 	VfsSubdirectories m_subdirectories;
 
 	PRealDirectory m_realDirectory;
 	volatile uintptr_t m_shouldPopulate;	// (cpu_CAS can't be used on bool)
 };
+
+
+/**
+ * @return a string containing file attributes (location, size, timestamp) and name.
+ **/
+extern std::wstring FileDescription(const VfsFile& file);
+
+/**
+ * @return a string holding each files' description (one per line).
+ **/
+extern std::wstring FileDescriptions(const VfsDirectory& directory, size_t indentLevel);
 
 #endif	// #ifndef INCLUDED_VFS_TREE

@@ -402,7 +402,7 @@ public:
 
 			const VfsPath relativePathname(cdfh->Pathname().string());	// convert from fs::wpath
 			const std::wstring name = relativePathname.leaf();
-			if(*name.rbegin() != '/')	// ignore paths ending in slash (i.e. representing a directory)
+			if(name != L".")	// ignore directories (i.e. paths ending in slash)
 			{
 				FileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
 				shared_ptr<ArchiveFile_Zip> archiveFile(new ArchiveFile_Zip(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method()));

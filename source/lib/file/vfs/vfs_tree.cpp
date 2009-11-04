@@ -62,15 +62,6 @@ bool VfsFile::IsSupersededBy(const VfsFile& file) const
 }
 
 
-void VfsFile::GenerateDescription(wchar_t* text, size_t maxChars) const
-{
-	wchar_t timestamp[25];
-	const time_t mtime = MTime();
-	wcsftime(timestamp, ARRAY_SIZE(timestamp), L"%a %b %d %H:%M:%S %Y", localtime(&mtime));
-	swprintf_s(text, maxChars, L"(%c; %6lu; %ls)\n", m_loader->LocationCode(), (unsigned long)Size(), timestamp);
-}
-
-
 LibError VfsFile::Load(const shared_ptr<u8>& buf) const
 {
 	return m_loader->Load(Name(), buf, Size());
@@ -80,7 +71,7 @@ LibError VfsFile::Load(const shared_ptr<u8>& buf) const
 //-----------------------------------------------------------------------------
 
 VfsDirectory::VfsDirectory()
-: m_shouldPopulate(0)
+	: m_shouldPopulate(0)
 {
 }
 
@@ -131,66 +122,8 @@ VfsDirectory* VfsDirectory::GetSubdirectory(const std::wstring& name)
 }
 
 
-void VfsDirectory::GetEntries(FileInfos* files, DirectoryNames* subdirectoryNames) const
+void VfsDirectory::Clear()
 {
-	if(files)
-	{
-		files->clear();
-		files->reserve(m_files.size());
-		for(VfsFiles::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
-			files->push_back(FileInfo(it->second.Name(), it->second.Size(), it->second.MTime()));
-	}
-
-	if(subdirectoryNames)
-	{
-		subdirectoryNames->clear();
-		subdirectoryNames->reserve(m_subdirectories.size());
-		for(VfsSubdirectories::const_iterator it = m_subdirectories.begin(); it != m_subdirectories.end(); ++it)
-			subdirectoryNames->push_back(it->first);
-	}
-}
-
-
-void VfsDirectory::DisplayR(size_t depth) const
-{
-	static const wchar_t indent[] = L"    ";
-
-	const size_t maxNameChars = 80 - depth*(ARRAY_SIZE(indent)-1);
-	wchar_t fmt[20];
-	swprintf_s(fmt, ARRAY_SIZE(fmt), L"%%-%lu.%luls %%ls", (unsigned long)maxNameChars, (unsigned long)maxNameChars);
-
-	for(VfsFiles::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
-	{
-		const std::wstring& name = it->first;
-		const VfsFile& file = it->second;
-
-		wchar_t description[100];
-		file.GenerateDescription(description, ARRAY_SIZE(description));
-
-		for(size_t i = 0; i < depth+1; i++)
-			wprintf(L"%ls", indent);
-		wprintf(fmt, name.c_str(), description);
-	}
-
-	for(VfsSubdirectories::const_iterator it = m_subdirectories.begin(); it != m_subdirectories.end(); ++it)
-	{
-		const std::wstring& name = it->first;
-		const VfsDirectory& directory = it->second;
-
-		for(size_t i = 0; i < depth+1; i++)
-			wprintf(L"%ls", indent);
-		wprintf(L"[%ls/]\n", name.c_str());
-
-		directory.DisplayR(depth+1);
-	}
-}
-
-
-void VfsDirectory::ClearR()
-{
-	for(VfsSubdirectories::iterator it = m_subdirectories.begin(); it != m_subdirectories.end(); ++it)
-		it->second.ClearR();
-
 	m_files.clear();
 	m_subdirectories.clear();
 	m_realDirectory.reset();
@@ -209,4 +142,44 @@ void VfsDirectory::SetAssociatedDirectory(const PRealDirectory& realDirectory)
 bool VfsDirectory::ShouldPopulate()
 {
 	return cpu_CAS(&m_shouldPopulate, 1, 0);	// test and reset
+}
+
+
+void VfsDirectory::Invalidate()
+{
+	m_shouldPopulate = 1;
+}
+
+
+//-----------------------------------------------------------------------------
+
+std::wstring FileDescription(const VfsFile& file)
+{
+	wchar_t timestamp[25];
+	const time_t mtime = file.MTime();
+	wcsftime(timestamp, ARRAY_SIZE(timestamp), L"%a %b %d %H:%M:%S %Y", localtime(&mtime));
+
+	wchar_t buf[200];
+	swprintf_s(buf, ARRAY_SIZE(buf), L"(%c; %6lu; %ls) %ls", file.LocationCode(), (unsigned long)file.Size(), timestamp, file.Name().c_str());
+	return buf;
+}
+
+
+std::wstring FileDescriptions(const VfsDirectory& directory, size_t indentLevel)
+{
+	VfsDirectory::VfsFiles files = directory.Files();
+
+	std::wstring descriptions;
+	descriptions.reserve(100*files.size());
+
+	const std::wstring indentation(4*indentLevel, ' ');
+	for(VfsDirectory::VfsFiles::const_iterator it = files.begin(); it != files.end(); ++it)
+	{
+		const VfsFile& file = it->second;
+		descriptions += indentation;
+		descriptions += FileDescription(file);
+		descriptions += L"\n";
+	}
+
+	return descriptions;
 }

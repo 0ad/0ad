@@ -571,7 +571,8 @@ static void InitVfs(const CmdLineArgs& args)
 		g_VFS->Mount(L"", modArchivePath/modName, flags, priority);
 	}
 
-	// don't try g_VFS->Display yet: SDL_Init hasn't yet redirected stdout
+	// note: don't bother with g_VFS->TextRepresentation - directories
+	// haven't yet been populated and are empty.
 }
 
 
