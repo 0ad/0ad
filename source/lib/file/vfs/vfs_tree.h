@@ -122,6 +122,14 @@ public:
 	void Clear();
 
 	/**
+	 * check if this directory is affected by changes to <pathname>.
+	 * @return INFO::OK if this directory was affected,
+	 * INFO::CB_CONTINUE if this is a parent directory, or
+	 * INFO::SKIPPED if this directory is unaffected.
+	 **/
+	LibError NotifyChanged(const fs::wpath& path);
+
+	/**
 	 * side effect: the next ShouldPopulate() will return true.
 	 **/
 	void SetAssociatedDirectory(const PRealDirectory& realDirectory);
@@ -137,13 +145,6 @@ public:
 	 * do so if true is returned -- the flag is immediately reset.
 	 **/
 	bool ShouldPopulate();
-
-	/**
-	 * cause the directory to be (re)populated when next accessed
-	 * by having ShouldPopulate return true.
-	 * this is typically called in response to file change notifications.
-	 **/
-	void Invalidate();
 
 private:
 	VfsFiles m_files;
@@ -163,5 +164,10 @@ extern std::wstring FileDescription(const VfsFile& file);
  * @return a string holding each files' description (one per line).
  **/
 extern std::wstring FileDescriptions(const VfsDirectory& directory, size_t indentLevel);
+
+/**
+ * append each directory's files' description to the given string.
+ **/
+void DirectoryDescriptionR(std::wstring& descriptions, const VfsDirectory& directory, size_t indentLevel);
 
 #endif	// #ifndef INCLUDED_VFS_TREE

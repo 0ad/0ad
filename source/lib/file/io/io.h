@@ -36,7 +36,8 @@ LIB_API shared_ptr<u8> io_Allocate(size_t size, off_t ofs = 0);
  * @return INFO::CB_CONTINUE to continue; any other value will cause the
  * IO splitter to abort immediately and return that.
  *
- * this is useful for interleaving e.g. decompression with IOs.
+ * this is useful for user progress notification or processing data while
+ * waiting for the next I/O to complete (without the complexity of threads).
  **/
 typedef LibError (*IoCallback)(uintptr_t cbData, const u8* block, size_t blockSize);
 

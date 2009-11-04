@@ -421,11 +421,12 @@ static LibError OglTex_reload(OglTex* ot, const VfsPath& pathname, Handle h)
 	if(!(ot->flags & OT_TEX_VALID))
 	{
 		shared_ptr<u8> file; size_t fileSize;
-		RETURN_ERR(g_VFS->LoadFile(pathname, file, fileSize));
-		if(tex_decode(file, fileSize, &ot->t) < 0)
-			return 0;
+		if(g_VFS->LoadFile(pathname, file, fileSize) >= 0)
+		{
+			if(tex_decode(file, fileSize, &ot->t) >= 0)
+				ot->flags |= OT_TEX_VALID;
+		}
 	}
-	ot->flags |= OT_TEX_VALID;
 
 	glGenTextures(1, &ot->id);
 
@@ -439,26 +440,29 @@ static LibError OglTex_reload(OglTex* ot, const VfsPath& pathname, Handle h)
 
 static LibError OglTex_validate(const OglTex* ot)
 {
-	RETURN_ERR(tex_validate(&ot->t));
+	if(ot->flags & OT_TEX_VALID)
+	{
+		RETURN_ERR(tex_validate(&ot->t));
 
-	// width, height
-	// (note: this is done here because tex.cpp doesn't impose any
-	// restrictions on dimensions, while OpenGL does).
-	GLsizei w = (GLsizei)ot->t.w;
-	GLsizei h = (GLsizei)ot->t.h;
-	// .. == 0; texture file probably not loaded successfully.
-	if(w == 0 || h == 0)
-		WARN_RETURN(ERR::_11);
-	// .. greater than max supported tex dimension.
-	//    no-op if ogl_Init not yet called
-	if(w > (GLsizei)ogl_max_tex_size || h > (GLsizei)ogl_max_tex_size)
-		WARN_RETURN(ERR::_12);
-	// .. not power-of-2.
-	//    note: we can't work around this because both NV_texture_rectangle
-	//    and subtexture require work for the client (changing tex coords).
-	//    TODO: ARB_texture_non_power_of_two
-	if(!is_pow2(w) || !is_pow2(h))
-		WARN_RETURN(ERR::_13);
+		// width, height
+		// (note: this is done here because tex.cpp doesn't impose any
+		// restrictions on dimensions, while OpenGL does).
+		GLsizei w = (GLsizei)ot->t.w;
+		GLsizei h = (GLsizei)ot->t.h;
+		// .. == 0; texture file probably not loaded successfully.
+		if(w == 0 || h == 0)
+			WARN_RETURN(ERR::_11);
+		// .. greater than max supported tex dimension.
+		//    no-op if ogl_Init not yet called
+		if(w > (GLsizei)ogl_max_tex_size || h > (GLsizei)ogl_max_tex_size)
+			WARN_RETURN(ERR::_12);
+		// .. not power-of-2.
+		//    note: we can't work around this because both NV_texture_rectangle
+		//    and subtexture require work for the client (changing tex coords).
+		//    TODO: ARB_texture_non_power_of_two
+		if(!is_pow2(w) || !is_pow2(h))
+			WARN_RETURN(ERR::_13);
+	}
 
 	// texture state
 	if(!filter_valid(ot->state.filter))
@@ -481,7 +485,7 @@ static LibError OglTex_validate(const OglTex* ot)
 
 static LibError OglTex_to_string(const OglTex* ot, char* buf)
 {
-	snprintf(buf, H_STRING_LEN, "id=%d", ot->id);
+	snprintf(buf, H_STRING_LEN, "OglTex id=%d flags=%x", ot->id, ot->flags);
 	return INFO::OK;
 }
 
@@ -831,48 +835,51 @@ LibError ogl_tex_upload(const Handle ht, GLenum fmt_ovr, int q_flags_ovr, GLint 
 	if(ot->flags & OT_IS_UPLOADED)
 		return INFO::OK;
 
-	debug_assert(ot->flags & OT_TEX_VALID);
-
-	// decompress S3TC if that's not supported by OpenGL.
-	if((t->flags & TEX_DXT) && !have_s3tc)
-		(void)tex_transform_to(t, t->flags & ~TEX_DXT);
-
-	// determine fmt and int_fmt, allowing for user override.
-	ot->fmt = choose_fmt(t->bpp, t->flags);
-	if(fmt_ovr) ot->fmt = fmt_ovr;
-	if(q_flags_ovr) ot->q_flags = q_flags_ovr;
-	ot->int_fmt = choose_int_fmt(ot->fmt, ot->q_flags);
-	if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
-
-	// now actually send to OpenGL:
-	ogl_WarnIfError();
+	if(ot->flags & OT_TEX_VALID)
 	{
-		// (note: we know ht is valid due to H_DEREF, but ogl_tex_bind can
-		// fail in debug builds if OglTex.id isn't a valid texture name)
-		RETURN_ERR(ogl_tex_bind(ht, ot->tmu));
-		int levels_to_skip;
-		if(get_mipmaps(t, ot->state.filter, ot->q_flags, &levels_to_skip) < 0)
-			// error => disable mipmapping
-			ot->state.filter = GL_LINEAR;
-		// (note: if first time, applies our defaults/previous overrides;
-		// otherwise, replays all state changes)
-		state_latch(&ot->state);
-		upload_impl(t, ot->fmt, ot->int_fmt, levels_to_skip);
-	}
-	ogl_WarnIfError();
+		// decompress S3TC if that's not supported by OpenGL.
+		if((t->flags & TEX_DXT) && !have_s3tc)
+			(void)tex_transform_to(t, t->flags & ~TEX_DXT);
 
-	ot->flags |= OT_NEED_AUTO_UPLOAD|OT_IS_UPLOADED;
+		// determine fmt and int_fmt, allowing for user override.
+		ot->fmt = choose_fmt(t->bpp, t->flags);
+		if(fmt_ovr) ot->fmt = fmt_ovr;
+		if(q_flags_ovr) ot->q_flags = q_flags_ovr;
+		ot->int_fmt = choose_int_fmt(ot->fmt, ot->q_flags);
+		if(int_fmt_ovr) ot->int_fmt = int_fmt_ovr;
 
-	// see rationale for <refs> at declaration of OglTex.
-	// note: tex_free is safe even if this OglTex was wrapped -
-	//       the Tex contains a mem handle.
-	int refs = h_get_refcnt(ht);
-	if(refs == 1)
-	{
-		// note: we verify above that OT_TEX_VALID is set
-		tex_free(t);
-		ot->flags &= ~OT_TEX_VALID;
+		// now actually send to OpenGL:
+		ogl_WarnIfError();
+		{
+			// (note: we know ht is valid due to H_DEREF, but ogl_tex_bind can
+			// fail in debug builds if OglTex.id isn't a valid texture name)
+			RETURN_ERR(ogl_tex_bind(ht, ot->tmu));
+			int levels_to_skip;
+			if(get_mipmaps(t, ot->state.filter, ot->q_flags, &levels_to_skip) < 0)
+				// error => disable mipmapping
+				ot->state.filter = GL_LINEAR;
+			// (note: if first time, applies our defaults/previous overrides;
+			// otherwise, replays all state changes)
+			state_latch(&ot->state);
+			upload_impl(t, ot->fmt, ot->int_fmt, levels_to_skip);
+		}
+		ogl_WarnIfError();
+
+		ot->flags |= OT_IS_UPLOADED;
+
+		// see rationale for <refs> at declaration of OglTex.
+		// note: tex_free is safe even if this OglTex was wrapped -
+		//       the Tex contains a mem handle.
+		int refs = h_get_refcnt(ht);
+		if(refs == 1)
+		{
+			// note: we verify above that OT_TEX_VALID is set
+			tex_free(t);
+			ot->flags &= ~OT_TEX_VALID;
+		}
 	}
+
+	ot->flags |= OT_NEED_AUTO_UPLOAD;
 
 	return INFO::OK;
 }

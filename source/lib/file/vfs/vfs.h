@@ -17,7 +17,7 @@
 
 /*
  * Virtual File System API - allows transparent access to files in
- * archives and modding via multiple mount points.
+ * archives, modding via multiple mount points and hotloading.
  */
 
 #ifndef INCLUDED_VFS
@@ -95,7 +95,7 @@ struct IVFS
 	 * @return LibError.
 	 *
 	 * rationale: disallowing partial writes simplifies file cache coherency
-	 * (need only be invalidated when closing a FILE_WRITE file).
+	 * (we need only invalidate cached data when closing a newly written file).
 	 **/
 	virtual LibError CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
 
@@ -113,14 +113,15 @@ struct IVFS
 	virtual LibError LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size) = 0;
 
 	/**
-	 * dump a text representation of the filesystem to debug output.
+	 * @return a text representation of all files and directories.
 	 **/
 	virtual std::wstring TextRepresentation() const = 0;
 
 	/**
 	 * empty the contents of the filesystem.
-	 *
-	 * the effect is as if nothing had been mounted.
+	 * this is typically only necessary when changing the set of
+	 * mounted directories, e.g. when switching mods.
+	 * NB: open files are not affected.
 	 **/
 	virtual void Clear() = 0;
 
@@ -130,6 +131,14 @@ struct IVFS
 	 * this is useful when passing paths to external libraries.
 	 **/
 	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& path) = 0;
+
+	/**
+	 * poll for directory change notifications and reload all affected files.
+	 * must be called regularly (e.g. once a frame), else notifications
+	 * may be lost.
+	 * note: polling is much simpler than asynchronous notifications.
+	 **/
+	virtual LibError ReloadChangedFiles() = 0;
 };
 
 typedef shared_ptr<IVFS> PIVFS;

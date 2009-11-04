@@ -131,6 +131,21 @@ void VfsDirectory::Clear()
 }
 
 
+LibError VfsDirectory::NotifyChanged(const fs::wpath& realPathname)
+{
+	// we're not associated with the directory that changed
+	if(!m_realDirectory || m_realDirectory->Path() != realPathname.branch_path())
+		return INFO::SKIPPED;
+
+	// one of our files changed; ensure its new version supersedes the
+	// old by removing it and marking the directory for re-population.
+	const std::wstring name = realPathname.leaf();
+	m_files.erase(name);
+	m_shouldPopulate = 1;
+	return INFO::OK;
+}
+
+
 void VfsDirectory::SetAssociatedDirectory(const PRealDirectory& realDirectory)
 {
 	if(!cpu_CAS(&m_shouldPopulate, 0, 1))
@@ -144,11 +159,6 @@ bool VfsDirectory::ShouldPopulate()
 	return cpu_CAS(&m_shouldPopulate, 1, 0);	// test and reset
 }
 
-
-void VfsDirectory::Invalidate()
-{
-	m_shouldPopulate = 1;
-}
 
 
 //-----------------------------------------------------------------------------
@@ -182,4 +192,22 @@ std::wstring FileDescriptions(const VfsDirectory& directory, size_t indentLevel)
 	}
 
 	return descriptions;
+}
+
+
+void DirectoryDescriptionR(std::wstring& descriptions, const VfsDirectory& directory, size_t indentLevel)
+{
+	const std::wstring indentation(4*indentLevel, ' ');
+
+	const VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
+	for(VfsDirectory::VfsSubdirectories::const_iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
+	{
+		const std::wstring& name = it->first;
+		const VfsDirectory& subdirectory = it->second;
+		descriptions += indentation;
+		descriptions += std::wstring(L"[") + name + L"]\n";
+		descriptions += FileDescriptions(subdirectory, indentLevel+1);
+
+		DirectoryDescriptionR(descriptions, subdirectory, indentLevel+1);
+	}
 }

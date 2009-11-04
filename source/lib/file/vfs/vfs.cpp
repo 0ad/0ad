@@ -18,12 +18,15 @@
 #include "precompiled.h"
 #include "vfs.h"
 
+#include "lib/posix/posix_time.h"	// usleep
 #include "lib/allocators/shared_ptr.h"
 #include "lib/path_util.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/file/common/trace.h"
 #include "lib/file/archive/archive.h"
 #include "lib/file/io/io.h"
+#include "lib/res/h_mgr.h"	// h_reload
+#include "lib/sysdep/dir_watch.h"
 #include "vfs_tree.h"
 #include "vfs_lookup.h"
 #include "vfs_populate.h"
@@ -92,8 +95,6 @@ public:
 		return INFO::OK;
 	}
 
-	// note: only allowing either reads or writes simplifies file cache coherency
-	// (we need only invalidate when closing a newly written file).
 	virtual LibError CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size)
 	{
 		VfsDirectory* directory;
@@ -114,15 +115,6 @@ public:
 		return INFO::OK;
 	}
 
-	// read the entire file.
-	// return number of bytes transferred (see above), or a negative error code.
-	//
-	// if non-NULL, <cb> is called for each block transferred, passing <cbData>.
-	// it returns how much data was actually transferred, or a negative error
-	// code (in which case we abort the transfer and return that value).
-	// the callback mechanism is useful for user progress notification or
-	// processing data while waiting for the next I/O to complete
-	// (quasi-parallel, without the complexity of threads).
 	virtual LibError LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size)
 	{
 		const bool isCacheHit = m_fileCache.Retrieve(pathname, fileContents, size);
@@ -155,21 +147,15 @@ public:
 		return INFO::OK;
 	}
 
-		// rebuild the VFS, i.e. re-mount everything. open files are not affected.
-		// necessary after loose files or directories change, so that the VFS
-		// "notices" the changes and updates file locations. res calls this after
-		// dir_watch reports changes; can also be called from the console after a
-		// rebuild command. there is no provision for updating single VFS dirs -
-		// it's not worth the trouble.
 	virtual void Clear()
 	{
-		ClearR(m_rootDirectory);
+		m_rootDirectory.Clear();
 	}
 
 	virtual std::wstring TextRepresentation() const
 	{
 		std::wstring textRepresentation;
-		textRepresentation.reserve(100000);
+		textRepresentation.reserve(100*KiB);
 		DirectoryDescriptionR(textRepresentation, m_rootDirectory, 0);
 		return textRepresentation;
 	}
@@ -183,34 +169,81 @@ public:
 		return INFO::OK;
 	}
 
-private:
-	void ClearR(VfsDirectory& directory)
+	virtual LibError ReloadChangedFiles()
 	{
+		std::vector<fs::wpath> changedPathnames;
+		for(;;)
+		{
+			DirWatchNotification notification;
+			LibError ret = dir_watch_Poll(notification);
+			if(ret == ERR::AGAIN)	// none available; done.
+				break;
+			RETURN_ERR(ret);
+			if(!CanIgnore(notification))
+				changedPathnames.push_back(notification.Pathname());
+		}
+		if(changedPathnames.empty())
+			return INFO::OK;
+		usleep(500*1000);
+		for(size_t i = 0; i < changedPathnames.size(); i++)
+		{
+			LibError ret = NotifyChangedR(m_rootDirectory, L"", changedPathnames[i]);
+			RETURN_ERR(ret);
+			if(ret == INFO::SKIPPED)
+			{
+				debug_printf(L"NotifyChangedR: no match found, ignored\n");
+				return ERR::VFS_FILE_NOT_FOUND;	// NOWARN (happens if a new file was created)
+			}
+		}
+
+		return INFO::OK;
+	}
+
+private:
+	// try to skip unnecessary work by ignoring uninteresting notifications.
+	static bool CanIgnore(const DirWatchNotification& notification)
+	{
+		// ignore directories
+		const fs::wpath& pathname = notification.Pathname();
+		if(pathname.leaf() == L".")
+			return true;
+
+		// ignore uninteresting file types (e.g. temp files, or the
+		// hundreds of XMB files that are generated from XML)
+		const std::wstring extension = fs::extension(pathname);
+		const wchar_t* extensionsToIgnore[] = { L".xmb", L".tmp" };
+		for(size_t i = 0; i < ARRAY_SIZE(extensionsToIgnore); i++)
+		{
+			if(!wcscasecmp(extension.c_str(), extensionsToIgnore[i]))
+				return true;
+		}
+
+		return false;
+	}
+
+	LibError NotifyChangedR(VfsDirectory& directory, const VfsPath& path, const fs::wpath& realPathname)
+	{
+		LibError ret = directory.NotifyChanged(realPathname);
+		if(ret == INFO::OK)
+		{
+			const VfsPath pathname(path/realPathname.leaf());
+			m_fileCache.Remove(pathname);	// invalidate cached data
+			debug_printf(L"NotifyChangedR: reloading %ls\n", pathname.string().c_str());
+			RETURN_ERR(h_reload(pathname));
+			return INFO::OK;
+		}
+
 		VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
 		for(VfsDirectory::VfsSubdirectories::iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
 		{
+			const std::wstring& subdirectoryName = it->first;
 			VfsDirectory& subdirectory = it->second;
-			ClearR(subdirectory);
+			ret = NotifyChangedR(subdirectory, path/subdirectoryName, realPathname);
+			if(ret != INFO::SKIPPED)
+				return ret;
 		}
 
-		directory.Clear();
-	}
-
-	void DirectoryDescriptionR(std::wstring& descriptions, const VfsDirectory& directory, size_t indentLevel) const
-	{
-		const std::wstring indentation(4*indentLevel, ' ');
-
-		const VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
-		for(VfsDirectory::VfsSubdirectories::const_iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
-		{
-			const std::wstring& name = it->first;
-			const VfsDirectory& subdirectory = it->second;
-			descriptions += indentation;
-			descriptions += std::wstring(L"[") + name + L"]\n";
-			descriptions += FileDescriptions(subdirectory, indentLevel+1);
-
-			DirectoryDescriptionR(descriptions, subdirectory, indentLevel+1);
-		}
+		return INFO::SKIPPED;
 	}
 
 	size_t m_cacheSize;

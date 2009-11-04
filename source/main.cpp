@@ -41,6 +41,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "ps/Loader.h"
+#include "ps/Filesystem.h"
 #include "ps/CConsole.h"
 #include "ps/Profile.h"
 #include "ps/Util.h"
@@ -238,7 +239,7 @@ static void Frame()
 	{
 		PROFILE_START("reload changed files");
 		MICROLOG(L"reload changed files");
-//		vfs_reload_changed_files(); 
+		g_VFS->ReloadChangedFiles();
 		PROFILE_END( "reload changed files");
 	}
 
