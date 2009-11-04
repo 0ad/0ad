@@ -44,12 +44,11 @@
 extern void debug_break();
 #endif
 
-// wide versions of predefined macros
-#define WIDEN2(x) L ## x
-#define WIDEN(x) WIDEN2(x)
-#define __WFILE__ WIDEN(__FILE__)
+// for widening non-literals (e.g. __FILE__)
 // note: C99 says __func__ is a magic *variable*, and GCC doesn't allow
 // widening it via preprocessor.
+#define WIDEN2(x) L ## x
+#define WIDEN(x) WIDEN2(x)
 
 
 //-----------------------------------------------------------------------------
@@ -156,7 +155,7 @@ enum ErrorReaction
  * @param flags: see DebugDisplayErrorFlags.
  * @param context, lastFuncToSkip: see debug_DumpStack.
  * @param file, line, func: location of the error (typically passed as
- * __WFILE__, __LINE__, __func__ from a macro)
+ * WIDEN(__FILE__), __LINE__, __func__ from a macro)
  * @param suppress pointer to a caller-allocated flag that can be used to
  * suppress this error. if NULL, this functionality is skipped and the
  * "Suppress" dialog button will be disabled.
@@ -170,7 +169,7 @@ LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flag
  * convenience version, in case the advanced parameters aren't needed.
  * macro instead of providing overload/default values for C compatibility.
  **/
-#define DEBUG_DISPLAY_ERROR(text) debug_DisplayError(text, 0, 0, L"debug_DisplayError", __WFILE__,__LINE__,__func__, 0)
+#define DEBUG_DISPLAY_ERROR(text) debug_DisplayError(text, 0, 0, L"debug_DisplayError", WIDEN(__FILE__),__LINE__,__func__, 0)
 
 
 //
@@ -270,7 +269,7 @@ STMT(\
 	static u8 suppress__;\
 	if(!(expr))\
 	{\
-	switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, __WFILE__, __LINE__, __func__))\
+	switch(debug_OnAssertionFailure(WIDEN(#expr), &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 		{\
 		case ER_BREAK:\
 			debug_break();\
@@ -294,7 +293,7 @@ STMT(\
 #define debug_warn(expr) \
 STMT(\
 	static u8 suppress__;\
-	switch(debug_OnAssertionFailure(expr, &suppress__, __WFILE__, __LINE__, __func__))\
+	switch(debug_OnAssertionFailure(expr, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 	{\
 	case ER_BREAK:\
 		debug_break();\
@@ -313,7 +312,7 @@ STMT(\
 #define DEBUG_WARN_ERR(err)\
 STMT(\
 	static u8 suppress__;\
-	switch(debug_OnError(err, &suppress__, __WFILE__, __LINE__, __func__))\
+	switch(debug_OnError(err, &suppress__, WIDEN(__FILE__), __LINE__, __func__))\
 	{\
 	case ER_BREAK:\
 		debug_break();\
