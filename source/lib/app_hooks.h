@@ -111,7 +111,7 @@ extern void ah_override_gl_upload_caps();
  * this means path_MakeAbsolute cannot be used; it is best
  * to specify a path relative to sys_get_executable_name.
  *
- * @return full native path; must end with directory separator (e.g. '/').
+ * @return full path ending with directory separator (e.g. '/').
  **/
 extern const fs::wpath& ah_get_log_dir();
 

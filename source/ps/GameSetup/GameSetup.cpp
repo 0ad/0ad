@@ -550,9 +550,9 @@ static void InitVfs(const CmdLineArgs& args)
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 
-	g_VFS->Mount(L"screenshots/", paths.Data()/L"screenshots");
-	g_VFS->Mount(L"config/", paths.RData()/L"config");
-	g_VFS->Mount(L"profiles/", paths.Config()/L"profiles");
+	g_VFS->Mount(L"screenshots/", paths.Data()/L"screenshots/");
+	g_VFS->Mount(L"config/", paths.RData()/L"config/");
+	g_VFS->Mount(L"profiles/", paths.Config()/L"profiles/");
 	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
 
 	std::vector<CStr> mods = args.GetMultiple("mod");
@@ -567,8 +567,8 @@ static void InitVfs(const CmdLineArgs& args)
 		size_t priority = i;
 		const int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
 		const CStrW modName(mods[i]);
-		g_VFS->Mount(L"", modLoosePath/modName, flags, priority);
-		g_VFS->Mount(L"", modArchivePath/modName, flags, priority);
+		g_VFS->Mount(L"", AddSlash(modLoosePath/modName), flags, priority);
+		g_VFS->Mount(L"", AddSlash(modArchivePath/modName), flags, priority);
 	}
 
 	// note: don't bother with g_VFS->TextRepresentation - directories

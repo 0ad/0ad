@@ -33,46 +33,134 @@ WINIT_REGISTER_MAIN_SHUTDOWN(wdir_watch_Shutdown);
 
 
 //-----------------------------------------------------------------------------
+// DirHandle
+
+class DirHandle
+{
+public:
+	DirHandle(const fs::wpath& path)
+	{
+		WinScopedPreserveLastError s;	// CreateFile
+		const DWORD share = FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE;
+		const DWORD flags = FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED;
+		m_hDir = CreateFileW(path.string().c_str(), FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
+	}
+
+	~DirHandle()
+	{
+		// contrary to MSDN, the canceled IOs do not issue a completion notification.
+		// (receiving packets after (unsuccessful) cancellation would be dangerous)
+		BOOL ok = CancelIo(m_hDir);
+		WARN_IF_FALSE(ok);
+
+		CloseHandle(m_hDir);
+		m_hDir = INVALID_HANDLE_VALUE;
+	}
+
+	// == INVALID_HANDLE_VALUE if path doesn't exist
+	operator HANDLE() const
+	{
+		return m_hDir;
+	}
+
+private:
+	HANDLE m_hDir;
+};
+
+
+//-----------------------------------------------------------------------------
 // DirWatchRequest
 
 class DirWatchRequest
 {
 public:
-	DirWatchRequest()
-		: m_data(new u8[dataSize])
+	DirWatchRequest(const fs::wpath& path)
+		: m_path(path), m_dirHandle(path), m_data(new u8[dataSize])
 	{
-		m_undefined = 0;
 		memset(&m_ovl, 0, sizeof(m_ovl));
+	}
+
+	const fs::wpath& Path() const
+	{
+		return m_path;
 	}
 
 	/**
-	 * @return the buffer containing one or more FILE_NOTIFY_INFORMATION
+	 * (this is the handle to be associated with the completion port)
 	 **/
-	u8* Results() const
+	HANDLE GetDirHandle() const
 	{
-		debug_assert(HasOverlappedIoCompleted(&m_ovl));
-		return m_data.get();
+		return m_dirHandle;
 	}
 
-	void Issue(HANDLE hDir)
+	LibError Issue()
 	{
-		memset(&m_ovl, 0, sizeof(m_ovl));
+		if(m_dirHandle == INVALID_HANDLE_VALUE)
+			WARN_RETURN(ERR::PATH_NOT_FOUND);
 
+		const BOOL watchSubtree = TRUE;	// (see IntrusiveLink comments)
 		const DWORD filter = FILE_NOTIFY_CHANGE_FILE_NAME | FILE_NOTIFY_CHANGE_DIR_NAME |
 			FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_LAST_WRITE |
 			FILE_NOTIFY_CHANGE_CREATION;
-
-		// (this is much faster than watching every directory separately.)
-		const BOOL watchSubtree = TRUE;
-
-		const BOOL ok = ReadDirectoryChangesW(hDir, m_data.get(), dataSize, watchSubtree, filter, &m_undefined, &m_ovl, 0);
+		// not set: FILE_NOTIFY_CHANGE_ATTRIBUTES, FILE_NOTIFY_CHANGE_LAST_ACCESS, FILE_NOTIFY_CHANGE_SECURITY
+		DWORD undefined = 0;	// (non-NULL pointer avoids BoundsChecker warning)
+		memset(&m_ovl, 0, sizeof(m_ovl));
+		const BOOL ok = ReadDirectoryChangesW(m_dirHandle, m_data.get(), dataSize, watchSubtree, filter, &undefined, &m_ovl, 0);
 		WARN_IF_FALSE(ok);
+		return INFO::OK;
+	}
+
+	/**
+	 * (call when completion port indicates data is available)
+	 **/
+	void RetrieveNotifications(DirWatchNotifications& notifications) const
+	{
+		const FILE_NOTIFY_INFORMATION* fni = (const FILE_NOTIFY_INFORMATION*)m_data.get();
+		for(;;)
+		{
+			// convert name from BSTR (non-zero-terminated) to std::wstring
+			cassert(sizeof(wchar_t) == sizeof(WCHAR));
+			const size_t nameChars = fni->FileNameLength / sizeof(WCHAR);
+			const std::wstring name(fni->FileName, nameChars);
+
+			const fs::wpath pathname(Path()/name);
+			const DirWatchNotification::Event type = TypeFromAction(fni->Action);
+			notifications.push_back(DirWatchNotification(pathname, type));
+
+			if(!fni->NextEntryOffset)	// this was the last entry.
+				break;
+			fni = (const FILE_NOTIFY_INFORMATION*)(uintptr_t(fni) + fni->NextEntryOffset);
+		}
 	}
 
 private:
+	static DirWatchNotification::Event TypeFromAction(const DWORD action)
+	{
+		switch(action)
+		{
+		case FILE_ACTION_ADDED:
+		case FILE_ACTION_RENAMED_NEW_NAME:
+			return DirWatchNotification::Created;
+
+		case FILE_ACTION_REMOVED:
+		case FILE_ACTION_RENAMED_OLD_NAME:
+			return DirWatchNotification::Deleted;
+
+		case FILE_ACTION_MODIFIED:
+			return DirWatchNotification::Changed;
+
+		default:
+			debug_assert(0);
+			return DirWatchNotification::Changed;
+		}
+	}
+
+	fs::wpath m_path;
+	DirHandle m_dirHandle;
+
 	// rationale:
 	// - if too small, notifications may be lost! (the CSD-poll application
-	//   may be confronted with hundreds of new files in a short timeframe)
+	//   may be confronted with hundreds of new files in a short time frame)
 	// - requests larger than 64 KiB fail on SMB due to packet restrictions.
 	static const size_t dataSize = 64*KiB;
 
@@ -81,14 +169,75 @@ private:
 	// 'simultaneously' before the next poll.)
 	shared_ptr<u8> m_data;
 
-	// (passing this instead of a null pointer avoids a BoundsChecker warning
-	// but has no other value since its contents are undefined.)
-	DWORD m_undefined;
-
 	// (ReadDirectoryChangesW's asynchronous mode is triggered by passing
 	// a valid OVERLAPPED parameter; we don't use its fields because
 	// notification proceeds via completion ports.)
 	OVERLAPPED m_ovl;
+};
+
+typedef shared_ptr<DirWatchRequest> PDirWatchRequest;
+
+
+//-----------------------------------------------------------------------------
+// IntrusiveLink
+
+// using watches of entire subtrees to satisfy single-directory requests
+// requires a list of existing watches. an intrusive, doubly-linked list
+// is convenient because removal must occur within the DirWatch destructor.
+// since boost::intrusive doesn't automatically remove objects from their
+// containers when they are destroyed, we implement a simple circular list
+// via sentinel. note that DirWatchManager iterates over DirWatch, not their
+// embedded links. we map from link to the parent object via offsetof
+// (slightly less complex than storing back pointers to the parents, and
+// avoids 'this-pointer used during initialization list' warnings).
+
+class IntrusiveLink
+{
+public:
+	IntrusiveLink()
+	{
+		m_prev = m_next = this;	// sentinel
+	}
+
+	IntrusiveLink(IntrusiveLink* sentinel)
+	{
+		// insert after sentinel
+		m_prev = sentinel;
+		m_next = sentinel->m_next;
+		m_next->m_prev = this;
+		sentinel->m_next = this;
+	}
+
+	~IntrusiveLink()
+	{
+		// remove from list
+		m_prev->m_next = m_next;
+		m_next->m_prev = m_prev;
+	}
+
+	IntrusiveLink* Next() const
+	{
+		return m_next;
+	}
+
+//private:
+	IntrusiveLink* m_prev;
+	IntrusiveLink* m_next;
+};
+
+
+//-----------------------------------------------------------------------------
+// DirWatch
+
+struct DirWatch
+{
+	DirWatch(IntrusiveLink* sentinel, const PDirWatchRequest& request)
+		: link(sentinel), request(request)
+	{
+	}
+
+	IntrusiveLink link;
+	PDirWatchRequest request;
 };
 
 
@@ -110,7 +259,7 @@ private:
 //   wait for 10..15 ms if the system timer granularity is low. even worse,
 //   it was noted in a previous project that APCs are sometimes delivered from
 //   within APIs without having used SleepEx (it seems threads sometimes enter
-//   an "AWS" when calling the kernel).
+//   a semi-AWS when calling the kernel).
 class CompletionPort
 {
 public:
@@ -139,14 +288,12 @@ public:
 		DWORD dwBytesTransferred = 0;
 		ULONG_PTR ulKey = 0;
 		ovl = 0;
-		{
-			const DWORD timeout = 0;
-			const BOOL gotPacket = GetQueuedCompletionStatus(m_hIOCP, &dwBytesTransferred, &ulKey, &ovl, timeout);
-			bytesTransferred = size_t(bytesTransferred);
-			key = uintptr_t(ulKey);
-			if(gotPacket)
-				return INFO::OK;
-		}
+		const DWORD timeout = 0;
+		const BOOL gotPacket = GetQueuedCompletionStatus(m_hIOCP, &dwBytesTransferred, &ulKey, &ovl, timeout);
+		bytesTransferred = size_t(bytesTransferred);
+		key = uintptr_t(ulKey);
+		if(gotPacket)
+			return INFO::OK;
 		if(GetLastError() == WAIT_TIMEOUT)
 			return ERR::AGAIN;	// NOWARN
 		// else: there was actually an error
@@ -159,213 +306,48 @@ private:
 
 
 //-----------------------------------------------------------------------------
-
-class DirWatch
-{
-public:
-	DirWatch(const fs::wpath& path, CompletionPort& completionPort)
-		: m_path(path)
-	{
-		m_path /= L"\\";	// must end in slash
-
-		// open handle to directory
-		{
-			WinScopedPreserveLastError s;	// CreateFile
-			const DWORD share = FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE;
-			const DWORD flags = FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED;
-			const std::wstring dirPath = m_path.string();
-			m_hDir = CreateFileW(dirPath.c_str(), FILE_LIST_DIRECTORY, share, 0, OPEN_EXISTING, flags, 0);
-			if(m_hDir == INVALID_HANDLE_VALUE)
-				throw std::runtime_error("");
-		}
-
-		completionPort.Attach(m_hDir, (uintptr_t)this);
-	}
-
-	~DirWatch()
-	{
-		// contrary to MSDN, the RDC IOs do not issue a completion notification.
-		// no packet was received on the IOCP while or after canceling in a test.
-		// if cancel fails and future packets are received, we'd need weak pointers..
-		BOOL ok = CancelIo(m_hDir);
-		debug_assert(ok);
-
-		CloseHandle(m_hDir);
-		m_hDir = INVALID_HANDLE_VALUE;
-	}
-
-	void Issue()
-	{
-		m_request.Issue(m_hDir);
-	}
-
-	bool IncludesDirectory(const fs::wpath& path) const
-	{
-		return path_is_subpathw(path.string().c_str(), m_path.string().c_str());
-	}
-
-	const fs::wpath& Path() const
-	{
-		return m_path;
-	}
-
-	const u8* Results() const
-	{
-		return m_request.Results();
-	}
-
-private:
-	fs::wpath m_path;
-	HANDLE m_hDir;
-	DirWatchRequest m_request;
-};
-
-
-//-----------------------------------------------------------------------------
-// DirWatchNotificationQueue
-
-// DirWatchRequest needs to reissue its IO immediately, else subsequent
-// changes may be lost. using a second buffer is more complicated and
-// also not perfectly safe. instead it is preferable to copy the data to
-// a queue, thus completely decoupling the application and IO logic.
-class DirWatchNotificationQueue
-{
-public:
-	/**
-	 * extract all notifications from a buffer and add them to the queue.
-	 *
-	 * @param path of the watched directory; necessary since
-	 *   ReadDirectoryChangesW only returns filenames.
-	 * @param packets points to at least one (variable-length)
-	 *   FILE_NOTIFY_INFORMATION.
-	 **/
-	void Enqueue(const fs::wpath& path, const u8* const packets)
-	{
-		const u8* pos = packets;
-		for(;;)
-		{
-			const FILE_NOTIFY_INFORMATION* fni = (const FILE_NOTIFY_INFORMATION*)pos;
-			const DirWatchNotification::Event type = TypeFromAction(fni->Action);
-
-			// convert from BSTR (non-zero-terminated)
-			debug_assert(sizeof(wchar_t) == sizeof(WCHAR));
-			const size_t nameChars = fni->FileNameLength / sizeof(WCHAR);
-			const std::wstring name(fni->FileName, nameChars);
-
-			const fs::wpath pathname(path/name);
-			m_queue.push(DirWatchNotification(pathname, type));
-
-			const DWORD ofs = fni->NextEntryOffset;
-			if(!ofs)	// this was the last entry.
-				break;
-			pos += ofs;
-		}
-	}
-
-	/**
-	 * retrieve a pending notification from the queue.
-	 *
-	 * @param notification is only valid if INFO::OK was returned.
-	 *
-	 * @return ERR::AGAIN if no notifications are pending, otherwise INFO::OK.
-	 **/
-	LibError Dequeue(DirWatchNotification& notification)
-	{
-		if(m_queue.empty())
-			return ERR::AGAIN;	// NOWARN
-		notification = m_queue.front();
-		m_queue.pop();
-		return INFO::OK;
-	}
-
-private:
-	static DirWatchNotification::Event TypeFromAction(const DWORD action)
-	{
-		switch(action)
-		{
-		case FILE_ACTION_ADDED:
-		case FILE_ACTION_RENAMED_NEW_NAME:
-			return DirWatchNotification::Created;
-
-		case FILE_ACTION_REMOVED:
-		case FILE_ACTION_RENAMED_OLD_NAME:
-			return DirWatchNotification::Deleted;
-
-		case FILE_ACTION_MODIFIED:
-			return DirWatchNotification::Changed;
-
-		default:
-			throw std::logic_error("invalid action");
-		}
-	}
-
-	std::queue<DirWatchNotification> m_queue;
-};
-
-
-//-----------------------------------------------------------------------------
-// list of active watches (required for detecting duplicates)
+// DirWatchManager
 
 class DirWatchManager
 {
 public:
 	LibError Add(const fs::wpath& path, PDirWatch& dirWatch)
 	{
+		debug_assert(path.leaf() == L".");	// must be a directory path (i.e. end in slash)
+
 		// check if this is a subdirectory of a tree that's already being
 		// watched (this is much faster than issuing a new watch; it also
 		// prevents accidentally watching the same directory twice).
-		for(Watches::const_iterator it = m_watches.begin(); it != m_watches.end(); ++it)
+		for(IntrusiveLink* link = m_sentinel.Next(); link != &m_sentinel; link = link->Next())
 		{
-			const PDirWatch& existingDirWatch = *it;
-			if(existingDirWatch->IncludesDirectory(path))
+			DirWatch* const existingDirWatch = (DirWatch*)(uintptr_t(link) - offsetof(DirWatch, link));
+			if(path_is_subpath(path.string().c_str(), existingDirWatch->request->Path().string().c_str()))
 			{
-				dirWatch = existingDirWatch;
+				dirWatch.reset(new DirWatch(&m_sentinel, existingDirWatch->request));
 				return INFO::OK;
 			}
 		}
 
-		try
-		{
-			dirWatch.reset(new DirWatch(path, m_completionPort));
-			dirWatch->Issue();
-		}
-		catch(std::runtime_error e)
-		{
-			return ERR::FAIL;
-		}
-
-		m_watches.push_back(dirWatch);
+		PDirWatchRequest request(new DirWatchRequest(path));
+		m_completionPort.Attach(request->GetDirHandle(), (uintptr_t)request.get());
+		RETURN_ERR(request->Issue());
+		dirWatch.reset(new DirWatch(&m_sentinel, request));
 		return INFO::OK;
 	}
 
-	void Remove(PDirWatch& dirWatch)
-	{
-		m_watches.remove(dirWatch);
-	}
-
-	LibError Poll(DirWatchNotification& notification)
+	LibError Poll(DirWatchNotifications& notifications)
 	{
 		size_t bytesTransferred; uintptr_t key; OVERLAPPED* ovl;
-		if(m_completionPort.Poll(bytesTransferred, key, ovl) == INFO::OK)
-		{
-			DirWatch& dirWatch = *(DirWatch*)key;
-			const fs::wpath& path = dirWatch.Path();
-			const u8* const packets = dirWatch.Results();
-
-			m_queue.Enqueue(path, packets);
-
-			dirWatch.Issue();	// re-issue
-		}
-
-		return m_queue.Dequeue(notification);
+		RETURN_ERR(m_completionPort.Poll(bytesTransferred, key, ovl));
+		DirWatchRequest* request = (DirWatchRequest*)key;
+		request->RetrieveNotifications(notifications);
+		RETURN_ERR(request->Issue());	// re-issue
+		return INFO::OK;
 	}
 
 private:
-	typedef std::list<PDirWatch> Watches;
-	Watches m_watches;
-
+	IntrusiveLink m_sentinel;
 	CompletionPort m_completionPort;
-	DirWatchNotificationQueue m_queue;
 };
 
 static DirWatchManager* s_dirWatchManager;
@@ -379,16 +361,10 @@ LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
 	return s_dirWatchManager->Add(path, dirWatch);
 }
 
-void dir_watch_Remove(PDirWatch& dirWatch)
+LibError dir_watch_Poll(DirWatchNotifications& notifications)
 {
 	WinScopedLock lock(WDIR_WATCH_CS);
-	return s_dirWatchManager->Remove(dirWatch);
-}
-
-LibError dir_watch_Poll(DirWatchNotification& notification)
-{
-	WinScopedLock lock(WDIR_WATCH_CS);
-	return s_dirWatchManager->Poll(notification);
+	return s_dirWatchManager->Poll(notifications);
 }
 
 

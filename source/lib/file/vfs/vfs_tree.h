@@ -123,11 +123,9 @@ public:
 
 	/**
 	 * check if this directory is affected by changes to <pathname>.
-	 * @return INFO::OK if this directory was affected,
-	 * INFO::CB_CONTINUE if this is a parent directory, or
-	 * INFO::SKIPPED if this directory is unaffected.
+	 * @return INFO::OK if this directory was affected, otherwise INFO::SKIPPED
 	 **/
-	LibError NotifyChanged(const fs::wpath& path);
+	LibError NotifyChanged(const fs::wpath& realPath, const std::wstring& name);
 
 	/**
 	 * side effect: the next ShouldPopulate() will return true.

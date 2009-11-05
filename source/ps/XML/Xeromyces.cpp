@@ -77,7 +77,7 @@ void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const 
 	fs::wpath XMBRealPath_;
 	vfs->GetRealPath(xmlFilename, XMBRealPath_);
 	wchar_t XMBRealPath[PATH_MAX];
-	path_copy(XMBRealPath, XMBRealPath_.string().c_str());
+	wcscpy_s(XMBRealPath, ARRAY_SIZE(XMBRealPath), XMBRealPath_.string().c_str());
 
 	// extract mod name from that
 	const wchar_t* modPath = wcsstr(XMBRealPath, L"mods/");

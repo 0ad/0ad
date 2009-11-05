@@ -21,12 +21,6 @@
 #include "lib/path_util.h"
 
 // Macros, not functions, to get proper line number reports when tests fail
-#define TEST_APPEND(path1, path2, flags, correct_result) \
-	{ \
-		wchar_t dst[PATH_MAX] = {0}; \
-		path_append(dst, path1, path2, flags); \
-		TS_ASSERT_WSTR_EQUALS(dst, correct_result); \
-	}
 
 #define TEST_NAME_ONLY(path, correct_result) \
 { \
@@ -34,22 +28,8 @@
 	TS_ASSERT_WSTR_EQUALS(result, correct_result); \
 }
 
-#define TEST_STRIP_FN(path_readonly, correct_result) \
-{ \
-	wchar_t path[PATH_MAX]; \
-	path_copy(path, path_readonly); \
-	path_strip_fn(path); \
-	TS_ASSERT_WSTR_EQUALS(path, correct_result); \
-}
-
 class TestPathUtil : public CxxTest::TestSuite 
 {
-	void TEST_PATH_EXT(const wchar_t* path, const wchar_t* correct_result)
-	{
-		const wchar_t* result = path_extension(path);
-		TS_ASSERT_WSTR_EQUALS(result, correct_result);
-	}
-
 public:
 
 	void test_subpath()
@@ -75,28 +55,6 @@ public:
 
 	// TODO: can't test path validate yet without suppress-error-dialog
 
-	void test_append()
-	{
-		// simplest case
-		TEST_APPEND(L"abc", L"def", 0, L"abc/def");
-		// trailing slash
-		TEST_APPEND(L"abc", L"def", PATH_APPEND_SLASH, L"abc/def/");
-		// intervening slash
-		TEST_APPEND(L"abc/", L"def", 0, L"abc/def");
-		// nonportable intervening slash
-		TEST_APPEND(L"abc\\", L"def", 0, L"abc\\def");
-		// mixed path slashes
-		TEST_APPEND(L"abc", L"def/ghi\\jkl", 0, L"abc/def/ghi\\jkl");
-		// path1 empty
-		TEST_APPEND(L"", L"abc/def/", 0, L"abc/def/");
-		// path2 empty, no trailing slash
-		TEST_APPEND(L"abc/def", L"", 0, L"abc/def");
-		// path2 empty, require trailing slash
-		TEST_APPEND(L"abc/def", L"", PATH_APPEND_SLASH, L"abc/def/");
-		// require trailing slash, already exists
-		TEST_APPEND(L"abc/", L"def/", PATH_APPEND_SLASH, L"abc/def/");
-	}
-
 	void test_name_only()
 	{
 		// path with filename
@@ -111,33 +69,5 @@ public:
 		TEST_NAME_ONLY(L"abc", L"abc");
 		// empty
 		TEST_NAME_ONLY(L"", L"");
-	}
-
-	void test_strip_fn()
-	{
-		// path with filename
-		TEST_STRIP_FN(L"abc/def", L"abc/");
-		// nonportable path with filename
-		TEST_STRIP_FN(L"abc\\def\\ghi", L"abc\\def\\");
-		// mixed path with filename
-		TEST_STRIP_FN(L"abc/def\\ghi", L"abc/def\\");
-		// mixed path with filename (2)
-		TEST_STRIP_FN(L"abc\\def/ghi", L"abc\\def/");
-		// filename only
-		TEST_STRIP_FN(L"abc", L"");
-		// empty
-		TEST_STRIP_FN(L"", L"");
-		// path
-		TEST_STRIP_FN(L"abc/def/", L"abc/def/");
-		// nonportable path
-		TEST_STRIP_FN(L"abc\\def\\ghi\\", L"abc\\def\\ghi\\");
-	}
-
-	void test_path_ext()
-	{
-		TEST_PATH_EXT(L"a/b/c.bmp", L"bmp");
-		TEST_PATH_EXT(L"a.BmP", L"BmP");	// case sensitive
-		TEST_PATH_EXT(L"c", L"");	// no extension
-		TEST_PATH_EXT(L"", L"");	// empty
 	}
 };

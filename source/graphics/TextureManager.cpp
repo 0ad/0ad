@@ -168,7 +168,7 @@ void CTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps,
 	(void)g_VFS->GetDirectoryEntries(path, 0, &subdirectoryNames);
 	for (size_t i=0;i<subdirectoryNames.size();i++)
 	{
-		VfsPath subdirectoryPath = path/subdirectoryNames[i]/L"/";	// (VFS paths must end with a slash)
+		VfsPath subdirectoryPath = AddSlash(path/subdirectoryNames[i]);
 		RecurseDirectory(props, subdirectoryPath);
 	}
 

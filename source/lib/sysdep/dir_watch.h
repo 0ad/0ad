@@ -22,27 +22,27 @@
 #ifndef INCLUDED_DIR_WATCH
 #define INCLUDED_DIR_WATCH
 
-class DirWatch;
+struct DirWatch;
 typedef shared_ptr<DirWatch> PDirWatch;
 
 /**
  * start watching a single directory for changes.
  *
- * @param path native path of the directory to watch.
- * @param dirWatch receives a smart pointer to the watch object.
+ * @param path (must end in slash)
+ * @param dirWatch opaque smart pointer to the watch state; used to
+ * manage its lifetime (this is deemed more convenient than a
+ * separate dir_watch_Remove interface).
  *
- * note: the FAM backend can only watch single directories, so that is
- * all we can guarantee. the Win32 implementation watches entire trees;
- * adding a watch for subdirectories is a no-op there.
+ * clients typically want to watch entire directory subtrees (e.g. a mod),
+ * which is supported by Windows but not FAM. to reduce overhead, the
+ * Windows backend always watches subtrees, but portable clients should
+ * still add a watch for each subdirectory (the shared watch state is
+ * reference-counted).
+ * rationale: since the VFS has per-directory data structures, it is
+ * convenient to store PDirWatch there instead of creating a second
+ * tree structure here.
  **/
 LIB_API LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch);
-
-/**
- * stop watching a directory.
- *
- * note: any previously queued notifications will still be returned.
- **/
-LIB_API void dir_watch_Remove(PDirWatch& dirWatch);
 
 class DirWatchNotification
 {
@@ -53,12 +53,6 @@ public:
 		Deleted,
 		Changed
 	};
-
-	// (default ctor is required because DirWatchNotification is returned
-	// via output parameter.)
-	DirWatchNotification()
-	{
-	}
 
 	DirWatchNotification(const fs::wpath& pathname, Event type)
 		: m_pathname(pathname), m_type(type)
@@ -75,34 +69,18 @@ public:
 		return m_type;
 	}
 
-	static const wchar_t* EventString(Event type)
-	{
-		switch(type)
-		{
-		case Created:
-			return L"created";
-		case Deleted:
-			return L"deleted";
-		case Changed:
-			return L"changed";
-		default:
-			throw std::logic_error("invalid type");
-		}
-	}
-
 private:
 	fs::wpath m_pathname;
 	Event m_type;
 };
 
+typedef std::vector<DirWatchNotification> DirWatchNotifications;
+
 /**
- * check if a directory watch notification is pending.
+ * return all pending directory watch notifications.
  *
- * @param notification receives the first pending DirWatchNotification from
- * any of the watched directories. this notification is subsequently removed
- * from the internal queue.
- * @return INFO::OK if a notification was retrieved, ERR::AGAIN if none
- * are pending, or a negative error code.
+ * @param notifications receives any pending notifications in unspecified order.
+ * @return LibError (INFO::OK doesn't imply notifications were returned)
  *
  * note: the run time of this function is independent of the number of
  * directory watches and number of files.
@@ -111,6 +89,6 @@ private:
  * typically want to receive change notifications at a single point,
  * rather than deal with the complexity of asynchronous notifications.
  **/
-LIB_API LibError dir_watch_Poll(DirWatchNotification& notification);
+LIB_API LibError dir_watch_Poll(DirWatchNotifications& notifications);
 
 #endif	// #ifndef INCLUDED_DIR_WATCH

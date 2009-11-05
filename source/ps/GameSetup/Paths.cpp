@@ -28,33 +28,33 @@
 Paths::Paths(const CmdLineArgs& args)
 {
 	m_root = Root(args.GetArg0());
-	m_rdata = m_root/L"data";
+	m_rdata = m_root/L"data/";
 	const wchar_t* subdirectoryName = args.Has("writableRoot")? 0 : L"0ad";
 
 	// everything is a subdirectory of the root
 	if(!subdirectoryName)
 	{
 		m_data = m_rdata;
-		m_config = m_data/L"config";
-		m_cache = m_data/L"cache";
-		m_logs = m_root/L"logs";
+		m_config = m_data/L"config/";
+		m_cache = m_data/L"cache/";
+		m_logs = m_root/L"logs/";
 	}
 	else
 	{
 #if OS_WIN
-		const fs::wpath appdata(wutil_AppdataPath()/subdirectoryName);
-		m_data = appdata/L"data";
-		m_config = appdata/L"config";
-		m_cache = appdata/L"cache";
-		m_logs = appdata/L"logs";
+		const fs::wpath appdata = AddSlash(wutil_AppdataPath()/subdirectoryName);
+		m_data = appdata/L"data/";
+		m_config = appdata/L"config/";
+		m_cache = appdata/L"cache/";
+		m_logs = appdata/L"logs/";
 #else
 		const char* envHome = getenv("HOME");
 		debug_assert(envHome);
 		const fs::wpath home(envHome);
-		m_data = XDG_Path("XDG_DATA_HOME", home, home/".local/share")/subdirectoryName;
-		m_config = XDG_Path("XDG_CONFIG_HOME", home, home/".config")/subdirectoryName;
-		m_cache = XDG_Path("XDG_CACHE_HOME", home, home/".cache")/subdirectoryName;
-		m_logs = m_config/"logs";
+		m_data = AddSlash(XDG_Path("XDG_DATA_HOME", home, home/".local/share/")/subdirectoryName);
+		m_config = AddSlash(XDG_Path("XDG_CONFIG_HOME", home, home/".config/")/subdirectoryName);
+		m_cache = AddSlash(XDG_Path("XDG_CACHE_HOME", home, home/".cache/")/subdirectoryName);
+		m_logs = AddSlash(m_config/"logs");
 #endif
 	}
 }
@@ -91,8 +91,8 @@ Paths::Paths(const CmdLineArgs& args)
 	if(path)
 	{
 		if(path[0] != '/')	// relative to $HOME
-			return home/CStrW(path);
-		return fs::wpath(CStrW(path));
+			return AddSlash(home/CStrW(path));
+		return AddSlash(fs::wpath(CStrW(path)));
 	}
-	return defaultPath;
+	return AddSlash(defaultPath);
 }

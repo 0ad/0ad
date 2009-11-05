@@ -80,20 +80,18 @@ void SortDirectories(DirectoryNames& directories)
 
 LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb, uintptr_t cbData, const wchar_t* pattern, size_t flags)
 {
-	debug_assert(vfs_path_IsDirectory(startPath));
-
 	// (declare here to avoid reallocations)
 	FileInfos files; DirectoryNames subdirectoryNames;
 
 	// (a FIFO queue is more efficient than recursion because it uses less
 	// stack space and avoids seeks due to breadth-first traversal.)
 	std::queue<VfsPath> pendingDirectories;
-	pendingDirectories.push(startPath);
+	pendingDirectories.push(AddSlash(startPath));
 	while(!pendingDirectories.empty())
 	{
 		const VfsPath& path = pendingDirectories.front();
 
-		RETURN_ERR(fs->GetDirectoryEntries(path/L"/", &files, &subdirectoryNames));
+		RETURN_ERR(fs->GetDirectoryEntries(path, &files, &subdirectoryNames));
 
 		for(size_t i = 0; i < files.size(); i++)
 		{
@@ -109,7 +107,7 @@ LibError ForEachFile(const PIVFS& fs, const VfsPath& startPath, FileCallback cb,
 			break;
 
 		for(size_t i = 0; i < subdirectoryNames.size(); i++)
-			pendingDirectories.push(path/subdirectoryNames[i]);
+			pendingDirectories.push(AddSlash(path/subdirectoryNames[i]));
 		pendingDirectories.pop();
 	}
 
@@ -127,7 +125,7 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 	if(nextNumber == 0)
 	{
 		const std::wstring nameFormat = pathnameFormat.leaf();
-		const VfsPath path = pathnameFormat.branch_path()/L"/";
+		const VfsPath path = AddSlash(pathnameFormat.branch_path());
 
 		size_t maxNumber = 0;
 		FileInfos files;

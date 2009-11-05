@@ -34,26 +34,10 @@
 
 namespace ERR
 {
-	const LibError PATH_LENGTH              = -100300;
-	const LibError PATH_EMPTY               = -100301;
-	const LibError PATH_NOT_RELATIVE        = -100302;
-	const LibError PATH_NON_PORTABLE        = -100303;
-	const LibError PATH_NON_CANONICAL       = -100304;
-	const LibError PATH_COMPONENT_SEPARATOR = -100305;
+	const LibError PATH_EMPTY               = -100300;
+	const LibError PATH_COMPONENT_SEPARATOR = -100301;
+	const LibError PATH_NOT_FOUND           = -100302;
 }
-
-
-/**
- * check if path is valid. (see source for criteria)
- *
- * @return LibError (ERR::PATH_* or INFO::OK)
- **/
-LIB_API LibError path_validate(const wchar_t* path);
-
-/**
- * return appropriate code if path is invalid, otherwise continue.
- **/
-#define CHECK_PATH(path) RETURN_ERR(path_validate(path))
 
 /**
  * check if name is valid. (see source for criteria)
@@ -71,53 +55,12 @@ LIB_API LibError path_component_validate(const wchar_t* name);
 LIB_API bool path_is_dir_sep(wchar_t c);
 
 /**
- * is the given path(name) a directory?
- *
- * @return bool
- **/
-LIB_API bool path_IsDirectory(const wchar_t* path);
-
-/**
  * is s2 a subpath of s1, or vice versa? (equal counts as subpath)
  *
  * @param s1, s2 comparand strings
  * @return bool
  **/
 LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
-LIB_API bool path_is_subpathw(const wchar_t* s1, const wchar_t* s2);
-
-
-/**
- * copy path strings (provided for convenience).
- *
- * @param dst destination; must be at least as large as source buffer,
- * and should hold PATH_MAX chars.
- * @param src source; should not exceed PATH_MAX chars
- **/
-LIB_API void path_copy(wchar_t* dst, const wchar_t* src);
-
-/**
- * flags controlling path_append behavior
- **/
-enum PathAppendFlags
-{
-	/**
-	 * make sure <dst> ends up with a trailing slash. this is useful for
-	 * VFS directory paths, which have that requirement.
-	 **/
-	PATH_APPEND_SLASH = 1
-};
-
-/**
- * append one path onto another, adding directory separator if necessary.
- *
- * @param dst destination into which combined path is written;
- * must hold at least PATH_MAX chars.
- * @param path1, path2 strings: empty, filenames, or full paths.
- * total resulting string must not exceed PATH_MAX chars.
- * @param flags see PathAppendFlags.
- **/
-LIB_API void path_append(wchar_t* dst, const wchar_t* path1, const wchar_t* path2, size_t flags = 0);
 
 /**
  * get the name component of a path.
@@ -128,21 +71,12 @@ LIB_API void path_append(wchar_t* dst, const wchar_t* path1, const wchar_t* path
  **/
 LIB_API const wchar_t* path_name_only(const wchar_t* path);
 
-/**
- * strip away the name component in a path.
- *
- * @param path input and output; chopped by inserting '\0'.
- **/
-LIB_API void path_strip_fn(wchar_t* path);	// deprecated in favor of fs::branch_path
 
-/**
- * get filename's extension.
- *
- * @return pointer to extension within <fn>, or "" if there is none.
- * NOTE: does not include the period; e.g. "a.bmp" yields "bmp".
- **/
-LIB_API const wchar_t* path_extension(const wchar_t* fn);	// deprecated in favor of fs::extension
-
+template<class Path>
+Path AddSlash(const Path& path)
+{
+	return (path.leaf() == L".")? path : path/L"/";
+}
 
 LIB_API fs::wpath wpath_from_path(const fs::path& pathname);
 LIB_API fs::path path_from_wpath(const fs::wpath& pathname);

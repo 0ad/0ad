@@ -83,6 +83,6 @@ void RealDirectory::Watch()
 
 PRealDirectory CreateRealSubdirectory(const PRealDirectory& realDirectory, const std::wstring& subdirectoryName)
 {
-	const fs::wpath path(realDirectory->Path()/subdirectoryName);
+	const fs::wpath path = AddSlash(realDirectory->Path()/subdirectoryName);
 	return PRealDirectory(new RealDirectory(path, realDirectory->Priority(), realDirectory->Flags()));
 }

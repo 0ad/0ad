@@ -131,15 +131,14 @@ void VfsDirectory::Clear()
 }
 
 
-LibError VfsDirectory::NotifyChanged(const fs::wpath& realPathname)
+LibError VfsDirectory::NotifyChanged(const fs::wpath& realPath, const std::wstring& name)
 {
 	// we're not associated with the directory that changed
-	if(!m_realDirectory || m_realDirectory->Path() != realPathname.branch_path())
+	if(!m_realDirectory || m_realDirectory->Path() != realPath)
 		return INFO::SKIPPED;
 
 	// one of our files changed; ensure its new version supersedes the
 	// old by removing it and marking the directory for re-population.
-	const std::wstring name = realPathname.leaf();
 	m_files.erase(name);
 	m_shouldPopulate = 1;
 	return INFO::OK;

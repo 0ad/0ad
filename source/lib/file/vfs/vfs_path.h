@@ -65,11 +65,4 @@ namespace boost
 	}
 }
 
-/**
- * Does a path appear to refer to a directory? (non-authoritative)
- *
- * note: only used as a safeguard.
- **/
-extern bool vfs_path_IsDirectory(const VfsPath& pathname);
-
 #endif	//	#ifndef INCLUDED_VFS_PATH

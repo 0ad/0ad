@@ -19,14 +19,15 @@
 #include "vfs.h"
 
 #include "lib/posix/posix_time.h"	// usleep
+#include "lib/res/h_mgr.h"	// h_reload
+#include "lib/sysdep/dir_watch.h"
+
 #include "lib/allocators/shared_ptr.h"
 #include "lib/path_util.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/file/common/trace.h"
 #include "lib/file/archive/archive.h"
 #include "lib/file/io/io.h"
-#include "lib/res/h_mgr.h"	// h_reload
-#include "lib/sysdep/dir_watch.h"
 #include "vfs_tree.h"
 #include "vfs_lookup.h"
 #include "vfs_populate.h"
@@ -44,7 +45,6 @@ public:
 
 	virtual LibError Mount(const VfsPath& mountPoint, const fs::wpath& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
-		debug_assert(vfs_path_IsDirectory(mountPoint));
 		CreateDirectories(path, 0700);
 
 		VfsDirectory* directory;
@@ -67,7 +67,6 @@ public:
 
 	virtual LibError GetDirectoryEntries(const VfsPath& path, FileInfos* fileInfos, DirectoryNames* subdirectoryNames) const
 	{
-		debug_assert(vfs_path_IsDirectory(path));
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(path, &m_rootDirectory, directory, 0));
 
@@ -171,31 +170,14 @@ public:
 
 	virtual LibError ReloadChangedFiles()
 	{
-		std::vector<fs::wpath> changedPathnames;
-		for(;;)
+		std::vector<DirWatchNotification> notifications;
+		RETURN_ERR(dir_watch_Poll(notifications));
+		for(size_t i = 0; i < notifications.size(); i++)
 		{
-			DirWatchNotification notification;
-			LibError ret = dir_watch_Poll(notification);
-			if(ret == ERR::AGAIN)	// none available; done.
-				break;
-			RETURN_ERR(ret);
-			if(!CanIgnore(notification))
-				changedPathnames.push_back(notification.Pathname());
+			if(CanIgnore(notifications[i]))
+				continue;
+			RETURN_ERR(NotifyChangedR(m_rootDirectory, L"", notifications[i].Pathname()));
 		}
-		if(changedPathnames.empty())
-			return INFO::OK;
-		usleep(500*1000);
-		for(size_t i = 0; i < changedPathnames.size(); i++)
-		{
-			LibError ret = NotifyChangedR(m_rootDirectory, L"", changedPathnames[i]);
-			RETURN_ERR(ret);
-			if(ret == INFO::SKIPPED)
-			{
-				debug_printf(L"NotifyChangedR: no match found, ignored\n");
-				return ERR::VFS_FILE_NOT_FOUND;	// NOWARN (happens if a new file was created)
-			}
-		}
-
 		return INFO::OK;
 	}
 
@@ -223,10 +205,12 @@ private:
 
 	LibError NotifyChangedR(VfsDirectory& directory, const VfsPath& path, const fs::wpath& realPathname)
 	{
-		LibError ret = directory.NotifyChanged(realPathname);
+		const fs::wpath realPath = AddSlash(realPathname.branch_path());
+		const std::wstring name = realPathname.leaf();
+		LibError ret = directory.NotifyChanged(realPath, name);
 		if(ret == INFO::OK)
 		{
-			const VfsPath pathname(path/realPathname.leaf());
+			const VfsPath pathname(path/name);
 			m_fileCache.Remove(pathname);	// invalidate cached data
 			debug_printf(L"NotifyChangedR: reloading %ls\n", pathname.string().c_str());
 			RETURN_ERR(h_reload(pathname));
