@@ -125,7 +125,7 @@ struct IVFS
 	 *
 	 * this is useful for passing paths to external libraries.
 	 **/
-	virtual LibError RealPath(const VfsPath& pathname, fs::wpath& realPathname) = 0;
+	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& realPathname) = 0;
 
 	/**
 	 * retrieve the VFS pathname that corresponds to a real file.
@@ -136,15 +136,13 @@ struct IVFS
 	 * number of directories; this could be accelerated by only checking
 	 * directories below a mount point with a matching real path.
 	 **/
-	virtual LibError VirtualPath(const fs::wpath& realPathname, VfsPath& pathname) = 0;
-
+	virtual LibError GetVirtualPath(const fs::wpath& realPathname, VfsPath& pathname) = 0;
+	
 	/**
-	 * poll for directory change notifications and reload all affected files.
-	 * must be called regularly (e.g. once a frame), else notifications
-	 * may be lost.
-	 * note: polling is much simpler than asynchronous notifications.
+	 * indicate that a file has changed; remove its data from the cache and
+	 * arrange for its directory to be updated.
 	 **/
-	virtual LibError ReloadChangedFiles() = 0;
+	virtual LibError Invalidate(const VfsPath& pathname) = 0;
 
 	/**
 	 * empty the contents of the filesystem.

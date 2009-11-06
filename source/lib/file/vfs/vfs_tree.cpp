@@ -122,29 +122,6 @@ VfsDirectory* VfsDirectory::GetSubdirectory(const std::wstring& name)
 }
 
 
-void VfsDirectory::Clear()
-{
-	m_files.clear();
-	m_subdirectories.clear();
-	m_realDirectory.reset();
-	m_shouldPopulate = 0;
-}
-
-
-LibError VfsDirectory::NotifyChanged(const fs::wpath& realPath, const std::wstring& name)
-{
-	// we're not associated with the directory that changed
-	if(!m_realDirectory || m_realDirectory->Path() != realPath)
-		return INFO::SKIPPED;
-
-	// one of our files changed; ensure its new version supersedes the
-	// old by removing it and marking the directory for re-population.
-	m_files.erase(name);
-	m_shouldPopulate = 1;
-	return INFO::OK;
-}
-
-
 void VfsDirectory::SetAssociatedDirectory(const PRealDirectory& realDirectory)
 {
 	if(!cpu_CAS(&m_shouldPopulate, 0, 1))
@@ -158,6 +135,21 @@ bool VfsDirectory::ShouldPopulate()
 	return cpu_CAS(&m_shouldPopulate, 1, 0);	// test and reset
 }
 
+
+void VfsDirectory::Invalidate(const std::wstring& name)
+{
+	m_files.erase(name);
+	m_shouldPopulate = 1;
+}
+
+
+void VfsDirectory::Clear()
+{
+	m_files.clear();
+	m_subdirectories.clear();
+	m_realDirectory.reset();
+	m_shouldPopulate = 0;
+}
 
 
 //-----------------------------------------------------------------------------

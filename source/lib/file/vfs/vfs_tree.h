@@ -110,23 +110,6 @@ public:
 		return m_subdirectories;
 	}
 
-	VfsSubdirectories& Subdirectories()
-	{
-		return m_subdirectories;
-	}
-
-	/**
-	 * empty file and subdirectory lists (e.g. when rebuilding VFS).
-	 * CAUTION: this invalidates all previously returned pointers.
-	 **/
-	void Clear();
-
-	/**
-	 * check if this directory is affected by changes to <pathname>.
-	 * @return INFO::OK if this directory was affected, otherwise INFO::SKIPPED
-	 **/
-	LibError NotifyChanged(const fs::wpath& realPath, const std::wstring& name);
-
 	/**
 	 * side effect: the next ShouldPopulate() will return true.
 	 **/
@@ -140,9 +123,21 @@ public:
 	/**
 	 * @return whether this directory should be populated from its
 	 * AssociatedDirectory(). note that calling this is a promise to
-	 * do so if true is returned -- the flag is immediately reset.
+	 * do so if true is returned -- the flag is reset immediately.
 	 **/
 	bool ShouldPopulate();
+
+	/**
+	 * indicate that a file has changed; ensure its new version supersedes
+	 * the old by removing it and marking the directory for re-population.
+	 **/
+	void Invalidate(const std::wstring& name);
+
+	/**
+	 * empty file and subdirectory lists (e.g. when rebuilding VFS).
+	 * CAUTION: this invalidates all previously returned pointers.
+	 **/
+	void Clear();
 
 private:
 	VfsFiles m_files;

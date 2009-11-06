@@ -32,6 +32,14 @@ extern PIVFS g_VFS;
 
 extern bool FileExists(const VfsPath& pathname);
 
+/**
+ * poll for directory change notifications and reload all affected files.
+ * must be called regularly (e.g. once a frame), else notifications
+ * may be lost.
+ * note: polling is much simpler than asynchronous notifications.
+ **/
+extern LibError ReloadChangedFiles();
+
 ERROR_GROUP(CVFSFile);
 ERROR_TYPE(CVFSFile, LoadFailed);
 ERROR_TYPE(CVFSFile, AlreadyLoaded);

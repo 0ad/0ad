@@ -18,10 +18,6 @@
 #include "precompiled.h"
 #include "vfs.h"
 
-#include "lib/posix/posix_time.h"	// usleep
-#include "lib/res/h_mgr.h"	// h_reload
-#include "lib/sysdep/dir_watch.h"
-
 #include "lib/allocators/shared_ptr.h"
 #include "lib/path_util.h"
 #include "lib/file/common/file_stats.h"
@@ -154,7 +150,7 @@ public:
 		return textRepresentation;
 	}
 
-	virtual LibError RealPath(const VfsPath& pathname, fs::wpath& realPathname)
+	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& realPathname)
 	{
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
@@ -162,25 +158,24 @@ public:
 		return INFO::OK;
 	}
 
-	virtual LibError VirtualPath(const fs::wpath& realPathname, VfsPath& pathname)
+	virtual LibError GetVirtualPath(const fs::wpath& realPathname, VfsPath& pathname)
 	{
 		const fs::wpath realPath = AddSlash(realPathname.branch_path());
 		VfsPath path;
-		RETURN_ERR(FindRealPathR(realPathname, m_rootDirectory, L"", path));
+		RETURN_ERR(FindRealPathR(realPath, m_rootDirectory, L"", path));
 		pathname = path / realPathname.leaf();
 		return INFO::OK;
 	}
 
-	virtual LibError ReloadChangedFiles()
+	virtual LibError Invalidate(const VfsPath& pathname)
 	{
-		std::vector<DirWatchNotification> notifications;
-		RETURN_ERR(dir_watch_Poll(notifications));
-		for(size_t i = 0; i < notifications.size(); i++)
-		{
-			if(CanIgnore(notifications[i]))
-				continue;
-			RETURN_ERR(NotifyChangedR(m_rootDirectory, L"", notifications[i].Pathname()));
-		}
+		m_fileCache.Remove(pathname);
+
+		VfsDirectory* directory;
+		RETURN_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
+		const std::wstring name = pathname.leaf();
+		directory->Invalidate(name);
+
 		return INFO::OK;
 	}
 
@@ -190,27 +185,6 @@ public:
 	}
 
 private:
-	// try to skip unnecessary work by ignoring uninteresting notifications.
-	static bool CanIgnore(const DirWatchNotification& notification)
-	{
-		// ignore directories
-		const fs::wpath& pathname = notification.Pathname();
-		if(pathname.leaf() == L".")
-			return true;
-
-		// ignore uninteresting file types (e.g. temp files, or the
-		// hundreds of XMB files that are generated from XML)
-		const std::wstring extension = fs::extension(pathname);
-		const wchar_t* extensionsToIgnore[] = { L".xmb", L".tmp" };
-		for(size_t i = 0; i < ARRAY_SIZE(extensionsToIgnore); i++)
-		{
-			if(!wcscasecmp(extension.c_str(), extensionsToIgnore[i]))
-				return true;
-		}
-
-		return false;
-	}
-
 	LibError FindRealPathR(const fs::wpath& realPath, const VfsDirectory& directory, const VfsPath& curPath, VfsPath& path)
 	{
 		PRealDirectory realDirectory = directory.AssociatedDirectory();
@@ -225,40 +199,12 @@ private:
 		{
 			const std::wstring& subdirectoryName = it->first;
 			const VfsDirectory& subdirectory = it->second;
-			LibError ret = FindRealPathR(realPath, subdirectory, AddSlash(path/subdirectoryName), path);
+			LibError ret = FindRealPathR(realPath, subdirectory, AddSlash(curPath/subdirectoryName), path);
 			if(ret == INFO::OK)
 				return INFO::OK;
 		}
 
 		return ERR::PATH_NOT_FOUND;	// NOWARN
-	}
-
-
-	LibError NotifyChangedR(VfsDirectory& directory, const VfsPath& path, const fs::wpath& realPathname)
-	{
-		const fs::wpath realPath = AddSlash(realPathname.branch_path());
-		const std::wstring name = realPathname.leaf();
-		LibError ret = directory.NotifyChanged(realPath, name);
-		if(ret == INFO::OK)
-		{
-			const VfsPath pathname(path/name);
-			m_fileCache.Remove(pathname);	// invalidate cached data
-			debug_printf(L"NotifyChangedR: reloading %ls\n", pathname.string().c_str());
-			RETURN_ERR(h_reload(pathname));
-			return INFO::OK;
-		}
-
-		VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
-		for(VfsDirectory::VfsSubdirectories::iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
-		{
-			const std::wstring& subdirectoryName = it->first;
-			VfsDirectory& subdirectory = it->second;
-			ret = NotifyChangedR(subdirectory, path/subdirectoryName, realPathname);
-			if(ret != INFO::SKIPPED)
-				return ret;
-		}
-
-		return INFO::SKIPPED;
 	}
 
 	size_t m_cacheSize;

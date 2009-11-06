@@ -239,7 +239,7 @@ static void Frame()
 	{
 		PROFILE_START("reload changed files");
 		MICROLOG(L"reload changed files");
-		g_VFS->ReloadChangedFiles();
+		ReloadChangedFiles();
 		PROFILE_END( "reload changed files");
 	}
 

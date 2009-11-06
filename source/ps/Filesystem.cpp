@@ -20,6 +20,10 @@
 
 #include "ps/CLogger.h"
 
+#include "lib/posix/posix_time.h"	// usleep
+#include "lib/res/h_mgr.h"	// h_reload
+#include "lib/sysdep/dir_watch.h"
+
 #define LOG_CATEGORY L"file"
 
 
@@ -30,6 +34,44 @@ bool FileExists(const VfsPath& pathname)
 	return g_VFS->GetFileInfo(pathname, 0) == INFO::OK;
 }
 
+
+// try to skip unnecessary work by ignoring uninteresting notifications.
+static bool CanIgnore(const DirWatchNotification& notification)
+{
+	// ignore directories
+	const fs::wpath& pathname = notification.Pathname();
+	if(pathname.leaf() == L".")
+		return true;
+
+	// ignore uninteresting file types (e.g. temp files, or the
+	// hundreds of XMB files that are generated from XML)
+	const std::wstring extension = fs::extension(pathname);
+	const wchar_t* extensionsToIgnore[] = { L".xmb", L".tmp" };
+	for(size_t i = 0; i < ARRAY_SIZE(extensionsToIgnore); i++)
+	{
+		if(!wcscasecmp(extension.c_str(), extensionsToIgnore[i]))
+			return true;
+	}
+
+	return false;
+}
+
+LibError ReloadChangedFiles()
+{
+	std::vector<DirWatchNotification> notifications;
+	RETURN_ERR(dir_watch_Poll(notifications));
+	for(size_t i = 0; i < notifications.size(); i++)
+	{
+		if(!CanIgnore(notifications[i]))
+		{
+			VfsPath pathname;
+			RETURN_ERR(g_VFS->GetVirtualPath(notifications[i].Pathname(), pathname));
+			RETURN_ERR(g_VFS->Invalidate(pathname));
+			RETURN_ERR(h_reload(pathname));
+		}
+	}
+	return INFO::OK;
+}
 
 
 CVFSFile::CVFSFile()
