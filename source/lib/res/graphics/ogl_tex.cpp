@@ -483,9 +483,9 @@ static LibError OglTex_validate(const OglTex* ot)
 	return INFO::OK;
 }
 
-static LibError OglTex_to_string(const OglTex* ot, char* buf)
+static LibError OglTex_to_string(const OglTex* ot, wchar_t* buf)
 {
-	snprintf(buf, H_STRING_LEN, "OglTex id=%d flags=%x", ot->id, ot->flags);
+	swprintf_s(buf, H_STRING_LEN, L"OglTex id=%d flags=%x", ot->id, ot->flags);
 	return INFO::OK;
 }
 

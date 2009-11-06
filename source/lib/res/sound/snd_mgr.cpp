@@ -275,7 +275,7 @@ static LibError alc_init()
 	// (e.g. DS3D, native, MMSYSTEM) - needed when reporting OpenAL bugs.
 	const char* dev_name = (const char*)alcGetString(alc_dev, ALC_DEVICE_SPECIFIER);
 	wchar_t buf[200];
-	swprintf_s(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %hs\n", dev_name);
+	swprintf_s(buf, ARRAY_SIZE(buf), L"SND| alc_init: success, using %s\n", dev_name);
 	ah_log(buf);
 
 #if WIN_LOADLIBRARY_HACK
@@ -838,10 +838,10 @@ static LibError SndData_validate(const SndData * sd)
 	return INFO::OK;
 }
 
-static LibError SndData_to_string(const SndData* sd, char* buf)
+static LibError SndData_to_string(const SndData* sd, wchar_t* buf)
 {
-	const char* type = "clip";
-	snprintf(buf, H_STRING_LEN, "%hs; al_buf=%d", type, sd->al_buf);
+	const wchar_t* type = L"clip";
+	swprintf_s(buf, H_STRING_LEN, L"%ls; al_buf=%d", type, sd->al_buf);
 	return INFO::OK;
 }
 
@@ -1267,9 +1267,9 @@ static LibError VSrc_validate(const VSrc* vs)
 	return INFO::OK;
 }
 
-static LibError VSrc_to_string(const VSrc* vs, char* buf)
+static LibError VSrc_to_string(const VSrc* vs, wchar_t* buf)
 {
-	snprintf(buf, H_STRING_LEN, "al_src = %d", vs->al_src);
+	swprintf_s(buf, H_STRING_LEN, L"al_src = %d", vs->al_src);
 	return INFO::OK;
 }
 

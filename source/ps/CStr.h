@@ -30,7 +30,7 @@ Examples:
 	The following shows several examples of traditional ANSI vs UNICODE.
 		// ANSI
 		LPCSTR str = "PI";
-		printf( "%hs = %fn", str, 3.1459f );
+		printf( "%s = %fn", str, 3.1459f );
 
 		// UNICODE
 		LPCWSTR str = L"PI";

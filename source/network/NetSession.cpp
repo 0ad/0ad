@@ -159,7 +159,7 @@ bool CNetHost::Connect( const CStr& host, uint port )
 
 		if ( !SetupSession( pNewSession ) ) return false;
 
-		NET_LOG3( "Successfully connected to server %hs:%d succeeded", host.c_str(), port );
+		NET_LOG3( "Successfully connected to server %s:%d succeeded", host.c_str(), port );
 
 		// Successfully handled?
 		if ( !HandleConnect( pNewSession ) )
@@ -177,7 +177,7 @@ bool CNetHost::Connect( const CStr& host, uint port )
 		return true;
 	}
 
-	NET_LOG3( "Connection to server %hs:%d failed", host.c_str(), port );
+	NET_LOG3( "Connection to server %s:%d failed", host.c_str(), port );
 
 	// 3 seconds are up or a host was disconnected
 	enet_peer_reset( pPeer );
@@ -420,7 +420,7 @@ bool CNetHost::Poll( void )
 					CNetMessage* pNewMessage = CNetMessageFactory::CreateMessage( event.packet->data, event.packet->dataLength );
 					if ( !pNewMessage ) return false;
 
-					NET_LOG4( "Message %hs of size %lu was received from %p", pNewMessage->ToString().c_str(), (unsigned long)pNewMessage->GetSerializedLength(), event.peer->data );
+					NET_LOG4( "Message %s of size %lu was received from %p", pNewMessage->ToString().c_str(), (unsigned long)pNewMessage->GetSerializedLength(), event.peer->data );
 
 					// Successfully handled?
 					if ( !HandleMessageReceive( pNewMessage, it->pSession ) ) {
@@ -526,7 +526,7 @@ bool CNetHost::SendMessage(
 	}
 	else
 	{
-		NET_LOG4( "Message %hs of size %lu was sent to %p",
+		NET_LOG4( "Message %s of size %lu was sent to %p",
 			pMessage->ToString().c_str(), (unsigned long)pMessage->GetSerializedLength(), pSession->m_Peer->data );
 	}
 

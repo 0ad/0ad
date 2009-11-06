@@ -111,7 +111,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		EGUISettingType Type;
 		if (e->GetSettingType(propName, Type) != PSRETURN_OK)
 		{
-			JS_ReportError(cx, "Invalid GUIObject property '%hs'", propName.c_str());
+			JS_ReportError(cx, "Invalid GUIObject property '%s'", propName.c_str());
 			return JS_FALSE;
 		}
 
@@ -273,7 +273,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			}
 
 		default:
-			JS_ReportError(cx, "Setting '%hs' uses an unimplemented type", propName.c_str());
+			JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
 			debug_assert(0);
 			return JS_FALSE;
 		}
@@ -313,7 +313,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	EGUISettingType Type;
 	if (e->GetSettingType(propName, Type) != PSRETURN_OK)
 	{
-		JS_ReportError(cx, "Invalid setting '%hs'", propName.c_str());
+		JS_ReportError(cx, "Invalid setting '%s'", propName.c_str());
 		return JS_TRUE;
 	}
 
@@ -429,7 +429,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PSRETURN_OK)
 				{
-					JS_ReportError(cx, "Invalid value for setting '%hs'", propName.c_str());
+					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
 					return JS_FALSE;
 				}
 			}
@@ -466,7 +466,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 			{
 				if (e->SetSetting(propName, JS_GetStringBytes(JS_ValueToString(cx, *vp))) != PSRETURN_OK)
 				{
-					JS_ReportError(cx, "Invalid value for setting '%hs'", propName.c_str());
+					JS_ReportError(cx, "Invalid value for setting '%s'", propName.c_str());
 					return JS_FALSE;
 				}
 			}
@@ -531,7 +531,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 		// TODO Gee: (2004-09-01) EAlign and EVAlign too.
 
 	default:
-		JS_ReportError(cx, "Setting '%hs' uses an unimplemented type", propName.c_str());
+		JS_ReportError(cx, "Setting '%s' uses an unimplemented type", propName.c_str());
 		break;
 	}
 
@@ -587,7 +587,7 @@ JSBool JSI_IGUIObject::toString(JSContext* cx, JSObject* obj, uintN UNUSED(argc)
 	IGUIObject* e = (IGUIObject*)JS_GetPrivate( cx, obj );
 
 	char buffer[256];
-	snprintf(buffer, 256, "[GUIObject: %hs]", e->GetName().c_str());
+	snprintf(buffer, 256, "[GUIObject: %s]", e->GetName().c_str());
 	buffer[255] = 0;
 	*rval = STRING_TO_JSVAL(JS_NewStringCopyZ(cx, buffer));
 	return JS_TRUE;

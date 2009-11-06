@@ -146,7 +146,7 @@ const u8* HEntity::Deserialize(const u8* buffer, const u8* UNUSED(end))
 HEntity::operator CStr() const
 {
 	char buf[16];
-	sprintf(buf, "Entity#%04x", m_handle);
+	sprintf_s(buf, ARRAY_SIZE(buf), "Entity#%04x", m_handle);
 	return CStr(buf);
 }
 

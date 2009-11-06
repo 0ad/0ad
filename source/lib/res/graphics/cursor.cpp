@@ -243,30 +243,30 @@ static LibError Cursor_validate(const Cursor* c)
 	return INFO::OK;
 }
 
-static LibError Cursor_to_string(const Cursor* c, char* buf)
+static LibError Cursor_to_string(const Cursor* c, wchar_t* buf)
 {
-	const char* type;
+	const wchar_t* type;
 	switch(c->kind)
 	{
 	case CK_Default:
-		type = "default";
+		type = L"default";
 		break;
 
 	case CK_System:
-		type = "sys";
+		type = L"sys";
 		break;
 
 	case CK_OpenGL:
-		type = "gl";
+		type = L"gl";
 		break;
 
 	default:
 		debug_assert(0);
-		type = "?";
+		type = L"?";
 		break;
 	}
 
-	snprintf(buf, H_STRING_LEN, "cursor (%hs)", type);
+	swprintf_s(buf, H_STRING_LEN, L"cursor (%ls)", type);
 	return INFO::OK;
 }
 

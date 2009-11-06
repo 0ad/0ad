@@ -36,10 +36,10 @@ int uname(struct utsname* un)
 	const char* vs = vi.szCSDVersion;
 	int sp;
 	if(sscanf(vs, "Service Pack %d", &sp) == 1)
-		sprintf(un->release, "SP %d", sp);
+		sprintf_s(un->release, ARRAY_SIZE(un->release), "SP %d", sp);
 
 	// version
-	sprintf(un->version, "%hs.%lu", wutil_WindowsVersionString(), vi.dwBuildNumber & 0xFFFF);
+	sprintf_s(un->version, ARRAY_SIZE(un->version), "%s.%lu", wutil_WindowsVersionString(), vi.dwBuildNumber & 0xFFFF);
 
 	// node name
 	DWORD buf_size = sizeof(un->nodename);

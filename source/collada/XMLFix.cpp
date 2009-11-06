@@ -154,7 +154,7 @@ static bool processDocument(xmlNode* root)
 	if (! authoring_tool_text) return false;
 	if (authoring_tool_text->type != XML_TEXT_NODE) return false;
 	xmlChar* toolname = authoring_tool_text->content;
-	Log(LOG_INFO, "Authoring tool: %hs", toolname);
+	Log(LOG_INFO, "Authoring tool: %s", toolname);
 	if (strcmp((const char*)toolname, "FBX COLLADA exporter") == 0)
 		return applyFBXFixes(root);
 	else

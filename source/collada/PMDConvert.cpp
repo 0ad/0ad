@@ -152,9 +152,9 @@ public:
 				Log(LOG_WARNING, "Mismatched bone counts (skin has %d, skeleton has %d)", 
 					skin->GetJointCount(), controllerInstance.GetJointCount());
 				for (size_t i = 0; i < skin->GetJointCount(); ++i)
-					Log(LOG_INFO, "Skin joint %d: %hs", i, skin->GetJoint(i)->GetId().c_str());
+					Log(LOG_INFO, "Skin joint %d: %s", i, skin->GetJoint(i)->GetId().c_str());
 				for (size_t i = 0; i < controllerInstance.GetJointCount(); ++i)
-					Log(LOG_INFO, "Skeleton joint %d: %hs", i, controllerInstance.GetJoint(i)->GetName().c_str());
+					Log(LOG_INFO, "Skeleton joint %d: %s", i, controllerInstance.GetJoint(i)->GetName().c_str());
 			}
 
 			// Get the skinned mesh for this entity
@@ -212,7 +212,7 @@ public:
 					{
 						// The relevant joint does exist, but it's not a recognised
 						// bone in our chosen skeleton structure
-						Log(LOG_ERROR, "Vertex influenced by unrecognised bone '%hs'", joint->GetName().c_str());
+						Log(LOG_ERROR, "Vertex influenced by unrecognised bone '%s'", joint->GetName().c_str());
 						continue;
 					}
 
@@ -287,7 +287,7 @@ public:
 					// Strip off the "prop-" from the name
 					std::string propPointName (child->GetName().substr(5));
 
-					Log(LOG_INFO, "Adding prop point %hs", propPointName.c_str());
+					Log(LOG_INFO, "Adding prop point %s", propPointName.c_str());
 
 					// Get translation and orientation of local transform
 

@@ -160,7 +160,7 @@ CStr CSocketAddress::GetString() const
 
 	if (m_Union.m_Family == IPv4)
 	{
-		sprintf(convBuf, "%d.%d.%d.%d",
+		sprintf_s(convBuf, ARRAY_SIZE(convBuf), "%d.%d.%d.%d",
 			m_Union.m_IPv4.sin_addr.s_addr&0xff,
 			(m_Union.m_IPv4.sin_addr.s_addr>>8)&0xff,
 			(m_Union.m_IPv4.sin_addr.s_addr>>16)&0xff,
@@ -369,7 +369,7 @@ PS_RESULT CSocketBase::Read(void *buf, size_t len, size_t *bytesRead)
 		case ETIMEDOUT:*/
 		default:
 			Network_GetErrorString(error, errbuf, sizeof(errbuf));
-			NET_LOG3("Read error %hs [%d]", errbuf, error);
+			NET_LOG3("Read error %s [%d]", errbuf, error);
 			m_State=SS_UNCONNECTED;
 			m_Error=GetPS_RESULT(error);
 			return m_Error;
@@ -420,7 +420,7 @@ PS_RESULT CSocketBase::Write(void *buf, size_t len, size_t *bytesWritten)
 		case EHOSTUNREACH:*/
 		default:
 			Network_GetErrorString(err, errbuf, sizeof(errbuf));
-			NET_LOG3("Write error %hs [%d]", errbuf, err);
+			NET_LOG3("Write error %s [%d]", errbuf, err);
 			m_State=SS_UNCONNECTED;
 			return CONNECTION_BROKEN;
 		}
@@ -579,7 +579,7 @@ bool CSocketBase::ConnectError(CSocketBase *pSocket)
 		{
 			pSocket->m_State=SS_UNCONNECTED;
 			PS_RESULT connErr=GetPS_RESULT(errno);
-			NET_LOG4("Connect error: %hs [%d:%hs]", connErr, errno, strerror(errno));
+			NET_LOG4("Connect error: %s [%d:%s]", connErr, errno, strerror(errno));
 			pSocket->m_Error=connErr;
 			return true;
 		}
@@ -644,7 +644,7 @@ void CSocketBase::SocketReadable(CSocketBase *pSock)
 		// success, nRead != 0 means alive stream socket
 		if (res == -1 && errno != EINVAL)
 		{
-			NET_LOG3("RunWaitLoop:ioctl: Connection broken [%d:%hs]", errno, strerror(errno));
+			NET_LOG3("RunWaitLoop:ioctl: Connection broken [%d:%s]", errno, strerror(errno));
 			// Don't use API function - we both hold a lock and
 			// it is unnecessary to SendWaitLoopUpdate at this
 			// stage
@@ -880,7 +880,7 @@ void CSocketBase::RunWaitLoop()
 	{
 		ret=GetLastError();
 		Network_GetErrorString(ret, (LPSTR)&errBuf, 256);
-		NET_LOG3("RegisterClass: %hs [%d]", errBuf, ret);
+		NET_LOG3("RegisterClass: %s [%d]", errBuf, ret);
 		return;
 	}
 
@@ -891,7 +891,7 @@ void CSocketBase::RunWaitLoop()
 	{
 		ret=GetLastError();
 		Network_GetErrorString(ret, errBuf, sizeof(errBuf));
-		NET_LOG3("CreateWindowEx: %hs [%d]", errBuf, ret);
+		NET_LOG3("CreateWindowEx: %s [%d]", errBuf, ret);
 		return;
 	}
 	
@@ -915,7 +915,7 @@ void CSocketBase::RunWaitLoop()
 		{
 			ret=GetLastError();
 			Network_GetErrorString(ret, errBuf, sizeof(errBuf));
-			NET_LOG3("GetMessage: %hs [%d]", errBuf, ret);
+			NET_LOG3("GetMessage: %s [%d]", errBuf, ret);
 		}
 		{
 			TranslateMessage(&msg);

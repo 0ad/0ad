@@ -448,7 +448,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	// Generate a unique name
 	static int x=0;
 	char buf[64];
-	sprintf(buf, "__eventhandler%d", x++);
+	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d", x++);
 
 	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject,
 		buf, paramCount, paramNames, (const char*)Code, Code.length(), CodeName, 0);
@@ -511,7 +511,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), jsGuiObject, OBJECT_TO_JSVAL(*it->second), 1, paramData, &result);
 	if (!ok)
 	{
-		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%hs\"", Action.c_str());
+		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());
 	}
 
 	// Allow the temporary parameters to be garbage-collected

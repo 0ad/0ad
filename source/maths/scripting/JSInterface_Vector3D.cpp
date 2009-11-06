@@ -212,8 +212,7 @@ JSBool JSI_Vector3D::toString( JSContext* cx, JSObject* obj,
 	if( vectorInfo->owner && vectorInfo->freshenFn ) ( (vectorInfo->owner)->*(vectorInfo->freshenFn) )();
 
  	CVector3D* vectorData = vectorInfo->vector;
-	snprintf( buffer, 256, "[object Vector3D: ( %f, %f, %f )]", vectorData->X, vectorData->Y, vectorData->Z );
-	buffer[255] = 0;
+	sprintf_s( buffer, ARRAY_SIZE(buffer), "[object Vector3D: ( %f, %f, %f )]", vectorData->X, vectorData->Y, vectorData->Z );
 	*rval = STRING_TO_JSVAL( JS_NewStringCopyZ( cx, buffer ) );
 	return( JS_TRUE );
 }

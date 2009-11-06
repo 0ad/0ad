@@ -532,7 +532,7 @@ ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int
 	const wchar_t* lastFuncToSkip = L"debug_OnError";
 	wchar_t buf[400];
 	wchar_t err_buf[200]; error_description_r(err, err_buf, ARRAY_SIZE(err_buf));
-	swprintf_s(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %d (%ls)", err, err_buf);
+	swprintf_s(buf, ARRAY_SIZE(buf), L"Function call failed: return value was %ld (%ls)", err, err_buf);
 	return debug_DisplayError(buf, DE_MANUAL_BREAK, context, lastFuncToSkip, file,line,func, suppress);
 }
 

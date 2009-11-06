@@ -355,7 +355,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, bool useVFS, const CStrW& path)
 	TConfigMap &map=m_Map[ns];
 	for(TConfigMap::const_iterator it = map.begin(); it != map.end(); ++it)
 	{
-		pos += sprintf(pos, "%hs = \"%hs\"\n", it->first.c_str(), it->second[0].m_String.c_str());
+		pos += sprintf(pos, "%s = \"%s\"\n", it->first.c_str(), it->second[0].m_String.c_str());
 	}
 	const size_t len = pos - (char*)buf.get();
 

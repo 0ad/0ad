@@ -110,10 +110,7 @@ CStr CProfileNodeTable::GetName()
 CStr CProfileNodeTable::GetTitle()
 {
 	char buf[512];
-	
-	snprintf(buf, sizeof(buf), "Profiling Information for: %hs (Time in node: %.3f msec/frame)", node->GetName(), node->GetFrameTime() * 1000.0f );
-	buf[sizeof(buf)-1] = '\0';
-	
+	sprintf_s(buf, ARRAY_SIZE(buf), "Profiling Information for: %s (Time in node: %.3f msec/frame)", node->GetName(), node->GetFrameTime() * 1000.0f );
 	return buf;
 }
 
@@ -167,14 +164,13 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		}
 		
 		if (col == 2)
-			snprintf(buf, sizeof(buf), "%.3f", unlogged * 1000.0f);
+			sprintf_s(buf, sizeof(buf), "%.3f", unlogged * 1000.0f);
 		else if (col == 3)
-			snprintf(buf, sizeof(buf), "%.1f", unlogged / g_Profiler.GetRoot()->GetFrameTime());
+			sprintf_s(buf, sizeof(buf), "%.1f", unlogged / g_Profiler.GetRoot()->GetFrameTime());
 		else if (col == 4)
-			snprintf(buf, sizeof(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
+			sprintf_s(buf, sizeof(buf), "%.1f", unlogged * 100.0f / g_Profiler.GetRoot()->GetFrameTime());
 		else if (col == 5)
-			snprintf(buf, sizeof(buf), "%ld", unlogged_mallocs);
-		buf[sizeof(buf)-1] = '\0';
+			sprintf_s(buf, sizeof(buf), "%ld", unlogged_mallocs);
 		
 		return CStr(buf);
 	}
@@ -187,25 +183,24 @@ CStr CProfileNodeTable::GetCellText(size_t row, size_t col)
 		
 	case 1:
 #ifdef PROFILE_AMORTIZE
-		snprintf(buf, sizeof(buf), "%.3f", child->GetFrameCalls());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", child->GetFrameCalls());
 #else
-		snprintf(buf, sizeof(buf), "%d", child->GetFrameCalls());
+		sprintf_s(buf, sizeof(buf), "%d", child->GetFrameCalls());
 #endif
 		break;
 	case 2:
-		snprintf(buf, sizeof(buf), "%.3f", child->GetFrameTime() * 1000.0f);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.3f", child->GetFrameTime() * 1000.0f);
 		break;
 	case 3:
-		snprintf(buf, sizeof(buf), "%.1f", child->GetFrameTime() * 100.0 / g_Profiler.GetRoot()->GetFrameTime());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetFrameTime() * 100.0 / g_Profiler.GetRoot()->GetFrameTime());
 		break;
 	case 4:
-		snprintf(buf, sizeof(buf), "%.1f", child->GetFrameTime() * 100.0 / node->GetFrameTime());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%.1f", child->GetFrameTime() * 100.0 / node->GetFrameTime());
 		break;
 	case 5:
-		snprintf(buf, sizeof(buf), "%ld", child->GetFrameMallocs());
+		sprintf_s(buf, ARRAY_SIZE(buf), "%ld", child->GetFrameMallocs());
 		break;
 	}
-	buf[sizeof(buf)-1] = '\0';
 	return CStr(buf);
 }
 

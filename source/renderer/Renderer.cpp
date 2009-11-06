@@ -149,31 +149,31 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 	case Row_Counter:
 		if (col == 0)
 			return "counter";
-		snprintf(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_Counter);
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_Counter);
 		return buf;
 
 	case Row_DrawCalls:
 		if (col == 0)
 			return "# draw calls";
-		snprintf(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_DrawCalls);
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_DrawCalls);
 		return buf;
 
 	case Row_TerrainTris:
 		if (col == 0)
 			return "# terrain tris";
-		snprintf(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_TerrainTris);
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_TerrainTris);
 		return buf;
 
 	case Row_ModelTris:
 		if (col == 0)
 			return "# model tris";
-		snprintf(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_ModelTris);
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_ModelTris);
 		return buf;
 
 	case Row_BlendSplats:
 		if (col == 0)
 			return "# blend splats";
-		snprintf(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_BlendSplats);
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_BlendSplats);
 		return buf;
 
 	default:

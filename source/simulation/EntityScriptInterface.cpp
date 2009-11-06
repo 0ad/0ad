@@ -183,7 +183,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsv
 	if( !baseEntity )
 	{
 		*rval = JSVAL_NULL;
-		JS_ReportError( cx, "No such template: %hs", CStr8(templateName).c_str() );
+		JS_ReportError( cx, "No such template: %s", CStr8(templateName).c_str() );
 		return( JS_TRUE );
 	}
 

@@ -104,7 +104,7 @@ public:
 		if (! tmpdir) tmpdir = P_tmpdir;
 
 		char root[PATH_MAX];
-		sprintf_s(root, PATH_MAX, "%hs/pyrogenesis-test-sysdep-XXXXXX", tmpdir);
+		sprintf_s(root, ARRAY_SIZE(root), "%s/pyrogenesis-test-sysdep-XXXXXX", tmpdir);
 		TS_ASSERT(mkdtemp(root));
 		std::string rootstr(root);
 

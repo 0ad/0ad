@@ -35,7 +35,7 @@ MessagePasserImpl::MessagePasserImpl()
 	while (tries++ < 16) // some arbitrary cut-off point to avoid infinite loops
 	{
 		static char name[64];
-		sprintf(name, "/wfg-atlas-msgpass-%d-%d",
+		sprintf_s(name, ARRAY_SIZE(name), "/wfg-atlas-msgpass-%d-%d",
 				(int)rand(1, 1000), (int)(time(0)%1000));
 		sem_t* sem = sem_open(name, O_CREAT | O_EXCL, 0700, 0);
 

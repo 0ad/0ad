@@ -295,7 +295,7 @@ DIR* opendir(const char* path)
 	// information about that directory; trailing slashes aren't allowed.
 	// for dir entries to be returned, we have to append "\\*".
 	char search_path[PATH_MAX];
-	sprintf_s(search_path, ARRAY_SIZE(search_path), "%hs\\*", path);
+	sprintf_s(search_path, ARRAY_SIZE(search_path), "%s\\*", path);
 
 	// note: we could store search_path and defer FindFirstFile until
 	// readdir. this way is a bit more complex but required for

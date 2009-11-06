@@ -1059,7 +1059,7 @@ void CNetLogger::GetStringTimeStamp( CStr& str )
 {
 	char buffer[ 128 ] = { 0 };
 	double timestamp = timer_Time();
-	sprintf( buffer, "[%3u.%03u]", ( unsigned )timestamp, ( ( unsigned )( timestamp * 1000 ) % 1000 ) );
+	sprintf_s( buffer, ARRAY_SIZE(buffer), "[%3u.%03u]", ( unsigned )timestamp, ( ( unsigned )( timestamp * 1000 ) % 1000 ) );
 	str = buffer;
 }
 

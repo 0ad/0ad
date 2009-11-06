@@ -187,7 +187,7 @@ JSBool GetEntityTemplate( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsv
 	CEntityTemplate* v = g_EntityTemplateCollection.GetTemplate( templateName, player );
 	if( !v )
 	{
-		JS_ReportError( cx, "No such template: %hs", CStr(templateName).c_str() );
+		JS_ReportError( cx, "No such template: %s", CStr(templateName).c_str() );
 		return( JS_TRUE );
 	}
 
@@ -1064,13 +1064,13 @@ JSBool GetBuildTimestamp( JSContext* cx, JSObject*, uintN argc, jsval* argv, jsv
 	switch(mode)
 	{
 	case -1:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%hs %hs (%ls)", __DATE__, __TIME__, svn_revision);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%s %s (%ls)", __DATE__, __TIME__, svn_revision);
 		break;
 	case 0:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%hs", __DATE__);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%s", __DATE__);
 		break;
 	case 1:
-		sprintf_s(buf, ARRAY_SIZE(buf), "%hs", __TIME__);
+		sprintf_s(buf, ARRAY_SIZE(buf), "%s", __TIME__);
 		break;
 	case 2:
 		sprintf_s(buf, ARRAY_SIZE(buf), "%ls", svn_revision);

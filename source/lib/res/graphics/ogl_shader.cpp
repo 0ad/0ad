@@ -46,18 +46,18 @@ ERROR_ASSOCIATE(ERR::SHDR_NO_PROGRAM, L"Invalid shader program reference", -1);
 // Convert a shader object type into a descriptive string.
 // If the type enum is not known, the given buffer is used as scratch space
 // to format the type number. If buf is null, a generic string is returned.
-static const char* shader_type_to_string(GLenum type, char* buf, size_t buflen)
+static const wchar_t* shader_type_to_string(GLenum type, wchar_t* buf, size_t buflen)
 {
 	switch(type)
 	{
-	case GL_VERTEX_SHADER_ARB: return "VERTEX_SHADER";
-	case GL_FRAGMENT_SHADER_ARB: return "FRAGMENT_SHADER";
+	case GL_VERTEX_SHADER_ARB: return L"VERTEX_SHADER";
+	case GL_FRAGMENT_SHADER_ARB: return L"FRAGMENT_SHADER";
 	}
 	
 	if (!buf)
-		return "unknown type enum";
+		return L"unknown type enum";
 	
-	snprintf(buf, buflen, "%u", type);
+	swprintf_s(buf, buflen, L"%u", type);
 	return buf;
 }
 
@@ -141,7 +141,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 	}
 
 	{
-	char typenamebuf[32];
+	wchar_t typenamebuf[32];
 	CStrW type(shader_type_to_string(shdr->type, typenamebuf, ARRAY_SIZE(typenamebuf)));
 
 	GLint log_length;
@@ -198,9 +198,9 @@ static LibError Ogl_Shader_validate(const Ogl_Shader* UNUSED(shdr))
 	return INFO::OK;
 }
 
-static LibError Ogl_Shader_to_string(const Ogl_Shader* UNUSED(shdr), char* buf)
+static LibError Ogl_Shader_to_string(const Ogl_Shader* shdr, wchar_t* buf)
 {
-	snprintf(buf, H_STRING_LEN, "-");
+	swprintf_s(buf, H_STRING_LEN, L"Ogl_Shader %p", shdr);
 	return INFO::OK;
 }
 
@@ -416,9 +416,9 @@ static LibError Ogl_Program_validate(const Ogl_Program* UNUSED(p))
 	return INFO::OK;
 }
 
-static LibError Ogl_Program_to_string(const Ogl_Program* UNUSED(p), char* buf)
+static LibError Ogl_Program_to_string(const Ogl_Program* p, wchar_t* buf)
 {
-	snprintf(buf, H_STRING_LEN, "-");
+	swprintf_s(buf, H_STRING_LEN, L"Ogl_Program %p", p);
 	return INFO::OK;
 }
 
