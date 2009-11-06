@@ -255,7 +255,7 @@ public:
 	{
 	}
 
-	bool operator()(const wchar_t* fmt, ...)
+	bool operator()(const wchar_t* fmt, ...) WPRINTF_ARGS(2)
 	{
 		va_list ap;
 		va_start(ap, fmt);

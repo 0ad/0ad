@@ -61,4 +61,9 @@
 # define CONFIG_FINAL 0
 #endif
 
+// static type checking with Dehydra
+#ifndef CONFIG_DEHYDRA
+#  define CONFIG_DEHYDRA 0
+#endif
+
 #endif	// #ifndef INCLUDED_CONFIG

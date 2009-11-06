@@ -55,13 +55,13 @@ public:
 
 	void Render();
 
-	void InsertMessage(const wchar_t* szMessage, ...);
+	void InsertMessage(const wchar_t* szMessage, ...) WPRINTF_ARGS(2);
 	void InsertChar(const int szChar, const wchar_t cooked);
 
 	void SendChatMessage(const wchar_t *szMessage);
 	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
 
-	void SetBuffer(const wchar_t* szMessage, ...);
+	void SetBuffer(const wchar_t* szMessage, ...) WPRINTF_ARGS(2);
 
 	void UseHistoryFile( const VfsPath& filename, int historysize );
 
