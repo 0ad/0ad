@@ -91,7 +91,7 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 }
 
 
-LibError sys_error_description_r(int err, char* buf, size_t max_chars)
+LibError sys_error_description_r(int err, wchar_t* buf, size_t max_chars)
 {
 	UNUSED2(err);
 	UNUSED2(buf);
@@ -108,8 +108,7 @@ LibError sys_error_description_r(int err, char* buf, size_t max_chars)
 
 // note: do not return ERR_NOT_IMPLEMENTED or similar because that
 // would result in WARN_ERRs.
-LibError sys_cursor_create(size_t w, size_t h, void* bgra_img,
-	size_t hx, size_t hy, sys_cursor* cursor)
+LibError sys_cursor_create(size_t w, size_t h, void* bgra_img, size_t hx, size_t hy, sys_cursor* cursor)
 {
 	UNUSED2(w);
 	UNUSED2(h);

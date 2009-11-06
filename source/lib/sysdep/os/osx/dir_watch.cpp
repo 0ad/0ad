@@ -20,19 +20,12 @@
 
 // stub implementations
 
-LibError dir_add_watch(
-		const char * const UNUSED(n_full_path),
-		intptr_t* const UNUSED(watch))
+LibError dir_watch_Add(const fs::wpath& UNUSED(path), PDirWatch& UNUSED(dirWatch))
 {
 	return INFO::OK;
 }
 
-LibError dir_cancel_watch(const intptr_t UNUSED(watch))
+LibError dir_watch_Poll(DirWatchNotifications& UNUSED(notifications))
 {
 	return INFO::OK;
-}
-
-LibError dir_get_changed_file(char *)
-{
-	return ERR::AGAIN; // Say no files are available.
 }

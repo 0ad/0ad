@@ -21,6 +21,7 @@
 #include "precompiled.h"
 
 #include "lib/timer.h"
+#include "lib/wchar.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
 
@@ -76,7 +77,7 @@ struct symbol_lookup_context
 	bool found;
 };
 
-void* debug_GetCaller(void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
+void* debug_GetCaller(void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
 {
 	// bt[0] == this function
 	// bt[1] == our caller
@@ -90,7 +91,7 @@ void* debug_GetCaller(void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
 	return bt[2];
 }
 
-LibError debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
+LibError debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
 {
 	static const size_t N_FRAMES = 16;
 	void *bt[N_FRAMES];
@@ -105,13 +106,13 @@ LibError debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), 
 
 	for (size_t i=0;(int)i<bt_size && bufpos+MAX_OUT_CHARS < bufend;i++)
 	{
-		char file[DBG_FILE_LEN];
-		char symbol[DBG_SYMBOL_LEN];
+		wchar_t file[DBG_FILE_LEN];
+		wchar_t symbol[DBG_SYMBOL_LEN];
 		int line;
 		int len;
 		
 		if (debug_ResolveSymbol(bt[i], symbol, file, &line) == 0)
-			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x) %hs:%d %hs\n", bt[i], file, line, symbol);
+			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x) %ls:%d %ls\n", bt[i], file, line, symbol);
 		else
 			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x)\n", bt[i]);
 		
@@ -288,7 +289,7 @@ void demangle_buf(char *buf, const char *symbol, size_t n)
 		free(alloc);
 }
 
-static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* file, int* line)
+static LibError debug_resolve_symbol_dladdr(void *ptr, wchar_t* sym_name, wchar_t* file, int* line)
 {
 	Dl_info syminfo;
 	
@@ -299,18 +300,18 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 	if (sym_name)
 	{
 		if (syminfo.dli_sname)
-			demangle_buf(sym_name, syminfo.dli_sname, DBG_SYMBOL_LEN);
-		else
 		{
-			snprintf(sym_name, DBG_SYMBOL_LEN, "%p", ptr);
-			sym_name[DBG_SYMBOL_LEN-1]=0;
+			char sym_name_buf[DBG_SYMBOL_LEN];
+			demangle_buf(sym_name_buf, syminfo.dli_sname, DBG_SYMBOL_LEN);
+			wcscpy_s(sym_name, DBG_SYMBOL_LEN, wstring_from_string(sym_name_buf).c_str());
 		}
+		else
+			swprintf_s(sym_name, DBG_SYMBOL_LEN, L"%p", ptr);
 	}
 	
 	if (file)
 	{
-		strncpy(file, syminfo.dli_fname, DBG_FILE_LEN);
-		file[DBG_FILE_LEN-1]=0;
+		wcscpy_s(file, DBG_FILE_LEN, wstring_from_string(syminfo.dli_fname).c_str());
 	}
 	
 	if (line)
@@ -321,7 +322,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, char* sym_name, char* fil
 	return INFO::OK;
 }
 
-LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, int* line)
+LibError debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* file, int* line)
 {
 	ONCE(udbg_bfd_init());
 
@@ -358,7 +359,9 @@ LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, 
 
 	if (sym_name)
 	{
-		demangle_buf(sym_name, ctx.symbol, DBG_SYMBOL_LEN);
+		char sym_name_buf[DBG_SYMBOL_LEN];
+		demangle_buf(sym_name_buf, ctx.symbol, DBG_SYMBOL_LEN);
+		wcscpy_s(sym_name, DBG_SYMBOL_LEN, wstring_from_string(sym_name_buf).c_str());
 	}
 
 	if (file)
@@ -366,16 +369,14 @@ LibError debug_ResolveSymbol(void* ptr_of_interest, char* sym_name, char* file, 
 		if (ctx.filename != NULL)
 		{
 			const char *h;
-
 			h = strrchr (ctx.filename, '/');
 			if (h != NULL)
 				ctx.filename = h + 1;
 	
-			strncpy(file, ctx.filename, DBG_FILE_LEN);
-			file[DBG_FILE_LEN-1]=0;
+			wcscpy_s(file, DBG_FILE_LEN, wstring_from_string(ctx.filename).c_str());
 		}
 		else
-			strcpy(file, "none");
+			wcscpy_s(file, DBG_FILE_LEN, L"none");
 	}
 	
 	if (line)

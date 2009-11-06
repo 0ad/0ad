@@ -124,7 +124,7 @@ public:
 			const std::wstring name(fni->FileName, nameChars);
 
 			const fs::wpath pathname(Path()/name);
-			const DirWatchNotification::Event type = TypeFromAction(fni->Action);
+			const DirWatchNotification::EType type = TypeFromAction(fni->Action);
 			notifications.push_back(DirWatchNotification(pathname, type));
 
 			if(!fni->NextEntryOffset)	// this was the last entry.
@@ -134,7 +134,7 @@ public:
 	}
 
 private:
-	static DirWatchNotification::Event TypeFromAction(const DWORD action)
+	static DirWatchNotification::EType TypeFromAction(const DWORD action)
 	{
 		switch(action)
 		{

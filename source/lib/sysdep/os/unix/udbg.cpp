@@ -30,24 +30,6 @@ symbol lookups and backtraces)
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
 
-// udbg stubs.
-// (Linux has a better implementation using BFD)
-
-void* udbg_get_nth_caller(size_t UNUSED(n), void *UNUSED(context))
-{
-	return NULL;
-}
-
-LibError udbg_dump_stack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), size_t UNUSED(skip), void* UNUSED(context))
-{
-	return ERR::NOT_IMPLEMENTED;
-}
-
-LibError udbg_resolve_symbol(void* UNUSED(ptr_of_interest), char* UNUSED(sym_name), char* UNUSED(file), int* UNUSED(line))
-{
-	return ERR::NOT_IMPLEMENTED;
-}
-
 
 void debug_break()
 {
@@ -83,7 +65,7 @@ void udbg_launch_debugger()
 	else if (ret > 0)
 	{
 		// Parent (original) fork:
-		debug_printf("Sleeping until debugger attaches.\nPlease wait.\n");
+		debug_printf(L"Sleeping until debugger attaches.\nPlease wait.\n");
 		sleep(DEBUGGER_WAIT);
 	}
 	else // fork error, ret == -1
@@ -92,17 +74,16 @@ void udbg_launch_debugger()
 	}
 }
 
-void debug_puts(const char* text)
+void debug_puts(const wchar_t* text)
 {
-	fputs(text, stdout);
+	wprintf(L"%ls", text);
 	fflush(stdout);
 }
 
 // TODO: Do these properly. (I don't know what I'm doing; I just
 // know that these functions are required in order to compile...)
 
-int debug_WriteCrashlog(const char* UNUSED(file), wchar_t* UNUSED(header),
-	void* UNUSED(context))
+int debug_WriteCrashlog(const wchar_t* text)
 {
 	abort();
 }
@@ -110,22 +91,4 @@ int debug_WriteCrashlog(const char* UNUSED(file), wchar_t* UNUSED(header),
 int debug_IsPointerBogus(const void* UNUSED(p))
 {
 	return false;
-}
-
-void debug_heap_check()
-{
-}
-
-// if <full_monty> is true or PARANOIA #defined, all possible checks are
-// performed as often as possible. this is really slow (we are talking x100),
-// but reports errors closer to where they occurred.
-void debug_heap_enable(int UNUSED(heapChecks))
-{
-	// No-op until we find out if glibc has heap debugging
-}
-
-// disable all automatic checks until the next debug_heap_enable.
-void debug_heap_disable()
-{
-	// No-op until we find out if glibc has heap debugging
 }

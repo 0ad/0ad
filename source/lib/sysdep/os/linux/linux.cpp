@@ -24,7 +24,7 @@
 #include "mocks/dlfcn.h"
 #include "mocks/unistd.h"
 
-LibError sys_get_executable_name(char* n_path, size_t max_chars)
+LibError sys_get_executable_name(fs::wpath& pathname)
 {
 	const char* path;
 	Dl_info dl_info;
@@ -40,17 +40,19 @@ LibError sys_get_executable_name(char* n_path, size_t max_chars)
 
 	// If this looks like an absolute path, use realpath to get the normalized
 	// path (with no '.' or '..')
-	if (path[0] == '/') {
-		char* resolved = realpath(path, NULL);
+	if (path[0] == '/')
+	{
+		char resolvedBuf[PATH_MAX];
+		char* resolved = realpath(path, resolvedBuf);
 		if (!resolved)
-			return ERR::NO_SYS;
-		strncpy(n_path, resolved, max_chars);
-		free(resolved);
+			return ERR::FAIL;
+		pathname = wstring_from_string(resolved);
 		return INFO::OK;
 	}
 
 	// If this looks like a relative path, resolve against cwd and use realpath
-	if (strchr(path, '/')) {
+	if (strchr(path, '/'))
+	{
 		char cwd[PATH_MAX];
 		if (!T::getcwd(cwd, PATH_MAX))
 			return ERR::NO_SYS;
@@ -59,12 +61,11 @@ LibError sys_get_executable_name(char* n_path, size_t max_chars)
 		int ret = snprintf(absolute, PATH_MAX, "%s/%s", cwd, path);
 		if (ret < 0 || ret >= PATH_MAX)
 			return ERR::NO_SYS; // path too long, or other error
-		char* resolved = realpath(absolute, NULL);
+		char resolvedBuf[PATH_MAX];
+		char* resolved = realpath(absolute, resolvedBuf);
 		if (!resolved)
 			return ERR::NO_SYS;
-
-		strncpy(n_path, resolved, max_chars);
-		free(resolved);
+		pathname = wstring_from_string(resolved);
 		return INFO::OK;
 	}
 

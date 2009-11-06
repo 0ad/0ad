@@ -132,7 +132,7 @@ PSRETURN CXeromyces::Load(const VfsPath& filename)
 	// zeroed because zip files only have 2 second resolution.
 	const int suffixLength = 22;
 	wchar_t suffix[suffixLength+1];
-	int printed = swprintf_s(suffix, L"_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size());
+	int printed = swprintf_s(suffix, ARRAY_SIZE(suffix), L"_%08x%08xB.xmb", (int)(fileInfo.MTime() & ~1), (int)fileInfo.Size());
 	debug_assert(printed == suffixLength);
 	VfsPath xmbFilename = change_extension(filename, suffix);
 

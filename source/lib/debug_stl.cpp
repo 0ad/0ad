@@ -615,7 +615,7 @@ LibError debug_stl_get_container_info(const wchar_t* type_name, const u8* p, siz
 		handled = true;\
 		IsValid = get_container_info<Any_##name>(*(Any_##name*)p, size, el_size, *el_count, *el_iterator, it_mem);\
 	}
-#define STD_CONTAINER(name) CONTAINER(name, "std::" #name "<*>")
+#define STD_CONTAINER(name) CONTAINER(name, L"std::" WIDEN(#name) L"<*>")
 
 	// workaround for preprocessor limitation: what we're trying to do is
 	// stringize the defined value of a macro. prepending and pasting L
@@ -640,17 +640,17 @@ LibError debug_stl_get_container_info(const wchar_t* type_name, const u8* p, siz
 	// (note: Any_queue etc. assumes the underlying container is a deque.
 	// we make sure of that here and otherwise refuse to display it, because
 	// doing so is lots of work for little gain.)
-	CONTAINER(queue, "std::queue<*,std::deque<*> >")
-	CONTAINER(stack, "std::stack<*,std::deque<*> >")
+	CONTAINER(queue, L"std::queue<*,std::deque<*> >")
+	CONTAINER(stack, L"std::stack<*,std::deque<*> >")
 	// nonstandard containers (will probably be part of C++0x)
 #if HAVE_STL_HASH
-	CONTAINER(hash_map, STRINGIZE(STL_HASH_MAP) "<*>")
-	CONTAINER(hash_multimap, STRINGIZE(STL_HASH_MULTIMAP) "<*>")
-	CONTAINER(hash_set, STRINGIZE(STL_HASH_SET) "<*>")
-	CONTAINER(hash_multiset, STRINGIZE(STL_HASH_MULTISET) "<*>")
+	CONTAINER(hash_map, WIDEN(STRINGIZE(STL_HASH_MAP)) L"<*>")
+	CONTAINER(hash_multimap, WIDEN(STRINGIZE(STL_HASH_MULTIMAP)) L"<*>")
+	CONTAINER(hash_set, WIDEN(STRINGIZE(STL_HASH_SET)) L"<*>")
+	CONTAINER(hash_multiset, WIDEN(STRINGIZE(STL_HASH_MULTISET)) L"<*>")
 #endif
 #if HAVE_STL_SLIST
-	CONTAINER(slist, STRINGIZE(STL_SLIST) "<*>")
+	CONTAINER(slist, WIDEN(STRINGIZE(STL_SLIST)) L"<*>")
 #endif
 
 	// note: do not raise warnings - these can happen for new

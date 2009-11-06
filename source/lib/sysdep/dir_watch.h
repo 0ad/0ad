@@ -47,14 +47,14 @@ LIB_API LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch);
 class DirWatchNotification
 {
 public:
-	enum Event
+	enum EType
 	{
 		Created,
 		Deleted,
 		Changed
 	};
 
-	DirWatchNotification(const fs::wpath& pathname, Event type)
+	DirWatchNotification(const fs::wpath& pathname, EType type)
 		: m_pathname(pathname), m_type(type)
 	{
 	}
@@ -64,14 +64,14 @@ public:
 		return m_pathname;
 	}
 
-	Event Type() const
+	EType Type() const
 	{
 		return m_type;
 	}
 
 private:
 	fs::wpath m_pathname;
-	Event m_type;
+	EType m_type;
 };
 
 typedef std::vector<DirWatchNotification> DirWatchNotifications;

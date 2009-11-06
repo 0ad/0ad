@@ -23,17 +23,17 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/debug.h"
 
-void* debug_GetCaller(void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
+void* debug_GetCaller(void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
 {
 	return NULL;
 }
 
-LibError debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), void* UNUSED(context), const char* UNUSED(lastFuncToSkip))
+LibError debug_DumpStack(wchar_t* UNUSED(buf), size_t UNUSED(max_chars), void* UNUSED(context), const wchar_t* UNUSED(lastFuncToSkip))
 {
 	return ERR::NOT_IMPLEMENTED;
 }
 
-LibError debug_ResolveSymbol(void* UNUSED(ptr_of_interest), char* UNUSED(sym_name), char* UNUSED(file), int* UNUSED(line))
+LibError debug_ResolveSymbol(void* UNUSED(ptr_of_interest), wchar_t* UNUSED(sym_name), wchar_t* UNUSED(file), int* UNUSED(line))
 {
 	return ERR::NOT_IMPLEMENTED;
 }

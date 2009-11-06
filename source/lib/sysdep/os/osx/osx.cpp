@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "lib/lib.h"
+#include "lib/wchar.h"
 
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/gfx.h"
@@ -72,7 +73,7 @@ LibError gfx_get_video_mode(int* xres, int* yres, int* bpp, int* freq)
 }
 
 
-LibError sys_get_executable_name(char* n_path, size_t max_chars)
+LibError sys_get_executable_name(fs::wpath& pathname)
 {
 	static char name[PATH_MAX];
 	static bool init = false;
@@ -98,7 +99,7 @@ LibError sys_get_executable_name(char* n_path, size_t max_chars)
 		debug_printf(L"app bundle name: %hs\n", name);
 	}
 	
-	strncpy(n_path, name, max_chars);
+	pathname = wstring_from_string(name);
 	debug_printf(L"returning exe name: %hs\n", name);
 	
 	return INFO::OK;

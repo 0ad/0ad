@@ -21,17 +21,41 @@
 #include <string>
 
 #include "lib/sysdep/sysdep.h"
+#include "lib/path_util.h"
+#include "lib/wchar.h"
 #include "lib/sysdep/dir_watch.h"
 #include "ps/CLogger.h"
 
 #include <fam.h>
 
-static FAMConnection fc;
 
 // trool; -1 = init failed and all operations will be aborted silently.
 // this is so that each dir_* call doesn't complain if the system's
 // FAM is broken or unavailable.
 static int initialized = 0;
+
+static FAMConnection fc;
+
+struct DirWatch
+{
+	DirWatch()
+		: reqnum(-1)
+	{
+	}
+
+	~DirWatch()
+	{
+		debug_assert(initialized > 0)
+
+		FAMRequest req;
+		req.reqnum = reqnum;
+		FAMCancelMonitor(&fc, &req);
+	}
+
+	fs::wpath path;
+	int reqnum;
+};
+
 
 static std::map<intptr_t, std::string> dirs;
 
@@ -41,7 +65,7 @@ static void fam_deinit()
 	FAMClose(&fc);
 }
 
-LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
+LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
 {
 	// init already failed; don't try again or complain
 	if(initialized == -1)
@@ -63,10 +87,12 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 		}
 	}
 
+	PDirWatch tmpDirWatch(new DirWatch);
+
+	const fs::path path_c = path_from_wpath(path);
 	FAMRequest req;
-	if(FAMMonitorDirectory(&fc, n_full_path, &req, (void*)0) < 0)
+	if(FAMMonitorDirectory(&fc, path_c.string().c_str(), &req, tmpDirWatch.get()) < 0)
 	{
-		*watch = -1;
 		debug_warn("res_watch_dir failed!");
 		WARN_RETURN(ERR::FAIL);	// no way of getting error code?
 	}
@@ -90,26 +116,16 @@ LibError dir_add_watch(const char* const n_full_path, intptr_t* const watch)
 	}
 	while (e.code != FAMEndExist);
 
-	*watch = (intptr_t)req.reqnum;
-	dirs[*watch] = n_full_path;
+	dirWatch.swap(tmpDirWatch);
+	dirWatch->path = path;
+	dirWatch->reqnum = req.reqnum;
+
 	return INFO::OK;
 }
 
 
-LibError dir_cancel_watch(const intptr_t watch)
-{
-	if(initialized == -1)
-		return ERR::FAIL;	// NOWARN
-	if(!initialized)
-		WARN_RETURN(ERR::LOGIC);
 
-	FAMRequest req;
-	req.reqnum = (int)watch;
-	RETURN_ERR(FAMCancelMonitor(&fc, &req));
-	return INFO::OK;
-}
-
-LibError dir_get_changed_file(char* fn)
+LibError dir_watch_Poll(DirWatchNotifications& notifications)
 {
 	if(initialized == -1)
 		return ERR::FAIL;	// NOWARN
@@ -121,17 +137,27 @@ LibError dir_get_changed_file(char* fn)
 	{
 		if(FAMNextEvent(&fc, &e) >= 0)
 		{
-			if (e.code == FAMChanged || e.code == FAMCreated || e.code == FAMDeleted)
+			DirWatchNotification::EType type;
+			switch(e.code)
 			{
-				char n_path[PATH_MAX];
-				const char* dir = dirs[e.fr.reqnum].c_str();
-				snprintf(n_path, PATH_MAX, "%s%c%s", dir, SYS_DIR_SEP, e.filename);
-				UNUSED2(fn);	// we ought to copy to fn, but this code is apparently disabled..
-				return ERR::AGAIN;
+			case FAMChanged:
+				type = DirWatchNotification::Changed;
+				break;
+			case FAMCreated:
+				type = DirWatchNotification::Created;
+				break;
+			case FAMDeleted:
+				type = DirWatchNotification::Deleted;
+				break;
+			default:
+				continue;
 			}
+			DirWatch* dirWatch = (DirWatch*)e.userdata;
+			fs::wpath pathname = dirWatch->path/wstring_from_string(e.filename);
+			notifications.push_back(DirWatchNotification(pathname, type));
 		}
 	}
 
-	// just nothing new; try again later
-	return ERR::AGAIN;	// NOWARN
+	// nothing new; try again later
+	return INFO::OK;
 }
