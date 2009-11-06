@@ -70,6 +70,9 @@ struct IVFS
 
 	/**
 	 * retrieve information about a file (similar to POSIX stat)
+	 *
+	 * @param pfileInfo receives information about the file. passing NULL
+	 * suppresses warnings if the file doesn't exist.
 	 * 
 	 * @return LibError.
 	 **/
@@ -113,24 +116,27 @@ struct IVFS
 	virtual LibError LoadFile(const VfsPath& pathname, shared_ptr<u8>& fileContents, size_t& size) = 0;
 
 	/**
-	 * @return a text representation of all files and directories.
+	 * @return a string representation of all files and directories.
 	 **/
 	virtual std::wstring TextRepresentation() const = 0;
 
 	/**
-	 * empty the contents of the filesystem.
-	 * this is typically only necessary when changing the set of
-	 * mounted directories, e.g. when switching mods.
-	 * NB: open files are not affected.
+	 * retrieve the real (POSIX) pathname underlying a VFS file.
+	 *
+	 * this is useful for passing paths to external libraries.
 	 **/
-	virtual void Clear() = 0;
+	virtual LibError RealPath(const VfsPath& pathname, fs::wpath& realPathname) = 0;
 
 	/**
-	 * retrieve the real (POSIX) path underlying a VFS file.
+	 * retrieve the VFS pathname that corresponds to a real file.
 	 *
-	 * this is useful when passing paths to external libraries.
+	 * this is useful for reacting to file change notifications.
+	 *
+	 * the current implementation requires time proportional to the
+	 * number of directories; this could be accelerated by only checking
+	 * directories below a mount point with a matching real path.
 	 **/
-	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& path) = 0;
+	virtual LibError VirtualPath(const fs::wpath& realPathname, VfsPath& pathname) = 0;
 
 	/**
 	 * poll for directory change notifications and reload all affected files.
@@ -139,6 +145,14 @@ struct IVFS
 	 * note: polling is much simpler than asynchronous notifications.
 	 **/
 	virtual LibError ReloadChangedFiles() = 0;
+
+	/**
+	 * empty the contents of the filesystem.
+	 * this is typically only necessary when changing the set of
+	 * mounted directories, e.g. when switching mods.
+	 * NB: open files are not affected.
+	 **/
+	virtual void Clear() = 0;
 };
 
 typedef shared_ptr<IVFS> PIVFS;

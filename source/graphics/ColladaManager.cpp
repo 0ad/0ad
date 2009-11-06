@@ -239,7 +239,7 @@ VfsPath CColladaManager::GetLoadableFilename(const VfsPath& pathnameNoExtension,
 
 	// realDaePath_ is "[..]/mods/whatever/art/meshes/whatever.dae"
 	fs::wpath realDaePath_;
-	LibError ret = g_VFS->GetRealPath(dae, realDaePath_);
+	LibError ret = g_VFS->RealPath(dae, realDaePath_);
 	debug_assert(ret == INFO::OK);
 	wchar_t realDaeBuf[PATH_MAX];
 	wcscpy_s(realDaeBuf, ARRAY_SIZE(realDaeBuf), realDaePath_.string().c_str());

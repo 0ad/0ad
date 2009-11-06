@@ -75,7 +75,7 @@ void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const 
 
 	// get real path of XML file (e.g. mods/official/entities/...)
 	fs::wpath XMBRealPath_;
-	vfs->GetRealPath(xmlFilename, XMBRealPath_);
+	vfs->RealPath(xmlFilename, XMBRealPath_);
 	wchar_t XMBRealPath[PATH_MAX];
 	wcscpy_s(XMBRealPath, ARRAY_SIZE(XMBRealPath), XMBRealPath_.string().c_str());
 

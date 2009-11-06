@@ -45,7 +45,7 @@ public:
 
 	virtual LibError Mount(const VfsPath& mountPoint, const fs::wpath& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
-		CreateDirectories(path, 0700);
+		RETURN_ERR(CreateDirectories(path, 0700));
 
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));
@@ -103,12 +103,12 @@ public:
 		const std::wstring& name = pathname.leaf();
 		RETURN_ERR(realDirectory->Store(name, fileContents, size));
 
-		const VfsFile file(name, size, time(0), realDirectory->Priority(), realDirectory);
-		directory->AddFile(file);
-
 		// wipe out any cached blocks. this is necessary to cover the (rare) case
 		// of file cache contents predating the file write.
 		m_fileCache.Remove(pathname);
+
+		const VfsFile file(name, size, time(0), realDirectory->Priority(), realDirectory);
+		directory->AddFile(file);
 
 		m_trace->NotifyStore(pathname.string().c_str(), size);
 		return INFO::OK;
@@ -146,11 +146,6 @@ public:
 		return INFO::OK;
 	}
 
-	virtual void Clear()
-	{
-		m_rootDirectory.Clear();
-	}
-
 	virtual std::wstring TextRepresentation() const
 	{
 		std::wstring textRepresentation;
@@ -159,12 +154,20 @@ public:
 		return textRepresentation;
 	}
 
-	virtual LibError GetRealPath(const VfsPath& pathname, fs::wpath& realPathname)
+	virtual LibError RealPath(const VfsPath& pathname, fs::wpath& realPathname)
 	{
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, 0));
-		const PRealDirectory& realDirectory = directory->AssociatedDirectory();
-		realPathname = realDirectory->Path() / pathname.leaf();
+		realPathname = directory->AssociatedDirectory()->Path() / pathname.leaf();
+		return INFO::OK;
+	}
+
+	virtual LibError VirtualPath(const fs::wpath& realPathname, VfsPath& pathname)
+	{
+		const fs::wpath realPath = AddSlash(realPathname.branch_path());
+		VfsPath path;
+		RETURN_ERR(FindRealPathR(realPathname, m_rootDirectory, L"", path));
+		pathname = path / realPathname.leaf();
 		return INFO::OK;
 	}
 
@@ -179,6 +182,11 @@ public:
 			RETURN_ERR(NotifyChangedR(m_rootDirectory, L"", notifications[i].Pathname()));
 		}
 		return INFO::OK;
+	}
+
+	virtual void Clear()
+	{
+		m_rootDirectory.Clear();
 	}
 
 private:
@@ -202,6 +210,29 @@ private:
 
 		return false;
 	}
+
+	LibError FindRealPathR(const fs::wpath& realPath, const VfsDirectory& directory, const VfsPath& curPath, VfsPath& path)
+	{
+		PRealDirectory realDirectory = directory.AssociatedDirectory();
+		if(realDirectory && realDirectory->Path() == realPath)
+		{
+			path = curPath;
+			return INFO::OK;
+		}
+
+		const VfsDirectory::VfsSubdirectories& subdirectories = directory.Subdirectories();
+		for(VfsDirectory::VfsSubdirectories::const_iterator it = subdirectories.begin(); it != subdirectories.end(); ++it)
+		{
+			const std::wstring& subdirectoryName = it->first;
+			const VfsDirectory& subdirectory = it->second;
+			LibError ret = FindRealPathR(realPath, subdirectory, AddSlash(path/subdirectoryName), path);
+			if(ret == INFO::OK)
+				return INFO::OK;
+		}
+
+		return ERR::PATH_NOT_FOUND;	// NOWARN
+	}
+
 
 	LibError NotifyChangedR(VfsDirectory& directory, const VfsPath& path, const fs::wpath& realPathname)
 	{
