@@ -1,0 +1,18 @@
+Dehydra is a tool that allows custom static analysis of C++ code, with analysis code written in JavaScript, running as a GCC plugin.
+
+This directory has some analysis scripts. The setup is a bit ad hoc and not well tested or integrated into the build system or anything, so use at your own risk.
+
+General usage instructions:
+
+ * Run Linux. (It might work on OS X too.)
+
+ * Install Dehydra, as per https://developer.mozilla.org/En/Dehydra/Installing_Dehydra
+
+ * Build 0 A.D. from build/workspaces/gcc:
+    export CXX="$HOME/gcc-dehydra/installed/bin/g++ -fplugin=$HOME/gcc-dehydra/dehydra/gcc_treehydra.so -fplugin-arg=../../dehydra/printf-type-check.js -DCONFIG_DEHYDRA=1"
+    make
+    # (or "make test -j3 -k" to build the engine and tests and to do 3 files in parallel and continue past errors, etc)
+
+ * Wait (it's quite slow) and look for the new compiler warnings/errors.
+
+The "tests" directory doesn't actually contain any proper tests, just some example files and expected outputs for rough sanity checking.
