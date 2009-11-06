@@ -68,6 +68,8 @@ extern ErrorReaction sys_display_error(const wchar_t* text, size_t flags);
  **/
 extern int sys_vswprintf(wchar_t* buffer, size_t count, const wchar_t* format, va_list argptr);
 
+extern int sys_wopen(const wchar_t* pathname, int oflag, ...);
+
 /**
  * describe the current OS error state.
  * 

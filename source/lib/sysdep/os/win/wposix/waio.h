@@ -67,13 +67,8 @@ struct sigevent
 // .. not supported by Win32 (bit values not used by MS _open)
 #define O_NONBLOCK     0x1000000
 
-
-// redefinition error here => io.h is getting included somewhere.
-// we implement this function, so the io.h definition conflicts if
-// compiling against the DLL CRT. either rename the io.h def
-// (as with vc_stat), or don't include io.h.
-extern int open(const char* fn, int mode, ...);
-extern int wopen(const wchar_t* fn, int oflag, ...);
+// note: we use the sys_wopen interface because there is no
+// standardized wide-character open().
 extern int close(int);
 
 //
@@ -133,8 +128,5 @@ struct timespec;
 extern int aio_suspend(const struct aiocb* const[], int, const struct timespec*);
 extern int aio_write(struct aiocb*);
 extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
-
-// allocate and return a file descriptor 
-extern int aio_assign_handle(uintptr_t handle);
 
 #endif	// #ifndef INCLUDED_WAIO

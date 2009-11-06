@@ -23,6 +23,7 @@
 #include "file.h"
 
 #include "lib/file/common/file_stats.h"
+#include "lib/sysdep/sysdep.h"	// sys_wopen
 
 
 ERROR_ASSOCIATE(ERR::FILE_ACCESS, L"Insufficient access rights to open file", EACCES);
@@ -51,7 +52,7 @@ LibError Open(const fs::wpath& pathname, wchar_t mode, int& fd)
 #if OS_WIN
 	oflag |= O_BINARY_NP;
 #endif
-	fd = wopen(pathname.string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
+	fd = sys_wopen(pathname.string().c_str(), oflag, S_IRWXO|S_IRWXU|S_IRWXG);
 	if(fd < 0)
 		WARN_RETURN(ERR::FILE_ACCESS);
 

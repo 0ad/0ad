@@ -22,6 +22,7 @@
 #include <wchar.h>
 
 #include "lib/external_libraries/sdl.h"
+#include "lib/wchar.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/cursor.h"
 #include "udbg.h"
@@ -169,6 +170,20 @@ LibError sys_cursor_free(sys_cursor cursor)
 	SDL_FreeCursor((SDL_Cursor *)cursor);
 
 	return INFO::OK;
+}
+
+int sys_wopen(const wchar_t* pathname, int oflag, ...)
+{
+	mode_t mode = 0;
+	if(oflag & O_CREAT)
+	{
+		va_list args;
+		va_start(args, oflag);
+		mode = va_arg(args, mode_t);
+		va_end(args);
+	}
+
+	return open(string_from_wstring(pathname).c_str(), oflag, mode);
 }
 
 // note: just use the sector size: Linux aio doesn't really care about

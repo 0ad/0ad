@@ -95,21 +95,8 @@ private:
 static HandleManager* handleManager;
 
 
-template<typename tchar>
-HANDLE Open(const tchar* fn, DWORD access, DWORD share, DWORD create, DWORD flags)
-{
-	return CreateFileA(fn, access, share, 0, create, flags, 0);
-}
-
-template<>
-HANDLE Open<wchar_t>(const wchar_t* fn, DWORD access, DWORD share, DWORD create, DWORD flags)
-{
-	return CreateFileW(fn, access, share, 0, create, flags, 0);
-}
-
-// open fn in async mode and associate handle with fd.
-template<typename tchar>
-int aio_reopen(int fd, const tchar* fn, int oflag, ...)
+// (re)open file in asynchronous mode and associate handle with fd.
+int aio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 {
 	WinScopedPreserveLastError s;	// CreateFile
 
@@ -132,7 +119,7 @@ int aio_reopen(int fd, const tchar* fn, int oflag, ...)
 
 	// open file
 	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
-	const HANDLE hFile = Open(fn, access, share, create, flags);
+	const HANDLE hFile = CreateFileW(pathname, access, share, 0, create, flags, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
 		WARN_RETURN(-1);
 
@@ -178,52 +165,7 @@ static bool isAioPossible(int fd, bool is_com_port, int oflag)
 	return true;
 }
 
-int open(const char* fn, int oflag, ...)
-{
-	const bool is_com_port = strncmp(fn, "/dev/tty", 8) == 0;
-	// also used later, before aio_reopen
-
-	// translate "/dev/tty%d" to "COM%d"
-	if(is_com_port)
-	{
-		char port[] = "COM1";
-		const char digit = char(fn[8]+1);
-		// PCs only support COM1..COM4.
-		if(!('1' <= digit && digit <= '4'))
-			return -1;
-		port[3] = digit;
-		fn = port;
-	}
-
-	mode_t mode = 0;
-	if(oflag & O_CREAT)
-	{
-		va_list args;
-		va_start(args, oflag);
-		mode = va_arg(args, mode_t);
-		va_end(args);
-	}
-
-	WinScopedPreserveLastError s;	// _open's CreateFile
-	int fd = _open(fn, oflag, mode);
-
-	// none of the above apply; now re-open the file.
-	// note: this is possible because _open defaults to DENY_NONE sharing.
-	if(isAioPossible(fd, is_com_port, oflag))
-		WARN_ERR(aio_reopen(fd, fn, oflag));
-
-	// CRT doesn't like more than 255 files open.
-	// warn now, so that we notice why so many are open.
-#ifndef NDEBUG
-	if(fd > 256)
-		WARN_ERR(ERR::LIMIT);
-#endif
-
-	return fd;
-}
-
-
-int wopen(const wchar_t* fn, int oflag, ...)
+int sys_wopen(const wchar_t* pathname, int oflag, ...)
 {
 	mode_t mode = 0;
 	if(oflag & O_CREAT)
@@ -235,12 +177,12 @@ int wopen(const wchar_t* fn, int oflag, ...)
 	}
 
 	WinScopedPreserveLastError s;	// _wopen's CreateFile
-	int fd = _wopen(fn, oflag, mode);
+	int fd = _wopen(pathname, oflag, mode);
 
 	// none of the above apply; now re-open the file.
 	// note: this is possible because _open defaults to DENY_NONE sharing.
 	if(isAioPossible(fd, false, oflag))
-		WARN_ERR(aio_reopen(fd, fn, oflag));
+		WARN_ERR(aio_reopen(fd, pathname, oflag));
 
 	// CRT doesn't like more than 255 files open.
 	// warn now, so that we notice why so many are open.
