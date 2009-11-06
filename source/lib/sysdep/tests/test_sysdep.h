@@ -20,6 +20,7 @@
 #include "lib/lib.h"
 #include "lib/path_util.h"
 #include "lib/secure_crt.h"
+#include "lib/wchar.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/posix/posix.h"	// fminf etc.
 
@@ -107,6 +108,7 @@ public:
 		sprintf_s(root, ARRAY_SIZE(root), "%s/pyrogenesis-test-sysdep-XXXXXX", tmpdir);
 		TS_ASSERT(mkdtemp(root));
 		std::string rootstr(root);
+		std::wstring rootstrw(wstring_from_string(rootstr));
 
 		const char* dirs[] = {
 			"/example",
@@ -138,39 +140,39 @@ public:
 		// Try with absolute paths
 		{
 			Mock_dladdr d(rootstr+"/example/executable");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/executable");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
+			TS_ASSERT_WSTR_EQUALS(path.string(), rootstrw+L"/example/executable");
 		}
 		{
 			Mock_dladdr d(rootstr+"/example/./a/b/../e/../../executable");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/executable");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
+			TS_ASSERT_WSTR_EQUALS(path.string(), rootstrw+L"/example/executable");
 		}
 
 		// Try with relative paths
 		{
 			Mock_dladdr d("./executable");
 			Mock_getcwd m(rootstr+"/example");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/executable");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
+			TS_ASSERT_WSTR_EQUALS(path.string(), rootstrw+L"/example/executable");
 		}
 		{
 			Mock_dladdr d("./executable");
 			Mock_getcwd m(rootstr+"/example/");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/executable");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
+			TS_ASSERT_WSTR_EQUALS(path.string(), rootstrw+L"/example/executable");
 		}
 		{
 			Mock_dladdr d("../d/../../f/executable");
 			Mock_getcwd m(rootstr+"/example/a/b/c");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), INFO::OK);
-			TS_ASSERT_STR_EQUALS(path, rootstr+"/example/a/f/executable");
+			TS_ASSERT_EQUALS(sys_get_executable_name(path), INFO::OK);
+			TS_ASSERT_WSTR_EQUALS(path.string(), rootstrw+L"/example/a/f/executable");
 		}
 
 		// Try with pathless names
 		{
 			Mock_dladdr d("executable");
-			TS_ASSERT_EQUALS(sys_get_executable_name(path, PATH_MAX), ERR::NO_SYS);
+			TS_ASSERT_EQUALS(sys_get_executable_name(path), ERR::NO_SYS);
 		}
 
 		// Clean up the temporary files

@@ -20,6 +20,7 @@
 #include "GUIRenderer.h"
 
 #include "lib/ogl.h"
+#include "lib/wchar.h"
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 
@@ -369,7 +370,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		if (SpriteName.substr(0, 10) == "stretched:")
 		{
 			SGUIImage Image;
-			Image.m_TextureName = VfsPath(L"art/textures/ui")/CStrW(SpriteName.substr(10));
+			Image.m_TextureName = VfsPath(L"art/textures/ui")/wstring_from_string(SpriteName.substr(10));
 			CClientArea ca("0 0 100% 100%");
 			Image.m_Size = ca;
 			Image.m_TextureSize = ca;

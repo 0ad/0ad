@@ -84,7 +84,7 @@ void CXeromyces::GetXMBPath(const PIVFS& vfs, const VfsPath& xmlFilename, const 
 	debug_assert(modPath != 0);
 	wchar_t modName[PATH_MAX];
 	// .. NOTE: can't use %ls, of course (keeps going beyond '/')
-	int matches = swscanf(modPath, L"mods/%[^/]", modName);
+	int matches = swscanf(modPath, L"mods/%l[^/]", modName);
 	debug_assert(matches == 1);
 
 	// build full name: cache, then mod name, XMB subdir, original XMB path

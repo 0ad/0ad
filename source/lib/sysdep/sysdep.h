@@ -63,7 +63,7 @@ extern ErrorReaction sys_display_error(const wchar_t* text, size_t flags);
  * sys_vswprintf: doesn't quite follow the standard for vswprintf, but works
  * better across compilers:
  * - handles positional parameters and %lld
- * - always null-terminates the buffer
+ * - always null-terminates the buffer, if count > 0
  * - returns -1 on overflow (if the output string (including null) does not fit in the buffer)
  **/
 extern int sys_vswprintf(wchar_t* buffer, size_t count, const wchar_t* format, va_list argptr);

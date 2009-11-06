@@ -58,6 +58,9 @@ class TestPrintf : public CxxTest::TestSuite
 public:
 	void test_truncate()
 	{
+		_test_truncate(0, L"................", -1, L"1234");
+		_test_truncate(1, L"",                 -1, L"1234");
+
 		_test_truncate(8, L"1234",     4, L"1234");
 		_test_truncate(8, L"1234567",  7, L"1234567");
 		_test_truncate(8, L"1234567", -1, L"12345678");

@@ -49,6 +49,7 @@ CGUI
 #include "lib/input.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
+#include "lib/wchar.h"
 #include "lib/sysdep/sysdep.h"
 // TODO Gee: Whatever include CRect/CPos/CSize
 #include "ps/Overlay.h"
@@ -1556,7 +1557,7 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 
 		if (attr_name == "texture")
 		{
-			image.m_TextureName = VfsPath(L"art/textures/ui")/CStrW(attr_value);
+			image.m_TextureName = VfsPath(L"art/textures/ui")/wstring_from_string(attr_value);
 		}
 		else
 		if (attr_name == "size")

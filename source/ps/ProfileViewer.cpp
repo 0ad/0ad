@@ -26,13 +26,15 @@
 #include <algorithm>
 
 #include "ProfileViewer.h"
-#include "Profile.h"
-#include "renderer/Renderer.h"
-#include "lib/res/graphics/unifont.h"
-#include "Filesystem.h"
-#include "Hotkey.h"
+
 #include "ps/CLogger.h"
+#include "ps/Filesystem.h"
+#include "ps/Hotkey.h"
+#include "ps/Profile.h"
+#include "lib/wchar.h"
 #include "lib/external_libraries/sdl.h"
+#include "lib/res/graphics/unifont.h"
+#include "renderer/Renderer.h"
 
 #define LOG_CATEGORY L"profiler"
 extern int g_xres, g_yres;
@@ -430,7 +432,7 @@ void CProfileViewer::SaveToFile()
 		// Open the file. (It will be closed when the CProfileViewer
 		// destructor is called.)
 		fs::wpath path(psLogDir()/L"profile.txt");
-		m->outputStream.open(path.string().c_str(), std::ofstream::out | std::ofstream::trunc);
+		m->outputStream.open(string_from_wstring(path.string()).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 		if (m->outputStream.fail())
 		{

@@ -21,9 +21,10 @@
 #include "CConsole.h"
 #include "ConfigDB.h"
 #include "lib/path_util.h"
+#include "lib/wchar.h"
 #include "lib/sysdep/sysdep.h"
 
-#include <time.h>
+#include <ctime>
 #include <ostream>
 
 // Set up a default logger that throws everything away, because that's
@@ -55,10 +56,10 @@ const wchar_t* html_footer = L"";
 CLogger::CLogger()
 {
 	fs::wpath mainlogPath(psLogDir()/L"mainlog.html");
-	m_MainLog = new std::wofstream(mainlogPath.string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	m_MainLog = new std::wofstream(string_from_wstring(mainlogPath.string()).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	fs::wpath interestinglogPath(psLogDir()/L"interestinglog.html");
-	m_InterestingLog = new std::wofstream(interestinglogPath.string().c_str(), std::ofstream::out | std::ofstream::trunc);
+	m_InterestingLog = new std::wofstream(string_from_wstring(interestinglogPath.string()).c_str(), std::ofstream::out | std::ofstream::trunc);
 
 	m_OwnsStreams = true;
 	m_UseDebugPrintf = true;

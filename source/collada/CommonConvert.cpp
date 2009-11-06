@@ -35,7 +35,7 @@ void require_(int line, bool value, const char* type, const char* message)
 {
 	if (value) return;
 	char linestr[16];
-	sprintf_s(linestr, sizeof(linestr)/sizeof(linestr[0]), "%d", line);
+	sprintf(linestr, "%d", line);
 	throw ColladaException(std::string(type) + " (line " + linestr + "): " + message);
 }
 

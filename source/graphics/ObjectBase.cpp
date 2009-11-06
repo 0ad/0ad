@@ -137,10 +137,10 @@ bool CObjectBase::Load(const std::wstring& filename)
 					int option_name = option.GetNodeName();
 
 					if (option_name == el_mesh)
-						currentVariant->m_ModelFilename = VfsPath(L"art/meshes")/CStrW(option.GetText());
+						currentVariant->m_ModelFilename = VfsPath(L"art/meshes")/(std::wstring)CStrW(option.GetText());
 
 					else if (option_name == el_texture)
-						currentVariant->m_TextureFilename = VfsPath(L"art/textures/skins")/CStrW(option.GetText());
+						currentVariant->m_TextureFilename = VfsPath(L"art/textures/skins")/(std::wstring)CStrW(option.GetText());
 
 					else if (option_name == el_colour)
 						currentVariant->m_Color = option.GetText();
@@ -160,7 +160,7 @@ bool CObjectBase::Load(const std::wstring& filename)
 								}
 								else if (ae.Name == at_file)
 								{
-									anim.m_FileName = VfsPath(L"art/animation")/CStrW(ae.Value);
+									anim.m_FileName = VfsPath(L"art/animation")/(std::wstring)CStrW(ae.Value);
 								}
 								else if (ae.Name == at_speed)
 								{
@@ -221,7 +221,7 @@ bool CObjectBase::Load(const std::wstring& filename)
 		}
 		else if (child_name == el_material)
 		{
-			m_Material = VfsPath(L"art/materials")/CStrW(child.GetText());
+			m_Material = VfsPath(L"art/materials")/(std::wstring)CStrW(child.GetText());
 		}
 	}
 

@@ -18,9 +18,10 @@
 #include "precompiled.h"
 
 #include "ps/i18n.h"
-#include "scripting/ScriptingHost.h"
 
+#include "lib/wchar.h"
 #include "ps/Filesystem.h"
+#include "scripting/ScriptingHost.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"i18n"
@@ -58,7 +59,7 @@ bool I18n::LoadLanguage(const char* name)
 	// Automatically delete the pointer when returning early
 	std::auto_ptr<CLocale_interface> locale (locale_ptr);
 
-	VfsPath dirname = AddSlash(VfsPath(L"language")/CStrW(name));
+	VfsPath dirname = AddSlash(VfsPath(L"language")/wstring_from_string(name));
 
 	// Open *.lng with LoadStrings
 	VfsPaths pathnames;

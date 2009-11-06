@@ -52,10 +52,10 @@ TraceEntry::TraceEntry(const std::wstring& text)
 	wchar_t pathname[PATH_MAX] = L"";
 	wchar_t action;
 #if EMULATE_SECURE_CRT
-	#define TRACE_FORMAT L"%f: %c \"%" STRINGIZE(PATH_MAX) "[^\"]\" %zd\n" /* use a macro to allow compile-time type-checking */
+	#define TRACE_FORMAT L"%f: %lc \"%" STRINGIZE(PATH_MAX) "l[^\"]\" %zd\n" /* use a macro to allow compile-time type-checking */
 	const int fieldsRead = swscanf(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
 #else
-	#define TRACE_FORMAT L"%f: %c \"%[^\"]\" %d\n"
+	#define TRACE_FORMAT L"%f: %lc \"%l[^\"]\" %d\n"
 	const int fieldsRead = swscanf_s(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, 1, pathname, PATH_MAX, &m_size);
 #endif
 	debug_assert(fieldsRead == 4);

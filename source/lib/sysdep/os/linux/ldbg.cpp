@@ -211,17 +211,21 @@ static int read_symbols(const char *file_name, symbol_file_context *ctx)
 
 void udbg_bfd_init(void)
 {
-	char n_path[PATH_MAX];
-	const char *exename=n_path;
-	if (sys_get_executable_name(n_path, sizeof(n_path)) != INFO::OK)
+	fs::wpath path;
+	std::string exename;
+	if (sys_get_executable_name(path) == INFO::OK)
 	{
-		debug_printf("sys_get_executable_name didn't work, using hard-coded guess %s.\n", EXE_NAME);
-		exename=EXE_NAME;
+		exename = string_from_wstring(path.string());
+	}
+	else
+	{
+		debug_printf(L"sys_get_executable_name didn't work, using hard-coded guess %hs.\n", EXE_NAME);
+		exename = EXE_NAME;
 	}
 
-	debug_printf("udbg_bfd_init: loading symbols from %s.\n", exename);
+	debug_printf(L"udbg_bfd_init: loading symbols from %hs.\n", exename.c_str());
 
-	if (read_symbols(exename, &ps_dbg_context)==0)
+	if (read_symbols(exename.c_str(), &ps_dbg_context)==0)
 		udbg_initialized=true;
 
 #if PROFILE_RESOLVE_SYMBOL

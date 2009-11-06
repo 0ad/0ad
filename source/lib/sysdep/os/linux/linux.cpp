@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "lib/wchar.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/external_libraries/boost_filesystem.h"
 

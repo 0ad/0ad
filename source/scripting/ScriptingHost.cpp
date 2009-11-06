@@ -403,9 +403,9 @@ jsval ScriptingHost::UTF16ToValue(const utf16string &str)
 // prints that message as well as locus to log, debug output and console.
 void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* pmessage, JSErrorReport* report)
 {
-	const CStrW file = report->filename? report->filename : "(current document)";
-	const int line   = report->lineno;
-	const CStrW message = pmessage? pmessage : "No error message available";
+	const char* file = report->filename? report->filename : "(current document)";
+	int line = report->lineno;
+	const char* message = pmessage? pmessage : "No error message available";
 	// apparently there is no further information in this struct we can use
 	// because linebuf/tokenptr require a buffer to have been allocated.
 	// that doesn't look possible since we are a callback and there is
@@ -413,12 +413,12 @@ void ScriptingHost::ErrorReporter(JSContext* UNUSED(cx), const char* pmessage, J
 
 	// for developer convenience: write to output window so they can
 	// double-click on that line and be taken to the error locus.
-	debug_printf(L"%ls(%d): %ls\n", file.c_str(), line, message.c_str());
+	debug_printf(L"%hs(%d): %hs\n", file, line, message);
 
 	// note: CLogger's LOG already takes care of writing to the console,
 	// so don't do that here.
 
-	LOG(CLogger::Error, LOG_CATEGORY, L"JavaScript Error (%ls, line %d): %ls", file.c_str(), line, message.c_str());
+	LOG(CLogger::Error, LOG_CATEGORY, L"JavaScript Error (%hs, line %d): %hs", file, line, message);
 }
 
 #ifndef NDEBUG

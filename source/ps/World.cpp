@@ -86,7 +86,7 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 	// Load the map, if one was specified
 	if (pAttribs->m_MapFile.length())
 	{
-		VfsPath mapfilename(VfsPath(L"maps/scenarios/")/pAttribs->m_MapFile);
+		VfsPath mapfilename(VfsPath(L"maps/scenarios/")/(std::wstring)pAttribs->m_MapFile);
 		CMapReader* reader = 0;
 
 		try {

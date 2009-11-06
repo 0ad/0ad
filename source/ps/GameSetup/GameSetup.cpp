@@ -17,18 +17,19 @@
 
 #include "precompiled.h"
 
-#include "lib/external_libraries/sdl.h"
-#include "lib/ogl.h"
-#include "lib/timer.h"
+#include "lib/app_hooks.h"
 #include "lib/input.h"
 #include "lib/lockfree.h"
-#include "lib/app_hooks.h"
+#include "lib/ogl.h"
+#include "lib/timer.h"
+#include "lib/wchar.h"
+#include "lib/external_libraries/sdl.h"
+#include "lib/res/h_mgr.h"
+#include "lib/res/graphics/cursor.h"
+#include "lib/res/sound/snd_mgr.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/gfx.h"
-#include "lib/res/h_mgr.h"
-#include "lib/res/sound/snd_mgr.h"
 #include "lib/tex/tex.h"
-#include "lib/res/graphics/cursor.h"
 
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -565,8 +566,8 @@ static void InitVfs(const CmdLineArgs& args)
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		size_t priority = i;
-		const int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
-		const CStrW modName(mods[i]);
+		int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
+		std::wstring modName (wstring_from_string(mods[i]));
 		g_VFS->Mount(L"", AddSlash(modLoosePath/modName), flags, priority);
 		g_VFS->Mount(L"", AddSlash(modArchivePath/modName), flags, priority);
 	}

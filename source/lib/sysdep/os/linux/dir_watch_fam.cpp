@@ -45,7 +45,7 @@ struct DirWatch
 
 	~DirWatch()
 	{
-		debug_assert(initialized > 0)
+		debug_assert(initialized > 0);
 
 		FAMRequest req;
 		req.reqnum = reqnum;
@@ -82,7 +82,7 @@ LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
 		else
 		{
 			initialized = -1;
-			LOG(CLogger::Error, "", "Error initializing FAM; hotloading will be disabled");
+			LOG(CLogger::Error, L"", L"Error initializing FAM; hotloading will be disabled");
 			return ERR::FAIL;	// NOWARN
 		}
 	}
@@ -93,7 +93,7 @@ LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
 	FAMRequest req;
 	if(FAMMonitorDirectory(&fc, path_c.string().c_str(), &req, tmpDirWatch.get()) < 0)
 	{
-		debug_warn("res_watch_dir failed!");
+		debug_warn(L"res_watch_dir failed!");
 		WARN_RETURN(ERR::FAIL);	// no way of getting error code?
 	}
 
@@ -107,7 +107,7 @@ LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
 		{
 			// Oops, failed - rather than getting stuck waiting forever for a
 			// FAMEndExist event that may never come, just give up and return now.
-			debug_warn("FAMNextEvent failed");
+			debug_warn(L"FAMNextEvent failed");
 			return ERR::FAIL;
 		}
 		// (We might be missing some real events other than the FAMExists ones, if

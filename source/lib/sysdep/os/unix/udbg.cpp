@@ -80,15 +80,8 @@ void debug_puts(const wchar_t* text)
 	fflush(stdout);
 }
 
-// TODO: Do these properly. (I don't know what I'm doing; I just
-// know that these functions are required in order to compile...)
-
-int debug_WriteCrashlog(const wchar_t* text)
-{
-	abort();
-}
-
 int debug_IsPointerBogus(const void* UNUSED(p))
 {
+	// TODO: maybe this should do some checks
 	return false;
 }

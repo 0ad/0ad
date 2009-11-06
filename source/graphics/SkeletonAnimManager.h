@@ -46,8 +46,6 @@ public:
 	CSkeletonAnimDef* GetAnimation(const VfsPath& pathname);
 
 private:
-	CSkeletonAnimDef* LoadAnimation(const VfsPath& pathname);
-
 	// map of all known animations. Value is NULL if it failed to load.
 	std::map<VfsPath, CSkeletonAnimDef*> m_Animations;
 

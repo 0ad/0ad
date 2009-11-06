@@ -22,22 +22,13 @@
 
 // See declaration in sysdep.h for explanation of need
 
-int sys_vsnprintf(wchar_t* buffer, size_t count, const wchar_t* format, va_list argptr)
+int sys_vswprintf(wchar_t* buffer, size_t count, const wchar_t* format, va_list argptr)
 {
 	int ret = vswprintf(buffer, count, format, argptr);
 
-	/*
-	"The glibc implementation of the functions snprintf() and vsnprintf() conforms
-	to the C99 standard ... since glibc version 2.1. Until glibc 2.0.6 they would
-	return -1 when the output was truncated."
-	- man printf
-
-	MSVC's _vsnprintf still returns -1, so we want this one to do the same (for
-	compatibility), if the output (including the terminating null) is truncated.
-	*/
-
-	if (ret >= (int)count)
-		return -1;
+	// Guarantee the buffer is null terminated on error
+	if (ret < 0 && count > 0)
+		buffer[count-1] = '\0';
 
 	return ret;
 }

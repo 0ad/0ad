@@ -22,6 +22,7 @@
 #include "ps/CConsole.h"
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "lib/timer.h"
+#include "lib/wchar.h"
 #include "lib/res/sound/snd_mgr.h"
 #include "Config.h"
 
@@ -73,7 +74,7 @@ CStr g_AutostartMap = "";
 
 static void LoadProfile( const CStr& profile )
 {
-	VfsPath path = VfsPath(L"profiles") / CStrW(profile);
+	VfsPath path = VfsPath(L"profiles") / wstring_from_string(profile);
 
 	VfsPath configFilename = path / L"settings/user.cfg";
 	g_ConfigDB.SetConfigFile(CFG_USER, true, configFilename.string().c_str());

@@ -27,6 +27,7 @@
 #include "precompiled.h"
 #include "NetLog.h"
 #include "ps/CConsole.h"
+#include "lib/wchar.h"
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -374,7 +375,7 @@ void CNetLogFileSink::OpenFile( const fs::wpath& fileName, bool append )
 	if ( m_File.is_open() ) m_File.close();
 
 	// Open the file and log start
-	m_File.open( fileName.string().c_str(), append ? std::ios::app : std::ios::out );
+	m_File.open( string_from_wstring(fileName.string()).c_str(), append ? std::ios::app : std::ios::out );
 	if ( !m_File.is_open() )
 	{
 		// throw std::ios_base::failure
