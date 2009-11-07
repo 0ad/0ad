@@ -296,7 +296,7 @@ void CConsole::DrawHistory(void) {
 				glTranslatef(0.0f, -(float)m_iFontHeight, 0.0f);
 
 				glPushMatrix();
-					glwprintf(L"%ls", Iter->data());
+					glwprintf(L"%ls", Iter->c_str());
 				glPopMatrix();
 			}
 
@@ -458,7 +458,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 						}
 						if(!bad)
 						{
-							SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
+							SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
 							return;
 						}
 					}
@@ -489,7 +489,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 						}
 						if(!bad)
 						{
-							SetBuffer(m_deqBufHistory.at(iHistoryPos).data());
+							SetBuffer(L"%ls", m_deqBufHistory.at(iHistoryPos).c_str());
 							return;
 						}
 					}
@@ -664,7 +664,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 			if (!m_mapFuncList.size()) InsertMessage(L"   (none registered)");
 
 			for (Iter = m_mapFuncList.begin(); Iter != m_mapFuncList.end(); Iter++)
-				InsertMessage(L"   \\%ls", Iter->first.data());
+				InsertMessage(L"   \\%ls", Iter->first.c_str());
 
 			InsertMessage(L"");
 		}

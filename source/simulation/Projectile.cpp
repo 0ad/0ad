@@ -227,7 +227,7 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 
 fail:
 	*rval = JSVAL_NULL;
-	JS_ReportError( cx, err );
+	JS_ReportError( cx, "%s", err );
 	return( JS_TRUE );
 }
 

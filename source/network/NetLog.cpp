@@ -454,7 +454,7 @@ void CNetLogConsoleSink::Write( const CStr& message )
 	// Write message
 	if ( !message.empty() )
 	{	
-		g_Console->InsertMessage( message.FromUTF8().c_str() );
+		g_Console->InsertMessage( L"%ls", message.FromUTF8().c_str() );
 	}
 }
 

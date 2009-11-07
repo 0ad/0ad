@@ -962,11 +962,12 @@ void Init(const CmdLineArgs& args, int flags)
 	if(missing)
 	{
 		wchar_t buf[500];
-		const wchar_t* fmt =
+		swprintf_s(buf, ARRAY_SIZE(buf),
 			L"The %hs extension doesn't appear to be available on your computer."
 			L" The game may still work, though - you are welcome to try at your own risk."
-			L" If not or it doesn't look right, upgrade your graphics card.";
-		swprintf_s(buf, ARRAY_SIZE(buf), fmt, missing);
+			L" If not or it doesn't look right, upgrade your graphics card.",
+			missing
+		);
 		DEBUG_DISPLAY_ERROR(buf);
 		// TODO: i18n
 	}

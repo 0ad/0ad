@@ -913,7 +913,7 @@ void CNetServer::PlayerAttributeUpdate(
 
 	CNetServer* pServer = ( CNetServer* )pData;
 
-	g_Console->InsertMessage( L"PlayerAttributeUpdate(%d): %ls = \"%ls\"", pPlayer->GetPlayerID(), name.c_str(), newValue.c_str() );
+	g_Console->InsertMessage( L"PlayerAttributeUpdate(%ld): %ls = \"%ls\"", pPlayer->GetPlayerID(), name.c_str(), newValue.c_str() );
 
 	CPlayerConfigMessage* pNewMessage = new CPlayerConfigMessage;
 	if ( !pNewMessage ) return;

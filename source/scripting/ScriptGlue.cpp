@@ -117,7 +117,7 @@ JSBool WriteLog(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
 		}
 	}
 
-	LOG(CLogger::Normal, LOG_CATEGORY, logMessage.c_str());
+	LOG(CLogger::Normal, LOG_CATEGORY, L"%ls", logMessage.c_str());
 
 	*rval = JSVAL_TRUE;
 	return JS_TRUE;

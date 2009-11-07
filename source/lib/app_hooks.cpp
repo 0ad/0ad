@@ -67,7 +67,7 @@ static void def_translate_free(const wchar_t* UNUSED(text))
 
 static void def_log(const wchar_t* text)
 {
-	wprintf(text);
+	wprintf(L"%ls", text);
 }
 
 

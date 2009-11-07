@@ -298,7 +298,7 @@ bool CTechnology::LoadElEffect( XMBElement effect, CXeromyces& XeroFile, const V
 				JSFunction* fn = JS_ValueToFunction( g_ScriptingHost.GetContext(), fnval );
 				if( !fn )
 				{
-					LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology::LoadXml: Function does not exist for %hs in file %ls. Load failed.", funcName.c_str(), pathname.string().c_str() );
+					LOG(CLogger::Error, LOG_CATEGORY, L"CTechnology::LoadXml: Function does not exist for %ls in file %ls. Load failed.", CStrW(funcName).c_str(), pathname.string().c_str() );
 					return false;
 				}
 				m_effectFunction.SetFunction( fn );

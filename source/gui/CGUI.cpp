@@ -1052,7 +1052,7 @@ void CGUI::ReportParseError(const wchar_t* str, ...)
 	// Important, set ParseError to true
 	++m_Errors;
 
-	LOG(CLogger::Error, LOG_CATEGORY, buffer);
+	LOG(CLogger::Error, LOG_CATEGORY, L"%ls", buffer);
 }
 
 /**
@@ -1315,7 +1315,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// Try setting the value
 		if (object->SetSetting(pFile->GetAttributeString(attr.Name), CStr(attr.Value), true) != PSRETURN_OK)
 		{
-			ReportParseError(L"(object: %hs) Can't set \"%hs\" to \"%hs\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), attr.Value.c_str());
+			ReportParseError(L"(object: %hs) Can't set \"%hs\" to \"%ls\"", object->GetPresentableName().c_str(), pFile->GetAttributeString(attr.Name).c_str(), CStrW(attr.Value).c_str());
 
 			// This is not a fatal error
 		}
@@ -1445,7 +1445,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	catch (PSERROR_GUI& e)
 	{
 		CStrW what(e.what());
-		ReportParseError(what.c_str());
+		ReportParseError(L"%ls", what.c_str());
 	}
 }
 

@@ -301,11 +301,7 @@ void ogl_WarnIfError()
 	}
 
 	if(error_enountered)
-	{
-		wchar_t msg[64];
-		swprintf_s(msg, ARRAY_SIZE(msg), L"OpenGL error(s) occurred: %04x", (int)first_error);
-		debug_printf(msg);
-	}
+		debug_printf(L"OpenGL error(s) occurred: %04x", (int)first_error);
 }
 #endif
 

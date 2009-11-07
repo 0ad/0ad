@@ -112,9 +112,9 @@ LibError debug_DumpStack(wchar_t* buf, size_t max_chars, void* UNUSED(context), 
 		int len;
 		
 		if (debug_ResolveSymbol(bt[i], symbol, file, &line) == 0)
-			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x) %ls:%d %ls\n", bt[i], file, line, symbol);
+			len = swprintf(bufpos, MAX_OUT_CHARS, L"(%p) %ls:%d %ls\n", bt[i], file, line, symbol);
 		else
-			len = swprintf(bufpos, MAX_OUT_CHARS, L"(0x%08x)\n", bt[i]);
+			len = swprintf(bufpos, MAX_OUT_CHARS, L"(%p)\n", bt[i]);
 		
 		if (len < 0)
 		{
