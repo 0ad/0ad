@@ -504,7 +504,8 @@ finished_reading:
 
 	// For consistency with GCC's vsnprintf, make sure the buffer is null-terminated
 	// and return an error if that truncates the output
-	buffer[count-1] = '\0';
+	if(count > 0)
+		buffer[count-1] = '\0';
 	if (ret == (int)count)
 		return -1;
 
