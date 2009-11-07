@@ -458,7 +458,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 						}
 						if(!bad)
 						{
-							SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
+							SetBuffer(L"%ls", m_deqBufHistory.at(iHistoryPos).c_str());
 							return;
 						}
 					}

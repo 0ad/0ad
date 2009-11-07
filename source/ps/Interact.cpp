@@ -1042,7 +1042,7 @@ void CMouseoverEntities::RenderOverlays()
 			glColor4f( 1.0f, 1.0f, 1.0f, it->fade );
 			glTranslatef( x, g_Renderer.GetHeight() - y, 0.0f );
 			glScalef( 1.0f, -1.0f, 1.0f );
-			glwprintf( L"%d", it->entity->m_grouped );
+			glwprintf( L"%ld", it->entity->m_grouped );
 			glDisable( GL_TEXTURE_2D );
 			glPopMatrix();
 		}
