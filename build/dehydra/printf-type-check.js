@@ -202,7 +202,7 @@ function walk_printfs(fndecl) {
         }
 
         var code = TREE_CODE(t);
-        if (code == 'CALL_EXPR') {
+        if (code == CALL_EXPR) {
             var decl = call_function_decl(t);
             if (! decl)
                 return true;
