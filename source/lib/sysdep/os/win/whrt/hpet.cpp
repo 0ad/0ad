@@ -163,6 +163,8 @@ private:
 		return INFO::OK;
 	}
 
+#define HAVE_X64_MOVD ARCH_AMD64 && (ICC_VERSION || MSC_VERSION >= 1500)
+
 	// note: this is atomic even on 32-bit CPUs (Pentium MMX and
 	// above have a 64-bit data bus and MOVQ instruction)
 	u64 Read64(size_t offset) const
@@ -171,7 +173,7 @@ private:
 		debug_assert(offset % 8 == 0);
 		const uintptr_t address = uintptr_t(m_hpetRegisters)+offset;
 		const __m128i value128 = _mm_loadl_epi64((__m128i*)address);
-#if ARCH_AMD64
+#if HAVE_X64_MOVD
 		return _mm_cvtsi128_si64x(value128);
 #else
 		__declspec(align(16)) u32 values[4];
@@ -186,7 +188,7 @@ private:
 		debug_assert(offset % 8 == 0);
 		debug_assert(offset != CAPS_AND_ID);	// can't write to read-only registers
 		const uintptr_t address = uintptr_t(m_hpetRegisters)+offset;
-#if ARCH_AMD64
+#if HAVE_X64_MOVD
 		const __m128i value128 = _mm_cvtsi64x_si128(value);
 #else
 		const __m128i value128 = _mm_set_epi32(0, 0, int(value >> 32), int(value & 0xFFFFFFFF));

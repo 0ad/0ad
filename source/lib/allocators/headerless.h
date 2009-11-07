@@ -44,6 +44,16 @@
 class HeaderlessAllocator
 {
 public:
+	// allocators must 'naturally' align pointers, i.e. ensure they are
+	// multiples of the largest native type (currently __m128).
+	// since there are no headers, we can guarantee alignment by
+	// requiring sizes to be multiples of allocationGranularity.
+	static const size_t allocationGranularity = 16;
+
+	// allocations must be large enough to hold our boundary tags
+	// when freed. (see rationale above BoundaryTagManager)
+	static const size_t minAllocationSize = 128;
+
 	/**
 	 * @param poolSize maximum amount of memory that can be allocated.
 	 * this much virtual address space is reserved up-front (see Pool).
@@ -57,15 +67,16 @@ public:
 	void Reset();
 
 	/**
-	 * @param size [bytes] must be a multiple of the minimum alignment and
-	 * enough to store a block header. (this allocator is designed for
-	 * page-aligned requests but can handle smaller amounts.)
+	 * @param size [bytes] (= minAllocationSize + i*allocationGranularity).
+	 * (this allocator is designed for requests on the order of several KiB)
 	 * @return allocated memory or 0 if the pool is too fragmented or full.
 	 **/
 	void* Allocate(size_t size) throw();
 
 	/**
 	 * deallocate memory.
+	 * @param p must be exactly as returned by Allocate (in particular,
+	 * evenly divisible by allocationGranularity)
 	 * @param size must be exactly as specified to Allocate.
 	 **/
 	void Deallocate(void* p, size_t size);

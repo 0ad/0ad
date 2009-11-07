@@ -17,6 +17,7 @@
 
 #include "lib/self_test.h"
 
+#include "lib/bits.h"	// round_down
 #include "lib/allocators/headerless.h"
 
 void* const null = 0;
@@ -31,10 +32,10 @@ public:
 		// (these are disabled because they raise an assert)
 #if 0
 		// can't Allocate unaligned sizes
-		TS_ASSERT_EQUALS(a.Allocate(1), null);
+		TS_ASSERT_EQUALS(a.Allocate(HeaderlessAllocator::minAllocationSize+1), null);
 
 		// can't Allocate too small amounts
-		TS_ASSERT_EQUALS(a.Allocate(16), null);
+		TS_ASSERT_EQUALS(a.Allocate(HeaderlessAllocator::minAllocationSize/2), null);
 #endif
 
 		// can Allocate the entire pool
@@ -66,7 +67,7 @@ public:
 		HeaderlessAllocator a(0x10000);
 
 		// can Allocate non-power-of-two sizes (note: the current
-		// implementation only allows sizes that are multiples of 0x20)
+		// implementation only allows sizes that are multiples of 0x10)
 		void* p1 = a.Allocate(0x5680);
 		void* p2 = a.Allocate(0x78A0);
 		void* p3 = a.Allocate(0x1240);
@@ -98,7 +99,7 @@ public:
 	}
 
 	// will the allocator survive a series of random but valid Allocate/Deallocate?
-	void DISABLED_test_Randomized() // XXX: No it won't (on Linux/amd64)
+	void test_Randomized() // XXX: No it won't (on Linux/amd64)
 	{
 		const size_t poolSize = 1024*1024;
 		HeaderlessAllocator a(poolSize);
@@ -114,7 +115,7 @@ public:
 			if(rand() >= RAND_MAX/2)
 			{
 				const size_t maxSize = (size_t)((rand() / (float)RAND_MAX) * poolSize);
-				const size_t size = maxSize & ~0x1Fu;
+				const size_t size = std::max(HeaderlessAllocator::minAllocationSize, round_down(maxSize, HeaderlessAllocator::allocationGranularity));
 				void* p = a.Allocate(size);
 				if(!p)
 					continue;

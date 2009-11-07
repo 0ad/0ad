@@ -16,7 +16,7 @@
  */
 
 /*
- * (header-.less) pool-based heap allocator
+ * (header-less) pool-based heap allocator
  */
 
 #include "precompiled.h"
@@ -27,10 +27,9 @@
 #include "lib/bits.h"
 
 
-static const size_t minAlignment = 32;
 static const bool performSanityChecks = true;
 
-// shared by the Impl::Allocate and FreedBlock::Validate
+// shared by Impl::Allocate and FreedBlock::Validate
 static bool IsValidSize(size_t size);
 
 
@@ -121,11 +120,10 @@ static bool IsValidSize(size_t size)
 {
 	// note: we disallow the questionable practice of zero-byte allocations
 	// because they may be indicative of bugs.
-
-	if(size < sizeof(FreedBlock))
+	if(size < HeaderlessAllocator::minAllocationSize)
 		return false;
 
-	if(size % minAlignment)
+	if(size % HeaderlessAllocator::allocationGranularity)
 		return false;
 
 	return true;
@@ -386,8 +384,17 @@ private:
 // user data. this isn't 100% reliable, but as with headers, we don't want
 // to insert extra boundary tags into the allocated memory.
 
-// note: footers are also represented as FreedBlock. this is easier to
-// implement but a bit inefficient since we don't need all its fields.
+// note: footers consist of Tag{magic, ID, size}, while headers also
+// need prev/next pointers. this could comfortably fit in 64 bytes,
+// but we don't want to inherit headers from a base class because its
+// prev/next pointers should reside between the magic and ID fields.
+// maintaining separate FreedBlock and Footer classes is also undesirable;
+// we prefer to use FreedBlock for both, which increases the minimum
+// allocation size to 64 + allocationGranularity, e.g. 128.
+// that's not a problem because the allocator is designed for
+// returning pages or IO buffers (4..256 KB).
+cassert(HeaderlessAllocator::minAllocationSize >= 2*sizeof(FreedBlock));
+
 
 class BoundaryTagManager
 {
@@ -633,12 +640,13 @@ public:
 		m_stats.OnAllocate(size);
 
 		Validate();
+		debug_assert((uintptr_t)p % allocationGranularity == 0);
 		return p;
 	}
 
 	void Deallocate(u8* p, size_t size)
 	{
-		debug_assert((uintptr_t)p % minAlignment == 0);
+		debug_assert((uintptr_t)p % allocationGranularity == 0);
 		debug_assert(IsValidSize(size));
 		debug_assert(pool_contains(&m_pool, p));
 		debug_assert(pool_contains(&m_pool, p+size-1));

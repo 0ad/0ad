@@ -212,6 +212,28 @@ template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, size_t& Storage )
 	return true;
 }
 
+
+template<> jsval ToJSVal<ssize_t>( const ssize_t& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> jsval ToJSVal<ssize_t>( ssize_t& Native )
+{
+	return( INT_TO_JSVAL( (int)Native ) );
+}
+
+template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage )
+{
+	int temp;
+	if(!ToPrimitive<int>(cx, v, temp))
+		return false;
+	if(temp < 0)
+		return false;
+	Storage = (ssize_t)temp;
+	return true;
+}
+
 #endif	// #if ARCH_AMD64
 #endif	// #if !GCC_VERSION
 

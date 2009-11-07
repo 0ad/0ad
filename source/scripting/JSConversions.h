@@ -165,6 +165,11 @@ template<> bool ToPrimitive<size_t>( JSContext* cx, jsval v, size_t& Storage );
 template<> jsval ToJSVal<size_t>( const size_t& Native );
 template<> jsval ToJSVal<size_t>( size_t& Native );
 
+// ssize_t
+template<> bool ToPrimitive<ssize_t>( JSContext* cx, jsval v, ssize_t& Storage );
+template<> jsval ToJSVal<ssize_t>( const ssize_t& Native );
+template<> jsval ToJSVal<ssize_t>( ssize_t& Native );
+
 #endif
 
 #endif

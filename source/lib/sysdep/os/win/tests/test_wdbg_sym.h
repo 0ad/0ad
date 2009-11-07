@@ -91,6 +91,8 @@ class TestWdbgSym : public CxxTest::TestSuite
 		int ints[] = { 1,2,3,4,5 };	UNUSED2(ints);
 		wchar_t chars[] = { 'w','c','h','a','r','s',0 }; UNUSED2(chars);
 
+		debug_printf(L"\n(dumping stack frames may result in access violations..)\n");
+
 		// note: we don't want any kind of dialog to be raised, because
 		// this test now always runs. therefore, just make sure a decent
 		// amount of text (not just "(failed)" error messages) was produced.
@@ -102,6 +104,8 @@ class TestWdbgSym : public CxxTest::TestSuite
 			s << text;
 		}
 		debug_FreeErrorMessage(&emm);
+
+		debug_printf(L"(done dumping stack frames)\n");
 	}
 
 	// also used by test_stl as an element type
@@ -253,8 +257,6 @@ class TestWdbgSym : public CxxTest::TestSuite
 	// anyway (to see at a glance whether symbol engine addrs are correct)
 	static void m_test_addrs(int p_int, double p_double, char* p_pchar, uintptr_t p_uintptr)
 	{
-		debug_printf(L"\nTEST_ADDRS\n");
-
 		size_t l_uint = 0x1234;
 		bool l_bool = true; UNUSED2(l_bool);
 		wchar_t l_wchars[] = L"wchar string";
@@ -268,6 +270,8 @@ class TestWdbgSym : public CxxTest::TestSuite
 		static void* s_ptr = (void*)(uintptr_t)0x87654321;
 		static HDC s_hdc = (HDC)0xff0;
 
+#if 0	// output only needed when debugging
+		debug_printf(L"\nTEST_ADDRS\n");
 		debug_printf(L"p_int     addr=%p val=%d\n", &p_int, p_int);
 		debug_printf(L"p_double  addr=%p val=%g\n", &p_double, p_double);
 		debug_printf(L"p_pchar   addr=%p val=%hs\n", &p_pchar, p_pchar);
@@ -278,6 +282,17 @@ class TestWdbgSym : public CxxTest::TestSuite
 		debug_printf(L"l_enum    addr=%p val=%d\n", &l_enum, l_enum);
 		debug_printf(L"l_u8s     addr=%p val=%d\n", &l_u8s, l_u8s);
 		debug_printf(L"l_funcptr addr=%p val=%p\n", &l_funcptr, l_funcptr);
+#else
+		UNUSED2(p_uintptr);
+		UNUSED2(p_pchar);
+		UNUSED2(p_double);
+		UNUSED2(p_int);
+		UNUSED2(l_funcptr);
+		UNUSED2(l_enum);
+		UNUSED2(l_u8s);
+		UNUSED2(l_uint);
+		UNUSED2(l_wchars);
+#endif
 
 		m_test_stl();
 
