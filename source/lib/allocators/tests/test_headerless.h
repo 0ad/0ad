@@ -99,7 +99,7 @@ public:
 	}
 
 	// will the allocator survive a series of random but valid Allocate/Deallocate?
-	void test_Randomized() // XXX: No it won't (on Linux/amd64)
+	void test_Randomized()
 	{
 		const size_t poolSize = 1024*1024;
 		HeaderlessAllocator a(poolSize);
@@ -115,7 +115,8 @@ public:
 			if(rand() >= RAND_MAX/2)
 			{
 				const size_t maxSize = (size_t)((rand() / (float)RAND_MAX) * poolSize);
-				const size_t size = std::max(HeaderlessAllocator::minAllocationSize, round_down(maxSize, HeaderlessAllocator::allocationGranularity));
+				const size_t size = std::max((size_t)HeaderlessAllocator::minAllocationSize, round_down(maxSize, HeaderlessAllocator::allocationGranularity));
+				// (the size_t cast on minAllocationSize prevents max taking a reference to the non-defined variable)
 				void* p = a.Allocate(size);
 				if(!p)
 					continue;
