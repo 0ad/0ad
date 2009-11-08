@@ -534,17 +534,14 @@ void CMiniMap::RebuildTerrainTexture()
 				int hmap = ((int)m_Terrain->GetHeightMap()[(y + j) * m_MapSize + x + i]) >> 8;
 				int val = (hmap / 3) + 170;
 
-				u32 color = 0;
+				u32 color = 0xFFFFFFFF;
 
 				CMiniPatch *mp = m_Terrain->GetTile(x + i, y + j);
-				if(mp)
+				if(mp && mp->Tex1)
 				{
-					CTextureEntry *tex = mp->Tex1 ? g_TexMan.FindTexture(mp->Tex1) : 0;
-					color = tex ? tex->GetBaseColor() : 0xFFFFFFFF;
-				}
-				else
-				{
-					color = 0xFFFFFFFF;
+					CTextureEntry *tex = g_TexMan.FindTexture(mp->Tex1);
+					if(tex)
+						color = tex->GetBaseColor();
 				}
 
 				*dataPtr++ = ScaleColor(color, float(val) / 255.0f);

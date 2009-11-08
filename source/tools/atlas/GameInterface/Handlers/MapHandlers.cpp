@@ -108,12 +108,12 @@ MESSAGEHANDLER(GenerateMap)
 	CTextureEntry* texentry = g_TexMan.FindTexture("grass1_spring"); // TODO: make default customisable
 	Handle tex = texentry ? texentry->GetHandle() : 0;
 
-	int patches = terrain->GetPatchesPerSide();
-	for (int pz = 0; pz < patches; ++pz)
+	int patchesPerSide = terrain->GetPatchesPerSide();
+	for (int pz = 0; pz < patchesPerSide; ++pz)
 	{
-		for (int px = 0; px < patches; ++px)
+		for (int px = 0; px < patchesPerSide; ++px)
 		{
-			CPatch* patch = terrain->GetPatch(px, pz);
+			CPatch* patch = terrain->GetPatch(px, pz);	// can't fail
 
 			for (ssize_t z = 0; z < PATCH_SIZE; ++z)
 			{

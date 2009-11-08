@@ -159,11 +159,13 @@ BEGIN_COMMAND(PaintTerrain)
 		TerrainTile getOld(ssize_t x, ssize_t y)
 		{
 			CMiniPatch* mp = m_Terrain->GetTile(x, y);
+			debug_assert(mp);
 			return TerrainTile(mp->Tex1, mp->Tex1Priority);
 		}
 		void setNew(ssize_t x, ssize_t y, const TerrainTile& val)
 		{
 			CMiniPatch* mp = m_Terrain->GetTile(x, y);
+			debug_assert(mp);
 			mp->Tex1 = val.tex;
 			mp->Tex1Priority = val.priority;
 		}

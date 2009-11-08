@@ -329,7 +329,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	// find out which patches will be drawn
 	for (ssize_t j=0; j<patchesPerSide; j++) {
 		for (ssize_t i=0; i<patchesPerSide; i++) {
-			CPatch* patch=pTerrain->GetPatch(i,j);
+			CPatch* patch=pTerrain->GetPatch(i,j);	// can't fail
 
 			// If the patch is underwater, calculate a bounding box that also contains the water plane
 			CBound bounds = patch->GetBounds();
@@ -379,7 +379,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	{
 		for (ssize_t i=0; i<patchesPerSide; i++)
 		{
-			CPatch* patch=pTerrain->GetPatch(i,j);
+			CPatch* patch=pTerrain->GetPatch(i,j);	// can't fail
 			if(patch->getDrawState() == true)
 			{
 				c->Submit(patch);

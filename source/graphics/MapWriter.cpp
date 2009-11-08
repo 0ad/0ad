@@ -100,12 +100,12 @@ void CMapWriter::EnumTerrainTextures(CTerrain *pTerrain,
 	STileDesc* tileptr=&tiles[0];
 
 	// now iterate through all the tiles
-	ssize_t mapsize=pTerrain->GetPatchesPerSide();
-	for (ssize_t j=0;j<mapsize;j++) {
-		for (ssize_t i=0;i<mapsize;i++) {
+	const ssize_t patchesPerSide=pTerrain->GetPatchesPerSide();
+	for (ssize_t j=0;j<patchesPerSide;j++) {
+		for (ssize_t i=0;i<patchesPerSide;i++) {
 			for (ssize_t m=0;m<PATCH_SIZE;m++) {
 				for (ssize_t k=0;k<PATCH_SIZE;k++) {
-					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
+					CMiniPatch& mp=pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];	// can't fail
 					u16 index=u16(GetHandleIndex(mp.Tex1,handles));
 					if (index==0xFFFF) {
 						index=(u16)handles.size();

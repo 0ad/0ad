@@ -64,16 +64,16 @@ void CTerrain::ReleaseData()
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Initialise: initialise this terrain to the given size (in patches per side);
+// Initialise: initialise this terrain to the given size
 // using given heightmap to setup elevation data
-bool CTerrain::Initialize(ssize_t size,const u16* data)
+bool CTerrain::Initialize(ssize_t patchesPerSide,const u16* data)
 {
 	// clean up any previous terrain
 	ReleaseData();
 
 	// store terrain size
-	m_MapSize=size*PATCH_SIZE+1;
-	m_MapSizePatches=size;
+	m_MapSize=patchesPerSide*PATCH_SIZE+1;
+	m_MapSizePatches=patchesPerSide;
 	// allocate data for new terrain
 	m_Heightmap=new u16[m_MapSize*m_MapSize];
 	m_Patches=new CPatch[m_MapSizePatches*m_MapSizePatches];
@@ -108,6 +108,11 @@ bool CTerrain::IsOnMap(const CVector2D& v) const
 bool CTerrain::IsPassable(const CVector2D &loc/*tile space*/, HEntity entity) const
 {
 	CMiniPatch *pTile = GetTile(loc.x, loc.y);
+	if(!pTile)
+	{
+		LOGWARNING(L"IsPassable: invalid coordinates %.1f %.1f\n", loc.x, loc.y);
+		return false;
+	}
 	if(!pTile->Tex1)
 		return false;		// Invalid terrain type in the scenario file
 	CTextureEntry *pTexEntry = g_TexMan.FindTexture(pTile->Tex1);
@@ -115,7 +120,7 @@ bool CTerrain::IsPassable(const CVector2D &loc/*tile space*/, HEntity entity) co
 	if(!pProperties)
 	{
 		VfsPath texturePath = pTexEntry->GetTexturePath();
-		LOGWARNING(L"no properties loaded for %ls\n", texturePath.string().c_str());
+		LOGWARNING(L"IsPassable: no properties loaded for %ls\n", texturePath.string().c_str());
 		return false;
 	}
 	return pProperties->IsPassable(entity);
@@ -188,7 +193,9 @@ void CTerrain::CalcNormal(ssize_t i, ssize_t j, CVector3D& normal) const
 // out of bounds
 CPatch* CTerrain::GetPatch(ssize_t i, ssize_t j) const
 {
-	// range check: >= 0 and < m_MapSizePatches
+	// range check (invalid indices are passed in by the culling and
+	// patch blend code because they iterate from 0..#patches and examine
+	// neighbors without checking if they're already on the edge)
 	if( (size_t)i >= (size_t)m_MapSizePatches || (size_t)j >= (size_t)m_MapSizePatches )
 		return 0;
 
@@ -197,43 +204,29 @@ CPatch* CTerrain::GetPatch(ssize_t i, ssize_t j) const
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// GetPatch: return the tile at (i,j) in tile space, or null if the tile is out
+// GetTile: return the tile at (i,j) in tile space, or null if the tile is out
 // of bounds
 CMiniPatch* CTerrain::GetTile(ssize_t i, ssize_t j) const
 {
-	// see above
+	// see comment above
 	if( (size_t)i >= (size_t)(m_MapSize-1) || (size_t)j >= (size_t)(m_MapSize-1) )
 		return 0;
 
-	CPatch* patch=GetPatch(i/PATCH_SIZE, j/PATCH_SIZE);
+	CPatch* patch=GetPatch(i/PATCH_SIZE, j/PATCH_SIZE);	// can't fail (due to above check)
 	return &patch->m_MiniPatches[j%PATCH_SIZE][i%PATCH_SIZE];
 }
 
 float CTerrain::GetVertexGroundLevel(ssize_t i, ssize_t j) const
 {
-	if (i < 0)
-		i = 0;
-	else if ((size_t)i >= (size_t)m_MapSize)
-		i = m_MapSize - 1;
-
-	if (j < 0)
-		j = 0;
-	else if ((size_t)j >= (size_t)m_MapSize)
-		j = m_MapSize - 1;
-
+	i = ClampCoordToMap(i);
+	j = ClampCoordToMap(j);
 	return HEIGHT_SCALE * m_Heightmap[j*m_MapSize + i];
 }
 
 float CTerrain::GetSlope(float x, float z) const
 {
-	x /= (float)CELL_SIZE;
-	z /= (float)CELL_SIZE;
-
-	int xi = (int)floor(x);
-	int zi = (int)floor(z);
-
-	ClampCoordToMap(xi);
-	ClampCoordToMap(zi);
+	const ssize_t xi = ClampCoordToMap((ssize_t)floor(x/CELL_SIZE));
+	const ssize_t zi = ClampCoordToMap((ssize_t)floor(z/CELL_SIZE));
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
 	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];
@@ -244,6 +237,7 @@ float CTerrain::GetSlope(float x, float z) const
 	return std::max(std::max(h00, h01), std::max(h10, h11)) -
 	       std::min(std::min(h00, h01), std::min(h10, h11));
 }
+
 CVector2D CTerrain::GetSlopeAngleFace( CEntity* entity ) const
 {
 	CVector2D ret;
@@ -267,31 +261,10 @@ CVector2D CTerrain::GetSlopeAngleFace( CEntity* entity ) const
 
 float CTerrain::GetExactGroundLevel(float x, float z) const
 {
-	x /= (float)CELL_SIZE;
-	z /= (float)CELL_SIZE;
-
-	int xi = (int)floor(x);
-	int zi = (int)floor(z);
-	float xf = x - (float)xi;
-	float zf = z - (float)zi;
-
-	if (xi < 0)
-	{
-		xi = 0; xf = 0.0f;
-	}
-	else if (xi >= (int)m_MapSize-1)
-	{
-		xi = m_MapSize - 2; xf = 1.0f;
-	}
-
-	if (zi < 0)
-	{
-		zi = 0; zf = 0.0f;
-	}
-	else if (zi >= (int)m_MapSize-1)
-	{
-		zi = m_MapSize - 2; zf = 1.0f;
-	}
+	const ssize_t xi = ClampCoordToMap((ssize_t)floor(x/CELL_SIZE));
+	const ssize_t zi = ClampCoordToMap((ssize_t)floor(z/CELL_SIZE));
+	const float xf = clamp(x-xi, 0.0f, 1.0f);
+	const float zf = clamp(z-zi, 0.0f, 1.0f);
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
 	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];
@@ -337,7 +310,7 @@ void CTerrain::Resize(ssize_t size)
 		dst+=copysize;
 		src+=m_MapSize;
 		if (newMapSize>m_MapSize) {
-			// entend the last height to the end of the row
+			// extend the last height to the end of the row
 			for (size_t i=0;i<newMapSize-(size_t)m_MapSize;i++) {
 				*dst++=*(src-1);
 			}
@@ -419,7 +392,7 @@ void CTerrain::InitialisePatches()
 {
 	for (ssize_t j=0;j<m_MapSizePatches;j++) {
 		for (ssize_t i=0;i<m_MapSizePatches;i++) {
-			CPatch* patch=GetPatch(i,j);
+			CPatch* patch=GetPatch(i,j);	// can't fail
 			patch->Initialize(this,i,j);
 		}
 	}
@@ -436,7 +409,7 @@ void CTerrain::SetHeightMap(u16* heightmap)
 	// recalculate patch bounds, invalidate vertices
 	for (ssize_t j=0;j<m_MapSizePatches;j++) {
 		for (ssize_t i=0;i<m_MapSizePatches;i++) {
-			CPatch* patch=GetPatch(i,j);
+			CPatch* patch=GetPatch(i,j);	// can't fail
 			patch->InvalidateBounds();
 			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}
@@ -449,30 +422,30 @@ void CTerrain::SetHeightMap(u16* heightmap)
 // coords); return the average height of the flattened area
 float CTerrain::FlattenArea(float x0, float x1, float z0, float z1)
 {
-	ssize_t tx0=clamp(ssize_t((x0/CELL_SIZE)),      ssize_t(0), m_MapSize);
-	ssize_t tx1=clamp(ssize_t((x1/CELL_SIZE)+1.0f), ssize_t(0), m_MapSize);
-	ssize_t tz0=clamp(ssize_t((z0/CELL_SIZE)),      ssize_t(0), m_MapSize);
-	ssize_t tz1=clamp(ssize_t((z1/CELL_SIZE)+1.0f), ssize_t(0), m_MapSize);
+	const ssize_t tx0=ClampCoordToMap(ssize_t(x0/CELL_SIZE));
+	const ssize_t tx1=ClampCoordToMap(ssize_t((x1/CELL_SIZE)+1.0f));
+	const ssize_t tz0=ClampCoordToMap(ssize_t(z0/CELL_SIZE));
+	const ssize_t tz1=ClampCoordToMap(ssize_t((z1/CELL_SIZE)+1.0f));
 
 	size_t count=0;
-	size_t y=0;
+	double sum=0.0f;
 	for (ssize_t x=tx0;x<=tx1;x++) {
 		for (ssize_t z=tz0;z<=tz1;z++) {
-			y+=m_Heightmap[z*m_MapSize + x];
+			sum+=m_Heightmap[z*m_MapSize + x];
 			count++;
 		}
 	}
-	y/=count;
+	const u16 avgY = u16(sum/count);
 
 	for (ssize_t x=tx0;x<=tx1;x++) {
 		for (ssize_t z=tz0;z<=tz1;z++) {
-			m_Heightmap[z*m_MapSize + x]=(u16)y;
-			CPatch* patch=GetPatch(x/PATCH_SIZE,z/PATCH_SIZE);
+			m_Heightmap[z*m_MapSize + x]=avgY;
+			CPatch* patch=GetPatch(x/PATCH_SIZE,z/PATCH_SIZE);	// can't fail (x,z were clamped)
 			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}
 	}
 
-	return y*HEIGHT_SCALE;
+	return avgY*HEIGHT_SCALE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -480,13 +453,13 @@ float CTerrain::FlattenArea(float x0, float x1, float z0, float z1)
 void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags)
 {
 	// flag vertex data as dirty for affected patches, and rebuild bounds of these patches
-	ssize_t pi0 = clamp((i0/PATCH_SIZE)-1, ssize_t(0), m_MapSizePatches);
-	ssize_t pi1 = clamp((i1/PATCH_SIZE)+1, ssize_t(0), m_MapSizePatches);
-	ssize_t pj0 = clamp((j0/PATCH_SIZE)-1, ssize_t(0), m_MapSizePatches);
-	ssize_t pj1 = clamp((j1/PATCH_SIZE)+1, ssize_t(0), m_MapSizePatches);
+	ssize_t pi0 = clamp((i0/PATCH_SIZE)-1, ssize_t(0), m_MapSizePatches-1);
+	ssize_t pi1 = clamp((i1/PATCH_SIZE)+1, ssize_t(0), m_MapSizePatches-1);
+	ssize_t pj0 = clamp((j0/PATCH_SIZE)-1, ssize_t(0), m_MapSizePatches-1);
+	ssize_t pj1 = clamp((j1/PATCH_SIZE)+1, ssize_t(0), m_MapSizePatches-1);
 	for (ssize_t j = pj0; j < pj1; j++) {
 		for (ssize_t i = pi0; i < pi1; i++) {
-			CPatch* patch = GetPatch(i,j);
+			CPatch* patch = GetPatch(i,j);	// can't fail (i,j were clamped)
 			if (dirtyFlags & RENDERDATA_UPDATE_VERTICES)
 				patch->CalcBounds();
 			patch->SetDirty(dirtyFlags);
@@ -498,7 +471,7 @@ void CTerrain::MakeDirty(int dirtyFlags)
 {
 	for (ssize_t j = 0; j < m_MapSizePatches; j++) {
 		for (ssize_t i = 0; i < m_MapSizePatches; i++) {
-			CPatch* patch = GetPatch(i,j);
+			CPatch* patch = GetPatch(i,j);	// can't fail
 			if (dirtyFlags & RENDERDATA_UPDATE_VERTICES)
 				patch->CalcBounds();
 			patch->SetDirty(dirtyFlags);

@@ -24,6 +24,7 @@
 
 #include "maths/Vector3D.h"
 #include "graphics/SColor.h"
+#include "maths/MathUtil.h"	// clamp
 #include "lib/sysdep/cpu.h"
 
 class HEntity;
@@ -56,7 +57,7 @@ public:
 	// more efficiently be converted to/from floating point. use ssize_t
 	// instead of int/long because these are sizes.
 
-	bool Initialize(ssize_t size, const u16* ptr);
+	bool Initialize(ssize_t patchesPerSide, const u16* ptr);
 
 	// return number of vertices along edge of the terrain
 	ssize_t GetVerticesPerSide() const { return m_MapSize; }
@@ -75,12 +76,11 @@ public:
 
 	bool IsPassable(const CVector2D& tileSpaceLoc, HEntity entity) const;
 
-	void ClampCoordToMap(int& index) const
+	ssize_t ClampCoordToMap(ssize_t index) const
 	{
-		if(index < 0)
-			index = 0;
-		else if(index >= (int)m_MapSize-1)
-			index = m_MapSize - 2;
+		// GetSlope wants to access the next index,
+		// hence clamp to size-2
+		return clamp(index, 0, m_MapSize-2);
 	}
 
 	float GetVertexGroundLevel(ssize_t i, ssize_t j) const;

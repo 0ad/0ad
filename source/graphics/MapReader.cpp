@@ -153,10 +153,10 @@ int CMapReader::UnpackTerrain()
 	// i.e. when the loop below was interrupted)
 	if (cur_terrain_tex == 0)
 	{
-		m_MapSize = (ssize_t)unpacker.UnpackSize();
+		m_PatchesPerSide = (ssize_t)unpacker.UnpackSize();
 
 		// unpack heightmap [600us]
-		size_t verticesPerSide = m_MapSize*PATCH_SIZE+1;
+		size_t verticesPerSide = m_PatchesPerSide*PATCH_SIZE+1;
 		m_Heightmap.resize(SQR(verticesPerSide));
 		unpacker.UnpackRaw(&m_Heightmap[0], SQR(verticesPerSide)*sizeof(u16));
 
@@ -186,7 +186,7 @@ int CMapReader::UnpackTerrain()
 	}
 
 	// unpack tile data [3ms]
-	ssize_t tilesPerSide = m_MapSize*PATCH_SIZE;
+	ssize_t tilesPerSide = m_PatchesPerSide*PATCH_SIZE;
 	m_Tiles.resize(size_t(SQR(tilesPerSide)));
 	unpacker.UnpackRaw(&m_Tiles[0], sizeof(STileDesc)*m_Tiles.size());
 
@@ -200,15 +200,15 @@ int CMapReader::UnpackTerrain()
 int CMapReader::ApplyData()
 {
 	// initialise the terrain
-	pTerrain->Initialize(m_MapSize, &m_Heightmap[0]);
+	pTerrain->Initialize(m_PatchesPerSide, &m_Heightmap[0]);
 	
 	// setup the textures on the minipatches
 	STileDesc* tileptr = &m_Tiles[0];
-	for (ssize_t j=0; j<m_MapSize; j++) {
-		for (ssize_t i=0; i<m_MapSize; i++) {
+	for (ssize_t j=0; j<m_PatchesPerSide; j++) {
+		for (ssize_t i=0; i<m_PatchesPerSide; i++) {
 			for (ssize_t m=0; m<PATCH_SIZE; m++) {
 				for (ssize_t k=0; k<PATCH_SIZE; k++) {
-					CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];
+					CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];	// can't fail
 
 					mp.Tex1 = m_TerrainTextures[tileptr->m_Tex1Index];
 					mp.Tex1Priority = tileptr->m_Priority;

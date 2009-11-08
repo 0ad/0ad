@@ -71,7 +71,7 @@ private:
 	int DelayLoadFinished();
 
 	// size of map 
-	ssize_t m_MapSize;
+	ssize_t m_PatchesPerSide;
 	// heightmap for map
 	std::vector<u16> m_Heightmap;
 	// list of terrain textures used by map
