@@ -80,7 +80,7 @@ public:
 	{
 		// GetSlope wants to access the next index,
 		// hence clamp to size-2
-		return clamp(index, 0, m_MapSize-2);
+		return clamp(index, ssize_t(0), m_MapSize-2);
 	}
 
 	float GetVertexGroundLevel(ssize_t i, ssize_t j) const;
