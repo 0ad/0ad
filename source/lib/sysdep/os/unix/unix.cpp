@@ -183,7 +183,7 @@ int sys_wopen(const wchar_t* pathname, int oflag, ...)
 		va_end(args);
 	}
 
-	return open(UTF8_from_wstring(pathname).c_str(), oflag, mode);
+	return open(utf8_from_wstring(pathname).c_str(), oflag, mode);
 }
 
 // note: just use the sector size: Linux aio doesn't really care about

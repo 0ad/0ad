@@ -215,7 +215,7 @@ void udbg_bfd_init(void)
 	std::string exename;
 	if (sys_get_executable_name(path) == INFO::OK)
 	{
-		exename = UTF8_from_wstring(path.string());
+		exename = utf8_from_wstring(path.string());
 	}
 	else
 	{
@@ -307,7 +307,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, wchar_t* sym_name, wchar_
 		{
 			char sym_name_buf[DBG_SYMBOL_LEN];
 			demangle_buf(sym_name_buf, syminfo.dli_sname, DBG_SYMBOL_LEN);
-			wcscpy_s(sym_name, DBG_SYMBOL_LEN, wstring_from_UTF8(sym_name_buf).c_str());
+			wcscpy_s(sym_name, DBG_SYMBOL_LEN, wstring_from_utf8(sym_name_buf).c_str());
 		}
 		else
 			swprintf_s(sym_name, DBG_SYMBOL_LEN, L"%p", ptr);
@@ -315,7 +315,7 @@ static LibError debug_resolve_symbol_dladdr(void *ptr, wchar_t* sym_name, wchar_
 	
 	if (file)
 	{
-		wcscpy_s(file, DBG_FILE_LEN, wstring_from_UTF8(syminfo.dli_fname).c_str());
+		wcscpy_s(file, DBG_FILE_LEN, wstring_from_utf8(syminfo.dli_fname).c_str());
 	}
 	
 	if (line)
@@ -365,7 +365,7 @@ LibError debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* 
 	{
 		char sym_name_buf[DBG_SYMBOL_LEN];
 		demangle_buf(sym_name_buf, ctx.symbol, DBG_SYMBOL_LEN);
-		wcscpy_s(sym_name, DBG_SYMBOL_LEN, wstring_from_UTF8(sym_name_buf).c_str());
+		wcscpy_s(sym_name, DBG_SYMBOL_LEN, wstring_from_utf8(sym_name_buf).c_str());
 	}
 
 	if (file)
@@ -377,7 +377,7 @@ LibError debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* 
 			if (h != NULL)
 				ctx.filename = h + 1;
 	
-			wcscpy_s(file, DBG_FILE_LEN, wstring_from_UTF8(ctx.filename).c_str());
+			wcscpy_s(file, DBG_FILE_LEN, wstring_from_utf8(ctx.filename).c_str());
 		}
 		else
 			wcscpy_s(file, DBG_FILE_LEN, L"none");

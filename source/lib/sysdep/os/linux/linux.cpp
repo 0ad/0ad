@@ -47,7 +47,7 @@ LibError sys_get_executable_name(fs::wpath& pathname)
 		char* resolved = realpath(path, resolvedBuf);
 		if (!resolved)
 			return ERR::FAIL;
-		pathname = wstring_from_UTF8(resolved);
+		pathname = wstring_from_utf8(resolved);
 		return INFO::OK;
 	}
 
@@ -66,7 +66,7 @@ LibError sys_get_executable_name(fs::wpath& pathname)
 		char* resolved = realpath(absolute, resolvedBuf);
 		if (!resolved)
 			return ERR::NO_SYS;
-		pathname = wstring_from_UTF8(resolved);
+		pathname = wstring_from_utf8(resolved);
 		return INFO::OK;
 	}
 

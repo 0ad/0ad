@@ -153,7 +153,7 @@ LibError dir_watch_Poll(DirWatchNotifications& notifications)
 				continue;
 			}
 			DirWatch* dirWatch = (DirWatch*)e.userdata;
-			fs::wpath pathname = dirWatch->path/wstring_from_UTF8(e.filename);
+			fs::wpath pathname = dirWatch->path/wstring_from_utf8(e.filename);
 			notifications.push_back(DirWatchNotification(pathname, type));
 		}
 	}
