@@ -55,25 +55,20 @@
 typedef u8 UTF8;
 typedef u32 UTF32;
 
+static const UTF32 replacementCharacter = 0xFFFDul;	// used by ReplaceIfInvalid and UTF8::Decode
 
 static UTF32 ReplaceIfInvalid(UTF32 u)
 {
-	struct IsValid
-	{
-		bool operator()(UTF32 u) const
-		{
-			// disallow surrogates
-			if(0xDC00ul <= u && u <= 0xDFFFul)
-				return false;
-			// greater: UTF-16 representation would require surrogates
-			// equal: permanently unassigned codepoint, may correspond to WEOF
-			// (which raises errors when used in VC's swprintf)
-			if(u >= 0xFFFFul)	
-				return false;
-			return true;
-		}
-	};
-	return IsValid()(u)? u : 0xFFFD;
+	// disallow surrogates
+	if(0xD800ul <= u && u <= 0xDFFFul)
+		return replacementCharacter;
+	// 0xFFFE:  byte order marker (invalid character)
+	// 0xFFFF:  permanently unassigned code point, may correspond to WEOF
+	//          (raises errors when used in VC's swprintf)
+	// greater: UTF-16 representation would require surrogates
+	if(u >= 0xFFFEul)	
+		return replacementCharacter;
+	return u;
 }
 
 
@@ -84,21 +79,26 @@ public:
 	{
 		const size_t size = Size(u);
 		static const UTF8 firstByteMarks[1+3] = { 0, 0x00, 0xC0, 0xE0 };
-		*dstPos++ = (UTF8)(u | firstByteMarks[size]);
 		for(size_t i = 1; i < size; i++)
 		{
-			*dstPos++ = (UTF8)((u|0x80u) & 0xBFu);
+			dstPos[size-i] = UTF8((u|0x80u) & 0xBFu);
 			u >>= 6;
 		}
+		dstPos[0] = UTF8(u | firstByteMarks[size]);
+		dstPos += size;
 	}
 
-	static bool Decode(const UTF8*& srcPos, const UTF8* const srcEnd, UTF32& u)
+	// @return decoded scalar, or replacementCharacter on error
+	static UTF32 Decode(const UTF8*& srcPos, const UTF8* const srcEnd)
 	{
 		const size_t size = SizeFromFirstByte(*srcPos);
 		if(!IsValid(srcPos, size, srcEnd))
-			return false;
+		{
+			srcPos += 1;	// only skip the offending byte (increases chances of resynchronization)
+			return replacementCharacter;
+		}
 
-		u = 0;
+		UTF32 u = 0;
 		for(size_t i = 0; i < size-1; i++)
 		{
 			u += UTF32(*srcPos++);
@@ -106,10 +106,9 @@ public:
 		}
 		u += UTF32(*srcPos++);
 
-		static const UTF32 offsets[1+3] = { 0, 0x00000000ul, 0x00003080ul, 0x000E2080ul };
+		static const UTF32 offsets[1+4] = { 0, 0x00000000ul, 0x00003080ul, 0x000E2080ul, 0x03C82080UL };
 		u -= offsets[size];
-
-		return true;
+		return u;
 	}
 
 private:
@@ -129,8 +128,10 @@ private:
 			return 1;
 		if(firstByte < 0xE0)
 			return 2;
-		// IsValid rejects firstByte values that would cause > 3 byte encodings.
-		return 3;
+		if(firstByte < 0xF0)
+			return 3;
+		// IsValid rejects firstByte values that would cause > 4 byte encodings.
+		return 4;
 	}
 
 	// c.f. Unicode 3.1 Table 3-7
@@ -142,13 +143,17 @@ private:
 
 		if(src[0] < 0x80)
 			return true;
-		if(!(0xC2 <= src[0] && src[0] <= 0xEF))
+		if(!(0xC2 <= src[0] && src[0] <= 0xF4))
 			return false;
 
 		// special cases (stricter than the loop)
 		if(src[0] == 0xE0 && src[1] < 0xA0)
 			return false;
 		if(src[0] == 0xED && src[1] > 0x9F)
+			return false;
+		if(src[0] == 0xF0 && src[1] < 0x90)
+			return false;
+		if(src[0] == 0xF4 && src[1] > 0x8F)
 			return false;
 
 		for(size_t i = 1; i < size; i++)
@@ -164,9 +169,9 @@ private:
 
 //-----------------------------------------------------------------------------
 
-std::string UTF8_from_wstring(const std::wstring& src)
+std::string utf8_from_wstring(const std::wstring& src)
 {
-	std::string dst(src.size()*3, ' ');	// see UTF8Codec::Size
+	std::string dst(src.size()*3+1, ' ');	// see UTF8Codec::Size; +1 ensures &dst[0] is valid
 	UTF8* dstPos = (UTF8*)&dst[0];
 	for(size_t i = 0; i < src.size(); i++)
 	{
@@ -178,7 +183,7 @@ std::string UTF8_from_wstring(const std::wstring& src)
 }
 
 
-std::wstring wstring_from_UTF8(const std::string& src)
+std::wstring wstring_from_utf8(const std::string& src)
 {
 	std::wstring dst;
 	dst.reserve(src.size());
@@ -186,12 +191,7 @@ std::wstring wstring_from_UTF8(const std::string& src)
 	const UTF8* const srcEnd = srcPos + src.size();
 	while(srcPos < srcEnd)
 	{
-		UTF32 u;
-		if(!UTF8Codec::Decode(srcPos, srcEnd, u))
-		{
-			debug_assert(0);
-			return L"(wstring_from_UTF8: invalid input)";
-		}
+		const UTF32 u = UTF8Codec::Decode(srcPos, srcEnd);
 		dst.push_back((wchar_t)ReplaceIfInvalid(u));
 	}
 	return dst;

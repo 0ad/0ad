@@ -128,10 +128,10 @@ const wchar_t* path_name_only(const wchar_t* path)
 
 fs::wpath wpath_from_path(const fs::path& pathname)
 {
-	return wstring_from_UTF8(pathname.string());
+	return wstring_from_utf8(pathname.string());
 }
 
 fs::path path_from_wpath(const fs::wpath& pathname)
 {
-	return UTF8_from_wstring(pathname.string());
+	return utf8_from_wstring(pathname.string());
 }

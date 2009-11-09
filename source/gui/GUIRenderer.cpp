@@ -370,7 +370,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		if (SpriteName.substr(0, 10) == "stretched:")
 		{
 			SGUIImage Image;
-			Image.m_TextureName = VfsPath(L"art/textures/ui")/wstring_from_UTF8(SpriteName.substr(10));
+			Image.m_TextureName = VfsPath(L"art/textures/ui")/wstring_from_utf8(SpriteName.substr(10));
 			CClientArea ca("0 0 100% 100%");
 			Image.m_Size = ca;
 			Image.m_TextureSize = ca;

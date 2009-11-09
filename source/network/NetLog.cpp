@@ -375,7 +375,7 @@ void CNetLogFileSink::OpenFile( const fs::wpath& fileName, bool append )
 	if ( m_File.is_open() ) m_File.close();
 
 	// Open the file and log start
-	m_File.open( UTF8_from_wstring(fileName.string()).c_str(), append ? std::ios::app : std::ios::out );
+	m_File.open( utf8_from_wstring(fileName.string()).c_str(), append ? std::ios::app : std::ios::out );
 	if ( !m_File.is_open() )
 	{
 		// throw std::ios_base::failure

@@ -257,8 +257,8 @@ int tsprintf_s(tchar* buf, size_t max_chars, const tchar* fmt, ...)
 errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode)
 {
 	*pfile = NULL;
-	const std::string filename_c = UTF8_from_wstring(filename);
-	const std::string mode_c = UTF8_from_wstring(mode);
+	const std::string filename_c = utf8_from_wstring(filename);
+	const std::string mode_c = utf8_from_wstring(mode);
 	return fopen_s(pfile, filename_c.c_str(), mode_c.c_str());
 }
 

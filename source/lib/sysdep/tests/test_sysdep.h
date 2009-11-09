@@ -108,7 +108,7 @@ public:
 		sprintf_s(root, ARRAY_SIZE(root), "%s/pyrogenesis-test-sysdep-XXXXXX", tmpdir);
 		TS_ASSERT(mkdtemp(root));
 		std::string rootstr(root);
-		std::wstring rootstrw(wstring_from_UTF8(rootstr));
+		std::wstring rootstrw(wstring_from_utf8(rootstr));
 
 		const char* dirs[] = {
 			"/example",
