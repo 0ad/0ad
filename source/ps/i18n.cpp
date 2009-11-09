@@ -59,7 +59,7 @@ bool I18n::LoadLanguage(const char* name)
 	// Automatically delete the pointer when returning early
 	std::auto_ptr<CLocale_interface> locale (locale_ptr);
 
-	VfsPath dirname = AddSlash(VfsPath(L"language")/wstring_from_string(name));
+	VfsPath dirname = AddSlash(VfsPath(L"language")/wstring_from_UTF8(name));
 
 	// Open *.lng with LoadStrings
 	VfsPaths pathnames;

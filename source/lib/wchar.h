@@ -18,7 +18,7 @@
 #ifndef INCLUDED_WCHAR
 #define INCLUDED_WCHAR
 
-LIB_API std::wstring wstring_from_string(const std::string& s);
-LIB_API std::string string_from_wstring(const std::wstring& s);
+LIB_API std::wstring wstring_from_UTF8(const std::string& s);
+LIB_API std::string UTF8_from_wstring(const std::wstring& s);
 
 #endif	// #ifndef INCLUDED_WCHAR

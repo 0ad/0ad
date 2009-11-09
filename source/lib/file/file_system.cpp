@@ -23,7 +23,7 @@
 #include <string>
 
 #include "lib/path_util.h"
-#include "lib/wchar.h"	// wstring_from_string
+#include "lib/wchar.h"	// wstring_from_UTF8
 #include "lib/posix/posix_filesystem.h"
 
 
@@ -67,7 +67,7 @@ LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryN
 			return LibError_from_errno();
 		}
 
-		const std::wstring name = wstring_from_string(osEnt->d_name);
+		const std::wstring name = wstring_from_UTF8(osEnt->d_name);
 		RETURN_ERR(path_component_validate(name.c_str()));
 
 		// get file information (mode, size, mtime)

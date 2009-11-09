@@ -27,7 +27,7 @@
 
 #include "lib/bits.h"
 #include "lib/byte_order.h"
-#include "lib/wchar.h"	// wstring_from_string
+#include "lib/wchar.h"	// wstring_from_UTF8
 #include "lib/fat_time.h"
 #include "lib/path_util.h"
 #include "lib/allocators/pool.h"
@@ -135,7 +135,7 @@ public:
 	{
 		const size_t length = (size_t)read_le16(&m_fn_len);
 		const char* pathname = (const char*)this + sizeof(CDFH); // not 0-terminated!
-		return wstring_from_string(std::string(pathname, length));
+		return wstring_from_UTF8(std::string(pathname, length));
 	}
 
 	off_t HeaderOffset() const

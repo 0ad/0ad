@@ -51,7 +51,7 @@ Paths::Paths(const CmdLineArgs& args)
 #else
 		const char* envHome = getenv("HOME");
 		debug_assert(envHome);
-		const fs::wpath home(wstring_from_string(envHome));
+		const fs::wpath home(wstring_from_UTF8(envHome));
 		m_data = AddSlash(XDG_Path("XDG_DATA_HOME", home, home/L".local/share/")/subdirectoryName);
 		m_config = AddSlash(XDG_Path("XDG_CONFIG_HOME", home, home/L".config/")/subdirectoryName);
 		m_cache = AddSlash(XDG_Path("XDG_CACHE_HOME", home, home/L".cache/")/subdirectoryName);
@@ -92,8 +92,8 @@ Paths::Paths(const CmdLineArgs& args)
 	if(path)
 	{
 		if(path[0] != '/')	// relative to $HOME
-			return AddSlash(home/wstring_from_string(path));
-		return AddSlash(fs::wpath(wstring_from_string(path)));
+			return AddSlash(home/wstring_from_UTF8(path));
+		return AddSlash(fs::wpath(wstring_from_UTF8(path)));
 	}
 	return AddSlash(defaultPath);
 }
