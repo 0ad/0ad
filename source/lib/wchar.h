@@ -18,6 +18,17 @@
 #ifndef INCLUDED_WCHAR
 #define INCLUDED_WCHAR
 
+// note: returning LibError below would be inconvenient; we only use
+// these to raise warnings. (codes instead of strings allow suppressing
+// the error dialog when running the self-test)
+namespace ERR
+{
+	const LibError WCHAR_SURROGATE     = -100700;
+	const LibError WCHAR_OUTSIDE_BMP   = -100701;
+	const LibError WCHAR_NONCHARACTER  = -100702;
+	const LibError WCHAR_INVALID_UTF8  = -100703;
+}
+
 LIB_API std::wstring wstring_from_utf8(const std::string& s);
 LIB_API std::string utf8_from_wstring(const std::wstring& s);
 

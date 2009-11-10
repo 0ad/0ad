@@ -494,38 +494,61 @@ ErrorReaction debug_DisplayError(const wchar_t* description,
 }
 
 
-// strobe indicating expectedError is valid and the next error should be
-// compared against that / skipped if equal to it.
-// set/reset via cpu_CAS for thread-safety (hence uintptr_t).
-static uintptr_t isExpectedErrorValid;
-static LibError expectedError;
-
-void debug_SkipNextError(LibError err)
+// is errorToSkip valid? (also guarantees mutual exclusion)
+enum SkipStatus
 {
-	if(cpu_CAS(&isExpectedErrorValid, 0, 1))
-		expectedError = err;
-	else
-		debug_assert(0);	// internal error: concurrent attempt to skip assert/error
+	INVALID, VALID, BUSY
+};
+static uintptr_t skipStatus = INVALID;	// cpu_CAS requires uintptr_t
+static LibError errorToSkip;
+static size_t numSkipped;
 
+void debug_SkipErrors(LibError err)
+{
+	if(cpu_CAS(&skipStatus, INVALID, BUSY))
+	{
+		errorToSkip = err;
+		numSkipped = 0;
+		cpu_MemoryBarrier();
+		skipStatus = VALID;	// linearization point
+	}
+	else
+		DEBUG_WARN_ERR(ERR::REENTERED);
 }
 
-static bool ShouldSkipThisError(LibError err)
+size_t debug_StopSkippingErrors()
 {
-	// (compare before resetting strobe - expectedError may change afterwards)
-	bool isExpected = (expectedError == err);
-	// (use cpu_CAS to ensure only one error is skipped)
-	if(cpu_CAS(&isExpectedErrorValid, 1, 0))
+	if(cpu_CAS(&skipStatus, VALID, BUSY))
 	{
-		debug_assert(isExpected);
-		return isExpected;
+		const size_t ret = numSkipped;
+		cpu_MemoryBarrier();
+		skipStatus = INVALID;	// linearization point
+		return ret;
 	}
+	else
+	{
+		DEBUG_WARN_ERR(ERR::REENTERED);
+		return 0;
+	}
+}
 
+static bool ShouldSkipError(LibError err)
+{
+	if(cpu_CAS(&skipStatus, VALID, BUSY))
+	{
+		numSkipped++;
+		const bool ret = (err == errorToSkip);
+		cpu_MemoryBarrier();
+		skipStatus = VALID;
+		return ret;
+	}
 	return false;
 }
 
+
 ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int line, const char* func)
 {
-	if(ShouldSkipThisError(err))
+	if(ShouldSkipError(err))
 		return ER_CONTINUE;
 
 	void* context = 0;
@@ -537,23 +560,8 @@ ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* file, int
 }
 
 
-void debug_SkipNextAssertion()
-{
-	// to share code between assert and error skip mechanism, we treat the
-	// former as an error.
-	debug_SkipNextError(ERR::ASSERTION_FAILED);
-}
-
-
-static bool ShouldSkipThisAssertion()
-{
-	return ShouldSkipThisError(ERR::ASSERTION_FAILED);
-}
-
 ErrorReaction debug_OnAssertionFailure(const wchar_t* expr, u8* suppress, const wchar_t* file, int line, const char* func)
 {
-	if(ShouldSkipThisAssertion())
-		return ER_CONTINUE;
 	void* context = 0;
 	const std::wstring lastFuncToSkip = L"debug_OnAssertionFailure";
 	wchar_t buf[400];

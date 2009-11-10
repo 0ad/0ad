@@ -22,6 +22,9 @@
 #ifndef INCLUDED_CPU
 #define INCLUDED_CPU
 
+#include "lib/sysdep/compiler.h"
+
+
 namespace ERR
 {
 	const LibError CPU_FEATURE_MISSING     = -130000;
@@ -29,6 +32,7 @@ namespace ERR
 	const LibError CPU_UNKNOWN_VENDOR      = -130002;
 	
 }
+
 
 //-----------------------------------------------------------------------------
 // CPU detection
@@ -42,6 +46,21 @@ LIB_API const char* cpu_IdentifierString();
 
 //-----------------------------------------------------------------------------
 // lock-free support routines
+
+/**
+ * prevent the CPU from reordering previous loads or stores past the barrier,
+ * thus ensuring they retire before any subsequent memory operations.
+ * this also prevents compiler reordering.
+ **/
+#if MSC_VERSION
+# include <intrin.h>
+# pragma intrinsic(_ReadWriteBarrier)
+# define cpu_MemoryBarrier() _ReadWriteBarrier()
+#elif GCC_VERSION
+# define cpu_MemoryBarrier() __asm__(:::"memory")
+#else
+# define cpu_MemoryBarrier()
+#endif
 
 /**
  * atomic "compare and swap".

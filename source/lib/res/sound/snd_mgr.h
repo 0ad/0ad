@@ -317,7 +317,7 @@ extern LibError snd_fade(Handle hvs, float initial_gain, float final_gain,
  * demand-initialize OpenAL, startup is sped up considerably (500..1000ms).
  * therefore, this must be called before the first snd_open to have
  * any effect; otherwise, the cat will already be out of the bag and
- * we debug_warn of it.
+ * we raise a warning.
  *
  * rationale: this is a quick'n dirty way of speeding up startup during
  * development without having to change the game's sound code.

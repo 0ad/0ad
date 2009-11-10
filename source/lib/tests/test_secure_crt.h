@@ -166,73 +166,64 @@ public:
 	{
 		SuppressErrors suppress;
 
-#if !EMULATE_SECURE_CRT
-# define debug_SkipNextError(err) (void)0
+#if EMULATE_SECURE_CRT
+# define SKIP_ERRORS(err) debug_SkipErrors(ERR::INVALID_PARAM)
+# define STOP_SKIPPING_ERRORS(expectedCount) TS_ASSERT_EQUALS(debug_StopSkippingErrors(), expectedCount)
+#else
+# define SKIP_ERRORS(err) (void)0
+# define STOP_SKIPPING_ERRORS(expectedCount) (void)0
 #endif
 
-		debug_SkipNextError(ERR::INVALID_PARAM);
+		SKIP_ERRORS(ERR::INVALID_PARAM);
 		TEST_CPY(0 ,0,0 , EINVAL,"");	// all invalid
-		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CPY(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
-		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CPY(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
-		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CPY(d1,1,0 , EINVAL,"");	// src = 0
-		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CPY(d1,0,s1, EINVAL,"");	// max_dst_chars = 0
+		STOP_SKIPPING_ERRORS(5);
 
-		debug_SkipNextError(ERR::BUF_SIZE);
+		SKIP_ERRORS(ERR::BUF_SIZE);
 		TEST_CPY2(d1,1, s1, ERANGE,"");
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_CPY2(d1,1, s5, ERANGE,"");
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_CPY2(d5,5, s5, ERANGE,"");
+		STOP_SKIPPING_ERRORS(3);
 
-		debug_SkipNextError(ERR::BUF_SIZE);
+		SKIP_ERRORS(ERR::BUF_SIZE);
 		TEST_NCPY(d1,1 ,s1,1, ERANGE,"");
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_NCPY(d1,1 ,s5,1, ERANGE,"");
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_NCPY(d5,5 ,s5,5, ERANGE,"");
+		STOP_SKIPPING_ERRORS(3);
 
-		debug_SkipNextError(ERR::INVALID_PARAM);
+		SKIP_ERRORS(ERR::INVALID_PARAM);
 		TEST_CAT(0 ,0,0 , EINVAL,"");	// all invalid
-		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CAT(0 ,0,s1, EINVAL,"");	// dst = 0, max = 0
-		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CAT(0 ,1,s1, EINVAL,"");	// dst = 0, max > 0
-		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CAT(d1,1,0 , EINVAL,"");	// src = 0
-		debug_SkipNextError(ERR::INVALID_PARAM);
 		TEST_CAT(d1,0,s1, EINVAL,"");	// max_dst_chars = 0
-		debug_SkipNextError(ERR::STRING_NOT_TERMINATED);
+		STOP_SKIPPING_ERRORS(5);
+
+		SKIP_ERRORS(ERR::STRING_NOT_TERMINATED);
 		TEST_CAT(no_null,5,s1, EINVAL,"");	// dst not terminated
+		STOP_SKIPPING_ERRORS(1);
 
-		debug_SkipNextError(ERR::BUF_SIZE);
+		SKIP_ERRORS(ERR::BUF_SIZE);
 		TEST_CAT2(d1,1, s1, "",ERANGE,"");
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_CAT2(d1,1, s5, "",ERANGE,"");
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_CAT2(d10,10, s10, "",ERANGE,"");		// empty, total overflow
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_CAT2(d10,10, s5, "12345",ERANGE,"");	// not empty, overflow
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_CAT2(d10,10, s10, "12345",ERANGE,"");	// not empty, total overflow
+		STOP_SKIPPING_ERRORS(5);
 
-		debug_SkipNextError(ERR::BUF_SIZE);
+		SKIP_ERRORS(ERR::BUF_SIZE);
 		TEST_NCAT(d1,1, s1,1, "",ERANGE,"");
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_NCAT(d1,1, s5,5, "",ERANGE,"");
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_NCAT(d10,10, s10,10, "",ERANGE,"");		// empty, total overflow
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_NCAT(d10,10, s5,5, "12345",ERANGE,"");		// not empty, overflow
-		debug_SkipNextError(ERR::BUF_SIZE);
 		TEST_NCAT(d10,10, s10,10, "12345",ERANGE,"");	// not empty, total overflow
+		STOP_SKIPPING_ERRORS(5);
 
-#if !EMULATE_SECURE_CRT
-# undef debug_SkipNextError
-#endif
+#undef SKIP_ERRORS
+#undef STOP_SKIPPING_ERRORS
 	}
 
 

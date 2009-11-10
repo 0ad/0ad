@@ -124,7 +124,7 @@ Numbering Scheme
 ----------------
 
 Each module header defines its own error codes to avoid a full rebuild
-whenever a new obscure code is added.
+whenever a new code is added.
 
 Error codes start at -100000 (warnings are positive, but reserves a
 negative value; absolute values are unique). This avoids collisions
@@ -133,11 +133,38 @@ with all known error code schemes.
 Each header gets 100 possible values; the tens value may be
 used to denote groups within that header.
 
-The subsystem is denoted by the ten-thousands digit: 1 for file,
-2 for other resources (e.g. textures), 3 for sysdep, ..
+The subsystem is denoted by the ten-thousands digit:
+0 lib
+1 file
+2 res (resource management)
+3 sysdep (system-dependent)
+4 win (Windows-specific)
 
 To summarize: +/-1SHHCC (S=subsystem, HH=header, CC=code number)
 
+10     lib
+  00CC lib_errors
+  03CC path
+  04CC debug
+  05CC debug_stl
+  06CC secure_crt
+  07CC wchar
+
+11     file
+  01CC vfs
+  03CC file
+  04CC archive 
+
+12     res
+  01CC tex
+  02CC ogl_shader
+
+13     sysdep
+  00CC cpu
+  01CC os_cpu
+
+14     win
+  00CC whrt
 
 Notes:
 - file is called lib_errors.h because 0ad has another errors.cpp and
@@ -395,7 +422,6 @@ const LibError LOGIC     = -100010;
 const LibError TIMED_OUT = -100011;
 const LibError REENTERED = -100012;
 const LibError CORRUPTED = -100013;
-const LibError ASSERTION_FAILED = -100014;
 
 // function arguments
 const LibError INVALID_PARAM  = -100020;

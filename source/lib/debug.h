@@ -289,6 +289,9 @@ STMT(\
  * we therefore just squelch the warning (unfortunately non-portable).
  * this duplicates the code from debug_assert to avoid compiler warnings about
  * constant conditions.
+ *
+ * if being able to suppress the warning is desirable (e.g. for self-tests),
+ * then use DEBUG_WARN_ERR instead.
  **/
 #define debug_warn(expr) \
 STMT(\
@@ -350,29 +353,22 @@ LIB_API ErrorReaction debug_OnError(LibError err, u8* suppress, const wchar_t* f
 
 
 /**
- * suppress (prevent from showing) the next error dialog for a
- * specific LibError.
+ * suppress (prevent from showing) the error dialog from subsequent
+ * debug_OnError for the given LibError.
  *
  * rationale: for edge cases in some functions, warnings are raised in
  * addition to returning an error code. self-tests deliberately trigger
  * these cases and check for the latter but shouldn't cause the former.
  * we therefore need to squelch them.
  *
- * @param err the LibError to skip. if the next error to be raised matches
- * this, it is skipped. otherwise, we raise a warning to help catch
- * erroneous usage. either way, the skip request is reset afterwards.
+ * @param err the LibError to skip.
  *
- * note: this is thread-safe, but to prevent confusion, only one
- * concurrent skip request is allowed.
+ * note: only one concurrent skip request is allowed; call
+ * debug_StopSkippingErrors before the next debug_SkipErrors.
  */
-LIB_API void debug_SkipNextError(LibError err);
+LIB_API void debug_SkipErrors(LibError err);
 
-/**
- * same as debug_SkipNextError, but for asserts.
- * note that this is implemented in terms of it, so only one assert or
- * error skip request may be active at a time.
- */
-LIB_API void debug_SkipNextAssertion();
+LIB_API size_t debug_StopSkippingErrors();
 
 
 //-----------------------------------------------------------------------------

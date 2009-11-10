@@ -65,6 +65,7 @@ public:
 			{ "c\xef\xbf\x01", L"c\xfffd\xfffd\x0001" },
 			{ "d\xffX\x80Y\x80" , L"d\xfffdX\xfffdY\xfffd" }
 		};
+		debug_SkipErrors(ERR::WCHAR_INVALID_UTF8);
 		for (size_t i = 0; i < ARRAY_SIZE(tests); ++i)
 		{
 			const std::string str_utf8(tests[i].utf8);
@@ -74,5 +75,6 @@ public:
 			TS_ASSERT_EQUALS(str_utf16.length(), str_utf8to16.length());
 			TS_ASSERT_SAME_DATA(str_utf8to16.data(), str_utf16.data(), str_utf16.length()*sizeof(wchar_t));
 		}
+		TS_ASSERT_EQUALS(debug_StopSkippingErrors(), 8);
 	}
 };

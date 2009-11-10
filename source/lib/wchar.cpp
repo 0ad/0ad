@@ -18,6 +18,12 @@
 #include "precompiled.h"
 #include "wchar.h"
 
+ERROR_ASSOCIATE(ERR::WCHAR_SURROGATE, L"UTF-16 surrogate pairs aren't supported", -1);
+ERROR_ASSOCIATE(ERR::WCHAR_OUTSIDE_BMP, L"Code point outside BMP (> 0x10000)", -1);
+ERROR_ASSOCIATE(ERR::WCHAR_NONCHARACTER, L"Noncharacter (e.g. WEOF)", -1);
+ERROR_ASSOCIATE(ERR::WCHAR_INVALID_UTF8, L"Invalid UTF-8 sequence", -1);
+
+
 // adapted from http://unicode.org/Public/PROGRAMS/CVTUTF/ConvertUTF.c
 // which bears the following notice:
 /*
@@ -45,9 +51,11 @@
 // design rationale:
 // - to cope with wchar_t differences between VC (UTF-16) and
 //   GCC (UCS-4), we only allow codepoints in the BMP.
-//   UTF-8 encodings are therefore no longer than 3 bytes.
+//   encoded UTF-8 sequences are therefore no longer than 3 bytes.
 // - surrogates are disabled because variable-length strings
 //   violate the purpose of using wchar_t instead of UTF-8.
+// - replacing disallowed characters instead of aborting outright
+//   avoids overly inconveniencing users and eases debugging.
 
 // this implementation survives http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
 
@@ -55,19 +63,30 @@
 typedef u8 UTF8;
 typedef u32 UTF32;
 
-static const UTF32 replacementCharacter = 0xFFFDul;	// used by ReplaceIfInvalid and UTF8::Decode
+// referenced by ReplaceIfInvalid and UTF8::Decode; use DEBUG_WARN_ERR
+// to ensure the problem is seen by users.
+static const UTF32 replacementCharacter = 0xFFFDul;
 
 static UTF32 ReplaceIfInvalid(UTF32 u)
 {
 	// disallow surrogates
 	if(0xD800ul <= u && u <= 0xDFFFul)
+	{
+		DEBUG_WARN_ERR(ERR::WCHAR_SURROGATE);
 		return replacementCharacter;
-	// 0xFFFE:  byte order marker (invalid character)
-	// 0xFFFF:  permanently unassigned code point, may correspond to WEOF
-	//          (raises errors when used in VC's swprintf)
-	// greater: UTF-16 representation would require surrogates
-	if(u >= 0xFFFEul)	
+	}
+	// outside BMP (UTF-16 representation would require surrogates)
+	if(u > 0xFFFFul)
+	{
+		DEBUG_WARN_ERR(ERR::WCHAR_OUTSIDE_BMP);
 		return replacementCharacter;
+	}
+	// noncharacter (note: WEOF (0xFFFF) causes VC's swprintf to fail)
+	if(u == 0xFFFEul || u == 0xFFFFul || (0xFDD0ul <= u && u <= 0xFDEFul))
+	{
+		DEBUG_WARN_ERR(ERR::WCHAR_NONCHARACTER);
+		return replacementCharacter;
+	}
 	return u;
 }
 
@@ -95,6 +114,7 @@ public:
 		if(!IsValid(srcPos, size, srcEnd))
 		{
 			srcPos += 1;	// only skip the offending byte (increases chances of resynchronization)
+			DEBUG_WARN_ERR(ERR::WCHAR_INVALID_UTF8);
 			return replacementCharacter;
 		}
 
