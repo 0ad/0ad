@@ -18,9 +18,7 @@
 #ifndef INCLUDED_WCHAR
 #define INCLUDED_WCHAR
 
-// note: returning LibError below would be inconvenient; we only use
-// these to raise warnings. (codes instead of strings allow suppressing
-// the error dialog when running the self-test)
+// note: error codes are returned via optional output parameter.
 namespace ERR
 {
 	const LibError WCHAR_SURROGATE     = -100700;
@@ -29,7 +27,21 @@ namespace ERR
 	const LibError WCHAR_INVALID_UTF8  = -100703;
 }
 
-LIB_API std::wstring wstring_from_utf8(const std::string& s);
-LIB_API std::string utf8_from_wstring(const std::wstring& s);
+/**
+ * convert UTF-8 to a wide string (UTF-16 or UCS-4, depending on the
+ * platform's wchar_t).
+ *
+ * @param s input string (UTF-8)
+ * @param err if nonzero, this receives the first error encountered
+ * (the rest may be subsequent faults) or INFO::OK if all went well.
+ * otherwise, the function raises a warning dialog for every
+ * error/warning.
+ **/
+LIB_API std::wstring wstring_from_utf8(const std::string& s, LibError* err = 0);
+
+/**
+ * opposite of wstring_from_utf8
+ **/
+LIB_API std::string utf8_from_wstring(const std::wstring& s, LibError* err = 0);
 
 #endif	// #ifndef INCLUDED_WCHAR

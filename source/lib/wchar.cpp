@@ -63,30 +63,33 @@ ERROR_ASSOCIATE(ERR::WCHAR_INVALID_UTF8, L"Invalid UTF-8 sequence", -1);
 typedef u8 UTF8;
 typedef u32 UTF32;
 
-// referenced by ReplaceIfInvalid and UTF8::Decode; use DEBUG_WARN_ERR
-// to ensure the problem is seen by users.
-static const UTF32 replacementCharacter = 0xFFFDul;
 
-static UTF32 ReplaceIfInvalid(UTF32 u)
+// called from ReplaceIfInvalid and UTF8Codec::Decode
+static UTF32 RaiseError(LibError err, LibError* perr)
+{
+	if(perr)	// caller wants return code, not warning dialog
+	{
+		if(*perr == INFO::OK)	// only return the first error (see header)
+			*perr = err;
+	}
+	else
+		DEBUG_WARN_ERR(err);
+
+	return 0xFFFDul;	// replacement character
+}
+
+
+static UTF32 ReplaceIfInvalid(UTF32 u, LibError* err)
 {
 	// disallow surrogates
 	if(0xD800ul <= u && u <= 0xDFFFul)
-	{
-		DEBUG_WARN_ERR(ERR::WCHAR_SURROGATE);
-		return replacementCharacter;
-	}
+		return RaiseError(ERR::WCHAR_SURROGATE, err);
 	// outside BMP (UTF-16 representation would require surrogates)
 	if(u > 0xFFFFul)
-	{
-		DEBUG_WARN_ERR(ERR::WCHAR_OUTSIDE_BMP);
-		return replacementCharacter;
-	}
+		return RaiseError(ERR::WCHAR_OUTSIDE_BMP, err);
 	// noncharacter (note: WEOF (0xFFFF) causes VC's swprintf to fail)
 	if(u == 0xFFFEul || u == 0xFFFFul || (0xFDD0ul <= u && u <= 0xFDEFul))
-	{
-		DEBUG_WARN_ERR(ERR::WCHAR_NONCHARACTER);
-		return replacementCharacter;
-	}
+		return RaiseError(ERR::WCHAR_NONCHARACTER, err);
 	return u;
 }
 
@@ -108,14 +111,13 @@ public:
 	}
 
 	// @return decoded scalar, or replacementCharacter on error
-	static UTF32 Decode(const UTF8*& srcPos, const UTF8* const srcEnd)
+	static UTF32 Decode(const UTF8*& srcPos, const UTF8* const srcEnd, LibError* err)
 	{
 		const size_t size = SizeFromFirstByte(*srcPos);
 		if(!IsValid(srcPos, size, srcEnd))
 		{
 			srcPos += 1;	// only skip the offending byte (increases chances of resynchronization)
-			DEBUG_WARN_ERR(ERR::WCHAR_INVALID_UTF8);
-			return replacementCharacter;
+			return RaiseError(ERR::WCHAR_INVALID_UTF8, err);
 		}
 
 		UTF32 u = 0;
@@ -189,13 +191,16 @@ private:
 
 //-----------------------------------------------------------------------------
 
-std::string utf8_from_wstring(const std::wstring& src)
+std::string utf8_from_wstring(const std::wstring& src, LibError* err)
 {
+	if(err)
+		*err = INFO::OK;
+
 	std::string dst(src.size()*3+1, ' ');	// see UTF8Codec::Size; +1 ensures &dst[0] is valid
 	UTF8* dstPos = (UTF8*)&dst[0];
 	for(size_t i = 0; i < src.size(); i++)
 	{
-		const UTF32 u = ReplaceIfInvalid(UTF32(src[i]));
+		const UTF32 u = ReplaceIfInvalid(UTF32(src[i]), err);
 		UTF8Codec::Encode(u, dstPos);
 	}
 	dst.resize(dstPos - (UTF8*)&dst[0]);
@@ -203,16 +208,19 @@ std::string utf8_from_wstring(const std::wstring& src)
 }
 
 
-std::wstring wstring_from_utf8(const std::string& src)
+std::wstring wstring_from_utf8(const std::string& src, LibError* err)
 {
+	if(err)
+		*err = INFO::OK;
+
 	std::wstring dst;
 	dst.reserve(src.size());
 	const UTF8* srcPos = (const UTF8*)src.data();
 	const UTF8* const srcEnd = srcPos + src.size();
 	while(srcPos < srcEnd)
 	{
-		const UTF32 u = UTF8Codec::Decode(srcPos, srcEnd);
-		dst.push_back((wchar_t)ReplaceIfInvalid(u));
+		const UTF32 u = UTF8Codec::Decode(srcPos, srcEnd, err);
+		dst.push_back((wchar_t)ReplaceIfInvalid(u, err));
 	}
 	return dst;
 }

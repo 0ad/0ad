@@ -105,13 +105,10 @@ extern void ah_override_gl_upload_caps();
 /**
  * return path to directory into which crash dumps should be written.
  *
- * if implementing via static storage, be sure to guarantee reentrancy
- * (e.g. by only filling the string once).
  * must be callable at any time - in particular, before VFS init.
- * this means path_MakeAbsolute cannot be used; it is best
- * to specify a path relative to sys_get_executable_name.
+ * paths are typically relative to sys_get_executable_name.
  *
- * @return full path ending with directory separator (e.g. '/').
+ * @return path ending with directory separator (e.g. '/').
  **/
 extern const fs::wpath& ah_get_log_dir();
 
