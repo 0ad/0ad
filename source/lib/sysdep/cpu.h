@@ -57,7 +57,7 @@ LIB_API const char* cpu_IdentifierString();
 # pragma intrinsic(_ReadWriteBarrier)
 # define cpu_MemoryBarrier() _ReadWriteBarrier()
 #elif GCC_VERSION
-# define cpu_MemoryBarrier() __asm__(:::"memory")
+# define cpu_MemoryBarrier() asm volatile("" : : : "memory")
 #else
 # define cpu_MemoryBarrier()
 #endif
