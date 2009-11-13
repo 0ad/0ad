@@ -17,7 +17,6 @@
 
 #include "precompiled.h"
 
-#include <map>
 #include <string>
 
 #include "lib/sysdep/sysdep.h"
@@ -28,6 +27,24 @@
 
 #include <fam.h>
 
+struct NotificationEvent
+{
+	char* filename;
+	void *userdata;
+	FAMCodes code;
+};
+
+// To avoid deadlocks and slow synchronous reads, it's necessary to use a
+// separate thread for reading events from FAM.
+// So we just spawn a thread to push events into this list, then swap it out
+// when someone calls dir_watch_Poll.
+// (We assume STL memory allocation is thread-safe.)
+static std::vector<NotificationEvent> g_notifications;
+static pthread_t g_event_loop_thread;
+
+// Mutex must wrap all accesses of g_notifications
+// while the event loop thread is running
+static pthread_mutex_t g_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 // trool; -1 = init failed and all operations will be aborted silently.
 // this is so that each dir_* call doesn't complain if the system's
@@ -57,12 +74,80 @@ struct DirWatch
 };
 
 
-static std::map<intptr_t, std::string> dirs;
-
 // for atexit
 static void fam_deinit()
 {
 	FAMClose(&fc);
+
+	pthread_cancel(g_event_loop_thread);
+	// NOTE: POSIX threads are (by default) only cancellable inside particular
+	// functions (like 'select'), so this should safely terminate while it's
+	// in select/FAMNextEvent/etc (and won't e.g. cancel while it's holding the
+	// mutex)
+
+	// Wait for the thread to finish
+	pthread_join(g_event_loop_thread, NULL);
+}
+
+static void fam_event_loop_process_events()
+{
+	while(FAMPending(&fc) > 0)
+	{
+		FAMEvent e;
+		if(FAMNextEvent(&fc, &e) < 0)
+		{
+			debug_printf(L"FAMNextEvent error");
+			return;
+		}
+
+		NotificationEvent ne;
+		ne.filename = strndup(e.filename, PATH_MAX);
+		ne.userdata = e.userdata;
+		ne.code = e.code;
+
+		pthread_mutex_lock(&g_mutex);
+		g_notifications.push_back(ne);
+		pthread_mutex_unlock(&g_mutex);
+	}
+}
+
+static void* fam_event_loop(void*)
+{
+	int famfd = FAMCONNECTION_GETFD(&fc);
+
+	while (true)
+	{
+		fd_set fdrset;
+		FD_ZERO(&fdrset);
+		FD_SET(famfd, &fdrset);
+
+		// Block with select until there's events waiting
+		// (Mustn't just block inside FAMNextEvent since fam will deadlock)
+		while(select(famfd+1, &fdrset, NULL, NULL, NULL) < 0)
+		{
+			if(errno == EINTR)
+			{
+				// interrupted - try again
+				FD_ZERO(&fdrset);
+				FD_SET(famfd, &fdrset);
+			}
+			else if(errno == EBADF)
+			{
+				// probably just lost the connection to FAM - kill the thread
+				debug_printf(L"lost connection to FAM");
+				return NULL;
+			}
+			else
+			{
+				// oops
+				debug_printf(L"select error %d", errno); // TODO: be sure debug_printf is threadsafe
+				return NULL;
+			}
+		}
+
+		if(FD_ISSET(famfd, &fdrset))
+			fam_event_loop_process_events();
+	}
 }
 
 LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
@@ -73,21 +158,30 @@ LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
 
 	if(!initialized)
 	{
-		// success
-		if(FAMOpen2(&fc, "lib_res") == 0)
-		{
-			initialized = 1;
-			atexit(fam_deinit);
-		}
-		else
+		if(FAMOpen2(&fc, "lib_res"))
 		{
 			initialized = -1;
-			LOG(CLogger::Error, L"", L"Error initializing FAM; hotloading will be disabled");
+			LOGERROR(L"Error initializing FAM; hotloading will be disabled");
 			return ERR::FAIL;	// NOWARN
 		}
+		
+		if (pthread_create(&g_event_loop_thread, NULL, &fam_event_loop, NULL))
+		{
+			initialized = -1;
+			LOGERROR(L"Error creating FAM event loop thread; hotloading will be disabled");
+			return ERR::FAIL;	// NOWARN
+		}
+
+		initialized = 1;
+		atexit(fam_deinit);
 	}
 
 	PDirWatch tmpDirWatch(new DirWatch);
+
+	// NOTE: It would be possible to use FAMNoExists iff we're building with Gamin
+	// (not FAM), to avoid a load of boring notifications when we add a directory,
+	// but it would only save tens of milliseconds of CPU time, so it's probably
+	// not worthwhile
 
 	const fs::path path_c = path_from_wpath(path);
 	FAMRequest req;
@@ -96,25 +190,6 @@ LibError dir_watch_Add(const fs::wpath& path, PDirWatch& dirWatch)
 		debug_warn(L"res_watch_dir failed!");
 		WARN_RETURN(ERR::FAIL);	// no way of getting error code?
 	}
-
-	// Monitoring a directory causes a FAMExists event per file in that directory, then a
-	// FAMEndExist. We have to wait for these events, else the FAM server's write buffer fills
-	// up and we get deadlocked when trying to open another directory. (That happens only with
-	// the original fam, and seems fixed in gamin, but we want to work with both.)
-	FAMEvent e;
-	do {
-		if(FAMNextEvent(&fc, &e) < 0)
-		{
-			// Oops, failed - rather than getting stuck waiting forever for a
-			// FAMEndExist event that may never come, just give up and return now.
-			debug_warn(L"FAMNextEvent failed");
-			return ERR::FAIL;
-		}
-		// (We might be missing some real events other than the FAMExists ones, if
-		// they happen to be generated right now. That's not a critical problem, so
-		// just ignore it.)
-	}
-	while (e.code != FAMEndExist);
 
 	dirWatch.swap(tmpDirWatch);
 	dirWatch->path = path;
@@ -132,30 +207,33 @@ LibError dir_watch_Poll(DirWatchNotifications& notifications)
 	if(!initialized) // XXX Fix Atlas instead of supressing the warning
 		return ERR::FAIL; //WARN_RETURN(ERR::LOGIC);
 
-	FAMEvent e;
-	while(FAMPending(&fc) > 0)
+	std::vector<NotificationEvent> polled_notifications;
+
+	pthread_mutex_lock(&g_mutex);
+	g_notifications.swap(polled_notifications);
+	pthread_mutex_unlock(&g_mutex);
+
+	for(size_t i = 0; i < polled_notifications.size(); ++i)
 	{
-		if(FAMNextEvent(&fc, &e) >= 0)
+		DirWatchNotification::EType type;
+		switch(polled_notifications[i].code)
 		{
-			DirWatchNotification::EType type;
-			switch(e.code)
-			{
-			case FAMChanged:
-				type = DirWatchNotification::Changed;
-				break;
-			case FAMCreated:
-				type = DirWatchNotification::Created;
-				break;
-			case FAMDeleted:
-				type = DirWatchNotification::Deleted;
-				break;
-			default:
-				continue;
-			}
-			DirWatch* dirWatch = (DirWatch*)e.userdata;
-			fs::wpath pathname = dirWatch->path/wstring_from_utf8(e.filename);
-			notifications.push_back(DirWatchNotification(pathname, type));
+		case FAMChanged:
+			type = DirWatchNotification::Changed;
+			break;
+		case FAMCreated:
+			type = DirWatchNotification::Created;
+			break;
+		case FAMDeleted:
+			type = DirWatchNotification::Deleted;
+			break;
+		default:
+			continue;
 		}
+		DirWatch* dirWatch = (DirWatch*)polled_notifications[i].userdata;
+		fs::wpath pathname = dirWatch->path/wstring_from_utf8(polled_notifications[i].filename);
+		notifications.push_back(DirWatchNotification(pathname, type));
+		free(polled_notifications[i].filename);
 	}
 
 	// nothing new; try again later
