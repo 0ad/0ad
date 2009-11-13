@@ -630,12 +630,16 @@ function setup_main_exe ()
 		tinsert(package.links, {
 			"fam",
 			-- Utilities
-			"pthread", "rt",
+			"rt",
 			-- Debugging
 			"bfd", "iberty",
 			-- Dynamic libraries (needed for linking for gold)
 			"dl",
 		})
+
+		-- Threading support
+		tinsert(package.buildoptions, "-pthread")
+		tinsert(package.linkoptions, "-pthread")
 	
 		-- For debug_resolve_symbol
 		package.config["Debug"].linkoptions = { "-rdynamic" }
@@ -1025,12 +1029,16 @@ function setup_tests()
 		tinsert(package.links, {
 			"fam",
 			-- Utilities
-			"pthread", "rt",
+			"rt",
 			-- Debugging
 			"bfd", "iberty",
 			-- Dynamic libraries (needed for linking for gold)
 			"dl",
 		})
+
+		-- Threading support
+		tinsert(package.buildoptions, "-pthread")
+		tinsert(package.linkoptions, "-pthread")
 
 		-- For debug_resolve_symbol
 		package.config["Debug"].linkoptions = { "-rdynamic" }
