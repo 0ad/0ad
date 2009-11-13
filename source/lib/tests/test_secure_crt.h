@@ -168,7 +168,7 @@ public:
 
 #if EMULATE_SECURE_CRT
 # define SKIP_ERRORS(err) debug_SkipErrors(ERR::INVALID_PARAM)
-# define STOP_SKIPPING_ERRORS(expectedCount) TS_ASSERT_EQUALS(debug_StopSkippingErrors(), expectedCount)
+# define STOP_SKIPPING_ERRORS(expectedCount) TS_ASSERT_EQUALS(debug_StopSkippingErrors(), (size_t)expectedCount)
 #else
 # define SKIP_ERRORS(err) (void)0
 # define STOP_SKIPPING_ERRORS(expectedCount) (void)0

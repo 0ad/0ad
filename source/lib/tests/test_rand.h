@@ -29,7 +29,7 @@ public:
 		TS_ASSERT_EQUALS(rand(1, 0), size_t(0));
 		TS_ASSERT_EQUALS(rand(2, ~0u), size_t(0));
 		const size_t numSkipped = debug_StopSkippingErrors();
-		TS_ASSERT_EQUALS(numSkipped, 2);
+		TS_ASSERT_EQUALS(numSkipped, (size_t)2);
 	}
 
 	// returned number must be in [min, max)
