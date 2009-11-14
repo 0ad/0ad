@@ -27,9 +27,10 @@
 
 #include <fam.h>
 
+// FAMEvent is large (~4KB), so define a smaller structure to store events
 struct NotificationEvent
 {
-	char* filename;
+	std::string filename;
 	void *userdata;
 	FAMCodes code;
 };
@@ -101,7 +102,7 @@ static void fam_event_loop_process_events()
 		}
 
 		NotificationEvent ne;
-		ne.filename = strndup(e.filename, PATH_MAX);
+		ne.filename = e.filename;
 		ne.userdata = e.userdata;
 		ne.code = e.code;
 
@@ -115,7 +116,7 @@ static void* fam_event_loop(void*)
 {
 	int famfd = FAMCONNECTION_GETFD(&fc);
 
-	while (true)
+	while(true)
 	{
 		fd_set fdrset;
 		FD_ZERO(&fdrset);
@@ -140,7 +141,7 @@ static void* fam_event_loop(void*)
 			else
 			{
 				// oops
-				debug_printf(L"select error %d", errno); // TODO: be sure debug_printf is threadsafe
+				debug_printf(L"select error %d", errno);
 				return NULL;
 			}
 		}
@@ -233,7 +234,6 @@ LibError dir_watch_Poll(DirWatchNotifications& notifications)
 		DirWatch* dirWatch = (DirWatch*)polled_notifications[i].userdata;
 		fs::wpath pathname = dirWatch->path/wstring_from_utf8(polled_notifications[i].filename);
 		notifications.push_back(DirWatchNotification(pathname, type));
-		free(polled_notifications[i].filename);
 	}
 
 	// nothing new; try again later
