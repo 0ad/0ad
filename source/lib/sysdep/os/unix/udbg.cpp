@@ -76,7 +76,7 @@ void udbg_launch_debugger()
 
 void debug_puts(const wchar_t* text)
 {
-	wprintf(L"%ls", text);
+	printf("%ls", text); // must not use printf, since stdout is byte-oriented
 	fflush(stdout);
 }
 

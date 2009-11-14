@@ -36,7 +36,7 @@
 
 void sys_display_msg(const wchar_t* caption, const wchar_t* msg)
 {
-	fwprintf(stderr, L"%ls: %ls\n", caption, msg);
+	fprintf(stderr, "%ls: %ls\n", caption, msg); // must not use fwprintf, since stderr is byte-oriented
 }
 
 ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
