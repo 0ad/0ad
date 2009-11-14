@@ -165,18 +165,14 @@ bool debug_filter_allows(const wchar_t* text)
 	return false;
 }
 
-// max # characters (including \0) output by debug_printf in one call.
-const size_t DEBUG_PRINTF_MAX_CHARS = 1024;	// refer to wdbg.cpp!debug_vsprintf before changing this
-
 #undef debug_printf	// allowing #defining it out
-
 void debug_printf(const wchar_t* fmt, ...)
 {
-	wchar_t buf[DEBUG_PRINTF_MAX_CHARS]; buf[ARRAY_SIZE(buf)-1] = '\0';
+	wchar_t buf[4096];
 
 	va_list ap;
 	va_start(ap, fmt);
-	const int numChars = vswprintf_s(buf, DEBUG_PRINTF_MAX_CHARS, fmt, ap);
+	const int numChars = vswprintf_s(buf, ARRAY_SIZE(buf), fmt, ap);
 	debug_assert(numChars >= 0);
 	va_end(ap);
 

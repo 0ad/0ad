@@ -117,11 +117,11 @@ LibError CreateDirectories(const fs::wpath& path, mode_t mode)
 	}
 
 	// If we were passed a path ending with '/', strip the '/' now so that
-	// we can consistently use parent_path to find parent directory names
-	if (path.filename() == L".")
-		return CreateDirectories(path.parent_path(), mode);
+	// we can consistently use branch_path to find parent directory names
+	if (path.leaf() == L".")
+		return CreateDirectories(path.branch_path(), mode);
 
-	RETURN_ERR(CreateDirectories(path.parent_path(), mode));
+	RETURN_ERR(CreateDirectories(path.branch_path(), mode));
 
 	const fs::path path_c = path_from_wpath(path);
 	errno = 0;

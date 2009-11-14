@@ -24,7 +24,7 @@
 
 /**
  * same as debug_printf except that some type conversions aren't supported
- * (in particular, no floating point).
+ * (in particular, no floating point) and output is limited to 1024+1 characters.
  *
  * this function does not allocate memory from the CRT heap, which makes it
  * safe to use from an allocation hook.
