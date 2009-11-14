@@ -263,8 +263,8 @@ float CTerrain::GetExactGroundLevel(float x, float z) const
 {
 	const ssize_t xi = ClampCoordToMap((ssize_t)floor(x/CELL_SIZE));
 	const ssize_t zi = ClampCoordToMap((ssize_t)floor(z/CELL_SIZE));
-	const float xf = clamp(x-xi, 0.0f, 1.0f);
-	const float zf = clamp(z-zi, 0.0f, 1.0f);
+	const float xf = clamp(x/CELL_SIZE-xi, 0.0f, 1.0f);
+	const float zf = clamp(z/CELL_SIZE-zi, 0.0f, 1.0f);
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
 	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];
