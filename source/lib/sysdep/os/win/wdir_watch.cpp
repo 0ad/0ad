@@ -220,7 +220,7 @@ public:
 		return m_next;
 	}
 
-//private:
+private:
 	IntrusiveLink* m_prev;
 	IntrusiveLink* m_next;
 };
@@ -285,19 +285,25 @@ public:
 
 	LibError Poll(size_t& bytesTransferred, uintptr_t& key, OVERLAPPED*& ovl)
 	{
-		DWORD dwBytesTransferred = 0;
-		ULONG_PTR ulKey = 0;
-		ovl = 0;
-		const DWORD timeout = 0;
-		const BOOL gotPacket = GetQueuedCompletionStatus(m_hIOCP, &dwBytesTransferred, &ulKey, &ovl, timeout);
-		bytesTransferred = size_t(bytesTransferred);
-		key = uintptr_t(ulKey);
-		if(gotPacket)
-			return INFO::OK;
-		if(GetLastError() == WAIT_TIMEOUT)
-			return ERR::AGAIN;	// NOWARN
-		// else: there was actually an error
-		return LibError_from_GLE();
+		for(;;)	// don't return abort notifications to caller
+		{
+			DWORD dwBytesTransferred = 0;
+			ULONG_PTR ulKey = 0;
+			ovl = 0;
+			const DWORD timeout = 0;
+			const BOOL gotPacket = GetQueuedCompletionStatus(m_hIOCP, &dwBytesTransferred, &ulKey, &ovl, timeout);
+			bytesTransferred = size_t(bytesTransferred);
+			key = uintptr_t(ulKey);
+			if(gotPacket)
+				return INFO::OK;
+
+			if(GetLastError() == WAIT_TIMEOUT)
+				return ERR::AGAIN;	// NOWARN (nothing pending)
+			else if(GetLastError() == ERROR_OPERATION_ABORTED)
+				continue;		// watch was canceled - ignore
+			else
+				return LibError_from_GLE();	// actual error
+		}
 	}
 
 private:
