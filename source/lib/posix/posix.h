@@ -106,7 +106,7 @@ extern wchar_t* wcsdup(const wchar_t* str);
 
 
 // rint*, fminf, fpclassify (too few/diverse to make separate HAVE_ for each)
-#if HAVE_C99 || GCC_VERSION
+#if HAVE_C99 || ICC_VERSION || GCC_VERSION
 # define HAVE_C99_MATH 1
 #else
 # define HAVE_C99_MATH 0

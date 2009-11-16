@@ -54,7 +54,9 @@ LIB_API const char* cpu_IdentifierString();
  **/
 #if MSC_VERSION
 # include <intrin.h>
-# pragma intrinsic(_ReadWriteBarrier)
+# if !ICC_VERSION
+#  pragma intrinsic(_ReadWriteBarrier)
+# endif
 # define cpu_MemoryBarrier() _ReadWriteBarrier()
 #elif GCC_VERSION
 # define cpu_MemoryBarrier() asm volatile("" : : : "memory")

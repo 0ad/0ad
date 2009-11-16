@@ -61,6 +61,11 @@
 // (must come before any system headers because it fixes off_t)
 #include "lib/posix/posix_types.h"
 
+// (must come before any use of <math.h> due to incompatibility with ICC's mathimf.h)
+#if ICC_VERSION
+#include <mathimf.h>
+#endif
+
 #include "lib/sysdep/arch.h"
 #include "lib/sysdep/stl.h"
 
