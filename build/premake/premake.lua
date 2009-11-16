@@ -1,5 +1,6 @@
 addoption("atlas", "Include Atlas scenario editor packages")
 addoption("collada", "Include COLLADA packages (requires FCollada library)")
+addoption("coverage", "Enable code coverage data collection (GCC only)")
 addoption("aoe3ed", "Include AoE3Ed")
 addoption("icc", "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)")
 addoption("outpath", "Location for generated project files")
@@ -195,6 +196,10 @@ function package_set_build_flags()
 					"-Wl,--no-undefined",
 					"-Wl,--as-needed",
 				})
+			end
+			if options["coverage"] then
+				tinsert(package.buildoptions, {"-fprofile-arcs", "-ftest-coverage"})
+				tinsert(package.links, "gcov")
 			end
 		end
 
