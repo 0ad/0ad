@@ -190,6 +190,11 @@ function package_set_build_flags()
 				-- speed up math functions by inlining. warning: this may result in
 				-- non-IEEE-conformant results, but haven't noticed any trouble so far.
 				"-ffast-math",
+
+				-- don't omit frame pointers (for now), because performance will be impacted
+				-- negatively by the way this breaks profilers more than it will be impacted
+				-- positively by the optimisation
+				"-fno-omit-frame-pointer",
 			})
 			if OS == "linux" then
 				tinsert(package.linkoptions, {
