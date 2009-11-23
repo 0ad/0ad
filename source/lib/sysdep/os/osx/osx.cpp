@@ -99,7 +99,7 @@ LibError sys_get_executable_name(fs::wpath& pathname)
 		debug_printf(L"app bundle name: %hs\n", name);
 	}
 	
-	pathname = wstring_from_string(name);
+	pathname = wstring_from_utf8(name);
 	debug_printf(L"returning exe name: %hs\n", name);
 	
 	return INFO::OK;
