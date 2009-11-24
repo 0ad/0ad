@@ -159,9 +159,8 @@ public:
 	#endif
 
 	// Conversion to/from UTF-8, encoded in a CStr8.
-	// Common non-ASCII characters are handled correctly.
-	// Characters outside the BMP (above 0xFFFF) are *not* handled correctly.
-	// FromUTF8 will silently convert invalid bytes to U+FFFD replacement characters.
+	// Invalid bytes/characters (e.g. broken UTF-8, and Unicode characters
+	// above U+FFFF) are silently replaced with U+FFFD.
 	#ifdef _UNICODE
 		CStr8 ToUTF8() const;
 	#else

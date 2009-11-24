@@ -50,7 +50,8 @@ CStr8::CStr8(const CStrW& wideStr) : std:: string(wideStr.begin(), wideStr.end()
  **/
 CStr8 CStrW::ToUTF8() const
 {
-	return utf8_from_wstring(*this);
+	LibError err;
+	return utf8_from_wstring(*this, &err);
 }
 
 /**
@@ -60,7 +61,8 @@ CStr8 CStrW::ToUTF8() const
  **/
 CStrW CStr8::FromUTF8() const
 {
-	return wstring_from_utf8(*this);
+	LibError err;
+	return wstring_from_utf8(*this, &err);
 }
 
 #else
