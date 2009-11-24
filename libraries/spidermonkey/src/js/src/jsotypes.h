@@ -74,7 +74,10 @@ typedef JSUintn uint;
 #endif
 
 typedef JSUintn uintn;
+#ifndef _UINT64 
 typedef JSUint64 uint64;
+#define _UINT64
+#endif
 #if !defined(_WIN32) && !defined(XP_OS2)
 typedef JSUint32 uint32;
 #else
