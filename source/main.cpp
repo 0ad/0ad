@@ -246,7 +246,7 @@ static void Frame()
 	PROFILE_START("progressive load");
 	MICROLOG(L"progressive load");
 	ProgressiveLoad();
-	PROFILE_END( "progressive load");
+	PROFILE_END("progressive load");
 
 	PROFILE_START("input");
 	MICROLOG(L"input");
