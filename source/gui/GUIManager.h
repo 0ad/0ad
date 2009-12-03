@@ -7,7 +7,7 @@
 #include "scripting/SpiderMonkey.h"
 
 class CGUI;
-class JSObject;
+struct JSObject;
 class IGUIObject;
 struct CColor;
 struct SGUIIcon;
