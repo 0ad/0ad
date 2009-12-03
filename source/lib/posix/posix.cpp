@@ -101,3 +101,24 @@ wchar_t* wcsdup(const wchar_t* str)
 	return dst;
 }
 #endif
+
+#if EMULATE_WCSCASECMP
+int wcscasecmp (const wchar_t* s1, const wchar_t* s2)
+{
+	wint_t a1, a2;
+
+	if (s1 == s2)
+		return 0;
+
+	do
+	{
+		a1 = towlower(*s1++);
+		a2 = towlower(*s2++);
+		if (a1 == L'\0')
+			break;
+	}
+	while (a1 == a2);
+
+	return a1 - a2;
+}
+#endif

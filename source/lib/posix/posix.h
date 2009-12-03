@@ -96,14 +96,19 @@ need only be renamed (e.g. _open, _stat).
 
 #if OS_MACOSX
 # define EMULATE_WCSDUP 1
+# define EMULATE_WCSCASECMP 1
 #else
 # define EMULATE_WCSDUP 0
+# define EMULATE_WCSCASECMP 0
 #endif
 
 #if EMULATE_WCSDUP
 extern wchar_t* wcsdup(const wchar_t* str);
 #endif
 
+#if EMULATE_WCSCASECMP
+extern int wcscasecmp(const wchar_t* s1, const wchar_t* s2);
+#endif
 
 // rint*, fminf, fpclassify (too few/diverse to make separate HAVE_ for each)
 #if HAVE_C99 || ICC_VERSION || GCC_VERSION
