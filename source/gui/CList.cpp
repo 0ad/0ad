@@ -22,6 +22,7 @@ CList
 #include "precompiled.h"
 #include "GUI.h"
 #include "CList.h"
+#include "CGUIScrollBarVertical.h"
 
 #include "ps/CLogger.h"
 #include "lib/external_libraries/sdl.h"

@@ -22,6 +22,7 @@ GUI text
 #include "precompiled.h"
 
 #include "GUI.h"
+#include "GUIManager.h"
 #include "ps/CLogger.h"
 #include "ps/Parser.h"
 #include <algorithm>
@@ -104,7 +105,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_IMGLEFT)
 			{
 				// Only add the image if the icon exists.
-				if (g_GUI.IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				if (g_GUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
 				{
 					Feedback.m_Images[SFeedback::Left].push_back(itTextChunk->m_Tags[0].m_TagValue);
 				}
@@ -117,7 +118,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_IMGRIGHT)
 			{
 				// Only add the image if the icon exists.
-				if (g_GUI.IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				if (g_GUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
 				{
 					Feedback.m_Images[SFeedback::Right].push_back(itTextChunk->m_Tags[0].m_TagValue);
 				}
@@ -130,7 +131,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 			if (itTextChunk->m_Tags[0].m_TagType == CGUIString::TextChunk::Tag::TAG_ICON)
 			{
 				// Only add the image if the icon exists.
-				if (g_GUI.IconExists(itTextChunk->m_Tags[0].m_TagValue))
+				if (g_GUI->IconExists(itTextChunk->m_Tags[0].m_TagValue))
 				{
 					// We'll need to setup a text-call that will point
 					//  to the icon, this is to be able to iterate
@@ -142,7 +143,7 @@ void CGUIString::GenerateTextCall(SFeedback &Feedback,
 					SGUIText::SSpriteCall SpriteCall;
 
 					// Get Icon from icon database in g_GUI
-					SGUIIcon icon = g_GUI.GetIcon(itTextChunk->m_Tags[0].m_TagValue);
+					SGUIIcon icon = g_GUI->GetIcon(itTextChunk->m_Tags[0].m_TagValue);
 
 					CSize size = icon.m_Size;
 

@@ -18,6 +18,7 @@
 #include "precompiled.h"
 #include "Filesystem.h"
 
+#include "gui/GUIManager.h"
 #include "ps/CLogger.h"
 
 #include "lib/posix/posix_time.h"	// usleep
@@ -67,6 +68,7 @@ LibError ReloadChangedFiles()
 			VfsPath pathname;
 			RETURN_ERR(g_VFS->GetVirtualPath(notifications[i].Pathname(), pathname));
 			RETURN_ERR(g_VFS->Invalidate(pathname));
+			RETURN_ERR(g_GUI->ReloadChangedFiles(pathname));
 			RETURN_ERR(h_reload(pathname));
 		}
 	}

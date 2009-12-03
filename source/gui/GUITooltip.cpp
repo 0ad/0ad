@@ -21,6 +21,7 @@
 #include "lib/timer.h"
 #include "IGUIObject.h"
 #include "CGUI.h"
+#include "GUIutil.h"
 
 #include "ps/CLogger.h"
 

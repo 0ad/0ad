@@ -80,6 +80,7 @@
 #include "gui/scripting/JSInterface_IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
 #include "gui/GUI.h"
+#include "gui/GUIManager.h"
 #include "sound/JSI_Sound.h"
 
 #include "network/NetLog.h"
@@ -124,8 +125,6 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	// End work around.
 
 	glViewport(0, 0, w, h);
-
-	g_GUI.UpdateResolution();
 
 	ogl_Init();	// required after each mode change
 
@@ -199,58 +198,6 @@ retry:
 // GUI integration
 //----------------------------------------------------------------------------
 
-void GUI_Init()
-{
-	{TIMER(L"ps_gui_init");
-	g_GUI.Initialize();}
-
-	{TIMER(L"ps_gui_setup_xml");
-	g_GUI.LoadXmlFile(L"gui/test/setup.xml");}
-	{TIMER(L"ps_gui_styles_xml");
-	g_GUI.LoadXmlFile(L"gui/test/styles.xml");}
-	{TIMER(L"ps_gui_sprite1_xml");
-	g_GUI.LoadXmlFile(L"gui/test/sprite1.xml");}
-
-	// Atlas is running, we won't need these GUI pages (for now!
-	// what if Atlas switches to in-game mode?!)
-	// TODO: temporary hack until revised GUI structure is completed.
-//	if(ATLAS_IsRunning())
-//		return;
-
-	{TIMER(L"ps_gui_1");
-	g_GUI.LoadXmlFile(L"gui/test/1_init.xml");}
-	{TIMER(L"ps_gui_2");
-	g_GUI.LoadXmlFile(L"gui/test/2_mainmenu.xml");}
-	{TIMER(L"ps_gui_3");
-	g_GUI.LoadXmlFile(L"gui/test/3_loading.xml");}
-	{TIMER(L"ps_gui_4");
-	g_GUI.LoadXmlFile(L"gui/test/4_session.xml");}
-	{TIMER(L"ps_gui_6");
-	g_GUI.LoadXmlFile(L"gui/test/6_subwindows.xml");}
-	{TIMER(L"ps_gui_6_1");
-	g_GUI.LoadXmlFile(L"gui/test/6_1_manual.xml");}
-	{TIMER(L"ps_gui_6_2");
-	g_GUI.LoadXmlFile(L"gui/test/6_2_jukebox.xml");}
-	{TIMER(L"ps_gui_7");
-	g_GUI.LoadXmlFile(L"gui/test/7_atlas.xml");}
-	{TIMER(L"ps_gui_9");
-	g_GUI.LoadXmlFile(L"gui/test/9_global.xml");}
-}
-
-
-void GUI_Shutdown()
-{
-	g_GUI.Destroy();
-	delete &g_GUI;
-}
-
-
-void GUI_ShowMainMenu()
-{
-
-}
-
-
 // display progress / description in loading screen
 void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 {
@@ -258,7 +205,7 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 	JSString* js_desc = StringConvert::wstring_to_jsstring(g_ScriptingHost.getContext(), i18n_description);
 	g_ScriptingHost.SetGlobal("g_Progress", INT_TO_JSVAL(percent));
 	g_ScriptingHost.SetGlobal("g_LoadDescription", STRING_TO_JSVAL(js_desc));
-	g_GUI.SendEventToAll("progress");
+	g_GUI->SendEventToAll("progress");
 }
 
 
@@ -386,7 +333,7 @@ void Render()
 	// Temp GUI message GeeTODO
 	MICROLOG(L"render GUI");
 	PROFILE_START( "render gui" );
-	if(g_DoRenderGui) g_GUI.Draw();
+	if(g_DoRenderGui) g_GUI->Draw();
 	PROFILE_END( "render gui" );
 
 	ogl_WarnIfError();
@@ -499,8 +446,7 @@ static void RegisterJavascriptInterfaces()
 	SimulationScriptInit();
 
 	// GUI
-	JSI_IGUIObject::init();
-	JSI_GUITypes::init();
+	CGUI::ScriptingInit();
 }
 
 
@@ -611,7 +557,13 @@ static void InitPs(bool setup_gui)
 		}
 
 		// GUI uses VFS, so this must come after VFS init.
-		GUI_Init();
+		g_GUI->SwitchPage(L"page_pregame.xml", JSVAL_VOID);
+	}
+	else
+	{
+		// We do actually need *some* kind of GUI loaded, so use the
+		// (currently empty) Atlas one
+		g_GUI->SwitchPage(L"page_atlas.xml", JSVAL_VOID);
 	}
 }
 
@@ -643,7 +595,7 @@ static void InitInput()
 
 static void ShutdownPs()
 {
-	GUI_Shutdown();
+	SAFE_DELETE(g_GUI);
 
 	delete g_Console;
 	g_Console = 0;
@@ -907,7 +859,7 @@ void Init(const CmdLineArgs& args, int flags)
 	const bool setup_gui = ((flags & INIT_NO_GUI) == 0 && g_AutostartMap.empty());
 
 	// GUI is notified in SetVideoMode, so this must come before that.
-	new CGUI;
+	g_GUI = new CGUIManager();
 
 	// default to windowed, so users don't get stuck if e.g. half the
 	// filesystem is missing and the config files aren't loaded
@@ -1014,11 +966,6 @@ void Init(const CmdLineArgs& args, int flags)
 	InitInput();
 
 	ogl_WarnIfError();
-
-	{
-		TIMER(L"Init_guiload");
-		g_GUI.SendEventToAll("load");
-	}
 
 	if (g_FixedFrameTiming) {
 		CCamera &camera = *g_Game->GetView()->GetCamera();

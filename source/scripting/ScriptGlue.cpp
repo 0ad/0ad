@@ -36,7 +36,7 @@
 #include "graphics/UnitManager.h"
 #include "graphics/scripting/JSInterface_Camera.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
-#include "gui/CGUI.h"
+#include "gui/GUIManager.h"
 #include "lib/timer.h"
 #include "lib/svn_revision.h"
 #include "lib/frequency_filter.h"
@@ -890,29 +890,43 @@ JSBool ForceGarbageCollection(JSContext* cx, JSObject* UNUSED(obj), uintN argc, 
 // returns: global object
 // notes:
 // - Useful for accessing an object from another scope.
-JSBool GetGuiGlobal(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
+JSBool GetActiveGui(JSContext* UNUSED(cx), JSObject*, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
 {
-	JSU_REQUIRE_NO_PARAMS();
-
-	*rval = OBJECT_TO_JSVAL(g_GUI.GetScriptObject());
+	*rval = OBJECT_TO_JSVAL(g_GUI->GetScriptObject());
 	return JS_TRUE;
 }
 
-// Resets the entire GUI state and reloads the XML files.
-// params:
-// returns:
-JSBool ResetGui(JSContext* cx, JSObject*, uintN argc, jsval* argv, jsval* rval)
+JSBool PushGuiPage(JSContext* cx, JSObject*, uintN UNUSED(argc), jsval* argv, jsval* UNUSED(rval))
 {
-	JSU_REQUIRE_NO_PARAMS();
+	try
+	{
+		CStrW name = ToPrimitive<CStrW>(cx, argv[0]);
+		g_GUI->PushPage(name, argv[1]);
+		return JS_TRUE;
+	}
+	catch (PSERROR_Scripting&)
+	{
+		return JS_FALSE;
+	}
+}
 
-	// Slightly unpleasant code, because CGUI is a Singleton but we don't really
-	// want it to be
-	g_GUI.Destroy();
-	delete &g_GUI;
-	new CGUI;
-	GUI_Init();
-	g_GUI.SendEventToAll("load");
+JSBool SwitchGuiPage(JSContext* cx, JSObject*, uintN UNUSED(argc), jsval* argv, jsval* UNUSED(rval))
+{
+	try
+	{
+		CStrW name = ToPrimitive<CStrW>(cx, argv[0]);
+		g_GUI->SwitchPage(name, argv[1]);
+		return JS_TRUE;
+	}
+	catch (PSERROR_Scripting&)
+	{
+		return JS_FALSE;
+	}
+}
 
+JSBool PopGuiPage(JSContext* UNUSED(cx), JSObject*, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* UNUSED(rval))
+{
+	g_GUI->PopPage();
 	return JS_TRUE;
 }
 
@@ -1480,9 +1494,10 @@ JSFunctionSpec ScriptFunctionTable[] =
 	JS_FUNC("toggleTerritoryRendering", ToggleTerritoryRendering, 0)
 
 	// GUI
-	JS_FUNC("getGUIObjectByName", JSI_IGUIObject::getByName, 1)	// external
-	JS_FUNC("getGUIGlobal", GetGuiGlobal, 0)
-	JS_FUNC("resetGUI", ResetGui, 0)
+	JS_FUNC("getActiveGui", GetActiveGui, 0)
+	JS_FUNC("pushGuiPage", PushGuiPage, 2)
+	JS_FUNC("switchGuiPage", SwitchGuiPage, 2)
+	JS_FUNC("popGuiPage", PopGuiPage, 0)
 
 	// Events
 	JS_FUNC("addGlobalHandler", AddGlobalHandler, 2)

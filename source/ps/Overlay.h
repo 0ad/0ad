@@ -76,7 +76,7 @@ public:
 	CRect(const CSize &size);
 	CRect(const CPos &upperleft, const CPos &bottomright);
 	CRect(const CPos &pos, const CSize &size);
-	CRect(const float &_l, const float &_t, const float &_r, const float &_b);
+	CRect(const float l, const float t, const float r, const float b);
 
 	// Operators
 	void				operator =  (const CRect& a);

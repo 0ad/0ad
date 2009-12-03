@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<objects>
+
+	<!--
+	==========================================
+	 - GLOBAL OBJECTS -
+	==========================================
+	-->
+
+	<object>
+
+		<!--
+		==========================================
+		- FPS COUNTER
+		==========================================
+		-->
+
+		<object name="fpsCounter"
+			type="text"
+			ghost="true"
+			hidden="true"
+			hotkey="fps.toggle"
+			font="verdana16"
+			textcolor="100 100 0"
+			size="18 18 200 35"
+			z="199"
+		>
+			<action on="Load"><![CDATA[
+				setInterval (updateFPS, 1, 200);
+			]]></action>
+			<action on="Press"><![CDATA[
+				guiToggle (this.name);
+			]]></action>
+		</object>
+
+		<!--
+		==========================================
+		- WATERMARK - USED WHEN TAKING OFFICIAL SCREENSHOTS
+		==========================================
+		-->
+
+		<object	name="glbWaterMark"
+			hidden="true"
+			hotkey="screenshot.watermark"
+			z="200"
+		>
+			<action on="Press"><![CDATA[
+				guiToggle ("glbWaterMark");
+			]]></action>
+
+			<object	name="glbWaterMarkProductLogo"
+				type="image"
+				size="0 100%-88 190 100%"
+				sprite="watermarkProduct"
+			/>
+
+			<object	name="glbWaterMarkCompanyLogo"
+				type="image"
+				size="100%-207 100%-28 100% 100%"
+				sprite="watermarkCompany"
+			/>
+		</object>
+
+	</object>
+
+</objects>

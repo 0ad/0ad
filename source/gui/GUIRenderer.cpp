@@ -371,7 +371,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		{
 			SGUIImage Image;
 			Image.m_TextureName = VfsPath(L"art/textures/ui")/wstring_from_utf8(SpriteName.substr(10));
-			CClientArea ca("0 0 100% 100%");
+			CClientArea ca(CRect(0, 0, 0, 0), CRect(0, 0, 100, 100));
 			Image.m_Size = ca;
 			Image.m_TextureSize = ca;
 

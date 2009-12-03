@@ -22,7 +22,9 @@
 
 #include "gui/IGUIObject.h"
 #include "gui/CGUI.h"
+#include "gui/IGUIScrollBar.h"
 #include "gui/CList.h"
+#include "gui/GUIManager.h"
 
 #include "ps/CLogger.h"
 
@@ -45,7 +47,6 @@ JSPropertySpec JSI_IGUIObject::JSI_props[] =
 JSFunctionSpec JSI_IGUIObject::JSI_methods[] = 
 {
 	{ "toString", JSI_IGUIObject::toString, 0, 0, 0 },
-	{ "getByName", JSI_IGUIObject::getByName, 1, 0, 0 },
 	{ 0 }
 };
 
@@ -60,8 +61,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 	// access nonexistent properties.)
 	if (propName == "constructor" ||
 		propName == "prototype"   ||
-		propName == "toString"    ||
-		propName == "getByName"
+		propName == "toString"
 	   )
 		return JS_TRUE;
 
@@ -555,27 +555,6 @@ JSBool JSI_IGUIObject::construct(JSContext* cx, JSObject* obj, uintN argc, jsval
 
 	return JS_TRUE;
 }
-
-
-JSBool JSI_IGUIObject::getByName(JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsval* argv, jsval* rval)
-{
-	debug_assert(argc == 1);
-
-	CStr objectName = JS_GetStringBytes(JS_ValueToString(cx, argv[0]));
-
-	IGUIObject* guiObject = g_GUI.FindObjectByName(objectName);
-
-	if (!guiObject)
-	{
-		// Not found - return null
-		*rval = JSVAL_NULL;
-		return JS_TRUE;
-	}
-
-	*rval = OBJECT_TO_JSVAL(guiObject->GetJSObject());
-	return JS_TRUE;
-}
-
 
 void JSI_IGUIObject::init()
 {

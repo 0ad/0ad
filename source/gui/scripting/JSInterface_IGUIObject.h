@@ -30,7 +30,6 @@ namespace JSI_IGUIObject
 	JSBool getProperty(JSContext* cx, JSObject* obj, jsval id, jsval* vp);
 	JSBool setProperty(JSContext* cx, JSObject* obj, jsval id, jsval* vp);
 	JSBool construct(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
-	JSBool getByName(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
 	JSBool toString(JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval);
 	void init();
 }

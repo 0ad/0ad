@@ -43,12 +43,9 @@ CGUI
 
 #include "ps/Overlay.h" // CPos and CRect
 
-#include "ps/Singleton.h"
 #include "lib/input.h"
 
 #include "ps/XML/Xeromyces.h"
-
-extern InReaction gui_handler(const SDL_Event_* ev);
 
 //--------------------------------------------------------
 //  Macros
@@ -96,7 +93,7 @@ class GUITooltip;
  *
  * No interfacial functions throws.
  */
-class CGUI : public Singleton<CGUI>
+class CGUI
 {
 	friend class IGUIObject;
 	friend class IGUIScrollBarOwner;
@@ -111,15 +108,15 @@ public:
 	~CGUI();
 
 	/**
+	 * Initializes GUI script classes
+	 */
+	static void ScriptingInit();
+
+	/**
 	 * Initializes the GUI, needs to be called before the GUI is used
 	 */
 	void Initialize();
 	
-	/**
-	 * @deprecated Will be removed
-	 */
-	void Process();
-
 	/**
 	 * Performs processing that should happen every frame (including the "Tick" event)
 	 */
@@ -180,8 +177,9 @@ public:
 	 * everything else!
 	 *
 	 * @param Filename Name of file
+	 * @param Paths Set of paths; all XML and JS files loaded will be added to this
 	 */
-	void LoadXmlFile(const VfsPath& Filename);
+	void LoadXmlFile(const VfsPath& Filename, std::set<VfsPath>& Paths);
 
 	/**
 	 * Checks if object exists and return true or false accordingly
@@ -298,14 +296,6 @@ private:
 	void AddObject(IGUIObject* pObject);
 
 	/**
-	 * Report XML Reading Error, should be called from within the
-	 * Xerces_* functions.
-	 *
-	 * @param str Error message
-	 */
-	void ReportParseError(const wchar_t* str, ...) WPRINTF_ARGS(2);
-
-	/**
 	 * You input the name of the object type, and let's
 	 * say you input "button", then it will construct a
 	 * CGUIObjet* as a CButton.
@@ -381,7 +371,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std::set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the root element \<sprites\> (the DOMElement).
@@ -438,7 +428,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent);
+	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the element <script> (the XMBElement) and executes
@@ -450,7 +440,7 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile);
+	void Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the element <sprite> (the XMBElement) and stores the
@@ -571,10 +561,6 @@ private:
 	 */
 	unsigned int m_MouseButtons;
 
-	/// Used when reading in XML files
-	// TODO Gee: Used?
-	int16_t m_Errors;
-
 	// Tooltip
 	GUITooltip m_Tooltip;
 
@@ -645,8 +631,5 @@ private:
 	// Icons
 	std::map<CStr, SGUIIcon> m_Icons;
 };
-
-
-#include "GUI.h"
 
 #endif

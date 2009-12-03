@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
-
-<!DOCTYPE objects SYSTEM "../gui.dtd">
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
 ==========================================
@@ -10,9 +8,10 @@
 
 <objects>
 
+	<script file="gui/loading/loading.js"/>
+
 	<object name="ld" 
 		type="image"
-		hidden="true"
 		sprite="bkFillBlack"
 	>
 		<!--

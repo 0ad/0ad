@@ -36,10 +36,8 @@ GUI Object - List [box]
 //--------------------------------------------------------
 //  Includes / Compiler directives
 //--------------------------------------------------------
-//#include "GUI.h"
 
-// TODO Gee: Remove
-//class IGUIScrollBar;
+#include "IGUIScrollBar.h"
 
 //--------------------------------------------------------
 //  Macros

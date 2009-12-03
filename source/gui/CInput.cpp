@@ -22,6 +22,7 @@ CInput
 #include "precompiled.h"
 #include "GUI.h"
 #include "CInput.h"
+#include "CGUIScrollBarVertical.h"
 
 #include "ps/Font.h"
 #include "lib/ogl.h"

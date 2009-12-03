@@ -40,7 +40,7 @@
 #include "simulation/EntityManager.h"
 #include "simulation/Simulation.h"
 
-#include "gui/CGUI.h"
+#include "gui/GUIManager.h"
 
 class CNetServer;
 extern CNetServer *g_NetServer;
@@ -133,12 +133,11 @@ PSRETURN CGame::ReallyStartGame()
 {
 	// Call the reallyStartGame GUI function, but only if it exists
 	jsval fval, rval;
-	JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI.GetScriptObject(), "reallyStartGame", &fval);
+	JSBool ok = JS_GetProperty(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), "reallyStartGame", &fval);
 	debug_assert(ok);
 	if (ok && !JSVAL_IS_VOID(fval))
 	{
-		ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI.GetScriptObject(), fval, 0, NULL, &rval);
-		debug_assert(ok);
+		ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), g_GUI->GetScriptObject(), fval, 0, NULL, &rval);
 	}
 
 	debug_printf(L"GAME STARTED, ALL INIT COMPLETE\n");
@@ -151,7 +150,7 @@ PSRETURN CGame::ReallyStartGame()
 	g_GameRestarted = true;
 
 
-	g_GUI.SendEventToAll("sessionstart");
+	g_GUI->SendEventToAll("sessionstart");
 
 	return 0;
 }

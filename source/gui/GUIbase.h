@@ -47,8 +47,6 @@ GUI Core, stuff that the whole GUI uses
 
 #include "ps/Errors.h"
 
-#include "ps/Pyrogenesis.h"	// deprecated DECLARE_ERROR
-
 //--------------------------------------------------------
 //  Forward declarations
 //--------------------------------------------------------
@@ -57,9 +55,6 @@ class IGUIObject;
 //--------------------------------------------------------
 //  Macros
 //--------------------------------------------------------
-
-// Global CGUI
-#define g_GUI CGUI::GetSingleton()
 
 // Object settings setups
 
@@ -80,8 +75,6 @@ public:																	\
  */
 enum EGUIMessageType
 {
-	GUIM_PREPROCESS,		// TODO questionable
-	GUIM_POSTPROCESS,		// TODO questionable
 	GUIM_MOUSE_OVER,
 	GUIM_MOUSE_ENTER,
 	GUIM_MOUSE_LEAVE,
@@ -110,10 +103,8 @@ enum EGUIMessageType
  */
 struct SGUIMessage
 {
-	SGUIMessage() {}
 	SGUIMessage(EGUIMessageType _type) : type(_type) {}
 	SGUIMessage(EGUIMessageType _type, const CStr& _value) : type(_type), value(_value) {}
-	~SGUIMessage() {}
 
 	/**
 	 * Describes what the message regards
@@ -138,19 +129,6 @@ enum
 	GUIRR_HIDDEN		= 0x00000001,
 	GUIRR_DISABLED		= 0x00000010,
 	GUIRR_GHOST			= 0x00000100
-};
-
-/**
- * @enum EGUISettingsStruct
- * 
- * Stored in SGUISetting, tells us in which struct
- * the setting is located, that way we can query
- * for the structs address.
- */
-enum EGUISettingsStruct
-{
-	GUISS_BASE,
-	GUISS_EXTENDED
 };
 
 // Text alignments
@@ -188,6 +166,7 @@ class CClientArea
 public:
 	CClientArea();
 	CClientArea(const CStr& Value);
+	CClientArea(const CRect& pixel, const CRect& percent);
 
 	/// Pixel modifiers
 	CRect pixel;

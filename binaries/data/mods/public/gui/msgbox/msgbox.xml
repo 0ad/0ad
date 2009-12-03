@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+	<script>
+	function init(data)
+	{
+		var mbMainObj = getGUIObjectByName ("mbMain");
+		var mbTitleObj = getGUIObjectByName ("mbTitleBar");
+		var mbTextObj = getGUIObjectByName ("mbText");
+		
+		var mbButton1Obj = getGUIObjectByName ("mbButton1");
+		var mbButton2Obj = getGUIObjectByName ("mbButton2");
+		var mbButton3Obj = getGUIObjectByName ("mbButton3");
+
+		// Calculate size
+		var mbLRDiff = data.width / 2;     // Message box left/right difference from 50% of screen
+		var mbUDDiff = data.height / 2;    // Message box up/down difference from 50% of screen
+		
+		var mbSizeString = "50%-" + mbLRDiff + " 50%-" + mbUDDiff + " 50%+" + mbLRDiff + " 50%+" + mbUDDiff;
+		
+		mbMainObj.size = mbSizeString;
+		
+		// Texts
+		mbTitleObj.caption	= data.title;
+		mbTextObj.caption 	= data.message;
+
+		// Message box modes
+		// There is a number of standard modes, and if none of these is used (mbMode == 0), the button captions will be
+		// taken from the array mbButtonCaptions; there currently is a maximum of three buttons.
+		switch (data.mode)
+		{
+		case 1:
+			// Simple Yes/No question box
+			data.buttonCaptions = ["Yes", "No"];
+			break;
+		case 2:
+			// Okay-only box
+			data.buttonCaptions = ["OK"];
+			break;
+		case 3:
+			// Retry/Abort/Ignore box (will we ever need this?!)
+			data.buttonCaptions = ["Retry", "Ignore", "Abort"];
+		default:
+			break;
+		}
+
+		// Buttons
+		var codes = data.buttonCode;
+		if (data.buttonCaptions.length >= 1)
+		{
+			mbButton1Obj.caption = data.buttonCaptions[0];
+			mbButton1Obj.onPress = function () { popGuiPage(); if (codes[0]) codes[0](); }
+			mbButton1Obj.hidden = false;
+		}
+		if (data.buttonCaptions.length >= 2)
+		{
+			mbButton2Obj.caption = data.buttonCaptions[1];
+			mbButton2Obj.onPress = function () { popGuiPage(); if (codes[1]) codes[1](); }
+			mbButton2Obj.hidden = false;
+		}
+		if (data.buttonCaptions.length >= 3)
+		{
+			mbButton3Obj.caption = data.buttonCaptions[2];
+			mbButton3Obj.onPress = function () { popGuiPage(); if (codes[2]) codes[2](); }
+			mbButton3Obj.hidden = false;
+		}
+
+		switch (data.buttonCaptions.length)
+		{
+		case 1:
+			mbButton1Obj.size = "30% 100%-80 70% 100%-50";
+			break;
+		case 2:
+			mbButton1Obj.size = "10% 100%-80 45% 100%-50";
+			mbButton2Obj.size = "55% 100%-80 90% 100%-50";
+			break;
+		case 3:
+			mbButton1Obj.size = "10% 100%-80 30% 100%-50";
+			mbButton2Obj.size = "40% 100%-80 60% 100%-50";
+			mbButton3Obj.size = "70% 100%-80 90% 100%-50";
+			break;
+		}
+	}
+	</script>
+	<object>
+		<object name="mbMain"
+			style="wheatWindow"
+			type="image"
+			size="50%-400 50%-200 50%+400 50%+200" 
+			z="198"
+		>
+
+			<object name="mbTitleBar"
+				style="wheatWindowTitleBar"
+				type="button"
+			/>
+
+			<object name="mbText"
+				style="fancyTextTitleBlack"
+				type="text"
+				size="30 30 100%-30 100%-100"
+			/>
+                        
+			<object name="mbButton1"
+				style="wheatButtonFancy"
+				type="button"
+				hidden="true"
+				size="40 100%-50 33%-30 100%-20" 
+			/>
+			<object name="mbButton2"
+				style="wheatButtonFancy"
+				type="button"
+				hidden="true"
+				size="33%+30 100%-50 66%-40 100%-20" 
+			/>
+			<object name="mbButton3"
+				style="wheatButtonFancy"
+				type="button"
+				hidden="true"
+				size="66%+30 100%-50 100%-40 100%-20"
+			/>
+		</object>
+
+	</object>
+
+</objects>

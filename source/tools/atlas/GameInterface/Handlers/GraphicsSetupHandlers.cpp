@@ -25,8 +25,7 @@
 
 #include "graphics/GameView.h"
 #include "graphics/ObjectManager.h"
-#include "gui/CGUI.h"
-#include "gui/GUIbase.h"
+#include "gui/GUIManager.h"
 #include "lib/external_libraries/sdl.h"
 #include "maths/MathUtil.h"
 #include "ps/CConsole.h"
@@ -174,7 +173,7 @@ MESSAGEHANDLER(ResizeScreen)
 	g_Renderer.SetViewport(vp);
 	g_Renderer.Resize(g_xres, g_yres);
 
-	g_GUI.UpdateResolution();
+	g_GUI->UpdateResolution();
 
 	g_Console->UpdateScreenSize(g_xres, g_yres);
 }

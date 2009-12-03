@@ -30,9 +30,10 @@ that of Atlas depending on commandline parameters.
 // included there.
 #include "lib/precompiled.h"
 
-#include "lib/input.h"
-#include "lib/timer.h"
 #include "lib/frequency_filter.h"
+#include "lib/input.h"
+#include "lib/ogl.h"
+#include "lib/timer.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/sound/snd_mgr.h"
 
@@ -49,6 +50,7 @@ that of Atlas depending on commandline parameters.
 #include "ps/Hotkey.h"
 #include "ps/Globals.h"
 #include "ps/Interact.h"
+#include "ps/XML/Xeromyces.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 //#include "network/SessionManager.h"
@@ -58,7 +60,7 @@ that of Atlas depending on commandline parameters.
 #include "simulation/Scheduler.h"
 #include "sound/CMusicPlayer.h"
 #include "sound/SoundGroupMgr.h"
-#include "gui/GUI.h"
+#include "gui/GUIManager.h"
 
 #define LOG_CATEGORY L"main"
 
@@ -118,7 +120,7 @@ static void PumpEvents()
 // used to prevent reloading during that time (see call site).
 static bool ProgressiveBuildArchive()
 {
-ONCE(g_GUI.SendEventToAll("archivebuildercomplete"));
+ONCE(g_GUI->SendEventToAll("archivebuildercomplete"));
 return false;
 #if 0
 	int ret = vfs_opt_auto_build("../logs/trace.txt", "mods/official/official%02d.zip", "mods/official/mini%02d.zip");
@@ -260,7 +262,7 @@ static void Frame()
 
 	PROFILE_START("gui tick");
 	MICROLOG(L"gui tick");
-	g_GUI.TickObjects();
+	g_GUI->TickObjects();
 	PROFILE_END("gui tick");
 
 	ogl_WarnIfError();

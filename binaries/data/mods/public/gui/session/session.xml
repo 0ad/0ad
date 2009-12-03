@@ -10,10 +10,15 @@
 
 <objects>
 
+	<script file="gui/session/session.js"/>
+
 	<object name="sn"
-		hidden="true"
 		hotkey="session.gui.toggle"
 	>
+		<action on="Load"><![CDATA[
+			initSession();
+		]]></action>
+
 		<action on="Press"><![CDATA[
 			guiToggle (this.name);
 		]]></action>
@@ -23,8 +28,8 @@
 		    hotkey="leave"
 		>
 		    <action on="Press"><![CDATA[
-		        btCaptions = new Array("Yes", "No!");
-                btCode = new Array("confirmLeave()", "");
+		        btCaptions = ["Yes", "No!"];
+                btCode = [confirmLeave, null];
                 messageBox (400, 200, "Do you really want to quit?", "Confirmation", 0, btCaptions, btCode);
 		    ]]></action>
 		</object>

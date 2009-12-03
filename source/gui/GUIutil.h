@@ -137,19 +137,6 @@ public:
 	static PSRETURN SetSetting(IGUIObject *pObject, const CStr& Setting, 
 								const T &Value, const bool &SkipMessage=false);
 
-#ifdef g_GUI
-	/**
-	 * Adapter that uses the singleton g_GUI
-	 * Can safely be removed.
-	 */
-	static PSRETURN GetSetting(
-		const CStr& Object, 
-		const CStr& Setting, T &Value)
-	{
-		return GetSetting(g_GUI, Object, Setting, Value);
-	}
-#endif // g_GUI
-
 	/**
 	 * Retrieves a setting by settings name and object name
 	 *
@@ -170,18 +157,6 @@ public:
 
 		return GetSetting(pObject, Setting, Value);
 	}
-
-#ifdef g_GUI
-	/**
-	 * Adapter that uses the singleton g_GUI
-	 * Can safely be removed.
-	 */
-	static PSRETURN SetSetting(
-		const CStr& Object, const CStr& Setting, const T &Value, const bool& SkipMessage=false)
-	{
-		return SetSetting(g_GUI, Object, Setting, Value, SkipMessage);		
-	}
-#endif // g_GUI
 
 	/**
 	 * Sets a value by setting and object name using a real 

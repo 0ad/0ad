@@ -21,6 +21,7 @@ IGUIScrollBar
 
 #include "precompiled.h"
 #include "GUI.h"
+#include "CGUIScrollBarVertical.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"gui"

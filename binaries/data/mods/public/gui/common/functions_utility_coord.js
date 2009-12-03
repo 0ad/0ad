@@ -6,18 +6,14 @@
 
 // ====================================================================
 
-function initCoord()
-{
-	// Initialise coordinate set for this page.
-	Crd = new Array();
-	Crd.last = new Object(-1);
+// Initialise coordinate set for this page.
+Crd = { last: -1 };
 
-	// Set corner constants.
-	rb	= 0;
-	lb	= 1;
-	lt	= 2;
-	rt	= 3;
-}
+// Set corner constants.
+rb = 0;
+lb = 1;
+lt = 2;
+rt = 3;
 
 // ====================================================================
 

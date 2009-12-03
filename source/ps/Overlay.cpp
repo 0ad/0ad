@@ -98,8 +98,8 @@ CRect::CRect(const CPos &pos, const CSize &size) :
 {
 }
 
-CRect::CRect(const float &_l, const float &_t, const float &_r, const float &_b) : 
-	left(_l), top(_t), right(_r), bottom(_b) 
+CRect::CRect(const float l, const float t, const float r, const float b) :
+	left(l), top(t), right(r), bottom(b)
 {
 }
 

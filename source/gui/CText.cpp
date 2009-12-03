@@ -22,6 +22,7 @@ CText
 #include "precompiled.h"
 #include "GUI.h"
 #include "CText.h"
+#include "CGUIScrollBarVertical.h"
 
 #include "lib/ogl.h"
 

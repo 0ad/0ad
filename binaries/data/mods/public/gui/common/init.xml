@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+
+<!DOCTYPE objects SYSTEM "../gui.dtd">
+
+<objects>
+
+		<!--
+		==========================================
+		- INCLUDE SCRIPT - UTILITY FUNCTIONS
+		==========================================
+		-->
+
+        <script file="gui/common/functions_utility.js" />
+
+        <script file="gui/common/functions_utility_list.js" />
+
+        <script file="gui/common/functions_utility_object.js" />
+
+        <script file="gui/common/functions_utility_coord.js" />
+
+        <script file="gui/common/functions_utility_music.js" />
+
+        <script file="gui/common/functions_utility_animation.js" />
+
+        <!--
+        ==========================================
+         - INCLUDE SCRIPT - GLOBAL OBJECT FUNCTIONS
+        ==========================================
+        -->
+
+        <script file="gui/common/functions_global_object.js" />
+
+        <!--
+        ==========================================
+         - INCLUDE SCRIPT - GUI PAGE FUNCTIONS
+        ==========================================
+        -->
+
+        <script file="gui/common/functions_page_pregame.js" />
+
+        <script file="gui/common/functions_page_pregame_multiplayer.js" />
+
+        <script file="gui/common/functions_page_pregame_setup.js" />
+
+        <script file="gui/common/functions_page_pregame_load.js" />
+
+        <script file="gui/common/functions_page_session.js"/>
+
+        <script file="gui/common/functions_page_session_status_pane.js" />
+
+        <script file="gui/common/functions_page_session_status_commands.js" />
+		
+        <script file="gui/common/functions_page_session_manual.js" />		
+
+        <!--
+        ==========================================
+         - INCLUDE SCRIPT - SIMULATION FUNCTIONS
+        ==========================================
+        -->
+
+        <script file="gui/common/functions_sim_player.js"/>
+
+        <script file="gui/common/functions_sim_entity.js"/>
+
+</objects>

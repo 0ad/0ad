@@ -27,7 +27,6 @@
 		extern JSPropertySpec JSI_props[];		\
 		extern JSFunctionSpec JSI_methods[];	\
 		JSBool construct( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );	\
-		JSBool getByName( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );	\
 		JSBool toString( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval );	\
 	}
 

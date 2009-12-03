@@ -40,9 +40,7 @@ GUI Inclusion file
 #include <vector>
 #include <stddef.h>
 
-#include "ps/Pyrogenesis.h"
 #include "ps/CStr.h"
-#include "lib/ogl.h"
 
 #include "GUIbase.h"
 #include "GUIutil.h"
@@ -53,7 +51,5 @@ GUI Inclusion file
 #include "IGUIScrollBarOwner.h"
 #include "IGUITextOwner.h"
 #include "IGUIScrollBar.h"
-#include "CGUIScrollBarVertical.h"
-#include "CGUI.h"
 
 #endif

@@ -4,6 +4,10 @@
 
 <objects>
 
+	<script>
+	function init () { }
+	</script>
+
 	<!--
 	==========================================
 	- PROGRESS BAR FOR ARCHIVE BUILDER
@@ -13,6 +17,7 @@
 	<object	name="ab"
 			type="button"
 			size="0 0 100% 100%"
+			hidden="true"
 			ghost="false"
 			hotkey="archive.abort"
 			sprite="bkFillBlack"			
@@ -62,7 +67,6 @@
 	<object	name="pg"
 		type="image"
 		sprite="pgBackground"
-		hidden="true"
 	>
 		<!--
 		==========================================
@@ -300,10 +304,9 @@
 			tooltip="These are the guys who made this game. Visit them at http://www.wildfiregames.com/0ad/"
 		>
 			<action on="Press"><![CDATA[
-				btCode = new Array("guiHide('mbMain');");
 				messageBox (420, 420, "[icon=iconProduct] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2005\n\nVersion 0.1.2 (PASAP II)\n\n" +
 				"This is a confidental pre-release version of the game!\n\nVisit http://www.wildfiregames.com/0ad/ " +
-				"to learn more about [icon=iconProduct] A.D., participate in the community and meet the developers.\n\n", "About [icon=iconProduct] A.D.", 2, new Array(), btCode);
+				"to learn more about [icon=iconProduct] A.D., participate in the community and meet the developers.\n\n", "About [icon=iconProduct] A.D.", 2, [], []);
 			]]></action>
 		</object>
 
@@ -320,8 +323,8 @@
 			tooltip="Tired of 0 A.D. ? Click here to leave and reenter the real world."
 		>
 			<action on="Press"><![CDATA[
-				btCaptions = new Array("Yes, let me out!", "Nooooo!");
-				btCode = new Array("exit();", "");
+				btCaptions = ["Yes, let me out!", "Nooooo!"];
+				btCode = [exit, null];
 				messageBox (400, 200, "Do you really want to quit [icon=iconProduct] A.D.? This will cause a sudden return to reality.", "Confirmation", 0, btCaptions, btCode);
 			]]></action>
 		</object>

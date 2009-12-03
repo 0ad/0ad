@@ -25,8 +25,6 @@ GUI base
 
 #include "GUI.h"
 
-using std::string;
-
 //--------------------------------------------------------
 //  Help Classes/Structs for the GUI implementation
 //--------------------------------------------------------
@@ -38,6 +36,11 @@ CClientArea::CClientArea() : pixel(0.f,0.f,0.f,0.f), percent(0.f,0.f,0.f,0.f)
 CClientArea::CClientArea(const CStr& Value)
 {
 	SetClientArea(Value);
+}
+
+CClientArea::CClientArea(const CRect& pixel, const CRect& percent)
+	: pixel(pixel), percent(percent)
+{
 }
 
 CRect CClientArea::GetClientArea(const CRect &parent) const
@@ -59,9 +62,6 @@ CRect CClientArea::GetClientArea(const CRect &parent) const
 
 bool CClientArea::SetClientArea(const CStr& Value)
 {
-	// Get value in STL string format
-	string _Value = Value;
-
 	// This might lack incredible speed, but since all XML files
 	//  are read at startup, reading 100 client areas will be
 	//  negligible in the loading time.
@@ -91,8 +91,8 @@ bool CClientArea::SetClientArea(const CStr& Value)
 		"_";
 	CParser& parser (CParserCache::Get(four_values));
 
-    CParserLine line;
-	line.ParseString(parser, _Value);
+	CParserLine line;
+	line.ParseString(parser, Value);
 
 	if (!line.m_ParseOK)
 		return false;
@@ -103,7 +103,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	// Divide into the four piles (delimiter is an argument named "delim")
 	for (int i=0, valuenr=0; i<(int)line.GetArgCount(); ++i)
 	{
-		string str;
+		std::string str;
 		line.GetArgString(i, str);
 		if (str == "delim")
 		{
@@ -142,7 +142,7 @@ bool CClientArea::SetClientArea(const CStr& Value)
 	{
 		if (arg_count[v] == 1)
 		{
-			string str;
+			std::string str;
 			line.GetArgString(arg_start[v], str);
 
 			if (!line.GetArgFloat(arg_start[v], values[v][1]))

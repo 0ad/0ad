@@ -21,6 +21,7 @@ GUI utilities
 
 #include "precompiled.h"
 #include "GUI.h"
+#include "GUIManager.h"
 #include "ps/Parser.h"
 #include "ps/i18n.h"
 
@@ -99,12 +100,9 @@ bool GUI<int>::ParseColor(const CStr& Value, CColor &Output, float DefaultAlpha)
 {
 	// First, check our database in g_GUI for pre-defined colors
 	//  If we find anything, we'll ignore DefaultAlpha
-#ifdef g_GUI
 	// If it fails, it won't do anything with Output
-	if (g_GUI.GetPreDefinedColor(Value, Output))
+	if (g_GUI->GetPreDefinedColor(Value, Output))
 		return true;
-
-#endif // g_GUI
 
 	return Output.ParseString(Value, DefaultAlpha);
 }
@@ -114,12 +112,9 @@ template <>
 bool __ParseString<CColor>(const CStr& Value, CColor &Output)
 {
 	// First, check our database in g_GUI for pre-defined colors
-#ifdef g_GUI
 	// If it fails, it won't do anything with Output
-	if (g_GUI.GetPreDefinedColor(Value, Output))
+	if (g_GUI->GetPreDefinedColor(Value, Output))
 		return true;
-
-#endif // g_GUI
 
 	return Output.ParseString(Value, 255.f);
 }
