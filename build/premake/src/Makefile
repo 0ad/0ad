@@ -13,10 +13,6 @@ export CONFIG
 
 all: Premake
 
-Makefile: premake.lua Src/premake.lua
-	@echo ==== Regenerating Makefiles ====
-	@premake --file $^ --os linux --target gnu
-
 Premake:
 	@echo ==== Building Premake ====
 	@$(MAKE) --no-print-directory -C Src
