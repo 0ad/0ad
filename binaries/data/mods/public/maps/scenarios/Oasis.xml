@@ -3,9 +3,9 @@
 <Scenario>
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColour r="2.01758" g="2.01758" b="2.01758"/>
-		<SunElevation angle="1.03697"/>
-		<SunRotation angle="-0.208621"/>
+		<SunColour r="1.79688" g="1.79688" b="1.79688"/>
+		<SunElevation angle="0.834119"/>
+		<SunRotation angle="-0.438859"/>
 		<TerrainAmbientColour r="0.301961" g="0.364706" b="0.529412"/>
 		<UnitsAmbientColour r="0.411765" g="0.411765" b="0.411765"/>
 		<Water>
@@ -16,27 +16,27 @@
 				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.695313</Murkiness>
-				<Tint r="0.313726" g="0.376471" b="0.521569"/>
+				<Tint r="0.313726" g="0.25098" b="0.188235"/>
 				<ReflectionTint r="0.603922" g="0.556863" b="0.392157"/>
-				<ReflectionTintStrength>0.452148</ReflectionTintStrength>
+				<ReflectionTintStrength>0.152344</ReflectionTintStrength>
 			</WaterBody>
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="473.443" y="126.716" z="346.957"/>
-		<Rotation angle="0.032692"/>
+		<Position x="473.864" y="154.858" z="311.019"/>
+		<Rotation angle="0.00729519"/>
 		<Declination angle="0.725149"/>
 	</Camera>
 	<Entities>
 		<Entity uid="1">
 			<Template>special_settlement</Template>
-			<Player>0</Player>
+			<Player>2</Player>
 			<Position x="82.1179" y="22.4" z="83.8838"/>
 			<Orientation angle="2.35619"/>
 		</Entity>
 		<Entity uid="2">
 			<Template>special_settlement</Template>
-			<Player>0</Player>
+			<Player>1</Player>
 			<Position x="477.739" y="22.4" z="465.447"/>
 			<Orientation angle="2.33814"/>
 		</Entity>
@@ -2179,7 +2179,7 @@
 		<Entity uid="435">
 			<Template>flora_tree_date_palm</Template>
 			<Player>0</Player>
-			<Position x="258.213" y="22.4" z="252.481"/>
+			<Position x="260.249" y="22.4" z="244.607"/>
 			<Orientation angle="1.58477"/>
 		</Entity>
 		<Entity uid="437">
