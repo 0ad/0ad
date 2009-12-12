@@ -218,22 +218,23 @@ CMiniPatch* CTerrain::GetTile(ssize_t i, ssize_t j) const
 
 float CTerrain::GetVertexGroundLevel(ssize_t i, ssize_t j) const
 {
-	i = ClampCoordToMap(i);
-	j = ClampCoordToMap(j);
+	i = clamp(i, (ssize_t)0, m_MapSize-1);
+	j = clamp(j, (ssize_t)0, m_MapSize-1);
 	return HEIGHT_SCALE * m_Heightmap[j*m_MapSize + i];
 }
 
 float CTerrain::GetSlope(float x, float z) const
 {
-	const ssize_t xi = ClampCoordToMap((ssize_t)floor(x/CELL_SIZE));
-	const ssize_t zi = ClampCoordToMap((ssize_t)floor(z/CELL_SIZE));
+	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
+	const ssize_t xi = clamp((ssize_t)floor(x/CELL_SIZE), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)floor(z/CELL_SIZE), (ssize_t)0, m_MapSize-2);
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
-	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];
-	float h10 = m_Heightmap[zi*m_MapSize + xi + 1];
-	float h11 = m_Heightmap[zi*m_MapSize + xi + m_MapSize + 1];
+	float h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
+	float h10 = m_Heightmap[zi*m_MapSize + (xi+1)];
+	float h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
 	
-	//Difference of highest point from lowest point
+	// Difference of highest point from lowest point
 	return std::max(std::max(h00, h01), std::max(h10, h11)) -
 	       std::min(std::min(h00, h01), std::min(h10, h11));
 }
@@ -261,15 +262,18 @@ CVector2D CTerrain::GetSlopeAngleFace( CEntity* entity ) const
 
 float CTerrain::GetExactGroundLevel(float x, float z) const
 {
-	const ssize_t xi = ClampCoordToMap((ssize_t)floor(x/CELL_SIZE));
-	const ssize_t zi = ClampCoordToMap((ssize_t)floor(z/CELL_SIZE));
+	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
+	const ssize_t xi = clamp((ssize_t)floor(x/CELL_SIZE), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)floor(z/CELL_SIZE), (ssize_t)0, m_MapSize-2);
+
 	const float xf = clamp(x/CELL_SIZE-xi, 0.0f, 1.0f);
 	const float zf = clamp(z/CELL_SIZE-zi, 0.0f, 1.0f);
 
 	float h00 = m_Heightmap[zi*m_MapSize + xi];
-	float h01 = m_Heightmap[zi*m_MapSize + xi + m_MapSize];
-	float h10 = m_Heightmap[zi*m_MapSize + xi + 1];
-	float h11 = m_Heightmap[zi*m_MapSize + xi + m_MapSize + 1];
+	float h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
+	float h10 = m_Heightmap[zi*m_MapSize + (xi+1)];
+	float h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
+	// Linearly interpolate
 	return (HEIGHT_SCALE * (
 		(1 - zf) * ((1 - xf) * h00 + xf * h10)
 		   + zf  * ((1 - xf) * h01 + xf * h11)));
@@ -298,13 +302,13 @@ void CTerrain::Resize(ssize_t size)
 	if (size>m_MapSizePatches) {
 		// new map is bigger than old one - zero the heightmap so we don't get uninitialised
 		// height data along the expanded edges
-		memset(newHeightmap,0,newMapSize*newMapSize);
+		memset(newHeightmap,0,newMapSize*newMapSize*sizeof(u16));
 	}
 
 	// now copy over rows of data
 	u16* src=m_Heightmap;
 	u16* dst=newHeightmap;
-	ssize_t copysize=newMapSize>m_MapSize ? m_MapSize : newMapSize;
+	ssize_t copysize=std::min(newMapSize, m_MapSize);
 	for (ssize_t j=0;j<copysize;j++) {
 		cpu_memcpy(dst,src,copysize*sizeof(u16));
 		dst+=copysize;
@@ -422,23 +426,23 @@ void CTerrain::SetHeightMap(u16* heightmap)
 // coords); return the average height of the flattened area
 float CTerrain::FlattenArea(float x0, float x1, float z0, float z1)
 {
-	const ssize_t tx0=ClampCoordToMap(ssize_t(x0/CELL_SIZE));
-	const ssize_t tx1=ClampCoordToMap(ssize_t((x1/CELL_SIZE)+1.0f));
-	const ssize_t tz0=ClampCoordToMap(ssize_t(z0/CELL_SIZE));
-	const ssize_t tz1=ClampCoordToMap(ssize_t((z1/CELL_SIZE)+1.0f));
+	const ssize_t tx0 = clamp(ssize_t(x0/CELL_SIZE),   (ssize_t)0, m_MapSize-1);
+	const ssize_t tx1 = clamp(ssize_t(x1/CELL_SIZE)+1, (ssize_t)0, m_MapSize-1);
+	const ssize_t tz0 = clamp(ssize_t(z0/CELL_SIZE),   (ssize_t)0, m_MapSize-1);
+	const ssize_t tz1 = clamp(ssize_t(z1/CELL_SIZE)+1, (ssize_t)0, m_MapSize-1);
 
 	size_t count=0;
 	double sum=0.0f;
-	for (ssize_t x=tx0;x<=tx1;x++) {
-		for (ssize_t z=tz0;z<=tz1;z++) {
+	for (ssize_t z=tz0;z<=tz1;z++) {
+		for (ssize_t x=tx0;x<=tx1;x++) {
 			sum+=m_Heightmap[z*m_MapSize + x];
 			count++;
 		}
 	}
 	const u16 avgY = u16(sum/count);
 
-	for (ssize_t x=tx0;x<=tx1;x++) {
-		for (ssize_t z=tz0;z<=tz1;z++) {
+	for (ssize_t z=tz0;z<=tz1;z++) {
+		for (ssize_t x=tx0;x<=tx1;x++) {
 			m_Heightmap[z*m_MapSize + x]=avgY;
 			CPatch* patch=GetPatch(x/PATCH_SIZE,z/PATCH_SIZE);	// can't fail (x,z were clamped)
 			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
@@ -453,10 +457,10 @@ float CTerrain::FlattenArea(float x0, float x1, float z0, float z1)
 void CTerrain::MakeDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags)
 {
 	// flag vertex data as dirty for affected patches, and rebuild bounds of these patches
-	ssize_t pi0 = clamp((i0/PATCH_SIZE)-1, ssize_t(0), m_MapSizePatches-1);
-	ssize_t pi1 = clamp((i1/PATCH_SIZE)+1, ssize_t(0), m_MapSizePatches-1);
-	ssize_t pj0 = clamp((j0/PATCH_SIZE)-1, ssize_t(0), m_MapSizePatches-1);
-	ssize_t pj1 = clamp((j1/PATCH_SIZE)+1, ssize_t(0), m_MapSizePatches-1);
+	ssize_t pi0 = clamp((i0/PATCH_SIZE)-1, (ssize_t)0, m_MapSizePatches);
+	ssize_t pi1 = clamp((i1/PATCH_SIZE)+1, (ssize_t)0, m_MapSizePatches);
+	ssize_t pj0 = clamp((j0/PATCH_SIZE)-1, (ssize_t)0, m_MapSizePatches);
+	ssize_t pj1 = clamp((j1/PATCH_SIZE)+1, (ssize_t)0, m_MapSizePatches);
 	for (ssize_t j = pj0; j < pj1; j++) {
 		for (ssize_t i = pi0; i < pi1; i++) {
 			CPatch* patch = GetPatch(i,j);	// can't fail (i,j were clamped)

@@ -24,7 +24,6 @@
 
 #include "maths/Vector3D.h"
 #include "graphics/SColor.h"
-#include "maths/MathUtil.h"	// clamp
 #include "lib/sysdep/cpu.h"
 
 class HEntity;
@@ -75,13 +74,6 @@ public:
 	bool IsOnMap(const CVector2D& v) const;
 
 	bool IsPassable(const CVector2D& tileSpaceLoc, HEntity entity) const;
-
-	ssize_t ClampCoordToMap(ssize_t index) const
-	{
-		// GetSlope wants to access the next index,
-		// hence clamp to size-2
-		return clamp(index, ssize_t(0), m_MapSize-2);
-	}
 
 	float GetVertexGroundLevel(ssize_t i, ssize_t j) const;
 	float GetExactGroundLevel(float x, float z) const;
