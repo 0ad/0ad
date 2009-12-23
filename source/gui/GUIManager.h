@@ -6,6 +6,8 @@
 #include "ps/CStr.h"
 #include "scripting/SpiderMonkey.h"
 
+#include <set>
+
 class CGUI;
 struct JSObject;
 class IGUIObject;

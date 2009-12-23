@@ -19,7 +19,9 @@
 #define INCLUDED_CPLAYLIST
 
 #include <vector>
+
 #include "lib/file/vfs/vfs_path.h"
+#include "ps/CStr.h"
 
 class CPlayList
 {
