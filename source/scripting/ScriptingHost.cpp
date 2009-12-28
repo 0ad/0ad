@@ -64,6 +64,8 @@ ScriptingHost::ScriptingHost()
 
 	JS_SetErrorReporter(m_Context, ScriptingHost::ErrorReporter);
 
+	JS_BeginRequest(m_Context);
+
 	m_GlobalObject = JS_NewObject(m_Context, &GlobalClass, NULL, NULL);
 	if(!m_GlobalObject)
 		throw PSERROR_Scripting_SetupFailed();
@@ -89,6 +91,7 @@ ScriptingHost::~ScriptingHost()
 {
 	if (m_Context != NULL)
 	{
+		JS_EndRequest(m_Context);
  		JS_DestroyContext(m_Context);
 		m_Context = NULL;
 	}
