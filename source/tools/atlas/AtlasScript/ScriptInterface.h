@@ -24,15 +24,13 @@
 # define XP_UNIX
 #endif // (we don't support XP_OS2 or XP_BEOS)
 
-// NOTE: This requires a threadsafe SpiderMonkey - make sure you compile it with
-// the right options, else it'll fail when linking (which might not be until runtime,
-// and then you'll wish you saw this comment before spending so much time investigating
-// the problem).
-// ((There are a few places where SM really needs to be told to be threadsafe, even
-// though we're not actually sharing runtimes between threads.))
-#define JS_THREADSAFE
-
 #include "js/jspubtd.h"
+
+#ifndef JS_THREADSAFE
+#error The editor requires a threadsafe version of SpiderMonkey. Something in the build system is broken if you see this error.
+#endif
+// (There are a few places where SM really needs to be told to be threadsafe, even
+// though we're not actually sharing runtimes between threads.)
 
 class wxWindow;
 class wxString;

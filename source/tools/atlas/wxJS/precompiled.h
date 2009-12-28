@@ -9,8 +9,6 @@
 # define XP_UNIX
 #endif // (we don't support XP_OS2 or XP_BEOS)
 
-#define JS_THREADSAFE
-
 
 #ifdef _WIN32
 # pragma warning (disable: 4100) // "unreferenced formal parameter"
