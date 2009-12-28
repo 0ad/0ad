@@ -7,6 +7,7 @@ addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
 addoption("with-valgrind", "Enable using valgrind for debugging functionality")
+addoption("with-spidermonkey-tip", "Use SpiderMonkey from mozilla-central tip instead of the 1.6 release")
 
 use_dcdt = false -- disable it since it's a non-Free library
 
@@ -121,6 +122,8 @@ function package_set_build_flags()
 	-- PremakeWiki says with-symbols and optimize are automatically set for
 	-- Debug and Release builds, respectively. doesn't happen though, so do it manually.
 
+	package.config["Debug"].defines = { "DEBUG" }
+
 	package.config["Testing"].buildflags = { "no-runtime-checks" }
 	package.config["Testing"].defines = { "TESTING" }
 
@@ -207,6 +210,11 @@ function package_set_build_flags()
 				tinsert(package.links, "gcov")
 			end
 		end
+
+		-- To use our local SpiderMonkey library, it needs to be part of the runtime dynamic linker
+		-- path. So try to add the cwd (assuming it'll be binaries/system/) with -rpath
+		-- (TODO: is this a sane way to do it?)
+		tinsert(package.linkoptions, {"-Wl,-rpath=."})
 
 		tinsert(package.buildoptions, {
 			-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
@@ -851,6 +859,9 @@ end
 function setup_atlas_frontend_package (package_name)
 
 	package_create(package_name, "winexe")
+	package_add_extern_libs({
+		"spidermonkey",
+	})
 
 	local source_root = "../../../source/tools/atlas/AtlasFrontends/"
 	package.files = {

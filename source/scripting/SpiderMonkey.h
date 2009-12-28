@@ -43,8 +43,6 @@
 # define XP_UNIX
 #endif
 
-#define JS_THREADSAFE
-
 #include <js/jsapi.h>
 
 #ifndef NDEBUG

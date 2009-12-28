@@ -68,6 +68,7 @@ end
 --   which is unfortunately totally incompatible with our
 --   library installation rules.
 -- * depends: a table of external libraries that this library depends on
+-- * defines: a table of symbols to define
 extern_lib_defs = {
 	boost = {
 		unix_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" },
@@ -175,10 +176,25 @@ extern_lib_defs = {
 			end
 		end
 	},
-	spidermonkey = {
+	spidermonkey =
+	options["with-spidermonkey-tip"] and
+	{
+		add_func = function()
+			tinsert(package.config["Debug"  ].includepaths, libraries_dir.."spidermonkey-tip/include/debug")
+			tinsert(package.config["Testing"].includepaths, libraries_dir.."spidermonkey-tip/include/debug")
+			tinsert(package.config["Release"].includepaths, libraries_dir.."spidermonkey-tip/include/release")
+			tinsert(package.libpaths, libraries_dir.."spidermonkey-tip/lib")
+			tinsert(package.config["Debug"  ].links, "mozjs-debug")
+			tinsert(package.config["Testing"].links, "mozjs-release")
+			tinsert(package.config["Release"].links, "mozjs-release")
+		end,
+	}
+	or -- SpiderMonkey 1.6
+	{
 		win_names  = { "js32" },
 		unix_names = { "js" },
-		depends = { "nspr" }
+		depends = { "nspr" },
+		defines = { "JS_THREADSAFE" },
 	},
 	valgrind = {
 	},
@@ -274,7 +290,11 @@ local function add_extern_lib(extern_lib, def)
 	if OS ~= "windows" then
 		suffix = ""
 	end
-	
+
+	if def.defines then
+		tinsert(package.defines, def.defines)
+	end
+
 	-- OS X "Frameworks" need to be added in a special way to the link
 	-- i.e. by linkoptions += "-framework ..."
 	if OS == "macosx" and def.osx_frameworks then
