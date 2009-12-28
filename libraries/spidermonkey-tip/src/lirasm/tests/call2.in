@@ -1,0 +1,5 @@
+pi = float 3.14
+half = float 0.5
+halfpi = fmul pi half
+res = fcall sin cdecl halfpi
+fret res
