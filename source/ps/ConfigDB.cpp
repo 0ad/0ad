@@ -31,11 +31,13 @@ TConfigMap CConfigDB::m_Map[CFG_LAST];
 CStrW CConfigDB::m_ConfigFile[CFG_LAST];
 bool CConfigDB::m_UseVFS[CFG_LAST];
 
+#define GET_NS_PRIVATE(cx, obj) (EConfigNamespace)((intptr_t)JS_GetPrivate(cx, obj) >> 1)
+
 namespace ConfigNamespace_JS
 {
 	JSBool GetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
+		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
@@ -51,7 +53,7 @@ namespace ConfigNamespace_JS
 
 	JSBool SetProperty( JSContext* cx, JSObject* obj, jsval id, jsval* vp )
 	{
-		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
+		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
@@ -87,12 +89,12 @@ namespace ConfigNamespace_JS
 
 	void SetNamespace(JSContext *cx, JSObject *obj, EConfigNamespace cfgNs)
 	{
-		JS_SetPrivate(cx, obj, (void *)cfgNs);
+		JS_SetPrivate(cx, obj, (void *)((int)cfgNs << 1)); // JS requires bottom bit = 0
 	}
 
 	JSBool WriteFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )
 	{
-		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
+		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 		
@@ -116,7 +118,7 @@ namespace ConfigNamespace_JS
 		if (argc != 0)
 			return JS_FALSE;
 
-		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
+		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
@@ -130,7 +132,7 @@ namespace ConfigNamespace_JS
 		if (argc != 0)
 			return JS_FALSE;
 
-		EConfigNamespace cfgNs=(EConfigNamespace)(intptr_t)JS_GetPrivate(cx, obj);
+		EConfigNamespace cfgNs = GET_NS_PRIVATE(cx, obj);
 		if (cfgNs < 0 || cfgNs >= CFG_LAST)
 			return JS_FALSE;
 
