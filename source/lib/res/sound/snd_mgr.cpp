@@ -45,6 +45,7 @@ extern PIVFS g_VFS;
 #include "lib/timer.h"
 #include "lib/app_hooks.h"
 #include "lib/external_libraries/openal.h"
+#include "lib/sysdep/cpu.h"	// cpu_CAS
 
 #define OGG_HACK
 #include "ogghack.h"
@@ -456,17 +457,57 @@ static void al_buf_shutdown()
 // on total number of sources (to reduce mixing cost on low-end systems).
 //-----------------------------------------------------------------------------
 
-// regardless of sound card caps, we won't use more than this ("enough").
+// regardless of HW capabilities, we won't use more than this ("enough").
 // necessary in case OpenAL doesn't limit #sources (e.g. if SW mixing).
 static const size_t AL_SRC_MAX = 64;
-// stack of sources (first allocated is [0])
-static ALuint al_srcs[AL_SRC_MAX];
-// number of valid sources in al_srcs[] (set by al_src_init)
-static size_t al_src_allocated;
-// number of sources currently in use
-static size_t al_src_used = 0;
+
 // user-set limit on how many sources may be used
 static size_t al_src_cap = AL_SRC_MAX;
+
+// note: to catch double-free bugs and ensure all sources are
+// released at exit, we segregate them into free and used lists.
+static uintptr_t al_srcs_used[AL_SRC_MAX];
+static uintptr_t al_srcs_free[AL_SRC_MAX];
+
+// total number of sources allocated by al_src_init
+static size_t al_src_allocated;
+
+
+static void srcs_insert(uintptr_t* srcs, ALuint al_src)
+{
+	for(size_t i = 0; i < al_src_allocated; i++)
+	{
+		if(cpu_CAS(&srcs[i], 0, al_src))
+			return;
+	}
+	debug_assert(0);	// list full (can't happen)
+}
+
+static void srcs_remove(uintptr_t* srcs, ALuint al_src)
+{
+	for(size_t i = 0; i < al_src_allocated; i++)
+	{
+		if(cpu_CAS(&srcs[i], al_src, 0))
+			return;
+	}
+	debug_assert(0);	// source not found (can't happen)
+}
+
+// @return first nonzero entry (which is then zeroed), or zero if there are none.
+static uintptr_t srcs_pop(uintptr_t* srcs)
+{
+	for(size_t i = 0; i < al_src_allocated; i++)
+	{
+retry:
+		ALuint al_src = (ALuint)srcs[i];
+		cpu_MemoryBarrier();
+		if(!cpu_CAS(&srcs[i], al_src, 0))
+			goto retry;
+		if(al_src != 0)	// got a valid source
+			return al_src;
+	}
+	return 0;	// none left
+}
 
 
 /**
@@ -476,13 +517,13 @@ static size_t al_src_cap = AL_SRC_MAX;
 static void al_src_init()
 {
 	// grab as many sources as possible and count how many we get.
-	for(size_t i = 0; i < AL_SRC_MAX; i++)
+	for(size_t i = 0; i < al_src_cap; i++)
 	{
-		alGenSources(1, &al_srcs[i]);
+		alGenSources(1, &al_srcs_free[i]);
 		// we've reached the limit, no more are available.
 		if(alGetError() != AL_NO_ERROR)
 			break;
-		debug_assert(alIsSource(al_srcs[i]));
+		debug_assert(alIsSource(al_srcs_free[i]));
 		al_src_allocated++;
 	}
 
@@ -497,17 +538,18 @@ static void al_src_init()
 
 
 /**
- * release all sources on freelist (currently stack).
- * all sources must have been returned to us via al_src_free.
+ * release all sources on free list.
+ * all sources must already have been released via al_src_free.
  * called from al_shutdown.
  */
 static void al_src_shutdown()
 {
-	debug_assert(al_src_used == 0);
+	debug_assert(std::count(al_srcs_free, al_srcs_free+al_src_allocated, 0) == 0);
+	debug_assert(std::count(al_srcs_used, al_srcs_used+al_src_allocated, 0) == (ptrdiff_t)al_src_allocated);
 
 	AL_CHECK;
 
-	alDeleteSources((ALsizei)al_src_allocated, al_srcs);
+	alDeleteSources((ALsizei)al_src_allocated, al_srcs_free);
 
 	AL_CHECK;
 
@@ -522,10 +564,10 @@ static void al_src_shutdown()
  */
 static ALuint al_src_alloc()
 {
-	// no more to give
-	if(al_src_used >= al_src_cap)
+	ALuint al_src = srcs_pop(al_srcs_free);
+	if(!al_src)	// no more to give
 		return 0;
-	ALuint al_src = al_srcs[al_src_used++];
+	srcs_insert(al_srcs_used, al_src);
 	return al_src;
 }
 
@@ -538,11 +580,8 @@ static ALuint al_src_alloc()
 static void al_src_free(ALuint al_src)
 {
 	debug_assert(alIsSource(al_src));
-	al_srcs[--al_src_used] = al_src;
-
-	// don't compare against cap - it might have been
-	// decreased to less than were in use.
-	debug_assert(al_src_used < al_src_allocated);
+	srcs_remove(al_srcs_used, al_src);
+	srcs_insert(al_srcs_free, al_src);
 }
 
 
