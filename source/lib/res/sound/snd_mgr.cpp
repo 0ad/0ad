@@ -477,7 +477,7 @@ static void srcs_insert(uintptr_t* srcs, ALuint al_src)
 {
 	for(size_t i = 0; i < al_src_allocated; i++)
 	{
-		if(cpu_CAS(&srcs[i], 0, al_src))
+		if(cpu_CAS(&srcs[i], 0, (uintptr_t)al_src))
 			return;
 	}
 	debug_assert(0);	// list full (can't happen)
@@ -487,24 +487,24 @@ static void srcs_remove(uintptr_t* srcs, ALuint al_src)
 {
 	for(size_t i = 0; i < al_src_allocated; i++)
 	{
-		if(cpu_CAS(&srcs[i], al_src, 0))
+		if(cpu_CAS(&srcs[i], (uintptr_t)al_src, 0))
 			return;
 	}
 	debug_assert(0);	// source not found (can't happen)
 }
 
 // @return first nonzero entry (which is then zeroed), or zero if there are none.
-static uintptr_t srcs_pop(uintptr_t* srcs)
+static ALuint srcs_pop(uintptr_t* srcs)
 {
 	for(size_t i = 0; i < al_src_allocated; i++)
 	{
 retry:
-		ALuint al_src = (ALuint)srcs[i];
+		uintptr_t al_src = srcs[i];
 		cpu_MemoryBarrier();
 		if(!cpu_CAS(&srcs[i], al_src, 0))
 			goto retry;
 		if(al_src != 0)	// got a valid source
-			return al_src;
+			return (ALuint)al_src;
 	}
 	return 0;	// none left
 }
@@ -519,11 +519,13 @@ static void al_src_init()
 	// grab as many sources as possible and count how many we get.
 	for(size_t i = 0; i < al_src_cap; i++)
 	{
-		alGenSources(1, &al_srcs_free[i]);
+		ALuint al_src;
+		alGenSources(1, &al_src);
 		// we've reached the limit, no more are available.
 		if(alGetError() != AL_NO_ERROR)
 			break;
-		debug_assert(alIsSource(al_srcs_free[i]));
+		debug_assert(alIsSource(al_src));
+		al_srcs_free[i] = al_src;
 		al_src_allocated++;
 	}
 
