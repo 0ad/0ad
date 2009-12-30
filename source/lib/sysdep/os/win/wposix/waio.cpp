@@ -49,7 +49,8 @@ const uintptr_t sectorSize = 0x1000;
 // note: the Windows lowio file descriptor limit is currrently 2048.
 
 /**
- * thread-safe association between POSIX file descriptor and Win32 HANDLE
+ * association between POSIX file descriptor and Win32 HANDLE.
+ * NB: callers must ensure thread safety.
  **/
 class HandleManager
 {
@@ -61,17 +62,19 @@ public:
 	{
 		debug_assert(fd > 2);
 		debug_assert(GetFileSize(hFile, 0) != INVALID_FILE_SIZE);
-
-		WinScopedLock lock(WAIO_CS);
 		std::pair<Map::iterator, bool> ret = m_map.insert(std::make_pair(fd, hFile));
 		debug_assert(ret.second);	// fd better not already have been associated
 	}
 
 	void Dissociate(int fd)
 	{
-		WinScopedLock lock(WAIO_CS);
 		const size_t numRemoved = m_map.erase(fd);
 		debug_assert(numRemoved == 1);
+	}
+
+	bool IsAssociated(int fd) const
+	{
+		return m_map.find(fd) != m_map.end();
 	}
 
 	/**
@@ -80,7 +83,6 @@ public:
 	 **/
 	HANDLE Get(int fd) const
 	{
-		WinScopedLock lock(WAIO_CS);
 		Map::const_iterator it = m_map.find(fd);
 		if(it == m_map.end())
 			return INVALID_HANDLE_VALUE;
@@ -96,7 +98,7 @@ static HandleManager* handleManager;
 
 
 // (re)open file in asynchronous mode and associate handle with fd.
-int aio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
+static LibError aio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 {
 	WinScopedPreserveLastError s;	// CreateFile
 
@@ -121,40 +123,43 @@ int aio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
 	const HANDLE hFile = CreateFileW(pathname, access, share, 0, create, flags, 0);
 	if(hFile == INVALID_HANDLE_VALUE)
-		WARN_RETURN(-1);
+		return LibError_from_GLE();
 
-	handleManager->Associate(fd, hFile);
-	return 0;
+	{
+		WinScopedLock lock(WAIO_CS);
+		handleManager->Associate(fd, hFile);
+	}
+	return INFO::OK;
 }
 
 
-int aio_close(int fd)
+static LibError aio_close(int fd)
 {
-	HANDLE hFile = handleManager->Get(fd);
-	// early out for files that were never re-opened for AIO.
-	// since there is no way for wposix close to know this, we mustn't
-	// return an error (which would cause it to WARN_ERR).
-	if(hFile == INVALID_HANDLE_VALUE)
-		return 0;
+	HANDLE hFile;
+	{
+		WinScopedLock lock(WAIO_CS);
+		if(!handleManager->IsAssociated(fd))	// wasn't opened for aio
+			return INFO::SKIPPED;
+		hFile = handleManager->Get(fd);
+		handleManager->Dissociate(fd);
+	}
 
 	if(!CloseHandle(hFile))
-		WARN_RETURN(-1);
+		WARN_RETURN(ERR::INVALID_HANDLE);
 
-	handleManager->Dissociate(fd);
-
-	return 0;
+	return INFO::OK;
 }
 
 
-// do we want to open a second AIO-capable handle?
-static bool isAioPossible(int fd, bool is_com_port, int oflag)
+// do we want to open a second aio-capable handle?
+static bool IsAioPossible(int fd, bool is_com_port, int oflag)
 {
 	// stdin/stdout/stderr
 	if(fd <= 2)
 		return false;
 
-	// COM port - we don't currently need AIO access for those, and
-	// aio_reopen's CreateFile would fail with "access denied".
+	// COM port - we don't currently need aio access for those, and
+	// aio_reopen's CreateFileW would fail with "access denied".
 	if(is_com_port)
 		return false;
 
@@ -176,12 +181,12 @@ int sys_wopen(const wchar_t* pathname, int oflag, ...)
 		va_end(args);
 	}
 
-	WinScopedPreserveLastError s;	// _wopen's CreateFile
+	WinScopedPreserveLastError s;	// _wopen's CreateFileW
 	int fd = _wopen(pathname, oflag, mode);
 
-	// none of the above apply; now re-open the file.
-	// note: this is possible because _open defaults to DENY_NONE sharing.
-	if(isAioPossible(fd, false, oflag))
+	// if possible, re-open the file for aio (this works because
+	// the initial _wopen defaults to DENY_NONE sharing)
+	if(IsAioPossible(fd, false, oflag))
 		WARN_ERR(aio_reopen(fd, pathname, oflag));
 
 	// CRT doesn't like more than 255 files open.
@@ -199,11 +204,7 @@ int close(int fd)
 {
 	debug_assert(3 <= fd && fd < 256);
 
-	// note: there's no good way to notify us that <fd> wasn't opened for
-	// AIO, so we could skip aio_close. storing a bit in the fd is evil and
-	// a fd -> info map is redundant (waio already has one).
-	// therefore, we require aio_close to fail gracefully.
-	WARN_ERR(aio_close(fd));
+	(void)aio_close(fd);	// no-op if fd wasn't opened for aio
 
 	return _close(fd);
 }
@@ -317,13 +318,14 @@ private:
 };
 
 
-// called by aio_read, aio_write, and lio_listio
-// cb->aio_lio_opcode specifies desired operation
-static int aio_issue(struct aiocb* cb)
+// called by aio_read, aio_write, and lio_listio.
+// cb->aio_lio_opcode specifies desired operation.
+// @return LibError, also setting errno in case of failure.
+static LibError aio_issue(struct aiocb* cb)
 {
-	// no-op from lio_listio
+	// no-op (probably from lio_listio)
 	if(!cb || cb->aio_lio_opcode == LIO_NOP)
-		return 0;
+		return INFO::SKIPPED;
 
 	// extract aiocb fields for convenience
 	const bool isWrite = (cb->aio_lio_opcode == LIO_WRITE);
@@ -334,24 +336,33 @@ static int aio_issue(struct aiocb* cb)
 
 	// Win32 requires transfers to be sector-aligned.
 	if(!IsAligned(ofs, sectorSize) || !IsAligned(buf, sectorSize) || !IsAligned(size, sectorSize))
-		WARN_RETURN(-EINVAL);
-
-	const HANDLE hFile = handleManager->Get(fd);
-	if(hFile == INVALID_HANDLE_VALUE)
 	{
-		errno = -EINVAL;
-		WARN_RETURN(-1);
+		errno = EINVAL;
+		WARN_RETURN(ERR::INVALID_PARAM);
 	}
 
-	debug_assert(!cb->impl);	// fail if aiocb is already in use (forbidden by SUSv3)
+	HANDLE hFile;
+	{
+		WinScopedLock lock(WAIO_CS);
+		hFile = handleManager->Get(fd);
+	}
+	if(hFile == INVALID_HANDLE_VALUE)
+	{
+		errno = EINVAL;
+		WARN_RETURN(ERR::INVALID_HANDLE);
+	}
+
+	debug_assert(!cb->impl);	// SUSv3 requires that the aiocb not be in use
 	cb->impl.reset(new aiocb::Impl);
+
 	LibError ret = cb->impl->Issue(hFile, ofs, buf, size, isWrite);
 	if(ret < 0)
 	{
 		LibError_set_errno(ret);
-		WARN_RETURN(-1);
+		return ret;
 	}
-	return 0;
+
+	return INFO::OK;
 }
 
 
@@ -362,17 +373,19 @@ int aio_error(const struct aiocb* cb)
 }
 
 
-// get bytes transferred. call exactly once for each op.
+// get bytes transferred. call exactly once for each issued request.
 ssize_t aio_return(struct aiocb* cb)
 {
-	debug_assert(cb->impl->HasCompleted());	// SUSv3 says we mustn't be callable before IO completes
+	// SUSv3 says we mustn't be callable before the request has completed
+	debug_assert(cb->impl);
+	debug_assert(cb->impl->HasCompleted());
 	size_t bytesTransferred;
 	LibError ret = cb->impl->GetResult(&bytesTransferred);
 	cb->impl.reset();	// disallow calling again, as required by SUSv3
 	if(ret < 0)
 	{
 		LibError_set_errno(ret);
-		WARN_RETURN(-1);
+		return (ssize_t)-1;
 	}
 	return (ssize_t)bytesTransferred;
 }
@@ -381,7 +394,11 @@ ssize_t aio_return(struct aiocb* cb)
 int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* ts)
 {
 	if(n <= 0 || n > MAXIMUM_WAIT_OBJECTS)
-		WARN_RETURN(-1);
+	{
+		WARN_ERR(ERR::INVALID_PARAM);
+		errno = EINVAL;
+		return -1;
+	}
 
 	// build array of event handles
 	HANDLE hEvents[MAXIMUM_WAIT_OBJECTS];
@@ -392,6 +409,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 			continue;
 
 		aiocb::Impl* impl = cbs[i]->impl.get();
+		debug_assert(impl);
 		if(!impl->HasCompleted())
 			hEvents[numPendingIos++] = impl->Event();
 	}
@@ -401,7 +419,7 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 	const BOOL waitAll = FALSE;
 	// convert timespec to milliseconds (ts == 0 => no timeout)
 	const DWORD timeout = ts? (DWORD)(ts->tv_sec*1000 + ts->tv_nsec/1000000) : INFINITE;
-	DWORD result = WaitForMultipleObjects((DWORD)numPendingIos, hEvents, waitAll, timeout);
+	const DWORD result = WaitForMultipleObjects((DWORD)numPendingIos, hEvents, waitAll, timeout);
 
 	for(size_t i = 0; i < numPendingIos; i++)
 		ResetEvent(hEvents[i]);
@@ -409,10 +427,12 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 	switch(result)
 	{
 	case WAIT_FAILED:
-		WARN_RETURN(-1);
+		WARN_ERR(ERR::FAIL);
+		errno = EIO;
+		return -1;
 
 	case WAIT_TIMEOUT:
-		errno = -EAGAIN;
+		errno = EAGAIN;
 		return -1;
 
 	default:
@@ -424,14 +444,22 @@ int aio_suspend(const struct aiocb* const cbs[], int n, const struct timespec* t
 int aio_cancel(int fd, struct aiocb* cb)
 {
 	// Win32 limitation: can't cancel single transfers -
-	// all pending reads on this file are cancelled.
+	// all pending reads on this file are canceled.
 	UNUSED2(cb);
 
-	const HANDLE hFile = handleManager->Get(fd);
+	HANDLE hFile;
+	{
+		WinScopedLock lock(WAIO_CS);
+		hFile = handleManager->Get(fd);
+	}
 	if(hFile == INVALID_HANDLE_VALUE)
-		WARN_RETURN(-1);
+	{
+		WARN_ERR(ERR::INVALID_HANDLE);
+		errno = EINVAL;
+		return -1;
+	}
 
-	CancelIo(hFile);
+	WARN_IF_FALSE(CancelIo(hFile));
 	return AIO_CANCELED;
 }
 
@@ -439,24 +467,30 @@ int aio_cancel(int fd, struct aiocb* cb)
 int aio_read(struct aiocb* cb)
 {
 	cb->aio_lio_opcode = LIO_READ;
-	return aio_issue(cb);
+	return (aio_issue(cb) < 0)? 0 : -1;
 }
 
 
 int aio_write(struct aiocb* cb)
 {
 	cb->aio_lio_opcode = LIO_WRITE;
-	return aio_issue(cb);
+	return (aio_issue(cb) < 0)? 0 : -1;
 }
 
 
-int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* UNUSED(se))
+int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* se)
 {
+	debug_assert(mode == LIO_WAIT || mode == LIO_NOWAIT);
+	UNUSED2(se);	// signaling is not implemented.
+
 	for(int i = 0; i < n; i++)
-		RETURN_ERR(aio_issue(cbs[i]));
+	{
+		if(aio_issue(cbs[i]) < 0)
+			return -1;
+	}
 
 	if(mode == LIO_WAIT)
-		RETURN_ERR(aio_suspend(cbs, n, 0));
+		return aio_suspend(cbs, n, 0);
 
 	return 0;
 }
@@ -464,7 +498,9 @@ int lio_listio(int mode, struct aiocb* const cbs[], int n, struct sigevent* UNUS
 
 int aio_fsync(int, struct aiocb*)
 {
-	WARN_RETURN(-ENOSYS);
+	WARN_ERR(ERR::NOT_IMPLEMENTED);
+	errno = ENOSYS;
+	return -1;
 }
 
 
