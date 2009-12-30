@@ -549,7 +549,12 @@ static void al_src_shutdown()
 
 	AL_CHECK;
 
-	alDeleteSources((ALsizei)al_src_allocated, al_srcs_free);
+	ALuint al_srcs[AL_SRC_MAX];
+	// (the srcs arrays are uintptr_t to allow cpu_CAS but must be
+	// copied to ALuint for use by alDeleteSources)
+	for(size_t i = 0; i < al_src_allocated; i++)
+		al_srcs[i] = (ALuint)al_srcs_free[i];
+	alDeleteSources((ALsizei)al_src_allocated, al_srcs);
 
 	AL_CHECK;
 
