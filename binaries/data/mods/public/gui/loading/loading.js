@@ -38,7 +38,6 @@ function reallyStartGame()
 	// to start the game (ie loading progress has reached 100%).
 
 	// Switch GUI from loading screen to game session.
-	writeLog(uneval(switchGuiPage));
 	switchGuiPage("page_session.xml");
 	
 	// Restore default cursor.
