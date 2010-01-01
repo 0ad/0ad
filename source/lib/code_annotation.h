@@ -108,17 +108,6 @@ switch(x % 2)
 #define NODEFAULT default: UNREACHABLE
 
 
-/**
- * equivalent to strcpy, but indicates that the programmer checked usage and
- * promises it is safe.
- *
- * (this macro prevents actually-safe instances of the function from
- * showing up in searches)
- **/
-#define SAFE_STRCPY str##cpy
-#define SAFE_WCSCPY wcs##cpy
-
-
 // generate a symbol containing the line number of the macro invocation.
 // used to give a unique name (per file) to types made by cassert.
 // we can't prepend __FILE__ to make it globally unique - the filename

@@ -22,7 +22,13 @@
 #include "precompiled.h"
 #include "hpet.h"
 
-#include <emmintrin.h>	// for atomic 64-bit read/write
+// for atomic 64-bit read/write:
+#define HAVE_X64_MOVD ARCH_AMD64 && (ICC_VERSION || MSC_VERSION >= 1500)
+#if HAVE_X64_MOVD
+# include <intrin.h>
+#else
+# include <emmintrin.h>
+#endif
 
 #include "counter.h"
 
@@ -162,8 +168,6 @@ private:
 
 		return INFO::OK;
 	}
-
-#define HAVE_X64_MOVD ARCH_AMD64 && (ICC_VERSION || MSC_VERSION >= 1500)
 
 	// note: this is atomic even on 32-bit CPUs (Pentium MMX and
 	// above have a 64-bit data bus and MOVQ instruction)

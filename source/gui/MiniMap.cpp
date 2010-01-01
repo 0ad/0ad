@@ -269,7 +269,7 @@ void CMiniMap::Draw()
 	m_Width  = (u32)(m_CachedActualSize.right - m_CachedActualSize.left);
 	m_Height = (u32)(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	m_MapSize = m_Terrain->GetVerticesPerSide();
-	m_TextureSize = round_up_to_pow2(m_MapSize);
+	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize);
 
 	m_scaleX = float(m_Width) / float(m_MapSize - 1);
 	m_scaleY = float(m_Height) / float(m_MapSize - 1);

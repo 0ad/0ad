@@ -89,7 +89,7 @@ namespace ConfigNamespace_JS
 
 	void SetNamespace(JSContext *cx, JSObject *obj, EConfigNamespace cfgNs)
 	{
-		JS_SetPrivate(cx, obj, (void *)((int)cfgNs << 1)); // JS requires bottom bit = 0
+		JS_SetPrivate(cx, obj, (void *)((uintptr_t)cfgNs << 1)); // JS requires bottom bit = 0
 	}
 
 	JSBool WriteFile( JSContext* cx, JSObject* obj, uintN argc, jsval* argv, jsval* rval )

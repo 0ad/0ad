@@ -32,7 +32,7 @@ static LibError SetClipboardText(const wchar_t* text, HGLOBAL* hMem)
 	wchar_t* lockedText = (wchar_t*)GlobalLock(*hMem);
 	if(!lockedText)
 		WARN_RETURN(ERR::NO_MEM);
-	SAFE_WCSCPY(lockedText, text);
+	wcscpy_s(lockedText, len, text);
 	GlobalUnlock(*hMem);
 
 	HANDLE hData = SetClipboardData(CF_UNICODETEXT, *hMem);
@@ -73,13 +73,13 @@ static wchar_t* CopyClipboardContents()
 	if(!hMem)
 		return 0;
 
-	wchar_t* lockedText = (wchar_t*)GlobalLock(hMem);
+	const wchar_t* lockedText = (const wchar_t*)GlobalLock(hMem);
 	if(!lockedText)
 		return 0;
 
-	const SIZE_T size = GlobalSize(hMem);
-	wchar_t* text = new wchar_t[size+1];
-	SAFE_WCSCPY(text, lockedText);
+	const size_t numChars = GlobalSize(hMem)/sizeof(wchar_t) - 1;
+	wchar_t* text = new wchar_t[numChars+1];
+	wcscpy_s(text, numChars+1, lockedText);
 
 	GlobalUnlock(hMem);
 

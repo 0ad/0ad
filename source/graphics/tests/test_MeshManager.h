@@ -127,7 +127,7 @@ public:
 		copyFile(srcDAE, testDAE);
 		//buildArchive();
 		shared_ptr<u8> buf = io_Allocate(100);
-		SAFE_STRCPY((char*)buf.get(), "Test");
+		strcpy_s((char*)buf.get(), 5, "Test");
 		g_VFS->CreateFile(testDAE, buf, 4);
 	}
 
@@ -189,7 +189,7 @@ public:
 
 		copyFile(srcDAE, testDAE);
 		shared_ptr<u8> buf = io_Allocate(100);
-		SAFE_STRCPY((char*)buf.get(), "Not valid XML");
+		strcpy_s((char*)buf.get(), 100, "Not valid XML");
 		g_VFS->CreateFile(testSkeletonDefs, buf, 13);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
@@ -203,7 +203,7 @@ public:
 
 		copyFile(srcSkeletonDefs, testSkeletonDefs);
 		shared_ptr<u8> buf = io_Allocate(100);
-		SAFE_STRCPY((char*)buf.get(), "Not valid XML");
+		strcpy_s((char*)buf.get(), 100, "Not valid XML");
 		g_VFS->CreateFile(testDAE, buf, 13);
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);

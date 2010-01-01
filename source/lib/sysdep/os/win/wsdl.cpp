@@ -817,7 +817,7 @@ static void mouse_update()
 		active_change_state(LOSE, SDL_APPMOUSEFOCUS);
 }
 
-static size_t mouse_buttons;
+static unsigned mouse_buttons;
 
 // (we define a new function signature since the windowsx.h message crackers
 // don't provide for passing uMsg)
@@ -1256,7 +1256,9 @@ static LibError wsdl_Init()
 	// to avoid the OS opening a console on startup (ugly). that means
 	// stdout isn't associated with a lowio handle; _close ends up
 	// getting called with fd = -1. oh well, nothing we can do.
-	FILE* f = _wfreopen(path.string().c_str(), L"wt", stdout);
+	FILE* f = 0;
+	errno_t ret = _wfreopen_s(&f, path.string().c_str(), L"wt", stdout);
+	debug_assert(ret == 0);
 	debug_assert(f);
 
 #if CONFIG_PARANOIA

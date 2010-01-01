@@ -75,7 +75,7 @@ void debug_wprintf_mem(const wchar_t* fmt, ...)
 	// write into buffer (in-place)
 	va_list args;
 	va_start(args, fmt);
-	int len = vswprintf(debug_log_pos, charsLeft-2, fmt, args);
+	int len = vswprintf_s(debug_log_pos, charsLeft-2, fmt, args);
 
 	va_end(args);
 	debug_log_pos += len+2;

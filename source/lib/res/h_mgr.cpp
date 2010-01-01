@@ -613,7 +613,7 @@ static LibError h_free_idx(ssize_t idx, HDATA* hd)
 	{
 		wchar_t buf[H_STRING_LEN];
 		if(vtbl->to_string(hd->user, buf) < 0)
-			SAFE_WCSCPY(buf, L"(error)");
+			wcscpy_s(buf, ARRAY_SIZE(buf), L"(error)");
 		debug_printf(L"H_MGR| free %ls %ls accesses=%lu %ls\n", hd->type->name, hd->pathname.string().c_str(), (unsigned long)hd->num_derefs, buf);
 	}
 #endif

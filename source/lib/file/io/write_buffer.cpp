@@ -34,7 +34,7 @@ void WriteBuffer::Append(const void* data, size_t size)
 {
 	if(m_size + size > m_capacity)
 	{
-		m_capacity = round_up_to_pow2((size_t)(m_size + size));
+		m_capacity = round_up_to_pow2(m_size + size);
 		shared_ptr<u8> newData = io_Allocate(m_capacity);
 		cpu_memcpy(newData.get(), m_data.get(), m_size);
 		m_data = newData;

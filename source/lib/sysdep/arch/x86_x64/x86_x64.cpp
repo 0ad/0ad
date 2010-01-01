@@ -471,81 +471,88 @@ static void ExtractDescriptors(u32 reg, std::vector<u8>& descriptors)
 	}
 }
 
-static void DecodeDescriptor(u8 descriptor)
+// note: the following cannot reside in DecodeDescriptor because
+// ARRAY_SIZE's template argument must not reference a local type.
+
+enum Flags
 {
-	enum Flags
-	{
-		// type (unified := neither bit set)
-		I   = 0x01,
-		D   = 0x02,
+	// type (unified := neither bit set)
+	I   = 0x01,
+	D   = 0x02,
 
-		// level
-		L2  = 0x04,
+	// level
+	L2  = 0x04,
 
-		// size
-		S4K = 0x08,
-		S4M = 0x10,
-		S2M = 0x20
-	};
-	struct Properties
-	{
-		int flags;	// pageSize, type, level
-		u8 descriptor;
-		u8 associativity;
-		u16 entries;
-	};
-	const u8 F = x86_x64_fullyAssociative;
+	// size
+	S4K = 0x08,
+	S4M = 0x10,
+	S2M = 0x20
+};
+
+struct Properties
+{
+	int flags;	// pageSize, type, level
+	u8 descriptor;
+	u8 associativity;
+	u16 entries;
+};
+
+static const u8 F = x86_x64_fullyAssociative;
+
 #define PROPERTIES(descriptor, flags, assoc, entries) { flags, descriptor, assoc, entries }
-	// references: [accessed 2009-01-05]
-	// AP485 http://download.intel.com/design/processor/applnots/241618033.pdf
-	// sandp http://www.sandpile.org/ia32/cpuid.htm
-	// opsol http://src.opensolaris.org/source/xref/onnv/onnv-gate/usr/src/uts/i86pc/os/cpuid.c
-	static const Properties propertyTable[] =
-	{
-		PROPERTIES(0x01, I|S4K, 4,  32),
-		PROPERTIES(0x02, I|S4M, F,   2),
-		PROPERTIES(0x03, D|S4K, 4,  64),
-		PROPERTIES(0x04, D|S4M, 4,   8),
-		PROPERTIES(0x05, D|S4M, 4,  32),
-		PROPERTIES(0x0B, I|S4M, 4,   4),
-		PROPERTIES(0x4F, I|S4K, F,  32),	// sandp: unknown assoc, opsol: full, AP485: unmentioned
-		PROPERTIES(0x50, I|S4K, F,  64),
-		PROPERTIES(0x50, I|S4M, F,  64),
-		PROPERTIES(0x50, I|S2M, F,  64),
-		PROPERTIES(0x51, I|S4K, F, 128),
-		PROPERTIES(0x51, I|S4M, F, 128),
-		PROPERTIES(0x51, I|S2M, F, 128),
-		PROPERTIES(0x52, I|S4K, F, 256),
-		PROPERTIES(0x52, I|S4M, F, 256),
-		PROPERTIES(0x52, I|S2M, F, 256),
-		PROPERTIES(0x55, I|S4M, F,   7),
-		PROPERTIES(0x55, I|S2M, F,   7),
-		PROPERTIES(0x56, D|S4M, 4,  16),
-		PROPERTIES(0x57, D|S4K, 4,  16),
-		PROPERTIES(0x59, D|S4K, F,  16),
-		PROPERTIES(0x5A, D|S4M, 4,  32),
-		PROPERTIES(0x5A, D|S2M, 4,  32),
-		PROPERTIES(0x5B, D|S4K, F,  64),
-		PROPERTIES(0x5B, D|S4M, F,  64),
-		PROPERTIES(0x5C, D|S4K, F, 128),
-		PROPERTIES(0x5C, D|S4M, F, 128),
-		PROPERTIES(0x5D, D|S4K, F, 256),
-		PROPERTIES(0x5D, D|S4M, F, 256),
-		PROPERTIES(0xB0, I|S4K, 4, 128),
-		PROPERTIES(0xB1, I|S2M, 4,   8),
-		PROPERTIES(0xB1, I|S4M, 4,   4),
-		PROPERTIES(0xB2, I|S4K, 4,  64),
-		PROPERTIES(0xB3, D|S4K, 4, 128),
-		PROPERTIES(0xB3, D|S4M, 4, 128),
-		PROPERTIES(0xB4, D|S4K, 4, 256),
-		PROPERTIES(0xB4, D|S4M, 4, 256),
-		PROPERTIES(0xBA, D|S4K, 4,  64),
-		PROPERTIES(0xC0, D|S4K, 4,   8),
-		PROPERTIES(0xC0, D|S4M, 4,   8),
-		PROPERTIES(0xCA,   S4K|L2, 4, 512),
-	};
+
+// references: [accessed 2009-01-05]
+// AP485 http://download.intel.com/design/processor/applnots/241618033.pdf
+// sandp http://www.sandpile.org/ia32/cpuid.htm
+// opsol http://src.opensolaris.org/source/xref/onnv/onnv-gate/usr/src/uts/i86pc/os/cpuid.c
+static const Properties propertyTable[] =
+{
+	PROPERTIES(0x01, I|S4K, 4,  32),
+	PROPERTIES(0x02, I|S4M, F,   2),
+	PROPERTIES(0x03, D|S4K, 4,  64),
+	PROPERTIES(0x04, D|S4M, 4,   8),
+	PROPERTIES(0x05, D|S4M, 4,  32),
+	PROPERTIES(0x0B, I|S4M, 4,   4),
+	PROPERTIES(0x4F, I|S4K, F,  32),	// sandp: unknown assoc, opsol: full, AP485: unmentioned
+	PROPERTIES(0x50, I|S4K, F,  64),
+	PROPERTIES(0x50, I|S4M, F,  64),
+	PROPERTIES(0x50, I|S2M, F,  64),
+	PROPERTIES(0x51, I|S4K, F, 128),
+	PROPERTIES(0x51, I|S4M, F, 128),
+	PROPERTIES(0x51, I|S2M, F, 128),
+	PROPERTIES(0x52, I|S4K, F, 256),
+	PROPERTIES(0x52, I|S4M, F, 256),
+	PROPERTIES(0x52, I|S2M, F, 256),
+	PROPERTIES(0x55, I|S4M, F,   7),
+	PROPERTIES(0x55, I|S2M, F,   7),
+	PROPERTIES(0x56, D|S4M, 4,  16),
+	PROPERTIES(0x57, D|S4K, 4,  16),
+	PROPERTIES(0x59, D|S4K, F,  16),
+	PROPERTIES(0x5A, D|S4M, 4,  32),
+	PROPERTIES(0x5A, D|S2M, 4,  32),
+	PROPERTIES(0x5B, D|S4K, F,  64),
+	PROPERTIES(0x5B, D|S4M, F,  64),
+	PROPERTIES(0x5C, D|S4K, F, 128),
+	PROPERTIES(0x5C, D|S4M, F, 128),
+	PROPERTIES(0x5D, D|S4K, F, 256),
+	PROPERTIES(0x5D, D|S4M, F, 256),
+	PROPERTIES(0xB0, I|S4K, 4, 128),
+	PROPERTIES(0xB1, I|S2M, 4,   8),
+	PROPERTIES(0xB1, I|S4M, 4,   4),
+	PROPERTIES(0xB2, I|S4K, 4,  64),
+	PROPERTIES(0xB3, D|S4K, 4, 128),
+	PROPERTIES(0xB3, D|S4M, 4, 128),
+	PROPERTIES(0xB4, D|S4K, 4, 256),
+	PROPERTIES(0xB4, D|S4M, 4, 256),
+	PROPERTIES(0xBA, D|S4K, 4,  64),
+	PROPERTIES(0xC0, D|S4K, 4,   8),
+	PROPERTIES(0xC0, D|S4M, 4,   8),
+	PROPERTIES(0xCA,   S4K|L2, 4, 512),
+};
 #undef PROPERTIES
 
+static void DecodeDescriptor(u8 descriptor)
+{
 	// note: we can't use bsearch because propertyTable may contain multiple
 	// entries with the same descriptor key.
 	for(size_t i = 0; i < ARRAY_SIZE(propertyTable); i++)

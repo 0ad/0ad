@@ -88,10 +88,10 @@ need only be renamed (e.g. _open, _stat).
 
 // VC doesn't define str[n]casecmp
 #if MSC_VERSION
-#define strcasecmp stricmp
-#define strncasecmp strnicmp
-#define wcscasecmp wcsicmp
-#define wcsncasecmp wcsnicmp
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
+#define wcscasecmp _wcsicmp
+#define wcsncasecmp _wcsnicmp
 #endif
 
 #if OS_MACOSX

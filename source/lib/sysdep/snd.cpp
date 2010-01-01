@@ -40,7 +40,7 @@ void snd_detect()
 #else
 	// At least reset the values for unhandled platforms.
 	debug_assert(SND_CARD_LEN >= 8 && SND_DRV_VER_LEN >= 8);	// protect strcpy
-	SAFE_WCSCPY(snd_card, L"Unknown");
-	SAFE_WCSCPY(snd_drv_ver, L"Unknown");
+	wcscpy_s(snd_card, ARRAY_SIZE(snd_card), L"Unknown");
+	wcscpy_s(snd_drv_ver, ARRAY_SIZE(snd_drv_ver), L"Unknown");
 #endif
 }

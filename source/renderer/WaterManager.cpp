@@ -143,7 +143,7 @@ int WaterManager::LoadWaterTextures()
 	// the reflection/reflaction images will fit within the window 
 	// (alternative: use FBO's, which can have arbitrary size - but do we need
 	// the reflection/refraction textures to be that large?)
-	int size = round_up_to_pow2(g_Renderer.GetHeight());
+	int size = (int)round_up_to_pow2((unsigned)g_Renderer.GetHeight());
 	if(size > g_Renderer.GetHeight()) size /= 2;
 	m_ReflectionTextureSize = size;
 	m_RefractionTextureSize = size;

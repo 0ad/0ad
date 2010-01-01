@@ -172,7 +172,7 @@ static bool IsAioPossible(int fd, bool is_com_port, int oflag)
 
 int sys_wopen(const wchar_t* pathname, int oflag, ...)
 {
-	mode_t mode = 0;
+	mode_t mode = _S_IREAD|_S_IWRITE;
 	if(oflag & O_CREAT)
 	{
 		va_list args;
@@ -181,8 +181,15 @@ int sys_wopen(const wchar_t* pathname, int oflag, ...)
 		va_end(args);
 	}
 
-	WinScopedPreserveLastError s;	// _wopen's CreateFileW
-	int fd = _wopen(pathname, oflag, mode);
+	WinScopedPreserveLastError s;	// _wsopen_s's CreateFileW
+	int fd;
+	errno_t ret = _wsopen_s(&fd, pathname, oflag, _SH_DENYNO, mode);
+	if(ret != 0)
+	{
+		errno = ret;
+		WARN_ERR(LibError_from_errno());
+		return -1;
+	}
 
 	// if possible, re-open the file for aio (this works because
 	// the initial _wopen defaults to DENY_NONE sharing)

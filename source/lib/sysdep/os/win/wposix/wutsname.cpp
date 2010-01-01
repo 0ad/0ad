@@ -35,7 +35,7 @@ int uname(struct utsname* un)
 	// release info
 	const char* vs = vi.szCSDVersion;
 	int sp;
-	if(sscanf(vs, "Service Pack %d", &sp) == 1)
+	if(sscanf_s(vs, "Service Pack %d", &sp) == 1)
 		sprintf_s(un->release, ARRAY_SIZE(un->release), "SP %d", sp);
 
 	// version

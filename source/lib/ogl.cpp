@@ -174,7 +174,7 @@ bool ogl_HaveExtension(const char* ext)
 bool ogl_HaveVersion(const char* desired_version)
 {
 	int desired_major, desired_minor;
-	if(sscanf(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
+	if(sscanf_s(desired_version, "%d.%d", &desired_major, &desired_minor) != 2)
 	{
 		debug_assert(0);	// invalid version string
 		return false;
@@ -182,7 +182,7 @@ bool ogl_HaveVersion(const char* desired_version)
 
 	int major, minor;
 	const char* version = (const char*)glGetString(GL_VERSION);
-	if(!version || sscanf(version, "%d.%d", &major, &minor) != 2)
+	if(!version || sscanf_s(version, "%d.%d", &major, &minor) != 2)
 	{
 		debug_assert(0);	// GL_VERSION invalid
 		return false;

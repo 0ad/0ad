@@ -511,7 +511,7 @@ static void out(const wchar_t* fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	int len = vswprintf(out_pos, out_chars_left, fmt, args);
+	int len = vswprintf_s(out_pos, out_chars_left, fmt, args);
 	va_end(args);
 
 	// success
@@ -545,7 +545,7 @@ static void out(const wchar_t* fmt, ...)
 			// we'll just put the warning before out_pos and eat into the
 			// second newest text.
 			const wchar_t text[] = L"(no more room in buffer)";
-			wcscpy(out_pos-ARRAY_SIZE(text), text);	// safe
+			wcscpy_s(out_pos-ARRAY_SIZE(text), ARRAY_SIZE(text), text);	// safe
 		}
 	}
 }

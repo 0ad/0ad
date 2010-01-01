@@ -36,13 +36,13 @@ ERROR_ASSOCIATE(ERR::STL_CNT_INVALID, L"Container type is known but contents are
 
 
 // used in debug_stl_simplify_name.
-// note: strcpy is safe because replacement happens in-place and
-// src is longer than dst (otherwise, we wouldn't be replacing).
+// note: wcscpy_s is safe because replacement happens in-place and
+// <what> is longer than <with> (otherwise, we wouldn't be replacing).
 #define REPLACE(what, with)\
 	else if(!wcsncmp(src, (what), ARRAY_SIZE(what)-1))\
 	{\
 		src += ARRAY_SIZE(what)-1-1; /* see preincrement rationale*/\
-		SAFE_WCSCPY(dst, (with));\
+		wcscpy_s(dst, ARRAY_SIZE(what), (with));\
 		dst += ARRAY_SIZE(with)-1;\
 	}
 #define STRIP(what)\

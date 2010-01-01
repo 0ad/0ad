@@ -133,7 +133,7 @@ void NextNumberedFilename(const PIVFS& fs, const VfsPath& pathnameFormat, size_t
 		for(size_t i = 0; i < files.size(); i++)
 		{
 			int number;
-			if(swscanf(files[i].Name().c_str(), nameFormat.c_str(), &number) == 1)
+			if(swscanf_s(files[i].Name().c_str(), nameFormat.c_str(), &number) == 1)
 				maxNumber = std::max(size_t(number), maxNumber);
 		}
 

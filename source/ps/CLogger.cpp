@@ -178,7 +178,7 @@ void CLogger::Log(ELogMethod method, const wchar_t* UNUSED(category), const wcha
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
+		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
 	}
 	va_end(argp);
 
@@ -195,7 +195,7 @@ void CLogger::LogOnce(ELogMethod method, const wchar_t* UNUSED(category), const 
 	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
+		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
 	}
 	va_end(argp);
 
@@ -219,7 +219,7 @@ void CLogger::LogMessage(const wchar_t* fmt, ...)
 	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
+		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
 	}
 	va_end(argp);
 
@@ -235,7 +235,7 @@ void CLogger::LogWarning(const wchar_t* fmt, ...)
 	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
+		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
 	}
 	va_end(argp);
 
@@ -251,7 +251,7 @@ void CLogger::LogError(const wchar_t* fmt, ...)
 	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
-		SAFE_WCSCPY(buffer+ARRAY_SIZE(buffer)-4, L"...");
+		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
 	}
 	va_end(argp);
 
