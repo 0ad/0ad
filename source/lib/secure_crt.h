@@ -95,13 +95,22 @@ typedef int errno_t;
 extern errno_t fopen_s(FILE** pfile, const char* filename, const char* mode);
 extern errno_t _wfopen_s(FILE** pfile, const wchar_t* filename, const wchar_t* mode);
 
-// *scanf_s functions have a different API to *scanf - in particular, any
-// %s or %c or %[ parameter must be followed by a size parameter.
-// Therefore we can't just fall back on the *scanf functions.
-// Emulating the behaviour would require a lot of effort, so don't bother and
-// just require callers to deal with the problem.
-//#define fscanf_s fscanf
-//#define sscanf_s sscanf
+// we'd like to avoid deprecation warnings caused by scanf. selective
+// 'undeprecation' isn't possible, replacing all stdio declarations with
+// our own deprecation scheme is a lot of work, suppressing all deprecation
+// warnings would cause important other warnings to be missed, and avoiding
+// scanf outright isn't convenient.
+// the remaining alternative is using scanf_s where available and otherwise
+// defining it to scanf. note that scanf_s has a different API:
+// any %s or %c or %[ format specifier's buffer must be followed by a
+// size parameter. callers must either avoid these, or provide two codepaths
+// (use scanf #if EMULATE_SECURE_CRT, otherwise scanf_s).
+#define scanf_s scanf
+#define wscanf_s wscanf
+#define fscanf_s fscanf
+#define fwscanf_s fwscanf
+#define sscanf_s sscanf
+#define swscanf_s swscanf
 
 #endif	// #if EMULATE_SECURE_CRT
 #endif	// #ifndef INCLUDED_SECURE_CRT
