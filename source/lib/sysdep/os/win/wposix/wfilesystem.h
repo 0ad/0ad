@@ -36,10 +36,11 @@ typedef unsigned int mode_t;
 #define stat _stat64
 #endif
 
-// (christmas-tree values because mkdir mode is ignored anyway)
-#define S_IRWXO 0xFFFF
-#define S_IRWXU 0xFFFF
-#define S_IRWXG 0xFFFF
+// permission masks when creating files (_wsopen_s doesn't distinguish
+// between owner/user/group)
+#define S_IRWXO _S_IREAD|_S_IWRITE
+#define S_IRWXU _S_IREAD|_S_IWRITE
+#define S_IRWXG _S_IREAD|_S_IWRITE
 
 #define S_ISDIR(m) (m & S_IFDIR)
 #define S_ISREG(m) (m & S_IFREG)
