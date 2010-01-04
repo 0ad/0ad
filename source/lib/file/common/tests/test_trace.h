@@ -55,4 +55,12 @@ public:
 		TS_ASSERT_WSTR_EQUALS(t4.Pathname().string(), L"example two.txt");
 		TS_ASSERT_EQUALS(t4.Size(), (size_t)16777216);
 	}
+
+	void test_maxpath()
+	{
+		std::wstring path1 = std::wstring(PATH_MAX, L'x');
+		std::wstring buf1 = L"0: L \"" + path1 + L"\" 0\n";
+		TraceEntry t1(buf1);
+		TS_ASSERT_WSTR_EQUALS(t1.Pathname().string(), path1);
+	}
 };

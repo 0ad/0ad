@@ -49,14 +49,14 @@ TraceEntry::TraceEntry(EAction action, const fs::wpath& pathname, size_t size)
 
 TraceEntry::TraceEntry(const std::wstring& text)
 {
-	wchar_t pathname[PATH_MAX] = L"";
+	wchar_t pathname[PATH_MAX+1] = L""; // includes space for terminator
 	wchar_t action;
 #if EMULATE_SECURE_CRT
 	#define TRACE_FORMAT L"%f: %lc \"%" STRINGIZE(PATH_MAX) "l[^\"]\" %zd\n" /* use a macro to allow compile-time type-checking */
 	const int fieldsRead = swscanf(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, pathname, &m_size);
 #else
 	#define TRACE_FORMAT L"%f: %lc \"%l[^\"]\" %d\n"
-	const int fieldsRead = swscanf_s(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, 1, pathname, PATH_MAX, &m_size);
+	const int fieldsRead = swscanf_s(text.c_str(), TRACE_FORMAT, &m_timestamp, &action, 1, pathname, ARRAY_SIZE(pathname), &m_size);
 #endif
 	debug_assert(fieldsRead == 4);
 	debug_assert(action == 'L' || action == 'S');
