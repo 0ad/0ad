@@ -28,6 +28,7 @@ public:
 		T zero = 0.f;
 		T one = 1.f;
 		T inf = std::numeric_limits<T>::infinity();
+		T ninf = -std::numeric_limits<T>::infinity();
 		T qnan = std::numeric_limits<T>::quiet_NaN();
 		T snan = std::numeric_limits<T>::signaling_NaN();
 		T min = std::numeric_limits<T>::min();
@@ -37,6 +38,7 @@ public:
 		TS_ASSERT_EQUALS((int)fpclassify(zero), (int)FP_ZERO);
 		TS_ASSERT_EQUALS((int)fpclassify(one), (int)FP_NORMAL);
 		TS_ASSERT_EQUALS((int)fpclassify(inf), (int)FP_INFINITE);
+		TS_ASSERT_EQUALS((int)fpclassify(ninf), (int)FP_INFINITE);
 		TS_ASSERT_EQUALS((int)fpclassify(qnan), (int)FP_NAN);
 		TS_ASSERT_EQUALS((int)fpclassify(snan), (int)FP_NAN);
 		TS_ASSERT_EQUALS((int)fpclassify(min), (int)FP_NORMAL);
@@ -46,6 +48,7 @@ public:
 		TS_ASSERT(!isnan(zero));
 		TS_ASSERT(!isnan(one));
 		TS_ASSERT(!isnan(inf));
+		TS_ASSERT(!isnan(ninf));
 		TS_ASSERT(isnan(qnan));
 		TS_ASSERT(isnan(snan));
 		TS_ASSERT(!isnan(min));
@@ -55,6 +58,7 @@ public:
 		TS_ASSERT(isfinite(zero));
 		TS_ASSERT(isfinite(one));
 		TS_ASSERT(!isfinite(inf));
+		TS_ASSERT(!isfinite(ninf));
 		TS_ASSERT(!isfinite(qnan));
 		TS_ASSERT(!isfinite(snan));
 		TS_ASSERT(isfinite(min));
@@ -64,6 +68,7 @@ public:
 		TS_ASSERT(!isinf(zero));
 		TS_ASSERT(!isinf(one));
 		TS_ASSERT(isinf(inf));
+		TS_ASSERT(isinf(ninf));
 		TS_ASSERT(!isinf(qnan));
 		TS_ASSERT(!isinf(snan));
 		TS_ASSERT(!isinf(min));
@@ -73,6 +78,7 @@ public:
 		TS_ASSERT(!isnormal(zero));
 		TS_ASSERT(isnormal(one));
 		TS_ASSERT(!isnormal(inf));
+		TS_ASSERT(!isnormal(ninf));
 		TS_ASSERT(!isnormal(qnan));
 		TS_ASSERT(!isnormal(snan));
 		TS_ASSERT(isnormal(min));

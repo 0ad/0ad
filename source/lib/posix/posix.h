@@ -140,8 +140,8 @@ extern size_t fpclassifyd(double d);
 #  define FP_SUBNORMAL (FP_NORMAL | FP_ZERO)
 
 # define isnan(d) (fpclassify(d) == FP_NAN)
-# define isfinite(d) ((fpclassify(d) & (FP_NORMAL|FP_ZERO)) != 0)
-# define isinf(d) (fpclassify(d) == FP_NAN|FP_NORMAL)
+# define isfinite(d) ((fpclassify(d) & FP_NAN) == 0)
+# define isinf(d) (fpclassify(d) == (FP_NAN|FP_NORMAL))
 # define isnormal(d) (fpclassify(d) == FP_NORMAL)
 //# define signbit
 #else	// HAVE_C99_MATH
