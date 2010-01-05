@@ -150,6 +150,7 @@ extern size_t fpclassifyd(double d);
 // #ifndef and define it if it's not there already.
 // We've included <cmath> above to make sure it defines that macro.
 # ifndef isfinite
+#  define fpclassify std::fpclassify
 #  define isfinite std::isfinite
 #  define isnan std::isnan
 #  define isinf std::isinf

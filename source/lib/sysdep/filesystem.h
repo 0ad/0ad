@@ -65,7 +65,9 @@ extern int wclosedir(WDIR*);
 #define O_NO_AIO_NP    0x20000
 
 // POSIX flags not supported by the underlying Win32 _wsopen_s:
+#if OS_WIN
 #define O_NONBLOCK     0x1000000
+#endif
 
 extern int wopen(const wchar_t* pathname, int oflag, ...);
 extern int wclose(int fd);

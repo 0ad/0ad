@@ -25,8 +25,6 @@
 #include "lib/wchar.h"
 #include "lib/path_util.h"
 
-struct DIR;
-
 struct WDIR
 {
 	DIR* d;

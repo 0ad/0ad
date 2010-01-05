@@ -34,14 +34,14 @@ public:
 		T sub = std::numeric_limits<T>::denorm_min();
 		T sub2 = std::numeric_limits<T>::min() / 2;
 
-		TS_ASSERT_EQUALS(fpclassify(zero), FP_ZERO);
-		TS_ASSERT_EQUALS(fpclassify(one), FP_NORMAL);
-		TS_ASSERT_EQUALS(fpclassify(inf), FP_INFINITE);
-		TS_ASSERT_EQUALS(fpclassify(qnan), FP_NAN);
-		TS_ASSERT_EQUALS(fpclassify(snan), FP_NAN);
-		TS_ASSERT_EQUALS(fpclassify(min), FP_NORMAL);
-		TS_ASSERT_EQUALS(fpclassify(sub), FP_SUBNORMAL);
-		TS_ASSERT_EQUALS(fpclassify(sub2), FP_SUBNORMAL);
+		TS_ASSERT_EQUALS((int)fpclassify(zero), (int)FP_ZERO);
+		TS_ASSERT_EQUALS((int)fpclassify(one), (int)FP_NORMAL);
+		TS_ASSERT_EQUALS((int)fpclassify(inf), (int)FP_INFINITE);
+		TS_ASSERT_EQUALS((int)fpclassify(qnan), (int)FP_NAN);
+		TS_ASSERT_EQUALS((int)fpclassify(snan), (int)FP_NAN);
+		TS_ASSERT_EQUALS((int)fpclassify(min), (int)FP_NORMAL);
+		TS_ASSERT_EQUALS((int)fpclassify(sub), (int)FP_SUBNORMAL);
+		TS_ASSERT_EQUALS((int)fpclassify(sub2), (int)FP_SUBNORMAL);
 
 		TS_ASSERT(!isnan(zero));
 		TS_ASSERT(!isnan(one));
