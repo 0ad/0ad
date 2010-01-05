@@ -56,16 +56,47 @@ public:
 		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg2.c_str());
 		logger->LogOnce(CLogger::Normal, L"", L"%ls", msg3.c_str());
 
+		logger->LogMessage(L"%ls", msg0.c_str());
+		logger->LogMessage(L"%ls", msg1.c_str());
+		logger->LogMessage(L"%ls", msg2.c_str());
+		logger->LogMessage(L"%ls", msg3.c_str());
+
+		logger->LogWarning(L"%ls", msg0.c_str());
+		logger->LogWarning(L"%ls", msg1.c_str());
+		logger->LogWarning(L"%ls", msg2.c_str());
+		logger->LogWarning(L"%ls", msg3.c_str());
+
+		logger->LogError(L"%ls", msg0.c_str());
+		logger->LogError(L"%ls", msg1.c_str());
+		logger->LogError(L"%ls", msg2.c_str());
+		logger->LogError(L"%ls", msg3.c_str());
+
 		ParseOutput();
 
-		TS_ASSERT_EQUALS((int)lines.size(), 7);
+		TS_ASSERT_EQUALS((int)lines.size(), 4*5-1);
 		TS_ASSERT_EQUALS(lines[0], msg0);
 		TS_ASSERT_EQUALS(lines[1], msg1);
 		TS_ASSERT_EQUALS(lines[2], clipped);
 		TS_ASSERT_EQUALS(lines[3], clipped);
+
 		TS_ASSERT_EQUALS(lines[4], msg0);
 		TS_ASSERT_EQUALS(lines[5], msg1);
 		TS_ASSERT_EQUALS(lines[6], clipped);
+
+		TS_ASSERT_EQUALS(lines[7], msg0);
+		TS_ASSERT_EQUALS(lines[8], msg1);
+		TS_ASSERT_EQUALS(lines[9], clipped);
+		TS_ASSERT_EQUALS(lines[10], clipped);
+
+		TS_ASSERT_EQUALS(lines[11], L"WARNING: "+msg0);
+		TS_ASSERT_EQUALS(lines[12], L"WARNING: "+msg1);
+		TS_ASSERT_EQUALS(lines[13], L"WARNING: "+clipped);
+		TS_ASSERT_EQUALS(lines[14], L"WARNING: "+clipped);
+
+		TS_ASSERT_EQUALS(lines[15], L"ERROR: "+msg0);
+		TS_ASSERT_EQUALS(lines[16], L"ERROR: "+msg1);
+		TS_ASSERT_EQUALS(lines[17], L"ERROR: "+clipped);
+		TS_ASSERT_EQUALS(lines[18], L"ERROR: "+clipped);
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -80,7 +111,7 @@ public:
 		mainlog = new std::wstringstream();
 		interestinglog = new std::wstringstream();
 
-		logger = new CLogger(mainlog, interestinglog, true, true);
+		logger = new CLogger(mainlog, interestinglog, true, false);
 
 		lines.clear();
 	}
@@ -103,7 +134,8 @@ public:
 		size_t n = 0, m;
 		while (s.npos != (m = s.find('\n', n)))
 		{
-			lines.push_back(s.substr(n+3, m-n-7)); // strip the <p> and </p>
+			size_t gt = s.find('>', n);
+			lines.push_back(s.substr(gt+1, m-gt-5)); // strip the <p> and </p>
 			n = m+1;
 		}
 	}

@@ -216,7 +216,7 @@ void CLogger::LogMessage(const wchar_t* fmt, ...)
 	wchar_t buffer[512];
 	
 	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
 		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
@@ -232,7 +232,7 @@ void CLogger::LogWarning(const wchar_t* fmt, ...)
 	wchar_t buffer[512];
 	
 	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
 		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
@@ -248,7 +248,7 @@ void CLogger::LogError(const wchar_t* fmt, ...)
 	wchar_t buffer[512];
 	
 	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, sizeof(buffer), fmt, argp) == -1)
+	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
 	{
 		// Buffer too small - ensure the string is nicely terminated
 		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");

@@ -208,6 +208,9 @@ int type_size(TCHAR type, int length)
 
 int sys_vswprintf(TCHAR* buffer, size_t count, const TCHAR* format, va_list argptr)
 {
+	// To help quickly detect incorrect 'count' values, fill the buffer with 0s
+	memset(buffer, 0, count*sizeof(TCHAR));
+
 	/*
 	
 	Format 'variable' specifications are (in pseudo-Perl regexp syntax):
