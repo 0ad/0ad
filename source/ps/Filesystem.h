@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_FILESYSTEM
-#define INCLUDED_FILESYSTEM
+#ifndef INCLUDED_PS_FILESYSTEM
+#define INCLUDED_PS_FILESYSTEM
 
 #include "lib/path_util.h"
 #include "lib/file/file.h"
@@ -66,4 +66,4 @@ private:
 	size_t m_BufferSize;
 };
 
-#endif	// #ifndef INCLUDED_FILESYSTEM
+#endif	// #ifndef INCLUDED_PS_FILESYSTEM

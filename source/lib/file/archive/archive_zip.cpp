@@ -539,13 +539,13 @@ public:
 
 		(void)pool_destroy(&m_cdfhPool);
 
-		const fs::path pathname = path_from_wpath(m_file->Pathname());	// for truncate()
+		const fs::wpath pathname = m_file->Pathname();	// for truncate()
 		m_file.reset();
 
 		m_fileSize += off_t(cd_size+sizeof(ECDR));
 
 		// remove padding added by UnalignedWriter
-		truncate(pathname.string().c_str(), m_fileSize);
+		wtruncate(pathname.string().c_str(), m_fileSize);
 	}
 
 	LibError AddFile(const fs::wpath& pathname)

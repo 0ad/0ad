@@ -29,9 +29,9 @@
 
 struct DirDeleter
 {
-	void operator()(DIR* osDir) const
+	void operator()(WDIR* osDir) const
 	{
-		const int ret = closedir(osDir);
+		const int ret = wclosedir(osDir);
 		debug_assert(ret == 0);
 	}
 };
@@ -46,19 +46,17 @@ static bool IsDummyDirectory(const std::wstring& name)
 
 LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryNames* subdirectoryNames)
 {
-	fs::path path_c = path_from_wpath(path);
-
 	// open directory
 	errno = 0;
-	DIR* pDir = opendir(path_c.string().c_str());
+	WDIR* pDir = wopendir(path.string().c_str());
 	if(!pDir)
 		return LibError_from_errno(false);
-	shared_ptr<DIR> osDir(pDir, DirDeleter());
+	shared_ptr<WDIR> osDir(pDir, DirDeleter());
 
 	for(;;)
 	{
 		errno = 0;
-		struct dirent* osEnt = readdir(osDir.get());
+		struct wdirent* osEnt = wreaddir(osDir.get());
 		if(!osEnt)
 		{
 			// no error, just no more entries to return
@@ -67,21 +65,19 @@ LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryN
 			return LibError_from_errno();
 		}
 
-		const std::wstring name = wstring_from_utf8(osEnt->d_name);
+		const std::wstring name(osEnt->d_name);
 		RETURN_ERR(path_component_validate(name.c_str()));
 
 		// get file information (mode, size, mtime)
 		struct stat s;
 #if OS_WIN
-		// .. wposix readdir has enough information to return dirent
-		//    status directly (much faster than calling stat).
-		RETURN_ERR(readdir_stat_np(osDir.get(), &s));
+		// .. return wdirent directly (much faster than calling stat).
+		RETURN_ERR(wreaddir_stat_np(osDir.get(), &s));
 #else
 		// .. call regular stat().
 		errno = 0;
 		const fs::wpath pathname(path/name);
-		const fs::path pathname_c = path_from_wpath(pathname);
-		if(stat(pathname_c.string().c_str(), &s) != 0)
+		if(wstat(pathname.string().c_str(), &s) != 0)
 			return LibError_from_errno();
 #endif
 
@@ -95,11 +91,10 @@ LibError GetDirectoryEntries(const fs::wpath& path, FileInfos* files, DirectoryN
 
 LibError GetFileInfo(const fs::wpath& pathname, FileInfo* pfileInfo)
 {
-	fs::path pathname_c = path_from_wpath(pathname);
 	errno = 0;
 	struct stat s;
 	memset(&s, 0, sizeof(s));
-	if(stat(pathname_c.string().c_str(), &s) != 0)
+	if(wstat(pathname.string().c_str(), &s) != 0)
 		return LibError_from_errno();
 
 	*pfileInfo = FileInfo(pathname.leaf(), s.st_size, s.st_mtime);
@@ -123,9 +118,8 @@ LibError CreateDirectories(const fs::wpath& path, mode_t mode)
 
 	RETURN_ERR(CreateDirectories(path.branch_path(), mode));
 
-	const fs::path path_c = path_from_wpath(path);
 	errno = 0;
-	if(mkdir(path_c.string().c_str(), mode) != 0)
+	if(wmkdir(path.string().c_str(), mode) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;
@@ -144,9 +138,8 @@ LibError DeleteDirectory(const fs::wpath& path)
 	for(size_t i = 0; i < files.size(); i++)
 	{
 		const fs::wpath pathname(path/files[i].Name());
-		const fs::path pathname_c = path_from_wpath(pathname);
 		errno = 0;
-		if(unlink(pathname_c.string().c_str()) != 0)
+		if(wunlink(pathname.string().c_str()) != 0)
 			return LibError_from_errno();
 	}
 
@@ -154,9 +147,8 @@ LibError DeleteDirectory(const fs::wpath& path)
 	for(size_t i = 0; i < subdirectoryNames.size(); i++)
 		RETURN_ERR(DeleteDirectory(path/subdirectoryNames[i]));
 
-	const fs::path path_c = path_from_wpath(path);
 	errno = 0;
-	if(rmdir(path_c.string().c_str()) != 0)
+	if(wrmdir(path.string().c_str()) != 0)
 		return LibError_from_errno();
 
 	return INFO::OK;

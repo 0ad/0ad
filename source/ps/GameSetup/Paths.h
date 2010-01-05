@@ -56,7 +56,7 @@ public:
 	}
 
 private:
-	static fs::wpath Root(const CStr& argv0);
+	static fs::wpath Root(const std::wstring& argv0);
 	static fs::wpath XDG_Path(const char* envname, const fs::wpath& home, const fs::wpath& defaultPath);
 
 	// read-only directories, fixed paths relative to executable

@@ -67,8 +67,7 @@ LibError RealDirectory::Store(const std::wstring& name, const shared_ptr<u8>& fi
 	// length. ftruncate can't be used because Windows' FILE_FLAG_NO_BUFFERING
 	// only allows resizing to sector boundaries, so the file must first
 	// be closed.
-	const fs::path pathname_c(path_from_wpath(pathname));
-	truncate(pathname_c.string().c_str(), size);
+	wtruncate(pathname.string().c_str(), size);
 
 	return INFO::OK;
 }

@@ -52,39 +52,12 @@ struct sigevent	// unused
 
 
 //
-// <fcntl.h>
-//
-
-// Win32 _wopen flags not specified by POSIX:
-#define O_TEXT_NP      0x4000  // file mode is text (translated)
-#define O_BINARY_NP    0x8000  // file mode is binary (untranslated)
-
-// waio flags not specified by POSIX nor implemented by Win32 _wopen:
-// do not open a separate AIO-capable handle.
-// (this can be used for small files where AIO overhead isn't worthwhile,
-// thus speeding up loading and reducing resource usage.)
-#define O_NO_AIO_NP    0x20000
-
-// POSIX flags not supported by the underlying Win32 _wopen:
-#define O_NONBLOCK     0x1000000
-
-// note: we use the sys_wopen interface because there is no
-// standardized wide-character open().
-
-extern int close(int);
-
-
-//
 // <unistd.h>
 //
 
 extern int read (int fd, void* buf, size_t nbytes);	// thunk
 extern int write(int fd, void* buf, size_t nbytes);	// thunk
 extern off_t lseek(int fd, off_t ofs, int whence);  // thunk
-// portable code for truncating files can use truncate or ftruncate.
-// we'd like to use wchar_t pathnames, but neither truncate nor open have
-// portable wchar_t variants. callers will have to use multi-byte strings.
-LIB_API int truncate(const char* path, off_t length);
 
 
 //
@@ -131,5 +104,12 @@ struct timespec;
 extern int aio_suspend(const struct aiocb* const[], int, const struct timespec*);
 extern int aio_write(struct aiocb*);
 extern int lio_listio(int, struct aiocb* const[], int, struct sigevent*);
+
+// for use by wposix_wchar's wopen/wclose:
+
+// (re)open file in asynchronous mode and associate handle with fd.
+// (this works because the files default to DENY_NONE sharing)
+extern LibError waio_reopen(int fd, const wchar_t* pathname, int oflag, ...);
+extern LibError waio_close(int fd);
 
 #endif	// #ifndef INCLUDED_WAIO

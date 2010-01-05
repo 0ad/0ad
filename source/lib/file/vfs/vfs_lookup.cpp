@@ -69,8 +69,7 @@ LibError vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDi
 				currentPath = directory->AssociatedDirectory()->Path();
 			currentPath /= subdirectoryName;
 
-			fs::path currentPath_c = path_from_wpath(currentPath);
-			const int ret = mkdir(currentPath_c.string().c_str(), S_IRWXU);
+			const int ret = wmkdir(currentPath.string().c_str(), S_IRWXU);
 			if(ret == 0)
 			{
 				PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));

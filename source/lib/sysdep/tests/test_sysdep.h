@@ -90,9 +90,8 @@ public:
 		// Check it's absolute
 		TSM_ASSERT(std::wstring(L"Path: ")+path.string(), path_is_absolute(path.string().c_str()));
 		// Check the file exists
-		fs::path path_c = path_from_wpath(path);
 		struct stat s;
-		TSM_ASSERT_EQUALS(std::wstring(L"Path: ")+path.string(), stat(path_c.string().c_str(), &s), 0);
+		TSM_ASSERT_EQUALS(std::wstring(L"Path: ")+path.string(), wstat(path.string().c_str(), &s), 0);
 
 		// Do some platform-specific tests, based on the
 		// implementations of sys_get_executable_name:

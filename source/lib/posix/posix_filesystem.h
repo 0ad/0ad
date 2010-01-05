@@ -24,3 +24,5 @@
 #endif
 
 #include "posix_errno.h"	// for user convenience
+
+#include "lib/sysdep/filesystem.h"

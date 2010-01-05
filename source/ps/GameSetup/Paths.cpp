@@ -20,6 +20,7 @@
 
 #include "lib/path_util.h"
 #include "lib/wchar.h"
+#include "lib/sysdep/filesystem.h"	// wrealpath
 #include "lib/sysdep/sysdep.h"	// sys_get_executable_name
 #if OS_WIN
 # include "lib/sysdep/os/win/wutil.h"	// wutil_AppdataPath
@@ -28,7 +29,7 @@
 
 Paths::Paths(const CmdLineArgs& args)
 {
-	m_root = Root(args.GetArg0());
+	m_root = Root(wstring_from_utf8(args.GetArg0()));
 	m_rdata = m_root/L"data/";
 	const wchar_t* subdirectoryName = args.Has("writableRoot")? 0 : L"0ad";
 
@@ -61,7 +62,7 @@ Paths::Paths(const CmdLineArgs& args)
 }
 
 
-/*static*/ fs::wpath Paths::Root(const CStr& argv0)
+/*static*/ fs::wpath Paths::Root(const std::wstring& argv0)
 {
 	// get full path to executable
 	fs::wpath pathname;
@@ -69,11 +70,11 @@ Paths::Paths(const CmdLineArgs& args)
 	if(sys_get_executable_name(pathname) != INFO::OK)
 	{
 		// .. failed; use argv[0]
-		char pathname_c[PATH_MAX];
+		wchar_t pathname_buf[PATH_MAX];
 		errno = 0;
-		if(!realpath(argv0.c_str(), pathname_c))
+		if(!wrealpath(argv0.c_str(), pathname_buf))
 			WARN_ERR(LibError_from_errno(false));
-		pathname = wpath_from_path(pathname_c);
+		pathname = pathname_buf;
 	}
 
 	// make sure it's valid

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "lib/allocators/allocators.h"		// single_calloc
 #include "wposix_internal.h"
+#include "waio.h"
 #include "wtime_internal.h"		// wtime_utc_filetime_to_time_t
 #include "crt_posix.h"			// _rmdir, _access
 
@@ -130,80 +131,11 @@ static time_t filetime_to_time_t(FILETIME* ft)
 }
 
 
-/*
-// currently only sets st_mode (file or dir) and st_size.
-int stat(const char* fn, struct stat* s)
-{
-	memset(s, 0, sizeof(struct stat));
 
-	WIN32_FILE_ATTRIBUTE_DATA fad;
-	if(!GetFileAttributesEx(fn, GetFileExInfoStandard, &fad))
-		return -1;
-
-	s->st_mtime = filetime_to_time_t(fad.ftLastAccessTime)
-
-	// dir
-	if(fad.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		s->st_mode = S_IFDIR;
-	else
-	{
-		s->st_mode = S_IFREG;
-		s->st_size = (off_t)u64_from_u32(fad.nFileSizeHigh, fad.nFileSizeLow);
-	}
-
-	return 0;
-}
-*/
-
-
-int access(const char* path, int mode)
-{
-	return _access(path, mode);
-}
-
-
-#ifndef HAVE_MKDIR
-static int ErrnoFromCreateDirectory()
-{
-	switch(GetLastError())
-	{
-	case ERROR_ALREADY_EXISTS:
-		return EEXIST;
-	case ERROR_PATH_NOT_FOUND:
-		return ENOENT;
-	case ERROR_ACCESS_DENIED:
-		return EACCES;
-	case ERROR_WRITE_PROTECT:
-		return EROFS;
-	case ERROR_DIRECTORY:
-		return ENOTDIR;
-	default:
-		return 0;
-
-	}
-}
-
-int mkdir(const char* path, mode_t UNUSED(mode))
-{
-	if(!CreateDirectory(path, (LPSECURITY_ATTRIBUTES)NULL))
-	{
-		errno = ErrnoFromCreateDirectory();
-		return -1;
-	}
-
-	return 0;
-}
-#endif
-
-
-int rmdir(const char* path)
-{
-	return _rmdir(path);
-}
 
 
 //-----------------------------------------------------------------------------
-// readdir
+// dirent.h
 //-----------------------------------------------------------------------------
 
 // note: we avoid opening directories or returning entries that have
@@ -216,15 +148,15 @@ struct WDIR
 {
 	HANDLE hFind;
 
-	// the dirent returned by readdir.
+	// the wdirent returned by readdir.
 	// note: having only one global instance is not possible because
-	// multiple independent opendir/readdir sequences must be supported.
-	struct dirent ent;
+	// multiple independent wopendir/wreaddir sequences must be supported.
+	struct wdirent ent;
 
-	WIN32_FIND_DATA fd;
+	WIN32_FIND_DATAW fd;
 
-	// since opendir calls FindFirstFile, we need a means of telling the
-	// first call to readdir that we already have a file.
+	// since wopendir calls FindFirstFileW, we need a means of telling the
+	// first call to wreaddir that we already have a file.
 	// that's the case iff this is == 0; we use a counter rather than a
 	// flag because that allows keeping statistics.
 	int num_entries_scanned;
@@ -253,9 +185,9 @@ static inline void wdir_free(WDIR* d)
 static const DWORD hs = FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM;
 
 // make sure path exists and is a normal (according to attributes) directory.
-static bool is_normal_dir(const char* path)
+static bool is_normal_dir(const wchar_t* path)
 {
-	const DWORD fa = GetFileAttributes(path);
+	const DWORD fa = GetFileAttributesW(path);
 
 	// path not found
 	if(fa == INVALID_FILE_ATTRIBUTES)
@@ -276,7 +208,7 @@ static bool is_normal_dir(const char* path)
 }
 
 
-DIR* opendir(const char* path)
+WDIR* wopendir(const wchar_t* path)
 {
 	if(!is_normal_dir(path))
 	{
@@ -291,16 +223,16 @@ DIR* opendir(const char* path)
 		return 0;
 	}
 
-	// build search path for FindFirstFile. note: "path\\dir" only returns
+	// build search path for FindFirstFileW. note: "path\\dir" only returns
 	// information about that directory; trailing slashes aren't allowed.
 	// for dir entries to be returned, we have to append "\\*".
-	char search_path[PATH_MAX];
-	sprintf_s(search_path, ARRAY_SIZE(search_path), "%s\\*", path);
+	wchar_t search_path[PATH_MAX];
+	swprintf_s(search_path, ARRAY_SIZE(search_path), L"%ls\\*", path);
 
-	// note: we could store search_path and defer FindFirstFile until
-	// readdir. this way is a bit more complex but required for
+	// note: we could store search_path and defer FindFirstFileW until
+	// wreaddir. this way is a bit more complex but required for
 	// correctness (we must return a valid DIR iff <path> is valid).
-	d->hFind = FindFirstFileA(search_path, &d->fd);
+	d->hFind = FindFirstFileW(search_path, &d->fd);
 	if(d->hFind == INVALID_HANDLE_VALUE)
 	{
 		// not an error - the directory is just empty.
@@ -323,14 +255,12 @@ DIR* opendir(const char* path)
 }
 
 
-struct dirent* readdir(DIR* d_)
+struct wdirent* wreaddir(WDIR* d)
 {
-	WDIR* const d = (WDIR*)d_;
-
 	// avoid polluting the last error.
 	DWORD prev_err = GetLastError();
 
-	// first call - skip FindNextFile (see opendir).
+	// first call - skip FindNextFileW (see wopendir).
 	if(d->num_entries_scanned == 0)
 	{
 		// this directory is empty.
@@ -342,7 +272,7 @@ struct dirent* readdir(DIR* d_)
 	// until end of directory or a valid entry was found:
 	for(;;)
 	{
-		if(!FindNextFileA(d->hFind, &d->fd))
+		if(!FindNextFileW(d->hFind, &d->fd))
 			goto fail;
 already_have_file:
 
@@ -359,24 +289,18 @@ already_have_file:
 	return &d->ent;
 
 fail:
-	// FindNextFile failed; determine why and bail.
+	// FindNextFileW failed; determine why and bail.
 	// .. legit, end of dir reached. don't pollute last error code.
 	if(GetLastError() == ERROR_NO_MORE_FILES)
 		SetLastError(prev_err);
 	else
-		debug_assert(0);	// readdir: FindNextFile failed
+		WARN_ERR(LibError_from_GLE());
 	return 0;
 }
 
 
-// return status for the dirent returned by the last successful
-// readdir call from the given directory stream.
-// currently sets st_size, st_mode, and st_mtime; the rest are zeroed.
-// non-portable, but considerably faster than stat(). used by dir_ForEachSortedEntry.
-int readdir_stat_np(DIR* d_, struct stat* s)
+int wreaddir_stat_np(WDIR* d, struct stat* s)
 {
-	WDIR* d = (WDIR*)d_;
-
 	memset(s, 0, sizeof(*s));
 	s->st_size  = (off_t)u64_from_u32(d->fd.nFileSizeHigh, d->fd.nFileSizeLow);
 	s->st_mode  = (unsigned short)((d->fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)? S_IFDIR : S_IFREG);
@@ -385,10 +309,8 @@ int readdir_stat_np(DIR* d_, struct stat* s)
 }
 
 
-int closedir(DIR* d_)
+int wclosedir(WDIR* d)
 {
-	WDIR* const d = (WDIR*)d_;
-
 	FindClose(d->hFind);
 
 	wdir_free(d);
@@ -397,10 +319,121 @@ int closedir(DIR* d_)
 
 
 //-----------------------------------------------------------------------------
+// fcntl.h
+//-----------------------------------------------------------------------------
 
-char* realpath(const char* fn, char* path)
+int wopen(const wchar_t* pathname, int oflag, ...)
 {
-	if(!GetFullPathName(fn, PATH_MAX, path, 0))
+	mode_t mode = _S_IREAD|_S_IWRITE;
+	if(oflag & O_CREAT)
+	{
+		va_list args;
+		va_start(args, oflag);
+		mode = va_arg(args, mode_t);
+		va_end(args);
+	}
+
+	WinScopedPreserveLastError s;	// _wsopen_s's CreateFileW
+	int fd;
+	errno_t ret = _wsopen_s(&fd, pathname, oflag, _SH_DENYNO, mode);
+	if(ret != 0)
+	{
+		errno = ret;
+		WARN_ERR(LibError_from_errno());
+		return -1;
+	}
+
+	WARN_ERR(waio_reopen(fd, pathname, oflag));
+
+	// CRT doesn't like more than 255 files open.
+	// warn now, so that we notice why so many are open.
+#ifndef NDEBUG
+	if(fd > 256)
+		WARN_ERR(ERR::LIMIT);
+#endif
+
+	return fd;
+}
+
+
+int wclose(int fd)
+{
+	debug_assert(3 <= fd && fd < 256);
+
+	(void)waio_close(fd);	// no-op if fd wasn't opened for aio
+
+	return _close(fd);
+}
+
+
+//-----------------------------------------------------------------------------
+// unistd.h
+//-----------------------------------------------------------------------------
+
+int wtruncate(const wchar_t* pathname, off_t length)
+{
+	HANDLE hFile = CreateFileW(pathname, GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
+	debug_assert(hFile != INVALID_HANDLE_VALUE);
+	LARGE_INTEGER ofs; ofs.QuadPart = length;
+	WARN_IF_FALSE(SetFilePointerEx(hFile, ofs, 0, FILE_BEGIN));
+	WARN_IF_FALSE(SetEndOfFile(hFile));
+	WARN_IF_FALSE(CloseHandle(hFile));
+	return 0;
+}
+
+
+int wunlink(const wchar_t* pathname)
+{
+	return _wunlink(pathname);
+}
+
+
+int wrmdir(const wchar_t* path)
+{
+	return _wrmdir(path);
+}
+
+
+wchar_t* wrealpath(const wchar_t* pathname, wchar_t* resolved)
+{
+	if(!GetFullPathNameW(pathname, PATH_MAX, resolved, 0))
 		return 0;
-	return path;
+	return resolved;
+}
+
+
+static int ErrnoFromCreateDirectory()
+{
+	switch(GetLastError())
+	{
+	case ERROR_ALREADY_EXISTS:
+		return EEXIST;
+	case ERROR_PATH_NOT_FOUND:
+		return ENOENT;
+	case ERROR_ACCESS_DENIED:
+		return EACCES;
+	case ERROR_WRITE_PROTECT:
+		return EROFS;
+	case ERROR_DIRECTORY:
+		return ENOTDIR;
+	default:
+		return 0;
+	}
+}
+
+int wmkdir(const wchar_t* path, mode_t UNUSED(mode))
+{
+	if(!CreateDirectoryW(path, (LPSECURITY_ATTRIBUTES)NULL))
+	{
+		errno = ErrnoFromCreateDirectory();
+		return -1;
+	}
+
+	return 0;
+}
+
+
+int wstat(const wchar_t* pathname, struct stat* buf)
+{
+	return _wstat64(pathname, buf);
 }

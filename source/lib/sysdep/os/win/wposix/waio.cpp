@@ -97,8 +97,28 @@ private:
 static HandleManager* handleManager;
 
 
+// do we want to open a second aio-capable handle?
+static bool IsAioPossible(int fd, bool is_com_port, int oflag)
+{
+	// stdin/stdout/stderr
+	if(fd <= 2)
+		return false;
+
+	// COM port - we don't currently need aio access for those, and
+	// aio_reopen's CreateFileW would fail with "access denied".
+	if(is_com_port)
+		return false;
+
+	// caller is requesting we skip it (see open())
+	if(oflag & O_NO_AIO_NP)
+		return false;
+
+	return true;
+}
+
 // (re)open file in asynchronous mode and associate handle with fd.
-static LibError aio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
+// (this works because the files default to DENY_NONE sharing)
+LibError waio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 {
 	WinScopedPreserveLastError s;	// CreateFile
 
@@ -119,6 +139,9 @@ static LibError aio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 	if(oflag & O_CREAT)
 		create = (oflag & O_EXCL)? CREATE_NEW : CREATE_ALWAYS;
 
+	if(!IsAioPossible(fd, false, oflag))
+		return INFO::SKIPPED;
+
 	// open file
 	const DWORD flags = FILE_FLAG_OVERLAPPED|FILE_FLAG_NO_BUFFERING|FILE_FLAG_SEQUENTIAL_SCAN;
 	const HANDLE hFile = CreateFileW(pathname, access, share, 0, create, flags, 0);
@@ -133,7 +156,7 @@ static LibError aio_reopen(int fd, const wchar_t* pathname, int oflag, ...)
 }
 
 
-static LibError aio_close(int fd)
+LibError waio_close(int fd)
 {
 	HANDLE hFile;
 	{
@@ -148,72 +171,6 @@ static LibError aio_close(int fd)
 		WARN_RETURN(ERR::INVALID_HANDLE);
 
 	return INFO::OK;
-}
-
-
-// do we want to open a second aio-capable handle?
-static bool IsAioPossible(int fd, bool is_com_port, int oflag)
-{
-	// stdin/stdout/stderr
-	if(fd <= 2)
-		return false;
-
-	// COM port - we don't currently need aio access for those, and
-	// aio_reopen's CreateFileW would fail with "access denied".
-	if(is_com_port)
-		return false;
-
-	// caller is requesting we skip it (see open())
-	if(oflag & O_NO_AIO_NP)
-		return false;
-
-	return true;
-}
-
-int sys_wopen(const wchar_t* pathname, int oflag, ...)
-{
-	mode_t mode = _S_IREAD|_S_IWRITE;
-	if(oflag & O_CREAT)
-	{
-		va_list args;
-		va_start(args, oflag);
-		mode = va_arg(args, mode_t);
-		va_end(args);
-	}
-
-	WinScopedPreserveLastError s;	// _wsopen_s's CreateFileW
-	int fd;
-	errno_t ret = _wsopen_s(&fd, pathname, oflag, _SH_DENYNO, mode);
-	if(ret != 0)
-	{
-		errno = ret;
-		WARN_ERR(LibError_from_errno());
-		return -1;
-	}
-
-	// if possible, re-open the file for aio (this works because
-	// the initial _wopen defaults to DENY_NONE sharing)
-	if(IsAioPossible(fd, false, oflag))
-		WARN_ERR(aio_reopen(fd, pathname, oflag));
-
-	// CRT doesn't like more than 255 files open.
-	// warn now, so that we notice why so many are open.
-#ifndef NDEBUG
-	if(fd > 256)
-		WARN_ERR(ERR::LIMIT);
-#endif
-
-	return fd;
-}
-
-
-int close(int fd)
-{
-	debug_assert(3 <= fd && fd < 256);
-
-	(void)aio_close(fd);	// no-op if fd wasn't opened for aio
-
-	return _close(fd);
 }
 
 
@@ -234,17 +191,6 @@ int write(int fd, void* buf, size_t nbytes)
 off_t lseek(int fd, off_t ofs, int whence)
 {
 	return _lseeki64(fd, ofs, whence);
-}
-
-int truncate(const char* path, off_t length)
-{
-	HANDLE hFile = CreateFile(path, GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
-	debug_assert(hFile != INVALID_HANDLE_VALUE);
-	LARGE_INTEGER ofs; ofs.QuadPart = length;
-	WARN_IF_FALSE(SetFilePointerEx(hFile, ofs, 0, FILE_BEGIN));
-	WARN_IF_FALSE(SetEndOfFile(hFile));
-	WARN_IF_FALSE(CloseHandle(hFile));
-	return 0;
 }
 
 
