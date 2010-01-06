@@ -29,6 +29,9 @@
 #include "vfs_populate.h"
 #include "file_cache.h"
 
+ERROR_ASSOCIATE(ERR::VFS_DIR_NOT_FOUND, L"VFS directory not found", -1);
+ERROR_ASSOCIATE(ERR::VFS_FILE_NOT_FOUND, L"VFS file not found", -1);
+ERROR_ASSOCIATE(ERR::VFS_ALREADY_MOUNTED, L"VFS path already mounted", -1);
 
 class VFS : public IVFS
 {
