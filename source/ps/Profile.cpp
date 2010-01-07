@@ -28,10 +28,12 @@
 #if OS_WIN
 #include "lib/sysdep/os/win/wdbg_heap.h"
 #endif
+
 #if defined(__GLIBC__) && !defined(NDEBUG)
-# define GLIBC_MALLOC_HOOK
+//# define USE_GLIBC_MALLOC_HOOK
+# define USE_GLIBC_MALLOC_OVERRIDE
 # include <malloc.h>
-# include "ThreadUtil.h"
+# include "lib/sysdep/cpu.h"
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -385,6 +387,7 @@ void CProfileNode::Frame()
 
 // TODO: these should probably only count allocations that occur in the thread being profiled
 #if OS_WIN
+
 static void alloc_hook_initialize()
 {
 }
@@ -392,32 +395,41 @@ static long get_memory_alloc_count()
 {
 	return (long)wdbg_heap_NumberOfAllocations();
 }
-#elif defined(GLIBC_MALLOC_HOOK)
+
+#elif defined(USE_GLIBC_MALLOC_HOOK)
+
 // Set up malloc hooks to count allocations - see
 // http://www.gnu.org/software/libc/manual/html_node/Hooks-for-Malloc.html
-static int malloc_count = 0;
+static intptr_t malloc_count = 0;
 static void *(*old_malloc_hook) (size_t, const void*);
-static CMutex malloc_mutex;
+static pthread_mutex_t alloc_hook_mutex = PTHREAD_MUTEX_INITIALIZER;
 static void *malloc_hook(size_t size, const void* UNUSED(caller))
 {
-	// TODO: this is totally not nicely thread-safe - glibc's hook system seems to
-	// not make threading easy, and I don't want to think too hard, so this is
-	// just all put inside a lock.
-	CScopeLock lock(malloc_mutex);
-	
+	// This doesn't really work across threads. The hooks are global variables, and
+	// we have to temporarily unhook in order to call the real malloc, and during that
+	// time period another thread may perform an unhooked (hence uncounted) allocation
+	// which we will miss.
+
+	// Two threads may execute the hook simultaneously, so we need to do the
+	// temporary unhooking in a thread-safe way, so for simplicity we just use a mutex.
+	pthread_mutex_lock(&alloc_hook_mutex);
 	++malloc_count;
 	__malloc_hook = old_malloc_hook;
 	void* result = malloc(size);
 	old_malloc_hook = __malloc_hook;
 	__malloc_hook = malloc_hook;
+	pthread_mutex_unlock(&alloc_hook_mutex);
 	return result;
 }
+
 static void alloc_hook_initialize()
 {
-	CScopeLock lock(malloc_mutex);
-	
+	pthread_mutex_lock(&alloc_hook_mutex);
 	old_malloc_hook = __malloc_hook;
 	__malloc_hook = malloc_hook;
+	// (we don't want to bother hooking realloc and memalign, because if they allocate
+	// new memory then they'll be caught by the malloc hook anyway)
+	pthread_mutex_unlock(&alloc_hook_mutex);
 }
 /*
 It would be nice to do:
@@ -431,7 +443,106 @@ static long get_memory_alloc_count()
 {
 	return malloc_count;
 }
+
+#elif defined(USE_GLIBC_MALLOC_OVERRIDE)
+
+static intptr_t alloc_count = 0;
+
+// We override the malloc/realloc/calloc functions and then use dlsym to
+// defer the actual allocation to the real libc implementation.
+// The dlsym call will (in glibc) call calloc once (to allocate an error
+// message structure), so we have a bootstrapping problem when trying to
+// get malloc via dlsym. So we kludge it by returning a statically-allocated
+// buffer for the very first call to calloc (which we assume was triggered by
+// dlsym). And if we run under Valgrind then there's another couple of allocations
+// before that one. This is awfully hacky but it seems to work in practice...
+static bool alloc_bootstrapped = false;
+static char alloc_bootstrap_buffer[72]; // sufficient for x86_64 Valgrind
+static char* alloc_bootstrap_ptr = alloc_bootstrap_buffer;
+// (We'll only be running a single thread at this point so no need for locking these variables)
+
+//#define ALLOC_DEBUG
+
+void* malloc(size_t sz)
+{
+	cpu_AtomicAdd(&alloc_count, 1);
+
+	static void *(*libc_malloc)(size_t);
+	if (libc_malloc == NULL)
+	{
+		libc_malloc = (void *(*)(size_t)) dlsym(RTLD_NEXT, "malloc");
+		alloc_bootstrapped = true;
+	}
+	void* ret = libc_malloc(sz);
+#ifdef ALLOC_DEBUG
+	printf("### malloc %d %p\n", sz, ret);
+#endif
+	return ret;
+}
+
+void* realloc(void* ptr, size_t sz)
+{
+	cpu_AtomicAdd(&alloc_count, 1);
+
+	static void *(*libc_realloc)(void*, size_t);
+	if (libc_realloc == NULL)
+		libc_realloc = (void *(*)(void*, size_t)) dlsym(RTLD_NEXT, "realloc");
+	return libc_realloc(ptr, sz);
+}
+
+void* calloc(size_t nm, size_t sz)
+{
+	cpu_AtomicAdd(&alloc_count, 1);
+
+	static void *(*libc_calloc)(size_t, size_t);
+	if (libc_calloc == NULL)
+	{
+		if (!alloc_bootstrapped)
+		{
+			debug_assert(nm*sz <= (size_t)(alloc_bootstrap_buffer+ARRAY_SIZE(alloc_bootstrap_buffer) - alloc_bootstrap_ptr));
+			void* ret = alloc_bootstrap_ptr;
+#ifdef ALLOC_DEBUG
+			printf("### calloc-bs %d %d %p\n", nm, sz, ret);
+#endif
+			alloc_bootstrap_ptr += nm*sz;
+			return ret;
+		}
+		libc_calloc = (void *(*)(size_t, size_t)) dlsym(RTLD_NEXT, "calloc");
+	}
+	void* ret = libc_calloc(nm, sz);
+#ifdef ALLOC_DEBUG
+	printf("### calloc %d %d %p\n", nm, sz, ret);
+#endif
+	return ret;
+}
+
+void free(void* ptr)
+{
+#ifdef ALLOC_DEBUG
+	printf("### free %p\n", ptr);
+#endif
+
+	static void (*libc_free)(void*);
+	if (libc_free == NULL)
+		libc_free = (void (*)(void*)) dlsym(RTLD_NEXT, "free");
+
+	if (ptr >= alloc_bootstrap_buffer && ptr < alloc_bootstrap_buffer+ARRAY_SIZE(alloc_bootstrap_buffer))
+		return;
+
+	libc_free(ptr);
+}
+
+static void alloc_hook_initialize()
+{
+}
+
+static long get_memory_alloc_count()
+{
+	return alloc_count;
+}
+
 #else
+
 static void alloc_hook_initialize()
 {
 }
