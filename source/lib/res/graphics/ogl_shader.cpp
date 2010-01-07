@@ -28,6 +28,7 @@
 #include "ps/CLogger.h"
 #include "ps/XML/Xeromyces.h"
 
+#include "lib/timer.h"
 #include "lib/res/h_mgr.h"
 #include "lib/file/vfs/vfs.h"
 extern PIVFS g_VFS;
@@ -96,6 +97,8 @@ static void Ogl_Shader_init(Ogl_Shader* shdr, va_list args)
 	shdr->type = va_arg(args, GLenum);
 }
 
+TIMER_ADD_CLIENT(glCompileShader);
+TIMER_ADD_CLIENT(glLinkProgram);
 
 // Reload the shader object from the source file.
 //
@@ -130,12 +133,19 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 		const GLchar* strings[] = { (const GLchar*)file.get() };
 		const GLint tmp = (GLint)file_size;
 		pglShaderSourceARB(shdr->id, 1, strings, &tmp);
+
 		// Some drivers (Mesa i915 on 945GM) give GL_INVALID_ENUM after calling
 		// CompileShader on a GL_FRAGMENT_PROGRAM, because the hardware doesn't support
 		// fragment programs. I can't find a better way to detect that situation in advance,
 		// so detect the error afterwards and return failure.
+
 		ogl_WarnIfError();
-		pglCompileShaderARB(shdr->id);
+
+		{
+			TIMER_ACCRUE(glCompileShader);
+			pglCompileShaderARB(shdr->id);
+		}
+
 		if(ogl_SquelchError(GL_INVALID_ENUM))
 			goto fail_shadercreated;
 	}
@@ -374,7 +384,10 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname, Hand
 		}
 	}
 
-	pglLinkProgramARB(p->id);
+	{
+		TIMER_ACCRUE(glLinkProgram);
+		pglLinkProgramARB(p->id);
+	}
 
 	GLint log_length;
 	GLint linked;
