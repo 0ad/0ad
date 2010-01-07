@@ -28,7 +28,7 @@
 void* rtl_AllocateAligned(size_t size, size_t alignment)
 {
 	void *ptr;
-	int ret = posix_memalign(&ptr, size, alignment);
+	int ret = posix_memalign(&ptr, alignment, size);
 	if (ret) {
 		// TODO: report error?
 		return NULL;
@@ -72,7 +72,8 @@ void* rtl_AllocateAligned(size_t size, size_t align)
 
 void rtl_FreeAligned(void* alignedPointer)
 {
-	free(((void**)alignedPointer)[-1]);
+	if (alignedPointer)
+		free(((void**)alignedPointer)[-1]);
 }
 
 #endif
