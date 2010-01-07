@@ -136,7 +136,6 @@ extern int SDL_SetGamma(float r, float g, float b);
 
 typedef struct
 {
-	Uint8 type;
 	SDLKey sym;
 	u16 unicode;
 }
