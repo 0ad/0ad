@@ -341,10 +341,16 @@ private:
 	 */
 	static bool CheckIfRestricted(int RR, IGUIObject *pObject)
 	{
+		// Statically initialise some strings, so we don't have to do
+		// lots of allocation every time this function is called
+		static CStr strHidden("hidden");
+		static CStr strEnabled("enabled");
+		static CStr strGhost("ghost");
+
 		if (RR & GUIRR_HIDDEN)
 		{
 			bool hidden;
-			GUI<bool>::GetSetting(pObject, "hidden", hidden);
+			GUI<bool>::GetSetting(pObject, strHidden, hidden);
 
 			if (hidden)
 				return true;
@@ -352,7 +358,7 @@ private:
 		if (RR & GUIRR_DISABLED)
 		{
 			bool enabled;
-			GUI<bool>::GetSetting(pObject, "enabled", enabled);
+			GUI<bool>::GetSetting(pObject, strEnabled, enabled);
 
 			if (!enabled)
 				return true;
@@ -360,7 +366,7 @@ private:
 		if (RR & GUIRR_GHOST)
 		{
 			bool ghost;
-			GUI<bool>::GetSetting(pObject, "ghost", ghost);
+			GUI<bool>::GetSetting(pObject, strGhost, ghost);
 
 			if (ghost)
 				return true;

@@ -104,11 +104,19 @@ void CButton::Draw()
 	CGUISpriteInstance *sprite, *sprite_over, *sprite_pressed, *sprite_disabled;
 	int cell_id;
 
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_over", sprite_over);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_pressed", sprite_pressed);
-	GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_disabled", sprite_disabled);
-	GUI<int>::GetSetting(this, "cell_id", cell_id);
+	// Statically initialise some strings, so we don't have to do
+	// lots of allocation every time this function is called
+	static CStr strSprite("sprite");
+	static CStr strSpriteOver("sprite_over");
+	static CStr strSpritePressed("sprite_pressed");
+	static CStr strSpriteDisabled("sprite_disabled");
+	static CStr strCellId("cell_id");
+
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSprite, sprite);
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSpriteOver, sprite_over);
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSpritePressed, sprite_pressed);
+	GUI<CGUISpriteInstance>::GetSettingPointer(this, strSpriteDisabled, sprite_disabled);
+	GUI<int>::GetSetting(this, strCellId, cell_id);
 
 	DrawButton(m_CachedActualSize,
 			   bz,
