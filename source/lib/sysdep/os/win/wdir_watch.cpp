@@ -83,7 +83,19 @@ public:
 
 	~DirWatchRequest()
 	{
+		// m_data's dtor will free the memory after this function returns,
+		// so the pending IO had better not write into that memory. therefore:
 		WARN_IF_FALSE(CancelIo(m_dirHandle));
+		// however, this is not synchronized with the DPC (?) that apparently
+		// delivers the data (we have seen m_data being filled regardless).
+		// we need to ensure that either the IO has happened or that it
+		// was successfully canceled before freeing m_data, so wait:
+		{
+			WinScopedPreserveLastError s;
+			DWORD dwBytesTransferred = 0;	// unused
+			const BOOL ok = GetOverlappedResult(m_dirHandle, &m_ovl, &dwBytesTransferred, TRUE);
+			debug_assert(ok || GetLastError() == ERROR_OPERATION_ABORTED);
+		}
 	}
 
 	const fs::wpath& Path() const
@@ -291,6 +303,8 @@ public:
 
 	LibError Poll(size_t& bytesTransferred, uintptr_t& key, OVERLAPPED*& ovl)
 	{
+		if(m_hIOCP == 0)
+			return INFO::SKIPPED;
 		for(;;)	// don't return abort notifications to caller
 		{
 			DWORD dwBytesTransferred = 0;
