@@ -22,6 +22,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/dir_watch.h"
 
+#include "lib/allocators/shared_ptr.h"
 #include "lib/path_util.h"	// path_is_subpath
 #include "win.h"
 #include "winit.h"
@@ -75,9 +76,14 @@ class DirWatchRequest
 {
 public:
 	DirWatchRequest(const fs::wpath& path)
-		: m_path(path), m_dirHandle(path), m_data(new u8[dataSize])
+		: m_path(path), m_dirHandle(path), m_data(new u8[dataSize], ArrayDeleter())
 	{
 		memset(&m_ovl, 0, sizeof(m_ovl));
+	}
+
+	~DirWatchRequest()
+	{
+		WARN_IF_FALSE(CancelIo(m_dirHandle));
 	}
 
 	const fs::wpath& Path() const
@@ -292,7 +298,7 @@ public:
 			ovl = 0;
 			const DWORD timeout = 0;
 			const BOOL gotPacket = GetQueuedCompletionStatus(m_hIOCP, &dwBytesTransferred, &ulKey, &ovl, timeout);
-			bytesTransferred = size_t(bytesTransferred);
+			bytesTransferred = size_t(dwBytesTransferred);
 			key = uintptr_t(ulKey);
 			if(gotPacket)
 				return INFO::OK;
