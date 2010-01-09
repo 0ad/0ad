@@ -134,19 +134,24 @@ enum
 };
 
 extern void LoadHotkeys();
-extern InReaction HotkeyInputHandler( const SDL_Event_* ev );
-extern void HotkeyRegisterGuiObject( const CStr& objName, const CStr& hotkeyName );
+extern InReaction HotkeyInputHandler(const SDL_Event_* ev);
+extern void HotkeyRegisterGuiObject(const CStr& objName, const CStr& hotkeyName);
+
+/**
+ * @return the name of the specified HOTKEY_*, or empty string if not defined
+ **/
+extern CStr HotkeyGetName(int hotkey);
 
 /**
  * @return whether the specified HOTKEY_* responds to the specified SDLK_*
  * (mainly for the screenshot system to know whether it needs to override
  * the printscreen screen). Ignores modifier keys.
  **/
-extern bool HotkeyRespondsTo( int hotkey, int sdlkey );
+extern bool HotkeyRespondsTo(int hotkey, int sdlkey);
 
 /**
  * @return whether one of the key combinations for the given hotkey is pressed
  **/
-extern bool HotkeyIsPressed( const CStr& keyname );
+extern bool HotkeyIsPressed(const CStr& keyname);
 
 extern bool hotkeys[HOTKEY_LAST];

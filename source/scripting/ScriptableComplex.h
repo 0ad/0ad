@@ -38,6 +38,8 @@ which #includes ScriptableComplex.h.
 #include "simulation/ScriptObject.h"
 #include "JSConversions.h"
 
+#include "lib/sysdep/stl.h"
+
 #include <set>
 
 class IJSComplex;

@@ -1,0 +1,101 @@
+/* Copyright (C) 2010 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "lib/self_test.h"
+
+#include "simulation2/system/ParamNode.h"
+
+#include "ps/XML/Xeromyces.h"
+
+class TestParamNode : public CxxTest::TestSuite
+{
+public:
+	void setUp()
+	{
+		CXeromyces::Startup();
+	}
+
+	void tearDown()
+	{
+		CXeromyces::Terminate();
+	}
+
+	void test_basic()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <Foo> 1 </Foo><Bar>2<Baz>3</Baz>4</Bar><Qux/></test>"), PSRETURN_OK);
+		TS_ASSERT(node.GetChild("test"));
+		TS_ASSERT(! node.GetChild("Test"));
+		TS_ASSERT_WSTR_EQUALS(node.GetChild("test")->ToString(), L"");
+		TS_ASSERT(node.GetChild("test")->GetChild("Foo"));
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("Foo")->ToInt(), 1);
+		TS_ASSERT_WSTR_EQUALS(node.GetChild("test")->GetChild("Foo")->ToString(), L"1");
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("Bar")->ToInt(), 24);
+		TS_ASSERT_WSTR_EQUALS(node.GetChild("test")->GetChild("Bar")->ToString(), L"24");
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("Bar")->GetChild("Baz")->ToInt(), 3);
+		TS_ASSERT(node.GetChild("test")->GetChild("Qux"));
+		TS_ASSERT(! node.GetChild("test")->GetChild("Qux")->GetChild("Baz"));
+	}
+
+	void test_attrs()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test x='1' y='2'> <z>3</z> <w a='4'/></test>"), PSRETURN_OK);
+		TS_ASSERT(node.GetChild("test"));
+		TS_ASSERT(node.GetChild("test")->GetChild("@x"));
+		TS_ASSERT(node.GetChild("test")->GetChild("@y"));
+		TS_ASSERT(node.GetChild("test")->GetChild("z"));
+		TS_ASSERT(node.GetChild("test")->GetChild("w"));
+		TS_ASSERT(node.GetChild("test")->GetChild("w")->GetChild("@a"));
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("@x")->ToInt(), 1);
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("@y")->ToInt(), 2);
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("z")->ToInt(), 3);
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("w")->GetChild("@a")->ToInt(), 4);
+	}
+
+	void test_ToXML()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test x='1' y='2'> <z>3</z> <w a='4'/></test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test x=\"1\" y=\"2\"><w a=\"4\"></w><z>3</z></test>");
+	}
+
+	void test_types()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test><n>+010.75</n><t>true</t></test>"), PSRETURN_OK);
+		TS_ASSERT(node.GetChild("test"));
+		TS_ASSERT(node.GetChild("test")->GetChild("n"));
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("n")->ToString(), L"+010.75");
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("n")->ToInt(), 10);
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("n")->ToFixed().ToDouble(), 10.75);
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("n")->ToBool(), false);
+		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("t")->ToBool(), true);
+	}
+
+	void test_escape()
+	{
+		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(L"test"), L"test");
+		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(L"x < y << z"), L"x &lt; y &lt;&lt; z");
+		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(L"x < y \"&' y > z ]]> "), L"x &lt; y &quot;&amp;' y &gt; z ]]&gt; ");
+
+		wchar_t r = 0xFFFD;
+		wchar_t a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 0xD7FF, 0xD800, 0xDFFF, 0xE000, 0xFFFE, 0xFFFF, 0 };
+		wchar_t b[] = { r, r, r, r, r, r, r, r, 9, 10,  r,  r, 13,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r, 32, 0xD7FF,      r,      r, 0xE000,      r,      r, 0 };
+		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(a), b);
+	}
+};

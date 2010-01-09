@@ -39,7 +39,7 @@ function launchGame ()
 	closeMainMenuSubWindow ("pgSessionSetup");
 
 	// Display loading screen.	
-	switchGuiPage("page_loading.xml");
+	Engine.SwitchGuiPage("page_loading.xml");
 
 	console.write( "running startGame()" );
 	
@@ -47,7 +47,7 @@ function launchGame ()
 	if (! startGame())
 	{
 		// Failed to start the game; go back to the main menu.
-		switchGuiPage("page_pregame.xml");
+		Engine.SwitchGuiPage("page_pregame.xml");
 		// Restore default cursor.
 		setCursor ("arrow-default");
 		// Show an error message

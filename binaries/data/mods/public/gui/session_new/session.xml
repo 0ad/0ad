@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+<!--
+	<script file="gui/common/functions_utility.js" />
+	<script file="gui/common/functions_utility_list.js" />
+	<script file="gui/common/functions_utility_object.js" />
+	<script file="gui/common/functions_utility_coord.js" />
+	<script file="gui/common/functions_utility_music.js" />
+	<script file="gui/common/functions_utility_animation.js" />
+-->
+	<script file="gui/common/functions_global_object.js" />
+<!--
+	<script file="gui/common/functions_page_pregame.js" />
+	<script file="gui/common/functions_page_pregame_multiplayer.js" />
+	<script file="gui/common/functions_page_pregame_setup.js" />
+	<script file="gui/common/functions_page_pregame_load.js" />
+	<script file="gui/common/functions_page_session.js"/>
+	<script file="gui/common/functions_page_session_status_pane.js" />
+	<script file="gui/common/functions_page_session_status_commands.js" />
+	<script file="gui/common/functions_page_session_manual.js" />		
+	<script file="gui/common/functions_sim_player.js"/>
+	<script file="gui/common/functions_sim_entity.js"/>
+-->
+	<script file="gui/session_new/session.js"/>
+	<script file="gui/session_new/selection.js"/>
+	<script file="gui/session_new/input.js"/>
+
+	<object name="sn" hotkey="session.gui.toggle">
+		<action on="Load">
+			initSession();
+		</action>
+
+		<action on="SimulationUpdate">
+			onSimulationUpdate();
+		</action>
+
+		<action on="Press">
+			this.hidden = !this.hidden;
+		</action>
+		
+		<!-- Exit hotkey -->
+		<object name="leave" hotkey="leave">
+			<action on="Press"><![CDATA[
+				messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0,
+					["Yes", "No!"], [confirmLeave, null]);
+			]]></action>
+		</object>
+		
+		<!-- Minimap -->
+		<object	name="minimap">
+			<object name="minimapDisplay"
+				style="snObject"
+				type="minimap"
+				size="100%-138 100%-138 100%-6 100%-6"
+			/>
+			
+			<object	name="minimapBorder"
+				style="snMiniMapBorder"
+				type="image"
+				size="100%-172 100%-172 100% 100%"
+			/>
+		</object>
+
+		<!-- Debug text -->
+		<object name="debug" type="text" size="0 0 50% 100%" ghost="true" textcolor="yellow" font="console">[default debug text]</object>
+	</object>	
+
+</objects>
+
+
+
+

@@ -33,6 +33,7 @@
 #include "simulation/EntityTemplateCollection.h"
 #include "simulation/EntityManager.h"
 #include "simulation/Projectile.h"
+#include "simulation2/Simulation2.h"
 
 SimState::Entity SimState::Entity::Freeze(CUnit* unit)
 {
@@ -95,6 +96,18 @@ CUnit* SimState::Nonentity::Thaw()
 SimState* SimState::Freeze(bool onlyEntities)
 {
 	SimState* simState = new SimState();
+
+	if (g_UseSimulation2)
+	{
+		if (! g_Game->GetSimulation2()->SerializeState(simState->stream))
+		{
+			delete simState;
+			return NULL;
+		}
+
+		return simState;
+	}
+
 	simState->onlyEntities = onlyEntities;
 
 	CUnitManager& unitMan = g_Game->GetWorld()->GetUnitManager();
@@ -128,6 +141,12 @@ SimState* SimState::Freeze(bool onlyEntities)
 
 void SimState::Thaw()
 {
+	if (g_UseSimulation2)
+	{
+		g_Game->GetSimulation2()->DeserializeState(stream);
+		return;
+	}
+
 	CUnitManager& unitMan = g_Game->GetWorld()->GetUnitManager();
 
 	// delete all existing entities

@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include <float.h>
+#include <cfloat>
 
 #include "MessageHandler.h"
 #include "../CommandProc.h"
@@ -45,6 +45,9 @@
 #include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
 #include "simulation/TerritoryManager.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 
 #define LOG_CATEGORY L"editor"
 
@@ -78,34 +81,63 @@ QUERYHANDLER(GetObjectsList)
 {
 	std::vector<sObjectsListItem> objects;
 
-	if (CEntityTemplateCollection::IsInitialised())
+	if (g_UseSimulation2)
 	{
-		std::vector<CStrW> names;
-		g_EntityTemplateCollection.GetEntityTemplateNames(names);
-		for (std::vector<CStrW>::iterator it = names.begin(); it != names.end(); ++it)
+		CmpPtr<ICmpTemplateManager> cmp(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		if (!cmp.null())
 		{
-			//CEntityTemplate* baseent = g_EntityTemplateCollection.GetTemplate(*it);
-			sObjectsListItem e;
-			e.id = L"(e) " + *it;
-			e.name = *it; //baseent->m_Tag
-			e.type = 0;
-			objects.push_back(e);
+			std::vector<std::wstring> names = cmp->FindAllTemplates();
+
+			for (std::vector<std::wstring>::iterator it = names.begin(); it != names.end(); ++it)
+			{
+				sObjectsListItem e;
+				e.id = *it;
+				if (it->substr(0, 6) == L"actor|")
+				{
+					e.name = it->substr(6);
+					e.type = 1;
+				}
+				else
+				{
+					e.name = *it;
+					e.type = 0;
+				}
+				objects.push_back(e);
+			}
+		}
+	}
+	else
+	{
+		if (CEntityTemplateCollection::IsInitialised())
+		{
+			std::vector<CStrW> names;
+			g_EntityTemplateCollection.GetEntityTemplateNames(names);
+			for (std::vector<CStrW>::iterator it = names.begin(); it != names.end(); ++it)
+			{
+				//CEntityTemplate* baseent = g_EntityTemplateCollection.GetTemplate(*it);
+				sObjectsListItem e;
+				e.id = L"(e) " + *it;
+				e.name = *it; //baseent->m_Tag
+				e.type = 0;
+				objects.push_back(e);
+			}
+		}
+
+		{
+			std::vector<CStr> names;
+			//CObjectManager::GetPropObjectNames(names);
+			CObjectManager::GetAllObjectNames(names);
+			for (std::vector<CStr>::iterator it = names.begin(); it != names.end(); ++it)
+			{
+				sObjectsListItem e;
+				e.id = L"(n) " + CStrW(*it);
+				e.name = CStrW(*it).AfterFirst(/*L"props/"*/ L"actors/");
+				e.type = 1;
+				objects.push_back(e);
+			}
 		}
 	}
 
-	{
-		std::vector<CStr> names;
-		//CObjectManager::GetPropObjectNames(names);
-		CObjectManager::GetAllObjectNames(names);
-		for (std::vector<CStr>::iterator it = names.begin(); it != names.end(); ++it)
-		{
-			sObjectsListItem e;
-			e.id = L"(n) " + CStrW(*it);
-			e.name = CStrW(*it).AfterFirst(/*L"props/"*/ L"actors/");
-			e.type = 1;
-			objects.push_back(e);
-		}
-	}
 	std::sort(objects.begin(), objects.end(), SortObjectsList);
 	msg->objects = objects;
 }
@@ -408,7 +440,7 @@ BEGIN_COMMAND(CreateObject)
 	{
 		// Calculate the position/orientation to create this unit with
 		
-		m_Pos = GetUnitPos(msg->pos, false);
+		m_Pos = GetUnitPos(msg->pos, false); // TODO: set 'floating' properly
 
 		if (msg->usetarget)
 		{
@@ -543,7 +575,7 @@ QUERYHANDLER(PickObject)
 		// Get screen coordinates of the point on the ground underneath the
 		// object's model-centre, so that callers know the offset to use when
 		// working out the screen coordinates to move the object to.
-		// (TODO: http://trac.0ad.homeip.net/ticket/99)
+		// (TODO: http://trac.wildfiregames.com/ticket/99)
 		
 		CVector3D centre = target->GetModel()->GetTransform().GetTranslation();
 
@@ -570,19 +602,35 @@ BEGIN_COMMAND(MoveObject)
 
 	void Do()
 	{
-		CUnit* unit = GetUnitManager().FindByID(msg->id);
-		if (! unit) return;
-
-		m_PosNew = GetUnitPos(msg->pos, IsFloating(unit));
-
-		if (unit->GetEntity())
+		if (g_UseSimulation2)
 		{
-			m_PosOld = unit->GetEntity()->m_position;
+			m_PosNew = GetUnitPos(msg->pos, false); // TODO: set 'floating' properly
+
+			CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+			if (cmpPos.null())
+				m_PosOld = m_PosNew; // error
+			else
+			{
+				CFixedVector3D pos = cmpPos->GetPosition();
+				m_PosOld = CVector3D(pos.X.ToFloat(), pos.Y.ToFloat(), pos.Z.ToFloat());
+			}
 		}
 		else
 		{
-			CMatrix3D m = unit->GetModel()->GetTransform();
-			m_PosOld = m.GetTranslation();
+			CUnit* unit = GetUnitManager().FindByID(msg->id);
+			if (! unit) return;
+
+			m_PosNew = GetUnitPos(msg->pos, IsFloating(unit));
+
+			if (unit->GetEntity())
+			{
+				m_PosOld = unit->GetEntity()->m_position;
+			}
+			else
+			{
+				CMatrix3D m = unit->GetModel()->GetTransform();
+				m_PosOld = m.GetTranslation();
+			}
 		}
 
 		SetPos(m_PosNew);
@@ -590,22 +638,33 @@ BEGIN_COMMAND(MoveObject)
 
 	void SetPos(CVector3D& pos)
 	{
-		CUnit* unit = GetUnitManager().FindByID(msg->id);
-		if (! unit) return;
-
-		if (unit->GetEntity())
+		if (g_UseSimulation2)
 		{
-			unit->GetEntity()->m_position = pos;
-			unit->GetEntity()->Teleport();
+			CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+			if (cmpPos.null())
+				return;
 
-			if (unit->GetEntity()->m_base->m_isTerritoryCentre)
-				g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
+			cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
 		}
 		else
 		{
-			CMatrix3D m = unit->GetModel()->GetTransform();
-			m.Translate(pos - m.GetTranslation());
-			unit->GetModel()->SetTransform(m);
+			CUnit* unit = GetUnitManager().FindByID(msg->id);
+			if (! unit) return;
+
+			if (unit->GetEntity())
+			{
+				unit->GetEntity()->m_position = pos;
+				unit->GetEntity()->Teleport();
+
+				if (unit->GetEntity()->m_base->m_isTerritoryCentre)
+					g_Game->GetWorld()->GetTerritoryManager()->DelayedRecalculate();
+			}
+			else
+			{
+				CMatrix3D m = unit->GetModel()->GetTransform();
+				m.Translate(pos - m.GetTranslation());
+				unit->GetModel()->SetTransform(m);
+			}
 		}
 	}
 
@@ -636,15 +695,17 @@ BEGIN_COMMAND(RotateObject)
 
 	void Do()
 	{
-		CUnit* unit = GetUnitManager().FindByID(msg->id);
-		if (! unit) return;
-
-		if (unit->GetEntity())
+		if (g_UseSimulation2)
 		{
-			m_AngleOld = unit->GetEntity()->m_orientation.Y;
+			CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+			if (cmpPos.null())
+				return;
+
+			m_AngleOld = cmpPos->GetRotation().Y.ToFloat();
 			if (msg->usetarget)
 			{
-				CVector3D& pos = unit->GetEntity()->m_position;
+				CMatrix3D transform = cmpPos->GetInterpolatedTransform(0.f);
+				CVector3D pos = transform.GetTranslation();
 				CVector3D target = msg->target->GetWorldSpace(pos.Y);
 				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
 				m_AngleNew = atan2(dir.x, dir.y);
@@ -656,29 +717,50 @@ BEGIN_COMMAND(RotateObject)
 		}
 		else
 		{
-			m_TransformOld = unit->GetModel()->GetTransform();
+			CUnit* unit = GetUnitManager().FindByID(msg->id);
+			if (! unit) return;
 
-			CVector3D pos = unit->GetModel()->GetTransform().GetTranslation();
-
-			float s, c;
-			if (msg->usetarget)
+			if (unit->GetEntity())
 			{
-				CVector3D target = msg->target->GetWorldSpace(pos.Y);
-				CVector2D dir(target.X-pos.X, target.Z-pos.Z);
-				dir = dir.Normalize();
-				s = dir.x;
-				c = dir.y;
+				m_AngleOld = unit->GetEntity()->m_orientation.Y;
+				if (msg->usetarget)
+				{
+					CVector3D& pos = unit->GetEntity()->m_position;
+					CVector3D target = msg->target->GetWorldSpace(pos.Y);
+					CVector2D dir(target.X-pos.X, target.Z-pos.Z);
+					m_AngleNew = atan2(dir.x, dir.y);
+				}
+				else
+				{
+					m_AngleNew = msg->angle;
+				}
 			}
 			else
 			{
-				s = sinf(msg->angle);
-				c = cosf(msg->angle);
+				m_TransformOld = unit->GetModel()->GetTransform();
+
+				CVector3D pos = unit->GetModel()->GetTransform().GetTranslation();
+
+				float s, c;
+				if (msg->usetarget)
+				{
+					CVector3D target = msg->target->GetWorldSpace(pos.Y);
+					CVector2D dir(target.X-pos.X, target.Z-pos.Z);
+					dir = dir.Normalize();
+					s = dir.x;
+					c = dir.y;
+				}
+				else
+				{
+					s = sinf(msg->angle);
+					c = cosf(msg->angle);
+				}
+				CMatrix3D& m = m_TransformNew;
+				m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = pos.X;
+				m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = pos.Y;
+				m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = pos.Z;
+				m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
 			}
-			CMatrix3D& m = m_TransformNew;
-			m._11 = -c;     m._12 = 0.0f;   m._13 = -s;     m._14 = pos.X;
-			m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = pos.Y;
-			m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = pos.Z;
-			m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
 		}
 
 		SetAngle(m_AngleNew, m_TransformNew);
@@ -686,17 +768,28 @@ BEGIN_COMMAND(RotateObject)
 
 	void SetAngle(float angle, CMatrix3D& transform)
 	{
-		CUnit* unit = GetUnitManager().FindByID(msg->id);
-		if (! unit) return;
-
-		if (unit->GetEntity())
+		if (g_UseSimulation2)
 		{
-			unit->GetEntity()->m_orientation.Y = angle;
-			unit->GetEntity()->Reorient();
+			CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), msg->id);
+			if (cmpPos.null())
+				return;
+
+			cmpPos->SetYRotation(CFixed_23_8::FromFloat(angle));
 		}
 		else
 		{
-			unit->GetModel()->SetTransform(transform);
+			CUnit* unit = GetUnitManager().FindByID(msg->id);
+			if (! unit) return;
+
+			if (unit->GetEntity())
+			{
+				unit->GetEntity()->m_orientation.Y = angle;
+				unit->GetEntity()->Reorient();
+			}
+			else
+			{
+				unit->GetModel()->SetTransform(transform);
+			}
 		}
 	}
 

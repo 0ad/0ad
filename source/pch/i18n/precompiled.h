@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define MINIMAL_PCH 1
 #include "lib/precompiled.h"	// common precompiled header
 
-// "i18n"-specific PCH:
+// Minimal is a bit *too* minimal to let things compile, so include a few more headers
+#include "lib/debug.h"
+#include "lib/secure_crt.h"

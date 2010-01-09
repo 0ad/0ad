@@ -1,0 +1,28 @@
+PROJECT_NAME           = Pyrogenesis
+PROJECT_NUMBER         = trunk
+
+TAB_SIZE               = 4
+
+INPUT                  = ../../source/simulation2 ../../source/scriptinterface
+INCLUDE_PATH           = ../../source
+EXAMPLE_PATH           = ../../source
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */.svn* */tests/test_*
+EXCLUDE                = ../../source/dcdt ../../source/tools ../../source/i18n/tests2
+
+JAVADOC_AUTOBRIEF      = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_ANON_NSPACES   = YES
+
+SHOW_DIRECTORIES       = YES
+STRIP_CODE_COMMENTS    = NO
+GENERATE_LATEX         = NO
+
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             = "UNUSED(x)=x"
+EXPAND_AS_DEFINED     += DEFAULT_COMPONENT_ALLOCATOR DEFAULT_SCRIPT_WRAPPER DEFAULT_INTERFACE_WRAPPER DEFAULT_MESSAGE_IMPL
+EXPAND_AS_DEFINED     += MESSAGE INTERFACE COMPONENT

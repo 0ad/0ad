@@ -631,8 +631,14 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 	return( IN_PASS );
 }
 
+CStr HotkeyGetName(int hotkey)
+{
+	if (hotkey < 0 || hotkey >= HOTKEY_LAST)
+		return "";
+	return hotkeyInfo[hotkey].name;
+}
 
-bool HotkeyRespondsTo( int hotkey, int sdlkey )
+bool HotkeyRespondsTo(int hotkey, int sdlkey)
 {
 	for (KeyMapping::iterator it = hotkeyMap[sdlkey].begin(); it != hotkeyMap[sdlkey].end(); ++it)
 		if (it->mapsTo == hotkey)
@@ -641,7 +647,7 @@ bool HotkeyRespondsTo( int hotkey, int sdlkey )
 }
 
 
-bool HotkeyIsPressed( const CStr& keyname )
+bool HotkeyIsPressed(const CStr& keyname)
 {
 	return hotkeys[FindKeyCode(keyname)];
 }

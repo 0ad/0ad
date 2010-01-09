@@ -31,6 +31,7 @@
 class CFrustum;
 class CModel;
 class CPatch;
+struct SOverlayLine;
 
 class SceneCollector;
 
@@ -63,6 +64,11 @@ public:
 	 * Submit a terrain patch that is part of the scene.
 	 */
 	virtual void Submit(CPatch* patch) = 0;
+
+	/**
+	 * Submit a line-based overlay that is part of the scene.
+	 */
+	virtual void Submit(SOverlayLine* overlay) = 0;
 
 	/**
 	 * Submit a model that is part of the scene,

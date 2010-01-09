@@ -33,6 +33,7 @@
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/DllLoader.h"
+#include "ps/Filesystem.h"
 #include "ps/Profile.h"
 
 using namespace AtlasMessage;
@@ -219,7 +220,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 
 		// Do per-frame processing:
 
-//		vfs_reload_changed_files();
+		ReloadChangedFiles();
 
 		state.view->Update(state.frameLength);
 

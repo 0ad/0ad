@@ -22,6 +22,7 @@
 #include "precompiled.h"
 #include "ps/Errors.h"
 #include "lib/ogl.h"
+#include "lib/sysdep/cpu.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"
 #include "VertexBufferManager.h"

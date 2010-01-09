@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,23 @@
 
 #ifndef INCLUDED_MATHUTIL
 #define INCLUDED_MATHUTIL
+
+
+// C99 math constants (missing on MSVC):
+#ifndef INFINITY
+#define INFINITY					(std::numeric_limits<float>::infinity())
+#endif
+#ifndef NAN
+#define NAN							(std::numeric_limits<float>::quiet_NaN())
+#endif
+
+// POSIX math constants (missing on MSVC):
+#ifndef M_PI
+#define M_PI						3.14159265358979323846
+#endif
+#ifndef M_PI_2
+#define M_PI_2						1.57079632679489661923
+#endif
 
 #ifndef PI
 #define PI							3.14159265358979323846f

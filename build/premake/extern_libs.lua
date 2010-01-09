@@ -75,6 +75,8 @@ extern_lib_defs = {
 		osx_names = { "boost_signals-mt", "boost_filesystem-mt", "boost_system-mt" }
 	},
 	cryptopp = {
+		win_names  = { "cryptopp" },
+		unix_names = { "cryptopp" },
 	},
 	cxxtest = {
 	},

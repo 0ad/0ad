@@ -26,6 +26,7 @@
 
 #include "no_crt_posix.h"
 
+#include "lib/lib_errors.h"
 
 // Note: transfer buffers, offsets, and lengths must be sector-aligned
 // (we don't bother copying to an align buffer because the file cache

@@ -20,12 +20,13 @@
 
 #include "ps/CStr.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "lib/sysdep/stl.h"
 
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
 
 class CModelDef;
-typedef shared_ptr<CModelDef> CModelDefPtr;
+typedef boost::shared_ptr<CModelDef> CModelDefPtr;
 
 class CColladaManager;
 

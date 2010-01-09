@@ -47,6 +47,9 @@ public:
 	// Load from an XML file (with invisible XMB caching).
 	PSRETURN Load(const VfsPath& filename);
 
+	// Load from an in-memory XML string (with no caching)
+	PSRETURN LoadString(const char* xml);
+
 	// Call once when initialising the program, to load libxml2.
 	// This should be run in the main thread, before any thread
 	// uses libxml2.

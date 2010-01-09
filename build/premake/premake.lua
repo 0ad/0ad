@@ -208,7 +208,7 @@ function package_set_build_flags()
 		end
 
 		-- To use our local SpiderMonkey library, it needs to be part of the runtime dynamic linker
-		-- path. So try to add the cwd (assuming it'll be binaries/system/) with -rpath
+		-- path. So try to add the cwd (assuming it'll be binaries/system/) with -rpath:
 		-- (TODO: is this a sane way to do it?)
 		tinsert(package.linkoptions, {"-Wl,-rpath=."})
 
@@ -405,6 +405,34 @@ function setup_all_libs ()
 	}
 	setup_static_lib_package("network", source_dirs, extern_libs, {})
 
+
+	source_dirs = {
+		"simulation2",
+		"simulation2/components",
+		"simulation2/helpers",
+		"simulation2/scripting",
+		"simulation2/serialization",
+		"simulation2/system",
+		"simulation2/testcomponents",
+	}
+	extern_libs = {
+		"boost",
+		"cryptopp",
+		"spidermonkey",
+	}
+	setup_static_lib_package("simulation2", source_dirs, extern_libs, {})
+
+
+	source_dirs = {
+		"scriptinterface",
+	}
+	extern_libs = {
+		"boost",
+		"spidermonkey",
+	}
+	setup_static_lib_package("scriptinterface", source_dirs, extern_libs, {})
+
+
 	source_dirs = {
 		"ps",
 		"ps/scripting",
@@ -587,6 +615,7 @@ used_extern_libs = {
 	"cxxtest",
 	"comsuppw",
 	"enet",
+	"cryptopp",
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.

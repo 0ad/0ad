@@ -18,6 +18,8 @@
 #ifndef INCLUDED_FILE_SYSTEM
 #define INCLUDED_FILE_SYSTEM
 
+#include "lib/external_libraries/boost_filesystem.h"
+
 class FileInfo
 {
 public:

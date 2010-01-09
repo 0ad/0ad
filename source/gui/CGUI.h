@@ -90,8 +90,7 @@ struct SGUIScrollBarStyle;
 class GUITooltip;
 
 /**
- * The main object that includes the whole GUI. Is singleton
- * and accessed by g_GUI.
+ * The main object that represents a whole GUI page.
  *
  * No interfacial functions throws.
  */

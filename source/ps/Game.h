@@ -29,6 +29,7 @@
 
 class CWorld;
 class CSimulation;
+class CSimulation2;
 class CGameView;
 class CSimulation;
 class CPlayer;
@@ -57,6 +58,10 @@ class CGame
 	 * pointer to the CSimulation object operating on the game world.
 	 **/
 	CSimulation *m_Simulation;
+	/**
+	 * pointer to the CSimulation2 object operating on the game world.
+	 **/
+	CSimulation2 *m_Simulation2;
 	/**
 	 * pointer to the CGameView object representing the view into the game world.
 	 **/
@@ -186,6 +191,13 @@ public:
 	 **/
 	inline CSimulation *GetSimulation()
 	{	return m_Simulation; }
+	/**
+	 * Get the pointer to the simulation2 object.
+	 *
+	 * @return CSimulation2 * the value of m_Simulation2.
+	 **/
+	inline CSimulation2 *GetSimulation2()
+	{	return m_Simulation2; }
 
 	/**
 	 * Set the simulation scale multiplier.

@@ -31,16 +31,19 @@ class CEntity;
 class CPatch;
 class CMiniPatch;
 class CVector2D;
-
+class CFixedVector3D;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Terrain Constants:
-//
-// CELL_SIZE: size of each tile in x and z
-const ssize_t CELL_SIZE = 4;	
-// HEIGHT_SCALE: vertical scale of terrain - terrain has a coordinate range of 
-// 0 to 65536*HEIGHT_SCALE
-const float HEIGHT_SCALE = 0.35f/256.0f;
+
+/// metres [world space units] per tile in x and z
+const ssize_t CELL_SIZE = 4;
+
+/// number of u16 height units per metre
+const ssize_t HEIGHT_UNITS_PER_METRE = 731; // == int(256.0f/0.35f)
+
+/// metres per u16 height unit
+const float HEIGHT_SCALE = 1.f / HEIGHT_UNITS_PER_METRE;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CTerrain: main terrain class; contains the heightmap describing elevation
@@ -99,6 +102,7 @@ public:
 
 	// calculate the position of a given vertex
 	void CalcPosition(ssize_t i, ssize_t j, CVector3D& pos) const;
+	void CalcPositionFixed(ssize_t i, ssize_t j, CFixedVector3D& pos) const;
 	// calculate the vertex under a given position (rounding down coordinates)
 	static void CalcFromPosition(const CVector3D& pos, ssize_t& i, ssize_t& j)
 	{
@@ -113,6 +117,7 @@ public:
 	}
 	// calculate the normal at a given vertex
 	void CalcNormal(ssize_t i, ssize_t j, CVector3D& normal) const;
+	void CalcNormalFixed(ssize_t i, ssize_t j, CFixedVector3D& normal) const;
 
 	// flatten out an area of terrain (specified in world space coords); return
 	// the average height of the flattened area

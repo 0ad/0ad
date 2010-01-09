@@ -58,6 +58,7 @@ that of Atlas depending on commandline parameters.
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "simulation/Scheduler.h"
+#include "simulation2/Simulation2.h"
 #include "sound/CMusicPlayer.h"
 #include "sound/SoundGroupMgr.h"
 #include "gui/GUIManager.h"
@@ -382,6 +383,11 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// any thread uses it. So initialise it here before we
 	// might run Atlas.
 	CXeromyces::Startup();
+
+	// allow switching to new simulation system, before any
+	// other init code makes use of it
+	if (args.Has("sim2"))
+		g_UseSimulation2 = true;
 
 	// run Atlas (if requested via args)
 	bool ran_atlas = ATLAS_RunIfOnCmdLine(args);

@@ -53,10 +53,6 @@ private:
 	int UnpackTerrain();
 	//UnpackCinema: unpack the cinematic tracks from the input stream
 	int UnpackCinema();
-	// UnpackObjects: unpack world objects from the input stream
-	void UnpackObjects();
-	// UnpackObjects: unpack lighting parameters from the input stream
-	void UnpackLightEnv();
 
 	// UnpackMap: unpack the given data from the raw data stream into local variables
 	int UnpackMap();
@@ -78,10 +74,6 @@ private:
 	std::vector<Handle> m_TerrainTextures;
 	// tile descriptions for each tile
 	std::vector<STileDesc> m_Tiles;
-	// list of object types used by map
-	std::vector<CStr> m_ObjectTypes;
-	// descriptions for each objects
-	std::vector<SObjectDesc> m_Objects;
 	// lightenv stored in file
 	CLightEnv m_LightEnv;
 

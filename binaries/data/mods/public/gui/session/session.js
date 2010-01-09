@@ -71,7 +71,7 @@ function endSession (closeType)
 		cancelInterval();
 
 		// Swap GUIs to display main menu.
-		switchGuiPage("page_pregame.xml");
+		Engine.SwitchGuiPage("page_pregame.xml");
 		break;
 	case ("exit"):
 		// If the player has chosen to shutdown and immediately return to operating system,

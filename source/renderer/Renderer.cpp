@@ -55,15 +55,16 @@
 #include "renderer/HWLightingModelRenderer.h"
 #include "renderer/InstancingModelRenderer.h"
 #include "renderer/ModelRenderer.h"
+#include "renderer/OverlayRenderer.h"
 #include "renderer/PlayerRenderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/RenderPathVertexShader.h"
 #include "renderer/ShadowMap.h"
+#include "renderer/SkyManager.h"
 #include "renderer/TerrainOverlay.h"
 #include "renderer/TerrainRenderer.h"
 #include "renderer/TransparencyRenderer.h"
 #include "renderer/WaterManager.h"
-#include "renderer/SkyManager.h"
 
 #define LOG_CATEGORY L"graphics"
 
@@ -219,6 +220,9 @@ public:
 
 	/// Terrain renderer
 	TerrainRenderer* terrainRenderer;
+
+	/// Overlay renderer
+	OverlayRenderer overlayRenderer;
 
 	/// Shadow map
 	ShadowMap* shadow;
@@ -1211,6 +1215,10 @@ void CRenderer::RenderSubmissions()
 	m->terrainRenderer->PrepareForRendering();
 	PROFILE_END("prepare terrain");
 
+	PROFILE_START("prepare overlays");
+	m->overlayRenderer.PrepareForRendering();
+	PROFILE_END("prepare overlays");
+
 	if (m_Options.m_Shadows)
 	{
 		MICROLOG(L"render shadows");
@@ -1292,7 +1300,12 @@ void CRenderer::RenderSubmissions()
 	// (really this should be cleaned up by whoever set it)
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-	//// Particle Engine Rendering.
+	PROFILE_START("render overlays");
+	m->overlayRenderer.RenderOverlays();
+	PROFILE_END("render overlays");
+	ogl_WarnIfError();
+
+	// Particle Engine Rendering.
 	MICROLOG(L"render particles");
 	CParticleEngine::GetInstance()->RenderParticles();
 	ogl_WarnIfError();
@@ -1309,6 +1322,7 @@ void CRenderer::RenderSubmissions()
 	// empty lists
 	MICROLOG(L"empty lists");
 	m->terrainRenderer->EndFrame();
+	m->overlayRenderer.EndFrame();
 
 	// Finish model renderers
 	m->Model.Normal->EndFrame();
@@ -1379,6 +1393,11 @@ void CRenderer::SetViewport(const SViewPort &vp)
 void CRenderer::Submit(CPatch* patch)
 {
 	m->terrainRenderer->Submit(patch);
+}
+
+void CRenderer::Submit(SOverlayLine* overlay)
+{
+	m->overlayRenderer.Submit(overlay);
 }
 
 void CRenderer::SubmitNonRecursive(CModel* model)

@@ -31,6 +31,7 @@
 // - the output routines make for platform-independent logging and
 //   crashlogs with "last-known activity" reporting.
 
+#include "lib/lib_errors.h"
 
 /**
  * trigger a breakpoint when reached/"called".

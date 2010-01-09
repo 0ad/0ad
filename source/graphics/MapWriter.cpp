@@ -45,6 +45,11 @@
 #include "simulation/EntityTemplateCollection.h"
 #include "simulation/TriggerManager.h"
 #include "simulation/Entity.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpTemplateManager.h"
+
+#define CURRENT_FILE_VERSION (g_UseSimulation2 ? FILE_VERSION : 4)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CMapWriter constructor: nothing to do at the minute
@@ -58,7 +63,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 						 CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
 						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
 {
-	CFilePacker packer(FILE_VERSION, "PSMP");
+	CFilePacker packer(CURRENT_FILE_VERSION, "PSMP");
 
 	// build necessary data
 	PackMap(packer, pTerrain);
@@ -180,6 +185,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 	{
 		XML_Element("Scenario");
+		XML_Attribute("version", (int)CURRENT_FILE_VERSION);
 
 		{
 			XML_Element("Environment");
@@ -272,6 +278,50 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 		const std::vector<CUnit*>& units = pUnitMan->GetUnits();
 
+		if (g_UseSimulation2)
+		{
+			XML_Element("Entities");
+
+			CSimulation2& sim = *g_Game->GetSimulation2();
+
+			CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
+			debug_assert(!cmpTemplateManager.null());
+
+			// This will probably need to be changed in the future, but for now we'll
+			// just save all entities that have a position
+			const CSimulation2::InterfaceList& ents = sim.GetEntitiesWithInterface(IID_Position);
+			for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
+			{
+				entity_id_t ent = it->first;
+
+				XML_Element("Entity");
+				XML_Attribute("uid", ent);
+
+				XML_Setting("Template", cmpTemplateManager->GetCurrentTemplateName(ent));
+
+				// TODO: player id
+
+				CmpPtr<ICmpPosition> cmpPosition(sim, ent);
+				if (!cmpPosition.null())
+				{
+					CFixedVector3D pos = cmpPosition->GetPosition();
+					CFixedVector3D rot = cmpPosition->GetRotation();
+					{
+						XML_Element("Position");
+						XML_Attribute("x", pos.X.ToDouble());
+						XML_Attribute("z", pos.Z.ToDouble());
+						// TODO: height offset etc
+					}
+					{
+						XML_Element("Orientation");
+						XML_Attribute("y", rot.Y.ToDouble());
+						// TODO: X, Z maybe
+					}
+				}
+			}
+		}
+
+		if (!g_UseSimulation2)
 		{
 			XML_Element("Entities");
 
@@ -307,6 +357,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				}
 			}
 		}
+		if (!g_UseSimulation2)
 		{
 			XML_Element("Nonentities");
 

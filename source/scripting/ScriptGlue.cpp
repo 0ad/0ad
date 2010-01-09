@@ -60,6 +60,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "simulation/Entity.h"
 #include "simulation/EntityFormation.h"
 #include "simulation/EntityHandles.h"
@@ -882,56 +883,6 @@ JSBool ForceGarbageCollection(JSContext* cx, JSObject* UNUSED(obj), uintN argc, 
 
 
 //-----------------------------------------------------------------------------
-// GUI
-//-----------------------------------------------------------------------------
-
-// Returns the sort-of-global object associated with the current GUI.
-// params:
-// returns: global object
-// notes:
-// - Useful for accessing an object from another scope.
-JSBool GetActiveGui(JSContext* UNUSED(cx), JSObject*, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* rval)
-{
-	*rval = OBJECT_TO_JSVAL(g_GUI->GetScriptObject());
-	return JS_TRUE;
-}
-
-JSBool PushGuiPage(JSContext* cx, JSObject*, uintN UNUSED(argc), jsval* argv, jsval* UNUSED(rval))
-{
-	try
-	{
-		CStrW name = ToPrimitive<CStrW>(cx, argv[0]);
-		g_GUI->PushPage(name, argv[1]);
-		return JS_TRUE;
-	}
-	catch (PSERROR_Scripting&)
-	{
-		return JS_FALSE;
-	}
-}
-
-JSBool SwitchGuiPage(JSContext* cx, JSObject*, uintN UNUSED(argc), jsval* argv, jsval* UNUSED(rval))
-{
-	try
-	{
-		CStrW name = ToPrimitive<CStrW>(cx, argv[0]);
-		g_GUI->SwitchPage(name, argv[1]);
-		return JS_TRUE;
-	}
-	catch (PSERROR_Scripting&)
-	{
-		return JS_FALSE;
-	}
-}
-
-JSBool PopGuiPage(JSContext* UNUSED(cx), JSObject*, uintN UNUSED(argc), jsval* UNUSED(argv), jsval* UNUSED(rval))
-{
-	g_GUI->PopPage();
-	return JS_TRUE;
-}
-
-
-//-----------------------------------------------------------------------------
 // Misc. Engine Interface
 //-----------------------------------------------------------------------------
 
@@ -1435,6 +1386,8 @@ JSBool isGameRunning( JSContext* cx, JSObject* UNUSED(globalObject), uintN argc,
 	return JS_TRUE;
 }
 
+
+
 //-----------------------------------------------------------------------------
 // function table
 //-----------------------------------------------------------------------------
@@ -1492,12 +1445,6 @@ JSFunctionSpec ScriptFunctionTable[] =
 
 	// Territory rendering
 	JS_FUNC("toggleTerritoryRendering", ToggleTerritoryRendering, 0)
-
-	// GUI
-	JS_FUNC("getActiveGui", GetActiveGui, 0)
-	JS_FUNC("pushGuiPage", PushGuiPage, 2)
-	JS_FUNC("switchGuiPage", SwitchGuiPage, 2)
-	JS_FUNC("popGuiPage", PopGuiPage, 0)
 
 	// Events
 	JS_FUNC("addGlobalHandler", AddGlobalHandler, 2)

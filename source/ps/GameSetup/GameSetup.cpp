@@ -65,22 +65,31 @@
 #include "simulation/EntityManager.h"
 #include "simulation/Scheduler.h"
 
+#include "simulation2/Simulation2.h"
+
 #include "scripting/ScriptableComplex.inl"
 #include "scripting/ScriptingHost.h"
 #include "scripting/DOMEvent.h"
 #include "scripting/GameEvents.h"
 #include "scripting/ScriptableComplex.h"
+
 #include "maths/scripting/JSInterface_Vector3D.h"
+
 #include "graphics/scripting/JSInterface_Camera.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
+
 #include "ps/scripting/JSInterface_Selection.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSCollection.h"
+
 #include "simulation/scripting/SimulationScriptInit.h"
-#include "gui/scripting/JSInterface_IGUIObject.h"
-#include "gui/scripting/JSInterface_GUITypes.h"
+
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
+#include "gui/scripting/JSInterface_IGUIObject.h"
+#include "gui/scripting/JSInterface_GUITypes.h"
+#include "gui/scripting/ScriptFunctions.h"
+
 #include "sound/JSI_Sound.h"
 
 #include "network/NetLog.h"
@@ -447,6 +456,8 @@ static void RegisterJavascriptInterfaces()
 
 	// GUI
 	CGUI::ScriptingInit();
+
+	GuiScriptingInit(g_ScriptingHost.GetScriptInterface());
 }
 
 
@@ -859,7 +870,7 @@ void Init(const CmdLineArgs& args, int flags)
 	const bool setup_gui = ((flags & INIT_NO_GUI) == 0 && g_AutostartMap.empty());
 
 	// GUI is notified in SetVideoMode, so this must come before that.
-	g_GUI = new CGUIManager();
+	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());
 
 	// default to windowed, so users don't get stuck if e.g. half the
 	// filesystem is missing and the config files aren't loaded

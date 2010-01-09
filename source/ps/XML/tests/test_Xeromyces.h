@@ -17,21 +17,23 @@
 
 #include "lib/self_test.h"
 
+#include "ps/CLogger.h"
 #include "ps/XML/Xeromyces.h"
 #include "lib/file/vfs/vfs.h"
-#include "lib/sysdep/sysdep.h"
-
-// FIXME: copied from test_MeshManager
-static fs::wpath DataDir()
-{
-	fs::wpath path;
-	TS_ASSERT_OK(sys_get_executable_name(path));
-	return path.branch_path()/L"../data";
-}
 
 class TestXeromyces : public CxxTest::TestSuite 
 {
 public:
+	void setUp()
+	{
+		CXeromyces::Startup();
+	}
+
+	void tearDown()
+	{
+		CXeromyces::Terminate();
+	}
+
 	void test_paths()
 	{
 		PIVFS vfs = CreateVfs(20*MiB);
@@ -49,4 +51,18 @@ public:
 
 	// TODO: Should test the reading/parsing/writing code,
 	// and parse error handling
+
+	void test_LoadString()
+	{
+		CXeromyces xero;
+		TS_ASSERT_EQUALS(xero.LoadString("<test><foo>bar</foo></test>"), PSRETURN_OK);
+		TS_ASSERT_STR_EQUALS(xero.GetElementString(xero.GetRoot().GetNodeName()), "test");
+	}
+
+	void test_LoadString_invalid()
+	{
+		TestLogger logger;
+		CXeromyces xero;
+		TS_ASSERT_EQUALS(xero.LoadString("<test>"), PSRETURN_Xeromyces_XMLParseError);
+	}
 };

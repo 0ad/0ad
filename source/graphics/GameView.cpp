@@ -56,6 +56,8 @@
 #include "simulation/EntityOrders.h"
 #include "simulation/LOSManager.h"
 #include "simulation/Projectile.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/MessageTypes.h"
 
 float g_MaxZoomHeight=350.0f;	//note:  Max terrain height is this minus YMinOffset
 float g_YMinOffset=15.0f;
@@ -389,7 +391,18 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	}
 	PROFILE_END( "submit terrain" );
 
+	if (g_UseSimulation2)
+	{
+		PROFILE_START( "submit sim components" );
+		m->Game->GetSimulation2()->BroadcastMessage(CMessageRenderSubmit(*c, frustum, m->Culling));
+		PROFILE_END( "submit sim components" );
+		return;
+	}
+
+	// Old simulation:
+
 	PROFILE_START( "submit models" );
+
 	CWorld* world = m->Game->GetWorld();
 	CUnitManager& unitMan = world->GetUnitManager();
 	CProjectileManager& pProjectileMan = world->GetProjectileManager();

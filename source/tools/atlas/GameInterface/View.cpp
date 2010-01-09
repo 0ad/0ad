@@ -29,11 +29,13 @@
 #include "graphics/SColor.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
+#include "lib/wchar.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "simulation/Simulation.h"
+#include "simulation2/Simulation2.h"
 
 extern void (*Atlas_GLSwapBuffers)(void* context);
 
@@ -161,6 +163,8 @@ void ViewGame::Update(float frameLength)
 	{
 		// Update unit interpolation
 		g_Game->GetSimulation()->Interpolate(0.0);
+		if (g_UseSimulation2)
+			g_Game->GetSimulation2()->Interpolate(0.0);
 	}
 	else
 	{
@@ -183,6 +187,8 @@ void ViewGame::Update(float frameLength)
 		// Interpolate the graphics - we only want to do this once per visual frame,
 		// not in every call to g_Game->Update
 		g_Game->GetSimulation()->Interpolate(actualFrameLength);
+		if (g_UseSimulation2)
+			g_Game->GetSimulation2()->Interpolate(actualFrameLength);
 
 		// If we still couldn't keep up, just drop the sim rate instead of building
 		// up a (potentially very large) backlog of required updates
@@ -247,6 +253,38 @@ void ViewGame::RestoreState(const std::wstring& label)
 		return;
 
 	simState->Thaw();
+}
+
+std::wstring ViewGame::DumpState(bool binary)
+{
+	if (! g_UseSimulation2)
+		return L"The game isn't using the new simulation system - use the -sim2 command-line flag if you want that";
+
+	std::stringstream stream;
+	if (binary)
+	{
+		if (! g_Game->GetSimulation2()->SerializeState(stream))
+			return L"(internal error)";
+		// We can't return raw binary data, because we want to handle it with wxJS which
+		// doesn't like \0 bytes in strings, so return it as hex
+		static const char digits[] = "0123456789abcdef";
+		std::string str = stream.str();
+		std::wstring ret;
+		ret.reserve(str.length()*3);
+		for (size_t i = 0; i < str.length(); ++i)
+		{
+			ret += digits[(unsigned char)str[i] >> 4];
+			ret += digits[(unsigned char)str[i] & 0x0f];
+			ret += ' ';
+		}
+		return ret;
+	}
+	else
+	{
+		if (! g_Game->GetSimulation2()->DumpDebugState(stream))
+			return L"(internal error)";
+		return wstring_from_utf8(stream.str());
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////

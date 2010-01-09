@@ -23,6 +23,8 @@
 #include "lib/sysdep/os/win/wposix/wsock_internal.h"
 #endif
 
+#include "lib/sysdep/cpu.h"
+
 #include "Network.h"
 #include "NetworkInternal.h"
 

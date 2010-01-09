@@ -39,6 +39,7 @@
 #include "simulation/Entity.h"
 #include "simulation/EntityManager.h"
 #include "simulation/Simulation.h"
+#include "simulation2/Simulation2.h"
 
 #include "gui/GUIManager.h"
 
@@ -70,6 +71,7 @@ CGame *g_Game=NULL;
 CGame::CGame():
 	m_World(new CWorld(this)),
 	m_Simulation(new CSimulation(this)),
+	m_Simulation2(g_UseSimulation2 ? new CSimulation2(&m_World->GetUnitManager(), m_World->GetTerrain()) : NULL),
 	m_GameView(new CGameView(this)),
 	m_pLocalPlayer(NULL),
 	m_GameStarted(false),
@@ -79,6 +81,13 @@ CGame::CGame():
 	// Need to set the CObjectManager references after various objects have
 	// been initialised, so do it here rather than via the initialisers above.
 	m_World->GetUnitManager().SetObjectManager(m_GameView->GetObjectManager());
+
+	if (g_UseSimulation2)
+	{
+		m_Simulation2->LoadScripts(L"simulation/helpers/");
+		m_Simulation2->LoadScripts(L"simulation/components/");
+		m_Simulation2->ResetState();
+	}
 }
 
 #if MSC_VERSION
@@ -95,6 +104,7 @@ CGame::~CGame()
 	g_Profiler.StructuralReset();
 
 	delete m_GameView;
+	delete m_Simulation2;
 	delete m_Simulation;
 	delete m_World;
 }
@@ -227,9 +237,17 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 	deltaTime *= m_SimRate;
 	
 	bool ok = m_Simulation->Update(deltaTime);
+	if (g_UseSimulation2)
+		m_Simulation2->Update(deltaTime);
 	if (doInterpolate)
+	{
 		m_Simulation->Interpolate(deltaTime);
+		if (g_UseSimulation2)
+			m_Simulation2->Interpolate(deltaTime);
+	}
 	
+	g_GUI->SendEventToAll("SimulationUpdate");
+
 	// TODO Detect game over and bring up the summary screen or something
 	// ^ Quick game over hack is implemented, no summary screen however
 	/*if (m_World->GetEntityManager().GetDeath())

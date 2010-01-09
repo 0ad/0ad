@@ -26,6 +26,7 @@
 #include "ps/Game.h"
 #include "graphics/GameView.h"
 #include "graphics/CinemaTrack.h"
+#include "lib/sysdep/cpu.h"
 #include "renderer/Renderer.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "../GameLoop.h"
@@ -128,6 +129,11 @@ MESSAGEHANDLER(SimStateSave)
 MESSAGEHANDLER(SimStateRestore)
 {
 	View::GetView_Game()->RestoreState(*msg->label);
+}
+
+QUERYHANDLER(SimStateDebugDump)
+{
+	msg->dump = View::GetView_Game()->DumpState(msg->binary);
 }
 
 MESSAGEHANDLER(SimPlay)

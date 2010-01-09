@@ -20,11 +20,13 @@
 // A quick way to add (mostly) sensibly-behaving JavaScript interfaces to native classes.
 //
 
+#ifndef INCLUDED_SCRIPTABLEOBJECT
+#define INCLUDED_SCRIPTABLEOBJECT
+
 #include "scripting/ScriptingHost.h"
 #include "JSConversions.h"
 
-#ifndef INCLUDED_SCRIPTABLEOBJECT
-#define INCLUDED_SCRIPTABLEOBJECT
+#include "lib/sysdep/stl.h"
 
 #define ALLOW_NONSHARED_NATIVES
 

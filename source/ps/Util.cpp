@@ -25,6 +25,7 @@
 #include "lib/allocators/shared_ptr.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/sysdep/snd.h"
+#include "lib/sysdep/cpu.h"
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/arch/x86_x64/topology.h"
 #include "lib/tex/tex.h"

@@ -78,6 +78,7 @@ public:
 	void SetSpeedMultiplier(float speed);
 	void SaveState(const std::wstring& label, bool onlyEntities);
 	void RestoreState(const std::wstring& label);
+	std::wstring DumpState(bool binary);
 
 private:
 	float m_SpeedMultiplier;

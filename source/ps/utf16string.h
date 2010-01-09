@@ -26,8 +26,8 @@
 // We now use this code on Windows as well, because wchar_t is a
 // native type and distinct from utf16_t.
 #include <string>
-
-#include "lib/sysdep/cpu.h"	// cpu_memcpy
+#include <memory.h>
+#include <algorithm>
 
 typedef uint16_t utf16_t;
 
@@ -78,7 +78,7 @@ struct utf16_traits
 
 	static char_type* copy(char_type* s1, const char_type* s2, size_t n)
 	{
-		return (char_type *)cpu_memcpy(s1, s2, n*sizeof(char_type));
+		return (char_type *)memcpy(s1, s2, n*sizeof(char_type));
 	}
 
 	static char_type* assign(char_type* s, size_t n, char_type a)

@@ -49,19 +49,19 @@
 		if (data.buttonCaptions.length >= 1)
 		{
 			mbButton1Obj.caption = data.buttonCaptions[0];
-			mbButton1Obj.onPress = function () { popGuiPage(); if (codes[0]) codes[0](); }
+			mbButton1Obj.onPress = function () { Engine.PopGuiPage(); if (codes[0]) codes[0](); }
 			mbButton1Obj.hidden = false;
 		}
 		if (data.buttonCaptions.length >= 2)
 		{
 			mbButton2Obj.caption = data.buttonCaptions[1];
-			mbButton2Obj.onPress = function () { popGuiPage(); if (codes[1]) codes[1](); }
+			mbButton2Obj.onPress = function () { Engine.PopGuiPage(); if (codes[1]) codes[1](); }
 			mbButton2Obj.hidden = false;
 		}
 		if (data.buttonCaptions.length >= 3)
 		{
 			mbButton3Obj.caption = data.buttonCaptions[2];
-			mbButton3Obj.onPress = function () { popGuiPage(); if (codes[2]) codes[2](); }
+			mbButton3Obj.onPress = function () { Engine.PopGuiPage(); if (codes[2]) codes[2](); }
 			mbButton3Obj.hidden = false;
 		}
 

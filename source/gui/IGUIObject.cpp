@@ -451,7 +451,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d", x++);
 
 	JSFunction* func = JS_CompileFunction(g_ScriptingHost.getContext(), pGUI->m_ScriptObject,
-		buf, paramCount, paramNames, (const char*)Code, Code.length(), CodeName, 0);
+		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName, 0);
 	debug_assert(func); // TODO: Handle errors
 	if (func)
 		SetScriptHandler(Action, JS_GetFunctionObject(func));
@@ -502,13 +502,10 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	// Don't garbage collect the mouse
 	JS_AddRoot(g_ScriptingHost.getContext(), &mouseObj);
 
-	const int paramCount = 1;
-	jsval paramData[paramCount];
-	paramData[0] = OBJECT_TO_JSVAL(mouseObj);
+	jsval paramData[] = { OBJECT_TO_JSVAL(mouseObj) };
 
 	jsval result;
-
-	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), jsGuiObject, OBJECT_TO_JSVAL(*it->second), 1, paramData, &result);
+	JSBool ok = JS_CallFunctionValue(g_ScriptingHost.getContext(), jsGuiObject, OBJECT_TO_JSVAL(*it->second), ARRAY_SIZE(paramData), paramData, &result);
 	if (!ok)
 	{
 		JS_ReportError(g_ScriptingHost.getContext(), "Errors executing script action \"%s\"", Action.c_str());

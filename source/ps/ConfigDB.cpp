@@ -283,6 +283,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		}
 		else
 		{
+			LOG(CLogger::Normal, LOG_CATEGORY, L"Loading config file \"%ls\"", m_ConfigFile[ns].c_str());
 			LibError ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 			if (ret != INFO::OK)
 			{

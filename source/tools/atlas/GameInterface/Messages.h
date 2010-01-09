@@ -69,6 +69,12 @@ MESSAGE(SimStateRestore,
 		((std::wstring, label)) // named slot to find saved data
 		);
 
+QUERY(SimStateDebugDump,
+		((bool, binary))
+		,
+		((std::wstring, dump))
+		);
+
 MESSAGE(SimPlay,
 		((float, speed)) // 0 for pause, 1 for normal speed
 		);

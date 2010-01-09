@@ -49,34 +49,22 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 #include "ps/Singleton.h"
 #include "ps/CStr.h"
 
+class ScriptInterface;
+
 class IPropertyOwner
 {
-};
-
-/*
-class DelayedScriptExecutor
-{
-public:
-	DelayedScriptExecutor(const std::string & functionName, float delaySeconds) 
-		: m_FunctionName(functionName), m_SecondsToExecution(delaySeconds)
-	{
-	}
-
-	std::string m_FunctionName;
-	float		m_SecondsToExecution;
-};
-*/
-
-class CustomType
-{
-public:
-	JSObject *	m_Object;
-	JSClass *	m_Class;
 };
 
 class ScriptingHost : public Singleton < ScriptingHost >
 {
 private:
+	class CustomType
+	{
+	public:
+		JSObject *	m_Object;
+		JSClass *	m_Class;
+	};
+
 	JSRuntime *		m_RunTime;
 	JSContext *		m_Context;
 	JSObject *		m_GlobalObject;
@@ -91,10 +79,17 @@ private:
 	// A hook to capture function calls
 	static void* jshook_function( JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* ok, void* closure );
 #endif
+
+	// The long-term plan is to migrate from ScriptingHost to the newer shinier ScriptInterface.
+	// For now, just have a ScriptInterface that hooks onto the ScriptingHost's context so they
+	// can both be used.
+	ScriptInterface* m_ScriptInterface;
 public:
 
 	ScriptingHost();
 	~ScriptingHost();
+
+	ScriptInterface& GetScriptInterface();
 
 	static void FinalShutdown();
 	
@@ -103,6 +98,7 @@ public:
 	// TODO: Remove one of these
 	inline JSContext *getContext() { return m_Context; }
 	inline JSContext *GetContext() { return m_Context; }
+
 	inline JSObject* GetGlobalObject() { return m_GlobalObject; }
 
 	void RunMemScript(const char* script, size_t size, const char* filename = 0, int line = 0, JSObject* globalObject = 0);
@@ -116,7 +112,6 @@ public:
 	void RegisterFunction(const std::string & functionName, JSNative function, int numArgs);
 
 	void DefineConstant(const std::string & name, int value);
-	void DefineConstant(const std::string & name, double value);
 
 	void DefineCustomObjectType(JSClass *clasp, JSNative constructor, uintN nargs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs);
 
@@ -129,16 +124,9 @@ public:
 	double GetObjectProperty_Double(JSObject* object, const char* propertyName);
 
 	void SetGlobal(const std::string& globalName, jsval value);
-	jsval GetGlobal(const std::string& globalName);
 
-	int ValueToInt(const jsval value);
-	bool ValueToBool(const jsval value);
 	std::string ValueToString(const jsval value);
-	CStrW ValueToUCString( const jsval value );
-	utf16string ValueToUTF16( const jsval value );
-    double ValueToDouble(const jsval value);
-
-	jsval UTF16ToValue(const utf16string &str);
+	CStrW ValueToUCString(const jsval value);
 	jsval UCStringToValue(const CStrW& str);
 
 	static void ErrorReporter(JSContext * context, const char * message, JSErrorReport * report);

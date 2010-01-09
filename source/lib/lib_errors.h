@@ -175,6 +175,8 @@ Notes:
 #ifndef INCLUDED_LIB_ERRORS
 #define INCLUDED_LIB_ERRORS
 
+#include "lib/lib.h"
+
 // note: this loses compiler type safety (being able to prevent
 // return 1 when a LibError is the return value), but allows splitting
 // up the error namespace into separate headers.

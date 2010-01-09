@@ -19,24 +19,12 @@
 
 #include "lib/file/vfs/vfs.h"
 #include "lib/file/io/io.h"
-#include "lib/sysdep/sysdep.h"	// sys_get_executable_name
 
 #include "graphics/ColladaManager.h"
 #include "graphics/MeshManager.h"
 #include "graphics/ModelDef.h"
 
 #include "ps/CLogger.h"
-
-// we need the (version-controlled) binaries/data directory because it
-// contains input files (it is assumed that developer's machines have
-// write access to those directories). note that argv0 isn't
-// available, so we use sys_get_executable_name.
-static fs::wpath DataDir()
-{
-	fs::wpath path;
-	TS_ASSERT_OK(sys_get_executable_name(path));
-	return path.branch_path()/L"../data";
-}
 
 static fs::wpath MOD_PATH(DataDir()/L"mods/_test.mesh");
 static fs::wpath CACHE_PATH(DataDir()/L"_testcache");

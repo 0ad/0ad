@@ -38,7 +38,10 @@ function reallyStartGame()
 	// to start the game (ie loading progress has reached 100%).
 
 	// Switch GUI from loading screen to game session.
-	switchGuiPage("page_session.xml");
+	if (Engine.IsNewSimulation())
+		Engine.SwitchGuiPage("page_session_new.xml");
+	else
+		Engine.SwitchGuiPage("page_session.xml");
 	
 	// Restore default cursor.
 	setCursor ("arrow-default");

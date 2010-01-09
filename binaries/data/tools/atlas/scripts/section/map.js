@@ -49,6 +49,38 @@ function setupSimTest(window)
 	}
 	updateEnableStatus();
 	window.sizer.add(sizer, 0, wxStretch.EXPAND | wxDirection.LEFT|wxDirection.RIGHT, 2);
+
+	var dumpDisplayButton = new wxButton(window, -1, 'Display sim state');
+	dumpDisplayButton.onClicked = function ()
+	{
+		var state = Atlas.Message.SimStateDebugDump(false).dump;
+		if (state.length > 10240) // avoid giant message boxes that crash
+			state = state.substr(0, 10240)+"...";
+		wxMessageBox(state);
+	};
+	window.sizer.add(dumpDisplayButton);
+
+	var dumpButton = new wxButton(window, -1, 'Dump sim state to disk');
+	dumpButton.toolTip = 'Saves to sim-dump-$(TIMESTAMP).txt in working directory';
+	dumpButton.onClicked = function () {
+		var filename = 'sim-dump-' + (new Date().getTime()) + '.txt';
+		var state = Atlas.Message.SimStateDebugDump(false).dump;
+		var file = new wxFFile(filename, 'w'); // TODO: error check
+		file.write(state);
+		file.close();
+	};
+	window.sizer.add(dumpButton);
+
+	var dumpBinButton = new wxButton(window, -1, 'Dump binary sim state to disk');
+	dumpBinButton.toolTip = 'Saves to sim-dump-$(TIMESTAMP).dat in working directory';
+	dumpBinButton.onClicked = function () {
+		var filename = 'sim-dump-' + (new Date().getTime()) + '.dat';
+		var state = Atlas.Message.SimStateDebugDump(true).dump;
+		var file = new wxFFile(filename, 'w'); // TODO: error check
+		file.write(state);
+		file.close();
+	};
+	window.sizer.add(dumpBinButton);
 }
 
 function generateRMS(name)

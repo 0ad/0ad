@@ -35,6 +35,7 @@
 #include <string.h>
 #include "Terrain.h"
 #include "Patch.h"
+#include "maths/FixedVector3D.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 
@@ -140,6 +141,20 @@ void CTerrain::CalcPosition(ssize_t i, ssize_t j, CVector3D& pos) const
 	pos.Z = float(j*CELL_SIZE);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// CalcPositionFixed: calculate the world space position of the vertex at (i,j)
+void CTerrain::CalcPositionFixed(ssize_t i, ssize_t j, CFixedVector3D& pos) const
+{
+	u16 height;
+	if ((size_t)i < (size_t)m_MapSize && (size_t)j < (size_t)m_MapSize) // will reject negative coordinates
+		height = m_Heightmap[j*m_MapSize + i];
+	else
+		height = 0;
+	pos.X = CFixed_23_8::FromInt(i)*CELL_SIZE;
+	pos.Y = CFixed_23_8::FromInt(height)/HEIGHT_UNITS_PER_METRE;
+	pos.Z = CFixed_23_8::FromInt(j)*CELL_SIZE;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // CalcNormal: calculate the world space normal of the vertex at (i,j)
@@ -147,34 +162,34 @@ void CTerrain::CalcNormal(ssize_t i, ssize_t j, CVector3D& normal) const
 {
 	CVector3D left, right, up, down;
 
-	left.Clear();
-	right.Clear();
-	up.Clear();
-	down.Clear();
+	// Calculate normals of the four half-tile triangles surrounding this vertex:
 
 	// get position of vertex where normal is being evaluated
 	CVector3D basepos;
-	CalcPosition(i,j,basepos);
+	CalcPosition(i, j, basepos);
 
-	CVector3D tmp;
-	if (i>0) {
-		CalcPosition(i-1,j,tmp);
-		left=tmp-basepos;
+	if (i > 0) {
+		CalcPosition(i-1, j, left);
+		left -= basepos;
+		left.Normalize();
 	}
 
-	if (i<m_MapSize-1) {
-		CalcPosition(i+1,j,tmp);
-		right=tmp-basepos;
+	if (i < m_MapSize-1) {
+		CalcPosition(i+1, j, right);
+		right -= basepos;
+		right.Normalize();
 	}
 
-	if (j>0) {
-		CalcPosition(i,j-1,tmp);
-		up=tmp-basepos;
+	if (j > 0) {
+		CalcPosition(i, j-1, up);
+		up -= basepos;
+		up.Normalize();
 	}
 
-	if (j<m_MapSize-1) {
-		CalcPosition(i,j+1,tmp);
-		down=tmp-basepos;
+	if (j < m_MapSize-1) {
+		CalcPosition(i, j+1, down);
+		down -= basepos;
+		down.Normalize();
 	}
 
 	CVector3D n0 = up.Cross(left);
@@ -182,11 +197,57 @@ void CTerrain::CalcNormal(ssize_t i, ssize_t j, CVector3D& normal) const
 	CVector3D n2 = down.Cross(right);
 	CVector3D n3 = right.Cross(up);
 
+	// Compute the mean of the normals
 	normal = n0 + n1 + n2 + n3;
 	float nlen=normal.Length();
 	if (nlen>0.00001f) normal*=1.0f/nlen;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// CalcNormalFixed: calculate the world space normal of the vertex at (i,j)
+void CTerrain::CalcNormalFixed(ssize_t i, ssize_t j, CFixedVector3D& normal) const
+{
+	CFixedVector3D left, right, up, down;
+
+	// Calculate normals of the four half-tile triangles surrounding this vertex:
+
+	// get position of vertex where normal is being evaluated
+	CFixedVector3D basepos;
+	CalcPositionFixed(i, j, basepos);
+
+	if (i > 0) {
+		CalcPositionFixed(i-1, j, left);
+		left -= basepos;
+		left.Normalize();
+	}
+
+	if (i < m_MapSize-1) {
+		CalcPositionFixed(i+1, j, right);
+		right -= basepos;
+		right.Normalize();
+	}
+
+	if (j > 0) {
+		CalcPositionFixed(i, j-1, up);
+		up -= basepos;
+		up.Normalize();
+	}
+
+	if (j < m_MapSize-1) {
+		CalcPositionFixed(i, j+1, down);
+		down -= basepos;
+		down.Normalize();
+	}
+
+	CFixedVector3D n0 = up.Cross(left);
+	CFixedVector3D n1 = left.Cross(down);
+	CFixedVector3D n2 = down.Cross(right);
+	CFixedVector3D n3 = right.Cross(up);
+
+	// Compute the mean of the normals
+	normal = n0 + n1 + n2 + n3;
+	normal.Normalize();
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // GetPatch: return the patch at (i,j) in patch space, or null if the patch is

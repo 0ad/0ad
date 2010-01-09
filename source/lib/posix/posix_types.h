@@ -19,6 +19,9 @@
  * lightweight header that defines POSIX types.
  */
 
+#ifndef INCLUDED_POSIX_TYPES
+#define INCLUDED_POSIX_TYPES
+
 // this header defines e.g. ssize_t and int8_t without pulling in all
 // POSIX declarations.
 // included from lib/types.h in place of posix.h; this helps avoid conflicts
@@ -49,3 +52,5 @@
 #include <unistd.h>
 
 #endif	// #if !OS_WIN
+
+#endif	// #ifndef INCLUDED_POSIX_TYPES

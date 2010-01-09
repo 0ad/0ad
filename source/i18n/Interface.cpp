@@ -87,7 +87,7 @@ CLocale_interface* I18n::NewLocale(JSContext* cx, JSObject* scope)
 	}
 	catch (PSERROR_I18n& e)
 	{
-		LOG(CLogger::Error, LOG_CATEGORY, L"Error creating locale object ('%hs')", GetErrorString(e));
+		LOG(CLogger::Error, LOG_CATEGORY, L"Error creating locale object ('%hs')", e.what());
 		return NULL;
 	}
 }

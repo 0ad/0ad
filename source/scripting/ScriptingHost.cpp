@@ -24,6 +24,7 @@
 #include "ps/Profile.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "scriptinterface/ScriptInterface.h"
 
 
 #if OS_WIN
@@ -43,7 +44,7 @@ namespace
 
 	JSClass GlobalClass = 
 	{
-		"global", 0,
+		"global", JSCLASS_GLOBAL_FLAGS,
 		JS_PropertyStub, JS_PropertyStub,
 		JS_PropertyStub, JS_PropertyStub,
 		JS_EnumerateStub, JS_ResolveStub,
@@ -85,14 +86,18 @@ ScriptingHost::ScriptingHost()
 
 	if( JS_DefineProperties( m_Context, m_GlobalObject, ScriptGlobalTable ) == JS_FALSE )
 		throw PSERROR_Scripting_SetupFailed();
+
+	m_ScriptInterface = new ScriptInterface("Engine", m_Context);
 }
 
 ScriptingHost::~ScriptingHost()
 {
+	delete m_ScriptInterface;
+
 	if (m_Context != NULL)
 	{
 		JS_EndRequest(m_Context);
- 		JS_DestroyContext(m_Context);
+		JS_DestroyContext(m_Context);
 		m_Context = NULL;
 	}
 
@@ -101,6 +106,11 @@ ScriptingHost::~ScriptingHost()
 		JS_DestroyRuntime(m_RunTime);
 		m_RunTime = NULL;
 	}
+}
+
+ScriptInterface& ScriptingHost::GetScriptInterface()
+{
+	return *m_ScriptInterface;
 }
 
 void ScriptingHost::FinalShutdown()
@@ -181,27 +191,6 @@ void ScriptingHost::DefineConstant(const std::string & name, int value)
 
 	JSBool ok = JS_DefineProperty(	m_Context, m_GlobalObject, name.c_str(), INT_TO_JSVAL(value), 
 									NULL, NULL, JSPROP_READONLY);
-
-	if (ok == JS_FALSE)
-		throw PSERROR_Scripting_DefineConstantFailed();
-}
-
-void ScriptingHost::DefineConstant(const std::string & name, double value)
-{
-	// First remove this constant if it already exists
-	JS_DeleteProperty(m_Context, m_GlobalObject, name.c_str());
-
-	struct JSConstDoubleSpec spec[2];
-
-	spec[0].name = name.c_str();
-	spec[0].dval = value;
-	spec[0].flags = JSPROP_READONLY;
-
-	spec[1].name = 0;
-	spec[1].dval = 0.0;
-	spec[1].flags = 0;
-
-	JSBool ok = JS_DefineConstDoubles(m_Context, m_GlobalObject, spec);
 
 	if (ok == JS_FALSE)
 		throw PSERROR_Scripting_DefineConstantFailed();
@@ -292,67 +281,12 @@ void ScriptingHost::SetGlobal(const std::string &globalName, jsval value)
 	JS_SetProperty(m_Context, m_GlobalObject, globalName.c_str(), &value);
 }
 
-// unused
-jsval ScriptingHost::GetGlobal(const std::string &globalName)
-{
-	jsval vp;
-	JS_GetProperty(m_Context, m_GlobalObject, globalName.c_str(), &vp);
-	return vp;
-}
-
-
-
-
-
-
-
 
 
 //----------------------------------------------------------------------------
 // conversions
 //----------------------------------------------------------------------------
-/*
-// These have been removed in favour of ToPrimitive<int>(value)
 
-int ScriptingHost::ValueToInt(const jsval value)
-{
-	int32 i = 0;
-
-	JSBool ok = JS_ValueToInt32(m_Context, value, &i);
-
-	if (!ok)
-		throw PSERROR_Scripting_ConversionFailed();
-
-	return i;
-}
-
-bool ScriptingHost::ValueToBool(const jsval value)
-{
-	JSBool b;
-
-	JSBool ok = JS_ValueToBoolean(m_Context, value, &b);
-
-	if (!ok)
-		throw PSERROR_Scripting_ConversionFailed();
-
-	return b == JS_TRUE;
-}
-
-
-double ScriptingHost::ValueToDouble(const jsval value)
-{
-	jsdouble d;
-
-	JSBool ok = JS_ValueToNumber(m_Context, value, &d);
-
-	if (ok == JS_FALSE || !isfinite(d))
-		throw PSERROR_Scripting_ConversionFailed();
-
-	return d;
-}
-
-
-*/
 std::string ScriptingHost::ValueToString(const jsval value)
 {
 	JSString* string = JS_ValueToString(m_Context, value);
@@ -364,31 +298,18 @@ std::string ScriptingHost::ValueToString(const jsval value)
 
 CStrW ScriptingHost::ValueToUCString( const jsval value )
 {
-	return CStrW(ValueToUTF16(value));
-}
-
-jsval ScriptingHost::UCStringToValue( const CStrW& str )
-{
-	utf16string utf16=str.utf16();
-	return UTF16ToValue(utf16);
-}
-
-
-
-utf16string ScriptingHost::ValueToUTF16( const jsval value )
-{
 	JSString* string = JS_ValueToString(m_Context, value);
 	if (string == NULL)
 		throw PSERROR_Scripting_ConversionFailed();
 
 	jschar *strptr=JS_GetStringChars(string);
 	size_t length=JS_GetStringLength(string);
-	return utf16string(strptr, strptr+length);
+	return std::wstring(strptr, strptr+length);
 }
 
-jsval ScriptingHost::UTF16ToValue(const utf16string &str)
+jsval ScriptingHost::UCStringToValue( const CStrW& str )
 {
-	return STRING_TO_JSVAL(JS_NewUCStringCopyZ(m_Context, str.c_str()));
+	return STRING_TO_JSVAL(JS_NewUCStringCopyZ(m_Context, str.utf16().c_str()));
 }
 
 //----------------------------------------------------------------------------

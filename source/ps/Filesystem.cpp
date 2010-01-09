@@ -20,8 +20,9 @@
 
 #include "gui/GUIManager.h"
 #include "ps/CLogger.h"
+#include "ps/Game.h"
+#include "simulation2/Simulation2.h"
 
-#include "lib/posix/posix_time.h"	// usleep
 #include "lib/res/h_mgr.h"	// h_reload
 #include "lib/sysdep/dir_watch.h"
 
@@ -69,6 +70,8 @@ LibError ReloadChangedFiles()
 			RETURN_ERR(g_VFS->GetVirtualPath(notifications[i].Pathname(), pathname));
 			RETURN_ERR(g_VFS->Invalidate(pathname));
 			RETURN_ERR(g_GUI->ReloadChangedFiles(pathname));
+			if (g_Game && g_Game->GetSimulation2())
+				RETURN_ERR(g_Game->GetSimulation2()->ReloadChangedFile(pathname));
 			RETURN_ERR(h_reload(pathname));
 		}
 	}

@@ -212,12 +212,55 @@ namespace CxxTest
 	CXXTEST_COPY_CONST_TRAITS( CStrW );
 }
 
+// Perform nice printing of vectors
+#include "maths/FixedVector3D.h"
+#include "maths/Vector3D.h"
+namespace CxxTest
+{
+	template<>
+	class ValueTraits<CFixedVector3D>
+	{
+		CFixedVector3D v;
+		std::string str;
+	public:
+		ValueTraits(const CFixedVector3D& v) : v(v)
+		{
+			std::stringstream s;
+			s << "[" << v.X.ToDouble() << ", " << v.Y.ToDouble() << ", " << v.Z.ToDouble() << "]";
+			str = s.str();
+		}
+		const char* asString() const
+		{
+			return str.c_str();
+		}
+	};
+
+	template<>
+	class ValueTraits<CVector3D>
+	{
+		CVector3D v;
+		std::string str;
+	public:
+		ValueTraits(const CVector3D& v) : v(v)
+		{
+			std::stringstream s;
+			s << "[" << v.X << ", " << v.Y << ", " << v.Z << "]";
+			str = s.str();
+		}
+		const char* asString() const
+		{
+			return str.c_str();
+		}
+	};
+}
+
 #define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO::OK)
 #define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::string(str1), std::string(str2))
 #define TS_ASSERT_WSTR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::wstring(str1), std::wstring(str2))
 
 bool ts_str_contains(const std::wstring& str1, const std::wstring& str2); // defined in test_setup.cpp
-#define TS_ASSERT_WSTR_CONTAINS(str1, str2) TS_ASSERT(ts_str_contains(str1, str2))
+#define TS_ASSERT_WSTR_CONTAINS(str1, str2) TSM_ASSERT(str1, ts_str_contains(str1, str2))
+#define TS_ASSERT_WSTR_NOT_CONTAINS(str1, str2) TSM_ASSERT(str1, !ts_str_contains(str1, str2))
 
 template <typename T>
 std::vector<T> ts_make_vector(T* start, size_t size_bytes)
@@ -225,5 +268,14 @@ std::vector<T> ts_make_vector(T* start, size_t size_bytes)
 	return std::vector<T>(start, start+(size_bytes/sizeof(T)));
 }
 #define TS_ASSERT_VECTOR_EQUALS_ARRAY(vec1, array) TS_ASSERT_EQUALS(vec1, ts_make_vector((array), sizeof(array)))
+
+class ScriptInterface;
+// Script-based testing setup (defined in test_setup.cpp). Defines TS_* functions.
+void ScriptTestSetup(ScriptInterface&);
+
+// Default game data directory
+// (TODO: game-specific functions like this probably shouldn't be inside lib/, but it's useful
+// here since lots of tests use it)
+fs::wpath DataDir(); // defined in test_setup.cpp
 
 #endif	// #ifndef INCLUDED_SELF_TEST

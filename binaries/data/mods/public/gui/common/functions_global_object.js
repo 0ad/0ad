@@ -14,7 +14,7 @@
 function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCaptions, mbButtonsCode)
 {
 
-	pushGuiPage("page_msgbox.xml", {
+	Engine.PushGuiPage("page_msgbox.xml", {
 		width: mbWidth,
 		height: mbHeight,
 		message: mbMessage,

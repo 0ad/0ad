@@ -198,6 +198,30 @@ bool CXeromyces::ReadXMBFile(const VfsPath& filename)
 	return true;
 }
 
+PSRETURN CXeromyces::LoadString(const char* xml)
+{
+	debug_assert(g_XeromycesStarted);
+
+	xmlDocPtr doc = xmlReadMemory(xml, strlen(xml), "", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
+	if (! doc)
+	{
+		LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Failed to parse XML string");
+		return PSRETURN_Xeromyces_XMLParseError;
+	}
+
+	WriteBuffer writeBuffer;
+	CreateXMB(doc, writeBuffer);
+
+	xmlFreeDoc(doc);
+
+	m_XMBBuffer = writeBuffer.Data(); // add a reference
+
+	// Set up the XMBFile
+	const bool ok = Initialise((const char*)m_XMBBuffer.get());
+	debug_assert(ok);
+
+	return PSRETURN_OK;
+}
 
 
 static void FindNames(const xmlNodePtr node, std::set<std::string>& elementNames, std::set<std::string>& attributeNames)

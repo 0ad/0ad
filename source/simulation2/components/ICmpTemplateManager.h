@@ -1,0 +1,73 @@
+/* Copyright (C) 2010 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef INCLUDED_ICMPTEMPLATEMANAGER
+#define INCLUDED_ICMPTEMPLATEMANAGER
+
+#include "simulation2/system/Interface.h"
+
+/**
+ * Template manager: Handles the loading of entity template files for the initialisation
+ * and deserialization of entity components.
+ */
+class ICmpTemplateManager : public IComponent
+{
+public:
+	/**
+	 * Loads the template XML file identified by 'templateName' (including inheritance
+	 * from parent XML files), and applies the techs that are currently active for
+	 * player 'playerID', for use with a new entity 'ent'.
+	 * The returned CParamNode must not be used for any entities other than 'ent'.
+	 * Alternatively, if templateName is of the form "actor|foo" then it will load a
+	 * default stationary entity template that uses actor "foo".
+	 * @return NULL on error
+	 */
+	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::wstring& templateName, int playerID) = 0;
+
+	/**
+	 * Returns the template most recently specified for the entity 'ent'.
+	 * Used during deserialization.
+	 */
+	virtual const CParamNode* LoadLatestTemplate(entity_id_t ent) = 0;
+
+	/**
+	 * Returns the name of the template most recently specified for the entity 'ent'.
+	 */
+	virtual std::wstring GetCurrentTemplateName(entity_id_t ent) = 0;
+
+	/**
+	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplate.
+	 * (This includes "actor|foo" names).
+	 * Intended for use by the map editor. This is likely to be quite slow.
+	 */
+	virtual std::vector<std::wstring> FindAllTemplates() = 0;
+
+	/*
+	 * TODO:
+	 * When an entity changes template (e.g. upgrades) or player ownership, it
+	 * should call some Reload(ent, templateName, playerID) function to load its new template.
+	 * When a player researches new techs, it should call Reload(playerID).
+	 * When a file changes on disk, something should call Reload(templateName).
+	 *
+	 * Reloading should happen by sending a message to affected components (containing
+	 * their new CParamNode), then automatically updating this.template of scripted components.
+	 */
+
+	DECLARE_INTERFACE_TYPE(TemplateManager)
+};
+
+#endif // INCLUDED_ICMPTEMPLATEMANAGER

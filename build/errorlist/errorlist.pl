@@ -1,4 +1,4 @@
-#!perl -w
+#!/usr/bin/perl -w
 
 ++$|;
 END { print "\n\nPress enter to exit.\n"; <STDIN> }
@@ -74,21 +74,21 @@ print $out <<'.';
 .
 
 for (sort keys %topgroups) {
-  print $out "class PSERROR_$_ : public PSERROR {};\n";
+  print $out "class PSERROR_$_ : public PSERROR { protected: PSERROR_$_(const char* msg); };\n";
 }
 
 print $out "\n";
 
 for (sort { $a->[1] cmp $b->[1] } map [$_, do{(my $c=$_)=~s/~/_/;$c} ], keys %groups) {
   my ($base, $name) = split /~/, $_->[0];
-  print $out "class PSERROR_${base}_$name : public PSERROR_$base {};\n";
+  print $out "class PSERROR_${base}_$name : public PSERROR_$base { protected: PSERROR_${base}_$name(const char* msg); };\n";
 }
 
 print $out "\n";
 
 for (sort { $a->[1] cmp $b->[1] } map [$_, do{(my $c=$_)=~s/~/_/;$c} ], keys %types) {
   my ($base, $name) = split /~/, $_->[0];
-  print $out "class PSERROR_${base}_$name : public PSERROR_$base { public: PSRETURN getCode() const; };\n";
+  print $out "class PSERROR_${base}_$name : public PSERROR_$base { public: PSERROR_${base}_$name(); PSERROR_${base}_$name(const char* msg); PSRETURN getCode() const; };\n";
 }
 
 print $out "\n";
@@ -179,22 +179,32 @@ for (sort keys %types) {
 
 print $out "\n";
 
+for (sort keys %topgroups) {
+  print $out "PSERROR_${_}::PSERROR_${_}(const char* msg) : PSERROR(msg) { }\n";
+}
+
+for (sort keys %groups) {
+  my ($base, $name) = split /~/;
+  print $out "PSERROR_${base}_${name}::PSERROR_${base}_${name}(const char* msg) : PSERROR_$base(msg) { }\n";
+}
+
+print $out "\n";
 
 for (sort keys %types) {
   my ($base, $name) = split /~/;
-  print $out qq~PSRETURN PSERROR_${base}_${name}::getCode() const { return 0x~.unpack('H*',$types{$_}).qq~; }\n~;
+  print $out "PSERROR_${base}_${name}::PSERROR_${base}_${name}() : PSERROR_$base(NULL) { }\n";
+  print $out "PSERROR_${base}_${name}::PSERROR_${base}_${name}(const char* msg) : PSERROR_$base(msg) { }\n";
+  print $out "PSRETURN PSERROR_${base}_${name}::getCode() const { return 0x".unpack('H*',$types{$_})."; }\n";
+  print $out "\n";
 }
 
 print $out <<".";
 
+PSERROR::PSERROR(const char* msg) : m_msg(msg) { }
+
 const char* PSERROR::what() const throw ()
 {
-	return GetErrorString(getCode());
-}
-
-const char* GetErrorString(const PSERROR& err)
-{
-	return GetErrorString(err.getCode());
+	return m_msg ? m_msg : GetErrorString(getCode());
 }
 
 const char* GetErrorString(PSRETURN code)

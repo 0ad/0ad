@@ -20,6 +20,17 @@
  * source file (VC6..8 requirement).
  */
 
+// some libraries have only a small number of source files, and the
+// overhead of including loads of headers here outweighs the improvements to
+// incremental rebuild performance.
+// they can set MINIMAL_PCH to 1 so we include far fewer headers (but
+// still do the global disabling of warnings and include config headers etc),
+// or set it to 2 to remove STL headers too (precompiling STL helps performance
+// in most non-tiny cases)
+#ifndef MINIMAL_PCH
+# define MINIMAL_PCH 0
+#endif
+
 #define _SECURE_SCL 0
 
 #include "lib/sysdep/compiler.h"	// MSC_VERSION, HAVE_PCH
@@ -61,22 +72,25 @@
 // (must come before any system headers because it fixes off_t)
 #include "lib/posix/posix_types.h"
 
+#include "lib/code_annotation.h"
+
 // (must come before any use of <math.h> due to incompatibility with ICC's mathimf.h)
 #if ICC_VERSION
 #include <mathimf.h>
 #endif
 
 #include "lib/sysdep/arch.h"
-#include "lib/sysdep/stl.h"
 
 #include "lib/lib_api.h"
-
 #include "lib/types.h"
+
+#if !MINIMAL_PCH
+#include "lib/sysdep/stl.h"
 #include "lib/lib.h"
 #include "lib/lib_errors.h"
-#include "lib/code_annotation.h"
 #include "lib/secure_crt.h"
 #include "lib/debug.h"
+#endif // !MINIMAL_PCH
 
 // Boost
 // .. if this package isn't going to be statically linked, we're better off
@@ -85,10 +99,13 @@
 #ifndef LIB_STATIC_LINK
 # define BOOST_ALL_DYN_LINK
 #endif
+
 // the following boost libraries have been included in TR1 and are
 // thus deemed usable:
 #include <boost/shared_ptr.hpp>
 using boost::shared_ptr;
+#if !MINIMAL_PCH
+// (these ones are used more rarely, so we don't enable them in minimal configurations)
 #include <boost/array.hpp>
 using boost::array;
 #include <boost/mem_fn.hpp>
@@ -98,6 +115,7 @@ using boost::function;
 #include <boost/bind.hpp>
 using boost::bind;
 #include "lib/external_libraries/boost_filesystem.h"
+#endif // !MINIMAL_PCH
 
 // (this must come after boost and common lib headers)
 #include "lib/posix/posix.h"
@@ -121,6 +139,7 @@ using boost::bind;
 // anything placed here won't need to be compiled in each translation unit,
 // but will cause a complete rebuild if they change.
 
+#if !MINIMAL_PCH
 // all new-form C library headers
 #include <cassert>
 #include <cctype>
@@ -140,7 +159,9 @@ using boost::bind;
 #include <ctime>
 #include <cwchar>
 #include <cwctype>
+#endif // !MINIMAL_PCH
 
+#if MINIMAL_PCH < 2
 // all C++98 STL headers
 #include <algorithm>
 #include <deque>
@@ -155,7 +176,9 @@ using boost::bind;
 #include <stack>
 #include <utility>
 #include <vector>
+#endif
 
+#if !MINIMAL_PCH
 // all other C++98 headers
 #include <bitset>
 #include <complex>
@@ -177,7 +200,9 @@ using boost::bind;
 #include <sstream>
 #include <typeinfo>
 #include <valarray>
+#endif // !MINIMAL_PCH
 
+#if !MINIMAL_PCH
 // STL extensions
 #if GCC_VERSION >= 402 // (see comment in stl.h about GCC versions)
 # include <tr1/unordered_map>
@@ -189,6 +214,7 @@ using boost::bind;
 # include <hash_map>
 # include <hash_set>
 #endif
+#endif // !MINIMAL_PCH
 
 #endif // #if CONFIG_PCH
 

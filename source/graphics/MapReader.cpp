@@ -44,6 +44,8 @@
 #include "simulation/TriggerManager.h"
 #include "simulation/EntityTemplate.h"
 #include "simulation/EntityTemplateCollection.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPosition.h"
 
 #define LOG_CATEGORY L"graphics"
 
@@ -77,7 +79,14 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	}
 
 	// delete all existing entities
-	g_EntityManager.DeleteAll();
+	if (g_UseSimulation2)
+	{
+		g_Game->GetSimulation2()->ResetState();
+	}
+	else
+	{
+		g_EntityManager.DeleteAll();
+	}
 	// delete all remaining non-entity units
 	pUnitMan->DeleteAll();
 	pUnitMan->SetNextID(0);
@@ -106,39 +115,9 @@ int CMapReader::UnpackMap()
 		return ret;
 
 	if (unpacker.GetVersion() < 4)
-		UnpackObjects();
-
-	if (unpacker.GetVersion() >= 2 && unpacker.GetVersion() < 4)
-		UnpackLightEnv();
+		debug_warn(L"Old unsupported map version - objects and lighting will be lost");
 
 	return 0;
-}
-
-// UnpackLightEnv: unpack lighting parameters from input stream
-void CMapReader::UnpackLightEnv()
-{
-	unpacker.UnpackRaw(&m_LightEnv.m_SunColor, sizeof(m_LightEnv.m_SunColor));
-	unpacker.UnpackRaw(&m_LightEnv.m_Elevation, sizeof(m_LightEnv.m_Elevation));
-	unpacker.UnpackRaw(&m_LightEnv.m_Rotation, sizeof(m_LightEnv.m_Rotation));
-	unpacker.UnpackRaw(&m_LightEnv.m_TerrainAmbientColor, sizeof(m_LightEnv.m_TerrainAmbientColor));
-	unpacker.UnpackRaw(&m_LightEnv.m_UnitsAmbientColor, sizeof(m_LightEnv.m_UnitsAmbientColor));
-	m_LightEnv.CalculateSunDirection();
-}
-
-// UnpackObjects: unpack world objects from input stream
-void CMapReader::UnpackObjects()
-{
-	// unpack object types
-	const size_t numObjTypes = unpacker.UnpackSize();
-	m_ObjectTypes.resize(numObjTypes);
-	for (size_t i=0; i<numObjTypes; i++)
-		unpacker.UnpackString(m_ObjectTypes[i]);
-
-	// unpack object data
-	const size_t numObjects = unpacker.UnpackSize();
-	m_Objects.resize(numObjects);
-	if (numObjects)
-		unpacker.UnpackRaw(&m_Objects[0], sizeof(SObjectDesc)*numObjects);
 }
 
 // UnpackTerrain: unpack the terrain from the end of the input data stream
@@ -219,31 +198,13 @@ int CMapReader::ApplyData()
 		}
 	}
 
-	// add new objects
-	for (size_t i = 0; i < m_Objects.size(); ++i)
+	if (! g_UseSimulation2)
 	{
-
-		if (unpacker.GetVersion() < 3)
-		{
-			debug_warn(L"Old unsupported map version - objects will be missing");
-			// (GetTemplateByActor doesn't work, since entity templates are now
-			// loaded on demand)
-		}
-
-		std::set<CStr> selections; // TODO: read from file
-		CUnit* unit = pUnitMan->CreateUnit(m_ObjectTypes.at(m_Objects[i].m_ObjectIndex), NULL, selections);
-
-		if (unit)
-		{
-			CMatrix3D transform;
-			cpu_memcpy(&transform._11, m_Objects[i].m_Transform, sizeof(float)*16);
-			unit->GetModel()->SetTransform(transform);
-		}
+		// Make units start out conforming correctly
+		g_EntityManager.ConformAll();
 	}
-	//Make units start out conforming correctly
-	g_EntityManager.ConformAll();
 
-	if (unpacker.GetVersion() >= 2)
+	if (unpacker.GetVersion() >= 4)
 	{
 		// copy over the lighting parameters
 		*pLightEnv = m_LightEnv;
@@ -302,6 +263,7 @@ private:
 	void ReadTriggers(XMBElement parent);
 	void ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group);
 	int ReadEntities(XMBElement parent, double end_time);
+	int ReadOldEntities(XMBElement parent, double end_time);
 	int ReadNonEntities(XMBElement parent, double end_time);
 };
 
@@ -802,7 +764,85 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 {
 	XMBElementList entities = parent.GetChildNodes();
 
-	// If this is the first time in ReadEntities, find the next free ID number
+	while (entity_idx < entities.Count)
+	{
+		// all new state at this scope and below doesn't need to be
+		// wrapped, since we only yield after a complete iteration.
+
+		XMBElement entity = entities.Item(entity_idx++);
+		debug_assert(entity.GetNodeName() == el_entity);
+
+		XMBAttributeList attrs = entity.GetAttributes();
+		utf16string uid = attrs.GetNamedItem(at_uid);
+		debug_assert(!uid.empty());
+		int EntityUid = CStr(uid).ToInt();
+
+		CStrW TemplateName;
+		CFixedVector3D Position;
+		CFixedVector3D Orientation;
+
+		XERO_ITER_EL(entity, setting)
+		{
+			int element_name = setting.GetNodeName();
+
+			// <template>
+			if (element_name == el_template)
+			{
+				TemplateName = setting.GetText();
+			}
+			// <position>
+			else if (element_name == el_position)
+			{
+				XMBAttributeList attrs = setting.GetAttributes();
+				Position = CFixedVector3D(
+					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_x)).ToFloat()),
+					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_y)).ToFloat()),
+					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_z)).ToFloat()));
+				// TODO: shouldn't use floats here
+			}
+			// <orientation>
+			else if (element_name == el_orientation)
+			{
+				XMBAttributeList attrs = setting.GetAttributes();
+				Orientation = CFixedVector3D(
+					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_x)).ToFloat()),
+					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_y)).ToFloat()),
+					CFixed_23_8::FromFloat(CStr(attrs.GetNamedItem(at_z)).ToFloat()));
+				// TODO: shouldn't use floats here
+				// TODO: what happens if some attributes are missing?
+			}
+			else
+				debug_warn(L"Invalid map XML data");
+		}
+
+		CSimulation2& sim = *g_Game->GetSimulation2();
+		entity_id_t ent = sim.AddEntity(TemplateName, EntityUid);
+		if (ent == INVALID_ENTITY)
+			LOGERROR(L"Failed to load entity template '%ls'", TemplateName.c_str());
+		else
+		{
+			CmpPtr<ICmpPosition> cmpPosition(sim, ent);
+			if (!cmpPosition.null())
+			{
+				cmpPosition->JumpTo(Position.X, Position.Z);
+				cmpPosition->SetYRotation(Orientation.Y);
+				// TODO: other components
+			}
+			// TODO: load all the other data too
+		}
+
+		completed_jobs++;
+		LDR_CHECK_TIMEOUT(completed_jobs, total_jobs);
+	}
+
+	return 0;
+}
+
+int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
+{
+	XMBElementList entities = parent.GetChildNodes();
+
+	// If this is the first time in ReadOldEntities, find the next free ID number
 	// in case we need to allocate new ones in the future
 	if (entity_idx == 0)
 	{
@@ -878,19 +918,56 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		{
 			std::set<CStr> selections; // TODO: read from file
 
-			HEntity ent = g_EntityManager.Create(base, Position, Orientation, selections);
+			if (g_UseSimulation2)
+			{
+				// The old version uses a flat entity naming system, so we need
+				// to translate it into the hierarchical filename
+				if (TemplateName.Find(L"flora") == 0 || TemplateName.Find(L"fauna") == 0 || TemplateName.Find(L"geology") == 0 || TemplateName.Find(L"special") == 0)
+					TemplateName = L"gaia/" + TemplateName;
+				else if (TemplateName.Find(L"cart") == 0 || TemplateName.Find(L"celt") == 0 || TemplateName.Find(L"hele") == 0 ||
+						TemplateName.Find(L"iber") == 0 || TemplateName.Find(L"pers") == 0 || TemplateName.Find(L"rome") == 0)
+				{
+					if (TemplateName.Find(L"cavalry") == 5 || TemplateName.Find(L"hero") == 5 || TemplateName.Find(L"infantry") == 5 ||
+						TemplateName.Find(L"mechanical") == 5 || TemplateName.Find(L"ship") == 5 || TemplateName.Find(L"super") == 5 || TemplateName.Find(L"support") == 5)
+						TemplateName = L"units/" + TemplateName;
+					else
+						TemplateName = L"structures/" + TemplateName;
+				}
+				else if (TemplateName.Find(L"skeleton") == 0)
+					TemplateName = L"units/" + TemplateName;
+				else if (TemplateName.Find(L"camp") == 0 || TemplateName.Find(L"fence") == 0 || TemplateName.Find(L"temp") == 0)
+					TemplateName = L"other/" + TemplateName;
 
-			if (! ent)
-				LOG(CLogger::Error, LOG_CATEGORY, L"Failed to create entity of type '%ls'", TemplateName.c_str());
+				entity_id_t ent = g_Game->GetSimulation2()->AddEntity(TemplateName);
+				if (ent != INVALID_ENTITY)
+				{
+					CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), ent);
+					if (!cmpPos.null())
+					{
+						entity_pos_t x = entity_pos_t::FromFloat(Position.X);
+						entity_pos_t z = entity_pos_t::FromFloat(Position.Z);
+						cmpPos->JumpTo(x, z);
+						cmpPos->SetYRotation(CFixed_23_8::FromFloat(Orientation));
+					}
+					// TODO: load player ID too
+				}
+			}
 			else
 			{
-				ent->m_actor->SetPlayerID(PlayerID);
-				g_EntityManager.AddEntityClassData(ent);
+				HEntity ent = g_EntityManager.Create(base, Position, Orientation, selections);
 
-				if (unitId < 0)
-					ent->m_actor->SetID(m_MapReader.pUnitMan->GetNewID());
+				if (! ent)
+					LOG(CLogger::Error, LOG_CATEGORY, L"Failed to create entity of type '%ls'", TemplateName.c_str());
 				else
-					ent->m_actor->SetID(unitId);
+				{
+					ent->m_actor->SetPlayerID(PlayerID);
+					g_EntityManager.AddEntityClassData(ent);
+
+					if (unitId < 0)
+						ent->m_actor->SetID(m_MapReader.pUnitMan->GetNewID());
+					else
+						ent->m_actor->SetID(unitId);
+				}
 			}
 		}
 
@@ -913,7 +990,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 		XMBElement nonentity = nonentities.Item(nonentity_idx++);
 		debug_assert(nonentity.GetNodeName() == el_nonentity);
 
-		CStr ActorName;
+		CStrW ActorName;
 		CVector3D Position;
 		float Orientation = 0.f;
 
@@ -947,18 +1024,36 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 
 		std::set<CStr> selections; // TODO: read from file
 
-		CUnit* unit = m_MapReader.pUnitMan->CreateUnit(ActorName, NULL, selections);
-
-		if (unit)
+		if (g_UseSimulation2)
 		{
-			CMatrix3D m;
-			m.SetYRotation(Orientation + PI);
-			m.Translate(Position);
-			unit->GetModel()->SetTransform(m);
+			entity_id_t ent = g_Game->GetSimulation2()->AddEntity(L"actor|" + ActorName);
+			if (ent != INVALID_ENTITY)
+			{
+				CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), ent);
+				if (!cmpPos.null())
+				{
+					entity_pos_t x = entity_pos_t::FromFloat(Position.X); // TODO: these should all be parsed as fixeds probably
+					entity_pos_t z = entity_pos_t::FromFloat(Position.Z);
+					cmpPos->JumpTo(x, z);
+					cmpPos->SetYRotation(CFixed_23_8::FromFloat(Orientation));
+				}
+			}
+		}
+		else
+		{
+			CUnit* unit = m_MapReader.pUnitMan->CreateUnit(ActorName, NULL, selections);
 
-			// TODO: save object IDs in the map file, and load them again,
-			// so that triggers have a persistent identifier for objects
-			unit->SetID(m_MapReader.pUnitMan->GetNewID());
+			if (unit)
+			{
+				CMatrix3D m;
+				m.SetYRotation(Orientation + PI);
+				m.Translate(Position);
+				unit->GetModel()->SetTransform(m);
+
+				// TODO: save object IDs in the map file, and load them again,
+				// so that triggers have a persistent identifier for objects
+				unit->SetID(m_MapReader.pUnitMan->GetNewID());
+			}
 		}
 
 		completed_jobs++;
@@ -989,15 +1084,21 @@ int CXMLReader::ProgressiveRead()
 		{
 			ReadCamera(node);
 		}
-		else if (name == "Entities")
+		else if (m_MapReader.unpacker.GetVersion() <= 4 && name == "Entities")
 		{
-			ret = ReadEntities(node, end_time);
+			ret = ReadOldEntities(node, end_time);
 			if (ret != 0)	// error or timed out
 				return ret;
 		}
-		else if (name == "Nonentities")
+		else if (m_MapReader.unpacker.GetVersion() <= 4 && name == "Nonentities")
 		{
 			ret = ReadNonEntities(node, end_time);
+			if (ret != 0)	// error or timed out
+				return ret;
+		}
+		else if (name == "Entities")
+		{
+			ret = ReadEntities(node, end_time);
 			if (ret != 0)	// error or timed out
 				return ret;
 		}

@@ -1,3 +1,20 @@
+/* Copyright (C) 2010 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "precompiled.h"
 
 #include "GUIManager.h"
@@ -8,6 +25,7 @@
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/ScriptInterface.h"
 
 CGUIManager* g_GUI = NULL;
 
@@ -46,21 +64,24 @@ CGUIManager::SGUIPage::~SGUIPage()
 	JS_RemoveRoot(g_ScriptingHost.GetContext(), &initData);
 }
 
-CGUIManager::CGUIManager()
+CGUIManager::CGUIManager(ScriptInterface& scriptInterface) :
+	m_ScriptInterface(scriptInterface)
 {
+	debug_assert(ScriptInterface::GetCallbackData(scriptInterface.GetContext()) == NULL);
+	scriptInterface.SetCallbackData(this);
 }
 
 CGUIManager::~CGUIManager()
 {
 }
 
-void CGUIManager::SwitchPage(const CStrW& pageName, jsval initData)
+void CGUIManager::SwitchPage(const CStrW& pageName, CScriptVal initData)
 {
 	m_PageStack.clear();
 	PushPage(pageName, initData);
 }
 
-void CGUIManager::PushPage(const CStrW& pageName, jsval initData)
+void CGUIManager::PushPage(const CStrW& pageName, CScriptVal initData)
 {
 	m_PageStack.push_back(SGUIPage());
 	m_PageStack.back().name = pageName;
@@ -122,8 +143,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	page.gui->SendEventToAll("load");
 
 	// Call the init() function
-	jsval rval;
-	if (! JS_CallFunctionName(g_ScriptingHost.GetContext(), page.gui->GetScriptObject(), "init", 1, &page.initData, &rval))
+	if (!m_ScriptInterface.CallFunctionVoid(OBJECT_TO_JSVAL(page.gui->GetScriptObject()), "init", page.initData))
 	{
 		LOGERROR(L"GUI page '%ls': Failed to call init() function", page.name.c_str());
 	}
@@ -142,6 +162,42 @@ LibError CGUIManager::ReloadChangedFiles(const VfsPath& path)
 
 	return INFO::OK;
 }
+
+
+InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
+{
+	// We want scripts to have access to the raw input events, so they can do complex
+	// processing when necessary (e.g. for unit selection and camera movement).
+	// Sometimes they'll want to be layered behind the GUI widgets (e.g. to detect mousedowns on the
+	// visible game area), sometimes they'll want to intercepts events before the GUI (e.g.
+	// to capture all mouse events until a mouseup after dragging).
+	// So we call two separate handler functions:
+
+	bool handled;
+	{
+		PROFILE("handleInputBeforeGui");
+		if (m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "handleInputBeforeGui", *ev, handled))
+			if (handled)
+				return IN_HANDLED;
+	}
+
+	{
+		PROFILE("handle event in native GUI");
+		InReaction r = top()->HandleEvent(ev);
+		if (r != IN_PASS)
+			return r;
+	}
+
+	{
+		PROFILE("handleInputAfterGui");
+		if (m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(top()->GetScriptObject()), "handleInputAfterGui", *ev, handled))
+			if (handled)
+				return IN_HANDLED;
+	}
+
+	return IN_PASS;
+}
+
 
 bool CGUIManager::GetPreDefinedColor(const CStr& name, CColor& output)
 {
@@ -189,11 +245,6 @@ void CGUIManager::UpdateResolution()
 JSObject* CGUIManager::GetScriptObject()
 {
 	return top()->GetScriptObject();
-}
-
-InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
-{
-	return top()->HandleEvent(ev);
 }
 
 // This returns a shared_ptr to make sure the CGUI doesn't get deallocated

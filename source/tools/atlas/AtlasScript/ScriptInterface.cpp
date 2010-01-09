@@ -494,7 +494,7 @@ struct ScriptInterface_impl
 namespace
 {
 	JSClass global_class = {
-		"global", 0,
+		"global", JSCLASS_GLOBAL_FLAGS,
 		JS_PropertyStub, JS_PropertyStub, JS_PropertyStub, JS_PropertyStub,
 		JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub, JS_FinalizeStub,
 		NULL, NULL, NULL, NULL,

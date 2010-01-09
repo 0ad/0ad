@@ -149,6 +149,7 @@ CUnit* CUnitManager::CreateUnit(const CStr& actorName, CEntity* entity, const st
 
 ///////////////////////////////////////////////////////////////////////////////
 // FindByID
+// TODO: this is hopelessly inefficient
 CUnit* CUnitManager::FindByID(size_t id) const
 {
 	if (id == invalidUnitId)

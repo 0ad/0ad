@@ -61,9 +61,12 @@ public:
 	void Thaw();
 
 private:
+	// For old simulation:
 	bool onlyEntities;
 	std::vector<Entity> entities;
 	std::vector<Nonentity> nonentities;
+	// For simulation2:
+	std::stringstream stream;
 };
 
 #endif // SIMSTATE_INCLUDED

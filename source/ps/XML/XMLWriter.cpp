@@ -21,6 +21,8 @@
 
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "lib/wchar.h"
+#include "lib/sysdep/cpu.h"
 
 #define LOG_CATEGORY L"xml"
 
@@ -259,4 +261,8 @@ TYPE(double)
 template <> void XMLWriter_File::ElementAttribute<CStrW>(const char* name, const CStrW& value, bool newelement)
 {
 	ElementAttribute(name, value.ToUTF8(), newelement);
+}
+template <> void XMLWriter_File::ElementAttribute<std::wstring>(const char* name, const std::wstring& value, bool newelement)
+{
+	ElementAttribute(name, utf8_from_wstring(value).c_str(), newelement);
 }
