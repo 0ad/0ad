@@ -74,27 +74,42 @@ private:
 
 class DirWatchRequest
 {
+	NONCOPYABLE(DirWatchRequest);
 public:
 	DirWatchRequest(const fs::wpath& path)
-		: m_path(path), m_dirHandle(path), m_data(new u8[dataSize], ArrayDeleter())
+		: m_path(path), m_dirHandle(path), m_data(new u8[dataSize])
 	{
 		memset(&m_ovl, 0, sizeof(m_ovl));
+
+		// (hEvent is needed for the wait after CancelIo below)
+		const BOOL manualReset = TRUE;
+		const BOOL initialState = FALSE;
+		m_ovl.hEvent = CreateEvent(0, manualReset, initialState, 0);
 	}
 
 	~DirWatchRequest()
 	{
-		// m_data's dtor will free the memory after this function returns,
-		// so the pending IO had better not write into that memory. therefore:
+		// we need to free m_data here, so the pending IO had better
+		// not write to that memory in future. therefore:
 		WARN_IF_FALSE(CancelIo(m_dirHandle));
 		// however, this is not synchronized with the DPC (?) that apparently
-		// delivers the data (we have seen m_data being filled regardless).
+		// delivers the data - m_data is filled anyway.
 		// we need to ensure that either the IO has happened or that it
 		// was successfully canceled before freeing m_data, so wait:
 		{
 			WinScopedPreserveLastError s;
-			DWORD dwBytesTransferred = 0;	// unused
-			const BOOL ok = GetOverlappedResult(m_dirHandle, &m_ovl, &dwBytesTransferred, TRUE);
-			debug_assert(ok || GetLastError() == ERROR_OPERATION_ABORTED);
+			// (GetOverlappedResult without a valid hEvent hangs on Vista;
+			// we'll abort after a timeout to be safe.)
+			const DWORD ret = WaitForSingleObject(m_ovl.hEvent, 1000);
+			WARN_IF_FALSE(CloseHandle(m_ovl.hEvent));
+			if(ret == WAIT_OBJECT_0 || GetLastError() == ERROR_OPERATION_ABORTED)
+				delete[] m_data;
+			else
+			{
+				debug_printf(L"WARNING: canceling IO may have failed; to avoid memory corruption, we won't free the buffer.\n");
+				DEBUG_WARN_ERR(ERR::TIMED_OUT);
+				// intentionally leak m_data!
+			}
 		}
 	}
 
@@ -122,8 +137,8 @@ public:
 			FILE_NOTIFY_CHANGE_CREATION;
 		// not set: FILE_NOTIFY_CHANGE_ATTRIBUTES, FILE_NOTIFY_CHANGE_LAST_ACCESS, FILE_NOTIFY_CHANGE_SECURITY
 		DWORD undefined = 0;	// (non-NULL pointer avoids BoundsChecker warning)
-		memset(&m_ovl, 0, sizeof(m_ovl));
-		const BOOL ok = ReadDirectoryChangesW(m_dirHandle, m_data.get(), dataSize, watchSubtree, filter, &undefined, &m_ovl, 0);
+		m_ovl.Internal = 0;
+		const BOOL ok = ReadDirectoryChangesW(m_dirHandle, m_data, dataSize, watchSubtree, filter, &undefined, &m_ovl, 0);
 		WARN_IF_FALSE(ok);
 		return INFO::OK;
 	}
@@ -133,7 +148,7 @@ public:
 	 **/
 	void RetrieveNotifications(DirWatchNotifications& notifications) const
 	{
-		const FILE_NOTIFY_INFORMATION* fni = (const FILE_NOTIFY_INFORMATION*)m_data.get();
+		const FILE_NOTIFY_INFORMATION* fni = (const FILE_NOTIFY_INFORMATION*)m_data;
 		for(;;)
 		{
 			// convert name from BSTR (non-zero-terminated) to std::wstring
@@ -185,11 +200,12 @@ private:
 	// note: each instance needs their own buffer. (we can't share a central
 	// copy because the watches are independent and may be triggered
 	// 'simultaneously' before the next poll.)
-	shared_ptr<u8> m_data;
+	// NB: lifetime must be managed manually (see dtor)
+	u8* m_data;
 
 	// (ReadDirectoryChangesW's asynchronous mode is triggered by passing
-	// a valid OVERLAPPED parameter; we don't use its fields because
-	// notification proceeds via completion ports.)
+	// a valid OVERLAPPED parameter; notification proceeds via
+	// completion ports, but we still need hEvent - see above.)
 	OVERLAPPED m_ovl;
 };
 
@@ -304,7 +320,7 @@ public:
 	LibError Poll(size_t& bytesTransferred, uintptr_t& key, OVERLAPPED*& ovl)
 	{
 		if(m_hIOCP == 0)
-			return INFO::SKIPPED;
+			return ERR::INVALID_HANDLE;	// NOWARN (happens if called before the first Attach)
 		for(;;)	// don't return abort notifications to caller
 		{
 			DWORD dwBytesTransferred = 0;
