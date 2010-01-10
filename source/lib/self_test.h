@@ -255,8 +255,11 @@ namespace CxxTest
 }
 
 #define TS_ASSERT_OK(expr) TS_ASSERT_EQUALS((expr), INFO::OK)
+#define TSM_ASSERT_OK(m, expr) TSM_ASSERT_EQUALS(m, (expr), INFO::OK)
 #define TS_ASSERT_STR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::string(str1), std::string(str2))
+#define TSM_ASSERT_STR_EQUALS(m, str1, str2) TSM_ASSERT_EQUALS(m, std::string(str1), std::string(str2))
 #define TS_ASSERT_WSTR_EQUALS(str1, str2) TS_ASSERT_EQUALS(std::wstring(str1), std::wstring(str2))
+#define TSM_ASSERT_WSTR_EQUALS(m, str1, str2) TSM_ASSERT_EQUALS(m, std::wstring(str1), std::wstring(str2))
 
 bool ts_str_contains(const std::wstring& str1, const std::wstring& str2); // defined in test_setup.cpp
 #define TS_ASSERT_WSTR_CONTAINS(str1, str2) TSM_ASSERT(str1, ts_str_contains(str1, str2))

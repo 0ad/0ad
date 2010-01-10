@@ -434,9 +434,9 @@ public:
 
 		std::string hash;
 		TS_ASSERT(man.ComputeStateHash(hash));
-		TS_ASSERT_EQUALS(hash.length(), (size_t)20);
-		TS_ASSERT_SAME_DATA(hash.data(), "\x32\x73\x30\x3a\xf2\x52\xda\x23\x5a\x25\xca\xc8\x1e\xe3\x57\xa7\x63\xc9\x5f\x0f", 20);
-		// echo -en "\x01\0\0\0\x01\0\0\0\xf8\x2a\0\0\x02\0\0\0\xd2\x04\0\0\x04\0\0\0\x01\0\0\0\x08\x52\0\0" | openssl dgst -sha1 -hex | perl -pe 's/(..)/\\x$1/g'
+		TS_ASSERT_EQUALS(hash.length(), (size_t)16);
+		TS_ASSERT_SAME_DATA(hash.data(), "\xea\xd8\xe6\x94\xc0\x6b\x2a\xa1\xcc\x6d\x5d\xab\x48\x45\x75\xed", 16);
+		// echo -en "\x01\0\0\0\x01\0\0\0\xf8\x2a\0\0\x02\0\0\0\xd2\x04\0\0\x04\0\0\0\x01\0\0\0\x08\x52\0\0" | openssl md5 | perl -pe 's/(..)/\\x$1/g'
 		//           ^^Test1A^^ ^^^ent1^^ ^^^11000^^^ ^^^ent2^^ ^^^1234^^^ ^^Test2A^^ ^^ent1^^ ^^^21000^^^
 
 		std::stringstream stateStream;

@@ -15,29 +15,28 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_HASHSERIALIZER
-#define INCLUDED_HASHSERIALIZER
+#ifndef INCLUDED_MD5
+#define INCLUDED_MD5
 
-#include "BinarySerializer.h"
-
-#include "maths/MD5.h"
-
-class CHashSerializer : public CBinarySerializer
+/**
+ * MD5 hashing algorithm. Note that MD5 is broken and must not be used for
+ * anything that requires security.
+ */
+class MD5
 {
-	// We don't care about cryptographic strength, just about detection of
-	// unintended changes and about performance, so MD5 is an adequate choice
-	typedef MD5 HashFunc;
 public:
-	CHashSerializer(ScriptInterface& scriptInterface);
-	size_t GetHashLength();
-	const u8* ComputeHash();
+	static const size_t DIGESTSIZE = 16;
 
-protected:
-	virtual void Put(const char* name, const u8* data, size_t len);
-
+	MD5();
+	void Update(const u8* data, size_t len);
+	void Final(u8* digest);
 private:
-	HashFunc m_Hash;
-	u8 m_HashData[HashFunc::DIGESTSIZE];
+	void InitState();
+	void Transform(const u32* in);
+	u32 m_Digest[4]; // internal state
+	u8 m_Buf[64]; // buffered input bytes
+	size_t m_BufLen; // bytes in m_Buf that are valid
+	u64 m_InputLen; // bytes
 };
 
-#endif // INCLUDED_HASHSERIALIZER
+#endif // INCLUDED_MD5

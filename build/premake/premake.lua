@@ -417,7 +417,6 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"boost",
-		"cryptopp",
 		"spidermonkey",
 	}
 	setup_static_lib_package("simulation2", source_dirs, extern_libs, {})
@@ -542,7 +541,6 @@ function setup_all_libs ()
 		"openal",
 		"vorbis",
 		"libjpg",
-		"cryptopp",
 		"valgrind",
 		"cxxtest",
 	}
@@ -615,7 +613,6 @@ used_extern_libs = {
 	"cxxtest",
 	"comsuppw",
 	"enet",
-	"cryptopp",
 }
 
 -- Bundles static libs together with main.cpp and builds game executable.

@@ -221,9 +221,9 @@ public:
 		serialize.NumberU32_Unbounded("y", 1234);
 		serialize.NumberI32("z", 12345, 0, 65535);
 
-		TS_ASSERT_EQUALS(serialize.GetHashLength(), (size_t)20);
-		TS_ASSERT_SAME_DATA(serialize.ComputeHash(), "\x22\xb6\x38\xc5\xc5\x6d\x70\x2b\xa7\xc6\x22\x1a\xde\x3b\x97\x1a\xdc\x27\x3d\x0b", 20);
-		// echo -en "\x85\xff\xff\xff\xd2\x04\x00\x00\x39\x30\x00\x00" | openssl dgst -sha1 -hex | perl -pe 's/(..)/\\x$1/g'
+		TS_ASSERT_EQUALS(serialize.GetHashLength(), (size_t)16);
+		TS_ASSERT_SAME_DATA(serialize.ComputeHash(), "\xa0\x3a\xe5\x3e\x9b\xd7\xfb\x11\x88\x35\xc6\xfb\xb9\x94\xa9\x72", 16);
+		// echo -en "\x85\xff\xff\xff\xd2\x04\x00\x00\x39\x30\x00\x00" | openssl md5 | perl -pe 's/(..)/\\x$1/g'
 	}
 
 	void test_bounds()
