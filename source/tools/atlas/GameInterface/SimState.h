@@ -20,6 +20,7 @@
 
 #include <set>
 #include <vector>
+#include <sstream>
 
 #include "ps/CStr.h"
 #include "maths/Vector3D.h"

@@ -20,6 +20,8 @@
 
 #include "simulation2/system/Interface.h"
 
+#include <vector>
+
 /**
  * Template manager: Handles the loading of entity template files for the initialisation
  * and deserialization of entity components.

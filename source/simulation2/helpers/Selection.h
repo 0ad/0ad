@@ -25,6 +25,8 @@
 
 #include "simulation2/components/ICmpPosition.h"
 
+#include <vector>
+
 class CSimulation2;
 class CCamera;
 

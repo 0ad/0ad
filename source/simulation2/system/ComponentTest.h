@@ -28,6 +28,8 @@
 #include "simulation2/serialization/StdSerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
 
+#include <iostream>
+
 /**
  * @file
  * Various common features for component test cases.

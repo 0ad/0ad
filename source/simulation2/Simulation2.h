@@ -23,6 +23,8 @@
 
 #include "lib/file/vfs/vfs_path.h"
 
+#include <map>
+
 class CSimulation2Impl;
 class CSimContext;
 class CUnitManager;

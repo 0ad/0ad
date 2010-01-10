@@ -26,6 +26,7 @@
 
 #include <fstream>
 
+#include "lib/self_test.h"
 #include <cxxtest/GlobalFixture.h>
 
 #if OS_WIN

@@ -25,6 +25,8 @@
 
 #include "ps/CLogger.h"
 
+#include <iostream>
+
 #define TS_ASSERT_STREAM(stream, len, buffer) \
 	TS_ASSERT_EQUALS(stream.str().length(), (size_t)len); \
 	TS_ASSERT_SAME_DATA(stream.str().data(), buffer, len)
