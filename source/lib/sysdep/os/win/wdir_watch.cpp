@@ -79,12 +79,13 @@ public:
 	DirWatchRequest(const fs::wpath& path)
 		: m_path(path), m_dirHandle(path), m_data(new u8[dataSize])
 	{
-		memset(&m_ovl, 0, sizeof(m_ovl));
+		m_ovl = (OVERLAPPED*)calloc(1, sizeof(OVERLAPPED));	// rationale for dynamic alloc: see decl
+		debug_assert(m_ovl);
 
 		// (hEvent is needed for the wait after CancelIo below)
 		const BOOL manualReset = TRUE;
 		const BOOL initialState = FALSE;
-		m_ovl.hEvent = CreateEvent(0, manualReset, initialState, 0);
+		m_ovl->hEvent = CreateEvent(0, manualReset, initialState, 0);
 	}
 
 	~DirWatchRequest()
@@ -95,20 +96,25 @@ public:
 		// however, this is not synchronized with the DPC (?) that apparently
 		// delivers the data - m_data is filled anyway.
 		// we need to ensure that either the IO has happened or that it
-		// was successfully canceled before freeing m_data, so wait:
+		// was successfully canceled before freeing m_data and m_ovl, so wait:
 		{
 			WinScopedPreserveLastError s;
 			// (GetOverlappedResult without a valid hEvent hangs on Vista;
 			// we'll abort after a timeout to be safe.)
-			const DWORD ret = WaitForSingleObject(m_ovl.hEvent, 1000);
-			WARN_IF_FALSE(CloseHandle(m_ovl.hEvent));
+			const DWORD ret = WaitForSingleObject(m_ovl->hEvent, 1000);
+			WARN_IF_FALSE(CloseHandle(m_ovl->hEvent));
 			if(ret == WAIT_OBJECT_0 || GetLastError() == ERROR_OPERATION_ABORTED)
+			{
 				delete[] m_data;
+				free(m_ovl);
+			}
 			else
 			{
-				debug_printf(L"WARNING: canceling IO may have failed; to avoid memory corruption, we won't free the buffer.\n");
+				// (this could conceivably happen if a kernel debugger
+				// hangs the system during the wait duration.)
+				debug_printf(L"WARNING: IO may still be pending; to avoid memory corruption, we won't free the buffer.\n");
 				DEBUG_WARN_ERR(ERR::TIMED_OUT);
-				// intentionally leak m_data!
+				// intentionally leak m_data and m_ovl!
 			}
 		}
 	}
@@ -137,8 +143,8 @@ public:
 			FILE_NOTIFY_CHANGE_CREATION;
 		// not set: FILE_NOTIFY_CHANGE_ATTRIBUTES, FILE_NOTIFY_CHANGE_LAST_ACCESS, FILE_NOTIFY_CHANGE_SECURITY
 		DWORD undefined = 0;	// (non-NULL pointer avoids BoundsChecker warning)
-		m_ovl.Internal = 0;
-		const BOOL ok = ReadDirectoryChangesW(m_dirHandle, m_data, dataSize, watchSubtree, filter, &undefined, &m_ovl, 0);
+		m_ovl->Internal = 0;
+		const BOOL ok = ReadDirectoryChangesW(m_dirHandle, m_data, dataSize, watchSubtree, filter, &undefined, m_ovl, 0);
 		WARN_IF_FALSE(ok);
 		return INFO::OK;
 	}
@@ -197,16 +203,20 @@ private:
 	// - requests larger than 64 KiB fail on SMB due to packet restrictions.
 	static const size_t dataSize = 64*KiB;
 
-	// note: each instance needs their own buffer. (we can't share a central
-	// copy because the watches are independent and may be triggered
-	// 'simultaneously' before the next poll.)
-	// NB: lifetime must be managed manually (see dtor)
+	// rationale:
+	// - each instance needs their own buffer. (we can't share a central
+	//   copy because the watches are independent and may be triggered
+	//   'simultaneously' before the next poll.)
+	// - lifetime must be managed manually (see dtor)
 	u8* m_data;
 
-	// (ReadDirectoryChangesW's asynchronous mode is triggered by passing
-	// a valid OVERLAPPED parameter; notification proceeds via
-	// completion ports, but we still need hEvent - see above.)
-	OVERLAPPED m_ovl;
+	// rationale:
+	// - ReadDirectoryChangesW's asynchronous mode is triggered by passing
+	//   a valid OVERLAPPED parameter; notification proceeds via
+	//   completion ports, but we still need hEvent - see above.
+	// - this must remain valid while the IO is pending. if the wait
+	//   were to fail, we must not free this memory, either.
+	OVERLAPPED* m_ovl;
 };
 
 typedef shared_ptr<DirWatchRequest> PDirWatchRequest;
