@@ -29,7 +29,8 @@ sed -i -r 's/^(LIBRARY_NAME\s+= mozjs).*/\1/' Makefile.in
 
 cd ..
 
-mkdir -p include/{debug,release}/js
+mkdir -p include/debug/js
+mkdir -p include/release/js
 mkdir -p lib/
 cp -uL src/build-debug/dist/include/* include/debug/js/
 cp -uL src/build-release/dist/include/* include/release/js/
@@ -38,4 +39,5 @@ cp -L src/build-release/dist/lib/libmozjs-release.so lib/
 
 cd ../..
 
-cp libraries/spidermonkey-tip/lib/libmozjs-{debug,release}.so binaries/system/
+cp libraries/spidermonkey-tip/lib/libmozjs-debug.so binaries/system/
+cp libraries/spidermonkey-tip/lib/libmozjs-release.so binaries/system/
