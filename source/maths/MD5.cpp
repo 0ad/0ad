@@ -15,6 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "precompiled.h"
+
 // Based on md5.cpp from Crypto++ 5.6.0:
 //   "md5.cpp - modified by Wei Dai from Colin Plumb's public domain md5.c"
 //   "any modifications are placed in the public domain"
