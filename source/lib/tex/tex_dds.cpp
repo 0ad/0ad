@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,58 +31,175 @@
 // S3TC decompression
 //-----------------------------------------------------------------------------
 
-// note: this code is not so efficient (mostly due to splitting it up
-// into function calls for readability). that's because it's only used to
-// emulate hardware S3TC support - if that isn't available, everything will
-// be dog-slow anyway due to increased vmem usage.
-
-// pixel colors are stored as size_t[4]. size_t rather than u8 protects from
-// overflow during calculations, and padding to an even size is a bit
-// more efficient (even though we don't need the alpha component).
-enum RGBA {	R, G, B, A };
-
-
-static inline void mix_2_3(size_t dst[4], size_t c0[4], size_t c1[4])
-{
-	for(int i = 0; i < 3; i++) dst[i] = (c0[i]*2 + c1[i] + 1)/3;
-}
-
-static inline void mix_avg(size_t dst[4], size_t c0[4], size_t c1[4])
-{
-	for(int i = 0; i < 3; i++) dst[i] = (c0[i]+c1[i])/2;
-}
-
-static inline size_t access_bit_tbl(u32 tbl, size_t idx, size_t bit_width)
-{
-	size_t val = tbl >> (idx*bit_width);
-	val &= bit_mask<u32>(bit_width);
-	return val;
-}
-
-static inline size_t access_bit_tbl64(u64 tbl, size_t idx, size_t bit_width)
-{
-	size_t val = (size_t)(tbl >> (idx*bit_width));
-	val &= bit_mask<u64>(bit_width);
-	return val;
-}
-
-// extract a range of bits and expand to 8 bits (by replicating
-// MS bits - see http://www.mindcontrol.org/~hplus/graphics/expand-bits.html ;
-// this is also the algorithm used by graphics cards when decompressing S3TC).
-// used to convert 565 to 32bpp RGB.
-static inline size_t unpack_to_8(u16 c, size_t bits_below, size_t num_bits)
-{
-	const size_t num_filler_bits = 8-num_bits;
-	const size_t field = (size_t)bits(c, bits_below, bits_below+num_bits-1);
-	const size_t filler = field >> (8-num_bits);
-	return (field << num_filler_bits) | filler;
-}
+// note: this code may not be terribly efficient. it's only used to
+// emulate hardware S3TC support - if that isn't available, performance
+// will suffer anyway due to increased video memory usage.
 
 
 // for efficiency, we precalculate as much as possible about a block
 // and store it here.
-struct S3tcBlock
+class S3tcBlock
 {
+public:
+	S3tcBlock(size_t dxt, const u8* RESTRICT block)
+		: dxt(dxt)
+	{
+		// (careful, 'dxt != 1' doesn't work - there's also DXT1a)
+		const u8* a_block = block;
+		const u8* c_block = (dxt == 3 || dxt == 5)? block+8 : block;
+
+		PrecalculateAlpha(dxt, a_block);
+		PrecalculateColor(dxt, c_block);
+	}
+
+	void WritePixel(size_t pixel_idx, u8* RESTRICT out) const
+	{
+		debug_assert(pixel_idx < 16);
+
+		// pixel index -> color selector (2 bit) -> color
+		const size_t c_selector = access_bit_tbl(c_selectors, pixel_idx, 2);
+		for(int i = 0; i < 3; i++)
+			out[i] = (u8)c[c_selector][i];
+
+		// if no alpha, done
+		if(dxt == 1)
+			return;
+
+		size_t a;
+		if(dxt == 3)
+		{
+			// table of 4-bit alpha entries
+			a = access_bit_tbl64(a_bits, pixel_idx, 4);
+			a |= a << 4; // expand to 8 bits (replicate high into low!)
+		}
+		else if(dxt == 5)
+		{
+			// pixel index -> alpha selector (3 bit) -> alpha
+			const size_t a_selector = access_bit_tbl64(a_bits, pixel_idx, 3);
+			a = dxt5_a_tbl[a_selector];
+		}
+		// (dxt == DXT1A)
+		else
+			a = c[c_selector][A];
+		out[A] = (u8)a;
+	}
+
+private:
+	// pixel colors are stored as size_t[4]. size_t rather than u8 protects from
+	// overflow during calculations, and padding to an even size is a bit
+	// more efficient (even though we don't need the alpha component).
+	enum RGBA {	R, G, B, A };
+
+	static inline void mix_2_3(size_t dst[4], size_t c0[4], size_t c1[4])
+	{
+		for(int i = 0; i < 3; i++) dst[i] = (c0[i]*2 + c1[i] + 1)/3;
+	}
+
+	static inline void mix_avg(size_t dst[4], size_t c0[4], size_t c1[4])
+	{
+		for(int i = 0; i < 3; i++) dst[i] = (c0[i]+c1[i])/2;
+	}
+
+	static inline size_t access_bit_tbl(u32 tbl, size_t idx, size_t bit_width)
+	{
+		size_t val = tbl >> (idx*bit_width);
+		val &= bit_mask<u32>(bit_width);
+		return val;
+	}
+
+	static inline size_t access_bit_tbl64(u64 tbl, size_t idx, size_t bit_width)
+	{
+		size_t val = (size_t)(tbl >> (idx*bit_width));
+		val &= bit_mask<u64>(bit_width);
+		return val;
+	}
+
+	// extract a range of bits and expand to 8 bits (by replicating
+	// MS bits - see http://www.mindcontrol.org/~hplus/graphics/expand-bits.html ;
+	// this is also the algorithm used by graphics cards when decompressing S3TC).
+	// used to convert 565 to 32bpp RGB.
+	static inline size_t unpack_to_8(u16 c, size_t bits_below, size_t num_bits)
+	{
+		const size_t num_filler_bits = 8-num_bits;
+		const size_t field = (size_t)bits(c, bits_below, bits_below+num_bits-1);
+		const size_t filler = field >> (8-num_bits);
+		return (field << num_filler_bits) | filler;
+	}
+
+	void PrecalculateAlpha(size_t dxt, const u8* RESTRICT a_block)
+	{
+		// read block contents
+		const u8 a0 = a_block[0], a1 = a_block[1];
+		a_bits = read_le64(a_block);	// see below
+
+		if(dxt == 5)
+		{
+			// skip a0,a1 bytes (data is little endian)
+			a_bits >>= 16;
+
+			const bool is_dxt5_special_combination = (a0 <= a1);
+			u8* a = dxt5_a_tbl;	// shorthand
+			if(is_dxt5_special_combination)
+			{
+				a[0] = a0;
+				a[1] = a1;
+				a[2] = (4*a0 + 1*a1 + 2)/5;
+				a[3] = (3*a0 + 2*a1 + 2)/5;
+				a[4] = (2*a0 + 3*a1 + 2)/5;
+				a[5] = (1*a0 + 4*a1 + 2)/5;
+				a[6] = 0;
+				a[7] = 255;
+			}
+			else
+			{
+				a[0] = a0;
+				a[1] = a1;
+				a[2] = (6*a0 + 1*a1 + 3)/7;
+				a[3] = (5*a0 + 2*a1 + 3)/7;
+				a[4] = (4*a0 + 3*a1 + 3)/7;
+				a[5] = (3*a0 + 4*a1 + 3)/7;
+				a[6] = (2*a0 + 5*a1 + 3)/7;
+				a[7] = (1*a0 + 6*a1 + 3)/7;
+			}
+		}
+	}
+
+
+	void PrecalculateColor(size_t dxt, const u8* RESTRICT c_block)
+	{
+		// read block contents
+		// .. S3TC reference colors (565 format). the color table is generated
+		//    from some combination of these, depending on their ordering.
+		u16 rc[2];
+		for(int i = 0; i < 2; i++)
+			rc[i] = read_le16(c_block + 2*i);
+		// .. table of 2-bit color selectors
+		c_selectors = read_le32(c_block+4);
+
+		const bool is_dxt1_special_combination = (dxt == 1 || dxt == DXT1A) && rc[0] <= rc[1];
+
+		// c0 and c1 are the values of rc[], converted to 32bpp
+		for(int i = 0; i < 2; i++)
+		{
+			c[i][R] = unpack_to_8(rc[i], 11, 5);
+			c[i][G] = unpack_to_8(rc[i],  5, 6);
+			c[i][B] = unpack_to_8(rc[i],  0, 5);
+		}
+
+		// c2 and c3 are combinations of c0 and c1:
+		if(is_dxt1_special_combination)
+		{
+			mix_avg(c[2], c[0], c[1]);			// c2 = (c0+c1)/2
+			for(int i = 0; i < 3; i++) c[3][i] = 0;	// c3 = black
+			c[3][A] = (dxt == DXT1A)? 0 : 255;		// (transparent iff DXT1a)
+		}
+		else
+		{
+			mix_2_3(c[2], c[0], c[1]);			// c2 = 2/3*c0 + 1/3*c1
+			mix_2_3(c[3], c[1], c[0]);			// c3 = 1/3*c0 + 2/3*c1
+		}
+	}
+
 	// the 4 color choices for each pixel (RGBA)
 	size_t c[4][4];	// c[i][RGBA_component]
 
@@ -97,129 +214,6 @@ struct S3tcBlock
 
 	size_t dxt;
 };
-
-
-static void s3tc_precalc_alpha(size_t dxt, const u8* RESTRICT a_block, S3tcBlock* RESTRICT b)
-{
-	// read block contents
-	const u8 a0 = a_block[0], a1 = a_block[1];
-	b->a_bits = read_le64(a_block);	// see below
-
-	if(dxt == 5)
-	{
-		// skip a0,a1 bytes (data is little endian)
-		b->a_bits >>= 16;
-
-		const bool is_dxt5_special_combination = (a0 <= a1);
-		u8* a = b->dxt5_a_tbl;	// shorthand
-		if(is_dxt5_special_combination)
-		{
-			a[0] = a0;
-			a[1] = a1;
-			a[2] = (4*a0 + 1*a1 + 2)/5;
-			a[3] = (3*a0 + 2*a1 + 2)/5;
-			a[4] = (2*a0 + 3*a1 + 2)/5;
-			a[5] = (1*a0 + 4*a1 + 2)/5;
-			a[6] = 0;
-			a[7] = 255;
-		}
-		else
-		{
-			a[0] = a0;
-			a[1] = a1;
-			a[2] = (6*a0 + 1*a1 + 3)/7;
-			a[3] = (5*a0 + 2*a1 + 3)/7;
-			a[4] = (4*a0 + 3*a1 + 3)/7;
-			a[5] = (3*a0 + 4*a1 + 3)/7;
-			a[6] = (2*a0 + 5*a1 + 3)/7;
-			a[7] = (1*a0 + 6*a1 + 3)/7;
-		}
-	}
-}
-
-
-static void s3tc_precalc_color(size_t dxt, const u8* RESTRICT c_block, S3tcBlock* RESTRICT b)
-{
-	// read block contents
-	// .. S3TC reference colors (565 format). the color table is generated
-	//    from some combination of these, depending on their ordering.
-	u16 rc[2];
-	for(int i = 0; i < 2; i++)
-		rc[i] = read_le16(c_block + 2*i);
-	// .. table of 2-bit color selectors
-	b->c_selectors = read_le32(c_block+4);
-
-	const bool is_dxt1_special_combination =
-		(dxt == 1 || dxt == DXT1A) && rc[0] <= rc[1];
-
-	// c0 and c1 are the values of rc[], converted to 32bpp
-	for(int i = 0; i < 2; i++)
-	{
-		b->c[i][R] = unpack_to_8(rc[i], 11, 5);
-		b->c[i][G] = unpack_to_8(rc[i],  5, 6);
-		b->c[i][B] = unpack_to_8(rc[i],  0, 5);
-	}
-
-	// c2 and c3 are combinations of c0 and c1:
-	if(is_dxt1_special_combination)
-	{
-		mix_avg(b->c[2], b->c[0], b->c[1]);			// c2 = (c0+c1)/2
-		for(int i = 0; i < 3; i++) b->c[3][i] = 0;	// c3 = black
-		b->c[3][A] = (dxt == DXT1A)? 0 : 255;		// (transparent iff DXT1a)
-	}
-	else
-	{
-		mix_2_3(b->c[2], b->c[0], b->c[1]);			// c2 = 2/3*c0 + 1/3*c1
-		mix_2_3(b->c[3], b->c[1], b->c[0]);			// c3 = 1/3*c0 + 2/3*c1
-	}
-}
-
-
-static void s3tc_precalc_block(size_t dxt, const u8* RESTRICT block, S3tcBlock* RESTRICT b)
-{
-	b->dxt = dxt;
-
-	// (careful, 'dxt != 1' doesn't work - there's also DXT1a)
-	const u8* a_block = block;
-	const u8* c_block = (dxt == 3 || dxt == 5)? block+8 : block;
-
-	s3tc_precalc_alpha(dxt, a_block, b);
-	s3tc_precalc_color(dxt, c_block, b);
-}
-
-
-static void s3tc_write_pixel(const S3tcBlock* RESTRICT b, size_t pixel_idx, u8* RESTRICT out)
-{
-	debug_assert(pixel_idx < 16);
-
-	// pixel index -> color selector (2 bit) -> color
-	const size_t c_selector = access_bit_tbl(b->c_selectors, pixel_idx, 2);
-	const size_t* c = b->c[c_selector];
-	for(int i = 0; i < 3; i++)
-		out[i] = (u8)c[i];
-
-	// if no alpha, done
-	if(b->dxt == 1)
-		return;
-
-	size_t a;
-	if(b->dxt == 3)
-	{
-		// table of 4-bit alpha entries
-		a = access_bit_tbl64(b->a_bits, pixel_idx, 4);
-		a |= a << 4; // expand to 8 bits (replicate high into low!)
-	}
-	else if(b->dxt == 5)
-	{
-		// pixel index -> alpha selector (3 bit) -> alpha
-		const size_t a_selector = access_bit_tbl64(b->a_bits, pixel_idx, 3);
-		a = b->dxt5_a_tbl[a_selector];
-	}
-	// (dxt == DXT1A)
-	else
-		a = c[A];
-	out[A] = (u8)a;
-}
 
 
 struct S3tcDecompressInfo
@@ -246,10 +240,10 @@ static void s3tc_decompress_level(size_t UNUSED(level), size_t level_w, size_t l
 	debug_assert(level_data_size % s3tc_block_size == 0);
 
 	for(size_t block_y = 0; block_y < blocks_h; block_y++)
+	{
 		for(size_t block_x = 0; block_x < blocks_w; block_x++)
 		{
-			S3tcBlock b;
-			s3tc_precalc_block(dxt, s3tc_data, &b);
+			S3tcBlock block(dxt, s3tc_data);
 			s3tc_data += s3tc_block_size;
 
 			size_t pixel_idx = 0;
@@ -260,12 +254,13 @@ static void s3tc_decompress_level(size_t UNUSED(level), size_t level_w, size_t l
 				u8* out = (u8*)di->out + ((block_y*4+y)*blocks_w*4 + block_x*4) * di->out_Bpp;
 				for(int x = 0; x < 4; x++)
 				{
-					s3tc_write_pixel(&b, pixel_idx, out);
+					block.WritePixel(pixel_idx, out);
 					out += di->out_Bpp;
 					pixel_idx++;
 				}
 			}
-		}	// for block_x
+		}
+	}
 
 	debug_assert(s3tc_data == level_data + level_data_size);
 	di->out += blocks_w*blocks_h * 16 * di->out_Bpp;
@@ -306,11 +301,11 @@ static LibError s3tc_decompress(Tex* t)
 //-----------------------------------------------------------------------------
 
 // bit values and structure definitions taken from 
-// http://msdn.microsoft.com/archive/en-us/directx9_c/directx/graphics/reference/DDSFileReference/ddsfileformat.asp
+// http://msdn.microsoft.com/en-us/library/ee417785(VS.85).aspx
 
 #pragma pack(push, 1)
 
-// DDPIXELFORMAT.dwFlags
+// DDS_PIXELFORMAT.dwFlags
 // we've seen some DXT3 files that don't have this set (which is nonsense;
 // any image lacking alpha should be stored as DXT1). it's authoritative
 // if fourcc is DXT1 (there's no other way to tell DXT1 and DXT1a apart)
@@ -319,7 +314,7 @@ static LibError s3tc_decompress(Tex* t)
 #define DDPF_FOURCC      0x00000004
 #define DDPF_RGB         0x00000040
 
-typedef struct
+struct DDS_PIXELFORMAT
 {
 	u32 dwSize;                       // size of structure (32)
 	u32 dwFlags;                      // indicates which fields are valid
@@ -328,59 +323,43 @@ typedef struct
 	u32 dwRBitMask;
 	u32 dwGBitMask;
 	u32 dwBBitMask;
-	u32 dwRGBAlphaBitMask;
-}
-DDPIXELFORMAT;
+	u32 dwABitMask;                   // (DDPF_ALPHAPIXELS)
+};
 
-// DDCAPS2.dwCaps1
-#define DDSCAPS_COMPLEX 0x00000008
-#define DDSCAPS_TEXTURE 0x00001000
-#define DDSCAPS_MIPMAP  0x00400000
 
-// DDCAPS2.dwCaps2
-#define DDSCAPS2_CUBEMAP           0x00000200
-#define DDSCAPS2_CUBEMAP_POSITIVEX 0x00000400
-#define DDSCAPS2_CUBEMAP_NEGATIVEX 0x00000800
-#define DDSCAPS2_CUBEMAP_POSITIVEY 0x00001000
-#define DDSCAPS2_CUBEMAP_NEGATIVEY 0x00002000
-#define DDSCAPS2_CUBEMAP_POSITIVEZ 0x00004000
-#define DDSCAPS2_CUBEMAP_NEGATIVEZ 0x00008000
-#define DDSCAPS2_VOLUME            0x00200000
-
-typedef struct
-{
-	u32 dwCaps1;
-	u32 dwCaps2;
-	u32 Reserved[2];
-}
-DDCAPS2;
-
-// DDSURFACEDESC2.dwFlags
+// DDS_HEADER.dwFlags (none are optional)
 #define DDSD_CAPS        0x00000001
 #define DDSD_HEIGHT      0x00000002
 #define DDSD_WIDTH       0x00000004
-#define DDSD_PITCH       0x00000008
+#define DDSD_PITCH       0x00000008 // used when texture is uncompressed
 #define DDSD_PIXELFORMAT 0x00001000
 #define DDSD_MIPMAPCOUNT 0x00020000
-#define DDSD_LINEARSIZE  0x00080000
+#define DDSD_LINEARSIZE  0x00080000 // used when texture is compressed
 #define DDSD_DEPTH       0x00800000
 
-typedef struct
+// DDS_HEADER.dwCaps
+#define DDSCAPS_MIPMAP   0x00400000 // optional
+#define DDSCAPS_TEXTURE	 0x00001000 // required
+
+struct DDS_HEADER
 {
+	// (preceded by the FOURCC "DDS ")
 	u32 dwSize;                    // size of structure (124)
 	u32 dwFlags;                   // indicates which fields are valid
 	u32 dwHeight;                  // (DDSD_HEIGHT) height of main image (pixels)
 	u32 dwWidth;                   // (DDSD_WIDTH ) width  of main image (pixels)
-	u32 dwPitchOrLinearSize;       // (DDSD_LINEARSIZE) total image size
+	u32 dwPitchOrLinearSize;       // (DDSD_LINEARSIZE) size [bytes] of top level
 	                               // (DDSD_PITCH) bytes per row (%4 = 0)
 	u32 dwDepth;                   // (DDSD_DEPTH) vol. textures: vol. depth
 	u32 dwMipMapCount;             // (DDSD_MIPMAPCOUNT) total # levels
 	u32 dwReserved1[11];           // reserved
-	DDPIXELFORMAT ddpfPixelFormat; // (DDSD_PIXELFORMAT) surface description
-	DDCAPS2 ddsCaps;               // (DDSD_CAPS) misc. surface flags
+	DDS_PIXELFORMAT ddpf;          // (DDSD_PIXELFORMAT) surface description
+	u32 dwCaps;                    // (DDSD_CAPS) misc. surface flags
+	u32 dwCaps2;
+	u32 dwCaps3;
+	u32 dwCaps4;
 	u32 dwReserved2;               // reserved
-}
-DDSURFACEDESC2;
+};
 
 #pragma pack(pop)
 
@@ -405,13 +384,13 @@ static bool is_valid_dxt(size_t dxt)
 // pf points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static LibError decode_pf(const DDPIXELFORMAT* pf, size_t& bpp, size_t& flags)
+static LibError decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 {
 	bpp = 0;
 	flags = 0;
 
 	// check struct size
-	if(read_le32(&pf->dwSize) != sizeof(DDPIXELFORMAT))
+	if(read_le32(&pf->dwSize) != sizeof(DDS_PIXELFORMAT))
 		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 
 	// determine type
@@ -423,7 +402,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, size_t& bpp, size_t& flags)
 		const size_t pf_r_mask = (size_t)read_le32(&pf->dwRBitMask);
 		const size_t pf_g_mask = (size_t)read_le32(&pf->dwGBitMask);
 		const size_t pf_b_mask = (size_t)read_le32(&pf->dwBBitMask);
-		const size_t pf_a_mask = (size_t)read_le32(&pf->dwRGBAlphaBitMask);
+		const size_t pf_a_mask = (size_t)read_le32(&pf->dwABitMask);
 
 		// (checked below; must be set in case below warning is to be
 		// skipped)
@@ -440,7 +419,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, size_t& bpp, size_t& flags)
 		// make sure component ordering is 0xBBGGRR = RGB (see below)
 		if(pf_r_mask != 0xFF || pf_g_mask != 0xFF00 || pf_b_mask != 0xFF0000)
 		{
-			// DDPIXELFORMAT in theory supports any ordering of R,G,B,A.
+			// DDS_PIXELFORMAT in theory supports any ordering of R,G,B,A.
 			// we need to upload to OpenGL, which can only receive BGR(A) or
 			// RGB(A). the former still requires conversion (done by driver),
 			// so it's slower. since the very purpose of supporting uncompressed
@@ -494,7 +473,7 @@ static LibError decode_pf(const DDPIXELFORMAT* pf, size_t& bpp, size_t& flags)
 // sd points to the DDS file's header; all fields must be endian-converted
 // before use.
 // output parameters invalid on failure.
-static LibError decode_sd(const DDSURFACEDESC2* sd, size_t* w_, size_t* h_, size_t* bpp_, size_t* flags_)
+static LibError decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp, size_t& flags)
 {
 	// check header size
 	if(read_le32(&sd->dwSize) != sizeof(*sd))
@@ -509,12 +488,11 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, size_t* w_, size_t* h_, size
 		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
 
 	// image dimensions
-	const size_t h = (size_t)read_le32(&sd->dwHeight);
-	const size_t w = (size_t)read_le32(&sd->dwWidth);
+	h = (size_t)read_le32(&sd->dwHeight);
+	w = (size_t)read_le32(&sd->dwWidth);
 
 	// pixel format
-	size_t bpp, flags;
-	RETURN_ERR(decode_pf(&sd->ddpfPixelFormat, bpp, flags));
+	RETURN_ERR(decode_pf(&sd->ddpf, bpp, flags));
 
 	// if the image is not aligned with the S3TC block size, it is stored
 	// with extra pixels on the bottom left to fill up the space, so we need
@@ -537,12 +515,15 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, size_t* w_, size_t* h_, size
 	if(sd_flags & DDSD_PITCH)
 	{
 		if(sd_pitch_or_size != round_up(pitch, size_t(4)))
-			WARN_RETURN(ERR::CORRUPTED);
+			DEBUG_WARN_ERR(ERR::CORRUPTED);
 	}
 	if(sd_flags & DDSD_LINEARSIZE)
 	{
-		if(sd_pitch_or_size != pitch*stored_h)
-			WARN_RETURN(ERR::CORRUPTED);
+		// some DDS tools mistakenly store the total size of all levels,
+		// so allow values close to that as well
+		const ssize_t totalSize = ssize_t(pitch*stored_h*1.333333f);
+		if(sd_pitch_or_size != pitch*stored_h && abs(ssize_t(sd_pitch_or_size)-totalSize) > 64)
+			DEBUG_WARN_ERR(ERR::CORRUPTED);
 	}
 	// note: both flags set would be invalid; no need to check for that,
 	// though, since one of the above tests would fail.
@@ -570,21 +551,16 @@ static LibError decode_sd(const DDSURFACEDESC2* sd, size_t* w_, size_t* h_, size
 	}
 
 	// check caps
-	const DDCAPS2* caps = &sd->ddsCaps;
 	// .. this is supposed to be set, but don't bail if not (pointless)
-	debug_assert(caps->dwCaps1 & DDSCAPS_TEXTURE);
+	debug_assert(sd->dwCaps & DDSCAPS_TEXTURE);
 	// .. sanity check: warn if mipmap flag not set (don't bail if not
 	// because we've already made the decision).
-	const bool mipmap_cap = (caps->dwCaps1 & DDSCAPS_MIPMAP) != 0;
+	const bool mipmap_cap = (sd->dwCaps & DDSCAPS_MIPMAP) != 0;
 	const bool mipmap_flag = (flags & TEX_MIPMAPS) != 0;
 	debug_assert(mipmap_cap == mipmap_flag);
 	// note: we do not check for cubemaps and volume textures (not supported)
 	// because the file may still have useful data we can read.
 
-	*w_ = w;
-	*h_ = h;
-	*bpp_ = bpp;
-	*flags_ = flags;
 	return INFO::OK;
 }
 
@@ -605,24 +581,15 @@ static bool dds_is_ext(const std::wstring& extension)
 
 static size_t dds_hdr_size(const u8* UNUSED(file))
 {
-	return 4+sizeof(DDSURFACEDESC2);
+	return 4+sizeof(DDS_HEADER);
 }
 
 
 static LibError dds_decode(DynArray* RESTRICT da, Tex* RESTRICT t)
 {
-	u8* file         = da->base;
-	const DDSURFACEDESC2* sd = (const DDSURFACEDESC2*)(file+4);
-
-	size_t w, h, bpp;
-	size_t flags;
-	RETURN_ERR(decode_sd(sd, &w, &h, &bpp, &flags));
-	// note: cannot pass address of these directly to decode_sd because
-	// they are bitfields.
-	t->w     = w;
-	t->h     = h;
-	t->bpp   = bpp;
-	t->flags = flags;
+	u8* file = da->base;
+	const DDS_HEADER* sd = (const DDS_HEADER*)(file+4);
+	RETURN_ERR(decode_sd(sd, t->w, t->h, t->bpp, t->flags));
 	return INFO::OK;
 }
 
