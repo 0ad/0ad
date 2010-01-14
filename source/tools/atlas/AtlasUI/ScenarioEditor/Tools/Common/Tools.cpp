@@ -138,7 +138,7 @@ void RegisterToolBarButton(wxToolBar* toolbar, int buttonId, const wxString& too
 IMPLEMENT_CLASS(WorldCommand, AtlasWindowCommand);
 
 WorldCommand::WorldCommand(AtlasMessage::mWorldCommand* command)
-: AtlasWindowCommand(true, wxString::FromAscii(command->GetType())), m_Command(command), m_AlreadyDone(false)
+: AtlasWindowCommand(true, wxString::FromAscii(command->GetName())), m_Command(command), m_AlreadyDone(false)
 {
 }
 
