@@ -44,16 +44,13 @@ public:
 		m_SimContext.m_Terrain = terrain;
 		m_ComponentManager.LoadComponentTypes();
 
-		m_NextId = SYSTEM_ENTITY + 1;
-		m_DeltaTime = 0.0;
 		// (can't call ResetState here since the scripts haven't been loaded yet)
 	}
 
 	void ResetState(bool skipGui)
 	{
-		m_ComponentManager.DestroyAllComponents();
+		m_ComponentManager.ResetState();
 
-		m_NextId = SYSTEM_ENTITY + 1;
 		m_DeltaTime = 0.0;
 
 		CParamNode noParam;
@@ -77,17 +74,15 @@ public:
 	bool LoadScripts(const VfsPath& path);
 	LibError ReloadChangedFile(const VfsPath& path);
 
-	entity_id_t AllocateNewEntity();
 	void AddComponent(entity_id_t ent, EComponentTypeId cid, const CParamNode& paramNode);
 
-	entity_id_t AddEntity(const std::wstring& templateName, entity_id_t preferredId);
+	entity_id_t AddEntity(const std::wstring& templateName, entity_id_t ent);
 
 	void Update(float frameTime);
 	void Interpolate(float frameTime);
 
 	CSimContext m_SimContext;
 	CComponentManager m_ComponentManager;
-	entity_id_t m_NextId;
 	double m_DeltaTime;
 
 	std::set<std::wstring> m_LoadedScripts;
@@ -134,28 +129,17 @@ LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 	return INFO::OK;
 }
 
-entity_id_t CSimulation2Impl::AllocateNewEntity()
-{
-	return m_NextId++;
-}
-
 void CSimulation2Impl::AddComponent(entity_id_t ent, EComponentTypeId cid, const CParamNode& paramNode)
 {
 	m_ComponentManager.AddComponent(ent, cid, paramNode);
 }
 
-entity_id_t CSimulation2Impl::AddEntity(const std::wstring& templateName, entity_id_t preferredId)
+entity_id_t CSimulation2Impl::AddEntity(const std::wstring& templateName, entity_id_t ent)
 {
 	CmpPtr<ICmpTemplateManager> tempMan(m_SimContext, SYSTEM_ENTITY);
 	debug_assert(!tempMan.null());
 
-	entity_id_t ent = preferredId;
-	// TODO: should check if this entity is already defined (might happen with bogus map files)
-	// and choose a new ID in that case
-
-	// Make sure any newly allocated IDs won't conflict with ones that are already added
-	if (m_NextId <= ent)
-		m_NextId = ent + 1;
+	// TODO: should assert that ent doesn't exist
 
 	const CParamNode* tmpl = tempMan->LoadTemplate(ent, templateName, -1);
 	if (!tmpl)
@@ -230,12 +214,27 @@ CSimulation2::~CSimulation2()
 
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName)
 {
-	return m->AddEntity(templateName, m->AllocateNewEntity());
+	return m->AddEntity(templateName, m->m_ComponentManager.AllocateNewEntity());
 }
 
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName, entity_id_t preferredId)
 {
-	return m->AddEntity(templateName, preferredId);
+	return m->AddEntity(templateName, m->m_ComponentManager.AllocateNewEntity(preferredId));
+}
+
+entity_id_t CSimulation2::AddLocalEntity(const std::wstring& templateName)
+{
+	return m->AddEntity(templateName, m->m_ComponentManager.AllocateNewLocalEntity());
+}
+
+void CSimulation2::DestroyEntity(entity_id_t ent)
+{
+	m->m_ComponentManager.DestroyComponentsSoon(ent);
+}
+
+void CSimulation2::FlushDestroyedEntities()
+{
+	m->m_ComponentManager.FlushDestroyedComponents();
 }
 
 IComponent* CSimulation2::QueryInterface(entity_id_t ent, int iid) const
@@ -256,11 +255,6 @@ void CSimulation2::BroadcastMessage(const CMessage& msg) const
 const CSimulation2::InterfaceList& CSimulation2::GetEntitiesWithInterface(int iid)
 {
 	return m->m_ComponentManager.GetEntitiesWithInterface(iid);
-}
-
-entity_id_t CSimulation2::AllocateNewEntity()
-{
-	return m->AllocateNewEntity();
 }
 
 const CSimContext& CSimulation2::GetSimContext() const
@@ -310,13 +304,11 @@ bool CSimulation2::DumpDebugState(std::ostream& stream)
 
 bool CSimulation2::SerializeState(std::ostream& stream)
 {
-	// TODO: need to save m->m_NextId
 	return m->m_ComponentManager.SerializeState(stream);
 }
 
 bool CSimulation2::DeserializeState(std::istream& stream)
 {
-	// TODO: need to update m->m_NextId
 	// TODO: need to make sure the required SYSTEM_ENTITY components get constructed
 	return m->m_ComponentManager.DeserializeState(stream);
 }

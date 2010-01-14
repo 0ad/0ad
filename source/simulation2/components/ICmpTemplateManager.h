@@ -34,8 +34,15 @@ public:
 	 * from parent XML files), and applies the techs that are currently active for
 	 * player 'playerID', for use with a new entity 'ent'.
 	 * The returned CParamNode must not be used for any entities other than 'ent'.
-	 * Alternatively, if templateName is of the form "actor|foo" then it will load a
-	 * default stationary entity template that uses actor "foo".
+	 *
+	 * If templateName is of the form "actor|foo" then it will load a default
+	 * stationary entity template that uses actor "foo". (This is a convenience to
+	 * avoid the need for hundreds of tiny decorative-object entity templates.)
+	 *
+	 * If templateName is of the form "preview|foo" then it will load a template
+	 * based on entity template "foo" with the non-graphical components removed.
+	 * (This is for previewing construction/placement of units.)
+	 *
 	 * @return NULL on error
 	 */
 	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::wstring& templateName, int playerID) = 0;
@@ -53,7 +60,7 @@ public:
 
 	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplate.
-	 * (This includes "actor|foo" names).
+	 * (This includes "actor|foo" etc names).
 	 * Intended for use by the map editor. This is likely to be quite slow.
 	 */
 	virtual std::vector<std::wstring> FindAllTemplates() = 0;

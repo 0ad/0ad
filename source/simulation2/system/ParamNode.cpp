@@ -66,6 +66,19 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	// TODO: support some kind of 'delete' marker, for use with inheritance
 }
 
+void CParamNode::CopyFilteredChildrenOfChild(const CParamNode& src, const char* name, const std::set<std::string>& permitted)
+{
+	ChildrenMap::iterator dstChild = m_Childs.find(name);
+	ChildrenMap::const_iterator srcChild = src.m_Childs.find(name);
+	if (dstChild == m_Childs.end() || srcChild == src.m_Childs.end())
+		return; // error
+
+	ChildrenMap::const_iterator it = srcChild->second.m_Childs.begin();
+	for (; it != srcChild->second.m_Childs.end(); ++it)
+		if (permitted.count(it->first))
+			dstChild->second.m_Childs[it->first] = it->second;
+}
+
 const CParamNode* CParamNode::GetChild(const char* name) const
 {
 	ChildrenMap::const_iterator it = m_Childs.find(name);

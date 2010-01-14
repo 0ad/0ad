@@ -74,7 +74,15 @@ public:
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, L"actor|example", -1);
 		TS_ASSERT(actor != NULL);
 		TS_ASSERT_WSTR_EQUALS(actor->ToXML(), L"<MotionBallScripted></MotionBallScripted><Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example</Actor></VisualActor>");
-	}
+
+		const CParamNode* preview = tempMan->LoadTemplate(ent2, L"preview|unit", -1);
+		TS_ASSERT(preview != NULL);
+		TS_ASSERT_WSTR_EQUALS(preview->ToXML(), L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example</Actor></VisualActor>");
+
+		const CParamNode* previewactor = tempMan->LoadTemplate(ent2, L"preview|actor|example2", -1);
+		TS_ASSERT(previewactor != NULL);
+		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(), L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example2</Actor></VisualActor>");
+}
 
 	void test_LoadTemplate_errors()
 	{
@@ -94,11 +102,13 @@ public:
 
 		TS_ASSERT(tempMan->LoadTemplate(ent2, L"nonexistent", -1) == NULL);
 
-		const CParamNode* inherit_loop = tempMan->LoadTemplate(ent2, L"inherit-loop", -1);
-		TS_ASSERT(inherit_loop == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, L"inherit-loop", -1) == NULL);
 
-		const CParamNode* inherit_broken = tempMan->LoadTemplate(ent2, L"inherit-broken", -1);
-		TS_ASSERT(inherit_broken == NULL);
+		TS_ASSERT(tempMan->LoadTemplate(ent2, L"inherit-broken", -1) == NULL);
+
+		TS_ASSERT(tempMan->LoadTemplate(ent2, L"inherit-special", -1) == NULL);
+
+		TS_ASSERT(tempMan->LoadTemplate(ent2, L"preview|nonexistent", -1) == NULL);
 	}
 
 	void test_LoadTemplate_multiple()

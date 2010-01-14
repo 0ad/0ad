@@ -88,8 +88,10 @@ public:
 	virtual std::vector<std::wstring> FindAllTemplates();
 
 private:
-	// Map from template XML filename to last loaded valid template data
-	// (We store "last loaded valid" to behave more nicely when hotloading broken files)
+	// Map from template name (XML filename or special |-separated string) to the most recently
+	// loaded valid template data.
+	// (Failed loads won't remove valid entries under the same name, so we behave more nicely
+	// when hotloading broken files)
 	std::map<std::wstring, CParamNode> m_TemplateFileData;
 
 	// Remember the template used by each entity, so we can return them
@@ -100,10 +102,15 @@ private:
 	// (Re)loads the given template, regardless of whether it exists already,
 	// and saves into m_TemplateFileData. Also loads any parents that are not yet
 	// loaded. Returns false on error.
+	// @param templateName XML filename to load (not a |-separated string)
 	bool LoadTemplateFile(const std::wstring& templateName, int depth);
 
 	// Constructs a standard static-decorative-object template for the given actor
 	void ConstructTemplateActor(const std::wstring& actorName, CParamNode& out);
+
+	// Copy the non-interactive components of an entity template (position, actor, etc) into
+	// a new entity template
+	void CopyPreviewSubset(CParamNode& out, const CParamNode& in);
 };
 
 REGISTER_COMPONENT_TYPE(TemplateManager)
@@ -112,24 +119,11 @@ const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::
 {
 	m_LatestTemplates[ent] = templateName;
 
-	bool isNew = (m_TemplateFileData.find(templateName) == m_TemplateFileData.end());
-
-	if (isNew)
+	// Load the template if necessary
+	if (!LoadTemplateFile(templateName, 0))
 	{
-		// Handle special case "actor|foo"
-		if (templateName.find(L"actor|") == 0)
-		{
-			ConstructTemplateActor(templateName.substr(6), m_TemplateFileData[templateName]);
-		}
-		else
-		{
-			// Load it as a plain XML file
-			if (!LoadTemplateFile(templateName, 0))
-			{
-				LOGERROR(L"Failed to load entity template '%ls'", templateName.c_str());
-				return NULL;
-			}
-		}
+		LOGERROR(L"Failed to load entity template '%ls'", templateName.c_str());
+		return NULL;
 	}
 
 	// TODO: Eventually we need to support techs in here, and return a different template per playerID
@@ -164,12 +158,40 @@ std::wstring CCmpTemplateManager::GetCurrentTemplateName(entity_id_t ent)
 
 bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int depth)
 {
+	// If this file was already loaded, we don't need to do anything
+	if (m_TemplateFileData.find(templateName) != m_TemplateFileData.end())
+		return true;
+
 	// Handle infinite loops more gracefully than running out of stack space and crashing
 	if (depth > 100)
 	{
 		LOGERROR(L"Probable infinite inheritance loop in entity template '%ls'", templateName.c_str());
 		return false;
 	}
+
+	// Handle special case "actor|foo"
+	if (templateName.find(L"actor|") == 0)
+	{
+		ConstructTemplateActor(templateName.substr(6), m_TemplateFileData[templateName]);
+		return true;
+	}
+
+	// Handle special case "preview|foo"
+	if (templateName.find(L"preview|") == 0)
+	{
+		// Load the base entity template, if it wasn't already loaded
+		std::wstring baseName = templateName.substr(8);
+		if (!LoadTemplateFile(baseName, depth+1))
+		{
+			LOGERROR(L"Failed to load entity template '%ls'", baseName.c_str());
+			return NULL;
+		}
+		// Copy a subset to the requested template
+		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
+		return true;
+	}
+
+	// Normal case: templateName is an XML file:
 
 	VfsPath path = VfsPath(TEMPLATE_ROOT) / (templateName + L".xml");
 	CXeromyces xero;
@@ -183,14 +205,18 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 	{
 		std::wstring parentName(parentStr.begin(), parentStr.end());
 
-		// If the parent wasn't already loaded, then load it.
-		if (m_TemplateFileData.find(parentName) == m_TemplateFileData.end())
+		// To prevent needless complexity in template design, we don't allow |-separated strings as parents
+		if (parentName.find('|') != parentName.npos)
 		{
-			if (!LoadTemplateFile(parentName, depth+1))
-			{
-				LOGERROR(L"Failed to load parent '%ls' of entity template '%ls'", parentName.c_str(), templateName.c_str());
-				return false;
-			}
+			LOGERROR(L"Invalid parent '%ls' in entity template '%ls'", parentName.c_str(), templateName.c_str());
+			return false;
+		}
+
+		// Ensure the parent is loaded
+		if (!LoadTemplateFile(parentName, depth+1))
+		{
+			LOGERROR(L"Failed to load parent '%ls' of entity template '%ls'", parentName.c_str(), templateName.c_str());
+			return false;
 		}
 
 		CParamNode& parentData = m_TemplateFileData[parentName];
@@ -228,8 +254,10 @@ static LibError AddToTemplates(const VfsPath& pathname, const FileInfo& UNUSED(f
 {
 	std::vector<std::wstring>& templates = *(std::vector<std::wstring>*)cbData;
 
+	// Strip the .xml extension
+	VfsPath pathstem = change_extension(pathname, L"");
 	// Strip the root from the path
-	std::wstring name = pathname.string().substr(ARRAY_SIZE(TEMPLATE_ROOT)-1);
+	std::wstring name = pathstem.string().substr(ARRAY_SIZE(TEMPLATE_ROOT)-1);
 
 	// We want to ignore template_*.xml templates, since they should never be built in the editor
 	if (name.substr(0, 9) == L"template_")
@@ -269,4 +297,20 @@ std::vector<std::wstring> CCmpTemplateManager::FindAllTemplates()
 	WARN_ERR(ok);
 
 	return templates;
+}
+
+void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& in)
+{
+	// We only want to include components which are necessary (for the visual previewing of an entity)
+	// and safe (i.e. won't do anything that affects the synchronised simulation state), so additions
+	// to this list should be carefully considered
+	std::set<std::string> permittedComponentTypes;
+	permittedComponentTypes.insert("Position");
+	permittedComponentTypes.insert("VisualActor");
+	// (This could be initialised once and reused, but it's not worth the effort)
+
+	CParamNode::LoadXMLString(out, "<Entity/>");
+	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
+	// In the future, we might want to add some extra flags to certain components, to indicate they're
+	// running in 'preview' mode and should not e.g. register with global managers
 }

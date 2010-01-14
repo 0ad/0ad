@@ -159,6 +159,10 @@ void ViewGame::Update(float frameLength)
 {
 	float actualFrameLength = frameLength * m_SpeedMultiplier;
 
+	// Clean up any entities destroyed during UI message processing
+	if (g_UseSimulation2)
+		g_Game->GetSimulation2()->FlushDestroyedEntities();
+
 	if (m_SpeedMultiplier == 0.f)
 	{
 		// Update unit interpolation
@@ -183,6 +187,10 @@ void ViewGame::Update(float frameLength)
 				ok = g_Game->Update(0.0, false); // don't add on any extra sim time
 			}
 		}
+
+		// Clean up any entities destroyed during simulation update
+		if (g_UseSimulation2)
+			g_Game->GetSimulation2()->FlushDestroyedEntities();
 
 		// Interpolate the graphics - we only want to do this once per visual frame,
 		// not in every call to g_Game->Update

@@ -71,6 +71,29 @@ public:
 		TS_ASSERT_EQUALS(man.LookupCID("Test1B"), (int)CID_Test1B);
 	}
 
+	void test_AllocateNewEntity()
+	{
+		CSimContext context;
+		CComponentManager man(context);
+
+		TS_ASSERT_EQUALS(man.AllocateNewEntity(), (u32)2);
+		TS_ASSERT_EQUALS(man.AllocateNewEntity(), (u32)3);
+		TS_ASSERT_EQUALS(man.AllocateNewEntity(), (u32)4);
+		TS_ASSERT_EQUALS(man.AllocateNewEntity(100), (u32)100);
+		TS_ASSERT_EQUALS(man.AllocateNewEntity(), (u32)101);
+		// TODO:
+		// TS_ASSERT_EQUALS(man.AllocateNewEntity(3), (u32)102);
+
+		TS_ASSERT_EQUALS(man.AllocateNewLocalEntity(), (u32)FIRST_LOCAL_ENTITY);
+		TS_ASSERT_EQUALS(man.AllocateNewLocalEntity(), (u32)FIRST_LOCAL_ENTITY+1);
+
+		man.ResetState();
+
+		TS_ASSERT_EQUALS(man.AllocateNewEntity(), (u32)2);
+		TS_ASSERT_EQUALS(man.AllocateNewEntity(3), (u32)3);
+		TS_ASSERT_EQUALS(man.AllocateNewLocalEntity(), (u32)FIRST_LOCAL_ENTITY);
+	}
+
 	void test_AddComponent_errors()
 	{
 		CSimContext context;
@@ -403,7 +426,7 @@ public:
 		CComponentManager man(context);
 		man.LoadComponentTypes();
 
-		entity_id_t ent1 = 1, ent2 = 2;
+		entity_id_t ent1 = 1, ent2 = 2, ent3 = FIRST_LOCAL_ENTITY;
 		CParamNode noParam;
 
 		CParamNode testParam;
@@ -412,10 +435,12 @@ public:
 		man.AddComponent(ent1, CID_Test1A, noParam);
 		man.AddComponent(ent1, CID_Test2A, noParam);
 		man.AddComponent(ent2, CID_Test1A, testParam);
+		man.AddComponent(ent3, CID_Test2A, noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent1, IID_Test2))->GetX(), 21000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 1234);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent3, IID_Test2))->GetX(), 21000);
 
 		std::stringstream debugStream;
 		TS_ASSERT(man.DumpDebugState(debugStream));
@@ -430,6 +455,11 @@ public:
 				"  Test1A:\n"
 				"    x: 1234\n"
 				"\n"
+				"- id: 536870912\n"
+				"  type: local\n"
+				"  Test2A:\n"
+				"    x: 21000\n"
+				"\n"
 		);
 
 		std::string hash;
@@ -441,7 +471,8 @@ public:
 
 		std::stringstream stateStream;
 		TS_ASSERT(man.SerializeState(stateStream));
-		TS_ASSERT_STREAM(stateStream, 56,
+		TS_ASSERT_STREAM(stateStream, 60,
+				"\x02\x00\x00\x00" // next entity ID
 				"\x02\x00\x00\x00" // num component types
 				"\x06\x00\x00\x00Test1A"
 				"\x02\x00\x00\x00" // num ents
@@ -462,12 +493,14 @@ public:
 		TS_ASSERT(man2.QueryInterface(ent1, IID_Test1) == NULL);
 		TS_ASSERT(man2.QueryInterface(ent1, IID_Test2) == NULL);
 		TS_ASSERT(man2.QueryInterface(ent2, IID_Test1) == NULL);
+		TS_ASSERT(man2.QueryInterface(ent3, IID_Test2) == NULL);
 
 		TS_ASSERT(man2.DeserializeState(stateStream));
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man2.QueryInterface(ent1, IID_Test1))->GetX(), 11000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man2.QueryInterface(ent1, IID_Test2))->GetX(), 21000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man2.QueryInterface(ent2, IID_Test1))->GetX(), 1234);
+		TS_ASSERT(man2.QueryInterface(ent3, IID_Test2) == NULL);
 	}
 
 	void test_script_serialization()

@@ -71,8 +71,27 @@ public:
 	void Update(float frameTime);
 	void Interpolate(float frameTime);
 
+	/**
+	 * Construct a new entity and add it to the world.
+	 * @param templateName see ICmpTemplateManager for syntax
+	 * @return the new entity ID, or INVALID_ENTITY on error
+	 */
 	entity_id_t AddEntity(const std::wstring& templateName);
 	entity_id_t AddEntity(const std::wstring& templateName, entity_id_t preferredId);
+	entity_id_t AddLocalEntity(const std::wstring& templateName);
+
+	/**
+	 * Destroys the specified entity, once FlushDestroyedEntities is called.
+	 * Has no effect if the entity does not exist, or has already been added to the destruction queue.
+	 */
+	void DestroyEntity(entity_id_t ent);
+
+	/**
+	 * Does the actual destruction of entities from DestroyEntity.
+	 * This should be called at the beginning of each frame or after an Update message.
+	 */
+	void FlushDestroyedEntities();
+
 	IComponent* QueryInterface(entity_id_t ent, int iid) const;
 	void PostMessage(entity_id_t ent, const CMessage& msg) const;
 	void BroadcastMessage(const CMessage& msg) const;
@@ -87,8 +106,6 @@ public:
 	bool DumpDebugState(std::ostream& stream);
 	bool SerializeState(std::ostream& stream);
 	bool DeserializeState(std::istream& stream);
-
-	entity_id_t AllocateNewEntity();
 
 private:
 	CSimulation2Impl* m;

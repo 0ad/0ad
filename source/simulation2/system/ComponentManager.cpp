@@ -48,11 +48,13 @@ CComponentManager::CComponentManager(const CSimContext& context, bool skipScript
 #undef COMPONENT
 
 	m_ScriptInterface.SetGlobal("SYSTEM_ENTITY", (int)SYSTEM_ENTITY);
+
+	ResetState();
 }
 
 CComponentManager::~CComponentManager()
 {
-	DestroyAllComponents();
+	ResetState();
 
 	// Release GC roots
 	std::map<ComponentTypeId, ComponentType>::iterator it = m_ComponentTypesById.begin();
@@ -234,7 +236,7 @@ void CComponentManager::Script_BroadcastMessage(void* cbdata, int mtid, CScriptV
 	delete msg;
 }
 
-void CComponentManager::DestroyAllComponents()
+void CComponentManager::ResetState()
 {
 	// Delete all IComponents
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();
@@ -250,6 +252,12 @@ void CComponentManager::DestroyAllComponents()
 
 	m_ComponentsByInterface.clear();
 	m_ComponentsByTypeId.clear();
+
+	m_DestructionQueue.clear();
+
+	// Reset IDs
+	m_NextEntityId = SYSTEM_ENTITY + 1;
+	m_NextLocalEntityId = FIRST_LOCAL_ENTITY;
 }
 
 void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc,
@@ -309,6 +317,34 @@ CComponentManager::ComponentTypeId CComponentManager::GetScriptWrapper(Interface
 	return CID__Invalid;
 }
 
+entity_id_t CComponentManager::AllocateNewEntity()
+{
+	entity_id_t id = m_NextEntityId++;
+	// TODO: check for overflow
+	return id;
+}
+
+entity_id_t CComponentManager::AllocateNewLocalEntity()
+{
+	entity_id_t id = m_NextLocalEntityId++;
+	// TODO: check for overflow
+	return id;
+}
+
+entity_id_t CComponentManager::AllocateNewEntity(entity_id_t preferredId)
+{
+	// TODO: ensure this ID hasn't been allocated before
+	// (this might occur with broken map files)
+	entity_id_t id = preferredId;
+
+	// Ensure this ID won't be allocated again
+	if (id >= m_NextEntityId)
+		m_NextEntityId = id+1;
+	// TODO: check for overflow
+
+	return id;
+}
+
 bool CComponentManager::AddComponent(entity_id_t ent, ComponentTypeId cid, const CParamNode& paramNode)
 {
 	IComponent* component = ConstructComponent(ent, cid);
@@ -360,6 +396,11 @@ IComponent* CComponentManager::ConstructComponent(entity_id_t ent, ComponentType
 	// Store a reference to the new component
 	emap1.insert(std::make_pair(ent, component));
 	emap2.insert(std::make_pair(ent, component));
+	// TODO: We need to more careful about this - if an entity is constructed by a component
+	// while we're iterating over all components, this will invalidate the iterators and everything
+	// will break.
+	// We probably need some kind of delayed addition, so they get pushed onto a queue and then
+	// inserted into the world later on. (Be careful about immediation deletion in that case, too.)
 
 	return component;
 }
@@ -375,9 +416,44 @@ void CComponentManager::AddMockComponent(entity_id_t ent, InterfaceId iid, IComp
 	emap1.insert(std::make_pair(ent, &component));
 }
 
+void CComponentManager::DestroyComponentsSoon(entity_id_t ent)
+{
+	m_DestructionQueue.push_back(ent);
+}
+
+void CComponentManager::FlushDestroyedComponents()
+{
+	for (std::vector<entity_id_t>::iterator it = m_DestructionQueue.begin(); it != m_DestructionQueue.end(); ++it)
+	{
+		entity_id_t ent = *it;
+
+		// Destroy the components, and remove from m_ComponentsByTypeId:
+		std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();
+		for (; iit != m_ComponentsByTypeId.end(); ++iit)
+		{
+			std::map<entity_id_t, IComponent*>::iterator eit = iit->second.find(ent);
+			if (eit != iit->second.end())
+			{
+				eit->second->Deinit(m_SimContext);
+				m_ComponentTypesById[iit->first].dealloc(eit->second);
+				iit->second.erase(ent);
+			}
+		}
+
+		// Remove from m_ComponentsByInterface
+		std::map<InterfaceId, std::map<entity_id_t, IComponent*> >::iterator ifcit = m_ComponentsByInterface.begin();
+		for (; ifcit != m_ComponentsByInterface.end(); ++ifcit)
+		{
+			ifcit->second.erase(ent);
+		}
+	}
+
+	m_DestructionQueue.clear();
+}
+
 IComponent* CComponentManager::QueryInterface(entity_id_t ent, InterfaceId iid) const
 {
-	std::map<int, std::map<entity_id_t, IComponent*> >::const_iterator iit = m_ComponentsByInterface.find(iid);
+	std::map<InterfaceId, std::map<entity_id_t, IComponent*> >::const_iterator iit = m_ComponentsByInterface.find(iid);
 	if (iit == m_ComponentsByInterface.end())
 	{
 		// Invalid iid, or no entities implement this interface
@@ -397,7 +473,7 @@ IComponent* CComponentManager::QueryInterface(entity_id_t ent, InterfaceId iid) 
 static std::map<entity_id_t, IComponent*> g_EmptyEntityMap;
 const std::map<entity_id_t, IComponent*>& CComponentManager::GetEntitiesWithInterface(InterfaceId iid) const
 {
-	std::map<int, std::map<entity_id_t, IComponent*> >::const_iterator iit = m_ComponentsByInterface.find(iid);
+	std::map<InterfaceId, std::map<entity_id_t, IComponent*> >::const_iterator iit = m_ComponentsByInterface.find(iid);
 	if (iit == m_ComponentsByInterface.end())
 	{
 		// Invalid iid, or no entities implement this interface

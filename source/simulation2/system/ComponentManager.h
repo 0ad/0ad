@@ -98,6 +98,25 @@ public:
 	std::string LookupComponentTypeName(ComponentTypeId cid) const;
 
 	/**
+	 * Returns a new entity ID that has never been used before.
+	 * This affects the simulation state so it must only be called in network-synchronised ways.
+	 */
+	entity_id_t AllocateNewEntity();
+
+	/**
+	 * Returns a new local entity ID that has never been used before.
+	 * This entity will not be synchronised over the network, stored in saved games, etc.
+	 */
+	entity_id_t AllocateNewLocalEntity();
+
+	/**
+	 * Returns a new entity ID that has never been used before.
+	 * If possible, returns preferredId, and ensures this ID won't be allocated again.
+	 * This affects the simulation state so it must only be called in network-synchronised ways.
+	 */
+	entity_id_t AllocateNewEntity(entity_id_t preferredId);
+
+	/**
 	 * Constructs a component of type 'cid', initialised with data 'paramNode',
 	 * and attaches it to entity 'ent'.
 	 *
@@ -120,16 +139,36 @@ public:
 	 */
 	IComponent* ConstructComponent(entity_id_t ent, ComponentTypeId cid);
 
+	/**
+	 * Destroys all the components belonging to the specified entity when FlushDestroyedComponents is called.
+	 * Has no effect if the entity does not exist, or has already been added to the destruction queue.
+	 */
+	void DestroyComponentsSoon(entity_id_t ent);
+
+	/**
+	 * Does the actual destruction of components from DestroyComponentsSoon.
+	 * This must not be called if the component manager is on the call stack (since it
+	 * will break internal iterators).
+	 */
+	void FlushDestroyedComponents();
+
 	IComponent* QueryInterface(entity_id_t ent, InterfaceId iid) const;
 	const std::map<entity_id_t, IComponent*>& GetEntitiesWithInterface(InterfaceId iid) const;
 
 	void PostMessage(entity_id_t ent, const CMessage& msg) const;
 	void BroadcastMessage(const CMessage& msg) const;
 
-	void DestroyAllComponents();
+	/**
+	 * Resets the dynamic simulation state (deletes all entities, resets entity ID counters;
+	 * doesn't unload/reload component scripts).
+	 */
+	void ResetState();
 
+	// Various state serialization functions:
 	bool ComputeStateHash(std::string& outHash);
 	bool DumpDebugState(std::ostream& stream);
+	// FlushDestroyedComponents must be called before SerializeState (since the destruction queue
+	// won't get serialized)
 	bool SerializeState(std::ostream& stream);
 	bool DeserializeState(std::istream& stream);
 
@@ -161,7 +200,11 @@ private:
 	// TODO: maintaining both ComponentsBy* is nasty; can we get rid of one,
 	// while keeping QueryInterface and PostMessage sufficiently efficient?
 
+	std::vector<entity_id_t> m_DestructionQueue;
+
 	ComponentTypeId m_NextScriptComponentTypeId;
+	entity_id_t m_NextEntityId;
+	entity_id_t m_NextLocalEntityId;
 
 	friend class TestComponentManager;
 };

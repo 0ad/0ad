@@ -18,6 +18,7 @@
 #include "lib/self_test.h"
 
 #include "simulation2/Simulation2.h"
+#include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpTest.h"
 
 #include "graphics/Terrain.h"
@@ -51,15 +52,6 @@ public:
 		g_VFS.reset();
 	}
 
-	void test_AllocateNewEntity()
-	{
-		CSimulation2 sim(NULL, &m_Terrain);
-		sim.ResetState(true);
-		TS_ASSERT_EQUALS(sim.AllocateNewEntity(), (u32)2);
-		TS_ASSERT_EQUALS(sim.AllocateNewEntity(), (u32)3);
-		TS_ASSERT_EQUALS(sim.AllocateNewEntity(), (u32)4);
-	}
-
 	void test_AddEntity()
 	{
 		CSimulation2 sim(NULL, &m_Terrain);
@@ -78,6 +70,57 @@ public:
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent2, IID_Test1))->GetX(), 1234);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (sim.QueryInterface(ent2, IID_Test2))->GetX(), 12345);
+	}
+
+	void test_DestroyEntity()
+	{
+		CSimulation2 sim(NULL, &m_Terrain);
+		TS_ASSERT(sim.LoadScripts(L"simulation/components/addentity/"));
+
+		sim.ResetState(true);
+
+		entity_id_t ent1 = sim.AddEntity(L"test1");
+		entity_id_t ent2 = sim.AddEntity(L"test1");
+		entity_id_t ent3 = sim.AddEntity(L"test1");
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent1, IID_Test1))->GetX(), 999);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (sim.QueryInterface(ent1, IID_Test2))->GetX(), 12345);
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent2, IID_Test1))->GetX(), 999);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (sim.QueryInterface(ent2, IID_Test2))->GetX(), 12345);
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent3, IID_Test1))->GetX(), 999);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (sim.QueryInterface(ent3, IID_Test2))->GetX(), 12345);
+
+		sim.DestroyEntity(ent2); // mark it for deletion
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent2, IID_Test1))->GetX(), 999);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (sim.QueryInterface(ent2, IID_Test2))->GetX(), 12345);
+
+		sim.FlushDestroyedEntities(); // actually delete it
+
+		TS_ASSERT(sim.QueryInterface(ent2, IID_Test1) == NULL);
+		TS_ASSERT(sim.QueryInterface(ent2, IID_Test2) == NULL);
+
+		sim.FlushDestroyedEntities(); // nothing in the queue
+
+		sim.DestroyEntity(ent2);
+		sim.FlushDestroyedEntities(); // already deleted
+
+		// Other entities weren't affected
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent1, IID_Test1))->GetX(), 999);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (sim.QueryInterface(ent1, IID_Test2))->GetX(), 12345);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (sim.QueryInterface(ent3, IID_Test1))->GetX(), 999);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (sim.QueryInterface(ent3, IID_Test2))->GetX(), 12345);
+
+		sim.DestroyEntity(ent3); // mark it for deletion twice
+		sim.DestroyEntity(ent3);
+		sim.FlushDestroyedEntities();
+		TS_ASSERT(sim.QueryInterface(ent3, IID_Test1) == NULL);
+		TS_ASSERT(sim.QueryInterface(ent3, IID_Test2) == NULL);
+
+		// Messages mustn't get sent to the destroyed components (else we'll crash)
+		sim.BroadcastMessage(CMessageTurnStart());
 	}
 
 	void test_hotload_scripts()

@@ -32,22 +32,32 @@ public:
 	typedef std::map<std::string, CParamNode> ChildrenMap;
 
 	/**
-	 * Loads the XML data specified by 'file' into the node 'ret'.
-	 * Any existing data in 'ret' will be overwritten or else kept, so this
+	 * Loads the XML data specified by @a file into the node @a ret.
+	 * Any existing data in @a ret will be overwritten or else kept, so this
 	 * can be called multiple times to build up a node from multiple inputs.
 	 */
 	static void LoadXML(CParamNode& ret, const XMBFile& file);
 
 	/**
-	 * See LoadXML, but parses the XML string 'xml'.
-	 * @return error code if parsing failed, else PSRETURN_OK
+	 * See LoadXML, but parses the XML string @a xml.
+	 * @return error code if parsing failed, else @c PSRETURN_OK
 	 */
 	static PSRETURN LoadXMLString(CParamNode& ret, const char* xml);
+
+	/**
+	 * Finds the childs named @a name from @a src and from @a this, and copies the source child's children
+	 * which are in the @a permitted set into this node's child.
+	 * Intended for use as a filtered clone of XML files.
+	 * @a this and @a src must have childs named @a name.
+	 */
+	void CopyFilteredChildrenOfChild(const CParamNode& src, const char* name, const std::set<std::string>& permitted);
 
 	/**
 	 * Returns the (unique) child node with the given name, or NULL if there is none.
 	 */
 	const CParamNode* GetChild(const char* name) const;
+	// (Children are returned as const in order to allow future optimisations, where we assume
+	// a node is always modified explicitly and not indirectly via its children, e.g. to cache jsvals)
 
 	/**
 	 * Returns the content of this node as a string

@@ -289,9 +289,9 @@ END_COMMAND(SetObjectSettings);
 
 //////////////////////////////////////////////////////////////////////////
 
-
-static size_t g_PreviewUnitID = invalidUnitId;
 static CStrW g_PreviewUnitName;
+static entity_id_t g_PreviewEntityID = INVALID_ENTITY; // used if g_UseSimulation2
+static size_t g_PreviewUnitID = invalidUnitId; // old simulation
 static bool g_PreviewUnitFloating;
 
 static CVector3D GetUnitPos(const Position& pos, bool floating)
@@ -343,6 +343,58 @@ static bool ParseObjectName(const CStrW& obj, bool& isEntity, CStrW& name)
 
 MESSAGEHANDLER(ObjectPreview)
 {
+	if (g_UseSimulation2)
+	{
+		// If the selection has changed...
+		if (*msg->id != g_PreviewUnitName)
+		{
+			// Delete old entity
+			if (g_PreviewEntityID != INVALID_ENTITY)
+				g_Game->GetSimulation2()->DestroyEntity(g_PreviewEntityID);
+
+			// Create the new entity
+			if ((*msg->id).empty())
+				g_PreviewEntityID = INVALID_ENTITY;
+			else
+				g_PreviewEntityID = g_Game->GetSimulation2()->AddLocalEntity(*msg->id);
+
+			g_PreviewUnitName = *msg->id;
+		}
+
+		if (g_PreviewEntityID != INVALID_ENTITY)
+		{
+			// Update the unit's position and orientation:
+
+			CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), g_PreviewEntityID);
+			if (!cmpPos.null())
+			{
+				CVector3D pos = GetUnitPos(msg->pos, false);
+				cmpPos->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
+
+				float angle;
+				if (msg->usetarget)
+				{
+					// Aim from pos towards msg->target
+					CVector3D target = msg->target->GetWorldSpace(pos.Y);
+					angle = atan2(target.X-pos.X, target.Z-pos.Z);
+				}
+				else
+				{
+					angle = msg->angle;
+				}
+
+				cmpPos->SetYRotation(entity_angle_t::FromFloat(angle));
+			}
+
+			// TODO: handle random variations somehow
+			// TODO: set player colour
+		}
+
+		return;
+	}
+
+	// Old simulation system:
+
 	CUnit* previewUnit = GetUnitManager().FindByID(g_PreviewUnitID);
 
 	// Don't recreate the unit unless it's changed
@@ -433,8 +485,9 @@ BEGIN_COMMAND(CreateObject)
 {
 	CVector3D m_Pos;
 	float m_Angle;
-	size_t m_ID;
+	size_t m_ID; // old simulation system
 	size_t m_Player;
+	entity_id_t m_EntityID; // new simulation system
 
 	void Do()
 	{
@@ -446,8 +499,7 @@ BEGIN_COMMAND(CreateObject)
 		{
 			// Aim from m_Pos towards msg->target
 			CVector3D target = msg->target->GetWorldSpace(m_Pos.Y);
-			CVector2D dir(target.X-m_Pos.X, target.Z-m_Pos.Z);
-			m_Angle = atan2(dir.x, dir.y);
+			m_Angle = atan2(target.X-m_Pos.X, target.Z-m_Pos.Z);
 		}
 		else
 		{
@@ -457,14 +509,38 @@ BEGIN_COMMAND(CreateObject)
 		// TODO: variations too
 		m_Player = msg->settings->player;
 
-		// Get a new ID, for future reference to this unit
-		m_ID = GetUnitManager().GetNewID();
+		if (!g_UseSimulation2)
+		{
+			// Get a new ID, for future reference to this unit
+			m_ID = GetUnitManager().GetNewID();
+		}
 
 		Redo();
 	}
 
 	void Redo()
 	{
+		if (g_UseSimulation2)
+		{
+			m_EntityID = g_Game->GetSimulation2()->AddEntity(*msg->id);
+			if (m_EntityID == INVALID_ENTITY)
+				return;
+
+			CmpPtr<ICmpPosition> cmpPos (*g_Game->GetSimulation2(), m_EntityID);
+			if (!cmpPos.null())
+			{
+				cmpPos->JumpTo(entity_pos_t::FromFloat(m_Pos.X), entity_pos_t::FromFloat(m_Pos.Z));
+				cmpPos->SetYRotation(entity_angle_t::FromFloat(m_Angle));
+			}
+
+			// TODO: handle random variations somehow
+			// TODO: set player colour
+
+			return;
+		}
+
+		// Old simulation system:
+
 		bool isEntity;
 		CStrW name;
 		if (ParseObjectName(*msg->id, isEntity, name))
@@ -532,6 +608,19 @@ BEGIN_COMMAND(CreateObject)
 
 	void Undo()
 	{
+		if (g_UseSimulation2)
+		{
+			if (m_EntityID != INVALID_ENTITY)
+			{
+				g_Game->GetSimulation2()->DestroyEntity(m_EntityID);
+				m_EntityID = INVALID_ENTITY;
+			}
+
+			return;
+		}
+
+		// Old simulation system:
+
 		CUnit* unit = GetUnitManager().FindByID(m_ID);
 		if (unit)
 		{

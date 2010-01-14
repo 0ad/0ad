@@ -55,6 +55,9 @@ bool CComponentManager::DumpDebugState(std::ostream& stream)
 		n << "- id: " << cit->first;
 		serializer.TextLine(n.str());
 
+		if (ENTITY_IS_LOCAL(cit->first))
+			serializer.TextLine("  type: local");
+
 		std::map<ComponentTypeId, IComponent*>::const_iterator ctit = cit->second.begin();
 		for (; ctit != cit->second.end(); ++ctit)
 		{
@@ -88,6 +91,10 @@ bool CComponentManager::ComputeStateHash(std::string& outHash)
 		std::map<entity_id_t, IComponent*>::const_iterator eit = cit->second.begin();
 		for (; eit != cit->second.end(); ++eit)
 		{
+			// Don't hash local entities
+			if (ENTITY_IS_LOCAL(eit->first))
+				continue;
+
 			serializer.NumberU32_Unbounded("entity id", eit->first);
 			eit->second->Serialize(serializer);
 		}
@@ -125,6 +132,12 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 {
 	CStdSerializer serializer(m_ScriptInterface, stream);
 
+	// We don't serialize the destruction queue, since we'd have to be careful to skip local entities etc
+	// and it's (hopefully) easier to just expect callers to flush the queue before serializing
+	debug_assert(m_DestructionQueue.empty());
+
+	serializer.NumberU32_Unbounded("next entity id", m_NextEntityId);
+
 	uint32_t numComponentTypes = 0;
 
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator cit;
@@ -153,12 +166,29 @@ bool CComponentManager::SerializeState(std::ostream& stream)
 
 		serializer.StringASCII("name", ctit->second.name, 0, 255);
 
-		uint32_t numComponents = cit->second.size();
+		std::map<entity_id_t, IComponent*>::const_iterator eit;
+
+		// Count the components before serializing any of them
+		uint32_t numComponents = 0;
+		for (eit = cit->second.begin(); eit != cit->second.end(); ++eit)
+		{
+			// Don't serialize local entities
+			if (ENTITY_IS_LOCAL(eit->first))
+				continue;
+
+			numComponents++;
+		}
+
+		// Emit the count
 		serializer.NumberU32_Unbounded("num components", numComponents);
 
-		std::map<entity_id_t, IComponent*>::const_iterator eit = cit->second.begin();
-		for (; eit != cit->second.end(); ++eit)
+		// Serialize the components now
+		for (eit = cit->second.begin(); eit != cit->second.end(); ++eit)
 		{
+			// Don't serialize local entities
+			if (ENTITY_IS_LOCAL(eit->first))
+				continue;
+
 			serializer.NumberU32_Unbounded("entity id", eit->first);
 			eit->second->Serialize(serializer);
 		}
@@ -172,7 +202,9 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 {
 	CStdDeserializer deserializer(m_ScriptInterface, stream);
 
-	DestroyAllComponents();
+	ResetState();
+
+	deserializer.NumberU32_Unbounded(m_NextEntityId); // TODO: use sensible bounds
 
 	uint32_t numComponentTypes;
 	deserializer.NumberU32_Unbounded(numComponentTypes);
