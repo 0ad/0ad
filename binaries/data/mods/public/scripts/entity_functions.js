@@ -2242,8 +2242,8 @@ var messagesList = new Array();
 
 function showMessage(text)
 {
-	message = getActiveGui().getGUIObjectByName("globalMessage");
-	messageUnder = getActiveGui().getGUIObjectByName("globalMessageUnder");
+	message = Engine.GetActiveGui().getGUIObjectByName("globalMessage");
+	messageUnder = Engine.GetActiveGui().getGUIObjectByName("globalMessageUnder");
 	// BUG: The active GUI might be e.g. a message box, not the session GUI,
 	// so this won't be looking in the correct place for the GUI objects.
 	// (But that's hard to fix cleanly with the new GUI system, and this
@@ -2275,8 +2275,8 @@ function hideMessage()
 	
 	if (messagesList.length == 0) 
 	{
-		getActiveGui().getGUIObjectByName("globalMessage").hidden = true;
-		getActiveGui().getGUIObjectByName("globalMessageUnder").hidden = true;
+		Engine.GetActiveGui().getGUIObjectByName("globalMessage").hidden = true;
+		Engine.GetActiveGui().getGUIObjectByName("globalMessageUnder").hidden = true;
 	}
 	else
 	{
@@ -2292,7 +2292,7 @@ function updateMessageView()
 	{
 		result = result + messagesList[i] + "\n";
 	}
-	getActiveGui().getGUIObjectByName("globalMessage").caption = result;
-	getActiveGui().getGUIObjectByName("globalMessageUnder").caption = result;
+	Engine.GetActiveGui().getGUIObjectByName("globalMessage").caption = result;
+	Engine.GetActiveGui().getGUIObjectByName("globalMessageUnder").caption = result;
 }
 
