@@ -74,7 +74,7 @@ public:
 		}
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg))
+	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
 	{
 		// TODO: should listen to entity destruction messages, to clean up m_LatestTemplates
 	}
@@ -305,6 +305,7 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	// and safe (i.e. won't do anything that affects the synchronised simulation state), so additions
 	// to this list should be carefully considered
 	std::set<std::string> permittedComponentTypes;
+	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("Position");
 	permittedComponentTypes.insert("VisualActor");
 	// (This could be initialised once and reused, but it's not worth the effort)

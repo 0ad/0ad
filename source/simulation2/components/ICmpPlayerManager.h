@@ -15,24 +15,22 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_ICMPPLAYERMANAGER
+#define INCLUDED_ICMPPLAYERMANAGER
 
-#include "IComponent.h"
+#include "simulation2/system/Interface.h"
 
-IComponent::~IComponent()
+/**
+ * Player manager. This maintains the list of players that exist in the game.
+ */
+class ICmpPlayerManager : public IComponent
 {
-}
+public:
+	virtual void AddPlayer(entity_id_t ent) = 0;
 
-void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
-{
-}
+	// Accessors are currently only available to scripts, since no C++ code needed them yet
 
-JSClass* IComponent::GetJSClass() const
-{
-	return NULL;
-}
+	DECLARE_INTERFACE_TYPE(PlayerManager)
+};
 
-jsval IComponent::GetJSInstance() const
-{
-	return 0;
-}
+#endif // INCLUDED_ICMPPLAYERMANAGER

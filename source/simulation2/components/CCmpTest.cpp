@@ -28,7 +28,8 @@ class CCmpTest1A : public ICmpTest1
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(CID_Test1A, MT_TurnStart);
+		componentManager.SubscribeToMessageType(MT_TurnStart);
+		componentManager.SubscribeToMessageType(MT_Interpolate);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Test1A)
@@ -62,12 +63,15 @@ public:
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CSimContext&, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext&, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
 		case MT_TurnStart:
 			m_x += 1;
+			break;
+		case MT_Interpolate:
+			m_x += 2;
 			break;
 		default:
 			m_x = 0;
@@ -83,7 +87,8 @@ class CCmpTest1B : public ICmpTest1
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(CID_Test1B, MT_Update);
+		componentManager.SubscribeToMessageType(MT_Update);
+		componentManager.SubscribeGloballyToMessageType(MT_Interpolate);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Test1B)
@@ -114,12 +119,15 @@ public:
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CSimContext&, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext&, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
 		case MT_Update:
 			m_x += 10;
+			break;
+		case MT_Interpolate:
+			m_x += 20;
 			break;
 		default:
 			m_x = 0;
@@ -135,8 +143,8 @@ class CCmpTest2A : public ICmpTest2
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(CID_Test2A, MT_TurnStart);
-		componentManager.SubscribeToMessageType(CID_Test2A, MT_Update);
+		componentManager.SubscribeToMessageType(MT_TurnStart);
+		componentManager.SubscribeToMessageType(MT_Update);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Test2A)
@@ -167,7 +175,7 @@ public:
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CSimContext&, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext&, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

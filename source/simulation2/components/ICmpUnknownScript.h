@@ -15,24 +15,18 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_ICMPUNKNOWNSCRIPT
+#define INCLUDED_ICMPUNKNOWNSCRIPT
 
-#include "IComponent.h"
+#include "simulation2/system/Interface.h"
 
-IComponent::~IComponent()
+/**
+ * Dummy wrapper class for script components that don't have a native interface.
+ */
+class ICmpUnknownScript : public IComponent
 {
-}
+public:
+	DECLARE_INTERFACE_TYPE(UnknownScript)
+};
 
-void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
-{
-}
-
-JSClass* IComponent::GetJSClass() const
-{
-	return NULL;
-}
-
-jsval IComponent::GetJSInstance() const
-{
-	return 0;
-}
+#endif // INCLUDED_ICMPUNKNOWNSCRIPT

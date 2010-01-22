@@ -188,10 +188,6 @@ void ViewGame::Update(float frameLength)
 			}
 		}
 
-		// Clean up any entities destroyed during simulation update
-		if (g_UseSimulation2)
-			g_Game->GetSimulation2()->FlushDestroyedEntities();
-
 		// Interpolate the graphics - we only want to do this once per visual frame,
 		// not in every call to g_Game->Update
 		g_Game->GetSimulation()->Interpolate(actualFrameLength);

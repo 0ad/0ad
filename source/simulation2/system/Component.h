@@ -64,9 +64,9 @@
 	{ \
 		m_Script.Deinit(context); \
 	} \
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg) \
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool global) \
 	{ \
-		m_Script.HandleMessage(context, msg); \
+		m_Script.HandleMessage(context, msg, global); \
 	} \
 	virtual void Serialize(ISerializer& serialize) \
 	{ \

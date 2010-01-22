@@ -33,6 +33,10 @@
 #include "renderer/Renderer.h"
 #include "simulation/LOSManager.h"
 #include "simulation/Simulation.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPlayer.h"
+#include "simulation2/components/ICmpPlayerManager.h"
+#include "simulation2/components/ICmpPosition.h"
 
 namespace
 {
@@ -62,6 +66,22 @@ namespace
 
 		// Initialise the game:
 		g_Game = new CGame();
+	}
+
+	void AddDefaultPlayers()
+	{
+		CmpPtr<ICmpPlayerManager> cmpPlayerMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		debug_assert(!cmpPlayerMan.null());
+
+		// TODO: pick a sensible number, give them names and colours etc
+		size_t numPlayers = 4;
+		for (size_t i = 0; i < numPlayers; ++i)
+		{
+			entity_id_t ent = g_Game->GetSimulation2()->AddEntity(L"special/player");
+			cmpPlayerMan->AddPlayer(ent);
+		}
+		// Also TODO: Maybe it'd be sensible to load this from a map XML file via CMapReader,
+		// rather than duplicating the creation code here?
 	}
 
 	void StartGame()
@@ -97,6 +117,8 @@ MESSAGEHANDLER(GenerateMap)
 	terrain->Initialize(msg->size, heightmap);
 
 	delete[] heightmap;
+
+	AddDefaultPlayers();
 
 	// Start the game, load data files - this must be done before initialising
 	// the terrain texture below, since the terrains must be loaded before being

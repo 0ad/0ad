@@ -46,6 +46,7 @@
 #include "simulation/TriggerManager.h"
 #include "simulation/Entity.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 
@@ -294,12 +295,18 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			{
 				entity_id_t ent = it->first;
 
+				// Don't save local entities (placement previews etc)
+				if (ENTITY_IS_LOCAL(ent))
+					continue;
+
 				XML_Element("Entity");
 				XML_Attribute("uid", ent);
 
 				XML_Setting("Template", cmpTemplateManager->GetCurrentTemplateName(ent));
 
-				// TODO: player id
+				CmpPtr<ICmpOwnership> cmpOwner(sim, ent);
+				if (!cmpOwner.null())
+					XML_Setting("Player", (int)cmpOwner->GetOwner());
 
 				CmpPtr<ICmpPosition> cmpPosition(sim, ent);
 				if (!cmpPosition.null())

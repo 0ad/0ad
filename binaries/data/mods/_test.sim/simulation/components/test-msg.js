@@ -10,11 +10,29 @@ TestScript1A.prototype.GetX = function() {
 
 TestScript1A.prototype.OnUpdate = function(msg) {
 	this.x += msg.turnLength;
-}
+};
 
 Engine.RegisterComponentType(IID_Test1, "TestScript1A", TestScript1A);
 
-// -------- //
+
+
+function TestScript1B() {}
+
+TestScript1B.prototype.Init = function() {
+	this.x = 100;
+};
+
+TestScript1B.prototype.GetX = function() {
+	return this.x;
+};
+
+TestScript1B.prototype.OnGlobalUpdate = function(msg) {
+	this.x += msg.turnLength;
+};
+
+Engine.RegisterComponentType(IID_Test1, "TestScript1B", TestScript1B);
+
+
 
 function TestScript2A() {}
 

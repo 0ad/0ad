@@ -156,6 +156,7 @@ public:
 
 		CMessageTurnStart msg1;
 		CMessageUpdate msg2(CFixed_23_8::FromInt(100));
+		CMessageInterpolate msg3(0);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 12000);
@@ -163,6 +164,7 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent4, IID_Test1))->GetX(), 11000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent4, IID_Test2))->GetX(), 21000);
 
+		// Test_1A subscribed locally to msg1, nothing subscribed globally
 		man.PostMessage(ent1, msg1);
 		man.PostMessage(ent1, msg2);
 
@@ -180,12 +182,30 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent4, IID_Test1))->GetX(), 11001);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent4, IID_Test2))->GetX(), 21050);
 
+		// Test_1B, Test_2A subscribed locally to msg2, nothing subscribed globally
 		man.BroadcastMessage(msg2);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11002);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 12010);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent3, IID_Test2))->GetX(), 21150);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent4, IID_Test1))->GetX(), 11001);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent4, IID_Test2))->GetX(), 21150);
+
+		// Test_1A subscribed locally to msg3, Test_1B subscribed globally
+		man.BroadcastMessage(msg3);
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11004); // local
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 12030); // global
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent3, IID_Test2))->GetX(), 21150);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent4, IID_Test1))->GetX(), 11003); // local
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent4, IID_Test2))->GetX(), 21150);
+
+		man.PostMessage(ent1, msg3);
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11006); // local
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 12050); // global
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent3, IID_Test2))->GetX(), 21150);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent4, IID_Test1))->GetX(), 11003); // local - skipped
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent4, IID_Test2))->GetX(), 21150);
 	}
 
@@ -265,6 +285,23 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 3);
 	}
 
+	void test_script_interface()
+	{
+		CSimContext context;
+		CComponentManager man(context);
+		man.LoadComponentTypes();
+		TS_ASSERT(man.LoadScript(L"simulation/components/interfaces/test-interface.js"));
+		TS_ASSERT(man.LoadScript(L"simulation/components/test-interface.js"));
+
+		entity_id_t ent1 = 1;
+		CParamNode noParam;
+
+		man.AddComponent(ent1, man.LookupCID("TestScript1_Interface"), noParam);
+		man.AddComponent(ent1, man.LookupCID("TestScript2_Interface"), noParam);
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 1000 + IID__LastNative);
+	}
+
 	void test_script_errors()
 	{
 		CSimContext context;
@@ -322,6 +359,37 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 21000);
 	}
 
+	void test_script_AddEntity()
+	{
+		CSimContext context;
+		CComponentManager man(context);
+		man.LoadComponentTypes();
+		TS_ASSERT(man.LoadScript(L"simulation/components/test-addentity.js"));
+		TS_ASSERT(man.LoadScript(L"simulation/components/addentity/test-addentity.js"));
+
+		entity_id_t ent1 = man.AllocateNewEntity();
+		entity_id_t ent2 = ent1 + 2;
+		CParamNode noParam;
+
+		TS_ASSERT(man.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam));
+
+		TS_ASSERT(man.AddComponent(ent1, man.LookupCID("TestScript1_AddEntity"), noParam));
+
+		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) == NULL);
+		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) == NULL);
+
+		{
+			TestLogger logger; // ignore bogus-template warnings
+			TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), (int)ent2);
+		}
+
+		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) != NULL);
+		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) != NULL);
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 999);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent2, IID_Test2))->GetX(), 12345);
+	}
+
 	void test_script_messages()
 	{
 		CSimContext context;
@@ -329,24 +397,27 @@ public:
 		man.LoadComponentTypes();
 		TS_ASSERT(man.LoadScript(L"simulation/components/test-msg.js"));
 
-		entity_id_t ent1 = 1, ent2 = 2;
+		entity_id_t ent1 = 1, ent2 = 2, ent3 = 3;
 		CParamNode noParam;
 
 		man.AddComponent(ent1, man.LookupCID("TestScript1A"), noParam);
 		man.AddComponent(ent1, man.LookupCID("TestScript2A"), noParam);
 		man.AddComponent(ent2, man.LookupCID("TestScript1A"), noParam);
 		man.AddComponent(ent2, CID_Test2A, noParam);
+		man.AddComponent(ent3, man.LookupCID("TestScript1B"), noParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 100);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 100);
-		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test2))->GetX(), 21000);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent2, IID_Test2))->GetX(), 21000);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent3, IID_Test1))->GetX(), 100);
 
 		// This GetX broadcasts messages
-		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test2))->GetX(), 200);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent1, IID_Test2))->GetX(), 200);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 650);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 5150);
-		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test2))->GetX(), 26050);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent2, IID_Test2))->GetX(), 26050);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent3, IID_Test1))->GetX(), 5650);
 	}
 
 	void test_script_template()

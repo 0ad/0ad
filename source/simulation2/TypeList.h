@@ -34,33 +34,50 @@ MESSAGE(TurnStart)
 MESSAGE(Update)
 MESSAGE(Interpolate) // non-deterministic (use with caution)
 MESSAGE(RenderSubmit) // non-deterministic (use with caution)
+MESSAGE(Destroy)
+MESSAGE(OwnershipChanged)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized
 INTERFACE(TemplateManager)
 COMPONENT(TemplateManager)
 
+// Special component for script component types with no native interface
+INTERFACE(UnknownScript)
+COMPONENT(UnknownScript)
+
+// In alphabetical order:
+
+INTERFACE(CommandQueue)
+COMPONENT(CommandQueue)
+
 INTERFACE(GuiInterface)
 COMPONENT(GuiInterfaceScripted)
-
-INTERFACE(Terrain)
-COMPONENT(Terrain)
-
-INTERFACE(Position)
-COMPONENT(Position)
-
-INTERFACE(Visual)
-COMPONENT(VisualActor)
 
 INTERFACE(Motion)
 COMPONENT(MotionBall)
 COMPONENT(MotionScripted)
 
-INTERFACE(UnitMotion)
-COMPONENT(UnitMotion)
+INTERFACE(Ownership)
+COMPONENT(Ownership)
+
+INTERFACE(Player)
+COMPONENT(PlayerScripted)
+
+INTERFACE(PlayerManager)
+COMPONENT(PlayerManagerScripted)
+
+INTERFACE(Position)
+COMPONENT(Position)
 
 INTERFACE(Selectable)
 COMPONENT(Selectable)
 
-INTERFACE(CommandQueue)
-COMPONENT(CommandQueue)
+INTERFACE(Terrain)
+COMPONENT(Terrain)
+
+INTERFACE(UnitMotion)
+COMPONENT(UnitMotion)
+
+INTERFACE(Visual)
+COMPONENT(VisualActor)

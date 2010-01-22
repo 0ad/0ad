@@ -19,6 +19,7 @@
 #define INCLUDED_MESSAGETYPES
 
 #include "simulation2/system/Components.h"
+#include "simulation2/system/Entity.h"
 #include "simulation2/system/Message.h"
 
 #include "maths/Fixed.h"
@@ -26,6 +27,7 @@
 #define DEFAULT_MESSAGE_IMPL(name) \
 	virtual EMessageTypeId GetType() const { return MT_##name; } \
 	virtual const char* GetScriptHandlerName() const { return "On" #name; } \
+	virtual const char* GetScriptGlobalHandlerName() const { return "OnGlobal" #name; } \
 	virtual jsval ToJSVal(ScriptInterface& scriptInterface) const; \
 	static CMessage* FromJSVal(ScriptInterface&, jsval val);
 
@@ -82,5 +84,38 @@ public:
 	const CFrustum& frustum;
 	bool culling;
 };
+
+/**
+ * This is sent immediately before a destroyed entity is flushed and really destroyed.
+ * (That is, after CComponentManager::DestroyComponentsSoon and inside FlushDestroyedComponents).
+ * The entity will still exist at the time this message is sent.
+ * It's possible for this message to be sent multiple times for one entity, but all its components
+ * will have been deleted after the first time.
+ */
+class CMessageDestroy : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(Destroy)
+
+	CMessageDestroy()
+	{
+	}
+};
+
+class CMessageOwnershipChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(OwnershipChanged)
+
+	CMessageOwnershipChanged(entity_id_t entity, int32_t from, int32_t to) :
+		entity(entity), from(from), to(to)
+	{
+	}
+
+	entity_id_t entity;
+	int32_t from;
+	int32_t to;
+};
+
 
 #endif // INCLUDED_MESSAGETYPES

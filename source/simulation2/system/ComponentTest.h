@@ -86,9 +86,9 @@ public:
 		m_ComponentManager.AddMockComponent(ent, iid, component);
 	}
 
-	void HandleMessage(IComponent* cmp, const CMessage& msg)
+	void HandleMessage(IComponent* cmp, const CMessage& msg, bool global)
 	{
-		cmp->HandleMessage(m_Context, msg);
+		cmp->HandleMessage(m_Context, msg, global);
 	}
 
 	/**

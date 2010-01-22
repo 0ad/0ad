@@ -32,6 +32,7 @@ class CTerrain;
 class IComponent;
 class ScriptInterface;
 class CMessage;
+class CScriptVal;
 
 // Hopefully-temporary flag for transition to new simulation system
 extern bool g_UseSimulation2;
@@ -64,9 +65,17 @@ public:
 	 * Initialise (or re-initialise) the complete simulation state.
 	 * Must be called after LoadScripts, and must be called
 	 * before any methods that depend on the simulation state.
-	 * @param skipGui don't load the GUI interface components (this is intended for use by test cases)
+	 * @param skipScriptedComponents don't load the scripted system components
+	 *   (this is intended for use by test cases that don't mount all of VFS)
 	 */
-	void ResetState(bool skipGui = false);
+	void ResetState(bool skipScriptedComponents = false);
+
+	/**
+	 * Initialise a new game, based on some script data.
+	 * (This mustn't be used when e.g. loading saved games, only when starting new ones.)
+	 * This calls the InitGame function defined in helpers/InitGame.js.
+	 */
+	void InitGame(const CScriptVal& data);
 
 	void Update(float frameTime);
 	void Interpolate(float frameTime);
@@ -88,7 +97,9 @@ public:
 
 	/**
 	 * Does the actual destruction of entities from DestroyEntity.
-	 * This should be called at the beginning of each frame or after an Update message.
+	 * This is called automatically by Update, but should also be called at other
+	 * times when an entity might have been deleted and should be removed from
+	 * any further processing (e.g. after editor UI message processing)
 	 */
 	void FlushDestroyedEntities();
 

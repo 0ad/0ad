@@ -28,6 +28,7 @@ protected:
 public:
 	virtual EMessageTypeId GetType() const = 0;
 	virtual const char* GetScriptHandlerName() const = 0;
+	virtual const char* GetScriptGlobalHandlerName() const = 0;
 	virtual jsval ToJSVal(ScriptInterface&) const = 0;
 };
 // TODO: GetType could be replaced with a plain member variable to avoid some

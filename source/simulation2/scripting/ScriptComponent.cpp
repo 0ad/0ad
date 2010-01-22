@@ -46,15 +46,16 @@ void CComponentTypeScript::Deinit(const CSimContext& UNUSED(context))
 	m_ScriptInterface.CallFunctionVoid(m_Instance, "Deinit");
 }
 
-void CComponentTypeScript::HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg)
+void CComponentTypeScript::HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool global)
 {
-	const char* name = msg.GetScriptHandlerName();
+	const char* name = global ? msg.GetScriptGlobalHandlerName() : msg.GetScriptHandlerName();
 
 	CScriptVal msgVal = msg.ToJSVal(m_ScriptInterface);
 	// TODO: repeated conversions are exceedingly inefficient. Should
 	// cache this once per message (if it's used by >= 1 scripted component)
 
-	m_ScriptInterface.CallFunctionVoid(m_Instance, name, msgVal);
+	if (!m_ScriptInterface.CallFunctionVoid(m_Instance, name, msgVal))
+		LOGERROR(L"Script message handler %hs failed", name);
 }
 
 void CComponentTypeScript::Serialize(ISerializer& serialize)

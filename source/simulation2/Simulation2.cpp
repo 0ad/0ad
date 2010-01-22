@@ -47,7 +47,7 @@ public:
 		// (can't call ResetState here since the scripts haven't been loaded yet)
 	}
 
-	void ResetState(bool skipGui)
+	void ResetState(bool skipScriptedComponents)
 	{
 		m_ComponentManager.ResetState();
 
@@ -62,21 +62,23 @@ public:
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_CommandQueue, noParam);
 
 		// Add scripted system components:
-		if (!skipGui)
+		if (!skipScriptedComponents)
 		{
-			cid = m_ComponentManager.LookupCID("GuiInterface");
-			if (cid == CID__Invalid)
-				LOGERROR(L"Can't find component type GuiInterface");
-			m_ComponentManager.AddComponent(SYSTEM_ENTITY, cid, noParam);
+#define LOAD_SCRIPTED_COMPONENT(name) \
+			cid = m_ComponentManager.LookupCID(name); \
+			if (cid == CID__Invalid) \
+				LOGERROR(L"Can't find component type " name); \
+			m_ComponentManager.AddComponent(SYSTEM_ENTITY, cid, noParam)
+
+			LOAD_SCRIPTED_COMPONENT("GuiInterface");
+			LOAD_SCRIPTED_COMPONENT("PlayerManager");
+
+#undef LOAD_SCRIPTED_COMPONENT
 		}
 	}
 
 	bool LoadScripts(const VfsPath& path);
 	LibError ReloadChangedFile(const VfsPath& path);
-
-	void AddComponent(entity_id_t ent, EComponentTypeId cid, const CParamNode& paramNode);
-
-	entity_id_t AddEntity(const std::wstring& templateName, entity_id_t ent);
 
 	void Update(float frameTime);
 	void Interpolate(float frameTime);
@@ -129,49 +131,6 @@ LibError CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 	return INFO::OK;
 }
 
-void CSimulation2Impl::AddComponent(entity_id_t ent, EComponentTypeId cid, const CParamNode& paramNode)
-{
-	m_ComponentManager.AddComponent(ent, cid, paramNode);
-}
-
-entity_id_t CSimulation2Impl::AddEntity(const std::wstring& templateName, entity_id_t ent)
-{
-	CmpPtr<ICmpTemplateManager> tempMan(m_SimContext, SYSTEM_ENTITY);
-	debug_assert(!tempMan.null());
-
-	// TODO: should assert that ent doesn't exist
-
-	const CParamNode* tmpl = tempMan->LoadTemplate(ent, templateName, -1);
-	if (!tmpl)
-		return INVALID_ENTITY; // LoadTemplate will have reported the error
-
-	// Construct a component for each child of the root element
-	const CParamNode::ChildrenMap& tmplChilds = tmpl->GetChildren();
-	for (CParamNode::ChildrenMap::const_iterator it = tmplChilds.begin(); it != tmplChilds.end(); ++it)
-	{
-		// Ignore attributes on the root element
-		if (it->first.length() && it->first[0] == '@')
-			continue;
-
-		CComponentManager::ComponentTypeId cid = m_ComponentManager.LookupCID(it->first);
-		if (cid == CID__Invalid)
-		{
-			LOGERROR(L"Unrecognised component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
-			return INVALID_ENTITY;
-		}
-
-		if (!m_ComponentManager.AddComponent(ent, cid, it->second))
-		{
-			LOGERROR(L"Failed to construct component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
-			return INVALID_ENTITY;
-		}
-
-		// TODO: maybe we should delete already-constructed components if one of them fails?
-	}
-
-	return ent;
-}
-
 void CSimulation2Impl::Update(float frameTime)
 {
 	// TODO: Use CTurnManager
@@ -189,6 +148,9 @@ void CSimulation2Impl::Update(float frameTime)
 			cmpCommandQueue->ProcessCommands();
 
 		m_ComponentManager.BroadcastMessage(CMessageUpdate(turnLengthFixed));
+
+		// Clean up any entities destroyed during the simulation update
+		m_ComponentManager.FlushDestroyedComponents();
 	}
 }
 
@@ -212,19 +174,21 @@ CSimulation2::~CSimulation2()
 	delete m;
 }
 
+// Forward all method calls to the appropriate CSimulation2Impl/CComponentManager methods:
+
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName)
 {
-	return m->AddEntity(templateName, m->m_ComponentManager.AllocateNewEntity());
+	return m->m_ComponentManager.AddEntity(templateName, m->m_ComponentManager.AllocateNewEntity());
 }
 
 entity_id_t CSimulation2::AddEntity(const std::wstring& templateName, entity_id_t preferredId)
 {
-	return m->AddEntity(templateName, m->m_ComponentManager.AllocateNewEntity(preferredId));
+	return m->m_ComponentManager.AddEntity(templateName, m->m_ComponentManager.AllocateNewEntity(preferredId));
 }
 
 entity_id_t CSimulation2::AddLocalEntity(const std::wstring& templateName)
 {
-	return m->AddEntity(templateName, m->m_ComponentManager.AllocateNewLocalEntity());
+	return m->m_ComponentManager.AddEntity(templateName, m->m_ComponentManager.AllocateNewLocalEntity());
 }
 
 void CSimulation2::DestroyEntity(entity_id_t ent)
@@ -265,6 +229,12 @@ const CSimContext& CSimulation2::GetSimContext() const
 ScriptInterface& CSimulation2::GetScriptInterface() const
 {
 	return m->m_ComponentManager.GetScriptInterface();
+}
+
+void CSimulation2::InitGame(const CScriptVal& data)
+{
+	CScriptVal ret; // ignored
+	GetScriptInterface().CallFunction(GetScriptInterface().GetGlobalObject(), "InitGame", data, ret);
 }
 
 void CSimulation2::Update(float frameTime)

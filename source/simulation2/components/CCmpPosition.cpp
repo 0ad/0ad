@@ -37,7 +37,7 @@ class CCmpPosition : public ICmpPosition
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(CID_Position, MT_TurnStart);
+		componentManager.SubscribeToMessageType(MT_TurnStart);
 
 		// TODO: if this component turns out to be a performance issue, it should
 		// be optimised by creating a new PositionStatic component that doesn't subscribe
@@ -284,7 +284,7 @@ public:
 		return mXZ;
 	}
 
-	virtual void HandleMessage(const CSimContext&, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext&, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

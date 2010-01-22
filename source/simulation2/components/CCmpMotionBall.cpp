@@ -30,7 +30,7 @@ class CCmpMotionBall : public ICmpMotion
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(CID_MotionBall, MT_Update);
+		componentManager.SubscribeToMessageType(MT_Update);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(MotionBall)
@@ -61,7 +61,7 @@ public:
 		deserialize.NumberFloat_Unbounded(m_SpeedZ);
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

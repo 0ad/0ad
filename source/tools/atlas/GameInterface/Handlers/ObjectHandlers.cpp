@@ -46,6 +46,7 @@
 #include "simulation/EntityManager.h"
 #include "simulation/TerritoryManager.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 
@@ -189,6 +190,26 @@ MESSAGEHANDLER(SetSelectionPreview)
 
 QUERYHANDLER(GetObjectSettings)
 {
+	if (g_UseSimulation2)
+	{
+		sObjectSettings settings;
+		settings.player = 0;
+
+		CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), msg->id);
+		if (!cmpOwner.null())
+		{
+			int32_t player = cmpOwner->GetOwner();
+			if (player != -1)
+				settings.player = player;
+		}
+
+		// TODO: selections
+
+		msg->settings = settings;
+
+		return;
+	}
+
 	CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
 	if (! unit) return;
 
@@ -242,15 +263,30 @@ BEGIN_COMMAND(SetObjectSettings)
 
 	void Do()
 	{
-		CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
-		if (! unit) return;
-
 		sObjectSettings settings = msg->settings;
 
-		m_PlayerOld = unit->GetPlayerID();
-		m_PlayerNew = (size_t)settings.player;
+		if (g_UseSimulation2)
+		{
+			CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), msg->id);
+			m_PlayerOld = 0;
+			if (!cmpOwner.null())
+			{
+				int32_t player = cmpOwner->GetOwner();
+				if (player != -1)
+					m_PlayerOld = player;
+			}
 
-		m_SelectionsOld = unit->GetActorSelections();
+			// TODO: selections
+		}
+		else
+		{
+			CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
+			if (! unit) return;
+			m_PlayerOld = unit->GetPlayerID();
+			m_SelectionsOld = unit->GetActorSelections();
+		}
+
+		m_PlayerNew = (size_t)settings.player;
 
 		std::vector<std::wstring> selections = *settings.selections;
 		for (std::vector<std::wstring>::iterator it = selections.begin(); it != selections.end(); ++it)
@@ -274,6 +310,16 @@ BEGIN_COMMAND(SetObjectSettings)
 private:
 	void Set(size_t player, const std::set<CStr>& selections)
 	{
+		if (g_UseSimulation2)
+		{
+			CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), msg->id);
+			if (!cmpOwner.null())
+				cmpOwner->SetOwner(player);
+			// TODO: selections
+
+			return;
+		}
+
 		CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
 		if (! unit) return;
 
@@ -356,7 +402,7 @@ MESSAGEHANDLER(ObjectPreview)
 			if ((*msg->id).empty())
 				g_PreviewEntityID = INVALID_ENTITY;
 			else
-				g_PreviewEntityID = g_Game->GetSimulation2()->AddLocalEntity(*msg->id);
+				g_PreviewEntityID = g_Game->GetSimulation2()->AddLocalEntity(L"preview|" + *msg->id);
 
 			g_PreviewUnitName = *msg->id;
 		}
@@ -387,7 +433,10 @@ MESSAGEHANDLER(ObjectPreview)
 			}
 
 			// TODO: handle random variations somehow
-			// TODO: set player colour
+
+			CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), g_PreviewEntityID);
+			if (!cmpOwner.null())
+				cmpOwner->SetOwner(msg->settings->player);
 		}
 
 		return;
@@ -533,8 +582,11 @@ BEGIN_COMMAND(CreateObject)
 				cmpPos->SetYRotation(entity_angle_t::FromFloat(m_Angle));
 			}
 
+			CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), m_EntityID);
+			if (!cmpOwner.null())
+				cmpOwner->SetOwner(m_Player);
+
 			// TODO: handle random variations somehow
-			// TODO: set player colour
 
 			return;
 		}
@@ -905,12 +957,21 @@ END_COMMAND(RotateObject)
 
 BEGIN_COMMAND(DeleteObject)
 {
-	// These two values are never both non-NULL
+	// Old simulation: These two values are never both non-NULL
 	std::auto_ptr<SimState::Entity> m_FrozenEntity;
 	std::auto_ptr<SimState::Nonentity> m_FrozenNonentity;
 
+	// New simulation:
+	// Saved copy of the important aspects of a unit, to allow undo
+	entity_id_t m_EntityID;
+	std::wstring m_TemplateName;
+	int32_t m_Owner;
+	CFixedVector3D m_Pos;
+	CFixedVector3D m_Rot;
+	// TODO: random selections
+
 	cDeleteObject()
-	: m_FrozenEntity(NULL), m_FrozenNonentity(NULL)
+	: m_FrozenEntity(NULL), m_FrozenNonentity(NULL), m_EntityID(INVALID_ENTITY), m_Owner(-1)
 	{
 	}
 
@@ -921,6 +982,31 @@ BEGIN_COMMAND(DeleteObject)
 
 	void Redo()
 	{
+		if (g_UseSimulation2)
+		{
+			CSimulation2& sim = *g_Game->GetSimulation2();
+			CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
+			debug_assert(!cmpTemplateManager.null());
+
+			m_EntityID = msg->id;
+			m_TemplateName = cmpTemplateManager->GetCurrentTemplateName(m_EntityID);
+
+			CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);
+			if (!cmpOwner.null())
+				m_Owner = cmpOwner->GetOwner();
+
+			CmpPtr<ICmpPosition> cmpPosition(sim, m_EntityID);
+			if (!cmpPosition.null())
+			{
+				m_Pos = cmpPosition->GetPosition();
+				m_Rot = cmpPosition->GetRotation();
+			}
+
+			g_Game->GetSimulation2()->DestroyEntity(m_EntityID);
+
+			return;
+		}
+
 		CUnit* unit = GetUnitManager().FindByID(msg->id);
 		if (! unit) return;
 
@@ -943,6 +1029,30 @@ BEGIN_COMMAND(DeleteObject)
 
 	void Undo()
 	{
+		if (g_UseSimulation2)
+		{
+			CSimulation2& sim = *g_Game->GetSimulation2();
+			entity_id_t ent = sim.AddEntity(m_TemplateName, m_EntityID);
+			if (ent == INVALID_ENTITY)
+				LOGERROR(L"Failed to load entity template '%ls'", m_TemplateName.c_str());
+			else
+			{
+				CmpPtr<ICmpPosition> cmpPosition(sim, m_EntityID);
+				if (!cmpPosition.null())
+				{
+					cmpPosition->JumpTo(m_Pos.X, m_Pos.Z);
+					cmpPosition->SetXZRotation(m_Rot.X, m_Rot.Z);
+					cmpPosition->SetYRotation(m_Rot.Y);
+				}
+
+				CmpPtr<ICmpOwnership> cmpOwner(sim, m_EntityID);
+				if (!cmpOwner.null())
+					cmpOwner->SetOwner(m_Owner);
+			}
+
+			return;
+		}
+
 		if (m_FrozenEntity.get())
 		{
 			CEntity* entity = m_FrozenEntity->Thaw();

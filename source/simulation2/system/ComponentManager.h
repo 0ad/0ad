@@ -84,7 +84,8 @@ public:
 
 	void RegisterComponentType(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*);
 	void RegisterComponentTypeScriptWrapper(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*);
-	void SubscribeToMessageType(ComponentTypeId, MessageTypeId);
+	void SubscribeToMessageType(MessageTypeId);
+	void SubscribeGloballyToMessageType(MessageTypeId);
 
 	/**
 	 * @param cname Requested component type name (not including any "CID" or "CCmp" prefix)
@@ -140,6 +141,13 @@ public:
 	IComponent* ConstructComponent(entity_id_t ent, ComponentTypeId cid);
 
 	/**
+	 * Constructs an entity based on the given template, and adds it the world with
+	 * entity ID @p ent. There should not be any existing components with that entity ID.
+	 * @return ent, or INVALID_ENTITY on error
+	 */
+	entity_id_t AddEntity(const std::wstring& templateName, entity_id_t ent);
+
+	/**
 	 * Destroys all the components belonging to the specified entity when FlushDestroyedComponents is called.
 	 * Has no effect if the entity does not exist, or has already been added to the destruction queue.
 	 */
@@ -153,9 +161,20 @@ public:
 	void FlushDestroyedComponents();
 
 	IComponent* QueryInterface(entity_id_t ent, InterfaceId iid) const;
+
 	const std::map<entity_id_t, IComponent*>& GetEntitiesWithInterface(InterfaceId iid) const;
 
+	/**
+	 * Send a message, targeted at a particular entity. The message will be received by any
+	 * components of that entity which subscribed to the message type, and by any other components
+	 * that subscribed globally to the message type.
+	 */
 	void PostMessage(entity_id_t ent, const CMessage& msg) const;
+
+	/**
+	 * Send a message, not targeted at any particular entity. The message will be received by any
+	 * components that subscribed (either globally or not) to the message type.
+	 */
 	void BroadcastMessage(const CMessage& msg) const;
 
 	/**
@@ -177,26 +196,32 @@ public:
 private:
 	// Implementations of functions exposed to scripts
 	static void Script_RegisterComponentType(void* cbdata, int iid, std::string cname, CScriptVal ctor);
+	static void Script_RegisterInterface(void* cbdata, std::string name);
 	static void Script_RegisterGlobal(void* cbdata, std::string name, CScriptVal value);
 	static IComponent* Script_QueryInterface(void* cbdata, int ent, int iid);
 	static void Script_PostMessage(void* cbdata, int ent, int mtid, CScriptVal data);
 	static void Script_BroadcastMessage(void* cbdata, int mtid, CScriptVal data);
+	static int Script_AddEntity(void* cbdata, std::string templateName);
+
+	void SendGlobalMessage(const CMessage& msg) const;
 
 	ComponentTypeId GetScriptWrapper(InterfaceId iid);
 
 	ScriptInterface m_ScriptInterface;
 	const CSimContext& m_SimContext;
 
-	ComponentTypeId m_CurrentComponent;
+	ComponentTypeId m_CurrentComponent; // used when loading component types
 	bool m_CurrentlyHotloading;
 
 	// TODO: some of these should be vectors
 	std::map<ComponentTypeId, ComponentType> m_ComponentTypesById;
 	std::map<InterfaceId, std::map<entity_id_t, IComponent*> > m_ComponentsByInterface;
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> > m_ComponentsByTypeId;
-	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_ComponentTypeIdsByMessageType;
+	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_LocalMessageSubscriptions;
+	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_GlobalMessageSubscriptions;
 	std::map<std::string, ComponentTypeId> m_ComponentTypeIdsByName;
 	std::map<std::string, MessageTypeId> m_MessageTypeIdsByName;
+	std::map<std::string, InterfaceId> m_InterfaceIdsByName;
 	// TODO: maintaining both ComponentsBy* is nasty; can we get rid of one,
 	// while keeping QueryInterface and PostMessage sufficiently efficient?
 

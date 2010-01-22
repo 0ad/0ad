@@ -36,8 +36,8 @@ class CCmpSelectable : public ICmpSelectable
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(CID_Selectable, MT_Interpolate);
-		componentManager.SubscribeToMessageType(CID_Selectable, MT_RenderSubmit);
+		componentManager.SubscribeToMessageType(MT_Interpolate);
+		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		// TODO: it'd be nice if we didn't get these messages except in the rare
 		// cases where we're actually drawing a selection highlight
 	}
@@ -67,7 +67,7 @@ public:
 	{
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

@@ -15,24 +15,24 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_ICMPOWNERSHIP
+#define INCLUDED_ICMPOWNERSHIP
 
-#include "IComponent.h"
+#include "simulation2/system/Interface.h"
 
-IComponent::~IComponent()
+/**
+ * Player ownership.
+ * Owner values are either a player ID (if >= 0), or unassigned (-1).
+ * Sends message OwnershipChanged after it changes.
+ */
+class ICmpOwnership : public IComponent
 {
-}
+public:
+	virtual int32_t GetOwner() = 0;
 
-void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
-{
-}
+	virtual void SetOwner(int32_t playerID) = 0;
 
-JSClass* IComponent::GetJSClass() const
-{
-	return NULL;
-}
+	DECLARE_INTERFACE_TYPE(Ownership)
+};
 
-jsval IComponent::GetJSInstance() const
-{
-	return 0;
-}
+#endif // INCLUDED_ICMPOWNERSHIP

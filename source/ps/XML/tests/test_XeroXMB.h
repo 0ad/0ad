@@ -81,6 +81,30 @@ public:
 		TS_ASSERT_EQUALS(CStr(attr.Value), " y ");
 	}
 
+	void test_GetFirstNamedItem()
+	{
+		XMBFile xmb (parse("<test> <x>A</x> <x>B</x> <y>C</y> <z>D</z> </test>"));
+
+		XMBElement root = xmb.GetRoot();
+		TS_ASSERT_EQUALS(root.GetChildNodes().Count, 4);
+
+		XMBElement x = root.GetChildNodes().GetFirstNamedItem(xmb.GetElementID("x"));
+		XMBElement y = root.GetChildNodes().GetFirstNamedItem(xmb.GetElementID("y"));
+		XMBElement w = root.GetChildNodes().GetFirstNamedItem(xmb.GetElementID("w"));
+
+		TS_ASSERT_EQUALS(x.GetNodeName(), xmb.GetElementID("x"));
+		TS_ASSERT_EQUALS(CStr(x.GetText()), "A");
+
+		TS_ASSERT_EQUALS(y.GetNodeName(), xmb.GetElementID("y"));
+		TS_ASSERT_EQUALS(CStr(y.GetText()), "C");
+
+		TS_ASSERT_EQUALS(w.GetNodeName(), -1);
+		TS_ASSERT_EQUALS(CStr(w.GetText()), "");
+		TS_ASSERT_EQUALS(w.GetLineNumber(), -1);
+		TS_ASSERT_EQUALS(w.GetChildNodes().Count, 0);
+		TS_ASSERT_EQUALS(w.GetAttributes().Count, 0);
+	}
+
 	void test_doctype_ignored()
 	{
 		XMBFile xmb (parse("<!DOCTYPE foo SYSTEM \"file:///dev/urandom\"><foo/>"));

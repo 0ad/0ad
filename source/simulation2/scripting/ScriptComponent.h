@@ -22,6 +22,7 @@
 
 #include "ps/CLogger.h"
 
+#include <boost/preprocessor/repetition/enum_params.hpp>
 #include <boost/preprocessor/repetition/enum_trailing_params.hpp>
 #include <boost/preprocessor/repetition/enum_trailing_binary_params.hpp>
 
@@ -40,7 +41,7 @@ public:
 
 	void Init(const CSimContext& context, const CParamNode& paramNode, entity_id_t ent);
 	void Deinit(const CSimContext& context);
-	void HandleMessage(const CSimContext& context, const CMessage& msg);
+	void HandleMessage(const CSimContext& context, const CMessage& msg, bool global);
 
 	void Serialize(ISerializer& serialize);
 	void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize, entity_id_t ent);
@@ -49,9 +50,26 @@ public:
 	//   template<typename R> R Call(const char* funcname);
 	//   template<typename R, typename T0> R Call(const char* funcname, const T0& a0);
 	//   ...
+	//   void CallVoid(const char* funcname);
+	//   template<typename T0> void CallVoid(const char* funcname, const T0& a0);
+	//   ...
 #define OVERLOADS(z, i, data) \
 	template<typename R  BOOST_PP_ENUM_TRAILING_PARAMS(i, typename T)> \
-	R Call(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a));
+	R Call(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
+	{ \
+		R ret; \
+		if (m_ScriptInterface.CallFunction(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
+			return ret; \
+		LOGERROR(L"Error calling component script function %hs", funcname); \
+		return R(); \
+	} \
+	BOOST_PP_IF(i, template<, ) BOOST_PP_ENUM_PARAMS(i, typename T) BOOST_PP_IF(i, >, ) \
+	void CallVoid(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
+	{ \
+		if (m_ScriptInterface.CallFunctionVoid(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
+			return; \
+		LOGERROR(L"Error calling component script function %hs", funcname); \
+	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
@@ -61,18 +79,5 @@ private:
 
 	NONCOPYABLE(CComponentTypeScript);
 };
-
-#define OVERLOADS(z, i, data) \
-	template<typename R  BOOST_PP_ENUM_TRAILING_PARAMS(i, typename T)> \
-	R CComponentTypeScript::Call(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
-	{ \
-		R ret; \
-		if (m_ScriptInterface.CallFunction(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
-			return ret; \
-		LOGERROR(L"Error calling component script function %hs", funcname); \
-		return R(); \
-	}
-BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
-#undef OVERLOADS
 
 #endif // INCLUDED_SCRIPTCOMPONENT

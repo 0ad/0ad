@@ -40,8 +40,9 @@ class CCmpVisualActor : public ICmpVisual
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(CID_VisualActor, MT_Interpolate);
-		componentManager.SubscribeToMessageType(CID_VisualActor, MT_RenderSubmit);
+		componentManager.SubscribeToMessageType(MT_Interpolate);
+		componentManager.SubscribeToMessageType(MT_RenderSubmit);
+		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(VisualActor)
@@ -99,7 +100,7 @@ public:
 		Init(context, paramNode);
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
@@ -113,6 +114,13 @@ public:
 		{
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
 			RenderSubmit(context, msgData.collector, msgData.frustum, msgData.culling);
+			break;
+		}
+		case MT_OwnershipChanged:
+		{
+			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
+			if (m_Unit)
+				m_Unit->SetPlayerID(msgData.to);
 			break;
 		}
 		}
@@ -156,6 +164,9 @@ void CCmpVisualActor::Interpolate(const CSimContext& context, float frameOffset)
 
 void CCmpVisualActor::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector, const CFrustum& frustum, bool culling)
 {
+	if (m_Unit == NULL)
+		return;
+
 	// TODO: need to think about things like LOS here
 
 	CModel* model = m_Unit->GetModel();

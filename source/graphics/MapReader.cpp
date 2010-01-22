@@ -45,6 +45,9 @@
 #include "simulation/EntityTemplate.h"
 #include "simulation/EntityTemplateCollection.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpOwnership.h"
+#include "simulation2/components/ICmpPlayer.h"
+#include "simulation2/components/ICmpPlayerManager.h"
 #include "simulation2/components/ICmpPosition.h"
 
 #define LOG_CATEGORY L"graphics"
@@ -306,6 +309,34 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 	total_jobs = 0;
 	for (int i = 0; i < nodes.Count; i++)
 		total_jobs += nodes.Item(i).GetChildNodes().Count;
+
+	if (g_UseSimulation2)
+	{
+		// Find the maximum entity ID, so we can safely allocate new IDs without conflicts
+
+		int max_uid = SYSTEM_ENTITY;
+
+		XMBElement ents = nodes.GetFirstNamedItem(xmb_file.GetElementID("Entities"));
+		XERO_ITER_EL(ents, ent)
+		{
+			utf16string uid = ent.GetAttributes().GetNamedItem(at_uid);
+			max_uid = std::max(max_uid, CStr(uid).ToInt());
+		}
+
+		// Initialise player data
+
+		CmpPtr<ICmpPlayerManager> cmpPlayerMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		debug_assert(!cmpPlayerMan.null());
+
+		// TODO: this should be loaded from the XML instead
+		size_t numPlayers = 4;
+		for (size_t i = 0; i < numPlayers; ++i)
+		{
+			int uid = ++max_uid;
+			entity_id_t ent = g_Game->GetSimulation2()->AddEntity(L"special/player", uid);
+			cmpPlayerMan->AddPlayer(ent);
+		}
+	}
 }
 
 
@@ -778,6 +809,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		int EntityUid = CStr(uid).ToInt();
 
 		CStrW TemplateName;
+		int PlayerID = 0;
 		CFixedVector3D Position;
 		CFixedVector3D Orientation;
 
@@ -789,6 +821,11 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			if (element_name == el_template)
 			{
 				TemplateName = setting.GetText();
+			}
+			// <player>
+			else if (element_name == el_player)
+			{
+				PlayerID = CStr(setting.GetText()).ToInt();
 			}
 			// <position>
 			else if (element_name == el_position)
@@ -826,9 +863,12 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			{
 				cmpPosition->JumpTo(Position.X, Position.Z);
 				cmpPosition->SetYRotation(Orientation.Y);
-				// TODO: other components
+				// TODO: other parts of the position
 			}
-			// TODO: load all the other data too
+
+			CmpPtr<ICmpOwnership> cmpOwner(sim, ent);
+			if (!cmpOwner.null())
+				cmpOwner->SetOwner(PlayerID);
 		}
 
 		completed_jobs++;
@@ -949,7 +989,10 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 						cmpPos->JumpTo(x, z);
 						cmpPos->SetYRotation(CFixed_23_8::FromFloat(Orientation));
 					}
-					// TODO: load player ID too
+
+					CmpPtr<ICmpOwnership> cmpOwner(*g_Game->GetSimulation2(), ent);
+					if (!cmpOwner.null())
+						cmpOwner->SetOwner(PlayerID);
 				}
 			}
 			else

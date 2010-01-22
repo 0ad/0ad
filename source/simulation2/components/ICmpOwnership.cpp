@@ -17,22 +17,11 @@
 
 #include "precompiled.h"
 
-#include "IComponent.h"
+#include "ICmpOwnership.h"
 
-IComponent::~IComponent()
-{
-}
+#include "simulation2/system/InterfaceScripted.h"
 
-void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
-{
-}
-
-JSClass* IComponent::GetJSClass() const
-{
-	return NULL;
-}
-
-jsval IComponent::GetJSInstance() const
-{
-	return 0;
-}
+BEGIN_INTERFACE_WRAPPER(Ownership)
+DEFINE_INTERFACE_METHOD_0("GetOwner", int32_t, ICmpOwnership, GetOwner)
+DEFINE_INTERFACE_METHOD_1("SetOwner", void, ICmpOwnership, SetOwner, int32_t)
+END_INTERFACE_WRAPPER(Ownership)

@@ -166,7 +166,6 @@ private:
 class XMBElement
 {
 public:
-	// janwas: default ctor needed for ReadXML
 	XMBElement()
 		: m_Pointer(0) {}
 
@@ -189,7 +188,6 @@ private:
 class XMBElementList
 {
 public:
-	// janwas: default ctor needed for ReadXML
 	XMBElementList()
 		: Count(0), m_Pointer(0), m_LastItemID(-2) {}
 
@@ -197,6 +195,10 @@ public:
 		: Count(count),
 		  m_Pointer(offset),
 		  m_LastItemID(-2) {} // use -2 because it isn't x-1 where x is a non-negative integer
+
+	// Get first element in list with the given name.
+	// Performance is linear in the number of elements in the list.
+	XMBElement GetFirstNamedItem(const int ElementName) const;
 
 	XMBElement Item(const int id); // returns Children[id]
 
@@ -227,7 +229,7 @@ public:
 	XMBAttributeList(const char* offset, int count)
 		: Count(count), m_Pointer(offset), m_LastItemID(-2) {};
 
-	// Get the attribute value directly (unlike Xerces)
+	// Get the attribute value directly
 	utf16string GetNamedItem(const int AttributeName) const;
 
 	// Returns an attribute by position in the list

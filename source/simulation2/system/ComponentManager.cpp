@@ -20,7 +20,11 @@
 #include "ComponentManager.h"
 
 #include "IComponent.h"
+#include "ParamNode.h"
 #include "SimContext.h"
+
+#include "simulation2/components/ICmpTemplateManager.h"
+#include "simulation2/MessageTypes.h"
 
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -29,18 +33,25 @@ CComponentManager::CComponentManager(const CSimContext& context, bool skipScript
 	m_NextScriptComponentTypeId(CID__LastNative), m_ScriptInterface("Engine"), m_SimContext(context), m_CurrentlyHotloading(false)
 {
 	m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
+
+	// For component script tests, the test system sets up its own scripted implementation of
+	// these functions, so we skip registering them here in those cases
 	if (!skipScriptFunctions)
 	{
 		m_ScriptInterface.RegisterFunction<void, int, std::string, CScriptVal, CComponentManager::Script_RegisterComponentType> ("RegisterComponentType");
+		m_ScriptInterface.RegisterFunction<void, std::string, CComponentManager::Script_RegisterInterface> ("RegisterInterface");
 		m_ScriptInterface.RegisterFunction<void, std::string, CScriptVal, CComponentManager::Script_RegisterGlobal> ("RegisterGlobal");
 		m_ScriptInterface.RegisterFunction<IComponent*, int, int, CComponentManager::Script_QueryInterface> ("QueryInterface");
 		m_ScriptInterface.RegisterFunction<void, int, int, CScriptVal, CComponentManager::Script_PostMessage> ("PostMessage");
 		m_ScriptInterface.RegisterFunction<void, int, CScriptVal, CComponentManager::Script_BroadcastMessage> ("BroadcastMessage");
+		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddEntity> ("AddEntity");
 	}
 
-	// Define MT_*, IID_* as script globals
+	// Define MT_*, IID_* as script globals, and store their names
 #define MESSAGE(name) m_ScriptInterface.SetGlobal("MT_" #name, (int)MT_##name);
-#define INTERFACE(name) m_ScriptInterface.SetGlobal("IID_" #name, (int)IID_##name);
+#define INTERFACE(name) \
+	m_ScriptInterface.SetGlobal("IID_" #name, (int)IID_##name); \
+	m_InterfaceIdsByName[#name] = IID_##name;
 #define COMPONENT(name)
 #include "simulation2/TypeList.h"
 #undef MESSAGE
@@ -63,6 +74,8 @@ CComponentManager::~CComponentManager()
 			m_ScriptInterface.RemoveRoot(&it->second.ctor);
 }
 
+void CComponentManager::LoadComponentTypes()
+{
 #define MESSAGE(name) \
 	RegisterMessageType(MT_##name, #name);
 #define INTERFACE(name) \
@@ -73,14 +86,15 @@ CComponentManager::~CComponentManager()
 	m_CurrentComponent = CID_##name; \
 	RegisterComponentType_##name(*this);
 
-void CComponentManager::LoadComponentTypes()
-{
 #include "simulation2/TypeList.h"
-}
+
+	m_CurrentComponent = CID__Invalid;
 
 #undef MESSAGE
 #undef INTERFACE
 #undef COMPONENT
+}
+
 
 bool CComponentManager::LoadScript(const std::wstring& filename, bool hotload)
 {
@@ -91,13 +105,6 @@ bool CComponentManager::LoadScript(const std::wstring& filename, bool hotload)
 	std::wstring content(file.GetBuffer(), file.GetBuffer() + file.GetBufferSize()); // TODO: encodings etc
 	bool ok = m_ScriptInterface.LoadScript(filename, content);
 	return ok;
-}
-
-void CComponentManager::Script_RegisterGlobal(void* cbdata, std::string name, CScriptVal value)
-{
-	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
-
-	componentManager->m_ScriptInterface.SetGlobal(name.c_str(), value);
 }
 
 void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std::string cname, CScriptVal ctor)
@@ -124,6 +131,8 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 	}
 	else
 	{
+		// Component type is already loaded, so do hotloading:
+
 		if (!componentManager->m_CurrentlyHotloading)
 		{
 			componentManager->m_ScriptInterface.ReportError("Registering component type with already-registered name"); // TODO: report the actual name
@@ -158,10 +167,10 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 	}
 
 	// Construct a new ComponentType, using the wrapper's alloc functions
-	ComponentType ct = { CT_Script, ctWrapper.iid, ctWrapper.alloc, ctWrapper.dealloc, cname, ctor.get() };
+	ComponentType ct = { CT_Script, iid, ctWrapper.alloc, ctWrapper.dealloc, cname, ctor.get() };
 	componentManager->m_ComponentTypesById[cid] = ct;
 
-	componentManager->m_CurrentComponent = cid;
+	componentManager->m_CurrentComponent = cid; // needed by Subscribe
 
 	// Stop the ctor getting GCed
 	componentManager->m_ScriptInterface.AddRoot(&componentManager->m_ComponentTypesById[cid].ctor, "ComponentType ctor");
@@ -181,14 +190,29 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 	for (std::vector<std::string>::const_iterator it = methods.begin(); it != methods.end(); ++it)
 	{
 		std::string name = (*it).substr(2); // strip the "On" prefix
+
+		// Handle "OnGlobalFoo" functions specially
+		bool isGlobal = false;
+		if (name.substr(0, 6) == "Global")
+		{
+			isGlobal = true;
+			name = name.substr(6);
+		}
+
 		std::map<std::string, MessageTypeId>::const_iterator mit = componentManager->m_MessageTypeIdsByName.find(name);
 		if (mit == componentManager->m_MessageTypeIdsByName.end())
 		{
 			componentManager->m_ScriptInterface.ReportError("Registered component has unrecognised 'On...' message handler method"); // TODO: report the actual name
 			return;
 		}
-		componentManager->SubscribeToMessageType(cid, mit->second);
+
+		if (isGlobal)
+			componentManager->SubscribeGloballyToMessageType(mit->second);
+		else
+			componentManager->SubscribeToMessageType(mit->second);
 	}
+
+	componentManager->m_CurrentComponent = CID__Invalid;
 
 	if (mustReloadComponents)
 	{
@@ -203,6 +227,30 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 				componentManager->m_ScriptInterface.SetPrototype(instance, proto.get());
 		}
 	}
+}
+
+void CComponentManager::Script_RegisterInterface(void* cbdata, std::string name)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	std::map<std::string, InterfaceId>::iterator it = componentManager->m_InterfaceIdsByName.find(name);
+	if (it != componentManager->m_InterfaceIdsByName.end())
+	{
+		componentManager->m_ScriptInterface.ReportError("Registering interface with already-registered name"); // TODO: report the actual name
+		return;
+	}
+
+	// IIDs start at 1, so size+1 is the next unused one
+	size_t id = componentManager->m_InterfaceIdsByName.size() + 1;
+	componentManager->m_InterfaceIdsByName[name] = id;
+	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int )id);
+}
+
+void CComponentManager::Script_RegisterGlobal(void* cbdata, std::string name, CScriptVal value)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	componentManager->m_ScriptInterface.SetGlobal(name.c_str(), value);
 }
 
 IComponent* CComponentManager::Script_QueryInterface(void* cbdata, int ent, int iid)
@@ -234,6 +282,18 @@ void CComponentManager::Script_BroadcastMessage(void* cbdata, int mtid, CScriptV
 	componentManager->BroadcastMessage(*msg);
 
 	delete msg;
+}
+
+int CComponentManager::Script_AddEntity(void* cbdata, std::string templateName)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	std::wstring name(templateName.begin(), templateName.end());
+	// TODO: should validate the string to make sure it doesn't contain scary characters
+	// that will let it access non-component-template files
+
+	entity_id_t ent = componentManager->AddEntity(name, componentManager->AllocateNewEntity());
+	return (int)ent;
 }
 
 void CComponentManager::ResetState()
@@ -282,12 +342,21 @@ void CComponentManager::RegisterMessageType(MessageTypeId mtid, const char* name
 	m_MessageTypeIdsByName[name] = mtid;
 }
 
-void CComponentManager::SubscribeToMessageType(ComponentTypeId cid, MessageTypeId mtid)
+void CComponentManager::SubscribeToMessageType(MessageTypeId mtid)
 {
 	// TODO: verify mtid
-	debug_assert(cid == m_CurrentComponent); // TODO: this should be redundant
-	std::vector<ComponentTypeId>& types = m_ComponentTypeIdsByMessageType[mtid];
-	types.push_back(cid);
+	debug_assert(m_CurrentComponent != CID__Invalid);
+	std::vector<ComponentTypeId>& types = m_LocalMessageSubscriptions[mtid];
+	types.push_back(m_CurrentComponent);
+	std::sort(types.begin(), types.end()); // TODO: just sort once at the end of LoadComponents
+}
+
+void CComponentManager::SubscribeGloballyToMessageType(MessageTypeId mtid)
+{
+	// TODO: verify mtid
+	debug_assert(m_CurrentComponent != CID__Invalid);
+	std::vector<ComponentTypeId>& types = m_GlobalMessageSubscriptions[mtid];
+	types.push_back(m_CurrentComponent);
 	std::sort(types.begin(), types.end()); // TODO: just sort once at the end of LoadComponents
 }
 
@@ -309,6 +378,9 @@ std::string CComponentManager::LookupComponentTypeName(ComponentTypeId cid) cons
 
 CComponentManager::ComponentTypeId CComponentManager::GetScriptWrapper(InterfaceId iid)
 {
+	if (iid >= IID__LastNative && iid <= (int)m_InterfaceIdsByName.size()) // use <= since IDs start at 1
+		return CID_UnknownScript;
+
 	std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.begin();
 	for (; it != m_ComponentTypesById.end(); ++it)
 		if (it->second.iid == iid && it->second.type == CT_ScriptWrapper)
@@ -416,6 +488,48 @@ void CComponentManager::AddMockComponent(entity_id_t ent, InterfaceId iid, IComp
 	emap1.insert(std::make_pair(ent, &component));
 }
 
+entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entity_id_t ent)
+{
+	ICmpTemplateManager *tempMan = static_cast<ICmpTemplateManager*> (QueryInterface(SYSTEM_ENTITY, IID_TemplateManager));
+	if (!tempMan)
+	{
+		debug_warn(L"No ICmpTemplateManager loaded");
+		return INVALID_ENTITY;
+	}
+
+	// TODO: should assert that ent doesn't exist
+
+	const CParamNode* tmpl = tempMan->LoadTemplate(ent, templateName, -1);
+	if (!tmpl)
+		return INVALID_ENTITY; // LoadTemplate will have reported the error
+
+	// Construct a component for each child of the root element
+	const CParamNode::ChildrenMap& tmplChilds = tmpl->GetChildren();
+	for (CParamNode::ChildrenMap::const_iterator it = tmplChilds.begin(); it != tmplChilds.end(); ++it)
+	{
+		// Ignore attributes on the root element
+		if (it->first.length() && it->first[0] == '@')
+			continue;
+
+		CComponentManager::ComponentTypeId cid = LookupCID(it->first);
+		if (cid == CID__Invalid)
+		{
+			LOGERROR(L"Unrecognised component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
+			return INVALID_ENTITY;
+		}
+
+		if (!AddComponent(ent, cid, it->second))
+		{
+			LOGERROR(L"Failed to construct component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
+			return INVALID_ENTITY;
+		}
+
+		// TODO: maybe we should delete already-constructed components if one of them fails?
+	}
+
+	return ent;
+}
+
 void CComponentManager::DestroyComponentsSoon(entity_id_t ent)
 {
 	m_DestructionQueue.push_back(ent);
@@ -423,9 +537,16 @@ void CComponentManager::DestroyComponentsSoon(entity_id_t ent)
 
 void CComponentManager::FlushDestroyedComponents()
 {
-	for (std::vector<entity_id_t>::iterator it = m_DestructionQueue.begin(); it != m_DestructionQueue.end(); ++it)
+	// Make a copy of the destruction queue, so that the iterators won't be invalidated if the
+	// CMessageDestroy handlers try to destroy more entities themselves
+	std::vector<entity_id_t> queue;
+	queue.swap(m_DestructionQueue);
+
+	for (std::vector<entity_id_t>::iterator it = queue.begin(); it != queue.end(); ++it)
 	{
 		entity_id_t ent = *it;
+
+		PostMessage(ent, CMessageDestroy());
 
 		// Destroy the components, and remove from m_ComponentsByTypeId:
 		std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();
@@ -447,8 +568,6 @@ void CComponentManager::FlushDestroyedComponents()
 			ifcit->second.erase(ent);
 		}
 	}
-
-	m_DestructionQueue.clear();
 }
 
 IComponent* CComponentManager::QueryInterface(entity_id_t ent, InterfaceId iid) const
@@ -485,46 +604,69 @@ const std::map<entity_id_t, IComponent*>& CComponentManager::GetEntitiesWithInte
 
 void CComponentManager::PostMessage(entity_id_t ent, const CMessage& msg) const
 {
-	std::map<MessageTypeId, std::vector<ComponentTypeId> >::const_iterator it = m_ComponentTypeIdsByMessageType.find(msg.GetType());
-	if (it == m_ComponentTypeIdsByMessageType.end())
+	// Send the message to components of ent, that subscribed locally to this message
+	std::map<MessageTypeId, std::vector<ComponentTypeId> >::const_iterator it;
+	it = m_LocalMessageSubscriptions.find(msg.GetType());
+	if (it != m_LocalMessageSubscriptions.end())
 	{
-		// Nobody subscribed to this message
-		return;
+		std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
+		for (; ctit != it->second.end(); ++ctit)
+		{
+			std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator emap = m_ComponentsByTypeId.find(*ctit);
+			if (emap == m_ComponentsByTypeId.end())
+				continue;
+
+			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.find(ent);
+			if (eit != emap->second.end())
+				eit->second->HandleMessage(m_SimContext, msg, false);
+		}
 	}
 
-	std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
-	for (; ctit != it->second.end(); ++ctit)
-	{
-		int cid = *ctit;
-		std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator emap = m_ComponentsByTypeId.find(cid);
-		if (emap == m_ComponentsByTypeId.end())
-			continue;
-
-		std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.find(ent);
-		if (eit != emap->second.end())
-			eit->second->HandleMessage(m_SimContext, msg);
-	}
+	SendGlobalMessage(msg);
 }
 
 void CComponentManager::BroadcastMessage(const CMessage& msg) const
 {
-	std::map<MessageTypeId, std::vector<ComponentTypeId> >::const_iterator it = m_ComponentTypeIdsByMessageType.find(msg.GetType());
-	if (it == m_ComponentTypeIdsByMessageType.end())
+	// Send the message to components of all entities that subscribed locally to this message
+	std::map<MessageTypeId, std::vector<ComponentTypeId> >::const_iterator it;
+	it = m_LocalMessageSubscriptions.find(msg.GetType());
+	if (it != m_LocalMessageSubscriptions.end())
 	{
-		// Nobody subscribed to this message
-		return;
+		std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
+		for (; ctit != it->second.end(); ++ctit)
+		{
+			std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator emap = m_ComponentsByTypeId.find(*ctit);
+			if (emap == m_ComponentsByTypeId.end())
+				continue;
+
+			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.begin();
+			for (; eit != emap->second.end(); ++eit)
+				eit->second->HandleMessage(m_SimContext, msg, false);
+		}
 	}
 
-	std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
-	for (; ctit != it->second.end(); ++ctit)
-	{
-		int cid = *ctit;
-		std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator emap = m_ComponentsByTypeId.find(cid);
-		if (emap == m_ComponentsByTypeId.end())
-			continue;
+	SendGlobalMessage(msg);
+}
 
-		std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.begin();
-		for (; eit != emap->second.end(); ++eit)
-			eit->second->HandleMessage(m_SimContext, msg);
+void CComponentManager::SendGlobalMessage(const CMessage& msg) const
+{
+	// (Common functionality for PostMessage and BroadcastMessage)
+
+	// Send the message to components of all entities that subscribed globally to this message
+	std::map<MessageTypeId, std::vector<ComponentTypeId> >::const_iterator it;
+	it = m_GlobalMessageSubscriptions.find(msg.GetType());
+	if (it != m_GlobalMessageSubscriptions.end())
+	{
+		std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
+		for (; ctit != it->second.end(); ++ctit)
+		{
+			std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::const_iterator emap = m_ComponentsByTypeId.find(*ctit);
+			if (emap == m_ComponentsByTypeId.end())
+				continue;
+
+			std::map<entity_id_t, IComponent*>::const_iterator eit = emap->second.begin();
+			for (; eit != emap->second.end(); ++eit)
+				eit->second->HandleMessage(m_SimContext, msg, true);
+		}
 	}
 }

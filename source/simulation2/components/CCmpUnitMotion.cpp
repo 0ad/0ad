@@ -28,7 +28,7 @@ class CCmpUnitMotion : public ICmpUnitMotion
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(CID_UnitMotion, MT_Update);
+		componentManager.SubscribeToMessageType(MT_Update);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(UnitMotion)
@@ -72,7 +72,7 @@ public:
 		}
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{

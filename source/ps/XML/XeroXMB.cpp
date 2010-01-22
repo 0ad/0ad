@@ -165,11 +165,17 @@ std::string XMBFile::GetAttributeString(const int ID) const
 
 int XMBElement::GetNodeName() const
 {
+	if (m_Pointer == NULL)
+		return -1;
+
 	return *(int*)(m_Pointer + 4); // == ElementName
 }
 
 XMBElementList XMBElement::GetChildNodes() const
 {
+	if (m_Pointer == NULL)
+		return XMBElementList(NULL, 0);
+
 	return XMBElementList(
 		m_Pointer + 20 + *(int*)(m_Pointer + 16), // == Children[]
 		*(int*)(m_Pointer + 12) // == ChildCount
@@ -178,6 +184,9 @@ XMBElementList XMBElement::GetChildNodes() const
 
 XMBAttributeList XMBElement::GetAttributes() const
 {
+	if (m_Pointer == NULL)
+		return XMBAttributeList(NULL, 0);
+
 	return XMBAttributeList(
 		m_Pointer + 24 + *(int*)(m_Pointer + 20), // == Attributes[]
 		*(int*)(m_Pointer + 8) // == AttributeCount
@@ -187,7 +196,7 @@ XMBAttributeList XMBElement::GetAttributes() const
 utf16string XMBElement::GetText() const
 {
 	// Return empty string if there's no text
-	if (*(int*)(m_Pointer + 20) == 0)
+	if (m_Pointer == NULL || *(int*)(m_Pointer + 20) == 0)
 		return utf16string();
 	else
 		return utf16string((utf16_t*)(m_Pointer + 28));
@@ -196,10 +205,29 @@ utf16string XMBElement::GetText() const
 int XMBElement::GetLineNumber() const
 {
 	// Make sure there actually was some text to record the line of
-	if (*(int*)(m_Pointer + 20) == 0)
+	if (m_Pointer == NULL || *(int*)(m_Pointer + 20) == 0)
 		return -1;
 	else
 		return *(int*)(m_Pointer + 24);
+}
+
+XMBElement XMBElementList::GetFirstNamedItem(const int ElementName) const
+{
+	const char* Pos = m_Pointer;
+
+	// Maybe not the cleverest algorithm, but it should be
+	// fast enough with half a dozen attributes:
+	for (int i = 0; i < Count; ++i)
+	{
+		int Length = *(int*)Pos;
+		int Name = *(int*)(Pos+4);
+		if (Name == ElementName)
+			return XMBElement(Pos);
+		Pos += Length;
+	}
+
+	// Can't find element
+	return XMBElement();
 }
 
 XMBElement XMBElementList::Item(const int id)

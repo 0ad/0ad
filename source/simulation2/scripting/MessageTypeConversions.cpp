@@ -106,6 +106,38 @@ CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterfac
 	return NULL;
 }
 
+////////////////////////////////
+
+jsval CMessageDestroy::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+{
+	return JSVAL_VOID;
+}
+
+CMessage* CMessageDestroy::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return new CMessageDestroy();
+}
+
+////////////////////////////////
+
+jsval CMessageOwnershipChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(entity);
+	SET_MSG_PROPERTY(from);
+	SET_MSG_PROPERTY(to);
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageOwnershipChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+{
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(entity_id_t, entity);
+	GET_MSG_PROPERTY(int32_t, from);
+	GET_MSG_PROPERTY(int32_t, to);
+	return new CMessageOwnershipChanged(entity, from, to);
+}
+
 ////////////////////////////////////////////////////////////////
 
 CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, jsval val)

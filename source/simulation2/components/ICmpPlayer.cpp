@@ -17,22 +17,23 @@
 
 #include "precompiled.h"
 
-#include "IComponent.h"
+#include "ICmpPlayer.h"
 
-IComponent::~IComponent()
-{
-}
+#include "simulation2/system/InterfaceScripted.h"
+#include "simulation2/scripting/ScriptComponent.h"
 
-void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
-{
-}
+BEGIN_INTERFACE_WRAPPER(Player)
+END_INTERFACE_WRAPPER(Player)
 
-JSClass* IComponent::GetJSClass() const
+class CCmpPlayerScripted : public ICmpPlayer
 {
-	return NULL;
-}
+public:
+	DEFAULT_SCRIPT_WRAPPER(PlayerScripted)
 
-jsval IComponent::GetJSInstance() const
-{
-	return 0;
-}
+	virtual void SetName(const std::wstring& name)
+	{
+		m_Script.CallVoid("SetName", name);
+	}
+};
+
+REGISTER_COMPONENT_SCRIPT_WRAPPER(PlayerScripted)

@@ -17,22 +17,18 @@
 
 #include "precompiled.h"
 
-#include "IComponent.h"
+#include "ICmpUnknownScript.h"
 
-IComponent::~IComponent()
-{
-}
+#include "simulation2/system/InterfaceScripted.h"
+#include "simulation2/scripting/ScriptComponent.h"
 
-void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
-{
-}
+BEGIN_INTERFACE_WRAPPER(UnknownScript)
+END_INTERFACE_WRAPPER(UnknownScript)
 
-JSClass* IComponent::GetJSClass() const
+class CCmpUnknownScript : public ICmpUnknownScript
 {
-	return NULL;
-}
+public:
+	DEFAULT_SCRIPT_WRAPPER(UnknownScript)
+};
 
-jsval IComponent::GetJSInstance() const
-{
-	return 0;
-}
+REGISTER_COMPONENT_SCRIPT_WRAPPER(UnknownScript)

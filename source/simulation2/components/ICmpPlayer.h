@@ -15,24 +15,23 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_ICMPPLAYER
+#define INCLUDED_ICMPPLAYER
 
-#include "IComponent.h"
+#include "simulation2/system/Interface.h"
 
-IComponent::~IComponent()
+/**
+ * Player data.
+ * (This interface only includes the functions needed by native code for loading maps;
+ * most player interaction is handled by scripts instead.)
+ */
+class ICmpPlayer : public IComponent
 {
-}
+public:
+	virtual void SetName(const std::wstring& name) = 0;
+	// TODO: some more data
 
-void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
-{
-}
+	DECLARE_INTERFACE_TYPE(Player)
+};
 
-JSClass* IComponent::GetJSClass() const
-{
-	return NULL;
-}
-
-jsval IComponent::GetJSInstance() const
-{
-	return 0;
-}
+#endif // INCLUDED_ICMPPLAYER
