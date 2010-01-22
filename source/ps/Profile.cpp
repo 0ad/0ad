@@ -448,19 +448,16 @@ static long get_memory_alloc_count()
 
 static intptr_t alloc_count = 0;
 
-// We override the malloc/realloc/calloc functions and then use dlsym to
+// We override the malloc/realloc/calloc/free functions and then use dlsym to
 // defer the actual allocation to the real libc implementation.
 // The dlsym call will (in glibc 2.9/2.10) call calloc once (to allocate an error
 // message structure), so we have a bootstrapping problem when trying to
-// get malloc via dlsym. So we kludge it by returning a statically-allocated
-// buffer for the very first call to calloc (which we assume was triggered by
-// dlsym). And if we run under glibc 2.10, or 2.9 in Valgrind (?),
-// then there's another couple of allocations before that one (in OpenAL Soft).
-// This is awfully hacky but it seems to just about work in practice...
+// get the first called function via dlsym. So we kludge it by returning a statically-allocated
+// buffer for the very first call to calloc after we've called dlsym.
+// This is quite hacky but it seems to just about work in practice...
 static bool alloc_bootstrapped = false;
-static char alloc_bootstrap_buffer[72]; // sufficient for x86_64 Valgrind
-static char* alloc_bootstrap_ptr = alloc_bootstrap_buffer;
-#define PTR_IS_IN_BOOTSTRAP_BUFFER(ptr) ((ptr) >= alloc_bootstrap_buffer && (ptr) < alloc_bootstrap_buffer+ARRAY_SIZE(alloc_bootstrap_buffer))
+static char alloc_bootstrap_buffer[32]; // sufficient for x86_64
+static bool alloc_has_called_dlsym = false;
 // (We'll only be running a single thread at this point so no need for locking these variables)
 
 //#define ALLOC_DEBUG
@@ -472,8 +469,8 @@ void* malloc(size_t sz)
 	static void *(*libc_malloc)(size_t);
 	if (libc_malloc == NULL)
 	{
+		alloc_has_called_dlsym = true;
 		libc_malloc = (void *(*)(size_t)) dlsym(RTLD_NEXT, "malloc");
-		alloc_bootstrapped = true;
 	}
 	void* ret = libc_malloc(sz);
 #ifdef ALLOC_DEBUG
@@ -484,24 +481,19 @@ void* malloc(size_t sz)
 
 void* realloc(void* ptr, size_t sz)
 {
-#ifdef ALLOC_DEBUG
-	printf("### realloc(%p, %d)\n", ptr, sz);
-#endif
-
 	cpu_AtomicAdd(&alloc_count, 1);
-
-	if (PTR_IS_IN_BOOTSTRAP_BUFFER(ptr))
-	{
-		void* ret = malloc(sz);
-		size_t oldsz = alloc_bootstrap_buffer+ARRAY_SIZE(alloc_bootstrap_buffer) - (char*)ptr; // this is wrong but it's an upper bound
-		memcpy(ret, ptr, std::min(sz, oldsz));
-		return ret;
-	}
 
 	static void *(*libc_realloc)(void*, size_t);
 	if (libc_realloc == NULL)
+	{
+		alloc_has_called_dlsym = true;
 		libc_realloc = (void *(*)(void*, size_t)) dlsym(RTLD_NEXT, "realloc");
-	return libc_realloc(ptr, sz);
+	}
+	void* ret = libc_realloc(ptr, sz);
+#ifdef ALLOC_DEBUG
+	printf("### realloc(%p, %d) = %p\n", ptr, sz, ret);
+#endif
+	return ret;
 }
 
 void* calloc(size_t nm, size_t sz)
@@ -511,16 +503,16 @@ void* calloc(size_t nm, size_t sz)
 	static void *(*libc_calloc)(size_t, size_t);
 	if (libc_calloc == NULL)
 	{
-		if (!alloc_bootstrapped)
+		if (alloc_has_called_dlsym && !alloc_bootstrapped)
 		{
-			debug_assert(nm*sz <= (size_t)(alloc_bootstrap_buffer+ARRAY_SIZE(alloc_bootstrap_buffer) - alloc_bootstrap_ptr));
-			void* ret = alloc_bootstrap_ptr;
+			debug_assert(nm*sz <= ARRAY_SIZE(alloc_bootstrap_buffer));
 #ifdef ALLOC_DEBUG
-			printf("### calloc-bs(%d, %d) = %p\n", nm, sz, ret);
+			printf("### calloc-bs(%d, %d) = %p\n", nm, sz, alloc_bootstrap_buffer);
 #endif
-			alloc_bootstrap_ptr += nm*sz;
-			return ret;
+			alloc_bootstrapped = true;
+			return alloc_bootstrap_buffer;
 		}
+		alloc_has_called_dlsym = true;
 		libc_calloc = (void *(*)(size_t, size_t)) dlsym(RTLD_NEXT, "calloc");
 	}
 	void* ret = libc_calloc(nm, sz);
@@ -532,18 +524,17 @@ void* calloc(size_t nm, size_t sz)
 
 void free(void* ptr)
 {
+	static void (*libc_free)(void*);
+	if (libc_free == NULL)
+	{
+		alloc_has_called_dlsym = true;
+		libc_free = (void (*)(void*)) dlsym(RTLD_NEXT, "free");
+	}
+
+	libc_free(ptr);
 #ifdef ALLOC_DEBUG
 	printf("### free(%p)\n", ptr);
 #endif
-
-	if (PTR_IS_IN_BOOTSTRAP_BUFFER(ptr))
-		return;
-
-	static void (*libc_free)(void*);
-	if (libc_free == NULL)
-		libc_free = (void (*)(void*)) dlsym(RTLD_NEXT, "free");
-
-	libc_free(ptr);
 }
 
 static void alloc_hook_initialize()
