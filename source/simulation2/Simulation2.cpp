@@ -67,7 +67,7 @@ public:
 #define LOAD_SCRIPTED_COMPONENT(name) \
 			cid = m_ComponentManager.LookupCID(name); \
 			if (cid == CID__Invalid) \
-				LOGERROR(L"Can't find component type " name); \
+				LOGERROR(L"Can't find component type " L##name); \
 			m_ComponentManager.AddComponent(SYSTEM_ENTITY, cid, noParam)
 
 			LOAD_SCRIPTED_COMPONENT("GuiInterface");
