@@ -52,9 +52,10 @@ static LibError ReadVersionString(const fs::wpath& modulePathname_, wchar_t* out
 		// check if the failure is due to not finding modulePathname
 		// (necessary since GetFileVersionInfoSize doesn't SetLastError)
 		HMODULE hModule = LoadLibraryExW(modulePathname.c_str(), 0, LOAD_LIBRARY_AS_DATAFILE);
+		if(!hModule)
+			WARN_RETURN(ERR::FAIL);	// file not found
 		FreeLibrary(hModule);
-		const LibError err = hModule? ERR::_1 : ERR::_2;
-		WARN_RETURN(err);
+		return ERR::NOT_SUPPORTED;	// NOWARN (module apparently lacks version information)
 	}
 
 	shared_ptr<u8> mem = Allocate(ver_size);

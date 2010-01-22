@@ -296,11 +296,12 @@ static LibError alc_init()
 // OpenAL immediately after init (instead of waiting until next update).
 //-----------------------------------------------------------------------------
 
-static float al_listener_gain = 1.0;
-static float al_listener_pos[3] = { 0, 0, 0 };
+static float al_listener_gain = 1.0f;
+static float al_listener_position[3] = { 0.0f, 0.0f, 0.0f };
+static float al_listener_velocity[3] = { 0.0f, 0.0f, 0.0f };
 
 // float view_direction[3], up_vector[3]; passed directly to OpenAL
-static float al_listener_orientation[6] = {0, 0, -1, 0, 1, 0};
+static float al_listener_orientation[6] = { 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f };
 
 
 /**
@@ -315,7 +316,8 @@ static void al_listener_latch()
 		AL_CHECK;
 
 		alListenerf(AL_GAIN, al_listener_gain);
-		alListenerfv(AL_POSITION, al_listener_pos);
+		alListenerfv(AL_POSITION, al_listener_position);
+		alListenerfv(AL_VELOCITY, al_listener_velocity);
 		alListenerfv(AL_ORIENTATION, al_listener_orientation);
 
 		AL_CHECK;
@@ -358,7 +360,7 @@ static void al_listener_set_pos(const float pos[3], const float dir[3], const fl
 {
 	int i;
 	for(i = 0; i < 3; i++)
-		al_listener_pos[i] = pos[i];
+		al_listener_position[i] = pos[i];
 	for(i = 0; i < 3; i++)
 		al_listener_orientation[i] = dir[i];
 	for(i = 0; i < 3; i++)
@@ -377,9 +379,9 @@ static void al_listener_set_pos(const float pos[3], const float dir[3], const fl
  */
 static float al_listener_dist_2(const float point[3])
 {
-	const float dx = al_listener_pos[0] - point[0];
-	const float dy = al_listener_pos[1] - point[1];
-	const float dz = al_listener_pos[2] - point[2];
+	const float dx = al_listener_position[0] - point[0];
+	const float dy = al_listener_position[1] - point[1];
+	const float dz = al_listener_position[2] - point[2];
 	return dx*dx + dy*dy + dz*dz;
 }
 
@@ -1496,13 +1498,14 @@ static void vsrc_latch(VSrc* vs)
 	if(vs->relative)
 	{
 		rolloff = 0.0f;
-		referenceDistance = 0.0f;
-		maxDistance = 0.0f;
+		referenceDistance = 1.0f;
+		maxDistance = FLT_MAX;
 	}
 
 	AL_CHECK;
 
 	alSourcefv(vs->al_src, AL_POSITION,           vs->pos);
+	alSource3f(vs->al_src, AL_VELOCITY,           0.0f, 0.0f, 0.0f);
 	alSourcei (vs->al_src, AL_SOURCE_RELATIVE,    vs->relative);
 	alSourcef (vs->al_src, AL_ROLLOFF_FACTOR,     rolloff);
 	alSourcef (vs->al_src, AL_REFERENCE_DISTANCE, referenceDistance);
@@ -1511,12 +1514,23 @@ static void vsrc_latch(VSrc* vs)
 	alSourcef (vs->al_src, AL_PITCH,              vs->pitch);
 	alSourcei (vs->al_src, AL_LOOPING,            vs->loop);
 
+	//alSourcei (vs->al_src, AL_MIN_GAIN,           0.0f);
+	//alSourcei (vs->al_src, AL_MAX_GAIN,           1.0f);
+	//alSource3f(vs->al_src, AL_DIRECTION,          0.0f, 0.0f, 0.0f);
+	//alSourcef (vs->al_src, AL_CONE_INNER_ANGLE,   360.0f);
+	//alSourcef (vs->al_src, AL_CONE_OUTER_ANGLE,   360.0f);
+	//alSourcef (vs->al_src, AL_CONE_OUTER_GAIN,    0.0f);
+	//alSourcef (vs->al_src, AL_SEC_OFFSET,         0.0f);
+	//alSourcef (vs->al_src, AL_SAMPLE_OFFSET,      0.0f);
+	//alSourcef (vs->al_src, AL_BYTE_OFFSET,        0.0f);
+
 	ALenum err = alGetError();
 	if(err != AL_NO_ERROR)
 	{
 		debug_printf(L"vsrc_latch: one of the below is invalid:\n");
-		debug_printf(L"  al_src: %d\n", vs->al_src);
-		debug_printf(L"  pos: %f %f %f\n", vs->pos[0], vs->pos[1], vs->pos[2]);
+		debug_printf(L"  al_src: 0x%x\n", vs->al_src);
+		debug_printf(L"  position: %f %f %f\n", vs->pos[0], vs->pos[1], vs->pos[2]);
+		debug_printf(L"  velocity: %f %f %f\n", 0.0f, 0.0f, 0.0f);
 		debug_printf(L"  relative: %d\n", (int)vs->relative);
 		debug_printf(L"  rolloff: %f\n", rolloff);
 		debug_printf(L"  ref dist: %f\n", referenceDistance);
