@@ -28,6 +28,12 @@ extern bool g_app_has_focus;
 extern int g_mouse_x, g_mouse_y;
 
 /**
+ * Indicates whether the mouse is focused on the game window (mouse positions
+ * should usually be considered inaccurate if this is false)
+ */
+extern bool g_mouse_active;
+
+/**
  * g_keys: Key states, indexed by SDLK* constants. If an entry is true,
  * it represents a pressed key.
  * Updated by GlobalsInputHandler in response to key press/release events.

@@ -26,6 +26,7 @@ bool g_app_has_focus = true;
 
 bool g_keys[SDLK_LAST] = {0};
 int g_mouse_x = 50, g_mouse_y = 50;
+bool g_mouse_active = true;
 
 // unused, left, right, middle, wheel up, wheel down
 // (order is given by SDL_BUTTON_* constants).
@@ -45,6 +46,8 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 			g_app_minimized = (ev->ev.active.gain == 0);	// negated
 		if(ev->ev.active.state & SDL_APPINPUTFOCUS)
 			g_app_has_focus = (ev->ev.active.gain != 0);
+		if(ev->ev.active.state & SDL_APPMOUSEFOCUS)
+			g_mouse_active = (ev->ev.active.gain != 0);
 		return IN_PASS;
 
 	case SDL_MOUSEMOTION:

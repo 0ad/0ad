@@ -764,7 +764,7 @@ void CGameView::Update(float DeltaTime)
 	}
 
 	// Mouse movement
-	if( !hotkeys[HOTKEY_CAMERA_ROTATE] && !hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
+	if( g_mouse_active && !hotkeys[HOTKEY_CAMERA_ROTATE] && !hotkeys[HOTKEY_CAMERA_ROTATE_ABOUT_TARGET] )
 	{
 		if (g_mouse_x >= g_xres-2 && g_mouse_x < g_xres)
 			CameraLock(rightwards * (m->ViewScrollSpeed * DeltaTime));
