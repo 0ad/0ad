@@ -1,3 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
+  <Identity>
+    <GenericName>Infantry</GenericName>
+  </Identity>
+  <Cost>
+  </Cost>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/{civ}_barracks
+      structures/{civ}_civil_centre
+      structures/{civ}_corral
+      structures/{civ}_dock
+      structures/{civ}_farmstead
+      structures/{civ}_field
+      structures/{civ}_fortress
+      structures/{civ}_house
+      structures/{civ}_market
+      structures/{civ}_mill
+      structures/{civ}_scout_tower
+      structures/{civ}_temple
+      structures/{civ}_wall_gate
+      structures/{civ}_wall_long
+      structures/{civ}_wall_tower
+    </Entities>
+  </Builder>
 </Entity>

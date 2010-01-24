@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_super_ranged">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Brythonic Carbanto</SpecificName>
+    <IconCell>41</IconCell>
+  </Identity>
+  <Cost>
+    <Population>4</Population>
+  </Cost>
   <VisualActor>
     <Actor>units/celts/super_unit_4.xml</Actor>
   </VisualActor>

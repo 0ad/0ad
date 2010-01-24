@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Vercingetorix</SpecificName>
+    <IconCell>31</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/celts/vercingetorix_horse.xml</Actor>
   </VisualActor>

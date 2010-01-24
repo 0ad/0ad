@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Britomartus</SpecificName>
+    <IconCell>30</IconCell>
+  </Identity>
+  <Cost>
+  </Cost>
   <VisualActor>
     <Actor>units/celts/britomartus.xml</Actor>
   </VisualActor>

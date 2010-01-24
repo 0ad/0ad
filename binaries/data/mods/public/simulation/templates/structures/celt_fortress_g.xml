@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_fortress">
+  <Identity>
+    <SpecificName>Gallic Dun</SpecificName>
+  </Identity>
+  <Cost>
+    <PopulationBonus>22</PopulationBonus>
+  </Cost>
   <VisualActor>
     <Actor>structures/celts/fortress_gallic.xml</Actor>
   </VisualActor>

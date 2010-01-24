@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Themistocles</SpecificName>
+    <IconCell>22</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/hellenes/themistocles.xml</Actor>
   </VisualActor>

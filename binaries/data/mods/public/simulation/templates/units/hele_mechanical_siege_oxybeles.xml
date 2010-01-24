@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Oxybeles</SpecificName>
+    <IconCell>37</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/hellenes/siege_spear.xml</Actor>
   </VisualActor>

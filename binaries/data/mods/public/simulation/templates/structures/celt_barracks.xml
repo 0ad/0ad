@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_barracks">
+  <Identity>
+    <SpecificName>Gwersyllty</SpecificName>
+  </Identity>
+  <Cost>
+    <PopulationBonus>7</PopulationBonus>
+  </Cost>
   <VisualActor>
     <Actor>structures/celts/barracks.xml</Actor>
   </VisualActor>

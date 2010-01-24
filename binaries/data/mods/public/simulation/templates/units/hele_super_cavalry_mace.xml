@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_super_cavalry">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Hetairoi</SpecificName>
+    <IconCell>15</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/hellenes/super_unit_4.xml</Actor>
   </VisualActor>

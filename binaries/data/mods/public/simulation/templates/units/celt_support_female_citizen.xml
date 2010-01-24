@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_female_citizen">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Bodu</SpecificName>
+  </Identity>
   <VisualActor>
     <Actor>units/celts/female_citizen.xml</Actor>
   </VisualActor>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/celt_sb1
+    </Entities>
+  </Builder>
 </Entity>

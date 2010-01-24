@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Identity>
+    <SpecificName>Tholos</SpecificName>
+    <IconCell>24</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>structures/hellenes/tholos.xml</Actor>
   </VisualActor>

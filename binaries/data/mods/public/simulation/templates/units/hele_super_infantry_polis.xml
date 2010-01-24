@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_super_infantry">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Spartiate</SpecificName>
+    <IconCell>12</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/hellenes/super_unit_1.xml</Actor>
   </VisualActor>

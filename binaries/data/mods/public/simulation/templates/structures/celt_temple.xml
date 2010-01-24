@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
+  <Identity>
+    <SpecificName>Addoldy</SpecificName>
+  </Identity>
+  <Cost>
+    <PopulationBonus>2</PopulationBonus>
+  </Cost>
   <VisualActor>
     <Actor>structures/celts/temple.xml</Actor>
   </VisualActor>

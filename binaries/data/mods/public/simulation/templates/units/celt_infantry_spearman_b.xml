@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Gaesata</SpecificName>
+  </Identity>
   <VisualActor>
     <Actor>units/celts/infantry_spearman_b.xml</Actor>
   </VisualActor>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/celt_fortress_b
+      structures/celt_fortress_g
+      structures/celt_sb1
+    </Entities>
+  </Builder>
 </Entity>

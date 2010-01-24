@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_merchant">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Currach</SpecificName>
+  </Identity>
   <VisualActor>
     <Actor>structures/celts/merchant.xml</Actor>
   </VisualActor>

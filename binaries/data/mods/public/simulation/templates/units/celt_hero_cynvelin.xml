@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Cynvelin</SpecificName>
+    <IconCell>46</IconCell>
+  </Identity>
+  <Cost>
+    <Population>2</Population>
+  </Cost>
   <VisualActor>
     <Actor>units/celts/cynvelin_horse.xml</Actor>
   </VisualActor>

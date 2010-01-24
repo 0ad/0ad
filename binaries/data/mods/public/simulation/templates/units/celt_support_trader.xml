@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_trader">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Cyfnewidiwr</SpecificName>
+  </Identity>
   <VisualActor>
     <Actor>units/celts/trader.xml</Actor>
   </VisualActor>

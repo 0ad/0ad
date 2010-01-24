@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_melee_spearman">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Coun</SpecificName>
+  </Identity>
+  <Cost>
+  </Cost>
   <VisualActor>
     <Actor>units/celts/cavalry_spearman_b.xml</Actor>
   </VisualActor>

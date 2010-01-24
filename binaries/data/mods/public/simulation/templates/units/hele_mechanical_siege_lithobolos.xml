@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege_onager">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Lithobolos</SpecificName>
+    <IconCell>35</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/hellenes/siege_rock.xml</Actor>
   </VisualActor>

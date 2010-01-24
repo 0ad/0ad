@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_ranged">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Boudicca</SpecificName>
+    <IconCell>44</IconCell>
+  </Identity>
+  <Cost>
+    <Population>4</Population>
+  </Cost>
   <VisualActor>
     <Actor>units/celts/boudicca_chariot.xml</Actor>
   </VisualActor>

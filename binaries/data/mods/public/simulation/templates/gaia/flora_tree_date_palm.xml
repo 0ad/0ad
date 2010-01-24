@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_gaia_flora_tree">
+  <Identity>
+    <SpecificName>Date Palm</SpecificName>
+    <IconCell>1</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>flora/trees/palm_date.xml</Actor>
   </VisualActor>

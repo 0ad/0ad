@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical">
+  <Identity>
+    <GenericName>Siege</GenericName>
+  </Identity>
+  <Cost>
+    <Population>3</Population>
+  </Cost>
 </Entity>

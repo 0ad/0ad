@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_super_infantry">
+  <Identity>
+    <SpecificName>Argyraspides</SpecificName>
+    <IconCell>12</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>temp/mace_su1_hypaspist.xml</Actor>
   </VisualActor>

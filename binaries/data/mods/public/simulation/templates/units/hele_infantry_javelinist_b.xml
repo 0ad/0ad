@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_javelinist">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Thracian Peltast</SpecificName>
+    <IconCell>6</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/hellenes/infantry_javelinist_b.xml</Actor>
   </VisualActor>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/hele_gymnasion
+      structures/hele_theatron
+      structures/hele_tholos
+    </Entities>
+  </Builder>
 </Entity>

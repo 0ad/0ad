@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
+  <Identity>
+    <GenericName>Female Citizen</GenericName>
+    <IconCell>32</IconCell>
+  </Identity>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/{civ}_civil_centre
+      structures/{civ}_corral
+      structures/{civ}_farmstead
+      structures/{civ}_field
+      structures/{civ}_house
+      structures/{civ}_market
+      structures/{civ}_mill
+      structures/{civ}_temple
+    </Entities>
+  </Builder>
 </Entity>

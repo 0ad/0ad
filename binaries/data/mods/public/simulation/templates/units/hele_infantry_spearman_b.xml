@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Hoplite</SpecificName>
+    <IconCell>3</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_b.xml</Actor>
   </VisualActor>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/hele_gymnasion
+      structures/hele_theatron
+      structures/hele_tholos
+    </Entities>
+  </Builder>
 </Entity>

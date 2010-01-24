@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_trireme">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Trireme</SpecificName>
+  </Identity>
   <VisualActor>
     <Actor>structures/hellenes/trireme.xml</Actor>
   </VisualActor>

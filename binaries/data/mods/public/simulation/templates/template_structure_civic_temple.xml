@@ -1,3 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
+  <Identity>
+    <GenericName>Temple</GenericName>
+    <IconCell>58</IconCell>
+  </Identity>
+  <Cost>
+    <PopulationBonus>5</PopulationBonus>
+  </Cost>
 </Entity>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_javelinist">
+  <Identity>
+    <Civ>celt</Civ>
+    <SpecificName>Baguada</SpecificName>
+  </Identity>
   <VisualActor>
     <Actor>units/celts/infantry_javelinist_b.xml</Actor>
   </VisualActor>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/celt_fortress_b
+      structures/celt_fortress_g
+      structures/celt_sb1
+    </Entities>
+  </Builder>
 </Entity>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_super_ranged">
+  <Identity>
+    <Civ>hele</Civ>
+    <SpecificName>Ekdromos</SpecificName>
+    <IconCell>14</IconCell>
+  </Identity>
   <VisualActor>
     <Actor>units/hellenes/super_unit_2.xml</Actor>
   </VisualActor>

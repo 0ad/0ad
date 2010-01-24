@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_entity_full">
-    <UnitMotion/>
-    <Cost>
-        <Population>1</Population>
-    </Cost>
+  <Identity>
+    <GenericName>Unit</GenericName>
+    <IconSheet>PortraitSheet</IconSheet>
+  </Identity>
+  <UnitMotion/>
+  <Cost>
+    <Population>1</Population>
+  </Cost>
 </Entity>
