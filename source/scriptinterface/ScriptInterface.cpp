@@ -327,8 +327,20 @@ jsval ScriptInterface::GetGlobalObject()
 	return OBJECT_TO_JSVAL(JS_GetGlobalObject(m->m_cx));
 }
 
-bool ScriptInterface::SetGlobal_(const char* name, jsval value)
+bool ScriptInterface::SetGlobal_(const char* name, jsval value, bool replace)
 {
+	if (!replace)
+	{
+		JSBool found;
+		if (!JS_HasProperty(m->m_cx, m->m_glob, name, &found))
+			return false;
+		if (found)
+		{
+			JS_ReportError(m->m_cx, "SetGlobal \"%s\" called multiple times", name);
+			return false;
+		}
+	}
+
 	JSBool ok = JS_DefineProperty(m->m_cx, m->m_glob, name, value, NULL, NULL, JSPROP_ENUMERATE | JSPROP_READONLY
 			| JSPROP_PERMANENT);
 	return ok ? true : false;

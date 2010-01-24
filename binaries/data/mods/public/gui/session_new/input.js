@@ -7,8 +7,11 @@ const SDL_BUTTON_RIGHT = 3;
 
 var INPUT_NORMAL = 0;
 var INPUT_DRAGGING = 1;
+var INPUT_BUILDING_PLACEMENT = 2;
 
 var inputState = INPUT_NORMAL;
+
+var placementEntity = "";
 
 function handleInputBeforeGui(ev)
 {
@@ -67,6 +70,43 @@ function handleInputAfterGui(ev)
 			}
 		}
 		break;
+
+	case INPUT_BUILDING_PLACEMENT:
+		switch (ev.type)
+		{
+		case "mousemotion":
+			var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+			var angle = Math.PI;
+			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": placementEntity, "x": target.x, "z": target.z, "angle": angle});
+
+			return false; // continue processing mouse motion
+
+		case "mousebuttondown":
+			if (ev.button == SDL_BUTTON_LEFT)
+			{
+				var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+				var angle = Math.PI;
+				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+				Engine.PostNetworkCommand({"type": "construct", "template": placementEntity, "x": target.x, "z": target.z, "angle": angle});
+
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			else if (ev.button == SDL_BUTTON_RIGHT)
+			{
+				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+		}
+		break;
 	}
 	return false;
+}
+
+function testBuild(ent)
+{
+	placementEntity = ent;
+	inputState = INPUT_BUILDING_PLACEMENT;
 }

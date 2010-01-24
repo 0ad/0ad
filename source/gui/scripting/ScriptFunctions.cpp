@@ -146,6 +146,24 @@ CScriptVal GetEntityState(void* cbdata, entity_id_t ent)
 	return CloneValueBetweenContexts(sim->GetScriptInterface().GetContext(), guiManager->GetScriptInterface().GetContext(), gui->GetEntityState(player, ent).get());
 }
 
+CScriptVal GuiInterfaceCall(void* cbdata, std::string name, CScriptVal data)
+{
+	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
+
+	if (!g_UseSimulation2 || !g_Game)
+		return JSVAL_VOID;
+	CSimulation2* sim = g_Game->GetSimulation2();
+	debug_assert(sim);
+	CmpPtr<ICmpGuiInterface> gui(*sim, SYSTEM_ENTITY);
+	if (gui.null())
+		return JSVAL_VOID;
+
+	JSContext* cxGui = guiManager->GetScriptInterface().GetContext();
+	JSContext* cxSim = sim->GetScriptInterface().GetContext();
+	CScriptVal ret = gui->ScriptCall(name, CloneValueBetweenContexts(cxGui, cxSim, data.get()));
+	return CloneValueBetweenContexts(cxSim, cxGui, ret.get());
+}
+
 void SetEntitySelectionHighlight(void* UNUSED(cbdata), entity_id_t ent, CColor color)
 {
 	if (!g_UseSimulation2 || !g_Game)
@@ -211,6 +229,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<CScriptVal, &GetSimulationState>("GetSimulationState");
 	scriptInterface.RegisterFunction<CScriptVal, entity_id_t, &GetEntityState>("GetEntityState");
 	scriptInterface.RegisterFunction<void, entity_id_t, CColor, &SetEntitySelectionHighlight>("SetEntitySelectionHighlight");
+	scriptInterface.RegisterFunction<CScriptVal, std::string, CScriptVal, &GuiInterfaceCall>("GuiInterfaceCall");
 
 	scriptInterface.RegisterFunction<void, CScriptVal, &PostNetworkCommand>("PostNetworkCommand");
 

@@ -29,6 +29,12 @@ public:
 	virtual CScriptVal GetEntityState(int player, entity_id_t ent) = 0;
 	virtual void SetSelectionHighlight(entity_id_t ent, const CColor& color) = 0;
 
+	/**
+	 * Generic call function, for use by GUI scripts to talk to the GuiInterface script.
+	 */
+	virtual CScriptVal ScriptCall(std::string name, CScriptVal data) = 0;
+	// TODO: some of the earlier functions should just use ScriptCall.
+
 	DECLARE_INTERFACE_TYPE(GuiInterface)
 };
 

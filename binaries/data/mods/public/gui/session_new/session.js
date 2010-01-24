@@ -6,6 +6,8 @@ function init()
 function onSimulationUpdate()
 {
 	updateDebug();
+
+	updateBuildButton();
 }
 
 function updateDebug()
@@ -19,4 +21,22 @@ function updateDebug()
 		text += "Entity "+ent+":\n" + uneval(Engine.GetEntityState(ent)) + "\n";
 	}
 	debug.caption = text;
+}
+
+function updateBuildButton()
+{
+	var selection = getEntitySelection();
+	if (selection.length)
+	{
+		var entity = Engine.GetEntityState(selection[0]);
+		if (entity.buildEntities && entity.buildEntities.length)
+		{
+			var ent = entity.buildEntities[0];
+			getGUIObjectByName("testBuild").caption = "Construct "+ent;
+			getGUIObjectByName("testBuild").onpress = function() { testBuild(ent) };
+			getGUIObjectByName("testBuild").hidden = false;
+			return;
+		}
+	}
+	getGUIObjectByName("testBuild").hidden = true;
 }

@@ -1364,13 +1364,27 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::set<
 	if (! file.empty())
 	{
 		Paths.insert(file);
-		g_ScriptingHost.RunScript(file, m_ScriptObject);
+		try
+		{
+			g_ScriptingHost.RunScript(file, m_ScriptObject);
+		}
+		catch (PSERROR_Scripting& e)
+		{
+			LOGERROR(L"GUI: Error executing script %ls: %hs", file.c_str(), e.what());
+		}
 	}
 
 	// Execute inline scripts
-	CStr code (Element.GetText());
-	if (! code.empty())
-		g_ScriptingHost.RunMemScript(code.c_str(), code.length(), "Some XML file", Element.GetLineNumber(), m_ScriptObject);
+	try
+	{
+		CStr code (Element.GetText());
+		if (! code.empty())
+			g_ScriptingHost.RunMemScript(code.c_str(), code.length(), "Some XML file", Element.GetLineNumber(), m_ScriptObject);
+	}
+	catch (PSERROR_Scripting& e)
+	{
+		LOGERROR(L"GUI: Error executing inline script: %hs", e.what());
+	}
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)

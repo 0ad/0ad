@@ -9,3 +9,12 @@ HotloadA.prototype.GetX = function() {
 };
 
 Engine.RegisterComponentType(IID_Test1, "HotloadA", HotloadA);
+
+
+function HotloadC() {}
+
+Engine.RegisterInterface("HotloadInterface");
+Engine.RegisterComponentType(IID_HotloadInterface, "HotloadC", HotloadC);
+
+
+Engine.RegisterGlobal("HotloadGlobal", 2);

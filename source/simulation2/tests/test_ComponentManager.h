@@ -390,6 +390,56 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent2, IID_Test2))->GetX(), 12345);
 	}
 
+	void test_script_AddLocalEntity()
+	{
+		CSimContext context;
+		CComponentManager man(context);
+		man.LoadComponentTypes();
+		TS_ASSERT(man.LoadScript(L"simulation/components/test-addentity.js"));
+		TS_ASSERT(man.LoadScript(L"simulation/components/addentity/test-addentity.js"));
+
+		entity_id_t ent1 = 1;
+		entity_id_t ent2 = man.AllocateNewLocalEntity() + 2;
+		CParamNode noParam;
+
+		TS_ASSERT(man.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam));
+
+		TS_ASSERT(man.AddComponent(ent1, man.LookupCID("TestScript1_AddLocalEntity"), noParam));
+
+		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) == NULL);
+		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) == NULL);
+
+		{
+			TestLogger logger; // ignore bogus-template warnings
+			TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), (int)ent2);
+		}
+
+		TS_ASSERT(man.QueryInterface(ent2, IID_Test1) != NULL);
+		TS_ASSERT(man.QueryInterface(ent2, IID_Test2) != NULL);
+
+		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 999);
+		TS_ASSERT_EQUALS(static_cast<ICmpTest2*> (man.QueryInterface(ent2, IID_Test2))->GetX(), 12345);
+	}
+
+	void test_script_DestroyEntity()
+	{
+		CSimContext context;
+		CComponentManager man(context);
+		man.LoadComponentTypes();
+		TS_ASSERT(man.LoadScript(L"simulation/components/test-destroyentity.js"));
+
+		entity_id_t ent1 = 10;
+		CParamNode noParam;
+
+		TS_ASSERT(man.AddComponent(ent1, man.LookupCID("TestScript1_DestroyEntity"), noParam));
+
+		TS_ASSERT(man.QueryInterface(ent1, IID_Test1) != NULL);
+		static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX();
+		TS_ASSERT(man.QueryInterface(ent1, IID_Test1) != NULL);
+		man.FlushDestroyedComponents();
+		TS_ASSERT(man.QueryInterface(ent1, IID_Test1) == NULL);
+	}
+
 	void test_script_messages()
 	{
 		CSimContext context;
@@ -440,7 +490,7 @@ public:
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 1+10+100+1000);
 	}
 
-	void test_script_template_readonly()
+	void TODO_test_script_template_readonly()
 	{
 		CSimContext context;
 		CComponentManager man(context);
@@ -475,6 +525,7 @@ public:
 
 		man.AddComponent(ent1, man.LookupCID("HotloadA"), testParam);
 		man.AddComponent(ent2, man.LookupCID("HotloadB"), testParam);
+		man.AddComponent(ent2, man.LookupCID("HotloadC"), testParam);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 100);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 200);

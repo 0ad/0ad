@@ -45,6 +45,11 @@ public:
 		m_Script.Call<CScriptVal> ("SetSelectionHighlight", ent, color);
 		// ignore return value
 	}
+
+	virtual CScriptVal ScriptCall(std::string name, CScriptVal data)
+	{
+		return m_Script.Call<CScriptVal> ("ScriptCall", name, data);
+	}
 };
 
 REGISTER_COMPONENT_SCRIPT_WRAPPER(GuiInterfaceScripted)

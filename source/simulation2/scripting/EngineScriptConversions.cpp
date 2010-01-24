@@ -108,7 +108,9 @@ template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode 
 
 	// Prevent modifications to the object, so that it's safe to share between
 	// components and to reconstruct on deserialization
-	JS_SealObject(cx, obj, JS_TRUE);
+	//JS_SealObject(cx, obj, JS_TRUE);
+	// TODO: need to re-enable this when it works safely (e.g. it doesn't seal the
+	// global object too (via the parent chain))
 
 	return OBJECT_TO_JSVAL(obj);
 }

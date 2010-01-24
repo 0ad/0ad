@@ -107,10 +107,12 @@ public:
 	jsval GetGlobalObject();
 
 	/**
-	 * Set the named property on the global object
+	 * Set the named property on the global object.
+	 * If @p replace is true, an existing property will be overwritten; otherwise attempts
+	 * to set an already-defined value will fail.
 	 */
 	template<typename T>
-	bool SetGlobal(const char* name, const T& value);
+	bool SetGlobal(const char* name, const T& value, bool replace = false);
 
 	/**
 	 * Set the named property on the given object.
@@ -180,7 +182,7 @@ public:
 private:
 	bool CallFunction_(jsval val, const char* name, std::vector<jsval>& args, jsval& ret);
 	bool Eval_(const char* code, jsval& ret);
-	bool SetGlobal_(const char* name, jsval value);
+	bool SetGlobal_(const char* name, jsval value, bool replace);
 	bool SetProperty_(jsval obj, const char* name, jsval value, bool readonly);
 	bool GetProperty_(jsval obj, const char* name, jsval& value);
 	static bool IsExceptionPending(JSContext* cx);
@@ -272,10 +274,10 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 }
 
 template<typename T>
-bool ScriptInterface::SetGlobal(const char* name, const T& value)
+bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
 {
 	LOCAL_ROOT_SCOPE;
-	return SetGlobal_(name, ToJSVal(GetContext(), value));
+	return SetGlobal_(name, ToJSVal(GetContext(), value), replace);
 }
 
 template<typename T>

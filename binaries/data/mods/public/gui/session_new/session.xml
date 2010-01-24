@@ -39,6 +39,15 @@
 		<action on="Press">
 			this.hidden = !this.hidden;
 		</action>
+
+		<object	name="testBuild"
+			type="button"
+			style="wheatButton"
+			size="64 100%-96 320 100%-64"
+			hidden="true"
+		>
+			Construct thing
+		</object>
 		
 		<!-- Exit hotkey -->
 		<object name="leave" hotkey="leave">

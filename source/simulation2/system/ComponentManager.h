@@ -202,6 +202,8 @@ private:
 	static void Script_PostMessage(void* cbdata, int ent, int mtid, CScriptVal data);
 	static void Script_BroadcastMessage(void* cbdata, int mtid, CScriptVal data);
 	static int Script_AddEntity(void* cbdata, std::string templateName);
+	static int Script_AddLocalEntity(void* cbdata, std::string templateName);
+	static void Script_DestroyEntity(void* cbdata, int ent);
 
 	void SendGlobalMessage(const CMessage& msg) const;
 

@@ -13,6 +13,7 @@ function ProcessCommand(player, cmd)
 			pos.SetYRotation(pos.GetRotation().y + 1);
 		}
 		break;
+
 	case "walk":
 		for each (var ent in cmd.entities)
 		{
@@ -22,6 +23,21 @@ function ProcessCommand(player, cmd)
 			motion.MoveToPoint(cmd.x, cmd.z);
 		}
 		break;
+
+	case "construct":
+		// TODO: this should do all sorts of stuff with foundations and resource costs etc
+		var ent = Engine.AddEntity(cmd.template);
+		if (ent)
+		{
+			var pos = Engine.QueryInterface(ent, IID_Position);
+			if (pos)
+			{
+				pos.JumpTo(cmd.x, cmd.z);
+				pos.SetYRotation(cmd.angle);
+			}
+		}
+		break;
+
 	default:
 		print("Ignoring unrecognised command type '" + cmd.type + "'\n");
 	}

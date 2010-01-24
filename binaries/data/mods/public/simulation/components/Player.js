@@ -30,14 +30,20 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 	{
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
+		{
 			this.popCount -= cost.GetPopCost();
+			this.popLimit += cost.GetPopBonus();
+		}
 	}
 	
 	if (msg.to == this.playerID)
 	{
 		var cost = Engine.QueryInterface(msg.entity, IID_Cost);
 		if (cost)
+		{
 			this.popCount += cost.GetPopCost();
+			this.popLimit -= cost.GetPopBonus();
+		}
 	}
 };
 

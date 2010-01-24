@@ -10,6 +10,7 @@ HotloadA.prototype.GetX = function() {
 
 Engine.RegisterComponentType(IID_Test1, "HotloadA", HotloadA);
 
+
 function HotloadB() {}
 
 HotloadB.prototype.Init = function() {
@@ -21,3 +22,12 @@ HotloadB.prototype.GetX = function() {
 };
 
 Engine.RegisterComponentType(IID_Test1, "HotloadB", HotloadB);
+
+
+function HotloadC() {}
+
+Engine.RegisterInterface("HotloadInterface");
+Engine.RegisterComponentType(IID_HotloadInterface, "HotloadC", HotloadC);
+
+
+Engine.RegisterGlobal("HotloadGlobal", 1);

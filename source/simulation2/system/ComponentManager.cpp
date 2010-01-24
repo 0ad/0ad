@@ -45,6 +45,8 @@ CComponentManager::CComponentManager(const CSimContext& context, bool skipScript
 		m_ScriptInterface.RegisterFunction<void, int, int, CScriptVal, CComponentManager::Script_PostMessage> ("PostMessage");
 		m_ScriptInterface.RegisterFunction<void, int, CScriptVal, CComponentManager::Script_BroadcastMessage> ("BroadcastMessage");
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddEntity> ("AddEntity");
+		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
+		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
 	}
 
 	// Define MT_*, IID_* as script globals, and store their names
@@ -150,7 +152,7 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 
 		// We don't support changing the IID of a component type (it would require fiddling
 		// around with m_ComponentsByInterface and being careful to guarantee uniqueness per entity)
-		if (ctPrevious.iid != ctWrapper.iid)
+		if (ctPrevious.iid != iid)
 		{
 			// ...though it only matters if any components exist with this type
 			if (!componentManager->m_ComponentsByTypeId[cid].empty())
@@ -236,7 +238,10 @@ void CComponentManager::Script_RegisterInterface(void* cbdata, std::string name)
 	std::map<std::string, InterfaceId>::iterator it = componentManager->m_InterfaceIdsByName.find(name);
 	if (it != componentManager->m_InterfaceIdsByName.end())
 	{
-		componentManager->m_ScriptInterface.ReportError("Registering interface with already-registered name"); // TODO: report the actual name
+		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
+		// they're probably unintentional and should be reported
+		if (!componentManager->m_CurrentlyHotloading)
+			componentManager->m_ScriptInterface.ReportError("Registering interface with already-registered name"); // TODO: report the actual name
 		return;
 	}
 
@@ -250,7 +255,9 @@ void CComponentManager::Script_RegisterGlobal(void* cbdata, std::string name, CS
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
 
-	componentManager->m_ScriptInterface.SetGlobal(name.c_str(), value);
+	// Set the value, and accept duplicates only if hotloading (otherwise it's an error,
+	// in order to detect accidental duplicate definitions of globals)
+	componentManager->m_ScriptInterface.SetGlobal(name.c_str(), value, componentManager->m_CurrentlyHotloading);
 }
 
 IComponent* CComponentManager::Script_QueryInterface(void* cbdata, int ent, int iid)
@@ -294,6 +301,25 @@ int CComponentManager::Script_AddEntity(void* cbdata, std::string templateName)
 
 	entity_id_t ent = componentManager->AddEntity(name, componentManager->AllocateNewEntity());
 	return (int)ent;
+}
+
+int CComponentManager::Script_AddLocalEntity(void* cbdata, std::string templateName)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	std::wstring name(templateName.begin(), templateName.end());
+	// TODO: should validate the string to make sure it doesn't contain scary characters
+	// that will let it access non-component-template files
+
+	entity_id_t ent = componentManager->AddEntity(name, componentManager->AllocateNewLocalEntity());
+	return (int)ent;
+}
+
+void CComponentManager::Script_DestroyEntity(void* cbdata, int ent)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (cbdata);
+
+	componentManager->DestroyComponentsSoon(ent);
 }
 
 void CComponentManager::ResetState()
