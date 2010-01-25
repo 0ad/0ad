@@ -9,7 +9,7 @@ GuiInterface.prototype.Init = function()
 GuiInterface.prototype.GetSimulationState = function(player)
 {
 	var ret = {
-		players: []
+		"players": []
 	};
 	
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
@@ -19,8 +19,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 		var player = {
-			popCount: cmpPlayer.GetPopulationCount(),
-			popLimit: cmpPlayer.GetPopulationLimit()
+			"popCount": cmpPlayer.GetPopulationCount(),
+			"popLimit": cmpPlayer.GetPopulationLimit()
 		};
 		ret.players.push(player);
 	}
@@ -30,16 +30,36 @@ GuiInterface.prototype.GetSimulationState = function(player)
 
 GuiInterface.prototype.GetEntityState = function(player, ent)
 {
+	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	
 	var ret = {
-		position: cmpPosition.GetPosition()
+		"template": cmpTempMan.GetCurrentTemplateName(ent),
+		"position": cmpPosition.GetPosition()
 	};
 
 	var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
 	if (cmpBuilder)
 	{
 		ret.buildEntities = cmpBuilder.GetEntitiesList();
+	}
+
+	return ret;
+};
+
+GuiInterface.prototype.GetTemplateData = function(player, name)
+{
+	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTempMan.GetTemplate(name);
+
+	var ret = {};
+
+	if (template.Identity)
+	{
+		ret.name = {
+			"specific": template.Identity.SpecificName,
+			"generic": template.Identity.GenericName
+		};
 	}
 
 	return ret;
@@ -86,6 +106,7 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 var exposedFunctions = {
 	"GetSimulationState": 1,
 	"GetEntityState": 1,
+	"GetTemplateData": 1,
 	"SetSelectionHighlight": 1,
 	"SetBuildingPlacementPreview": 1
 };

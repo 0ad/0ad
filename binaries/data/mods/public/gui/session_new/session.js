@@ -18,7 +18,10 @@ function updateDebug()
 	text += "\n\n";
 	for (var ent in g_Selection)
 	{
-		text += "Entity "+ent+":\n" + uneval(Engine.GuiInterfaceCall("GetEntityState", ent)) + "\n";
+		var entState = Engine.GuiInterfaceCall("GetEntityState", ent);
+		text += "Entity "+ent+":\n" + uneval(entState);
+		text += "\n\n";
+		text += "Template:\n" + uneval(Engine.GuiInterfaceCall("GetTemplateData", entState.template));
 	}
 	debug.caption = text;
 }
@@ -32,7 +35,15 @@ function updateBuildButton()
 		if (entity.buildEntities && entity.buildEntities.length)
 		{
 			var ent = entity.buildEntities[0];
-			getGUIObjectByName("testBuild").caption = "Construct "+ent;
+			var template = Engine.GuiInterfaceCall("GetTemplateData", ent);
+
+			var name;
+			if (template.name.specific && template.name.generic)
+				name = template.name.specific + " (" + template.name.generic + ")";
+			else
+				name = template.name.specific || template.name.generic;
+
+			getGUIObjectByName("testBuild").caption = "Construct "+name;
 			getGUIObjectByName("testBuild").onpress = function() { testBuild(ent) };
 			getGUIObjectByName("testBuild").hidden = false;
 			return;

@@ -115,6 +115,14 @@ template<> jsval ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, CParamNode 
 	return OBJECT_TO_JSVAL(obj);
 }
 
+template<> jsval ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, const CParamNode* const& val)
+{
+	if (val)
+		return ToJSVal(cx, *val);
+	else
+		return JSVAL_VOID;
+}
+
 template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, jsval v, CColor& out)
 {
 	ScriptInterface::LocalRootScope scope(cx);

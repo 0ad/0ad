@@ -27,8 +27,9 @@
 #include "ps/Overlay.h"
 #include "ps/Player.h"
 #include "simulation2/Simulation2.h"
-#include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
+#include "simulation2/components/ICmpGuiInterface.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/helpers/Selection.h"
 
 /*
@@ -108,7 +109,7 @@ static jsval CloneValueBetweenContexts(JSContext* cxFrom, JSContext* cxTo, jsval
 	return JSVAL_VOID;
 }
 
-CScriptVal GuiInterfaceCall(void* cbdata, std::string name, CScriptVal data)
+CScriptVal GuiInterfaceCall(void* cbdata, std::wstring name, CScriptVal data)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
 
@@ -116,6 +117,7 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::string name, CScriptVal data)
 		return JSVAL_VOID;
 	CSimulation2* sim = g_Game->GetSimulation2();
 	debug_assert(sim);
+
 	CmpPtr<ICmpGuiInterface> gui(*sim, SYSTEM_ENTITY);
 	if (gui.null())
 		return JSVAL_VOID;
@@ -138,6 +140,7 @@ void PostNetworkCommand(void* cbdata, CScriptVal cmd)
 		return;
 	CSimulation2* sim = g_Game->GetSimulation2();
 	debug_assert(sim);
+
 	CmpPtr<ICmpCommandQueue> queue(*sim, SYSTEM_ENTITY);
 	if (queue.null())
 		return;
@@ -177,8 +180,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 
 	// Simulation<->GUI interface functions:
 	scriptInterface.RegisterFunction<bool, &IsNewSimulation>("IsNewSimulation");
-	scriptInterface.RegisterFunction<CScriptVal, std::string, CScriptVal, &GuiInterfaceCall>("GuiInterfaceCall");
-
+	scriptInterface.RegisterFunction<CScriptVal, std::wstring, CScriptVal, &GuiInterfaceCall>("GuiInterfaceCall");
 	scriptInterface.RegisterFunction<void, CScriptVal, &PostNetworkCommand>("PostNetworkCommand");
 
 	// Entity picking

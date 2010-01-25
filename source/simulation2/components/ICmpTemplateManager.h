@@ -48,6 +48,12 @@ public:
 	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::wstring& templateName, int playerID) = 0;
 
 	/**
+	 * Loads the template XML file identified by 'templateName' (including inheritance
+	 * from parent XML files). The templateName syntax is the same as LoadTemplate.
+	 */
+	virtual const CParamNode* GetTemplate(std::wstring templateName) = 0;
+
+	/**
 	 * Returns the template most recently specified for the entity 'ent'.
 	 * Used during deserialization.
 	 */

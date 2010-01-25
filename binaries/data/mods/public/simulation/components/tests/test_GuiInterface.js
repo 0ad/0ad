@@ -8,6 +8,12 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	GetPlayerByID: function(id) { TS_ASSERT(id === 0 || id === 1); return 100+id; }
 });
 
+AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
+	GetCurrentTemplateName: function(ent) { return "example"; },
+	GetTemplate: function(name) { return ""; },
+});
+
+
 AddMock(100, IID_Player, {
 	GetPopulationCount: function() { return 10; },
 	GetPopulationLimit: function() { return 20; }
@@ -18,7 +24,9 @@ AddMock(101, IID_Player, {
 	GetPopulationLimit: function() { return 30; }
 });
 
-TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), { players: [{popCount:10, popLimit:20}, {popCount:40, popLimit:30}] });
+TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
+	players: [{popCount:10, popLimit:20}, {popCount:40, popLimit:30}]
+});
 
 
 AddMock(10, IID_Position, {
@@ -34,4 +42,8 @@ AddMock(10, IID_Builder, {
 });
 
 var state = cmp.GetEntityState(-1, 10);
-TS_ASSERT_UNEVAL_EQUALS(state, { position: {x:1, y:2, z:3}, buildEntities: ["test1", "test2"] });
+TS_ASSERT_UNEVAL_EQUALS(state, {
+	template: "example",
+	position: {x:1, y:2, z:3},
+	buildEntities: ["test1", "test2"]
+});

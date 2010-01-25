@@ -22,4 +22,6 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(TemplateManager)
+DEFINE_INTERFACE_METHOD_1("GetTemplate", const CParamNode*, ICmpTemplateManager, GetTemplate, std::wstring)
+DEFINE_INTERFACE_METHOD_1("GetCurrentTemplateName", std::wstring, ICmpTemplateManager, GetCurrentTemplateName, entity_id_t)
 END_INTERFACE_WRAPPER(TemplateManager)

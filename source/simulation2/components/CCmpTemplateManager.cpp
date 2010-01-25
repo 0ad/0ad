@@ -81,6 +81,8 @@ public:
 
 	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::wstring& templateName, int playerID);
 
+	virtual const CParamNode* GetTemplate(std::wstring templateName);
+
 	virtual const CParamNode* LoadLatestTemplate(entity_id_t ent);
 
 	virtual std::wstring GetCurrentTemplateName(entity_id_t ent);
@@ -119,14 +121,23 @@ const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::
 {
 	m_LatestTemplates[ent] = templateName;
 
+	const CParamNode* templateRoot = GetTemplate(templateName);
+	if (!templateRoot)
+		return NULL;
+
+	// TODO: Eventually we need to support techs in here, and return a different template per playerID
+
+	return templateRoot;
+}
+
+const CParamNode* CCmpTemplateManager::GetTemplate(std::wstring templateName)
+{
 	// Load the template if necessary
 	if (!LoadTemplateFile(templateName, 0))
 	{
 		LOGERROR(L"Failed to load entity template '%ls'", templateName.c_str());
 		return NULL;
 	}
-
-	// TODO: Eventually we need to support techs in here, and return a different template per playerID
 
 	const CParamNode* templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
 	if (!templateRoot)
