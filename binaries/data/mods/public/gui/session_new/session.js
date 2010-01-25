@@ -13,12 +13,12 @@ function onSimulationUpdate()
 function updateDebug()
 {
 	var debug = getGUIObjectByName("debug");
-	var simState = Engine.GetSimulationState();
+	var simState = Engine.GuiInterfaceCall("GetSimulationState");
 	var text = "Simulation:\n" + uneval(simState);
 	text += "\n\n";
 	for (var ent in g_Selection)
 	{
-		text += "Entity "+ent+":\n" + uneval(Engine.GetEntityState(ent)) + "\n";
+		text += "Entity "+ent+":\n" + uneval(Engine.GuiInterfaceCall("GetEntityState", ent)) + "\n";
 	}
 	debug.caption = text;
 }
@@ -28,7 +28,7 @@ function updateBuildButton()
 	var selection = getEntitySelection();
 	if (selection.length)
 	{
-		var entity = Engine.GetEntityState(selection[0]);
+		var entity = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
 		if (entity.buildEntities && entity.buildEntities.length)
 		{
 			var ent = entity.buildEntities[0];

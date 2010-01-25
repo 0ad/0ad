@@ -104,6 +104,12 @@ public:
 	template<typename T0, typename T1, typename R>
 	bool CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, R& ret);
 
+	/**
+	 * Call the named property on the given object, with return type R and 3 arguments
+	 */
+	template<typename T0, typename T1, typename T2, typename R>
+	bool CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, R& ret);
+
 	jsval GetGlobalObject();
 
 	/**
@@ -267,6 +273,21 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 	std::vector<jsval> argv;
 	argv.push_back(ToJSVal(GetContext(), a0));
 	argv.push_back(ToJSVal(GetContext(), a1));
+	bool ok = CallFunction_(val, name, argv, jsRet);
+	if (!ok)
+		return false;
+	return FromJSVal(GetContext(), jsRet, ret);
+}
+
+template<typename T0, typename T1, typename T2, typename R>
+bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, R& ret)
+{
+	LOCAL_ROOT_SCOPE;
+	jsval jsRet;
+	std::vector<jsval> argv;
+	argv.push_back(ToJSVal(GetContext(), a0));
+	argv.push_back(ToJSVal(GetContext(), a1));
+	argv.push_back(ToJSVal(GetContext(), a2));
 	bool ok = CallFunction_(val, name, argv, jsRet);
 	if (!ok)
 		return false;

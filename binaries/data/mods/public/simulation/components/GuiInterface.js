@@ -45,13 +45,13 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	return ret;
 };
 
-GuiInterface.prototype.SetSelectionHighlight = function(ent, colour)
+GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
-	var cmpSelectable = Engine.QueryInterface(ent, IID_Selectable);
-	cmpSelectable.SetSelectionHighlight(colour);
+	var cmpSelectable = Engine.QueryInterface(cmd.entity, IID_Selectable);
+	cmpSelectable.SetSelectionHighlight(cmd.colour);
 };
 
-GuiInterface.prototype.SetBuildingPlacementPreview = function(cmd)
+GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 {
 	if (!this.placementEntity || this.placementEntity[0] != cmd.template)
 	{
@@ -78,10 +78,22 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(cmd)
 	}
 };
 
-GuiInterface.prototype.ScriptCall = function(name, args)
+// List the GuiInterface functions that can be safely called by GUI scripts.
+// (GUI scripts are non-deterministic and untrusted, so these functions must be
+// appropriately careful. They are called with a first argument "player", which is
+// trusted and indicates the player associated with the current client; no data should
+// be returned unless this player is meant to be able to see it.)
+var exposedFunctions = {
+	"GetSimulationState": 1,
+	"GetEntityState": 1,
+	"SetSelectionHighlight": 1,
+	"SetBuildingPlacementPreview": 1
+};
+
+GuiInterface.prototype.ScriptCall = function(player, name, args)
 {
-	if (name == "SetBuildingPlacementPreview")
-		this.SetBuildingPlacementPreview(args);
+	if (exposedFunctions[name])
+		return this[name](player, args);
 	else
 		throw new Error("Invalid GuiInterface Call name \""+name+"\"");
 };

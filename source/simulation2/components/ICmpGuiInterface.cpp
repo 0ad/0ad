@@ -30,25 +30,9 @@ class CCmpGuiInterfaceScripted : public ICmpGuiInterface
 public:
 	DEFAULT_SCRIPT_WRAPPER(GuiInterfaceScripted)
 
-	virtual CScriptVal GetSimulationState(int player)
+	virtual CScriptVal ScriptCall(int player, std::string cmd, CScriptVal data)
 	{
-		return m_Script.Call<CScriptVal> ("GetSimulationState", player);
-	}
-
-	virtual CScriptVal GetEntityState(int player, entity_id_t ent)
-	{
-		return m_Script.Call<CScriptVal> ("GetEntityState", player, ent);
-	}
-
-	virtual void SetSelectionHighlight(entity_id_t ent, const CColor& color)
-	{
-		m_Script.Call<CScriptVal> ("SetSelectionHighlight", ent, color);
-		// ignore return value
-	}
-
-	virtual CScriptVal ScriptCall(std::string name, CScriptVal data)
-	{
-		return m_Script.Call<CScriptVal> ("ScriptCall", name, data);
+		return m_Script.Call<CScriptVal> ("ScriptCall", player, cmd, data);
 	}
 };
 

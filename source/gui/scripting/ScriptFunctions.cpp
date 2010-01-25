@@ -108,44 +108,6 @@ static jsval CloneValueBetweenContexts(JSContext* cxFrom, JSContext* cxTo, jsval
 	return JSVAL_VOID;
 }
 
-CScriptVal GetSimulationState(void* cbdata)
-{
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
-	if (!g_UseSimulation2 || !g_Game)
-		return JSVAL_VOID;
-	CSimulation2* sim = g_Game->GetSimulation2();
-	debug_assert(sim);
-	CmpPtr<ICmpGuiInterface> gui(*sim, SYSTEM_ENTITY);
-	if (gui.null())
-		return JSVAL_VOID;
-
-	int player = -1;
-	if (g_Game && g_Game->GetLocalPlayer())
-		player = g_Game->GetLocalPlayer()->GetPlayerID();
-
-	return CloneValueBetweenContexts(sim->GetScriptInterface().GetContext(), guiManager->GetScriptInterface().GetContext(), gui->GetSimulationState(player).get());
-}
-
-CScriptVal GetEntityState(void* cbdata, entity_id_t ent)
-{
-	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
-
-	if (!g_UseSimulation2 || !g_Game)
-		return JSVAL_VOID;
-	CSimulation2* sim = g_Game->GetSimulation2();
-	debug_assert(sim);
-	CmpPtr<ICmpGuiInterface> gui(*sim, SYSTEM_ENTITY);
-	if (gui.null())
-		return JSVAL_VOID;
-
-	int player = -1;
-	if (g_Game && g_Game->GetLocalPlayer())
-		player = g_Game->GetLocalPlayer()->GetPlayerID();
-
-	return CloneValueBetweenContexts(sim->GetScriptInterface().GetContext(), guiManager->GetScriptInterface().GetContext(), gui->GetEntityState(player, ent).get());
-}
-
 CScriptVal GuiInterfaceCall(void* cbdata, std::string name, CScriptVal data)
 {
 	CGUIManager* guiManager = static_cast<CGUIManager*> (cbdata);
@@ -158,25 +120,14 @@ CScriptVal GuiInterfaceCall(void* cbdata, std::string name, CScriptVal data)
 	if (gui.null())
 		return JSVAL_VOID;
 
+	int player = -1;
+	if (g_Game && g_Game->GetLocalPlayer())
+		player = g_Game->GetLocalPlayer()->GetPlayerID();
+
 	JSContext* cxGui = guiManager->GetScriptInterface().GetContext();
 	JSContext* cxSim = sim->GetScriptInterface().GetContext();
-	CScriptVal ret = gui->ScriptCall(name, CloneValueBetweenContexts(cxGui, cxSim, data.get()));
+	CScriptVal ret = gui->ScriptCall(player, name, CloneValueBetweenContexts(cxGui, cxSim, data.get()));
 	return CloneValueBetweenContexts(cxSim, cxGui, ret.get());
-}
-
-void SetEntitySelectionHighlight(void* UNUSED(cbdata), entity_id_t ent, CColor color)
-{
-	if (!g_UseSimulation2 || !g_Game)
-		return;
-	CSimulation2* sim = g_Game->GetSimulation2();
-	debug_assert(sim);
-	CmpPtr<ICmpGuiInterface> gui(*sim, SYSTEM_ENTITY);
-	if (gui.null())
-		return;
-
-	// TODO: stop duplicating all this prolog code
-
-	gui->SetSelectionHighlight(ent, color);
 }
 
 void PostNetworkCommand(void* cbdata, CScriptVal cmd)
@@ -226,9 +177,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 
 	// Simulation<->GUI interface functions:
 	scriptInterface.RegisterFunction<bool, &IsNewSimulation>("IsNewSimulation");
-	scriptInterface.RegisterFunction<CScriptVal, &GetSimulationState>("GetSimulationState");
-	scriptInterface.RegisterFunction<CScriptVal, entity_id_t, &GetEntityState>("GetEntityState");
-	scriptInterface.RegisterFunction<void, entity_id_t, CColor, &SetEntitySelectionHighlight>("SetEntitySelectionHighlight");
 	scriptInterface.RegisterFunction<CScriptVal, std::string, CScriptVal, &GuiInterfaceCall>("GuiInterfaceCall");
 
 	scriptInterface.RegisterFunction<void, CScriptVal, &PostNetworkCommand>("PostNetworkCommand");
