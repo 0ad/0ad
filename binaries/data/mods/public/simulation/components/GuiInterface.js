@@ -58,7 +58,8 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	{
 		ret.name = {
 			"specific": template.Identity.SpecificName,
-			"generic": template.Identity.GenericName
+			"generic": template.Identity.GenericName,
+			"icon_cell": template.Identity.IconCell
 		};
 	}
 

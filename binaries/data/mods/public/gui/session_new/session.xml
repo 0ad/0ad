@@ -39,15 +39,6 @@
 		<action on="Press">
 			this.hidden = !this.hidden;
 		</action>
-
-		<object	name="testBuild"
-			type="button"
-			style="wheatButton"
-			size="64 100%-96 320 100%-64"
-			hidden="true"
-		>
-			Construct thing
-		</object>
 		
 		<!-- Exit hotkey -->
 		<object name="leave" hotkey="leave">
@@ -56,24 +47,105 @@
 					["Yes", "No!"], [confirmLeave, null]);
 			]]></action>
 		</object>
-		
+
+		<!-- Debug text -->
+		<object name="debug"
+			type="text"
+			size="0 0 50% 100%"
+			ghost="true"
+			textcolor="yellow"
+			font="console"
+		>
+		[default debug text]
+		</object>
+
+		<!-- Bottom-left selected-unit details panel -->
+		<object name="unitDetails"
+			style="goldPanel"
+			size="0 100%-250 300 100%"
+			type="text"
+			hidden="true"
+		>
+		[unit details]
+		</object>
+
+		<!-- Bottom-middle selected-unit commands panel -->
+		<object name="unitCommands"
+			size="350 100%-204 100%-300 100%"
+		>
+
+			<object name="unitConstructionPanel"
+				style="goldPanelFrilly"
+				size="0 0 100% 56"
+				type="image"
+			>
+			<object size="50%-159 10 50%+159 47">
+
+			<!-- TODO: need a better way to do this. Perhaps something like
+				<object name="buttons" type="repeater" count="8" sizedelta="40 0 0 0">
+					<object type="button" .../>
+				</object>
+				where a script can change the count dynamically?
+			-->
+			<object name="cButton0" style="iconButton" type="button" size="0 0 37 37">
+				<object name="cIcon0" type="image" ghost="true" size="3 3 35 35"/>
+			</object>
+			<object name="cButton1" style="iconButton" type="button" size="40 0 77 37">
+				<object name="cIcon1" type="image" ghost="true" size="3 3 35 35"/>
+			</object>
+			<object name="cButton2" style="iconButton" type="button" size="80 0 117 37">
+				<object name="cIcon2" type="image" ghost="true" size="3 3 35 35"/>
+			</object>
+			<object name="cButton3" style="iconButton" type="button" size="120 0 157 37">
+				<object name="cIcon3" type="image" ghost="true" size="3 3 35 35"/>
+			</object>
+			<object name="cButton4" style="iconButton" type="button" size="160 0 197 37">
+				<object name="cIcon4" type="image" ghost="true" size="3 3 35 35"/>
+			</object>
+			<object name="cButton5" style="iconButton" type="button" size="200 0 237 37">
+				<object name="cIcon5" type="image" ghost="true" size="3 3 35 35"/>
+			</object>
+			<object name="cButton6" style="iconButton" type="button" size="240 0 277 37">
+				<object name="cIcon6" type="image" ghost="true" size="3 3 35 35"/>
+			</object>
+			<object name="cButton7" style="iconButton" type="button" size="280 0 317 37">
+				<object name="cIcon7" type="image" ghost="true" size="3 3 35 35"/>
+			</object>
+
+			</object>
+			</object>
+
+			<object name="unitFormationPanel"
+				style="goldPanelFrilly"
+				size="0 72 100% 128"
+				type="text"
+			>
+			[formation commands]
+			</object>
+
+			<object name="unitStancePanel"
+				style="goldPanelFrilly"
+				size="0 144 100% 200"
+				type="text"
+			>
+			[stance commands]
+			</object>
+
+		</object>
+
 		<!-- Minimap -->
 		<object	name="minimap">
+			<object style="goldPanel"
+				size="100%-246 100%-246 100% 100%"
+				type="image"
+			/>
 			<object name="minimapDisplay"
 				style="snObject"
 				type="minimap"
-				size="100%-138 100%-138 100%-6 100%-6"
-			/>
-			
-			<object	name="minimapBorder"
-				style="snMiniMapBorder"
-				type="image"
-				size="100%-172 100%-172 100% 100%"
+				size="100%-206 100%-206 100%-6 100%-6"
 			/>
 		</object>
 
-		<!-- Debug text -->
-		<object name="debug" type="text" size="0 0 50% 100%" ghost="true" textcolor="yellow" font="console">[default debug text]</object>
 	</object>	
 
 </objects>

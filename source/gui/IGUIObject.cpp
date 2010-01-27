@@ -64,9 +64,6 @@ IGUIObject::IGUIObject() :
 
 	for (int i=0; i<6; i++)
 		m_LastClickTime[i]=0;
-	bool hidden=true;
-
-	GUI<bool>::GetSetting(this, "hidden", hidden);
 }
 
 IGUIObject::~IGUIObject()

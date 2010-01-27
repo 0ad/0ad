@@ -201,7 +201,6 @@ public:
 									const CGUISpriteInstance& prim,
 									const CGUISpriteInstance& sec)
 	{
-		// CStr() == empty string, null
 		return (prim.IsEmpty() ? sec : prim);
 	}
 
@@ -223,14 +222,14 @@ public:
 	 * Sets a value by setting and object name using a real 
 	 * datatype as input.
 	 *
-	 * This is just a wrapper for _mem_ParseString() which really
+	 * This is just a wrapper for __ParseString() which really
 	 * works the magic.
 	 *
 	 * @param Value The value in string form, like "0 0 100% 100%"
 	 * @param tOutput Parsed value of type T
 	 * @return True at success.
 	 *
-	 * @see _mem_ParseString()
+	 * @see __ParseString()
 	 */
 	static bool ParseString(const CStr& Value, T &tOutput)
 	{

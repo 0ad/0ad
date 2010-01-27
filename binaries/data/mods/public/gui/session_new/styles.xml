@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<styles>
+	<style 	name="goldPanel"
+		sprite="goldPanel"
+		buffer_zone="4"
+		text_align="left"
+		text_valign="top"
+	/>
+
+	<style 	name="goldPanelFrilly"
+		sprite="goldPanelFrilly"
+		buffer_zone="4"
+		text_align="center"
+		text_valign="center"
+	/>
+
+	<style 	name="iconButton"
+		sprite="snIconPortrait"
+		sprite_over="snIconPortraitOver"
+		sprite_disabled="snIconPortraitDisabled"
+		text_align="right"
+		textcolor="255 255 255"
+		tooltip_style="snToolTip"
+		tooltip="(TBA)"
+	/>
+
+</styles>

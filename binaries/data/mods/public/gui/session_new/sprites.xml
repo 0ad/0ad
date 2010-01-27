@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<sprites>
+	<sprite name="goldPanel">
+		<!-- (currently this is all a hack - need proper textures) -->
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			texture_size="0 0 64 32"
+			size="0 -6 100% 0"
+		/>
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			texture_size="0 0 64 32"
+			size="0 100%+5 100% 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			texture_size="0 0 16 100%"
+			size="100% 0 100%+4 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			texture_size="0 0 16 100%"
+			size="-4 0 0 100%"
+		/>
+		<image
+			texture="global/tile/sandstone.dds"
+			texture_size="0 0 128 128"
+		/>
+	</sprite>
+
+	<sprite name="goldPanelFrilly">
+		<!-- (currently this is all a hack - need proper textures) -->
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			texture_size="0 0 64 32"
+			size="0 -6 100% 0"
+		/>
+		<image
+			texture="global/titlebar/middle_gold_fern.dds"
+			texture_size="0 0 64 32"
+			size="0 100%+5 100% 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			texture_size="0 0 16 100%"
+			size="100% 0 100%+4 100%"
+		/>
+		<image
+			texture="global/border/corner_bronze.dds"
+			texture_size="0 0 16 100%"
+			size="-4 0 0 100%"
+		/>
+		<image
+			texture="global/titlebar/left_gold_fern.dds"
+			texture_size="0 0 64 32"
+			size="-48 50%-16 0 50%+16"
+		/>
+		<image
+			texture="global/titlebar/right_gold_fern.dds"
+			texture_size="-16 0 48 32"
+			size="100% 50%-16 100%+48 50%+16"
+		/>
+		<image
+			texture="global/tile/sandstone.dds"
+			texture_size="0 0 128 128"
+		/>
+	</sprite>
+
+</sprites>
+

@@ -341,6 +341,18 @@ PSRETURN GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &V
 	return ret;
 }
 
+// Helper function for SetSetting
+template <typename T>
+bool IsBoolTrue(const T&)
+{
+	return false;
+}
+template <>
+bool IsBoolTrue<bool>(const bool& v)
+{
+	return v;
+}
+
 template <typename T>
 PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, 
 							 const T &Value, const bool& SkipMessage)
@@ -375,8 +387,8 @@ PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 	if (Setting == "hidden")
 	{
 		// Hiding an object requires us to reset it and all children
-		QueryResetting(pObject);
-		//RecurseObject(0, pObject, IGUIObject::ResetStates);
+		if (IsBoolTrue(Value))
+			QueryResetting(pObject);
 	}
 
 	if (!SkipMessage)
