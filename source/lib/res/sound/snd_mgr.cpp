@@ -30,6 +30,7 @@
 #include <deque>
 #include <cmath>
 #include <cstdio>
+#include <cfloat>
 
 #include "lib/path_util.h"
 #include "../h_mgr.h"

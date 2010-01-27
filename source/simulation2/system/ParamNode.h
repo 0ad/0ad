@@ -22,6 +22,7 @@
 #include "ps/Errors.h"
 
 #include <map>
+#include <set>
 
 class XMBFile;
 class XMBElement;
