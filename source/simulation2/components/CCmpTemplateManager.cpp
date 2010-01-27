@@ -252,7 +252,6 @@ void CCmpTemplateManager::ConstructTemplateActor(const std::wstring& actorName, 
 			"<Altitude>0</Altitude>"
 			"<Floating>false</Floating>"
 		"</Position>"
-		"<MotionBallScripted/>"
 		"<VisualActor>"
 			"<Actor>" + name + "</Actor>"
 		"</VisualActor>"

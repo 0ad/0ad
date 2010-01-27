@@ -71,9 +71,9 @@ public:
 		TS_ASSERT(inherit1 != NULL);
 		TS_ASSERT_WSTR_EQUALS(inherit1->ToXML(), L"<x a=\"a1\" b=\"b1\" c=\"c1\"><d>d1</d><e>e1</e><f>f1</f></x>");
 
-		const CParamNode* actor = tempMan->LoadTemplate(ent2, L"actor|example", -1);
+		const CParamNode* actor = tempMan->LoadTemplate(ent2, L"actor|example1", -1);
 		TS_ASSERT(actor != NULL);
-		TS_ASSERT_WSTR_EQUALS(actor->ToXML(), L"<MotionBallScripted></MotionBallScripted><Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example</Actor></VisualActor>");
+		TS_ASSERT_WSTR_EQUALS(actor->ToXML(), L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example1</Actor></VisualActor>");
 
 		const CParamNode* preview = tempMan->LoadTemplate(ent2, L"preview|unit", -1);
 		TS_ASSERT(preview != NULL);
