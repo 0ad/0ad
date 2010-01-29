@@ -912,7 +912,9 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				type="checkbox"
 				size="83%+10 100%-65 83%+30 100%-45"
 				checked="false"
-			/>
+			>
+			<action on="Load">this.checked = Engine.IsNewSimulation()</action>
+			</object>
 			
 			
 			<!--
