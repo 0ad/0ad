@@ -101,6 +101,7 @@ struct Square
  */
 class PathfinderOverlay : public TerrainOverlay
 {
+	NONCOPYABLE(PathfinderOverlay);
 public:
 	CCmpPathfinder& m_Pathfinder;
 
@@ -340,7 +341,7 @@ void PathfinderOverlay::EndRender()
 void PathfinderOverlay::ProcessTile(ssize_t i, ssize_t j)
 {
 	if (m_Pathfinder.m_Grid && m_Pathfinder.m_Grid->get(i, j))
-		RenderTile(CColor(1, 0, 0, 0.6), false);
+		RenderTile(CColor(1, 0, 0, 0.6f), false);
 
 	if (m_Pathfinder.m_DebugGrid)
 	{
@@ -349,9 +350,9 @@ void PathfinderOverlay::ProcessTile(ssize_t i, ssize_t j)
 		float c = clamp((n.cost/256.f) / 32.f, 0.f, 1.f);
 
 		if (n.status == PathfindTile::STATUS_OPEN)
-			RenderTile(CColor(1, 1, c, 0.6), false);
+			RenderTile(CColor(1, 1, c, 0.6f), false);
 		else if (n.status == PathfindTile::STATUS_CLOSED)
-			RenderTile(CColor(0, 1, c, 0.6), false);
+			RenderTile(CColor(0, 1, c, 0.6f), false);
 	}
 }
 
