@@ -460,10 +460,42 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PriorityQueue
 	if (terrainGrid->get(i, j))
 		return;
 
-	u32 cost = pg + g_CostPerTile;
-	// TODO: should use terrain costs etc
+	// Calculate the cost of moving from predecessor to here
+	u32 dg = g_CostPerTile;
 
+	// Calculate heuristic cost to target
+	// (This ought to be an underestimate for correctness)
 	u32 h = (abs((int)i - (int)i1) + abs((int)j - (int)j1)) * g_CostPerTile;
+
+	if (1)
+	{
+		// XXX: Terrible hack:
+		// For simplicity, we only consider horizontally/vertically adjacent neighbours, but
+		// units can move along arbitrary lines. That results in ugly square paths, so we want
+		// to prefer diagonal paths.
+		// Instead of solving this nicely, I'll just special-case 45-degree and 30-degree lines
+		// by checking the three predecessor tiles (which'll be in the closed set and therefore
+		// likely to be reasonably stable) and reduce the cost, and use a Euclidean heuristic.
+		// At least this makes paths look a bit nicer for now...
+
+		PathfindTile& p = tempGrid->get(pi, pj);
+		if (p.pi != i && p.pj != j)
+			dg = dg*(sqrt(2.0)/2.0);
+		else
+		{
+			PathfindTile& pp = tempGrid->get(p.pi, p.pj);
+			int di = abs(i - pp.pi);
+			int dj = abs(j - pp.pj);
+			if ((di == 1 && dj == 2) || (di == 2 && dj == 1))
+				dg = dg*(sqrt(5.0)-sqrt(2.0));
+		}
+
+		h = hypot(i-i1, j-j1)*g_CostPerTile;
+		// XXX: shouldn't use floats here
+		// Also, the heuristic should match the costs better
+	}
+
+	u32 g = pg + dg;
 
 	PathfindTile& n = tempGrid->get(i, j);
 
@@ -471,12 +503,12 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PriorityQueue
 	if (n.status == PathfindTile::STATUS_OPEN)
 	{
 		// If this a better path, replace the old one with the new cost/parent
-		if (cost < n.cost)
+		if (g < n.cost)
 		{
-			n.cost = cost;
+			n.cost = g;
 			n.pi = pi;
 			n.pj = pj;
-			open.find(i, j)->rank = cost + h;
+			open.find(i, j)->rank = g + h;
 			open.fixheap(); // XXX: this is slow
 		}
 		return;
@@ -486,7 +518,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PriorityQueue
 	if (n.status == PathfindTile::STATUS_CLOSED)
 	{
 		// If this is a better path (possible when we use inadmissible heuristics), reopen it
-		if (cost < n.cost)
+		if (g < n.cost)
 		{
 			closed.remove(i, j);
 			// (don't return yet)
@@ -499,10 +531,10 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PriorityQueue
 
 	// Add it to the open list:
 	n.status = PathfindTile::STATUS_OPEN;
-	n.cost = cost;
+	n.cost = g;
 	n.pi = pi;
 	n.pj = pj;
-	QueueItem t = { i, j, cost + h };
+	QueueItem t = { i, j, g + h };
 	open.push(t);
 }
 
@@ -524,6 +556,9 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t 
 	QueueItem start = { i0, j0, 0 };
 	open.push(start);
 	tempGrid->get(i0, j0).status = PathfindTile::STATUS_OPEN;
+	tempGrid->get(i0, j0).pi = i0;
+	tempGrid->get(i0, j0).pj = j0;
+	tempGrid->get(i0, j0).cost = 0;
 
 	u16 ip = i0, jp = j0; // the last tile on the path to the destination
 
