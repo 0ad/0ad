@@ -30,14 +30,14 @@ class CTerrain;
  * Base class for (relatively) simple drawing of
  * data onto terrain tiles, intended for debugging purposes and for the Atlas
  * editor (hence not trying to be very efficient).
- * <p>
+ *
  * To start drawing a terrain overlay, first create a subclass of TerrainOverlay.
  * Override the method GetTileExtents if you want to change the range over which
  * it is drawn.
  * Override ProcessTile to do your processing for each tile, which should call
  * RenderTile and RenderTileOutline as appropriate.
  * See the end of TerrainOverlay.h for an example.
- * <p>
+ *
  * A TerrainOverlay object will be rendered for as long as it exists.
  *
  */
@@ -60,6 +60,18 @@ protected:
 	 * @param priority  controls the order of drawing
 	 */
 	TerrainOverlay(int priority = 100);
+
+	/**
+	 * Override to perform processing at the start of the overlay rendering,
+	 * before the ProcessTile calls
+	 */
+	virtual void StartRender();
+
+	/**
+	 * Override to perform processing at the end of the overlay rendering,
+	 * after the ProcessTile calls
+	 */
+	virtual void EndRender();
 
 	/**
 	 * Override to limit the range over which ProcessTile will
@@ -94,6 +106,11 @@ protected:
 	void RenderTile(const CColor& colour, bool draw_hidden);
 
 	/**
+	 * Draw a filled quad on top of the given tile.
+	 */
+	void RenderTile(const CColor& colour, bool draw_hidden, ssize_t i, ssize_t j);
+
+	/**
 	 * Draw an outlined quad on top of the current tile.
 	 *
 	 * @param colour  colour to draw. May be transparent (alpha &lt; 1)
@@ -103,13 +120,16 @@ protected:
 	 */
 	void RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden);
 
-	
+	/**
+	 * Draw an outlined quad on top of the given tile.
+	 */
+	void RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden, ssize_t i, ssize_t j);
 
+	
 public:
-
-	
-
-	/// Draw all TerrainOverlay objects that exist.
+	/**
+	 * Draw all TerrainOverlay objects that exist.
+	 */
 	static void RenderOverlays();
 
 #if 0

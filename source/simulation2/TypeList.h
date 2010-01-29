@@ -36,6 +36,7 @@ MESSAGE(Interpolate) // non-deterministic (use with caution)
 MESSAGE(RenderSubmit) // non-deterministic (use with caution)
 MESSAGE(Destroy)
 MESSAGE(OwnershipChanged)
+MESSAGE(PositionChanged)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized
@@ -51,6 +52,9 @@ COMPONENT(UnknownScript)
 INTERFACE(CommandQueue)
 COMPONENT(CommandQueue)
 
+INTERFACE(Footprint)
+COMPONENT(Footprint)
+
 INTERFACE(GuiInterface)
 COMPONENT(GuiInterfaceScripted)
 
@@ -58,8 +62,14 @@ INTERFACE(Motion)
 COMPONENT(MotionBall)
 COMPONENT(MotionScripted)
 
+INTERFACE(Obstruction)
+COMPONENT(Obstruction)
+
 INTERFACE(Ownership)
 COMPONENT(Ownership)
+
+INTERFACE(Pathfinder)
+COMPONENT(Pathfinder)
 
 INTERFACE(Player)
 COMPONENT(PlayerScripted)

@@ -138,6 +138,18 @@ CMessage* CMessageOwnershipChanged::FromJSVal(ScriptInterface& scriptInterface, 
 	return new CMessageOwnershipChanged(entity, from, to);
 }
 
+////////////////////////////////
+
+jsval CMessagePositionChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+{
+	return JSVAL_VOID;
+}
+
+CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return NULL;
+}
+
 ////////////////////////////////////////////////////////////////
 
 CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, jsval val)

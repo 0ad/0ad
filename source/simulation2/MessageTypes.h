@@ -22,6 +22,7 @@
 #include "simulation2/system/Entity.h"
 #include "simulation2/system/Message.h"
 
+#include "simulation2/system/Position.h"
 #include "maths/Fixed.h"
 
 #define DEFAULT_MESSAGE_IMPL(name) \
@@ -115,6 +116,27 @@ public:
 	entity_id_t entity;
 	int32_t from;
 	int32_t to;
+};
+
+/**
+ * Sent during TurnStart.
+ *
+ * If @c inWorld is false, then the other fields are invalid and meaningless.
+ * Otherwise they represent the current position.
+ */
+class CMessagePositionChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(PositionChanged)
+
+	CMessagePositionChanged(bool inWorld, entity_pos_t x, entity_pos_t z, entity_angle_t a) :
+		inWorld(inWorld), x(x), z(z), a(a)
+	{
+	}
+
+	bool inWorld;
+	entity_pos_t x, z;
+	entity_angle_t a;
 };
 
 

@@ -15,12 +15,30 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_POSITION
+#define INCLUDED_POSITION
 
-#include "ICmpUnitMotion.h"
+#include "maths/Fixed.h"
 
-#include "simulation2/system/InterfaceScripted.h"
+/**
+ * @file
+ * Entity coordinate types
+ *
+ * The basic unit is the "meter". Terrain tiles are CELL_SIZE (=4) meters square.
+ * To support deterministic computation across CPU architectures and compilers and
+ * optimisation settings, the C++ simulation code must not use floating-point arithmetic.
+ * We therefore use a fixed-point datatype for representing world positions.
+ */
 
-BEGIN_INTERFACE_WRAPPER(UnitMotion)
-DEFINE_INTERFACE_METHOD_2("MoveToPoint", void, ICmpUnitMotion, MoveToPoint, entity_pos_t, entity_pos_t)
-END_INTERFACE_WRAPPER(UnitMotion)
+/**
+ * Positions and distances (measured in metres)
+ */
+typedef CFixed_23_8 entity_pos_t;
+
+/**
+ * Rotations (measured in radians)
+ */
+typedef CFixed_23_8 entity_angle_t;
+// TODO: use a type with more precision
+
+#endif // INCLUDED_POSITION

@@ -21,6 +21,7 @@
 #include "ICmpUnitMotion.h"
 
 #include "ICmpPosition.h"
+#include "ICmpPathfinder.h"
 #include "simulation2/MessageTypes.h"
 
 class CCmpUnitMotion : public ICmpUnitMotion
@@ -128,6 +129,11 @@ void CCmpUnitMotion::Move(const CSimContext& context, CFixed_23_8 dt)
 		m_HasTarget = false;
 		return;
 	}
+
+	// Visualise the path to the destination
+	CmpPtr<ICmpPathfinder> cmpPathfinder(context, SYSTEM_ENTITY);
+	if (!cmpPathfinder.null())
+		cmpPathfinder->SetDebugPath(pos.X, pos.Z, target.X, target.Z);
 
 	// Otherwise move in the right direction
 	offset.Normalize(maxdist);

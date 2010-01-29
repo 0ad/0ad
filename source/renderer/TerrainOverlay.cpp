@@ -28,12 +28,6 @@
 
 #include <algorithm>
 
-#include "ps/GameSetup/Config.h"
-
-
-
-
-
 // Handy things for STL:
 
 /// Functor for sorting pairs, using the &lt;-ordering of their second values.
@@ -200,7 +194,7 @@ void TerrainOverlay::RenderOverlays()
 	glPolygonOffset(-1.f, -1.f);
 	glEnable(GL_POLYGON_OFFSET_LINE);
 
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glDisable(GL_TEXTURE_2D);
 
 	std::for_each(g_TerrainOverlayList.begin(), g_TerrainOverlayList.end(),
 		render1st());
@@ -221,6 +215,14 @@ void TerrainOverlay::RenderOverlays()
 
 //////////////////////////////////////////////////////////////////////////
 
+void TerrainOverlay::StartRender()
+{
+}
+
+void TerrainOverlay::EndRender()
+{
+}
+
 void TerrainOverlay::GetTileExtents(
 	ssize_t& min_i_inclusive, ssize_t& min_j_inclusive,
 	ssize_t& max_i_inclusive, ssize_t& max_j_inclusive)
@@ -233,6 +235,8 @@ void TerrainOverlay::GetTileExtents(
 void TerrainOverlay::Render()
 {
 	m_Terrain = g_Game->GetWorld()->GetTerrain();
+
+	StartRender();
 
 	ssize_t min_i, min_j, max_i, max_j;
 	GetTileExtents(min_i, min_j, max_i, max_j);
@@ -247,9 +251,16 @@ void TerrainOverlay::Render()
 	for (m_j = min_j; m_j <= max_j; ++m_j)
 		for (m_i = min_i; m_i <= max_i; ++m_i)
 			ProcessTile(m_i, m_j);
+
+	EndRender();
 }
 
 void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden)
+{
+	RenderTile(colour, draw_hidden, m_i, m_j);
+}
+
+void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden, ssize_t i, ssize_t j)
 {
 	// TODO: if this is unpleasantly slow, make it much more efficient
 	// (e.g. buffering data and making a single draw call? or at least
@@ -271,14 +282,19 @@ void TerrainOverlay::RenderTile(const CColor& colour, bool draw_hidden)
 	CVector3D pos;
 	glBegin(GL_QUADS);
 		glColor4fv(colour.FloatArray());
-		m_Terrain->CalcPosition(m_i,   m_j,   pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(m_i+1, m_j,   pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(m_i+1, m_j+1, pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(m_i,   m_j+1, pos); glVertex3fv(pos.GetFloatArray());
+		m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
+		m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
+		m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
+		m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
 	glEnd();
 }
 
 void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden)
+{
+	RenderTileOutline(colour, line_width, draw_hidden, m_i, m_j);
+}
+
+void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, bool draw_hidden, ssize_t i, ssize_t j)
 {
 	if (draw_hidden)
 	{
@@ -298,9 +314,9 @@ void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, boo
 	CVector3D pos;
 	glBegin(GL_QUADS);
 		glColor4fv(colour.FloatArray());
-		m_Terrain->CalcPosition(m_i,   m_j,   pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(m_i+1, m_j,   pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(m_i+1, m_j+1, pos); glVertex3fv(pos.GetFloatArray());
-		m_Terrain->CalcPosition(m_i,   m_j+1, pos); glVertex3fv(pos.GetFloatArray());
+		m_Terrain->CalcPosition(i,   j,   pos); glVertex3fv(pos.GetFloatArray());
+		m_Terrain->CalcPosition(i+1, j,   pos); glVertex3fv(pos.GetFloatArray());
+		m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
+		m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
 	glEnd();
 }

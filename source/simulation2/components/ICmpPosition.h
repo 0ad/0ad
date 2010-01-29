@@ -20,24 +20,8 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "maths/Fixed.h"
+#include "simulation2/system/Position.h"
 #include "maths/FixedVector3D.h"
-
-/*
- * A note about coordinate systems:
- *
- * The basic unit is the "meter". Terrain tiles are CELL_SIZE (=4) meters square.
- * To support deterministic computation across CPU architectures and compilers and
- * optimisation settings, the C++ simulation code must not use floating-point arithmetic.
- * We therefore use a fixed-point datatype for representing world positions.
- *
- * (TODO: we need to actually use this everywhere, e.g. in pathfinding code and
- * throughout the rest of the system)
- */
-typedef CFixed_23_8 entity_pos_t;
-
-// Rotations (measured in radians)
-typedef CFixed_23_8 entity_angle_t;
 
 class CMatrix3D;
 

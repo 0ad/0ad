@@ -76,7 +76,7 @@ public:
 			if (m_Overlay.m_Color.a > 0)
 			{
 				float offset = static_cast<const CMessageInterpolate&> (msg).offset;
-				ConstructCircle(context, offset);
+				ConstructShape(context, offset);
 			}
 			break;
 		}
@@ -108,7 +108,7 @@ public:
 		// TODO: it'd be nice to fade smoothly (but quickly) from transparent to solid
 	}
 
-	void ConstructCircle(const CSimContext& context, float frameOffset)
+	void ConstructShape(const CSimContext& context, float frameOffset)
 	{
 		CmpPtr<ICmpPosition> cmpPosition(context, GetEntityId());
 		if (cmpPosition.null())
@@ -120,7 +120,9 @@ public:
 		CMatrix3D transform = cmpPosition->GetInterpolatedTransform(frameOffset);
 		CVector3D pos = transform.GetTranslation();
 
-		float radius = 2.f; // TODO: get this from the unit somehow
+		// TODO: should use ICmpFootprint to find the shape
+
+		float radius = 2.f;
 
 		m_Overlay.m_Coords.clear();
 		m_Overlay.m_Coords.reserve((SELECTION_CIRCLE_POINTS + 1) * 3);

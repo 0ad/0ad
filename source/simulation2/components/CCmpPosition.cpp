@@ -20,6 +20,8 @@
 #include "simulation2/system/Component.h"
 #include "ICmpPosition.h"
 
+#include "simulation2/MessageTypes.h"
+
 #include "ICmpTerrain.h"
 
 #include "graphics/Terrain.h"
@@ -68,6 +70,8 @@ public:
 
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
 
+	bool m_Dirty; // true if position/rotation has changed since last TurnStart
+
 	/*
 	 * Schema: (untested)
 	 *
@@ -107,6 +111,8 @@ public:
 		m_Floating = paramNode.GetChild("Floating")->ToBool();
 
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
+
+		m_Dirty = false;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -127,6 +133,8 @@ public:
 		serialize.NumberFixed_Unbounded("rot y", m_RotY);
 		serialize.NumberFixed_Unbounded("rot z", m_RotZ);
 		serialize.NumberFixed_Unbounded("altitude", m_YOffset);
+		serialize.Bool("dirty", m_Dirty);
+
 		if (serialize.IsDebug())
 		{
 			const char* anchor = "???";
@@ -157,6 +165,7 @@ public:
 		deserialize.NumberFixed_Unbounded(m_RotY);
 		deserialize.NumberFixed_Unbounded(m_RotZ);
 		deserialize.NumberFixed_Unbounded(m_YOffset);
+		deserialize.Bool(m_Dirty);
 		// TODO: should there be range checks on all these values?
 	}
 
@@ -168,6 +177,8 @@ public:
 	virtual void MoveOutOfWorld()
 	{
 		m_InWorld = false;
+
+		m_Dirty = true;
 	}
 
 	virtual void MoveTo(entity_pos_t x, entity_pos_t z)
@@ -181,6 +192,8 @@ public:
 			m_LastX = m_X;
 			m_LastZ = m_Z;
 		}
+
+		m_Dirty = true;
 	}
 
 	virtual void JumpTo(entity_pos_t x, entity_pos_t z)
@@ -188,11 +201,15 @@ public:
 		m_LastX = m_X = x;
 		m_LastZ = m_Z = z;
 		m_InWorld = true;
+
+		m_Dirty = true;
 	}
 
 	virtual void SetHeightOffset(entity_pos_t dy)
 	{
 		m_YOffset = dy;
+
+		m_Dirty = true;
 	}
 
 	virtual entity_pos_t GetHeightOffset()
@@ -225,12 +242,16 @@ public:
 	virtual void SetYRotation(entity_angle_t y)
 	{
 		m_RotY = y;
+
+		m_Dirty = true;
 	}
 
 	virtual void SetXZRotation(entity_angle_t x, entity_angle_t z)
 	{
 		m_RotX = x;
 		m_RotZ = z;
+
+		m_Dirty = true;
 	}
 
 	virtual CFixedVector3D GetRotation()
@@ -284,13 +305,22 @@ public:
 		return mXZ;
 	}
 
-	virtual void HandleMessage(const CSimContext&, const CMessage& msg, bool UNUSED(global))
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
 	{
 		switch (msg.GetType())
 		{
 		case MT_TurnStart:
 			m_LastX = m_X;
 			m_LastZ = m_Z;
+			if (m_Dirty)
+			{
+				if (m_InWorld)
+					context.GetComponentManager().PostMessage(GetEntityId(), CMessagePositionChanged(true, m_X, m_Z, m_RotY));
+				else
+					context.GetComponentManager().PostMessage(GetEntityId(), CMessagePositionChanged(false, entity_pos_t(), entity_pos_t(), entity_angle_t()));
+				m_Dirty = false;
+			}
+
 			break;
 		}
 	}

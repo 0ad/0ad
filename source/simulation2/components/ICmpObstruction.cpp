@@ -17,10 +17,9 @@
 
 #include "precompiled.h"
 
-#include "ICmpUnitMotion.h"
+#include "ICmpObstruction.h"
 
 #include "simulation2/system/InterfaceScripted.h"
 
-BEGIN_INTERFACE_WRAPPER(UnitMotion)
-DEFINE_INTERFACE_METHOD_2("MoveToPoint", void, ICmpUnitMotion, MoveToPoint, entity_pos_t, entity_pos_t)
-END_INTERFACE_WRAPPER(UnitMotion)
+BEGIN_INTERFACE_WRAPPER(Obstruction)
+END_INTERFACE_WRAPPER(Obstruction)
