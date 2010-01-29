@@ -96,6 +96,24 @@ sub convert {
         $out .= qq{$i</VisualActor>\n};
     }
 
+    if ($data->{Traits}[0]{Footprint}) {
+        $out .= qq{$i<Footprint>\n};
+        if ($data->{Traits}[0]{Footprint}[0]{Radius}) {
+            $out .= qq{$i$i<Circle radius="$data->{Traits}[0]{Footprint}[0]{Radius}[0]"/>\n};
+        }
+        if ($data->{Traits}[0]{Footprint}[0]{Width}) {
+            $out .= qq{$i$i<Square width="$data->{Traits}[0]{Footprint}[0]{Width}[0]" depth="$data->{Traits}[0]{Footprint}[0]{Depth}[0]"/>\n};
+        }
+        if ($data->{Traits}[0]{Footprint}[0]{Height}) {
+            $out .= qq{$i$i<Height>$data->{Traits}[0]{Footprint}[0]{Height}[0]</Height>\n};
+        }
+        $out .= qq{$i</Footprint>\n};
+    }
+
+    if ($name =~ /^template_(structure|gaia)$/) {
+        $out .= qq{$i<Obstruction/>\n};
+    }
+
     if ($data->{Actions}[0]{Create}[0]{List}[0]{StructCiv} or $data->{Actions}[0]{Create}[0]{List}[0]{StructMil}) {
         $out .= qq{$i<Builder>\n};
         $out .= qq{$i$i<Entities datatype="tokens">\n};
