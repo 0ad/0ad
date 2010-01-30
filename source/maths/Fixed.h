@@ -19,6 +19,7 @@
 #define INCLUDED_FIXED
 
 #include "lib/types.h"
+#include "maths/Sqrt.h"
 
 template <typename T>
 inline T round_away_from_zero(float value)
@@ -139,6 +140,14 @@ public:
 	{
 		i64 t = (i64)value * (i64)n.value;
 		return CFixed((T)(t >> fract_bits));
+	}
+
+	CFixed Sqrt() const
+	{
+		if (value <= 0)
+			return CFixed(0);
+		u32 s = isqrt64(value);
+		return CFixed((u64)s << (fract_bits / 2));
 	}
 };
 

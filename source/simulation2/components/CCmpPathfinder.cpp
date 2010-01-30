@@ -23,6 +23,7 @@
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Terrain.h"
+#include "maths/FixedVector2D.h"
 #include "maths/MathUtil.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
@@ -223,6 +224,10 @@ public:
 		m_GridDirty = true;
 	}
 
+	virtual bool CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost);
+
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, Path& ret);
+
 	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
 	{
 		delete m_DebugGrid;
@@ -302,12 +307,68 @@ public:
 			m_GridDirty = false;
 		}
 	}
-
-	void ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, Path& path);
 };
 
 REGISTER_COMPONENT_TYPE(Pathfinder)
 
+
+u32 g_CostPerTile = 256; // base cost to move between adjacent tiles
+
+// Detect intersection between ray (0,0)-L and circle with center M radius r
+// (Only counts intersections from the outside to the inside)
+static bool IntersectRayCircle(CFixedVector2D l, CFixedVector2D m, entity_pos_t r)
+{
+	// TODO: this should all be checked and tested etc, it's just a rough first attempt for now...
+
+	// Intersections at (t * l.X - m.X)^2 * (t * l.Y - m.Y) = r^2
+	// so solve the quadratic for t:
+
+#define DOT(u, v) ( ((i64)u.X.GetInternalValue()*(i64)v.X.GetInternalValue()) + ((i64)u.Y.GetInternalValue()*(i64)v.Y.GetInternalValue()) )
+	i64 a = DOT(l, l);
+	if (a == 0)
+		return false; // avoid divide-by-zero later
+	i64 b = DOT(l, m)*-2;
+	i64 c = DOT(m, m) - r.GetInternalValue()*r.GetInternalValue();
+	i64 d = b*b - 4*a*c; // TODO: overflow breaks stuff here
+	if (d < 0) // no solutions
+		return false;
+	// Find the time of first intersection (entering the circle)
+	i64 t2a = (-b - isqrt64(d)); // don't divide by 2a explicitly, to avoid rounding errors
+	if ((a > 0 && t2a < 0) || (a < 0 && t2a > 0)) // if t2a/2a < 0 then intersection was before the ray
+		return false;
+	if (t2a >= 2*a) // intersection was after the ray
+		return false;
+//	printf("isct (%f,%f) (%f,%f) %f a=%lld b=%lld c=%lld d=%lld t2a=%lld\n", l.X.ToDouble(), l.Y.ToDouble(), m.X.ToDouble(), m.Y.ToDouble(), r.ToDouble(), a, b, c, d, t2a);
+	return true;
+}
+
+bool CCmpPathfinder::CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost)
+{
+	PROFILE("CanMoveStraight");
+
+	// TODO: this is all very inefficient, it should use kind of spatial data structures
+
+	// Ray-circle intersections
+	for (std::map<tag_t, Circle>::iterator it = m_Circles.begin(); it != m_Circles.end(); ++it)
+	{
+		if (IntersectRayCircle(CFixedVector2D(x1 - x0, z1 - z0), CFixedVector2D(it->second.x - x0, it->second.z - z0), it->second.r + r))
+			return false;
+	}
+
+	// Ray-square intersections
+	for (std::map<tag_t, Square>::iterator it = m_Squares.begin(); it != m_Squares.end(); ++it)
+	{
+		// XXX need some kind of square intersection code
+		if (IntersectRayCircle(CFixedVector2D(x1 - x0, z1 - z0), CFixedVector2D(it->second.x - x0, it->second.z - z0), it->second.w/2 + r))
+			return false;
+	}
+
+	// Calculate the exact movement cost
+	// (TODO: this needs to care about terrain costs etc)
+	cost = (CFixedVector2D(x1 - x0, z1 - z0).Length() * g_CostPerTile).ToInt_RoundToZero();
+
+	return true;
+}
 
 /**
  * Tile data for A* computation
@@ -363,8 +424,6 @@ void PathfinderOverlay::ProcessTile(ssize_t i, ssize_t j)
  * the intention is to demonstrate the interface that the pathfinder can use, and improvements
  * to the implementation shouldn't affect that interface much.
  */
-
-u32 g_CostPerTile = 256; // base cost to move between adjacent tiles
 
 struct QueueItem
 {

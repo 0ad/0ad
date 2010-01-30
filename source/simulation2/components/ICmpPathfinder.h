@@ -46,6 +46,10 @@ public:
 		u32 cost; // currently a meaningless number
 	};
 
+	/**
+	 * Returned path.
+	 * Waypoints are in *reverse* order (the earliest is at the back of the list)
+	 */
 	struct Path
 	{
 		std::vector<Waypoint> m_Waypoints;
@@ -65,6 +69,20 @@ public:
 	virtual void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a) = 0;
 
 	virtual void RemoveShape(tag_t tag) = 0;
+
+	/**
+	 * Determine whether a unit (of radius r) can move between the given points in a straight line,
+	 * without hitting any obstacles.
+	 * This is based on the exact list of shapes, not the grid approximation.
+	 * This should be used as a shortcut to avoid using the pathfinding algorithm in simple cases,
+	 * and for more refined movement along the found paths.
+	 */
+	virtual bool CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost) = 0;
+
+	/**
+	 * Compute a path between the given points, and return the set of waypoints.
+	 */
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, Path& ret) = 0;
 
 	/**
 	 * Compute a path between the given points, and draw the latest such path as a terrain overlay.

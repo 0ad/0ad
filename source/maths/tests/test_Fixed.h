@@ -113,6 +113,15 @@ public:
 
 	// TODO: test all the arithmetic operators
 
+	void test_Sqrt()
+	{
+		TS_ASSERT_EQUALS(CFixed_23_8::FromDouble(1.0).Sqrt().ToDouble(), 1.0);
+		TS_ASSERT_EQUALS(CFixed_23_8::FromDouble(1000000.0).Sqrt().ToDouble(), 1000.0);
+		TS_ASSERT_EQUALS(CFixed_23_8::FromDouble(0.0625).Sqrt().ToDouble(), 0.25);
+		TS_ASSERT_EQUALS(CFixed_23_8::FromDouble(-1.0).Sqrt().ToDouble(), 0.0);
+		TS_ASSERT_EQUALS(CFixed_23_8::FromDouble(0.0).Sqrt().ToDouble(), 0.0);
+	}
+
 	void test_Atan2()
 	{
 		typedef CFixed_23_8 f;
