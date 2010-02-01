@@ -118,7 +118,8 @@ MESSAGEHANDLER(GenerateMap)
 
 	delete[] heightmap;
 
-	AddDefaultPlayers();
+	if (g_UseSimulation2)
+		AddDefaultPlayers();
 
 	// Start the game, load data files - this must be done before initialising
 	// the terrain texture below, since the terrains must be loaded before being
