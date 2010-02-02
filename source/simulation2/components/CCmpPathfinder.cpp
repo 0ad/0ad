@@ -135,6 +135,7 @@ public:
 
 	// Debugging - output from last pathfind operation:
 	Grid<PathfindTile>* m_DebugGrid;
+	u32 m_DebugSteps;
 	Path* m_DebugPath;
 	PathfinderOverlay* m_DebugOverlay;
 
@@ -383,6 +384,8 @@ struct PathfindTile
 	u8 status; // (TODO: this only needs 2 bits)
 	u16 pi, pj; // predecessor on best path (TODO: this only needs 2 bits)
 	u32 cost; // g (cost to this tile)
+
+	u32 step; // step at which this tile was last processed (TODO: this should only be present for debugging)
 };
 
 void PathfinderOverlay::EndRender()
@@ -408,7 +411,7 @@ void PathfinderOverlay::ProcessTile(ssize_t i, ssize_t j)
 	{
 		PathfindTile& n = m_Pathfinder.m_DebugGrid->get(i, j);
 
-		float c = clamp((n.cost/256.f) / 32.f, 0.f, 1.f);
+		float c = clamp(n.step / (float)m_Pathfinder.m_DebugSteps, 0.f, 1.f);
 
 		if (n.status == PathfindTile::STATUS_OPEN)
 			RenderTile(CColor(1, 1, c, 0.6f), false);
@@ -514,49 +517,90 @@ public:
 	std::vector<QueueItem> m_Heap;
 };
 
-static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PriorityQueue& open, PriorityQueue& closed, Grid<PathfindTile>* tempGrid, Grid<u8>* terrainGrid, u16 i1, u16 j1)
-{
-	if (terrainGrid->get(i, j))
-		return;
 
-	// Calculate the cost of moving from predecessor to here
+#define USE_DIAGONAL_MOVEMENT
+
+// Calculate heuristic cost from tile i,j to destination
+// (This ought to be an underestimate for correctness)
+static u32 CalculateHeuristic(u16 i, u16 j, u16 iTarget, u16 jTarget)
+{
+#ifdef USE_DIAGONAL_MOVEMENT
+	return hypot(i-iTarget, j-jTarget)*g_CostPerTile;
+	// XXX: shouldn't use floats here
+	// Also, the heuristic should match the costs better
+#else
+	return (abs((int)i - (int)iTarget) + abs((int)j - (int)jTarget)) * g_CostPerTile;
+#endif
+}
+
+// Calculate movement cost from predecessor tile pi,pj to tile i,j
+static u32 CalculateCostDelta(u16 pi, u16 pj, u16 i, u16 j, Grid<PathfindTile>* tempGrid)
+{
 	u32 dg = g_CostPerTile;
 
-	// Calculate heuristic cost to target
-	// (This ought to be an underestimate for correctness)
-	u32 h = (abs((int)i - (int)i1) + abs((int)j - (int)j1)) * g_CostPerTile;
+#ifdef USE_DIAGONAL_MOVEMENT
+	// XXX: Probably a terrible hack:
+	// For simplicity, we only consider horizontally/vertically adjacent neighbours, but
+	// units can move along arbitrary lines. That results in ugly square paths, so we want
+	// to prefer diagonal paths.
+	// Instead of solving this nicely, I'll just special-case 45-degree and 30-degree lines
+	// by checking the three predecessor tiles (which'll be in the closed set and therefore
+	// likely to be reasonably stable) and reducing the cost, and use a Euclidean heuristic.
+	// At least this makes paths look a bit nicer for now...
 
-	if (1)
+	PathfindTile& p = tempGrid->get(pi, pj);
+	if (p.pi != i && p.pj != j)
+		dg = dg*(sqrt(2.0)/2.0); // XXX: shouldn't use floats here
+	else
 	{
-		// XXX: Terrible hack:
-		// For simplicity, we only consider horizontally/vertically adjacent neighbours, but
-		// units can move along arbitrary lines. That results in ugly square paths, so we want
-		// to prefer diagonal paths.
-		// Instead of solving this nicely, I'll just special-case 45-degree and 30-degree lines
-		// by checking the three predecessor tiles (which'll be in the closed set and therefore
-		// likely to be reasonably stable) and reduce the cost, and use a Euclidean heuristic.
-		// At least this makes paths look a bit nicer for now...
+		PathfindTile& pp = tempGrid->get(p.pi, p.pj);
+		int di = abs(i - pp.pi);
+		int dj = abs(j - pp.pj);
+		if ((di == 1 && dj == 2) || (di == 2 && dj == 1))
+			dg = dg*(sqrt(5.0)-sqrt(2.0)); // XXX: shouldn't use floats here
+	}
+#endif
 
-		PathfindTile& p = tempGrid->get(pi, pj);
-		if (p.pi != i && p.pj != j)
-			dg = dg*(sqrt(2.0)/2.0);
-		else
-		{
-			PathfindTile& pp = tempGrid->get(p.pi, p.pj);
-			int di = abs(i - pp.pi);
-			int dj = abs(j - pp.pj);
-			if ((di == 1 && dj == 2) || (di == 2 && dj == 1))
-				dg = dg*(sqrt(5.0)-sqrt(2.0));
-		}
+	return dg;
+}
 
-		h = hypot(i-i1, j-j1)*g_CostPerTile;
-		// XXX: shouldn't use floats here
-		// Also, the heuristic should match the costs better
+struct PathfinderState
+{
+	u32 steps; // number of algorithm iterations
+
+	u16 iTarget, jTarget; // goal tile
+
+	PriorityQueue open;
+	PriorityQueue closed;
+
+	Grid<PathfindTile>* tiles;
+	Grid<u8>* terrain;
+
+	u32 hBest; // heuristic of closest discovered tile to goal
+	u16 iBest, jBest; // closest tile
+};
+
+// Do the A* processing for a neighbour tile i,j.
+static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderState& state)
+{
+	// Reject impassable tiles
+	if (state.terrain->get(i, j))
+		return;
+
+	u32 h = CalculateHeuristic(i, j, state.iTarget, state.jTarget);
+	u32 dg = CalculateCostDelta(pi, pj, i, j, state.tiles);
+
+	u32 g = pg + dg; // cost to this tile = cost to predecessor + delta from predecessor
+
+	// Remember the best tile we've seen so far, in case we never actually reach the target
+	if (h < state.hBest)
+	{
+		state.hBest = h;
+		state.iBest = i;
+		state.jBest = j;
 	}
 
-	u32 g = pg + dg;
-
-	PathfindTile& n = tempGrid->get(i, j);
+	PathfindTile& n = state.tiles->get(i, j);
 
 	// If we've already added this tile to the open list:
 	if (n.status == PathfindTile::STATUS_OPEN)
@@ -567,8 +611,9 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PriorityQueue
 			n.cost = g;
 			n.pi = pi;
 			n.pj = pj;
-			open.find(i, j)->rank = g + h;
-			open.fixheap(); // XXX: this is slow
+			n.step = state.steps;
+			state.open.find(i, j)->rank = g + h;
+			state.open.fixheap(); // XXX: this is slow
 		}
 		return;
 	}
@@ -579,7 +624,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PriorityQueue
 		// If this is a better path (possible when we use inadmissible heuristics), reopen it
 		if (g < n.cost)
 		{
-			closed.remove(i, j);
+			state.closed.remove(i, j);
 			// (don't return yet)
 		}
 		else
@@ -593,8 +638,9 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PriorityQueue
 	n.cost = g;
 	n.pi = pi;
 	n.pj = pj;
+	n.step = state.steps;
 	QueueItem t = { i, j, g + h };
-	open.push(t);
+	state.open.push(t);
 }
 
 void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, Path& path)
@@ -603,65 +649,72 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t 
 
 	PROFILE("ComputePath");
 
-	Grid<PathfindTile>* tempGrid = new Grid<PathfindTile>(m_MapSize, m_MapSize);
+	PathfinderState state;
 
-	u16 i0, j0, i1, j1;
+	u16 i0, j0;
 	NearestTile(x0, z0, i0, j0);
-	NearestTile(x1, z1, i1, j1);
+	NearestTile(x1, z1, state.iTarget, state.jTarget);
 
-	PriorityQueue open;
-	PriorityQueue closed;
+	state.steps = 0;
+
+	state.tiles = new Grid<PathfindTile>(m_MapSize, m_MapSize);
+	state.terrain = m_Grid;
+
+	state.iBest = i0;
+	state.jBest = j0;
+	state.hBest = CalculateHeuristic(i0, j0, state.iTarget, state.jTarget);
 
 	QueueItem start = { i0, j0, 0 };
-	open.push(start);
-	tempGrid->get(i0, j0).status = PathfindTile::STATUS_OPEN;
-	tempGrid->get(i0, j0).pi = i0;
-	tempGrid->get(i0, j0).pj = j0;
-	tempGrid->get(i0, j0).cost = 0;
+	state.open.push(start);
+	state.tiles->get(i0, j0).status = PathfindTile::STATUS_OPEN;
+	state.tiles->get(i0, j0).pi = i0;
+	state.tiles->get(i0, j0).pj = j0;
+	state.tiles->get(i0, j0).cost = 0;
 
-	u16 ip = i0, jp = j0; // the last tile on the path to the destination
-
-	size_t steps = 0;
 	while (1)
 	{
-		++steps;
+		++state.steps;
 
-		// Hack to avoid spending ages computing giant paths
-		// (TODO: ought to return a path that's at least heading in the right direction)
-		if (steps > 10000)
+		// Hack to avoid spending ages computing giant paths, particularly when
+		// the destination is unreachable
+		if (state.steps > 5000)
 			break;
 
 		// If we ran out of tiles to examine, give up
-		if (open.empty())
+		if (state.open.empty())
 			break;
 
 		// Move best tile from open to closed
-		QueueItem curr = open.top();
-		open.pop();
-		closed.push(curr);
-		tempGrid->get(curr.i, curr.j).status = PathfindTile::STATUS_CLOSED;
-		ip = curr.i;
-		jp = curr.j;
+		QueueItem curr = state.open.top();
+		state.open.pop();
+		state.closed.push(curr);
+		state.tiles->get(curr.i, curr.j).status = PathfindTile::STATUS_CLOSED;
 
 		// If we've reached the destination, stop
-		if (curr.i == i1 && curr.j == j1)
+		if (curr.i == state.iTarget && curr.j == state.jTarget)
+		{
+			state.iBest = curr.i;
+			state.jBest = curr.j;
+			state.hBest = 0;
 			break;
+		}
 
-		u32 g = tempGrid->get(curr.i, curr.j).cost;
+		u32 g = state.tiles->get(curr.i, curr.j).cost;
 		if (curr.i > 0)
-			ProcessNeighbour(curr.i, curr.j, curr.i-1, curr.j, g, open, closed, tempGrid, m_Grid, i1, j1);
+			ProcessNeighbour(curr.i, curr.j, curr.i-1, curr.j, g, state);
 		if (curr.i < m_MapSize-1)
-			ProcessNeighbour(curr.i, curr.j, curr.i+1, curr.j, g, open, closed, tempGrid, m_Grid, i1, j1);
+			ProcessNeighbour(curr.i, curr.j, curr.i+1, curr.j, g, state);
 		if (curr.j > 0)
-			ProcessNeighbour(curr.i, curr.j, curr.i, curr.j-1, g, open, closed, tempGrid, m_Grid, i1, j1);
+			ProcessNeighbour(curr.i, curr.j, curr.i, curr.j-1, g, state);
 		if (curr.j < m_MapSize-1)
-			ProcessNeighbour(curr.i, curr.j, curr.i, curr.j+1, g, open, closed, tempGrid, m_Grid, i1, j1);
+			ProcessNeighbour(curr.i, curr.j, curr.i, curr.j+1, g, state);
 	}
 
 	// Reconstruct the path (in reverse)
+	u16 ip = state.iBest, jp = state.jBest;
 	while (ip != i0 || jp != j0)
 	{
-		PathfindTile& n = tempGrid->get(ip, jp);
+		PathfindTile& n = state.tiles->get(ip, jp);
 		entity_pos_t x, z;
 		TileCenter(ip, jp, x, z);
 		Waypoint w = { x, z, n.cost };
@@ -674,5 +727,6 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t 
 
 	// Save this grid for debug display
 	delete m_DebugGrid;
-	m_DebugGrid = tempGrid;
+	m_DebugGrid = state.tiles;
+	m_DebugSteps = state.steps;
 }
