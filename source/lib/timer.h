@@ -294,7 +294,7 @@ LIB_API TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description
  **/
 #define TIMER_ADD_CLIENT(id)\
 	static TimerClient UID__;\
-	static TimerClient* id = timer_AddClient(&UID__, WIDEN(#id));
+	static TimerClient* id = timer_AddClient(&UID__, WIDEN(#id))
 
 /**
  * bill the difference between t0 and t1 to the client's total.
@@ -339,7 +339,7 @@ private:
  * a string literal is safest.
  * 
  * Example usage:
- * 	TIMER_ADD_CLIENT(identifier)
+ * 	TIMER_ADD_CLIENT(identifier);
  * 
  * 	void func()
  * 	{
