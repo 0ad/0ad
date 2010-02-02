@@ -97,7 +97,7 @@ public:
 	{
 		m_Context = &context;
 
-		std::wstring anchor = paramNode.GetChild("Anchor")->ToString();
+		std::wstring anchor = paramNode.GetChild("Anchor").ToString();
 		if (anchor == L"pitch")
 			m_AnchorType = PITCH;
 		else if (anchor == L"pitch-roll")
@@ -107,8 +107,8 @@ public:
 
 		m_InWorld = false;
 
-		m_YOffset = paramNode.GetChild("Altitude")->ToFixed();
-		m_Floating = paramNode.GetChild("Floating")->ToBool();
+		m_YOffset = paramNode.GetChild("Altitude").ToFixed();
+		m_Floating = paramNode.GetChild("Floating").ToBool();
 
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
 

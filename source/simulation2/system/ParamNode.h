@@ -33,6 +33,11 @@ public:
 	typedef std::map<std::string, CParamNode> ChildrenMap;
 
 	/**
+	 * Constructs a new, empty node.
+	 */
+	CParamNode(bool isOk = true);
+
+	/**
 	 * Loads the XML data specified by @a file into the node @a ret.
 	 * Any existing data in @a ret will be overwritten or else kept, so this
 	 * can be called multiple times to build up a node from multiple inputs.
@@ -54,11 +59,16 @@ public:
 	void CopyFilteredChildrenOfChild(const CParamNode& src, const char* name, const std::set<std::string>& permitted);
 
 	/**
-	 * Returns the (unique) child node with the given name, or NULL if there is none.
+	 * Returns the (unique) child node with the given name, or a node with IsOk() == false if there is none.
 	 */
-	const CParamNode* GetChild(const char* name) const;
+	const CParamNode& GetChild(const char* name) const;
 	// (Children are returned as const in order to allow future optimisations, where we assume
 	// a node is always modified explicitly and not indirectly via its children, e.g. to cache jsvals)
+
+	/**
+	 * Returns true if this is a valid CParamNode, false if it represents a non-existent node
+	 */
+	bool IsOk() const;
 
 	/**
 	 * Returns the content of this node as a string
@@ -106,6 +116,7 @@ private:
 
 	std::wstring m_Value;
 	ChildrenMap m_Childs;
+	bool m_IsOk;
 };
 
 #endif // INCLUDED_PARAMNODE

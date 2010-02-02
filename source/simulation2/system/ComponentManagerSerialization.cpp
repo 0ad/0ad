@@ -235,16 +235,16 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 			if (!component)
 				return false;
 
-			const CParamNode* cmpTemplate = NULL;
-			if (templateManager && ent != SYSTEM_ENTITY)
-			{
-				const CParamNode* entTemplate = templateManager->LoadLatestTemplate(ent);
-				if (entTemplate)
-					cmpTemplate = entTemplate->GetChild(ctname.c_str());
-			}
-			const CParamNode& paramNode = (cmpTemplate ? *cmpTemplate : noParam);
+			// Try to find the template for this entity
+			const CParamNode* entTemplate = NULL;
+			if (templateManager && ent != SYSTEM_ENTITY) // (system entities don't use templates)
+				entTemplate = templateManager->LoadLatestTemplate(ent);
 
-			component->Deserialize(m_SimContext, paramNode, deserializer);
+			// Deserialize, with the appropriate template for this component
+			if (entTemplate)
+				component->Deserialize(m_SimContext, entTemplate->GetChild(ctname.c_str()), deserializer);
+			else
+				component->Deserialize(m_SimContext, noParam, deserializer);
 
 			// If this was the template manager, remember it so we can use it when
 			// deserializing any further non-system entities

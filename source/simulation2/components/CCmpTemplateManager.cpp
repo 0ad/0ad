@@ -139,8 +139,8 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::wstring templateName)
 		return NULL;
 	}
 
-	const CParamNode* templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
-	if (!templateRoot)
+	const CParamNode& templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
+	if (!templateRoot.IsOk())
 	{
 		LOGERROR(L"Invalid root element in entity template '%ls'", templateName.c_str());
 		return NULL;
@@ -148,7 +148,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::wstring templateName)
 	// TODO: the template ought to be validated with some schema, so we don't
 	// need to nicely report errors like invalid root elements here
 
-	return templateRoot;
+	return &templateRoot;
 }
 
 const CParamNode* CCmpTemplateManager::LoadLatestTemplate(entity_id_t ent)

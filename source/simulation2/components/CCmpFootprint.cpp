@@ -38,16 +38,16 @@ public:
 
 	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
 	{
-		if (paramNode.GetChild("Square"))
+		if (paramNode.GetChild("Square").IsOk())
 		{
 			m_Shape = SQUARE;
-			m_Size0 = paramNode.GetChild("Square")->GetChild("@width")->ToFixed();
-			m_Size1 = paramNode.GetChild("Square")->GetChild("@depth")->ToFixed();
+			m_Size0 = paramNode.GetChild("Square").GetChild("@width").ToFixed();
+			m_Size1 = paramNode.GetChild("Square").GetChild("@depth").ToFixed();
 		}
-		else if (paramNode.GetChild("Circle"))
+		else if (paramNode.GetChild("Circle").IsOk())
 		{
 			m_Shape = CIRCLE;
-			m_Size0 = m_Size1 = paramNode.GetChild("Circle")->GetChild("@radius")->ToFixed();
+			m_Size0 = m_Size1 = paramNode.GetChild("Circle").GetChild("@radius").ToFixed();
 		}
 		else
 		{
@@ -56,7 +56,7 @@ public:
 			m_Size0 = m_Size1 = CFixed_23_8::FromInt(1);
 		}
 
-		m_Height = paramNode.GetChild("Height")->ToFixed();
+		m_Height = paramNode.GetChild("Height").ToFixed();
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))

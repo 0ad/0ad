@@ -23,6 +23,13 @@
 
 #include <sstream>
 
+static CParamNode g_NullNode(false);
+
+CParamNode::CParamNode(bool isOk) :
+	m_IsOk(isOk)
+{
+}
+
 void CParamNode::LoadXML(CParamNode& ret, const XMBFile& xmb)
 {
 	ret.ApplyLayer(xmb, xmb.GetRoot());
@@ -79,12 +86,17 @@ void CParamNode::CopyFilteredChildrenOfChild(const CParamNode& src, const char* 
 			dstChild->second.m_Childs[it->first] = it->second;
 }
 
-const CParamNode* CParamNode::GetChild(const char* name) const
+const CParamNode& CParamNode::GetChild(const char* name) const
 {
 	ChildrenMap::const_iterator it = m_Childs.find(name);
 	if (it == m_Childs.end())
-		return NULL;
-	return &it->second;
+		return g_NullNode;
+	return it->second;
+}
+
+bool CParamNode::IsOk() const
+{
+	return m_IsOk;
 }
 
 const std::wstring& CParamNode::ToString() const
@@ -94,7 +106,7 @@ const std::wstring& CParamNode::ToString() const
 
 int CParamNode::ToInt() const
 {
-	int ret;
+	int ret = 0;
 	std::wstringstream strm;
 	strm << m_Value;
 	strm >> ret;
@@ -103,7 +115,7 @@ int CParamNode::ToInt() const
 
 CFixed_23_8 CParamNode::ToFixed() const
 {
-	double ret;
+	double ret = 0.0;
 	std::wstringstream strm;
 	strm << m_Value;
 	strm >> ret;

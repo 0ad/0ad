@@ -484,7 +484,7 @@ public:
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(testParam, "<node><x>1</x><y>1<z w='100'><a>1000</a></z>0</y></node>"), PSRETURN_OK);
 
 		man.AddComponent(ent1, man.LookupCID("TestScript1_Init"), noParam);
-		man.AddComponent(ent2, man.LookupCID("TestScript1_Init"), *testParam.GetChild("node"));
+		man.AddComponent(ent2, man.LookupCID("TestScript1_Init"), testParam.GetChild("node"));
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 100);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 1+10+100+1000);
@@ -711,7 +711,7 @@ public:
 
 		const CParamNode* testParam = tempMan->LoadTemplate(ent2, L"template-serialize", -1);
 
-		man.AddComponent(ent2, man.LookupCID("TestScript1_consts"), *testParam->GetChild("TestScript1_consts"));
+		man.AddComponent(ent2, man.LookupCID("TestScript1_consts"), testParam->GetChild("TestScript1_consts"));
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 12347);
 

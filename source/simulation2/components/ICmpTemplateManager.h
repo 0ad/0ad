@@ -50,12 +50,16 @@ public:
 	/**
 	 * Loads the template XML file identified by 'templateName' (including inheritance
 	 * from parent XML files). The templateName syntax is the same as LoadTemplate.
+	 *
+	 * @return NULL on error
 	 */
 	virtual const CParamNode* GetTemplate(std::wstring templateName) = 0;
 
 	/**
 	 * Returns the template most recently specified for the entity 'ent'.
 	 * Used during deserialization.
+	 *
+	 * @return NULL on error
 	 */
 	virtual const CParamNode* LoadLatestTemplate(entity_id_t ent) = 0;
 

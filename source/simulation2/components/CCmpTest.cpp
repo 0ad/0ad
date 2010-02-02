@@ -38,8 +38,8 @@ public:
 
 	virtual void Init(const CSimContext&, const CParamNode& paramNode)
 	{
-		if (paramNode.GetChild("x"))
-			m_x = paramNode.GetChild("x")->ToInt();
+		if (paramNode.GetChild("x").IsOk())
+			m_x = paramNode.GetChild("x").ToInt();
 		else
 			m_x = 11000;
 	}

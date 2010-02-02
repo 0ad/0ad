@@ -75,7 +75,7 @@ public:
 
 		m_Cid = cid;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(m_Param, ("<test>" + xml + "</test>").c_str()), PSRETURN_OK);
-		TS_ASSERT(m_ComponentManager.AddComponent(ent, m_Cid, *m_Param.GetChild("test")));
+		TS_ASSERT(m_ComponentManager.AddComponent(ent, m_Cid, m_Param.GetChild("test")));
 		m_Cmp = m_ComponentManager.QueryInterface(ent, T::GetInterfaceId());
 		TS_ASSERT(m_Cmp != NULL);
 		return static_cast<T*> (m_Cmp);
@@ -121,7 +121,7 @@ public:
 		CStdDeserializer stdde2(test2.GetScriptInterface(), stdstr1);
 
 		IComponent* cmp2 = test2.m_ComponentManager.ConstructComponent(ent, m_Cid);
-		cmp2->Deserialize(test2.m_Context, *m_Param.GetChild("test"), stdde2);
+		cmp2->Deserialize(test2.m_Context, m_Param.GetChild("test"), stdde2);
 
 		TS_ASSERT(stdstr1.peek() == EOF); // Deserialize must read whole stream
 

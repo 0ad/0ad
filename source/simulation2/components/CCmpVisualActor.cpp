@@ -55,7 +55,7 @@ public:
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		std::set<CStr> selections;
-		std::string name = utf8_from_wstring(paramNode.GetChild("Actor")->ToString());
+		std::string name = utf8_from_wstring(paramNode.GetChild("Actor").ToString());
 		m_Unit = context.GetUnitManager().CreateUnit(name, NULL, selections);
 		if (!m_Unit)
 		{

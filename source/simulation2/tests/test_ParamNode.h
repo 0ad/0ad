@@ -38,33 +38,44 @@ public:
 	{
 		CParamNode node;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <Foo> 1 </Foo><Bar>2<Baz>3</Baz>4</Bar><Qux/></test>"), PSRETURN_OK);
-		TS_ASSERT(node.GetChild("test"));
-		TS_ASSERT(! node.GetChild("Test"));
-		TS_ASSERT_WSTR_EQUALS(node.GetChild("test")->ToString(), L"");
-		TS_ASSERT(node.GetChild("test")->GetChild("Foo"));
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("Foo")->ToInt(), 1);
-		TS_ASSERT_WSTR_EQUALS(node.GetChild("test")->GetChild("Foo")->ToString(), L"1");
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("Bar")->ToInt(), 24);
-		TS_ASSERT_WSTR_EQUALS(node.GetChild("test")->GetChild("Bar")->ToString(), L"24");
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("Bar")->GetChild("Baz")->ToInt(), 3);
-		TS_ASSERT(node.GetChild("test")->GetChild("Qux"));
-		TS_ASSERT(! node.GetChild("test")->GetChild("Qux")->GetChild("Baz"));
+		TS_ASSERT(node.GetChild("test").IsOk());
+		TS_ASSERT(!node.GetChild("Test").IsOk());
+		TS_ASSERT_WSTR_EQUALS(node.GetChild("test").ToString(), L"");
+		TS_ASSERT(node.GetChild("test").GetChild("Foo").IsOk());
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("Foo").ToInt(), 1);
+		TS_ASSERT_WSTR_EQUALS(node.GetChild("test").GetChild("Foo").ToString(), L"1");
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("Bar").ToInt(), 24);
+		TS_ASSERT_WSTR_EQUALS(node.GetChild("test").GetChild("Bar").ToString(), L"24");
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("Bar").GetChild("Baz").ToInt(), 3);
+		TS_ASSERT(node.GetChild("test").GetChild("Qux").IsOk());
+		TS_ASSERT(!node.GetChild("test").GetChild("Qux").GetChild("Baz").IsOk());
+
+		CParamNode nullOne(false);
+		CParamNode nullTwo = nullOne;
+		CParamNode nullThree(nullOne);
+		TS_ASSERT(!nullOne.IsOk());
+		TS_ASSERT(!nullTwo.IsOk());
+		TS_ASSERT(!nullThree.IsOk());
+
+		TS_ASSERT_WSTR_EQUALS(nullOne.ToString(), L"");
+		TS_ASSERT(nullOne.ToInt() == 0);
+		TS_ASSERT(nullOne.ToFixed().ToDouble() == 0);
 	}
 
 	void test_attrs()
 	{
 		CParamNode node;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test x='1' y='2'> <z>3</z> <w a='4'/></test>"), PSRETURN_OK);
-		TS_ASSERT(node.GetChild("test"));
-		TS_ASSERT(node.GetChild("test")->GetChild("@x"));
-		TS_ASSERT(node.GetChild("test")->GetChild("@y"));
-		TS_ASSERT(node.GetChild("test")->GetChild("z"));
-		TS_ASSERT(node.GetChild("test")->GetChild("w"));
-		TS_ASSERT(node.GetChild("test")->GetChild("w")->GetChild("@a"));
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("@x")->ToInt(), 1);
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("@y")->ToInt(), 2);
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("z")->ToInt(), 3);
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("w")->GetChild("@a")->ToInt(), 4);
+		TS_ASSERT(node.GetChild("test").IsOk());
+		TS_ASSERT(node.GetChild("test").GetChild("@x").IsOk());
+		TS_ASSERT(node.GetChild("test").GetChild("@y").IsOk());
+		TS_ASSERT(node.GetChild("test").GetChild("z").IsOk());
+		TS_ASSERT(node.GetChild("test").GetChild("w").IsOk());
+		TS_ASSERT(node.GetChild("test").GetChild("w").GetChild("@a").IsOk());
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("@x").ToInt(), 1);
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("@y").ToInt(), 2);
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("z").ToInt(), 3);
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("w").GetChild("@a").ToInt(), 4);
 	}
 
 	void test_ToXML()
@@ -78,13 +89,13 @@ public:
 	{
 		CParamNode node;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test><n>+010.75</n><t>true</t></test>"), PSRETURN_OK);
-		TS_ASSERT(node.GetChild("test"));
-		TS_ASSERT(node.GetChild("test")->GetChild("n"));
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("n")->ToString(), L"+010.75");
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("n")->ToInt(), 10);
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("n")->ToFixed().ToDouble(), 10.75);
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("n")->ToBool(), false);
-		TS_ASSERT_EQUALS(node.GetChild("test")->GetChild("t")->ToBool(), true);
+		TS_ASSERT(node.GetChild("test").IsOk());
+		TS_ASSERT(node.GetChild("test").GetChild("n").IsOk());
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("n").ToString(), L"+010.75");
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("n").ToInt(), 10);
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("n").ToFixed().ToDouble(), 10.75);
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("n").ToBool(), false);
+		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("t").ToBool(), true);
 	}
 
 	void test_escape()
