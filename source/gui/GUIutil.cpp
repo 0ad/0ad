@@ -334,7 +334,7 @@ PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Settin
 template <typename T>
 PSRETURN GUI<T>::GetSetting(const IGUIObject *pObject, const CStr& Setting, T &Value)
 {
-	T* v;
+	T* v = NULL;
 	PSRETURN ret = GetSettingPointer(pObject, Setting, v);
 	if (ret == PSRETURN_OK)
 		Value = *v;

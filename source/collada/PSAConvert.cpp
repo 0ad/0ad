@@ -78,7 +78,7 @@ public:
 
 			// Find the extents of the animation:
 
-			float timeStart, timeEnd;
+			float timeStart = 0, timeEnd = 0;
 			GetAnimationRange(converter.GetDocument(), skeleton, controllerInstance, timeStart, timeEnd);
 
 			// Count frames; don't include the last keyframe

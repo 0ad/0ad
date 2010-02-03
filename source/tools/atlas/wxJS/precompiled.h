@@ -17,10 +17,22 @@
 
 // Precompiled headers:
 
+#ifndef _WIN32
+// GCC 4.4+ CONFIG=Release triggers linker errors on wxKeyEvent::Clone() in treeevt.h
+// with hidden visibility, so switch to default visibility when first including the
+// relevant wx headers
+// (TODO: might need to do something extra for the non-USING_PCH case)
+#pragma GCC visibility push(default)
+#endif
+
 #ifdef USING_PCH
 # define WX_PRECOMP
 # include "common/main.h"
 # include "wx/wxprec.h"
+#endif
+
+#ifndef _WIN32
+#pragma GCC visibility pop
 #endif
 
 /*

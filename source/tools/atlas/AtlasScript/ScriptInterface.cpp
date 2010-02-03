@@ -466,6 +466,7 @@ template<typename T> jsval ScriptInterface::ToJSVal(JSContext* cx, const T& v)
 // Explicit instantiation of functions that would otherwise be unused in this file
 // but are required for linking with other files
 template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&);
+template bool ScriptInterface::FromJSVal<bool>(JSContext*, jsval, bool&);
 template bool ScriptInterface::FromJSVal<float>(JSContext*, jsval, float&);
 template bool ScriptInterface::FromJSVal<jsval>(JSContext*, jsval, jsval&);
 template jsval ScriptInterface::ToJSVal<wxString>(JSContext*, wxString const&);
