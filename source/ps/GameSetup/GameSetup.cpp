@@ -568,7 +568,10 @@ static void InitPs(bool setup_gui)
 		}
 
 		// GUI uses VFS, so this must come after VFS init.
-		g_GUI->SwitchPage(L"page_pregame.xml", JSVAL_VOID);
+		if (g_AutostartMap.empty())
+			g_GUI->SwitchPage(L"page_pregame.xml", JSVAL_VOID);
+		else
+			g_GUI->SwitchPage(L"page_session_new.xml", JSVAL_VOID);
 	}
 	else
 	{
@@ -867,7 +870,7 @@ void Init(const CmdLineArgs& args, int flags)
 	CONFIG_Init(args);
 
 	// setup_gui must be set after CONFIG_Init, so command-line parameters can disable it
-	const bool setup_gui = ((flags & INIT_NO_GUI) == 0 && g_AutostartMap.empty());
+	const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
 
 	// GUI is notified in SetVideoMode, so this must come before that.
 	g_GUI = new CGUIManager(g_ScriptingHost.GetScriptInterface());
@@ -999,8 +1002,14 @@ void Init(const CmdLineArgs& args, int flags)
 		// Code copied mostly from atlas/GameInterface/Handlers/Map.cpp -
 		// maybe should be refactored to avoid duplication
 		g_GameAttributes.m_MapFile = g_AutostartMap+".pmp";
-		for (int i=1; i<8; ++i)
+
+		// Make the whole world visible
+		g_GameAttributes.m_LOSSetting = LOS_SETTING_ALL_VISIBLE;
+		g_GameAttributes.m_FogOfWar = false;
+
+		for (int i = 1; i < 8; ++i)
 			g_GameAttributes.GetSlot(i)->AssignLocal();
+
 		g_Game = new CGame();
 
 		PSRETURN ret = g_Game->StartGame(&g_GameAttributes);
