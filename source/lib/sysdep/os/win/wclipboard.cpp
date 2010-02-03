@@ -24,15 +24,15 @@
 // caller is responsible for freeing *hMem.
 static LibError SetClipboardText(const wchar_t* text, HGLOBAL* hMem)
 {
-	const size_t len = wcslen(text);
-	*hMem = GlobalAlloc(GMEM_MOVEABLE, (len+1) * sizeof(wchar_t));
+	const size_t numChars = wcslen(text);
+	*hMem = GlobalAlloc(GMEM_MOVEABLE, (numChars+1) * sizeof(wchar_t));
 	if(!*hMem)
 		WARN_RETURN(ERR::NO_MEM);
 
 	wchar_t* lockedText = (wchar_t*)GlobalLock(*hMem);
 	if(!lockedText)
 		WARN_RETURN(ERR::NO_MEM);
-	wcscpy_s(lockedText, len, text);
+	wcscpy_s(lockedText, numChars+1, text);
 	GlobalUnlock(*hMem);
 
 	HANDLE hData = SetClipboardData(CF_UNICODETEXT, *hMem);
