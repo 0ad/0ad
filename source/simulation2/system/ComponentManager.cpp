@@ -165,6 +165,23 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 		// Clean up the old component type
 		componentManager->m_ScriptInterface.RemoveRoot(&componentManager->m_ComponentTypesById[cid].ctor);
 
+		// Remove its old message subscriptions
+		std::map<MessageTypeId, std::vector<ComponentTypeId> >::iterator it;
+		for (it = componentManager->m_LocalMessageSubscriptions.begin(); it != componentManager->m_LocalMessageSubscriptions.end(); ++it)
+		{
+			std::vector<ComponentTypeId>& types = it->second;
+			std::vector<ComponentTypeId>::iterator ctit = find(types.begin(), types.end(), cid);
+			if (ctit != types.end())
+				types.erase(ctit);
+		}
+		for (it = componentManager->m_GlobalMessageSubscriptions.begin(); it != componentManager->m_GlobalMessageSubscriptions.end(); ++it)
+		{
+			std::vector<ComponentTypeId>& types = it->second;
+			std::vector<ComponentTypeId>::iterator ctit = find(types.begin(), types.end(), cid);
+			if (ctit != types.end())
+				types.erase(ctit);
+		}
+
 		mustReloadComponents = true;
 	}
 
