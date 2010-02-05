@@ -5,6 +5,15 @@
   </Identity>
   <Cost>
   </Cost>
+  <Health>
+    <Max>100</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>1.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>9.0</Crush>
+  </Armour>
   <Builder>
     <Entities datatype="tokens">
       structures/{civ}_barracks

@@ -4,6 +4,18 @@
     <Civ>celt</Civ>
     <SpecificName>Bodu</SpecificName>
   </Identity>
+  <Health>
+    <Max>75</Max>
+    <RegenRate>0.5</RegenRate>
+  </Health>
+  <Attack>
+    <Hack>10.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>4.0</Range>
+    <PrepareTime>600</PrepareTime>
+    <RepeatTime>1000</RepeatTime>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/female_citizen.xml</Actor>
   </VisualActor>

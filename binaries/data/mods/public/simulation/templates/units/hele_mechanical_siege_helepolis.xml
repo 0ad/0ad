@@ -5,6 +5,22 @@
     <SpecificName>Helepolis</SpecificName>
     <IconCell>36</IconCell>
   </Identity>
+  <Health>
+    <Max>1000</Max>
+  </Health>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>25.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>0.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>200.0</Crush>
+    <Range>5.0</Range>
+    <PrepareTime>900</PrepareTime>
+    <RepeatTime>1500</RepeatTime>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/mechanical_siege_ram.xml</Actor>
   </VisualActor>

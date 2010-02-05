@@ -7,6 +7,21 @@
   </Identity>
   <Cost>
   </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>14.0</Pierce>
+    <Crush>20.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>0.0</Hack>
+    <Pierce>50.0</Pierce>
+    <Crush>0.0</Crush>
+    <PrepareTime>900</PrepareTime>
+    <RepeatTime>1500</RepeatTime>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/britomartus.xml</Actor>
   </VisualActor>

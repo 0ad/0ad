@@ -4,6 +4,21 @@
     <SpecificName>Argyraspides</SpecificName>
     <IconCell>12</IconCell>
   </Identity>
+  <Health>
+    <Max>135</Max>
+  </Health>
+  <Armour>
+    <Hack>9.0</Hack>
+    <Pierce>11.0</Pierce>
+    <Crush>14.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>18.0</Hack>
+    <Pierce>22.0</Pierce>
+    <Crush>0.0</Crush>
+    <PrepareTime>900</PrepareTime>
+    <RepeatTime>1500</RepeatTime>
+  </Attack>
   <VisualActor>
     <Actor>temp/mace_su1_hypaspist.xml</Actor>
   </VisualActor>

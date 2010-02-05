@@ -6,6 +6,15 @@
   <Cost>
     <Population>2</Population>
   </Cost>
+  <Health>
+    <Max>150</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>0.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>12.0</Crush>
+  </Armour>
   <Footprint>
     <Circle radius="1.2"/>
     <Height>7.5</Height>

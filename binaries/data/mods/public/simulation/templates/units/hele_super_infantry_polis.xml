@@ -5,6 +5,19 @@
     <SpecificName>Spartiate</SpecificName>
     <IconCell>12</IconCell>
   </Identity>
+  <Health>
+    <Max>150</Max>
+  </Health>
+  <Armour>
+    <Hack>16.0</Hack>
+    <Pierce>14.0</Pierce>
+    <Crush>21.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>15.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Range>4.8</Range>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/super_unit_1.xml</Actor>
   </VisualActor>

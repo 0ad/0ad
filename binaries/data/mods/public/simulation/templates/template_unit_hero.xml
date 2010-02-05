@@ -5,4 +5,21 @@
   </Identity>
   <Cost>
   </Cost>
+  <Health>
+    <Max>300</Max>
+    <RegenRate>0.5</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>7.0</Hack>
+    <Pierce>12.0</Pierce>
+    <Crush>12.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>40.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>5.0</Range>
+    <PrepareTime>900</PrepareTime>
+    <RepeatTime>1500</RepeatTime>
+  </Attack>
 </Entity>

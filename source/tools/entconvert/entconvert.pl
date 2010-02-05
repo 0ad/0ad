@@ -75,6 +75,7 @@ sub convert {
 
     if ($name eq 'template_unit') {
         $out .= qq{$i<UnitMotion/>\n};
+        $out .= qq{$i<UnitAI/>\n};
         $out .= qq{$i<Cost>\n};
         $out .= qq{$i$i<Population>1</Population>\n};
         $out .= qq{$i</Cost>\n};
@@ -86,6 +87,41 @@ sub convert {
             and $data->{Traits}[0]{Population}[0]{Rem}[0] != 1;
         $out .= qq{$i$i<PopulationBonus>$data->{Traits}[0]{Population}[0]{Add}[0]</PopulationBonus>\n} if $data->{Traits}[0]{Population}[0]{Add};
         $out .= qq{$i</Cost>\n};
+    }
+
+    if ($data->{Traits}[0]{Health}) {
+        $out .= qq{$i<Health>\n};
+        $out .= qq{$i$i<Max>$data->{Traits}[0]{Health}[0]{Max}[0]</Max>\n} if $data->{Traits}[0]{Health}[0]{Max};
+        $out .= qq{$i$i<RegenRate>$data->{Traits}[0]{Health}[0]{RegenRate}[0]</RegenRate>\n} if $data->{Traits}[0]{Health}[0]{RegenRate};
+        $out .= qq{$i</Health>\n};
+    }
+
+    if ($data->{Traits}[0]{Armour}) {
+        $out .= qq{$i<Armour>\n};
+        for my $n (qw(Hack Pierce Crush)) {
+            $out .= qq{$i$i<$n>$data->{Traits}[0]{Armour}[0]{$n}[0]</$n>\n} if $data->{Traits}[0]{Armour}[0]{$n};
+        }
+        $out .= qq{$i</Armour>\n};
+    }
+
+    if ($data->{Actions}[0]{Attack}[0]{Melee}) {
+        $out .= qq{$i<Attack>\n};
+        for my $n (qw(Hack Pierce Crush Range)) {
+            $out .= qq{$i$i<$n>$data->{Actions}[0]{Attack}[0]{Melee}[0]{$n}[0]</$n>\n} if $data->{Actions}[0]{Attack}[0]{Melee}[0]{$n};
+        }
+        if ($data->{Actions}[0]{Attack}[0]{Melee}[0]{Speed}) {
+            my $s = $data->{Actions}[0]{Attack}[0]{Melee}[0]{Speed}[0];
+            if ($s eq '1000') {
+                $out .= qq{$i$i<PrepareTime>600</PrepareTime>\n};
+                $out .= qq{$i$i<RepeatTime>1000</RepeatTime>\n};
+            } elsif ($s eq '1500') {
+                $out .= qq{$i$i<PrepareTime>900</PrepareTime>\n};
+                $out .= qq{$i$i<RepeatTime>1500</RepeatTime>\n};
+            } else {
+                die $s;
+            }
+        }
+        $out .= qq{$i</Attack>\n};
     }
 
     $dot_actor{$name} = $data->{Actor};

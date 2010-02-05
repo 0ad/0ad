@@ -3,6 +3,18 @@
   <Identity>
     <IconCell>4</IconCell>
   </Identity>
+  <Health>
+    <Max>93</Max>
+  </Health>
+  <Armour>
+    <Hack>5.2</Hack>
+    <Pierce>3.2</Pierce>
+    <Crush>10.2</Crush>
+  </Armour>
+  <Attack>
+    <Hack>16.0</Hack>
+    <Pierce>6.0</Pierce>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/infantry_spearman_a.xml</Actor>
   </VisualActor>

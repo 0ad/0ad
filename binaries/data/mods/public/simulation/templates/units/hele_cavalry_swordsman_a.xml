@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_cavalry_swordsman_b">
+  <Health>
+    <Max>150</Max>
+    <RegenRate>0.3</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>19.0</Hack>
+    <Crush>4.0</Crush>
+    <Range>2.0</Range>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/cavalry_swordsman_a.xml</Actor>
   </VisualActor>

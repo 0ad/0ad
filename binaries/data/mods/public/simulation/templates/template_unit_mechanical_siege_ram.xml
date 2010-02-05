@@ -4,4 +4,20 @@
     <GenericName>Siege Ram</GenericName>
     <IconCell>36</IconCell>
   </Identity>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>0.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>65.0</Crush>
+    <Range>5.0</Range>
+    <PrepareTime>900</PrepareTime>
+    <RepeatTime>1500</RepeatTime>
+  </Attack>
 </Entity>

@@ -3,6 +3,19 @@
   <Identity>
     <IconCell>4</IconCell>
   </Identity>
+  <Health>
+    <Max>110</Max>
+    <RegenRate>0.3</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>15.0</Hack>
+    <Pierce>17.0</Pierce>
+    <Crush>18.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>6.0</Hack>
+    <Pierce>16.0</Pierce>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_a.xml</Actor>
   </VisualActor>

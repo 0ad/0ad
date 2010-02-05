@@ -4,4 +4,13 @@
     <GenericName>Healer</GenericName>
     <IconCell>33</IconCell>
   </Identity>
+  <Health>
+    <Max>85</Max>
+    <RegenRate>0.3</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>2.0</Hack>
+    <Pierce>2.0</Pierce>
+    <Crush>2.0</Crush>
+  </Armour>
 </Entity>

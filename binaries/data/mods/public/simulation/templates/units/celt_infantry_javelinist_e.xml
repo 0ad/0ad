@@ -3,6 +3,14 @@
   <Identity>
     <IconCell>23</IconCell>
   </Identity>
+  <Health>
+    <Max>85</Max>
+  </Health>
+  <Armour>
+    <Hack>1.4</Hack>
+    <Pierce>5.4</Pierce>
+    <Crush>2.4</Crush>
+  </Armour>
   <VisualActor>
     <Actor>units/celts/infantry_javelinist_e.xml</Actor>
   </VisualActor>

@@ -3,6 +3,15 @@
   <Identity>
     <IconCell>7</IconCell>
   </Identity>
+  <Health>
+    <Max>110</Max>
+    <RegenRate>0.3</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>2.0</Pierce>
+    <Crush>8.0</Crush>
+  </Armour>
   <VisualActor>
     <Actor>units/hellenes/infantry_javelinist_a.xml</Actor>
   </VisualActor>

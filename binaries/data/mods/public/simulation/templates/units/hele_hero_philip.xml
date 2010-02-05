@@ -5,6 +5,18 @@
     <SpecificName>Philip II</SpecificName>
     <IconCell>31</IconCell>
   </Identity>
+  <Health>
+    <Max>380</Max>
+  </Health>
+  <Armour>
+    <Hack>14.0</Hack>
+    <Pierce>11.0</Pierce>
+    <Crush>22.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>32.0</Hack>
+    <Crush>3.0</Crush>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/philip_horse.xml</Actor>
   </VisualActor>

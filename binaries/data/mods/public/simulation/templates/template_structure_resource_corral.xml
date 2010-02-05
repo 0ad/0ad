@@ -4,6 +4,14 @@
     <GenericName>Corral</GenericName>
     <IconCell>51</IconCell>
   </Identity>
+  <Health>
+    <Max>100</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <Footprint>
     <Square width="9.5" depth="19.75"/>
     <Height>5.0</Height>

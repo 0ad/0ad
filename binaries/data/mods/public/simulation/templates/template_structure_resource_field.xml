@@ -4,6 +4,14 @@
     <GenericName>Field</GenericName>
     <IconCell>50</IconCell>
   </Identity>
+  <Health>
+    <Max>120</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <Footprint>
     <Square width="10.0" depth="10.0"/>
     <Height>8.0</Height>

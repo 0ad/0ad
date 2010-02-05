@@ -5,6 +5,15 @@
     <SpecificName>Toxotes</SpecificName>
     <IconCell>9</IconCell>
   </Identity>
+  <Health>
+    <Max>85</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>2.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>1.0</Crush>
+  </Armour>
   <VisualActor>
     <Actor>units/hellenes/infantry_archer_b.xml</Actor>
   </VisualActor>

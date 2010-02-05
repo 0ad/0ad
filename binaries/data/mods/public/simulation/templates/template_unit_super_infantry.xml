@@ -6,6 +6,22 @@
   </Identity>
   <Cost>
   </Cost>
+  <Health>
+    <Max>150</Max>
+  </Health>
+  <Armour>
+    <Hack>0.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>12.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>5.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>4.0</Range>
+    <PrepareTime>600</PrepareTime>
+    <RepeatTime>1000</RepeatTime>
+  </Attack>
   <Footprint>
     <Circle radius="0.5"/>
     <Height>2.5</Height>

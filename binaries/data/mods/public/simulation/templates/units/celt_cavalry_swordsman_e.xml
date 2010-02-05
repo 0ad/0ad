@@ -3,6 +3,17 @@
   <Identity>
     <IconCell>20</IconCell>
   </Identity>
+  <Health>
+    <Max>165</Max>
+  </Health>
+  <Armour>
+    <Hack>3.4</Hack>
+    <Pierce>10.4</Pierce>
+    <Crush>12.4</Crush>
+  </Armour>
+  <Attack>
+    <Hack>21.0</Hack>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_swordsman_e.xml</Actor>
   </VisualActor>

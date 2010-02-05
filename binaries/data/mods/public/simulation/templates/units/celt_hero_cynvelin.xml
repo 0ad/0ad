@@ -8,6 +8,21 @@
   <Cost>
     <Population>2</Population>
   </Cost>
+  <Health>
+    <Max>250</Max>
+  </Health>
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>14.0</Pierce>
+    <Crush>14.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>40.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>0.0</Crush>
+    <PrepareTime>900</PrepareTime>
+    <RepeatTime>1500</RepeatTime>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/cynvelin_horse.xml</Actor>
   </VisualActor>

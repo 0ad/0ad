@@ -5,6 +5,16 @@
     <SpecificName>Hoplite</SpecificName>
     <IconCell>3</IconCell>
   </Identity>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>9.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>5.0</Hack>
+    <Pierce>15.0</Pierce>
+    <Range>4.8</Range>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_b.xml</Actor>
   </VisualActor>

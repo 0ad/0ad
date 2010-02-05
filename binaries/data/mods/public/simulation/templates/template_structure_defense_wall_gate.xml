@@ -4,6 +4,14 @@
     <GenericName>Gate</GenericName>
     <IconCell>56</IconCell>
   </Identity>
+  <Health>
+    <Max>3000</Max>
+  </Health>
+  <Armour>
+    <Hack>15.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <Footprint>
     <Square width="6.0" depth="6.0"/>
     <Height>8.0</Height>

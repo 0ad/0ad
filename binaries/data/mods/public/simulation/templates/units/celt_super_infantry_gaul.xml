@@ -4,6 +4,13 @@
     <Civ>celt</Civ>
     <SpecificName>Gallic Solduri</SpecificName>
   </Identity>
+  <Health>
+    <Max>110</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Crush>10.0</Crush>
+  </Armour>
   <VisualActor>
     <Actor>units/celts/super_unit_1.xml</Actor>
   </VisualActor>

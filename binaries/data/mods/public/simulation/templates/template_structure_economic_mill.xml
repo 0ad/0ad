@@ -4,6 +4,14 @@
     <GenericName>Mill</GenericName>
     <IconCell>52</IconCell>
   </Identity>
+  <Health>
+    <Max>800</Max>
+  </Health>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>40.0</Pierce>
+    <Crush>15.0</Crush>
+  </Armour>
   <Footprint>
     <Square width="12.0" depth="12.0"/>
     <Height>8.0</Height>

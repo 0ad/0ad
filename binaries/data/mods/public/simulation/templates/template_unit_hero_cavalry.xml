@@ -6,4 +6,21 @@
   <Cost>
     <Population>2</Population>
   </Cost>
+  <Health>
+    <Max>400</Max>
+    <RegenRate>0.5</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>0.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>15.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>1.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>3.6</Range>
+    <PrepareTime>600</PrepareTime>
+    <RepeatTime>1000</RepeatTime>
+  </Attack>
 </Entity>

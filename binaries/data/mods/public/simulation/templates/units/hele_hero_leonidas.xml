@@ -5,6 +5,16 @@
     <SpecificName>Leonidas</SpecificName>
     <IconCell>21</IconCell>
   </Identity>
+  <Armour>
+    <Hack>16.0</Hack>
+    <Pierce>14.0</Pierce>
+    <Crush>21.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>20.0</Hack>
+    <Pierce>20.0</Pierce>
+    <Crush>0.0</Crush>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/leonidas.xml</Actor>
   </VisualActor>

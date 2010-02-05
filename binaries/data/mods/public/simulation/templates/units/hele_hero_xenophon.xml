@@ -5,6 +5,14 @@
     <SpecificName>Xenophon</SpecificName>
     <IconCell>23</IconCell>
   </Identity>
+  <Health>
+    <Max>280</Max>
+  </Health>
+  <Armour>
+    <Hack>12.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>22.0</Crush>
+  </Armour>
   <VisualActor>
     <Actor>units/hellenes/xenophon.xml</Actor>
   </VisualActor>

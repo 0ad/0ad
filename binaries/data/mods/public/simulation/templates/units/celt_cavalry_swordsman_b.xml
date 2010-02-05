@@ -4,6 +4,16 @@
     <Civ>celt</Civ>
     <SpecificName>Epos</SpecificName>
   </Identity>
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>9.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>18.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>0.0</Crush>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_swordsman_b.xml</Actor>
   </VisualActor>

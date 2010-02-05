@@ -5,9 +5,16 @@
     <IconSheet>PortraitSheet</IconSheet>
   </Identity>
   <UnitMotion/>
+  <UnitAI/>
   <Cost>
     <Population>1</Population>
   </Cost>
+  <Health>
+    <Max>100</Max>
+  </Health>
+  <Armour>
+    <Crush>1.0</Crush>
+  </Armour>
   <Footprint>
     <Circle radius="0.5"/>
     <Height>2.5</Height>

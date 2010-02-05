@@ -4,6 +4,14 @@
     <Civ>celt</Civ>
     <SpecificName>Gaesata</SpecificName>
   </Identity>
+  <Health>
+    <Max>90</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>3.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
   <VisualActor>
     <Actor>units/celts/infantry_spearman_b.xml</Actor>
   </VisualActor>

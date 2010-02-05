@@ -3,4 +3,13 @@
   <Identity>
     <GenericName>Hero</GenericName>
   </Identity>
+  <Health>
+    <Max>200</Max>
+    <RegenRate>0.2</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>10.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
 </Entity>

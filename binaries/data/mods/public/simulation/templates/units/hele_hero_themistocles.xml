@@ -5,6 +5,18 @@
     <SpecificName>Themistocles</SpecificName>
     <IconCell>22</IconCell>
   </Identity>
+  <Health>
+    <Max>280</Max>
+  </Health>
+  <Armour>
+    <Hack>16.0</Hack>
+    <Pierce>14.0</Pierce>
+    <Crush>21.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>27.0</Hack>
+    <Crush>3.0</Crush>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/themistocles.xml</Actor>
   </VisualActor>

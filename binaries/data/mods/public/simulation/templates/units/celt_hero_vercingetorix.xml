@@ -5,6 +5,17 @@
     <SpecificName>Vercingetorix</SpecificName>
     <IconCell>31</IconCell>
   </Identity>
+  <Health>
+    <Max>300</Max>
+  </Health>
+  <Armour>
+    <Hack>6.0</Hack>
+    <Pierce>13.0</Pierce>
+    <Crush>13.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>50.0</Hack>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/vercingetorix_horse.xml</Actor>
   </VisualActor>

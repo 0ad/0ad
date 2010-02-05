@@ -5,6 +5,19 @@
     <SpecificName>Hyppikon</SpecificName>
     <IconCell>18</IconCell>
   </Identity>
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Armour>
+    <Hack>3.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>6.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>17.0</Hack>
+    <Crush>3.0</Crush>
+    <Range>2.4</Range>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/cavalry_swordsman_b.xml</Actor>
   </VisualActor>

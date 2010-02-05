@@ -7,6 +7,22 @@
   <Cost>
     <Population>2</Population>
   </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Armour>
+    <Hack>7.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>14.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>35.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>4.8</Range>
+    <PrepareTime>600</PrepareTime>
+    <RepeatTime>1000</RepeatTime>
+  </Attack>
   <Footprint>
     <Circle radius="1.2"/>
     <Height>5.0</Height>

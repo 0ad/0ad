@@ -3,4 +3,12 @@
   <Identity>
     <GenericName>Melee Infantry</GenericName>
   </Identity>
+  <Attack>
+    <Hack>1.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>4.0</Range>
+    <PrepareTime>600</PrepareTime>
+    <RepeatTime>1000</RepeatTime>
+  </Attack>
 </Entity>

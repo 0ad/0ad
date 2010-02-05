@@ -5,6 +5,14 @@
     <SpecificName>Ekdromos</SpecificName>
     <IconCell>14</IconCell>
   </Identity>
+  <Health>
+    <Max>130</Max>
+  </Health>
+  <Armour>
+    <Hack>7.0</Hack>
+    <Pierce>9.0</Pierce>
+    <Crush>14.0</Crush>
+  </Armour>
   <VisualActor>
     <Actor>units/hellenes/super_unit_2.xml</Actor>
   </VisualActor>

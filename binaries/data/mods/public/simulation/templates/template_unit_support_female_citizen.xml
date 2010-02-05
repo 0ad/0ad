@@ -4,6 +4,15 @@
     <GenericName>Female Citizen</GenericName>
     <IconCell>32</IconCell>
   </Identity>
+  <Health>
+    <Max>75</Max>
+    <RegenRate>0.3</RegenRate>
+  </Health>
+  <Armour>
+    <Hack>1.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>5.0</Crush>
+  </Armour>
   <Builder>
     <Entities datatype="tokens">
       structures/{civ}_civil_centre

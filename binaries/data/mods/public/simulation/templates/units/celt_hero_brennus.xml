@@ -5,6 +5,21 @@
     <SpecificName>Brennus</SpecificName>
     <IconCell>29</IconCell>
   </Identity>
+  <Health>
+    <Max>220</Max>
+  </Health>
+  <Armour>
+    <Hack>5.0</Hack>
+    <Pierce>8.0</Pierce>
+    <Crush>10.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>20.0</Hack>
+    <Pierce>0.0</Pierce>
+    <Crush>25.0</Crush>
+    <PrepareTime>900</PrepareTime>
+    <RepeatTime>1500</RepeatTime>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/brennus.xml</Actor>
   </VisualActor>

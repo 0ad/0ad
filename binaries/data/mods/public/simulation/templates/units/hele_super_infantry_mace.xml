@@ -5,6 +5,19 @@
     <SpecificName>Pezhetairoi</SpecificName>
     <IconCell>13</IconCell>
   </Identity>
+  <Health>
+    <Max>145</Max>
+  </Health>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>7.0</Pierce>
+    <Crush>16.0</Crush>
+  </Armour>
+  <Attack>
+    <Hack>15.0</Hack>
+    <Pierce>25.0</Pierce>
+    <Range>7.0</Range>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/super_unit_3.xml</Actor>
   </VisualActor>
