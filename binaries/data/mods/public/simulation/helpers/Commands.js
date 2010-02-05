@@ -4,23 +4,23 @@ function ProcessCommand(player, cmd)
 	
 	switch (cmd.type)
 	{
-	case "spin":
-		for each (var ent in cmd.entities)
-		{
-			var pos = Engine.QueryInterface(ent, IID_Position);
-			if (! pos)
-				continue;
-			pos.SetYRotation(pos.GetRotation().y + 1);
-		}
-		break;
-
 	case "walk":
 		for each (var ent in cmd.entities)
 		{
-			var motion = Engine.QueryInterface(ent, IID_UnitMotion);
-			if (! motion)
+			var ai = Engine.QueryInterface(ent, IID_UnitAI);
+			if (!ai)
 				continue;
-			motion.MoveToPoint(cmd.x, cmd.z);
+			ai.Walk(cmd.x, cmd.z);
+		}
+		break;
+
+	case "attack":
+		for each (var ent in cmd.entities)
+		{
+			var ai = Engine.QueryInterface(ent, IID_UnitAI);
+			if (!ai)
+				continue;
+			ai.Attack(cmd.target);
 		}
 		break;
 

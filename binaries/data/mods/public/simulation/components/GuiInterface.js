@@ -38,10 +38,28 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"position": cmpPosition.GetPosition()
 	};
 
+	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
+	if (cmpHealth)
+	{
+		ret.hitpoints = cmpHealth.GetHitpoints();
+	}
+
+	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
+	if (cmpAttack)
+	{
+		ret.attack = cmpAttack.GetAttackStrengths();
+	}
+
 	var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
 	if (cmpBuilder)
 	{
 		ret.buildEntities = cmpBuilder.GetEntitiesList();
+	}
+
+	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+	if (cmpOwnership)
+	{
+		ret.player = cmpOwnership.GetOwner();
 	}
 
 	return ret;

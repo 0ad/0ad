@@ -46,6 +46,6 @@ function getEntitySelection()
 {
 	var ents = [];
 	for (var ent in g_Selection)
-		ents.push(ent);
+		ents.push(+ent); // convert from string to number and push
 	return ents;
 }

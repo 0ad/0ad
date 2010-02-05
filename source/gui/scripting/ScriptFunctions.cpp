@@ -26,6 +26,7 @@
 #include "ps/Game.h"
 #include "ps/Overlay.h"
 #include "ps/Player.h"
+#include "ps/GameSetup/Config.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
@@ -168,6 +169,20 @@ CFixedVector3D GetTerrainAtPoint(void* UNUSED(cbdata), int x, int y)
 	return CFixedVector3D(CFixed_23_8::FromFloat(pos.X), CFixed_23_8::FromFloat(pos.Y), CFixed_23_8::FromFloat(pos.Z));
 }
 
+std::wstring SetCursor(void* UNUSED(cbdata), std::wstring name)
+{
+	std::wstring old = g_CursorName;
+	g_CursorName = name;
+	return old;
+}
+
+int GetPlayerID(void* UNUSED(cbdata))
+{
+	if (g_Game && g_Game->GetLocalPlayer())
+		return g_Game->GetLocalPlayer()->GetPlayerID();
+	return -1;
+}
+
 } // namespace
 
 void GuiScriptingInit(ScriptInterface& scriptInterface)
@@ -187,4 +202,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, &PickEntitiesAtPoint>("PickEntitiesAtPoint");
 	scriptInterface.RegisterFunction<CFixedVector3D, int, int, &GetTerrainAtPoint>("GetTerrainAtPoint");
 
+	// Misc functions
+	scriptInterface.RegisterFunction<std::wstring, std::wstring, &SetCursor>("SetCursor");
+	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
 }

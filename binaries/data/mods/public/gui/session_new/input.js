@@ -13,8 +13,74 @@ var inputState = INPUT_NORMAL;
 
 var placementEntity = "";
 
+var mouseX = 0;
+var mouseY = 0;
+
+function updateCursor()
+{
+	var action = determineAction(mouseX, mouseY);
+	if (action)
+	{
+		if (action.type != "move")
+		{
+			Engine.SetCursor("action-" + action.type);
+			return;
+		}
+	}
+
+	Engine.SetCursor("arrow-default");
+}
+
+/**
+ * Determine the context-sensitive action that should be performed when the mouse is at (x,y)
+ */
+function determineAction(x, y)
+{
+	var selection = getEntitySelection();
+
+	// No action if there's no selection
+	if (!selection.length)
+		return;
+
+	// If the selection isn't friendly units, no action
+	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
+	var player = Engine.GetPlayerID();
+	if (entState.player != player)
+		return;
+
+	var targets = Engine.PickEntitiesAtPoint(x, y);
+
+	// If there's no unit, just walk
+	if (!targets.length)
+		return {"type": "move"};
+
+	// Look at the first targeted entity
+	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
+	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
+	var targetState = Engine.GuiInterfaceCall("GetEntityState", targets[0]);
+
+	// Different owner -> attack
+	if (entState.attack && targetState.player != player)
+		return {"type": "attack", "target": targets[0]};
+
+	// TODO: need more actions
+
+	// If we don't do anything more specific, just walk
+	return {"type": "move"};
+}
+
 function handleInputBeforeGui(ev)
 {
+	switch (ev.type)
+	{
+	case "mousebuttonup":
+	case "mousebuttondown":
+	case "mousemotion":
+		mouseX = ev.x;
+		mouseY = ev.y;
+		break;
+	}
+
 	return false;
 }
 
@@ -54,17 +120,25 @@ function handleInputAfterGui(ev)
 				resetEntitySelection();
 				addEntitySelection([ents[0]]);
 
-				Engine.PostNetworkCommand({"type": "spin", "entities": [ents[0]]});
-
 				return true;
 			}
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
-				var ents = getEntitySelection();
-				if (ents.length)
+				var action = determineAction(ev.x, ev.y);
+				if (!action)
+					break;
+
+				var selection = getEntitySelection();
+
+				switch (action.type)
 				{
+				case "move":
 					var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-					Engine.PostNetworkCommand({"type": "walk", "entities": ents, "x": target.x, "z": target.z});
+					Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z});
+					return true;
+
+				case "attack":
+					Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target});
 					return true;
 				}
 			}

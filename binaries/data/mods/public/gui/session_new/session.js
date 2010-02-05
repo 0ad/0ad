@@ -3,6 +3,11 @@ function init()
 	updateDebug();
 }
 
+function onTick()
+{
+	updateCursor();
+}
+
 function onSimulationUpdate()
 {
 	updateDebug();

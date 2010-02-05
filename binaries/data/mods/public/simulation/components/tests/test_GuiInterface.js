@@ -1,4 +1,6 @@
+Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
+Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("GuiInterface.js");
 
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
@@ -35,6 +37,12 @@ AddMock(10, IID_Position, {
 	}
 });
 
+AddMock(10, IID_Health, {
+	GetHitpoints: function() {
+		return 50;
+	}
+});
+
 AddMock(10, IID_Builder, {
 	GetEntitiesList: function() {
 		return ["test1", "test2"];
@@ -45,5 +53,6 @@ var state = cmp.GetEntityState(-1, 10);
 TS_ASSERT_UNEVAL_EQUALS(state, {
 	template: "example",
 	position: {x:1, y:2, z:3},
+	hitpoints: 50,
 	buildEntities: ["test1", "test2"]
 });

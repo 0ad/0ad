@@ -32,6 +32,10 @@
 			initSession();
 		</action>
 
+		<action on="Tick">
+			onTick();
+		</action>
+
 		<action on="SimulationUpdate">
 			onSimulationUpdate();
 		</action>
