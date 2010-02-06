@@ -91,7 +91,7 @@ public:
 		}
 	}
 
-	virtual void MoveToPoint(entity_pos_t x, entity_pos_t z)
+	virtual void MoveToPoint(entity_pos_t x, entity_pos_t z, entity_pos_t minRadius, entity_pos_t maxRadius)
 	{
 		CmpPtr<ICmpPathfinder> cmpPathfinder (*m_Context, SYSTEM_ENTITY);
 		if (cmpPathfinder.null())
@@ -105,18 +105,23 @@ public:
 
 		m_Path.m_Waypoints.clear();
 
-		u32 cost;
-		entity_pos_t r = entity_pos_t::FromInt(0); // TODO: should get this from the entity's size
-		if (cmpPathfinder->CanMoveStraight(pos.X, pos.Z, x, z, r, cost))
+//		u32 cost;
+//		entity_pos_t r = entity_pos_t::FromInt(0); // TODO: should get this from the entity's size
+//		if (cmpPathfinder->CanMoveStraight(pos.X, pos.Z, x, z, r, cost))
+//		{
+//			m_TargetX = x;
+//			m_TargetZ = z;
+//			m_HasTarget = true;
+//		}
+//		else
 		{
-			m_TargetX = x;
-			m_TargetZ = z;
-			m_HasTarget = true;
-		}
-		else
-		{
-			cmpPathfinder->SetDebugPath(pos.X, pos.Z, x, z);
-			cmpPathfinder->ComputePath(pos.X, pos.Z, x, z, m_Path);
+			ICmpPathfinder::Goal goal;
+			goal.x = x;
+			goal.z = z;
+			goal.minRadius = minRadius;
+			goal.maxRadius = maxRadius;
+			cmpPathfinder->SetDebugPath(pos.X, pos.Z, goal);
+			cmpPathfinder->ComputePath(pos.X, pos.Z, goal, m_Path);
 			if (!m_Path.m_Waypoints.empty())
 				PickNextWaypoint(pos);
 		}

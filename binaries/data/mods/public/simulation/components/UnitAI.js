@@ -55,7 +55,7 @@ UnitAI.prototype.Walk = function(x, z)
 	if (!motion)
 		return;
 
-	motion.MoveToPoint(x, z);
+	motion.MoveToPoint(x, z, 0, 0);
 	this.state = STATE_WALKING;
 };
 
@@ -96,7 +96,7 @@ UnitAI.prototype.MoveToTarget = function(target)
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 
 	var pos = cmpPositionTarget.GetPosition();
-	cmpMotion.MoveToPoint(pos.x, pos.z);
+	cmpMotion.MoveToPoint(pos.x, pos.z, 0, 8);
 };
 
 UnitAI.prototype.AttackTimeout = function(data)

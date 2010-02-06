@@ -227,15 +227,15 @@ public:
 
 	virtual bool CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost);
 
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, Path& ret);
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& ret);
 
-	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
+	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal)
 	{
 		delete m_DebugGrid;
 		m_DebugGrid = NULL;
 		delete m_DebugPath;
 		m_DebugPath = new Path();
-		ComputePath(x0, z0, x1, z1, *m_DebugPath);
+		ComputePath(x0, z0, goal, *m_DebugPath);
 	}
 
 	/**
@@ -522,14 +522,24 @@ public:
 
 // Calculate heuristic cost from tile i,j to destination
 // (This ought to be an underestimate for correctness)
-static u32 CalculateHeuristic(u16 i, u16 j, u16 iTarget, u16 jTarget)
+static u32 CalculateHeuristic(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal, bool aimingInwards)
 {
 #ifdef USE_DIAGONAL_MOVEMENT
-	return hypot(i-iTarget, j-jTarget)*g_CostPerTile;
-	// XXX: shouldn't use floats here
-	// Also, the heuristic should match the costs better
+	CFixedVector2D pos (CFixed_23_8::FromInt(i), CFixed_23_8::FromInt(j));
+	CFixedVector2D goal (CFixed_23_8::FromInt(iGoal), CFixed_23_8::FromInt(jGoal));
+	CFixed_23_8 dist = (pos - goal).Length();
+	// TODO: the heuristic could match the costs better - it's not really Euclidean movement
+
+	CFixed_23_8 rdist = dist - CFixed_23_8::FromInt(rGoal);
+	if (!aimingInwards)
+		rdist = -rdist;
+
+	if (rdist < CFixed_23_8::FromInt(0))
+		return 0;
+	return (rdist * g_CostPerTile).ToInt_RoundToZero();
+
 #else
-	return (abs((int)i - (int)iTarget) + abs((int)j - (int)jTarget)) * g_CostPerTile;
+	return (abs((int)i - (int)iGoal) + abs((int)j - (int)jGoal)) * g_CostPerTile;
 #endif
 }
 
@@ -568,10 +578,12 @@ struct PathfinderState
 {
 	u32 steps; // number of algorithm iterations
 
-	u16 iTarget, jTarget; // goal tile
+	u16 iGoal, jGoal; // goal tile
+	u16 rGoal; // radius of goal (around tile center)
+	bool aimingInwards; // whether we're moving towards the goal or away
 
 	PriorityQueue open;
-	PriorityQueue closed;
+	// (there's no explicit closed list; it's encoded in PathfindTile::status)
 
 	Grid<PathfindTile>* tiles;
 	Grid<u8>* terrain;
@@ -587,7 +599,7 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 	if (state.terrain->get(i, j))
 		return;
 
-	u32 h = CalculateHeuristic(i, j, state.iTarget, state.jTarget);
+	u32 h = CalculateHeuristic(i, j, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards);
 	u32 dg = CalculateCostDelta(pi, pj, i, j, state.tiles);
 
 	u32 g = pg + dg; // cost to this tile = cost to predecessor + delta from predecessor
@@ -624,7 +636,6 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 		// If this is a better path (possible when we use inadmissible heuristics), reopen it
 		if (g < n.cost)
 		{
-			state.closed.remove(i, j);
 			// (don't return yet)
 		}
 		else
@@ -643,7 +654,23 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 	state.open.push(t);
 }
 
-void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, Path& path)
+static bool AtGoal(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal, bool aimingInwards)
+{
+	// If we're aiming towards a point, stop when we get there
+	if (aimingInwards && rGoal == 0)
+		return (i == iGoal && j == jGoal);
+
+	// Otherwise compute the distance and compare to desired radius
+	i32 dist2 = ((i32)i-iGoal)*((i32)i-iGoal) + ((i32)j-jGoal)*((i32)j-jGoal);
+	if (aimingInwards && (dist2 <= rGoal*rGoal))
+		return true;
+	if (!aimingInwards && (dist2 >= rGoal*rGoal))
+		return true;
+
+	return false;
+}
+
+void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& path)
 {
 	UpdateGrid();
 
@@ -651,9 +678,29 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t 
 
 	PathfinderState state;
 
+	// Convert the start/end coordinates to tile indexes
 	u16 i0, j0;
 	NearestTile(x0, z0, i0, j0);
-	NearestTile(x1, z1, state.iTarget, state.jTarget);
+	NearestTile(goal.x, goal.z, state.iGoal, state.jGoal);
+
+	// If we start closer than min radius, aim for the min radius
+	// If we start further than max radius, aim for the max radius
+	// Otherwise we're there already
+	CFixed_23_8 initialDist = (CFixedVector2D(x0, z0) - CFixedVector2D(goal.x, goal.z)).Length();
+	if (initialDist < goal.minRadius)
+	{
+		state.aimingInwards = false;
+		state.rGoal = (goal.minRadius / CELL_SIZE).ToInt_RoundToZero(); // TODO: what rounding mode is appropriate?
+	}
+	else if (initialDist > goal.maxRadius)
+	{
+		state.aimingInwards = true;
+		state.rGoal = (goal.maxRadius / CELL_SIZE).ToInt_RoundToZero(); // TODO: what rounding mode is appropriate?
+	}
+	else
+	{
+		return;
+	}
 
 	state.steps = 0;
 
@@ -662,7 +709,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t 
 
 	state.iBest = i0;
 	state.jBest = j0;
-	state.hBest = CalculateHeuristic(i0, j0, state.iTarget, state.jTarget);
+	state.hBest = CalculateHeuristic(i0, j0, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards);
 
 	QueueItem start = { i0, j0, 0 };
 	state.open.push(start);
@@ -687,11 +734,10 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t 
 		// Move best tile from open to closed
 		QueueItem curr = state.open.top();
 		state.open.pop();
-		state.closed.push(curr);
 		state.tiles->get(curr.i, curr.j).status = PathfindTile::STATUS_CLOSED;
 
 		// If we've reached the destination, stop
-		if (curr.i == state.iTarget && curr.j == state.jTarget)
+		if (AtGoal(curr.i, curr.j, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards))
 		{
 			state.iBest = curr.i;
 			state.jBest = curr.j;

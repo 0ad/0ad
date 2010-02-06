@@ -35,6 +35,12 @@
 class ICmpPathfinder : public IComponent
 {
 public:
+	struct Goal
+	{
+		entity_pos_t x, z;
+		entity_pos_t minRadius, maxRadius;
+	};
+
 	/**
 	 * Returned paths are currently represented as a series of waypoints.
 	 * These happen to correspond to the centers of horizontally/vertically adjacent tiles
@@ -82,12 +88,12 @@ public:
 	/**
 	 * Compute a path between the given points, and return the set of waypoints.
 	 */
-	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, Path& ret) = 0;
+	virtual void ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& goal, Path& ret) = 0;
 
 	/**
 	 * Compute a path between the given points, and draw the latest such path as a terrain overlay.
 	 */
-	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1) = 0;
+	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal) = 0;
 
 	DECLARE_INTERFACE_TYPE(Pathfinder)
 };
