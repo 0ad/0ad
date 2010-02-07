@@ -37,6 +37,7 @@ MESSAGE(RenderSubmit) // non-deterministic (use with caution)
 MESSAGE(Destroy)
 MESSAGE(OwnershipChanged)
 MESSAGE(PositionChanged)
+MESSAGE(MotionStopped)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized

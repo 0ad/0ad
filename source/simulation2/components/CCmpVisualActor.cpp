@@ -47,6 +47,13 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(VisualActor)
 
+	CUnit* m_Unit;
+
+	// Current animation state
+	std::string m_AnimName;
+	bool m_AnimOnce;
+	float m_AnimSpeed;
+
 	CCmpVisualActor() :
 		m_Unit(NULL)
 	{
@@ -62,6 +69,8 @@ public:
 			// The error will have already been logged
 			return;
 		}
+
+		SelectAnimation("idle", false, 0.f);
 
 		m_Unit->SetID(GetEntityId()); // TODO: is it safe to be using entity IDs for unit IDs?
 	}
@@ -93,6 +102,8 @@ public:
 		// variations with a 16-bit RNG seed (selected randomly when creating new units, or
 		// when someone hits the "randomise" button in the map editor), only overridden with
 		// a list of strings if it really needs to be a specific variation.
+
+		// TODO: store animation state
 	}
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
@@ -106,8 +117,8 @@ public:
 		{
 		case MT_Interpolate:
 		{
-			float offset = static_cast<const CMessageInterpolate&> (msg).offset;
-			Interpolate(context, offset);
+			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
+			Interpolate(context, msgData.frameTime, msgData.offset);
 			break;
 		}
 		case MT_RenderSubmit:
@@ -133,16 +144,29 @@ public:
 		return m_Unit->GetModel()->GetBounds();
 	}
 
-private:
-	void Interpolate(const CSimContext& context, float frameOffset);
-	void RenderSubmit(const CSimContext& context, SceneCollector& collector, const CFrustum& frustum, bool culling);
+	virtual void SelectAnimation(std::string name, bool once, float speed)
+	{
+		if (!m_Unit)
+			return;
 
-	CUnit* m_Unit;
+		if (!isfinite(speed) || speed < 0) // JS 'undefined' converts to NaN, which causes Bad Things
+			speed = 0;
+
+		m_AnimName = name;
+		m_AnimOnce = once;
+		m_AnimSpeed = speed;
+
+		m_Unit->SetAnimationState(name, once, speed);
+	}
+
+private:
+	void Interpolate(const CSimContext& context, float frameTime, float frameOffset);
+	void RenderSubmit(const CSimContext& context, SceneCollector& collector, const CFrustum& frustum, bool culling);
 };
 
 REGISTER_COMPONENT_TYPE(VisualActor)
 
-void CCmpVisualActor::Interpolate(const CSimContext& context, float frameOffset)
+void CCmpVisualActor::Interpolate(const CSimContext& context, float frameTime, float frameOffset)
 {
 	if (m_Unit == NULL)
 		return;
@@ -160,6 +184,7 @@ void CCmpVisualActor::Interpolate(const CSimContext& context, float frameOffset)
 	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset));
 
 	m_Unit->GetModel()->SetTransform(transform);
+	m_Unit->UpdateModel(frameTime);
 }
 
 void CCmpVisualActor::RenderSubmit(const CSimContext& UNUSED(context), SceneCollector& collector, const CFrustum& frustum, bool culling)

@@ -36,6 +36,8 @@ class ICmpUnitMotion : public IComponent
 public:
 	virtual void MoveToPoint(entity_pos_t x, entity_pos_t z, entity_pos_t minRadius, entity_pos_t maxRadius) = 0;
 
+	virtual CFixed_23_8 GetSpeed() = 0;
+
 	DECLARE_INTERFACE_TYPE(UnitMotion)
 };
 

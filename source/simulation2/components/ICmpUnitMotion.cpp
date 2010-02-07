@@ -23,4 +23,5 @@
 
 BEGIN_INTERFACE_WRAPPER(UnitMotion)
 DEFINE_INTERFACE_METHOD_4("MoveToPoint", void, ICmpUnitMotion, MoveToPoint, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t)
+DEFINE_INTERFACE_METHOD_0("GetSpeed", CFixed_23_8, ICmpUnitMotion, GetSpeed)
 END_INTERFACE_WRAPPER(UnitMotion)

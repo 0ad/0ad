@@ -44,11 +44,12 @@ public:
 	ICmpPathfinder::Path m_Path;
 	entity_pos_t m_TargetX, m_TargetZ; // these values contain undefined junk if !HasTarget
 
-	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		m_Context = &context;
-		m_Speed = CFixed_23_8::FromInt(4);
 		m_HasTarget = false;
+
+		m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -122,9 +123,18 @@ public:
 			goal.maxRadius = maxRadius;
 			cmpPathfinder->SetDebugPath(pos.X, pos.Z, goal);
 			cmpPathfinder->ComputePath(pos.X, pos.Z, goal, m_Path);
-			if (!m_Path.m_Waypoints.empty())
+
+			// If there's no waypoints then we've stopped already, otherwise move to the first one
+			if (m_Path.m_Waypoints.empty())
+				m_Context->GetComponentManager().BroadcastMessage(CMessageMotionStopped());
+			else
 				PickNextWaypoint(pos);
 		}
+	}
+
+	virtual CFixed_23_8 GetSpeed()
+	{
+		return m_Speed;
 	}
 
 	void Move(const CSimContext& context, CFixed_23_8 dt);
@@ -168,6 +178,7 @@ void CCmpUnitMotion::Move(const CSimContext& context, CFixed_23_8 dt)
 			{
 				cmpPosition->MoveTo(target.X, target.Z);
 				m_HasTarget = false;
+				context.GetComponentManager().BroadcastMessage(CMessageMotionStopped());
 				return;
 			}
 

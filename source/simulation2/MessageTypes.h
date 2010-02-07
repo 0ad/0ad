@@ -63,11 +63,12 @@ class CMessageInterpolate : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(Interpolate)
 
-	CMessageInterpolate(float offset) :
-		offset(offset)
+	CMessageInterpolate(float frameTime, float offset) :
+		frameTime(frameTime), offset(offset)
 	{
 	}
 
+	float frameTime;
 	float offset;
 };
 
@@ -139,5 +140,14 @@ public:
 	entity_angle_t a;
 };
 
+class CMessageMotionStopped : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(MotionStopped)
+
+	CMessageMotionStopped()
+	{
+	}
+};
 
 #endif // INCLUDED_MESSAGETYPES

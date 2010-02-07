@@ -240,14 +240,18 @@ bool CGame::Update(double deltaTime, bool doInterpolate)
 
 	deltaTime *= m_SimRate;
 	
-	bool ok = m_Simulation->Update(deltaTime);
+	bool ok = true;
 	if (g_UseSimulation2)
 		m_Simulation2->Update(deltaTime);
+	else
+		ok = m_Simulation->Update(deltaTime);
+
 	if (doInterpolate)
 	{
-		m_Simulation->Interpolate(deltaTime);
 		if (g_UseSimulation2)
 			m_Simulation2->Interpolate(deltaTime);
+		else
+			m_Simulation->Interpolate(deltaTime);
 	}
 	
 	g_GUI->SendEventToAll("SimulationUpdate");

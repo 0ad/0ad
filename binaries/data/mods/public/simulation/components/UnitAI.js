@@ -36,6 +36,8 @@ UnitAI.prototype.Init = function()
 	this.attackRechargeTime = 0;
 	// Timer for AttackTimeout
 	this.attackTimer = undefined;
+
+	this.nextAnimation = undefined;
 };
 
 UnitAI.prototype.OnDestroy = function()
@@ -47,15 +49,27 @@ UnitAI.prototype.OnDestroy = function()
 	}
 };
 
+UnitAI.prototype.OnTurnStart = function()
+{
+	if (this.nextAnimation)
+	{
+		this.SelectAnimation(this.nextAnimation.name, this.nextAnimation.once, this.nextAnimation.speed);
+		this.nextAnimation = undefined;
+	}
+};
+
 //// Interface functions ////
 
 UnitAI.prototype.Walk = function(x, z)
 {
-	var motion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	if (!motion)
+	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (!cmpMotion)
 		return;
 
-	motion.MoveToPoint(x, z, 0, 0);
+	this.SelectAnimation("walk", false, cmpMotion.GetSpeed());
+
+	cmpMotion.MoveToPoint(x, z, 0, 0);
+
 	this.state = STATE_WALKING;
 };
 
@@ -85,7 +99,30 @@ UnitAI.prototype.Attack = function(target)
 	this.state = STATE_ATTACKING;
 };
 
+//// Message handlers ////
+
+UnitAI.prototype.OnMotionStopped = function()
+{
+	this.SelectAnimationDelayed("idle");
+};
+
 //// Private functions ////
+
+UnitAI.prototype.SelectAnimation = function(name, once, speed)
+{
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (!cmpVisual)
+		return;
+
+	cmpVisual.SelectAnimation(name, once, speed);
+
+	this.nextAnimation = undefined;
+};
+
+UnitAI.prototype.SelectAnimationDelayed = function(name, once, speed)
+{
+	this.nextAnimation = { "name": name, "once": once, "speed": speed };
+}
 
 UnitAI.prototype.MoveToTarget = function(target)
 {
@@ -95,8 +132,10 @@ UnitAI.prototype.MoveToTarget = function(target)
 
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 
+	this.SelectAnimation("walk", false, cmpMotion.GetSpeed());
+
 	var pos = cmpPositionTarget.GetPosition();
-	cmpMotion.MoveToPoint(pos.x, pos.z, 0, 8);
+	cmpMotion.MoveToPoint(pos.x, pos.z, 0, 1);
 };
 
 UnitAI.prototype.AttackTimeout = function(data)
@@ -126,8 +165,12 @@ UnitAI.prototype.AttackTimeout = function(data)
 		// Otherwise it's impossible to reach the target, so give up
 		// and switch back to idle
 		this.state = STATE_IDLE;
+		this.SelectAnimation("idle");
 		return;
 	}
+
+	// Play the attack animation
+	this.SelectAnimationDelayed("melee", false, 1);
 
 	// Hit the target
 	cmpAttack.PerformAttack(data.target);

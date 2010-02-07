@@ -702,6 +702,14 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 		return;
 	}
 
+	// If we're already at the goal tile, then move directly to the exact goal coordinates
+	if (AtGoal(i0, j0, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards))
+	{
+		Waypoint w = { goal.x, goal.z, 0 };
+		path.m_Waypoints.push_back(w);
+		return;
+	}
+
 	state.steps = 0;
 
 	state.tiles = new Grid<PathfindTile>(m_MapSize, m_MapSize);
@@ -761,8 +769,17 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 	while (ip != i0 || jp != j0)
 	{
 		PathfindTile& n = state.tiles->get(ip, jp);
+		// Pick the exact point if it's the goal tile, else the tile's centre
 		entity_pos_t x, z;
-		TileCenter(ip, jp, x, z);
+		if (ip == state.iGoal && jp == state.jGoal)
+		{
+			x = goal.x;
+			z = goal.z;
+		}
+		else
+		{
+			TileCenter(ip, jp, x, z);
+		}
 		Waypoint w = { x, z, n.cost };
 		path.m_Waypoints.push_back(w);
 

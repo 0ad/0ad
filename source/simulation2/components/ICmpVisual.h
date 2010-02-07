@@ -34,7 +34,11 @@ public:
 	 */
 	virtual CBound GetBounds() = 0;
 
+	virtual void SelectAnimation(std::string name, bool once, float speed) = 0;
+
 	DECLARE_INTERFACE_TYPE(Visual)
 };
+
+// TODO: rename this to VisualActor, because the interface is actor-specific, maybe?
 
 #endif // INCLUDED_ICMPVISUAL

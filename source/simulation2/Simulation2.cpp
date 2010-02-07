@@ -156,12 +156,12 @@ void CSimulation2Impl::Update(float frameTime)
 	}
 }
 
-void CSimulation2Impl::Interpolate(float UNUSED(frameTime))
+void CSimulation2Impl::Interpolate(float frameTime)
 {
 	// TODO: Use CTurnManager
 	double turnLength = TURN_LENGTH / 1000.0;
 	float offset = clamp(m_DeltaTime / turnLength + 1.0, 0.0, 1.0);
-	m_ComponentManager.BroadcastMessage(CMessageInterpolate(offset));
+	m_ComponentManager.BroadcastMessage(CMessageInterpolate(frameTime, offset));
 }
 
 ////////////////////////////////////////////////////////////////

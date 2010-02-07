@@ -83,6 +83,7 @@ CMessage* CMessageUpdate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 jsval CMessageInterpolate::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(frameTime);
 	SET_MSG_PROPERTY(offset);
 	return OBJECT_TO_JSVAL(obj);
 }
@@ -90,8 +91,9 @@ jsval CMessageInterpolate::ToJSVal(ScriptInterface& scriptInterface) const
 CMessage* CMessageInterpolate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
 	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(float, frameTime);
 	GET_MSG_PROPERTY(float, offset);
-	return new CMessageInterpolate(offset);
+	return new CMessageInterpolate(frameTime, offset);
 }
 
 ////////////////////////////////
@@ -146,6 +148,18 @@ jsval CMessagePositionChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface))
 }
 
 CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return NULL;
+}
+
+////////////////////////////////
+
+jsval CMessageMotionStopped::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+{
+	return JSVAL_VOID;
+}
+
+CMessage* CMessageMotionStopped::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
 {
 	return NULL;
 }
