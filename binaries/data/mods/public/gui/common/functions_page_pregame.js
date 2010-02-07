@@ -13,7 +13,7 @@ function startMainMenu()
 	guiUnHide ("pg");
 
 	// Play main 0 A.D. theme when the main menu starts.
-	var curr_music = newRandomSound("music", "menu");
+	curr_music = newRandomSound("music", "menu");
 	if (curr_music)
 		curr_music.loop();
 	
