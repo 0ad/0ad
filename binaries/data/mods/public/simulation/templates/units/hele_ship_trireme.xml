@@ -4,6 +4,9 @@
     <Civ>hele</Civ>
     <SpecificName>Trireme</SpecificName>
   </Identity>
+  <UnitMotion>
+    <WalkSpeed>14.0</WalkSpeed>
+  </UnitMotion>
   <VisualActor>
     <Actor>structures/hellenes/trireme.xml</Actor>
   </VisualActor>

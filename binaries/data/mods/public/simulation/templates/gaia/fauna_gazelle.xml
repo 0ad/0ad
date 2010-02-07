@@ -3,6 +3,9 @@
   <Identity>
     <SpecificName>Gazelle</SpecificName>
   </Identity>
+  <UnitMotion>
+    <WalkSpeed>5.0</WalkSpeed>
+  </UnitMotion>
   <VisualActor>
     <Actor>fauna/gazelle.xml</Actor>
   </VisualActor>

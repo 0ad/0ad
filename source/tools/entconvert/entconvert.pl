@@ -74,7 +74,6 @@ sub convert {
     }
 
     if ($name eq 'template_unit') {
-        $out .= qq{$i<UnitMotion/>\n};
         $out .= qq{$i<UnitAI/>\n};
         $out .= qq{$i<Cost>\n};
         $out .= qq{$i$i<Population>1</Population>\n};
@@ -102,6 +101,12 @@ sub convert {
             $out .= qq{$i$i<$n>$data->{Traits}[0]{Armour}[0]{$n}[0]</$n>\n} if $data->{Traits}[0]{Armour}[0]{$n};
         }
         $out .= qq{$i</Armour>\n};
+    }
+
+    if ($data->{Actions}[0]{Move}) {
+        $out .= qq{$i<UnitMotion>\n};
+        $out .= qq{$i$i<WalkSpeed>$data->{Actions}[0]{Move}[0]{Speed}[0]</WalkSpeed>\n} if $data->{Actions}[0]{Move}[0]{Speed};
+        $out .= qq{$i</UnitMotion>\n};
     }
 
     if ($data->{Actions}[0]{Attack}[0]{Melee}) {

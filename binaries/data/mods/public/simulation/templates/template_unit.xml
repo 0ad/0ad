@@ -4,7 +4,6 @@
     <GenericName>Unit</GenericName>
     <IconSheet>PortraitSheet</IconSheet>
   </Identity>
-  <UnitMotion/>
   <UnitAI/>
   <Cost>
     <Population>1</Population>
@@ -15,6 +14,9 @@
   <Armour>
     <Crush>1.0</Crush>
   </Armour>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+  </UnitMotion>
   <Footprint>
     <Circle radius="0.5"/>
     <Height>2.5</Height>
