@@ -582,11 +582,13 @@ void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigg
 		}
 	}	//Effects' scope	
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RewriteAllMaps
 void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 								WaterManager* pWaterMan, SkyManager* pSkyMan,
-								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
+								CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
+								CTriggerManager* pTrigMan, CSimulation2* pSimulation2, CEntityManager* pEntityMan)
 {
 	VfsPaths pathnames;
 	(void)fs_util::GetPathnames(g_VFS, L"maps/scenarios", L"*.pmp", pathnames);
@@ -594,7 +596,7 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 	{
 		CMapReader* reader = new CMapReader;
 		LDR_BeginRegistering();
-		reader->LoadMap(pathnames[i], pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
+		reader->LoadMap(pathnames[i], pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pTrigMan, pSimulation2, pEntityMan);
 		LDR_EndRegistering();
 		LDR_NonprogressiveLoad();
 

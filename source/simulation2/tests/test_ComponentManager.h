@@ -156,7 +156,7 @@ public:
 
 		CMessageTurnStart msg1;
 		CMessageUpdate msg2(CFixed_23_8::FromInt(100));
-		CMessageInterpolate msg3(0);
+		CMessageInterpolate msg3(0, 0);
 
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent1, IID_Test1))->GetX(), 11000);
 		TS_ASSERT_EQUALS(static_cast<ICmpTest1*> (man.QueryInterface(ent2, IID_Test1))->GetX(), 12000);

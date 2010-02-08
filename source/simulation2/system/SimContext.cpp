@@ -34,6 +34,11 @@ CComponentManager& CSimContext::GetComponentManager() const
 	return *m_ComponentManager;
 }
 
+bool CSimContext::HasUnitManager() const
+{
+	return m_UnitManager != NULL;
+}
+
 CUnitManager& CSimContext::GetUnitManager() const
 {
 	debug_assert(m_UnitManager);

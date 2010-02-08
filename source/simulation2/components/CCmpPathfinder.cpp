@@ -29,6 +29,14 @@
 #include "ps/Profile.h"
 #include "renderer/TerrainOverlay.h"
 
+#ifdef NDEBUG
+#define PATHFIND_DEBUG 0
+#else
+#define PATHFIND_DEBUG 1
+#endif
+
+#define PATHFIND_STATS 0
+
 class CCmpPathfinder;
 struct PathfindTile;
 
@@ -56,13 +64,17 @@ public:
 
 	void set(size_t i, size_t j, const T& value)
 	{
+#if PATHFIND_DEBUG
 		debug_assert(i < m_W && j < m_H);
+#endif
 		m_Data[j*m_W + i] = value;
 	}
 
 	T& get(size_t i, size_t j)
 	{
+#if PATHFIND_DEBUG
 		debug_assert(i < m_W && j < m_H);
+#endif
 		return m_Data[j*m_W + i];
 	}
 
@@ -313,7 +325,7 @@ public:
 REGISTER_COMPONENT_TYPE(Pathfinder)
 
 
-u32 g_CostPerTile = 256; // base cost to move between adjacent tiles
+const u32 g_CostPerTile = 256; // base cost to move between adjacent tiles
 
 // Detect intersection between ray (0,0)-L and circle with center M radius r
 // (Only counts intersections from the outside to the inside)
@@ -384,6 +396,7 @@ struct PathfindTile
 	u8 status; // (TODO: this only needs 2 bits)
 	u16 pi, pj; // predecessor on best path (TODO: this only needs 2 bits)
 	u32 cost; // g (cost to this tile)
+	u32 h; // h (TODO: is it really better for performance to store this instead of recomputing?)
 
 	u32 step; // step at which this tile was last processed (TODO: this should only be present for debugging)
 };
@@ -452,25 +465,25 @@ struct QueueItemPriority
 			return true;
 		if (a.j > b.j)
 			return false;
+#if PATHFIND_DEBUG
 		debug_warn(L"duplicate tiles in queue");
+#endif
 		return false;
 	}
 };
 
-// Priority queue implementation, based on std::priority_queue but with O(n) find/update functions
-// TODO: this is all a bit rubbish and slow
-class PriorityQueue
+/**
+ * Priority queue implemented as a binary heap.
+ * This is quite dreadfully slow in MSVC's debug STL implementation,
+ * so we shouldn't use it unless we reimplement the heap functions more efficiently.
+ */
+class PriorityQueueHeap
 {
 public:
 	void push(const QueueItem& item)
 	{
 		m_Heap.push_back(item);
 		push_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority());
-	}
-
-	void fixheap()
-	{
-		make_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority());
 	}
 
 	QueueItem* find(u16 i, u16 j)
@@ -483,30 +496,31 @@ public:
 		return NULL;
 	}
 
-	void remove(u16 i, u16 j)
+	void promote(u16 i, u16 j, u32 newrank)
 	{
 		for (size_t n = 0; n < m_Heap.size(); ++n)
 		{
 			if (m_Heap[n].i == i && m_Heap[n].j == j)
 			{
-				m_Heap.erase(m_Heap.begin() + n);
-				fixheap(); // XXX: this is slow
+#if PATHFIND_DEBUG
+				debug_assert(m_Heap[n].rank > newrank);
+#endif
+				m_Heap[n].rank = newrank;
+				push_heap(m_Heap.begin(), m_Heap.begin()+n+1, QueueItemPriority());
 				return;
 			}
 		}
 	}
 
-	const QueueItem& top()
+	QueueItem pop()
 	{
+#if PATHFIND_DEBUG
 		debug_assert(m_Heap.size());
-		return m_Heap.front();
-	}
-
-	void pop()
-	{
-		debug_assert(m_Heap.size());
+#endif
+		QueueItem r = m_Heap.front();
 		pop_heap(m_Heap.begin(), m_Heap.end(), QueueItemPriority());
 		m_Heap.pop_back();
+		return r;
 	}
 
 	bool empty()
@@ -514,8 +528,81 @@ public:
 		return m_Heap.empty();
 	}
 
+	size_t size()
+	{
+		return m_Heap.size();
+	}
+
 	std::vector<QueueItem> m_Heap;
 };
+
+/**
+ * Priority queue implemented as an unsorted array.
+ * This means pop() is O(n), but push and promote are O(1), and n is typically small
+ * (average around 50-100 in some rough tests).
+ * It seems fractionally slower than a binary heap in optimised builds, but is
+ * much simpler and less susceptible to MSVC's painfully slow debug STL.
+ */
+class PriorityQueueList
+{
+public:
+	void push(const QueueItem& item)
+	{
+		m_List.push_back(item);
+	}
+
+	QueueItem* find(u16 i, u16 j)
+	{
+		for (size_t n = 0; n < m_List.size(); ++n)
+		{
+			if (m_List[n].i == i && m_List[n].j == j)
+				return &m_List[n];
+		}
+		return NULL;
+	}
+
+	void promote(u16 i, u16 j, u32 newrank)
+	{
+		find(i, j)->rank = newrank;
+	}
+
+	QueueItem pop()
+	{
+#if PATHFIND_DEBUG
+		debug_assert(m_List.size());
+#endif
+		// Loop backwards looking for the best (it's most likely to be one
+		// we've recently pushed, so going backwards saves a bit of copying)
+		QueueItem best = m_List.back();
+		size_t bestidx = m_List.size()-1;
+		for (ssize_t i = (ssize_t)bestidx-1; i >= 0; --i)
+		{
+			if (QueueItemPriority()(best, m_List[i]))
+			{
+				bestidx = i;
+				best = m_List[i];
+			}
+		}
+		// Swap the matched element with the last in the list, then pop the new last
+		m_List[bestidx] = m_List[m_List.size()-1];
+		m_List.pop_back();
+		return best;
+	}
+
+	bool empty()
+	{
+		return m_List.empty();
+	}
+
+	size_t size()
+	{
+		return m_List.size();
+	}
+
+	std::vector<QueueItem> m_List;
+};
+
+typedef PriorityQueueList PriorityQueue;
 
 
 #define USE_DIAGONAL_MOVEMENT
@@ -560,14 +647,14 @@ static u32 CalculateCostDelta(u16 pi, u16 pj, u16 i, u16 j, Grid<PathfindTile>* 
 
 	PathfindTile& p = tempGrid->get(pi, pj);
 	if (p.pi != i && p.pj != j)
-		dg = dg*(sqrt(2.0)/2.0); // XXX: shouldn't use floats here
+		dg = (dg << 16) / 92682; // dg*sqrt(2)/2
 	else
 	{
 		PathfindTile& pp = tempGrid->get(p.pi, p.pj);
 		int di = abs(i - pp.pi);
 		int dj = abs(j - pp.pj);
 		if ((di == 1 && dj == 2) || (di == 2 && dj == 1))
-			dg = dg*(sqrt(5.0)-sqrt(2.0)); // XXX: shouldn't use floats here
+			dg = (dg << 16) / 79742; // dg*(sqrt(5)-sqrt(2))
 	}
 #endif
 
@@ -590,57 +677,78 @@ struct PathfinderState
 
 	u32 hBest; // heuristic of closest discovered tile to goal
 	u16 iBest, jBest; // closest tile
+
+#if PATHFIND_STATS
+	// Performance debug counters
+	size_t numProcessed;
+	size_t numImproveOpen;
+	size_t numImproveClosed;
+	size_t numAddToOpen;
+	size_t sumOpenSize;
+#endif
 };
 
 // Do the A* processing for a neighbour tile i,j.
 static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderState& state)
 {
+#if PATHFIND_STATS
+	state.numProcessed++;
+#endif
+
 	// Reject impassable tiles
 	if (state.terrain->get(i, j))
 		return;
 
-	u32 h = CalculateHeuristic(i, j, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards);
 	u32 dg = CalculateCostDelta(pi, pj, i, j, state.tiles);
 
 	u32 g = pg + dg; // cost to this tile = cost to predecessor + delta from predecessor
 
-	// Remember the best tile we've seen so far, in case we never actually reach the target
-	if (h < state.hBest)
-	{
-		state.hBest = h;
-		state.iBest = i;
-		state.jBest = j;
-	}
-
 	PathfindTile& n = state.tiles->get(i, j);
 
-	// If we've already added this tile to the open list:
-	if (n.status == PathfindTile::STATUS_OPEN)
+	// If this is a new tile, compute the heuristic distance
+	if (n.status == PathfindTile::STATUS_UNEXPLORED)
 	{
-		// If this a better path, replace the old one with the new cost/parent
-		if (g < n.cost)
+		n.h = CalculateHeuristic(i, j, state.iGoal, state.jGoal, state.rGoal, state.aimingInwards);
+		// Remember the best tile we've seen so far, in case we never actually reach the target
+		if (n.h < state.hBest)
 		{
+			state.hBest = n.h;
+			state.iBest = i;
+			state.jBest = j;
+		}
+	}
+	else
+	{
+		// If we've already seen this tile, and the new path to this tile does not have a
+		// better cost, then stop now
+		if (g >= n.cost)
+			return;
+
+		// Otherwise, we have a better path.
+
+		// If we've already added this tile to the open list:
+		if (n.status == PathfindTile::STATUS_OPEN)
+		{
+			// This is a better path, so replace the old one with the new cost/parent
 			n.cost = g;
 			n.pi = pi;
 			n.pj = pj;
 			n.step = state.steps;
-			state.open.find(i, j)->rank = g + h;
-			state.open.fixheap(); // XXX: this is slow
-		}
-		return;
-	}
-
-	// If we've already found the 'best' path to this tile:
-	if (n.status == PathfindTile::STATUS_CLOSED)
-	{
-		// If this is a better path (possible when we use inadmissible heuristics), reopen it
-		if (g < n.cost)
-		{
-			// (don't return yet)
-		}
-		else
-		{
+			state.open.promote(i, j, g + n.h);
+#if PATHFIND_STATS
+			state.numImproveOpen++;
+#endif
 			return;
+		}
+
+		// If we've already found the 'best' path to this tile:
+		if (n.status == PathfindTile::STATUS_CLOSED)
+		{
+			// This is a better path (possible when we use inadmissible heuristics), so reopen it
+#if PATHFIND_STATS
+			state.numImproveClosed++;
+#endif
+			// (fall through)
 		}
 	}
 
@@ -650,8 +758,11 @@ static void ProcessNeighbour(u16 pi, u16 pj, u16 i, u16 j, u32 pg, PathfinderSta
 	n.pi = pi;
 	n.pj = pj;
 	n.step = state.steps;
-	QueueItem t = { i, j, g + h };
+	QueueItem t = { i, j, g + n.h };
 	state.open.push(t);
+#if PATHFIND_STATS
+	state.numAddToOpen++;
+#endif
 }
 
 static bool AtGoal(u16 i, u16 j, u16 iGoal, u16 jGoal, u16 rGoal, bool aimingInwards)
@@ -676,7 +787,7 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 
 	PROFILE("ComputePath");
 
-	PathfinderState state;
+	PathfinderState state = { 0 };
 
 	// Convert the start/end coordinates to tile indexes
 	u16 i0, j0;
@@ -739,9 +850,12 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 		if (state.open.empty())
 			break;
 
+#if PATHFIND_STATS
+		state.sumOpenSize += state.open.size();
+#endif
+
 		// Move best tile from open to closed
-		QueueItem curr = state.open.top();
-		state.open.pop();
+		QueueItem curr = state.open.pop();
 		state.tiles->get(curr.i, curr.j).status = PathfindTile::STATUS_CLOSED;
 
 		// If we've reached the destination, stop
@@ -792,4 +906,8 @@ void CCmpPathfinder::ComputePath(entity_pos_t x0, entity_pos_t z0, const Goal& g
 	delete m_DebugGrid;
 	m_DebugGrid = state.tiles;
 	m_DebugSteps = state.steps;
+
+#if PATHFIND_STATS
+	printf("PATHFINDER: steps=%d avgo=%d proc=%d impc=%d impo=%d addo=%d\n", state.steps, state.sumOpenSize/state.steps, state.numProcessed, state.numImproveClosed, state.numImproveOpen, state.numAddToOpen);
+#endif
 }

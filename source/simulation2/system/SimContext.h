@@ -33,10 +33,12 @@ public:
 	~CSimContext();
 
 	CComponentManager& GetComponentManager() const;
-	CUnitManager& GetUnitManager() const;
-	CTerrain& GetTerrain() const;
-
 	void SetComponentManager(CComponentManager* man);
+
+	bool HasUnitManager() const;
+	CUnitManager& GetUnitManager() const;
+
+	CTerrain& GetTerrain() const;
 
 private:
 	CComponentManager* m_ComponentManager;

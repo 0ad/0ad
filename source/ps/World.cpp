@@ -45,6 +45,7 @@
 #include "simulation/EntityManager.h"
 #include "simulation/LOSManager.h"
 #include "simulation/TerritoryManager.h"
+#include "simulation/TriggerManager.h"
 #include "simulation/Projectile.h"
 
 #define LOG_CATEGORY L"world"
@@ -92,7 +93,8 @@ void CWorld::Initialize(CGameAttributes *pAttribs)
 		try {
 			reader = new CMapReader;
 			reader->LoadMap(mapfilename, m_Terrain, m_UnitManager, g_Renderer.GetWaterManager(),
-				g_Renderer.GetSkyManager(), &g_LightEnv, m_pGame->GetView()->GetCamera(), m_pGame->GetView()->GetCinema());
+				g_Renderer.GetSkyManager(), &g_LightEnv, m_pGame->GetView()->GetCamera(), m_pGame->GetView()->GetCinema(),
+				&g_TriggerManager, m_pGame->GetSimulation2(), m_EntityManager);
 				// fails immediately, or registers for delay loading
 		} catch (PSERROR_File&) {
 			delete reader;
@@ -139,5 +141,6 @@ void CWorld::RewriteMap()
 	CMapWriter::RewriteAllMaps(m_Terrain, m_UnitManager,
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
 		&g_LightEnv, m_pGame->GetView()->GetCamera(), 
-								m_pGame->GetView()->GetCinema());
+		m_pGame->GetView()->GetCinema(), &g_TriggerManager,
+		m_pGame->GetSimulation2(), m_EntityManager);
 }

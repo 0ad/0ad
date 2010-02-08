@@ -62,7 +62,8 @@ CMapReader::CMapReader()
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 						 CUnitManager *pUnitMan_, WaterManager* pWaterMan_, SkyManager* pSkyMan_,
-						 CLightEnv *pLightEnv_, CCamera *pCamera_, CCinemaManager* pCinema_)
+						 CLightEnv *pLightEnv_, CCamera *pCamera_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_,
+						 CSimulation2 *pSimulation2_, CEntityManager *pEntityMan_)
 {
 	// latch parameters (held until DelayedLoadFinished)
 	pTerrain = pTerrain_;
@@ -72,6 +73,9 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	pWaterMan = pWaterMan_;
 	pSkyMan = pSkyMan_;
 	pCinema = pCinema_;
+	pTrigMan = pTrigMan_;
+	pSimulation2 = pSimulation2_;
+	pEntityMan = pEntityMan_;
 
 	// [25ms]
 	unpacker.Read(pathname, "PSMP");
@@ -82,17 +86,17 @@ void CMapReader::LoadMap(const VfsPath& pathname, CTerrain *pTerrain_,
 	}
 
 	// delete all existing entities
-	if (g_UseSimulation2)
-	{
-		g_Game->GetSimulation2()->ResetState();
-	}
-	else
-	{
-		g_EntityManager.DeleteAll();
-	}
+	if (pSimulation2)
+		pSimulation2->ResetState();
+	if (pEntityMan)
+		pEntityMan->DeleteAll();
+
 	// delete all remaining non-entity units
-	pUnitMan->DeleteAll();
-	pUnitMan->SetNextID(0);
+	if (pUnitMan)
+	{
+		pUnitMan->DeleteAll();
+		pUnitMan->SetNextID(0);
+	}
 
 	// unpack the data
 	RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1200);
@@ -204,13 +208,14 @@ int CMapReader::ApplyData()
 	if (! g_UseSimulation2)
 	{
 		// Make units start out conforming correctly
-		g_EntityManager.ConformAll();
+		pEntityMan->ConformAll();
 	}
 
 	if (unpacker.GetVersion() >= 4)
 	{
 		// copy over the lighting parameters
-		*pLightEnv = m_LightEnv;
+		if (pLightEnv)
+			*pLightEnv = m_LightEnv;
 	}
 	return 0;
 }
@@ -325,7 +330,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 
 		// Initialise player data
 
-		CmpPtr<ICmpPlayerManager> cmpPlayerMan(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+		CmpPtr<ICmpPlayerManager> cmpPlayerMan(*m_MapReader.pSimulation2, SYSTEM_ENTITY);
 		debug_assert(!cmpPlayerMan.null());
 
 		// TODO: this should be loaded from the XML instead
@@ -333,7 +338,7 @@ void CXMLReader::Init(const VfsPath& xml_filename)
 		for (size_t i = 0; i < numPlayers; ++i)
 		{
 			int uid = ++max_uid;
-			entity_id_t ent = g_Game->GetSimulation2()->AddEntity(L"special/player", uid);
+			entity_id_t ent = m_MapReader.pSimulation2->AddEntity(L"special/player", uid);
 			cmpPlayerMan->AddPlayer(ent);
 		}
 	}
@@ -374,7 +379,8 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 
 		if (element_name == el_skyset)
 		{
-			m_MapReader.pSkyMan->SetSkySet(element.GetText());
+			if (m_MapReader.pSkyMan)
+				m_MapReader.pSkyMan->SetSkySet(element.GetText());
 		}
 		else if (element_name == el_suncolour)
 		{
@@ -416,6 +422,9 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 				debug_assert(waterbody.GetNodeName() == el_waterbody);
 				XERO_ITER_EL(waterbody, waterelement)
 				{
+					if (!m_MapReader.pWaterMan)
+						continue;
+
 					int element_name = waterelement.GetNodeName();
 					if (element_name == el_type)
 					{
@@ -503,10 +512,13 @@ void CXMLReader::ReadCamera(XMBElement parent)
 			debug_warn(L"Invalid map XML data");
 	}
 
-	m_MapReader.pCamera->m_Orientation.SetXRotation(declination);
-	m_MapReader.pCamera->m_Orientation.RotateY(rotation);
-	m_MapReader.pCamera->m_Orientation.Translate(translation);
-	m_MapReader.pCamera->UpdateFrustum();
+	if (m_MapReader.pCamera)
+	{
+		m_MapReader.pCamera->m_Orientation.SetXRotation(declination);
+		m_MapReader.pCamera->m_Orientation.RotateY(rotation);
+		m_MapReader.pCamera->m_Orientation.Translate(translation);
+		m_MapReader.pCamera->UpdateFrustum();
+	}
 }
 
 void CXMLReader::ReadCinema(XMBElement parent)
@@ -620,13 +632,16 @@ void CXMLReader::ReadCinema(XMBElement parent)
 		else
 			debug_assert("Invalid cinema child");
 	}
-	g_Game->GetView()->GetCinema()->SetAllPaths(pathList);
+
+	if (m_MapReader.pCinema)
+		m_MapReader.pCinema->SetAllPaths(pathList);
 }
 
 void CXMLReader::ReadTriggers(XMBElement parent)
 {
 	MapTriggerGroup rootGroup( L"Triggers", L"" );
-	g_TriggerManager.DestroyEngineTriggers();
+	if (m_MapReader.pTrigMan)
+		m_MapReader.pTrigMan->DestroyEngineTriggers();
 	ReadTriggerGroup(parent, rootGroup);
 }
 
@@ -782,13 +797,14 @@ void CXMLReader::ReadTriggerGroup(XMBElement parent, MapTriggerGroup& group)
 					debug_warn(L"Invalid trigger node child in trigger XML file");
 
 			}	//Read trigger children
-			g_TriggerManager.AddTrigger(mapGroup, mapTrigger);
+			m_MapReader.pTrigMan->AddTrigger(mapGroup, mapTrigger);
 		}	
 		else
 			debug_warn(L"Invalid group node child in XML file");
 	}	//Read group children
 
-	g_TriggerManager.AddGroup(mapGroup);
+	if (m_MapReader.pTrigMan)
+		m_MapReader.pTrigMan->AddGroup(mapGroup);
 }
 
 int CXMLReader::ReadEntities(XMBElement parent, double end_time)
@@ -852,7 +868,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				debug_warn(L"Invalid map XML data");
 		}
 
-		CSimulation2& sim = *g_Game->GetSimulation2();
+		CSimulation2& sim = *m_MapReader.pSimulation2;
 		entity_id_t ent = sim.AddEntity(TemplateName, EntityUid);
 		if (ent == INVALID_ENTITY)
 			LOGERROR(L"Failed to load entity template '%ls'", TemplateName.c_str());
@@ -898,7 +914,8 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 			maxUnitID = std::max(maxUnitID, unitId);
 		}
 
-		m_MapReader.pUnitMan->SetNextID(maxUnitID + 1);
+		if (m_MapReader.pUnitMan)
+			m_MapReader.pUnitMan->SetNextID(maxUnitID + 1);
 	}
 
 	while (entity_idx < entities.Count)
@@ -951,7 +968,11 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 				debug_warn(L"Invalid map XML data");
 		}
 
-		CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(TemplateName, g_Game->GetPlayer(PlayerID));
+		CPlayer* player = NULL;
+		if (g_Game)
+			player = g_Game->GetPlayer(PlayerID);
+
+		CEntityTemplate* base = g_EntityTemplateCollection.GetTemplate(TemplateName, player);
 		if (! base)
 			LOG(CLogger::Error, LOG_CATEGORY, L"Failed to load entity template '%ls'", TemplateName.c_str());
 		else
@@ -978,10 +999,10 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 				else if (TemplateName.Find(L"camp") == 0 || TemplateName.Find(L"fence") == 0 || TemplateName.Find(L"temp") == 0)
 					TemplateName = L"other/" + TemplateName;
 
-				entity_id_t ent = g_Game->GetSimulation2()->AddEntity(TemplateName);
+				entity_id_t ent = m_MapReader.pSimulation2->AddEntity(TemplateName);
 				if (ent != INVALID_ENTITY)
 				{
-					CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), ent);
+					CmpPtr<ICmpPosition> cmpPos(*m_MapReader.pSimulation2, ent);
 					if (!cmpPos.null())
 					{
 						entity_pos_t x = entity_pos_t::FromFloat(Position.X);
@@ -990,21 +1011,21 @@ int CXMLReader::ReadOldEntities(XMBElement parent, double end_time)
 						cmpPos->SetYRotation(CFixed_23_8::FromFloat(Orientation));
 					}
 
-					CmpPtr<ICmpOwnership> cmpOwner(*g_Game->GetSimulation2(), ent);
+					CmpPtr<ICmpOwnership> cmpOwner(*m_MapReader.pSimulation2, ent);
 					if (!cmpOwner.null())
 						cmpOwner->SetOwner(PlayerID);
 				}
 			}
 			else
 			{
-				HEntity ent = g_EntityManager.Create(base, Position, Orientation, selections);
+				HEntity ent = m_MapReader.pEntityMan->Create(base, Position, Orientation, selections);
 
 				if (! ent)
 					LOG(CLogger::Error, LOG_CATEGORY, L"Failed to create entity of type '%ls'", TemplateName.c_str());
 				else
 				{
 					ent->m_actor->SetPlayerID(PlayerID);
-					g_EntityManager.AddEntityClassData(ent);
+					m_MapReader.pEntityMan->AddEntityClassData(ent);
 
 					if (unitId < 0)
 						ent->m_actor->SetID(m_MapReader.pUnitMan->GetNewID());
@@ -1069,10 +1090,10 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 
 		if (g_UseSimulation2)
 		{
-			entity_id_t ent = g_Game->GetSimulation2()->AddEntity(L"actor|" + ActorName);
+			entity_id_t ent = m_MapReader.pSimulation2->AddEntity(L"actor|" + ActorName);
 			if (ent != INVALID_ENTITY)
 			{
-				CmpPtr<ICmpPosition> cmpPos(*g_Game->GetSimulation2(), ent);
+				CmpPtr<ICmpPosition> cmpPos(*m_MapReader.pSimulation2, ent);
 				if (!cmpPos.null())
 				{
 					entity_pos_t x = entity_pos_t::FromFloat(Position.X); // TODO: these should all be parsed as fixeds probably

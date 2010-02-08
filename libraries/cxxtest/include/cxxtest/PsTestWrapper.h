@@ -59,6 +59,16 @@ namespace CxxTest
                     }
                 }
             }
+            else
+            {
+                // By default, disable all tests with names containing "DISABLED"
+                // (they can only be run by explicitly naming the suite/test)
+                for ( SuiteDescription *sd = wd.firstSuite(); sd; sd = sd->next() ) {
+                    for ( TestDescription *td = sd->firstTest(); td; td = td->next() )
+                        if ( strstr( td->testName(), "DISABLED" ) )
+                            td->setActive( false );
+                }
+            }
 
             // Code copied from TestRunner:
             tracker().enterWorld( wd );
@@ -104,6 +114,11 @@ namespace CxxTest
                     g_PsListSuites = true;
                 } else {
                     fprintf( stderr, "Unrecognized command line option '%s'\n", argv[i] );
+                    fprintf( stderr, "Permitted options:\n" );
+                    fprintf( stderr, "  %s -list\n", argv[0] );
+                    fprintf( stderr, "  %s -test TestSuiteName\n", argv[0] );
+                    fprintf( stderr, "  %s -test TestSuiteName::test_case_name\n", argv[0] );
+                    fprintf( stderr, "\n" );
                 }
             }
         }

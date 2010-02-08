@@ -33,6 +33,8 @@ class CCinemaManager;
 class CTriggerManager;
 class WaterManager;
 class SkyManager;
+class CSimulation2;
+class CEntityManager;
 struct MapTrigger;
 struct MapTriggerGroup;
 class XMLWriter_File;
@@ -52,7 +54,8 @@ public:
 	// update them to the newest format.
 	static void RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan, WaterManager* pWaterMan, 
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
-								CCinemaManager* pCinema);
+								CCinemaManager* pCinema, CTriggerManager* pTrigMan,
+								CSimulation2* pSimulation2, CEntityManager* pEntityMan);
 
 private:
 	// PackMap: pack the current world into a raw data stream

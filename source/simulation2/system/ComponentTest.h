@@ -64,14 +64,18 @@ public:
 		return m_ComponentManager.GetScriptInterface();
 	}
 
+	CSimContext& GetSimContext()
+	{
+		return m_Context;
+	}
+
 	/**
 	 * Call this once to initialise the test helper with a component.
 	 */
 	template<typename T>
-	T* Add(EComponentTypeId cid, const std::string& xml)
+	T* Add(EComponentTypeId cid, const std::string& xml, entity_id_t ent = 10)
 	{
 		TS_ASSERT(m_Cmp == NULL);
-		entity_id_t ent = 1;
 
 		m_Cid = cid;
 		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(m_Param, ("<test>" + xml + "</test>").c_str()), PSRETURN_OK);
