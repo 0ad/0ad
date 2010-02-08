@@ -84,22 +84,25 @@ enum x86_x64_Cap
 	// standard (ecx) - currently only defined by Intel
 	X86_X64_CAP_SSE3            = 0+0,	// Streaming SIMD Extensions 3
 	X86_X64_CAP_EST             = 0+7,	// Enhanced Speedstep Technology
+	X86_X64_CAP_SSSE3           = 0+9,	// Supplemental Streaming SIMD Extensions 3
+	X86_X64_CAP_SSE41           = 0+19,	// Streaming SIMD Extensions 4.1
+	X86_X64_CAP_SSE42           = 0+20,	// Streaming SIMD Extensions 4.2
 
 	// standard (edx)
-	X86_X64_CAP_FPU             = 32+0,	// Floating Point Unit
-	X86_X64_CAP_TSC             = 32+4,	// TimeStamp Counter
-	X86_X64_CAP_CMOV            = 32+15,	// Conditional MOVe
-	X86_X64_CAP_TM_SCC          = 32+22,	// Thermal Monitoring and Software Controlled Clock
-	X86_X64_CAP_MMX             = 32+23,	// MultiMedia eXtensions
-	X86_X64_CAP_SSE             = 32+25,	// Streaming SIMD Extensions
-	X86_X64_CAP_SSE2            = 32+26,	// Streaming SIMD Extensions 2
-	X86_X64_CAP_HT              = 32+28,	// HyperThreading
+	X86_X64_CAP_FPU             = 32+0,  // Floating Point Unit
+	X86_X64_CAP_TSC             = 32+4,  // TimeStamp Counter
+	X86_X64_CAP_CMOV            = 32+15, // Conditional MOVe
+	X86_X64_CAP_TM_SCC          = 32+22, // Thermal Monitoring and Software Controlled Clock
+	X86_X64_CAP_MMX             = 32+23, // MultiMedia eXtensions
+	X86_X64_CAP_SSE             = 32+25, // Streaming SIMD Extensions
+	X86_X64_CAP_SSE2            = 32+26, // Streaming SIMD Extensions 2
+	X86_X64_CAP_HT              = 32+28, // HyperThreading
 
 	// extended (ecx)
-	X86_X64_CAP_AMD_CMP_LEGACY  = 64+1,	// N-core and X86_X64_CAP_HT is falsely set
+	X86_X64_CAP_AMD_CMP_LEGACY  = 64+1,  // N-core and X86_X64_CAP_HT is falsely set
 
 	// extended (edx)
-	X86_X64_CAP_AMD_MP          = 96+19,	// MultiProcessing capable; reserved on AMD64
+	X86_X64_CAP_AMD_MP          = 96+19,  // MultiProcessing capable; reserved on AMD64
 	X86_X64_CAP_AMD_MMX_EXT     = 96+22,
 	X86_X64_CAP_AMD_3DNOW_PRO   = 96+30,
 	X86_X64_CAP_AMD_3DNOW       = 96+31
