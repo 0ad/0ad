@@ -37,12 +37,22 @@ public:
 	const CSimContext* m_Context;
 
 	// Template state:
+
 	CFixed_23_8 m_Speed; // in units per second
 
 	// Dynamic state:
+
 	bool m_HasTarget;
 	ICmpPathfinder::Path m_Path;
 	entity_pos_t m_TargetX, m_TargetZ; // these values contain undefined junk if !HasTarget
+
+	enum
+	{
+		IDLE,
+		WALKING,
+		STOPPING
+	};
+	int m_State;
 
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
@@ -50,6 +60,8 @@ public:
 		m_HasTarget = false;
 
 		m_Speed = paramNode.GetChild("WalkSpeed").ToFixed();
+
+		m_State = IDLE;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -65,6 +77,8 @@ public:
 			serialize.NumberFixed_Unbounded("target x", m_TargetX);
 			serialize.NumberFixed_Unbounded("target z", m_TargetZ);
 		}
+
+		// TODO: m_State
 	}
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
@@ -86,9 +100,55 @@ public:
 		case MT_Update:
 		{
 			CFixed_23_8 dt = static_cast<const CMessageUpdate&> (msg).turnLength;
+
+			if (m_State == STOPPING)
+			{
+				CMessageMotionChanged msg(CFixed_23_8::FromInt(0));
+				context.GetComponentManager().PostMessage(GetEntityId(), msg);
+				m_State = IDLE;
+			}
+
 			Move(context, dt);
+
 			break;
 		}
+		}
+	}
+
+	void SwitchState(const CSimContext& context, int state)
+	{
+		debug_assert(state == IDLE || state == WALKING);
+
+		// IDLE -> IDLE -- no change
+		// IDLE -> WALKING -- send a MotionChanged message
+		// WALKING -> IDLE -- set to STOPPING, so we'll send MotionChanged in the next Update
+		// WALKING -> WALKING -- no change
+		// STOPPING -> IDLE -- stay in STOPPING
+		// STOPPING -> WALKING -- set to WALKING, send no messages
+
+		if (m_State == IDLE && state == WALKING)
+		{
+			CMessageMotionChanged msg(m_Speed);
+			context.GetComponentManager().PostMessage(GetEntityId(), msg);
+			m_State = WALKING;
+			return;
+		}
+
+		if (m_State == WALKING && state == IDLE)
+		{
+			m_State = STOPPING;
+			return;
+		}
+
+		if (m_State == STOPPING && state == IDLE)
+		{
+			return;
+		}
+
+		if (m_State == STOPPING && state == WALKING)
+		{
+			m_State = WALKING;
+			return;
 		}
 	}
 
@@ -101,6 +161,8 @@ public:
 		CmpPtr<ICmpPosition> cmpPosition(*m_Context, GetEntityId());
 		if (cmpPosition.null())
 			return;
+
+		SwitchState(*m_Context, WALKING);
 
 		CFixedVector3D pos = cmpPosition->GetPosition();
 
@@ -126,9 +188,14 @@ public:
 
 			// If there's no waypoints then we've stopped already, otherwise move to the first one
 			if (m_Path.m_Waypoints.empty())
-				m_Context->GetComponentManager().BroadcastMessage(CMessageMotionStopped());
+			{
+				m_HasTarget = false;
+				SwitchState(*m_Context, IDLE);
+			}
 			else
+			{
 				PickNextWaypoint(pos);
+			}
 		}
 	}
 
@@ -154,8 +221,6 @@ void CCmpUnitMotion::Move(const CSimContext& context, CFixed_23_8 dt)
 	if (cmpPosition.null())
 		return;
 
-	CFixed_23_8 maxdist = m_Speed.Multiply(dt);
-
 	CFixedVector3D pos = cmpPosition->GetPosition();
 	pos.Y = CFixed_23_8::FromInt(0); // remove Y so it doesn't influence our distance calculations
 
@@ -168,9 +233,12 @@ void CCmpUnitMotion::Move(const CSimContext& context, CFixed_23_8 dt)
 
 		// Face towards the target
 		entity_angle_t angle = atan2_approx(offset.X, offset.Z);
-		cmpPosition->SetYRotation(angle);
+		cmpPosition->TurnTo(angle);
 
-		// If it's close, we can move there directly
+		// Work out how far we can travel in dt
+		CFixed_23_8 maxdist = m_Speed.Multiply(dt);
+
+		// If the target is close, we can move there directly
 		if (offset.Length() <= maxdist)
 		{
 			// If we've reached the last waypoint, stop
@@ -178,12 +246,12 @@ void CCmpUnitMotion::Move(const CSimContext& context, CFixed_23_8 dt)
 			{
 				cmpPosition->MoveTo(target.X, target.Z);
 				m_HasTarget = false;
-				context.GetComponentManager().BroadcastMessage(CMessageMotionStopped());
+				SwitchState(context, IDLE);
 				return;
 			}
 
 			// Otherwise, spend the rest of the time heading towards the next waypoint
-			dt = dt - dt.Multiply(offset.Length() / maxdist);
+			dt = dt - (offset.Length() / m_Speed);
 			pos = target;
 			PickNextWaypoint(pos);
 			continue;

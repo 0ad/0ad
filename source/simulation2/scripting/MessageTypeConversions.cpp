@@ -154,14 +154,18 @@ CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInter
 
 ////////////////////////////////
 
-jsval CMessageMotionStopped::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+jsval CMessageMotionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
-	return JSVAL_VOID;
+	TOJSVAL_SETUP();
+	SET_MSG_PROPERTY(speed);
+	return OBJECT_TO_JSVAL(obj);
 }
 
-CMessage* CMessageMotionStopped::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageMotionChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 {
-	return NULL;
+	FROMJSVAL_SETUP();
+	GET_MSG_PROPERTY(CFixed_23_8, speed);
+	return new CMessageMotionChanged(speed);
 }
 
 ////////////////////////////////////////////////////////////////

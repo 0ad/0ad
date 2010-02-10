@@ -37,7 +37,7 @@ MESSAGE(RenderSubmit) // non-deterministic (use with caution)
 MESSAGE(Destroy)
 MESSAGE(OwnershipChanged)
 MESSAGE(PositionChanged)
-MESSAGE(MotionStopped)
+MESSAGE(MotionChanged)
 
 // TemplateManager must come before all other (non-test) components,
 // so that it is the first to be (de)serialized
@@ -79,7 +79,7 @@ INTERFACE(PlayerManager)
 COMPONENT(PlayerManagerScripted)
 
 INTERFACE(Position)
-COMPONENT(Position)
+COMPONENT(Position) // must be before VisualActor
 
 INTERFACE(Selectable)
 COMPONENT(Selectable)

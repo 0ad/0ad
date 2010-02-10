@@ -33,7 +33,7 @@ Timer.prototype.OnUpdate = function(msg)
 		try {
 			cmp[t[2]](t[4]);
 		} catch (e) {
-			print("Error in timer on entity "+t[0]+", IID "+t[1]+", function "+t[2]+": "+e);
+			print("Error in timer on entity "+t[0]+", IID "+t[1]+", function "+t[2]+": "+e+"\n");
 			// TODO: should report in an error log
 		}
 		delete this.timers[id];

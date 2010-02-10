@@ -40,6 +40,7 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_TurnStart);
+		componentManager.SubscribeToMessageType(MT_Interpolate);
 
 		// TODO: if this component turns out to be a performance issue, it should
 		// be optimised by creating a new PositionStatic component that doesn't subscribe
@@ -62,6 +63,7 @@ public:
 
 	entity_pos_t m_YOffset;
 	bool m_Floating;
+	float m_RotYSpeed; // maximum radians per second, used by InterpolatedRotY to follow RotY
 
 	// Dynamic state:
 
@@ -69,6 +71,7 @@ public:
 	entity_pos_t m_X, m_Z, m_LastX, m_LastZ; // these values contain undefined junk if !InWorld
 
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
+	float m_InterpolatedRotY; // not serialized
 
 	bool m_Dirty; // true if position/rotation has changed since last TurnStart
 
@@ -110,7 +113,10 @@ public:
 		m_YOffset = paramNode.GetChild("Altitude").ToFixed();
 		m_Floating = paramNode.GetChild("Floating").ToBool();
 
+		m_RotYSpeed = 6.f; // TODO: should get from template
+
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
+		m_InterpolatedRotY = 0;
 
 		m_Dirty = false;
 	}
@@ -128,6 +134,8 @@ public:
 			serialize.NumberFixed_Unbounded("z", m_Z);
 			serialize.NumberFixed_Unbounded("last x", m_LastX);
 			serialize.NumberFixed_Unbounded("last z", m_LastZ);
+			// TODO: for efficiency, we probably shouldn't actually store the last position - it doesn't
+			// matter if we don't have smooth interpolation after reloading a game
 		}
 		serialize.NumberFixed_Unbounded("rot x", m_RotX);
 		serialize.NumberFixed_Unbounded("rot y", m_RotY);
@@ -167,6 +175,8 @@ public:
 		deserialize.NumberFixed_Unbounded(m_YOffset);
 		deserialize.Bool(m_Dirty);
 		// TODO: should there be range checks on all these values?
+
+		m_InterpolatedRotY = m_RotY.ToFloat();
 	}
 
 	virtual bool IsInWorld()
@@ -239,9 +249,17 @@ public:
 		return CFixedVector3D(m_X, ground + m_YOffset, m_Z);
 	}
 
+	virtual void TurnTo(entity_angle_t y)
+	{
+		m_RotY = y;
+
+		m_Dirty = true;
+	}
+
 	virtual void SetYRotation(entity_angle_t y)
 	{
 		m_RotY = y;
+		m_InterpolatedRotY = m_RotY.ToFloat();
 
 		m_Dirty = true;
 	}
@@ -286,8 +304,8 @@ public:
 
 		CMatrix3D m;
 		CMatrix3D mXZ;
-		float Cos = cosf(m_RotY.ToFloat());
-		float Sin = sinf(m_RotY.ToFloat());
+		float Cos = cosf(m_InterpolatedRotY);
+		float Sin = sinf(m_InterpolatedRotY);
 
 		m.SetIdentity();
 		m._11 = -Cos;
@@ -309,7 +327,26 @@ public:
 	{
 		switch (msg.GetType())
 		{
+		case MT_Interpolate:
+		{
+			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
+
+			float rotY = m_RotY.ToFloat();
+			float delta = rotY - m_InterpolatedRotY;
+			// Wrap delta to -PI..PI
+			delta = fmod(delta + PI, 2*PI); // range -2PI..2PI
+			if (delta < 0) delta += 2*PI; // range 0..2PI
+			delta -= PI; // range -PI..PI
+			// Clamp to max rate
+			float deltaClamped = clamp(delta, -m_RotYSpeed*msgData.frameTime, +m_RotYSpeed*msgData.frameTime);
+			// Calculate new orientation, in a peculiar way in order to make sure the
+			// result gets close to m_orientation (rather than being n*2*PI out)
+			m_InterpolatedRotY = rotY + deltaClamped - delta;
+
+			break;
+		}
 		case MT_TurnStart:
+		{
 			m_LastX = m_X;
 			m_LastZ = m_Z;
 			if (m_Dirty)
@@ -322,6 +359,7 @@ public:
 			}
 
 			break;
+		}
 		}
 	}
 };

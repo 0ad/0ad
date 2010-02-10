@@ -68,8 +68,8 @@ public:
 	{
 	}
 
-	float frameTime;
-	float offset;
+	float frameTime; // time in seconds since previous interpolate
+	float offset; // range [0, 1] (inclusive); fractional time of current frame between previous/next simulation turns
 };
 
 class CMessageRenderSubmit : public CMessage
@@ -140,14 +140,21 @@ public:
 	entity_angle_t a;
 };
 
-class CMessageMotionStopped : public CMessage
+/**
+ * Sent by CCmpUnitMotion during Update, whenever the motion status has changed
+ * since the previous update.
+ */
+class CMessageMotionChanged : public CMessage
 {
 public:
-	DEFAULT_MESSAGE_IMPL(MotionStopped)
+	DEFAULT_MESSAGE_IMPL(MotionChanged)
 
-	CMessageMotionStopped()
+	CMessageMotionChanged(CFixed_23_8 speed) :
+		speed(speed)
 	{
 	}
+
+	CFixed_23_8 speed; // metres per second, or 0 if not moving
 };
 
 #endif // INCLUDED_MESSAGETYPES

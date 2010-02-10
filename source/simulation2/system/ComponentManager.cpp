@@ -221,7 +221,8 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 		std::map<std::string, MessageTypeId>::const_iterator mit = componentManager->m_MessageTypeIdsByName.find(name);
 		if (mit == componentManager->m_MessageTypeIdsByName.end())
 		{
-			componentManager->m_ScriptInterface.ReportError("Registered component has unrecognised 'On...' message handler method"); // TODO: report the actual name
+			std::string msg = "Registered component has unrecognised '" + *it + "' message handler method";
+			componentManager->m_ScriptInterface.ReportError(msg.c_str());
 			return;
 		}
 

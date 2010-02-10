@@ -91,6 +91,12 @@ public:
 	virtual CFixedVector3D GetPosition() = 0;
 
 	/**
+	 * Rotate smoothly to the given angle around the upwards axis.
+	 * @param y clockwise radians from the +Z axis.
+	 */
+	virtual void TurnTo(entity_angle_t y) = 0;
+
+	/**
 	 * Rotate immediately to the given angle around the upwards axis.
 	 * @param y clockwise radians from the +Z axis.
 	 */

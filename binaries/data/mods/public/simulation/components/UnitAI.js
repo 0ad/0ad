@@ -36,26 +36,8 @@ UnitAI.prototype.Init = function()
 	this.attackRechargeTime = 0;
 	// Timer for AttackTimeout
 	this.attackTimer = undefined;
-
-	this.nextAnimation = undefined;
-};
-
-UnitAI.prototype.OnDestroy = function()
-{
-	if (this.attackTimer)
-	{
-		cmpTimer.CancelTimer(this.attackTimer);
-		this.attackTimer = undefined;
-	}
-};
-
-UnitAI.prototype.OnTurnStart = function()
-{
-	if (this.nextAnimation)
-	{
-		this.SelectAnimation(this.nextAnimation.name, this.nextAnimation.once, this.nextAnimation.speed);
-		this.nextAnimation = undefined;
-	}
+	// Current target entity ID
+	this.attackTarget = undefined;
 };
 
 //// Interface functions ////
@@ -79,34 +61,101 @@ UnitAI.prototype.Attack = function(target)
 	if (!cmpAttack)
 		return;
 
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	// Remember the target, and start moving towards it
+	this.attackTarget = target;
+	this.MoveToTarget(this.attackTarget);
+	this.state = STATE_ATTACKING;
 
 	// Cancel any previous attack timer
 	if (this.attackTimer)
+	{
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		cmpTimer.CancelTimer(this.attackTimer);
-
-	// TODO: start the attack animation here
-	
-	// TODO: should check the range and move closer before attempting to attack
-
-	// Perform the attack after the prepare time, but not before the previous attack's recharge
-	var timers = cmpAttack.GetTimers();
-	var time = Math.max(timers.prepare, this.attackRechargeTime - cmpTimer.GetTime());
-
-	var data = { "target": target, "timers": timers };
-	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", time, data);
-
-	this.state = STATE_ATTACKING;
+		this.attackTimer = undefined;
+	}
 };
 
 //// Message handlers ////
 
-UnitAI.prototype.OnMotionStopped = function()
+UnitAI.prototype.OnDestroy = function()
 {
-	this.SelectAnimationDelayed("idle");
+	if (this.attackTimer)
+	{
+		cmpTimer.CancelTimer(this.attackTimer);
+		this.attackTimer = undefined;
+	}
+};
+
+UnitAI.prototype.OnMotionChanged = function(msg)
+{
+	if (msg.speed)
+	{
+		// Started moving
+		// => play the appropriate animation
+		this.SelectAnimation("walk", false, msg.speed);
+	}
+	else
+	{
+		if (this.state == STATE_WALKING)
+		{
+			// Stopped walking
+			this.state = STATE_IDLE;
+			this.SelectAnimation("idle");
+		}
+		else if (this.state == STATE_ATTACKING)
+		{
+			// We were attacking, and have stopped moving
+			// => check if we can still reach the target now
+
+			if (!this.MoveIntoAttackRange())
+				return;
+
+			// In range, so perform the attack,
+			// after the prepare time but not before the previous attack's recharge
+
+			var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+
+			var timers = cmpAttack.GetTimers();
+			var time = Math.max(timers.prepare, this.attackRechargeTime - cmpTimer.GetTime());
+			this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", time, {});
+
+			// Start the idle animation before we switch to the attack
+			this.SelectAnimation("idle");
+		}
+	}
 };
 
 //// Private functions ////
+
+/**
+ * Tries to move into range of the attack target.
+ * Returns true if it's already in range.
+ */
+UnitAI.prototype.MoveIntoAttackRange = function()
+{
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+
+	var rangeStatus = cmpAttack.CheckRange(this.attackTarget);
+	if (rangeStatus.error)
+	{
+		if (rangeStatus.error == "out-of-range")
+		{
+			// Out of range => need to move closer
+			// (The target has probably moved while we were chasing it)
+			this.MoveToTarget(this.attackTarget);
+			return false;
+		}
+
+		// Otherwise it's impossible to reach the target, so give up
+		// and switch back to idle
+		this.state = STATE_IDLE;
+		this.SelectAnimation("idle");
+		return false;
+	}
+	
+	return true;
+};
 
 UnitAI.prototype.SelectAnimation = function(name, once, speed)
 {
@@ -115,14 +164,7 @@ UnitAI.prototype.SelectAnimation = function(name, once, speed)
 		return;
 
 	cmpVisual.SelectAnimation(name, once, speed);
-
-	this.nextAnimation = undefined;
 };
-
-UnitAI.prototype.SelectAnimationDelayed = function(name, once, speed)
-{
-	this.nextAnimation = { "name": name, "once": once, "speed": speed };
-}
 
 UnitAI.prototype.MoveToTarget = function(target)
 {
@@ -131,8 +173,6 @@ UnitAI.prototype.MoveToTarget = function(target)
 		return;
 
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-
-	this.SelectAnimation("walk", false, cmpMotion.GetSpeed());
 
 	var pos = cmpPositionTarget.GetPosition();
 	cmpMotion.MoveToPoint(pos.x, pos.z, 0, 1);
@@ -144,40 +184,25 @@ UnitAI.prototype.AttackTimeout = function(data)
 	if (this.state != STATE_ATTACKING)
 		return;
 
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 
 	// Check if we can still reach the target
-	var rangeStatus = cmpAttack.CheckRange(data.target);
-	if (rangeStatus.error)
-	{
-		if (rangeStatus.error == "out-of-range")
-		{
-			// Out of range => need to move closer
-			this.MoveToTarget(data.target);
-			// Try again in a couple of seconds
-			// (TODO: ought to have a cleverer way of detecting once we're back in range)
-			this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", 2000, data);
-			return;
-		}
-
-		// Otherwise it's impossible to reach the target, so give up
-		// and switch back to idle
-		this.state = STATE_IDLE;
-		this.SelectAnimation("idle");
+	if (!this.MoveIntoAttackRange())
 		return;
-	}
 
 	// Play the attack animation
-	this.SelectAnimationDelayed("melee", false, 1);
+	this.SelectAnimation("melee", false, 1);
 
 	// Hit the target
-	cmpAttack.PerformAttack(data.target);
+	cmpAttack.PerformAttack(this.attackTarget);
 
 	// Set a timer to hit the target again
-	this.attackRechargeTime = cmpTimer.GetTime() + data.timers.recharge;
-	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", data.timers.repeat, data);
+
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+
+	var timers = cmpAttack.GetTimers();
+	this.attackRechargeTime = cmpTimer.GetTime() + timers.recharge;
+	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", timers.repeat, data);
 };
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);
