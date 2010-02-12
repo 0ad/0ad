@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_infantry_archer_a">
+  <ResourceGatherer>
+    <BaseSpeed>2000</BaseSpeed>
+  </ResourceGatherer>
   <Health>
     <Max>105</Max>
     <RegenRate>0.4</RegenRate>

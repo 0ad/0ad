@@ -3,6 +3,11 @@
   <Identity>
     <SpecificName>Chicken</SpecificName>
   </Identity>
+  <ResourceSupply>
+    <Amount>40</Amount>
+    <Type>food</Type>
+    <Subtype>meat</Subtype>
+  </ResourceSupply>
   <VisualActor>
     <Actor>fauna/chicken.xml</Actor>
   </VisualActor>

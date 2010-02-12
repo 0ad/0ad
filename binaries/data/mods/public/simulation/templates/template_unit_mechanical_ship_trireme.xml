@@ -4,6 +4,12 @@
     <GenericName>Trireme</GenericName>
     <IconCell>40</IconCell>
   </Identity>
+  <Cost>
+    <Resources>
+      <wood>400</wood>
+      <metal>350</metal>
+    </Resources>
+  </Cost>
   <Armour>
     <Hack>20.0</Hack>
     <Pierce>20.0</Pierce>

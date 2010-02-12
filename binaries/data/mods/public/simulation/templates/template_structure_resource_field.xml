@@ -4,6 +4,16 @@
     <GenericName>Field</GenericName>
     <IconCell>50</IconCell>
   </Identity>
+  <Cost>
+    <Resources>
+      <wood>20</wood>
+    </Resources>
+  </Cost>
+  <ResourceSupply>
+    <Amount>1000</Amount>
+    <Type>food</Type>
+    <Subtype>grain</Subtype>
+  </ResourceSupply>
   <Health>
     <Max>120</Max>
   </Health>

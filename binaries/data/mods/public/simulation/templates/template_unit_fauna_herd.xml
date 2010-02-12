@@ -2,4 +2,9 @@
 <Entity parent="template_unit_fauna">
   <Identity>
   </Identity>
+  <ResourceSupply>
+    <Amount>100</Amount>
+    <Type>food</Type>
+    <Subtype>meat</Subtype>
+  </ResourceSupply>
 </Entity>

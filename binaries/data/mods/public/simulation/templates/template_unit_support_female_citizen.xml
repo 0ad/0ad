@@ -4,6 +4,23 @@
     <GenericName>Female Citizen</GenericName>
     <IconCell>32</IconCell>
   </Identity>
+  <Cost>
+    <Resources>
+      <food>50</food>
+    </Resources>
+  </Cost>
+  <ResourceGatherer>
+    <BaseSpeed>1000</BaseSpeed>
+    <Rates>
+      <food.fish>0.8</food.fish>
+      <food.fruit>3</food.fruit>
+      <food.grain>3</food.grain>
+      <food.meat>0.5</food.meat>
+      <metal>1</metal>
+      <stone>1</stone>
+      <wood>2</wood>
+    </Rates>
+  </ResourceGatherer>
   <Health>
     <Max>75</Max>
     <RegenRate>0.3</RegenRate>

@@ -4,6 +4,11 @@
     <GenericName>Healer</GenericName>
     <IconCell>33</IconCell>
   </Identity>
+  <Cost>
+    <Resources>
+      <metal>120</metal>
+    </Resources>
+  </Cost>
   <Health>
     <Max>85</Max>
     <RegenRate>0.3</RegenRate>

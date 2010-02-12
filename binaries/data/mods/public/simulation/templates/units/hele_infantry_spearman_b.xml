@@ -5,6 +5,12 @@
     <SpecificName>Hoplite</SpecificName>
     <IconCell>3</IconCell>
   </Identity>
+  <Cost>
+    <Resources>
+      <wood>75</wood>
+      <metal>5</metal>
+    </Resources>
+  </Cost>
   <Armour>
     <Hack>5.0</Hack>
     <Pierce>8.0</Pierce>

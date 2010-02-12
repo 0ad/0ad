@@ -4,6 +4,16 @@
     <GenericName>Corral</GenericName>
     <IconCell>51</IconCell>
   </Identity>
+  <Cost>
+    <Resources>
+      <wood>50</wood>
+    </Resources>
+  </Cost>
+  <ResourceSupply>
+    <Amount>200</Amount>
+    <Type>food</Type>
+    <Subtype>milk</Subtype>
+  </ResourceSupply>
   <Health>
     <Max>100</Max>
   </Health>

@@ -3,6 +3,11 @@
   <Identity>
     <SpecificName>Rabbit</SpecificName>
   </Identity>
+  <ResourceSupply>
+    <Amount>50</Amount>
+    <Type>food</Type>
+    <Subtype>meat</Subtype>
+  </ResourceSupply>
   <VisualActor>
     <Actor>fauna/rabbit1.xml</Actor>
   </VisualActor>

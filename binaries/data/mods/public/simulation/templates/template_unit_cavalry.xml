@@ -5,7 +5,16 @@
   </Identity>
   <Cost>
     <Population>2</Population>
+    <Resources>
+      <food>100</food>
+    </Resources>
   </Cost>
+  <ResourceGatherer>
+    <BaseSpeed>1000</BaseSpeed>
+    <Rates>
+      <food.meat>20</food.meat>
+    </Rates>
+  </ResourceGatherer>
   <Health>
     <Max>150</Max>
     <RegenRate>0.2</RegenRate>

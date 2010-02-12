@@ -4,7 +4,22 @@
     <GenericName>Infantry</GenericName>
   </Identity>
   <Cost>
+    <Resources>
+      <food>50</food>
+    </Resources>
   </Cost>
+  <ResourceGatherer>
+    <BaseSpeed>1000</BaseSpeed>
+    <Rates>
+      <food.fish>1</food.fish>
+      <food.fruit>1</food.fruit>
+      <food.grain>1</food.grain>
+      <food.meat>1</food.meat>
+      <metal>3</metal>
+      <stone>3</stone>
+      <wood>2</wood>
+    </Rates>
+  </ResourceGatherer>
   <Health>
     <Max>100</Max>
     <RegenRate>0.2</RegenRate>

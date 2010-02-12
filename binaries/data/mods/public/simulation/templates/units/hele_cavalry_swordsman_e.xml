@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_cavalry_swordsman_a">
+  <ResourceGatherer>
+    <BaseSpeed>2000</BaseSpeed>
+  </ResourceGatherer>
   <Health>
     <Max>160</Max>
     <RegenRate>0.4</RegenRate>

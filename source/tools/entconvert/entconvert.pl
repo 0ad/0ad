@@ -80,12 +80,51 @@ sub convert {
         $out .= qq{$i</Cost>\n};
     }
 
-    if ($data->{Traits}[0]{Population}) {
+    if ($data->{Traits}[0]{Population} or $data->{Traits}[0]{Creation}[0]{Resource}) {
         $out .= qq{$i<Cost>\n};
         $out .= qq{$i$i<Population>$data->{Traits}[0]{Population}[0]{Rem}[0]</Population>\n} if $data->{Traits}[0]{Population}[0]{Rem}
             and $data->{Traits}[0]{Population}[0]{Rem}[0] != 1;
         $out .= qq{$i$i<PopulationBonus>$data->{Traits}[0]{Population}[0]{Add}[0]</PopulationBonus>\n} if $data->{Traits}[0]{Population}[0]{Add};
+        if ($data->{Traits}[0]{Creation}[0]{Resource}) {
+            $out .= qq{$i$i<Resources>\n};
+            for (qw(Food Wood Stone Metal)) {
+                $out .= qq{$i$i$i<\l$_>$data->{Traits}[0]{Creation}[0]{Resource}[0]{$_}[0]</\l$_>\n} if $data->{Traits}[0]{Creation}[0]{Resource}[0]{$_}[0];
+            }
+            $out .= qq{$i$i</Resources>\n};
+        }
         $out .= qq{$i</Cost>\n};
+    }
+
+    if ($data->{Traits}[0]{Supply} and $name =~ /template_gaia/) {
+        $out .= qq{$i<Selectable/>\n};
+    }
+
+    if ($data->{Traits}[0]{Supply}) {
+        $out .= qq{$i<ResourceSupply>\n};
+        $out .= qq{$i$i<Amount>$data->{Traits}[0]{Supply}[0]{Max}[0]</Amount>\n};
+        $out .= qq{$i$i<Type>$data->{Traits}[0]{Supply}[0]{Type}[0]</Type>\n};
+        $out .= qq{$i$i<Subtype>$data->{Traits}[0]{Supply}[0]{SubType}[0]</Subtype>\n} if $data->{Traits}[0]{Supply}[0]{SubType};
+        $out .= qq{$i</ResourceSupply>\n};
+    }
+
+    if ($data->{Actions}[0]{Gather}) {
+        $out .= qq{$i<ResourceGatherer>\n};
+        $out .= qq{$i$i<BaseSpeed>$data->{Actions}[0]{Gather}[0]{Speed}[0]</BaseSpeed>\n};
+        if ($data->{Actions}[0]{Gather}[0]{Resource}) {
+            $out .= qq{$i$i<Rates>\n};
+            my $r = $data->{Actions}[0]{Gather}[0]{Resource}[0];
+            for my $t (sort keys %$r) {
+                if (ref $r->{$t}[0]) {
+                    for my $s (sort keys %{$r->{$t}[0]}) {
+                        $out .= qq{$i$i$i<\L$t.$s>$r->{$t}[0]{$s}[0]</$t.$s>\n};
+                    }
+                } else {
+                    $out .= qq{$i$i$i<\L$t>$r->{$t}[0]</$t>\n};
+                }
+            }
+            $out .= qq{$i$i</Rates>\n};
+        }
+        $out .= qq{$i</ResourceGatherer>\n};
     }
 
     if ($data->{Traits}[0]{Health}) {
