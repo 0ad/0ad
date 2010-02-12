@@ -19,6 +19,7 @@
 
 #include "graphics/Terrain.h"
 
+#include "graphics/Patch.h"
 #include "graphics/RenderableObject.h"
 #include "maths/FixedVector3D.h"
 
@@ -28,6 +29,11 @@ class TestTerrain : public CxxTest::TestSuite
 	{
 		terrain.GetHeightMap()[j*terrain.GetVerticesPerSide() + i] = height;
 		terrain.MakeDirty(RENDERDATA_UPDATE_VERTICES);
+	}
+
+	u16 GetVertex(CTerrain& terrain, ssize_t i, ssize_t j)
+	{
+		return terrain.GetHeightMap()[j*terrain.GetVerticesPerSide() + i];
 	}
 
 	void Set45Slope(CTerrain& terrain)
@@ -95,4 +101,57 @@ public:
 		TS_ASSERT_EQUALS(vec.Y.ToFloat(), 1.f);
 		TS_ASSERT_EQUALS(vec.Z.ToFloat(), 0.f);
 	}
+
+	void test_FlattenArea()
+	{
+		CTerrain terrain;
+		terrain.Initialize(4, NULL);
+		size_t m = terrain.GetVerticesPerSide() - 1;
+		SetVertex(terrain, 0, 0, 25600);
+		SetVertex(terrain, 2, 3, 25600);
+		SetVertex(terrain, m, m, 25600);
+
+		terrain.FlattenArea(-1000, 1000, -1000, 1000);
+
+		// (25600*3) / (65*65) = 18
+		TS_ASSERT_EQUALS(GetVertex(terrain, 0, 0), 18);
+		TS_ASSERT_EQUALS(GetVertex(terrain, 4, 5), 18);
+		TS_ASSERT_EQUALS(GetVertex(terrain, m, m), 18);
+	}
+
+	void test_FlattenArea_dirty()
+	{
+		CTerrain terrain;
+		terrain.Initialize(4, NULL);
+
+		for (ssize_t pj = 0; pj < terrain.GetPatchesPerSide(); ++pj)
+			for (ssize_t pi = 0; pi < terrain.GetPatchesPerSide(); ++pi)
+				terrain.GetPatch(pi, pj)->SetRenderData(new CRenderData());
+
+#define EXPECT_DIRTY(which, pi, pj) TS_ASSERT_EQUALS((bool)(terrain.GetPatch(pi, pj)->GetRenderData()->m_UpdateFlags & RENDERDATA_UPDATE_VERTICES), which)
+
+		EXPECT_DIRTY(false, 0, 0);
+		EXPECT_DIRTY(false, 1, 0);
+		EXPECT_DIRTY(false, 2, 0);
+		EXPECT_DIRTY(false, 0, 1);
+		EXPECT_DIRTY(false, 1, 1);
+		EXPECT_DIRTY(false, 2, 1);
+		EXPECT_DIRTY(false, 0, 2);
+		EXPECT_DIRTY(false, 1, 2);
+		EXPECT_DIRTY(false, 2, 2);
+
+		terrain.FlattenArea(PATCH_SIZE*CELL_SIZE, 2*PATCH_SIZE*CELL_SIZE, PATCH_SIZE*CELL_SIZE+1, 2*PATCH_SIZE*CELL_SIZE-1);
+
+		EXPECT_DIRTY(true, 0, 0);
+		EXPECT_DIRTY(true, 1, 0);
+		EXPECT_DIRTY(true, 2, 0);
+		EXPECT_DIRTY(true, 0, 1);
+		EXPECT_DIRTY(true, 1, 1);
+		EXPECT_DIRTY(true, 2, 1);
+		EXPECT_DIRTY(true, 0, 2);
+		EXPECT_DIRTY(true, 1, 2);
+		EXPECT_DIRTY(true, 2, 2);
+		// This is dirtying more than strictly necessary, but that's okay
+	}
+
 };

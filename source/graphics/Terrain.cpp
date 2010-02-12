@@ -505,10 +505,10 @@ float CTerrain::FlattenArea(float x0, float x1, float z0, float z1)
 	for (ssize_t z=tz0;z<=tz1;z++) {
 		for (ssize_t x=tx0;x<=tx1;x++) {
 			m_Heightmap[z*m_MapSize + x]=avgY;
-			CPatch* patch=GetPatch(x/PATCH_SIZE,z/PATCH_SIZE);	// can't fail (x,z were clamped)
-			patch->SetDirty(RENDERDATA_UPDATE_VERTICES);
 		}
 	}
+
+	MakeDirty(tx0, tz0, tx1, tz1, RENDERDATA_UPDATE_VERTICES);
 
 	return avgY*HEIGHT_SCALE;
 }
