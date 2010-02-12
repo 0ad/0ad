@@ -1,13 +1,14 @@
 /*
 
 This is currently just a very simplistic state machine that lets units be commanded around
-and then autonomously carry out the orders.
+and then autonomously carry out the orders. It might need to be entirely redesigned.
 
 */
 
 const STATE_IDLE = 0;
 const STATE_WALKING = 1;
 const STATE_ATTACKING = 2;
+const STATE_GATHERING = 3;
 
 /* Attack process:
  *   When starting attack:
@@ -25,6 +26,11 @@ const STATE_ATTACKING = 2;
  *   faster-than-normal attacks)
  */
 
+/* Gather process is about the same, except with less synchronisation - the action
+ * is just performed 1sec after initiated, and then repeated every 1sec.
+ * (TODO: it'd be nice to avoid most of the duplication between Attack and Gather code)
+ */
+
 function UnitAI() {}
 
 UnitAI.prototype.Init = function()
@@ -38,6 +44,11 @@ UnitAI.prototype.Init = function()
 	this.attackTimer = undefined;
 	// Current target entity ID
 	this.attackTarget = undefined;
+
+	// Timer for GatherTimeout
+	this.gatherTimer = undefined;
+	// Current target entity ID
+	this.gatherTarget = undefined;
 };
 
 //// Interface functions ////
@@ -57,33 +68,46 @@ UnitAI.prototype.Walk = function(x, z)
 
 UnitAI.prototype.Attack = function(target)
 {
+	// Verify that we're able to respond to Attack commands
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return;
 
+	// TODO: verify that this is a valid target
+
+	// Stop any previous action timers
+	this.CancelTimers();
+
 	// Remember the target, and start moving towards it
 	this.attackTarget = target;
-	this.MoveToTarget(this.attackTarget);
+	this.MoveToTarget(target, cmpAttack.GetRange());
 	this.state = STATE_ATTACKING;
+};
 
-	// Cancel any previous attack timer
-	if (this.attackTimer)
-	{
-		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-		cmpTimer.CancelTimer(this.attackTimer);
-		this.attackTimer = undefined;
-	}
+UnitAI.prototype.Gather = function(target)
+{
+	// Verify that we're able to respond to Gather commands
+	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+	if (!cmpResourceGatherer)
+		return;
+
+	// TODO: verify that this is a valid target
+
+	// Stop any previous action timers
+	this.CancelTimers();
+
+	// Remember the target, and start moving towards it
+	this.gatherTarget = target;
+	this.MoveToTarget(target, cmpResourceGatherer.GetRange());
+	this.state = STATE_GATHERING;
 };
 
 //// Message handlers ////
 
 UnitAI.prototype.OnDestroy = function()
 {
-	if (this.attackTimer)
-	{
-		cmpTimer.CancelTimer(this.attackTimer);
-		this.attackTimer = undefined;
-	}
+	// Clean up any timers that are now obsolete
+	this.CancelTimers();
 };
 
 UnitAI.prototype.OnMotionChanged = function(msg)
@@ -123,10 +147,77 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 			// Start the idle animation before we switch to the attack
 			this.SelectAnimation("idle");
 		}
+		else if (this.state == STATE_GATHERING)
+		{
+			// We were gathering, and have stopped moving
+			// => check if we can still reach the target now
+
+			if (!this.MoveIntoGatherRange())
+				return;
+
+			// In range, so perform the gathering
+
+			var cmpResourceSupply = Engine.QueryInterface(this.gatherTarget, IID_ResourceSupply);
+			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+
+			this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, {});
+
+			// Start the gather animation
+			var type = cmpResourceSupply.GetType();
+			var anim = "gather_" + (type.specific || type.generic);
+			this.SelectAnimation(anim);
+		}
 	}
 };
 
 //// Private functions ////
+
+function hypot2(x, y)
+{
+	return x*x + y*y;
+}
+
+UnitAI.prototype.CheckRange = function(target, range)
+{
+	// Target must be in the world
+	var cmpPositionTarget = Engine.QueryInterface(target, IID_Position);
+	if (!cmpPositionTarget || !cmpPositionTarget.IsInWorld())
+		return { "error": "not-in-world" };
+
+	// We must be in the world
+	var cmpPositionSelf = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPositionSelf || !cmpPositionSelf.IsInWorld())
+		return { "error": "not-in-world" };
+
+	// Target must be within range
+	var posTarget = cmpPositionTarget.GetPosition();
+	var posSelf = cmpPositionSelf.GetPosition();
+	var dist2 = hypot2(posTarget.x - posSelf.x, posTarget.z - posSelf.z);
+	// TODO: ought to be distance to closest point in footprint, not to center
+	// The +4 is a hack to give a ~1 tile tolerance, because the pathfinder doesn't
+	// always get quite close enough to the target
+	if (dist2 > (range.max+4)*(range.max+4))
+		return { "error": "out-of-range" };
+
+	return {};
+}
+
+UnitAI.prototype.CancelTimers = function()
+{
+	if (this.attackTimer)
+	{
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.attackTimer);
+		this.attackTimer = undefined;
+	}
+
+	if (this.gatherTimer)
+	{
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.gatherTimer);
+		this.gatherTimer = undefined;
+	}
+};
 
 /**
  * Tries to move into range of the attack target.
@@ -135,15 +226,42 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 UnitAI.prototype.MoveIntoAttackRange = function()
 {
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	var range = cmpAttack.GetRange();
 
-	var rangeStatus = cmpAttack.CheckRange(this.attackTarget);
+	var rangeStatus = this.CheckRange(this.attackTarget, range);
 	if (rangeStatus.error)
 	{
 		if (rangeStatus.error == "out-of-range")
 		{
 			// Out of range => need to move closer
 			// (The target has probably moved while we were chasing it)
-			this.MoveToTarget(this.attackTarget);
+			this.MoveToTarget(this.attackTarget, range);
+			return false;
+		}
+
+		// Otherwise it's impossible to reach the target, so give up
+		// and switch back to idle
+		this.state = STATE_IDLE;
+		this.SelectAnimation("idle");
+		return false;
+	}
+	
+	return true;
+};
+
+UnitAI.prototype.MoveIntoGatherRange = function()
+{
+	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+	var range = cmpResourceGatherer.GetRange();
+
+	var rangeStatus = this.CheckRange(this.gatherTarget, range);
+	if (rangeStatus.error)
+	{
+		if (rangeStatus.error == "out-of-range")
+		{
+			// Out of range => need to move closer
+			// (The target has probably moved while we were chasing it)
+			this.MoveToTarget(this.gatherTarget, range);
 			return false;
 		}
 
@@ -166,7 +284,7 @@ UnitAI.prototype.SelectAnimation = function(name, once, speed)
 	cmpVisual.SelectAnimation(name, once, speed);
 };
 
-UnitAI.prototype.MoveToTarget = function(target)
+UnitAI.prototype.MoveToTarget = function(target, range)
 {
 	var cmpPositionTarget = Engine.QueryInterface(target, IID_Position);
 	if (!cmpPositionTarget || !cmpPositionTarget.IsInWorld())
@@ -175,7 +293,7 @@ UnitAI.prototype.MoveToTarget = function(target)
 	var cmpMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 
 	var pos = cmpPositionTarget.GetPosition();
-	cmpMotion.MoveToPoint(pos.x, pos.z, 0, 1);
+	cmpMotion.MoveToPoint(pos.x, pos.z, range.min, range.max);
 };
 
 UnitAI.prototype.AttackTimeout = function(data)
@@ -203,6 +321,35 @@ UnitAI.prototype.AttackTimeout = function(data)
 	var timers = cmpAttack.GetTimers();
 	this.attackRechargeTime = cmpTimer.GetTime() + timers.recharge;
 	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", timers.repeat, data);
+};
+
+UnitAI.prototype.GatherTimeout = function(data)
+{
+	// If we stopped gathering before this timeout, then don't do any processing here
+	if (this.state != STATE_GATHERING)
+		return;
+
+	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+
+	// Check if we can still reach the target
+	if (!this.MoveIntoGatherRange())
+		return;
+
+	// Gather from the target
+	var status = cmpResourceGatherer.PerformGather(this.gatherTarget);
+
+	// If the resource is exhausted, then stop and go back to idle
+	if (status.exhausted)
+	{
+		this.state = STATE_IDLE;
+		this.SelectAnimation("idle");
+		return;
+	}
+
+	// Set a timer to gather again
+
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, data);
 };
 
 Engine.RegisterComponentType(IID_UnitAI, "UnitAI", UnitAI);

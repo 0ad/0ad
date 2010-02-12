@@ -28,37 +28,13 @@ Attack.prototype.GetAttackStrengths = function()
 	};
 };
 
-function hypot2(x, y)
+Attack.prototype.GetRange = function()
 {
-	return x*x + y*y;
-}
-
-Attack.prototype.CheckRange = function(target)
-{
-	// Target must be in the world
-	var cmpPositionTarget = Engine.QueryInterface(target, IID_Position);
-	if (!cmpPositionTarget || !cmpPositionTarget.IsInWorld())
-		return { "error": "not-in-world" };
-
-	// We must be in the world
-	var cmpPositionSelf = Engine.QueryInterface(this.entity, IID_Position);
-	if (!cmpPositionSelf || !cmpPositionSelf.IsInWorld())
-		return { "error": "not-in-world" };
-
-	// Target must be within range
-	var posTarget = cmpPositionTarget.GetPosition();
-	var posSelf = cmpPositionSelf.GetPosition();
-	var dist2 = hypot2(posTarget.x - posSelf.x, posTarget.z - posSelf.z);
-	// TODO: ought to be distance to closest point in footprint, not to center
-	var maxrange = +this.template.Range;
-	if (dist2 > maxrange*maxrange)
-		return { "error": "out-of-range", "maxrange": maxrange };
-
-	return {};
+	return { "max": +this.template.Range, "min": 0 };
 }
 
 /**
- * Attack the target entity. This should only be called after a successful CheckRange,
+ * Attack the target entity. This should only be called after a successful range check,
  * and should only be called after GetTimers().repeat msec has passed since the last
  * call to PerformAttack.
  */

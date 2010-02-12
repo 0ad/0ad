@@ -7,6 +7,12 @@ Player.prototype.Init = function()
 	this.civ = "celt";
 	this.popCount = 0;
 	this.popLimit = 50;
+	this.resourceCount = {
+		"food": 100,	
+		"wood": 50,	
+		"metal": 0,	
+		"stone": 0	
+	};
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -22,6 +28,16 @@ Player.prototype.GetPopulationCount = function()
 Player.prototype.GetPopulationLimit = function()
 {
 	return this.popLimit;
+};
+
+Player.prototype.GetResourceCounts = function()
+{
+	return this.resourceCount;
+};
+
+Player.prototype.AddResources = function(type, amount)
+{
+	this.resourceCount[type] += (+amount);
 };
 
 Player.prototype.OnGlobalOwnershipChanged = function(msg)

@@ -21,14 +21,24 @@ function updateCursor()
 	var action = determineAction(mouseX, mouseY);
 	if (action)
 	{
-		if (action.type != "move")
+		if (action.cursor)
 		{
-			Engine.SetCursor("action-" + action.type);
+			Engine.SetCursor(action.cursor);
 			return;
 		}
 	}
 
 	Engine.SetCursor("arrow-default");
+}
+
+function findGatherType(gatherer, supply)
+{
+	if (!gatherer || !supply)
+		return;
+	if (gatherer[supply.type.generic+"."+supply.type.specific])
+		return supply.type.specific;
+	if (gatherer[supply.type.generic])
+		return supply.type.generic;
 }
 
 /**
@@ -61,7 +71,11 @@ function determineAction(x, y)
 
 	// Different owner -> attack
 	if (entState.attack && targetState.player != player)
-		return {"type": "attack", "target": targets[0]};
+		return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
+
+	var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
+	if (resource)
+		return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
 
 	// TODO: need more actions
 
@@ -139,6 +153,10 @@ function handleInputAfterGui(ev)
 
 				case "attack":
 					Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target});
+					return true;
+
+				case "gather":
+					Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target});
 					return true;
 				}
 			}

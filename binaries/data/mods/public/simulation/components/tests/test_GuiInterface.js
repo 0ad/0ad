@@ -1,6 +1,8 @@
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/Health.js");
+Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
+Engine.LoadComponentScript("interfaces/ResourceSupply.js");
 Engine.LoadComponentScript("GuiInterface.js");
 
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
@@ -18,16 +20,18 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 
 AddMock(100, IID_Player, {
 	GetPopulationCount: function() { return 10; },
-	GetPopulationLimit: function() { return 20; }
+	GetPopulationLimit: function() { return 20; },
+	GetResourceCounts: function() { return { "food": 100 }; }
 });
 
 AddMock(101, IID_Player, {
 	GetPopulationCount: function() { return 40; },
-	GetPopulationLimit: function() { return 30; }
+	GetPopulationLimit: function() { return 30; },
+	GetResourceCounts: function() { return { "food": 200 }; }
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
-	players: [{popCount:10, popLimit:20}, {popCount:40, popLimit:30}]
+	players: [{popCount:10, popLimit:20, resourceCounts:{food:100}}, {popCount:40, popLimit:30, resourceCounts:{food:200}}]
 });
 
 

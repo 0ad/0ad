@@ -24,6 +24,16 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "gather":
+		for each (var ent in cmd.entities)
+		{
+			var ai = Engine.QueryInterface(ent, IID_UnitAI);
+			if (!ai)
+				continue;
+			ai.Gather(cmd.target);
+		}
+		break;
+
 	case "construct":
 		// TODO: this should do all sorts of stuff with foundations and resource costs etc
 		var ent = Engine.AddEntity(cmd.template);

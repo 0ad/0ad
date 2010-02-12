@@ -20,7 +20,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 		var player = {
 			"popCount": cmpPlayer.GetPopulationCount(),
-			"popLimit": cmpPlayer.GetPopulationLimit()
+			"popLimit": cmpPlayer.GetPopulationLimit(),
+			"resourceCounts": cmpPlayer.GetResourceCounts()
 		};
 		ret.players.push(player);
 	}
@@ -60,6 +61,22 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpOwnership)
 	{
 		ret.player = cmpOwnership.GetOwner();
+	}
+
+	var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
+	if (cmpResourceSupply)
+	{
+		ret.resourceSupply = {
+			"max": cmpResourceSupply.GetMaxAmount(),
+			"amount": cmpResourceSupply.GetCurrentAmount(),
+			"type": cmpResourceSupply.GetType()
+		};
+	}
+
+	var cmpResourceGatherer = Engine.QueryInterface(ent, IID_ResourceGatherer);
+	if (cmpResourceGatherer)
+	{
+		ret.resourceGatherRates = cmpResourceGatherer.GetGatherRates();
 	}
 
 	return ret;

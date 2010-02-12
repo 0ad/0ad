@@ -44,7 +44,9 @@ public:
 
 	bool m_HasTarget;
 	ICmpPathfinder::Path m_Path;
-	entity_pos_t m_TargetX, m_TargetZ; // these values contain undefined junk if !HasTarget
+	// These values contain undefined junk if !HasTarget:
+	entity_pos_t m_TargetX, m_TargetZ; // currently-selected waypoint
+	entity_pos_t m_FinalTargetX, m_FinalTargetZ; // final target center (used to face towards it)
 
 	enum
 	{
@@ -76,6 +78,7 @@ public:
 			// TODO: m_Path
 			serialize.NumberFixed_Unbounded("target x", m_TargetX);
 			serialize.NumberFixed_Unbounded("target z", m_TargetZ);
+			// TODO: m_FinalTargetAngle
 		}
 
 		// TODO: m_State
@@ -103,9 +106,9 @@ public:
 
 			if (m_State == STOPPING)
 			{
+				m_State = IDLE;
 				CMessageMotionChanged msg(CFixed_23_8::FromInt(0));
 				context.GetComponentManager().PostMessage(GetEntityId(), msg);
-				m_State = IDLE;
 			}
 
 			Move(context, dt);
@@ -194,6 +197,8 @@ public:
 			}
 			else
 			{
+				m_FinalTargetX = x;
+				m_FinalTargetZ = z;
 				PickNextWaypoint(pos);
 			}
 		}
@@ -245,6 +250,16 @@ void CCmpUnitMotion::Move(const CSimContext& context, CFixed_23_8 dt)
 			if (m_Path.m_Waypoints.empty())
 			{
 				cmpPosition->MoveTo(target.X, target.Z);
+
+				// If we didn't reach the final goal, point towards it now
+				if (target.X != m_FinalTargetX || target.Z != m_FinalTargetZ)
+				{
+					CFixedVector3D final(m_FinalTargetX, CFixed_23_8::FromInt(0), m_FinalTargetZ);
+					CFixedVector3D finalOffset = final - target;
+					entity_angle_t angle = atan2_approx(finalOffset.X, finalOffset.Z);
+					cmpPosition->TurnTo(angle);
+				}
+
 				m_HasTarget = false;
 				SwitchState(context, IDLE);
 				return;

@@ -94,6 +94,9 @@ public:
 	/// Equality.
 	bool operator==(CFixed n) const { return (value == n.value); }
 
+	/// Inequality.
+	bool operator!=(CFixed n) const { return (value != n.value); }
+
 	/// Numeric comparison.
 	bool operator<=(CFixed n) const { return (value <= n.value); }
 
