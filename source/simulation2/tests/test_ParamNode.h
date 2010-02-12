@@ -85,6 +85,22 @@ public:
 		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test x=\"1\" y=\"2\"><w a=\"4\"></w><z>3</z></test>");
 	}
 
+	void test_overlay_basic()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test x='1' y='2'> <a>3</a> <b>4</b> </test>"), PSRETURN_OK);
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test y='5' z='6'> <b>7</b> <c>8</c> </test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test x=\"1\" y=\"5\" z=\"6\"><a>3</a><b>7</b><c>8</c></test>");
+	}
+
+	void test_overlay_disable()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a>1</a> <b>2</b> </test>"), PSRETURN_OK);
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a disable=''/> <c disable=''/> </test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><b>2</b></test>");
+	}
+
 	void test_types()
 	{
 		CParamNode node;

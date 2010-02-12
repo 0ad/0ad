@@ -194,6 +194,10 @@ sub convert {
         $out .= qq{$i<Obstruction/>\n};
     }
 
+    if ($name =~ /^template_structure_resource_field$/) {
+        $out .= qq{$i<Obstruction disable=""/>\n};
+    }
+
     if ($data->{Actions}[0]{Create}[0]{List}[0]{StructCiv} or $data->{Actions}[0]{Create}[0]{List}[0]{StructMil}) {
         $out .= qq{$i<Builder>\n};
         $out .= qq{$i$i<Entities datatype="tokens">\n};

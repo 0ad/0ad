@@ -52,6 +52,19 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	std::string name = xmb.GetElementString(element.GetNodeName()); // TODO: is GetElementString inefficient?
 	utf16string value = element.GetText();
 
+	// Look for special attributes
+	{
+		int at_disable = xmb.GetAttributeID("disable");
+		XERO_ITER_ATTR(element, attr)
+		{
+			if (attr.Name == at_disable)
+			{
+				m_Childs.erase(name);
+				return;
+			}
+		}
+	}
+
 	// Add this element as a child node
 	CParamNode& node = m_Childs[name];
 	node.m_Value = std::wstring(value.begin(), value.end());
