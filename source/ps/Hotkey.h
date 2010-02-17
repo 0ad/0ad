@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef PS_HOTKEY_H
+#define PS_HOTKEY_H
+
 // Hotkey.h
 // 
 // Constant definitions and a couple of exports for the hotkey processor
@@ -155,3 +158,5 @@ extern bool HotkeyRespondsTo(int hotkey, int sdlkey);
 extern bool HotkeyIsPressed(const CStr& keyname);
 
 extern bool hotkeys[HOTKEY_LAST];
+
+#endif // PS_HOTKEY_H

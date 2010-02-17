@@ -20,8 +20,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef INCLUDED_CODEC_ZLIB
+#define INCLUDED_CODEC_ZLIB
+
 #include "codec.h"
 
 extern PICodec CreateCodec_ZLibNone();
 extern PICodec CreateCompressor_ZLibDeflate();
 extern PICodec CreateDecompressor_ZLibDeflate();
+
+#endif // INCLUDED_CODEC_ZLIB

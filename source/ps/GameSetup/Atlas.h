@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_ATLAS
+#define INCLUDED_ATLAS
+
 class CmdLineArgs;
 
 // free reference to Atlas UI SO (avoids resource leak report)
@@ -25,3 +28,5 @@ extern void ATLAS_Shutdown();
 // the editor button; it is much faster because it's called during early
 // init and therefore skips GUI setup.
 extern bool ATLAS_RunIfOnCmdLine(const CmdLineArgs& args);
+
+#endif // INCLUDED_ATLAS

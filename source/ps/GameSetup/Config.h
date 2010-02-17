@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_PS_GAMESETUP_CONFIG
+#define INCLUDED_PS_GAMESETUP_CONFIG
+
 #include "ps/CStr.h"
 
 
@@ -73,3 +76,5 @@ extern void CONFIG_Init(const CmdLineArgs& args);
 extern bool g_ShowPathfindingOverlay;
 
 extern bool g_TriPathfind;
+
+#endif // INCLUDED_PS_GAMESETUP_CONFIG

@@ -15,13 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
-* =========================================================================
-* File        : SoundGroupMgr.h
-* Project     : 0 A.D.
-* Description : Manages and updates SoundGroups        
-* =========================================================================
-*/
+/** Manages and updates SoundGroups. */
+
+#ifndef INCLUDED_SOUNDGROUPMGR
+#define INCLUDED_SOUNDGROUPMGR
 
 #include "SoundGroup.h"
 #include <vector>
@@ -80,3 +77,5 @@ private:
 };
 
 #define g_soundGroupMgr CSoundGroupMgr::GetInstance()
+
+#endif // INCLUDED_SOUNDGROUPMGR

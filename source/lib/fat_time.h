@@ -20,5 +20,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef INCLUDED_FAT_TIME
+#define INCLUDED_FAT_TIME
+
 extern time_t time_t_from_FAT(u32 fat_timedate);
 extern u32 FAT_from_time_t(time_t time);
+
+#endif // INCLUDED_FAT_TIME

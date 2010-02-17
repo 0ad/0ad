@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_I18N
+#define INCLUDED_I18N
+
 #include "i18n/Interface.h"
 
 extern I18n::CLocale_interface* g_CurrentLocale;
@@ -27,3 +30,5 @@ namespace I18n
 	const char* CurrentLanguageName();
 	void Shutdown();
 }
+
+#endif // INCLUDED_I18N

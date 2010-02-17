@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_GAMESETUP
+#define INCLUDED_GAMESETUP
+
 //
 // GUI integration
 //
@@ -58,3 +61,5 @@ void RenderGui(bool RenderingState);
 class CmdLineArgs;
 extern void Init(const CmdLineArgs& args, int flags);
 extern void Shutdown(int flags);
+
+#endif // INCLUDED_GAMESETUP

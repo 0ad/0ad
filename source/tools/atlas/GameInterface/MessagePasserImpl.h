@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_MESSAGEPASSERIMPL
+#define INCLUDED_MESSAGEPASSERIMPL
+
 #include "MessagePasser.h"
 
 #include "ps/ThreadUtil.h"
@@ -42,3 +45,5 @@ private:
 	std::queue<AtlasMessage::IMessage*> m_Queue;
 	bool m_Trace;
 };
+
+#endif // INCLUDED_MESSAGEPASSERIMPL

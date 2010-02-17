@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_PS_GLOBALS
+#define INCLUDED_PS_GLOBALS
+
 #include "lib/input.h"
 #include "lib/frequency_filter.h"
 
@@ -54,3 +57,5 @@ extern bool g_mouse_buttons[6];
 extern InReaction GlobalsInputHandler(const SDL_Event_* ev);
 
 extern PIFrequencyFilter g_frequencyFilter;
+
+#endif // INCLUDED_PS_GLOBALS

@@ -20,8 +20,8 @@
  * scalar operations on it
  */
 
-#ifndef INCLUDED_VECTOR2D
-#define INCLUDED_VECTOR2D
+#ifndef INCLUDED_MATHS_VECTOR2D
+#define INCLUDED_MATHS_VECTOR2D
 
 
 #include <math.h>

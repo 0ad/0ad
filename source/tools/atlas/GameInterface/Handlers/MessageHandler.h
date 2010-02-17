@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_MESSAGEHANDLER
+#define INCLUDED_MESSAGEHANDLER
+
 #include "../Messages.h"
 
 #include <map>
@@ -39,3 +42,5 @@ extern msgHandlers& GetMsgHandlers();
 #define QUERYHANDLER(t) THINGHANDLER(q, Query, t)
 
 }
+
+#endif // INCLUDED_MESSAGEHANDLER

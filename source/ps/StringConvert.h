@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_STRINGCONVERT
+#define INCLUDED_STRINGCONVERT
+
 typedef unsigned short jschar;
 typedef unsigned short ucs2char;
 
@@ -36,3 +39,5 @@ namespace StringConvert
 	void ucs2le_to_wstring(const char* start, const char* end, std::wstring& result);
 
 }
+
+#endif // INCLUDED_STRINGCONVERT

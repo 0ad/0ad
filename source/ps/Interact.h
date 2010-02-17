@@ -21,6 +21,9 @@
 // and the hotkey message processor.
 // Does this belong in GUI?
 
+#ifndef INCLUDED_INTERACT
+#define INCLUDED_INTERACT
+
 #include <vector>
 #include <map>
 
@@ -212,4 +215,4 @@ InReaction InteractInputHandler( const SDL_Event_* ev );
 #define g_Mouseover CMouseoverEntities::GetSingleton()
 #define g_BuildingPlacer CBuildingPlacer::GetSingleton()
 
-
+#endif // INCLUDED_INTERACT

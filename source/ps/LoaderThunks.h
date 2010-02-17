@@ -15,6 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef INCLUDED_LOADERTHUNKS
+#define INCLUDED_LOADERTHUNKS
+
 // rationale for allocating MemFun_t dynamically:
 // need to store class pointer, function, and argument for each registered
 // function; single static storage isn't possible. we don't want to break
@@ -98,3 +101,5 @@ template<class T, class Arg> void RegMemFun1(T* this_, int(T::*func)(Arg), Arg a
 	void* param = new MemFun1_t<T, Arg>(this_, func, arg);
 	LDR_Register(MemFun1Thunk<T, Arg>, param, description, estimated_duration_ms);
 }
+
+#endif // INCLUDED_LOADERTHUNKS

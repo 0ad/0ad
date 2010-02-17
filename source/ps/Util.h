@@ -15,9 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef PS_UTIL_H
+#define PS_UTIL_H
+
 extern void WriteSystemInfo();
 
 extern const wchar_t* ErrorString(int err);
 
 extern void WriteScreenshot(const std::wstring& extension);
 extern void WriteBigScreenshot(const std::wstring& extension, int tiles);
+
+#endif // PS_UTIL_H
