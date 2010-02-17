@@ -44,6 +44,8 @@
 
 #define CREATING_NMT
 
+#ifndef NMT_CREATOR_IMPLEMENT
+
 /*************************************************************************/
 // Pass 1, class definition
 #define NMT_CREATOR_PASS_CLASSDEF
@@ -117,7 +119,7 @@ public: \
 #include "NMTCreator.h"
 #undef NMT_CREATOR_PASS_CLASSDEF
 
-#ifdef NMT_CREATOR_IMPLEMENT
+#else // NMT_CREATOR_IMPLEMENT
 
 #include "StringConverters.h"
 

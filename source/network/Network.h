@@ -66,6 +66,7 @@ MORE INFO
 #include "StreamSocket.h"
 
 #include "NetMessage.h"
+#include "lib/bits.h" // round_up
 
 #include <deque>
 #include <map>
@@ -73,9 +74,7 @@ MORE INFO
 //-------------------------------------------------
 // Typedefs and Macros
 //-------------------------------------------------
-#define BLOCK_SIZE				4096
-#define ALIGN_UP( _n, _block )	( _n + _block - (_n % _block ) )
-#define ALIGN_BLOCK( _n )		ALIGN_UP( _n, BLOCK_SIZE )
+#define ALIGN_BLOCK( _n )		round_up(size_t(_n), size_t(4096))
 
 typedef CLocker<std::deque <CNetMessage *> > CLockedMessageDeque;
 

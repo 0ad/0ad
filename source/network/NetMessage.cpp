@@ -27,10 +27,13 @@
 #include "precompiled.h"
 #include "simulation/Entity.h"
 #include "ps/Vector2D.h"
-#define ALLNETMSGS_IMPLEMENT
-#include "NetMessage.h"
 #include "ps/CLogger.h"
 #include "Network.h"
+#include "NetMessage.h"
+
+#undef ALLNETMSGS_DONT_CREATE_NMTS
+#define ALLNETMSGS_IMPLEMENT
+#include "NetMessages.h"
 
 #include <stdio.h>
 #include <map>
