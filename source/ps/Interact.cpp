@@ -39,6 +39,7 @@
 #include "ps/Player.h"
 #include "ps/Filesystem.h"
 #include "ps/World.h"
+#include "ps/GameSetup/Config.h"
 #include "renderer/Renderer.h"
 #include "scripting/GameEvents.h"
 #include "scripting/ScriptableComplex.inl"
@@ -56,9 +57,6 @@
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"world"
-
-extern CStrW g_CursorName;
-extern float g_xres, g_yres;
 
 static const double SELECT_DBLCLICK_RATE = 0.5;
 const int ORDER_DELAY = 5;

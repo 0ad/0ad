@@ -51,6 +51,9 @@ ERROR_ASSOCIATE(ERR::STRING_NOT_TERMINATED, L"Invalid string (no 0 terminator fo
 // this source file implements generic versions and bridges the differences
 // with these macros. wsecure_crt.cpp #defines WSECURE_CRT and
 // includes this file.
+
+// Note: These defines are all #undef:ed at the end of the file - remember to
+// add a corresponding #undef when adding a #define.
 #ifdef WSECURE_CRT
 # define tchar wchar_t
 # define T(string_literal) L ## string_literal
@@ -282,3 +285,16 @@ errno_t fopen_s(FILE** pfile, const char* filename, const char* mode)
 #endif
 
 #endif // #if EMULATE_SECURE_CRT
+
+#undef tchar
+#undef T
+#undef tnlen
+#undef tncpy_s
+#undef tcpy_s
+#undef tncat_s
+#undef tcat_s
+#undef tcmp
+#undef tcpy
+#undef tvsnprintf
+#undef tvsprintf_s
+#undef tsprintf_s

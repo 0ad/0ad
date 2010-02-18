@@ -328,6 +328,7 @@ const AcpiTable* acpi_GetTable(const char* signature)
 
 //-----------------------------------------------------------------------------
 
+#define initState acpiInitState
 static ModuleInitState initState;
 
 bool acpi_Init()
@@ -361,3 +362,4 @@ void acpi_Shutdown()
 
 	mahaf_Shutdown();
 }
+#undef initState

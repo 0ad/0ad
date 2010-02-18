@@ -136,7 +136,7 @@ struct TexCodecVTbl
  * usage: at file scope within the source file containing the codec's methods.
  **/
 #define TEX_CODEC_REGISTER(name)\
-	static TexCodecVTbl vtbl = \
+	static TexCodecVTbl UID__ = \
 	{\
 		name##_decode, name##_encode, name##_transform,\
 		name##_is_hdr, name##_is_ext, name##_hdr_size,\
@@ -147,7 +147,7 @@ struct TexCodecVTbl
 	/* will not run! as a workaround, we build an externally visible */\
 	/* registration function that must be called via */\
 	/* tex_codec_register_all - see comments there. */\
-	void name##_register() { tex_codec_register(&vtbl); }
+	void name##_register() { tex_codec_register(&UID__); }
 
 
 /**

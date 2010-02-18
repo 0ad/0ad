@@ -42,22 +42,6 @@ struct SHotkeyMapping
 
 typedef std::vector<SHotkeyMapping> KeyMapping;
 
-enum {
-	// 'Keycodes' for the mouse buttons
-	MOUSE_LEFT = SDLK_LAST + SDL_BUTTON_LEFT,
-	MOUSE_RIGHT = SDLK_LAST + SDL_BUTTON_RIGHT,
-	MOUSE_MIDDLE = SDLK_LAST + SDL_BUTTON_MIDDLE,
-	MOUSE_WHEELUP = SDLK_LAST + SDL_BUTTON_WHEELUP,
-	MOUSE_WHEELDOWN = SDLK_LAST + SDL_BUTTON_WHEELDOWN,
-
-	// 'Keycodes' for the unified modifier keys
-	UNIFIED_SHIFT,
-	UNIFIED_CTRL,
-	UNIFIED_ALT,
-	UNIFIED_META,
-	UNIFIED_SUPER
-}; 
-
 /**
  * HK_MAX_KEYCODES: Global maximum number of keycodes, including our "fake" keycodes for
  * mouse buttons and unified modifiers.

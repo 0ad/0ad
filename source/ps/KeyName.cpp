@@ -18,9 +18,12 @@
 // Ooh, a file of keynames. Fun.
 
 #include "precompiled.h"
-#include <map>
+
+#include "KeyName.h"
 #include "CStr.h"
 #include "lib/external_libraries/sdl.h"
+
+#include <map>
 
 static std::map<CStr,int> keymap;
 
@@ -30,20 +33,6 @@ struct SKeycodeMapping
 	const char* keyname;
 	const char* altkeyname;
 };
-
-// 'Keycodes' for the mouse buttons
-const int MOUSE_LEFT = SDLK_LAST + SDL_BUTTON_LEFT;
-const int MOUSE_RIGHT = SDLK_LAST + SDL_BUTTON_RIGHT;
-const int MOUSE_MIDDLE = SDLK_LAST + SDL_BUTTON_MIDDLE;
-const int MOUSE_WHEELUP = SDLK_LAST + SDL_BUTTON_WHEELUP;
-const int MOUSE_WHEELDOWN = SDLK_LAST + SDL_BUTTON_WHEELDOWN;
-
-// 'Keycodes' for the unified modifier keys
-const int UNIFIED_SHIFT = MOUSE_WHEELDOWN + 1;
-const int UNIFIED_CTRL = MOUSE_WHEELDOWN + 2;
-const int UNIFIED_ALT = MOUSE_WHEELDOWN + 3;
-const int UNIFIED_META = MOUSE_WHEELDOWN + 4;
-const int UNIFIED_SUPER = MOUSE_WHEELDOWN + 5;
 
 // You can use either key name in the config file...
 

@@ -69,6 +69,7 @@
 
 #include "scripting/ScriptableComplex.inl"
 #include "scripting/ScriptingHost.h"
+#include "scripting/ScriptGlue.h"
 #include "scripting/DOMEvent.h"
 #include "scripting/GameEvents.h"
 #include "scripting/ScriptableComplex.h"

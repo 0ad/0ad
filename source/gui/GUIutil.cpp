@@ -404,6 +404,8 @@ PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 	template PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting, const T &Value, const bool& SkipMessage);
 #define GUITYPE_IGNORE_CGUISpriteInstance
 #include "GUItypes.h"
+#undef GUITYPE_IGNORE_CGUISpriteInstance
+#undef TYPE
 
 // Don't instantiate GetSetting<CGUISpriteInstance> - this will cause linker errors if
 // you attempt to retrieve a sprite using GetSetting, since that copies the sprite

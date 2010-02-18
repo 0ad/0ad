@@ -178,6 +178,9 @@ CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, jsval
 #define INTERFACE(name)
 #define COMPONENT(name)
 #include "simulation2/TypeList.h"
+#undef COMPONENT
+#undef INTERFACE
+#undef MESSAGE
 	}
 
 	return NULL;

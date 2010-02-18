@@ -26,3 +26,4 @@
 
 #define WSECURE_CRT
 #include "secure_crt.cpp"
+#undef WSECURE_CRT

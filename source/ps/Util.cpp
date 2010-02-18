@@ -17,6 +17,8 @@
 
 #include "precompiled.h"
 
+#include "ps/Util.h"
+
 #include "lib/posix/posix_utsname.h"
 #include "lib/posix/posix_sock.h"
 #include "lib/ogl.h"

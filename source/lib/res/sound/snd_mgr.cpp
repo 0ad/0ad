@@ -1381,7 +1381,7 @@ LibError snd_free(Handle& hvs)
 //
 // don't use list, to avoid lots of allocs (expect thousands of VSrcs).
 typedef std::deque<VSrc*> VSrcs;
-typedef VSrcs::iterator It;
+typedef VSrcs::iterator VSrcIt;
 static VSrcs vsrcs;
 
 // don't need to sort now - caller will list_sort() during update.
@@ -1400,14 +1400,14 @@ static void list_add(VSrc* vs)
  */
 static void list_foreach(void (*cb)(VSrc*), size_t skip = 0, size_t end_idx = 0)
 {
-	It begin = vsrcs.begin() + skip;
-	It end = vsrcs.end();
+	VSrcIt begin = vsrcs.begin() + skip;
+	VSrcIt end = vsrcs.end();
 	if(end_idx)
 		end = vsrcs.begin()+end_idx;
 
 	// can't use std::for_each: some entries may have been deleted
 	// (i.e. set to 0) since last update.
-	for(It it = begin; it != end; ++it)
+	for(VSrcIt it = begin; it != end; ++it)
 	{
 		VSrc* vs = *it;
 		if(vs)
@@ -1467,7 +1467,7 @@ static bool is_null(VSrc* vs)
  */
 static void list_prune_removed()
 {
-	It new_end = remove_if(vsrcs.begin(), vsrcs.end(), is_null);
+	VSrcIt new_end = remove_if(vsrcs.begin(), vsrcs.end(), is_null);
 	vsrcs.erase(new_end, vsrcs.end());
 }
 

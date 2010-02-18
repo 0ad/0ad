@@ -18,8 +18,27 @@
 #ifndef INCLUDED_KEYNAME
 #define INCLUDED_KEYNAME
 
+// Need SDLK_* enum values.
+#include "lib/external_libraries/sdl.h"
+
 extern void InitKeyNameMap();
 extern CStr FindKeyName( int keycode );
 extern int FindKeyCode( const CStr& keyname );
+
+enum {
+	// 'Keycodes' for the mouse buttons
+	MOUSE_LEFT = SDLK_LAST + SDL_BUTTON_LEFT,
+	MOUSE_RIGHT = SDLK_LAST + SDL_BUTTON_RIGHT,
+	MOUSE_MIDDLE = SDLK_LAST + SDL_BUTTON_MIDDLE,
+	MOUSE_WHEELUP = SDLK_LAST + SDL_BUTTON_WHEELUP,
+	MOUSE_WHEELDOWN = SDLK_LAST + SDL_BUTTON_WHEELDOWN,
+
+	// 'Keycodes' for the unified modifier keys
+	UNIFIED_SHIFT,
+	UNIFIED_CTRL,
+	UNIFIED_ALT,
+	UNIFIED_META,
+	UNIFIED_SUPER
+}; 
 
 #endif	// #ifndef INCLUDED_KEYNAME

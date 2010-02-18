@@ -18,6 +18,8 @@
 #include "precompiled.h"
 
 #include "Messages.h"
+#include "Handlers/MessageHandler.h"
+#include "CommandProc.h"
 
 // We want to include Messages.h again below, with some different definitions,
 // so cheat and undefine its include-guard
@@ -34,17 +36,6 @@
 
 namespace AtlasMessage
 {
-
-struct IMessage;
-
-typedef void (*msgHandler)(IMessage*);
-typedef std::map<std::string, msgHandler> msgHandlers;
-extern msgHandlers& GetMsgHandlers();
-
-struct Command;
-typedef Command* (*cmdHandler)(const void*);
-typedef std::map<std::string, cmdHandler> cmdHandlers;
-extern cmdHandlers& GetCmdHandlers();
 
 #define MESSAGE(name, vals) \
 	extern void f##name##_wrapper(AtlasMessage::IMessage*); \

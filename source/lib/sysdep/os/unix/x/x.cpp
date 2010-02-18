@@ -32,16 +32,20 @@
 
 #if HAVE_X
 
+#include "lib/debug.h"
+#include "lib/sysdep/gfx.h"
+
+#define Cursor X__Cursor
+
 #include <Xlib.h>
 #include <stdlib.h>
 #include <Xatom.h>
 
-#include "lib/debug.h"
-#include "lib/sysdep/gfx.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_syswm.h"
 
 #include <algorithm>
+#undef Cursor
 
 static Display *SDL_Display;
 static Window SDL_Window;
