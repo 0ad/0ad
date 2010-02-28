@@ -103,6 +103,11 @@ void CGUIManager::PopPage()
 
 void CGUIManager::LoadPage(SGUIPage& page)
 {
+	// If we're hotloading then try to grab some data from the previous page
+	CScriptValRooted hotloadData;
+	if (page.gui)
+		m_ScriptInterface.CallFunction(OBJECT_TO_JSVAL(page.gui->GetScriptObject()), "getHotloadData", hotloadData);
+
 	page.inputs.clear();
 	page.gui.reset(new CGUI());
 	page.gui->Initialize();
@@ -143,7 +148,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	page.gui->SendEventToAll("load");
 
 	// Call the init() function
-	if (!m_ScriptInterface.CallFunctionVoid(OBJECT_TO_JSVAL(page.gui->GetScriptObject()), "init", page.initData))
+	if (!m_ScriptInterface.CallFunctionVoid(OBJECT_TO_JSVAL(page.gui->GetScriptObject()), "init", page.initData, hotloadData))
 	{
 		LOGERROR(L"GUI page '%ls': Failed to call init() function", page.name.c_str());
 	}

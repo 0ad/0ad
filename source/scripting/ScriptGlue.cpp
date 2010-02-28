@@ -36,7 +36,6 @@
 #include "graphics/UnitManager.h"
 #include "graphics/scripting/JSInterface_Camera.h"
 #include "graphics/scripting/JSInterface_LightEnv.h"
-#include "gui/GUIManager.h"
 #include "lib/timer.h"
 #include "lib/svn_revision.h"
 #include "lib/frequency_filter.h"
@@ -73,8 +72,6 @@
 #include "simulation/Simulation.h"
 #include "simulation/TechnologyCollection.h"
 #include "simulation/TriggerManager.h"
-
-#include "gui/scripting/JSInterface_IGUIObject.h"
 
 #define LOG_CATEGORY L"script"
 extern bool g_TerrainModified;
