@@ -84,7 +84,7 @@ GUITooltip::GUITooltip()
 
 const double CooldownTime = 0.25; // TODO: Don't hard-code this value
 
-static bool GetTooltip(IGUIObject* obj, CStr&style)
+static bool GetTooltip(IGUIObject* obj, CStr& style)
 {
 	if (obj && obj->SettingExists("tooltip_style")
 		&& GUI<CStr>::GetSetting(obj, "tooltip_style", style) == PSRETURN_OK)
@@ -283,8 +283,16 @@ void GUITooltip::Update(IGUIObject* Nearest, CPos MousePos, CGUI* GUI)
 		break;
 
 	case ST_SHOWING:
-		if (Nearest != m_PreviousObject)
+		if (Nearest == m_PreviousObject)
 		{
+			// Still showing the same object's tooltip, but the text might have changed
+			if (GetTooltip(Nearest, style))
+				ShowTooltip(Nearest, MousePos, style, GUI);
+		}
+		else
+		{
+			// Mouse moved onto a new object
+
 			if (GetTooltip(Nearest, style))
 			{	
 				CStr style_old;
