@@ -309,7 +309,8 @@ void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, boo
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	glLineWidth((float)line_width);
+	if (line_width != 1)
+		glLineWidth((float)line_width);
 
 	CVector3D pos;
 	glBegin(GL_QUADS);
@@ -319,4 +320,7 @@ void TerrainOverlay::RenderTileOutline(const CColor& colour, int line_width, boo
 		m_Terrain->CalcPosition(i+1, j+1, pos); glVertex3fv(pos.GetFloatArray());
 		m_Terrain->CalcPosition(i,   j+1, pos); glVertex3fv(pos.GetFloatArray());
 	glEnd();
+
+	if (line_width != 1)
+		glLineWidth(1.0f);
 }

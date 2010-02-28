@@ -64,6 +64,8 @@ void OverlayRenderer::RenderOverlays()
 		pglBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 	}
 
+	glDisable(GL_TEXTURE_2D);
+
 	for (size_t i = 0; i < m->lines.size(); ++i)
 	{
 		SOverlayLine* line = m->lines[i];
