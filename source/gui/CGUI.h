@@ -420,23 +420,32 @@ private:
 	 * in other stuff that can be found within an object. Check the
 	 * tree in the beginning of this class' Xeromyces_* section.
 	 *
-	 * Reads in the root element <sprites> (the DOMElement).
-	 *
 	 * @param Element	The Xeromyces object that represents
 	 *					the object-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 * @param pParent	Parent to add this object as child in.
+	 * @param NameSubst	A set of substitution strings that will be
+	 * 					applied to all object names within this object.
+	 * @param Paths		Output set of file paths that this GUI object
+	 * 					relies on.
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::set<VfsPath>& Paths);
+	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, std::set<VfsPath>& Paths);
+
+	/**
+	 * Reads in the element <repeat>, which repeats its child <object>s
+	 * 'count' times, replacing the string "[n]" in its descendants' names
+	 * with "[0]", "[1]", etc.
+	 */
+	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::set<VfsPath>& Paths);
 
 	/**
 	 * Reads in the element <script> (the XMBElement) and executes
 	 * the script's code.
 	 *
 	 * @param Element	The Xeromyces object that represents
-	 *					the sprite-tag.
+	 *					the script-tag.
 	 * @param pFile		The Xeromyces object for the file being read
 	 *
 	 * @see LoadXmlFile()

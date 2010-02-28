@@ -1042,6 +1042,8 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std:
 {
 	int el_script = pFile->GetElementID("script");
 
+	std::vector<std::pair<CStr, CStr> > subst;
+
 	// Iterate main children
 	//  they should all be <object> or <script> elements
 	XMBElementList children = Element.GetChildNodes();
@@ -1055,7 +1057,7 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std:
 			Xeromyces_ReadScript(child, pFile, Paths);
 		else
 			// Read in this whole object into the GUI
-			Xeromyces_ReadObject(child, pFile, m_BaseObject, Paths);
+			Xeromyces_ReadObject(child, pFile, m_BaseObject, subst, Paths);
 	}
 }
 
@@ -1126,7 +1128,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 	}
 }
 
-void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::set<VfsPath>& Paths)
+void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, std::set<VfsPath>& Paths)
 {
 	debug_assert(pParent);
 	int i;
@@ -1158,6 +1160,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
 	ELMT(object);
 	ELMT(action);
+	ELMT(repeat);
 	ATTR(style);
 	ATTR(type);
 	ATTR(name);
@@ -1214,7 +1217,13 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		// Also the name needs some special attention
 		if (attr.Name == attr_name)
 		{
-			object->SetName(CStr(attr.Value));
+			CStr name (attr.Value);
+
+			// Apply the requested substitutions
+			for (size_t j = 0; j < NameSubst.size(); ++j)
+				name.Replace(NameSubst[j].first, NameSubst[j].second);
+
+			object->SetName(name);
 			NameSet = true;
 			continue;
 		}
@@ -1274,7 +1283,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		if (element_name == elmt_object)
 		{
 			// Call this function on the child
-			Xeromyces_ReadObject(child, pFile, object, Paths);
+			Xeromyces_ReadObject(child, pFile, object, NameSubst, Paths);
 		}
 		else if (element_name == elmt_action)
 		{
@@ -1304,6 +1313,10 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 
 			CStr action = CStr(child.GetAttributes().GetNamedItem(attr_on));
 			object->RegisterScriptHandler(action.LowerCase(), code, this);
+		}
+		else if (element_name == elmt_repeat)
+		{
+			Xeromyces_ReadRepeat(child, pFile, object, Paths);
 		}
 		else
 		{
@@ -1352,6 +1365,32 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	catch (PSERROR_GUI& e)
 	{
 		LOGERROR(L"GUI error: %hs", e.what());
+	}
+}
+
+void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::set<VfsPath>& Paths)
+{
+	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
+	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
+	ELMT(object);
+	ATTR(count);
+
+	XMBAttributeList attributes = Element.GetAttributes();
+
+	int count = CStr(attributes.GetNamedItem(attr_count)).ToInt();
+
+	for (int n = 0; n < count; ++n)
+	{
+		std::vector<std::pair<CStr, CStr> > subst;
+		subst.push_back(std::make_pair(CStr("[n]"), "[" + CStr(n) + "]"));
+
+		XERO_ITER_EL(Element, child)
+		{
+			if (child.GetNodeName() == elmt_object)
+			{
+				Xeromyces_ReadObject(child, pFile, pParent, subst, Paths);
+			}
+		}
 	}
 }
 
