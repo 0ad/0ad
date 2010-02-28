@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <styles>
-	<style 	name="goldPanel"
+	<style name="goldPanel"
 		sprite="goldPanel"
 		buffer_zone="4"
 		text_align="left"
 		text_valign="top"
 	/>
 
-	<style 	name="goldPanelFrilly"
+	<style name="goldPanelFrilly"
 		sprite="goldPanelFrilly"
 		buffer_zone="4"
 		text_align="center"
 		text_valign="center"
 	/>
 
-	<style 	name="iconButton"
+	<style name="resourceIcon"
+		sprite="snIconSheetResource"								
+		ghost="true"
+	/>	
+
+	<style name="resourceText"
+		textcolor="black"
+		font="tahoma14"
+		ghost="true"
+	/>
+
+	<style name="resourceCounter"
+		tooltip_style="snToolTip"
+	/>
+
+	<style name="selectionDetailsIconOutline"
+		sprite="selectionDetailsIconOutline"
+	/>
+
+	<style name="iconButton"
 		sprite="snIconPortrait"
 		sprite_over="snIconPortraitOver"
 		sprite_disabled="snIconPortraitDisabled"

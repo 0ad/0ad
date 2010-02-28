@@ -1,5 +1,6 @@
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
+Engine.LoadComponentScript("interfaces/DamageReceiver.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
@@ -42,9 +43,8 @@ AddMock(10, IID_Position, {
 });
 
 AddMock(10, IID_Health, {
-	GetHitpoints: function() {
-		return 50;
-	}
+	GetHitpoints: function() { return 50; },
+	GetMaxHitpoints: function() { return 60; },
 });
 
 AddMock(10, IID_Builder, {
@@ -58,5 +58,6 @@ TS_ASSERT_UNEVAL_EQUALS(state, {
 	template: "example",
 	position: {x:1, y:2, z:3},
 	hitpoints: 50,
+	maxHitpoints: 60,
 	buildEntities: ["test1", "test2"]
 });

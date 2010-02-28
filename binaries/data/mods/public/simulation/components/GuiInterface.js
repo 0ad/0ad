@@ -43,12 +43,19 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpHealth)
 	{
 		ret.hitpoints = cmpHealth.GetHitpoints();
+		ret.maxHitpoints = cmpHealth.GetMaxHitpoints();
 	}
 
 	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
 	if (cmpAttack)
 	{
 		ret.attack = cmpAttack.GetAttackStrengths();
+	}
+
+	var cmpArmour = Engine.QueryInterface(ent, IID_DamageReceiver);
+	if (cmpArmour)
+	{
+		ret.armour = cmpArmour.GetArmourStrengths();
 	}
 
 	var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
@@ -92,10 +99,10 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	if (template.Identity)
 	{
 		ret.name = {
-			"specific": template.Identity.SpecificName,
-			"generic": template.Identity.GenericName,
-			"icon_cell": template.Identity.IconCell
+			"specific": (template.Identity.SpecificName || template.Identity.GenericName),
+			"generic": template.Identity.GenericName
 		};
+		ret.icon_cell = template.Identity.IconCell;
 	}
 
 	return ret;
@@ -109,12 +116,16 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 {
+	// See if we're changing template
 	if (!this.placementEntity || this.placementEntity[0] != cmd.template)
 	{
+		// Destroy the old preview if there was one
+		if (this.placementEntity)
+			Engine.DestroyEntity(this.placementEntity[1]);
+
+		// Load the new template
 		if (cmd.template == "")
 		{
-			if (this.placementEntity)
-				Engine.DestroyEntity(this.placementEntity[1]);
 			this.placementEntity = undefined;
 		}
 		else
@@ -123,6 +134,7 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		}
 	}
 
+	// Move the preview into the right location
 	if (this.placementEntity)
 	{
 		var pos = Engine.QueryInterface(this.placementEntity[1], IID_Position);

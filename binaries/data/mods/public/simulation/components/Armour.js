@@ -20,4 +20,14 @@ Armour.prototype.TakeDamage = function(hack, pierce, crush)
 	cmpHealth.Reduce(total);
 };
 
+Armour.prototype.GetArmourStrengths = function()
+{
+	// Convert attack values to numbers, default 0 if unspecified
+	return {
+		hack: +(this.template.Hack || 0),
+		pierce: +(this.template.Pierce || 0),
+		crush: +(this.template.Crush || 0)
+	};
+};
+
 Engine.RegisterComponentType(IID_DamageReceiver, "Armour", Armour);

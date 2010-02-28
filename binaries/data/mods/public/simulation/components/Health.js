@@ -2,12 +2,17 @@ function Health() {}
 
 Health.prototype.Init = function()
 {
-	this.hitpoints = +this.template.Max;
+	this.hitpoints = this.GetMaxHitpoints();
 };
 
 Health.prototype.GetHitpoints = function()
 {
 	return this.hitpoints;
+};
+
+Health.prototype.GetMaxHitpoints = function()
+{
+	return +this.template.Max;
 };
 
 Health.prototype.Reduce = function(amount)
