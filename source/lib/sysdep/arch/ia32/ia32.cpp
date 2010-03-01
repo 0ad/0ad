@@ -29,7 +29,6 @@
 #include "ia32.h"
 
 #include "lib/sysdep/cpu.h"
-#include "ia32_memcpy.h"
 #include "ia32_asm.h"
 
 
@@ -162,5 +161,5 @@ bool cpu_CAS(volatile uintptr_t* location, uintptr_t expected, uintptr_t new_val
 
 void* cpu_memcpy(void* RESTRICT dst, const void* RESTRICT src, size_t size)
 {
-	return ia32_memcpy(dst, src, size);
+	return memcpy(dst, src, size);
 }

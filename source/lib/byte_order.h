@@ -73,48 +73,48 @@
 
 
 /// convert a little-endian number to/from native byte order.
-extern u16 to_le16(u16 x);
-extern u32 to_le32(u32 x);	/// see to_le16
-extern u64 to_le64(u64 x);	/// see to_le16
+LIB_API u16 to_le16(u16 x);
+LIB_API u32 to_le32(u32 x);	/// see to_le16
+LIB_API u64 to_le64(u64 x);	/// see to_le16
 
 /// convert a big-endian number to/from native byte order.
-extern u16 to_be16(u16 x);
-extern u32 to_be32(u32 x);	/// see to_be16
-extern u64 to_be64(u64 x);	/// see to_be16
+LIB_API u16 to_be16(u16 x);
+LIB_API u32 to_be32(u32 x);	/// see to_be16
+LIB_API u64 to_be64(u64 x);	/// see to_be16
 
 /// read a little-endian number from memory into native byte order.
-extern u16 read_le16(const void* p);
-extern u32 read_le32(const void* p);	/// see read_le16
-extern u64 read_le64(const void* p);	/// see read_le16
+LIB_API u16 read_le16(const void* p);
+LIB_API u32 read_le32(const void* p);	/// see read_le16
+LIB_API u64 read_le64(const void* p);	/// see read_le16
 
 /// read a big-endian number from memory into native byte order.
-extern u16 read_be16(const void* p);
-extern u32 read_be32(const void* p);	/// see read_be16
-extern u64 read_be64(const void* p);	/// see read_be16
+LIB_API u16 read_be16(const void* p);
+LIB_API u32 read_be32(const void* p);	/// see read_be16
+LIB_API u64 read_be64(const void* p);	/// see read_be16
 
 /// write a little-endian number to memory in native byte order.
-extern void write_le16(void* p, u16 x);
-extern void write_le32(void* p, u32 x);	/// see write_le16
-extern void write_le64(void* p, u64 x);	/// see write_le16
+LIB_API void write_le16(void* p, u16 x);
+LIB_API void write_le32(void* p, u32 x);	/// see write_le16
+LIB_API void write_le64(void* p, u64 x);	/// see write_le16
 
 /// write a big-endian number to memory in native byte order.
-extern void write_be16(void* p, u16 x);
-extern void write_be32(void* p, u32 x);	/// see write_be16
-extern void write_be64(void* p, u64 x);	/// see write_be16
+LIB_API void write_be16(void* p, u16 x);
+LIB_API void write_be32(void* p, u32 x);	/// see write_be16
+LIB_API void write_be64(void* p, u64 x);	/// see write_be16
 
 /**
  * zero-extend <size> (truncated to 8) bytes of little-endian data to u64,
  * starting at address <p> (need not be aligned).
  **/
-extern u64 movzx_le64(const u8* p, size_t size);
-extern u64 movzx_be64(const u8* p, size_t size);
+LIB_API u64 movzx_le64(const u8* p, size_t size);
+LIB_API u64 movzx_be64(const u8* p, size_t size);
 
 /**
  * sign-extend <size> (truncated to 8) bytes of little-endian data to i64,
  * starting at address <p> (need not be aligned).
  **/
-extern i64 movsx_le64(const u8* p, size_t size);
-extern i64 movsx_be64(const u8* p, size_t size);
+LIB_API i64 movsx_le64(const u8* p, size_t size);
+LIB_API i64 movsx_be64(const u8* p, size_t size);
 
 
 #if MSC_VERSION
@@ -143,13 +143,13 @@ extern unsigned __int64 _byteswap_uint64(unsigned __int64);
 #endif
 
 #ifndef swap16
-extern u16 swap16(const u16 x);
+LIB_API u16 swap16(const u16 x);
 #endif
 #ifndef swap32
-extern u32 swap32(const u32 x);
+LIB_API u32 swap32(const u32 x);
 #endif
 #ifndef swap64
-extern u64 swap64(const u64 x);
+LIB_API u64 swap64(const u64 x);
 #endif
 
 #endif	// #ifndef INCLUDED_BYTE_ORDER
