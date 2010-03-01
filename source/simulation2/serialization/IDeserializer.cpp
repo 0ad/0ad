@@ -20,7 +20,7 @@
 #include "IDeserializer.h"
 
 #include "lib/byte_order.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "ps/CStr.h"
 
 IDeserializer::~IDeserializer()

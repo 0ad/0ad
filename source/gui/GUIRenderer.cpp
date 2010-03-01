@@ -20,7 +20,7 @@
 #include "GUIRenderer.h"
 
 #include "lib/ogl.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 

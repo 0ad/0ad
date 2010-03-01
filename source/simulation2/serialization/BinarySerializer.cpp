@@ -22,7 +22,7 @@
 #include "SerializedScriptTypes.h"
 
 #include "lib/byte_order.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/utf16string.h"
 

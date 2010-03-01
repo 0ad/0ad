@@ -19,7 +19,7 @@
 
 #include "ISerializer.h"
 
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 
 ISerializer::~ISerializer()
 {

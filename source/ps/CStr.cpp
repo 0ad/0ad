@@ -28,7 +28,7 @@
 
 #include "lib/posix/posix_sock.h" // htons, ntohs
 #include "lib/fnv_hash.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "network/Serialization.h"
 #include <cassert>
 

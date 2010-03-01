@@ -21,7 +21,7 @@
 
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
 
 #define LOG_CATEGORY L"xml"

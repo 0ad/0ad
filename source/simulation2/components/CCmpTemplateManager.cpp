@@ -20,7 +20,7 @@
 #include "simulation2/system/Component.h"
 #include "ICmpTemplateManager.h"
 
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"

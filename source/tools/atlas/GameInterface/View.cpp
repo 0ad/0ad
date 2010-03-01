@@ -29,7 +29,7 @@
 #include "graphics/SColor.h"
 #include "graphics/UnitManager.h"
 #include "lib/timer.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/World.h"

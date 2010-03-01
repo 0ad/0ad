@@ -19,7 +19,7 @@
 
 #include "ps/i18n.h"
 
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "ps/Filesystem.h"
 #include "scripting/ScriptingHost.h"
 

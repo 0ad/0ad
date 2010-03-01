@@ -31,7 +31,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Hotkey.h"
 #include "ps/Profile.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "lib/external_libraries/sdl.h"
 #include "lib/res/graphics/unifont.h"
 #include "renderer/Renderer.h"

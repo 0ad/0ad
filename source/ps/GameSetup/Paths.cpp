@@ -19,7 +19,7 @@
 #include "Paths.h"
 
 #include "lib/path_util.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "lib/sysdep/filesystem.h"	// wrealpath
 #include "lib/sysdep/sysdep.h"	// sys_get_executable_name
 #if OS_WIN

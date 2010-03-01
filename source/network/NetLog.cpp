@@ -27,7 +27,7 @@
 #include "precompiled.h"
 #include "NetLog.h"
 #include "ps/CConsole.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 
 #include <stdio.h>
 #include <stdarg.h>
