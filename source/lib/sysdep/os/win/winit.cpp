@@ -25,9 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "winit.h"
+#include "lib/sysdep/os/win/winit.h"
 
-#include "win.h"	// GetTickCount for quick'n dirty timing
+#include "lib/sysdep/os/win/win.h"	// GetTickCount for quick'n dirty timing
 
 // see http://blogs.msdn.com/larryosterman/archive/2004/09/27/234840.aspx
 // for discussion of a similar mechanism.

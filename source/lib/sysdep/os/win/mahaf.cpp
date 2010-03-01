@@ -26,10 +26,10 @@
 
 #include "precompiled.h"
 
-#include "win.h"
+#include "lib/sysdep/os/win/win.h"
 #include <winioctl.h>
-#include "aken/aken.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/aken/aken.h"
+#include "lib/sysdep/os/win/wutil.h"
 #include "lib/module_init.h"
 
 

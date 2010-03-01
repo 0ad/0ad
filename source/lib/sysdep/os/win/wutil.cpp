@@ -25,15 +25,15 @@
  */
 
 #include "precompiled.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 #include <stdio.h>
 #include <stdlib.h>	// __argc
 
 #include "lib/path_util.h"
 #include "lib/posix/posix.h"
-#include "win.h"
-#include "winit.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/winit.h"
 
 #include <shlobj.h>	// SHGetFolderPath
 

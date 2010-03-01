@@ -26,10 +26,10 @@
 
 #include "precompiled.h"
 
-#include "ia32.h"
+#include "lib/sysdep/arch/ia32/ia32.h"
 
 #include "lib/sysdep/cpu.h"
-#include "ia32_asm.h"
+#include "lib/sysdep/arch/ia32/ia32_asm.h"
 
 
 static const size_t maxInstructionLength = 15;	// IA-32 limitation

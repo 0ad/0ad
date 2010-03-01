@@ -25,10 +25,10 @@
  */
 
 #include "precompiled.h"
-#include "bucket.h"
+#include "lib/allocators/bucket.h"
 
 #include "lib/bits.h"
-#include "mem_util.h"
+#include "lib/allocators/mem_util.h"
 
 
 // power-of-2 isn't required; value is arbitrary.

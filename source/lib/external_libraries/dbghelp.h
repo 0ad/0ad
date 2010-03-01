@@ -125,7 +125,7 @@ enum DataKind
 
 // declare function pointers
 #define FUNC(ret, name, params) EXTERN_C ret (__stdcall *p##name) params;
-#include "dbghelp_funcs.h"
+#include "lib/external_libraries/dbghelp_funcs.h"
 #undef FUNC
 
 extern void dbghelp_ImportFunctions();

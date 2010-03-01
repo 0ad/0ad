@@ -27,9 +27,9 @@
 #ifndef INCLUDED_WAIO
 #define INCLUDED_WAIO
 
-#include "wposix_types.h"
+#include "lib/sysdep/os/win/wposix/wposix_types.h"
 
-#include "no_crt_posix.h"
+#include "lib/sysdep/os/win/wposix/no_crt_posix.h"
 
 #include "lib/lib_errors.h"
 

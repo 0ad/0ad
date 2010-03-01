@@ -27,7 +27,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/os_cpu.h"
 
-#include "win.h"
+#include "lib/sysdep/os/win/win.h"
 #include "lib/bits.h"
 #include "lib/module_init.h"
 

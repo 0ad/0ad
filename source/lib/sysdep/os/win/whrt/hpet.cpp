@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "hpet.h"
+#include "lib/sysdep/os/win/whrt/hpet.h"
 
 // for atomic 64-bit read/write:
 #define HAVE_X64_MOVD ARCH_AMD64 && (ICC_VERSION || MSC_VERSION >= 1500)
@@ -35,7 +35,7 @@
 # include <emmintrin.h>
 #endif
 
-#include "counter.h"
+#include "lib/sysdep/os/win/whrt/counter.h"
 
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/mahaf.h"

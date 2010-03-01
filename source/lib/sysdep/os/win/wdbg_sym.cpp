@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "wdbg_sym.h"
+#include "lib/sysdep/os/win/wdbg_sym.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -42,9 +42,9 @@
 # include "lib/sysdep/arch/ia32/ia32_asm.h"
 #endif
 #include "lib/external_libraries/dbghelp.h"
-#include "winit.h"
-#include "wdbg.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/winit.h"
+#include "lib/sysdep/os/win/wdbg.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 
 WINIT_REGISTER_CRITICAL_INIT(wdbg_sym_Init);

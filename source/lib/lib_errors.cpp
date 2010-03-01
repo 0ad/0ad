@@ -30,7 +30,7 @@
 // object files of the same name but in different paths.
 
 #include "precompiled.h"
-#include "lib_errors.h"
+#include "lib/lib_errors.h"
 
 #include <cstring>
 #include <cstdlib>	// abs

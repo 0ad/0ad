@@ -23,7 +23,7 @@
 #ifndef INCLUDED_REAL_DIRECTORY
 #define INCLUDED_REAL_DIRECTORY
 
-#include "file_loader.h"
+#include "lib/file/common/file_loader.h"
 #include "lib/sysdep/dir_watch.h"
 
 class RealDirectory : public IFileLoader

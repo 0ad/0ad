@@ -27,7 +27,7 @@
 #ifndef INCLUDED_FILE_CACHE
 #define INCLUDED_FILE_CACHE
 
-#include "vfs_path.h"
+#include "lib/file/vfs/vfs_path.h"
 
 /**
  * cache of file contents with support for zero-copy IO.

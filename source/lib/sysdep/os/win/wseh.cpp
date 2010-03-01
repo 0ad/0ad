@@ -25,14 +25,14 @@
  */
 
 #include "precompiled.h"
-#include "wseh.h"
+#include "lib/sysdep/os/win/wseh.h"
 
 #include "lib/byte_order.h"		// FOURCC
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
-#include "win.h"
-#include "wutil.h"
-#include "wdbg_sym.h"			// wdbg_sym_WriteMinidump
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
+#include "lib/sysdep/os/win/wdbg_sym.h"			// wdbg_sym_WriteMinidump
 
 #if MSC_VERSION >= 1400
 # include <process.h>			// __security_init_cookie

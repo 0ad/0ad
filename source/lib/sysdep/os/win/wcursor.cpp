@@ -23,8 +23,8 @@
 #include "precompiled.h"
 #include "lib/sysdep/cursor.h"
 
-#include "win.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 
 static sys_cursor cursor_from_HICON(HICON hIcon)

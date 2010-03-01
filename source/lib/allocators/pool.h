@@ -27,7 +27,7 @@
 #ifndef INCLUDED_POOL
 #define INCLUDED_POOL
 
-#include "dynarray.h"
+#include "lib/allocators/dynarray.h"
 
 /**
  * allocator design parameters:

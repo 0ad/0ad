@@ -25,16 +25,16 @@
  */
 
 #include "precompiled.h"
-#include "debug.h"
+#include "lib/debug.h"
 
 #include <cstdarg>
 #include <cstring>
 #include <cstdio>
 
-#include "app_hooks.h"
-#include "path_util.h"
+#include "lib/app_hooks.h"
+#include "lib/path_util.h"
 #include "lib/allocators/allocators.h"	// page_aligned_alloc
-#include "fnv_hash.h"
+#include "lib/fnv_hash.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/sysdep/sysdep.h"
 

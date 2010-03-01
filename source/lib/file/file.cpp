@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "file.h"
+#include "lib/file/file.h"
 
 #include "lib/file/common/file_stats.h"
 #include "lib/sysdep/sysdep.h"	// sys_wopen

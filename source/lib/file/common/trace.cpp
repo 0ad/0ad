@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "trace.h"
+#include "lib/file/common/trace.h"
 
 #include <cstdio>
 

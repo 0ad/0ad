@@ -25,9 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "pool.h"
+#include "lib/allocators/pool.h"
 
-#include "mem_util.h"
+#include "lib/allocators/mem_util.h"
 
 
 LibError pool_create(Pool* p, size_t max_size, size_t el_size)

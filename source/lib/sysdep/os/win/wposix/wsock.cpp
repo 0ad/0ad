@@ -25,11 +25,11 @@
  */
 
 #include "precompiled.h"
-#include "wsock.h"
+#include "lib/sysdep/os/win/wposix/wsock.h"
 
 #include "lib/sysdep/os/win/wdll_delay_load.h"
-#include "wposix_internal.h"
-#include "wsock_internal.h"
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/wsock_internal.h"
 #include "lib/module_init.h"
 
 #if MSC_VERSION

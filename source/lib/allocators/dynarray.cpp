@@ -25,11 +25,11 @@
  */
 
 #include "precompiled.h"
-#include "dynarray.h"
+#include "lib/allocators/dynarray.h"
 
 #include "lib/posix/posix_mman.h"	// PROT_* constants for da_set_prot
 #include "lib/sysdep/cpu.h"
-#include "mem_util.h"
+#include "lib/allocators/mem_util.h"
 
 
 // indicates that this DynArray must not be resized or freed

@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "string_pool.h"
+#include "lib/allocators/string_pool.h"
 
 #include "lib/rand.h"
 #include "lib/sysdep/cpu.h"	// cpu_memcpy

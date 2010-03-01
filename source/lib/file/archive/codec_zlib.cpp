@@ -21,9 +21,9 @@
  */
 
 #include "precompiled.h"
-#include "codec_zlib.h"
+#include "lib/file/archive/codec_zlib.h"
 
-#include "codec.h"
+#include "lib/file/archive/codec.h"
 #include "lib/external_libraries/zlib.h"
 
 #include "lib/sysdep/cpu.h"

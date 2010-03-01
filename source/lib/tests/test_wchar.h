@@ -21,7 +21,7 @@
  */
 
 #include "lib/self_test.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 
 // (copied from CStr test)
 
@@ -77,7 +77,7 @@ public:
 
 			LibError err;
 			const std::wstring str_utf8to16 = wstring_from_utf8(str_utf8, &err);
-			TS_ASSERT_EQUALS(err, ERR::WCHAR_INVALID_UTF8);
+			TS_ASSERT_EQUALS(err, ERR::UTF8_INVALID_UTF8);
 			TS_ASSERT_EQUALS(str_utf16.length(), str_utf8to16.length());
 			TS_ASSERT_SAME_DATA(str_utf8to16.data(), str_utf16.data(), str_utf16.length()*sizeof(wchar_t));
 		}

@@ -25,9 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "wstartup.h"
+#include "lib/sysdep/os/win/wstartup.h"
 
-#include "winit.h"
+#include "lib/sysdep/os/win/winit.h"
 
 /*
 

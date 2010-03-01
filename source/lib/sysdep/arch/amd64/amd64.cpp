@@ -24,8 +24,8 @@
 
 #if ARCH_AMD64
 
-#include "amd64.h"
-#include "amd64_asm.h"
+#include "lib/sysdep/arch/amd64/amd64.h"
+#include "lib/sysdep/arch/amd64/amd64_asm.h"
 
 #include "lib/sysdep/cpu.h"
 #if MSC_VERSION

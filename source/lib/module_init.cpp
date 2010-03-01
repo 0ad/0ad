@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "module_init.h"
+#include "lib/module_init.h"
 
 #include "lib/sysdep/cpu.h"	// cpu_CAS, cpu_AtomicAdd
 

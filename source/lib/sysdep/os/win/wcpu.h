@@ -27,7 +27,7 @@
 #ifndef INCLUDED_WCPU
 #define INCLUDED_WCPU
 
-#include "win.h"
+#include "lib/sysdep/os/win/win.h"
 
 // "affinity" and "processorNumber" are what Windows sees.
 // "processorMask" and "processor" are the idealized representation we expose

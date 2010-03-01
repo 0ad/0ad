@@ -27,7 +27,7 @@
 #ifndef INCLUDED_SDL
 #define INCLUDED_SDL
 
-#include "sdl_fwd.h"
+#include "lib/external_libraries/sdl_fwd.h"
 #include "lib/config2.h"	// CONFIG2_WSDL
 
 #if OS_WIN && CONFIG2_WSDL

@@ -28,8 +28,8 @@
 #include "lib/debug.h"
 
 #include "lib/bits.h"
-#include "win.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 
 // return 1 if the pointer appears to be totally bogus, otherwise 0.

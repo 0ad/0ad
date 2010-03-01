@@ -21,7 +21,7 @@
  */
 
 #include "precompiled.h"
-#include "real_directory.h"
+#include "lib/file/common/real_directory.h"
 
 #include "lib/path_util.h"
 #include "lib/file/file.h"

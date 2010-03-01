@@ -21,13 +21,13 @@
  */
 
 #include "precompiled.h"
-#include "wfilesystem.h"
+#include "lib/sysdep/os/win/wposix/wfilesystem.h"
 
 #include "lib/allocators/allocators.h"		// single_calloc
-#include "wposix_internal.h"
-#include "waio.h"
-#include "wtime_internal.h"		// wtime_utc_filetime_to_time_t
-#include "crt_posix.h"			// _rmdir, _access
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/waio.h"
+#include "lib/sysdep/os/win/wposix/wtime_internal.h"	// wtime_utc_filetime_to_time_t
+#include "lib/sysdep/os/win/wposix/crt_posix.h"			// _rmdir, _access
 
 //
 // determine file system type on the current drive -

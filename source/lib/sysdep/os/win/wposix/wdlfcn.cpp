@@ -21,9 +21,9 @@
  */
 
 #include "precompiled.h"
-#include "wdlfcn.h"
+#include "lib/sysdep/os/win/wposix/wdlfcn.h"
 
-#include "wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
 
 
 static HMODULE HMODULE_from_void(void* handle)

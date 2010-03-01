@@ -27,7 +27,7 @@
 #ifndef INCLUDED_VFS_LOOKUP
 #define INCLUDED_VFS_LOOKUP
 
-#include "vfs_path.h"
+#include "lib/file/vfs/vfs_path.h"
 
 class VfsFile;
 class VfsDirectory;

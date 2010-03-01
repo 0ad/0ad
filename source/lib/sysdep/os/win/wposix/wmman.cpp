@@ -21,10 +21,10 @@
  */
 
 #include "precompiled.h"
-#include "wmman.h"
+#include "lib/sysdep/os/win/wposix/wmman.h"
 
-#include "wposix_internal.h"
-#include "crt_posix.h"		// _get_osfhandle
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/crt_posix.h"		// _get_osfhandle
 
 
 //-----------------------------------------------------------------------------

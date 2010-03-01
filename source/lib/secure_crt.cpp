@@ -30,10 +30,10 @@
 #include <errno.h>
 #include <stdarg.h>
 
-#include "secure_crt.h"
+#include "lib/secure_crt.h"
 
 #ifdef WSECURE_CRT
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #endif
 
 

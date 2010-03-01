@@ -32,7 +32,7 @@
 // everything to be converted to/parsed from strings. it does drag in
 // OLE headers, but this module is entirely Windows-specific anyway.
 #define _WIN32_DCOM
-#include "win.h"
+#include "lib/sysdep/os/win/win.h"
 #include <comdef.h>	// VARIANT
 typedef std::map<std::wstring, VARIANT> WmiMap;
 

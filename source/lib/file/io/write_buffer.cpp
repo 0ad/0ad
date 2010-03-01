@@ -21,12 +21,12 @@
  */
 
 #include "precompiled.h"
-#include "write_buffer.h"
+#include "lib/file/io/write_buffer.h"
 
 #include "lib/bits.h"	// IsAligned
 #include "lib/sysdep/cpu.h"
-#include "io.h"
-#include "io_align.h"
+#include "lib/file/io/io.h"
+#include "lib/file/io/io_align.h"
 
 
 WriteBuffer::WriteBuffer()

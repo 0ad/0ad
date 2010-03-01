@@ -25,9 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "tsc.h"
+#include "lib/sysdep/os/win/whrt/tsc.h"
 
-#include "counter.h"
+#include "lib/sysdep/os/win/whrt/counter.h"
 
 #include "lib/bits.h"
 #include "lib/sysdep/os_cpu.h"

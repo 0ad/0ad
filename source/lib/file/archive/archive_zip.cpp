@@ -25,21 +25,21 @@
  */
 
 #include "precompiled.h"
-#include "archive_zip.h"
+#include "lib/file/archive/archive_zip.h"
 
 #include <time.h>
 #include <limits>
 
 #include "lib/bits.h"
 #include "lib/byte_order.h"
-#include "lib/wchar.h"	// wstring_from_utf8
+#include "lib/utf8.h"	// wstring_from_utf8
 #include "lib/fat_time.h"
 #include "lib/path_util.h"
 #include "lib/allocators/pool.h"
 #include "lib/sysdep/cpu.h"		// cpu_memcpy
-#include "archive.h"
-#include "codec_zlib.h"
-#include "stream.h"
+#include "lib/file/archive/archive.h"
+#include "lib/file/archive/codec_zlib.h"
+#include "lib/file/archive/stream.h"
 #include "lib/file/file.h"
 #include "lib/file/io/io.h"
 #include "lib/file/io/io_align.h"	// BLOCK_SIZE

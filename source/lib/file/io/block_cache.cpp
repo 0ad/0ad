@@ -25,14 +25,14 @@
  */
 
 #include "precompiled.h"
-#include "block_cache.h"
+#include "lib/file/io/block_cache.h"
 
 #include "lib/config2.h"	// CONFIG2_CACHE_READ_ONLY
 #include "lib/file/common/file_stats.h"
 #include "lib/lockfree.h"
 #include "lib/allocators/pool.h"
 #include "lib/fnv_hash.h"
-#include "io_align.h"
+#include "lib/file/io/io_align.h"
 
 
 //-----------------------------------------------------------------------------

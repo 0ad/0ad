@@ -25,16 +25,16 @@
  */
 
 #include "precompiled.h"
-#include "counter.h"
+#include "lib/sysdep/os/win/whrt/counter.h"
 
 #include "lib/bits.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 
-#include "tsc.h"
-#include "hpet.h"
-#include "pmt.h"
-#include "qpc.h"
-#include "tgt.h"
+#include "lib/sysdep/os/win/whrt/tsc.h"
+#include "lib/sysdep/os/win/whrt/hpet.h"
+#include "lib/sysdep/os/win/whrt/pmt.h"
+#include "lib/sysdep/os/win/whrt/qpc.h"
+#include "lib/sysdep/os/win/whrt/tgt.h"
 // to add a new counter type, simply include its header here and
 // insert a case in ConstructCounterAt's switch statement.
 

@@ -28,8 +28,8 @@
 
 #if 0
 
-#include "self_test.h"
-#include "timer.h"
+#include "lib/self_test.h"
+#include "lib/timer.h"
 
 // checked by debug_OnAssertionFailure; disables asserts if true (see above).
 // set/cleared by self_test_run.

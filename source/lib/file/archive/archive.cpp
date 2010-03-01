@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "archive.h"
+#include "lib/file/archive/archive.h"
 
 ERROR_ASSOCIATE(ERR::ARCHIVE_UNKNOWN_FORMAT, L"Unknown archive format", -1);
 ERROR_ASSOCIATE(ERR::ARCHIVE_UNKNOWN_METHOD, L"Unknown compression method", -1);

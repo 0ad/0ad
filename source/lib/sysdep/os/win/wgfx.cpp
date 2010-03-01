@@ -27,9 +27,9 @@
 #include "precompiled.h"
 #include "lib/sysdep/gfx.h"
 
-#include "wdll_ver.h"
-#include "win.h"
-#include "wmi.h"
+#include "lib/sysdep/os/win/wdll_ver.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wmi.h"
 
 #if MSC_VERSION
 #pragma comment(lib, "advapi32.lib")	// registry

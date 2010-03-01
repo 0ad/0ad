@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "wmi.h"
+#include "lib/sysdep/os/win/wmi.h"
 
 #include <wbemidl.h>
 

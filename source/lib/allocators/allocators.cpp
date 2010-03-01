@@ -25,12 +25,12 @@
  */
 
 #include "precompiled.h"
-#include "allocators.h"
+#include "lib/allocators/allocators.h"
 
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/bits.h"
 
-#include "mem_util.h"
+#include "lib/allocators/mem_util.h"
 
 
 //-----------------------------------------------------------------------------

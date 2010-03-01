@@ -21,9 +21,9 @@
  */
 
 #include "precompiled.h"
-#include "shared_ptr.h"
+#include "lib/allocators/shared_ptr.h"
 
-#include "allocators.h"	// AllocatorChecker
+#include "lib/allocators/allocators.h"	// AllocatorChecker
 
 
 #ifndef NDEBUG

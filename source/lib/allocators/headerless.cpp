@@ -25,10 +25,10 @@
  */
 
 #include "precompiled.h"
-#include "headerless.h"
+#include "lib/allocators/headerless.h"
 
-#include "mem_util.h"
-#include "pool.h"
+#include "lib/allocators/mem_util.h"
+#include "lib/allocators/pool.h"
 #include "lib/bits.h"
 
 

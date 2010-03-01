@@ -21,7 +21,7 @@
  */
 
 #include "precompiled.h"
-#include "acpi.h"
+#include "lib/sysdep/acpi.h"
 
 #include "lib/sysdep/os/win/mahaf.h"
 #include "lib/sysdep/cpu.h"

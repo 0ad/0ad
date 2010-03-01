@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "rand.h"
+#include "lib/rand.h"
 
 // avoids several common pitfalls; see discussion at
 // http://www.azillionmonkeys.com/qed/random.html

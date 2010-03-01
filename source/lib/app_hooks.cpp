@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "app_hooks.h"
+#include "lib/app_hooks.h"
 
 #include "lib/path_util.h"
 #include "lib/sysdep/sysdep.h"

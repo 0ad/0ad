@@ -29,9 +29,9 @@
 
 #include "lib/allocators/shared_ptr.h"
 #include "lib/path_util.h"	// path_is_subpath
-#include "win.h"
-#include "winit.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/winit.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 
 WINIT_REGISTER_MAIN_INIT(wdir_watch_Init);

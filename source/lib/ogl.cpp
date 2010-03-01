@@ -25,14 +25,14 @@
  */
 
 #include "precompiled.h"
-#include "ogl.h"
+#include "lib/ogl.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
 
 #include "lib/external_libraries/sdl.h"
-#include "debug.h"
+#include "lib/debug.h"
 #include "lib/sysdep/gfx.h"
 #include "lib/res/h_mgr.h"
 
@@ -54,7 +54,7 @@ extern "C"
 #define FUNC(ret, name, params) ret (GL_CALL_CONV *p##name) params;
 #define FUNC2(ret, nameARB, nameCore, version, params) ret (GL_CALL_CONV *p##nameARB) params;
 #define FUNC3(ret, nameARB, nameCore, version, params) ret (GL_CALL_CONV *p##nameCore) params;
-#include "glext_funcs.h"
+#include "lib/glext_funcs.h"
 #undef FUNC3
 #undef FUNC2
 #undef FUNC
@@ -255,7 +255,7 @@ static void importExtensionFunctions()
 		pname = (ret (GL_CALL_CONV*) params)SDL_GL_GetProcAddress(#nameARB);
 #define FUNC2(ret, nameARB, nameCore, version, params) FUNC23(p##nameARB, ret, nameARB, nameCore, version, params)
 #define FUNC3(ret, nameARB, nameCore, version, params) FUNC23(p##nameCore, ret, nameARB, nameCore, version, params)
-#include "glext_funcs.h"
+#include "lib/glext_funcs.h"
 #undef FUNC3
 #undef FUNC2
 #undef FUNC23

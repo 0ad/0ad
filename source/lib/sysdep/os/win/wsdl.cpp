@@ -34,14 +34,14 @@
 #include <queue>
 #include <algorithm>
 
-#include "win.h"
+#include "lib/sysdep/os/win/win.h"
 #include <process.h>	// _beginthreadex
 #include <WindowsX.h>	// message crackers
 
 #include "lib/posix/posix_pthread.h"
 #include "lib/module_init.h"
-#include "wutil.h"
-#include "winit.h"
+#include "lib/sysdep/os/win/wutil.h"
+#include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wmi.h"	// for SDL_GetVideoInfo
 
 #if MSC_VERSION

@@ -27,7 +27,7 @@
 #ifndef INCLUDED_TYPES
 #define INCLUDED_TYPES
 
-#include "posix/posix_types.h"
+#include "lib/posix/posix_types.h"
 
 // defines instead of typedefs so we can #undef conflicting decls
 

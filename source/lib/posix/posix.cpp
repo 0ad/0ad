@@ -21,7 +21,7 @@
  */
 
 #include "precompiled.h"
-#include "posix.h"
+#include "lib/posix/posix.h"
 
 #if ARCH_IA32
 # include "lib/sysdep/arch/ia32/ia32_asm.h"

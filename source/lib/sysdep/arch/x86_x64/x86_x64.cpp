@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "x86_x64.h"
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -40,9 +40,9 @@
 #include "lib/sysdep/os_cpu.h"
 
 #if ARCH_AMD64
-# include "../amd64/amd64_asm.h"
+# include "lib/sysdep/arch/amd64/amd64_asm.h"
 #else
-# include "../ia32/ia32_asm.h"
+# include "lib/sysdep/arch/ia32/ia32_asm.h"
 #endif
 
 #if MSC_VERSION

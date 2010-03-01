@@ -25,12 +25,12 @@
  */
 
 #include "precompiled.h"
-#include "path_util.h"
+#include "lib/path_util.h"
 
 #include <cstring>
 #include <cerrno>
 
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 
 
 ERROR_ASSOCIATE(ERR::PATH_EMPTY, L"path is an empty string", -1);

@@ -25,13 +25,13 @@
  */
 
 #include "precompiled.h"
-#include "wdll_ver.h"
+#include "lib/sysdep/os/win/wdll_ver.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "win.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 #include "lib/allocators/shared_ptr.h"
 

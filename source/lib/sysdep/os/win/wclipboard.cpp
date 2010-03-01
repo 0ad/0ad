@@ -23,8 +23,8 @@
 #include "precompiled.h"
 #include "lib/sysdep/clipboard.h"
 
-#include "win.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 // caller is responsible for freeing *hMem.
 static LibError SetClipboardText(const wchar_t* text, HGLOBAL* hMem)

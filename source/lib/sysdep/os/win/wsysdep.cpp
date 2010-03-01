@@ -27,12 +27,12 @@
 #include "precompiled.h"
 #include "lib/sysdep/sysdep.h"
 
-#include "win.h"	// includes windows.h; must come before shlobj
+#include "lib/sysdep/os/win/win.h"	// includes windows.h; must come before shlobj
 #include <shlobj.h>	// pick_dir
 
 #include "lib/sysdep/clipboard.h"
-#include "error_dialog.h"
-#include "wutil.h"
+#include "lib/sysdep/os/win/error_dialog.h"
+#include "lib/sysdep/os/win/wutil.h"
 
 
 

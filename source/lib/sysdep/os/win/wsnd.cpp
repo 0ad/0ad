@@ -33,10 +33,10 @@
 #include <set>
 
 #include "lib/path_util.h"
-#include "wdll_ver.h"
-#include "win.h"
-#include "wutil.h"
-#include "wmi.h"
+#include "lib/sysdep/os/win/wdll_ver.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
+#include "lib/sysdep/os/win/wmi.h"
 
 
 static bool IsOpenAlDllName(const std::wstring& name)

@@ -25,12 +25,12 @@
  */
 
 #include "precompiled.h"
-#include "vfs_lookup.h"
+#include "lib/file/vfs/vfs_lookup.h"
 
 #include "lib/path_util.h"	// path_foreach_component
-#include "vfs.h"	// error codes
-#include "vfs_tree.h"
-#include "vfs_populate.h"
+#include "lib/file/vfs/vfs.h"	// error codes
+#include "lib/file/vfs/vfs_tree.h"
+#include "lib/file/vfs/vfs_populate.h"
 
 #include "lib/timer.h"
 

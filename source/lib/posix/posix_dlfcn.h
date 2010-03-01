@@ -26,4 +26,4 @@
 # include <dlfcn.h>
 #endif
 
-#include "posix_errno.h"	// for user convenience
+#include "lib/posix/posix_errno.h"	// for user convenience

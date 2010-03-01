@@ -26,7 +26,7 @@
 
 #include "precompiled.h"
 #if 0	// JW: disabled, not used
-#include "lockfree.h"
+#include "lib/lockfree.h"
 
 #include <set>
 #include <algorithm>
@@ -35,8 +35,8 @@
 #include "lib/bits.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/sysdep.h"
-#include "timer.h"
-#include "module_init.h"
+#include "lib/timer.h"
+#include "lib/module_init.h"
 
 
 /*

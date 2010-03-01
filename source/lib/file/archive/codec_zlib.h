@@ -23,7 +23,7 @@
 #ifndef INCLUDED_CODEC_ZLIB
 #define INCLUDED_CODEC_ZLIB
 
-#include "codec.h"
+#include "lib/file/archive/codec.h"
 
 extern PICodec CreateCodec_ZLibNone();
 extern PICodec CreateCompressor_ZLibDeflate();

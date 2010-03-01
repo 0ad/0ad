@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "mem_util.h"
+#include "lib/allocators/mem_util.h"
 
 #include "lib/bits.h"				// round_up
 #include "lib/posix/posix_mman.h"

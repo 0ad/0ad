@@ -21,7 +21,7 @@
  */
 
 #include "precompiled.h"
-#include "vfs.h"
+#include "lib/file/vfs/vfs.h"
 
 #include "lib/allocators/shared_ptr.h"
 #include "lib/path_util.h"
@@ -29,10 +29,10 @@
 #include "lib/file/common/trace.h"
 #include "lib/file/archive/archive.h"
 #include "lib/file/io/io.h"
-#include "vfs_tree.h"
-#include "vfs_lookup.h"
-#include "vfs_populate.h"
-#include "file_cache.h"
+#include "lib/file/vfs/vfs_tree.h"
+#include "lib/file/vfs/vfs_lookup.h"
+#include "lib/file/vfs/vfs_populate.h"
+#include "lib/file/vfs/file_cache.h"
 
 ERROR_ASSOCIATE(ERR::VFS_DIR_NOT_FOUND, L"VFS directory not found", -1);
 ERROR_ASSOCIATE(ERR::VFS_FILE_NOT_FOUND, L"VFS file not found", -1);

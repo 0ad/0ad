@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "cpu.h"
+#include "lib/sysdep/cpu.h"
 
 ERROR_ASSOCIATE(ERR::CPU_FEATURE_MISSING, L"This CPU doesn't support a required feature", -1);
 ERROR_ASSOCIATE(ERR::CPU_UNKNOWN_OPCODE, L"Disassembly failed", -1);

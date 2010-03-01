@@ -21,14 +21,14 @@
  */
 
 #include "precompiled.h"
-#include "io.h"
+#include "lib/file/io/io.h"
 
 #include "lib/allocators/allocators.h"	// AllocatorChecker
 #include "lib/sysdep/cpu.h"	// cpu_memcpy
 #include "lib/file/file.h"
 #include "lib/file/common/file_stats.h"
-#include "block_cache.h"
-#include "io_align.h"
+#include "lib/file/io/block_cache.h"
+#include "lib/file/io/io_align.h"
 
 static const size_t ioDepth = 16;
 

@@ -29,9 +29,9 @@
 // which costs time and accuracy.
 
 #include "precompiled.h"
-#include "wtime.h"
+#include "lib/sysdep/os/win/wposix/wtime.h"
 
-#include "wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
 #include "lib/sysdep/cpu.h"				// cpu_i64FromDouble
 #include "lib/sysdep/os/win/whrt/whrt.h"
 

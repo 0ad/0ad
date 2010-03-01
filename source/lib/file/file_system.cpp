@@ -21,14 +21,14 @@
  */
 
 #include "precompiled.h"
-#include "file_system.h"
+#include "lib/file/file_system.h"
 
 #include <vector>
 #include <algorithm>
 #include <string>
 
 #include "lib/path_util.h"
-#include "lib/wchar.h"	// wstring_from_utf8
+#include "lib/utf8.h"	// wstring_from_utf8
 #include "lib/posix/posix_filesystem.h"
 
 

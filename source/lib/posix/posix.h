@@ -66,16 +66,16 @@ need only be renamed (e.g. _open, _stat).
 # include "lib/sysdep/os/win/wposix/wposix.h"
 #endif
 
-#include "posix_types.h"
-#include "posix_aio.h"
-#include "posix_dlfcn.h"
-#include "posix_filesystem.h"
-#include "posix_mman.h"
-#include "posix_pthread.h"
-//#include "posix_sock.h"
-//#include "posix_terminal.h"
-//#include "posix_time.h"
-#include "posix_utsname.h"
+#include "lib/posix/posix_types.h"
+#include "lib/posix/posix_aio.h"
+#include "lib/posix/posix_dlfcn.h"
+#include "lib/posix/posix_filesystem.h"
+#include "lib/posix/posix_mman.h"
+#include "lib/posix/posix_pthread.h"
+//#include "lib/posix/posix_sock.h"
+//#include "lib/posix/posix_terminal.h"
+//#include "lib/posix/posix_time.h"
+#include "lib/posix/posix_utsname.h"
 
 
 // note: the following need only be #defined (instead of defining a

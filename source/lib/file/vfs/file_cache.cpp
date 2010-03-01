@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "file_cache.h"
+#include "lib/file/vfs/file_cache.h"
 
 #include "lib/file/common/file_stats.h"
 #include "lib/file/io/io_align.h"       // BLOCK_SIZE

@@ -21,7 +21,7 @@
  */
 
 #include "precompiled.h"
-#include "codec.h"
+#include "lib/file/archive/codec.h"
 
 ICodec::~ICodec()
 {

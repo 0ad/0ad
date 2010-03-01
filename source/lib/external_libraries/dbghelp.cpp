@@ -24,13 +24,13 @@
 
 #if OS_WIN
 
-#include "dbghelp.h"
+#include "lib/external_libraries/dbghelp.h"
 
 // define extension function pointers
 extern "C"
 {
 #define FUNC(ret, name, params) ret (__stdcall *p##name) params;
-#include "dbghelp_funcs.h"
+#include "lib/external_libraries/dbghelp_funcs.h"
 #undef FUNC
 }
 
@@ -39,7 +39,7 @@ void dbghelp_ImportFunctions()
 	HMODULE hDbghelp = LoadLibraryW(L"dbghelp.dll");
 	debug_assert(hDbghelp);
 #define FUNC(ret, name, params) p##name = (ret (__stdcall*) params)GetProcAddress(hDbghelp, #name);
-#include "dbghelp_funcs.h"
+#include "lib/external_libraries/dbghelp_funcs.h"
 #undef FUNC
 }
 

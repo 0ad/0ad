@@ -25,13 +25,13 @@
  */
 
 #include "precompiled.h"
-#include "vfs_populate.h"
+#include "lib/file/vfs/vfs_populate.h"
 
 #include "lib/path_util.h"
 #include "lib/file/archive/archive_zip.h"
-#include "vfs_tree.h"
-#include "vfs_lookup.h"
-#include "vfs.h"	// error codes
+#include "lib/file/vfs/vfs_tree.h"
+#include "lib/file/vfs/vfs_lookup.h"
+#include "lib/file/vfs/vfs.h"	// error codes
 
 
 static std::vector<const VfsFile*> s_looseFiles;

@@ -25,15 +25,15 @@
  */
 
 #include "precompiled.h"
-#include "qpc.h"
+#include "lib/sysdep/os/win/whrt/qpc.h"
 
-#include "counter.h"
+#include "lib/sysdep/os/win/whrt/counter.h"
 
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wutil.h"	// wutil_argv
-#include "pit.h"	// PIT_FREQ
-#include "pmt.h"	// PMT_FREQ
+#include "lib/sysdep/os/win/whrt/pit.h"	// PIT_FREQ
+#include "lib/sysdep/os/win/whrt/pmt.h"	// PMT_FREQ
 
 
 class CounterQPC : public ICounter

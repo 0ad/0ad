@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "debug_stl.h"
+#include "lib/debug_stl.h"
 
 #include <deque>
 #include <map>
@@ -33,7 +33,7 @@
 #include <cassert>
 #include <list>
 
-#include "regex.h"
+#include "lib/regex.h"
 
 
 ERROR_ASSOCIATE(ERR::STL_CNT_UNKNOWN, L"Unknown STL container type_name", -1);

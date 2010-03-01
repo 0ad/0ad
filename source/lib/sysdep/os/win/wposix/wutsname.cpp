@@ -21,11 +21,11 @@
  */
 
 #include "precompiled.h"
-#include "wutsname.h"
+#include "lib/sysdep/os/win/wposix/wutsname.h"
 
-#include "../wutil.h"
+#include "lib/sysdep/os/win/wutil.h"
 
-#include "wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
 
 
 int uname(struct utsname* un)

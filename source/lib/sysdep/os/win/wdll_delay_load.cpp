@@ -25,11 +25,11 @@
  */
 
 #include "precompiled.h"
-#include "wdll_delay_load.h"
+#include "lib/sysdep/os/win/wdll_delay_load.h"
 
 #include "lib/sysdep/cpu.h"
-#include "win.h"
-#include "winit.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/winit.h"
 
 WINIT_REGISTER_LATE_SHUTDOWN2(wdll_Shutdown);	// last - DLLs are unloaded here
 

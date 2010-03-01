@@ -21,17 +21,17 @@
  */
 
 #include "precompiled.h"
-#include "wdbg_heap.h"
+#include "lib/sysdep/os/win/wdbg_heap.h"
 
-#include "win.h"
+#include "lib/sysdep/os/win/win.h"
 #include <crtdbg.h>
 #include <excpt.h>
 
 #include "lib/external_libraries/dbghelp.h"
 #include "lib/sysdep/cpu.h"	// cpu_AtomicAdd
-#include "winit.h"
-#include "wdbg.h"       // wdbg_printf
-#include "wdbg_sym.h"   // wdbg_sym_WalkStack
+#include "lib/sysdep/os/win/winit.h"
+#include "lib/sysdep/os/win/wdbg.h"       // wdbg_printf
+#include "lib/sysdep/os/win/wdbg_sym.h"   // wdbg_sym_WalkStack
 
 
 WINIT_REGISTER_EARLY_INIT2(wdbg_heap_Init);	// wutil -> wdbg_heap

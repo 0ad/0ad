@@ -21,4 +21,4 @@
  */
 
 #include "precompiled.h"
-#include "vfs_path.h"
+#include "lib/file/vfs/vfs_path.h"

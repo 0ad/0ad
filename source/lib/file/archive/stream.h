@@ -27,7 +27,7 @@
 #ifndef INCLUDED_STREAM
 #define INCLUDED_STREAM
 
-#include "codec.h"
+#include "lib/file/archive/codec.h"
 
 // note: this is similar in function to std::vector, but we don't need
 // iterators etc. and would prefer to avoid initializing each byte.

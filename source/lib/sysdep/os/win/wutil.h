@@ -31,7 +31,7 @@
 #error "wutil.h: do not include if not compiling for Windows"
 #endif
 
-#include "win.h"
+#include "lib/sysdep/os/win/win.h"
 
 template<typename H>
 bool wutil_IsValidHandle(H h)

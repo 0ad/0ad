@@ -25,9 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "pmt.h"
+#include "lib/sysdep/os/win/whrt/pmt.h"
 
-#include "counter.h"
+#include "lib/sysdep/os/win/whrt/counter.h"
 
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/acpi.h"

@@ -25,13 +25,13 @@
  */
 
 #include "precompiled.h"
-#include "waio.h"
+#include "lib/sysdep/os/win/wposix/waio.h"
 
-#include "crt_posix.h"      // correct definitions of _open() etc.
+#include "lib/sysdep/os/win/wposix/crt_posix.h"      // correct definitions of _open() etc.
 
-#include "wposix_internal.h"
-#include "wfilesystem.h"    // mode_t
-#include "wtime.h"          // timespec
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/wfilesystem.h"    // mode_t
+#include "lib/sysdep/os/win/wposix/wtime.h"          // timespec
 #include "lib/sysdep/cpu.h"
 #include "lib/bits.h"
 

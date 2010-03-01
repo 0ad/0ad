@@ -25,9 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "byte_order.h"
+#include "lib/byte_order.h"
 
-#include "bits.h"
+#include "lib/bits.h"
 
 #ifndef swap16
 

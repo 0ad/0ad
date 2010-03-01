@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "snd.h"
+#include "lib/sysdep/snd.h"
 
 #if OS_WIN
 # include "lib/sysdep/os/win/wsnd.h"

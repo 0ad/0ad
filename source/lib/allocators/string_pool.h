@@ -28,7 +28,7 @@
 #define INCLUDED_STRING_POOL
 
 #include "lib/adts.h"	// DynHashTbl
-#include "pool.h"
+#include "lib/allocators/pool.h"
 
 class StringPool
 {

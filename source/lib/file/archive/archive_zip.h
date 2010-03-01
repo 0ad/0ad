@@ -27,7 +27,7 @@
 #ifndef INCLUDED_ARCHIVE_ZIP
 #define INCLUDED_ARCHIVE_ZIP
 
-#include "archive.h"
+#include "lib/file/archive/archive.h"
 
 LIB_API PIArchiveReader CreateArchiveReader_Zip(const fs::wpath& archivePathname);
 LIB_API PIArchiveWriter CreateArchiveWriter_Zip(const fs::wpath& archivePathname);

@@ -21,11 +21,11 @@
  */
 
 #include "precompiled.h"
-#include "stream.h"
+#include "lib/file/archive/stream.h"
 
 #include "lib/allocators/allocators.h"	// page_aligned_alloc
 #include "lib/allocators/shared_ptr.h"
-#include "codec.h"
+#include "lib/file/archive/codec.h"
 //#include "lib/timer.h"
 
 //TIMER_ADD_CLIENT(tc_stream);

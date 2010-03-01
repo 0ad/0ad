@@ -25,7 +25,7 @@
 #include "lib/lib.h"
 #include "lib/path_util.h"
 #include "lib/secure_crt.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/posix/posix.h"	// fminf etc.

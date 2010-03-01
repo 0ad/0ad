@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "whrt.h"
+#include "lib/sysdep/os/win/whrt/whrt.h"
 
 #include <process.h>	// _beginthreadex
 
@@ -36,7 +36,7 @@
 #include "lib/adts.h"
 #include "lib/bits.h"
 
-#include "counter.h"
+#include "lib/sysdep/os/win/whrt/counter.h"
 
 WINIT_REGISTER_EARLY_INIT2(whrt_Init);	// wutil -> whrt -> wtime
 WINIT_REGISTER_LATE_SHUTDOWN(whrt_Shutdown);

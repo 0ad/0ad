@@ -65,7 +65,7 @@ scope
 #include <limits>	// numeric_limits
 #include <stdexcept>	// out_of_range
 
-#include "config.h"
+#include "lib/config.h"
 
 
 const size_t KiB = size_t(1) << 10;

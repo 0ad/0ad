@@ -29,9 +29,9 @@
 // fairly slow)
 
 #include "precompiled.h"
-#include "tgt.h"
+#include "lib/sysdep/os/win/whrt/tgt.h"
 
-#include "counter.h"
+#include "lib/sysdep/os/win/whrt/counter.h"
 
 #include "lib/sysdep/os/win/win.h"
 #include <mmsystem.h>

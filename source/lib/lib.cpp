@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "lib.h"
+#include "lib/lib.h"
 
 #include <stdlib.h>
 #include <string.h>

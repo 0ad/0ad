@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "file_stats.h"
+#include "lib/file/common/file_stats.h"
 
 #include <set>
 

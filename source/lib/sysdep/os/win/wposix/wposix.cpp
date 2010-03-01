@@ -25,9 +25,9 @@
  */
 
 #include "precompiled.h"
-#include "wposix.h"
+#include "lib/sysdep/os/win/wposix/wposix.h"
 
-#include "wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
 #include "lib/bits.h"
 
 WINIT_REGISTER_CRITICAL_INIT(wposix_Init);	// wposix -> error handling

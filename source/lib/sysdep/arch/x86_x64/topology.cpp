@@ -25,14 +25,14 @@
  */
 
 #include "precompiled.h"
-#include "topology.h"
+#include "lib/sysdep/arch/x86_x64/topology.h"
 
 #include <set>
 
 #include "lib/bits.h"
 #include "lib/sysdep/cpu.h"	// ERR::CPU_FEATURE_MISSING
 #include "lib/sysdep/os_cpu.h"
-#include "x86_x64.h"
+#include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
 
 //-----------------------------------------------------------------------------

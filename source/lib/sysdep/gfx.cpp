@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "gfx.h"
+#include "lib/sysdep/gfx.h"
 
 #include "lib/external_libraries/sdl.h"
 #include "lib/ogl.h"

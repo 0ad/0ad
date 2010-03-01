@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "vfs_tree.h"
+#include "lib/file/vfs/vfs_tree.h"
 
 #include <cstdio>
 

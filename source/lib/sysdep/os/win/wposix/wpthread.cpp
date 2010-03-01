@@ -25,16 +25,16 @@
  */
 
 #include "precompiled.h"
-#include "wpthread.h"
+#include "lib/sysdep/os/win/wposix/wpthread.h"
 
 #include <new>
 #include <process.h>
 
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 
-#include "wposix_internal.h"
-#include "wtime.h"			// timespec
-#include "../wseh.h"		// wseh_ExceptionFilter
+#include "lib/sysdep/os/win/wposix/wposix_internal.h"
+#include "lib/sysdep/os/win/wposix/wtime.h"			// timespec
+#include "lib/sysdep/os/win/wseh.h"		// wseh_ExceptionFilter
 
 
 static HANDLE HANDLE_from_pthread(pthread_t p)

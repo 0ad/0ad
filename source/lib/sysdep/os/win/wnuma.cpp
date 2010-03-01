@@ -27,10 +27,10 @@
 #include "lib/timer.h"
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/acpi.h"
-#include "win.h"
-#include "wutil.h"
-#include "wcpu.h"
-#include "winit.h"
+#include "lib/sysdep/os/win/win.h"
+#include "lib/sysdep/os/win/wutil.h"
+#include "lib/sysdep/os/win/wcpu.h"
+#include "lib/sysdep/os/win/winit.h"
 #include <Psapi.h>
 
 

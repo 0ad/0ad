@@ -25,7 +25,7 @@
  */
 
 #include "precompiled.h"
-#include "bits.h"
+#include "lib/bits.h"
 
 static inline u32 get_float_bits(const float x)
 {
