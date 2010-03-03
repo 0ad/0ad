@@ -23,7 +23,7 @@
 #include "precompiled.h"
 
 #include "lib/lib.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/gfx.h"

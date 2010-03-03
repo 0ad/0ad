@@ -27,7 +27,7 @@
 #include <wchar.h>
 
 #include "lib/external_libraries/sdl.h"
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/cursor.h"
 #include "udbg.h"

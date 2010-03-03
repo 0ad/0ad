@@ -27,7 +27,7 @@
 #include "precompiled.h"
 #include "lib/posix/posix_filesystem.h"
 
-#include "lib/wchar.h"
+#include "lib/utf8.h"
 #include "lib/path_util.h"
 
 struct WDIR
