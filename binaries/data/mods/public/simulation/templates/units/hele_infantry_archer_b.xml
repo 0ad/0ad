@@ -22,6 +22,11 @@
   <UnitMotion>
     <WalkSpeed>6.8</WalkSpeed>
   </UnitMotion>
+  <Attack>
+    <Pierce>35.0</Pierce>
+    <Range>36.0</Range>
+    <MinRange>12.0</MinRange>
+  </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_archer_b.xml</Actor>
   </VisualActor>

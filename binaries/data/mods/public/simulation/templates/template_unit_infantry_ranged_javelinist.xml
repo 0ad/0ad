@@ -4,4 +4,14 @@
     <GenericName>Infantry Javelinist</GenericName>
     <IconCell>21</IconCell>
   </Identity>
+  <Attack>
+    <Hack>0.0</Hack>
+    <Pierce>45.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>32</Range>
+    <MinRange>8.0</MinRange>
+    <ProjectileSpeed>30.0</ProjectileSpeed>
+    <PrepareTime>1200</PrepareTime>
+    <RepeatTime>2000</RepeatTime>
+  </Attack>
 </Entity>

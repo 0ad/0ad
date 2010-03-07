@@ -4,4 +4,14 @@
     <GenericName>Ranged Infantry</GenericName>
     <IconCell>43</IconCell>
   </Identity>
+  <Attack>
+    <Hack>0.0</Hack>
+    <Pierce>1.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>1.0</Range>
+    <MinRange>1.0</MinRange>
+    <ProjectileSpeed>28.0</ProjectileSpeed>
+    <PrepareTime>900</PrepareTime>
+    <RepeatTime>1500</RepeatTime>
+  </Attack>
 </Entity>

@@ -21,4 +21,13 @@
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>
   </UnitMotion>
+  <Attack>
+    <Hack>0.0</Hack>
+    <Pierce>50.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>56.0</Range>
+    <ProjectileSpeed>25.0</ProjectileSpeed>
+    <PrepareTime>1200</PrepareTime>
+    <RepeatTime>2000</RepeatTime>
+  </Attack>
 </Entity>

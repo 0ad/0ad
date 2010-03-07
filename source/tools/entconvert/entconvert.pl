@@ -148,19 +148,25 @@ sub convert {
         $out .= qq{$i</UnitMotion>\n};
     }
 
-    if ($data->{Actions}[0]{Attack}[0]{Melee}) {
+    die if $data->{Actions}[0]{Attack}[0]{Melee} and $data->{Actions}[0]{Attack}[0]{Ranged}; # only allow one at once
+    my $attack = $data->{Actions}[0]{Attack}[0]{Melee} || $data->{Actions}[0]{Attack}[0]{Ranged};
+    if ($attack) {
         $out .= qq{$i<Attack>\n};
-        for my $n (qw(Hack Pierce Crush Range)) {
-            $out .= qq{$i$i<$n>$data->{Actions}[0]{Attack}[0]{Melee}[0]{$n}[0]</$n>\n} if $data->{Actions}[0]{Attack}[0]{Melee}[0]{$n};
+        for my $n (qw(Hack Pierce Crush Range MinRange ProjectileSpeed)) {
+            $out .= qq{$i$i<$n>$attack->[0]{$n}[0]</$n>\n} if $attack->[0]{$n};
         }
-        if ($data->{Actions}[0]{Attack}[0]{Melee}[0]{Speed}) {
-            my $s = $data->{Actions}[0]{Attack}[0]{Melee}[0]{Speed}[0];
+        if ($attack->[0]{Speed}) {
+            my $s = $attack->[0]{Speed}[0];
+            # TODO: are these values sane?
             if ($s eq '1000') {
                 $out .= qq{$i$i<PrepareTime>600</PrepareTime>\n};
                 $out .= qq{$i$i<RepeatTime>1000</RepeatTime>\n};
-            } elsif ($s eq '1500') {
+            } elsif ($s eq '1500' or $s eq '1520' or $s eq '1510') {
                 $out .= qq{$i$i<PrepareTime>900</PrepareTime>\n};
                 $out .= qq{$i$i<RepeatTime>1500</RepeatTime>\n};
+            } elsif ($s eq '2000') {
+                $out .= qq{$i$i<PrepareTime>1200</PrepareTime>\n};
+                $out .= qq{$i$i<RepeatTime>2000</RepeatTime>\n};
             } else {
                 die $s;
             }

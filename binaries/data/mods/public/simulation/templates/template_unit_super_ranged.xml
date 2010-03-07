@@ -19,6 +19,16 @@
   <UnitMotion>
     <WalkSpeed>7.0</WalkSpeed>
   </UnitMotion>
+  <Attack>
+    <Hack>0.0</Hack>
+    <Pierce>55.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>28</Range>
+    <MinRange>8.0</MinRange>
+    <ProjectileSpeed>25.0</ProjectileSpeed>
+    <PrepareTime>1200</PrepareTime>
+    <RepeatTime>2000</RepeatTime>
+  </Attack>
   <Footprint>
     <Circle radius="0.5"/>
     <Height>2.5</Height>

@@ -11,6 +11,12 @@
   <UnitMotion>
     <WalkSpeed>11.2</WalkSpeed>
   </UnitMotion>
+  <Attack>
+    <Hack>0.0</Hack>
+    <Pierce>32.0</Pierce>
+    <Crush>0.0</Crush>
+    <Range>40.0</Range>
+  </Attack>
   <VisualActor>
     <Actor>units/celts/cavalry_javelinist_a.xml</Actor>
   </VisualActor>
