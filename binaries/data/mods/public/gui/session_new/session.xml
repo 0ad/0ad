@@ -37,6 +37,12 @@
 			]]></action>
 		</object>
 
+		<!-- Dev/cheat commands -->
+		<object size="100%-256 32 100%-16 128">
+			<object size="0 0 100%-18 16" type="text" text_align="right">Control all units</object>
+			<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="wheatCrossBox"/>
+		</object>
+
 		<!-- Debug text -->
 		<object name="debug"
 			type="text"

@@ -1,3 +1,7 @@
+var g_DevSettings = {
+	controlAll: false
+};
+
 function init(initData, hotloadData)
 {
 	if (hotloadData)
@@ -16,6 +20,10 @@ function getHotloadData()
 
 function onTick()
 {
+	g_DevSettings.controlAll = getGUIObjectByName("devControlAll").checked;
+	// TODO: at some point this controlAll needs to disable the simulation code's
+	// player checks (once it has some player checks)
+
 	updateCursor();
 }
 

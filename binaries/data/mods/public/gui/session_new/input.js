@@ -59,7 +59,7 @@ function determineAction(x, y)
 
 	// If the selection isn't friendly units, no action
 	var player = Engine.GetPlayerID();
-	if (entState.player != player)
+	if (entState.player != player && !g_DevSettings.controlAll)
 		return;
 
 	var targets = Engine.PickEntitiesAtPoint(x, y);
@@ -74,7 +74,7 @@ function determineAction(x, y)
 	var targetState = Engine.GuiInterfaceCall("GetEntityState", targets[0]);
 
 	// Different owner -> attack
-	if (entState.attack && targetState.player != player)
+	if (entState.attack && targetState.player != entState.player)
 		return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
 
 	var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
