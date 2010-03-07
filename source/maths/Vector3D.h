@@ -23,6 +23,8 @@
 #ifndef INCLUDED_VECTOR3D
 #define INCLUDED_VECTOR3D
 
+class CFixedVector3D;
+
 class CVector3D
 {
 	public:
@@ -31,6 +33,7 @@ class CVector3D
 	public:
 		CVector3D () : X(0.0f), Y(0.0f), Z(0.0f) {}
 		CVector3D (float x, float y, float z) : X(x), Y(y), Z(z) {}
+		CVector3D (const CFixedVector3D& v);
 
 		int operator!() const;
 

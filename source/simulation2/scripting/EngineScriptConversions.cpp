@@ -189,6 +189,30 @@ template<> jsval ScriptInterface::ToJSVal<CFixed_23_8>(JSContext* cx, const CFix
 	return rval;
 }
 
+template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, jsval v, CFixedVector3D& out)
+{
+	ScriptInterface::LocalRootScope scope(cx);
+	if (!scope.OK())
+		return false;
+
+	if (!JSVAL_IS_OBJECT(v))
+		return false; // TODO: report type error
+	JSObject* obj = JSVAL_TO_OBJECT(v);
+
+	jsval p;
+
+	if (!JS_GetProperty(cx, obj, "x", &p)) return false; // TODO: report type errors
+	if (!FromJSVal(cx, p, out.X)) return false;
+
+	if (!JS_GetProperty(cx, obj, "y", &p)) return false;
+	if (!FromJSVal(cx, p, out.Y)) return false;
+
+	if (!JS_GetProperty(cx, obj, "z", &p)) return false;
+	if (!FromJSVal(cx, p, out.Z)) return false;
+
+	return true;
+}
+
 template<> jsval ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, const CFixedVector3D& val)
 {
 	ScriptInterface::LocalRootScope scope(cx);

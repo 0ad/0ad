@@ -81,6 +81,9 @@ COMPONENT(PlayerManagerScripted)
 INTERFACE(Position)
 COMPONENT(Position) // must be before VisualActor
 
+INTERFACE(ProjectileManager)
+COMPONENT(ProjectileManager)
+
 INTERFACE(Selectable)
 COMPONENT(Selectable)
 

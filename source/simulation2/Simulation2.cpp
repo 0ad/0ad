@@ -58,9 +58,11 @@ public:
 
 		// Add native system components:
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_TemplateManager, noParam);
-		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
+
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_CommandQueue, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, noParam);
+		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
+		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
 
 		// Add scripted system components:
 		if (!skipScriptedComponents)

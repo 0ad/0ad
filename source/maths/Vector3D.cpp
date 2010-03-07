@@ -27,6 +27,12 @@
 #include <math.h>
 #include <float.h>
 #include "MathUtil.h"
+#include "FixedVector3D.h"
+
+CVector3D::CVector3D(const CFixedVector3D& v) :
+	X(v.X.ToFloat()), Y(v.Y.ToFloat()), Z(v.Z.ToFloat())
+{
+}
 
 int CVector3D::operator ! () const 
 {

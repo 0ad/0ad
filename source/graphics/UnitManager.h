@@ -26,10 +26,8 @@
 #include <set>
 
 class CUnit;
-class CModel;
 class CVector3D;
 class CEntity;
-class CStr;
 class CObjectManager;
 
 ///////////////////////////////////////////////////////////////////////////////
