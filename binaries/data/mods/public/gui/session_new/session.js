@@ -89,6 +89,17 @@ function updateUnitDisplay()
 	}
 
 	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
+
+	// If the unit has no data (e.g. it was killed), don't try displaying any
+	// data for it. (TODO: it should probably be removed from the selection too;
+	// also need to handle multi-unit selections)
+	if (!entState)
+	{
+		detailsPanel.hidden = true;
+		commandsPanel.hidden = true;
+		return;
+	}
+
 	var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
 
 	detailsPanel.hidden = false;

@@ -20,6 +20,8 @@
 #include "simulation2/system/Component.h"
 #include "ICmpTemplateManager.h"
 
+#include "simulation2/MessageTypes.h"
+
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
@@ -31,8 +33,9 @@ static const wchar_t ACTOR_ROOT[] = L"art/actors/";
 class CCmpTemplateManager : public ICmpTemplateManager
 {
 public:
-	static void ClassInit(CComponentManager& UNUSED(componentManager))
+	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeGloballyToMessageType(MT_Destroy);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(TemplateManager)
@@ -74,9 +77,20 @@ public:
 		}
 	}
 
-	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
+	virtual void HandleMessage(const CSimContext& UNUSED(context), const CMessage& msg, bool UNUSED(global))
 	{
-		// TODO: should listen to entity destruction messages, to clean up m_LatestTemplates
+		switch (msg.GetType())
+		{
+		case MT_Destroy:
+		{
+			const CMessageDestroy& msgData = static_cast<const CMessageDestroy&> (msg);
+
+			// Clean up m_LatestTemplates so it doesn't record any data for destroyed entities
+			m_LatestTemplates.erase(msgData.entity);
+
+			break;
+		}
+		}
 	}
 
 	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::wstring& templateName, int playerID);

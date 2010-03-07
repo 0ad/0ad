@@ -99,9 +99,12 @@ class CMessageDestroy : public CMessage
 public:
 	DEFAULT_MESSAGE_IMPL(Destroy)
 
-	CMessageDestroy()
+	CMessageDestroy(entity_id_t entity) :
+		entity(entity)
 	{
 	}
+
+	entity_id_t entity;
 };
 
 class CMessageOwnershipChanged : public CMessage

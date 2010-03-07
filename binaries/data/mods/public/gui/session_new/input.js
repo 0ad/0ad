@@ -52,8 +52,12 @@ function determineAction(x, y)
 	if (!selection.length)
 		return;
 
-	// If the selection isn't friendly units, no action
+	// If the selection doesn't exist, no action
 	var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
+	if (!entState)
+		return;
+
+	// If the selection isn't friendly units, no action
 	var player = Engine.GetPlayerID();
 	if (entState.player != player)
 		return;

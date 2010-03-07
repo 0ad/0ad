@@ -32,12 +32,21 @@ GuiInterface.prototype.GetSimulationState = function(player)
 GuiInterface.prototype.GetEntityState = function(player, ent)
 {
 	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-	
+
+	// All units must have a template; if not then it's a nonexistent entity id
+	var template = cmpTempMan.GetCurrentTemplateName(ent);
+	if (!template)
+		return null;
+
 	var ret = {
-		"template": cmpTempMan.GetCurrentTemplateName(ent),
-		"position": cmpPosition.GetPosition()
-	};
+		"template": template,
+	}
+
+	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+	if (cmpPosition)
+	{
+		ret.position = cmpPosition.GetPosition();
+	}
 
 	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
 	if (cmpHealth)
@@ -111,7 +120,8 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
 	var cmpSelectable = Engine.QueryInterface(cmd.entity, IID_Selectable);
-	cmpSelectable.SetSelectionHighlight(cmd.colour);
+	if (cmpSelectable)
+		cmpSelectable.SetSelectionHighlight(cmd.colour);
 };
 
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)

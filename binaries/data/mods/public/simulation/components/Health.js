@@ -5,6 +5,8 @@ Health.prototype.Init = function()
 	this.hitpoints = this.GetMaxHitpoints();
 };
 
+//// Interface functions ////
+
 Health.prototype.GetHitpoints = function()
 {
 	return this.hitpoints;
@@ -19,13 +21,52 @@ Health.prototype.Reduce = function(amount)
 {
 	if (amount >= this.hitpoints)
 	{
+		// If this is the first time we reached 0, then die.
+		// (The entity will exist a little while after calling DestroyEntity so this
+		// might get called multiple times)
+		if (this.hitpoints)
+		{
+			this.CreateCorpse();
+			Engine.DestroyEntity(this.entity);
+		}
+
 		this.hitpoints = 0;
-		// TODO: need to destroy this entity, set up a corpse, etc
 	}
 	else
 	{
 		this.hitpoints -= amount;
 	}
 }
+
+//// Private functions ////
+
+Health.prototype.CreateCorpse = function()
+{
+	// Create a static local version of the current entity
+	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var templateName = cmpTempMan.GetCurrentTemplateName(this.entity);
+	var corpse = Engine.AddLocalEntity("preview|" + templateName);
+	// (Maybe this should be some kind of "corpse|" instead of "preview|", if we want
+	// to add things like corpse-removal timers and change the terrain conformance mode)
+
+	// Copy various parameters so it looks just like us
+
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var cmpCorpsePosition = Engine.QueryInterface(corpse, IID_Position);
+	var pos = cmpPosition.GetPosition();
+	cmpCorpsePosition.JumpTo(pos.x, pos.z);
+	var rot = cmpPosition.GetRotation();
+	cmpCorpsePosition.SetYRotation(rot.y);
+	cmpCorpsePosition.SetXZRotation(rot.x, rot.z);
+
+	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	var cmpCorpseOwnership = Engine.QueryInterface(corpse, IID_Ownership);
+	cmpCorpseOwnership.SetOwner(cmpOwnership.GetOwner());
+
+	// Make it fall over
+	var cmpCorpseVisual = Engine.QueryInterface(corpse, IID_Visual);
+	cmpCorpseVisual.SelectAnimation("death", true);
+};
+
 
 Engine.RegisterComponentType(IID_Health, "Health", Health);
