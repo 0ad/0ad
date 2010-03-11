@@ -39,6 +39,13 @@ namespace EntitySelection
  */
 std::vector<entity_id_t> PickEntitiesAtPoint(CSimulation2& simulation, CCamera& camera, int screenX, int screenY);
 
+/**
+ * Finds all selectable entities within the given screen coordinate rectangle,
+ * that belong to player @p owner.
+ * Returns unordered list.
+ */
+std::vector<entity_id_t> PickEntitiesInRect(CSimulation2& simulation, CCamera& camera, int sx0, int sy0, int sx1, int sy1, int owner);
+
 } // namespace
 
 #endif // INCLUDED_SELECTION

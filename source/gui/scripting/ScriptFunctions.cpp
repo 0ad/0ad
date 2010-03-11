@@ -163,6 +163,11 @@ std::vector<entity_id_t> PickEntitiesAtPoint(void* UNUSED(cbdata), int x, int y)
 	return EntitySelection::PickEntitiesAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y);
 }
 
+std::vector<entity_id_t> PickFriendlyEntitiesInRect(void* UNUSED(cbdata), int x0, int y0, int x1, int y1, int player)
+{
+	return EntitySelection::PickEntitiesInRect(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x0, y0, x1, y1, player);
+}
+
 CFixedVector3D GetTerrainAtPoint(void* UNUSED(cbdata), int x, int y)
 {
 	CVector3D pos = g_Game->GetView()->GetCamera()->GetWorldCoordinates(x, y, false);
@@ -200,6 +205,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 
 	// Entity picking
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, &PickEntitiesAtPoint>("PickEntitiesAtPoint");
+	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickFriendlyEntitiesInRect>("PickFriendlyEntitiesInRect");
 	scriptInterface.RegisterFunction<CFixedVector3D, int, int, &GetTerrainAtPoint>("GetTerrainAtPoint");
 
 	// Misc functions

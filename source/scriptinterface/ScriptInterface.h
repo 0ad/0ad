@@ -32,7 +32,7 @@
 // Set the maximum number of function arguments that can be handled
 // (This should be as small as possible (for compiler efficiency),
 // but as large as necessary for all wrapped functions)
-#define SCRIPT_INTERFACE_MAX_ARGS 5
+#define SCRIPT_INTERFACE_MAX_ARGS 6
 
 struct ScriptInterface_impl;
 class ScriptClass;

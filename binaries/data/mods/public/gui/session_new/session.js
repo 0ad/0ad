@@ -6,7 +6,7 @@ function init(initData, hotloadData)
 {
 	if (hotloadData)
 	{
-		g_Selection = hotloadData.selection;
+		g_Selection.selected = hotloadData.selection;
 	}
 
 	onSimulationUpdate();
@@ -15,7 +15,7 @@ function init(initData, hotloadData)
 // Return some data that we'll use when hotloading this file after changes
 function getHotloadData()
 {
-	return { selection: g_Selection };
+	return { selection: g_Selection.selected };
 }
 
 function onTick()
@@ -48,7 +48,7 @@ function updateDebug(simState)
 	var debug = getGUIObjectByName("debug");
 	var text = uneval(simState);
 
-	var selection = getEntitySelection();
+	var selection = g_Selection.toList();
 	if (selection.length)
 	{
 		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
@@ -88,7 +88,7 @@ function updateUnitDisplay()
 	var detailsPanel = getGUIObjectByName("selectionDetails");
 	var commandsPanel = getGUIObjectByName("unitCommands");
 
-	var selection = getEntitySelection();
+	var selection = g_Selection.toList();
 	if (selection.length == 0)
 	{
 		detailsPanel.hidden = true;

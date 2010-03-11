@@ -65,6 +65,7 @@ void OverlayRenderer::RenderOverlays()
 	}
 
 	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
 
 	for (size_t i = 0; i < m->lines.size(); ++i)
 	{
@@ -79,4 +80,6 @@ void OverlayRenderer::RenderOverlays()
 		glInterleavedArrays(GL_V3F, sizeof(float)*3, &line->m_Coords[0]);
 		glDrawArrays(GL_LINE_STRIP, 0, line->m_Coords.size()/3);
 	}
+
+	glDisable(GL_BLEND);
 }

@@ -147,6 +147,13 @@ public:
 		return m_Unit->GetModel()->GetBounds();
 	}
 
+	virtual CVector3D GetPosition()
+	{
+		if (!m_Unit)
+			return CVector3D(0, 0, 0);
+		return m_Unit->GetModel()->GetTransform().GetTranslation();
+	}
+
 	virtual void SelectAnimation(std::string name, bool once, float speed)
 	{
 		if (!m_Unit)

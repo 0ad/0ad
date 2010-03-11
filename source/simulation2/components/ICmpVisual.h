@@ -34,6 +34,19 @@ public:
 	 */
 	virtual CBound GetBounds() = 0;
 
+	/**
+	 * Get the world-space position of the base point of the object's visual representation.
+	 * (Not safe for use in simulation code.)
+	 */
+	virtual CVector3D GetPosition() = 0;
+
+	/**
+	 * Start playing the given animation. If there are multiple possible animations then it will
+	 * pick one at random (not network-synchronised).
+	 * @param name animation name (e.g. "idle", "walk", "melee"; the names are determined by actor XML files)
+	 * @param once if true then the animation will play once and freeze at the final frame, else it will loop
+	 * @param speed some kind of animation speed multiplier (TODO: work out exactly what the scale is)
+	 */
 	virtual void SelectAnimation(std::string name, bool once, float speed) = 0;
 
 	DECLARE_INTERFACE_TYPE(Visual)

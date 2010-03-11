@@ -119,9 +119,12 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 {
-	var cmpSelectable = Engine.QueryInterface(cmd.entity, IID_Selectable);
-	if (cmpSelectable)
-		cmpSelectable.SetSelectionHighlight(cmd.colour);
+	for each (var ent in cmd.entities)
+	{
+		var cmpSelectable = Engine.QueryInterface(ent, IID_Selectable);
+		if (cmpSelectable)
+			cmpSelectable.SetSelectionHighlight(cmd.colour);
+	}
 };
 
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)

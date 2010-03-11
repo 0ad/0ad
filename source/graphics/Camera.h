@@ -55,7 +55,7 @@ class CCamera
 		// everytime the view or projection matrices are
 		// altered.
 		void UpdateFrustum ();
-		CFrustum GetFrustum () { return m_ViewFrustum; }
+		const CFrustum& GetFrustum () { return m_ViewFrustum; }
 
 		void SetViewPort (SViewPort *viewport);
 		const SViewPort& GetViewPort () const { return m_ViewPort; }

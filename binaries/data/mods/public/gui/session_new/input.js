@@ -6,8 +6,9 @@ const SDL_BUTTON_RIGHT = 3;
 
 
 var INPUT_NORMAL = 0;
-var INPUT_DRAGGING = 1;
-var INPUT_BUILDING_PLACEMENT = 2;
+var INPUT_SELECTING = 1;
+var INPUT_BANDBOXING = 2;
+var INPUT_BUILDING_PLACEMENT = 3;
 
 var inputState = INPUT_NORMAL;
 
@@ -46,7 +47,7 @@ function findGatherType(gatherer, supply)
  */
 function determineAction(x, y)
 {
-	var selection = getEntitySelection();
+	var selection = g_Selection.toList();
 
 	// No action if there's no selection
 	if (!selection.length)
@@ -118,6 +119,10 @@ Selection methods: (not all currently implemented)
 
 */
 
+// TODO: it'd probably be nice to have a better state-machine system
+
+var selectionDragStart;
+
 function handleInputAfterGui(ev)
 {
 	switch (inputState)
@@ -125,19 +130,16 @@ function handleInputAfterGui(ev)
 	case INPUT_NORMAL:
 		switch (ev.type)
 		{
+		case "mousemotion":
+			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
+			g_Selection.setHighlightList(ents);
+			return false;
+
 		case "mousebuttondown":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
-				if (!ents.length)
-				{
-					resetEntitySelection();
-					return true;
-				}
-
-				resetEntitySelection();
-				addEntitySelection([ents[0]]);
-
+				selectionDragStart = [ ev.x, ev.y ];
+				inputState = INPUT_SELECTING;
 				return true;
 			}
 			else if (ev.button == SDL_BUTTON_RIGHT)
@@ -146,7 +148,7 @@ function handleInputAfterGui(ev)
 				if (!action)
 					break;
 
-				var selection = getEntitySelection();
+				var selection = g_Selection.toList();
 
 				switch (action.type)
 				{
@@ -164,6 +166,92 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 			}
+			break;
+		}
+		break;
+
+	case INPUT_SELECTING:
+		switch (ev.type)
+		{
+		case "mousemotion":
+			// If the mouse moved further than a limit, switch to bandbox mode
+			var dragDeltaX = ev.x - selectionDragStart[0];
+			var dragDeltaY = ev.y - selectionDragStart[1];
+			var maxDragDelta = 4;
+			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
+			{
+				inputState = INPUT_BANDBOXING;
+				return false;
+			}
+
+			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
+			g_Selection.setHighlightList(ents);
+			return false;
+
+		case "mousebuttonup":
+			if (ev.button == SDL_BUTTON_LEFT)
+			{
+				var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y);
+				if (!ents.length)
+				{
+					g_Selection.reset();
+					
+					inputState = INPUT_NORMAL;
+					return true;
+				}
+
+				g_Selection.reset();
+				g_Selection.addList([ents[0]]);
+
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			break;
+		}
+		break;
+
+	case INPUT_BANDBOXING:
+		switch (ev.type)
+		{
+		case "mousemotion":
+			var x0 = selectionDragStart[0];
+			var y0 = selectionDragStart[1];
+			var x1 = ev.x;
+			var y1 = ev.y;
+			if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
+			if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
+
+			var bandbox = getGUIObjectByName("bandbox");
+			bandbox.size = [x0, y0, x1, y1].join(" ");
+			bandbox.hidden = false;
+
+			var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
+			g_Selection.setHighlightList(ents);
+
+			return false;
+
+		case "mousebuttonup":
+			if (ev.button == SDL_BUTTON_LEFT)
+			{
+				var x0 = selectionDragStart[0];
+				var y0 = selectionDragStart[1];
+				var x1 = ev.x;
+				var y1 = ev.y;
+				if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
+				if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
+
+				var bandbox = getGUIObjectByName("bandbox");
+				bandbox.hidden = true;
+
+				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
+				g_Selection.setHighlightList([]);
+				g_Selection.reset();
+				g_Selection.addList(ents);
+				
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			break;
 		}
 		break;
 
@@ -195,6 +283,7 @@ function handleInputAfterGui(ev)
 				inputState = INPUT_NORMAL;
 				return true;
 			}
+			break;
 		}
 		break;
 	}

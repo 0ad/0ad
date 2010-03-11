@@ -87,5 +87,16 @@
 		<image backcolor="blue"/>
 	</sprite>
 
+	<sprite name="bandbox">
+		<image backcolor="black" size="0 0 100% 1"/>
+		<image backcolor="black" size="100%-1 0 100% 100%"/>
+		<image backcolor="black" size="0 100%-1 100% 100%"/>
+		<image backcolor="black" size="0 0 1 100%"/>
+		<image backcolor="white" size="1 1 100%-1 2"/>
+		<image backcolor="white" size="100%-2 1 100%-1 100%-1"/>
+		<image backcolor="white" size="1 100%-2 100%-1 100%-1"/>
+		<image backcolor="white" size="1 1 2 100%-1"/>
+	</sprite>
+
 </sprites>
 

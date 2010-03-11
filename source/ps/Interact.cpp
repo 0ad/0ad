@@ -54,6 +54,7 @@
 #include "simulation/FormationManager.h"
 #include "simulation/Simulation.h"
 #include "simulation/TerritoryManager.h"
+#include "simulation2/Simulation2.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"world"
@@ -1139,6 +1140,9 @@ void MouseButtonUpHandler(const SDL_Event_* ev, int clicks)
 
 InReaction InteractInputHandler( const SDL_Event_* ev )
 {
+	if (g_UseSimulation2)
+		return IN_PASS;
+
 	if (!g_app_has_focus || !g_Game)
 		return IN_PASS;
 
