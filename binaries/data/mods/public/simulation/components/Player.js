@@ -8,10 +8,10 @@ Player.prototype.Init = function()
 	this.popCount = 0;
 	this.popLimit = 50;
 	this.resourceCount = {
-		"food": 100,	
-		"wood": 50,	
-		"metal": 0,	
-		"stone": 0	
+		"food": 2000,	
+		"wood": 1500,	
+		"metal": 500,	
+		"stone": 1000	
 	};
 };
 
@@ -35,9 +35,23 @@ Player.prototype.GetResourceCounts = function()
 	return this.resourceCount;
 };
 
-Player.prototype.AddResources = function(type, amount)
+Player.prototype.AddResource = function(type, amount)
 {
 	this.resourceCount[type] += (+amount);
+};
+
+Player.prototype.TrySubtractResources = function(amounts)
+{
+	// Check we can afford it all
+	for (var type in amounts)
+		if (amounts[type] > this.resourceCount[type])
+			return false;
+
+	// Subtract the resources
+	for (var type in amounts)
+		this.resourceCount[type] -= amounts[type];
+
+	return true;
 };
 
 Player.prototype.OnGlobalOwnershipChanged = function(msg)

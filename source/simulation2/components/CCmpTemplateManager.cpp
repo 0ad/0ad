@@ -127,6 +127,10 @@ private:
 	// Copy the non-interactive components of an entity template (position, actor, etc) into
 	// a new entity template
 	void CopyPreviewSubset(CParamNode& out, const CParamNode& in);
+
+	// Copy the components of an entity necessary for a construction foundation
+	// (position, actor, armour, health, etc) into a new entity template
+	void CopyFoundationSubset(CParamNode& out, const CParamNode& in);
 };
 
 REGISTER_COMPONENT_TYPE(TemplateManager)
@@ -213,6 +217,21 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 		}
 		// Copy a subset to the requested template
 		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
+		return true;
+	}
+
+	// Handle special case "foundation|foo"
+	if (templateName.find(L"foundation|") == 0)
+	{
+		// Load the base entity template, if it wasn't already loaded
+		std::wstring baseName = templateName.substr(11);
+		if (!LoadTemplateFile(baseName, depth+1))
+		{
+			LOGERROR(L"Failed to load entity template '%ls'", baseName.c_str());
+			return NULL;
+		}
+		// Copy a subset to the requested template
+		CopyFoundationSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
 		return true;
 	}
 
@@ -339,3 +358,36 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	// In the future, we might want to add some extra flags to certain components, to indicate they're
 	// running in 'preview' mode and should not e.g. register with global managers
 }
+
+void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode& in)
+{
+	// TODO: this is all kind of yucky and hard-coded; it'd be nice to have a more generic
+	// extensible scriptable way to define these subsets
+
+	std::set<std::string> permittedComponentTypes;
+	permittedComponentTypes.insert("Ownership");
+	permittedComponentTypes.insert("Position");
+	permittedComponentTypes.insert("Identity");
+	permittedComponentTypes.insert("Obstruction");
+	permittedComponentTypes.insert("Selectable");
+	permittedComponentTypes.insert("Footprint");
+	permittedComponentTypes.insert("Armour");
+	permittedComponentTypes.insert("Health");
+	permittedComponentTypes.insert("Cost");
+
+	CParamNode::LoadXMLString(out, "<Entity/>");
+	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
+
+	// TODO: the foundation shouldn't be considered an obstruction by default, until construction has
+	// really started, to prevent players abusing it to block their opponents
+
+	// TODO: Use the appropriate actor
+	CParamNode::LoadXMLString(out, "<Entity><VisualActor><Actor>structures/fndn_4x4.xml</Actor></VisualActor></Entity>");
+
+	// Add the Foundation component, to deal with the construction process
+	CParamNode::LoadXMLString(out, "<Entity><Foundation/></Entity>");
+
+	// Initialise health to 1
+	CParamNode::LoadXMLString(out, "<Entity><Health><Initial>1</Initial></Health></Entity>");
+}
+

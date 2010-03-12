@@ -129,6 +129,7 @@ sub convert {
 
     if ($data->{Traits}[0]{Health}) {
         $out .= qq{$i<Health>\n};
+        $out .= qq{$i$i<DeathType>corpse</DeathType>\n} if $name eq 'template_unit';
         $out .= qq{$i$i<Max>$data->{Traits}[0]{Health}[0]{Max}[0]</Max>\n} if $data->{Traits}[0]{Health}[0]{Max};
         $out .= qq{$i$i<RegenRate>$data->{Traits}[0]{Health}[0]{RegenRate}[0]</RegenRate>\n} if $data->{Traits}[0]{Health}[0]{RegenRate};
         $out .= qq{$i</Health>\n};

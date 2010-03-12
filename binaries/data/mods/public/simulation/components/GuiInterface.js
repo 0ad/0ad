@@ -11,21 +11,21 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	var ret = {
 		"players": []
 	};
-	
+
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var n = cmpPlayerMan.GetNumPlayers();
 	for (var i = 0; i < n; ++i)
 	{
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
-		var player = {
+		var playerData = {
 			"popCount": cmpPlayer.GetPopulationCount(),
 			"popLimit": cmpPlayer.GetPopulationLimit(),
 			"resourceCounts": cmpPlayer.GetResourceCounts()
 		};
-		ret.players.push(player);
+		ret.players.push(playerData);
 	}
-	
+
 	return ret;
 };
 
@@ -73,6 +73,14 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.buildEntities = cmpBuilder.GetEntitiesList();
 	}
 
+	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
+	if (cmpFoundation)
+	{
+		ret.foundation = {
+			"progress": cmpFoundation.GetBuildPercentage()
+		};
+	}
+
 	var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 	if (cmpOwnership)
 	{
@@ -112,6 +120,18 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 			"generic": template.Identity.GenericName
 		};
 		ret.icon_cell = template.Identity.IconCell;
+	}
+
+	if (template.Cost)
+	{
+		ret.cost = {};
+		if (template.Cost.Resources)
+		{
+			if (template.Cost.Resources.food) ret.cost.food = +template.Cost.Resources.food;
+			if (template.Cost.Resources.wood) ret.cost.wood = +template.Cost.Resources.wood;
+			if (template.Cost.Resources.stone) ret.cost.stone = +template.Cost.Resources.stone;
+			if (template.Cost.Resources.metal) ret.cost.metal = +template.Cost.Resources.metal;
+		}
 	}
 
 	return ret;

@@ -1,6 +1,7 @@
 Engine.LoadComponentScript("interfaces/Attack.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/DamageReceiver.js");
+Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");

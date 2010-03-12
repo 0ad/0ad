@@ -43,6 +43,10 @@ public:
 	 * based on entity template "foo" with the non-graphical components removed.
 	 * (This is for previewing construction/placement of units.)
 	 *
+	 * If templateName is of the form "foundation|foo" then it will load a template
+	 * based on entity template "foo" with various components removed and a few changed
+	 * and added. (This is for constructing foundations of buildings.)
+	 *
 	 * @return NULL on error
 	 */
 	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::wstring& templateName, int playerID) = 0;

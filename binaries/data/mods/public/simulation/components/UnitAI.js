@@ -8,7 +8,8 @@ and then autonomously carry out the orders. It might need to be entirely redesig
 const STATE_IDLE = 0;
 const STATE_WALKING = 1;
 const STATE_ATTACKING = 2;
-const STATE_GATHERING = 3;
+const STATE_REPAIRING = 3;
+const STATE_GATHERING = 4;
 
 /* Attack process:
  *   When starting attack:
@@ -26,9 +27,9 @@ const STATE_GATHERING = 3;
  *   faster-than-normal attacks)
  */
 
-/* Gather process is about the same, except with less synchronisation - the action
+/* Repeat/Gather process is about the same, except with less synchronisation - the action
  * is just performed 1sec after initiated, and then repeated every 1sec.
- * (TODO: it'd be nice to avoid most of the duplication between Attack and Gather code)
+ * (TODO: it'd be nice to avoid most of the duplication between Attack and Repeat and Gather code)
  */
 
 function UnitAI() {}
@@ -44,6 +45,11 @@ UnitAI.prototype.Init = function()
 	this.attackTimer = undefined;
 	// Current target entity ID
 	this.attackTarget = undefined;
+
+	// Timer for RepairTimeout
+	this.repairTimer = undefined;
+	// Current target entity ID
+	this.repairTarget = undefined;
 
 	// Timer for GatherTimeout
 	this.gatherTimer = undefined;
@@ -82,6 +88,24 @@ UnitAI.prototype.Attack = function(target)
 	this.attackTarget = target;
 	this.MoveToTarget(target, cmpAttack.GetRange());
 	this.state = STATE_ATTACKING;
+};
+
+UnitAI.prototype.Repair = function(target)
+{
+	// Verify that we're able to respond to Repair commands
+	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+	if (!cmpBuilder)
+		return;
+
+	// TODO: verify that this is a valid target
+
+	// Stop any previous action timers
+	this.CancelTimers();
+
+	// Remember the target, and start moving towards it
+	this.repairTarget = target;
+	this.MoveToTarget(target, cmpBuilder.GetRange());
+	this.state = STATE_REPAIRING;
 };
 
 UnitAI.prototype.Gather = function(target)
@@ -147,6 +171,22 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 			// Start the idle animation before we switch to the attack
 			this.SelectAnimation("idle");
 		}
+		else if (this.state == STATE_REPAIRING)
+		{
+			// We were repairing, and have stopped moving
+			// => check if we can still reach the target now
+
+			if (!this.MoveIntoRepairRange())
+				return;
+
+			// In range, so perform the repairing
+
+			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+			this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000, {});
+
+			// Start the repair/build animation
+			this.SelectAnimation("build");
+		}
 		else if (this.state == STATE_GATHERING)
 		{
 			// We were gathering, and have stopped moving
@@ -211,6 +251,13 @@ UnitAI.prototype.CancelTimers = function()
 		this.attackTimer = undefined;
 	}
 
+	if (this.repairTimer)
+	{
+		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+		cmpTimer.CancelTimer(this.repairTimer);
+		this.repairTimer = undefined;
+	}
+
 	if (this.gatherTimer)
 	{
 		var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
@@ -236,6 +283,32 @@ UnitAI.prototype.MoveIntoAttackRange = function()
 			// Out of range => need to move closer
 			// (The target has probably moved while we were chasing it)
 			this.MoveToTarget(this.attackTarget, range);
+			return false;
+		}
+
+		// Otherwise it's impossible to reach the target, so give up
+		// and switch back to idle
+		this.state = STATE_IDLE;
+		this.SelectAnimation("idle");
+		return false;
+	}
+	
+	return true;
+};
+
+UnitAI.prototype.MoveIntoRepairRange = function()
+{
+	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+	var range = cmpBuilder.GetRange();
+
+	var rangeStatus = this.CheckRange(this.repairTarget, range);
+	if (rangeStatus.error)
+	{
+		if (rangeStatus.error == "out-of-range")
+		{
+			// Out of range => need to move closer
+			// (The target has probably moved while we were chasing it)
+			this.MoveToTarget(this.repairTarget, range);
 			return false;
 		}
 
@@ -275,6 +348,8 @@ UnitAI.prototype.MoveIntoGatherRange = function()
 	return true;
 };
 
+// TODO: refactor all this repetitive code
+
 UnitAI.prototype.SelectAnimation = function(name, once, speed)
 {
 	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
@@ -302,11 +377,11 @@ UnitAI.prototype.AttackTimeout = function(data)
 	if (this.state != STATE_ATTACKING)
 		return;
 
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-
 	// Check if we can still reach the target
 	if (!this.MoveIntoAttackRange())
 		return;
+
+	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 
 	// Play the attack animation
 	this.SelectAnimation("melee", false, 1);
@@ -323,17 +398,46 @@ UnitAI.prototype.AttackTimeout = function(data)
 	this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", timers.repeat, data);
 };
 
+UnitAI.prototype.RepairTimeout = function(data)
+{
+	// If we stopped repairing before this timeout, then don't do any processing here
+	if (this.state != STATE_REPAIRING)
+		return;
+
+	// Check if we can still reach the target
+	if (!this.MoveIntoRepairRange())
+		return;
+
+	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+
+	// Repair/build the target
+	var status = cmpBuilder.PerformBuilding(this.repairTarget);
+
+	// If the target is fully built and repaired, then stop and go back to idle
+	if (status.finished)
+	{
+		this.state = STATE_IDLE;
+		this.SelectAnimation("idle");
+		return;
+	}
+
+	// Set a timer to gather again
+
+	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
+	this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000, data);
+};
+
 UnitAI.prototype.GatherTimeout = function(data)
 {
 	// If we stopped gathering before this timeout, then don't do any processing here
 	if (this.state != STATE_GATHERING)
 		return;
 
-	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-
 	// Check if we can still reach the target
 	if (!this.MoveIntoGatherRange())
 		return;
+
+	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
 
 	// Gather from the target
 	var status = cmpResourceGatherer.PerformGather(this.gatherTarget);

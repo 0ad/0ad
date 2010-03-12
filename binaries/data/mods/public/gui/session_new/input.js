@@ -81,9 +81,14 @@ function determineAction(x, y)
 	if (entState.attack && targetState.player != entState.player)
 		return {"type": "attack", "cursor": "action-attack", "target": targets[0]};
 
+	// Resource -> gather
 	var resource = findGatherType(entState.resourceGatherRates, targetState.resourceSupply);
 	if (resource)
 		return {"type": "gather", "cursor": "action-gather-"+resource, "target": targets[0]};
+
+	// If a builder, then: Foundation -> build
+	if (entState.buildEntities && targetState.foundation)
+		return {"type": "build", "cursor": "action-build", "target": targets[0]};
 
 	// TODO: need more actions
 
@@ -233,9 +238,17 @@ function handleInputAfterGui(ev)
 					Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target});
 					return true;
 
+				case "build": // (same command as repair)
+				case "repair":
+					Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target});
+					return true;
+
 				case "gather":
 					Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target});
 					return true;
+
+				default:
+					throw new Error("Invalid action.type "+action.type);
 				}
 			}
 			break;
@@ -288,17 +301,32 @@ function handleInputAfterGui(ev)
 		case "mousemotion":
 			var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
 			var angle = Math.PI;
-			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": placementEntity, "x": target.x, "z": target.z, "angle": angle});
+			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+				"template": placementEntity,
+				"x": target.x,
+				"z": target.z,
+				"angle": angle
+			});
 
 			return false; // continue processing mouse motion
 
 		case "mousebuttondown":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
+				var selection = g_Selection.toList();
 				var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
 				var angle = Math.PI;
+				// Remove the preview
 				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-				Engine.PostNetworkCommand({"type": "construct", "template": placementEntity, "x": target.x, "z": target.z, "angle": angle});
+				// Start the construction
+				Engine.PostNetworkCommand({
+					"type": "construct",
+					"template": placementEntity,
+					"x": target.x,
+					"z": target.z,
+					"angle": angle,
+					"entities": selection
+				});
 
 				inputState = INPUT_NORMAL;
 				return true;

@@ -24,6 +24,17 @@ function ProcessCommand(player, cmd)
 		}
 		break;
 
+	case "repair":
+		// This covers both repairing damaged buildings, and constructing unfinished foundations
+		for each (var ent in cmd.entities)
+		{
+			var ai = Engine.QueryInterface(ent, IID_UnitAI);
+			if (!ai)
+				continue;
+			ai.Repair(cmd.target);
+		}
+		break;
+
 	case "gather":
 		for each (var ent in cmd.entities)
 		{
@@ -35,17 +46,55 @@ function ProcessCommand(player, cmd)
 		break;
 
 	case "construct":
-		// TODO: this should do all sorts of stuff with foundations and resource costs etc
-		var ent = Engine.AddEntity(cmd.template);
-		if (ent)
+		/*
+		 * Construction process:
+		 *  . Take resources away immediately.
+		 *  . Create a foundation entity with 1hp, 0% build progress.
+		 *  . Increase hp and build progress up to 100% when people work on it.
+		 *  . If it's destroyed, an appropriate fraction of the resource cost is refunded.
+		 *  . If it's completed, it gets replaced with the real building.
+		 */
+
+		// Find the player
+		var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		var playerEnt = cmpPlayerMan.GetPlayerByID(player);
+		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+
+		// Tentatively create the foundation (we don't know yet if the player can really afford it)
+		var ent = Engine.AddEntity("foundation|" + cmd.template);
+		// TODO: report errors (e.g. invalid template names)
+
+		var cmpCost = Engine.QueryInterface(ent, IID_Cost);
+		if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
 		{
-			var pos = Engine.QueryInterface(ent, IID_Position);
-			if (pos)
-			{
-				pos.JumpTo(cmd.x, cmd.z);
-				pos.SetYRotation(cmd.angle);
-			}
+			// TODO: report error to player (they ran out of resources)
+
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
+
+			break;
 		}
+
+		// Move the foundation to the right place
+		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		cmpPosition.JumpTo(cmd.x, cmd.z);
+		cmpPosition.SetYRotation(cmd.angle);
+
+		// Make it owned by the current player
+		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		cmpOwnership.SetOwner(player);
+
+		// Initialise the foundation
+		var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
+		cmpFoundation.InitialiseConstruction(player, cmd.template);
+
+		// Tell the units to start building this new entity
+		ProcessCommand(player, {
+			"type": "repair",
+			"entities": cmd.entities,
+			"target": ent
+		});
+
 		break;
 
 	default:

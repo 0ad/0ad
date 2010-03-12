@@ -1,3 +1,4 @@
+// Cache dev-mode settings that are frequently or widely used
 var g_DevSettings = {
 	controlAll: false
 };
@@ -36,7 +37,7 @@ function onSimulationUpdate()
 	if (!simState)
 		return;
 
-	// updateDebug(simState);
+	updateDebug(simState);
 
 	updatePlayerDisplay(simState);
 
@@ -46,14 +47,28 @@ function onSimulationUpdate()
 function updateDebug(simState)
 {
 	var debug = getGUIObjectByName("debug");
+
+	if (getGUIObjectByName("devDisplayState").checked)
+	{
+		debug.hidden = false;
+	}
+	else
+	{
+		debug.hidden = true;
+		return;
+	}
+
 	var text = uneval(simState);
 
 	var selection = g_Selection.toList();
 	if (selection.length)
 	{
 		var entState = Engine.GuiInterfaceCall("GetEntityState", selection[0]);
-		var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
-		text += "\n\n" + uneval(entState) + "\n\n" + uneval(template);
+		if (entState)
+		{
+			var template = Engine.GuiInterfaceCall("GetTemplateData", entState.template);
+			text += "\n\n" + uneval(entState) + "\n\n" + uneval(template);
+		}
 	}
 
 	debug.caption = text;
@@ -168,8 +183,21 @@ function updateUnitDisplay()
 			else
 				name = template.name.specific || template.name.generic || "???";
 
+			var tooltip = "[font=trebuchet14b]" + name + "[/font]";
+
+			if (template.cost)
+			{
+				var costs = [];
+				if (template.cost.food) costs.push("[font=tahoma10b]Food:[/font] " + template.cost.food);
+				if (template.cost.wood) costs.push("[font=tahoma10b]Wood:[/font] " + template.cost.wood);
+				if (template.cost.metal) costs.push("[font=tahoma10b]Metal:[/font] " + template.cost.metal);
+				if (template.cost.stone) costs.push("[font=tahoma10b]Stone:[/font] " + template.cost.stone);
+				if (costs.length)
+					tooltip += "\n" + costs.join(", ");
+			}
+
 			button.hidden = false;
-			button.tooltip = "Construct " + name;
+			button.tooltip = tooltip;
 			button.onpress = (function(b) { return function() { testBuild(b) } })(build);
 				// (need nested functions to get the closure right)
 

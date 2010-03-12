@@ -2,7 +2,9 @@ function Health() {}
 
 Health.prototype.Init = function()
 {
-	this.hitpoints = this.GetMaxHitpoints();
+	// Default to <Initial>, but use <Max> if it's undefined or zero
+	// (Allowing 0 initial HP would break our death detection code)
+	this.hitpoints = +(this.template.Initial || this.GetMaxHitpoints());
 };
 
 //// Interface functions ////
@@ -17,6 +19,15 @@ Health.prototype.GetMaxHitpoints = function()
 	return +this.template.Max;
 };
 
+Health.prototype.SetHitpoints = function(value)
+{
+	// If we're already dead, don't allow resurrection
+	if (this.hitpoints == 0)
+		return;
+
+	this.hitpoints = Math.max(1, Math.min(this.GetMaxHitpoints(), value));
+}
+
 Health.prototype.Reduce = function(amount)
 {
 	if (amount >= this.hitpoints)
@@ -26,7 +37,9 @@ Health.prototype.Reduce = function(amount)
 		// might get called multiple times)
 		if (this.hitpoints)
 		{
-			this.CreateCorpse();
+			if (this.template.DeathType == "corpse")
+				this.CreateCorpse();
+
 			Engine.DestroyEntity(this.entity);
 		}
 
@@ -36,6 +49,15 @@ Health.prototype.Reduce = function(amount)
 	{
 		this.hitpoints -= amount;
 	}
+}
+
+Health.prototype.Increase = function(amount)
+{
+	// If we're already dead, don't allow resurrection
+	if (this.hitpoints == 0)
+		return;
+
+	this.hitpoints = Math.min(this.hitpoints + amount, this.GetMaxHitpoints());
 }
 
 //// Private functions ////

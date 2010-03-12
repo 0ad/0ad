@@ -16,4 +16,33 @@ Builder.prototype.GetEntitiesList = function()
 	return string.split(/\s+/);
 };
 
+Builder.prototype.GetRange = function()
+{
+	return { "max": 16, "min": 0 };
+	// maybe this should depend on the unit or target or something?
+}
+
+/**
+ * Build/repair the target entity. This should only be called after a successful range check.
+ * It should be called at a rate of once per second.
+ */
+Builder.prototype.PerformBuilding = function(target)
+{
+	var rate = 0.1; // XXX
+
+	// If it's a foundation, then build it
+	var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);
+	if (cmpFoundation)
+	{
+		var finished = cmpFoundation.Build(this.entity, rate);
+		return { "finished": finished };
+	}
+	else
+	{
+		// TODO: do some kind of repairing
+
+		return { "finished": true };
+	}
+};
+
 Engine.RegisterComponentType(IID_Builder, "Builder", Builder);

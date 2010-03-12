@@ -40,7 +40,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(cmpOwnership.GetOwner()), IID_Player);
-	cmpPlayer.AddResources(type.generic, status.amount);
+	cmpPlayer.AddResource(type.generic, status.amount);
 	
 	return status;
 };
