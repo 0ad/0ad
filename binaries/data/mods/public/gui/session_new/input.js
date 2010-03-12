@@ -19,13 +19,16 @@ var mouseY = 0;
 
 function updateCursor()
 {
-	var action = determineAction(mouseX, mouseY);
-	if (action)
+	if (inputState == INPUT_NORMAL)
 	{
-		if (action.cursor)
+		var action = determineAction(mouseX, mouseY);
+		if (action)
 		{
-			Engine.SetCursor(action.cursor);
-			return;
+			if (action.cursor)
+			{
+				Engine.SetCursor(action.cursor);
+				return;
+			}
 		}
 	}
 
@@ -87,22 +90,6 @@ function determineAction(x, y)
 	// If we don't do anything more specific, just walk
 	return {"type": "move"};
 }
-
-function handleInputBeforeGui(ev)
-{
-	switch (ev.type)
-	{
-	case "mousebuttonup":
-	case "mousebuttondown":
-	case "mousemotion":
-		mouseX = ev.x;
-		mouseY = ev.y;
-		break;
-	}
-
-	return false;
-}
-
 /*
 
 Selection methods: (not all currently implemented)
@@ -121,10 +108,95 @@ Selection methods: (not all currently implemented)
 
 // TODO: it'd probably be nice to have a better state-machine system
 
+
+function handleInputBeforeGui(ev)
+{
+	// Capture mouse position so we can use it for displaying cursors
+	switch (ev.type)
+	{
+	case "mousebuttonup":
+	case "mousebuttondown":
+	case "mousemotion":
+		mouseX = ev.x;
+		mouseY = ev.y;
+		break;
+	}
+
+	// State-machine processing:
+	//
+	// (This is for states which should override the normal GUI processing - events will
+	// be processed here before being passed on, and propagation will stop if this function
+	// returns true)
+
+	switch (inputState)
+	{
+	case INPUT_BANDBOXING:
+		switch (ev.type)
+		{
+		case "mousemotion":
+			var x0 = selectionDragStart[0];
+			var y0 = selectionDragStart[1];
+			var x1 = ev.x;
+			var y1 = ev.y;
+			if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
+			if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
+
+			var bandbox = getGUIObjectByName("bandbox");
+			bandbox.size = [x0, y0, x1, y1].join(" ");
+			bandbox.hidden = false;
+
+			var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
+			g_Selection.setHighlightList(ents);
+
+			return false;
+
+		case "mousebuttonup":
+			if (ev.button == SDL_BUTTON_LEFT)
+			{
+				var x0 = selectionDragStart[0];
+				var y0 = selectionDragStart[1];
+				var x1 = ev.x;
+				var y1 = ev.y;
+				if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
+				if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
+
+				var bandbox = getGUIObjectByName("bandbox");
+				bandbox.hidden = true;
+
+				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
+				g_Selection.setHighlightList([]);
+				g_Selection.reset();
+				g_Selection.addList(ents);
+				
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			else if (ev.button == SDL_BUTTON_RIGHT)
+			{
+				// Cancel selection
+
+				var bandbox = getGUIObjectByName("bandbox");
+				bandbox.hidden = true;
+
+				g_Selection.setHighlightList([]);
+				
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			break;
+		}
+		break;
+	}
+
+	return false;
+}
+
 var selectionDragStart;
 
 function handleInputAfterGui(ev)
 {
+	// State-machine processing:
+
 	switch (inputState)
 	{
 	case INPUT_NORMAL:
@@ -203,51 +275,6 @@ function handleInputAfterGui(ev)
 				g_Selection.reset();
 				g_Selection.addList([ents[0]]);
 
-				inputState = INPUT_NORMAL;
-				return true;
-			}
-			break;
-		}
-		break;
-
-	case INPUT_BANDBOXING:
-		switch (ev.type)
-		{
-		case "mousemotion":
-			var x0 = selectionDragStart[0];
-			var y0 = selectionDragStart[1];
-			var x1 = ev.x;
-			var y1 = ev.y;
-			if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
-			if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
-
-			var bandbox = getGUIObjectByName("bandbox");
-			bandbox.size = [x0, y0, x1, y1].join(" ");
-			bandbox.hidden = false;
-
-			var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
-			g_Selection.setHighlightList(ents);
-
-			return false;
-
-		case "mousebuttonup":
-			if (ev.button == SDL_BUTTON_LEFT)
-			{
-				var x0 = selectionDragStart[0];
-				var y0 = selectionDragStart[1];
-				var x1 = ev.x;
-				var y1 = ev.y;
-				if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
-				if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
-
-				var bandbox = getGUIObjectByName("bandbox");
-				bandbox.hidden = true;
-
-				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
-				g_Selection.setHighlightList([]);
-				g_Selection.reset();
-				g_Selection.addList(ents);
-				
 				inputState = INPUT_NORMAL;
 				return true;
 			}
