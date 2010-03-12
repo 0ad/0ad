@@ -82,13 +82,14 @@ public:
 	T* m_Data;
 };
 
-// Externally, tags are opaque non-zero positive integers
-// Internally, they are tagged (by shape) indexes into shape lists
+// Externally, tags are opaque non-zero positive integers.
+// Internally, they are tagged (by shape) indexes into shape lists.
+// idx must be non-zero.
 #define TAG_IS_CIRCLE(tag) (((tag) & 1) == 0)
 #define TAG_IS_SQUARE(tag) (((tag) & 1) == 1)
-#define CIRCLE_INDEX_TO_TAG(idx) ((((idx)+1) << 1) | 0)
-#define SQUARE_INDEX_TO_TAG(idx) ((((idx)+1) << 1) | 1)
-#define TAG_TO_INDEX(tag) (((tag) >> 1)-1)
+#define CIRCLE_INDEX_TO_TAG(idx) (((idx) << 1) | 0)
+#define SQUARE_INDEX_TO_TAG(idx) (((idx) << 1) | 1)
+#define TAG_TO_INDEX(tag) ((tag) >> 1)
 
 /**
  * Internal representation of circle shapes
@@ -152,8 +153,10 @@ public:
 	PathfinderOverlay* m_DebugOverlay;
 
 	// TODO: using std::map is stupid and inefficient
-	std::map<tag_t, Circle> m_Circles;
-	std::map<tag_t, Square> m_Squares;
+	std::map<u32, Circle> m_Circles;
+	std::map<u32, Square> m_Squares;
+	u32 m_CircleNext; // next allocated id
+	u32 m_SquareNext;
 
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
@@ -166,6 +169,9 @@ public:
 		m_DebugOverlay = new PathfinderOverlay(*this);
 		m_DebugGrid = NULL;
 		m_DebugPath = NULL;
+
+		m_CircleNext = 1;
+		m_SquareNext = 1;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -193,7 +199,7 @@ public:
 	virtual tag_t AddCircle(entity_pos_t x, entity_pos_t z, entity_pos_t r)
 	{
 		Circle c = { x, z, r };
-		size_t id = m_Circles.size();
+		size_t id = m_CircleNext++;
 		m_Circles[id] = c;
 		m_GridDirty = true;
 		return CIRCLE_INDEX_TO_TAG(id);
@@ -202,7 +208,7 @@ public:
 	virtual tag_t AddSquare(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h)
 	{
 		Square s = { x, z, a, w, h };
-		size_t id = m_Squares.size();
+		size_t id = m_SquareNext++;
 		m_Squares[id] = s;
 		m_GridDirty = true;
 		return SQUARE_INDEX_TO_TAG(id);
@@ -294,7 +300,7 @@ public:
 
 			m_Grid->reset();
 
-			for (std::map<tag_t, Circle>::iterator it = m_Circles.begin(); it != m_Circles.end(); ++it)
+			for (std::map<u32, Circle>::iterator it = m_Circles.begin(); it != m_Circles.end(); ++it)
 			{
 				// TODO: need to handle larger circles (r != 0)
 				u16 i, j;
@@ -302,7 +308,7 @@ public:
 				m_Grid->set(i, j, 1);
 			}
 
-			for (std::map<tag_t, Square>::iterator it = m_Squares.begin(); it != m_Squares.end(); ++it)
+			for (std::map<u32, Square>::iterator it = m_Squares.begin(); it != m_Squares.end(); ++it)
 			{
 				// TODO: need to handle rotations (a != 0)
 				entity_pos_t x0 = it->second.x - it->second.w/2;
@@ -362,14 +368,14 @@ bool CCmpPathfinder::CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_po
 	// TODO: this is all very inefficient, it should use kind of spatial data structures
 
 	// Ray-circle intersections
-	for (std::map<tag_t, Circle>::iterator it = m_Circles.begin(); it != m_Circles.end(); ++it)
+	for (std::map<u32, Circle>::iterator it = m_Circles.begin(); it != m_Circles.end(); ++it)
 	{
 		if (IntersectRayCircle(CFixedVector2D(x1 - x0, z1 - z0), CFixedVector2D(it->second.x - x0, it->second.z - z0), it->second.r + r))
 			return false;
 	}
 
 	// Ray-square intersections
-	for (std::map<tag_t, Square>::iterator it = m_Squares.begin(); it != m_Squares.end(); ++it)
+	for (std::map<u32, Square>::iterator it = m_Squares.begin(); it != m_Squares.end(); ++it)
 	{
 		// XXX need some kind of square intersection code
 		if (IntersectRayCircle(CFixedVector2D(x1 - x0, z1 - z0), CFixedVector2D(it->second.x - x0, it->second.z - z0), it->second.w/2 + r))
