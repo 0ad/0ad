@@ -5,6 +5,7 @@
     <IconCell>63</IconCell>
   </Identity>
   <Cost>
+    <BuildTime>44</BuildTime>
     <Resources>
       <stone>200</stone>
       <metal>200</metal>
@@ -15,6 +16,7 @@
   </Health>
   <VisualActor>
     <Actor>structures/hellenes/special_gym.xml</Actor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
   <Footprint>
     <Square width="22.0" depth="24.0"/>

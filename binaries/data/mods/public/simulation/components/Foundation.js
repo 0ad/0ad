@@ -44,7 +44,7 @@ Foundation.prototype.OnDestroy = function()
 };
 
 /**
- * Perform some amount of construction work.
+ * Perform some number of seconds of construction work.
  * Returns true if the construction is completed.
  */
 Foundation.prototype.Build = function(builderEnt, work)
@@ -53,7 +53,9 @@ Foundation.prototype.Build = function(builderEnt, work)
 	if (this.buildProgress == 1.0)
 		return true;
 
-	var amount = work; // TODO: adjust by time cost of this building
+	// Calculate the amount of progress that will be added (where 1.0 = completion)
+	var cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
+	var amount = work / cmpCost.GetBuildTime();
 
 	// TODO: implement some kind of diminishing returns for multiple builders.
 	// e.g. record the set of entities that build this, then every ~2 seconds

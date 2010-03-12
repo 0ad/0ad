@@ -4,6 +4,7 @@
     <GenericName>Infantry</GenericName>
   </Identity>
   <Cost>
+    <BuildTime>20</BuildTime>
     <Resources>
       <food>50</food>
     </Resources>
@@ -33,6 +34,7 @@
     <WalkSpeed>7.0</WalkSpeed>
   </UnitMotion>
   <Builder>
+    <Rate>1.0</Rate>
     <Entities datatype="tokens">
       structures/{civ}_barracks
       structures/{civ}_civil_centre

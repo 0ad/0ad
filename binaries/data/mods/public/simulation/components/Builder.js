@@ -28,7 +28,7 @@ Builder.prototype.GetRange = function()
  */
 Builder.prototype.PerformBuilding = function(target)
 {
-	var rate = 0.1; // XXX
+	var rate = +this.template.Rate;
 
 	// If it's a foundation, then build it
 	var cmpFoundation = Engine.QueryInterface(target, IID_Foundation);

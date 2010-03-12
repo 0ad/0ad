@@ -4,6 +4,7 @@
     <SpecificName>Theatron</SpecificName>
   </Identity>
   <Cost>
+    <BuildTime>110</BuildTime>
     <Resources>
       <wood>200</wood>
       <stone>500</stone>
@@ -14,6 +15,7 @@
   </Health>
   <VisualActor>
     <Actor>structures/hellenes/special_theatre.xml</Actor>
+    <FoundationActor>structures/fndn_theatron.xml</FoundationActor>
   </VisualActor>
   <Footprint>
     <Circle radius="26.0"/>

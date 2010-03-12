@@ -80,11 +80,12 @@ sub convert {
         $out .= qq{$i</Cost>\n};
     }
 
-    if ($data->{Traits}[0]{Population} or $data->{Traits}[0]{Creation}[0]{Resource}) {
+    if ($data->{Traits}[0]{Population} or $data->{Traits}[0]{Creation}[0]{Resource} or $data->{Traits}[0]{Creation}[0]{Time}) {
         $out .= qq{$i<Cost>\n};
         $out .= qq{$i$i<Population>$data->{Traits}[0]{Population}[0]{Rem}[0]</Population>\n} if $data->{Traits}[0]{Population}[0]{Rem}
             and $data->{Traits}[0]{Population}[0]{Rem}[0] != 1;
         $out .= qq{$i$i<PopulationBonus>$data->{Traits}[0]{Population}[0]{Add}[0]</PopulationBonus>\n} if $data->{Traits}[0]{Population}[0]{Add};
+        $out .= qq{$i$i<BuildTime>$data->{Traits}[0]{Creation}[0]{Time}[0]</BuildTime>\n} if $data->{Traits}[0]{Creation}[0]{Time};
         if ($data->{Traits}[0]{Creation}[0]{Resource}) {
             $out .= qq{$i$i<Resources>\n};
             for (qw(Food Wood Stone Metal)) {
@@ -177,9 +178,14 @@ sub convert {
 
     $dot_actor{$name} = $data->{Actor};
 
-    if ($data->{Actor}) {
+    if ($data->{Actor} or $data->{Traits}[0]{Creation}[0]{Foundation}) {
         $out .= qq{$i<VisualActor>\n};
-        $out .= qq{$i$i<Actor>$data->{Actor}[0]</Actor>\n};
+        $out .= qq{$i$i<Actor>$data->{Actor}[0]</Actor>\n} if $data->{Actor};
+        if ($data->{Traits}[0]{Creation}[0]{Foundation}) {
+            $data->{Traits}[0]{Creation}[0]{Foundation}[0] =~ /^foundation_(\d+x\d+|theatron|field)$/ or die $data->{Traits}[0]{Creation}[0]{Foundation}[0];
+            my $actor = ($1 eq 'field' ? 'structures/plot_field_found.xml' : "structures/fndn_$1.xml");
+            $out .= qq{$i$i<FoundationActor>$actor</FoundationActor>\n};
+        }
         $out .= qq{$i</VisualActor>\n};
     }
 
@@ -207,6 +213,7 @@ sub convert {
 
     if ($data->{Actions}[0]{Create}[0]{List}[0]{StructCiv} or $data->{Actions}[0]{Create}[0]{List}[0]{StructMil}) {
         $out .= qq{$i<Builder>\n};
+        $out .= qq{$i$i<Rate>1.0</Rate>\n} if $data->{Actions}[0]{Build};
         $out .= qq{$i$i<Entities datatype="tokens">\n};
         for (sort (keys %{$data->{Actions}[0]{Create}[0]{List}[0]{StructCiv}[0]}, keys %{$data->{Actions}[0]{Create}[0]{List}[0]{StructMil}[0]})) {
             my $n = "structures/" . ($civ || "{civ}") . "_" . (lc $_);

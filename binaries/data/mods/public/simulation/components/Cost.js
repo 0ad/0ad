@@ -18,6 +18,11 @@ Cost.prototype.GetPopBonus = function()
 	return 0;
 };
 
+Cost.prototype.GetBuildTime = function()
+{
+	return +(this.template.BuildTime || 1);
+}
+
 Cost.prototype.GetResourceCosts = function()
 {
 	return {

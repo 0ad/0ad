@@ -5,6 +5,7 @@
     <IconCell>49</IconCell>
   </Identity>
   <Cost>
+    <BuildTime>18</BuildTime>
     <Resources>
       <wood>100</wood>
     </Resources>
@@ -17,6 +18,9 @@
     <Pierce>40.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
+  <VisualActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+  </VisualActor>
   <Footprint>
     <Square width="12.0" depth="12.0"/>
     <Height>8.0</Height>

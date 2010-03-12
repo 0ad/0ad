@@ -5,6 +5,7 @@
     <IconCell>50</IconCell>
   </Identity>
   <Cost>
+    <BuildTime>12</BuildTime>
     <Resources>
       <wood>20</wood>
     </Resources>
@@ -22,6 +23,9 @@
     <Pierce>40.0</Pierce>
     <Crush>10.0</Crush>
   </Armour>
+  <VisualActor>
+    <FoundationActor>structures/plot_field_found.xml</FoundationActor>
+  </VisualActor>
   <Footprint>
     <Square width="10.0" depth="10.0"/>
     <Height>8.0</Height>

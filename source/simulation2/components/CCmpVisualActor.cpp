@@ -64,8 +64,15 @@ public:
 		if (!context.HasUnitManager())
 			return; // do nothing if graphics are disabled
 
+		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
+		// but for now we'll just use the foundation actor and ignore the normal one
+		std::string name;
+		if (paramNode.GetChild("Foundation").IsOk())
+			name = utf8_from_wstring(paramNode.GetChild("FoundationActor").ToString());
+		else
+			name = utf8_from_wstring(paramNode.GetChild("Actor").ToString());
+
 		std::set<CStr> selections;
-		std::string name = utf8_from_wstring(paramNode.GetChild("Actor").ToString());
 		m_Unit = context.GetUnitManager().CreateUnit(name, NULL, selections);
 		if (!m_Unit)
 		{

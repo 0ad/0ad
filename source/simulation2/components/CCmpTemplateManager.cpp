@@ -367,6 +367,7 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	std::set<std::string> permittedComponentTypes;
 	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("Position");
+	permittedComponentTypes.insert("VisualActor");
 	permittedComponentTypes.insert("Identity");
 	permittedComponentTypes.insert("Obstruction");
 	permittedComponentTypes.insert("Selectable");
@@ -381,8 +382,8 @@ void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode
 	// TODO: the foundation shouldn't be considered an obstruction by default, until construction has
 	// really started, to prevent players abusing it to block their opponents
 
-	// TODO: Use the appropriate actor
-	CParamNode::LoadXMLString(out, "<Entity><VisualActor><Actor>structures/fndn_4x4.xml</Actor></VisualActor></Entity>");
+	// Switch the actor to foundation mode
+	CParamNode::LoadXMLString(out, "<Entity><VisualActor><Foundation/></VisualActor></Entity>");
 
 	// Add the Foundation component, to deal with the construction process
 	CParamNode::LoadXMLString(out, "<Entity><Foundation/></Entity>");

@@ -6,6 +6,7 @@
   </Identity>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
+    <BuildTime>16</BuildTime>
     <Resources>
       <wood>100</wood>
     </Resources>
@@ -18,6 +19,9 @@
     <Pierce>40.0</Pierce>
     <Crush>5.0</Crush>
   </Armour>
+  <VisualActor>
+    <FoundationActor>structures/fndn_3x3.xml</FoundationActor>
+  </VisualActor>
   <Footprint>
     <Square width="9.0" depth="9.0"/>
     <Height>5.0</Height>
