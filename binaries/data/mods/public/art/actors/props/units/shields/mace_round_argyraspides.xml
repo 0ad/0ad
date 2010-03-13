@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/aspis_f.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/mace_round_hypaspist_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="4" name="Argyraspis (A)">
+      <texture>props/shield/mace_silver_a.dds</texture>
+    </variant>
+    <variant frequency="3" name="Argyraspis (B)">
+      <texture>props/shield/mace_silver_b.dds</texture>
+    </variant>
+    <variant frequency="2" name="Argyraspis (C)">
+      <texture>props/shield/mace_silver_c.dds</texture>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

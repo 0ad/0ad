@@ -17,22 +17,25 @@
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/shields/mace_round_hypaspist.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/mace_round_argyraspides.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="r_hand"/>
         <prop actor="props/units/heads/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/heads/hele_su3.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/mace_su1.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Armour-Linen-Linothorax">
-      <texture>skeletal/hele_pezhetairoi_3.dds</texture>
+    <variant frequency="1" name="hypaspist-armour-thorax">
+      <texture>skeletal/mace_hypaspist_1.dds</texture>
     </variant>
-    <variant frequency="1" name="Armour-Reinforced Linothorax">
-      <texture>skeletal/hele_pezhetairoi.dds</texture>
+    <variant frequency="1" name="hypaspist-armour-cuirass">
+      <texture>skeletal/mace_hypaspist_2.dds</texture>
     </variant>
-    <variant frequency="1" name="Armour-Bronze Cuirass">
-      <texture>skeletal/hele_pezhetairoi_2.dds</texture>
+    <variant frequency="1" name="hypaspist-armour-cuirass-2">
+      <texture>skeletal/mace_su1_hypaspist_1.dds</texture>
+    </variant>
+    <variant frequency="2" name="hypaspist-armour-cuirass-3">
+      <texture>skeletal/mace_su1_hypaspist_2.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>

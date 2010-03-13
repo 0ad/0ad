@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="base">
       <mesh>props/shield/round_h_f.pmd</mesh>
@@ -11,7 +9,6 @@
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="shield-u">
       <texture>props/shield/hele_round_u.dds</texture>
@@ -32,7 +29,5 @@
       <texture>props/shield/hele_round_r.dds</texture>
     </variant>
   </group>
-
   <material>player_trans.xml</material>
-
 </actor>

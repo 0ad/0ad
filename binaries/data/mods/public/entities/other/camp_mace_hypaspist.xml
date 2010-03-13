@@ -4,15 +4,18 @@
 	<Traits>
 		<Id>
 			<Icon_Cell>12</Icon_Cell>
-			<Specific>Argyraspides</Specific>
+			<Specific>Hypaspistai</Specific>
 			<Civ>Macedonians</Civ>
-			<History>The Hypaspists, or "shield bearers", were the flower of the Macedonian infantry. They were the most battle hardened veterans  within the army and followed Philip II and Alexander the Great into over a dozen full scale engagements. These heavily armed and opulently armoured units acted as an intermediary between the phalanx and the cavalry arm, many times charging headlong with Alexander into a breech in the enemy lines. Sometimes they fought as slow pikemen, like the Pezhetairoi with 6 meter "sarissas", and other times they fought as Hoplites with large aspides and 2.5 meter-long spears, or "dorata". In later times they became known as the Argyrapides, or "Silver Shields" when Alexander bestowed upon them armor and shields plated in pure silver, and played a decisive role in the early Diadochoi Wars of Alexander's "Successors."</History>
-		
+			<History>The Hypaspistai, or "shield bearers", were the flower of the Macedonian infantry. They were the most battle hardened veterans  within the army and followed Philip II and Alexander the Great into over a dozen full scale engagements. These heavily armed and opulently armoured units acted as an intermediary between the phalanx and the cavalry arm, many times charging headlong with Alexander into a breech in the enemy lines. Sometimes they fought as slow pikemen, like the Pezhetairoi with 6 meter "sarissas", and other times they fought as Hoplites with large aspides and 2.5 meter-long spears, or "dorata". In later times they became known as the Argyraspidai, or "Silver Shields" when Alexander bestowed upon them armor and shields plated in pure silver, and played a decisive role in the early Diadochoi Wars of Alexander's "Successors."</History>
 		</Id>
+		<Promotion>
+			<Entity>camp_mace_hypaspist_argyraspidai</Entity>
+			<Req>500</Req>
+		</Promotion>
 		<Creation>
 			<Resource>
- 				<Food>65</Food>
-				<Metal>120</Metal>
+ 				<Wood>75</Wood>
+				<Metal>50</Metal>
  			</Resource>
 		</Creation>		
 		<Armour>

@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <castshadow/>
   <group>
     <variant frequency="1" name="base">
-      <mesh>props/shield/aspis_f.dae</mesh>
+      <mesh>props/shield/round_h_f.pmd</mesh>
       <props>
-        <prop actor="props/units/shields/mace_round_hypaspist_back.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/hele_round_back.xml" attachpoint="back"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="4" name="Argyraspis (A)">
-      <texture>props/shield/mace_silver_a.dds</texture>
+    <variant frequency="3" name="shield-b">
+      <texture>props/shield/hele_round_b.dds</texture>
     </variant>
-    <variant frequency="3" name="Argyraspis (B)">
-      <texture>props/shield/mace_silver_b.dds</texture>
+    <variant frequency="3" name="shield-q">
+      <texture>props/shield/hele_round_q.dds</texture>
     </variant>
-    <variant frequency="2" name="Argyraspis (C)">
-      <texture>props/shield/mace_silver_c.dds</texture>
+    <variant frequency="3" name="shield-v">
+      <texture>props/shield/hele_round_v.dds</texture>
+    </variant>
+    <variant frequency="2" name="shield-w">
+      <texture>props/shield/hele_round_w.dds</texture>
     </variant>
   </group>
   <material>player_trans.xml</material>
