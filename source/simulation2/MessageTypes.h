@@ -22,8 +22,7 @@
 #include "simulation2/system/Entity.h"
 #include "simulation2/system/Message.h"
 
-#include "simulation2/system/Position.h"
-#include "maths/Fixed.h"
+#include "simulation2/helpers/Position.h"
 
 #define DEFAULT_MESSAGE_IMPL(name) \
 	virtual EMessageTypeId GetType() const { return MT_##name; } \

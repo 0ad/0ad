@@ -20,7 +20,7 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "simulation2/system/Position.h"
+#include "simulation2/helpers/Position.h"
 #include "maths/FixedVector3D.h"
 
 class CMatrix3D;

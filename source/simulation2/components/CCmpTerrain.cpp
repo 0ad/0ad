@@ -65,6 +65,11 @@ public:
 
 		return entity_pos_t::FromFloat(height);
 	}
+
+	virtual float GetGroundLevel(float x, float z)
+	{
+		return m_Terrain->GetExactGroundLevel(x, z);
+	}
 };
 
 REGISTER_COMPONENT_TYPE(Terrain)

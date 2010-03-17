@@ -20,7 +20,7 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "simulation2/system/Position.h"
+#include "simulation2/helpers/Position.h"
 
 /**
  * Footprints - an approximation of the entity's shape, used for collision detection and for
