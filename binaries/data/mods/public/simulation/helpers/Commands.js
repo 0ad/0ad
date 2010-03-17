@@ -60,9 +60,25 @@ function ProcessCommand(player, cmd)
 		var playerEnt = cmpPlayerMan.GetPlayerByID(player);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 
-		// Tentatively create the foundation (we don't know yet if the player can really afford it)
+		// Tentatively create the foundation (we might find later that it's a invalid build command)
 		var ent = Engine.AddEntity("foundation|" + cmd.template);
 		// TODO: report errors (e.g. invalid template names)
+
+		// Move the foundation to the right place
+		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		cmpPosition.JumpTo(cmd.x, cmd.z);
+		cmpPosition.SetYRotation(cmd.angle);
+
+		var cmpObstruction = Engine.QueryInterface(ent, IID_Obstruction);
+		if (cmpObstruction && cmpObstruction.CheckCollisions())
+		{
+			// TODO: report error to player (the building site was obstructed)
+
+			// Remove the foundation because the construction was aborted
+			Engine.DestroyEntity(ent);
+
+			break;
+		}
 
 		var cmpCost = Engine.QueryInterface(ent, IID_Cost);
 		if (!cmpPlayer.TrySubtractResources(cmpCost.GetResourceCosts()))
@@ -74,11 +90,6 @@ function ProcessCommand(player, cmd)
 
 			break;
 		}
-
-		// Move the foundation to the right place
-		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-		cmpPosition.JumpTo(cmd.x, cmd.z);
-		cmpPosition.SetYRotation(cmd.angle);
 
 		// Make it owned by the current player
 		var cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);

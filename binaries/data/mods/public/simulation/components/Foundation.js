@@ -16,6 +16,8 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 	// We need to know the owner in OnDestroy, but at that point the entity has already been
 	// decoupled from its owner, so we need to remember it in here (and assume it won't change)
 	this.owner = owner;
+
+	this.initialised = true;
 };
 
 Foundation.prototype.GetBuildPercentage = function()
@@ -26,6 +28,9 @@ Foundation.prototype.GetBuildPercentage = function()
 Foundation.prototype.OnDestroy = function()
 {
 	// Refund a portion of the construction cost, proportional to the amount of build progress remaining
+
+	if (!this.initialised) // this happens if the foundation was destroyed because the player had insufficient resources
+		return;
 
 	if (this.buildProgress == 1.0)
 		return;

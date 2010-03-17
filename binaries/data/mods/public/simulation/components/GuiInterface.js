@@ -147,6 +147,12 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 	}
 };
 
+/**
+ * Display the building placement preview.
+ * cmd.template is the name of the entity template, or "" to disable the preview.
+ * cmd.x, cmd.z, cmd.angle give the location.
+ * Returns true if the placement is okay (everything is valid and the entity is not obstructed by others).
+ */
 GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 {
 	// See if we're changing template
@@ -167,16 +173,35 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 		}
 	}
 
-	// Move the preview into the right location
 	if (this.placementEntity)
 	{
+		// Move the preview into the right location
 		var pos = Engine.QueryInterface(this.placementEntity[1], IID_Position);
 		if (pos)
 		{
 			pos.JumpTo(cmd.x, cmd.z);
 			pos.SetYRotation(cmd.angle);
 		}
+
+		// Check whether it's obstructed by other entities
+		var cmpObstruction = Engine.QueryInterface(this.placementEntity[1], IID_Obstruction);
+		var colliding = (cmpObstruction && cmpObstruction.CheckCollisions());
+
+		// Set it to a red shade if this is an obstructed location
+		var cmpVisual = Engine.QueryInterface(this.placementEntity[1], IID_Visual);
+		if (cmpVisual)
+		{
+			if (colliding)
+				cmpVisual.SetShadingColour(1.4, 0.4, 0.4, 1);
+			else
+				cmpVisual.SetShadingColour(1, 1, 1, 1);
+		}
+
+		if (!colliding)
+			return true;
 	}
+
+	return false;
 };
 
 // List the GuiInterface functions that can be safely called by GUI scripts.

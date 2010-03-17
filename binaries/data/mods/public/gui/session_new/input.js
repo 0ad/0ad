@@ -9,10 +9,15 @@ var INPUT_NORMAL = 0;
 var INPUT_SELECTING = 1;
 var INPUT_BANDBOXING = 2;
 var INPUT_BUILDING_PLACEMENT = 3;
+var INPUT_BUILDING_CLICK = 4;
+var INPUT_BUILDING_DRAG = 5;
 
 var inputState = INPUT_NORMAL;
 
-var placementEntity = "";
+var defaultPlacementAngle = Math.PI;
+var placementAngle;
+var placementPosition;
+var placementEntity;
 
 var mouseX = 0;
 var mouseY = 0;
@@ -95,6 +100,7 @@ function determineAction(x, y)
 	// If we don't do anything more specific, just walk
 	return {"type": "move"};
 }
+
 /*
 
 Selection methods: (not all currently implemented)
@@ -113,6 +119,40 @@ Selection methods: (not all currently implemented)
 
 // TODO: it'd probably be nice to have a better state-machine system
 
+var dragStart; // used for remembering mouse coordinates at start of drag operations
+
+function tryPlaceBuilding()
+{
+	var selection = g_Selection.toList();
+
+	// Use the preview to check it's a valid build location
+	var ok = Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+		"template": placementEntity,
+		"x": placementPosition.x,
+		"z": placementPosition.z,
+		"angle": placementAngle
+	});
+	if (!ok)
+	{
+		// invalid location - don't build it
+		return false;
+	}
+
+	// Remove the preview
+	Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+
+	// Start the construction
+	Engine.PostNetworkCommand({
+		"type": "construct",
+		"template": placementEntity,
+		"x": placementPosition.x,
+		"z": placementPosition.z,
+		"angle": placementAngle,
+		"entities": selection
+	});
+
+	return true;
+}
 
 function handleInputBeforeGui(ev)
 {
@@ -139,8 +179,8 @@ function handleInputBeforeGui(ev)
 		switch (ev.type)
 		{
 		case "mousemotion":
-			var x0 = selectionDragStart[0];
-			var y0 = selectionDragStart[1];
+			var x0 = dragStart[0];
+			var y0 = dragStart[1];
 			var x1 = ev.x;
 			var y1 = ev.y;
 			if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
@@ -158,8 +198,8 @@ function handleInputBeforeGui(ev)
 		case "mousebuttonup":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				var x0 = selectionDragStart[0];
-				var y0 = selectionDragStart[1];
+				var x0 = dragStart[0];
+				var y0 = dragStart[1];
 				var x1 = ev.x;
 				var y1 = ev.y;
 				if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
@@ -191,12 +231,100 @@ function handleInputBeforeGui(ev)
 			break;
 		}
 		break;
+	
+	case INPUT_BUILDING_CLICK:
+		switch (ev.type)
+		{
+		case "mousemotion":
+			// If the mouse moved far enough from the original click location,
+			// then switch to drag-orientatio mode
+			var dragDeltaX = ev.x - dragStart[0];
+			var dragDeltaY = ev.y - dragStart[1];
+			var maxDragDelta = 16;
+			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
+			{
+				inputState = INPUT_BUILDING_DRAG;
+				return false;
+			}
+			break;
+
+		case "mousebuttonup":
+			if (ev.button == SDL_BUTTON_LEFT)
+			{
+				if (tryPlaceBuilding())
+					inputState = INPUT_NORMAL;
+				else
+					inputState = INPUT_BUILDING_PLACEMENT;
+				return true;
+			}
+			break;
+
+		case "mousebuttondown":
+			if (ev.button == SDL_BUTTON_RIGHT)
+			{
+				// Cancel building
+				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			break;
+		}
+		break;
+
+	case INPUT_BUILDING_DRAG:
+		switch (ev.type)
+		{
+		case "mousemotion":
+			var dragDeltaX = ev.x - dragStart[0];
+			var dragDeltaY = ev.y - dragStart[1];
+			var maxDragDelta = 16;
+			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
+			{
+				// Rotate in the direction of the mouse
+				var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
+				placementAngle = Math.atan2(target.x - placementPosition.x, target.z - placementPosition.z);
+			}
+			else
+			{
+				// If the mouse is near the center, snap back to the default orientation
+				placementAngle = defaultPlacementAngle;
+			}
+
+			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
+				"template": placementEntity,
+				"x": placementPosition.x,
+				"z": placementPosition.z,
+				"angle": placementAngle
+			});
+
+			break;
+
+		case "mousebuttonup":
+			if (ev.button == SDL_BUTTON_LEFT)
+			{
+				if (tryPlaceBuilding())
+					inputState = INPUT_NORMAL;
+				else
+					inputState = INPUT_BUILDING_PLACEMENT;
+				return true;
+			}
+			break;
+
+		case "mousebuttondown":
+			if (ev.button == SDL_BUTTON_RIGHT)
+			{
+				// Cancel building
+				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
+				inputState = INPUT_NORMAL;
+				return true;
+			}
+			break;
+		}
+		break;
 	}
 
 	return false;
 }
-
-var selectionDragStart;
 
 function handleInputAfterGui(ev)
 {
@@ -215,7 +343,7 @@ function handleInputAfterGui(ev)
 		case "mousebuttondown":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				selectionDragStart = [ ev.x, ev.y ];
+				dragStart = [ ev.x, ev.y ];
 				inputState = INPUT_SELECTING;
 				return true;
 			}
@@ -260,8 +388,8 @@ function handleInputAfterGui(ev)
 		{
 		case "mousemotion":
 			// If the mouse moved further than a limit, switch to bandbox mode
-			var dragDeltaX = ev.x - selectionDragStart[0];
-			var dragDeltaY = ev.y - selectionDragStart[1];
+			var dragDeltaX = ev.x - dragStart[0];
+			var dragDeltaY = ev.y - dragStart[1];
 			var maxDragDelta = 4;
 			if (Math.abs(dragDeltaX) >= maxDragDelta || Math.abs(dragDeltaY) >= maxDragDelta)
 			{
@@ -300,12 +428,11 @@ function handleInputAfterGui(ev)
 		{
 		case "mousemotion":
 			var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-			var angle = Math.PI;
 			Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {
 				"template": placementEntity,
 				"x": target.x,
 				"z": target.z,
-				"angle": angle
+				"angle": placementAngle
 			});
 
 			return false; // continue processing mouse motion
@@ -313,28 +440,15 @@ function handleInputAfterGui(ev)
 		case "mousebuttondown":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				var selection = g_Selection.toList();
-				var target = Engine.GetTerrainAtPoint(ev.x, ev.y);
-				var angle = Math.PI;
-				// Remove the preview
-				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-				// Start the construction
-				Engine.PostNetworkCommand({
-					"type": "construct",
-					"template": placementEntity,
-					"x": target.x,
-					"z": target.z,
-					"angle": angle,
-					"entities": selection
-				});
-
-				inputState = INPUT_NORMAL;
+				placementPosition = Engine.GetTerrainAtPoint(ev.x, ev.y);
+				dragStart = [ ev.x, ev.y ];
+				inputState = INPUT_BUILDING_CLICK;
 				return true;
 			}
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
+				// Cancel building
 				Engine.GuiInterfaceCall("SetBuildingPlacementPreview", {"template": ""});
-
 				inputState = INPUT_NORMAL;
 				return true;
 			}
@@ -348,5 +462,6 @@ function handleInputAfterGui(ev)
 function testBuild(ent)
 {
 	placementEntity = ent;
+	placementAngle = defaultPlacementAngle;
 	inputState = INPUT_BUILDING_PLACEMENT;
 }
