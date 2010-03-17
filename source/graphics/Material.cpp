@@ -158,7 +158,7 @@ void CMaterial::SetPlayerColor(size_t id)
 		m_PlayerID = id;
 }
 
-void CMaterial::SetPlayerColor(CColor& colour)
+void CMaterial::SetPlayerColor(const CColor& colour)
 {
 	m_TextureColor = SMaterialColor(colour.r, colour.g, colour.b, colour.a);
 }

@@ -93,7 +93,7 @@ public:
 	void SetPlayerColor_PerPlayer() { m_PlayerID = PLAYER_ID_COMING_SOON; }
 	void SetPlayerColor_PerObject() { m_PlayerID = PLAYER_ID_OTHER; }
 	void SetPlayerColor(size_t id);
-	void SetPlayerColor(CColor &colour);
+	void SetPlayerColor(const CColor &colour);
 
 	void SetTexture(const CStr& texture);
 	void SetVertexProgram(const CStr& prog);

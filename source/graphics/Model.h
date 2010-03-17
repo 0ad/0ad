@@ -85,9 +85,9 @@ public:
 	// should normally be used instead.
 	void SetPlayerID(size_t id);
 	// set the model's player colour
-	void SetPlayerColor(CColor& colour);
+	void SetPlayerColor(const CColor& colour);
 	// set the models mod color
-	void SetShadingColor(CColor& colour);
+	void SetShadingColor(const CColor& colour);
 	// get the model's texture
 	CTexture* GetTexture() { return &m_Texture; }
 	// get the models material

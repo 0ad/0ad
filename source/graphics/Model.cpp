@@ -509,12 +509,12 @@ void CModel::SetPlayerID(size_t id)
 		it->m_Model->SetPlayerID(id);
 }
 
-void CModel::SetPlayerColor(CColor& colour)
+void CModel::SetPlayerColor(const CColor& colour)
 {
 	m_Material.SetPlayerColor(colour);
 }
 
-void CModel::SetShadingColor(CColor& colour)
+void CModel::SetShadingColor(const CColor& colour)
 {
 	m_ShadingColor = colour;
 	for( std::vector<Prop>::iterator it = m_Props.begin(); it != m_Props.end(); ++it )
