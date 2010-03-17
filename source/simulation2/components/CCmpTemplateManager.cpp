@@ -351,12 +351,16 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("Position");
 	permittedComponentTypes.insert("VisualActor");
+	permittedComponentTypes.insert("Footprint");
+	permittedComponentTypes.insert("Obstruction");
 	// (This could be initialised once and reused, but it's not worth the effort)
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
 	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-	// In the future, we might want to add some extra flags to certain components, to indicate they're
-	// running in 'preview' mode and should not e.g. register with global managers
+
+	// Disable the Obstruction component (if there is one) so it doesn't affect pathfinding
+	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
+		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Inactive/></Obstruction></Entity>");
 }
 
 void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode& in)

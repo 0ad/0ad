@@ -79,10 +79,14 @@ public:
 		TS_ASSERT(preview != NULL);
 		TS_ASSERT_WSTR_EQUALS(preview->ToXML(), L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example</Actor></VisualActor>");
 
+		const CParamNode* previewobstruct = tempMan->LoadTemplate(ent2, L"preview|unitobstruct", -1);
+		TS_ASSERT(previewobstruct != NULL);
+		TS_ASSERT_WSTR_EQUALS(previewobstruct->ToXML(), L"<Footprint><Circle radius=\"4\"></Circle></Footprint><Obstruction><Inactive></Inactive></Obstruction><Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example</Actor></VisualActor>");
+
 		const CParamNode* previewactor = tempMan->LoadTemplate(ent2, L"preview|actor|example2", -1);
 		TS_ASSERT(previewactor != NULL);
 		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(), L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example2</Actor></VisualActor>");
-}
+	}
 
 	void test_LoadTemplate_errors()
 	{
