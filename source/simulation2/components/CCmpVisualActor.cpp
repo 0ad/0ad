@@ -114,6 +114,8 @@ public:
 		// a list of strings if it really needs to be a specific variation.
 
 		// TODO: store animation state
+
+		// TODO: store shading colour
 	}
 
 	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
@@ -174,6 +176,14 @@ public:
 		m_AnimSpeed = speed;
 
 		m_Unit->SetAnimationState(name, once, speed);
+	}
+
+	virtual void SetShadingColour(CFixed_23_8 r, CFixed_23_8 g, CFixed_23_8 b, CFixed_23_8 a)
+	{
+		if (!m_Unit)
+			return;
+
+		m_Unit->GetModel()->SetShadingColor(CColor(r.ToFloat(), g.ToFloat(), b.ToFloat(), a.ToFloat()));
 	}
 
 private:

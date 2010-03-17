@@ -21,6 +21,7 @@
 #include "simulation2/system/Interface.h"
 
 #include "maths/Bound.h"
+#include "maths/Fixed.h"
 
 /**
  * The visual representation of an entity (typically an actor).
@@ -48,6 +49,17 @@ public:
 	 * @param speed some kind of animation speed multiplier (TODO: work out exactly what the scale is)
 	 */
 	virtual void SelectAnimation(std::string name, bool once, float speed) = 0;
+
+	/**
+	 * Set the shading colour that will be modulated with the model's textures.
+	 * Default shading is (1, 1, 1, 1).
+	 * Alpha should probably be 1 else it's unlikely to work properly.
+	 * @param r red component, expected range [0, 1]
+	 * @param g green component, expected range [0, 1]
+	 * @param b blue component, expected range [0, 1]
+	 * @param a alpha component, expected range [0, 1]
+	 */
+	virtual void SetShadingColour(CFixed_23_8 r, CFixed_23_8 g, CFixed_23_8 b, CFixed_23_8 a) = 0;
 
 	DECLARE_INTERFACE_TYPE(Visual)
 };
