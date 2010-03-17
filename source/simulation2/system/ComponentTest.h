@@ -172,5 +172,10 @@ public:
 	{
 		return CFixed_23_8::FromInt(50);
 	}
+
+	virtual float GetGroundLevel(float UNUSED(x), float UNUSED(z))
+	{
+		return 50.f;
+	}
 };
 
