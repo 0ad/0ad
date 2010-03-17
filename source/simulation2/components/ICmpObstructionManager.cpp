@@ -15,27 +15,11 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPOBSTRUCTION
-#define INCLUDED_ICMPOBSTRUCTION
+#include "precompiled.h"
 
-#include "simulation2/system/Interface.h"
+#include "ICmpObstructionManager.h"
 
-#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/system/InterfaceScripted.h"
 
-/**
- * Flags an entity as obstructing movement for other units,
- * and handles the processing of collision queries.
- */
-class ICmpObstruction : public IComponent
-{
-public:
-	/**
-	 * Test whether this entity's footprint is colliding with any other's.
-	 * @return true if there is a collision
-	 */
-	virtual bool CheckCollisions() = 0;
-
-	DECLARE_INTERFACE_TYPE(Obstruction)
-};
-
-#endif // INCLUDED_ICMPOBSTRUCTION
+BEGIN_INTERFACE_WRAPPER(ObstructionManager)
+END_INTERFACE_WRAPPER(ObstructionManager)

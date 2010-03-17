@@ -66,6 +66,9 @@ COMPONENT(MotionScripted)
 INTERFACE(Obstruction)
 COMPONENT(Obstruction)
 
+INTERFACE(ObstructionManager)
+COMPONENT(ObstructionManager)
+
 INTERFACE(Ownership)
 COMPONENT(Ownership)
 

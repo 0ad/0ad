@@ -22,4 +22,5 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Obstruction)
+DEFINE_INTERFACE_METHOD_0("CheckCollisions", bool, ICmpObstruction, CheckCollisions)
 END_INTERFACE_WRAPPER(Obstruction)

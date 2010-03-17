@@ -29,6 +29,7 @@ class ICmpTerrain : public IComponent
 public:
 	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z) = 0;
 	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) = 0;
+	virtual float GetGroundLevel(float x, float z) = 0;
 
 	DECLARE_INTERFACE_TYPE(Terrain)
 };

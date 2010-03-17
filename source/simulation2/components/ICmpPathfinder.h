@@ -20,7 +20,7 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "simulation2/system/Position.h"
+#include "simulation2/helpers/Position.h"
 
 /**
  * Pathfinder algorithm.
@@ -62,24 +62,9 @@ public:
 	};
 
 	/**
-	 * The pathfinder maintains an internal list of shapes; tags are the external identifiers of these
-	 * shapes, allowing them to be manipulated and removed.
-	 * Valid tags are guaranteed to be non-zero.
-	 */
-	typedef u32 tag_t;
-
-	virtual tag_t AddCircle(entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
-
-	virtual tag_t AddSquare(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) = 0;
-
-	virtual void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a) = 0;
-
-	virtual void RemoveShape(tag_t tag) = 0;
-
-	/**
 	 * Determine whether a unit (of radius r) can move between the given points in a straight line,
 	 * without hitting any obstacles.
-	 * This is based on the exact list of shapes, not the grid approximation.
+	 * This is based on the exact list of obtruction shapes, not the grid approximation.
 	 * This should be used as a shortcut to avoid using the pathfinding algorithm in simple cases,
 	 * and for more refined movement along the found paths.
 	 */

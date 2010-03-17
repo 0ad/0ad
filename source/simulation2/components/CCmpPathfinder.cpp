@@ -22,6 +22,8 @@
 
 #include "simulation2/MessageTypes.h"
 
+#include "ICmpObstructionManager.h"
+
 #include "graphics/Terrain.h"
 #include "maths/FixedVector2D.h"
 #include "maths/MathUtil.h"
@@ -39,75 +41,6 @@
 
 class CCmpPathfinder;
 struct PathfindTile;
-
-// Basic 2D array, for storing tile data
-// (TODO: Maybe this could use a more cache-friendly data layout or something?)
-template<typename T>
-class Grid
-{
-public:
-	Grid(u16 w, u16 h) : m_W(w), m_H(h)
-	{
-		m_Data = new T[m_W * m_H];
-		reset();
-	}
-
-	~Grid()
-	{
-		delete[] m_Data;
-	}
-
-	void reset()
-	{
-		memset(m_Data, 0, m_W*m_H*sizeof(T));
-	}
-
-	void set(size_t i, size_t j, const T& value)
-	{
-#if PATHFIND_DEBUG
-		debug_assert(i < m_W && j < m_H);
-#endif
-		m_Data[j*m_W + i] = value;
-	}
-
-	T& get(size_t i, size_t j)
-	{
-#if PATHFIND_DEBUG
-		debug_assert(i < m_W && j < m_H);
-#endif
-		return m_Data[j*m_W + i];
-	}
-
-	u16 m_W, m_H;
-	T* m_Data;
-};
-
-// Externally, tags are opaque non-zero positive integers.
-// Internally, they are tagged (by shape) indexes into shape lists.
-// idx must be non-zero.
-#define TAG_IS_CIRCLE(tag) (((tag) & 1) == 0)
-#define TAG_IS_SQUARE(tag) (((tag) & 1) == 1)
-#define CIRCLE_INDEX_TO_TAG(idx) (((idx) << 1) | 0)
-#define SQUARE_INDEX_TO_TAG(idx) (((idx) << 1) | 1)
-#define TAG_TO_INDEX(tag) ((tag) >> 1)
-
-/**
- * Internal representation of circle shapes
- */
-struct Circle
-{
-	entity_pos_t x, z, r;
-};
-
-/**
- * Internal representation of square shapes
- */
-struct Square
-{
-	entity_pos_t x, z;
-	entity_angle_t a;
-	entity_pos_t w, h;
-};
 
 /**
  * Terrain overlay for pathfinder debugging.
@@ -142,7 +75,6 @@ public:
 
 	const CSimContext* m_Context;
 
-	bool m_GridDirty; // whether m_Grid is invalid
 	u16 m_MapSize; // tiles per side
 	Grid<u8>* m_Grid; // terrain/passability information
 
@@ -152,26 +84,16 @@ public:
 	Path* m_DebugPath;
 	PathfinderOverlay* m_DebugOverlay;
 
-	// TODO: using std::map is stupid and inefficient
-	std::map<u32, Circle> m_Circles;
-	std::map<u32, Square> m_Squares;
-	u32 m_CircleNext; // next allocated id
-	u32 m_SquareNext;
-
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
 		m_Context = &context;
 
-		m_GridDirty = true;
 		m_MapSize = 0;
 		m_Grid = NULL;
 
 		m_DebugOverlay = new PathfinderOverlay(*this);
 		m_DebugGrid = NULL;
 		m_DebugPath = NULL;
-
-		m_CircleNext = 1;
-		m_SquareNext = 1;
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -194,53 +116,6 @@ public:
 		Init(context, paramNode);
 
 		// TODO
-	}
-
-	virtual tag_t AddCircle(entity_pos_t x, entity_pos_t z, entity_pos_t r)
-	{
-		Circle c = { x, z, r };
-		size_t id = m_CircleNext++;
-		m_Circles[id] = c;
-		m_GridDirty = true;
-		return CIRCLE_INDEX_TO_TAG(id);
-	}
-
-	virtual tag_t AddSquare(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h)
-	{
-		Square s = { x, z, a, w, h };
-		size_t id = m_SquareNext++;
-		m_Squares[id] = s;
-		m_GridDirty = true;
-		return SQUARE_INDEX_TO_TAG(id);
-	}
-
-	virtual void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a)
-	{
-		if (TAG_IS_CIRCLE(tag))
-		{
-			Circle& c = m_Circles[TAG_TO_INDEX(tag)];
-			c.x = x;
-			c.z = z;
-		}
-		else
-		{
-			Square& s = m_Squares[TAG_TO_INDEX(tag)];
-			s.x = x;
-			s.z = z;
-			s.a = a;
-		}
-
-		m_GridDirty = true;
-	}
-
-	virtual void RemoveShape(tag_t tag)
-	{
-		if (TAG_IS_CIRCLE(tag))
-			m_Circles.erase(TAG_TO_INDEX(tag));
-		else
-			m_Squares.erase(TAG_TO_INDEX(tag));
-
-		m_GridDirty = true;
 	}
 
 	virtual bool CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost);
@@ -275,7 +150,7 @@ public:
 	}
 
 	/**
-	 * Regenerates the grid based on the shape lists, if necessary
+	 * Regenerates the grid based on the current obstruction list, if necessary
 	 */
 	void UpdateGrid()
 	{
@@ -292,39 +167,8 @@ public:
 			m_Grid = new Grid<u8>(m_MapSize, m_MapSize);
 		}
 
-		if (m_GridDirty)
-		{
-			// TODO: this is all hopelessly inefficient
-			// What we should perhaps do is have some kind of quadtree storing Shapes so it's
-			// quick to invalidate and update small numbers of tiles
-
-			m_Grid->reset();
-
-			for (std::map<u32, Circle>::iterator it = m_Circles.begin(); it != m_Circles.end(); ++it)
-			{
-				// TODO: need to handle larger circles (r != 0)
-				u16 i, j;
-				NearestTile(it->second.x, it->second.z, i, j);
-				m_Grid->set(i, j, 1);
-			}
-
-			for (std::map<u32, Square>::iterator it = m_Squares.begin(); it != m_Squares.end(); ++it)
-			{
-				// TODO: need to handle rotations (a != 0)
-				entity_pos_t x0 = it->second.x - it->second.w/2;
-				entity_pos_t z0 = it->second.z - it->second.h/2;
-				entity_pos_t x1 = it->second.x + it->second.w/2;
-				entity_pos_t z1 = it->second.z + it->second.h/2;
-				u16 i0, j0, i1, j1;
-				NearestTile(x0, z0, i0, j0); // TODO: should be careful about rounding on edges
-				NearestTile(x1, z1, i1, j1);
-				for (u16 j = j0; j <= j1; ++j)
-					for (u16 i = i0; i <= i1; ++i)
-						m_Grid->set(i, j, 1);
-			}
-
-			m_GridDirty = false;
-		}
+		CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+		cmpObstructionManager->Rasterise(*m_Grid);
 	}
 };
 
@@ -333,54 +177,13 @@ REGISTER_COMPONENT_TYPE(Pathfinder)
 
 const u32 g_CostPerTile = 256; // base cost to move between adjacent tiles
 
-// Detect intersection between ray (0,0)-L and circle with center M radius r
-// (Only counts intersections from the outside to the inside)
-static bool IntersectRayCircle(CFixedVector2D l, CFixedVector2D m, entity_pos_t r)
-{
-	// TODO: this should all be checked and tested etc, it's just a rough first attempt for now...
-
-	// Intersections at (t * l.X - m.X)^2 * (t * l.Y - m.Y) = r^2
-	// so solve the quadratic for t:
-
-#define DOT(u, v) ( ((i64)u.X.GetInternalValue()*(i64)v.X.GetInternalValue()) + ((i64)u.Y.GetInternalValue()*(i64)v.Y.GetInternalValue()) )
-	i64 a = DOT(l, l);
-	if (a == 0)
-		return false; // avoid divide-by-zero later
-	i64 b = DOT(l, m)*-2;
-	i64 c = DOT(m, m) - r.GetInternalValue()*r.GetInternalValue();
-	i64 d = b*b - 4*a*c; // TODO: overflow breaks stuff here
-	if (d < 0) // no solutions
-		return false;
-	// Find the time of first intersection (entering the circle)
-	i64 t2a = (-b - isqrt64(d)); // don't divide by 2a explicitly, to avoid rounding errors
-	if ((a > 0 && t2a < 0) || (a < 0 && t2a > 0)) // if t2a/2a < 0 then intersection was before the ray
-		return false;
-	if (t2a >= 2*a) // intersection was after the ray
-		return false;
-//	printf("isct (%f,%f) (%f,%f) %f a=%lld b=%lld c=%lld d=%lld t2a=%lld\n", l.X.ToDouble(), l.Y.ToDouble(), m.X.ToDouble(), m.Y.ToDouble(), r.ToDouble(), a, b, c, d, t2a);
-	return true;
-}
-
 bool CCmpPathfinder::CanMoveStraight(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, u32& cost)
 {
-	PROFILE("CanMoveStraight");
-
-	// TODO: this is all very inefficient, it should use kind of spatial data structures
-
-	// Ray-circle intersections
-	for (std::map<u32, Circle>::iterator it = m_Circles.begin(); it != m_Circles.end(); ++it)
-	{
-		if (IntersectRayCircle(CFixedVector2D(x1 - x0, z1 - z0), CFixedVector2D(it->second.x - x0, it->second.z - z0), it->second.r + r))
-			return false;
-	}
-
-	// Ray-square intersections
-	for (std::map<u32, Square>::iterator it = m_Squares.begin(); it != m_Squares.end(); ++it)
-	{
-		// XXX need some kind of square intersection code
-		if (IntersectRayCircle(CFixedVector2D(x1 - x0, z1 - z0), CFixedVector2D(it->second.x - x0, it->second.z - z0), it->second.w/2 + r))
-			return false;
-	}
+	// Test whether there's a straight path
+	CmpPtr<ICmpObstructionManager> cmpObstructionManager(*m_Context, SYSTEM_ENTITY);
+	NullObstructionFilter filter;
+	if (!cmpObstructionManager->TestLine(filter, x0, z0, x1, z1, r))
+		return false;
 
 	// Calculate the exact movement cost
 	// (TODO: this needs to care about terrain costs etc)
