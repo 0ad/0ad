@@ -290,15 +290,15 @@ public:
 		float x = Interpolate(m_LastX.ToFloat(), m_X.ToFloat(), frameOffset);
 		float z = Interpolate(m_LastZ.ToFloat(), m_Z.ToFloat(), frameOffset);
 
-		entity_pos_t ground;
+		float ground = 0;
 		CmpPtr<ICmpTerrain> cmpTerrain(*m_Context, SYSTEM_ENTITY);
 		if (!cmpTerrain.null())
 		{
-			ground = cmpTerrain->GetGroundLevel(m_X, m_Z);
+			ground = cmpTerrain->GetGroundLevel(x, z);
 			// TODO: do something with m_Floating
 		}
 
-		float y = ground.ToFloat() + m_YOffset.ToFloat();
+		float y = ground + m_YOffset.ToFloat();
 
 		// TODO: do something with m_AnchorType
 
