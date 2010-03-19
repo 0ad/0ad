@@ -128,7 +128,7 @@ public:
 			for (ssize_t pi = 0; pi < terrain.GetPatchesPerSide(); ++pi)
 				terrain.GetPatch(pi, pj)->SetRenderData(new CRenderData());
 
-#define EXPECT_DIRTY(which, pi, pj) TS_ASSERT_EQUALS((bool)(terrain.GetPatch(pi, pj)->GetRenderData()->m_UpdateFlags & RENDERDATA_UPDATE_VERTICES), which)
+#define EXPECT_DIRTY(which, pi, pj) TS_ASSERT_EQUALS((terrain.GetPatch(pi, pj)->GetRenderData()->m_UpdateFlags & RENDERDATA_UPDATE_VERTICES) != 0, which)
 
 		EXPECT_DIRTY(false, 0, 0);
 		EXPECT_DIRTY(false, 1, 0);
