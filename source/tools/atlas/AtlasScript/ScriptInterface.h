@@ -152,3 +152,20 @@ bool ScriptInterface::Eval(const wxString& script, T& ret)
 	if (! Eval_(script, jsRet)) return false;
 	return FromJSVal(GetContext(), jsRet, ret);
 }
+
+/**
+ * A trivial wrapper around a jsval. Used to avoid template overload ambiguities
+ * with jsval (which is just an integer), for any code that uses
+ * ScriptInterface::ToJSVal or ScriptInterface::FromJSVal
+ */
+class CScriptVal
+{
+public:
+	CScriptVal() : m_Val(0) { }
+	CScriptVal(jsval val) : m_Val(val) { }
+
+	jsval get() const { return m_Val; }
+
+private:
+	jsval m_Val;
+};

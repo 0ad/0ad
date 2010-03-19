@@ -307,9 +307,10 @@ namespace
 		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name, &arg);
 	}
 
-	void SetCurrentToolWithVal(void* cbdata, wxString name, jsval arg)
+	void SetCurrentToolWithVal(void* cbdata, wxString name, CScriptVal arg)
 	{
-		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name, &arg);
+		jsval tool = arg.get();
+		static_cast<ScenarioEditor*>(cbdata)->GetToolManager().SetCurrentTool(name, &tool);
 	}
 
 	wxString GetDataDirectory(void*)
@@ -352,7 +353,7 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent, ScriptInterface& scriptInterfac
 	GetScriptInterface().RegisterFunction<wxString, GetDataDirectory>("GetDataDirectory");
 	GetScriptInterface().RegisterFunction<void, wxString, SetCurrentTool_>("SetCurrentTool");
 	GetScriptInterface().RegisterFunction<void, wxString, wxString, SetCurrentToolWith>("SetCurrentToolWith");
-	GetScriptInterface().RegisterFunction<void, wxString, jsval, SetCurrentToolWithVal>("SetCurrentToolWithVal");
+	GetScriptInterface().RegisterFunction<void, wxString, CScriptVal, SetCurrentToolWithVal>("SetCurrentToolWithVal");
 	GetScriptInterface().RegisterFunction<void, float, SetBrushStrength>("SetBrushStrength");
 	GetScriptInterface().RegisterFunction<void, wxString, SetSelectedTexture>("SetSelectedTexture");
 

@@ -139,9 +139,9 @@ namespace
 		}
 	};
 
-	template<> struct FromJSVal<jsval>
+	template<> struct FromJSVal<CScriptVal>
 	{
-		static bool Convert(JSContext* WXUNUSED(cx), jsval v, jsval& out)
+		static bool Convert(JSContext* WXUNUSED(cx), jsval v, CScriptVal& out)
 		{
 			out = v;
 			return true;
@@ -468,7 +468,7 @@ template<typename T> jsval ScriptInterface::ToJSVal(JSContext* cx, const T& v)
 template bool ScriptInterface::FromJSVal<wxString>(JSContext*, jsval, wxString&);
 template bool ScriptInterface::FromJSVal<bool>(JSContext*, jsval, bool&);
 template bool ScriptInterface::FromJSVal<float>(JSContext*, jsval, float&);
-template bool ScriptInterface::FromJSVal<jsval>(JSContext*, jsval, jsval&);
+template bool ScriptInterface::FromJSVal<CScriptVal>(JSContext*, jsval, CScriptVal&);
 template jsval ScriptInterface::ToJSVal<wxString>(JSContext*, wxString const&);
 template jsval ScriptInterface::ToJSVal<wxKeyEvent>(JSContext*, wxKeyEvent const&);
 template jsval ScriptInterface::ToJSVal<wxMouseEvent>(JSContext*, wxMouseEvent const&);
