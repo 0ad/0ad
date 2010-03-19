@@ -245,17 +245,11 @@ public:
 		CScriptVal obj;
 		TS_ASSERT(script.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", obj));
 
-#if JS_VERSION >= 180
-#define STR_JS_UNDEFINED "(void 0)"
-#else
-#define STR_JS_UNDEFINED "undefined"
-#endif
-
 		{
 			std::stringstream stream;
 			CDebugSerializer serialize(script, stream);
 			serialize.ScriptVal("script", obj);
-			TS_ASSERT_STR_EQUALS(stream.str(), "script: ({x:123, y:[1, 1.5, \"2\", \"test\", " STR_JS_UNDEFINED ", null, true, false]})\n");
+			TS_ASSERT_STR_EQUALS(stream.str(), "script: ({x:123, y:[1, 1.5, \"2\", \"test\", (void 0), null, true, false]})\n");
 		}
 
 		{
@@ -300,7 +294,7 @@ public:
 
 			std::string source;
 			TS_ASSERT(script.CallFunction(newobj, "toSource", source));
-			TS_ASSERT_STR_EQUALS(source, "({x:123, y:[1, 1.5, \"2\", \"test\", " STR_JS_UNDEFINED ", null, true, false]})");
+			TS_ASSERT_STR_EQUALS(source, "({x:123, y:[1, 1.5, \"2\", \"test\", (void 0), null, true, false]})");
 		}
 	}
 
@@ -367,28 +361,17 @@ public:
 		const char stream[] = "\x02" // SCRIPT_TYPE_ARRAY
 					"\x04\0\0\0" // num props
 					"\x01\0\0\0" "0" // "0"
-#if JS_VERSION >= 180
 					"\x05" "\x00\0\0\xC0" // SCRIPT_TYPE_INT -1073741824 (JS_INT_MIN)
 					"\x01\0\0\0" "1" // "1"
 					"\x06" "\0\0\x40\0\0\0\xD0\xC1" // SCRIPT_TYPE_DOUBLE -1073741825 (JS_INT_MIN-1)
-#else
-					"\x05" "\x01\0\0\xC0" // SCRIPT_TYPE_INT -1073741823 (JS_INT_MIN)
-					"\x01\0\0\0" "1" // "1"
-					"\x06" "\0\0\0\0\0\0\xD0\xC1" // SCRIPT_TYPE_DOUBLE -1073741824 (JS_INT_MIN-1)
-#endif
 					"\x01\0\0\0" "2" // "2"
 					"\x05" "\xFF\xFF\xFF\x3F" // SCRIPT_TYPE_INT 1073741823
 					"\x01\0\0\0" "3" // "3"
 					"\x06" "\0\0\0\0\0\0\xD0\x41" // SCRIPT_TYPE_DOUBLE 1073741824
 		;
 
-#if JS_VERSION >= 180
 		helper_script_roundtrip("numbers", "[-1073741824, -1073741825, 1.073741823e+9, 1073741824]",
 				"[-1073741824, -1073741825, 1073741823, 1073741824]", sizeof(stream) - 1, stream);
-#else
-		helper_script_roundtrip("numbers", "[-1073741823, -1073741824, 1.073741823e+9, 1073741824]",
-				"[-1073741823, -1073741824, 1073741823, 1073741824]", sizeof(stream) - 1, stream);
-#endif
 	}
 
 	void test_script_exceptions()

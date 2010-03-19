@@ -26,18 +26,6 @@
 
 #include "js/jspubtd.h"
 
-#ifndef JS_THREADSAFE
-#error The editor requires a threadsafe version of SpiderMonkey. Something in the build system is broken if you see this error.
-#endif
-// (There are a few places where SM really needs to be told to be threadsafe, even
-// though we're not actually sharing runtimes between threads.)
-
-#if JS_VERSION <= 160
-// 1.6 doesn't support the standards-conforming globals behaviour,
-// so we can't use this flag there
-# define JSCLASS_GLOBAL_FLAGS 0
-#endif
-
 class wxWindow;
 class wxString;
 class wxPanel;

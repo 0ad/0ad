@@ -11,7 +11,7 @@ cd "$(dirname $0)"
 
 # Build/update bundled external libraries
 (cd ../../libraries/fcollada/src && make) || die "FCollada build failed"
-(cd ../../libraries/spidermonkey/src && ./build.sh) || die "SpiderMonkey build failed"
+(cd ../../libraries/spidermonkey-tip && ./build.sh) || die "SpiderMonkey build failed"
 
 # Make sure workspaces/gcc exists.
 mkdir -p gcc

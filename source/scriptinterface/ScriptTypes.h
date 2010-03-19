@@ -27,12 +27,6 @@
 
 #include "js/jspubtd.h"
 
-#if JS_VERSION <= 160
-// 1.6 doesn't support the standards-conforming globals behaviour,
-// so we can't use this flag there
-# define JSCLASS_GLOBAL_FLAGS 0
-#endif
-
 class ScriptInterface;
 class CScriptVal;
 

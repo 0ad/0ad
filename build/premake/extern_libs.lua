@@ -149,15 +149,6 @@ extern_lib_defs = {
 			end
 		end,
 	},
-	nspr = {
-		-- On windows, this is somehow baked into the js library (ask philip)
-		-- but on unix we need to explicitly include this (it's used by libjs).
-		add_func = function()
-			if OS ~= "windows" then
-				pkgconfig("nspr")
-			end
-		end,
-	},
 	openal = {
 		win_names  = { "openal32" },
 		unix_names = { "openal" },
@@ -178,9 +169,7 @@ extern_lib_defs = {
 			end
 		end
 	},
-	spidermonkey =
-	options["with-spidermonkey-tip"] and
-	{
+	spidermonkey = {
 		add_func = function()
 			if OS == "windows" then
 				include_dir = "include-win32"
@@ -195,13 +184,6 @@ extern_lib_defs = {
 			tinsert(package.config["Testing"].links, "mozjs-ps-release")
 			tinsert(package.config["Release"].links, "mozjs-ps-release")
 		end,
-	}
-	or -- SpiderMonkey 1.6
-	{
-		win_names  = { "js32" },
-		unix_names = { "js" },
-		depends = { "nspr" },
-		defines = { "JS_THREADSAFE" },
 	},
 	valgrind = {
 	},

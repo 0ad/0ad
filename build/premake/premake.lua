@@ -7,7 +7,6 @@ addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
 addoption("with-valgrind", "Enable using valgrind for debugging functionality")
-addoption("with-spidermonkey-tip", "Use SpiderMonkey from mozilla-central tip instead of the 1.6 release")
 
 use_dcdt = false -- disable it since it's a non-Free library
 

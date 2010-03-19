@@ -83,15 +83,9 @@ public:
 		roundtrip<i32>(1073741822, "1073741822"); // JSVAL_INT_MAX-1
 		roundtrip<i32>(1073741823, "1073741823"); // JSVAL_INT_MAX
 		roundtrip<i32>(1073741824, "1073741824"); // JSVAL_INT_MAX+1
-#if JS_VERSION >= 180
 		roundtrip<i32>(-1073741823, "-1073741823"); // JSVAL_INT_MIN+1
 		roundtrip<i32>(-1073741824, "-1073741824"); // JSVAL_INT_MIN
 		roundtrip<i32>(-1073741825, "-1073741825"); // JSVAL_INT_MIN-1
-#else
-		roundtrip<i32>(-1073741822, "-1073741822"); // JSVAL_INT_MIN+1
-		roundtrip<i32>(-1073741823, "-1073741823"); // JSVAL_INT_MIN
-		roundtrip<i32>(-1073741824, "-1073741824"); // JSVAL_INT_MIN-1
-#endif
 
 		roundtrip<u32>(0, "0");
 		roundtrip<u32>(123, "123");
@@ -107,20 +101,12 @@ public:
 
 		roundtrip<std::string>("", "\"\"");
 		roundtrip<std::string>("test", "\"test\"");
-#if JS_VERSION >= 180
 		roundtrip<std::string>(s1, "\"t\\0st\"");
-#else
-		roundtrip<std::string>(s1, "\"t\\x00st\"");
-#endif
 		// TODO: should test non-ASCII strings
 
 		roundtrip<std::wstring>(L"", "\"\"");
 		roundtrip<std::wstring>(L"test", "\"test\"");
-#if JS_VERSION >= 180
 		roundtrip<std::wstring>(w1, "\"t\\0st\"");
-#else
-		roundtrip<std::wstring>(w1, "\"t\\x00st\"");
-#endif
 		// TODO: should test non-ASCII strings
 
 		convert_to<const char*>("", "\"\"");
@@ -143,15 +129,9 @@ public:
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, 1073741822))); // JSVAL_INT_MAX-1
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, 1073741823))); // JSVAL_INT_MAX
 		TS_ASSERT(JSVAL_IS_DOUBLE(ScriptInterface::ToJSVal<i32>(cx, 1073741824))); // JSVAL_INT_MAX+1
-#if JS_VERSION >= 180
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -1073741823))); // JSVAL_INT_MIN+1
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -1073741824))); // JSVAL_INT_MIN
 		TS_ASSERT(JSVAL_IS_DOUBLE(ScriptInterface::ToJSVal<i32>(cx, -1073741825))); // JSVAL_INT_MIN-1
-#else
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -1073741822))); // JSVAL_INT_MIN+1
-		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<i32>(cx, -1073741823))); // JSVAL_INT_MIN
-		TS_ASSERT(JSVAL_IS_DOUBLE(ScriptInterface::ToJSVal<i32>(cx, -1073741824))); // JSVAL_INT_MIN-1
-#endif
 
 		TS_ASSERT(JSVAL_IS_INT(ScriptInterface::ToJSVal<u32>(cx, 0)));
 
