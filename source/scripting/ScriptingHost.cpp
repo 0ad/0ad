@@ -26,15 +26,6 @@
 #include "ps/Filesystem.h"
 #include "scriptinterface/ScriptInterface.h"
 
-
-#if OS_WIN
-#ifdef NDEBUG
-# pragma comment (lib, "js32.lib")
-#else
-# pragma comment (lib, "js32d.lib")
-#endif
-#endif
-
 #define LOG_CATEGORY L"scriptinghost"
 
 namespace

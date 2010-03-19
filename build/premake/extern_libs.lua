@@ -182,9 +182,14 @@ extern_lib_defs = {
 	options["with-spidermonkey-tip"] and
 	{
 		add_func = function()
-			tinsert(package.config["Debug"  ].includepaths, libraries_dir.."spidermonkey-tip/include/debug")
-			tinsert(package.config["Testing"].includepaths, libraries_dir.."spidermonkey-tip/include/debug")
-			tinsert(package.config["Release"].includepaths, libraries_dir.."spidermonkey-tip/include/release")
+			if OS == "windows" then
+				include_dir = "include-win32"
+			else
+				include_dir = "include-unix"
+			end
+			tinsert(package.config["Debug"  ].includepaths, libraries_dir.."spidermonkey-tip/"..include_dir.."/debug")
+			tinsert(package.config["Testing"].includepaths, libraries_dir.."spidermonkey-tip/"..include_dir.."/debug")
+			tinsert(package.config["Release"].includepaths, libraries_dir.."spidermonkey-tip/"..include_dir.."/release")
 			tinsert(package.libpaths, libraries_dir.."spidermonkey-tip/lib")
 			tinsert(package.config["Debug"  ].links, "mozjs-ps-debug")
 			tinsert(package.config["Testing"].links, "mozjs-ps-release")

@@ -35,7 +35,7 @@ and 'variables' (dependent on the type passed with "translate(...) <<").
 ERROR_SUBGROUP(I18n, Script);
 ERROR_TYPE(I18n_Script, SetupFailed);
 
-typedef _W64 long JSWord;
+typedef intptr_t JSWord;
 typedef JSWord jsword;
 typedef jsword jsval;
 typedef unsigned short jschar;

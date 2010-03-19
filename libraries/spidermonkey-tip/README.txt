@@ -1,5 +1,9 @@
 To build SpiderMonkey for use in 0 A.D. on Linux or OS X, run ./build.sh
 
+To build on Windows (if you don't want to use the precompiled binaries in SVN),
+get https://developer.mozilla.org/en/Windows_Build_Prerequisites#MozillaBuild
+then run start-msvc8.bat and run ./build.sh here.
+
 This version of SpiderMonkey comes from http://hg.mozilla.org/mozilla-central/
 revision 5108c4c2c043
 plus the patch from https://bugzilla.mozilla.org/show_bug.cgi?id=509857

@@ -33,15 +33,17 @@ cd src
 # autoconf-2.13   # this generates ./configure, which we've added to SVN instead
 
 # We want separate debug/release versions of the library, so we have to change
-# the LIBRARY_NAME for each build
-sed -i -r 's/^(LIBRARY_NAME\s+= mozjs).*/\1-ps-debug/' Makefile.in
+# the LIBRARY_NAME for each build.
+# (We use perl instead of sed so that it works with MozillaBuild on Windows,
+# which has an ancient sed.)
+perl -i.bak -pe 's/^(LIBRARY_NAME\s+= mozjs).*/$1-ps-debug/' Makefile.in
 mkdir -p build-debug
 cd build-debug
 ../configure ${CONF_OPTS} --enable-debug --disable-optimize
 make ${MAKE_OPTS}
 cd ..
 
-sed -i -r 's/^(LIBRARY_NAME\s+= mozjs).*/\1-ps-release/' Makefile.in
+perl -i.bak -pe 's/^(LIBRARY_NAME\s+= mozjs).*/$1-ps-release/' Makefile.in
 mkdir -p build-release
 cd build-release
 ../configure ${CONF_OPTS}
@@ -49,24 +51,33 @@ make ${MAKE_OPTS}
 cd ..
 
 # Remove the library suffixes to avoid spurious SVN diffs
-sed -i -r 's/^(LIBRARY_NAME\s+= mozjs).*/\1/' Makefile.in
+perl -i.bak -pe 's/^(LIBRARY_NAME\s+= mozjs).*/$1/' Makefile.in
 
 cd ..
 
-# Copy files into the necessary locations for building the game
-mkdir -p include/debug/js
-mkdir -p include/release/js
+if [ "${OS}" = "Windows_NT" ]
+then
+  INCLUDE_DIR=include-win32
+  DLL_EXTN=dll
+  LIB_EXTN=lib
+  LIB_PREFIX=
+else
+  INCLUDE_DIR=include-unix
+  DLL_EXTN=so
+  LIB_EXTN=so
+  LIB_PREFIX=lib
+fi
+
+# Copy files into the necessary locations for building and running the game
+mkdir -p ${INCLUDE_DIR}/debug/js
+mkdir -p ${INCLUDE_DIR}/release/js
 mkdir -p lib/
-cp -uL src/build-debug/dist/include/* include/debug/js/
-cp -uL src/build-release/dist/include/* include/release/js/
-cp -L src/build-debug/dist/lib/libmozjs-ps-debug.so lib/
-cp -L src/build-release/dist/lib/libmozjs-ps-release.so lib/
-
-cd ../..
-
-# Copy files into the system directory for running the game
-cp libraries/spidermonkey-tip/lib/libmozjs-ps-debug.so binaries/system/
-cp libraries/spidermonkey-tip/lib/libmozjs-ps-release.so binaries/system/
+cp -uL src/build-debug/dist/include/* ${INCLUDE_DIR}/debug/js/
+cp -uL src/build-release/dist/include/* ${INCLUDE_DIR}/release/js/
+cp -L src/build-debug/dist/lib/${LIB_PREFIX}mozjs-ps-debug.${LIB_EXTN} lib/
+cp -L src/build-release/dist/lib/${LIB_PREFIX}mozjs-ps-release.${LIB_EXTN} lib/
+cp -L src/build-debug/dist/bin/${LIB_PREFIX}mozjs-ps-debug.${DLL_EXTN} ../../binaries/system/
+cp -L src/build-release/dist/bin/${LIB_PREFIX}mozjs-ps-release.${DLL_EXTN} ../../binaries/system/
 
 # Flag that it's already been built successfully so we can skip it next time
-touch libraries/spidermonkey-tip/.already-built
+touch .already-built
