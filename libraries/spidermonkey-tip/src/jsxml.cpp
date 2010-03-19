@@ -84,7 +84,6 @@
  * - Fuse objects and their JSXML* private data into single GC-things
  * - fix function::foo vs. x.(foo == 42) collision using proper namespacing
  * - JSCLASS_DOCUMENT_OBSERVER support -- live two-way binding to Gecko's DOM!
- * - JS_TypeOfValue sure could use a cleaner interface to "types"
  */
 
 #ifdef XML_METERING
@@ -691,7 +690,7 @@ static JSBool
 Namespace(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
     return NamespaceHelper(cx,
-                           JS_IsConstructing(cx) ? obj : NULL,
+                           cx->isConstructing() ? obj : NULL,
                            argc, argv, rval);
 }
 
@@ -825,7 +824,7 @@ out:
 static JSBool
 QName(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 {
-    return QNameHelper(cx, JS_IsConstructing(cx) ? obj : NULL,
+    return QNameHelper(cx, cx->isConstructing() ? obj : NULL,
                        &js_QNameClass.base, argc, argv, rval);
 }
 
@@ -833,7 +832,7 @@ static JSBool
 AttributeName(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
               jsval *rval)
 {
-    return QNameHelper(cx, JS_IsConstructing(cx) ? obj : NULL,
+    return QNameHelper(cx, cx->isConstructing() ? obj : NULL,
                        &js_AttributeNameClass, argc, argv, rval);
 }
 
@@ -1753,7 +1752,7 @@ GetXMLSetting(JSContext *cx, const char *name, jsval *vp)
 {
     jsval v;
 
-    if (!js_FindClassObject(cx, NULL, INT_TO_JSID(JSProto_XML), &v))
+    if (!js_FindClassObject(cx, NULL, JSProto_XML, &v))
         return JS_FALSE;
     if (!VALUE_IS_FUNCTION(cx, v)) {
         *vp = JSVAL_VOID;
@@ -4734,7 +4733,7 @@ HasFunctionProperty(JSContext *cx, JSObject *obj, jsid funid, JSBool *found)
              * GetXMLFunction returns existing function.
              */
             JS_PUSH_TEMP_ROOT_OBJECT(cx, NULL, &tvr);
-            ok = js_GetClassPrototype(cx, NULL, INT_TO_JSID(JSProto_String),
+            ok = js_GetClassPrototype(cx, NULL, JSProto_String,
                                       &tvr.u.object);
             JS_ASSERT(tvr.u.object);
             if (ok) {
@@ -4797,7 +4796,7 @@ xml_trace_vector(JSTracer *trc, JSXML **vec, uint32 len)
         xml = vec[i];
         if (xml) {
             JS_SET_TRACING_INDEX(trc, "xml_vector", i);
-            JS_CallTracer(trc, xml, JSTRACE_XML);
+            js_CallGCMarker(trc, xml, JSTRACE_XML);
         }
     }
 }
@@ -5043,6 +5042,12 @@ xml_enumerate(JSContext *cx, JSObject *obj, JSIterateOp enum_op,
         break;
     }
     return JS_TRUE;
+}
+
+static JSType
+xml_typeOf(JSContext *cx, JSObject *obj)
+{
+    return JSTYPE_XML;
 }
 
 static JSBool
@@ -5314,10 +5319,10 @@ JS_FRIEND_DATA(JSObjectOps) js_XMLObjectOps = {
     xml_getAttributes,          xml_setAttributes,
     xml_deleteProperty,         xml_defaultValue,
     xml_enumerate,              js_CheckAccess,
+    xml_typeOf,                 js_TraceObject,
     NULL,                       NULL,
     NULL,                       NULL,
-    xml_hasInstance,            js_TraceObject,
-    xml_clear
+    xml_hasInstance,            xml_clear
 };
 
 static JSObjectOps *
@@ -5894,7 +5899,7 @@ TraceObjectVector(JSTracer *trc, JSObject **vec, uint32 len)
         obj = vec[i];
         if (obj) {
             JS_SET_TRACING_INDEX(trc, "vector", i);
-            JS_CallTracer(trc, obj, JSTRACE_OBJECT);
+            js_CallGCMarker(trc, obj, JSTRACE_OBJECT);
         }
     }
 }
@@ -7119,7 +7124,7 @@ XML(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
     *rval = OBJECT_TO_JSVAL(xobj);
     xml = (JSXML *) xobj->getPrivate();
 
-    if (JS_IsConstructing(cx) && !JSVAL_IS_PRIMITIVE(v)) {
+    if (cx->isConstructing() && !JSVAL_IS_PRIMITIVE(v)) {
         vobj = JSVAL_TO_OBJECT(v);
         clasp = OBJ_GET_CLASS(cx, vobj);
         if (clasp == &js_XMLClass ||
@@ -7147,7 +7152,7 @@ XMLList(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
     if (JSVAL_IS_NULL(v) || JSVAL_IS_VOID(v))
         v = STRING_TO_JSVAL(cx->runtime->emptyString);
 
-    if (JS_IsConstructing(cx) && !JSVAL_IS_PRIMITIVE(v)) {
+    if (cx->isConstructing() && !JSVAL_IS_PRIMITIVE(v)) {
         vobj = JSVAL_TO_OBJECT(v);
         if (OBJECT_IS_XML(cx, vobj)) {
             xml = (JSXML *) vobj->getPrivate();
@@ -7272,31 +7277,6 @@ js_FinalizeXML(JSContext *cx, JSXML *xml)
 #ifdef DEBUG_notme
     JS_REMOVE_LINK(&xml->links);
 #endif
-}
-
-JSObject *
-js_ParseNodeToXMLObject(JSCompiler *jsc, JSParseNode *pn)
-{
-    jsval nsval;
-    JSObject *ns;
-    JSXMLArray nsarray;
-    JSXML *xml;
-
-    if (!js_GetDefaultXMLNamespace(jsc->context, &nsval))
-        return NULL;
-    JS_ASSERT(!JSVAL_IS_PRIMITIVE(nsval));
-    ns = JSVAL_TO_OBJECT(nsval);
-
-    if (!XMLArrayInit(jsc->context, &nsarray, 1))
-        return NULL;
-
-    XMLARRAY_APPEND(jsc->context, &nsarray, ns);
-    xml = ParseNodeToXML(jsc, pn, &nsarray, XSF_PRECOMPILED_ROOT);
-    XMLArrayFinish(jsc->context, &nsarray);
-    if (!xml)
-        return NULL;
-
-    return xml->object;
 }
 
 JSObject *
@@ -7531,8 +7511,8 @@ js_GetFunctionNamespace(JSContext *cx, jsval *vp)
  * Note the asymmetry between js_GetDefaultXMLNamespace and js_SetDefaultXML-
  * Namespace.  Get searches fp->scopeChain for JS_DEFAULT_XML_NAMESPACE_ID,
  * while Set sets JS_DEFAULT_XML_NAMESPACE_ID in fp->varobj. There's no
- * requirement that fp->varobj lie directly on fp->scopeChain, although it
- * should be reachable using the prototype chain from a scope object (cf.
+ * requirement that fp->varobj lie directly on fp->scopeChain, although
+ * it should be reachable using the prototype chain from a scope object (cf.
  * JSOPTION_VAROBJFIX in jsapi.h).
  *
  * If Get can't find JS_DEFAULT_XML_NAMESPACE_ID along the scope chain, it
@@ -7592,9 +7572,10 @@ js_SetDefaultXMLNamespace(JSContext *cx, jsval v)
     v = OBJECT_TO_JSVAL(ns);
 
     fp = js_GetTopStackFrame(cx);
-    varobj = fp->varobj;
+    varobj = fp->varobj(cx);
     if (!varobj->defineProperty(cx, JS_DEFAULT_XML_NAMESPACE_ID, v,
-                                JS_PropertyStub, JS_PropertyStub, JSPROP_PERMANENT)) {
+                                JS_PropertyStub, JS_PropertyStub,
+                                JSPROP_PERMANENT)) {
         return JS_FALSE;
     }
     return JS_TRUE;
@@ -7860,8 +7841,7 @@ GetXMLFunction(JSContext *cx, JSObject *obj, jsid id, jsval *vp)
     xml = (JSXML *) obj->getPrivate();
     if (HasSimpleContent(xml)) {
         /* Search in String.prototype to implement 11.2.2.1 Step 3(f). */
-        ok = js_GetClassPrototype(cx, NULL, INT_TO_JSID(JSProto_String),
-                                  &tvr.u.object);
+        ok = js_GetClassPrototype(cx, NULL, JSProto_String, &tvr.u.object);
         if (!ok)
             goto out;
         JS_ASSERT(tvr.u.object);

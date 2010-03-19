@@ -101,6 +101,7 @@ typedef struct JSParseNode          JSParseNode;
 typedef struct JSPropCacheEntry     JSPropCacheEntry;
 typedef struct JSProperty           JSProperty;
 typedef struct JSSharpObjectMap     JSSharpObjectMap;
+typedef struct JSEmptyScope         JSEmptyScope;
 typedef struct JSTempValueRooter    JSTempValueRooter;
 typedef struct JSThread             JSThread;
 typedef struct JSThreadData         JSThreadData;
@@ -108,7 +109,6 @@ typedef struct JSToken              JSToken;
 typedef struct JSTokenPos           JSTokenPos;
 typedef struct JSTokenPtr           JSTokenPtr;
 typedef struct JSTokenStream        JSTokenStream;
-typedef struct JSTraceMonitor       JSTraceMonitor;
 typedef struct JSTreeContext        JSTreeContext;
 typedef struct JSTryNote            JSTryNote;
 typedef struct JSWeakRoots          JSWeakRoots;
@@ -146,6 +146,10 @@ extern "C++" {
 
 namespace js {
 
+class TraceRecorder;
+class TraceMonitor;
+class CallStack;
+
 class ContextAllocPolicy;
 class SystemAllocPolicy;
 
@@ -154,10 +158,30 @@ template <class T,
           class AllocPolicy = ContextAllocPolicy>
 class Vector;
 
+template <class>
+struct DefaultHasher;
+
+template <class Key,
+          class Value,
+          class HashPolicy = DefaultHasher<Key>,
+          class AllocPolicy = ContextAllocPolicy>
+class HashMap;
+
+template <class T,
+          class HashPolicy = DefaultHasher<T>,
+          class AllocPolicy = ContextAllocPolicy>
+class HashSet;
+
 } /* namespace js */
 
 /* Common instantiations. */
 typedef js::Vector<jschar, 32> JSCharBuffer;
+
+static inline JSPropertyOp
+js_CastAsPropertyOp(JSObject *object)
+{
+    return JS_DATA_TO_FUNC_PTR(JSPropertyOp, object);
+}
 
 } /* export "C++" */
 #endif  /* __cplusplus */

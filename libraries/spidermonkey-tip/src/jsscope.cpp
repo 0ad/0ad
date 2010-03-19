@@ -63,6 +63,8 @@
 
 #include "jsscopeinlines.h"
 
+using namespace js;
+
 uint32
 js_GenerateShape(JSContext *cx, bool gcLocked)
 {
@@ -95,7 +97,7 @@ js_GetMutableScope(JSContext *cx, JSObject *obj)
 
     scope = OBJ_SCOPE(obj);
     JS_ASSERT(JS_IS_SCOPE_LOCKED(cx, scope));
-    if (scope->owned())
+    if (!scope->isSharedEmpty())
         return scope;
 
     /*
@@ -106,7 +108,10 @@ js_GetMutableScope(JSContext *cx, JSObject *obj)
     newscope = JSScope::create(cx, scope->ops, obj->getClass(), obj, scope->shape);
     if (!newscope)
         return NULL;
-    JS_LOCK_SCOPE(cx, newscope);
+
+    /* The newly allocated scope is single-threaded and, as such, is locked. */
+    JS_ASSERT(CX_OWNS_SCOPE_TITLE(cx, newscope));
+    JS_ASSERT(JS_IS_SCOPE_LOCKED(cx, newscope));
     obj->map = newscope;
 
     JS_ASSERT(newscope->freeslot == JSSLOT_FREE(STOBJ_GET_CLASS(obj)));
@@ -124,10 +129,8 @@ js_GetMutableScope(JSContext *cx, JSObject *obj)
         if (newscope->freeslot < freeslot)
             newscope->freeslot = freeslot;
     }
-    JS_TRANSFER_SCOPE_LOCK(cx, scope, newscope);
-    JS_ATOMIC_DECREMENT(&scope->nrefs);
-    if (scope->nrefs == 0)
-        JSScope::destroy(cx, scope);
+    JS_DROP_ALL_EMPTY_SCOPE_LOCKS(cx, scope);
+    static_cast<JSEmptyScope *>(scope)->drop(cx);
     return newscope;
 }
 
@@ -205,14 +208,13 @@ JSScope *
 JSScope::create(JSContext *cx, const JSObjectOps *ops, JSClass *clasp,
                 JSObject *obj, uint32 shape)
 {
-    JS_ASSERT(OPS_IS_NATIVE(ops));
+    JS_ASSERT(ops->isNative());
     JS_ASSERT(obj);
 
     JSScope *scope = cx->create<JSScope>(ops, obj);
     if (!scope)
         return NULL;
 
-    scope->nrefs = 1;
     scope->freeslot = JSSLOT_FREE(clasp);
     scope->flags = cx->runtime->gcRegenShapesScopeFlag;
     scope->initMinimal(cx, shape);
@@ -225,31 +227,24 @@ JSScope::create(JSContext *cx, const JSObjectOps *ops, JSClass *clasp,
     return scope;
 }
 
-JSEmptyScope *
-JSScope::createEmptyScope(JSContext *cx, JSClass *clasp)
+JSEmptyScope::JSEmptyScope(JSContext *cx, const JSObjectOps *ops,
+                           JSClass *clasp)
+    : JSScope(ops, NULL), clasp(clasp)
 {
-    JS_ASSERT(!emptyScope);
-
-    JSEmptyScope *scope = cx->create<JSEmptyScope>(ops, clasp);
-    if (!scope)
-        return NULL;
-
     /*
      * This scope holds a reference to the new empty scope. Our only caller,
      * getEmptyScope, also promises to incref on behalf of its caller.
      */
-    scope->nrefs = 2;
-    scope->freeslot = JSSLOT_FREE(clasp);
-    scope->flags = OWN_SHAPE | cx->runtime->gcRegenShapesScopeFlag;
-    scope->initMinimal(cx, js_GenerateShape(cx, false));
+    nrefs = 2;
+    freeslot = JSSLOT_FREE(clasp);
+    flags = OWN_SHAPE | cx->runtime->gcRegenShapesScopeFlag;
+    initMinimal(cx, js_GenerateShape(cx, false));
 
 #ifdef JS_THREADSAFE
-    js_InitTitle(cx, &scope->title);
+    js_InitTitle(cx, &title);
 #endif
     JS_RUNTIME_METER(cx->runtime, liveScopes);
     JS_RUNTIME_METER(cx->runtime, totalScopes);
-    emptyScope = scope;
-    return scope;
 }
 
 #ifdef DEBUG
@@ -260,19 +255,46 @@ JSScope::createEmptyScope(JSContext *cx, JSClass *clasp)
 #endif
 
 void
-JSScope::destroy(JSContext *cx, JSScope *scope)
+JSScope::destroy(JSContext *cx)
 {
 #ifdef JS_THREADSAFE
-    js_FinishTitle(cx, &scope->title);
+    js_FinishTitle(cx, &title);
 #endif
-    if (scope->table)
-        cx->free(scope->table);
-    if (scope->emptyScope)
-        scope->emptyScope->drop(cx, NULL);
+    if (table)
+        cx->free(table);
 
-    LIVE_SCOPE_METER(cx, cx->runtime->liveScopeProps -= scope->entryCount);
+    /*
+     * The scopes containing empty scopes are only destroyed from the GC
+     * thread.
+     */
+    if (emptyScope)
+        emptyScope->dropFromGC(cx);
+
+    LIVE_SCOPE_METER(cx, cx->runtime->liveScopeProps -= entryCount);
     JS_RUNTIME_UNMETER(cx->runtime, liveScopes);
-    cx->free(scope);
+    cx->free(this);
+}
+
+/* static */
+bool
+JSScope::initRuntimeState(JSContext *cx)
+{
+    cx->runtime->emptyBlockScope = cx->create<JSEmptyScope>(cx, &js_ObjectOps,
+                                                            &js_BlockClass);
+    JS_ASSERT(cx->runtime->emptyBlockScope->nrefs == 2);
+    cx->runtime->emptyBlockScope->nrefs = 1;
+    return !!cx->runtime->emptyBlockScope;
+}
+
+/* static */
+void
+JSScope::finishRuntimeState(JSContext *cx)
+{
+    JSRuntime *rt = cx->runtime;
+    if (rt->emptyBlockScope) {
+        rt->emptyBlockScope->drop(cx);
+        rt->emptyBlockScope = NULL;
+    }
 }
 
 JS_STATIC_ASSERT(sizeof(JSHashNumber) == 4);
@@ -430,59 +452,12 @@ JSScope::changeTable(JSContext *cx, int change)
     return true;
 }
 
-/*
- * Take care to exclude the mark bits in case we're called from the GC.
- */
-#define SPROP_FLAGS_NOT_MATCHED (SPROP_MARK | SPROP_FLAG_SHAPE_REGEN)
-
 static JSDHashNumber
 js_HashScopeProperty(JSDHashTable *table, const void *key)
 {
     const JSScopeProperty *sprop = (const JSScopeProperty *)key;
-    JSDHashNumber hash;
-    JSPropertyOp gsop;
-
-    /* Accumulate from least to most random so the low bits are most random. */
-    hash = 0;
-    JS_ASSERT_IF(sprop->isMethod(),
-                 !sprop->setter || sprop->setter == js_watch_set);
-    gsop = sprop->getter;
-    if (gsop)
-        hash = JS_ROTATE_LEFT32(hash, 4) ^ jsword(gsop);
-    gsop = sprop->setter;
-    if (gsop)
-        hash = JS_ROTATE_LEFT32(hash, 4) ^ jsword(gsop);
-
-    hash = JS_ROTATE_LEFT32(hash, 4)
-           ^ (sprop->flags & ~SPROP_FLAGS_NOT_MATCHED);
-
-    hash = JS_ROTATE_LEFT32(hash, 4) ^ sprop->attrs;
-    hash = JS_ROTATE_LEFT32(hash, 4) ^ sprop->shortid;
-    hash = JS_ROTATE_LEFT32(hash, 4) ^ sprop->slot;
-    hash = JS_ROTATE_LEFT32(hash, 4) ^ sprop->id;
-    return hash;
+    return sprop->hash();
 }
-
-#define SPROP_MATCH(sprop, child)                                             \
-    SPROP_MATCH_PARAMS(sprop, (child)->id, (child)->getter, (child)->setter,  \
-                       (child)->slot, (child)->attrs, (child)->flags,         \
-                       (child)->shortid)
-
-#define SPROP_MATCH_PARAMS(sprop, aid, agetter, asetter, aslot, aattrs,       \
-                           aflags, ashortid)                                  \
-    (JS_ASSERT(!JSVAL_IS_NULL((sprop)->id)), JS_ASSERT(!JSVAL_IS_NULL(aid)),  \
-     (sprop)->id == (aid) &&                                                  \
-     SPROP_MATCH_PARAMS_AFTER_ID(sprop, agetter, asetter, aslot, aattrs,      \
-                                 aflags, ashortid))
-
-#define SPROP_MATCH_PARAMS_AFTER_ID(sprop, agetter, asetter, aslot, aattrs,   \
-                                    aflags, ashortid)                         \
-    ((sprop)->getter == (agetter) &&                                          \
-     (sprop)->setter == (asetter) &&                                          \
-     (sprop)->slot == (aslot) &&                                              \
-     (sprop)->attrs == (aattrs) &&                                            \
-     (((sprop)->flags ^ (aflags)) & ~SPROP_FLAGS_NOT_MATCHED) == 0 &&         \
-     (sprop)->shortid == (ashortid))
 
 static JSBool
 js_MatchScopeProperty(JSDHashTable *table,
@@ -493,7 +468,7 @@ js_MatchScopeProperty(JSDHashTable *table,
     const JSScopeProperty *sprop = entry->child;
     const JSScopeProperty *kprop = (const JSScopeProperty *)key;
 
-    return SPROP_MATCH(sprop, kprop);
+    return sprop->matches(kprop);
 }
 
 static const JSDHashTableOps PropertyTreeHashOps = {
@@ -637,7 +612,7 @@ InsertPropertyTreeChild(JSRuntime *rt, JSScopeProperty *parent,
              * below), because the child's parent link will be null, which
              * can't dangle.
              */
-            JS_ASSERT(sprop != child && SPROP_MATCH(sprop, child));
+            JS_ASSERT(sprop != child && sprop->matches(child));
             JS_RUNTIME_METER(rt, duplicatePropTreeNodes);
         }
     } else {
@@ -677,7 +652,7 @@ InsertPropertyTreeChild(JSRuntime *rt, JSScopeProperty *parent,
                             goto insert;
 
                         JS_ASSERT(sprop != child);
-                        if (SPROP_MATCH(sprop, child)) {
+                        if (sprop->matches(child)) {
                             /*
                              * Duplicate child, see comment above.  In this
                              * case, we must let the duplicate be inserted at
@@ -704,7 +679,7 @@ InsertPropertyTreeChild(JSRuntime *rt, JSScopeProperty *parent,
             } else {
                 sprop = kids;
                 JS_ASSERT(sprop != child);
-                if (SPROP_MATCH(sprop, child)) {
+                if (sprop->matches(child)) {
                     /*
                      * Duplicate child, see comment above.  Once again, we
                      * must let duplicates created by deletion pile up in a
@@ -847,9 +822,9 @@ HashChunks(PropTreeKidsChunk *chunk, uintN n)
  * We use rt->gcLock, not rt->rtLock, to avoid nesting the former inside the
  * latter in js_GenerateShape below.
  */
-static JSScopeProperty *
-GetPropertyTreeChild(JSContext *cx, JSScopeProperty *parent,
-                     const JSScopeProperty &child)
+JSScopeProperty *
+js_GetPropertyTreeChild(JSContext *cx, JSScopeProperty *parent,
+                        const JSScopeProperty &child)
 {
     JSRuntime *rt;
     JSDHashTable *table;
@@ -927,13 +902,13 @@ GetPropertyTreeChild(JSContext *cx, JSScopeProperty *parent,
                             goto not_found;
                         }
 
-                        if (SPROP_MATCH(sprop, &child))
+                        if (sprop->matches(&child))
                             return sprop;
                     }
                     n += MAX_KIDS_PER_CHUNK;
                 } while ((chunk = chunk->next) != NULL);
             } else {
-                if (SPROP_MATCH(sprop, &child))
+                if (sprop->matches(&child))
                     return sprop;
             }
         }
@@ -984,6 +959,7 @@ JSScope::getChildProperty(JSContext *cx, JSScopeProperty *parent,
                           JSScopeProperty &child)
 {
     JS_ASSERT(!JSVAL_IS_NULL(child.id));
+    JS_ASSERT(!child.inDictionary());
 
     /*
      * Aliases share another property's slot, passed in the |slot| parameter.
@@ -991,7 +967,7 @@ JSScope::getChildProperty(JSContext *cx, JSScopeProperty *parent,
      * another property's slot allocate a slot here, but may lose it due to a
      * JS_ClearScope call.
      */
-    if (!(child.flags & SPROP_IS_ALIAS)) {
+    if (!child.isAlias()) {
         if (child.attrs & JSPROP_SHARED) {
             child.slot = SPROP_INVALID_SLOT;
         } else {
@@ -1016,8 +992,8 @@ JSScope::getChildProperty(JSContext *cx, JSScopeProperty *parent,
         }
         return NULL;
     }
-    
-    JSScopeProperty *sprop = GetPropertyTreeChild(cx, parent, child);
+
+    JSScopeProperty *sprop = js_GetPropertyTreeChild(cx, parent, child);
     if (sprop) {
         JS_ASSERT(sprop->parent == parent);
         if (parent == lastProp) {
@@ -1093,7 +1069,7 @@ JSScope::generateOwnShape(JSContext *cx)
 {
 #ifdef JS_TRACER
     if (object) {
-         js_LeaveTraceIfGlobalObject(cx, object);
+         LeaveTraceIfGlobalObject(cx, object);
 
         /*
          * The JIT must have arranged to re-guard after any unpredictable shape
@@ -1107,7 +1083,7 @@ JSScope::generateOwnShape(JSContext *cx)
          * Any subsequent property operation upon object on the trace currently
          * being recorded will re-guard (and re-memoize).
          */
-        JSTraceMonitor *tm = &JS_TRACE_MONITOR(cx);
+        TraceMonitor *tm = &JS_TRACE_MONITOR(cx);
         if (TraceRecorder *tr = tm->recorder)
             tr->forgetGuardedShapesForObject(object);
     }
@@ -1121,7 +1097,9 @@ JSScopeProperty *
 JSScope::newDictionaryProperty(JSContext *cx, const JSScopeProperty &child,
                                JSScopeProperty **childp)
 {
+    JS_LOCK_GC(cx->runtime);
     JSScopeProperty *dprop = NewScopeProperty(cx->runtime);
+    JS_UNLOCK_GC(cx->runtime);
     if (!dprop) {
         JS_ReportOutOfMemory(cx);
         return NULL;
@@ -1132,12 +1110,13 @@ JSScope::newDictionaryProperty(JSContext *cx, const JSScopeProperty &child,
     dprop->setter = child.setter;
     dprop->slot = child.slot;
     dprop->attrs = child.attrs;
-    dprop->flags = child.flags | SPROP_IN_DICTIONARY;
+    dprop->flags = child.flags | JSScopeProperty::IN_DICTIONARY;
     dprop->shortid = child.shortid;
     dprop->shape = js_GenerateShape(cx, false);
 
     dprop->childp = NULL;
     insertDictionaryProperty(dprop, childp);
+    updateFlags(dprop);
     return dprop;
 }
 
@@ -1228,7 +1207,6 @@ JSScope::addProperty(JSContext *cx, jsid id,
     JS_ASSERT(!JSVAL_IS_NULL(id));
     JS_ASSERT_IF(attrs & JSPROP_GETTER, getter);
     JS_ASSERT_IF(attrs & JSPROP_SETTER, setter);
-
     JS_ASSERT_IF(!cx->runtime->gcRegenShapes,
                  hasRegenFlag(cx->runtime->gcRegenShapesScopeFlag));
 
@@ -1261,7 +1239,7 @@ NormalizeGetterAndSetter(JSContext *cx, JSScope *scope,
 {
     if (setter == JS_PropertyStub)
         setter = NULL;
-    if (flags & SPROP_IS_METHOD) {
+    if (flags & JSScopeProperty::METHOD) {
         /* Here, getter is the method, a function object reference. */
         JS_ASSERT(getter);
         JS_ASSERT(!setter || setter == js_watch_set);
@@ -1400,8 +1378,7 @@ JSScope::putProperty(JSContext *cx, jsid id,
         SPROP_HAS_VALID_SLOT(sprop, this)) {
         slot = sprop->slot;
     }
-    if (SPROP_MATCH_PARAMS_AFTER_ID(sprop, getter, setter, slot, attrs,
-                                    flags, shortid)) {
+    if (sprop->matchesParamsAfterId(getter, setter, slot, attrs, flags, shortid)) {
         METER(redundantPuts);
         return sprop;
     }
@@ -1493,8 +1470,8 @@ JSScope::changeProperty(JSContext *cx, JSScopeProperty *sprop,
     JS_ASSERT(!((attrs ^ sprop->attrs) & JSPROP_SHARED) ||
               !(attrs & JSPROP_SHARED));
 
-    /* Don't allow method properties to be changed to accessor properties. */
-    JS_ASSERT(!(sprop->flags & SPROP_IS_METHOD));
+    /* Don't allow method properties to be changed to have a getter. */
+    JS_ASSERT_IF(getter != sprop->getter, !sprop->isMethod());
 
     if (getter == JS_PropertyStub)
         getter = NULL;
@@ -1650,7 +1627,7 @@ JSScope::clear(JSContext *cx)
         js_free(table);
     clearDictionaryMode();
     clearOwnShape();
-    js_LeaveTraceIfGlobalObject(cx, object);
+    LeaveTraceIfGlobalObject(cx, object);
 
     JSClass *clasp = object->getClass();
     JSObject *proto = object->getProto();
@@ -1697,12 +1674,13 @@ JSScope::methodShapeChange(JSContext *cx, JSScopeProperty *sprop, jsval toval)
 
         /*
          * Pass null to make a stub getter, but pass along sprop->setter to
-         * preserve watchpoints. Clear SPROP_IS_METHOD from flags as we are
-         * despecializing from a method memoized in the property tree to a
+         * preserve watchpoints. Clear JSScopeProperty::METHOD from flags as we
+         * are despecializing from a method memoized in the property tree to a
          * plain old function-valued property.
          */
         sprop = putProperty(cx, sprop->id, NULL, sprop->setter, sprop->slot,
-                            sprop->attrs, sprop->flags & ~SPROP_IS_METHOD,
+                            sprop->attrs,
+                            sprop->getFlags() & ~JSScopeProperty::METHOD,
                             sprop->shortid);
         if (!sprop)
             return false;
@@ -1805,31 +1783,29 @@ void
 JSScopeProperty::trace(JSTracer *trc)
 {
     if (IS_GC_MARKING_TRACER(trc))
-        flags |= SPROP_MARK;
+        mark();
     js_TraceId(trc, id);
 
 #if JS_HAS_GETTER_SETTER
     if (attrs & (JSPROP_GETTER | JSPROP_SETTER)) {
-        if (attrs & JSPROP_GETTER) {
+        if ((attrs & JSPROP_GETTER) && getter) {
             JS_SET_TRACING_DETAILS(trc, PrintPropertyGetterOrSetter, this, 0);
-            JS_CallTracer(trc, getterObject(), JSTRACE_OBJECT);
+            js_CallGCMarker(trc, getterObject(), JSTRACE_OBJECT);
         }
-        if (attrs & JSPROP_SETTER) {
+        if ((attrs & JSPROP_SETTER) && setter) {
             JS_SET_TRACING_DETAILS(trc, PrintPropertyGetterOrSetter, this, 1);
-            JS_CallTracer(trc, setterObject(), JSTRACE_OBJECT);
+            js_CallGCMarker(trc, setterObject(), JSTRACE_OBJECT);
         }
     }
 #endif /* JS_HAS_GETTER_SETTER */
 
     if (isMethod()) {
         JS_SET_TRACING_DETAILS(trc, PrintPropertyMethod, this, 0);
-        JS_CallTracer(trc, methodObject(), JSTRACE_OBJECT);
+        js_CallGCMarker(trc, methodObject(), JSTRACE_OBJECT);
     }
 }
 
 #ifdef DEBUG
-
-#include <stdio.h>
 
 static void
 MeterKidCount(JSBasicStats *bs, uintN nkids)
@@ -1878,26 +1854,21 @@ js_MeterPropertyTree(JSDHashTable *table, JSDHashEntryHdr *hdr, uint32 number,
     return JS_DHASH_NEXT;
 }
 
-static void
-DumpSubtree(JSContext *cx, JSScopeProperty *sprop, int level, FILE *fp)
+void
+JSScopeProperty::dump(JSContext *cx, FILE *fp)
 {
-    jsval v;
-    JSString *str;
-    JSScopeProperty *kids, *kid;
-    PropTreeKidsChunk *chunk;
-    uintN i;
+    JS_ASSERT(!JSVAL_IS_NULL(id));
 
-    fprintf(fp, "%*sid ", level, "");
-    v = ID_TO_VALUE(sprop->id);
-    JS_ASSERT(!JSVAL_IS_NULL(v));
-    if (JSID_IS_INT(sprop->id)) {
-        fprintf(fp, "%d", JSVAL_TO_INT(v));
+    jsval idval = ID_TO_VALUE(id);
+    if (JSVAL_IS_INT(idval)) {
+        fprintf(fp, "[%ld]", (long) JSVAL_TO_INT(idval));
     } else {
-        if (JSID_IS_ATOM(sprop->id)) {
-            str = JSVAL_TO_STRING(v);
+        JSString *str;
+        if (JSVAL_IS_STRING(idval)) {
+            str = JSVAL_TO_STRING(idval);
         } else {
-            JS_ASSERT(JSID_IS_OBJECT(sprop->id));
-            str = js_ValueToString(cx, v);
+            JS_ASSERT(JSVAL_IS_OBJECT(idval));
+            str = js_ValueToString(cx, idval);
             fputs("object ", fp);
         }
         if (!str)
@@ -1906,26 +1877,65 @@ DumpSubtree(JSContext *cx, JSScopeProperty *sprop, int level, FILE *fp)
             js_FileEscapedString(fp, str, '"');
     }
 
-    fprintf(fp, " g/s %p/%p slot %u attrs %x flags %x shortid %d\n",
-            (void *) sprop->getter, (void *) sprop->setter, sprop->slot,
-            sprop->attrs, sprop->flags, sprop->shortid);
-    kids = sprop->kids;
+    fprintf(fp, " g/s %p/%p slot %u attrs %x ",
+            JS_FUNC_TO_DATA_PTR(void *, getter),
+            JS_FUNC_TO_DATA_PTR(void *, setter),
+            slot, attrs);
+    if (attrs) {
+        int first = 1;
+        fputs("(", fp);
+#define DUMP_ATTR(name, display) if (attrs & JSPROP_##name) fputs(" " #display + first, fp), first = 0
+        DUMP_ATTR(ENUMERATE, enumerate);
+        DUMP_ATTR(READONLY, readonly);
+        DUMP_ATTR(PERMANENT, permanent);
+        DUMP_ATTR(GETTER, getter);
+        DUMP_ATTR(SETTER, setter);
+        DUMP_ATTR(SHARED, shared);
+#undef  DUMP_ATTR
+        fputs(") ", fp);
+    }
+
+    fprintf(fp, "flags %x ", flags);
+    if (flags) {
+        int first = 1;
+        fputs("(", fp);
+#define DUMP_FLAG(name, display) if (flags & name) fputs(" " #display + first, fp), first = 0
+        DUMP_FLAG(ALIAS, alias);
+        DUMP_FLAG(HAS_SHORTID, has_shortid);
+        DUMP_FLAG(METHOD, method);
+        DUMP_FLAG(MARK, mark);
+        DUMP_FLAG(SHAPE_REGEN, shape_regen);
+        DUMP_FLAG(IN_DICTIONARY, in_dictionary);
+#undef  DUMP_FLAG
+        fputs(") ", fp);
+    }
+
+    fprintf(fp, "shortid %d\n", shortid);
+}
+
+void
+JSScopeProperty::dumpSubtree(JSContext *cx, int level, FILE *fp)
+{
+    fprintf(fp, "%*sid ", level, "");
+    dump(cx, fp);
+
     if (kids) {
         ++level;
         if (KIDS_IS_CHUNKY(kids)) {
-            chunk = KIDS_TO_CHUNK(kids);
+            PropTreeKidsChunk *chunk = KIDS_TO_CHUNK(kids);
             do {
-                for (i = 0; i < MAX_KIDS_PER_CHUNK; i++) {
-                    kid = chunk->kids[i];
+                for (uintN i = 0; i < MAX_KIDS_PER_CHUNK; i++) {
+                    JSScopeProperty *kid = chunk->kids[i];
                     if (!kid)
                         break;
-                    JS_ASSERT(kid->parent == sprop);
-                    DumpSubtree(cx, kid, level, fp);
+                    JS_ASSERT(kid->parent == this);
+                    kid->dumpSubtree(cx, level, fp);
                 }
             } while ((chunk = chunk->next) != NULL);
         } else {
-            kid = kids;
-            DumpSubtree(cx, kid, level, fp);
+            JSScopeProperty *kid = kids;
+            JS_ASSERT(kid->parent == this);
+            kid->dumpSubtree(cx, level, fp);
         }
     }
 }
@@ -1988,11 +1998,11 @@ js_SweepScopeProperties(JSContext *cx)
              * during the mark phase, when live scopes' lastProp members are
              * followed to update both scope->shape and lastProp->shape.
              */
-            if (sprop->flags & SPROP_MARK) {
-                sprop->flags &= ~SPROP_MARK;
+            if (sprop->marked()) {
+                sprop->clearMark();
                 if (rt->gcRegenShapes) {
-                    if (sprop->flags & SPROP_FLAG_SHAPE_REGEN)
-                        sprop->flags &= ~SPROP_FLAG_SHAPE_REGEN;
+                    if (sprop->hasRegenFlag())
+                        sprop->clearRegenFlag();
                     else
                         sprop->shape = js_RegenerateShapeForGC(cx);
                 }
@@ -2000,7 +2010,7 @@ js_SweepScopeProperties(JSContext *cx)
                 continue;
             }
 
-            if (!(sprop->flags & SPROP_IN_DICTIONARY)) {
+            if (!sprop->inDictionary()) {
                 /* Ok, sprop is garbage to collect: unlink it from its parent. */
                 freeChunk = RemovePropertyTreeChild(rt, sprop);
 
@@ -2188,7 +2198,7 @@ js_SweepScopeProperties(JSContext *cx)
             end = pte + JS_DHASH_TABLE_SIZE(&rt->propertyTreeHash);
             while (pte < end) {
                 if (pte->child)
-                    DumpSubtree(cx, pte->child, 0, dumpfp);
+                    pte->child->dumpSubtree(cx, 0, dumpfp);
                 pte++;
             }
             fclose(dumpfp);

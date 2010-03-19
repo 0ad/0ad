@@ -312,14 +312,17 @@ JO(JSContext *cx, jsval *vp, StringifyContext *scx)
         // Don't include prototype properties, since this operation is
         // supposed to be implemented as if by ES3.1 Object.keys()
         jsid id;
-        JSBool found = JS_FALSE;
+        JSObject *obj2;
+        JSProperty *prop;
         if (!js_ValueToStringId(cx, STRING_TO_JSVAL(ks), &id) ||
-            !js_HasOwnProperty(cx, obj->map->ops->lookupProperty, obj, id, &found)) {
+            !js_HasOwnProperty(cx, obj->map->ops->lookupProperty, obj, id, &obj2, &prop)) {
             goto error_break;
         }
 
-        if (!found)
+        if (!prop)
             continue;
+
+        obj2->dropProperty(cx, prop);
 
         if (!JS_GetPropertyById(cx, obj, id, &outputValue))
             goto error_break;
@@ -426,7 +429,7 @@ JA(JSContext *cx, jsval *vp, StringifyContext *scx)
 static JSBool
 CallReplacerFunction(JSContext *cx, jsid id, JSObject *holder, StringifyContext *scx, jsval *vp)
 {
-    if (scx->replacer && js_IsCallable(scx->replacer, cx)) {
+    if (scx->replacer && scx->replacer->isCallable()) {
         jsval vec[2] = {ID_TO_VALUE(id), *vp};
         if (!JS_CallFunctionValue(cx, holder, OBJECT_TO_JSVAL(scx->replacer), 2, vec, vp))
             return JS_FALSE;
@@ -481,7 +484,8 @@ Str(JSContext *cx, jsid id, JSObject *holder, StringifyContext *scx, jsval *vp, 
 
         char numBuf[DTOSTR_STANDARD_BUFFER_SIZE], *numStr;
         jsdouble d = JSVAL_IS_INT(*vp) ? jsdouble(JSVAL_TO_INT(*vp)) : *JSVAL_TO_DOUBLE(*vp);
-        numStr = JS_dtostr(numBuf, sizeof numBuf, DTOSTR_STANDARD, 0, d);
+        numStr = js_dtostr(JS_THREAD_DATA(cx)->dtoaState, numBuf, sizeof numBuf,
+                           DTOSTR_STANDARD, 0, d);
         if (!numStr) {
             JS_ReportOutOfMemory(cx);
             return JS_FALSE;
@@ -583,7 +587,7 @@ Walk(JSContext *cx, jsid id, JSObject *holder, jsval reviver, jsval *vp)
 
     JSObject *obj;
 
-    if (!JSVAL_IS_PRIMITIVE(*vp) && !js_IsCallable(obj = JSVAL_TO_OBJECT(*vp), cx)) {
+    if (!JSVAL_IS_PRIMITIVE(*vp) && !(obj = JSVAL_TO_OBJECT(*vp))->isCallable()) {
         jsval propValue = JSVAL_NULL;
         JSAutoTempValueRooter tvr(cx, 1, &propValue);
 
@@ -728,7 +732,7 @@ js_FinishJSONParse(JSContext *cx, JSONParser *jp, jsval reviver)
         return JS_FALSE;
     }
 
-    if (!JSVAL_IS_PRIMITIVE(reviver) && js_IsCallable(JSVAL_TO_OBJECT(reviver), cx))
+    if (!JSVAL_IS_PRIMITIVE(reviver) && js_IsCallable(reviver))
         ok = Revive(cx, reviver, vp);
 
     return ok;

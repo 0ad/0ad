@@ -186,9 +186,9 @@ extern_lib_defs = {
 			tinsert(package.config["Testing"].includepaths, libraries_dir.."spidermonkey-tip/include/debug")
 			tinsert(package.config["Release"].includepaths, libraries_dir.."spidermonkey-tip/include/release")
 			tinsert(package.libpaths, libraries_dir.."spidermonkey-tip/lib")
-			tinsert(package.config["Debug"  ].links, "mozjs-debug")
-			tinsert(package.config["Testing"].links, "mozjs-release")
-			tinsert(package.config["Release"].links, "mozjs-release")
+			tinsert(package.config["Debug"  ].links, "mozjs-ps-debug")
+			tinsert(package.config["Testing"].links, "mozjs-ps-release")
+			tinsert(package.config["Release"].links, "mozjs-ps-release")
 		end,
 	}
 	or -- SpiderMonkey 1.6

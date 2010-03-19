@@ -67,6 +67,8 @@
 
 #include "jsscriptinlines.h"
 
+using namespace js;
+
 const uint32 JSSLOT_EXEC_DEPTH          = JSSLOT_PRIVATE + 1;
 const uint32 JSSCRIPT_RESERVED_SLOTS    = 1;
 
@@ -328,12 +330,12 @@ script_exec_sub(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
      *
      * Unlike eval, which the compiler detects, Script.prototype.exec may be
      * called from a lightweight function, or even from native code (in which
-     * case fp->varobj and fp->scopeChain are null).  If exec is called from
-     * a lightweight function, we will need to get a Call object representing
-     * its frame, to act as the var object and scope chain head.
+     * fp->scopeChain is null).  If exec is called from a lightweight function,
+     * we will need to get a Call object representing its frame, to act as the
+     * var object and scope chain head.
      */
     caller = js_GetScriptedCaller(cx, NULL);
-    if (caller && !caller->varobj) {
+    if (caller && !caller->varobj(cx)) {
         /* Called from a lightweight function. */
         JS_ASSERT(caller->fun && !JSFUN_HEAVYWEIGHT_TEST(caller->fun->flags));
 
@@ -347,7 +349,7 @@ script_exec_sub(JSContext *cx, JSObject *obj, uintN argc, jsval *argv,
         if (caller) {
             /*
              * Load caller->scopeChain after the conditional js_GetCallObject
-             * call above, which resets scopeChain as well as varobj.
+             * call above, which resets scopeChain as well as the callobj.
              */
             scopeobj = js_GetScopeChain(cx, caller);
             if (!scopeobj)
@@ -1596,7 +1598,7 @@ js_NewScriptFromCG(JSContext *cx, JSCodeGenerator *cg)
     memcpy(script->main, CG_BASE(cg), mainLength * sizeof(jsbytecode));
     nfixed = (cg->flags & TCF_IN_FUNCTION)
              ? cg->fun->u.i.nvars
-             : cg->ngvars + cg->regexpList.length + cg->sharpSlots();
+             : cg->ngvars + cg->sharpSlots();
     JS_ASSERT(nfixed < SLOTNO_LIMIT);
     script->nfixed = (uint16) nfixed;
     js_InitAtomMap(cx, &script->atomMap, &cg->atomList);
@@ -1762,7 +1764,7 @@ js_DestroyScript(JSContext *cx, JSScript *script)
     }
 
 #ifdef JS_TRACER
-    js_PurgeScriptFragments(cx, script);
+    PurgeScriptFragments(cx, script);
 #endif
 
     cx->free(script);
@@ -1786,7 +1788,7 @@ js_TraceScript(JSTracer *trc, JSScript *script)
         v = ATOM_KEY(vector[i]);
         if (JSVAL_IS_TRACEABLE(v)) {
             JS_SET_TRACING_INDEX(trc, "atomMap", i);
-            JS_CallTracer(trc, JSVAL_TO_TRACEABLE(v), JSVAL_TRACE_KIND(v));
+            js_CallGCMarker(trc, JSVAL_TO_TRACEABLE(v), JSVAL_TRACE_KIND(v));
         }
     }
 
@@ -1797,7 +1799,7 @@ js_TraceScript(JSTracer *trc, JSScript *script)
             --i;
             if (objarray->vector[i]) {
                 JS_SET_TRACING_INDEX(trc, "objects", i);
-                JS_CallTracer(trc, objarray->vector[i], JSTRACE_OBJECT);
+                js_CallGCMarker(trc, objarray->vector[i], JSTRACE_OBJECT);
             }
         } while (i != 0);
     }
@@ -1809,14 +1811,14 @@ js_TraceScript(JSTracer *trc, JSScript *script)
             --i;
             if (objarray->vector[i]) {
                 JS_SET_TRACING_INDEX(trc, "regexps", i);
-                JS_CallTracer(trc, objarray->vector[i], JSTRACE_OBJECT);
+                js_CallGCMarker(trc, objarray->vector[i], JSTRACE_OBJECT);
             }
         } while (i != 0);
     }
 
     if (script->u.object) {
         JS_SET_TRACING_NAME(trc, "object");
-        JS_CallTracer(trc, script->u.object, JSTRACE_OBJECT);
+        js_CallGCMarker(trc, script->u.object, JSTRACE_OBJECT);
     }
 
     if (IS_GC_MARKING_TRACER(trc) && script->filename)

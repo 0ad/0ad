@@ -71,13 +71,36 @@
 #include "jsstr.h"
 #include "jstracer.h"
 
+using namespace js;
+
 static void
 FreeContext(JSContext *cx);
 
 static void
 MarkLocalRoots(JSTracer *trc, JSLocalRootStack *lrs);
 
-void
+#ifdef DEBUG
+bool
+CallStack::contains(JSStackFrame *fp)
+{
+    JSStackFrame *start;
+    JSStackFrame *stop;
+    if (isSuspended()) {
+        start = suspendedFrame;
+        stop = initialFrame->down;
+    } else {
+        start = cx->fp;
+        stop = cx->activeCallStack()->initialFrame->down;
+    }
+    for (JSStackFrame *f = start; f != stop; f = f->down) {
+        if (f == fp)
+            return true;
+    }
+    return false;
+}
+#endif
+
+bool
 JSThreadData::init()
 {
 #ifdef DEBUG
@@ -86,9 +109,16 @@ JSThreadData::init()
         JS_ASSERT(reinterpret_cast<uint8*>(this)[i] == 0);
 #endif
 #ifdef JS_TRACER
-    js_InitJIT(&traceMonitor);
+    InitJIT(&traceMonitor);
 #endif
     js_InitRandom(this);
+
+    dtoaState = js_NewDtoaState();
+    if (!dtoaState) {
+        finish();
+        return false;
+    }
+    return true;
 }
 
 void
@@ -104,10 +134,13 @@ JSThreadData::finish()
     JS_ASSERT(!localRootStack);
 #endif
 
+    if (dtoaState)
+        js_DestroyDtoaState(dtoaState);
+
     js_FinishGSNCache(&gsnCache);
     js_FinishPropertyCache(&propertyCache);
 #if defined JS_TRACER
-    js_FinishJIT(&traceMonitor);
+    FinishJIT(&traceMonitor);
 #endif
 }
 
@@ -168,7 +201,10 @@ NewThread(jsword id)
         return NULL;
     JS_INIT_CLIST(&thread->contextList);
     thread->id = id;
-    thread->data.init();
+    if (!thread->data.init()) {
+        js_free(thread);
+        return NULL;
+    }
     return thread;
 }
 
@@ -462,11 +498,6 @@ js_NewContext(JSRuntime *rt, size_t stackChunkSize)
     js_InitRegExpStatics(cx);
     JS_ASSERT(cx->resolveFlags == 0);
 
-    if (!js_InitContextBusyArrayTable(cx)) {
-        FreeContext(cx);
-        return NULL;
-    }
-
 #ifdef JS_THREADSAFE
     if (!js_InitContextThread(cx)) {
         FreeContext(cx);
@@ -529,6 +560,9 @@ js_NewContext(JSRuntime *rt, size_t stackChunkSize)
             ok = js_InitRuntimeNumberState(cx);
         if (ok)
             ok = js_InitRuntimeStringState(cx);
+        if (ok)
+            ok = JSScope::initRuntimeState(cx);
+
 #ifdef JS_THREADSAFE
         JS_EndRequest(cx);
 #endif
@@ -546,6 +580,12 @@ js_NewContext(JSRuntime *rt, size_t stackChunkSize)
     cxCallback = rt->cxCallback;
     if (cxCallback && !cxCallback(cx, JSCONTEXT_NEW)) {
         js_DestroyContext(cx, JSDCM_NEW_FAILED);
+        return NULL;
+    }
+
+    /* Using ContextAllocPolicy, so init after JSContext is ready. */
+    if (!cx->busyArrays.init()) {
+        FreeContext(cx);
         return NULL;
     }
 
@@ -656,6 +696,24 @@ DumpFunctionMeter(JSContext *cx)
 # define DUMP_FUNCTION_METER(cx)   ((void) 0)
 #endif
 
+#ifdef JS_PROTO_CACHE_METERING
+static void
+DumpProtoCacheMeter(JSContext *cx)
+{
+    JSClassProtoCache::Stats *stats = &cx->runtime->classProtoCacheStats;
+    FILE *fp = fopen("/tmp/protocache.stats", "a");
+    fprintf(fp,
+            "hit ratio %g%%\n",
+            double(stats->hit) * 100.0 / double(stats->probe));
+    fclose(fp);
+}
+
+# define DUMP_PROTO_CACHE_METER(cx) DumpProtoCacheMeter(cx)
+#else
+# define DUMP_PROTO_CACHE_METER(cx) ((void) 0)
+#endif
+
+
 void
 js_DestroyContext(JSContext *cx, JSDestroyContextMode mode)
 {
@@ -731,7 +789,7 @@ js_DestroyContext(JSContext *cx, JSDestroyContextMode mode)
                 JS_BeginRequest(cx);
 #endif
 
-            /* Unlock and clear GC things held by runtime pointers. */
+            JSScope::finishRuntimeState(cx);
             js_FinishRuntimeNumberState(cx);
             js_FinishRuntimeStringState(cx);
 
@@ -762,6 +820,7 @@ js_DestroyContext(JSContext *cx, JSDestroyContextMode mode)
             js_GC(cx, GC_LAST_CONTEXT);
             DUMP_EVAL_CACHE_METER(cx);
             DUMP_FUNCTION_METER(cx);
+            DUMP_PROTO_CACHE_METER(cx);
 
             /* Take the runtime down, now that it has no contexts or atoms. */
             JS_LOCK_GC(rt);
@@ -807,12 +866,6 @@ FreeContext(JSContext *cx)
         cx->free(temp);
     }
 
-    /* Destroy the busy array table. */
-    if (cx->busyArrayTable) {
-        JS_HashTableDestroy(cx->busyArrayTable);
-        cx->busyArrayTable = NULL;
-    }
-
     /* Destroy the resolve recursion damper. */
     if (cx->resolvingTable) {
         JS_DHashTableDestroy(cx->resolvingTable);
@@ -820,6 +873,7 @@ FreeContext(JSContext *cx)
     }
 
     /* Finally, free cx itself. */
+    cx->~JSContext();
     js_free(cx);
 }
 
@@ -906,44 +960,6 @@ js_WaitForGC(JSRuntime *rt)
             JS_AWAIT_GC_DONE(rt);
         } while (rt->gcRunning);
     }
-}
-
-uint32
-js_DiscountRequestsForGC(JSContext *cx)
-{
-    uint32 requestDebit;
-
-    JS_ASSERT(cx->thread);
-    JS_ASSERT(cx->runtime->gcThread != cx->thread);
-
-#ifdef JS_TRACER
-    if (JS_ON_TRACE(cx)) {
-        JS_UNLOCK_GC(cx->runtime);
-        js_LeaveTrace(cx);
-        JS_LOCK_GC(cx->runtime);
-    }
-#endif
-
-    requestDebit = js_CountThreadRequests(cx);
-    if (requestDebit != 0) {
-        JSRuntime *rt = cx->runtime;
-        JS_ASSERT(requestDebit <= rt->requestCount);
-        rt->requestCount -= requestDebit;
-        if (rt->requestCount == 0)
-            JS_NOTIFY_REQUEST_DONE(rt);
-    }
-    return requestDebit;
-}
-
-void
-js_RecountRequestsAfterGC(JSRuntime *rt, uint32 requestDebit)
-{
-    while (rt->gcLevel > 0) {
-        JS_ASSERT(rt->gcThread);
-        JS_AWAIT_GC_DONE(rt);
-    }
-    if (requestDebit != 0)
-        rt->requestCount += requestDebit;
 }
 
 #endif
@@ -1414,9 +1430,13 @@ static bool
 checkReportFlags(JSContext *cx, uintN *flags)
 {
     if (JSREPORT_IS_STRICT_MODE_ERROR(*flags)) {
-        /* Error in strict code; warning with strict option; okay otherwise. */
-        JS_ASSERT(JS_IsRunning(cx));
-        if (js_GetTopStackFrame(cx)->script->strictModeCode)
+        /*
+         * Error in strict code; warning with strict option; okay otherwise.
+         * We assume that if the top frame is a native, then it is strict if
+         * the nearest scripted frame is strict, see bug 536306.
+         */
+        JSStackFrame *fp = js_GetScriptedCaller(cx, NULL);
+        if (fp && fp->script->strictModeCode)
             *flags &= ~JSREPORT_WARNING;
         else if (JS_HAS_STRICT_OPTION(cx))
             *flags |= JSREPORT_WARNING;
@@ -1950,4 +1970,41 @@ JSContext::checkMallocGCPressure(void *p)
         js_TriggerGC(this, true);
     }
     JS_UNLOCK_GC(runtime);
+}
+
+
+bool
+JSContext::isConstructing()
+{
+#ifdef JS_TRACER
+    if (JS_ON_TRACE(this)) {
+        JS_ASSERT(bailExit);
+        return *bailExit->pc == JSOP_NEW;
+    }
+#endif
+    JSStackFrame *fp = js_GetTopStackFrame(this);
+    return fp && (fp->flags & JSFRAME_CONSTRUCTING);
+}
+
+/*
+ * Release pool's arenas if the stackPool has existed for longer than the
+ * limit specified by gcEmptyArenaPoolLifespan.
+ */
+inline void
+FreeOldArenas(JSRuntime *rt, JSArenaPool *pool)
+{
+    JSArena *a = pool->current;
+    if (a == pool->first.next && a->avail == a->base + sizeof(int64)) {
+        int64 age = JS_Now() - *(int64 *) a->base;
+        if (age > int64(rt->gcEmptyArenaPoolLifespan) * 1000)
+            JS_FreeArenaPool(pool);
+    }
+}
+
+void
+JSContext::purge()
+{
+    FreeOldArenas(runtime, &stackPool);
+    FreeOldArenas(runtime, &regexpPool);
+    classProtoCache.purge();
 }

@@ -1100,7 +1100,8 @@ SprintDoubleValue(Sprinter *sp, jsval v, JSOp *opp)
                              : "1 / 0");
         *opp = JSOP_DIV;
     } else {
-        s = JS_dtostr(buf, sizeof buf, DTOSTR_STANDARD, 0, d);
+        s = js_dtostr(JS_THREAD_DATA(sp->context)->dtoaState, buf, sizeof buf,
+                      DTOSTR_STANDARD, 0, d);
         if (!s) {
             JS_ReportOutOfMemory(sp->context);
             return -1;
@@ -1907,8 +1908,11 @@ Decompile(SprintStack *ss, jsbytecode *pc, intN nb, JSOp nextop)
  */
 #define PROPAGATE_CALLNESS()                                                  \
     JS_BEGIN_MACRO                                                            \
-        if (ss->opcodes[ss->top - 1] == JSOP_CALL)                            \
+        if (ss->opcodes[ss->top - 1] == JSOP_CALL ||                          \
+            ss->opcodes[ss->top - 1] == JSOP_EVAL ||                          \
+            ss->opcodes[ss->top - 1] == JSOP_APPLY) {                         \
             saveop = JSOP_CALL;                                               \
+        }                                                                     \
     JS_END_MACRO
 
     cx = ss->sprinter.context;
@@ -2636,7 +2640,7 @@ Decompile(SprintStack *ss, jsbytecode *pc, intN nb, JSOp nextop)
                                                    goto enterblock_out)
                 for (sprop = OBJ_SCOPE(obj)->lastProperty(); sprop;
                      sprop = sprop->parent) {
-                    if (!(sprop->flags & SPROP_HAS_SHORTID))
+                    if (!sprop->hasShortID())
                         continue;
                     LOCAL_ASSERT_OUT(sprop->shortid < argc);
                     atomv[sprop->shortid] = JSID_TO_ATOM(sprop->id);
@@ -5578,6 +5582,7 @@ ReconstructPCStack(JSContext *cx, JSScript *script, jsbytecode *target,
             }
         }
 
+        /* Ignore early-exit code, which is annotated SRC_HIDDEN. */
         if (sn && SN_TYPE(sn) == SRC_HIDDEN)
             continue;
 

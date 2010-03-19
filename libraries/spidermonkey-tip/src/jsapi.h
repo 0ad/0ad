@@ -396,27 +396,6 @@ JS_ConvertArgumentsVA(JSContext *cx, uintN argc, jsval *argv,
                       const char *format, va_list ap);
 #endif
 
-/*
- * Inverse of JS_ConvertArguments: scan format and convert trailing arguments
- * into jsvals, GC-rooted if necessary by the JS stack.  Return null on error,
- * and a pointer to the new argument vector on success.  Also return a stack
- * mark on success via *markp, in which case the caller must eventually clean
- * up by calling JS_PopArguments.
- *
- * Note that the number of actual arguments supplied is specified exclusively
- * by format, so there is no argc parameter.
- */
-extern JS_PUBLIC_API(jsval *)
-JS_PushArguments(JSContext *cx, void **markp, const char *format, ...);
-
-#ifdef va_start
-extern JS_PUBLIC_API(jsval *)
-JS_PushArgumentsVA(JSContext *cx, void **markp, const char *format, va_list ap);
-#endif
-
-extern JS_PUBLIC_API(void)
-JS_PopArguments(JSContext *cx, void *mark);
-
 #ifdef JS_ARGUMENT_FORMATTER_DEFINED
 
 /*
@@ -1325,6 +1304,15 @@ extern JS_PUBLIC_API(uint32)
 JS_GetGCParameterForThread(JSContext *cx, JSGCParamKey key);
 
 /*
+ * Flush the code cache for the current thread. The operation might be
+ * delayed if the cache cannot be flushed currently because native
+ * code is currently executing.
+ */
+
+extern JS_PUBLIC_API(void)
+JS_FlushCaches(JSContext *cx);
+
+/*
  * Add a finalizer for external strings created by JS_NewExternalString (see
  * below) using a type-code returned from this function, and that understands
  * how to free or release the memory pointed at by JS_GetStringChars(str).
@@ -2027,9 +2015,10 @@ JS_DropPrincipals(JSContext *cx, JSPrincipals *principals);
 
 
 struct JSSecurityCallbacks {
-  JSCheckAccessOp            checkObjectAccess;
-  JSPrincipalsTranscoder     principalsTranscoder;
-  JSObjectPrincipalsFinder   findObjectPrincipals;
+    JSCheckAccessOp            checkObjectAccess;
+    JSPrincipalsTranscoder     principalsTranscoder;
+    JSObjectPrincipalsFinder   findObjectPrincipals;
+    JSCSPEvalChecker           contentSecurityPolicyAllows;
 };
 
 extern JS_PUBLIC_API(JSSecurityCallbacks *)
@@ -2355,14 +2344,6 @@ JS_IsRunning(JSContext *cx);
 
 extern JS_PUBLIC_API(JSBool)
 JS_IsConstructing(JSContext *cx);
-
-/*
- * Returns true if a script is executing and its current bytecode is a set
- * (assignment) operation, even if there are native (no script) stack frames
- * between the script and the caller to JS_IsAssigning.
- */
-extern JS_FRIEND_API(JSBool)
-JS_IsAssigning(JSContext *cx);
 
 /*
  * Saving and restoring frame chains.

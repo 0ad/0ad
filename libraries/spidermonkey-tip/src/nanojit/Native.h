@@ -64,8 +64,14 @@
 #include "NativeSparc.h"
 #elif defined(NANOJIT_X64)
 #include "NativeX64.h"
+#elif defined(NANOJIT_MIPS)
+#include "NativeMIPS.h"
 #else
 #error "unknown nanojit architecture"
+#endif
+
+#ifndef NJ_USES_QUAD_CONSTANTS
+#  define NJ_USES_QUAD_CONSTANTS 0
 #endif
 
 #ifndef NJ_JTBL_SUPPORTED
@@ -74,6 +80,21 @@
 
 #ifndef NJ_EXPANDED_LOADSTORE_SUPPORTED
 #  define NJ_EXPANDED_LOADSTORE_SUPPORTED 0
+#endif
+
+#ifndef NJ_F2I_SUPPORTED
+#  define NJ_F2I_SUPPORTED 0
+#endif
+
+#ifndef NJ_SOFTFLOAT_SUPPORTED
+#  define NJ_SOFTFLOAT_SUPPORTED 0
+#endif
+
+
+#if NJ_SOFTFLOAT_SUPPORTED
+    #define CASESF(x)   case x
+#else
+    #define CASESF(x)
 #endif
 
 namespace nanojit {
@@ -124,7 +145,6 @@ namespace nanojit {
     #ifdef NJ_NO_VARIADIC_MACROS
         static void asm_output(const char *f, ...) {}
         #define gpn(r)                    regNames[(r)]
-        #define fpn(r)                    regNames[(r)]
     #elif defined(NJ_VERBOSE)
         // Used for printing native instructions.  Like Assembler::outputf(),
         // but only outputs if LC_Assembly is set.  Also prepends the output
@@ -139,11 +159,9 @@ namespace nanojit {
             } \
         } while (0) /* no semi */
         #define gpn(r)                  regNames[(r)]
-        #define fpn(r)                  regNames[(r)]
     #else
         #define asm_output(...)
         #define gpn(r)
-        #define fpn(r)
     #endif /* NJ_VERBOSE */
 
 #endif // __nanojit_Native__

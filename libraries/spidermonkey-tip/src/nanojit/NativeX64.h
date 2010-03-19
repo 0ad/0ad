@@ -60,8 +60,11 @@ namespace nanojit
 {
 #define NJ_MAX_STACK_ENTRY              4096
 #define NJ_ALIGN_STACK                  16
+
 #define NJ_JTBL_SUPPORTED               1
 #define NJ_EXPANDED_LOADSTORE_SUPPORTED 1
+#define NJ_F2I_SUPPORTED                1
+#define NJ_SOFTFLOAT_SUPPORTED          0
 
     enum Register {
         RAX = 0, // 1st int return, # of sse varargs
@@ -99,9 +102,12 @@ namespace nanojit
         XMM15 = 31, // scratch
 
         FP = RBP,
-        UnknownReg = 32,
+
         FirstReg = RAX,
-        LastReg = XMM15
+        LastReg = XMM15,
+
+        deprecated_UnknownReg = 32,        // XXX: remove eventually, see bug 538924
+        UnspecifiedReg = 32
     };
 
 /*
@@ -193,6 +199,7 @@ namespace nanojit
         X64_cvtsq2sd= 0xC02A0F48F2000005LL, // convert int64 to double r = (double) b
         X64_cvtss2sd= 0xC05A0F40F3000005LL, // convert float to double r = (double) b
         X64_cvtsd2ss= 0xC05A0F40F2000005LL, // convert double to float r = (float) b
+        X64_cvtsd2si= 0xC02D0F40F2000005LL, // convert double to int32 r = (int32) b
         X64_divsd   = 0xC05E0F40F2000005LL, // divide scalar double r /= b
         X64_mulsd   = 0xC0590F40F2000005LL, // multiply scalar double r *= b
         X64_addsd   = 0xC0580F40F2000005LL, // add scalar double r += b
@@ -200,6 +207,7 @@ namespace nanojit
         X64_imul    = 0xC0AF0F4000000004LL, // 32bit signed mul r *= b
         X64_imuli   = 0xC069400000000003LL, // 32bit signed mul r = b * imm32
         X64_imul8   = 0x00C06B4000000004LL, // 32bit signed mul r = b * imm8
+        X64_jmpi    = 0x0000000025FF0006LL, // jump *0(rip)  
         X64_jmp     = 0x00000000E9000005LL, // jump near rel32
         X64_jmp8    = 0x00EB000000000002LL, // jump near rel8
         X64_jo      = 0x00000000800F0006LL, // jump near if overflow
@@ -329,6 +337,10 @@ namespace nanojit
     static const int NumSavedRegs = 5; // rbx, r12-15
     static const int NumArgRegs = 6;
 #endif
+    // Warning:  when talking about single byte registers, RSP/RBP/RSI/RDI are
+    // actually synonyms for AH/CH/DH/BH.  So this value means "any
+    // single-byte GpReg except AH/CH/DH/BH".
+    static const int SingleByteStoreRegs = GpRegs & ~(1<<RSP | 1<<RBP | 1<<RSI | 1<<RDI);
 
     static inline bool IsFpReg(Register r) {
         return ((1<<r) & FpRegs) != 0;
@@ -358,6 +370,7 @@ namespace nanojit
         void emit8(uint64_t op, int64_t val);\
         void emit_target8(size_t underrun, uint64_t op, NIns* target);\
         void emit_target32(size_t underrun, uint64_t op, NIns* target);\
+        void emit_target64(size_t underrun, uint64_t op, NIns* target); \
         void emitrr(uint64_t op, Register r, Register b);\
         void emitrxb(uint64_t op, Register r, Register x, Register b);\
         void emitxb(uint64_t op, Register x, Register b) { emitrxb(op, (Register)0, x, b); }\
@@ -379,7 +392,8 @@ namespace nanojit
         void emitxm_rel(uint64_t op, Register r, NIns* addr64);\
         bool isTargetWithinS8(NIns* target);\
         bool isTargetWithinS32(NIns* target);\
-        void asm_quad(Register r, uint64_t v);\
+        void asm_int(Register r, int32_t v, bool canClobberCCs);\
+        void asm_quad(Register r, uint64_t v, bool canClobberCCs);\
         void asm_regarg(ArgSize, LIns*, Register);\
         void asm_stkarg(ArgSize, LIns*, int);\
         void asm_shift(LIns*);\
@@ -469,6 +483,7 @@ namespace nanojit
         void CVTSI2SD(Register l, Register r);\
         void CVTSS2SD(Register l, Register r);\
         void CVTSD2SS(Register l, Register r);\
+        void CVTSD2SI(Register l, Register r);\
         void UCOMISD(Register l, Register r);\
         void MOVQRX(Register l, Register r);\
         void MOVQXR(Register l, Register r);\
@@ -501,23 +516,24 @@ namespace nanojit
         void IMULI(Register l, Register r, int32_t i32);\
         void MOVQI(Register r, uint64_t u64);\
         void LEARIP(Register r, int32_t d);\
-        void LEAQRM(Register r1, int d, Register r2);\
-        void MOVLRM(Register r1, int d, Register r2);\
-        void MOVQRM(Register r1, int d, Register r2);\
-        void MOVBMR(Register r1, int d, Register r2);\
-        void MOVSMR(Register r1, int d, Register r2);\
-        void MOVLMR(Register r1, int d, Register r2);\
-        void MOVQMR(Register r1, int d, Register r2);\
-        void MOVZX8M(Register r1, int d, Register r2);\
-        void MOVZX16M(Register r1, int d, Register r2);\
-        void MOVSX8M(Register r1, int d, Register r2);\
-        void MOVSX16M(Register r1, int d, Register r2);\
-        void MOVSDRM(Register r1, int d, Register r2);\
-        void MOVSDMR(Register r1, int d, Register r2);\
-        void MOVSSMR(Register r1, int d, Register r2);\
-        void MOVSSRM(Register r1, int d, Register r2);\
+        void LEAQRM(Register r, int d, Register b);\
+        void MOVLRM(Register r, int d, Register b);\
+        void MOVQRM(Register r, int d, Register b);\
+        void MOVBMR(Register r, int d, Register b);\
+        void MOVSMR(Register r, int d, Register b);\
+        void MOVLMR(Register r, int d, Register b);\
+        void MOVQMR(Register r, int d, Register b);\
+        void MOVZX8M(Register r, int d, Register b);\
+        void MOVZX16M(Register r, int d, Register b);\
+        void MOVSX8M(Register r, int d, Register b);\
+        void MOVSX16M(Register r, int d, Register b);\
+        void MOVSDRM(Register r, int d, Register b);\
+        void MOVSDMR(Register r, int d, Register b);\
+        void MOVSSMR(Register r, int d, Register b);\
+        void MOVSSRM(Register r, int d, Register b);\
         void JMP8(size_t n, NIns* t);\
         void JMP32(size_t n, NIns* t);\
+        void JMP64(size_t n, NIns* t);\
         void JMPX(Register indexreg, NIns** table);\
         void JMPXB(Register indexreg, Register tablereg);\
         void JO(size_t n, NIns* t);\

@@ -97,6 +97,8 @@
 #include <windows.h>
 #endif
 
+using namespace js;
+
 typedef enum JSShellExitCode {
     EXITCODE_RUNTIME_ERROR      = 3,
     EXITCODE_FILE_NOT_FOUND     = 4,
@@ -382,6 +384,10 @@ SetContextOptions(JSContext *cx)
     JS_SetOperationCallback(cx, ShellOperationCallback);
 }
 
+#ifdef WINCE
+int errno;
+#endif
+
 static void
 Process(JSContext *cx, JSObject *obj, char *filename, JSBool forceTTY)
 {
@@ -412,7 +418,9 @@ Process(JSContext *cx, JSObject *obj, char *filename, JSBool forceTTY)
 
 #ifndef WINCE
     /* windows mobile (and possibly other os's) does not have a TTY */
-    if (!forceTTY && !isatty(fileno(file))) {
+    if (!forceTTY && !isatty(fileno(file)))
+#endif
+    {
         /*
          * It's not interactive - just execute it.
          *
@@ -444,7 +452,6 @@ Process(JSContext *cx, JSObject *obj, char *filename, JSBool forceTTY)
             fclose(file);
         return;
     }
-#endif /* WINCE */
 
     /* It's an interactive filehandle; drop into read-eval-print loop. */
     lineno = 1;
@@ -614,6 +621,13 @@ MapContextOptionNameToFlag(JSContext* cx, const char* name)
 
 extern JSClass global_class;
 
+#if defined(JS_TRACER) && defined(DEBUG)
+namespace js {
+    extern struct JSClass jitstats_class;
+    void InitJITStatsClass(JSContext *cx, JSObject *glob);
+}
+#endif
+
 static int
 ProcessArgs(JSContext *cx, JSObject *obj, char **argv, int argc)
 {
@@ -723,11 +737,9 @@ ProcessArgs(JSContext *cx, JSObject *obj, char **argv, int argc)
             enableJit = !enableJit;
             JS_ToggleOptions(cx, JSOPTION_JIT);
 #if defined(JS_TRACER) && defined(DEBUG)
-extern struct JSClass jitstats_class;
-extern void js_InitJITStatsClass(JSContext *cx, JSObject *glob);
-            js_InitJITStatsClass(cx, JS_GetGlobalObject(cx));
+            js::InitJITStatsClass(cx, JS_GetGlobalObject(cx));
             JS_DefineObject(cx, JS_GetGlobalObject(cx), "tracemonkey",
-                            &jitstats_class, NULL, 0);
+                            &js::jitstats_class, NULL, 0);
 #endif
             break;
 
@@ -836,7 +848,7 @@ extern void js_InitJITStatsClass(JSContext *cx, JSObject *glob);
             if (++i == argc)
                 return usage();
 
-            JS_StartTraceVis(argv[i]);
+            StartTraceVis(argv[i]);
             break;
 #endif
         default:
@@ -1757,10 +1769,37 @@ DisassembleValue(JSContext *cx, jsval v, bool lines, bool recursive)
 
 #undef SHOW_FLAG
 
-            if (FUN_NULL_CLOSURE(fun))
-                fputs(" NULL_CLOSURE", stdout);
-            else if (FUN_FLAT_CLOSURE(fun))
-                fputs(" FLAT_CLOSURE", stdout);
+            if (FUN_INTERPRETED(fun)) {
+                if (FUN_NULL_CLOSURE(fun))
+                    fputs(" NULL_CLOSURE", stdout);
+                else if (FUN_FLAT_CLOSURE(fun))
+                    fputs(" FLAT_CLOSURE", stdout);
+
+                if (fun->u.i.nupvars) {
+                    fputs("\nupvars: {\n", stdout);
+
+                    void *mark = JS_ARENA_MARK(&cx->tempPool);
+                    jsuword *localNames = js_GetLocalNameArray(cx, fun, &cx->tempPool);
+                    if (!localNames)
+                        return false;
+
+                    JSUpvarArray *uva = fun->u.i.script->upvars();
+                    uintN upvar_base = fun->countArgsAndVars();
+
+                    for (uint32 i = 0, n = uva->length; i < n; i++) {
+                        JSAtom *atom = JS_LOCAL_NAME_TO_ATOM(localNames[upvar_base + i]);
+                        uint32 cookie = uva->vector[i];
+
+                        printf("  %s: {skip:%u, slot:%u},\n",
+                               js_AtomToPrintableString(cx, atom),
+                               UPVAR_FRAME_SKIP(cookie),
+                               UPVAR_FRAME_SLOT(cookie));
+                    }
+
+                    JS_ARENA_RELEASE(&cx->tempPool, mark);
+                    putchar('}');
+                }
+            }
             putchar('\n');
         }
     }
@@ -1976,42 +2015,10 @@ Tracing(JSContext *cx, JSObject *obj, uintN argc, jsval *argv, jsval *rval)
 static void
 DumpScope(JSContext *cx, JSObject *obj, FILE *fp)
 {
-    uintN i;
-    JSScopeProperty *sprop;
-    jsval v;
-    JSString *str;
-
-    i = 0;
-    sprop = NULL;
-    while (JS_PropertyIterator(obj, &sprop)) {
-        fprintf(fp, "%3u %p ", i, (void *)sprop);
-
-        v = ID_TO_VALUE(sprop->id);
-        if (JSID_IS_INT(sprop->id)) {
-            fprintf(fp, "[%ld]", (long)JSVAL_TO_INT(v));
-        } else {
-            if (JSID_IS_ATOM(sprop->id)) {
-                str = JSVAL_TO_STRING(v);
-            } else {
-                JS_ASSERT(JSID_IS_OBJECT(sprop->id));
-                str = js_ValueToString(cx, v);
-                fputs("object ", fp);
-            }
-            if (!str)
-                fputs("<error>", fp);
-            else
-                js_FileEscapedString(fp, str, '"');
-        }
-#define DUMP_ATTR(name) if (sprop->attrs & JSPROP_##name) fputs(" " #name, fp)
-        DUMP_ATTR(ENUMERATE);
-        DUMP_ATTR(READONLY);
-        DUMP_ATTR(PERMANENT);
-        DUMP_ATTR(GETTER);
-        DUMP_ATTR(SETTER);
-#undef  DUMP_ATTR
-
-        fprintf(fp, " slot %lu flags %x shortid %d\n",
-                (unsigned long)sprop->slot, sprop->flags, sprop->shortid);
+    uintN i = 0;
+    for (JSScopeProperty *sprop = NULL; JS_PropertyIterator(obj, &sprop);) {
+        fprintf(fp, "%3u %p ", i++, (void *) sprop);
+        sprop->dump(cx, fp);
     }
 }
 
@@ -2922,7 +2929,7 @@ sandbox_resolve(JSContext *cx, JSObject *obj, jsval id, uintN flags,
 
 static JSClass sandbox_class = {
     "sandbox",
-    JSCLASS_NEW_RESOLVE,
+    JSCLASS_NEW_RESOLVE | JSCLASS_GLOBAL_FLAGS,
     JS_PropertyStub,   JS_PropertyStub,
     JS_PropertyStub,   JS_PropertyStub,
     sandbox_enumerate, (JSResolveOp)sandbox_resolve,
@@ -3768,8 +3775,8 @@ static JSFunctionSpec shell_functions[] = {
     JS_FS("resumeVtune",    js_ResumeVtune,   0,0,0),
 #endif
 #ifdef MOZ_TRACEVIS
-    JS_FS("startTraceVis",  js_StartTraceVis, 1,0,0),
-    JS_FS("stopTraceVis",   js_StopTraceVis,  0,0,0),
+    JS_FS("startTraceVis",  StartTraceVisNative, 1,0,0),
+    JS_FS("stopTraceVis",   StopTraceVisNative,  0,0,0),
 #endif
 #ifdef DEBUG_ARRAYS
     JS_FS("arrayInfo",      js_ArrayInfo,       1,0,0),

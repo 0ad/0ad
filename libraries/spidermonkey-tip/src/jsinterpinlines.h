@@ -1,4 +1,5 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+ * vim: set ts=8 sw=4 et tw=99:
  *
  * ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1
@@ -17,11 +18,12 @@
  * March 31, 1998.
  *
  * The Initial Developer of the Original Code is
- * Netscape Communications Corporation.
- * Portions created by the Initial Developer are Copyright (C) 1998
+ * Mozilla Corporation.
+ * Portions created by the Initial Developer are Copyright (C) 2010
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
+ *   Igor Bukanov <igor@mir2.org>
  *
  * Alternatively, the contents of this file may be used under the terms of
  * either of the GNU General Public License Version 2 or later (the "GPL"),
@@ -37,20 +39,18 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-#ifndef _jsfile_h__
-#define _jsfile_h__
+#ifndef jsinterpinlines_h___
+#define jsinterpinlines_h___
 
-#if JS_HAS_FILE_OBJECT
+#include "jsinterp.h"
+#include "jslock.h"
+#include "jsscope.h"
 
-#include "jsobj.h"
+inline bool
+js_MatchPropertyCacheShape(JSContext *cx, JSObject *obj, uint32 shape)
+{
+    return CX_OWNS_OBJECT_TITLE(cx, obj) && OBJ_SHAPE(obj) == shape;
+}
 
-extern JS_PUBLIC_API(JSObject*)
-js_InitFileClass(JSContext *cx, JSObject* obj);
 
-extern JS_PUBLIC_API(JSObject*)
-js_NewFileObject(JSContext *cx, char *bytes);
-
-extern JSClass js_FileClass;
-
-#endif /* JS_HAS_FILE_OBJECT */
-#endif /* _jsfile_h__ */
+#endif /* jsinterpinlines_h___ */

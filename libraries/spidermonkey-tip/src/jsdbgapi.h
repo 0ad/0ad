@@ -195,6 +195,9 @@ JS_StackFramePrincipals(JSContext *cx, JSStackFrame *fp);
 extern JS_PUBLIC_API(JSPrincipals *)
 JS_EvalFramePrincipals(JSContext *cx, JSStackFrame *fp, JSStackFrame *caller);
 
+JSPrincipals *
+js_EvalFramePrincipals(JSContext *cx, JSObject *callee, JSStackFrame *caller);
+
 extern JS_PUBLIC_API(void *)
 JS_GetFrameAnnotation(JSContext *cx, JSStackFrame *fp);
 
@@ -426,6 +429,10 @@ JS_GetGlobalDebugHooks(JSRuntime *rt);
 
 extern JS_PUBLIC_API(JSDebugHooks *)
 JS_SetContextDebugHooks(JSContext *cx, const JSDebugHooks *hooks);
+
+/* Disable debug hooks for this context. */
+extern JS_PUBLIC_API(JSDebugHooks *)
+JS_ClearContextDebugHooks(JSContext *cx);
 
 #ifdef MOZ_SHARK
 

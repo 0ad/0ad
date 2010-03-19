@@ -225,7 +225,7 @@ struct ClosureVarInfo;
 #define _JS_CTYPE_CLASS             _JS_CTYPE(JSClass *,              _JS_PTR, --, --, INFALLIBLE)
 #define _JS_CTYPE_DOUBLEPTR         _JS_CTYPE(double *,               _JS_PTR, --, --, INFALLIBLE)
 #define _JS_CTYPE_CHARPTR           _JS_CTYPE(char *,                 _JS_PTR, --, --, INFALLIBLE)
-#define _JS_CTYPE_APNPTR            _JS_CTYPE(js_ArgsPrivateNative *, _JS_PTR, --, --, INFALLIBLE)
+#define _JS_CTYPE_APNPTR            _JS_CTYPE(ArgsPrivateNative *,    _JS_PTR, --, --, INFALLIBLE)
 #define _JS_CTYPE_CVIPTR            _JS_CTYPE(const ClosureVarInfo *, _JS_PTR, --, --, INFALLIBLE)
 #define _JS_CTYPE_FRAMEINFO         _JS_CTYPE(FrameInfo *,            _JS_PTR, --, --, INFALLIBLE)
 
@@ -336,7 +336,6 @@ struct ClosureVarInfo;
                         (_JS_CTYPE_ARGSIZE(at4) << (1*nanojit::ARGSIZE_SHIFT)) |                  \
                         _JS_CTYPE_RETSIZE(rt),                                                    \
                         cse, fold)
-
 #define JS_DEFINE_CALLINFO_6(linkage, rt, op, at0, at1, at2, at3, at4, at5, cse, fold)            \
     _JS_DEFINE_CALLINFO(linkage, op, _JS_CTYPE_TYPE(rt),                                          \
                         (_JS_CTYPE_TYPE(at0), _JS_CTYPE_TYPE(at1), _JS_CTYPE_TYPE(at2),           \
@@ -347,6 +346,33 @@ struct ClosureVarInfo;
                         (_JS_CTYPE_ARGSIZE(at3) << (3*nanojit::ARGSIZE_SHIFT)) |                  \
                         (_JS_CTYPE_ARGSIZE(at4) << (2*nanojit::ARGSIZE_SHIFT)) |                  \
                         (_JS_CTYPE_ARGSIZE(at5) << (1*nanojit::ARGSIZE_SHIFT)) |                  \
+                        _JS_CTYPE_RETSIZE(rt), cse, fold)
+#define JS_DEFINE_CALLINFO_7(linkage, rt, op, at0, at1, at2, at3, at4, at5, at6, cse, fold)       \
+    _JS_DEFINE_CALLINFO(linkage, op, _JS_CTYPE_TYPE(rt),                                          \
+                        (_JS_CTYPE_TYPE(at0), _JS_CTYPE_TYPE(at1), _JS_CTYPE_TYPE(at2),           \
+                         _JS_CTYPE_TYPE(at3), _JS_CTYPE_TYPE(at4), _JS_CTYPE_TYPE(at5),           \
+                         _JS_CTYPE_TYPE(at6)),                                                    \
+                        (_JS_CTYPE_ARGSIZE(at0) << (7*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at1) << (6*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at2) << (5*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at3) << (4*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at4) << (3*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at5) << (2*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at6) << (1*nanojit::ARGSIZE_SHIFT)) |                  \
+                        _JS_CTYPE_RETSIZE(rt), cse, fold)
+#define JS_DEFINE_CALLINFO_8(linkage, rt, op, at0, at1, at2, at3, at4, at5, at6, at7, cse, fold)  \
+    _JS_DEFINE_CALLINFO(linkage, op, _JS_CTYPE_TYPE(rt),                                          \
+                        (_JS_CTYPE_TYPE(at0), _JS_CTYPE_TYPE(at1), _JS_CTYPE_TYPE(at2),           \
+                         _JS_CTYPE_TYPE(at3), _JS_CTYPE_TYPE(at4), _JS_CTYPE_TYPE(at5),           \
+                         _JS_CTYPE_TYPE(at6), _JS_CTYPE_TYPE(at7)),                               \
+                        (_JS_CTYPE_ARGSIZE(at0) << (8*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at1) << (7*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at2) << (6*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at3) << (5*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at4) << (4*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at5) << (3*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at6) << (2*nanojit::ARGSIZE_SHIFT)) |                  \
+                        (_JS_CTYPE_ARGSIZE(at7) << (1*nanojit::ARGSIZE_SHIFT)) |                  \
                         _JS_CTYPE_RETSIZE(rt), cse, fold)
 
 #define JS_DECLARE_CALLINFO(name)  extern const nanojit::CallInfo _JS_CALLINFO(name);
@@ -391,6 +417,22 @@ struct ClosureVarInfo;
         _JS_CTYPE_PCH(at1) _JS_CTYPE_PCH(at0),                                                    \
     _JS_CTYPE_ACH(at5) _JS_CTYPE_ACH(at4) _JS_CTYPE_ACH(at3) _JS_CTYPE_ACH(at2)                   \
         _JS_CTYPE_ACH(at1) _JS_CTYPE_ACH(at0),                                                    \
+    _JS_CTYPE_FLAGS(rt)
+
+#define _JS_TN_INIT_HELPER_7(linkage, rt, op, at0, at1, at2, at3, at4, at5, at6, cse, fold)       \
+    &_JS_CALLINFO(op),                                                                            \
+    _JS_CTYPE_PCH(at6) _JS_CTYPE_PCH(at5) _JS_CTYPE_PCH(at4) _JS_CTYPE_PCH(at3)                   \
+        _JS_CTYPE_PCH(at2)  _JS_CTYPE_PCH(at1) _JS_CTYPE_PCH(at0),                                \
+    _JS_CTYPE_ACH(at6) _JS_CTYPE_ACH(at5) _JS_CTYPE_ACH(at4) _JS_CTYPE_ACH(at3)                   \
+        _JS_CTYPE_ACH(at2) _JS_CTYPE_ACH(at1) _JS_CTYPE_ACH(at0),                                 \
+    _JS_CTYPE_FLAGS(rt)
+
+#define _JS_TN_INIT_HELPER_8(linkage, rt, op, at0, at1, at2, at3, at4, at5, at6, at7, cse, fold)  \
+    &_JS_CALLINFO(op),                                                                            \
+    _JS_CTYPE_PCH(at7) _JS_CTYPE_PCH(at6) _JS_CTYPE_PCH(at5) _JS_CTYPE_PCH(at4)                   \
+        _JS_CTYPE_PCH(at3) _JS_CTYPE_PCH(at2)  _JS_CTYPE_PCH(at1) _JS_CTYPE_PCH(at0),             \
+    _JS_CTYPE_ACH(at7) _JS_CTYPE_ACH(at6) _JS_CTYPE_ACH(at5) _JS_CTYPE_ACH(at4)                   \
+        _JS_CTYPE_ACH(at3) _JS_CTYPE_ACH(at2) _JS_CTYPE_ACH(at1) _JS_CTYPE_ACH(at0),              \
     _JS_CTYPE_FLAGS(rt)
 
 #define JS_DEFINE_TRCINFO_1(name, tn0)                                                            \
@@ -441,7 +483,7 @@ js_StringToNumber(JSContext* cx, JSString* str);
 jsdouble FASTCALL
 js_BooleanOrUndefinedToNumber(JSContext* cx, int32 unboxed);
 
-/* Extern version of js_SetBuiltinError. */
+/* Extern version of SetBuiltinError. */
 extern JS_FRIEND_API(void)
 js_SetTraceableNativeFailed(JSContext *cx);
 
@@ -456,6 +498,8 @@ js_dmod(jsdouble a, jsdouble b);
 #define JS_DEFINE_CALLINFO_4(linkage, rt, op, at0, at1, at2, at3, cse, fold)
 #define JS_DEFINE_CALLINFO_5(linkage, rt, op, at0, at1, at2, at3, at4, cse, fold)
 #define JS_DEFINE_CALLINFO_6(linkage, rt, op, at0, at1, at2, at3, at4, at5, cse, fold)
+#define JS_DEFINE_CALLINFO_7(linkage, rt, op, at0, at1, at2, at3, at4, at5, at6, cse, fold)
+#define JS_DEFINE_CALLINFO_8(linkage, rt, op, at0, at1, at2, at3, at4, at5, at6, at7, cse, fold)
 #define JS_DECLARE_CALLINFO(name)
 #define JS_DEFINE_TRCINFO_1(name, tn0)
 #define JS_DEFINE_TRCINFO_2(name, tn0, tn1)
@@ -463,10 +507,6 @@ js_dmod(jsdouble a, jsdouble b);
 #define JS_DEFINE_TRCINFO_4(name, tn0, tn1, tn2, tn3)
 
 #endif /* !JS_TRACER */
-
-/* Defined in jsobj.cpp. */
-JS_DECLARE_CALLINFO(js_Object_tn)
-JS_DECLARE_CALLINFO(js_NewInstance)
 
 /* Defined in jsarray.cpp. */
 JS_DECLARE_CALLINFO(js_Array_dense_setelem)
@@ -477,16 +517,52 @@ JS_DECLARE_CALLINFO(js_NewEmptyArrayWithLength)
 JS_DECLARE_CALLINFO(js_NewArrayWithSlots)
 JS_DECLARE_CALLINFO(js_ArrayCompPush)
 
+/* Defined in jsbuiltins.cpp. */
+JS_DECLARE_CALLINFO(js_BoxDouble)
+JS_DECLARE_CALLINFO(js_BoxInt32)
+JS_DECLARE_CALLINFO(js_UnboxDouble)
+JS_DECLARE_CALLINFO(js_UnboxInt32)
+JS_DECLARE_CALLINFO(js_TryUnboxInt32)
+JS_DECLARE_CALLINFO(js_dmod)
+JS_DECLARE_CALLINFO(js_imod)
+JS_DECLARE_CALLINFO(js_DoubleToInt32)
+JS_DECLARE_CALLINFO(js_DoubleToUint32)
+JS_DECLARE_CALLINFO(js_StringToNumber)
+JS_DECLARE_CALLINFO(js_StringToInt32)
+JS_DECLARE_CALLINFO(js_AddProperty)
+JS_DECLARE_CALLINFO(js_HasNamedProperty)
+JS_DECLARE_CALLINFO(js_HasNamedPropertyInt32)
+JS_DECLARE_CALLINFO(js_TypeOfObject)
+JS_DECLARE_CALLINFO(js_TypeOfBoolean)
+JS_DECLARE_CALLINFO(js_BooleanOrUndefinedToNumber)
+JS_DECLARE_CALLINFO(js_BooleanOrUndefinedToString)
+JS_DECLARE_CALLINFO(js_NewNullClosure)
+JS_DECLARE_CALLINFO(js_PopInterpFrame)
+JS_DECLARE_CALLINFO(js_ConcatN)
+
 /* Defined in jsfun.cpp. */
 JS_DECLARE_CALLINFO(js_AllocFlatClosure)
 JS_DECLARE_CALLINFO(js_PutArguments)
-
-/* Defined in jsfun.cpp. */
+JS_DECLARE_CALLINFO(js_PutCallObjectOnTrace)
 JS_DECLARE_CALLINFO(js_SetCallVar)
 JS_DECLARE_CALLINFO(js_SetCallArg)
+JS_DECLARE_CALLINFO(js_CloneFunctionObject)
+JS_DECLARE_CALLINFO(js_CreateCallObjectOnTrace)
+JS_DECLARE_CALLINFO(js_Arguments)
+
+/* Defined in jsiter.cpp. */
+JS_DECLARE_CALLINFO(js_CloseIterator)
 
 /* Defined in jsnum.cpp. */
 JS_DECLARE_CALLINFO(js_NumberToString)
+
+/* Defined in jsobj.cpp. */
+JS_DECLARE_CALLINFO(js_Object_tn)
+JS_DECLARE_CALLINFO(js_NewInstance)
+JS_DECLARE_CALLINFO(js_NonEmptyObject)
+
+/* Defined in jsregexp.cpp. */
+JS_DECLARE_CALLINFO(js_CloneRegExpObject)
 
 /* Defined in jsstr.cpp. */
 JS_DECLARE_CALLINFO(js_String_tn)
@@ -500,31 +576,7 @@ JS_DECLARE_CALLINFO(js_String_p_charCodeAt0_int)
 JS_DECLARE_CALLINFO(js_String_p_charCodeAt_double_int)
 JS_DECLARE_CALLINFO(js_String_p_charCodeAt_int_int)
 
-/* Defined in jsbuiltins.cpp. */
-JS_DECLARE_CALLINFO(js_BoxDouble)
-JS_DECLARE_CALLINFO(js_BoxInt32)
-JS_DECLARE_CALLINFO(js_UnboxDouble)
-JS_DECLARE_CALLINFO(js_UnboxInt32)
-JS_DECLARE_CALLINFO(js_TryUnboxInt32)
-JS_DECLARE_CALLINFO(js_dmod)
-JS_DECLARE_CALLINFO(js_imod)
-JS_DECLARE_CALLINFO(js_DoubleToInt32)
-JS_DECLARE_CALLINFO(js_DoubleToUint32)
-
-JS_DECLARE_CALLINFO(js_StringToNumber)
-JS_DECLARE_CALLINFO(js_StringToInt32)
-JS_DECLARE_CALLINFO(js_CloseIterator)
-JS_DECLARE_CALLINFO(js_CallTree)
-JS_DECLARE_CALLINFO(js_AddProperty)
-JS_DECLARE_CALLINFO(js_HasNamedProperty)
-JS_DECLARE_CALLINFO(js_HasNamedPropertyInt32)
-JS_DECLARE_CALLINFO(js_TypeOfObject)
-JS_DECLARE_CALLINFO(js_TypeOfBoolean)
-JS_DECLARE_CALLINFO(js_BooleanOrUndefinedToNumber)
-JS_DECLARE_CALLINFO(js_BooleanOrUndefinedToString)
-JS_DECLARE_CALLINFO(js_Arguments)
-JS_DECLARE_CALLINFO(js_NewNullClosure)
-JS_DECLARE_CALLINFO(js_ConcatN)
-JS_DECLARE_CALLINFO(js_PopInterpFrame)
+/* Defined in jstypedarray.cpp. */
+JS_DECLARE_CALLINFO(js_TypedArray_uint8_clamp_double)
 
 #endif /* jsbuiltins_h___ */

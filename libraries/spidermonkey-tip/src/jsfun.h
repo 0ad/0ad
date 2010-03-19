@@ -128,7 +128,8 @@ typedef union JSLocalNames {
                               JS_ASSERT((fun)->flags & JSFUN_TRCINFO),        \
                               fun->u.n.trcinfo)
 
-struct JSFunction : public JSObject {
+struct JSFunction : public JSObject
+{
     uint16          nargs;        /* maximum number of specified arguments,
                                      reflected as f.length/f.arity */
     uint16          flags;        /* flags, see JSFUN_* below and in jsapi.h */
@@ -163,6 +164,11 @@ struct JSFunction : public JSObject {
     bool optimizedClosure() const { return FUN_KIND(this) > JSFUN_INTERPRETED; }
     bool needsWrapper()     const { return FUN_NULL_CLOSURE(this) && u.i.skipmin != 0; }
 
+    uintN countVars() const {
+        JS_ASSERT(FUN_INTERPRETED(this));
+        return u.i.nvars;
+    }
+
     uintN countArgsAndVars() const {
         JS_ASSERT(FUN_INTERPRETED(this));
         return nargs + u.i.nvars;
@@ -187,6 +193,10 @@ struct JSFunction : public JSObject {
     JSAtom *findDuplicateFormal() const;
 
     uint32 countInterpretedReservedSlots() const;
+
+    bool mightEscape() const {
+        return FUN_INTERPRETED(this) && (FUN_FLAT_CLOSURE(this) || u.i.nupvars == 0);
+    }
 };
 
 /*
@@ -212,7 +222,13 @@ extern const uint32 CALL_CLASS_FIXED_RESERVED_SLOTS;
 /* JS_FRIEND_DATA so that VALUE_IS_FUNCTION is callable from the shell. */
 extern JS_FRIEND_DATA(JSClass) js_FunctionClass;
 
-#define HAS_FUNCTION_CLASS(obj) (STOBJ_GET_CLASS(obj) == &js_FunctionClass)
+inline bool
+JSObject::isFunction() const
+{
+    return getClass() == &js_FunctionClass;
+}
+
+#define HAS_FUNCTION_CLASS(obj) (obj)->isFunction()
 
 /*
  * NB: jsapi.h and jsobj.h must be included before any call to this macro.
@@ -241,14 +257,14 @@ js_IsInternalFunctionObject(JSObject *funobj)
     return funobj == fun && (fun->flags & JSFUN_LAMBDA) && !funobj->getParent();
 }
 
-struct js_ArgsPrivateNative;
+namespace js { struct ArgsPrivateNative; }
 
-inline js_ArgsPrivateNative *
+inline js::ArgsPrivateNative *
 js_GetArgsPrivateNative(JSObject *argsobj)
 {
     JS_ASSERT(STOBJ_GET_CLASS(argsobj) == &js_ArgumentsClass);
     uintptr_t p = (uintptr_t) argsobj->getPrivate();
-    return (js_ArgsPrivateNative *) (p & 2 ? p & ~2 : NULL);
+    return (js::ArgsPrivateNative *) (p & 2 ? p & ~2 : NULL);
 }
 
 extern JSObject *
@@ -267,8 +283,20 @@ js_TraceFunction(JSTracer *trc, JSFunction *fun);
 extern void
 js_FinalizeFunction(JSContext *cx, JSFunction *fun);
 
-extern JSObject *
-js_CloneFunctionObject(JSContext *cx, JSFunction *fun, JSObject *parent);
+extern JSObject * JS_FASTCALL
+js_CloneFunctionObject(JSContext *cx, JSFunction *fun, JSObject *parent,
+                       JSObject *proto);
+
+inline JSObject *
+CloneFunctionObject(JSContext *cx, JSFunction *fun, JSObject *parent)
+{
+    JS_ASSERT(parent);
+    JSObject *proto;
+    if (!js_GetClassPrototype(cx, parent, JSProto_Function, &proto))
+        return NULL;
+    JS_ASSERT(proto);
+    return js_CloneFunctionObject(cx, fun, parent, proto);
+}
 
 extern JS_REQUIRES_STACK JSObject *
 js_NewFlatClosure(JSContext *cx, JSFunction *fun);
@@ -304,8 +332,15 @@ js_ReportIsNotFunction(JSContext *cx, jsval *vp, uintN flags);
 extern JSObject *
 js_GetCallObject(JSContext *cx, JSStackFrame *fp);
 
+extern JSObject * JS_FASTCALL
+js_CreateCallObjectOnTrace(JSContext *cx, JSFunction *fun, JSObject *callee, JSObject *scopeChain);
+
 extern void
 js_PutCallObject(JSContext *cx, JSStackFrame *fp);
+
+extern JSBool JS_FASTCALL
+js_PutCallObjectOnTrace(JSContext *cx, JSObject *scopeChain, uint32 nargs, jsval *argv,
+                        uint32 nvars, jsval *slots);
 
 extern JSFunction *
 js_GetCallObjectFunction(JSObject *obj);
@@ -352,6 +387,9 @@ js_GetArgsObject(JSContext *cx, JSStackFrame *fp);
 
 extern void
 js_PutArgsObject(JSContext *cx, JSStackFrame *fp);
+
+inline bool
+js_IsNamedLambda(JSFunction *fun) { return (fun->flags & JSFUN_LAMBDA) && fun->atom; }
 
 /*
  * Reserved slot structure for Arguments objects:

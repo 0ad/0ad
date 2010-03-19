@@ -104,6 +104,8 @@
 
 #include "jsatominlines.h"
 
+using namespace js;
+
 /* 2^32 - 1 as a number and a string */
 #define MAXINDEX 4294967295u
 #define MAXSTR   "4294967295"
@@ -822,7 +824,29 @@ slowarray_addProperty(JSContext *cx, JSObject *obj, jsval id, jsval *vp)
     return JS_TRUE;
 }
 
-static JSObjectOps js_SlowArrayObjectOps;
+static JSBool
+slowarray_enumerate(JSContext *cx, JSObject *obj, JSIterateOp enum_op,
+                    jsval *statep, jsid *idp);
+
+static JSType
+array_typeOf(JSContext *cx, JSObject *obj)
+{
+    return JSTYPE_OBJECT;
+}
+
+/* The same as js_ObjectOps except for the .enumerate and .call hooks. */
+static JSObjectOps js_SlowArrayObjectOps = {
+    NULL,
+    js_LookupProperty,      js_DefineProperty,
+    js_GetProperty,         js_SetProperty,
+    js_GetAttributes,       js_SetAttributes,
+    js_DeleteProperty,      js_DefaultValue,
+    slowarray_enumerate,    js_CheckAccess,
+    array_typeOf,           js_TraceObject,
+    NULL,                   NATIVE_DROP_PROPERTY,
+    NULL,                   js_Construct,
+    js_HasInstance,         js_Clear
+};
 
 static JSObjectOps *
 slowarray_getObjectOps(JSContext *cx, JSClass *clasp)
@@ -970,7 +994,7 @@ static JSBool
 array_defineProperty(JSContext *cx, JSObject *obj, jsid id, jsval value,
                      JSPropertyOp getter, JSPropertyOp setter, uintN attrs)
 {
-    uint32 i;
+    uint32 i = 0;       // init to shut GCC up
     JSBool isIndex;
 
     if (id == ATOM_TO_JSID(cx->runtime->atomState.lengthAtom))
@@ -1206,7 +1230,7 @@ array_trace(JSTracer *trc, JSObject *obj)
     size_t i;
     jsval v;
 
-    JS_ASSERT(js_IsDenseArray(obj));
+    JS_ASSERT(obj->isDenseArray());
     obj->traceProtoAndParent(trc);
 
     capacity = js_DenseArrayCapacity(obj);
@@ -1214,7 +1238,7 @@ array_trace(JSTracer *trc, JSObject *obj)
         v = obj->dslots[i];
         if (JSVAL_IS_TRACEABLE(v)) {
             JS_SET_TRACING_INDEX(trc, "array_dslots", i);
-            JS_CallTracer(trc, JSVAL_TO_TRACEABLE(v), JSVAL_TRACE_KIND(v));
+            js_CallGCMarker(trc, JSVAL_TO_TRACEABLE(v), JSVAL_TRACE_KIND(v));
         }
     }
 }
@@ -1230,10 +1254,10 @@ JSObjectOps js_ArrayObjectOps = {
     array_getAttributes,  array_setAttributes,
     array_deleteProperty, js_DefaultValue,
     array_enumerate,      js_CheckAccess,
+    array_typeOf,         array_trace,
     NULL,                 array_dropProperty,
     NULL,                 NULL,
-    js_HasInstance,       array_trace,
-    NULL
+    js_HasInstance,       NULL
 };
 
 static JSObjectOps *
@@ -1343,7 +1367,7 @@ js_MakeArraySlow(JSContext *cx, JSObject *obj)
     return JS_TRUE;
 
   out_bad:
-    JSScope::destroy(cx, scope);
+    scope->destroy(cx);
     return JS_FALSE;
 }
 
@@ -1465,20 +1489,6 @@ array_toSource(JSContext *cx, uintN argc, jsval *vp)
 }
 #endif
 
-static JSHashNumber
-js_hash_array(const void *key)
-{
-    return (JSHashNumber)JS_PTR_TO_UINT32(key) >> JSVAL_TAGBITS;
-}
-
-bool
-js_InitContextBusyArrayTable(JSContext *cx)
-{
-    cx->busyArrayTable = JS_NewHashTable(4, js_hash_array, JS_CompareValues,
-                                         JS_CompareValues, NULL, NULL);
-    return cx->busyArrayTable != NULL;
-}
-
 static JSBool
 array_toString_sub(JSContext *cx, JSObject *obj, JSBool locale,
                    JSString *sepstr, jsval *rval)
@@ -1486,25 +1496,19 @@ array_toString_sub(JSContext *cx, JSObject *obj, JSBool locale,
     JS_CHECK_RECURSION(cx, return false);
 
     /*
-     * This hash table is shared between toString invocations and must be empty
-     * after the root invocation completes.
-     */
-    JSHashTable *table = cx->busyArrayTable;
-
-    /*
      * Use HashTable entry as the cycle indicator. On first visit, create the
      * entry, and, when leaving, remove the entry.
      */
-    JSHashNumber hash = js_hash_array(obj);
-    JSHashEntry **hep = JS_HashTableRawLookup(table, hash, obj);
-    JSHashEntry *he = *hep;
-    if (!he) {
+    typedef js::HashSet<JSObject *> ObjSet;
+    ObjSet::AddPtr hashp = cx->busyArrays.lookupForAdd(obj);
+    uint32 genBefore;
+    if (!hashp) {
         /* Not in hash table, so not a cycle. */
-        he = JS_HashTableRawAdd(table, hep, hash, obj, NULL);
-        if (!he) {
+        if (!cx->busyArrays.add(hashp, obj)) {
             JS_ReportOutOfMemory(cx);
             return false;
         }
+        genBefore = cx->busyArrays.generation();
     } else {
         /* Cycle, so return empty string. */
         *rval = ATOM_KEY(cx->runtime->atomState.emptyAtom);
@@ -1578,11 +1582,10 @@ array_toString_sub(JSContext *cx, JSObject *obj, JSBool locale,
     ok = true;
 
   out:
-    /*
-     * It is possible that 'hep' may have been invalidated by subsequent
-     * RawAdd/Remove. Hence, 'RawRemove' must not be used.
-     */
-    JS_HashTableRemove(table, obj);
+    if (genBefore == cx->busyArrays.generation())
+        cx->busyArrays.remove(hashp);
+    else
+        cx->busyArrays.remove(obj);
     return ok;
 }
 
@@ -1765,7 +1768,7 @@ Array_p_join(JSContext* cx, JSObject* obj, JSString *str)
 {
     JSAutoTempValueRooter tvr(cx);
     if (!array_toString_sub(cx, obj, JS_FALSE, str, tvr.addr())) {
-        js_SetBuiltinError(cx);
+        SetBuiltinError(cx);
         return NULL;
     }
     return JSVAL_TO_STRING(tvr.value());
@@ -1776,7 +1779,7 @@ Array_p_toString(JSContext* cx, JSObject* obj)
 {
     JSAutoTempValueRooter tvr(cx);
     if (!array_toString_sub(cx, obj, JS_FALSE, NULL, tvr.addr())) {
-        js_SetBuiltinError(cx);
+        SetBuiltinError(cx);
         return NULL;
     }
     return JSVAL_TO_STRING(tvr.value());
@@ -2305,7 +2308,7 @@ array_sort(JSContext *cx, uintN argc, jsval *vp)
     } else {
         void *mark;
 
-        js_LeaveTrace(cx);
+        LeaveTrace(cx);
 
         ca.context = cx;
         ca.fval = fval;
@@ -2435,7 +2438,7 @@ Array_p_push1(JSContext* cx, JSObject* obj, jsval v)
         : array_push_slowly(cx, obj, 1, tvr.addr(), tvr.addr())) {
         return tvr.value();
     }
-    js_SetBuiltinError(cx);
+    SetBuiltinError(cx);
     return JSVAL_VOID;
 }
 #endif
@@ -2507,7 +2510,7 @@ Array_p_pop(JSContext* cx, JSObject* obj)
         : array_pop_slowly(cx, obj, tvr.addr())) {
         return tvr.value();
     }
-    js_SetBuiltinError(cx);
+    SetBuiltinError(cx);
     return JSVAL_VOID;
 }
 #endif
@@ -3160,7 +3163,7 @@ array_extra(JSContext *cx, ArrayExtraMode mode, uintN argc, jsval *vp)
      * For all but REDUCE, we call with 3 args (value, index, array). REDUCE
      * requires 4 args (accum, value, index, array).
      */
-    js_LeaveTrace(cx);
+    LeaveTrace(cx);
     argc = 3 + REDUCE_MODE(mode);
     elemroot = js_AllocStack(cx, 1 + 2 + argc, &mark);
     if (!elemroot)
@@ -3449,15 +3452,8 @@ JS_DEFINE_CALLINFO_3(extern, OBJECT, js_NewArrayWithSlots, CONTEXT, OBJECT, UINT
 JSObject *
 js_InitArrayClass(JSContext *cx, JSObject *obj)
 {
-    JSObject *proto;
-
-    /* Initialize the ops structure used by slow arrays */
-    memcpy(&js_SlowArrayObjectOps, &js_ObjectOps, sizeof(JSObjectOps));
-    js_SlowArrayObjectOps.enumerate = slowarray_enumerate;
-    js_SlowArrayObjectOps.call = NULL;
-
-    proto = JS_InitClass(cx, obj, NULL, &js_ArrayClass, js_Array, 1,
-                         array_props, array_methods, NULL, array_static_methods);
+    JSObject *proto = JS_InitClass(cx, obj, NULL, &js_ArrayClass, js_Array, 1,
+                                   array_props, array_methods, NULL, array_static_methods);
 
     /* Initialize the Array prototype object so it gets a length property. */
     if (!proto || !InitArrayObject(cx, proto, 0, NULL))
@@ -3541,7 +3537,7 @@ js_CoerceArrayToCanvasImageData(JSObject *obj, jsuint offset, jsuint count,
 {
     uint32 length;
 
-    if (!obj || !js_IsDenseArray(obj))
+    if (!obj || !obj->isDenseArray())
         return JS_FALSE;
 
     length = obj->fslots[JSSLOT_ARRAY_LENGTH];

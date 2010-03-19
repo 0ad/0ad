@@ -230,6 +230,9 @@ typedef enum JSGCInvocationKind {
 extern void
 js_GC(JSContext *cx, JSGCInvocationKind gckind);
 
+extern void
+js_CallGCMarker(JSTracer *trc, void *thing, uint32 kind);
+
 /*
  * The kind of GC thing with a finalizer. The external strings follow the
  * ordinary string to simplify js_GetExternalStringGCType.
@@ -303,20 +306,20 @@ js_NewGCXML(JSContext *cx)
 }
 #endif
 
-struct JSGCArenaInfo;
+struct JSGCArena;
 struct JSGCChunkInfo;
 
 struct JSGCArenaList {
-    JSGCArenaInfo   *head;          /* list start */
-    JSGCArenaInfo   *cursor;        /* arena with free things */
+    JSGCArena       *head;          /* list start */
+    JSGCArena       *cursor;        /* arena with free things */
     uint32          thingKind;      /* one of JSFinalizeGCThingKind */
     uint32          thingSize;      /* size of things to allocate on this list
                                      */
 };
 
 struct JSGCDoubleArenaList {
-    JSGCArenaInfo   *head;          /* list start */
-    JSGCArenaInfo   *cursor;        /* next arena with free cells */
+    JSGCArena       *head;          /* list start */
+    JSGCArena       *cursor;        /* next arena with free cells */
 };
 
 struct JSGCFreeLists {

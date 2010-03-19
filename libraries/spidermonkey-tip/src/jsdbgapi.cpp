@@ -68,6 +68,8 @@
 
 #include "jsautooplen.h"
 
+using namespace js;
+
 typedef struct JSTrap {
     JSCList         links;
     JSScript        *script;
@@ -367,7 +369,7 @@ LeaveTraceRT(JSRuntime *rt)
     JS_UNLOCK_GC(rt);
 
     if (cx)
-        js_LeaveTrace(cx);
+        LeaveTrace(cx);
 }
 #endif
 
@@ -621,9 +623,7 @@ js_watch_set(JSContext *cx, JSObject *obj, jsval id, jsval *vp)
 
             JS_LOCK_OBJ(cx, obj);
             propid = ID_TO_VALUE(sprop->id);
-            userid = (sprop->flags & SPROP_HAS_SHORTID)
-                     ? INT_TO_JSVAL(sprop->shortid)
-                     : propid;
+            userid = SPROP_USERID(sprop);
             scope = OBJ_SCOPE(obj);
             JS_UNLOCK_OBJ(cx, obj);
 
@@ -878,7 +878,7 @@ JS_SetWatchPoint(JSContext *cx, JSObject *obj, jsval idval,
             getter = sprop->getter;
             setter = sprop->setter;
             attrs = sprop->attrs;
-            flags = sprop->flags;
+            flags = sprop->getFlags();
             shortid = sprop->shortid;
         } else {
             if (!pobj->getProperty(cx, propid, &value) ||
@@ -1123,18 +1123,17 @@ JS_StackFramePrincipals(JSContext *cx, JSStackFrame *fp)
     return NULL;
 }
 
-JS_PUBLIC_API(JSPrincipals *)
-JS_EvalFramePrincipals(JSContext *cx, JSStackFrame *fp, JSStackFrame *caller)
+JSPrincipals *
+js_EvalFramePrincipals(JSContext *cx, JSObject *callee, JSStackFrame *caller)
 {
     JSPrincipals *principals, *callerPrincipals;
     JSSecurityCallbacks *callbacks;
 
     callbacks = JS_GetSecurityCallbacks(cx);
-    if (callbacks && callbacks->findObjectPrincipals) {
-        principals = callbacks->findObjectPrincipals(cx, fp->callee());
-    } else {
+    if (callbacks && callbacks->findObjectPrincipals)
+        principals = callbacks->findObjectPrincipals(cx, callee);
+    else
         principals = NULL;
-    }
     if (!caller)
         return principals;
     callerPrincipals = JS_StackFramePrincipals(cx, caller);
@@ -1142,6 +1141,12 @@ JS_EvalFramePrincipals(JSContext *cx, JSStackFrame *fp, JSStackFrame *caller)
             callerPrincipals->subsume(callerPrincipals, principals))
            ? principals
            : callerPrincipals;
+}
+
+JS_PUBLIC_API(JSPrincipals *)
+JS_EvalFramePrincipals(JSContext *cx, JSStackFrame *fp, JSStackFrame *caller)
+{
+    return js_EvalFramePrincipals(cx, fp->callee(), caller);
 }
 
 JS_PUBLIC_API(void *)
@@ -1219,18 +1224,16 @@ JS_GetFrameCallObject(JSContext *cx, JSStackFrame *fp)
 JS_PUBLIC_API(JSObject *)
 JS_GetFrameThis(JSContext *cx, JSStackFrame *fp)
 {
-    JSStackFrame *afp;
-
     if (fp->flags & JSFRAME_COMPUTED_THIS)
         return JSVAL_TO_OBJECT(fp->thisv);  /* JSVAL_COMPUTED_THIS invariant */
 
     /* js_ComputeThis gets confused if fp != cx->fp, so set it aside. */
-    if (js_GetTopStackFrame(cx) != fp) {
-        afp = cx->fp;
+    JSStackFrame *afp = js_GetTopStackFrame(cx);
+    JSGCReachableFrame reachable;
+    if (afp != fp) {
         if (afp) {
-            afp->dormantNext = cx->dormantFrameChain;
-            cx->dormantFrameChain = afp;
             cx->fp = fp;
+            cx->pushGCReachableFrame(reachable, afp);
         }
     } else {
         afp = NULL;
@@ -1241,8 +1244,7 @@ JS_GetFrameThis(JSContext *cx, JSStackFrame *fp)
 
     if (afp) {
         cx->fp = afp;
-        cx->dormantFrameChain = afp->dormantNext;
-        afp->dormantNext = NULL;
+        cx->popGCReachableFrame();
     }
 
     return JSVAL_TO_OBJECT(fp->thisv);
@@ -1672,7 +1674,7 @@ JS_GetObjectTotalSize(JSContext *cx, JSObject *obj)
     }
     if (OBJ_IS_NATIVE(obj)) {
         scope = OBJ_SCOPE(obj);
-        if (scope->owned()) {
+        if (!scope->isSharedEmpty()) {
             nbytes += sizeof *scope;
             nbytes += SCOPE_CAPACITY(scope) * sizeof(JSScopeProperty *);
         }
@@ -1828,12 +1830,14 @@ JS_GetGlobalDebugHooks(JSRuntime *rt)
     return &rt->globalDebugHooks;
 }
 
+const JSDebugHooks js_NullDebugHooks = {};
+
 JS_PUBLIC_API(JSDebugHooks *)
 JS_SetContextDebugHooks(JSContext *cx, const JSDebugHooks *hooks)
 {
     JS_ASSERT(hooks);
-    if (hooks != &cx->runtime->globalDebugHooks)
-        js_LeaveTrace(cx);
+    if (hooks != &cx->runtime->globalDebugHooks && hooks != &js_NullDebugHooks)
+        LeaveTrace(cx);
 
 #ifdef JS_TRACER
     JS_LOCK_GC(cx->runtime);
@@ -1845,6 +1849,12 @@ JS_SetContextDebugHooks(JSContext *cx, const JSDebugHooks *hooks)
     JS_UNLOCK_GC(cx->runtime);
 #endif
     return old;
+}
+
+JS_PUBLIC_API(JSDebugHooks *)
+JS_ClearContextDebugHooks(JSContext *cx)
+{
+    return JS_SetContextDebugHooks(cx, &js_NullDebugHooks);
 }
 
 #ifdef MOZ_SHARK
@@ -2297,7 +2307,7 @@ jstv_Lineno(JSContext *cx, JSStackFrame *fp)
 
 /* Collect states here and distribute to a matching buffer, if any */
 JS_FRIEND_API(void)
-js_StoreTraceVisState(JSContext *cx, TraceVisState s, TraceVisExitReason r)
+js::StoreTraceVisState(JSContext *cx, TraceVisState s, TraceVisExitReason r)
 {
     JSStackFrame *fp = cx->fp;
 

@@ -56,6 +56,7 @@ typedef struct JSFrameRegs {
     jsval           *sp;            /* stack pointer */
 } JSFrameRegs;
 
+
 /*
  * JS stack frame, may be allocated on the C stack by native callers.  Always
  * allocated on cx->stackPool for calls from the interpreter to an interpreted
@@ -73,7 +74,6 @@ struct JSStackFrame {
     JSObject        *callobj;       /* lazily created Call object */
     jsval           argsobj;        /* lazily created arguments object, must be
                                        JSVAL_OBJECT */
-    JSObject        *varobj;        /* variables object, where vars go */
     JSScript        *script;        /* script being interpreted */
     JSFunction      *fun;           /* function being called or null */
     jsval           thisv;          /* "this" pointer if in method */
@@ -123,7 +123,6 @@ struct JSStackFrame {
     JSObject        *blockChain;
 
     uint32          flags;          /* frame flags -- see below */
-    JSStackFrame    *dormantNext;   /* next dormant frame chain */
     JSStackFrame    *displaySave;   /* previous value of display entry for
                                        script->staticLevel */
 
@@ -155,9 +154,26 @@ struct JSStackFrame {
     JSObject *callee() {
         return argv ? JSVAL_TO_OBJECT(argv[-2]) : NULL;
     }
+
+    /*
+     * Get the object associated with the Execution Context's
+     * VariableEnvironment (ES5 10.3). The given CallStack must contain this
+     * stack frame.
+     */
+    JSObject *varobj(js::CallStack *cs);
+
+    /* Short for: varobj(cx->activeCallStack()). */
+    JSObject *varobj(JSContext *cx);
 };
 
 #ifdef __cplusplus
+/*
+ * Perform a linear search of all frames in all callstacks in the given context
+ * for the given frame, returning the callstack, if found, and NULL otherwise.
+ */
+extern js::CallStack *
+js_ContainingCallStack(JSContext *cx, JSStackFrame *target);
+
 static JS_INLINE uintN
 FramePCOffset(JSStackFrame* fp)
 {
@@ -181,13 +197,8 @@ JSStackFrame::assertValidStackDepth(uintN depth)
 static JS_INLINE uintN
 GlobalVarCount(JSStackFrame *fp)
 {
-    uintN n;
-
     JS_ASSERT(!fp->fun);
-    n = fp->script->nfixed;
-    if (fp->script->regexpsOffset != 0)
-        n -= fp->script->regexps()->length;
-    return n;
+    return fp->script->nfixed;
 }
 
 typedef struct JSInlineFrame {
@@ -357,6 +368,9 @@ typedef struct JSPropertyCache {
 #define PCVAL_TO_SPROP(v)       ((JSScopeProperty *) PCVAL_CLRTAG(v))
 #define SPROP_TO_PCVAL(sprop)   PCVAL_SETTAG(sprop, PCVAL_SPROP)
 
+inline bool
+js_MatchPropertyCacheShape(JSContext *cx, JSObject *obj, uint32 shape);
+
 /*
  * Fill property cache entry for key cx->fp->pc, optimized value word computed
  * from obj and sprop, and entry capability forged from 24-bit OBJ_SHAPE(obj),
@@ -403,7 +417,7 @@ js_FillPropertyCache(JSContext *cx, JSObject *obj,
                 pobj = tmp_;                                                  \
             }                                                                 \
                                                                               \
-            if (JS_LOCK_OBJ_IF_SHAPE(cx, pobj, PCVCAP_SHAPE(entry->vcap))) {  \
+            if (js_MatchPropertyCacheShape(cx,pobj,PCVCAP_SHAPE(entry->vcap))){\
                 PCMETER(cache_->pchits++);                                    \
                 PCMETER(!PCVCAP_TAG(entry->vcap) || cache_->protopchits++);   \
                 atom = NULL;                                                  \

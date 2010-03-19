@@ -78,6 +78,8 @@
 #include "jsvector.h"
 #include "jsstrinlines.h"
 
+using namespace js;
+
 #define JSSTRDEP_RECURSION_LIMIT        100
 
 JS_STATIC_ASSERT(size_t(JSString::MAX_LENGTH) <= size_t(JSVAL_INT_MAX));
@@ -1748,7 +1750,7 @@ FindReplaceLength(JSContext *cx, ReplaceData &rdata, size_t *sizep)
     if (lambda) {
         uintN i, m, n;
 
-        js_LeaveTrace(cx);
+        LeaveTrace(cx);
 
         /*
          * In the lambda case, not only do we find the replacement string's
@@ -1951,7 +1953,7 @@ str_replace(JSContext *cx, uintN argc, jsval *vp)
     NORMALIZE_THIS(cx, vp, rdata.str);
 
     /* Extract replacement string/function. */
-    if (argc >= 2 && JS_TypeOfValue(cx, vp[3]) == JSTYPE_FUNCTION) {
+    if (argc >= 2 && js_IsCallable(vp[3])) {
         rdata.lambda = JSVAL_TO_OBJECT(vp[3]);
         rdata.repstr = NULL;
         rdata.dollar = rdata.dollarEnd = NULL;
@@ -2880,6 +2882,18 @@ const char *JSString::deflatedIntStringTable[] = {
 #undef L2
 #undef L3
 
+/* Static table for common UTF8 encoding */
+#define U8(c)   char(((c) >> 6) | 0xc0), char(((c) & 0x3f) | 0x80), 0
+#define U(c)    U8(c), U8(c+1), U8(c+2), U8(c+3), U8(c+4), U8(c+5), U8(c+6), U8(c+7)
+
+const char JSString::deflatedUnitStringTable[] = {
+    U(0x80), U(0x88), U(0x90), U(0x98), U(0xa0), U(0xa8), U(0xb0), U(0xb8),
+    U(0xc0), U(0xc8), U(0xd0), U(0xd8), U(0xe0), U(0xe8), U(0xf0), U(0xf8)
+};
+
+#undef U
+#undef U8
+
 #undef C
 
 #undef O0
@@ -3098,10 +3112,10 @@ js_NewString(JSContext *cx, jschar *chars, size_t length)
              * If we can't leave the trace, signal OOM condition, otherwise
              * exit from trace before throwing.
              */
-            if (!js_CanLeaveTrace(cx))
+            if (!CanLeaveTrace(cx))
                 return NULL;
 
-            js_LeaveTrace(cx);
+            LeaveTrace(cx);
         }
         js_ReportAllocationOverflow(cx);
         return NULL;
@@ -3310,7 +3324,7 @@ js_ValueToString(JSContext *cx, jsval v)
 }
 
 static inline JSBool
-pushAtom(JSAtom *atom, JSCharBuffer &cb)
+AppendAtom(JSAtom *atom, JSCharBuffer &cb)
 {
     JSString *str = ATOM_TO_STRING(atom);
     const jschar *chars;
@@ -3338,9 +3352,9 @@ js_ValueToCharBuffer(JSContext *cx, jsval v, JSCharBuffer &cb)
     if (JSVAL_IS_BOOLEAN(v))
         return js_BooleanToCharBuffer(cx, JSVAL_TO_BOOLEAN(v), cb);
     if (JSVAL_IS_NULL(v))
-        return pushAtom(cx->runtime->atomState.nullAtom, cb);
+        return AppendAtom(cx->runtime->atomState.nullAtom, cb);
     JS_ASSERT(JSVAL_IS_VOID(v));
-    return pushAtom(cx->runtime->atomState.typeAtoms[JSTYPE_VOID], cb);
+    return AppendAtom(cx->runtime->atomState.typeAtoms[JSTYPE_VOID], cb);
 }
 
 JS_FRIEND_API(JSString *)
@@ -3821,11 +3835,14 @@ js_GetStringBytes(JSContext *cx, JSString *str)
     if (JSString::isUnitString(str)) {
 #ifdef IS_LITTLE_ENDIAN
         /* Unit string data is {c, 0, 0, 0} so we can just cast. */
-        return (char *)str->chars();
+        bytes = (char *)str->chars();
 #else
         /* Unit string data is {0, c, 0, 0} so we can point into the middle. */
-        return (char *)str->chars() + 1;
-#endif            
+        bytes = (char *)str->chars() + 1;
+#endif
+        return ((*bytes & 0x80) && js_CStringsAreUTF8)
+               ? JSString::deflatedUnitStringTable + ((*bytes & 0x7f) * 3)
+               : bytes;
     }
 
     if (JSString::isIntString(str)) {

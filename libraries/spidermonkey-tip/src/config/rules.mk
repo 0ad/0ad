@@ -209,7 +209,7 @@ LIBS += $(XPCOM_GLUE_LDOPTS) $(NSPR_LIBS)
 # ...and run them the usual way
 check::
 	@$(EXIT_ON_ERROR) \
-	  for f in $(subst .cpp,,$(CPP_UNIT_TESTS)); do \
+	  for f in $(subst .cpp,$(BIN_SUFFIX),$(CPP_UNIT_TESTS)); do \
 	    XPCOM_DEBUG_BREAK=stack-and-abort $(RUN_TEST_PROGRAM) $(DIST)/bin/$$f; \
 	  done
 
@@ -229,12 +229,6 @@ endif # ENABLE_TESTS
 
 ifndef LIBRARY
 ifdef STATIC_LIBRARY_NAME
-ifeq (OS2,$(OS_ARCH))
-ifdef SHORT_LIBNAME
-STATIC_LIBRARY_NAME	:= $(SHORT_LIBNAME)
-SHARED_LIBRARY_NAME	:= $(SHORT_LIBNAME)
-endif
-endif
 LIBRARY			:= $(LIB_PREFIX)$(STATIC_LIBRARY_NAME).$(LIB_SUFFIX)
 endif # STATIC_LIBRARY_NAME
 endif # LIBRARY
@@ -253,6 +247,16 @@ ifdef LIB_IS_C_ONLY
 MKSHLIB			= $(MKCSHLIB)
 endif
 
+ifneq (,$(filter OS2 WINNT WINCE,$(OS_ARCH)))
+IMPORT_LIBRARY		:= $(LIB_PREFIX)$(SHARED_LIBRARY_NAME).$(IMPORT_LIB_SUFFIX)
+endif
+
+ifeq (OS2,$(OS_ARCH))
+ifdef SHORT_LIBNAME
+SHARED_LIBRARY_NAME	:= $(SHORT_LIBNAME)
+endif
+endif
+
 ifdef MAKE_FRAMEWORK
 SHARED_LIBRARY		:= $(SHARED_LIBRARY_NAME)
 else
@@ -261,10 +265,6 @@ endif
 
 ifeq ($(OS_ARCH),OS2)
 DEF_FILE		:= $(SHARED_LIBRARY:.dll=.def)
-endif
-
-ifneq (,$(filter OS2 WINNT WINCE,$(OS_ARCH)))
-IMPORT_LIBRARY		:= $(LIB_PREFIX)$(SHARED_LIBRARY_NAME).$(IMPORT_LIB_SUFFIX)
 endif
 
 ifdef MOZ_ENABLE_LIBXUL
@@ -380,6 +380,7 @@ _OBJS			= \
 	$(JRI_STUB_CFILES) \
 	$(addsuffix .$(OBJ_SUFFIX), $(JMC_GEN)) \
 	$(CSRCS:.c=.$(OBJ_SUFFIX)) \
+	$(SSRCS:.S=.$(OBJ_SUFFIX)) \
 	$(patsubst %.cc,%.$(OBJ_SUFFIX),$(CPPSRCS:.cpp=.$(OBJ_SUFFIX))) \
 	$(CMSRCS:.m=.$(OBJ_SUFFIX)) \
 	$(CMMSRCS:.mm=.$(OBJ_SUFFIX)) \
@@ -775,6 +776,7 @@ $(foreach tier,$(TIERS),tier_$(tier))::
 	$(foreach dir,$($@_staticdirs),$(call SUBMAKE,,$(dir)))
 	$(MAKE) export_$@
 	$(MAKE) libs_$@
+	$(MAKE) tools_$@
 
 # Do everything from scratch
 everything::
@@ -997,6 +999,7 @@ alltags:
 # creates OBJS, links with LIBS to create Foo
 #
 $(PROGRAM): $(PROGOBJS) $(LIBS_DEPS) $(EXTRA_DEPS) $(EXE_DEF_FILE) $(RESFILE) $(GLOBAL_DEPS)
+	@rm -f $@.manifest
 ifeq (WINCE,$(OS_ARCH))
 	$(LD) -NOLOGO -OUT:$@ $(WIN32_EXE_LDFLAGS) $(LDFLAGS) $(PROGOBJS) $(RESFILE) $(LIBS) $(EXTRA_LIBS) $(OS_LIBS)
 else
@@ -1005,11 +1008,15 @@ ifeq (_WINNT,$(GNU_CC)_$(OS_ARCH))
 ifdef MSMANIFEST_TOOL
 	@if test -f $@.manifest; then \
 		if test -f "$(srcdir)/$@.manifest"; then \
+			echo "Embedding manifest from $(srcdir)/$@.manifest and $@.manifest"; \
 			mt.exe -NOLOGO -MANIFEST "$(win_srcdir)/$@.manifest" $@.manifest -OUTPUTRESOURCE:$@\;1; \
 		else \
+			echo "Embedding manifest from $@.manifest"; \
 			mt.exe -NOLOGO -MANIFEST $@.manifest -OUTPUTRESOURCE:$@\;1; \
 		fi; \
-		rm -f $@.manifest; \
+	elif test -f "$(srcdir)/$@.manifest"; then \
+		echo "Embedding manifest from $(srcdir)/$@.manifest"; \
+		mt.exe -NOLOGO -MANIFEST "$(win_srcdir)/$@.manifest" -OUTPUTRESOURCE:$@\;1; \
 	fi
 endif	# MSVC with manifest tool
 ifdef MOZ_PROFILE_GENERATE
@@ -1074,7 +1081,7 @@ endif
 #
 $(SIMPLE_PROGRAMS): %$(BIN_SUFFIX): %.$(OBJ_SUFFIX) $(LIBS_DEPS) $(EXTRA_DEPS) $(GLOBAL_DEPS)
 ifeq (WINCE,$(OS_ARCH))
-	$(LD) -nologo  -entry:main -out:$@ $< $(WIN32_EXE_LDFLAGS) $(LDFLAGS) $(LIBS) $(EXTRA_LIBS) $(OS_LIBS)
+	$(LD) -nologo  -entry:mainACRTStartup -out:$@ $< $(WIN32_EXE_LDFLAGS) $(LDFLAGS) $(LIBS) $(EXTRA_LIBS) $(OS_LIBS)
 else
 ifeq (_WINNT,$(GNU_CC)_$(OS_ARCH))
 	$(LD) -nologo -out:$@ -pdb:$(LINK_PDBFILE) $< $(WIN32_EXE_LDFLAGS) $(LDFLAGS) $(LIBS) $(EXTRA_LIBS) $(OS_LIBS)
@@ -1229,7 +1236,7 @@ ifndef XP_MACOSX
 ifdef DTRACE_PROBE_OBJ
 ifndef DTRACE_LIB_DEPENDENT
 $(DTRACE_PROBE_OBJ): $(OBJS)
-	dtrace -G -C -32 -s $(MOZILLA_DTRACE_SRC) -o $(DTRACE_PROBE_OBJ) $(OBJS)
+	dtrace -G -C -s $(MOZILLA_DTRACE_SRC) -o $(DTRACE_PROBE_OBJ) $(OBJS)
 endif
 endif
 endif
@@ -1281,7 +1288,7 @@ ifdef DTRACE_LIB_DEPENDENT
 	@rm -f $(PROBE_LOBJS)
 	@for lib in $(MOZILLA_PROBE_LIBS); do $(AR_EXTRACT) $${lib}; $(CLEANUP2); done
 ifndef XP_MACOSX
-	dtrace -G -C -32 -s $(MOZILLA_DTRACE_SRC) -o  $(DTRACE_PROBE_OBJ) $(PROBE_LOBJS)
+	dtrace -G -C -s $(MOZILLA_DTRACE_SRC) -o  $(DTRACE_PROBE_OBJ) $(PROBE_LOBJS)
 endif
 	@for lib in $(MOZILLA_PROBE_LIBS); do \
 		ofiles=`$(AR_LIST) $${lib}`; \
@@ -1401,6 +1408,10 @@ host_%.$(OBJ_SUFFIX): %.mm $(GLOBAL_DEPS)
 
 moc_%.cpp: %.h $(GLOBAL_DEPS)
 	$(MOC) $< $(OUTOPTION)$@ 
+
+moc_%.cc: %.cc $(GLOBAL_DEPS)
+	$(REPORT_BUILD)
+	$(ELOG) $(MOC) $(_VPATH_SRCS:.cc=.h) $(OUTOPTION)$@
 
 ifdef ASFILES
 # The AS_DASH_C_FLAG is needed cause not all assemblers (Solaris) accept
@@ -2091,12 +2102,6 @@ endif
 
 -include $(topsrcdir)/$(MOZ_BUILD_APP)/app-rules.mk
 -include $(MY_RULES)
-
-#
-# This speeds up gmake's processing if these files don't exist.
-#
-$(MY_CONFIG) $(MY_RULES):
-	@touch $@
 
 #
 # Generate Emacs tags in a file named TAGS if ETAGS was set in $(MY_CONFIG)

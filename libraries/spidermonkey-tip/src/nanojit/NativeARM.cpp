@@ -104,10 +104,10 @@ Assembler::CountLeadingZeroes(uint32_t data)
     // as that aren't supported, but assert that we aren't running on one
     // anyway.
     // If ARMv4 support is required in the future for some reason, we can do a
-    // run-time check on config.arch and fall back to the C routine, but for
+    // run-time check on _config.arm_arch and fall back to the C routine, but for
     // now we can avoid the cost of the check as we don't intend to support
     // ARMv4 anyway.
-    NanoAssert(ARM_ARCH >= 5);
+    NanoAssert(_config.arm_arch >= 5);
 
 #if defined(__ARMCC__)
     // ARMCC can do this with an intrinsic.
@@ -124,7 +124,7 @@ Assembler::CountLeadingZeroes(uint32_t data)
         :   "=r"    (leading_zeroes)
         :   "r"     (data)
     );
-#elif defined(WINCE)
+#elif defined(UNDER_CE)
     // WinCE can do this with an intrinsic.
     leading_zeroes = _CountLeadingZeros(data);
 #else
@@ -535,7 +535,7 @@ Assembler::nFragExit(LInsp guard)
     }
 
 #ifdef NJ_VERBOSE
-    if (config.show_stats) {
+    if (_config.arm_show_stats) {
         // load R1 with Fragment *fromFrag, target fragment
         // will make use of this when calling fragenter().
         int fromfrag = int((Fragment*)_thisfrag);
@@ -559,7 +559,7 @@ Assembler::genEpilogue()
 {
     // On ARMv5+, loading directly to PC correctly handles interworking.
     // Note that we don't support anything older than ARMv5.
-    NanoAssert(ARM_ARCH >= 5);
+    NanoAssert(_config.arm_arch >= 5);
 
     RegisterMask savingMask = rmask(FP) | rmask(PC);
 
@@ -605,7 +605,8 @@ Assembler::asm_arg(ArgSize sz, LInsp arg, Register& r, int& stkd)
     if (sz == ARGSIZE_F) {
         // This task is fairly complex and so is delegated to asm_arg_64.
         asm_arg_64(arg, r, stkd);
-    } else if (sz & ARGSIZE_MASK_INT) {
+    } else {
+        NanoAssert(sz == ARGSIZE_I || sz == ARGSIZE_U);
         // pre-assign registers R0-R3 for arguments (if they fit)
         if (r < R4) {
             asm_regarg(sz, arg, r);
@@ -614,10 +615,6 @@ Assembler::asm_arg(ArgSize sz, LInsp arg, Register& r, int& stkd)
             asm_stkarg(arg, stkd);
             stkd += 4;
         }
-    } else {
-        NanoAssert(sz == ARGSIZE_Q);
-        // shouldn't have 64 bit int params on ARM
-        NanoAssert(false);
     }
 }
 
@@ -631,11 +628,11 @@ Assembler::asm_arg_64(LInsp arg, Register& r, int& stkd)
     NanoAssert((stkd & 3) == 0);
     // The only use for this function when we are using soft floating-point
     // is for LIR_qjoin.
-    NanoAssert(ARM_VFP || arg->isop(LIR_qjoin));
+    NanoAssert(_config.arm_vfp || arg->isop(LIR_qjoin));
 
-    Register    fp_reg = UnknownReg;
+    Register    fp_reg = deprecated_UnknownReg;
 
-    if (ARM_VFP) {
+    if (_config.arm_vfp) {
         fp_reg = findRegFor(arg, FpRegs);
         NanoAssert(isKnownReg(fp_reg));
     }
@@ -665,7 +662,7 @@ Assembler::asm_arg_64(LInsp arg, Register& r, int& stkd)
         // Put the argument in ra and rb. If the argument is in a VFP register,
         // use FMRRD to move it to ra and rb. Otherwise, let asm_regarg deal
         // with the argument as if it were two 32-bit arguments.
-        if (ARM_VFP) {
+        if (_config.arm_vfp) {
             FMRRD(ra, rb, fp_reg);
         } else {
             asm_regarg(ARGSIZE_LO, arg->oprnd1(), ra);
@@ -688,7 +685,7 @@ Assembler::asm_arg_64(LInsp arg, Register& r, int& stkd)
         // must be the first time that the stack is used, so stkd must be at 0.
         NanoAssert(stkd == 0);
 
-        if (ARM_VFP) {
+        if (_config.arm_vfp) {
             // TODO: We could optimize the this to store directly from
             // the VFP register to memory using "FMRRD ra, fp_reg[31:0]" and
             // "STR fp_reg[63:32], [SP, #stkd]".
@@ -733,7 +730,7 @@ Assembler::asm_regarg(ArgSize sz, LInsp p, Register r)
             asm_ld_imm(r, p->imm32());
         } else {
             if (p->isUsed()) {
-                if (!p->hasKnownReg()) {
+                if (!p->deprecated_hasKnownReg()) {
                     // load it into the arg reg
                     int d = findMemFor(p);
                     if (p->isop(LIR_alloc)) {
@@ -743,7 +740,7 @@ Assembler::asm_regarg(ArgSize sz, LInsp p, Register r)
                     }
                 } else {
                     // it must be in a saved reg
-                    MOV(r, p->getReg());
+                    MOV(r, p->deprecated_getReg());
                 }
             }
             else {
@@ -752,10 +749,6 @@ Assembler::asm_regarg(ArgSize sz, LInsp p, Register r)
                 findSpecificRegFor(p, r);
             }
         }
-    }
-    else if (sz == ARGSIZE_Q) {
-        // 64 bit integer argument - should never happen on ARM
-        NanoAssert(false);
     }
     else
     {
@@ -769,13 +762,13 @@ Assembler::asm_regarg(ArgSize sz, LInsp p, Register r)
 void
 Assembler::asm_stkarg(LInsp arg, int stkd)
 {
-    bool isQuad = arg->isQuad();
+    bool isF64 = arg->isF64();
 
     Register rr;
-    if (arg->isUsed() && (rr = arg->getReg(), isKnownReg(rr))) {
+    if (arg->isUsed() && (rr = arg->deprecated_getReg(), isKnownReg(rr))) {
         // The argument resides somewhere in registers, so we simply need to
         // push it onto the stack.
-        if (!ARM_VFP || !isQuad) {
+        if (!_config.arm_vfp || !isF64) {
             NanoAssert(IsGpReg(rr));
 
             STR(rr, SP, stkd);
@@ -786,7 +779,7 @@ Assembler::asm_stkarg(LInsp arg, int stkd)
             // arguments to asm_stkarg so we can ignore that case here and
             // assert that we will never get 64-bit arguments unless VFP is
             // available.
-            NanoAssert(ARM_VFP);
+            NanoAssert(_config.arm_vfp);
             NanoAssert(IsFpReg(rr));
 
 #ifdef NJ_ARM_EABI
@@ -800,7 +793,7 @@ Assembler::asm_stkarg(LInsp arg, int stkd)
         // The argument does not reside in registers, so we need to get some
         // memory for it and then copy it onto the stack.
         int d = findMemFor(arg);
-        if (!isQuad) {
+        if (!isF64) {
             STR(IP, SP, stkd);
             if (arg->isop(LIR_alloc)) {
                 asm_add_imm(IP, FP, d);
@@ -824,7 +817,7 @@ Assembler::asm_stkarg(LInsp arg, int stkd)
 void
 Assembler::asm_call(LInsp ins)
 {
-    if (ARM_VFP && ins->isop(LIR_fcall)) {
+    if (_config.arm_vfp && ins->isop(LIR_fcall)) {
         /* Because ARM actually returns the result in (R0,R1), and not in a
          * floating point register, the code to move the result into a correct
          * register is below.  We do nothing here.
@@ -839,15 +832,15 @@ Assembler::asm_call(LInsp ins)
          *
          * This is not a problem for non-floating point calls, because the
          * restoring of spilled data into R0 is done via a call to
-         * prepResultReg(R0) in the other branch of this if-then-else,
+         * deprecated_prepResultReg(R0) in the other branch of this if-then-else,
          * meaning that evictScratchRegs() will not modify R0. However,
-         * prepResultReg is not aware of the concept of using a register pair
+         * deprecated_prepResultReg is not aware of the concept of using a register pair
          * (R0,R1) for the result of a single operation, so it can only be
          * used here with the ultimate VFP register, and not R0/R1, which
          * potentially allows for R0/R1 to get corrupted as described.
          */
     } else {
-        prepResultReg(ins, rmask(retRegs[0]));
+        deprecated_prepResultReg(ins, rmask(retRegs[0]));
     }
 
     // Do this after we've handled the call result, so we don't
@@ -862,27 +855,27 @@ Assembler::asm_call(LInsp ins)
 
     // If we aren't using VFP, assert that the LIR operation is an integer
     // function call.
-    NanoAssert(ARM_VFP || ins->isop(LIR_icall));
+    NanoAssert(_config.arm_vfp || ins->isop(LIR_icall));
 
     // If we're using VFP, and the return type is a double, it'll come back in
     // R0/R1. We need to either place it in the result fp reg, or store it.
     // See comments above for more details as to why this is necessary here
     // for floating point calls, but not for integer calls.
-    if (ARM_VFP && ins->isUsed()) {
+    if (_config.arm_vfp && ins->isUsed()) {
         // Determine the size (and type) of the instruction result.
         ArgSize rsize = (ArgSize)(call->_argtypes & ARGSIZE_MASK_ANY);
 
         // If the result size is a floating-point value, treat the result
         // specially, as described previously.
         if (rsize == ARGSIZE_F) {
-            Register rr = ins->getReg();
+            Register rr = ins->deprecated_getReg();
 
             NanoAssert(ins->opcode() == LIR_fcall);
 
             if (!isKnownReg(rr)) {
-                int d = disp(ins);
+                int d = deprecated_disp(ins);
                 NanoAssert(d != 0);
-                freeRsrcOf(ins, false);
+                deprecated_freeRsrcOf(ins, false);
 
                 // The result doesn't have a register allocated, so store the
                 // result (in R0,R1) directly to its stack slot.
@@ -892,7 +885,7 @@ Assembler::asm_call(LInsp ins)
                 NanoAssert(IsFpReg(rr));
 
                 // Copy the result to the (VFP) result register.
-                prepResultReg(ins, rmask(rr));
+                deprecated_prepResultReg(ins, rmask(rr));
                 FMDRR(rr, R0, R1);
             }
         }
@@ -971,7 +964,7 @@ Assembler::nRegisterResetAll(RegAlloc& a)
         rmask(R0) | rmask(R1) | rmask(R2) | rmask(R3) | rmask(R4) |
         rmask(R5) | rmask(R6) | rmask(R7) | rmask(R8) | rmask(R9) |
         rmask(R10) | rmask(LR);
-    if (ARM_VFP)
+    if (_config.arm_vfp)
         a.free |= FpRegs;
 
     debug_only(a.managed = a.free);
@@ -1168,21 +1161,21 @@ Assembler::nPatchBranch(NIns* branch, NIns* target)
 }
 
 RegisterMask
-Assembler::hint(LIns* i, RegisterMask allow /* = ~0 */)
+Assembler::hint(LIns* ins)
 {
-    uint32_t op = i->opcode();
-    int prefer = ~0;
-    if (op==LIR_icall)
+    uint32_t op = ins->opcode();
+    int prefer = 0;
+    if (op == LIR_icall)
         prefer = rmask(R0);
     else if (op == LIR_callh)
         prefer = rmask(R1);
     else if (op == LIR_param) {
-        if (i->paramArg() < 4)
-            prefer = rmask(argRegs[i->paramArg()]);
+        if (ins->paramKind() == 0) {
+            if (ins->paramArg() < 4)
+                prefer = rmask(argRegs[ins->paramArg()]);
+        }
     }
-    if (_allocator.free & allow & prefer)
-        allow &= prefer;
-    return allow;
+    return prefer;
 }
 
 void
@@ -1199,39 +1192,44 @@ Assembler::asm_qjoin(LIns *ins)
     // okay if r gets recycled.
     r = findRegFor(lo, GpRegs);
     STR(r, FP, d);
-    freeRsrcOf(ins, false); // if we had a reg in use, emit a ST to flush it to mem
+    deprecated_freeRsrcOf(ins, false); // if we had a reg in use, emit a ST to flush it to mem
 }
 
 void
 Assembler::asm_store32(LOpcode op, LIns *value, int dr, LIns *base)
 {
+    Register ra, rb;
+    getBaseReg2(GpRegs, value, ra, GpRegs, base, rb, dr);
+
     switch (op) {
         case LIR_sti:
-            // handled by mainline code below for now
-            break;
+            if (isU12(-dr) || isU12(dr)) {
+                STR(ra, rb, dr);
+            } else {
+                STR(ra, IP, 0);
+                asm_add_imm(IP, rb, dr);
+            }
+            return;
         case LIR_stb:
+            if (isU12(-dr) || isU12(dr)) {
+                STRB(ra, rb, dr);
+            } else {
+                STRB(ra, IP, 0);
+                asm_add_imm(IP, rb, dr);
+            }
+            return;
         case LIR_sts:
-            NanoAssertMsg(0, "NJ_EXPANDED_LOADSTORE_SUPPORTED not yet supported for this architecture");
+            // Similar to the sti/stb case, but the max offset is smaller.
+            if (isU8(-dr) || isU8(dr)) {
+                STRH(ra, rb, dr);
+            } else {
+                STRH(ra, IP, 0);
+                asm_add_imm(IP, rb, dr);
+            }
             return;
         default:
             NanoAssertMsg(0, "asm_store32 should never receive this LIR opcode");
             return;
-    }
-
-    Register ra, rb;
-    if (base->isop(LIR_alloc)) {
-        rb = FP;
-        dr += findMemFor(base);
-        ra = findRegFor(value, GpRegs);
-    } else {
-        findRegFor2(GpRegs, value, ra, base, rb);
-    }
-
-    if (isU12(-dr) || isU12(dr)) {
-        STR(ra, rb, dr);
-    } else {
-        STR(ra, IP, 0);
-        asm_add_imm(IP, rb, dr);
     }
 }
 
@@ -1239,10 +1237,10 @@ void
 Assembler::asm_restore(LInsp i, Register r)
 {
     if (i->isop(LIR_alloc)) {
-        asm_add_imm(r, FP, disp(i));
+        asm_add_imm(r, FP, deprecated_disp(i));
     } else if (i->isconst()) {
-        if (!i->getArIndex()) {
-            i->markAsClear();
+        if (!i->deprecated_getArIndex()) {
+            i->deprecated_markAsClear();
         }
         asm_ld_imm(r, i->imm32());
     }
@@ -1251,7 +1249,7 @@ Assembler::asm_restore(LInsp i, Register r)
         // ensure that memory is allocated for the constant and load it from
         // memory.
         int d = findMemFor(i);
-        if (ARM_VFP && IsFpReg(r)) {
+        if (_config.arm_vfp && IsFpReg(r)) {
             if (isS8(d >> 2)) {
                 FLDD(r, FP, d);
             } else {
@@ -1282,7 +1280,7 @@ Assembler::asm_spill(Register rr, int d, bool pop, bool quad)
     (void) pop;
     (void) quad;
     if (d) {
-        if (ARM_VFP && IsFpReg(rr)) {
+        if (_config.arm_vfp && IsFpReg(rr)) {
             if (isS8(d >> 2)) {
                 FSTD(rr, FP, d);
             } else {
@@ -1312,56 +1310,82 @@ Assembler::asm_load64(LInsp ins)
 {
     //asm_output("<<< load64");
 
-    switch (ins->opcode()) {
-        case LIR_ldq:
-        case LIR_ldqc:
-            // handled by mainline code below for now
-            break;
-        case LIR_ld32f:
-        case LIR_ldc32f:
-            NanoAssertMsg(0, "NJ_EXPANDED_LOADSTORE_SUPPORTED not yet supported for this architecture");
-            return;
-        default:
-            NanoAssertMsg(0, "asm_load64 should never receive this LIR opcode");
-            return;
-    }
-
-    NanoAssert(ins->isQuad());
+    NanoAssert(ins->isF64());
 
     LIns* base = ins->oprnd1();
     int offset = ins->disp();
 
-    Register rr = ins->getReg();
-    int d = disp(ins);
+    Register rr = ins->deprecated_getReg();
+    int d = deprecated_disp(ins);
 
     Register rb = findRegFor(base, GpRegs);
     NanoAssert(IsGpReg(rb));
-    freeRsrcOf(ins, false);
+    deprecated_freeRsrcOf(ins, false);
 
     //outputf("--- load64: Finished register allocation.");
 
-    if (ARM_VFP && isKnownReg(rr)) {
-        // VFP is enabled and the result will go into a register.
-        NanoAssert(IsFpReg(rr));
+    switch (ins->opcode()) {
+        case LIR_ldf:
+        case LIR_ldfc:
+            if (_config.arm_vfp && isKnownReg(rr)) {
+                // VFP is enabled and the result will go into a register.
+                NanoAssert(IsFpReg(rr));
 
-        if (!isS8(offset >> 2) || (offset&3) != 0) {
-            FLDD(rr,IP,0);
-            asm_add_imm(IP, rb, offset);
-        } else {
-            FLDD(rr,rb,offset);
-        }
-    } else {
-        // Either VFP is not available or the result needs to go into memory;
-        // in either case, VFP instructions are not required. Note that the
-        // result will never be loaded into registers if VFP is not available.
-        NanoAssert(!isKnownReg(rr));
-        NanoAssert(d != 0);
+                if (!isS8(offset >> 2) || (offset&3) != 0) {
+                    FLDD(rr,IP,0);
+                    asm_add_imm(IP, rb, offset);
+                } else {
+                    FLDD(rr,rb,offset);
+                }
+            } else {
+                // Either VFP is not available or the result needs to go into memory;
+                // in either case, VFP instructions are not required. Note that the
+                // result will never be loaded into registers if VFP is not available.
+                NanoAssert(!isKnownReg(rr));
+                NanoAssert(d != 0);
 
-        // Check that the offset is 8-byte (64-bit) aligned.
-        NanoAssert((d & 0x7) == 0);
+                // Check that the offset is 8-byte (64-bit) aligned.
+                NanoAssert((d & 0x7) == 0);
 
-        // *(uint64_t*)(FP+d) = *(uint64_t*)(rb+offset)
-        asm_mmq(FP, d, rb, offset);
+                // *(uint64_t*)(FP+d) = *(uint64_t*)(rb+offset)
+                asm_mmq(FP, d, rb, offset);
+            }
+            return;
+
+        case LIR_ld32f:
+        case LIR_ldc32f:
+            if (_config.arm_vfp) {
+                if (isKnownReg(rr)) {
+                    NanoAssert(IsFpReg(rr));
+                    FCVTDS(rr, S14);
+                } else {
+                    // Normally D7 isn't allowed to be used as an FP reg.
+                    // In this case we make an explicit exception.
+                    if (isS8(d)) {
+                        FSTD_allowD7(D7, FP, d, true);
+                    } else {
+                        FSTD_allowD7(D7, IP, 0, true);
+                        asm_add_imm(IP, FP, d);
+                    }
+                    FCVTDS_allowD7(D7, S14, true);
+                }
+
+                // always load into a VFP reg to do the conversion, and always use
+                // our S14 scratch reg
+                if (!isS8(offset >> 2) || (offset&3) != 0) {
+                    FLDS(S14, IP, 0);
+                    asm_add_imm(IP, rb, offset);
+                } else {
+                    FLDS(S14, rb, offset);
+                }
+            } else {
+                NanoAssertMsg(0, "ld32f not supported with non-VFP, fix me");
+            }
+            return;
+
+        default:
+            NanoAssertMsg(0, "asm_load64 should never receive this LIR opcode");
+            return;
     }
 
     //asm_output(">>> load64");
@@ -1373,62 +1397,105 @@ Assembler::asm_store64(LOpcode op, LInsp value, int dr, LInsp base)
     //asm_output("<<< store64 (dr: %d)", dr);
 
     switch (op) {
-        case LIR_stqi:
-            // handled by mainline code below for now
-            break;
+        case LIR_stfi:
+            if (_config.arm_vfp) {
+                Register rb = findRegFor(base, GpRegs);
+
+                if (value->isconstq()) {
+                    underrunProtect(LD32_size*2 + 8);
+
+                    // XXX use another reg, get rid of dependency
+                    STR(IP, rb, dr);
+                    asm_ld_imm(IP, value->imm64_0(), false);
+                    STR(IP, rb, dr+4);
+                    asm_ld_imm(IP, value->imm64_1(), false);
+
+                    return;
+                }
+
+                Register rv = findRegFor(value, FpRegs);
+
+                NanoAssert(isKnownReg(rb));
+                NanoAssert(isKnownReg(rv));
+
+                Register baseReg = rb;
+                intptr_t baseOffset = dr;
+
+                if (!isS8(dr)) {
+                    baseReg = IP;
+                    baseOffset = 0;
+                }
+
+                FSTD(rv, baseReg, baseOffset);
+
+                if (!isS8(dr)) {
+                    asm_add_imm(IP, rb, dr);
+                }
+
+                // if it's a constant, make sure our baseReg/baseOffset location
+                // has the right value
+                if (value->isconstq()) {
+                    underrunProtect(4*4);
+                    asm_quad_nochk(rv, value->imm64_0(), value->imm64_1());
+                }
+            } else {
+                int da = findMemFor(value);
+                Register rb = findRegFor(base, GpRegs);
+                // *(uint64_t*)(rb+dr) = *(uint64_t*)(FP+da)
+                asm_mmq(rb, dr, FP, da);
+            }
+            return;
+
         case LIR_st32f:
-            NanoAssertMsg(0, "NJ_EXPANDED_LOADSTORE_SUPPORTED not yet supported for this architecture");
+            if (_config.arm_vfp) {
+                Register rb = findRegFor(base, GpRegs);
+
+                if (value->isconstq()) {
+                    underrunProtect(LD32_size*2 + 8);
+
+                    // XXX use another reg, get rid of dependency
+                    STR(IP, rb, dr);
+                    asm_ld_imm(IP, value->imm64_0(), false);
+                    STR(IP, rb, dr+4);
+                    asm_ld_imm(IP, value->imm64_1(), false);
+
+                    return;
+                }
+
+                Register rv = findRegFor(value, FpRegs);
+
+                NanoAssert(isKnownReg(rb));
+                NanoAssert(isKnownReg(rv));
+
+                Register baseReg = rb;
+                intptr_t baseOffset = dr;
+
+                if (!isS8(dr)) {
+                    baseReg = IP;
+                    baseOffset = 0;
+                }
+
+                FSTS(S14, baseReg, baseOffset);
+
+                if (!isS8(dr)) {
+                    asm_add_imm(IP, rb, dr);
+                }
+
+                FCVTSD(S14, rv);
+
+                // if it's a constant, make sure our baseReg/baseOffset location
+                // has the right value
+                if (value->isconstq()) {
+                    underrunProtect(4*4);
+                    asm_quad_nochk(rv, value->imm64_0(), value->imm64_1());
+                }
+            } else {
+                NanoAssertMsg(0, "st32f not supported with non-VFP, fix me");
+            }
             return;
         default:
             NanoAssertMsg(0, "asm_store64 should never receive this LIR opcode");
             return;
-    }
-
-    if (ARM_VFP) {
-        Register rb = findRegFor(base, GpRegs);
-
-        if (value->isconstq()) {
-            underrunProtect(LD32_size*2 + 8);
-
-            // XXX use another reg, get rid of dependency
-            STR(IP, rb, dr);
-            asm_ld_imm(IP, value->imm64_0(), false);
-            STR(IP, rb, dr+4);
-            asm_ld_imm(IP, value->imm64_1(), false);
-
-            return;
-        }
-
-        Register rv = findRegFor(value, FpRegs);
-
-        NanoAssert(isKnownReg(rb));
-        NanoAssert(isKnownReg(rv));
-
-        Register baseReg = rb;
-        intptr_t baseOffset = dr;
-
-        if (!isS8(dr)) {
-            baseReg = IP;
-            baseOffset = 0;
-        }
-
-        FSTD(rv, baseReg, baseOffset);
-
-        if (!isS8(dr)) {
-            asm_add_imm(IP, rb, dr);
-        }
-
-        // if it's a constant, make sure our baseReg/baseOffset location
-        // has the right value
-        if (value->isconstq()) {
-            underrunProtect(4*4);
-            asm_quad_nochk(rv, value->imm64_0(), value->imm64_1());
-        }
-    } else {
-        int da = findMemFor(value);
-        Register rb = findRegFor(base, GpRegs);
-        // *(uint64_t*)(rb+dr) = *(uint64_t*)(FP+da)
-        asm_mmq(rb, dr, FP, da);
     }
 
     //asm_output(">>> store64");
@@ -1463,12 +1530,12 @@ Assembler::asm_quad(LInsp ins)
 {
     //asm_output(">>> asm_quad");
 
-    int d = disp(ins);
-    Register rr = ins->getReg();
+    int d = deprecated_disp(ins);
+    Register rr = ins->deprecated_getReg();
 
-    freeRsrcOf(ins, false);
+    deprecated_freeRsrcOf(ins, false);
 
-    if (ARM_VFP && isKnownReg(rr))
+    if (_config.arm_vfp && isKnownReg(rr))
     {
         asm_spill(rr, d, false, true);
 
@@ -1492,7 +1559,7 @@ Assembler::asm_quad(LInsp ins)
 void
 Assembler::asm_nongp_copy(Register r, Register s)
 {
-    if (ARM_VFP && IsFpReg(r) && IsFpReg(s)) {
+    if (_config.arm_vfp && IsFpReg(r) && IsFpReg(s)) {
         // fp->fp
         FCPYD(r, s);
     } else {
@@ -1505,7 +1572,7 @@ Assembler::asm_nongp_copy(Register r, Register s)
 Register
 Assembler::asm_binop_rhs_reg(LInsp)
 {
-    return UnknownReg;
+    return deprecated_UnknownReg;
 }
 
 /**
@@ -1521,9 +1588,9 @@ Assembler::asm_mmq(Register rd, int dd, Register rs, int ds)
 
     // In order to make the operation optimal, we will require two GP
     // registers. We can't allocate a register here because the caller may have
-    // called freeRsrcOf, and allocating a register here may cause something
+    // called deprecated_freeRsrcOf, and allocating a register here may cause something
     // else to spill onto the stack which has just be conveniently freed by
-    // freeRsrcOf (resulting in stack corruption).
+    // deprecated_freeRsrcOf (resulting in stack corruption).
     //
     // Falling back to a single-register implementation of asm_mmq is better
     // than adjusting the callers' behaviour (to allow us to allocate another
@@ -1640,15 +1707,11 @@ Assembler::nativePageSetup()
     NanoAssert(!_inExit);
     if (!_nIns)
         codeAlloc(codeStart, codeEnd, _nIns verbose_only(, codeBytes));
-    if (!_nExitIns)
-        codeAlloc(exitStart, exitEnd, _nExitIns verbose_only(, exitBytes));
 
     // constpool starts at top of page and goes down,
     // code starts at bottom of page and moves up
     if (!_nSlot)
         _nSlot = codeStart;
-    if (!_nExitSlot)
-        _nExitSlot = exitStart;
 }
 
 
@@ -1746,7 +1809,7 @@ Assembler::BranchWithLink(NIns* addr)
             // We need to emit an ARMv5+ instruction, so assert that we have a
             // suitable processor. Note that we don't support ARMv4(T), but
             // this serves as a useful sanity check.
-            NanoAssert(ARM_ARCH >= 5);
+            NanoAssert(_config.arm_arch >= 5);
 
             // The (pre-shifted) value of the "H" bit in the BLX encoding.
             uint32_t    H = (offs & 0x2) << 23;
@@ -1773,7 +1836,7 @@ Assembler::BLX(Register addr, bool chk /* = true */)
     // We need to emit an ARMv5+ instruction, so assert that we have a suitable
     // processor. Note that we don't support ARMv4(T), but this serves as a
     // useful sanity check.
-    NanoAssert(ARM_ARCH >= 5);
+    NanoAssert(_config.arm_arch >= 5);
 
     NanoAssert(IsGpReg(addr));
     // There is a bug in the WinCE device emulator which stops "BLX LR" from
@@ -1798,7 +1861,7 @@ Assembler::BLX(Register addr, bool chk /* = true */)
 void
 Assembler::asm_ldr_chk(Register d, Register b, int32_t off, bool chk)
 {
-    if (ARM_VFP && IsFpReg(d)) {
+    if (_config.arm_vfp && IsFpReg(d)) {
         FLDD_chk(d,b,off,chk);
         return;
     }
@@ -1873,7 +1936,11 @@ Assembler::asm_ld_imm(Register d, int32_t imm, bool chk /* = true */)
     // immediate. If this isn't possible, load it from memory.
     //  - We cannot use MOV(W|T) on cores older than the introduction of
     //    Thumb-2 or if the target register is the PC.
-    if (ARM_THUMB2 && (d != PC)) {
+    //
+    // (Note that we use Thumb-2 if arm_arch is ARMv7 or later; the only earlier
+    // ARM core that provided Thumb-2 is ARMv6T2/ARM1156, which is a real-time
+    // core that nanojit is unlikely to ever target.)
+    if (_config.arm_arch >= 7 && (d != PC)) {
         // ARMv6T2 and above have MOVW and MOVT.
         uint32_t    high_h = (uint32_t)imm >> 16;
         uint32_t    low_h = imm & 0xffff;
@@ -2015,38 +2082,48 @@ Assembler::B_cond_chk(ConditionCode _c, NIns* _t, bool _chk)
 void
 Assembler::asm_i2f(LInsp ins)
 {
-    Register rr = prepResultReg(ins, FpRegs);
+    Register rr = deprecated_prepResultReg(ins, FpRegs);
     Register srcr = findRegFor(ins->oprnd1(), GpRegs);
 
     // todo: support int value in memory, as per x86
     NanoAssert(isKnownReg(srcr));
 
-    FSITOD(rr, FpSingleScratch);
-    FMSR(FpSingleScratch, srcr);
+    FSITOD(rr, S14);
+    FMSR(S14, srcr);
 }
 
 void
 Assembler::asm_u2f(LInsp ins)
 {
-    Register rr = prepResultReg(ins, FpRegs);
+    Register rr = deprecated_prepResultReg(ins, FpRegs);
     Register sr = findRegFor(ins->oprnd1(), GpRegs);
 
     // todo: support int value in memory, as per x86
     NanoAssert(isKnownReg(sr));
 
-    FUITOD(rr, FpSingleScratch);
-    FMSR(FpSingleScratch, sr);
+    FUITOD(rr, S14);
+    FMSR(S14, sr);
+}
+
+void Assembler::asm_f2i(LInsp ins)
+{
+    // where our result goes
+    Register rr = deprecated_prepResultReg(ins, GpRegs);
+    Register sr = findRegFor(ins->oprnd1(), FpRegs);
+
+    FMRS(rr, S14);
+    FTOSID(S14, sr);
 }
 
 void
 Assembler::asm_fneg(LInsp ins)
 {
     LInsp lhs = ins->oprnd1();
-    Register rr = prepResultReg(ins, FpRegs);
+    Register rr = deprecated_prepResultReg(ins, FpRegs);
 
-    Register sr = ( lhs->isUnusedOrHasUnknownReg()
+    Register sr = ( !lhs->isInReg()
                   ? findRegFor(lhs, FpRegs)
-                  : lhs->getReg() );
+                  : lhs->deprecated_getReg() );
 
     FNEGD(rr, sr);
 }
@@ -2062,7 +2139,7 @@ Assembler::asm_fop(LInsp ins)
 
     // rr = ra OP rb
 
-    Register rr = prepResultReg(ins, FpRegs);
+    Register rr = deprecated_prepResultReg(ins, FpRegs);
 
     Register ra = findRegFor(lhs, FpRegs);
     Register rb = (rhs == lhs) ? ra : findRegFor(rhs, FpRegs & ~rmask(ra));
@@ -2089,7 +2166,7 @@ Assembler::asm_fcmp(LInsp ins)
     NanoAssert(op >= LIR_feq && op <= LIR_fge);
 
     Register ra, rb;
-    findRegFor2(FpRegs, lhs, ra, rhs, rb);
+    findRegFor2(FpRegs, lhs, ra, FpRegs, rhs, rb);
 
     int e_bit = (op != LIR_feq);
 
@@ -2105,8 +2182,8 @@ NIns*
 Assembler::asm_branch(bool branchOnFalse, LInsp cond, NIns* targ)
 {
     LOpcode condop = cond->opcode();
-    NanoAssert(cond->isCond());
-    NanoAssert(ARM_VFP || ((condop < LIR_feq) || (condop > LIR_fge)));
+    NanoAssert(cond->isCmp());
+    NanoAssert(_config.arm_vfp || ((condop < LIR_feq) || (condop > LIR_fge)));
 
     // The old "never" condition code has special meaning on newer ARM cores,
     // so use "always" as a sensible default code.
@@ -2114,14 +2191,6 @@ Assembler::asm_branch(bool branchOnFalse, LInsp cond, NIns* targ)
 
     // Detect whether or not this is a floating-point comparison.
     bool    fp_cond;
-
-    // Because MUL can't set the V flag, we use SMULL and CMP to set the Z flag
-    // to detect overflow on multiply. Thus, if cond points to a LIR_ov which
-    // in turn points to a LIR_mul, we must be conditional on !Z, not V.
-    if ((condop == LIR_ov) && (cond->oprnd1()->isop(LIR_mul))) {
-        condop = LIR_eq;
-        branchOnFalse = !branchOnFalse;
-    }
 
     // Select the appropriate ARM condition code to match the LIR instruction.
     switch (condop)
@@ -2137,7 +2206,6 @@ Assembler::asm_branch(bool branchOnFalse, LInsp cond, NIns* targ)
 
         // Standard signed and unsigned integer comparisons.
         case LIR_eq:    cc = EQ;    fp_cond = false;    break;
-        case LIR_ov:    cc = VS;    fp_cond = false;    break;
         case LIR_lt:    cc = LT;    fp_cond = false;    break;
         case LIR_le:    cc = LE;    fp_cond = false;    break;
         case LIR_gt:    cc = GT;    fp_cond = false;    break;
@@ -2159,7 +2227,7 @@ Assembler::asm_branch(bool branchOnFalse, LInsp cond, NIns* targ)
     NanoAssert((cc != AL) && (cc != NV));
 
     // Ensure that we don't hit floating-point LIR codes if VFP is disabled.
-    NanoAssert(ARM_VFP || !fp_cond);
+    NanoAssert(_config.arm_vfp || !fp_cond);
 
     // Emit a suitable branch instruction.
     B_cond(cc, targ);
@@ -2168,7 +2236,7 @@ Assembler::asm_branch(bool branchOnFalse, LInsp cond, NIns* targ)
     // asm_[f]cmp will move _nIns so we must do this now.
     NIns *at = _nIns;
 
-    if (ARM_VFP && fp_cond)
+    if (_config.arm_vfp && fp_cond)
         asm_fcmp(cond);
     else
         asm_cmp(cond);
@@ -2176,20 +2244,24 @@ Assembler::asm_branch(bool branchOnFalse, LInsp cond, NIns* targ)
     return at;
 }
 
+void Assembler::asm_branch_xov(LOpcode op, NIns* target)
+{
+    // Because MUL can't set the V flag, we use SMULL and CMP to set the Z flag
+    // to detect overflow on multiply. Thus, if we have a LIR_mulxov, we must
+    // be conditional on !Z, not V.
+    ConditionCode cc = ( op == LIR_mulxov ? NE : VS );
+
+    // Emit a suitable branch instruction.
+    B_cond(cc, target);
+}
+
 void
 Assembler::asm_cmp(LIns *cond)
 {
-    LOpcode condop = cond->opcode();
-
-    // LIR_ov recycles the flags set by arithmetic ops
-    if ((condop == LIR_ov))
-        return;
-
     LInsp lhs = cond->oprnd1();
     LInsp rhs = cond->oprnd2();
 
-    // Not supported yet.
-    NanoAssert(!lhs->isQuad() && !rhs->isQuad());
+    NanoAssert(lhs->isI32() && rhs->isI32());
 
     // ready to issue the compare
     if (rhs->isconst()) {
@@ -2202,7 +2274,7 @@ Assembler::asm_cmp(LIns *cond)
         }
     } else {
         Register ra, rb;
-        findRegFor2(GpRegs, lhs, ra, rhs, rb);
+        findRegFor2(GpRegs, lhs, ra, GpRegs, rhs, rb);
         CMP(ra, rb);
     }
 }
@@ -2233,7 +2305,7 @@ void
 Assembler::asm_fcond(LInsp ins)
 {
     // only want certain regs
-    Register r = prepResultReg(ins, AllowableFlagRegs);
+    Register r = deprecated_prepResultReg(ins, AllowableFlagRegs);
 
     switch (ins->opcode()) {
         case LIR_feq: SETEQ(r); break;
@@ -2250,7 +2322,7 @@ Assembler::asm_fcond(LInsp ins)
 void
 Assembler::asm_cond(LInsp ins)
 {
-    Register r = prepResultReg(ins, AllowableFlagRegs);
+    Register r = deprecated_prepResultReg(ins, AllowableFlagRegs);
     LOpcode op = ins->opcode();
 
     switch(op)
@@ -2264,17 +2336,6 @@ Assembler::asm_cond(LInsp ins)
         case LIR_ule: SETLS(r); break;
         case LIR_ugt: SETHI(r); break;
         case LIR_uge: SETHS(r); break;
-        case LIR_ov:
-            // Because MUL can't set the V flag, we use SMULL and CMP to set
-            // the Z flag to detect overflow on multiply. Thus, if ins points
-            // to a LIR_ov which in turn points to a LIR_mul, we must be
-            // conditional on !Z, not V.
-            if (!ins->oprnd1()->isop(LIR_mul)) {
-                SETVS(r);
-            } else {
-                SETNE(r);
-            }
-            break;
         default:      NanoAssert(0);  break;
     }
     asm_cmp(ins);
@@ -2290,13 +2351,13 @@ Assembler::asm_arith(LInsp ins)
     RegisterMask    allow = GpRegs;
 
     // We always need the result register and the first operand register.
-    Register        rr = prepResultReg(ins, allow);
+    Register        rr = deprecated_prepResultReg(ins, allow);
 
     // If this is the last use of lhs in reg, we can re-use the result reg.
     // Else, lhs already has a register assigned.
-    Register        ra = ( lhs->isUnusedOrHasUnknownReg()
+    Register        ra = ( !lhs->isInReg()
                          ? findSpecificRegFor(lhs, rr)
-                         : lhs->getReg() );
+                         : lhs->deprecated_getReg() );
 
     // Don't re-use the registers we've already allocated.
     NanoAssert(isKnownReg(rr));
@@ -2315,12 +2376,12 @@ Assembler::asm_arith(LInsp ins)
     // basic arithmetic instructions to generate constant multiplications.
     // However, LIR_mul is never invoked with a constant during
     // trace-tests.js so it is very unlikely to be worthwhile implementing it.
-    if (rhs->isconst() && op != LIR_mul)
+    if (rhs->isconst() && op != LIR_mul && op != LIR_mulxov)
     {
-        if ((op == LIR_add || op == LIR_iaddp) && lhs->isop(LIR_ialloc)) {
+        if ((op == LIR_add || op == LIR_iaddp || op == LIR_addxov) && lhs->isop(LIR_ialloc)) {
             // Add alloc+const. The result should be the address of the
             // allocated space plus a constant.
-            Register    rs = prepResultReg(ins, allow);
+            Register    rs = deprecated_prepResultReg(ins, allow);
             int         d = findMemFor(lhs) + rhs->imm32();
 
             NanoAssert(isKnownReg(rs));
@@ -2331,15 +2392,17 @@ Assembler::asm_arith(LInsp ins)
 
         switch (op)
         {
-            case LIR_iaddp: asm_add_imm(rr, ra, imm32);     break;
-            case LIR_add:   asm_add_imm(rr, ra, imm32, 1);  break;
-            case LIR_sub:   asm_sub_imm(rr, ra, imm32, 1);  break;
-            case LIR_and:   asm_and_imm(rr, ra, imm32);     break;
-            case LIR_or:    asm_orr_imm(rr, ra, imm32);     break;
-            case LIR_xor:   asm_eor_imm(rr, ra, imm32);     break;
-            case LIR_lsh:   LSLi(rr, ra, imm32);            break;
-            case LIR_rsh:   ASRi(rr, ra, imm32);            break;
-            case LIR_ush:   LSRi(rr, ra, imm32);            break;
+            case LIR_iaddp:
+            case LIR_add:       asm_add_imm(rr, ra, imm32);     break;
+            case LIR_addxov:    asm_add_imm(rr, ra, imm32, 1);  break;
+            case LIR_sub:       asm_sub_imm(rr, ra, imm32);     break;
+            case LIR_subxov:    asm_sub_imm(rr, ra, imm32, 1);  break;
+            case LIR_and:       asm_and_imm(rr, ra, imm32);     break;
+            case LIR_or:        asm_orr_imm(rr, ra, imm32);     break;
+            case LIR_xor:       asm_eor_imm(rr, ra, imm32);     break;
+            case LIR_lsh:       LSLi(rr, ra, imm32);            break;
+            case LIR_rsh:       ASRi(rr, ra, imm32);            break;
+            case LIR_ush:       LSRi(rr, ra, imm32);            break;
 
             default:
                 NanoAssertMsg(0, "Unsupported");
@@ -2363,16 +2426,21 @@ Assembler::asm_arith(LInsp ins)
     }
     NanoAssert(isKnownReg(rb));
 
+    const Register SBZ = (Register)0;
     switch (op)
     {
-        case LIR_iaddp: ADDs(rr, ra, rb, 0);    break;
-        case LIR_add:   ADDs(rr, ra, rb, 1);    break;
-        case LIR_sub:   SUBs(rr, ra, rb, 1);    break;
-        case LIR_and:   ANDs(rr, ra, rb, 0);    break;
-        case LIR_or:    ORRs(rr, ra, rb, 0);    break;
-        case LIR_xor:   EORs(rr, ra, rb, 0);    break;
+        case LIR_iaddp:
+        case LIR_add:       ADDs(rr, ra, rb, 0);    break;
+        case LIR_addxov:    ADDs(rr, ra, rb, 1);    break;
+        case LIR_sub:       SUBs(rr, ra, rb, 0);    break;
+        case LIR_subxov:    SUBs(rr, ra, rb, 1);    break;
+        case LIR_and:       ANDs(rr, ra, rb, 0);    break;
+        case LIR_or:        ORRs(rr, ra, rb, 0);    break;
+        case LIR_xor:       EORs(rr, ra, rb, 0);    break;
 
+        // XXX: LIR_mul can be done more efficiently than LIR_mulxov.  See bug 542629.
         case LIR_mul:
+        case LIR_mulxov:
             // ARMv5 and earlier cores cannot do a MUL where the first operand
             // is also the result, so we need a special case to handle that.
             //
@@ -2380,7 +2448,7 @@ Assembler::asm_arith(LInsp ins)
             // common for (rr == ra) and is thus likely to be the most
             // efficient method.
 
-            if ((ARM_ARCH > 5) || (rr != rb)) {
+            if ((_config.arm_arch > 5) || (rr != rb)) {
                 // IP is used to temporarily store the high word of the result from
                 // SMULL, so we make use of this to perform an overflow check, as
                 // ARM's MUL instruction can't set the overflow flag by itself.
@@ -2389,10 +2457,10 @@ Assembler::asm_arith(LInsp ins)
                 //   CMP    ip, rr, ASR #31
                 // An explanation can be found in bug 521161. This sets Z if we did
                 // _not_ overflow, and clears it if we did.
-                ALUr_shi(AL, cmp, 1, IP, IP, rr, ASR_imm, 31);
+                ALUr_shi(AL, cmp, 1, SBZ, IP, rr, ASR_imm, 31);
                 SMULL(rr, IP, rb, ra);
             } else {
-                // ARM_ARCH is ARMv5 (or below) and rr == rb, so we must
+                // _config.arm_arch is ARMv5 (or below) and rr == rb, so we must
                 // find a different way to encode the instruction.
 
                 // If possible, swap the arguments to avoid the restriction.
@@ -2401,7 +2469,7 @@ Assembler::asm_arith(LInsp ins)
                     // rX = rY * rX.
                     // Other than swapping ra and rb, this works in the same as
                     // as the ARMv6+ case, above.
-                    ALUr_shi(AL, cmp, 1, IP, IP, rr, ASR_imm, 31);
+                    ALUr_shi(AL, cmp, 1, SBZ, IP, rr, ASR_imm, 31);
                     SMULL(rr, IP, ra, rb);
                 } else {
                     // We're trying to do rX = rX * rX, but we also need to
@@ -2428,8 +2496,8 @@ Assembler::asm_arith(LInsp ins)
 
                     NanoAssert(rr != IP);
 
-                    ALUr_shi(AL, cmp, 1, IP, rr, rr, ASR_imm, 31);
-                    ALUr_shi(AL, mov, 1, IP, IP, IP, LSR_imm, 16);
+                    ALUr_shi(AL, cmp, 1, SBZ, IP, rr, ASR_imm, 31);
+                    ALUr_shi(AL, mov, 1, IP, SBZ, IP, LSR_imm, 16);
                     MUL(rr, IP, IP);
                     ALUi(MI, rsb, 0, IP, IP, 0);
                     ALUr(AL, mov, 1, IP, ra, ra);
@@ -2462,14 +2530,14 @@ void
 Assembler::asm_neg_not(LInsp ins)
 {
     LOpcode op = ins->opcode();
-    Register rr = prepResultReg(ins, GpRegs);
+    Register rr = deprecated_prepResultReg(ins, GpRegs);
 
     LIns* lhs = ins->oprnd1();
     // If this is the last use of lhs in reg, we can re-use result reg.
     // Else, lhs already has a register assigned.
-    Register ra = ( lhs->isUnusedOrHasUnknownReg()
+    Register ra = ( !lhs->isInReg()
                   ? findSpecificRegFor(lhs, rr)
-                  : lhs->getReg() );
+                  : lhs->deprecated_getReg() );
     NanoAssert(isKnownReg(ra));
 
     if (op == LIR_not)
@@ -2485,7 +2553,7 @@ Assembler::asm_load32(LInsp ins)
     LIns* base = ins->oprnd1();
     int d = ins->disp();
 
-    Register rr = prepResultReg(ins, GpRegs);
+    Register rr = deprecated_prepResultReg(ins, GpRegs);
     Register ra = getBaseReg(base, d, GpRegs);
 
     switch (op) {
@@ -2500,8 +2568,7 @@ Assembler::asm_load32(LInsp ins)
             return;
         case LIR_ldzs:
         case LIR_ldcs:
-            // These are expected to be 2-byte aligned.  (Not all ARM machines
-            // can handle unaligned accesses.)
+            // Some ARM machines require 2-byte alignment here.
             // Similar to the ldcb/ldzb case, but the max offset is smaller.
             if (isU8(-d) || isU8(d)) {
                 LDRH(rr, ra, d);
@@ -2512,7 +2579,7 @@ Assembler::asm_load32(LInsp ins)
             return;
         case LIR_ld:
         case LIR_ldc:
-            // These are expected to be 4-byte aligned.
+            // Some ARM machines require 4-byte alignment here.
             if (isU12(-d) || isU12(d)) {
                 LDR(rr, ra, d);
             } else {
@@ -2521,10 +2588,22 @@ Assembler::asm_load32(LInsp ins)
             }
             return;
         case LIR_ldsb:
-        case LIR_ldss:
         case LIR_ldcsb:
+            if (isU8(-d) || isU8(d)) {
+                LDRSB(rr, ra, d);
+            } else {
+                LDRSB(rr, IP, 0);
+                asm_add_imm(IP, ra, d);
+            }
+            return;
+        case LIR_ldss:
         case LIR_ldcss:
-            NanoAssertMsg(0, "NJ_EXPANDED_LOADSTORE_SUPPORTED not yet supported for this architecture");
+            if (isU8(-d) || isU8(d)) {
+                LDRSH(rr, ra, d);
+            } else {
+                LDRSH(rr, IP, 0);
+                asm_add_imm(IP, ra, d);
+            }
             return;
         default:
             NanoAssertMsg(0, "asm_load32 should never receive this LIR opcode");
@@ -2535,15 +2614,14 @@ Assembler::asm_load32(LInsp ins)
 void
 Assembler::asm_cmov(LInsp ins)
 {
-    NanoAssert(ins->opcode() == LIR_cmov);
     LIns* condval = ins->oprnd1();
     LIns* iftrue  = ins->oprnd2();
     LIns* iffalse = ins->oprnd3();
 
     NanoAssert(condval->isCmp());
-    NanoAssert(!iftrue->isQuad() && !iffalse->isQuad());
+    NanoAssert(ins->opcode() == LIR_cmov && iftrue->isI32() && iffalse->isI32());
 
-    const Register rr = prepResultReg(ins, GpRegs);
+    const Register rr = deprecated_prepResultReg(ins, GpRegs);
 
     // this code assumes that neither LD nor MR nor MRcc set any of the condition flags.
     // (This is true on Intel, is it true on all architectures?)
@@ -2559,17 +2637,6 @@ Assembler::asm_cmov(LInsp ins)
         case LIR_ule:   MOVHI(rr, iffalsereg);  break;
         case LIR_ugt:   MOVLS(rr, iffalsereg);  break;
         case LIR_uge:   MOVLO(rr, iffalsereg);  break;
-        case LIR_ov:
-            // Because MUL can't set the V flag, we use SMULL and CMP to set
-            // the Z flag to detect overflow on multiply. Thus, if ins points
-            // to a LIR_ov which in turn points to a LIR_mul, we must be
-            // conditional on !Z, not V.
-            if (!condval->oprnd1()->isop(LIR_mul)) {
-                MOVVC(rr, iffalsereg);
-            } else {
-                MOVEQ(rr, iffalsereg);
-            }
-            break;
         default: debug_only( NanoAssert(0) );   break;
     }
     /*const Register iftruereg =*/ findSpecificRegFor(iftrue, rr);
@@ -2579,7 +2646,7 @@ Assembler::asm_cmov(LInsp ins)
 void
 Assembler::asm_qhi(LInsp ins)
 {
-    Register rr = prepResultReg(ins, GpRegs);
+    Register rr = deprecated_prepResultReg(ins, GpRegs);
     LIns *q = ins->oprnd1();
     int d = findMemFor(q);
     LDR(rr, FP, d+4);
@@ -2588,7 +2655,7 @@ Assembler::asm_qhi(LInsp ins)
 void
 Assembler::asm_qlo(LInsp ins)
 {
-    Register rr = prepResultReg(ins, GpRegs);
+    Register rr = deprecated_prepResultReg(ins, GpRegs);
     LIns *q = ins->oprnd1();
     int d = findMemFor(q);
     LDR(rr, FP, d);
@@ -2605,23 +2672,23 @@ Assembler::asm_param(LInsp ins)
         uint32_t abi_regcount = abi == ABI_CDECL ? 4 : abi == ABI_FASTCALL ? 2 : abi == ABI_THISCALL ? 1 : 0;
         if (a < abi_regcount) {
             // incoming arg in register
-            prepResultReg(ins, rmask(argRegs[a]));
+            deprecated_prepResultReg(ins, rmask(argRegs[a]));
         } else {
             // incoming arg is on stack, and EBP points nearby (see genPrologue)
-            Register r = prepResultReg(ins, GpRegs);
+            Register r = deprecated_prepResultReg(ins, GpRegs);
             int d = (a - abi_regcount) * sizeof(intptr_t) + 8;
             LDR(r, FP, d);
         }
     } else {
         // saved param
-        prepResultReg(ins, rmask(savedRegs[a]));
+        deprecated_prepResultReg(ins, rmask(savedRegs[a]));
     }
 }
 
 void
 Assembler::asm_int(LInsp ins)
 {
-    Register rr = prepResultReg(ins, GpRegs);
+    Register rr = deprecated_prepResultReg(ins, GpRegs);
     asm_ld_imm(rr, ins->imm32());
 }
 
@@ -2648,7 +2715,7 @@ Assembler::asm_ret(LIns *ins)
     }
     else {
         NanoAssert(ins->isop(LIR_fret));
-        if (ARM_VFP) {
+        if (_config.arm_vfp) {
             Register reg = findRegFor(value, FpRegs);
             FMRRD(R0, R1, reg);
         } else {
@@ -2657,16 +2724,6 @@ Assembler::asm_ret(LIns *ins)
             findSpecificRegFor(value->oprnd2(), R1); // hi
         }
     }
-}
-
-void
-Assembler::asm_promote(LIns *ins)
-{
-    /* The LIR opcodes that result in a call to asm_promote are only generated
-     * if NANOJIT_64BIT is #define'd, which it never is for ARM.
-     */
-    (void)ins;
-    NanoAssert(0);
 }
 
 void
@@ -2679,6 +2736,10 @@ Assembler::asm_jtbl(LIns* ins, NIns** table)
 }
 
 void Assembler::swapCodeChunks() {
+    if (!_nExitIns)
+        codeAlloc(exitStart, exitEnd, _nExitIns verbose_only(, exitBytes));
+    if (!_nExitSlot)
+        _nExitSlot = exitStart;
     SWAP(NIns*, _nIns, _nExitIns);
     SWAP(NIns*, _nSlot, _nExitSlot);        // this one is ARM-specific
     SWAP(NIns*, codeStart, exitStart);
