@@ -467,7 +467,9 @@ bool ScriptInterface::IsExceptionPending(JSContext* cx)
 
 JSClass* ScriptInterface::GetClass(JSContext* cx, JSObject* obj)
 {
-	return JS_GetClass(cx, obj);
+	UNUSED2(cx); // unused if not JS_THREADSAFE
+
+	return JS_GET_CLASS(cx, obj);
 }
 
 void* ScriptInterface::GetPrivate(JSContext* cx, JSObject* obj)

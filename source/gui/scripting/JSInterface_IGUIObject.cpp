@@ -433,7 +433,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					return JS_FALSE;
 				}
 			}
-			else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(cx, JSVAL_TO_OBJECT(*vp)) == &JSI_GUISize::JSI_class)
+			else if (JSVAL_IS_OBJECT(*vp) && JS_InstanceOf(cx, JSVAL_TO_OBJECT(*vp), &JSI_GUISize::JSI_class, NULL))
 			{
 				CClientArea area;
 				GUI<CClientArea>::GetSetting(e, propName, area);
@@ -470,7 +470,7 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JSObject* obj, jsval id, jsval
 					return JS_FALSE;
 				}
 			}
-			else if (JSVAL_IS_OBJECT(*vp) && JS_GetClass(cx, JSVAL_TO_OBJECT(*vp)) == &JSI_GUIColor::JSI_class)
+			else if (JSVAL_IS_OBJECT(*vp) && JS_InstanceOf(cx, JSVAL_TO_OBJECT(*vp), &JSI_GUIColor::JSI_class, NULL))
 			{
 				CColor colour;
 				JSObject* obj = JSVAL_TO_OBJECT(*vp);

@@ -107,7 +107,7 @@ namespace wxjs
           }
         }
 
-         JSClass *clazz = JS_GetClass(cx, obj);
+         JSClass *clazz = JS_GET_CLASS(cx, obj);
          if ( clazz == NULL )
            return NULL;
 
@@ -116,7 +116,7 @@ namespace wxjs
            obj = JS_GetPrototype(cx, obj);
            if ( obj == NULL )
              return NULL;
-           clazz = JS_GetClass(cx, obj);
+           clazz = JS_GET_CLASS(cx, obj);
            if ( clazz == NULL )
              return NULL;
          }
