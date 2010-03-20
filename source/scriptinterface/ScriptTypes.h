@@ -26,6 +26,14 @@
 // (we don't support XP_OS2 or XP_BEOS)
 
 #include "js/jspubtd.h"
+#include "js/jsversion.h"
+
+#if JS_VERSION != 185
+#error Your compiler is trying to use an incorrect version of the SpiderMonkey library.
+#error The only version that works is the one in the libraries/spidermonkey-tip/ directory,
+#error and it will not work with a typical system-installed version.
+#error Make sure you have got all the right files and include paths.
+#endif
 
 class ScriptInterface;
 class CScriptVal;
