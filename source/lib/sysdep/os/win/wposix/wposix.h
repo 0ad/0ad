@@ -68,4 +68,23 @@ LIB_API int setenv(const char* envname, const char* envval, int overwrite);
 
 LIB_API long sysconf(int name);
 
+
+//
+// <math.h>
+//
+
+// (missing on MSVC)
+#ifndef M_PI
+#define M_PI						3.14159265358979323846
+#endif
+#ifndef M_PI_2
+#define M_PI_2						1.57079632679489661923
+#endif
+#ifndef INFINITY
+#define INFINITY					(std::numeric_limits<float>::infinity())
+#endif
+#ifndef NAN
+#define NAN							(std::numeric_limits<float>::quiet_NaN())
+#endif
+
 #endif	// #ifndef INCLUDED_WPOSIX

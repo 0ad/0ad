@@ -50,8 +50,8 @@ sEnvironmentSettings GetSettings()
 #undef COLOUR
 
 	float sunrotation = g_LightEnv.GetRotation();
-	if (sunrotation > PI)
-		sunrotation -= PI*2;
+	if (sunrotation > M_PI)
+		sunrotation -= M_PI*2;
 	s.sunrotation = sunrotation;
 	s.sunelevation = g_LightEnv.GetElevation();
 

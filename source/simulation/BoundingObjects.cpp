@@ -96,7 +96,7 @@ void CBoundingCircle::Render( float height )
 
 	for( int i = 0; i < 10; i++ )
 	{
-		float ang = i * 2 * PI / 10.0f;
+		float ang = i * 2 * M_PI / 10.0f;
 		float x = m_pos.x + m_radius * sin( ang );
 		float y = m_pos.y + m_radius * cos( ang );
 		glVertex3f( x, height, y );

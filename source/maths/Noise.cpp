@@ -54,7 +54,7 @@ Noise2D::Noise2D(int f)
 		grads[i] = new CVector2D_Maths[freq];
 		for(int j=0; j<freq; j++) 
 		{
-			float a = randFloat() * 2 * PI;
+			float a = randFloat() * 2 * M_PI;
 			grads[i][j] = CVector2D_Maths(cos(a), sin(a));
 		}
 	}

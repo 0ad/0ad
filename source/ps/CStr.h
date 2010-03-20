@@ -29,11 +29,11 @@ Examples:
 	In order to use both, most of the standard library functions come in T form.
 	The following shows several examples of traditional ANSI vs UNICODE.
 		// ANSI
-		LPCSTR str = "PI";
+		LPCSTR str = "M_PI";
 		printf( "%s = %fn", str, 3.1459f );
 
 		// UNICODE
-		LPCWSTR str = L"PI";
+		LPCWSTR str = L"M_PI";
 		wprintf( L"%ls = %fn", str, 3.1459f );
 */
 

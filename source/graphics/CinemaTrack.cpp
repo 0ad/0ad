@@ -205,7 +205,7 @@ float CCinemaPath::EaseCircle(float t) const
 
 float CCinemaPath::EaseSine(float t) const
 {
-     t = 1.0f - cos(t * PI/2);
+     t = 1.0f - cos(t * M_PI/2);
      if(m_GrowthCount > 1.0f)
 	 {
 		 m_GrowthCount--;

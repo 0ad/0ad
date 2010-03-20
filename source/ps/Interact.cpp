@@ -1371,7 +1371,7 @@ void ResetInteraction()
 	customSelectionMode = false;
 }
 
-static const float angleBias = 3*PI/4;	// Atlas does the same
+static const float angleBias = 3*M_PI/4;	// Atlas does the same
 
 bool CBuildingPlacer::Activate(CStrW& templateName)
 {	
@@ -1480,7 +1480,7 @@ void CBuildingPlacer::Update( float timeStep )
 		if(x*x + z*z < 3*3)
 		{
 			if(m_dragged || m_timeSinceClick > 0.2f)
-				m_angle += timeStep * PI;
+				m_angle += timeStep * M_PI;
 		}
 		else
 		{
@@ -1517,7 +1517,7 @@ void CBuildingPlacer::Update( float timeStep )
 
 	// Set position and angle to the location we decided on
 	CMatrix3D m;
-	m.SetYRotation(m_angle + PI);
+	m.SetYRotation(m_angle + M_PI);
 	m.Translate(pos);
 	m_actor->GetModel()->SetTransform( m );
 	m_bounds->SetPosition(pos.X, pos.Z);
@@ -1540,7 +1540,7 @@ void CBuildingPlacer::Update( float timeStep )
 	}
 	else
 	{
-		float add = ( sin(4*PI*m_totalTime) + 1.0f ) * 0.08f;
+		float add = ( sin(4*M_PI*m_totalTime) + 1.0f ) * 0.08f;
 		col = CColor( 1.4f+add, 0.4f+add, 0.4f+add, 1.0f );
 	}
 	m_actor->GetModel()->SetShadingColor( col );

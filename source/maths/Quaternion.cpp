@@ -132,13 +132,13 @@ CVector3D CQuaternion::ToEulerAngles()
 	if (test > (.5f-EPSILON)*unit) 
 	{ // singularity at north pole
 		heading = 2 * atan2( m_V.X, m_W);
-		attitude = PI/2;
+		attitude = M_PI/2;
 		bank = 0;
 	}
 	else if (test < (-.5f+EPSILON)*unit) 
 	{ // singularity at south pole
 		heading = -2 * atan2(m_V.X, m_W);
-		attitude = -PI/2;
+		attitude = -M_PI/2;
 		bank = 0;
 	}
 	else 
