@@ -128,6 +128,11 @@ public:
 	 */
 	virtual bool Rasterise(Grid<u8>& grid) = 0;
 
+	/**
+	 * Toggle the rendering of debug info.
+	 */
+	virtual void SetDebugOverlay(bool enabled) = 0;
+
 	DECLARE_INTERFACE_TYPE(ObstructionManager)
 };
 

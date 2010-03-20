@@ -22,4 +22,5 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(Pathfinder)
+DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpPathfinder, SetDebugOverlay, bool)
 END_INTERFACE_WRAPPER(Pathfinder)

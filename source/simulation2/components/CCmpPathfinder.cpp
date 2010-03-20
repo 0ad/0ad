@@ -91,7 +91,7 @@ public:
 		m_MapSize = 0;
 		m_Grid = NULL;
 
-		m_DebugOverlay = new PathfinderOverlay(*this);
+		m_DebugOverlay = NULL;
 		m_DebugGrid = NULL;
 		m_DebugPath = NULL;
 	}
@@ -124,11 +124,27 @@ public:
 
 	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal)
 	{
+		if (!m_DebugOverlay)
+			return;
+
 		delete m_DebugGrid;
 		m_DebugGrid = NULL;
 		delete m_DebugPath;
 		m_DebugPath = new Path();
 		ComputePath(x0, z0, goal, *m_DebugPath);
+	}
+
+	virtual void SetDebugOverlay(bool enabled)
+	{
+		if (enabled && !m_DebugOverlay)
+		{
+			m_DebugOverlay = new PathfinderOverlay(*this);
+		}
+		else if (!enabled && m_DebugOverlay)
+		{
+			delete m_DebugOverlay;
+			m_DebugOverlay = NULL;
+		}
 	}
 
 	/**

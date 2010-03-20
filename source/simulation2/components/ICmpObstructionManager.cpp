@@ -22,4 +22,5 @@
 #include "simulation2/system/InterfaceScripted.h"
 
 BEGIN_INTERFACE_WRAPPER(ObstructionManager)
+DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpObstructionManager, SetDebugOverlay, bool)
 END_INTERFACE_WRAPPER(ObstructionManager)

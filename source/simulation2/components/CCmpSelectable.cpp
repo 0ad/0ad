@@ -22,14 +22,13 @@
 
 #include "ICmpPosition.h"
 #include "simulation2/MessageTypes.h"
+#include "simulation2/helpers/Render.h"
 
 #include "graphics/Overlay.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "renderer/Scene.h"
-
-const size_t SELECTION_CIRCLE_POINTS = 16;
 
 class CCmpSelectable : public ICmpSelectable
 {
@@ -119,31 +118,19 @@ public:
 
 		CMatrix3D transform = cmpPosition->GetInterpolatedTransform(frameOffset);
 		CVector3D pos = transform.GetTranslation();
+		// TODO: this is an unnecessarily inefficient way to get X and Z coordinates;
+		// ought to have a GetInterpolated2DPosition instead
 
 		// TODO: should use ICmpFootprint to find the shape
 
 		float radius = 2.f;
-
-		m_Overlay.m_Coords.clear();
-		m_Overlay.m_Coords.reserve((SELECTION_CIRCLE_POINTS + 1) * 3);
-
-		for (size_t i = 0; i <= SELECTION_CIRCLE_POINTS; ++i) // use '<=' so it's a closed loop
-		{
-			float a = i * 2 * M_PI / SELECTION_CIRCLE_POINTS;
-			float x = pos.X + radius * sin(a);
-			float z = pos.Z + radius * cos(a);
-			float y = pos.Y + 0.25f; // TODO: clamp to ground instead
-			m_Overlay.m_Coords.push_back(x);
-			m_Overlay.m_Coords.push_back(y);
-			m_Overlay.m_Coords.push_back(z);
-		}
+		SimRender::ConstructCircleOnGround(context, pos.X, pos.Z, radius, m_Overlay);
 	}
 
 	void RenderSubmit(SceneCollector& collector)
 	{
 		// (This is only called if a > 0)
 
-		// TODO: maybe should do some frustum culling
 		collector.Submit(&m_Overlay);
 	}
 

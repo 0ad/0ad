@@ -80,6 +80,11 @@ public:
 	 */
 	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const Goal& goal) = 0;
 
+	/**
+	 * Toggle the storage and rendering of debug info.
+	 */
+	virtual void SetDebugOverlay(bool enabled) = 0;
+
 	DECLARE_INTERFACE_TYPE(Pathfinder)
 };
 

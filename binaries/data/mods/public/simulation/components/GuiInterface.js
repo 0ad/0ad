@@ -204,6 +204,18 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
 	return false;
 };
 
+GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
+{
+	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
+	cmpPathfinder.SetDebugOverlay(enabled);
+};
+
+GuiInterface.prototype.SetObstructionDebugOverlay = function(player, enabled)
+{
+	var cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	cmpObstructionManager.SetDebugOverlay(enabled);
+};
+
 // List the GuiInterface functions that can be safely called by GUI scripts.
 // (GUI scripts are non-deterministic and untrusted, so these functions must be
 // appropriately careful. They are called with a first argument "player", which is
@@ -214,7 +226,9 @@ var exposedFunctions = {
 	"GetEntityState": 1,
 	"GetTemplateData": 1,
 	"SetSelectionHighlight": 1,
-	"SetBuildingPlacementPreview": 1
+	"SetBuildingPlacementPreview": 1,
+	"SetPathfinderDebugOverlay": 1,
+	"SetObstructionDebugOverlay": 1
 };
 
 GuiInterface.prototype.ScriptCall = function(player, name, args)

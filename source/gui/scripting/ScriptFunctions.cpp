@@ -22,6 +22,7 @@
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "gui/GUIManager.h"
+#include "maths/FixedVector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Overlay.h"

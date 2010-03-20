@@ -21,13 +21,15 @@
 #include "ICmpObstructionManager.h"
 
 #include "simulation2/MessageTypes.h"
+#include "simulation2/helpers/Render.h"
 
+#include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
 #include "maths/FixedVector2D.h"
 #include "maths/MathUtil.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
-#include "renderer/TerrainOverlay.h"
+#include "renderer/Scene.h"
 
 // Externally, tags are opaque non-zero positive integers.
 // Internally, they are tagged (by shape) indexes into shape lists.
@@ -59,11 +61,16 @@ struct Square
 class CCmpObstructionManager : public ICmpObstructionManager
 {
 public:
-	static void ClassInit(CComponentManager& UNUSED(componentManager))
+	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_RenderSubmit); // for debug overlays
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(ObstructionManager)
+
+	bool m_DebugOverlayEnabled;
+	bool m_DebugOverlayDirty;
+	std::vector<SOverlayLine> m_DebugOverlayLines;
 
 	// TODO: using std::map is a bit inefficient; is there a better way to store these?
 	std::map<u32, Circle> m_Circles;
@@ -73,6 +80,9 @@ public:
 
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
+		m_DebugOverlayEnabled = false;
+		m_DebugOverlayDirty = true;
+
 		m_CircleNext = 1;
 		m_SquareNext = 1;
 
@@ -95,6 +105,19 @@ public:
 		Init(context, paramNode);
 
 		// TODO
+	}
+
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
+	{
+		switch (msg.GetType())
+		{
+		case MT_RenderSubmit:
+		{
+			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
+			RenderSubmit(context, msgData.collector);
+			break;
+		}
+		}
 	}
 
 	virtual tag_t AddCircle(entity_pos_t x, entity_pos_t z, entity_pos_t r)
@@ -154,6 +177,16 @@ public:
 
 	virtual bool Rasterise(Grid<u8>& grid);
 
+	virtual void SetDebugOverlay(bool enabled)
+	{
+		m_DebugOverlayEnabled = enabled;
+		m_DebugOverlayDirty = true;
+		if (!enabled)
+			m_DebugOverlayLines.clear();
+	}
+
+	void RenderSubmit(const CSimContext& context, SceneCollector& collector);
+
 private:
 	// To support lazy updates of grid rasterisations of obstruction data,
 	// we maintain a DirtyID here and increment it whenever obstructions change;
@@ -167,6 +200,7 @@ private:
 	void MakeDirty()
 	{
 		++m_DirtyID;
+		m_DebugOverlayDirty = true;
 	}
 
 	/**
@@ -319,4 +353,37 @@ bool CCmpObstructionManager::Rasterise(Grid<u8>& grid)
 	}
 
 	return true;
+}
+
+void CCmpObstructionManager::RenderSubmit(const CSimContext& context, SceneCollector& collector)
+{
+	if (!m_DebugOverlayEnabled)
+		return;
+
+	CColor defaultColour(0, 0, 1, 1);
+
+	// If the shapes have changed, then regenerate all the overlays
+	if (m_DebugOverlayDirty)
+	{
+		m_DebugOverlayLines.clear();
+
+		for (std::map<u32, Circle>::iterator it = m_Circles.begin(); it != m_Circles.end(); ++it)
+		{
+			m_DebugOverlayLines.push_back(SOverlayLine());
+			m_DebugOverlayLines.back().m_Color = defaultColour;
+			SimRender::ConstructCircleOnGround(context, it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.r.ToFloat(), m_DebugOverlayLines.back());
+		}
+
+		for (std::map<u32, Square>::iterator it = m_Squares.begin(); it != m_Squares.end(); ++it)
+		{
+			m_DebugOverlayLines.push_back(SOverlayLine());
+			m_DebugOverlayLines.back().m_Color = defaultColour;
+			SimRender::ConstructSquareOnGround(context, it->second.x.ToFloat(), it->second.z.ToFloat(), it->second.w.ToFloat(), it->second.h.ToFloat(), it->second.a.ToFloat(), m_DebugOverlayLines.back());
+		}
+
+		m_DebugOverlayDirty = false;
+	}
+
+	for (size_t i = 0; i < m_DebugOverlayLines.size(); ++i)
+		collector.Submit(&m_DebugOverlayLines[i]);
 }

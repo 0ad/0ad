@@ -23,7 +23,7 @@
  * Helper functions related to entity selection
  */
 
-#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/system/Entity.h"
 
 #include <vector>
 
