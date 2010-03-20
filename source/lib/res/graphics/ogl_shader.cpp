@@ -102,8 +102,8 @@ static void Ogl_Shader_init(Ogl_Shader* shdr, va_list args)
 	shdr->type = va_arg(args, GLenum);
 }
 
-TIMER_ADD_CLIENT(glCompileShader);
-TIMER_ADD_CLIENT(glLinkProgram);
+TIMER_ADD_CLIENT(tc_compileShader);
+TIMER_ADD_CLIENT(tc_linkProgram);
 
 // Reload the shader object from the source file.
 //
@@ -147,7 +147,7 @@ static LibError Ogl_Shader_reload(Ogl_Shader* shdr, const VfsPath& pathname, Han
 		ogl_WarnIfError();
 
 		{
-			TIMER_ACCRUE(glCompileShader);
+			TIMER_ACCRUE(tc_compileShader);
 			pglCompileShaderARB(shdr->id);
 		}
 
@@ -390,7 +390,7 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname, Hand
 	}
 
 	{
-		TIMER_ACCRUE(glLinkProgram);
+		TIMER_ACCRUE(tc_linkProgram);
 		pglLinkProgramARB(p->id);
 	}
 
