@@ -49,7 +49,13 @@ public:
 
 	virtual LibError Mount(const VfsPath& mountPoint, const fs::wpath& path, size_t flags /* = 0 */, size_t priority /* = 0 */)
 	{
-		RETURN_ERR(CreateDirectories(path, 0700));
+		if(!fs::exists(path))
+		{
+			if(flags & VFS_MOUNT_MUST_EXIST)
+				return ERR::VFS_DIR_NOT_FOUND;	// NOWARN
+			else
+				RETURN_ERR(CreateDirectories(path, 0700));
+		}
 
 		VfsDirectory* directory;
 		CHECK_ERR(vfs_Lookup(mountPoint, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE));

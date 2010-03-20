@@ -51,7 +51,13 @@ enum VfsMountFlags
 	/**
 	 * anything mounted from here should be included when building archives.
 	 **/
-	VFS_MOUNT_ARCHIVABLE = 2
+	VFS_MOUNT_ARCHIVABLE = 2,
+
+	/**
+	 * return ERR::VFS_DIR_NOT_FOUND if the given real path doesn't exist.
+	 * (the default behaviour is to create all real directories in the path)
+	 **/
+	VFS_MOUNT_MUST_EXIST = 4
 };
 
 struct IVFS

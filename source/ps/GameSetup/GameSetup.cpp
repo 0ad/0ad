@@ -531,7 +531,7 @@ static void InitVfs(const CmdLineArgs& args)
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		size_t priority = i;
-		int flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
+		size_t flags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_MUST_EXIST;
 		std::wstring modName (wstring_from_utf8(mods[i]));
 		g_VFS->Mount(L"", AddSlash(modLoosePath/modName), flags, priority);
 		g_VFS->Mount(L"", AddSlash(modArchivePath/modName), flags, priority);
