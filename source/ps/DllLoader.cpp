@@ -29,16 +29,16 @@ void* const HANDLE_UNAVAILABLE = (void*)-1;
 // TODO Use path_util instead, get the actual path to the ps_dbg exe and append
 // the library name.
 
-// note: on Linux, lib is prepended to the SO file name and we need to add ./
-// to make dlopen look in the current working directory
+// note: on Linux, lib is prepended to the SO file name;
+// we don't use a path with '/' so the linker will look in DT_RUNPATH
+// (which we set to $ORIGIN) to find it in the executable's directory
 #if OS_UNIX
-static const char* prefix = "./lib";
+static const char* prefix = "lib";
 #else
 static const char* prefix = "";
 #endif
-// since some of our SOs export a C++ interface, it is critical that
-// compiler options are the same between app and SO; therefore,
-// we need to go with the debug version in debug builds.
+// our SOs export binary-compatible interfaces across debug and release builds,
+// but for debugging/performance we prefer to use the same version as the app.
 // note: on Windows, the extension is replaced with .dll by dlopen.
 #ifndef NDEBUG
 static const char* suffix = "_dbg.so";
