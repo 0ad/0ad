@@ -504,7 +504,14 @@ static void InitVfs(const CmdLineArgs& args)
 
 	fs::wpath logs(paths.Logs());
 	CreateDirectories(logs, 0700);
+
 	psSetLogDir(logs);
+	// desired location for crashlog is now known. update AppHooks ASAP
+	// (particularly before the following error-prone operations):
+	AppHooks hooks = {0};
+	hooks.bundle_logs = psBundleLogs;
+	hooks.get_log_dir = psLogDir;
+	app_hooks_update(&hooks);
 
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
@@ -845,8 +852,6 @@ void Init(const CmdLineArgs& args, int flags)
 	AppHooks hooks = {0};
 	hooks.translate = psTranslate;
 	hooks.translate_free = psTranslateFree;
-	hooks.bundle_logs = psBundleLogs;
-	hooks.get_log_dir = psLogDir;
 	app_hooks_update(&hooks);
 
 	// Set up the console early, so that debugging
