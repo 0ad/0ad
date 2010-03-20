@@ -53,10 +53,13 @@ Paths::Paths(const CmdLineArgs& args)
 		const char* envHome = getenv("HOME");
 		debug_assert(envHome);
 		const fs::wpath home(wstring_from_utf8(envHome));
-		m_data = AddSlash(XDG_Path("XDG_DATA_HOME", home, home/L".local/share/")/subdirectoryName);
-		m_config = AddSlash(XDG_Path("XDG_CONFIG_HOME", home, home/L".config/")/subdirectoryName);
-		m_cache = AddSlash(XDG_Path("XDG_CACHE_HOME", home, home/L".cache/")/subdirectoryName);
-		m_logs = AddSlash(m_config/L"logs");
+		const fs::wpath xdgData = XDG_Path("XDG_DATA_HOME", home, home/L".local/share/")/subdirectoryName;
+		const fs::wpath xdgConfig = XDG_Path("XDG_CONFIG_HOME", home, home/L".config/")/subdirectoryName;
+		const fs::wpath xdgCache = XDG_Path("XDG_CACHE_HOME", home, home/L".cache/")/subdirectoryName;
+		m_data = AddSlash(xdgData);
+		m_cache = AddSlash(xdgCache);
+		m_config = AddSlash(xdgConfig/L"config");
+		m_logs = AddSlash(xdgConfig/L"logs");
 #endif
 	}
 }
