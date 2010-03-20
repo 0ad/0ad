@@ -458,7 +458,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 						}
 						if(!bad)
 						{
-							SetBuffer(L"%ls", m_deqBufHistory.at(iHistoryPos).c_str());
+							SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
 							return;
 						}
 					}
@@ -489,7 +489,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked )
 						}
 						if(!bad)
 						{
-							SetBuffer(L"%ls", m_deqBufHistory.at(iHistoryPos).c_str());
+							SetBuffer(m_deqBufHistory.at(iHistoryPos).c_str());
 							return;
 						}
 					}
@@ -597,16 +597,9 @@ const wchar_t* CConsole::GetBuffer()
 	return( m_szBuffer );
 }
 
-void CConsole::SetBuffer(const wchar_t* szMessage, ...)
+void CConsole::SetBuffer(const wchar_t* szMessage)
 {
 	int oldBufferPos = m_iBufferPos;	// remember since FlushBuffer will set it to 0
-
-	va_list args;
-	wchar_t szBuffer[CONSOLE_BUFFER_SIZE];
-
-	va_start(args, szMessage);
-		vswprintf(szBuffer, CONSOLE_BUFFER_SIZE, szMessage, args);
-	va_end(args);
 
 	FlushBuffer();
 

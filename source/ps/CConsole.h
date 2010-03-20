@@ -61,7 +61,7 @@ public:
 	void SendChatMessage(const wchar_t *szMessage);
 	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
 
-	void SetBuffer(const wchar_t* szMessage, ...) WPRINTF_ARGS(2);
+	void SetBuffer(const wchar_t* szMessage);
 
 	void UseHistoryFile( const VfsPath& filename, int historysize );
 
