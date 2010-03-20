@@ -61,6 +61,12 @@ then
   DLL_EXTN=dll
   LIB_EXTN=lib
   LIB_PREFIX=
+elif [ "`uname -s`" = "Darwin" ]
+then
+  INCLUDE_DIR=include-unix
+  DLL_EXTN=dylib
+  LIB_EXTN=dylib
+  LIB_PREFIX=lib
 else
   INCLUDE_DIR=include-unix
   DLL_EXTN=so
@@ -72,8 +78,8 @@ fi
 mkdir -p ${INCLUDE_DIR}/debug/js
 mkdir -p ${INCLUDE_DIR}/release/js
 mkdir -p lib/
-cp -uL src/build-debug/dist/include/* ${INCLUDE_DIR}/debug/js/
-cp -uL src/build-release/dist/include/* ${INCLUDE_DIR}/release/js/
+cp -L src/build-debug/dist/include/* ${INCLUDE_DIR}/debug/js/
+cp -L src/build-release/dist/include/* ${INCLUDE_DIR}/release/js/
 cp -L src/build-debug/dist/lib/${LIB_PREFIX}mozjs-ps-debug.${LIB_EXTN} lib/
 cp -L src/build-release/dist/lib/${LIB_PREFIX}mozjs-ps-release.${LIB_EXTN} lib/
 cp -L src/build-debug/dist/bin/${LIB_PREFIX}mozjs-ps-debug.${DLL_EXTN} ../../binaries/system/

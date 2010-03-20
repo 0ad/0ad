@@ -38,7 +38,7 @@ public:
 	SColour() { SColourInit( 0.0f, 0.0f, 0.0f, 0.0f ); }
 	SColour( float r_, float g_, float b_ ) { SColourInit( r_, g_, b_, 1.0f ); }
 	SColour( float r_, float g_, float b_, float a_ ) { SColourInit( r_, g_, b_, a_ ); }
-	SColour( const SColour& other ) { SColourInit( other.r, other.g, other.b, other.a ); }
+	SColour( const SColour& other ) : CJSObject<SColour>() { SColourInit( other.r, other.g, other.b, other.a ); }
 	void SColourInit( float r, float g, float b, float a );
 	
 	SColour &operator = (const SColour &o);

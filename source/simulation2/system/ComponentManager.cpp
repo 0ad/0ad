@@ -590,7 +590,8 @@ void CComponentManager::FlushDestroyedComponents()
 	{
 		entity_id_t ent = *it;
 
-		PostMessage(ent, CMessageDestroy(ent));
+		CMessageDestroy msg(ent);
+		PostMessage(ent, msg);
 
 		// Destroy the components, and remove from m_ComponentsByTypeId:
 		std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();

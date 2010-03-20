@@ -33,6 +33,8 @@ class IComponent;
 class ScriptInterface;
 class CMessage;
 class CScriptVal;
+class SceneCollector;
+class CFrustum;
 
 // Hopefully-temporary flag for transition to new simulation system
 extern bool g_UseSimulation2;
@@ -79,6 +81,7 @@ public:
 
 	void Update(float frameTime);
 	void Interpolate(float frameTime);
+	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
 	/**
 	 * Construct a new entity and add it to the world.

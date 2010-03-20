@@ -86,7 +86,8 @@ public:
 		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f).GetTranslation(), CVector3D(200, 60, 0));
 
 		// Latch new position for interpolation
-		test.HandleMessage(cmp, CMessageTurnStart(), false);
+		CMessageTurnStart msg;
+		test.HandleMessage(cmp, msg, false);
 
 		// Move smoothly to new position
 		cmp->MoveTo(entity_pos_t::FromInt(400), entity_pos_t::FromInt(300));

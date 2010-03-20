@@ -146,13 +146,15 @@ void CSimulation2Impl::Update(float frameTime)
 		CFixed_23_8 turnLengthFixed = CFixed_23_8::FromInt(TURN_LENGTH) / 1000;
 		m_DeltaTime -= turnLength;
 
-		m_ComponentManager.BroadcastMessage(CMessageTurnStart());
+		CMessageTurnStart msgTurnStart;
+		m_ComponentManager.BroadcastMessage(msgTurnStart);
 
 		CmpPtr<ICmpCommandQueue> cmpCommandQueue(m_SimContext, SYSTEM_ENTITY);
 		if (!cmpCommandQueue.null())
 			cmpCommandQueue->ProcessCommands();
 
-		m_ComponentManager.BroadcastMessage(CMessageUpdate(turnLengthFixed));
+		CMessageUpdate msgUpdate(turnLengthFixed);
+		m_ComponentManager.BroadcastMessage(msgUpdate);
 
 		// Clean up any entities destroyed during the simulation update
 		m_ComponentManager.FlushDestroyedComponents();
@@ -164,7 +166,8 @@ void CSimulation2Impl::Interpolate(float frameTime)
 	// TODO: Use CTurnManager
 	double turnLength = TURN_LENGTH / 1000.0;
 	float offset = clamp(m_DeltaTime / turnLength + 1.0, 0.0, 1.0);
-	m_ComponentManager.BroadcastMessage(CMessageInterpolate(frameTime, offset));
+	CMessageInterpolate msg(frameTime, offset);
+	m_ComponentManager.BroadcastMessage(msg);
 }
 
 ////////////////////////////////////////////////////////////////
@@ -250,6 +253,12 @@ void CSimulation2::Update(float frameTime)
 void CSimulation2::Interpolate(float frameTime)
 {
 	m->Interpolate(frameTime);
+}
+
+void CSimulation2::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
+{
+	CMessageRenderSubmit msg(collector, frustum, culling);
+	m->m_ComponentManager.BroadcastMessage(msg);
 }
 
 bool CSimulation2::LoadScripts(const VfsPath& path)

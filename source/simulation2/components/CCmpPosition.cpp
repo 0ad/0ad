@@ -352,9 +352,15 @@ public:
 			if (m_Dirty)
 			{
 				if (m_InWorld)
-					context.GetComponentManager().PostMessage(GetEntityId(), CMessagePositionChanged(true, m_X, m_Z, m_RotY));
+				{
+					CMessagePositionChanged msg(true, m_X, m_Z, m_RotY);
+					context.GetComponentManager().PostMessage(GetEntityId(), msg);
+				}
 				else
-					context.GetComponentManager().PostMessage(GetEntityId(), CMessagePositionChanged(false, entity_pos_t(), entity_pos_t(), entity_angle_t()));
+				{
+					CMessagePositionChanged msg(false, entity_pos_t(), entity_pos_t(), entity_angle_t());
+					context.GetComponentManager().PostMessage(GetEntityId(), msg);
+				}
 				m_Dirty = false;
 			}
 

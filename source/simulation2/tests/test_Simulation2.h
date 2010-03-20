@@ -120,7 +120,8 @@ public:
 		TS_ASSERT(sim.QueryInterface(ent3, IID_Test2) == NULL);
 
 		// Messages mustn't get sent to the destroyed components (else we'll crash)
-		sim.BroadcastMessage(CMessageTurnStart());
+		CMessageTurnStart msg;
+		sim.BroadcastMessage(msg);
 	}
 
 	void test_hotload_scripts()
