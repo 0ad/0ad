@@ -207,9 +207,9 @@ function package_set_build_flags()
 		end
 
 		-- To use our local SpiderMonkey library, it needs to be part of the runtime dynamic linker
-		-- path. So try to add the cwd (assuming it'll be binaries/system/) with -rpath:
+		-- path. So add the executable path with -rpath:
 		-- (TODO: is this a sane way to do it?)
-		tinsert(package.linkoptions, {"-Wl,-rpath=."})
+		tinsert(package.linkoptions, {"-Wl,-rpath='$$ORIGIN'"}) -- use Makefile escaping of '$'
 
 		tinsert(package.buildoptions, {
 			-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
