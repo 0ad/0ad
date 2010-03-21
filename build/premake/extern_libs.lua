@@ -165,7 +165,10 @@ extern_lib_defs = {
 		add_func = function()
 			add_extern_lib_paths("sdl")
 			if OS ~= "windows" then
-				pkgconfig("sdl")
+				-- "pkg-config sdl --libs" appears to include both static and dynamic libs
+				-- when on MacPorts, which is bad, so use sdl-config instead
+				tinsert(package.buildoptions, "`sdl-config --cflags`")
+				tinsert(package.gnu_external, "`sdl-config --libs`")
 			end
 		end
 	},
