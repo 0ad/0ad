@@ -68,17 +68,15 @@ int wclosedir(WDIR* wd)
 }
 
 
-int wopen(const wchar_t* pathname, int oflag, ...)
+int wopen(const wchar_t* pathname, int oflag)
 {
-	mode_t mode = S_IRWXG|S_IRWXO|S_IRWXU;
-	if(oflag & O_CREAT)
-	{
-		va_list args;
-		va_start(args, oflag);
-		mode = va_arg(args, mode_t);
-		va_end(args);
-	}
+	debug_assert(!(oflag & O_CREAT));
+	fs::path pathname_c(path_from_wpath(pathname));
+	return open(pathname_c.string().c_str(), oflag);
+}
 
+int wopen(const wchar_t* pathname, int oflag, mode_t mode)
+{
 	fs::path pathname_c(path_from_wpath(pathname));
 	return open(pathname_c.string().c_str(), oflag, mode);
 }

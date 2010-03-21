@@ -327,16 +327,17 @@ int wclosedir(WDIR* d)
 // fcntl.h
 //-----------------------------------------------------------------------------
 
-int wopen(const wchar_t* pathname, int oflag, ...)
+int wopen(const wchar_t* pathname, int oflag)
+{
+	debug_assert(!(oflag & O_CREAT));
+	return wopen(pathname, oflag, _S_IREAD|_S_IWRITE);
+}
+
+int wopen(const wchar_t* pathname, int oflag, mode_t mode_arg)
 {
 	mode_t mode = _S_IREAD|_S_IWRITE;
 	if(oflag & O_CREAT)
-	{
-		va_list args;
-		va_start(args, oflag);
-		mode = va_arg(args, mode_t);
-		va_end(args);
-	}
+		mode = mode_arg;
 
 	WinScopedPreserveLastError s;	// _wsopen_s's CreateFileW
 	int fd;

@@ -74,7 +74,8 @@ extern int wclosedir(WDIR*);
 #define O_NONBLOCK     0x1000000
 #endif
 
-extern int wopen(const wchar_t* pathname, int oflag, ...);
+extern int wopen(const wchar_t* pathname, int oflag);
+extern int wopen(const wchar_t* pathname, int oflag, mode_t mode);
 extern int wclose(int fd);
 
 

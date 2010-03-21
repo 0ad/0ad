@@ -177,20 +177,6 @@ LibError sys_cursor_free(sys_cursor cursor)
 	return INFO::OK;
 }
 
-int sys_wopen(const wchar_t* pathname, int oflag, ...)
-{
-	mode_t mode = 0;
-	if(oflag & O_CREAT)
-	{
-		va_list args;
-		va_start(args, oflag);
-		mode = va_arg(args, mode_t);
-		va_end(args);
-	}
-
-	return open(utf8_from_wstring(pathname).c_str(), oflag, mode);
-}
-
 // note: just use the sector size: Linux aio doesn't really care about
 // the alignment of buffers/lengths/offsets, so we'll just pick a
 // sane value and not bother scanning all drives.

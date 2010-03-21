@@ -28,7 +28,6 @@
 #include "lib/file/file.h"
 
 #include "lib/file/common/file_stats.h"
-#include "lib/sysdep/sysdep.h"	// sys_wopen
 
 
 ERROR_ASSOCIATE(ERR::FILE_ACCESS, L"Insufficient access rights to open file", EACCES);
