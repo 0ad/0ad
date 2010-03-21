@@ -197,3 +197,9 @@ void WaterManager::UnloadWaterTextures()
 	cur_loading_water_tex = 0; // so they will be reloaded if LoadWaterTextures is called again
 	cur_loading_normal_map = 0;
 }
+
+
+bool WaterManager::WillRenderFancyWater()
+{
+	return (g_Renderer.GetCapabilities().m_FragmentShader && g_Renderer.GetOptionBool(CRenderer::OPT_FANCYWATER));
+}

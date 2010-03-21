@@ -413,7 +413,9 @@ void TerrainRenderer::RenderWater()
 {
 	PROFILE( "render water" );
 
-	bool fancy = g_Renderer.m_Options.m_FancyWater;
+	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
+
+	bool fancy = WaterMgr->WillRenderFancyWater();
 
 	// If we're using fancy water, make sure its shader is loaded
 	if(fancy && !m->fancyWaterShader)
@@ -442,7 +444,6 @@ void TerrainRenderer::RenderWater()
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	int mapSize = terrain->GetVerticesPerSide();
 	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);

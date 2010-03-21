@@ -330,6 +330,9 @@ static LibError Ogl_Program_reload(Ogl_Program* p, const VfsPath& pathname, Hand
 
 	ogl_WarnIfError();
 	
+	// Check that we're not accidentally using shaders when they're not supported
+	debug_assert(pglCreateProgramObjectARB != NULL);
+
 	p->id = pglCreateProgramObjectARB();
 	if (!p->id)
 	{

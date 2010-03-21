@@ -95,6 +95,12 @@ public:
 	 */
 	void UnloadWaterTextures();
 
+	/**
+	 * Returns true if fancy water shaders will be used (i.e. the hardware is capable
+	 * and it hasn't been configured off)
+	 */
+	bool WillRenderFancyWater();
+
 private:
 	/// State of progressive loading (in # of loaded textures)
 	size_t cur_loading_water_tex;

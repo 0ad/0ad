@@ -432,6 +432,7 @@ void CRenderer::EnumCaps()
 	m_Caps.m_TextureBorderClamp=false;
 	m_Caps.m_GenerateMipmaps=false;
 	m_Caps.m_VertexShader=false;
+	m_Caps.m_FragmentShader=false;
 	m_Caps.m_DepthTextureShadows = false;
 	m_Caps.m_FramebufferObject = false;
 
@@ -451,6 +452,8 @@ void CRenderer::EnumCaps()
 	{
 		if (ogl_HaveExtension("GL_ARB_vertex_shader"))
 			m_Caps.m_VertexShader=true;
+		if (ogl_HaveExtension("GL_ARB_fragment_shader"))
+			m_Caps.m_FragmentShader=true;
 	}
 
 	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", NULL)) {
@@ -1054,7 +1057,7 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& cp, int sign)
 // RenderReflections: render the water reflections to the reflection texture
 void CRenderer::RenderReflections()
 {
-	MICROLOG(L"render reflections");
+	PROFILE("render reflections");
 
 	WaterManager& wm = m->waterManager;
 
@@ -1130,7 +1133,7 @@ void CRenderer::RenderReflections()
 // RenderRefractions: render the water refractions to the refraction texture
 void CRenderer::RenderRefractions()
 {
-	MICROLOG(L"render refractions");
+	PROFILE("render refractions");
 
 	WaterManager& wm = m->waterManager;
 
@@ -1231,7 +1234,7 @@ void CRenderer::RenderSubmissions()
 
 	ogl_WarnIfError();
 
-	if (m_WaterManager->m_RenderWater && m_Options.m_FancyWater)
+	if (m_WaterManager->m_RenderWater && m_WaterManager->WillRenderFancyWater())
 	{
 		// render reflected and refracted scenes, then re-clear the screen
 		RenderReflections();

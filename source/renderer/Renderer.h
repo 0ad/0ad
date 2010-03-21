@@ -151,6 +151,7 @@ public:
 		bool m_TextureBorderClamp;
 		bool m_GenerateMipmaps;
 		bool m_VertexShader;
+		bool m_FragmentShader;
 		bool m_DepthTextureShadows;
 		bool m_FramebufferObject;
 	};
