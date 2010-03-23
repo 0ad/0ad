@@ -447,6 +447,14 @@ bool ScriptInterface::Eval_(const char* code, jsval& rval)
 	return ok ? true : false;
 }
 
+bool ScriptInterface::Eval_(const wchar_t* code, jsval& rval)
+{
+	utf16string codeUtf16(code, code+wcslen(code));
+
+	JSBool ok = JS_EvaluateUCScript(m->m_cx, m->m_glob, (const jschar*)codeUtf16.c_str(), (uintN)codeUtf16.length(), "(eval)", 1, &rval);
+	return ok ? true : false;
+}
+
 void ScriptInterface::ReportError(const char* msg)
 {
 	// JS_ReportError by itself doesn't seem to set a JS-style exception, and so

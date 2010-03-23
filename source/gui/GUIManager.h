@@ -61,6 +61,11 @@ public:
 	// (There must be at least two pages when you call this.)
 	void PopPage();
 
+	/**
+	 * Display a modal message box with an "OK" button.
+	 */
+	void DisplayMessageBox(int width, int height, const CStrW& title, const CStrW& message);
+
 	// Hotload pages when their .xml files have changed
 	LibError ReloadChangedFiles(const VfsPath& path);
 

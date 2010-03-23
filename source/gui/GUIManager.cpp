@@ -100,6 +100,21 @@ void CGUIManager::PopPage()
 	m_PageStack.pop_back();
 }
 
+void CGUIManager::DisplayMessageBox(int width, int height, const CStrW& title, const CStrW& message)
+{
+	// Set up scripted init data for the standard message box window
+	CScriptValRooted data;
+	m_ScriptInterface.Eval("({})", data);
+	m_ScriptInterface.SetProperty(data.get(), "width", width, false);
+	m_ScriptInterface.SetProperty(data.get(), "height", height, false);
+	m_ScriptInterface.SetProperty(data.get(), "mode", 2, false);
+	m_ScriptInterface.SetProperty(data.get(), "font", std::string("verdana16"), false);
+	m_ScriptInterface.SetProperty(data.get(), "title", std::wstring(title), false);
+	m_ScriptInterface.SetProperty(data.get(), "message", std::wstring(message), false);
+
+	// Display the message box
+	PushPage(L"page_msgbox.xml", data.get());
+}
 
 void CGUIManager::LoadPage(SGUIPage& page)
 {

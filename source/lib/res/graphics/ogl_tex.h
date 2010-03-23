@@ -426,4 +426,14 @@ extern LibError ogl_tex_transform(Handle ht, size_t flags);
 */
 extern LibError ogl_tex_transform_to(Handle ht, size_t new_flags);
 
+/**
+ * Return whether native S3TC texture compression support is available.
+ * If not, textures will be decompressed automatically, hurting performance.
+ *
+ * @return true if native S3TC supported
+ *
+ * ogl_tex_upload must be called at least once before this.
+ */
+extern bool ogl_tex_has_s3tc();
+
 #endif	// #ifndef INCLUDED_OGL_TEX

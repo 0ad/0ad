@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <objects>
-	<script>
+	<script><![CDATA[
 	function init(data)
 	{
-		var mbMainObj = getGUIObjectByName ("mbMain");
-		var mbTitleObj = getGUIObjectByName ("mbTitleBar");
-		var mbTextObj = getGUIObjectByName ("mbText");
+		var mbMainObj = getGUIObjectByName("mbMain");
+		var mbTitleObj = getGUIObjectByName("mbTitleBar");
+		var mbTextObj = getGUIObjectByName("mbText");
 		
-		var mbButton1Obj = getGUIObjectByName ("mbButton1");
-		var mbButton2Obj = getGUIObjectByName ("mbButton2");
-		var mbButton3Obj = getGUIObjectByName ("mbButton3");
+		var mbButton1Obj = getGUIObjectByName("mbButton1");
+		var mbButton2Obj = getGUIObjectByName("mbButton2");
+		var mbButton3Obj = getGUIObjectByName("mbButton3");
 
 		// Calculate size
 		var mbLRDiff = data.width / 2;     // Message box left/right difference from 50% of screen
@@ -23,6 +23,9 @@
 		// Texts
 		mbTitleObj.caption	= data.title;
 		mbTextObj.caption 	= data.message;
+
+		if (data.font)
+			mbTextObj.font = data.font;
 
 		// Message box modes
 		// There is a number of standard modes, and if none of these is used (mbMode == 0), the button captions will be
@@ -49,19 +52,19 @@
 		if (data.buttonCaptions.length >= 1)
 		{
 			mbButton1Obj.caption = data.buttonCaptions[0];
-			mbButton1Obj.onPress = function () { Engine.PopGuiPage(); if (codes[0]) codes[0](); }
+			mbButton1Obj.onPress = function () { Engine.PopGuiPage(); if (codes && codes[0]) codes[0](); }
 			mbButton1Obj.hidden = false;
 		}
 		if (data.buttonCaptions.length >= 2)
 		{
 			mbButton2Obj.caption = data.buttonCaptions[1];
-			mbButton2Obj.onPress = function () { Engine.PopGuiPage(); if (codes[1]) codes[1](); }
+			mbButton2Obj.onPress = function () { Engine.PopGuiPage(); if (codes && codes[1]) codes[1](); }
 			mbButton2Obj.hidden = false;
 		}
 		if (data.buttonCaptions.length >= 3)
 		{
 			mbButton3Obj.caption = data.buttonCaptions[2];
-			mbButton3Obj.onPress = function () { Engine.PopGuiPage(); if (codes[2]) codes[2](); }
+			mbButton3Obj.onPress = function () { Engine.PopGuiPage(); if (codes && codes[2]) codes[2](); }
 			mbButton3Obj.hidden = false;
 		}
 
@@ -81,18 +84,16 @@
 			break;
 		}
 	}
-	</script>
+	]]></script>
 	<object>
 		<object name="mbMain"
 			style="wheatWindow"
 			type="image"
-			size="50%-400 50%-200 50%+400 50%+200" 
-			z="198"
 		>
 
 			<object name="mbTitleBar"
 				style="wheatWindowTitleBar"
-				type="button"
+				type="text"
 			/>
 
 			<object name="mbText"
@@ -120,7 +121,6 @@
 				size="66%+30 100%-50 100%-40 100%-20"
 			/>
 		</object>
-
 	</object>
 
 </objects>

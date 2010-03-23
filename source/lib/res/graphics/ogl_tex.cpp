@@ -704,8 +704,10 @@ static void detect_gl_upload_caps()
 	}
 
 	// warn if more-or-less essential features are missing
+	// (but don't use DEBUG_DISPLAY_ERROR; the app should check ogl_tex_has_s3tc
+	// and give friendlier error messages, since this is a common problem)
 	if(!have_s3tc)
-		DEBUG_DISPLAY_ERROR(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.");
+		debug_printf(L"Performance warning: your graphics card does not support compressed textures. The game will try to continue anyway, but may be slower than expected. Please try updating your graphics drivers; if that doesn't help, please try upgrading your hardware.\n");
 }
 
 
@@ -1006,4 +1008,14 @@ LibError ogl_tex_transform_to(Handle ht, size_t new_flags)
 	H_DEREF(ht, OglTex, ot);
 	LibError ret = tex_transform_to(&ot->t, new_flags);
 	return ret;
+}
+
+
+// return whether native S3TC support is available
+bool ogl_tex_has_s3tc()
+{
+	// ogl_tex_upload must be called before this
+	debug_assert(have_s3tc != -1);
+
+	return have_s3tc;
 }

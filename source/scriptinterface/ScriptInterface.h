@@ -136,7 +136,7 @@ public:
 
 	bool Eval(const char* code);
 
-	template<typename T> bool Eval(const char* code, T& out);
+	template<typename T, typename CHAR> bool Eval(const CHAR* code, T& out);
 
 	/**
 	 * Report the given error message through the JS error reporting mechanism,
@@ -188,6 +188,7 @@ public:
 private:
 	bool CallFunction_(jsval val, const char* name, std::vector<jsval>& args, jsval& ret);
 	bool Eval_(const char* code, jsval& ret);
+	bool Eval_(const wchar_t* code, jsval& ret);
 	bool SetGlobal_(const char* name, jsval value, bool replace);
 	bool SetProperty_(jsval obj, const char* name, jsval value, bool readonly);
 	bool GetProperty_(jsval obj, const char* name, jsval& value);
@@ -317,8 +318,8 @@ bool ScriptInterface::GetProperty(jsval obj, const char* name, T& out)
 	return FromJSVal(GetContext(), val, out);
 }
 
-template<typename T>
-bool ScriptInterface::Eval(const char* code, T& ret)
+template<typename T, typename CHAR>
+bool ScriptInterface::Eval(const CHAR* code, T& ret)
 {
 	jsval rval;
 	if (! Eval_(code, rval))
