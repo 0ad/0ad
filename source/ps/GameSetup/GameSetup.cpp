@@ -590,7 +590,7 @@ static void InitPs(bool setup_gui)
 			g_GUI->DisplayMessageBox(600, 350, L"Warning",
 				L"Performance warning:\n\n"
 				L"Your graphics drivers do not support S3TC compressed textures. This will significantly reduce performance and increase memory usage.\n\n"
-#if OS_LINUX
+#if !(OS_WIN || OS_MACOSX)
 				L"See http://dri.freedesktop.org/wiki/S3TC for details. "
 				L"Installing the libtxc_dxtn library will fix these problems. "
 				L"Alternatively, running 'driconf' and setting force_s3tc_enable will fix the performance but may cause rendering bugs."
