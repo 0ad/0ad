@@ -262,7 +262,7 @@ void ViewGame::RestoreState(const std::wstring& label)
 std::wstring ViewGame::DumpState(bool binary)
 {
 	if (! g_UseSimulation2)
-		return L"The game isn't using the new simulation system - use the -sim2 command-line flag if you want that";
+		return L"The game isn't using the new simulation system";
 
 	std::stringstream stream;
 	if (binary)

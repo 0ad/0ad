@@ -384,10 +384,10 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// might run Atlas.
 	CXeromyces::Startup();
 
-	// allow switching to new simulation system, before any
+	// allow switching to old simulation system, before any
 	// other init code makes use of it
-	if (args.Has("sim2"))
-		g_UseSimulation2 = true;
+	if (args.Has("sim1"))
+		g_UseSimulation2 = false;
 
 	// run Atlas (if requested via args)
 	bool ran_atlas = ATLAS_RunIfOnCmdLine(args);

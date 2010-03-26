@@ -154,14 +154,15 @@ function updateUnitDisplay()
 
 	if (entState.attack) // TODO - this should be based on some AI properties
 	{
-		usedPanels["Stance"] = 1;
-		usedPanels["Formation"] = 1;
+		//usedPanels["Stance"] = 1;
+		//usedPanels["Formation"] = 1;
+		// (These are disabled since they're not implemented yet)
 	}
 	else // TODO - this should be based on various other things
 	{
-		usedPanels["Queue"] = 1;
-		usedPanels["Training"] = 1;
-		usedPanels["Research"] = 1;
+		//usedPanels["Queue"] = 1;
+		//usedPanels["Training"] = 1;
+		//usedPanels["Research"] = 1;
 	}
 
 	// Set up the unit construction buttons
