@@ -48,9 +48,7 @@
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
-#ifdef USE_VALGRIND
-# include <valgrind/valgrind.h>
-#endif
+#include "valgrind.h"
 
 #define FAIL(msg) do { JS_ReportError(cx, msg); return false; } while (false)
 
@@ -516,10 +514,8 @@ namespace
 			wxLogWarning(_T("%s"), logMessage.c_str());
 		else
 			wxLogError(_T("%s"), logMessage.c_str());
-#ifdef USE_VALGRIND
 		// When running under Valgrind, print more information in the error message
 		VALGRIND_PRINTF_BACKTRACE("->");
-#endif
 		wxPrintf(_T("wxJS %s: %s\n--------\n"), isWarning ? _T("warning") : _T("error"), logMessage.c_str());
 	}
 

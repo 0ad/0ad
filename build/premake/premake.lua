@@ -6,7 +6,6 @@ addoption("icc", "Use Intel C++ Compiler (Linux only; should use either \"--cc i
 addoption("outpath", "Location for generated project files")
 addoption("without-tests", "Disable generation of test projects")
 addoption("without-pch", "Disable generation and usage of precompiled headers")
-addoption("with-valgrind", "Enable using valgrind for debugging functionality")
 
 use_dcdt = false -- disable it since it's a non-Free library
 
@@ -246,9 +245,6 @@ function package_set_build_flags()
 		if use_dcdt then
 			tinsert(package.defines, "USE_DCDT")
 		end
-		if options["with-valgrind"] then
-			tinsert(package.defines, "USE_VALGRIND")
-		end
 	end
 end
 
@@ -429,6 +425,7 @@ function setup_all_libs ()
 	extern_libs = {
 		"boost",
 		"spidermonkey",
+		"valgrind",
 	}
 	setup_static_lib_package("scriptinterface", source_dirs, extern_libs, {})
 
@@ -772,7 +769,8 @@ function setup_atlas_packages()
 	},{	-- extern_libs
 		"boost",
 		"spidermonkey",
-		"wxwidgets"
+		"valgrind",
+		"wxwidgets",
 	},{	-- extra_params
 	})
 
