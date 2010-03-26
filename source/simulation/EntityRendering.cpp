@@ -162,7 +162,7 @@ void CEntity::RenderSelectionOutline( float alpha )
 			float radius = ((CBoundingCircle*)m_bounds)->m_radius;
 			for( int i = 0; i < SELECTION_CIRCLE_POINTS; i++ )
 			{
-				float ang = i * 2 * M_PI / (float)SELECTION_CIRCLE_POINTS;
+				float ang = i * 2 * (float)M_PI / SELECTION_CIRCLE_POINTS;
 				float x = pos.X + radius * sin( ang );
 				float y = pos.Z + radius * cos( ang );
 #ifdef SELECTION_TERRAIN_CONFORMANCE

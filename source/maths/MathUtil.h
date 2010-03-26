@@ -18,8 +18,8 @@
 #ifndef INCLUDED_MATHUTIL
 #define INCLUDED_MATHUTIL
 
-#define DEGTORAD(a)					((a) * (M_PI/180.0f))
-#define RADTODEG(a)					((a) * (180.0f/M_PI))
+#define DEGTORAD(a)					((a) * ((float)M_PI/180.0f))
+#define RADTODEG(a)					((a) * (180.0f/(float)M_PI))
 #define SQR(x)						((x) * (x))
 
 template <typename T>

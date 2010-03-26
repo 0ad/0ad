@@ -334,9 +334,9 @@ public:
 			float rotY = m_RotY.ToFloat();
 			float delta = rotY - m_InterpolatedRotY;
 			// Wrap delta to -M_PI..M_PI
-			delta = fmod(delta + M_PI, 2*M_PI); // range -2PI..2PI
-			if (delta < 0) delta += 2*M_PI; // range 0..2PI
-			delta -= M_PI; // range -M_PI..M_PI
+			delta = fmod(delta + (float)M_PI, 2*(float)M_PI); // range -2PI..2PI
+			if (delta < 0) delta += 2*(float)M_PI; // range 0..2PI
+			delta -= (float)M_PI; // range -M_PI..M_PI
 			// Clamp to max rate
 			float deltaClamped = clamp(delta, -m_RotYSpeed*msgData.frameTime, +m_RotYSpeed*msgData.frameTime);
 			// Calculate new orientation, in a peculiar way in order to make sure the

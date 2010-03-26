@@ -84,7 +84,7 @@ float CEntity::ChooseMovementSpeed( float distance )
 
 	// Modify the speed based on the slope of the terrain in our direction (obtained from our x orientation)
 	float angle = m_orientation_unclamped.x;
-	int sector = rintf( angle / (M_PI/2) * m_base->m_pitchDivs );
+	int sector = rintf( angle / ((float)M_PI/2) * m_base->m_pitchDivs );
 	speed -= sector * m_base->m_pitchValue;
 
 	entf_set_to(ENTF_IS_RUNNING, should_run);
@@ -130,8 +130,8 @@ int CEntity::ProcessGotoHelper( CEntityOrder* current, int timestep_millis, HEnt
 
 	m_targetorientation = atan2( delta.x, delta.y );
 	float deltatheta = m_targetorientation - (float)m_orientation.Y;
-	while( deltatheta > M_PI ) deltatheta -= 2 * M_PI;
-	while( deltatheta < -M_PI ) deltatheta += 2 * M_PI;
+	while( deltatheta > (float)M_PI ) deltatheta -= 2 * (float)M_PI;
+	while( deltatheta < -(float)M_PI ) deltatheta += 2 * (float)M_PI;
 
 	if( fabs( deltatheta ) > 0.01f )
 	{
@@ -336,7 +336,7 @@ bool CEntity::ProcessGotoNoPathing( CEntityOrder* current, int timestep_millis )
 		{
 			delta = interval / r;
 			theta += delta;
-			r += ( interval * delta ) / ( 2 * M_PI );
+			r += ( interval * delta ) / ( 2 * (float)M_PI );
 			destinationObs.SetPosition( _x + r * cosf( theta ), _y + r * sinf( theta ) );
 			if( !GetCollisionObject( &destinationObs ) ) break;
 		}

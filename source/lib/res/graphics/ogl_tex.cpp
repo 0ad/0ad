@@ -1017,5 +1017,5 @@ bool ogl_tex_has_s3tc()
 	// ogl_tex_upload must be called before this
 	debug_assert(have_s3tc != -1);
 
-	return have_s3tc;
+	return (have_s3tc != 0);
 }

@@ -154,7 +154,7 @@ JSBool CEntity::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc, jsv
 	debug_assert( argc >= 2 );
 
 	CVector3D position;
-	float orientation = g_Game->GetSimulation()->RandFloat() * 2 * M_PI;
+	float orientation = g_Game->GetSimulation()->RandFloat() * 2 * (float)M_PI;
 
 	JSObject* jsEntityTemplate = JSVAL_TO_OBJECT( argv[0] );
 	CStrW templateName;
@@ -502,10 +502,10 @@ jsval_t CEntity::GetSpawnPoint( JSContext* UNUSED(cx), uintN argc, jsval* argv )
 	else if( m_bounds->m_type == CBoundingObject::BOUND_CIRCLE )
 	{
 		float ang;
-		ang = g_Game->GetSimulation()->RandFloat() * 2 * M_PI;
+		ang = g_Game->GetSimulation()->RandFloat() * 2 * (float)M_PI;
 		float radius = m_bounds->m_radius + 1.0f + spawn_clearance;
 		float d_ang = spawn_clearance / ( 2.0f * radius );
-		float ang_end = ang + 2.0f * M_PI;
+		float ang_end = ang + 2.0f * (float)M_PI;
 		float x = 0.0f, y = 0.0f; // make sure they're initialized
 		for( ; ang < ang_end; ang += d_ang )
 		{

@@ -53,7 +53,7 @@
 
 #include "ps/GameSetup/Config.h"
 
-const float MAX_ROTATION_RATE = 2*M_PI; // radians per second
+const float MAX_ROTATION_RATE = 2*(float)M_PI; // radians per second
 
 CEntity::CEntity( CEntityTemplate* base, CVector3D position, float orientation, const std::set<CStr8>& actorSelections, const CStrW* building )
 {
@@ -235,7 +235,7 @@ void CEntity::initAuraData()
 
 		for ( int j=0; j<AURA_CIRCLE_POINTS; ++j )
 		{
-			float val = j * 2*M_PI / (float)AURA_CIRCLE_POINTS;
+			float val = j * 2*(float)M_PI / AURA_CIRCLE_POINTS;
 			m_unsnappedPoints[i][j] = CVector2D( cosf(val)*radius, 
 											sinf(val)*radius );
 		}
@@ -461,9 +461,9 @@ void CEntity::Update( int timestep )
 
 	float delta = m_orientation.Y - m_orientation_smoothed.Y;
 	// Wrap delta to -M_PI..M_PI
-	delta = fmod(delta + M_PI, 2*M_PI); // range -2PI..2PI
-	if (delta < 0) delta += 2*M_PI; // range 0..2PI
-	delta -= M_PI; // range -M_PI..M_PI
+	delta = fmod(delta + (float)M_PI, 2*(float)M_PI); // range -2PI..2PI
+	if (delta < 0) delta += 2*(float)M_PI; // range 0..2PI
+	delta -= (float)M_PI; // range -M_PI..M_PI
 	// Clamp to max rate
 	float deltaClamped = clamp(delta, -MAX_ROTATION_RATE*timestep/1000.f, +MAX_ROTATION_RATE*timestep/1000.f);
 	// Calculate new orientation, in a peculiar way in order to make sure the
@@ -1039,24 +1039,24 @@ void CEntity::Interpolate( float relativeoffset )
 
 	// Avoid wraparound glitches for interpolating angles.
 	
-	m_orientation.X = fmodf(m_orientation.X, 2*M_PI); // (ensure the following loops can't take forever)
-	m_orientation.Y = fmodf(m_orientation.Y, 2*M_PI);
-	m_orientation.Z = fmodf(m_orientation.Z, 2*M_PI);
+	m_orientation.X = fmodf(m_orientation.X, 2*(float)M_PI); // (ensure the following loops can't take forever)
+	m_orientation.Y = fmodf(m_orientation.Y, 2*(float)M_PI);
+	m_orientation.Z = fmodf(m_orientation.Z, 2*(float)M_PI);
 
-	while( m_orientation.Y < m_orientation_previous.Y - M_PI )
-		m_orientation_previous.Y -= 2 * M_PI;
-	while( m_orientation.Y > m_orientation_previous.Y + M_PI )
-		m_orientation_previous.Y += 2 * M_PI;
+	while( m_orientation.Y < m_orientation_previous.Y - (float)M_PI )
+		m_orientation_previous.Y -= 2 * (float)M_PI;
+	while( m_orientation.Y > m_orientation_previous.Y + (float)M_PI )
+		m_orientation_previous.Y += 2 * (float)M_PI;
 
-	while( m_orientation.X < m_orientation_previous.X - M_PI )
-		m_orientation_previous.X -= 2 * M_PI;
-	while( m_orientation.X > m_orientation_previous.X + M_PI )
-		m_orientation_previous.X += 2 * M_PI;
+	while( m_orientation.X < m_orientation_previous.X - (float)M_PI )
+		m_orientation_previous.X -= 2 * (float)M_PI;
+	while( m_orientation.X > m_orientation_previous.X + (float)M_PI )
+		m_orientation_previous.X += 2 * (float)M_PI;
 
-	while( m_orientation.Z < m_orientation_previous.Z - M_PI )
-		m_orientation_previous.Z -= 2 * M_PI;
-	while( m_orientation.Z > m_orientation_previous.Z + M_PI )
-		m_orientation_previous.Z += 2 * M_PI;
+	while( m_orientation.Z < m_orientation_previous.Z - (float)M_PI )
+		m_orientation_previous.Z -= 2 * (float)M_PI;
+	while( m_orientation.Z > m_orientation_previous.Z + (float)M_PI )
+		m_orientation_previous.Z += 2 * (float)M_PI;
 
 	UpdateXZOrientation();
 

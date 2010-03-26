@@ -1110,7 +1110,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 			if (unit)
 			{
 				CMatrix3D m;
-				m.SetYRotation(Orientation + M_PI);
+				m.SetYRotation(Orientation + (float)M_PI);
 				m.Translate(Position);
 				unit->GetModel()->SetTransform(m);
 

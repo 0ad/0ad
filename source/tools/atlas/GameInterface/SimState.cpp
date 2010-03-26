@@ -85,7 +85,7 @@ CUnit* SimState::Nonentity::Thaw()
 	if (! unit)
 		return NULL;
 	CMatrix3D m;
-	m.SetYRotation(angle + M_PI);
+	m.SetYRotation(angle + (float)M_PI);
 	m.Translate(position);
 	unit->GetModel()->SetTransform(m);
 

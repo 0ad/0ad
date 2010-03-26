@@ -38,7 +38,7 @@ void SimRender::ConstructCircleOnGround(const CSimContext& context, float x, flo
 
 	for (size_t i = 0; i <= RENDER_CIRCLE_POINTS; ++i) // use '<=' so it's a closed loop
 	{
-		float a = i * 2 * M_PI / RENDER_CIRCLE_POINTS;
+		float a = i * 2 * (float)M_PI / RENDER_CIRCLE_POINTS;
 		float px = x + radius * sin(a);
 		float pz = z + radius * cos(a);
 		float py = cmpTerrain->GetGroundLevel(px, pz) + RENDER_HEIGHT_DELTA;
