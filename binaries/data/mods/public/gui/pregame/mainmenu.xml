@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
-
-<!DOCTYPE objects SYSTEM "../gui.dtd">
+<?xml version="1.0" encoding="utf-8"?>
 
 <objects>
 
@@ -68,6 +66,25 @@
 		type="image"
 		sprite="pgBackground"
 	>
+		<!--
+		==========================================
+		- MAIN MENU - PRE-RELEASE WARNING
+		==========================================
+		-->
+
+		<object
+			style="fancyTextHeadWhite"
+			type="text"
+			sprite="bkTranslucent"
+			font="verdana14"
+			textcolor="255 255 0"
+			size="4 4 230 300"
+>[font=verdana16]WARNING[/font]
+This is an under-development unpolished snapshot. Some major components have been rewritten recently, and many gameplay features are still missing.
+
+Watch for updates or get involved in the development: http://wildfiregames.com/0ad/
+		</object>		
+
 		<!--
 		==========================================
 		- MAIN MENU - STATIC TOOLTIP WINDOW
@@ -286,7 +303,7 @@
 			size="43% 24% 43%+282 24%+25"
 		>
 			<action on="Load"><![CDATA[
-				this.caption = "Build: " + buildTime(0) + " " + getLanguageID();
+				this.caption = "Build: " + buildTime(0) + " - " + buildTime(2);
 			]]></action>
 		</object>
 
@@ -304,8 +321,8 @@
 			tooltip="These are the guys who made this game. Visit them at http://www.wildfiregames.com/0ad/"
 		>
 			<action on="Press"><![CDATA[
-				messageBox (420, 420, "[icon=iconProduct] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2005\n\nVersion 0.1.2 (PASAP II)\n\n" +
-				"This is a confidental pre-release version of the game!\n\nVisit http://www.wildfiregames.com/0ad/ " +
+				messageBox (420, 320, "[icon=iconProduct] A.D. - History Is Yours For The Taking\nby Wildfire Games, 2002-2010\n\n" +
+				"Visit http://www.wildfiregames.com/0ad/ " +
 				"to learn more about [icon=iconProduct] A.D., participate in the community and meet the developers.\n\n", "About [icon=iconProduct] A.D.", 2, [], []);
 			]]></action>
 		</object>

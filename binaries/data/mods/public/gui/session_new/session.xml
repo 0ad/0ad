@@ -32,25 +32,29 @@
 			hotkey="leave"
 		>
 			<action on="Press"><![CDATA[
+				function leaveGame() {
+					endGame();
+					Engine.SwitchGuiPage("page_pregame.xml");
+				}
 				messageBox(400, 200, "Do you really want to quit?", "Confirmation", 0,
-					["Yes", "No!"], [confirmLeave, null]);
+					["Yes", "No!"], [leaveGame, null]);
 			]]></action>
 		</object>
 
 		<!-- Dev/cheat commands -->
-		<object size="100%-256 32 100%-16 128">
-			<object size="0 0 100%-18 16" type="text" text_align="right">Control all units</object>
+		<object size="100%-170 32 100%-16 96" type="image" sprite="devCommandsBackground">
+			<object size="0 0 100%-18 16" type="text" style="devCommandsText">Control all units</object>
 			<object size="100%-16 0 100% 16" type="checkbox" name="devControlAll" style="wheatCrossBox"/>
 
-			<object size="0 16 100%-18 32" type="text" text_align="right">Display selection state</object>
+			<object size="0 16 100%-18 32" type="text" style="devCommandsText">Display selection state</object>
 			<object size="100%-16 16 100% 32" type="checkbox" name="devDisplayState" style="wheatCrossBox"/>
 
-			<object size="0 32 100%-18 48" type="text" text_align="right">Pathfinder overlay</object>
+			<object size="0 32 100%-18 48" type="text" style="devCommandsText">Pathfinder overlay</object>
 			<object size="100%-16 32 100% 48" type="checkbox" style="wheatCrossBox">
 				<action on="Press">Engine.GuiInterfaceCall("SetPathfinderDebugOverlay", this.checked);</action>
 			</object>
 
-			<object size="0 48 100%-18 64" type="text" text_align="right">Obstruction overlay</object>
+			<object size="0 48 100%-18 64" type="text" style="devCommandsText">Obstruction overlay</object>
 			<object size="100%-16 48 100% 64" type="checkbox" style="wheatCrossBox">
 				<action on="Press">Engine.GuiInterfaceCall("SetObstructionDebugOverlay", this.checked);</action>
 			</object>
