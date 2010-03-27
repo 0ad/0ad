@@ -162,7 +162,6 @@ void CSimulation::Interpolate(double frameTime, double offset)
 
 	g_EntityManager.InterpolateAll(offset);
 	m_pWorld->GetProjectileManager().InterpolateAll(offset);
-	g_Renderer.GetWaterManager()->m_WaterTexTimer += frameTime;
 }
 
 void CSimulation::Simulate()
