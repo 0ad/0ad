@@ -21,9 +21,11 @@
 // Need SDLK_* enum values.
 #include "lib/external_libraries/sdl.h"
 
+class CStr8;
+
 extern void InitKeyNameMap();
-extern CStr FindKeyName( int keycode );
-extern int FindKeyCode( const CStr& keyname );
+extern CStr8 FindKeyName( int keycode );
+extern int FindKeyCode( const CStr8& keyname );
 
 enum {
 	// 'Keycodes' for the mouse buttons

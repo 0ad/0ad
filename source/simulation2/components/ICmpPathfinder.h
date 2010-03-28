@@ -22,6 +22,8 @@
 
 #include "simulation2/helpers/Position.h"
 
+#include <vector>
+
 /**
  * Pathfinder algorithm.
  *

@@ -28,8 +28,12 @@ that of Atlas depending on commandline parameters.
 
 // not for any PCH effort, but instead for the (common) definitions
 // included there.
+#define MINIMAL_PCH 2
 #include "lib/precompiled.h"
 
+#include "lib/debug.h"
+#include "lib/lib_errors.h"
+#include "lib/secure_crt.h"
 #include "lib/frequency_filter.h"
 #include "lib/input.h"
 #include "lib/ogl.h"
