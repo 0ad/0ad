@@ -139,7 +139,7 @@ static int SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	ogl_Init();	// required after each mode change
 
 	if(SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
-		debug_warn(L"SDL_SetGamma failed");
+		LOGWARNING(L"SDL_SetGamma failed");
 
 	return 0;
 }

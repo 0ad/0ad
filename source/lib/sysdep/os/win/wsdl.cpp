@@ -141,7 +141,9 @@ private:
 		SetLastError(0);
 		debug_assert(wutil_IsValidHandle(g_hDC));
 		const BOOL ok = SetDeviceGammaRamp(g_hDC, ramps);
-		debug_assert(ok);
+		// The call often fails, especially on multi-monitor systems, and we don't
+		// know how to fix/avoid the underlying problem, so just ignore the failure here
+		//debug_assert(ok);
 		return !!ok;
 	}
 
