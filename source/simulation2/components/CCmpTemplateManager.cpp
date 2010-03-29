@@ -213,7 +213,7 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 		if (!LoadTemplateFile(baseName, depth+1))
 		{
 			LOGERROR(L"Failed to load entity template '%ls'", baseName.c_str());
-			return NULL;
+			return false;
 		}
 		// Copy a subset to the requested template
 		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
@@ -228,7 +228,7 @@ bool CCmpTemplateManager::LoadTemplateFile(const std::wstring& templateName, int
 		if (!LoadTemplateFile(baseName, depth+1))
 		{
 			LOGERROR(L"Failed to load entity template '%ls'", baseName.c_str());
-			return NULL;
+			return false;
 		}
 		// Copy a subset to the requested template
 		CopyFoundationSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
