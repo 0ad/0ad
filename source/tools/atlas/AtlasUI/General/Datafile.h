@@ -29,6 +29,10 @@ namespace Datafile
 	// relative to the current working directory.
 	void SetSystemDirectory(const wxString& dir);
 
+	// Specify the location of .../binaries/data, as an absolute path, or
+	// relative to the current working directory.
+	void SetDataDirectory(const wxString& dir);
+
 	// Returns the location of .../binaries/data. (TODO (eventually): replace
 	// this with a proper VFS-aware system.)
 	wxString GetDataDirectory();

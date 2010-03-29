@@ -109,6 +109,13 @@ ATLASDLLIMPEXP void Atlas_SetMessagePasser(MessagePasser* passer)
 	g_MessagePasser = passer;
 }
 
+bool g_HasSetDataDirectory = false;
+ATLASDLLIMPEXP void Atlas_SetDataDirectory(const wchar_t* path)
+{
+	Datafile::SetDataDirectory(path);
+	g_HasSetDataDirectory = true;
+}
+
 ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 {
 	// Initialise libxml2
@@ -186,10 +193,13 @@ public:
 		// Initialise the global config file
 		wxConfigBase::Set(new wxConfig(_T("Atlas Editor"), _T("Wildfire Games")));
 
-		// Assume that the .exe is located in .../binaries/system. (We can't
-		// just use the cwd, since that isn't correct when being executed by
-		// dragging-and-dropping onto the program in Explorer.)
-		Datafile::SetSystemDirectory(argv[0]);
+		if (! g_HasSetDataDirectory)
+		{
+			// Assume that the .exe is located in .../binaries/system. (We can't
+			// just use the cwd, since that isn't correct when being executed by
+			// dragging-and-dropping onto the program in Explorer.)
+			Datafile::SetSystemDirectory(argv[0]);
+		}
 
 		// Display the appropriate window
 		wxFrame* frame;

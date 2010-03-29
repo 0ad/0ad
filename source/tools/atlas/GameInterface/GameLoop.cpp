@@ -35,6 +35,7 @@
 #include "ps/DllLoader.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+#include "ps/GameSetup/Paths.h"
 
 using namespace AtlasMessage;
 
@@ -46,6 +47,7 @@ namespace AtlasMessage
 
 // Loaded from DLL:
 void (*Atlas_StartWindow)(const wchar_t* type);
+void (*Atlas_SetDataDirectory)(const wchar_t* path);
 void (*Atlas_SetMessagePasser)(MessagePasser*);
 void (*Atlas_GLSetCurrent)(void* cavas);
 void (*Atlas_GLSwapBuffers)(void* canvas);
@@ -68,11 +70,11 @@ static InputProcessor g_Input;
 static GameLoopState state;
 GameLoopState* g_GameLoop = &state;
 
-
 static void* LaunchWindow(void* data)
 {
-	const wchar_t* windowName = reinterpret_cast<const wchar_t*>(data);
 	debug_SetThreadName("atlas_window");
+
+	const wchar_t* windowName = reinterpret_cast<const wchar_t*>(data);
 	Atlas_StartWindow(windowName);
 	return NULL;
 }
@@ -101,6 +103,7 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 	{
 		dll.LoadSymbol("Atlas_StartWindow", Atlas_StartWindow);
 		dll.LoadSymbol("Atlas_SetMessagePasser", Atlas_SetMessagePasser);
+		dll.LoadSymbol("Atlas_SetDataDirectory", Atlas_SetDataDirectory);
 		dll.LoadSymbol("Atlas_GLSetCurrent", Atlas_GLSetCurrent);
 		dll.LoadSymbol("Atlas_GLSwapBuffers", Atlas_GLSwapBuffers);
 		dll.LoadSymbol("Atlas_NotifyEndOfFrame", Atlas_NotifyEndOfFrame);
@@ -117,6 +120,10 @@ bool BeginAtlas(const CmdLineArgs& args, const DllLoader& dll)
 
 	// Pass our message handler to Atlas
 	Atlas_SetMessagePasser(&msgPasser);
+
+	// Tell Atlas the location of the data directory
+	const Paths paths(args);
+	Atlas_SetDataDirectory(paths.RData().string().c_str());
 
 	// Register all the handlers for message which might be passed back
 	RegisterHandlers();

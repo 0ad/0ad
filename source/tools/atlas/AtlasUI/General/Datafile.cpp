@@ -23,15 +23,14 @@
 #include "wx/filename.h"
 #include "wx/dir.h"
 
-static wxString systemDir;
-static wxString dataDir;
+static wxString g_DataDir;
 
 AtObj Datafile::ReadList(const char* section)
 {
 	const wxString relativePath (_T("tools/atlas/lists.xml"));
 
 	wxFileName filename (relativePath, wxPATH_UNIX);
-	filename.MakeAbsolute(dataDir);
+	filename.MakeAbsolute(g_DataDir);
 
 	if (! filename.FileExists())
 	{
@@ -65,22 +64,28 @@ bool Datafile::SlurpFile(const wxString& filename, std::string& out)
 void Datafile::SetSystemDirectory(const wxString& dir)
 {
 	wxFileName sys (dir);
-	systemDir = sys.GetPath();
+	wxString systemDir = sys.GetPath();
 
 	wxFileName data (_T("../data/"), wxPATH_UNIX);
 	data.MakeAbsolute(systemDir);
-	dataDir = data.GetPath();
+	g_DataDir = data.GetPath();
+}
+
+void Datafile::SetDataDirectory(const wxString& dir)
+{
+	wxFileName data (dir);
+	g_DataDir = data.GetPath();
 }
 
 wxString Datafile::GetDataDirectory()
 {
-	return dataDir;
+	return g_DataDir;
 }
 
 wxArrayString Datafile::EnumerateDataFiles(const wxString& dir, const wxString& filter)
 {
 	wxFileName d (dir);
-	d.MakeAbsolute(dataDir);
+	d.MakeAbsolute(g_DataDir);
 
 	wxArrayString files;
 	wxDir::GetAllFiles(d.GetPath(), &files, filter, wxDIR_FILES);
