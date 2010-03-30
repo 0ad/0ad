@@ -27,8 +27,11 @@ tar cf $PREFIX-unix-data-temp.tar ${PREFIX}/binaries/data
 # TODO: ought to include generated docs in here, perhaps?
 
 # Anonymise the tarballs a bit
-tardy -gna wfg -gnu 1000 -una wfg -unu 1000 $PREFIX-unix-build-temp.tar $PREFIX-unix-build.tar
-tardy -gna wfg -gnu 1000 -una wfg -unu 1000 $PREFIX-unix-data-temp.tar $PREFIX-unix-data.tar
+#tardy -gna wfg -gnu 1000 -una wfg -unu 1000 $PREFIX-unix-build-temp.tar $PREFIX-unix-build.tar
+#tardy -gna wfg -gnu 1000 -una wfg -unu 1000 $PREFIX-unix-data-temp.tar $PREFIX-unix-data.tar
+# Actually don't, because it might be causing "tar: A lone zero block" warnings
+mv $PREFIX-unix-build{-temp,}.tar
+mv $PREFIX-unix-data{-temp,}.tar
 
 # Compress
 xz -kv ${XZOPTS} $PREFIX-unix-build.tar
@@ -39,6 +42,9 @@ bzip2 -kp ${BZ2OPTS} $PREFIX-unix-data.tar
 # Create Windows self-extracting .exe
 ln -Tsf export-win32 ${PREFIX}
 wine 'c:/program files/7-zip/7zG' a -sfx $PREFIX-win32.exe ${SEVENZOPTS} ${PREFIX}/{source,build,libraries,binaries/{data,system},*.*}
+
+# Fix permissions
+chmod 644 ${PREFIX}-{unix-{build,data}.tar.{xz,bz2},win32.exe}
 
 # Print digests for copying into wiki page
 sha1sum ${PREFIX}-{unix-{build,data}.tar.{xz,bz2},win32.exe}
