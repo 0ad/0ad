@@ -5,7 +5,7 @@
 
 // ====================================================================
 
-function initMPHost (parentWindow, gameName, welcomeMessage, profileName)
+function initMPHost (parentWindow, gameName, welcomeMessage)
 {
 	// Set up the server
 	var server = createServer();
@@ -14,7 +14,7 @@ function initMPHost (parentWindow, gameName, welcomeMessage, profileName)
 	// Server Name
 	server.serverName = gameName;
 	// Host Name
-	server.serverPlayerName = profileName;
+	server.serverPlayerName = "Player";
 
 	// start listening
 	var success = server.open();
@@ -69,12 +69,12 @@ function initMPHost (parentWindow, gameName, welcomeMessage, profileName)
 
 // ====================================================================
 
-function initMPClient (mpParentWindow, ipAddress, profileName)
+function initMPClient (mpParentWindow, ipAddress)
 {
 	// Create the client instance
 	var client = createClient();
 	// Player Name
-	client.playerName = profileName;
+	client.playerName = "Player";
 
 	client.onClientConnect = function (event)
 	{

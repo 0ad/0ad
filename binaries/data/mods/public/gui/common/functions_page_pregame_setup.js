@@ -8,8 +8,7 @@
 // Open the Session Setup screen.
 function openSessionSetup (sessionReturnWindow)
 {
-	var profileName 	= getCurrItemValue ("pgProfileName");
-	var titleBar		= getGUIObjectByName ("pgSessionSetupTitleBar");
+	var titleBar = getGUIObjectByName ("pgSessionSetupTitleBar");
 
 	// Setup remaining slots.
 	for (var i = 1; i <= g_GameAttributes.numSlots; i++)

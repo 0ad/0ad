@@ -103,47 +103,6 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 
 		<!--
 		==========================================
-		- MAIN MENU - PROFILE MANAGER
-		==========================================
-		-->
-
-		<object	name="pgProfile">
-			<object	name="pgProfileHeading"
-				style="wheatTextLabelWhite"
-				type="text"
-				size="3% 78% 20% 80%"
-				font="verdana12i"
-			>Current Profile:
-			</object>
-
-			<object	name="pgProfileName"
-				style="wheatDropDown"
-				type="dropdown"
-				size="3% 80% 20% 80%+40"
-			>
-				<action on="Load"><![CDATA[
-					// Get list of profile names (profile folders).
-					var profileArray = buildDirEntList("profiles/", "user.cfg", true);
-
-					// Populate profile list.		
-					for (var profileIndex = 0; profileIndex < profileArray.length; profileIndex++)
-					{
-						// Remove path/file information so only profile name remains.
-						profileArray[profileIndex] = profileArray[profileIndex].replace ("profiles/", "");
-						profileArray[profileIndex] = profileArray[profileIndex].replace ("/settings/user.cfg", "");
-						// Add profile name to the end of the object's list.
-						if (profileArray[profileIndex] != "default/settings")
-							pushItem (this.name, profileArray[profileIndex]);
-					}
-
-					// Select default profile (later we'll need to remember the last used profile).
-					setCurrItemValue (this.name, "Player");
-				]]></action>
-			</object>
-		</object>
-
-		<!--
-		==========================================
 		- MAIN MENU - PARCHMENT BUTTONS
 		==========================================
 		-->
@@ -184,6 +143,7 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			sprite_over="pgMultiPlayerOver"
 			sprite_disabled="pgMultiPlayerDisabled"
 			tooltip="Tired of playing with yourself? Fight against one or more human players in a multiplayer game."
+			enabled="false"
 		>
 			<action on="Press"><![CDATA[
 				// Open Multiplayer connection window.
@@ -238,7 +198,8 @@ Watch for updates or get involved in the development: http://wildfiregames.com/0
 			size="72.265625% 66.5364583% 97.265625% 99.8697916%"
 			sprite_over="pgHistoryOver"
 			sprite_disabled="pgHistoryDisabled"
-			tooltip="One day you will click this button and learn more about ancient history than any history teach ever taught you."
+			tooltip="One day you will click this button and learn more about ancient history than any history teacher ever taught you."
+			enabled="false"
 		>
 			<action on="Press"><![CDATA[
 				openMainMenuSubWindow ("pgHistory");
@@ -1123,8 +1084,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 				<action on="Press"><![CDATA[
 					initMPHost ("pgMPHost",
 						getGUIObjectByName ("pgMPHostGameName").caption,
-						getGUIObjectByName ("pgMPHostWelcomeMsg").caption,
-						getCurrItemValue ("pgProfileName"));
+						getGUIObjectByName ("pgMPHostWelcomeMsg").caption);
 				]]></action>
 			</object>
 
@@ -1205,8 +1165,7 @@ A large landmass with rivers, forests and coastal fishing grounds.
 			>Continue
 				<action on="Press"><![CDATA[
 					initMPClient ("pgMPJoin", 
-						getGUIObjectByName ("pgMPJoinServerIP").caption,
-						getCurrItemValue ("pgProfileName"));
+						getGUIObjectByName ("pgMPJoinServerIP").caption);
 				]]></action>
 			</object>
 
