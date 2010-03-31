@@ -26,6 +26,8 @@
 // calculate frequency of events (tuned for 100 Hz)
 struct IFrequencyFilter
 {
+	virtual ~IFrequencyFilter() {}
+
 	virtual void Update(double value) = 0;
 
 	// smoothed but rapidly tracked frequency

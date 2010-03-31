@@ -111,6 +111,7 @@ protected:
 
 	struct State
 	{
+		virtual ~State() {}
 		virtual void OnEnter(T* WXUNUSED(obj)) {}
 		virtual void OnLeave(T* WXUNUSED(obj)) {}
 		virtual void OnTick (T* WXUNUSED(obj), float WXUNUSED(dt)) {}

@@ -60,6 +60,7 @@ public:
 	virtual void AddProperty( const CStrW& PropertyName, const CStrW& Value ) = 0;
 	
 	inline IJSObject() {}
+	virtual ~IJSObject() {}
 };
 
 template<typename T, bool ReadOnly = false> class CJSObject;

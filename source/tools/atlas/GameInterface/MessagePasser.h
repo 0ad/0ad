@@ -29,12 +29,14 @@ struct QueryMessage;
 class MessagePasser
 {
 public:
-	virtual void Add(IMessage*)=0;
+	virtual ~MessagePasser() {}
+
+	virtual void Add(IMessage*) = 0;
 		// takes ownership of IMessage object
 
-	virtual IMessage* Retrieve()=0;
+	virtual IMessage* Retrieve() = 0;
 
-	virtual void Query(QueryMessage*, void(*timeoutCallback)())=0;
+	virtual void Query(QueryMessage*, void(*timeoutCallback)()) = 0;
 		// blocks; caller retains ownership of QueryMessage object
 };
 

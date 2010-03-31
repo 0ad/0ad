@@ -75,6 +75,8 @@
 class ISerializable
 {
 public:
+	virtual ~ISerializable() {}
+
 	/**
 	 * Return the length of the serialized form of this object
 	 */

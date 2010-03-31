@@ -43,6 +43,7 @@ private:
 
 struct OutputCB
 {
+	virtual ~OutputCB() { }
 	virtual void operator() (const char* data, unsigned int length)=0;
 };
 

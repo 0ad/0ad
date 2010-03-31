@@ -26,6 +26,8 @@
 class IAtlasSerialiser
 {
 public:
+	virtual ~IAtlasSerialiser() { }
+
 	// Freeze/Thaw are mainly used by the 'undo' system, to take a snapshot
 	// of the a GUI component's state, and to revert to that snapshot.
 	// obj.Thaw(obj.Freeze()) should leave the component's contents unchanged.

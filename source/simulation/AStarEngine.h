@@ -163,6 +163,7 @@ class AStarGoalBase
 {
 public:
 	AStarGoalBase() {}
+	virtual ~AStarGoalBase() {}
 	virtual void SetDestination( const CVector2D& ) = 0;
 	virtual void SetRadius( float r ) = 0;
 	virtual float DistanceToGoal( const CVector2D& ) = 0;

@@ -147,7 +147,7 @@ class CFsm
 public:
 
 	CFsm( void );
-	~CFsm( void );
+	virtual ~CFsm( void );
 
 	/**
 	 * Constructs the state machine. This method must be overriden so that

@@ -38,7 +38,7 @@ namespace DatafileIO
 	public:
 		enum whence { FROM_START, FROM_END, FROM_CURRENT };
 
-		virtual ~Stream() {};
+		virtual ~Stream() {}
 		virtual off_t Tell() const = 0;
 		virtual bool IsOk() const = 0;
 	};
@@ -46,6 +46,7 @@ namespace DatafileIO
 	class SeekableStream
 	{
 	public:
+		virtual ~SeekableStream() {}
 		virtual void Seek(off_t pos, Stream::whence mode) = 0;
 	};
 

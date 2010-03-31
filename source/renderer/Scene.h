@@ -40,8 +40,11 @@ class SceneCollector;
  *
  * @see CRenderer::RenderScene
  */
-class Scene {
+class Scene
+{
 public:
+	virtual ~Scene() {}
+	
 	/**
 	 * Send all objects that can be seen when rendering the given frustum
 	 * to the scene collector.
@@ -58,8 +61,11 @@ public:
  *
  * @see Scene::EnumerateObjects
  */
-class SceneCollector {
+class SceneCollector
+{
 public:
+	virtual ~SceneCollector() {}
+
 	/**
 	 * Submit a terrain patch that is part of the scene.
 	 */

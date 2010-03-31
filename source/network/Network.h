@@ -95,6 +95,8 @@ class CMessageSocket;
 class IMessagePipeEnd
 {
 public:
+	virtual ~IMessagePipeEnd() {}
+
 	/**
 	 * Push a message on the output queue. It will be freed when popped of the
 	 * queue, not by the caller. The pointer must point to memory that can be

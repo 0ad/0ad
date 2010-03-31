@@ -33,6 +33,7 @@ class CBoundingObject
 {
 public:
 	CBoundingObject() {}
+	virtual ~CBoundingObject() {}
 	enum EBoundingType
 	{
 		BOUND_NONE,
