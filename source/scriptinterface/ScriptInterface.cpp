@@ -30,7 +30,15 @@
 #include <boost/preprocessor/punctuation/comma_if.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 
+#if OS_LINUX
+# define HAVE_VALGRIND 1
+#else
+# define HAVE_VALGRIND 0
+#endif
+
+#if HAVE_VALGRIND
 #include "valgrind.h"
+#endif
 
 const int RUNTIME_SIZE = 4 * 1024 * 1024; // TODO: how much memory is needed?
 const int STACK_CHUNK_SIZE = 8192;
@@ -76,7 +84,9 @@ void ErrorReporter(JSContext* UNUSED(cx), const char* message, JSErrorReport* re
 	else
 		LOGERROR(L"%hs", msg.str().c_str());
 	// When running under Valgrind, print more information in the error message
+#if HAVE_VALGRIND
 	VALGRIND_PRINTF_BACKTRACE("->");
+#endif
 }
 
 // Functions in the global namespace:
