@@ -173,6 +173,7 @@ function package_set_build_flags()
 				"-Wredundant-decls",	-- (useful for finding some multiply-included header files)
 				-- "-Wformat=2",		-- (useful sometimes, but a bit noisy, so skip it by default)
 				-- "-Wcast-qual",		-- (useful for checking const-correctness, but a bit noisy, so skip it by default)
+				"-Wnon-virtual-dtor",	-- (sometimes noisy but finds real bugs)
 
 				-- enable security features (stack checking etc) that shouldn't have
 				-- a significant effect on performance and can catch bugs
@@ -218,25 +219,19 @@ function package_set_build_flags()
 			"-fvisibility=hidden",
 		})
 
-		if OS == "macosx" then
-			-- MacPorts uses /opt/local as its prefix
-			package.includepaths = { "/opt/local/include" }
-			package.libpaths = { "/opt/local/lib" }
-		else
-			-- X11 includes may be installed in one of a gadzillion of three places
-			-- Famous last words: "You can't include too much! ;-)"
-			package.includepaths = {
-				"/usr/X11R6/include/X11",
-				"/usr/X11R6/include",
-				"/usr/include/X11"
-			}
-			package.libpaths = {
-				"/usr/X11R6/lib"
-			}
-		end
+		-- X11 includes may be installed in one of a gadzillion of three places
+		-- Famous last words: "You can't include too much! ;-)"
+		package.includepaths = {
+			"/usr/X11R6/include/X11",
+			"/usr/X11R6/include",
+			"/usr/include/X11"
+		}
+		package.libpaths = {
+			"/usr/X11R6/lib"
+		}
+
 		if OS == "linux" and options["icc"] then
-			tinsert(package.libpaths,
-			"/usr/i686-pc-linux-gnu/lib") -- needed for ICC to find libbfd
+			tinsert(package.libpaths, "/usr/i686-pc-linux-gnu/lib") -- needed for ICC to find libbfd
 		end
 		
 		package.defines = {

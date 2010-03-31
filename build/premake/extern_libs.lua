@@ -337,4 +337,18 @@ function package_add_extern_libs(extern_libs)
 			add_extern_lib(extern_lib, def)
 		end
 	end
+
+	if OS == "macosx" then
+		-- MacPorts uses /opt/local as the prefix for most of its libraries,
+		-- which isn't on the default compiler's default include path.
+		-- This needs to come after we add our own external libraries, so that
+		-- our versions take precedence over the system versions (especially
+		-- for SpiderMonkey), which means we have to do it per-config
+		tinsert(package.config["Debug"  ].includepaths, "/opt/local/include")
+		tinsert(package.config["Testing"].includepaths, "/opt/local/include")
+		tinsert(package.config["Release"].includepaths, "/opt/local/include")
+		tinsert(package.config["Debug"  ].libpaths, "/opt/local/lib")
+		tinsert(package.config["Testing"].libpaths, "/opt/local/lib")
+		tinsert(package.config["Release"].libpaths, "/opt/local/lib")
+	end
 end
