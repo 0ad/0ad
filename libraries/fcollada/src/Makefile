@@ -8,7 +8,7 @@ PIC_FLAGS ?= -fpic
 endif
 
 CXX := g++
-CXXFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS)
+CXXFLAGS := -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-function $(OS_DEFINE) $(PIC_FLAGS)
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG -DRETAIL
 CXXFLAGS_RELEASE := -O2 -DNDEBUG -DRETAIL
 CXXFLAGS_TEST := -O0 -g -D_DEBUG
