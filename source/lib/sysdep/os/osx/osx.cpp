@@ -91,9 +91,7 @@ LibError sys_get_executable_name(fs::wpath& pathname)
 		{
 			return ERR::NO_SYS;
 		}
-		debug_printf(L"exe name before realpath: %hs\n", temp);
 		realpath(temp, name);
-		debug_printf(L"exe name after realpath: %hs\n", temp);
 	}
 	
 	// On OS X, we might be in a bundle. In this case set its name as our name.
@@ -105,7 +103,6 @@ LibError sys_get_executable_name(fs::wpath& pathname)
 	}
 	
 	pathname = wstring_from_utf8(name);
-	debug_printf(L"returning exe name: %hs\n", name);
 	
 	return INFO::OK;
 }

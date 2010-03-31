@@ -180,7 +180,7 @@ public:
 		deserialize.NumberI32_Unbounded(i32v);
 		TS_ASSERT_EQUALS(i32v, -123);
 		deserialize.NumberU32_Unbounded(u32v);
-		TS_ASSERT_EQUALS(u32v, 4294967173);
+		TS_ASSERT_EQUALS(u32v, 4294967173u);
 		deserialize.NumberFloat_Unbounded(flt);
 		TS_ASSERT_EQUALS(flt, 1e+30f);
 		deserialize.NumberDouble_Unbounded(dbl);
