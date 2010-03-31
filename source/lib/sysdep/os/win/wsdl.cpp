@@ -140,11 +140,16 @@ private:
 		WinScopedPreserveLastError s;
 		SetLastError(0);
 		debug_assert(wutil_IsValidHandle(g_hDC));
-		const BOOL ok = SetDeviceGammaRamp(g_hDC, ramps);
-		// The call often fails, especially on multi-monitor systems, and we don't
-		// know how to fix/avoid the underlying problem, so just ignore the failure here
-		//debug_assert(ok);
-		return !!ok;
+		BOOL ok = SetDeviceGammaRamp(g_hDC, ramps);
+		// on multi-monitor NVidia systems, the first call after a reboot
+		// fails, but subsequent ones succeed.
+		// see http://icculus.org/pipermail/quake3-bugzilla/2009-October/001316.html
+		if(ok == FALSE)
+		{
+			ok = SetDeviceGammaRamp(g_hDC, ramps);
+			debug_assert(ok);
+		}
+		return (ok == TRUE);
 	}
 
 	bool m_hasChanged;
