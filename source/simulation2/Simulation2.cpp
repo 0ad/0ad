@@ -266,6 +266,15 @@ bool CSimulation2::LoadScripts(const VfsPath& path)
 	return m->LoadScripts(path);
 }
 
+bool CSimulation2::LoadDefaultScripts()
+{
+	return (
+		m->LoadScripts(L"simulation/components/interfaces/") &&
+		m->LoadScripts(L"simulation/helpers/") &&
+		m->LoadScripts(L"simulation/components/")
+	);
+}
+
 LibError CSimulation2::ReloadChangedFile(const VfsPath& path)
 {
 	return m->ReloadChangedFile(path);

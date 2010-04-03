@@ -84,9 +84,7 @@ CGame::CGame():
 
 	if (g_UseSimulation2)
 	{
-		m_Simulation2->LoadScripts(L"simulation/components/interfaces/");
-		m_Simulation2->LoadScripts(L"simulation/helpers/");
-		m_Simulation2->LoadScripts(L"simulation/components/");
+		m_Simulation2->LoadDefaultScripts();
 		m_Simulation2->ResetState();
 
 		CScriptVal initData; // TODO: ought to get this from the GUI, somehow

@@ -72,9 +72,7 @@ public:
 		CTerrain terrain;
 
 		CSimulation2 sim2(NULL, &terrain);
-		sim2.LoadScripts(L"simulation/components/interfaces/");
-		sim2.LoadScripts(L"simulation/helpers/");
-		sim2.LoadScripts(L"simulation/components/");
+		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
 		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself

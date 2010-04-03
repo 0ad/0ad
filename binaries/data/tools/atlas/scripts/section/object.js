@@ -18,7 +18,7 @@ var actorViewer = {
 	distance: 20,
 	angle: 0,
 	elevation: Math.PI / 6,
-	actor: "(n) structures/fndn_1x1.xml",
+	actor: "actor|structures/fndn_1x1.xml",
 	animation: "idle",
 	// Animation playback speed
 	speed: 0,
@@ -37,7 +37,7 @@ actorViewer.toggle = function () {
 };
 
 actorViewer.postToGame = function () {
-	Atlas.Message.SetActorViewer(this.actor, this.animation, this.speed, false);	
+	Atlas.Message.SetActorViewer(this.actor, this.animation, this.speed, false);
 };
 
 actorViewer.postLookAt = function () {
@@ -194,6 +194,40 @@ function init(window, bottomWindow)
 	window.sizer.add(viewerButton, 0, wxStretch.EXPAND);
 
 
+
+	// Actor viewer settings:
+	var displaySettingsBoxBox = new wxStaticBox(bottomWindow, -1, "Display settings");
+	actorViewer.controls.push(displaySettingsBoxBox);
+	var displaySettingsBox = new wxStaticBoxSizer(displaySettingsBoxBox, wxOrientation.VERTICAL);
+	displaySettingsBox.minSize = new wxSize(140, -1);
+	var displaySettings = [
+		["Wireframe", "Toggle wireframe / solid rendering", "wireframe", false],
+		["Move", "Toggle movement along ground when playing walk/run animations", "walk", false],
+		["Ground", "Toggle the ground plane", "ground", true],
+		["Shadows", "Toggle shadow rendering", "shadows", true],
+		["Poly count", "Toggle polygon-count statistics - turn off ground and shadows for more useful data", "stats", false]
+	];
+	// NOTE: there's also a background colour setting, which isn't exposed
+	// by this UI because I don't know if it's worth the effort
+	for each (var setting in displaySettings) {
+		var button = new wxButton(bottomWindow, -1, setting[0]);
+		actorViewer.controls.push(button);
+		button.toolTip = setting[1];
+		// Set the default value
+		Atlas.Message.SetViewParamB(Atlas.RenderView.ACTOR, setting[2], setting[3]);
+		// Toggle the value on clicks
+		(function (s) { // local scope for closure
+			button.onClicked = function () {
+				s[3] = !s[3];
+				Atlas.Message.SetViewParamB(Atlas.RenderView.ACTOR, s[2], s[3]);
+			};
+		})(setting);
+		displaySettingsBox.add(button, 0, wxStretch.EXPAND);
+	}
+	// TODO: It might be nice to add an "edit this actor" button
+	// in the actor viewer (when we have working actor hotloading)
+
+
 	var playerSelector = new wxChoice(bottomWindow, -1, wxDefaultPosition, wxDefaultSize,
 		["Gaia", "Player 1", "Player 2", "Player 3", "Player 4", "Player 5", "Player 6", "Player 7", "Player 8"]
 	);
@@ -236,11 +270,11 @@ function init(window, bottomWindow)
 	animationBox.add(animationSelector, 0, wxStretch.EXPAND);
 	animationBox.add(animationSpeedSizer, 0, wxStretch.EXPAND);
 
+
 	var animationSizer = new wxBoxSizer(wxOrientation.VERTICAL);
 	animationSizer.minSize = new wxSize(160, -1);
 	animationSizer.add(playerSelector, 0, wxStretch.EXPAND);
 	animationSizer.add(animationBox, 0, wxStretch.EXPAND);
-
 
 
 	for each (ctrl in actorViewer.controls)
@@ -297,6 +331,7 @@ function init(window, bottomWindow)
 
 
 	bottomWindow.sizer = new wxBoxSizer(wxOrientation.HORIZONTAL);
+	bottomWindow.sizer.add(displaySettingsBox);
 	bottomWindow.sizer.add(animationSizer);
 	bottomWindow.sizer.add(variationControlBox, 0, wxStretch.EXPAND);
 

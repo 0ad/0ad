@@ -24,7 +24,6 @@
 #include "General/Datafile.h"
 
 #include "ActorEditor/ActorEditor.h"
-#include "ActorViewer/ActorViewer.h"
 #include "ArchiveViewer/ArchiveViewer.h"
 #include "ColourTester/ColourTester.h"
 #include "FileConverter/FileConverter.h"
@@ -216,11 +215,6 @@ public:
 		{
 			m_ScriptInterface = new ScriptInterface(&ScenarioEditorSubmitCommand);
 			frame = new ScenarioEditor(NULL, *m_ScriptInterface);
-		}
-		else if (g_InitialWindowType == _T("ActorViewer"))
-		{
-			m_ScriptInterface = new ScriptInterface(&ScenarioEditorSubmitCommand);
-			frame = new ActorViewer(NULL, *m_ScriptInterface);
 		}
 		else
 		{

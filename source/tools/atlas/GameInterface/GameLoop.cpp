@@ -80,12 +80,10 @@ static void* LaunchWindow(void* data)
 }
 
 // Work out which Atlas window to launch, given the command-line arguments
-static const wchar_t* FindWindowName(const CmdLineArgs& args)
+static const wchar_t* FindWindowName(const CmdLineArgs& UNUSED(args))
 {
-	if (args.Has("actorviewer"))
-		return L"ActorViewer";
-	else
-		return L"ScenarioEditor";
+	return L"ScenarioEditor";
+	// (This is a bit pointless - there's no choice since we've deleted the ActorViewer)
 }
 
 static ErrorReaction AtlasDisplayError(const wchar_t* text, size_t flags)

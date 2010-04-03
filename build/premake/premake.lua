@@ -790,7 +790,6 @@ function setup_atlas_packages()
 
 	atlas_src = {
 		"ActorEditor",
-		"ActorViewer",
 		"ColourTester",
 		"CustomControls/Buttons",
 		"CustomControls/Canvas",

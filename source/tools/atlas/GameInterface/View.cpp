@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,14 +85,19 @@ CCamera& ViewActor::GetCamera()
 	return m_Camera;
 }
 
-CUnit* ViewActor::GetUnit(AtlasMessage::ObjectID UNUSED(id))
+CSimulation2* ViewActor::GetSimulation2()
 {
-	return m_ActorViewer->GetUnit();
+	return m_ActorViewer->GetSimulation2();
+}
+
+entity_id_t ViewActor::GetEntityId(AtlasMessage::ObjectID UNUSED(obj))
+{
+	return m_ActorViewer->GetEntity();
 }
 
 bool ViewActor::WantsHighFramerate()
 {
-	if (m_SpeedMultiplier != 0.f && m_ActorViewer->HasAnimation())
+	if (m_SpeedMultiplier != 0.f)
 		return true;
 
 	return false;
@@ -153,6 +158,13 @@ ViewGame::ViewGame()
 ViewGame::~ViewGame()
 {
 	std::for_each(m_SavedStates.begin(), m_SavedStates.end(), delete_pair_2nd<std::wstring, SimState*>);
+}
+
+CSimulation2* ViewGame::GetSimulation2()
+{
+	if (g_UseSimulation2)
+		return g_Game->GetSimulation2();
+	return NULL;
 }
 
 void ViewGame::Update(float frameLength)

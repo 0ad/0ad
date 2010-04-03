@@ -54,8 +54,15 @@ public:
 	 * Load all scripts in the specified directory (non-recursively),
 	 * so they can register new component types and functions. This
 	 * should be called immediately after constructing the CSimulation2 object.
+	 * @return false on failure
 	 */
 	bool LoadScripts(const VfsPath& path);
+
+	/**
+	 * Call LoadScripts for each of the game's standard simulation script paths.
+	 * @return false on failure
+	 */
+	bool LoadDefaultScripts();
 
 	/**
 	 * Reload any scripts that were loaded from the given filename.

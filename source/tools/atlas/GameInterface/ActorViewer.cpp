@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,13 +25,10 @@
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
-#include "graphics/SkeletonAnim.h"
-#include "graphics/SkeletonAnimDef.h"
 #include "graphics/SkeletonAnimManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureEntry.h"
 #include "graphics/TextureManager.h"
-#include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
 #include "maths/MathUtil.h"
 #include "ps/Font.h"
@@ -40,20 +37,22 @@
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 #include "renderer/SkyManager.h"
-#include "simulation/EntityTemplateCollection.h"
-#include "simulation/EntityTemplate.h"
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpPosition.h"
+#include "simulation2/components/ICmpVisual.h"
 
 struct ActorViewerImpl : public Scene
 {
 	NONCOPYABLE(ActorViewerImpl);
 public:
 	ActorViewerImpl()
-		: Unit(NULL), ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
-		ObjectManager(MeshManager, SkeletonAnimManager)
+		: Entity(INVALID_ENTITY), Terrain(), ColladaManager(), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
+		ObjectManager(MeshManager, SkeletonAnimManager), UnitManager(), Simulation2(&UnitManager, &Terrain)
 	{
+		UnitManager.SetObjectManager(ObjectManager);
 	}
 
-	CUnit* Unit;
+	entity_id_t Entity;
 	CStrW CurrentUnitID;
 	CStrW CurrentUnitAnim;
 	float CurrentSpeed;
@@ -69,34 +68,26 @@ public:
 	CMeshManager MeshManager;
 	CSkeletonAnimManager SkeletonAnimManager;
 	CObjectManager ObjectManager;
+	CUnitManager UnitManager;
+	CSimulation2 Simulation2;
 
 	// Simplistic implementation of the Scene interface
-	void EnumerateObjects(const CFrustum& UNUSED(frustum), SceneCollector* c)
+	void EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	{
 		if (GroundEnabled)
 			c->Submit(Terrain.GetPatch(0, 0));
 
-		if (Unit)
-			c->SubmitRecursive(Unit->GetModel());
+		Simulation2.RenderSubmit(*c, frustum, false);
 	}
 };
 
 ActorViewer::ActorViewer()
 : m(*new ActorViewerImpl())
 {
-	m.Unit = NULL;
 	m.WalkEnabled = false;
 	m.GroundEnabled = true;
 	m.ShadowsEnabled = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
 	m.Background = SColor4ub(255, 255, 255, 255);
-
-	// Set up the renderer
-	g_TexMan.LoadTerrainTextures();
-	g_Renderer.LoadAlphaMaps();
-	g_Renderer.GetSkyManager()->m_RenderSky = false;
-	// (TODO: should these be unloaded properly some time? and what should
-	// happen if we want the actor viewer and scenario editor loaded at
-	// the same time?)
 
 	// Create a tiny empty piece of terrain, just so we can put shadows
 	// on it without having to think too hard
@@ -115,17 +106,29 @@ ActorViewer::ActorViewer()
 			}
 		}
 	}
+	else
+	{
+		debug_warn(L"Failed to load whiteness texture");
+	}
+
+	// Start the simulation
+	m.Simulation2.LoadDefaultScripts();
+	m.Simulation2.ResetState();
 }
 
 ActorViewer::~ActorViewer()
 {
-	delete m.Unit;
 	delete &m;
 }
 
-CUnit* ActorViewer::GetUnit()
+CSimulation2* ActorViewer::GetSimulation2()
 {
-	return m.Unit;
+	return &m.Simulation2;
+}
+
+entity_id_t ActorViewer::GetEntity()
+{
+	return m.Entity;
 }
 
 void ActorViewer::UnloadObjects()
@@ -133,64 +136,38 @@ void ActorViewer::UnloadObjects()
 	m.ObjectManager.UnloadObjects();
 }
 
-// We want to support selection of both entities and actors in the
-// Actor Viewer tool, so work out the actor corresponding to the given
-// string
-static bool ParseObjectName(const CStrW& obj, CStrW& name)
-{
-	if (obj.substr(0, 4) == L"(e) ")
-	{
-		CStrW entname = obj.substr(4);
-		CEntityTemplate* entity = g_EntityTemplateCollection.GetTemplate(entname);
-		if (! entity)
-			return false;
-		name = entity->m_actorName;
-		return true;
-	}
-	else if (obj.substr(0, 4) == L"(n) ")
-	{
-		name = obj.substr(4);
-		return true;
-	}
-	else
-	{
-		// By default, assume it's just an actor name. (TODO: This
-		// case is probably only used by the obsolete standalone
-		// Actor Viewer and should get removed eventually.)
-		name = obj;
-		return true;
-	}
-}
-
 void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 {
 	bool needsAnimReload = false;
 
-	CStrW id;
-	if (! ParseObjectName(name, id))
-		id = L"";
+	CStrW id = name;
 
-	if (! m.Unit || id != m.CurrentUnitID)
+	// Recreate the entity, if we don't have one or if the new one is different
+	if (m.Entity == INVALID_ENTITY || id != m.CurrentUnitID)
 	{
-		delete m.Unit;
-		m.Unit = NULL;
+		// Delete the old entity (if any)
+		if (m.Entity != INVALID_ENTITY)
+		{
+			m.Simulation2.DestroyEntity(m.Entity);
+			m.Simulation2.FlushDestroyedEntities();
+			m.Entity = INVALID_ENTITY;
+		}
 
 		// If there's no actor to display, return with nothing loaded
 		if (id.empty())
 			return;
 
-		m.Unit = CUnit::Create(CStr(id), NULL, std::set<CStr>(), m.ObjectManager);
+		m.Entity = m.Simulation2.AddEntity(L"preview|" + id);
 
-		if (! m.Unit)
+		if (m.Entity == INVALID_ENTITY)
 			return;
 
-		float angle = (float)M_PI;
-		CMatrix3D mat;
-		mat.SetYRotation(angle + (float)M_PI);
-		mat.Translate(CELL_SIZE * PATCH_SIZE/2, 0.f, CELL_SIZE * PATCH_SIZE/2);
-		m.Unit->GetModel()->SetTransform(mat);
-		m.Unit->GetModel()->ValidatePosition();
-
+		CmpPtr<ICmpPosition> cmpPosition(m.Simulation2, m.Entity);
+		if (!cmpPosition.null())
+		{
+			cmpPosition->JumpTo(entity_pos_t::FromInt(CELL_SIZE*PATCH_SIZE/2), entity_pos_t::FromInt(CELL_SIZE*PATCH_SIZE/2));
+			cmpPosition->SetYRotation(entity_angle_t::FromFloat((float)M_PI));
+		}
 		needsAnimReload = true;
 	}
 
@@ -203,8 +180,8 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 
 		float speed;
 		// TODO: this is just copied from template_unit.xml and isn't the
-		// same for all units. But we don't know anything about entities here,
-		// so what to do?
+		// same for all units. We ought to get it from the entity definition
+		// (if there is one)
 		if (anim == "walk")
 			speed = 7.f;
 		else if (anim == "run")
@@ -213,8 +190,12 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 			speed = 0.f;
 		m.CurrentSpeed = speed;
 
-		m.Unit->SetEntitySelection(anim);
-		m.Unit->SetRandomAnimation(anim, false, speed);
+		CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
+		if (!cmpVisual.null())
+		{
+			// TODO: SetEntitySelection(anim)
+			cmpVisual->SelectAnimation(anim, false, speed);
+		}
 	}
 
 	m.CurrentUnitID = id;
@@ -249,13 +230,17 @@ void ActorViewer::Render()
 	bool oldShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWS);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, m.ShadowsEnabled);
 
+	bool oldSky = g_Renderer.GetSkyManager()->m_RenderSky;
+	g_Renderer.GetSkyManager()->m_RenderSky = false;
+
 	g_Renderer.BeginFrame();
 
 	// Find the centre of the interesting region, in the middle of the patch
 	// and half way up the model (assuming there is one)
 	CVector3D centre;
-	if (m.Unit)
-		m.Unit->GetModel()->GetBounds().GetCentre(centre);
+	CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
+	if (!cmpVisual.null())
+		cmpVisual->GetBounds().GetCentre(centre);
 	else
 		centre.Y = 0.f;
 	centre.X = centre.Z = CELL_SIZE * PATCH_SIZE/2;
@@ -301,45 +286,30 @@ void ActorViewer::Render()
 
 	g_Renderer.EndFrame();
 
+	// Restore the old renderer state
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, oldShadows);
+	g_Renderer.GetSkyManager()->m_RenderSky = oldSky;
 
 	ogl_WarnIfError();
 }
 
 void ActorViewer::Update(float dt)
 {
-	if (m.Unit)
+	m.Simulation2.Update(dt);
+	m.Simulation2.Interpolate(dt);
+
+	if (m.WalkEnabled && m.CurrentSpeed)
 	{
-		m.Unit->GetModel()->Update(dt);
-
-		CMatrix3D mat = m.Unit->GetModel()->GetTransform();
-
-		if (m.WalkEnabled && m.CurrentSpeed)
+		CmpPtr<ICmpPosition> cmpPosition(m.Simulation2, m.Entity);
+		if (!cmpPosition.null())
 		{
 			// Move the model by speed*dt forwards
-			float z = mat.GetTranslation().Z;
+			float z = cmpPosition->GetPosition().Z.ToFloat();
 			z -= m.CurrentSpeed*dt;
 			// Wrap at the edges, so it doesn't run off into the horizon
 			if (z < CELL_SIZE*PATCH_SIZE * 0.4f)
 				z = CELL_SIZE*PATCH_SIZE * 0.6f;
-			mat.Translate(0.f, 0.f, z - mat.GetTranslation().Z);
+			cmpPosition->JumpTo(cmpPosition->GetPosition().X, entity_pos_t::FromFloat(z));
 		}
-
-		m.Unit->GetModel()->SetTransform(mat);
-		m.Unit->GetModel()->ValidatePosition();
 	}
-}
-
-bool ActorViewer::HasAnimation() const
-{
-	if (m.Unit &&
-		m.Unit->GetModel()->GetAnimation() &&
-		m.Unit->GetModel()->GetAnimation()->m_AnimDef &&
-		m.Unit->GetModel()->GetAnimation()->m_AnimDef->GetNumFrames() > 1)
-		return true;
-
-	if (m.Unit && m.WalkEnabled && m.CurrentSpeed)
-		return true;
-
-	return false;
 }

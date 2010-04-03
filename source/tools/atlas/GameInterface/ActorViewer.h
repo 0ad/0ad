@@ -18,9 +18,11 @@
 #ifndef INCLUDED_ACTORVIEWER
 #define INCLUDED_ACTORVIEWER
 
+#include "simulation2/system/Entity.h"
+
 struct ActorViewerImpl;
 struct SColor4ub;
-class CUnit;
+class CSimulation2;
 class CStrW;
 
 class ActorViewer
@@ -30,9 +32,10 @@ public:
 	ActorViewer();
 	~ActorViewer();
 
+	CSimulation2* GetSimulation2();
+	entity_id_t GetEntity();
 	void SetActor(const CStrW& id, const CStrW& animation);
 	void UnloadObjects();
-	CUnit* GetUnit();
 	void SetBackgroundColour(const SColor4ub& colour);
 	void SetWalkEnabled(bool enabled);
 	void SetGroundEnabled(bool enabled);
@@ -40,10 +43,6 @@ public:
 	void SetStatsEnabled(bool enabled);
 	void Render();
 	void Update(float dt);
-	
-	// Returns whether there is a selected actor which has more than one
-	// frame of animation
-	bool HasAnimation() const;
 
 private:
 	ActorViewerImpl& m;

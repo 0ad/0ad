@@ -190,12 +190,14 @@ MESSAGEHANDLER(SetSelectionPreview)
 
 QUERYHANDLER(GetObjectSettings)
 {
-	if (g_UseSimulation2)
+	View* view = View::GetView(msg->view);
+	CSimulation2* simulation = view->GetSimulation2();
+	if (simulation)
 	{
 		sObjectSettings settings;
 		settings.player = 0;
 
-		CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), msg->id);
+		CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
 		if (!cmpOwner.null())
 		{
 			int32_t player = cmpOwner->GetOwner();
@@ -210,7 +212,7 @@ QUERYHANDLER(GetObjectSettings)
 		return;
 	}
 
-	CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
+	CUnit* unit = view->GetUnit(msg->id);
 	if (! unit) return;
 
 	sObjectSettings settings;
@@ -265,9 +267,11 @@ BEGIN_COMMAND(SetObjectSettings)
 	{
 		sObjectSettings settings = msg->settings;
 
-		if (g_UseSimulation2)
+		View* view = View::GetView(msg->view);
+		CSimulation2* simulation = view->GetSimulation2();
+		if (simulation)
 		{
-			CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), msg->id);
+			CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
 			m_PlayerOld = 0;
 			if (!cmpOwner.null())
 			{
@@ -280,7 +284,7 @@ BEGIN_COMMAND(SetObjectSettings)
 		}
 		else
 		{
-			CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
+			CUnit* unit = view->GetUnit(msg->id);
 			if (! unit) return;
 			m_PlayerOld = unit->GetPlayerID();
 			m_SelectionsOld = unit->GetActorSelections();
@@ -310,9 +314,11 @@ BEGIN_COMMAND(SetObjectSettings)
 private:
 	void Set(size_t player, const std::set<CStr>& selections)
 	{
-		if (g_UseSimulation2)
+		View* view = View::GetView(msg->view);
+		CSimulation2* simulation = view->GetSimulation2();
+		if (simulation)
 		{
-			CmpPtr<ICmpOwnership> cmpOwner (*g_Game->GetSimulation2(), msg->id);
+			CmpPtr<ICmpOwnership> cmpOwner (*simulation, view->GetEntityId(msg->id));
 			if (!cmpOwner.null())
 				cmpOwner->SetOwner(player);
 			// TODO: selections
@@ -320,7 +326,7 @@ private:
 			return;
 		}
 
-		CUnit* unit = View::GetView(msg->view)->GetUnit(msg->id);
+		CUnit* unit = view->GetUnit(msg->id);
 		if (! unit) return;
 
 		unit->SetPlayerID(player);

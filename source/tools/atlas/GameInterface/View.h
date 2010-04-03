@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,8 +23,10 @@
 #include "graphics/Camera.h"
 
 #include "Messages.h"
+#include "simulation2/system/Entity.h"
 
 class CUnit;
+class CSimulation2;
 
 class ViewGame;
 class ViewActor;
@@ -36,6 +38,8 @@ public:
 	virtual void Update(float UNUSED(frameLength)) { };
 	virtual void Render() { };
 	virtual CCamera& GetCamera() = 0;
+	virtual CSimulation2* GetSimulation2() { return NULL; }
+	virtual entity_id_t GetEntityId(AtlasMessage::ObjectID obj) { return (entity_id_t)obj; }
 	virtual CUnit* GetUnit(AtlasMessage::ObjectID UNUSED(id)) { return NULL; }
 	virtual bool WantsHighFramerate() { return false; }
 
@@ -73,6 +77,7 @@ public:
 	virtual void Render();
 	virtual CCamera& GetCamera();
 	virtual CUnit* GetUnit(AtlasMessage::ObjectID id);
+	virtual CSimulation2* GetSimulation2();
 	virtual bool WantsHighFramerate();
 
 	void SetSpeedMultiplier(float speed);
@@ -96,7 +101,8 @@ public:
 	virtual void Update(float frameLength);
 	virtual void Render();
 	virtual CCamera& GetCamera();
-	virtual CUnit* GetUnit(AtlasMessage::ObjectID id);
+	virtual CSimulation2* GetSimulation2();
+	virtual entity_id_t GetEntityId(AtlasMessage::ObjectID obj);
 	virtual bool WantsHighFramerate();
 
 	virtual void SetParam(const std::wstring& name, bool value);
