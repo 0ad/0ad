@@ -95,8 +95,7 @@ extern_lib_defs = {
 		unix_names = { "dl" },
 	},
 	-- rationale: see libraries_dir..enet/lib/rationale.txt
-	enet =
-	{
+	enet = {
 		add_func = function()
 			if OS == "windows" then
 				tinsert(package.includepaths, libraries_dir.."enet/include")
@@ -113,10 +112,19 @@ extern_lib_defs = {
 		end,
 	},
 	fcollada = {
-		win_names  = { "FCollada" },
-		unix_names = { "FColladaSD" },
-		dbg_suffix = "D",
-		no_delayload = 1,
+		add_func = function()
+			tinsert(package.includepaths, libraries_dir.."fcollada/include")
+			tinsert(package.libpaths, libraries_dir.."fcollada/lib")
+			if OS == "windows" then
+				tinsert(package.config["Debug"  ].links, "FColladaD")
+				tinsert(package.config["Testing"].links, "FCollada")
+				tinsert(package.config["Release"].links, "FCollada")
+			else
+				tinsert(package.config["Debug"  ].links, "FColladaSD")
+				tinsert(package.config["Testing"].links, "FColladaSR")
+				tinsert(package.config["Release"].links, "FColladaSR")
+			end
+		end,
 	},
 	ffmpeg = {
 		win_names  = { "avcodec-51", "avformat-51", "avutil-49", "swscale-0" },
