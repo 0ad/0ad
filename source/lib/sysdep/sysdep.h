@@ -104,7 +104,7 @@ LibError sys_get_module_filename(void* addr, fs::wpath& pathname);
  *
  * this is useful for determining installation directory, e.g. for VFS.
  **/
-extern LibError sys_get_executable_name(fs::wpath& pathname);
+LIB_API LibError sys_get_executable_name(fs::wpath& pathname);
 
 /**
  * have the user choose a directory via OS dialog.

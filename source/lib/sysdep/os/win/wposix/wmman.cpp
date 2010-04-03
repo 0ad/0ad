@@ -174,7 +174,7 @@ static LibError mmap_file(void* start, size_t len, int prot, int flags, int fd, 
 	RETURN_ERR(mmap_file_access(prot, flags, flProtect, dwAccess));
 
 	// enough foreplay; now actually map.
-	const HANDLE hMap = CreateFileMapping(hFile, 0, flProtect, 0, 0, (LPCSTR)0);
+	const HANDLE hMap = CreateFileMapping(hFile, 0, flProtect, 0, 0, 0);
 	// .. create failed; bail now to avoid overwriting the last error value.
 	if(!hMap)
 		WARN_RETURN(ERR::NO_MEM);

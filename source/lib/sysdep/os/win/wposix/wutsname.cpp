@@ -23,6 +23,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/os/win/wposix/wutsname.h"
 
+#include "lib/utf8.h"
 #include "lib/sysdep/os/win/wutil.h"
 
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
@@ -30,26 +31,26 @@
 
 int uname(struct utsname* un)
 {
-	static OSVERSIONINFO vi;
-	vi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	GetVersionEx(&vi);
+	static OSVERSIONINFOW vi;
+	vi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOW);
+	GetVersionExW(&vi);
 
 	// OS implementation name
-	strcpy_s(un->sysname, ARRAY_SIZE(un->sysname), wutil_WindowsFamily());
+	sprintf_s(un->sysname, ARRAY_SIZE(un->sysname), "%ls", wutil_WindowsFamily());
 
 	// release info
-	const char* vs = vi.szCSDVersion;
+	const wchar_t* vs = vi.szCSDVersion;
 	int sp;
-	if(sscanf_s(vs, "Service Pack %d", &sp) == 1)
+	if(swscanf_s(vs, L"Service Pack %d", &sp) == 1)
 		sprintf_s(un->release, ARRAY_SIZE(un->release), "SP %d", sp);
 
 	// version
-	sprintf_s(un->version, ARRAY_SIZE(un->version), "%s.%lu", wutil_WindowsVersionString(), vi.dwBuildNumber & 0xFFFF);
+	sprintf_s(un->version, ARRAY_SIZE(un->version), "%ls.%lu", wutil_WindowsVersionString(), vi.dwBuildNumber & 0xFFFF);
 
 	// node name
 	DWORD buf_size = sizeof(un->nodename);
 	DWORD last_err = GetLastError();
-	BOOL ok = GetComputerName(un->nodename, &buf_size);
+	BOOL ok = GetComputerNameA(un->nodename, &buf_size);
 	// GetComputerName sets last error even on success - suppress.
 	if(ok)
 		SetLastError(last_err);

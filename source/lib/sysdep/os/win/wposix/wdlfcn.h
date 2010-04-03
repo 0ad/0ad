@@ -34,9 +34,9 @@
 #define RTLD_GLOBAL 0x04	// semantics are unsupported, so complain if set.
 #define RTLD_LOCAL  0x08
 
-extern int dlclose(void* handle);
-extern char* dlerror();
-extern void* dlopen(const char* so_name, int flags);
-extern void* dlsym(void* handle, const char* sym_name);
+LIB_API int dlclose(void* handle);
+LIB_API char* dlerror();
+LIB_API void* dlopen(const char* so_name, int flags);
+LIB_API void* dlsym(void* handle, const char* sym_name);
 
 #endif	// #ifndef INCLUDED_WDLFCN

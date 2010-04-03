@@ -259,7 +259,7 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 	BOOL quit_pending = PeekMessage(&msg, 0, WM_QUIT, WM_QUIT, PM_REMOVE);
 
 	const HINSTANCE hInstance = wutil_LibModuleHandle;
-	LPCSTR lpTemplateName = MAKEINTRESOURCE(IDD_DIALOG1);
+	LPCWSTR lpTemplateName = MAKEINTRESOURCEW(IDD_DIALOG1);
 	const DialogParams params = { text, flags };
 	// get the enclosing app's window handle. we can't just pass 0 or
 	// the desktop window because the dialog must be modal (if the app
@@ -267,7 +267,7 @@ ErrorReaction sys_display_error(const wchar_t* text, size_t flags)
 	// we've managed to show the dialog).
 	const HWND hWndParent = wutil_AppWindow();
 
-	INT_PTR ret = DialogBoxParam(hInstance, lpTemplateName, hWndParent, error_dialog_proc, (LPARAM)&params);
+	INT_PTR ret = DialogBoxParamW(hInstance, lpTemplateName, hWndParent, error_dialog_proc, (LPARAM)&params);
 
 	if(quit_pending)
 		PostQuitMessage((int)msg.wParam);

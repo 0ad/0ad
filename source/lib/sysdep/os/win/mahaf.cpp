@@ -166,9 +166,9 @@ void mahaf_UnmapPhysicalMemory(volatile void* virtualAddress)
 
 static SC_HANDLE OpenServiceControlManager()
 {
-	LPCSTR machineName = 0;	// local
-	LPCSTR databaseName = 0;	// default
-	SC_HANDLE hSCM = OpenSCManager(machineName, databaseName, SC_MANAGER_ALL_ACCESS);
+	LPCWSTR machineName = 0;	// local
+	LPCWSTR databaseName = 0;	// default
+	SC_HANDLE hSCM = OpenSCManagerW(machineName, databaseName, SC_MANAGER_ALL_ACCESS);
 	if(!hSCM)
 	{
 		// administrator privileges are required. note: installing the
@@ -314,7 +314,7 @@ bool mahaf_Init()
 
 	{
 	const DWORD shareMode = 0;
-	hAken = CreateFile("\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+	hAken = CreateFileW(L"\\\\.\\Aken", GENERIC_READ, shareMode, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	if(hAken == INVALID_HANDLE_VALUE)
 		goto fail;
 	}

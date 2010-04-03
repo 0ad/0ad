@@ -1887,7 +1887,7 @@ void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* exception_pointers)
 
 static LibError wdbg_sym_Init()
 {
-	HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
+	HMODULE hKernel32Dll = GetModuleHandleW(L"kernel32.dll");
 	s_RtlCaptureContext = (PRtlCaptureContext)GetProcAddress(hKernel32Dll, "RtlCaptureContext");
 
 	return INFO::OK;

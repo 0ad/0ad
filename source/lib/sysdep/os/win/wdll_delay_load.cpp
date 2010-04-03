@@ -333,7 +333,7 @@ extern "C" FARPROC WINAPI __delayLoadHelper2(PCImgDelayDescr pidd, FARPROC* ppfn
             hmod = HMODULE(((*__pfnDliNotifyHook2)(dliNotePreLoadLibrary, &dli)));
             }
         if (hmod == 0) {
-            hmod = ::LoadLibrary(dli.szDll);
+            hmod = ::LoadLibraryA(dli.szDll);
             }
         if (hmod == 0) {
             dli.dwLastError = ::GetLastError();

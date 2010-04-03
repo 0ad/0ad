@@ -321,7 +321,7 @@ static HMODULE hUser32Dll;
 
 static void ForciblyLoadUser32Dll()
 {
-	hUser32Dll = LoadLibrary("user32.dll");
+	hUser32Dll = LoadLibraryW(L"user32.dll");
 }
 
 // avoids Boundschecker warning
@@ -337,7 +337,7 @@ static void FreeUser32Dll()
 static void EnableLowFragmentationHeap()
 {
 #if WINVER >= 0x0501
-	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
+	const HMODULE hKernel32Dll = GetModuleHandleW(L"kernel32.dll");
 	typedef BOOL (WINAPI* PHeapSetInformation)(HANDLE, HEAP_INFORMATION_CLASS, void*, size_t);
 	PHeapSetInformation pHeapSetInformation = (PHeapSetInformation)GetProcAddress(hKernel32Dll, "HeapSetInformation");
 	if(!pHeapSetInformation)
@@ -352,7 +352,7 @@ static void EnableLowFragmentationHeap()
 //-----------------------------------------------------------------------------
 // version
 
-static char windowsVersionString[20];
+static wchar_t windowsVersionString[20];
 static size_t windowsVersion;	// see WUTIL_VERSION_*
 
 static void DetectWindowsVersion()
@@ -360,13 +360,13 @@ static void DetectWindowsVersion()
 	// note: don't use GetVersion[Ex] because it gives the version of the
 	// emulated OS when running an app with compatibility shims enabled.
 	HKEY hKey;
-	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
+	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
 	{
-		DWORD size = ARRAY_SIZE(windowsVersionString);
-		(void)RegQueryValueEx(hKey, "CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
+		DWORD size = sizeof(windowsVersionString);
+		(void)RegQueryValueExW(hKey, L"CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
 
 		int major = 0, minor = 0;
-		int ret = sscanf_s(windowsVersionString, "%d.%d", &major, &minor);
+		int ret = swscanf_s(windowsVersionString, L"%d.%d", &major, &minor);
 		debug_assert(ret == 2);
 		debug_assert(major <= 0xFF && minor <= 0xFF);
 		windowsVersion = (major << 8) | minor;
@@ -378,26 +378,26 @@ static void DetectWindowsVersion()
 }
 
 
-const char* wutil_WindowsFamily()
+const wchar_t* wutil_WindowsFamily()
 {
 	debug_assert(windowsVersion != 0);
 	switch(windowsVersion)
 	{
 	case WUTIL_VERSION_2K:
-		return "Win2k";
+		return L"Win2k";
 	case WUTIL_VERSION_XP:
-		return "WinXP";
+		return L"WinXP";
 	case WUTIL_VERSION_XP64:
-		return "WinXP64";
+		return L"WinXP64";
 	case WUTIL_VERSION_VISTA:
-		return "Vista";
+		return L"Vista";
 	default:
-		return "Windows";
+		return L"Windows";
 	}
 }
 
 
-const char* wutil_WindowsVersionString()
+const wchar_t* wutil_WindowsVersionString()
 {
 	debug_assert(windowsVersionString[0] != '\0');
 	return windowsVersionString;
@@ -429,7 +429,7 @@ static bool isWow64;
 
 static void ImportWow64Functions()
 {
-	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");
+	const HMODULE hKernel32Dll = GetModuleHandleW(L"kernel32.dll");
 	pIsWow64Process = (PIsWow64Process)GetProcAddress(hKernel32Dll, "IsWow64Process"); 
 	pWow64DisableWow64FsRedirection = (PWow64DisableWow64FsRedirection)GetProcAddress(hKernel32Dll, "Wow64DisableWow64FsRedirection");
 	pWow64RevertWow64FsRedirection = (PWow64RevertWow64FsRedirection)GetProcAddress(hKernel32Dll, "Wow64RevertWow64FsRedirection");

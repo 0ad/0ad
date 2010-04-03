@@ -158,7 +158,7 @@ extern const fs::wpath& wutil_AppdataPath();
 // version
 //
 
-extern const char* wutil_WindowsVersionString();
+extern const wchar_t* wutil_WindowsVersionString();
 
 // (same format as WINVER)
 const size_t WUTIL_VERSION_2K    = 0x0500;
@@ -169,7 +169,7 @@ const size_t WUTIL_VERSION_VISTA = 0x0600;
 /**
  * @return short textual representation of the appropriate WUTIL_VERSION
  **/
-extern const char* wutil_WindowsFamily();
+extern const wchar_t* wutil_WindowsFamily();
 
 extern size_t wutil_WindowsVersion();
 

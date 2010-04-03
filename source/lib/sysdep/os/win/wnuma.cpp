@@ -44,7 +44,7 @@ WINIT_REGISTER_EARLY_INIT(wnuma_Init);
 static size_t NumNodes()
 {
 	typedef BOOL (WINAPI *PGetNumaHighestNodeNumber)(PULONG highestNode);
-	const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+	const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
 	const PGetNumaHighestNodeNumber pGetNumaHighestNodeNumber = (PGetNumaHighestNodeNumber)GetProcAddress(hKernel32, "GetNumaHighestNodeNumber");
 	if(pGetNumaHighestNodeNumber)
 	{
@@ -63,7 +63,7 @@ static size_t NumNodes()
 static void FillNodesProcessorMask(uintptr_t* nodesProcessorMask)
 {
 	typedef BOOL (WINAPI *PGetNumaNodeProcessorMask)(UCHAR node, PULONGLONG affinity);
-	const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+	const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
 	const PGetNumaNodeProcessorMask pGetNumaNodeProcessorMask = (PGetNumaNodeProcessorMask)GetProcAddress(hKernel32, "GetNumaNodeProcessorMask");
 	if(pGetNumaNodeProcessorMask)
 	{
@@ -159,7 +159,7 @@ size_t numa_AvailableMemory(size_t node)
 	static PGetNumaAvailableMemoryNode pGetNumaAvailableMemoryNode;
 	if(!pGetNumaAvailableMemoryNode)
 	{
-		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+		const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
 		pGetNumaAvailableMemoryNode = (PGetNumaAvailableMemoryNode)GetProcAddress(hKernel32, "GetNumaAvailableMemoryNode");
 	}
 
@@ -333,7 +333,7 @@ static bool VerifyPages(void* mem, size_t size, size_t pageSize, size_t node)
 	static PQueryWorkingSetEx pQueryWorkingSetEx;
 	if(!pQueryWorkingSetEx)
 	{
-		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+		const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
 		pQueryWorkingSetEx = (PQueryWorkingSetEx)GetProcAddress(hKernel32, "QueryWorkingSetEx");
 		if(!pQueryWorkingSetEx)
 			return true;	// can't do anything

@@ -76,11 +76,11 @@ size_t os_cpu_NumProcessors()
 static LibError ReadFrequencyFromRegistry(DWORD& freqMhz)
 {
 	HKEY hKey;
-	if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS)
+	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS)
 		return ERR::NO_SYS;
 
 	DWORD size = sizeof(&freqMhz);
-	LONG ret = RegQueryValueEx(hKey, "~MHz", 0, 0, (LPBYTE)&freqMhz, &size);
+	LONG ret = RegQueryValueExW(hKey, L"~MHz", 0, 0, (LPBYTE)&freqMhz, &size);
 
 	RegCloseKey(hKey);
 
@@ -129,7 +129,7 @@ size_t os_cpu_LargePageSize()
 	if(largePageSize == ~(size_t)0)
 	{
 		typedef SIZE_T (WINAPI *PGetLargePageMinimum)();
-		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+		const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
 		const PGetLargePageMinimum pGetLargePageMinimum = (PGetLargePageMinimum)GetProcAddress(hKernel32, "GetLargePageMinimum");
 		if(pGetLargePageMinimum)
 		{
@@ -240,7 +240,7 @@ static DWORD CurrentProcessorNumber()
 	if(!initialized)
 	{
 		initialized = true;
-		const HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+		const HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
 		// note: NtGetCurrentProcessorNumber and RtlGetCurrentProcessorNumber aren't
 		// implemented on WinXP SP2, so we can't use those either.
 		pGetCurrentProcessorNumber = (PGetCurrentProcessorNumber)GetProcAddress(hKernel32, "GetCurrentProcessorNumber");

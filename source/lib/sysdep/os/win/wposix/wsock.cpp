@@ -105,7 +105,7 @@ static void ImportOptionalFunctions()
 {
 	// (by the time we get here, ws2_32.dll will have been loaded, so
 	// this isn't the only reference and can be freed immediately)
-	HMODULE hWs2_32Dll = LoadLibrary("ws2_32.dll");
+	HMODULE hWs2_32Dll = LoadLibraryW(L"ws2_32.dll");
 	pgetnameinfo = (Pgetnameinfo)GetProcAddress(hWs2_32Dll, "getnameinfo");
 	pgetaddrinfo = (Pgetaddrinfo)GetProcAddress(hWs2_32Dll, "getaddrinfo");
 	pfreeaddrinfo = (Pfreeaddrinfo)GetProcAddress(hWs2_32Dll, "freeaddrinfo");

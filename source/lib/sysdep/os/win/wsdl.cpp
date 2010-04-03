@@ -231,13 +231,13 @@ static HWND wsdl_CreateWindow(int w, int h)
 	const HINSTANCE hInst = GetModuleHandle(0);
 
 	// register window class
-	WNDCLASS wc;
+	WNDCLASSW wc;
 	memset(&wc, 0, sizeof(wc));
 	wc.style = 0;
 	wc.lpfnWndProc = wndproc;
-	wc.lpszClassName = "WSDL";
+	wc.lpszClassName = L"WSDL";
 	wc.hInstance = hInst;
-	ATOM class_atom = RegisterClass(&wc);
+	ATOM class_atom = RegisterClassW(&wc);
 	if(!class_atom)
 	{
 		debug_assert(0);	// SDL_SetVideoMode: RegisterClass failed
@@ -260,7 +260,7 @@ static HWND wsdl_CreateWindow(int w, int h)
 	}
 
 	// note: you can override the hardcoded window name via SDL_WM_SetCaption.
-	return CreateWindowEx(WS_EX_APPWINDOW, (LPCSTR)(uintptr_t)class_atom, "wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
+	return CreateWindowExW(WS_EX_APPWINDOW, (LPCWSTR)(uintptr_t)class_atom, L"wsdl", windowStyle, 0, 0, w, h, 0, 0, hInst, 0);
 }
 
 
@@ -1195,7 +1195,7 @@ int SDL_KillThread(SDL_Thread* thread)
 
 void SDL_WM_SetCaption(const char* title, const char* icon)
 {
-	WARN_IF_FALSE(SetWindowText(g_hWnd, title));
+	WARN_IF_FALSE(SetWindowTextA(g_hWnd, title));
 
 	// real SDL ignores this parameter, so we will follow suit.
 	UNUSED2(icon);
@@ -1251,37 +1251,50 @@ void SDL_Quit()
 	video_shutdown();
 }
 
-
-// note: we go to the trouble of hooking stdout via winit because SDL_Init
-// is called fairly late (or even not at all in the case of Atlas) and
-// we would otherwise lose some printfs.
-// this is possible because wstartup calls winit after _cinit.
-
-static LibError wsdl_Init()
+ 
+static void RedirectStdout()
 {
-	// redirect stdout to file (otherwise it's simply ignored on Win32).
-	// notes:
-	// - use full path for safety (works even if someone does chdir)
-	// - the real SDL does this in its WinMain hook
-	fs::wpath path = wutil_ExecutablePath()/L"stdout.txt";
-	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
-	// to avoid the OS opening a console on startup (ugly). that means
-	// stdout isn't associated with a lowio handle; _close ends up
-	// getting called with fd = -1. oh well, nothing we can do.
-	FILE* f = 0;
-	errno_t ret = _wfreopen_s(&f, path.string().c_str(), L"wt", stdout);
-	debug_assert(ret == 0);
-	debug_assert(f);
+	// this process is apparently attached to a console, and users might be
+	// surprised to find that we redirected the output to a file, so don't.
+	if(GetStdHandle(STD_OUTPUT_HANDLE) != INVALID_HANDLE_VALUE)
+		return;
 
+	// notes:
+	// - the current directory may have changed, so use the full path
+	//   to the current executable.
+	// - add the EXE name to the filename to allow multiple executables
+	//   with their own redirections.
+	wchar_t pathnameEXE[MAX_PATH];
+	const DWORD charsWritten = GetModuleFileNameW(0, pathnameEXE, ARRAY_SIZE(pathnameEXE));
+	debug_assert(charsWritten);
+	const fs::wpath path = fs::wpath(pathnameEXE).branch_path();
+	std::wstring name = fs::basename(pathnameEXE);
+	fs::wpath pathname(path/(name+L"_stdout.txt"));
+ 	// ignore BoundsChecker warnings here. subsystem is set to "Windows"
+ 	// to avoid the OS opening a console on startup (ugly). that means
+ 	// stdout isn't associated with a lowio handle; _close ends up
+ 	// getting called with fd = -1. oh well, nothing we can do.
+ 	FILE* f = 0;
+	errno_t ret = _wfreopen_s(&f, pathname.string().c_str(), L"wt", stdout);
+ 	debug_assert(ret == 0);
+ 	debug_assert(f);
+ 
 #if CONFIG_PARANOIA
 	// disable buffering, so that no writes are lost even if the program
-	// crashes. only enabled in full debug mode because this is really slow!
-	setvbuf(stdout, 0, _IONBF, 0);
-#endif
-
-	return INFO::OK;
+ 	// crashes. only enabled in full debug mode because this is really slow!
+ 	setvbuf(stdout, 0, _IONBF, 0);
+ #endif
 }
+ 
+static LibError wsdl_Init()
+{
+	// note: SDL does this in its WinMain hook. doing so in SDL_Init would be
+	// too late (we might miss some output), so we use winit.
+	// (this is possible because _cinit has already been called)
+	RedirectStdout();
 
+ 	return INFO::OK;
+}
 
 static LibError wsdl_Shutdown()
 {

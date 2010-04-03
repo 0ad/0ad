@@ -52,7 +52,9 @@
 
 */
 
+#ifndef _UNICODE
 #define _UNICODE
+#endif
 #include <tchar.h>
 #ifdef _UNICODE
 # define tstring wstring

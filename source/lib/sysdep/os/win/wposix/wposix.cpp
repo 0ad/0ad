@@ -42,7 +42,7 @@ int setenv(const char* envname, const char* envval, int overwrite)
 	}
 
 	if(overwrite || !getenv(envname))
-		SetEnvironmentVariable(envname, envval);
+		SetEnvironmentVariableA(envname, envval);
 
 	return 0;
 }
@@ -67,7 +67,7 @@ static void InitSysconf()
 
 	// import GlobalMemoryStatusEx - it's not defined by the VC6 PSDK.
 	// used by _SC_*_PAGES if available (provides better results).
-	const HMODULE hKernel32Dll = GetModuleHandle("kernel32.dll");  
+	const HMODULE hKernel32Dll = GetModuleHandleW(L"kernel32.dll");  
 	pGlobalMemoryStatusEx = (PGlobalMemoryStatusEx)GetProcAddress(hKernel32Dll, "GlobalMemoryStatusEx"); 
 }
 
