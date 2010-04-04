@@ -62,7 +62,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cost)
 		{
 			this.popCount -= cost.GetPopCost();
-			this.popLimit += cost.GetPopBonus();
+			this.popLimit -= cost.GetPopBonus();
 		}
 	}
 	
@@ -72,7 +72,7 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cost)
 		{
 			this.popCount += cost.GetPopCost();
-			this.popLimit -= cost.GetPopBonus();
+			this.popLimit += cost.GetPopBonus();
 		}
 	}
 };
