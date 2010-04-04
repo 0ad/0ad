@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="camp_mace_hypaspist">
+  <Identity>
+    <SpecificName>Hypaspistai Argyraspis</SpecificName>
+    <IconCell>12</IconCell>
+  </Identity>
+  <Health>
+    <Max>145</Max>
+  </Health>
+  <Armour>
+    <Hack>10.0</Hack>
+    <Pierce>13.0</Pierce>
+    <Crush>15.0</Crush>
+  </Armour>
+  <UnitMotion>
+    <WalkSpeed>5.0</WalkSpeed>
+  </UnitMotion>
+  <Attack>
+    <Hack>20.0</Hack>
+    <Pierce>24.0</Pierce>
+  </Attack>
+  <VisualActor>
+    <Actor>temp/mace_su1_argyraspis.xml</Actor>
+  </VisualActor>
+</Entity>

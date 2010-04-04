@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_fauna_hunt_skittish">
+  <Identity>
+    <SpecificName>Wildebeest</SpecificName>
+  </Identity>
+  <ResourceSupply>
+    <Amount>150</Amount>
+    <Type>food</Type>
+    <Subtype>meat</Subtype>
+  </ResourceSupply>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>fauna/wildebeest.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Circle radius="1.8"/>
+    <Height>1.8</Height>
+  </Footprint>
+</Entity>
