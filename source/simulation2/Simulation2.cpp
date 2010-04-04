@@ -63,6 +63,7 @@ public:
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_ObstructionManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Pathfinder, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_ProjectileManager, noParam);
+		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_SoundManager, noParam);
 		m_ComponentManager.AddComponent(SYSTEM_ENTITY, CID_Terrain, noParam);
 
 		// Add scripted system components:

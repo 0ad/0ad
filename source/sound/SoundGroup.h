@@ -66,12 +66,13 @@ enum eSndGrpFlags
 	eRandGain      = 0x02,
 	eRandPitch     = 0x04,
 	eLoop          = 0x08,
-	eOmnipresent      = 0x10
+	eOmnipresent   = 0x10
 };
 
 
 class CSoundGroup
 {
+	NONCOPYABLE(CSoundGroup);
 public:
 	CSoundGroup(const VfsPath& pathnameXML);
 	CSoundGroup(void);
@@ -94,10 +95,10 @@ public:
 	void Update(float TimeSinceLastFrame);
 
 	// Set a flag using a value from eSndGrpFlags
-	inline void SetFlag(int flag){ m_Flags |= flag; }  
+	inline void SetFlag(int flag) { m_Flags |= flag; }
 
 	// Test flag, returns true if flag is set.
-	inline bool TestFlag(int flag) { return (m_Flags & flag) != 0;}
+	inline bool TestFlag(int flag) { return (m_Flags & flag) != 0; }
 	
 private:
 	void SetGain(float gain);

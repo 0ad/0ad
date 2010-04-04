@@ -90,6 +90,9 @@ COMPONENT(ProjectileManager)
 INTERFACE(Selectable)
 COMPONENT(Selectable)
 
+INTERFACE(SoundManager)
+COMPONENT(SoundManager)
+
 INTERFACE(Terrain)
 COMPONENT(Terrain)
 

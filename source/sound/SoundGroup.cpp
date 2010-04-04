@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -146,7 +146,7 @@ void CSoundGroup::PlayNext(const CVector3D& position)
 		UploadPropertiesAndPlay(hs, position);
 	}
 	
-	playtimes[m_index] = 0.0f;
+	playtimes.at(m_index) = 0.0f;
 	m_index++;
 	m_Intensity++;
 	if(m_Intensity > m_IntensityThreshold)
@@ -216,10 +216,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 	if (XeroFile.Load(pathnameXML) != PSRETURN_OK)
 		return false;
 
-	// adjust the path name for resources if necessary
-	//m_Name = XMLfile + directorypath;
-
-	//Define elements used in XML file
+	// Define elements used in XML file
 	#define EL(x) int el_##x = XeroFile.GetElementID(#x)
 	#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(soundgroup);
@@ -263,106 +260,85 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 		{
 			SetGain(CStr(child.GetText()).ToFloat());
 		}
-
-		if(child_name == el_looping)
+		else if(child_name == el_looping)
 		{
 			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eLoop);
 		}
-
-		if(child_name == el_omnipresent)
+		else if(child_name == el_omnipresent)
 		{
 			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eOmnipresent);
 		}
-
-		if(child_name == el_pitch)
+		else if(child_name == el_pitch)
 		{
 			this->m_Pitch = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_priority)
+		else if(child_name == el_priority)
 		{
 			this->m_Priority = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_randorder)
+		else if(child_name == el_randorder)
 		{
 			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eRandOrder);
 		}
-
-		if(child_name == el_randgain)
+		else if(child_name == el_randgain)
 		{
 			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eRandGain);
 		}
-
-		if(child_name == el_gainupper)
+		else if(child_name == el_gainupper)
 		{
 			this->m_GainUpper = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_gainlower)
+		else if(child_name == el_gainlower)
 		{
 			this->m_GainLower = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_randpitch)
+		else if(child_name == el_randpitch)
 		{
 			if(CStr(child.GetText()).ToInt() == 1)
 				SetFlag(eRandPitch);
 		}
-
-		if(child_name == el_pitchupper)
+		else if(child_name == el_pitchupper)
 		{
 			this->m_PitchUpper = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_pitchlower)
+		else if(child_name == el_pitchlower)
 		{
 			this->m_PitchLower = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_conegain)
+		else if(child_name == el_conegain)
 		{
 			this->m_ConeOuterGain = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_coneinner)
+		else if(child_name == el_coneinner)
 		{
 			this->m_ConeInnerAngle = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_coneouter)
+		else if(child_name == el_coneouter)
 		{
 			this->m_ConeOuterAngle = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_sound)
+		else if(child_name == el_sound)
 		{
 			CStrW szTemp(child.GetText());
-			this->filenames.push_back(szTemp);	
-			
+			this->filenames.push_back(szTemp);
 		}
-		if(child_name == el_path)
+		else if(child_name == el_path)
 		{
 			m_filepath = CStrW(child.GetText());
-		
 		}
-		if(child_name == el_threshold)
+		else if(child_name == el_threshold)
 		{
-			//m_intensity_threshold = CStr(child.GetText()).ToFloat();
 			m_IntensityThreshold = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_decay)
+		else if(child_name == el_decay)
 		{
-			//m_intensity_threshold = CStr(child.GetText()).ToFloat();
 			m_Decay = CStr(child.GetText()).ToFloat();
 		}
-
-		if(child_name == el_replacement)
+		else if(child_name == el_replacement)
 		{
 			m_intensity_file = CStrW(child.GetText());
 		}
@@ -370,5 +346,4 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 
 	Reload();
 	return true;
-
 }

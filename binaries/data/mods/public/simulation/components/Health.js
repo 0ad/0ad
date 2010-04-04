@@ -37,6 +37,8 @@ Health.prototype.Reduce = function(amount)
 		// might get called multiple times)
 		if (this.hitpoints)
 		{
+			PlaySound("death", this.entity);
+
 			if (this.template.DeathType == "corpse")
 				this.CreateCorpse();
 

@@ -66,6 +66,7 @@ UnitAI.prototype.Walk = function(x, z)
 		return;
 
 	this.SelectAnimation("walk", false, cmpMotion.GetSpeed());
+	PlaySound("walk", this.entity);
 
 	cmpMotion.MoveToPoint(x, z, 0, 0);
 
@@ -200,12 +201,14 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 			var cmpResourceSupply = Engine.QueryInterface(this.gatherTarget, IID_ResourceSupply);
 			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 
-			this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, {});
+			// Get the animation/sound type name
+			var type = cmpResourceSupply.GetType();
+			var typename = "gather_" + (type.specific || type.generic);
+
+			this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, {"typename": typename});
 
 			// Start the gather animation
-			var type = cmpResourceSupply.GetType();
-			var anim = "gather_" + (type.specific || type.generic);
-			this.SelectAnimation(anim);
+			this.SelectAnimation(typename);
 		}
 	}
 };
@@ -385,6 +388,9 @@ UnitAI.prototype.AttackTimeout = function(data)
 
 	// Play the attack animation
 	this.SelectAnimation("melee", false, 1);
+	// Play the sound
+	// TODO: these sounds should be triggered by the animation instead
+	PlaySound("attack", this.entity);
 
 	// Hit the target
 	cmpAttack.PerformAttack(this.attackTarget);
@@ -410,7 +416,11 @@ UnitAI.prototype.RepairTimeout = function(data)
 
 	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 
+	// Play the sound
+	PlaySound("build", this.entity);
+
 	// Repair/build the target
+	// TODO: these sounds should be triggered by the animation instead
 	var status = cmpBuilder.PerformBuilding(this.repairTarget);
 
 	// If the target is fully built and repaired, then stop and go back to idle
@@ -438,6 +448,10 @@ UnitAI.prototype.GatherTimeout = function(data)
 		return;
 
 	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+
+	// Play the gather_* sound
+	// TODO: these sounds should be triggered by the animation instead
+	PlaySound(data.typename, this.entity);
 
 	// Gather from the target
 	var status = cmpResourceGatherer.PerformGather(this.gatherTarget);

@@ -1,0 +1,39 @@
+/* Copyright (C) 2010 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef INCLUDED_ICMPSOUNDMANAGER
+#define INCLUDED_ICMPSOUNDMANAGER
+
+#include "simulation2/system/Interface.h"
+
+/**
+ * Interface to the engine's sound system.
+ */
+class ICmpSoundManager : public IComponent
+{
+public:
+	/**
+	 * Start playing audio defined by a sound group file.
+	 * @param name VFS path of sound group .xml, relative to audio/
+	 * @param source entity emitting the sound (used for positioning)
+	 */
+	virtual void PlaySoundGroup(std::wstring name, entity_id_t source) = 0;
+
+	DECLARE_INTERFACE_TYPE(SoundManager)
+};
+
+#endif // INCLUDED_ICMPSOUNDMANAGER
