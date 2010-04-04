@@ -30,4 +30,10 @@
     <PrepareTime>900</PrepareTime>
     <RepeatTime>1500</RepeatTime>
   </Attack>
+  <Sound>
+    <SoundGroups>
+      <attack>attack/weapon/sword.xml</attack>
+      <death>actor/human/death/death.xml</death>
+    </SoundGroups>
+  </Sound>
 </Entity>

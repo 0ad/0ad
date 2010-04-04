@@ -32,4 +32,10 @@
     <Circle radius="1.2"/>
     <Height>7.5</Height>
   </Footprint>
+  <Sound>
+    <SoundGroups>
+      <attack>attack/weapon/sword.xml</attack>
+      <death>actor/fauna/death/death_horse.xml</death>
+    </SoundGroups>
+  </Sound>
 </Entity>

@@ -33,4 +33,12 @@
     <Circle radius="0.5"/>
     <Height>2.5</Height>
   </Footprint>
+  <Sound>
+    <SoundGroups>
+      <walk>actor/human/movement/walk.xml</walk>
+      <run>actor/human/movement/walk.xml</run>
+      <attack>attack/weapon/sword.xml</attack>
+      <death>actor/human/death/death.xml</death>
+    </SoundGroups>
+  </Sound>
 </Entity>

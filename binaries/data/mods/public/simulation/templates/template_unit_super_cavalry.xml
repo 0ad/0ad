@@ -33,4 +33,9 @@
     <Circle radius="1.2"/>
     <Height>5.0</Height>
   </Footprint>
+  <Sound>
+    <SoundGroups>
+      <death>actor/fauna/death/death_horse.xml</death>
+    </SoundGroups>
+  </Sound>
 </Entity>

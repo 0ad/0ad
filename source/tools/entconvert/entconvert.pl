@@ -195,7 +195,7 @@ sub convert {
             $out .= qq{$i$i<Circle radius="$data->{Traits}[0]{Footprint}[0]{Radius}[0]"/>\n};
         }
         if ($data->{Traits}[0]{Footprint}[0]{Width}) {
-            $out .= qq{$i$i<Square width="$data->{Traits}[0]{Footprint}[0]{Width}[0]" depth="$data->{Traits}[0]{Footprint}[0]{Depth}[0]"/>\n};
+            $out .= qq{$i$i<Square width="$data->{Traits}[0]{Footprint}[0]{Width}[0]" depth="$data->{Traits}[0]{Footprint}[0]{Depth}[0]"/>\n}; #"
         }
         if ($data->{Traits}[0]{Footprint}[0]{Height}) {
             $out .= qq{$i$i<Height>$data->{Traits}[0]{Footprint}[0]{Height}[0]</Height>\n};
@@ -223,6 +223,21 @@ sub convert {
         $out .= qq{$i</Builder>\n};
     }
 
+    if ($data->{SoundGroups}) {
+        $out .= qq{$i<Sound>\n};
+        $out .= qq{$i$i<SoundGroups>\n};
+        for my $n (qw(Walk Run Melee Death Build Gather_Fruit Gather_Grain Gather_Wood Gather_Stone Gather_Metal)) {
+            my $n2 = lc $n;
+            if ($n2 eq 'melee') { $n2 = 'attack'; }
+            if ($data->{SoundGroups}[0]{$n}) {
+                my $f = $data->{SoundGroups}[0]{$n}[0];
+                $f =~ s~^audio/~~ or die;
+                $out .= qq{$i$i$i<$n2>$f</$n2>\n};
+            }
+        }
+        $out .= qq{$i$i</SoundGroups>\n};
+        $out .= qq{$i</Sound>\n};
+    }
 
     $out .= qq{</Entity>\n};
     return $out;

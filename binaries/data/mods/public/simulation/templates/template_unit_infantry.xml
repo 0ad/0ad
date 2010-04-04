@@ -53,4 +53,18 @@
       structures/{civ}_wall_tower
     </Entities>
   </Builder>
+  <Sound>
+    <SoundGroups>
+      <walk>actor/human/movement/walk.xml</walk>
+      <run>actor/human/movement/walk.xml</run>
+      <attack>attack/weapon/sword.xml</attack>
+      <death>actor/human/death/death.xml</death>
+      <build>resource/construction/con_wood.xml</build>
+      <gather_fruit>resource/foraging/forage_leaves.xml</gather_fruit>
+      <gather_grain>resource/farming/farm.xml</gather_grain>
+      <gather_wood>resource/lumbering/lumbering.xml</gather_wood>
+      <gather_stone>resource/mining/pickaxe.xml</gather_stone>
+      <gather_metal>resource/mining/mining.xml</gather_metal>
+    </SoundGroups>
+  </Sound>
 </Entity>
