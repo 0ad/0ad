@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,18 +68,17 @@ public:
 	void ShowAmmunition();
 	void HideAmmunition();
 
-	// Sets the animation a random one matching 'name'. If none is found,
-	// sets to idle instead. Applies recursively to props.
-	// SetEntitySelection(name) should typically be used before this.
-	bool SetRandomAnimation(const CStr& name, bool once = false, float speed = 0.0f);
+	/// See CUnitAnimation::SetAnimationState
+	void SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& soundgroup);
 
-	void SetAnimationState(const CStr& name, bool once = false, float speed = 0.0f, bool keepSelection = false);
-	void SetAnimationSync(float timeUntilActionPos);
+	/// See CUnitAnimation::SetAnimationSync
+	void SetAnimationSync(float actionTime, float repeatTime);
+
+	/**
+	 * Update the model's animation.
+	 * @param frameTime time in seconds
+	 */
 	void UpdateModel(float frameTime);
-
-	// Returns a random animation matching 'name'. If none is found,
-	// returns idle instead.
-	CSkeletonAnim* GetRandomAnimation(const CStr& name);
 
 	bool HasAnimation(const CStr& name);
 
@@ -131,7 +130,18 @@ private:
 	// object manager which looks after this unit's objectentry
 	CObjectManager& m_ObjectManager;
 
+	// Sets the animation a random one matching 'name'. If none is found,
+	// sets to idle instead. Applies recursively to props.
+	// SetEntitySelection(name) should typically be used before this.
+	bool SetRandomAnimation(const CStr& name, bool once = false);
+
+	// Returns a random animation matching 'name'. If none is found,
+	// returns idle instead.
+	CSkeletonAnim* GetRandomAnimation(const CStr& name);
+
 	void ReloadObject();
+
+	friend class CUnitAnimation;
 };
 
 #endif

@@ -93,7 +93,7 @@ float CEntity::ChooseMovementSpeed( float distance )
 	{
 		if ( !m_actor->IsPlayingAnimation( anim_name ) )
 		{
-			m_actor->SetAnimationState( anim_name, false, speed );
+			m_actor->SetAnimationState( anim_name, false, speed, 0.f, false, L"" );
 
 			// Animation desync
 			m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
@@ -518,7 +518,7 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 				// Cancel current order
 				entf_clear(ENTF_IS_RUNNING);
 				entf_clear(ENTF_SHOULD_RUN);
-				m_actor->SetAnimationState( "idle" );
+				m_actor->SetAnimationState( "idle", false, 1.f, 0.f, false, L"" );
 				PopOrder();
 				if( m_orderQueue.empty() && target.IsValid() )
 				{
@@ -571,7 +571,7 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 			if( current->m_source == CEntityOrder::SOURCE_UNIT_AI && !m_stance->AllowsMovement() )
 			{
 				PopOrder();
-				m_actor->SetAnimationState( "idle" );
+				m_actor->SetAnimationState( "idle", false, 1.f, 0.f, false, L"" );
 				return false;		// We're not allowed to move at all by the current stance
 			}
 
@@ -581,7 +581,7 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 			// The pathfinder will push its result in front of the current order
 			if( !g_Pathfinder.RequestAvoidPath( me, current, action->m_MinRange + 2.0f ) )
 			{
-				m_actor->SetAnimationState( "idle" );	// Nothing we can do.. maybe we'll find a better target
+				m_actor->SetAnimationState( "idle", false, 1.f, 0.f, false, L"" );	// Nothing we can do.. maybe we'll find a better target
 				PopOrder();
 			}
 
@@ -664,8 +664,8 @@ bool CEntity::ProcessContactActionNoPathing( CEntityOrder* current, int timestep
 		entf_clear(ENTF_IS_RUNNING);
 	}
 
-	m_actor->SetAnimationState( animation, false, 1000.f / (float)action->m_Speed );
-	m_actor->SetAnimationSync( (float)( action->m_Speed / 2) / 1000.f );
+	m_actor->SetAnimationState( animation, false, 1000.f / (float)action->m_Speed, 0.f, false, L"" );
+//	m_actor->SetAnimationSync( (float)( action->m_Speed / 2) / 1000.f );
 
 	m_fsm_cyclepos = 0;
 

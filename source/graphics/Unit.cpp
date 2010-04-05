@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -112,22 +112,19 @@ static CSkeletonAnim* GetRandomAnimation(const CStr& name, CObjectEntry* object)
 	return anim;
 }
 
-static bool SetRandomAnimation(const CStr& name, bool once, float speed,
+static bool SetRandomAnimation(const CStr& name, bool once,
 							   CModel* model, CObjectEntry* object)
 {
 	CSkeletonAnim* anim = GetRandomAnimation(name, object);
 	if (anim)
 	{
-		float actualSpeed = 1000.f;
-		if (speed && anim->m_AnimDef)
-			actualSpeed = speed * anim->m_AnimDef->GetDuration();
-		model->SetAnimation(anim, once, actualSpeed);
+		model->SetAnimation(anim, once);
 
 		// Recursively apply the animation name to props
 		const std::vector<CModel::Prop>& props = model->GetProps();
 		for (std::vector<CModel::Prop>::const_iterator it = props.begin(); it != props.end(); ++it)
 		{
-			bool ok = SetRandomAnimation(name, once, speed, it->m_Model, it->m_ObjectEntry);
+			bool ok = SetRandomAnimation(name, once, it->m_Model, it->m_ObjectEntry);
 			if (! ok)
 				return false;
 		}
@@ -144,9 +141,9 @@ static bool SetRandomAnimation(const CStr& name, bool once, float speed,
 
 
 
-bool CUnit::SetRandomAnimation(const CStr& name, bool once, float speed)
+bool CUnit::SetRandomAnimation(const CStr& name, bool once)
 {
-	return ::SetRandomAnimation(name, once, speed, m_Model, m_Object);
+	return ::SetRandomAnimation(name, once, m_Model, m_Object);
 }
 
 CSkeletonAnim* CUnit::GetRandomAnimation(const CStr& name)
@@ -164,19 +161,19 @@ bool CUnit::IsPlayingAnimation(const CStr& name)
 	return (m_Model->GetAnimation() && m_Model->GetAnimation()->m_Name == name);
 }
 
-void CUnit::SetAnimationState(const CStr& name, bool once, float speed, bool keepSelection)
+void CUnit::SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& soundgroup)
 {
-	m_Animation->SetAnimationState(name, once, speed, keepSelection);
+	m_Animation->SetAnimationState(name, once, speed, desync, keepSelection, soundgroup);
 }
 
-void CUnit::SetAnimationSync(float timeUntilActionPos)
+void CUnit::SetAnimationSync(float actionTime, float repeatTime)
 {
-	m_Animation->SetAnimationSync(timeUntilActionPos);
+	m_Animation->SetAnimationSync(actionTime, repeatTime);
 }
 
 void CUnit::UpdateModel(float frameTime)
 {
-	m_Animation->Update(frameTime);
+	m_Animation->Update(frameTime*1000.0f);
 }
 
 

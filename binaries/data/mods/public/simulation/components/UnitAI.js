@@ -169,8 +169,11 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 			var time = Math.max(timers.prepare, this.attackRechargeTime - cmpTimer.GetTime());
 			this.attackTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "AttackTimeout", time, {});
 
-			// Start the idle animation before we switch to the attack
-			this.SelectAnimation("idle");
+			// Start the attack animation and sound, but synced to the timers
+			this.SelectAnimation("melee", false, 1.0, "attack");
+			this.SetAnimationSync(time, timers.repeat);
+			// TODO: this drifts since the sim is quantised to sim turns and these timers aren't
+			// TODO: we should probably only bother syncing projectile attacks, not melee
 		}
 		else if (this.state == STATE_REPAIRING)
 		{
@@ -185,8 +188,8 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 			var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 			this.repairTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "RepairTimeout", 1000, {});
 
-			// Start the repair/build animation
-			this.SelectAnimation("build");
+			// Start the repair/build animation and sound
+			this.SelectAnimation("build", false, 1.0, "build");
 		}
 		else if (this.state == STATE_GATHERING)
 		{
@@ -207,8 +210,8 @@ UnitAI.prototype.OnMotionChanged = function(msg)
 
 			this.gatherTimer = cmpTimer.SetTimeout(this.entity, IID_UnitAI, "GatherTimeout", 1000, {"typename": typename});
 
-			// Start the gather animation
-			this.SelectAnimation(typename);
+			// Start the gather animation and sound
+			this.SelectAnimation(typename, false, 1.0, typename);
 		}
 	}
 };
@@ -353,13 +356,30 @@ UnitAI.prototype.MoveIntoGatherRange = function()
 
 // TODO: refactor all this repetitive code
 
-UnitAI.prototype.SelectAnimation = function(name, once, speed)
+UnitAI.prototype.SelectAnimation = function(name, once, speed, sound)
 {
 	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (!cmpVisual)
 		return;
 
-	cmpVisual.SelectAnimation(name, once, speed);
+	var soundgroup = "";
+	if (sound)
+	{
+		var cmpSound = Engine.QueryInterface(this.entity, IID_Sound);
+		if (cmpSound)
+			soundgroup = cmpSound.GetSoundGroup(sound);
+	}
+
+	cmpVisual.SelectAnimation(name, once, speed, soundgroup);
+};
+
+UnitAI.prototype.SetAnimationSync = function(actiontime, repeattime)
+{
+	var cmpVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (!cmpVisual)
+		return;
+
+	cmpVisual.SetAnimationSync(actiontime, repeattime);
 };
 
 UnitAI.prototype.MoveToTarget = function(target, range)
@@ -386,12 +406,6 @@ UnitAI.prototype.AttackTimeout = function(data)
 
 	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 
-	// Play the attack animation
-	this.SelectAnimation("melee", false, 1);
-	// Play the sound
-	// TODO: these sounds should be triggered by the animation instead
-	PlaySound("attack", this.entity);
-
 	// Hit the target
 	cmpAttack.PerformAttack(this.attackTarget);
 
@@ -416,11 +430,7 @@ UnitAI.prototype.RepairTimeout = function(data)
 
 	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
 
-	// Play the sound
-	PlaySound("build", this.entity);
-
 	// Repair/build the target
-	// TODO: these sounds should be triggered by the animation instead
 	var status = cmpBuilder.PerformBuilding(this.repairTarget);
 
 	// If the target is fully built and repaired, then stop and go back to idle
@@ -448,10 +458,6 @@ UnitAI.prototype.GatherTimeout = function(data)
 		return;
 
 	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-
-	// Play the gather_* sound
-	// TODO: these sounds should be triggered by the animation instead
-	PlaySound(data.typename, this.entity);
 
 	// Gather from the target
 	var status = cmpResourceGatherer.PerformGather(this.gatherTarget);

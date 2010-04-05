@@ -331,7 +331,7 @@ void CEntity::Kill(bool keepActor)
 
 		// Play death animation and keep the actor in the game in a dead state 
 		// (TODO: remove the actor after some time through some kind of fading mechanism)
-		m_actor->SetAnimationState( "death", true );
+		m_actor->SetAnimationState( "death", true, 1.f, 0.f, false, L"" );
 	}
 	else
 	{
@@ -629,7 +629,7 @@ void CEntity::UpdateOrders( int timestep )
 		{
 			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
 			{
-				m_actor->SetAnimationState( "idle" );
+				m_actor->SetAnimationState( "idle", false, 1.f, 0.f, false, L"" );
 			}
 		}
 	}

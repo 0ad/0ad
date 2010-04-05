@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -213,18 +213,18 @@ void CModel::CalcAnimatedObjectBound(CSkeletonAnimDef* anim,CBound& result)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BuildAnimation: load raw animation frame animation from given file, and build a 
 // animation specific to this model
-CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const char* name, float speed, double actionpos, double actionpos2)
+CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const char* name, float speed, float actionpos, float actionpos2)
 {
 	CSkeletonAnimDef* def = m_SkeletonAnimManager.GetAnimation(pathname);
-	if (!def) return NULL;
+	if (!def)
+		return NULL;
 
-
-	CSkeletonAnim* anim=new CSkeletonAnim;
+	CSkeletonAnim* anim = new CSkeletonAnim();
 	anim->m_Name = name;
-	anim->m_AnimDef=def;
-	anim->m_Speed=speed;
-	anim->m_ActionPos=(float)( actionpos /* * anim->m_AnimDef->GetDuration() */ / speed );
-	anim->m_ActionPos2=(float)( actionpos2 /* * anim->m_AnimDef->GetDuration() */ / speed );
+	anim->m_AnimDef = def;
+	anim->m_Speed = speed;
+	anim->m_ActionPos = actionpos * anim->m_AnimDef->GetDuration();
+	anim->m_ActionPos2 = actionpos2 * anim->m_AnimDef->GetDuration();
 
 	anim->m_ObjectBounds.SetEmpty();
 	InvalidateBounds();
@@ -233,21 +233,18 @@ CSkeletonAnim* CModel::BuildAnimation(const VfsPath& pathname, const char* name,
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Update: update this model by the given time, in seconds
+// Update: update this model by the given time, in msec
 void CModel::Update(float time)
 {
 	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
 	{
-		// adjust for animation speed
-		float animTimeDelta = time*m_AnimSpeed;
-
 		float oldAnimTime = m_AnimTime;
 
 		// update animation time, but don't calculate bone matrices - do that (lazily) when
 		// something requests them; that saves some calculation work for offscreen models,
 		// and also assures the world space, inverted bone matrices (required for normal
 		// skinning) are up to date with respect to m_Transform 
-		m_AnimTime += animTimeDelta;
+		m_AnimTime += time;
 		
 		float duration = m_Anim->m_AnimDef->GetDuration();
 		if (m_AnimTime > duration)
@@ -291,15 +288,24 @@ bool CModel::NeedsNewAnim(float time) const
 
 	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
 	{
-		// adjust for animation speed
-		float animtime = time * m_AnimSpeed;
-
 		float duration = m_Anim->m_AnimDef->GetDuration();
-		if (m_AnimTime + animtime > duration)
+		if (m_AnimTime + time > duration)
 			return true;
 	}
 
 	return false;
+}
+
+void CModel::CheckActionTriggers(float time, bool& action, bool& action2) const
+{
+	if (m_Anim && m_Anim->m_AnimDef && m_BoneMatrices)
+	{
+		if (m_AnimTime <= m_Anim->m_ActionPos && m_AnimTime + time > m_Anim->m_ActionPos)
+			action = true;
+
+		if (m_AnimTime <= m_Anim->m_ActionPos2 && m_AnimTime + time > m_Anim->m_ActionPos2)
+			action2 = true;
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -369,7 +375,7 @@ void CModel::ValidatePosition()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SetAnimation: set the given animation as the current animation on this model;
 // return false on error, else true
-bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeletonAnim* next)
+bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, CSkeletonAnim* next)
 {
 	m_Anim=NULL; // in case something fails
 
@@ -405,10 +411,7 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once, float speed, CSkeleton
 		InvalidateBounds();
 
 		// start anim from beginning 
-		m_AnimTime=0;
-
-		// Adjust speed by animation base rate.
-		m_AnimSpeed = speed * anim->m_Speed;
+		m_AnimTime = 0;
 	} 
 
 	m_Anim = anim;
@@ -423,7 +426,6 @@ void CModel::CopyAnimationFrom(CModel* source)
 	m_Anim = source->m_Anim;
 	m_NextAnim = source->m_NextAnim;
 	m_AnimTime = source->m_AnimTime;
-	m_AnimSpeed = source->m_AnimSpeed;
 
 	m_Flags &= ~MODELFLAG_CASTSHADOWS;
 	if (source->m_Flags & MODELFLAG_CASTSHADOWS)

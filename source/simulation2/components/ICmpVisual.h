@@ -44,11 +44,22 @@ public:
 	/**
 	 * Start playing the given animation. If there are multiple possible animations then it will
 	 * pick one at random (not network-synchronised).
+	 * If @p soundgroup is specified, then the sound will be played at each 'event' point in the
+	 * animation cycle.
 	 * @param name animation name (e.g. "idle", "walk", "melee"; the names are determined by actor XML files)
 	 * @param once if true then the animation will play once and freeze at the final frame, else it will loop
-	 * @param speed some kind of animation speed multiplier (TODO: work out exactly what the scale is)
+	 * @param speed animation speed multiplier (typically 1.0 for the default speed)
+	 * @param soundgroup VFS path of sound group .xml, relative to audio/, or empty string for none
 	 */
-	virtual void SelectAnimation(std::string name, bool once, float speed) = 0;
+	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup) = 0;
+
+	/**
+	 * Adjust the timing (offset and speed) of the current animation, so it can match
+	 * simulation events.
+	 * @param actiontime time between now and when the 'action' event should occur, in msec
+	 * @param repeattime time for complete loop of animation, in msec
+	 */
+	virtual void SetAnimationSync(float actiontime, float repeattime) = 0;
 
 	/**
 	 * Set the shading colour that will be modulated with the model's textures.

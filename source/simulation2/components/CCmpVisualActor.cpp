@@ -53,6 +53,7 @@ public:
 	std::string m_AnimName;
 	bool m_AnimOnce;
 	float m_AnimSpeed;
+	std::wstring m_SoundGroup;
 
 	CCmpVisualActor() :
 		m_Unit(NULL)
@@ -80,7 +81,7 @@ public:
 			return;
 		}
 
-		SelectAnimation("idle", false, 0.f);
+		SelectAnimation("idle", false, 0.f, L"");
 
 		m_Unit->SetID(GetEntityId()); // TODO: is it safe to be using entity IDs for unit IDs?
 	}
@@ -163,19 +164,30 @@ public:
 		return m_Unit->GetModel()->GetTransform().GetTranslation();
 	}
 
-	virtual void SelectAnimation(std::string name, bool once, float speed)
+	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup)
 	{
 		if (!m_Unit)
 			return;
 
 		if (!isfinite(speed) || speed < 0) // JS 'undefined' converts to NaN, which causes Bad Things
-			speed = 0;
+			speed = 1.f;
+
+		float desync = 0.05f; // TODO: make this an argument
 
 		m_AnimName = name;
 		m_AnimOnce = once;
 		m_AnimSpeed = speed;
+		m_SoundGroup = soundgroup;
 
-		m_Unit->SetAnimationState(name, once, speed);
+		m_Unit->SetAnimationState(name, once, speed, desync, false, soundgroup.c_str());
+	}
+
+	virtual void SetAnimationSync(float actiontime, float repeattime)
+	{
+		if (!m_Unit)
+			return;
+
+		m_Unit->SetAnimationSync(actiontime, repeattime);
 	}
 
 	virtual void SetShadingColour(CFixed_23_8 r, CFixed_23_8 g, CFixed_23_8 b, CFixed_23_8 a)

@@ -4,6 +4,11 @@ Sound.prototype.Init = function()
 {
 };
 
+Sound.prototype.GetSoundGroup = function(name)
+{
+	return this.template.SoundGroups[name] || "";
+};
+
 Sound.prototype.PlaySoundGroup = function(name)
 {
 	if (name in this.template.SoundGroups)

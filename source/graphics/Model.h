@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,6 +73,9 @@ public:
 	// returns true if Update(time) will require a new animation (due to the
 	// current one ending)
 	bool NeedsNewAnim(float time) const;
+	// sets the bool& arguments if the given time update will cross the trigger points for those actions;
+	// otherwise leaves the arguments unchanged
+	void CheckActionTriggers(float time, bool& action, bool& action2) const;
 
 	// get the model's geometry data
 	CModelDefPtr GetModelDef() { return m_pModelDef; }
@@ -96,7 +99,7 @@ public:
 	CColor GetShadingColor() { return m_ShadingColor; }
 
 	// set the given animation as the current animation on this model
-	bool SetAnimation(CSkeletonAnim* anim, bool once = false, float speed = 1000.0f, CSkeletonAnim* next = NULL);
+	bool SetAnimation(CSkeletonAnim* anim, bool once = false, CSkeletonAnim* next = NULL);
 
 	// get the currently playing animation, if any
 	CSkeletonAnim* GetAnimation() const { return m_Anim; }
@@ -146,9 +149,17 @@ public:
 		return m_InverseBindBoneMatrices;
 	}
 
-	// load raw animation frame animation from given file, and build a 
-	// animation specific to this model
-	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const char* name, float speed, double actionpos, double actionpos2);
+	/**
+	 * Load raw animation frame animation from given file, and build an
+	 * animation specific to this model.
+	 * @param pathname animation file to load
+	 * @param name animation name (e.g. "idle")
+	 * @param speed animation speed as a factor of the default animation speed
+	 * @param actionpos offset of 'action' event, in range [0, 1]
+	 * @param actionpos2 offset of 'action2' event, in range [0, 1]
+	 * @return new animation, or NULL on error
+	 */
+	CSkeletonAnim* BuildAnimation(const VfsPath& pathname, const char* name, float speed, float actionpos, float actionpos2);
 
 	// add a prop to the model on the given point
 	void AddProp(SPropPoint* point, CModel* model, CObjectEntry* objectentry);
@@ -199,8 +210,6 @@ private:
 	CSkeletonAnim* m_Anim;
 	// animation to switch back to when the current one finishes
 	CSkeletonAnim* m_NextAnim;
-	// rate at which the animation should play
-	float m_AnimSpeed;
 	// time (in MS) into the current animation
 	float m_AnimTime;
 	// current state of all bones on this model; null if associated modeldef isn't skeletal

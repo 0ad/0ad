@@ -183,18 +183,28 @@ void ActorViewer::SetActor(const CStrW& name, const CStrW& animation)
 		// same for all units. We ought to get it from the entity definition
 		// (if there is one)
 		if (anim == "walk")
+		{
 			speed = 7.f;
+			m.CurrentSpeed = speed;
+		}
 		else if (anim == "run")
+		{
 			speed = 12.f;
+			m.CurrentSpeed = speed;
+		}
 		else
-			speed = 0.f;
-		m.CurrentSpeed = speed;
+		{
+			// Play the animation at normal speed, but movement speed is zero
+			speed = 1.f;
+			m.CurrentSpeed = 0.f;
+		}
 
 		CmpPtr<ICmpVisual> cmpVisual(m.Simulation2, m.Entity);
 		if (!cmpVisual.null())
 		{
 			// TODO: SetEntitySelection(anim)
-			cmpVisual->SelectAnimation(anim, false, speed);
+			// TODO: maybe we could play soundgroups from entities in here, to help test timings?
+			cmpVisual->SelectAnimation(anim, false, speed, L"");
 		}
 	}
 

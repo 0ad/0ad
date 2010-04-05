@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,25 +22,61 @@
 
 class CUnit;
 
+/**
+ * Deals with synchronisation issues between raw animation data (CModel, CSkeletonAnim)
+ * and the simulation system (via CUnit), providing a simple fire-and-forget API to play animations.
+ * (This is really just a component of CUnit and could probably be merged back into that class.)
+ */
 class CUnitAnimation
 {
 	NONCOPYABLE(CUnitAnimation);
 public:
+	/**
+	 * Construct for a given unit, defaulting to the "idle" animation.
+	 */
 	CUnitAnimation(CUnit& unit);
 
-	// (All times are measured in seconds)
+	/**
+	 * Start playing an animation.
+	 * The unit's actor defines the available animations, and if more than one is available
+	 * then one is picked at random (with a new random choice each loop).
+	 * By default, animations start immediately and run at the given speed with no syncing.
+	 * Use SetAnimationSync after this to force a specific timing, if it needs to match the
+	 * simulation timing.
+	 * Alternatively, set @p desync to a non-zero value (e.g. 0.05) to slightly randomise the
+	 * offset and speed, so units don't all move in lockstep.
+	 * @param name animation's name ("idle", "walk", etc)
+	 * @param once if true then the animation freezes on its last frame; otherwise it loops
+	 * @param speed fraction of actor-defined speed to play back at (should typically be 1.0)
+	 * @param desync maximum fraction of length/speed to randomly adjust timings (or 0.0 for no desyncing)
+	 * @param keepSelection if false then the random actor variation will have the selection @p name added
+	 * @param actionSound sound group name to be played at the 'action' point in the animation, or empty string
+	 */
+	void SetAnimationState(const CStr& name, bool once, float speed, float desync, bool keepSelection, const CStrW& actionSound);
 
-	void SetAnimationState(const CStr& name, bool once, float speed, bool keepSelection);
-	void SetAnimationSync(float timeUntilActionPos);
+	/**
+	 * Adjust the timing of the current animation, so that Update(actionTime) will advance it
+	 * to the 'action' point defined in the actor, and so that Update(repeatTime) will do a
+	 * complete animation loop.
+	 * @param actionTime time between now and when the action should occur, in msec
+	 * @param repeatTime time for complete loop of animation, in msec
+	 */
+	void SetAnimationSync(float actionTime, float repeatTime);
+
+	/**
+	 * Advance the animation state.
+	 * @param time advance time in msec
+	 */
 	void Update(float time);
 
 private:
 	CUnit& m_Unit;
 	CStr m_State;
 	bool m_Looping;
-	float m_Speed;
 	float m_OriginalSpeed;
-	float m_TimeToNextSync;
+	float m_Speed;
+	float m_Desync;
+	CStrW m_ActionSound;
 };
 
 #endif // INCLUDED_UNITANIMATION

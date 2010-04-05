@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,12 +34,13 @@ class CSkeletonAnim
 public:
 	// the name of the action which uses this animation (e.g. "idle")
 	CStr m_Name;
-	// the raw animation frame data
+	// the raw animation frame data; may be NULL if this is a static 'animation'
 	CSkeletonAnimDef* m_AnimDef;
-	// speed at which this animation runs
+	// speed at which this animation runs, as a factor of the AnimDef default speed
+	// (treated as 0 if m_AnimDef == NULL)
 	float m_Speed;
-	// Times during the animation at which the interesting bits happen. Measured
-	// as fractions (0..1) of the total animation length.
+	// Times during the animation at which the interesting bits happen,
+	// as msec times in the range [0, AnimDef->GetDuration].
 	// ActionPos is used for melee hits, projectile launches, etc.
 	// ActionPos2 is used for loading projectile ammunition.
 	float m_ActionPos;
