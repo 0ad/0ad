@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -338,6 +338,26 @@ float CTerrain::GetExactGroundLevel(float x, float z) const
 	return (HEIGHT_SCALE * (
 		(1 - zf) * ((1 - xf) * h00 + xf * h10)
 		   + zf  * ((1 - xf) * h01 + xf * h11)));
+}
+
+CFixed_23_8 CTerrain::GetExactGroundLevelFixed(CFixed_23_8 x, CFixed_23_8 z) const
+{
+	// Clamp to size-2 so we can use the tiles (xi,zi)-(xi+1,zi+1)
+	const ssize_t xi = clamp((ssize_t)(x/CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
+	const ssize_t zi = clamp((ssize_t)(z/CELL_SIZE).ToInt_RoundToZero(), (ssize_t)0, m_MapSize-2);
+
+	const CFixed_23_8 one = CFixed_23_8::FromInt(1);
+
+	const CFixed_23_8 xf = clamp((x/CELL_SIZE)-CFixed_23_8::FromInt(xi), CFixed_23_8::FromInt(0), one);
+	const CFixed_23_8 zf = clamp((z/CELL_SIZE)-CFixed_23_8::FromInt(zi), CFixed_23_8::FromInt(0), one);
+
+	u16 h00 = m_Heightmap[zi*m_MapSize + xi];
+	u16 h01 = m_Heightmap[(zi+1)*m_MapSize + xi];
+	u16 h10 = m_Heightmap[zi*m_MapSize + (xi+1)];
+	u16 h11 = m_Heightmap[(zi+1)*m_MapSize + (xi+1)];
+	// Linearly interpolate
+	return ((one - zf).Multiply((one - xf) * h00 + xf * h10)
+	              + zf.Multiply((one - xf) * h01 + xf * h11)) / HEIGHT_UNITS_PER_METRE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

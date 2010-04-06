@@ -60,10 +60,7 @@ public:
 
 	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z)
 	{
-		float height = m_Terrain->GetExactGroundLevel(x.ToFloat(), z.ToFloat());
-		// TODO: get rid of floats
-
-		return entity_pos_t::FromFloat(height);
+		return m_Terrain->GetExactGroundLevelFixed(x, z);
 	}
 
 	virtual float GetGroundLevel(float x, float z)

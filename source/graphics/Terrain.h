@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #define INCLUDED_TERRAIN
 
 #include "maths/Vector3D.h"
+#include "maths/Fixed.h"
 #include "graphics/SColor.h"
 #include "lib/sysdep/cpu.h"
 
@@ -80,6 +81,7 @@ public:
 
 	float GetVertexGroundLevel(ssize_t i, ssize_t j) const;
 	float GetExactGroundLevel(float x, float z) const;
+	CFixed_23_8 GetExactGroundLevelFixed(CFixed_23_8 x, CFixed_23_8 z) const;
 	float GetExactGroundLevel(const CVector2D& v) const;
 
 	float GetSlope(float x, float z) const ;

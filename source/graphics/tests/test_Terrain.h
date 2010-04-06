@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "graphics/Patch.h"
 #include "graphics/RenderableObject.h"
 #include "maths/FixedVector3D.h"
+#include "maths/Fixed.h"
 
 class TestTerrain : public CxxTest::TestSuite
 {
@@ -53,7 +54,73 @@ class TestTerrain : public CxxTest::TestSuite
 
 	}
 
+	void SetHighPlateau(CTerrain& terrain, int height)
+	{
+		SetVertex(terrain, 4, 0, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 4, 1, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 4, 2, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 5, 0, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 5, 1, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
+		SetVertex(terrain, 5, 2, 100 + height*CELL_SIZE*HEIGHT_UNITS_PER_METRE);
+	}
+
 public:
+	void test_GetExactGroundLevel()
+	{
+		CTerrain terrain;
+		terrain.Initialize(4, NULL);
+		Set45Slope(terrain);
+		SetHighPlateau(terrain, 20);
+
+		float ground;
+
+		ground = terrain.GetExactGroundLevel(0.f, 1.5f*CELL_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE, 0.01f);
+
+		ground = terrain.GetExactGroundLevel(0.5f*CELL_SIZE, 1.5f*CELL_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+0.5f*CELL_SIZE, 0.01f);
+
+		ground = terrain.GetExactGroundLevel(1.5f*CELL_SIZE, 1.5f*CELL_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+1.5f*CELL_SIZE, 0.01f);
+
+		ground = terrain.GetExactGroundLevel(2.5f*CELL_SIZE, 1.5f*CELL_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+2.f*CELL_SIZE, 0.01f);
+
+		ground = terrain.GetExactGroundLevel(3.5f*CELL_SIZE, 1.5f*CELL_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+11.f*CELL_SIZE, 0.01f);
+
+		ground = terrain.GetExactGroundLevel(4.5f*CELL_SIZE, 1.5f*CELL_SIZE);
+		TS_ASSERT_DELTA(ground, 100.f/HEIGHT_UNITS_PER_METRE+20.f*CELL_SIZE, 0.01f);
+	}
+
+	void test_GetExactGroundLevelFixed()
+	{
+		CTerrain terrain;
+		terrain.Initialize(4, NULL);
+		Set45Slope(terrain);
+		SetHighPlateau(terrain, 20);
+
+		CFixed_23_8 ground;
+
+		ground = terrain.GetExactGroundLevelFixed(CFixed_23_8::FromFloat(0.f), CFixed_23_8::FromFloat(1.5f*CELL_SIZE));
+		TS_ASSERT_DELTA(ground.ToFloat(), 100.f/HEIGHT_UNITS_PER_METRE, 0.01f);
+
+		ground = terrain.GetExactGroundLevelFixed(CFixed_23_8::FromFloat(0.5f*CELL_SIZE), CFixed_23_8::FromFloat(1.5f*CELL_SIZE));
+		TS_ASSERT_DELTA(ground.ToFloat(), 100.f/HEIGHT_UNITS_PER_METRE+0.5f*CELL_SIZE, 0.01f);
+
+		ground = terrain.GetExactGroundLevelFixed(CFixed_23_8::FromFloat(1.5f*CELL_SIZE), CFixed_23_8::FromFloat(1.5f*CELL_SIZE));
+		TS_ASSERT_DELTA(ground.ToFloat(), 100.f/HEIGHT_UNITS_PER_METRE+1.5f*CELL_SIZE, 0.01f);
+
+		ground = terrain.GetExactGroundLevelFixed(CFixed_23_8::FromFloat(2.5f*CELL_SIZE), CFixed_23_8::FromFloat(1.5f*CELL_SIZE));
+		TS_ASSERT_DELTA(ground.ToFloat(), 100.f/HEIGHT_UNITS_PER_METRE+2.f*CELL_SIZE, 0.01f);
+
+		ground = terrain.GetExactGroundLevelFixed(CFixed_23_8::FromFloat(3.5f*CELL_SIZE), CFixed_23_8::FromFloat(1.5f*CELL_SIZE));
+		TS_ASSERT_DELTA(ground.ToFloat(), 100.f/HEIGHT_UNITS_PER_METRE+11.f*CELL_SIZE, 0.01f);
+
+		ground = terrain.GetExactGroundLevelFixed(CFixed_23_8::FromFloat(4.5f*CELL_SIZE), CFixed_23_8::FromFloat(1.5f*CELL_SIZE));
+		TS_ASSERT_DELTA(ground.ToFloat(), 100.f/HEIGHT_UNITS_PER_METRE+20.f*CELL_SIZE, 0.01f);
+	}
+
 	void test_CalcNormal()
 	{
 		CTerrain terrain;
