@@ -64,7 +64,6 @@ that of Atlas depending on commandline parameters.
 #include "simulation/Scheduler.h"
 #include "simulation2/Simulation2.h"
 #include "sound/CMusicPlayer.h"
-#include "sound/SoundGroupMgr.h"
 #include "gui/GUIManager.h"
 
 #define LOG_CATEGORY L"main"
@@ -304,7 +303,6 @@ static void Frame()
 		float down[3] = { -up[0], -up[1], -up[2] };
 		if(snd_update(pos, dir, down) < 0)
 			debug_printf(L"snd_update failed\n");
-		g_soundGroupMgr->UpdateSoundGroups(TimeSinceLastFrame);
 		PROFILE_END( "sound update" );
 	}
 	else

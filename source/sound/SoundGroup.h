@@ -25,7 +25,7 @@
 */
 
 /*
-Example usage: (SEE SOUNDGROUPMGR.H)
+Example usage:
 
 
 Example SoundGroup.xml

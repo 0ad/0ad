@@ -24,7 +24,7 @@
 #include "ps/Player.h"
 #include "scripting/ScriptableComplex.inl"
 #include "ps/XML/Xeromyces.h"
-#include "sound/SoundGroupMgr.h"
+//#include "sound/SoundGroupMgr.h"
 
 #include "ps/CLogger.h"
 #define LOG_CATEGORY L"entity"
@@ -332,6 +332,7 @@ bool CEntityTemplate::LoadXml( const VfsPath& pathname )
 		}
 		else if( ChildName == el_SoundGroups )
 		{
+#if 0
 			// Read every child element's value into m_SoundGroupTable with its tag as the key
 			XMBElementList children = Child.GetChildNodes();
 			for(int j = 0; j < children.Count; ++j)
@@ -342,6 +343,7 @@ bool CEntityTemplate::LoadXml( const VfsPath& pathname )
 				const size_t soundGroupIndex = g_soundGroupMgr->AddGroup(soundGroupFilename);
 				m_SoundGroupTable[name] = soundGroupIndex;
 			}
+#endif
 		}
 		else
 		{
