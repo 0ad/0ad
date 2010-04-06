@@ -66,14 +66,14 @@ struct AlignedDeleter
 	template<class T>
 	void operator()(T* t)
 	{
-		_mm_free(t);
+		rtl_FreeAligned(t);
 	}
 };
 
 template<class T>
 shared_ptr<T> AllocateAligned(size_t size)
 {
-	return shared_ptr<T>((T*)rtl_AllocateAligned(size, x86_x64_L1CacheLineSize()), AlignedDeleter());
+	return shared_ptr<T>((T*)rtl_AllocateAligned(size, x86_x64_L2CacheLineSize()), AlignedDeleter());
 }
 
 #endif	// #ifndef INCLUDED_SHARED_PTR

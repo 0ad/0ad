@@ -218,6 +218,12 @@ STMT(\
 
 //-----------------------------------------------------------------------------
 
+template<typename T>
+T DivideRoundUp(T dividend, T divisor)
+{
+	return (dividend + divisor-1) / divisor;
+}
+
 /// 16-bit saturating (does not overflow) addition.
 extern u16 addusw(u16 x, u16 y);
 /// 16-bit saturating (does not underflow) subtraction.

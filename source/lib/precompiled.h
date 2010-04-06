@@ -105,6 +105,8 @@
 # define BOOST_ALL_DYN_LINK
 #endif
 
+// work around Boost bug (missing #pragma pack(pop)?)
+#pragma pack(push, lib_precompiled)
 // the following boost libraries have been included in TR1 and are
 // thus deemed usable:
 #include <boost/shared_ptr.hpp>
@@ -121,6 +123,7 @@ using boost::function;
 using boost::bind;
 #include "lib/external_libraries/boost_filesystem.h"
 #endif // !MINIMAL_PCH
+#pragma pack(pop, lib_precompiled)
 
 // (this must come after boost and common lib headers)
 #include "lib/posix/posix.h"
