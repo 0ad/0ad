@@ -15,7 +15,6 @@ COMMAND LINE OPTIONS:
 -yres=N			set screen Y resolution to 'N'
 
 -editor			launch the Atlas scenario editor
--actorviewer	when combined with -editor, launch the Actor Viewer tool
 
 
 Windows-specific:
