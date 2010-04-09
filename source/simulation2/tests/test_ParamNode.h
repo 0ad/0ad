@@ -101,6 +101,14 @@ public:
 		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><b>2</b></test>");
 	}
 
+	void test_overlay_replace()
+	{
+		CParamNode node;
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a x='1'>2<b/></a> <c y='3'/></test>"), PSRETURN_OK);
+		TS_ASSERT_EQUALS(CParamNode::LoadXMLString(node, "<test> <a replace=''><d/></a> <e replace=''/> </test>"), PSRETURN_OK);
+		TS_ASSERT_WSTR_EQUALS(node.ToXML(), L"<test><a><d></d></a><c y=\"3\"></c><e></e></test>");
+	}
+
 	void test_types()
 	{
 		CParamNode node;
@@ -119,10 +127,11 @@ public:
 		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(L"test"), L"test");
 		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(L"x < y << z"), L"x &lt; y &lt;&lt; z");
 		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(L"x < y \"&' y > z ]]> "), L"x &lt; y &quot;&amp;' y &gt; z ]]&gt; ");
+		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(L" \r\n\t "), L" &#13;&#10;&#9; ");
 
 		wchar_t r = 0xFFFD;
-		wchar_t a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 0xD7FF, 0xD800, 0xDFFF, 0xE000, 0xFFFE, 0xFFFF, 0 };
-		wchar_t b[] = { r, r, r, r, r, r, r, r, 9, 10,  r,  r, 13,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r, 32, 0xD7FF,      r,      r, 0xE000,      r,      r, 0 };
+		wchar_t a[] = { 1, 2, 3, 4, 5, 6, 7, 8, /* 9,  10, */ 11, 12, /* 13, */ 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 0xD7FF, 0xD800, 0xDFFF, 0xE000, 0xFFFE, 0xFFFF, 0 };
+		wchar_t b[] = { r, r, r, r, r, r, r, r, /*&#9;&#10;*/  r,  r, /*&#13;*/  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r,  r, 32, 0xD7FF,      r,      r, 0xE000,      r,      r, 0 };
 		TS_ASSERT_WSTR_EQUALS(CParamNode::EscapeXMLString(a), b);
 	}
 };

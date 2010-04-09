@@ -53,14 +53,20 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	utf16string value = element.GetText();
 
 	// Look for special attributes
+	int at_disable = xmb.GetAttributeID("disable");
+	int at_replace = xmb.GetAttributeID("replace");
 	{
-		int at_disable = xmb.GetAttributeID("disable");
 		XERO_ITER_ATTR(element, attr)
 		{
 			if (attr.Name == at_disable)
 			{
 				m_Childs.erase(name);
 				return;
+			}
+			else if (attr.Name == at_replace)
+			{
+				m_Childs.erase(name);
+				break;
 			}
 		}
 	}
@@ -78,6 +84,9 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element)
 	// Add the element's attributes, prefixing names with "@"
 	XERO_ITER_ATTR(element, attr)
 	{
+		// Skip special attributes
+		if (attr.Name == at_replace) continue;
+		// Add any others
 		std::string attrName = xmb.GetAttributeString(attr.Name);
 		std::wstring attrValue(attr.Value.begin(), attr.Value.end());
 		node.m_Childs["@" + attrName].m_Value = attrValue;
@@ -162,8 +171,11 @@ std::wstring CParamNode::EscapeXMLString(const std::wstring& str)
 		case '>': ret += L"&gt;"; break;
 		case '&': ret += L"&amp;"; break;
 		case '"': ret += L"&quot;"; break;
+		case '\t': ret += L"&#9;"; break;
+		case '\n': ret += L"&#10;"; break;
+		case '\r': ret += L"&#13;"; break;
 		default:
-			if (c == 0x09 || c == 0x0A || c == 0x0D || (0x20 <= c && c <= 0xD7FF) || (0xE000 <= c && c <= 0xFFFD))
+			if ((0x20 <= c && c <= 0xD7FF) || (0xE000 <= c && c <= 0xFFFD))
 				ret += c;
 			else
 				ret += 0xFFFD;
