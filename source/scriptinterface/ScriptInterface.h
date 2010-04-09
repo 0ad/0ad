@@ -130,6 +130,8 @@ public:
 	template<typename T>
 	bool GetProperty(jsval obj, const char* name, T& out);
 
+	bool HasProperty(jsval obj, const char* name);
+
 	bool EnumeratePropertyNamesWithPrefix(jsval obj, const char* prefix, std::vector<std::string>& out);
 
 	bool SetPrototype(jsval obj, jsval proto);

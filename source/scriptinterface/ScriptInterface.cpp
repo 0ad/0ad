@@ -370,6 +370,18 @@ bool ScriptInterface::GetProperty_(jsval obj, const char* name, jsval& out)
 	return true;
 }
 
+bool ScriptInterface::HasProperty(jsval obj, const char* name)
+{
+	if (! JSVAL_IS_OBJECT(obj))
+		return false;
+	JSObject* object = JSVAL_TO_OBJECT(obj);
+
+	JSBool found;
+	if (!JS_HasProperty(m->m_cx, object, name, &found))
+		return false;
+	return (found != JS_FALSE);
+}
+
 bool ScriptInterface::EnumeratePropertyNamesWithPrefix(jsval obj, const char* prefix, std::vector<std::string>& out)
 {
 	LOCAL_ROOT_SCOPE;
