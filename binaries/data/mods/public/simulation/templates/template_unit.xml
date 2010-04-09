@@ -7,12 +7,20 @@
   <UnitAI/>
   <Cost>
     <Population>1</Population>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <metal>0</metal>
+    </Resources>
   </Cost>
   <Health>
     <DeathType>corpse</DeathType>
     <Max>100</Max>
   </Health>
   <Armour>
+    <Hack>0.0</Hack>
+    <Pierce>0.0</Pierce>
     <Crush>1.0</Crush>
   </Armour>
   <UnitMotion>

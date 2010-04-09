@@ -24,6 +24,8 @@ for my $xml (@xml) {
     my $name = $xml;
     $name =~ s/\.xml$//;
 
+    next if $name =~ /^(template_foundation|foundation_)/;
+
     my %opt = (KeyAttr => []);
 
     my $data = XMLin("$dir/$xml", %opt, ForceArray => 1);
@@ -51,7 +53,9 @@ sub convert {
     $out .= qq{>\n};
 
     my $civ;
-    $civ = $1 if $name =~ /^units\/([a-z]{4})_/;
+    $civ = 'hele' if $name eq 'other/camp_mace_hypaspist';
+    $civ = 'gaia' if $name eq 'template_gaia' or $name eq 'template_structure_gaia_settlement' or ($name =~ /^gaia\/fauna_/ and $data->{Parent} !~ /^template_gaia/);
+    $civ = $1 if $name =~ /^(?:units|structures)\/([a-z]{4})_/;
     my $needs_explicit_civ = ($civ and $data->{Parent} !~ /^${civ}_/);
     if ($data->{Traits}[0]{Id} or $needs_explicit_civ) {
         $out .= qq{$i<Identity>\n};
@@ -77,19 +81,25 @@ sub convert {
         $out .= qq{$i<UnitAI/>\n};
         $out .= qq{$i<Cost>\n};
         $out .= qq{$i$i<Population>1</Population>\n};
+        $out .= qq{$i$i<Resources>\n};
+        $out .= qq{$i$i$i<food>0</food>\n};
+        $out .= qq{$i$i$i<wood>0</wood>\n};
+        $out .= qq{$i$i$i<stone>0</stone>\n};
+        $out .= qq{$i$i$i<metal>0</metal>\n};
+        $out .= qq{$i$i</Resources>\n};
         $out .= qq{$i</Cost>\n};
     }
 
     if ($data->{Traits}[0]{Population} or $data->{Traits}[0]{Creation}[0]{Resource} or $data->{Traits}[0]{Creation}[0]{Time}) {
         $out .= qq{$i<Cost>\n};
-        $out .= qq{$i$i<Population>$data->{Traits}[0]{Population}[0]{Rem}[0]</Population>\n} if $data->{Traits}[0]{Population}[0]{Rem}
+        $out .= qq{$i$i<Population>$data->{Traits}[0]{Population}[0]{Rem}[0]</Population>\n} if defined $data->{Traits}[0]{Population}[0]{Rem}
             and $data->{Traits}[0]{Population}[0]{Rem}[0] != 1;
-        $out .= qq{$i$i<PopulationBonus>$data->{Traits}[0]{Population}[0]{Add}[0]</PopulationBonus>\n} if $data->{Traits}[0]{Population}[0]{Add};
-        $out .= qq{$i$i<BuildTime>$data->{Traits}[0]{Creation}[0]{Time}[0]</BuildTime>\n} if $data->{Traits}[0]{Creation}[0]{Time};
+        $out .= qq{$i$i<PopulationBonus>$data->{Traits}[0]{Population}[0]{Add}[0]</PopulationBonus>\n} if defined $data->{Traits}[0]{Population}[0]{Add};
+        $out .= qq{$i$i<BuildTime>$data->{Traits}[0]{Creation}[0]{Time}[0]</BuildTime>\n} if defined $data->{Traits}[0]{Creation}[0]{Time};
         if ($data->{Traits}[0]{Creation}[0]{Resource}) {
             $out .= qq{$i$i<Resources>\n};
             for (qw(Food Wood Stone Metal)) {
-                $out .= qq{$i$i$i<\l$_>$data->{Traits}[0]{Creation}[0]{Resource}[0]{$_}[0]</\l$_>\n} if $data->{Traits}[0]{Creation}[0]{Resource}[0]{$_}[0];
+                $out .= qq{$i$i$i<\l$_>$data->{Traits}[0]{Creation}[0]{Resource}[0]{$_}[0]</\l$_>\n} if defined $data->{Traits}[0]{Creation}[0]{Resource}[0]{$_}[0];
             }
             $out .= qq{$i$i</Resources>\n};
         }
@@ -139,7 +149,7 @@ sub convert {
     if ($data->{Traits}[0]{Armour}) {
         $out .= qq{$i<Armour>\n};
         for my $n (qw(Hack Pierce Crush)) {
-            $out .= qq{$i$i<$n>$data->{Traits}[0]{Armour}[0]{$n}[0]</$n>\n} if $data->{Traits}[0]{Armour}[0]{$n};
+            $out .= qq{$i$i<$n>$data->{Traits}[0]{Armour}[0]{$n}[0]</$n>\n} if defined $data->{Traits}[0]{Armour}[0]{$n};
         }
         $out .= qq{$i</Armour>\n};
     }
@@ -190,7 +200,11 @@ sub convert {
     }
 
     if ($data->{Traits}[0]{Footprint}) {
-        $out .= qq{$i<Footprint>\n};
+        my $r = '';
+        $r = ' replace=""' if
+            ($data->{Traits}[0]{Footprint}[0]{Width} and $data->{Parent} =~ /^template_(unit|unit_mechanical|unit_mechanical_siege|unit_mechanical_siege_onager|unit_(super|hero)_ranged)$/) or
+            ($data->{Traits}[0]{Footprint}[0]{Radius} and $data->{Parent} =~ /^template_structure_(special|military_fortress)$/);
+        $out .= qq{$i<Footprint$r>\n};
         if ($data->{Traits}[0]{Footprint}[0]{Radius}) {
             $out .= qq{$i$i<Circle radius="$data->{Traits}[0]{Footprint}[0]{Radius}[0]"/>\n};
         }

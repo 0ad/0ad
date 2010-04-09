@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <Identity>
+    <Civ>hele</Civ>
     <SpecificName>Theatron</SpecificName>
   </Identity>
   <Cost>
@@ -17,7 +18,7 @@
     <Actor>structures/hellenes/special_theatre.xml</Actor>
     <FoundationActor>structures/fndn_theatron.xml</FoundationActor>
   </VisualActor>
-  <Footprint>
+  <Footprint replace="">
     <Circle radius="26.0"/>
     <Height>8.0</Height>
   </Footprint>

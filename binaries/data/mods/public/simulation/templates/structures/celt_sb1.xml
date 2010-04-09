@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <Identity>
+    <Civ>celt</Civ>
     <SpecificName>Ffactri</SpecificName>
     <IconCell>63</IconCell>
   </Identity>
@@ -10,7 +11,7 @@
   <VisualActor>
     <Actor>structures/celts/special.xml</Actor>
   </VisualActor>
-  <Footprint>
+  <Footprint replace="">
     <Circle radius="8.0"/>
     <Height>6.0</Height>
   </Footprint>
