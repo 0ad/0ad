@@ -1,5 +1,25 @@
 function Health() {}
 
+Health.prototype.Schema =
+	"<element name='Max'>" +
+		"<data type='positiveInteger'/>" +
+	"</element>" +
+	"<optional>" +
+		"<element name='Initial'>" +
+			"<data type='positiveInteger'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='RegenRate'>" +
+			"<ref name='positiveDecimal'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='DeathType'>" +
+			"<value>corpse</value>" +
+		"</element>" +
+	"</optional>";
+
 Health.prototype.Init = function()
 {
 	// Default to <Initial>, but use <Max> if it's undefined or zero

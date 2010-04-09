@@ -56,6 +56,13 @@ public:
 	};
 	int m_State;
 
+	static std::string GetSchema()
+	{
+		return
+			"<element name='WalkSpeed'>"
+				"<ref name='positiveDecimal'/>"
+			"</element>";
+	}
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		m_Context = &context;

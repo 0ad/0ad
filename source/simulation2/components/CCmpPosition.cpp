@@ -75,27 +75,24 @@ public:
 
 	bool m_Dirty; // true if position/rotation has changed since last TurnStart
 
-	/*
-	 * Schema: (untested)
-	 *
-	 * <element name="Position">
-	 *   <interleave>
-	 *     <element name="Anchor" a:help="Automatic rotation to follow the slope of terrain">
-	 *       <choice>
-	 *         <value a:help="Always stand straight up">upright</value>
-	 *         <value a:help="Rotate backwards and forwards to follow the terrain">pitch</value>
-	 *         <value a:help="Rotate in all direction to follow the terrain">pitch-roll</value>
-	 *       </choice>
-	 *     </element>
-	 *     <element name="Altitude" a:help="Height above terrain in metres">
-	 *       <data type="float"/>
-	 *     </element>
-	 *     <element name="Floating" a:help="Whether the entity floats on water">
-	 *       <data type="boolean"/>
-	 *     </element>
-	 *   </interleave>
-	 * </element>
-	 */
+	static std::string GetSchema()
+	{
+		return
+			"<element name='Anchor' a:help='Automatic rotation to follow the slope of terrain'>"
+				"<choice>"
+					"<value a:help='Always stand straight up'>upright</value>"
+					"<value a:help='Rotate backwards and forwards to follow the terrain'>pitch</value>"
+					"<value a:help='Rotate in all direction to follow the terrain'>pitch-roll</value>"
+				"</choice>"
+			"</element>"
+			"<element name='Altitude' a:help='Height above terrain in metres'>"
+				"<data type='decimal'/>"
+			"</element>"
+			"<element name='Floating' a:help='Whether the entity floats on water'>"
+				"<data type='boolean'/>"
+			"</element>";
+	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		m_Context = &context;

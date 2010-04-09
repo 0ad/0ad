@@ -306,3 +306,8 @@ bool CSimulation2::DeserializeState(std::istream& stream)
 	// TODO: need to make sure the required SYSTEM_ENTITY components get constructed
 	return m->m_ComponentManager.DeserializeState(stream);
 }
+
+std::string CSimulation2::GenerateSchema()
+{
+	return m->m_ComponentManager.GenerateSchema();
+}

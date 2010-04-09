@@ -1,5 +1,14 @@
 function Builder() {}
 
+Builder.prototype.Schema =
+	"<element name='Entities'>" +
+		"<attribute name='datatype'><value>tokens</value></attribute>" +
+		"<text/>" +
+	"</element>" +
+	"<element name='Rate'>" +
+		"<ref name='positiveDecimal'/>" +
+	"</element>";
+
 Builder.prototype.Init = function()
 {
 };

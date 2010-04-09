@@ -1,5 +1,39 @@
 function Attack() {}
 
+Attack.prototype.Schema =
+	"<element name='Hack'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='Pierce'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='Crush'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='Range'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<optional>" +
+		"<element name='MinRange'>" +
+			"<ref name='nonNegativeDecimal'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='PrepareTime'>" +
+			"<data type='nonNegativeInteger'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='RepeatTime'>" +
+			"<data type='positiveInteger'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='ProjectileSpeed'>" +
+			"<ref name='nonNegativeDecimal'/>" +
+		"</element>" +
+	"</optional>";
+
 Attack.prototype.Init = function()
 {
 };

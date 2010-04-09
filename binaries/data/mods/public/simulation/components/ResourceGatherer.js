@@ -1,5 +1,23 @@
 function ResourceGatherer() {}
 
+ResourceGatherer.prototype.Schema =
+	"<element name='Rates'>" +
+		"<interleave>" +
+			"<optional><element name='food'><data type='decimal'/></element></optional>" +
+			"<optional><element name='wood'><data type='decimal'/></element></optional>" +
+			"<optional><element name='stone'><data type='decimal'/></element></optional>" +
+			"<optional><element name='metal'><data type='decimal'/></element></optional>" +
+			"<optional><element name='food.fish'><data type='decimal'/></element></optional>" +
+			"<optional><element name='food.fruit'><data type='decimal'/></element></optional>" +
+			"<optional><element name='food.grain'><data type='decimal'/></element></optional>" +
+			"<optional><element name='food.meat'><data type='decimal'/></element></optional>" +
+			"<optional><element name='food.milk'><data type='decimal'/></element></optional>" +
+		"</interleave>" +
+	"</element>" +
+	"<element name='BaseSpeed'>" +
+		"<data type='positiveInteger'/>" +
+	"</element>";
+
 ResourceGatherer.prototype.Init = function()
 {
 };

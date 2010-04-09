@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -855,6 +855,19 @@ void Init(const CmdLineArgs& args, int flags)
 	// This must come after VFS init, which sets the current directory
 	// (required for finding our output log files).
 	g_Logger = new CLogger;
+
+	// Special command-line mode to dump the entity schemas instead of running the game.
+	// (This must be done after loading VFS etc, but should be done before wasting time
+	// on anything else.)
+	if (args.Has("dumpSchema"))
+	{
+		CSimulation2 sim(NULL, NULL);
+		sim.LoadDefaultScripts();
+		std::ofstream f("entity.rng", std::ios_base::out | std::ios_base::trunc);
+		f << sim.GenerateSchema();
+		std::cout << "Generated entity.rng\n";
+		exit(0);
+	}
 
 	// Call LoadLanguage(NULL) to initialize the I18n system, but
 	// without loading an actual language file - translate() will

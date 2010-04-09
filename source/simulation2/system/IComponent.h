@@ -35,6 +35,8 @@ class IComponent
 public:
 	virtual ~IComponent();
 
+	static std::string GetSchema();
+
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode) = 0;
 	virtual void Deinit(const CSimContext& context) = 0;
 

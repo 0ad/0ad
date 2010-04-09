@@ -63,6 +63,7 @@ private:
 		AllocFunc alloc;
 		DeallocFunc dealloc;
 		std::string name;
+		std::string schema; // RelaxNG fragment
 		jsval ctor; // only valid if type == CT_Script
 	};
 
@@ -82,8 +83,8 @@ public:
 
 	void RegisterMessageType(MessageTypeId mtid, const char* name);
 
-	void RegisterComponentType(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*);
-	void RegisterComponentTypeScriptWrapper(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*);
+	void RegisterComponentType(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*, const std::string& schema);
+	void RegisterComponentTypeScriptWrapper(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*, const std::string& schema);
 	void SubscribeToMessageType(MessageTypeId);
 	void SubscribeGloballyToMessageType(MessageTypeId);
 
@@ -190,6 +191,8 @@ public:
 	// won't get serialized)
 	bool SerializeState(std::ostream& stream);
 	bool DeserializeState(std::istream& stream);
+
+	std::string GenerateSchema();
 
 	ScriptInterface& GetScriptInterface() { return m_ScriptInterface; }
 

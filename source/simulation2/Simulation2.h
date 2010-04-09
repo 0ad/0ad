@@ -128,6 +128,8 @@ public:
 	bool SerializeState(std::ostream& stream);
 	bool DeserializeState(std::istream& stream);
 
+	std::string GenerateSchema();
+
 private:
 	CSimulation2Impl* m;
 

@@ -185,8 +185,18 @@ void CComponentManager::Script_RegisterComponentType(void* cbdata, int iid, std:
 		mustReloadComponents = true;
 	}
 
+	std::string schema = "<empty/>";
+	{
+		CScriptValRooted prototype;
+		if (componentManager->m_ScriptInterface.GetProperty(ctor.get(), "prototype", prototype) &&
+			componentManager->m_ScriptInterface.HasProperty(prototype.get(), "Schema"))
+		{
+			componentManager->m_ScriptInterface.GetProperty(prototype.get(), "Schema", schema);
+		}
+	}
+
 	// Construct a new ComponentType, using the wrapper's alloc functions
-	ComponentType ct = { CT_Script, iid, ctWrapper.alloc, ctWrapper.dealloc, cname, ctor.get() };
+	ComponentType ct = { CT_Script, iid, ctWrapper.alloc, ctWrapper.dealloc, cname, schema, ctor.get() };
 	componentManager->m_ComponentTypesById[cid] = ct;
 
 	componentManager->m_CurrentComponent = cid; // needed by Subscribe
@@ -365,17 +375,17 @@ void CComponentManager::ResetState()
 }
 
 void CComponentManager::RegisterComponentType(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc, DeallocFunc dealloc,
-		const char* name)
+		const char* name, const std::string& schema)
 {
-	ComponentType c = { CT_Native, iid, alloc, dealloc, name, 0 };
+	ComponentType c = { CT_Native, iid, alloc, dealloc, name, schema, 0 };
 	m_ComponentTypesById.insert(std::make_pair(cid, c));
 	m_ComponentTypeIdsByName[name] = cid;
 }
 
 void CComponentManager::RegisterComponentTypeScriptWrapper(InterfaceId iid, ComponentTypeId cid, AllocFunc alloc,
-		DeallocFunc dealloc, const char* name)
+		DeallocFunc dealloc, const char* name, const std::string& schema)
 {
-	ComponentType c = { CT_ScriptWrapper, iid, alloc, dealloc, name, 0 };
+	ComponentType c = { CT_ScriptWrapper, iid, alloc, dealloc, name, schema, 0 };
 	m_ComponentTypesById.insert(std::make_pair(cid, c));
 	m_ComponentTypeIdsByName[name] = cid;
 	// TODO: merge with RegisterComponentType
@@ -714,4 +724,69 @@ void CComponentManager::SendGlobalMessage(const CMessage& msg) const
 				eit->second->HandleMessage(m_SimContext, msg, true);
 		}
 	}
+}
+
+
+std::string CComponentManager::GenerateSchema()
+{
+	std::string schema =
+		"<grammar xmlns='http://relaxng.org/ns/structure/1.0' xmlns:a='http://ns.wildfiregames.com/entity' datatypeLibrary='http://www.w3.org/2001/XMLSchema-datatypes'>"
+			"<define name='nonNegativeDecimal'>"
+				"<data type='decimal'><param name='minInclusive'>0</param></data>"
+			"</define>"
+			"<define name='positiveDecimal'>"
+				"<data type='decimal'><param name='minExclusive'>0</param></data>"
+			"</define>"
+			"<define name='anything'>"
+				"<zeroOrMore>"
+					  "<choice>"
+							"<attribute><anyName/></attribute>"
+							"<text/>"
+							"<element>"
+								"<anyName/>"
+								"<ref name='anything'/>"
+							"</element>"
+					  "</choice>"
+				"</zeroOrMore>"
+			"</define>";
+
+	std::map<InterfaceId, std::vector<std::string> > interfaceComponentTypes;
+
+	for (std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.begin(); it != m_ComponentTypesById.end(); ++it)
+	{
+		schema +=
+			"<define name='component." + it->second.name + "'>"
+				"<element name='" + it->second.name + "'>"
+					"<interleave>" + it->second.schema + "</interleave>"
+				"</element>"
+			"</define>";
+
+		interfaceComponentTypes[it->second.iid].push_back(it->second.name);
+	}
+
+	for (std::map<std::string, InterfaceId>::const_iterator it = m_InterfaceIdsByName.begin(); it != m_InterfaceIdsByName.end(); ++it)
+	{
+		schema += "<define name='interface." + it->first + "'><choice>";
+		std::vector<std::string>& cts = interfaceComponentTypes[it->second];
+		for (size_t i = 0; i < cts.size(); ++i)
+			schema += "<ref name='component." + cts[i] + "'/>";
+		schema += "</choice></define>";
+	}
+
+	schema +=
+		"<start>"
+			"<element name='Entity'>"
+				"<optional><attribute name='parent'/></optional>"
+				"<interleave>";
+	for (std::map<std::string, InterfaceId>::const_iterator it = m_InterfaceIdsByName.begin(); it != m_InterfaceIdsByName.end(); ++it)
+		schema += "<optional><ref name='interface." + it->first + "'/></optional>";
+	schema +=
+			"</interleave>"
+		"</element>"
+	"</start>";
+
+	schema += "</grammar>";
+
+	// TODO: pretty-print
+	return schema;
 }

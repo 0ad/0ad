@@ -36,6 +36,23 @@ public:
 	CFixed_23_8 m_Size1; // height/radius
 	CFixed_23_8 m_Height;
 
+	static std::string GetSchema()
+	{
+		return
+			"<choice>"
+				"<element name='Square'>"
+					"<attribute name='width'><ref name='positiveDecimal'/></attribute>"
+					"<attribute name='depth'><ref name='positiveDecimal'/></attribute>"
+				"</element>"
+				"<element name='Circle'>"
+					"<attribute name='radius'><ref name='positiveDecimal'/></attribute>"
+				"</element>"
+			"</choice>"
+			"<element name='Height'>"
+				"<ref name='nonNegativeDecimal'/>"
+			"</element>";
+	}
+
 	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& paramNode)
 	{
 		if (paramNode.GetChild("Square").IsOk())

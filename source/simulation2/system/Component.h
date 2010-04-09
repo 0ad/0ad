@@ -30,14 +30,14 @@
 #define REGISTER_COMPONENT_TYPE(cname) \
 	void RegisterComponentType_##cname(CComponentManager& mgr) \
 	{ \
-		mgr.RegisterComponentType(CCmp##cname::GetInterfaceId(), CID_##cname, CCmp##cname::Allocate, CCmp##cname::Deallocate, #cname); \
+		mgr.RegisterComponentType(CCmp##cname::GetInterfaceId(), CID_##cname, CCmp##cname::Allocate, CCmp##cname::Deallocate, #cname, CCmp##cname::GetSchema()); \
 		CCmp##cname::ClassInit(mgr); \
 	}
 
 #define REGISTER_COMPONENT_SCRIPT_WRAPPER(cname) \
 	void RegisterComponentType_##cname(CComponentManager& mgr) \
 	{ \
-		mgr.RegisterComponentTypeScriptWrapper(CCmp##cname::GetInterfaceId(), CID_##cname, CCmp##cname::Allocate, CCmp##cname::Deallocate, #cname); \
+		mgr.RegisterComponentTypeScriptWrapper(CCmp##cname::GetInterfaceId(), CID_##cname, CCmp##cname::Allocate, CCmp##cname::Deallocate, #cname, CCmp##cname::GetSchema()); \
 		CCmp##cname::ClassInit(mgr); \
 	}
 

@@ -1,5 +1,35 @@
 function ResourceSupply() {}
 
+ResourceSupply.prototype.Schema =
+	"<element name='Amount'>" +
+		"<data type='nonNegativeInteger'/>" +
+	"</element>" +
+	"<choice>" +
+		"<interleave>" +
+			"<element name='Type'><value>food</value></element>" +
+			"<element name='Subtype'><value>fish</value></element>" +
+		"</interleave>" +
+		"<interleave>" +
+			"<element name='Type'><value>food</value></element>" +
+			"<element name='Subtype'><value>fruit</value></element>" +
+		"</interleave>" +
+		"<interleave>" +
+			"<element name='Type'><value>food</value></element>" +
+			"<element name='Subtype'><value>grain</value></element>" +
+		"</interleave>" +
+		"<interleave>" +
+			"<element name='Type'><value>food</value></element>" +
+			"<element name='Subtype'><value>meat</value></element>" +
+		"</interleave>" +
+		"<interleave>" +
+			"<element name='Type'><value>food</value></element>" +
+			"<element name='Subtype'><value>milk</value></element>" +
+		"</interleave>" +
+		"<element name='Type'><value>wood</value></element>" +
+		"<element name='Type'><value>stone</value></element>" +
+		"<element name='Type'><value>metal</value></element>" +
+	"</choice>";
+
 ResourceSupply.prototype.Init = function()
 {
 	// Current resource amount (non-negative; can be a fractional amount)

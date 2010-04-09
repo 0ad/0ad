@@ -1,5 +1,15 @@
 function Sound() {}
 
+Sound.prototype.Schema =
+	"<element name='SoundGroups'>" +
+		"<zeroOrMore>" +
+			"<element>" +
+				"<anyName/>" +
+				"<text/>" +
+			"</element>" +
+		"</zeroOrMore>" +
+	"</element>";
+
 Sound.prototype.Init = function()
 {
 };

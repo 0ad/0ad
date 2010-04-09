@@ -46,6 +46,13 @@ public:
 
 	ICmpObstructionManager::tag_t m_Tag;
 
+	static std::string GetSchema()
+	{
+		return
+			"<optional>"
+				"<element name='Inactive'><empty/></element>"
+			"</optional>";
+	}
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		m_Context = &context;

@@ -60,6 +60,17 @@ public:
 	{
 	}
 
+	static std::string GetSchema()
+	{
+		return
+			"<optional>"
+				"<element name='Foundation'><empty/></element>"
+			"</optional>"
+			"<optional>"
+				"<element name='FoundationActor'><text/></element>"
+			"</optional>"
+			"<element name='Actor'><text/></element>";
+	}
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		if (!context.HasUnitManager())
@@ -68,7 +79,7 @@ public:
 		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
 		// but for now we'll just use the foundation actor and ignore the normal one
 		std::string name;
-		if (paramNode.GetChild("Foundation").IsOk())
+		if (paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk())
 			name = utf8_from_wstring(paramNode.GetChild("FoundationActor").ToString());
 		else
 			name = utf8_from_wstring(paramNode.GetChild("Actor").ToString());

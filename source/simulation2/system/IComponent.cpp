@@ -23,6 +23,12 @@ IComponent::~IComponent()
 {
 }
 
+std::string IComponent::GetSchema()
+{
+	// No schema specified -> allow only empty elements
+	return "<empty/>";
+}
+
 void IComponent::HandleMessage(const CSimContext& UNUSED(context), const CMessage& UNUSED(msg), bool UNUSED(global))
 {
 }
