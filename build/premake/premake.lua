@@ -651,7 +651,6 @@ function setup_main_exe ()
 			-- delay loading of various Windows DLLs (not specific to any of the
 			-- external libraries; those are handled separately)
 			"/DELAYLOAD:ws2_32.dll",
-			"/DELAYLOAD:version.dll",
 			
 			-- allow manual unload of delay-loaded DLLs
 			"/DELAY:UNLOAD"
