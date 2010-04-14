@@ -25,6 +25,7 @@
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/XML/RelaxNG.h"
 #include "ps/XML/Xeromyces.h"
 
 static const wchar_t TEMPLATE_ROOT[] = L"simulation/templates/";
@@ -40,8 +41,11 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(TemplateManager)
 
-	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
+	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
+		m_Validator.LoadGrammar(context.GetComponentManager().GenerateSchema());
+		// TODO: handle errors loading the grammar here?
+		// TODO: support hotloading changes to the grammar
 	}
 
 	virtual void Deinit(const CSimContext& UNUSED(context))
@@ -63,8 +67,10 @@ public:
 		// template data before other components (like the tech components) have been deserialized
 	}
 
-	virtual void Deserialize(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	virtual void Deserialize(const CSimContext& context, const CParamNode& paramNode, IDeserializer& deserialize)
 	{
+		Init(context, paramNode);
+
 		u32 numEntities;
 		deserialize.NumberU32_Unbounded(numEntities);
 		for (u32 i = 0; i < numEntities; ++i)
@@ -104,11 +110,19 @@ public:
 	virtual std::vector<std::wstring> FindAllTemplates();
 
 private:
+	// Entity template XML validator
+	RelaxNGValidator m_Validator;
+
 	// Map from template name (XML filename or special |-separated string) to the most recently
-	// loaded valid template data.
-	// (Failed loads won't remove valid entries under the same name, so we behave more nicely
+	// loaded non-broken template data. This includes files that will fail schema validation.
+	// (Failed loads won't remove existing entries under the same name, so we behave more nicely
 	// when hotloading broken files)
 	std::map<std::wstring, CParamNode> m_TemplateFileData;
+
+	// Map from template name to schema validation status.
+	// (Some files, e.g. inherited parent templates, may not be valid themselves but we still need to load
+	// them and use them; we only reject invalid templates that were requested directly by GetTemplate/etc)
+	std::map<std::wstring, bool> m_TemplateSchemaValidity;
 
 	// Remember the template used by each entity, so we can return them
 	// again for deserialization.
@@ -156,6 +170,13 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::wstring templateName)
 		LOGERROR(L"Failed to load entity template '%ls'", templateName.c_str());
 		return NULL;
 	}
+
+	// Compute validity, if it's not computed before
+	if (m_TemplateSchemaValidity.find(templateName) == m_TemplateSchemaValidity.end())
+		m_TemplateSchemaValidity[templateName] = m_Validator.Validate(templateName, m_TemplateFileData[templateName].ToXML());
+	// Refuse to return invalid templates
+	if (!m_TemplateSchemaValidity[templateName])
+		return NULL;
 
 	const CParamNode& templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
 	if (!templateRoot.IsOk())

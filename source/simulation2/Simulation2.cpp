@@ -39,7 +39,6 @@ public:
 	CSimulation2Impl(CUnitManager* unitManager, CTerrain* terrain) :
 		m_SimContext(), m_ComponentManager(m_SimContext)
 	{
-		m_SimContext.m_ComponentManager = &m_ComponentManager;
 		m_SimContext.m_UnitManager = unitManager;
 		m_SimContext.m_Terrain = terrain;
 		m_ComponentManager.LoadComponentTypes();

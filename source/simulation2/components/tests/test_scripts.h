@@ -59,7 +59,6 @@ public:
 		{
 			CSimContext context;
 			CComponentManager componentManager(context, true);
-			context.SetComponentManager(&componentManager);
 
 			ScriptTestSetup(componentManager.GetScriptInterface());
 

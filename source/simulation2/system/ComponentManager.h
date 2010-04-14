@@ -68,7 +68,7 @@ private:
 	};
 
 public:
-	CComponentManager(const CSimContext&, bool skipScriptFunctions = false);
+	CComponentManager(CSimContext&, bool skipScriptFunctions = false);
 	~CComponentManager();
 
 	void LoadComponentTypes();

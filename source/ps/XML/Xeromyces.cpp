@@ -33,9 +33,14 @@
 
 static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 {
+	// Strip a trailing newline
+	std::string message = error->message;
+	if (message.length() > 0 && message[message.length()-1] == '\n')
+		message.erase(message.length()-1);
+
 	LOG(CLogger::Error, LOG_CATEGORY, L"CXeromyces: Parse %ls: %hs:%d: %hs",
 		error->level == XML_ERR_WARNING ? L"warning" : L"error",
-		error->file, error->line, error->message);
+		error->file, error->line, message.c_str());
 	// TODO: The (non-fatal) warnings and errors don't get stored in the XMB,
 	// so the caching is less transparent than it should be
 }

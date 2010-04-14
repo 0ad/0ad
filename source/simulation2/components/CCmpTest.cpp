@@ -36,6 +36,11 @@ public:
 
 	int32_t m_x;
 
+	static std::string GetSchema()
+	{
+		return "<ref name='anything'/>";
+	}
+
 	virtual void Init(const CSimContext&, const CParamNode& paramNode)
 	{
 		if (paramNode.GetChild("x").IsOk())

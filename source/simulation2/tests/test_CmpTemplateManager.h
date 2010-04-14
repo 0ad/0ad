@@ -61,15 +61,15 @@ public:
 
 		const CParamNode* basic = tempMan->LoadTemplate(ent2, L"basic", -1);
 		TS_ASSERT(basic != NULL);
-		TS_ASSERT_WSTR_EQUALS(basic->ToXML(), L"<x>12345</x>");
+		TS_ASSERT_WSTR_EQUALS(basic->ToXML(), L"<Test1A>12345</Test1A>");
 
 		const CParamNode* inherit2 = tempMan->LoadTemplate(ent2, L"inherit2", -1);
 		TS_ASSERT(inherit2 != NULL);
-		TS_ASSERT_WSTR_EQUALS(inherit2->ToXML(), L"<x a=\"a2\" b=\"b1\" c=\"c1\"><d>d2</d><e>e1</e><f>f1</f><g>g2</g></x>");
+		TS_ASSERT_WSTR_EQUALS(inherit2->ToXML(), L"<Test1A a=\"a2\" b=\"b1\" c=\"c1\"><d>d2</d><e>e1</e><f>f1</f><g>g2</g></Test1A>");
 
 		const CParamNode* inherit1 = tempMan->LoadTemplate(ent2, L"inherit1", -1);
 		TS_ASSERT(inherit1 != NULL);
-		TS_ASSERT_WSTR_EQUALS(inherit1->ToXML(), L"<x a=\"a1\" b=\"b1\" c=\"c1\"><d>d1</d><e>e1</e><f>f1</f></x>");
+		TS_ASSERT_WSTR_EQUALS(inherit1->ToXML(), L"<Test1A a=\"a1\" b=\"b1\" c=\"c1\"><d>d1</d><e>e1</e><f>f1</f></Test1A>");
 
 		const CParamNode* actor = tempMan->LoadTemplate(ent2, L"actor|example1", -1);
 		TS_ASSERT(actor != NULL);
@@ -81,7 +81,7 @@ public:
 
 		const CParamNode* previewobstruct = tempMan->LoadTemplate(ent2, L"preview|unitobstruct", -1);
 		TS_ASSERT(previewobstruct != NULL);
-		TS_ASSERT_WSTR_EQUALS(previewobstruct->ToXML(), L"<Footprint><Circle radius=\"4\"></Circle></Footprint><Obstruction><Inactive></Inactive></Obstruction><Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example</Actor></VisualActor>");
+		TS_ASSERT_WSTR_EQUALS(previewobstruct->ToXML(), L"<Footprint><Circle radius=\"4\"></Circle><Height>1.0</Height></Footprint><Obstruction><Inactive></Inactive></Obstruction><Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating></Position><VisualActor><Actor>example</Actor></VisualActor>");
 
 		const CParamNode* previewactor = tempMan->LoadTemplate(ent2, L"preview|actor|example2", -1);
 		TS_ASSERT(previewactor != NULL);
@@ -103,6 +103,10 @@ public:
 		TS_ASSERT(tempMan != NULL);
 
 		TestLogger logger;
+
+		TS_ASSERT(tempMan->LoadTemplate(ent2, L"illformed", -1) == NULL);
+
+		TS_ASSERT(tempMan->LoadTemplate(ent2, L"invalid", -1) == NULL);
 
 		TS_ASSERT(tempMan->LoadTemplate(ent2, L"nonexistent", -1) == NULL);
 

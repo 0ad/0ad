@@ -29,9 +29,11 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
-CComponentManager::CComponentManager(const CSimContext& context, bool skipScriptFunctions) :
+CComponentManager::CComponentManager(CSimContext& context, bool skipScriptFunctions) :
 	m_NextScriptComponentTypeId(CID__LastNative), m_ScriptInterface("Engine"), m_SimContext(context), m_CurrentlyHotloading(false)
 {
+	context.SetComponentManager(this);
+
 	m_ScriptInterface.SetCallbackData(static_cast<void*> (this));
 
 	// For component script tests, the test system sets up its own scripted implementation of

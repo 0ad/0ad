@@ -55,7 +55,6 @@ public:
 	ComponentTestHelper() :
 		m_Context(), m_ComponentManager(m_Context), m_Cmp(NULL)
 	{
-		m_Context.SetComponentManager(&m_ComponentManager);
 		m_ComponentManager.LoadComponentTypes();
 	}
 
