@@ -62,6 +62,12 @@ JSClass global_class = {
 
 void ErrorReporter(JSContext* UNUSED(cx), const char* message, JSErrorReport* report)
 {
+	// XXX Ugly hack: we want to compile code with 'use strict' and with JSOPTION_STRICT,
+	// but the latter causes the former to be reported as a useless expression, so
+	// ignore that specific warning here
+	if (report->flags == 5 && report->lineno == 0 && report->errorNumber == 163)
+		return;
+
 	std::stringstream msg;
 	bool isWarning = JSREPORT_IS_WARNING(report->flags);
 	msg << (isWarning ? "JavaScript warning: " : "JavaScript error: ");
@@ -150,19 +156,6 @@ ScriptInterface_impl::~ScriptInterface_impl()
 		JS_DestroyContext(m_cx);
 		JS_DestroyRuntime(m_rt);
 	}
-}
-
-static JSBool LoadScript(JSContext* cx, const jschar* chars, uintN length, const char* filename, jsval* rval)
-{
-	JSFunction* func = JS_CompileUCFunction(cx, NULL, NULL, 0, NULL, chars, length, filename, 1);
-	if (!func)
-		return JS_FALSE;
-	JS_AddRoot(cx, &func); // TODO: do we need to root this?
-	*rval = OBJECT_TO_JSVAL((JSObject*)func);
-	jsval scriptRval;
-	JSBool ok = JS_CallFunction(cx, NULL, func, 0, NULL, &scriptRval);
-	JS_RemoveRoot(cx, &func);
-	return ok;
 }
 
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uintN nargs)
@@ -434,10 +427,22 @@ bool ScriptInterface::SetPrototype(jsval obj, jsval proto)
 bool ScriptInterface::LoadScript(const std::wstring& filename, const std::wstring& code)
 {
 	std::string fnAscii(filename.begin(), filename.end());
-	utf16string codeUtf16(code.begin(), code.end());
-	jsval rval;
-	JSBool ok = ::LoadScript(m->m_cx, reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uintN)(codeUtf16.length()),
-			fnAscii.c_str(), &rval);
+
+	// Compile the code in strict mode, to encourage better coding practices and
+	// to possibly help SpiderMonkey with optimisations
+	std::wstring codeStrict = L"\"use strict\";\n" + code;
+	utf16string codeUtf16(codeStrict.begin(), codeStrict.end());
+	uintN lineNo = 0; // put the automatic 'use strict' on line 0, so the real code starts at line 1
+
+	JSFunction* func = JS_CompileUCFunction(m->m_cx, NULL, NULL, 0, NULL, reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uintN)(codeUtf16.length()), fnAscii.c_str(), lineNo);
+	if (!func)
+		return false;
+
+	JS_AddRoot(m->m_cx, &func); // TODO: do we need to root this?
+	jsval scriptRval;
+	JSBool ok = JS_CallFunction(m->m_cx, NULL, func, 0, NULL, &scriptRval);
+	JS_RemoveRoot(m->m_cx, &func);
+
 	return ok ? true : false;
 }
 
