@@ -25,4 +25,7 @@ make -C src || die "Premake build failed"
 
 echo
 
+# If we're in bash then make HOSTTYPE available to Premake, for primitive arch-detection
+export HOSTTYPE="$HOSTTYPE"
+
 src/bin/premake --outpath ../workspaces/gcc --atlas --collada "$@" --target gnu || die "Premake failed"

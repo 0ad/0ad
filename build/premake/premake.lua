@@ -12,7 +12,7 @@ use_dcdt = false -- disable it since it's a non-Free library
 dofile("functions.lua")
 dofile("extern_libs.lua")
 
--- detect CPU architecture (simplistic, currently only supports x86 and amd64
+-- detect CPU architecture (simplistic, currently only supports x86 and amd64)
 arch = "x86"
 if OS == "windows" then
 	if os.getenv("PROCESSOR_ARCHITECTURE") == "amd64" or os.getenv("PROCESSOR_ARCHITEW6432") == "amd64" then
@@ -22,8 +22,7 @@ else
 	arch = os.getenv("HOSTTYPE")
 	if arch == "x86_64" then
 		arch = "amd64"
-	end
-	if not arch then
+	else
 		os.execute("gcc -dumpmachine > .gccmachine.tmp")
 		local f = io.open(".gccmachine.tmp", "r")
 		local machine = f:read("*line")
