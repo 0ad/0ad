@@ -31,8 +31,10 @@
 - @ref defining-cpp-components
  - @ref messages
  - @ref component-creation
+ - @ref schema
 - @ref allowing-js-interfaces
 - @ref defining-js-components
+- @ref defining-js-interfaces
 - @ref defining-message
 - @ref communication
  - @ref message-passing
@@ -61,14 +63,15 @@ Create the file @b simulation2/components/ICmpExample.cpp:
 @include ICmpExample.cpp
 
 This defines a JavaScript wrapper, so that scripts can access methods of components
-implementing that interface. See a later section for details.
+implementing that interface. See @ref script-wrapper for details.
 
 This wrapper should only contain methods that are safe to access from simulation scripts:
 they must not crash (even with invalid or malicious inputs), they must return deterministic
 results, etc.
 Methods that are intended for use solely by C++ should not be listed here.
 
-Every interface must define a script wrapper, though in some cases they might contain no methods.
+Every interface must define a script wrapper with @c BEGIN_INTERFACE_WRAPPER,
+though in some cases they might be empty and not define any methods.
 
 Now update the file simulation2/TypeList.h and add
 
@@ -94,26 +97,29 @@ Interface methods are defined with the macro:
 corresponding to the C++ method
 <code><var>ReturnType</var> ICmpExample::<var>MethodName</var>(<var>ArgType0</var>, <var>ArgType1</var>, ...)</code>
 
-There's a small limit to the number of arguments that are currently supported - if you need more,
-first try to save yourself some pain by using fewer arguments, otherwise you'll need to add a new
-macro into simulation2/system/InterfaceScripted.h and increase @ref SCRIPT_INTERFACE_MAX_ARGS in scriptinterface/ScriptInterface.h.
-(Not sure if anything else needs changing.)
+For methods exposed to scripts like this, the arguments should be simple types and pass-by-value.
+E.g. use <code>std::wstring</code> arguments, not <code>const std::wstring&</code>.
+
+The arguments and return types will be automatically converted between C++ and JS values.
+To do this, @c ToJSVal<ReturnType> and @c FromJSVal<ArgTypeN> must be defined (if they
+haven't already been defined for another method), as described below.
 
 The two <var>MethodName</var>s don't have to be the same - in rare cases you might want to expose it as
 @c DoWhatever to scripts but link it to the @c ICmpExample::DoWhatever_wrapper() method
 which does some extra conversions or checks or whatever.
 
-For methods exposed to scripts like this, the arguments should be pass-by-value.
-E.g. use <code>std::wstring</code> arguments, not <code>const std::wstring&</code>.
-
-To convert types between C++ and JS, @c ToJSVal<ReturnType> and @c FromJSVal<ArgTypeN> must be defined, as below.
+There's a small limit to the number of arguments that are currently supported - if you need more,
+first try to save yourself some pain by using fewer arguments, otherwise you'll need to add a new
+macro into simulation2/system/InterfaceScripted.h and increase @ref SCRIPT_INTERFACE_MAX_ARGS in scriptinterface/ScriptInterface.h.
+(Not sure if anything else needs changing.)
 
 
 
 @section script-conversions Script type conversions
 
-If you try to use a type without having defined conversions, you'll probably get mysterious
-linker errors that mention @c ToJSVal or @c FromJSVal.
+In most cases you can skip this section.
+But if you define a script-accessible method with new types without having defined conversions,
+you'll probably get mysterious linker errors that mention @c ToJSVal or @c FromJSVal.
 First, work out where the conversion should be defined.
 Basic data types (integers, STL containers, etc) go in scriptinterface/ScriptConversions.cpp.
 Non-basic data types from the game engine typically go in simulation2/scripting/EngineScriptConversions.cpp.
@@ -129,7 +135,8 @@ template<> jsval ScriptInterface::ToJSVal<T>(JSContext* cx, T const& val)
 }
 @endcode
 
-Use the standard SpiderMonkey JSAPI functions to do the conversion (possibly calling @c ToJSVal recursively).
+Use the standard <a href="https://developer.mozilla.org/en/JSAPI_Reference">SpiderMonkey JSAPI functions</a>
+to do the conversion (possibly calling @c ToJSVal recursively).
 On error, you should return @c JSVAL_VOID (JS's @c undefined value) and probably report an error message somehow.
 Be careful about JS garbage collection (don't let it collect the objects you're constructing before you return them).
 
@@ -161,7 +168,7 @@ Create @b simulation2/components/CCmpExample.cpp:
 
 \include CCmpExample.cpp
 
-The only optional method is @c HandleMessage - all others must be defined.
+The only optional methods are @c HandleMessage and @c GetSchema - all others must be defined.
 
 Update the file simulation2/TypeList.h and add:
 
@@ -184,10 +191,14 @@ static void ClassInit(CComponentManager& componentManager)
 
 (@c CID_Example is derived from the name of the component type, @em not the name of the interface.)
 
+You can also use SubscribeGloballyToMessageType, to intercept messages sent with PostMessage
+that are targeted at a @em different entity. (Typically this is used by components that want
+to hear about all MT_Destroy messages.)
+
 Then you need to respond to the messages in @c HandleMessage:
 
 @code
-virtual void HandleMessage(const CSimContext& context, const CMessage& msg)
+virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
 {
     switch (msg.GetType())
     {
@@ -224,9 +235,10 @@ Deinit(context);
 ~CCmpExample();
 @endcode
 
-The order of <code>Init</code>/<code>Deserialize</code>/<code>Deinit</code> between components is undefined,
+The order of <code>Init</code>/<code>Deserialize</code>/<code>Deinit</code> between entities is mostly undefined,
 so they must not rely on other entities or components already existing; @em except that the SYSTEM_ENTITY is
-created before anything else and therefore may be used.
+created before anything else and therefore may be used, and that the components for a single entity will be
+processed in the order determined by TypeList.h.
 
 The same @c context object will be used in all these calls.
 (The component could safely store it in a <code>CSimContext* m_Context</code> member if necessary.)
@@ -240,6 +252,69 @@ In a typical component:
 - @c Deinit should clean up any resources allocated by @c Init / @c Deserialize.
 - The destructor should clean up any resources allocated by the constructor - usually there's no need to write one.
 
+
+@subsection schema Component XML schemas
+
+The @c paramNode passed to @c Init is constructed from XML entity template definition files.
+Components should define a schema, which is used for several purposes:
+
+- Documentation of the XML structure expected by the component.
+- Automatic error checking that the XML matches the expectation, so the component doesn't have to do error checking itself.
+- (Hopefully at some point in the future) Automatic generation of editing tool UI.
+
+@c GetSchema must return a Relax NG fragment, which will be used to construct a single global schema file.
+(You can run the game with the @c -dumpSchema command-line argument to see the schema).
+The <a href="http://relaxng.org/tutorial-20011203.html">official tutorial</a> describes most of the details
+of the RNG language.
+
+In simple cases, you would write something like:
+@code
+static std::string GetSchema()
+{
+    return
+        "<element name='Name'><text/></element>"
+        "<element name='Height'><data type='nonNegativeInteger'/></element>"
+        "<optional>"
+            "<element name='Eyes'><empty/></element>"
+        "</optional>";
+    }
+}
+@endcode
+i.e. a single string (C++ automatically concatenates the quoted lines) which defines a list of elements,
+corresponding to an entity template XML file like:
+@code
+<Entity>
+  <Example>
+    <Name>Barney</Name>
+    <Height>235</Height>
+    <Eyes/>
+  </Example>
+  <!-- ... other components ... -->
+</Entity>
+@endcode
+
+In the schema, each <code>&lt;element></code> has a name and some content.
+The content will typically be one of:
+- <code>&lt;empty/></code>
+- <code>&lt;text/></code>
+- <code>&lt;data type='boolean'/></code>
+- <code>&lt;data type='decimal'/></code>
+- <code>&lt;data type='nonNegativeInteger'/></code>
+- <code>&lt;data type='positiveInteger'/></code>
+- <code>&lt;ref name='nonNegativeDecimal'/></code>
+- <code>&lt;ref name='positiveDecimal'/></code>
+
+(The last two are slightly different since they're not standard data types.)
+
+Elements can be wrapped in <code>&lt;optional></code>.
+Groups of elements can be wrapped in <code>&lt;choice></code> to allow only one of them.
+The content of an <code>&lt;element></code> can be further nested elements, but note that
+elements may be reordered when loading an entity template:
+if you specify a sequence of elements it should be wrapped in <code>&lt;interleave></code>,
+so the schema checker will ignore reorderings of the sequence.
+
+For early development of a new component, you can set the schema to <code>&lt;ref name='anything'/></code> to allow any content.
+If you don't define @c GetSchema, then the default is <code>&lt;empty/></code> (i.e. there must be no elements).
 
 
 @section allowing-js-interfaces Allowing interfaces to be implemented in JS
@@ -289,6 +364,8 @@ Then write @b binaries/data/mods/public/simulation/components/ExampleTwo.js:
 @code
 function ExampleTwo() {}
 
+ExampleTwo.prototype.Schema = "<ref name='anything'/>";
+
 ExampleTwo.prototype.Init = function() {
     ...
 };
@@ -320,9 +397,27 @@ each JS component instance is automatically serialized and restored.
 because they're too hard to serialize. The details should be documented on some other page eventually.)
 
 Instead of @c ClassInit and @c HandleMessage, you simply add functions of the form <code>On<var>MessageType</var></code>.
+(If you want the equivalent of SubscribeGloballyToMessageType, then use <code>OnGlobal<var>MessageType</var></code> instead.)
 When you call @c RegisterComponentType, it will find all such functions and automatically subscribe to the messages.
 The @c msg parameter is usually a straightforward mapping of the relevant CMessage class onto a JS object
 (e.g. @c OnUpdate can read @c msg.turnLength).
+
+
+
+@section defining-js-interfaces Defining interface types in JS
+
+If an interface is only ever used by JS components, and never implemented or called directly by C++ components,
+then you don't need to do all of the work with defining ICmpExample.
+Simply create a file @b binaries/data/mods/public/simulation/components/interfaces/Example.js:
+
+@code
+Engine.RegisterInterface("Example");
+@endcode
+
+You can then use @c IID_Example in JS components.
+
+(There's no strict requirement to have a single .js file per interface definition,
+it's just a convention that allows mods to easily extend the game with new interfaces.)
 
 
 

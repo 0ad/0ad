@@ -71,6 +71,7 @@ public:
 			"</optional>"
 			"<element name='Actor'><text/></element>";
 	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		if (!context.HasUnitManager())

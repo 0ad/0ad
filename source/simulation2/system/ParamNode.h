@@ -27,6 +27,74 @@
 class XMBFile;
 class XMBElement;
 
+/**
+ * An entity initialisation parameter node.
+ * Each node has a text value, plus a number of named child nodes (in a tree structure).
+ * Child nodes are unordered, and there cannot be more than one with the same name.
+ * Nodes are immutable.
+ *
+ * Nodes can be initialised from XML files. Child elements are mapped onto child nodes.
+ * Attributes are mapped onto child nodes with names prefixed by "@"
+ * (e.g. the XML <code>&lt;a b="c">&lt;d/>&lt;/a></code> is loaded as a node with two
+ * child nodes, one called "@b" and one called "d").
+ *
+ * They can also be initialised from @em multiple XML files,
+ * which is used by ICmpTemplateManager for entity template inheritance.
+ * Loading one XML file like:
+ * @code
+ * <Entity>
+ *   <Example1>
+ *     <A attr="value">text</A>
+ *   </Example1>
+ *   <Example2>
+ *     <B/>
+ *   </Example2>
+ *   <Example3>
+ *     <C/>
+ *   </Example3>
+ * </Entity>
+ * @endcode
+ * then a second like:
+ * @code
+ * <Entity>
+ *   <Example1>
+ *     <A>example</A>   <!-- replace the content of the old A element -->
+ *     <D>new</D>       <!-- add a new child to the old Example1 element -->
+ *   </Example1>
+ *   <Example2 delete=""/>   <!-- delete the old Example2 element -->
+ *   <Example3 replace="">   <!-- replace all the old children of the Example3 element -->
+ *     <D>new</D>
+ *   </Example3>
+ * </Entity>
+ * @endcode
+ * is equivalent to loading a single file like:
+ * @code
+ * <Entity>
+ *   <Example1>
+ *     <A attr="value">example</A>
+ *     <D>new</D>
+ *   </Example1>
+ *   <Example3>
+ *     <D>new</D>
+ *   </Example3>
+ * </Entity>
+ * @endcode
+ *
+ * Parameter nodes can be translated to JavaScript objects. The previous example will become the object:
+ * @code
+ * { "Entity": {
+ *     "Example1": {
+ *       "A": { "@attr": "value", "_string": "example" },
+ *       "D": "new"
+ *     },
+ *     "Example3": {
+ *       "D": "new"
+ *     }
+ *   }
+ * }
+ * @endcode
+ * (Note the special @c _string for the hopefully-rare cases where a node contains both child nodes and text.)
+ */
 class CParamNode
 {
 public:

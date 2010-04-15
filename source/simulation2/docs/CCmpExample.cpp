@@ -21,6 +21,11 @@ public:
 
 	// ... member variables ...
 
+	static std::string GetSchema()
+	{
+		return "<ref name='anything'/>";
+	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		// ...
@@ -41,7 +46,7 @@ public:
 		// ...
 	}
 
-	virtual void HandleMessage(const CSimContext& context, const CMessage& msg)
+	virtual void HandleMessage(const CSimContext& context, const CMessage& msg, bool UNUSED(global))
 	{
 		// ...
 	}

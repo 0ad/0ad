@@ -85,8 +85,22 @@ public:
 
 	void RegisterComponentType(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*, const std::string& schema);
 	void RegisterComponentTypeScriptWrapper(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*, const std::string& schema);
-	void SubscribeToMessageType(MessageTypeId);
-	void SubscribeGloballyToMessageType(MessageTypeId);
+
+	/**
+	 * Subscribe the current component type to the given message type.
+	 * Each component's HandleMessage will be called on any BroadcastMessage of this message type,
+	 * or on any PostMessage of this type targeted at the component's entity.
+	 * Must only be called by a component type's ClassInit.
+	 */
+	void SubscribeToMessageType(MessageTypeId mtid);
+
+	/**
+	 * Subscribe the current component type to all messages of the given message type.
+	 * Each component's HandleMessage will be called on any BroadcastMessage or PostMessage of this message type,
+	 * regardless of the entity.
+	 * Must only be called by a component type's ClassInit.
+	 */
+	void SubscribeGloballyToMessageType(MessageTypeId mtid);
 
 	/**
 	 * @param cname Requested component type name (not including any "CID" or "CCmp" prefix)
