@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="5">
+	<Environment>
+		<SkySet>default</SkySet>
+		<SunColour r="1.5" g="1.5" b="1.5"/>
+		<SunElevation angle="0.290358"/>
+		<SunRotation angle="-0.503275"/>
+		<TerrainAmbientColour r="0.313726" g="0.376471" b="0.521569"/>
+		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
+		<Water>
+			<WaterBody>
+				<Type>default</Type>
+				<Colour r="0.294118" g="0.34902" b="0.694118"/>
+				<Height>5</Height>
+				<Shininess>150</Shininess>
+				<Waviness>8</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTint r="0.27451" g="0.294118" b="0.584314"/>
+				<ReflectionTintStrength>0</ReflectionTintStrength>
+			</WaterBody>
+		</Water>
+	</Environment>
+	<Camera>
+		<Position x="272.157" y="168.641" z="217.338"/>
+		<Rotation angle="0.07963"/>
+		<Declination angle="0.846651"/>
+	</Camera>
+	<Entities>
+		<Entity uid="6">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="262.777" z="254.391"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="7">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="258.148" z="254.664"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="8">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="262.488" z="245.621"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="9">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="262.254" z="237.602"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="10">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="261.812" z="230.25"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="11">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="261.688" z="223.32"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="12">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="261.395" z="216.727"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="13">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="261" z="211.234"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="14">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="260.625" z="205.137"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="15">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="257.199" z="205.691"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="16">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="257.406" z="212.418"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="17">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="257.676" z="217.648"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="18">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="257.93" z="223.746"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="19">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="258.34" z="231.5"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="20">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="258.211" z="239.438"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="21">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="258.637" z="246.828"/>
+			<Orientation y="1.89844"/>
+		</Entity>
+		<Entity uid="22">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="287.957" z="230.055"/>
+			<Orientation y="-1.38672"/>
+		</Entity>
+		<Entity uid="23">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="285.707" z="214.215"/>
+			<Orientation y="-1.38672"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="305.129" z="212.723"/>
+			<Orientation y="-1.38672"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="306.176" z="218.469"/>
+			<Orientation y="-1.38672"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="306.953" z="223.648"/>
+			<Orientation y="-1.38672"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="304.855" z="223.789"/>
+			<Orientation y="-1.38672"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="303.922" z="218.469"/>
+			<Orientation y="-1.38672"/>
+		</Entity>
+		<Entity uid="29">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>2</Player>
+			<Position x="302.836" z="213.34"/>
+			<Orientation y="-1.38672"/>
+		</Entity>
+		<Entity uid="34">
+			<Template>structures/hele_house</Template>
+			<Player>2</Player>
+			<Position x="301.707" z="237.477"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>structures/hele_house</Template>
+			<Player>2</Player>
+			<Position x="294.703" z="199.039"/>
+			<Orientation y="2.88672"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>structures/hele_house</Template>
+			<Player>2</Player>
+			<Position x="315.32" z="352.91"/>
+			<Orientation y="3.09766"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>structures/hele_house</Template>
+			<Player>2</Player>
+			<Position x="312.758" z="316.84"/>
+			<Orientation y="2.94141"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>units/hele_infantry_archer_b</Template>
+			<Player>1</Player>
+			<Position x="272.141" z="337.848"/>
+			<Orientation y="1.61328"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>units/hele_infantry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="272.047" z="343.578"/>
+			<Orientation y="1.61328"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>units/hele_infantry_spearman_b</Template>
+			<Player>1</Player>
+			<Position x="272.176" z="349.355"/>
+			<Orientation y="1.61328"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>units/celt_cavalry_javelinist_b</Template>
+			<Player>1</Player>
+			<Position x="270.438" z="355.992"/>
+			<Orientation y="1.61328"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>units/hele_mechanical_siege_lithobolos</Template>
+			<Player>1</Player>
+			<Position x="270.375" z="330.457"/>
+			<Orientation y="1.61328"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>units/hele_mechanical_siege_oxybeles</Template>
+			<Player>1</Player>
+			<Position x="272.316" z="320.484"/>
+			<Orientation y="1.61328"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>units/hele_hero_philip</Template>
+			<Player>2</Player>
+			<Position x="312.523" z="337.164"/>
+			<Orientation y="-1.63672"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+	<Triggers/>
+</Scenario>
