@@ -216,7 +216,7 @@ void CUnit::ReloadObject()
 
 	// If these selections give a different object, change this unit to use it
 	CObjectEntry* newObject = m_ObjectManager.FindObjectVariation(m_Object->m_Base, selections);
-	if (newObject != m_Object)
+	if (newObject && newObject != m_Object)
 	{
 		// Clone the new object's base (non-instance) model
 		CModel* newModel = newObject->m_Model->Clone();

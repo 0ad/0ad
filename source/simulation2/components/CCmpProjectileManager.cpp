@@ -21,6 +21,7 @@
 #include "ICmpProjectileManager.h"
 
 #include "ICmpPosition.h"
+#include "ICmpVisual.h"
 #include "simulation2/MessageTypes.h"
 
 #include "graphics/Frustum.h"
@@ -30,6 +31,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
 #include "maths/Vector3D.h"
+#include "ps/CLogger.h"
 #include "renderer/Scene.h"
 
 class CCmpProjectileManager : public ICmpProjectileManager
@@ -125,10 +127,20 @@ void CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVector3D 
 	if (!m_Context->HasUnitManager())
 		return; // do nothing if graphics are disabled
 
-	Projectile projectile;
+	CmpPtr<ICmpVisual> sourceVisual(*m_Context, source);
+	if (sourceVisual.null())
+		return;
+
+	std::wstring name = sourceVisual->GetProjectileActor();
+	if (name.empty())
+	{
+		LOGERROR(L"Unit with actor '%ls' launched a projectile but has no actor on 'projectile' attachpoint", sourceVisual->GetActor().c_str());
+		return;
+	}
 
 	std::set<CStr> selections;
-	std::string name = "props/units/weapons/arrow_front.xml"; // TODO: get from somewhere proper (entity or actor?)
+
+	Projectile projectile;
 	projectile.unit = m_Context->GetUnitManager().CreateUnit(name, NULL, selections);
 	if (!projectile.unit)
 	{

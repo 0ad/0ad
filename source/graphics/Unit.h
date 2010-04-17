@@ -57,8 +57,8 @@ public:
 	// destructor
 	~CUnit();
 
-	// get unit's template object; never NULL
-	CObjectEntry* GetObject() const { return m_Object; }
+	// get unit's template object
+	const CObjectEntry& GetObject() const { return *m_Object; }
 	// get unit's model data; never NULL
 	CModel* GetModel() const { return m_Model; }
 	// get actor's entity; can be NULL

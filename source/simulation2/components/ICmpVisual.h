@@ -42,6 +42,18 @@ public:
 	virtual CVector3D GetPosition() = 0;
 
 	/**
+	 * Return the filename of the actor that's being displayed, or the empty string on error.
+	 * (Not safe for use in simulation code.)
+	 */
+	virtual std::wstring GetActor() = 0;
+
+	/**
+	 * Return the filename of the actor to be used for projectiles from this unit, or the empty string if none.
+	 * (Not safe for use in simulation code.)
+	 */
+	virtual std::wstring GetProjectileActor() = 0;
+
+	/**
 	 * Start playing the given animation. If there are multiple possible animations then it will
 	 * pick one at random (not network-synchronised).
 	 * If @p soundgroup is specified, then the sound will be played at each 'event' point in the

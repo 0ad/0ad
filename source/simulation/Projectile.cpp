@@ -158,7 +158,7 @@ JSBool CProjectile::Construct( JSContext* cx, JSObject* UNUSED(obj), uintN argc,
 	Temp = ToNative<CEntity>( argv[0] );
 	if(Temp)
 	{
-		Model = Temp->m_actor->GetObject()->m_ProjectileModel;
+//		Model = Temp->m_actor->GetObject()->m_ProjectileModel;
 		if( !Model )
 		{
 			err = "No projectile model is defined for that entity's actor.";

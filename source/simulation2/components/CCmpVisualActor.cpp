@@ -79,11 +79,11 @@ public:
 
 		// TODO: we should do some fancy animation of under-construction buildings rising from the ground,
 		// but for now we'll just use the foundation actor and ignore the normal one
-		std::string name;
+		std::wstring name;
 		if (paramNode.GetChild("Foundation").IsOk() && paramNode.GetChild("FoundationActor").IsOk())
-			name = utf8_from_wstring(paramNode.GetChild("FoundationActor").ToString());
+			name = paramNode.GetChild("FoundationActor").ToString();
 		else
-			name = utf8_from_wstring(paramNode.GetChild("Actor").ToString());
+			name = paramNode.GetChild("Actor").ToString();
 
 		std::set<CStr> selections;
 		m_Unit = context.GetUnitManager().CreateUnit(name, NULL, selections);
@@ -116,7 +116,7 @@ public:
 			if (m_Unit == NULL)
 				serialize.StringASCII("actor", "[none]", 0, 256);
 			else
-				serialize.String("actor", m_Unit->GetObject()->m_Base->m_Name, 0, 256);
+				serialize.String("actor", m_Unit->GetObject().m_Base->m_Name, 0, 256);
 		}
 
 		// TODO: store random variation. This ought to be synchronised across saved games
@@ -174,6 +174,20 @@ public:
 		if (!m_Unit)
 			return CVector3D(0, 0, 0);
 		return m_Unit->GetModel()->GetTransform().GetTranslation();
+	}
+
+	virtual std::wstring GetActor()
+	{
+		if (!m_Unit)
+			return L"";
+		return m_Unit->GetObject().m_Base->m_Name;
+	}
+
+	virtual std::wstring GetProjectileActor()
+	{
+		if (!m_Unit)
+			return L"";
+		return m_Unit->GetObject().m_ProjectileModelName;
 	}
 
 	virtual void SelectAnimation(std::string name, bool once, float speed, std::wstring soundgroup)

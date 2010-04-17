@@ -69,7 +69,7 @@ CEntity* SimState::Entity::Thaw()
 SimState::Nonentity SimState::Nonentity::Freeze(CUnit* unit)
 {
 	Nonentity n;
-	n.actorName = unit->GetObject()->m_Base->m_Name;
+	n.actorName = unit->GetObject().m_Base->m_Name;
 	n.unitID = unit->GetID();
 	n.selections = unit->GetActorSelections();
 	n.position = unit->GetModel()->GetTransform().GetTranslation();

@@ -55,7 +55,8 @@ public:
 		// so we can have lots of colour variations without wasting memory on
 		// lots of objectEntries)
 
-	CModel* m_ProjectileModel;
+	CStrW m_ProjectileModelName;
+
 	CModel* m_AmmunitionModel;
 	SPropPoint* m_AmmunitionPoint;
 

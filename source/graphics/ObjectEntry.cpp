@@ -41,7 +41,7 @@
 
 CObjectEntry::CObjectEntry(CObjectBase* base)
 : m_Base(base), m_Color(1.0f, 1.0f, 1.0f, 1.0f),
-  m_ProjectileModel(NULL), m_AmmunitionModel(NULL), m_AmmunitionPoint(NULL), m_Model(NULL)
+  m_AmmunitionModel(NULL), m_AmmunitionPoint(NULL), m_Model(NULL)
 {
 }
 
@@ -153,7 +153,14 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	for (size_t p = 0; p < props.size(); p++)
 	{
 		const CObjectBase::Prop& prop = props[p];
-	
+
+		// Pluck out the special attachpoint 'projectile'
+		if (prop.m_PropPointName == "projectile")
+		{
+			m_ProjectileModelName = prop.m_ModelName.string();
+			continue;
+		}
+
 		CObjectEntry* oe = objectManager.FindObjectVariation(prop.m_ModelName.string().c_str(), selections);
 		if (!oe)
 		{
@@ -161,13 +168,8 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			continue;
 		}
 
-		// Pluck out the special attachpoint 'projectile'
-		if (prop.m_PropPointName == "projectile")
-		{
-			m_ProjectileModel = oe->m_Model;
-		}
-		// Also the other special attachpoint 'loaded-<proppoint>'
-		else if (prop.m_PropPointName.length() > 7 && prop.m_PropPointName.Left(7) == "loaded-")
+		// Also pluck out the other special attachpoint 'loaded-<proppoint>'
+		if (prop.m_PropPointName.length() > 7 && prop.m_PropPointName.Left(7) == "loaded-")
 		{
 			CStr ppn = prop.m_PropPointName.substr(7);
 			m_AmmunitionModel = oe->m_Model;

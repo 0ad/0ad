@@ -69,7 +69,7 @@ namespace
 		if (unit->GetEntity())
 			return (unit->GetEntity()->m_base->m_anchorType != L"Ground");
 		else
-			return unit->GetObject()->m_Base->m_Properties.m_FloatOnWater;
+			return unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
 	}
 
 	CUnitManager& GetUnitManager()
@@ -219,7 +219,7 @@ QUERYHANDLER(GetObjectSettings)
 	settings.player = unit->GetPlayerID();
 
 	// Get the unit's possible variants and selected variants
-	std::vector<std::vector<CStr> > groups = unit->GetObject()->m_Base->GetVariantGroups();
+	std::vector<std::vector<CStr> > groups = unit->GetObject().m_Base->GetVariantGroups();
 	const std::set<CStr>& selections = unit->GetActorSelections();
 
 	// Iterate over variant groups

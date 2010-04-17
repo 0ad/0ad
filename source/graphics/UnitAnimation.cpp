@@ -66,6 +66,10 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 void CUnitAnimation::SetAnimationSync(float actionTime, float repeatTime)
 {
 	CModel* model = m_Unit.GetModel();
+
+	if (!model || !model->m_Anim || !model->m_Anim->m_AnimDef)
+		return;
+
 	float duration = model->m_Anim->m_AnimDef->GetDuration();
 
 	// Set the speed so it loops once in repeatTime

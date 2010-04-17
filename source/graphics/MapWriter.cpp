@@ -376,7 +376,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 				XML_Element("Nonentity");
 
-				XML_Setting("Actor", (*unit)->GetObject()->m_Base->m_Name);
+				XML_Setting("Actor", (*unit)->GetObject().m_Base->m_Name);
 
 				{
 					CVector3D position = (*unit)->GetModel()->GetTransform().GetTranslation();
