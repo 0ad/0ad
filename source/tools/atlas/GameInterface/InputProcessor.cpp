@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,25 @@
 #include "ps/Game.h"
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
+#include "maths/Quaternion.h"
 
-static float g_ViewZoomSmoothness = 0.02f; // TODO: configurable, like GameView
+static float g_ViewZoomSmoothness = 0.02f;
+static float g_ViewRotateScale = 0.02f;
+
+static void Rotate(CCamera& camera, float speed)
+{
+	CVector3D upwards(0.0f, 1.0f, 0.0f);
+	CVector3D origin = camera.m_Orientation.GetTranslation();
+	CVector3D pivot = camera.GetFocus();
+	CVector3D delta = origin - pivot;
+
+	CQuaternion r;
+	r.FromAxisAngle(upwards, speed);
+	delta = r.Rotate(delta);
+	camera.m_Orientation.Translate(-origin);
+	camera.m_Orientation.Rotate(r);
+	camera.m_Orientation.Translate(pivot + delta);
+}
 
 bool InputProcessor::ProcessInput(GameLoopState* state)
 {
@@ -69,6 +86,18 @@ bool InputProcessor::ProcessInput(GameLoopState* state)
 	if (state->input.scrollSpeed[3] != 0.0f)
 	{
 		camera->m_Orientation.Translate(leftwards * (-input.scrollSpeed[3] * state->frameLength));
+		moved = true;
+	}
+
+	if (state->input.scrollSpeed[4] != 0.0f)
+	{
+		Rotate(*camera, input.scrollSpeed[4] * state->frameLength * g_ViewRotateScale);
+		moved = true;
+	}
+
+	if (state->input.scrollSpeed[5] != 0.0f)
+	{
+		Rotate(*camera, -input.scrollSpeed[5] * state->frameLength * g_ViewRotateScale);
 		moved = true;
 	}
 

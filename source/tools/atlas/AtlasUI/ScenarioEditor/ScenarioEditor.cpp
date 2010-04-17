@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2010 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,6 +84,8 @@ private:
 		case WXK_RIGHT: dir = eScrollConstantDir::RIGHT; break;
 		case WXK_UP:    dir = eScrollConstantDir::FORWARDS; break;
 		case WXK_DOWN:  dir = eScrollConstantDir::BACKWARDS; break;
+		case ']':       dir = eScrollConstantDir::CLOCKWISE; break;
+		case '[':       dir = eScrollConstantDir::ANTICLOCKWISE; break;
 		case WXK_SHIFT: case WXK_CONTROL: dir = -1; break;
 		default: return false;
 		}
@@ -92,10 +94,12 @@ private:
 
 		if (dir == -1) // changed modifier keys - update all currently-scrolling directions
 		{
-			if (wxGetKeyState(WXK_LEFT))  POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::LEFT, speed));
-			if (wxGetKeyState(WXK_RIGHT)) POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::RIGHT, speed));
-			if (wxGetKeyState(WXK_UP))    POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::FORWARDS, speed));
-			if (wxGetKeyState(WXK_DOWN))  POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::BACKWARDS, speed));
+			if (wxGetKeyState(WXK_LEFT))       POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::LEFT, speed));
+			if (wxGetKeyState(WXK_RIGHT))      POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::RIGHT, speed));
+			if (wxGetKeyState(WXK_UP))         POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::FORWARDS, speed));
+			if (wxGetKeyState(WXK_DOWN))       POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::BACKWARDS, speed));
+			if (wxGetKeyState((wxKeyCode)']')) POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::CLOCKWISE, speed));
+			if (wxGetKeyState((wxKeyCode)'[')) POST_MESSAGE(ScrollConstant, (eRenderView::GAME, eScrollConstantDir::ANTICLOCKWISE, speed));
 		}
 		else
 		{

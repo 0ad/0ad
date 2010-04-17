@@ -38,7 +38,7 @@ MESSAGEHANDLER(ScrollConstant)
 	if (g_Game->GetView()->GetCinema()->IsPlaying())
 		return;
 
-	if (msg->dir < 0 || msg->dir > 3)
+	if (msg->dir < 0 || msg->dir > 5)
 	{
 		debug_warn(L"ScrollConstant: invalid direction");
 	}

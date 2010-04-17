@@ -248,8 +248,8 @@ QUERY(Exit,,); // no inputs nor outputs
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-struct eScrollConstantDir { enum { FORWARDS, BACKWARDS, LEFT, RIGHT }; };
-MESSAGE(ScrollConstant,
+struct eScrollConstantDir { enum { FORWARDS, BACKWARDS, LEFT, RIGHT, CLOCKWISE, ANTICLOCKWISE }; };
+MESSAGE(ScrollConstant, // set a constant scrolling(/rotation) rate
 		((int, view)) // eRenderView
 		((int, dir)) // eScrollConstantDir
 		((float, speed)) // set speed 0.0f to stop scrolling

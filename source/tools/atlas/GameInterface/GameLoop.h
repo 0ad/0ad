@@ -36,7 +36,7 @@ struct GameLoopState
 
 	struct Input
 	{
-		float scrollSpeed[4]; // [fwd, bwd, left, right]. 0.0f for disabled.
+		float scrollSpeed[6]; // [fwd, bwd, left, right, cw-rotation, ccw-rotation]. 0.0f for disabled.
 		float zoomDelta;
 	} input;
 };
