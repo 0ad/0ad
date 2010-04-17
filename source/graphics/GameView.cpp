@@ -416,12 +416,12 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			continue;
 
 		int status = losMgr->GetUnitStatus(units[i], g_Game->GetLocalPlayer());
-		CModel* model = units[i]->GetModel();
+		CModel& model = units[i]->GetModel();
 
-		model->ValidatePosition();
+		model.ValidatePosition();
 		
 		if (status != UNIT_HIDDEN &&
-			(!m->Culling || frustum.IsBoxVisible(CVector3D(0,0,0), model->GetBounds())))
+			(!m->Culling || frustum.IsBoxVisible(CVector3D(0,0,0), model.GetBounds())))
 		{
 			if(units[i] != g_BuildingPlacer.m_actor)
 			{
@@ -434,11 +434,11 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 				{
 					color = CColor(0.7f, 0.7f, 0.7f, 1.0f);
 				}
-				model->SetShadingColor(color);
+				model.SetShadingColor(color);
 			}
 
 			PROFILE( "submit models" );
-			c->SubmitRecursive(model);
+			c->SubmitRecursive(&model);
 		}
 	}
 
@@ -493,13 +493,14 @@ void CGameView::CameraLock(float x, float y, float z, bool smooth)
 }
 
 
-static void MarkUpdateColorRecursive(CModel* model)
+static void MarkUpdateColorRecursive(CModel& model)
 {
-	model->SetDirty(RENDERDATA_UPDATE_COLOR);
+	model.SetDirty(RENDERDATA_UPDATE_COLOR);
 
-	const std::vector<CModel::Prop>& props = model->GetProps();
+	const std::vector<CModel::Prop>& props = model.GetProps();
 	for(size_t i = 0; i < props.size(); ++i) {
-		MarkUpdateColorRecursive(props[i].m_Model);
+		debug_assert(props[i].m_Model);
+		MarkUpdateColorRecursive(*props[i].m_Model);
 	}
 }
 

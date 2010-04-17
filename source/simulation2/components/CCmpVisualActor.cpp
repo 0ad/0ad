@@ -166,14 +166,14 @@ public:
 	{
 		if (!m_Unit)
 			return CBound();
-		return m_Unit->GetModel()->GetBounds();
+		return m_Unit->GetModel().GetBounds();
 	}
 
 	virtual CVector3D GetPosition()
 	{
 		if (!m_Unit)
 			return CVector3D(0, 0, 0);
-		return m_Unit->GetModel()->GetTransform().GetTranslation();
+		return m_Unit->GetModel().GetTransform().GetTranslation();
 	}
 
 	virtual std::wstring GetActor()
@@ -221,7 +221,7 @@ public:
 		if (!m_Unit)
 			return;
 
-		m_Unit->GetModel()->SetShadingColor(CColor(r.ToFloat(), g.ToFloat(), b.ToFloat(), a.ToFloat()));
+		m_Unit->GetModel().SetShadingColor(CColor(r.ToFloat(), g.ToFloat(), b.ToFloat(), a.ToFloat()));
 	}
 
 private:
@@ -248,7 +248,7 @@ void CCmpVisualActor::Interpolate(const CSimContext& context, float frameTime, f
 
 	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset));
 
-	m_Unit->GetModel()->SetTransform(transform);
+	m_Unit->GetModel().SetTransform(transform);
 	m_Unit->UpdateModel(frameTime);
 }
 
@@ -259,14 +259,14 @@ void CCmpVisualActor::RenderSubmit(const CSimContext& UNUSED(context), SceneColl
 
 	// TODO: need to think about things like LOS here
 
-	CModel* model = m_Unit->GetModel();
+	CModel& model = m_Unit->GetModel();
 
-	model->ValidatePosition();
+	model.ValidatePosition();
 
-	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model->GetBounds()))
+	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBounds()))
 		return;
 
 	// TODO: model->SetShadingColor(CColor(1.0f, 1.0f, 1.0f, 1.0f) if visible, CColor(0.7f, 0.7f, 0.7f, 1.0f) if hidden in FOW)
 
-	collector.SubmitRecursive(model);
+	collector.SubmitRecursive(&model);
 }

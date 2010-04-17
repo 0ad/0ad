@@ -379,7 +379,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				XML_Setting("Actor", (*unit)->GetObject().m_Base->m_Name);
 
 				{
-					CVector3D position = (*unit)->GetModel()->GetTransform().GetTranslation();
+					CVector3D position = (*unit)->GetModel().GetTransform().GetTranslation();
 
 					XML_Element("Position");
 					XML_Attribute("x", position.X);
@@ -388,7 +388,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				}
 
 				{
-					CVector3D orient = (*unit)->GetModel()->GetTransform().GetIn();
+					CVector3D orient = (*unit)->GetModel().GetTransform().GetIn();
 					float angle = atan2(-orient.X, -orient.Z);
 
 					XML_Element("Orientation");

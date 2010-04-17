@@ -96,7 +96,7 @@ float CEntity::ChooseMovementSpeed( float distance )
 			m_actor->SetAnimationState( anim_name, false, speed, 0.f, false, L"" );
 
 			// Animation desync
-			m_actor->GetModel()->Update( rand( 0, 1000 ) / 1000.0f );
+			m_actor->GetModel().Update( rand( 0, 1000 ) / 1000.0f );
 		}
 	}
 	

@@ -72,8 +72,8 @@ SimState::Nonentity SimState::Nonentity::Freeze(CUnit* unit)
 	n.actorName = unit->GetObject().m_Base->m_Name;
 	n.unitID = unit->GetID();
 	n.selections = unit->GetActorSelections();
-	n.position = unit->GetModel()->GetTransform().GetTranslation();
-	CVector3D orient = unit->GetModel()->GetTransform().GetIn();
+	n.position = unit->GetModel().GetTransform().GetTranslation();
+	CVector3D orient = unit->GetModel().GetTransform().GetIn();
 	n.angle = atan2(-orient.X, -orient.Z);
 	return n;
 }
@@ -87,7 +87,7 @@ CUnit* SimState::Nonentity::Thaw()
 	CMatrix3D m;
 	m.SetYRotation(angle + (float)M_PI);
 	m.Translate(position);
-	unit->GetModel()->SetTransform(m);
+	unit->GetModel().SetTransform(m);
 
 	unit->SetID(unitID);
 	return unit;

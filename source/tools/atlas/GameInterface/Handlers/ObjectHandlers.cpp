@@ -159,7 +159,7 @@ void AtlasRenderSelection()
 			}
 			else
 			{
-				const CBound& bound = unit->GetModel()->GetBounds();
+				const CBound& bound = unit->GetModel().GetBounds();
 				// Expand bounds by 10% around the centre
 				CVector3D centre;
 				bound.GetCentre(centre);
@@ -529,7 +529,7 @@ MESSAGEHANDLER(ObjectPreview)
 		m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = pos.Y;
 		m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = pos.Z;
 		m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
-		previewUnit->GetModel()->SetTransform(m);
+		previewUnit->GetModel().SetTransform(m);
 
 		// Update the unit's player colour:
 		previewUnit->SetPlayerID(msg->settings->player);
@@ -656,7 +656,7 @@ BEGIN_COMMAND(CreateObject)
 					m._21 = 0.0f;   m._22 = 1.0f;   m._23 = 0.0f;   m._24 = m_Pos.Y;
 					m._31 = s;      m._32 = 0.0f;   m._33 = -c;     m._34 = m_Pos.Z;
 					m._41 = 0.0f;   m._42 = 0.0f;   m._43 = 0.0f;   m._44 = 1.0f;
-					unit->GetModel()->SetTransform(m);
+					unit->GetModel().SetTransform(m);
 
 					unit->SetPlayerID(m_Player);
 				}
@@ -724,7 +724,7 @@ QUERYHANDLER(PickObject)
 		// working out the screen coordinates to move the object to.
 		// (TODO: http://trac.wildfiregames.com/ticket/99)
 		
-		CVector3D centre = target->GetModel()->GetTransform().GetTranslation();
+		CVector3D centre = target->GetModel().GetTransform().GetTranslation();
 
 		centre.Y = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(centre.X, centre.Z);
 		if (IsFloating(target))
@@ -775,7 +775,7 @@ BEGIN_COMMAND(MoveObject)
 			}
 			else
 			{
-				CMatrix3D m = unit->GetModel()->GetTransform();
+				CMatrix3D m = unit->GetModel().GetTransform();
 				m_PosOld = m.GetTranslation();
 			}
 		}
@@ -808,9 +808,9 @@ BEGIN_COMMAND(MoveObject)
 			}
 			else
 			{
-				CMatrix3D m = unit->GetModel()->GetTransform();
+				CMatrix3D m = unit->GetModel().GetTransform();
 				m.Translate(pos - m.GetTranslation());
-				unit->GetModel()->SetTransform(m);
+				unit->GetModel().SetTransform(m);
 			}
 		}
 	}
@@ -884,9 +884,9 @@ BEGIN_COMMAND(RotateObject)
 			}
 			else
 			{
-				m_TransformOld = unit->GetModel()->GetTransform();
+				m_TransformOld = unit->GetModel().GetTransform();
 
-				CVector3D pos = unit->GetModel()->GetTransform().GetTranslation();
+				CVector3D pos = unit->GetModel().GetTransform().GetTranslation();
 
 				float s, c;
 				if (msg->usetarget)
@@ -935,7 +935,7 @@ BEGIN_COMMAND(RotateObject)
 			}
 			else
 			{
-				unit->GetModel()->SetTransform(transform);
+				unit->GetModel().SetTransform(transform);
 			}
 		}
 	}

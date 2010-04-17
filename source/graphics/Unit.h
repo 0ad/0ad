@@ -59,8 +59,8 @@ public:
 
 	// get unit's template object
 	const CObjectEntry& GetObject() const { return *m_Object; }
-	// get unit's model data; never NULL
-	CModel* GetModel() const { return m_Model; }
+	// get unit's model data
+	CModel& GetModel() const { return *m_Model; }
 	// get actor's entity; can be NULL
 	CEntity* GetEntity() const { return m_Entity; }
 
@@ -107,9 +107,9 @@ public:
 	void SetActorSelections(const std::set<CStr>& selections);
 
 private:
-	// object from which unit was created
+	// object from which unit was created; never NULL
 	CObjectEntry* m_Object;
-	// object model representation
+	// object model representation; never NULL
 	CModel* m_Model;
 	// the entity that this actor represents, if any
 	CEntity* m_Entity;

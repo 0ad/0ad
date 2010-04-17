@@ -372,7 +372,7 @@ void CEntity::UpdateActorTransforms()
 	mXZ.Translate(m_graphics_position);
 
 	if( m_actor )
-		m_actor->GetModel()->SetTransform( mXZ );
+		m_actor->GetModel().SetTransform( mXZ );
 }
 
 void CEntity::SnapToGround()
@@ -627,7 +627,7 @@ void CEntity::UpdateOrders( int timestep )
 		PROFILE( "animation updates" );
 		if( m_extant )
 		{
-			if( ( m_lastState != -1 ) || !m_actor->GetModel()->GetAnimation() )
+			if( ( m_lastState != -1 ) || !m_actor->GetModel().GetAnimation() )
 			{
 				m_actor->SetAnimationState( "idle", false, 1.f, 0.f, false, L"" );
 			}

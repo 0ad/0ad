@@ -249,7 +249,7 @@ void CCmpProjectileManager::AdvanceProjectile(const CSimContext& context, Projec
 	transform.Translate(projectile.pos);
 
 	// Move the model
-	projectile.unit->GetModel()->SetTransform(transform);
+	projectile.unit->GetModel().SetTransform(transform);
 }
 
 void CCmpProjectileManager::Interpolate(const CSimContext& context, float frameTime, float frameOffset)
@@ -279,15 +279,15 @@ void CCmpProjectileManager::RenderSubmit(const CSimContext& UNUSED(context), Sce
 {
 	for (size_t i = 0; i < m_Projectiles.size(); ++i)
 	{
-		CModel* model = m_Projectiles[i].unit->GetModel();
+		CModel& model = m_Projectiles[i].unit->GetModel();
 
-		model->ValidatePosition();
+		model.ValidatePosition();
 
-		if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model->GetBounds()))
+		if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetBounds()))
 			continue;
 
 		// TODO: do something about LOS (copy from CCmpVisualActor)
 
-		collector.SubmitRecursive(model);
+		collector.SubmitRecursive(&model);
 	}
 }

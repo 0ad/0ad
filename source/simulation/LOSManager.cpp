@@ -238,7 +238,7 @@ EUnitLOSStatus CLOSManager::GetUnitStatus(CUnit* unit, CPlayer* player)
 	if (entity)
 		centre = entity->m_position;
 	else
-		centre = unit->GetModel()->GetTransform().GetTranslation();
+		centre = unit->GetModel().GetTransform().GetTranslation();
 
 	ELOSStatus status = GetStatus(centre.X, centre.Z, player);
 

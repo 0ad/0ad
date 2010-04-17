@@ -1112,7 +1112,7 @@ int CXMLReader::ReadNonEntities(XMBElement parent, double end_time)
 				CMatrix3D m;
 				m.SetYRotation(Orientation + (float)M_PI);
 				m.Translate(Position);
-				unit->GetModel()->SetTransform(m);
+				unit->GetModel().SetTransform(m);
 
 				// TODO: save object IDs in the map file, and load them again,
 				// so that triggers have a persistent identifier for objects

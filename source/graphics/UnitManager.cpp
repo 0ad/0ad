@@ -112,12 +112,12 @@ CUnit* CUnitManager::PickUnit(const CVector3D& origin, const CVector3D& dir, boo
 		if( ent && !ent->m_visible )
 			continue;
 		
-		if (unit->GetModel()->GetBounds().RayIntersect(origin, dir, tmin, tmax)
+		if (unit->GetModel().GetBounds().RayIntersect(origin, dir, tmin, tmax)
 			&& losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
 		{
 			// Point of closest approach
 			CVector3D obj;
-			unit->GetModel()->GetBounds().GetCentre(obj);
+			unit->GetModel().GetBounds().GetCentre(obj);
 			CVector3D delta = obj - origin;
 			float distance = delta.Dot(dir);
 			CVector3D closest = origin + dir * distance;

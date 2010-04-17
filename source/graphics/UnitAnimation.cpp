@@ -65,32 +65,32 @@ void CUnitAnimation::SetAnimationState(const CStr& name, bool once, float speed,
 
 void CUnitAnimation::SetAnimationSync(float actionTime, float repeatTime)
 {
-	CModel* model = m_Unit.GetModel();
+	CModel& model = m_Unit.GetModel();
 
-	if (!model || !model->m_Anim || !model->m_Anim->m_AnimDef)
+	if (!model.m_Anim || !model.m_Anim->m_AnimDef)
 		return;
 
-	float duration = model->m_Anim->m_AnimDef->GetDuration();
+	float duration = model.m_Anim->m_AnimDef->GetDuration();
 
 	// Set the speed so it loops once in repeatTime
 	float speed = duration / repeatTime;
 
 	// Need to offset so that start+actionTime*speed = ActionPos
-	float start = model->m_Anim->m_ActionPos - actionTime*speed;
+	float start = model.m_Anim->m_ActionPos - actionTime*speed;
 	// Wrap it so that it's within the animation
 	start = fmodf(start, duration);
 	if (start < 0)
 		start += duration;
 
 	// Make the animation run at the computed timings
-	model->m_AnimTime = start;
+	model.m_AnimTime = start;
 	m_Speed = m_OriginalSpeed = speed;
 	m_Desync = 0.f;
 }
 
 void CUnitAnimation::Update(float time)
 {
-	CModel* model = m_Unit.GetModel();
+	CModel& model = m_Unit.GetModel();
 
 	// Convert from real time to scaled animation time
 	float advance = time*m_Speed;
@@ -98,10 +98,10 @@ void CUnitAnimation::Update(float time)
 	// Check if the current animation will trigger the action events
 	bool action = false;
 	bool action2 = false;
-	m_Unit.GetModel()->CheckActionTriggers(advance, action, action2);
+	model.CheckActionTriggers(advance, action, action2);
 
 	// Choose a new random animation if we're going to loop
-	if (m_Looping && model->NeedsNewAnim(time))
+	if (m_Looping && model.NeedsNewAnim(time))
 	{
 		// Re-desynchronise the animation, to keep the irregular drifting between separate units
 		m_Speed = DesyncSpeed(m_OriginalSpeed, m_Desync);
@@ -115,7 +115,7 @@ void CUnitAnimation::Update(float time)
 
 		// Check if the start of the new animation will trigger the action events
 		// (This is additive with the previous CheckActionTriggers)
-		m_Unit.GetModel()->CheckActionTriggers(advance, action, action2);
+		model.CheckActionTriggers(advance, action, action2);
 	}
 
 	// TODO: props should get a new random animation once they loop, independent
@@ -143,5 +143,5 @@ void CUnitAnimation::Update(float time)
 	// TODO: some animations (e.g. wood chopping) have two action points that should trigger sounds,
 	// so we ought to support that somehow
 
-	model->Update(advance);
+	model.Update(advance);
 }

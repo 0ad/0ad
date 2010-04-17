@@ -1200,7 +1200,7 @@ InReaction InteractInputHandler( const SDL_Event_* ev )
 			if ( g_Selection.m_selected.empty() )
 				break;
 
-			std::vector<CModel::Prop>& Props = g_Selection.m_selected.front()->m_actor->GetModel()->GetProps();
+			std::vector<CModel::Prop>& Props = g_Selection.m_selected.front()->m_actor->GetModel().GetProps();
 
 			for (size_t x=0; x<Props.size(); x++)
 			{
@@ -1343,7 +1343,7 @@ bool IsOnScreen( CEntity* e, void* UNUSED(userdata) )
 	CFrustum frustum = pCamera->GetFrustum();
 
 	if( e->m_actor )
-		return( frustum.IsBoxVisible( CVector3D(), e->m_actor->GetModel()->GetBounds() ) );
+		return( frustum.IsBoxVisible( CVector3D(), e->m_actor->GetModel().GetBounds() ) );
 	else
 		// If there's no actor, just treat the entity as a point
 		return( frustum.IsBoxVisible( e->m_graphics_position, CBound() ) );
@@ -1519,7 +1519,7 @@ void CBuildingPlacer::Update( float timeStep )
 	CMatrix3D m;
 	m.SetYRotation(m_angle + (float)M_PI);
 	m.Translate(pos);
-	m_actor->GetModel()->SetTransform( m );
+	m_actor->GetModel().SetTransform( m );
 	m_bounds->SetPosition(pos.X, pos.Z);
 
 	if( m_bounds->m_type == CBoundingObject::BOUND_OABB )
@@ -1543,7 +1543,7 @@ void CBuildingPlacer::Update( float timeStep )
 		float add = ( sin(4*(float)M_PI*m_totalTime) + 1.0f ) * 0.08f;
 		col = CColor( 1.4f+add, 0.4f+add, 0.4f+add, 1.0f );
 	}
-	m_actor->GetModel()->SetShadingColor( col );
+	m_actor->GetModel().SetShadingColor( col );
 }
 
 /**
