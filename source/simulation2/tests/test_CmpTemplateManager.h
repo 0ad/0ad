@@ -24,7 +24,9 @@
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/ParamNode.h"
 #include "simulation2/system/SimContext.h"
+#include "simulation2/Simulation2.h"
 
+#include "graphics/Terrain.h"
 #include "ps/Filesystem.h"
 #include "ps/CLogger.h"
 #include "ps/XML/Xeromyces.h"
@@ -35,7 +37,6 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs(20 * MiB);
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim"));
 		CXeromyces::Startup();
 	}
 
@@ -47,6 +48,8 @@ public:
 
 	void test_LoadTemplate()
 	{
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim"));
+
 		CSimContext context;
 		CComponentManager man(context);
 		man.LoadComponentTypes();
@@ -90,6 +93,8 @@ public:
 
 	void test_LoadTemplate_errors()
 	{
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim"));
+
 		CSimContext context;
 		CComponentManager man(context);
 		man.LoadComponentTypes();
@@ -121,6 +126,8 @@ public:
 
 	void test_LoadTemplate_multiple()
 	{
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/_test.sim"));
+
 		CSimContext context;
 		CComponentManager man(context);
 		man.LoadComponentTypes();
@@ -155,5 +162,27 @@ public:
 
 		TS_ASSERT(tempMan->LoadTemplate(ent2, L"inherit-broken", -1) == NULL);
 		TS_ASSERT(tempMan->LoadTemplate(ent2, L"inherit-broken", -1) == NULL);
+	}
+
+	void test_load_all_DISABLED() // disabled since it's a bit slow
+	{
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/L"mods/public"));
+
+		CTerrain dummy;
+		CSimulation2 sim(NULL, &dummy);
+		sim.LoadDefaultScripts();
+		sim.ResetState();
+
+		CmpPtr<ICmpTemplateManager> cmpTempMan(sim, SYSTEM_ENTITY);
+		TS_ASSERT(!cmpTempMan.null());
+
+		std::vector<std::wstring> templates = cmpTempMan->FindAllTemplates();
+		for (size_t i = 0; i < templates.size(); ++i)
+		{
+			std::wstring name = templates[i];
+			printf("# %ls\n", name.c_str());
+			const CParamNode* p = cmpTempMan->GetTemplate(name);
+			TS_ASSERT(p != NULL);
+		}
 	}
 };

@@ -25,6 +25,7 @@
 #include "graphics/ModelDef.h"
 
 #include "ps/CLogger.h"
+#include "ps/XML/RelaxNG.h"
 
 static fs::wpath MOD_PATH(DataDir()/L"mods/_test.mesh");
 static fs::wpath CACHE_PATH(DataDir()/L"_testcache");
@@ -214,6 +215,25 @@ public:
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
 	}
+
+	void test_load_across_relaxng()
+	{
+		// Verify that loading meshes doesn't invalidate other users of libxml2 by calling xmlCleanupParser
+		// (Run this in Valgrind and check for use-of-freed-memory errors)
+
+		RelaxNGValidator v;
+		TS_ASSERT(v.LoadGrammar("<element xmlns='http://relaxng.org/ns/structure/1.0' datatypeLibrary='http://www.w3.org/2001/XMLSchema-datatypes' name='test'><data type='decimal'/></element>"));
+		TS_ASSERT(v.Validate(L"doc", L"<test>2.0</test>"));
+
+		copyFile(srcDAE, testDAE);
+		copyFile(srcSkeletonDefs, testSkeletonDefs);
+		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
+		TS_ASSERT(modeldef);
+		if (modeldef) TS_ASSERT_WSTR_EQUALS(modeldef->GetName().string(), testBase);
+
+		TS_ASSERT(v.Validate(L"doc", L"<test>2.0</test>"));
+	}
+
 
 	//////////////////////////////////////////////////////////////////////////
 

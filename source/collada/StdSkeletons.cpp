@@ -208,14 +208,12 @@ void Skeleton::LoadSkeletonDataFromXml(const char* xmlData, size_t xmlLength, st
 			xmlFreeDoc(doc);
 			doc = NULL;
 		}
-		xmlCleanupParser();
 		xmlSetGenericErrorFunc(NULL, NULL);
 	}
 	catch (const ColladaException&)
 	{
 		if (doc)
 			xmlFreeDoc(doc);
-		xmlCleanupParser();
 		xmlSetGenericErrorFunc(NULL, NULL);
 		throw;
 	}

@@ -71,7 +71,6 @@ FUXmlDocument::~FUXmlDocument()
 {
 	// Release the XML document
 	ReleaseXmlData();
-	xmlCleanupParser();
 }
 
 xmlNode* FUXmlDocument::GetRootNode()
