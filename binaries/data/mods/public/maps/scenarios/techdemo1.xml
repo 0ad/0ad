@@ -23,7 +23,7 @@
 		</Water>
 	</Environment>
 	<Camera>
-		<Position x="272.157" y="168.641" z="217.338"/>
+		<Position x="148.652" y="156.658" z="206.818"/>
 		<Rotation angle="0.07963"/>
 		<Declination angle="0.846651"/>
 	</Camera>
@@ -237,6 +237,42 @@
 			<Player>2</Player>
 			<Position x="312.523" z="337.164"/>
 			<Orientation y="-1.63672"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>structures/celt_barracks</Template>
+			<Player>1</Player>
+			<Position x="141.438" z="352.402"/>
+			<Orientation y="-3.02734"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="133.777" z="326.148"/>
+			<Orientation y="-3.04688"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>structures/celt_house</Template>
+			<Player>1</Player>
+			<Position x="153.523" z="323.164"/>
+			<Orientation y="0.0429688"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>structures/celt_sb1</Template>
+			<Player>1</Player>
+			<Position x="141.672" z="305.164"/>
+			<Orientation y="2.35547"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>structures/hele_barracks</Template>
+			<Player>1</Player>
+			<Position x="182.699" z="347.5"/>
+			<Orientation y="-2.91406"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>structures/hele_barracks</Template>
+			<Player>1</Player>
+			<Position x="172.922" z="337.133"/>
+			<Orientation y="-2.83984"/>
 		</Entity>
 	</Entities>
 	<Paths/>
