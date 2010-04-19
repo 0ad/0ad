@@ -10,4 +10,13 @@
   <VisualActor>
     <Actor>structures/celts/fortress_gallic.xml</Actor>
   </VisualActor>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/celt_hero_brennus
+      units/celt_hero_britomartus
+      units/celt_hero_vercingetorix
+      units/celt_super_cavalry_gaul
+      units/celt_super_infantry_gaul
+    </Entities>
+  </TrainingQueue>
 </Entity>

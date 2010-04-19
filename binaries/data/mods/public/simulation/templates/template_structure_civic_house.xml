@@ -26,4 +26,9 @@
     <Square width="9.0" depth="9.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/{civ}_support_female_citizen
+    </Entities>
+  </TrainingQueue>
 </Entity>

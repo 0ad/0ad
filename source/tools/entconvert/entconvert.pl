@@ -237,6 +237,17 @@ sub convert {
         $out .= qq{$i</Builder>\n};
     }
 
+    if ($data->{Actions}[0]{Create}[0]{List}[0]{Train}) {
+        $out .= qq{$i<TrainingQueue>\n};
+        $out .= qq{$i$i<Entities datatype="tokens">\n};
+        for (sort (keys %{$data->{Actions}[0]{Create}[0]{List}[0]{Train}[0]})) {
+            my $n = "units/" . ($civ || "{civ}") . "_" . (lc $_);
+            $out .= qq{$i$i$i$n\n};
+        }
+        $out .= qq{$i$i</Entities>\n};
+        $out .= qq{$i</TrainingQueue>\n};
+    }
+
     if ($data->{SoundGroups}) {
         $out .= qq{$i<Sound>\n};
         $out .= qq{$i$i<SoundGroups>\n};

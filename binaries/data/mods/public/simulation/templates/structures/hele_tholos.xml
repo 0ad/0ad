@@ -24,4 +24,14 @@
     <Circle radius="10.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/hele_hero_alexander
+      units/hele_hero_demetrius
+      units/hele_hero_leonidas
+      units/hele_hero_philip
+      units/hele_hero_themistocles
+      units/hele_hero_xenophon
+    </Entities>
+  </TrainingQueue>
 </Entity>

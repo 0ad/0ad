@@ -15,4 +15,13 @@
     <Circle radius="8.0"/>
     <Height>16.0</Height>
   </Footprint>
+  <TrainingQueue>
+    <Entities datatype="tokens">
+      units/celt_hero_boudicca
+      units/celt_hero_caratacos
+      units/celt_hero_cynvelin
+      units/celt_super_cavalry_brit
+      units/celt_super_infantry_brit
+    </Entities>
+  </TrainingQueue>
 </Entity>
