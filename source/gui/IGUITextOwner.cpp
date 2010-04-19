@@ -26,7 +26,7 @@ IGUITextOwner
 //-------------------------------------------------------------------
 //  Constructor / Destructor
 //-------------------------------------------------------------------
-IGUITextOwner::IGUITextOwner()
+IGUITextOwner::IGUITextOwner() : m_GeneratedTextsValid(false)
 {
 }
 
@@ -60,12 +60,8 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 			Message.value == "font" || Message.value == "textcolor" ||
 			Message.value == "buffer_zone")
 		{
-			SetupText();
+			m_GeneratedTextsValid = false;
 		}
-		break;
-
-	case GUIM_LOAD:
-		SetupText();
 		break;
 
 	default:
@@ -73,9 +69,24 @@ void IGUITextOwner::HandleMessage(const SGUIMessage &Message)
 	}
 }
 
-void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos, 
+void IGUITextOwner::UpdateCachedSize()
+{
+	// If an ancestor's size changed, this will let us intercept the change and
+	// update our text positions
+
+	IGUIObject::UpdateCachedSize();
+	m_GeneratedTextsValid = false;
+}
+
+void IGUITextOwner::Draw(const int &index, const CColor &color, const CPos &pos,
 						 const float &z, const CRect &clipping)
 {
+	if (!m_GeneratedTextsValid)
+	{
+		SetupText();
+		m_GeneratedTextsValid = true;
+	}
+
 	if (index < 0 || index >= (int)m_GeneratedTexts.size())
 	{
 		debug_warn(L"Trying to draw a Text Index within a IGUITextOwner that doesn't exist");

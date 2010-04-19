@@ -74,6 +74,11 @@ public:
 	virtual void HandleMessage(const SGUIMessage &Message);
 
 	/**
+	 * @see IGUIObject#UpdateCachedSize()
+	 */
+	virtual void UpdateCachedSize();
+
+	/**
 	 * Draws the Text.
 	 *
 	 * @param index Index value of text. Mostly this will be 0
@@ -91,6 +96,11 @@ protected:
 	 * Setup texts. Functions that sets up all texts when changes have been made.
 	 */
 	virtual void SetupText()=0;
+
+	/**
+	 * Whether the cached text is currently valid (if not then SetupText will be called by Draw)
+	 */
+	bool m_GeneratedTextsValid;
 
 	/**
 	 * Texts that are generated and ready to be rendered.

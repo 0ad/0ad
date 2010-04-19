@@ -160,14 +160,23 @@ bool __ParseString<CSize>(const CStr& Value, CSize &Output)
 template <>
 bool __ParseString<CPos>(const CStr& Value, CPos &Output)
 {
-	CSize temp;
-	if (__ParseString<CSize>(Value, temp))
-	{
-		Output = CPos(temp);
-		return true;
-	}
-	else
+	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_"));
+
+	CParserLine line;
+	line.ParseString(parser, Value);
+	if (!line.m_ParseOK)
 		return false;
+
+	float x, y;
+	if (!line.GetArgFloat(0, x))
+		return false;
+	if (!line.GetArgFloat(1, y))
+		return false;
+
+	Output.x = x;
+	Output.y = y;
+
+	return true;
 }
 
 template <>

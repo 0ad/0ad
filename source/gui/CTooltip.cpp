@@ -130,30 +130,11 @@ void CTooltip::SetupText()
 		size.pixel.left -= (size.pixel.right-screenw), size.pixel.right = screenw;
 	
 	GUI<CClientArea>::SetSetting(this, "size", size);
-	UpdateCachedSize();
 }
 
 void CTooltip::HandleMessage(const SGUIMessage &Message)
 {
-	switch (Message.type)
-	{
-	case GUIM_SETTINGS_UPDATED:
-		// Don't update the text when the size changes, because the size is
-		// changed whenever the text is updated ( => infinite recursion)
-		if (/*Message.value == "size" ||*/ Message.value == "caption" ||
-			Message.value == "font" || Message.value == "buffer_zone")
-		{
-			SetupText();
-		}
-		break;
-
-	case GUIM_LOAD:
-		SetupText();
-		break;
-
-	default:
-		break;
-	}
+	IGUITextOwner::HandleMessage(Message);
 }
 
 void CTooltip::Draw() 
@@ -164,6 +145,14 @@ void CTooltip::Draw()
 	{
 		CGUISpriteInstance *sprite;
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
+
+		// Normally IGUITextOwner will handle this updating but since SetupText can modify the position
+		// we need to call it now *before* we do the rest of the drawing
+		if (!m_GeneratedTextsValid)
+		{
+			SetupText();
+			m_GeneratedTextsValid = true;
+		}
 
 		GetGUI()->DrawSprite(*sprite, 0, z, m_CachedActualSize);
 

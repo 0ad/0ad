@@ -239,7 +239,7 @@ public:
 	 * is not wanted in real time, therefore it is cached, update
 	 * the cached size with this function.
 	 */
-	void UpdateCachedSize();
+	virtual void UpdateCachedSize();
 
 	/**
 	 * Should be called every time the settings has been updated
