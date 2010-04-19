@@ -39,7 +39,7 @@ ImplementObjectType(FUPlugin);
 // FUPluginManager
 //
 
-FUPluginManager::FUPluginManager(const fchar* _filter)
+FUPluginManager::FUPluginManager(const fchar* UNUSED(_filter))
 {
 #if 0 // disabled because it causes loads of valgrind warnings on Linux
 	fstring applicationFolderName = FUFileManager::GetApplicationFolderName();
