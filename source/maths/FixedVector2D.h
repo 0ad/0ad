@@ -71,6 +71,20 @@ public:
 		return *this;
 	}
 
+	/// Scalar multiplication by an integer
+	CFixedVector2D operator*(int n) const
+	{
+		return CFixedVector2D(X*n, Y*n);
+	}
+
+	/**
+	 * Multiply by a CFixed. Likely to overflow if both numbers are large,
+	 * so we use an ugly name instead of operator* to make it obvious.
+	 */
+	CFixedVector2D Multiply(fixed n) const
+	{
+		return CFixedVector2D(X.Multiply(n), Y.Multiply(n));
+	}
 
 	/**
 	 * Returns the length of the vector.

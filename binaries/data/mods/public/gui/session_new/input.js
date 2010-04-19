@@ -1,9 +1,10 @@
 const SDL_BUTTON_LEFT = 1;
 const SDL_BUTTON_MIDDLE = 2;
 const SDL_BUTTON_RIGHT = 3;
+const SDLK_RSHIFT = 303;
+const SDLK_LSHIFT = 304;
 // TODO: these constants should be defined somewhere else instead, in
 // case any other code wants to use them too
-
 
 var INPUT_NORMAL = 0;
 var INPUT_SELECTING = 1;
@@ -11,6 +12,7 @@ var INPUT_BANDBOXING = 2;
 var INPUT_BUILDING_PLACEMENT = 3;
 var INPUT_BUILDING_CLICK = 4;
 var INPUT_BUILDING_DRAG = 5;
+var INPUT_BATCHTRAINING = 6;
 
 var inputState = INPUT_NORMAL;
 
@@ -21,6 +23,11 @@ var placementEntity;
 
 var mouseX = 0;
 var mouseY = 0;
+var specialKeyStates = {};
+specialKeyStates[SDLK_RSHIFT] = 0;
+specialKeyStates[SDLK_LSHIFT] = 0;
+// (TODO: maybe we should fix the hotkey system to be usable in this situation,
+// rather than hardcoding Shift into this code?)
 
 function updateCursor()
 {
@@ -117,8 +124,6 @@ Selection methods: (not all currently implemented)
 
 */
 
-// TODO: it'd probably be nice to have a better state-machine system
-
 var dragStart; // used for remembering mouse coordinates at start of drag operations
 
 function tryPlaceBuilding()
@@ -156,7 +161,8 @@ function tryPlaceBuilding()
 
 function handleInputBeforeGui(ev)
 {
-	// Capture mouse position so we can use it for displaying cursors
+	// Capture mouse position so we can use it for displaying cursors,
+	// and key states
 	switch (ev.type)
 	{
 	case "mousebuttonup":
@@ -165,6 +171,14 @@ function handleInputBeforeGui(ev)
 		mouseX = ev.x;
 		mouseY = ev.y;
 		break;
+	case "keydown":
+		if (ev.keysym.sym in specialKeyStates)
+			specialKeyStates[ev.keysym.sym] = 1;
+		break;
+	case "keyup":
+		if (ev.keysym.sym in specialKeyStates)
+			specialKeyStates[ev.keysym.sym] = 0;
+		break;
 	}
 
 	// State-machine processing:
@@ -172,6 +186,9 @@ function handleInputBeforeGui(ev)
 	// (This is for states which should override the normal GUI processing - events will
 	// be processed here before being passed on, and propagation will stop if this function
 	// returns true)
+	// 
+	// TODO: it'd probably be nice to have a better state-machine system, with guaranteed
+	// entry/exit functions, since this is a bit broken now
 
 	switch (inputState)
 	{
@@ -321,6 +338,18 @@ function handleInputBeforeGui(ev)
 			break;
 		}
 		break;
+
+	case INPUT_BATCHTRAINING:
+		switch (ev.type)
+		{
+		case "keyup":
+			if (ev.keysym.sym == SDLK_RSHIFT || ev.keysym.sym == SDLK_LSHIFT)
+			{
+				flushTrainingQueueBatch();
+				inputState = INPUT_NORMAL;
+			}
+			break;
+		}
 	}
 
 	return false;
@@ -459,9 +488,72 @@ function handleInputAfterGui(ev)
 	return false;
 }
 
-function testBuild(ent)
+// Called by GUI when user clicks construction button
+function startBuildingPlacement(buildEntType)
 {
-	placementEntity = ent;
+	placementEntity = buildEntType;
 	placementAngle = defaultPlacementAngle;
 	inputState = INPUT_BUILDING_PLACEMENT;
 }
+
+// Batch training:
+// When the user shift-clicks, we set these variables and switch to INPUT_BATCHTRAINING
+// When the user releases shift, or clicks on a different training button, we create the batched units
+var batchTrainingEntity;
+var batchTrainingType;
+var batchTrainingCount;
+const batchIncrementSize = 5;
+
+function flushTrainingQueueBatch()
+{
+	Engine.PostNetworkCommand({"type": "train", "entity": batchTrainingEntity, "template": batchTrainingType, "count": batchTrainingCount});
+}
+
+// Called by GUI when user clicks training button
+function addToTrainingQueue(entity, trainEntType)
+{
+	if (specialKeyStates[SDLK_RSHIFT] || specialKeyStates[SDLK_LSHIFT])
+	{
+		if (inputState == INPUT_BATCHTRAINING)
+		{
+			// If we're already creating a batch of this unit, then just extend it
+			if (batchTrainingEntity == entity && batchTrainingType == trainEntType)
+			{
+				batchTrainingCount += batchIncrementSize;
+				return;
+			}
+			// Otherwise start a new one
+			else
+			{
+				flushTrainingQueueBatch();
+				// fall through to create the new batch
+			}
+		}
+		inputState = INPUT_BATCHTRAINING;
+		batchTrainingEntity = entity;
+		batchTrainingType = trainEntType;
+		batchTrainingCount = batchIncrementSize;
+	}
+	else
+	{
+		// Non-batched - just create a single entity
+		Engine.PostNetworkCommand({"type": "train", "entity": entity, "template": trainEntType, "count": 1});
+	}
+}
+
+// Returns the number of units that will be present in a batch if the user clicks
+// the training button with shift down
+function getTrainingQueueBatchStatus(entity, trainEntType)
+{
+	if (inputState == INPUT_BATCHTRAINING && batchTrainingEntity == entity && batchTrainingType == trainEntType)
+		return [batchTrainingCount, batchIncrementSize];
+	else
+		return [0, batchIncrementSize];
+}
+
+// Called by GUI when user clicks production queue item
+function removeFromTrainingQueue(entity, id)
+{
+	Engine.PostNetworkCommand({"type": "stop-train", "entity": entity, "id": id});
+}
+

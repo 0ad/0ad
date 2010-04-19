@@ -21,6 +21,7 @@
 #include "simulation2/system/Interface.h"
 
 #include "simulation2/helpers/Position.h"
+#include "maths/FixedVector3D.h"
 
 /**
  * Footprints - an approximation of the entity's shape, used for collision detection and for
@@ -37,7 +38,23 @@ public:
 		SQUARE
 	};
 
+	/**
+	 * Return the shape of this footprint.
+	 * Shapes are horizontal circles or squares, extended vertically upwards to make cylinders or boxes.
+	 * @param[out] shape either CIRCLE or SQUARE
+	 * @param[out] size0 if CIRCLE then radius, else width (size in X axis)
+	 * @param[out] size1 if CIRCLE then radius, else depth (size in Z axis)
+	 * @param[out] height size in Y axis
+	 */
 	virtual void GetShape(EShape& shape, entity_pos_t& size0, entity_pos_t& size1, entity_pos_t& height) = 0;
+
+	/**
+	 * Pick a sensible position to place a newly-spawned entity near this footprint,
+	 * such that it won't be in an invalid (obstructed) location regardless of the spawned unit's
+	 * orientation.
+	 * @return the X and Z coordinates of the spawn point, with Y = 0; or the special value (-1, -1, -1) if there's no space
+	 */
+	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned) = 0;
 
 	DECLARE_INTERFACE_TYPE(Footprint)
 };

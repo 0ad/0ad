@@ -2,15 +2,17 @@ function ProcessCommand(player, cmd)
 {
 //	print("command: " + player + " " + uneval(cmd) + "\n");
 	
+	// TODO: all of this stuff needs to do checks for valid arguments
+	// (e.g. make sure players own the units they're trying to use)
+
 	switch (cmd.type)
 	{
 	case "walk":
 		for each (var ent in cmd.entities)
 		{
 			var ai = Engine.QueryInterface(ent, IID_UnitAI);
-			if (!ai)
-				continue;
-			ai.Walk(cmd.x, cmd.z);
+			if (ai)
+				ai.Walk(cmd.x, cmd.z);
 		}
 		break;
 
@@ -18,9 +20,8 @@ function ProcessCommand(player, cmd)
 		for each (var ent in cmd.entities)
 		{
 			var ai = Engine.QueryInterface(ent, IID_UnitAI);
-			if (!ai)
-				continue;
-			ai.Attack(cmd.target);
+			if (ai)
+				ai.Attack(cmd.target);
 		}
 		break;
 
@@ -29,9 +30,8 @@ function ProcessCommand(player, cmd)
 		for each (var ent in cmd.entities)
 		{
 			var ai = Engine.QueryInterface(ent, IID_UnitAI);
-			if (!ai)
-				continue;
-			ai.Repair(cmd.target);
+			if (ai)
+				ai.Repair(cmd.target);
 		}
 		break;
 
@@ -39,10 +39,21 @@ function ProcessCommand(player, cmd)
 		for each (var ent in cmd.entities)
 		{
 			var ai = Engine.QueryInterface(ent, IID_UnitAI);
-			if (!ai)
-				continue;
-			ai.Gather(cmd.target);
+			if (ai)
+				ai.Gather(cmd.target);
 		}
+		break;
+
+	case "train":
+		var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
+		if (queue)
+			queue.AddBatch(player, cmd.template, +cmd.count);
+		break;
+
+	case "stop-train":
+		var queue = Engine.QueryInterface(cmd.entity, IID_TrainingQueue);
+		if (queue)
+			queue.RemoveBatch(player, cmd.id);
 		break;
 
 	case "construct":

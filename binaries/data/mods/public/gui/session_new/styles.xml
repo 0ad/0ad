@@ -38,10 +38,22 @@
 		sprite="snIconPortrait"
 		sprite_over="snIconPortraitOver"
 		sprite_disabled="snIconPortraitDisabled"
-		text_align="right"
+		tooltip_style="snToolTipBottom"
+	/>
+
+	<style name="iconButtonCount"
 		textcolor="255 255 255"
-		tooltip_style="snToolTip"
-		tooltip="(TBA)"
+		font="tahoma10"
+		text_align="right"
+		text_valign="top"
+		buffer_zone="4"
+	/>
+
+	<style name="iconButtonProgress"
+		textcolor="255 255 255"
+		font="tahoma14"
+		text_align="center"
+		text_valign="center"
 	/>
 
 	<style name="devCommandsText"

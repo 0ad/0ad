@@ -53,3 +53,19 @@ CFixed_23_8 atan2_approx(CFixed_23_8 y, CFixed_23_8 x)
 	else
 		return angle;
 }
+
+template<>
+CFixed_23_8 CFixed_23_8::Pi()
+{
+	return CFixed_23_8(804); // = pi * 256
+}
+
+void sincos_approx(CFixed_23_8 a, CFixed_23_8& sin_out, CFixed_23_8& cos_out)
+{
+	// XXX: mustn't use floating-point here - need a fixed-point emulation
+
+	// TODO: it's stupid doing sin/cos with 8-bit precision - we ought to have a CFixed_16_16 instead
+
+	sin_out = CFixed_23_8::FromDouble(sin(a.ToDouble()));
+	cos_out = CFixed_23_8::FromDouble(cos(a.ToDouble()));
+}

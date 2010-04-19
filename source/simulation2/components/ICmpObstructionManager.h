@@ -92,7 +92,7 @@ public:
 	 * @param x1 X coordinate of line's second point
 	 * @param z1 Z coordinate of line's second point
 	 * @param r radius (half width) of line
-	 * @return true if there is a collision
+	 * @return false if there is a collision
 	 */
 	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r) = 0;
 
@@ -102,7 +102,7 @@ public:
 	 * @param x X coordinate of center
 	 * @param z Z coordinate of center
 	 * @param r radius of circle
-	 * @return true if there is a collision
+	 * @return false if there is a collision
 	 */
 	virtual bool TestCircle(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r) = 0;
 
@@ -114,7 +114,7 @@ public:
 	 * @param a angle of rotation (clockwise from +Z direction)
 	 * @param w width (size along X axis)
 	 * @param h height (size along Z axis)
-	 * @return true if there is a collision
+	 * @return false if there is a collision
 	 */
 	virtual bool TestSquare(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h) = 0;
 

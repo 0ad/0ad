@@ -5,6 +5,7 @@ Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/ResourceGatherer.js");
 Engine.LoadComponentScript("interfaces/ResourceSupply.js");
+Engine.LoadComponentScript("interfaces/TrainingQueue.js");
 Engine.LoadComponentScript("GuiInterface.js");
 
 var cmp = ConstructComponent(SYSTEM_ENTITY, "GuiInterface");
@@ -56,6 +57,7 @@ AddMock(10, IID_Builder, {
 
 var state = cmp.GetEntityState(-1, 10);
 TS_ASSERT_UNEVAL_EQUALS(state, {
+	id: 10,
 	template: "example",
 	position: {x:1, y:2, z:3},
 	hitpoints: 50,

@@ -40,6 +40,11 @@ Timer.prototype.OnUpdate = function(msg)
 	}
 }
 
+/**
+ * Create a new timer, which will call the 'funcname' method with argument 'data'
+ * on the 'iid' component of the 'ent' entity, after at least 'time' milliseconds.
+ * Returns a non-zero id that can be passed to CancelTimer.
+ */
 Timer.prototype.SetTimeout = function(ent, iid, funcname, time, data)
 {
 	var id = ++this.id;

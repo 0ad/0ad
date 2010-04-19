@@ -39,7 +39,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		return null;
 
 	var ret = {
-		"template": template,
+		"id": ent,
+		"template": template
 	}
 
 	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
@@ -71,6 +72,15 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpBuilder)
 	{
 		ret.buildEntities = cmpBuilder.GetEntitiesList();
+	}
+
+	var cmpTrainingQueue = Engine.QueryInterface(ent, IID_TrainingQueue);
+	if (cmpTrainingQueue)
+	{
+		ret.training = {
+			"entities": cmpTrainingQueue.GetEntitiesList(),
+			"queue": cmpTrainingQueue.GetQueue(),
+		};
 	}
 
 	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
@@ -111,6 +121,9 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var template = cmpTempMan.GetTemplate(name);
 
+	if (!template)
+		return null;
+
 	var ret = {};
 
 	if (template.Identity)
@@ -125,13 +138,10 @@ GuiInterface.prototype.GetTemplateData = function(player, name)
 	if (template.Cost)
 	{
 		ret.cost = {};
-		if (template.Cost.Resources)
-		{
-			if (template.Cost.Resources.food) ret.cost.food = +template.Cost.Resources.food;
-			if (template.Cost.Resources.wood) ret.cost.wood = +template.Cost.Resources.wood;
-			if (template.Cost.Resources.stone) ret.cost.stone = +template.Cost.Resources.stone;
-			if (template.Cost.Resources.metal) ret.cost.metal = +template.Cost.Resources.metal;
-		}
+		if (template.Cost.Resources.food) ret.cost.food = +template.Cost.Resources.food;
+		if (template.Cost.Resources.wood) ret.cost.wood = +template.Cost.Resources.wood;
+		if (template.Cost.Resources.stone) ret.cost.stone = +template.Cost.Resources.stone;
+		if (template.Cost.Resources.metal) ret.cost.metal = +template.Cost.Resources.metal;
 	}
 
 	return ret;

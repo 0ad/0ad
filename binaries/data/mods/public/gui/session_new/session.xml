@@ -137,7 +137,7 @@
 			<object size="136 6 100% 100%">
 				<object size="0 0 100% 20" name="selectionDetailsSpecific" type="text" font="prospero18b"/>
 				<object size="0 20 100% 40" name="selectionDetailsGeneric" type="text" font="prospero16"/>
-				<object size="0 40 100% 60" name="selectionDetailsPlayer" type="text" font="prospero16" textcolor="blue">Wijitmaker</object>
+				<object size="0 40 100% 60" name="selectionDetailsPlayer" type="text" font="prospero16" textcolor="blue"/>
 			</object>
 
 			<!-- Attack stats -->
@@ -212,12 +212,18 @@
 			<object name="unitTrainingPanel"
 				style="goldPanelFrilly"
 				size="0 100%-56 100% 100%"
-				type="text"
+				type="image"
 			>
 				<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="2" tooltip="Training"/>
 
-				[training commands]
+				<object size="59 10 100% 47">
+					<repeat count="16">
+						<object name="unitTrainingButton[n]" hidden="true" style="iconButton" type="button" size="0 0 37 37">
+							<object name="unitTrainingIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
+						</object>
+					</repeat>
+				</object>
 			</object>
 
 			<object name="unitQueuePanel"
@@ -228,7 +234,15 @@
 				<object size="-5 -2 59 62" type="image" sprite="snIconSheetTab" tooltip_style="snToolTip"
 					 cell_id="3" tooltip="Production queue"/>
 
-				[training/research queue]
+				<object size="59 10 100% 47">
+					<repeat count="16">
+						<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 37 37">
+							<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 35 35"/>
+							<object name="unitQueueCount[n]" ghost="true" style="iconButtonCount" type="text"/>
+							<object name="unitQueueProgress[n]" ghost="true" style="iconButtonProgress" type="text"/>
+						</object>
+					</repeat>
+				</object>
 			</object>
 
 		</object>

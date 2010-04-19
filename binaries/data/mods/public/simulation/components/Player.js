@@ -40,6 +40,12 @@ Player.prototype.AddResource = function(type, amount)
 	this.resourceCount[type] += (+amount);
 };
 
+Player.prototype.AddResources = function(amounts)
+{
+	for (var type in amounts)
+		this.resourceCount[type] += (+amounts[type]);
+};
+
 Player.prototype.TrySubtractResources = function(amounts)
 {
 	// Check we can afford it all

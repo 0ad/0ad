@@ -48,6 +48,9 @@ public:
 
 	CFixed() : value(0) { }
 
+	static CFixed Zero() { return CFixed(0); }
+	static CFixed Pi();
+
 	T GetInternalValue() const { return value; }
 	void SetInternalValue(T n) { value = n; }
 
@@ -164,5 +167,7 @@ typedef CFixed<i32, (i32)0x7fffffff, 32, 23, 8, 256> CFixed_23_8;
  * Maximum error is almost 0.08 radians (4.5 degrees).
  */
 CFixed_23_8 atan2_approx(CFixed_23_8 y, CFixed_23_8 x);
+
+void sincos_approx(CFixed_23_8 a, CFixed_23_8& sin_out, CFixed_23_8& cos_out);
 
 #endif // INCLUDED_FIXED
