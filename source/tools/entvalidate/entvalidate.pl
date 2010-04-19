@@ -7,13 +7,16 @@ use Data::Dumper;
 use Storable qw(dclone);
 use File::Find;
 
-my $root = '../../../binaries/data/mods/public/simulation/templates';
-my $rngschema = XML::LibXML::RelaxNG->new(location =>'../../../binaries/system/entity.rng');
+my $vfsroot = '../../../binaries/data/mods';
+my $rngschema = XML::LibXML::RelaxNG->new(location => '../../../binaries/system/entity.rng');
 
 sub get_file
 {
     my ($vfspath) = @_;
-    my $fn = "$root/$vfspath.xml";
+    my $fn = "$vfsroot/public/simulation/templates/$vfspath.xml";
+    if (not -e $fn) {
+        $fn = "$vfsroot/internal/simulation/templates/$vfspath.xml";
+    }
     open my $f, $fn or die "Error loading $fn: $!";
     local $/;
     return <$f>;
@@ -129,26 +132,33 @@ sub validate
     $rngschema->validate($doc);
 }
 
-my @files;
-sub find_process {
-    return $File::Find::prune = 1 if $_ eq '.svn';
-    my $n = $File::Find::name;
-    return if /~$/;
-    return unless -f $_;
-    $n =~ s/\Q$root\///;
-    $n =~ s/\.xml$//;
-    push @files, $n;
-}
-find({ wanted => \&find_process }, $root);
 
-for my $f (sort @files) {
-    next if $f =~ /^template_/;
-    print "# $f...\n";
-    eval {
-        validate($f);
+sub check_all
+{
+    my @files;
+    my $find_process = sub {
+        return $File::Find::prune = 1 if $_ eq '.svn';
+        my $n = $File::Find::name;
+        return if /~$/;
+        return unless -f $_;
+        $n =~ s~\Q$vfsroot\E/(public|internal)/simulation/templates/~~;
+        $n =~ s/\.xml$//;
+        push @files, $n;
     };
-    if ($@) {
-        print $@;
-        eval { print to_xml(load_inherited($f)), "\n"; }
+    find({ wanted => $find_process }, "$vfsroot/public/simulation/templates");
+    find({ wanted => $find_process }, "$vfsroot/internal/simulation/templates") if -e "$vfsroot/internal";
+
+    for my $f (sort @files) {
+        next if $f =~ /^template_/;
+        print "# $f...\n";
+        eval {
+            validate($f);
+        };
+        if ($@) {
+            print $@;
+            eval { print to_xml(load_inherited($f)), "\n"; }
+        }
     }
 }
+
+check_all();

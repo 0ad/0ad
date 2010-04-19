@@ -5,34 +5,44 @@ use File::Find;
 use XML::Simple;
 use Data::Dumper;
 
-my $dir = '../../../binaries/data/mods/public/entities';
-my $dir2 = '../../../binaries/data/mods/public/simulation/templates';
-my @xml;
-find({ wanted => sub {
-    push @xml, $_ if /\.xml$/ and !/template_entity(|_full|_quasi)\.xml$/;
-}, no_chdir => 1 }, $dir);
-s~\Q$dir/~~ for @xml;
-
-my %xml = ('template_entity_full.xml' => 1, 'template_entity_quasi.xml' => 1);
-$xml{$_} = 1 for @xml;
+my $vfsroot = '../../../binaries/data/mods';
 
 my (%dot_actor, %dot_inherit);
+my %xml = ('template_entity_full.xml' => 1, 'template_entity_quasi.xml' => 1);
 
-for my $xml (@xml) {
-    print "$xml\n";
+convert_all("$vfsroot/public");
+convert_all("$vfsroot/internal") if -e "$vfsroot/internal";
 
-    my $name = $xml;
-    $name =~ s/\.xml$//;
+sub convert_all {
+    my ($root) = @_;
 
-    next if $name =~ /^(template_foundation|foundation_)/;
+    my $dir = "$root/entities";
+    my $dir2 = "$root/simulation/templates";
+    my @xml;
+    find({ wanted => sub {
+        push @xml, $_ if /\.xml$/ and !/template_entity(|_full|_quasi)\.xml$/;
+    }, no_chdir => 1 }, $dir);
+    s~\Q$dir/~~ for @xml;
 
-    my %opt = (KeyAttr => []);
+    $xml{$_} = 1 for @xml;
 
-    my $data = XMLin("$dir/$xml", %opt, ForceArray => 1);
-    my $c = convert($name, $data);
-    my $out = $c;
-#    print "$out\n\n";
-    open my $fo, "> $dir2/$xml" or die $!; print $fo $out;
+    for my $xml (@xml) {
+        print "  $xml\n";
+
+        my $name = $xml;
+        $name =~ s/\.xml$//;
+
+        next if $name =~ /^(template_foundation|foundation_)/;
+
+        my %opt = (KeyAttr => []);
+
+        my $data = XMLin("$dir/$xml", %opt, ForceArray => 1);
+        my $c = convert($name, $data);
+        my $out = $c;
+        open my $fo, "> $dir2/$xml" or die $!;
+        binmode $fo, ':utf8';
+        print $fo $out;
+    }
 }
 
 sub convert {
@@ -45,7 +55,8 @@ sub convert {
     $out .= qq{<Entity};
     if ($data->{Parent}) {
         my $p = $data->{Parent};
-        $p = "units/$p" if $p =~ /^(celt|cart|hele|iber|pers|rome)_(cavalry|infantry)/;
+        $p = "units/$p" if $p =~ /^(celt|cart|hele|iber|pers|rome)_(cavalry|infantry|support)/;
+        $p = "structures/$p" if $p =~ /^(celt|cart|hele|iber|pers|rome)_scout_tower/;
         warn "Unknown parent $p\n" unless $xml{"$p.xml"};
         $out .= qq{ parent="$p"};
         $dot_inherit{$name}{$p} = 1;
@@ -53,11 +64,16 @@ sub convert {
     $out .= qq{>\n};
 
     my $civ;
-    $civ = 'hele' if $name eq 'other/camp_mace_hypaspist';
-    $civ = 'gaia' if $name eq 'template_gaia' or $name eq 'template_structure_gaia_settlement' or ($name =~ /^gaia\/fauna_/ and $data->{Parent} !~ /^template_gaia/);
+    $civ = 'hele' if $name =~ /^other\/camp_(mace_hypaspist|sparta_phalangite)$/;
+    $civ = 'gaia' if $name =~ /^(template_gaia|template_structure_gaia_settlement|fence_(long|short))$/ or ($name =~ /^gaia\/fauna_/ and $data->{Parent} !~ /^template_gaia/);
     $civ = $1 if $name =~ /^(?:units|structures)\/([a-z]{4})_/;
+    $civ = $1 if $name =~ /^other\/camp_(pers|rome)_/;
     my $needs_explicit_civ = ($civ and $data->{Parent} !~ /^${civ}_/);
     if ($data->{Traits}[0]{Id} or $needs_explicit_civ) {
+        if (not $civ and $name !~ /^template/ and $data->{Parent} =~ /^template/ and $data->{Traits}[0]{Id}[0]{Civ}) {
+            $civ = ({ Hellenes => 'hele', Objects => 'gaia', Romans => 'rome'})->{ $data->{Traits}[0]{Id}[0]{Civ}[0] } or die;
+            $needs_explicit_civ = 1;
+        }
         $out .= qq{$i<Identity>\n};
         $out .= qq{$i$i<Civ>$civ</Civ>\n} if $needs_explicit_civ;
         my @map = (
