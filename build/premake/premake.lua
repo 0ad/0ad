@@ -57,6 +57,8 @@ else
 	if OS == "linux" and arch == "amd64" then
 		-- Hack for amd64 linux - tell nasm to product 64-bit elf.
 		project.nasmformat = "elf64"
+	elseif OS == "macosx" and arch == "amd64" then
+		project.nasmformat = "macho64"
 	end
 
 	-- GCC bug (http://gcc.gnu.org/bugzilla/show_bug.cgi?id=10591) - PCH breaks anonymous namespaces
