@@ -93,6 +93,21 @@ sub convert {
         $out .= qq{$i</Identity>\n};
     }
 
+    if ($data->{Traits}[0]{MiniMap}) {
+        $out .= qq{$i<Minimap>\n};
+        $out .= qq{$i$i<Type>}.lc($data->{Traits}[0]{MiniMap}[0]{Type}[0]).qq{</Type>\n}
+            if $data->{Traits}[0]{MiniMap}[0]{Type};
+        $out .= qq{$i$i<Colour r="$data->{Traits}[0]{MiniMap}[0]{Red}[0]" g="$data->{Traits}[0]{MiniMap}[0]{Green}[0]" b="$data->{Traits}[0]{MiniMap}[0]{Blue}[0]"/>\n} #"
+            if $data->{Traits}[0]{MiniMap}[0]{Red};
+        $out .= qq{$i</Minimap>\n};
+    }
+
+    if ($name eq 'template_structure') {
+        $out .= qq{$i<Minimap>\n};
+        $out .= qq{$i$i<Type>structure</Type>\n};
+        $out .= qq{$i</Minimap>\n};
+    }
+
     if ($name eq 'template_unit') {
         $out .= qq{$i<UnitAI/>\n};
         $out .= qq{$i<Cost>\n};
