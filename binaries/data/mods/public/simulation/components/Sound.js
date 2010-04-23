@@ -1,8 +1,17 @@
 function Sound() {}
 
 Sound.prototype.Schema =
+	"<a:help>Lists the sound groups associated with this unit.</a:help>" +
+	"<a:example>" +
+		"<SoundGroups>" +
+			"<walk>actor/human/movement/walk.xml</walk>" +
+			"<run>actor/human/movement/walk.xml</run>" +
+			"<attack>attack/weapon/sword.xml</attack>" +
+			"<death>actor/human/death/death.xml</death>" +
+		"</SoundGroups>" +
+	"</a:example>" +
 	"<element name='SoundGroups'>" +
-		"<zeroOrMore>" +
+		"<zeroOrMore>" + /* TODO: make this more specific, like a list of specific elements */
 			"<element>" +
 				"<anyName/>" +
 				"<text/>" +

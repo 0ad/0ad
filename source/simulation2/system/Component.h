@@ -56,6 +56,10 @@
 		delete static_cast<CCmp##cname*> (cmp); \
 	} \
 	CCmp##cname(ScriptInterface& scriptInterface, jsval instance) : m_Script(scriptInterface, instance) { } \
+	static std::string GetSchema() \
+	{ \
+		return "<a:component type='script-wrapper'/><empty/>"; \
+	} \
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode) \
 	{ \
 		m_Script.Init(context, paramNode, GetEntityId()); \

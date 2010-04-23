@@ -1,5 +1,8 @@
 function Foundation() {}
 
+Foundation.prototype.Schema =
+	"<a:component type='internal'/><empty/>";
+
 Foundation.prototype.Init = function()
 {
 	this.buildProgress = 0.0; // 0 <= progress <= 1

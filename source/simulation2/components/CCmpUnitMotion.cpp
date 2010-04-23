@@ -59,10 +59,15 @@ public:
 	static std::string GetSchema()
 	{
 		return
-			"<element name='WalkSpeed'>"
+			"<a:help>Provides the unit with the ability to move around the world by itself.</a:help>"
+			"<a:example>"
+				"<WalkSpeed>7.0</WalkSpeed>"
+			"</a:example>"
+			"<element name='WalkSpeed' a:help='Basic movement speed (in metres per second)'>"
 				"<ref name='positiveDecimal'/>"
 			"</element>";
 	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		m_Context = &context;

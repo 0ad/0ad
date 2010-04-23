@@ -1,13 +1,19 @@
 function Armour() {}
 
 Armour.prototype.Schema =
-	"<element name='Hack'>" +
+	"<a:help>Controls the damage resistance of the unit.</a:help>" +
+	"<a:example>" +
+		"<Hack>10.0</Hack>" +
+		"<Pierce>0.0</Pierce>" +
+		"<Crush>5.0</Crush>" +
+	"</a:example>" +
+	"<element name='Hack' a:help='Hack damage protection'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Pierce'>" +
+	"<element name='Pierce' a:help='Pierce damage protection'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Crush'>" +
+	"<element name='Crush' a:help='Crush damage protection'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 

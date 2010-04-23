@@ -1,35 +1,44 @@
 function Attack() {}
 
 Attack.prototype.Schema =
-	"<element name='Hack'>" +
+	"<a:help>Controls the attack abilities and strengths of the unit.</a:help>" +
+	"<a:example>" +
+		"<Hack>10.0</Hack>" +
+		"<Pierce>0.0</Pierce>" +
+		"<Crush>5.0</Crush>" +
+		"<MaxRange>10.0</MaxRange>" +
+		"<MinRange>0.0</MinRange>" +
+		"<PrepareTime>800</PrepareTime>" +
+		"<RepeatTime>1600</RepeatTime>" +
+		"<ProjectileSpeed>50.0</ProjectileSpeed>" +
+	"</a:example>" +
+	"<element name='Hack' a:help='Hack damage strength'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Pierce'>" +
+	"<element name='Pierce' a:help='Pierce damage strength'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Crush'>" +
+	"<element name='Crush' a:help='Crush damage strength'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='Range'>" +
+	"<element name='MaxRange' a:help='Maximum attack range (in metres)'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='MinRange' a:help='Minimum attack range (in metres)'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='MinRange'>" +
-			"<ref name='nonNegativeDecimal'/>" +
-		"</element>" +
-	"</optional>" +
-	"<optional>" +
-		"<element name='PrepareTime'>" +
+		"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
 			"<data type='nonNegativeInteger'/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='RepeatTime'>" +
+		"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" +
 			"<data type='positiveInteger'/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='ProjectileSpeed'>" +
+		"<element name='ProjectileSpeed' a:help='Speed of projectiles (in metres per second). If unspecified, then it is a melee attack instead'>" +
 			"<ref name='nonNegativeDecimal'/>" +
 		"</element>" +
 	"</optional>";
@@ -64,8 +73,8 @@ Attack.prototype.GetAttackStrengths = function()
 
 Attack.prototype.GetRange = function()
 {
-	var max = +this.template.Range;
-	var min = +(this.template.MinRange || 0);
+	var max = +this.template.MaxRange;
+	var min = +this.template.MinRange;
 	return { "max": max, "min": min };
 }
 

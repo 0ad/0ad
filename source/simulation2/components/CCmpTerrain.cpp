@@ -33,6 +33,11 @@ public:
 
 	CTerrain* m_Terrain; // not null
 
+	static std::string GetSchema()
+	{
+		return "<a:component type='system'/><empty/>";
+	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
 		m_Terrain = &context.GetTerrain();

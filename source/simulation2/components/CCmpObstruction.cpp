@@ -49,10 +49,15 @@ public:
 	static std::string GetSchema()
 	{
 		return
+			"<a:example/>"
+			"<a:help>Causes this entity's footprint to obstruct the motion of other units.</a:help>"
 			"<optional>"
-				"<element name='Inactive'><empty/></element>"
+				"<element name='Inactive' a:help='If this element is present, this entity will be ignored in collision tests by other units but can still perform its own collision tests'>"
+					"<empty/>"
+				"</element>"
 			"</optional>";
 	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)
 	{
 		m_Context = &context;

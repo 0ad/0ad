@@ -38,7 +38,7 @@ public:
 
 	static std::string GetSchema()
 	{
-		return "<ref name='anything'/>";
+		return "<a:component type='test'/><ref name='anything'/>";
 	}
 
 	virtual void Init(const CSimContext&, const CParamNode& paramNode)
@@ -100,6 +100,11 @@ public:
 
 	int32_t m_x;
 
+	static std::string GetSchema()
+	{
+		return "<a:component type='test'/><empty/>";
+	}
+
 	virtual void Init(const CSimContext&, const CParamNode&)
 	{
 		m_x = 12000;
@@ -155,6 +160,11 @@ public:
 	DEFAULT_COMPONENT_ALLOCATOR(Test2A)
 
 	int32_t m_x;
+
+	static std::string GetSchema()
+	{
+		return "<a:component type='test'/><empty/>";
+	}
 
 	virtual void Init(const CSimContext&, const CParamNode&)
 	{

@@ -63,13 +63,27 @@ public:
 	static std::string GetSchema()
 	{
 		return
+			"<a:help>Display the unit using the engine's actor system.</a:help>"
+			"<a:example>"
+				"<Actor>units/hellenes/infantry_spearman_b.xml</Actor>"
+			"</a:example>"
+			"<a:example>"
+				"<Actor>structures/hellenes/barracks.xml</Actor>"
+				"<FoundationActor>structures/fndn_4x4.xml</FoundationActor>"
+			"</a:example>"
+			"<element name='Actor' a:help='Filename of the actor to be used for this unit'>"
+				"<text/>"
+			"</element>"
 			"<optional>"
-				"<element name='Foundation'><empty/></element>"
+				"<element name='FoundationActor' a:help='Filename of the actor to be used the foundation while this unit is being constructed'>"
+					"<text/>"
+				"</element>"
 			"</optional>"
 			"<optional>"
-				"<element name='FoundationActor'><text/></element>"
-			"</optional>"
-			"<element name='Actor'><text/></element>";
+				"<element name='Foundation' a:help='Used internally; if present the unit will be rendered as a foundation'>"
+					"<empty/>"
+				"</element>"
+			"</optional>";
 	}
 
 	virtual void Init(const CSimContext& context, const CParamNode& paramNode)

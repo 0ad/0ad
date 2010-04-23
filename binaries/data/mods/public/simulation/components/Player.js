@@ -1,5 +1,8 @@
 function Player() {}
 
+Player.prototype.Schema =
+	"<a:component type='system'/><empty/>";
+
 Player.prototype.Init = function()
 {
 	this.playerID = undefined;

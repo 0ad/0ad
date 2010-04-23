@@ -1,5 +1,8 @@
 function GuiInterface() {}
 
+GuiInterface.prototype.Schema =
+	"<a:component type='system'/><empty/>";
+
 GuiInterface.prototype.Init = function()
 {
 	// TODO: need to not serialise this value

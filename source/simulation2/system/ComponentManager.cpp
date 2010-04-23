@@ -754,6 +754,8 @@ std::string CComponentManager::GenerateSchema()
 
 	std::map<InterfaceId, std::vector<std::string> > interfaceComponentTypes;
 
+	std::vector<std::string> componentTypes;
+
 	for (std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.begin(); it != m_ComponentTypesById.end(); ++it)
 	{
 		schema +=
@@ -764,8 +766,10 @@ std::string CComponentManager::GenerateSchema()
 			"</define>";
 
 		interfaceComponentTypes[it->second.iid].push_back(it->second.name);
+		componentTypes.push_back(it->second.name);
 	}
 
+	// Declare the implementation of each interface, for documentation
 	for (std::map<std::string, InterfaceId>::const_iterator it = m_InterfaceIdsByName.begin(); it != m_InterfaceIdsByName.end(); ++it)
 	{
 		schema += "<define name='interface." + it->first + "'><choice>";
@@ -775,15 +779,18 @@ std::string CComponentManager::GenerateSchema()
 		schema += "</choice></define>";
 	}
 
+	// List all the component types, in alphabetical order (to match the reordering performed by CParamNode).
+	// (We do it this way, rather than <interleave>ing all the interface definitions (which would additionally perform
+	// a check that we don't use multiple component types of the same interface in one file), because libxml2 gives
+	// useless error messages in the latter case; this way lets it report the real error.)
+	std::sort(componentTypes.begin(), componentTypes.end());
 	schema +=
 		"<start>"
 			"<element name='Entity'>"
-				"<optional><attribute name='parent'/></optional>"
-				"<interleave>";
-	for (std::map<std::string, InterfaceId>::const_iterator it = m_InterfaceIdsByName.begin(); it != m_InterfaceIdsByName.end(); ++it)
-		schema += "<optional><ref name='interface." + it->first + "'/></optional>";
+				"<optional><attribute name='parent'/></optional>";
+	for (std::vector<std::string>::const_iterator it = componentTypes.begin(); it != componentTypes.end(); ++it)
+		schema += "<optional><ref name='component." + *it + "'/></optional>";
 	schema +=
-			"</interleave>"
 		"</element>"
 	"</start>";
 

@@ -1,12 +1,18 @@
 function Builder() {}
 
 Builder.prototype.Schema =
-	"<element name='Entities'>" +
-		"<attribute name='datatype'><value>tokens</value></attribute>" +
-		"<text/>" +
-	"</element>" +
-	"<element name='Rate'>" +
+	"<a:help>Allows the unit to construct and repair buildings.</a:help>" +
+	"<a:example>" +
+		"<Rate>1.0</Rate>" +
+		"<Entities>" +
+			"\n    structures/{civ}_barracks\n    structures/{civ}_civil_centre\n    structures/celt_sb1\n  " +
+		"</Entities>" +
+	"</a:example>" +
+	"<element name='Rate' a:help='Construction speed multiplier (1.0 is normal speed, higher values are faster)'>" +
 		"<ref name='positiveDecimal'/>" +
+	"</element>" +
+	"<element name='Entities' a:help='Space-separated list of entity template names that this unit can build. The special string \"{civ}\" will be automatically replaced by the unit&apos;s four-character civ code'>" +
+		"<text/>" +
 	"</element>";
 
 Builder.prototype.Init = function()
@@ -15,7 +21,7 @@ Builder.prototype.Init = function()
 
 Builder.prototype.GetEntitiesList = function()
 {
-	var string = this.template.Entities._string;
+	var string = this.template.Entities;
 	
 	// Replace the "{civ}" codes with this entity's civ ID
 	var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);

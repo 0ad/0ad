@@ -1,5 +1,8 @@
 function Timer() {}
 
+Timer.prototype.Schema =
+	"<a:component type='system'/><empty/>";
+
 Timer.prototype.Init = function()
 {
 	this.id = 0;

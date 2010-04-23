@@ -1,0 +1,24 @@
+body { font-family: sans-serif; font-size: 10pt; }
+
+section { display: block; padding-bottom: 1em; border-top: 2px #aaa solid; }
+p, dl, pre { margin-top: 0.2em; margin-bottom: 0.2em; }
+h1, h2, h3 { margin-left: 0; }
+h2, h3 { margin-top: 0.4em; margin-bottom: 0.2em; }
+h1 { font-size: 2em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.2em; }
+
+p, dl { margin-left: 18px; }
+dt { font-weight: bold; }
+dd { margin-left: 1em; }
+
+pre.grammar, pre.example { font-size: 8pt; margin: 1em 2em 1em 2em; padding: 0.5em; }
+pre.example { background-color: #ffd; }
+pre.grammar { background-color: #f8f8f8; }
+pre.example span.n { font-weight: bold; }
+
+code { color: orangered; }
+
+#show-grammar { margin-bottom: 1em; }
+div.grammar-box { display: none; }
+#show-grammar:checked ~ * div.grammar-box { display: inherit; }

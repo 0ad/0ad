@@ -34,6 +34,11 @@ const STATE_GATHERING = 4;
 
 function UnitAI() {}
 
+UnitAI.prototype.Schema =
+	"<a:help>Controls the unit's movement, attacks, etc, in response to commands from the player.</a:help>" +
+	"<a:example/>" +
+	"<empty/>";
+
 UnitAI.prototype.Init = function()
 {
 	this.state = STATE_IDLE;

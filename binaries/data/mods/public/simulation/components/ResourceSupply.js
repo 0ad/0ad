@@ -1,34 +1,26 @@
 function ResourceSupply() {}
 
 ResourceSupply.prototype.Schema =
-	"<element name='Amount'>" +
+	"<a:help>Provides a supply of one particular type of resource.</a:help>" +
+	"<a:example>" +
+		"<Amount>1000</Amount>" +
+		"<Type>food.meat</Type>" +
+	"</a:example>" +
+	"<element name='Amount' a:help='Amount of resources available from this entity'>" +
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
-	"<choice>" +
-		"<interleave>" +
-			"<element name='Type'><value>food</value></element>" +
-			"<element name='Subtype'><value>fish</value></element>" +
-		"</interleave>" +
-		"<interleave>" +
-			"<element name='Type'><value>food</value></element>" +
-			"<element name='Subtype'><value>fruit</value></element>" +
-		"</interleave>" +
-		"<interleave>" +
-			"<element name='Type'><value>food</value></element>" +
-			"<element name='Subtype'><value>grain</value></element>" +
-		"</interleave>" +
-		"<interleave>" +
-			"<element name='Type'><value>food</value></element>" +
-			"<element name='Subtype'><value>meat</value></element>" +
-		"</interleave>" +
-		"<interleave>" +
-			"<element name='Type'><value>food</value></element>" +
-			"<element name='Subtype'><value>milk</value></element>" +
-		"</interleave>" +
-		"<element name='Type'><value>wood</value></element>" +
-		"<element name='Type'><value>stone</value></element>" +
-		"<element name='Type'><value>metal</value></element>" +
-	"</choice>";
+	"<element name='Type' a:help='Type of resources'>" +
+		"<choice>" +
+			"<value>wood</value>" +
+			"<value>stone</value>" +
+			"<value>metal</value>" +
+			"<value>food.fish</value>" +
+			"<value>food.fruit</value>" +
+			"<value>food.grain</value>" +
+			"<value>food.meat</value>" +
+			"<value>food.milk</value>" +
+		"</choice>" +
+	"</element>";
 
 ResourceSupply.prototype.Init = function()
 {
@@ -54,7 +46,7 @@ ResourceSupply.prototype.TakeResources = function(rate)
 	// difference between rounded values:
 
 	var old = this.amount;
-	this.amount = Math.max(0, old - rate/1000);
+	this.amount = Math.max(0, old - rate);
 	var change = Math.ceil(old) - Math.ceil(this.amount);
 	// (use ceil instead of floor so that we continue returning non-zero values even if
 	// 0 < amount < 1)
@@ -63,10 +55,15 @@ ResourceSupply.prototype.TakeResources = function(rate)
 
 ResourceSupply.prototype.GetType = function()
 {
-	if (this.template.Subtype)
-		return { "generic": this.template.Type, "specific": this.template.Subtype };
-	else
+	if (this.template.Type.indexOf('.') == -1)
+	{
 		return { "generic": this.template.Type };
+	}
+	else
+	{
+		var [type, subtype] = this.template.Type.split('.');
+		return { "generic": type, "specific": subtype };
+	}
 };
 
 Engine.RegisterComponentType(IID_ResourceSupply, "ResourceSupply", ResourceSupply);

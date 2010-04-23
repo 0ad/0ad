@@ -39,6 +39,11 @@ public:
 
 	std::map<std::wstring, CSoundGroup*> m_SoundGroups;
 
+	static std::string GetSchema()
+	{
+		return "<a:component type='system'/><empty/>";
+	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
 		m_Context = &context;

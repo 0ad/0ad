@@ -84,6 +84,11 @@ public:
 	Path* m_DebugPath;
 	PathfinderOverlay* m_DebugOverlay;
 
+	static std::string GetSchema()
+	{
+		return "<a:component type='system'/><empty/>";
+	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
 		m_Context = &context;

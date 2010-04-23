@@ -78,6 +78,11 @@ public:
 	u32 m_CircleNext; // next allocated id
 	u32 m_SquareNext;
 
+	static std::string GetSchema()
+	{
+		return "<a:component type='system'/><empty/>";
+	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
 		m_DebugOverlayEnabled = false;

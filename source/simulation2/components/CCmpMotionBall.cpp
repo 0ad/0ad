@@ -38,6 +38,11 @@ public:
 	// Current speed in metres per second
 	float m_SpeedX, m_SpeedZ;
 
+	static std::string GetSchema()
+	{
+		return "<a:component type='test'/><ref name='anything'/>";
+	}
+
 	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
 		m_SpeedX = 0;

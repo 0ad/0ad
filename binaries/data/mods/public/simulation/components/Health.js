@@ -1,24 +1,31 @@
 function Health() {}
 
 Health.prototype.Schema =
-	"<element name='Max'>" +
+	"<a:help>Deals with hitpoints and death.</a:help>" +
+	"<a:example>" +
+		"<Max>100</Max>" +
+		"<RegenRate>1.0</RegenRate>" +
+		"<DeathType>corpse</DeathType>" +
+	"</a:example>" +
+	"<element name='Max' a:help='Maximum hitpoints'>" +
 		"<data type='positiveInteger'/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='Initial'>" +
+		"<element name='Initial' a:help='Initial hitpoints. Default if unspecified is equal to Max'>" +
 			"<data type='positiveInteger'/>" +
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='RegenRate'>" +
+		"<element name='RegenRate' a:help='Hitpoint regeneration rate per second. Not yet implemented'>" +
 			"<ref name='positiveDecimal'/>" +
 		"</element>" +
 	"</optional>" +
-	"<optional>" +
-		"<element name='DeathType'>" +
-			"<value>corpse</value>" +
-		"</element>" +
-	"</optional>";
+	"<element name='DeathType' a:help='Graphical behaviour when the unit dies'>" +
+		"<choice>" +
+			"<value a:help='Disappear instantly'>vanish</value>" +
+			"<value a:help='Turn into a corpse'>corpse</value>" +
+		"</choice>" +
+	"</element>";
 
 Health.prototype.Init = function()
 {

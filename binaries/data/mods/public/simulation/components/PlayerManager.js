@@ -1,5 +1,8 @@
 function PlayerManager() {}
 
+PlayerManager.prototype.Schema =
+	"<a:component type='system'/><empty/>";
+
 PlayerManager.prototype.Init = function()
 {
 	this.playerEntities = []; // list of player entity IDs

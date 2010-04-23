@@ -39,6 +39,14 @@ public:
 
 	int32_t m_Owner;
 
+	static std::string GetSchema()
+	{
+		return
+			"<a:example/>"
+			"<a:help>Allows this entity to be owned by players.</a:help>"
+			"<empty/>";
+	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
 		m_Context = &context;

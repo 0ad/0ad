@@ -48,6 +48,14 @@ public:
 		m_Overlay.m_Color = CColor(0, 0, 0, 0);
 	}
 
+	static std::string GetSchema()
+	{
+		return
+			"<a:help>Allows this entity to be selected by the player.</a:help>"
+			"<a:example/>"
+			"<empty/>";
+	}
+
 	virtual void Init(const CSimContext& UNUSED(context), const CParamNode& UNUSED(paramNode))
 	{
 	}

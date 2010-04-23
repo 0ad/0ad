@@ -1,21 +1,31 @@
 function ResourceGatherer() {}
 
 ResourceGatherer.prototype.Schema =
-	"<element name='Rates'>" +
-		"<interleave>" +
-			"<optional><element name='food'><data type='decimal'/></element></optional>" +
-			"<optional><element name='wood'><data type='decimal'/></element></optional>" +
-			"<optional><element name='stone'><data type='decimal'/></element></optional>" +
-			"<optional><element name='metal'><data type='decimal'/></element></optional>" +
-			"<optional><element name='food.fish'><data type='decimal'/></element></optional>" +
-			"<optional><element name='food.fruit'><data type='decimal'/></element></optional>" +
-			"<optional><element name='food.grain'><data type='decimal'/></element></optional>" +
-			"<optional><element name='food.meat'><data type='decimal'/></element></optional>" +
-			"<optional><element name='food.milk'><data type='decimal'/></element></optional>" +
-		"</interleave>" +
+	"<a:help>Lets the unit gather resources from entities that have the ResourceSupply component.</a:help>" +
+	"<a:example>" +
+		"<BaseSpeed>1.0</BaseSpeed>" +
+		"<Rates>" +
+			"<food.fish>1</food.fish>" +
+			"<metal>3</metal>" +
+			"<stone>3</stone>" +
+			"<wood>2</wood>" +
+		"</Rates>" +
+	"</a:example>" +
+	"<element name='BaseSpeed' a:help='Base resource-gathering rate (in resource units per second)'>" +
+		"<ref name='positiveDecimal'/>" +
 	"</element>" +
-	"<element name='BaseSpeed'>" +
-		"<data type='positiveInteger'/>" +
+	"<element name='Rates' a:help='Per-resource-type gather rate multipliers. If a resource type is not specified then it cannot be gathered by this unit'>" +
+		"<interleave>" +
+			"<optional><element name='food' a:help='Food gather rate (may be overridden by \"food.*\" subtypes)'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='wood' a:help='Wood gather rate'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='stone' a:help='Stone gather rate'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='metal' a:help='Metal gather rate'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='food.fish' a:help='Fish gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='food.fruit' a:help='Fruit gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='food.grain' a:help='Grain gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='food.meat' a:help='Meat gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
+			"<optional><element name='food.milk' a:help='Milk gather rate (overrides \"food\")'><ref name='positiveDecimal'/></element></optional>" +
+		"</interleave>" +
 	"</element>";
 
 ResourceGatherer.prototype.Init = function()

@@ -41,6 +41,11 @@ public:
 
 	DEFAULT_COMPONENT_ALLOCATOR(TemplateManager)
 
+	static std::string GetSchema()
+	{
+		return "<a:component type='system'/><empty/>";
+	}
+
 	virtual void Init(const CSimContext& context, const CParamNode& UNUSED(paramNode))
 	{
 		m_Validator.LoadGrammar(context.GetComponentManager().GenerateSchema());
@@ -380,6 +385,7 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
 
 	// Disable the Obstruction component (if there is one) so it doesn't affect pathfinding
+	// (but can still be used for testing this entity for collisions against others)
 	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
 		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Inactive/></Obstruction></Entity>");
 }

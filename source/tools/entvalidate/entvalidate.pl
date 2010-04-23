@@ -148,17 +148,22 @@ sub check_all
     find({ wanted => $find_process }, "$vfsroot/public/simulation/templates");
     find({ wanted => $find_process }, "$vfsroot/internal/simulation/templates") if -e "$vfsroot/internal";
 
+    my $count = 0;
+    my $failed = 0;
     for my $f (sort @files) {
         next if $f =~ /^template_/;
         print "# $f...\n";
+        ++$count;
         eval {
             validate($f);
         };
         if ($@) {
+            ++$failed;
             print $@;
             eval { print to_xml(load_inherited($f)), "\n"; }
         }
     }
+    print "\nTotal: $count; failed: $failed\n";
 }
 
 check_all();

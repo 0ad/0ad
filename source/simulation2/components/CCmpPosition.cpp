@@ -78,6 +78,12 @@ public:
 	static std::string GetSchema()
 	{
 		return
+			"<a:help>Allows this entity to exist at a location (and orientation) in the world, and defines some details of the positioning.</a:help>"
+			"<a:example>"
+				"<Anchor>upright</Anchor>"
+				"<Altitude>0.0</Altitude>"
+				"<Floating>false</Floating>"
+			"</a:example>"
 			"<element name='Anchor' a:help='Automatic rotation to follow the slope of terrain'>"
 				"<choice>"
 					"<value a:help='Always stand straight up'>upright</value>"
