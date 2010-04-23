@@ -22,13 +22,13 @@
   <Attack>
     <Hack>5.0</Hack>
     <Pierce>15.0</Pierce>
-    <Range>4.8</Range>
+    <MaxRange>4.8</MaxRange>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_spearman_b.xml</Actor>
   </VisualActor>
   <Builder>
-    <Entities datatype="tokens">
+    <Entities>
       structures/hele_gymnasion
       structures/hele_theatron
       structures/hele_tholos

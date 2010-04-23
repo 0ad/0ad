@@ -25,14 +25,14 @@
   </UnitMotion>
   <Attack>
     <Pierce>35.0</Pierce>
-    <Range>36.0</Range>
+    <MaxRange>36.0</MaxRange>
     <MinRange>12.0</MinRange>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_archer_b.xml</Actor>
   </VisualActor>
   <Builder>
-    <Entities datatype="tokens">
+    <Entities>
       structures/hele_gymnasion
       structures/hele_theatron
       structures/hele_tholos

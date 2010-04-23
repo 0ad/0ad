@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/hele_cavalry_swordsman_a">
   <ResourceGatherer>
-    <BaseSpeed>2000</BaseSpeed>
+    <BaseSpeed>2.0</BaseSpeed>
   </ResourceGatherer>
   <Health>
     <Max>160</Max>
@@ -18,7 +18,7 @@
   <Attack>
     <Hack>19.0</Hack>
     <Crush>7.0</Crush>
-    <Range>2.0</Range>
+    <MaxRange>2.0</MaxRange>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/cavalry_swordsman_e.xml</Actor>

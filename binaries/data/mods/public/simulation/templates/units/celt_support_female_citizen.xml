@@ -12,7 +12,8 @@
     <Hack>10.0</Hack>
     <Pierce>0.0</Pierce>
     <Crush>0.0</Crush>
-    <Range>4.0</Range>
+    <MaxRange>4.0</MaxRange>
+    <MinRange>0.0</MinRange>
     <PrepareTime>600</PrepareTime>
     <RepeatTime>1000</RepeatTime>
   </Attack>
@@ -20,7 +21,7 @@
     <Actor>units/celts/female_citizen.xml</Actor>
   </VisualActor>
   <Builder>
-    <Entities datatype="tokens">
+    <Entities>
       structures/celt_sb1
     </Entities>
   </Builder>

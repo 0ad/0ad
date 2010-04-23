@@ -21,13 +21,13 @@
     <WalkSpeed>6.7</WalkSpeed>
   </UnitMotion>
   <Attack>
-    <Range>36.0</Range>
+    <MaxRange>36.0</MaxRange>
   </Attack>
   <VisualActor>
     <Actor>units/hellenes/infantry_javelinist_b.xml</Actor>
   </VisualActor>
   <Builder>
-    <Entities datatype="tokens">
+    <Entities>
       structures/hele_gymnasion
       structures/hele_theatron
       structures/hele_tholos

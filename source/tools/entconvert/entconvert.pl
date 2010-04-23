@@ -129,14 +129,16 @@ sub convert {
     if ($data->{Traits}[0]{Supply}) {
         $out .= qq{$i<ResourceSupply>\n};
         $out .= qq{$i$i<Amount>$data->{Traits}[0]{Supply}[0]{Max}[0]</Amount>\n};
-        $out .= qq{$i$i<Type>$data->{Traits}[0]{Supply}[0]{Type}[0]</Type>\n};
-        $out .= qq{$i$i<Subtype>$data->{Traits}[0]{Supply}[0]{SubType}[0]</Subtype>\n} if $data->{Traits}[0]{Supply}[0]{SubType};
+        my $t = $data->{Traits}[0]{Supply}[0]{Type}[0];
+        $t .= '.'.$data->{Traits}[0]{Supply}[0]{SubType}[0] if $data->{Traits}[0]{Supply}[0]{SubType};
+        $out .= qq{$i$i<Type>$t</Type>\n};
         $out .= qq{$i</ResourceSupply>\n};
     }
 
     if ($data->{Actions}[0]{Gather}) {
         $out .= qq{$i<ResourceGatherer>\n};
-        $out .= qq{$i$i<BaseSpeed>$data->{Actions}[0]{Gather}[0]{Speed}[0]</BaseSpeed>\n};
+        my $speed = sprintf '%.1f', $data->{Actions}[0]{Gather}[0]{Speed}[0]/1000;
+        $out .= qq{$i$i<BaseSpeed>$speed</BaseSpeed>\n};
         if ($data->{Actions}[0]{Gather}[0]{Resource}) {
             $out .= qq{$i$i<Rates>\n};
             my $r = $data->{Actions}[0]{Gather}[0]{Resource}[0];
@@ -157,6 +159,7 @@ sub convert {
     if ($data->{Traits}[0]{Health}) {
         $out .= qq{$i<Health>\n};
         $out .= qq{$i$i<DeathType>corpse</DeathType>\n} if $name eq 'template_unit';
+        $out .= qq{$i$i<DeathType>vanish</DeathType>\n} if $name =~ /^(template_structure|other\/fence_(long|short))$/;
         $out .= qq{$i$i<Max>$data->{Traits}[0]{Health}[0]{Max}[0]</Max>\n} if $data->{Traits}[0]{Health}[0]{Max};
         $out .= qq{$i$i<RegenRate>$data->{Traits}[0]{Health}[0]{RegenRate}[0]</RegenRate>\n} if $data->{Traits}[0]{Health}[0]{RegenRate};
         $out .= qq{$i</Health>\n};
@@ -181,7 +184,11 @@ sub convert {
     if ($attack) {
         $out .= qq{$i<Attack>\n};
         for my $n (qw(Hack Pierce Crush Range MinRange ProjectileSpeed)) {
-            $out .= qq{$i$i<$n>$attack->[0]{$n}[0]</$n>\n} if $attack->[0]{$n};
+            my $e = $n;
+            $e = 'MaxRange' if $e eq 'Range';
+            $out .= qq{$i$i<$e>$attack->[0]{$n}[0]</$e>\n} if $attack->[0]{$n};
+            $out .= qq{$i$i<$e>0.0</$e>\n} if $n eq 'MinRange' and
+                $name =~ /^(template_unit_(cavalry_melee|hero|infantry_melee|mechanical_siege_(ballista|onager|ram)|super_(cavalry|infantry))|units\/celt_support_female_citizen)$/;
         }
         if ($attack->[0]{Speed}) {
             my $s = $attack->[0]{Speed}[0];
@@ -244,7 +251,8 @@ sub convert {
     if ($data->{Actions}[0]{Create}[0]{List}[0]{StructCiv} or $data->{Actions}[0]{Create}[0]{List}[0]{StructMil}) {
         $out .= qq{$i<Builder>\n};
         $out .= qq{$i$i<Rate>1.0</Rate>\n} if $data->{Actions}[0]{Build};
-        $out .= qq{$i$i<Entities datatype="tokens">\n};
+#        $out .= qq{$i$i<Entities datatype="tokens">\n};
+        $out .= qq{$i$i<Entities>\n};
         for (sort (keys %{$data->{Actions}[0]{Create}[0]{List}[0]{StructCiv}[0]}, keys %{$data->{Actions}[0]{Create}[0]{List}[0]{StructMil}[0]})) {
             my $n = "structures/" . ($civ || "{civ}") . "_" . (lc $_);
             $out .= qq{$i$i$i$n\n};
@@ -255,7 +263,8 @@ sub convert {
 
     if ($data->{Actions}[0]{Create}[0]{List}[0]{Train}) {
         $out .= qq{$i<TrainingQueue>\n};
-        $out .= qq{$i$i<Entities datatype="tokens">\n};
+#        $out .= qq{$i$i<Entities datatype="tokens">\n};
+        $out .= qq{$i$i<Entities>\n};
         for (sort (keys %{$data->{Actions}[0]{Create}[0]{List}[0]{Train}[0]})) {
             my $n = "units/" . ($civ || "{civ}") . "_" . (lc $_);
             $out .= qq{$i$i$i$n\n};
