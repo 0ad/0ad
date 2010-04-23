@@ -20,16 +20,20 @@
 
 #include "simulation2/system/Interface.h"
 
+struct CColor;
+
 /**
  * Player data.
- * (This interface only includes the functions needed by native code for loading maps;
- * most player interaction is handled by scripts instead.)
+ * (This interface only includes the functions needed by native code for loading maps,
+ * and for minimap rendering; most player interaction is handled by scripts instead.)
  */
 class ICmpPlayer : public IComponent
 {
 public:
 	virtual void SetName(const std::wstring& name) = 0;
 	// TODO: some more data
+
+	virtual CColor GetColour() = 0;
 
 	DECLARE_INTERFACE_TYPE(Player)
 };

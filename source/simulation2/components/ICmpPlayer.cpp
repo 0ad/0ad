@@ -22,6 +22,8 @@
 #include "simulation2/system/InterfaceScripted.h"
 #include "simulation2/scripting/ScriptComponent.h"
 
+#include "ps/Overlay.h"
+
 BEGIN_INTERFACE_WRAPPER(Player)
 END_INTERFACE_WRAPPER(Player)
 
@@ -33,6 +35,11 @@ public:
 	virtual void SetName(const std::wstring& name)
 	{
 		m_Script.CallVoid("SetName", name);
+	}
+
+	virtual CColor GetColour()
+	{
+		return m_Script.Call<CColor>("GetColour");
 	}
 };
 

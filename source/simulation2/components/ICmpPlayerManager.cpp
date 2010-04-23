@@ -34,6 +34,11 @@ public:
 	{
 		m_Script.CallVoid("AddPlayer", (int)ent);
 	}
+
+	virtual entity_id_t GetPlayerByID(int32_t id)
+	{
+		return m_Script.Call<entity_id_t>("GetPlayerByID", (int)id);
+	}
 };
 
 REGISTER_COMPONENT_SCRIPT_WRAPPER(PlayerManagerScripted)

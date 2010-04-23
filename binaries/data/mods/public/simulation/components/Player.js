@@ -18,6 +18,15 @@ Player.prototype.Init = function()
 	};
 };
 
+Player.prototype.GetColour = function()
+{
+	// TODO: need proper colour support
+	if (this.playerID == 1)
+		return { "r": 0.0, "g": 0.0, "b": 1.0, "a": 1.0 };
+	else
+		return { "r": 1.0, "g": 0.0, "b": 0.0, "a": 1.0 };
+};
+
 Player.prototype.SetPlayerID = function(id)
 {
 	this.playerID = id;

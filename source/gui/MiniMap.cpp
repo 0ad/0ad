@@ -45,7 +45,8 @@
 #include "simulation/EntityTemplate.h"
 #include "simulation/LOSManager.h"
 #include "simulation/TerritoryManager.h"
-
+#include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpMinimap.h"
 
 bool g_TerrainModified = false;
 bool g_GameRestarted = false;
@@ -397,13 +398,6 @@ void CMiniMap::Draw()
 
 	PROFILE_START("minimap units");
 
-	// Draw unit points
-	const std::vector<CUnit *> &units = m_UnitManager->GetUnits();
-	std::vector<CUnit *>::const_iterator iter = units.begin();
-	CUnit *unit = 0;
-	CVector2D pos;
-	CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
-
 	std::vector<MinimapUnitVertex> vertexArray;
 	// TODO: don't reallocate this after every frame (but don't waste memory
 	// after the number of units decreases substantially)
@@ -412,41 +406,71 @@ void CMiniMap::Draw()
 	// (~70msec/frame on a GF4 rendering a thousand points)
 	glPointSize(3.f);
 
-	for(; iter != units.end(); ++iter)
+	if (g_UseSimulation2)
 	{
-		unit = (CUnit *)(*iter);
-		if(unit && unit->GetEntity() && losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
+		float sx = m_scaleX / CELL_SIZE;
+		float sy = m_scaleY / CELL_SIZE;
+
+		CSimulation2* sim = g_Game->GetSimulation2();
+		const CSimulation2::InterfaceList& ents = sim->GetEntitiesWithInterface(IID_Minimap);
+		for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 		{
-			CEntity* entity = unit->GetEntity();
-			CStrW& type = entity->m_base->m_minimapType;
-
 			MinimapUnitVertex v;
-
-			if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
-				// Use the player colour
-				const SPlayerColour& colour = entity->GetPlayer()->GetColour();
-				v.r = cpu_i32FromFloat(colour.r*255.f);
-				v.g = cpu_i32FromFloat(colour.g*255.f);
-				v.b = cpu_i32FromFloat(colour.b*255.f);
+			ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
+			if (cmpMinimap->GetRenderData(v.r, v.g, v.b, v.x, v.y))
+			{
 				v.a = 255;
+				v.x = x + v.x*sx;
+				v.y = y - v.y*sy;
+				vertexArray.push_back(v);
 			}
-			else {
-				CEntityTemplate* base = entity->m_base;
-				v.r = base->m_minimapR;
-				v.g = base->m_minimapG;
-				v.b = base->m_minimapB;
-				v.a = 255;
-			}
-
-			pos = GetMapSpaceCoords(entity->m_position);
-
-			v.x = x + pos.x;
-			v.y = y - pos.y;
-			vertexArray.push_back(v);
 		}
-	}	
+	}
+	else
+	{
+		// Draw unit points
+		const std::vector<CUnit *> &units = m_UnitManager->GetUnits();
+		std::vector<CUnit *>::const_iterator iter = units.begin();
+		CUnit *unit = 0;
+		CVector2D pos;
+		CLOSManager* losMgr = g_Game->GetWorld()->GetLOSManager();
 
-	if (vertexArray.size())
+		for(; iter != units.end(); ++iter)
+		{
+			unit = (CUnit *)(*iter);
+			if(unit && unit->GetEntity() && losMgr->GetUnitStatus(unit, g_Game->GetLocalPlayer()) != UNIT_HIDDEN)
+			{
+				CEntity* entity = unit->GetEntity();
+				CStrW& type = entity->m_base->m_minimapType;
+
+				MinimapUnitVertex v;
+
+				if(type==L"Unit" || type==L"Structure" || type==L"Hero") {
+					// Use the player colour
+					const SPlayerColour& colour = entity->GetPlayer()->GetColour();
+					v.r = cpu_i32FromFloat(colour.r*255.f);
+					v.g = cpu_i32FromFloat(colour.g*255.f);
+					v.b = cpu_i32FromFloat(colour.b*255.f);
+					v.a = 255;
+				}
+				else {
+					CEntityTemplate* base = entity->m_base;
+					v.r = base->m_minimapR;
+					v.g = base->m_minimapG;
+					v.b = base->m_minimapB;
+					v.a = 255;
+				}
+
+				pos = GetMapSpaceCoords(entity->m_position);
+
+				v.x = x + pos.x;
+				v.y = y - pos.y;
+				vertexArray.push_back(v);
+			}
+		}
+	}
+
+	if (!vertexArray.empty())
 	{
 		glPushMatrix();
 		glTranslatef(0, 0, z);

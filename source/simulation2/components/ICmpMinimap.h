@@ -15,22 +15,25 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPPLAYERMANAGER
-#define INCLUDED_ICMPPLAYERMANAGER
+#ifndef INCLUDED_ICMPMINIMAP
+#define INCLUDED_ICMPMINIMAP
 
 #include "simulation2/system/Interface.h"
 
 /**
- * Player manager. This maintains the list of players that exist in the game.
+ * Per-unit minimap data.
  */
-class ICmpPlayerManager : public IComponent
+class ICmpMinimap : public IComponent
 {
 public:
-	virtual void AddPlayer(entity_id_t ent) = 0;
+	/**
+	 * Get the data for rendering this entity on the minimap.
+	 * If it should not be drawn, returns false; otherwise the arguments are set
+	 * to the colour and world position.
+	 */
+	virtual bool GetRenderData(u8& r, u8& g, u8& b, float& x, float& z) = 0;
 
-	virtual entity_id_t GetPlayerByID(int32_t id) = 0;
-
-	DECLARE_INTERFACE_TYPE(PlayerManager)
+	DECLARE_INTERFACE_TYPE(Minimap)
 };
 
-#endif // INCLUDED_ICMPPLAYERMANAGER
+#endif // INCLUDED_ICMPMINIMAP

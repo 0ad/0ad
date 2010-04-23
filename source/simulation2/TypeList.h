@@ -59,6 +59,9 @@ COMPONENT(Footprint)
 INTERFACE(GuiInterface)
 COMPONENT(GuiInterfaceScripted)
 
+INTERFACE(Minimap)
+COMPONENT(Minimap)
+
 INTERFACE(Motion)
 COMPONENT(MotionBall)
 COMPONENT(MotionScripted)

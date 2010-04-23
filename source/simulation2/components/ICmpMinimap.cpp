@@ -15,22 +15,11 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_ICMPPLAYERMANAGER
-#define INCLUDED_ICMPPLAYERMANAGER
+#include "precompiled.h"
 
-#include "simulation2/system/Interface.h"
+#include "ICmpMinimap.h"
 
-/**
- * Player manager. This maintains the list of players that exist in the game.
- */
-class ICmpPlayerManager : public IComponent
-{
-public:
-	virtual void AddPlayer(entity_id_t ent) = 0;
+#include "simulation2/system/InterfaceScripted.h"
 
-	virtual entity_id_t GetPlayerByID(int32_t id) = 0;
-
-	DECLARE_INTERFACE_TYPE(PlayerManager)
-};
-
-#endif // INCLUDED_ICMPPLAYERMANAGER
+BEGIN_INTERFACE_WRAPPER(Minimap)
+END_INTERFACE_WRAPPER(Minimap)
