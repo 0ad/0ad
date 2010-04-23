@@ -21,6 +21,7 @@
 #include "ICmpSelectable.h"
 
 #include "ICmpPosition.h"
+#include "ICmpFootprint.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Render.h"
 
@@ -124,15 +125,26 @@ public:
 		if (!cmpPosition->IsInWorld())
 			return;
 
-		CMatrix3D transform = cmpPosition->GetInterpolatedTransform(frameOffset);
-		CVector3D pos = transform.GetTranslation();
-		// TODO: this is an unnecessarily inefficient way to get X and Z coordinates;
-		// ought to have a GetInterpolated2DPosition instead
+		float x, z, rotY;
+		cmpPosition->GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
-		// TODO: should use ICmpFootprint to find the shape
+		CmpPtr<ICmpFootprint> cmpFootprint(context, GetEntityId());
+		if (cmpFootprint.null())
+		{
+			// Default (this probably shouldn't happen) - just render an arbitrary-sized circle
+			SimRender::ConstructCircleOnGround(context, x, z, 2.f, m_Overlay);
+		}
+		else
+		{
+			ICmpFootprint::EShape shape;
+			entity_pos_t size0, size1, height;
+			cmpFootprint->GetShape(shape, size0, size1, height);
 
-		float radius = 2.f;
-		SimRender::ConstructCircleOnGround(context, pos.X, pos.Z, radius, m_Overlay);
+			if (shape == ICmpFootprint::SQUARE)
+				SimRender::ConstructSquareOnGround(context, x, z, size0.ToFloat(), size1.ToFloat(), rotY, m_Overlay);
+			else
+				SimRender::ConstructCircleOnGround(context, x, z, size0.ToFloat(), m_Overlay);
+		}
 	}
 
 	void RenderSubmit(SceneCollector& collector)

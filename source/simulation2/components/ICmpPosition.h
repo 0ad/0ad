@@ -122,7 +122,13 @@ public:
 	// TODO: do we want to add smooth rotation here?
 
 	/**
-	 * Get the current interpolated position and orientation, for rendering.
+	 * Get the current interpolated 2D position and orientation, for rendering.
+	 * Must not be called unless IsInWorld is true.
+	 */
+	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY) = 0;
+
+	/**
+	 * Get the current interpolated transform matrix, for rendering.
 	 * Must not be called unless IsInWorld is true.
 	 */
 	virtual CMatrix3D GetInterpolatedTransform(float frameOffset) = 0;

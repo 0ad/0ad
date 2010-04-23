@@ -280,6 +280,20 @@ public:
 		return CFixedVector3D(m_RotX, m_RotY, m_RotZ);
 	}
 
+	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY)
+	{
+		if (!m_InWorld)
+		{
+			LOGERROR(L"CCmpPosition::GetInterpolatedPosition2D called on entity when IsInWorld is false");
+			return;
+		}
+
+		x = Interpolate(m_LastX.ToFloat(), m_X.ToFloat(), frameOffset);
+		z = Interpolate(m_LastZ.ToFloat(), m_Z.ToFloat(), frameOffset);
+
+		rotY = m_InterpolatedRotY;
+	}
+
 	virtual CMatrix3D GetInterpolatedTransform(float frameOffset)
 	{
 		if (!m_InWorld)
@@ -290,8 +304,8 @@ public:
 			return m;
 		}
 
-		float x = Interpolate(m_LastX.ToFloat(), m_X.ToFloat(), frameOffset);
-		float z = Interpolate(m_LastZ.ToFloat(), m_Z.ToFloat(), frameOffset);
+		float x, z, rotY;
+		GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
 		float ground = 0;
 		CmpPtr<ICmpTerrain> cmpTerrain(*m_Context, SYSTEM_ENTITY);
@@ -307,8 +321,8 @@ public:
 
 		CMatrix3D m;
 		CMatrix3D mXZ;
-		float Cos = cosf(m_InterpolatedRotY);
-		float Sin = sinf(m_InterpolatedRotY);
+		float Cos = cosf(rotY);
+		float Sin = sinf(rotY);
 
 		m.SetIdentity();
 		m._11 = -Cos;
@@ -319,7 +333,7 @@ public:
 		mXZ.SetIdentity();
 		mXZ.SetXRotation(m_RotX.ToFloat());
 		mXZ.RotateZ(m_RotZ.ToFloat());
-		// TODO: is this correct?
+		// TODO: is this all done in the correct order?
 		mXZ = m * mXZ;
 		mXZ.Translate(CVector3D(x, y, z));
 
