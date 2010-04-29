@@ -80,7 +80,10 @@ end of XMLWriter.cpp.
 #define XML_Element(name) XMLWriter_Element xml_element_ (xml_file_, name)
 
 // Add text to the interior of the current element: <...>text</...>
-#define XML_Text(text) xml_element_.Text(text)
+#define XML_Text(text) xml_element_.Text(text, false)
+
+// Add CDATA-escaped text to the interior of the current element: <...><![CDATA[text]]></...>
+#define XML_CDATA(text) xml_element_.Text(text, true)
 
 // Add an attribute to the current element: <... name="value" ...>
 #define XML_Attribute(name, value) xml_element_.Attribute(name, value)
@@ -119,7 +122,7 @@ private:
 	friend class XMLWriter_Element;
 
 	void ElementStart(XMLWriter_Element* element, const char* name);
-	void ElementText(const char* text);
+	void ElementText(const char* text, bool cdata);
 	template <typename T> void ElementAttribute(const char* name, const T& value, bool newelement);
 	void ElementClose();
 	void ElementEnd(const char* name, int type);
@@ -139,7 +142,7 @@ public:
 	XMLWriter_Element(XMLWriter_File& file, const char* name);
 	~XMLWriter_Element();
 
-	template <typename constCharPtr> void Text(constCharPtr text);
+	template <typename constCharPtr> void Text(constCharPtr text, bool cdata);
 	template <typename T> void Attribute(const char* name, T value) { m_File->ElementAttribute(name, value, false); }
 	template <typename T> void Setting(const char* name, T value) { m_File->ElementAttribute(name, value, true); }
 	void Close(int type);

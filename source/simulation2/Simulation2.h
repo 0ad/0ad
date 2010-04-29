@@ -64,6 +64,9 @@ public:
 	 */
 	bool LoadDefaultScripts();
 
+	void SetStartupScript(const std::wstring& script);
+	const std::wstring& GetStartupScript();
+
 	/**
 	 * Reload any scripts that were loaded from the given filename.
 	 * (This is used to implement hotloading.)

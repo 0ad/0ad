@@ -1174,6 +1174,10 @@ int CXMLReader::ProgressiveRead()
 		{
 			ReadTriggers(node);
 		}
+		else if (name == "Script")
+		{
+			m_MapReader.pSimulation2->SetStartupScript(CStrW(node.GetText()));
+		}
 		else
 		{
 			debug_printf(L"Invalid XML element in map file: %ls\n", CStrW(name).c_str());

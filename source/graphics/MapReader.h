@@ -78,6 +78,8 @@ private:
 	std::vector<STileDesc> m_Tiles;
 	// lightenv stored in file
 	CLightEnv m_LightEnv;
+	// startup script
+	CStrW m_Script;
 
 	// state latched by LoadMap and held until DelayedLoadFinished
 	CFileUnpacker unpacker;

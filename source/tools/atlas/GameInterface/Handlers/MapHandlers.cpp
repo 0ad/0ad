@@ -164,7 +164,8 @@ MESSAGEHANDLER(SaveMap)
 	writer.SaveMap(pathname,
 		g_Game->GetWorld()->GetTerrain(), &g_Game->GetWorld()->GetUnitManager(),
 		g_Renderer.GetWaterManager(), g_Renderer.GetSkyManager(),
-		&g_LightEnv, g_Game->GetView()->GetCamera(), g_Game->GetView()->GetCinema());
+		&g_LightEnv, g_Game->GetView()->GetCamera(), g_Game->GetView()->GetCinema(),
+		g_Game->GetSimulation2());
 }
 
 }

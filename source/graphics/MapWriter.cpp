@@ -62,7 +62,8 @@ CMapWriter::CMapWriter()
 // SaveMap: try to save the current map to the given file
 void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 						 CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
-						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
+						 CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
+						 CSimulation2* pSimulation2)
 {
 	CFilePacker packer(CURRENT_FILE_VERSION, "PSMP");
 
@@ -73,7 +74,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 	packer.Write(pathname);
 
 	VfsPath pathnameXML = fs::change_extension(pathname, L".xml");
-	WriteXML(pathnameXML, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
+	WriteXML(pathnameXML, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,13 +181,20 @@ void CMapWriter::PackTerrain(CFilePacker& packer, CTerrain* pTerrain)
 }
 void CMapWriter::WriteXML(const VfsPath& filename,
 						  CUnitManager* pUnitMan, WaterManager* pWaterMan, SkyManager* pSkyMan,
-						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema)
+						  CLightEnv* pLightEnv, CCamera* pCamera, CCinemaManager* pCinema,
+						  CSimulation2* pSimulation2)
 {
 	XML_Start();
 
 	{
 		XML_Element("Scenario");
 		XML_Attribute("version", (int)CURRENT_FILE_VERSION);
+
+		if (pSimulation2 && !pSimulation2->GetStartupScript().empty())
+		{
+			XML_Element("Script");
+			XML_CDATA(pSimulation2->GetStartupScript().c_str());
+		}
 
 		{
 			XML_Element("Environment");
@@ -603,6 +611,6 @@ void CMapWriter::RewriteAllMaps(CTerrain* pTerrain, CUnitManager* pUnitMan,
 		CStrW newPathname(pathnames[i].string());
 		newPathname.Replace(L"scenarios/", L"scenarios/new/");
 		CMapWriter writer;
-		writer.SaveMap(newPathname, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema);
+		writer.SaveMap(newPathname, pTerrain, pUnitMan, pWaterMan, pSkyMan, pLightEnv, pCamera, pCinema, pSimulation2);
 	}
 }

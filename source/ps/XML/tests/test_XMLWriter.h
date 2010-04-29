@@ -208,6 +208,22 @@ public:
 			);
 	}
 
+	void test_cdata_escape()
+	{
+		XML_Start();
+
+		{
+			XML_Element("Test");
+			XML_CDATA("abc > ]]> < & \"\" ");
+		}
+
+		CStr output = XML_GetOutput();
+		TS_ASSERT_STR_EQUALS(output,
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n"
+			"<Test><![CDATA[abc > ]]>]]&gt;<![CDATA[ < & \"\" ]]></Test>"
+			);
+	}
+
 	void test_comment_escape()
 	{
 		XML_Start();

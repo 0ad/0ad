@@ -51,6 +51,7 @@ public:
 		m_ComponentManager.ResetState();
 
 		m_DeltaTime = 0.0;
+		m_TurnNumber = 0;
 
 		CParamNode noParam;
 		CComponentManager::ComponentTypeId cid;
@@ -92,7 +93,11 @@ public:
 	CComponentManager m_ComponentManager;
 	double m_DeltaTime;
 
+	std::wstring m_StartupScript;
+
 	std::set<std::wstring> m_LoadedScripts;
+
+	uint32_t m_TurnNumber;
 
 	static const int TURN_LENGTH = 300; // TODO: Use CTurnManager
 };
@@ -149,6 +154,9 @@ void CSimulation2Impl::Update(float frameTime)
 		CMessageTurnStart msgTurnStart;
 		m_ComponentManager.BroadcastMessage(msgTurnStart);
 
+		if (m_TurnNumber == 0 && !m_StartupScript.empty())
+			m_ComponentManager.GetScriptInterface().LoadScript(L"map startup script", m_StartupScript);
+
 		CmpPtr<ICmpCommandQueue> cmpCommandQueue(m_SimContext, SYSTEM_ENTITY);
 		if (!cmpCommandQueue.null())
 			cmpCommandQueue->ProcessCommands();
@@ -158,6 +166,8 @@ void CSimulation2Impl::Update(float frameTime)
 
 		// Clean up any entities destroyed during the simulation update
 		m_ComponentManager.FlushDestroyedComponents();
+
+		++m_TurnNumber;
 	}
 }
 
@@ -273,6 +283,16 @@ bool CSimulation2::LoadDefaultScripts()
 		m->LoadScripts(L"simulation/helpers/") &&
 		m->LoadScripts(L"simulation/components/")
 	);
+}
+
+void CSimulation2::SetStartupScript(const std::wstring& code)
+{
+	m->m_StartupScript = code;
+}
+
+const std::wstring& CSimulation2::GetStartupScript()
+{
+	return m->m_StartupScript;
 }
 
 LibError CSimulation2::ReloadChangedFile(const VfsPath& path)

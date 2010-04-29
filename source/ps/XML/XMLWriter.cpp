@@ -56,6 +56,13 @@ namespace
 		return ret;
 	}
 
+	CStr escapeCDATA(const char* input)
+	{
+		CStr ret = input;
+		ret.Replace("]]>", "]]>]]&gt;<![CDATA[");
+		return ret;
+	}
+
 	CStr escapeComment(const char* input)
 	{
 		//     Comment ::= '<!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
@@ -169,9 +176,18 @@ void XMLWriter_File::ElementEnd(const char* name, int type)
 	}
 }
 
-void XMLWriter_File::ElementText(const char* text)
+void XMLWriter_File::ElementText(const char* text, bool cdata)
 {
-	m_Data += escapeCharacterData(text);
+	if (cdata)
+	{
+		m_Data += "<![CDATA[";
+		m_Data += escapeCDATA(text);
+		m_Data += "]]>";
+	}
+	else
+	{
+		m_Data += escapeCharacterData(text);
+	}
 }
 
 
@@ -200,15 +216,15 @@ void XMLWriter_Element::Close(int type)
 
 // Template specialisations for various string types:
 
-template <> void XMLWriter_Element::Text<const char*>(const char* text)
+template <> void XMLWriter_Element::Text<const char*>(const char* text, bool cdata)
 {
 	Close(EL_TEXT);
-	m_File->ElementText(text);
+	m_File->ElementText(text, cdata);
 }
 
-template <> void XMLWriter_Element::Text<const wchar_t*>(const wchar_t* text)
+template <> void XMLWriter_Element::Text<const wchar_t*>(const wchar_t* text, bool cdata)
 {
-	Text( CStrW(text).ToUTF8().c_str() );
+	Text( CStrW(text).ToUTF8().c_str(), cdata );
 }
 
 // 
@@ -219,7 +235,7 @@ template <> void XMLWriter_File::ElementAttribute<const char*>(const char* name,
 	{
 		ElementStart(NULL, name);
 		m_Data += ">";
-		ElementText(value);
+		ElementText(value, false);
 		ElementEnd(name, EL_TEXT);
 	}
 	else

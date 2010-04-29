@@ -48,7 +48,7 @@ public:
 	void SaveMap(const VfsPath& pathname, CTerrain* pTerr, CUnitManager* pUnitMan, 
 									WaterManager* pWaterMan, SkyManager* pSkyMan, 
 									CLightEnv* pLightEnv, CCamera* pCamera, 
-									CCinemaManager* pCinema);
+									CCinemaManager* pCinema, CSimulation2* pSimulation2);
 
 	// RewriteAllMaps: for use during development: load/save all maps, to
 	// update them to the newest format.
@@ -71,7 +71,7 @@ private:
 	// WriteXML: output some other data (entities, etc) in XML format
 	void WriteXML(const VfsPath& pathname, CUnitManager* pUnitMan, WaterManager* pWaterMan, 
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
-								CCinemaManager* pCinema);
+								CCinemaManager* pCinema, CSimulation2* pSimulation2);
 	void WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group, 
 											const std::list<MapTriggerGroup>& groupList);
 	void WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigger);
